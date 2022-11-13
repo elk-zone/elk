@@ -16,11 +16,14 @@
     "@iconify-json/twemoji": "^1.1.5",
     "@nuxtjs/color-mode": "^3.1.8",
     "@pinia/nuxt": "^0.4.3",
+    "@types/sanitize-html": "^2.6.2",
     "@unocss/nuxt": "^0.46.5",
     "@vueuse/nuxt": "^9.5.0",
     "eslint": "^8.27.0",
+    "masto": "^4.6.1",
     "nuxt": "^3.0.0-rc.13",
     "pinia": "^2.0.23",
+    "sanitize-html": "^2.7.3",
     "typescript": "^4.8.4"
   }
 }

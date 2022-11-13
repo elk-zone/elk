@@ -7,9 +7,9 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div flex flex-col gap-4 mb-5>
+  <NuxtLink flex flex-col gap-2 my-4 :to="`/${post.account.acct}/${post.id}`">
     <AccountInfo :account="post.account" />
-    <div v-html="post.content" />
+    <PostBody :post="post" />
     <PostActions :post="post" />
-  </div>
+  </NuxtLink>
 </template>

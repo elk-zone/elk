@@ -13,7 +13,9 @@ export default defineConfig({
   shortcuts: [
   ],
   presets: [
-    presetUno(),
+    presetUno({
+      attributifyPseudo: true,
+    }),
     presetAttributify(),
     presetIcons({
       scale: 1.2,

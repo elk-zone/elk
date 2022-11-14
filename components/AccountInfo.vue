@@ -21,5 +21,6 @@ defineProps<{
         @{{ account.acct }}
       </p>
     </NuxtLink>
+    <slot />
   </div>
 </template>

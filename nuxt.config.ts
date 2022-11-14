@@ -16,6 +16,9 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
+  alias: {
+    querystring: 'rollup-plugin-node-polyfills/polyfills/qs',
+  },
   postcss: {
     plugins: {
       'postcss-nested': {},

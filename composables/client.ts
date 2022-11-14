@@ -1,9 +1,5 @@
-import { Client } from '~/api-client'
+import type { MastoClient } from 'masto'
 
-const client = new Client({
-  host: 'https://mas.to',
-})
-
-export function useClient() {
-  return client
+export function useMasto() {
+  return inject('masto') as Promise<MastoClient>
 }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Post } from '~/api-client/types'
+import type { Status } from 'masto'
 
-const props = defineProps<{
-  post: Post
+defineProps<{
+  status: Status
 }>()
 </script>
 
@@ -10,15 +10,15 @@ const props = defineProps<{
   <div flex justify-between gap-4>
     <button flex gap-1 justify-center items-center p1 w-full rounded hover="bg-gray/10">
       <div i-ri:chat-3-line />
-      <span>{{ post.replies_count }}</span>
+      <span>{{ status.repliesCount }}</span>
     </button>
     <button flex gap-1 justify-center items-center p1 w-full rounded hover="bg-gray/10">
       <div i-ri:repeat-fill />
-      <span>{{ post.reblogs_count }}</span>
+      <span>{{ status.reblogsCount }}</span>
     </button>
     <button flex gap-1 justify-center items-center p1 w-full rounded hover="bg-gray/10">
       <div i-ri:heart-3-line />
-      <span>{{ post.favourites_count }}</span>
+      <span>{{ status.favouritesCount }}</span>
     </button>
     <button flex gap-1 justify-center items-center p1 w-full rounded hover="bg-gray/10">
       <div i-ri:more-2-fill />

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Account } from '~/api-client/types'
+import type { Account } from 'masto'
 
-const props = defineProps<{
+defineProps<{
   account: Account
 }>()
 </script>
@@ -9,15 +9,17 @@ const props = defineProps<{
 <template>
   <div flex gap-2>
     <div p1>
-      <img :src="account.avatar" rounded w-10 h-10>
+      <NuxtLink :to="`/@${account.acct}`">
+        <img :src="account.avatar" rounded w-10 h-10>
+      </NuxtLink>
     </div>
-    <div flex flex-col>
+    <NuxtLink flex flex-col :to="`/@${account.acct}`">
       <h4 font-bold>
-        {{ account.display_name }}
+        {{ account.displayName }}
       </h4>
       <p op50>
         @{{ account.acct }}
       </p>
-    </div>
+    </NuxtLink>
   </div>
 </template>

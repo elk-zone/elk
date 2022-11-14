@@ -8,6 +8,6 @@ defineProps<{
 
 <template>
   <template v-for="status of timelines" :key="status.id">
-    <StatusCard :status="status" border="t gray/10" pt-4 />
+    <StatusCard :status="status" border="t border" pt-4 />
   </template>
 </template>

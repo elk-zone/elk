@@ -27,7 +27,7 @@ defineProps<{
     --at-apply: font-bold;
   }
   p {
-    --at-apply: my-1;
+    --at-apply: my-2;
   }
 }
 </style>

@@ -12,7 +12,7 @@ const { attachment } = defineProps<{
       class="status-attachment-image"
       :src="attachment.previewUrl!"
       :alt="attachment.description!"
-      border="~ gray/10"
+      border="~ border"
       object-cover rounded-lg
     >
   </template>

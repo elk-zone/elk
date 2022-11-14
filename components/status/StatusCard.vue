@@ -1,16 +1,30 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 
-const { status } = defineProps<{
-  status: Status
-}>()
-const el = ref<HTMLElement>()
+const props = withDefaults(
+  defineProps<{
+    status: Status
+    actions?: boolean
+  }>(),
+  {
+    actions: true,
+  },
+)
 
+const status = $computed(() => {
+  if (props.status.reblog && !props.status.content)
+    return props.status.reblog
+  return props.status
+})
+
+const rebloggedBy = $computed(() => props.status.reblog ? props.status.account : null)
+
+const el = ref<HTMLElement>()
 const router = useRouter()
 
 function go(e: MouseEvent) {
   const path = e.composedPath() as HTMLElement[]
-  const hasButton = path.find(el => el.tagName === 'A' || el.tagName === 'BUTTON')
+  const hasButton = path.find(el => ['A', 'BUTTON', 'P'].includes(el.tagName.toUpperCase()))
   if (hasButton)
     return
 
@@ -52,18 +66,35 @@ const timeago = useTimeAgo(() => status.createdAt, {
 </script>
 
 <template>
-  <div ref="el" flex flex-col gap-2 my-4 @click="go">
+  <div ref="el" flex flex-col gap-2 my-2 px-4 @click="go">
+    <div v-if="rebloggedBy" pl8>
+      <div flex gap-1 items-center text-gray:75 text-sm>
+        <div i-ri:repeat-fill mr-1 />
+        <a :href="`/@${rebloggedBy.acct}`" flex gap-2 font-bold items-center>
+          <img :src="rebloggedBy.avatar" class="w-5 h-5 rounded">
+          {{ rebloggedBy.displayName }}
+        </a>
+        reblogged
+      </div>
+    </div>
     <AccountInfo :account="status.account">
       <div flex-auto />
       <div text-sm op50>
         {{ timeago }}
       </div>
     </AccountInfo>
-    <StatusBody :status="status" />
-    <StatusMedia
-      v-if="status.mediaAttachments?.length"
-      :status="status"
-    />
-    <StatusActions :status="status" />
+    <div pl14>
+      <StatusBody :status="status" />
+      <StatusMedia
+        v-if="status.mediaAttachments?.length"
+        :status="status"
+      />
+      <StatusCard
+        v-if="status.reblog"
+        :status="status.reblog" border="~ rounded"
+        :actions="false"
+      />
+    </div>
+    <StatusActions v-if="actions !== false" pl12 :status="status" />
   </div>
 </template>

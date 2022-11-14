@@ -8,12 +8,12 @@ defineProps<{
 
 <template>
   <div flex gap-8>
-    <button flex gap-1 items-center w-full rounded op75 hover="op100 text-blue" group>
+    <RouterLink flex gap-1 items-center w-full rounded op75 hover="op100 text-blue" group :to="`/@${status.account.acct}/${status.id}`">
       <div rounded-full p2 group-hover="bg-blue/10">
         <div i-ri:chat-3-line />
       </div>
       <span v-if="status.repliesCount">{{ status.repliesCount }}</span>
-    </button>
+    </RouterLink>
     <button flex gap-1 items-center w-full rounded op75 hover="op100 text-green" group>
       <div rounded-full p2 group-hover="bg-green/10">
         <div i-ri:repeat-fill />

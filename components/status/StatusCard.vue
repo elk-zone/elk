@@ -7,8 +7,14 @@ const { status } = defineProps<{
 const el = ref<HTMLElement>()
 
 const router = useRouter()
+
 function go(e: MouseEvent) {
-  if (e.target === el.value)
+  const path = e.composedPath() as HTMLElement[]
+  const hasButton = path.find(el => el.tagName === 'A' || el.tagName === 'BUTTON')
+  if (hasButton)
+    return
+
+  if (path.find(i => i === el.value))
     router.push(`/@${status.account.acct}/${status.id}`)
 }
 
@@ -54,9 +60,10 @@ const timeago = useTimeAgo(() => status.createdAt, {
       </div>
     </AccountInfo>
     <StatusBody :status="status" />
-    <template v-for="attachment of status.mediaAttachments" :key="attachment.id">
-      <StatusMedia :attachment="attachment" />
-    </template>
+    <StatusMedia
+      v-if="status.mediaAttachments?.length"
+      :status="status"
+    />
     <StatusActions :status="status" />
   </div>
 </template>

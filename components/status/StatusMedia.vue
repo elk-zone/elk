@@ -1,21 +1,42 @@
 <script setup lang="ts">
-import type { Attachment } from 'masto'
+import type { Status } from 'masto'
 
-const { attachment } = defineProps<{
-  attachment: Attachment
+const { status } = defineProps<{
+  status: Status
 }>()
 </script>
 
 <template>
-  <template v-if="attachment.type === 'image'">
-    <img
-      class="status-attachment-image"
-      :src="attachment.previewUrl!"
-      :alt="attachment.description!"
-      rounded-lg border="~ gray/10"
-    >
-  </template>
-  <template v-else>
-    TODO: {{ attachment }}
-  </template>
+  <div class="status-media-container" :class="`status-media-container-${status.mediaAttachments.length}`">
+    <template v-for="attachment of status.mediaAttachments" :key="attachment.id">
+      <StatusAttachment :attachment="attachment" class="w-full h-full" />
+    </template>
+  </div>
 </template>
+
+<style lang="postcss">
+.status-media-container {
+  --at-apply: gap-0.5;
+  width: 100%;
+  overflow: hidden;
+}
+.status-media-container-1 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.status-media-container-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  aspect-ratio: 2/1;
+}
+.status-media-container-3 {
+  display: grid;
+  aspect-ratio: 16/9;
+  grid-template-columns: 1fr 1fr;
+}
+.status-media-container-4 {
+  display: grid;
+  aspect-ratio: 16/9;
+  grid-template-columns: 1fr 1fr;
+}
+</style>

@@ -16,4 +16,9 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: '',
   },
+  postcss: {
+    plugins: {
+      'postcss-nested': {},
+    },
+  },
 })

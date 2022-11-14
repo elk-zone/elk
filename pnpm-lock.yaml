@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@antfu/eslint-config': ^0.30.1
   '@iconify-json/carbon': ^1.1.9
+  '@iconify-json/logos': ^1.1.18
   '@iconify-json/ri': ^1.1.3
   '@iconify-json/twemoji': ^1.1.5
   '@nuxtjs/color-mode': ^3.1.8
@@ -14,12 +15,14 @@ specifiers:
   masto: ^4.6.1
   nuxt: ^3.0.0-rc.13
   pinia: ^2.0.23
+  postcss-nested: ^6.0.0
   sanitize-html: ^2.7.3
   typescript: ^4.8.4
 
 devDependencies:
   '@antfu/eslint-config': 0.30.1_rmayb2veg2btbq6mbmnyivgasy
   '@iconify-json/carbon': 1.1.9
+  '@iconify-json/logos': 1.1.18
   '@iconify-json/ri': 1.1.3
   '@iconify-json/twemoji': 1.1.5
   '@nuxtjs/color-mode': 3.1.8
@@ -31,6 +34,7 @@ devDependencies:
   masto: 4.6.1
   nuxt: 3.0.0-rc.13_rmayb2veg2btbq6mbmnyivgasy
   pinia: 2.0.23_typescript@4.8.4
+  postcss-nested: 6.0.0
   sanitize-html: 2.7.3
   typescript: 4.8.4
 
@@ -620,6 +624,12 @@ packages:
 
   /@iconify-json/carbon/1.1.9:
     resolution: {integrity: sha512-O3geRhhnE9dDDC4oT6qwBs7sdc37R9UqftiG7BP8YVDw8OcXv8i95J0ZEkIfdOXFj1Wb6kC/Uu/6VTlAqotVXg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/logos/1.1.18:
+    resolution: {integrity: sha512-Ra8BV3fJhE/5omYOY2UlDhgggyxxzMTppGH3n9EfFYh9Rpx4+HtE6zp7s+i3glYOqs2Me5HNcDEOkU63kcHqvg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -5524,6 +5534,15 @@ packages:
       postcss: ^8.2.15
     dependencies:
       postcss: 8.4.18
+      postcss-selector-parser: 6.0.10
+    dev: true
+
+  /postcss-nested/6.0.0:
+    resolution: {integrity: sha512-0DkamqrPcmkBDsLn+vQDIrtkSbNkv5AD/M322ySo9kqFkCIYklym2xEmWkwo+Y3/qZo34tzEPNUw4y7yMCdv5w==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.2.14
+    dependencies:
       postcss-selector-parser: 6.0.10
     dev: true
 

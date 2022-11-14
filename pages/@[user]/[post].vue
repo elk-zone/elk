@@ -4,10 +4,13 @@ const props = defineProps<{
 }>()
 
 const params = useRoute().params
+
+const masto = await useMasto()
+const { data: status } = await useAsyncData(() => masto.statuses.fetch(params.post as string))
 </script>
 
 <template>
-  <div>
-    {{ params }}
+  <div w-130>
+    <StatusCard :status="status" />
   </div>
 </template>

@@ -4,9 +4,7 @@ const { data: timelines } = await useAsyncData('public-timelines', () => masto.t
 </script>
 
 <template>
-  <div w-150>
-    <template v-for="status of timelines" :key="status.id">
-      <StatusCard :status="status" border="t gray/10" pt-4 />
-    </template>
+  <div w-120>
+    <TimelineList :timelines="timelines" />
   </div>
 </template>

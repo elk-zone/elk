@@ -20,6 +20,11 @@ export default defineNuxtConfig({
   alias: {
     querystring: 'rollup-plugin-node-polyfills/polyfills/qs',
   },
+  vite: {
+    define: {
+      __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+    },
+  },
   postcss: {
     plugins: {
       'postcss-nested': {},

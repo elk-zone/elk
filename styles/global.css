@@ -1,26 +1,25 @@
-
 * {
-	scrollbar-color: #555 var(--color-border);
+  scrollbar-color: #5555 var(--color-border);
 }
 
 ::-webkit-scrollbar {
-	width: 10px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar:horizontal {
-	height: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-	background: var(--color-border);
-	border-radius: 1px;
+  background: var(--color-border);
+  border-radius: 1px;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #555;
-	border-radius: 1px;
+  background: #555;
+  border-radius: 1px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #666;
+  background: #666;
 }

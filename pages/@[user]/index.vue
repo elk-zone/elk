@@ -4,10 +4,12 @@ const props = defineProps<{
 }>()
 
 const params = useRoute().params
+const masto = await useMasto()
+const { data: account } = await useAsyncData('account', () => masto.accounts.lookup({ acct: params.user as string }))
 </script>
 
 <template>
   <div>
-    {{ params }}
+    <AccountHeader :account="account" />
   </div>
 </template>

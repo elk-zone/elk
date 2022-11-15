@@ -4,3 +4,4 @@ export const HOST_DOMAIN = process.dev
   ? 'http://localhost:3000'
   : 'https://nuxtodon.netlify.app'
 
+export const DEFAULT_SERVER = 'mas.to'

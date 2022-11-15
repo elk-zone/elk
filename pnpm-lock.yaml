@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@antfu/eslint-config': ^0.30.1
-  '@iconify-json/carbon': ^1.1.9
+  '@iconify-json/carbon': ^1.1.10
   '@iconify-json/logos': ^1.1.18
   '@iconify-json/ri': ^1.1.3
   '@iconify-json/twemoji': ^1.1.5
@@ -26,7 +26,7 @@ specifiers:
 
 devDependencies:
   '@antfu/eslint-config': 0.30.1_rmayb2veg2btbq6mbmnyivgasy
-  '@iconify-json/carbon': 1.1.9
+  '@iconify-json/carbon': 1.1.10
   '@iconify-json/logos': 1.1.18
   '@iconify-json/ri': 1.1.3
   '@iconify-json/twemoji': 1.1.5
@@ -632,8 +632,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@iconify-json/carbon/1.1.9:
-    resolution: {integrity: sha512-O3geRhhnE9dDDC4oT6qwBs7sdc37R9UqftiG7BP8YVDw8OcXv8i95J0ZEkIfdOXFj1Wb6kC/Uu/6VTlAqotVXg==}
+  /@iconify-json/carbon/1.1.10:
+    resolution: {integrity: sha512-k3/28wk+2CklUPdKBXWhPHQxquvLGiPYk1s6UWdQYR3YtneHRMuCp+0zc9yNjHYBzoSylMIECO0UPH+SdccguA==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

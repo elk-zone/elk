@@ -10,7 +10,9 @@
         <slot />
       </div>
       <div>
-        <slot name="right" />
+        <slot name="right">
+          <AccountMe />
+        </slot>
       </div>
     </main>
   </div>

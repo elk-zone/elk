@@ -7,12 +7,13 @@
     "dev": "nuxi dev",
     "start": "node .output/server/index.mjs",
     "lint": "eslint .",
+    "register-apps": "esno ./scripts/registerApps.ts",
     "postinstall": "nuxi prepare",
     "generate": "nuxi generate"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.30.1",
-    "@iconify-json/carbon": "^1.1.9",
+    "@iconify-json/carbon": "^1.1.10",
     "@iconify-json/logos": "^1.1.18",
     "@iconify-json/ri": "^1.1.3",
     "@iconify-json/twemoji": "^1.1.5",

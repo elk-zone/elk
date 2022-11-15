@@ -3,7 +3,8 @@ import type { AppInfo } from '~/types'
 
 export const registeredApps: Record<string, AppInfo> = {}
 
-const promise = $fetch(process.env.APPS_JSON_URL || 'http://localhost:3000/registered-apps.json')
+const runtimeConfig = useRuntimeConfig()
+const promise = $fetch(runtimeConfig.registedAppsUrl)
   .then(r => Object.assign(registeredApps, r))
   .catch((e) => {
     if (process.dev)

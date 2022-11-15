@@ -24,4 +24,7 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
+  runtimeConfig: {
+    registedAppsUrl: process.env.APPS_JSON_URL || 'http://localhost:3000/registered-apps.json',
+  },
 })

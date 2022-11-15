@@ -19,6 +19,17 @@ async function toggleFavourite() {
     isLoading.value = false
   }
 }
+
+async function toggleBookmark() {
+  try {
+    isLoading.value = true
+    const action = status.bookmarked ? 'unbookmark' : 'bookmark'
+    Object.assign(status, await masto.statuses[action](status.id))
+  }
+  finally {
+    isLoading.value = false
+  }
+}
 </script>
 
 <template>
@@ -44,6 +55,15 @@ async function toggleFavourite() {
         <div :class="status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'" />
       </div>
       <span v-if="status.favouritesCount">{{ status.favouritesCount }}</span>
+    </button>
+    <button
+      flex gap-1 items-center w-full rounded hover="op100 text-yellow" group
+      :class="status.bookmarked ? 'text-yellow op100' : 'op75'"
+      @click="toggleBookmark()"
+    >
+      <div rounded-full p2 group-hover="bg-rose/10">
+        <div :class="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'" />
+      </div>
     </button>
     <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
       <div rounded-full p2 group-hover="bg-purple/10">

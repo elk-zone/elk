@@ -32,8 +32,8 @@
       <div i-ri:heart-3-line />
       <span>Favorites</span>
     </NuxtLink>
-    <NuxtLink flex gap2 items-center>
-      <div i-ri:home-5-line />
+    <NuxtLink flex gap2 items-center to="/bookmarks">
+      <div i-ri:bookmark-line />
       <span>Bookmarks</span>
     </NuxtLink>
   </div>

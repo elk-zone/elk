@@ -6,9 +6,9 @@ if (!token.value)
   router.replace('/public')
 
 const masto = await useMasto()
-const { data: timelines } = await useAsyncData('timelines-home', () => masto.timelines.fetchHome().then(r => r.value))
+const paginator = masto.timelines.getHomeIterable()
 </script>
 
 <template>
-  <TimelineList :timelines="timelines" />
+  <TimelinePaginator :paginator="paginator" />
 </template>

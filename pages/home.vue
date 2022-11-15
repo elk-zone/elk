@@ -1,8 +1,7 @@
 <script setup lang="ts">
-const token = useCookie('nuxtodon-token')
-const router = useRouter()
-if (!token.value)
-  router.replace('/public')
+definePageMeta({
+  middleware: 'auth',
+})
 
 const masto = await useMasto()
 const paginator = masto.timelines.getHomeIterable()
@@ -17,7 +16,7 @@ const paginator = masto.timelines.getHomeIterable()
       <div color-gray i-ri:equalizer-fill mr-1 h-6 />
     </template>
     <slot>
-      <TimelinePaginator :timelines="paginator" />
+      <TimelinePaginator :paginator="paginator" />
     </slot>
   </MainContent>
 </template>

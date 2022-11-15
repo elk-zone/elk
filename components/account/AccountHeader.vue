@@ -71,9 +71,15 @@ const createdAt = $computed(() => {
         </div>
       </div>
       <div flex gap-5>
-        <div><span font-bold>{{ account.statusesCount }}</span> Posts</div>
-        <div><span font-bold>{{ account.followingCount }}</span> Following</div>
-        <div><span font-bold>{{ account.followersCount }}</span> Followers</div>
+        <NuxtLink :to="`/@${account.acct}/`">
+          <span font-bold>{{ account.statusesCount }}</span> Posts
+        </NuxtLink>
+        <NuxtLink :to="`/@${account.acct}/following`">
+          <span font-bold>{{ account.followingCount }}</span> Following
+        </NuxtLink>
+        <NuxtLink :to="`/@${account.acct}/followers`">
+          <span font-bold>{{ account.followersCount }}</span> Followers
+        </NuxtLink>
       </div>
     </div>
   </div>

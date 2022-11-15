@@ -3,11 +3,10 @@ const token = useCookie('nuxtodon-token')
 const router = useRouter()
 if (!token.value)
   router.replace('/public')
-
-const masto = await useMasto()
-const { data: timelines } = await useAsyncData('timelines-home', () => masto.timelines.fetchHome().then(r => r.value))
+else
+  router.replace('/home')
 </script>
 
 <template>
-  <TimelineList :timelines="timelines" />
+  <div />
 </template>

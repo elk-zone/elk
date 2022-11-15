@@ -2,12 +2,16 @@
   <div h-full of-hidden>
     <main grid="~ lg:cols-[1fr_40rem_1fr]" h-full>
       <div>
-        <NavTitle p4 />
+        <slot name="left">
+          <NavTitle p4 />
+        </slot>
       </div>
       <div h-full of-auto border="l r border">
         <slot />
       </div>
-      <div>Right</div>
+      <div>
+        <slot name="right" />
+      </div>
     </main>
   </div>
 </template>

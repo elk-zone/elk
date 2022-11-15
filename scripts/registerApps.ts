@@ -43,4 +43,7 @@ for (const server of KNOWN_SERVERS) {
   }
 }
 
+if (!fs.existsSync('public'))
+  await fs.mkdir('public')
+
 await fs.writeJSON(filename, registeredApps, { spaces: 2, EOL: '\n' })

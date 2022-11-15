@@ -8,11 +8,13 @@ specifiers:
   '@iconify-json/twemoji': ^1.1.5
   '@nuxtjs/color-mode': ^3.1.8
   '@pinia/nuxt': ^0.4.3
+  '@types/fs-extra': ^9.0.13
   '@types/sanitize-html': ^2.6.2
   '@unocss/nuxt': ^0.46.5
   '@vueuse/nuxt': ^9.5.0
   eslint: ^8.27.0
   form-data: ^4.0.0
+  fs-extra: ^10.1.0
   masto: ^4.6.1
   nuxt: ^3.0.0-rc.13
   pinia: ^2.0.23
@@ -30,11 +32,13 @@ devDependencies:
   '@iconify-json/twemoji': 1.1.5
   '@nuxtjs/color-mode': 3.1.8
   '@pinia/nuxt': 0.4.3_typescript@4.8.4
+  '@types/fs-extra': 9.0.13
   '@types/sanitize-html': 2.6.2
   '@unocss/nuxt': 0.46.5
   '@vueuse/nuxt': 9.5.0_nuxt@3.0.0-rc.13
   eslint: 8.27.0
   form-data: 4.0.0
+  fs-extra: 10.1.0
   masto: 4.6.1
   nuxt: 3.0.0-rc.13_rmayb2veg2btbq6mbmnyivgasy
   pinia: 2.0.23_typescript@4.8.4
@@ -1167,6 +1171,12 @@ packages:
 
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
+    dev: true
+
+  /@types/fs-extra/9.0.13:
+    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+    dependencies:
+      '@types/node': 18.7.23
     dev: true
 
   /@types/json-schema/7.0.11:

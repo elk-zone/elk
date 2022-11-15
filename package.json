@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "packageManager": "pnpm@7.9.0",
   "scripts": {
     "build": "nuxi build",
@@ -17,11 +18,13 @@
     "@iconify-json/twemoji": "^1.1.5",
     "@nuxtjs/color-mode": "^3.1.8",
     "@pinia/nuxt": "^0.4.3",
+    "@types/fs-extra": "^9.0.13",
     "@types/sanitize-html": "^2.6.2",
     "@unocss/nuxt": "^0.46.5",
     "@vueuse/nuxt": "^9.5.0",
     "eslint": "^8.27.0",
     "form-data": "^4.0.0",
+    "fs-extra": "^10.1.0",
     "masto": "^4.6.1",
     "nuxt": "^3.0.0-rc.13",
     "pinia": "^2.0.23",

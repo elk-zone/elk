@@ -28,7 +28,7 @@
       <div i-ri:at-line />
       <span>Direct Messages</span>
     </NuxtLink>
-    <NuxtLink flex gap2 items-center>
+    <NuxtLink flex gap2 items-center to="/favourites">
       <div i-ri:heart-3-line />
       <span>Favorites</span>
     </NuxtLink>

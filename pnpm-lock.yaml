@@ -20,6 +20,7 @@ specifiers:
   rollup-plugin-node-polyfills: ^0.2.1
   sanitize-html: ^2.7.3
   typescript: ^4.8.4
+  ufo: ^1.0.0
 
 devDependencies:
   '@antfu/eslint-config': 0.30.1_rmayb2veg2btbq6mbmnyivgasy
@@ -41,6 +42,7 @@ devDependencies:
   rollup-plugin-node-polyfills: 0.2.1
   sanitize-html: 2.7.3
   typescript: 4.8.4
+  ufo: 1.0.0
 
 packages:
 
@@ -6557,6 +6559,10 @@ packages:
 
   /ufo/0.8.6:
     resolution: {integrity: sha512-fk6CmUgwKCfX79EzcDQQpSCMxrHstvbLswFChHS0Vump+kFkw7nJBfTZoC1j0bOGoY9I7R3n2DGek5ajbcYnOw==}
+    dev: true
+
+  /ufo/1.0.0:
+    resolution: {integrity: sha512-DRty0ZBNlJ2R59y4mEupJRKLbkLQsc4qtxjpQv78AwEDuBkaUogMc2LkeqW3HddFlw6NwnXYfdThEZOiNgkmmQ==}
     dev: true
 
   /ultrahtml/0.4.0:

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 </script>
 
 <template>
@@ -38,3 +37,9 @@
     </NuxtLink>
   </div>
 </template>
+
+<style lang="postcss">
+.router-link-active {
+  --at-apply: color-purple;
+}
+</style>

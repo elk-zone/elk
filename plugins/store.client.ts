@@ -4,15 +4,24 @@ import type { UserLogin } from '~/types'
 function createStore() {
   const { server, token } = useAppCookies()
   const accounts = useLocalStorage<UserLogin[]>('nuxtodon-accounts', [], { deep: true })
-  const currentIndex = useLocalStorage<number>('nuxtodon-current-user', -1)
-  const currentUser = computed<UserLogin | undefined>(() => accounts.value[currentIndex.value])
+  const currentId = useLocalStorage<string>('nuxtodon-current-user', '')
+  const currentUser = computed<UserLogin | undefined>(() => {
+    let user: UserLogin | undefined
+    if (currentId.value) {
+      user = accounts.value.find(user => user.account?.id === currentId.value)
+      if (user)
+        return user
+    }
+    // Fallback to the first account
+    return accounts.value[0]
+  })
 
   async function login(user: UserLogin) {
     const existing = accounts.value.findIndex(u => u.server === user.server && u.token === user.token)
     if (existing !== -1) {
-      if (currentIndex.value === existing)
+      if (currentId.value === accounts.value[existing].account?.id)
         return null
-      currentIndex.value = existing
+      currentId.value = user.account?.id
       server.value = user.server
       token.value = user.token
       return true
@@ -26,10 +35,9 @@ function createStore() {
     user.account = me
 
     accounts.value.push(user)
-    currentIndex.value = accounts.value.length
+    currentId.value = me.id
     server.value = user.server
     token.value = user.token
-
     return true
   }
 

@@ -15,3 +15,5 @@ export interface UserLogin {
   token: string
   account?: AccountCredentials
 }
+
+export type PaginatorState = 'ready' | 'loading' | 'done'

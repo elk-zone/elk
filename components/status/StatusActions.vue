@@ -1,48 +1,58 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
+import AccountInfo from '../account/AccountInfo.vue'
 
 const { status } = defineProps<{
   status: Status
 }>()
 
 const masto = await useMasto()
-const isLoading = ref(false)
-async function toggleFavourite() {
+
+// Use different states to let the user press different actions right after the other
+const isLoading = $ref({ reblogged: false, favourited: false, bookmarked: false })
+async function toggleStatusAction(action: 'reblogged' | 'favourited' | 'bookmarked', newStatus: Promise<Status>) {
+  // Optimistic update
+  Object.assign(status, { [action]: !status[action] })
   try {
-    isLoading.value = true
-    if (status.favourited)
-      Object.assign(status, await masto.statuses.unfavourite(status.id))
-    else
-      Object.assign(status, await masto.statuses.favourite(status.id))
+    isLoading[action] = true
+    Object.assign(status, await newStatus)
   }
   finally {
-    isLoading.value = false
+    isLoading[action] = false
   }
 }
 
-async function toggleBookmark() {
-  try {
-    isLoading.value = true
-    const action = status.bookmarked ? 'unbookmark' : 'bookmark'
-    Object.assign(status, await masto.statuses[action](status.id))
-  }
-  finally {
-    isLoading.value = false
-  }
-}
+const toggleReblog = () => toggleStatusAction(
+  'reblogged',
+  masto.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id),
+)
+
+const toggleFavourite = () => toggleStatusAction(
+  'favourited',
+  masto.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+)
+
+const toggleBookmark = () => toggleStatusAction(
+  'bookmarked',
+  masto.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
+)
 </script>
 
 <template>
-  <div flex gap-8 :class="isLoading ? 'pointer-events-none' : ''">
+  <div flex gap-8>
     <RouterLink flex gap-1 items-center w-full rounded op75 hover="op100 text-blue" group :to="`/@${status.account.acct}/${status.id}`">
       <div rounded-full p2 group-hover="bg-blue/10">
         <div i-ri:chat-3-line />
       </div>
       <span v-if="status.repliesCount">{{ status.repliesCount }}</span>
     </RouterLink>
-    <button flex gap-1 items-center w-full rounded op75 hover="op100 text-green" group>
+    <button
+      flex gap-1 items-center w-full rounded op75 hover="op100 text-green" group
+      :class="(status.reblogged ? 'text-green op100' : 'op75') + (isLoading.reblogged ? ' pointer-events-none' : '')"
+      @click="toggleReblog()"
+    >
       <div rounded-full p2 group-hover="bg-green/10">
-        <div i-ri:repeat-fill />
+        <div :class="status.reblogged ? 'i-ri:repeat-fill' : 'i-ri:repeat-line'" />
       </div>
       <span v-if="status.reblogsCount">{{ status.reblogsCount }}</span>
     </button>
@@ -52,7 +62,7 @@ async function toggleBookmark() {
       @click="toggleFavourite()"
     >
       <div rounded-full p2 group-hover="bg-rose/10">
-        <div :class="status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'" />
+        <div :class="(status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line') + (isLoading.favourited ? ' pointer-events-none' : '')" />
       </div>
       <span v-if="status.favouritesCount">{{ status.favouritesCount }}</span>
     </button>
@@ -62,7 +72,7 @@ async function toggleBookmark() {
       @click="toggleBookmark()"
     >
       <div rounded-full p2 group-hover="bg-rose/10">
-        <div :class="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'" />
+        <div :class="(status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line') + (isLoading.bookmarked ? ' pointer-events-none' : '')" />
       </div>
     </button>
     <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>

@@ -7,7 +7,7 @@ const buildTimeAgo = useTimeAgo(buildTime)
 
 <template>
   <div p4 text-sm op25>
-    A Mastodon client powered by Nuxt<br>
+    A Mastodon client by Nuxt<br>
     Built <span :title="buildTime">{{ buildTimeAgo }}</span> · <a href="https://github.com/antfu/nuxtodon" target="_blank">GitHub</a>
   </div>
 </template>

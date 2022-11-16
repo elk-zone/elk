@@ -1,6 +1,6 @@
 <template>
   <div h-full of-hidden>
-    <main grid="~ lg:cols-[1fr_40rem_18rem]" h-full>
+    <main grid="~ lg:cols-[1fr_40rem_1fr]" max-w-70rem mxa h-full>
       <div>
         <slot name="left">
           <NavTitle p4 />

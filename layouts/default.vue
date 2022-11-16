@@ -3,7 +3,7 @@
     <main grid="~ lg:cols-[1fr_40rem_1fr]" max-w-70rem mxa h-full>
       <div>
         <slot name="left">
-          <NavTitle p4 />
+          <AccountMe />
         </slot>
       </div>
       <div h-full of-auto border="l r border">
@@ -11,7 +11,7 @@
       </div>
       <div flex="~ col">
         <slot name="right">
-          <AccountMe />
+          <NavTitle p5 />
           <NavSide border="y border" py8 />
           <div flex-auto />
           <NavFooter />

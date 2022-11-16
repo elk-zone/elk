@@ -38,3 +38,9 @@
     </NuxtLink>
   </div>
 </template>
+
+<style lang="postcss">
+.router-link-active {
+  --at-apply: color-primary;
+}
+</style>

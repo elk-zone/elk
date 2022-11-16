@@ -41,6 +41,6 @@
 
 <style lang="postcss">
 .router-link-active {
-  --at-apply: color-purple;
+  --at-apply: color-primary;
 }
 </style>

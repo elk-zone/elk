@@ -1,10 +1,12 @@
 import { login as loginMasto } from 'masto'
 import type { UserLogin } from '~/types'
 
-function createStore() {
+function createClientState() {
   const { server, token } = useAppCookies()
+
   const accounts = useLocalStorage<UserLogin[]>('nuxtodon-accounts', [], { deep: true })
   const currentId = useLocalStorage<string>('nuxtodon-current-user', '')
+
   const currentUser = computed<UserLogin | undefined>(() => {
     let user: UserLogin | undefined
     if (currentId.value) {
@@ -48,8 +50,8 @@ function createStore() {
   }
 }
 
-export type AppStore = ReturnType<typeof createStore>
+export type ClientState = ReturnType<typeof createClientState>
 
 export default defineNuxtPlugin((nuxt) => {
-  nuxt.vueApp.provide('app-store', createStore())
+  nuxt.$clientState = createClientState()
 })

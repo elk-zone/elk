@@ -1,6 +1,6 @@
 <template>
   <div h-full of-hidden>
-    <main grid="~ lg:cols-[1fr_40rem_1fr]" max-w-70rem mxa h-full>
+    <main grid="~ lg:cols-[1fr_40rem_1fr]" max-w-80rem mxa h-full>
       <div>
         <slot name="left">
           <AccountMe />

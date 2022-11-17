@@ -1,10 +1,10 @@
 import type { MastoClient } from 'masto'
-import type { AppStore } from '~~/plugins/store.client'
+import type { ClientState } from '~/plugins/store.client'
 
 export function useMasto() {
-  return inject('masto') as Promise<MastoClient>
+  return useNuxtApp().$masto as Promise<MastoClient>
 }
 
-export function useAppStore() {
-  return inject('app-store') as AppStore
+export function useClientState() {
+  return useNuxtApp().$clientState as ClientState
 }

@@ -12,7 +12,7 @@
       <div i-ri:notification-4-line />
       <span>Notifications</span>
     </NuxtLink>
-    <NuxtLink flex gap2 items-center active-class="text-primary">
+    <NuxtLink flex gap2 items-center to="/explore" active-class="text-primary">
       <div i-ri:hashtag />
       <span>Explore</span>
     </NuxtLink>

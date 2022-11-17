@@ -24,11 +24,8 @@ const router = useRouter()
 
 function go(e: MouseEvent) {
   const path = e.composedPath() as HTMLElement[]
-  const hasButton = path.find(el => ['A', 'BUTTON', 'P'].includes(el.tagName.toUpperCase()))
-  if (hasButton)
-    return
-
-  if (path.find(i => i === el.value))
+  const el = path.find(el => ['A', 'BUTTON', 'P'].includes(el.tagName?.toUpperCase()))
+  if (!el || el.tagName.toUpperCase() === 'P')
     router.push(`/@${status.account.acct}/${status.id}`)
 }
 
@@ -70,10 +67,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
     <div v-if="rebloggedBy" pl8>
       <div flex gap-1 items-center text-gray:75 text-sm>
         <div i-ri:repeat-fill mr-1 />
-        <a :href="`/@${rebloggedBy.acct}`" flex gap-2 font-bold items-center>
-          <img :src="rebloggedBy.avatar" class="w-5 h-5 rounded">
-          {{ rebloggedBy.displayName }}
-        </a>
+        <AccountInlineInfo :account="rebloggedBy" />
         reblogged
       </div>
     </div>

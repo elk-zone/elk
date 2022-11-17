@@ -24,9 +24,9 @@
       <div i-ri:earth-line />
       <span>Federated</span>
     </NuxtLink>
-    <NuxtLink flex gap2 items-center active-class="text-primary">
+    <NuxtLink flex gap2 items-center to="/conversations" active-class="text-primary">
       <div i-ri:at-line />
-      <span>Messages</span>
+      <span>Conversations</span>
     </NuxtLink>
     <NuxtLink flex gap2 items-center to="/favourites" active-class="text-primary">
       <div i-ri:heart-3-line />

@@ -5,7 +5,8 @@ export default defineNuxtPlugin((nuxt) => {
 
   const masto = login({
     url: `https://${server.value}`,
-    accessToken: token.value,
+    accessToken: token.value || undefined,
   })
-  nuxt.vueApp.provide('masto', masto)
+
+  nuxt.$masto = masto
 })

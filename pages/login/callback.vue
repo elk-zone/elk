@@ -2,7 +2,7 @@
 const { query } = useRoute()
 
 onMounted(async () => {
-  const { login } = useAppStore()
+  const { login } = useClientState()
   await login(query as any)
   await nextTick()
   await nextTick()

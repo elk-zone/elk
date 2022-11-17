@@ -9,3 +9,8 @@ export function useAppCookies() {
     token,
   }
 }
+
+export function useLoginState() {
+  const token = useCookie('nuxtodon-token')
+  return computed(() => !!token.value)
+}

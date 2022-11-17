@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { currentUser } = $(useAppStore())
+const { currentUser } = $(useClientState())
 
 const account = $computed(() => currentUser?.account)
 </script>

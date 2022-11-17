@@ -4,15 +4,18 @@ import type { Account, Paginator } from 'masto'
 const { paginator } = defineProps<{
   paginator: Paginator<any, Account[]>
 }>()
-
-const { items: accounts, state, endAnchor } = usePaginator(paginator)
 </script>
 
 <template>
-  <CommonPaginator :state="state">
-    <template v-for="account of accounts" :key="account.id">
-      <AccountCard :account="account" border="t border" pt-4 />
+  <CommonPaginator
+    :paginator="paginator"
+    border="t border"
+  >
+    <template #default="{ item }">
+      <AccountCard
+        :account="item"
+        border="b border" py-1
+      />
     </template>
-    <div ref="endAnchor" />
   </CommonPaginator>
 </template>

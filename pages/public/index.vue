@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const masto = await useMasto()
-const { data: timelines } = await useAsyncData('timelines-public', () => masto.timelines.fetchPublic().then(r => r.value))
+const paginator = masto.timelines.getPublicIterable()
 </script>
 
 <template>
@@ -12,7 +12,7 @@ const { data: timelines } = await useAsyncData('timelines-public', () => masto.t
       <div color-gray i-ri:equalizer-fill mr-1 h-6 />
     </template>
     <slot>
-      <TimelineList :timelines="timelines" />
+      <TimelinePaginator :paginator="paginator" />
     </slot>
   </MainContent>
 </template>

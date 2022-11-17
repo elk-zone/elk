@@ -10,7 +10,7 @@ defineProps<{
   <div flex gap-2>
     <div p1>
       <NuxtLink :to="`/@${account.acct}`">
-        <img :src="account.avatar" rounded w-10 h-10>
+        <img :src="account.avatar" rounded w-10 h-10 bg-gray:10>
       </NuxtLink>
     </div>
     <NuxtLink flex flex-col :to="`/@${account.acct}`">

@@ -16,4 +16,4 @@ export interface UserLogin {
   account?: AccountCredentials
 }
 
-export type PaginatorState = 'ready' | 'loading' | 'done'
+export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'

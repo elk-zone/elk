@@ -12,10 +12,11 @@ const { data: context } = await useAsyncData(`${id}-context`, () => masto.status
 </script>
 
 <template>
+  <template v-for="comment of context?.ancestors" :key="comment.id">
+    <StatusCard :status="comment" border="t border" pt-4 />
+  </template>
   <StatusDetails :status="status" />
   <template v-for="comment of context?.descendants" :key="comment.id">
     <StatusCard :status="comment" border="t border" pt-4 />
   </template>
-  <pre>{{ status }}</pre>
-  <pre>{{ context }}</pre>
 </template>

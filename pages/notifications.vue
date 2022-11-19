@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { FetchNotificationsParams } from 'masto'
 definePageMeta({
   middleware: 'auth',
 })
@@ -23,13 +22,7 @@ const paginator = $computed(() => {
       <div color-gray i-ri:equalizer-fill mr-1 h-6 />
     </template>
     <slot>
-      <div flex w-full>
-        <template v-for="type in tabNames" :key="type">
-          <input
-            :id="`tab-${type}`" v-model="tab" :value="type" type="radio" name="tabs" display="none"
-          ><label flex w-full justify-center h-8 cursor-pointer :for="`tab-${type}`" :class="tab === type ? 'color-primary' : 'hover:color-purple'" tabindex="1" @keypress.enter="tab = type">{{ type }}</label>
-        </template>
-      </div>
+      <CommonTabs v-module="tab" :options="tabNames" />
       <NotificationPaginator :key="tab" :paginator="paginator" />
     </slot>
   </MainContent>

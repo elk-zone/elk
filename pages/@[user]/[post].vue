@@ -15,8 +15,8 @@ const { data: context } = await useAsyncData(`${id}-context`, () => masto.status
   <template v-for="comment of context?.ancestors" :key="comment.id">
     <StatusCard :status="comment" border="t border" pt-4 />
   </template>
-  <StatusDetails :status="status" />
+  <StatusDetails :status="status" border="t border" pt-4 />
   <template v-for="comment of context?.descendants" :key="comment.id">
-    <StatusCard :status="comment" border="t border" pt-4 />
+    <StatusCard :status="comment" pt-4 />
   </template>
 </template>

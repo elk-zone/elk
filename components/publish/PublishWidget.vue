@@ -17,7 +17,7 @@ async function publish() {
 </script>
 
 <template>
-  <div flex flex-col gap-4 :class="isSending ? ' pointer-events-none' : ''">
+  <div xl:w-70 flex flex-col gap-4 :class="isSending ? ' pointer-events-none' : ''">
     <textarea
       v-model="draftPost"
       placeholder="What's on your mind?"

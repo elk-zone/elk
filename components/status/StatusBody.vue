@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 
-defineProps<{
+const { status } = defineProps<{
   status: Status
 }>()
-
-// TODO: parse and interop content (link, emojis)
 </script>
 
 <template>
-  <div class="status-body" v-html="sanitize(status.content)" />
+  <div class="status-body">
+    <CommonRichContent :content="status.content" />
+  </div>
 </template>
 
 <style lang="postcss">

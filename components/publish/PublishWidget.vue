@@ -18,7 +18,12 @@ async function publish() {
 
 <template>
   <div flex flex-col gap-4 :class="isSending ? ' pointer-events-none' : ''">
-    <textarea v-model="draftPost" p2 border-rounded w-full h-40 color-black placeholder="What's on your mind?" />
+    <textarea
+      v-model="draftPost"
+      placeholder="What's on your mind?"
+      p2 border-rounded w-full h-40
+      bg-gray:10 outline-none border="~ border"
+    />
     <div flex justify-end>
       <button h-9 w-22 bg-primary border-rounded :disabled="draftPost === ''" @click="publish">
         Publish!

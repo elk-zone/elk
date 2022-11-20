@@ -1,5 +1,5 @@
 import type { DefaultTreeAdapterMap } from 'parse5'
-import { parseFragment, serialize } from 'parse5'
+import { parseFragment } from 'parse5'
 import type { VNode } from 'vue'
 import { Fragment, h } from 'vue'
 import { RouterLink } from 'vue-router'

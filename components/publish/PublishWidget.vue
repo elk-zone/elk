@@ -17,7 +17,7 @@ async function publish() {
 </script>
 
 <template>
-  <div flex flex-col gap-4 :class="isSending ? ' pointer-events-none' : ''">
+  <div xl:w-70 flex flex-col gap-4 :class="isSending ? ' pointer-events-none' : ''">
     <textarea v-model="draftPost" p2 border-rounded w-full h-40 color-black placeholder="What's on your mind?" />
     <div flex justify-end>
       <button h-9 w-22 bg-primary border-rounded :disabled="draftPost === ''" @click="publish">

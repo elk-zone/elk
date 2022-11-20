@@ -23,3 +23,8 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #666;
 }
+
+/* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
+html {
+  overflow-y: scroll;
+}

@@ -14,7 +14,9 @@ const tabNames = ['posts', 'posts-and-replies'] as const
 const tab = $ref('posts')
 
 const paginator = $computed(() => {
-  return masto.accounts.getStatusesIterable(account.value!.id!, { excludeReplies: tab === 'posts' })
+  // bug in Masto.js, it should convert `excludeReplies` to `exclude_replies`
+  // https://github.com/neet/masto.js/issues/689
+  return masto.accounts.getStatusesIterable(account.value!.id!, { exclude_replies: tab === 'posts' } as any)
 })
 </script>
 

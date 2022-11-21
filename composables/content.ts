@@ -59,7 +59,7 @@ export function treeToVNode(
       return h(
         RouterLink as any,
         attrs,
-        node.childNodes.map(n => treeToVNode(n, handle)),
+        () => node.childNodes.map(n => treeToVNode(n, handle)),
       )
     }
     return h(

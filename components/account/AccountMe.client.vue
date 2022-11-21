@@ -9,7 +9,7 @@ const account = $computed(() => currentUser?.account)
     <!-- TODO: multiple account switcher -->
     <template v-if="account">
       <AccountInfo :account="account" />
-      <PublishWidget />
+      <PublishWidget draft-key="home" />
     </template>
     <!-- TODO: dialog for select server -->
     <a v-else href="/api/mas.to/login" px2 py1 bg-teal6 text-white m2 rounded>Login</a>

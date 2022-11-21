@@ -17,7 +17,7 @@ defineProps<{
       <h4 font-bold>
         {{ account.displayName }}
       </h4>
-      <p op50>
+      <p op35 text-sm>
         @{{ account.acct }}
       </p>
     </NuxtLink>

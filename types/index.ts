@@ -1,4 +1,4 @@
-import type { AccountCredentials } from 'masto'
+import type { AccountCredentials, Emoji, Instance } from 'masto'
 
 export interface AppInfo {
   id: string
@@ -17,3 +17,9 @@ export interface UserLogin {
 }
 
 export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'
+
+export interface ServerInfo extends Instance {
+  server: string
+  timeUpdated: number
+  customEmojis?: Record<string, Emoji>
+}

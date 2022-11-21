@@ -17,6 +17,7 @@ const { status } = defineProps<{
 <style lang="postcss">
 .status-media-container {
   --at-apply: gap-0.5;
+  position: relative;
   width: 100%;
   overflow: hidden;
 }

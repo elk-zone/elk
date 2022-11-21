@@ -24,7 +24,7 @@ const router = useRouter()
 
 function go(e: MouseEvent) {
   const path = e.composedPath() as HTMLElement[]
-  const el = path.find(el => ['A', 'BUTTON', 'P'].includes(el.tagName?.toUpperCase()))
+  const el = path.find(el => ['A', 'BUTTON', 'P', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
   if (!el || el.tagName.toUpperCase() === 'P')
     router.push(`/@${status.account.acct}/${status.id}`)
 }

@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const { server, token } = useAppCookies()
+definePageMeta({
+  layout: 'none',
+})
+
+const server = ref(useAppCookies().server.value)
 
 async function oauth() {
   const a = document.createElement('a')
@@ -10,23 +14,18 @@ async function oauth() {
 </script>
 
 <template>
-  <div p4>
-    <button @click="oauth()">
-      OAuth
+  <div h-full text-center justify-center flex="~ col items-center gap2">
+    <div text-4xl mb-10>
+      Nuxtodon
+    </div>
+
+    <div>Mastodon Server</div>
+    <div bg-gray:10 px2 py1 rounded border="~ border" w-50 mxa flex>
+      <span op25 mr1>https://</span>
+      <input v-model="server" outline-none bg-transparent>
+    </div>
+    <button bg-teal6 px2 py1 rounded w-20 mxa mt-5 @click="oauth()">
+      Login
     </button>
-    <input
-      v-model="server"
-      placeholder="Server URL"
-      bg-transparent text-current
-      border="~ border" p="x2 y1" w-full
-      outline-none
-    >
-    <input
-      v-model="token"
-      placeholder="Token"
-      bg-transparent text-current
-      border="~ border" p="x2 y1" w-full
-      outline-none
-    >
   </div>
 </template>

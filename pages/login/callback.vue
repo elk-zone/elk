@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: 'none',
+})
+
 const { query } = useRoute()
 
 onMounted(async () => {
@@ -11,7 +15,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
-    Login...
+  <div h-full flex>
+    <div ma>
+      Login...
+    </div>
   </div>
 </template>

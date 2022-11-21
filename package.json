@@ -23,6 +23,7 @@
     "@types/sanitize-html": "^2.6.2",
     "@unocss/nuxt": "^0.46.5",
     "@vueuse/nuxt": "^9.5.0",
+    "blurhash": "^2.0.4",
     "eslint": "^8.27.0",
     "form-data": "^4.0.0",
     "fs-extra": "^10.1.0",

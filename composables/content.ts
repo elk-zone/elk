@@ -36,7 +36,7 @@ export function contentToVNode(
   handle: (node: Element) => Element | undefined | null | void = defaultHandle,
   customEmojis: Record<string, Emoji> = {},
 ): VNode {
-  content = content.replace(/:([\w-]+?):/g, (_, name) => {
+  content = content.trim().replace(/:([\w-]+?):/g, (_, name) => {
     const emoji = customEmojis[name]
     if (emoji)
       return `<img src="${emoji.url}" alt="${name}" class="custom-emoji" />`

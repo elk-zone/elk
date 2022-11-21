@@ -12,6 +12,7 @@ specifiers:
   '@types/sanitize-html': ^2.6.2
   '@unocss/nuxt': ^0.46.5
   '@vueuse/nuxt': ^9.5.0
+  blurhash: ^2.0.4
   eslint: ^8.27.0
   form-data: ^4.0.0
   fs-extra: ^10.1.0
@@ -37,6 +38,7 @@ devDependencies:
   '@types/sanitize-html': 2.6.2
   '@unocss/nuxt': 0.46.5
   '@vueuse/nuxt': 9.5.0_nuxt@3.0.0
+  blurhash: 2.0.4
   eslint: 8.27.0
   form-data: 4.0.0
   fs-extra: 10.1.0
@@ -2086,6 +2088,10 @@ packages:
       buffer: 6.0.3
       inherits: 2.0.4
       readable-stream: 3.6.0
+    dev: true
+
+  /blurhash/2.0.4:
+    resolution: {integrity: sha512-r/As72u2FbucLoK5NTegM/GucxJc3d8GvHc4ngo13IO/nt2HU4gONxNLq1XPN6EM/V8Y9URIa7PcSz2RZu553A==}
     dev: true
 
   /boolbase/1.0.0:

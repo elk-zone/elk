@@ -27,16 +27,13 @@ const { status } = defineProps<{
 .status-media-container-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  aspect-ratio: 2/1;
 }
 .status-media-container-3 {
   display: grid;
-  aspect-ratio: 16/9;
   grid-template-columns: 1fr 1fr;
 }
 .status-media-container-4 {
   display: grid;
-  aspect-ratio: 16/9;
   grid-template-columns: 1fr 1fr;
 }
 </style>

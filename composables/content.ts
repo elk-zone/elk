@@ -1,3 +1,4 @@
+import type { Emoji } from 'masto'
 import type { DefaultTreeAdapterMap } from 'parse5'
 import { parseFragment } from 'parse5'
 import type { VNode } from 'vue'
@@ -33,7 +34,14 @@ export function defaultHandle(el: Element) {
 export function contentToVNode(
   content: string,
   handle: (node: Element) => Element | undefined | null | void = defaultHandle,
+  customEmojis: Record<string, Emoji> = {},
 ): VNode {
+  content = content.replace(/:([\w-]+?):/g, (_, name) => {
+    const emoji = customEmojis[name]
+    if (emoji)
+      return `<img src="${emoji.url}" alt="${name}" class="custom-emoji" />`
+    return `:${name}:`
+  })
   const tree = parseFragment(content)
   return h(Fragment, tree.childNodes.map(n => treeToVNode(n, handle)))
 }

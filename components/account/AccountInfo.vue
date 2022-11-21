@@ -14,9 +14,7 @@ defineProps<{
       </NuxtLink>
     </div>
     <NuxtLink flex flex-col :to="`/@${account.acct}`">
-      <h4 font-bold>
-        {{ account.displayName }}
-      </h4>
+      <CommonRichContent font-bold :content="account.displayName" />
       <p op35 text-sm>
         @{{ account.acct }}
       </p>

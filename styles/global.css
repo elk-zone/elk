@@ -28,3 +28,28 @@
 html {
   overflow-y: scroll;
 }
+
+.custom-emoji {
+  display: inline-block;
+  height: 1.2em;
+  width: 1.2em;
+  vertical-align: middle;
+}
+
+.rich-content {
+  a {
+    --at-apply: text-primary hover:underline;
+    .invisible {
+      --at-apply: hidden;
+    }
+    .ellipsis {
+      --at-apply: truncate overflow-hidden ws-nowrap;
+    }
+  }
+  b {
+    --at-apply: font-bold;
+  }
+  p {
+    --at-apply: my-2;
+  }
+}

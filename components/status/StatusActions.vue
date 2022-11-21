@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
-import AccountInfo from '../account/AccountInfo.vue'
 
 const { status } = defineProps<{
   status: Status
@@ -40,15 +39,15 @@ const toggleBookmark = () => toggleStatusAction(
 
 <template>
   <div flex gap-8>
-    <RouterLink flex gap-1 items-center w-full rounded op75 hover="op100 text-blue" group :to="`/@${status.account.acct}/${status.id}`">
+    <RouterLink flex gap-1 items-center w-full rounded op50 hover="op100 text-blue" group :to="`/@${status.account.acct}/${status.id}`">
       <div rounded-full p2 group-hover="bg-blue/10">
         <div i-ri:chat-3-line />
       </div>
       <span v-if="status.repliesCount">{{ status.repliesCount }}</span>
     </RouterLink>
     <button
-      flex gap-1 items-center w-full rounded op75 hover="op100 text-green" group
-      :class="(status.reblogged ? 'text-green op100' : 'op75') + (isLoading.reblogged ? ' pointer-events-none' : '')"
+      flex gap-1 items-center w-full rounded op50 hover="op100 text-green" group
+      :class="(status.reblogged ? 'text-green op100' : 'op50') + (isLoading.reblogged ? ' pointer-events-none' : '')"
       @click="toggleReblog()"
     >
       <div rounded-full p2 group-hover="bg-green/10">
@@ -58,7 +57,7 @@ const toggleBookmark = () => toggleStatusAction(
     </button>
     <button
       flex gap-1 items-center w-full rounded hover="op100 text-rose" group
-      :class="status.favourited ? 'text-rose op100' : 'op75'"
+      :class="status.favourited ? 'text-rose op100' : 'op50'"
       @click="toggleFavourite()"
     >
       <div rounded-full p2 group-hover="bg-rose/10">
@@ -68,14 +67,14 @@ const toggleBookmark = () => toggleStatusAction(
     </button>
     <button
       flex gap-1 items-center w-full rounded hover="op100 text-yellow" group
-      :class="status.bookmarked ? 'text-yellow op100' : 'op75'"
+      :class="status.bookmarked ? 'text-yellow op100' : 'op50'"
       @click="toggleBookmark()"
     >
       <div rounded-full p2 group-hover="bg-rose/10">
         <div :class="(status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line') + (isLoading.bookmarked ? ' pointer-events-none' : '')" />
       </div>
     </button>
-    <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
+    <button flex gap-1 items-center w-full rounded op50 hover="op100 text-purple" group>
       <div rounded-full p2 group-hover="bg-purple/10">
         <div i-ri:share-circle-line />
       </div>

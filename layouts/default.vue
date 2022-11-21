@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="lg:w-3/4" flex>
-        <div h-full border="l r border" class="w-full md:w-2/3">
+        <div class="w-full md:w-2/3" border="l r border">
           <slot />
         </div>
         <div hidden md:flex="~ col" class="w-1/3">

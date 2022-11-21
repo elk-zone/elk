@@ -15,7 +15,7 @@ const { link = true } = defineProps<{
       </NuxtLink>
     </div>
     <NuxtLink flex flex-col :to="link ? `/@${account.acct}` : null">
-      <CommonRichContent font-bold :content="account.displayName" />
+      <CommonRichContent font-bold :content="getDisplayName(account)" />
       <p op35 text-sm>
         @{{ account.acct }}
       </p>

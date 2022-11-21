@@ -4,6 +4,7 @@ import type { PaginatorState } from '~/types'
 export function usePaginator<T>(paginator: Paginator<any, T[]>) {
   const state = ref<PaginatorState>('idle')
   const items = ref<T[]>([])
+  const newItems = ref<T[]>([])
 
   const endAnchor = ref<HTMLDivElement>()
   const bound = reactive(useElementBounding(endAnchor))
@@ -19,7 +20,8 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>) {
       const result = await paginator.next()
 
       if (result.value?.length) {
-        items.value.push(...result.value)
+        newItems.value = result.value
+        items.value.push(...newItems.value)
         state.value = 'idle'
       }
       else {
@@ -50,6 +52,7 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>) {
 
   return {
     items,
+    newItems,
     state,
     error,
     endAnchor,

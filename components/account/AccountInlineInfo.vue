@@ -7,8 +7,8 @@ defineProps<{
 </script>
 
 <template>
-  <a :href="`/@${account.acct}`" flex gap-2 font-bold items-center>
+  <NuxtLink :href="`/@${account.acct}`" flex gap-2 font-bold items-center>
     <img :src="account.avatar" class="w-5 h-5 rounded">
     <CommonRichContent :content="account.displayName" />
-  </a>
+  </NuxtLink>
 </template>

@@ -18,7 +18,7 @@ const { data: context } = await useAsyncData(`${id}-context`, () => masto.status
       <PublishWidget
         w-full
         :draft-key="`reply-${id}`"
-        :placeholder="`Reply to ${status?.account?.displayName || status?.account?.acct || 'this thread'}`"
+        :placeholder="`Reply to ${status?.account ? getDisplayName(status?.account) : 'this thread'}`"
         :in-reply-to-id="id"
       />
     </div>

@@ -25,7 +25,7 @@ const createdAt = $computed(() => {
             </NuxtLink>
           </div>
           <NuxtLink flex flex-col :to="`/@${account.acct}`">
-            <CommonRichContent font-bold :content="account.displayName" />
+            <CommonRichContent font-bold :content="getDisplayName(account)" />
             <p op50>
               @{{ account.acct }}
             </p>

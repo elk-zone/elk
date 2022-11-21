@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const { currentUser } = $(useClientState())
+
 const params = useRoute().params
 const id = computed(() => params.post as string)
 
@@ -14,7 +16,7 @@ const { data: context } = await useAsyncData(`${id}-context`, () => masto.status
     </template>
     <StatusDetails :status="status" border="t border" pt-4 />
     <div border="t border" p6 flex gap-4>
-      <img :src="status?.account.avatar" rounded w-10 h-10 bg-gray:10>
+      <img :src="currentUser?.account?.avatar" rounded w-10 h-10 bg-gray:10>
       <PublishWidget
         w-full
         :draft-key="`reply-${id}`"

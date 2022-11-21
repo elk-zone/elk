@@ -25,9 +25,7 @@ const createdAt = $computed(() => {
             </NuxtLink>
           </div>
           <NuxtLink flex flex-col :to="`/@${account.acct}`">
-            <h4 font-bold>
-              {{ account.displayName }}
-            </h4>
+            <CommonRichContent font-bold :content="account.displayName" />
             <p op50>
               @{{ account.acct }}
             </p>
@@ -39,7 +37,7 @@ const createdAt = $computed(() => {
               Follow
             </div>
           </button>
-          <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
+          <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
             <div rounded p2 group-hover="bg-rose/10">
               <div i-ri:bell-line />
             </div>
@@ -48,7 +46,7 @@ const createdAt = $computed(() => {
             <div rounded p2 group-hover="bg-purple/10">
               <div i-ri:more-2-fill />
             </div>
-          </button>
+          </button> -->
         </div>
       </div>
       <div>

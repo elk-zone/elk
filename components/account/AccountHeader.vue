@@ -1,9 +1,27 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { Account, MastoClient } from 'masto'
 
 const { account } = defineProps<{
   account: Account
 }>()
+
+let isFollowing = $ref<boolean | undefined>()
+let isFollowedBy = $ref<boolean | undefined>()
+
+let masto: MastoClient
+
+onMounted(async () => {
+  masto ??= await useMasto()
+  const relationship = (await masto.accounts.fetchRelationships([account.id]))[0]
+  isFollowing = relationship.following
+  isFollowedBy = relationship.followedBy
+})
+
+async function toggleFollow() {
+  isFollowing = !isFollowing
+  masto ??= await useMasto()
+  await masto.accounts[isFollowing ? 'follow' : 'unfollow'](account.id)
+}
 
 const createdAt = $computed(() => {
   const date = new Date(account.createdAt)
@@ -32,9 +50,9 @@ const createdAt = $computed(() => {
           </NuxtLink>
         </div>
         <div flex gap-2>
-          <button flex gap-1 items-center w-full rounded op75 hover="op100 text-white b-purple" group>
-            <div rounded p2 group-hover="bg-rose/10">
-              Follow
+          <button flex gap-1 items-center w-full rounded op75 hover="op100 text-white b-purple" group @click="toggleFollow">
+            <div rounded w-30 p2 group-hover="bg-rose/10">
+              {{ isFollowing ? 'Unfollow' : isFollowedBy ? 'Follow back' : 'Follow' }}
             </div>
           </button>
           <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>

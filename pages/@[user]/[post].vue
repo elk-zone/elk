@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import AccountAvatar from '~~/components/account/AccountAvatar.vue'
+
 const params = useRoute().params
 const id = computed(() => params.post as string)
 
@@ -12,8 +14,8 @@ const { data: context } = await useAsyncData(`${id}-context`, () => masto.status
       <StatusCard :status="comment" border="t border" pt-4 />
     </template>
     <StatusDetails :status="status" border="t border" pt-4 />
-    <div border="t border" p6 flex gap-4>
-      <img :src="currentUser?.account?.avatar" rounded w-10 h-10 bg-gray:10>
+    <div v-if="currentUser" border="t border" p6 flex gap-4>
+      <AccountAvatar :account="currentUser.account" w-10 h-10 />
       <PublishWidget
         w-full
         :draft-key="`reply-${id}`"

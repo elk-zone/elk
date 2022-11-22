@@ -11,11 +11,11 @@ const { link = true } = defineProps<{
   <div flex gap-2>
     <div p1>
       <NuxtLink :to="link ? `/@${account.acct}` : null">
-        <img :src="account.avatar" rounded w-10 h-10 bg-gray:10>
+        <AccountAvatar :account="account" w-10 h-10 />
       </NuxtLink>
     </div>
     <NuxtLink flex flex-col :to="link ? `/@${account.acct}` : null">
-      <CommonRichContent font-bold :content="getDisplayName(account)" />
+      <CommonRichContent font-bold :content="getDisplayName(account)" :emojis="account.emojis" />
       <p op35 text-sm>
         @{{ account.acct }}
       </p>

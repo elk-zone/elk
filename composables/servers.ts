@@ -1,3 +1,4 @@
+import { emojisArrayToObject } from './utils'
 import type { ServerInfo } from '~/types'
 
 const ServerInfoTTL = 60 * 60 * 1000 * 12 // 12 hour
@@ -19,7 +20,7 @@ async function _fetchServerInfo(server: string) {
         Object.assign(serverInfos.value[server], r)
       }),
       masto.customEmojis.fetchAll().then((r) => {
-        serverInfos.value[server].customEmojis = Object.fromEntries(r.map(i => [i.shortcode, i]))
+        serverInfos.value[server].customEmojis = emojisArrayToObject(r)
       }),
     ])
   }

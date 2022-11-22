@@ -1,3 +1,5 @@
+import type { Emoji } from 'masto'
+
 export function getDataUrlFromArr(arr: Uint8ClampedArray, w: number, h: number) {
   if (typeof w === 'undefined' || typeof h === 'undefined')
     w = h = Math.sqrt(arr.length / 4)
@@ -13,4 +15,8 @@ export function getDataUrlFromArr(arr: Uint8ClampedArray, w: number, h: number) 
   ctx.putImageData(imgData, 0, 0)
 
   return canvas.toDataURL()
+}
+
+export function emojisArrayToObject(emojis: Emoji[]) {
+  return Object.fromEntries(emojis.map(i => [i.shortcode, i]))
 }

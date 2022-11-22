@@ -21,11 +21,11 @@ const createdAt = $computed(() => {
         <div flex flex-col gap-2>
           <div p1>
             <NuxtLink :to="`/@${account.acct}`">
-              <img :src="account.avatar" rounded w-20 h-20>
+              <AccountAvatar :account="account" w-20 h-20 />
             </NuxtLink>
           </div>
           <NuxtLink flex flex-col :to="`/@${account.acct}`">
-            <CommonRichContent font-bold :content="getDisplayName(account)" />
+            <CommonRichContent font-bold :content="getDisplayName(account)" :emojis="account.emojis" />
             <p op50>
               @{{ account.acct }}
             </p>

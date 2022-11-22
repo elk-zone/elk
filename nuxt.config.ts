@@ -25,6 +25,9 @@ export default defineNuxtConfig({
     define: {
       __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
     },
+    build: {
+      target: 'esnext',
+    },
   },
   postcss: {
     plugins: {

@@ -4,7 +4,7 @@ const router = useRouter()
 if (!token.value)
   router.replace('/public')
 
-const masto = await useMasto()
+
 const { data: timelines } = await useAsyncData('timelines-home', () => masto.timelines.fetchPublic({ local: true }).then(r => r.value))
 </script>
 

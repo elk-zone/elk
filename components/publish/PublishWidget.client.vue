@@ -11,8 +11,6 @@ const {
   inReplyToId?: string
 }>()
 
-const masto = await useMasto()
-
 let isSending = $ref(false)
 const storageKey = `nuxtodon-draft-${draftKey}`
 function getDefaultStatus(): CreateStatusParamsWithStatus {

@@ -3,7 +3,6 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const masto = await useMasto()
 const paginator = masto.favourites.getIterator()
 </script>
 

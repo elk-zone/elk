@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Account, MastoClient } from 'masto'
+import type { Account } from 'masto'
 
 const { account } = defineProps<{
   account: Account
@@ -7,11 +7,8 @@ const { account } = defineProps<{
 
 const relationship = $(useRelationship(account))
 
-let masto: MastoClient
-
 async function toggleFollow() {
   relationship!.following = !relationship!.following
-  masto ??= await useMasto()
   await masto.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
 }
 </script>

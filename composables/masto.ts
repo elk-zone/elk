@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { Account, MastoClient, Relationship } from 'masto'
+import type { Account, Relationship } from 'masto'
 
 export function getDisplayName(account: Account) {
   return account.displayName || account.username
@@ -28,8 +28,6 @@ export function useRelationship(account: Account): Ref<Relationship | undefined>
 }
 
 async function fetchRelationships() {
-  const masto = await useMasto()
-
   const requested = Array.from(requestedRelationships.entries())
   requestedRelationships.clear()
 

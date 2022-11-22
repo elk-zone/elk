@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const isLogin = useLoginState()
 </script>
 
 <template>
   <div px6 py2 flex="~ col gap6" text-lg>
-    <template v-if="isLogin">
+    <template v-if="currentUser">
       <NuxtLink flex gap2 items-center to="/home" active-class="text-primary">
         <div i-ri:home-5-line />
         <span>Home</span>
@@ -26,7 +25,7 @@ const isLogin = useLoginState()
       <div i-ri:earth-line />
       <span>Federated</span>
     </NuxtLink>
-    <template v-if="isLogin">
+    <template v-if="currentUser">
       <NuxtLink flex gap2 items-center to="/conversations" active-class="text-primary">
         <div i-ri:at-line />
         <span>Conversations</span>

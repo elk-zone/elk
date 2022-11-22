@@ -5,8 +5,6 @@ const { status } = defineProps<{
   status: Status
 }>()
 
-const masto = await useMasto()
-
 // Use different states to let the user press different actions right after the other
 const isLoading = $ref({ reblogged: false, favourited: false, bookmarked: false })
 async function toggleStatusAction(action: 'reblogged' | 'favourited' | 'bookmarked', newStatus: Promise<Status>) {

@@ -3,8 +3,6 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const masto = await useMasto()
-
 const tabNames = ['All', 'Mentions'] as const
 const tab = $(useLocalStorage<typeof tabNames[number]>('nuxtodon-notifications-tab', 'All'))
 

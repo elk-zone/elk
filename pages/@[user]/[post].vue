@@ -1,10 +1,7 @@
 <script setup lang="ts">
-const { currentUser } = $(useClientState())
-
 const params = useRoute().params
 const id = computed(() => params.post as string)
 
-const masto = await useMasto()
 const { data: status } = await useAsyncData(`${id}-status`, () => masto.statuses.fetch(params.post as string))
 const { data: context } = await useAsyncData(`${id}-context`, () => masto.statuses.fetchContext(params.post as string))
 </script>

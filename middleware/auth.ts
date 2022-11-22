@@ -1,7 +1,5 @@
 export default defineNuxtRouteMiddleware((from) => {
-  const token = useCookie('nuxtodon-token')
-
-  if (!token.value)
+  if (!currentUser.value)
     return navigateTo('/public')
   else if (from.path === '/')
     return navigateTo('/home')

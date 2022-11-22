@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { currentUser } = $(useClientState())
-
-const account = $computed(() => currentUser?.account)
+const account = $computed(() => currentUser.value?.account)
 </script>
 
 <template>

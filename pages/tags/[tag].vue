@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const params = useRoute().params
 const tag = $computed(() => params.tag as string)
-const masto = await useMasto()
+
 const paginator = masto.timelines.getHashtagIterable(tag)
 </script>
 

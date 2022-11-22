@@ -5,7 +5,7 @@ const props = defineProps<{
 
 const params = useRoute().params
 const user = $computed(() => params.user as string)
-const masto = await useMasto()
+
 const { data: account } = await useAsyncData(`${user}:info`, () => masto.accounts.lookup({ acct: user }))
 const paginator = masto.accounts.getFollowersIterable(account.value!.id!, {})
 </script>

@@ -1,10 +1,9 @@
-import type { MastoClient } from 'masto'
-import type { ClientState } from '~/plugins/store.client'
+import { login } from 'masto'
+import { currentUser } from './accounts'
+import { DEFAULT_SERVER } from '~/constants'
 
-export function useMasto() {
-  return useNuxtApp().$masto as Promise<MastoClient>
-}
-
-export function useClientState() {
-  return useNuxtApp().$clientState as ClientState
-}
+// TODO: improve upsteam to make this synchronous (delayed auth)
+export const masto = await login({
+  url: `https://${currentUser.value?.server || DEFAULT_SERVER}`,
+  accessToken: currentUser.value?.token || undefined,
+})

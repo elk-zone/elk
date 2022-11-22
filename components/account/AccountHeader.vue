@@ -5,22 +5,14 @@ const { account } = defineProps<{
   account: Account
 }>()
 
-let isFollowing = $ref<boolean | undefined>()
-let isFollowedBy = $ref<boolean | undefined>()
+const relationship = $(useRelationship(account))
 
 let masto: MastoClient
 
-onMounted(async () => {
-  masto ??= await useMasto()
-  const relationship = (await masto.accounts.fetchRelationships([account.id]))[0]
-  isFollowing = relationship.following
-  isFollowedBy = relationship.followedBy
-})
-
 async function toggleFollow() {
-  isFollowing = !isFollowing
+  relationship!.following = !relationship!.following
   masto ??= await useMasto()
-  await masto.accounts[isFollowing ? 'follow' : 'unfollow'](account.id)
+  await masto.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
 }
 
 const createdAt = $computed(() => {
@@ -50,9 +42,9 @@ const createdAt = $computed(() => {
           </NuxtLink>
         </div>
         <div flex gap-2>
-          <button flex gap-1 items-center w-full rounded op75 hover="op100 text-white b-purple" group @click="toggleFollow">
+          <button v-if="relationship" flex gap-1 items-center w-full rounded op75 hover="op100 text-white b-purple" group @click="toggleFollow">
             <div rounded w-30 p2 group-hover="bg-rose/10">
-              {{ isFollowing ? 'Unfollow' : isFollowedBy ? 'Follow back' : 'Follow' }}
+              {{ relationship?.following ? 'Unfollow' : relationship?.followedBy ? 'Follow back' : 'Follow' }}
             </div>
           </button>
           <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>

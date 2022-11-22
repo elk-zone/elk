@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
 import type { Paginator } from 'masto'
 
 const { paginator, keyProp = 'id' } = defineProps<{
@@ -7,13 +6,7 @@ const { paginator, keyProp = 'id' } = defineProps<{
   keyProp?: string
 }>()
 
-const emit = defineEmits(['items'])
-
-const { items, newItems, state, endAnchor, error } = usePaginator(paginator)
-
-watch(newItems, () => {
-  emit('items', newItems.value)
-})
+const { items, state, endAnchor, error } = usePaginator(paginator)
 </script>
 
 <template>

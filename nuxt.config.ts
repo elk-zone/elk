@@ -33,6 +33,10 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    registeredAppsUrl: process.env.APPS_JSON_URL || 'http://localhost:3000/registered-apps.json',
+    cloudflare: {
+      accountId: '',
+      namespaceId: '',
+      apiToken: '',
+    },
   },
 })

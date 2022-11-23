@@ -4,5 +4,3 @@ dist
 .output
 .nuxt
 .env
-
-registered-apps.json

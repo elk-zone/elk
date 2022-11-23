@@ -1,9 +1,3 @@
 {
-  "extends": "./.nuxt/tsconfig.json",
-  "vueCompilerOptions": {
-    "plugins": [
-      "@vue-macros/volar/define-model",
-      "@vue-macros/volar/short-vmodel"
-    ]
-  }
+  "extends": "./.nuxt/tsconfig.json"
 }

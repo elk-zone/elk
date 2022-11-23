@@ -1,11 +1,10 @@
-import VueMacros from 'unplugin-vue-macros/vite'
-
 export default defineNuxtConfig({
   ssr: false,
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
+    '@vue-macros/nuxt',
   ],
   experimental: {
     reactivityTransform: true,
@@ -26,11 +25,7 @@ export default defineNuxtConfig({
     build: {
       target: 'esnext',
     },
-    plugins: [
-      VueMacros({
-        defineModel: true,
-      }),
-    ],
+
   },
   postcss: {
     plugins: {

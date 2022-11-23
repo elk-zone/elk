@@ -12,7 +12,7 @@ const sorted = computed(() => {
 <template>
   <div max-w-40rem mxa p4 flex="~ col gap2">
     <h1 text-2xl>
-      Switch Account
+      Account
     </h1>
     <div mx--2>
       <template v-for="user of sorted" :key="user.id">
@@ -34,7 +34,7 @@ const sorted = computed(() => {
     <div mx--4 border="t base" pt2>
       <button btn-text flex="~ gap-1" items-center @click="openSigninDialog">
         <div i-ri:user-add-line />
-        Add another account
+        Add an existing account
       </button>
       <button
         v-if="currentUser" btn-text hover:text-red4 flex="~ gap-1" items-center

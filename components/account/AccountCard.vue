@@ -7,7 +7,7 @@ const { account } = defineProps<{
 </script>
 
 <template>
-  <div flex justify-between>
+  <div flex justify-between hover:bg-active transition-100>
     <AccountInfo :account="account" p1 />
     <div h-full p1>
       <AccountFollowButton :account="account" />

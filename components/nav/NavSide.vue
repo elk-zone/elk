@@ -4,41 +4,41 @@
 <template>
   <div px6 py2 flex="~ col gap6" text-lg>
     <template v-if="currentUser">
-      <NuxtLink flex gap2 items-center to="/home" active-class="text-primary">
+      <NuxtLink flex gap2 items-center transition-100 to="/home" active-class="text-primary">
         <div i-ri:home-5-line />
         <span>Home</span>
       </NuxtLink>
-      <NuxtLink flex gap2 items-center to="/notifications" active-class="text-primary">
+      <NuxtLink flex gap2 items-center transition-100 to="/notifications" active-class="text-primary">
         <div i-ri:notification-4-line />
         <span>Notifications</span>
       </NuxtLink>
     </template>
-    <NuxtLink flex gap2 items-center to="/explore" active-class="text-primary">
+    <NuxtLink flex gap2 items-center transition-100 to="/explore" active-class="text-primary">
       <div i-ri:hashtag />
       <span>Explore</span>
     </NuxtLink>
-    <NuxtLink flex gap2 items-center to="/public/local" active-class="text-primary">
+    <NuxtLink flex gap2 items-center transition-100 to="/public/local" active-class="text-primary">
       <div i-ri:group-2-line />
       <span>Local</span>
     </NuxtLink>
-    <NuxtLink flex gap2 items-center to="/public" active-class="text-primary">
+    <NuxtLink flex gap2 items-center transition-100 to="/public" active-class="text-primary">
       <div i-ri:earth-line />
       <span>Federated</span>
     </NuxtLink>
     <template v-if="currentUser">
-      <NuxtLink flex gap2 items-center to="/conversations" active-class="text-primary">
+      <NuxtLink flex gap2 items-center transition-100 to="/conversations" active-class="text-primary">
         <div i-ri:at-line />
         <span>Conversations</span>
       </NuxtLink>
-      <NuxtLink flex gap2 items-center to="/favourites" active-class="text-primary">
+      <NuxtLink flex gap2 items-center transition-100 to="/favourites" active-class="text-primary">
         <div i-ri:heart-3-line />
         <span>Favorites</span>
       </NuxtLink>
-      <NuxtLink flex gap2 items-center to="/bookmarks" active-class="text-primary">
+      <NuxtLink flex gap2 items-center transition-100 to="/bookmarks" active-class="text-primary">
         <div i-ri:bookmark-line />
         <span>Bookmarks</span>
       </NuxtLink>
-      <NuxtLink flex gap2 items-center :to="`/@${currentUser.account?.username}`" active-class="text-primary">
+      <NuxtLink flex gap2 items-center transition-100 :to="`/@${currentUser.account?.username}`" active-class="text-primary">
         <AccountAvatar :account="currentUser.account" h="1.2em" />
         <span>Profile</span>
       </NuxtLink>

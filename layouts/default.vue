@@ -12,7 +12,7 @@
             <AccountInfo
               v-if="currentUser"
               mx4 mb4 p2 rounded
-              hover:bg-active cursor-pointer
+              hover:bg-active cursor-pointer transition-100
               :account="currentUser?.account"
               :link="false"
               @click="openUserSwitcher"

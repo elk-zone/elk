@@ -21,7 +21,7 @@ const sorted = computed(() => {
           :link="false"
           :full-server="true"
           rounded p2
-          hover:bg-active cursor-pointer
+          hover:bg-active cursor-pointer transition-100
           @click="loginTo(user)"
         >
           <template v-if="user.token === currentUser?.token">

@@ -63,7 +63,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
 </script>
 
 <template>
-  <div ref="el" flex flex-col gap-2 px-4 hover:bg="gray/10" transition="duration-100" cursor-pointer @click="go">
+  <div ref="el" flex flex-col gap-2 px-4 hover:bg-active transition-100 cursor-pointer @click="go">
     <div v-if="rebloggedBy" pl8>
       <div flex gap-1 items-center text-gray:75 text-sm>
         <div i-ri:repeat-fill mr-1 />
@@ -92,6 +92,6 @@ const timeago = useTimeAgo(() => status.createdAt, {
         :actions="false"
       />
     </div>
-    <StatusActions v-if="actions !== false" pl13 :status="status" />
+    <StatusActions v-if="actions !== false" px13 :status="status" />
   </div>
 </template>

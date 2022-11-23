@@ -24,14 +24,14 @@ const createdAt = $computed(() => {
               <AccountAvatar :account="account" w-30 h-30 />
             </NuxtLink>
           </div>
-          <NuxtLink flex flex-col :to="`/@${account.acct}`">
+          <div flex flex-col>
             <CommonRichContent font-bold text-2xl :content="getDisplayName(account)" :emojis="account.emojis" />
             <p op50>
               @{{ account.acct }}
             </p>
-          </NuxtLink>
+          </div>
         </div>
-        <div flex gap-2>
+        <div flex gap-2 items-center>
           <AccountFollowButton :account="account" />
           <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
             <div rounded p2 group-hover="bg-rose/10">
@@ -65,13 +65,13 @@ const createdAt = $computed(() => {
         </div>
       </div>
       <div flex gap-5>
-        <NuxtLink :to="`/@${account.acct}/`">
+        <NuxtLink :to="`/@${account.acct}/`" active-class="text-primary">
           <span font-bold>{{ account.statusesCount }}</span> Posts
         </NuxtLink>
-        <NuxtLink :to="`/@${account.acct}/following`">
+        <NuxtLink :to="`/@${account.acct}/following`" active-class="text-primary">
           <span font-bold>{{ account.followingCount }}</span> Following
         </NuxtLink>
-        <NuxtLink :to="`/@${account.acct}/followers`">
+        <NuxtLink :to="`/@${account.acct}/followers`" active-class="text-primary">
           <span font-bold>{{ account.followersCount }}</span> Followers
         </NuxtLink>
       </div>

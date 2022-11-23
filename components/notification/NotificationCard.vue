@@ -4,34 +4,36 @@ import type { Notification } from 'masto'
 const { notification } = defineProps<{
   notification: Notification
 }>()
-
-const displayName = $computed(() => getDisplayName(notification.account))
 </script>
 
 <template>
   <div flex flex-col>
     <template v-if="notification.type === 'follow'">
-      <div flex ml-4>
-        <div i-ri:user-follow-fill mr-3 color-purple />{{ displayName }} followed you
+      <div flex ml-4 items-center>
+        <div i-ri:user-follow-fill mr-3 color-purple />
+        <AccountLink :account="notification.account" mr1 /> followed you
       </div>
       <AccountCard :account="notification.account" p3 />
     </template>
     <template v-if="notification.type === 'follow_request'">
-      <div flex ml-4>
-        <div i-ri:user-follow-fill mr-3 />{{ displayName }} requested to follow you
+      <div flex ml-4 items-center>
+        <div i-ri:user-follow-fill mr-3 />
+        <AccountLink :account="notification.account" mr1 /> requested to follow you
       </div>
       <!-- TODO: accept request -->
       <AccountCard :account="notification.account" p3 />
     </template>
     <template v-if="notification.type === 'favourite'">
-      <div flex ml-4>
-        <div i-ri:heart-fill mr-3 color-red />{{ displayName }} favourited your post
+      <div flex ml-4 items-center>
+        <div i-ri:heart-fill mr-3 color-red />
+        <AccountLink :account="notification.account" mr1 /> favourited your post
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>
     <template v-if="notification.type === 'reblog'">
-      <div flex ml-4>
-        <div i-ri:repeat-fill mr-3 color-green />{{ displayName }} reblogged your post
+      <div flex ml-4 items-center>
+        <div i-ri:repeat-fill mr-3 color-green />
+        <AccountLink :account="notification.account" mr1 /> reblogged your post
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>

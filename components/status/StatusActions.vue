@@ -36,15 +36,15 @@ const toggleBookmark = () => toggleStatusAction(
 </script>
 
 <template>
-  <div flex gap-8>
-    <RouterLink flex gap-1 items-center w-full rounded op50 hover="op100 text-blue" group :to="`/@${status.account.acct}/${status.id}`">
+  <div flex justify-between gap-8>
+    <RouterLink flex gap-1 items-center rounded op50 hover="op100 text-blue" group :to="`/@${status.account.acct}/${status.id}`">
       <div rounded-full p2 group-hover="bg-blue/10">
         <div i-ri:chat-3-line />
       </div>
       <span v-if="status.repliesCount">{{ status.repliesCount }}</span>
     </RouterLink>
     <button
-      flex gap-1 items-center w-full rounded op50 hover="op100 text-green" group
+      flex gap-1 items-center rounded op50 hover="op100 text-green" group
       :class="(status.reblogged ? 'text-green op100' : 'op50') + (isLoading.reblogged ? ' pointer-events-none' : '')"
       @click="toggleReblog()"
     >
@@ -54,7 +54,7 @@ const toggleBookmark = () => toggleStatusAction(
       <span v-if="status.reblogsCount">{{ status.reblogsCount }}</span>
     </button>
     <button
-      flex gap-1 items-center w-full rounded hover="op100 text-rose" group
+      flex gap-1 items-center rounded hover="op100 text-rose" group
       :class="status.favourited ? 'text-rose op100' : 'op50'"
       @click="toggleFavourite()"
     >
@@ -64,7 +64,7 @@ const toggleBookmark = () => toggleStatusAction(
       <span v-if="status.favouritesCount">{{ status.favouritesCount }}</span>
     </button>
     <button
-      flex gap-1 items-center w-full rounded hover="op100 text-yellow" group
+      flex gap-1 items-center rounded hover="op100 text-yellow" group
       :class="status.bookmarked ? 'text-yellow op100' : 'op50'"
       @click="toggleBookmark()"
     >
@@ -72,7 +72,7 @@ const toggleBookmark = () => toggleStatusAction(
         <div :class="(status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line') + (isLoading.bookmarked ? ' pointer-events-none' : '')" />
       </div>
     </button>
-    <!-- <button flex gap-1 items-center w-full rounded op50 hover="op100 text-purple" group>
+    <!-- <button flex gap-1 items-center rounded op50 hover="op100 text-purple" group>
       <div rounded-full p2 group-hover="bg-purple/10">
         <div i-ri:share-circle-line />
       </div>

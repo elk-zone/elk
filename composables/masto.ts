@@ -9,7 +9,7 @@ export function getDisplayName(account: Account) {
 // We don't want to hold to old values, so every time a Relationship is needed it
 // is requested again from the server to show the latest state
 
-const requestedRelationships = new Map<string, Ref<Relationship | undefined> >()
+const requestedRelationships = new Map<string, Ref<Relationship | undefined>>()
 let timeoutHandle: NodeJS.Timeout | undefined
 
 export function useRelationship(account: Account): Ref<Relationship | undefined> {

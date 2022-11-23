@@ -11,7 +11,8 @@
             <div flex-auto />
             <AccountInfo
               v-if="currentUser"
-              p4
+              mx4 mb4 p2 rounded
+              hover:bg-active cursor-pointer
               :account="currentUser?.account"
               :link="false"
               @click="openUserSwitcher"

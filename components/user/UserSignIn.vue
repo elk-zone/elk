@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { DEFAULT_SERVER } from '~/constants'
 
-const server = ref<string>()
+let server = $ref<string>('')
 
 async function oauth() {
-  location.href = `/api/${server.value || DEFAULT_SERVER}/login`
+  location.href = `/api/${server || DEFAULT_SERVER}/login`
+}
+
+async function handleInput() {
+  if (server.startsWith('https://'))
+    server = server.replace('https://', '')
 }
 </script>
 
@@ -16,7 +21,7 @@ async function oauth() {
     <div>Mastodon Server Name</div>
     <div flex bg-gray:10 px2 py1 mxa rounded border="~ border" w-80 text-xl items-center>
       <span op35 mr1 text-sm>https://</span>
-      <input v-model="server" :placeholder="DEFAULT_SERVER" outline-none bg-transparent>
+      <input v-model="server" :placeholder="DEFAULT_SERVER" outline-none bg-transparent @input="handleInput">
     </div>
     <button btn-solid mxa mt2 @click="oauth()">
       Sign in

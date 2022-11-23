@@ -28,7 +28,7 @@ export default defineEventHandler(async ({ context, req, res }) => {
   })
 
   res.writeHead(302, {
-    Location: `${HOST_DOMAIN}/login/callback?${stringifyQuery({ server, token: result.access_token })}`,
+    Location: `${HOST_DOMAIN}/signin/callback?${stringifyQuery({ server, token: result.access_token })}`,
   })
   res.end()
 

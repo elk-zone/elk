@@ -15,6 +15,8 @@ export default defineConfig({
       'border-base': 'border-$c-border',
       'bg-base': 'bg-$c-bg-base',
       'text-base': 'text-$c-text-base',
+      'btn-solid': 'px-4 py-2 rounded text-white bg-$c-primary hover:bg-$c-primary-active',
+      'btn-outline': 'px-4 py-2 rounded text-$c-primary border-$c-primary hover:bg-$c-primary hover:text-white',
     },
   ],
   presets: [

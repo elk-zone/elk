@@ -1,26 +1,25 @@
 <template>
   <div h-full>
     <main flex w-full mxa lg:max-w-80rem>
-      <div class="w-1/4" hidden lg:flex flex-col items-end>
-        <div fixed>
+      <div class="hidden md:block w-1/4" relative>
+        <div sticky top-0 h-screen flex="~ col">
           <slot name="left">
-            <AccountMe />
+            <AccountMe v-if="currentUser" />
+            <AccountSignIn v-else />
           </slot>
         </div>
       </div>
-      <div class="lg:w-3/4" flex>
-        <div class="w-full md:w-2/3" border="l r base" min-h-screen>
-          <slot />
-        </div>
-        <div hidden md:flex="~ col" class="w-1/3">
-          <div fixed>
-            <slot name="right">
-              <NavTitle p5 />
-              <NavSide border="y base" py8 />
-              <div flex-auto />
-              <NavFooter />
-            </slot>
-          </div>
+      <div class="w-full md:w-2/4 min-h-screen" border="l r base">
+        <slot />
+      </div>
+      <div class="hidden md:block w-1/4">
+        <div sticky top-0 h-screen flex="~ col">
+          <slot name="right">
+            <NavTitle p5 />
+            <NavSide border="y base" py8 />
+            <div flex-auto />
+            <NavFooter />
+          </slot>
         </div>
       </div>
     </main>

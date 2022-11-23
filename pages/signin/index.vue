@@ -3,7 +3,7 @@ definePageMeta({
   layout: 'none',
 })
 
-const server = ref(useAppCookies().server.value)
+const server = ref()
 
 async function oauth() {
   const a = document.createElement('a')

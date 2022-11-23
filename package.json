@@ -25,6 +25,7 @@
     "@vueuse/nuxt": "^9.5.0",
     "blurhash": "^2.0.4",
     "eslint": "^8.27.0",
+    "esno": "^0.16.3",
     "form-data": "^4.0.0",
     "fs-extra": "^10.1.0",
     "masto": "^4.6.6",

@@ -5,6 +5,7 @@ const { account } = defineProps<{
   account: Account
 }>()
 
+const isSelf = $computed(() => currentUser.value?.account?.id === account.id)
 const relationship = $(useRelationship(account))
 
 async function toggleFollow() {
@@ -14,7 +15,11 @@ async function toggleFollow() {
 </script>
 
 <template>
-  <button v-if="relationship" flex gap-1 items-center w-full rounded hover="op100 text-white b-purple" group @click="toggleFollow">
+  <button
+    v-if="!isSelf && relationship"
+    flex gap-1 items-center w-full rounded hover="op100 text-white b-purple" group
+    @click="toggleFollow"
+  >
     <div rounded w-28 p2 :group-hover="relationship?.following ? 'bg-red/30' : 'bg-purple/30'" :class="!relationship?.following ? 'bg-cyan/10' : ' bg-purple/10'">
       <template v-if="relationship?.following">
         <span group-hover="hidden">Following</span>

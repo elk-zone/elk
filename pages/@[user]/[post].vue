@@ -29,9 +29,7 @@ const { data: context } = await useAsyncData(`${id}-context`, () => masto.status
     </template>
   </template>
 
-  <template>
-    <div>
-      Status not found
-    </div>
-  </template>
+  <CommonNotFound v-else>
+    Status not found
+  </CommonNotFound>
 </template>

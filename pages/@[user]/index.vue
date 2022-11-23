@@ -19,9 +19,15 @@ const paginator = $computed(() => {
 </script>
 
 <template>
-  <div>
-    <AccountHeader :account="account" />
-  </div>
-  <CommonTabs v-model="tab" :options="tabNames" />
-  <TimelinePaginator :key="tab" :paginator="paginator" />
+  <template v-if="account">
+    <div>
+      <AccountHeader :account="account" />
+    </div>
+    <CommonTabs v-model="tab" :options="tabNames" />
+    <TimelinePaginator :key="tab" :paginator="paginator" />
+  </template>
+
+  <CommonNotFound v-else>
+    Account @{{ params.user }} not found
+  </CommonNotFound>
 </template>

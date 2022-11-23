@@ -13,6 +13,7 @@ const { paginator } = defineProps<{
     <template #default="{ item }">
       <NotificationCard
         :notification="item"
+        hover:bg-active
         border="b base" pt-4
       />
     </template>

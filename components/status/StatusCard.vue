@@ -24,8 +24,8 @@ const router = useRouter()
 
 function go(e: MouseEvent) {
   const path = e.composedPath() as HTMLElement[]
-  const el = path.find(el => ['A', 'BUTTON', 'P', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
-  if (!el || el.tagName.toUpperCase() === 'P')
+  const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
+  if (!el)
     router.push(`/@${status.account.acct}/${status.id}`)
 }
 
@@ -63,7 +63,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
 </script>
 
 <template>
-  <div ref="el" flex flex-col gap-2 my-2 px-4 @click="go">
+  <div ref="el" flex flex-col gap-2 px-4 hover:bg="gray/10" transition="duration-100" cursor-pointer @click="go">
     <div v-if="rebloggedBy" pl8>
       <div flex gap-1 items-center text-gray:75 text-sm>
         <div i-ri:repeat-fill mr-1 />

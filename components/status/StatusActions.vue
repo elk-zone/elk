@@ -72,10 +72,10 @@ const toggleBookmark = () => toggleStatusAction(
         <div :class="(status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line') + (isLoading.bookmarked ? ' pointer-events-none' : '')" />
       </div>
     </button>
-    <button flex gap-1 items-center w-full rounded op50 hover="op100 text-purple" group>
+    <!-- <button flex gap-1 items-center w-full rounded op50 hover="op100 text-purple" group>
       <div rounded-full p2 group-hover="bg-purple/10">
         <div i-ri:share-circle-line />
       </div>
-    </button>
+    </button> -->
   </div>
 </template>

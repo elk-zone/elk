@@ -16,12 +16,12 @@ const createdAt = $computed(() => {
     <div border="b base">
       <img h-50 w-full object-cover :src="account.header">
     </div>
-    <div p3 style="margin-top:-3.5rem;" flex flex-col gap-6>
+    <div p4 mt--17 flex flex-col gap-6>
       <div flex justify-between>
         <div flex flex-col gap-2>
-          <div p1>
+          <div>
             <NuxtLink :to="`/@${account.acct}`">
-              <AccountAvatar :account="account" w-20 h-20 />
+              <AccountAvatar :account="account" w-30 h-30 />
             </NuxtLink>
           </div>
           <NuxtLink flex flex-col :to="`/@${account.acct}`">

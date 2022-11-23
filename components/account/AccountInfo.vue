@@ -11,10 +11,10 @@ const id = computed(() => fullServer && !account.acct.includes('@') ? `@${accoun
 </script>
 
 <template>
-  <div flex gap-2>
-    <div p1>
+  <div flex gap-3>
+    <div>
       <NuxtLink :to="link ? `/@${account.acct}` : null">
-        <AccountAvatar :account="account" w-10 h-10 />
+        <AccountAvatar :account="account" w-12 h-12 />
       </NuxtLink>
     </div>
     <NuxtLink flex flex-col :to="link ? `/@${account.acct}` : null">

@@ -72,15 +72,15 @@ const timeago = useTimeAgo(() => status.createdAt, {
       </div>
     </div>
     <AccountInfo :account="status.account">
-      <template>
+      <template #default>
         <div flex-auto />
-        <div text-sm op50>
+        <div text-sm op50 :title="status.createdAt">
           {{ timeago }}
         </div>
       </template>
     </AccountInfo>
-    <StatusReplyingTo :status="status" />
-    <div pl14>
+    <StatusReplyingTo :status="status" ml5 mt--1 />
+    <div pl15>
       <StatusBody :status="status" />
       <StatusMedia
         v-if="status.mediaAttachments?.length"
@@ -92,6 +92,6 @@ const timeago = useTimeAgo(() => status.createdAt, {
         :actions="false"
       />
     </div>
-    <StatusActions v-if="actions !== false" pl12 :status="status" />
+    <StatusActions v-if="actions !== false" pl13 :status="status" />
   </div>
 </template>

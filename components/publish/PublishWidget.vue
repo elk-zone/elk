@@ -12,7 +12,7 @@ const {
 }>()
 
 let isSending = $ref(false)
-const storageKey = `nuxtodon-draft-${draftKey}`
+const storageKey = `elk-draft-${draftKey}`
 function getDefaultStatus(): CreateStatusParamsWithStatus {
   return {
     status: '',

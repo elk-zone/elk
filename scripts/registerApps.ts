@@ -11,7 +11,8 @@ const KNOWN_SERVERS = [
 
 const KNOWN_DOMAINS = [
   'http://localhost:3000',
-  'https://nuxtodon.netlify.app',
+  'https://elk.netlify.app',
+  'https://elk.zone',
 ]
 
 const filename = 'public/registered-apps.json'

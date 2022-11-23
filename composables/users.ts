@@ -1,9 +1,9 @@
 import { login as loginMasto } from 'masto'
 import type { UserLogin } from '~/types'
-import { DEFAULT_SERVER } from '~/constants'
+import { DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_USERS } from '~/constants'
 
-const users = useLocalStorage<UserLogin[]>('nuxtodon-accounts', [], { deep: true })
-const currentUserId = useLocalStorage<string>('nuxtodon-current-user', '')
+const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, [], { deep: true })
+const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, '')
 
 export const currentUser = computed<UserLogin | undefined>(() => {
   let user: UserLogin | undefined

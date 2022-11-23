@@ -1,5 +1,5 @@
-# Nuxtodon
+# Elk
 
-A Mastodon web client powered by Nuxt.
+A Mastodon web client made with 💚.
 
 > Very WIP.

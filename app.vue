@@ -1,9 +1,11 @@
 <script setup>
+import { APP_NAME } from './constants'
+
 useHead({
-  title: 'Nuxtodon',
+  title: APP_NAME,
   link: [
     {
-      rel: 'icon', type: 'image/svg+xml', href: '/nuxtodon.svg',
+      rel: 'icon', type: 'image/svg+xml', href: '/logo.svg',
     },
   ],
 })

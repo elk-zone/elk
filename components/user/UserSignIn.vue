@@ -4,6 +4,7 @@ import { DEFAULT_SERVER } from '~/constants'
 let server = $ref<string>('')
 
 async function oauth() {
+  server = server.split('/')[0]
   location.href = `/api/${server || DEFAULT_SERVER}/login`
 }
 

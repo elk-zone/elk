@@ -5,7 +5,7 @@
         <div sticky top-0 h-screen flex="~ col">
           <slot name="left">
             <template v-if="currentUser">
-              <PublishWidget px4 draft-key="home" />
+              <PublishWidget px4 mt16 draft-key="home" />
             </template>
             <UserSignInEntry v-else />
             <div flex-auto />

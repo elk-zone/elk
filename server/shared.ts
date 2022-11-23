@@ -4,11 +4,11 @@ import type { AppInfo } from '~/types'
 export const registeredApps: Record<string, AppInfo> = {}
 
 const runtimeConfig = useRuntimeConfig()
-const promise = $fetch(runtimeConfig.registedAppsUrl, { responseType: 'json' })
+const promise = $fetch(runtimeConfig.registeredAppsUrl, { responseType: 'json' })
   .then((r) => {
     Object.assign(registeredApps, r)
     // eslint-disable-next-line no-console
-    console.log(`\n${Object.keys(registeredApps).length} registered apps loaded from ${runtimeConfig.registedAppsUrl.split(/\/+/g)[1]}`)
+    console.log(`\n${Object.keys(registeredApps).length} registered apps loaded from ${runtimeConfig.registeredAppsUrl.split(/\/+/g)[1]}`)
     // eslint-disable-next-line no-console
     console.log(`${Object.keys(registeredApps).map(i => ` - ${i}`).join('\n')}\n`)
   })

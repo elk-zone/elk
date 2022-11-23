@@ -33,6 +33,6 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    registedAppsUrl: process.env.APPS_JSON_URL || 'http://localhost:3000/registered-apps.json',
+    registeredAppsUrl: process.env.APPS_JSON_URL || 'http://localhost:3000/registered-apps.json',
   },
 })

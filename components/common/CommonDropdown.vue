@@ -6,12 +6,21 @@ const { modelValue } = defineModel<{
 const el = ref<HTMLDivElement>()
 
 onClickOutside(el, () => {
-  modelValue.value = false
+  if (modelValue)
+    modelValue.value = false
 })
 </script>
 
 <template>
-  <div ref="el" absolute bg-base>
+  <div
+    v-show="modelValue"
+    ref="el"
+    absolute
+    bg-base
+    rounded
+    shadow-xl
+    dark="border border-base"
+  >
     <slot />
   </div>
 </template>

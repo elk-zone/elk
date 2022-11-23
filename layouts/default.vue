@@ -27,7 +27,7 @@
         <div sticky top-0 h-screen flex="~ col">
           <slot name="right">
             <NavTitle p5 />
-            <NavSide border="y base" py8 />
+            <NavSide border="y base" />
             <div flex-auto />
             <NavFooter />
           </slot>

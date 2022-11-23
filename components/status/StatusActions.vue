@@ -37,7 +37,7 @@ const toggleBookmark = () => toggleStatusAction(
 
 <template>
   <div flex justify-between gap-8>
-    <RouterLink flex gap-1 items-center rounded op50 hover="op100 text-blue" group :to="`/@${status.account.acct}/${status.id}`">
+    <RouterLink flex gap-1 items-center rounded op50 hover="op100 text-blue" group :to="getStatusPath(status)">
       <div rounded-full p2 group-hover="bg-blue/10">
         <div i-ri:chat-3-line />
       </div>

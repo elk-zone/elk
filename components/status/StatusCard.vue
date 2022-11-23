@@ -26,7 +26,7 @@ function go(e: MouseEvent) {
   const path = e.composedPath() as HTMLElement[]
   const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
   if (!el)
-    router.push(`/@${status.account.acct}/${status.id}`)
+    router.push(getStatusPath(status))
 }
 
 const timeago = useTimeAgo(() => status.createdAt, {

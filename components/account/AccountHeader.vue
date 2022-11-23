@@ -20,14 +20,14 @@ const createdAt = $computed(() => {
       <div flex justify-between>
         <div flex flex-col gap-2>
           <div>
-            <NuxtLink :to="`/@${account.acct}`">
+            <NuxtLink :to="getAccountPath(account)">
               <AccountAvatar :account="account" w-30 h-30 />
             </NuxtLink>
           </div>
           <div flex flex-col>
             <CommonRichContent font-bold text-2xl :content="getDisplayName(account)" :emojis="account.emojis" />
             <p op50>
-              @{{ account.acct }}
+              {{ getAccountHandle(account) }}
             </p>
           </div>
         </div>
@@ -65,13 +65,13 @@ const createdAt = $computed(() => {
         </div>
       </div>
       <div flex gap-5>
-        <NuxtLink :to="`/@${account.acct}/`" active-class="text-primary">
+        <NuxtLink :to="`/${getAccountHandle(account)}/`" active-class="text-primary">
           <span font-bold>{{ account.statusesCount }}</span> Posts
         </NuxtLink>
-        <NuxtLink :to="`/@${account.acct}/following`" active-class="text-primary">
+        <NuxtLink :to="`/${getAccountHandle(account)}/following`" active-class="text-primary">
           <span font-bold>{{ account.followingCount }}</span> Following
         </NuxtLink>
-        <NuxtLink :to="`/@${account.acct}/followers`" active-class="text-primary">
+        <NuxtLink :to="`/${getAccountHandle(account)}/followers`" active-class="text-primary">
           <span font-bold>{{ account.followersCount }}</span> Followers
         </NuxtLink>
       </div>

@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <NuxtLink :to="`/@${account.acct}`">
+  <NuxtLink :to="getAccountPath(account)">
     {{ getDisplayName(account) }}
   </NuxtLink>
 </template>

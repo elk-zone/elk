@@ -7,17 +7,17 @@ const { account, link = true, fullServer = false } = defineProps<{
   fullServer?: boolean
 }>()
 
-const id = computed(() => fullServer && !account.acct.includes('@') ? `@${account.acct}@${account.url.match(UserLinkRE)?.[1]}` : `@${account.acct}`)
+const id = computed(() => fullServer && !account.acct.includes('@') ? `@${account.acct}@${account.url.match(UserLinkRE)?.[1]}` : getAccountHandle(account))
 </script>
 
 <template>
   <div flex gap-3>
     <div>
-      <NuxtLink :to="link ? `/@${account.acct}` : null">
+      <NuxtLink :to="link ? getAccountPath(account) : null">
         <AccountAvatar :account="account" w-12 h-12 />
       </NuxtLink>
     </div>
-    <NuxtLink flex flex-col :to="link ? `/@${account.acct}` : null">
+    <NuxtLink flex flex-col :to="link ? getAccountPath(account) : null">
       <CommonRichContent font-bold :content="getDisplayName(account)" :emojis="account.emojis" />
       <p op35 text-sm>
         {{ id }}

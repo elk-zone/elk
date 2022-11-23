@@ -1,8 +1,20 @@
 import type { Ref } from 'vue'
-import type { Account, Relationship } from 'masto'
+import type { Account, Relationship, Status } from 'masto'
 
 export function getDisplayName(account: Account) {
   return account.displayName || account.username
+}
+
+export function getAccountHandle(account: Account) {
+  return `@${account.acct}`
+}
+
+export function getAccountPath(account: Account) {
+  return `/${getAccountHandle(account)}`
+}
+
+export function getStatusPath(status: Status) {
+  return `${getAccountPath(status.account)}/${status.id}`
 }
 
 // Batch requests for relationships when used in the UI

@@ -1,9 +1,4 @@
 <script setup lang="ts">
-const token = useCookie('nuxtodon-token')
-const router = useRouter()
-if (!token.value)
-  router.replace('/public')
-
 const { data: timelines } = await useAsyncData('timelines-home', () => masto.timelines.fetchPublic({ local: true }).then(r => r.value))
 </script>
 

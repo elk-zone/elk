@@ -1,8 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  middleware: 'auth',
-})
-
 const paginator = masto.trends.getStatuses()
 </script>
 

@@ -46,19 +46,19 @@ const createdAt = $computed(() => {
         </div>
       </div>
       <div>
-        <div text-4 text-gray-3 v-html="account.note" />
+        <div text-4 text-gray v-html="account.note" />
       </div>
       <div flex flex-col gap-1>
         <div flex flex-col rounded p3 class="bg-purple/10">
-          <p text-gray text-3 uppercase>
+          <p text="gray/70" text-3 uppercase>
             Joined
           </p>
-          <p text-3 text-gray-3>
+          <p text-3 text-gray>
             {{ createdAt }}
           </p>
         </div>
         <div v-for="field in account.fields" :key="field.name" flex flex-col rounded p3 class="bg-purple/10">
-          <p text-gray text-3 uppercase>
+          <p text="gray/70" text-3 uppercase>
             {{ field.name }}
           </p>
           <p text-3 text-purple-3 v-html="field.value" />

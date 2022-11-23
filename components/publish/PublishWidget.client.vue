@@ -51,7 +51,7 @@ onUnmounted(() => {
       v-model="draft.status"
       :placeholder="placeholder"
       p2 border-rounded w-full h-40
-      bg-gray:10 outline-none border="~ border"
+      bg-gray:10 outline-none border="~ base"
     />
     <div flex justify-end>
       <button

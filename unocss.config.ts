@@ -11,6 +11,11 @@ import {
 
 export default defineConfig({
   shortcuts: [
+    {
+      'border-base': 'border-$c-border',
+      'bg-base': 'bg-$c-bg-base',
+      'text-base': 'text-$c-text-base',
+    },
   ],
   presets: [
     presetUno({
@@ -35,8 +40,7 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      primary: 'var(--color-primary)',
-      border: 'var(--color-border)',
+      primary: 'var(--c-primary)',
     },
   },
 })

@@ -9,12 +9,12 @@ const { paginator } = defineProps<{
 <template>
   <CommonPaginator
     :paginator="paginator"
-    border="t border"
+    border="t base"
   >
     <template #default="{ item }">
       <StatusCard
         :status="item"
-        border="b border" py-3
+        border="b base" py-3
       />
     </template>
   </CommonPaginator>

@@ -1,5 +1,5 @@
 * {
-  scrollbar-color: #5555 var(--color-border);
+  scrollbar-color: #5555 var(--c-border);
 }
 
 ::-webkit-scrollbar {
@@ -11,7 +11,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-border);
+  background: var(--c-border);
   border-radius: 1px;
 }
 
@@ -31,8 +31,8 @@ html {
 
 .custom-emoji {
   display: inline-block;
-  height: 1.2em;
-  width: 1.2em;
+  max-height: 1.2em;
+  max-width: 1.2em;
   vertical-align: middle;
 }
 

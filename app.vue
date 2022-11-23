@@ -7,6 +7,9 @@ useHead({
     },
   ],
 })
+
+// eslint-disable-next-line no-unused-expressions
+isDark.value
 </script>
 
 <template>
@@ -24,7 +27,10 @@ html, body , #__nuxt{
 }
 
 html.dark {
-  background: #222;
-  color: white;
+  color-scheme: dark;
+}
+
+html {
+  --at-apply: bg-base text-base;
 }
 </style>

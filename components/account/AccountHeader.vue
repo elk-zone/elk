@@ -13,7 +13,7 @@ const createdAt = $computed(() => {
 
 <template>
   <div flex flex-col>
-    <div border="b border">
+    <div border="b base">
       <img h-50 w-full object-cover :src="account.header">
     </div>
     <div p3 style="margin-top:-3.5rem;" flex flex-col gap-6>

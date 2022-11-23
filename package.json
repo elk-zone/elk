@@ -22,6 +22,7 @@
     "@types/fs-extra": "^9.0.13",
     "@types/sanitize-html": "^2.6.2",
     "@unocss/nuxt": "^0.46.5",
+    "@vue-macros/volar": "^0.5.3",
     "@vueuse/nuxt": "^9.5.0",
     "blurhash": "^2.0.4",
     "eslint": "^8.27.0",
@@ -35,6 +36,7 @@
     "rollup-plugin-node-polyfills": "^0.2.1",
     "sanitize-html": "^2.7.3",
     "typescript": "^4.9.3",
-    "ufo": "^1.0.0"
+    "ufo": "^1.0.0",
+    "unplugin-vue-macros": "^0.16.4"
   }
 }

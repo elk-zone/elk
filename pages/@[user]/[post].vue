@@ -11,10 +11,10 @@ const { data: context } = await useAsyncData(`${id}-context`, () => masto.status
 <template>
   <template v-if="status">
     <template v-for="comment of context?.ancestors" :key="comment.id">
-      <StatusCard :status="comment" border="t border" pt-4 />
+      <StatusCard :status="comment" border="t base" pt-4 />
     </template>
-    <StatusDetails :status="status" border="t border" pt-4 />
-    <div v-if="currentUser" border="t border" p6 flex gap-4>
+    <StatusDetails :status="status" border="t base" pt-4 />
+    <div v-if="currentUser" border="t base" p6 flex gap-4>
       <AccountAvatar :account="currentUser.account" w-10 h-10 />
       <PublishWidget
         w-full
@@ -25,7 +25,7 @@ const { data: context } = await useAsyncData(`${id}-context`, () => masto.status
     </div>
 
     <template v-for="comment of context?.descendants" :key="comment.id">
-      <StatusCard :status="comment" border="t border" pt-4 />
+      <StatusCard :status="comment" border="t base" pt-4 />
     </template>
   </template>
 

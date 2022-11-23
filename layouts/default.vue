@@ -9,14 +9,14 @@
         </div>
       </div>
       <div class="lg:w-3/4" flex>
-        <div class="w-full md:w-2/3" border="l r border" min-h-screen>
+        <div class="w-full md:w-2/3" border="l r base" min-h-screen>
           <slot />
         </div>
         <div hidden md:flex="~ col" class="w-1/3">
           <div fixed>
             <slot name="right">
               <NavTitle p5 />
-              <NavSide border="y border" py8 />
+              <NavSide border="y base" py8 />
               <div flex-auto />
               <NavFooter />
             </slot>

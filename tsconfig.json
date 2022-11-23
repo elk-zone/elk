@@ -1,6 +1,14 @@
 {
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "strict": true
+    "types": [
+      "unplugin-vue-macros/macros-global"
+    ]
+  },
+  "vueCompilerOptions": {
+    "plugins": [
+      "@vue-macros/volar/define-model",
+      "@vue-macros/volar/short-vmodel"
+    ]
   }
 }

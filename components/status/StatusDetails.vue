@@ -29,6 +29,6 @@ const date = computed(() => formatter.format(new Date(status.createdAt)))
         {{ date }} · {{ status.application?.name || 'Unknown client' }}
       </span>
     </div>
-    <StatusActions :status="status" border="t border" pt-2 />
+    <StatusActions :status="status" border="t base" pt-2 />
   </div>
 </template>

@@ -31,7 +31,7 @@ const aspectRatio = computed(() => {
       :style="{
         aspectRatio,
       }"
-      border="~ border"
+      border="~ base"
       object-cover rounded-lg
     />
   </template>
@@ -39,7 +39,7 @@ const aspectRatio = computed(() => {
     <video
       :poster="attachment.previewUrl"
       controls
-      border="~ border"
+      border="~ base"
       object-cover
       :style="{
         aspectRatio,

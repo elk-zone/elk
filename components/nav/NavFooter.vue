@@ -6,8 +6,9 @@ const buildTimeAgo = useTimeAgo(buildTime)
 </script>
 
 <template>
-  <div p4 text-sm op25>
-    A Mastodon client by Nuxt<br>
-    Built <span :title="buildTime">{{ buildTimeAgo }}</span> · <a href="https://github.com/antfu/nuxtodon" target="_blank">GitHub</a>
+  <div p4 text-sm op25 flex="~ col">
+    <button i-ri-sun-line dark:i-ri-moon-line text-lg mb4 @click="toggleDark()" />
+    <div>A Mastodon client by Nuxt</div>
+    <div>Built <span :title="buildTime">{{ buildTimeAgo }}</span> · <a href="https://github.com/antfu/nuxtodon" target="_blank">GitHub</a></div>
   </div>
 </template>

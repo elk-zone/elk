@@ -1,10 +1,11 @@
+import VueMacros from 'unplugin-vue-macros/vite'
+
 export default defineNuxtConfig({
   ssr: false,
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
-    '@nuxtjs/color-mode',
   ],
   experimental: {
     reactivityTransform: true,
@@ -15,9 +16,6 @@ export default defineNuxtConfig({
     '~/styles/vars.css',
     '~/styles/global.css',
   ],
-  colorMode: {
-    classSuffix: '',
-  },
   alias: {
     querystring: 'rollup-plugin-node-polyfills/polyfills/qs',
   },
@@ -28,6 +26,11 @@ export default defineNuxtConfig({
     build: {
       target: 'esnext',
     },
+    plugins: [
+      VueMacros({
+        defineModel: true,
+      }),
+    ],
   },
   postcss: {
     plugins: {

@@ -19,6 +19,7 @@ const { link = true } = defineProps<{
       <p op35 text-sm>
         @{{ account.acct }}
       </p>
+      <slot name="bottom" />
     </NuxtLink>
     <slot />
   </div>

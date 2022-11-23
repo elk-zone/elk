@@ -18,7 +18,8 @@ const date = computed(() => formatter.format(new Date(status.createdAt)))
 <template>
   <div flex flex-col gap-2 my-4 px-4>
     <AccountInfo :account="status.account" />
-    <StatusBody :status="status" text-xl />
+    <StatusReplyingTo :status="status" />
+    <StatusBody :status="status" text-2xl />
     <StatusMedia
       v-if="status.mediaAttachments?.length"
       :status="status"

@@ -67,16 +67,19 @@ const timeago = useTimeAgo(() => status.createdAt, {
     <div v-if="rebloggedBy" pl8>
       <div flex gap-1 items-center text-gray:75 text-sm>
         <div i-ri:repeat-fill mr-1 />
-        <AccountInlineInfo :account="rebloggedBy" />
+        <AccountInlineInfo font-bold :account="rebloggedBy" />
         reblogged
       </div>
     </div>
     <AccountInfo :account="status.account">
-      <div flex-auto />
-      <div text-sm op50>
-        {{ timeago }}
-      </div>
+      <template>
+        <div flex-auto />
+        <div text-sm op50>
+          {{ timeago }}
+        </div>
+      </template>
     </AccountInfo>
+    <StatusReplyingTo :status="status" />
     <div pl14>
       <StatusBody :status="status" />
       <StatusMedia

@@ -26,7 +26,7 @@ const aspectRatio = computed(() => {
     <CommonBlurhash
       :blurhash="attachment.blurhash"
       class="status-attachment-image"
-      :src="attachment.previewUrl!"
+      :src="attachment.url || attachment.previewUrl!"
       :alt="attachment.description!"
       :style="{
         aspectRatio,

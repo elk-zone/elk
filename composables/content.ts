@@ -8,9 +8,6 @@ import { RouterLink } from 'vue-router'
 type Node = DefaultTreeAdapterMap['childNode']
 type Element = DefaultTreeAdapterMap['element']
 
-const UserLinkRE = /^https?:\/\/([^/]+)\/@([^/]+)$/
-const TagLinkRE = /^https?:\/\/([^/]+)\/tags\/([^/]+)$/
-
 export function defaultHandle(el: Element) {
   // Redirect mentions to the user page
   if (el.tagName === 'a' && el.attrs.find(i => i.name === 'class' && i.value.includes('mention'))) {

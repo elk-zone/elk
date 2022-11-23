@@ -18,7 +18,9 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 
 export const currentServer = computed<string>(() => currentUser.value?.server || DEFAULT_SERVER)
 
-export async function loginCallback(user: UserLogin) {
+export const useAccounts = () => accounts
+
+export async function loginTo(user: UserLogin) {
   const existing = accounts.value.findIndex(u => u.server === user.server && u.token === user.token)
   if (existing !== -1) {
     if (currentId.value === accounts.value[existing].account?.id)

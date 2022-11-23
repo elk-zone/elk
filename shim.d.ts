@@ -1,1 +1,1 @@
-/// <references type="unplugin-vue-macros/macros-global" />
+/// <reference types="unplugin-vue-macros/macros-global" />

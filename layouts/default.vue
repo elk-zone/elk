@@ -4,7 +4,10 @@
       <div class="hidden md:block w-1/4" relative>
         <div sticky top-0 h-screen flex="~ col">
           <slot name="left">
-            <AccountMe v-if="currentUser" />
+            <template v-if="currentUser">
+              <AccountSwitcher />
+              <PublishWidget px4 draft-key="home" />
+            </template>
             <AccountSignInEntry v-else />
           </slot>
         </div>
@@ -23,5 +26,6 @@
         </div>
       </div>
     </main>
+    <ModalContainer />
   </div>
 </template>

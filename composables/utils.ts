@@ -1,5 +1,8 @@
 import type { Emoji } from 'masto'
 
+export const UserLinkRE = /^https?:\/\/([^/]+)\/@([^/]+)$/
+export const TagLinkRE = /^https?:\/\/([^/]+)\/tags\/([^/]+)$/
+
 export function getDataUrlFromArr(arr: Uint8ClampedArray, w: number, h: number) {
   if (typeof w === 'undefined' || typeof h === 'undefined')
     w = h = Math.sqrt(arr.length / 4)

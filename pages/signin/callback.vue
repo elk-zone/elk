@@ -6,7 +6,7 @@ definePageMeta({
 const { query } = useRoute()
 
 onMounted(async () => {
-  await loginCallback(query as any)
+  await loginTo(query as any)
   await nextTick()
   await nextTick()
   location.pathname = '/'

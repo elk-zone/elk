@@ -7,7 +7,6 @@
     "dev": "nuxi dev",
     "start": "node .output/server/index.mjs",
     "lint": "eslint .",
-    "register-apps": "esno ./scripts/registerApps.ts",
     "postinstall": "nuxi prepare",
     "generate": "nuxi generate"
   },

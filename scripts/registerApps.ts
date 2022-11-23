@@ -7,6 +7,7 @@ const KNOWN_SERVERS = [
   'mastodon.social',
   'mas.to',
   'fosstodon.org',
+  'm.cmx.im',
 ]
 
 const KNOWN_DOMAINS = [

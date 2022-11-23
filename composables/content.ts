@@ -16,7 +16,8 @@ export function defaultHandle(el: Element) {
       const matchUser = href.value.match(UserLinkRE)
       if (matchUser) {
         const [, server, username] = matchUser
-        href.value = `/@${username}@${server}`
+        // Handles need to ignore server subdomains
+        href.value = `/@${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
       }
       const matchTag = href.value.match(TagLinkRE)
       if (matchTag) {

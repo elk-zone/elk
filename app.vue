@@ -3,7 +3,7 @@ useHead({
   title: 'Nuxtodon',
   link: [
     {
-      rel: 'icon', type: 'image/png', href: '/nuxt.png',
+      rel: 'icon', type: 'image/svg+xml', href: '/nuxtodon.svg',
     },
   ],
 })

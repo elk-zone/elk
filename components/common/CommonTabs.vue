@@ -24,7 +24,7 @@ function toValidName(otpion: string) {
         display="none"
         @change="modelValue = option"
       ><label
-        flex flex-1 cursor-pointer pt2 m1 rounded transition-all
+        flex flex-1 cursor-pointer p3 m1 rounded transition-all
         :for="`tab-${toValidName(option)}`"
         tabindex="1"
         hover:bg-active

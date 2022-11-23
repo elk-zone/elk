@@ -5,10 +5,11 @@
         <div sticky top-0 h-screen flex="~ col">
           <slot name="left">
             <template v-if="currentUser">
-              <AccountSwitcher />
               <PublishWidget px4 draft-key="home" />
             </template>
             <AccountSignInEntry v-else />
+            <div flex-auto />
+            <AccountSwitcher v-if="currentUser" />
           </slot>
         </div>
       </div>

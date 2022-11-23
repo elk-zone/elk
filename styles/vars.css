@@ -9,8 +9,6 @@
 }
 
 .dark {
-  --c-primary: #C16929;
-  --c-primary-active: #EA9E44;
   --c-bg-base: #111;
   --c-bg-active: #151515;
   --c-text-base: #fff;

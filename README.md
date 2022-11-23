@@ -1,5 +1,5 @@
 # Elk
 
-A Mastodon web client made with 💚.
+A Mastodon web client made with 💛.
 
 > Very WIP.

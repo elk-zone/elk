@@ -38,7 +38,7 @@ html {
 
 .rich-content {
   a {
-    --at-apply: text-primary hover:underline;
+    --at-apply: text-primary hover:underline hover:text-primary-active;
     .invisible {
       --at-apply: hidden;
     }

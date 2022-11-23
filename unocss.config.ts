@@ -46,7 +46,10 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      primary: 'var(--c-primary)',
+      primary: {
+        DEFAULT: 'var(--c-primary)',
+        active: 'var(--c-primary-active)',
+      },
     },
   },
 })

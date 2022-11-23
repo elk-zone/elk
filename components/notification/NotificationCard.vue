@@ -18,7 +18,7 @@ const displayName = $computed(() => getDisplayName(notification.account))
     </template>
     <template v-if="notification.type === 'follow_request'">
       <div flex ml-4>
-        <div i-ri:user-follow-fill mr-3 color-gray />{{ displayName }} requested to follow you
+        <div i-ri:user-follow-fill mr-3 />{{ displayName }} requested to follow you
       </div>
       <!-- TODO: accept request -->
       <AccountCard :account="notification.account" p3 />

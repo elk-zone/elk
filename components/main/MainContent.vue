@@ -1,14 +1,19 @@
 <template>
   <div relative>
-    <div sticky top-0 bg="#222" z10>
-      <div flex justify-between>
-        <div p3 flex gap-1>
+    <div
+      sticky top-0 z10
+      border="b base"
+      backdrop="blur-10px brightness-120 dark:brightness-80"
+    >
+      <div flex justify-between px5 py4>
+        <div flex gap-1>
           <slot name="title" />
         </div>
-        <div p3 flex>
+        <div flex>
           <slot name="actions" />
         </div>
       </div>
+      <slot name="header" />
     </div>
     <div>
       <slot />

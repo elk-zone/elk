@@ -3,13 +3,13 @@
   --c-primary-active: #3a7b8c;
   --c-border: #88888820;
   --c-bg-base: #fff;
-  --c-bg-active: #efefef;
+  --c-bg-active: #f6f6f6;
   --c-text-base: #222;
   --c-text-secondary: #888;
 }
 
 .dark {
   --c-bg-base: #111;
-  --c-bg-active: #222;
+  --c-bg-active: #151515;
   --c-text-base: #fff;
 }

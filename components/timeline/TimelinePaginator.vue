@@ -9,7 +9,6 @@ const { paginator } = defineProps<{
 <template>
   <CommonPaginator
     :paginator="paginator"
-    border="t base"
   >
     <template #default="{ item }">
       <StatusCard

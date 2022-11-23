@@ -9,10 +9,10 @@ const paginator = masto.favourites.getIterator()
 <template>
   <MainContent>
     <template #title>
-      <div i-ri:heart-fill h-6 mr-1 /><span>Favourites</span>
+      <span text-lg font-bold>Favourites</span>
     </template>
     <template #actions>
-      <div color-gray i-ri:equalizer-fill mr-1 h-6 />
+      <div i-ri:equalizer-fill mr-1 h-6 />
     </template>
     <slot>
       <TimelinePaginator :paginator="paginator" />

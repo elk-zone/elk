@@ -9,10 +9,10 @@ const paginator = masto.timelines.getHomeIterable()
 <template>
   <MainContent>
     <template #title>
-      <div i-ri:home-fill h-6 mr-1 /><span>Home</span>
+      <span text-lg font-bold>Home</span>
     </template>
     <template #actions>
-      <div color-gray i-ri:equalizer-fill mr-1 h-6 />
+      <div i-ri:equalizer-fill mr-1 h-6 />
     </template>
     <slot>
       <TimelinePaginator :paginator="paginator" />

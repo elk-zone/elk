@@ -8,10 +8,10 @@ const paginator = masto.timelines.getHashtagIterable(tag)
 <template>
   <MainContent>
     <template #title>
-      <div i-ri:hashtag h-6 mr-1 /><span>{{ tag }}</span>
+      <span text-lg font-bold>#{{ tag }}</span>
     </template>
     <template #actions>
-      <div color-gray i-ri:equalizer-fill mr-1 h-6 />
+      <div i-ri:equalizer-fill mr-1 h-6 />
     </template>
     <slot>
       <TimelinePaginator :paginator="paginator" />

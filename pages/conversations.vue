@@ -9,10 +9,10 @@ const paginator = masto.conversations.getIterator()
 <template>
   <MainContent>
     <template #title>
-      <div i-ri:at-line h-6 mr-1 /><span>Conversations</span>
+      <span text-lg font-bold>Conversations</span>
     </template>
     <template #actions>
-      <div color-gray i-ri:equalizer-fill mr-1 h-6 />
+      <div i-ri:equalizer-fill mr-1 h-6 />
     </template>
     <slot>
       <ConversationPaginator :paginator="paginator" />

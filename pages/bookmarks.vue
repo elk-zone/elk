@@ -9,10 +9,10 @@ const paginator = masto.bookmarks.getIterator()
 <template>
   <MainContent>
     <template #title>
-      <div i-ri:bookmark-fill h-6 mr-1 /><span>Bookmarks</span>
+      <span text-lg font-bold>Bookmarks</span>
     </template>
     <template #actions>
-      <div color-gray i-ri:equalizer-fill mr-1 h-6 />
+      <div i-ri:equalizer-fill mr-1 h-6 />
     </template>
     <slot>
       <TimelinePaginator :paginator="paginator" />

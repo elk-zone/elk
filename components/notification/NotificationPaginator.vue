@@ -9,12 +9,11 @@ const { paginator } = defineProps<{
 <template>
   <CommonPaginator
     :paginator="paginator"
-    border="t base"
   >
     <template #default="{ item }">
       <NotificationCard
         :notification="item"
-        border="t base" pt-4
+        border="b base" pt-4
       />
     </template>
   </CommonPaginator>

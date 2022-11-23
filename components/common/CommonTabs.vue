@@ -1,9 +1,11 @@
 <script setup lang="ts">
 defineProps<{
-  modelValue: string
   options: string[]
 }>()
-defineEmits(['update:modelValue'])
+
+const { modelValue } = defineModel<{
+  modelValue: string
+}>()
 
 function toValidName(otpion: string) {
   return otpion.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-')
@@ -11,11 +13,27 @@ function toValidName(otpion: string) {
 </script>
 
 <template>
-  <div flex w-full>
+  <div flex w-full text-lg>
     <template v-for="option in options" :key="option">
       <input
-        :id="`tab-${toValidName(option)}`" :checked="modelValue === option" :value="option" type="radio" name="tabs" display="none" @change="$emit('update:modelValue', option)"
-      ><label flex w-full justify-center h-8 cursor-pointer :for="`tab-${toValidName(option)}`" :class="modelValue === option ? 'color-primary' : 'hover:color-purple'" tabindex="1" @keypress.enter="$emit('update:modelValue', option)">{{ option }}</label>
+        :id="`tab-${toValidName(option)}`"
+        :checked="modelValue === option"
+        :value="option"
+        type="radio"
+        name="tabs"
+        display="none"
+        @change="modelValue = option"
+      ><label
+        flex flex-1 cursor-pointer pt2 m1 rounded transition-all
+        :for="`tab-${toValidName(option)}`"
+        tabindex="1"
+        hover:bg-active
+        @keypress.enter="modelValue = option"
+      ><span
+        mxa px2
+        :class="modelValue === option ? 'font-bold border-b-3 border-primary' : 'op50 hover:op50'"
+      >{{ option }}</span>
+      </label>
     </template>
   </div>
 </template>

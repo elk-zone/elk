@@ -26,6 +26,7 @@ export async function loginTo(user: UserLogin) {
     if (currentId.value === accounts.value[existing].account?.id)
       return null
     currentId.value = user.account?.id
+    await reloadPage()
     return true
   }
 
@@ -38,5 +39,25 @@ export async function loginTo(user: UserLogin) {
 
   accounts.value.push(user)
   currentId.value = me.id
+  await reloadPage()
   return true
+}
+
+export async function signout() {
+  // TODO: confirm
+  if (!currentUser.value)
+    return
+
+  const index = accounts.value.findIndex(u => u.account?.id === currentUser.value?.account?.id)
+  if (index === -1)
+    return
+
+  accounts.value.splice(index, 1)
+  currentId.value = accounts.value[0]?.account?.id
+  await reloadPage()
+}
+
+export async function reloadPage(path = '/') {
+  await nextTick()
+  location.pathname = path
 }

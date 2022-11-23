@@ -7,5 +7,5 @@ defineProps<{
 </script>
 
 <template>
-  <img :src="account.avatar" :alt="account.username" rounded bg-gray:10>
+  <img :src="account.avatar" :alt="account.username" rounded-full bg-gray:10>
 </template>

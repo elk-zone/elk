@@ -9,7 +9,13 @@
             </template>
             <AccountSignInEntry v-else />
             <div flex-auto />
-            <AccountSwitcher v-if="currentUser" />
+            <AccountInfo
+              v-if="currentUser"
+              p4
+              :account="currentUser?.account"
+              :link="false"
+              @click="openAccountSwitcher"
+            />
           </slot>
         </div>
       </div>

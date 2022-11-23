@@ -14,6 +14,7 @@ export default defineConfig({
     {
       'border-base': 'border-$c-border',
       'bg-base': 'bg-$c-bg-base',
+      'bg-active': 'bg-$c-bg-active',
       'text-base': 'text-$c-text-base',
       'interact-disabled': 'disabled:opacity-50 disabled:pointer-events-none disabled:saturate-0',
       'btn-solid': 'px-4 py-2 rounded text-white bg-$c-primary hover:bg-$c-primary-active interact-disabled',

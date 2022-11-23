@@ -7,9 +7,6 @@ const { query } = useRoute()
 
 onMounted(async () => {
   await loginTo(query as any)
-  await nextTick()
-  await nextTick()
-  location.pathname = '/'
 })
 </script>
 

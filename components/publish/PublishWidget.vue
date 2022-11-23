@@ -55,8 +55,8 @@ onUnmounted(() => {
     />
     <div flex justify-end>
       <button
-        h-9 w-22 bg-primary border-rounded
-        :disabled="draft.status === ''"
+        btn-solid
+        :disabled="!draft.status"
         @click="publish"
       >
         Publish!

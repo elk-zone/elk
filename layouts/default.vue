@@ -5,7 +5,7 @@
         <div sticky top-0 h-screen flex="~ col">
           <slot name="left">
             <AccountMe v-if="currentUser" />
-            <AccountSignIn v-else />
+            <AccountSignInEntry v-else />
           </slot>
         </div>
       </div>

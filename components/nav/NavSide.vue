@@ -38,6 +38,10 @@
         <div i-ri:bookmark-line />
         <span>Bookmarks</span>
       </NuxtLink>
+      <NuxtLink flex gap2 items-center :to="`/@${currentUser.account?.username}`" active-class="text-primary">
+        <AccountAvatar :account="currentUser.account" h="1.2em" />
+        <span>Profile</span>
+      </NuxtLink>
     </template>
   </div>
 </template>

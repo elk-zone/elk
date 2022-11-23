@@ -7,14 +7,14 @@
             <template v-if="currentUser">
               <PublishWidget px4 draft-key="home" />
             </template>
-            <AccountSignInEntry v-else />
+            <UserSignInEntry v-else />
             <div flex-auto />
             <AccountInfo
               v-if="currentUser"
               p4
               :account="currentUser?.account"
               :link="false"
-              @click="openAccountSwitcher"
+              @click="openUserSwitcher"
             />
           </slot>
         </div>

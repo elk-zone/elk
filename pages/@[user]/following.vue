@@ -1,8 +1,4 @@
 <script setup lang="ts">
-const props = defineProps<{
-  modelValue?: boolean
-}>()
-
 const params = useRoute().params
 const user = $computed(() => params.user as string)
 

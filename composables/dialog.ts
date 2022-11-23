@@ -1,11 +1,11 @@
-export const isAccountSwitcherOpen = ref(false)
+export const isUserSwitcherOpen = ref(false)
 export const isSigninDialogOpen = ref(false)
 
-export function openAccountSwitcher() {
-  isAccountSwitcherOpen.value = true
+export function openUserSwitcher() {
+  isUserSwitcherOpen.value = true
 }
 
 export function openSigninDialog() {
   isSigninDialogOpen.value = true
-  isAccountSwitcherOpen.value = false
+  isUserSwitcherOpen.value = false
 }

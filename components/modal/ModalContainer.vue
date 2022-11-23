@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { isAccountSwitcherOpen, isSigninDialogOpen } from '~/composables/dialog'
+import { isSigninDialogOpen, isUserSwitcherOpen } from '~/composables/dialog'
 </script>
 
 <template>
-  <ModalDrawer v-model="isAccountSwitcherOpen">
-    <AccountSwitcher />
+  <ModalDrawer v-model="isUserSwitcherOpen">
+    <UserSwitcher />
   </ModalDrawer>
   <ModalDialog v-model="isSigninDialogOpen">
-    <AccountSignIn m6 />
+    <UserSignIn m6 />
   </ModalDialog>
 </template>

@@ -1,5 +1,5 @@
 import { login } from 'masto'
-import { currentUser } from './accounts'
+import { currentUser } from './users'
 import { DEFAULT_SERVER } from '~/constants'
 
 // TODO: improve upsteam to make this synchronous (delayed auth)

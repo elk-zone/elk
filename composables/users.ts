@@ -2,30 +2,30 @@ import { login as loginMasto } from 'masto'
 import type { UserLogin } from '~/types'
 import { DEFAULT_SERVER } from '~/constants'
 
-const accounts = useLocalStorage<UserLogin[]>('nuxtodon-accounts', [], { deep: true })
-const currentId = useLocalStorage<string>('nuxtodon-current-user', '')
+const users = useLocalStorage<UserLogin[]>('nuxtodon-accounts', [], { deep: true })
+const currentUserId = useLocalStorage<string>('nuxtodon-current-user', '')
 
 export const currentUser = computed<UserLogin | undefined>(() => {
   let user: UserLogin | undefined
-  if (currentId.value) {
-    user = accounts.value.find(user => user.account?.id === currentId.value)
+  if (currentUserId.value) {
+    user = users.value.find(user => user.account?.id === currentUserId.value)
     if (user)
       return user
   }
   // Fallback to the first account
-  return accounts.value[0]
+  return users.value[0]
 })
 
 export const currentServer = computed<string>(() => currentUser.value?.server || DEFAULT_SERVER)
 
-export const useAccounts = () => accounts
+export const useUsers = () => users
 
 export async function loginTo(user: UserLogin) {
-  const existing = accounts.value.findIndex(u => u.server === user.server && u.token === user.token)
+  const existing = users.value.findIndex(u => u.server === user.server && u.token === user.token)
   if (existing !== -1) {
-    if (currentId.value === accounts.value[existing].account?.id)
+    if (currentUserId.value === users.value[existing].account?.id)
       return null
-    currentId.value = user.account?.id
+    currentUserId.value = user.account?.id
     await reloadPage()
     return true
   }
@@ -37,8 +37,8 @@ export async function loginTo(user: UserLogin) {
   const me = await masto.accounts.verifyCredentials()
   user.account = me
 
-  accounts.value.push(user)
-  currentId.value = me.id
+  users.value.push(user)
+  currentUserId.value = me.id
   await reloadPage()
   return true
 }
@@ -48,12 +48,12 @@ export async function signout() {
   if (!currentUser.value)
     return
 
-  const index = accounts.value.findIndex(u => u.account?.id === currentUser.value?.account?.id)
+  const index = users.value.findIndex(u => u.account?.id === currentUser.value?.account?.id)
   if (index === -1)
     return
 
-  accounts.value.splice(index, 1)
-  currentId.value = accounts.value[0]?.account?.id
+  users.value.splice(index, 1)
+  currentUserId.value = users.value[0]?.account?.id
   await reloadPage()
 }
 

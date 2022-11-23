@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const allAccounts = useAccounts()
+const all = useUsers()
 
-const sortedAccounts = computed(() => {
+const sorted = computed(() => {
   return [
     currentUser.value!,
-    ...allAccounts.value.filter(account => account.token !== currentUser.value?.token),
+    ...all.value.filter(account => account.token !== currentUser.value?.token),
   ].filter(Boolean)
 })
 </script>
@@ -15,16 +15,16 @@ const sortedAccounts = computed(() => {
       Switch Account
     </h1>
     <div mx--2>
-      <template v-for="acc of sortedAccounts" :key="acc.id">
+      <template v-for="user of sorted" :key="user.id">
         <AccountInfo
-          :account="acc.account"
+          :account="user.account"
           :link="false"
           :full-server="true"
           rounded p2
           hover:bg-active cursor-pointer
-          @click="loginTo(acc)"
+          @click="loginTo(user)"
         >
-          <template v-if="acc.token === currentUser?.token">
+          <template v-if="user.token === currentUser?.token">
             <div flex-auto />
             <div i-ri:check-line text-primary mya text-2xl />
           </template>

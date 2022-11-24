@@ -23,6 +23,9 @@ export default defineComponent({
         isLoaded.value = true
       }
       img.src = props.src
+      setTimeout(() => {
+        isLoaded.value = true
+      }, 3_000)
 
       if (props.blurhash) {
         const pixels = decode(props.blurhash, 32, 32)

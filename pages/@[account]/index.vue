@@ -13,7 +13,7 @@ const tabNames = ['Posts', 'Posts and replies'] as const
 const tab = $ref('Posts')
 
 const paginator = $computed(() => {
-  return masto.accounts.getStatusesIterable(account.value!.id!, { excludeReplies: tab === 'Posts' } as any)
+  return masto.accounts.getStatusesIterable(account.id, { excludeReplies: tab === 'Posts' } as any)
 })
 </script>
 

@@ -46,7 +46,7 @@ export function fetchAccountByName(acct: string) {
   const cached = cache.get(key)
   if (cached)
     return cached
-  const account = masto.accounts.fetch(acct)
+  const account = masto.accounts.lookup({ acct })
     .then((r) => {
       cacheAccount(r)
       return r

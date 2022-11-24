@@ -7,9 +7,7 @@ const paginator = masto.trends.getStatuses()
     <template #title>
       <div i-ri:hashtag h-6 mr-1 /><span>Explore</span>
     </template>
-    <template #actions>
-      <div i-ri:equalizer-fill mr-1 h-6 />
-    </template>
+
     <slot>
       <!-- TODO: Tabs for trending statuses, tags, and links -->
       <TimelinePaginator :paginator="paginator" />

@@ -80,7 +80,7 @@ function getFieldNameIcon(fieldName: string) {
         </div>
       </div>
       <div v-if="account.note">
-        <div text-4 text-gray v-html="account.note" />
+        <ContentRich text-4 text-gray :content="account.note" :emojis="account.emojis" />
       </div>
       <div flex flex-wrap gap-4>
         <div v-for="field in fields" :key="field.name" flex="~ gap-1" items-center>

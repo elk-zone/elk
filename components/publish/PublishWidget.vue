@@ -39,7 +39,7 @@ let isUploading = $ref<boolean>(false)
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
-  if (!files)
+  if (!files || files.length === 0)
     return
 
   evt.preventDefault()

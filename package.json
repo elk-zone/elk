@@ -2,6 +2,8 @@
   "type": "module",
   "private": true,
   "packageManager": "pnpm@7.9.0",
+  "license": "MIT",
+  "homepage": "https://elk.zone/",
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev",

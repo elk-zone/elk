@@ -14,10 +14,16 @@ If you would like to contribute, until the repo is open, please create branches 
 
 # Stack
 
+- [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
 - [Nuxt](https://nuxtjs.org/) - The Intuitive Vue Framework
+- [Vue](https://vuejs.org/) - The Progressive JavaScript Framework
+- [VueUse](https://vueuse.org/) - Collection of Vue Composition Utilities
 - [Pinia](https://pinia.vuejs.org/) - The Vue Store that you will enjoy using
+- [Vue Macros](https://vue-macros.sxzz.moe/) - More macros and syntax sugar for Vue
 - [UnoCSS](https://uno.antfu.me/) - The instant on-demand atomic CSS engine
-- [Masto.js](https://neet.github.io/masto.js) - Mastodon API client for JavaScript, TypeScript, Node.js, browsers
+- [Iconify](https://github.com/iconify/icon-sets#iconify-icon-sets-in-json-format) - Iconify icon sets in JSON format
+- [Masto.js](https://neet.github.io/masto.js) - Mastodon API client in TypeScript
+- [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
 
 # License
 

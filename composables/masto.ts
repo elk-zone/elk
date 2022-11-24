@@ -45,6 +45,10 @@ export function getStatusPath(status: Status) {
   return `/status/${status.id}`
 }
 
+export function useAccountHandle(account: Account, fullServer = true) {
+  return computed(() => fullServer && !account.acct.includes('@') ? `@${account.acct}@${account.url.match(UserLinkRE)?.[1]}` : getAccountHandle(account))
+}
+
 // Batch requests for relationships when used in the UI
 // We don't want to hold to old values, so every time a Relationship is needed it
 // is requested again from the server to show the latest state

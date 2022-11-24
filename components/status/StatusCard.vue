@@ -78,27 +78,32 @@ const timeago = useTimeAgo(() => status.createdAt, {
         reblogged
       </div>
     </div>
-    <AccountInfo :account="status.account">
-      <template #default>
-        <div flex-auto />
-        <div text-sm op50 :title="status.createdAt">
-          {{ timeago }}
+    <div flex gap-4>
+      <AccountAvatar mt1 w-12 h-12 :account="status.account" />
+      <div flex flex-col>
+        <StatusAccountDetails :account="status.account">
+          <template #default>
+            <div flex-auto />
+            <div text-sm op50 :title="status.createdAt">
+              {{ timeago }}
+            </div>
+          </template>
+        </StatusAccountDetails>
+        <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
+        <div>
+          <StatusBody :status="status" />
+          <StatusMedia
+            v-if="status.mediaAttachments?.length"
+            :status="status"
+          />
+          <StatusCard
+            v-if="status.reblog"
+            :status="status.reblog" border="~ rounded"
+            :actions="false"
+          />
         </div>
-      </template>
-    </AccountInfo>
-    <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" ml5 mt--1 />
-    <div pl15>
-      <StatusBody :status="status" />
-      <StatusMedia
-        v-if="status.mediaAttachments?.length"
-        :status="status"
-      />
-      <StatusCard
-        v-if="status.reblog"
-        :status="status.reblog" border="~ rounded"
-        :actions="false"
-      />
+        <StatusActions v-if="actions !== false" pt2 :status="status" />
+      </div>
     </div>
-    <StatusActions v-if="actions !== false" px13 :status="status" />
   </div>
 </template>

@@ -22,11 +22,17 @@ const rebloggedBy = $computed(() => props.status.reblog ? props.status.account :
 const el = ref<HTMLElement>()
 const router = useRouter()
 
-function go(e: MouseEvent) {
+function onclick(e: MouseEvent) {
   const path = e.composedPath() as HTMLElement[]
   const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
   if (!el)
-    router.push(getStatusPath(status))
+    go()
+}
+
+function go() {
+  // cache data
+  useNuxtApp().payload.data[`status-${status.id}`] = status
+  router.push(getStatusPath(status))
 }
 
 const timeago = useTimeAgo(() => status.createdAt, {
@@ -63,7 +69,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
 </script>
 
 <template>
-  <div ref="el" flex flex-col gap-2 px-4 hover:bg-active transition-100 cursor-pointer @click="go">
+  <div ref="el" flex flex-col gap-2 px-4 hover:bg-active transition-100 cursor-pointer @click="onclick">
     <div v-if="rebloggedBy" pl8>
       <div flex gap-1 items-center text-gray:75 text-sm>
         <div i-ri:repeat-fill mr-1 />

@@ -1,21 +1,31 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 
-const { status } = defineProps<{
+const { status: _status } = defineProps<{
   status: Status
 }>()
+let status = $ref<Status>({ ..._status })
 
-const isAuthor = $computed(() => status.account.id === currentUser.value?.account?.id)
+watch(() => _status, (val) => {
+  status = { ...val }
+}, { deep: true, immediate: true })
 
 const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
 
+const isAuthor = $computed(() => status.account.id === currentUser.value?.account?.id)
+
 // Use different states to let the user press different actions right after the other
-const isLoading = $ref({ reblogged: false, favourited: false, bookmarked: false })
-async function toggleStatusAction(action: 'reblogged' | 'favourited' | 'bookmarked', newStatus: Promise<Status>) {
+const isLoading = $ref({
+  reblogged: false,
+  favourited: false,
+  bookmarked: false,
+  pinned: false,
+})
+async function toggleStatusAction(action: 'reblogged' | 'favourited' | 'bookmarked' | 'pinned', newStatus: Promise<Status>) {
   // Optimistic update
-  Object.assign(status, { [action]: !status[action] })
+  status[action] = !status[action]
   try {
     isLoading[action] = true
     Object.assign(status, await newStatus)
@@ -27,7 +37,12 @@ async function toggleStatusAction(action: 'reblogged' | 'favourited' | 'bookmark
 
 const toggleReblog = () => toggleStatusAction(
   'reblogged',
-  masto.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id),
+  masto.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
+    if (status.reblogged)
+      // returns the original status
+      return res.reblog!
+    return res
+  }),
 )
 
 const toggleFavourite = () => toggleStatusAction(
@@ -54,6 +69,10 @@ const deleteStatus = async () => {
 
   // TODO when timeline, remove this item
 }
+const togglePin = async () => toggleStatusAction(
+  'pinned',
+  masto.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+)
 </script>
 
 <template>
@@ -123,8 +142,16 @@ const deleteStatus = async () => {
             Open in original site
           </CommonDropdownItem>
 
-          <!-- TODO -->
           <template v-if="isAuthor">
+            <!-- TODO -->
+            <CommonDropdownItem
+              v-if="isAuthor" icon="i-ri:pushpin-line"
+              @click="togglePin"
+            >
+              {{ status.pinned ? 'Unpin on profile' : 'Pin on profile' }}
+            </CommonDropdownItem>
+
+            <!-- TODO -->
             <CommonDropdownItem v-if="isAuthor" icon="i-ri:edit-line">
               Edit
             </CommonDropdownItem>
@@ -134,6 +161,12 @@ const deleteStatus = async () => {
               @click="deleteStatus"
             >
               Delete
+            </CommonDropdownItem>
+
+            <CommonDropdownItem
+              v-if="isAuthor" icon="i-ri:eraser-line" text-red-600
+            >
+              Delete & re-draft
             </CommonDropdownItem>
           </template>
         </div>

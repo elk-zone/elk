@@ -23,7 +23,7 @@ const status = $computed(() => {
 })
 
 const currentVisibility = $computed(() => {
-  return STATUS_VISIBILITIES.find(v => v.value === status.visibility)!
+  return STATUS_VISIBILITIES.find(v => v.value === status.visibility) || STATUS_VISIBILITIES[0]
 })
 
 let isUploading = $ref<boolean>(false)
@@ -148,9 +148,12 @@ onUnmounted(() => {
             <div i-ri:upload-line />
           </button>
 
+          <div flex-auto />
+
           <CommonDropdown>
-            <button btn-action-icon>
+            <button btn-action-icon w-12>
               <div :class="currentVisibility.icon" />
+              <div i-ri:arrow-down-s-line text-sm op50 mr--1 />
             </button>
 
             <template #popper>
@@ -168,11 +171,8 @@ onUnmounted(() => {
               </CommonDropdownItem>
             </template>
           </CommonDropdown>
-
-          <div flex-auto />
-
           <button
-            btn-solid rounded-full
+            btn-solid rounded-full text-sm
             :disabled="isUploading || (draft.attachments.length === 0 && !draft.params.status)"
             @click="publish"
           >

@@ -30,8 +30,7 @@ function onclick(e: MouseEvent) {
 }
 
 function go() {
-  // cache data
-  useNuxtApp().payload.data[`status-${status.id}`] = status
+  cacheStatus(status)
   router.push(getStatusPath(status))
 }
 
@@ -85,7 +84,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
         </div>
       </template>
     </AccountInfo>
-    <StatusReplyingTo :status="status" ml5 mt--1 />
+    <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" ml5 mt--1 />
     <div pl15>
       <StatusBody :status="status" />
       <StatusMedia

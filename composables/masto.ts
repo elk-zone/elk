@@ -14,7 +14,7 @@ export function getAccountPath(account: Account) {
 }
 
 export function getStatusPath(status: Status) {
-  return `${getAccountPath(status.account)}/${status.id}`
+  return `/status/${status.id}`
 }
 
 // Batch requests for relationships when used in the UI

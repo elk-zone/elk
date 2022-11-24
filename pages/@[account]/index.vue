@@ -4,10 +4,9 @@ const props = defineProps<{
 }>()
 
 const params = useRoute().params
-const user = $computed(() => params.user as string)
+const accountName = $computed(() => params.account as string)
 
-const { data: account } = await useAsyncData(`${user}:info`, () => masto.accounts.lookup({ acct: user }))
-
+const account = await fetchAccountByName(accountName)
 const tabNames = ['Posts', 'Posts and replies'] as const
 
 // Don't use local storage because it is better to default to Posts every time you visit a user's profile.

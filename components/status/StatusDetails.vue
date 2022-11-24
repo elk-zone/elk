@@ -16,9 +16,9 @@ const date = computed(() => formatter.format(new Date(status.createdAt)))
 </script>
 
 <template>
-  <div flex flex-col gap-2 my-4 px-4>
+  <div flex flex-col gap-2 py3 px-4>
     <AccountInfo :account="status.account" />
-    <StatusReplyingTo :status="status" />
+    <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" />
     <StatusBody :status="status" text-2xl />
     <StatusMedia
       v-if="status.mediaAttachments?.length"

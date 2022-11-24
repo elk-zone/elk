@@ -5,21 +5,17 @@ const { status } = defineProps<{
   status: Status
 }>()
 
-const replyingTo = asyncComputed(async () => {
-  if (status.inReplyToAccountId)
-    return await masto.accounts.fetch(status.inReplyToAccountId)
-  return null
-})
+const account = await fetchAccount(status.inReplyToAccountId!)
 </script>
 
 <template>
-  <template v-if="replyingTo">
+  <template v-if="account">
     <div
       flex="~ gap-1.5" items-center text-sm text-gray:85
-      :title="`Replying to ${getDisplayName(replyingTo)}`"
+      :title="`Replying to ${getDisplayName(account)}`"
     >
       <div i-ri:reply-fill rotate-180 op50 />
-      <AccountInlineInfo :account="replyingTo" />
+      <AccountInlineInfo :account="account" />
     </div>
   </template>
 </template>

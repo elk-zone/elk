@@ -7,9 +7,7 @@ const { paginator } = defineProps<{
 </script>
 
 <template>
-  <CommonPaginator
-    :paginator="paginator"
-  >
+  <CommonPaginator :paginator="paginator">
     <template #default="{ item }">
       <AccountCard
         :account="item"

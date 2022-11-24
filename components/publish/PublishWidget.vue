@@ -12,19 +12,26 @@ const {
 }>()
 
 let isSending = $ref(false)
-const storageKey = `elk-draft-${draftKey}`
 function getDefaultStatus(): CreateStatusParamsWithStatus {
   return {
     status: '',
     inReplyToId,
   }
 }
-let draft = $(useLocalStorage<CreateStatusParamsWithStatus>(storageKey, getDefaultStatus()))
-let attachments = $(useLocalStorage<Attachment[]>(`${storageKey}-attachments`, []))
+const draft = $computed(() => {
+  if (!currentUserDrafts.value[draftKey]) {
+    currentUserDrafts.value[draftKey] = {
+      params: getDefaultStatus(),
+      attachments: [],
+    }
+  }
+  return currentUserDrafts.value[draftKey]
+})
+
 const status = $computed(() => {
   return {
-    ...draft,
-    mediaIds: attachments.map(a => a.id),
+    ...draft.params,
+    mediaIds: draft.attachments.map(a => a.id),
   } as CreateStatusParams
 })
 
@@ -65,21 +72,21 @@ async function uploadAttachments(files: File[]) {
     const attachment = await masto.mediaAttachments.create({
       file,
     })
-    attachments.push(attachment)
+    draft.attachments.push(attachment)
   }
   isUploading = false
 }
 
 function removeAttachment(index: number) {
-  attachments.splice(index, 1)
+  draft.attachments.splice(index, 1)
 }
 
 async function publish() {
   try {
     isSending = true
     await masto.statuses.create(status)
-    draft = getDefaultStatus()
-    attachments = []
+    draft.params = getDefaultStatus()
+    draft.attachments = []
   }
   finally {
     isSending = false
@@ -87,11 +94,9 @@ async function publish() {
 }
 
 onUnmounted(() => {
-  if (!draft.status) {
-    // @ts-expect-error draft cannot be undefined
-    draft = undefined
+  if (!draft.attachments.length && !draft.params.status) {
     nextTick(() => {
-      localStorage.removeItem(storageKey)
+      delete currentUserDrafts.value[draftKey]
     })
   }
 })
@@ -103,7 +108,7 @@ onUnmounted(() => {
     :class="isSending ? 'pointer-events-none' : ''"
   >
     <textarea
-      v-model="draft.status"
+      v-model="draft.params.status"
       :placeholder="placeholder"
       p2 border-rounded w-full h-40
       bg-gray:10 outline-none border="~ base"
@@ -118,7 +123,7 @@ onUnmounted(() => {
 
     <div flex="~ col gap-2" max-h-50vh overflow-auto>
       <publish-attachment
-        v-for="(att, idx) in attachments" :key="att.id"
+        v-for="(att, idx) in draft.attachments" :key="att.id"
         :attachment="att"
         @remove="removeAttachment(idx)"
       />
@@ -132,7 +137,7 @@ onUnmounted(() => {
     <div flex justify-end>
       <button
         btn-solid
-        :disabled="isUploading || (attachments.length === 0 && !draft.status)"
+        :disabled="isUploading || (draft.attachments.length === 0 && !draft.params.status)"
         @click="publish"
       >
         Publish!

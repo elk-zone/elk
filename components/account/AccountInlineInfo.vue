@@ -9,6 +9,6 @@ defineProps<{
 <template>
   <NuxtLink :href="getAccountPath(account)" flex gap-1 items-center>
     <AccountAvatar :account="account" w-5 h-5 />
-    <CommonRichContent :content="getDisplayName(account)" :emojis="account.emojis" />
+    <ContentRich :content="getDisplayName(account)" :emojis="account.emojis" />
   </NuxtLink>
 </template>

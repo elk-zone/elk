@@ -12,19 +12,20 @@ const tabNames = ['Posts', 'Posts and replies'] as const
 // Don't use local storage because it is better to default to Posts every time you visit a user's profile.
 const tab = $ref('Posts')
 
-const paginator1 = masto.accounts.getStatusesIterable(account.id, { excludeReplies: true })
-const paginator2 = masto.accounts.getStatusesIterable(account.id, { excludeReplies: false })
-
 const paginator = $computed(() => {
-  return tab === 'Posts' ? paginator1 : paginator2
+  return masto.accounts.getStatusesIterable(account.id, { excludeReplies: tab === 'Posts' } as any)
 })
 </script>
 
 <template>
-  <div>
-    <CommonTabs v-model="tab" :options="tabNames" />
-    <KeepAlive>
-      <TimelinePaginator :key="tab" :paginator="paginator" />
-    </KeepAlive>
-  </div>
+  <MainContent>
+    <template v-if="account">
+      <AccountHeader :account="account" border="b base" />
+      <NuxtPage />
+    </template>
+
+    <CommonNotFound v-else>
+      Account @{{ params.user }} not found
+    </CommonNotFound>
+  </MainContent>
 </template>

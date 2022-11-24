@@ -25,7 +25,7 @@ const createdAt = $computed(() => {
             </NuxtLink>
           </div>
           <div flex flex-col>
-            <CommonRichContent font-bold text-2xl :content="getDisplayName(account)" :emojis="account.emojis" />
+            <ContentRich font-bold text-2xl :content="getDisplayName(account)" :emojis="account.emojis" />
             <p op50>
               {{ getAccountHandle(account) }}
             </p>
@@ -66,13 +66,13 @@ const createdAt = $computed(() => {
       </div>
       <div flex gap-5>
         <NuxtLink :to="`/${getAccountHandle(account)}/`" active-class="text-primary">
-          <span font-bold>{{ account.statusesCount }}</span> Posts
+          <span font-bold>{{ account.statusesCount }}</span> <span op50>Posts</span>
         </NuxtLink>
         <NuxtLink :to="`/${getAccountHandle(account)}/following`" active-class="text-primary">
-          <span font-bold>{{ account.followingCount }}</span> Following
+          <span font-bold>{{ account.followingCount }}</span> <span op50>Following</span>
         </NuxtLink>
         <NuxtLink :to="`/${getAccountHandle(account)}/followers`" active-class="text-primary">
-          <span font-bold>{{ account.followersCount }}</span> Followers
+          <span font-bold>{{ account.followersCount }}</span> <span op50>Followers</span>
         </NuxtLink>
       </div>
     </div>

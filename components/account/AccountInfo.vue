@@ -18,7 +18,7 @@ const id = computed(() => fullServer && !account.acct.includes('@') ? `@${accoun
       </NuxtLink>
     </div>
     <NuxtLink flex flex-col :to="link ? getAccountPath(account) : null">
-      <CommonRichContent font-bold :content="getDisplayName(account)" :emojis="account.emojis" />
+      <ContentRich font-bold :content="getDisplayName(account)" :emojis="account.emojis" />
       <p op35 text-sm>
         {{ id }}
       </p>

@@ -11,7 +11,7 @@ const { paginator } = defineProps<{
     <template #default="{ item }">
       <AccountCard
         :account="item"
-        border="b base" p1
+        border="b base" py2 px4
       />
     </template>
   </CommonPaginator>

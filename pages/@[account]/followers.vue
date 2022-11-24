@@ -8,13 +8,6 @@ const paginator = account ? masto.accounts.getFollowersIterable(account!.id!, {}
 
 <template>
   <template v-if="account">
-    <div>
-      <AccountHeader :account="account" />
-    </div>
     <AccountPaginator :paginator="paginator" />
   </template>
-
-  <CommonNotFound v-else>
-    Account @{{ params.user }} not found
-  </CommonNotFound>
 </template>

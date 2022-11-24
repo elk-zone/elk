@@ -8,6 +8,6 @@ const { status } = defineProps<{
 
 <template>
   <div class="status-body">
-    <CommonRichContent :content="status.content" :emojis="status.emojis" />
+    <ContentRich :content="status.content" :emojis="status.emojis" />
   </div>
 </template>

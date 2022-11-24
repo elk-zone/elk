@@ -21,7 +21,7 @@ export default defineConfig({
       'interact-disabled': 'disabled:opacity-50 disabled:pointer-events-none disabled:saturate-0',
       'btn-solid': 'px-4 py-2 rounded text-white bg-$c-primary hover:bg-$c-primary-active interact-disabled',
       'btn-outline': 'px-4 py-2 rounded text-$c-primary border border-$c-primary hover:bg-$c-primary hover:text-white interact-disabled',
-      'btn-text': 'px-4 py-2 text-$c-primary hover:text-$c-primary-active interact-disabled',
+      'btn-text': 'px-4 py-2 text-$c-primary hover:text-$c-primary-active interact-disabled cursor-pointer',
     },
   ],
   presets: [

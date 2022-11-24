@@ -5,17 +5,21 @@
         <div sticky top-0 h-screen flex="~ col">
           <slot name="left">
             <NavTitle p5 />
-            <NavSide border="y base" />
-            <PublishButton v-if="currentUser" m5 />
-            <div flex-auto />
-            <AccountInfo
-              v-if="currentUser"
-              m5 p2 rounded-full
-              hover:bg-active cursor-pointer transition-100
-              :account="currentUser?.account"
-              :link="false"
-              @click="openUserSwitcher"
-            />
+            <div border="t base" flex="~ col" overflow-y-auto>
+              <NavSide border="b base" />
+              <PublishButton v-if="currentUser" m5 />
+              <div flex-auto />
+              <AccountInfo
+                v-if="currentUser"
+                tabindex="0"
+                m5 p2 rounded-full
+                hover:bg-active cursor-pointer transition-100
+                :account="currentUser?.account"
+                :link="false"
+                @keydown.enter="openUserSwitcher"
+                @click="openUserSwitcher"
+              />
+            </div>
           </slot>
         </div>
       </div>

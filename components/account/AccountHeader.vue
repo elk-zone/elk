@@ -9,6 +9,40 @@ const createdAt = $computed(() => {
   const date = new Date(account.createdAt)
   return new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date)
 })
+
+const fields = $computed(() => {
+  return [
+    ...account.fields || [],
+    {
+      name: 'Joined',
+      value: createdAt,
+    },
+  ]
+})
+
+const fieldNameIcons: Record<string, string> = {
+  github: 'i-ri:github-fill',
+  twitter: 'i-ri:twitter-line',
+  mastodon: 'i-ri:mastodon-line',
+  youtube: 'i-ri:youtube-line',
+  twitch: 'i-ri:twitch-line',
+  instagram: 'i-ri:instagram-line',
+  website: 'i-ri:link',
+  site: 'i-ri:link',
+  blog: 'i-ri:newspaper-line',
+  home: 'i-ri:home-2-line',
+  sponsors: 'i-ri:heart-3-line',
+  location: 'i-ri:map-pin-2-line',
+  city: 'i-ri:map-pin-2-line',
+  joined: 'i-ri:user-add-line',
+  birth: 'i-ri:calendar-line',
+}
+
+function getFieldNameIcon(fieldName: string) {
+  const name = fieldName.trim().toLowerCase()
+  if (fieldNameIcons[name])
+    return fieldNameIcons[name]
+}
 </script>
 
 <template>
@@ -48,30 +82,23 @@ const createdAt = $computed(() => {
       <div>
         <div text-4 text-gray v-html="account.note" />
       </div>
-      <div flex flex-col gap-1>
-        <div flex flex-col rounded p3 class="bg-purple/10">
-          <p text="gray/70" text-3 uppercase>
-            Joined
-          </p>
-          <p text-3 text-gray>
-            {{ createdAt }}
-          </p>
-        </div>
-        <div v-for="field in account.fields" :key="field.name" flex flex-col rounded p3 class="bg-purple/10">
-          <p text="gray/70" text-3 uppercase>
-            {{ field.name }}
-          </p>
-          <p text-3 text-purple-3 v-html="field.value" />
+      <div flex flex-wrap gap-4>
+        <div v-for="field in fields" :key="field.name" flex="~ gap-1" items-center>
+          <div v-if="getFieldNameIcon(field.name)" op50 :class="getFieldNameIcon(field.name)" :title="field.name" />
+          <div v-else op50 uppercase text-xs font-bold>
+            {{ field.name }} |
+          </div>
+          <ContentRich text-sm filter-saturate-0 :content="field.value" />
         </div>
       </div>
       <div flex gap-5>
-        <NuxtLink :to="`/${getAccountHandle(account)}/`" active-class="text-primary">
+        <NuxtLink :to="`/${getAccountHandle(account)}/`" exact-active-class="text-primary">
           <span font-bold>{{ account.statusesCount }}</span> <span op50>Posts</span>
         </NuxtLink>
-        <NuxtLink :to="`/${getAccountHandle(account)}/following`" active-class="text-primary">
+        <NuxtLink :to="`/${getAccountHandle(account)}/following`" exact-active-class="text-primary">
           <span font-bold>{{ account.followingCount }}</span> <span op50>Following</span>
         </NuxtLink>
-        <NuxtLink :to="`/${getAccountHandle(account)}/followers`" active-class="text-primary">
+        <NuxtLink :to="`/${getAccountHandle(account)}/followers`" exact-active-class="text-primary">
           <span font-bold>{{ account.followersCount }}</span> <span op50>Followers</span>
         </NuxtLink>
       </div>

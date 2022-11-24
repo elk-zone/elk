@@ -4,11 +4,13 @@
       <div class="hidden md:block w-1/4 zen-hide" relative>
         <div sticky top-0 h-screen flex="~ col">
           <slot name="left">
-            <UserSignInEntry v-if="!currentUser" />
+            <NavTitle p5 />
+            <NavSide border="y base" />
+            <PublishButton v-if="currentUser" m5 />
             <div flex-auto />
             <AccountInfo
               v-if="currentUser"
-              mx4 mb4 p2 rounded
+              m5 p2 rounded-full
               hover:bg-active cursor-pointer transition-100
               :account="currentUser?.account"
               :link="false"
@@ -23,9 +25,7 @@
       <div class="hidden md:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col">
           <slot name="right">
-            <NavTitle p5 />
-            <NavSide border="y base" />
-            <PublishButton v-if="currentUser" m5 />
+            <UserSignInEntry v-if="!currentUser" />
             <div flex-auto />
             <NavFooter />
           </slot>

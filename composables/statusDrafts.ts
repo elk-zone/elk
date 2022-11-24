@@ -1,8 +1,9 @@
 import type { Attachment, CreateStatusParamsWithStatus } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
+import type { Mutable } from '~/types/utils'
 
 export type DraftMap = Record<string, {
-  params: CreateStatusParamsWithStatus
+  params: Mutable<CreateStatusParamsWithStatus>
   attachments: Attachment[]
 }>
 

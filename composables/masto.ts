@@ -1,6 +1,34 @@
 import type { Ref } from 'vue'
 import type { Account, Relationship, Status } from 'masto'
 
+// @unocss-include
+export const STATUS_VISIBILITIES = [
+  {
+    value: 'public',
+    label: 'Public',
+    icon: 'i-ri:global-line',
+    description: 'Visible for all',
+  },
+  {
+    value: 'unlisted',
+    label: 'Unlisted',
+    icon: 'i-ri:lock-unlock-line',
+    description: 'Visible for all, but opted-out of discovery features',
+  },
+  {
+    value: 'private',
+    label: 'Followers only',
+    icon: 'i-ri:lock-line',
+    description: 'Visible for followers only',
+  },
+  {
+    value: 'direct',
+    label: 'Mentioned people only',
+    icon: 'i-ri:at-line',
+    description: 'Visible for mentioned users only',
+  },
+] as const
+
 export function getDisplayName(account: Account) {
   return account.displayName || account.username
 }

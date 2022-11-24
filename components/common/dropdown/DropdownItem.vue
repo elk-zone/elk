@@ -2,7 +2,9 @@
 import { dropdownContextKey } from './ctx'
 
 defineProps<{
+  description?: string
   icon?: string
+  checked?: boolean
 }>()
 const emit = defineEmits(['click'])
 
@@ -15,8 +17,26 @@ const handleClick = (evt: MouseEvent) => {
 </script>
 
 <template>
-  <div flex gap-2 items-center cursor-pointer px4 py3 font-700 hover="bg-active" @click="handleClick">
+  <div
+    flex gap-3 items-center cursor-pointer px4 py3 hover-bg-active
+    @click="handleClick"
+  >
     <div v-if="icon" :class="icon" />
-    <span text-15px><slot /></span>
+    <div flex="~ col">
+      <div text-15px font-700>
+        <slot />
+      </div>
+      <div text-3 text="gray/90">
+        <slot name="description">
+          <p v-if="description">
+            {{ description }}
+          </p>
+        </slot>
+      </div>
+    </div>
+
+    <div flex-auto />
+
+    <div v-if="checked" i-ri:check-line />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CreateStatusParams, CreateStatusParamsWithStatus } from 'masto'
+import type { CreateStatusParams, CreateStatusParamsWithStatus, StatusVisibility } from 'masto'
 
 const {
   draftKey,
@@ -16,6 +16,7 @@ function getDefaultStatus(): CreateStatusParamsWithStatus {
   return {
     status: '',
     inReplyToId,
+    visibility: 'public',
   }
 }
 const draft = $computed(() => {
@@ -33,6 +34,10 @@ const status = $computed(() => {
     ...draft.params,
     mediaIds: draft.attachments.map(a => a.id),
   } as CreateStatusParams
+})
+
+const currentVisibility = $computed(() => {
+  return STATUS_VISIBILITIES.find(v => v.value === status.visibility)!
 })
 
 let isUploading = $ref<boolean>(false)
@@ -79,6 +84,10 @@ async function uploadAttachments(files: File[]) {
 
 function removeAttachment(index: number) {
   draft.attachments.splice(index, 1)
+}
+
+function chooseVisibility(visibility: StatusVisibility) {
+  draft.params.visibility = visibility
 }
 
 async function publish() {
@@ -134,6 +143,27 @@ onUnmounted(() => {
         <button btn-action-icon @click="pickAttachments">
           <div i-ri:upload-line />
         </button>
+
+        <CommonDropdown>
+          <button btn-action-icon>
+            <div :class="currentVisibility.icon" />
+          </button>
+
+          <template #popper>
+            <CommonDropdownItem
+              v-for="visibility in STATUS_VISIBILITIES"
+              :key="visibility.value"
+              :icon="visibility.icon"
+              :checked="visibility.value === draft.params.visibility"
+              @click="chooseVisibility(visibility.value)"
+            >
+              {{ visibility.label }}
+              <template #description>
+                {{ visibility.description }}
+              </template>
+            </CommonDropdownItem>
+          </template>
+        </CommonDropdown>
 
         <div flex-auto />
 

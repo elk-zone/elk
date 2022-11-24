@@ -5,7 +5,7 @@ const { account } = defineProps<{
   account: Account
 }>()
 
-const isSelf = $computed(() => currentUser.value?.account?.id === account.id)
+const isSelf = $computed(() => currentUser.value?.account.id === account.id)
 const relationship = $(useRelationship(account))
 
 async function toggleFollow() {

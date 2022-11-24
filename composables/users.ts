@@ -1,3 +1,4 @@
+import type { AccountCredentials } from 'masto'
 import { login as loginMasto } from 'masto'
 import type { UserLogin } from '~/types'
 import { DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_USERS } from '~/constants'
@@ -20,7 +21,7 @@ export const currentServer = computed<string>(() => currentUser.value?.server ||
 
 export const useUsers = () => users
 
-export async function loginTo(user: UserLogin) {
+export async function loginTo(user: UserLogin & { account?: AccountCredentials }) {
   const existing = users.value.findIndex(u => u.server === user.server && u.token === user.token)
   if (existing !== -1) {
     if (currentUserId.value === users.value[existing].account?.id)
@@ -48,7 +49,7 @@ export async function signout() {
   if (!currentUser.value)
     return
 
-  const index = users.value.findIndex(u => u.account?.id === currentUser.value?.account?.id)
+  const index = users.value.findIndex(u => u.account?.id === currentUser.value?.account.id)
   if (index === -1)
     return
 

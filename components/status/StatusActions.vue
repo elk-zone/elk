@@ -14,7 +14,7 @@ const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
 
-const isAuthor = $computed(() => status.account.id === currentUser.value?.account?.id)
+const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
 // Use different states to let the user press different actions right after the other
 const isLoading = $ref({

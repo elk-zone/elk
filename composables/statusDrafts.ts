@@ -14,7 +14,7 @@ export type DraftMap = Record<string, Draft>
 const allDrafts = useLocalStorage<Record<string, DraftMap>>(STORAGE_KEY_DRAFTS, {})
 
 export const currentUserDrafts = computed(() => {
-  if (!currentUser.value?.account?.id)
+  if (!currentUser.value?.account.id)
     return {}
   const id = `${currentUser.value.account.acct}@${currentUser.value.server}`
   if (!allDrafts.value[id])

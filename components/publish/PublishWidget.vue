@@ -118,7 +118,7 @@ onUnmounted(() => {
     </template>
 
     <div p4 flex gap-4>
-      <NuxtLink w-12 h-12 :to="getAccountPath(currentUser.account!)">
+      <NuxtLink w-12 h-12 :to="getAccountPath(currentUser.account)">
         <AccountAvatar :account="currentUser.account" w-12 h-12 />
       </NuxtLink>
       <div
@@ -154,9 +154,11 @@ onUnmounted(() => {
         </div>
 
         <div flex="~ gap-2">
-          <button btn-action-icon @click="pickAttachments">
-            <div i-ri:upload-line />
-          </button>
+          <CommonTooltip placement="bottom" content="Add images, a video or an audio file">
+            <button btn-action-icon @click="pickAttachments">
+              <div i-ri:upload-line />
+            </button>
+          </CommonTooltip>
 
           <div flex-auto />
 

@@ -13,7 +13,7 @@ export interface AppInfo {
 export interface UserLogin {
   server: string
   token: string
-  account?: AccountCredentials
+  account: AccountCredentials
 }
 
 export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'

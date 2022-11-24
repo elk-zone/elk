@@ -12,8 +12,10 @@ export default defineNuxtConfig({
   },
   css: [
     '@unocss/reset/tailwind.css',
+    'floating-vue/dist/style.css',
     '~/styles/vars.css',
     '~/styles/global.css',
+    '~/styles/dropdown.css',
   ],
   alias: {
     querystring: 'rollup-plugin-node-polyfills/polyfills/qs',

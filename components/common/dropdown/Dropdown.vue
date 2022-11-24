@@ -9,7 +9,7 @@ provide(dropdownContextKey, {
 </script>
 
 <template>
-  <VDropdown v-bind="$attrs" ref="dropdown">
+  <VDropdown v-bind="$attrs" ref="dropdown" :class="{ dark: isDark }">
     <slot />
     <template #popper="scope">
       <slot name="popper" v-bind="scope" />

@@ -85,10 +85,7 @@ async function publish() {
       await masto.statuses.create(status)
     else await masto.statuses.update(draft.editingStatus.id, status)
 
-    draft = {
-      params: getDefaultStatus(inReplyToId),
-      attachments: [],
-    }
+    draft = getDefaultDraft(inReplyToId)
     isPublishDialogOpen.value = false
   }
   finally {
@@ -106,7 +103,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-if="currentUser" flex="~ col">
+  <div v-if="currentUser" flex="~ col gap-1">
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div text-gray self-center>
@@ -116,6 +113,7 @@ onUnmounted(() => {
       </div>
       <div border="b dashed gray/40" />
     </template>
+
     <div p4 flex gap-4>
       <AccountAvatar :account="currentUser.account" w-12 h-12 />
       <div

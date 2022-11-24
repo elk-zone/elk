@@ -1,3 +1,4 @@
+import type { Draft } from './statusDrafts'
 import { STORAGE_KEY_FIRST_VISIT, STORAGE_KEY_ZEN_MODE } from '~/constants'
 
 export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, true)
@@ -22,7 +23,9 @@ export function openPreviewHelp() {
   isPreviewHelpOpen.value = true
 }
 
-export function openPublishDialog() {
+export function openPublishDialog(draft?: Draft) {
+  if (draft)
+    dialogDraft.draft.value = draft
   isPublishDialogOpen.value = true
 }
 

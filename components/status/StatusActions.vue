@@ -84,23 +84,31 @@ const deleteAndRedraft = async () => {
     // TODO confirm to overwrite
   }
 
-  dialogDraft.draft.value = {
+  openPublishDialog({
     params: { ...getParamsFromStatus(status), status: text! },
     attachments: [],
-  }
-  openPublishDialog()
+  })
 }
 
 function editStatus() {
   if (!dialogDraft.isEmpty) {
     // TODO confirm to overwrite
   }
-  dialogDraft.draft.value = {
+  openPublishDialog({
     editingStatus: status,
     params: getParamsFromStatus(status),
     attachments: [],
-  }
-  openPublishDialog()
+  })
+}
+
+function mention() {
+  openPublishDialog({
+    params: {
+      ...getParamsFromStatus(status),
+      status: `@${status.account.acct} `,
+    },
+    attachments: [],
+  })
 }
 </script>
 
@@ -172,30 +180,38 @@ function editStatus() {
           </CommonDropdownItem>
 
           <template v-if="isAuthor">
-            <!-- TODO -->
             <CommonDropdownItem
-              v-if="isAuthor" icon="i-ri:pushpin-line"
+              icon="i-ri:pushpin-line"
               @click="togglePin"
             >
               {{ status.pinned ? 'Unpin on profile' : 'Pin on profile' }}
             </CommonDropdownItem>
 
-            <CommonDropdownItem v-if="isAuthor" icon="i-ri:edit-line" @click="editStatus">
+            <CommonDropdownItem icon="i-ri:edit-line" @click="editStatus">
               Edit
             </CommonDropdownItem>
 
             <CommonDropdownItem
-              v-if="isAuthor" icon="i-ri:delete-bin-line" text-red-600
+              icon="i-ri:delete-bin-line" text-red-600
               @click="deleteStatus"
             >
               Delete
             </CommonDropdownItem>
 
             <CommonDropdownItem
-              v-if="isAuthor" icon="i-ri:eraser-line" text-red-600
+              icon="i-ri:eraser-line" text-red-600
               @click="deleteAndRedraft"
             >
               Delete & re-draft
+            </CommonDropdownItem>
+          </template>
+          <!-- TODO not available when not the same server  -->
+          <template v-else>
+            <CommonDropdownItem
+              icon="i-ri:at-line"
+              @click="mention"
+            >
+              Mention @{{ status.account.acct }}
             </CommonDropdownItem>
           </template>
         </div>

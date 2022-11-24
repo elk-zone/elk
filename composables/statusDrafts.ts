@@ -1,12 +1,15 @@
-import type { Attachment, CreateStatusParams, CreateStatusParamsWithStatus, Status } from 'masto'
+import type { Attachment, CreateStatusParams, Status } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Mutable } from '~/types/utils'
 
-export type DraftMap = Record<string, {
+export interface Draft {
   editingStatus?: Status
-  params: Omit<Mutable<CreateStatusParams>, 'status'> & { status?: Exclude<CreateStatusParams['status'], null> }
+  params: Omit<Mutable<CreateStatusParams>, 'status'> & {
+    status?: Exclude<CreateStatusParams['status'], null>
+  }
   attachments: Attachment[]
-}>
+}
+export type DraftMap = Record<string, Draft>
 
 const allDrafts = useLocalStorage<Record<string, DraftMap>>(STORAGE_KEY_DRAFTS, {})
 
@@ -19,11 +22,14 @@ export const currentUserDrafts = computed(() => {
   return allDrafts.value[id]
 })
 
-export function getDefaultStatus(inReplyToId?: string): CreateStatusParamsWithStatus {
+export function getDefaultDraft(inReplyToId?: string): Draft {
   return {
-    status: '',
-    inReplyToId,
-    visibility: 'public',
+    params: {
+      status: '',
+      inReplyToId,
+      visibility: 'public',
+    },
+    attachments: [],
   }
 }
 
@@ -38,12 +44,9 @@ export function getParamsFromStatus(status: Status) {
 export function useDraft(draftKey: string, inReplyToId?: string) {
   const draft = computed({
     get() {
-      if (!currentUserDrafts.value[draftKey]) {
-        currentUserDrafts.value[draftKey] = {
-          params: getDefaultStatus(inReplyToId),
-          attachments: [],
-        }
-      }
+      if (!currentUserDrafts.value[draftKey])
+        currentUserDrafts.value[draftKey] = getDefaultDraft(inReplyToId)
+
       return currentUserDrafts.value[draftKey]
     },
     set(val) {

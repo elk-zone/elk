@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isSigninDialogOpen, isUserSwitcherOpen } from '~/composables/dialog'
+import { isPreviewHelpOpen, isSigninDialogOpen, isUserSwitcherOpen } from '~/composables/dialog'
 </script>
 
 <template>
@@ -8,5 +8,8 @@ import { isSigninDialogOpen, isUserSwitcherOpen } from '~/composables/dialog'
   </ModalDrawer>
   <ModalDialog v-model="isSigninDialogOpen">
     <UserSignIn m6 />
+  </ModalDialog>
+  <ModalDialog v-model="isPreviewHelpOpen">
+    <HelpPreview />
   </ModalDialog>
 </template>

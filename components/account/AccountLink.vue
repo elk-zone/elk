@@ -8,6 +8,6 @@ defineProps<{
 
 <template>
   <NuxtLink :to="getAccountPath(account)">
-    {{ getDisplayName(account) }}
+    <ContentRich font-bold :content="getDisplayName(account)" :emojis="account.emojis" />
   </NuxtLink>
 </template>

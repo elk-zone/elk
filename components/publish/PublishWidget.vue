@@ -118,9 +118,11 @@ onUnmounted(() => {
     </template>
 
     <div p4 flex gap-4>
-      <AccountAvatar :account="currentUser.account" w-12 h-12 />
+      <NuxtLink w-12 h-12 :to="getAccountPath(currentUser.account!)">
+        <AccountAvatar :account="currentUser.account" w-12 h-12 />
+      </NuxtLink>
       <div
-        flex flex-col gap-3 flex-auto
+        flex flex-col gap-3 flex-1
         :class="isSending ? 'pointer-events-none' : ''"
       >
         <textarea

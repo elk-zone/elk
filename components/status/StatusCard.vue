@@ -80,15 +80,14 @@ const timeago = useTimeAgo(() => status.createdAt, {
     </div>
     <div flex gap-4>
       <AccountAvatar mt1 w-12 h-12 :account="status.account" />
-      <div flex flex-col>
-        <StatusAccountDetails :account="status.account">
-          <template #default>
-            <div flex-auto />
-            <div text-sm op50 :title="status.createdAt">
-              {{ timeago }}
-            </div>
-          </template>
-        </StatusAccountDetails>
+      <div flex="~ col auto">
+        <div flex>
+          <StatusAccountDetails :account="status.account" />
+          <div flex-auto />
+          <div text-sm op50 :title="status.createdAt">
+            {{ timeago }}
+          </div>
+        </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div>
           <StatusBody :status="status" />

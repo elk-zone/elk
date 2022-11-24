@@ -38,6 +38,11 @@ const transform = computed(() => {
       return ''
   }
 })
+
+let init = $ref(false)
+watchOnce(modelValue, () => {
+  init = true
+})
 </script>
 
 <template>
@@ -55,7 +60,7 @@ const transform = computed(() => {
       :class="positionClass"
       :style="modelValue ? {} : { transform }"
     >
-      <slot />
+      <slot v-if="init" />
     </div>
   </div>
 </template>

@@ -2,6 +2,11 @@
 const { modelValue } = defineModel<{
   modelValue: boolean
 }>()
+
+let init = $ref(false)
+watchOnce(modelValue, () => {
+  init = true
+})
 </script>
 
 <template>
@@ -23,7 +28,7 @@ const { modelValue } = defineModel<{
       "
       :class="modelValue ? 'opacity-100' : 'opacity-0'"
     >
-      <slot />
+      <slot v-if="init" />
     </div>
   </div>
 </template>

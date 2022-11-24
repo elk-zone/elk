@@ -25,6 +25,7 @@
           <slot name="right">
             <NavTitle p5 />
             <NavSide border="y base" />
+            <PublishButton v-if="currentUser" m5 />
             <div flex-auto />
             <NavFooter />
           </slot>

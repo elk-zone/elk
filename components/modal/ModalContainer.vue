@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isPreviewHelpOpen, isSigninDialogOpen, isUserSwitcherOpen } from '~/composables/dialog'
+import { isPreviewHelpOpen, isPublishDialogOpen, isSigninDialogOpen, isUserSwitcherOpen } from '~/composables/dialog'
 </script>
 
 <template>
@@ -11,5 +11,8 @@ import { isPreviewHelpOpen, isSigninDialogOpen, isUserSwitcherOpen } from '~/com
   </ModalDialog>
   <ModalDialog v-model="isPreviewHelpOpen">
     <HelpPreview />
+  </ModalDialog>
+  <ModalDialog v-model="isPublishDialogOpen">
+    <PublishWidget draft-key="dialog" min-w-180 p6 />
   </ModalDialog>
 </template>

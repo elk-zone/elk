@@ -6,6 +6,7 @@ export const toggleZenMode = useToggle(isZenMode)
 
 export const isUserSwitcherOpen = ref(false)
 export const isSigninDialogOpen = ref(false)
+export const isPublishDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
 
 export function openUserSwitcher() {
@@ -19,6 +20,10 @@ export function openSigninDialog() {
 
 export function openPreviewHelp() {
   isPreviewHelpOpen.value = true
+}
+
+export function openPublishDialog() {
+  isPublishDialogOpen.value = true
 }
 
 if (isPreviewHelpOpen.value) {

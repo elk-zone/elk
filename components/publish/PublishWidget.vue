@@ -103,7 +103,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-if="currentUser" border="t base" p4 flex gap-4>
+  <div v-if="currentUser" p4 flex gap-4>
     <AccountAvatar :account="currentUser.account" w-12 h-12 />
     <div
       flex flex-col gap-3 flex-auto

@@ -60,7 +60,7 @@ const togglePin = async () => toggleStatusAction(
 )
 
 const copyLink = async () => {
-  await clipboard.copy(location.href)
+  await clipboard.copy(`${location.origin}${getStatusPath(status)}`)
 }
 const openInOriginal = () => {
   window.open(status.url!, '_blank')

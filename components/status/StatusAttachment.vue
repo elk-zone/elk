@@ -68,8 +68,10 @@ const aspectRatio = computed(() => {
     </audio>
   </template>
   <template v-else>
-    TODO:
-    <pre>{{ attachment }}
-    </pre>
+    <div>
+      TODO:
+      <pre>{{ attachment }}
+      </pre>
+    </div>
   </template>
 </template>

@@ -3,7 +3,7 @@ const { modelValue } = defineModel<{
   modelValue: boolean
 }>()
 
-let init = $ref(false)
+let init = $ref(modelValue || false)
 watchOnce(modelValue, () => {
   init = true
 })

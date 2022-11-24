@@ -3,16 +3,16 @@ import { isPreviewHelpOpen, isPublishDialogOpen, isSigninDialogOpen, isUserSwitc
 </script>
 
 <template>
-  <ModalDrawer v-model="isUserSwitcherOpen">
+  <ModalDrawer v-if="isUserSwitcherOpen">
     <UserSwitcher />
   </ModalDrawer>
-  <ModalDialog v-model="isSigninDialogOpen">
+  <ModalDialog v-else-if="isSigninDialogOpen">
     <UserSignIn m6 />
   </ModalDialog>
-  <ModalDialog v-model="isPreviewHelpOpen">
+  <ModalDialog v-else-if="isPreviewHelpOpen">
     <HelpPreview />
   </ModalDialog>
-  <ModalDialog v-model="isPublishDialogOpen">
+  <ModalDialog v-else-if="isPublishDialogOpen">
     <PublishWidget draft-key="dialog" expanded min-w-180 p6 />
   </ModalDialog>
 </template>

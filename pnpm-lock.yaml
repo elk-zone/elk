@@ -15,6 +15,7 @@ specifiers:
   '@vue-macros/nuxt': ^0.0.2
   '@vueuse/nuxt': ^9.5.0
   blurhash: ^2.0.4
+  browser-fs-access: ^0.31.1
   eslint: ^8.27.0
   esno: ^0.16.3
   floating-vue: 2.0.0-beta.20
@@ -49,6 +50,7 @@ devDependencies:
   '@vue-macros/nuxt': 0.0.2_nuxt@3.0.0
   '@vueuse/nuxt': 9.5.0_nuxt@3.0.0
   blurhash: 2.0.4
+  browser-fs-access: 0.31.1
   eslint: 8.27.0
   esno: 0.16.3
   floating-vue: 2.0.0-beta.20
@@ -2386,6 +2388,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       fill-range: 7.0.1
+    dev: true
+
+  /browser-fs-access/0.31.1:
+    resolution: {integrity: sha512-jMz9f56DkLM7LyA8wZYO7CtpoF3RdUk1/FXrnRNybgV0R5eqk/fgFWR0k5IMjPYgK4jmZecytP/UDO5WBi9Dhg==}
     dev: true
 
   /browserslist/4.21.4:

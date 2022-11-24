@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CreateStatusParams, StatusVisibility } from 'masto'
+import { fileOpen } from 'browser-fs-access'
 
 const {
   draftKey,
@@ -37,22 +38,24 @@ async function handlePaste(evt: ClipboardEvent) {
 }
 
 async function pickAttachments() {
-  if (!globalThis.showOpenFilePicker)
-    // TODO: FireFox & Safari don't support it.
-    return
-
-  const handles = await showOpenFilePicker({
-    multiple: true,
-    types: [{
+  const files = await fileOpen([
+    {
       description: 'Attachments',
-      accept: {
-        'image/*': ['.png', '.gif', '.jpeg', '.jpg', '.webp', '.avif', '.heic', '.heif'],
-        'video/*': ['.webm', '.mp4', '.m4v', '.mov', '.ogv', '.3gp'],
-        'audio/*': ['.mp3', '.ogg', '.oga', '.wav', '.flac', '.opus', '.aac', '.m4a', '.3gp', '.wma'],
-      },
-    }],
-  })
-  const files = await Promise.all(handles.map(handle => handle.getFile()))
+      multiple: true,
+      mimeTypes: ['image/*'],
+      extensions: ['.png', '.gif', '.jpeg', '.jpg', '.webp', '.avif', '.heic', '.heif'],
+    },
+    {
+      description: 'Attachments',
+      mimeTypes: ['video/*'],
+      extensions: ['.webm', '.mp4', '.m4v', '.mov', '.ogv', '.3gp'],
+    },
+    {
+      description: 'Attachments',
+      mimeTypes: ['audio/*'],
+      extensions: ['.mp3', '.ogg', '.oga', '.wav', '.flac', '.opus', '.aac', '.m4a', '.3gp', '.wma'],
+    },
+  ])
   await uploadAttachments(files)
 }
 

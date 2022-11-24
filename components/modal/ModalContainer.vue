@@ -13,6 +13,6 @@ import { isPreviewHelpOpen, isPublishDialogOpen, isSigninDialogOpen, isUserSwitc
     <HelpPreview />
   </ModalDialog>
   <ModalDialog v-model="isPublishDialogOpen">
-    <PublishWidget draft-key="dialog" min-w-180 p6 />
+    <PublishWidget draft-key="dialog" expanded min-w-180 p6 />
   </ModalDialog>
 </template>

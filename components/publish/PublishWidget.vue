@@ -6,12 +6,15 @@ const {
   draftKey,
   placeholder = 'What is on your mind?',
   inReplyToId,
+  expanded: _expanded = false,
 } = defineProps<{
   draftKey: string
   placeholder?: string
   inReplyToId?: string
+  expanded?: boolean
 }>()
 
+const expanded = $ref(_expanded)
 let isSending = $ref(false)
 let { draft } = $(useDraft(draftKey, inReplyToId))
 
@@ -123,9 +126,16 @@ onUnmounted(() => {
         <textarea
           v-model="draft.params.status"
           :placeholder="placeholder"
+          h-80px
+          :class="expanded ? '!h-200px' : ''"
           p2 border-rounded w-full bg-transparent
+          transition="height"
           outline-none border="~ base"
           @paste="handlePaste"
+          @focus="expanded = true"
+          @keydown.esc="expanded = false"
+          @keydown.ctrl.enter="publish"
+          @keydown.meta.enter="publish"
         />
 
         <div flex="~ col gap-2" max-h-50vh overflow-auto>

@@ -10,7 +10,7 @@ const { notification } = defineProps<{
   <div flex flex-col>
     <template v-if="notification.type === 'follow'">
       <div flex ml-4 items-center>
-        <div i-ri:user-follow-fill mr-3 color-purple />
+        <div i-ri:user-follow-fill mr-3 color-primary />
         <AccountLink :account="notification.account" mr1 /> followed you
       </div>
       <AccountCard :account="notification.account" p3 />

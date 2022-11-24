@@ -17,16 +17,20 @@ async function toggleFollow() {
 <template>
   <button
     v-if="!isSelf && relationship"
-    flex gap-1 items-center h-fit rounded hover="op100 text-white b-purple" group
+    flex gap-1 items-center h-fit rounded hover="op100 text-white b-orange" group
     @click="toggleFollow"
   >
-    <div rounded w-28 p2 :group-hover="relationship?.following ? 'bg-red/30' : 'bg-purple/30'" :class="!relationship?.following ? 'bg-cyan/10' : ' bg-purple/10'">
+    <div rounded w-28 p2 :group-hover="relationship?.following ? 'bg-red/75' : 'bg-orange/40'" :class="!relationship?.following ? relationship?.followedBy ? 'bg-orange/20' : 'bg-white/10' : relationship?.followedBy ? ' bg-orange/70' : 'bg-orange/50'">
       <template v-if="relationship?.following">
-        <span group-hover="hidden">Following</span>
+        <span group-hover="hidden">{{ relationship?.followedBy ? 'Mutual' : 'Following' }}</span>
         <span hidden group-hover="inline">Unfollow</span>
       </template>
+      <template v-else-if="relationship?.followedBy">
+        <span group-hover="hidden">Follows you</span>
+        <span hidden group-hover="inline">Follow back</span>
+      </template>
       <template v-else>
-        {{ relationship?.followedBy ? 'Follow back' : 'Follow' }}
+        <span>Follow</span>
       </template>
     </div>
   </button>

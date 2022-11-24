@@ -1,5 +1,7 @@
 <script setup lang="ts">
-
+defineProps<{
+  content?: string
+}>()
 </script>
 
 <template>
@@ -9,7 +11,9 @@
     <slot />
     <template #popper>
       <div text-3>
-        <slot name="popper" />
+        <slot name="popper">
+          {{ content }}
+        </slot>
       </div>
     </template>
   </VTooltip>

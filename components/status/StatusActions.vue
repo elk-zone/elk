@@ -5,6 +5,12 @@ const { status } = defineProps<{
   status: Status
 }>()
 
+const isAuthor = $computed(() => status.account.id === currentUser.value?.account?.id)
+
+const clipboard = useClipboard()
+const router = useRouter()
+const route = useRoute()
+
 // Use different states to let the user press different actions right after the other
 const isLoading = $ref({ reblogged: false, favourited: false, bookmarked: false })
 async function toggleStatusAction(action: 'reblogged' | 'favourited' | 'bookmarked', newStatus: Promise<Status>) {
@@ -33,57 +39,105 @@ const toggleBookmark = () => toggleStatusAction(
   'bookmarked',
   masto.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
 )
+const copyLink = async () => {
+  await clipboard.copy(location.href)
+}
+const openInOriginal = () => {
+  window.open(status.url!, '_blank')
+}
+const deleteStatus = async () => {
+  // TODO confirm to delete
+
+  await masto.statuses.remove(status.id)
+  if (route.name === '@user-post')
+    router.back()
+
+  // TODO when timeline, remove this item
+}
 </script>
 
 <template>
   <div flex justify-between gap-8>
-    <RouterLink :to="getStatusPath(status)">
+    <CommonTooltip placement="bottom" content="Replay">
+      <RouterLink :to="getStatusPath(status)">
+        <StatusActionButton
+          :text="status.repliesCount"
+          color="text-blue" hover="text-blue" group-hover="bg-blue/10"
+          icon="i-ri:chat-3-line"
+        />
+      </RouterLink>
+    </CommonTooltip>
+
+    <CommonTooltip placement="bottom" content="Boost">
       <StatusActionButton
-        :text="status.repliesCount"
-        color="text-blue" hover="text-blue" group-hover="bg-blue/10"
-        icon="i-ri:chat-3-line"
-        tooltip="Replay"
+        :text="status.reblogsCount"
+        color="text-green" hover="text-green" group-hover="bg-green/10"
+        icon="i-ri:repeat-line"
+        active-icon="i-ri:repeat-fill"
+        :active="status.reblogged"
+        :disabled="isLoading.reblogged"
+        @click="toggleReblog()"
       />
-    </RouterLink>
+    </CommonTooltip>
 
-    <StatusActionButton
-      :text="status.reblogsCount"
-      color="text-green" hover="text-green" group-hover="bg-green/10"
-      icon="i-ri:repeat-line"
-      active-icon="i-ri:repeat-fill"
-      :active="status.reblogged"
-      :disabled="isLoading.reblogged"
-      tooltip="Boost"
-      @click="toggleReblog()"
-    />
+    <CommonTooltip placement="bottom" content="Favourite">
+      <StatusActionButton
+        :text="status.favouritesCount"
+        color="text-rose" hover="text-rose" group-hover="bg-rose/10"
+        icon="i-ri:heart-3-line"
+        active-icon="i-ri:heart-3-fill"
+        :active="status.favourited"
+        :disabled="isLoading.favourited"
 
-    <StatusActionButton
-      :text="status.favouritesCount"
-      color="text-rose" hover="text-rose" group-hover="bg-rose/10"
-      icon="i-ri:heart-3-line"
-      active-icon="i-ri:heart-3-fill"
-      :active="status.favourited"
-      :disabled="isLoading.favourited"
-      tooltip="Favourite"
-      @click="toggleFavourite()"
-    />
+        @click="toggleFavourite()"
+      />
+    </CommonTooltip>
 
-    <StatusActionButton
-      color="text-yellow" hover="text-yellow" group-hover="bg-yellow/10"
-      icon="i-ri:bookmark-line"
-      active-icon="i-ri:bookmark-fill"
-      :active="status.bookmarked"
-      :disabled="isLoading.bookmarked"
-      tooltip="Bookmark"
-      @click="toggleBookmark()"
-    />
+    <CommonTooltip placement="bottom" content="Bookmark">
+      <StatusActionButton
+        color="text-yellow" hover="text-yellow" group-hover="bg-yellow/10"
+        icon="i-ri:bookmark-line"
+        active-icon="i-ri:bookmark-fill"
+        :active="status.bookmarked"
+        :disabled="isLoading.bookmarked"
+        @click="toggleBookmark()"
+      />
+    </CommonTooltip>
 
-    <!-- <VDropdown>
-      <button flex gap-1 items-center rounded op50 hover="op100 text-purple" group>
-        <div rounded-full p2 group-hover="bg-purple/10">
-          <div i-ri:share-circle-line />
+    <CommonDropdown placement="bottom">
+      <CommonTooltip placement="bottom" content="More">
+        <button flex gap-1 items-center rounded op50 hover="op100 text-purple" group>
+          <div rounded-full p2 group-hover="bg-purple/10">
+            <div i-ri:more-line />
+          </div>
+        </button>
+      </CommonTooltip>
+
+      <template #popper>
+        <div flex="~ col">
+          <CommonDropdownItem icon="i-ri:link" @click="copyLink">
+            Copy link to this post
+          </CommonDropdownItem>
+
+          <CommonDropdownItem v-if="status.url" icon="i-ri:arrow-right-up-line" @click="openInOriginal">
+            Open in original site
+          </CommonDropdownItem>
+
+          <!-- TODO -->
+          <template v-if="isAuthor">
+            <CommonDropdownItem v-if="isAuthor" icon="i-ri:edit-line">
+              Edit
+            </CommonDropdownItem>
+
+            <CommonDropdownItem
+              v-if="isAuthor" icon="i-ri:delete-bin-line" text-red-600
+              @click="deleteStatus"
+            >
+              Delete
+            </CommonDropdownItem>
+          </template>
         </div>
-      </button>
-    </VDropdown> -->
+      </template>
+    </CommonDropdown>
   </div>
 </template>

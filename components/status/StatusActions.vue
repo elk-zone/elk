@@ -37,45 +37,53 @@ const toggleBookmark = () => toggleStatusAction(
 
 <template>
   <div flex justify-between gap-8>
-    <RouterLink flex gap-1 items-center rounded op50 hover="op100 text-blue" group :to="getStatusPath(status)">
-      <div rounded-full p2 group-hover="bg-blue/10">
-        <div i-ri:chat-3-line />
-      </div>
-      <span v-if="status.repliesCount">{{ status.repliesCount }}</span>
+    <RouterLink :to="getStatusPath(status)">
+      <StatusActionButton
+        :text="status.repliesCount"
+        color="text-blue" hover="text-blue" group-hover="bg-blue/10"
+        icon="i-ri:chat-3-line"
+        tooltip="Replay"
+      />
     </RouterLink>
-    <button
-      flex gap-1 items-center rounded op50 hover="op100 text-green" group
-      :class="(status.reblogged ? 'text-green op100' : 'op50') + (isLoading.reblogged ? ' pointer-events-none' : '')"
+
+    <StatusActionButton
+      :text="status.reblogsCount"
+      color="text-green" hover="text-green" group-hover="bg-green/10"
+      icon="i-ri:repeat-line"
+      active-icon="i-ri:repeat-fill"
+      :active="status.reblogged"
+      :disabled="isLoading.reblogged"
+      tooltip="Boost"
       @click="toggleReblog()"
-    >
-      <div rounded-full p2 group-hover="bg-green/10">
-        <div :class="status.reblogged ? 'i-ri:repeat-fill' : 'i-ri:repeat-line'" />
-      </div>
-      <span v-if="status.reblogsCount">{{ status.reblogsCount }}</span>
-    </button>
-    <button
-      flex gap-1 items-center rounded hover="op100 text-rose" group
-      :class="status.favourited ? 'text-rose op100' : 'op50'"
+    />
+
+    <StatusActionButton
+      :text="status.favouritesCount"
+      color="text-rose" hover="text-rose" group-hover="bg-rose/10"
+      icon="i-ri:heart-3-line"
+      active-icon="i-ri:heart-3-fill"
+      :active="status.favourited"
+      :disabled="isLoading.favourited"
+      tooltip="Favourite"
       @click="toggleFavourite()"
-    >
-      <div rounded-full p2 group-hover="bg-rose/10">
-        <div :class="(status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line') + (isLoading.favourited ? ' pointer-events-none' : '')" />
-      </div>
-      <span v-if="status.favouritesCount">{{ status.favouritesCount }}</span>
-    </button>
-    <button
-      flex gap-1 items-center rounded hover="op100 text-yellow" group
-      :class="status.bookmarked ? 'text-yellow op100' : 'op50'"
+    />
+
+    <StatusActionButton
+      color="text-yellow" hover="text-yellow" group-hover="bg-yellow/10"
+      icon="i-ri:bookmark-line"
+      active-icon="i-ri:bookmark-fill"
+      :active="status.bookmarked"
+      :disabled="isLoading.bookmarked"
+      tooltip="Bookmark"
       @click="toggleBookmark()"
-    >
-      <div rounded-full p2 group-hover="bg-rose/10">
-        <div :class="(status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line') + (isLoading.bookmarked ? ' pointer-events-none' : '')" />
-      </div>
-    </button>
-    <!-- <button flex gap-1 items-center rounded op50 hover="op100 text-purple" group>
-      <div rounded-full p2 group-hover="bg-purple/10">
-        <div i-ri:share-circle-line />
-      </div>
-    </button> -->
+    />
+
+    <!-- <VDropdown>
+      <button flex gap-1 items-center rounded op50 hover="op100 text-purple" group>
+        <div rounded-full p2 group-hover="bg-purple/10">
+          <div i-ri:share-circle-line />
+        </div>
+      </button>
+    </VDropdown> -->
   </div>
 </template>

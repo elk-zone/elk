@@ -17,6 +17,7 @@ specifiers:
   blurhash: ^2.0.4
   eslint: ^8.27.0
   esno: ^0.16.3
+  floating-vue: 2.0.0-beta.20
   form-data: ^4.0.0
   fs-extra: ^10.1.0
   js-yaml: ^4.1.0
@@ -50,6 +51,7 @@ devDependencies:
   blurhash: 2.0.4
   eslint: 8.27.0
   esno: 0.16.3
+  floating-vue: 2.0.0-beta.20
   form-data: 4.0.0
   fs-extra: 10.1.0
   js-yaml: 4.1.0
@@ -658,6 +660,16 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@floating-ui/core/0.3.1:
+    resolution: {integrity: sha512-ensKY7Ub59u16qsVIFEo2hwTCqZ/r9oZZFh51ivcLGHfUwTn8l1Xzng8RJUe91H/UP8PeqeBronAGx0qmzwk2g==}
+    dev: true
+
+  /@floating-ui/dom/0.1.10:
+    resolution: {integrity: sha512-4kAVoogvQm2N0XE0G6APQJuCNuErjOfPW8Ux7DFxh8+AfugWflwVJ5LDlHOwrwut7z/30NUvdtHzQ3zSip4EzQ==}
+    dependencies:
+      '@floating-ui/core': 0.3.1
     dev: true
 
   /@humanwhocodes/config-array/0.11.7:
@@ -3950,6 +3962,15 @@ packages:
 
   /flatted/3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
+    dev: true
+
+  /floating-vue/2.0.0-beta.20:
+    resolution: {integrity: sha512-N68otcpp6WwcYC7zP8GeJqNZVdfvS7tEY88lwmuAHeqRgnfWx1Un8enzLxROyVnBDZ3TwUoUdj5IFg+bUT7JeA==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@floating-ui/dom': 0.1.10
+      vue-resize: 2.0.0-alpha.1
     dev: true
 
   /follow-redirects/1.15.2:
@@ -7585,6 +7606,12 @@ packages:
       semver: 7.3.8
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vue-resize/2.0.0-alpha.1:
+    resolution: {integrity: sha512-7+iqOueLU7uc9NrMfrzbG8hwMqchfVfSzpVlCMeJQe4pyibqyoifDNbKTZvwxZKDvGkB+PdFeKvnGZMoEb8esg==}
+    peerDependencies:
+      vue: ^3.0.0
     dev: true
 
   /vue-router/4.1.6_vue@3.2.45:

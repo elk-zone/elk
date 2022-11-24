@@ -39,7 +39,7 @@ const transform = computed(() => {
   }
 })
 
-let init = $ref(false)
+let init = $ref(modelValue)
 watchOnce(modelValue, () => {
   init = true
 })

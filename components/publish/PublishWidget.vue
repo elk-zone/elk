@@ -35,21 +35,23 @@ async function handlePaste(evt: ClipboardEvent) {
   if (!files)
     return
 
+  evt.preventDefault()
   await uploadAttachments(Array.from(files))
 }
 
 async function pickAttachments() {
   if (!globalThis.showOpenFilePicker)
-    // TODO: Safari don't support it.
+    // TODO: FireFox & Safari don't support it.
     return
 
   const handles = await showOpenFilePicker({
     multiple: true,
-    // TODO: add more kinds of files: videos, audios
     types: [{
-      description: 'Images',
+      description: 'Attachments',
       accept: {
-        'image/*': ['.png', '.gif', '.jpeg', '.jpg', '.webp', '.avif', '.heic'],
+        'image/*': ['.png', '.gif', '.jpeg', '.jpg', '.webp', '.avif', '.heic', '.heif'],
+        'video/*': ['.webm', '.mp4', '.m4v', '.mov', '.ogv', '.3gp'],
+        'audio/*': ['.mp3', '.ogg', '.oga', '.wav', '.flac', '.opus', '.aac', '.m4a', '.3gp', '.wma'],
       },
     }],
   })
@@ -68,7 +70,7 @@ async function uploadAttachments(files: File[]) {
   isUploading = false
 }
 
-async function removeAttachment(index: number) {
+function removeAttachment(index: number) {
   attachments.splice(index, 1)
 }
 

@@ -4,10 +4,7 @@
       <div class="hidden md:block w-1/4 zen-hide" relative>
         <div sticky top-0 h-screen flex="~ col">
           <slot name="left">
-            <template v-if="currentUser">
-              <PublishWidget px4 mt16 draft-key="home" />
-            </template>
-            <UserSignInEntry v-else />
+            <UserSignInEntry v-if="!currentUser" />
             <div flex-auto />
             <AccountInfo
               v-if="currentUser"

@@ -18,15 +18,12 @@ const { data: context } = useAsyncData(`context:${id}`, () => masto.statuses.fet
     </template>
 
     <StatusDetails ref="main" :status="status" border="t base" />
-    <div v-if="currentUser" border="t base" p6 flex gap-4>
-      <AccountAvatar :account="currentUser.account" w-10 h-10 />
-      <PublishWidget
-        w-full
-        :draft-key="`reply-${id}`"
-        :placeholder="`Reply to ${status?.account ? getDisplayName(status?.account) : 'this thread'}`"
-        :in-reply-to-id="id"
-      />
-    </div>
+    <PublishWidget
+      v-if="currentUser"
+      :draft-key="`reply-${id}`"
+      :placeholder="`Reply to ${status?.account ? getDisplayName(status?.account) : 'this thread'}`"
+      :in-reply-to-id="id"
+    />
 
     <template v-if="context">
       <template v-for="comment of context?.descendants" :key="comment.id">

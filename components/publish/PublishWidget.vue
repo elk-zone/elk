@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Attachment, CreateStatusParams, CreateStatusParamsWithStatus } from 'masto'
+import type { CreateStatusParams, CreateStatusParamsWithStatus } from 'masto'
 
 const {
   draftKey,
@@ -103,45 +103,48 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    flex flex-col gap-3
-    :class="isSending ? 'pointer-events-none' : ''"
-  >
-    <textarea
-      v-model="draft.params.status"
-      :placeholder="placeholder"
-      p2 border-rounded w-full h-40
-      bg-gray:10 outline-none border="~ base"
-      @paste="handlePaste"
-    />
-
-    <div flex="~" gap-2>
-      <button hover:bg-active p2 rounded-5 @click="pickAttachments">
-        <div i-ri:upload-line />
-      </button>
-    </div>
-
-    <div flex="~ col gap-2" max-h-50vh overflow-auto>
-      <publish-attachment
-        v-for="(att, idx) in draft.attachments" :key="att.id"
-        :attachment="att"
-        @remove="removeAttachment(idx)"
+  <div v-if="currentUser" border="t base" p4 flex gap-4>
+    <AccountAvatar :account="currentUser.account" w-12 h-12 />
+    <div
+      flex flex-col gap-3 flex-auto
+      :class="isSending ? 'pointer-events-none' : ''"
+    >
+      <textarea
+        v-model="draft.params.status"
+        :placeholder="placeholder"
+        p2 border-rounded w-full bg-transparent
+        outline-none border="~ base"
+        @paste="handlePaste"
       />
-    </div>
 
-    <div v-if="isUploading" flex gap-2 justify-end items-center>
-      <div op50 i-ri:loader-2-fill animate-spin text-2xl />
-      Uploading...
-    </div>
+      <div flex="~ col gap-2" max-h-50vh overflow-auto>
+        <PublishAttachment
+          v-for="(att, idx) in draft.attachments" :key="att.id"
+          :attachment="att"
+          @remove="removeAttachment(idx)"
+        />
+      </div>
 
-    <div flex justify-end>
-      <button
-        btn-solid
-        :disabled="isUploading || (draft.attachments.length === 0 && !draft.params.status)"
-        @click="publish"
-      >
-        Publish!
-      </button>
+      <div v-if="isUploading" flex gap-2 justify-end items-center>
+        <div op50 i-ri:loader-2-fill animate-spin text-2xl />
+        Uploading...
+      </div>
+
+      <div flex="~ gap-2">
+        <button btn-action-icon @click="pickAttachments">
+          <div i-ri:upload-line />
+        </button>
+
+        <div flex-auto />
+
+        <button
+          btn-solid rounded-full
+          :disabled="isUploading || (draft.attachments.length === 0 && !draft.params.status)"
+          @click="publish"
+        >
+          Publish!
+        </button>
+      </div>
     </div>
   </div>
 </template>

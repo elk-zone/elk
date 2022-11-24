@@ -9,8 +9,9 @@ if (process.dev)
   // eslint-disable-next-line no-console
   console.log({ cache })
 
-export function setCached(key: string, value: any) {
-  cache.set(key, value)
+export function setCached(key: string, value: any, override = false) {
+  if (override || !cache.has(key))
+    cache.set(key, value)
 }
 
 export function fetchStatus(id: string) {
@@ -34,7 +35,7 @@ export function fetchAccount(id: string) {
     return cached
   const promise = masto.accounts.fetch(id)
     .then((account) => {
-      cacheAccount(account)
+      cacheAccount(account, true)
       return account
     })
   cache.set(key, promise)
@@ -48,18 +49,18 @@ export function fetchAccountByName(acct: string) {
     return cached
   const account = masto.accounts.lookup({ acct })
     .then((r) => {
-      cacheAccount(r)
+      cacheAccount(r, true)
       return r
     })
   cache.set(key, account)
   return account
 }
 
-export function cacheStatus(status: Status) {
-  setCached(`status:${status.id}`, status)
+export function cacheStatus(status: Status, override?: boolean) {
+  setCached(`status:${status.id}`, status, override)
 }
 
-export function cacheAccount(account: Account) {
-  setCached(`account:${account.id}`, account)
-  setCached(`account:${account.acct}`, account)
+export function cacheAccount(account: Account, override?: boolean) {
+  setCached(`account:${account.id}`, account, override)
+  setCached(`account:${account.acct}`, account, override)
 }

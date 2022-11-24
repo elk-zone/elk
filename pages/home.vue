@@ -12,6 +12,7 @@ const paginator = masto.timelines.getHomeIterable()
       <span text-lg font-bold>Home</span>
     </template>
     <slot>
+      <PublishWidget draft-key="home" border="b base" />
       <TimelinePaginator :paginator="paginator" />
     </slot>
   </MainContent>

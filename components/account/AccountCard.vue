@@ -4,6 +4,8 @@ import type { Account } from 'masto'
 const { account } = defineProps<{
   account: Account
 }>()
+
+cacheAccount(account)
 </script>
 
 <template>

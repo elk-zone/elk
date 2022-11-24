@@ -18,7 +18,7 @@ export default defineComponent({
     return () => h(
       'div',
       { class: 'rich-content' },
-      contentToVNode(props.content, undefined, emojiObject),
+      contentToVNode(props.content, emojiObject),
     )
   },
 })

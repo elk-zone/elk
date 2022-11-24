@@ -4,6 +4,7 @@
   --c-border: #88888820;
   --c-bg-base: #fff;
   --c-bg-active: #f6f6f6;
+  --c-bg-code: #00000006;
   --c-text-base: #222;
   --c-text-secondary: #888;
 }
@@ -11,5 +12,6 @@
 .dark {
   --c-bg-base: #111;
   --c-bg-active: #151515;
+  --c-bg-code: #ffffff06;
   --c-text-base: #fff;
 }

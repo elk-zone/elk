@@ -23,3 +23,4 @@ export function getDataUrlFromArr(arr: Uint8ClampedArray, w: number, h: number) 
 export function emojisArrayToObject(emojis: Emoji[]) {
   return Object.fromEntries(emojis.map(i => [i.shortcode, i]))
 }
+

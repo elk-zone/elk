@@ -20,12 +20,12 @@ export default defineNuxtConfig({
   },
   vite: {
     define: {
-      __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+      '__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
+      'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
     },
     build: {
       target: 'esnext',
     },
-
   },
   postcss: {
     plugins: {

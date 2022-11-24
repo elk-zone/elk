@@ -15,6 +15,7 @@ export default defineConfig({
       'border-base': 'border-$c-border',
       'bg-base': 'bg-$c-bg-base',
       'bg-active': 'bg-$c-bg-active',
+      'bg-code': 'bg-$c-bg-code',
       'text-base': 'text-$c-text-base',
       'text-secondary': 'text-$c-text-secondary',
       'interact-disabled': 'disabled:opacity-50 disabled:pointer-events-none disabled:saturate-0',

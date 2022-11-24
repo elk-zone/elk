@@ -1,5 +1,5 @@
 * {
-  scrollbar-color: #5555 var(--c-border);
+  scrollbar-color: #8885 var(--c-border);
 }
 
 ::-webkit-scrollbar {
@@ -16,12 +16,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #555;
+  background: #8885;
   border-radius: 1px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #666;
+  background: #8886;
 }
 
 /* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
@@ -51,5 +51,13 @@ html {
   }
   p {
     --at-apply: my-2;
+  }
+
+  .code-block {
+    --at-apply: bg-code text-0.9rem p3 rounded overflow-auto leading-1.6em;
+
+    .shiki {
+      background: transparent !important;
+    }
   }
 }

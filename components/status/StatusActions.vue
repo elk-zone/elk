@@ -114,7 +114,7 @@ function mention() {
 
 <template>
   <div flex justify-between gap-8>
-    <CommonTooltip placement="bottom" content="Replay">
+    <CommonTooltip placement="bottom" content="Reply">
       <RouterLink :to="getStatusPath(status)">
         <StatusActionButton
           :text="status.repliesCount"

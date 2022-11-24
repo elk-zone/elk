@@ -4,5 +4,6 @@ dist
 .output
 .nuxt
 .env
+.DS_Store
 
 public/shiki

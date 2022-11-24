@@ -5,7 +5,7 @@ useHead({
   title: APP_NAME,
   link: [
     {
-      rel: 'icon', type: 'image/svg+xml', href: '/logo.svg',
+      rel: 'icon', type: 'image/svg+png', href: '/favicon.png',
     },
   ],
 })

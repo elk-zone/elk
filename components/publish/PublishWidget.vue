@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CreateStatusParams, CreateStatusParamsWithStatus, StatusVisibility } from 'masto'
+import type { CreateStatusParams, StatusVisibility } from 'masto'
 
 const {
   draftKey,
@@ -12,22 +12,7 @@ const {
 }>()
 
 let isSending = $ref(false)
-function getDefaultStatus(): CreateStatusParamsWithStatus {
-  return {
-    status: '',
-    inReplyToId,
-    visibility: 'public',
-  }
-}
-const draft = $computed(() => {
-  if (!currentUserDrafts.value[draftKey]) {
-    currentUserDrafts.value[draftKey] = {
-      params: getDefaultStatus(),
-      attachments: [],
-    }
-  }
-  return currentUserDrafts.value[draftKey]
-})
+let { draft } = $(useDraft(draftKey, inReplyToId))
 
 const status = $computed(() => {
   return {
@@ -93,9 +78,15 @@ function chooseVisibility(visibility: StatusVisibility) {
 async function publish() {
   try {
     isSending = true
-    await masto.statuses.create(status)
-    draft.params = getDefaultStatus()
-    draft.attachments = []
+    if (!draft.editingStatus)
+      await masto.statuses.create(status)
+    else await masto.statuses.update(draft.editingStatus.id, status)
+
+    draft = {
+      params: getDefaultStatus(inReplyToId),
+      attachments: [],
+    }
+    isPublishDialogOpen.value = false
   }
   finally {
     isSending = false
@@ -112,68 +103,79 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div v-if="currentUser" p4 flex gap-4>
-    <AccountAvatar :account="currentUser.account" w-12 h-12 />
-    <div
-      flex flex-col gap-3 flex-auto
-      :class="isSending ? 'pointer-events-none' : ''"
-    >
-      <textarea
-        v-model="draft.params.status"
-        :placeholder="placeholder"
-        p2 border-rounded w-full bg-transparent
-        outline-none border="~ base"
-        @paste="handlePaste"
-      />
-
-      <div flex="~ col gap-2" max-h-50vh overflow-auto>
-        <PublishAttachment
-          v-for="(att, idx) in draft.attachments" :key="att.id"
-          :attachment="att"
-          @remove="removeAttachment(idx)"
+  <div v-if="currentUser" flex="~ col">
+    <template v-if="draft.editingStatus">
+      <div flex="~ col gap-1">
+        <div text-gray self-center>
+          Editing
+        </div>
+        <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" />
+      </div>
+      <div border="b dashed gray/40" />
+    </template>
+    <div p4 flex gap-4>
+      <AccountAvatar :account="currentUser.account" w-12 h-12 />
+      <div
+        flex flex-col gap-3 flex-auto
+        :class="isSending ? 'pointer-events-none' : ''"
+      >
+        <textarea
+          v-model="draft.params.status"
+          :placeholder="placeholder"
+          p2 border-rounded w-full bg-transparent
+          outline-none border="~ base"
+          @paste="handlePaste"
         />
-      </div>
 
-      <div v-if="isUploading" flex gap-2 justify-end items-center>
-        <div op50 i-ri:loader-2-fill animate-spin text-2xl />
-        Uploading...
-      </div>
+        <div flex="~ col gap-2" max-h-50vh overflow-auto>
+          <PublishAttachment
+            v-for="(att, idx) in draft.attachments" :key="att.id"
+            :attachment="att"
+            @remove="removeAttachment(idx)"
+          />
+        </div>
 
-      <div flex="~ gap-2">
-        <button btn-action-icon @click="pickAttachments">
-          <div i-ri:upload-line />
-        </button>
+        <div v-if="isUploading" flex gap-2 justify-end items-center>
+          <div op50 i-ri:loader-2-fill animate-spin text-2xl />
+          Uploading...
+        </div>
 
-        <CommonDropdown>
-          <button btn-action-icon>
-            <div :class="currentVisibility.icon" />
+        <div flex="~ gap-2">
+          <button btn-action-icon @click="pickAttachments">
+            <div i-ri:upload-line />
           </button>
 
-          <template #popper>
-            <CommonDropdownItem
-              v-for="visibility in STATUS_VISIBILITIES"
-              :key="visibility.value"
-              :icon="visibility.icon"
-              :checked="visibility.value === draft.params.visibility"
-              @click="chooseVisibility(visibility.value)"
-            >
-              {{ visibility.label }}
-              <template #description>
-                {{ visibility.description }}
-              </template>
-            </CommonDropdownItem>
-          </template>
-        </CommonDropdown>
+          <CommonDropdown>
+            <button btn-action-icon>
+              <div :class="currentVisibility.icon" />
+            </button>
 
-        <div flex-auto />
+            <template #popper>
+              <CommonDropdownItem
+                v-for="visibility in STATUS_VISIBILITIES"
+                :key="visibility.value"
+                :icon="visibility.icon"
+                :checked="visibility.value === draft.params.visibility"
+                @click="chooseVisibility(visibility.value)"
+              >
+                {{ visibility.label }}
+                <template #description>
+                  {{ visibility.description }}
+                </template>
+              </CommonDropdownItem>
+            </template>
+          </CommonDropdown>
 
-        <button
-          btn-solid rounded-full
-          :disabled="isUploading || (draft.attachments.length === 0 && !draft.params.status)"
-          @click="publish"
-        >
-          Publish!
-        </button>
+          <div flex-auto />
+
+          <button
+            btn-solid rounded-full
+            :disabled="isUploading || (draft.attachments.length === 0 && !draft.params.status)"
+            @click="publish"
+          >
+            {{ !draft.editingStatus ? 'Publish!' : 'Save changes' }}
+          </button>
+        </div>
       </div>
     </div>
   </div>

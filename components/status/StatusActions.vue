@@ -54,6 +54,11 @@ const toggleBookmark = () => toggleStatusAction(
   'bookmarked',
   masto.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
 )
+const togglePin = async () => toggleStatusAction(
+  'pinned',
+  masto.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+)
+
 const copyLink = async () => {
   await clipboard.copy(location.href)
 }
@@ -69,10 +74,34 @@ const deleteStatus = async () => {
 
   // TODO when timeline, remove this item
 }
-const togglePin = async () => toggleStatusAction(
-  'pinned',
-  masto.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
-)
+
+const deleteAndRedraft = async () => {
+  // TODO confirm to delete
+
+  const { text } = await masto.statuses.remove(status.id)
+
+  if (!dialogDraft.isEmpty) {
+    // TODO confirm to overwrite
+  }
+
+  dialogDraft.draft.value = {
+    params: { ...getParamsFromStatus(status), status: text! },
+    attachments: [],
+  }
+  openPublishDialog()
+}
+
+function editStatus() {
+  if (!dialogDraft.isEmpty) {
+    // TODO confirm to overwrite
+  }
+  dialogDraft.draft.value = {
+    editingStatus: status,
+    params: getParamsFromStatus(status),
+    attachments: [],
+  }
+  openPublishDialog()
+}
 </script>
 
 <template>
@@ -151,8 +180,7 @@ const togglePin = async () => toggleStatusAction(
               {{ status.pinned ? 'Unpin on profile' : 'Pin on profile' }}
             </CommonDropdownItem>
 
-            <!-- TODO -->
-            <CommonDropdownItem v-if="isAuthor" icon="i-ri:edit-line">
+            <CommonDropdownItem v-if="isAuthor" icon="i-ri:edit-line" @click="editStatus">
               Edit
             </CommonDropdownItem>
 
@@ -165,6 +193,7 @@ const togglePin = async () => toggleStatusAction(
 
             <CommonDropdownItem
               v-if="isAuthor" icon="i-ri:eraser-line" text-red-600
+              @click="deleteAndRedraft"
             >
               Delete & re-draft
             </CommonDropdownItem>

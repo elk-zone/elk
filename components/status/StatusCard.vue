@@ -5,9 +5,11 @@ const props = withDefaults(
   defineProps<{
     status: Status
     actions?: boolean
+    hover?: boolean
   }>(),
   {
     actions: true,
+    hover: true,
   },
 )
 
@@ -68,7 +70,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
 </script>
 
 <template>
-  <div ref="el" flex flex-col gap-2 px-4 hover:bg-active transition-100 cursor-pointer @click="onclick">
+  <div ref="el" flex flex-col gap-2 px-4 transition-100 cursor-pointer :class="{ 'hover:bg-active': hover }" @click="onclick">
     <div v-if="rebloggedBy" pl8>
       <div flex gap-1 items-center text-gray:75 text-sm>
         <div i-ri:repeat-fill mr-1 />

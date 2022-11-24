@@ -14,10 +14,54 @@ export const isZenMode = useLocalStorage(STORAGE_KEY_ZEN_MODE, false)
 export const toggleZenMode = useToggle(isZenMode)
 
 export const openDialog = ref<OpenDialog>(isFirstVisit.value ? OpenDialog.PreviewHelp : OpenDialog.None)
-export const isUserSwitcherOpen = computed(() => openDialog.value === OpenDialog.UserSwitcher)
-export const isSigninDialogOpen = computed(() => openDialog.value === OpenDialog.SigninDialog)
-export const isPublishDialogOpen = computed(() => openDialog.value === OpenDialog.PublishDialog)
-export const isPreviewHelpOpen = computed(() => openDialog.value === OpenDialog.PreviewHelp)
+export const isUserSwitcherOpen = computed({
+  get() {
+    return openDialog.value === OpenDialog.UserSwitcher
+  },
+  set(val: boolean) {
+    if (val)
+      openDialog.value = OpenDialog.UserSwitcher
+
+    else
+      openDialog.value = OpenDialog.None
+  },
+})
+export const isSigninDialogOpen = computed({
+  get() {
+    return openDialog.value === OpenDialog.SigninDialog
+  },
+  set(val: boolean) {
+    if (val)
+      openDialog.value = OpenDialog.SigninDialog
+
+    else
+      openDialog.value = OpenDialog.None
+  },
+})
+export const isPublishDialogOpen = computed({
+  get() {
+    return openDialog.value === OpenDialog.PublishDialog
+  },
+  set(val: boolean) {
+    if (val)
+      openDialog.value = OpenDialog.PublishDialog
+
+    else
+      openDialog.value = OpenDialog.None
+  },
+})
+export const isPreviewHelpOpen = computed({
+  get() {
+    return openDialog.value === OpenDialog.PreviewHelp
+  },
+  set(val: boolean) {
+    if (val)
+      openDialog.value = OpenDialog.PreviewHelp
+
+    else
+      openDialog.value = OpenDialog.None
+  },
+})
 
 export function closeDialog() {
   openDialog.value = OpenDialog.None

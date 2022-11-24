@@ -4,7 +4,7 @@
 }
 .v-popper--theme-dropdown .v-popper__arrow-inner {
   visibility: visible;
-  --at-apply: border-base;
+  --at-apply: border-$c-bg-base;
 }
 .v-popper--theme-dropdown .v-popper__arrow-outer {
   --at-apply: border-base;

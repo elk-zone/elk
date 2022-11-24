@@ -3,7 +3,7 @@ import { isPreviewHelpOpen, isPublishDialogOpen, isSigninDialogOpen, isUserSwitc
 </script>
 
 <template>
-  <ModalDrawer v-if="isUserSwitcherOpen">
+  <ModalDrawer v-if="isUserSwitcherOpen" v-model="isUserSwitcherOpen">
     <UserSwitcher />
   </ModalDrawer>
   <ModalDialog v-else-if="isSigninDialogOpen">

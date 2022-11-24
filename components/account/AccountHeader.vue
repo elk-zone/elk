@@ -79,7 +79,7 @@ function getFieldNameIcon(fieldName: string) {
           </button> -->
         </div>
       </div>
-      <div>
+      <div v-if="account.note">
         <div text-4 text-gray v-html="account.note" />
       </div>
       <div flex flex-wrap gap-4>

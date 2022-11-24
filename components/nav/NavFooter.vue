@@ -11,8 +11,8 @@ const buildTimeAgo = useTimeAgo(buildTime)
       <button i-ri-sun-line dark:i-ri-moon-line text-lg mb4 @click="toggleDark()" />
       <button
         text-lg mb4
-        :class="isZenmode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
-        @click="toggleZenmode()"
+        :class="isZenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
+        @click="toggleZenMode()"
       />
     </div>
     <a cursor-pointer hover:underline @click="openPreviewHelp">Show intro</a>

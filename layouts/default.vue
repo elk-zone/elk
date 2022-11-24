@@ -1,5 +1,5 @@
 <template>
-  <div h-full :class="{ zenmode: isZenmode }">
+  <div h-full :class="{ zen: isZenMode }">
     <main flex w-full mxa lg:max-w-80rem>
       <div class="hidden md:block w-1/4 zen-hide" relative>
         <div sticky top-0 h-screen flex="~ col">

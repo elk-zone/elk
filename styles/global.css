@@ -62,6 +62,6 @@ html {
   }
 }
 
-.zenmode .zen-hide {
+.zen .zen-hide {
   --at-apply: op0 hover:op100 transition duration-600;
 }

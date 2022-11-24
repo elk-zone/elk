@@ -5,17 +5,19 @@ const { status } = defineProps<{
   status: Status
 }>()
 
-const account = await fetchAccount(status.inReplyToAccountId!)
+const account = asyncComputed(() => fetchAccount(status.inReplyToAccountId!))
 </script>
 
 <template>
-  <template v-if="account">
-    <div
-      flex="~ gap-1.5" items-center text-sm text-gray:85
-      :title="`Replying to ${getDisplayName(account)}`"
-    >
-      <div i-ri:reply-fill rotate-180 op50 />
-      <AccountInlineInfo :account="account" />
-    </div>
-  </template>
+  <NuxtLink
+    v-if="status.inReplyToId"
+    flex="~" items-center text-sm text-gray:85
+    :to="getStatusPath({ id: status.inReplyToId } as any)"
+    :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
+  >
+    <div i-ri:reply-fill rotate-180 op50 class="mr-1.5" />
+    <AccountInlineInfo v-if="account" :account="account" :link="false" />
+    <span v-else>Someone</span>
+    's post
+  </NuxtLink>
 </template>

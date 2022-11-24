@@ -30,6 +30,11 @@ export function highlightCode(code: string, lang: Lang) {
       .then(() => {
         registeredLang.value.set(lang, true)
       })
+      .catch((e) => {
+        console.error(`[shiki] Failed to load language ${lang}`)
+        console.error(e)
+        registeredLang.value.set(lang, false)
+      })
     return code
   }
 

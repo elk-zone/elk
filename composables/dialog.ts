@@ -1,6 +1,8 @@
-import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
+import { STORAGE_KEY_FIRST_VISIT, STORAGE_KEY_ZEN_MODE } from '~/constants'
 
 export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, true)
+export const isZenmode = useLocalStorage(STORAGE_KEY_ZEN_MODE, false)
+export const toggleZenmode = useToggle(isZenmode)
 
 export const isUserSwitcherOpen = ref(false)
 export const isSigninDialogOpen = ref(false)

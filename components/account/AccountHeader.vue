@@ -57,7 +57,7 @@ function getFieldNameIcon(fieldName: string) {
             <AccountAvatar :account="account" w-30 h-30 />
           </NuxtLink>
           <div flex flex-col>
-            <ContentRichSetup font-bold text-2xl break-words :content="getDisplayName(account)" :emojis="account.emojis" />
+            <ContentRich font-bold text-2xl break-words :content="getDisplayName(account)" :emojis="account.emojis" />
             <p op50>
               {{ getAccountHandle(account) }}
             </p>
@@ -74,7 +74,7 @@ function getFieldNameIcon(fieldName: string) {
         </div>
       </div>
       <div v-if="account.note">
-        <ContentRichSetup text-4 text-gray :content="account.note" :emojis="account.emojis" />
+        <ContentRich text-4 text-gray :content="account.note" :emojis="account.emojis" />
       </div>
       <div flex flex-wrap gap-4>
         <div v-for="field in fields" :key="field.name" flex="~ gap-1" items-center>
@@ -82,7 +82,7 @@ function getFieldNameIcon(fieldName: string) {
           <div v-else op50 uppercase text-xs font-bold>
             {{ field.name }} |
           </div>
-          <ContentRichSetup text-sm filter-saturate-0 :content="field.value" />
+          <ContentRich text-sm filter-saturate-0 :content="field.value" />
         </div>
       </div>
       <div flex gap-5>

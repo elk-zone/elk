@@ -68,7 +68,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
 </script>
 
 <template>
-  <div ref="el" flex flex-col gap-2 px-4 transition-100 cursor-pointer :class="{ 'hover:bg-active': hover }" @click="onclick">
+  <div ref="el" flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" @click="onclick">
     <div v-if="rebloggedBy" pl8>
       <div flex="~ wrap" gap-1 items-center text-gray:75 text-sm>
         <div i-ri:repeat-fill mr-1 />
@@ -82,13 +82,16 @@ const timeago = useTimeAgo(() => status.createdAt, {
         <div flex>
           <StatusAccountDetails :account="status.account" />
           <div flex-auto />
-          <CommonTooltip :content="createdAt">
-            <a :title="status.createdAt" :href="getStatusPath(status)" @click.prevent="go">
-              <time text-sm op50 hover:underline :datetime="status.createdAt">
-                {{ timeago }}
-              </time>
-            </a>
-          </CommonTooltip>
+          <div text-sm op50 flex="~ row nowrap" hover:underline>
+            <CommonTooltip :content="createdAt">
+              <a :title="status.createdAt" :href="getStatusPath(status)" @click.prevent="go">
+                <time text-sm op50 hover:underline :datetime="status.createdAt">
+                  {{ timeago }}
+                </time>
+              </a>
+            </CommonTooltip>
+            <StatusEditIndicator v-if="status.editedAt" :edited-at="status.editedAt" />
+          </div>
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div>

@@ -14,7 +14,7 @@ const accountHandle = $(useAccountHandle(account))
     :to="link ? getAccountPath(account) : undefined"
     flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
   >
-    <ContentRichSetup font-bold break-words hover:underline :content="getDisplayName(account)" :emojis="account.emojis" />
+    <ContentRich font-bold break-words hover:underline :content="getDisplayName(account)" :emojis="account.emojis" />
     <p op35 text-sm>
       {{ accountHandle }}
     </p>

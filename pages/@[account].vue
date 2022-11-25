@@ -6,9 +6,7 @@ const account = await fetchAccountByName(accountName).catch(() => null)
 
 if (account) {
   useHead({
-    title: computed(() =>
-      `${account?.displayName?.replace(/\:\w+\:/g, '') ?? ''} (@${account?.acct})`,
-    ),
+    title: () => `${account?.displayName?.replace(/\:\w+\:/g, '') ?? ''} (@${account?.acct})`,
   })
 }
 </script>

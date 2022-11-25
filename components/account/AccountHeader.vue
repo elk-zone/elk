@@ -53,11 +53,9 @@ function getFieldNameIcon(fieldName: string) {
     <div p4 mt--17 flex flex-col gap-6>
       <div flex justify-between>
         <div flex="~ col gap-2 1" min-w-0>
-          <div>
-            <NuxtLink :to="getAccountPath(account)">
-              <AccountAvatar :account="account" w-30 h-30 />
-            </NuxtLink>
-          </div>
+          <NuxtLink w-fit :to="getAccountPath(account)">
+            <AccountAvatar :account="account" w-30 h-30 />
+          </NuxtLink>
           <div flex flex-col>
             <ContentRichSetup font-bold text-2xl break-words :content="getDisplayName(account)" :emojis="account.emojis" />
             <p op50>

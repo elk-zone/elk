@@ -125,8 +125,8 @@ function treeToText(input: Node): string {
     pre = '\n'
 
   if (input.nodeName === 'code') {
-    pre = '`'
-    post = '`'
+    pre = '````\n'
+    post = '\n```'
   }
 
   if ('childNodes' in input)

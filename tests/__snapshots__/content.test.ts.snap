@@ -1,6 +1,49 @@
 // Vitest Snapshot v1
 
-exports[`rich-content > plain 1`] = `
-"Hello
-World"
+exports[`rich-content > code frame 1`] = `
+"<p>Testing code block</p>
+<pre lang=\\"ts\\">
+import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
+// tracks mouse position
+const { x, y } = useMouse()
+// is the user prefers dark theme
+const isDark = usePreferredDark()</pre
+>
+<p></p>
+"
+`;
+
+exports[`rich-content > custom emoji 1`] = `
+"Daniel Roe
+<img
+  src=\\"https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/original/c96ba3cb0e0e1eac.png\\"
+  alt=\\"nuxt\\"
+  class=\\"custom-emoji\\"
+/>
+"
+`;
+
+exports[`rich-content > empty 1`] = `""`;
+
+exports[`rich-content > link + mention 1`] = `
+"<p>
+  Happy 🤗 we’re now using
+  <span class=\\"h-card\\"
+    ><a
+      class=\\"u-url mention\\"
+      rel=\\"nofollow noopener noreferrer\\"
+      to=\\"/@vitest@mas.to\\"
+    ></a
+  ></span>
+  (migrated from chai+mocha)
+  <a
+    href=\\"https://github.com/ayoayco/astro-reactive-library/pull/203\\"
+    rel=\\"nofollow noopener noreferrer\\"
+    target=\\"_blank\\"
+    ><span class=\\"invisible\\">https://</span
+    ><span class=\\"ellipsis\\">github.com/ayoayco/astro-react</span
+    ><span class=\\"invisible\\">ive-library/pull/203</span></a
+  >
+</p>
+"
 `;

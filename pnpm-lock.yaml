@@ -10,6 +10,7 @@ specifiers:
   '@pinia/nuxt': ^0.4.5
   '@types/fs-extra': ^9.0.13
   '@types/js-yaml': ^4.0.5
+  '@types/prettier': ^2.7.1
   '@types/sanitize-html': ^2.6.2
   '@types/wicg-file-system-access': ^2020.9.5
   '@unocss/nuxt': ^0.46.5
@@ -30,12 +31,14 @@ specifiers:
   parse5: ^7.1.2
   pinia: ^2.0.26
   postcss-nested: ^6.0.0
+  prettier: ^2.8.0
   rollup-plugin-node-polyfills: ^0.2.1
   sanitize-html: ^2.7.3
   shiki: ^0.11.1
   theme-vitesse: ^0.6.0
   typescript: ^4.9.3
   ufo: ^1.0.0
+  unplugin-auto-import: ^0.11.5
   vitest: ^0.25.3
 
 devDependencies:
@@ -48,6 +51,7 @@ devDependencies:
   '@pinia/nuxt': 0.4.5_typescript@4.9.3
   '@types/fs-extra': 9.0.13
   '@types/js-yaml': 4.0.5
+  '@types/prettier': 2.7.1
   '@types/sanitize-html': 2.6.2
   '@types/wicg-file-system-access': 2020.9.5
   '@unocss/nuxt': 0.46.5
@@ -68,12 +72,14 @@ devDependencies:
   parse5: 7.1.2
   pinia: 2.0.26_typescript@4.9.3
   postcss-nested: 6.0.0
+  prettier: 2.8.0
   rollup-plugin-node-polyfills: 0.2.1
   sanitize-html: 2.7.3
   shiki: 0.11.1
   theme-vitesse: 0.6.0
   typescript: 4.9.3
   ufo: 1.0.0
+  unplugin-auto-import: 0.11.5
   vitest: 0.25.3
 
 packages:
@@ -193,6 +199,10 @@ packages:
 
   /@antfu/utils/0.6.3:
     resolution: {integrity: sha512-sEYpyyKUPOew9QsXZ8feRVMzW6DWLviwOl+/ap06UQW02A8Srbc95CPHVm4eUbiBzBgD46eyIT+przv//KSSlQ==}
+    dev: true
+
+  /@antfu/utils/0.7.0:
+    resolution: {integrity: sha512-tH38JQEFLOdvZJC32ZbPTvWOQzxEtOQh5jOqBPDLw8sxBr0PFF+f2Csgwb7mRpD0QB1xu+PDoAifIPiCNneeNA==}
     dev: true
 
   /@babel/code-frame/7.18.6:
@@ -1105,6 +1115,10 @@ packages:
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
+    dev: true
+
+  /@types/prettier/2.7.1:
+    resolution: {integrity: sha512-ri0UmynRRvZiiUJdiz38MmIblKK+oH30MztdBVR95dv/Ubw6neWSb8u1XpRb72L4qsZOhz+L+z9JD40SJmfWow==}
     dev: true
 
   /@types/resolve/1.20.2:
@@ -5968,6 +5982,12 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
+  /prettier/2.8.0:
+    resolution: {integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
   /pretty-bytes/6.0.0:
     resolution: {integrity: sha512-6UqkYefdogmzqAZWzJ7laYeJnaXDy2/J+ZqiiMtS7t7OfpXWTlaeGMwX8U6EFvPV/YWWEKRkS8hKS4k60WHTOg==}
     engines: {node: ^14.13.1 || >=16.0.0}
@@ -6971,6 +6991,25 @@ packages:
       - rollup
       - supports-color
       - vite
+    dev: true
+
+  /unplugin-auto-import/0.11.5:
+    resolution: {integrity: sha512-nvbL2AQwLRR8wbHpJ6L1EBVNmjN045RSedTa4NtsGRkSQFXkI1iKHs4dTqJwcKZsnFrZOAKtLPiN1/oQTObLZw==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@vueuse/core': '*'
+    peerDependenciesMeta:
+      '@vueuse/core':
+        optional: true
+    dependencies:
+      '@antfu/utils': 0.7.0
+      '@rollup/pluginutils': 5.0.2
+      local-pkg: 0.4.2
+      magic-string: 0.26.7
+      unimport: 1.0.1
+      unplugin: 1.0.0
+    transitivePeerDependencies:
+      - rollup
     dev: true
 
   /unplugin-combine/0.2.8:

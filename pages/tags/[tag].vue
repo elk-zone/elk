@@ -3,6 +3,10 @@ const params = useRoute().params
 const tag = $computed(() => params.tag as string)
 
 const paginator = masto.timelines.getHashtagIterable(tag)
+
+useHead({
+  title: `#${tag}`,
+})
 </script>
 
 <template>

@@ -11,6 +11,10 @@ const tab = $(useLocalStorage<typeof tabNames[number]>(STORAGE_KEY_NOTIFY_TAB, '
 const paginator = $computed(() => {
   return masto.notifications.getIterator(tab === 'All' ? undefined : { types: ['mention'] })
 })
+
+useHead({
+  title: 'Notifications',
+})
 </script>
 
 <template>

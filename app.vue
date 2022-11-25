@@ -2,7 +2,7 @@
 import { APP_NAME } from './constants'
 
 useHead({
-  title: APP_NAME,
+  titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${import.meta.env.DEV ? ' (dev)' : ''}`,
   link: [
     {
       rel: 'icon', type: 'image/svg+png', href: '/favicon.png',

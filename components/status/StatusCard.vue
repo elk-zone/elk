@@ -82,7 +82,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
         <div flex>
           <StatusAccountDetails :account="status.account" />
           <div flex-auto />
-          <div text-sm op50 flex="~" hover:underline>
+          <div text-sm op50 flex="~ row nowrap" hover:underline>
             <CommonTooltip :content="createdAt">
               <time :title="status.createdAt" :datetime="status.createdAt">
                 {{ timeago }}

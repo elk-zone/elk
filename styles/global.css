@@ -24,6 +24,14 @@
   background: #8886;
 }
 
+::-moz-selection { 
+  background: var(--c-bg-selection);
+}
+
+::selection {
+  background: var(--c-bg-selection);
+}
+
 /* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
 html {
   overflow-y: scroll;

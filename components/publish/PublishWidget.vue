@@ -90,10 +90,10 @@ function chooseVisibility(visibility: StatusVisibility) {
 }
 
 async function publish() {
-  // if (process.dev) {
-  //   alert(JSON.stringify(draft.params, null, 2))
-  //   return
-  // }
+  if (process.dev) {
+    alert(JSON.stringify(draft.params, null, 2))
+    return
+  }
   try {
     isSending = true
     if (!draft.editingStatus)
@@ -190,7 +190,7 @@ onUnmounted(() => {
           Uploading...
         </div>
 
-        <div flex="~ gap-2">
+        <div flex="~ gap-2" ml--2>
           <CommonTooltip placement="bottom" content="Add images, a video or an audio file">
             <button btn-action-icon @click="pickAttachments">
               <div i-ri:image-add-line />

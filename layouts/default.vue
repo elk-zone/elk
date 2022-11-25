@@ -17,13 +17,12 @@
       <div class="w-full mb14 md:(w-2/4 mb0) min-h-screen" border="l r base">
         <slot />
       </div>
-      <div class="hidden md:block w-1/4 zen-hide">
-        <div sticky top-0 h-screen flex="~ col">
+      <aside class="hidden md:block w-1/4 zen-hide">
+        <div sticky top-0 h-screen class="sidebar">
           <slot name="right">
             <UserSignInEntry v-if="!currentUser" />
             <AccountInfo
               v-if="currentUser"
-              tabindex="0"
               m5 p2 rounded-full
               hover:bg-active cursor-pointer transition-100
               :account="currentUser.account"
@@ -32,12 +31,22 @@
               @keydown.enter="openUserSwitcher"
               @click="openUserSwitcher"
             />
-            <div flex-auto />
-            <NavFooter />
+            <NavFooter class="sidebar-footer" />
           </slot>
         </div>
-      </div>
+      </aside>
     </main>
     <ModalContainer />
   </div>
 </template>
+
+<style>
+  .sidebar {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .sidebar-footer {
+    grid-row: 3;
+  }
+</style>

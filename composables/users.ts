@@ -1,9 +1,10 @@
-import type { AccountCredentials } from 'masto'
 import { login as loginMasto } from 'masto'
+import type { AccountCredentials, Instance } from 'masto'
 import type { UserLogin } from '~/types'
-import { DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_USERS } from '~/constants'
+import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
 
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, [], { deep: true })
+const servers = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, '')
 
 export const currentUser = computed<UserLogin | undefined>(() => {
@@ -20,6 +21,10 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 export const currentServer = computed<string>(() => currentUser.value?.server || DEFAULT_SERVER)
 
 export const useUsers = () => users
+
+export const currentInstance = computed<null | Instance>(() => currentUserId.value ? servers.value[currentUserId.value] ?? null : null)
+
+export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
 export async function loginTo(user: UserLogin & { account?: AccountCredentials }) {
   const existing = users.value.findIndex(u => u.server === user.server && u.token === user.token)
@@ -40,6 +45,7 @@ export async function loginTo(user: UserLogin & { account?: AccountCredentials }
 
   users.value.push(user)
   currentUserId.value = me.id
+  servers.value[me.id] = await masto.instances.fetch()
   await reloadPage()
   return true
 }

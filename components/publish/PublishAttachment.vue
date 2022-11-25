@@ -16,7 +16,7 @@ defineEmits<{
 
 <template>
   <div relative group>
-    <status-attachment :attachment="attachment" w-full />
+    <StatusAttachment :attachment="attachment" w-full />
     <div absolute right-2 top-2>
       <div
         v-if="removable"

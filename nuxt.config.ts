@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@vue-macros/nuxt',
+    '~/modules/purge-comments',
   ],
   experimental: {
     reactivityTransform: true,
@@ -15,6 +16,7 @@ export default defineNuxtConfig({
     'floating-vue/dist/style.css',
     '~/styles/vars.css',
     '~/styles/global.css',
+    '~/styles/tiptap.css',
     '~/styles/dropdown.css',
   ],
   alias: {

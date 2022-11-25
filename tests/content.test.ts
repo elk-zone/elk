@@ -4,7 +4,7 @@ import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import { contentToVNode } from '~/composables/content'
 
-describe('rich-content', () => {
+describe('content-rich', () => {
   it('empty', async () => {
     const { formatted } = await render('')
     expect(formatted).toMatchSnapshot()

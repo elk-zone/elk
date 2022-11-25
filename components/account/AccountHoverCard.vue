@@ -25,9 +25,3 @@ defineProps<{
     <ContentRichSetup text-4 text-gray :content="account.note" :emojis="account.emojis" />
   </div>
 </template>
-
-<style>
-.account-hover-card {
-  transform-origin: 3em 3em;
-}
-</style>

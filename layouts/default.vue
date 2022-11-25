@@ -23,6 +23,7 @@
           </slot>
         </div>
       </div>
+      <NavBottom md:hidden />
       <div class="w-full md:w-2/4 min-h-screen" border="l r base">
         <slot />
       </div>

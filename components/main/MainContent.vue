@@ -14,8 +14,13 @@
             </NuxtLink>
           </slot>
         </div>
-        <div flex>
+        <div flex items-center>
           <slot name="actions" />
+          <template v-if="currentUser">
+            <NuxtLink md:hidden :to="`/@${currentUser.account?.username}`">
+              <AccountAvatar :account="currentUser.account" h="1.5em" />
+            </NuxtLink>
+          </template>
         </div>
       </div>
       <slot name="header" />

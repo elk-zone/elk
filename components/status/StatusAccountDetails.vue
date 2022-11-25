@@ -10,7 +10,7 @@ const accountHandle = $(useAccountHandle(account))
 </script>
 
 <template>
-  <NuxtLink :to="link ? getAccountPath(account) : undefined" flex="~ row wrap" gap-x-2 items-center>
+  <NuxtLink :to="link ? getAccountPath(account) : undefined" flex flex-col md:flex-row md:gap-2 md:items-center>
     <ContentRichSetup font-bold :content="getDisplayName(account)" :emojis="account.emojis" />
     <p op35 text-sm>
       {{ accountHandle }}

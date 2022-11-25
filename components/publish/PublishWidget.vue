@@ -21,7 +21,10 @@ let isSending = $ref(false)
 let { draft } = $(useDraft(draftKey, inReplyToId))
 
 const { editor } = useTiptap({
-  content: toRef(draft.params, 'status'),
+  content: computed({
+    get: () => draft.params.status,
+    set: newVal => draft.params.status = newVal,
+  }),
   placeholder,
   autofocus: isExpanded,
   onSubmit: publish,

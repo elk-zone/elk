@@ -86,6 +86,12 @@ export function useTiptap(options: UseTiptapOptions) {
     editable: true,
   })
 
+  watch(content, (value) => {
+    if (editor.value?.getHTML() === value)
+      return
+    editor.value?.commands.setContent(value || '', false)
+  })
+
   return {
     editor,
   }

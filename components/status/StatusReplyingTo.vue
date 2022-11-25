@@ -12,7 +12,7 @@ const account = asyncComputed(() => fetchAccount(status.inReplyToAccountId!))
   <NuxtLink
     v-if="status.inReplyToId"
     flex="~ wrap" items-center text-sm text-gray:85
-    :to="getStatusPath({ id: status.inReplyToId } as any)"
+    :to="getStatusInReplyToPath(status)"
     :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
   >
     <div i-ri:reply-fill rotate-180 op50 class="mr-1.5" />

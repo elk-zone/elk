@@ -80,7 +80,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
     </div>
     <div flex gap-4>
       <AccountAvatar mt1 w-12 h-12 :account="status.account" />
-      <div flex="~ col auto">
+      <div flex="~ col 1">
         <div flex>
           <StatusAccountDetails :account="status.account" />
           <div flex-auto />

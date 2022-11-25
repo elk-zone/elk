@@ -60,10 +60,10 @@ export function contentToVNode(
       return `:${name}:`
     })
     // handle code frames
-    .replace(/<p>(```|~~~)([\s\S]+?)\1(\s|<br\s?\/?>)*<\/p>/g, (_1, _2, raw) => {
+    .replace(/<p>(```|~~~)([\s\S]+?)\1/g, (_1, _2, raw) => {
       const plain = htmlToText(`<p>${raw}</p>`).trim()
       const [lang, ...rest] = plain.split(/\n/)
-      return `<custom-code lang="${lang?.trim().toLowerCase() || ''}" code="${encodeURIComponent(rest.join('\n'))}" />`
+      return `<custom-code lang="${lang?.trim().toLowerCase() || ''}" code="${encodeURIComponent(rest.join('\n'))}"></custom-code>`
     })
 
   const tree = parseFragment(content)

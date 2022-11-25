@@ -12,7 +12,7 @@ specifiers:
   '@types/sanitize-html': ^2.6.2
   '@types/wicg-file-system-access': ^2020.9.5
   '@unocss/nuxt': ^0.46.5
-  '@vue-macros/nuxt': ^0.0.3
+  '@vue-macros/nuxt': ^0.1.1
   '@vueuse/nuxt': ^9.6.0
   blurhash: ^2.0.4
   browser-fs-access: ^0.31.1
@@ -47,7 +47,7 @@ devDependencies:
   '@types/sanitize-html': 2.6.2
   '@types/wicg-file-system-access': 2020.9.5
   '@unocss/nuxt': 0.46.5
-  '@vue-macros/nuxt': 0.0.3_nuxt@3.0.0
+  '@vue-macros/nuxt': 0.1.1_nuxt@3.0.0
   '@vueuse/nuxt': 9.6.0_nuxt@3.0.0
   blurhash: 2.0.4
   browser-fs-access: 0.31.1
@@ -1589,8 +1589,8 @@ packages:
       unplugin: 1.0.0
     dev: true
 
-  /@vue-macros/define-render/1.0.0:
-    resolution: {integrity: sha512-Szm25QnX65YaNMm/wbP4j2TdMKwkWQSGRU72/kadt1yH4/BzwjcQlQIYIpBxEnbYb3BeQyj0NGL5695E1jGqEg==}
+  /@vue-macros/define-render/1.0.1:
+    resolution: {integrity: sha512-B4ttYDZkXqVuciN23WNuVnr6L8dKrxEvz74gaYTXbdybv9jLEYMagSm/nFBLin+32EGYKeZu/D393r2EGAzeNg==}
     engines: {node: '>=14.19.0'}
     peerDependencies:
       vue: ^2.7.0 || ^3.0.0
@@ -1638,8 +1638,8 @@ packages:
       - webpack
     dev: true
 
-  /@vue-macros/nuxt/0.0.3_nuxt@3.0.0:
-    resolution: {integrity: sha512-EYrsuUf3yjqCAdZka5U9xM0lRmWGzdZdpgDkVmzGkIf7o6AdxitD6b44MSbgAkZIYWBspQVD5dehOyriVgcSWA==}
+  /@vue-macros/nuxt/0.1.1_nuxt@3.0.0:
+    resolution: {integrity: sha512-ncHA77I4NyzC5hRJVtNlj7vLe6mMNcjKw1qV+FN30h7b9O+cP+6KtyI5GXMmWasts7dR7T8BKDKJJiY9zLo5DA==}
     engines: {node: '>=14.19.0'}
     peerDependencies:
       nuxt: ^3.0.0
@@ -1647,7 +1647,7 @@ packages:
       '@nuxt/kit': 3.0.0
       '@vue-macros/volar': 0.5.4
       nuxt: 3.0.0_hsf322ms6xhhd4b5ne6lb74y4a
-      unplugin-vue-macros: 1.0.1
+      unplugin-vue-macros: 1.0.2
     transitivePeerDependencies:
       - '@vueuse/core'
       - esbuild
@@ -6912,8 +6912,8 @@ packages:
       unplugin: 1.0.0
     dev: true
 
-  /unplugin-vue-macros/1.0.1:
-    resolution: {integrity: sha512-WRG+KtpQJsYUN8y7w9SO/x5StclNyOAazoJtx4pRDgjypkhXRaRCOyRUm2eClia/XeSltbXIuWV7oGSfGKd4pg==}
+  /unplugin-vue-macros/1.0.2:
+    resolution: {integrity: sha512-XstktV1aH88Vn2RXRcxZKUV8ewjFWqbZKHnq8NL4W00MV0z1xOwd1CfNdMCTpYiHl25SWA27TOTNNKYORhizhA==}
     engines: {node: '>=14.19.0'}
     peerDependencies:
       vue: ^2.7.0 || ^3.2.25
@@ -6922,7 +6922,7 @@ packages:
       '@vue-macros/better-define': 1.0.0
       '@vue-macros/define-model': 1.0.0
       '@vue-macros/define-props': 0.0.3
-      '@vue-macros/define-render': 1.0.0
+      '@vue-macros/define-render': 1.0.1
       '@vue-macros/define-slots': 0.0.6
       '@vue-macros/hoist-static': 1.0.0
       '@vue-macros/named-template': 0.0.6

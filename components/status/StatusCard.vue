@@ -84,9 +84,11 @@ const timeago = useTimeAgo(() => status.createdAt, {
           <div flex-auto />
           <div text-sm op50 flex="~ row nowrap" hover:underline>
             <CommonTooltip :content="createdAt">
-              <time :title="status.createdAt" :datetime="status.createdAt">
-                {{ timeago }}
-              </time>
+              <a :title="status.createdAt" :href="getStatusPath(status)" @click.prevent="go">
+                <time text-sm op50 hover:underline :datetime="status.createdAt">
+                  {{ timeago }}
+                </time>
+              </a>
             </CommonTooltip>
             <StatusEditIndicator v-if="status.editedAt" :edited-at="status.editedAt" />
           </div>

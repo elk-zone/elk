@@ -47,7 +47,7 @@ function handleNode(el: Element) {
   return handleBlocks(el) || handleMention(el) || el
 }
 
-const md = new MarkdownIt()
+const md = new MarkdownIt({ html: true })
 md.renderer.rules.fence = (tokens, idx) => {
   const token = tokens[idx]
   return `<custom-code lang="${token.info.trim().toLowerCase() || ''}" code="${encodeURIComponent(token.content)}"></custom-code>\n`

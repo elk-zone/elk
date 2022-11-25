@@ -117,13 +117,13 @@ function editStatus() {
 <template>
   <div flex justify-between>
     <CommonTooltip placement="bottom" content="Reply">
-      <RouterLink :to="getStatusPath(status)">
-        <StatusActionButton
-          :text="status.repliesCount"
-          color="text-blue" hover="text-blue" group-hover="bg-blue/10"
-          icon="i-ri:chat-3-line"
-        />
-      </RouterLink>
+      <StatusActionButton
+        as="router-link"
+        :to="getStatusPath(status)"
+        :text="status.repliesCount"
+        color="text-blue" hover="text-blue" group-hover="bg-blue/10"
+        icon="i-ri:chat-3-line"
+      />
     </CommonTooltip>
 
     <CommonTooltip placement="bottom" content="Boost">

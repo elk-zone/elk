@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 
-const props = withDefaults(defineProps<{
+const { status, withAction = true } = defineProps<{
   status: Status
   withAction?: boolean
-}>(), {
-  withAction: true,
-})
-const { translation } = useTranslation(props.status)
+}>()
+const { translation } = useTranslation(status)
 </script>
 
 <template>
-  <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': props.withAction }">
+  <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }">
     <ContentRich
-      :content="translation.visible ? translation.text : props.status.content"
-      :emojis="props.status.emojis"
+      :content="translation.visible ? translation.text : status.content"
+      :emojis="status.emojis"
     />
   </div>
 </template>

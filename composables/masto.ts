@@ -58,7 +58,11 @@ export function getAccountPath(account: Account) {
 }
 
 export function getStatusPath(status: Status) {
-  return `/status/${status.id}`
+  return `/${getFullHandle(status.account)}/${status.id}`
+}
+
+export function getStatusInReplyToPath(status: Status) {
+  return `/status/${status.inReplyToId}`
 }
 
 export function useAccountHandle(account: Account, fullServer = true) {

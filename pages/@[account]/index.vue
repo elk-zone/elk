@@ -1,26 +1,25 @@
 <script setup lang="ts">
 const params = useRoute().params
-const accountName = $computed(() => params.account as string)
+const accountName = $computed(() => toShortHandle(params.account as string))
 
-const account = await fetchAccountByName(accountName)
-const tabNames = ['Posts', 'Posts and replies'] as const
+const account = await fetchAccountByName(accountName).catch(() => null)
 
-// Don't use local storage because it is better to default to Posts every time you visit a user's profile.
-const tab = $ref('Posts')
-
-const paginatorPosts = masto.accounts.getStatusesIterable(account.id, { excludeReplies: true })
-const paginatorPostsWithReply = masto.accounts.getStatusesIterable(account.id, { excludeReplies: false })
-
-const paginator = $computed(() => {
-  return tab === 'Posts' ? paginatorPosts : paginatorPostsWithReply
-})
+if (account) {
+  useHead({
+    title: () => `${account.displayName?.replace(/\:\w+\:/g, '') ?? ''} (@${account.acct})`,
+  })
+}
 </script>
 
 <template>
-  <div>
-    <CommonTabs v-model="tab" :options="tabNames" />
-    <KeepAlive>
-      <TimelinePaginator :key="tab" :paginator="paginator" />
-    </KeepAlive>
-  </div>
+  <MainContent>
+    <template v-if="account">
+      <AccountHeader :account="account" border="b base" />
+      <NuxtPage />
+    </template>
+
+    <CommonNotFound v-else>
+      Account @{{ accountName }} not found
+    </CommonNotFound>
+  </MainContent>
 </template>

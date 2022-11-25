@@ -58,7 +58,7 @@ function previewAvatar() {
     <button border="b base" z-1>
       <img h-50 w-full object-cover :src="account.header" @click="previewHeader">
     </button>
-    <div p4 mt--17 flex flex-col gap-6>
+    <div p4 mt--19 flex flex-col gap-6>
       <div flex justify-between>
         <div flex="~ col gap-2 1">
           <button w-30 h-30 rounded-full bg-black z-2 @click="previewAvatar">

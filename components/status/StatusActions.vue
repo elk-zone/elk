@@ -198,7 +198,7 @@ function mention() {
               Translate post
             </template>
             <template v-else>
-              Show original post
+              Show untranslated
             </template>
           </CommonDropdownItem>
 

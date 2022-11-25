@@ -24,9 +24,15 @@ const isLoading = $ref({
   pinned: false,
   translation: false,
 })
-async function toggleStatusAction(action: 'reblogged' | 'favourited' | 'bookmarked' | 'pinned', newStatus: Promise<Status>) {
+
+type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned'
+type CountField = 'reblogsCount' | 'favouritesCount'
+async function toggleStatusAction(action: Action, newStatus: Promise<Status>, countField?: CountField) {
   // Optimistic update
   status[action] = !status[action]
+  if (countField)
+    status[countField] += status[action] ? 1 : -1
+
   try {
     isLoading[action] = true
     Object.assign(status, await newStatus)
@@ -35,7 +41,6 @@ async function toggleStatusAction(action: 'reblogged' | 'favourited' | 'bookmark
     isLoading[action] = false
   }
 }
-
 const toggleReblog = () => toggleStatusAction(
   'reblogged',
   masto.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
@@ -44,11 +49,13 @@ const toggleReblog = () => toggleStatusAction(
       return res.reblog!
     return res
   }),
+  'reblogsCount',
 )
 
 const toggleFavourite = () => toggleStatusAction(
   'favourited',
   masto.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+  'favouritesCount',
 )
 
 const toggleBookmark = () => toggleStatusAction(

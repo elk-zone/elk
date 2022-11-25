@@ -11,8 +11,7 @@ const status = $computed(() => {
   return props.status
 })
 
-const formatter = Intl.DateTimeFormat(undefined, { dateStyle: 'long' })
-const date = computed(() => formatter.format(new Date(status.createdAt)))
+const date = useFormattedDateTime(status.createdAt)
 </script>
 
 <template>

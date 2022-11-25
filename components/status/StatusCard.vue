@@ -36,6 +36,7 @@ function go() {
   router.push(getStatusPath(status))
 }
 
+const createdAt = useFormattedDateTime(status.createdAt)
 const timeago = useTimeAgo(() => status.createdAt, {
   showSecond: true,
   messages: {
@@ -89,9 +90,11 @@ const timeago = useTimeAgo(() => status.createdAt, {
         <div flex>
           <StatusAccountDetails :account="status.account" />
           <div flex-auto />
-          <div text-sm op50 :title="status.createdAt">
-            {{ timeago }}
-          </div>
+          <CommonTooltip :content="createdAt">
+            <div text-sm op50 :title="status.createdAt">
+              {{ timeago }}
+            </div>
+          </CommonTooltip>
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div>

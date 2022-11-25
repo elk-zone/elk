@@ -7,7 +7,7 @@ defineOptions({
 
 const props = defineProps<{
   content: string
-  emojis: Emoji[]
+  emojis?: Emoji[]
 }>()
 
 const emojiObject = emojisArrayToObject(props.emojis || [])

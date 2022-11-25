@@ -80,7 +80,7 @@ function getFieldNameIcon(fieldName: string) {
         </div>
       </div>
       <div v-if="account.note">
-        <ContentRich text-4 text-gray :content="account.note" :emojis="account.emojis" />
+        <ContentRichSetup text-4 text-gray :content="account.note" :emojis="account.emojis" />
       </div>
       <div flex flex-wrap gap-4>
         <div v-for="field in fields" :key="field.name" flex="~ gap-1" items-center>
@@ -88,7 +88,7 @@ function getFieldNameIcon(fieldName: string) {
           <div v-else op50 uppercase text-xs font-bold>
             {{ field.name }} |
           </div>
-          <ContentRich text-sm filter-saturate-0 :content="field.value" />
+          <ContentRichSetup text-sm filter-saturate-0 :content="field.value" />
         </div>
       </div>
       <div flex gap-5>

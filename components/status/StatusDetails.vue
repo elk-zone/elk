@@ -30,7 +30,7 @@ const date = useFormattedDateTime(status.createdAt)
     </StatusSpoiler>
     <div>
       <span op50 text-sm>
-        {{ date }} · {{ status.application?.name || 'Unknown client' }}
+        {{ date }} {{ status.application?.name ? `· ${status.application?.name}` : '' }}
       </span>
     </div>
     <StatusActions :status="status" border="t base" pt-2 />

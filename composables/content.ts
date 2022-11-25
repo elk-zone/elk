@@ -4,7 +4,6 @@ import { parseFragment } from 'parse5'
 import type { Component, VNode } from 'vue'
 import { Fragment, h, isVNode } from 'vue'
 import { RouterLink } from 'vue-router'
-import MarkdownIt from 'markdown-it'
 import ContentCode from '~/components/content/ContentCode.vue'
 
 type Node = DefaultTreeAdapterMap['childNode']
@@ -47,17 +46,11 @@ function handleNode(el: Element) {
   return handleBlocks(el) || handleMention(el) || el
 }
 
-const md = new MarkdownIt()
-md.renderer.rules.fence = (tokens, idx) => {
-  const token = tokens[idx]
-  return `<custom-code lang="${token.info.trim().toLowerCase() || ''}" code="${encodeURIComponent(token.content)}"></custom-code>\n`
-}
-
 export function contentToVNode(
   content: string,
   customEmojis: Record<string, Emoji> = {},
 ): VNode {
-  content = md.render(htmlToText(content)
+  content = content
     .trim()
     // handle custom emojis
     .replace(/:([\w-]+?):/g, (_, name) => {
@@ -65,7 +58,13 @@ export function contentToVNode(
       if (emoji)
         return `<img src="${emoji.url}" alt="${name}" class="custom-emoji" />`
       return `:${name}:`
-    }))
+    })
+    // handle code frames
+    .replace(/<p>(```|~~~)([\s\S]+?)\1/g, (_1, _2, raw) => {
+      const plain = htmlToText(`<p>${raw}</p>`).trim()
+      const [lang, ...rest] = plain.split(/\n/)
+      return `<custom-code lang="${lang?.trim().toLowerCase() || ''}" code="${encodeURIComponent(rest.join('\n'))}"></custom-code>`
+    })
 
   const tree = parseFragment(content)
   return h(Fragment, tree.childNodes.map(n => treeToVNode(n)))

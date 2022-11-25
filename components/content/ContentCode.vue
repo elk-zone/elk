@@ -12,11 +12,11 @@ const langMap: Record<string, string> = {
   vue: 'html',
 }
 
-const hightlighted = computed(() => {
+const highlighted = computed(() => {
   return props.lang ? highlightCode(raw, langMap[props.lang] || props.lang as any) : raw
 })
 </script>
 
 <template>
-  <pre class="code-block" v-html="hightlighted" />
+  <pre class="code-block" v-html="highlighted" />
 </template>

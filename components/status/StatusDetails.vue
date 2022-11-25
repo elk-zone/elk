@@ -22,7 +22,7 @@ const date = useFormattedDateTime(status.createdAt)
       <template #spoiler>
         {{ status.spoilerText }}
       </template>
-      <StatusBody :status="status" text-2xl />
+      <StatusBody :status="status" :with-action="false" text-2xl />
       <StatusMedia
         v-if="status.mediaAttachments?.length"
         :status="status"

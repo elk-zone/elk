@@ -4,6 +4,10 @@ definePageMeta({
 })
 
 const paginator = masto.conversations.getIterator()
+
+useHead({
+  title: 'Conversations',
+})
 </script>
 
 <template>

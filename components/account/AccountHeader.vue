@@ -53,11 +53,9 @@ function getFieldNameIcon(fieldName: string) {
     <div p4 mt--17 flex flex-col gap-6>
       <div flex justify-between>
         <div flex="~ col gap-2 1" min-w-0>
-          <div>
-            <NuxtLink :to="getAccountPath(account)">
-              <AccountAvatar :account="account" w-30 h-30 />
-            </NuxtLink>
-          </div>
+          <NuxtLink w-fit :to="getAccountPath(account)">
+            <AccountAvatar :account="account" w-30 h-30 />
+          </NuxtLink>
           <div flex flex-col>
             <ContentRichSetup font-bold text-2xl break-words :content="getDisplayName(account)" :emojis="account.emojis" />
             <p op50>
@@ -66,15 +64,11 @@ function getFieldNameIcon(fieldName: string) {
           </div>
         </div>
         <div flex gap-2 items-center>
+          <AccountMoreButton :account="account" />
           <AccountFollowButton :account="account" />
           <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
             <div rounded p2 group-hover="bg-rose/10">
               <div i-ri:bell-line />
-            </div>
-          </button>
-          <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
-            <div rounded p2 group-hover="bg-purple/10">
-              <div i-ri:more-2-fill />
             </div>
           </button> -->
         </div>

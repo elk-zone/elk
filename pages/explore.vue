@@ -1,5 +1,9 @@
 <script setup lang="ts">
 const paginator = masto.trends.getStatuses()
+
+useHead({
+  title: 'Explore',
+})
 </script>
 
 <template>

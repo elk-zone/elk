@@ -3,6 +3,12 @@ const params = useRoute().params
 const accountName = $computed(() => params.account as string)
 
 const account = await fetchAccountByName(accountName).catch(() => null)
+
+if (account) {
+  useHead({
+    title: `${account.displayName} (@${account.acct})`,
+  })
+}
 </script>
 
 <template>

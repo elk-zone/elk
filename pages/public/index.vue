@@ -1,6 +1,9 @@
 <script setup lang="ts">
-
 const paginator = masto.timelines.getPublicIterable()
+
+useHead({
+  title: 'Federated'
+})
 </script>
 
 <template>

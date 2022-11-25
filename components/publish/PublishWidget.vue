@@ -97,7 +97,7 @@ async function publish() {
     else
       await masto.statuses.update(draft.editingStatus.id, status)
 
-    draft = getDefaultDraft(inReplyToId)
+    draft = getDefaultDraft({ inReplyToId })
     isPublishDialogOpen.value = false
   }
   finally {

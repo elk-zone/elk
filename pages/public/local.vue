@@ -1,5 +1,9 @@
 <script setup lang="ts">
 const { data: timelines } = await useAsyncData('timelines-home', () => masto.timelines.fetchPublic({ local: true }).then(r => r.value))
+
+useHead({
+  title: 'Local'
+})
 </script>
 
 <template>

@@ -42,7 +42,7 @@ export function fetchAccount(id: string): Promise<Account> {
   return promise
 }
 
-export function fetchAccountByName(acct: string): Promise<Account> {
+export async function fetchAccountByName(acct: string): Promise<Account> {
   const key = `account:${acct}`
   const cached = cache.get(key)
   if (cached)

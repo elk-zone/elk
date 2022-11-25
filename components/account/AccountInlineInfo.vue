@@ -9,7 +9,7 @@ const { link = true } = defineProps<{
 
 <template>
   <NuxtLink :to="link ? getAccountPath(account) : undefined" min-w-0 flex gap-1 items-center>
-    <AccountAvatar :account="account" w-5 h-5 />
+    <AccountAvatar :account="account" w-5 h-5 hover />
     <ContentRichSetup :content="getDisplayName(account)" :emojis="account.emojis" />
   </NuxtLink>
 </template>

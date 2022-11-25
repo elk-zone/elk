@@ -1,4 +1,4 @@
-import type { Attachment, CreateStatusParams, Status } from 'masto'
+import type { Account, Attachment, CreateStatusParams, Status } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Mutable } from '~/types/utils'
 
@@ -22,12 +22,16 @@ export const currentUserDrafts = computed(() => {
   return allDrafts.value[id]
 })
 
-export function getDefaultDraft(inReplyToId?: string): Draft {
+export function getDefaultDraft({
+  status = '',
+  inReplyToId,
+  visibility = 'public',
+}: Partial<Draft['params']> = {}): Draft {
   return {
     params: {
-      status: '',
+      status,
       inReplyToId,
-      visibility: 'public',
+      visibility,
     },
     attachments: [],
   }
@@ -45,7 +49,7 @@ export function useDraft(draftKey: string, inReplyToId?: string) {
   const draft = computed({
     get() {
       if (!currentUserDrafts.value[draftKey])
-        currentUserDrafts.value[draftKey] = getDefaultDraft(inReplyToId)
+        currentUserDrafts.value[draftKey] = getDefaultDraft({ inReplyToId })
 
       return currentUserDrafts.value[draftKey]
     },
@@ -63,3 +67,14 @@ export function useDraft(draftKey: string, inReplyToId?: string) {
 }
 
 export const dialogDraft = useDraft('dialog')
+
+export function mentionUser(account: Account) {
+  openPublishDialog(getDefaultDraft({ status: `@${account.acct} ` }))
+}
+
+export function directMessageUser(account: Account) {
+  openPublishDialog(getDefaultDraft({
+    status: `@${account.acct} `,
+    visibility: 'direct',
+  }))
+}

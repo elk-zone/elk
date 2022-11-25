@@ -77,9 +77,6 @@ const toggleTranslation = async () => {
 const copyLink = async () => {
   await clipboard.copy(`${location.origin}${getStatusPath(status)}`)
 }
-const openInOriginal = () => {
-  window.open(status.url!, '_blank')
-}
 const deleteStatus = async () => {
   // TODO confirm to delete
 
@@ -112,16 +109,6 @@ function editStatus() {
   openPublishDialog({
     editingStatus: status,
     params: getParamsFromStatus(status),
-    attachments: [],
-  })
-}
-
-function mention() {
-  openPublishDialog({
-    params: {
-      ...getParamsFromStatus(status),
-      status: `@${status.account.acct} `,
-    },
     attachments: [],
   })
 }
@@ -175,16 +162,6 @@ function mention() {
       />
     </CommonTooltip>
 
-    <CommonTooltip v-if="isTranslationEnabled" placement="bottom" content="Translate">
-      <StatusActionButton
-        color="text-pink" hover="text-pink" group-hover="bg-pink/10"
-        icon="i-ri:translate"
-        :active="translation.visible"
-        :disabled="isLoading.translation"
-        @click="toggleTranslation()"
-      />
-    </CommonTooltip>
-
     <CommonDropdown placement="bottom">
       <CommonTooltip placement="bottom" content="More">
         <StatusActionButton
@@ -199,8 +176,19 @@ function mention() {
             Copy link to this post
           </CommonDropdownItem>
 
-          <CommonDropdownItem v-if="status.url" icon="i-ri:arrow-right-up-line" @click="openInOriginal">
-            Open in original site
+          <NuxtLink :to="status.url" target="_blank">
+            <CommonDropdownItem v-if="status.url" icon="i-ri:arrow-right-up-line">
+              Open in original site
+            </CommonDropdownItem>
+          </NuxtLink>
+
+          <CommonDropdownItem v-if="isTranslationEnabled && status.language !== languageCode" icon="i-ri:translate" @click="toggleTranslation">
+            <template v-if="!translation.visible">
+              Translate post
+            </template>
+            <template v-else>
+              Show untranslated
+            </template>
           </CommonDropdownItem>
 
           <template v-if="isAuthor">
@@ -233,7 +221,7 @@ function mention() {
           <template v-else>
             <CommonDropdownItem
               icon="i-ri:at-line"
-              @click="mention"
+              @click="mentionUser(status.account)"
             >
               Mention @{{ status.account.acct }}
             </CommonDropdownItem>

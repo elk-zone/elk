@@ -4,6 +4,10 @@ definePageMeta({
 })
 
 const paginator = masto.favourites.getIterator()
+
+useHead({
+  title: 'Favourites',
+})
 </script>
 
 <template>

@@ -4,6 +4,10 @@ definePageMeta({
 })
 
 const paginator = masto.bookmarks.getIterator()
+
+useHead({
+  title: 'Bookmarks',
+})
 </script>
 
 <template>

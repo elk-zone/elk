@@ -1,3 +1,5 @@
+import { isCI } from 'std-env'
+
 export default defineNuxtConfig({
   ssr: false,
   modules: [
@@ -6,7 +8,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vue-macros/nuxt',
     '~/modules/purge-comments',
-    '~/modules/setup-components',
+    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
   ],
   experimental: {
     reactivityTransform: true,
@@ -32,6 +34,15 @@ export default defineNuxtConfig({
       target: 'esnext',
     },
   },
+  nitro: {
+    prerender: {
+      crawlLinks: false,
+      routes: ['/fallback'],
+    },
+  },
+  routeRules: {
+    '/fallback': { static: true, prerender: true },
+  },
   postcss: {
     plugins: {
       'postcss-nested': {},
@@ -46,6 +57,47 @@ export default defineNuxtConfig({
     },
     public: {
       translateApi: '',
+    },
+  },
+  pwa: {
+    mode: isCI ? 'production' : 'development',
+    // disabled on deploy until ui stable
+    disable: isCI,
+    scope: '/',
+    srcDir: './service-worker',
+    filename: 'sw.ts',
+    strategies: 'injectManifest',
+    injectRegister: false,
+    includeManifestIcons: false,
+    manifest: {
+      scope: '/',
+      id: '/',
+      name: 'Elk',
+      short_name: 'Elk',
+      description: 'Elk',
+      theme_color: '#ffffff',
+      icons: [
+        {
+          src: 'pwa-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+        {
+          src: 'logo.svg',
+          sizes: '250x250',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
+      ],
+    },
+    devOptions: {
+      enabled: true,
+      type: 'module',
     },
   },
 })

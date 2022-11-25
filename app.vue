@@ -1,17 +1,5 @@
 <script setup>
-import { APP_NAME } from './constants'
-
-useHead({
-  titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${import.meta.env.DEV ? ' (dev)' : ''}`,
-  link: [
-    {
-      rel: 'icon', type: 'image/svg+png', href: '/favicon.png',
-    },
-  ],
-})
-
-// eslint-disable-next-line no-unused-expressions
-isDark.value
+useHeader()
 </script>
 
 <template>
@@ -19,6 +7,7 @@ isDark.value
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
+  <PWAPrompt />
 </template>
 
 <style>

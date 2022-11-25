@@ -1,0 +1,6 @@
+// Vitest Snapshot v1
+
+exports[`rich-content > plain 1`] = `
+"Hello
+World"
+`;

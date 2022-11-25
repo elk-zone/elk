@@ -11,10 +11,13 @@
     "lint": "eslint .",
     "postinstall": "nuxi prepare",
     "prepare": "esno scripts/prepare.ts",
-    "generate": "nuxi generate"
+    "generate": "nuxi generate",
+    "test:unit": "vitest",
+    "test": "nr test:unit"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.31.0",
+    "@antfu/ni": "^0.18.8",
     "@iconify-json/carbon": "^1.1.11",
     "@iconify-json/logos": "^1.1.19",
     "@iconify-json/ri": "^1.1.4",
@@ -25,6 +28,7 @@
     "@types/sanitize-html": "^2.6.2",
     "@types/wicg-file-system-access": "^2020.9.5",
     "@unocss/nuxt": "^0.46.5",
+    "@vitejs/plugin-vue": "^3.2.0",
     "@vue-macros/nuxt": "^0.1.1",
     "@vueuse/nuxt": "^9.6.0",
     "blurhash": "^2.0.4",
@@ -46,6 +50,7 @@
     "shiki": "^0.11.1",
     "theme-vitesse": "^0.6.0",
     "typescript": "^4.9.3",
-    "ufo": "^1.0.0"
+    "ufo": "^1.0.0",
+    "vitest": "^0.25.3"
   }
 }

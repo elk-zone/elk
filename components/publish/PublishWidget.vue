@@ -2,6 +2,7 @@
 import type { CreateStatusParams, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
+import { EditorContent } from '@tiptap/vue-3'
 
 const {
   draftKey,
@@ -15,9 +16,18 @@ const {
   expanded?: boolean
 }>()
 
-const expanded = $ref(_expanded)
+let isExpanded = $ref(_expanded)
 let isSending = $ref(false)
 let { draft } = $(useDraft(draftKey, inReplyToId))
+
+const { editor } = useTiptap({
+  content: toRef(draft.params, 'status'),
+  placeholder,
+  autofocus: isExpanded,
+  onSubimit: publish,
+  onFocus() { isExpanded = true },
+  onPaste: handlePaste,
+})
 
 const status = $computed(() => {
   return {
@@ -87,11 +97,16 @@ function chooseVisibility(visibility: StatusVisibility) {
 }
 
 async function publish() {
+  if (process.dev) {
+    alert(JSON.stringify(draft.params, null, 2))
+    return
+  }
   try {
     isSending = true
     if (!draft.editingStatus)
       await masto.statuses.create(status)
-    else await masto.statuses.update(draft.editingStatus.id, status)
+    else
+      await masto.statuses.update(draft.editingStatus.id, status)
 
     draft = getDefaultDraft({ inReplyToId })
     isPublishDialogOpen.value = false
@@ -111,6 +126,7 @@ async function onDrop(files: File[] | null) {
 const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
 onUnmounted(() => {
+  // Remove draft if it's empty
   if (!draft.attachments.length && !draft.params.status) {
     nextTick(() => {
       delete currentUserDrafts.value[draftKey]
@@ -138,7 +154,7 @@ onUnmounted(() => {
       <div
         ref="dropZoneRef"
         flex flex-col gap-3 flex-1
-        border="2 dashed transparent" p-1
+        border="2 dashed transparent"
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
         <div v-if="draft.params.sensitive">
@@ -151,22 +167,17 @@ onUnmounted(() => {
           >
         </div>
 
-        <textarea
-          v-model="draft.params.status"
-          :placeholder="placeholder"
-          h-80px
-          :class="expanded ? '!h-200px' : ''"
-          p2 border-rounded w-full bg-transparent
-          transition="height"
-          outline-none border="~ base"
-          @paste="handlePaste"
-          @focus="expanded = true"
-          @keydown.esc="expanded = false"
-          @keydown.ctrl.enter="publish"
-          @keydown.meta.enter="publish"
+        <EditorContent
+          :editor="editor"
+          :class="isExpanded ? 'min-h-120px' : ''"
         />
 
-        <div flex="~ col gap-2" max-h-50vh overflow-auto>
+        <div v-if="isUploading" flex gap-1 items-center text-sm p1 text-primary>
+          <div i-ri:loader-2-fill animate-spin />
+          Uploading...
+        </div>
+
+        <div v-if="draft.attachments.length" flex="~ col gap-2" overflow-auto>
           <PublishAttachment
             v-for="(att, idx) in draft.attachments" :key="att.id"
             :attachment="att"
@@ -174,17 +185,27 @@ onUnmounted(() => {
           />
         </div>
 
-        <div v-if="isUploading" flex gap-2 justify-end items-center>
-          <div op50 i-ri:loader-2-fill animate-spin text-2xl />
-          Uploading...
-        </div>
-
-        <div flex="~ gap-2">
+        <div
+          v-if="isExpanded" flex="~ gap-2" m="l--1" pt-2
+          border="t base"
+        >
           <CommonTooltip placement="bottom" content="Add images, a video or an audio file">
             <button btn-action-icon @click="pickAttachments">
-              <div i-ri:upload-line />
+              <div i-ri:image-add-line />
             </button>
           </CommonTooltip>
+
+          <template v-if="editor">
+            <CommonTooltip placement="bottom" content="Toggle code block">
+              <button
+                btn-action-icon
+                :class="editor.isActive('codeBlock') ? 'op100' : 'op50'"
+                @click="editor?.chain().focus().toggleCodeBlock().run()"
+              >
+                <div i-ri:code-s-slash-line />
+              </button>
+            </CommonTooltip>
+          </template>
 
           <div flex-auto />
 

@@ -24,9 +24,21 @@
   background: #8886;
 }
 
+::-moz-selection { 
+  background: var(--c-bg-selection);
+}
+
+::selection {
+  background: var(--c-bg-selection);
+}
+
 /* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
 html {
   overflow-y: scroll;
+}
+
+.zen .zen-hide {
+  --at-apply: op0 hover:op100 transition duration-600;
 }
 
 .custom-emoji {
@@ -36,7 +48,7 @@ html {
   vertical-align: middle;
 }
 
-.rich-content {
+.content-rich {
   a {
     --at-apply: text-primary hover:underline hover:text-primary-active;
     .invisible {
@@ -46,7 +58,7 @@ html {
       --at-apply: truncate overflow-hidden ws-nowrap;
     }
   }
-  b {
+  b, strong {
     --at-apply: font-bold;
   }
   p {
@@ -62,6 +74,14 @@ html {
   }
 }
 
-.zen .zen-hide {
-  --at-apply: op0 hover:op100 transition duration-600;
+.content-editor {
+  --at-apply: outline-none;
+
+  pre {
+    --at-apply: font-mono bg-code rounded px3 py2;
+
+    code {
+      --at-apply: bg-transparent text-0.8rem p0;
+    }
+  }
 }

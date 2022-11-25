@@ -14,6 +14,6 @@ const emojiObject = emojisArrayToObject(props.emojis || [])
 
 export default () => h(
   'div',
-  { class: 'rich-content' },
+  { class: 'content-rich' },
   contentToVNode(props.content, emojiObject),
 )

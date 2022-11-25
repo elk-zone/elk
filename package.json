@@ -25,7 +25,7 @@
     "@types/sanitize-html": "^2.6.2",
     "@types/wicg-file-system-access": "^2020.9.5",
     "@unocss/nuxt": "^0.46.5",
-    "@vue-macros/nuxt": "^0.0.3",
+    "@vue-macros/nuxt": "^0.1.1",
     "@vueuse/nuxt": "^9.6.0",
     "blurhash": "^2.0.4",
     "browser-fs-access": "^0.31.1",

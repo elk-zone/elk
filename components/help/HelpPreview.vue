@@ -51,7 +51,7 @@ const teams: Team[] = [
     <p>
       Before that, to help boosting out development, you can sponsor our team members with the links below.
     </p>
-    <p flex="~ gap-2" mxa>
+    <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of teams" :key="team.github">
         <a :href="`https://github.com/sponsors/${team.github}`" target="_blank">
           <img :src="`https://github.com/${team.github}.png`" :alt="team.display" rounded-full w-15 h-15>

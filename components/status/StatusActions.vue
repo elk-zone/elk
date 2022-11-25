@@ -121,7 +121,7 @@ function mention() {
 </script>
 
 <template>
-  <div flex justify-between gap-8>
+  <div flex justify-between>
     <CommonTooltip placement="bottom" content="Reply">
       <RouterLink :to="getStatusPath(status)">
         <StatusActionButton
@@ -180,11 +180,10 @@ function mention() {
 
     <CommonDropdown placement="bottom">
       <CommonTooltip placement="bottom" content="More">
-        <button flex gap-1 items-center rounded op50 hover="op100 text-purple" group>
-          <div rounded-full p2 group-hover="bg-purple/10">
-            <div i-ri:more-line />
-          </div>
-        </button>
+        <StatusActionButton
+          color="text-purple" hover="text-purple" group-hover="bg-purple/10"
+          icon="i-ri:more-line"
+        />
       </CommonTooltip>
 
       <template #popper>

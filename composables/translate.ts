@@ -10,13 +10,14 @@ export interface TranslationResponse {
 
 const config = useRuntimeConfig()
 
-export async function translateText(text: string) {
+export const languageCode = process.server ? 'en' : navigator.language.replace(/-.*$/, '')
+export async function translateText(text: string, from?: string | null, to?: string) {
   const { translatedText } = await $fetch<TranslationResponse>(config.public.translateApi, {
     method: 'POST',
     body: {
       q: text,
-      source: 'auto',
-      target: navigator.language.replace(/-.*$/, ''),
+      source: from ?? 'auto',
+      target: to ?? languageCode,
       format: 'html',
       api_key: '',
     },
@@ -34,7 +35,7 @@ export function useTranslation(status: Status) {
 
   async function toggle() {
     if (!translation.text)
-      translation.text = await translateText(status.content)
+      translation.text = await translateText(status.content, status.language)
 
     translation.visible = !translation.visible
   }
@@ -45,3 +46,4 @@ export function useTranslation(status: Status) {
     translation,
   }
 }
+

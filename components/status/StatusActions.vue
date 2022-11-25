@@ -175,16 +175,6 @@ function mention() {
       />
     </CommonTooltip>
 
-    <CommonTooltip v-if="isTranslationEnabled" placement="bottom" content="Translate">
-      <StatusActionButton
-        color="text-pink" hover="text-pink" group-hover="bg-pink/10"
-        icon="i-ri:translate"
-        :active="translation.visible"
-        :disabled="isLoading.translation"
-        @click="toggleTranslation()"
-      />
-    </CommonTooltip>
-
     <CommonDropdown placement="bottom">
       <CommonTooltip placement="bottom" content="More">
         <StatusActionButton
@@ -201,6 +191,15 @@ function mention() {
 
           <CommonDropdownItem v-if="status.url" icon="i-ri:arrow-right-up-line" @click="openInOriginal">
             Open in original site
+          </CommonDropdownItem>
+
+          <CommonDropdownItem v-if="isTranslationEnabled && status.language !== languageCode" icon="i-ri:translate" @click="toggleTranslation">
+            <template v-if="!translation.visible">
+              Translate post
+            </template>
+            <template v-else>
+              Show original post
+            </template>
           </CommonDropdownItem>
 
           <template v-if="isAuthor">

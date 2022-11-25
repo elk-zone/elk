@@ -9,7 +9,7 @@ const { translation } = useTranslation(status)
 
 <template>
   <div class="status-body" whitespace-pre-wrap break-words>
-    <ContentRichSetup
+    <ContentRich
       :content="translation.visible ? translation.text : status.content"
       :emojis="status.emojis"
     />

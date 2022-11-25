@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     'floating-vue/dist/style.css',
     '~/styles/vars.css',
     '~/styles/global.css',
+    '~/styles/tiptap.css',
     '~/styles/dropdown.css',
   ],
   alias: {

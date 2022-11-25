@@ -29,6 +29,10 @@ html {
   overflow-y: scroll;
 }
 
+.zen .zen-hide {
+  --at-apply: op0 hover:op100 transition duration-600;
+}
+
 .custom-emoji {
   display: inline-block;
   max-height: 1.2em;
@@ -36,7 +40,7 @@ html {
   vertical-align: middle;
 }
 
-.rich-content {
+.content-rich {
   a {
     --at-apply: text-primary hover:underline hover:text-primary-active;
     .invisible {
@@ -46,7 +50,7 @@ html {
       --at-apply: truncate overflow-hidden ws-nowrap;
     }
   }
-  b {
+  b, strong {
     --at-apply: font-bold;
   }
   p {
@@ -62,6 +66,6 @@ html {
   }
 }
 
-.zen .zen-hide {
-  --at-apply: op0 hover:op100 transition duration-600;
+.content-editor {
+  --at-apply: outline-none;
 }

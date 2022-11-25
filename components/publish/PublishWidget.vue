@@ -2,6 +2,7 @@
 import type { CreateStatusParams, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
+import { EditorContent } from '@tiptap/vue-3'
 
 const {
   draftKey,
@@ -18,6 +19,8 @@ const {
 const expanded = $ref(_expanded)
 let isSending = $ref(false)
 let { draft } = $(useDraft(draftKey, inReplyToId))
+
+const { editor } = useTiptap(toRef(draft.params, 'status'), placeholder)
 
 const status = $computed(() => {
   return {
@@ -83,11 +86,16 @@ function chooseVisibility(visibility: StatusVisibility) {
 }
 
 async function publish() {
+  if (process.dev) {
+    alert(JSON.stringify(draft.params, null, 2))
+    return
+  }
   try {
     isSending = true
     if (!draft.editingStatus)
       await masto.statuses.create(status)
-    else await masto.statuses.update(draft.editingStatus.id, status)
+    else
+      await masto.statuses.update(draft.editingStatus.id, status)
 
     draft = getDefaultDraft(inReplyToId)
     isPublishDialogOpen.value = false
@@ -107,6 +115,7 @@ async function onDrop(files: File[] | null) {
 const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
 onUnmounted(() => {
+  // Remove draft if it's empty
   if (!draft.attachments.length && !draft.params.status) {
     nextTick(() => {
       delete currentUserDrafts.value[draftKey]
@@ -134,10 +143,11 @@ onUnmounted(() => {
       <div
         ref="dropZoneRef"
         flex flex-col gap-3 flex-1
-        border="2 dashed transparent" p-1
+        border="2 dashed transparent"
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
-        <textarea
+        <EditorContent :editor="editor" />
+        <!-- <textarea
           v-model="draft.params.status"
           :placeholder="placeholder"
           h-80px
@@ -150,7 +160,7 @@ onUnmounted(() => {
           @keydown.esc="expanded = false"
           @keydown.ctrl.enter="publish"
           @keydown.meta.enter="publish"
-        />
+        /> -->
 
         <div flex="~ col gap-2" max-h-50vh overflow-auto>
           <PublishAttachment

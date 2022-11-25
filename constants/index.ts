@@ -4,6 +4,8 @@ export const HOST_DOMAIN = process.dev
   ? 'http://localhost:3000'
   : 'https://elk.zone'
 
+export const POST_CHARS_LIMIT = 500
+
 export const DEFAULT_SERVER = 'mas.to'
 
 export const STORAGE_KEY_DRAFTS = 'elk-drafts'

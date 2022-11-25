@@ -4,7 +4,7 @@ import { APP_NAME } from '~/constants'
 
 export function useHeader() {
   const head: Head = {
-    title: APP_NAME,
+    titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${import.meta.env.DEV ? ' (dev)' : ''}`,
     link: [
       {
         rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg',

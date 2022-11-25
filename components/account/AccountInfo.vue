@@ -13,7 +13,7 @@ const accountHandle = $(useAccountHandle(account, fullServer))
 
 <template>
   <div flex gap-3 cursor-default>
-    <div>
+    <div flex-shrink-0>
       <NuxtLink :to="link ? getAccountPath(account) : null">
         <AccountAvatar :account="account" :hover="hover" w-12 h-12 />
       </NuxtLink>

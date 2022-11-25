@@ -14,7 +14,7 @@ defineOptions({
 <template>
   <div v-if="hover" relative flex-shrink-0>
     <div group>
-      <AccountHoverCard top="-3.2" left="-4.4" absolute :account="account" op0 pointer-events-none group-hover="pointer-events-auto op100 scale-100" delay-250 transition transform scale-20 class="ease-[cubic-bezier(0.4, 0.0, 0.2, 1)]" />
+      <AccountHoverCard top="-3.2" left="-4.4" absolute :account="account" op0 pointer-events-none group-hover="pointer-events-auto op100 scale-100" font-normal delay-250 transition transform scale-20 class="ease-[cubic-bezier(0.4, 0.0, 0.2, 1)]" />
       <AccountAvatarImage :account="account" v-bind="$attrs" />
     </div>
   </div>

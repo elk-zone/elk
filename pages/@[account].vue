@@ -4,11 +4,12 @@ const accountName = $computed(() => toShortHandle(params.account as string))
 
 const account = await fetchAccountByName(accountName).catch(() => null)
 
-if (account) {
-  useHead({
-    title: `${account.displayName} (@${account.acct})`,
-  })
-}
+const title = $computed(() =>
+   `${(account?.displayName ?? '').replace(/\:\w+\:/g, '')} (@${account?.acct})`,
+)
+
+if (account)
+  useHead({ title })
 </script>
 
 <template>

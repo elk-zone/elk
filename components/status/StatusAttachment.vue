@@ -54,7 +54,6 @@ const aspectRatio = computed(() => {
       <source :src="attachment.url || attachment.previewUrl" type="audio/mp3">
     </audio>
   </template>
-  <!-- Image or "unknown" fallback -->
   <template v-else>
     <CommonBlurhash
       :blurhash="attachment.blurhash"

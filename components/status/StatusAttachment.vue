@@ -22,20 +22,7 @@ const aspectRatio = computed(() => {
 </script>
 
 <template>
-  <template v-if="attachment.type === 'image' ">
-    <CommonBlurhash
-      :blurhash="attachment.blurhash"
-      class="status-attachment-image"
-      :src="attachment.url || attachment.previewUrl!"
-      :alt="attachment.description!"
-      :style="{
-        aspectRatio,
-      }"
-      border="~ base"
-      object-cover rounded-lg
-    />
-  </template>
-  <template v-else-if="attachment.type === 'video'">
+  <template v-if="attachment.type === 'video'">
     <video
       :poster="attachment.previewUrl"
       controls
@@ -67,11 +54,18 @@ const aspectRatio = computed(() => {
       <source :src="attachment.url || attachment.previewUrl" type="audio/mp3">
     </audio>
   </template>
+  <!-- Image or "unknown" fallback -->
   <template v-else>
-    <div>
-      TODO:
-      <pre>{{ attachment }}
-      </pre>
-    </div>
+    <CommonBlurhash
+      :blurhash="attachment.blurhash"
+      class="status-attachment-image"
+      :src="attachment.url || attachment.previewUrl!"
+      :alt="attachment.description!"
+      :style="{
+        aspectRatio,
+      }"
+      border="~ base"
+      object-cover rounded-lg
+    />
   </template>
 </template>

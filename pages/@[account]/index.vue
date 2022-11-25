@@ -1,8 +1,4 @@
 <script setup lang="ts">
-const props = defineProps<{
-  modelValue?: boolean
-}>()
-
 const params = useRoute().params
 const accountName = $computed(() => params.account as string)
 
@@ -12,11 +8,11 @@ const tabNames = ['Posts', 'Posts and replies'] as const
 // Don't use local storage because it is better to default to Posts every time you visit a user's profile.
 const tab = $ref('Posts')
 
-const paginator1 = masto.accounts.getStatusesIterable(account.id, { excludeReplies: true })
-const paginator2 = masto.accounts.getStatusesIterable(account.id, { excludeReplies: false })
+const paginatorPosts = masto.accounts.getStatusesIterable(account.id, { excludeReplies: true })
+const paginatorPostsWithReply = masto.accounts.getStatusesIterable(account.id, { excludeReplies: false })
 
 const paginator = $computed(() => {
-  return tab === 'Posts' ? paginator1 : paginator2
+  return tab === 'Posts' ? paginatorPosts : paginatorPostsWithReply
 })
 </script>
 

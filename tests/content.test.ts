@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { contentToVNode } from '~/composables/content'
 
-async function render(content: string, emojis?: Record<string, Emoji[]>) {
+async function render(content: string, emojis?: Record<string, Emoji>) {
   const vnode = contentToVNode(content, emojis)
   const html = (await renderToString(vnode))
     .replace(/<!--[\[\]]-->/g, '')

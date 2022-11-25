@@ -77,7 +77,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
       </div>
     </div>
     <div flex gap-4>
-      <AccountAvatar mt1 w-12 h-12 :account="status.account" hover />
+      <AccountAvatar w-12 h-12 :account="status.account" hover />
       <div flex="~ col 1" min-w-0>
         <div flex>
           <StatusAccountDetails :account="status.account" />

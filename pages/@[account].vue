@@ -5,7 +5,7 @@ const accountName = $computed(() => toShortHandle(params.account as string))
 const account = await fetchAccountByName(accountName).catch(() => null)
 
 const title = $computed(() =>
-   `${(account?.displayName ?? '').replace(/\:\w+\:/g, '')} (@${account?.acct})`,
+   `${account?.displayName?.replace(/\:\w+\:/g, '') ?? ''} (@${account?.acct})`,
 )
 
 if (account)

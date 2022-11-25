@@ -22,7 +22,7 @@ defineProps<{
         {{ account.followersCount }} Followers
       </NuxtLink>
     </div>
-    <ContentRich text-4 text-gray :content="account.note" :emojis="account.emojis" />
+    <ContentRichSetup text-4 text-gray :content="account.note" :emojis="account.emojis" />
   </div>
 </template>
 

@@ -66,6 +66,10 @@ async function pickAttachments() {
   await uploadAttachments(files)
 }
 
+async function toggleSensitive() {
+  draft.params.sensitive = !draft.params.sensitive
+}
+
 async function uploadAttachments(files: File[]) {
   isUploading = true
   for (const file of files) {
@@ -146,7 +150,18 @@ onUnmounted(() => {
         border="2 dashed transparent"
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
+        <div v-if="draft.params.sensitive">
+          <input
+            v-model="draft.params.spoilerText"
+            type="text"
+            placeholder="Write your warning here"
+            p2 border-rounded w-full bg-transparent
+            outline-none border="~ base"
+          >
+        </div>
+
         <EditorContent :editor="editor" />
+
         <!-- <textarea
           v-model="draft.params.status"
           :placeholder="placeholder"
@@ -195,6 +210,13 @@ onUnmounted(() => {
           </template>
 
           <div flex-auto />
+
+          <CommonTooltip placement="bottom" content="Add content warning">
+            <button btn-action-icon @click="toggleSensitive">
+              <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
+              <div v-else i-ri:alarm-warning-line />
+            </button>
+          </CommonTooltip>
 
           <CommonDropdown>
             <button btn-action-icon w-12>

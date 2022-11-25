@@ -24,7 +24,7 @@
         </div>
       </div>
       <NavBottom md:hidden />
-      <div class="w-full md:w-2/4 min-h-screen" border="l r base">
+      <div class="w-full mb14 md:(w-2/4 mb0) min-h-screen" border="l r base">
         <slot />
       </div>
       <div class="hidden md:block w-1/4 zen-hide">

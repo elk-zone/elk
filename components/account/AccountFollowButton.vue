@@ -35,12 +35,12 @@ async function toggleFollow() {
           <span hidden group-hover="inline">Follow</span>
         </template>
       </div>
-      <div rounded-r p2 w-10 h-10 flex justify-center items-center :group-hover="relationship?.following ? 'bg-white/10' : 'bg-white/10'" :class="!relationship?.following ? relationship?.followedBy ? 'bg-white/10' : 'bg-white/10' : relationship?.followedBy ? ' bg-white/10' : 'bg-white/10'">
+      <div rounded-r p2 w-11 h-10 flex justify-center items-center :group-hover="relationship?.following ? 'bg-white/10' : 'bg-white/10'" :class="!relationship?.following ? relationship?.followedBy ? 'bg-white/10' : 'bg-white/10' : relationship?.followedBy ? ' bg-white/10' : 'bg-white/10'">
         <template v-if="relationship?.following" >
-          <div i-ri:user-unfollow-fill class="color-red/60" group-hover="color-red/85" />
+          <div i-ri:user-unfollow-fill class="color-orange/60" group-hover="color-red/85" />
         </template>
         <template v-else>
-          <div i-ri:user-follow-fill class="color-orange/60" group-hover="color-orange/85"/>
+          <div i-ri:user-follow-fill group-hover="color-orange/85"/>
         </template>
       </div>
     </button>

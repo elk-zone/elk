@@ -89,7 +89,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
             </time>
           </CommonTooltip>
           <CommonTooltip v-if="status.editedAt" :content="`Edited ${editedAt}`">
-            <span text-sm op50 :title="status.editedAt" underline decoration-dashed>&nbsp;*</span>
+            <time text-sm op50 :title="status.editedAt" :datetime="status.editedAt" underline decoration-dashed>&nbsp;*</time>
           </CommonTooltip>
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />

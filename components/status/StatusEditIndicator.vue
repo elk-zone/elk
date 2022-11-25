@@ -6,6 +6,6 @@ const editedAt = useFormattedDateTime(props.editedAt)
 
 <template>
   <CommonTooltip :content="`Edited ${editedAt}`">
-    <time text-sm op50 :title="props.editedAt" :datetime="props.editedAt" underline decoration-dashed>&nbsp;*</time>
+    <time :title="props.editedAt" :datetime="props.editedAt" underline decoration-dashed>&nbsp;*</time>
   </CommonTooltip>
 </template>

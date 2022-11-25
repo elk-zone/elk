@@ -4,21 +4,11 @@
       <div class="hidden md:block w-1/4 zen-hide" relative>
         <div sticky top-0 h-screen flex="~ col">
           <slot name="left">
-            <NavTitle p5 />
-            <div border="t base" flex="~ col" overflow-y-auto>
-              <NavSide border="b base" />
+            <NavTitle px6 pt6 pb4 />
+            <div flex="~ col" overflow-y-auto>
+              <NavSide />
               <PublishButton v-if="currentUser" m5 />
               <div flex-auto />
-              <AccountInfo
-                v-if="currentUser"
-                tabindex="0"
-                m5 p2 rounded-full
-                hover:bg-active cursor-pointer transition-100
-                :account="currentUser?.account"
-                :link="false"
-                @keydown.enter="openUserSwitcher"
-                @click="openUserSwitcher"
-              />
             </div>
           </slot>
         </div>
@@ -31,6 +21,16 @@
         <div sticky top-0 h-screen flex="~ col">
           <slot name="right">
             <UserSignInEntry v-if="!currentUser" />
+            <AccountInfo
+              v-if="currentUser"
+              tabindex="0"
+              m5 p2 rounded-full
+              hover:bg-active cursor-pointer transition-100
+              :account="currentUser?.account"
+              :link="false"
+              @keydown.enter="openUserSwitcher"
+              @click="openUserSwitcher"
+            />
             <div flex-auto />
             <NavFooter />
           </slot>

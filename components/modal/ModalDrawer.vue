@@ -56,7 +56,7 @@ watchOnce(modelValue, () => {
       @click="modelValue = false"
     />
     <div
-      bg-base border border-base absolute transition-all duration-200 ease-out
+      bg-base border-base absolute transition-all duration-200 ease-out
       :class="positionClass"
       :style="modelValue ? {} : { transform }"
     >

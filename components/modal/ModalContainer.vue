@@ -3,8 +3,8 @@ import { isPreviewHelpOpen, isPublishDialogOpen, isSigninDialogOpen, isUserSwitc
 </script>
 
 <template>
-  <ModalDrawer v-model="isUserSwitcherOpen">
-    <UserSwitcher />
+  <ModalDrawer v-model="isUserSwitcherOpen" direction="right">
+    <UserSwitcher min-w-100 />
   </ModalDrawer>
   <ModalDialog v-model="isSigninDialogOpen">
     <UserSignIn m6 />

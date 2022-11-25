@@ -9,6 +9,7 @@ specifiers:
   '@iconify-json/twemoji': ^1.1.6
   '@pinia/nuxt': ^0.4.5
   '@tiptap/extension-character-count': 2.0.0-beta.203
+  '@tiptap/extension-code-block': 2.0.0-beta.203
   '@tiptap/extension-mention': 2.0.0-beta.203
   '@tiptap/extension-paragraph': 2.0.0-beta.203
   '@tiptap/extension-placeholder': 2.0.0-beta.203
@@ -59,6 +60,7 @@ devDependencies:
   '@iconify-json/twemoji': 1.1.6
   '@pinia/nuxt': 0.4.5_typescript@4.9.3
   '@tiptap/extension-character-count': 2.0.0-beta.203
+  '@tiptap/extension-code-block': 2.0.0-beta.203
   '@tiptap/extension-mention': 2.0.0-beta.203_66kmopqpbsmmkalw2shrvalvci
   '@tiptap/extension-paragraph': 2.0.0-beta.203
   '@tiptap/extension-placeholder': 2.0.0-beta.203
@@ -1140,6 +1142,14 @@ packages:
       '@tiptap/core': ^2.0.0-beta.193
     dependencies:
       prosemirror-model: 1.18.3
+      prosemirror-state: 1.4.2
+    dev: true
+
+  /@tiptap/extension-code-block/2.0.0-beta.203:
+    resolution: {integrity: sha512-wXN1POlJBA9NG0eTKRGoBQFX40+TQUvfYi3i1mDk47sNdtbITJIFR3WRkljqSWrFbKdLFKPADUaQ+k6f2KZm/w==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.0-beta.193
+    dependencies:
       prosemirror-state: 1.4.2
     dev: true
 

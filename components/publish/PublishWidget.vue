@@ -86,10 +86,10 @@ function chooseVisibility(visibility: StatusVisibility) {
 }
 
 async function publish() {
-  if (process.dev) {
-    alert(JSON.stringify(draft.params, null, 2))
-    return
-  }
+  // if (process.dev) {
+  //   alert(JSON.stringify(draft.params, null, 2))
+  //   return
+  // }
   try {
     isSending = true
     if (!draft.editingStatus)
@@ -178,9 +178,21 @@ onUnmounted(() => {
         <div flex="~ gap-2">
           <CommonTooltip placement="bottom" content="Add images, a video or an audio file">
             <button btn-action-icon @click="pickAttachments">
-              <div i-ri:upload-line />
+              <div i-ri:image-add-line />
             </button>
           </CommonTooltip>
+
+          <template v-if="editor">
+            <CommonTooltip placement="bottom" content="Toggle code block">
+              <button
+                btn-action-icon
+                :class="editor.isActive('codeBlock') ? 'op100' : 'op50'"
+                @click="editor?.chain().focus().toggleCodeBlock().run()"
+              >
+                <div i-ri:code-s-slash-line />
+              </button>
+            </CommonTooltip>
+          </template>
 
           <div flex-auto />
 

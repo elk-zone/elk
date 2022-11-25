@@ -68,4 +68,12 @@ html {
 
 .content-editor {
   --at-apply: outline-none;
+
+  pre {
+    --at-apply: font-mono bg-code rounded px3 py2;
+
+    code {
+      --at-apply: bg-transparent text-0.8rem p0;
+    }
+  }
 }

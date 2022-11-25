@@ -4,6 +4,7 @@ import Document from '@tiptap/extension-document'
 import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
 import Mention from '@tiptap/extension-mention'
+import CodeBlock from '@tiptap/extension-code-block'
 import type { Ref } from 'vue'
 
 import CharacterCount from '@tiptap/extension-character-count'
@@ -34,6 +35,7 @@ export function useTiptap(content: Ref<string | undefined>, placeholder?: string
       CharacterCount.configure({
         limit: POST_CHARS_LIMIT,
       }),
+      CodeBlock,
     ],
     onUpdate({ editor }) {
       content.value = editor.getHTML()

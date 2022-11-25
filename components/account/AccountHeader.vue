@@ -59,7 +59,7 @@ function getFieldNameIcon(fieldName: string) {
             </NuxtLink>
           </div>
           <div flex flex-col>
-            <ContentRich font-bold text-2xl :content="getDisplayName(account)" :emojis="account.emojis" />
+            <ContentRichSetup font-bold text-2xl :content="getDisplayName(account)" :emojis="account.emojis" />
             <p op50>
               {{ getAccountHandle(account) }}
             </p>

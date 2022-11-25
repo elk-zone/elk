@@ -18,7 +18,7 @@ const accountHandle = $(useAccountHandle(account, fullServer))
       </NuxtLink>
     </div>
     <NuxtLink flex flex-col :to="link ? getAccountPath(account) : null">
-      <ContentRich font-bold :content="getDisplayName(account)" :emojis="account.emojis" />
+      <ContentRichSetup font-bold :content="getDisplayName(account)" :emojis="account.emojis" />
       <p op35 text-sm>
         {{ accountHandle }}
       </p>

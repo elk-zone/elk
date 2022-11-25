@@ -10,7 +10,6 @@ import { Plugin } from 'prosemirror-state'
 
 import type { Ref } from 'vue'
 import { HashSuggestion, MentionSuggestion } from './tiptap/suggestion'
-import { POST_CHARS_LIMIT } from '~/constants'
 
 export interface UseTiptapOptions {
   content: Ref<string | undefined>
@@ -44,7 +43,7 @@ export function useTiptap(options: UseTiptapOptions) {
         placeholder,
       }),
       CharacterCount.configure({
-        limit: POST_CHARS_LIMIT,
+        limit: characterLimit.value,
       }),
       CodeBlock,
       Extension.create({

@@ -4,10 +4,10 @@ export const HOST_DOMAIN = process.dev
   ? 'http://localhost:3000'
   : 'https://elk.zone'
 
-export const POST_CHARS_LIMIT = 500
-
+export const DEFAULT_POST_CHARS_LIMIT = 500
 export const DEFAULT_SERVER = 'mas.to'
 
+export const STORAGE_KEY_SERVER = 'elk-current-server'
 export const STORAGE_KEY_DRAFTS = 'elk-drafts'
 export const STORAGE_KEY_USERS = 'elk-users'
 export const STORAGE_KEY_CURRENT_USER = 'elk-current-user'

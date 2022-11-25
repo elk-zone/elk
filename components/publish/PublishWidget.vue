@@ -3,7 +3,6 @@ import type { CreateStatusParams, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
-import { POST_CHARS_LIMIT } from '~~/constants'
 
 const {
   draftKey,
@@ -174,7 +173,7 @@ onUnmounted(() => {
             :class="isExpanded ? 'min-h-120px' : ''"
           />
           <div v-if="isExpanded" absolute right-0 bottom-0 pointer-events-none text-sm op25>
-            {{ POST_CHARS_LIMIT - editor?.storage.characterCount.characters() }}
+            {{ characterLimit - editor?.storage.characterCount.characters() }}
           </div>
         </div>
 

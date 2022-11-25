@@ -1,7 +1,7 @@
-import type { AccountCredentials } from 'masto'
 import { login as loginMasto } from 'masto'
+import type { AccountCredentials, Instance } from 'masto'
 import type { UserLogin } from '~/types'
-import { DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_USERS } from '~/constants'
+import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVER, STORAGE_KEY_USERS } from '~/constants'
 
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, [], { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, '')
@@ -21,6 +21,10 @@ export const currentServer = computed<string>(() => currentUser.value?.server ||
 
 export const useUsers = () => users
 
+export const currentInstance = useLocalStorage<Partial<Instance>>(STORAGE_KEY_SERVER, {}, { deep: true })
+
+export const characterLimit = computed(() => currentInstance.value.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
+
 export async function loginTo(user: UserLogin & { account?: AccountCredentials }) {
   const existing = users.value.findIndex(u => u.server === user.server && u.token === user.token)
   if (existing !== -1) {
@@ -37,6 +41,7 @@ export async function loginTo(user: UserLogin & { account?: AccountCredentials }
   })
   const me = await masto.accounts.verifyCredentials()
   user.account = me
+  currentInstance.value = await masto.instances.fetch()
 
   users.value.push(user)
   currentUserId.value = me.id

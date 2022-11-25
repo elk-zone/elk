@@ -22,6 +22,7 @@ const isLoading = $ref({
   favourited: false,
   bookmarked: false,
   pinned: false,
+  translation: false,
 })
 async function toggleStatusAction(action: 'reblogged' | 'favourited' | 'bookmarked' | 'pinned', newStatus: Promise<Status>) {
   // Optimistic update
@@ -58,6 +59,13 @@ const togglePin = async () => toggleStatusAction(
   'pinned',
   masto.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
 )
+
+const { toggle: _toggleTranslation, translation, enabled: isTranslationEnabled } = useTranslation(_status)
+const toggleTranslation = async () => {
+  isLoading.translation = true
+  await _toggleTranslation()
+  isLoading.translation = false
+}
 
 const copyLink = async () => {
   await clipboard.copy(`${location.origin}${getStatusPath(status)}`)
@@ -157,6 +165,16 @@ function mention() {
         :active="status.bookmarked"
         :disabled="isLoading.bookmarked"
         @click="toggleBookmark()"
+      />
+    </CommonTooltip>
+
+    <CommonTooltip v-if="isTranslationEnabled" placement="bottom" content="Translate">
+      <StatusActionButton
+        color="text-pink" hover="text-pink" group-hover="bg-pink/10"
+        icon="i-ri:translate"
+        :active="translation.visible"
+        :disabled="isLoading.translation"
+        @click="toggleTranslation()"
       />
     </CommonTooltip>
 

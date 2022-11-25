@@ -40,5 +40,8 @@ export default defineNuxtConfig({
       namespaceId: '',
       apiToken: '',
     },
+    public: {
+      translateApi: '',
+    },
   },
 })

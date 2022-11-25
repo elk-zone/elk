@@ -134,7 +134,8 @@ onUnmounted(() => {
       <div
         ref="dropZoneRef"
         flex flex-col gap-3 flex-1
-        :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? 'border-2 border-dashed border-primary' : '']"
+        border="2 dashed transparent" p-1
+        :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
         <textarea
           v-model="draft.params.status"

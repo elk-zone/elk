@@ -43,19 +43,27 @@ function getFieldNameIcon(fieldName: string) {
   if (fieldNameIcons[name])
     return fieldNameIcons[name]
 }
+
+function previewHeader() {
+  openImagePreviewDialog({ src: account.header, alt: `${account.username}'s profile header` })
+}
+
+function previewAvatar() {
+  openImagePreviewDialog({ src: account.avatar, alt: account.username })
+}
 </script>
 
 <template>
   <div flex flex-col>
-    <div border="b base">
-      <img h-50 w-full object-cover :src="account.header">
-    </div>
+    <button border="b base" z-1>
+      <img h-50 w-full object-cover :src="account.header" @click="previewHeader">
+    </button>
     <div p4 mt--17 flex flex-col gap-6>
       <div flex justify-between>
-        <div flex="~ col gap-2 1" min-w-0>
-          <NuxtLink w-fit :to="getAccountPath(account)">
-            <AccountAvatar :account="account" w-30 h-30 />
-          </NuxtLink>
+        <div flex="~ col gap-2 1">
+          <button w-30 h-30 rounded-full bg-black z-2 @click="previewAvatar">
+            <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
+          </button>
           <div flex flex-col>
             <ContentRich font-bold text-2xl break-words :content="getDisplayName(account)" :emojis="account.emojis" />
             <p op50>

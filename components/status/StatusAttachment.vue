@@ -64,7 +64,12 @@ const aspectRatio = computed(() => {
         aspectRatio,
       }"
       border="~ base"
-      object-cover rounded-lg
+      object-cover
+      rounded-lg
+      @click="openImagePreviewDialog({
+        src: attachment.url || attachment.previewUrl!,
+        alt: attachment.description!,
+      })"
     />
   </template>
 </template>

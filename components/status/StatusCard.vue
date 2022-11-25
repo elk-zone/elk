@@ -34,7 +34,6 @@ function go() {
 }
 
 const createdAt = useFormattedDateTime(status.createdAt)
-const editedAt = useFormattedDateTime(status.editedAt ?? '')
 const timeago = useTimeAgo(() => status.createdAt, {
   showSecond: true,
   messages: {
@@ -88,9 +87,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
               {{ timeago }}
             </time>
           </CommonTooltip>
-          <CommonTooltip v-if="status.editedAt" :content="`Edited ${editedAt}`">
-            <time text-sm op50 :title="status.editedAt" :datetime="status.editedAt" underline decoration-dashed>&nbsp;*</time>
-          </CommonTooltip>
+          <StatusEditIndicator v-if="status.editedAt" :edited-at="status.editedAt" />
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div>

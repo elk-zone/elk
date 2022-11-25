@@ -5,7 +5,6 @@ const route = useRoute()
 const id = $computed(() => route.params.status as string)
 const main = ref<Component | null>(null)
 
-console.log(window.history.state?.status)
 const status = window.history.state?.status ?? await fetchStatus(id)
 const { data: context } = useAsyncData(`context:${id}`, () => masto.statuses.fetchContext(id))
 </script>

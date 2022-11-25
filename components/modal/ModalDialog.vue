@@ -23,7 +23,7 @@ watchOnce(modelValue, () => {
     />
     <div
       class="
-        bg-base absolute transition-all duration-200 ease-out shadow rounded-md transform
+        bg-base absolute transition-all duration-200 ease-out shadow rounded-md transform ml-0
         border border-base top-1/2 -translate-y-1/2 mx-8 md:(left-1/2 -translate-x-1/2)
       "
       :class="modelValue ? 'opacity-100' : 'opacity-0'"

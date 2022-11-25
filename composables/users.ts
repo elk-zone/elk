@@ -27,9 +27,9 @@ export const currentInstance = computed<null | Instance>(() => currentUserId.val
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
 export async function loginTo(user: UserLogin & { account?: AccountCredentials }) {
-  const existing = users.value.findIndex(u => u.server === user.server && u.token === user.token)
-  if (existing !== -1) {
-    if (currentUserId.value === users.value[existing].account?.id)
+  const existing = users.value.find(u => u.server === user.server && u.token === user.token)
+  if (existing) {
+    if (currentUserId.value === existing.account?.id)
       return null
     currentUserId.value = user.account?.id
     await reloadPage()

@@ -125,7 +125,10 @@ function treeToText(input: Node): string {
     pre = '\n'
 
   if (input.nodeName === 'code') {
-    pre = '````\n'
+    const clz = input.attrs.find(attr => attr.name === 'class')
+    const lang = clz?.value.replace('language-', '')
+
+    pre = `\`\`\`${lang || ''}\n`
     post = '\n```'
   }
 

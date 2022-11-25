@@ -11,14 +11,16 @@ const { notification } = defineProps<{
     <template v-if="notification.type === 'follow'">
       <div flex ml-4 items-center>
         <div i-ri:user-follow-fill mr-3 color-primary />
-        <AccountLink :account="notification.account" mr1 /> followed you
+        <AccountInlineInfo :account="notification.account" mr1 />
+        followed you
       </div>
       <AccountCard :account="notification.account" p3 />
     </template>
     <template v-if="notification.type === 'follow_request'">
       <div flex ml-4 items-center>
         <div i-ri:user-follow-fill mr-3 />
-        <AccountLink :account="notification.account" mr1 /> requested to follow you
+        <AccountInlineInfo :account="notification.account" mr1 />
+        requested to follow you
       </div>
       <!-- TODO: accept request -->
       <AccountCard :account="notification.account" p3 />
@@ -26,14 +28,16 @@ const { notification } = defineProps<{
     <template v-if="notification.type === 'favourite'">
       <div flex ml-4 items-center>
         <div i-ri:heart-fill mr-3 color-red />
-        <AccountLink :account="notification.account" mr1 /> favourited your post
+        <AccountInlineInfo :account="notification.account" mr1 />
+        favourited your post
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>
     <template v-if="notification.type === 'reblog'">
       <div flex ml-4 items-center>
         <div i-ri:repeat-fill mr-3 color-green />
-        <AccountLink :account="notification.account" mr1 /> reblogged your post
+        <AccountInlineInfo :account="notification.account" mr1 />
+        reblogged your post
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>

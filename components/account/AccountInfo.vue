@@ -5,6 +5,7 @@ const { account, link = true, fullServer = false } = defineProps<{
   account: Account
   link?: boolean
   fullServer?: boolean
+  hover?: boolean
 }>()
 
 const accountHandle = $(useAccountHandle(account, fullServer))
@@ -14,7 +15,7 @@ const accountHandle = $(useAccountHandle(account, fullServer))
   <div flex gap-3>
     <div>
       <NuxtLink :to="link ? getAccountPath(account) : null">
-        <AccountAvatar :account="account" w-12 h-12 />
+        <AccountAvatar :account="account" :hover="hover" w-12 h-12 />
       </NuxtLink>
     </div>
     <NuxtLink flex flex-col :to="link ? getAccountPath(account) : null">

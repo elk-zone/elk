@@ -10,7 +10,7 @@ cacheAccount(account)
 
 <template>
   <div flex justify-between hover:bg-active transition-100>
-    <AccountInfo :account="account" p1 />
+    <AccountInfo :account="account" hover p1 />
     <div h-full p1>
       <AccountFollowButton :account="account" />
     </div>

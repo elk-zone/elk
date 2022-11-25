@@ -12,7 +12,7 @@ const accountHandle = $(useAccountHandle(account))
 <template>
   <NuxtLink
     :to="link ? getAccountPath(account) : undefined"
-    flex="col 1" min-w-0 md:flex="~ gap-2" md:items-center
+    flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
   >
     <ContentRichSetup font-bold break-words :content="getDisplayName(account)" :emojis="account.emojis" />
     <p op35 text-sm>

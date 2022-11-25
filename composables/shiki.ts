@@ -15,6 +15,7 @@ export function highlightCode(code: string, lang: Lang) {
             'vitesse-dark',
             'vitesse-light',
           ],
+          langs: [],
         })
       })
   }

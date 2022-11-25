@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { CreateStatusParams, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
+import { useDropZone } from '@vueuse/core'
 
 const {
   draftKey,
@@ -96,6 +97,15 @@ async function publish() {
   }
 }
 
+const dropZoneRef = ref<HTMLDivElement>()
+
+async function onDrop(files: File[] | null) {
+  if (files)
+    await uploadAttachments(files)
+}
+
+const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
+
 onUnmounted(() => {
   if (!draft.attachments.length && !draft.params.status) {
     nextTick(() => {
@@ -122,8 +132,9 @@ onUnmounted(() => {
         <AccountAvatar :account="currentUser.account" w-12 h-12 />
       </NuxtLink>
       <div
+        ref="dropZoneRef"
         flex flex-col gap-3 flex-1
-        :class="isSending ? 'pointer-events-none' : ''"
+        :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? 'border-2 border-dashed border-primary' : '']"
       >
         <textarea
           v-model="draft.params.status"

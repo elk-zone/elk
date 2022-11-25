@@ -59,7 +59,7 @@ function getFieldNameIcon(fieldName: string) {
           <div flex flex-col>
             <ContentRich font-bold text-2xl break-words :content="getDisplayName(account)" :emojis="account.emojis" />
             <p op50>
-              {{ getAccountHandle(account) }}
+              {{ getShortHandle(account) }}
             </p>
           </div>
         </div>
@@ -86,13 +86,13 @@ function getFieldNameIcon(fieldName: string) {
         </div>
       </div>
       <div flex gap-5>
-        <NuxtLink :to="`/${getAccountHandle(account)}/`" exact-active-class="text-primary">
+        <NuxtLink :to="`/${getFullHandle(account)}/`" exact-active-class="text-primary">
           <span font-bold>{{ account.statusesCount }}</span> <span op50>Posts</span>
         </NuxtLink>
-        <NuxtLink :to="`/${getAccountHandle(account)}/following`" exact-active-class="text-primary">
+        <NuxtLink :to="`/${getFullHandle(account)}/following`" exact-active-class="text-primary">
           <span font-bold>{{ account.followingCount }}</span> <span op50>Following</span>
         </NuxtLink>
-        <NuxtLink :to="`/${getAccountHandle(account)}/followers`" exact-active-class="text-primary">
+        <NuxtLink :to="`/${getFullHandle(account)}/followers`" exact-active-class="text-primary">
           <span font-bold>{{ account.followersCount }}</span> <span op50>Followers</span>
         </NuxtLink>
       </div>

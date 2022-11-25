@@ -33,12 +33,28 @@ export function getDisplayName(account: Account) {
   return account.displayName || account.username
 }
 
-export function getAccountHandle(account: Account) {
+export function getShortHandle(account: Account) {
   return `@${account.acct}`
 }
 
+export function getFullHandle(account: Account) {
+  const handle = `@${account.acct}`
+  if (!currentUser.value || account.acct.includes('@'))
+    return handle
+  return `${handle}@${account.url.match(UserLinkRE)?.[1] || currentUser.value.server}`
+}
+
+export function toShortHandle(fullHandle: string) {
+  if (!currentUser.value)
+    return fullHandle
+  const server = currentUser.value.server
+  if (fullHandle.endsWith(`@${server}`))
+    return fullHandle.slice(0, -server.length - 1)
+  return fullHandle
+}
+
 export function getAccountPath(account: Account) {
-  return `/${getAccountHandle(account)}`
+  return `/${getFullHandle(account)}`
 }
 
 export function getStatusPath(status: Status) {
@@ -46,7 +62,10 @@ export function getStatusPath(status: Status) {
 }
 
 export function useAccountHandle(account: Account, fullServer = true) {
-  return computed(() => fullServer && !account.acct.includes('@') ? `@${account.acct}@${account.url.match(UserLinkRE)?.[1]}` : getAccountHandle(account))
+  return computed(() => fullServer
+    ? getFullHandle(account)
+    : getShortHandle(account),
+  )
 }
 
 // Batch requests for relationships when used in the UI

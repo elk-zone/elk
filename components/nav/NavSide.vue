@@ -54,7 +54,7 @@
           <span>Bookmarks</span>
         </div>
       </NuxtLink>
-      <NuxtLink :to="`/@${currentUser.account?.username}`" active-class="text-primary" group>
+      <NuxtLink :to="getAccountPath(currentUser.account)" active-class="text-primary" group>
         <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 hover:bg-active>
           <AccountAvatar :account="currentUser.account" h="1.2em" />
           <span>Profile</span>

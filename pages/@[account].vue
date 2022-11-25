@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const params = useRoute().params
-const accountName = $computed(() => params.account as string)
+const accountName = $computed(() => toShortHandle(params.account as string))
 
 const account = await fetchAccountByName(accountName).catch(() => null)
 

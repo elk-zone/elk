@@ -1,11 +1,10 @@
 import { getQuery } from 'ufo'
 import { stringifyQuery } from 'vue-router'
-import { getApp } from '~/server/shared'
-import { HOST_DOMAIN } from '~/constants'
+import { HOST_DOMAIN, getApp } from '~/server/shared'
 
 export default defineEventHandler(async ({ context, req, res }) => {
   const server = context.params.server
-  const app = await getApp(server)
+  const app = await getApp(HOST_DOMAIN, server)
 
   if (!app) {
     res.statusCode = 400

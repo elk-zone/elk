@@ -11,6 +11,10 @@ import cached from './cache-driver'
 import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
 
+const runtimeConfig = useRuntimeConfig()
+export const HOST_DOMAIN = runtimeConfig.deployUrl
+  || (process.dev ? 'http://localhost:5314' : 'https://elk.zone')
+
 const fs = _fs as typeof import('unstorage/dist/drivers/fs')['default']
 const kv = _kv as typeof import('unstorage/dist/drivers/cloudflare-kv-http')['default']
 
@@ -28,16 +32,10 @@ else {
   })))
 }
 
-const KNOWN_DOMAINS = [
-  'http://localhost:5314',
-  'https://elk.netlify.app',
-  'https://elk.zone',
-]
-
-async function fetchAppInfo(server: string) {
+async function fetchAppInfo(host: string, server: string) {
   const redirect_uris = [
     'urn:ietf:wg:oauth:2.0:oob',
-    ...KNOWN_DOMAINS.map(d => `${d}/api/${server}/oauth`),
+    `${host}/api/${server}/oauth`,
   ].join('\n')
 
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
@@ -51,15 +49,15 @@ async function fetchAppInfo(server: string) {
   return app
 }
 
-const serverKey = (server: string) => `servers:${server}.json`
+const serverKey = (host: string, server: string) => `servers:${host}:${server}.json`
 
-export async function getApp(server: string) {
-  const key = serverKey(server)
+export async function getApp(host: string, server: string) {
+  const key = serverKey(host, server)
   if (await storage.hasItem(key))
     return storage.getItem(key) as Promise<AppInfo>
 
   try {
-    const appInfo = await fetchAppInfo(server)
+    const appInfo = await fetchAppInfo(host, server)
     await storage.setItem(key, appInfo)
     return appInfo
   }

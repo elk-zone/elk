@@ -38,6 +38,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    deployUrl: process.env.DEPLOY_URL,
     cloudflare: {
       accountId: '',
       namespaceId: '',

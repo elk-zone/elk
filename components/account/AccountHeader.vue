@@ -64,15 +64,11 @@ function getFieldNameIcon(fieldName: string) {
           </div>
         </div>
         <div flex gap-2 items-center>
+          <AccountMoreButton :account="account" />
           <AccountFollowButton :account="account" />
           <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
             <div rounded p2 group-hover="bg-rose/10">
               <div i-ri:bell-line />
-            </div>
-          </button>
-          <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
-            <div rounded p2 group-hover="bg-purple/10">
-              <div i-ri:more-2-fill />
             </div>
           </button> -->
         </div>

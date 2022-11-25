@@ -29,7 +29,7 @@ else {
 }
 
 const KNOWN_DOMAINS = [
-  'http://localhost:3000',
+  'http://localhost:5314',
   'https://elk.netlify.app',
   'https://elk.zone',
 ]

@@ -11,7 +11,7 @@ const account = asyncComputed(() => fetchAccount(status.inReplyToAccountId!))
 <template>
   <NuxtLink
     v-if="status.inReplyToId"
-    flex="~" items-center text-sm text-gray:85
+    flex="~ wrap" items-center text-sm text-gray:85
     :to="getStatusPath({ id: status.inReplyToId } as any)"
     :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
   >

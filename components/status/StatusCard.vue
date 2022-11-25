@@ -73,7 +73,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
 <template>
   <div ref="el" flex flex-col gap-2 px-4 transition-100 cursor-pointer :class="{ 'hover:bg-active': hover }" @click="onclick">
     <div v-if="rebloggedBy" pl8>
-      <div flex gap-1 items-center text-gray:75 text-sm>
+      <div flex="~ wrap" gap-1 items-center text-gray:75 text-sm>
         <div i-ri:repeat-fill mr-1 />
         <AccountInlineInfo font-bold :account="rebloggedBy" />
         reblogged
@@ -86,7 +86,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
           <AccountAvatar mt1 w-12 h-12 :account="status.account" />
         </div>
       </div>
-      <div flex="~ col 1" w-0>
+      <div flex="~ col 1" min-w-0>
         <div flex>
           <StatusAccountDetails :account="status.account" />
           <div flex-auto />

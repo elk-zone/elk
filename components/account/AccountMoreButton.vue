@@ -6,6 +6,8 @@ const { account } = defineProps<{
 }>()
 let relationship = $(useRelationship(account))
 
+const isSelf = $computed(() => currentUser.value?.account.id === account.id)
+
 const mute = async () => {
   // TODO: Add confirmation
 
@@ -52,26 +54,28 @@ const unblock = async () => {
         </CommonDropdownItem>
       </NuxtLink>
 
-      <CommonDropdownItem icon="i-ri:at-line" @click="mentionUser(account)">
-        Mention @{{ account.acct }}
-      </CommonDropdownItem>
-      <CommonDropdownItem icon="i-ri:message-3-line" @click="directMessageUser(account)">
-        Direct message @{{ account.acct }}
-      </CommonDropdownItem>
+      <template v-if="!isSelf">
+        <CommonDropdownItem icon="i-ri:at-line" @click="mentionUser(account)">
+          Mention @{{ account.acct }}
+        </CommonDropdownItem>
+        <CommonDropdownItem icon="i-ri:message-3-line" @click="directMessageUser(account)">
+          Direct message @{{ account.acct }}
+        </CommonDropdownItem>
 
-      <CommonDropdownItem v-if="!relationship?.muting" icon="i-ri:volume-up-fill" @click="mute">
-        Mute @{{ account.acct }}
-      </CommonDropdownItem>
-      <CommonDropdownItem v-else icon="i-ri:volume-mute-line" @click="unmute">
-        Unmute @{{ account.acct }}
-      </CommonDropdownItem>
+        <CommonDropdownItem v-if="!relationship?.muting" icon="i-ri:volume-up-fill" @click="mute">
+          Mute @{{ account.acct }}
+        </CommonDropdownItem>
+        <CommonDropdownItem v-else icon="i-ri:volume-mute-line" @click="unmute">
+          Unmute @{{ account.acct }}
+        </CommonDropdownItem>
 
-      <CommonDropdownItem v-if="!relationship?.blocking" icon="i-ri:forbid-2-line" @click="block">
-        Block @{{ account.acct }}
-      </CommonDropdownItem>
-      <CommonDropdownItem v-else icon="i-ri:checkbox-circle-line" @click="unblock">
-        Unblock @{{ account.acct }}
-      </CommonDropdownItem>
+        <CommonDropdownItem v-if="!relationship?.blocking" icon="i-ri:forbid-2-line" @click="block">
+          Block @{{ account.acct }}
+        </CommonDropdownItem>
+        <CommonDropdownItem v-else icon="i-ri:checkbox-circle-line" @click="unblock">
+          Unblock @{{ account.acct }}
+        </CommonDropdownItem>
+      </template>
     </template>
   </CommonDropdown>
 </template>

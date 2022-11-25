@@ -84,7 +84,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
           <div flex-auto />
           <CommonTooltip :content="createdAt">
             <a :title="status.createdAt" :href="getStatusPath(status)" @click.prevent="go">
-              <time text-sm op50 hover:underline>
+              <time text-sm op50 hover:underline :datetime="status.createdAt">
                 {{ timeago }}
               </time>
             </a>

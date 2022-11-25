@@ -95,13 +95,13 @@ function previewAvatar() {
       </div>
       <div flex gap-5>
         <NuxtLink :to="`/${getFullHandle(account)}/`" exact-active-class="text-primary">
-          <span font-bold>{{ account.statusesCount }}</span> <span op50>Posts</span>
+          <span font-bold>{{ formattedNumber(account.statusesCount) }}</span> <span op50>Posts</span>
         </NuxtLink>
         <NuxtLink :to="`/${getFullHandle(account)}/following`" exact-active-class="text-primary">
-          <span font-bold>{{ account.followingCount }}</span> <span op50>Following</span>
+          <span font-bold>{{ humanReadableNumber(account.followingCount) }}</span> <span op50>Following</span>
         </NuxtLink>
         <NuxtLink :to="`/${getFullHandle(account)}/followers`" exact-active-class="text-primary">
-          <span font-bold>{{ account.followersCount }}</span> <span op50>Followers</span>
+          <span font-bold>{{ humanReadableNumber(account.followersCount) }}</span> <span op50>Followers</span>
         </NuxtLink>
       </div>
     </div>

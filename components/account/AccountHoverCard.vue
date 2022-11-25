@@ -11,15 +11,15 @@ defineProps<{
     <AccountInfo :account="account" />
     <div text-sm flex flex-row text-gray mt-4>
       <NuxtLink :to="`/${getShortHandle(account)}/`">
-        {{ account.statusesCount }} Posts
+        {{ formattedNumber(account.statusesCount) }} Posts
       </NuxtLink>
       <span flex-1 text-center> • </span>
       <NuxtLink :to="`/${getShortHandle(account)}/following`">
-        {{ account.followingCount }} Following
+        {{ humanReadableNumber(account.followingCount) }} Following
       </NuxtLink>
       <span flex-1 text-center> • </span>
       <NuxtLink :to="`/${getShortHandle(account)}/followers`">
-        {{ account.followersCount }} Followers
+        {{ humanReadableNumber(account.followersCount) }} Followers
       </NuxtLink>
     </div>
     <ContentRich text-4 text-gray :content="account.note" :emojis="account.emojis" />

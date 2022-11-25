@@ -34,7 +34,6 @@ specifiers:
   theme-vitesse: ^0.6.0
   typescript: ^4.9.3
   ufo: ^1.0.0
-  vite-plugin-inspect: ^0.7.9
 
 devDependencies:
   '@antfu/eslint-config': 0.31.0_hsf322ms6xhhd4b5ne6lb74y4a
@@ -70,7 +69,6 @@ devDependencies:
   theme-vitesse: 0.6.0
   typescript: 4.9.3
   ufo: 1.0.0
-  vite-plugin-inspect: 0.7.9
 
 packages:
 
@@ -7090,23 +7088,6 @@ packages:
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.7
       vscode-uri: 3.0.6
-    dev: true
-
-  /vite-plugin-inspect/0.7.9:
-    resolution: {integrity: sha512-YBI5/smKxx2gc5MrzQ8n6ztGxdtItoqumJn96d6b57SvC9aSvjMXsvzUgrR/dlVXCnpu755m1TXp3h/TsVOwJA==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      vite: ^3.1.0
-    dependencies:
-      '@rollup/pluginutils': 5.0.2
-      debug: 4.3.4
-      fs-extra: 10.1.0
-      kolorist: 1.6.0
-      sirv: 2.0.2
-      ufo: 1.0.0
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
     dev: true
 
   /vite/3.2.4:

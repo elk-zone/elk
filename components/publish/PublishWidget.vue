@@ -24,7 +24,7 @@ const { editor } = useTiptap({
   content: toRef(draft.params, 'status'),
   placeholder,
   autofocus: isExpanded,
-  onSubimit: publish,
+  onSubmit: publish,
   onFocus() { isExpanded = true },
   onPaste: handlePaste,
 })

@@ -14,7 +14,7 @@ import { HashSuggestion, MentionSuggestion } from './tiptap/suggestion'
 export interface UseTiptapOptions {
   content: Ref<string | undefined>
   placeholder: string
-  onSubimit: () => void
+  onSubmit: () => void
   onFocus: () => void
   onPaste: (event: ClipboardEvent) => void
   autofocus: boolean
@@ -51,7 +51,7 @@ export function useTiptap(options: UseTiptapOptions) {
         addKeyboardShortcuts() {
           return {
             'Mod-Enter': () => {
-              options.onSubimit()
+              options.onSubmit()
               return true
             },
           }

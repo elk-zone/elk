@@ -16,11 +16,18 @@ const {
   expanded?: boolean
 }>()
 
-const expanded = $ref(_expanded)
+let isExpanded = $ref(_expanded)
 let isSending = $ref(false)
 let { draft } = $(useDraft(draftKey, inReplyToId))
 
-const { editor } = useTiptap(toRef(draft.params, 'status'), placeholder)
+const { editor } = useTiptap({
+  content: toRef(draft.params, 'status'),
+  placeholder,
+  autofocus: isExpanded,
+  onSubimit: publish,
+  onFocus() { isExpanded = true },
+  onPaste: handlePaste,
+})
 
 const status = $computed(() => {
   return {
@@ -160,24 +167,17 @@ onUnmounted(() => {
           >
         </div>
 
-        <EditorContent :editor="editor" />
+        <EditorContent
+          :editor="editor"
+          :class="isExpanded ? 'min-h-120px' : ''"
+        />
 
-        <!-- <textarea
-          v-model="draft.params.status"
-          :placeholder="placeholder"
-          h-80px
-          :class="expanded ? '!h-200px' : ''"
-          p2 border-rounded w-full bg-transparent
-          transition="height"
-          outline-none border="~ base"
-          @paste="handlePaste"
-          @focus="expanded = true"
-          @keydown.esc="expanded = false"
-          @keydown.ctrl.enter="publish"
-          @keydown.meta.enter="publish"
-        /> -->
+        <div v-if="isUploading" flex gap-1 items-center text-sm p1 text-primary>
+          <div i-ri:loader-2-fill animate-spin />
+          Uploading...
+        </div>
 
-        <div flex="~ col gap-2" max-h-50vh overflow-auto>
+        <div v-if="draft.attachments.length" flex="~ col gap-2" overflow-auto>
           <PublishAttachment
             v-for="(att, idx) in draft.attachments" :key="att.id"
             :attachment="att"
@@ -185,12 +185,10 @@ onUnmounted(() => {
           />
         </div>
 
-        <div v-if="isUploading" flex gap-2 justify-end items-center>
-          <div op50 i-ri:loader-2-fill animate-spin text-2xl />
-          Uploading...
-        </div>
-
-        <div flex="~ gap-2" ml--2>
+        <div
+          v-if="isExpanded" flex="~ gap-2" m="l--1" pt-2
+          border="t base"
+        >
           <CommonTooltip placement="bottom" content="Add images, a video or an audio file">
             <button btn-action-icon @click="pickAttachments">
               <div i-ri:image-add-line />

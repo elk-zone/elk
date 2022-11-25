@@ -18,11 +18,16 @@ const date = useFormattedDateTime(status.createdAt)
   <div flex flex-col gap-2 py3 px-4>
     <AccountInfo :account="status.account" />
     <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" />
-    <StatusBody :status="status" text-2xl />
-    <StatusMedia
-      v-if="status.mediaAttachments?.length"
-      :status="status"
-    />
+    <StatusSpoiler :enabled="status.sensitive">
+      <template #spoiler>
+        {{ status.spoilerText }}
+      </template>
+      <StatusBody :status="status" text-2xl />
+      <StatusMedia
+        v-if="status.mediaAttachments?.length"
+        :status="status"
+      />
+    </StatusSpoiler>
     <div>
       <span op50 text-sm>
         {{ date }} · {{ status.application?.name || 'Unknown client' }}

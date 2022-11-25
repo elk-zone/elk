@@ -90,11 +90,16 @@ const timeago = useTimeAgo(() => status.createdAt, {
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div>
-          <StatusBody :status="status" />
-          <StatusMedia
-            v-if="status.mediaAttachments?.length"
-            :status="status"
-          />
+          <StatusSpoiler :enabled="status.sensitive">
+            <template #spoiler>
+              {{ status.spoilerText }}
+            </template>
+            <StatusBody :status="status" />
+            <StatusMedia
+              v-if="status.mediaAttachments?.length"
+              :status="status"
+            />
+          </StatusSpoiler>
           <StatusCard
             v-if="status.reblog"
             :status="status.reblog" border="~ rounded"

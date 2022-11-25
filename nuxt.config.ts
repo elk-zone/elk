@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@vue-macros/nuxt',
+    '~/modules/purge-comments',
   ],
   experimental: {
     reactivityTransform: true,

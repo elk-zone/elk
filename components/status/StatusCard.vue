@@ -83,8 +83,10 @@ const timeago = useTimeAgo(() => status.createdAt, {
           <StatusAccountDetails :account="status.account" />
           <div flex-auto />
           <CommonTooltip :content="createdAt">
-            <a text-sm op50 hover:underline :title="status.createdAt" :href="getStatusPath(status)" @click.prevent="go">
-              {{ timeago }}
+            <a :title="status.createdAt" :href="getStatusPath(status)" @click.prevent="go">
+              <time text-sm op50 hover:underline>
+                {{ timeago }}
+              </time>
             </a>
           </CommonTooltip>
         </div>

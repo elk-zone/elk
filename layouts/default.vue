@@ -26,7 +26,8 @@
               tabindex="0"
               m5 p2 rounded-full
               hover:bg-active cursor-pointer transition-100
-              :account="currentUser?.account"
+              :account="currentUser.account"
+              :full-server="true"
               :link="false"
               @keydown.enter="openUserSwitcher"
               @click="openUserSwitcher"

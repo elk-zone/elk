@@ -29,15 +29,8 @@ const { editor } = useTiptap({
   onPaste: handlePaste,
 })
 
-const status = $computed(() => {
-  return {
-    ...draft.params,
-    mediaIds: draft.attachments.map(a => a.id),
-  } as CreateStatusParams
-})
-
 const currentVisibility = $computed(() => {
-  return STATUS_VISIBILITIES.find(v => v.value === status.visibility) || STATUS_VISIBILITIES[0]
+  return STATUS_VISIBILITIES.find(v => v.value === draft.params.visibility) || STATUS_VISIBILITIES[0]
 })
 
 let isUploading = $ref<boolean>(false)
@@ -97,16 +90,30 @@ function chooseVisibility(visibility: StatusVisibility) {
 }
 
 async function publish() {
+  const payload = {
+    ...draft.params,
+    status: htmlToText(draft.params.status || ''),
+    mediaIds: draft.attachments.map(a => a.id),
+  } as CreateStatusParams
+
   if (process.dev) {
-    alert(JSON.stringify(draft.params, null, 2))
-    return
+    // eslint-disable-next-line no-console
+    console.info({
+      raw: draft.params.status,
+      ...payload,
+    })
+    const result = confirm('[DEV] Payload logged to console, do you want to publish it?')
+    if (!result)
+      return
   }
+
   try {
     isSending = true
+
     if (!draft.editingStatus)
-      await masto.statuses.create(status)
+      await masto.statuses.create(payload)
     else
-      await masto.statuses.update(draft.editingStatus.id, status)
+      await masto.statuses.update(draft.editingStatus.id, payload)
 
     draft = getDefaultDraft({ inReplyToId })
     isPublishDialogOpen.value = false

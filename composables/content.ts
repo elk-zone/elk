@@ -104,13 +104,15 @@ export function treeToVNode(
   return null
 }
 
-function htmlToText(html: string) {
+export function htmlToText(html: string) {
   const tree = parseFragment(html)
-  return tree.childNodes.map(n => treeToText(n)).join('')
+  return tree.childNodes.map(n => treeToText(n)).join('').trim()
 }
 
 function treeToText(input: Node): string {
   let pre = ''
+  let body = ''
+  let post = ''
 
   if (input.nodeName === '#text')
     // @ts-expect-error casing
@@ -119,11 +121,16 @@ function treeToText(input: Node): string {
   if (input.nodeName === 'br')
     return '\n'
 
-  if (input.nodeName === 'p')
+  if (['p', 'pre'].includes(input.nodeName))
     pre = '\n'
 
-  if ('childNodes' in input)
-    return pre + input.childNodes.map(n => treeToText(n)).join('')
+  if (input.nodeName === 'code') {
+    pre = '`'
+    post = '`'
+  }
 
-  return pre
+  if ('childNodes' in input)
+    body = input.childNodes.map(n => treeToText(n)).join('')
+
+  return pre + body + post
 }

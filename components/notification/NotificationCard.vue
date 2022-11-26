@@ -41,7 +41,7 @@ const { notification } = defineProps<{
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>
-    <template v-else-if="notification.type === 'mention' || notification.type === 'poll'">
+    <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
       <StatusCard :status="notification.status!" p3 />
     </template>
   </div>

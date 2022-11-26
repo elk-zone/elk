@@ -151,7 +151,7 @@ function editStatus() {
       />
     </CommonTooltip>
 
-    <CommonTooltip flex-1 placement="bottom" content="Bookmark">
+    <CommonTooltip flex-none placement="bottom" content="Bookmark">
       <StatusActionButton
         color="text-yellow" hover="text-yellow" group-hover="bg-yellow/10"
         icon="i-ri:bookmark-line"
@@ -162,7 +162,7 @@ function editStatus() {
       />
     </CommonTooltip>
 
-    <CommonDropdown flex-none placement="bottom">
+    <CommonDropdown flex-none ml3 placement="bottom">
       <CommonTooltip placement="bottom" content="More">
         <StatusActionButton
           color="text-purple" hover="text-purple" group-hover="bg-purple/10"

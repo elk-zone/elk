@@ -4,11 +4,25 @@ import { DEFAULT_SERVER } from '~/constants'
 
 export default defineNuxtPlugin(async () => {
   try {
+    const accessToken = (currentUser.value?.token)
+
     // TODO: improve upstream to make this synchronous (delayed auth)
     const masto = await login({
       url: `https://${currentUser.value?.server || DEFAULT_SERVER}`,
-      accessToken: currentUser.value?.token || undefined,
+      accessToken,
     })
+
+    if (accessToken) {
+      masto.accounts.verifyCredentials().catch(() => {
+        // clean localStorage and reload
+        const users = useUsers()
+        const currentUserIndex = users.value.findIndex(u => u.token === accessToken)
+        if (currentUserIndex !== -1) {
+          // users.value.splice(currentUserIndex, 1)
+          // window.location.reload()
+        }
+      })
+    }
 
     return {
       provide: {

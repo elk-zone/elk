@@ -9,7 +9,7 @@ export const MentionSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('mention'),
   char: '@',
   async items({ query }) {
-    if (query.length < 1)
+    if (query.length === 0)
       return []
 
     const mentionPaginator = masto.search({ q: query, type: 'accounts', limit: 8, resolve: true })

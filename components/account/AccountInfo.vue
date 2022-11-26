@@ -18,7 +18,7 @@ const { account, link = true, fullServer = false } = defineProps<{
     </div>
     <NuxtLink flex flex-col :to="link ? getAccountPath(account) : null">
       <ContentRich font-bold hover:underline :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
-      <AccountHandle :account="account" text-sm op35 />
+      <AccountHandle :account="account" text-sm />
       <slot name="bottom" />
     </NuxtLink>
     <slot />

@@ -46,7 +46,7 @@ defineExpose({
       <button
         v-for="(item, index) in items"
         :key="index"
-        :class="index === selectedIndex ? 'bg-active' : 'op50'"
+        :class="index === selectedIndex ? 'bg-active' : 'text-secondary'"
         block m0 w-full text-left px2 py1
         @click="selectItem(index)"
       >

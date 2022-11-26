@@ -6,11 +6,17 @@ const { account } = defineProps<{
 }>()
 
 const isSelf = $computed(() => currentUser.value?.account.id === account.id)
-const relationship = $(useRelationship(account))
+let relationship = $(useRelationship(account))
 
 async function toggleFollow() {
   relationship!.following = !relationship!.following
-  await masto.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+  try {
+    relationship = await useMasto().accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+  }
+  catch {
+    // TODO error handling
+    relationship!.following = !relationship!.following
+  }
 }
 </script>
 

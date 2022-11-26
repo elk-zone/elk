@@ -44,12 +44,12 @@ export async function loginTo(user: UserLogin & { account?: AccountCredentials }
     url: `https://${user.server}`,
     accessToken: user.token,
   })
-  const me = await masto.accounts.verifyCredentials()
+  const me = await useMasto().accounts.verifyCredentials()
   user.account = me
 
   users.value.push(user)
   currentUserId.value = me.id
-  servers.value[me.id] = await masto.instances.fetch()
+  servers.value[me.id] = await useMasto().instances.fetch()
   await reloadPage()
   return true
 }

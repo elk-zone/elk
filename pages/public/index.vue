@@ -2,16 +2,16 @@
 const paginator = masto.timelines.getPublicIterable()
 
 useHead({
-  title: 'Federated'
+  title: 'Federated',
 })
 </script>
 
 <template>
   <MainContent>
     <template #title>
-  <span text-lg font-bold>Federated Timeline</span>
+      <span text-lg font-bold>Federated Timeline</span>
     </template>
-    
+
     <slot>
       <TimelinePaginator :paginator="paginator" />
     </slot>

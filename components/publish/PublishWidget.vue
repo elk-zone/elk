@@ -76,7 +76,7 @@ async function toggleSensitive() {
 async function uploadAttachments(files: File[]) {
   isUploading = true
   for (const file of files) {
-    const attachment = await masto.mediaAttachments.create({
+    const attachment = await useMasto().mediaAttachments.create({
       file,
     })
     draft.attachments.push(attachment)
@@ -114,9 +114,9 @@ async function publish() {
     isSending = true
 
     if (!draft.editingStatus)
-      await masto.statuses.create(payload)
+      await useMasto().statuses.create(payload)
     else
-      await masto.statuses.update(draft.editingStatus.id, payload)
+      await useMasto().statuses.update(draft.editingStatus.id, payload)
 
     draft = getDefaultDraft({ inReplyToId })
     isPublishDialogOpen.value = false

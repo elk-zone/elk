@@ -1,6 +1,12 @@
 import type { Ref } from 'vue'
 import type { Account, Relationship, Status } from 'masto'
 
+declare module 'masto' {
+  interface Status {
+    editedAt?: string
+  }
+}
+
 // @unocss-include
 export const STATUS_VISIBILITIES = [
   {
@@ -29,8 +35,16 @@ export const STATUS_VISIBILITIES = [
   },
 ] as const
 
-export function getDisplayName(account: Account) {
-  return account.displayName || account.username
+export function getServerName(account: Account) {
+  return account.url.match(UserLinkRE)?.[1] || currentUser.value?.server || ''
+}
+
+export function getDisplayName(account?: Account, options?: { rich?: boolean }) {
+  const displayName = account?.displayName || account?.username || ''
+  if (options?.rich)
+    return displayName
+
+  return displayName.replace(/:([\w-]+?):/g, '')
 }
 
 export function getShortHandle(account: Account) {
@@ -41,7 +55,7 @@ export function getFullHandle(account: Account) {
   const handle = `@${account.acct}`
   if (!currentUser.value || account.acct.includes('@'))
     return handle
-  return `${handle}@${account.url.match(UserLinkRE)?.[1] || currentUser.value.server}`
+  return `${handle}@${getServerName(account)}`
 }
 
 export function toShortHandle(fullHandle: string) {
@@ -58,7 +72,11 @@ export function getAccountPath(account: Account) {
 }
 
 export function getStatusPath(status: Status) {
-  return `/status/${status.id}`
+  return `/${getFullHandle(status.account)}/${status.id}`
+}
+
+export function getStatusInReplyToPath(status: Status) {
+  return `/status/${status.inReplyToId}`
 }
 
 export function useAccountHandle(account: Account, fullServer = true) {
@@ -94,7 +112,7 @@ async function fetchRelationships() {
   const requested = Array.from(requestedRelationships.entries())
   requestedRelationships.clear()
 
-  const relationships = await masto.accounts.fetchRelationships(requested.map(([id]) => id))
+  const relationships = await useMasto().accounts.fetchRelationships(requested.map(([id]) => id))
   for (let i = 0; i < requested.length; i++)
     requested[i][1].value = relationships[i]
 }

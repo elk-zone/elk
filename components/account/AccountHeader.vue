@@ -5,10 +5,11 @@ const { account } = defineProps<{
   account: Account
 }>()
 
-const createdAt = $computed(() => {
-  const date = new Date(account.createdAt)
-  return new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date)
-})
+const createdAt = $(useFormattedDateTime(() => account.createdAt, {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+}))
 
 const fields = $computed(() => {
   return [
@@ -65,10 +66,8 @@ function previewAvatar() {
             <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
           </button>
           <div flex flex-col>
-            <ContentRich font-bold text-2xl break-words :content="getDisplayName(account)" :emojis="account.emojis" />
-            <p op50>
-              {{ getShortHandle(account) }}
-            </p>
+            <ContentRich font-bold text-2xl break-words :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
+            <AccountHandle :account="account" op50 />
           </div>
         </div>
         <div flex gap-2 items-center>
@@ -94,14 +93,14 @@ function previewAvatar() {
         </div>
       </div>
       <div flex gap-5>
-        <NuxtLink :to="`/${getFullHandle(account)}/`" exact-active-class="text-primary">
-          <span font-bold>{{ account.statusesCount }}</span> <span op50>Posts</span>
+        <NuxtLink :to="getAccountPath(account)" exact-active-class="text-primary">
+          <span font-bold>{{ formattedNumber(account.statusesCount) }}</span> <span op50>Posts</span>
         </NuxtLink>
-        <NuxtLink :to="`/${getFullHandle(account)}/following`" exact-active-class="text-primary">
-          <span font-bold>{{ account.followingCount }}</span> <span op50>Following</span>
+        <NuxtLink :to="`${getAccountPath(account)}/following`" exact-active-class="text-primary">
+          <span font-bold>{{ humanReadableNumber(account.followingCount) }}</span> <span op50>Following</span>
         </NuxtLink>
-        <NuxtLink :to="`/${getFullHandle(account)}/followers`" exact-active-class="text-primary">
-          <span font-bold>{{ account.followersCount }}</span> <span op50>Followers</span>
+        <NuxtLink :to="`${getAccountPath(account)}/followers`" exact-active-class="text-primary">
+          <span font-bold>{{ humanReadableNumber(account.followersCount) }}</span> <span op50>Followers</span>
         </NuxtLink>
       </div>
     </div>

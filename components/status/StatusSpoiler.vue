@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const props = defineProps<{ enabled: boolean }>()
-defineSlots<'spoiler'>()
 
 const [showContent, toggleContent] = $(useToggle(!props.enabled))
 </script>

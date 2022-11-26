@@ -21,7 +21,7 @@ const rebloggedBy = $computed(() => props.status.reblog ? props.status.account :
 const el = ref<HTMLElement>()
 const router = useRouter()
 
-function onclick(e: MouseEvent) {
+function onclick(e: MouseEvent | KeyboardEvent) {
   const path = e.composedPath() as HTMLElement[]
   const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
   if (!el)
@@ -34,41 +34,11 @@ function go() {
 }
 
 const createdAt = useFormattedDateTime(status.createdAt)
-const timeago = useTimeAgo(() => status.createdAt, {
-  showSecond: true,
-  messages: {
-    justNow: 'just now',
-    past: n => n,
-    future: n => n.match(/\d/) ? `in ${n}` : n,
-    month: (n, past) => n === 1
-      ? past
-        ? 'last month'
-        : 'next month'
-      : `${n}m`,
-    year: (n, past) => n === 1
-      ? past
-        ? 'last year'
-        : 'next year'
-      : `${n}y`,
-    day: (n, past) => n === 1
-      ? past
-        ? 'yesterday'
-        : 'tomorrow'
-      : `${n}d`,
-    week: (n, past) => n === 1
-      ? past
-        ? 'last week'
-        : 'next week'
-      : `${n} week${n > 1 ? 's' : ''}`,
-    hour: n => `${n}h`,
-    minute: n => `${n}min`,
-    second: n => `${n}s`,
-  },
-})
+const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 </script>
 
 <template>
-  <div ref="el" flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" @click="onclick">
+  <div :id="`status-${status.id}`" ref="el" flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
     <div v-if="rebloggedBy" pl8>
       <div flex="~ wrap" gap-1 items-center text-gray:75 text-sm>
         <div i-ri:repeat-fill mr-1 />
@@ -90,7 +60,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
                 </time>
               </a>
             </CommonTooltip>
-            <StatusEditIndicator v-if="status.editedAt" :edited-at="status.editedAt" />
+            <StatusEditIndicator :status="status" inline />
           </div>
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />

@@ -37,7 +37,7 @@ export function getDefaultDraft({
   }
 }
 
-export function getParamsFromStatus(status: Status) {
+export function getParamsFromStatus(status: Status): Draft['params'] {
   return {
     status: status.content,
     mediaIds: status.mediaAttachments.map(att => att.id),

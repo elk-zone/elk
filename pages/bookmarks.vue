@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = masto.bookmarks.getIterator()
+const paginator = useMasto().bookmarks.getIterator()
 
 useHead({
   title: 'Bookmarks',

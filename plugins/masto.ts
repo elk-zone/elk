@@ -4,7 +4,7 @@ import { DEFAULT_SERVER } from '~/constants'
 
 export default defineNuxtPlugin(async () => {
   try {
-    const accessToken = (currentUser.value?.token)
+    const accessToken = currentUser.value?.token
 
     // TODO: improve upstream to make this synchronous (delayed auth)
     const masto = await login({

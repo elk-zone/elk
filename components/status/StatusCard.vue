@@ -21,7 +21,7 @@ const rebloggedBy = $computed(() => props.status.reblog ? props.status.account :
 const el = ref<HTMLElement>()
 const router = useRouter()
 
-function onclick(e: MouseEvent) {
+function onclick(e: MouseEvent | KeyboardEvent) {
   const path = e.composedPath() as HTMLElement[]
   const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
   if (!el)

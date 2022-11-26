@@ -13,7 +13,7 @@ function toValidName(otpion: string) {
 </script>
 
 <template>
-  <div flex w-full text-lg>
+  <div flex w-full items-center lg:text-lg>
     <template v-for="option in options" :key="option">
       <input
         :id="`tab-${toValidName(option)}`"
@@ -24,13 +24,13 @@ function toValidName(otpion: string) {
         display="none"
         @change="modelValue = option"
       ><label
-        flex flex-1 cursor-pointer p3 m1 rounded transition-all
+        flex flex-auto cursor-pointer p3 m1 rounded transition-all
         :for="`tab-${toValidName(option)}`"
         tabindex="1"
         hover:bg-active transition-100
         @keypress.enter="modelValue = option"
       ><span
-        mxa px2
+        mxa px2 text-center
         :class="modelValue === option ? 'font-bold border-b-3 border-primary' : 'op50 hover:op50'"
       >{{ option }}</span>
       </label>

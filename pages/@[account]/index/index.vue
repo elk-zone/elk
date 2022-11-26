@@ -3,7 +3,7 @@ const params = useRoute().params
 const accountName = $computed(() => params.account as string)
 
 const account = await fetchAccountByName(accountName)
-const tabNames = ['Posts', 'Posts and replies', 'Media'] as const
+const tabNames = ['Posts', 'Posts & replies', 'Media'] as const
 
 // Don't use local storage because it is better to default to Posts every time you visit a user's profile.
 const tab = $ref('Posts')
@@ -14,7 +14,7 @@ const paginatorMedia = useMasto().accounts.getStatusesIterable(account.id, { onl
 
 const paginator = $computed(() => {
   switch (tab) {
-    case 'Posts and replies':
+    case 'Posts & replies':
       return paginatorPostsWithReply
 
     case 'Media':

@@ -162,7 +162,7 @@ function editStatus() {
       />
     </CommonTooltip>
 
-    <CommonDropdown flex-1 placement="bottom">
+    <CommonDropdown flex-none placement="bottom">
       <CommonTooltip placement="bottom" content="More">
         <StatusActionButton
           color="text-purple" hover="text-purple" group-hover="bg-purple/10"

@@ -10,7 +10,7 @@ const serverName = $computed(() => getServerName(account))
 
 <template>
   <p>
-    <span>{{ getShortHandle(account) }}</span>
-    <span v-if="serverName" text="gray/95">@{{ serverName }}</span>
+    <span text-secondary>{{ getShortHandle(account) }}</span>
+    <span v-if="serverName" text-secondary-light>@{{ serverName }}</span>
   </p>
 </template>

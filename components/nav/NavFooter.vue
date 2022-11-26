@@ -6,7 +6,7 @@ const buildTimeAgo = useTimeAgo(buildTime)
 </script>
 
 <template>
-  <div p4 text-sm op25 flex="~ col">
+  <div p4 text-sm text-secondary-light flex="~ col">
     <div flex="~ gap2">
       <button i-ri-sun-line dark:i-ri-moon-line text-lg mb4 @click="toggleDark()" />
       <button

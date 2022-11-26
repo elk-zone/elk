@@ -27,7 +27,7 @@ const handleClick = (evt: MouseEvent) => {
       <div text-15px>
         <slot />
       </div>
-      <div text-3 text="gray/90">
+      <div text-3 text-secondary>
         <slot name="description">
           <p v-if="description">
             {{ description }}

@@ -30,7 +30,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         :status="status"
       />
     </StatusSpoiler>
-    <div flex="~ gap-1" items-center op50 text-sm>
+    <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>
         <StatusEditIndicator

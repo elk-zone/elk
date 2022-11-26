@@ -150,7 +150,7 @@ onUnmounted(() => {
   <div v-if="currentUser" flex="~ col gap-1">
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
-        <div text-gray self-center>
+        <div text-secondary self-center>
           Editing
         </div>
         <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" />
@@ -235,7 +235,7 @@ onUnmounted(() => {
           <CommonDropdown>
             <button btn-action-icon w-12>
               <div :class="currentVisibility.icon" />
-              <div i-ri:arrow-down-s-line text-sm op50 mr--1 />
+              <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
             </button>
 
             <template #popper>

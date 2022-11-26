@@ -38,10 +38,11 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: false,
-      routes: ['/error'],
+      routes: ['/200', '/error'],
     },
   },
   routeRules: {
+    '/200': { static: true, prerender: true },
     '/error': { static: true, prerender: true },
   },
   postcss: {

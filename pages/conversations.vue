@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = masto.conversations.getIterator()
+const paginator = useMasto().conversations.getIterator()
 
 useHead({
   title: 'Conversations',

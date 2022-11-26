@@ -3,7 +3,7 @@ const params = useRoute().params
 const accountName = $computed(() => params.account as string)
 
 const account = await fetchAccountByName(accountName)
-const paginator = account ? masto.accounts.getFollowingIterable(account.id, {}) : null
+const paginator = account ? useMasto().accounts.getFollowingIterable(account.id, {}) : null
 </script>
 
 <template>

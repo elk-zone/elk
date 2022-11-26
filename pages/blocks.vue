@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = masto.blocks.getIterator()
+const paginator = useMasto().blocks.getIterator()
 
 useHead({
   title: 'Blocked users',

@@ -9,7 +9,7 @@ const tabNames = ['All', 'Mentions'] as const
 const tab = $(useLocalStorage<typeof tabNames[number]>(STORAGE_KEY_NOTIFY_TAB, 'All'))
 
 const paginator = $computed(() => {
-  return masto.notifications.getIterator(tab === 'All' ? undefined : { types: ['mention'] })
+  return useMasto().notifications.getIterator(tab === 'All' ? undefined : { types: ['mention'] })
 })
 
 useHead({

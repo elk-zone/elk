@@ -15,12 +15,12 @@ async function handleInput() {
 </script>
 
 <template>
-  <div h-full text-center justify-center flex="~ col items-center gap2">
+  <div text-center justify-center flex="~ col items-center gap2">
     <div text-3xl mb2>
       Sign in
     </div>
     <div>Mastodon Server Name</div>
-    <div flex bg-gray:10 px2 py1 mxa rounded border="~ border" w-80 text-xl items-center>
+    <div flex bg-gray:10 px2 py1 mxa rounded border="~ border" text-xl items-center>
       <span op35 mr1 text-sm>https://</span>
       <input v-model="server" :placeholder="DEFAULT_SERVER" outline-none bg-transparent @input="handleInput">
     </div>

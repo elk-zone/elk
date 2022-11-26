@@ -44,9 +44,11 @@ export function useTiptap(options: UseTiptapOptions) {
       Mention.configure({
         suggestion: MentionSuggestion,
       }),
-      Mention.configure({
-        suggestion: HashSuggestion,
-      }),
+      Mention
+        .extend({ name: 'hastag' })
+        .configure({
+          suggestion: HashSuggestion,
+        }),
       Placeholder.configure({
         placeholder,
       }),

@@ -39,12 +39,16 @@ export function getServerName(account: Account) {
   return account.url.match(UserLinkRE)?.[1] || currentUser.value?.server || ''
 }
 
-export function getDisplayName(account: Account) {
-  return account.displayName || account.username
+export function getDisplayName(account?: Account, options?: { rich?: boolean }) {
+  const displayName = account?.displayName || account?.username || ''
+  if (options?.rich)
+    return displayName
+
+  return displayName.replace(/:([\w-]+?):/g, '')
 }
 
-export function getShortHandle(account: Account) {
-  return `@${account.acct}`
+export function getShortHandle({ acct }: Account) {
+  return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
 }
 
 export function getFullHandle(account: Account) {
@@ -108,7 +112,7 @@ async function fetchRelationships() {
   const requested = Array.from(requestedRelationships.entries())
   requestedRelationships.clear()
 
-  const relationships = await masto.accounts.fetchRelationships(requested.map(([id]) => id))
+  const relationships = await useMasto().accounts.fetchRelationships(requested.map(([id]) => id))
   for (let i = 0; i < requested.length; i++)
     requested[i][1].value = relationships[i]
 }

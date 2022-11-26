@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = masto.accounts.getStatusesIterable(currentUser.value!.account.id, { pinned: true })
+const paginator = useMasto().accounts.getStatusesIterable(currentUser.value!.account.id, { pinned: true })
 
 useHead({
   title: 'Pinned',

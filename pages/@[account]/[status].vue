@@ -6,7 +6,14 @@ const id = $computed(() => route.params.status as string)
 const main = ref<Component | null>(null)
 
 const status = window.history.state?.status ?? await fetchStatus(id)
-const { data: context } = useAsyncData(`context:${id}`, () => masto.statuses.fetchContext(id))
+const { data: context } = useAsyncData(`context:${id}`, () => useMasto().statuses.fetchContext(id))
+const unsubscribe = watch(context, async (context) => {
+  if (context) {
+    const statusElement = document.querySelector(`#status-${id}`)
+    statusElement?.scrollIntoView()
+    unsubscribe()
+  }
+}, { flush: 'post' })
 </script>
 
 <template>
@@ -23,7 +30,7 @@ const { data: context } = useAsyncData(`context:${id}`, () => masto.statuses.fet
         v-if="currentUser"
         border="t base"
         :draft-key="`reply-${id}`"
-        :placeholder="`Reply to ${status?.account ? getDisplayName(status?.account) : 'this thread'}`"
+        :placeholder="`Reply to ${status?.account ? getDisplayName(status.account) : 'this thread'}`"
         :in-reply-to-id="id"
       />
 

@@ -3,14 +3,14 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = masto.domainBlocks.getIterator()
+const paginator = useMasto().domainBlocks.getIterator()
 
 useHead({
   title: 'Blocked domains',
 })
 
 const unblock = async (domain: string) => {
-  await masto.domainBlocks.unblock(domain)
+  await useMasto().domainBlocks.unblock(domain)
 }
 </script>
 

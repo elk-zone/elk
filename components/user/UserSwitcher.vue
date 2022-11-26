@@ -41,7 +41,7 @@ const sorted = computed(() => {
         @click="signout"
       >
         <div i-ri:logout-box-line />
-        Sign out {{ getShortHandle(currentUser.account) }}
+        Sign out {{ getFullHandle(currentUser.account) }}
       </button>
     </div>
   </div>

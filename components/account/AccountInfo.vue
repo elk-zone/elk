@@ -7,8 +7,6 @@ const { account, link = true, fullServer = false } = defineProps<{
   fullServer?: boolean
   hover?: boolean
 }>()
-
-const accountHandle = $(useAccountHandle(account, fullServer))
 </script>
 
 <template>
@@ -19,7 +17,7 @@ const accountHandle = $(useAccountHandle(account, fullServer))
       </NuxtLink>
     </div>
     <NuxtLink flex flex-col :to="link ? getAccountPath(account) : null">
-      <ContentRich font-bold hover:underline :content="getDisplayName(account)" :emojis="account.emojis" />
+      <ContentRich font-bold hover:underline :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
       <AccountHandle :account="account" text-sm op35 />
       <slot name="bottom" />
     </NuxtLink>

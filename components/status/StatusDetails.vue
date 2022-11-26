@@ -17,7 +17,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
 </script>
 
 <template>
-  <div flex flex-col gap-2 py3 px-4>
+  <div flex flex-col gap-2 py3 px-4 :id="`status-${status.id}`">
     <AccountInfo :account="status.account" />
     <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" />
     <StatusSpoiler :enabled="status.sensitive">

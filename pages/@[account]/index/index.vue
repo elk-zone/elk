@@ -8,8 +8,8 @@ const tabNames = ['Posts', 'Posts and replies'] as const
 // Don't use local storage because it is better to default to Posts every time you visit a user's profile.
 const tab = $ref('Posts')
 
-const paginatorPosts = masto.accounts.getStatusesIterable(account.id, { excludeReplies: true })
-const paginatorPostsWithReply = masto.accounts.getStatusesIterable(account.id, { excludeReplies: false })
+const paginatorPosts = useMasto().accounts.getStatusesIterable(account.id, { excludeReplies: true })
+const paginatorPostsWithReply = useMasto().accounts.getStatusesIterable(account.id, { excludeReplies: false })
 
 const paginator = $computed(() => {
   return tab === 'Posts' ? paginatorPosts : paginatorPostsWithReply

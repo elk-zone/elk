@@ -13,24 +13,24 @@ const toggleMute = async () => {
 
   relationship!.muting = !relationship!.muting
   relationship = relationship!.muting
-    ? await masto.accounts.mute(account.id, {
+    ? await useMasto().accounts.mute(account.id, {
       // TODO support more options
     })
-    : await masto.accounts.unmute(account.id)
+    : await useMasto().accounts.unmute(account.id)
 }
 
 const toggleBlockUser = async () => {
   // TODO: Add confirmation
 
   relationship!.blocking = !relationship!.blocking
-  relationship = await masto.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
+  relationship = await useMasto().accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
 }
 
 const toggleBlockDomain = async () => {
   // TODO: Add confirmation
 
   relationship!.domainBlocking = !relationship!.domainBlocking
-  await masto.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
+  await useMasto().domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
 }
 </script>
 

@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = masto.timelines.getHomeIterable()
+const paginator = useMasto().timelines.getHomeIterable()
 </script>
 
 <template>

@@ -180,7 +180,6 @@ onUnmounted(() => {
 
         <div relative>
           <EditorContent
-            class="editor-content"
             :editor="editor"
             :class="isExpanded ? 'min-h-120px max-h-720px of-y-auto' : ''"
           />

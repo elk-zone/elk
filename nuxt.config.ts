@@ -38,11 +38,11 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: false,
-      routes: ['/fallback'],
+      routes: ['/error'],
     },
   },
   routeRules: {
-    '/fallback': { static: true, prerender: true },
+    '/error': { static: true, prerender: true },
   },
   postcss: {
     plugins: {
@@ -95,6 +95,9 @@ export default defineNuxtConfig({
           purpose: 'any maskable',
         },
       ],
+    },
+    injectManifest: {
+      globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
     },
     devOptions: {
       enabled: true,

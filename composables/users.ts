@@ -6,6 +6,7 @@ import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STO
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, [], { deep: true })
 const servers = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, '')
+const online = useOnline()
 
 export const currentUser = computed<UserLogin | undefined>(() => {
   let user: UserLogin | undefined
@@ -32,9 +33,12 @@ export async function loginTo(user: UserLogin & { account?: AccountCredentials }
     if (currentUserId.value === existing.account?.id)
       return null
     currentUserId.value = user.account?.id
-    await reloadPage()
-    return true
+    online.value && await reloadPage()
+    return online.value
   }
+
+  if (!online.value)
+    return false
 
   const masto = await loginMasto({
     url: `https://${user.server}`,

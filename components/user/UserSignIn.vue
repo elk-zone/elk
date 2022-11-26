@@ -4,6 +4,9 @@ import { DEFAULT_SERVER } from '~/constants'
 let server = $ref<string>('')
 
 async function oauth() {
+  if (!server)
+    return
+
   server = server.split('/')[0]
   location.href = `/api/${server || DEFAULT_SERVER}/login`
 }
@@ -15,7 +18,7 @@ async function handleInput() {
 </script>
 
 <template>
-  <div text-center justify-center items-center flex="~ col gap2">
+  <form text-center justify-center items-center flex="~ col gap2" @submit.prevent="oauth">
     <div text-3xl mb2>
       Sign in
     </div>
@@ -24,8 +27,8 @@ async function handleInput() {
       <span op35 mr1 text-sm>https://</span>
       <input v-model="server" :placeholder="DEFAULT_SERVER" outline-none bg-transparent @input="handleInput">
     </div>
-    <button btn-solid mt2 @click="oauth()">
+    <button btn-solid mt2>
       Sign in
     </button>
-  </div>
+  </form>
 </template>

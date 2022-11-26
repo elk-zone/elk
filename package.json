@@ -65,5 +65,8 @@
     "ufo": "^1.0.0",
     "unplugin-auto-import": "^0.11.5",
     "vitest": "^0.25.3"
+  },
+  "dependencies": {
+    "vue-virtual-scroller": "2.0.0-beta.3"
   }
 }

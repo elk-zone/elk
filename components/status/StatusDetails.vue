@@ -33,7 +33,12 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
     <div flex="~ gap-1" items-center op50 text-sm>
       <div flex>
         <div>{{ createdAt }}</div>
-        <StatusEditIndicator :status="status" />
+        <StatusEditIndicator
+          :status="status"
+          :inline="false"
+        >
+          <span ml1 font-bold cursor-pointer>(Edited)</span>
+        </StatusEditIndicator>
       </div>
       <div>·</div>
       <CommonTooltip :content="visibility.label" placement="bottom">

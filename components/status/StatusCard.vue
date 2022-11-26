@@ -34,37 +34,7 @@ function go() {
 }
 
 const createdAt = useFormattedDateTime(status.createdAt)
-const timeago = useTimeAgo(() => status.createdAt, {
-  showSecond: true,
-  messages: {
-    justNow: 'just now',
-    past: n => n,
-    future: n => n.match(/\d/) ? `in ${n}` : n,
-    month: (n, past) => n === 1
-      ? past
-        ? 'last month'
-        : 'next month'
-      : `${n}m`,
-    year: (n, past) => n === 1
-      ? past
-        ? 'last year'
-        : 'next year'
-      : `${n}y`,
-    day: (n, past) => n === 1
-      ? past
-        ? 'yesterday'
-        : 'tomorrow'
-      : `${n}d`,
-    week: (n, past) => n === 1
-      ? past
-        ? 'last week'
-        : 'next week'
-      : `${n} week${n > 1 ? 's' : ''}`,
-    hour: n => `${n}h`,
-    minute: n => `${n}min`,
-    second: n => `${n}s`,
-  },
-})
+const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 </script>
 
 <template>
@@ -90,7 +60,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
                 </time>
               </a>
             </CommonTooltip>
-            <StatusEditIndicator :status="status" />
+            <StatusEditIndicator :status="status" inline />
           </div>
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />

@@ -55,7 +55,7 @@
         </div>
       </NuxtLink>
       <NuxtLink :to="getAccountPath(currentUser.account)" active-class="text-primary" group focus:outline-none>
-        <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 hover:bg-active group-focus-visible:ring="2 current">
+        <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 group-hover:bg-active group-focus-visible:ring="2 current">
           <AccountAvatar :account="currentUser.account" h="1.2em" />
           <span>Profile</span>
         </div>

@@ -12,17 +12,8 @@ export default defineNuxtPlugin(async () => {
       accessToken,
     })
 
-    if (accessToken) {
-      masto.accounts.verifyCredentials().catch(() => {
-        // clean localStorage and reload
-        const users = useUsers()
-        const currentUserIndex = users.value.findIndex(u => u.token === accessToken)
-        if (currentUserIndex !== -1) {
-          // users.value.splice(currentUserIndex, 1)
-          // window.location.reload()
-        }
-      })
-    }
+    if (accessToken)
+      masto.accounts.verifyCredentials().catch(() => signout())
 
     return {
       provide: {

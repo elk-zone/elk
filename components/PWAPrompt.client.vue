@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 
+const online = useOnline()
+
 const {
-  offlineReady,
   needRefresh,
   updateServiceWorker,
 } = useRegisterSW({
   immediate: true,
   onRegisteredSW(swUrl, r) {
     setInterval(async () => {
-      if (!(!r?.installing && navigator))
+      if (r?.installing)
         return
 
-      if (('connection' in navigator) && !navigator.onLine)
+      if (!online.value)
         return
 
       const resp = await fetch(swUrl, {
@@ -29,55 +30,47 @@ const {
   },
 })
 const close = async () => {
-  offlineReady.value = false
   needRefresh.value = false
 }
+
+// TODO: remove once finished (comment out for styling the prompt)
+// onMounted(() => {
+//   setTimeout(() => {
+//     needRefresh.value = true
+//   }, 1000)
+// })
 </script>
 
+<!-- TODO: remove shadow on mobile and position it above the bottom nav -->
 <template>
   <div
-    v-if="offlineReady || needRefresh"
-    class="pwa-toast"
-    role="alert"
+    v-if="needRefresh"
+    role="alertdialog"
+    aria-labelledby="pwa-toast-title"
+    aria-describedby="pwa-toast-description"
+    animate animate-back-in-right
+    z11
+    fixed
+    bottom-0 right-0
+    m-4 p-4
+    bg-base border="~ base"
+    rounded
+    text-left
+    shadow
   >
-    <div class="message">
-      <span v-if="offlineReady">
-        App ready to work offline
-      </span>
-      <span v-else>
-        New content available, click on reload button to update.
-      </span>
+    <h2 id="pwa-toast-title" sr-only>
+      New Elk version available
+    </h2>
+    <div id="pwa-toast-message">
+      New version available, click on reload button to update.
     </div>
-    <button v-if="needRefresh" @click="updateServiceWorker()">
-      Reload
-    </button>
-    <button @click="close">
-      Close
-    </button>
+    <div m-t4 flex="~ colum" gap-x="4">
+      <button type="button" btn-solid text-sm px-2 py-1 text-center @click="updateServiceWorker()">
+        Reload
+      </button>
+      <button type="button" btn-outline px-2 py-1 text-sm text-center @click="close">
+        Close
+      </button>
+    </div>
   </div>
 </template>
-
-<style>
-.pwa-toast {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 16px;
-  padding: 12px;
-  border: 1px solid #8885;
-  border-radius: 4px;
-  z-index: 1;
-  text-align: left;
-  box-shadow: 3px 4px 5px 0 #8885;
-}
-.pwa-toast .message {
-  margin-bottom: 8px;
-}
-.pwa-toast button {
-  border: 1px solid #8885;
-  outline: none;
-  margin-right: 5px;
-  border-radius: 2px;
-  padding: 3px 10px;
-}
-</style>

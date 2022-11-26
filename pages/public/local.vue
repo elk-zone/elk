@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = masto.timelines.getPublicIterable({ local: true })
+const paginator = useMasto().timelines.getPublicIterable({ local: true })
 
 useHead({
   title: 'Local',

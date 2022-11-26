@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = masto.timelines.getPublicIterable()
+const paginator = useMasto().timelines.getPublicIterable()
 
 useHead({
   title: 'Federated',

@@ -1,18 +1,16 @@
-import { getQuery } from 'ufo'
 import { stringifyQuery } from 'vue-router'
 import { HOST_DOMAIN, getApp } from '~/server/shared'
 
-export default defineEventHandler(async ({ context, req, res }) => {
-  const server = context.params.server
+export default defineEventHandler(async (event) => {
+  const server = event.context.params.server
   const app = await getApp(HOST_DOMAIN, server)
 
   if (!app) {
-    res.statusCode = 400
+    setResponseStatus(400)
     return `App not registered for server: ${server}`
   }
 
-  const query = getQuery(req.url!)
-  const code = query.code
+  const { code } = getQuery(event)
 
   const result: any = await $fetch(`https://${server}/oauth/token`, {
     method: 'POST',
@@ -26,10 +24,6 @@ export default defineEventHandler(async ({ context, req, res }) => {
     },
   })
 
-  res.writeHead(302, {
-    Location: `${HOST_DOMAIN}/signin/callback?${stringifyQuery({ server, token: result.access_token })}`,
-  })
-  res.end()
-
-  return result
+  const url = `${HOST_DOMAIN}/signin/callback?${stringifyQuery({ server, token: result.access_token })}`
+  await sendRedirect(event, url, 302)
 })

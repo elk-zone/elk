@@ -7,8 +7,6 @@ const { account, link = true, fullServer = false } = defineProps<{
   fullServer?: boolean
   hover?: boolean
 }>()
-
-const accountHandle = $(useAccountHandle(account, fullServer))
 </script>
 
 <template>

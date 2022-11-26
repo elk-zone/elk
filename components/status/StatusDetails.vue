@@ -11,7 +11,7 @@ const status = $computed(() => {
   return props.status
 })
 
-const date = useFormattedDateTime(status.createdAt)
+const createdAt = useFormattedDateTime(status.createdAt)
 
 const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === status.visibility)!)
 </script>
@@ -31,7 +31,10 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
       />
     </StatusSpoiler>
     <div flex="~ gap-1" items-center op50 text-sm>
-      <div>{{ date }}</div>
+      <div flex>
+        <div>{{ createdAt }}</div>
+        <StatusEditIndicator :status="status" />
+      </div>
       <div>·</div>
       <CommonTooltip :content="visibility.label" placement="bottom">
         <div :class="visibility.icon" />

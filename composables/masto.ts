@@ -1,6 +1,12 @@
 import type { Ref } from 'vue'
 import type { Account, Relationship, Status } from 'masto'
 
+declare module 'masto' {
+  interface Status {
+    editedAt?: string
+  }
+}
+
 // @unocss-include
 export const STATUS_VISIBILITIES = [
   {

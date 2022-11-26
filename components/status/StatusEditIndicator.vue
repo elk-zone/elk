@@ -1,11 +1,20 @@
 <script setup lang="ts">
-const props = defineProps<{ editedAt: string }>()
+import type { Status } from 'masto'
 
-const editedAt = useFormattedDateTime(props.editedAt)
+const { status } = defineProps<{
+  status: Status
+}>()
+
+const editedAt = $computed(() => status.editedAt)
+const formatted = useFormattedDateTime(status.editedAt)
 </script>
 
 <template>
-  <CommonTooltip :content="`Edited ${editedAt}`">
-    <time :title="props.editedAt" :datetime="props.editedAt" underline decoration-dashed>&nbsp;*</time>
+  <CommonTooltip v-if="editedAt" :content="`Edited ${formatted}`">
+    <time
+      :title="editedAt"
+      :datetime="editedAt"
+      font-bold underline decoration-dashed
+    >&nbsp;*</time>
   </CommonTooltip>
 </template>

@@ -90,7 +90,7 @@ const timeago = useTimeAgo(() => status.createdAt, {
                 </time>
               </a>
             </CommonTooltip>
-            <StatusEditIndicator v-if="status.editedAt" :edited-at="status.editedAt" />
+            <StatusEditIndicator :status="status" />
           </div>
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />

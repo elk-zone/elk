@@ -11,6 +11,6 @@ const serverName = $computed(() => getServerName(account))
 <template>
   <p>
     <span>{{ getShortHandle(account) }}</span>
-    <span v-if="serverName" text-xs ml1>@{{ serverName }}</span>
+    <span v-if="serverName" text="gray/95">@{{ serverName }}</span>
   </p>
 </template>

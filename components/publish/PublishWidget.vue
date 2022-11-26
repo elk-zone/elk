@@ -267,8 +267,3 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped>
-.editor-content::-webkit-scrollbar{
-  width: 0;
-}
-</style>

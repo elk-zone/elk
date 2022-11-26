@@ -35,6 +35,10 @@ export const STATUS_VISIBILITIES = [
   },
 ] as const
 
+export function getServerName(account: Account) {
+  return account.url.match(UserLinkRE)?.[1] || currentUser.value?.server || ''
+}
+
 export function getDisplayName(account: Account) {
   return account.displayName || account.username
 }
@@ -47,7 +51,7 @@ export function getFullHandle(account: Account) {
   const handle = `@${account.acct}`
   if (!currentUser.value || account.acct.includes('@'))
     return handle
-  return `${handle}@${account.url.match(UserLinkRE)?.[1] || currentUser.value.server}`
+  return `${handle}@${getServerName(account)}`
 }
 
 export function toShortHandle(fullHandle: string) {

@@ -7,6 +7,13 @@ const main = ref<Component | null>(null)
 
 const status = window.history.state?.status ?? await fetchStatus(id)
 const { data: context } = useAsyncData(`context:${id}`, () => useMasto().statuses.fetchContext(id))
+const unsubscribe = watch(context, async (context) => {
+  if (context) {
+    const statusElement = document.querySelector(`#status-${id}`)
+    statusElement?.scrollIntoView()
+    unsubscribe()
+  }
+}, { flush: 'post' })
 </script>
 
 <template>

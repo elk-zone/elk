@@ -10,7 +10,7 @@ definePageMeta({
         status,
       },
     }
-  }
+  },
 })
 </script>
 

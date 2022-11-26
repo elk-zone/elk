@@ -1,8 +1,8 @@
 <script setup lang="ts">
-const { data: timelines } = await useAsyncData('timelines-home', () => masto.timelines.fetchPublic({ local: true }).then(r => r.value))
+const paginator = masto.timelines.getPublicIterable({ local: true })
 
 useHead({
-  title: 'Local'
+  title: 'Local',
 })
 </script>
 
@@ -11,9 +11,9 @@ useHead({
     <template #title>
       <span text-lg font-bold>Local timeline</span>
     </template>
-    
+
     <slot>
-      <TimelineList :timelines="timelines" />
+      <TimelinePaginator :paginator="paginator" />
     </slot>
   </MainContent>
 </template>

@@ -19,6 +19,7 @@ const handleClick = (evt: MouseEvent) => {
 <template>
   <div
     flex gap-3 items-center cursor-pointer px4 py3 hover-bg-active
+    v-bind="$attrs"
     @click="handleClick"
   >
     <div v-if="icon" :class="icon" />
@@ -38,5 +39,6 @@ const handleClick = (evt: MouseEvent) => {
     <div flex-auto />
 
     <div v-if="checked" i-ri:check-line />
+    <slot name="actions" />
   </div>
 </template>

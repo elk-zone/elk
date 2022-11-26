@@ -1,3 +1,9 @@
+<script setup lang="ts">
+defineProps<{
+  back?: boolean
+}>()
+</script>
+
 <template>
   <div relative>
     <div
@@ -7,13 +13,12 @@
       :class="isZenMode ? 'op0 hover:op100 transition duration-300' : ''"
     >
       <div flex justify-between px5 py4>
-        <div flex gap-1>
-          <slot name="title">
-            <NuxtLink flex="~ gap1" items-center btn-text p-0 @click="$router.go(-1)">
-              <div i-ri-arrow-left-line />
-              Back
-            </NuxtLink>
-          </slot>
+        <div flex gap-3>
+          <NuxtLink v-if="back" flex="~ gap1" items-center btn-text p-0 @click="$router.go(-1)">
+            <div i-ri-arrow-left-line />
+          </NuxtLink>
+          <slot name="title" />
+          <div h-7 w-1px />
         </div>
         <div flex items-center>
           <slot name="actions" />

@@ -10,7 +10,7 @@ useHead({
 </script>
 
 <template>
-  <MainContent>
+  <MainContent back>
     <template #title>
       <span text-lg font-bold>#{{ tag }}</span>
     </template>

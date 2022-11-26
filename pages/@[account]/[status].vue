@@ -10,7 +10,7 @@ const { data: context } = useAsyncData(`context:${id}`, () => masto.statuses.fet
 </script>
 
 <template>
-  <MainContent>
+  <MainContent back>
     <template v-if="status">
       <template v-if="context">
         <template v-for="comment of context?.ancestors" :key="comment.id">

@@ -8,34 +8,29 @@ let relationship = $(useRelationship(account))
 
 const isSelf = $computed(() => currentUser.value?.account.id === account.id)
 
-const mute = async () => {
+const toggleMute = async () => {
   // TODO: Add confirmation
 
-  relationship!.muting = true
-  relationship = await masto.accounts.mute(account.id, {
-    // TODO support more options
-  })
+  relationship!.muting = !relationship!.muting
+  relationship = relationship!.muting
+    ? await masto.accounts.mute(account.id, {
+      // TODO support more options
+    })
+    : await masto.accounts.unmute(account.id)
 }
 
-const unmute = async () => {
+const toggleBlockUser = async () => {
   // TODO: Add confirmation
 
-  relationship!.muting = false
-  relationship = await masto.accounts.unmute(account.id)
+  relationship!.blocking = !relationship!.blocking
+  relationship = await masto.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
 }
 
-const block = async () => {
+const toggleBlockDomain = async () => {
   // TODO: Add confirmation
 
-  relationship!.blocking = true
-  relationship = await masto.accounts.block(account.id)
-}
-
-const unblock = async () => {
-  // TODO: Add confirmation
-
-  relationship!.blocking = false
-  relationship = await masto.accounts.unblock(account.id)
+  relationship!.domainBlocking = !relationship!.domainBlocking
+  await masto.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
 }
 </script>
 
@@ -62,19 +57,58 @@ const unblock = async () => {
           Direct message @{{ account.acct }}
         </CommonDropdownItem>
 
-        <CommonDropdownItem v-if="!relationship?.muting" icon="i-ri:volume-up-fill" @click="mute">
+        <CommonDropdownItem v-if="!relationship?.muting" icon="i-ri:volume-up-fill" @click="toggleMute">
           Mute @{{ account.acct }}
         </CommonDropdownItem>
-        <CommonDropdownItem v-else icon="i-ri:volume-mute-line" @click="unmute">
+        <CommonDropdownItem v-else icon="i-ri:volume-mute-line" @click="toggleMute">
           Unmute @{{ account.acct }}
         </CommonDropdownItem>
 
-        <CommonDropdownItem v-if="!relationship?.blocking" icon="i-ri:forbid-2-line" @click="block">
+        <CommonDropdownItem v-if="!relationship?.blocking" icon="i-ri:forbid-2-line" @click="toggleBlockUser">
           Block @{{ account.acct }}
         </CommonDropdownItem>
-        <CommonDropdownItem v-else icon="i-ri:checkbox-circle-line" @click="unblock">
+        <CommonDropdownItem v-else icon="i-ri:checkbox-circle-line" @click="toggleBlockUser">
           Unblock @{{ account.acct }}
         </CommonDropdownItem>
+
+        <CommonDropdownItem
+          v-if="!relationship?.domainBlocking"
+          icon="i-ri:shut-down-line"
+          @click="toggleBlockDomain"
+        >
+          Block domain {{ getServerName(account) }}
+        </CommonDropdownItem>
+        <CommonDropdownItem v-else icon="i-ri:restart-line" @click="toggleBlockDomain">
+          Unblock domain {{ getServerName(account) }}
+        </CommonDropdownItem>
+      </template>
+
+      <template v-else>
+        <NuxtLink to="/pinned">
+          <CommonDropdownItem icon="i-ri:pushpin-line">
+            Pinned
+          </CommonDropdownItem>
+        </NuxtLink>
+        <NuxtLink to="/favourites">
+          <CommonDropdownItem icon="i-ri:heart-3-line">
+            Favourites
+          </CommonDropdownItem>
+        </NuxtLink>
+        <NuxtLink to="/mutes">
+          <CommonDropdownItem icon="i-ri:volume-mute-line">
+            Muted users
+          </CommonDropdownItem>
+        </NuxtLink>
+        <NuxtLink to="/blocks">
+          <CommonDropdownItem icon="i-ri:forbid-2-line">
+            Blocked users
+          </CommonDropdownItem>
+        </NuxtLink>
+        <NuxtLink to="/domain_blocks">
+          <CommonDropdownItem icon="i-ri:shut-down-line">
+            Blocked domains
+          </CommonDropdownItem>
+        </NuxtLink>
       </template>
     </template>
   </CommonDropdown>

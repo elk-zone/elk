@@ -12,7 +12,11 @@ if (account) {
 </script>
 
 <template>
-  <MainContent>
+  <MainContent back>
+    <template #title>
+      <span text-lg font-bold>{{ account ? getDisplayName(account) : 'Profile' }}</span>
+    </template>
+
     <template v-if="account">
       <AccountHeader :account="account" border="b base" />
       <NuxtPage />

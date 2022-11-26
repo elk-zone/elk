@@ -19,7 +19,7 @@ export function fetchStatus(id: string): Promise<Status> {
   const cached = cache.get(key)
   if (cached)
     return cached
-  const promise = masto.statuses.fetch(id)
+  const promise = useMasto().statuses.fetch(id)
     .then((status) => {
       cacheStatus(status)
       return status
@@ -33,7 +33,7 @@ export function fetchAccount(id: string): Promise<Account> {
   const cached = cache.get(key)
   if (cached)
     return cached
-  const promise = masto.accounts.fetch(id)
+  const promise = useMasto().accounts.fetch(id)
     .then((account) => {
       cacheAccount(account, true)
       return account
@@ -47,7 +47,7 @@ export async function fetchAccountByName(acct: string): Promise<Account> {
   const cached = cache.get(key)
   if (cached)
     return cached
-  const account = masto.accounts.lookup({ acct })
+  const account = useMasto().accounts.lookup({ acct })
     .then((r) => {
       cacheAccount(r, true)
       return r

@@ -43,7 +43,7 @@ async function toggleStatusAction(action: Action, newStatus: Promise<Status>, co
 }
 const toggleReblog = () => toggleStatusAction(
   'reblogged',
-  masto.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
+  useMasto().statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
     if (status.reblogged)
       // returns the original status
       return res.reblog!
@@ -54,17 +54,17 @@ const toggleReblog = () => toggleStatusAction(
 
 const toggleFavourite = () => toggleStatusAction(
   'favourited',
-  masto.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+  useMasto().statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
   'favouritesCount',
 )
 
 const toggleBookmark = () => toggleStatusAction(
   'bookmarked',
-  masto.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
+  useMasto().statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
 )
 const togglePin = async () => toggleStatusAction(
   'pinned',
-  masto.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+  useMasto().statuses[status.pinned ? 'unpin' : 'pin'](status.id),
 )
 
 const { toggle: _toggleTranslation, translation, enabled: isTranslationEnabled } = useTranslation(_status)
@@ -80,7 +80,7 @@ const copyLink = async () => {
 const deleteStatus = async () => {
   // TODO confirm to delete
 
-  await masto.statuses.remove(status.id)
+  await useMasto().statuses.remove(status.id)
   if (route.name === '@user-post')
     router.back()
 
@@ -90,7 +90,7 @@ const deleteStatus = async () => {
 const deleteAndRedraft = async () => {
   // TODO confirm to delete
 
-  const { text } = await masto.statuses.remove(status.id)
+  const { text } = await useMasto().statuses.remove(status.id)
 
   if (!dialogDraft.isEmpty) {
     // TODO confirm to overwrite

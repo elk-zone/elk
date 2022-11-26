@@ -11,7 +11,7 @@ let relationship = $(useRelationship(account))
 async function toggleFollow() {
   relationship!.following = !relationship!.following
   try {
-    relationship = await masto.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+    relationship = await useMasto().accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
   }
   catch {
     // TODO error handling

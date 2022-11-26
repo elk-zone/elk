@@ -47,8 +47,9 @@ export function getDisplayName(account?: Account, options?: { rich?: boolean }) 
   return displayName.replace(/:([\w-]+?):/g, '')
 }
 
-export function getShortHandle(account: Account) {
-  return `@${account.acct}`
+export function getShortHandle({ acct }: Account) {
+  
+  return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
 }
 
 export function getFullHandle(account: Account) {

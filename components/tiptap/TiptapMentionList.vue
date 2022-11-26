@@ -41,7 +41,7 @@ defineExpose({
 </script>
 
 <template>
-  <div relative bg-base text-base shadow border="~ base rounded" text-sm py-2>
+  <div relative bg-base text-base shadow border="~ base rounded" text-sm py-2 overflow-x-hidden overflow-y-auto max-h-100>
     <template v-if="items.length">
       <button
         v-for="(item, index) in items"

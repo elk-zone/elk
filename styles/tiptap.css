@@ -5,3 +5,7 @@
   height: 0;
   opacity: 0.4;
 }
+
+span[data-type="mention"] {
+  --at-apply: text-primary
+}

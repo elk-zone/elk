@@ -116,7 +116,7 @@ function editStatus() {
 
 <template>
   <div flex justify-between>
-    <CommonTooltip placement="bottom" content="Reply">
+    <CommonTooltip flex-1 placement="bottom" content="Reply">
       <StatusActionButton
         as="router-link"
         :to="getStatusPath(status)"
@@ -126,7 +126,7 @@ function editStatus() {
       />
     </CommonTooltip>
 
-    <CommonTooltip placement="bottom" content="Boost">
+    <CommonTooltip flex-1 placement="bottom" content="Boost">
       <StatusActionButton
         :text="status.reblogsCount"
         color="text-green" hover="text-green" group-hover="bg-green/10"
@@ -138,7 +138,7 @@ function editStatus() {
       />
     </CommonTooltip>
 
-    <CommonTooltip placement="bottom" content="Favourite">
+    <CommonTooltip flex-1 placement="bottom" content="Favourite">
       <StatusActionButton
         :text="status.favouritesCount"
         color="text-rose" hover="text-rose" group-hover="bg-rose/10"
@@ -151,7 +151,7 @@ function editStatus() {
       />
     </CommonTooltip>
 
-    <CommonTooltip placement="bottom" content="Bookmark">
+    <CommonTooltip flex-1 placement="bottom" content="Bookmark">
       <StatusActionButton
         color="text-yellow" hover="text-yellow" group-hover="bg-yellow/10"
         icon="i-ri:bookmark-line"
@@ -162,7 +162,7 @@ function editStatus() {
       />
     </CommonTooltip>
 
-    <CommonDropdown placement="bottom">
+    <CommonDropdown flex-1 placement="bottom">
       <CommonTooltip placement="bottom" content="More">
         <StatusActionButton
           color="text-purple" hover="text-purple" group-hover="bg-purple/10"

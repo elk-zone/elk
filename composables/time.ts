@@ -1,7 +1,7 @@
-import type { MaybeRef, UseTimeAgoOptions } from '@vueuse/core'
+import type { MaybeComputedRef, UseTimeAgoOptions } from '@vueuse/core'
 
 export const useFormattedDateTime = (
-  value: MaybeRef<string | Date | undefined>,
+  value: MaybeComputedRef<string | Date | undefined>,
   options: Intl.DateTimeFormatOptions = { dateStyle: 'long', timeStyle: 'medium' },
 ) => {
   const formatter = Intl.DateTimeFormat(undefined, options)

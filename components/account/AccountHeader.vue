@@ -5,10 +5,11 @@ const { account } = defineProps<{
   account: Account
 }>()
 
-const createdAt = $computed(() => {
-  const date = new Date(account.createdAt)
-  return new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(date)
-})
+const createdAt = $(useFormattedDateTime(() => account.createdAt, {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+}))
 
 const fields = $computed(() => {
   return [

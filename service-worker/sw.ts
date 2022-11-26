@@ -27,6 +27,11 @@ let allowlist: undefined | RegExp[]
 if (import.meta.env.DEV)
   allowlist = [/^\/error$/]
 
+// deny api calls
+let denylist: undefined | RegExp[]
+if (import.meta.env.PROD)
+  denylist = [/^\/api\//, /^\/login\//, /^\/oauth\//, /^\/signin\//]
+
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {
   // external assets: rn avatars from mas.to
@@ -50,6 +55,6 @@ if (import.meta.env.PROD) {
 // to allow work offline
 registerRoute(new NavigationRoute(
   createHandlerBoundToURL('/error'),
-  { allowlist },
+  { allowlist, denylist },
 ))
 

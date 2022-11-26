@@ -16,9 +16,10 @@ const {
   expanded?: boolean
 }>()
 
-let isExpanded = $ref(_expanded)
 let isSending = $ref(false)
 let { draft } = $(useDraft(draftKey, inReplyToId))
+const isExistDraft = $computed(() => !!draft.params.status && draft.params.status !== '<p></p>')
+let isExpanded = $ref(isExistDraft || _expanded)
 
 const { editor } = useTiptap({
   content: computed({
@@ -179,8 +180,9 @@ onUnmounted(() => {
 
         <div relative>
           <EditorContent
+            class="editor-content"
             :editor="editor"
-            :class="isExpanded ? 'min-h-120px' : ''"
+            :class="isExpanded ? 'min-h-120px max-h-720px of-y-auto' : ''"
           />
           <div v-if="isExpanded" absolute right-0 bottom-0 pointer-events-none text-sm op25>
             {{ characterLimit - editor?.storage.characterCount.characters() }}
@@ -254,7 +256,7 @@ onUnmounted(() => {
           </CommonDropdown>
           <button
             btn-solid rounded-full text-sm
-            :disabled="isUploading || (draft.attachments.length === 0 && !draft.params.status)"
+            :disabled="!isExistDraft || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
             @click="publish"
           >
             {{ !draft.editingStatus ? 'Publish!' : 'Save changes' }}
@@ -264,3 +266,9 @@ onUnmounted(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.editor-content::-webkit-scrollbar{
+  width: 0;
+}
+</style>

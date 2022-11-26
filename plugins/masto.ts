@@ -16,8 +16,8 @@ export default defineNuxtPlugin(async () => {
       },
     }
   }
-  catch (e) {
-    console.log(e)
+  catch {
+    // TODO: handle error
     // Show error page when Mastodon server is down
     throw createError({
       fatal: true,

@@ -24,12 +24,8 @@ cleanupOutdatedCaches()
 
 // allow only fallback in dev: we don't want to cache anything
 let allowlist: undefined | RegExp[]
-let denylist: undefined | RegExp[]
 if (import.meta.env.DEV)
   allowlist = [/^\/error$/]
-
-if (import.meta.env.PROD)
-  denylist = [/^\/error$/]
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {
@@ -54,6 +50,6 @@ if (import.meta.env.PROD) {
 // to allow work offline
 registerRoute(new NavigationRoute(
   createHandlerBoundToURL('/error'),
-  { allowlist, denylist },
+  { allowlist },
 ))
 

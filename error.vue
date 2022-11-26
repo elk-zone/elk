@@ -1,5 +1,10 @@
-<script setup>
+<script setup lang="ts">
 useHeader()
+
+const errorCodes: Record<number, string> = {
+  404: 'Oops! Page not found',
+  500: 'Oops! Something went wrong',
+}
 </script>
 
 <template>

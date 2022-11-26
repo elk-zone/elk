@@ -7,7 +7,7 @@
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev --port 5314",
-    "start": "cross-env PORT=5314 node .output/server/index.mjs",
+    "start": "node .output/server/index.mjs",
     "lint": "eslint .",
     "postinstall": "nuxi prepare",
     "prepare": "esno scripts/prepare.ts",
@@ -43,7 +43,6 @@
     "@vueuse/nuxt": "^9.6.0",
     "blurhash": "^2.0.4",
     "browser-fs-access": "^0.31.1",
-    "cross-env": "^7.0.3",
     "eslint": "^8.28.0",
     "esno": "^0.16.3",
     "floating-vue": "2.0.0-beta.20",

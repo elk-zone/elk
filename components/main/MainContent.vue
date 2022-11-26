@@ -22,7 +22,7 @@
             </NuxtLink>
           </template>
           <template v-else>
-            <button btn-solid text-sm px-2 py-1 text-center @click="openSigninDialog()">
+            <button md-hidden btn-solid text-sm px-2 py-1 text-center @click="openSigninDialog()">
               Sign in
             </button>
           </template>

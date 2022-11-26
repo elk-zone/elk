@@ -39,8 +39,12 @@ export function getServerName(account: Account) {
   return account.url.match(UserLinkRE)?.[1] || currentUser.value?.server || ''
 }
 
-export function getDisplayName(account: Account) {
-  return account.displayName || account.username
+export function getDisplayName(account?: Account, options?: { rich?: boolean }) {
+  const displayName = account?.displayName || account?.username || ''
+  if (options?.rich)
+    return displayName
+
+  return displayName.replace(/:([\w-]+?):/g, '')
 }
 
 export function getShortHandle(account: Account) {

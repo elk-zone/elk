@@ -66,7 +66,7 @@ function previewAvatar() {
             <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
           </button>
           <div flex flex-col>
-            <ContentRich font-bold text-2xl break-words :content="getDisplayName(account)" :emojis="account.emojis" />
+            <ContentRich font-bold text-2xl break-words :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
             <AccountHandle :account="account" op50 />
           </div>
         </div>

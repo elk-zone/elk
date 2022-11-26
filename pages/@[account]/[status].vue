@@ -23,7 +23,7 @@ const { data: context } = useAsyncData(`context:${id}`, () => masto.statuses.fet
         v-if="currentUser"
         border="t base"
         :draft-key="`reply-${id}`"
-        :placeholder="`Reply to ${status?.account ? getDisplayName(status?.account) : 'this thread'}`"
+        :placeholder="`Reply to ${status?.account ? getDisplayName(status.account) : 'this thread'}`"
         :in-reply-to-id="id"
       />
 

@@ -5,8 +5,6 @@ const { account, link = true } = defineProps<{
   account: Account
   link?: boolean
 }>()
-
-const accountHandle = $(useAccountHandle(account))
 </script>
 
 <template>
@@ -15,8 +13,6 @@ const accountHandle = $(useAccountHandle(account))
     flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
   >
     <ContentRich font-bold break-words hover:underline :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
-    <p op35 text-sm>
-      {{ accountHandle }}
-    </p>
+    <AccountHandle :account="account" op50 />
   </NuxtLink>
 </template>

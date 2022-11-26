@@ -48,7 +48,6 @@ export function getDisplayName(account?: Account, options?: { rich?: boolean }) 
 }
 
 export function getShortHandle({ acct }: Account) {
-  
   return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
 }
 

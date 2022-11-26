@@ -15,7 +15,7 @@ self.addEventListener('message', (event) => {
 
 const entries = self.__WB_MANIFEST
 if (import.meta.env.DEV)
-  entries.push({ url: '/fallback', revision: Math.random().toString() })
+  entries.push({ url: '/error', revision: Math.random().toString() })
 
 precacheAndRoute(entries)
 
@@ -24,8 +24,12 @@ cleanupOutdatedCaches()
 
 // allow only fallback in dev: we don't want to cache anything
 let allowlist: undefined | RegExp[]
+let denylist: undefined | RegExp[]
 if (import.meta.env.DEV)
-  allowlist = [/^\/fallback$/]
+  allowlist = [/^\/error$/]
+
+if (import.meta.env.PROD)
+  denylist = [/^\/error$/]
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {
@@ -49,7 +53,7 @@ if (import.meta.env.PROD) {
 
 // to allow work offline
 registerRoute(new NavigationRoute(
-  createHandlerBoundToURL('/fallback'),
-  { allowlist },
+  createHandlerBoundToURL('/error'),
+  { allowlist, denylist },
 ))
 

@@ -9,10 +9,10 @@ const headers: HeadersInit = {
 }
 
 export default defineEventHandler(async ({ res }) => {
-  const swDir = useRuntimeConfig().swDir
-  const swPath = await resolvePath(joinURL(swDir, 'sw.js'))
-  const s = await fs.stat(swPath)
-  if (s && s.isFile()) {
+  const { swDir, swName } = useRuntimeConfig()
+  const swPath = await resolvePath(joinURL(swDir, swName))
+  const stats = await fs.stat(swPath)
+  if (stats && stats.isFile()) {
     res.writeHead(200, {
       'content-type': 'application/javascript;charset=UTF-8',
       ...headers,

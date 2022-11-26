@@ -1,3 +1,4 @@
+import { promises as fs } from 'node:fs'
 import { addServerHandler, createResolver, defineNuxtModule, resolvePath } from '@nuxt/kit'
 import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -43,6 +44,8 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         vitePwaClientPlugin = plugins.find(p => p.name === 'vite-plugin-pwa') as Plugin
     })
 
+    const generateSWStrategy = !options.strategies || options.strategies === 'generateSW'
+
     if (nuxt.options.dev) {
       const webManifest = `${nuxt.options.app.baseURL}${options.devOptions?.webManifestUrl ?? options.manifestFilename ?? 'manifest.webmanifest'}`
       const devSw = `${nuxt.options.app.baseURL}dev-sw.js?dev-sw`
@@ -63,7 +66,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
               next()
             },
           })
-          if (!options.strategies || options.strategies === 'generateSW') {
+          if (generateSWStrategy) {
             viteServer.middlewares.stack.push({
               route: workbox,
               // @ts-expect-error just ignore
@@ -78,8 +81,9 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     else if (!options.disable) {
       const { filename = 'sw.js', srcDir = 'public' } = options
       const swSrc = await resolvePath(joinURL(nuxt.options.rootDir, srcDir, filename))
+      const stats = await fs.stat(swSrc)
       let useFilename = filename
-      if (swSrc && options.strategies === 'injectManifest' && filename.endsWith('.ts'))
+      if (stats && stats.isFile() && options.strategies === 'injectManifest' && filename.endsWith('.ts'))
         useFilename = `${filename.substring(0, filename.lastIndexOf('.'))}.js`
 
       addServerHandler({
@@ -95,9 +99,9 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     }
     nuxt.hook('close', async () => {
       if (nuxt.options.dev) {
-        // todo: cleanup dev-dist folder
-        // eslint-disable-next-line no-console
-        console.log(resolver.resolve('dev-dist'))
+        if (generateSWStrategy) {
+          // todo: cleanup dev-dist folder
+        }
       }
       else {
         await resolveVitePluginPWAAPI()?.generateSW()

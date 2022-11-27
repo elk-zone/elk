@@ -30,6 +30,7 @@ const fieldNameIcons: Record<string, string> = {
   instagram: 'i-ri:instagram-line',
   website: 'i-ri:link',
   site: 'i-ri:link',
+  portfolio: 'i-ri:link',
   blog: 'i-ri:newspaper-line',
   home: 'i-ri:home-2-line',
   sponsors: 'i-ri:heart-3-line',
@@ -37,6 +38,10 @@ const fieldNameIcons: Record<string, string> = {
   city: 'i-ri:map-pin-2-line',
   joined: 'i-ri:user-add-line',
   birth: 'i-ri:calendar-line',
+  tumblr: 'i-ri:tumblr-fill',
+  linkedin: 'i-ri:linkedin-box-fill',
+  facebook: 'i-ri:facebook-fill',
+  patreon: 'i-ri:patreon-fill',
 }
 
 function getFieldNameIcon(fieldName: string) {
@@ -84,7 +89,7 @@ function previewAvatar() {
         <ContentRich text-4 text-secondary :content="account.note" :emojis="account.emojis" />
       </div>
       <div flex flex-wrap gap-4>
-        <div v-for="field in fields" :key="field.name" flex="~ gap-1" items-center >
+        <div v-for="field in fields" :key="field.name" flex="~ gap-1" items-center>
           <div v-if="getFieldNameIcon(field.name)" text-secondary :class="getFieldNameIcon(field.name)" :title="field.name" />
           <div v-else text-secondary uppercase text-xs font-bold>
             {{ field.name }} |

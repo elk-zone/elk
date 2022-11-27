@@ -1,5 +1,5 @@
 import { stringifyQuery } from 'ufo'
-import { HOST_DOMAIN, getApp } from '~/server/shared'
+import { HOST_DOMAIN, HOST_URL, getApp } from '~/server/shared'
 
 export default defineEventHandler(async (event) => {
   const server = event.context.params.server
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   const query = stringifyQuery({
     client_id: app.client_id,
     scope: 'read write follow push',
-    redirect_uri: `${HOST_DOMAIN}/api/${server}/oauth`,
+    redirect_uri: `${HOST_URL}/api/${server}/oauth`,
     response_type: 'code',
   })
   const url = `https://${server}/oauth/authorize?${query}`

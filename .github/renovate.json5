@@ -39,30 +39,15 @@
     },
     {
       "groupName": "iconify",
-      "matchPackageNames": [
-        "@iconify-json/carbon",
-        "@iconify-json/logos",
-        "@iconify-json/ri",
-        "@iconify-json/twemoji"
-      ]
+      "matchPackagePatterns": ["^@iconify"]
     },
     {
       "groupName": "tiptap",
-      "matchPackageNames": [
-        "@tiptap/extension-character-count",
-        "@tiptap/extension-code-block",
-        "@tiptap/extension-mention",
-        "@tiptap/extension-paragraph",
-        "@tiptap/extension-placeholder",
-        "@tiptap/extension-text",
-        "@tiptap/starter-kit",
-        "@tiptap/suggestion",
-        "@tiptap/vue-3"
-      ]
+      "matchPackagePatterns": ["^@tiptap"]
     },
     {
       "groupName": "vueuse",
-      "matchPackageNames": ["@vueuse/integrations", "@vueuse/nuxt"]
+      "matchPackagePatterns": ["^@vueuse"]
     },
     {
       "groupName": "masto",

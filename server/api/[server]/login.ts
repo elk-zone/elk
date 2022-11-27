@@ -1,9 +1,9 @@
 import { stringifyQuery } from 'ufo'
-import { HOST_DOMAIN, HOST_URL, getApp } from '~/server/shared'
+import { HOST_URL, getApp } from '~/server/shared'
 
 export default defineEventHandler(async (event) => {
   const server = event.context.params.server
-  const app = await getApp(HOST_DOMAIN, server)
+  const app = await getApp(server)
 
   if (!app) {
     event.node.res.statusCode = 400

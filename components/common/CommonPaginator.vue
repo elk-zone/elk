@@ -10,6 +10,14 @@ const { paginator, keyProp = 'id', virtualScroller = false } = defineProps<{
   virtualScroller: boolean
 }>()
 
+defineSlots<{
+  default: {
+    item: any
+    active?: boolean
+  }
+  loading: {}
+}>()
+
 const { items, state, endAnchor, error } = usePaginator(paginator)
 </script>
 

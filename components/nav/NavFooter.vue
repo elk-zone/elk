@@ -1,7 +1,5 @@
 <script setup lang="ts">
-// eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
-// @ts-ignore build time
-const buildTime = __BUILD_TIME__
+const buildTime = import.meta.env.__BUILD_TIME__ as string
 const buildTimeAgo = useTimeAgo(buildTime)
 </script>
 

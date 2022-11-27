@@ -7,7 +7,7 @@ definePageMeta({
     return {
       path: getStatusPath(status),
       state: {
-        status,
+        status: status as any,
       },
     }
   },

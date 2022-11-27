@@ -1,12 +1,13 @@
 <script setup>
 import { APP_NAME } from './constants'
 
+const isDev = process.dev
+const isPreview = window.location.hostname.includes('deploy-preview')
+
 useHead({
-  titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${import.meta.env.DEV ? ' (dev)' : window.location.hostname.includes('deploy-preview') ? '(preview)' : ''}`,
+  titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
   link: [
-    {
-      rel: 'icon', type: 'image/svg+png', href: '/favicon.png',
-    },
+    { rel: 'icon', type: 'image/svg+png', href: isDev || isPreview ? '/favicon-dev.png' : '/favicon.png' },
   ],
 })
 

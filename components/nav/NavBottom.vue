@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <nav h-14 fixed bottom-0 left-0 right-0 z-50 border="t base" bg-base flex flex-row>
+  <nav h-14 fixed bottom-0 left-0 right-0 z-10 border="t base" bg-base flex flex-row>
     <template v-if="currentUser">
       <NuxtLink to="/home" active-class="text-primary" flex flex-row items-center place-content-center h-full flex-1>
         <div i-ri:home-5-line />

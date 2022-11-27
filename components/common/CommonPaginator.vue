@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { Paginator } from 'masto'
@@ -27,10 +28,12 @@ const { items, state, endAnchor, error } = usePaginator(paginator)
       />
     </template>
     <div ref="endAnchor" />
-    <div v-if="state === 'loading'" p5 text-center flex="~ col" items-center animate-pulse>
-      <div text-secondary i-ri:loader-2-fill animate-spin text-2xl />
-      <span text-secondary>Loading...</span>
-    </div>
+    <slot v-if="state === 'loading'" name="loading">
+      <div p5 text-center flex="~ col" items-center animate-pulse>
+        <div text-secondary i-ri:loader-2-fill animate-spin text-2xl />
+        <span text-secondary>Loading...</span>
+      </div>
+    </slot>
     <div v-else-if="state === 'done'" p5 text-secondary italic text-center>
       End of the list
     </div>

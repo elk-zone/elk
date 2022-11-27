@@ -13,13 +13,14 @@ export default defineConfig({
   shortcuts: [
     {
       'border-base': 'border-$c-border',
+      'border-bg-base': 'border-$c-bg-base',
 
       // background
       'bg-base': 'bg-$c-bg-base',
       'bg-active': 'bg-$c-bg-active',
       'bg-code': 'bg-$c-bg-code',
 
-      // text
+      // text colors
       'text-base': 'text-$c-text-base',
       'text-secondary': 'text-$c-text-secondary',
       'text-secondary-light': 'text-$c-text-secondary-light',
@@ -30,6 +31,9 @@ export default defineConfig({
       'btn-outline': 'btn-base px-4 py-2 rounded text-$c-primary border border-$c-primary hover:bg-$c-primary hover:text-white',
       'btn-text': 'btn-base px-4 py-2 text-$c-primary hover:text-$c-primary-active',
       'btn-action-icon': 'btn-base hover:bg-active rounded-full h9 w9 flex items-center justify-center',
+
+      // link
+      'text-link-rounded': 'focus:outline-none focus:ring-(2 primary inset) hover:bg-active rounded md:rounded-full px2 mx--2',
 
       // utils
       'flex-center': 'items-center justify-center',

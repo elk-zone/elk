@@ -11,8 +11,9 @@ const { account, link = true } = defineProps<{
   <NuxtLink
     :to="link ? getAccountPath(account) : undefined"
     flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
+    text-link-rounded
   >
-    <ContentRich font-bold break-words hover:underline :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
+    <ContentRich font-bold break-words :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
     <AccountHandle :account="account" />
   </NuxtLink>
 </template>

@@ -38,7 +38,7 @@ function createSuggestionRenderer(): SuggestionOptions['render'] {
     let popup: Instance
 
     return {
-      onStart: (props) => {
+      onStart(props) {
         component = new VueRenderer(TiptapMentionList, {
           props,
           editor: props.editor,
@@ -58,8 +58,13 @@ function createSuggestionRenderer(): SuggestionOptions['render'] {
         })
       },
 
+      // Use arrow function here because Nuxt will transform it incorrectly as Vue hook causing the build to fail
+      onBeforeUpdate: (props) => {
+        component.updateProps({ ...props, isPending: true })
+      },
+
       onUpdate(props) {
-        component.updateProps(props)
+        component.updateProps({ ...props, isPending: false })
 
         if (!props.clientRect)
           return

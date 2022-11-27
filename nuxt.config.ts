@@ -1,3 +1,5 @@
+import Inspect from 'vite-plugin-inspect'
+
 export default defineNuxtConfig({
   ssr: false,
   modules: [
@@ -31,6 +33,9 @@ export default defineNuxtConfig({
     build: {
       target: 'esnext',
     },
+    plugins: [
+      Inspect(),
+    ],
   },
   postcss: {
     plugins: {

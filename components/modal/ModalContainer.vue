@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import { isEditHistoryDialogOpen, isImagePreviewDialogOpen, isPreviewHelpOpen, isPublishDialogOpen, isSigninDialogOpen, isUserSwitcherOpen } from '~/composables/dialog'
+import {
+  isEditHistoryDialogOpen,
+  isImagePreviewDialogOpen,
+  isPreviewHelpOpen,
+  isPublishDialogOpen,
+  isSigninDialogOpen,
+} from '~/composables/dialog'
 </script>
 
 <template>
-  <ModalDrawer v-model="isUserSwitcherOpen" direction="right">
-    <UserSwitcher min-w-100 />
-  </ModalDrawer>
   <ModalDialog v-model="isSigninDialogOpen">
     <UserSignIn m6 />
   </ModalDialog>
-  <ModalDialog v-model="isPreviewHelpOpen">
-    <HelpPreview />
+  <ModalDialog v-model="isPreviewHelpOpen" :type="isSmallScreen ? 'bottom' : 'dialog'">
+    <HelpPreview @close="closePreviewHelp()" />
   </ModalDialog>
   <ModalDialog v-model="isPublishDialogOpen">
     <PublishWidget draft-key="dialog" expanded min-w-180 />

@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div bg-base border="~ base" rounded w-80 z-900 overflow-hidden p-4 class="account-hover-card">
+  <div rounded w-80 z-900 overflow-hidden p-4>
     <AccountInfo :account="account" />
     <div text-sm flex flex-row text-secondary mt-4>
       <NuxtLink :to="`/${getFullHandle(account)}/`">

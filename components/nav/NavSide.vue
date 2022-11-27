@@ -1,65 +1,24 @@
-<script setup lang="ts">
-</script>
-
 <template>
-  <div px3 py4 flex="~ col gap2" text-lg>
+  <nav px3 py4 flex="~ col gap2" text-lg>
     <template v-if="currentUser">
-      <NuxtLink to="/home" active-class="text-primary" group focus:outline-none>
-        <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 group-hover:bg-active group-focus-visible:ring="2 current">
-          <div i-ri:home-5-line />
-          <span>Home</span>
-        </div>
-      </NuxtLink>
-      <NuxtLink to="/notifications" active-class="text-primary" group focus:outline-none>
-        <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 group-hover:bg-active group-focus-visible:ring="2 current">
-          <div i-ri:notification-4-line />
-          <span>Notifications</span>
-        </div>
-      </NuxtLink>
+      <NavSideItem text="Home" to="/home" icon="i-ri:home-5-line" />
+      <NavSideItem text="Notifications" to="/notifications" icon="i-ri:notification-4-line" />
     </template>
-    <NuxtLink to="/explore" active-class="text-primary" group focus:outline-none>
-      <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 group-hover:bg-active group-focus-visible:ring="2 current">
-        <div i-ri:hashtag />
-        <span>Explore</span>
-      </div>
-    </NuxtLink>
-    <NuxtLink to="/public/local" active-class="text-primary" group focus:outline-none>
-      <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 group-hover:bg-active group-focus-visible:ring="2 current">
-        <div i-ri:group-2-line />
-        <span>Local</span>
-      </div>
-    </NuxtLink>
-    <NuxtLink to="/public" active-class="text-primary" group focus:outline-none>
-      <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 group-hover:bg-active group-focus-visible:ring="2 current">
-        <div i-ri:earth-line />
-        <span>Federated</span>
-      </div>
-    </NuxtLink>
+    <NavSideItem text="Explore" to="/explore" icon="i-ri:hashtag" />
+    <NavSideItem text="Local" to="/public/local" icon="i-ri:group-2-line " />
+    <NavSideItem text="Federated" to="/public" icon="i-ri:earth-line" />
     <template v-if="currentUser">
-      <NuxtLink to="/conversations" active-class="text-primary" group focus:outline-none>
-        <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 group-hover:bg-active group-focus-visible:ring="2 current">
-          <div i-ri:at-line />
-          <span>Conversations</span>
-        </div>
-      </NuxtLink>
-      <NuxtLink to="/favourites" active-class="text-primary" group focus:outline-none>
-        <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 group-hover:bg-active group-focus-visible:ring="2 current">
-          <div i-ri:heart-3-line />
-          <span>Favorites</span>
-        </div>
-      </NuxtLink>
-      <NuxtLink to="/bookmarks" active-class="text-primary" group focus:outline-none>
-        <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 group-hover:bg-active group-focus-visible:ring="2 current">
-          <div i-ri:bookmark-line />
-          <span>Bookmarks</span>
-        </div>
-      </NuxtLink>
-      <NuxtLink :to="getAccountPath(currentUser.account)" active-class="text-primary" group focus:outline-none>
-        <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-10 group-hover:bg-active group-focus-visible:ring="2 current">
+      <NavSideItem text="Conversations" to="/conversations" icon="i-ri:at-line" />
+      <NavSideItem text="Favourites" to="/favourites" icon="i-ri:heart-3-line" />
+      <NavSideItem text="Bookmarks" to="/bookmarks" icon="i-ri:bookmark-line " />
+      <NavSideItem
+        :text="currentUser.account.displayName || 'Profile'"
+        :to="getAccountPath(currentUser.account)" icon="i-ri:list-check-2-line"
+      >
+        <template #icon>
           <AccountAvatar :account="currentUser.account" h="1.2em" />
-          <span>Profile</span>
-        </div>
-      </NuxtLink>
+        </template>
+      </NavSideItem>
     </template>
-  </div>
+  </nav>
 </template>

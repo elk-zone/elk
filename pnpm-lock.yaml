@@ -2898,7 +2898,7 @@ packages:
     dev: true
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: true
 
   /consola/2.15.3:
@@ -3286,7 +3286,7 @@ packages:
     dev: true
 
   /ee-first/1.1.1:
-    resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
+    resolution: {integrity: sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=}
     dev: true
 
   /electron-to-chromium/1.4.284:
@@ -4225,7 +4225,7 @@ packages:
     resolution: {integrity: sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==}
     engines: {node: '>= 8'}
     dependencies:
-      minipass: 3.3.4
+      minipass: 3.3.6
     dev: true
 
   /fs.realpath/1.0.0:
@@ -5300,8 +5300,8 @@ packages:
       yallist: 3.1.1
     dev: true
 
-  /minipass/3.3.4:
-    resolution: {integrity: sha512-I9WPbWHCGu8W+6k1ZiGpPu0GkoKBeorkfKNuAFBNS1HNFJvke82sxvI5bzcCNpWPorkOO5QQ+zomzzwRxejXiw==}
+  /minipass/3.3.6:
+    resolution: {integrity: sha512-DxiNidxSEK+tHG6zOIklvNOwm3hvCrbUrdtzY74U6HKTJxvIDfOUL5W5P2Ghd3DTkhhKPYGqeNUIh5qcM4YBfw==}
     engines: {node: '>=8'}
     dependencies:
       yallist: 4.0.0
@@ -5317,7 +5317,7 @@ packages:
     resolution: {integrity: sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==}
     engines: {node: '>= 8'}
     dependencies:
-      minipass: 3.3.4
+      minipass: 3.3.6
       yallist: 4.0.0
     dev: true
 
@@ -5628,7 +5628,7 @@ packages:
       scule: 1.0.0
       strip-literal: 1.0.0
       ufo: 1.0.0
-      ultrahtml: 1.0.1
+      ultrahtml: 1.0.3
       unctx: 2.1.0
       unenv: 1.0.0
       unhead: 1.0.4
@@ -5709,7 +5709,7 @@ packages:
       destr: 1.2.1
       node-fetch-native: 0.1.8
       ufo: 0.8.6
-      undici: 5.12.0
+      undici: 5.13.0
     dev: true
 
   /on-finished/2.4.1:
@@ -6802,7 +6802,7 @@ packages:
     resolution: {integrity: sha512-EugY9VASFuDqOexOgXR18ZV+TbFrQHeCpEYaXamO+SZlsnT/2LxuLBX25GGtIrwaEVFXUAbUQ601SWE2rMwWHA==}
     dependencies:
       jsonc-parser: 3.2.0
-      vscode-oniguruma: 1.6.2
+      vscode-oniguruma: 1.7.0
       vscode-textmate: 6.0.0
     dev: true
 
@@ -7101,7 +7101,7 @@ packages:
     dependencies:
       chownr: 2.0.0
       fs-minipass: 2.1.0
-      minipass: 3.3.4
+      minipass: 3.3.6
       minizlib: 2.1.2
       mkdirp: 1.0.4
       yallist: 4.0.0
@@ -7282,8 +7282,8 @@ packages:
     resolution: {integrity: sha512-DRty0ZBNlJ2R59y4mEupJRKLbkLQsc4qtxjpQv78AwEDuBkaUogMc2LkeqW3HddFlw6NwnXYfdThEZOiNgkmmQ==}
     dev: true
 
-  /ultrahtml/1.0.1:
-    resolution: {integrity: sha512-VDt8gmBR5DPrsfdLS4GQqncojcsLTKMW6iHKVN9l6TohU5bdn/OPv8AmV/0/PBR7Z3qBmMpJHqxRdQFaFA8B9g==}
+  /ultrahtml/1.0.3:
+    resolution: {integrity: sha512-QpTl78vv2o004UPD6b+Vjfoh2b33PV0LS6UHoI1u3wQ2xVRJAkW8Ip4QBiL6JTlMMtIWOXqli98WnsWx6IFFRg==}
     dev: true
 
   /unbox-primitive/1.0.2:
@@ -7312,8 +7312,8 @@ packages:
       unplugin: 1.0.0
     dev: true
 
-  /undici/5.12.0:
-    resolution: {integrity: sha512-zMLamCG62PGjd9HHMpo05bSLvvwWOZgGeiWlN/vlqu3+lRo3elxktVGEyLMX+IO7c2eflLjcW74AlkhEZm15mg==}
+  /undici/5.13.0:
+    resolution: {integrity: sha512-UDZKtwb2k7KRsK4SdXWG7ErXiL7yTGgLWvk2AXO1JMjgjh404nFo6tWSCM2xMpJwMPx3J8i/vfqEh1zOqvj82Q==}
     engines: {node: '>=12.18'}
     dependencies:
       busboy: 1.6.0
@@ -7810,8 +7810,8 @@ packages:
       vscode-languageserver-protocol: 3.16.0
     dev: true
 
-  /vscode-oniguruma/1.6.2:
-    resolution: {integrity: sha512-KH8+KKov5eS/9WhofZR8M8dMHWN2gTxjMsG4jd04YhpbPR91fUj7rYQ2/XjeHCJWbg7X++ApRIU9NUwM2vTvLA==}
+  /vscode-oniguruma/1.7.0:
+    resolution: {integrity: sha512-L9WMGRfrjOhgHSdOYgCt/yRMsXzLDJSL7BPrOZt73gU0iWO4mpqzqQzOz5srxqTvMBaR0XZTSrVWo4j55Rc6cA==}
     dev: true
 
   /vscode-textmate/6.0.0:

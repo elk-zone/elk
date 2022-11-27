@@ -1,7 +1,12 @@
 <script setup lang="ts">
 const props = defineProps<{ enabled: boolean }>()
 
-const [showContent, toggleContent] = $(useToggle(!props.enabled))
+const showContent = ref(!props.enabled)
+const toggleContent = useToggle(showContent)
+
+watchEffect(() => {
+  showContent.value = !props.enabled
+})
 </script>
 
 <template>
@@ -11,5 +16,5 @@ const [showContent, toggleContent] = $(useToggle(!props.enabled))
       {{ showContent ? 'Show less' : 'Show more' }}
     </button>
   </div>
-  <slot v-if="showContent" />
+  <slot v-if="!enabled || showContent" />
 </template>

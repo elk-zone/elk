@@ -15,6 +15,10 @@ useHead({
       <span text-lg font-bold>#{{ tag }}</span>
     </template>
 
+    <template #actions>
+      <TagActionButton :tag-name="tag" />
+    </template>
+
     <slot>
       <TimelinePaginator :paginator="paginator" />
     </slot>

@@ -2,12 +2,12 @@
 import type { ComponentPublicInstance } from 'vue'
 
 const route = useRoute()
-const id = $computed(() => route.params.status as string)
+const id = computedEager(() => route.params.status as string)
 const main = ref<ComponentPublicInstance | null>(null)
 let bottomSpace = $ref(0)
 
-const status = window.history.state?.status ?? await fetchStatus(id)
-const { data: context, pending } = useAsyncData(`context:${id}`, () => useMasto().statuses.fetchContext(id))
+const status = window.history.state?.status ?? await fetchStatus(id.value)
+const { data: context, pending } = useAsyncData(`context:${id.value}`, () => useMasto().statuses.fetchContext(id.value))
 
 function scrollTo() {
   const statusElement = unrefElement(main)

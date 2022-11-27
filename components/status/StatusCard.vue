@@ -48,7 +48,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
     </div>
     <div flex gap-4>
       <div>
-        <NuxtLink :to="getAccountPath(status.account)">
+        <NuxtLink :to="getAccountPath(status.account)" rounded-full>
           <AccountAvatar w-12 h-12 :account="status.account" />
         </NuxtLink>
       </div>

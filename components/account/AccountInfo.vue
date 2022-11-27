@@ -12,7 +12,7 @@ const { account } = defineProps<{
   <div flex gap-3>
     <AccountAvatar :account="account" w-12 h-12 />
     <div flex="~ col">
-      <ContentRich font-bold hover:underline :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
+      <ContentRich font-bold :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
       <AccountHandle :account="account" text-sm />
     </div>
   </div>

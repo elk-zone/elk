@@ -1,12 +1,12 @@
 :root {
-  --c-primary: #CF7C17;
-  --c-primary-active: #A45923;
+  --c-primary: #EA9E44;
+  --c-primary-active: #C16929;
   --c-border: #88888820;
   --c-bg-base: #fff;
   --c-bg-active: #f6f6f6;
   --c-bg-code: #00000006;
   --c-bg-selection: #8885;
-  --c-text-base: #222;
+  --c-text-base: #232323;
   --c-text-secondary: #686868;
   --c-text-secondary-light: #919191;
 }

@@ -6,13 +6,7 @@ const { error } = defineProps<{
   error: string | Error | Partial<NuxtError>
 }>()
 
-definePageMeta({
-  layout: 'default',
-})
-
 usePageHeader()
-
-const route = useRoute()
 
 // add more custom status codes messages here
 const errorCodes: Record<number, string> = {
@@ -25,12 +19,6 @@ const statusCode = $computed(() => {
 })
 const is404 = $computed(() => statusCode === 404)
 const is500 = $computed(() => statusCode === 500)
-const errorLayout = $computed(() => {
-  if (error && isNuxtError(error) && error.data)
-    return error.data.layout ?? 'default'
-
-  return 'default'
-})
 const errorMessage = $computed(() => {
   if (!error)
     return undefined

@@ -26,7 +26,7 @@ export default defineConfig({
       'text-secondary-light': 'text-$c-text-secondary-light',
 
       // buttons
-      'btn-base': 'cursor-pointer disabled:pointer-events-none disabled:bg-[#2a2a2a] disabled:text-[#919191]',
+      'btn-base': 'cursor-pointer disabled:pointer-events-none disabled:bg-[#a1a1a1] disabled:text-white dark:disabled:bg-[#2a2a2a] dark:disabled:text-[#919191]',
       'btn-solid': 'btn-base px-4 py-2 rounded text-[#232323] bg-$c-primary hover:bg-$c-primary-active',
       'btn-outline': 'btn-base px-4 py-2 rounded text-$c-primary border border-$c-primary hover:bg-$c-primary hover:text-white',
       'btn-text': 'btn-base px-4 py-2 text-$c-primary hover:text-$c-primary-active',

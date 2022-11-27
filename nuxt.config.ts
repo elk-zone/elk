@@ -56,11 +56,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: false,
-      routes: ['/200', '/error'],
+      routes: ['/200.html'],
     },
-  },
-  routeRules: {
-    '/200': { static: true, prerender: true },
-    '/error': { static: true, prerender: true },
   },
 })

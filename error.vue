@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app'
 
+// prevent reactive update when clearing error
+const { error } = defineProps<{
+  error: string | Error | Partial<NuxtError>
+}>()
+
 definePageMeta({
   layout: 'default',
 })
@@ -15,59 +20,46 @@ const errorCodes: Record<number, string> = {
   500: 'Oops! Something went wrong',
 }
 
-// prevent reactive update when clearing error
-const error = shallowRef<string | Error | Partial<NuxtError> | undefined>(useError().value as any)
 const statusCode = $computed(() => {
-  const e = error.value
-  return e && !(typeof e === 'string') && 'statusCode' in e ? e.statusCode : -1
+  return error && !(typeof error === 'string') && 'statusCode' in error ? error.statusCode : -1
 })
 const is404 = $computed(() => statusCode === 404)
 const is500 = $computed(() => statusCode === 500)
 const errorLayout = $computed(() => {
-  const e = error.value
-  if (e && isNuxtError(e) && e.data)
-    return e.data.layout ?? 'default'
+  if (error && isNuxtError(error) && error.data)
+    return error.data.layout ?? 'default'
 
   return 'default'
 })
 const errorMessage = $computed(() => {
-  const e = error.value
-  if (!e)
+  if (!error)
     return undefined
 
-  if (is500 && !isNuxtError(e))
+  if (is500 && !isNuxtError(error))
     return errorCodes[500]
 
-  if (typeof e === 'string')
-    return e
+  if (typeof error === 'string')
+    return error
 
-  if ('message' in e)
-    return e.message
+  if ('message' in error)
+    return error.message
 
   return errorCodes[statusCode ?? 500] ?? errorCodes[500]
 })
 const message = $computed(() => is404 ? errorCodes[404] : errorMessage)
 const hideRetryBtn = $computed(() => {
-  const e = error.value
-  if (!e)
+  if (!error)
     return false
 
-  if (isNuxtError(e))
-    return e.data?.noRetry === true
+  if (isNuxtError(error))
+    return error.data?.noRetry === true
 
   return false
 })
-const updateLayout = (layout = 'default') => {
-  if (route.meta.layout !== layout)
-    route.meta.layout = layout as any
-}
+
 const retry = () => {
   clearError({ redirect: currentUser.value ? '/home' : '/public' })
 }
-
-onMounted(() => {
-  updateLayout(errorLayout)
-})
 </script>
 
 <template>

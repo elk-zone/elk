@@ -2,7 +2,6 @@
 import _fs from 'unstorage/drivers/fs'
 // @ts-expect-error unstorage needs to provide backwards-compatible subpath types
 import _kv from 'unstorage/drivers/cloudflare-kv-http'
-import { isCI } from 'std-env'
 import { parseURL } from 'ufo'
 
 import { $fetch } from 'ohmyfetch'
@@ -13,9 +12,9 @@ import cached from './cache-driver'
 import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
 
-const runtimeConfig = useRuntimeConfig()
-export const HOST_URL = runtimeConfig.deployUrl
-  || (process.dev || !isCI ? 'http://localhost:5314' : 'https://elk.zone')
+const config = useRuntimeConfig()
+export const HOST_URL = config.deployUrl
+  || (config.env === 'local' ? 'http://localhost:5314' : 'https://elk.zone')
 export const HOST_DOMAIN = parseURL(HOST_URL).host!
 
 const fs = _fs as typeof import('unstorage/dist/drivers/fs')['default']
@@ -23,7 +22,7 @@ const kv = _kv as typeof import('unstorage/dist/drivers/cloudflare-kv-http')['de
 
 const storage = useStorage() as Storage
 
-if (process.dev || !isCI) {
+if (config.env === 'local') {
   storage.mount('servers', fs({ base: 'node_modules/.cache/servers' }))
 }
 else {

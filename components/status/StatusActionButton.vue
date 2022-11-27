@@ -22,7 +22,7 @@ defineOptions({
     :is="as || 'button'" w-fit
     flex gap-1 items-center rounded group
     :hover="hover" focus:outline-none :focus-visible="hover"
-    :class="active ? [color] : 'text-secondary-light'"
+    :class="active ? [color] : 'text-secondary'"
     v-bind="$attrs"
   >
     <CommonTooltip placement="bottom" :content="content">

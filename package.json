@@ -15,6 +15,9 @@
     "test:unit": "vitest",
     "test": "nr test:unit"
   },
+  "dependencies": {
+    "vue-virtual-scroller": "2.0.0-beta.3"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.31.0",
     "@antfu/ni": "^0.18.8",
@@ -68,8 +71,5 @@
     "vite-plugin-inspect": "^0.7.9",
     "vitest": "^0.25.3",
     "vue-safe-teleport": "^0.1.1"
-  },
-  "dependencies": {
-    "vue-virtual-scroller": "2.0.0-beta.3"
   }
 }

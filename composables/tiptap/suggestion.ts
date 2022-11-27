@@ -58,7 +58,8 @@ function createSuggestionRenderer(): SuggestionOptions['render'] {
         })
       },
 
-      onBeforeUpdate(props) {
+      // Use arrow function here because Nuxt will transform it incorrectly as Vue hook causing the build to fail
+      onBeforeUpdate: (props) => {
         component.updateProps({ ...props, isPending: true })
       },
 

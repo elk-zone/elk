@@ -16,7 +16,7 @@ const buildTimeAgo = useTimeAgo(buildTime)
       />
     </div>
     <a cursor-pointer hover:underline @click="openPreviewHelp">Show intro</a>
-    <div>A Mastodon client made with 💛</div>
+    <div>A Mastodon client made with 🧡</div>
     <div>Built <time :datetime="buildTime" :title="buildTime">{{ buildTimeAgo }}</time> · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a></div>
   </div>
 </template>

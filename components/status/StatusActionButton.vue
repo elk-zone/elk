@@ -20,14 +20,14 @@ defineOptions({
   <component
     :is="as || 'button'"
     flex gap-1 items-center rounded group
-    :hover="`op100 ${hover}`" focus:outline-none :focus-visible="`op100 ${hover}`"
-    :class="active ? [color, 'op100'] : 'op50'"
+    :hover="hover" focus:outline-none :focus-visible="hover"
+    :class="active ? [color] : 'text-secondary-light'"
     v-bind="$attrs"
   >
     <div rounded-full p2 :group-hover="groupHover" :group-focus-visible="groupHover" group-focus-visible:ring="2 current">
       <div :class="[active && activeIcon ? activeIcon : icon, { 'pointer-events-none': disabled }]" />
     </div>
 
-    <span v-if="text">{{ text }}</span>
+    <span v-if="text" :class="active ? [color] : 'text-secondary-light'" text-sm>{{ text }}</span>
   </component>
 </template>

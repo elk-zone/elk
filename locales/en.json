@@ -1,3 +1,14 @@
 {
-  "hello": "Hello, vue-i18n!"
+  "hello": "Hello, vue-i18n!",
+  "nav_side": {
+    "home": "Home",
+    "notifications": "Notifications",
+    "explore": "Explore",
+    "local": "Local",
+    "federated": "Federated",
+    "conversations": "Conversations",
+    "favourites": "Favourites",
+    "bookmarks": "Bookmarks",
+    "profile": "Profile"
+  }
 }

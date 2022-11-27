@@ -1,3 +1,14 @@
 {
-  "hello": "你好，vue-i18n!"
+  "hello": "你好，vue-i18n!",
+  "nav_side": {
+    "bookmarks": "书签",
+    "conversations": "私信",
+    "explore": "探索",
+    "favourites": "喜欢",
+    "federated": "跨站",
+    "home": "主页",
+    "local": "本地",
+    "notifications": "通知",
+    "profile": "个人资料"
+  }
 }

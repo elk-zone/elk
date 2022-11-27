@@ -69,7 +69,7 @@ html {
   }
 
   .code-block {
-    --at-apply: bg-code text-0.9rem p3 rounded overflow-auto leading-1.6em;
+    --at-apply: bg-code text-0.9rem p3 mt-2 rounded overflow-auto leading-1.6em;
 
     .shiki {
       background: transparent !important;
@@ -86,5 +86,20 @@ html {
     code {
       --at-apply: bg-transparent text-0.8rem p0;
     }
+  }
+}
+
+.skeleton-loading-bg {
+  background: linear-gradient(90deg,rgba(190,190,190,.2) 25%,rgba(129,129,129,.24) 37%,rgba(190,190,190,.2) 63%);
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 50%
+  }
+  to {
+    background-position: 0 50%
   }
 }

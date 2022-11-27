@@ -8,8 +8,7 @@ defineProps<{
   <div relative>
     <div
       sticky top-0 z10
-      border="b base"
-      backdrop="blur-10px brightness-120 dark:brightness-80"
+      border="b base" bg-base
       :class="isZenMode ? 'op0 hover:op100 transition duration-300' : ''"
     >
       <div flex justify-between px5 py4>
@@ -36,8 +35,6 @@ defineProps<{
       </div>
       <slot name="header" />
     </div>
-    <div>
-      <slot />
-    </div>
+    <slot />
   </div>
 </template>

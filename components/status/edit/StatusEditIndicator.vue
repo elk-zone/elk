@@ -17,6 +17,7 @@ const formatted = useFormattedDateTime(status.editedAt)
         :title="editedAt"
         :datetime="editedAt"
         font-bold underline decoration-dashed
+        text-secondary
       >&nbsp;*</time>
     </CommonTooltip>
 

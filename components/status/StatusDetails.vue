@@ -17,8 +17,12 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
 </script>
 
 <template>
-  <div flex flex-col gap-2 py3 px-4 :id="`status-${status.id}`">
-    <AccountInfo :account="status.account" :hover="true" />
+  <div :id="`status-${status.id}`" flex flex-col gap-2 py3 px-4>
+    <NuxtLink :to="getAccountPath(status.account)" rounded-full hover:bg-active transition-100 pr5 mr-a>
+      <AccountHoverWrapper :account="status.account">
+        <AccountInfo :account="status.account" />
+      </AccountHoverWrapper>
+    </NuxtLink>
     <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" />
     <StatusSpoiler :enabled="status.sensitive">
       <template #spoiler>
@@ -30,7 +34,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         :status="status"
       />
     </StatusSpoiler>
-    <div flex="~ gap-1" items-center op50 text-sm>
+    <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>
         <StatusEditIndicator

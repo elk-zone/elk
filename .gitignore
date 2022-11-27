@@ -6,5 +6,6 @@ dist
 .env
 .DS_Store
 .idea/
+.vite-inspect
 
 public/shiki

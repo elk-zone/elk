@@ -78,3 +78,17 @@ export function directMessageUser(account: Account) {
     visibility: 'direct',
   }))
 }
+
+export function clearUserDrafts(account?: Account) {
+  if (!account)
+    account = currentUser.value?.account
+
+  if (!account)
+    return
+
+  const id = `${account.acct}@${currentUser.value?.server}`
+  if (!allDrafts.value[id])
+    return
+
+  delete allDrafts.value[id]
+}

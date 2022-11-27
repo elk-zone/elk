@@ -1,31 +1,49 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
+import type { ComponentPublicInstance } from 'vue'
 
 const route = useRoute()
 const id = $computed(() => route.params.status as string)
-const main = ref<Component | null>(null)
+const main = ref<ComponentPublicInstance | null>(null)
+let bottomSpace = $ref(0)
 
 const status = window.history.state?.status ?? await fetchStatus(id)
-const { data: context } = useAsyncData(`context:${id}`, () => useMasto().statuses.fetchContext(id))
-const unsubscribe = watch(context, async (context) => {
-  if (context) {
-    const statusElement = document.querySelector(`#status-${id}`)
-    statusElement?.scrollIntoView()
-    unsubscribe()
-  }
-}, { flush: 'post' })
+const { data: context, pending } = useAsyncData(`context:${id}`, () => useMasto().statuses.fetchContext(id))
+
+function scrollTo() {
+  const statusElement = unrefElement(main)
+  if (!statusElement)
+    return
+
+  const statusRect = statusElement.getBoundingClientRect()
+  bottomSpace = window.innerHeight - statusRect.height
+  statusElement.scrollIntoView(true)
+}
+
+onMounted(scrollTo)
+
+if (pending) {
+  watchOnce(pending, async () => {
+    await nextTick()
+    scrollTo()
+  })
+}
 </script>
 
 <template>
   <MainContent back>
-    <template v-if="status">
+    <div v-if="status" min-h-100vh>
       <template v-if="context">
         <template v-for="comment of context?.ancestors" :key="comment.id">
           <StatusCard :status="comment" border="t base" py3 />
         </template>
       </template>
 
-      <StatusDetails ref="main" :status="status" border="t base" />
+      <StatusDetails
+        ref="main"
+        :status="status"
+        border="t base"
+        style="scroll-margin-top: 60px"
+      />
       <PublishWidget
         v-if="currentUser"
         border="t base"
@@ -39,7 +57,9 @@ const unsubscribe = watch(context, async (context) => {
           <StatusCard :status="comment" border="t base" py3 />
         </template>
       </template>
-    </template>
+
+      <div border="t base" :style="{ height: `${bottomSpace}px` }" />
+    </div>
 
     <CommonNotFound v-else>
       Status not found

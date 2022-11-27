@@ -6,12 +6,13 @@ const { status, withAction = true } = defineProps<{
   withAction?: boolean
 }>()
 const { translation } = useTranslation(status)
-const content = $computed(() => translation.visible ? translation.text : status.content) 
+const content = $computed(() => translation.visible ? translation.text : status.content)
 </script>
 
 <template>
   <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }">
-    <ContentRich v-if="content"
+    <ContentRich
+      v-if="content"
       :content="content"
       :emojis="status.emojis"
     />

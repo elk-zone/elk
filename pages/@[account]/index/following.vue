@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const params = useRoute().params
-const accountName = $computed(() => params.account as string)
+const accountName = $(computedEager(() => params.account as string))
 
 const account = await fetchAccountByName(accountName)
 const paginator = account ? useMasto().accounts.getFollowingIterable(account.id, {}) : null

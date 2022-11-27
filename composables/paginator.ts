@@ -1,4 +1,5 @@
 import type { Paginator } from 'masto'
+import { useDeactivated } from './lifecycle'
 import type { PaginatorState } from '~/types'
 
 export function usePaginator<T>(paginator: Paginator<any, T[]>) {
@@ -10,6 +11,7 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>) {
   const bound = reactive(useElementBounding(endAnchor))
   const isInScreen = $computed(() => bound.top < window.innerHeight * 2)
   const error = ref<unknown | undefined>()
+  const deactivated = useDeactivated()
 
   async function loadNext() {
     if (state.value !== 'idle')
@@ -44,7 +46,12 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>) {
   watch(
     () => isInScreen,
     () => {
-      if (isInScreen && state.value === 'idle')
+      if (
+        isInScreen
+        && state.value === 'idle'
+        // No new content is loaded when the keepAlive page enters the background
+        && deactivated.value === false
+      )
         loadNext()
     },
     { immediate: true },

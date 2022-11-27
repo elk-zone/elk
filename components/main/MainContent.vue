@@ -24,7 +24,7 @@ const nav = ref<HTMLDivElement>()
         </div>
         <div flex items-center>
           <slot name="actions" />
-          <NavUser v-if="isSmallScreen" :nav="nav" />
+          <NavUser v-if="isSmallScreen" />
         </div>
       </div>
       <slot name="header" />

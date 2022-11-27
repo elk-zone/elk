@@ -11,7 +11,7 @@ const { paginator } = defineProps<{
 <template>
   <CommonPaginator :paginator="paginator" virtual-scroller>
     <template #default="{ item, active }">
-      <DynamicScrollerItem :item="item" :active="active">
+      <DynamicScrollerItem :item="item" :active="active" tag="article">
         <StatusCard
           :status="item"
           border="b base" py-3

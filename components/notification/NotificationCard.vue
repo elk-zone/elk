@@ -7,7 +7,7 @@ const { notification } = defineProps<{
 </script>
 
 <template>
-  <div flex flex-col>
+  <article flex flex-col>
     <template v-if="notification.type === 'follow'">
       <div flex ml-4 items-center>
         <div i-ri:user-follow-fill mr-3 color-primary />
@@ -41,8 +41,21 @@ const { notification } = defineProps<{
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>
+    <template v-else-if="notification.type === 'update'">
+      <div flex ml-4 items-center>
+        <div i-ri:edit-2-fill mr-3 text-secondary />
+        <AccountInlineInfo :account="notification.account" mr1 />
+        updated their status
+      </div>
+      <StatusCard :status="notification.status!" p3 />
+    </template>
     <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
       <StatusCard :status="notification.status!" p3 />
     </template>
-  </div>
+    <template v-else>
+      <div text-red font-bold>
+        [DEV] MISSING notification.type: '{{ notification.type }}'
+      </div>
+    </template>
+  </article>
 </template>

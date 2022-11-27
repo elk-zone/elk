@@ -78,7 +78,7 @@ watchEffect(() => {
       <img h-50 w-full object-cover :src="account.header" @click="previewHeader">
     </button>
     <div p4 mt--17 flex flex-col gap-4>
-      <div flex justify-between>
+      <div relative>
         <div flex="~ col gap-2 1">
           <button w-30 h-30 rounded-full bg-gray border-4 border-bg-base z-2 @click="previewAvatar">
             <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
@@ -88,7 +88,7 @@ watchEffect(() => {
             <AccountHandle :account="account" />
           </div>
         </div>
-        <div flex gap-2 items-center>
+        <div absolute top="1/2" right-0 translate-y="-1/2" flex gap-2 items-center>
           <AccountMoreButton :account="account" />
           <AccountFollowButton :account="account" />
           <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>

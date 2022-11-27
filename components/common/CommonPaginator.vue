@@ -10,13 +10,27 @@ const { paginator, keyProp = 'id', virtualScroller = false } = defineProps<{
   virtualScroller: boolean
 }>()
 
+defineSlots<{
+  default: {
+    item: any
+    active?: boolean
+  }
+  loading: {}
+}>()
+
 const { items, state, endAnchor, error } = usePaginator(paginator)
 </script>
 
 <template>
   <div>
     <template v-if="virtualScroller">
-      <DynamicScroller v-slot="{ item, active }" :items="items" :min-item-size="200" page-mode>
+      <DynamicScroller
+        v-slot="{ item, active }"
+        :items="items"
+        :min-item-size="200"
+        :key-field="keyProp"
+        page-mode
+      >
         <slot :item="item" :active="active" />
       </DynamicScroller>
     </template>

@@ -19,6 +19,9 @@ isDark.value
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
+  <TeleportTarget
+    id="teleport-end"
+  />
 </template>
 
 <style>

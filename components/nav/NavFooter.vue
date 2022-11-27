@@ -1,7 +1,5 @@
 <script setup lang="ts">
-// eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
-// @ts-ignore build time
-const buildTime = __BUILD_TIME__
+const buildTime = import.meta.env.__BUILD_TIME__ as string
 const buildTimeAgo = useTimeAgo(buildTime)
 </script>
 
@@ -16,7 +14,7 @@ const buildTimeAgo = useTimeAgo(buildTime)
       />
     </div>
     <a cursor-pointer hover:underline @click="openPreviewHelp">Show intro</a>
-    <div>A Mastodon client made with 💛</div>
+    <div>A Mastodon client made with 🧡</div>
     <div>Built <time :datetime="buildTime" :title="buildTime">{{ buildTimeAgo }}</time> · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a></div>
   </div>
 </template>

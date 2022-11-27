@@ -232,27 +232,30 @@ onUnmounted(() => {
             </button>
           </CommonTooltip>
 
-          <CommonDropdown>
-            <button btn-action-icon w-12>
-              <div :class="currentVisibility.icon" />
-              <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
-            </button>
+          <CommonTooltip placement="bottom" content="Change content visibility">
+            <CommonDropdown>
+              <button btn-action-icon w-12>
+                <div :class="currentVisibility.icon" />
+                <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
+              </button>
 
-            <template #popper>
-              <CommonDropdownItem
-                v-for="visibility in STATUS_VISIBILITIES"
-                :key="visibility.value"
-                :icon="visibility.icon"
-                :checked="visibility.value === draft.params.visibility"
-                @click="chooseVisibility(visibility.value)"
-              >
-                {{ visibility.label }}
-                <template #description>
-                  {{ visibility.description }}
-                </template>
-              </CommonDropdownItem>
-            </template>
-          </CommonDropdown>
+              <template #popper>
+                <CommonDropdownItem
+                  v-for="visibility in STATUS_VISIBILITIES"
+                  :key="visibility.value"
+                  :icon="visibility.icon"
+                  :checked="visibility.value === draft.params.visibility"
+                  @click="chooseVisibility(visibility.value)"
+                >
+                  {{ visibility.label }}
+                  <template #description>
+                    {{ visibility.description }}
+                  </template>
+                </CommonDropdownItem>
+              </template>
+            </CommonDropdown>
+          </CommonTooltip>
+
           <button
             btn-solid rounded-full text-sm
             :disabled="!isExistDraft || isUploading || (draft.attachments.length === 0 && !draft.params.status)"

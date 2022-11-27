@@ -53,4 +53,14 @@ export default defineNuxtConfig({
       translateApi: '',
     },
   },
+  nitro: {
+    prerender: {
+      crawlLinks: false,
+      routes: ['/200', '/error'],
+    },
+  },
+  routeRules: {
+    '/200': { static: true, prerender: true },
+    '/error': { static: true, prerender: true },
+  },
 })

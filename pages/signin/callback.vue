@@ -7,7 +7,18 @@ const router = useRouter()
 const { query } = useRoute()
 
 onMounted(async () => {
-  await loginTo(query as any)
+  try {
+    await loginTo(query as any)
+  }
+  catch (error) {
+    showError({
+      fatal: true,
+      data: { noRetry: true },
+      message: 'There was an error while signing in, please try again.',
+    })
+    return
+  }
+
   router.push('/')
 })
 </script>

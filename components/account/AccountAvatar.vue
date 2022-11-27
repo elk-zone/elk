@@ -8,6 +8,7 @@ defineProps<{
 
 <template>
   <img
+    :key="account.avatar"
     :src="account.avatar"
     :alt="account.username"
     loading="lazy"

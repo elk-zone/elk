@@ -79,9 +79,15 @@ const copyLink = async () => {
 }
 const deleteStatus = async () => {
   // TODO confirm to delete
+  if (process.dev) {
+    const result = confirm('[DEV] Are you sure you want to delete this post?')
+    if (!result)
+      return
+  }
 
   await useMasto().statuses.remove(status.id)
-  if (route.name === '@user-post')
+
+  if (route.name === '@account-status')
     router.back()
 
   // TODO when timeline, remove this item

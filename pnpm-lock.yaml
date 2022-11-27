@@ -25,12 +25,14 @@ specifiers:
   '@unocss/nuxt': ^0.46.5
   '@vitejs/plugin-vue': ^3.2.0
   '@vue-macros/nuxt': ^0.1.2
+  '@vueuse/integrations': ^9.6.0
   '@vueuse/nuxt': ^9.6.0
   blurhash: ^2.0.4
   browser-fs-access: ^0.31.1
   eslint: ^8.28.0
   esno: ^0.16.3
   floating-vue: 2.0.0-beta.20
+  focus-trap: ^7.1.0
   form-data: ^4.0.0
   fs-extra: ^10.1.0
   js-yaml: ^4.1.0
@@ -80,12 +82,14 @@ devDependencies:
   '@unocss/nuxt': 0.46.5
   '@vitejs/plugin-vue': 3.2.0
   '@vue-macros/nuxt': 0.1.2_nuxt@3.0.0
+  '@vueuse/integrations': 9.6.0_focus-trap@7.1.0
   '@vueuse/nuxt': 9.6.0_nuxt@3.0.0
   blurhash: 2.0.4
   browser-fs-access: 0.31.1
   eslint: 8.28.0
   esno: 0.16.3
   floating-vue: 2.0.0-beta.20
+  focus-trap: 7.1.0
   form-data: 4.0.0
   fs-extra: 10.1.0
   js-yaml: 4.1.0
@@ -2199,6 +2203,53 @@ packages:
       vue: 3.2.45
     dev: true
 
+  /@vueuse/integrations/9.6.0_focus-trap@7.1.0:
+    resolution: {integrity: sha512-+rs2OWY/3spxoAGQMnlHQpxf8ErAYf4D1bT0aXaPnxphmtYgexm6KIjTFpBbcQnHwVi1g2ET1SJoQL16yDrgWA==}
+    peerDependencies:
+      async-validator: '*'
+      axios: '*'
+      change-case: '*'
+      drauu: '*'
+      focus-trap: '*'
+      fuse.js: '*'
+      idb-keyval: '*'
+      jwt-decode: '*'
+      nprogress: '*'
+      qrcode: '*'
+      universal-cookie: '*'
+    peerDependenciesMeta:
+      async-validator:
+        optional: true
+      axios:
+        optional: true
+      change-case:
+        optional: true
+      drauu:
+        optional: true
+      focus-trap:
+        optional: true
+      fuse.js:
+        optional: true
+      idb-keyval:
+        optional: true
+      jwt-decode:
+        optional: true
+      nprogress:
+        optional: true
+      qrcode:
+        optional: true
+      universal-cookie:
+        optional: true
+    dependencies:
+      '@vueuse/core': 9.6.0
+      '@vueuse/shared': 9.6.0
+      focus-trap: 7.1.0
+      vue-demi: 0.13.11
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: true
+
   /@vueuse/metadata/9.6.0:
     resolution: {integrity: sha512-sIC8R+kWkIdpi5X2z2Gk8TRYzmczDwHRhEFfCu2P+XW2JdPoXrziqsGpDDsN7ykBx4ilwieS7JUIweVGhvZ93w==}
     dev: true
@@ -4103,6 +4154,12 @@ packages:
     dependencies:
       '@floating-ui/dom': 0.1.10
       vue-resize: 2.0.0-alpha.1
+    dev: true
+
+  /focus-trap/7.1.0:
+    resolution: {integrity: sha512-CuJvwUBfJCWcU6fc4xr3UwMF5vWnox4isXAixCwrPzCsPKOQjP9T+nTlYT2t+vOmQL8MOQ16eim99XhjQHAuiQ==}
+    dependencies:
+      tabbable: 6.0.1
     dev: true
 
   /follow-redirects/1.15.2:
@@ -7035,6 +7092,10 @@ packages:
       csso: 4.2.0
       picocolors: 1.0.0
       stable: 0.1.8
+    dev: true
+
+  /tabbable/6.0.1:
+    resolution: {integrity: sha512-SYJSIgeyXW7EuX1ytdneO5e8jip42oHWg9xl/o3oTYhmXusZVgiA+VlPvjIN+kHii9v90AmzTZEBcsEvuAY+TA==}
     dev: true
 
   /tapable/1.1.3:

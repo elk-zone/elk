@@ -10,13 +10,16 @@ useHead({
   ],
 })
 
+// We want to trigger rerendering the page when account changes
+const key = computed(() => useMasto().instances.config.url || 'default')
+
 // eslint-disable-next-line no-unused-expressions
 isDark.value
 </script>
 
 <template>
   <NuxtLoadingIndicator color="repeating-linear-gradient(to right,var(--c-primary) 0%,var(--c-primary-active) 100%)" />
-  <NuxtLayout>
+  <NuxtLayout :key="key">
     <NuxtPage />
   </NuxtLayout>
   <TeleportTarget

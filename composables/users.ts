@@ -27,28 +27,37 @@ export const currentInstance = computed<null | Instance>(() => currentUserId.val
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
-export async function loginTo(user: UserLogin & { account?: AccountCredentials }) {
-  const existing = users.value.find(u => u.server === user.server && u.token === user.token)
-  if (existing) {
-    if (currentUserId.value === existing.account?.id)
-      return null
-    currentUserId.value = user.account?.id
-    await reloadPage()
-    return true
+export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }) {
+  if (user) {
+    const existing = users.value.find(u => u.server === user.server && u.token === user.token)
+    if (existing && currentUserId.value !== user.account?.id)
+      currentUserId.value = user.account?.id
   }
 
   const masto = await loginMasto({
-    url: `https://${user.server}`,
-    accessToken: user.token,
+    url: `https://${user?.server || DEFAULT_SERVER}`,
+    accessToken: user?.token,
   })
-  const me = await masto.accounts.verifyCredentials()
-  user.account = me
 
-  users.value.push(user)
-  currentUserId.value = me.id
-  servers.value[me.id] = await masto.instances.fetch()
-  await reloadPage()
-  return true
+  if (user?.token) {
+    try {
+      const me = await masto.accounts.verifyCredentials()
+      user.account = me
+
+      if (!users.value.some(u => u.server === user.server && u.token === user.token))
+        users.value.push(user as UserLogin)
+
+      currentUserId.value = me.id
+      servers.value[me.id] = await masto.instances.fetch()
+    }
+    catch {
+      await signout()
+    }
+  }
+
+  setMasto(masto)
+
+  return masto
 }
 
 export async function signout() {
@@ -72,10 +81,8 @@ export async function signout() {
   // Set currentUserId to next user if available
   currentUserId.value = users.value[0]?.account?.id
 
-  await reloadPage()
-}
+  if (!currentUserId.value)
+    await useRouter().push('/public')
 
-export async function reloadPage(path = '/') {
-  await nextTick()
-  location.pathname = path
+  await loginTo(currentUser.value)
 }

@@ -48,10 +48,10 @@ const close = async () => {
     role="alertdialog"
     aria-labelledby="pwa-toast-title"
     aria-describedby="pwa-toast-description"
-    animate animate-back-in-right
+    animate animate-back-in-down md:animate-back-in-right
     z11
     fixed
-    bottom-0 right-0
+    bottom-14 md:bottom-0 right-0
     m-4 p-4
     bg-base border="~ base"
     rounded

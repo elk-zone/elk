@@ -6,8 +6,8 @@ const { status } = defineProps<{
   inline: boolean
 }>()
 
-const editedAt = $computed(() => status.editedAt)
-const formatted = useFormattedDateTime(status.editedAt)
+const editedAt = computed(() => status.editedAt)
+const formatted = useFormattedDateTime(editedAt)
 </script>
 
 <template>

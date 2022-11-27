@@ -1,12 +1,12 @@
 import { createI18n } from 'vue-i18n'
-import en from '../locales/en.json'
+import enUS from '../locales/en-US.json'
 import zhCn from '../locales/zh-CN.json'
 
 /** Default language environment */
-export const defaultLocale = 'en'
+export const defaultLocale = 'en-US'
 
 export const messages = {
-  en,
+  'en-US': enUS,
   'zh-CN': zhCn,
 }
 

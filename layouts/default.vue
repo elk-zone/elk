@@ -13,7 +13,7 @@
           </slot>
         </div>
       </aside>
-      <NavBottom v-if="isSmallScreen" md:hidden />
+      <NavBottom v-if="isSmallScreen" />
       <div class="w-full mb14 md:(w-2/4 mb0) min-h-screen" border="l r base">
         <slot />
       </div>

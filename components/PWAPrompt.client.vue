@@ -32,13 +32,6 @@ const {
 const close = async () => {
   needRefresh.value = false
 }
-
-// TODO: remove once finished (comment out for styling the prompt)
-// onMounted(() => {
-//   setTimeout(() => {
-//     needRefresh.value = true
-//   }, 1000)
-// })
 </script>
 
 <!-- TODO: remove shadow on mobile and position it above the bottom nav -->
@@ -52,7 +45,7 @@ const close = async () => {
     z11
     fixed
     bottom-14 md:bottom-0 right-0
-    m-4 p-4
+    m-2 p-4
     bg-base border="~ base"
     rounded
     text-left

@@ -2,13 +2,19 @@
 const params = useRoute().params
 const accountName = $(computedEager(() => toShortHandle(params.account as string)))
 
-const account = await fetchAccountByName(accountName).catch(() => null)
+const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByName(accountName).catch(() => null)))
 
 if (account) {
   useHead({
     title: () => `${getDisplayName(account)} (@${account.acct})`,
   })
 }
+
+onReactivated(() => {
+  // Silently update data when reentering the page
+  // The user will see the previous content first, and any changes will be updated to the UI when the request is completed
+  refresh()
+})
 </script>
 
 <template>

@@ -2,7 +2,7 @@
 import { APP_NAME } from './constants'
 
 useHead({
-  titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${import.meta.env.DEV ? ' (dev)' : ''}`,
+  titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${import.meta.env.DEV ? ' (dev)' : window.location.hostname.includes('deploy-preview') ? '(preview)' : ''}`,
   link: [
     {
       rel: 'icon', type: 'image/svg+png', href: '/favicon.png',

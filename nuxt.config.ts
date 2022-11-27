@@ -53,4 +53,7 @@ export default defineNuxtConfig({
       translateApi: '',
     },
   },
+  app: {
+    keepalive: true,
+  },
 })

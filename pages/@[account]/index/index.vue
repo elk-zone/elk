@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const params = useRoute().params
-const accountName = $computed(() => params.account as string)
+const accountName = $(computedEager(() => params.account as string))
 
 const account = await fetchAccountByName(accountName)
 const tabNames = ['Posts', 'Posts & replies', 'Media'] as const

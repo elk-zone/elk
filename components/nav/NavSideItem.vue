@@ -4,6 +4,11 @@ defineProps<{
   icon: string
   to: string
 }>()
+
+defineSlots<{
+  icon: {}
+  default: {}
+}>()
 </script>
 
 <template>

@@ -37,8 +37,6 @@ defineProps<{
       </div>
       <slot name="header" />
     </div>
-    <div>
-      <slot />
-    </div>
+    <slot />
   </div>
 </template>

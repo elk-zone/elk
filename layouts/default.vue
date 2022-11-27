@@ -23,7 +23,6 @@
             <UserSignInEntry v-if="!currentUser" />
             <VDropdown
               v-if="currentUser"
-              :triggers="['click', 'focus']"
               :distance="0"
               placement="bottom-end"
             >

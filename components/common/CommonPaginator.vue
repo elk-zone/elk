@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { Paginator } from 'masto'

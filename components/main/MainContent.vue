@@ -8,9 +8,7 @@ defineProps<{
   <div relative>
     <div
       sticky top-0 z10
-      border="b base"
-      class="bg-base dark:bg-transparent"
-      backdrop="dark:blur-10px dark:brightness-30"
+      border="b base" bg-base
       :class="isZenMode ? 'op0 hover:op100 transition duration-300' : ''"
     >
       <div flex justify-between px5 py4>

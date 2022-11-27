@@ -52,10 +52,8 @@ async function fetchAppInfo(server: string) {
   return app
 }
 
-const serverKey = (host: string, server: string) => `servers:${host}:${server}.json`
-
-export async function getApp(host: string, server: string) {
-  const key = serverKey(host, server)
+export async function getApp(server: string) {
+  const key = `servers:${HOST_DOMAIN.replace(/[^\w\d]/g, '-')}:${server}.json`
 
   try {
     if (await storage.hasItem(key))

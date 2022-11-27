@@ -4,7 +4,7 @@ const buildTimeAgo = useTimeAgo(buildTime)
 </script>
 
 <template>
-  <div p4 text-sm text-secondary-light flex="~ col">
+  <footer p4 text-sm text-secondary-light flex="~ col">
     <div flex="~ gap2" align="items-center" mb4>
       <button i-ri-sun-line dark:i-ri-moon-line text-lg @click="toggleDark()" />
       <button
@@ -14,8 +14,10 @@ const buildTimeAgo = useTimeAgo(buildTime)
       />
       <NavSelectLanguage />
     </div>
-    <a cursor-pointer hover:underline @click="openPreviewHelp">Show intro</a>
+    <button cursor-pointer hover:underline @click="openPreviewHelp">
+      Show intro
+    </button>
     <div>A Mastodon client made with 🧡</div>
     <div>Built <time :datetime="buildTime" :title="buildTime">{{ buildTimeAgo }}</time> · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a></div>
-  </div>
+  </footer>
 </template>

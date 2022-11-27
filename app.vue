@@ -1,14 +1,18 @@
 <script setup>
 import { APP_NAME } from './constants'
 
+const isDev = process.dev
+const isPreview = window.location.hostname.includes('deploy-preview')
+
 useHead({
-  titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${import.meta.env.DEV ? ' (dev)' : ''}`,
+  titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
   link: [
-    {
-      rel: 'icon', type: 'image/svg+png', href: '/favicon.png',
-    },
+    { rel: 'icon', type: 'image/svg+png', href: isDev || isPreview ? '/favicon-dev.png' : '/favicon.png' },
   ],
 })
+
+// We want to trigger rerendering the page when account changes
+const key = computed(() => useMasto().instances.config.url || 'default')
 
 // eslint-disable-next-line no-unused-expressions
 isDark.value
@@ -16,7 +20,7 @@ isDark.value
 
 <template>
   <NuxtLoadingIndicator color="repeating-linear-gradient(to right,var(--c-primary) 0%,var(--c-primary-active) 100%)" />
-  <NuxtLayout>
+  <NuxtLayout :key="key">
     <NuxtPage />
   </NuxtLayout>
   <TeleportTarget

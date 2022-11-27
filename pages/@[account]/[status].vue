@@ -2,12 +2,12 @@
 import type { ComponentPublicInstance } from 'vue'
 
 const route = useRoute()
-const id = $computed(() => route.params.status as string)
+const id = $(computedEager(() => route.params.status as string))
 const main = ref<ComponentPublicInstance | null>(null)
 let bottomSpace = $ref(0)
 
-const status = window.history.state?.status ?? await fetchStatus(id)
-const { data: context, pending } = useAsyncData(`context:${id}`, () => useMasto().statuses.fetchContext(id))
+const { data: status, refresh: refreshStatus } = useAsyncData(async () => window.history.state?.status ?? await fetchStatus(id))
+const { data: context, pending, refresh: refreshContext } = useAsyncData(`context:${id}`, () => useMasto().statuses.fetchContext(id))
 
 function scrollTo() {
   const statusElement = unrefElement(main)
@@ -27,6 +27,13 @@ if (pending) {
     scrollTo()
   })
 }
+
+onReactivated(() => {
+  // Silently update data when reentering the page
+  // The user will see the previous content first, and any changes will be updated to the UI when the request is completed
+  refreshStatus()
+  refreshContext()
+})
 </script>
 
 <template>

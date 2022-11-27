@@ -1,4 +1,5 @@
 import Inspect from 'vite-plugin-inspect'
+import { isCI } from 'std-env'
 
 export default defineNuxtConfig({
   ssr: false,
@@ -43,6 +44,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    env: isCI ? 'deployed' : 'local',
     deployUrl: process.env.PULL_REQUEST === 'true' ? process.env.DEPLOY_PRIME_URL : '',
     cloudflare: {
       accountId: '',
@@ -52,5 +54,8 @@ export default defineNuxtConfig({
     public: {
       translateApi: '',
     },
+  },
+  app: {
+    keepalive: true,
   },
 })

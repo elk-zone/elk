@@ -44,6 +44,7 @@ specifiers:
   prettier: ^2.8.0
   rollup-plugin-node-polyfills: ^0.2.1
   shiki: ^0.11.1
+  std-env: ^3.3.1
   theme-vitesse: ^0.6.0
   tippy.js: ^6.3.7
   typescript: ^4.9.3
@@ -101,6 +102,7 @@ devDependencies:
   prettier: 2.8.0
   rollup-plugin-node-polyfills: 0.2.1
   shiki: 0.11.1
+  std-env: 3.3.1
   theme-vitesse: 0.6.0
   tippy.js: 6.3.7
   typescript: 4.9.3

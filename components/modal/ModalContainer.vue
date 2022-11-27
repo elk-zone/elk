@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { isPreviewHelpOpen, isPublishDialogOpen, isSigninDialogOpen, isUserSwitcherOpen } from '~/composables/dialog'
+import { isEditHistoryDialogOpen, isImagePreviewDialogOpen, isPreviewHelpOpen, isPublishDialogOpen, isSigninDialogOpen, isUserSwitcherOpen } from '~/composables/dialog'
 </script>
 
 <template>
@@ -14,5 +14,11 @@ import { isPreviewHelpOpen, isPublishDialogOpen, isSigninDialogOpen, isUserSwitc
   </ModalDialog>
   <ModalDialog v-model="isPublishDialogOpen">
     <PublishWidget draft-key="dialog" expanded min-w-180 />
+  </ModalDialog>
+  <ModalDialog v-model="isImagePreviewDialogOpen">
+    <img :src="imagePreview.src" :alt="imagePreview.alt" max-w-95vw max-h-95vh>
+  </ModalDialog>
+  <ModalDialog v-model="isEditHistoryDialogOpen">
+    <StatusEditPreview :edit="statusEdit" />
   </ModalDialog>
 </template>

@@ -1,13 +1,12 @@
 import { stringifyQuery } from 'ufo'
-import { getApp } from '~/server/shared'
-import { HOST_DOMAIN } from '~/constants'
+import { HOST_DOMAIN, getApp } from '~/server/shared'
 
-export default defineEventHandler(async ({ context, res }) => {
-  const server = context.params.server
-  const app = await getApp(server)
+export default defineEventHandler(async (event) => {
+  const server = event.context.params.server
+  const app = await getApp(HOST_DOMAIN, server)
 
   if (!app) {
-    res.statusCode = 400
+    setResponseStatus(400)
     return `App not registered for server: ${server}`
   }
 
@@ -19,8 +18,5 @@ export default defineEventHandler(async ({ context, res }) => {
   })
   const url = `https://${server}/oauth/authorize?${query}`
 
-  res.writeHead(302, {
-    Location: url,
-  })
-  res.end()
+  await sendRedirect(event, url, 302)
 })

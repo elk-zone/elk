@@ -17,9 +17,9 @@ defineOptions({
       <AccountHoverCard
         :account="account"
         absolute top-0 left-0 z-10
-        op0 pointer-events-none rotate--2
-        font-normal delay-300 duration-300 transition transform
-        group-hover="pointer-events-auto op100 rotate-0"
+        op0 pointer-events-none mt--100vh
+        font-normal delay-300 duration-400 transition transform invisible
+        group-hover="visible pointer-events-auto op100 mt-0"
         translate="x-[calc(-1rem-1px)] y-[calc(-1rem-1px)]"
         class="ease-[cubic-bezier(0.4, 0.0, 0.2, 1)]"
         style="transform-origin: calc(1rem + 1px) calc(0.75rem + 1px);"

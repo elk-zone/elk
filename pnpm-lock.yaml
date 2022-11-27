@@ -50,6 +50,10 @@ specifiers:
   ufo: ^1.0.0
   unplugin-auto-import: ^0.11.5
   vitest: ^0.25.3
+  vue-virtual-scroller: 2.0.0-beta.3
+
+dependencies:
+  vue-virtual-scroller: 2.0.0-beta.3
 
 devDependencies:
   '@antfu/eslint-config': 0.31.0_hsf322ms6xhhd4b5ne6lb74y4a
@@ -5282,6 +5286,10 @@ packages:
       yallist: 4.0.0
     dev: true
 
+  /mitt/2.1.0:
+    resolution: {integrity: sha512-ILj2TpLiysu2wkBbWjAmww7TkZb65aiQO+DkVdUTBpBXq+MHYiETENkKFMtsJZX1Lf4pe4QOrTSjIfUwN5lRdg==}
+    dev: false
+
   /mkdir/0.0.2:
     resolution: {integrity: sha512-98OnjcWaNEIRUJJe9rFoWlbkQ5n9z8F86wIPCrI961YEViiVybTuJln919WuuSHSnlrqXy0ELKCntoPy8C7lqg==}
     engines: {node: '>=0.4.0'}
@@ -7814,11 +7822,16 @@ packages:
       - supports-color
     dev: true
 
+  /vue-observe-visibility/2.0.0-alpha.1:
+    resolution: {integrity: sha512-flFbp/gs9pZniXR6fans8smv1kDScJ8RS7rEpMjhVabiKeq7Qz3D9+eGsypncjfIyyU84saU88XZ0zjbD6Gq/g==}
+    peerDependencies:
+      vue: ^3.0.0
+    dev: false
+
   /vue-resize/2.0.0-alpha.1:
     resolution: {integrity: sha512-7+iqOueLU7uc9NrMfrzbG8hwMqchfVfSzpVlCMeJQe4pyibqyoifDNbKTZvwxZKDvGkB+PdFeKvnGZMoEb8esg==}
     peerDependencies:
       vue: ^3.0.0
-    dev: true
 
   /vue-router/4.1.6_vue@3.2.45:
     resolution: {integrity: sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==}
@@ -7828,6 +7841,16 @@ packages:
       '@vue/devtools-api': 6.4.5
       vue: 3.2.45
     dev: true
+
+  /vue-virtual-scroller/2.0.0-beta.3:
+    resolution: {integrity: sha512-k0hTAkZRmm3TXpfhW5Ig1fd8VV7+CmgnkebbQ4Uw6wnuQF52YJoaMQTFD3IV/Qi2WNadDB4ETrLUbVdnWboSjg==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      mitt: 2.1.0
+      vue-observe-visibility: 2.0.0-alpha.1
+      vue-resize: 2.0.0-alpha.1
+    dev: false
 
   /vue/3.2.45:
     resolution: {integrity: sha512-9Nx/Mg2b2xWlXykmCwiTUCWHbWIj53bnkizBxKai1g61f2Xit700A1ljowpTIM11e3uipOeiPcSqnmBg6gyiaA==}

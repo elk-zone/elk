@@ -1,9 +1,5 @@
 export const APP_NAME = 'Elk'
 
-export const HOST_DOMAIN = process.dev
-  ? 'http://localhost:5314'
-  : 'https://elk.zone'
-
 export const DEFAULT_POST_CHARS_LIMIT = 500
 export const DEFAULT_SERVER = 'mas.to'
 

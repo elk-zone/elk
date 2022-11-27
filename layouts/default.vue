@@ -4,7 +4,7 @@
       <div class="hidden md:block w-1/4 zen-hide" relative>
         <div sticky top-0 h-screen flex="~ col">
           <slot name="left">
-            <NavTitle px6 pt6 pb4 />
+            <NavTitle mx3 mt4 mb2 self-start />
             <div flex="~ col" overflow-y-auto>
               <NavSide />
               <PublishButton v-if="currentUser" m5 />

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`rich-content > code frame 1`] = `
+exports[`content-rich > code frame 1`] = `
 "<p>Testing code block</p>
 <pre lang=\\"ts\\">
 import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
@@ -13,7 +13,7 @@ const isDark = usePreferredDark()</pre
 "
 `;
 
-exports[`rich-content > custom emoji 1`] = `
+exports[`content-rich > custom emoji 1`] = `
 "Daniel Roe
 <img
   src=\\"https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/original/c96ba3cb0e0e1eac.png\\"
@@ -23,9 +23,9 @@ exports[`rich-content > custom emoji 1`] = `
 "
 `;
 
-exports[`rich-content > empty 1`] = `""`;
+exports[`content-rich > empty 1`] = `""`;
 
-exports[`rich-content > link + mention 1`] = `
+exports[`content-rich > link + mention 1`] = `
 "<p>
   Happy 🤗 we’re now using
   <span class=\\"h-card\\"

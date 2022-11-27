@@ -6,6 +6,10 @@ import Text from '@tiptap/extension-text'
 import Mention from '@tiptap/extension-mention'
 import CodeBlock from '@tiptap/extension-code-block'
 import CharacterCount from '@tiptap/extension-character-count'
+import HardBreak from '@tiptap/extension-hard-break'
+import Bold from '@tiptap/extension-bold'
+import Italic from '@tiptap/extension-italic'
+import Code from '@tiptap/extension-code'
 import { Plugin } from 'prosemirror-state'
 
 import type { Ref } from 'vue'
@@ -32,13 +36,19 @@ export function useTiptap(options: UseTiptapOptions) {
     extensions: [
       Document,
       Paragraph,
+      HardBreak,
+      Bold,
+      Italic,
+      Code,
       Text,
       Mention.configure({
         suggestion: MentionSuggestion,
       }),
-      Mention.configure({
-        suggestion: HashSuggestion,
-      }),
+      Mention
+        .extend({ name: 'hastag' })
+        .configure({
+          suggestion: HashSuggestion,
+        }),
       Placeholder.configure({
         placeholder,
       }),
@@ -84,6 +94,12 @@ export function useTiptap(options: UseTiptapOptions) {
     },
     autofocus,
     editable: true,
+  })
+
+  watch(content, (value) => {
+    if (editor.value?.getHTML() === value)
+      return
+    editor.value?.commands.setContent(value || '', false)
   })
 
   return {

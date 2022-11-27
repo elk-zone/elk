@@ -38,6 +38,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    deployUrl: process.env.PULL_REQUEST === 'true' ? process.env.DEPLOY_PRIME_URL : '',
     cloudflare: {
       accountId: '',
       namespaceId: '',

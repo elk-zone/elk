@@ -11,27 +11,42 @@ const status = $computed(() => {
   return props.status
 })
 
-const date = useFormattedDateTime(status.createdAt)
+const createdAt = useFormattedDateTime(status.createdAt)
+
+const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === status.visibility)!)
 </script>
 
 <template>
-  <div flex flex-col gap-2 py3 px-4>
-    <AccountInfo :account="status.account" />
+  <div flex flex-col gap-2 py3 px-4 :id="`status-${status.id}`">
+    <AccountInfo :account="status.account" :hover="true" />
     <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" />
     <StatusSpoiler :enabled="status.sensitive">
       <template #spoiler>
         {{ status.spoilerText }}
       </template>
-      <StatusBody :status="status" text-2xl />
+      <StatusBody :status="status" :with-action="false" text-2xl />
       <StatusMedia
         v-if="status.mediaAttachments?.length"
         :status="status"
       />
     </StatusSpoiler>
-    <div>
-      <span op50 text-sm>
-        {{ date }} · {{ status.application?.name || 'Unknown client' }}
-      </span>
+    <div flex="~ gap-1" items-center text-secondary text-sm>
+      <div flex>
+        <div>{{ createdAt }}</div>
+        <StatusEditIndicator
+          :status="status"
+          :inline="false"
+        >
+          <span ml1 font-bold cursor-pointer>(Edited)</span>
+        </StatusEditIndicator>
+      </div>
+      <div>·</div>
+      <CommonTooltip :content="visibility.label" placement="bottom">
+        <div :class="visibility.icon" />
+      </CommonTooltip>
+      <div v-if="status.application?.name">
+        · {{ status.application?.name }}
+      </div>
     </div>
     <StatusActions :status="status" border="t base" pt-2 />
   </div>

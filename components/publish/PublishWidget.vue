@@ -16,12 +16,16 @@ const {
   expanded?: boolean
 }>()
 
-let isExpanded = $ref(_expanded)
 let isSending = $ref(false)
 let { draft } = $(useDraft(draftKey, inReplyToId))
+const isExistDraft = $computed(() => !!draft.params.status && draft.params.status !== '<p></p>')
+let isExpanded = $ref(isExistDraft || _expanded)
 
 const { editor } = useTiptap({
-  content: toRef(draft.params, 'status'),
+  content: computed({
+    get: () => draft.params.status,
+    set: newVal => draft.params.status = newVal,
+  }),
   placeholder,
   autofocus: isExpanded,
   onSubmit: publish,
@@ -73,7 +77,7 @@ async function toggleSensitive() {
 async function uploadAttachments(files: File[]) {
   isUploading = true
   for (const file of files) {
-    const attachment = await masto.mediaAttachments.create({
+    const attachment = await useMasto().mediaAttachments.create({
       file,
     })
     draft.attachments.push(attachment)
@@ -111,9 +115,9 @@ async function publish() {
     isSending = true
 
     if (!draft.editingStatus)
-      await masto.statuses.create(payload)
+      await useMasto().statuses.create(payload)
     else
-      await masto.statuses.update(draft.editingStatus.id, payload)
+      await useMasto().statuses.update(draft.editingStatus.id, payload)
 
     draft = getDefaultDraft({ inReplyToId })
     isPublishDialogOpen.value = false
@@ -146,7 +150,7 @@ onUnmounted(() => {
   <div v-if="currentUser" flex="~ col gap-1">
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
-        <div text-gray self-center>
+        <div text-secondary self-center>
           Editing
         </div>
         <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" />
@@ -177,9 +181,9 @@ onUnmounted(() => {
         <div relative>
           <EditorContent
             :editor="editor"
-            :class="isExpanded ? 'min-h-120px' : ''"
+            :class="isExpanded ? 'min-h-120px max-h-720px of-y-auto' : ''"
           />
-          <div v-if="isExpanded" absolute right-0 bottom-0 pointer-events-none text-sm op25>
+          <div v-if="isExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>
             {{ characterLimit - editor?.storage.characterCount.characters() }}
           </div>
         </div>
@@ -231,7 +235,7 @@ onUnmounted(() => {
           <CommonDropdown>
             <button btn-action-icon w-12>
               <div :class="currentVisibility.icon" />
-              <div i-ri:arrow-down-s-line text-sm op50 mr--1 />
+              <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
             </button>
 
             <template #popper>
@@ -251,7 +255,7 @@ onUnmounted(() => {
           </CommonDropdown>
           <button
             btn-solid rounded-full text-sm
-            :disabled="isUploading || (draft.attachments.length === 0 && !draft.params.status)"
+            :disabled="!isExistDraft || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
             @click="publish"
           >
             {{ !draft.editingStatus ? 'Publish!' : 'Save changes' }}

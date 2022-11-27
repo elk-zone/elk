@@ -3,10 +3,12 @@ definePageMeta({
   layout: 'none',
 })
 
+const router = useRouter()
 const { query } = useRoute()
 
 onMounted(async () => {
   await loginTo(query as any)
+  router.push('/')
 })
 </script>
 

@@ -55,16 +55,29 @@ const aspectRatio = computed(() => {
     </audio>
   </template>
   <template v-else>
-    <CommonBlurhash
-      :blurhash="attachment.blurhash"
-      class="status-attachment-image"
-      :src="attachment.url || attachment.previewUrl!"
-      :alt="attachment.description!"
-      :style="{
-        aspectRatio,
-      }"
-      border="~ base"
-      object-cover rounded-lg
-    />
+    <button
+      focus:outline-none
+      focus:ring="2 primary inset"
+      rounded-lg
+      @click="openImagePreviewDialog({
+        src: attachment.url || attachment.previewUrl!,
+        alt: attachment.description!,
+      })"
+    >
+      <CommonBlurhash
+        :blurhash="attachment.blurhash"
+        class="status-attachment-image"
+        :src="attachment.url || attachment.previewUrl!"
+        :alt="attachment.description!"
+        :style="{
+          aspectRatio,
+        }"
+        border="~ base"
+        rounded-lg
+        h-full
+        w-full
+        object-cover
+      />
+    </button>
   </template>
 </template>

@@ -8,10 +8,10 @@ defineProps<{
 }>()
 const emit = defineEmits(['click'])
 
-const { hide } = inject(dropdownContextKey)!
+const { hide } = inject(dropdownContextKey, undefined) || {}
 
 const handleClick = (evt: MouseEvent) => {
-  hide()
+  hide?.()
   emit('click', evt)
 }
 </script>
@@ -19,14 +19,15 @@ const handleClick = (evt: MouseEvent) => {
 <template>
   <div
     flex gap-3 items-center cursor-pointer px4 py3 hover-bg-active
+    v-bind="$attrs"
     @click="handleClick"
   >
     <div v-if="icon" :class="icon" />
     <div flex="~ col">
-      <div text-15px font-700>
+      <div text-15px>
         <slot />
       </div>
-      <div text-3 text="gray/90">
+      <div text-3 text-secondary>
         <slot name="description">
           <p v-if="description">
             {{ description }}
@@ -38,5 +39,6 @@ const handleClick = (evt: MouseEvent) => {
     <div flex-auto />
 
     <div v-if="checked" i-ri:check-line />
+    <slot name="actions" />
   </div>
 </template>

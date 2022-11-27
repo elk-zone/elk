@@ -8,11 +8,14 @@ import TiptapMentionList from '~/components/tiptap/TiptapMentionList.vue'
 export const MentionSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('mention'),
   char: '@',
-  items({ query }) {
-    // TODO: query
-    return [
-      'TODO MENTION QUERY', 'Lea Thompson', 'Cyndi Lauper', 'Tom Cruise', 'Madonna', 'Jerry Hall', 'Joan Collins', 'Winona Ryder', 'Christina Applegate', 'Alyssa Milano', 'Molly Ringwald', 'Ally Sheedy', 'Debbie Harry', 'Olivia Newton-John', 'Elton John', 'Michael J. Fox', 'Axl Rose', 'Emilio Estevez', 'Ralph Macchio', 'Rob Lowe', 'Jennifer Grey', 'Mickey Rourke', 'John Cusack', 'Matthew Broderick', 'Justine Bateman', 'Lisa Bonet',
-    ].filter(item => item.toLowerCase().startsWith(query.toLowerCase())).slice(0, 5)
+  async items({ query }) {
+    if (query.length === 0)
+      return []
+
+    const mentionPaginator = useMasto().search({ q: query, type: 'accounts', limit: 25, resolve: true })
+    const results = await mentionPaginator.next()
+
+    return results.value.accounts
   },
   render: createSuggestionRenderer(),
 }

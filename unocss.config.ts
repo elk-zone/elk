@@ -22,9 +22,10 @@ export default defineConfig({
       // text
       'text-base': 'text-$c-text-base',
       'text-secondary': 'text-$c-text-secondary',
+      'text-secondary-light': 'text-$c-text-secondary-light',
 
       // buttons
-      'btn-base': 'cursor-pointer disabled:opacity-50 disabled:pointer-events-none disabled:saturate-0',
+      'btn-base': 'cursor-pointer disabled:opacity-50 disabled:pointer-events-none disabled:saturate-0 disabled:brightness-[0.7] disabled:contrast-[2]',
       'btn-solid': 'btn-base px-4 py-2 rounded text-white bg-$c-primary hover:bg-$c-primary-active',
       'btn-outline': 'btn-base px-4 py-2 rounded text-$c-primary border border-$c-primary hover:bg-$c-primary hover:text-white',
       'btn-text': 'btn-base px-4 py-2 text-$c-primary hover:text-$c-primary-active',

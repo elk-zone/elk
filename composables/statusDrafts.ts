@@ -37,7 +37,7 @@ export function getDefaultDraft({
   }
 }
 
-export function getParamsFromStatus(status: Status) {
+export function getParamsFromStatus(status: Status): Draft['params'] {
   return {
     status: status.content,
     mediaIds: status.mediaAttachments.map(att => att.id),
@@ -77,4 +77,18 @@ export function directMessageUser(account: Account) {
     status: `@${account.acct} `,
     visibility: 'direct',
   }))
+}
+
+export function clearUserDrafts(account?: Account) {
+  if (!account)
+    account = currentUser.value?.account
+
+  if (!account)
+    return
+
+  const id = `${account.acct}@${currentUser.value?.server}`
+  if (!allDrafts.value[id])
+    return
+
+  delete allDrafts.value[id]
 }

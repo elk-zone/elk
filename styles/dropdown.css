@@ -10,8 +10,12 @@
   --at-apply: border-base;
 }
 .v-popper--theme-tooltip .v-popper__inner {
-  --at-apply: bg-base text-base rounded border border-base shadow;
+  --at-apply: bg-base text-base rounded border border-base shadow-sm;
   padding: 7px 12px 6px;
+}
+.v-popper--theme-tooltip .v-popper__arrow-inner {
+  visibility: visible;
+  --at-apply: border-bg-base;
 }
 .v-popper--theme-tooltip .v-popper__arrow-outer {
   --at-apply: border-base;

@@ -48,13 +48,17 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
     </div>
     <div flex gap-4>
       <div>
-        <NuxtLink :to="getAccountPath(status.account)" rounded-full>
-          <AccountAvatar w-12 h-12 :account="status.account" />
-        </NuxtLink>
+        <AccountHoverWrapper :account="status.account">
+          <NuxtLink :to="getAccountPath(status.account)" rounded-full>
+            <AccountAvatar w-12 h-12 :account="status.account" />
+          </NuxtLink>
+        </AccountHoverWrapper>
       </div>
       <div flex="~ col 1" min-w-0>
         <div flex>
-          <StatusAccountDetails :account="status.account" />
+          <AccountHoverWrapper :account="status.account">
+            <StatusAccountDetails :account="status.account" />
+          </AccountHoverWrapper>
           <div flex-auto />
           <div text-sm text-secondary flex="~ row nowrap" hover:underline>
             <CommonTooltip :content="createdAt">

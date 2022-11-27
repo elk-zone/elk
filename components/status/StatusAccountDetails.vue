@@ -8,11 +8,13 @@ const { account, link = true } = defineProps<{
 </script>
 
 <template>
-  <NuxtLink
-    :to="link ? getAccountPath(account) : undefined"
-    flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
-  >
-    <ContentRich font-bold break-words hover:underline :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
-    <AccountHandle :account="account" />
-  </NuxtLink>
+  <AccountHoverWrapper :account="account">
+    <NuxtLink
+      :to="link ? getAccountPath(account) : undefined"
+      flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
+    >
+      <ContentRich font-bold break-words hover:underline :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
+      <AccountHandle :account="account" />
+    </NuxtLink>
+  </AccountHoverWrapper>
 </template>

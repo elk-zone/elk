@@ -1,5 +1,5 @@
 <template>
-  <div px3 py4 flex="~ col gap2" text-lg>
+  <nav px3 py4 flex="~ col gap2" text-lg>
     <template v-if="currentUser">
       <NavSideItem text="Home" to="/home" icon="i-ri:home-5-line" />
       <NavSideItem text="Notifications" to="/notifications" icon="i-ri:notification-4-line" />
@@ -17,5 +17,5 @@
         </template>
       </NavSideItem>
     </template>
-  </div>
+  </nav>
 </template>

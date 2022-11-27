@@ -16,8 +16,8 @@ import {
   <ModalDialog v-model="isSigninDialogOpen">
     <UserSignIn m6 />
   </ModalDialog>
-  <ModalDialog v-model="isPreviewHelpOpen">
-    <HelpPreview />
+  <ModalDialog v-model="isPreviewHelpOpen" :type="isSmallScreen ? 'bottom' : 'dialog'">
+    <HelpPreview @close="closePreviewHelp()" />
   </ModalDialog>
   <ModalDialog v-model="isPublishDialogOpen">
     <PublishWidget draft-key="dialog" expanded min-w-180 />

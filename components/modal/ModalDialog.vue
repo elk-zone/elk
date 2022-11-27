@@ -11,7 +11,11 @@ const {
 
 const { modelValue } = defineModel<{
   modelValue: boolean
+  closeButton?: boolean
 }>()
+
+let isVisible = $ref(modelValue.value)
+let isOut = $ref(!modelValue.value)
 
 const positionClass = computed(() => {
   switch (type) {
@@ -30,23 +34,31 @@ const positionClass = computed(() => {
   }
 })
 
-const transform = computed(() => {
-  switch (type) {
-    case 'bottom':
-      return 'translateY(100%)'
-    case 'top':
-      return 'translateY(-100%)'
-    case 'left':
-      return 'translateX(-100%)'
-    case 'right':
-      return 'translateX(100%)'
-    default:
-      return ''
+const transformClass = computed(() => {
+  if (isOut) {
+    switch (type) {
+      case 'dialog':
+        return 'op0'
+      case 'bottom':
+        return 'translate-y-[100%]'
+      case 'top':
+        return 'translate-y-[100%]'
+      case 'left':
+        return 'translate-x-[-100%]'
+      case 'right':
+        return 'translate-x-[100%]'
+      default:
+        return ''
+    }
   }
 })
 
 const target = ref<HTMLElement | null>(null)
 const { activate, deactivate } = useFocusTrap(target)
+
+function close() {
+  modelValue.value = false
+}
 
 watchEffect(() => {
   if (modelValue)
@@ -55,29 +67,52 @@ watchEffect(() => {
     deactivate()
 })
 
-let init = $ref(modelValue)
-watchOnce(modelValue, () => {
-  init = true
+useEventListener('keydown', (e: KeyboardEvent) => {
+  if (!modelValue.value)
+    return
+  if (e.key === 'Escape') {
+    close()
+    e.preventDefault()
+  }
 })
+
+watch(modelValue, async (v) => {
+  if (v) {
+    isOut = true
+    isVisible = true
+    setTimeout(() => {
+      isOut = false
+    }, 10)
+  }
+  else {
+    isOut = true
+  }
+})
+
+function onTransitionEnd() {
+  if (!modelValue.value)
+    isVisible = false
+}
 </script>
 
 <template>
   <div
+    v-if="isVisible"
     fixed top-0 bottom-0 left-0 right-0 z-40
     :class="modelValue ? '' : 'pointer-events-none'"
   >
     <div
       bg-base bottom-0 left-0 right-0 top-0 absolute transition-opacity duration-500 ease-out
-      :class="modelValue ? 'opacity-85' : 'opacity-0'"
-      @click="modelValue = false"
+      :class="isOut ? 'opacity-0' : 'opacity-85'"
+      @click="close"
     />
     <div
-      ref="target" bg-base border-base absolute transition-all duration-200
-      ease-out
-      :class="positionClass"
-      :style="modelValue ? {} : { transform }"
+      ref="target"
+      bg-base border-base absolute transition-all duration-200 ease-out transform
+      :class="`${positionClass} ${transformClass}`"
+      @transitionend="onTransitionEnd"
     >
-      <slot v-if="init" />
+      <slot />
     </div>
   </div>
 </template>

@@ -49,3 +49,7 @@ export function openEditHistoryDialog(edit: StatusEdit) {
 export function openPreviewHelp() {
   isPreviewHelpOpen.value = true
 }
+
+export function closePreviewHelp() {
+  isPreviewHelpOpen.value = false
+}

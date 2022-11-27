@@ -6,6 +6,10 @@ interface Team {
   mastodon: string
 }
 
+const emit = defineEmits<{
+  (event: 'close'): void
+}>()
+
 const teams: Team[] = [
   {
     github: 'antfu',
@@ -35,7 +39,11 @@ const teams: Team[] = [
 </script>
 
 <template>
-  <div p8 flex="~ col gap-4">
+  <div p8 flex="~ col gap-4" relative max-h-screen of-auto>
+    <button btn-action-icon absolute top-0 right-0 m1 @click="emit('close')">
+      <div i-ri:close-fill />
+    </button>
+
     <img src="/logo.svg" w-20 h-20 mxa alt="logo">
     <h1 mxa text-4xl mb4>
       Elk is in Preview!
@@ -53,7 +61,7 @@ const teams: Team[] = [
     </p>
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of teams" :key="team.github">
-        <a :href="`https://github.com/sponsors/${team.github}`" target="_blank">
+        <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full>
           <img :src="`https://github.com/${team.github}.png`" :alt="team.display" rounded-full w-15 h-15>
         </a>
       </template>
@@ -61,5 +69,9 @@ const teams: Team[] = [
     <p italic text-2xl>
       <span text-lg font-script>The Elk Team</span>
     </p>
+
+    <button btn-solid mxa @click="emit('close')">
+      Enter App
+    </button>
   </div>
 </template>

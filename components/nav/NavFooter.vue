@@ -5,13 +5,14 @@ const buildTimeAgo = useTimeAgo(buildTime)
 
 <template>
   <div p4 text-sm text-secondary-light flex="~ col">
-    <div flex="~ gap2">
-      <button i-ri-sun-line dark:i-ri-moon-line text-lg mb4 @click="toggleDark()" />
+    <div flex="~ gap2" align="items-center" mb4>
+      <button i-ri-sun-line dark:i-ri-moon-line text-lg @click="toggleDark()" />
       <button
-        text-lg mb4
+        text-lg
         :class="isZenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
         @click="toggleZenMode()"
       />
+      <NavSelectLanguage />
     </div>
     <a cursor-pointer hover:underline @click="openPreviewHelp">Show intro</a>
     <div>A Mastodon client made with 🧡</div>

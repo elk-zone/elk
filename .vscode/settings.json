@@ -10,5 +10,8 @@
   "cSpell.words": [
     "masto",
     "Nuxtodon"
+  ],
+  "i18n-ally.localesPaths": [
+    "locales"
   ]
 }

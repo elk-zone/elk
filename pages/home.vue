@@ -10,6 +10,8 @@ if (useRoute().path === '/signin/callback') {
 }
 
 const paginator = useMasto().timelines.getHomeIterable()
+const stream = await useMasto().stream.streamUser()
+onBeforeUnmount(() => stream.disconnect())
 </script>
 
 <template>
@@ -19,7 +21,7 @@ const paginator = useMasto().timelines.getHomeIterable()
     </template>
     <slot>
       <PublishWidget draft-key="home" border="b base" />
-      <TimelinePaginator :paginator="paginator" />
+      <TimelinePaginator { paginator, stream } />
     </slot>
   </MainContent>
 </template>

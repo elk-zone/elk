@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const paginator = useMasto().timelines.getPublicIterable({ local: true })
+const stream = await useMasto().stream.streamCommunityTimeline()
+onBeforeUnmount(() => stream.disconnect())
 
 useHead({
   title: 'Local',
@@ -13,7 +15,7 @@ useHead({
     </template>
 
     <slot>
-      <TimelinePaginator :paginator="paginator" />
+      <TimelinePaginator v-bind="{ paginator, stream }" />
     </slot>
   </MainContent>
 </template>

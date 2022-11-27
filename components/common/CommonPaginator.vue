@@ -2,12 +2,13 @@
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { Paginator } from 'masto'
+import type { Paginator, WsEvents } from 'masto'
 
-const { paginator, keyProp = 'id', virtualScroller = false } = defineProps<{
+const { paginator, stream, keyProp = 'id', virtualScroller = false } = defineProps<{
   paginator: Paginator<any, any[]>
   keyProp?: string
   virtualScroller: boolean
+  stream?: WsEvents
 }>()
 
 defineSlots<{
@@ -15,14 +16,19 @@ defineSlots<{
     item: any
     active?: boolean
   }
+  updater: {
+    number: number
+    update: () => void
+  }
   loading: {}
 }>()
 
-const { items, state, endAnchor, error } = usePaginator(paginator)
+const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream)
 </script>
 
 <template>
   <div>
+    <slot v-if="prevItems.length" name="updater" v-bind="{ number: prevItems.length, update }" />
     <template v-if="virtualScroller">
       <DynamicScroller
         v-slot="{ item, active }"

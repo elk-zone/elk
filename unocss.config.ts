@@ -13,6 +13,7 @@ export default defineConfig({
   shortcuts: [
     {
       'border-base': 'border-$c-border',
+      'border-bg-base': 'border-$c-bg-base',
 
       // background
       'bg-base': 'bg-$c-bg-base',

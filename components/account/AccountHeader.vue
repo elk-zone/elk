@@ -67,7 +67,7 @@ function previewAvatar() {
     <div p4 mt--17 flex flex-col gap-6>
       <div flex justify-between>
         <div flex="~ col gap-2 1">
-          <button w-30 h-30 rounded-full bg-black z-2 @click="previewAvatar">
+          <button w-30 h-30 rounded-full bg-gray border-4 border-bg-base z-2 @click="previewAvatar">
             <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
           </button>
           <div flex flex-col>

@@ -58,8 +58,12 @@ function createSuggestionRenderer(): SuggestionOptions['render'] {
         })
       },
 
+      onBeforeUpdate(props) {
+        component.updateProps({ ...props, isPending: true })
+      },
+
       onUpdate(props) {
-        component.updateProps(props)
+        component.updateProps({ ...props, isPending: false })
 
         if (!props.clientRect)
           return

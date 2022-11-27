@@ -19,6 +19,7 @@ export default defineComponent({
 
     onMounted(() => {
       const img = document.createElement('img')
+      isLoaded.value = img.complete
       img.onload = () => {
         isLoaded.value = true
       }

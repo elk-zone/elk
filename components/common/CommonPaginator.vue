@@ -24,7 +24,13 @@ const { items, state, endAnchor, error } = usePaginator(paginator)
 <template>
   <div>
     <template v-if="virtualScroller">
-      <DynamicScroller v-slot="{ item, active }" :items="items" :min-item-size="200" page-mode>
+      <DynamicScroller
+        v-slot="{ item, active }"
+        :items="items"
+        :min-item-size="200"
+        :key-field="keyProp"
+        page-mode
+      >
         <slot :item="item" :active="active" />
       </DynamicScroller>
     </template>

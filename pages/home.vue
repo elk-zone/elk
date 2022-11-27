@@ -21,7 +21,7 @@ onBeforeUnmount(() => stream.disconnect())
     </template>
     <slot>
       <PublishWidget draft-key="home" border="b base" />
-      <TimelinePaginator { paginator, stream } />
+      <TimelinePaginator v-bind="{ paginator, stream }" />
     </slot>
   </MainContent>
 </template>

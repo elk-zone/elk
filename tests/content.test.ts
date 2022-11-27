@@ -33,15 +33,27 @@ describe('content-rich', () => {
     const { formatted } = await render('<p>Testing code block</p><p>```ts<br />import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;</p><p>// tracks mouse position<br />const { x, y } = useMouse()</p><p>// is the user prefers dark theme<br />const isDark = usePreferredDark()<br />```</p>')
     expect(formatted).toMatchSnapshot()
   })
+
+  it('code frame 2', async () => {
+    const { formatted } = await render('<p><span class=\"h-card\"><a href=\"https://mas.to/@antfu\" class=\"u-url mention\">@<span>antfu</span></a></span> Testing<br />```ts<br />const a = hello<br />```</p>')
+    expect(formatted).toMatchSnapshot()
+  })
 })
 
 async function render(content: string, emojis?: Record<string, Emoji>) {
   const vnode = contentToVNode(content, emojis)
   const html = (await renderToString(vnode))
     .replace(/<!--[\[\]]-->/g, '')
-  const formatted = format(html, {
-    parser: 'html',
-  })
+  let formatted = ''
+
+  try {
+    formatted = format(html, {
+      parser: 'html',
+    })
+  }
+  catch (e) {
+    formatted = html
+  }
 
   return {
     vnode,

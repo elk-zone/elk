@@ -4,10 +4,8 @@ import { DEFAULT_SERVER } from '~/constants'
 let server = $ref<string>('')
 
 async function oauth() {
-  if (!server)
-    return
-
-  server = server.split('/')[0]
+  if (server)
+    server = server.split('/')[0]
   location.href = `/api/${server || DEFAULT_SERVER}/login`
 }
 
@@ -24,7 +22,7 @@ async function handleInput() {
     </div>
     <div>Mastodon Server Name</div>
     <div flex bg-gray:10 px2 py1 mxa rounded border="~ border" text-xl items-center>
-      <span op35 mr1 text-sm>https://</span>
+      <span text-secondary-light mr1 text-sm>https://</span>
       <input v-model="server" :placeholder="DEFAULT_SERVER" outline-none bg-transparent @input="handleInput">
     </div>
     <button btn-solid mt2>

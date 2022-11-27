@@ -40,22 +40,30 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 <template>
   <div :id="`status-${status.id}`" ref="el" flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
     <div v-if="rebloggedBy" pl8>
-      <div flex="~ wrap" gap-1 items-center text-gray:75 text-sm>
+      <div flex="~ wrap" gap-1 items-center text-secondary text-sm>
         <div i-ri:repeat-fill mr-1 />
         <AccountInlineInfo font-bold :account="rebloggedBy" />
         reblogged
       </div>
     </div>
     <div flex gap-4>
-      <AccountAvatar w-12 h-12 :account="status.account" hover />
+      <div>
+        <AccountHoverWrapper :account="status.account">
+          <NuxtLink :to="getAccountPath(status.account)" rounded-full>
+            <AccountAvatar w-12 h-12 :account="status.account" />
+          </NuxtLink>
+        </AccountHoverWrapper>
+      </div>
       <div flex="~ col 1" min-w-0>
         <div flex>
-          <StatusAccountDetails :account="status.account" />
+          <AccountHoverWrapper :account="status.account">
+            <StatusAccountDetails :account="status.account" />
+          </AccountHoverWrapper>
           <div flex-auto />
-          <div text-sm op50 flex="~ row nowrap" hover:underline>
+          <div text-sm text-secondary flex="~ row nowrap" hover:underline>
             <CommonTooltip :content="createdAt">
               <a :title="status.createdAt" :href="getStatusPath(status)" @click.prevent="go">
-                <time text-sm op50 hover:underline :datetime="status.createdAt">
+                <time text-sm hover:underline :datetime="status.createdAt">
                   {{ timeago }}
                 </time>
               </a>

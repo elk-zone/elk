@@ -1,4 +1,5 @@
 import { isCI } from 'std-env'
+import Inspect from 'vite-plugin-inspect'
 
 export default defineNuxtConfig({
   ssr: false,
@@ -28,12 +29,15 @@ export default defineNuxtConfig({
   },
   vite: {
     define: {
-      '__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
+      'import.meta.env.__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
     },
     build: {
       target: 'esnext',
     },
+    plugins: [
+      Inspect(),
+    ],
   },
   nitro: {
     prerender: {

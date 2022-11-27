@@ -1,12 +1,6 @@
 import type { Ref } from 'vue'
 import type { Account, Relationship, Status } from 'masto'
 
-declare module 'masto' {
-  interface Status {
-    editedAt?: string
-  }
-}
-
 // @unocss-include
 export const STATUS_VISIBILITIES = [
   {
@@ -48,6 +42,8 @@ export function getDisplayName(account?: Account, options?: { rich?: boolean }) 
 }
 
 export function getShortHandle({ acct }: Account) {
+  if (!acct)
+    return ''
   return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
 }
 

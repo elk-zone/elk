@@ -6,8 +6,8 @@ const { status } = defineProps<{
   inline: boolean
 }>()
 
-const editedAt = $computed(() => status.editedAt)
-const formatted = useFormattedDateTime(status.editedAt)
+const editedAt = computed(() => status.editedAt)
+const formatted = useFormattedDateTime(editedAt)
 </script>
 
 <template>
@@ -17,6 +17,7 @@ const formatted = useFormattedDateTime(status.editedAt)
         :title="editedAt"
         :datetime="editedAt"
         font-bold underline decoration-dashed
+        text-secondary
       >&nbsp;*</time>
     </CommonTooltip>
 

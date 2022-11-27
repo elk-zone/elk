@@ -16,7 +16,7 @@ const { notification } = defineProps<{
       </div>
       <AccountCard :account="notification.account" p3 />
     </template>
-    <template v-if="notification.type === 'follow_request'">
+    <template v-else-if="notification.type === 'follow_request'">
       <div flex ml-4 items-center>
         <div i-ri:user-follow-fill mr-3 />
         <AccountInlineInfo :account="notification.account" mr1 />
@@ -25,7 +25,7 @@ const { notification } = defineProps<{
       <!-- TODO: accept request -->
       <AccountCard :account="notification.account" p3 />
     </template>
-    <template v-if="notification.type === 'favourite'">
+    <template v-else-if="notification.type === 'favourite'">
       <div flex ml-4 items-center>
         <div i-ri:heart-fill mr-3 color-red />
         <AccountInlineInfo :account="notification.account" mr1 />
@@ -33,7 +33,7 @@ const { notification } = defineProps<{
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>
-    <template v-if="notification.type === 'reblog'">
+    <template v-else-if="notification.type === 'reblog'">
       <div flex ml-4 items-center>
         <div i-ri:repeat-fill mr-3 color-green />
         <AccountInlineInfo :account="notification.account" mr1 />
@@ -41,7 +41,7 @@ const { notification } = defineProps<{
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>
-    <template v-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
+    <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
       <StatusCard :status="notification.status!" p3 />
     </template>
   </div>

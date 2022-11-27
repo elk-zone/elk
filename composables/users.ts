@@ -1,5 +1,6 @@
 import { login as loginMasto } from 'masto'
 import type { AccountCredentials, Instance } from 'masto'
+import { clearUserDrafts } from './statusDrafts'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
 
@@ -59,12 +60,22 @@ export async function signout() {
   if (!currentUser.value)
     return
 
-  const index = users.value.findIndex(u => u.account?.id === currentUser.value?.account.id)
-  if (index === -1)
-    return
+  const _currentUserId = currentUser.value.account.id
 
-  users.value.splice(index, 1)
+  const index = users.value.findIndex(u => u.account?.id === _currentUserId)
+
+  if (index !== -1) {
+    // Clear stale data
+    delete servers.value[_currentUserId]
+    clearUserDrafts()
+
+    // Remove the current user from the users
+    users.value.splice(index, 1)
+  }
+
+  // Set currentUserId to next user if available
   currentUserId.value = users.value[0]?.account?.id
+
   await reloadPage()
 }
 

@@ -21,16 +21,22 @@
         <div sticky top-0 h-screen flex="~ col">
           <slot name="right">
             <UserSignInEntry v-if="!currentUser" />
-            <AccountInfo
+            <VDropdown
               v-if="currentUser"
-              m5 p2 rounded-full
-              hover:bg-active cursor-pointer transition-100
-              :account="currentUser.account"
-              :full-server="true"
-              :link="false"
-              @keydown.enter="openUserSwitcher"
-              @click="openUserSwitcher"
-            />
+              :triggers="['click', 'focus']"
+              :distance="0"
+              placement="bottom-end"
+            >
+              <button
+                m5 p2 rounded-full text-start w-full
+                hover:bg-active cursor-pointer transition-100
+              >
+                <AccountInfo :account="currentUser.account" />
+              </button>
+              <template #popper>
+                <UserSwitcher />
+              </template>
+            </VDropdown>
             <div flex-auto />
             <NavFooter />
           </slot>

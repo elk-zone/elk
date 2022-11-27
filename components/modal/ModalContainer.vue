@@ -5,14 +5,10 @@ import {
   isPreviewHelpOpen,
   isPublishDialogOpen,
   isSigninDialogOpen,
-  isUserSwitcherOpen,
 } from '~/composables/dialog'
 </script>
 
 <template>
-  <ModalDialog v-model="isUserSwitcherOpen" type="right">
-    <UserSwitcher min-w-100 />
-  </ModalDialog>
   <ModalDialog v-model="isSigninDialogOpen">
     <UserSignIn m6 />
   </ModalDialog>

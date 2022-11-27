@@ -98,7 +98,7 @@ function onTransitionEnd() {
 <template>
   <div
     v-if="isVisible"
-    fixed top-0 bottom-0 left-0 right-0 z-40
+    fixed top-0 bottom-0 left-0 right-0 z-20000
     :class="modelValue ? '' : 'pointer-events-none'"
   >
     <div

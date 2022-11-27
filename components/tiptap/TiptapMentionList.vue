@@ -50,7 +50,7 @@ defineExpose({
         block m0 w-full text-left px2 py1
         @click="selectItem(index)"
       >
-        <AccountInfo :link="false" :account="item" />
+        <AccountInfo :account="item" />
       </button>
     </template>
     <div v-else block m0 w-full text-left px2 py1 italic op30>

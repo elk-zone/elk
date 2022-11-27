@@ -6,7 +6,7 @@ export default defineEventHandler(async (event) => {
   const app = await getApp(HOST_DOMAIN, server)
 
   if (!app) {
-    setResponseStatus(400)
+    event.node.res.statusCode = 400
     return `App not registered for server: ${server}`
   }
 

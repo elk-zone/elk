@@ -1,23 +1,22 @@
-import { login } from 'masto'
+import type { MastoClient } from 'masto'
 import { currentUser } from '../composables/users'
-import { DEFAULT_SERVER } from '~/constants'
 
 export default defineNuxtPlugin(async () => {
   try {
-    const accessToken = currentUser.value?.token
+    const { query } = useRoute()
+    const user = typeof query.server === 'string' && typeof query.token === 'string'
+      ? { server: query.server, token: query.token }
+      : currentUser.value
 
     // TODO: improve upstream to make this synchronous (delayed auth)
-    const masto = await login({
-      url: `https://${currentUser.value?.server || DEFAULT_SERVER}`,
-      accessToken,
-    })
-
-    if (accessToken)
-      masto.accounts.verifyCredentials().catch(() => signout())
+    const masto = await loginTo(user) as MastoClient
 
     return {
       provide: {
-        masto,
+        masto: shallowReactive({
+          replace(api: MastoClient) { this.api = api },
+          api: masto,
+        }),
       },
     }
   }

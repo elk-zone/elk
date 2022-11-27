@@ -122,18 +122,20 @@ function editStatus() {
 
 <template>
   <div flex justify-between>
-    <CommonTooltip flex-1 placement="bottom" content="Reply">
+    <div flex-1>
       <StatusActionButton
+        content="Reply"
         as="router-link"
         :to="getStatusPath(status)"
         :text="status.repliesCount"
         color="text-blue" hover="text-blue" group-hover="bg-blue/10"
         icon="i-ri:chat-3-line"
       />
-    </CommonTooltip>
+    </div>
 
-    <CommonTooltip flex-1 placement="bottom" content="Boost">
+    <div flex-1>
       <StatusActionButton
+        content="Boost"
         :text="status.reblogsCount"
         color="text-green" hover="text-green" group-hover="bg-green/10"
         icon="i-ri:repeat-line"
@@ -142,23 +144,24 @@ function editStatus() {
         :disabled="isLoading.reblogged"
         @click="toggleReblog()"
       />
-    </CommonTooltip>
+    </div>
 
-    <CommonTooltip flex-1 placement="bottom" content="Favourite">
+    <div flex-1>
       <StatusActionButton
+        content="Favourite"
         :text="status.favouritesCount"
         color="text-rose" hover="text-rose" group-hover="bg-rose/10"
         icon="i-ri:heart-3-line"
         active-icon="i-ri:heart-3-fill"
         :active="status.favourited"
         :disabled="isLoading.favourited"
-
         @click="toggleFavourite()"
       />
-    </CommonTooltip>
+    </div>
 
-    <CommonTooltip flex-none placement="bottom" content="Bookmark">
+    <div flex-none>
       <StatusActionButton
+        content="Bookmark"
         color="text-yellow" hover="text-yellow" group-hover="bg-yellow/10"
         icon="i-ri:bookmark-line"
         active-icon="i-ri:bookmark-fill"
@@ -166,15 +169,14 @@ function editStatus() {
         :disabled="isLoading.bookmarked"
         @click="toggleBookmark()"
       />
-    </CommonTooltip>
+    </div>
 
     <CommonDropdown flex-none ml3 placement="bottom">
-      <CommonTooltip placement="bottom" content="More">
-        <StatusActionButton
-          color="text-purple" hover="text-purple" group-hover="bg-purple/10"
-          icon="i-ri:more-line"
-        />
-      </CommonTooltip>
+      <StatusActionButton
+        content="More"
+        color="text-purple" hover="text-purple" group-hover="bg-purple/10"
+        icon="i-ri:more-line"
+      />
 
       <template #popper>
         <div flex="~ col">

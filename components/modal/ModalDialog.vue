@@ -98,11 +98,15 @@ function onTransitionEnd() {
 <template>
   <div
     v-if="isVisible"
-    fixed top-0 bottom-0 left-0 right-0 z-20000
+    class="scrollbar-hide"
+    fixed top-0 bottom-0 left-0 right-0 z-20000 overscroll-none overflow-y-scroll
     :class="modelValue ? '' : 'pointer-events-none'"
   >
+    <!-- The style `scrollbar-hide overscroll-none overflow-y-scroll` and `h="[calc(100%+0.5px)]"` is used to implement scroll locking, -->
+    <!-- corresponding to issue: #106, so please don't remove it. -->
     <div
       bg-base bottom-0 left-0 right-0 top-0 absolute transition-opacity duration-500 ease-out
+      h="[calc(100%+0.5px)]"
       :class="isOut ? 'opacity-0' : 'opacity-85'"
       @click="close"
     />
@@ -116,3 +120,12 @@ function onTransitionEnd() {
     </div>
   </div>
 </template>
+
+<style socped>
+.scrollbar-hide {
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+</style>

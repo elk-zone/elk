@@ -2,6 +2,7 @@ import type { MastoClient } from 'masto'
 import { currentUser } from '../composables/users'
 
 export default defineNuxtPlugin(async () => {
+  let masto!: MastoClient
   try {
     const { query } = useRoute()
     const user = typeof query.server === 'string' && typeof query.token === 'string'
@@ -9,23 +10,22 @@ export default defineNuxtPlugin(async () => {
       : currentUser.value
 
     // TODO: improve upstream to make this synchronous (delayed auth)
-    const masto = await loginTo(user) as MastoClient
-
-    return {
-      provide: {
-        masto: shallowReactive({
-          replace(api: MastoClient) { this.api = api },
-          api: masto,
-        }),
-      },
-    }
+    masto = await loginTo(user)
   }
   catch {
-    // TODO: handle error
     // Show error page when Mastodon server is down
-    throw createError({
+    showError({
       fatal: true,
       statusMessage: 'Could not log into account.',
     })
+  }
+
+  return {
+    provide: {
+      masto: shallowReactive({
+        replace(api: MastoClient) { this.api = api },
+        api: masto,
+      }),
+    },
   }
 })

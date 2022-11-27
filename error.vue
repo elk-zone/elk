@@ -45,8 +45,17 @@ const hideRetryBtn = $computed(() => {
   return false
 })
 
-const retry = () => {
-  clearError({ redirect: currentUser.value ? '/home' : '/public' })
+const state = ref<'error' | 'retrying'>('error')
+const retry = async () => {
+  state.value = 'retrying'
+  try {
+    if (!useMasto())
+      await loginTo(currentUser.value)
+    clearError({ redirect: currentUser.value ? '/home' : '/public' })
+  }
+  catch {
+    state.value = 'error'
+  }
 }
 </script>
 
@@ -73,8 +82,9 @@ const retry = () => {
           <div text-secondary>
             {{ message }}
           </div>
-          <button v-if="!hideRetryBtn" type="button" class="btn-solid text-center" @click="retry">
-            Retry
+          <button v-if="!hideRetryBtn" type="button" flex items-center gap-2 justify-center btn-solid text-center :disabled="state === 'retrying'" @click="retry">
+            <span v-if="state === 'retrying'" i-ri:loader-2-fill animate-spin inline-block />
+            {{ state === 'retrying' ? 'Retrying' : 'Retry' }}
           </button>
         </form>
       </slot>

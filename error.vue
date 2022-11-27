@@ -3,7 +3,7 @@ import type { NuxtError } from '#app'
 
 // prevent reactive update when clearing error
 const { error } = defineProps<{
-  error: string | Error | Partial<NuxtError>
+  error?: string | Error | Partial<NuxtError>
 }>()
 
 usePageHeader()

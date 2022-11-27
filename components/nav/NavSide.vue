@@ -11,13 +11,11 @@
       <NavSideItem text="Conversations" to="/conversations" icon="i-ri:at-line" />
       <NavSideItem text="Favourites" to="/favourites" icon="i-ri:heart-3-line" />
       <NavSideItem text="Bookmarks" to="/bookmarks" icon="i-ri:bookmark-line " />
-      <NavSideItem
-        :text="currentUser.account.displayName || 'Profile'"
-        :to="getAccountPath(currentUser.account)" icon="i-ri:list-check-2-line"
-      >
+      <NavSideItem :to="getAccountPath(currentUser.account)" icon="i-ri:list-check-2-line">
         <template #icon>
           <AccountAvatar :account="currentUser.account" h="1.2em" />
         </template>
+        <ContentRich :content="getDisplayName(currentUser.account, { rich: true })" :emojis="currentUser.account.emojis" />
       </NavSideItem>
     </template>
   </nav>

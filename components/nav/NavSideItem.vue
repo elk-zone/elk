@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  text: string
+  text?: string
   icon: string
   to: string
 }>()
@@ -12,7 +12,9 @@ defineProps<{
       <slot name="icon">
         <div :class="icon" />
       </slot>
-      <span>{{ text }}</span>
+      <slot>
+        <span>{{ text }}</span>
+      </slot>
     </div>
   </NuxtLink>
 </template>

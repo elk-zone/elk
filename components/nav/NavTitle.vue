@@ -1,7 +1,5 @@
 <script setup>
-const sub = import.meta.env.DEV ? 'dev' : 'alpha'
-
-console.log(import.meta.env)
+const sub = import.meta.env.DEV ? 'dev' : window.location.hostname ? 'preview' : 'alpha'
 </script>
 
 <template>

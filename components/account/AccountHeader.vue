@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { Account, Field } from 'masto'
 
 const { account } = defineProps<{
   account: Account
@@ -11,15 +11,8 @@ const createdAt = $(useFormattedDateTime(() => account.createdAt, {
   year: 'numeric',
 }))
 
-const fields = $computed(() => {
-  return [
-    ...account.fields || [],
-    {
-      name: 'Joined',
-      value: createdAt,
-    },
-  ]
-})
+const namedFields = ref<Field[]>([])
+const iconFields = ref<Field[]>([])
 
 const fieldNameIcons: Record<string, string> = {
   github: 'i-ri:github-fill',
@@ -57,6 +50,26 @@ function previewHeader() {
 function previewAvatar() {
   openImagePreviewDialog({ src: account.avatar, alt: account.username })
 }
+
+watchEffect(() => {
+  const named: Field[] = []
+  const icons: Field[] = []
+
+  account.fields?.forEach((field) => {
+    const icon = getFieldNameIcon(field.name)
+    if (icon)
+      icons.push(field)
+    else
+      named.push(field)
+  })
+  icons.push({
+    name: 'Joined',
+    value: createdAt,
+  })
+
+  namedFields.value = named
+  iconFields.value = icons
+})
 </script>
 
 <template>
@@ -64,7 +77,7 @@ function previewAvatar() {
     <button border="b base" z-1>
       <img h-50 w-full object-cover :src="account.header" @click="previewHeader">
     </button>
-    <div p4 mt--17 flex flex-col gap-6>
+    <div p4 mt--17 flex flex-col gap-4>
       <div flex justify-between>
         <div flex="~ col gap-2 1">
           <button w-30 h-30 rounded-full bg-gray border-4 border-bg-base z-2 @click="previewAvatar">
@@ -88,12 +101,17 @@ function previewAvatar() {
       <div v-if="account.note">
         <ContentRich text-4 text-secondary :content="account.note" :emojis="account.emojis" />
       </div>
-      <div flex flex-wrap gap-4>
-        <div v-for="field in fields" :key="field.name" flex="~ gap-1" items-center>
-          <div v-if="getFieldNameIcon(field.name)" text-secondary :class="getFieldNameIcon(field.name)" :title="field.name" />
-          <div v-else text-secondary uppercase text-xs font-bold>
+      <div v-if="namedFields.length" flex="~ col wrap gap1">
+        <div v-for="field in namedFields" :key="field.name" flex="~ gap-1" items-center>
+          <div text-secondary uppercase text-xs font-bold>
             {{ field.name }} |
           </div>
+          <ContentRich :content="field.value" />
+        </div>
+      </div>
+      <div v-if="iconFields.length" flex="~ wrap gap-4">
+        <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" items-center>
+          <div text-secondary :class="getFieldNameIcon(field.name)" :title="field.name" />
           <ContentRich text-sm filter-saturate-0 :content="field.value" />
         </div>
       </div>

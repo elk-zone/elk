@@ -38,7 +38,7 @@ function createSuggestionRenderer(): SuggestionOptions['render'] {
     let popup: Instance
 
     return {
-      onStart: (props) => {
+      onStart(props) {
         component = new VueRenderer(TiptapMentionList, {
           props,
           editor: props.editor,

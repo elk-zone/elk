@@ -10,10 +10,8 @@ const props = defineProps<{
   emojis?: Emoji[]
 }>()
 
-const emojiObject = emojisArrayToObject(props.emojis || [])
-
 export default () => h(
   'span',
   { class: 'content-rich' },
-  contentToVNode(props.content, emojiObject),
+  contentToVNode(props.content, emojisArrayToObject(props.emojis || [])),
 )

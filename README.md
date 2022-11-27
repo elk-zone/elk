@@ -2,7 +2,7 @@
 
 ![Elk Logo](https://elk.zone/logo.svg)
 
-A nimble Mastodon web client made with 💛
+A nimble Mastodon web client made with 🧡
 
 Elk is in early alpha, but it is already quite usable. We would love your feedback and contributions.
 

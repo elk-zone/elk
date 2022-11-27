@@ -1,0 +1,79 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", "schedule:weekly", "group:allNonMajor"],
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "groupName": "devDependencies",
+      "matchDepTypes": ["devDependencies"],
+      "rangeStrategy": "bump"
+    },
+    {
+      "groupName": "dependencies",
+      "matchDepTypes": ["dependencies"],
+      "rangeStrategy": "replace"
+    },
+    {
+      "groupName": "peerDependencies",
+      "matchDepTypes": ["peerDependencies"],
+      "rangeStrategy": "widen"
+    },
+    {
+      "groupName": "engines",
+      "matchDepTypes": ["engines"],
+      "rangeStrategy": "replace"
+    },
+    {
+      "groupName": "test",
+      "matchPackageNames": ["@vitest/coverage-c8", "@vitest/ui", "vitest"]
+    },
+    {
+      "groupName": "lint",
+      "matchPackageNames": [
+        "@antfu/eslint-config",
+        "@types/prettier",
+        "eslint",
+        "prettier"
+      ]
+    },
+    {
+      "groupName": "iconify",
+      "matchPackageNames": [
+        "@iconify-json/carbon",
+        "@iconify-json/logos",
+        "@iconify-json/ri",
+        "@iconify-json/twemoji"
+      ]
+    },
+    {
+      "groupName": "tiptap",
+      "matchPackageNames": [
+        "@tiptap/extension-character-count",
+        "@tiptap/extension-code-block",
+        "@tiptap/extension-mention",
+        "@tiptap/extension-paragraph",
+        "@tiptap/extension-placeholder",
+        "@tiptap/extension-text",
+        "@tiptap/starter-kit",
+        "@tiptap/suggestion",
+        "@tiptap/vue-3"
+      ]
+    },
+    {
+      "groupName": "vueuse",
+      "matchPackageNames": ["@vueuse/integrations", "@vueuse/nuxt"]
+    },
+    {
+      "groupName": "masto",
+      "matchPackageNames": ["masto"]
+    },
+    {
+      "groupName": "typescript",
+      "matchPackageNames": ["typescript"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"]
+  }
+}

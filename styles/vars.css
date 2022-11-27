@@ -7,8 +7,8 @@
   --c-bg-code: #00000006;
   --c-bg-selection: #8885;
   --c-text-base: #222;
-  --c-text-secondary: #888;
-  --c-text-secondary-light: #bbb;
+  --c-text-secondary: #686868;
+  --c-text-secondary-light: #919191;
 }
 
 .dark {
@@ -16,5 +16,6 @@
   --c-bg-active: #191919;
   --c-bg-code: #ffffff06;
   --c-text-base: #fff;
-  --c-text-secondary-light: #555;
+  --c-text-secondary: #888;
+  --c-text-secondary-light: #686868;
 }

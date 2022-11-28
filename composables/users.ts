@@ -73,6 +73,7 @@ export async function signout() {
     // Clear stale data
     delete servers.value[_currentUserId]
     clearUserDrafts()
+    clearUserFeatureFlags()
 
     // Remove the current user from the users
     users.value.splice(index, 1)

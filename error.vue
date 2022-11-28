@@ -3,51 +3,23 @@ import type { NuxtError } from '#app'
 
 // prevent reactive update when clearing error
 const { error } = defineProps<{
-  error?: string | Error | Partial<NuxtError>
+  error: Partial<NuxtError>
 }>()
 
 usePageHeader()
 
 // add more custom status codes messages here
 const errorCodes: Record<number, string> = {
-  404: 'Oops! Page not found',
-  500: 'Oops! Something went wrong',
+  404: 'Page not found',
 }
 
-const statusCode = $computed(() => {
-  return error && !(typeof error === 'string') && 'statusCode' in error ? error.statusCode : -1
-})
-const is404 = $computed(() => statusCode === 404)
-const is500 = $computed(() => statusCode === 500)
-const errorMessage = $computed(() => {
-  if (!error)
-    return undefined
+const defaultMessage = 'Something went wrong'
 
-  if (is500 && !isNuxtError(error))
-    return errorCodes[500]
+const message = error.message ?? errorCodes[error.statusCode!] ?? defaultMessage
 
-  if (typeof error === 'string')
-    return error
-
-  if ('message' in error)
-    return error.message
-
-  return errorCodes[statusCode ?? 500] ?? errorCodes[500]
-})
-const message = $computed(() => is404 ? errorCodes[404] : errorMessage)
-const hideRetryBtn = $computed(() => {
-  if (!error)
-    return false
-
-  if (isNuxtError(error))
-    return error.data?.noRetry === true
-
-  return false
-})
-
-const state = ref<'error' | 'retrying'>('error')
-const retry = async () => {
-  state.value = 'retrying'
+const state = ref<'error' | 'reloading'>('error')
+const reload = async () => {
+  state.value = 'reloading'
   try {
     if (!useMasto())
       await loginTo(currentUser.value)
@@ -67,41 +39,19 @@ const retry = async () => {
         <span text-lg font-bold>Error</span>
       </template>
       <slot>
-        <div v-if="hideRetryBtn" p5 grid gap-y-4>
+        <form p5 grid gap-y-4 @submit="reload">
           <div text-lg>
             Something went wrong
           </div>
           <div text-secondary>
             {{ message }}
           </div>
-        </div>
-        <form v-else p5 grid gap-y-4>
-          <div text-lg>
-            Something went wrong
-          </div>
-          <div text-secondary>
-            {{ message }}
-          </div>
-          <button v-if="!hideRetryBtn" type="button" flex items-center gap-2 justify-center btn-solid text-center :disabled="state === 'retrying'" @click="retry">
-            <span v-if="state === 'retrying'" i-ri:loader-2-fill animate-spin inline-block />
-            {{ state === 'retrying' ? 'Retrying' : 'Retry' }}
+          <button flex items-center gap-2 justify-center btn-solid text-center :disabled="state === 'reloading'">
+            <span v-if="state === 'reloading'" i-ri:loader-2-fill animate-spin inline-block />
+            {{ state === 'reloading' ? 'Reloading' : 'Reload' }}
           </button>
         </form>
       </slot>
     </MainContent>
   </NuxtLayout>
 </template>
-
-<style>
-html, body , #__nuxt{
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
-html.dark {
-  color-scheme: dark;
-}
-html {
-  --at-apply: bg-base text-base;
-}
-</style>

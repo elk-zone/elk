@@ -12,6 +12,8 @@ if (useRoute().path === '/signin/callback') {
 }
 
 const paginator = useMasto().timelines.getHomeIterable()
+const stream = await useMasto().stream.streamUser()
+onBeforeUnmount(() => stream.disconnect())
 
 const { t } = useI18n()
 useHead({
@@ -26,7 +28,7 @@ useHead({
     </template>
     <slot>
       <PublishWidget draft-key="home" border="b base" />
-      <TimelinePaginator :paginator="paginator" />
+      <TimelinePaginator v-bind="{ paginator, stream }" />
     </slot>
   </MainContent>
 </template>

@@ -106,13 +106,13 @@ watchEffect(() => {
           <div text-secondary uppercase text-xs font-bold>
             {{ field.name }} |
           </div>
-          <ContentRich :content="field.value" />
+          <ContentRich :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
       <div v-if="iconFields.length" flex="~ wrap gap-4">
         <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" items-center>
           <div text-secondary :class="getFieldNameIcon(field.name)" :title="field.name" />
-          <ContentRich text-sm filter-saturate-0 :content="field.value" />
+          <ContentRich text-sm filter-saturate-0 :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
       <AccountPostsFollowers :account="account" />

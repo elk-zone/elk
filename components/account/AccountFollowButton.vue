@@ -22,7 +22,7 @@ async function toggleFollow() {
 
 <template>
   <button
-    v-if="!isSelf"
+    v-if="!isSelf && currentUser"
     flex gap-1 items-center h-fit rounded hover="op100 text-white b-orange" group
     @click="toggleFollow"
   >

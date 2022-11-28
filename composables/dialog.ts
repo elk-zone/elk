@@ -4,6 +4,7 @@ import { STORAGE_KEY_FIRST_VISIT, STORAGE_KEY_ZEN_MODE } from '~/constants'
 
 export const imagePreview = ref({ src: '', alt: '' })
 export const statusEdit = ref<StatusEdit>()
+export const dialogDraftKey = ref<string>()
 export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, true)
 export const isZenMode = useLocalStorage(STORAGE_KEY_ZEN_MODE, false)
 export const toggleZenMode = useToggle(isZenMode)
@@ -18,9 +19,10 @@ export function openSigninDialog() {
   isSigninDialogOpen.value = true
 }
 
-export function openPublishDialog(draft?: Draft) {
+export function openPublishDialog(draftKey = 'dialog', draft?: Draft) {
+  dialogDraftKey.value = draftKey
   if (draft)
-    dialogDraft.draft.value = draft
+    currentUserDrafts.value[draftKey] = draft
   isPublishDialogOpen.value = true
 }
 

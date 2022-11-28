@@ -102,17 +102,14 @@ const deleteAndRedraft = async () => {
     // TODO confirm to overwrite
   }
 
-  openPublishDialog({
+  openPublishDialog('dialog', {
     params: { ...getParamsFromStatus(status), status: text! },
     attachments: [],
   })
 }
 
 function editStatus() {
-  if (!dialogDraft.isEmpty) {
-    // TODO confirm to overwrite
-  }
-  openPublishDialog({
+  openPublishDialog(`edit-${status.id}`, {
     editingStatus: status,
     params: getParamsFromStatus(status),
     attachments: [],

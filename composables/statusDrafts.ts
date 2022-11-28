@@ -69,11 +69,13 @@ export function useDraft(draftKey: string, inReplyToId?: string) {
 export const dialogDraft = useDraft('dialog')
 
 export function mentionUser(account: Account) {
-  openPublishDialog(getDefaultDraft({ status: `@${account.acct} ` }))
+  openPublishDialog('dialog', getDefaultDraft({
+    status: `@${account.acct} `,
+  }))
 }
 
 export function directMessageUser(account: Account) {
-  openPublishDialog(getDefaultDraft({
+  openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
     visibility: 'direct',
   }))

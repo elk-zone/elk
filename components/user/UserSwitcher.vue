@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { UserLogin } from '~~/types'
+import type { UserLogin } from '~/types'
 
 const all = useUsers()
 

@@ -1,5 +1,5 @@
 import { decode } from 'blurhash'
-import { getDataUrlFromArr } from '~~/composables/utils'
+import { getDataUrlFromArr } from '~/composables/utils'
 
 export default defineComponent({
   inheritAttrs: false,

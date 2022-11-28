@@ -17,7 +17,7 @@ const languageList = [
 <template>
   <CommonTooltip placement="bottom" content="Select Language">
     <CommonDropdown>
-      <button>
+      <button align-top>
         <div i-ri:earth-line text-lg />
       </button>
 

@@ -3,15 +3,17 @@ const paginator = useMasto().timelines.getPublicIterable()
 const stream = await useMasto().stream.streamPublicTimeline()
 onBeforeUnmount(() => stream.disconnect())
 
+const { t } = useI18n()
+
 useHead({
-  title: 'Federated',
+  title: () => t('nav_side.federated'),
 })
 </script>
 
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>Federated Timeline</span>
+      <span text-lg font-bold>{{ t('title.federated_timeline') }}</span>
     </template>
 
     <slot>

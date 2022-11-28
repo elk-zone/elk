@@ -1,15 +1,17 @@
 <script setup lang="ts">
 const paginator = useMasto().trends.getStatuses()
 
+const { t } = useI18n()
+
 useHead({
-  title: 'Explore',
+  title: () => t('nav_side.explore'),
 })
 </script>
 
 <template>
   <MainContent>
     <template #title>
-      <div i-ri:hashtag h-6 mr-1 /><span>Explore</span>
+      <div i-ri:hashtag h-6 mr-1 /><span>{{ t('nav_side.explore') }}</span>
     </template>
 
     <slot>

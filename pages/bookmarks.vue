@@ -5,15 +5,17 @@ definePageMeta({
 
 const paginator = useMasto().bookmarks.getIterator()
 
+const { t } = useI18n()
+
 useHead({
-  title: 'Bookmarks',
+  title: () => t('nav_side.bookmarks'),
 })
 </script>
 
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>Bookmarks</span>
+      <span text-lg font-bold>{{ t('nav_side.bookmarks') }}</span>
     </template>
 
     <slot>

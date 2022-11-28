@@ -10,6 +10,14 @@
     "bookmarks": "Bookmarks",
     "profile": "Profile"
   },
+  "nav_footer": {
+    "select_language": "Select Language"
+  },
+  "timeline": "Timeline",
+  "title": {
+    "local_timeline": "@:nav_side.local @:timeline",
+    "federated_timeline": "@:nav_side.federated @:timeline"
+  },
   "account": {
     "posts": "{0} Posts",
     "following": "{0} Following",

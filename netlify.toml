@@ -6,6 +6,13 @@
   publish = "dist"
   command = "npx pnpm i --store=node_modules/.pnpm-store && npx pnpm run build"
 
+# Redirect to Discord server
+[[redirects]]
+  from = "https://chat.elk.zone"
+  to = "https://discord.gg/vAZSDU9J"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

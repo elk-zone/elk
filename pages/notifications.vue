@@ -5,6 +5,8 @@ definePageMeta({
   middleware: 'auth',
 })
 
+const { t } = useI18n()
+
 const tabNames = ['All', 'Mentions'] as const
 const tab = $(useLocalStorage<typeof tabNames[number]>(STORAGE_KEY_NOTIFY_TAB, 'All'))
 
@@ -13,14 +15,14 @@ const paginator = $computed(() => {
 })
 
 useHead({
-  title: 'Notifications',
+  title: () => t('nav_side.notifications'),
 })
 </script>
 
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>Notifications</span>
+      <span text-lg font-bold>{{ t('nav_side.notifications') }}</span>
     </template>
 
     <template #header>

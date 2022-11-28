@@ -97,6 +97,12 @@ const deleteStatus = async () => {
 
 const deleteAndRedraft = async () => {
   // TODO confirm to delete
+  if (process.dev) {
+    // eslint-disable-next-line no-alert
+    const result = confirm('[DEV] Are you sure you want to delete and re-draft this post?')
+    if (!result)
+      return
+  }
 
   const { text } = await useMasto().statuses.remove(status.id)
   openPublishDialog('dialog', getDraftFromStatus(status, text), true)

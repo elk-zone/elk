@@ -8,16 +8,18 @@ const {
   draftKey,
   placeholder = 'What is on your mind?',
   inReplyToId,
+  inReplyToVisibility = 'public',
   expanded: _expanded = false,
 } = defineProps<{
   draftKey: string
   placeholder?: string
   inReplyToId?: string
+  inReplyToVisibility?: StatusVisibility
   expanded?: boolean
 }>()
 
 let isSending = $ref(false)
-let { draft } = $(useDraft(draftKey, inReplyToId))
+let { draft } = $(useDraft(draftKey, inReplyToId, inReplyToVisibility))
 const isExistDraft = $computed(() => !!draft.params.status && draft.params.status !== '<p></p>')
 let isExpanded = $ref(isExistDraft || _expanded)
 
@@ -119,7 +121,7 @@ async function publish() {
     else
       await useMasto().statuses.update(draft.editingStatus.id, payload)
 
-    draft = getDefaultDraft({ inReplyToId })
+    draft = getDefaultDraft({ inReplyToId, visibility: inReplyToVisibility })
     isPublishDialogOpen.value = false
   }
   finally {

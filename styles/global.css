@@ -78,7 +78,7 @@ html {
 }
 
 .content-editor {
-  --at-apply: outline-none;
+  --at-apply: 'outline-none flex-1';
 
   pre {
     --at-apply: font-mono bg-code rounded px3 py2;
@@ -102,4 +102,18 @@ html {
   to {
     background-position: 0 50%
   }
+}
+
+html, body , #__nuxt{
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+html {
+  --at-apply: bg-base text-base;
 }

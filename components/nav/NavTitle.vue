@@ -1,5 +1,5 @@
 <script setup>
-const sub = import.meta.env.DEV ? 'dev' : window.location.hostname.includes('deploy-preview') ? 'preview' : 'alpha'
+const sub = process.dev ? 'dev' : window.location.hostname.includes('deploy-preview') ? 'preview' : 'alpha'
 </script>
 
 <template>

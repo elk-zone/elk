@@ -7,7 +7,7 @@ const { notification } = defineProps<{
 </script>
 
 <template>
-  <div flex flex-col>
+  <article flex flex-col>
     <template v-if="notification.type === 'follow'">
       <div flex ml-4 items-center>
         <div i-ri:user-follow-fill mr-3 color-primary />
@@ -57,5 +57,5 @@ const { notification } = defineProps<{
         [DEV] MISSING notification.type: '{{ notification.type }}'
       </div>
     </template>
-  </div>
+  </article>
 </template>

@@ -7,21 +7,14 @@ defineProps<{
 </script>
 
 <template>
-  <div rounded w-80 z-900 overflow-hidden p-4>
-    <AccountInfo :account="account" />
-    <div text-sm flex flex-row text-secondary mt-4>
-      <NuxtLink :to="`/${getFullHandle(account)}/`">
-        {{ formattedNumber(account.statusesCount) }} Posts
+  <div flex="~ col gap2" rounded w-100 z-900 overflow-hidden p-4>
+    <div flex="~ gap2" items-center>
+      <NuxtLink :to="getAccountPath(account)" flex-auto rounded-full hover:bg-active transition-100 pr5 mr-a>
+        <AccountInfo :account="account" />
       </NuxtLink>
-      <span flex-1 text-center> • </span>
-      <NuxtLink :to="`/${getFullHandle(account)}/following`">
-        {{ humanReadableNumber(account.followingCount) }} Following
-      </NuxtLink>
-      <span flex-1 text-center> • </span>
-      <NuxtLink :to="`/${getFullHandle(account)}/followers`">
-        {{ humanReadableNumber(account.followersCount) }} Followers
-      </NuxtLink>
+      <AccountFollowButton text-sm :account="account" />
     </div>
     <ContentRich text-4 text-secondary :content="account.note" :emojis="account.emojis" />
+    <AccountPostsFollowers text-sm :account="account" />
   </div>
 </template>

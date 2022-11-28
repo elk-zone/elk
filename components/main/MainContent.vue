@@ -2,14 +2,11 @@
 defineProps<{
   back?: boolean
 }>()
-
-const nav = ref<HTMLDivElement>()
 </script>
 
 <template>
   <div relative>
     <div
-      ref="nav"
       sticky top-0 z10
       border="b base" bg-base
       :class="isZenMode ? 'op0 hover:op100 transition duration-300' : ''"
@@ -24,7 +21,7 @@ const nav = ref<HTMLDivElement>()
         </div>
         <div flex items-center>
           <slot name="actions" />
-          <NavUser v-if="isSmallScreen" :nav="nav" />
+          <NavUser v-if="isSmallScreen" />
         </div>
       </div>
       <slot name="header" />

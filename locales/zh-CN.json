@@ -1,0 +1,18 @@
+{
+  "nav_side": {
+    "bookmarks": "书签",
+    "conversations": "私信",
+    "explore": "探索",
+    "favourites": "喜欢",
+    "federated": "跨站",
+    "home": "主页",
+    "local": "本地",
+    "notifications": "通知",
+    "profile": "个人资料"
+  },
+  "account": {
+    "followers": "被 {0} 人关注",
+    "following": "正在关注 {0} 人",
+    "posts": "{0} 条帖文"
+  }
+}

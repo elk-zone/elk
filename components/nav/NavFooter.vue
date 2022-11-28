@@ -4,17 +4,27 @@ const buildTimeAgo = useTimeAgo(buildTime)
 </script>
 
 <template>
-  <div p4 text-sm text-secondary-light flex="~ col">
-    <div flex="~ gap2">
-      <button i-ri-sun-line dark:i-ri-moon-line text-lg mb4 @click="toggleDark()" />
-      <button
-        text-lg mb4
-        :class="isZenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
-        @click="toggleZenMode()"
-      />
+  <footer p4 text-sm text-secondary-light flex="~ col">
+    <div flex="~ gap2" items-center mb4>
+      <CommonTooltip content="Toggle theme">
+        <button flex i-ri-sun-line dark:i-ri-moon-line text-lg @click="toggleDark()" />
+      </CommonTooltip>
+      <CommonTooltip content="Zen mode">
+        <button
+          flex
+          text-lg
+          :class="isZenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
+          @click="toggleZenMode()"
+        />
+      </CommonTooltip>
+      <NavSelectLanguage />
     </div>
-    <a cursor-pointer hover:underline @click="openPreviewHelp">Show intro</a>
+    <div>
+      <button cursor-pointer hover:underline @click="openPreviewHelp">
+        Show intro
+      </button>
+    </div>
     <div>A Mastodon client made with 🧡</div>
     <div>Built <time :datetime="buildTime" :title="buildTime">{{ buildTimeAgo }}</time> · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a></div>
-  </div>
+  </footer>
 </template>

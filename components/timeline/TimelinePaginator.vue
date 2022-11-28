@@ -17,7 +17,7 @@ const { paginator, stream } = defineProps<{
       </button>
     </template>
     <template #default="{ item, active }">
-      <DynamicScrollerItem :item="item" :active="active">
+      <DynamicScrollerItem :item="item" :active="active" tag="article">
         <StatusCard
           :status="item"
           border="b base" py-3

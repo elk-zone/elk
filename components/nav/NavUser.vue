@@ -1,39 +1,11 @@
-<script setup lang="ts">
-import type { ComponentPublicInstance } from 'vue'
-
-const avatar = ref<ComponentPublicInstance>()
-const switcher = ref()
-
-const router = useRouter()
-
-const goProfile = () => {
-  router.push(`/@${currentUser.value!.account.username}`)
-}
-
-let showSwitcher = $ref(false)
-onLongPress(avatar, () => {
-  showSwitcher = true
-})
-
-onClickOutside(avatar, () => {
-  showSwitcher = false
-}, { ignore: [switcher] })
-</script>
-
 <template>
-  <VDropdown
-    v-if="currentUser"
-    v-model:shown="showSwitcher"
-    :triggers="[]"
-    :auto-hide="false"
-  >
+  <VDropdown v-if="currentUser">
     <div style="-webkit-touch-callout: none;">
       <AccountAvatar
         ref="avatar"
         :account="currentUser.account"
         h="2em"
         :draggable="false"
-        @click.stop="goProfile"
       />
     </div>
 

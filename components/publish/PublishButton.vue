@@ -1,8 +1,6 @@
 <script setup lang="ts">
 function openDialog() {
-  if (dialogDraft.draft.value.editingStatus)
-    openPublishDialog(getDefaultDraft())
-  else openPublishDialog()
+  openPublishDialog()
 }
 </script>
 

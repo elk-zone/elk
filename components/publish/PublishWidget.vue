@@ -3,32 +3,33 @@ import type { CreateStatusParams, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
+import type { Draft } from '~/composables/statusDrafts'
 
 const {
   draftKey,
-  placeholder = 'What is on your mind?',
-  inReplyToId,
-  inReplyToVisibility = 'public',
+  initial = getDefaultDraft() as never /* Bug of vue-core */,
   expanded: _expanded = false,
 } = defineProps<{
   draftKey: string
+  initial?: () => Draft
   placeholder?: string
   inReplyToId?: string
   inReplyToVisibility?: StatusVisibility
   expanded?: boolean
 }>()
 
+// eslint-disable-next-line prefer-const
+let { draft, isEmpty } = $(useDraft(draftKey, initial))
+
 let isSending = $ref(false)
-let { draft } = $(useDraft(draftKey, inReplyToId, inReplyToVisibility))
-const isExistDraft = $computed(() => !!draft.params.status && draft.params.status !== '<p></p>')
-let isExpanded = $ref(isExistDraft || _expanded)
+let isExpanded = $ref(!isEmpty || _expanded)
 
 const { editor } = useTiptap({
   content: computed({
     get: () => draft.params.status,
     set: newVal => draft.params.status = newVal,
   }),
-  placeholder,
+  placeholder: draft.placeholder,
   autofocus: isExpanded,
   onSubmit: publish,
   onFocus() { isExpanded = true },
@@ -108,6 +109,7 @@ async function publish() {
       raw: draft.params.status,
       ...payload,
     })
+    // eslint-disable-next-line no-alert
     const result = confirm('[DEV] Payload logged to console, do you want to publish it?')
     if (!result)
       return
@@ -121,7 +123,7 @@ async function publish() {
     else
       await useMasto().statuses.update(draft.editingStatus.id, payload)
 
-    draft = getDefaultDraft({ inReplyToId, visibility: inReplyToVisibility })
+    draft = initial()
     isPublishDialogOpen.value = false
   }
   finally {
@@ -137,15 +139,6 @@ async function onDrop(files: File[] | null) {
 }
 
 const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
-
-onUnmounted(() => {
-  // Remove draft if it's empty
-  if (!draft.attachments.length && !draft.params.status) {
-    nextTick(() => {
-      delete currentUserDrafts.value[draftKey]
-    })
-  }
-})
 </script>
 
 <template>
@@ -261,7 +254,7 @@ onUnmounted(() => {
 
           <button
             btn-solid rounded-full text-sm
-            :disabled="!isExistDraft || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
+            :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
             @click="publish"
           >
             {{ !draft.editingStatus ? 'Publish!' : 'Save changes' }}

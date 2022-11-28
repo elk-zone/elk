@@ -19,9 +19,12 @@ export function openSigninDialog() {
   isSigninDialogOpen.value = true
 }
 
-export function openPublishDialog(draftKey = 'dialog', draft?: Draft) {
+export function openPublishDialog(draftKey = 'dialog', draft?: Draft, overwrite = false): void {
   dialogDraftKey.value = draftKey
-  if (draft)
+  if (overwrite) {
+    // TODO overwrite warning
+  }
+  if (draft && (overwrite || !currentUserDrafts.value[draftKey]))
     currentUserDrafts.value[draftKey] = draft
   isPublishDialogOpen.value = true
 }

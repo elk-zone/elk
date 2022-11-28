@@ -1,4 +1,4 @@
-import type { Account, Attachment, CreateStatusParams, Status } from 'masto'
+import type { Account, Attachment, CreateStatusParams, Status, StatusVisibility } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Mutable } from '~/types/utils'
 
@@ -45,12 +45,11 @@ export function getParamsFromStatus(status: Status): Draft['params'] {
   }
 }
 
-export function useDraft(draftKey: string, inReplyToId?: string) {
+export function useDraft(draftKey: string, inReplyToId?: string, inReplyToVisibility?: StatusVisibility) {
   const draft = computed({
     get() {
       if (!currentUserDrafts.value[draftKey])
-        currentUserDrafts.value[draftKey] = getDefaultDraft({ inReplyToId })
-
+        currentUserDrafts.value[draftKey] = getDefaultDraft({ inReplyToId, visibility: inReplyToVisibility })
       return currentUserDrafts.value[draftKey]
     },
     set(val) {

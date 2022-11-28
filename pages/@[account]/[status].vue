@@ -57,6 +57,7 @@ onReactivated(() => {
         :draft-key="`reply-${id}`"
         :placeholder="`Reply to ${status?.account ? getDisplayName(status.account) : 'this thread'}`"
         :in-reply-to-id="id"
+        :in-reply-to-visibility="status.visibility"
       />
 
       <template v-if="context">

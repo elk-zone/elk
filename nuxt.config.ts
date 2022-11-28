@@ -78,6 +78,8 @@ export default defineNuxtConfig({
         name: '简体中文',
       },
     ],
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
     // TODO:
     // lazy: true,
     langDir: 'locales',

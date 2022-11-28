@@ -91,7 +91,7 @@ html {
 
 .content-editor.content-rich {
   p {
-    --at-apply: my-4;
+    --at-apply: my-0;
   }
 }
 

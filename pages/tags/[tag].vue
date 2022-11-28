@@ -1,24 +1,34 @@
 <script setup lang="ts">
 const params = useRoute().params
-const tag = $(computedEager(() => params.tag as string))
+const tagName = $(computedEager(() => params.tag as string))
 
-const paginator = useMasto().timelines.getHashtagIterable(tag)
-const stream = await useMasto().stream.streamTagTimeline(tag)
+const { data: tag, refresh } = $(await useAsyncData(() => useMasto().tags.fetch(tagName)))
+
+const paginator = useMasto().timelines.getHashtagIterable(tagName)
+const stream = await useMasto().stream.streamTagTimeline(tagName)
 onBeforeUnmount(() => stream.disconnect())
 
-useHead({
-  title: `#${tag}`,
+if (tag) {
+  useHead({
+    title: () => `#${tag.name}`,
+  })
+}
+
+onReactivated(() => {
+  // Silently update data when reentering the page
+  // The user will see the previous content first, and any changes will be updated to the UI when the request is completed
+  refresh()
 })
 </script>
 
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>#{{ tag }}</span>
+      <span text-lg font-bold>#{{ tagName }}</span>
     </template>
 
     <template #actions>
-      <TagActionButton :tag-name="tag" />
+      <TagActionButton :tag="tag" @change="refresh()" />
     </template>
 
     <slot>

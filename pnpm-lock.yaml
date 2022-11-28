@@ -37,7 +37,7 @@ specifiers:
   fs-extra: ^10.1.0
   js-yaml: ^4.1.0
   lru-cache: ^7.14.1
-  masto: ^4.6.10
+  masto: ^4.7.0-rc1
   nuxt: ^3.0.0
   parse5: ^7.1.2
   pinia: ^2.0.26
@@ -93,7 +93,7 @@ devDependencies:
   fs-extra: 10.1.0
   js-yaml: 4.1.0
   lru-cache: 7.14.1
-  masto: 4.6.10
+  masto: 4.7.0-rc1
   nuxt: 3.0.0_hsf322ms6xhhd4b5ne6lb74y4a
   parse5: 7.1.2
   pinia: 2.0.26_typescript@4.9.3
@@ -5365,8 +5365,8 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /masto/4.6.10:
-    resolution: {integrity: sha512-CNc2kmKPxUk+C/kq9qPZQh+zyrfVzoSFjadRHkqALN133/RxkHuF4cizxS7yXncfU4c9vtvCOnmYkmnr1lKM5A==}
+  /masto/4.7.0-rc1:
+    resolution: {integrity: sha512-aGd5Q0DNuWcRfvfweV10cwZx7o3VSnEv2J3q3ou1GfX+bZp2KPprenjMowFpbD+Mn2EiUPoqOZUWjB/CKWdB5w==}
     dependencies:
       axios: 1.1.3
       change-case: 4.1.2

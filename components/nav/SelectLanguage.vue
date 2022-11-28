@@ -11,6 +11,10 @@ const languageList = [
     label: 'English',
   },
   {
+    value: 'de-DE',
+    label: 'Deutsch',
+  },
+  {
     value: 'zh-CN',
     label: '简体中文',
   },

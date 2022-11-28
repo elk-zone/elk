@@ -24,7 +24,8 @@ const router = useRouter()
 function onclick(evt: MouseEvent | KeyboardEvent) {
   const path = evt.composedPath() as HTMLElement[]
   const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
-  if (!el)
+  const text = window.getSelection()?.toString()
+  if (!el && !text)
     go(evt)
 }
 

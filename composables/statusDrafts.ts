@@ -61,7 +61,9 @@ export function getReplyDraft(status: Status) {
   }
 }
 
-export const isEmptyDraft = (draft: Draft) => {
+export const isEmptyDraft = (draft: Draft | null | undefined) => {
+  if (!draft)
+    return true
   const { params, attachments } = draft
   const status = params.status || ''
   return (status.length === 0 || status === '<p></p>')

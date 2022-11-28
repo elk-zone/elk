@@ -1,0 +1,24 @@
+{
+  "selectLanguage": "Sprache auswählen",
+  "nav_side": {
+    "home": "Startseite",
+    "notifications": "Mitteilungen",
+    "explore": "Entdecken",
+    "local": "Lokale Timeline",
+    "federated": "Förderierte Timeline",
+    "conversations": "Direktnachrichten",
+    "favourites": "Favoriten",
+    "bookmarks": "Lesezeichen",
+    "profile": "Profil"
+  },
+  "timeline": "Timeline",
+  "title": {
+    "local-timeline": "@:nav_side.local @:timeline",
+    "federated-timeline": "@:nav_side.federated @:timeline"
+  },
+  "account": {
+    "posts": "{0} Beiträge",
+    "following": "{0} Folge ich",
+    "followers": "{0} Follower"
+  }
+}

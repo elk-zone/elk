@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 definePageMeta({
   middleware: 'auth',
   alias: ['/signin/callback'],
@@ -10,16 +12,23 @@ if (useRoute().path === '/signin/callback') {
 }
 
 const paginator = useMasto().timelines.getHomeIterable()
+const stream = await useMasto().stream.streamUser()
+onBeforeUnmount(() => stream.disconnect())
+
+const { t } = useI18n()
+useHead({
+  title: () => t('nav_side.home'),
+})
 </script>
 
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>Home</span>
+      <span text-lg font-bold>{{ $t('nav_side.home') }}</span>
     </template>
     <slot>
       <PublishWidget draft-key="home" border="b base" />
-      <TimelinePaginator :paginator="paginator" />
+      <TimelinePaginator v-bind="{ paginator, stream }" />
     </slot>
   </MainContent>
 </template>

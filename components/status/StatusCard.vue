@@ -21,16 +21,22 @@ const rebloggedBy = $computed(() => props.status.reblog ? props.status.account :
 const el = ref<HTMLElement>()
 const router = useRouter()
 
-function onclick(e: MouseEvent | KeyboardEvent) {
-  const path = e.composedPath() as HTMLElement[]
+function onclick(evt: MouseEvent | KeyboardEvent) {
+  const path = evt.composedPath() as HTMLElement[]
   const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
   if (!el)
-    go()
+    go(evt)
 }
 
-function go() {
-  cacheStatus(status)
-  router.push(getStatusPath(status))
+function go(evt: MouseEvent | KeyboardEvent) {
+  const path = getStatusPath(status)
+  if (evt.metaKey || evt.ctrlKey) {
+    window.open(path)
+  }
+  else {
+    cacheStatus(status)
+    router.push(path)
+  }
 }
 
 const createdAt = useFormattedDateTime(status.createdAt)
@@ -62,7 +68,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
           <div flex-auto />
           <div text-sm text-secondary flex="~ row nowrap" hover:underline>
             <CommonTooltip :content="createdAt">
-              <a :title="status.createdAt" :href="getStatusPath(status)" @click.prevent="go">
+              <a :title="status.createdAt" :href="getStatusPath(status)" @click.prevent="go($event)">
                 <time text-sm hover:underline :datetime="status.createdAt">
                   {{ timeago }}
                 </time>

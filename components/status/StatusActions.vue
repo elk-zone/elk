@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 
-const { status: _status } = defineProps<{
+const { status: _status, details } = defineProps<{
   status: Status
+  details?: boolean
 }>()
 let status = $ref<Status>({ ..._status })
 
@@ -80,6 +81,7 @@ const copyLink = async () => {
 const deleteStatus = async () => {
   // TODO confirm to delete
   if (process.dev) {
+    // eslint-disable-next-line no-alert
     const result = confirm('[DEV] Are you sure you want to delete this post?')
     if (!result)
       return
@@ -97,22 +99,23 @@ const deleteAndRedraft = async () => {
   // TODO confirm to delete
 
   const { text } = await useMasto().statuses.remove(status.id)
+  openPublishDialog('dialog', getDraftFromStatus(status, text), true)
+}
 
-  if (!dialogDraft.isEmpty) {
-    // TODO confirm to overwrite
+const reply = () => {
+  if (details) {
+    // TODO focus to editor
   }
-
-  openPublishDialog('dialog', {
-    params: { ...getParamsFromStatus(status), status: text! },
-    attachments: [],
-  })
+  else {
+    const { key, draft } = getReplyDraft(status)
+    openPublishDialog(key, draft())
+  }
 }
 
 function editStatus() {
   openPublishDialog(`edit-${status.id}`, {
+    ...getDraftFromStatus(status),
     editingStatus: status,
-    params: getParamsFromStatus(status),
-    attachments: [],
   })
 }
 </script>
@@ -122,11 +125,10 @@ function editStatus() {
     <div flex-1>
       <StatusActionButton
         content="Reply"
-        as="router-link"
-        :to="getStatusPath(status)"
         :text="status.repliesCount"
         color="text-blue" hover="text-blue" group-hover="bg-blue/10"
         icon="i-ri:chat-3-line"
+        @click="reply"
       />
     </div>
 

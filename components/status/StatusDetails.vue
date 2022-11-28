@@ -52,6 +52,6 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         · {{ status.application?.name }}
       </div>
     </div>
-    <StatusActions :status="status" border="t base" pt-2 />
+    <StatusActions :status="status" details border="t base" pt-2 />
   </div>
 </template>

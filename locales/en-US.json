@@ -9,5 +9,10 @@
     "favourites": "Favourites",
     "bookmarks": "Bookmarks",
     "profile": "Profile"
+  },
+  "account": {
+    "posts": "{0} Posts",
+    "following": "{0} Following",
+    "followers": "{0} Followers"
   }
 }

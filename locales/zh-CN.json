@@ -9,5 +9,10 @@
     "local": "本地",
     "notifications": "通知",
     "profile": "个人资料"
+  },
+  "account": {
+    "followers": "被 {0} 人关注",
+    "following": "正在关注 {0} 人",
+    "posts": "{0} 条帖文"
   }
 }

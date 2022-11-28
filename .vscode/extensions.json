@@ -5,6 +5,7 @@
     "antfu.goto-alias",
     "csstools.postcss",
     "dbaeumer.vscode-eslint",
-    "vue.volar"
+    "vue.volar",
+    "lokalise.i18n-ally",
   ]
 }

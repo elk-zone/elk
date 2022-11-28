@@ -9,11 +9,11 @@
     "dev": "nuxi dev --port 5314",
     "start": "PORT=5314 node .output/server/index.mjs",
     "lint": "eslint .",
-    "postinstall": "nuxi prepare",
     "prepare": "esno scripts/prepare.ts",
     "generate": "nuxi generate",
     "test:unit": "vitest",
-    "test": "nr test:unit"
+    "test": "nr test:unit",
+    "postinstall": "nuxi prepare && simple-git-hooks"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.31.0",
@@ -51,6 +51,7 @@
     "form-data": "^4.0.0",
     "fs-extra": "^10.1.0",
     "js-yaml": "^4.1.0",
+    "lint-staged": "^13.0.4",
     "lru-cache": "^7.14.1",
     "masto": "^4.6.10",
     "nuxt": "^3.0.0",
@@ -60,6 +61,7 @@
     "prettier": "^2.8.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "shiki": "^0.11.1",
+    "simple-git-hooks": "^2.8.1",
     "std-env": "^3.3.1",
     "theme-vitesse": "^0.6.0",
     "tippy.js": "^6.3.7",
@@ -70,5 +72,11 @@
     "vitest": "^0.25.3",
     "vue-safe-teleport": "^0.1.1",
     "vue-virtual-scroller": "2.0.0-beta.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }

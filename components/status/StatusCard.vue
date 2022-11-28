@@ -25,7 +25,7 @@ function onclick(evt: MouseEvent | KeyboardEvent) {
   const path = evt.composedPath() as HTMLElement[]
   const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
   const text = window.getSelection()?.toString()
-  if (!el && !text) 
+  if (!el && !text)
     go(evt)
 }
 

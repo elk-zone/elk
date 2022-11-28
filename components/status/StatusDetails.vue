@@ -30,6 +30,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         {{ status.spoilerText }}
       </template>
       <StatusBody :status="status" :with-action="false" text-2xl />
+      <StatusPoll v-if="status.poll" :poll="status.poll" />
       <StatusMedia
         v-if="status.mediaAttachments?.length"
         :status="status"

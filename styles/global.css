@@ -64,6 +64,9 @@ html {
   b, strong {
     --at-apply: font-bold;
   }
+  p {
+    --at-apply: my-2;
+  }
 
   .code-block {
     --at-apply: bg-code text-0.9rem p3 mt-2 rounded overflow-auto leading-1.6em;
@@ -83,6 +86,12 @@ html {
     code {
       --at-apply: bg-transparent text-0.8rem p0;
     }
+  }
+}
+
+.content-editor.content-rich {
+  p {
+    --at-apply: my-4;
   }
 }
 

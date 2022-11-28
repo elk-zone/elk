@@ -6,12 +6,17 @@ const buildTimeAgo = useTimeAgo(buildTime)
 <template>
   <footer p4 text-sm text-secondary-light flex="~ col">
     <div flex="~ gap2" items-center mb4>
-      <button i-ri-sun-line dark:i-ri-moon-line text-lg @click="toggleDark()" />
-      <button
-        text-lg
-        :class="isZenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
-        @click="toggleZenMode()"
-      />
+      <CommonTooltip content="Toggle theme">
+        <button flex i-ri-sun-line dark:i-ri-moon-line text-lg @click="toggleDark()" />
+      </CommonTooltip>
+      <CommonTooltip content="Zen mode">
+        <button
+          flex
+          text-lg
+          :class="isZenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
+          @click="toggleZenMode()"
+        />
+      </CommonTooltip>
       <NavSelectLanguage />
     </div>
     <div>

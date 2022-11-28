@@ -14,7 +14,6 @@ import { APP_NAME } from '~/constants'
 
 const config = useRuntimeConfig()
 export const HOST_URL = config.deployUrl
-  || (config.env === 'local' ? 'http://localhost:5314' : 'https://elk.zone')
 export const HOST_DOMAIN = parseURL(HOST_URL).host!
 
 const fs = _fs as typeof import('unstorage/dist/drivers/fs')['default']
@@ -26,7 +25,6 @@ if (config.env === 'local') {
   storage.mount('servers', fs({ base: 'node_modules/.cache/servers' }))
 }
 else {
-  const config = useRuntimeConfig()
   storage.mount('servers', cached(kv({
     accountId: config.cloudflare.accountId,
     namespaceId: config.cloudflare.namespaceId,

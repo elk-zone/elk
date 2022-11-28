@@ -46,7 +46,11 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     env: isCI ? 'deployed' : 'local',
-    deployUrl: process.env.PULL_REQUEST === 'true' ? process.env.DEPLOY_PRIME_URL : '',
+    deployUrl: !isCI
+      ? 'http://localhost:5314'
+      : process.env.PULL_REQUEST === 'true'
+        ? process.env.DEPLOY_PRIME_URL
+        : 'https://elk.zone',
     cloudflare: {
       accountId: '',
       namespaceId: '',

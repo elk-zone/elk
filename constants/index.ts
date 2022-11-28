@@ -11,4 +11,4 @@ export const STORAGE_KEY_NOTIFY_TAB = 'elk-notify-tab'
 export const STORAGE_KEY_FIRST_VISIT = 'elk-first-visit'
 export const STORAGE_KEY_ZEN_MODE = 'elk-zenmode'
 export const STORAGE_KEY_LANG = 'elk-lang'
-
+export const STORAGE_KEY_FEATURE_FLAGS = 'elk-feature-flags'

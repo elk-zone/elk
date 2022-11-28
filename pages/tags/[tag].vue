@@ -27,7 +27,7 @@ onReactivated(() => {
       <span text-lg font-bold>#{{ tagName }}</span>
     </template>
 
-    <template #actions>
+    <template v-if="typeof tag?.following === 'boolean'" #actions>
       <TagActionButton :tag="tag" @change="refresh()" />
     </template>
 

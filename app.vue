@@ -10,6 +10,7 @@ const key = computed(() => useMasto().instances.config.url || 'default')
   <NuxtLayout :key="key">
     <NuxtPage />
   </NuxtLayout>
+  <CommandRoot />
   <TeleportTarget
     id="teleport-end"
   />

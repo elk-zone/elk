@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   text?: string
   icon: string
   to: string
@@ -9,6 +9,20 @@ defineSlots<{
   icon: {}
   default: {}
 }>()
+
+const router = useRouter()
+
+useCommand({
+  scope: 'Navigation',
+
+  id: () => `nav-side-item-${props.to}`,
+  name: () => props.text ?? props.to,
+  icon: () => props.icon,
+
+  onActivate() {
+    router.push(props.to)
+  },
+})
 </script>
 
 <template>

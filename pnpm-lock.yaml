@@ -7,6 +7,7 @@ specifiers:
   '@iconify-json/logos': ^1.1.19
   '@iconify-json/ri': ^1.1.4
   '@iconify-json/twemoji': ^1.1.6
+  '@iconify-json/uil': ^1.1.3
   '@pinia/nuxt': ^0.4.5
   '@tiptap/extension-character-count': 2.0.0-beta.204
   '@tiptap/extension-code-block': 2.0.0-beta.204
@@ -34,6 +35,7 @@ specifiers:
   focus-trap: ^7.1.0
   form-data: ^4.0.0
   fs-extra: ^10.1.0
+  fuse.js: ^6.6.2
   js-yaml: ^4.1.0
   lru-cache: ^7.14.1
   masto: ^4.6.10
@@ -63,6 +65,7 @@ devDependencies:
   '@iconify-json/logos': 1.1.19
   '@iconify-json/ri': 1.1.4
   '@iconify-json/twemoji': 1.1.6
+  '@iconify-json/uil': 1.1.3
   '@pinia/nuxt': 0.4.5_typescript@4.9.3
   '@tiptap/extension-character-count': 2.0.0-beta.204
   '@tiptap/extension-code-block': 2.0.0-beta.204
@@ -80,7 +83,7 @@ devDependencies:
   '@unocss/nuxt': 0.46.5
   '@vitejs/plugin-vue': 3.2.0
   '@vue-macros/nuxt': 0.1.2_nuxt@3.0.0
-  '@vueuse/integrations': 9.6.0_focus-trap@7.1.0
+  '@vueuse/integrations': 9.6.0_jp7nj67mlbnssz2yxhqonqfavi
   '@vueuse/nuxt': 9.6.0_nuxt@3.0.0
   blurhash: 2.0.4
   browser-fs-access: 0.31.1
@@ -90,6 +93,7 @@ devDependencies:
   focus-trap: 7.1.0
   form-data: 4.0.0
   fs-extra: 10.1.0
+  fuse.js: 6.6.2
   js-yaml: 4.1.0
   lru-cache: 7.14.1
   masto: 4.6.10
@@ -636,6 +640,12 @@ packages:
 
   /@iconify-json/twemoji/1.1.6:
     resolution: {integrity: sha512-ISphKp43odYRNaIfmqBepUxotuYH2mxbjUiqAt/4bzqt+DjmdLBHHYXJ6EoQKHqDzS2EoqaBfTnDi1sKt+rCSg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/uil/1.1.3:
+    resolution: {integrity: sha512-cBYfRhCqdqmU2Acan1u0UuL8FchGlyAVgZbs4DjAGFbjKy/juZyetFl9bzonRmEAdoSGZ60AtVywjQvkxtS4IA==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -2237,7 +2247,7 @@ packages:
       vue: 3.2.45
     dev: true
 
-  /@vueuse/integrations/9.6.0_focus-trap@7.1.0:
+  /@vueuse/integrations/9.6.0_jp7nj67mlbnssz2yxhqonqfavi:
     resolution: {integrity: sha512-+rs2OWY/3spxoAGQMnlHQpxf8ErAYf4D1bT0aXaPnxphmtYgexm6KIjTFpBbcQnHwVi1g2ET1SJoQL16yDrgWA==}
     peerDependencies:
       async-validator: '*'
@@ -2278,6 +2288,7 @@ packages:
       '@vueuse/core': 9.6.0
       '@vueuse/shared': 9.6.0
       focus-trap: 7.1.0
+      fuse.js: 6.6.2
       vue-demi: 0.13.11
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -4298,6 +4309,11 @@ packages:
 
   /functions-have-names/1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
+    dev: true
+
+  /fuse.js/6.6.2:
+    resolution: {integrity: sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==}
+    engines: {node: '>=10'}
     dev: true
 
   /gauge/3.0.2:

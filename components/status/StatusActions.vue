@@ -198,40 +198,41 @@ function editStatus() {
             </template>
           </CommonDropdownItem>
 
-          <template v-if="isAuthor">
-            <CommonDropdownItem
-              icon="i-ri:pushpin-line"
-              @click="togglePin"
-            >
-              {{ status.pinned ? 'Unpin on profile' : 'Pin on profile' }}
-            </CommonDropdownItem>
+          <template v-if="currentUser">
+            <template v-if="isAuthor">
+              <CommonDropdownItem
+                icon="i-ri:pushpin-line"
+                @click="togglePin"
+              >
+                {{ status.pinned ? 'Unpin on profile' : 'Pin on profile' }}
+              </CommonDropdownItem>
 
-            <CommonDropdownItem icon="i-ri:edit-line" @click="editStatus">
-              Edit
-            </CommonDropdownItem>
+              <CommonDropdownItem icon="i-ri:edit-line" @click="editStatus">
+                Edit
+              </CommonDropdownItem>
 
-            <CommonDropdownItem
-              icon="i-ri:delete-bin-line" text-red-600
-              @click="deleteStatus"
-            >
-              Delete
-            </CommonDropdownItem>
+              <CommonDropdownItem
+                icon="i-ri:delete-bin-line" text-red-600
+                @click="deleteStatus"
+              >
+                Delete
+              </CommonDropdownItem>
 
-            <CommonDropdownItem
-              icon="i-ri:eraser-line" text-red-600
-              @click="deleteAndRedraft"
-            >
-              Delete & re-draft
-            </CommonDropdownItem>
-          </template>
-          <!-- TODO not available when not the same server  -->
-          <template v-else>
-            <CommonDropdownItem
-              icon="i-ri:at-line"
-              @click="mentionUser(status.account)"
-            >
-              Mention @{{ status.account.acct }}
-            </CommonDropdownItem>
+              <CommonDropdownItem
+                icon="i-ri:eraser-line" text-red-600
+                @click="deleteAndRedraft"
+              >
+                Delete & re-draft
+              </CommonDropdownItem>
+            </template>
+            <template v-else>
+              <CommonDropdownItem
+                icon="i-ri:at-line"
+                @click="mentionUser(status.account)"
+              >
+                Mention @{{ status.account.acct }}
+              </CommonDropdownItem>
+            </template>
           </template>
         </div>
       </template>

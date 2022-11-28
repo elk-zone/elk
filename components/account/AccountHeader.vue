@@ -106,26 +106,16 @@ watchEffect(() => {
           <div text-secondary uppercase text-xs font-bold>
             {{ field.name }} |
           </div>
-          <ContentRich :content="field.value" />
+          <ContentRich :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
       <div v-if="iconFields.length" flex="~ wrap gap-4">
         <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" items-center>
           <div text-secondary :class="getFieldNameIcon(field.name)" :title="field.name" />
-          <ContentRich text-sm filter-saturate-0 :content="field.value" />
+          <ContentRich text-sm filter-saturate-0 :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
-      <div flex gap-5>
-        <NuxtLink :to="getAccountPath(account)" exact-active-class="text-primary">
-          <span font-bold>{{ formattedNumber(account.statusesCount) }}</span> <span text-secondary>Posts</span>
-        </NuxtLink>
-        <NuxtLink :to="`${getAccountPath(account)}/following`" exact-active-class="text-primary">
-          <span font-bold>{{ humanReadableNumber(account.followingCount) }}</span> <span text-secondary>Following</span>
-        </NuxtLink>
-        <NuxtLink :to="`${getAccountPath(account)}/followers`" exact-active-class="text-primary">
-          <span font-bold>{{ humanReadableNumber(account.followersCount) }}</span> <span text-secondary>Followers</span>
-        </NuxtLink>
-      </div>
+      <AccountPostsFollowers :account="account" />
     </div>
   </div>
 </template>

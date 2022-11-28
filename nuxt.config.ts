@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@vue-macros/nuxt',
+    '@nuxtjs/i18n',
     '~/modules/purge-comments',
     '~/modules/setup-components',
   ],
@@ -55,7 +56,33 @@ export default defineNuxtConfig({
       translateApi: '',
     },
   },
+  nitro: {
+    prerender: {
+      crawlLinks: false,
+      routes: ['/200.html'],
+    },
+  },
   app: {
     keepalive: true,
+  },
+  i18n: {
+    locales: [
+      {
+        code: 'en-US',
+        file: 'en-US.json',
+        name: 'English',
+      },
+      {
+        code: 'zh-CN',
+        file: 'zh-CN.json',
+        name: '简体中文',
+      },
+    ],
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
+    // TODO:
+    // lazy: true,
+    langDir: 'locales',
+    defaultLocale: 'en-US',
   },
 })

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base", "schedule:weekly", "group:allNonMajor"],
+  "labels": ["c: dependencies"],
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "groupName": "devDependencies",
+      "matchDepTypes": ["devDependencies"],
+      "rangeStrategy": "bump"
+    },
+    {
+      "groupName": "dependencies",
+      "matchDepTypes": ["dependencies"],
+      "rangeStrategy": "replace"
+    },
+    {
+      "groupName": "peerDependencies",
+      "matchDepTypes": ["peerDependencies"],
+      "rangeStrategy": "widen"
+    },
+    {
+      "groupName": "engines",
+      "matchDepTypes": ["engines"],
+      "rangeStrategy": "replace"
+    },
+    {
+      "groupName": "test",
+      "matchPackageNames": ["@vitest/coverage-c8", "@vitest/ui", "vitest"]
+    },
+    {
+      "groupName": "lint",
+      "matchPackageNames": [
+        "@antfu/eslint-config",
+        "@types/prettier",
+        "eslint",
+        "prettier"
+      ]
+    },
+    {
+      "groupName": "iconify",
+      "matchPackagePatterns": ["^@iconify"]
+    },
+    {
+      "groupName": "tiptap",
+      "matchPackagePatterns": ["^@tiptap"]
+    },
+    {
+      "groupName": "vueuse",
+      "matchPackagePatterns": ["^@vueuse"]
+    },
+    {
+      "groupName": "masto",
+      "matchPackageNames": ["masto"]
+    },
+    {
+      "groupName": "typescript",
+      "matchPackageNames": ["typescript"]
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["c: security"]
+  }
+}

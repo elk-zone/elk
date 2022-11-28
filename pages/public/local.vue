@@ -1,19 +1,23 @@
 <script setup lang="ts">
 const paginator = useMasto().timelines.getPublicIterable({ local: true })
+const stream = await useMasto().stream.streamCommunityTimeline()
+onBeforeUnmount(() => stream.disconnect())
+
+const { t } = useI18n()
 
 useHead({
-  title: 'Local',
+  title: () => t('nav_side.local'),
 })
 </script>
 
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>Local timeline</span>
+      <span text-lg font-bold>{{ t('title.local-timeline') }}</span>
     </template>
 
     <slot>
-      <TimelinePaginator :paginator="paginator" />
+      <TimelinePaginator v-bind="{ paginator, stream }" />
     </slot>
   </MainContent>
 </template>

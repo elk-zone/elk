@@ -2,6 +2,8 @@
 const params = useRoute().params
 const accountName = $(computedEager(() => toShortHandle(params.account as string)))
 
+const { t } = useI18n()
+
 const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByName(accountName).catch(() => null)))
 
 if (account) {
@@ -20,7 +22,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>{{ account ? getDisplayName(account) : 'Profile' }}</span>
+      <span text-lg font-bold>{{ account ? getDisplayName(account) : t('nav_side.profile') }}</span>
     </template>
 
     <template v-if="account">

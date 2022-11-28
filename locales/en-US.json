@@ -1,0 +1,24 @@
+{
+  "selectLanguage": "Select Language",
+  "nav_side": {
+    "home": "Home",
+    "notifications": "Notifications",
+    "explore": "Explore",
+    "local": "Local",
+    "federated": "Federated",
+    "conversations": "Conversations",
+    "favourites": "Favourites",
+    "bookmarks": "Bookmarks",
+    "profile": "Profile"
+  },
+  "timeline": "Timeline",
+  "title": {
+    "local-timeline": "@:nav_side.local @:timeline",
+    "federated-timeline": "@:nav_side.federated @:timeline"
+  },
+  "account": {
+    "posts": "{0} Posts",
+    "following": "{0} Following",
+    "followers": "{0} Followers"
+  }
+}

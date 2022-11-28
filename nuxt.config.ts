@@ -82,7 +82,7 @@ export default defineNuxtConfig({
         file: 'zh-CN.json',
         name: '简体中文',
       },
-    ],
+    ].sort((a, b) => a.code.localeCompare(b.code)),
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
     // TODO:

@@ -13,7 +13,7 @@ useHead({
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>{{ t('title.federated-timeline') }}</span>
+      <span text-lg font-bold>{{ t('title.federated_timeline') }}</span>
     </template>
 
     <slot>

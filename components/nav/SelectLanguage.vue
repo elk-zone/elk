@@ -10,7 +10,7 @@ const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
 </script>
 
 <template>
-  <CommonTooltip placement="bottom" :content="t('selectLanguage')">
+  <CommonTooltip placement="bottom" :content="t('nav_footer.select_language')">
     <CommonDropdown>
       <button flex>
         <div i-ri:earth-line text-lg />

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { STORAGE_KEY_LANG } from '~/constants'
 
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 useLocalStorage(STORAGE_KEY_LANG, locale)
 
 // TODO: read from $i18n https://i18n.nuxtjs.org/lang-switcher
@@ -18,7 +18,7 @@ const languageList = [
 </script>
 
 <template>
-  <CommonTooltip placement="bottom" content="Select Language">
+  <CommonTooltip placement="bottom" :content="t('selectLanguage')">
     <CommonDropdown>
       <button flex>
         <div i-ri:earth-line text-lg />

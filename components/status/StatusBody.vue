@@ -9,7 +9,7 @@ const { translation } = useTranslation(status)
 </script>
 
 <template>
-  <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }">
+  <div my2 class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }">
     <ContentRich
       v-if="status.content"
       :content="status.content"

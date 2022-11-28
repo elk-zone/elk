@@ -2,19 +2,15 @@ import type { Account } from 'masto'
 import { STORAGE_KEY_FEATURE_FLAGS } from '~/constants'
 
 export interface FeatureFlags {
-  experimental: {
-    virtualScroll: boolean
-  }
+  experimentalVirtualScroll: boolean
 }
 export type FeatureFlagsMap = Record<string, FeatureFlags>
 
-export const allFeatureFlags = useLocalStorage<FeatureFlagsMap>(STORAGE_KEY_FEATURE_FLAGS, {})
+export const allFeatureFlags = useLocalStorage<FeatureFlagsMap>(STORAGE_KEY_FEATURE_FLAGS, {}, { deep: true })
 
 export function getDefaultFeatureFlags(): FeatureFlags {
   return {
-    experimental: {
-      virtualScroll: false,
-    },
+    experimentalVirtualScroll: false,
   }
 }
 
@@ -31,7 +27,18 @@ export const currentUserFeatureFlags = computed(() => {
 })
 
 export function useFeatureFlags() {
-  return { featureFlags: currentUserFeatureFlags.value }
+  const featureFlags = currentUserFeatureFlags.value
+
+  return featureFlags
+}
+
+export function toggleFeatureFlag(key: keyof FeatureFlags) {
+  const featureFlags = currentUserFeatureFlags.value
+
+  if (featureFlags[key])
+    featureFlags[key] = !featureFlags[key]
+  else
+    featureFlags[key] = true
 }
 
 export function clearUserFeatureFlags(account?: Account) {

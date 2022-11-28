@@ -8,7 +8,7 @@ const { paginator, stream } = defineProps<{
   stream?: WsEvents
 }>()
 
-const virtualScroller = false
+const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirtualScroll))
 </script>
 
 <template>

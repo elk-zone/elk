@@ -12,6 +12,11 @@ The client is deployed to [elk.zone](https://elk.zone), you can share screenshot
 
 If you would like to contribute, until the repo is open, please create branches in the main repository and send a PR from there.
 
+# Contributing
+
+[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https:///pr.new/___GH_ACCOUNT__/___GH_REPOSITORY___)
+
+
 # Stack
 
 - [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling

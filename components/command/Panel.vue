@@ -156,7 +156,6 @@ const onKeyDown = (e: KeyboardEvent) => {
                 :class="{ 'bg-active': active === cmd.index }"
                 :data-index="cmd.index"
                 @click="() => onCommandActivate(cmd)"
-                @mouseenter="() => active = cmd.index"
               >
                 <div v-if="cmd.icon" mr-2 :class="cmd.icon" />
 

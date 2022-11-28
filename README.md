@@ -31,7 +31,7 @@ Hi! We're really excited that you're interested in contributing to Elk! Before s
 
 You can use [StackBlitz CodeFlow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a CodeFlow button on PRs to review them without a local setup.
 
-[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https:///pr.new/___GH_ACCOUNT__/___GH_REPOSITORY___)
+[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
 
 ## Local Setup
 

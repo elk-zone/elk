@@ -14,9 +14,11 @@ const buildTimeAgo = useTimeAgo(buildTime)
       />
       <NavSelectLanguage />
     </div>
-    <button cursor-pointer hover:underline @click="openPreviewHelp">
-      Show intro
-    </button>
+    <div>
+      <button cursor-pointer hover:underline @click="openPreviewHelp">
+        Show intro
+      </button>
+    </div>
     <div>A Mastodon client made with 🧡</div>
     <div>Built <time :datetime="buildTime" :title="buildTime">{{ buildTimeAgo }}</time> · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a></div>
   </footer>

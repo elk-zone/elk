@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n'
 import { STORAGE_KEY_LANG } from '~/constants'
 
 const { locale } = useI18n()
 useLocalStorage(STORAGE_KEY_LANG, locale)
 
+// TODO: read from $i18n https://i18n.nuxtjs.org/lang-switcher
 const languageList = [
   {
     value: 'en-US',

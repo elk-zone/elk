@@ -2,14 +2,11 @@
 defineProps<{
   back?: boolean
 }>()
-
-const nav = ref<HTMLDivElement>()
 </script>
 
 <template>
   <div relative>
     <div
-      ref="nav"
       sticky top-0 z10
       border="b base" bg-base
       :class="isZenMode ? 'op0 hover:op100 transition duration-300' : ''"

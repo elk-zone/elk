@@ -10,6 +10,11 @@
     "bookmarks": "Bookmarks",
     "profile": "Profile"
   },
+  "timeline": "Timeline",
+  "title": {
+    "local-timeline": "@:nav_side.local @:timeline",
+    "federated-timeline": "@:nav_side.federated @:timeline"
+  },
   "account": {
     "posts": "{0} Posts",
     "following": "{0} Following",

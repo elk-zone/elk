@@ -181,6 +181,7 @@ onUnmounted(() => {
         <div relative>
           <EditorContent
             :editor="editor"
+            flex
             :class="isExpanded ? 'min-h-120px max-h-720px of-y-auto' : ''"
           />
           <div v-if="isExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>

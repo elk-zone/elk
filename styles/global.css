@@ -78,7 +78,7 @@ html {
 }
 
 .content-editor {
-  --at-apply: outline-none;
+  --at-apply: 'outline-none flex-1';
 
   pre {
     --at-apply: font-mono bg-code rounded px3 py2;

@@ -73,7 +73,7 @@ export function getStatusPath(status: Status) {
 }
 
 export function getStatusPermalink(status: Status) {
-  return status.url ? `/status/${withoutProtocol(status.url)}` : null
+  return status.url ? `/${withoutProtocol(status.url)}` : null
 }
 
 export function getStatusInReplyToPath(status: Status) {

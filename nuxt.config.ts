@@ -90,10 +90,13 @@ export default defineNuxtConfig({
     ].sort((a, b) => a.code.localeCompare(b.code)),
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
-    // TODO:
-    // lazy: true,
     langDir: 'locales',
     defaultLocale: 'en-US',
+    vueI18n: {
+      fallbackLocale: 'en-US',
+    },
+    // TODO:
+    // lazy: true,
   },
 })
 

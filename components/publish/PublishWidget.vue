@@ -146,7 +146,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div text-secondary self-center>
-          Editing
+          {{ $t('state.editing') }}
         </div>
         <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" />
       </div>
@@ -186,7 +186,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
         <div v-if="isUploading" flex gap-1 items-center text-sm p1 text-primary>
           <div i-ri:loader-2-fill animate-spin />
-          Uploading...
+          {{ $t('state.uploading') }}
         </div>
 
         <div v-if="draft.attachments.length" flex="~ col gap-2" overflow-auto>
@@ -201,14 +201,14 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
           v-if="isExpanded" flex="~ gap-2" m="l--1" pt-2
           border="t base"
         >
-          <CommonTooltip placement="bottom" content="Add images, a video or an audio file">
+          <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">
             <button btn-action-icon @click="pickAttachments">
               <div i-ri:image-add-line />
             </button>
           </CommonTooltip>
 
           <template v-if="editor">
-            <CommonTooltip placement="bottom" content="Toggle code block">
+            <CommonTooltip placement="bottom" :content="$t('tooltip.toggle_code_block')">
               <button
                 btn-action-icon
                 :class="editor.isActive('codeBlock') ? 'op100' : 'op50'"
@@ -221,14 +221,14 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
           <div flex-auto />
 
-          <CommonTooltip placement="bottom" content="Add content warning">
+          <CommonTooltip placement="bottom" :content="$t('tooltip.add_content_warning')">
             <button btn-action-icon @click="toggleSensitive">
               <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
               <div v-else i-ri:alarm-warning-line />
             </button>
           </CommonTooltip>
 
-          <CommonTooltip placement="bottom" content="Change content visibility">
+          <CommonTooltip placement="bottom" :content="$t('tooltip.change_content_visibility')">
             <CommonDropdown>
               <button btn-action-icon w-12>
                 <div :class="currentVisibility.icon" />
@@ -257,7 +257,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
             :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
             @click="publish"
           >
-            {{ !draft.editingStatus ? 'Publish!' : 'Save changes' }}
+            {{ !draft.editingStatus ? $t('action.publish') : $t('action.save_changes') }}
           </button>
         </div>
       </div>

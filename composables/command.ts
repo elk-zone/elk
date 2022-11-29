@@ -1,4 +1,5 @@
 import type { ComputedRef } from 'vue'
+import { defineStore } from 'pinia'
 import Fuse from 'fuse.js'
 import type { LocaleObject } from '#i18n'
 
@@ -54,7 +55,7 @@ export type QueryIndexedCommand = ResolvedCommand & {
 const r = <T extends Object | undefined>(i: T | (() => T)): T =>
   typeof i === 'function' ? i() : i
 
-export const provideCommandRegistry = () => {
+export const useCommandRegistry = defineStore('command', () => {
   const providers = reactive(new Set<CommandProvider>())
 
   const commands = computed<ResolvedCommand[]>(() =>
@@ -165,16 +166,7 @@ export const provideCommandRegistry = () => {
       }
     },
   }
-}
-
-export const useCommandRegistry = () => {
-  const { $command } = useNuxtApp()
-  const registry = $command as ReturnType<typeof provideCommandRegistry>
-  if (!registry)
-    throw new Error('Command registry not found')
-
-  return registry
-}
+})
 
 export const useCommand = (cmd: CommandProvider) => {
   const registry = useCommandRegistry()

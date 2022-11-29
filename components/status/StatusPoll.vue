@@ -1,33 +1,61 @@
 <script setup lang="ts">
 import type { Poll } from 'masto'
 
-const props = defineProps<{
+const { poll: _poll } = defineProps<{
   poll: Poll
 }>()
+const poll = reactive({ ..._poll })
 
 function toPercentage(num: number) {
   const percentage = 100 * num
   return `${percentage.toFixed(1).replace(/\.?0+$/, '')}%`
 }
-const expiredTimeAgo = useTimeAgo(props.poll.expiresAt!)
+const expiredTimeAgo = useTimeAgo(poll.expiresAt!)
+
+const masto = useMasto()
+async function vote(e: Event) {
+  const formData = new FormData(e.target as HTMLFormElement)
+  const choices = formData.getAll('choices') as string[]
+  await masto.poll.vote(poll.id, { choices })
+
+  // Update the poll optimistically
+  for (const [index, option] of poll.options.entries()) {
+    if (choices.includes(String(index)))
+      option.votesCount = (option.votesCount || 0) + 1
+  }
+  poll.voted = true
+  poll.votesCount++
+  poll.votersCount = (poll.votersCount || 0) + 1
+}
 </script>
 
 <template>
   <div flex flex-col w-full items-stretch gap-3>
-    <div v-for="(option, index) of poll.options" :key="option.title" flex justify-between p-1 relative :style="{ '--bar-width': toPercentage((option.votesCount || 0) / poll.votesCount) }">
-      <div absolute top-0 left-0 bottom-0 bg-primary-active rounded-lg h-full class="w-[var(--bar-width)]" />
-      <div z-1 flex items-center gap-1 px-1>
-        <div>
-          {{ option.title }}
+    <form v-if="!poll.voted && !poll.expired" flex flex-col gap-4 accent-primary @submit.prevent="vote">
+      <label v-for="(option, index) of poll.options" :key="index" flex items-center gap-2 px-2>
+        <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'">
+        {{ option.title }}
+      </label>
+      <button btn-solid>
+        Vote
+      </button>
+    </form>
+    <template v-else>
+      <div v-for="(option, index) of poll.options" :key="index" flex justify-between p-1 relative :style="{ '--bar-width': toPercentage((option.votesCount || 0) / poll.votesCount) }">
+        <div absolute top-0 left-0 bottom-0 bg-primary-active rounded-lg h-full class="w-[var(--bar-width)]" />
+        <div z-1 flex items-center gap-1 px-1>
+          <div>
+            {{ option.title }}
+          </div>
+          <div v-if="poll.voted && poll.ownVotes?.includes(index)">
+            <div i-ri:checkbox-circle-line />
+          </div>
         </div>
-        <div v-if="poll.voted && poll.ownVotes?.includes(index)">
-          <div i-ri:checkbox-circle-line />
+        <div z-1>
+          {{ poll.votesCount ? toPercentage((option.votesCount || 0) / (poll.votesCount)) : '0%' }}
         </div>
       </div>
-      <div z-1>
-        {{ toPercentage((option.votesCount || 0) / poll.votesCount) }}
-      </div>
-    </div>
+    </template>
     <div text-sm>
       {{ poll.votersCount }} votes &middot; {{ poll.expired ? 'finished' : 'ends' }}  {{ expiredTimeAgo }}
     </div>

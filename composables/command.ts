@@ -51,7 +51,7 @@ export const provideCommandRegistry = () => {
 
   const commands = computed<ResolvedCommand[]>(() =>
     [...providers]
-      .filter(command => command.visible?.() ?? true)
+      .filter(command => command.visible ? command.visible() : true)
       .map(provider => ({
         ...provider,
         icon: r(provider.icon),

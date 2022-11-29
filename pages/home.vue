@@ -24,7 +24,9 @@ useHead({
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>{{ $t('nav_side.home') }}</span>
+      <NuxtLink to="/home" text-lg font-bold @click="$scrollToTop">
+        {{ $t('nav_side.home') }}
+      </NuxtLink>
     </template>
     <slot>
       <PublishWidget draft-key="home" border="b base" />

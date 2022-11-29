@@ -18,6 +18,6 @@ const { t } = useI18n()
     </template>
   </VDropdown>
   <button v-else btn-solid text-sm px-2 py-1 text-center @click="openSigninDialog()">
-    {{ t('sys.sign_in') }}
+    {{ t('nav_user.sign_in') }}
   </button>
 </template>

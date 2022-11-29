@@ -20,7 +20,7 @@ const { t } = useI18n()
 <template>
   <form text-center justify-center items-center flex="~ col gap2" @submit.prevent="oauth">
     <div text-3xl mb2>
-      {{ t('sys.sign_in') }}
+      {{ t('nav_user.sign_in') }}
     </div>
     <div>Mastodon Server Name</div>
     <div flex bg-gray:10 px2 py1 mxa rounded border="~ border" text-xl items-center>
@@ -28,7 +28,7 @@ const { t } = useI18n()
       <input v-model="server" :placeholder="DEFAULT_SERVER" outline-none bg-transparent @input="handleInput">
     </div>
     <button btn-solid mt2>
-      {{ t('sys.sign_in') }}
+      {{ t('nav_user.sign_in') }}
     </button>
   </form>
 </template>

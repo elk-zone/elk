@@ -27,7 +27,7 @@
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"
   },
-  "sys": {
+  "nav_user": {
     "sign_in": "Sign In",
     "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
   }

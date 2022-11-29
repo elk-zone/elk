@@ -5,10 +5,10 @@ const { t } = useI18n()
 <template>
   <div p8 flex="~ col gap4">
     <div text-sm text-secondary>
-      {{ t('sys.sign_in_desc') }}
+      {{ t('nav_user.sign_in_desc') }}
     </div>
     <button class="btn-solid text-center" @click="openSigninDialog()">
-      {{ t('sys.sign_in') }}
+      {{ t('nav_user.sign_in') }}
     </button>
   </div>
 </template>

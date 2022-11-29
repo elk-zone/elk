@@ -25,6 +25,7 @@ const toggleFollowTag = async () => {
   <button
     rounded group focus:outline-none
     hover:text-primary focus-visible:text-primary
+    :aria-label="tag.following ? `Unfollow ${tag.name} tag` : `Follow ${tag.name} tag`"
     @click="toggleFollowTag()"
   >
     <CommonTooltip placement="bottom" :content="tag.following ? 'Unfollow' : 'Follow'">

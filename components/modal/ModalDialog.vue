@@ -123,7 +123,7 @@ function onTransitionEnd() {
       >
         <slot />
       </div>
-      <button v-if="type === 'preview'" btn-action-icon bg="black/20" hover:bg="black/40" dark:bg="white/10" dark:hover:bg="white/20" absolute top-0 right-0 m1 @click="close">
+      <button v-if="type === 'preview'" btn-action-icon bg="black/20" aria-label="Close" hover:bg="black/40" dark:bg="white/10" dark:hover:bg="white/20" absolute top-0 right-0 m1 @click="close">
         <div i-ri:close-fill text-white />
       </button>
     </div>

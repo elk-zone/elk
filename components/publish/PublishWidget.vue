@@ -203,7 +203,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
           border="t base"
         >
           <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">
-            <button btn-action-icon @click="pickAttachments">
+            <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
               <div i-ri:image-add-line />
             </button>
           </CommonTooltip>
@@ -212,6 +212,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
             <CommonTooltip placement="bottom" :content="$t('tooltip.toggle_code_block')">
               <button
                 btn-action-icon
+                :aria-label="$t('tooltip.toggle_code_block')"
                 :class="editor.isActive('codeBlock') ? 'op100' : 'op50'"
                 @click="editor?.chain().focus().toggleCodeBlock().run()"
               >
@@ -223,7 +224,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
           <div flex-auto />
 
           <CommonTooltip placement="bottom" :content="$t('tooltip.add_content_warning')">
-            <button btn-action-icon @click="toggleSensitive">
+            <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
               <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
               <div v-else i-ri:alarm-warning-line />
             </button>
@@ -231,7 +232,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
           <CommonTooltip placement="bottom" :content="$t('tooltip.change_content_visibility')">
             <CommonDropdown>
-              <button btn-action-icon w-12>
+              <button :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon w-12>
                 <div :class="currentVisibility.icon" />
                 <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
               </button>

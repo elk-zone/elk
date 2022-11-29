@@ -24,6 +24,7 @@ const switchUser = (user: UserLogin) => {
       <button
         flex rounded px4 py3 text-left
         hover:bg-active cursor-pointer transition-100
+        aria-label="Switch user"
         @click="switchUser(user)"
       >
         <AccountInfo :account="user.account" />

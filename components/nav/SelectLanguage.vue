@@ -15,7 +15,7 @@ const handleLocale = async (locale: string) => {
 <template>
   <CommonTooltip :content="t('nav_footer.select_language')">
     <CommonDropdown>
-      <button flex>
+      <button flex :aria-label="t('nav_footer.select_language')">
         <div i-ri:earth-line text-lg />
       </button>
 

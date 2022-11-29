@@ -28,7 +28,7 @@
     "virtual_scroll": "Virtuelles Scrollen"
   },
   "nav_user": {
-    "sign_in": "Einloggen",
-    "sign_in_desc": "Melden Sie sich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von Ihrem Konto auf einem anderen Server aus zu interagieren."
+    "sign_in": "Sign In",
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
   }
 }

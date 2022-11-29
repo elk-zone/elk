@@ -14,10 +14,10 @@
         </div>
       </aside>
       <NavBottom v-if="isSmallScreen" />
-      <div class="w-full mb14 md:(w-2/4 mb0) min-h-screen" border="l r base">
+      <div class="w-full mb14 md:(w-3/4 mb0) lg:(w-2/4 mb0) min-h-screen" border="l r base">
         <slot />
       </div>
-      <aside class="hidden md:block w-1/4 zen-hide">
+      <aside class="hidden md:none lg:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col">
           <slot name="right">
             <UserSignInEntry v-if="!currentUser" />
@@ -29,8 +29,9 @@
               <button
                 m5 p2 rounded-full text-start w-full
                 hover:bg-active cursor-pointer transition-100
+                class="md:(w-7.5/10 rounded-5)"
               >
-                <AccountInfo :account="currentUser.account" />
+                <AccountInfo :account="currentUser.account" md:flex="col" md:break-words />
               </button>
               <template #popper>
                 <UserSwitcher />

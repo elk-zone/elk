@@ -7,7 +7,17 @@ definePageMeta({
 
 const { t } = useI18n()
 
-const tabNames = ['All', 'Mentions'] as const
+// const tabNames = ['All', 'Mentions'] as const
+const tabNames = $computed(() => [
+  {
+    name: 'All',
+    display: t('tab.all'),
+  },
+  {
+    name: 'Mentions',
+    display: t('tab.mentions'),
+  },
+])
 const tab = $(useLocalStorage<typeof tabNames[number]>(STORAGE_KEY_NOTIFY_TAB, 'All'))
 
 const paginator = $computed(() => {

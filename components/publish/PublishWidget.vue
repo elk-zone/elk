@@ -18,6 +18,8 @@ const {
   expanded?: boolean
 }>()
 
+const { t } = useI18n()
+
 // eslint-disable-next-line prefer-const
 let { draft, isEmpty } = $(useDraft(draftKey, initial))
 
@@ -168,7 +170,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
           <input
             v-model="draft.params.spoilerText"
             type="text"
-            placeholder="Write your warning here"
+            :placeholder="t('tooltip.write_your_warning_here')"
             p2 border-rounded w-full bg-transparent
             outline-none border="~ base"
           >
@@ -244,9 +246,9 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
                   :checked="visibility.value === draft.params.visibility"
                   @click="chooseVisibility(visibility.value)"
                 >
-                  {{ visibility.label }}
+                  {{ visibility.labelT() }}
                   <template #description>
-                    {{ visibility.description }}
+                    {{ visibility.descriptionT() }}
                   </template>
                 </CommonDropdownItem>
               </template>

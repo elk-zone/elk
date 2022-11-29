@@ -1,5 +1,6 @@
 {
   "account": {
+    "add_an_existing_account": "添加现有帐户",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
     "favourites": "喜欢的帖文",
@@ -7,19 +8,36 @@
     "follow_back": "回关",
     "follow_requested": "已申请关注",
     "followers_count": "被 {0} 人关注",
+    "following": "正在关注",
     "following_count": "正在关注 {0} 人",
     "follows_you": "已关注你",
+    "mastodon_server_name": "Mastodon 服务器名称",
     "muted_users": "已屏蔽的用户",
+    "mutuals": "互相关注",
     "pinned": "置顶的帖文",
     "posts_count": "{0} 条帖文",
+    "sign_out_account": "注销 {0}",
     "unfollow": "取消关注"
   },
   "action": {
+    "bookmark": "添加到书签",
+    "boost": "转贴",
     "compose": "撰写",
+    "copy_link_to_this_post": "复制这篇帖文的链接",
+    "delete": "删除",
+    "delete_and_re-draft": "删除并重新编辑",
+    "edit": "编辑",
     "enter_app": "进入应用",
+    "favourite": "喜欢",
+    "mention_status_account": "提及 {'@'}{0}",
+    "pin_on_profile": "在个人资料页面置顶",
     "publish": "发布！",
+    "reply": "回复",
     "save_changes": "保存更改",
-    "sign_in": "登录"
+    "show_untranslated": "显示未翻译的帖文",
+    "sign_in": "登录",
+    "translate_post": "翻译帖文",
+    "unpin_on_profile": "在个人资料页面取消置顶"
   },
   "common": {
     "end_of_list": "列表到底啦",
@@ -29,11 +47,16 @@
   "feature_flag": {
     "virtual_scroll": "虚拟滚动"
   },
+  "footer": {
+    "a_mastodon_client_made_with": "用 🧡 制作的 Mastodon 客户端",
+    "show_intro": "查看介绍"
+  },
   "menu": {
     "block_account": "拉黑 {0}",
     "block_domain": "拉黑域名 {0}",
     "direct_message_account": "私信 {0}",
     "mention_account": "提及 {0}",
+    "more": "更多",
     "mute_account": "屏蔽 {0}",
     "open_in_original_site": "从源站打开",
     "unblock_account": "解除拉黑 {0}",
@@ -70,14 +93,36 @@
   },
   "state": {
     "editing": "编辑中",
+    "loading": "加载中...",
     "uploading": "上传中..."
   },
+  "status_visibilities": {
+    "followers_only": {
+      "description": "仅对关注者可见",
+      "label": "仅关注者"
+    },
+    "mentioned_people_only": {
+      "description": "只有被提及的用户能看到",
+      "label": "仅提到的人"
+    },
+    "public": {
+      "description": "所有人可见",
+      "label": "公开"
+    },
+    "unlisted": {
+      "description": "对所有人可见，但不加入探索功能",
+      "label": "不公开"
+    }
+  },
   "tab": {
+    "all": "全部",
     "media": "媒体",
+    "mentions": "提及",
     "posts": "帖文",
     "posts_with_replies": "帖文与留言"
   },
   "timeline": {
+    "name": "",
     "show_new_items": "展示 {0} 条新帖文"
   },
   "title": {
@@ -88,6 +133,10 @@
     "add_content_warning": "添加内容警告标识",
     "add_media": "添加图片、视频或者音频文件",
     "change_content_visibility": "修改内容是否可见",
-    "toggle_code_block": "切换代码块"
+    "reply_to_n": "回复{0}",
+    "reply_to_this_thread": "这个主题",
+    "toggle_code_block": "切换代码块",
+    "what_is_on_your_mind": "你在想什么？",
+    "write_your_warning_here": "写下你的警告"
   }
 }

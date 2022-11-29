@@ -1,5 +1,6 @@
 {
   "account": {
+    "add_an_existing_account": "Add an existing account",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "favourites": "Favourites",
@@ -7,19 +8,36 @@
     "follow_back": "Follow back",
     "follow_requested": "Requested",
     "followers_count": "{0} Followers",
+    "following": "Following",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
+    "mastodon_server_name": "Mastodon Server Name",
     "muted_users": "Muted users",
+    "mutuals": "Mutuals",
     "pinned": "Pinned",
     "posts_count": "{0} Posts",
+    "sign_out_account": "Sign out {0}",
     "unfollow": "Unfollow"
   },
   "action": {
+    "bookmark": "Bookmark",
+    "boost": "Boost",
     "compose": "Compose",
+    "copy_link_to_this_post": "Copy link to this post",
+    "delete": "Delete",
+    "delete_and_re-draft": "Delete & re-draft",
+    "edit": "Edit",
     "enter_app": "Enter App",
+    "favourite": "Favourite",
+    "mention_status_account": "Mention {'@'}{0}",
+    "pin_on_profile": "Pin on profile",
     "publish": "Publish!",
+    "reply": "Reply",
     "save_changes": "Save changes",
-    "sign_in": "Sign in"
+    "show_untranslated": "Show untranslated",
+    "sign_in": "Sign in",
+    "translate_post": "Translate post",
+    "unpin_on_profile": "Unpin on profile"
   },
   "common": {
     "end_of_list": "End of the list",
@@ -29,11 +47,16 @@
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"
   },
+  "footer": {
+    "a_mastodon_client_made_with": "A Mastodon client made with 🧡",
+    "show_intro": "Show intro"
+  },
   "menu": {
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
     "direct_message_account": "Direct message {0}",
     "mention_account": "Mention {0}",
+    "more": "More",
     "mute_account": "Mute {0}",
     "open_in_original_site": "Open in original site",
     "unblock_account": "Unblock {0}",
@@ -70,10 +93,31 @@
   },
   "state": {
     "editing": "Editing",
+    "loading": "Loading...",
     "uploading": "Uploading..."
   },
+  "status_visibilities": {
+    "followers_only": {
+      "description": "Visible for followers only",
+      "label": "Followers only"
+    },
+    "mentioned_people_only": {
+      "description": "Visible for mentioned users only",
+      "label": "Mentioned people only"
+    },
+    "public": {
+      "description": "Visible for all",
+      "label": "Public"
+    },
+    "unlisted": {
+      "description": "Visible for all, but opted-out of discovery features",
+      "label": "Unlisted"
+    }
+  },
   "tab": {
+    "all": "All",
     "media": "Media",
+    "mentions": "Mentions",
     "posts": "Posts",
     "posts_with_replies": "Posts & Replies"
   },
@@ -88,6 +132,10 @@
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
     "change_content_visibility": "Change content visibility",
-    "toggle_code_block": "Toggle code block"
+    "reply_to_n": "Reply to {0}",
+    "reply_to_this_thread": "this thread",
+    "toggle_code_block": "Toggle code block",
+    "what_is_on_your_mind": "What is on your mind?",
+    "write_your_warning_here": "Write your warning here"
   }
 }

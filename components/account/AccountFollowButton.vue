@@ -6,6 +6,8 @@ const { account, command } = defineProps<{
   command?: boolean
 }>()
 
+const { t } = useI18n()
+
 const isSelf = $computed(() => currentUser.value?.account.id === account.id)
 const enable = $computed(() => !isSelf && currentUser.value)
 let relationship = $(useRelationship(account))
@@ -44,7 +46,7 @@ useCommand({
   >
     <div rounded w-28 p2 :group-hover="relationship?.following ? 'bg-red/75' : 'bg-orange/40'" :class="!relationship?.following ? relationship?.followedBy ? 'bg-orange/20' : 'bg-white/10' : relationship?.followedBy ? ' bg-orange/70' : 'bg-orange/50'">
       <template v-if="relationship?.following">
-        <span group-hover="hidden">{{ relationship?.followedBy ? 'Mutuals' : 'Following' }}</span>
+        <span group-hover="hidden">{{ relationship?.followedBy ? t('account.mutuals') : t('account.following') }}</span>
         <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
       </template>
       <template v-else-if="relationship?.requested">

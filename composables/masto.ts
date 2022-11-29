@@ -1,31 +1,32 @@
 import type { Ref } from 'vue'
 import type { Account, Relationship, Status } from 'masto'
+import { i18nGlobal } from '~/plugins/i18n'
 
 // @unocss-include
 export const STATUS_VISIBILITIES = [
   {
     value: 'public',
-    label: 'Public',
+    labelT: () => i18nGlobal().t('status_visibilities.public.label'),
     icon: 'i-ri:global-line',
-    description: 'Visible for all',
+    descriptionT: () => i18nGlobal().t('status_visibilities.public.description'),
   },
   {
     value: 'unlisted',
-    label: 'Unlisted',
+    labelT: () => i18nGlobal().t('status_visibilities.unlisted.label'),
     icon: 'i-ri:lock-unlock-line',
-    description: 'Visible for all, but opted-out of discovery features',
+    descriptionT: () => i18nGlobal().t('status_visibilities.unlisted.description'),
   },
   {
     value: 'private',
-    label: 'Followers only',
+    labelT: () => i18nGlobal().t('status_visibilities.followers_only.label'),
     icon: 'i-ri:lock-line',
-    description: 'Visible for followers only',
+    descriptionT: () => i18nGlobal().t('status_visibilities.followers_only.description'),
   },
   {
     value: 'direct',
-    label: 'Mentioned people only',
+    labelT: () => i18nGlobal().t('status_visibilities.mentioned_people_only.label'),
     icon: 'i-ri:at-line',
-    description: 'Visible for mentioned users only',
+    descriptionT: () => i18nGlobal().t('status_visibilities.mentioned_people_only.description'),
   },
 ] as const
 

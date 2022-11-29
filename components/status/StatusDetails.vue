@@ -46,7 +46,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         </StatusEditIndicator>
       </div>
       <div>·</div>
-      <CommonTooltip :content="visibility.label" placement="bottom">
+      <CommonTooltip :content="visibility.labelT()" placement="bottom">
         <div :class="visibility.icon" />
       </CommonTooltip>
       <div v-if="status.application?.name">

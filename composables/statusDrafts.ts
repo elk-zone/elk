@@ -1,6 +1,7 @@
 import type { Account, Attachment, CreateStatusParams, Status } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Mutable } from '~/types/utils'
+import { i18nGlobal } from '~/plugins/i18n'
 
 export interface Draft {
   editingStatus?: Status
@@ -27,7 +28,7 @@ export function getDefaultDraft({
   status = '',
   inReplyToId,
   visibility = 'public',
-  placeholder = 'What is on your mind?',
+  placeholder = i18nGlobal().t('tooltip.what_is_on_your_mind'),
   attachments = [],
 }: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
   return {
@@ -55,7 +56,7 @@ export function getReplyDraft(status: Status) {
     key: `reply-${status.id}`,
     draft: () => getDefaultDraft({
       inReplyToId: status!.id,
-      placeholder: `Reply to ${status?.account ? getDisplayName(status.account) : 'this thread'}`,
+      placeholder: i18nGlobal().t('tooltip.reply_to_n', [status?.account ? getDisplayName(status.account) : t('tooltip.reply_to_this_thread')]),
       visibility: status.visibility,
     }),
   }

@@ -3,6 +3,8 @@ import type { UserLogin } from '~/types'
 
 const all = useUsers()
 
+const { t } = useI18n()
+
 const sorted = computed(() => {
   return [
     currentUser.value!,
@@ -34,14 +36,14 @@ const switchUser = (user: UserLogin) => {
     <div border="t base" pt2>
       <button btn-text flex="~ gap-1" items-center @click="openSigninDialog">
         <div i-ri:user-add-line />
-        Add an existing account
+        {{ t('account.add_an_existing_account') }}
       </button>
       <button
         v-if="currentUser" btn-text hover:text-red4 flex="~ gap-1" items-center
         @click="signout"
       >
         <div i-ri:logout-box-line />
-        Sign out {{ getFullHandle(currentUser.account) }}
+        {{ t('account.sign_out_account', [getFullHandle(currentUser.account)]) }}
       </button>
     </div>
   </div>

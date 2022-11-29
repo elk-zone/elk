@@ -23,10 +23,10 @@ const buildTimeAgo = useTimeAgo(buildTime)
     </div>
     <div>
       <button cursor-pointer hover:underline @click="openPreviewHelp">
-        Show intro
+        {{ t('footer.show_intro') }}
       </button>
     </div>
-    <div>A Mastodon client made with 🧡</div>
+    <div>{{ t('footer.a_mastodon_client_made_with') }}</div>
     <div>Built <time :datetime="buildTime" :title="buildTime">{{ buildTimeAgo }}</time> · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a></div>
   </footer>
 </template>

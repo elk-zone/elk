@@ -6,6 +6,9 @@ const isPreview = window.location.hostname.includes('deploy-preview')
 export function usePageHeader() {
   useHead({
     titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
+    bodyAttrs: {
+      class: 'overflow-x-hidden',
+    },
     link: [
       { rel: 'icon', type: 'image/svg+png', href: isDev || isPreview ? '/favicon-dev.png' : '/favicon.png' },
     ],

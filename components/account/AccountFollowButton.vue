@@ -41,7 +41,7 @@ useCommand({
     gap-1 items-center group
     :disabled="relationship?.requested"
     border-1
-    rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1 :class="relationship?.following ? 'text-base border-text-base' : 'text-primary border-primary'" :hover="relationship?.following ? 'border-red text-red' : 'bg-primary-active border-primary-active text-base'" @click="toggleFollow"
+    rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1 :class="relationship?.following ? 'text-base border-text-base' : 'text-inverted bg-primary border-primary'" :hover="relationship?.following ? 'border-red text-red' : 'bg-base border-primary text-primary'" @click="toggleFollow"
   >
     <template v-if="relationship?.following">
       <span group-hover="hidden">{{ relationship?.followedBy ? 'Mutuals' : 'Following' }}</span>

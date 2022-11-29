@@ -85,6 +85,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
               {{ status.spoilerText }}
             </template>
             <StatusBody :status="status" />
+            <StatusPoll v-if="status.poll" :poll="status.poll" />
             <StatusMedia
               v-if="status.mediaAttachments?.length"
               :status="status"

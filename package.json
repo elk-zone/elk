@@ -7,6 +7,7 @@
   "scripts": {
     "build": "nuxi build",
     "dev": "nuxi dev --port 5314",
+    "dev:unmocked": "MOCK_USER=false nuxi dev --port 5314",
     "start": "PORT=5314 node .output/server/index.mjs",
     "lint": "eslint .",
     "prepare": "esno scripts/prepare.ts",

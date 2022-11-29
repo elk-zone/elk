@@ -72,16 +72,18 @@ const toggleBlockDomain = async () => {
             Unblock @{{ account.acct }}
           </CommonDropdownItem>
 
-          <CommonDropdownItem
-            v-if="!relationship?.domainBlocking"
-            icon="i-ri:shut-down-line"
-            @click="toggleBlockDomain"
-          >
-            Block domain {{ getServerName(account) }}
-          </CommonDropdownItem>
-          <CommonDropdownItem v-else icon="i-ri:restart-line" @click="toggleBlockDomain">
-            Unblock domain {{ getServerName(account) }}
-          </CommonDropdownItem>
+          <template v-if="getServerName(account) !== currentServer">
+            <CommonDropdownItem
+              v-if="!relationship?.domainBlocking"
+              icon="i-ri:shut-down-line"
+              @click="toggleBlockDomain"
+            >
+              Block domain {{ getServerName(account) }}
+            </CommonDropdownItem>
+            <CommonDropdownItem v-else icon="i-ri:restart-line" @click="toggleBlockDomain">
+              Unblock domain {{ getServerName(account) }}
+            </CommonDropdownItem>
+          </template>
         </template>
 
         <template v-else>

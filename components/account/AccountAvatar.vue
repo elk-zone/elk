@@ -4,6 +4,8 @@ import type { Account } from 'masto'
 defineProps<{
   account: Account
 }>()
+
+const loaded = $ref(false)
 </script>
 
 <template>
@@ -12,7 +14,9 @@ defineProps<{
     :src="account.avatar"
     :alt="account.username"
     loading="lazy"
-    rounded-full bg-gray
+    rounded-full
+    :class="loaded ? 'bg-gray' : 'bg-gray:10'"
     v-bind="$attrs"
+    @load="loaded = true"
   >
 </template>

@@ -22,7 +22,7 @@
     "sign_in": "登录"
   },
   "common": {
-    "not_found": "404 未找到",
+    "not_found": "无法找到相关内容",
     "end_of_list": "列表到底啦",
     "error": "错误"
   },

@@ -1,5 +1,6 @@
 import type { Ref } from 'vue'
 import type { Account, Relationship, Status } from 'masto'
+import { withoutProtocol } from 'ufo'
 
 // @unocss-include
 export const STATUS_VISIBILITIES = [
@@ -69,6 +70,10 @@ export function getAccountPath(account: Account) {
 
 export function getStatusPath(status: Status) {
   return `/${getFullHandle(status.account)}/${status.id}`
+}
+
+export function getStatusPermalink(status: Status) {
+  return status.url ? `/${withoutProtocol(status.url)}` : null
 }
 
 export function getStatusInReplyToPath(status: Status) {

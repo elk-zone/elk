@@ -5,7 +5,7 @@ import { STORAGE_KEY_FIRST_VISIT, STORAGE_KEY_ZEN_MODE } from '~/constants'
 export const imagePreview = ref({ src: '', alt: '' })
 export const statusEdit = ref<StatusEdit>()
 export const dialogDraftKey = ref<string>()
-export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, true)
+export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, !process.mock)
 export const isZenMode = useLocalStorage(STORAGE_KEY_ZEN_MODE, false)
 export const toggleZenMode = useToggle(isZenMode)
 

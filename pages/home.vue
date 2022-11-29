@@ -24,8 +24,9 @@ useHead({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/home" text-lg font-bold @click="$scrollToTop">
-        {{ $t('nav_side.home') }}
+      <NuxtLink to="/home" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:home-5-line />
+        <span>{{ $t('nav_side.home') }}</span>
       </NuxtLink>
     </template>
     <slot>

@@ -13,7 +13,10 @@ useHead({
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>{{ t('title.federated_timeline') }}</span>
+      <NuxtLink to="/public" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:group-2-line />
+        <span>{{ t('title.federated_timeline') }}</span>
+      </NuxtLink>
     </template>
 
     <slot>

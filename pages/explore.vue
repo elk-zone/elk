@@ -11,7 +11,10 @@ useHead({
 <template>
   <MainContent>
     <template #title>
-      <div i-ri:hashtag h-6 mr-1 /><span>{{ t('nav_side.explore') }}</span>
+      <NuxtLink to="/explore" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:hashtag />
+        <span>{{ t('nav_side.explore') }}</span>
+      </NuxtLink>
     </template>
 
     <slot>

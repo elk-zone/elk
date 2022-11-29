@@ -7,6 +7,7 @@ import { parseURL } from 'ufo'
 import { $fetch } from 'ohmyfetch'
 import type { Storage } from 'unstorage'
 
+import { isCI } from 'std-env'
 import cached from './cache-driver'
 
 import type { AppInfo } from '~/types'
@@ -41,7 +42,7 @@ async function fetchAppInfo(server: string) {
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
     body: {
-      client_name: APP_NAME,
+      client_name: APP_NAME + (isCI ? '' : ' (dev)'),
       redirect_uris,
       scopes: 'read write follow push',
     },

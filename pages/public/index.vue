@@ -6,7 +6,7 @@ onBeforeUnmount(() => stream.disconnect())
 const { t } = useI18n()
 
 useHead({
-  title: () => t('nav_side.federated'),
+  title: () => t('title.federated_timeline'),
 })
 </script>
 

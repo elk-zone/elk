@@ -21,10 +21,17 @@
     "save_changes": "Save changes",
     "sign_in": "Sign in"
   },
+  "command": {
+    "activate": "Activate",
+    "complete": "Complete"
+  },
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
     "not_found": "404 Not Found"
+  },
+  "error": {
+    "account_not_found": "Account {0} not found"
   },
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"

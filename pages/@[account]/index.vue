@@ -31,7 +31,7 @@ onReactivated(() => {
     </template>
 
     <CommonNotFound v-else>
-      Account @{{ accountName }} not found
+      {{ $t('error.account_not_found', [`@${accountName}`]) }}
     </CommonNotFound>
   </MainContent>
 </template>

@@ -17,7 +17,7 @@ const unblock = async (domain: string) => {
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>Blocked domains</span>
+      <span text-lg font-bold>{{ $t('account.blocked_domains') }}</span>
     </template>
 
     <CommonPaginator :paginator="paginator">

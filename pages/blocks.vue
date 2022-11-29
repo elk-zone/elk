@@ -13,7 +13,7 @@ useHead({
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>Blocked users</span>
+      <span text-lg font-bold>{{ $t('account.blocked_users') }}</span>
     </template>
     <AccountPaginator :paginator="paginator" />
   </MainContent>

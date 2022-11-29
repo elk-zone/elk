@@ -13,7 +13,7 @@ useHead({
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>Muted users</span>
+      <span text-lg font-bold>{{ $t('account.muted_users') }}</span>
     </template>
     <AccountPaginator :paginator="paginator" />
   </MainContent>

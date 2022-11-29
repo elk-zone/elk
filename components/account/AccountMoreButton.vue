@@ -117,29 +117,19 @@ const toggleBlockDomain = async () => {
 
         <template v-else>
           <NuxtLink to="/pinned">
-            <CommonDropdownItem icon="i-ri:pushpin-line">
-              {{ $t('menu.pinned') }}
-            </CommonDropdownItem>
+            <CommonDropdownItem :text="$t('account.pinned')" icon="i-ri:pushpin-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/favourites">
-            <CommonDropdownItem icon="i-ri:heart-3-line">
-              {{ $t('menu.favourites') }}
-            </CommonDropdownItem>
+            <CommonDropdownItem :text="$t('account.favourites')" icon="i-ri:heart-3-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/mutes">
-            <CommonDropdownItem icon="i-ri:volume-mute-line">
-              {{ $t('menu.mute_account') }}
-            </CommonDropdownItem>
+            <CommonDropdownItem :text="$t('account.muted_users')" icon="i-ri:volume-mute-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/blocks">
-            <CommonDropdownItem icon="i-ri:forbid-2-line">
-              {{ $t('menu.block_account') }}
-            </CommonDropdownItem>
+            <CommonDropdownItem :text="$t('account.blocked_users')" icon="i-ri:forbid-2-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/domain_blocks">
-            <CommonDropdownItem icon="i-ri:shut-down-line">
-              {{ $t('menu.block_domain') }}
-            </CommonDropdownItem>
+            <CommonDropdownItem text="$t('account.blocked_domains')" icon="i-ri:shut-down-line" :command="command" />
           </NuxtLink>
         </template>
       </template>

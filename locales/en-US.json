@@ -1,12 +1,17 @@
 {
   "account": {
+    "blocked_users": "Blocked users",
+    "blocked_domains": "Blocked domains",
+    "favourites": "Favourites",
     "follow": "Follow",
     "follow_back": "Follow back",
     "follow_requested": "Requested",
     "followers_count": "{0} Followers",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
+    "muted_users": "Muted users",
     "posts_count": "{0} Posts",
+    "pinned": "Pinned",
     "unfollow": "Unfollow"
   },
   "action": {
@@ -28,11 +33,9 @@
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
     "direct_message_account": "Direct message {0}",
-    "favourites": "Favourites",
     "mention_account": "Mention {0}",
     "mute_account": "Mute {0}",
     "open_in_original_site": "Open in original site",
-    "pinned": "Pinned",
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
     "unmute_account": "Unmute {0}"

@@ -1,12 +1,17 @@
 {
   "account": {
+    "blocked_users": "已@:menu.block的用户",
+    "blocked_domains": "已@:menu.block的域名",
+    "favourites": "喜欢的@:tab.posts",
     "follow": "关注",
     "follow_back": "回关",
     "follow_requested": "已申请@:account.follow",
     "followers_count": "被 {0} 人@:account.follow",
     "following_count": "正在@:account.follow {0} 人",
     "follows_you": "已@:account.follow你",
+    "muted_users": "已@:menu.mute的用户",
     "posts_count": "{0} 条@:tab.posts",
+    "pinned": "置顶的帖子",
     "unfollow": "取消@:account.follow"
   },
   "action": {
@@ -30,11 +35,9 @@
     "block_account": "@:menu.block {0}",
     "block_domain": "@:menu.block域名 {0}",
     "direct_message_account": "私信 {0}",
-    "favourites": "喜欢",
     "mention_account": "提及 {0}",
     "mute_account": "@:menu.mute {0}",
     "open_in_original_site": "从源站打开",
-    "pinned": "置顶",
     "unblock_account": "取消@:menu.block {0}",
     "unblock_domain": "取消@:menu.block域名 {0}",
     "unmute_account": "取消@:menu.mute {0}"

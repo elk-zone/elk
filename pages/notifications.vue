@@ -22,7 +22,10 @@ useHead({
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>{{ t('nav_side.notifications') }}</span>
+      <NuxtLink to="/notifications" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:notification-4-line />
+        <span>{{ t('nav_side.notifications') }}</span>
+      </NuxtLink>
     </template>
 
     <template #header>

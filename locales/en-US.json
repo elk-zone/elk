@@ -16,6 +16,11 @@
     "save_changes": "Save changes",
     "sign_in": "Sign in"
   },
+  "common": {
+    "not_found": "404 Not Found",
+    "end_of_list": "End of the list",
+    "error": "ERROR"
+  },
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"
   },

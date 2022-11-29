@@ -55,10 +55,10 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
       </div>
     </slot>
     <div v-else-if="state === 'done'" p5 text-secondary italic text-center>
-      End of the list
+      {{ $t('common.end_of_list') }}
     </div>
     <div v-else-if="state === 'error'" p5 text-secondary>
-      ERROR: {{ error }}
+      {{ $t('common.error') }}: {{ error }}
     </div>
   </div>
 </template>

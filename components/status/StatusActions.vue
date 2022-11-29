@@ -76,8 +76,8 @@ const toggleTranslation = async () => {
   isLoading.translation = false
 }
 
-const copyLink = async (url: string) => {
-  await clipboard.copy(url)
+const copyLink = async (url?: string | null) => {
+  url && await clipboard.copy(url)
 }
 const deleteStatus = async () => {
   // TODO confirm to delete

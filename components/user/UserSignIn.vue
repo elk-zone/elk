@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { DEFAULT_SERVER } from '~/constants'
 
+const input = $ref<HTMLInputElement>()
 let server = $ref<string>('')
 
 async function oauth() {
@@ -13,6 +14,10 @@ async function handleInput() {
   if (server.startsWith('https://'))
     server = server.replace('https://', '')
 }
+
+onMounted(() => {
+  input?.focus()
+})
 </script>
 
 <template>
@@ -23,7 +28,7 @@ async function handleInput() {
     <div>Mastodon Server Name</div>
     <div flex bg-gray:10 px2 py1 mxa rounded border="~ border" text-xl items-center>
       <span text-secondary-light mr1 text-sm>https://</span>
-      <input v-model="server" :placeholder="DEFAULT_SERVER" outline-none bg-transparent @input="handleInput">
+      <input ref="input" v-model="server" :placeholder="DEFAULT_SERVER" outline-none bg-transparent @input="handleInput">
     </div>
     <button btn-solid mt2>
       {{ $t('action.sign_in') }}

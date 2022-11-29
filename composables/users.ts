@@ -75,6 +75,7 @@ export async function signout() {
     clearUserDrafts()
     clearUserFeatureFlags()
 
+    currentUserId.value = ''
     // Remove the current user from the users
     users.value.splice(index, 1)
   }

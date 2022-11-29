@@ -33,8 +33,6 @@
     "virtual_scroll": "虚拟滚动"
   },
   "menu": {
-    "block": "@:block",
-    "mute": "屏蔽",
     "block_account": "@:block {0}",
     "block_domain": "@:block域名 {0}",
     "direct_message_account": "私信 {0}",

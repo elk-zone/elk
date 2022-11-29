@@ -89,27 +89,27 @@ const toggleBlockDomain = async () => {
         <template v-else>
           <NuxtLink to="/pinned">
             <CommonDropdownItem icon="i-ri:pushpin-line">
-              Pinned
+              {{ $t('menu.pinned') }}
             </CommonDropdownItem>
           </NuxtLink>
           <NuxtLink to="/favourites">
             <CommonDropdownItem icon="i-ri:heart-3-line">
-              Favourites
+              {{ $t('menu.favourites') }}
             </CommonDropdownItem>
           </NuxtLink>
           <NuxtLink to="/mutes">
             <CommonDropdownItem icon="i-ri:volume-mute-line">
-              Muted users
+              {{ $t('menu.mute_account') }}
             </CommonDropdownItem>
           </NuxtLink>
           <NuxtLink to="/blocks">
             <CommonDropdownItem icon="i-ri:forbid-2-line">
-              Blocked users
+              {{ $t('menu.block_account') }}
             </CommonDropdownItem>
           </NuxtLink>
           <NuxtLink to="/domain_blocks">
             <CommonDropdownItem icon="i-ri:shut-down-line">
-              Blocked domains
+              {{ $t('menu.block_domain') }}
             </CommonDropdownItem>
           </NuxtLink>
         </template>

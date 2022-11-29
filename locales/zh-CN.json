@@ -23,9 +23,11 @@
     "block_account": "拉黑 {0}",
     "block_domain": "拉黑域名 {0}",
     "direct_message_account": "私信 {0}",
+    "favourites": "喜欢",
     "mention_account": "提及 {0}",
     "mute_account": "屏蔽 {0}",
     "open_in_original_site": "从源站打开",
+    "pinned": "置顶",
     "unblock_account": "取消拉黑 {0}",
     "unblock_domain": "取消拉黑域名 {0}",
     "unmute_account": "取消屏蔽 {0}"

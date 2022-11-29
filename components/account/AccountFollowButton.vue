@@ -38,25 +38,24 @@ useCommand({
 <template>
   <button
     v-if="enable"
-    flex gap-1 items-center h-fit rounded hover="op100 text-white b-orange" group btn-base
+    gap-1 items-center group
     :disabled="relationship?.requested"
-    @click="toggleFollow"
+    border-1
+    rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1 :class="relationship?.following ? 'text-base border-text-base' : 'text-primary border-primary'" :hover="relationship?.following ? 'border-red text-red' : 'bg-primary-active border-primary-active text-base'" @click="toggleFollow"
   >
-    <div rounded w-28 p2 :group-hover="relationship?.following ? 'bg-red/75' : 'bg-orange/40'" :class="!relationship?.following ? relationship?.followedBy ? 'bg-orange/20' : 'bg-white/10' : relationship?.followedBy ? ' bg-orange/70' : 'bg-orange/50'">
-      <template v-if="relationship?.following">
-        <span group-hover="hidden">{{ relationship?.followedBy ? 'Mutuals' : 'Following' }}</span>
-        <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
-      </template>
-      <template v-else-if="relationship?.requested">
-        <span>{{ $t('account.follow_requested') }}</span>
-      </template>
-      <template v-else-if="relationship?.followedBy">
-        <span group-hover="hidden">{{ $t('account.follows_you') }}</span>
-        <span hidden group-hover="inline">{{ $t('account.follow_back') }}</span>
-      </template>
-      <template v-else>
-        <span>{{ $t('account.follow') }}</span>
-      </template>
-    </div>
+    <template v-if="relationship?.following">
+      <span group-hover="hidden">{{ relationship?.followedBy ? 'Mutuals' : 'Following' }}</span>
+      <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
+    </template>
+    <template v-else-if="relationship?.requested">
+      <span>{{ $t('account.follow_requested') }}</span>
+    </template>
+    <template v-else-if="relationship?.followedBy">
+      <span group-hover="hidden">{{ $t('account.follows_you') }}</span>
+      <span hidden group-hover="inline">{{ $t('account.follow_back') }}</span>
+    </template>
+    <template v-else>
+      <span>{{ $t('account.follow') }}</span>
+    </template>
   </button>
 </template>

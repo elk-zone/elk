@@ -6,6 +6,8 @@ const { attachment } = defineProps<{
   attachment: Attachment
 }>()
 
+const src = $computed(() => attachment.remoteUrl || attachment.url || attachment.previewUrl!)
+
 const rawAspectRatio = computed(() => {
   if (attachment.meta?.original?.aspect)
     return attachment.meta.original.aspect
@@ -60,14 +62,14 @@ const aspectRatio = computed(() => {
       focus:ring="2 primary inset"
       rounded-lg
       @click="openImagePreviewDialog({
-        src: attachment.url || attachment.previewUrl!,
+        src,
         alt: attachment.description!,
       })"
     >
       <CommonBlurhash
         :blurhash="attachment.blurhash"
         class="status-attachment-image"
-        :src="attachment.url || attachment.previewUrl!"
+        :src="src"
         :alt="attachment.description!"
         :style="{
           aspectRatio,

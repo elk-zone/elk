@@ -23,7 +23,7 @@
     "@iconify-json/material-symbols": "^1.1.24",
     "@iconify-json/ri": "^1.1.4",
     "@iconify-json/twemoji": "^1.1.6",
-    "@nuxtjs/i18n": "8.0.0-beta.5",
+    "@nuxtjs/i18n": "^8.0.0-beta.6",
     "@pinia/nuxt": "^0.4.5",
     "@tiptap/extension-character-count": "2.0.0-beta.204",
     "@tiptap/extension-code-block": "2.0.0-beta.204",

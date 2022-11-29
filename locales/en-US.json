@@ -12,7 +12,9 @@
   },
   "nav_footer": {
     "select_language": "Select Language",
-    "select_feature_flags": "Toggle Feature Flags"
+    "select_feature_flags": "Toggle Feature Flags",
+    "toggle_theme": "Toggle Theme",
+    "zen_mode": "Zen Mode"
   },
   "timeline": "Timeline",
   "title": {

@@ -8,7 +8,7 @@ specifiers:
   '@iconify-json/material-symbols': ^1.1.24
   '@iconify-json/ri': ^1.1.4
   '@iconify-json/twemoji': ^1.1.6
-  '@nuxtjs/i18n': 8.0.0-beta.5
+  '@nuxtjs/i18n': ^8.0.0-beta.6
   '@pinia/nuxt': ^0.4.5
   '@tiptap/extension-character-count': 2.0.0-beta.204
   '@tiptap/extension-code-block': 2.0.0-beta.204
@@ -68,7 +68,7 @@ devDependencies:
   '@iconify-json/material-symbols': 1.1.24
   '@iconify-json/ri': 1.1.4
   '@iconify-json/twemoji': 1.1.6
-  '@nuxtjs/i18n': 8.0.0-beta.5
+  '@nuxtjs/i18n': 8.0.0-beta.6
   '@pinia/nuxt': 0.4.5_typescript@4.9.3
   '@tiptap/extension-character-count': 2.0.0-beta.204
   '@tiptap/extension-code-block': 2.0.0-beta.204
@@ -1082,8 +1082,8 @@ packages:
       - vti
     dev: true
 
-  /@nuxtjs/i18n/8.0.0-beta.5:
-    resolution: {integrity: sha512-UGyo80GDd8eYLCYPc+/XKPOQ0MUy7OLbSp5Zud95no6E9yAFxDNrgjaolTKV/f7U/QhSF0+xUOUC32TE8uj5Pg==}
+  /@nuxtjs/i18n/8.0.0-beta.6:
+    resolution: {integrity: sha512-aZJ1cYmRR/r92O33PTmL8czMq2lBMliyPFzLCOB5BA3oFKY0WafTAPxi8f/VYtlWf+8JT22oZ2UeZRhpxdFPuw==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
     dependencies:
       '@intlify/bundle-utils': 3.4.0_vue-i18n@9.3.0-beta.10

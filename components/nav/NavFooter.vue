@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const buildTime = import.meta.env.__BUILD_TIME__ as string
 const buildTimeAgo = useTimeAgo(buildTime)
 </script>
@@ -6,10 +7,10 @@ const buildTimeAgo = useTimeAgo(buildTime)
 <template>
   <footer p4 text-sm text-secondary-light flex="~ col">
     <div flex="~ gap2" items-center mb4>
-      <CommonTooltip content="Toggle theme">
+      <CommonTooltip :content="t('nav_footer.toggle_theme')">
         <button flex i-ri-sun-line dark:i-ri-moon-line text-lg @click="toggleDark()" />
       </CommonTooltip>
-      <CommonTooltip content="Zen mode">
+      <CommonTooltip :content="t('nav_footer.zen_mode')">
         <button
           flex
           text-lg

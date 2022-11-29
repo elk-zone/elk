@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 
-const { status: _status, details } = defineProps<{
+const { status: _status, details, command } = defineProps<{
   status: Status
   details?: boolean
+  command?: boolean
 }>()
 let status = $ref<Status>({ ..._status })
 
@@ -134,6 +135,7 @@ function editStatus() {
         :text="status.repliesCount"
         color="text-blue" hover="text-blue" group-hover="bg-blue/10"
         icon="i-ri:chat-3-line"
+        :command="command"
         @click="reply"
       />
     </div>
@@ -147,6 +149,7 @@ function editStatus() {
         active-icon="i-ri:repeat-fill"
         :active="status.reblogged"
         :disabled="isLoading.reblogged"
+        :command="command"
         @click="toggleReblog()"
       />
     </div>
@@ -160,6 +163,7 @@ function editStatus() {
         active-icon="i-ri:heart-3-fill"
         :active="status.favourited"
         :disabled="isLoading.favourited"
+        :command="command"
         @click="toggleFavourite()"
       />
     </div>
@@ -172,6 +176,7 @@ function editStatus() {
         active-icon="i-ri:bookmark-fill"
         :active="status.bookmarked"
         :disabled="isLoading.bookmarked"
+        :command="command"
         @click="toggleBookmark()"
       />
     </div>
@@ -185,59 +190,69 @@ function editStatus() {
 
       <template #popper>
         <div flex="~ col">
-          <CommonDropdownItem icon="i-ri:link" @click="copyLink">
-            Copy link to this post
-          </CommonDropdownItem>
+          <CommonDropdownItem
+            text="Copy link to this post"
+            icon="i-ri:link"
+            :command="command"
+            @click="copyLink"
+          />
 
           <NuxtLink :to="status.url" target="_blank">
-            <CommonDropdownItem v-if="status.url" icon="i-ri:arrow-right-up-line">
-              Open in original site
-            </CommonDropdownItem>
+            <CommonDropdownItem
+              v-if="status.url"
+              text="Open in original site"
+              icon="i-ri:arrow-right-up-line"
+              :command="command"
+            />
           </NuxtLink>
 
-          <CommonDropdownItem v-if="isTranslationEnabled && status.language !== languageCode" icon="i-ri:translate" @click="toggleTranslation">
-            <template v-if="!translation.visible">
-              Translate post
-            </template>
-            <template v-else>
-              Show untranslated
-            </template>
-          </CommonDropdownItem>
+          <CommonDropdownItem
+            v-if="isTranslationEnabled && status.language !== languageCode"
+            :text="translation.visible ? 'Show untranslated' : 'Translate post'"
+            icon="i-ri:translate"
+            :command="command"
+            @click="toggleTranslation"
+          />
 
           <template v-if="currentUser">
             <template v-if="isAuthor">
               <CommonDropdownItem
+                :text="status.pinned ? 'Unpin on profile' : 'Pin on profile'"
                 icon="i-ri:pushpin-line"
+                :command="command"
                 @click="togglePin"
-              >
-                {{ status.pinned ? 'Unpin on profile' : 'Pin on profile' }}
-              </CommonDropdownItem>
-
-              <CommonDropdownItem icon="i-ri:edit-line" @click="editStatus">
-                Edit
-              </CommonDropdownItem>
+              />
 
               <CommonDropdownItem
-                icon="i-ri:delete-bin-line" text-red-600
+                text="Edit"
+                icon="i-ri:edit-line"
+                :command="command"
+                @click="editStatus"
+              />
+
+              <CommonDropdownItem
+                text="Delete"
+                icon="i-ri:delete-bin-line"
+                text-red-600
+                :command="command"
                 @click="deleteStatus"
-              >
-                Delete
-              </CommonDropdownItem>
+              />
 
               <CommonDropdownItem
-                icon="i-ri:eraser-line" text-red-600
+                text="Delete & re-draft"
+                icon="i-ri:eraser-line"
+                text-red-600
+                :command="command"
                 @click="deleteAndRedraft"
-              >
-                Delete & re-draft
-              </CommonDropdownItem>
+              />
             </template>
             <template v-else>
               <CommonDropdownItem
+                :text="`Mention @${status.account.acct}`"
                 icon="i-ri:at-line"
+                :command="command"
                 @click="mentionUser(status.account)"
-              >
-                Mention @{{ status.account.acct }}
-              </CommonDropdownItem>
+              />
             </template>
           </template>
         </div>

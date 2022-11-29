@@ -9,9 +9,8 @@ const users = useUsers()
 useCommand({
   scope: 'Actions',
 
-  visible: () => !!currentUser.value,
+  visible: () => currentUser.value,
 
-  id: 'compose',
   name: 'Compose',
   icon: 'i-ri:quill-pen-line',
   description: 'Write a new post',
@@ -24,7 +23,6 @@ useCommand({
 useCommand({
   scope: 'Preferences',
 
-  id: 'toggle-dark',
   name: 'Toggle dark mode',
   icon: () => isDark.value ? 'i-ri:sun-line' : 'i-ri:moon-line',
 
@@ -36,7 +34,6 @@ useCommand({
 useCommand({
   scope: 'Preferences',
 
-  id: 'toggle-zen',
   name: 'Toggle zen mode',
   icon: () => isZenMode.value ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
 
@@ -48,7 +45,6 @@ useCommand({
 useCommand({
   scope: 'Preferences',
 
-  id: 'language',
   name: 'Select language',
   icon: 'i-ri:earth-line',
 
@@ -58,7 +54,6 @@ useCommands(() => locales.value.map(l => ({
   parent: 'language',
   scope: 'Languages',
 
-  id: `language.${l.code}`,
   name: l.name!,
   icon: 'i-ri:earth-line',
 
@@ -70,7 +65,6 @@ useCommands(() => locales.value.map(l => ({
 useCommand({
   scope: 'Account',
 
-  id: 'account-add',
   name: 'Sign in',
   description: 'Add an existing account',
   icon: 'i-ri:user-add-line',
@@ -84,7 +78,6 @@ useCommand({
 
   visible: () => users.value.length > 1,
 
-  id: 'account-switch',
   name: 'Switch account',
   description: 'Switch to another account',
   icon: 'i-ri:user-shared-line',
@@ -97,7 +90,6 @@ useCommands(() => users.value.map(user => ({
 
   visible: () => user.account.id !== currentUser.value?.account.id,
 
-  id: `account-switch.${user.account.id}`,
   name: `Switch to ${getFullHandle(user.account)}`,
   icon: 'i-ri:user-shared-line',
 
@@ -108,9 +100,8 @@ useCommands(() => users.value.map(user => ({
 useCommand({
   scope: 'Account',
 
-  visible: () => !!currentUser.value,
+  visible: () => currentUser.value,
 
-  id: 'account-logout',
   name: () => `Sign out ${getFullHandle(currentUser.value!.account)}`,
   icon: 'i-ri:logout-box-line',
 

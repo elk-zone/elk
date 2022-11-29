@@ -15,7 +15,6 @@ const router = useRouter()
 useCommand({
   scope: 'Navigation',
 
-  id: () => `nav-side-item-${props.to}`,
   name: () => props.text ?? props.to,
   icon: () => props.icon,
 

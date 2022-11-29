@@ -163,7 +163,7 @@ const onKeyDown = (e: KeyboardEvent) => {
   >
     <div v-if="show" class="z-100 fixed inset-0 grid place-items-center pointer-events-none">
       <div
-        class="flex flex-col w-1/2 h-1/2 rounded-md bg-base shadow-lg pointer-events-auto"
+        class="flex flex-col w-50vw h-50vh rounded-md bg-base shadow-lg pointer-events-auto"
         border="1 base"
       >
         <!-- Input -->
@@ -189,12 +189,12 @@ const onKeyDown = (e: KeyboardEvent) => {
               {{ scope }}
             </div>
 
-            <template v-for="cmd in group" :key="cmd.id">
+            <template v-for="cmd in group" :key="cmd.index">
               <div
                 class="flex px-3 py-2 my-1 items-center rounded-lg transition-all duration-65 ease-in-out cursor-pointer scroll-m-10"
                 :class="{ 'bg-active': active === cmd.index }"
                 :data-index="cmd.index"
-                @click="() => onCommandActivate(cmd)"
+                @click="onCommandActivate(cmd)"
               >
                 <div v-if="cmd.icon" mr-2 :class="cmd.icon" />
 

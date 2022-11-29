@@ -1,31 +1,59 @@
 <script setup lang="ts">
 import { dropdownContextKey } from './ctx'
 
-defineProps<{
+const props = defineProps<{
+  text?: string
   description?: string
   icon?: string
   checked?: boolean
+  command?: boolean
 }>()
 const emit = defineEmits(['click'])
 
 const { hide } = inject(dropdownContextKey, undefined) || {}
 
+const el = ref<HTMLDivElement>()
+
 const handleClick = (evt: MouseEvent) => {
   hide?.()
   emit('click', evt)
 }
+
+useCommand({
+  scope: 'Actions',
+
+  order: -1,
+  visible: () => props.command && props.text,
+
+  name: () => props.text!,
+  icon: () => props.icon ?? 'i-ri:question-line',
+  description: () => props.description,
+
+  onActivate() {
+    const clickEvent = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    })
+    el.value?.dispatchEvent(clickEvent)
+  },
+})
 </script>
 
 <template>
   <div
-    flex gap-3 items-center cursor-pointer px4 py3 hover-bg-active
-    v-bind="$attrs"
+    v-bind="$attrs" ref="el"
+    flex gap-3 items-center cursor-pointer px4
+    py3
+    hover-bg-active
     @click="handleClick"
   >
     <div v-if="icon" :class="icon" />
     <div flex="~ col">
       <div text-15px>
-        <slot />
+        <slot>
+          {{ text }}
+        </slot>
       </div>
       <div text-3 text-secondary>
         <slot name="description">

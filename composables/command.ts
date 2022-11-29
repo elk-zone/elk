@@ -17,14 +17,13 @@ export interface CommandProvider {
   parent?: string
   scope?: CommandScope
 
-  // larger number means higher priority
+  // smaller is higher priority
   order?: number
-  visible?: () => boolean
+  visible?: () => unknown
 
-  id: string | (() => string)
   icon: string | (() => string)
   name: string | (() => string)
-  description?: string | (() => string)
+  description?: string | (() => string | undefined)
 
   bindings?: string[] | (() => string[])
 
@@ -33,17 +32,12 @@ export interface CommandProvider {
 }
 
 export type ResolvedCommand =
-  Exclude<CommandProvider, 'id' | 'icon' | 'name' | 'description' | 'bindings'> & {
-    id: string
+  Exclude<CommandProvider, 'icon' | 'name' | 'description' | 'bindings'> & {
     icon: string
     name: string
     description: string | undefined
     bindings: string[] | undefined
   }
-
-export type QueryScoredCommand = ResolvedCommand & {
-  score: number
-}
 
 export type QueryIndexedCommand = ResolvedCommand & {
   index: number
@@ -60,7 +54,6 @@ export const provideCommandRegistry = () => {
       .filter(command => command.visible?.() ?? true)
       .map(provider => ({
         ...provider,
-        id: r(provider.id),
         icon: r(provider.icon),
         name: r(provider.name),
         description: r(provider.description),
@@ -92,31 +85,35 @@ export const provideCommandRegistry = () => {
           : new Fuse(cmds, {
             keys: ['scope', 'name', 'description'],
             includeScore: true,
-            shouldSort: false,
           })
 
         lastScope = scope
         lastFuse = fuse
 
         const res = fuse.search(query)
-          .map(result => ({
-            ...result.item,
-            score: result.score!,
-          }))
-
-        const o = (cmd: QueryScoredCommand) => (cmd.order ?? 0) - cmd.score
-
-        const indexed = res
-          .sort((a, b) => o(b) - o(a))
-          .map((cmd, index) => ({ ...cmd, index }))
+          .map(({ item }) => ({ ...item }))
 
         // group by scope
         const grouped = new Map<CommandScope, QueryIndexedCommand[]>()
-        for (const cmd of indexed) {
+        for (const cmd of res) {
           const scope = cmd.scope ?? ''
           if (!grouped.has(scope))
             grouped.set(scope, [])
-          grouped.get(scope)!.push(cmd)
+          grouped
+            .get(scope)!
+            .push({
+              ...cmd,
+              index: 0,
+            })
+        }
+
+        let index = 0
+        const indexed: QueryIndexedCommand[] = []
+        for (const items of grouped.values()) {
+          for (const cmd of items) {
+            cmd.index = index++
+            indexed.push(cmd)
+          }
         }
 
         return {
@@ -137,19 +134,24 @@ export const provideCommandRegistry = () => {
         }
 
         let index = 0
+        const sorted: QueryIndexedCommand[] = []
         for (const [scope, items] of grouped) {
           if (items.length === 0) {
             grouped.delete(scope)
           }
           else {
-            for (const cmd of items)
+            const o = (cmd: QueryIndexedCommand) => (cmd.order ?? 0) * 100 + cmd.index
+            items.sort((a, b) => o(a) - o(b))
+            for (const cmd of items) {
               cmd.index = index++
+              sorted.push(cmd)
+            }
           }
         }
 
         return {
           length: indexed.length,
-          items: indexed,
+          items: sorted,
           grouped,
         }
       }

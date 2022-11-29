@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   text?: string | number
   content: string
   color: string
@@ -10,20 +10,44 @@ defineProps<{
   active?: boolean
   disabled?: boolean
   as?: string
+  command?: boolean
 }>()
 
 defineOptions({
   inheritAttrs: false,
 })
+
+const el = ref<HTMLDivElement>()
+
+useCommand({
+  scope: 'Actions',
+
+  order: -2,
+  visible: () => props.command && !props.disabled,
+
+  name: () => props.content,
+  icon: () => props.icon,
+
+  onActivate() {
+    const clickEvent = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    })
+    el.value?.dispatchEvent(clickEvent)
+  },
+})
 </script>
 
 <template>
   <component
-    :is="as || 'button'" w-fit
-    flex gap-1 items-center rounded group
-    :hover="hover" focus:outline-none :focus-visible="hover"
+    :is="as || 'button'"
+    v-bind="$attrs" ref="el"
+    w-fit flex gap-1 items-center
+    rounded group :hover="hover"
+    focus:outline-none
+    :focus-visible="hover"
     :class="active ? [color] : 'text-secondary'"
-    v-bind="$attrs"
   >
     <CommonTooltip placement="bottom" :content="content">
       <div rounded-full p2 :group-hover="groupHover" :group-focus-visible="groupHover" group-focus-visible:ring="2 current">

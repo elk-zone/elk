@@ -12,7 +12,7 @@
   "action": {
     "compose": "组合",
     "enter_app": "进入应用",
-    "publish": "推送！",
+    "publish": "发布！",
     "save_changes": "保存更改",
     "sign_in": "登录"
   },

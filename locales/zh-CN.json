@@ -26,5 +26,9 @@
   },
   "feature_flag": {
     "virtual_scroll": "虚拟滚动"
+  },
+  "sys": {
+    "sign_in": "登录",
+    "sign_in_desc": "登录以关注其他人或主题, 喜欢、分享和回复帖子，或与不同服务器上的账号进行交互。"
   }
 }

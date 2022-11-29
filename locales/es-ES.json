@@ -1,0 +1,94 @@
+{
+    "account": {
+      "blocked_domains": "Dominios bloqueados",
+      "blocked_users": "Usuarios bloqueados",
+      "favourites": "Favoritos",
+      "follow": "Seguir",
+      "follow_back": "Seguir de vuelta",
+      "follow_requested": "Enviado",
+      "followers_count": "{0} Seguidores",
+      "following_count": "{0} Siguiendo",
+      "follows_you": "Te sigue",
+      "muted_users": "Usuarios silenciados",
+      "pinned": "Pinned",
+      "posts_count": "{0} Posts",
+      "unfollow": "Dejar de seguir"
+    },
+    "action": {
+      "compose": "Componer",
+      "enter_app": "Entrar",
+      "publish": "¡Publicar!",
+      "save_changes": "Guardar",
+      "sign_in": "Iniciar sesión"
+    },
+    "common": {
+      "end_of_list": "Final",
+      "error": "ERROR",
+      "not_found": "404 No Encontrado"
+    },
+    "feature_flag": {
+      "virtual_scroll": "Virtual Scrolling"
+    },
+    "menu": {
+      "block_account": "Bloqueados {0}",
+      "block_domain": "Dominios bloqueado/s {0}",
+      "direct_message_account": "Mensaje Directo {0}",
+      "mention_account": "Mención {0}",
+      "mute_account": "Silenciados {0}",
+      "open_in_original_site": "Abrir original",
+      "unblock_account": "Desbloqueado/s {0}",
+      "unblock_domain": "Dominios desbloqueados {0}",
+      "unmute_account": "No silenciados {0}"
+    },
+    "nav_footer": {
+      "select_feature_flags": "Cambiar Feature Flags",
+      "select_language": "Seleccionar Lenguaje",
+      "toggle_theme": "Cambiar Tema",
+      "zen_mode": "Modo Zen"
+    },
+    "nav_side": {
+      "bookmarks": "Bookmarks",
+      "conversations": "Conversaciones",
+      "explore": "Explorar",
+      "favourites": "Favoritos",
+      "federated": "Federados",
+      "home": "Home",
+      "local": "Local",
+      "notifications": "Notificaciones",
+      "profile": "Perfil"
+    },
+    "nav_user": {
+      "sign_in_desc": "Inicia sesión para seguir perfiles o hashtags, marcar como favorito, compartir and responder a publicaciones, or interactuar desde tu usuario con un servidor diferente."
+    },
+    "notification": {
+      "favourited_post": "tu post fue marcado como favorito",
+      "followed_you": "te ha seguido",
+      "missing_type": "MISSING notification.type:",
+      "reblogged_post": "reblogged your post",
+      "request_to_follow": "ha solicitado seguirte",
+      "update_status": "ha actualizado su estado"
+    },
+    "state": {
+      "editing": "Editando",
+      "uploading": "Subiendo..."
+    },
+    "tab": {
+      "media": "Media",
+      "posts": "Publicaciones",
+      "posts_with_replies": "Publicaciones y respuestas"
+    },
+    "timeline": {
+      "show_new_items": "Muestra {0} nuevos artículos"
+    },
+    "title": {
+      "federated_timeline": "Timeline Federada",
+      "local_timeline": "Timeline Local"
+    },
+    "tooltip": {
+      "add_content_warning": "Añadir advertencia",
+      "add_media": "Añadir imágenes, arhivos de video o audio",
+      "change_content_visibility": "Cambiar visibilidad",
+      "toggle_code_block": "Toggle code block"
+    }
+  }
+  

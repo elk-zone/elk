@@ -57,6 +57,14 @@
   "nav_user": {
     "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
   },
+  "notification": {
+    "followed_you": "followed you",
+    "request_to_follow": "requested to follow you",
+    "favourited_post": "favourited your post",
+    "reblogged_post": "reblogged your post",
+    "update_status": "updated their status",
+    "missing_type": "MISSING notification.type:"
+  },
   "state": {
     "editing": "Editing",
     "uploading": "Uploading..."

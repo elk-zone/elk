@@ -129,7 +129,7 @@ const toggleBlockDomain = async () => {
             <CommonDropdownItem :text="$t('account.blocked_users')" icon="i-ri:forbid-2-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/domain_blocks">
-            <CommonDropdownItem text="$t('account.blocked_domains')" icon="i-ri:shut-down-line" :command="command" />
+            <CommonDropdownItem :text="$t('account.blocked_domains')" icon="i-ri:shut-down-line" :command="command" />
           </NuxtLink>
         </template>
       </template>

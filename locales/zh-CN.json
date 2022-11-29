@@ -1,7 +1,10 @@
 {
+  "block": "拉黑",
+  "mute": "屏蔽",
+  "post": "帖文",
   "account": {
-    "blocked_users": "已@:menu.block的用户",
-    "blocked_domains": "已@:menu.block的域名",
+    "blocked_users": "已@:block的用户",
+    "blocked_domains": "已@:block的域名",
     "favourites": "喜欢的@:post",
     "follow": "关注",
     "follow_back": "回关",
@@ -9,7 +12,7 @@
     "followers_count": "被 {0} 人@:account.follow",
     "following_count": "正在@:account.follow {0} 人",
     "follows_you": "已@:account.follow你",
-    "muted_users": "已@:menu.mute的用户",
+    "muted_users": "已@:mute的用户",
     "posts_count": "{0} 条@:post",
     "pinned": "置顶的@:post",
     "unfollow": "取消@:account.follow"
@@ -30,17 +33,15 @@
     "virtual_scroll": "虚拟滚动"
   },
   "menu": {
-    "block": "拉黑",
-    "mute": "屏蔽",
-    "block_account": "@:menu.block {0}",
-    "block_domain": "@:menu.block域名 {0}",
+    "block_account": "@:block {0}",
+    "block_domain": "@:block域名 {0}",
     "direct_message_account": "私信 {0}",
     "mention_account": "提及 {0}",
-    "mute_account": "@:menu.mute {0}",
+    "mute_account": "@:mute {0}",
     "open_in_original_site": "从源站打开",
-    "unblock_account": "解除@:menu.block {0}",
-    "unblock_domain": "解除@:menu.block域名 {0}",
-    "unmute_account": "解除@:menu.mute {0}"
+    "unblock_account": "解除@:block {0}",
+    "unblock_domain": "解除@:block域名 {0}",
+    "unmute_account": "解除@:mute {0}"
   },
   "nav_footer": {
     "select_feature_flags": "功能开关",
@@ -70,7 +71,6 @@
     "update_status": "更新了他们的状态",
     "missing_type": "未知的通知类型："
   },
-  "post": "帖文",
   "state": {
     "editing": "编辑中",
     "uploading": "上传中..."

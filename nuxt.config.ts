@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     define: {
       'import.meta.env.__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
+      'process.mock': isCI && process.env.PULL_REQUEST === 'true' && process.env.MOCK_USER,
     },
     build: {
       target: 'esnext',
@@ -95,3 +96,11 @@ export default defineNuxtConfig({
     defaultLocale: 'en-US',
   },
 })
+
+declare global {
+  namespace NodeJS {
+    interface Process {
+      mock?: Record<string, any>
+    }
+  }
+}

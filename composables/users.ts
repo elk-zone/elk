@@ -4,9 +4,10 @@ import { clearUserDrafts } from './statusDrafts'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
 
-const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, [], { deep: true })
-const servers = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, {}, { deep: true })
-const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, '')
+const mock = process.mock
+const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
+const servers = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
+const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 
 export const currentUser = computed<UserLogin | undefined>(() => {
   let user: UserLogin | undefined

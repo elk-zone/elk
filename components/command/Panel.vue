@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CommandParent, QueryIndexedCommand } from '@/composables/command'
+import type { CommandScope, QueryIndexedCommand } from '@/composables/command'
 
 const isMac = useIsMac()
 const registry = useCommandRegistry()
@@ -8,7 +8,7 @@ const inputEl = $ref<HTMLInputElement>()
 const resultEl = $ref<HTMLDivElement>()
 
 let show = $ref(false)
-let scopes = $ref<CommandParent[]>([])
+let scopes = $ref<CommandScope[]>([])
 let input = $ref('')
 
 // listen to ctrl+/ on windows/linux or cmd+/ on mac

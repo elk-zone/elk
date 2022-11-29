@@ -1,13 +1,18 @@
 <script setup lang="ts">
-const { options } = defineProps<{
-  options: string[] | { name: string; display: string }[]
+const { options, command } = defineProps<{
+  options: string[] | {
+    name: string
+    icon?: string
+    display: string
+  }[]
+  command?: boolean
 }>()
 
 const { modelValue } = defineModel<{
   modelValue: string
 }>()
 
-const tabs = computed(() => {
+const tabs = $computed(() => {
   return options.map((option) => {
     if (typeof option === 'string')
       return { name: option, display: option }
@@ -19,6 +24,17 @@ const tabs = computed(() => {
 function toValidName(otpion: string) {
   return otpion.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-')
 }
+
+useCommands(() => command
+  ? tabs.map(tab => ({
+    scope: 'Tabs',
+
+    name: tab.display,
+    icon: tab.icon ?? 'i-ri:file-list-2-line',
+
+    onActivate: () => modelValue.value = tab.name,
+  }))
+  : [])
 </script>
 
 <template>

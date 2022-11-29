@@ -13,16 +13,19 @@ const tabs = $computed(() => [
   {
     name: 'posts',
     display: t('tab.posts'),
+    icon: 'i-ri:file-list-2-line',
     paginator: paginatorPosts,
   },
   {
     name: 'relies',
     display: t('tab.posts_with_replies'),
+    icon: 'i-ri:chat-3-line',
     paginator: paginatorPostsWithReply,
   },
   {
     name: 'media',
     display: t('tab.media'),
+    icon: 'i-ri:camera-2-line',
     paginator: paginatorMedia,
   },
 ] as const)
@@ -34,7 +37,7 @@ const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
 
 <template>
   <div>
-    <CommonTabs v-model="tab" :options="tabs" />
+    <CommonTabs v-model="tab" :options="tabs" command />
     <KeepAlive>
       <TimelinePaginator :key="tab" :paginator="paginator" />
     </KeepAlive>

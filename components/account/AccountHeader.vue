@@ -3,6 +3,7 @@ import type { Account, Field } from 'masto'
 
 const { account } = defineProps<{
   account: Account
+  command?: boolean
 }>()
 
 const createdAt = $(useFormattedDateTime(() => account.createdAt, {
@@ -89,8 +90,8 @@ watchEffect(() => {
           </div>
         </div>
         <div absolute top="1/2" right-0 translate-y="-1/2" flex gap-2 items-center>
-          <AccountMoreButton :account="account" />
-          <AccountFollowButton :account="account" />
+          <AccountMoreButton :account="account" :command="command" />
+          <AccountFollowButton :account="account" :command="command" />
           <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
             <div rounded p2 group-hover="bg-rose/10">
               <div i-ri:bell-line />

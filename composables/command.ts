@@ -5,6 +5,7 @@ import type { LocaleObject } from '#i18n'
 const scopes = [
   '',
   'Actions',
+  'Tabs',
   'Navigation',
   'Preferences',
   'Account',
@@ -13,16 +14,16 @@ const scopes = [
   'Switch account',
 ] as const
 
-export type CommandScope = typeof scopes[number]
+export type CommandScopeNames = typeof scopes[number]
 
-export interface CommandParent {
+export interface CommandScope {
   id: string
   display: string
 }
 
 export interface CommandProvider {
   parent?: string
-  scope?: CommandScope
+  scope?: CommandScopeNames
 
   // smaller is higher priority
   order?: number
@@ -35,7 +36,7 @@ export interface CommandProvider {
   bindings?: string[] | (() => string[])
 
   onActivate?: () => void
-  onComplete?: () => CommandParent
+  onComplete?: () => CommandScope
 }
 
 export type ResolvedCommand =
@@ -101,7 +102,7 @@ export const provideCommandRegistry = () => {
           .map(({ item }) => ({ ...item }))
 
         // group by scope
-        const grouped = new Map<CommandScope, QueryIndexedCommand[]>()
+        const grouped = new Map<CommandScopeNames, QueryIndexedCommand[]>()
         for (const cmd of res) {
           const scope = cmd.scope ?? ''
           if (!grouped.has(scope))
@@ -133,7 +134,7 @@ export const provideCommandRegistry = () => {
       else {
         const indexed = cmds.map((cmd, index) => ({ ...cmd, index }))
 
-        const grouped = new Map<CommandScope, QueryIndexedCommand[]>(
+        const grouped = new Map<CommandScopeNames, QueryIndexedCommand[]>(
           scopes.map(scope => [scope, []]))
         for (const cmd of indexed) {
           const scope = cmd.scope ?? ''

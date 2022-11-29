@@ -45,31 +45,31 @@ const toggleBlockDomain = async () => {
     <template #popper>
       <NuxtLink :to="account.url" target="_blank">
         <CommonDropdownItem icon="i-ri:arrow-right-up-line">
-          Open in original site
+          {{ $t('menu.open_in_original_site') }}
         </CommonDropdownItem>
       </NuxtLink>
 
       <template v-if="currentUser">
         <template v-if="!isSelf">
           <CommonDropdownItem icon="i-ri:at-line" @click="mentionUser(account)">
-            Mention @{{ account.acct }}
+            {{ $t('menu.mention_account', [account.acct]) }}
           </CommonDropdownItem>
           <CommonDropdownItem icon="i-ri:message-3-line" @click="directMessageUser(account)">
-            Direct message @{{ account.acct }}
+            {{ $t('menu.direct_message_account', [account.acct]) }}
           </CommonDropdownItem>
 
           <CommonDropdownItem v-if="!relationship?.muting" icon="i-ri:volume-up-fill" @click="toggleMute">
-            Mute @{{ account.acct }}
+            {{ $t('menu.mute_account', [account.acct]) }}
           </CommonDropdownItem>
           <CommonDropdownItem v-else icon="i-ri:volume-mute-line" @click="toggleMute">
-            Unmute @{{ account.acct }}
+            {{ $t('menu.unmute_account', [account.acct]) }}
           </CommonDropdownItem>
 
           <CommonDropdownItem v-if="!relationship?.blocking" icon="i-ri:forbid-2-line" @click="toggleBlockUser">
-            Block @{{ account.acct }}
+            {{ $t('menu.block_account', [account.acct]) }}
           </CommonDropdownItem>
           <CommonDropdownItem v-else icon="i-ri:checkbox-circle-line" @click="toggleBlockUser">
-            Unblock @{{ account.acct }}
+            {{ $t('menu.unblock_account', [account.acct]) }}
           </CommonDropdownItem>
 
           <template v-if="getServerName(account) !== currentServer">
@@ -78,10 +78,10 @@ const toggleBlockDomain = async () => {
               icon="i-ri:shut-down-line"
               @click="toggleBlockDomain"
             >
-              Block domain {{ getServerName(account) }}
+              {{ $t('menu.block_domain', [getServerName(account)]) }}
             </CommonDropdownItem>
             <CommonDropdownItem v-else icon="i-ri:restart-line" @click="toggleBlockDomain">
-              Unblock domain {{ getServerName(account) }}
+              {{ $t('menu.unblock_domain', [getServerName(account)]) }}
             </CommonDropdownItem>
           </template>
         </template>

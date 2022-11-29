@@ -30,17 +30,17 @@ async function toggleFollow() {
     <div rounded w-28 p2 :group-hover="relationship?.following ? 'bg-red/75' : 'bg-orange/40'" :class="!relationship?.following ? relationship?.followedBy ? 'bg-orange/20' : 'bg-white/10' : relationship?.followedBy ? ' bg-orange/70' : 'bg-orange/50'">
       <template v-if="relationship?.following">
         <span group-hover="hidden">{{ relationship?.followedBy ? 'Mutuals' : 'Following' }}</span>
-        <span hidden group-hover="inline">Unfollow</span>
+        <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
       </template>
       <template v-else-if="relationship?.requested">
-        <span>Requested</span>
+        <span>{{ $t('account.follow_requested') }}</span>
       </template>
       <template v-else-if="relationship?.followedBy">
-        <span group-hover="hidden">Follows you</span>
-        <span hidden group-hover="inline">Follow back</span>
+        <span group-hover="hidden">{{ $t('account.follows_you') }}</span>
+        <span hidden group-hover="inline">{{ $t('account.follow_back') }}</span>
       </template>
       <template v-else>
-        <span>Follow</span>
+        <span>{{ $t('account.follow') }}</span>
       </template>
     </div>
   </button>

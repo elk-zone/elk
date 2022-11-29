@@ -1,32 +1,63 @@
 {
-  "nav_side": {
-    "home": "Home",
-    "notifications": "Notifications",
-    "explore": "Explore",
-    "local": "Local",
-    "federated": "Federated",
-    "conversations": "Conversations",
-    "favourites": "Favourites",
-    "bookmarks": "Bookmarks",
-    "profile": "Profile"
-  },
-  "nav_footer": {
-    "select_language": "Select Language",
-    "select_feature_flags": "Toggle Feature Flags",
-    "toggle_theme": "Toggle Theme",
-    "zen_mode": "Zen Mode"
-  },
-  "timeline": "Timeline",
-  "title": {
-    "local_timeline": "@:nav_side.local @:timeline",
-    "federated_timeline": "@:nav_side.federated @:timeline"
-  },
   "account": {
-    "posts": "{0} Posts",
-    "following": "{0} Following",
-    "followers": "{0} Followers"
+    "follow": "Follow",
+    "follow_back": "Follow back",
+    "follow_requested": "Requested",
+    "followers_count": "{0} Followers",
+    "following_count": "{0} Following",
+    "follows_you": "Follows you",
+    "posts_count": "{0} Posts",
+    "unfollow": "Unfollow"
+  },
+  "action": {
+    "compose": "Compose",
+    "publish": "Publish!",
+    "save_changes": "Save changes"
   },
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"
+  },
+  "menu": {
+    "block_account": "Block @{0}",
+    "block_domain": "Block domain {0}",
+    "direct_message_account": "Direct message @{0}",
+    "mention_account": "Mention @{0}",
+    "mute_account": "Mute @{0}",
+    "open_in_original_site": "Open in original site",
+    "unblock_account": "Unblock @{0}",
+    "unblock_domain": "Unblock domain {0}",
+    "unmute_account": "Unmute @{0}"
+  },
+  "nav_footer": {
+    "select_feature_flags": "Toggle Feature Flags",
+    "select_language": "Select Language",
+    "toggle_theme": "Toggle Theme",
+    "zen_mode": "Zen Mode"
+  },
+  "nav_side": {
+    "bookmarks": "Bookmarks",
+    "conversations": "Conversations",
+    "explore": "Explore",
+    "favourites": "Favourites",
+    "federated": "Federated",
+    "home": "Home",
+    "local": "Local",
+    "notifications": "Notifications",
+    "profile": "Profile"
+  },
+  "state": {
+    "editing": "Editing",
+    "uploading": "Uploading..."
+  },
+  "timeline": "Timeline",
+  "title": {
+    "federated_timeline": "@:nav_side.federated @:timeline",
+    "local_timeline": "@:nav_side.local @:timeline"
+  },
+  "tooltip": {
+    "add_content_warning": "Add content warning",
+    "add_media": "Add images, a video or an audio file",
+    "change_content_visibility": "Change content visibility",
+    "toggle_code_block": "Toggle code block"
   }
 }

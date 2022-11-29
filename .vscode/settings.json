@@ -9,11 +9,14 @@
   "editor.formatOnSave": false,
   "cSpell.words": [
     "masto",
-    "Nuxtodon"
+    "Nuxtodon",
+    "unmute"
   ],
   "i18n-ally.localesPaths": [
     "locales"
   ],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.sourceLanguage": "en-US"
+  "i18n-ally.sourceLanguage": "en-US",
+  "i18n-ally.preferredDelimiter": "_",
+  "i18n-ally.sortKeys": true
 }

@@ -14,7 +14,7 @@ defineProps<{
       <div flex justify-between px5 py4>
         <div flex gap-3 items-center>
           <NuxtLink v-if="back" flex="~ gap1" items-center btn-text p-0 @click="$router.go(-1)">
-            <div i-ri-arrow-left-line />
+            <div i-ri:arrow-left-line />
           </NuxtLink>
           <slot name="title" />
           <div h-7 w-1px />

@@ -6,7 +6,7 @@ definePageMeta({
 const paginator = useMasto().favourites.getIterator()
 const { t } = useI18n()
 
-useHead({
+useHeadFixed({
   title: () => t('nav_side.favourites'),
 })
 </script>

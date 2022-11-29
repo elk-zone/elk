@@ -7,7 +7,7 @@ const { t } = useI18n()
 const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByName(accountName).catch(() => null)))
 
 if (account) {
-  useHead({
+  useHeadFixed({
     title: () => `${getDisplayName(account)} (@${account.acct})`,
   })
 }

@@ -9,7 +9,7 @@ const stream = await useMasto().stream.streamTagTimeline(tagName)
 onBeforeUnmount(() => stream.disconnect())
 
 if (tag) {
-  useHead({
+  useHeadFixed({
     title: () => `#${tag.name}`,
   })
 }

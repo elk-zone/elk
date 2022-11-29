@@ -7,7 +7,7 @@ const paginator = useMasto().conversations.getIterator()
 
 const { t } = useI18n()
 
-useHead({
+useHeadFixed({
   title: () => t('nav_side.conversations'),
 })
 </script>

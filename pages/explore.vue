@@ -3,7 +3,7 @@ const paginator = useMasto().trends.getStatuses()
 
 const { t } = useI18n()
 
-useHead({
+useHeadFixed({
   title: () => t('nav_side.explore'),
 })
 </script>

@@ -6,7 +6,7 @@ definePageMeta({
 const paginator = useMasto().accounts.getStatusesIterable(currentUser.value!.account.id, { pinned: true })
 const { t } = useI18n()
 
-useHead({
+useHeadFixed({
   title: () => t('account.pinned'),
 })
 </script>

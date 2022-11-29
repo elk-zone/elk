@@ -5,7 +5,7 @@ definePageMeta({
 
 const paginator = useMasto().domainBlocks.getIterator()
 
-useHead({
+useHeadFixed({
   title: 'Blocked domains',
 })
 

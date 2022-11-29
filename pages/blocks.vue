@@ -5,7 +5,7 @@ definePageMeta({
 
 const paginator = useMasto().blocks.getIterator()
 
-useHead({
+useHeadFixed({
   title: 'Blocked users',
 })
 </script>

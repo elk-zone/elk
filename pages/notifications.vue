@@ -14,7 +14,7 @@ const paginator = $computed(() => {
   return useMasto().notifications.getIterator(tab === 'All' ? undefined : { types: ['mention'] })
 })
 
-useHead({
+useHeadFixed({
   title: () => t('nav_side.notifications'),
 })
 </script>

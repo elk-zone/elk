@@ -16,7 +16,7 @@ const stream = await useMasto().stream.streamUser()
 onBeforeUnmount(() => stream.disconnect())
 
 const { t } = useI18n()
-useHead({
+useHeadFixed({
   title: () => t('nav_side.home'),
 })
 </script>

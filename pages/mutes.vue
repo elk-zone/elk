@@ -5,7 +5,7 @@ definePageMeta({
 
 const paginator = useMasto().mutes.getIterator()
 
-useHead({
+useHeadFixed({
   title: 'Muted users',
 })
 </script>

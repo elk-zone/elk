@@ -7,7 +7,7 @@ const paginator = useMasto().bookmarks.getIterator()
 
 const { t } = useI18n()
 
-useHead({
+useHeadFixed({
   title: () => t('nav_side.bookmarks'),
 })
 </script>

@@ -5,7 +5,7 @@ onBeforeUnmount(() => stream.disconnect())
 
 const { t } = useI18n()
 
-useHead({
+useHeadFixed({
   title: () => t('title.local_timeline'),
 })
 </script>

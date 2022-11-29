@@ -5,7 +5,7 @@ const isPreview = window.location.hostname.includes('deploy-preview')
 
 export function usePageHeader() {
   const i18n = useI18n()
-  useHead({
+  useHeadFixed({
     htmlAttrs: {
       lang: () => i18n.locale.value,
     },

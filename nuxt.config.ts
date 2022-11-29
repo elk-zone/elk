@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     define: {
       'import.meta.env.__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
-      'process.mock': (process.env.MOCK_USER !== 'false' && (isDevelopment || (isCI && process.env.PULL_REQUEST === 'true'))) && (process.env.MOCK_USER /* ?? TODO: TEST_USER_TOKEN */),
+      'process.mock': ((isDevelopment || (isCI && process.env.PULL_REQUEST === 'true')) && process.env.MOCK_USER) || 'false',
     },
     build: {
       target: 'esnext',

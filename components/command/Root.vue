@@ -48,7 +48,10 @@ useCommand({
   name: 'Select language',
   icon: 'i-ri:earth-line',
 
-  onComplete: () => 'language',
+  onComplete: () => ({
+    id: 'language',
+    display: 'Languages',
+  }),
 })
 useCommands(() => locales.value.map(l => ({
   parent: 'language',
@@ -82,7 +85,10 @@ useCommand({
   description: 'Switch to another account',
   icon: 'i-ri:user-shared-line',
 
-  onComplete: () => 'account-switch',
+  onComplete: () => ({
+    id: 'account-switch',
+    display: 'Accounts',
+  }),
 })
 useCommands(() => users.value.map(user => ({
   parent: 'account-switch',

@@ -13,6 +13,11 @@ const scopes = [
 
 export type CommandScope = typeof scopes[number]
 
+export interface CommandParent {
+  id: string
+  display: string
+}
+
 export interface CommandProvider {
   parent?: string
   scope?: CommandScope
@@ -28,7 +33,7 @@ export interface CommandProvider {
   bindings?: string[] | (() => string[])
 
   onActivate?: () => void
-  onComplete?: () => string
+  onComplete?: () => CommandParent
 }
 
 export type ResolvedCommand =

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { QueryIndexedCommand } from '@/composables/command'
+import type { CommandParent, QueryIndexedCommand } from '@/composables/command'
 
 const isMac = useIsMac()
 const registry = useCommandRegistry()
@@ -8,7 +8,7 @@ const inputEl = $ref<HTMLInputElement>()
 const resultEl = $ref<HTMLDivElement>()
 
 let show = $ref(false)
-let scopes = $ref<string[]>([])
+let scopes = $ref<CommandParent[]>([])
 let input = $ref('')
 
 // listen to ctrl+/ on windows/linux or cmd+/ on mac
@@ -29,7 +29,7 @@ onKeyStroke('Escape', (e) => {
 
 const commandMode = $computed(() => input.startsWith('>'))
 const result = $computed(() => commandMode
-  ? registry.query(scopes.join('.'), input.slice(1))
+  ? registry.query(scopes.map(s => s.id).join('.'), input.slice(1))
   : { length: 0, items: [], grouped: {} })
 let active = $ref(0)
 watch($$(result), (n, o) => {
@@ -170,6 +170,12 @@ const onKeyDown = (e: KeyboardEvent) => {
         <!-- Input -->
         <label class="flex mx-3 my-1 items-center">
           <div mx-1 i-ri:search-line />
+
+          <div v-for="scope in scopes" :key="scope.id" class="flex items-center mx-1 gap-2">
+            <div class="text-sm">{{ scope.display }}</div>
+            <span class="text-secondary">/</span>
+          </div>
+
           <input
             ref="inputEl"
             v-model="input"

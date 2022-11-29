@@ -47,6 +47,9 @@
     "notifications": "Notifications",
     "profile": "Profile"
   },
+  "nav_user": {
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
+  },
   "state": {
     "editing": "Editing",
     "uploading": "Uploading..."

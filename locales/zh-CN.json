@@ -47,6 +47,9 @@
     "notifications": "通知",
     "profile": "个人资料"
   },
+  "nav_user": {
+    "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖子，或与不同服务器上的账号交互。"
+  },
   "state": {
     "editing": "编辑中",
     "uploading": "上传中..."

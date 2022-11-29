@@ -1,9 +1,24 @@
 import Fuse from 'fuse.js'
 
+const scopes = [
+  '',
+  'Actions',
+  'Navigation',
+  'Preferences',
+  'Account',
+
+  'Languages',
+  'Switch account',
+] as const
+
+export type CommandScope = typeof scopes[number]
+
 export interface CommandProvider {
   parent?: string
-  scope?: string
+  scope?: CommandScope
 
+  // larger number means higher priority
+  order?: number
   visible?: () => boolean
 
   id: string | (() => string)
@@ -14,6 +29,7 @@ export interface CommandProvider {
   bindings?: string[] | (() => string[])
 
   onActivate?: () => void
+  onComplete?: () => string
 }
 
 export type ResolvedCommand =
@@ -25,7 +41,11 @@ export type ResolvedCommand =
     bindings: string[] | undefined
   }
 
-export type IndexedCommand = ResolvedCommand & {
+export type QueryScoredCommand = ResolvedCommand & {
+  score: number
+}
+
+export type QueryIndexedCommand = ResolvedCommand & {
   index: number
 }
 
@@ -37,6 +57,7 @@ export const provideCommandRegistry = () => {
 
   const commands = computed<ResolvedCommand[]>(() =>
     [...providers]
+      .filter(command => command.visible?.() ?? true)
       .map(provider => ({
         ...provider,
         id: r(provider.id),
@@ -44,8 +65,7 @@ export const provideCommandRegistry = () => {
         name: r(provider.name),
         description: r(provider.description),
         bindings: r(provider.bindings),
-      }))
-      .filter(command => command.visible?.() ?? true))
+      })))
 
   let lastScope = ''
   let lastFuse: Fuse<ResolvedCommand> | undefined
@@ -66,37 +86,72 @@ export const provideCommandRegistry = () => {
       const cmds = commands.value
         .filter(cmd => (cmd.parent ?? '') === scope)
 
-      const search = (query: string) => {
+      if (query) {
         const fuse = lastScope === scope && lastFuse
           ? lastFuse
           : new Fuse(cmds, {
-            keys: ['name', 'description'],
+            keys: ['scope', 'name', 'description'],
+            includeScore: true,
+            shouldSort: false,
           })
 
         lastScope = scope
         lastFuse = fuse
 
-        return fuse.search(query)
-          .map(result => result.item)
+        const res = fuse.search(query)
+          .map(result => ({
+            ...result.item,
+            score: result.score!,
+          }))
+
+        const o = (cmd: QueryScoredCommand) => (cmd.order ?? 0) - cmd.score
+
+        const indexed = res
+          .sort((a, b) => o(b) - o(a))
+          .map((cmd, index) => ({ ...cmd, index }))
+
+        // group by scope
+        const grouped = new Map<CommandScope, QueryIndexedCommand[]>()
+        for (const cmd of indexed) {
+          const scope = cmd.scope ?? ''
+          if (!grouped.has(scope))
+            grouped.set(scope, [])
+          grouped.get(scope)!.push(cmd)
+        }
+
+        return {
+          length: res.length,
+          items: indexed,
+          grouped,
+        }
       }
 
-      const res = query ? search(query) : cmds
+      else {
+        const indexed = cmds.map((cmd, index) => ({ ...cmd, index }))
 
-      const indexed = res.map((cmd, index) => ({ ...cmd, index }))
+        const grouped = new Map<CommandScope, QueryIndexedCommand[]>(
+          scopes.map(scope => [scope, []]))
+        for (const cmd of indexed) {
+          const scope = cmd.scope ?? ''
+          grouped.get(scope)!.push(cmd)
+        }
 
-      // group by scope
-      const grouped = indexed.reduce((acc, cmd) => {
-        const scope = cmd.scope ?? ''
-        if (!acc.has(scope))
-          acc.set(scope, [])
-        acc.get(scope)!.push(cmd)
-        return acc
-      }, new Map<string, IndexedCommand[]>())
+        let index = 0
+        for (const [scope, items] of grouped) {
+          if (items.length === 0) {
+            grouped.delete(scope)
+          }
+          else {
+            for (const cmd of items)
+              cmd.index = index++
+          }
+        }
 
-      return {
-        length: res.length,
-        items: indexed,
-        grouped,
+        return {
+          length: indexed.length,
+          items: indexed,
+          grouped,
+        }
       }
     },
   }
@@ -118,5 +173,22 @@ export const useCommand = (cmd: CommandProvider) => {
 
   onScopeDispose(() => {
     registry.remove(cmd)
+  })
+}
+
+export const useCommands = (cmds: () => CommandProvider[]) => {
+  const registry = useCommandRegistry()
+
+  const commands = computed(cmds)
+
+  watch(commands, (n, o = []) => {
+    for (const cmd of o)
+      registry.remove(cmd)
+    for (const cmd of n)
+      registry.register(cmd)
+  }, { deep: true, immediate: true })
+
+  onScopeDispose(() => {
+    commands.value.forEach(cmd => registry.remove(cmd))
   })
 }

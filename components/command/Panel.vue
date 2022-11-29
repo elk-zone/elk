@@ -1,19 +1,23 @@
 <script setup lang="ts">
-import type { IndexedCommand } from '@/composables/command'
+import type { QueryIndexedCommand } from '@/composables/command'
 
+const isMac = useIsMac()
 const registry = useCommandRegistry()
 
 const inputEl = $ref<HTMLInputElement>()
 const resultEl = $ref<HTMLDivElement>()
 
 let show = $ref(false)
+let scopes = $ref<string[]>([])
 let input = $ref('')
 
-// listen to ctrl+k or cmd+k
+// listen to ctrl+/ on windows/linux or cmd+/ on mac
 useEventListener('keydown', async (e: KeyboardEvent) => {
-  if (e.key === 'k' && (e.ctrlKey || e.metaKey)) {
+  if (e.key === '/' && (isMac.value ? e.metaKey : e.ctrlKey)) {
     e.preventDefault()
     show = true
+    scopes = []
+    input = '>'
     await nextTick()
     inputEl?.focus()
   }
@@ -23,7 +27,10 @@ onKeyStroke('Escape', (e) => {
   show = false
 }, { target: document })
 
-const result = $computed(() => registry.query('', input))
+const commandMode = $computed(() => input.startsWith('>'))
+const result = $computed(() => commandMode
+  ? registry.query(scopes.join('.'), input.slice(1))
+  : { length: 0, items: [], grouped: {} })
 let active = $ref(0)
 watch($$(result), () => {
   active = 0
@@ -31,10 +38,24 @@ watch($$(result), () => {
 
 const findItemEl = (index: number) =>
   resultEl?.querySelector(`[data-index="${index}"]`) as HTMLDivElement | null
-const onCommandActivate = (item: IndexedCommand) => {
-  item.onActivate?.()
-  show = false
-  input = ''
+const onCommandActivate = (item: QueryIndexedCommand) => {
+  if (item.onActivate) {
+    item.onActivate()
+    show = false
+  }
+  else if (item.onComplete) {
+    scopes.push(item.onComplete())
+    input = '>'
+  }
+}
+const onCommandComplete = (item: QueryIndexedCommand) => {
+  if (item.onComplete) {
+    scopes.push(item.onComplete())
+    input = '>'
+  }
+  else if (item.onActivate) {
+    item.onActivate()
+  }
 }
 const intoView = (index: number) => {
   const el = findItemEl(index)
@@ -90,6 +111,24 @@ const onKeyDown = (e: KeyboardEvent) => {
       if (cmd)
         onCommandActivate(cmd)
 
+      break
+    }
+
+    case 'Tab': {
+      e.preventDefault()
+
+      const cmd = result.items[active]
+      if (cmd)
+        onCommandComplete(cmd)
+
+      break
+    }
+
+    case 'Backspace': {
+      if (input === '>' && scopes.length) {
+        e.preventDefault()
+        scopes.pop()
+      }
       break
     }
   }
@@ -169,6 +208,16 @@ const onKeyDown = (e: KeyboardEvent) => {
                 </div>
 
                 <div
+                  v-if="cmd.onComplete"
+                  class="flex items-center gap-1 transition-all duration-65 ease-in-out"
+                  :class="active === cmd.index ? 'opacity-100' : 'opacity-0'"
+                >
+                  <div class="text-xs text-secondary">
+                    Complete
+                  </div>
+                  <CommandKey name="Tab" />
+                </div>
+                <div
                   v-if="cmd.onActivate"
                   class="flex items-center gap-1 transition-all duration-65 ease-in-out"
                   :class="active === cmd.index ? 'opacity-100' : 'opacity-0'"
@@ -181,6 +230,15 @@ const onKeyDown = (e: KeyboardEvent) => {
               </div>
             </template>
           </template>
+        </div>
+
+        <div class="w-full border-b-1 border-base" />
+
+        <!-- Footer -->
+        <div class="flex items-center px-3 py-1 text-xs">
+          <div i-ri:lightbulb-flash-line />
+          Tip: Use <CommandKey name="Ctrl+K" /> to search,
+          <CommandKey name="Ctrl+/" /> to activate command mode.
         </div>
       </div>
     </div>

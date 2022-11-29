@@ -3,11 +3,13 @@ const props = defineProps<{
   name: string
 }>()
 
+const isMac = useIsMac()
+
 const keys = $computed(() => props.name.toLowerCase().split('+'))
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex items-center px-1">
     <template v-for="(key, index) in keys" :key="key">
       <div v-if="index > 0" class="inline-block px-.5">
         +
@@ -17,8 +19,10 @@ const keys = $computed(() => props.name.toLowerCase().split('+'))
         text="xs secondary"
         border="1 base"
       >
-        <div v-if="key === 'enter'" i-uil:enter />
-        <div v-else-if="key === 'meta'" i-ri:command-line />
+        <div v-if="key === 'enter'" i-material-symbols:keyboard-return-rounded />
+        <div v-else-if="key === 'meta' && isMac" i-material-symbols:keyboard-command-key />
+        <div v-else-if="key === 'meta' && !isMac" i-material-symbols:window-sharp />
+        <div v-else-if="key === 'alt' && isMac" i-material-symbols:keyboard-option-key-rounded />
         <div v-else-if="key === 'arrowup'" i-ri:arrow-up-line />
         <div v-else-if="key === 'arrowdown'" i-ri:arrow-down-line />
         <div v-else-if="key === 'arrowleft'" i-ri:arrow-left-line />
@@ -27,7 +31,7 @@ const keys = $computed(() => props.name.toLowerCase().split('+'))
           ESC
         </template>
         <div v-else :class="{ 'px-.5': key.length === 1 }">
-          {{ key.toUpperCase() }}
+          {{ key[0].toUpperCase() + key.slice(1) }}
         </div>
       </div>
     </template>

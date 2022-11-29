@@ -1,7 +1,7 @@
 {
   "account": {
-    "blocked_users": "已拉黑的用户",
     "blocked_domains": "已拉黑的域名",
+    "blocked_users": "已拉黑的用户",
     "favourites": "喜欢的帖文",
     "follow": "关注",
     "follow_back": "回关",
@@ -10,8 +10,8 @@
     "following_count": "正在关注 {0} 人",
     "follows_you": "已关注你",
     "muted_users": "已屏蔽的用户",
-    "posts_count": "{0} 条帖文",
     "pinned": "置顶的帖文",
+    "posts_count": "{0} 条帖文",
     "unfollow": "取消关注"
   },
   "action": {
@@ -22,9 +22,9 @@
     "sign_in": "登录"
   },
   "common": {
-    "not_found": "无法找到相关内容",
     "end_of_list": "列表到底啦",
-    "error": "错误"
+    "error": "错误",
+    "not_found": "无法找到相关内容"
   },
   "feature_flag": {
     "virtual_scroll": "虚拟滚动"
@@ -61,12 +61,12 @@
     "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。"
   },
   "notification": {
-    "followed_you": "关注了你",
-    "request_to_follow": "请求关注你",
     "favourited_post": "点赞了你的帖文",
+    "followed_you": "关注了你",
+    "missing_type": "未知的通知类型：",
     "reblogged_post": "转发了你的帖文",
-    "update_status": "更新了他们的状态",
-    "missing_type": "未知的通知类型："
+    "request_to_follow": "请求关注你",
+    "update_status": "更新了他们的状态"
   },
   "state": {
     "editing": "编辑中",

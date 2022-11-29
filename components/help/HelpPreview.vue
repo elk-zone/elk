@@ -71,7 +71,7 @@ const teams: Team[] = [
     </p>
 
     <button btn-solid mxa @click="emit('close')">
-      Enter App
+      {{ $t('action.enter_app') }}
     </button>
   </div>
 </template>

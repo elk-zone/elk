@@ -52,24 +52,24 @@ const toggleBlockDomain = async () => {
       <template v-if="currentUser">
         <template v-if="!isSelf">
           <CommonDropdownItem icon="i-ri:at-line" @click="mentionUser(account)">
-            {{ $t('menu.mention_account', [account.acct]) }}
+            {{ $t('menu.mention_account', [`@${account.acct}`]) }}
           </CommonDropdownItem>
           <CommonDropdownItem icon="i-ri:message-3-line" @click="directMessageUser(account)">
-            {{ $t('menu.direct_message_account', [account.acct]) }}
+            {{ $t('menu.direct_message_account', [`@${account.acct}`]) }}
           </CommonDropdownItem>
 
           <CommonDropdownItem v-if="!relationship?.muting" icon="i-ri:volume-up-fill" @click="toggleMute">
-            {{ $t('menu.mute_account', [account.acct]) }}
+            {{ $t('menu.mute_account', [`@${account.acct}`]) }}
           </CommonDropdownItem>
           <CommonDropdownItem v-else icon="i-ri:volume-mute-line" @click="toggleMute">
-            {{ $t('menu.unmute_account', [account.acct]) }}
+            {{ $t('menu.unmute_account', [`@${account.acct}`]) }}
           </CommonDropdownItem>
 
           <CommonDropdownItem v-if="!relationship?.blocking" icon="i-ri:forbid-2-line" @click="toggleBlockUser">
-            {{ $t('menu.block_account', [account.acct]) }}
+            {{ $t('menu.block_account', [`@${account.acct}`]) }}
           </CommonDropdownItem>
           <CommonDropdownItem v-else icon="i-ri:checkbox-circle-line" @click="toggleBlockUser">
-            {{ $t('menu.unblock_account', [account.acct]) }}
+            {{ $t('menu.unblock_account', [`@${account.acct}`]) }}
           </CommonDropdownItem>
 
           <template v-if="getServerName(account) !== currentServer">

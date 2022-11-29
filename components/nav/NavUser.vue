@@ -14,6 +14,6 @@
     </template>
   </VDropdown>
   <button v-else btn-solid text-sm px-2 py-1 text-center @click="openSigninDialog()">
-    Sign in
+    {{ $t('action.sign_in') }}
   </button>
 </template>

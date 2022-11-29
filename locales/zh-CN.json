@@ -24,9 +24,16 @@
     "notifications": "通知",
     "profile": "个人资料"
   },
-  "timeline": "时间轴",
+  "tab": {
+    "media": "媒体",
+    "posts": "贴文",
+    "posts_with_replies": "帖文与留言"
+  },
+  "timeline": {
+    "name": "时间轴"
+  },
   "title": {
-    "federated_timeline": "@:nav_side.federated@:timeline",
-    "local_timeline": "@:nav_side.local@:timeline"
+    "federated_timeline": "@:nav_side.federated@:timeline.name",
+    "local_timeline": "@:nav_side.local@:timeline.name"
   }
 }

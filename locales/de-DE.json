@@ -24,9 +24,8 @@
     "notifications": "Mitteilungen",
     "profile": "Profil"
   },
-  "timeline": "Timeline",
   "title": {
-    "federated_timeline": "@:nav_side.federated @:timeline",
-    "local_timeline": "@:nav_side.local @:timeline"
+    "federated_timeline": "@:nav_side.federated @:timeline.name",
+    "local_timeline": "@:nav_side.local @:timeline.name"
   }
 }

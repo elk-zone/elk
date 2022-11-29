@@ -11,22 +11,24 @@
   },
   "action": {
     "compose": "Compose",
+    "enter_app": "Enter App",
     "publish": "Publish!",
-    "save_changes": "Save changes"
+    "save_changes": "Save changes",
+    "sign_in": "Sign in"
   },
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"
   },
   "menu": {
-    "block_account": "Block @{0}",
+    "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
-    "direct_message_account": "Direct message @{0}",
-    "mention_account": "Mention @{0}",
-    "mute_account": "Mute @{0}",
+    "direct_message_account": "Direct message {0}",
+    "mention_account": "Mention {0}",
+    "mute_account": "Mute {0}",
     "open_in_original_site": "Open in original site",
-    "unblock_account": "Unblock @{0}",
+    "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
-    "unmute_account": "Unmute @{0}"
+    "unmute_account": "Unmute {0}"
   },
   "nav_footer": {
     "select_feature_flags": "Toggle Feature Flags",
@@ -49,10 +51,18 @@
     "editing": "Editing",
     "uploading": "Uploading..."
   },
-  "timeline": "Timeline",
+  "tab": {
+    "media": "Media",
+    "posts": "Posts",
+    "posts_with_replies": "Posts & Replies"
+  },
+  "timeline": {
+    "name": "Timeline",
+    "show_new_items": "Show {0} new items"
+  },
   "title": {
-    "federated_timeline": "@:nav_side.federated @:timeline",
-    "local_timeline": "@:nav_side.local @:timeline"
+    "federated_timeline": "@:nav_side.federated @:timeline.name",
+    "local_timeline": "@:nav_side.local @:timeline.name"
   },
   "tooltip": {
     "add_content_warning": "Add content warning",

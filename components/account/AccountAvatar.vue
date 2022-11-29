@@ -12,7 +12,7 @@ defineProps<{
     :src="account.avatar"
     :alt="account.username"
     loading="lazy"
-    rounded-full bg-gray:10
+    rounded-full bg-gray
     v-bind="$attrs"
   >
 </template>

@@ -86,6 +86,6 @@
     "add_content_warning": "添加内容警告标识",
     "add_media": "添加图片、视频或者音频文件",
     "change_content_visibility": "修改内容是否可见",
-    "toggle_code_block": "代码块切换"
+    "toggle_code_block": "切换代码块"
   }
 }

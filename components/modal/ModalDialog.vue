@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 
-type DialogType = 'top' | 'right' | 'bottom' | 'left' | 'dialog'
+type DialogType = 'top' | 'right' | 'bottom' | 'left' | 'dialog' | 'preview'
 
 const {
   type = 'dialog',
@@ -21,6 +21,8 @@ const positionClass = computed(() => {
   switch (type) {
     case 'dialog':
       return 'border rounded top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'
+    case 'preview':
+      return 'border rounded top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'
     case 'bottom':
       return 'bottom-0 left-0 right-0 border-t'
     case 'top':
@@ -38,6 +40,8 @@ const transformClass = computed(() => {
   if (isOut) {
     switch (type) {
       case 'dialog':
+        return 'op0'
+      case 'preview':
         return 'op0'
       case 'bottom':
         return 'translate-y-[100%]'
@@ -119,6 +123,9 @@ function onTransitionEnd() {
       >
         <slot />
       </div>
+      <button v-if="type === 'preview'" btn-action-icon bg="black/20" hover:bg="black/40" dark:bg="white/10" dark:hover:bg="white/20" absolute top-0 right-0 m1 @click="close">
+        <div i-ri:close-fill text-white />
+      </button>
     </div>
   </SafeTeleport>
 </template>
@@ -127,6 +134,7 @@ function onTransitionEnd() {
 .scrollbar-hide {
   scrollbar-width: none;
 }
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

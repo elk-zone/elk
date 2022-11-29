@@ -15,7 +15,10 @@ useHead({
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>{{ t('nav_side.bookmarks') }}</span>
+      <NuxtLink to="/bookmarks" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:bookmark-line />
+        <span>{{ t('nav_side.bookmarks') }}</span>
+      </NuxtLink>
     </template>
 
     <slot>

@@ -30,7 +30,7 @@ const { editor } = useTiptap({
     get: () => draft.params.status,
     set: newVal => draft.params.status = newVal,
   }),
-  placeholder: draft.placeholder,
+  placeholder: computed(() => draft.placeholder),
   autofocus: shouldExpanded,
   onSubmit: publish,
   onFocus() { isExpanded = true },

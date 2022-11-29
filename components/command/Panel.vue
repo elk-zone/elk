@@ -32,8 +32,9 @@ const result = $computed(() => commandMode
   ? registry.query(scopes.join('.'), input.slice(1))
   : { length: 0, items: [], grouped: {} })
 let active = $ref(0)
-watch($$(result), () => {
-  active = 0
+watch($$(result), (n, o) => {
+  if (n.length !== o.length || !n.items.every((i, idx) => i === o.items[idx]))
+    active = 0
 })
 
 const findItemEl = (index: number) =>

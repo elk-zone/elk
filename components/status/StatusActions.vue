@@ -181,7 +181,7 @@ function editStatus() {
       />
     </div>
 
-    <CommonDropdown flex-none ml3 placement="bottom">
+    <CommonDropdown flex-none ml3 placement="bottom" :eager-mount="command">
       <StatusActionButton
         content="More"
         color="text-purple" hover="text-purple" group-hover="bg-purple/10"

@@ -29,7 +29,7 @@
               <button
                 m5 p2 rounded-full text-start w-full
                 hover:bg-active cursor-pointer transition-100
-                class="md:(w-5/6 rounded-5)"
+                class="md:(w-7.5/10 rounded-5)"
               >
                 <AccountInfo :account="currentUser.account" md:flex="col" md:break-words />
               </button>

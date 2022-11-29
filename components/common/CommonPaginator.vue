@@ -7,7 +7,7 @@ import type { Paginator, WsEvents } from 'masto'
 const { paginator, stream, keyProp = 'id', virtualScroller = false } = defineProps<{
   paginator: Paginator<any, any[]>
   keyProp?: string
-  virtualScroller: boolean
+  virtualScroller?: boolean
   stream?: WsEvents
 }>()
 

@@ -1,24 +1,16 @@
 <script lang="ts" setup>
+import type { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
+import type { ComputedRef } from 'vue'
 import { STORAGE_KEY_LANG } from '~/constants'
 
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 useLocalStorage(STORAGE_KEY_LANG, locale)
 
-// TODO: read from $i18n https://i18n.nuxtjs.org/lang-switcher
-const languageList = [
-  {
-    value: 'en-US',
-    label: 'English',
-  },
-  {
-    value: 'zh-CN',
-    label: '简体中文',
-  },
-]
+const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
 </script>
 
 <template>
-  <CommonTooltip placement="bottom" content="Select Language">
+  <CommonTooltip :content="t('nav_footer.select_language')">
     <CommonDropdown>
       <button flex>
         <div i-ri:earth-line text-lg />
@@ -26,12 +18,12 @@ const languageList = [
 
       <template #popper>
         <CommonDropdownItem
-          v-for="item in languageList"
-          :key="item.value"
-          :checked="item.value === locale"
-          @click="locale = item.value"
+          v-for="item in locales"
+          :key="item.code"
+          :checked="item.code === locale"
+          @click="locale = item.code"
         >
-          {{ item.label }}
+          {{ item.name }}
         </CommonDropdownItem>
       </template>
     </CommonDropdown>

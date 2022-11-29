@@ -89,6 +89,12 @@ html {
   }
 }
 
+.content-editor.content-rich {
+  p {
+    --at-apply: my-0;
+  }
+}
+
 .skeleton-loading-bg {
   background: linear-gradient(90deg,rgba(190,190,190,.2) 25%,rgba(129,129,129,.24) 37%,rgba(190,190,190,.2) 63%);
   background-size: 400% 100%;

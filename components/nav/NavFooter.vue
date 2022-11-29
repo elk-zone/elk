@@ -18,6 +18,7 @@ const buildTimeAgo = useTimeAgo(buildTime)
         />
       </CommonTooltip>
       <NavSelectLanguage />
+      <NavSelectFeatureFlags v-if="currentUser" />
     </div>
     <div>
       <button cursor-pointer hover:underline @click="openPreviewHelp">

@@ -46,7 +46,11 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     env: isCI ? 'deployed' : 'local',
-    deployUrl: process.env.PULL_REQUEST === 'true' ? process.env.DEPLOY_PRIME_URL : '',
+    deployUrl: !isCI
+      ? 'http://localhost:5314'
+      : process.env.PULL_REQUEST === 'true'
+        ? process.env.DEPLOY_PRIME_URL
+        : 'https://elk.zone',
     cloudflare: {
       accountId: '',
       namespaceId: '',
@@ -59,7 +63,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: false,
-      routes: ['/200.html'],
+      routes: ['/', '/200.html'],
     },
   },
   app: {
@@ -73,11 +77,18 @@ export default defineNuxtConfig({
         name: 'English',
       },
       {
+        code: 'de-DE',
+        file: 'de-DE.json',
+        name: 'Deutsch',
+      },
+      {
         code: 'zh-CN',
         file: 'zh-CN.json',
         name: '简体中文',
       },
-    ],
+    ].sort((a, b) => a.code.localeCompare(b.code)),
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
     // TODO:
     // lazy: true,
     langDir: 'locales',

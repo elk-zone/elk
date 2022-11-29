@@ -10,9 +10,21 @@
     "notifications": "通知",
     "profile": "个人资料"
   },
+  "nav_footer": {
+    "select_language": "选择语言",
+    "select_feature_flags": "功能开关"
+  },
+  "timeline": "时间轴",
+  "title": {
+    "local_timeline": "@:nav_side.local@:timeline",
+    "federated_timeline": "@:nav_side.federated@:timeline"
+  },
   "account": {
     "followers": "被 {0} 人关注",
     "following": "正在关注 {0} 人",
     "posts": "{0} 条帖文"
+  },
+  "feature_flag": {
+    "virtual_scroll": "虚拟滚动"
   }
 }

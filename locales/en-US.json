@@ -10,9 +10,21 @@
     "bookmarks": "Bookmarks",
     "profile": "Profile"
   },
+  "nav_footer": {
+    "select_language": "Select Language",
+    "select_feature_flags": "Toggle Feature Flags"
+  },
+  "timeline": "Timeline",
+  "title": {
+    "local_timeline": "@:nav_side.local @:timeline",
+    "federated_timeline": "@:nav_side.federated @:timeline"
+  },
   "account": {
     "posts": "{0} Posts",
     "following": "{0} Following",
     "followers": "{0} Followers"
+  },
+  "feature_flag": {
+    "virtual_scroll": "Virtual Scrolling"
   }
 }

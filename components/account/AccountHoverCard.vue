@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div flex="~ col gap2" rounded w-100 z-900 overflow-hidden p-4>
+  <div flex="~ col gap2" rounded min-w-90 max-w-120 z-100 overflow-hidden p-4>
     <div flex="~ gap2" items-center>
       <NuxtLink :to="getAccountPath(account)" flex-auto rounded-full hover:bg-active transition-100 pr5 mr-a>
         <AccountInfo :account="account" />

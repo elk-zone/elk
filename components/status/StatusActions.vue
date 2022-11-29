@@ -76,8 +76,8 @@ const toggleTranslation = async () => {
   isLoading.translation = false
 }
 
-const copyLink = async () => {
-  await clipboard.copy(`${location.origin}${getStatusPath(status)}`)
+const copyLink = async (url: string) => {
+  await clipboard.copy(url)
 }
 const deleteStatus = async () => {
   // TODO confirm to delete
@@ -194,7 +194,7 @@ function editStatus() {
             text="Copy link to this post"
             icon="i-ri:link"
             :command="command"
-            @click="copyLink"
+            @click="copyLink(status.url)"
           />
 
           <NuxtLink :to="status.url" target="_blank">

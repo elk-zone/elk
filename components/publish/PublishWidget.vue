@@ -22,7 +22,8 @@ const {
 let { draft, isEmpty } = $(useDraft(draftKey, initial))
 
 let isSending = $ref(false)
-let isExpanded = $ref(!isEmpty || _expanded)
+let isExpanded = $ref(false)
+const shouldExpanded = $computed(() => _expanded || isExpanded || !isEmpty)
 
 const { editor } = useTiptap({
   content: computed({
@@ -30,7 +31,7 @@ const { editor } = useTiptap({
     set: newVal => draft.params.status = newVal,
   }),
   placeholder: draft.placeholder,
-  autofocus: isExpanded,
+  autofocus: shouldExpanded,
   onSubmit: publish,
   onFocus() { isExpanded = true },
   onPaste: handlePaste,
@@ -177,9 +178,9 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
           <EditorContent
             :editor="editor"
             flex
-            :class="isExpanded ? 'min-h-120px max-h-720px of-y-auto' : ''"
+            :class="shouldExpanded ? 'min-h-120px max-h-720px of-y-auto' : ''"
           />
-          <div v-if="isExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>
+          <div v-if="shouldExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>
             {{ characterLimit - editor?.storage.characterCount.characters() }}
           </div>
         </div>
@@ -198,7 +199,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
         </div>
 
         <div
-          v-if="isExpanded" flex="~ gap-2" m="l--1" pt-2
+          v-if="shouldExpanded" flex="~ gap-2" m="l--1" pt-2
           border="t base"
         >
           <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">

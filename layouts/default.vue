@@ -29,6 +29,8 @@
               <button
                 m5 p2 rounded-full text-start w-full
                 hover:bg-active cursor-pointer transition-100
+                md:m-0
+                md:p-5
               >
                 <AccountInfo :account="currentUser.account" />
               </button>

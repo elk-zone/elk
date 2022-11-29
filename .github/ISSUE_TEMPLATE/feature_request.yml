@@ -1,4 +1,4 @@
-name: "\U0001F680 New feature proposal"
+name: 🚀 New feature proposal
 description: Propose a new feature
 labels: ['s: pending triage'] # This will automatically assign the 's: pending triage' label
 body:

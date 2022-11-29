@@ -49,66 +49,70 @@ const toggleBlockDomain = async () => {
         </CommonDropdownItem>
       </NuxtLink>
 
-      <template v-if="!isSelf">
-        <CommonDropdownItem icon="i-ri:at-line" @click="mentionUser(account)">
-          Mention @{{ account.acct }}
-        </CommonDropdownItem>
-        <CommonDropdownItem icon="i-ri:message-3-line" @click="directMessageUser(account)">
-          Direct message @{{ account.acct }}
-        </CommonDropdownItem>
+      <template v-if="currentUser">
+        <template v-if="!isSelf">
+          <CommonDropdownItem icon="i-ri:at-line" @click="mentionUser(account)">
+            Mention @{{ account.acct }}
+          </CommonDropdownItem>
+          <CommonDropdownItem icon="i-ri:message-3-line" @click="directMessageUser(account)">
+            Direct message @{{ account.acct }}
+          </CommonDropdownItem>
 
-        <CommonDropdownItem v-if="!relationship?.muting" icon="i-ri:volume-up-fill" @click="toggleMute">
-          Mute @{{ account.acct }}
-        </CommonDropdownItem>
-        <CommonDropdownItem v-else icon="i-ri:volume-mute-line" @click="toggleMute">
-          Unmute @{{ account.acct }}
-        </CommonDropdownItem>
+          <CommonDropdownItem v-if="!relationship?.muting" icon="i-ri:volume-up-fill" @click="toggleMute">
+            Mute @{{ account.acct }}
+          </CommonDropdownItem>
+          <CommonDropdownItem v-else icon="i-ri:volume-mute-line" @click="toggleMute">
+            Unmute @{{ account.acct }}
+          </CommonDropdownItem>
 
-        <CommonDropdownItem v-if="!relationship?.blocking" icon="i-ri:forbid-2-line" @click="toggleBlockUser">
-          Block @{{ account.acct }}
-        </CommonDropdownItem>
-        <CommonDropdownItem v-else icon="i-ri:checkbox-circle-line" @click="toggleBlockUser">
-          Unblock @{{ account.acct }}
-        </CommonDropdownItem>
+          <CommonDropdownItem v-if="!relationship?.blocking" icon="i-ri:forbid-2-line" @click="toggleBlockUser">
+            Block @{{ account.acct }}
+          </CommonDropdownItem>
+          <CommonDropdownItem v-else icon="i-ri:checkbox-circle-line" @click="toggleBlockUser">
+            Unblock @{{ account.acct }}
+          </CommonDropdownItem>
 
-        <CommonDropdownItem
-          v-if="!relationship?.domainBlocking"
-          icon="i-ri:shut-down-line"
-          @click="toggleBlockDomain"
-        >
-          Block domain {{ getServerName(account) }}
-        </CommonDropdownItem>
-        <CommonDropdownItem v-else icon="i-ri:restart-line" @click="toggleBlockDomain">
-          Unblock domain {{ getServerName(account) }}
-        </CommonDropdownItem>
-      </template>
+          <template v-if="getServerName(account) !== currentServer">
+            <CommonDropdownItem
+              v-if="!relationship?.domainBlocking"
+              icon="i-ri:shut-down-line"
+              @click="toggleBlockDomain"
+            >
+              Block domain {{ getServerName(account) }}
+            </CommonDropdownItem>
+            <CommonDropdownItem v-else icon="i-ri:restart-line" @click="toggleBlockDomain">
+              Unblock domain {{ getServerName(account) }}
+            </CommonDropdownItem>
+          </template>
+        </template>
 
-      <template v-else>
-        <NuxtLink to="/pinned">
-          <CommonDropdownItem icon="i-ri:pushpin-line">
-            Pinned
-          </CommonDropdownItem>
-        </NuxtLink>
-        <NuxtLink to="/favourites">
-          <CommonDropdownItem icon="i-ri:heart-3-line">
-            Favourites
-          </CommonDropdownItem>
-        </NuxtLink>
-        <NuxtLink to="/mutes">
-          <CommonDropdownItem icon="i-ri:volume-mute-line">
-            Muted users
-          </CommonDropdownItem>
-        </NuxtLink>
-        <NuxtLink to="/blocks">
-          <CommonDropdownItem icon="i-ri:forbid-2-line">
-            Blocked users
-          </CommonDropdownItem>
-        </NuxtLink>
-        <NuxtLink to="/domain_blocks">
-          <CommonDropdownItem icon="i-ri:shut-down-line">
-            Blocked domains
-          </CommonDropdownItem>
-        </NuxtLink>
+        <template v-else>
+          <NuxtLink to="/pinned">
+            <CommonDropdownItem icon="i-ri:pushpin-line">
+              Pinned
+            </CommonDropdownItem>
+          </NuxtLink>
+          <NuxtLink to="/favourites">
+            <CommonDropdownItem icon="i-ri:heart-3-line">
+              Favourites
+            </CommonDropdownItem>
+          </NuxtLink>
+          <NuxtLink to="/mutes">
+            <CommonDropdownItem icon="i-ri:volume-mute-line">
+              Muted users
+            </CommonDropdownItem>
+          </NuxtLink>
+          <NuxtLink to="/blocks">
+            <CommonDropdownItem icon="i-ri:forbid-2-line">
+              Blocked users
+            </CommonDropdownItem>
+          </NuxtLink>
+          <NuxtLink to="/domain_blocks">
+            <CommonDropdownItem icon="i-ri:shut-down-line">
+              Blocked domains
+            </CommonDropdownItem>
+          </NuxtLink>
+        </template>
       </template>
     </template>
   </CommonDropdown>

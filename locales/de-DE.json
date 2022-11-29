@@ -11,7 +11,8 @@
     "profile": "Profil"
   },
   "nav_footer": {
-    "select_language": "Sprache auswählen"
+    "select_language": "Sprache auswählen",
+    "select_feature_flags": "Feature-Flags umschalten"
   },
   "timeline": "Timeline",
   "title": {
@@ -22,5 +23,8 @@
     "posts": "{0} Beiträge",
     "following": "{0} Folge ich",
     "followers": "{0} Follower"
+  },
+  "feature_flag": {
+    "virtual_scroll": "Virtuelles Scrollen"
   }
 }

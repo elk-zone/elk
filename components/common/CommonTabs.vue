@@ -24,13 +24,13 @@ function toValidName(otpion: string) {
         display="none"
         @change="modelValue = option"
       ><label
-        flex flex-auto cursor-pointer p3 m1 rounded transition-all
+        flex flex-auto cursor-pointer px3 m1 rounded transition-all
         :for="`tab-${toValidName(option)}`"
         tabindex="1"
         hover:bg-active transition-100
         @keypress.enter="modelValue = option"
       ><span
-        mxa px2 text-center
+        mxa px4 py3 text-center
         :class="modelValue === option ? 'font-bold border-b-3 border-primary' : 'op50 hover:op50'"
       >{{ option }}</span>
       </label>

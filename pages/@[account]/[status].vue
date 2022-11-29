@@ -74,9 +74,7 @@ onReactivated(() => {
         <div border="t base" :style="{ height: `${bottomSpace}px` }" />
       </div>
 
-      <CommonNotFound v-else>
-        Status not found
-      </CommonNotFound>
+      <StatusNotFound v-else :account="$route.params.account" :status="id" />
     </template>
 
     <StatusCardSkeleton v-else border="b base" py-3 />

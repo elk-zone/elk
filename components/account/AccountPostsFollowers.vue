@@ -24,7 +24,7 @@ defineProps<{
     </NuxtLink>
     <NuxtLink :to="`${getAccountPath(account)}/followers`" text-secondary exact-active-class="text-primary">
       <template #default="{ isExactActive }">
-        <i18n-t keypath="account.following_count">
+        <i18n-t keypath="account.followers_count">
           <span font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ humanReadableNumber(account.followersCount) }}</span>
         </i18n-t>
       </template>

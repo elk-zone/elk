@@ -9,14 +9,34 @@ const { paginator, stream } = defineProps<{
 }>()
 
 const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirtualScroll))
+const updater = ref()
+const observer = new IntersectionObserver((entries) => {
+  const [entry] = entries
+  if (entry.isIntersecting) {
+    observer.unobserve(entry.target)
+    setTimeout(() => {
+      (entry.target as HTMLButtonElement)?.click()
+    }, 50)
+  }
+}, { threshold: 0.5 })
+
+watch(updater, (v) => {
+  if (v)
+    observer.observe(v)
+})
 </script>
 
 <template>
   <CommonPaginator v-bind="{ paginator, stream }" :virtual-scroller="virtualScroller">
     <template #updater="{ number, update }">
-      <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
-        {{ $t('timeline.show_new_items', [number]) }}
-      </button>
+      <button
+        v-if="number"
+        ref="updater"
+        style="background: repeating-linear-gradient(to right,var(--c-primary) 0%,var(--c-primary-active) 100%)"
+        absolute h-1 w-full animate-pulse
+        :aria-title="$t('timeline.show_new_items', [number])"
+        @click="update"
+      />
     </template>
     <template #default="{ item, active }">
       <template v-if="virtualScroller">

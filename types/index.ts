@@ -12,7 +12,7 @@ export interface AppInfo {
 
 export interface UserLogin {
   server: string
-  token: string
+  token?: string
   account: AccountCredentials
 }
 

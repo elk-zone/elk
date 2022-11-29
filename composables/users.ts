@@ -20,7 +20,8 @@ export const currentUser = computed<UserLogin | undefined>(() => {
   return users.value[0]
 })
 
-export const currentServer = computed<string>(() => currentUser.value?.server || DEFAULT_SERVER)
+export const publicServer = ref(DEFAULT_SERVER)
+export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
 
 export const useUsers = () => users
 
@@ -40,7 +41,11 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
     accessToken: user?.token,
   })
 
-  if (user?.token) {
+  if (!user?.token) {
+    publicServer.value = user?.server || DEFAULT_SERVER
+  }
+
+  else {
     try {
       const me = await masto.accounts.verifyCredentials()
       user.account = me

@@ -1,4 +1,4 @@
 {
   "installDependencies": true,
-  "startCommand": "npm run dev"
+  "startCommand": "npm run dev:mocked"
 }

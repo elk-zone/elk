@@ -1,5 +1,5 @@
 import Inspect from 'vite-plugin-inspect'
-import { isCI } from 'std-env'
+import { isCI, isDevelopment } from 'std-env'
 
 export default defineNuxtConfig({
   ssr: false,
@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     define: {
       'import.meta.env.__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
-      'process.mock': isCI && process.env.PULL_REQUEST === 'true' && process.env.MOCK_USER,
+      'process.mock': ((isDevelopment || (isCI && process.env.PULL_REQUEST === 'true')) && process.env.MOCK_USER) || 'false',
     },
     build: {
       target: 'esnext',

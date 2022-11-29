@@ -123,3 +123,8 @@ html.dark {
 html {
   --at-apply: bg-base text-base;
 }
+
+body {
+  /* Prevent arbitrary zooming on mobile devices */
+  touch-action: pan-x pan-y;
+}

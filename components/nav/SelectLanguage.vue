@@ -1,12 +1,15 @@
 <script lang="ts" setup>
-import type { LocaleObject } from '@nuxtjs/i18n/dist/runtime/composables'
 import type { ComputedRef } from 'vue'
+import type { LocaleObject } from '#i18n'
 import { STORAGE_KEY_LANG } from '~/constants'
 
-const { locale, t } = useI18n()
+const { locale, t, setLocale } = useI18n()
+const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
 useLocalStorage(STORAGE_KEY_LANG, locale)
 
-const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
+const handleLocale = async (locale: string) => {
+  await setLocale(locale)
+}
 </script>
 
 <template>
@@ -21,7 +24,7 @@ const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
           v-for="item in locales"
           :key="item.code"
           :checked="item.code === locale"
-          @click="locale = item.code"
+          @click="handleLocale(item.code)"
         >
           {{ item.name }}
         </CommonDropdownItem>

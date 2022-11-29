@@ -2,12 +2,12 @@
   "account": {
     "follow": "关注",
     "follow_back": "回关",
-    "follow_requested": "已申请关注",
-    "followers_count": "被 {0} 人关注",
-    "following_count": "正在关注 {0} 人",
-    "follows_you": "已关注你",
-    "posts_count": "{0} 条帖文",
-    "unfollow": "取消关注"
+    "follow_requested": "已申请@:account.follow",
+    "followers_count": "被 {0} 人@:account.follow",
+    "following_count": "正在@:account.follow {0} 人",
+    "follows_you": "已@:account.follow你",
+    "posts_count": "{0} 条@:tab.posts",
+    "unfollow": "取消@:account.follow"
   },
   "action": {
     "compose": "撰写",
@@ -25,17 +25,19 @@
     "virtual_scroll": "虚拟滚动"
   },
   "menu": {
-    "block_account": "拉黑 {0}",
-    "block_domain": "拉黑域名 {0}",
+    "block": "拉黑",
+    "mute": "屏蔽",
+    "block_account": "@:menu.block {0}",
+    "block_domain": "@:menu.block域名 {0}",
     "direct_message_account": "私信 {0}",
     "favourites": "喜欢",
     "mention_account": "提及 {0}",
-    "mute_account": "屏蔽 {0}",
+    "mute_account": "@:menu.mute {0}",
     "open_in_original_site": "从源站打开",
     "pinned": "置顶",
-    "unblock_account": "取消拉黑 {0}",
-    "unblock_domain": "取消拉黑域名 {0}",
-    "unmute_account": "取消屏蔽 {0}"
+    "unblock_account": "取消@:menu.block {0}",
+    "unblock_domain": "取消@:menu.block域名 {0}",
+    "unmute_account": "取消@:menu.mute {0}"
   },
   "nav_footer": {
     "select_feature_flags": "功能开关",
@@ -58,10 +60,10 @@
     "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖子，或与不同服务器上的账号交互。"
   },
   "notification": {
-    "followed_you": "关注了你",
-    "request_to_follow": "请求关注你",
-    "favourited_post": "点赞了你的帖文",
-    "reblogged_post": "转发了你的帖文",
+    "followed_you": "@:account.follow了你",
+    "request_to_follow": "请求@:account.follow你",
+    "favourited_post": "点赞了你的@:tab.posts",
+    "reblogged_post": "转发了你的@:tab.posts",
     "update_status": "更新了他们的状态",
     "missing_type": "未知的通知类型："
   },
@@ -72,7 +74,7 @@
   "tab": {
     "media": "媒体",
     "posts": "帖文",
-    "posts_with_replies": "帖文与留言"
+    "posts_with_replies": "@:tab.posts与留言"
   },
   "timeline": {
     "name": "时间线",

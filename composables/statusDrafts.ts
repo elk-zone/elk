@@ -23,13 +23,14 @@ export const currentUserDrafts = computed(() => {
   return allDrafts.value[id]
 })
 
-export function getDefaultDraft({
-  status = '',
-  inReplyToId,
-  visibility = 'public',
-  placeholder = 'What is on your mind?',
-  attachments = [],
-}: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
+export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
+  const {
+    status = '',
+    inReplyToId,
+    visibility = 'public',
+    placeholder = 'What is on your mind?',
+    attachments = [],
+  } = options
   return {
     params: {
       status,

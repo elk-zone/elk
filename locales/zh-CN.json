@@ -1,11 +1,34 @@
 {
   "account": {
+    "follow": "关注",
+    "follow_back": "回关",
+    "follow_requested": "已申请关注",
     "followers_count": "被 {0} 人关注",
     "following_count": "正在关注 {0} 人",
-    "posts_count": "{0} 条帖文"
+    "follows_you": "已关注你",
+    "posts_count": "{0} 条帖文",
+    "unfollow": "取消关注"
+  },
+  "action": {
+    "compose": "组合",
+    "enter_app": "进入应用",
+    "publish": "推送！",
+    "save_changes": "保存更改",
+    "sign_in": "登录"
   },
   "feature_flag": {
     "virtual_scroll": "虚拟滚动"
+  },
+  "menu": {
+    "block_account": "拉黑 {0}",
+    "block_domain": "拉黑域名 {0}",
+    "direct_message_account": "私信 {0}",
+    "mention_account": "提及 {0}",
+    "mute_account": "屏蔽 {0}",
+    "open_in_original_site": "从源站打开",
+    "unblock_account": "取消拉黑 {0}",
+    "unblock_domain": "取消拉黑域名 {0}",
+    "unmute_account": "取消屏蔽 {0}"
   },
   "nav_footer": {
     "select_feature_flags": "功能开关",
@@ -24,16 +47,27 @@
     "notifications": "通知",
     "profile": "个人资料"
   },
+  "state": {
+    "editing": "编辑中",
+    "uploading": "上传中..."
+  },
   "tab": {
     "media": "媒体",
     "posts": "贴文",
     "posts_with_replies": "帖文与留言"
   },
   "timeline": {
-    "name": "时间轴"
+    "name": "时间轴",
+    "show_new_items": "展示 {0} 条新帖文"
   },
   "title": {
     "federated_timeline": "@:nav_side.federated@:timeline.name",
     "local_timeline": "@:nav_side.local@:timeline.name"
+  },
+  "tooltip": {
+    "add_content_warning": "添加内容警告标识",
+    "add_media": "添加图片、视频或者音频文件",
+    "change_content_visibility": "修改内容是否可见",
+    "toggle_code_block": "代码块切换"
   }
 }

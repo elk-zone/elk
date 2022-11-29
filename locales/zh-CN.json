@@ -1,21 +1,18 @@
 {
-  "block": "拉黑",
-  "mute": "屏蔽",
-  "post": "帖文",
   "account": {
-    "blocked_users": "已@:block的用户",
-    "blocked_domains": "已@:block的域名",
-    "favourites": "喜欢的@:post",
+    "blocked_users": "已拉黑的用户",
+    "blocked_domains": "已拉黑的域名",
+    "favourites": "喜欢的帖文",
     "follow": "关注",
     "follow_back": "回关",
-    "follow_requested": "已申请@:account.follow",
-    "followers_count": "被 {0} 人@:account.follow",
-    "following_count": "正在@:account.follow {0} 人",
-    "follows_you": "已@:account.follow你",
-    "muted_users": "已@:mute的用户",
-    "posts_count": "{0} 条@:post",
-    "pinned": "置顶的@:post",
-    "unfollow": "取消@:account.follow"
+    "follow_requested": "已申请关注",
+    "followers_count": "被 {0} 人关注",
+    "following_count": "正在关注 {0} 人",
+    "follows_you": "已关注你",
+    "muted_users": "已屏蔽的用户",
+    "posts_count": "{0} 条帖文",
+    "pinned": "置顶的帖文",
+    "unfollow": "取消关注"
   },
   "action": {
     "compose": "撰写",
@@ -33,15 +30,15 @@
     "virtual_scroll": "虚拟滚动"
   },
   "menu": {
-    "block_account": "@:block {0}",
-    "block_domain": "@:block域名 {0}",
+    "block_account": "拉黑 {0}",
+    "block_domain": "拉黑域名 {0}",
     "direct_message_account": "私信 {0}",
     "mention_account": "提及 {0}",
-    "mute_account": "@:mute {0}",
+    "mute_account": "屏蔽 {0}",
     "open_in_original_site": "从源站打开",
-    "unblock_account": "解除@:block {0}",
-    "unblock_domain": "解除@:block域名 {0}",
-    "unmute_account": "解除@:mute {0}"
+    "unblock_account": "解除拉黑 {0}",
+    "unblock_domain": "解除拉黑域名 {0}",
+    "unmute_account": "解除屏蔽 {0}"
   },
   "nav_footer": {
     "select_feature_flags": "功能开关",
@@ -61,13 +58,13 @@
     "profile": "个人资料"
   },
   "nav_user": {
-    "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复@:post，或与不同服务器上的账号交互。"
+    "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。"
   },
   "notification": {
-    "followed_you": "@:account.follow了你",
-    "request_to_follow": "请求@:account.follow你",
-    "favourited_post": "点赞了你的@:post",
-    "reblogged_post": "转发了你的@:post",
+    "followed_you": "关注了你",
+    "request_to_follow": "请求关注你",
+    "favourited_post": "点赞了你的帖文",
+    "reblogged_post": "转发了你的帖文",
     "update_status": "更新了他们的状态",
     "missing_type": "未知的通知类型："
   },
@@ -77,12 +74,12 @@
   },
   "tab": {
     "media": "媒体",
-    "posts": "@:post",
-    "posts_with_replies": "@:post与留言"
+    "posts": "帖文",
+    "posts_with_replies": "帖文与留言"
   },
   "timeline": {
     "name": "时间线",
-    "show_new_items": "展示 {0} 条新@:post"
+    "show_new_items": "展示 {0} 条新帖文"
   },
   "title": {
     "federated_timeline": "@:nav_side.federated@:timeline.name",

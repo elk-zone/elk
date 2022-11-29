@@ -1,0 +1,94 @@
+{
+  "account": {
+    "blocked_users": "ブロックしたユーザー",
+    "blocked_domains": "ブロックしたドメイン",
+    "favourites": "お気に入り",
+    "follow": "フォローする",
+    "follow_back": "フォローバックする",
+    "follow_requested": "リクエスト済み",
+    "followers_count": "{0} フォロワー",
+    "following_count": "{0} フォロー中",
+    "follows_you": "フォローされています",
+    "muted_users": "ミュート済み",
+    "posts_count": "{0} 投稿",
+    "pinned": "固定された投稿",
+    "unfollow": "フォロー解除"
+  },
+  "action": {
+    "compose": "今なにしてる？",
+    "enter_app": "使い始める",
+    "publish": "投稿!",
+    "save_changes": "変更を保存",
+    "sign_in": "サインイン"
+  },
+  "common": {
+    "not_found": "404 Not Found",
+    "end_of_list": "他にはありません",
+    "error": "ERROR"
+  },
+  "feature_flag": {
+    "virtual_scroll": "仮想スクロール"
+  },
+  "menu": {
+    "block_account": "{0}さんをブロックする",
+    "block_domain": "{0}をドメインブロック",
+    "direct_message_account": "{0}さんにダイレクトメッセージ",
+    "mention_account": "{0}さんにメンション",
+    "mute_account": "{0}さんをミュート",
+    "open_in_original_site": "元のサイトで開く",
+    "unblock_account": "{0}さんのブロックを解除",
+    "unblock_domain": "{0}のドメインブロックを解除",
+    "unmute_account": "{0}さんのミュートを解除"
+  },
+  "nav_footer": {
+    "select_feature_flags": "実験的機能を切り替え",
+    "select_language": "言語を選択",
+    "toggle_theme": "テーマを切り替え",
+    "zen_mode": "禅モード"
+  },
+  "nav_side": {
+    "bookmarks": "ブックマーク",
+    "conversations": "会話",
+    "explore": "話題の投稿",
+    "favourites": "お気に入り",
+    "federated": "連合",
+    "home": "ホーム",
+    "local": "ローカル",
+    "notifications": "通知",
+    "profile": "プロフィール"
+  },
+  "nav_user": {
+    "sign_in_desc": "サインインすると、アカウントやハッシュタグをフォローしたり、お気に入りしたり、投稿を共有したり返信するほか、異なるサーバー上のあなたのアカウントから交流できます。"
+  },
+  "notification": {
+    "followed_you": "さんがあなたをフォローしました",
+    "request_to_follow": "さんがあなたへフォローをリクエストしました",
+    "favourited_post": "さんがあなたの投稿お気に入り登録しました",
+    "reblogged_post": "さんがあなたの投稿をブーストしました",
+    "update_status": "さんが投稿を更新しました",
+    "missing_type": "MISSING notification.type:"
+  },
+  "state": {
+    "editing": "編集中",
+    "uploading": "更新中..."
+  },
+  "tab": {
+    "media": "メディア",
+    "posts": "投稿",
+    "posts_with_replies": "投稿と返信"
+  },
+  "timeline": {
+    "name": "タイムライン",
+    "show_new_items": "{0}件の新しい投稿"
+  },
+  "title": {
+    "federated_timeline": "@:nav_side.federated @:timeline.name",
+    "local_timeline": "@:nav_side.local @:timeline.name"
+  },
+  "tooltip": {
+    "add_content_warning": "警告を追加",
+    "add_media": "画像、動画、音声ファイルを追加",
+    "change_content_visibility": "公開範囲を変更",
+    "toggle_code_block": "コードブロックを切り替え"
+  }
+}

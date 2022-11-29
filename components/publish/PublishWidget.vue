@@ -245,9 +245,9 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
                   :checked="visibility.value === draft.params.visibility"
                   @click="chooseVisibility(visibility.value)"
                 >
-                  {{ visibility.label }}
+                  {{ $t(`visibility.${visibility.value}`) }}
                   <template #description>
-                    {{ visibility.description }}
+                    {{ $t(`visibility.${visibility.value}_desc`) }}
                   </template>
                 </CommonDropdownItem>
               </template>

@@ -43,11 +43,11 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
           :status="status"
           :inline="false"
         >
-          <span ml1 font-bold cursor-pointer>(Edited)</span>
+          <span ml1 font-bold cursor-pointer>{{ $t('state.edited') }}</span>
         </StatusEditIndicator>
       </div>
       <div>·</div>
-      <CommonTooltip :content="visibility.label" placement="bottom">
+      <CommonTooltip :content="$t(`visibility.${visibility.value}`)" placement="bottom">
         <div :class="visibility.icon" />
       </CommonTooltip>
       <div v-if="status.application?.name">

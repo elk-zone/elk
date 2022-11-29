@@ -4,7 +4,8 @@ export const useFormattedDateTime = (
   value: MaybeComputedRef<string | Date | undefined | null>,
   options: Intl.DateTimeFormatOptions = { dateStyle: 'long', timeStyle: 'medium' },
 ) => {
-  const formatter = Intl.DateTimeFormat(undefined, options)
+  const { locale } = useI18n()
+  const formatter = Intl.DateTimeFormat(locale.value, options)
   return computed(() => {
     const v = resolveUnref(value)
     return v ? formatter.format(new Date(v)) : ''

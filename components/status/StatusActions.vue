@@ -133,7 +133,7 @@ function editStatus() {
   <div flex justify-between>
     <div flex-1>
       <StatusActionButton
-        content="Reply"
+        :content="$t('action.reply')"
         :text="status.repliesCount"
         color="text-blue" hover="text-blue" group-hover="bg-blue/10"
         icon="i-ri:chat-3-line"
@@ -144,7 +144,7 @@ function editStatus() {
 
     <div flex-1>
       <StatusActionButton
-        content="Boost"
+        :content="$t('action.boost')"
         :text="status.reblogsCount"
         color="text-green" hover="text-green" group-hover="bg-green/10"
         icon="i-ri:repeat-line"
@@ -158,7 +158,7 @@ function editStatus() {
 
     <div flex-1>
       <StatusActionButton
-        content="Favourite"
+        :content="$t('action.favourite')"
         :text="status.favouritesCount"
         color="text-rose" hover="text-rose" group-hover="bg-rose/10"
         icon="i-ri:heart-3-line"
@@ -172,7 +172,7 @@ function editStatus() {
 
     <div flex-none>
       <StatusActionButton
-        content="Bookmark"
+        :content="$t('action.bookmark')"
         color="text-yellow" hover="text-yellow" group-hover="bg-yellow/10"
         icon="i-ri:bookmark-line"
         active-icon="i-ri:bookmark-fill"
@@ -185,7 +185,7 @@ function editStatus() {
 
     <CommonDropdown flex-none ml3 placement="bottom" :eager-mount="command">
       <StatusActionButton
-        content="More"
+        :content="$t('action.more')"
         color="text-purple" hover="text-purple" group-hover="bg-purple/10"
         icon="i-ri:more-line"
       />
@@ -193,7 +193,7 @@ function editStatus() {
       <template #popper>
         <div flex="~ col">
           <CommonDropdownItem
-            text="Copy link to this post"
+            :text="$t('menu.copy_link_to_post')"
             icon="i-ri:link"
             :command="command"
             @click="copyLink(status)"
@@ -202,7 +202,7 @@ function editStatus() {
           <NuxtLink :to="status.url" target="_blank">
             <CommonDropdownItem
               v-if="status.url"
-              text="Open in original site"
+              :text="$t('menu.open_in_original_site')"
               icon="i-ri:arrow-right-up-line"
               :command="command"
             />
@@ -210,7 +210,7 @@ function editStatus() {
 
           <CommonDropdownItem
             v-if="isTranslationEnabled && status.language !== languageCode"
-            :text="translation.visible ? 'Show untranslated' : 'Translate post'"
+            :text="translation.visible ? $t('menu.show_untranslated') : $t('menu.translate_post')"
             icon="i-ri:translate"
             :command="command"
             @click="toggleTranslation"
@@ -219,21 +219,21 @@ function editStatus() {
           <template v-if="currentUser">
             <template v-if="isAuthor">
               <CommonDropdownItem
-                :text="status.pinned ? 'Unpin on profile' : 'Pin on profile'"
+                :text="status.pinned ? $t('menu.unpin_on_profile') : $t('menu.pin_on_profile')"
                 icon="i-ri:pushpin-line"
                 :command="command"
                 @click="togglePin"
               />
 
               <CommonDropdownItem
-                text="Edit"
+                :text="$t('menu.edit')"
                 icon="i-ri:edit-line"
                 :command="command"
                 @click="editStatus"
               />
 
               <CommonDropdownItem
-                text="Delete"
+                :text="$t('menu.delete')"
                 icon="i-ri:delete-bin-line"
                 text-red-600
                 :command="command"
@@ -241,7 +241,7 @@ function editStatus() {
               />
 
               <CommonDropdownItem
-                text="Delete & re-draft"
+                :text="$t('menu.delete_and_redraft')"
                 icon="i-ri:eraser-line"
                 text-red-600
                 :command="command"
@@ -250,7 +250,7 @@ function editStatus() {
             </template>
             <template v-else>
               <CommonDropdownItem
-                :text="`Mention @${status.account.acct}`"
+                :text="$t('menu.mention_account', [`@${status.account.acct}`])"
                 icon="i-ri:at-line"
                 :command="command"
                 @click="mentionUser(status.account)"

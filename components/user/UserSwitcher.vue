@@ -33,17 +33,17 @@ const switchUser = (user: UserLogin) => {
       </button>
     </template>
     <div border="t base" pt2>
-      <button btn-text flex="~ gap-1" items-center @click="openSigninDialog">
-        <div i-ri:user-add-line />
-        Add an existing account
-      </button>
-      <button
-        v-if="currentUser" btn-text hover:text-red4 flex="~ gap-1" items-center
+      <CommonDropdownItem
+        :text=" $t('user.add_existing')"
+        icon="i-ri:user-add-line"
+        @click="openSigninDialog"
+      />
+      <CommonDropdownItem
+        v-if="currentUser"
+        :text="$t('user.sign_out_account', [getFullHandle(currentUser.account)])"
+        icon="i-ri:logout-box-line"
         @click="signout"
-      >
-        <div i-ri:logout-box-line />
-        Sign out {{ getFullHandle(currentUser.account) }}
-      </button>
+      />
     </div>
   </div>
 </template>

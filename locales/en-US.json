@@ -15,12 +15,18 @@
     "unfollow": "Unfollow"
   },
   "action": {
+    "bookmark": "Bookmark",
+    "boost": "Boost",
     "compose": "Compose",
     "enter_app": "Enter App",
+    "favourite": "Favourite",
+    "more": "More",
     "publish": "Publish!",
+    "reply": "Reply",
     "save_changes": "Save changes",
     "sign_in": "Sign in"
   },
+  "app_name": "Elk",
   "command": {
     "activate": "Activate",
     "complete": "Complete"
@@ -39,13 +45,21 @@
   "menu": {
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
+    "copy_link_to_post": "Copy link to this post",
+    "delete": "Delete",
+    "delete_and_redraft": "Delete & re-draft",
     "direct_message_account": "Direct message {0}",
+    "edit": "Edit",
     "mention_account": "Mention {0}",
     "mute_account": "Mute {0}",
     "open_in_original_site": "Open in original site",
+    "pin_on_profile": "Pin on profile",
+    "show_untranslated": "Show untranslated",
+    "translate_post": "Translate post",
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
-    "unmute_account": "Unmute {0}"
+    "unmute_account": "Unmute {0}",
+    "unpin_on_profile": "Unpin on profile"
   },
   "nav_footer": {
     "select_feature_flags": "Toggle Feature Flags",
@@ -75,12 +89,21 @@
     "request_to_follow": "requested to follow you",
     "update_status": "updated their status"
   },
+  "placeholder": {
+    "default_1": "What is on your mind?",
+    "reply_to_account": "Reply to {0}",
+    "the_thread": "the thread"
+  },
   "state": {
+    "edited": "(Edited)",
     "editing": "Editing",
+    "loading": "Loading...",
     "uploading": "Uploading..."
   },
   "tab": {
     "media": "Media",
+    "notifications_all": "All",
+    "notifications_mention": "Mention",
     "posts": "Posts",
     "posts_with_replies": "Posts & Replies"
   },
@@ -96,5 +119,19 @@
     "add_media": "Add images, a video or an audio file",
     "change_content_visibility": "Change content visibility",
     "toggle_code_block": "Toggle code block"
+  },
+  "user": {
+    "add_existing": "Add an existing account",
+    "sign_out_account": "Sign out {0}"
+  },
+  "visibility": {
+    "direct": "Direct",
+    "direct_desc": "Visible for mentioned users only",
+    "private": "Followers only",
+    "private_desc": "Visible for followers only",
+    "public": "Public",
+    "public_desc": "Visible for all",
+    "unlisted": "Unlisted",
+    "unlisted_desc": "Visible for all, but opted-out of discovery features"
   }
 }

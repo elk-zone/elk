@@ -24,11 +24,12 @@ export const currentUserDrafts = computed(() => {
 })
 
 export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
+  const { t } = useI18n()
   const {
     status = '',
     inReplyToId,
     visibility = 'public',
-    placeholder = 'What is on your mind?',
+    placeholder = t('placeholder.default_1'),
     attachments = [],
   } = options
   return {
@@ -52,11 +53,12 @@ export function getDraftFromStatus(status: Status, text?: null | string): Draft 
 }
 
 export function getReplyDraft(status: Status) {
+  const { t } = useI18n()
   return {
     key: `reply-${status.id}`,
     draft: () => getDefaultDraft({
       inReplyToId: status!.id,
-      placeholder: `Reply to ${status?.account ? getDisplayName(status.account) : 'this thread'}`,
+      placeholder: t('placeholder.reply_to_account', [status?.account ? getDisplayName(status.account) : t('placeholder.the_thread')]),
       visibility: status.visibility,
     }),
   }

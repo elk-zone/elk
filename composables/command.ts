@@ -3,6 +3,8 @@ import { defineStore } from 'pinia'
 import Fuse from 'fuse.js'
 import type { LocaleObject } from '#i18n'
 
+// @unocss-include
+
 const scopes = [
   '',
   'Actions',

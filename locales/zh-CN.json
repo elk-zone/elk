@@ -12,7 +12,7 @@
   },
   "nav_footer": {
     "select_language": "选择语言",
-    "select_feature_flags": "切换功能标志"
+    "select_feature_flags": "功能开关"
   },
   "timeline": "时间轴",
   "title": {

@@ -25,7 +25,7 @@
     "profile": "Profil"
   },
   "title": {
-    "federated_timeline": "@:nav_side.federated @:timeline.name",
-    "local_timeline": "@:nav_side.local @:timeline.name"
+    "federated_timeline": "Förderierte Timeline",
+    "local_timeline": "Lokale Timeline"
   }
 }

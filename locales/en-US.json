@@ -78,12 +78,11 @@
     "posts_with_replies": "Posts & Replies"
   },
   "timeline": {
-    "name": "Timeline",
     "show_new_items": "Show {0} new items"
   },
   "title": {
-    "federated_timeline": "@:nav_side.federated @:timeline.name",
-    "local_timeline": "@:nav_side.local @:timeline.name"
+    "federated_timeline": "Federated Timeline",
+    "local_timeline": "Local Timeline"
   },
   "tooltip": {
     "add_content_warning": "Add content warning",

@@ -34,7 +34,7 @@ useCommand({
 useCommand({
   scope: 'Preferences',
 
-  name: 'Toggle zen mode',
+  name: 'Toggle Zen mode',
   icon: () => isZenMode.value ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
 
   onActivate() {

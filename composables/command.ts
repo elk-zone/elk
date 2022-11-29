@@ -178,7 +178,7 @@ export const useCommand = (cmd: CommandProvider) => {
 
   registry.register(cmd)
 
-  onScopeDispose(() => {
+  onDeactivated(() => {
     registry.remove(cmd)
   })
 }
@@ -195,7 +195,7 @@ export const useCommands = (cmds: () => CommandProvider[]) => {
       registry.register(cmd)
   }, { deep: true, immediate: true })
 
-  onScopeDispose(() => {
+  onDeactivated(() => {
     commands.value.forEach(cmd => registry.remove(cmd))
   })
 }

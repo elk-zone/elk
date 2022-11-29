@@ -26,7 +26,7 @@ onReactivated(() => {
     </template>
 
     <template v-if="account">
-      <AccountHeader :account="account" border="b base" />
+      <AccountHeader :account="account" command border="b base" />
       <NuxtPage />
     </template>
 

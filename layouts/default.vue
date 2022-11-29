@@ -43,5 +43,6 @@
       </aside>
     </main>
     <ModalContainer />
+    <CommandRoot />
   </div>
 </template>

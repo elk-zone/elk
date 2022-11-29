@@ -15,11 +15,18 @@ const { t } = useI18n()
       <NavSideItem :text="t('nav_side.conversations')" to="/conversations" icon="i-ri:at-line" />
       <NavSideItem :text="t('nav_side.favourites')" to="/favourites" icon="i-ri:heart-3-line" />
       <NavSideItem :text="t('nav_side.bookmarks')" to="/bookmarks" icon="i-ri:bookmark-line " />
-      <NavSideItem :to="getAccountPath(currentUser.account)" icon="i-ri:list-check-2-line">
+      <NavSideItem
+        :text="currentUser.account.displayName"
+        :to="getAccountPath(currentUser.account)"
+        icon="i-ri:account-circle-line"
+      >
         <template #icon>
           <AccountAvatar :account="currentUser.account" h="1.2em" />
         </template>
-        <ContentRich :content="getDisplayName(currentUser.account, { rich: true }) || t('nav_side.profile')" :emojis="currentUser.account.emojis" />
+        <ContentRich
+          :content="getDisplayName(currentUser.account, { rich: true }) || t('nav_side.profile')"
+          :emojis="currentUser.account.emojis"
+        />
       </NavSideItem>
     </template>
   </nav>

@@ -3,6 +3,7 @@ import type { Status } from 'masto'
 
 const props = defineProps<{
   status: Status
+  command?: boolean
 }>()
 
 const status = $computed(() => {
@@ -52,6 +53,6 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         · {{ status.application?.name }}
       </div>
     </div>
-    <StatusActions :status="status" details border="t base" pt-2 />
+    <StatusActions :status="status" details :command="command" border="t base" pt-2 />
   </div>
 </template>

@@ -55,6 +55,7 @@ onReactivated(() => {
         <StatusDetails
           ref="main"
           :status="status"
+          command
           border="t base"
           style="scroll-margin-top: 60px"
         />

@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { Account } from 'masto'
 
-const { account } = defineProps<{
+const { account, command } = defineProps<{
   account: Account
+  command?: boolean
 }>()
 
 const isSelf = $computed(() => currentUser.value?.account.id === account.id)
+const enable = $computed(() => !isSelf && currentUser.value)
 let relationship = $(useRelationship(account))
 
 async function toggleFollow() {
@@ -18,11 +20,24 @@ async function toggleFollow() {
     relationship!.following = !relationship!.following
   }
 }
+
+useCommand({
+  scope: 'Actions',
+
+  order: -2,
+
+  visible: () => command && enable,
+
+  name: () => `${relationship?.following ? 'Unfollow' : 'Follow'} ${getShortHandle(account)}`,
+  icon: 'i-ri:star-line',
+
+  onActivate: () => toggleFollow(),
+})
 </script>
 
 <template>
   <button
-    v-if="!isSelf && currentUser"
+    v-if="enable"
     flex gap-1 items-center h-fit rounded hover="op100 text-white b-orange" group btn-base
     :disabled="relationship?.requested"
     @click="toggleFollow"

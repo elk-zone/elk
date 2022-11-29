@@ -56,7 +56,7 @@ export function contentToVNode(
     .replace(/:([\w-]+?):/g, (_, name) => {
       const emoji = customEmojis[name]
       if (emoji)
-        return `<img src="${emoji.url}" alt="${name}" class="custom-emoji" />`
+        return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" />`
       return `:${name}:`
     })
     // handle code frames

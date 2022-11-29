@@ -18,7 +18,7 @@ async function handleInput() {
 <template>
   <form text-center justify-center items-center flex="~ col gap2" @submit.prevent="oauth">
     <div text-3xl mb2>
-      Sign in
+      {{ $t('action.sign_in') }}
     </div>
     <div>Mastodon Server Name</div>
     <div flex bg-gray:10 px2 py1 mxa rounded border="~ border" text-xl items-center>
@@ -26,7 +26,7 @@ async function handleInput() {
       <input v-model="server" :placeholder="DEFAULT_SERVER" outline-none bg-transparent @input="handleInput">
     </div>
     <button btn-solid mt2>
-      Sign in
+      {{ $t('action.sign_in') }}
     </button>
   </form>
 </template>

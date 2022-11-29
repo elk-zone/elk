@@ -12,7 +12,7 @@ const { notification } = defineProps<{
       <div flex ml-4 items-center>
         <div i-ri:user-follow-fill mr-3 color-primary />
         <AccountInlineInfo :account="notification.account" mr1 />
-        followed you
+        {{ $t('notification.followed_you') }}
       </div>
       <AccountCard :account="notification.account" p3 />
     </template>
@@ -20,7 +20,7 @@ const { notification } = defineProps<{
       <div flex ml-4 items-center>
         <div i-ri:user-follow-fill mr-3 />
         <AccountInlineInfo :account="notification.account" mr1 />
-        requested to follow you
+        {{ $t('notification.request_to_follow') }}
       </div>
       <!-- TODO: accept request -->
       <AccountCard :account="notification.account" p3 />
@@ -29,7 +29,7 @@ const { notification } = defineProps<{
       <div flex ml-4 items-center>
         <div i-ri:heart-fill mr-3 color-red />
         <AccountInlineInfo :account="notification.account" mr1 />
-        favourited your post
+        {{ $t('notification.favourited_post') }}
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>
@@ -37,7 +37,7 @@ const { notification } = defineProps<{
       <div flex ml-4 items-center>
         <div i-ri:repeat-fill mr-3 color-green />
         <AccountInlineInfo :account="notification.account" mr1 />
-        reblogged your post
+        {{ $t('notification.reblogged_post') }}
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>
@@ -45,7 +45,7 @@ const { notification } = defineProps<{
       <div flex ml-4 items-center>
         <div i-ri:edit-2-fill mr-3 text-secondary />
         <AccountInlineInfo :account="notification.account" mr1 />
-        updated their status
+        {{ $t('notification.update_status') }}
       </div>
       <StatusCard :status="notification.status!" p3 />
     </template>
@@ -54,7 +54,7 @@ const { notification } = defineProps<{
     </template>
     <template v-else>
       <div text-red font-bold>
-        [DEV] MISSING notification.type: '{{ notification.type }}'
+        [DEV] {{ $t('notification.missing_type') }} '{{ notification.type }}'
       </div>
     </template>
   </article>

@@ -1,12 +1,17 @@
 {
   "account": {
+    "blocked_users": "Blocked users",
+    "blocked_domains": "Blocked domains",
+    "favourites": "Favourites",
     "follow": "Follow",
     "follow_back": "Follow back",
     "follow_requested": "Requested",
     "followers_count": "{0} Followers",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
+    "muted_users": "Muted users",
     "posts_count": "{0} Posts",
+    "pinned": "Pinned",
     "unfollow": "Unfollow"
   },
   "action": {
@@ -15,6 +20,11 @@
     "publish": "Publish!",
     "save_changes": "Save changes",
     "sign_in": "Sign in"
+  },
+  "common": {
+    "not_found": "404 Not Found",
+    "end_of_list": "End of the list",
+    "error": "ERROR"
   },
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"
@@ -46,6 +56,17 @@
     "local": "Local",
     "notifications": "Notifications",
     "profile": "Profile"
+  },
+  "nav_user": {
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
+  },
+  "notification": {
+    "followed_you": "followed you",
+    "request_to_follow": "requested to follow you",
+    "favourited_post": "favourited your post",
+    "reblogged_post": "reblogged your post",
+    "update_status": "updated their status",
+    "missing_type": "MISSING notification.type:"
   },
   "state": {
     "editing": "Editing",

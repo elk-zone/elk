@@ -117,39 +117,19 @@ const toggleBlockDomain = async () => {
 
         <template v-else>
           <NuxtLink to="/pinned">
-            <CommonDropdownItem
-              text="Pinned"
-              icon="i-ri:pushpin-line"
-              :command="command"
-            />
+            <CommonDropdownItem :text="$t('account.pinned')" icon="i-ri:pushpin-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/favourites">
-            <CommonDropdownItem
-              text="Favourites"
-              icon="i-ri:heart-3-line"
-              :command="command"
-            />
+            <CommonDropdownItem :text="$t('account.favourites')" icon="i-ri:heart-3-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/mutes">
-            <CommonDropdownItem
-              text="Muted users"
-              icon="i-ri:volume-mute-line"
-              :command="command"
-            />
+            <CommonDropdownItem :text="$t('account.muted_users')" icon="i-ri:volume-mute-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/blocks">
-            <CommonDropdownItem
-              text="Blocked users"
-              icon="i-ri:forbid-2-line"
-              :command="command"
-            />
+            <CommonDropdownItem :text="$t('account.blocked_users')" icon="i-ri:forbid-2-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/domain_blocks">
-            <CommonDropdownItem
-              text="Blocked domains"
-              icon="i-ri:shut-down-line"
-              :command="command"
-            />
+            <CommonDropdownItem text="$t('account.blocked_domains')" icon="i-ri:shut-down-line" :command="command" />
           </NuxtLink>
         </template>
       </template>

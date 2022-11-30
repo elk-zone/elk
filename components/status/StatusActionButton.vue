@@ -55,6 +55,11 @@ useCommand({
       </div>
     </CommonTooltip>
 
-    <span v-if="text" :class="active ? [color] : 'text-secondary-light'" text-sm>{{ text }}</span>
+    <CommonAnimateNumber :increased="active">
+      <span display-block text-secondary-light text-sm>{{ text }}</span>
+      <template #next>
+        <span display-block :class="[color]" text-sm>{{ text }}</span>
+      </template>
+    </CommonAnimateNumber>
   </component>
 </template>

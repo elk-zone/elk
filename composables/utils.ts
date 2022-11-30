@@ -24,3 +24,5 @@ export function emojisArrayToObject(emojis: Emoji[]) {
   return Object.fromEntries(emojis.map(i => [i.shortcode, i]))
 }
 
+export function noop() {}
+

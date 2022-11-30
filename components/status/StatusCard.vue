@@ -90,6 +90,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
             <StatusMedia
               v-if="status.mediaAttachments?.length"
               :status="status"
+              minimized
             />
           </StatusSpoiler>
           <StatusCard

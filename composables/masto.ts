@@ -60,7 +60,7 @@ export function getAccountPath(account: Account) {
   return useRouter().resolve({
     name: 'account-index',
     params: {
-      account: _getFullHandle(account),
+      account: getFullHandle(account).slice(1),
     },
     state: {
       account: account as any,
@@ -71,7 +71,7 @@ export function getAccountFollowingPath(account: Account) {
   return useRouter().resolve({
     name: 'account-following',
     params: {
-      account: _getFullHandle(account),
+      account: getFullHandle(account).slice(1),
     },
     state: {
       account: account as any,
@@ -82,7 +82,7 @@ export function getAccountFollowersPath(account: Account) {
   return useRouter().resolve({
     name: 'account-followers',
     params: {
-      account: _getFullHandle(account),
+      account: getFullHandle(account).slice(1),
     },
     state: {
       account: account as any,
@@ -90,18 +90,11 @@ export function getAccountFollowersPath(account: Account) {
   })
 }
 
-function _getFullHandle(account: Account) {
-  const handle = account.acct
-  if (!currentUser.value || account.acct.includes('@'))
-    return handle
-  return `${handle}@${getServerName(account)}`
-}
-
 export function resolveStatusPath(status: Status) {
   return useRouter().resolve({
     name: 'status',
     params: {
-      account: _getFullHandle(status.account),
+      account: getFullHandle(status.account).slice(1),
       status: status.id,
     },
     state: {
@@ -111,11 +104,21 @@ export function resolveStatusPath(status: Status) {
 }
 
 export function getStatusPermalink(status: Status) {
-  return status.url ? `/${withoutProtocol(status.url)}` : null
+  return status.url
+    ? useRouter().resolve({
+      name: 'permalink',
+      params: { permalink: withoutProtocol(status.url) },
+    })
+    : null
 }
 
 export function getStatusInReplyToPath(status: Status) {
-  return `/status/${status.inReplyToId}`
+  return useRouter().resolve({
+    name: 'status-by-id',
+    params: {
+      status: status.inReplyToId,
+    },
+  })
 }
 
 export function useAccountHandle(account: Account, fullServer = true) {

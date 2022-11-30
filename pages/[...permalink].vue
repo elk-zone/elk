@@ -2,6 +2,7 @@
 import { parseURL } from 'ufo'
 
 definePageMeta({
+  name: 'permalink',
   middleware: async (to) => {
     const HANDLED_MASTO_URL = /^(https?:\/\/)?(\w+\.)+\w+\/(@[@\w\d\.]+)(\/\d+)?$/
     try {

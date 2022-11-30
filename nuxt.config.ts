@@ -60,6 +60,10 @@ export default defineNuxtConfig({
     public: {
       translateApi: '',
     },
+    storage: {
+      driver: process.env.ELK_STORAGE_DRIVER || 'cloudflare', // 'cloudflare' | 'fs'
+      fsBase: process.env.ELK_STORAGE_PATH ?? 'node_modules/.cache/servers',
+    },
   },
   nitro: {
     prerender: {

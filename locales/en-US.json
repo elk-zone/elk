@@ -89,7 +89,7 @@
   "notification": {
     "favourited_post": "favourited your post",
     "followed_you": "followed you",
-    "followed_you_count": "{0} persons followed you",
+    "followed_you_count": "{0} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",

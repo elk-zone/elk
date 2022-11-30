@@ -36,13 +36,11 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
       currentUserId.value = user.account?.id
   }
 
+  const config = useRuntimeConfig()
   const masto = await loginMasto({
     url: `https://${user?.server || DEFAULT_SERVER}`,
     accessToken: user?.token,
-    // Masto uses Mastodon version checks to see what features are enabled.
-    // Mastodon alternatives like GoToSocial will always fail these checks, so
-    // provide a way to disable them.
-    disableVersionCheck: process.env.MASTO_DISABLE_VERSION_CHECK === 'true',
+    disableVersionCheck: !!config.public.disableVersionCheck,
   })
 
   if (!user?.token) {

@@ -59,10 +59,14 @@ export default defineNuxtConfig({
     },
     public: {
       translateApi: '',
+      // Masto uses Mastodon version checks to see what features are enabled.
+      // Mastodon alternatives like GoToSocial will always fail these checks, so
+      // provide a way to disable them.
+      disableVersionCheck: false,
     },
     storage: {
-      driver: process.env.ELK_STORAGE_DRIVER || 'cloudflare', // 'cloudflare' | 'fs'
-      fsBase: process.env.ELK_STORAGE_PATH ?? 'node_modules/.cache/servers',
+      driver: 'cloudflare',
+      fsBase: 'node_modules/.cache/servers',
     },
   },
   nitro: {

@@ -22,6 +22,7 @@ export default defineConfig({
 
       // text colors
       'text-base': 'text-$c-text-base',
+      'text-code': 'text-$c-text-code',
       'text-inverted': 'text-$c-bg-base',
       'text-secondary': 'text-$c-text-secondary',
       'text-secondary-light': 'text-$c-text-secondary-light',

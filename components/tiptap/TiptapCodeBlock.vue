@@ -20,7 +20,7 @@ const selectedLanguage = computed({
 
 <template>
   <NodeViewWrapper>
-    <div relative my2>
+    <div relative my2 class="code-block">
       <select v-model="selectedLanguage" contenteditable="false" absolute top-1 right-1 rounded px2 op0 hover:op100 focus:op100 transition>
         <option :value="null">
           plain

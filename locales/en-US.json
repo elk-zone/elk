@@ -98,6 +98,7 @@
   "placeholder": {
     "default_1": "What is on your mind?",
     "reply_to_account": "Reply to {0}",
+    "replying": "Replying",
     "the_thread": "the thread"
   },
   "state": {

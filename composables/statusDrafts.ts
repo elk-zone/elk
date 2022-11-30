@@ -8,7 +8,6 @@ export interface Draft {
     status?: Exclude<CreateStatusParams['status'], null>
   }
   attachments: Attachment[]
-  placeholder: string
 }
 export type DraftMap = Record<string, Draft>
 
@@ -24,14 +23,13 @@ export const currentUserDrafts = computed(() => {
 })
 
 export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
-  const { t } = useI18n()
   const {
     status = '',
     inReplyToId,
     visibility = 'public',
-    placeholder = t('placeholder.default_1'),
     attachments = [],
   } = options
+
   return {
     params: {
       status,
@@ -39,7 +37,6 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
       visibility,
     },
     attachments,
-    placeholder,
   }
 }
 
@@ -53,12 +50,10 @@ export function getDraftFromStatus(status: Status, text?: null | string): Draft 
 }
 
 export function getReplyDraft(status: Status) {
-  const { t } = useI18n()
   return {
     key: `reply-${status.id}`,
     draft: () => getDefaultDraft({
       inReplyToId: status!.id,
-      placeholder: t('placeholder.reply_to_account', [status?.account ? getDisplayName(status.account) : t('placeholder.the_thread')]),
       visibility: status.visibility,
     }),
   }
@@ -76,7 +71,7 @@ export const isEmptyDraft = (draft: Draft | null | undefined) => {
 
 export function useDraft(
   draftKey: string,
-  initial: () => Draft = () => getDefaultDraft(),
+  initial: () => Draft = () => getDefaultDraft({}),
 ) {
   const draft = computed({
     get() {

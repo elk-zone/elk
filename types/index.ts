@@ -29,3 +29,5 @@ export interface GroupedNotifications {
   type: string
   items: Notification[]
 }
+
+export type TranslateFn = ReturnType<typeof useI18n>['t']

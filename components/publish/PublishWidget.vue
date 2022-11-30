@@ -9,6 +9,7 @@ const {
   draftKey,
   initial = getDefaultDraft() as never /* Bug of vue-core */,
   expanded: _expanded = false,
+  placeholder,
 } = defineProps<{
   draftKey: string
   initial?: () => Draft
@@ -18,6 +19,7 @@ const {
   expanded?: boolean
 }>()
 
+const { t } = useI18n()
 // eslint-disable-next-line prefer-const
 let { draft, isEmpty } = $(useDraft(draftKey, initial))
 
@@ -30,7 +32,7 @@ const { editor } = useTiptap({
     get: () => draft.params.status,
     set: newVal => draft.params.status = newVal,
   }),
-  placeholder: computed(() => draft.placeholder),
+  placeholder: computed(() => placeholder || draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
   autofocus: shouldExpanded,
   onSubmit: publish,
   onFocus() { isExpanded = true },

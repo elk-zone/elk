@@ -125,11 +125,25 @@ function treeToText(input: Node): string {
     pre = '\n'
 
   if (input.nodeName === 'code') {
-    const clz = input.attrs.find(attr => attr.name === 'class')
-    const lang = clz?.value.replace('language-', '')
+    if (input.parentNode?.nodeName === 'pre') {
+      const clz = input.attrs.find(attr => attr.name === 'class')
+      const lang = clz?.value.replace('language-', '')
 
-    pre = `\`\`\`${lang || ''}\n`
-    post = '\n```'
+      pre = `\`\`\`${lang || ''}\n`
+      post = '\n```'
+    }
+    else {
+      pre = '`'
+      post = '`'
+    }
+  }
+  else if (input.nodeName === 'b' || input.nodeName === 'strong') {
+    pre = '**'
+    post = '**'
+  }
+  else if (input.nodeName === 'i' || input.nodeName === 'em') {
+    pre = '*'
+    post = '*'
   }
 
   if ('childNodes' in input)

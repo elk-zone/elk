@@ -67,9 +67,15 @@ body {
   p {
     --at-apply: my-2;
   }
+  code {
+    --at-apply: bg-code text-code px1 py0.5 rounded text-sm;
+  }
+  pre code {
+    --at-apply: text-base bg-transparent px0 py0 rounded-none;
+  }
 
   .code-block {
-    --at-apply: bg-code text-0.9rem p3 mt-2 rounded overflow-auto leading-1.6em;
+    --at-apply: font-mono bg-code text-base p3 mt-2 rounded overflow-auto leading-1.6em;
 
     .shiki {
       background: transparent !important;
@@ -78,15 +84,7 @@ body {
 }
 
 .content-editor {
-  --at-apply: 'outline-none flex-1';
-
-  pre {
-    --at-apply: font-mono bg-code rounded px3 py2;
-
-    code {
-      --at-apply: bg-transparent text-0.8rem p0;
-    }
-  }
+  --at-apply: outline-none flex-1;
 }
 
 .content-editor.content-rich {

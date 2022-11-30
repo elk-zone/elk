@@ -20,7 +20,9 @@ defineEmits<{
     <div absolute right-2 top-2>
       <div
         v-if="removable"
+        aria-label="Remove attachment"
         hover:bg="gray/40" transition-100 p-1 rounded-5 cursor-pointer op-0 group-hover:op-100
+        mix-blend-difference
         @click="$emit('remove')"
       >
         <div i-ri:close-line text-3 />

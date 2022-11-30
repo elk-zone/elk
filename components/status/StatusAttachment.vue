@@ -7,7 +7,11 @@ const { attachment } = defineProps<{
   attachments?: Attachment[]
 }>()
 
-const src = $computed(() => attachment.remoteUrl || attachment.url || attachment.previewUrl!)
+const src = $computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
+const srcset = $computed(() => [
+  [src, attachment.meta?.original?.width],
+  [attachment.previewUrl, attachment.meta?.small?.width],
+].filter(([url]) => url).map(([url, size]) => `${url} ${size}w`).join(', '))
 
 const rawAspectRatio = computed(() => {
   if (attachment.meta?.original?.aspect)
@@ -31,6 +35,8 @@ const aspectRatio = computed(() => {
       controls
       border="~ base"
       object-cover
+      :width="attachment.meta?.original?.width"
+      :height="attachment.meta?.original?.height"
       :style="{
         aspectRatio,
       }"
@@ -45,6 +51,8 @@ const aspectRatio = computed(() => {
       autoplay
       border="~ base"
       object-cover
+      :width="attachment.meta?.original?.width"
+      :height="attachment.meta?.original?.height"
       :style="{
         aspectRatio,
       }"
@@ -69,6 +77,9 @@ const aspectRatio = computed(() => {
         :blurhash="attachment.blurhash"
         class="status-attachment-image"
         :src="src"
+        :srcset="srcset"
+        :width="attachment.meta?.original?.width"
+        :height="attachment.meta?.original?.height"
         :alt="attachment.description!"
         :style="{
           aspectRatio,

@@ -28,7 +28,7 @@ export function fetchStatus(id: string): Promise<Status> {
   return promise
 }
 
-export function fetchAccount(id: string): Promise<Account> {
+export function fetchAccountById(id: string): Promise<Account> {
   const key = `account:${id}`
   const cached = cache.get(key)
   if (cached)
@@ -42,7 +42,7 @@ export function fetchAccount(id: string): Promise<Account> {
   return promise
 }
 
-export async function fetchAccountByName(acct: string): Promise<Account> {
+export async function fetchAccountByHandle(acct: string): Promise<Account> {
   const key = `account:${acct}`
   const cached = cache.get(key)
   if (cached)
@@ -54,6 +54,14 @@ export async function fetchAccountByName(acct: string): Promise<Account> {
     })
   cache.set(key, account)
   return account
+}
+
+export function useAccountByHandle(acct: string) {
+  return useAsyncState(() => fetchAccountByHandle(acct), null).state
+}
+
+export function useAccountById(id: string) {
+  return useAsyncState(() => fetchAccountById(id), null).state
 }
 
 export function cacheStatus(status: Status, override?: boolean) {

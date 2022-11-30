@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const params = useRoute().params
-const accountName = $(computedEager(() => params.account as string))
+const handle = $(computedEager(() => params.account as string))
 
-const account = await fetchAccountByName(accountName)
+const account = await fetchAccountByHandle(handle)
 const paginator = account ? useMasto().accounts.getFollowersIterable(account.id, {}) : null
 </script>
 

@@ -91,3 +91,13 @@ vi.mock('../components/content/ContentCode.vue', () => {
     }),
   }
 })
+
+vi.mock('../components/account/AccountHoverWrapper.vue', () => {
+  return {
+    default: defineComponent({
+      setup(_, { slots }) {
+        return () => slots?.default?.()
+      },
+    }),
+  }
+})

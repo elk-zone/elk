@@ -5,6 +5,7 @@ import type { VNode } from 'vue'
 import { Fragment, h, isVNode } from 'vue'
 import { RouterLink } from 'vue-router'
 import ContentCode from '~/components/content/ContentCode.vue'
+import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 
 type Node = DefaultTreeAdapterMap['childNode']
 type Element = DefaultTreeAdapterMap['element']
@@ -18,7 +19,9 @@ function handleMention(el: Element) {
       if (matchUser) {
         const [, server, username] = matchUser
         // Handles need to ignore server subdomains
-        href.value = `/@${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
+        const handle = `@${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
+        href.value = `/${handle}`
+        return h(AccountHoverWrapper, { handle, class: 'inline-block' }, () => nodeToVNode(el))
       }
       const matchTag = href.value.match(TagLinkRE)
       if (matchTag) {
@@ -108,22 +111,13 @@ export function contentToVNode(
   return h(Fragment, tree.childNodes.map(n => treeToVNode(n)))
 }
 
-function treeToVNode(
-  input: Node,
-): VNode | string | null {
-  if (input.nodeName === '#text') {
+function nodeToVNode(node: Node): VNode | string | null {
+  if (node.nodeName === '#text') {
     // @ts-expect-error casing
-    const text = input.value as string
-    return text
+    return input.value as string
   }
 
-  if ('childNodes' in input) {
-    const node = handleNode(input)
-    if (node == null)
-      return null
-    if (isVNode(node))
-      return node
-
+  if ('childNodes' in node) {
     const attrs = Object.fromEntries(node.attrs.map(i => [i.name, i.value]))
     if (node.nodeName === 'a' && (attrs.href?.startsWith('/') || attrs.href?.startsWith('.'))) {
       attrs.to = attrs.href
@@ -140,6 +134,25 @@ function treeToVNode(
       attrs,
       node.childNodes.map(treeToVNode),
     )
+  }
+  return null
+}
+
+function treeToVNode(
+  input: Node,
+): VNode | string | null {
+  if (input.nodeName === '#text') {
+    // @ts-expect-error casing
+    return input.value as string
+  }
+
+  if ('childNodes' in input) {
+    const node = handleNode(input)
+    if (node == null)
+      return null
+    if (isVNode(node))
+      return node
+    return nodeToVNode(node)
   }
   return null
 }

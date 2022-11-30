@@ -5,7 +5,7 @@ const { status } = defineProps<{
   status: Status
 }>()
 
-const account = asyncComputed(() => fetchAccount(status.inReplyToAccountId!))
+const account = useAccountById(status.inReplyToAccountId!)
 </script>
 
 <template>

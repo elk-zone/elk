@@ -37,7 +37,8 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
-    "not_found": "404 Not Found"
+    "not_found": "404 Not Found",
+    "offline_desc": "Seems like you are under offline. Please check your network connection."
   },
   "error": {
     "account_not_found": "Account {0} not found"

@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { DEFAULT_SERVER } from '~/constants'
 
-const { t } = useI18n()
-
 const input = $ref<HTMLInputElement>()
 let server = $ref<string>('')
 

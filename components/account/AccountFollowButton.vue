@@ -6,8 +6,6 @@ const { account, command } = defineProps<{
   command?: boolean
 }>()
 
-const { t } = useI18n()
-
 const isSelf = $computed(() => currentUser.value?.account.id === account.id)
 const enable = $computed(() => !isSelf && currentUser.value)
 let relationship = $(useRelationship(account))

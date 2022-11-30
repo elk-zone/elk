@@ -3,8 +3,6 @@ import type { UserLogin } from '~/types'
 
 const all = useUsers()
 
-const { t } = useI18n()
-
 const sorted = computed(() => {
   return [
     currentUser.value!,
@@ -37,7 +35,7 @@ const switchUser = (user: UserLogin) => {
     </template>
     <div border="t base" pt2>
       <CommonDropdownItem
-        :text=" $t('user.add_existing')"
+        :text="$t('user.add_existing')"
         icon="i-ri:user-add-line"
         @click="openSigninDialog"
       />

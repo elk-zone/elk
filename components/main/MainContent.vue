@@ -21,7 +21,7 @@ defineProps<{
         </div>
         <div flex items-center>
           <slot name="actions" />
-          <NavUser v-if="isSmallScreen" />
+          <NavUser v-if="isMediumScreen" />
         </div>
       </div>
       <slot name="header" />

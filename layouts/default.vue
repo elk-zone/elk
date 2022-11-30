@@ -21,23 +21,24 @@
         <div sticky top-0 h-screen flex="~ col">
           <slot name="right">
             <UserSignInEntry v-if="!currentUser" />
-            <VDropdown
-              v-if="currentUser"
-              :distance="0"
-              placement="bottom-end"
-            >
-              <button
-                m5 p2 rounded-full text-start w-full
+            <div v-if="currentUser" py6 px4 w-full flex="~" items-center justify-between>
+              <NuxtLink
+                p2 rounded-full text-start w-full
                 hover:bg-active cursor-pointer transition-100
-                class="md:(w-7.5/10 rounded-5)"
-                aria-label="Switch account"
+                :to="getAccountPath(currentUser.account)"
               >
-                <AccountInfo :account="currentUser.account" md:flex="col" md:break-words />
-              </button>
-              <template #popper>
-                <UserSwitcher />
-              </template>
-            </VDropdown>
+                <AccountInfo :account="currentUser.account" md:break-words />
+              </NuxtLink>
+              <VDropdown :distance="0" placement="bottom-end">
+                <button btn-action-icon aria-label="Switch account">
+                  <div i-ri:more-2-line />
+                </button>
+                <template #popper>
+                  <UserSwitcher />
+                </template>
+              </VDropdown>
+            </div>
+
             <div flex-auto />
             <NavFooter />
           </slot>

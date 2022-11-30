@@ -16,6 +16,7 @@ const { t } = useI18n()
       <NavSideItem :text="t('nav_side.favourites')" to="/favourites" icon="i-ri:heart-3-line" />
       <NavSideItem :text="t('nav_side.bookmarks')" to="/bookmarks" icon="i-ri:bookmark-line " />
       <NavSideItem
+        v-if="isMediumScreen"
         :text="currentUser.account.displayName"
         :to="getAccountPath(currentUser.account)"
         icon="i-ri:account-circle-line"

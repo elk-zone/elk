@@ -55,8 +55,8 @@ useCommands(() => command
         hover:bg-active transition-100
         @keypress.enter="modelValue = option.name"
       ><span
-        mxa px4 py3 text-center
-        :class="modelValue === option.name ? 'font-bold border-b-3 border-primary' : 'op50 hover:op50'"
+        mxa px4 py3 text-center border-b-3
+        :class="modelValue === option.name ? 'font-bold border-primary' : 'op50 hover:op50 border-transparent'"
       >{{ option.display }}</span>
       </label>
     </template>

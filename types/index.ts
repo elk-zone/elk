@@ -1,4 +1,4 @@
-import type { AccountCredentials, Emoji, Instance } from 'masto'
+import type { AccountCredentials, Emoji, Instance, Notification } from 'masto'
 
 export interface AppInfo {
   id: string
@@ -22,4 +22,10 @@ export interface ServerInfo extends Instance {
   server: string
   timeUpdated: number
   customEmojis?: Record<string, Emoji>
+}
+
+export interface GroupedNotifications {
+  id: string
+  type: string
+  items: Notification[]
 }

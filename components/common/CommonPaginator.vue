@@ -29,24 +29,26 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
 <template>
   <div>
     <slot v-if="prevItems.length" name="updater" v-bind="{ number: prevItems.length, update }" />
-    <template v-if="virtualScroller">
-      <DynamicScroller
-        v-slot="{ item, active }"
-        :items="items"
-        :min-item-size="200"
-        :key-field="keyProp"
-        page-mode
-      >
-        <slot :item="item" :active="active" />
-      </DynamicScroller>
-    </template>
-    <template v-else>
-      <slot
-        v-for="item of items"
-        :key="item[keyProp]"
-        :item="item"
-      />
-    </template>
+    <slot name="items" :items="items">
+      <template v-if="virtualScroller">
+        <DynamicScroller
+          v-slot="{ item, active }"
+          :items="items"
+          :min-item-size="200"
+          :key-field="keyProp"
+          page-mode
+        >
+          <slot :item="item" :active="active" />
+        </DynamicScroller>
+      </template>
+      <template v-else>
+        <slot
+          v-for="item of items"
+          :key="item[keyProp]"
+          :item="item"
+        />
+      </template>
+    </slot>
     <div ref="endAnchor" />
     <slot v-if="state === 'loading'" name="loading">
       <div p5 text-center flex="~ col" items-center animate-pulse>

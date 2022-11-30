@@ -50,6 +50,7 @@ specifiers:
   prettier: ^2.8.0
   rollup-plugin-node-polyfills: ^0.2.1
   shiki: ^0.11.1
+  shiki-es: ^0.1.2
   simple-git-hooks: ^2.8.1
   std-env: ^3.3.1
   theme-vitesse: ^0.6.0
@@ -112,6 +113,7 @@ devDependencies:
   prettier: 2.8.0
   rollup-plugin-node-polyfills: 0.2.1
   shiki: 0.11.1
+  shiki-es: 0.1.2
   simple-git-hooks: 2.8.1
   std-env: 3.3.1
   theme-vitesse: 0.6.0
@@ -7250,11 +7252,15 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /shiki-es/0.1.2:
+    resolution: {integrity: sha512-eqtfk8idlYlSLAn0gp0Ly2+FbKc2d78IddigHSS4iHAnpXoY2kdRzyFGZOdi6TvemYMnRhZBi1HsSqZc5eNKqg==}
+    dev: true
+
   /shiki/0.11.1:
     resolution: {integrity: sha512-EugY9VASFuDqOexOgXR18ZV+TbFrQHeCpEYaXamO+SZlsnT/2LxuLBX25GGtIrwaEVFXUAbUQ601SWE2rMwWHA==}
     dependencies:
       jsonc-parser: 3.2.0
-      vscode-oniguruma: 1.7.0
+      vscode-oniguruma: 1.6.1
       vscode-textmate: 6.0.0
     dev: true
 
@@ -8304,8 +8310,8 @@ packages:
       vscode-languageserver-protocol: 3.16.0
     dev: true
 
-  /vscode-oniguruma/1.7.0:
-    resolution: {integrity: sha512-L9WMGRfrjOhgHSdOYgCt/yRMsXzLDJSL7BPrOZt73gU0iWO4mpqzqQzOz5srxqTvMBaR0XZTSrVWo4j55Rc6cA==}
+  /vscode-oniguruma/1.6.1:
+    resolution: {integrity: sha512-vc4WhSIaVpgJ0jJIejjYxPvURJavX6QG41vu0mGhqywMkQqulezEqEQ3cO3gc8GvcOpX6ycmKGqRoROEMBNXTQ==}
     dev: true
 
   /vscode-textmate/6.0.0:

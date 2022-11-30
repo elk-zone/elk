@@ -1,4 +1,4 @@
-import type { Highlighter, Lang } from 'shiki'
+import type { Highlighter, Lang } from 'shiki-es'
 
 export const shiki = ref<Highlighter>()
 
@@ -7,7 +7,7 @@ let shikiImport: Promise<void> | undefined
 
 export function highlightCode(code: string, lang: Lang) {
   if (!shikiImport) {
-    shikiImport = import('shiki')
+    shikiImport = import('shiki-es')
       .then(async (r) => {
         r.setCDN('/shiki/')
         shiki.value = await r.getHighlighter({

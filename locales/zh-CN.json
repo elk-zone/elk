@@ -7,9 +7,11 @@
     "follow_back": "回关",
     "follow_requested": "已申请关注",
     "followers_count": "被 {0} 人关注",
+    "following": "关注中",
     "following_count": "正在关注 {0} 人",
     "follows_you": "已关注你",
     "muted_users": "已屏蔽的用户",
+    "mutuals": "互相关注",
     "pinned": "置顶的帖文",
     "posts_count": "{0} 条帖文",
     "unfollow": "取消关注"

@@ -7,9 +7,11 @@
     "follow_back": "Follow back",
     "follow_requested": "Requested",
     "followers_count": "{0} Followers",
+    "following": "Following",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
     "muted_users": "Muted users",
+    "mutuals": "Mutuals",
     "pinned": "Pinned",
     "posts_count": "{0} Posts",
     "unfollow": "Unfollow"
@@ -105,9 +107,9 @@
     "uploading": "Uploading..."
   },
   "status": {
+    "reblogged": "{0} reblogged",
     "spoiler_show_less": "Show less",
-    "spoiler_show_more": "Show more",
-    "reblogged": "{0} reblogged"
+    "spoiler_show_more": "Show more"
   },
   "tab": {
     "media": "Media",

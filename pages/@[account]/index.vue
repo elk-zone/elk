@@ -4,7 +4,7 @@ const accountName = $(computedEager(() => toShortHandle(params.account as string
 
 const { t } = useI18n()
 
-const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByName(accountName).catch(() => null)))
+const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null)))
 
 if (account) {
   useHeadFixed({

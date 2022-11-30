@@ -26,10 +26,10 @@ definePageMeta({
 
       const { accounts, statuses } = value
       if (statuses[0])
-        return resolveStatusPath(statuses[0])
+        return getStatusRoute(statuses[0])
 
       if (accounts[0])
-        return getAccountPath(accounts[0])
+        return getAccountRoute(accounts[0])
     }
     catch {}
 

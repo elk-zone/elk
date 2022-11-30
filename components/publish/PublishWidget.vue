@@ -157,7 +157,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
     </template>
 
     <div p4 flex gap-4>
-      <NuxtLink w-12 h-12 :to="getAccountPath(currentUser.account)">
+      <NuxtLink w-12 h-12 :to="getAccountRoute(currentUser.account)">
         <AccountAvatar :account="currentUser.account" w-12 h-12 />
       </NuxtLink>
       <div

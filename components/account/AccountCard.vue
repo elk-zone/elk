@@ -14,7 +14,7 @@ cacheAccount(account)
     <AccountInfo
       :account="account" hover p1 as="router-link"
       :hover-card="hoverCard"
-      :to="getAccountPath(account)"
+      :to="getAccountRoute(account)"
     />
     <div h-full p1>
       <AccountFollowButton :account="account" />

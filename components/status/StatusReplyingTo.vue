@@ -12,7 +12,7 @@ const account = useAccountById(status.inReplyToAccountId!)
   <NuxtLink
     v-if="status.inReplyToId"
     flex="~ wrap" items-center text-sm text-secondary
-    :to="getStatusInReplyToPath(status)"
+    :to="getStatusInReplyToRoute(status)"
     :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
   >
     <div i-ri:reply-fill rotate-180 text-secondary-light class="mr-1.5" />

@@ -19,7 +19,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
 
 <template>
   <div :id="`status-${status.id}`" flex flex-col gap-2 py3 px-4>
-    <NuxtLink :to="getAccountPath(status.account)" rounded-full hover:bg-active transition-100 pr5 mr-a>
+    <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pr5 mr-a>
       <AccountHoverWrapper :account="status.account">
         <AccountInfo :account="status.account" />
       </AccountHoverWrapper>

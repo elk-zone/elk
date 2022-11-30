@@ -18,7 +18,7 @@ const { t } = useI18n()
       <NavSideItem
         v-if="isMediumScreen"
         :text="currentUser.account.displayName"
-        :to="getAccountPath(currentUser.account)"
+        :to="getAccountRoute(currentUser.account)"
         icon="i-ri:account-circle-line"
       >
         <template #icon>

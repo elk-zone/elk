@@ -56,7 +56,7 @@ export function toShortHandle(fullHandle: string) {
   return fullHandle
 }
 
-export function getAccountPath(account: Account) {
+export function getAccountRoute(account: Account) {
   return useRouter().resolve({
     name: 'account-index',
     params: {
@@ -67,7 +67,7 @@ export function getAccountPath(account: Account) {
     },
   })
 }
-export function getAccountFollowingPath(account: Account) {
+export function getAccountFollowingRoute(account: Account) {
   return useRouter().resolve({
     name: 'account-following',
     params: {
@@ -78,7 +78,7 @@ export function getAccountFollowingPath(account: Account) {
     },
   })
 }
-export function getAccountFollowersPath(account: Account) {
+export function getAccountFollowersRoute(account: Account) {
   return useRouter().resolve({
     name: 'account-followers',
     params: {
@@ -90,7 +90,7 @@ export function getAccountFollowersPath(account: Account) {
   })
 }
 
-export function resolveStatusPath(status: Status) {
+export function getStatusRoute(status: Status) {
   return useRouter().resolve({
     name: 'status',
     params: {
@@ -103,7 +103,7 @@ export function resolveStatusPath(status: Status) {
   })
 }
 
-export function getStatusPermalink(status: Status) {
+export function getStatusPermalinkRouteRoute(status: Status) {
   return status.url
     ? useRouter().resolve({
       name: 'permalink',
@@ -112,7 +112,7 @@ export function getStatusPermalink(status: Status) {
     : null
 }
 
-export function getStatusInReplyToPath(status: Status) {
+export function getStatusInReplyToRoute(status: Status) {
   return useRouter().resolve({
     name: 'status-by-id',
     params: {

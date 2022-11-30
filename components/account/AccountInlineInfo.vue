@@ -10,7 +10,7 @@ const { link = true } = defineProps<{
 <template>
   <AccountHoverWrapper :account="account">
     <NuxtLink
-      :to="link ? getAccountPath(account) : undefined"
+      :to="link ? getAccountRoute(account) : undefined"
       :class="link ? 'text-link-rounded ml-0 pl-0' : ''"
       min-w-0 flex gap-1 items-center
     >

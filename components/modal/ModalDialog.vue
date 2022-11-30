@@ -78,6 +78,8 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   }
 })
 
+let unsubscribe: () => void
+
 watch(modelValue, async (v) => {
   if (v) {
     isOut = true
@@ -85,8 +87,14 @@ watch(modelValue, async (v) => {
     setTimeout(() => {
       isOut = false
     }, 10)
+
+    unsubscribe = useRouter().beforeEach(() => {
+      unsubscribe()
+      close()
+    })
   }
   else {
+    unsubscribe?.()
     isOut = true
   }
 })

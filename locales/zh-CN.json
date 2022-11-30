@@ -104,6 +104,11 @@
     "loading": "加载中...",
     "uploading": "上传中..."
   },
+  "status": {
+    "reblogged": "{0} 转发了",
+    "spoiler_show_less": "隐藏",
+    "spoiler_show_more": "显示更多"
+  },
   "tab": {
     "media": "媒体",
     "notifications_all": "全部",

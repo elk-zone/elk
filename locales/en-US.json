@@ -104,6 +104,11 @@
     "loading": "Loading...",
     "uploading": "Uploading..."
   },
+  "status": {
+    "spoiler_show_less": "Show less",
+    "spoiler_show_more": "Show more",
+    "reblogged": "{0} reblogged"
+  },
   "tab": {
     "media": "Media",
     "notifications_all": "All",

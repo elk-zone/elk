@@ -27,7 +27,9 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
     <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" />
     <StatusSpoiler :enabled="status.sensitive">
       <template #spoiler>
-        {{ status.spoilerText }}
+        <p text-2xl>
+          {{ status.spoilerText }}
+        </p>
       </template>
       <StatusBody :status="status" :with-action="false" text-2xl />
       <StatusPoll v-if="status.poll" :poll="status.poll" />

@@ -49,8 +49,9 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
     <div v-if="rebloggedBy" pl8>
       <div flex="~ wrap" gap-1 items-center text-secondary text-sm>
         <div i-ri:repeat-fill mr-1 />
-        <AccountInlineInfo font-bold :account="rebloggedBy" />
-        reblogged
+        <i18n-t keypath="status.reblogged">
+          <AccountInlineInfo font-bold :account="rebloggedBy" />
+        </i18n-t>
       </div>
     </div>
     <div flex gap-4>
@@ -82,7 +83,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
         <div>
           <StatusSpoiler :enabled="status.sensitive">
             <template #spoiler>
-              {{ status.spoilerText }}
+              <p>{{ status.spoilerText }}</p>
             </template>
             <StatusBody :status="status" />
             <StatusPoll v-if="status.poll" :poll="status.poll" />

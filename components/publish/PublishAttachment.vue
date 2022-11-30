@@ -21,11 +21,12 @@ defineEmits<{
       <div
         v-if="removable"
         aria-label="Remove attachment"
-        hover:bg="gray/40" transition-100 p-1 rounded-5 cursor-pointer op-0 group-hover:op-100
+        hover:bg="gray/40" transition-100 p-1 rounded-5 cursor-pointer
+        :class="[isSmallScreen ? '' : 'op-0 group-hover:op-100hover:']"
         mix-blend-difference
         @click="$emit('remove')"
       >
-        <div i-ri:close-line text-3 />
+        <div i-ri:close-line text-3 :class="[isSmallScreen ? 'text-6' : 'text-3']" />
       </div>
     </div>
   </div>

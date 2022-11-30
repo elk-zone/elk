@@ -2,6 +2,7 @@
 import { parseURL } from 'ufo'
 
 definePageMeta({
+  name: 'permalink',
   middleware: async (to) => {
     const HANDLED_MASTO_URL = /^(https?:\/\/)?(\w+\.)+\w+\/(@[@\w\d\.]+)(\/\d+)?$/
     try {
@@ -24,16 +25,11 @@ definePageMeta({
       const { value } = await useMasto().search({ q: permalink, resolve: true, limit: 1 }).next()
 
       const { accounts, statuses } = value
-      if (statuses[0]) {
-        return {
-          path: getStatusPath(statuses[0]),
-          state: {
-            status: statuses[0] as any,
-          },
-        }
-      }
+      if (statuses[0])
+        return getStatusRoute(statuses[0])
+
       if (accounts[0])
-        return getAccountPath(accounts[0])
+        return getAccountRoute(accounts[0])
     }
     catch {}
 

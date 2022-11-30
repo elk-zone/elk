@@ -77,7 +77,7 @@ const toggleTranslation = async () => {
 }
 
 const copyLink = async (status: Status) => {
-  const url = getStatusPermalink(status)
+  const url = getStatusPermalinkRoute(status)
   if (url)
     await clipboard.copy(`${location.origin}${url}`)
 }

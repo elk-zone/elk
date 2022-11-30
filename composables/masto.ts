@@ -56,20 +56,69 @@ export function toShortHandle(fullHandle: string) {
   return fullHandle
 }
 
-export function getAccountPath(account: Account) {
-  return `/${getFullHandle(account)}`
+export function getAccountRoute(account: Account) {
+  return useRouter().resolve({
+    name: 'account-index',
+    params: {
+      account: getFullHandle(account).slice(1),
+    },
+    state: {
+      account: account as any,
+    },
+  })
+}
+export function getAccountFollowingRoute(account: Account) {
+  return useRouter().resolve({
+    name: 'account-following',
+    params: {
+      account: getFullHandle(account).slice(1),
+    },
+    state: {
+      account: account as any,
+    },
+  })
+}
+export function getAccountFollowersRoute(account: Account) {
+  return useRouter().resolve({
+    name: 'account-followers',
+    params: {
+      account: getFullHandle(account).slice(1),
+    },
+    state: {
+      account: account as any,
+    },
+  })
 }
 
-export function getStatusPath(status: Status) {
-  return `/${getFullHandle(status.account)}/${status.id}`
+export function getStatusRoute(status: Status) {
+  return useRouter().resolve({
+    name: 'status',
+    params: {
+      account: getFullHandle(status.account).slice(1),
+      status: status.id,
+    },
+    state: {
+      status: status as any,
+    },
+  })
 }
 
-export function getStatusPermalink(status: Status) {
-  return status.url ? `/${withoutProtocol(status.url)}` : null
+export function getStatusPermalinkRouteRoute(status: Status) {
+  return status.url
+    ? useRouter().resolve({
+      name: 'permalink',
+      params: { permalink: withoutProtocol(status.url) },
+    })
+    : null
 }
 
-export function getStatusInReplyToPath(status: Status) {
-  return `/status/${status.inReplyToId}`
+export function getStatusInReplyToRoute(status: Status) {
+  return useRouter().resolve({
+    name: 'status-by-id',
+    params: {
+      status: status.inReplyToId,
+    },
+  })
 }
 
 export function useAccountHandle(account: Account, fullServer = true) {

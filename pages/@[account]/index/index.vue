@@ -1,13 +1,20 @@
 <script setup lang="ts">
+import type { Account } from 'masto'
+
 const params = useRoute().params
 const handle = $(computedEager(() => params.account as string))
 
-const account = await fetchAccountByHandle(handle)
+definePageMeta({ name: 'account-index' })
+
+const { data: account } = await useAsyncData(`account:${handle}`, async () => (
+  window.history.state?.account as Account | undefined)
+  ?? await fetchAccountByHandle(handle),
+)
 const { t } = useI18n()
 
-const paginatorPosts = useMasto().accounts.getStatusesIterable(account.id, { excludeReplies: true })
-const paginatorPostsWithReply = useMasto().accounts.getStatusesIterable(account.id, { excludeReplies: false })
-const paginatorMedia = useMasto().accounts.getStatusesIterable(account.id, { onlyMedia: true, excludeReplies: false })
+const paginatorPosts = useMasto().accounts.getStatusesIterable(account.value!.id, { excludeReplies: true })
+const paginatorPostsWithReply = useMasto().accounts.getStatusesIterable(account.value!.id, { excludeReplies: false })
+const paginatorMedia = useMasto().accounts.getStatusesIterable(account.value!.id, { onlyMedia: true, excludeReplies: false })
 
 const tabs = $computed(() => [
   {

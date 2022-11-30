@@ -29,7 +29,7 @@ const isExpanded = ref(false)
         :key="item.id"
         :account="item.account"
       >
-        <NuxtLink :to="getAccountPath(item.account)">
+        <NuxtLink :to="getAccountRoute(item.account)">
           <AccountAvatar :account="item.account" w-8 h-8 />
         </NuxtLink>
       </AccountHoverWrapper>

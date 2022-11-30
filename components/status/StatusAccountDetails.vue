@@ -9,7 +9,7 @@ const { account, link = true } = defineProps<{
 
 <template>
   <NuxtLink
-    :to="link ? getAccountPath(account) : undefined"
+    :to="link ? getAccountRoute(account) : undefined"
     flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
     text-link-rounded
   >

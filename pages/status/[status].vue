@@ -1,15 +1,11 @@
 <script setup lang="ts">
 definePageMeta({
+  name: 'status-by-id',
   middleware: async (to) => {
     const params = to.params
     const id = params.status as string
     const status = await fetchStatus(id)
-    return {
-      path: getStatusPath(status),
-      state: {
-        status: status as any,
-      },
-    }
+    return getStatusRoute(status)
   },
 })
 </script>

@@ -24,10 +24,14 @@ const buildTimeAgo = useTimeAgo(buildTime)
     </div>
     <div>
       <button cursor-pointer hover:underline @click="openPreviewHelp">
-        Show intro
+        {{ $t('nav_footer.show_intro') }}
       </button>
     </div>
-    <div>A Mastodon client made with 🧡</div>
-    <div>Built <time :datetime="buildTime" :title="buildTime">{{ buildTimeAgo }}</time> · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a></div>
+    <div>{{ $t('app_desc_short') }}</div>
+    <div>
+      <i18n-t keypath="nav_footer.built_at">
+        <time :datetime="buildTime" :title="buildTime">{{ buildTimeAgo }}</time>
+      </i18n-t> · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a>
+    </div>
   </footer>
 </template>

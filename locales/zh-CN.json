@@ -24,8 +24,9 @@
     "publish": "发布！",
     "reply": "回复",
     "save_changes": "保存更改",
-    "sign_in": "登录"
+    "sign_in": "登鹿"
   },
+  "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
   "app_name": "鹿鸣",
   "command": {
     "activate": "执行",
@@ -62,8 +63,10 @@
     "unpin_on_profile": "取消钉选"
   },
   "nav_footer": {
+    "built_at": "于 {0} 构建",
     "select_feature_flags": "功能开关",
     "select_language": "选择语言",
+    "show_intro": "应用介绍",
     "toggle_theme": "切换主题",
     "zen_mode": "禅模式"
   },
@@ -123,7 +126,10 @@
   },
   "user": {
     "add_existing": "添加现有帐户",
-    "sign_out_account": "登出 {0}"
+    "server_address_label": "Mastodon 服务器地址",
+    "sign_out_account": "登出 {0}",
+    "tip_no_account": "如果您还没有 Mastodon 账户，{0}。",
+    "tip_register_account": "选择您的服务器并注册一个"
   },
   "visibility": {
     "direct": "私信",

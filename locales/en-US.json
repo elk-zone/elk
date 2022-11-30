@@ -26,6 +26,7 @@
     "save_changes": "Save changes",
     "sign_in": "Sign in"
   },
+  "app_desc_short": "A Mastodon client made with 🧡",
   "app_name": "Elk",
   "command": {
     "activate": "Activate",
@@ -62,8 +63,10 @@
     "unpin_on_profile": "Unpin on profile"
   },
   "nav_footer": {
+    "built_at": "Built {0}",
     "select_feature_flags": "Toggle Feature Flags",
     "select_language": "Select Language",
+    "show_intro": "Show intro",
     "toggle_theme": "Toggle Theme",
     "zen_mode": "Zen Mode"
   },
@@ -123,7 +126,10 @@
   },
   "user": {
     "add_existing": "Add an existing account",
-    "sign_out_account": "Sign out {0}"
+    "server_address_label": "Mastodon Server Address",
+    "sign_out_account": "Sign out {0}",
+    "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
+    "tip_register_account": "pick your server and register one"
   },
   "visibility": {
     "direct": "Direct",

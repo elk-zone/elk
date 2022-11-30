@@ -54,7 +54,7 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
     .replace(/:([\w-]+?):/g, (_, name) => {
       const emoji = customEmojis[name]
       if (emoji)
-        return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" />`
+        return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
       return `:${name}:`
     })
     // handle code blocks
@@ -75,10 +75,10 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
       // @ts-expect-error casing
       const text = node.value as string
       const converted = text
+        .replace(/\*\*\*(.*?)\*\*\*/g, '<b><em>$1</em></b>')
         .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
         .replace(/~~(.*?)~~/g, '<del>$1</del>')
-        .replace(/__(.*?)__/g, '<u>$1</u>')
         .replace(/`([^`]+?)`/g, '<code>$1</code>')
 
       if (converted !== text)
@@ -149,7 +149,7 @@ export function htmlToText(html: string) {
   return tree.childNodes.map(n => treeToText(n)).join('').trim()
 }
 
-function treeToText(input: Node): string {
+export function treeToText(input: Node): string {
   let pre = ''
   let body = ''
   let post = ''
@@ -185,9 +185,16 @@ function treeToText(input: Node): string {
     pre = '*'
     post = '*'
   }
+  else if (input.nodeName === 'del') {
+    pre = '~~'
+    post = '~~'
+  }
 
   if ('childNodes' in input)
     body = input.childNodes.map(n => treeToText(n)).join('')
+
+  if (input.nodeName === 'img' && input.attrs.some(attr => attr.name === 'class' && attr.value.includes('custom-emoji')))
+    return `:${input.attrs.find(attr => attr.name === 'data-emoji-id')?.value}:`
 
   return pre + body + post
 }

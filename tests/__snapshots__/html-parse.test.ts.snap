@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`html-parse > code frame 1`] = `
+exports[`html-parse > code frame > html 1`] = `
 "<p>Testing code block</p>
 <p></p>
 <pre><code class=\\"language-ts\\">import { useMouse, usePreferredDark } from '@vueuse/core'
@@ -13,7 +13,20 @@ const isDark = usePreferredDark()</code></pre>
 "
 `;
 
-exports[`html-parse > code frame 2 1`] = `
+exports[`html-parse > code frame > text 1`] = `
+"Testing code block
+
+\`\`\`ts
+import { useMouse, usePreferredDark } from '@vueuse/core'
+
+// tracks mouse position
+const { x, y } = useMouse()
+// is the user prefers dark theme
+const isDark = usePreferredDark()
+\`\`\`"
+`;
+
+exports[`html-parse > code frame 2 > html 1`] = `
 "<p>
   <span class=\\"h-card\\"
     ><a href=\\"https://mas.to/@antfu\\" class=\\"u-url mention\\"
@@ -27,27 +40,48 @@ exports[`html-parse > code frame 2 1`] = `
 "
 `;
 
-exports[`html-parse > custom emoji 1`] = `
+exports[`html-parse > code frame 2 > text 1`] = `
+"@antfu Testing
+
+\`\`\`ts
+const a = hello
+\`\`\`"
+`;
+
+exports[`html-parse > custom emoji > html 1`] = `
 "Daniel Roe
 <img
   src=\\"https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/original/c96ba3cb0e0e1eac.png\\"
   alt=\\":nuxt:\\"
   class=\\"custom-emoji\\"
+  data-emoji-id=\\"nuxt\\"
 />
 "
 `;
 
-exports[`html-parse > empty 1`] = `""`;
+exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe :nuxt:"`;
 
-exports[`html-parse > inline markdown 1`] = `
-"<p>text <code>code</code> <b>bold</b> <em>italic</em></p>
+exports[`html-parse > empty > html 1`] = `""`;
+
+exports[`html-parse > empty > text 1`] = `""`;
+
+exports[`html-parse > inline markdown > html 1`] = `
+"<p>text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p>
 <p></p>
 <pre><code class=\\"language-js\\">code block</code></pre>
 <p></p>
 "
 `;
 
-exports[`html-parse > link + mention 1`] = `
+exports[`html-parse > inline markdown > text 1`] = `
+"text \`code\` **bold** *italic* ~~del~~
+
+\`\`\`js
+code block
+\`\`\`"
+`;
+
+exports[`html-parse > link + mention > html 1`] = `
 "<p>
   Happy 🤗 we’re now using
   <span class=\\"h-card\\"
@@ -71,3 +105,5 @@ exports[`html-parse > link + mention 1`] = `
 </p>
 "
 `;
+
+exports[`html-parse > link + mention > text 1`] = `"Happy 🤗 we’re now using @vitest (migrated from chai+mocha) https://github.com/ayoayco/astro-reactive-library/pull/203"`;

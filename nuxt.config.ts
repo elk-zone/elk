@@ -104,8 +104,7 @@ export default defineNuxtConfig({
     vueI18n: {
       fallbackLocale: 'en-US',
     },
-    // TODO:
-    // lazy: true,
+    lazy: true,
   },
 })
 

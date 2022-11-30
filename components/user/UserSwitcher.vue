@@ -14,7 +14,8 @@ const router = useRouter()
 const switchUser = (user: UserLogin) => {
   if (user.account.id === currentUser.value?.account.id)
     router.push(getAccountPath(user.account))
-  else loginTo(user)
+  else
+    loginTo(user)
 }
 </script>
 

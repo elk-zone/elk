@@ -6,7 +6,7 @@ const { error } = defineProps<{
   error: Partial<NuxtError>
 }>()
 
-usePageHeader()
+setupPageHeader()
 
 // add more custom status codes messages here
 const errorCodes: Record<number, string> = {

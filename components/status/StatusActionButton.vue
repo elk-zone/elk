@@ -45,9 +45,10 @@ useCommand({
     v-bind="$attrs" ref="el"
     w-fit flex gap-1 items-center
     rounded group :hover="hover"
-    focus:outline-none
+    focus:outline-none cursor-pointer
     :focus-visible="hover"
     :class="active ? [color] : 'text-secondary'"
+    :aria-label="content"
   >
     <CommonTooltip placement="bottom" :content="content">
       <div rounded-full p2 :group-hover="groupHover" :group-focus-visible="groupHover" group-focus-visible:ring="2 current">

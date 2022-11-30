@@ -31,7 +31,7 @@ async function vote(e: Event) {
 
 <template>
   <div flex flex-col w-full items-stretch gap-3>
-    <form v-if="!poll.voted && !poll.expired" flex flex-col gap-4 accent-primary @submit.prevent="vote">
+    <form v-if="!poll.voted && !poll.expired" flex flex-col gap-4 accent-primary @click.stop="noop" @submit.prevent="vote">
       <label v-for="(option, index) of poll.options" :key="index" flex items-center gap-2 px-2>
         <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'">
         {{ option.title }}

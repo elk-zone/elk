@@ -55,10 +55,10 @@ useCommand({
       </div>
     </CommonTooltip>
 
-    <CommonAnimateNumber :increased="active">
-      <span display-block text-secondary-light text-sm>{{ text }}</span>
+    <CommonAnimateNumber :increased="active" text-sm>
+      <span text-secondary-light>{{ text }}</span>
       <template #next>
-        <span display-block :class="[color]" text-sm>{{ text }}</span>
+        <span :class="[color]">{{ text }}</span>
       </template>
     </CommonAnimateNumber>
   </component>

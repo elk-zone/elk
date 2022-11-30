@@ -5,13 +5,8 @@ defineProps<{
 </script>
 
 <template>
-  <div overflow-hidden h="1.25rem">
-    <div
-      transition="duration-300 transform"
-      :style="{
-        transform: increased ? 'translateY(-50%)' : 'translateY(0%)',
-      }"
-    >
+  <div of-hidden h="1.25rem">
+    <div flex="~ col" transition-transform duration-300 :class="increased ? 'translate-y--1/2' : 'translate-y-0'">
       <slot />
       <slot name="next" />
     </div>

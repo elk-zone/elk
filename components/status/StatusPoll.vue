@@ -43,7 +43,7 @@ async function vote(e: Event) {
     <template v-else>
       <div v-for="(option, index) of poll.options" :key="index" flex justify-between p-1 relative :style="{ '--bar-width': toPercentage((option.votesCount || 0) / poll.votesCount) }">
         <div absolute top-0 left-0 bottom-0 bg-primary-active rounded-lg h-full class="w-[var(--bar-width)]" />
-        <div z-1 flex items-center gap-1 px-1 text-inverted>
+        <div z-1 flex items-center gap-1 px-1 text-light>
           {{ option.title }}
 
           <div v-if="poll.voted && poll.ownVotes?.includes(index)" i-ri:checkbox-circle-line />

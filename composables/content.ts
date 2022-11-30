@@ -1,17 +1,13 @@
 import type { Emoji } from 'masto'
 import type { DefaultTreeAdapterMap } from 'parse5'
-import { parseFragment } from 'parse5'
-import type { Component, VNode } from 'vue'
+import { parseFragment, serialize } from 'parse5'
+import type { VNode } from 'vue'
 import { Fragment, h, isVNode } from 'vue'
 import { RouterLink } from 'vue-router'
 import ContentCode from '~/components/content/ContentCode.vue'
 
 type Node = DefaultTreeAdapterMap['childNode']
 type Element = DefaultTreeAdapterMap['element']
-
-const CUSTOM_BLOCKS: Record<string, Component> = {
-  'custom-code': ContentCode,
-}
 
 function handleMention(el: Element) {
   // Redirect mentions to the user page
@@ -34,48 +30,92 @@ function handleMention(el: Element) {
   return undefined
 }
 
-function handleBlocks(el: Element) {
-  if (el.tagName in CUSTOM_BLOCKS) {
-    const block = CUSTOM_BLOCKS[el.tagName]
-    const attrs = Object.fromEntries(el.attrs.map(i => [i.name, i.value]))
-    return h(block, attrs, () => el.childNodes.map(treeToVNode))
+function handleCodeBlock(el: Element) {
+  if (el.tagName === 'pre' && el.childNodes[0]?.nodeName === 'code') {
+    const codeEl = el.childNodes[0] as Element
+    const classes = codeEl.attrs.find(i => i.name === 'class')?.value
+    const lang = classes?.split(/\s/g).find(i => i.startsWith('language-'))?.replace('language-', '')
+    const code = treeToText(codeEl.childNodes[0])
+    return h(ContentCode, { lang, code: encodeURIComponent(code) })
   }
 }
 
 function handleNode(el: Element) {
-  return handleBlocks(el) || handleMention(el) || el
+  return handleCodeBlock(el) || handleMention(el) || el
 }
 
-export function contentToVNode(
-  content: string,
-  customEmojis: Record<string, Emoji> = {},
-): VNode {
-  content = content
-    .trim()
-    // handle custom emojis
+/**
+ * Parse raw HTML form Mastodon server to AST,
+ * with interop of custom emojis and inline Markdown syntax
+ */
+export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
+  const processed = html
+    // custom emojis
     .replace(/:([\w-]+?):/g, (_, name) => {
       const emoji = customEmojis[name]
       if (emoji)
         return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" />`
       return `:${name}:`
     })
-    // handle code frames
+    // handle code blocks
     .replace(/>(```|~~~)([\s\S]+?)\1/g, (_1, _2, raw) => {
       const plain = htmlToText(raw)
       const [lang, ...code] = plain.split('\n')
-      return `><custom-code lang="${lang?.trim().toLowerCase() || ''}" code="${encodeURIComponent(code.join('\n'))}" />`
+      const classes = lang ? ` class="language-${lang}"` : ''
+      return `><pre><code${classes}>${code.join('\n')}</code></pre>`
     })
 
-  const tree = parseFragment(content)
+  const tree = parseFragment(processed)
+
+  function walk(node: Node) {
+    if ('childNodes' in node)
+      node.childNodes = node.childNodes.flatMap(n => walk(n))
+
+    if (node.nodeName === '#text') {
+      // @ts-expect-error casing
+      const text = node.value as string
+      const converted = text
+        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/~~(.*?)~~/g, '<del>$1</del>')
+        .replace(/__(.*?)__/g, '<u>$1</u>')
+        .replace(/`([^`]+?)`/g, '<code>$1</code>')
+
+      if (converted !== text)
+        return parseFragment(converted).childNodes
+    }
+    return [node]
+  }
+
+  tree.childNodes = tree.childNodes.flatMap(n => walk(n))
+
+  return tree
+}
+
+export function convertMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
+  const tree = parseMastodonHTML(html, customEmojis)
+  return serialize(tree)
+}
+
+/**
+ * Raw HTML to VNodes
+ */
+export function contentToVNode(
+  content: string,
+  customEmojis: Record<string, Emoji> = {},
+): VNode {
+  const tree = parseMastodonHTML(content, customEmojis)
   return h(Fragment, tree.childNodes.map(n => treeToVNode(n)))
 }
 
-export function treeToVNode(
+function treeToVNode(
   input: Node,
 ): VNode | string | null {
-  if (input.nodeName === '#text')
+  if (input.nodeName === '#text') {
     // @ts-expect-error casing
-    return input.value
+    const text = input.value as string
+    return text
+  }
 
   if ('childNodes' in input) {
     const node = handleNode(input)

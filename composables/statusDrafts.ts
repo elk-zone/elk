@@ -42,7 +42,7 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
 
 export function getDraftFromStatus(status: Status, text?: null | string): Draft {
   return getDefaultDraft({
-    status: text || status.content,
+    status: text || convertMastodonHTML(status.content),
     mediaIds: status.mediaAttachments.map(att => att.id),
     visibility: status.visibility,
     attachments: status.mediaAttachments,

@@ -68,7 +68,7 @@ body {
     --at-apply: my-2;
   }
   code {
-    --at-apply: bg-code text-code px1 py0.5 rounded text-sm;
+    --at-apply: bg-code text-code px1 py0.5 rounded text-0.9em;
   }
   pre code {
     --at-apply: text-base bg-transparent px0 py0 rounded-none;

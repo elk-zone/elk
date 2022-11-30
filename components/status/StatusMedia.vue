@@ -3,6 +3,7 @@ import type { Status } from 'masto'
 
 const { status } = defineProps<{
   status: Status
+  minimized?: boolean
 }>()
 </script>
 
@@ -12,7 +13,9 @@ const { status } = defineProps<{
       <StatusAttachment
         :attachment="attachment"
         :attachments="status.mediaAttachments"
-        class="w-full h-full"
+        :class="{ 'max-h-72': minimized }"
+        w-full
+        h-full
       />
     </template>
   </div>

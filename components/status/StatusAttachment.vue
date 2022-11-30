@@ -22,6 +22,12 @@ const aspectRatio = computed(() => {
     return clamp(rawAspectRatio.value, 0.5, 2)
   return undefined
 })
+
+const objectPosition = computed(() => {
+  return [attachment.meta?.focus?.x, attachment.meta?.focus?.y]
+    .map(v => v ? `${v * 100}%` : '50%')
+    .join(' ')
+})
 </script>
 
 <template>
@@ -33,6 +39,7 @@ const aspectRatio = computed(() => {
       object-cover
       :style="{
         aspectRatio,
+        objectPosition,
       }"
     >
       <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
@@ -47,6 +54,7 @@ const aspectRatio = computed(() => {
       object-cover
       :style="{
         aspectRatio,
+        objectPosition,
       }"
     >
       <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
@@ -72,6 +80,7 @@ const aspectRatio = computed(() => {
         :alt="attachment.description!"
         :style="{
           aspectRatio,
+          objectPosition,
         }"
         border="~ base"
         rounded-lg

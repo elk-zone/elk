@@ -25,19 +25,23 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
       </AccountHoverWrapper>
     </NuxtLink>
     <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" />
-    <StatusSpoiler :enabled="status.sensitive">
-      <template #spoiler>
-        <p text-2xl>
-          {{ status.spoilerText }}
-        </p>
-      </template>
-      <StatusBody :status="status" :with-action="false" text-2xl />
-      <StatusPoll v-if="status.poll" :poll="status.poll" />
-      <StatusMedia
-        v-if="status.mediaAttachments?.length"
-        :status="status"
-      />
-    </StatusSpoiler>
+    <div
+      :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-direct rounded-3 rounded-tl-none' : ''"
+    >
+      <StatusSpoiler :enabled="status.sensitive">
+        <template #spoiler>
+          <p text-2xl>
+            {{ status.spoilerText }}
+          </p>
+        </template>
+        <StatusBody :status="status" :with-action="false" text-2xl />
+        <StatusPoll v-if="status.poll" :poll="status.poll" />
+        <StatusMedia
+          v-if="status.mediaAttachments?.length"
+          :status="status"
+        />
+      </StatusSpoiler>
+    </div>
     <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>

@@ -80,7 +80,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
           </div>
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
-        <div>
+        <div :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-direct rounded-3 rounded-tl-none' : ''">
           <StatusSpoiler :enabled="status.sensitive">
             <template #spoiler>
               <p>{{ status.spoilerText }}</p>

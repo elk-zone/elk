@@ -57,7 +57,37 @@ export function toShortHandle(fullHandle: string) {
 }
 
 export function getAccountPath(account: Account) {
-  return `/${getFullHandle(account)}`
+  return useRouter().resolve({
+    name: 'account-index',
+    params: {
+      account: _getFullHandle(account),
+    },
+    state: {
+      account: account as any,
+    },
+  })
+}
+export function getAccountFollowingPath(account: Account) {
+  return useRouter().resolve({
+    name: 'account-following',
+    params: {
+      account: _getFullHandle(account),
+    },
+    state: {
+      account: account as any,
+    },
+  })
+}
+export function getAccountFollowersPath(account: Account) {
+  return useRouter().resolve({
+    name: 'account-followers',
+    params: {
+      account: _getFullHandle(account),
+    },
+    state: {
+      account: account as any,
+    },
+  })
 }
 
 function _getFullHandle(account: Account) {

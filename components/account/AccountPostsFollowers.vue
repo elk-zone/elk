@@ -15,14 +15,14 @@ defineProps<{
         </i18n-t>
       </template>
     </NuxtLink>
-    <NuxtLink :to="`${getAccountPath(account)}/following`" text-secondary exact-active-class="text-primary">
+    <NuxtLink :to="getAccountFollowingPath(account)" text-secondary exact-active-class="text-primary">
       <template #default="{ isExactActive }">
         <i18n-t keypath="account.following_count">
           <span font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ humanReadableNumber(account.followingCount) }}</span>
         </i18n-t>
       </template>
     </NuxtLink>
-    <NuxtLink :to="`${getAccountPath(account)}/followers`" text-secondary exact-active-class="text-primary">
+    <NuxtLink :to="getAccountFollowersPath(account)" text-secondary exact-active-class="text-primary">
       <template #default="{ isExactActive }">
         <i18n-t keypath="account.followers_count">
           <span font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ humanReadableNumber(account.followersCount) }}</span>

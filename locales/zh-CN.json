@@ -20,8 +20,8 @@
     "unfollow": "取消关注"
   },
   "action": {
-    "bookmark": "添加到书签",
-    "boost": "转贴",
+    "bookmark": "收藏",
+    "boost": "转发",
     "compose": "撰写",
     "copy_link_to_this_post": "复制这篇帖文的链接",
     "delete": "删除",
@@ -29,8 +29,7 @@
     "edit": "编辑",
     "enter_app": "进入应用",
     "favourite": "喜欢",
-    "mention_status_account": "提及 {'@'}{0}",
-    "pin_on_profile": "在个人资料页面置顶",
+    "more": "更多",
     "publish": "发布！",
     "reply": "回复",
     "save_changes": "保存更改",
@@ -39,10 +38,18 @@
     "translate_post": "翻译帖文",
     "unpin_on_profile": "在个人资料页面取消置顶"
   },
+  "app_name": "鹿鸣",
+  "command": {
+    "activate": "执行",
+    "complete": "完成"
+  },
   "common": {
     "end_of_list": "列表到底啦",
     "error": "错误",
     "not_found": "无法找到相关内容"
+  },
+  "error": {
+    "account_not_found": "未找到用户 {0}"
   },
   "feature_flag": {
     "virtual_scroll": "虚拟滚动"
@@ -54,14 +61,22 @@
   "menu": {
     "block_account": "拉黑 {0}",
     "block_domain": "拉黑域名 {0}",
+    "copy_link_to_post": "复制这篇文章的链接",
+    "delete": "删除",
+    "delete_and_redraft": "删除并重新编辑",
     "direct_message_account": "私信 {0}",
+    "edit": "编辑",
     "mention_account": "提及 {0}",
     "more": "更多",
     "mute_account": "屏蔽 {0}",
     "open_in_original_site": "从源站打开",
+    "pin_on_profile": "钉选在个人资料上",
+    "show_untranslated": "显示原文",
+    "translate_post": "翻译帖子",
     "unblock_account": "解除拉黑 {0}",
     "unblock_domain": "解除拉黑域名 {0}",
-    "unmute_account": "解除屏蔽 {0}"
+    "unmute_account": "解除屏蔽 {0}",
+    "unpin_on_profile": "取消钉选"
   },
   "nav_footer": {
     "select_feature_flags": "功能开关",
@@ -86,12 +101,19 @@
   "notification": {
     "favourited_post": "点赞了你的帖文",
     "followed_you": "关注了你",
+    "followed_you_count": "{0} 人关注了你",
     "missing_type": "未知的通知类型：",
     "reblogged_post": "转发了你的帖文",
     "request_to_follow": "请求关注你",
     "update_status": "更新了他们的状态"
   },
+  "placeholder": {
+    "default_1": "在想些什么？",
+    "reply_to_account": "回复 {0}",
+    "the_thread": "这个帖子"
+  },
   "state": {
+    "edited": "（已编辑）",
     "editing": "编辑中",
     "loading": "加载中...",
     "uploading": "上传中..."
@@ -117,7 +139,8 @@
   "tab": {
     "all": "全部",
     "media": "媒体",
-    "mentions": "提及",
+    "notifications_all": "全部",
+    "notifications_mention": "提及",
     "posts": "帖文",
     "posts_with_replies": "帖文与留言"
   },
@@ -133,10 +156,20 @@
     "add_content_warning": "添加内容警告标识",
     "add_media": "添加图片、视频或者音频文件",
     "change_content_visibility": "修改内容是否可见",
-    "reply_to_n": "回复{0}",
-    "reply_to_this_thread": "这个主题",
-    "toggle_code_block": "切换代码块",
-    "what_is_on_your_mind": "你在想什么？",
-    "write_your_warning_here": "写下你的警告"
+    "toggle_code_block": "切换代码块"
+  },
+  "user": {
+    "add_existing": "添加现有帐户",
+    "sign_out_account": "登出 {0}"
+  },
+  "visibility": {
+    "direct": "私信",
+    "direct_desc": "仅对提及的用户可见",
+    "private": "仅限关注者",
+    "private_desc": "仅关注者可见",
+    "public": "公开",
+    "public_desc": "所有人可见",
+    "unlisted": "不列出",
+    "unlisted_desc": "对所有人可见，但不出现在公共时间线上"
   }
 }

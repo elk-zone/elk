@@ -78,12 +78,11 @@
     "posts_with_replies": "投稿と返信"
   },
   "timeline": {
-    "name": "タイムライン",
     "show_new_items": "{0}件の新しい投稿"
   },
   "title": {
-    "federated_timeline": "@:nav_side.federated @:timeline.name",
-    "local_timeline": "@:nav_side.local @:timeline.name"
+    "federated_timeline": "連合タイムライン",
+    "local_timeline": "ローカルタイムライン"
   },
   "tooltip": {
     "add_content_warning": "警告を追加",

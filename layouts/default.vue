@@ -30,6 +30,7 @@
                 m5 p2 rounded-full text-start w-full
                 hover:bg-active cursor-pointer transition-100
                 class="md:(w-7.5/10 rounded-5)"
+                aria-label="Switch account"
               >
                 <AccountInfo :account="currentUser.account" md:flex="col" md:break-words />
               </button>

@@ -7,7 +7,7 @@ const { t } = useI18n()
 const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByName(accountName).catch(() => null)))
 
 if (account) {
-  useHead({
+  useHeadFixed({
     title: () => `${getDisplayName(account)} (@${account.acct})`,
   })
 }
@@ -31,7 +31,7 @@ onReactivated(() => {
     </template>
 
     <CommonNotFound v-else>
-      Account @{{ accountName }} not found
+      {{ $t('error.account_not_found', [`@${accountName}`]) }}
     </CommonNotFound>
   </MainContent>
 </template>

@@ -69,6 +69,10 @@ export default defineNuxtConfig({
   },
   app: {
     keepalive: true,
+    head: {
+      // Prevent arbitrary zooming on mobile devices
+      viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
+    },
   },
   i18n: {
     locales: [
@@ -100,8 +104,7 @@ export default defineNuxtConfig({
     vueI18n: {
       fallbackLocale: 'en-US',
     },
-    // TODO:
-    // lazy: true,
+    lazy: true,
   },
 })
 

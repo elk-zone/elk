@@ -1,5 +1,6 @@
 <script setup>
-usePageHeader()
+setupPageHeader()
+await setupI18n()
 
 // We want to trigger rerendering the page when account changes
 const key = computed(() => useMasto().instances.config.url || 'default')
@@ -10,7 +11,5 @@ const key = computed(() => useMasto().instances.config.url || 'default')
   <NuxtLayout :key="key">
     <NuxtPage />
   </NuxtLayout>
-  <TeleportTarget
-    id="teleport-end"
-  />
+  <TeleportTarget id="teleport-end" />
 </template>

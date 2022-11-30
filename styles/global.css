@@ -33,7 +33,7 @@
 }
 
 /* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
-html {
+body {
   overflow-y: scroll;
 }
 
@@ -122,4 +122,9 @@ html.dark {
 
 html {
   --at-apply: bg-base text-base;
+}
+
+body {
+  /* Prevent arbitrary zooming on mobile devices */
+  touch-action: pan-x pan-y;
 }

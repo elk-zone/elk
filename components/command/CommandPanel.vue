@@ -220,7 +220,7 @@ const onKeyDown = (e: KeyboardEvent) => {
                   :class="active === cmd.index ? 'opacity-100' : 'opacity-0'"
                 >
                   <div class="text-xs text-secondary">
-                    Complete
+                    {{ $t('command.complete') }}
                   </div>
                   <CommandKey name="Tab" />
                 </div>
@@ -230,7 +230,7 @@ const onKeyDown = (e: KeyboardEvent) => {
                   :class="active === cmd.index ? 'opacity-100' : 'opacity-0'"
                 >
                   <div class="text-xs text-secondary">
-                    Activate
+                    {{ $t('command.activate') }}
                   </div>
                   <CommandKey name="Enter" />
                 </div>

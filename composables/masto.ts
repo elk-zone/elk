@@ -1,32 +1,24 @@
 import type { Ref } from 'vue'
 import type { Account, Relationship, Status } from 'masto'
-import { i18nGlobal } from '~/plugins/i18n'
+import { withoutProtocol } from 'ufo'
 
 // @unocss-include
 export const STATUS_VISIBILITIES = [
   {
     value: 'public',
-    labelT: () => i18nGlobal().t('status_visibilities.public.label'),
     icon: 'i-ri:global-line',
-    descriptionT: () => i18nGlobal().t('status_visibilities.public.description'),
   },
   {
     value: 'unlisted',
-    labelT: () => i18nGlobal().t('status_visibilities.unlisted.label'),
     icon: 'i-ri:lock-unlock-line',
-    descriptionT: () => i18nGlobal().t('status_visibilities.unlisted.description'),
   },
   {
     value: 'private',
-    labelT: () => i18nGlobal().t('status_visibilities.followers_only.label'),
     icon: 'i-ri:lock-line',
-    descriptionT: () => i18nGlobal().t('status_visibilities.followers_only.description'),
   },
   {
     value: 'direct',
-    labelT: () => i18nGlobal().t('status_visibilities.mentioned_people_only.label'),
     icon: 'i-ri:at-line',
-    descriptionT: () => i18nGlobal().t('status_visibilities.mentioned_people_only.description'),
   },
 ] as const
 
@@ -70,6 +62,10 @@ export function getAccountPath(account: Account) {
 
 export function getStatusPath(status: Status) {
   return `/${getFullHandle(status.account)}/${status.id}`
+}
+
+export function getStatusPermalink(status: Status) {
+  return status.url ? `/${withoutProtocol(status.url)}` : null
 }
 
 export function getStatusInReplyToPath(status: Status) {

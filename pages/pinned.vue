@@ -4,9 +4,10 @@ definePageMeta({
 })
 
 const paginator = useMasto().accounts.getStatusesIterable(currentUser.value!.account.id, { pinned: true })
+const { t } = useI18n()
 
-useHead({
-  title: 'Pinned',
+useHeadFixed({
+  title: () => t('account.pinned'),
 })
 </script>
 
@@ -14,7 +15,7 @@ useHead({
   <MainContent>
     <template #title>
       <div i-ri:pushpin-line h-6 mr-1 />
-      <span>Pinned</span>
+      <span>{{ t('account.pinned') }}</span>
     </template>
 
     <TimelinePaginator :paginator="paginator" />

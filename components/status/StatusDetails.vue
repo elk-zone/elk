@@ -30,6 +30,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         {{ status.spoilerText }}
       </template>
       <StatusBody :status="status" :with-action="false" text-2xl />
+      <StatusPoll v-if="status.poll" :poll="status.poll" />
       <StatusMedia
         v-if="status.mediaAttachments?.length"
         :status="status"
@@ -42,11 +43,11 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
           :status="status"
           :inline="false"
         >
-          <span ml1 font-bold cursor-pointer>(Edited)</span>
+          <span ml1 font-bold cursor-pointer>{{ $t('state.edited') }}</span>
         </StatusEditIndicator>
       </div>
       <div>·</div>
-      <CommonTooltip :content="visibility.labelT()" placement="bottom">
+      <CommonTooltip :content="$t(`visibility.${visibility.value}`)" placement="bottom">
         <div :class="visibility.icon" />
       </CommonTooltip>
       <div v-if="status.application?.name">

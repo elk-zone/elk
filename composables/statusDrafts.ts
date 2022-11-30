@@ -1,7 +1,6 @@
 import type { Account, Attachment, CreateStatusParams, Status } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Mutable } from '~/types/utils'
-import { i18nGlobal } from '~/plugins/i18n'
 
 export interface Draft {
   editingStatus?: Status
@@ -24,13 +23,15 @@ export const currentUserDrafts = computed(() => {
   return allDrafts.value[id]
 })
 
-export function getDefaultDraft({
-  status = '',
-  inReplyToId,
-  visibility = 'public',
-  placeholder = i18nGlobal().t('tooltip.what_is_on_your_mind'),
-  attachments = [],
-}: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
+export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
+  const { t } = useI18n()
+  const {
+    status = '',
+    inReplyToId,
+    visibility = 'public',
+    placeholder = t('placeholder.default_1'),
+    attachments = [],
+  } = options
   return {
     params: {
       status,
@@ -52,11 +53,12 @@ export function getDraftFromStatus(status: Status, text?: null | string): Draft 
 }
 
 export function getReplyDraft(status: Status) {
+  const { t } = useI18n()
   return {
     key: `reply-${status.id}`,
     draft: () => getDefaultDraft({
       inReplyToId: status!.id,
-      placeholder: i18nGlobal().t('tooltip.reply_to_n', [status?.account ? getDisplayName(status.account) : t('tooltip.reply_to_this_thread')]),
+      placeholder: t('placeholder.reply_to_account', [status?.account ? getDisplayName(status.account) : t('placeholder.the_thread')]),
       visibility: status.visibility,
     }),
   }

@@ -76,9 +76,9 @@ watchEffect(() => {
 <template>
   <div flex flex-col>
     <button border="b base" z-1>
-      <img h-50 w-full object-cover :src="account.header" @click="previewHeader">
+      <img h-50 w-full object-cover :src="account.header" :alt="`${account.username}'s profile header`" @click="previewHeader">
     </button>
-    <div p4 mt--17 flex flex-col gap-4>
+    <div p4 mt--18 flex flex-col gap-4>
       <div relative>
         <div flex="~ col gap-2 1">
           <button w-30 h-30 rounded-full border-4 border-bg-base z-2 @click="previewAvatar">

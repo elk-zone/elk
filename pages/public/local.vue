@@ -5,15 +5,18 @@ onBeforeUnmount(() => stream.disconnect())
 
 const { t } = useI18n()
 
-useHead({
-  title: () => t('nav_side.local'),
+useHeadFixed({
+  title: () => t('title.local_timeline'),
 })
 </script>
 
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>{{ t('title.local_timeline') }}</span>
+      <NuxtLink to="/public/local" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:group-2-line />
+        <span>{{ t('title.local_timeline') }}</span>
+      </NuxtLink>
     </template>
 
     <slot>

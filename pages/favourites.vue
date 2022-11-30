@@ -6,7 +6,7 @@ definePageMeta({
 const paginator = useMasto().favourites.getIterator()
 const { t } = useI18n()
 
-useHead({
+useHeadFixed({
   title: () => t('nav_side.favourites'),
 })
 </script>
@@ -14,7 +14,10 @@ useHead({
 <template>
   <MainContent>
     <template #title>
-      <span text-lg font-bold>{{ t('nav_side.favourites') }}</span>
+      <NuxtLink to="/favourites" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:heart-3-line />
+        <span>{{ t('nav_side.favourites') }}</span>
+      </NuxtLink>
     </template>
     <slot>
       <TimelinePaginator :paginator="paginator" />

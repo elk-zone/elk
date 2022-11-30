@@ -31,18 +31,17 @@ else {
     apiToken: config.cloudflare.apiToken,
   })))
 }
+export function getRedirectURI(server: string) {
+  return `${HOST_URL}/api/${server}/oauth`
+}
 
 async function fetchAppInfo(server: string) {
-  const redirect_uris = [
-    'urn:ietf:wg:oauth:2.0:oob',
-    `${HOST_URL}/api/${server}/oauth`,
-  ].join('\n')
-
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
     body: {
-      client_name: APP_NAME,
-      redirect_uris,
+      client_name: APP_NAME + (config.env === 'local' ? ' (dev)' : ''),
+      website: 'https://elk.zone',
+      redirect_uris: getRedirectURI(server),
       scopes: 'read write follow push',
     },
   })

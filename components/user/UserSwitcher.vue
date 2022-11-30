@@ -16,7 +16,8 @@ const router = useRouter()
 const switchUser = (user: UserLogin) => {
   if (user.account.id === currentUser.value?.account.id)
     router.push(getAccountPath(user.account))
-  else loginTo(user)
+  else
+    loginTo(user)
 }
 </script>
 
@@ -26,6 +27,7 @@ const switchUser = (user: UserLogin) => {
       <button
         flex rounded px4 py3 text-left
         hover:bg-active cursor-pointer transition-100
+        aria-label="Switch user"
         @click="switchUser(user)"
       >
         <AccountInfo :account="user.account" />
@@ -34,17 +36,17 @@ const switchUser = (user: UserLogin) => {
       </button>
     </template>
     <div border="t base" pt2>
-      <button btn-text flex="~ gap-1" items-center @click="openSigninDialog">
-        <div i-ri:user-add-line />
-        {{ t('account.add_an_existing_account') }}
-      </button>
-      <button
-        v-if="currentUser" btn-text hover:text-red4 flex="~ gap-1" items-center
+      <CommonDropdownItem
+        :text=" $t('user.add_existing')"
+        icon="i-ri:user-add-line"
+        @click="openSigninDialog"
+      />
+      <CommonDropdownItem
+        v-if="currentUser"
+        :text="$t('user.sign_out_account', [getFullHandle(currentUser.account)])"
+        icon="i-ri:logout-box-line"
         @click="signout"
-      >
-        <div i-ri:logout-box-line />
-        {{ t('account.sign_out_account', [getFullHandle(currentUser.account)]) }}
-      </button>
+      />
     </div>
   </div>
 </template>

@@ -61,6 +61,7 @@ const aspectRatio = computed(() => {
       focus:outline-none
       focus:ring="2 primary inset"
       rounded-lg
+      aria-label="Open image preview dialog"
       @click="openImagePreviewDialog({
         src,
         alt: attachment.description!,

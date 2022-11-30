@@ -1,10 +1,11 @@
 import type { ActiveHeadEntry, HeadEntryOptions, UseHeadInput } from '@vueuse/head'
 import type { HeadAugmentations } from '@nuxt/schema'
-import { useHead as _useHead } from '#head'
+import { useHead } from '#head'
 
-export function useHead<T extends HeadAugmentations>(input: UseHeadInput<T>, options?: HeadEntryOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
+// TODO: Workaround for Nuxt bug: https://github.com/elk-zone/elk/pull/199#issuecomment-1329771961
+export function useHeadFixed<T extends HeadAugmentations>(input: UseHeadInput<T>, options?: HeadEntryOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
   const deactivated = useDeactivated()
-  return _useHead(() => {
+  return useHead(() => {
     if (deactivated.value)
       return {}
     return resolveUnref(input)

@@ -21,8 +21,8 @@ const kv = _kv as typeof import('unstorage/dist/drivers/cloudflare-kv-http')['de
 
 const storage = useStorage() as Storage
 
-if (config.env === 'local') {
-  storage.mount('servers', fs({ base: 'node_modules/.cache/servers' }))
+if (config.env === 'local' || config.storage.driver === 'fs') {
+  storage.mount('servers', fs({ base: config.storage.fsBase }))
 }
 else {
   storage.mount('servers', cached(kv({
@@ -31,6 +31,7 @@ else {
     apiToken: config.cloudflare.apiToken,
   })))
 }
+
 export function getRedirectURI(server: string) {
   return `${HOST_URL}/api/${server}/oauth`
 }

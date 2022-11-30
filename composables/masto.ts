@@ -60,8 +60,24 @@ export function getAccountPath(account: Account) {
   return `/${getFullHandle(account)}`
 }
 
-export function getStatusPath(status: Status) {
-  return `/${getFullHandle(status.account)}/${status.id}`
+function _getFullHandle(account: Account) {
+  const handle = account.acct
+  if (!currentUser.value || account.acct.includes('@'))
+    return handle
+  return `${handle}@${getServerName(account)}`
+}
+
+export function resolveStatusPath(status: Status) {
+  return useRouter().resolve({
+    name: 'status',
+    params: {
+      account: _getFullHandle(status.account),
+      status: status.id,
+    },
+    state: {
+      status: status as any,
+    },
+  })
 }
 
 export function getStatusPermalink(status: Status) {

@@ -30,13 +30,13 @@ function onclick(evt: MouseEvent | KeyboardEvent) {
 }
 
 function go(evt: MouseEvent | KeyboardEvent) {
-  const path = getStatusPath(status)
+  const route = resolveStatusPath(status)
   if (evt.metaKey || evt.ctrlKey) {
-    window.open(path)
+    window.open(route.href)
   }
   else {
     cacheStatus(status)
-    router.push(path)
+    router.push(route)
   }
 }
 
@@ -70,7 +70,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
           <div flex-auto />
           <div text-sm text-secondary flex="~ row nowrap" hover:underline>
             <CommonTooltip :content="createdAt">
-              <a :title="status.createdAt" :href="getStatusPath(status)" @click.prevent="go($event)">
+              <a :title="status.createdAt" :href="resolveStatusPath(status).href" @click.prevent="go($event)">
                 <time text-sm hover:underline :datetime="status.createdAt">
                   {{ timeago }}
                 </time>

@@ -24,14 +24,9 @@ definePageMeta({
       const { value } = await useMasto().search({ q: permalink, resolve: true, limit: 1 }).next()
 
       const { accounts, statuses } = value
-      if (statuses[0]) {
-        return {
-          path: getStatusPath(statuses[0]),
-          state: {
-            status: statuses[0] as any,
-          },
-        }
-      }
+      if (statuses[0])
+        return resolveStatusPath(statuses[0])
+
       if (accounts[0])
         return getAccountPath(accounts[0])
     }

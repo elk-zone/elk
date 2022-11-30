@@ -4,12 +4,7 @@ definePageMeta({
     const params = to.params
     const id = params.status as string
     const status = await fetchStatus(id)
-    return {
-      path: getStatusPath(status),
-      state: {
-        status: status as any,
-      },
-    }
+    return resolveStatusPath(status)
   },
 })
 </script>

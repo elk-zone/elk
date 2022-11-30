@@ -2,12 +2,16 @@
 import type { Status } from 'masto'
 import type { ComponentPublicInstance } from 'vue'
 
+definePageMeta({
+  name: 'status',
+})
+
 const route = useRoute()
 const id = $(computedEager(() => route.params.status as string))
 const main = ref<ComponentPublicInstance | null>(null)
 let bottomSpace = $ref(0)
 
-const { data: status, pending, refresh: refreshStatus } = useAsyncData(async () => (
+const { data: status, pending, refresh: refreshStatus } = useAsyncData(`status:${id}`, async () => (
   window.history.state?.status as Status | undefined)
   ?? await fetchStatus(id),
 )

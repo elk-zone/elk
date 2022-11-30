@@ -1,19 +1,23 @@
-import type { StatusEdit } from 'masto'
+import type { Attachment, StatusEdit } from 'masto'
 import type { Draft } from './statusDrafts'
 import { STORAGE_KEY_FIRST_VISIT, STORAGE_KEY_ZEN_MODE } from '~/constants'
 
-export const imagePreview = ref({ src: '', alt: '' })
+export const mediaPreviewList = ref<Attachment[]>([])
+export const mediaPreviewIndex = ref(0)
+
 export const statusEdit = ref<StatusEdit>()
 export const dialogDraftKey = ref<string>()
+
 export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, !process.mock)
 export const isZenMode = useLocalStorage(STORAGE_KEY_ZEN_MODE, false)
-export const toggleZenMode = useToggle(isZenMode)
 
 export const isSigninDialogOpen = ref(false)
 export const isPublishDialogOpen = ref(false)
-export const isImagePreviewDialogOpen = ref(false)
+export const isMediaPreviewOpen = ref(false)
 export const isEditHistoryDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
+
+export const toggleZenMode = useToggle(isZenMode)
 
 export function openSigninDialog() {
   isSigninDialogOpen.value = true
@@ -46,9 +50,14 @@ if (isPreviewHelpOpen.value) {
   })
 }
 
-export function openImagePreviewDialog(image: { src: string; alt: string }) {
-  imagePreview.value = image
-  isImagePreviewDialogOpen.value = true
+export function openMediaPreview(attachments: Attachment[], index = 0) {
+  mediaPreviewList.value = attachments
+  mediaPreviewIndex.value = index
+  isMediaPreviewOpen.value = true
+}
+
+export function closeMediaPreview() {
+  isMediaPreviewOpen.value = false
 }
 
 export function openEditHistoryDialog(edit: StatusEdit) {

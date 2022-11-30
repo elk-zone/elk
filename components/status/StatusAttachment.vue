@@ -4,6 +4,7 @@ import type { Attachment } from 'masto'
 
 const { attachment } = defineProps<{
   attachment: Attachment
+  attachments?: Attachment[]
 }>()
 
 const src = $computed(() => attachment.remoteUrl || attachment.url || attachment.previewUrl!)
@@ -62,10 +63,7 @@ const aspectRatio = computed(() => {
       focus:ring="2 primary inset"
       rounded-lg
       aria-label="Open image preview dialog"
-      @click="openImagePreviewDialog({
-        src,
-        alt: attachment.description!,
-      })"
+      @click="openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
     >
       <CommonBlurhash
         :blurhash="attachment.blurhash"

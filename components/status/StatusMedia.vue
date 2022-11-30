@@ -9,7 +9,11 @@ const { status } = defineProps<{
 <template>
   <div class="status-media-container" :class="`status-media-container-${status.mediaAttachments.length}`">
     <template v-for="attachment of status.mediaAttachments" :key="attachment.id">
-      <StatusAttachment :attachment="attachment" class="w-full h-full" />
+      <StatusAttachment
+        :attachment="attachment"
+        :attachments="status.mediaAttachments"
+        class="w-full h-full"
+      />
     </template>
   </div>
 </template>

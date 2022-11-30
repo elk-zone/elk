@@ -45,11 +45,21 @@ function getFieldNameIcon(fieldName: string) {
 }
 
 function previewHeader() {
-  openImagePreviewDialog({ src: account.header, alt: `${account.username}'s profile header` })
+  openMediaPreview([{
+    id: `${account.acct}:header`,
+    type: 'image',
+    previewUrl: account.header,
+    description: `${account.username}'s profile header`,
+  }])
 }
 
 function previewAvatar() {
-  openImagePreviewDialog({ src: account.avatar, alt: account.username })
+  openMediaPreview([{
+    id: `${account.acct}:avatar`,
+    type: 'image',
+    previewUrl: account.avatar,
+    description: `${account.username}'s avatar`,
+  }])
 }
 
 watchEffect(() => {

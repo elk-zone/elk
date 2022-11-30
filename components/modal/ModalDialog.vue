@@ -1,12 +1,14 @@
 <script setup lang='ts'>
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 
-type DialogType = 'top' | 'right' | 'bottom' | 'left' | 'dialog' | 'preview'
+type DialogType = 'top' | 'right' | 'bottom' | 'left' | 'dialog'
 
 const {
   type = 'dialog',
+  closeButton = false,
 } = defineProps<{
   type?: DialogType
+  closeButton?: boolean
 }>()
 
 const { modelValue } = defineModel<{
@@ -20,8 +22,6 @@ let isOut = $ref(!modelValue.value)
 const positionClass = computed(() => {
   switch (type) {
     case 'dialog':
-      return 'border rounded top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'
-    case 'preview':
       return 'border rounded top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'
     case 'bottom':
       return 'bottom-0 left-0 right-0 border-t'
@@ -40,8 +40,6 @@ const transformClass = computed(() => {
   if (isOut) {
     switch (type) {
       case 'dialog':
-        return 'op0'
-      case 'preview':
         return 'op0'
       case 'bottom':
         return 'translate-y-[100%]'
@@ -123,7 +121,13 @@ function onTransitionEnd() {
       >
         <slot />
       </div>
-      <button v-if="type === 'preview'" btn-action-icon bg="black/20" aria-label="Close" hover:bg="black/40" dark:bg="white/10" dark:hover:bg="white/20" absolute top-0 right-0 m1 @click="close">
+      <button
+        v-if="closeButton"
+        btn-action-icon bg="black/20" aria-label="Close"
+        hover:bg="black/40" dark:bg="white/10" dark:hover:bg="white/20"
+        absolute top-0 right-0 m1
+        @click="close"
+      >
         <div i-ri:close-fill text-white />
       </button>
     </div>

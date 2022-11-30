@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {
   isEditHistoryDialogOpen,
-  isImagePreviewDialogOpen,
+  isMediaPreviewOpen,
   isPreviewHelpOpen,
   isPublishDialogOpen,
   isSigninDialogOpen,
@@ -18,8 +18,8 @@ import {
   <ModalDialog v-model="isPublishDialogOpen">
     <PublishWidget :draft-key="dialogDraftKey" expanded min-w-180 />
   </ModalDialog>
-  <ModalDialog v-model="isImagePreviewDialogOpen" type="preview">
-    <img :src="imagePreview.src" :alt="imagePreview.alt" max-w-95vw max-h-95vh>
+  <ModalDialog v-model="isMediaPreviewOpen" close-button>
+    <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
   </ModalDialog>
   <ModalDialog v-model="isEditHistoryDialogOpen">
     <StatusEditPreview :edit="statusEdit" />

@@ -5,7 +5,7 @@ export const useFormattedDateTime = (
   options: Intl.DateTimeFormatOptions = { dateStyle: 'long', timeStyle: 'medium' },
 ) => {
   const { locale } = useI18n()
-  const formatter = Intl.DateTimeFormat(locale.value, options)
+  const formatter = $computed(() => Intl.DateTimeFormat(locale.value, options))
   return computed(() => {
     const v = resolveUnref(value)
     return v ? formatter.format(new Date(v)) : ''

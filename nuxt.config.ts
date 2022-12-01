@@ -104,6 +104,11 @@ export default defineNuxtConfig({
         file: 'ja-JP.json',
         name: '日本語',
       },
+      {
+        code: 'es-ES',
+        file: 'es-ES.json',
+        name: 'Español',
+      },
     ].sort((a, b) => a.code.localeCompare(b.code)),
     strategy: 'no_prefix',
     detectBrowserLanguage: false,

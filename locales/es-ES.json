@@ -18,7 +18,7 @@
   },
   "action": {
     "bookmark": "Añadir marcador",
-    "boost": "Me gusta",
+    "boost": "Retootear",
     "compose": "Componer",
     "enter_app": "Entrar",
     "favourite": "Favorito",
@@ -87,7 +87,7 @@
     "sign_in_desc": "Inicia sesión para seguir perfiles o hashtags, marcar como favorito, compartir and responder a publicaciones, o interactuar desde tu usuario con un servidor diferente."
   },
   "notification": {
-    "favourited_post": "tu post fue marcado como favorito",
+    "favourited_post": "marcó tu publicación como favorito",
     "followed_you": "te ha seguido",
     "followed_you_count": "{0} personas te siguieron",
     "missing_type": "MISSING notification.type:",
@@ -96,8 +96,10 @@
     "update_status": "ha actualizado su estado"
   },
   "placeholder": {
+    "content_warning": "Escribe tu advertencia aquí",
     "default_1": "¿En qué estás pensando?",
     "reply_to_account": "Responder a {0}",
+    "replying": "Respondiendo",
     "the_thread": "el hilo"
   },
   "state": {
@@ -106,6 +108,11 @@
     "loading": "Cargando...",
     "uploading": "Subiendo..."
   },
+  "status": {
+    "reblogged": "{0} retooteó",
+    "spoiler_show_less": "Mostrar menos",
+    "spoiler_show_more": "Mostrar más"
+  },
   "tab": {
     "media": "Media",
     "notifications_all": "Todos",
@@ -113,12 +120,23 @@
     "posts": "Publicaciones",
     "posts_with_replies": "Publicaciones y respuestas"
   },
+  "time_ago_options": {
+    "last_month": "mes pasado",
+    "last_week": "semana pasada",
+    "last_year": "año pasado",
+    "next_month": "próximo mes",
+    "next_week": "próxima semana",
+    "next_year": "próximo año",
+    "tomorrow": "mañana",
+    "week": "semana",
+    "yesterday": "ayer"
+  },
   "timeline": {
     "show_new_items": "Mostrar {0} nuevas publicaciones"
   },
   "title": {
-    "federated_timeline": "Línea de tiempo Federada",
-    "local_timeline": "Línea de tiempo Local"
+    "federated_timeline": "Línea de tiempo federada",
+    "local_timeline": "Línea de tiempo local"
   },
   "tooltip": {
     "add_content_warning": "Añadir advertencia de contenido",

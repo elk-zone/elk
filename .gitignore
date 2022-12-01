@@ -9,3 +9,7 @@ dist
 .vite-inspect
 
 public/shiki
+
+*~
+*swp
+*swo

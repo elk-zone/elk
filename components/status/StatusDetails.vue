@@ -15,7 +15,7 @@ const status = $computed(() => {
 const createdAt = useFormattedDateTime(status.createdAt)
 
 const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === status.visibility)!)
-const contentFiltered = currentUser.value?.filters?.some(filter => status.content.toLowerCase().includes(filter?.phrase.toLowerCase()))
+const contentFiltered: string | undefined = currentUser.value?.filters?.find(filter => status.content.toLowerCase().includes(filter?.phrase.toLowerCase()))?.phrase
 </script>
 
 <template>
@@ -33,7 +33,7 @@ const contentFiltered = currentUser.value?.filters?.some(filter => status.conten
       <StatusSpoiler :enabled="status.sensitive || contentFiltered">
         <template #spoiler>
           <p text-2xl>
-            {{ contentFiltered ? 'Hidden by filter' : status.spoilerText }}
+            {{ contentFiltered ? `Hidden by filter: ${contentFiltered}` : status.spoilerText }}
           </p>
         </template>
         <StatusBody :status="status" :with-action="false" text-2xl />

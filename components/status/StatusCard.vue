@@ -43,7 +43,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
 const createdAt = useFormattedDateTime(status.createdAt)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
-const contentFiltered = currentUser.value?.filters?.some(filter => status.content.toLowerCase().includes(filter?.phrase.toLowerCase()))
+const contentFiltered: string | undefined = currentUser.value?.filters?.find(filter => status.content.toLowerCase().includes(filter?.phrase.toLowerCase()))?.phrase
 </script>
 
 <template>
@@ -86,7 +86,7 @@ const contentFiltered = currentUser.value?.filters?.some(filter => status.conten
         <div :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''">
           <StatusSpoiler :enabled="status.sensitive || contentFiltered">
             <template #spoiler>
-              <p>{{ contentFiltered ? 'Hidden by filter' : status.spoilerText }}</p>
+              <p>{{ contentFiltered ? `Hidden by filter: ${contentFiltered}` : status.spoilerText }}</p>
             </template>
             <StatusBody :status="status" />
             <StatusPoll v-if="status.poll" :poll="status.poll" />

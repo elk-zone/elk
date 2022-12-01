@@ -1,17 +1,9 @@
 <script lang="ts" setup>
 import type { ComputedRef } from 'vue'
 import type { LocaleObject } from '#i18n'
-import { STORAGE_KEY_MANUAL_CHANGE_LANG } from '~~/constants'
 
 const { locale, t, setLocale } = useI18n()
 const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
-
-const manualChangeStorage = useLocalStorage(STORAGE_KEY_MANUAL_CHANGE_LANG, false)
-const changeLocale = (locale: string) => {
-  setLocale(locale)
-  if (!manualChangeStorage.value)
-    manualChangeStorage.value = true
-}
 </script>
 
 <template>
@@ -26,7 +18,7 @@ const changeLocale = (locale: string) => {
           v-for="item in locales"
           :key="item.code"
           :checked="item.code === locale"
-          @click="changeLocale(item.code)"
+          @click="setLocale(item.code)"
         >
           {{ item.name }}
         </CommonDropdownItem>

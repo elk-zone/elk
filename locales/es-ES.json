@@ -133,7 +133,7 @@
     "yesterday": "ayer"
   },
   "timeline": {
-    "show_new_items": "Mostrar {0} nuevas publicaciones"
+    "show_new_items": "Mostrar {n} nuevas publicaciones|Mostrar {n} nueva publicación|Mostrar {n} nuevas publicaciones"
   },
   "title": {
     "federated_timeline": "Línea de tiempo federada",

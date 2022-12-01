@@ -124,7 +124,7 @@
     "posts_with_replies": "帖文与留言"
   },
   "timeline": {
-    "show_new_items": "展示 {0} 条新帖文"
+    "show_new_items": "展示 {n} 条新帖文"
   },
   "title": {
     "federated_timeline": "跨站时间线",

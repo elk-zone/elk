@@ -140,7 +140,7 @@
     "yesterday": "yesterday"
   },
   "timeline": {
-    "show_new_items": "Show {0} new items"
+    "show_new_items": "Show {n} new items"
   },
   "title": {
     "federated_timeline": "Federated Timeline",

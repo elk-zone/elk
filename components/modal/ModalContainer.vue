@@ -9,19 +9,19 @@ import {
 </script>
 
 <template>
-  <ModalDialog v-model="isSigninDialogOpen">
+  <ModalNewModalDialog v-model="isSigninDialogOpen">
     <UserSignIn m6 />
-  </ModalDialog>
-  <ModalDialog v-model="isPreviewHelpOpen" :type="isSmallScreen ? 'bottom' : 'dialog'">
+  </ModalNewModalDialog>
+  <ModalNewModalDialog v-model="isPreviewHelpOpen">
     <HelpPreview @close="closePreviewHelp()" />
-  </ModalDialog>
-  <ModalDialog v-model="isPublishDialogOpen">
-    <PublishWidget :draft-key="dialogDraftKey" expanded min-w-180 />
-  </ModalDialog>
+  </ModalNewModalDialog>
+  <ModalNewModalDialog v-model="isPublishDialogOpen" max-w-180>
+    <PublishWidget :draft-key="dialogDraftKey" expanded />
+  </ModalNewModalDialog>
   <ModalDialog v-model="isMediaPreviewOpen" close-button>
     <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
   </ModalDialog>
-  <ModalDialog v-model="isEditHistoryDialogOpen">
+  <ModalNewModalDialog v-model="isEditHistoryDialogOpen">
     <StatusEditPreview :edit="statusEdit" />
-  </ModalDialog>
+  </ModalNewModalDialog>
 </template>

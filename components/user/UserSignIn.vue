@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <form text-center justify-center items-center w-150 py6 flex="~ col gap-3" @submit.prevent="oauth">
+  <form text-center justify-center items-center max-w-150 py6 flex="~ col gap-3" @submit.prevent="oauth">
     <div flex="~ center" mb2>
       <img src="/logo.svg" w-12 h-12 mxa alt="logo">
       <div text-3xl>
@@ -31,7 +31,7 @@ onMounted(() => {
     <div>{{ $t('user.server_address_label') }}</div>
     <div flex bg-gray:10 px4 py2 mxa rounded border="~ base" items-center font-mono focus:outline-none focus:ring="2 primary inset">
       <span text-secondary-light mr1>https://</span>
-      <input ref="input" v-model="server" outline-none bg-transparent @input="handleInput">
+      <input ref="input" v-model="server" outline-none bg-transparent w-full max-w-50 @input="handleInput">
     </div>
     <div text-secondary text-sm flex>
       <div i-ri:lightbulb-line mr-1 />

@@ -97,6 +97,7 @@
     "update_status": "updated their status"
   },
   "placeholder": {
+    "content_warning": "Write your warning here",
     "default_1": "What is on your mind?",
     "reply_to_account": "Reply to {0}",
     "replying": "Replying",
@@ -119,6 +120,19 @@
     "notifications_mention": "Mention",
     "posts": "Posts",
     "posts_with_replies": "Posts & Replies"
+  },
+  "time_ago_options": {
+    "in": "in",
+    "just_now": "just now",
+    "last_month": "last month",
+    "last_week": "last week",
+    "last_year": "last year",
+    "next_month": "next month",
+    "next_week": "next week",
+    "next_year": "next year",
+    "tomorrow": "tomorrow",
+    "week": "week",
+    "yesterday": "yesterday"
   },
   "timeline": {
     "show_new_items": "Show {0} new items"

@@ -170,7 +170,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
           <input
             v-model="draft.params.spoilerText"
             type="text"
-            placeholder="Write your warning here"
+            :placeholder="$t('placeholder.content_warning')"
             p2 border-rounded w-full bg-transparent
             outline-none border="~ base"
           >

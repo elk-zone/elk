@@ -21,7 +21,7 @@ defineOptions({
     </AccountHoverWrapper>
     <div flex="~ col" shrink overflow-hidden>
       <ContentRich font-bold :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" overflow-hidden truncate text-ellipsis />
-      <AccountHandle :account="account" text-sm overflow-hidden truncate text-ellipsis />
+      <AccountHandle :account="account" text-sm />
     </div>
   </component>
 </template>

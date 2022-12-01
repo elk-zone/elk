@@ -175,9 +175,10 @@ export const useCommand = (cmd: CommandProvider) => {
 
   registry.register(cmd)
 
-  onDeactivated(() => {
-    registry.remove(cmd)
-  })
+  const cleanup = () => registry.remove(cmd)
+
+  onDeactivated(cleanup)
+  tryOnScopeDispose(cleanup)
 }
 
 export const useCommands = (cmds: () => CommandProvider[]) => {
@@ -192,9 +193,12 @@ export const useCommands = (cmds: () => CommandProvider[]) => {
       registry.register(cmd)
   }, { deep: true, immediate: true })
 
-  onDeactivated(() => {
+  const cleanup = () => {
     commands.value.forEach(cmd => registry.remove(cmd))
-  })
+  }
+
+  onDeactivated(cleanup)
+  tryOnScopeDispose(cleanup)
 }
 
 export const provideGlobalCommands = () => {

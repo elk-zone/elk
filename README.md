@@ -1,3 +1,5 @@
+# Elk
+
 <p align="center">
   <a href="https://viteconf.org" target="_blank" rel="noopener noreferrer">
     <img width="180" src="https://elk.zone/logo.svg" alt="Vite logo">
@@ -9,8 +11,6 @@
   <a href="https://pr.new/elk-zone/elk"><img src="https://developer.stackblitz.com/img/start_pr_dark_small.svg" alt="Start new PR in StackBlitz Codeflow"></a>
 </p>
 <br/>
-
-# Elk
 
 A nimble Mastodon web client made with 🧡
 
@@ -60,7 +60,7 @@ nr test
 # Stack
 
 - [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
-- [Nuxt](https://nuxtjs.org/) - The Intuitive Vue Framework
+- [Nuxt](https://nuxt.com/) - The Intuitive Web Framework
 - [Vue](https://vuejs.org/) - The Progressive JavaScript Framework
 - [VueUse](https://vueuse.org/) - Collection of Vue Composition Utilities
 - [Pinia](https://pinia.vuejs.org/) - The Vue Store that you will enjoy using

@@ -27,7 +27,7 @@ const formatted = useFormattedDateTime(editedAt)
       <template #popper>
         <div text-sm p2>
           <div text-center mb1>
-            Edited {{ formatted }}
+            {{ $t('status.edited', [formatted]) }}
           </div>
           <StatusEditHistory :status="status" />
         </div>

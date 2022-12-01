@@ -15,7 +15,7 @@ const router = useRouter()
 useCommand({
   scope: 'Navigation',
 
-  name: () => props.text ?? typeof props.to === 'string' ? props.to as string : props.to.name,
+  name: () => props.text ?? (typeof props.to === 'string' ? props.to as string : props.to.name),
   icon: () => props.icon,
 
   onActivate() {

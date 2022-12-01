@@ -17,12 +17,12 @@ const originalUrl = computed(() => {
 <template>
   <CommonNotFound>
     <div flex="~ col center gap2">
-      <div>Status not found</div>
+      <div>{{ $t('error.status_not_found') }}</div>
 
       <NuxtLink v-if="originalUrl" :to="originalUrl" target="_blank">
-        <button btn-solid flex="~ center gap-2" px2 py1>
+        <button btn-solid flex="~ center gap-2" text-sm px2 py1>
           <div i-ri:arrow-right-up-line />
-          Try original site
+          {{ $t('status.try_original_site') }}
         </button>
       </NuxtLink>
     </div>

@@ -3,7 +3,7 @@ setupPageHeader()
 await setupI18n()
 
 // We want to trigger rerendering the page when account changes
-const key = computed(() => currentServer.value + ':' + (currentUser.value?.account.id || ''))
+const key = computed(() => `${currentServer.value}:${currentUser.value?.account.id || ''}`)
 </script>
 
 <template>

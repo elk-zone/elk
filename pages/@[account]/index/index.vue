@@ -43,10 +43,13 @@ const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
 </script>
 
 <template>
-  <div>
+  <div v-if="account!.discoverable">
     <CommonTabs v-model="tab" :options="tabs" command />
     <KeepAlive>
       <TimelinePaginator :key="tab" :paginator="paginator" />
     </KeepAlive>
+  </div>
+  <div v-else h-30 flex="~ center" text-secondary-light>
+    Profile unavailable
   </div>
 </template>

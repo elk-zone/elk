@@ -1,5 +1,5 @@
 import { login as loginMasto } from 'masto'
-import type { AccountCredentials, Instance } from 'masto'
+import type { AccountCredentials, Filter, Instance } from 'masto'
 import { clearUserDrafts } from './statusDrafts'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
@@ -9,15 +9,27 @@ const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user]
 const servers = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 
+// TODO: get from settings
+const fakeFilters: Filter[] = [{
+  id: '6191',
+  phrase: 'Twitter',
+  context: [
+    'home',
+  ],
+  wholeWord: 'false',
+  expiresAt: '2019-05-21T13:47:31.333Z',
+  irreversible: false,
+}]
+
 export const currentUser = computed<UserLogin | undefined>(() => {
   let user: UserLogin | undefined
   if (currentUserId.value) {
     user = users.value.find(user => user.account?.id === currentUserId.value)
     if (user)
-      return user
+      return { ...user, filters: fakeFilters }
   }
   // Fallback to the first account
-  return users.value[0]
+  return { ...users.value[0], filters: fakeFilters }
 })
 
 export const publicServer = ref(DEFAULT_SERVER)

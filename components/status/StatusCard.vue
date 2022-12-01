@@ -42,6 +42,8 @@ function go(evt: MouseEvent | KeyboardEvent) {
 
 const createdAt = useFormattedDateTime(status.createdAt)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
+
+const contentFiltered = currentUser.value?.filters?.some(filter => status.content.toLowerCase().includes(filter?.phrase.toLowerCase()))
 </script>
 
 <template>
@@ -82,9 +84,9 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''">
-          <StatusSpoiler :enabled="status.sensitive">
+          <StatusSpoiler :enabled="status.sensitive || contentFiltered">
             <template #spoiler>
-              <p>{{ status.spoilerText }}</p>
+              <p>{{ contentFiltered ? 'Hidden by filter' : status.spoilerText }}</p>
             </template>
             <StatusBody :status="status" />
             <StatusPoll v-if="status.poll" :poll="status.poll" />

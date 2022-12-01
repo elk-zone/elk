@@ -43,8 +43,12 @@
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
   },
+  "conversation": {
+    "with": "with"
+  },
   "error": {
-    "account_not_found": "Account {0} not found"
+    "account_not_found": "Account {0} not found",
+    "status_not_found": "Status not found"
   },
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"
@@ -113,9 +117,15 @@
     "uploading": "Uploading..."
   },
   "status": {
+    "edited": "Edited {0}",
     "reblogged": "{0} reblogged",
     "spoiler_show_less": "Show less",
-    "spoiler_show_more": "Show more"
+    "spoiler_show_more": "Show more",
+    "try_original_site": "Try original site"
+  },
+  "status_history": {
+    "created": "created {0}",
+    "edited": "edited {0}"
   },
   "tab": {
     "media": "Media",

@@ -43,8 +43,12 @@
     "not_found": "无法找到相关内容",
     "offline_desc": "您目前已离线，请检查网络连接。"
   },
+  "conversation": {
+    "with": "与"
+  },
   "error": {
-    "account_not_found": "未找到用户 {0}"
+    "account_not_found": "未找到用户 {0}",
+    "status_not_found": "未找到帖文"
   },
   "feature_flag": {
     "virtual_scroll": "虚拟滚动"
@@ -112,9 +116,15 @@
     "uploading": "上传中..."
   },
   "status": {
+    "edited": "在 {0} 编辑了",
     "reblogged": "{0} 转发了",
     "spoiler_show_less": "隐藏",
-    "spoiler_show_more": "显示更多"
+    "spoiler_show_more": "显示更多",
+    "try_original_site": "尝试从源站打开"
+  },
+  "status_history": {
+    "created": "在 {0} 发布了",
+    "edited": "在 {0} 编辑了"
   },
   "tab": {
     "media": "媒体",

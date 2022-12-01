@@ -21,8 +21,9 @@ const showHistory = (edit: StatusEdit) => {
       @click="showHistory(edit)"
     >
       {{ getDisplayName(edit.account) }}
-      {{ idx === statusEdits.length - 1 ? 'created' : 'edited' }}
-      {{ useTimeAgo(edit.createdAt, { showSecond: true }).value }}
+      <i18n-t :keypath="`status_history.${idx === statusEdits.length - 1 ? 'created' : 'edited'}`">
+        {{ useTimeAgo(edit.createdAt, { showSecond: true }).value }}
+      </i18n-t>
     </CommonDropdownItem>
   </template>
   <template v-else>

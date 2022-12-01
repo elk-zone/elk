@@ -1,7 +1,7 @@
 {
   "account": {
-    "blocked_users": "ブロックしたユーザー",
     "blocked_domains": "ブロックしたドメイン",
+    "blocked_users": "ブロックしたユーザー",
     "favourites": "お気に入り",
     "follow": "フォローする",
     "follow_back": "フォローバックする",
@@ -10,8 +10,8 @@
     "following_count": "{0} フォロー中",
     "follows_you": "フォローされています",
     "muted_users": "ミュート済み",
-    "posts_count": "{0} 投稿",
     "pinned": "固定された投稿",
+    "posts_count": "{0} 投稿",
     "unfollow": "フォロー解除"
   },
   "action": {
@@ -22,9 +22,9 @@
     "sign_in": "サインイン"
   },
   "common": {
-    "not_found": "404 Not Found",
     "end_of_list": "他にはありません",
-    "error": "ERROR"
+    "error": "ERROR",
+    "not_found": "404 Not Found"
   },
   "feature_flag": {
     "virtual_scroll": "仮想スクロール"
@@ -61,12 +61,12 @@
     "sign_in_desc": "サインインすると、アカウントやハッシュタグをフォローしたり、お気に入りしたり、投稿を共有したり返信するほか、異なるサーバー上のあなたのアカウントから交流できます。"
   },
   "notification": {
-    "followed_you": "さんがあなたをフォローしました",
-    "request_to_follow": "さんがあなたへフォローをリクエストしました",
     "favourited_post": "さんがあなたの投稿お気に入り登録しました",
+    "followed_you": "さんがあなたをフォローしました",
+    "missing_type": "MISSING notification.type:",
     "reblogged_post": "さんがあなたの投稿をブーストしました",
-    "update_status": "さんが投稿を更新しました",
-    "missing_type": "MISSING notification.type:"
+    "request_to_follow": "さんがあなたへフォローをリクエストしました",
+    "update_status": "さんが投稿を更新しました"
   },
   "state": {
     "editing": "編集中",

@@ -49,7 +49,7 @@ const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
       <TimelinePaginator :key="tab" :paginator="paginator" />
     </KeepAlive>
   </div>
-  <div v-else h-30 flex="~ center" text-gray>
+  <div v-else h-30 flex="~ center" text-secondary-light>
     Profile unavailable
   </div>
 </template>

@@ -19,6 +19,8 @@ const {
   expanded?: boolean
 }>()
 
+const emit = defineEmits(['published'])
+
 const { t } = useI18n()
 // eslint-disable-next-line prefer-const
 let { draft, isEmpty } = $(useDraft(draftKey, initial))
@@ -128,6 +130,7 @@ async function publish() {
 
     draft = initial()
     isPublishDialogOpen.value = false
+    emit('published')
   }
   finally {
     isSending = false

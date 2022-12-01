@@ -14,10 +14,10 @@ export function setCached(key: string, value: any, override = false) {
     cache.set(key, value)
 }
 
-export function fetchStatus(id: string): Promise<Status> {
+export function fetchStatus(id: string, force = false): Promise<Status> {
   const key = `status:${id}`
   const cached = cache.get(key)
-  if (cached)
+  if (cached && !force)
     return cached
   const promise = useMasto().statuses.fetch(id)
     .then((status) => {

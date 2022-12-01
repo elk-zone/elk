@@ -68,6 +68,7 @@ onReactivated(() => {
           :draft-key="replyDraft!.key"
           :initial="replyDraft!.draft"
           border="t base"
+          @published="refreshContext()"
         />
 
         <template v-if="context">

@@ -14,7 +14,10 @@
     "mutuals": "Mutuales",
     "pinned": "Fijado",
     "posts_count": "{0} publicaciones|{0} publicación|{0} publicaciones",
-    "unfollow": "Dejar de seguir"
+    "unfollow": "Dejar de seguir",
+    "joined": "Se unió",
+    "profile_description": "encabezado del perfil de {0}",
+    "avatar_description": "avatar de {0}"
   },
   "action": {
     "bookmark": "Añadir marcador",
@@ -122,14 +125,21 @@
   },
   "time_ago_options": {
     "just_now": "ahora mismo",
-    "last_month": "mes pasado",
-    "last_week": "semana pasada",
-    "last_year": "año pasado",
-    "next_month": "próximo mes",
-    "next_week": "próxima semana",
-    "next_year": "próximo año",
+    "past_second": "hace 0 segundos|hace {n} segundo|hace {n} segundos",
+    "future_second": "dentro de 0 segundos|dentro de {n} segundo|dentro de {n} segundos",
+    "past_minute": "hace 0 minutos|hace 1 minuto|hace {n} minutos",
+    "future_minute": "dentro de 0 minutos|dentro de 1 minuto|dentro de {n} minutos",
+    "past_hour": "hace 0 horas|hace 1 hora|hace {n} horas",
+    "future_hour": "dentro de 0 horas|dentro de 1 hora|dentro {n} horas",
+    "past_day": "hace 0 días|ayer|hace {n} días",
+    "future_day": "dentro de 0 días|mañana|dentro de {n} días",
+    "past_week": "hace 0 semanas|la semana pasada|hace {n} semanas",
+    "future_week": "dentro de 0 semanas|la próxima semana|dentro de {n} semanas",
+    "past_month": "hace 0 meses|el mes pasado|hace {n} meses",
+    "future_month": "dentro de 0 meses|el próximo mes|dentro de {n} meses",
+    "past_year": "hace 0 años|el año pasado|hace {n} años",
+    "future_year": "dentro de 0 años|el próximo año|dentro de {n} años",
     "tomorrow": "mañana",
-    "week": "semana",
     "yesterday": "ayer"
   },
   "timeline": {

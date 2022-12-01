@@ -41,6 +41,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
 }
 
 const createdAt = useFormattedDateTime(status.createdAt)
+const timeAgoOptions = useTimeAgoOptions()
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 </script>
 

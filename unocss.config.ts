@@ -19,7 +19,7 @@ export default defineConfig({
       'bg-base': 'bg-$c-bg-base',
       'bg-active': 'bg-$c-bg-active',
       'bg-code': 'bg-$c-bg-code',
-      'bg-direct': 'bg-$c-bg-direct',
+      'bg-fade': 'bg-$c-bg-fade',
 
       // text colors
       'text-base': 'text-$c-text-base',

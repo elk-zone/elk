@@ -26,7 +26,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
     </NuxtLink>
     <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" />
     <div
-      :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-direct rounded-3 rounded-tl-none' : ''"
+      :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''"
     >
       <StatusSpoiler :enabled="status.sensitive">
         <template #spoiler>

@@ -31,12 +31,11 @@ export async function setupI18n() {
   if (isFirstVisit) {
     const userLang = window.navigator.language || 'en-US'
     const lang = (unref(locales) as { code: string }[]).find(locale => locale.code.toLowerCase().startsWith(userLang.toLocaleLowerCase()))?.code || 'en-US'
-    await setLocale(lang)
+    localeStorage.value = lang
   }
-  else {
-    if (localeStorage.value !== locale.value)
-      await setLocale(localeStorage.value)
-  }
+
+  if (localeStorage.value !== locale.value)
+    await setLocale(localeStorage.value)
 
   watchEffect(() => {
     localeStorage.value = locale.value

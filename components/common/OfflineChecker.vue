@@ -8,9 +8,10 @@ const online = useOnline()
 <template>
   <div
     v-if="!online"
-    w-full min-h-30px p-2 bg-orange-500
-    text-white sticky z-10 :class="[smallScreen ? 'bottom-14' : 'bottom-0']"
+    w-full min-h-30px px4 py3 text-yellow-5 bg-base
+    border="t base" flex="~ gap-2 center"
   >
+    <div i-ri:wifi-off-line />
     {{ $t('common.offline_desc') }}
   </div>
 </template>

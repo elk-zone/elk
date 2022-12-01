@@ -13,12 +13,14 @@
           </slot>
         </div>
       </aside>
-      <NavBottom v-if="isSmallScreen" />
-      <div class="w-full mb14 md:(w-3/4 mb0) lg:(w-2/4 mb0) h-screen" border="l r base" relative>
+      <div class="w-full mb14 md:(w-3/4 mb0) lg:(w-2/4 mb0) min-h-screen" border="l r base">
         <div min-h-screen>
           <slot />
         </div>
-        <CommonOfflineChecker :small-screen="isSmallScreen" />
+        <div sticky left-0 right-0 bottom-0 z-10 bg-base>
+          <CommonOfflineChecker :small-screen="isSmallScreen" />
+          <NavBottom v-if="isSmallScreen" />
+        </div>
       </div>
       <aside class="hidden md:none lg:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col">

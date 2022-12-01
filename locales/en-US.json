@@ -41,7 +41,9 @@
     "end_of_list": "End of the list",
     "error": "ERROR",
     "not_found": "404 Not Found",
-    "offline_desc": "Seems like you are offline. Please check your network connection."
+    "offline_desc": "Seems like you are offline. Please check your network connection.",
+    "kiloSuffix": "K",
+    "megaSuffix": "M"
   },
   "error": {
     "account_not_found": "Account {0} not found"
@@ -93,7 +95,7 @@
   "notification": {
     "favourited_post": "favourited your post",
     "followed_you": "followed you",
-    "followed_you_count": "{0} people followed you",
+    "followed_you_count": "{n} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",

@@ -6,14 +6,14 @@
     "follow": "Seguir",
     "follow_back": "Seguir de vuelta",
     "follow_requested": "Enviado",
-    "followers_count": "{0} Seguidores",
+    "followers_count": "{0} Seguidores|{0} Seguidor|{0} Seguidores",
     "following": "Siguiendo",
     "following_count": "{0} Siguiendo",
     "follows_you": "Te sigue",
     "muted_users": "Usuarios silenciados",
     "mutuals": "Mutuales",
     "pinned": "Fijado",
-    "posts_count": "{0} publicaciones",
+    "posts_count": "{0} publicaciones|{0} publicación|{0} publicaciones",
     "unfollow": "Dejar de seguir"
   },
   "action": {
@@ -89,7 +89,7 @@
   "notification": {
     "favourited_post": "marcó tu publicación como favorito",
     "followed_you": "te ha seguido",
-    "followed_you_count": "{0} personas te siguieron",
+    "followed_you_count": "{followers} personas te siguieron|{followers} persona te siguió|{followers} personas te siguieron",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "retooteó tu publicación",
     "request_to_follow": "ha solicitado seguirte",
@@ -121,6 +121,7 @@
     "posts_with_replies": "Publicaciones y respuestas"
   },
   "time_ago_options": {
+    "just_now": "ahora mismo",
     "last_month": "mes pasado",
     "last_week": "semana pasada",
     "last_year": "año pasado",

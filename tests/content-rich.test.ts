@@ -38,6 +38,16 @@ describe('content-rich', () => {
     const { formatted } = await render('<p><span class=\"h-card\"><a href=\"https://mas.to/@antfu\" class=\"u-url mention\">@<span>antfu</span></a></span> Testing<br />```ts<br />const a = hello<br />```</p>')
     expect(formatted).toMatchSnapshot()
   })
+
+  it('code frame no lang', async () => {
+    const { formatted } = await render('<p>```<br />hello world<br />```<br />no lang</p>')
+    expect(formatted).toMatchSnapshot()
+  })
+
+  it('code frame empty', async () => {
+    const { formatted } = await render('<p>```<br /><br />```<br /></p>')
+    expect(formatted).toMatchSnapshot()
+  })
 })
 
 async function render(content: string, emojis?: Record<string, Emoji>) {

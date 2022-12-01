@@ -25,11 +25,11 @@ export function setupPageHeader() {
 
 export async function setupI18n() {
   const { locale, setLocale } = useI18n()
-  const preferredLocale = useNavigatorLanguage().language.value ?? ''
-  const isExistingLocale = !!(window.localStorage.getItem(STORAGE_KEY_LANG))
+  const preferredLocale = window.navigator.language
+  const isFirstVisit = !window.localStorage.getItem(STORAGE_KEY_LANG)
   const localeStorage = useLocalStorage(STORAGE_KEY_LANG, locale.value)
 
-  if (!isExistingLocale) {
+  if (isFirstVisit) {
     await setLocale(preferredLocale)
   }
   else {

@@ -32,10 +32,28 @@ const objectPosition = computed(() => {
     .map(v => v ? `${v * 100}%` : '50%')
     .join(' ')
 })
+
+const typeExtsMap = {
+  video: ['mp4', 'webm', 'mov', 'avi', 'mkv', 'flv', 'wmv', 'mpg', 'mpeg'],
+  audio: ['mp3', 'wav', 'ogg', 'flac', 'aac', 'm4a', 'wma'],
+  image: ['jpg', 'jpeg', 'png', 'svg', 'webp', 'bmp'],
+  gifv: ['gifv', 'gif'],
+}
+
+const type = $computed(() => {
+  if (attachment.type && attachment.type !== 'unknown')
+    return attachment.type
+  // some server returns unknown type, we need to guess it based on file extension
+  for (const [type, exts] of Object.entries(typeExtsMap)) {
+    if (exts.some(ext => src?.toLowerCase().endsWith(`.${ext}`)))
+      return type
+  }
+  return 'unknown'
+})
 </script>
 
 <template>
-  <template v-if="attachment.type === 'video'">
+  <template v-if="type === 'video'">
     <video
       :poster="attachment.previewUrl"
       controls
@@ -51,7 +69,7 @@ const objectPosition = computed(() => {
       <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
     </video>
   </template>
-  <template v-else-if="attachment.type === 'gifv'">
+  <template v-else-if="type === 'gifv'">
     <video
       :poster="attachment.previewUrl"
       loop
@@ -68,7 +86,7 @@ const objectPosition = computed(() => {
       <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
     </video>
   </template>
-  <template v-else-if="attachment.type === 'audio'">
+  <template v-else-if="type === 'audio'">
     <audio controls border="~ base">
       <source :src="attachment.url || attachment.previewUrl" type="audio/mp3">
     </audio>

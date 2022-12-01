@@ -104,6 +104,7 @@
     "update_status": "更新了他们的状态"
   },
   "placeholder": {
+    "content_warning": "写下你的警告",
     "default_1": "在想些什么？",
     "reply_to_account": "回复 {0}",
     "replying": "回复",

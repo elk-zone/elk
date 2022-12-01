@@ -24,13 +24,14 @@ export function setupPageHeader() {
 }
 
 export async function setupI18n() {
-  const { locale, setLocale } = useI18n()
-  const preferredLocale = window.navigator.language
+  const { locale, setLocale, locales } = useI18n()
   const isFirstVisit = !window.localStorage.getItem(STORAGE_KEY_LANG)
   const localeStorage = useLocalStorage(STORAGE_KEY_LANG, locale.value)
 
   if (isFirstVisit) {
-    await setLocale(preferredLocale)
+    const userLang = window.navigator.language || 'en-US'
+    const lang = (unref(locales) as { code: string }[]).find(locale => locale.code.toLowerCase().startsWith(userLang.toLocaleLowerCase()))?.code || 'en-US'
+    await setLocale(lang)
   }
   else {
     if (localeStorage.value !== locale.value)

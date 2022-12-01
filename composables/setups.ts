@@ -1,5 +1,4 @@
-import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
-import { DEFAULT_I18N_LOCALE, I18NLocales } from '~~/constants/i18n'
+import { APP_NAME, STORAGE_KEY_LANG, STORAGE_KEY_MANUAL_CHANGE_LANG } from '~/constants'
 
 const isDev = process.dev
 const isPreview = window.location.hostname.includes('deploy-preview')
@@ -24,20 +23,21 @@ export function setupPageHeader() {
   isDark.value
 }
 
+// If user manual change locale, we should use storage locale
+// But when user first visit, we should use navigator language
 export async function setupI18n() {
   const { locale, setLocale } = useI18n()
   const localeStorage = useLocalStorage(STORAGE_KEY_LANG, locale.value)
+  const manualChangeStorage = useLocalStorage(STORAGE_KEY_MANUAL_CHANGE_LANG, false)
 
-  // Authority: storage > preferred > default
-  if (localeStorage.value) {
-    if (localeStorage.value.toLocaleLowerCase() !== locale.value.toLocaleLowerCase())
-      await setLocale(localeStorage.value)
+  const preferredLocale = useNavigatorLanguage().language.value
+
+  if (!manualChangeStorage.value) {
+    await setLocale(preferredLocale ?? '')
   }
   else {
-    const preferredLocale = (useNavigatorLanguage().language.value ?? DEFAULT_I18N_LOCALE).toLocaleLowerCase()
-    const supportedLocale = I18NLocales.map(i => i.code.toLocaleLowerCase())
-    if (supportedLocale.includes(preferredLocale))
-      await setLocale(preferredLocale)
+    if (localeStorage.value !== locale.value)
+      await setLocale(localeStorage.value)
   }
 
   watchEffect(() => {

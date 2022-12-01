@@ -1,6 +1,5 @@
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
-import { DEFAULT_I18N_LOCALE, I18NLocales } from './constants/i18n'
 
 export default defineNuxtConfig({
   ssr: false,
@@ -84,13 +83,34 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
-    locales: I18NLocales.sort((a, b) => a.code.localeCompare(b.code)),
+    locales: [
+      {
+        code: 'en-US',
+        file: 'en-US.json',
+        name: 'English',
+      },
+      {
+        code: 'de-DE',
+        file: 'de-DE.json',
+        name: 'Deutsch',
+      },
+      {
+        code: 'zh-CN',
+        file: 'zh-CN.json',
+        name: '简体中文',
+      },
+      {
+        code: 'ja-JP',
+        file: 'ja-JP.json',
+        name: '日本語',
+      },
+    ].sort((a, b) => a.code.localeCompare(b.code)),
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
     langDir: 'locales',
-    defaultLocale: DEFAULT_I18N_LOCALE,
+    defaultLocale: 'en-US',
     vueI18n: {
-      fallbackLocale: DEFAULT_I18N_LOCALE,
+      fallbackLocale: 'en-US',
     },
     lazy: true,
   },

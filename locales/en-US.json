@@ -18,10 +18,13 @@
   },
   "action": {
     "bookmark": "Bookmark",
+    "bookmarked": "Bookmarked",
     "boost": "Boost",
+    "boosted": "Boosted",
     "compose": "Compose",
     "enter_app": "Enter App",
     "favourite": "Favourite",
+    "favourited": "Favourited",
     "more": "More",
     "publish": "Publish!",
     "reply": "Reply",

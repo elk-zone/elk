@@ -18,10 +18,13 @@
   },
   "action": {
     "bookmark": "收藏",
+    "bookmarked": "已收藏",
     "boost": "转发",
+    "boosted": "已转发",
     "compose": "撰写",
     "enter_app": "进入应用",
     "favourite": "喜欢",
+    "favourited": "已喜欢",
     "more": "更多",
     "publish": "发布！",
     "reply": "回复",
@@ -99,6 +102,7 @@
   "placeholder": {
     "default_1": "在想些什么？",
     "reply_to_account": "回复 {0}",
+    "replying": "回复",
     "the_thread": "这个帖子"
   },
   "state": {

@@ -63,12 +63,12 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
         </AccountHoverWrapper>
       </div>
       <div flex="~ col 1" min-w-0>
-        <div flex>
+        <div flex items-center>
           <AccountHoverWrapper :account="status.account">
             <StatusAccountDetails :account="status.account" />
           </AccountHoverWrapper>
           <div flex-auto />
-          <div text-sm text-secondary flex="~ row nowrap" hover:underline>
+          <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
             <CommonTooltip :content="createdAt">
               <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
                 <time text-sm hover:underline :datetime="status.createdAt">
@@ -78,6 +78,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
             </CommonTooltip>
             <StatusEditIndicator :status="status" inline />
           </div>
+          <StatusActionsMore :status="status" mr--2 />
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div>
@@ -99,7 +100,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
             :actions="false"
           />
         </div>
-        <StatusActions v-if="actions !== false" pt2 :status="status" />
+        <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
       </div>
     </div>
   </div>

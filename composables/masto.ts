@@ -103,7 +103,7 @@ export function getStatusRoute(status: Status) {
   })
 }
 
-export function getStatusPermalinkRouteRoute(status: Status) {
+export function getStatusPermalinkRoute(status: Status) {
   return status.url
     ? useRouter().resolve({
       name: 'permalink',

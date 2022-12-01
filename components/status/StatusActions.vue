@@ -1,115 +1,21 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 
-const { status: _status, details, command } = defineProps<{
+const props = defineProps<{
   status: Status
   details?: boolean
   command?: boolean
 }>()
-let status = $ref<Status>({ ..._status })
 
-watch(() => _status, (val) => {
-  status = { ...val }
-}, { deep: true, immediate: true })
+const { details, command } = $(props)
 
-const clipboard = useClipboard()
-const router = useRouter()
-const route = useRoute()
-
-const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
-
-// Use different states to let the user press different actions right after the other
-const isLoading = $ref({
-  reblogged: false,
-  favourited: false,
-  bookmarked: false,
-  pinned: false,
-  translation: false,
-})
-
-type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned'
-type CountField = 'reblogsCount' | 'favouritesCount'
-async function toggleStatusAction(action: Action, newStatus: Promise<Status>, countField?: CountField) {
-  // Optimistic update
-  status[action] = !status[action]
-  if (countField)
-    status[countField] += status[action] ? 1 : -1
-
-  try {
-    isLoading[action] = true
-    Object.assign(status, await newStatus)
-  }
-  finally {
-    isLoading[action] = false
-  }
-}
-const toggleReblog = () => toggleStatusAction(
-  'reblogged',
-  useMasto().statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
-    if (status.reblogged)
-      // returns the original status
-      return res.reblog!
-    return res
-  }),
-  'reblogsCount',
-)
-
-const toggleFavourite = () => toggleStatusAction(
-  'favourited',
-  useMasto().statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
-  'favouritesCount',
-)
-
-const toggleBookmark = () => toggleStatusAction(
-  'bookmarked',
-  useMasto().statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
-)
-const togglePin = async () => toggleStatusAction(
-  'pinned',
-  useMasto().statuses[status.pinned ? 'unpin' : 'pin'](status.id),
-)
-
-const { toggle: _toggleTranslation, translation, enabled: isTranslationEnabled } = useTranslation(_status)
-const toggleTranslation = async () => {
-  isLoading.translation = true
-  await _toggleTranslation()
-  isLoading.translation = false
-}
-
-const copyLink = async (status: Status) => {
-  const url = getStatusPermalinkRoute(status)
-  if (url)
-    await clipboard.copy(`${location.origin}${url}`)
-}
-const deleteStatus = async () => {
-  // TODO confirm to delete
-  if (process.dev) {
-    // eslint-disable-next-line no-alert
-    const result = confirm('[DEV] Are you sure you want to delete this post?')
-    if (!result)
-      return
-  }
-
-  await useMasto().statuses.remove(status.id)
-
-  if (route.name === '@account-status')
-    router.back()
-
-  // TODO when timeline, remove this item
-}
-
-const deleteAndRedraft = async () => {
-  // TODO confirm to delete
-  if (process.dev) {
-    // eslint-disable-next-line no-alert
-    const result = confirm('[DEV] Are you sure you want to delete and re-draft this post?')
-    if (!result)
-      return
-  }
-
-  const { text } = await useMasto().statuses.remove(status.id)
-  openPublishDialog('dialog', getDraftFromStatus(status, text), true)
-}
+const {
+  status,
+  isLoading,
+  toggleBookmark,
+  toggleFavourite,
+  toggleReblog,
+} = $(useStatusActions(props))
 
 const reply = () => {
   if (details) {
@@ -119,13 +25,6 @@ const reply = () => {
     const { key, draft } = getReplyDraft(status)
     openPublishDialog(key, draft())
   }
-}
-
-function editStatus() {
-  openPublishDialog(`edit-${status.id}`, {
-    ...getDraftFromStatus(status),
-    editingStatus: status,
-  })
 }
 </script>
 
@@ -182,83 +81,5 @@ function editStatus() {
         @click="toggleBookmark()"
       />
     </div>
-
-    <CommonDropdown flex-none ml3 placement="bottom" :eager-mount="command">
-      <StatusActionButton
-        :content="$t('action.more')"
-        color="text-purple" hover="text-purple" group-hover="bg-purple/10"
-        icon="i-ri:more-line"
-      />
-
-      <template #popper>
-        <div flex="~ col">
-          <CommonDropdownItem
-            :text="$t('menu.copy_link_to_post')"
-            icon="i-ri:link"
-            :command="command"
-            @click="copyLink(status)"
-          />
-
-          <NuxtLink :to="status.url" target="_blank">
-            <CommonDropdownItem
-              v-if="status.url"
-              :text="$t('menu.open_in_original_site')"
-              icon="i-ri:arrow-right-up-line"
-              :command="command"
-            />
-          </NuxtLink>
-
-          <CommonDropdownItem
-            v-if="isTranslationEnabled && status.language !== languageCode"
-            :text="translation.visible ? $t('menu.show_untranslated') : $t('menu.translate_post')"
-            icon="i-ri:translate"
-            :command="command"
-            @click="toggleTranslation"
-          />
-
-          <template v-if="currentUser">
-            <template v-if="isAuthor">
-              <CommonDropdownItem
-                :text="status.pinned ? $t('menu.unpin_on_profile') : $t('menu.pin_on_profile')"
-                icon="i-ri:pushpin-line"
-                :command="command"
-                @click="togglePin"
-              />
-
-              <CommonDropdownItem
-                :text="$t('menu.edit')"
-                icon="i-ri:edit-line"
-                :command="command"
-                @click="editStatus"
-              />
-
-              <CommonDropdownItem
-                :text="$t('menu.delete')"
-                icon="i-ri:delete-bin-line"
-                text-red-600
-                :command="command"
-                @click="deleteStatus"
-              />
-
-              <CommonDropdownItem
-                :text="$t('menu.delete_and_redraft')"
-                icon="i-ri:eraser-line"
-                text-red-600
-                :command="command"
-                @click="deleteAndRedraft"
-              />
-            </template>
-            <template v-else>
-              <CommonDropdownItem
-                :text="$t('menu.mention_account', [`@${status.account.acct}`])"
-                icon="i-ri:at-line"
-                :command="command"
-                @click="mentionUser(status.account)"
-              />
-            </template>
-          </template>
-        </div>
-      </template>
-    </CommonDropdown>
   </div>
 </template>

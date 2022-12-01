@@ -18,7 +18,8 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" flex flex-col gap-2 py3 px-4>
+  <div :id="`status-${status.id}`" flex flex-col gap-2 py3 px-4 relative>
+    <StatusActionsMore :status="status" absolute right-2 top-2 />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pr5 mr-a>
       <AccountHoverWrapper :account="status.account">
         <AccountInfo :account="status.account" />

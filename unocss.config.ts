@@ -50,6 +50,9 @@ export default defineConfig({
     presetAttributify(),
     presetIcons({
       scale: 1.2,
+      extraProperties: {
+        color: 'inherit',
+      },
     }),
     presetTypography(),
     presetWebFonts({

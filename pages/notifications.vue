@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { STORAGE_KEY_NOTIFY_TAB } from '~/constants'
-
 definePageMeta({
   middleware: 'auth',
 })

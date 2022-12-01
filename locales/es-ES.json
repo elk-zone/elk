@@ -17,7 +17,8 @@
     "unfollow": "Dejar de seguir",
     "joined": "Se unió",
     "profile_description": "encabezado del perfil de {0}",
-    "avatar_description": "avatar de {0}"
+    "avatar_description": "avatar de {0}",
+    "profile_unavailable": "Perfil no disponible"
   },
   "action": {
     "bookmark": "Añadir marcador",

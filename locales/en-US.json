@@ -17,7 +17,8 @@
     "unfollow": "Unfollow",
     "joined": "Joined",
     "profile_description": "{0}'s profile header",
-    "avatar_description": "{0}'s avatar"
+    "avatar_description": "{0}'s avatar",
+    "profile_unavailable": "Profile unavailable"
   },
   "action": {
     "bookmark": "Bookmark",

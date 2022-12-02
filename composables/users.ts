@@ -1,5 +1,5 @@
 import { login as loginMasto } from 'masto'
-import type { AccountCredentials, Instance } from 'masto'
+import type { AccountCredentials, Instance, WsEvents } from 'masto'
 import { clearUserDrafts } from './statusDrafts'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
@@ -95,6 +95,43 @@ export async function signout() {
     await useRouter().push('/public')
 
   await loginTo(currentUser.value)
+}
+
+const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})
+
+export const useNotifications = () => {
+  const id = currentUser.value?.account.id
+
+  const clearNotifications = () => {
+    if (!id || !notifications[id])
+      return
+    notifications[id]![1] = 0
+  }
+
+  async function connect(): Promise<void> {
+    if (!id || notifications[id])
+      return
+
+    const masto = useMasto()
+    const stream = masto.stream.streamUser()
+    notifications[id] = [stream, 0]
+    ;(await stream).on('notification', () => {
+      if (notifications[id])
+        notifications[id]![1]++
+    })
+  }
+
+  function disconnect(): void {
+    if (!id || !notifications[id])
+      return
+    notifications[id]![0].then(stream => stream.disconnect())
+    notifications[id] = undefined
+  }
+
+  watch(currentUser, disconnect)
+  connect()
+
+  return { notifications: computed(() => id ? notifications[id]?.[1] ?? 0 : 0), disconnect, clearNotifications }
 }
 
 export function checkLogin() {

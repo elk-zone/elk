@@ -24,10 +24,18 @@ export function setupPageHeader() {
 }
 
 export async function setupI18n() {
-  // TODO: guess user language
-
-  const { locale, setLocale } = useI18n()
+  const { locale, setLocale, locales } = useI18n()
+  const isFirstVisit = !window.localStorage.getItem(STORAGE_KEY_LANG)
   const localeStorage = useLocalStorage(STORAGE_KEY_LANG, locale.value)
+
+  if (isFirstVisit) {
+    const userLang = (navigator.language || 'en-US').toLowerCase()
+    // cause vue-i18n not explicit export LocaleObject type
+    const supportLocales = unref(locales) as { code: string }[]
+    const lang = supportLocales.find(locale => userLang.startsWith(locale.code.toLowerCase()))?.code
+      || supportLocales.find(locale => userLang.startsWith(locale.code.split('-')[0]))?.code
+    localeStorage.value = lang || 'en-US'
+  }
 
   if (localeStorage.value !== locale.value)
     await setLocale(localeStorage.value)

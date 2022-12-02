@@ -133,3 +133,11 @@ export const useNotifications = () => {
 
   return { notifications: computed(() => id ? notifications[id]?.[1] ?? 0 : 0), disconnect, clearNotifications }
 }
+
+export function checkLogin() {
+  if (!currentUser.value) {
+    openSigninDialog()
+    return false
+  }
+  return true
+}

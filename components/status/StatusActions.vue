@@ -18,6 +18,8 @@ const {
 } = $(useStatusActions(props))
 
 const reply = () => {
+  if (!checkLogin())
+    return
   if (details) {
     // TODO focus to editor
   }

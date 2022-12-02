@@ -23,8 +23,8 @@
   "action": {
     "bookmark": "Ajouter aux marque-pages",
     "bookmarked": "Ajouté aux marque-pages",
-    "boost": "Booster",
-    "boosted": "Boosté",
+    "boost": "Partager",
+    "boosted": "Partagé",
     "compose": "Composer",
     "enter_app": "Entrer dans l'app",
     "favourite": "Ajouter aux favoris",

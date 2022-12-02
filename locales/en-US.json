@@ -59,6 +59,13 @@
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"
   },
+  "help": {
+    "desc_highlight": "Expect some bugs and missing features here and there.",
+    "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress generic Mastodon client!",
+    "desc_para2": "We are working hard on the development and improving it over time. And we will soon invite you to join the force once we make it open source soon!",
+    "desc_para3": "Before that, to help boosting out development, you can sponsor our team members with the links below.",
+    "title": "Elk is in Preview!"
+  },
   "menu": {
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",

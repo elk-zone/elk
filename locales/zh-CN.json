@@ -55,6 +55,13 @@
   "feature_flag": {
     "virtual_scroll": "虚拟滚动"
   },
+  "help": {
+    "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
+    "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Mastodon 客户端。",
+    "desc_para2": "我们正在努力开发中，并随着时间的推移不断完善。鹿鸣将很快开源，并邀请您参与进来！",
+    "desc_para3": "在此之前，为了更好的促进我们的开发工作，你可以通过以下链接赞助团队成员。",
+    "title": "预览鹿鸣！"
+  },
   "menu": {
     "block_account": "拉黑 {0}",
     "block_domain": "拉黑域名 {0}",

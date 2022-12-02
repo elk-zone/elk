@@ -51,7 +51,6 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
     try {
       const me = await masto.accounts.verifyCredentials()
       user.account = me
-      user.filters = await masto.filters.fetchAll()
 
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)

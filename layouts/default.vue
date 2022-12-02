@@ -25,6 +25,7 @@
       <aside class="hidden md:none lg:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col">
           <slot name="right">
+            <SearchWidget />
             <UserSignInEntry v-if="!currentUser" />
             <div v-if="currentUser" py6 px4 w-full flex="~" items-center justify-between>
               <NuxtLink

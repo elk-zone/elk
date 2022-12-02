@@ -42,7 +42,7 @@ export function useStatusActions(props: StatusActionsProps) {
   }
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
-    () => useMasto().statuses[status.reblogged ? 'unreblog' : 'reblog'],
+    () => useMasto().statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id),
     'reblogsCount',
   )
 

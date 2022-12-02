@@ -179,10 +179,10 @@
     "local_timeline": "Fil d'actualité local"
   },
   "tooltip": {
-    "add_content_warning": "Add content warning",
-    "add_media": "Add images, a video or an audio file",
-    "change_content_visibility": "Change content visibility",
-    "toggle_code_block": "Toggle code block"
+    "add_content_warning": "Ajouter un avertissement de contenu",
+    "add_media": "Ajouter des images, une vidéo ou un fichier audio",
+    "change_content_visibility": "Ajuster la confidentialité du message",
+    "toggle_code_block": "Ajouter un bloc de code"
   },
   "user": {
     "add_existing": "Add an existing account",

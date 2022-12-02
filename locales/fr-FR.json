@@ -103,7 +103,7 @@
   "notification": {
     "favourited_post": "aime votre message",
     "followed_you": "vous suit",
-    "followed_you_count": "{n} personnes vous suit",
+    "followed_you_count": "{n} personnes vous suivent",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "a relayé votre message",
     "request_to_follow": "vous demande de le suivre",

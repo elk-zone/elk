@@ -1,5 +1,6 @@
 {
   "account": {
+    "avatar_description": "{0}'s Avatar",
     "blocked_domains": "Gesperrte Domänen",
     "blocked_users": "Gesperrte Benutzer",
     "favourites": "Favoriten",
@@ -10,15 +11,14 @@
     "following": "Folge ich",
     "following_count": "{0} Folge ich",
     "follows_you": "Folgen dir",
+    "joined": "Beigetreten",
     "muted_users": "Stummgeschaltete Benutzer",
     "mutuals": "Freunde",
     "pinned": "Gepinnt",
     "posts_count": "{0} Beiträge",
-    "unfollow": "Entfolgen",
-    "joined": "Beigetreten",
     "profile_description": "{0}'s Profil",
-    "avatar_description": "{0}'s Avatar",
-    "profile_unavailable": "Profil nicht verfügbar"
+    "profile_unavailable": "Profil nicht verfügbar",
+    "unfollow": "Entfolgen"
   },
   "action": {
     "bookmark": "Lesezeichen",
@@ -44,10 +44,10 @@
   "common": {
     "end_of_list": "Ende der Liste",
     "error": "FEHLER",
-    "not_found": "404 Nicht Gefunden",
-    "offline_desc": "Anscheinend sind Sie offline. Bitte überprüfen Sie Ihre Netzwerkverbindung.",
     "kiloSuffix": "K",
-    "megaSuffix": "M"
+    "megaSuffix": "M",
+    "not_found": "404 Nicht Gefunden",
+    "offline_desc": "Anscheinend sind Sie offline. Bitte überprüfen Sie Ihre Netzwerkverbindung."
   },
   "conversation": {
     "with": "mit"
@@ -141,21 +141,21 @@
     "posts_with_replies": "Beiträge und Antworten"
   },
   "time_ago_options": {
-    "just_now": "jetzt gerade",
-    "past_second": "jetzt gerade|vor 1 Sekund|vor {n} Sekunden",
-    "future_second": "jetzt gerade|in 1 Sekund|in {n} Sekunden",
-    "past_minute": "vor 0 Minuten|vor 1 Minute|vor {n} Minuten",
-    "future_minute": "in 0 Minuten|in 1 Minute|in {n} Minuten",
-    "past_hour": "vor 0 Stunden|vor 1 Stunde|vor {n} Stunden",
-    "future_hour": "in 0 Stunden|in 1 Stunde|in {n} Stunden",
-    "past_day": "vor 0 Tagen|Gestern|vor {n} Tagen",
     "future_day": "in 0 Tagen|Morgen|in {n} Tagen",
-    "past_week": "vor 0 Wochen|Letzte Woche|vor {n} Wochen",
-    "future_week": "in 0 Wochen|Nächste Woche|in {n} Wochen",
-    "past_month": "vor 0 Monaten|Letzten Monat|vor {n} Monaten",
+    "future_hour": "in 0 Stunden|in 1 Stunde|in {n} Stunden",
+    "future_minute": "in 0 Minuten|in 1 Minute|in {n} Minuten",
     "future_month": "in 0 Monaten|Nächsten Monat|in {n} Monaten",
-    "past_year": "vor 0 Jahren|Letztes Jahr|vor {n} Jahren",
-    "future_year": "in 0 Jahren|Nächstes Jahr|in {n} Jahren"
+    "future_second": "jetzt gerade|in 1 Sekund|in {n} Sekunden",
+    "future_week": "in 0 Wochen|Nächste Woche|in {n} Wochen",
+    "future_year": "in 0 Jahren|Nächstes Jahr|in {n} Jahren",
+    "just_now": "jetzt gerade",
+    "past_day": "vor 0 Tagen|Gestern|vor {n} Tagen",
+    "past_hour": "vor 0 Stunden|vor 1 Stunde|vor {n} Stunden",
+    "past_minute": "vor 0 Minuten|vor 1 Minute|vor {n} Minuten",
+    "past_month": "vor 0 Monaten|Letzten Monat|vor {n} Monaten",
+    "past_second": "jetzt gerade|vor 1 Sekund|vor {n} Sekunden",
+    "past_week": "vor 0 Wochen|Letzte Woche|vor {n} Wochen",
+    "past_year": "vor 0 Jahren|Letztes Jahr|vor {n} Jahren"
   },
   "timeline": {
     "show_new_items": "Zeige {n} neue Beiträge"

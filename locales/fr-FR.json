@@ -1,0 +1,204 @@
+{
+  "account": {
+    "avatar_description": "Avatar de {0}",
+    "blocked_domains": "Domaines bloqués",
+    "blocked_users": "Utilisateurs bloqués",
+    "favourites": "Favoris",
+    "follow": "Suivre",
+    "follow_back": "Suivre en retour",
+    "follow_requested": "Abonnement demandé",
+    "followers_count": "{0} abonnés",
+    "following": "Suivi",
+    "following_count": "{0} abonnements",
+    "follows_you": "Vous suit",
+    "joined": "a rejoint",
+    "muted_users": "Utilisateurs mis en sourdine",
+    "mutuals": "Vous vous suivez mutuellement",
+    "pinned": "Epinglés",
+    "posts_count": "{0} messages",
+    "profile_description": "En-tête du profil de {0}",
+    "profile_unavailable": "Profil non accessible",
+    "unfollow": "Ne plus suivre"
+  },
+  "action": {
+    "bookmark": "Bookmark",
+    "bookmarked": "Bookmarked",
+    "boost": "Boost",
+    "boosted": "Boosted",
+    "compose": "Compose",
+    "enter_app": "Enter App",
+    "favourite": "Favourite",
+    "favourited": "Favourited",
+    "more": "More",
+    "publish": "Publish!",
+    "reply": "Reply",
+    "save_changes": "Save changes",
+    "sign_in": "Sign in"
+  },
+  "app_desc_short": "A Mastodon client made with 🧡",
+  "app_name": "Elk",
+  "command": {
+    "activate": "Activate",
+    "complete": "Complete"
+  },
+  "common": {
+    "end_of_list": "End of the list",
+    "error": "ERROR",
+    "kiloSuffix": "K",
+    "megaSuffix": "M",
+    "not_found": "404 Not Found",
+    "offline_desc": "Seems like you are offline. Please check your network connection."
+  },
+  "conversation": {
+    "with": "with"
+  },
+  "error": {
+    "account_not_found": "Account {0} not found",
+    "status_not_found": "Status not found"
+  },
+  "feature_flag": {
+    "virtual_scroll": "Virtual Scrolling"
+  },
+  "menu": {
+    "block_account": "Block {0}",
+    "block_domain": "Block domain {0}",
+    "copy_link_to_post": "Copy link to this post",
+    "delete": "Delete",
+    "delete_and_redraft": "Delete & re-draft",
+    "direct_message_account": "Direct message {0}",
+    "edit": "Edit",
+    "mention_account": "Mention {0}",
+    "mute_account": "Mute {0}",
+    "open_in_original_site": "Open in original site",
+    "pin_on_profile": "Pin on profile",
+    "show_untranslated": "Show untranslated",
+    "translate_post": "Translate post",
+    "unblock_account": "Unblock {0}",
+    "unblock_domain": "Unblock domain {0}",
+    "unmute_account": "Unmute {0}",
+    "unpin_on_profile": "Unpin on profile"
+  },
+  "nav_footer": {
+    "built_at": "Built {0}",
+    "select_feature_flags": "Toggle Feature Flags",
+    "select_language": "Select Language",
+    "show_intro": "Show intro",
+    "toggle_theme": "Toggle Theme",
+    "zen_mode": "Zen Mode"
+  },
+  "nav_side": {
+    "bookmarks": "Bookmarks",
+    "conversations": "Conversations",
+    "explore": "Explore",
+    "favourites": "Favourites",
+    "federated": "Federated",
+    "home": "Home",
+    "local": "Local",
+    "notifications": "Notifications",
+    "profile": "Profile"
+  },
+  "nav_user": {
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
+  },
+  "notification": {
+    "favourited_post": "favourited your post",
+    "followed_you": "followed you",
+    "followed_you_count": "{n} people followed you",
+    "missing_type": "MISSING notification.type:",
+    "reblogged_post": "reblogged your post",
+    "request_to_follow": "requested to follow you",
+    "update_status": "updated their status"
+  },
+  "placeholder": {
+    "content_warning": "Write your warning here",
+    "default_1": "What is on your mind?",
+    "reply_to_account": "Reply to {0}",
+    "replying": "Replying",
+    "the_thread": "the thread"
+  },
+  "state": {
+    "edited": "(Edited)",
+    "editing": "Editing",
+    "loading": "Loading...",
+    "uploading": "Uploading..."
+  },
+  "status": {
+    "edited": "Edited {0}",
+    "reblogged": "{0} reblogged",
+    "spoiler_show_less": "Show less",
+    "spoiler_show_more": "Show more",
+    "try_original_site": "Try original site"
+  },
+  "status_history": {
+    "created": "created {0}",
+    "edited": "edited {0}"
+  },
+  "tab": {
+    "media": "Media",
+    "notifications_all": "All",
+    "notifications_mention": "Mention",
+    "posts": "Posts",
+    "posts_with_replies": "Posts & Replies"
+  },
+  "time_ago_options": {
+    "day_future": "in 0 days|tomorrow|in {n} days",
+    "day_past": "0 days ago|yesterday|{n} days ago",
+    "hour_future": "in 0 hours|in 1 hour|in {n} hours",
+    "hour_past": "0 hours ago|1 hour ago|{n} hours ago",
+    "just_now": "just now",
+    "minute_future": "in 0 minutes|in 1 minute|in {n} minutes",
+    "minute_past": "0 minutes ago|1 minute ago|{n} minutes ago",
+    "month_future": "in 0 months|next month|in {n} months",
+    "month_past": "0 months ago|last month|{n} months ago",
+    "second_future": "just now|in {n} second|in {n} seconds",
+    "second_past": "just now|{n} second ago|{n} seconds ago",
+    "short_day_future": "in {n}d",
+    "short_day_past": "{n}d",
+    "short_hour_future": "in {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "in {n}min",
+    "short_minute_past": "{n}min",
+    "short_month_future": "in {n}mo",
+    "short_month_past": "{n}mo",
+    "short_second_future": "in {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "in {n}w",
+    "short_week_past": "{n}w",
+    "short_year_future": "in {n}y",
+    "short_year_past": "{n}y",
+    "week_future": "in 0 weeks|next week|in {n} weeks",
+    "week_past": "0 weeks ago|last week|{n} weeks ago",
+    "year_future": "in 0 years|next year|in {n} years",
+    "year_past": "0 years ago|last year|{n} years ago"
+  },
+  "timeline": {
+    "show_new_items": "Show {n} new items"
+  },
+  "title": {
+    "federated_timeline": "Federated Timeline",
+    "local_timeline": "Local Timeline"
+  },
+  "tooltip": {
+    "add_content_warning": "Add content warning",
+    "add_media": "Add images, a video or an audio file",
+    "change_content_visibility": "Change content visibility",
+    "toggle_code_block": "Toggle code block"
+  },
+  "user": {
+    "add_existing": "Add an existing account",
+    "server_address_label": "Mastodon Server Address",
+    "sign_out_account": "Sign out {0}",
+    "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
+    "tip_register_account": "pick your server and register one"
+  },
+  "visibility": {
+    "direct": "Direct",
+    "direct_desc": "Visible for mentioned users only",
+    "private": "Followers only",
+    "private_desc": "Visible for followers only",
+    "public": "Public",
+    "public_desc": "Visible for all",
+    "unlisted": "Unlisted",
+    "unlisted_desc": "Visible for all, but opted-out of discovery features"
+  }
+}

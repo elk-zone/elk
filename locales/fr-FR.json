@@ -82,7 +82,7 @@
     "built_at": "Dernier build {0}",
     "select_feature_flags": "Activer/Désactiver Feature Flags",
     "select_language": "Selectionner langue",
-    "show_intro": "Montrer l'intro",
+    "show_intro": "Ré-afficher l'introduction",
     "toggle_theme": "Changer de thème",
     "zen_mode": "Mode Zen"
   },

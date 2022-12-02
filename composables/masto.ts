@@ -30,7 +30,6 @@ export function getDisplayName(account?: Account, options?: { rich?: boolean }) 
   const displayName = account?.displayName || account?.username || ''
   if (options?.rich)
     return displayName
-
   return displayName.replace(/:([\w-]+?):/g, '')
 }
 

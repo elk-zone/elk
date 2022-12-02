@@ -32,13 +32,13 @@ export interface Props {
    * keep the dialog opened even when in other views
    *
    * @default false
-   *
-  */
+   */
   keepAlive?: boolean
 
   /** customizable class for the div outside of slot */
   customClass?: string
 }
+
 const props = withDefaults(defineProps<Props>(), {
   zIndex: 100,
   closeByMask: true,
@@ -144,7 +144,8 @@ export default {
         :style="{
           'z-index': zIndex,
         }"
-        class="scrollbar-hide" fixed inset-0 overflow-y-auto overscroll-none
+        class="scrollbar-hide"
+        fixed inset-0 overflow-y-auto overscroll-none
       >
         <!-- The style `scrollbar-hide overscroll-none overflow-y-scroll` and `h="[calc(100%+0.5px)]"` is used to implement scroll locking, -->
         <!-- corresponding to issue: #106, so please don't remove it. -->
@@ -159,13 +160,19 @@ export default {
             <!-- Dialog it self -->
             <div
               ref="elDialogMain"
-              class="dialog-main w-full rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-w-125 max-h-full flex flex-col"
+              class="dialog-main"
+              rounded shadow-lg pointer-events-auto isolate bg-base
+              border="~ base" max-h-full flex flex-col
               v-bind="bindTypeToAny($attrs)"
             >
               <!-- header -->
               <slot name="header" />
               <!-- main -->
-              <div ref="elDialogScroll" class="overflow-y-auto touch-pan-y touch-pan-x overscroll-none flex-1" :class="customClass">
+              <div
+                ref="elDialogScroll"
+                overflow-y-auto touch-pan-y touch-pan-x overscroll-none
+                :class="customClass"
+              >
                 <slot />
               </div>
               <!-- footer -->

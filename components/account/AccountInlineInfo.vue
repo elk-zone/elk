@@ -15,7 +15,7 @@ const { link = true } = defineProps<{
       min-w-0 flex gap-1 items-center
     >
       <AccountAvatar :account="account" w-5 h-5 />
-      <ContentRich :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
+      <ContentRich ws-nowrap :content="getDisplayName(account, { rich: true })" :emojis="account.emojis" />
     </NuxtLink>
   </AccountHoverWrapper>
 </template>

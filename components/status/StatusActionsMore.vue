@@ -93,8 +93,11 @@ function editStatus() {
   <CommonDropdown flex-none ml3 placement="bottom" :eager-mount="command">
     <StatusActionButton
       :content="$t('action.more')"
-      color="text-purple" hover="text-purple" group-hover="bg-purple/10"
-      icon="i-ri:more-2-line"
+      color="text-purple"
+      hover="text-purple"
+      group-hover="bg-purple/10"
+      icon="i-ri:more-line"
+      my--2
     />
 
     <template #popper>

@@ -12,7 +12,6 @@ const scopes = [
   'Navigation',
   'Preferences',
   'Account',
-
   'Languages',
   'Switch account',
 ] as const

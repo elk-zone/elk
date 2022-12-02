@@ -26,3 +26,6 @@ export function emojisArrayToObject(emojis: Emoji[]) {
 
 export function noop() {}
 
+export const useIsMac = () => computed(() =>
+  useRequestHeaders(['user-agent'])['user-agent']?.includes('Macintosh')
+    ?? navigator?.platform?.includes('Mac') ?? false)

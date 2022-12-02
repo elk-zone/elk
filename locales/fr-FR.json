@@ -57,7 +57,7 @@
     "status_not_found": "Message non trouvé"
   },
   "feature_flag": {
-    "virtual_scroll": "Scroll virtuel"
+    "virtual_scroll": "Défilement virtuel"
   },
   "menu": {
     "block_account": "Bloquer {0}",

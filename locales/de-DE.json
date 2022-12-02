@@ -4,17 +4,17 @@
     "blocked_domains": "Gesperrte Domänen",
     "blocked_users": "Gesperrte Benutzer",
     "favourites": "Favoriten",
-    "follow": "Folge",
+    "follow": "Folgen",
     "follow_back": "Folge zurück",
     "follow_requested": "Angefragt",
     "followers_count": "{0} Follower",
     "following": "Folge ich",
     "following_count": "{0} Folge ich",
-    "follows_you": "Folgen dir",
+    "follows_you": "Folgt dir",
     "joined": "Beigetreten",
     "muted_users": "Stummgeschaltete Benutzer",
     "mutuals": "Freunde",
-    "pinned": "Gepinnt",
+    "pinned": "Angepinnt",
     "posts_count": "{0} Beiträge",
     "profile_description": "{0}'s Profil",
     "profile_unavailable": "Profil nicht verfügbar",
@@ -23,23 +23,23 @@
   "action": {
     "bookmark": "Lesezeichen",
     "bookmarked": "Gemerkt",
-    "boost": "Fördern",
-    "boosted": "Gefördert",
+    "boost": "Teilen",
+    "boosted": "Geteilt",
     "compose": "Schreiben",
-    "enter_app": "Öffne App",
-    "favourite": "Favorit",
+    "enter_app": "App öffnen",
+    "favourite": "Favorisieren",
     "favourited": "Favorisiert",
     "more": "Mehr",
     "publish": "Veröffentlichen!",
     "reply": "Antworten",
     "save_changes": "Änderungen speichern",
-    "sign_in": "Einloggen"
+    "sign_in": "Anmelden"
   },
-  "app_desc_short": "Mastodon-Client, der mit 🧡 erstellt wurde",
+  "app_desc_short": "Ein mit 🧡 gemachter Mastodon-Client",
   "app_name": "Elk",
   "command": {
     "activate": "Aktivieren",
-    "complete": "Vollständigen"
+    "complete": "Vollständig"
   },
   "common": {
     "end_of_list": "Ende der Liste",
@@ -47,7 +47,7 @@
     "kiloSuffix": "K",
     "megaSuffix": "M",
     "not_found": "404 Nicht Gefunden",
-    "offline_desc": "Anscheinend sind Sie offline. Bitte überprüfen Sie Ihre Netzwerkverbindung."
+    "offline_desc": "Anscheinend bist du offline. Bitte überprüfe deine Netzwerkverbindung."
   },
   "conversation": {
     "with": "mit"
@@ -70,7 +70,7 @@
     "mention_account": "Erwähne {0}",
     "mute_account": "{0} stummschalten",
     "open_in_original_site": "Auf Originalseite öffnen",
-    "pin_on_profile": "Pin auf Profil",
+    "pin_on_profile": "An Profil anpinnen",
     "show_untranslated": "Übersetzung rückgängig machen",
     "translate_post": "Beitrag übersetzen",
     "unblock_account": "Entsperre {0}",
@@ -79,12 +79,12 @@
     "unpin_on_profile": "Von Profil lösen"
   },
   "nav_footer": {
-    "built_at": "Zuletzt gebaut {0}",
+    "built_at": "Letzter Build: {0}",
     "select_feature_flags": "Feature-Flags umschalten",
     "select_language": "Sprache auswählen",
-    "show_intro": "Zeige Einführung",
+    "show_intro": "Intro anzeigen",
     "toggle_theme": "Farbschema umschalten",
-    "zen_mode": "Zen Mode"
+    "zen_mode": "Zen-Modus"
   },
   "nav_side": {
     "bookmarks": "Lesezeichen",
@@ -98,64 +98,78 @@
     "profile": "Profil"
   },
   "nav_user": {
-    "sign_in_desc": "Melden Sie sich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von Ihrem Konto auf einem anderen Server aus zu interagieren."
+    "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren."
   },
   "notification": {
-    "favourited_post": "hat deinen Beitrag zu den Favoriten hinzugefügt",
+    "favourited_post": "hat deinen Beitrag favorisiert",
     "followed_you": "folgt dir",
     "followed_you_count": "{n} Benutzer folgen dir",
     "missing_type": "MISSING notification.type:",
-    "reblogged_post": "hat deinen Beitrag rebloggt",
-    "request_to_follow": "gebeten, dir zu folgen",
-    "update_status": "ihren Status aktualisiert"
+    "reblogged_post": "hat deinen Beitrag geteilt",
+    "request_to_follow": "möchte dir folgen",
+    "update_status": "hat seinen/ihren Status aktualisiert"
   },
   "placeholder": {
-    "content_warning": "Schreiben Sie hier Ihre Warnung",
-    "default_1": "Was schwirrt dir im Kopf?",
-    "reply_to_account": "Antwort {0}",
+    "content_warning": "Schreib hier deine Warnung",
+    "default_1": "Was geht dir gerade durch den Kopf?",
+    "reply_to_account": "Antwort an {0}",
     "replying": "Antworten",
-    "the_thread": "der Thread"
+    "the_thread": "Der Thread"
   },
   "state": {
     "edited": "(bearbeitet)",
-    "editing": "In Bearbeitung",
-    "loading": "Läd...",
+    "editing": "Bearbeiten",
+    "loading": "Laden...",
     "uploading": "Hochladen..."
   },
   "status": {
     "edited": "Bearbeitete {0}",
-    "reblogged": "{0} reblogged",
+    "reblogged": "{0} teilte",
     "spoiler_show_less": "Zeige weniger",
     "spoiler_show_more": "zeige mehr",
-    "try_original_site": "Versuche mit original Seite"
+    "try_original_site": "Versuche die original Seite"
   },
   "status_history": {
     "created": "Erstellt am {0}",
     "edited": "Bearbeitet am {0}"
   },
   "tab": {
-    "media": "Media",
+    "media": "Medien",
     "notifications_all": "Alle",
     "notifications_mention": "Erwähnungen",
     "posts": "Beiträge",
     "posts_with_replies": "Beiträge und Antworten"
   },
   "time_ago_options": {
-    "future_day": "in 0 Tagen|Morgen|in {n} Tagen",
-    "future_hour": "in 0 Stunden|in 1 Stunde|in {n} Stunden",
-    "future_minute": "in 0 Minuten|in 1 Minute|in {n} Minuten",
-    "future_month": "in 0 Monaten|Nächsten Monat|in {n} Monaten",
-    "future_second": "jetzt gerade|in 1 Sekund|in {n} Sekunden",
-    "future_week": "in 0 Wochen|Nächste Woche|in {n} Wochen",
-    "future_year": "in 0 Jahren|Nächstes Jahr|in {n} Jahren",
-    "just_now": "jetzt gerade",
-    "past_day": "vor 0 Tagen|Gestern|vor {n} Tagen",
-    "past_hour": "vor 0 Stunden|vor 1 Stunde|vor {n} Stunden",
-    "past_minute": "vor 0 Minuten|vor 1 Minute|vor {n} Minuten",
-    "past_month": "vor 0 Monaten|Letzten Monat|vor {n} Monaten",
-    "past_second": "jetzt gerade|vor 1 Sekund|vor {n} Sekunden",
-    "past_week": "vor 0 Wochen|Letzte Woche|vor {n} Wochen",
-    "past_year": "vor 0 Jahren|Letztes Jahr|vor {n} Jahren"
+    "day_future": "In 0 Tagen|Morgen|On {n} Tagen",
+    "day_past": "Vor 0 Tagen|Gestern|Vor {n} Tagen",
+    "hour_future": "In 0 Stunden|In 1 Stunde|In {n} Stunden",
+    "hour_past": "Vor 0 Stunden|Vor 1 Stunde|Vor {n} Stunden",
+    "just_now": "Gerade eben",
+    "minute_future": "In 0 Minuten|In 1 Minute|In {n} Minuten",
+    "minute_past": "Vor 0 Minuten|Vor 1 Minute|Vor {n} Minuten",
+    "month_future": "In 0 Monaten|Nächsten Monat|In {n} Monaten",
+    "month_past": "Vor 0 Monaten|Letzten Monat|Vor {n} Monaten",
+    "second_future": "Gerade eben|In {n} Sekunde|In {n} Sekunden",
+    "second_past": "Gerade eben|Vor {n} Sekunde|Vor {n} Sekunden",
+    "short_day_future": "In {n}T",
+    "short_day_past": "{n}T",
+    "short_hour_future": "In {n}Std",
+    "short_hour_past": "{n}Std",
+    "short_minute_future": "In {n}Min",
+    "short_minute_past": "{n}Min",
+    "short_month_future": "In {n}Mo",
+    "short_month_past": "{n}Mo",
+    "short_second_future": "In {n}Sek",
+    "short_second_past": "{n}Sek",
+    "short_week_future": "In {n}W",
+    "short_week_past": "{n}W",
+    "short_year_future": "In {n}J",
+    "short_year_past": "{n}J",
+    "week_future": "In 0 Wochen|Nächste Woche|In {n} Wochen",
+    "week_past": "In 0 Wochen|Letzte Woche|Vor {n} Wochen",
+    "year_future": "In 0 Jahren|Nächstes Jahr|In {n} Jahren",
+    "year_past": "Vor 0 Jahren|Letztes Jahren|Vor {n} Jahren"
   },
   "timeline": {
     "show_new_items": "Zeige {n} neue Beiträge"
@@ -166,19 +180,19 @@
   },
   "tooltip": {
     "add_content_warning": "Inhaltswarnung hinzufügen",
-    "add_media": "Fügen Sie Bilder, ein Video oder eine Audiodatei hinzu",
-    "change_content_visibility": "Ändern Sie die Sichtbarkeit von Inhalten",
+    "add_media": "Füge Bilder, ein Video oder eine Audiodatei hinzu",
+    "change_content_visibility": "Ändere die Sichtbarkeit von Inhalten",
     "toggle_code_block": "Codeblock umschalten"
   },
   "user": {
-    "add_existing": "Fügen Sie ein vorhandenes Konto hinzu",
+    "add_existing": "Bestehendes Konto hinzufügen",
     "server_address_label": "Mastodon Server Adresse",
     "sign_out_account": "{0} abmelden",
-    "tip_no_account": "Wenn Sie noch kein Mastodon-Konto haben, {0}.",
-    "tip_register_account": "wählen Sie Ihren Server aus und registrieren Sie einen"
+    "tip_no_account": "Wenn du noch kein Mastodon-Konto hast, {0}.",
+    "tip_register_account": "wähle einen Server aus und registriere einen"
   },
   "visibility": {
-    "direct": "Direkte",
+    "direct": "Direkt",
     "direct_desc": "Nur für erwähnte Benutzer sichtbar",
     "private": "Nur Follower",
     "private_desc": "Nur für Follower sichtbar",

@@ -79,59 +79,59 @@
     "unpin_on_profile": "Désépingler du profil"
   },
   "nav_footer": {
-    "built_at": "Built {0}",
-    "select_feature_flags": "Toggle Feature Flags",
-    "select_language": "Select Language",
-    "show_intro": "Show intro",
-    "toggle_theme": "Toggle Theme",
-    "zen_mode": "Zen Mode"
+    "built_at": "Dernier build {0}",
+    "select_feature_flags": "Activer/Désactiver Feature Flags",
+    "select_language": "Selectionner langue",
+    "show_intro": "Montrer l'intro",
+    "toggle_theme": "Changer de thème",
+    "zen_mode": "Mode Zen"
   },
   "nav_side": {
-    "bookmarks": "Bookmarks",
+    "bookmarks": "Marque-pages",
     "conversations": "Conversations",
-    "explore": "Explore",
-    "favourites": "Favourites",
-    "federated": "Federated",
-    "home": "Home",
+    "explore": "Explorer",
+    "favourites": "Favoris",
+    "federated": "Fédérés",
+    "home": "Accueil",
     "local": "Local",
     "notifications": "Notifications",
-    "profile": "Profile"
+    "profile": "Profil"
   },
   "nav_user": {
-    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
+    "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, mettre en favoris, partager et répondre à des messages, ou interagir à partir de votre compte sur un autre serveur.."
   },
   "notification": {
-    "favourited_post": "favourited your post",
-    "followed_you": "followed you",
-    "followed_you_count": "{n} people followed you",
+    "favourited_post": "aime votre message",
+    "followed_you": "vous suit",
+    "followed_you_count": "{n} personnes vous suit",
     "missing_type": "MISSING notification.type:",
-    "reblogged_post": "reblogged your post",
-    "request_to_follow": "requested to follow you",
-    "update_status": "updated their status"
+    "reblogged_post": "a relayé votre message",
+    "request_to_follow": "vous demande de le suivre",
+    "update_status": "a posté un nouveau message"
   },
   "placeholder": {
-    "content_warning": "Write your warning here",
-    "default_1": "What is on your mind?",
-    "reply_to_account": "Reply to {0}",
-    "replying": "Replying",
-    "the_thread": "the thread"
+    "content_warning": "Écrive votre message d'avertissement ici",
+    "default_1": "Quelque chose à partager ?",
+    "reply_to_account": "Répondre à {0}",
+    "replying": "Répondre",
+    "the_thread": "Le thread"
   },
   "state": {
-    "edited": "(Edited)",
-    "editing": "Editing",
-    "loading": "Loading...",
-    "uploading": "Uploading..."
+    "edited": "(Édité)",
+    "editing": "Édition",
+    "loading": "Chargement...",
+    "uploading": "Téléversement en cours..."
   },
   "status": {
-    "edited": "Edited {0}",
-    "reblogged": "{0} reblogged",
-    "spoiler_show_less": "Show less",
-    "spoiler_show_more": "Show more",
-    "try_original_site": "Try original site"
+    "edited": "Edité {0}",
+    "reblogged": "{0} relayé",
+    "spoiler_show_less": "Montrer moins",
+    "spoiler_show_more": "Montrer plus",
+    "try_original_site": "Essayer le site d'origine"
   },
   "status_history": {
-    "created": "created {0}",
-    "edited": "edited {0}"
+    "created": "a écrit {0}",
+    "edited": "a édité {0}"
   },
   "tab": {
     "media": "Media",

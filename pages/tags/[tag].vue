@@ -32,7 +32,7 @@ onReactivated(() => {
     </template>
 
     <slot>
-      <TimelinePaginator v-bind="{ paginator, stream }" />
+      <TimelinePaginator v-bind="{ paginator, stream }" context="public" />
     </slot>
   </MainContent>
 </template>

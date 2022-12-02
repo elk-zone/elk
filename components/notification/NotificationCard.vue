@@ -31,7 +31,7 @@ const { notification } = defineProps<{
         <AccountInlineInfo :account="notification.account" mr1 />
         {{ $t('notification.favourited_post') }}
       </div>
-      <StatusCard :status="notification.status!" p3 />
+      <StatusCard :status="notification.status!" context="notifications" p3 />
     </template>
     <template v-else-if="notification.type === 'reblog'">
       <div flex ml-4 items-center>
@@ -39,7 +39,7 @@ const { notification } = defineProps<{
         <AccountInlineInfo :account="notification.account" mr1 />
         {{ $t('notification.reblogged_post') }}
       </div>
-      <StatusCard :status="notification.status!" p3 />
+      <StatusCard :status="notification.status!" context="notifications" p3 />
     </template>
     <template v-else-if="notification.type === 'update'">
       <div flex ml-4 items-center>
@@ -47,10 +47,10 @@ const { notification } = defineProps<{
         <AccountInlineInfo :account="notification.account" mr1 />
         {{ $t('notification.update_status') }}
       </div>
-      <StatusCard :status="notification.status!" p3 />
+      <StatusCard :status="notification.status!" context="notifications" p3 />
     </template>
     <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
-      <StatusCard :status="notification.status!" p3 />
+      <StatusCard :status="notification.status!" context="notifications" p3 />
     </template>
     <template v-else>
       <div text-red font-bold>

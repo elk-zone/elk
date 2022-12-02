@@ -49,7 +49,7 @@ const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
   <div v-else>
     <CommonTabs v-model="tab" :options="tabs" command />
     <KeepAlive>
-      <TimelinePaginator :key="tab" :paginator="paginator" />
+      <TimelinePaginator :key="tab" :paginator="paginator" context="account" />
     </KeepAlive>
   </div>
 </template>

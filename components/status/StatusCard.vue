@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { FilterContext, Status } from 'masto'
 
 const props = withDefaults(
   defineProps<{
     status: Status
     actions?: boolean
+    context?: FilterContext
     hover?: boolean
   }>(),
   { actions: true },

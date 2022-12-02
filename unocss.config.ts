@@ -20,6 +20,7 @@ export default defineConfig({
       'bg-active': 'bg-$c-bg-active',
       'bg-code': 'bg-$c-bg-code',
       'bg-fade': 'bg-$c-bg-fade',
+      'bg-blur': 'backdrop-filter backdrop-blur-md backdrop-saturate-[180%] bg-base/66',
 
       // text colors
       'text-base': 'text-$c-text-base',

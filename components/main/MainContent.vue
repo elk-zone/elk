@@ -8,7 +8,7 @@ defineProps<{
   <div relative>
     <div
       sticky top-0 z10
-      border="b base" bg-base
+      bg-blur
     >
       <div flex justify-between px5 py4>
         <div flex gap-3 items-center>

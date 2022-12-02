@@ -43,8 +43,8 @@ function go(evt: MouseEvent | KeyboardEvent) {
 const createdAt = useFormattedDateTime(status.createdAt)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
-const filterMatched = currentUser.value?.filters?.find(filter => status.content.toLowerCase().includes(filter?.phrase.toLowerCase()))
-const contentFilterPhrase: string | undefined = filterMatched?.phrase
+// TODO: get from status.filtered
+const filterPhrase = 'Twitter'
 </script>
 
 <template>
@@ -85,9 +85,9 @@ const contentFilterPhrase: string | undefined = filterMatched?.phrase
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''">
-          <StatusSpoiler :enabled="status.sensitive || contentFilterPhrase">
+          <StatusSpoiler :enabled="status.sensitive || filterPhrase">
             <template #spoiler>
-              <p>{{ contentFilterPhrase ? `Hidden by filter: ${contentFilterPhrase}` : status.spoilerText }}</p>
+              <p>{{ filterPhrase ? `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` : status.spoilerText }}</p>
             </template>
             <StatusBody :status="status" />
             <StatusPoll v-if="status.poll" :poll="status.poll" />

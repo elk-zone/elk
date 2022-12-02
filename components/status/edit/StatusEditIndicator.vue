@@ -12,13 +12,14 @@ const formatted = useFormattedDateTime(editedAt)
 
 <template>
   <template v-if="editedAt">
-    <CommonTooltip v-if="inline" :content="`Edited ${formatted}`">
+    <CommonTooltip v-if="inline" :content="$t('status.edited', [formatted])">
+      &#160;
       <time
         :title="editedAt"
         :datetime="editedAt"
         font-bold underline decoration-dashed
         text-secondary
-      >&nbsp;*</time>
+      >&#160;*&#160;</time>
     </CommonTooltip>
 
     <CommonDropdown v-else>

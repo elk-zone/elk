@@ -21,8 +21,8 @@
     "unfollow": "Ne plus suivre"
   },
   "action": {
-    "bookmark": "Ajouter au marque-pages",
-    "bookmarked": "Ajouté au marque-pages",
+    "bookmark": "Ajouter aux marque-pages",
+    "bookmarked": "Ajouté aux marque-pages",
     "boost": "Booster",
     "boosted": "Boosté",
     "compose": "Composer",

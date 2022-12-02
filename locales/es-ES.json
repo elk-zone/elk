@@ -6,15 +6,19 @@
     "follow": "Seguir",
     "follow_back": "Seguir de vuelta",
     "follow_requested": "Enviado",
-    "followers_count": "{0} Seguidores",
+    "followers_count": "{0} Seguidores|{0} Seguidor|{0} Seguidores",
     "following": "Siguiendo",
     "following_count": "{0} Siguiendo",
     "follows_you": "Te sigue",
     "muted_users": "Usuarios silenciados",
     "mutuals": "Mutuales",
     "pinned": "Fijado",
-    "posts_count": "{0} publicaciones",
-    "unfollow": "Dejar de seguir"
+    "posts_count": "{0} publicaciones|{0} publicación|{0} publicaciones",
+    "unfollow": "Dejar de seguir",
+    "joined": "Se unió",
+    "profile_description": "encabezado del perfil de {0}",
+    "avatar_description": "avatar de {0}",
+    "profile_unavailable": "Perfil no disponible"
   },
   "action": {
     "bookmark": "Añadir marcador",
@@ -89,7 +93,7 @@
   "notification": {
     "favourited_post": "marcó tu publicación como favorito",
     "followed_you": "te ha seguido",
-    "followed_you_count": "{0} personas te siguieron",
+    "followed_you_count": "{followers} personas te siguieron|{followers} persona te siguió|{followers} personas te siguieron",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "retooteó tu publicación",
     "request_to_follow": "ha solicitado seguirte",
@@ -121,18 +125,26 @@
     "posts_with_replies": "Publicaciones y respuestas"
   },
   "time_ago_options": {
-    "last_month": "mes pasado",
-    "last_week": "semana pasada",
-    "last_year": "año pasado",
-    "next_month": "próximo mes",
-    "next_week": "próxima semana",
-    "next_year": "próximo año",
+    "just_now": "ahora mismo",
+    "past_second": "hace 0 segundos|hace {n} segundo|hace {n} segundos",
+    "future_second": "dentro de 0 segundos|dentro de {n} segundo|dentro de {n} segundos",
+    "past_minute": "hace 0 minutos|hace 1 minuto|hace {n} minutos",
+    "future_minute": "dentro de 0 minutos|dentro de 1 minuto|dentro de {n} minutos",
+    "past_hour": "hace 0 horas|hace 1 hora|hace {n} horas",
+    "future_hour": "dentro de 0 horas|dentro de 1 hora|dentro {n} horas",
+    "past_day": "hace 0 días|ayer|hace {n} días",
+    "future_day": "dentro de 0 días|mañana|dentro de {n} días",
+    "past_week": "hace 0 semanas|la semana pasada|hace {n} semanas",
+    "future_week": "dentro de 0 semanas|la próxima semana|dentro de {n} semanas",
+    "past_month": "hace 0 meses|el mes pasado|hace {n} meses",
+    "future_month": "dentro de 0 meses|el próximo mes|dentro de {n} meses",
+    "past_year": "hace 0 años|el año pasado|hace {n} años",
+    "future_year": "dentro de 0 años|el próximo año|dentro de {n} años",
     "tomorrow": "mañana",
-    "week": "semana",
     "yesterday": "ayer"
   },
   "timeline": {
-    "show_new_items": "Mostrar {0} nuevas publicaciones"
+    "show_new_items": "Mostrar {n} nuevas publicaciones|Mostrar {n} nueva publicación|Mostrar {n} nuevas publicaciones"
   },
   "title": {
     "federated_timeline": "Línea de tiempo federada",

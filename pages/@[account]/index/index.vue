@@ -44,7 +44,7 @@ const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
 
 <template>
   <div v-if="(account!.discoverable === false)" h-30 flex="~ center" text-secondary-light>
-    Profile unavailable
+    {{ $t('account.profile_unavailable') }}
   </div>
   <div v-else>
     <CommonTabs v-model="tab" :options="tabs" command />

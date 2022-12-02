@@ -14,7 +14,11 @@
     "mutuals": "Mutuals",
     "pinned": "Pinned",
     "posts_count": "{0} Posts",
-    "unfollow": "Unfollow"
+    "unfollow": "Unfollow",
+    "joined": "Joined",
+    "profile_description": "{0}'s profile header",
+    "avatar_description": "{0}'s avatar",
+    "profile_unavailable": "Profile unavailable"
   },
   "action": {
     "bookmark": "Bookmark",
@@ -41,7 +45,9 @@
     "end_of_list": "End of the list",
     "error": "ERROR",
     "not_found": "404 Not Found",
-    "offline_desc": "Seems like you are offline. Please check your network connection."
+    "offline_desc": "Seems like you are offline. Please check your network connection.",
+    "kiloSuffix": "K",
+    "megaSuffix": "M"
   },
   "conversation": {
     "with": "with"
@@ -97,7 +103,7 @@
   "notification": {
     "favourited_post": "favourited your post",
     "followed_you": "followed you",
-    "followed_you_count": "{0} people followed you",
+    "followed_you_count": "{n} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
@@ -135,20 +141,24 @@
     "posts_with_replies": "Posts & Replies"
   },
   "time_ago_options": {
-    "in": "in",
     "just_now": "just now",
-    "last_month": "last month",
-    "last_week": "last week",
-    "last_year": "last year",
-    "next_month": "next month",
-    "next_week": "next week",
-    "next_year": "next year",
-    "tomorrow": "tomorrow",
-    "week": "week",
-    "yesterday": "yesterday"
+    "past_second": "just now|{n} second ago|{n} seconds ago",
+    "future_second": "just now|in {n} second|in {n} seconds",
+    "past_minute": "0 minutes ago|1 minute ago|{n} minutes ago",
+    "future_minute": "in 0 minutes|in 1 minute|in {n} minutes",
+    "past_hour": "0 hours ago|1 hour ago|{n} hours ago",
+    "future_hour": "in 0 hours|in 1 hour|in {n} hours",
+    "past_day": "0 days ago|yesterday|{n} days ago",
+    "future_day": "in 0 days|tomorrow|in {n} days",
+    "past_week": "0 weeks ago|last week|{n} weeks ago",
+    "future_week": "in 0 weeks|next week|in {n} weeks",
+    "past_month": "0 months ago|last month|{n} months ago",
+    "future_month": "in 0 months|next month|in {n} months",
+    "past_year": "0 years ago|last year|{n} years ago",
+    "future_year": "in 0 years|next year|in {n} years"
   },
   "timeline": {
-    "show_new_items": "Show {0} new items"
+    "show_new_items": "Show {n} new items"
   },
   "title": {
     "federated_timeline": "Federated Timeline",

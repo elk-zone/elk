@@ -12,34 +12,28 @@ export const useFormattedDateTime = (
   })
 }
 
-export const timeAgoOptions: UseTimeAgoOptions<false> = {
-  showSecond: true,
-  messages: {
-    justNow: 'just now',
-    past: n => n,
-    future: n => n.match(/\d/) ? `in ${n}` : n,
-    month: (n, past) => n === 1
-      ? past
-        ? 'last month'
-        : 'next month'
-      : `${n}m`,
-    year: (n, past) => n === 1
-      ? past
-        ? 'last year'
-        : 'next year'
-      : `${n}y`,
-    day: (n, past) => n === 1
-      ? past
-        ? 'yesterday'
-        : 'tomorrow'
-      : `${n}d`,
-    week: (n, past) => n === 1
-      ? past
-        ? 'last week'
-        : 'next week'
-      : `${n} week${n > 1 ? 's' : ''}`,
-    hour: n => `${n}h`,
-    minute: n => `${n}min`,
-    second: n => `${n}s`,
-  },
+export const useTimeAgoOptions = (): UseTimeAgoOptions<false> => {
+  const { d, t } = useI18n()
+
+  return {
+    showSecond: true,
+    updateInterval: 1_000,
+    messages: {
+      justNow: t('time_ago_options.just_now'),
+      // just return the value
+      past: n => n,
+      // just return the value
+      future: n => n,
+      second: (n, p) => t(`time_ago_options.${p ? 'past' : 'future'}_second`, n),
+      minute: (n, p) => t(`time_ago_options.${p ? 'past' : 'future'}_minute`, n),
+      hour: (n, p) => t(`time_ago_options.${p ? 'past' : 'future'}_hour`, n),
+      day: (n, p) => t(`time_ago_options.${p ? 'past' : 'future'}_day`, n),
+      week: (n, p) => t(`time_ago_options.${p ? 'past' : 'future'}_week`, n),
+      month: (n, p) => t(`time_ago_options.${p ? 'past' : 'future'}_month`, n),
+      year: (n, p) => t(`time_ago_options.${p ? 'past' : 'future'}_year`, n),
+    },
+    fullDateFormatter(date) {
+      return d(date, 'long')
+    },
+  }
 }

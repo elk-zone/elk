@@ -78,7 +78,7 @@
     "posts_with_replies": "投稿と返信"
   },
   "timeline": {
-    "show_new_items": "{0}件の新しい投稿"
+    "show_new_items": "{n}件の新しい投稿"
   },
   "title": {
     "federated_timeline": "連合タイムライン",

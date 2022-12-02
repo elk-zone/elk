@@ -1,6 +1,5 @@
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
-
 export default defineNuxtConfig({
   ssr: false,
   modules: [
@@ -116,6 +115,64 @@ export default defineNuxtConfig({
     defaultLocale: 'en-US',
     vueI18n: {
       fallbackLocale: 'en-US',
+      datetimeFormats: {
+        'en-US': {
+          long: {
+            dateStyle: 'long',
+            timeStyle: 'medium',
+            /*
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            weekday: 'short',
+            hour: 'numeric',
+            minute: 'numeric',
+*/
+          },
+        },
+        'es-ES': {
+          long: {
+            dateStyle: 'long',
+            timeStyle: 'medium',
+            /*
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            weekday: 'short',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: false,
+*/
+          },
+        },
+        'ja-JP': {
+          long: {
+            dateStyle: 'long',
+            timeStyle: 'medium',
+            /*
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            weekday: 'short',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+*/
+          },
+        },
+        'zh-CN': {
+          long: {
+            dateStyle: 'long',
+            timeStyle: 'medium',
+          },
+        },
+        'de-DE': {
+          long: {
+            dateStyle: 'long',
+            timeStyle: 'medium',
+          },
+        },
+      },
     },
     lazy: true,
   },

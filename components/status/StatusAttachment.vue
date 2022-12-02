@@ -7,9 +7,9 @@ const { attachment } = defineProps<{
   attachments?: Attachment[]
 }>()
 
-const src = $computed(() => attachment.url || attachment.previewUrl || attachment.remoteUrl!)
+const src = $computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
 const srcset = $computed(() => [
-  [src, attachment.meta?.original?.width],
+  [attachment.url, attachment.meta?.original?.width],
   [attachment.previewUrl, attachment.meta?.small?.width],
 ].filter(([url]) => url).map(([url, size]) => `${url} ${size}w`).join(', '))
 

@@ -96,3 +96,11 @@ export async function signout() {
 
   await loginTo(currentUser.value)
 }
+
+export function checkLogin() {
+  if (!currentUser.value) {
+    openSigninDialog()
+    return false
+  }
+  return true
+}

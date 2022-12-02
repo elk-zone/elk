@@ -29,6 +29,8 @@ useCommand({
   icon: () => props.icon,
 
   onActivate() {
+    if (!checkLogin())
+      return
     const clickEvent = new MouseEvent('click', {
       view: window,
       bubbles: true,

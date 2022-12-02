@@ -21,43 +21,43 @@
     "unfollow": "Ne plus suivre"
   },
   "action": {
-    "bookmark": "Bookmark",
-    "bookmarked": "Bookmarked",
-    "boost": "Boost",
-    "boosted": "Boosted",
-    "compose": "Compose",
-    "enter_app": "Enter App",
-    "favourite": "Favourite",
-    "favourited": "Favourited",
-    "more": "More",
-    "publish": "Publish!",
-    "reply": "Reply",
-    "save_changes": "Save changes",
-    "sign_in": "Sign in"
+    "bookmark": "Ajouter au marque-pages",
+    "bookmarked": "Ajouté au marque-pages",
+    "boost": "Booster",
+    "boosted": "Boosté",
+    "compose": "Composer",
+    "enter_app": "Entrer dans l'app",
+    "favourite": "Ajouter aux favoris",
+    "favourited": "Ajouté aux favoris",
+    "more": "Plus",
+    "publish": "Publier",
+    "reply": "Répondre",
+    "save_changes": "Enregistrer les changements",
+    "sign_in": "Se connecter"
   },
-  "app_desc_short": "A Mastodon client made with 🧡",
+  "app_desc_short": "Un client Mastodon fait avec 🧡",
   "app_name": "Elk",
   "command": {
-    "activate": "Activate",
-    "complete": "Complete"
+    "activate": "Activer",
+    "complete": "Compléter"
   },
   "common": {
-    "end_of_list": "End of the list",
-    "error": "ERROR",
+    "end_of_list": "Fin de la liste",
+    "error": "ERREUR",
     "kiloSuffix": "K",
     "megaSuffix": "M",
     "not_found": "404 Not Found",
-    "offline_desc": "Seems like you are offline. Please check your network connection."
+    "offline_desc": "Il semble que vous soyez hors-light. Vérifiez votre connexion internet."
   },
   "conversation": {
-    "with": "with"
+    "with": "avec"
   },
   "error": {
-    "account_not_found": "Account {0} not found",
-    "status_not_found": "Status not found"
+    "account_not_found": "Compte {0} non trouvé",
+    "status_not_found": "Message non trouvé"
   },
   "feature_flag": {
-    "virtual_scroll": "Virtual Scrolling"
+    "virtual_scroll": "Scroll virtuel"
   },
   "menu": {
     "block_account": "Block {0}",

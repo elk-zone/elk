@@ -1,4 +1,3 @@
-<!-- 对话框组件 -->
 <script lang="ts" setup>
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import { useDeactivated } from '~/composables/lifecycle'
@@ -157,7 +156,7 @@ export default {
         <!-- Dialog container -->
         <div class="p-safe-area" absolute inset-0 z-1 pointer-events-none opacity-100 flex>
           <div class="flex-1 flex items-center justify-center p-4">
-            <!-- Dialog it self -->
+            <!-- We use `class` here to make v-bind being able to be override them -->
             <div
               ref="elDialogMain"
               class="dialog-main w-full rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-w-125 max-h-full flex flex-col"

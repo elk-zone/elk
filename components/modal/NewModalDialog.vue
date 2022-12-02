@@ -115,13 +115,13 @@ export default {
             <!-- Dialog it self -->
             <div
               ref="elDialogMain"
-              class="dialog-main w-full rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-w-125"
+              class="dialog-main w-full rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-w-125 max-h-full flex flex-col"
               v-bind="bindTypeToAny($attrs)"
             >
               <!-- header -->
               <slot name="header" />
               <!-- main -->
-              <div ref="elDialogScroll" class="overflow-y-auto touch-pan-y touch-pan-x overscroll-none" :class="customClass">
+              <div ref="elDialogScroll" class="overflow-y-auto touch-pan-y touch-pan-x overscroll-none flex-1" :class="customClass">
                 <slot />
               </div>
               <!-- footer -->

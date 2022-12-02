@@ -6,6 +6,8 @@ const { account } = defineProps<{
   command?: boolean
 }>()
 
+const { t } = useI18n()
+
 const createdAt = $(useFormattedDateTime(() => account.createdAt, {
   month: 'long',
   day: 'numeric',
@@ -43,13 +45,16 @@ function getFieldNameIcon(fieldName: string) {
   if (fieldNameIcons[name])
     return fieldNameIcons[name]
 }
+function getFieldIconTitle(fieldName: string) {
+  return fieldName === 'Joined' ? t('account.joined') : fieldName
+}
 
 function previewHeader() {
   openMediaPreview([{
     id: `${account.acct}:header`,
     type: 'image',
     previewUrl: account.header,
-    description: `${account.username}'s profile header`,
+    description: t('account.profile_description', [account.username]),
   }])
 }
 
@@ -58,7 +63,7 @@ function previewAvatar() {
     id: `${account.acct}:avatar`,
     type: 'image',
     previewUrl: account.avatar,
-    description: `${account.username}'s avatar`,
+    description: t('account.avatar_description', [account.username]),
   }])
 }
 
@@ -86,7 +91,7 @@ watchEffect(() => {
 <template>
   <div flex flex-col>
     <button border="b base" z-1>
-      <img h-50 w-full object-cover :src="account.header" :alt="`${account.username}'s profile header`" @click="previewHeader">
+      <img h-50 w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])" @click="previewHeader">
     </button>
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
@@ -122,7 +127,7 @@ watchEffect(() => {
       </div>
       <div v-if="iconFields.length" flex="~ wrap gap-4">
         <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" items-center>
-          <div text-secondary :class="getFieldNameIcon(field.name)" :title="field.name" />
+          <div text-secondary :class="getFieldNameIcon(field.name)" :title="getFieldIconTitle(field.name)" />
           <ContentRich text-sm filter-saturate-0 :content="field.value" :emojis="account.emojis" />
         </div>
       </div>

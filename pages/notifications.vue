@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { STORAGE_KEY_NOTIFY_TAB } from '~/constants'
-
 definePageMeta({
   middleware: 'auth',
 })
@@ -9,6 +7,11 @@ const { t } = useI18n()
 
 const paginatorAll = useMasto().notifications.getIterator()
 const paginatorMention = useMasto().notifications.getIterator({ types: ['mention'] })
+
+const { clearNotifications } = useNotifications()
+onActivated(clearNotifications)
+
+const stream = await useMasto().stream.streamUser()
 
 const tabs = $computed(() => [
   {
@@ -45,7 +48,7 @@ useHeadFixed({
       <CommonTabs v-model="tab" :options="tabs" />
     </template>
     <slot>
-      <NotificationPaginator :key="tab" :paginator="paginator" />
+      <NotificationPaginator :key="tab" v-bind="{ paginator, stream }" />
     </slot>
   </MainContent>
 </template>

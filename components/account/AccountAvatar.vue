@@ -12,7 +12,7 @@ const loaded = $ref(false)
   <img
     :key="account.avatar"
     :src="account.avatar"
-    :alt="account.username"
+    :alt="$t('account.avatar_description', [account.username])"
     loading="lazy"
     rounded-full
     :class="loaded ? 'bg-gray' : 'bg-gray:10'"

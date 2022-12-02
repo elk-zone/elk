@@ -38,7 +38,7 @@ function handleCodeBlock(el: Element) {
     const codeEl = el.childNodes[0] as Element
     const classes = codeEl.attrs.find(i => i.name === 'class')?.value
     const lang = classes?.split(/\s/g).find(i => i.startsWith('language-'))?.replace('language-', '')
-    const code = treeToText(codeEl.childNodes[0])
+    const code = codeEl.childNodes[0] ? treeToText(codeEl.childNodes[0]) : ''
     return h(ContentCode, { lang, code: encodeURIComponent(code) })
   }
 }
@@ -61,11 +61,10 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
       return `:${name}:`
     })
     // handle code blocks
-    .replace(/>(```|~~~)([\s\S]+?)\1/g, (_1, _2, raw) => {
-      const plain = htmlToText(raw)
-      const [lang, ...code] = plain.split('\n')
+    .replace(/>(```|~~~)(\w*)([\s\S]+?)\1/g, (_1, _2, lang, raw) => {
+      const code = htmlToText(raw)
       const classes = lang ? ` class="language-${lang}"` : ''
-      return `><pre><code${classes}>${code.join('\n')}</code></pre>`
+      return `><pre><code${classes}>${code}</code></pre>`
     })
 
   const tree = parseFragment(processed)

@@ -4,11 +4,12 @@ import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { Paginator, WsEvents } from 'masto'
 
-const { paginator, stream, keyProp = 'id', virtualScroller = false } = defineProps<{
+const { paginator, stream, keyProp = 'id', virtualScroller = false, eventType = 'update' } = defineProps<{
   paginator: Paginator<any, any[]>
   keyProp?: string
   virtualScroller?: boolean
   stream?: WsEvents
+  eventType?: 'notification' | 'update'
 }>()
 
 defineSlots<{
@@ -23,7 +24,7 @@ defineSlots<{
   loading: {}
 }>()
 
-const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream)
+const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream, eventType)
 </script>
 
 <template>

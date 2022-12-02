@@ -97,7 +97,7 @@
   "notification": {
     "favourited_post": "点赞了你的帖文",
     "followed_you": "关注了你",
-    "followed_you_count": "{0} 人关注了你",
+    "followed_you_count": "{n} 人关注了你",
     "missing_type": "未知的通知类型：",
     "reblogged_post": "转发了你的帖文",
     "request_to_follow": "请求关注你",
@@ -134,8 +134,21 @@
     "posts": "帖文",
     "posts_with_replies": "帖文与留言"
   },
+  "time_ago_options": {
+    "in": "在",
+    "just_now": "刚刚",
+    "last_month": "上个月",
+    "last_week": "上周",
+    "last_year": "去年",
+    "next_month": "下个月",
+    "next_week": "下周",
+    "next_year": "明年",
+    "tomorrow": "明天",
+    "week": "周",
+    "yesterday": "昨天"
+  },
   "timeline": {
-    "show_new_items": "展示 {0} 条新帖文"
+    "show_new_items": "展示 {n} 条新帖文"
   },
   "title": {
     "federated_timeline": "跨站时间线",

@@ -47,7 +47,7 @@
     "kiloSuffix": "K",
     "megaSuffix": "M",
     "not_found": "404 Introuvable",
-    "offline_desc": "Il semble que vous soyez hors-light. Vérifiez votre connexion internet."
+    "offline_desc": "Il semble que vous soyez hors-ligne. Vérifiez votre connexion internet."
   },
   "conversation": {
     "with": "avec"

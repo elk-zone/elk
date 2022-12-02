@@ -1,6 +1,5 @@
 <!-- 对话框组件 -->
 <script lang="ts" setup>
-import { reactivePick } from '@vueuse/core'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import { useDeactivated } from '~/composables/lifecycle'
 
@@ -69,7 +68,7 @@ watch(notInCurrentPage, (value) => {
 // when useVIf is toggled, v-if has the same state as modelValue, otherwise v-if is true
 const isVIf = computed(() => {
   return props.useVIf
-    ? props.modelValue
+    ? visible.value
     : true
 })
 
@@ -77,11 +76,28 @@ const isVIf = computed(() => {
 // when useVIf is toggled, v-show is true, otherwise it has the same state as modelValue
 const isVShow = computed(() => {
   return !props.useVIf
-    ? props.modelValue
+    ? visible.value
     : true
 })
 
 const bindTypeToAny = ($attrs: any) => $attrs as any
+
+const { activate, deactivate } = useFocusTrap(elDialogMain)
+watch(visible, async (value) => {
+  await nextTick()
+  if (value)
+    activate()
+  else
+    deactivate()
+})
+useEventListener('keydown', (e: KeyboardEvent) => {
+  if (!visible.value)
+    return
+  if (e.key === 'Escape') {
+    close()
+    e.preventDefault()
+  }
+})
 </script>
 
 <script lang="ts">

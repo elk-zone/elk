@@ -47,7 +47,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 // TODO: get from status.filtered props and remove check for status.content
 const filterPhrase = status.content.toLowerCase().includes('twitter') ? 'Twitter' : null
 const filterContext = ['public', 'home', 'thread', 'notifications']
-const filterAction = 'hide' // could be 'hide' (no way to show) or 'warn' (could be expanded to show)
+const filterAction = 'warn' // could be 'hide' (no way to show) or 'warn' (could be expanded to show)
 
 // filter conditions
 const isFiltered = filterPhrase && props.context && filterContext.includes(props.context)
@@ -92,7 +92,7 @@ const action = isFiltered && filterAction
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''">
-          <StatusSpoiler :enabled="status.sensitive || action === 'warn'">
+          <StatusSpoiler :enabled="status.sensitive || action === 'warn'" :filter="action">
             <template #spoiler>
               <p>{{ filterPhrase ? `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` : status.spoilerText }}</p>
             </template>

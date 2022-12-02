@@ -1,148 +1,172 @@
-<script setup lang='ts'>
+<!-- 对话框组件 -->
+<script lang="ts" setup>
+import { reactivePick } from '@vueuse/core'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+import { useDeactivated } from '~/composables/lifecycle'
 
-type DialogType = 'top' | 'right' | 'bottom' | 'left' | 'dialog'
-
-const {
-  type = 'dialog',
-  closeButton = false,
-} = defineProps<{
-  type?: DialogType
-  closeButton?: boolean
-}>()
-
-const { modelValue } = defineModel<{
+export interface Props {
+  /** v-model dislog visibility */
   modelValue: boolean
-  closeButton?: boolean
+  /** level of depth, default to 80 */
+  zIndex?: number
+  /** whether to allow close dialog by clicking mask layer */
+  closeByMask?: boolean
+  /** use v-if, destroy all the internal elements after closed */
+  useVIf?: boolean
+  /** keep the dialog opened even when in other views */
+  keepAlive?: boolean
+  /** customizable class for the div outside of slot */
+  customClass?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  zIndex: 100,
+  closeByMask: true,
+  useVIf: true,
+  keepAlive: false,
+})
+
+const emits = defineEmits<{
+  /** v-model dislog visibility */
+  (event: 'update:modelValue', value: boolean): void
 }>()
 
-let isVisible = $ref(modelValue.value)
-let isOut = $ref(!modelValue.value)
+const visible = useVModel(props, 'modelValue', emits, { passive: true })
 
-const positionClass = computed(() => {
-  switch (type) {
-    case 'dialog':
-      return 'border rounded top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2'
-    case 'bottom':
-      return 'bottom-0 left-0 right-0 border-t'
-    case 'top':
-      return 'top-0 left-0 right-0 border-b'
-    case 'left':
-      return 'bottom-0 left-0 top-0 border-r'
-    case 'right':
-      return 'bottom-0 top-0 right-0 border-l'
-    default:
-      return ''
-  }
+const deactivated = useDeactivated()
+const route = useRoute()
+
+/** scrollable HTML element */
+const elDialogScroll = ref<HTMLDivElement>()
+const elDialogMain = ref<HTMLDivElement>()
+
+defineExpose({
+  elDialogScroll,
 })
 
-const transformClass = computed(() => {
-  if (isOut) {
-    switch (type) {
-      case 'dialog':
-        return 'op0'
-      case 'bottom':
-        return 'translate-y-[100%]'
-      case 'top':
-        return 'translate-y-[100%]'
-      case 'left':
-        return 'translate-x-[-100%]'
-      case 'right':
-        return 'translate-x-[100%]'
-      default:
-        return ''
-    }
-  }
-})
-
-const target = ref<HTMLElement | null>(null)
-const { activate, deactivate } = useFocusTrap(target)
-
+/** close the dialog */
 function close() {
-  modelValue.value = false
+  visible.value = false
 }
 
-watchEffect(() => {
-  if (modelValue)
-    activate()
-  else
-    deactivate()
-})
-
-useEventListener('keydown', (e: KeyboardEvent) => {
-  if (!modelValue.value)
-    return
-  if (e.key === 'Escape') {
+function clickMask() {
+  if (props.closeByMask)
     close()
-    e.preventDefault()
-  }
+}
+
+const routePath = ref(route.path)
+watch(visible, (value) => {
+  if (value)
+    routePath.value = route.path
 })
 
-let unsubscribe: () => void
-
-watch(modelValue, async (v) => {
-  if (v) {
-    isOut = true
-    isVisible = true
-    setTimeout(() => {
-      isOut = false
-    }, 10)
-
-    unsubscribe = useRouter().beforeEach(() => {
-      unsubscribe()
-      close()
-    })
-  }
-  else {
-    unsubscribe?.()
-    isOut = true
-  }
+const notInCurrentPage = computed(() => deactivated.value || routePath.value !== route.path)
+watch(notInCurrentPage, (value) => {
+  if (value)
+    close()
 })
 
-function onTransitionEnd() {
-  if (!modelValue.value)
-    isVisible = false
+// controls the state of v-if.
+// when useVIf is toggled, v-if has the same state as modelValue, otherwise v-if is true
+const isVIf = computed(() => {
+  return props.useVIf
+    ? props.modelValue
+    : true
+})
+
+// controls the state of v-show.
+// when useVIf is toggled, v-show is true, otherwise it has the same state as modelValue
+const isVShow = computed(() => {
+  return !props.useVIf
+    ? props.modelValue
+    : true
+})
+
+const bindTypeToAny = ($attrs: any) => $attrs as any
+</script>
+
+<script lang="ts">
+export default {
+  inheritAttrs: false,
 }
 </script>
 
 <template>
   <SafeTeleport to="#teleport-end">
-    <div
-      v-if="isVisible"
-      class="scrollbar-hide"
-      fixed top-0 bottom-0 left-0 right-0 z-10 overscroll-none overflow-y-scroll
-      :class="modelValue ? '' : 'pointer-events-none'"
-    >
-      <!-- The style `scrollbar-hide overscroll-none overflow-y-scroll` and `h="[calc(100%+0.5px)]"` is used to implement scroll locking, -->
-      <!-- corresponding to issue: #106, so please don't remove it. -->
+    <!-- Dialog component -->
+    <Transition name="dialog-visible" :disabled="!keepAlive && deactivated">
       <div
-        bg-base bottom-0 left-0 right-0 top-0 absolute transition-opacity duration-500 ease-out
-        h="[calc(100%+0.5px)]"
-        :class="isOut ? 'opacity-0' : 'opacity-85'"
-        @click="close"
-      />
-      <div
-        ref="target"
-        bg-base border-base absolute transition-all duration-200 ease-out transform
-        :class="`${positionClass} ${transformClass}`"
-        @transitionend="onTransitionEnd"
+        v-if="isVIf"
+        v-show="isVShow"
+        :style="{
+          'z-index': zIndex,
+        }"
+        class="scrollbar-hide" fixed inset-0 overflow-y-auto overscroll-none
       >
-        <slot />
+        <!-- The style `scrollbar-hide overscroll-none overflow-y-scroll` and `h="[calc(100%+0.5px)]"` is used to implement scroll locking, -->
+        <!-- corresponding to issue: #106, so please don't remove it. -->
+
+        <!-- Mask layer: blur -->
+        <div class="dialog-mask" absolute inset-0 z-0 bg-transparent opacity-100 backdrop-filter backdrop-blur-sm touch-none />
+        <!-- Mask layer: dimming -->
+        <div class="dialog-mask" absolute inset-0 z-0 bg-black opacity-48 touch-none h="[calc(100%+0.5px)]" @click="clickMask" />
+        <!-- Dialog container -->
+        <div class="p-safe-area" absolute inset-0 z-1 pointer-events-none opacity-100 flex>
+          <div class="flex-1 flex items-center justify-center p-4">
+            <!-- Dialog it self -->
+            <div
+              ref="elDialogMain"
+              class="dialog-main w-full rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-w-125 max-h-full flex flex-col"
+              v-bind="bindTypeToAny($attrs)"
+            >
+              <!-- header -->
+              <slot name="header" />
+              <!-- main -->
+              <div ref="elDialogScroll" class="overflow-y-auto touch-pan-y touch-pan-x overscroll-none flex-1" :class="customClass">
+                <slot />
+              </div>
+              <!-- footer -->
+              <slot name="footer" />
+            </div>
+          </div>
+        </div>
       </div>
-      <button
-        v-if="closeButton"
-        btn-action-icon bg="black/20" aria-label="Close"
-        hover:bg="black/40" dark:bg="white/10" dark:hover:bg="white/20"
-        absolute top-0 right-0 m1
-        @click="close"
-      >
-        <div i-ri:close-fill text-white />
-      </button>
-    </div>
+    </Transition>
   </SafeTeleport>
 </template>
 
-<style socped>
+<style lang="postcss" scoped>
+.dialog-visible-enter-active,
+.dialog-visible-leave-active {
+  transition-duration: 0.25s;
+
+  .dialog-mask {
+    transition: opacity 0.25s ease;
+  }
+
+  .dialog-main {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+}
+
+.dialog-visible-enter-from,
+.dialog-visible-leave-to {
+  .dialog-mask {
+    opacity: 0;
+  }
+
+  .dialog-main {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+}
+
+.p-safe-area {
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+}
+
 .scrollbar-hide {
   scrollbar-width: none;
 }

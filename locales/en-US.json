@@ -122,7 +122,8 @@
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
     "try_original_site": "Try original site",
-    "filter_hidden_phrase": "Hidden by filter"
+    "filter_hidden_phrase": "Filtered by",
+    "filter_removed_phrase": "Removed by filter"
   },
   "status_history": {
     "created": "created {0}",

@@ -47,7 +47,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 // TODO: get from status.filtered props and remove check for status.content
 const filterPhrase = status.content.toLowerCase().includes('twitter') ? 'Twitter' : null
 const filterContext = ['public', 'home', 'thread', 'notifications']
-const filterAction = 'warn' // could be 'hide' (no way to show) or 'warn' (could be expanded to show)
+const filterAction = 'hide' // could be 'hide' (no way to show) or 'warn' (could be expanded to show)
 
 // filter conditions
 const isFiltered = filterPhrase && props.context && filterContext.includes(props.context)
@@ -55,7 +55,7 @@ const action = isFiltered && filterAction
 </script>
 
 <template>
-  <div v-if="action === 'hide'" :id="`status-${status.id}`" ref="el" flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
+  <div v-if="action !== 'hide'" :id="`status-${status.id}`" ref="el" flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
     <div v-if="rebloggedBy" pl8>
       <div flex="~ wrap" gap-1 items-center text-secondary text-sm>
         <div i-ri:repeat-fill mr-1 />
@@ -113,5 +113,8 @@ const action = isFiltered && filterAction
         <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
       </div>
     </div>
+  </div>
+  <div v-else gap-2 px-4>
+    <p>{{ filterPhrase ? `${$t('status.filter_removed_phrase')}: ${filterPhrase}` : status.spoilerText }}</p>
   </div>
 </template>

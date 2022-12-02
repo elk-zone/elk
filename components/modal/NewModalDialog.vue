@@ -100,7 +100,7 @@ export default {
         :style="{
           'z-index': zIndex,
         }"
-        fixed inset-0 overflow-y-auto overscroll-none scrollbar-hide
+        class="scrollbar-hide" fixed inset-0 overflow-y-auto overscroll-none
       >
         <!-- The style `scrollbar-hide overscroll-none overflow-y-scroll` and `h="[calc(100%+0.5px)]"` is used to implement scroll locking, -->
         <!-- corresponding to issue: #106, so please don't remove it. -->

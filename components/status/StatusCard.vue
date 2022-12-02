@@ -44,8 +44,10 @@ function go(evt: MouseEvent | KeyboardEvent) {
 const createdAt = useFormattedDateTime(status.createdAt)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
-// TODO: get from status.filtered
-const filterPhrase = 'Twitter'
+// TODO: get phrase from status.filtered and remove check for status.content
+const filterPhrase = status.content.toLowerCase().includes('twitter') ? 'Twitter' : null
+const filterContext = ['public', 'home', 'thread']
+const isFiltered = filterPhrase && props.context && filterContext.includes(props.context)
 </script>
 
 <template>
@@ -86,7 +88,7 @@ const filterPhrase = 'Twitter'
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''">
-          <StatusSpoiler :enabled="status.sensitive || filterPhrase">
+          <StatusSpoiler :enabled="status.sensitive || isFiltered">
             <template #spoiler>
               <p>{{ filterPhrase ? `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` : status.spoilerText }}</p>
             </template>

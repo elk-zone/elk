@@ -15,9 +15,6 @@ const status = $computed(() => {
 const createdAt = useFormattedDateTime(status.createdAt)
 
 const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === status.visibility)!)
-
-// TODO: get from status.filtered
-const filterPhrase = 'Twitter'
 </script>
 
 <template>
@@ -32,10 +29,10 @@ const filterPhrase = 'Twitter'
     <div
       :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''"
     >
-      <StatusSpoiler :enabled="status.sensitive || filterPhrase">
+      <StatusSpoiler :enabled="status.sensitive">
         <template #spoiler>
           <p text-2xl>
-            {{ filterPhrase ? `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` : status.spoilerText }}
+            {{ status.spoilerText }}
           </p>
         </template>
         <StatusBody :status="status" :with-action="false" text-2xl />

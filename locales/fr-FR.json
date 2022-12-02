@@ -175,8 +175,8 @@
     "show_new_items": "Montrer les {n} nouveaux éléments"
   },
   "title": {
-    "federated_timeline": "Federated Timeline",
-    "local_timeline": "Local Timeline"
+    "federated_timeline": "Fil d'acutalité fédéré",
+    "local_timeline": "Fil d'actualité local"
   },
   "tooltip": {
     "add_content_warning": "Add content warning",

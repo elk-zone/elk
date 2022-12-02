@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   code: string
-  lang: string
+  lang?: string
 }>()
 
 const raw = $computed(() => decodeURIComponent(props.code).replace(/&#39;/g, '\''))
@@ -13,7 +13,7 @@ const langMap: Record<string, string> = {
 }
 
 const highlighted = computed(() => {
-  return props.lang ? highlightCode(raw, langMap[props.lang] || props.lang as any) : raw
+  return props.lang ? highlightCode(raw, (langMap[props.lang] || props.lang) as any) : raw
 })
 </script>
 

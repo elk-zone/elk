@@ -185,11 +185,11 @@
     "toggle_code_block": "Ajouter un bloc de code"
   },
   "user": {
-    "add_existing": "Add an existing account",
-    "server_address_label": "Mastodon Server Address",
-    "sign_out_account": "Sign out {0}",
-    "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
-    "tip_register_account": "pick your server and register one"
+    "add_existing": "Ajouter un compte existant",
+    "server_address_label": "Adresse du serveur mastodon",
+    "sign_out_account": "Se déconnecter de {0}",
+    "tip_no_account": "Si vous n'avez pas encore de compte Mastodon, {0}.",
+    "tip_register_account": "choisissez votre serveur et enregistrez-en un"
   },
   "visibility": {
     "direct": "Direct",

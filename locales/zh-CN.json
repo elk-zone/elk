@@ -16,6 +16,8 @@
     "mutuals": "互相关注",
     "pinned": "置顶的帖文",
     "posts_count": "{0} 条帖文",
+    "profile_description": "{0}的个人资料头图",
+    "profile_unavailable": "个人资料不可见",
     "unfollow": "取消关注"
   },
   "action": {
@@ -42,6 +44,8 @@
   "common": {
     "end_of_list": "列表到底啦",
     "error": "错误",
+    "kiloSuffix": "K",
+    "megaSuffix": "M",
     "not_found": "无法找到相关内容",
     "offline_desc": "您目前已离线，请检查网络连接。"
   },
@@ -54,6 +58,13 @@
   },
   "feature_flag": {
     "virtual_scroll": "虚拟滚动"
+  },
+  "help": {
+    "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
+    "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Mastodon 客户端。",
+    "desc_para2": "我们正在努力开发中，并随着时间的推移不断完善。鹿鸣将很快开源，并邀请您参与进来！",
+    "desc_para3": "在此之前，为了更好的促进我们的开发工作，你可以通过以下链接赞助团队成员。",
+    "title": "预览鹿鸣！"
   },
   "menu": {
     "block_account": "拉黑 {0}",
@@ -141,18 +152,11 @@
     "day_past": "现在|昨天|{n}天前",
     "hour_future": "现在|1小时后|{n}小时后",
     "hour_past": "现在|1小时前|{n}小时前",
-    "in": "在",
     "just_now": "刚刚",
-    "last_month": "上个月",
-    "last_week": "上周",
-    "last_year": "去年",
     "minute_future": "现在|1分钟后|{n}分钟后",
     "minute_past": "现在|1分钟前|{n}分钟前",
     "month_future": "现在|下个月|{n}个月后",
     "month_past": "现在|上个月|{n}个月前",
-    "next_month": "下个月",
-    "next_week": "下周",
-    "next_year": "明年",
     "second_future": "刚刚|{n}秒后|{n}秒后",
     "second_past": "刚刚|{n}秒前|{n}秒前",
     "short_day_future": "{n}天",
@@ -169,13 +173,10 @@
     "short_week_past": "{n}周",
     "short_year_future": "{n}年",
     "short_year_past": "{n}年",
-    "tomorrow": "明天",
-    "week": "周",
     "week_future": "现在|下周|{n}周后",
     "week_past": "现在|上周|{n}周前",
     "year_future": "现在|明年|{n}年后",
-    "year_past": "现在|去年|{n}年前",
-    "yesterday": "昨天"
+    "year_past": "现在|去年|{n}年前"
   },
   "timeline": {
     "show_new_items": "展示 {n} 条新帖文"

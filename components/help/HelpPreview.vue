@@ -49,11 +49,11 @@ const teams: Team[] = [
       Elk is in Preview!
     </h1>
     <p>
-      Thank you for interested in trying out Elk, our working in progress generic Mastodon client!
+      Thanks for your interest in trying out Elk, our work-in-progress generic Mastodon client!
     </p>
     <p>
-      <b text-primary>You shall expect to see some features missing or some bugs here and there.</b>
-      We are working hard to make develop and improve it.
+      <b text-primary>Expect some bugs and missing features here and there.</b>
+      We are working hard on the development and improve it over time.
       And we will soon invite you to join the force once we make it open source soon!
     </p>
     <p>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import type { Notification, Paginator } from 'masto'
+import type { Notification, Paginator, WsEvents } from 'masto'
 import type { GroupedNotifications } from '~/types'
 
-const { paginator } = defineProps<{
+const { paginator, stream } = defineProps<{
   paginator: Paginator<any, Notification[]>
+  stream?: WsEvents
 }>()
 
 function groupItems(items: Notification[]): (Notification | GroupedNotifications)[] {
@@ -41,10 +42,17 @@ function groupItems(items: Notification[]): (Notification | GroupedNotifications
 
   return results
 }
+
+const { clearNotifications } = useNotifications()
 </script>
 
 <template>
-  <CommonPaginator :paginator="paginator">
+  <CommonPaginator :paginator="paginator" :stream="stream" event-type="notification">
+    <template #updater="{ number, update }">
+      <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
+        {{ $t('timeline.show_new_items', [number]) }}
+      </button>
+    </template>
     <template #items="{ items }">
       <template v-for="item of groupItems(items)" :key="item.id">
         <NotificationGroupedFollow

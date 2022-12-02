@@ -8,6 +8,11 @@ const { t } = useI18n()
 const paginatorAll = useMasto().notifications.getIterator()
 const paginatorMention = useMasto().notifications.getIterator({ types: ['mention'] })
 
+const { clearNotifications } = useNotifications()
+onActivated(clearNotifications)
+
+const stream = await useMasto().stream.streamUser()
+
 const tabs = $computed(() => [
   {
     name: 'all',
@@ -43,7 +48,7 @@ useHeadFixed({
       <CommonTabs v-model="tab" :options="tabs" />
     </template>
     <slot>
-      <NotificationPaginator :key="tab" :paginator="paginator" />
+      <NotificationPaginator :key="tab" v-bind="{ paginator, stream }" />
     </slot>
   </MainContent>
 </template>

@@ -63,6 +63,8 @@ watch(visible, (value) => {
 
 const notInCurrentPage = computed(() => deactivated.value || routePath.value !== route.path)
 watch(notInCurrentPage, (value) => {
+  if (props.keepAlive)
+    return
   if (value)
     close()
 })
@@ -112,7 +114,7 @@ export default {
 <template>
   <SafeTeleport to="#teleport-end">
     <!-- Dialog component -->
-    <Transition name="dialog-visible" :disabled="!keepAlive && deactivated">
+    <Transition name="dialog-visible">
       <div
         v-if="isVIf"
         v-show="isVShow"

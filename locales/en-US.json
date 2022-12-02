@@ -1,5 +1,6 @@
 {
   "account": {
+    "avatar_description": "{0}'s avatar",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "favourites": "Favourites",
@@ -10,15 +11,14 @@
     "following": "Following",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
+    "joined": "Joined",
     "muted_users": "Muted users",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
     "posts_count": "{0} Posts",
-    "unfollow": "Unfollow",
-    "joined": "Joined",
     "profile_description": "{0}'s profile header",
-    "avatar_description": "{0}'s avatar",
-    "profile_unavailable": "Profile unavailable"
+    "profile_unavailable": "Profile unavailable",
+    "unfollow": "Unfollow"
   },
   "action": {
     "bookmark": "Bookmark",
@@ -44,10 +44,10 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
-    "not_found": "404 Not Found",
-    "offline_desc": "Seems like you are offline. Please check your network connection.",
     "kiloSuffix": "K",
-    "megaSuffix": "M"
+    "megaSuffix": "M",
+    "not_found": "404 Not Found",
+    "offline_desc": "Seems like you are offline. Please check your network connection."
   },
   "conversation": {
     "with": "with"
@@ -141,35 +141,35 @@
     "posts_with_replies": "Posts & Replies"
   },
   "time_ago_options": {
-    "just_now": "just now",
-    "second_past": "just now|{n} second ago|{n} seconds ago",
-    "second_future": "just now|in {n} second|in {n} seconds",
-    "minute_past": "0 minutes ago|1 minute ago|{n} minutes ago",
-    "minute_future": "in 0 minutes|in 1 minute|in {n} minutes",
-    "hour_past": "0 hours ago|1 hour ago|{n} hours ago",
-    "hour_future": "in 0 hours|in 1 hour|in {n} hours",
-    "day_past": "0 days ago|yesterday|{n} days ago",
     "day_future": "in 0 days|tomorrow|in {n} days",
-    "week_past": "0 weeks ago|last week|{n} weeks ago",
-    "week_future": "in 0 weeks|next week|in {n} weeks",
-    "month_past": "0 months ago|last month|{n} months ago",
+    "day_past": "0 days ago|yesterday|{n} days ago",
+    "hour_future": "in 0 hours|in 1 hour|in {n} hours",
+    "hour_past": "0 hours ago|1 hour ago|{n} hours ago",
+    "just_now": "just now",
+    "minute_future": "in 0 minutes|in 1 minute|in {n} minutes",
+    "minute_past": "0 minutes ago|1 minute ago|{n} minutes ago",
     "month_future": "in 0 months|next month|in {n} months",
-    "year_past": "0 years ago|last year|{n} years ago",
-    "year_future": "in 0 years|next year|in {n} years",
-    "short_second_past": "{n}s",
-    "short_second_future": "in {n}s",
-    "short_minute_past": "{n}min",
-    "short_minute_future": "in {n}min",
-    "short_hour_past": "{n}h",
-    "short_hour_future": "in {n}h",
-    "short_day_past": "{n}d",
+    "month_past": "0 months ago|last month|{n} months ago",
+    "second_future": "just now|in {n} second|in {n} seconds",
+    "second_past": "just now|{n} second ago|{n} seconds ago",
     "short_day_future": "in {n}d",
-    "short_week_past": "{n}w",
-    "short_week_future": "in {n}w",
-    "short_month_past": "{n}mo",
+    "short_day_past": "{n}d",
+    "short_hour_future": "in {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "in {n}min",
+    "short_minute_past": "{n}min",
     "short_month_future": "in {n}mo",
+    "short_month_past": "{n}mo",
+    "short_second_future": "in {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "in {n}w",
+    "short_week_past": "{n}w",
+    "short_year_future": "in {n}y",
     "short_year_past": "{n}y",
-    "short_year_future": "in {n}y"
+    "week_future": "in 0 weeks|next week|in {n} weeks",
+    "week_past": "0 weeks ago|last week|{n} weeks ago",
+    "year_future": "in 0 years|next year|in {n} years",
+    "year_past": "0 years ago|last year|{n} years ago"
   },
   "timeline": {
     "show_new_items": "Show {n} new items"

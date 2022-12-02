@@ -1,4 +1,12 @@
 {
   "extends": "@antfu",
-  "ignorePatterns": ["!pages/public"]
+  "ignorePatterns": ["!pages/public"],
+  "overrides": [
+    {
+      "files": ["locales/**.json"],
+      "rules": {
+        "jsonc/sort-keys": "error"
+      }
+    }
+  ]
 }

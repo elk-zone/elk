@@ -46,7 +46,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
 // TODO: get phrase from status.filtered and remove check for status.content
 const filterPhrase = status.content.toLowerCase().includes('twitter') ? 'Twitter' : null
-const filterContext = ['public', 'home', 'thread']
+const filterContext = ['public', 'home', 'thread', 'notifications']
 const isFiltered = filterPhrase && props.context && filterContext.includes(props.context)
 </script>
 

@@ -52,9 +52,12 @@ const i18n: NuxtI18nOptions = {
   defaultLocale: 'en-US',
   vueI18n: {
     fallbackLocale: 'en-US',
+    fallbackWarn: false,
+    missingWarn: false,
     datetimeFormats,
   },
   lazy: true,
+
 }
 
 export { i18n }

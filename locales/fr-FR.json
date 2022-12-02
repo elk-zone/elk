@@ -172,7 +172,7 @@
     "year_past": "il y a 0 année|l'année dernière|il y a {n} années"
   },
   "timeline": {
-    "show_new_items": "Show {n} new items"
+    "show_new_items": "Montrer les {n} nouveaux éléments"
   },
   "title": {
     "federated_timeline": "Federated Timeline",

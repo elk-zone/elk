@@ -28,6 +28,11 @@ const locales: LocaleObject[] = [
     file: 'es-ES.json',
     name: 'Español',
   },
+  {
+    code: 'fr-FR',
+    file: 'fr-FR.json',
+    name: 'Français',
+  },
 ].sort((a, b) => a.code.localeCompare(b.code))
 
 const datetimeFormats = Object.keys(locales).reduce((acc, key) => {

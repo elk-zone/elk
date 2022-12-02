@@ -18,9 +18,9 @@ import {
   <ModalNewModalDialog v-model="isPublishDialogOpen" max-w-180>
     <PublishWidget :draft-key="dialogDraftKey" expanded />
   </ModalNewModalDialog>
-  <ModalDialog v-model="isMediaPreviewOpen" close-button h-screen w-screen>
+  <ModalNewModalDialog v-model="isMediaPreviewOpen" w-full max-w-full h-full max-h-full bg-transparent border-0 pointer-events-none>
     <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
-  </ModalDialog>
+  </ModalNewModalDialog>
   <ModalNewModalDialog v-model="isEditHistoryDialogOpen">
     <StatusEditPreview :edit="statusEdit" />
   </ModalNewModalDialog>

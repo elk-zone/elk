@@ -110,7 +110,7 @@
     "update_status": "a posté un nouveau message"
   },
   "placeholder": {
-    "content_warning": "Écrive votre message d'avertissement ici",
+    "content_warning": "Écrivez votre message d'avertissement ici",
     "default_1": "Quelque chose à partager ?",
     "reply_to_account": "Répondre à {0}",
     "replying": "Répondre",

@@ -192,13 +192,13 @@
     "tip_register_account": "choisissez votre serveur et enregistrez-en un"
   },
   "visibility": {
-    "direct": "Direct",
-    "direct_desc": "Visible for mentioned users only",
-    "private": "Followers only",
-    "private_desc": "Visible for followers only",
+    "direct": "Personnes mentionnées uniquement",
+    "direct_desc": "Visibles uniquemnt par les comptes mentionnés",
+    "private": "Abonnés uniquement",
+    "private_desc": "Visible uniquement par vos abonnés",
     "public": "Public",
-    "public_desc": "Visible for all",
-    "unlisted": "Unlisted",
-    "unlisted_desc": "Visible for all, but opted-out of discovery features"
+    "public_desc": "Visible par tout le monde",
+    "unlisted": "Non listé",
+    "unlisted_desc": "Visible pour tous, mais sans fonctionnalités de découverte"
   }
 }

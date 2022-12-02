@@ -25,28 +25,26 @@ export function useStatusActions(props: StatusActionsProps) {
     translation: false,
   })
 
-  async function toggleStatusAction(action: Action, newStatus: () => Promise<Status>, countField?: CountField) {
+  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<Status>, countField?: CountField) {
     // check login
     if (!checkLogin())
       return
+    isLoading[action] = true
+    fetchNewStatus().then((newStatus) => {
+      Object.assign(status, newStatus)
+    }).finally(() => {
+      isLoading[action] = false
+    })
     // Optimistic update
     status[action] = !status[action]
     if (countField)
       status[countField] += status[action] ? 1 : -1
-
-    try {
-      isLoading[action] = true
-      Object.assign(status, await newStatus())
-    }
-    finally {
-      isLoading[action] = false
-    }
   }
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
     () => useMasto().statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
       if (status.reblogged)
-      // returns the original status
+        // returns the original status
         return res.reblog!
       return res
     }),

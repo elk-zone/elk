@@ -6,14 +6,36 @@ import { useDeactivated } from '~/composables/lifecycle'
 export interface Props {
   /** v-model dislog visibility */
   modelValue: boolean
-  /** level of depth, default to 80 */
+
+  /**
+   * level of depth
+   *
+   * @default 100
+   */
   zIndex?: number
-  /** whether to allow close dialog by clicking mask layer */
+
+  /**
+   * whether to allow close dialog by clicking mask layer
+   *
+   * @default true
+   */
   closeByMask?: boolean
-  /** use v-if, destroy all the internal elements after closed */
+
+  /**
+   * use v-if, destroy all the internal elements after closed
+   *
+   * @default true
+   */
   useVIf?: boolean
-  /** keep the dialog opened even when in other views */
+
+  /**
+   * keep the dialog opened even when in other views
+   *
+   * @default false
+   *
+  */
   keepAlive?: boolean
+
   /** customizable class for the div outside of slot */
   customClass?: string
 }

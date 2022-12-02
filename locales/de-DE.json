@@ -123,15 +123,15 @@
     "uploading": "Hochladen..."
   },
   "status": {
-    "edited": "Bearbeitete {0}",
+    "edited": "Zuletzt bearbeitet: {0}",
     "reblogged": "{0} teilte",
     "spoiler_show_less": "Zeige weniger",
     "spoiler_show_more": "zeige mehr",
     "try_original_site": "Versuche die original Seite"
   },
   "status_history": {
-    "created": "Erstellt am {0}",
-    "edited": "Bearbeitet am {0}"
+    "created": "Erstellt: {0}",
+    "edited": "Bearbeitet: {0}"
   },
   "tab": {
     "media": "Medien",
@@ -141,35 +141,35 @@
     "posts_with_replies": "Beiträge und Antworten"
   },
   "time_ago_options": {
-    "day_future": "In 0 Tagen|Morgen|On {n} Tagen",
-    "day_past": "Vor 0 Tagen|Gestern|Vor {n} Tagen",
-    "hour_future": "In 0 Stunden|In 1 Stunde|In {n} Stunden",
-    "hour_past": "Vor 0 Stunden|Vor 1 Stunde|Vor {n} Stunden",
-    "just_now": "Gerade eben",
-    "minute_future": "In 0 Minuten|In 1 Minute|In {n} Minuten",
-    "minute_past": "Vor 0 Minuten|Vor 1 Minute|Vor {n} Minuten",
-    "month_future": "In 0 Monaten|Nächsten Monat|In {n} Monaten",
-    "month_past": "Vor 0 Monaten|Letzten Monat|Vor {n} Monaten",
-    "second_future": "Gerade eben|In {n} Sekunde|In {n} Sekunden",
-    "second_past": "Gerade eben|Vor {n} Sekunde|Vor {n} Sekunden",
-    "short_day_future": "In {n}T",
+    "day_future": "in 0 Tagen|morgen|in {n} Tagen",
+    "day_past": "vor 0 Tagen|gestern|vor {n} Tagen",
+    "hour_future": "in 0 Stunden|in 1 Stunde|in {n} Stunden",
+    "hour_past": "vor 0 Stunden|vor 1 Stunde|vor {n} Stunden",
+    "just_now": "gerade eben",
+    "minute_future": "in 0 Minuten|in 1 Minute|in {n} Minuten",
+    "minute_past": "vor 0 Minuten|vor 1 Minute|vor {n} Minuten",
+    "month_future": "in 0 Monaten|nächsten Monat|in {n} Monaten",
+    "month_past": "vor 0 Monaten|letzten Monat|vor {n} Monaten",
+    "second_future": "gerade eben|in {n} Sekunde|in {n} Sekunden",
+    "second_past": "gerade eben|vor {n} Sekunde|vor {n} Sekunden",
+    "short_day_future": "in {n}T",
     "short_day_past": "{n}T",
-    "short_hour_future": "In {n}Std",
+    "short_hour_future": "in {n}Std",
     "short_hour_past": "{n}Std",
-    "short_minute_future": "In {n}Min",
+    "short_minute_future": "in {n}Min",
     "short_minute_past": "{n}Min",
-    "short_month_future": "In {n}Mo",
+    "short_month_future": "in {n}Mo",
     "short_month_past": "{n}Mo",
-    "short_second_future": "In {n}Sek",
+    "short_second_future": "in {n}Sek",
     "short_second_past": "{n}Sek",
-    "short_week_future": "In {n}W",
+    "short_week_future": "in {n}W",
     "short_week_past": "{n}W",
-    "short_year_future": "In {n}J",
+    "short_year_future": "in {n}J",
     "short_year_past": "{n}J",
-    "week_future": "In 0 Wochen|Nächste Woche|In {n} Wochen",
-    "week_past": "In 0 Wochen|Letzte Woche|Vor {n} Wochen",
-    "year_future": "In 0 Jahren|Nächstes Jahr|In {n} Jahren",
-    "year_past": "Vor 0 Jahren|Letztes Jahren|Vor {n} Jahren"
+    "week_future": "in 0 Wochen|nächste Woche|in {n} Wochen",
+    "week_past": "vor 0 Wochen|letzte Woche|vor {n} Wochen",
+    "year_future": "in 0 Jahren|nächstes Jahr|in {n} Jahren",
+    "year_past": "vor 0 Jahren|letztes Jahren|vor {n} Jahren"
   },
   "timeline": {
     "show_new_items": "Zeige {n} neue Beiträge"

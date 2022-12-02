@@ -29,9 +29,12 @@ export async function setupI18n() {
   const localeStorage = useLocalStorage(STORAGE_KEY_LANG, locale.value)
 
   if (isFirstVisit) {
-    const userLang = window.navigator.language || 'en-US'
-    const lang = (unref(locales) as { code: string }[]).find(locale => locale.code.toLowerCase().startsWith(userLang.toLowerCase()))?.code || 'en-US'
-    localeStorage.value = lang
+    const userLang = (navigator.language || 'en-US').toLowerCase()
+    // cause vue-i18n not explicit export LocaleObject type
+    const supportLocales = unref(locales) as { code: string }[]
+    const lang = supportLocales.find(locale => userLang.startsWith(locale.code.toLowerCase()))?.code
+      || supportLocales.find(locale => userLang.startsWith(locale.code.split('-')[0]))?.code
+    localeStorage.value = lang || 'en-US'
   }
 
   if (localeStorage.value !== locale.value)

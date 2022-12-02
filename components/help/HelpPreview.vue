@@ -53,7 +53,7 @@ const teams: Team[] = [
     </p>
     <p>
       <b text-primary>Expect some bugs and missing features here and there.</b>
-      We are working hard on the development and improve it over time.
+      We are working hard on the development and improving it over time.
       And we will soon invite you to join the force once we make it open source soon!
     </p>
     <p>

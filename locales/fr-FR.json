@@ -134,11 +134,11 @@
     "edited": "a édité {0}"
   },
   "tab": {
-    "media": "Media",
-    "notifications_all": "All",
+    "media": "Média",
+    "notifications_all": "Tous",
     "notifications_mention": "Mention",
-    "posts": "Posts",
-    "posts_with_replies": "Posts & Replies"
+    "posts": "Messages",
+    "posts_with_replies": "Messages et réponses"
   },
   "time_ago_options": {
     "day_future": "in 0 days|tomorrow|in {n} days",

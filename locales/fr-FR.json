@@ -46,7 +46,7 @@
     "error": "ERREUR",
     "kiloSuffix": "K",
     "megaSuffix": "M",
-    "not_found": "404 Not Found",
+    "not_found": "404 Introuvable",
     "offline_desc": "Il semble que vous soyez hors-light. Vérifiez votre connexion internet."
   },
   "conversation": {

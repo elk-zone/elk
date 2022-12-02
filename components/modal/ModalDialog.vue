@@ -37,8 +37,11 @@ const route = useRoute()
 /** scrollable HTML element */
 const elDialogScroll = ref<HTMLDivElement>()
 const elDialogMain = ref<HTMLDivElement>()
+const elDialogRoot = ref<HTMLDivElement>()
 
 defineExpose({
+  elDialogRoot,
+  elDialogMain,
   elDialogScroll,
 })
 
@@ -82,7 +85,7 @@ const isVShow = computed(() => {
 
 const bindTypeToAny = ($attrs: any) => $attrs as any
 
-const { activate, deactivate } = useFocusTrap(elDialogMain)
+const { activate, deactivate } = useFocusTrap(elDialogRoot)
 watch(visible, async (value) => {
   await nextTick()
   if (value)
@@ -113,6 +116,7 @@ export default {
       <div
         v-if="isVIf"
         v-show="isVShow"
+        ref="elDialogRoot"
         :style="{
           'z-index': zIndex,
         }"

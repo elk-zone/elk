@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import { useDeactivated } from '~/composables/lifecycle'
 
 export interface Props {
@@ -108,14 +107,6 @@ const isVShow = computed(() => {
 
 const bindTypeToAny = ($attrs: any) => $attrs as any
 
-const { activate, deactivate } = useFocusTrap(elDialogRoot)
-watch(visible, async (value) => {
-  await nextTick()
-  if (value)
-    activate()
-  else
-    deactivate()
-})
 useEventListener('keydown', (e: KeyboardEvent) => {
   if (!visible.value)
     return

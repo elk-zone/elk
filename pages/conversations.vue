@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().conversations.getIterator()
+const paginator = useMasto().conversations.iterate()
 
 const { t } = useI18n()
 

@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().domainBlocks.getIterator()
+const paginator = useMasto().domainBlocks.iterate()
 
 useHeadFixed({
   title: 'Blocked domains',

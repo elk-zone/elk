@@ -5,7 +5,7 @@ const handle = $(computedEager(() => params.account as string))
 definePageMeta({ name: 'account-followers' })
 
 const account = await fetchAccountByHandle(handle)
-const paginator = account ? useMasto().accounts.getFollowersIterable(account.id, {}) : null
+const paginator = account ? useMasto().accounts.iterateFollowers(account.id, {}) : null
 </script>
 
 <template>

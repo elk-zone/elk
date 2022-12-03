@@ -12,9 +12,9 @@ const { data: account } = await useAsyncData(`account:${handle}`, async () => (
 )
 const { t } = useI18n()
 
-const paginatorPosts = useMasto().accounts.getStatusesIterable(account.value!.id, { excludeReplies: true })
-const paginatorPostsWithReply = useMasto().accounts.getStatusesIterable(account.value!.id, { excludeReplies: false })
-const paginatorMedia = useMasto().accounts.getStatusesIterable(account.value!.id, { onlyMedia: true, excludeReplies: false })
+const paginatorPosts = useMasto().accounts.iterateStatuses(account.value!.id, { excludeReplies: true })
+const paginatorPostsWithReply = useMasto().accounts.iterateStatuses(account.value!.id, { excludeReplies: false })
+const paginatorMedia = useMasto().accounts.iterateStatuses(account.value!.id, { onlyMedia: true, excludeReplies: false })
 
 const tabs = $computed(() => [
   {

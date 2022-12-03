@@ -52,14 +52,12 @@ const deactivated = useDeactivated()
 const route = useRoute()
 
 /** scrollable HTML element */
-const elDialogScroll = ref<HTMLDivElement>()
 const elDialogMain = ref<HTMLDivElement>()
 const elDialogRoot = ref<HTMLDivElement>()
 
 defineExpose({
   elDialogRoot,
   elDialogMain,
-  elDialogScroll,
 })
 
 /** close the dialog */

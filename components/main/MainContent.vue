@@ -15,12 +15,13 @@ defineProps<{
           <NuxtLink v-if="back" flex="~ gap1" items-center btn-text p-0 @click="$router.go(-1)">
             <div i-ri:arrow-left-line />
           </NuxtLink>
-          <slot name="title" />
-          <div h-7 w-1px />
-        </div>
-        <div flex items-center>
-          <slot name="actions" />
-          <NavUser v-if="isMediumScreen" />
+          <div line-clamp-1>
+            <slot name="title" />
+          </div>
+          <div flex items-center shrink-0>
+            <slot name="actions" />
+            <NavUser v-if="isMediumScreen" />
+          </div>
         </div>
       </div>
       <slot name="header" />

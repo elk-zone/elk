@@ -13,6 +13,7 @@ export const isZenMode = useLocalStorage(STORAGE_KEY_ZEN_MODE, false)
 
 export const isSigninDialogOpen = ref(false)
 export const isPublishDialogOpen = ref(false)
+export const isKeyboardShortcutsDialogOpen = ref(false)
 export const isMediaPreviewOpen = ref(false)
 export const isEditHistoryDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
@@ -71,4 +72,12 @@ export function openPreviewHelp() {
 
 export function closePreviewHelp() {
   isPreviewHelpOpen.value = false
+}
+
+export function toggleKeyboardShortcuts() {
+  isKeyboardShortcutsDialogOpen.value = !isKeyboardShortcutsDialogOpen.value
+}
+
+export function closeKeyboardShortcuts() {
+  isKeyboardShortcutsDialogOpen.value = false
 }

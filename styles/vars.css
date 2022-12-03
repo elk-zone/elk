@@ -2,10 +2,11 @@
   --c-primary: #EA9E44;
   --c-primary-active: #C16929;
   --c-border: #eee;
+  --c-border-code: #ddd;
 
   --c-bg-base: #fff;
   --c-bg-active: #f6f6f6;
-  --c-bg-code: #00000006;
+  --c-bg-code: #0000000A;
   --c-bg-selection: #8885;
   --c-bg-fade: #EA9E4422;
 
@@ -21,10 +22,11 @@
 
 .dark {
   --c-border: #222;
+  --c-border-code: #333;
 
   --c-bg-base: #111;
   --c-bg-active: #191919;
-  --c-bg-code: #ffffff06;
+  --c-bg-code: #ffffff12;
   --c-bg-fade: #EA9E4422;
 
   --c-text-base: #fff;

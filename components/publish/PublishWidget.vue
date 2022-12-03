@@ -183,7 +183,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
           <EditorContent
             :editor="editor"
             flex
-            :class="shouldExpanded ? 'min-h-120px max-h-720px of-y-auto' : ''"
+            :class="shouldExpanded ? 'min-h-120px sm:max-h-[calc(100vh-200px)] max-h-140px of-y-auto overscroll-contain' : ''"
           />
           <div v-if="shouldExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>
             {{ characterLimit - editor?.storage.characterCount.characters() }}

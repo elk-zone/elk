@@ -15,21 +15,18 @@ import {
   <ModalDialog v-model="isPreviewHelpOpen">
     <HelpPreview @close="closePreviewHelp()" />
   </ModalDialog>
-  <ModalDialog v-model="isPublishDialogOpen" max-w-180 md:min-w-160>
-    <!-- You can avoid the default scrolling behavior of popups by using header or footer slots, -->
-    <!-- but you can also disable the scrolling style of the default slots by using custom-class="!overflow-visible" -->
-    <template #header>
-      <PublishWidget :draft-key="dialogDraftKey" expanded />
-    </template>
+  <ModalDialog v-model="isPublishDialogOpen" max-w-180 flex>
+    <PublishWidget :draft-key="dialogDraftKey" expanded flex-1 />
   </ModalDialog>
-  <ModalDialog v-model="isMediaPreviewOpen" w-full max-w-full h-full max-h-full bg-transparent border-0 pointer-events-none>
-    <template #header>
-      <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
-    </template>
+  <ModalDialog
+    v-model="isMediaPreviewOpen"
+    pointer-events-none
+    w-full max-w-full h-full max-h-full
+    bg-transparent border-0 shadow-none
+  >
+    <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
   </ModalDialog>
   <ModalDialog v-model="isEditHistoryDialogOpen">
-    <template #header>
-      <StatusEditPreview :edit="statusEdit" />
-    </template>
+    <StatusEditPreview :edit="statusEdit" />
   </ModalDialog>
 </template>

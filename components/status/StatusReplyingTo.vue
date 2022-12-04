@@ -15,8 +15,10 @@ const account = useAccountById(status.inReplyToAccountId!)
     :to="getStatusInReplyToRoute(status)"
     :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
   >
-    <div i-ri:reply-fill rotate-180 text-secondary-light class="mr-1.5" />
-    <AccountInlineInfo v-if="account" :account="account" :link="false" />
-    <span v-else>Someone</span>
+    <div i-ri:chat-quote-fill text-secondary-light class="mr-1.5" />
+    <template v-if="account?.id !== status.account.id">
+      <AccountInlineInfo v-if="account" :account="account" :link="false" />
+      <span v-else>Someone</span>
+    </template>
   </NuxtLink>
 </template>

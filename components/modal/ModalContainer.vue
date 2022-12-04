@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { logicOr } from '@vueuse/math'
+import type { RouteLocationRaw } from 'vue-router'
 import {
   isEditHistoryDialogOpen,
   isKeyboardShortcutsDialogOpen,
@@ -8,10 +9,13 @@ import {
   isPublishDialogOpen,
   isSigninDialogOpen,
 } from '~/composables/dialog'
+import { useMagicSequence } from '~/composables/magickeys'
 
 // TODO: move all global keyboard bindings elsewhere?!? plugin? composable?
 
 const keys = useMagicKeys()
+const router = useRouter()
+const { $scrollToTop } = useNuxtApp()
 
 // disable shortcuts when focused on inputs (https://vueuse.org/core/usemagickeys/#conditionally-disable)
 const activeElement = useActiveElement()
@@ -20,16 +24,22 @@ const notUsingInput = computed(() =>
   && activeElement.value?.tagName !== 'TEXTAREA'
   && !activeElement.value?.isContentEditable,
 )
+const isAuthenticated = currentUser.value !== undefined
 
-const isAuthenticated = currentUser
+const navigateTo = (to: string | RouteLocationRaw) => {
+  closeKeyboardShortcuts()
+  $scrollToTop() // is this really required?
+  router.push(to)
+}
 
 whenever(logicAnd(notUsingInput, keys['?']), toggleKeyboardShortcuts)
 
 // TODO: is this the correct way of using openPublishDialog()?
 const defaultPublishDialog = () => openPublishDialog('dialog', getDefaultDraft())
+whenever(logicAnd(isAuthenticated, notUsingInput, logicOr(keys.c)), defaultPublishDialog)
 
-// shortcut enabled only if authenticated
-whenever(logicAnd(notUsingInput, isAuthenticated, logicOr(keys.c, keys.n)), defaultPublishDialog)
+whenever(logicAnd(notUsingInput, useMagicSequence(['g', 'h'])), () => navigateTo('/home'))
+whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'n'])), () => navigateTo('/notifications'))
 </script>
 
 <template>

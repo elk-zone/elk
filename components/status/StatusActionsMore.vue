@@ -37,9 +37,9 @@ const toggleTranslation = async () => {
 }
 
 const copyLink = async (status: Status) => {
-  const url = getStatusPermalinkRoute(status)?.href
+  const url = getStatusPermalinkRoute(status)
   if (url)
-    await clipboard.copy(`${location.origin}${url}`)
+    await clipboard.copy(`${location.origin}/${url}`)
 }
 const deleteStatus = async () => {
   // TODO confirm to delete
@@ -145,7 +145,7 @@ function editStatus() {
           @click="copyLink(status)"
         />
 
-        <NuxtLink :to="status.url" target="_blank">
+        <NuxtLink :to="status.url" external target="_blank">
           <CommonDropdownItem
             v-if="status.url"
             :text="$t('menu.open_in_original_site')"

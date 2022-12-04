@@ -21,11 +21,12 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 })
 
 export const publicServer = ref(DEFAULT_SERVER)
+const publicInstance = ref<Instance | null>(null)
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
 
 export const useUsers = () => users
 
-export const currentInstance = computed<null | Instance>(() => currentUserId.value ? servers.value[currentUserId.value] ?? null : null)
+export const currentInstance = computed<null | Instance>(() => currentUserId.value ? servers.value[currentUserId.value] ?? null : publicInstance.value)
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
@@ -37,14 +38,18 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   }
 
   const config = useRuntimeConfig()
+  const route = useRoute()
+  const router = useRouter()
+  const server = user?.server || route.params.server as string || publicServer.value
   const masto = await loginMasto({
-    url: `https://${user?.server || DEFAULT_SERVER}`,
+    url: `https://${server}`,
     accessToken: user?.token,
     disableVersionCheck: !!config.public.disableVersionCheck,
   })
 
   if (!user?.token) {
-    publicServer.value = user?.server || DEFAULT_SERVER
+    publicServer.value = server
+    publicInstance.value = await masto.instances.fetch()
   }
 
   else {
@@ -70,6 +75,13 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   }
 
   setMasto(masto)
+
+  if ('server' in route.params) {
+    await router.push({
+      ...route,
+      force: true,
+    })
+  }
 
   return masto
 }
@@ -98,7 +110,7 @@ export async function signout() {
   currentUserId.value = users.value[0]?.account?.id
 
   if (!currentUserId.value)
-    await useRouter().push('/public')
+    await useRouter().push(`/${currentServer.value}/public`)
 
   await loginTo(currentUser.value)
 }

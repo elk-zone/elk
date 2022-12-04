@@ -54,12 +54,14 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 
   else {
     try {
-      const [me, server] = await Promise.all([
+      const [me, server, pushSubscription] = await Promise.all([
         masto.accounts.verifyCredentials(),
         masto.instances.fetch(),
+        masto.pushSubscriptions.fetch().catch(() => Promise.resolve(undefined)),
       ])
 
       user.account = me
+      user.pushSubscription = pushSubscription
       currentUserId.value = me.id
       servers.value[me.id] = server
 

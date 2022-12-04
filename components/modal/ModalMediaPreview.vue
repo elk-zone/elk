@@ -29,16 +29,25 @@ function onClick(e: MouseEvent) {
 </script>
 
 <template>
-  <div relative h-screen w-screen flex select-none @click="onClick">
+  <div relative h-full w-full flex select-none pointer-events-none>
     <div absolute top-0 left-0 right-0 text-center>
       {{ mediaPreviewIndex + 1 }} / {{ mediaPreviewList.length }}
     </div>
-    <button v-if="hasNext" btn-action-icon absolute top="1/2" right-1 title="Next" @click="next">
+    <button v-if="hasNext" btn-action-icon absolute pointer-events-auto top="1/2" right-1 title="Next" @click="next">
       <div i-ri:arrow-right-s-line />
     </button>
-    <button v-if="hasPrev" btn-action-icon absolute top="1/2" left-1 title="Next" @click="prev">
+    <button v-if="hasPrev" btn-action-icon absolute pointer-events-auto top="1/2" left-1 title="Next" @click="prev">
       <div i-ri:arrow-left-s-line />
     </button>
-    <img :src="current.url || current.previewUrl" :alt="current.description || ''" max-w-95vw max-h-95vh ma>
+    <img :src="current.url || current.previewUrl" :alt="current.description || ''" w="max-[95%]" h="max-[95%]" ma>
+
+    <button
+      btn-action-icon bg="black/20" aria-label="Close"
+      hover:bg="black/40" dark:bg="white/30" dark:hover:bg="white/20"
+      absolute top-0 right-0 m1 pointer-events-auto
+      @click="emit('close')"
+    >
+      <div i-ri:close-fill text-white />
+    </button>
   </div>
 </template>

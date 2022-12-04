@@ -2,7 +2,7 @@ import type { Paginator, WsEvents } from 'masto'
 import { useDeactivated } from './lifecycle'
 import type { PaginatorState } from '~/types'
 
-export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvents) {
+export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvents, eventType: 'notification' | 'update' = 'update') {
   const state = ref<PaginatorState>('idle')
   const items = ref<T[]>([])
   const nextItems = ref<T[]>([])
@@ -19,7 +19,7 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvent
     prevItems.value = []
   }
 
-  stream?.on('update', (status) => {
+  stream?.on(eventType, (status) => {
     prevItems.value.unshift(status as any)
   })
 

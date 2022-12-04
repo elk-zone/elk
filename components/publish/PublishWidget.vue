@@ -148,20 +148,20 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 </script>
 
 <template>
-  <div v-if="currentUser" flex="~ col gap-1">
+  <div v-if="currentUser" flex="~ col gap-4" py4 px2 sm:px4>
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div text-secondary self-center>
           {{ $t('state.editing') }}
         </div>
-        <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" />
+        <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" px-0 />
       </div>
       <div border="b dashed gray/40" />
     </template>
 
-    <div p4 flex gap-4>
+    <div flex gap-4>
       <NuxtLink w-12 h-12 :to="getAccountRoute(currentUser.account)">
-        <AccountAvatar :account="currentUser.account" w-12 h-12 />
+        <AccountAvatar :account="currentUser.account" f-full h-full />
       </NuxtLink>
       <div
         ref="dropZoneRef"
@@ -202,71 +202,73 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
             @remove="removeAttachment(idx)"
           />
         </div>
-
-        <div
-          v-if="shouldExpanded" flex="~ gap-2" m="l--1" pt-2
-          border="t base"
-        >
-          <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">
-            <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
-              <div i-ri:image-add-line />
-            </button>
-          </CommonTooltip>
-
-          <template v-if="editor">
-            <CommonTooltip placement="bottom" :content="$t('tooltip.toggle_code_block')">
-              <button
-                btn-action-icon
-                :aria-label="$t('tooltip.toggle_code_block')"
-                :class="editor.isActive('codeBlock') ? 'op100' : 'op50'"
-                @click="editor?.chain().focus().toggleCodeBlock().run()"
-              >
-                <div i-ri:code-s-slash-line />
-              </button>
-            </CommonTooltip>
-          </template>
-
-          <div flex-auto />
-
-          <CommonTooltip placement="bottom" :content="$t('tooltip.add_content_warning')">
-            <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
-              <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
-              <div v-else i-ri:alarm-warning-line />
-            </button>
-          </CommonTooltip>
-
-          <CommonTooltip placement="bottom" :content="$t('tooltip.change_content_visibility')">
-            <CommonDropdown>
-              <button :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon w-12>
-                <div :class="currentVisibility.icon" />
-                <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
-              </button>
-
-              <template #popper>
-                <CommonDropdownItem
-                  v-for="visibility in STATUS_VISIBILITIES"
-                  :key="visibility.value"
-                  :icon="visibility.icon"
-                  :checked="visibility.value === draft.params.visibility"
-                  @click="chooseVisibility(visibility.value)"
-                >
-                  {{ $t(`visibility.${visibility.value}`) }}
-                  <template #description>
-                    {{ $t(`visibility.${visibility.value}_desc`) }}
-                  </template>
-                </CommonDropdownItem>
-              </template>
-            </CommonDropdown>
-          </CommonTooltip>
-
-          <button
-            btn-solid rounded-full text-sm
-            :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
-            @click="publish"
-          >
-            {{ !draft.editingStatus ? $t('action.publish') : $t('action.save_changes') }}
+      </div>
+    </div>
+    <div flex gap-4>
+      <div w-12 h-full sm:block hidden />
+      <div
+        v-if="shouldExpanded" flex="~ gap-2 1" m="l--1" pt-2 justify="between" max-full
+        border="t base"
+      >
+        <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">
+          <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
+            <div i-ri:image-add-line />
           </button>
-        </div>
+        </CommonTooltip>
+
+        <template v-if="editor">
+          <CommonTooltip placement="bottom" :content="$t('tooltip.toggle_code_block')">
+            <button
+              btn-action-icon
+              :aria-label="$t('tooltip.toggle_code_block')"
+              :class="editor.isActive('codeBlock') ? 'op100' : 'op50'"
+              @click="editor?.chain().focus().toggleCodeBlock().run()"
+            >
+              <div i-ri:code-s-slash-line />
+            </button>
+          </CommonTooltip>
+        </template>
+
+        <div flex-auto />
+
+        <CommonTooltip placement="bottom" :content="$t('tooltip.add_content_warning')">
+          <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
+            <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
+            <div v-else i-ri:alarm-warning-line />
+          </button>
+        </CommonTooltip>
+
+        <CommonTooltip placement="bottom" :content="$t('tooltip.change_content_visibility')">
+          <CommonDropdown>
+            <button :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon w-12>
+              <div :class="currentVisibility.icon" />
+              <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
+            </button>
+
+            <template #popper>
+              <CommonDropdownItem
+                v-for="visibility in STATUS_VISIBILITIES"
+                :key="visibility.value"
+                :icon="visibility.icon"
+                :checked="visibility.value === draft.params.visibility"
+                @click="chooseVisibility(visibility.value)"
+              >
+                {{ $t(`visibility.${visibility.value}`) }}
+                <template #description>
+                  {{ $t(`visibility.${visibility.value}_desc`) }}
+                </template>
+              </CommonDropdownItem>
+            </template>
+          </CommonDropdown>
+        </CommonTooltip>
+
+        <button
+          btn-solid rounded-full text-sm
+          :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
+          @click="publish"
+        >
+          {{ !draft.editingStatus ? $t('action.publish') : $t('action.save_changes') }}
+        </button>
       </div>
     </div>
   </div>

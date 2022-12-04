@@ -1,6 +1,12 @@
 import type { Ref } from 'vue'
-import type { Account, Relationship, Status } from 'masto'
+import type { Account, MastoClient, Relationship, Status } from 'masto'
 import { withoutProtocol } from 'ufo'
+
+export const useMasto = () => useNuxtApp().$masto.api as MastoClient
+
+export const setMasto = (masto: MastoClient) => {
+  useNuxtApp().$masto?.replace(masto)
+}
 
 // @unocss-include
 export const STATUS_VISIBILITIES = [
@@ -30,7 +36,6 @@ export function getDisplayName(account?: Account, options?: { rich?: boolean }) 
   const displayName = account?.displayName || account?.username || ''
   if (options?.rich)
     return displayName
-
   return displayName.replace(/:([\w-]+?):/g, '')
 }
 

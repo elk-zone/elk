@@ -25,23 +25,24 @@ export function useStatusActions(props: StatusActionsProps) {
     translation: false,
   })
 
-  async function toggleStatusAction(action: Action, newStatus: Promise<Status>, countField?: CountField) {
-  // Optimistic update
+  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<Status>, countField?: CountField) {
+    // check login
+    if (!checkLogin())
+      return
+    isLoading[action] = true
+    fetchNewStatus().then((newStatus) => {
+      Object.assign(status, newStatus)
+    }).finally(() => {
+      isLoading[action] = false
+    })
+    // Optimistic update
     status[action] = !status[action]
     if (countField)
       status[countField] += status[action] ? 1 : -1
-
-    try {
-      isLoading[action] = true
-      Object.assign(status, await newStatus)
-    }
-    finally {
-      isLoading[action] = false
-    }
   }
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
-    useMasto().statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
+    () => useMasto().statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
       if (status.reblogged)
       // returns the original status
         return res.reblog!
@@ -52,18 +53,18 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleFavourite = () => toggleStatusAction(
     'favourited',
-    useMasto().statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+    () => useMasto().statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
     'favouritesCount',
   )
 
   const toggleBookmark = () => toggleStatusAction(
     'bookmarked',
-    useMasto().statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
+    () => useMasto().statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
   )
 
   const togglePin = async () => toggleStatusAction(
     'pinned',
-    useMasto().statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+    () => useMasto().statuses[status.pinned ? 'unpin' : 'pin'](status.id),
   )
 
   return {

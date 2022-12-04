@@ -5,15 +5,30 @@ const { items } = defineProps<{
   items: GroupedNotifications
 }>()
 
-const count = computed(() => items.items.length)
+const { formatHumanReadableNumber, forSR } = useHumanReadableNumber()
+
+const count = $computed(() => items.items.length)
+const addSR = $computed(() => forSR(count))
 const isExpanded = ref(false)
 </script>
 
 <template>
   <article flex flex-col>
     <div flex ml-4 items-center>
-      <div i-ri:user-follow-fill mr-3 color-primary />
-      {{ $t('notification.followed_you_count', [`${count}`]) }}
+      <div i-ri:user-follow-fill mr-3 color-primary aria-hidden="true" />
+      <template v-if="addSR">
+        <span
+          aria-hidden="true"
+        >
+          {{ $t('notification.followed_you_count', count, { named: { followers: formatHumanReadableNumber(count) } }) }}
+        </span>
+        <span sr-only>
+          {{ $t('notification.followed_you_count', count, { named: { followers: count } }) }}
+        </span>
+      </template>
+      <span v-else>
+        {{ $t('notification.followed_you_count', count, { named: { followers: count } }) }}
+      </span>
     </div>
     <div v-if="isExpanded">
       <AccountCard

@@ -49,7 +49,7 @@ export const usePushManager = () => {
     })
     await nextTick()
     notificationPermission.value = permission
-    console.log(currentUser.value.pushSubscription)
+    // console.log(currentUser.value.pushSubscription)
     return 'subscribed'
   }
 

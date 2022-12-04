@@ -122,6 +122,7 @@ export function getStatusInReplyToRoute(status: Status) {
   return useRouter().resolve({
     name: 'status-by-id',
     params: {
+      server: currentServer.value,
       status: status.inReplyToId,
     },
   })

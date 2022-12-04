@@ -1,6 +1,6 @@
 export default defineNuxtRouteMiddleware((to) => {
   if (!currentUser.value)
-    return navigateTo('/public')
+    return navigateTo(`/${currentServer.value}/public`)
   if (to.path === '/')
     return navigateTo('/home')
 })

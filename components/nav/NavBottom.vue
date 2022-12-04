@@ -18,14 +18,14 @@ const moreMenuVisible = ref(false)
         <div i-ri:notification-4-line />
       </NuxtLink>
     </template>
-    <NuxtLink to="/explore" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+    <NuxtLink :to="`/${currentServer}/explore`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
       <div i-ri:hashtag />
     </NuxtLink>
-    <NuxtLink group to="/public/local" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+    <NuxtLink group :to="`/${currentServer}/public/local`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
       <div i-ri:group-2-line />
     </NuxtLink>
     <template v-if="!currentUser">
-      <NuxtLink to="/public" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+      <NuxtLink :to="`/${currentServer}/public`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:earth-line />
       </NuxtLink>
     </template>

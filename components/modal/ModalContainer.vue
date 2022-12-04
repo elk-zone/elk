@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import { logicOr, logicAnd } from '@vueuse/math'
+import { logicOr } from '@vueuse/math'
 import {
   isEditHistoryDialogOpen,
   isKeyboardShortcutsDialogOpen,
@@ -9,30 +9,27 @@ import {
   isSigninDialogOpen,
 } from '~/composables/dialog'
 
+// TODO: move all global keyboard bindings elsewhere?!? plugin? composable?
+
 const keys = useMagicKeys()
 
-// TODO: does shift+slash apply for all keyboard layouts? It does for (all?) (Apple) English but may not for others..?
-//       ref: https://mwichary.medium.com/international-apple-keyboards-layouts-93437d7f9273
-// TODO: move all global keyboard bindings elsewhere?!? plugin? composable?
-whenever(keys.Shift_Slash, toggleKeyboardShortcuts)
+// disable shortcuts when focused on inputs (https://vueuse.org/core/usemagickeys/#conditionally-disable)
+const activeElement = useActiveElement()
+const notUsingInput = computed(() =>
+  activeElement.value?.tagName !== 'INPUT'
+  && activeElement.value?.tagName !== 'TEXTAREA'
+  && !activeElement.value?.isContentEditable,
+)
+
+const isAuthenticated = currentUser
+
+whenever(logicAnd(notUsingInput, keys['?']), toggleKeyboardShortcuts)
 
 // TODO: is this the correct way of using openPublishDialog()?
 const defaultPublishDialog = () => openPublishDialog('dialog', getDefaultDraft())
 
-// TODO: add '@vueuse/math' & use logicAnd/Or?
-// whenever(logicOr(keys.c, keys.n), openPublishDialog)
-// TODO: only enable shortcut if authenticated
-// whenever(logicAnd(__isAuthenticated__, logicOr(keys.c, keys.n)), openPublishDialog)
-
-// TODO: disable shortcuts when focused on inputs -> https://vueuse.org/core/usemagickeys/#conditionally-disable
-// const activeElement = useActiveElement()
-// const notUsingInput = computed(() =>
-//   activeElement.value?.tagName !== 'INPUT'
-//   && activeElement.value?.tagName !== 'TEXTAREA',
-// )
-
-whenever(keys.c, defaultPublishDialog)
-whenever(keys.n, defaultPublishDialog)
+// shortcut enabled only if authenticated
+whenever(logicAnd(notUsingInput, isAuthenticated, logicOr(keys.c, keys.n)), defaultPublishDialog)
 </script>
 
 <template>

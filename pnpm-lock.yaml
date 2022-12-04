@@ -28,6 +28,7 @@ specifiers:
   '@vitejs/plugin-vue': ^3.2.0
   '@vue-macros/nuxt': ^0.1.2
   '@vueuse/integrations': ^9.6.0
+  '@vueuse/math': ^9.6.0
   '@vueuse/nuxt': ^9.6.0
   blurhash: ^2.0.4
   browser-fs-access: ^0.31.1
@@ -92,6 +93,7 @@ devDependencies:
   '@vitejs/plugin-vue': 3.2.0
   '@vue-macros/nuxt': 0.1.2_nuxt@3.0.0+vue-tsc@1.0.11
   '@vueuse/integrations': 9.6.0_7zhv6s73i5wtygx2wkeytrmn7q
+  '@vueuse/math': 9.6.0
   '@vueuse/nuxt': 9.6.0_nuxt@3.0.0
   blurhash: 2.0.4
   browser-fs-access: 0.31.1
@@ -2481,6 +2483,16 @@ packages:
       '@vueuse/shared': 9.6.0
       focus-trap: 7.2.0
       fuse.js: 6.6.2
+      vue-demi: 0.13.11
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: true
+
+  /@vueuse/math/9.6.0:
+    resolution: {integrity: sha512-bYTFZjTcJwgqPdY7SaxS/J5mrWy1QaESxD5HK5UhXY49DUYf4jjZxXjMVBObM/A46jQgRolqSEQDOXrrpEfEww==}
+    dependencies:
+      '@vueuse/shared': 9.6.0
       vue-demi: 0.13.11
     transitivePeerDependencies:
       - '@vue/composition-api'

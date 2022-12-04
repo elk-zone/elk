@@ -45,6 +45,7 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "@vue-macros/nuxt": "^0.1.2",
     "@vueuse/integrations": "^9.6.0",
+    "@vueuse/math": "^9.6.0",
     "@vueuse/nuxt": "^9.6.0",
     "blurhash": "^2.0.4",
     "browser-fs-access": "^0.31.1",

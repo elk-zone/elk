@@ -22,8 +22,20 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
           @click="toggleZenMode()"
         />
       </CommonTooltip>
-      <NavSelectLanguage />
-      <NavSelectFeatureFlags v-if="currentUser" />
+      <NavSelectLanguage>
+        <CommonTooltip :content="$t('nav_footer.select_language')">
+          <button flex :aria-label="$t('nav_footer.select_language')">
+            <div i-ri:earth-line text-lg />
+          </button>
+        </CommonTooltip>
+      </NavSelectLanguage>
+      <NavSelectFeatureFlags v-if="currentUser">
+        <CommonTooltip :content="$t('nav_footer.select_feature_flags')">
+          <button flex :aria-label="$t('nav_footer.select_feature_flags')">
+            <div i-ri:flag-line text-lg />
+          </button>
+        </CommonTooltip>
+      </NavSelectFeatureFlags>
     </div>
     <div>
       <button cursor-pointer hover:underline @click="openPreviewHelp">

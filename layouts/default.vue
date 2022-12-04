@@ -13,7 +13,7 @@
           </slot>
         </div>
       </aside>
-      <div class="w-full mb14 md:(w-3/4 mb0) lg:(w-2/4 mb0) min-h-screen" border="l r base">
+      <div class="w-full mb14 md:(w-3/4 mb0) lg:(w-2/4 mb0) min-h-screen" border="none md:l md:r base">
         <div min-h-screen>
           <slot />
         </div>

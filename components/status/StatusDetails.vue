@@ -43,6 +43,9 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         />
       </StatusSpoiler>
     </div>
+    <div v-if="status.card">
+      <StatusLink :card="status.card" />
+    </div>
     <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Filter, FilterAction, FilterContext, Status } from 'masto'
+import type { FilterContext, Status } from 'masto'
 
 const props = withDefaults(
   defineProps<{
@@ -110,6 +110,9 @@ const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.cont
             :status="status.reblog" border="~ rounded"
             :actions="false"
           />
+        </div>
+        <div v-if="status.card">
+          <StatusLink :card="status.card" />
         </div>
         <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
       </div>

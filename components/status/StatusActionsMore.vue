@@ -145,7 +145,7 @@ function editStatus() {
           @click="copyLink(status)"
         />
 
-        <NuxtLink :to="status.url" target="_blank">
+        <NuxtLink :to="status.url" external target="_blank">
           <CommonDropdownItem
             v-if="status.url"
             :text="$t('menu.open_in_original_site')"

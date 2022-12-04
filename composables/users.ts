@@ -3,7 +3,6 @@ import type { AccountCredentials, Instance, WsEvents } from 'masto'
 import { clearUserDrafts } from './statusDrafts'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
-import { useMasto } from '~/composables/masto'
 
 const mock = process.mock
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
@@ -22,11 +21,12 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 })
 
 export const publicServer = ref(DEFAULT_SERVER)
+const publicInstance = ref<Instance | null>(null)
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
 
 export const useUsers = () => users
 
-export const currentInstance = computed<null | Instance>(() => currentUserId.value ? servers.value[currentUserId.value] ?? null : null)
+export const currentInstance = computed<null | Instance>(() => currentUserId.value ? servers.value[currentUserId.value] ?? null : publicInstance.value)
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
@@ -38,38 +38,36 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   }
 
   const config = useRuntimeConfig()
+  const route = useRoute()
+  const router = useRouter()
+  const server = user?.server || route.params.server as string || publicServer.value
   const masto = await loginMasto({
-    url: `https://${user?.server || DEFAULT_SERVER}`,
+    url: `https://${server}`,
     accessToken: user?.token,
     disableVersionCheck: !!config.public.disableVersionCheck,
   })
 
   if (!user?.token) {
-    publicServer.value = user?.server || DEFAULT_SERVER
+    publicServer.value = server
+    publicInstance.value = await masto.instances.fetch()
   }
 
   else {
     try {
-      const me = await masto.accounts.verifyCredentials()
+      const [me, server] = await Promise.all([
+        masto.accounts.verifyCredentials(),
+        masto.instances.fetch(),
+      ])
+
       user.account = me
+      currentUserId.value = me.id
+      servers.value[me.id] = server
+
+      if (!user.account.acct.includes('@'))
+        user.account.acct = `${user.account.acct}@${server.uri}`
 
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)
-
-      currentUserId.value = me.id
-
-      const [instance, pushSubscription] = await Promise.allSettled([
-        masto.instances.fetch(),
-        masto.pushSubscriptions.fetch(),
-      ])
-
-      if (instance.status === 'fulfilled')
-        servers.value[me.id] = instance.value
-      else
-        throw instance.reason
-
-      // we get 404 response instead empty data
-      user.pushSubscription = pushSubscription.status === 'fulfilled' ? pushSubscription.value : undefined
     }
     catch {
       await signout()
@@ -77,6 +75,13 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   }
 
   setMasto(masto)
+
+  if ('server' in route.params) {
+    await router.push({
+      ...route,
+      force: true,
+    })
+  }
 
   return masto
 }
@@ -105,10 +110,11 @@ export async function signout() {
   currentUserId.value = users.value[0]?.account?.id
 
   if (!currentUserId.value)
-    await useRouter().push('/public')
+    await useRouter().push(`/${currentServer.value}/public`)
 
   await loginTo(currentUser.value)
 }
+
 const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})
 
 export const useNotifications = () => {

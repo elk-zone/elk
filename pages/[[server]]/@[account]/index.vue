@@ -5,6 +5,7 @@ const accountName = $(computedEager(() => toShortHandle(params.account as string
 const { t } = useI18n()
 
 const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null)))
+const relationship = $computed(() => account ? useRelationship(account).value : undefined)
 
 if (account) {
   useHeadFixed({
@@ -26,8 +27,18 @@ onReactivated(() => {
     </template>
 
     <template v-if="account">
-      <AccountHeader :account="account" command border="b base" />
-      <NuxtPage />
+      <AccountMoved v-if="account.moved" :account="account" />
+      <AccountHeader :account="account" command border="b base" :class="{ 'op-50 grayscale-50': !!account.moved }" />
+
+      <div v-if="relationship?.blockedBy" h-30 flex="~ col center gap-2">
+        <div text-secondary>
+          {{ $t('account.profile_unavailable') }}
+        </div>
+        <div text-secondary-light text-sm>
+          {{ $t('account.blocked_by') }}
+        </div>
+      </div>
+      <NuxtPage v-else />
     </template>
 
     <CommonNotFound v-else>

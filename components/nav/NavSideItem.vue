@@ -26,9 +26,9 @@ useCommand({
 
 <template>
   <NuxtLink :to="to" active-class="text-primary" group focus:outline-none @click="$scrollToTop">
-    <div flex w-fit px5 py2 gap2 items-center transition-100 rounded-full group-hover:bg-active group-focus-visible:ring="2 current">
+    <div flex w-fit px5 py2 md:gap2 gap4 items-center transition-100 rounded-full group-hover:bg-active group-focus-visible:ring="2 current">
       <slot name="icon">
-        <div :class="icon" />
+        <div :class="icon" md:text-size-inherit text-xl />
       </slot>
       <slot>
         <span>{{ text }}</span>

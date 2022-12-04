@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { dropdownContextKey } from './ctx'
+defineProps<{
+  placement?: string
+}>()
 
 const dropdown = $ref<any>()
 
@@ -9,7 +12,7 @@ provide(dropdownContextKey, {
 </script>
 
 <template>
-  <VDropdown v-bind="$attrs" ref="dropdown" :class="{ dark: isDark }">
+  <VDropdown v-bind="$attrs" ref="dropdown" :class="{ dark: isDark }" :placement="placement || 'auto'">
     <slot />
     <template #popper="scope">
       <slot name="popper" v-bind="scope" />

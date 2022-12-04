@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const buildTime = import.meta.env.__BUILD_TIME__ as string
+const buildCommit = import.meta.env.__BUILD_COMMIT__ as string
 const buildTimeDate = new Date(buildTime)
 
 const timeAgoOptions = useTimeAgoOptions()
@@ -22,8 +23,20 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
           @click="toggleZenMode()"
         />
       </CommonTooltip>
-      <NavSelectLanguage />
-      <NavSelectFeatureFlags v-if="currentUser" />
+      <NavSelectLanguage>
+        <CommonTooltip :content="$t('nav_footer.select_language')">
+          <button flex :aria-label="$t('nav_footer.select_language')">
+            <div i-ri:earth-line text-lg />
+          </button>
+        </CommonTooltip>
+      </NavSelectLanguage>
+      <NavSelectFeatureFlags v-if="currentUser">
+        <CommonTooltip :content="$t('nav_footer.select_feature_flags')">
+          <button flex :aria-label="$t('nav_footer.select_feature_flags')">
+            <div i-ri:flag-line text-lg />
+          </button>
+        </CommonTooltip>
+      </NavSelectFeatureFlags>
     </div>
     <div>
       <button cursor-pointer hover:underline @click="openPreviewHelp">
@@ -34,7 +47,18 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
     <div>
       <i18n-t keypath="nav_footer.built_at">
         <time :datetime="buildTime" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
-      </i18n-t> · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a>
+      </i18n-t>
+      &middot;
+      <NuxtLink
+        v-if="buildCommit"
+        external
+        :href="`https://github.com/elk-zone/elk/commit/${buildCommit}`"
+        target="_blank"
+        font-mono
+      >
+        {{ buildCommit.slice(0, 7) }}
+      </NuxtLink>
+      &middot; <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a>
     </div>
   </footer>
 </template>

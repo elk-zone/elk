@@ -2,10 +2,10 @@
 const params = useRoute().params
 const handle = $(computedEager(() => params.account as string))
 
-definePageMeta({ name: 'account-followers' })
+definePageMeta({ name: 'account-following' })
 
 const account = await fetchAccountByHandle(handle)
-const paginator = account ? useMasto().accounts.getFollowersIterable(account.id, {}) : null
+const paginator = account ? useMasto().accounts.iterateFollowing(account.id, {}) : null
 </script>
 
 <template>

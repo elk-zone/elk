@@ -7,8 +7,8 @@ const { t } = useI18n()
 const showSettings = ref(false)
 const disableSettings = ref(true)
 
-const paginatorAll = useMasto().notifications.getIterator()
-const paginatorMention = useMasto().notifications.getIterator({ types: ['mention'] })
+const paginatorAll = useMasto().notifications.iterate()
+const paginatorMention = useMasto().notifications.iterate({ types: ['mention'] })
 
 const { clearNotifications } = useNotifications()
 onActivated(clearNotifications)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = useMasto().timelines.getPublicIterable()
+const paginator = useMasto().timelines.iteratePublic()
 const stream = await useMasto().stream.streamPublicTimeline()
 onBeforeUnmount(() => stream.disconnect())
 
@@ -20,7 +20,7 @@ useHeadFixed({
     </template>
 
     <slot>
-      <TimelinePaginator v-bind="{ paginator, stream }" />
+      <TimelinePaginator v-bind="{ paginator, stream }" context="public" />
     </slot>
   </MainContent>
 </template>

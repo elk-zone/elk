@@ -4,7 +4,7 @@ const tagName = $(computedEager(() => params.tag as string))
 
 const { data: tag, refresh } = $(await useAsyncData(() => useMasto().tags.fetch(tagName)))
 
-const paginator = useMasto().timelines.getHashtagIterable(tagName)
+const paginator = useMasto().timelines.iterateHashtag(tagName)
 const stream = await useMasto().stream.streamTagTimeline(tagName)
 onBeforeUnmount(() => stream.disconnect())
 
@@ -32,7 +32,7 @@ onReactivated(() => {
     </template>
 
     <slot>
-      <TimelinePaginator v-bind="{ paginator, stream }" />
+      <TimelinePaginator v-bind="{ paginator, stream }" context="public" />
     </slot>
   </MainContent>
 </template>

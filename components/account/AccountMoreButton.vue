@@ -44,7 +44,7 @@ const toggleBlockDomain = async () => {
     </button>
 
     <template #popper>
-      <NuxtLink :to="account.url" target="_blank">
+      <NuxtLink :to="account.url" external target="_blank">
         <CommonDropdownItem
           :text="$t('menu.open_in_original_site')"
           icon="i-ri:arrow-right-up-line"

@@ -23,7 +23,7 @@ const reload = async () => {
   try {
     if (!useMasto())
       await loginTo(currentUser.value)
-    clearError({ redirect: currentUser.value ? '/home' : '/public' })
+    clearError({ redirect: currentUser.value ? '/home' : `/${currentServer.value}/public` })
   }
   catch {
     state.value = 'error'

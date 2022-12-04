@@ -120,10 +120,10 @@
     "the_thread": "el hilo"
   },
   "pwa": {
-    "title": "Nueva versión de Elk disponible",
+    "close": "Cerrar",
     "message": "@:pwa.title{','} haz click en el botón @:pwa.reload para actualizar.",
     "reload": "Recargar",
-    "close": "Cerrar"
+    "title": "Nueva versión de Elk disponible"
   },
   "state": {
     "edited": "(Editado)",
@@ -170,12 +170,10 @@
     "short_week_past": "{n}sem",
     "short_year_future": "en 0años|en 1año|en {n}años",
     "short_year_past": "0años|1año|{n}años",
-    "tomorrow": "mañana",
     "week_future": "dentro de 0 semanas|la próxima semana|dentro de {n} semanas",
     "week_past": "hace 0 semanas|la semana pasada|hace {n} semanas",
     "year_future": "dentro de 0 años|el próximo año|dentro de {n} años",
-    "year_past": "hace 0 años|el año pasado|hace {n} años",
-    "yesterday": "ayer"
+    "year_past": "hace 0 años|el año pasado|hace {n} años"
   },
   "timeline": {
     "show_new_items": "Mostrar {n} nuevas publicaciones|Mostrar {n} nueva publicación|Mostrar {n} nuevas publicaciones"

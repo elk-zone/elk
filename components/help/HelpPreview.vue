@@ -39,26 +39,23 @@ const teams: Team[] = [
 </script>
 
 <template>
-  <div my-8 px-3 sm:px-8 md:max-w-200 flex="~ col gap-4" relative max-h-screen>
+  <div my-8 px-3 sm:px-8 md:max-w-200 flex="~ col gap-4" relative>
     <button btn-action-icon absolute top--8 right-0 m1 aria-label="Close" @click="emit('close')">
       <div i-ri:close-fill />
     </button>
 
     <img src="/logo.svg" w-20 h-20 mxa alt="logo">
     <h1 mxa text-4xl mb4>
-      Elk is in Preview!
+      {{ $t('help.title') }}
     </h1>
     <p>
-      Thanks for your interest in trying out Elk, our work-in-progress generic Mastodon client!
+      {{ $t('help.desc_para1') }}
     </p>
     <p>
-      <b text-primary>Expect some bugs and missing features here and there.</b>
-      We are working hard on the development and improving it over time.
-      And we will soon invite you to join the force once we make it open source soon!
+      <b text-primary>{{ $t('help.desc_highlight') }}</b>
+      {{ $t('help.desc_para2') }}
     </p>
-    <p>
-      Before that, to help boosting out development, you can sponsor our team members with the links below.
-    </p>
+    {{ $t('help.desc_para3') }}
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of teams" :key="team.github">
         <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full>

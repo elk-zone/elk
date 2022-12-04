@@ -5,7 +5,7 @@ const suffix = isCI ? '' : '-dev'
 const pwa: VitePWANuxtOptions = {
   mode: isCI ? 'production' : 'development',
   // disabled on deploy and local dev/build until ui stable
-  disable: isCI || !(process.env.DEV_PWA === 'true'),
+  disable: isCI || !(process.env.VITE_DEV_PWA === 'true'),
   scope: '/',
   srcDir: './service-worker',
   filename: 'sw.ts',
@@ -54,7 +54,7 @@ const pwa: VitePWANuxtOptions = {
         ],
   },
   devOptions: {
-    enabled: process.env.DEV_PWA === 'true',
+    enabled: process.env.VITE_DEV_PWA === 'true',
     type: 'module',
   },
 }

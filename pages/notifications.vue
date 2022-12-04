@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PWA_ENABLED } from '~/constants'
+
 definePageMeta({
   middleware: 'auth',
 })

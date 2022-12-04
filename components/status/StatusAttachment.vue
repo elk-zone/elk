@@ -10,6 +10,7 @@ const { attachment } = defineProps<{
 const src = $computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
 const srcset = $computed(() => [
   [attachment.url, attachment.meta?.original?.width],
+  [attachment.remoteUrl, attachment.meta?.original?.width],
   [attachment.previewUrl, attachment.meta?.small?.width],
 ].filter(([url]) => url).map(([url, size]) => `${url} ${size}w`).join(', '))
 

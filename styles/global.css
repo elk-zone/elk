@@ -43,6 +43,7 @@ body {
 
 .custom-emoji {
   display: inline-block;
+  overflow: hidden;
   max-height: 1.3em;
   max-width: 1.3em;
   vertical-align: text-bottom;

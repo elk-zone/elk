@@ -1,6 +1,7 @@
 {
   "account": {
     "avatar_description": "{0}'s avatar",
+    "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "favourites": "Favourites",
@@ -11,7 +12,9 @@
     "following": "Following",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
+    "go_to_profile": "Go to profile",
     "joined": "Joined",
+    "moved_title": "has indicated that their new account is now:",
     "muted_users": "Muted users",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
@@ -30,6 +33,8 @@
     "favourite": "Favourite",
     "favourited": "Favourited",
     "more": "More",
+    "next": "Next",
+    "prev": "Prev",
     "publish": "Publish!",
     "reply": "Reply",
     "save_changes": "Save changes",
@@ -79,6 +84,10 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "show_untranslated": "Show untranslated",
+    "toggle_theme": {
+      "dark": "Toggle dark mode",
+      "light": "Toggle light mode"
+    },
     "translate_post": "Translate post",
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",

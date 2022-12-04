@@ -39,7 +39,7 @@ const teams: Team[] = [
 </script>
 
 <template>
-  <div my-8 px-3 sm:px-8 md:max-w-200 flex="~ col gap-4" relative max-h-screen>
+  <div my-8 px-3 sm:px-8 md:max-w-200 flex="~ col gap-4" relative>
     <button btn-action-icon absolute top--8 right-0 m1 aria-label="Close" @click="emit('close')">
       <div i-ri:close-fill />
     </button>

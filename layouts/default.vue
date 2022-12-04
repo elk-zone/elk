@@ -13,11 +13,11 @@
           </slot>
         </div>
       </aside>
-      <div class="w-full mb14 md:(w-3/4 mb0) lg:(w-2/4 mb0) min-h-screen" border="l r base">
+      <div class="w-full mb14 md:(w-3/4 mb0) lg:(w-2/4 mb0) min-h-screen" border="none md:l md:r base">
         <div min-h-screen>
           <slot />
         </div>
-        <div sticky left-0 right-0 bottom-0 z-10 bg-base>
+        <div sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
           <CommonOfflineChecker :small-screen="isSmallScreen" />
           <NavBottom v-if="isSmallScreen" />
         </div>

@@ -43,10 +43,6 @@ const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
 </script>
 
 <template>
-  <!-- TODO figure out when profile is unavailable -->
-  <!-- <div v-if="(account!.discoverable === false)" h-30 flex="~ center" text-secondary-light>
-    {{ $t('account.profile_unavailable') }}
-  </div> -->
   <div>
     <CommonTabs v-model="tab" :options="tabs" command />
     <KeepAlive>

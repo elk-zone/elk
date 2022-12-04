@@ -49,14 +49,20 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 
   else {
     try {
-      const me = await masto.accounts.verifyCredentials()
+      const [me, server] = await Promise.all([
+        masto.accounts.verifyCredentials(),
+        masto.instances.fetch(),
+      ])
+
       user.account = me
+      currentUserId.value = me.id
+      servers.value[me.id] = server
+
+      if (!user.account.acct.includes('@'))
+        user.account.acct = `${user.account.acct}@${server.uri}`
 
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)
-
-      currentUserId.value = me.id
-      servers.value[me.id] = await masto.instances.fetch()
     }
     catch {
       await signout()

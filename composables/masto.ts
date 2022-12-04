@@ -64,11 +64,15 @@ export function toShortHandle(fullHandle: string) {
 }
 
 export function getAccountRoute(account: Account) {
+  let handle = getFullHandle(account).slice(1)
+  if (handle.endsWith(`@${currentServer.value}`))
+    handle = handle.slice(0, -currentServer.value.length - 1)
+
   return useRouter().resolve({
     name: 'account-index',
     params: {
       server: currentServer.value,
-      account: getFullHandle(account).slice(1),
+      account: handle,
     },
     state: {
       account: account as any,

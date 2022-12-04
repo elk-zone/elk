@@ -1,7 +1,7 @@
 import type { Emoji } from 'masto'
 import { describe, expect, it } from 'vitest'
 import { format } from 'prettier'
-import { serialize } from 'parse5'
+import { render as renderTree } from 'ultrahtml'
 import { parseMastodonHTML, treeToText } from '~/composables/content'
 
 describe('html-parse', () => {
@@ -53,9 +53,9 @@ describe('html-parse', () => {
 
 async function render(input: string, emojis?: Record<string, Emoji>) {
   const tree = parseMastodonHTML(input, emojis)
-  const html = serialize(tree)
+  const html = await renderTree(tree)
   let formatted = ''
-  const serializedText = tree.childNodes.map(n => treeToText(n)).join('').trim()
+  const serializedText = tree.children.map(n => treeToText(n)).join('').trim()
 
   try {
     formatted = format(html, {

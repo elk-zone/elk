@@ -68,7 +68,7 @@ const deleteAndRedraft = async () => {
   }
 
   const { text } = await useMasto().statuses.remove(status.id)
-  openPublishDialog('dialog', getDraftFromStatus(status, text), true)
+  openPublishDialog('dialog', await getDraftFromStatus(status, text), true)
 }
 
 const reply = () => {
@@ -81,9 +81,9 @@ const reply = () => {
   }
 }
 
-function editStatus() {
+async function editStatus() {
   openPublishDialog(`edit-${status.id}`, {
-    ...getDraftFromStatus(status),
+    ...await getDraftFromStatus(status),
     editingStatus: status,
   })
 }

@@ -38,7 +38,8 @@
     "publish": "发布！",
     "reply": "回复",
     "save_changes": "保存更改",
-    "sign_in": "登鹿"
+    "sign_in": "登鹿",
+    "vote": "投票"
   },
   "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
   "app_name": "鹿鸣",
@@ -140,6 +141,11 @@
   },
   "status": {
     "edited": "在 {0} 编辑了",
+    "poll": {
+      "count": "{0} 次投票",
+      "ends": "将在 {0} 结束",
+      "finished": "已在 {0} 结束"
+    },
     "reblogged": "{0} 转发了",
     "spoiler_show_less": "隐藏",
     "spoiler_show_more": "显示更多",

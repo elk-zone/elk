@@ -38,7 +38,8 @@
     "publish": "Publish!",
     "reply": "Reply",
     "save_changes": "Save changes",
-    "sign_in": "Sign in"
+    "sign_in": "Sign in",
+    "vote": "Vote"
   },
   "app_desc_short": "A Mastodon client made with 🧡",
   "app_name": "Elk",
@@ -140,10 +141,18 @@
   },
   "status": {
     "edited": "Edited {0}",
+    "poll": {
+      "count": "{0} votes",
+      "ends": "ends {0}",
+      "finished": "finished {0}"
+    },
     "reblogged": "{0} reblogged",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
-    "try_original_site": "Try original site"
+    "try_original_site": "Try original site",
+    "filter_show_anyway": "Show anyway",
+    "filter_hidden_phrase": "Filtered by",
+    "filter_removed_phrase": "Removed by filter"
   },
   "status_history": {
     "created": "created {0}",

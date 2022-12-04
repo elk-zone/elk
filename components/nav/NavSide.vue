@@ -17,9 +17,9 @@ const { notifications } = useNotifications()
         </template>
       </NavSideItem>
     </template>
-    <NavSideItem :text="$t('nav_side.explore')" to="/explore" icon="i-ri:hashtag" />
-    <NavSideItem :text="$t('nav_side.local')" to="/public/local" icon="i-ri:group-2-line " />
-    <NavSideItem :text="$t('nav_side.federated')" to="/public" icon="i-ri:earth-line" />
+    <NavSideItem :text="$t('nav_side.explore')" :to="`/${currentServer}/explore`" icon="i-ri:hashtag" />
+    <NavSideItem :text="$t('nav_side.local')" :to="`/${currentServer}/public/local`" icon="i-ri:group-2-line " />
+    <NavSideItem :text="$t('nav_side.federated')" :to="`/${currentServer}/public`" icon="i-ri:earth-line" />
     <template v-if="currentUser">
       <NavSideItem :text="$t('nav_side.conversations')" to="/conversations" icon="i-ri:at-line" />
       <NavSideItem :text="$t('nav_side.favourites')" to="/favourites" icon="i-ri:heart-3-line" />

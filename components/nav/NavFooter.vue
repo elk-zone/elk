@@ -48,7 +48,7 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
       <i18n-t keypath="nav_footer.built_at">
         <time :datetime="buildTime" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
       </i18n-t>
-      ·
+      &middot;
       <NuxtLink
         v-if="buildCommit"
         external
@@ -58,7 +58,7 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
       >
         {{ buildCommit.slice(0, 7) }}
       </NuxtLink>
-      · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a>
+      &middot; <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a>
     </div>
   </footer>
 </template>

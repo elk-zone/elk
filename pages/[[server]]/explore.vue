@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = useMasto().trends.getStatuses()
+const paginator = useMasto().trends.iterateStatuses()
 
 const { t } = useI18n()
 
@@ -19,7 +19,7 @@ useHeadFixed({
 
     <slot>
       <!-- TODO: Tabs for trending statuses, tags, and links -->
-      <TimelinePaginator :paginator="paginator" />
+      <TimelinePaginator :paginator="paginator" context="public" />
     </slot>
   </MainContent>
 </template>

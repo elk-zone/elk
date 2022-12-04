@@ -38,7 +38,7 @@ async function vote(e: Event) {
         {{ option.title }}
       </label>
       <button btn-solid>
-        Vote
+        {{ $t('action.vote') }}
       </button>
     </form>
     <template v-else>
@@ -56,7 +56,9 @@ async function vote(e: Event) {
       </div>
     </template>
     <div text-sm>
-      {{ poll.votersCount }} votes &middot; {{ poll.expired ? 'finished' : 'ends' }}  {{ expiredTimeAgo }}
+      {{ $t('status.poll.count', [poll.votersCount]) }}
+      &middot;
+      {{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}
     </div>
   </div>
 </template>

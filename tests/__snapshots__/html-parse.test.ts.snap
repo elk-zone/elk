@@ -1,24 +1,18 @@
 // Vitest Snapshot v1
 
 exports[`html-parse > code frame > html 1`] = `
-"<p>Testing code block</p>
-<p></p>
-<pre><code class=\\"language-ts\\">import { useMouse, usePreferredDark } from '@vueuse/core'
-
+"<p>Testing code block</p><p><pre><code class=\\"language-ts\\">import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
 // tracks mouse position
 const { x, y } = useMouse()
 // is the user prefers dark theme
-const isDark = usePreferredDark()</code></pre>
-<p></p>
-"
+const isDark = usePreferredDark()</code></pre></p>"
 `;
 
 exports[`html-parse > code frame > text 1`] = `
 "Testing code block
 
 \`\`\`ts
-import { useMouse, usePreferredDark } from '@vueuse/core'
-
+import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
 // tracks mouse position
 const { x, y } = useMouse()
 // is the user prefers dark theme
@@ -34,9 +28,8 @@ exports[`html-parse > code frame 2 > html 1`] = `
     ></span
   >
   Testing<br />
+  <pre><code class=\\"language-ts\\">const a = hello</code></pre>
 </p>
-<pre><code class=\\"language-ts\\">const a = hello</code></pre>
-<p></p>
 "
 `;
 
@@ -65,13 +58,7 @@ exports[`html-parse > empty > html 1`] = `""`;
 
 exports[`html-parse > empty > text 1`] = `""`;
 
-exports[`html-parse > inline markdown > html 1`] = `
-"<p>text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p>
-<p></p>
-<pre><code class=\\"language-js\\">code block</code></pre>
-<p></p>
-"
-`;
+exports[`html-parse > inline markdown > html 1`] = `"<p>text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p><p><pre><code class=\\"language-js\\">code block</code></pre></p>"`;
 
 exports[`html-parse > inline markdown > text 1`] = `
 "text \`code\` **bold** *italic* ~~del~~

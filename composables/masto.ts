@@ -64,10 +64,15 @@ export function toShortHandle(fullHandle: string) {
 }
 
 export function getAccountRoute(account: Account) {
+  let handle = getFullHandle(account).slice(1)
+  if (handle.endsWith(`@${currentServer.value}`))
+    handle = handle.slice(0, -currentServer.value.length - 1)
+
   return useRouter().resolve({
     name: 'account-index',
     params: {
-      account: getFullHandle(account).slice(1),
+      server: currentServer.value,
+      account: handle,
     },
     state: {
       account: account as any,
@@ -78,6 +83,7 @@ export function getAccountFollowingRoute(account: Account) {
   return useRouter().resolve({
     name: 'account-following',
     params: {
+      server: currentServer.value,
       account: getFullHandle(account).slice(1),
     },
     state: {
@@ -89,6 +95,7 @@ export function getAccountFollowersRoute(account: Account) {
   return useRouter().resolve({
     name: 'account-followers',
     params: {
+      server: currentServer.value,
       account: getFullHandle(account).slice(1),
     },
     state: {
@@ -101,6 +108,7 @@ export function getStatusRoute(status: Status) {
   return useRouter().resolve({
     name: 'status',
     params: {
+      server: currentServer.value,
       account: getFullHandle(status.account).slice(1),
       status: status.id,
     },
@@ -111,18 +119,14 @@ export function getStatusRoute(status: Status) {
 }
 
 export function getStatusPermalinkRoute(status: Status) {
-  return status.url
-    ? useRouter().resolve({
-      name: 'permalink',
-      params: { permalink: withoutProtocol(status.url) },
-    })
-    : null
+  return status.url ? withoutProtocol(status.url) : null
 }
 
 export function getStatusInReplyToRoute(status: Status) {
   return useRouter().resolve({
     name: 'status-by-id',
     params: {
+      server: currentServer.value,
       status: status.inReplyToId,
     },
   })
@@ -143,6 +147,8 @@ const requestedRelationships = new Map<string, Ref<Relationship | undefined>>()
 let timeoutHandle: NodeJS.Timeout | undefined
 
 export function useRelationship(account: Account): Ref<Relationship | undefined> {
+  if (!currentUser.value)
+    return ref()
   let relationship = requestedRelationships.get(account.id)
   if (relationship)
     return relationship

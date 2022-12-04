@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{ enabled: boolean }>()
+const props = defineProps<{ enabled: boolean; filter: boolean }>()
 
 const showContent = ref(!props.enabled)
 const toggleContent = useToggle(showContent)
@@ -19,7 +19,7 @@ watchEffect(() => {
       <button btn-text px-2 py-1 text-3 flex="~ center gap-2" :class="showContent ? '' : 'filter-saturate-0 hover:filter-saturate-100'" @click="toggleContent()">
         <div v-if="showContent" i-ri:eye-line />
         <div v-else i-ri:eye-close-line />
-        {{ showContent ? $t('status.spoiler_show_less') : $t('status.spoiler_show_more') }}
+        {{ showContent ? $t('status.spoiler_show_less') : $t(props.filter ? 'status.filter_show_anyway' : 'status.spoiler_show_more') }}
       </button>
       <div border="t base" flex-auto h-1px />
     </div>

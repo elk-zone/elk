@@ -45,10 +45,14 @@ const createdAt = useFormattedDateTime(status.createdAt)
 const timeAgoOptions = useTimeAgoOptions(true)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
-// TODO: get from status.filtered props and remove check for status.content
+// Content Filter logic
 const filterResult = status.filtered?.length ? status.filtered[0] : null
 const filter = filterResult?.filter
-const isFiltered = props.context ? filter?.context.includes(props.context) : false
+
+// a bit of a hack due to Filter being different in v1 and v2
+// clean up when masto.js supports explicit versions: https://github.com/neet/masto.js/issues/722
+const filterPhrase = filter?.phrase || (filter as any)?.title
+const isFiltered = filterPhrase && (props.context ? filter?.context.includes(props.context) : false)
 </script>
 
 <template>
@@ -89,9 +93,9 @@ const isFiltered = props.context ? filter?.context.includes(props.context) : fal
         </div>
         <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''">
-          <StatusSpoiler :enabled="status.sensitive || filter?.filterAction === 'warn'" :filter="filter?.filterAction">
+          <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="filter?.filterAction">
             <template #spoiler>
-              <p>{{ filter?.phrase ? `${$t('status.filter_hidden_phrase')}: ${filter.phrase}` : status.spoilerText }}</p>
+              <p>{{ filterPhrase ? `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` : status.spoilerText }}</p>
             </template>
             <StatusBody :status="status" />
             <StatusPoll v-if="status.poll" :poll="status.poll" />
@@ -112,6 +116,6 @@ const isFiltered = props.context ? filter?.context.includes(props.context) : fal
     </div>
   </div>
   <div v-else-if="isFiltered" gap-2 px-4>
-    <p>{{ filter.phrase && `${$t('status.filter_removed_phrase')}: ${filter.phrase}` }}</p>
+    <p>{{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}</p>
   </div>
 </template>

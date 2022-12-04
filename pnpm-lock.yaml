@@ -42,7 +42,7 @@ specifiers:
   lint-staged: ^13.0.4
   lowlight: ^2.8.0
   lru-cache: ^7.14.1
-  masto: ^4.7.4
+  masto: ^4.7.5
   nuxt: ^3.0.0
   parse5: ^7.1.2
   pinia: ^2.0.27
@@ -106,7 +106,7 @@ devDependencies:
   lint-staged: 13.0.4
   lowlight: 2.8.0
   lru-cache: 7.14.1
-  masto: 4.7.4
+  masto: 4.7.5
   nuxt: 3.0.0_s5ps7njkmjlaqajutnox5ntcla
   parse5: 7.1.2
   pinia: 2.0.27_typescript@4.9.3
@@ -5632,8 +5632,8 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /masto/4.7.4:
-    resolution: {integrity: sha512-iR4tkRnpsLWNsVu/KJXrpK0b3c8uVOlBsE8eca6wKW94sw8Hnw83t94Rx+t27KqDlVK2Vo0Aebz0InkqOCeLVg==}
+  /masto/4.7.5:
+    resolution: {integrity: sha512-FRqr5yAAJm6PVCPqxrQt7uIwCft+FmPZgcjvLpzo4kzhgvBPGax70rFiGrULYZ34ehnrbcGOp4J+VcM1FxDU2w==}
     dependencies:
       axios: 1.1.3
       change-case: 4.1.2

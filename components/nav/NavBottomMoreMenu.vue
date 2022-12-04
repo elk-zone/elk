@@ -91,7 +91,7 @@ onBeforeUnmount(() => {
               @click="toggleDark()"
             >
               <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl mr-4 !align-middle" />
-              {{ !isDark ? t('button.toggle_dark') : t('button.toggle_light') }}
+              {{ !isDark ? t('menu.toggle_theme.dark') : t('menu.toggle_theme.light') }}
             </button>
             <!-- Switch languages -->
             <NavSelectLanguage>

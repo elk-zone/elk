@@ -37,11 +37,6 @@
   },
   "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
   "app_name": "鹿鸣",
-  "button": {
-    "toggle_dark": "切换深色模式",
-    "toggle_langs": "更改语言",
-    "toggle_light": "切换亮色模式"
-  },
   "command": {
     "activate": "执行",
     "complete": "完成"
@@ -84,6 +79,10 @@
     "open_in_original_site": "从源站打开",
     "pin_on_profile": "钉选在个人资料上",
     "show_untranslated": "显示原文",
+    "toggle_theme": {
+      "dark": "切换深色模式",
+      "light": "切换亮色模式"
+    },
     "translate_post": "翻译帖子",
     "unblock_account": "解除拉黑 {0}",
     "unblock_domain": "解除拉黑域名 {0}",

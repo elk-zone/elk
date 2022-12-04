@@ -37,11 +37,6 @@
   },
   "app_desc_short": "A Mastodon client made with 🧡",
   "app_name": "Elk",
-  "button": {
-    "toggle_dark": "Toggle dark mode",
-    "toggle_langs": "Change languages",
-    "toggle_light": "Toggle light mode"
-  },
   "command": {
     "activate": "Activate",
     "complete": "Complete"
@@ -84,6 +79,10 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "show_untranslated": "Show untranslated",
+    "toggle_theme": {
+      "dark": "Toggle dark mode",
+      "light": "Toggle light mode"
+    },
     "translate_post": "Translate post",
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",

@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { parseURL } from 'ufo'
+import { HANDLED_MASTO_URLS } from '~/constants'
 
 definePageMeta({
   name: 'permalink',
   middleware: async (to) => {
-    const HANDLED_MASTO_URL = /^(https?:\/\/)?(\w+\.)+\w+\/(@[@\w\d\.]+)(\/\d+)?$/
     try {
       let permalink = Array.isArray(to.params.permalink)
         ? to.params.permalink.join('/')
         : to.params.permalink
 
-      if (!HANDLED_MASTO_URL.test(permalink))
+      if (!HANDLED_MASTO_URLS.test(permalink))
         return '/home'
 
       if (!permalink.startsWith('http'))
@@ -19,6 +19,10 @@ definePageMeta({
       if (!currentUser.value) {
         const { host, pathname } = parseURL(permalink)
         await loginTo({ server: host! })
+
+        if (pathname.match(/^\/@[^/]+$/))
+          return `${pathname}@${host}`
+
         return pathname
       }
 

@@ -1,5 +1,5 @@
 import { login as loginMasto } from 'masto'
-import type { AccountCredentials, Instance } from 'masto'
+import type { AccountCredentials, Instance, WsEvents } from 'masto'
 import { clearUserDrafts } from './statusDrafts'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
@@ -49,14 +49,20 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 
   else {
     try {
-      const me = await masto.accounts.verifyCredentials()
+      const [me, server] = await Promise.all([
+        masto.accounts.verifyCredentials(),
+        masto.instances.fetch(),
+      ])
+
       user.account = me
+      currentUserId.value = me.id
+      servers.value[me.id] = server
+
+      if (!user.account.acct.includes('@'))
+        user.account.acct = `${user.account.acct}@${server.uri}`
 
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)
-
-      currentUserId.value = me.id
-      servers.value[me.id] = await masto.instances.fetch()
     }
     catch {
       await signout()
@@ -95,4 +101,49 @@ export async function signout() {
     await useRouter().push('/public')
 
   await loginTo(currentUser.value)
+}
+
+const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})
+
+export const useNotifications = () => {
+  const id = currentUser.value?.account.id
+
+  const clearNotifications = () => {
+    if (!id || !notifications[id])
+      return
+    notifications[id]![1] = 0
+  }
+
+  async function connect(): Promise<void> {
+    if (!id || notifications[id])
+      return
+
+    const masto = useMasto()
+    const stream = masto.stream.streamUser()
+    notifications[id] = [stream, 0]
+    ;(await stream).on('notification', () => {
+      if (notifications[id])
+        notifications[id]![1]++
+    })
+  }
+
+  function disconnect(): void {
+    if (!id || !notifications[id])
+      return
+    notifications[id]![0].then(stream => stream.disconnect())
+    notifications[id] = undefined
+  }
+
+  watch(currentUser, disconnect)
+  connect()
+
+  return { notifications: computed(() => id ? notifications[id]?.[1] ?? 0 : 0), disconnect, clearNotifications }
+}
+
+export function checkLogin() {
+  if (!currentUser.value) {
+    openSigninDialog()
+    return false
+  }
+  return true
 }

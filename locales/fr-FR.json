@@ -1,0 +1,204 @@
+{
+  "account": {
+    "avatar_description": "Avatar de {0}",
+    "blocked_domains": "Domaines bloqués",
+    "blocked_users": "Utilisateurs bloqués",
+    "favourites": "Favoris",
+    "follow": "Suivre",
+    "follow_back": "Suivre en retour",
+    "follow_requested": "Abonnement demandé",
+    "followers_count": "{0} abonné·e·s",
+    "following": "Suivi",
+    "following_count": "{0} abonnements",
+    "follows_you": "Vous suit",
+    "joined": "a rejoint",
+    "muted_users": "Utilisateurs mis en sourdine",
+    "mutuals": "Vous vous suivez mutuellement",
+    "pinned": "Épinglés",
+    "posts_count": "{0} messages",
+    "profile_description": "En-tête du profil de {0}",
+    "profile_unavailable": "Profil non accessible",
+    "unfollow": "Ne plus suivre"
+  },
+  "action": {
+    "bookmark": "Ajouter aux marque-pages",
+    "bookmarked": "Ajouté aux marque-pages",
+    "boost": "Partager",
+    "boosted": "Partagé",
+    "compose": "Composer",
+    "enter_app": "Entrer dans l'application",
+    "favourite": "Ajouter aux favoris",
+    "favourited": "Ajouté aux favoris",
+    "more": "Plus",
+    "publish": "Publier",
+    "reply": "Répondre",
+    "save_changes": "Enregistrer les changements",
+    "sign_in": "Se connecter"
+  },
+  "app_desc_short": "Un client Mastodon fait avec 🧡",
+  "app_name": "Elk",
+  "command": {
+    "activate": "Activer",
+    "complete": "Compléter"
+  },
+  "common": {
+    "end_of_list": "Fin de la liste",
+    "error": "ERREUR",
+    "kiloSuffix": "K",
+    "megaSuffix": "M",
+    "not_found": "404 Introuvable",
+    "offline_desc": "Il semble que vous soyez hors-ligne. Vérifiez votre connexion internet."
+  },
+  "conversation": {
+    "with": "avec"
+  },
+  "error": {
+    "account_not_found": "Compte {0} non trouvé",
+    "status_not_found": "Message non trouvé"
+  },
+  "feature_flag": {
+    "virtual_scroll": "Défilement virtuel"
+  },
+  "menu": {
+    "block_account": "Bloquer {0}",
+    "block_domain": "Bloquer le domaine {0}",
+    "copy_link_to_post": "Copier le lien du message",
+    "delete": "Supprimer",
+    "delete_and_redraft": "Supprimer et réécrire",
+    "direct_message_account": "Message direct à {0}",
+    "edit": "Éditer",
+    "mention_account": "Mentionner {0}",
+    "mute_account": "Mettre en sourdine {0}",
+    "open_in_original_site": "Ouvrir sur le site d'origine",
+    "pin_on_profile": "Épingler sur le profil",
+    "show_untranslated": "Montrer le message non-traduit",
+    "translate_post": "Traduire le message",
+    "unblock_account": "Débloquer {0}",
+    "unblock_domain": "Débloquer le domaine {0}",
+    "unmute_account": "Enlever la sourdine à {0}",
+    "unpin_on_profile": "Désépingler du profil"
+  },
+  "nav_footer": {
+    "built_at": "Dernier build {0}",
+    "select_feature_flags": "Activer/Désactiver Feature Flags",
+    "select_language": "Selectionner langue",
+    "show_intro": "Ré-afficher l'introduction",
+    "toggle_theme": "Changer de thème",
+    "zen_mode": "Mode Zen"
+  },
+  "nav_side": {
+    "bookmarks": "Marque-pages",
+    "conversations": "Conversations",
+    "explore": "Explorer",
+    "favourites": "Favoris",
+    "federated": "Fédérés",
+    "home": "Accueil",
+    "local": "Local",
+    "notifications": "Notifications",
+    "profile": "Profil"
+  },
+  "nav_user": {
+    "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, mettre en favoris, partager et répondre à des messages, ou interagir à partir de votre compte sur un autre serveur..."
+  },
+  "notification": {
+    "favourited_post": "aime votre message",
+    "followed_you": "vous suit",
+    "followed_you_count": "{n} personnes vous suivent",
+    "missing_type": "MISSING notification.type:",
+    "reblogged_post": "a relayé votre message",
+    "request_to_follow": "vous demande de le suivre",
+    "update_status": "a posté un nouveau message"
+  },
+  "placeholder": {
+    "content_warning": "Écrivez votre message d'avertissement ici",
+    "default_1": "Quelque chose à partager ?",
+    "reply_to_account": "Répondre à {0}",
+    "replying": "Répondre",
+    "the_thread": "Le thread"
+  },
+  "state": {
+    "edited": "(Édité)",
+    "editing": "Édition",
+    "loading": "Chargement...",
+    "uploading": "Téléversement en cours..."
+  },
+  "status": {
+    "edited": "Edité {0}",
+    "reblogged": "{0} relayé",
+    "spoiler_show_less": "Montrer moins",
+    "spoiler_show_more": "Montrer plus",
+    "try_original_site": "Essayer le site d'origine"
+  },
+  "status_history": {
+    "created": "a écrit {0}",
+    "edited": "a édité {0}"
+  },
+  "tab": {
+    "media": "Média",
+    "notifications_all": "Tout",
+    "notifications_mention": "Mentions",
+    "posts": "Messages",
+    "posts_with_replies": "Messages et réponses"
+  },
+  "time_ago_options": {
+    "day_future": "dans 0 jour|demain|dans {n} jours",
+    "day_past": "il y a 0 jour|hier|il y a {n} jours",
+    "hour_future": "dans 0 heure|dans 1 heure|dans {n} heures",
+    "hour_past": "il y a 0 heure|il y a 1 heure|il y a {n} heures",
+    "just_now": "juste maintenant",
+    "minute_future": "dans 0 minutes|dans 1 minute|dans {n} minutes",
+    "minute_past": "il y a 0 minute|il y a 1 minute|il y a {n} minutes",
+    "month_future": "dans 0 mois|le mois prochain|dans {n} mois",
+    "month_past": "il y a 0 mois|le dernier mois|il y a {n} mois",
+    "second_future": "juste maintenant|dans {n} secondes|dans {n} secondes",
+    "second_past": "juste maintenant|il y a {n} seconde|il y a {n} secondes",
+    "short_day_future": "dans {n}j",
+    "short_day_past": "{n}j",
+    "short_hour_future": "dans {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "dans {n}min",
+    "short_minute_past": "{n}min",
+    "short_month_future": "dans {n}mo",
+    "short_month_past": "{n}mo",
+    "short_second_future": "dans {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "dans {n}sm",
+    "short_week_past": "{n}sm",
+    "short_year_future": "dans {n}a",
+    "short_year_past": "{n}a",
+    "week_future": "dans 0 semaine|semaine prochaine|dans {n} semaines",
+    "week_past": "il y a 0 semaines|il y a 1 semaine|il y a {n} semaines",
+    "year_future": "dans 0 année|l'année prochaine|dans {n} années",
+    "year_past": "il y a 0 année|l'année dernière|il y a {n} années"
+  },
+  "timeline": {
+    "show_new_items": "Montrer les {n} nouveaux éléments"
+  },
+  "title": {
+    "federated_timeline": "Fil d'acutalité fédéré",
+    "local_timeline": "Fil d'actualité local"
+  },
+  "tooltip": {
+    "add_content_warning": "Ajouter un avertissement de contenu",
+    "add_media": "Ajouter des images, une vidéo ou un fichier audio",
+    "change_content_visibility": "Ajuster la confidentialité du message",
+    "toggle_code_block": "Ajouter un bloc de code"
+  },
+  "user": {
+    "add_existing": "Ajouter un compte existant",
+    "server_address_label": "Adresse du serveur mastodon",
+    "sign_out_account": "Se déconnecter de {0}",
+    "tip_no_account": "Si vous n'avez pas encore de compte Mastodon, {0}.",
+    "tip_register_account": "choisissez votre serveur et enregistrez-en un"
+  },
+  "visibility": {
+    "direct": "Personnes mentionnées uniquement",
+    "direct_desc": "Visibles uniquemnt par les comptes mentionnés",
+    "private": "Abonnés uniquement",
+    "private_desc": "Visible uniquement par vos abonnés",
+    "public": "Public",
+    "public_desc": "Visible par tout le monde",
+    "unlisted": "Non listé",
+    "unlisted_desc": "Visible pour tous, mais sans fonctionnalités de découverte"
+  }
+}

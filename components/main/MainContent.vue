@@ -11,14 +11,16 @@ defineProps<{
       border="b base" bg-base
     >
       <div flex justify-between px5 py4>
-        <div flex gap-3 items-center>
+        <div flex gap-3 items-center overflow-hidden>
           <NuxtLink v-if="back" flex="~ gap1" items-center btn-text p-0 @click="$router.go(-1)">
             <div i-ri:arrow-left-line />
           </NuxtLink>
-          <slot name="title" />
+          <div truncate>
+            <slot name="title" />
+          </div>
           <div h-7 w-1px />
         </div>
-        <div flex items-center>
+        <div flex items-center flex-shrink-0>
           <slot name="actions" />
           <NavUser v-if="isMediumScreen" />
         </div>

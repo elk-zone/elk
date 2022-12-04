@@ -1,3 +1,5 @@
+# Elk
+
 <p align="center">
   <a href="https://viteconf.org" target="_blank" rel="noopener noreferrer">
     <img width="180" src="https://elk.zone/logo.svg" alt="Vite logo">
@@ -9,8 +11,6 @@
   <a href="https://pr.new/elk-zone/elk"><img src="https://developer.stackblitz.com/img/start_pr_dark_small.svg" alt="Start new PR in StackBlitz Codeflow"></a>
 </p>
 <br/>
-
-# Elk
 
 A nimble Mastodon web client made with 🧡
 

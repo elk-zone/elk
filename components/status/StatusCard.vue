@@ -42,6 +42,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
 }
 
 const createdAt = useFormattedDateTime(status.createdAt)
+const timeAgoOptions = useTimeAgoOptions(true)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
 // TODO: get from status.filtered props and remove check for status.content

@@ -9,16 +9,21 @@ import {
 </script>
 
 <template>
-  <ModalDialog v-model="isSigninDialogOpen">
-    <UserSignIn m6 />
+  <ModalDialog v-model="isSigninDialogOpen" py-4 px-8>
+    <UserSignIn />
   </ModalDialog>
-  <ModalDialog v-model="isPreviewHelpOpen" :type="isSmallScreen ? 'bottom' : 'dialog'">
+  <ModalDialog v-model="isPreviewHelpOpen">
     <HelpPreview @close="closePreviewHelp()" />
   </ModalDialog>
-  <ModalDialog v-model="isPublishDialogOpen">
-    <PublishWidget :draft-key="dialogDraftKey" expanded min-w-180 />
+  <ModalDialog v-model="isPublishDialogOpen" max-w-180 flex>
+    <PublishWidget :draft-key="dialogDraftKey" expanded flex-1 />
   </ModalDialog>
-  <ModalDialog v-model="isMediaPreviewOpen" close-button>
+  <ModalDialog
+    v-model="isMediaPreviewOpen"
+    pointer-events-none
+    w-full max-w-full h-full max-h-full
+    bg-transparent border-0 shadow-none
+  >
     <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
   </ModalDialog>
   <ModalDialog v-model="isEditHistoryDialogOpen">

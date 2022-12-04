@@ -1,6 +1,12 @@
 import type { Ref } from 'vue'
-import type { Account, Relationship, Status } from 'masto'
+import type { Account, MastoClient, Relationship, Status } from 'masto'
 import { withoutProtocol } from 'ufo'
+
+export const useMasto = () => useNuxtApp().$masto.api as MastoClient
+
+export const setMasto = (masto: MastoClient) => {
+  useNuxtApp().$masto?.replace(masto)
+}
 
 // @unocss-include
 export const STATUS_VISIBILITIES = [
@@ -22,15 +28,10 @@ export const STATUS_VISIBILITIES = [
   },
 ] as const
 
-export function getServerName(account: Account) {
-  return account.url.match(UserLinkRE)?.[1] || currentUser.value?.server || ''
-}
-
 export function getDisplayName(account?: Account, options?: { rich?: boolean }) {
   const displayName = account?.displayName || account?.username || ''
   if (options?.rich)
     return displayName
-
   return displayName.replace(/:([\w-]+?):/g, '')
 }
 
@@ -38,6 +39,12 @@ export function getShortHandle({ acct }: Account) {
   if (!acct)
     return ''
   return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
+}
+
+export function getServerName(account: Account) {
+  if (account.acct.includes('@'))
+    return account.acct.split('@')[1]
+  return account.url.match(UserLinkRE)?.[1] || currentUser.value?.server || ''
 }
 
 export function getFullHandle(account: Account) {

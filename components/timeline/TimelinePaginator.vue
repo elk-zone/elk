@@ -16,7 +16,7 @@ const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirt
   <CommonPaginator v-bind="{ paginator, stream }" :virtual-scroller="virtualScroller">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
-        {{ $t('timeline.show_new_items', [number]) }}
+        {{ $t('timeline.show_new_items', number) }}
       </button>
     </template>
     <template #default="{ item, active }">

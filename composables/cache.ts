@@ -49,6 +49,9 @@ export async function fetchAccountByHandle(acct: string): Promise<Account> {
     return cached
   const account = useMasto().accounts.lookup({ acct })
     .then((r) => {
+      if (!r.acct.includes('@') && currentInstance.value)
+        r.acct = `${r.acct}@${currentInstance.value.uri}`
+
       cacheAccount(r, true)
       return r
     })

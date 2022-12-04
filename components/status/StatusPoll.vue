@@ -10,7 +10,8 @@ function toPercentage(num: number) {
   const percentage = 100 * num
   return `${percentage.toFixed(1).replace(/\.?0+$/, '')}%`
 }
-const expiredTimeAgo = useTimeAgo(poll.expiresAt!)
+const timeAgoOptions = useTimeAgoOptions()
+const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)
 
 const masto = useMasto()
 async function vote(e: Event) {

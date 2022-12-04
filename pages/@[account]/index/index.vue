@@ -12,9 +12,9 @@ const { data: account } = await useAsyncData(`account:${handle}`, async () => (
 )
 const { t } = useI18n()
 
-const paginatorPosts = useMasto().accounts.getStatusesIterable(account.value!.id, { excludeReplies: true })
-const paginatorPostsWithReply = useMasto().accounts.getStatusesIterable(account.value!.id, { excludeReplies: false })
-const paginatorMedia = useMasto().accounts.getStatusesIterable(account.value!.id, { onlyMedia: true, excludeReplies: false })
+const paginatorPosts = useMasto().accounts.iterateStatuses(account.value!.id, { excludeReplies: true })
+const paginatorPostsWithReply = useMasto().accounts.iterateStatuses(account.value!.id, { excludeReplies: false })
+const paginatorMedia = useMasto().accounts.iterateStatuses(account.value!.id, { onlyMedia: true, excludeReplies: false })
 
 const tabs = $computed(() => [
   {
@@ -43,10 +43,11 @@ const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
 </script>
 
 <template>
-  <div v-if="(account!.discoverable === false)" h-30 flex="~ center" text-secondary-light>
-    Profile unavailable
-  </div>
-  <div v-else>
+  <!-- TODO figure out when profile is unavailable -->
+  <!-- <div v-if="(account!.discoverable === false)" h-30 flex="~ center" text-secondary-light>
+    {{ $t('account.profile_unavailable') }}
+  </div> -->
+  <div>
     <CommonTabs v-model="tab" :options="tabs" command />
     <KeepAlive>
       <TimelinePaginator :key="tab" :paginator="paginator" context="account" />

@@ -1,5 +1,6 @@
 {
   "account": {
+    "avatar_description": "{0}'s avatar",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "favourites": "Favourites",
@@ -10,10 +11,13 @@
     "following": "Following",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
+    "joined": "Joined",
     "muted_users": "Muted users",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
     "posts_count": "{0} Posts",
+    "profile_description": "{0}'s profile header",
+    "profile_unavailable": "Profile unavailable",
     "unfollow": "Unfollow"
   },
   "action": {
@@ -26,6 +30,8 @@
     "favourite": "Favourite",
     "favourited": "Favourited",
     "more": "More",
+    "next": "Next",
+    "prev": "Prev",
     "publish": "Publish!",
     "reply": "Reply",
     "save_changes": "Save changes",
@@ -40,6 +46,8 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
+    "kiloSuffix": "K",
+    "megaSuffix": "M",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
   },
@@ -52,6 +60,13 @@
   },
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"
+  },
+  "help": {
+    "desc_highlight": "Expect some bugs and missing features here and there.",
+    "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress generic Mastodon client!",
+    "desc_para2": "We are working hard on the development and improving it over time. And we will soon invite you to join the force once we make it open source soon!",
+    "desc_para3": "Before that, to help boosting out development, you can sponsor our team members with the links below.",
+    "title": "Elk is in Preview!"
   },
   "menu": {
     "block_account": "Block {0}",
@@ -66,6 +81,10 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "show_untranslated": "Show untranslated",
+    "toggle_theme": {
+      "dark": "Toggle dark mode",
+      "light": "Toggle light mode"
+    },
     "translate_post": "Translate post",
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
@@ -97,7 +116,7 @@
   "notification": {
     "favourited_post": "favourited your post",
     "followed_you": "followed you",
-    "followed_you_count": "{0} people followed you",
+    "followed_you_count": "{n} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
@@ -138,20 +157,38 @@
     "posts_with_replies": "Posts & Replies"
   },
   "time_ago_options": {
-    "in": "in",
+    "day_future": "in 0 days|tomorrow|in {n} days",
+    "day_past": "0 days ago|yesterday|{n} days ago",
+    "hour_future": "in 0 hours|in 1 hour|in {n} hours",
+    "hour_past": "0 hours ago|1 hour ago|{n} hours ago",
     "just_now": "just now",
-    "last_month": "last month",
-    "last_week": "last week",
-    "last_year": "last year",
-    "next_month": "next month",
-    "next_week": "next week",
-    "next_year": "next year",
-    "tomorrow": "tomorrow",
-    "week": "week",
-    "yesterday": "yesterday"
+    "minute_future": "in 0 minutes|in 1 minute|in {n} minutes",
+    "minute_past": "0 minutes ago|1 minute ago|{n} minutes ago",
+    "month_future": "in 0 months|next month|in {n} months",
+    "month_past": "0 months ago|last month|{n} months ago",
+    "second_future": "just now|in {n} second|in {n} seconds",
+    "second_past": "just now|{n} second ago|{n} seconds ago",
+    "short_day_future": "in {n}d",
+    "short_day_past": "{n}d",
+    "short_hour_future": "in {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "in {n}min",
+    "short_minute_past": "{n}min",
+    "short_month_future": "in {n}mo",
+    "short_month_past": "{n}mo",
+    "short_second_future": "in {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "in {n}w",
+    "short_week_past": "{n}w",
+    "short_year_future": "in {n}y",
+    "short_year_past": "{n}y",
+    "week_future": "in 0 weeks|next week|in {n} weeks",
+    "week_past": "0 weeks ago|last week|{n} weeks ago",
+    "year_future": "in 0 years|next year|in {n} years",
+    "year_past": "0 years ago|last year|{n} years ago"
   },
   "timeline": {
-    "show_new_items": "Show {0} new items"
+    "show_new_items": "Show {n} new items"
   },
   "title": {
     "federated_timeline": "Federated Timeline",

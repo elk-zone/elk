@@ -10,6 +10,7 @@ const { data: statusEdits } = useAsyncData(`status:history:${status.id}`, () => 
 const showHistory = (edit: StatusEdit) => {
   openEditHistoryDialog(edit)
 }
+const timeAgoOptions = useTimeAgoOptions()
 </script>
 
 <template>
@@ -22,7 +23,7 @@ const showHistory = (edit: StatusEdit) => {
     >
       {{ getDisplayName(edit.account) }}
       <i18n-t :keypath="`status_history.${idx === statusEdits.length - 1 ? 'created' : 'edited'}`">
-        {{ useTimeAgo(edit.createdAt, { showSecond: true }).value }}
+        {{ useTimeAgo(edit.createdAt, timeAgoOptions).value }}
       </i18n-t>
     </CommonDropdownItem>
   </template>

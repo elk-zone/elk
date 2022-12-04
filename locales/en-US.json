@@ -37,6 +37,11 @@
   },
   "app_desc_short": "A Mastodon client made with 🧡",
   "app_name": "Elk",
+  "button": {
+    "toggle_dark": "Toggle dark mode",
+    "toggle_langs": "Change languages",
+    "toggle_light": "Toggle light mode"
+  },
   "command": {
     "activate": "Activate",
     "complete": "Complete"

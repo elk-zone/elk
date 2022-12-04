@@ -37,6 +37,11 @@
   },
   "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
   "app_name": "鹿鸣",
+  "button": {
+    "toggle_dark": "切换深色模式",
+    "toggle_langs": "更改语言",
+    "toggle_light": "切换亮色模式"
+  },
   "command": {
     "activate": "执行",
     "complete": "完成"

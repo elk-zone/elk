@@ -141,6 +141,11 @@
   },
   "status": {
     "edited": "Edited {0}",
+    "poll": {
+      "count": "{0} votes",
+      "ends": "ends {0}",
+      "finished": "finished {0}"
+    },
     "reblogged": "{0} reblogged",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",

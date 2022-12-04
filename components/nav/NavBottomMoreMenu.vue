@@ -72,7 +72,7 @@ onBeforeUnmount(() => {
         <div absolute inset-0 opacity-0 h="[calc(100vh+0.5px)]" />
         <div
           class="scrollbar-hide"
-          flex-1 min-w-48 py-2 mb="-1px"
+          flex-1 min-w-48 py-8 mb="-1px"
           overflow-y-auto overscroll-none max-h="[calc(100vh-200px)]"
           rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter backdrop-blur-md
           border-t-1 border-base

@@ -38,7 +38,7 @@ async function vote(e: Event) {
         {{ option.title }}
       </label>
       <button btn-solid>
-        Vote
+        {{ $t('action.vote') }}
       </button>
     </form>
     <template v-else>

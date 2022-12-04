@@ -38,7 +38,8 @@
     "publish": "Publish!",
     "reply": "Reply",
     "save_changes": "Save changes",
-    "sign_in": "Sign in"
+    "sign_in": "Sign in",
+    "vote": "Vote"
   },
   "app_desc_short": "A Mastodon client made with 🧡",
   "app_name": "Elk",

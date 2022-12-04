@@ -38,7 +38,8 @@
     "publish": "发布！",
     "reply": "回复",
     "save_changes": "保存更改",
-    "sign_in": "登鹿"
+    "sign_in": "登鹿",
+    "vote": "投票"
   },
   "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
   "app_name": "鹿鸣",

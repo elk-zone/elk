@@ -62,16 +62,20 @@ onBeforeUnmount(() => {
     >
       <div
         v-show="visible"
+        class="scrollbar-hide"
         absolute inset-x-0 top-auto bottom-full z-20 h-100vh
-        flex items-end of-hidden
+        flex items-end of-y-scroll of-x-hidden overscroll-none
         bg="black/50"
       >
+        <!-- The style `scrollbar-hide overscroll-none overflow-y-scroll mb="-1px"` and `h="[calc(100%+0.5px)]"` is used to implement scroll locking, -->
+        <!-- corresponding to issue: #106, so please don't remove it. -->
+        <div absolute inset-0 opacity-0 h="[calc(100vh+0.5px)]" />
         <div
           class="scrollbar-hide"
-          flex-1 min-w-48 py-2
+          flex-1 min-w-48 py-2 mb="-1px"
           overflow-y-auto overscroll-none max-h="[calc(100vh-200px)]"
           rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter backdrop-blur-md
-          border-y-1 border-base
+          border-t-1 border-base
         >
           <!-- Nav -->
           <NavSide />

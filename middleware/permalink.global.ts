@@ -1,4 +1,8 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
+  // Skip running middleware before masto has been initialised
+  if (!useNuxtApp().$masto)
+    return
+
   if (!('server' in to.params))
     return
 

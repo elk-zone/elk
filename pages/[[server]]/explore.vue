@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = useMasto().trends.getStatuses()
+const paginator = useMasto().trends.iterateStatuses()
 
 const { t } = useI18n()
 

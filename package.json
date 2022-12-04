@@ -6,7 +6,9 @@
   "homepage": "https://elk.zone/",
   "scripts": {
     "build": "nuxi build",
+    "build-pwa": "DEV_PWA=true nuxi build",
     "dev": "nuxi dev --port 5314",
+    "dev-pwa": "DEV_PWA=true nuxi dev --port 5314",
     "dev:mocked": "nuxi dev --port 5314 --dotenv .env.mock",
     "start": "PORT=5314 node .output/server/index.mjs",
     "lint": "eslint .",
@@ -75,9 +77,11 @@
     "ufo": "^1.0.0",
     "unplugin-auto-import": "^0.12.0",
     "vite-plugin-inspect": "^0.7.9",
+    "vite-plugin-pwa": "^0.13.3",
     "vitest": "^0.25.3",
     "vue-safe-teleport": "^0.1.1",
-    "vue-virtual-scroller": "2.0.0-beta.3"
+    "vue-virtual-scroller": "2.0.0-beta.3",
+    "workbox-window": "^6.5.4"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

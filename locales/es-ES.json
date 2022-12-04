@@ -97,6 +97,19 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "retooteó tu publicación",
     "request_to_follow": "ha solicitado seguirte",
+    "settings": {
+      "favourite": "Favoritos:",
+      "follow": "Nuevos seguidores:",
+      "mention": "Menciones:",
+      "reblog": "Retooteo de tus publicaciones:",
+      "title": "Mostrar ajustes",
+      "warning": {
+        "enable_close": "Cerrar",
+        "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones de escritorio. Puedes controlar con precisión qué tipos de interacciones generan notificaciones de escritorio a través del botón \"Mostrar ajustes\" de arriba una vez que estén habilitadas.",
+        "enable_desktop": "Habilitar notificaciones de escritorio",
+        "enable_title": "Nunca te pierdas nada"
+      }
+    },
     "update_status": "ha actualizado su estado"
   },
   "placeholder": {
@@ -105,6 +118,12 @@
     "reply_to_account": "Responder a {0}",
     "replying": "Respondiendo",
     "the_thread": "el hilo"
+  },
+  "pwa": {
+    "title": "Nueva versión de Elk disponible",
+    "message": "@:pwa.title{','} haz click en el botón @:pwa.reload para actualizar.",
+    "reload": "Recargar",
+    "close": "Cerrar"
   },
   "state": {
     "edited": "(Editado)",

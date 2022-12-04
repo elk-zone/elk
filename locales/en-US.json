@@ -107,6 +107,19 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
+    "settings": {
+      "favourite": "Favourites:",
+      "follow": "New followers:",
+      "mention": "Mentions:",
+      "reblog": "Reblog your post:",
+      "title": "Show settings",
+      "warning": {
+        "enable_close": "Close",
+        "enable_description": "To receive notifications when Elk is not open, enable desktop notifications. You can control precisely what types of interactions generate desktop notifications via the \"Show Settings\" button above once enabled.",
+        "enable_desktop": "Enable desktop notifications",
+        "enable_title": "Never miss anything"
+      }
+    },
     "update_status": "updated their status"
   },
   "placeholder": {
@@ -115,6 +128,12 @@
     "reply_to_account": "Reply to {0}",
     "replying": "Replying",
     "the_thread": "the thread"
+  },
+  "pwa": {
+    "title": "New Elk version available",
+    "message": "@:pwa.title{','} click on @:pwa.reload button to update.",
+    "reload": "Reload",
+    "close": "Close"
   },
   "state": {
     "edited": "(Edited)",

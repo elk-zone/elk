@@ -54,4 +54,5 @@ const reload = async () => {
       </slot>
     </MainContent>
   </NuxtLayout>
+  <PWAPrompt />
 </template>

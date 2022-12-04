@@ -1,6 +1,7 @@
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
 import { i18n } from './modules/i18n-configuration'
+import { pwa } from './modules/pwa-configuration'
 
 export default defineNuxtConfig({
   ssr: false,
@@ -12,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '~/modules/purge-comments',
     '~/modules/setup-components',
+    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
   ],
   experimental: {
     reactivityTransform: true,
@@ -84,6 +86,7 @@ export default defineNuxtConfig({
     },
   },
   i18n,
+  pwa,
 })
 
 declare global {

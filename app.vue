@@ -12,4 +12,5 @@ const key = computed(() => `${currentServer.value}:${currentUser.value?.account.
     <NuxtPage />
   </NuxtLayout>
   <TeleportTarget id="teleport-end" />
+  <PWAPrompt />
 </template>

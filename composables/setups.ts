@@ -1,10 +1,50 @@
+import { pwaInfo } from 'virtual:pwa-info'
+import type { Link } from '@unhead/schema'
 import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
 
 const isDev = process.dev
 const isPreview = window.location.hostname.includes('deploy-preview')
+const suffix = isDev || isPreview ? '-dev' : ''
 
 export function setupPageHeader() {
   const i18n = useI18n()
+
+  const link: Link[] = [
+    { rel: 'icon', type: 'image/svg+xml', href: `/favicon${suffix}.svg` },
+    { rel: 'alternate icon', type: 'image/x-icon', href: `/favicon${suffix}.ico` },
+    { rel: 'icon', type: 'image/png', href: `/favicon-16x16${suffix}.png`, sizes: '16x16' },
+    { rel: 'icon', type: 'image/png', href: `/favicon-32x32${suffix}.png`, sizes: '32x32' },
+  ]
+
+  if (pwaInfo && pwaInfo.webManifest) {
+    link.push({
+      rel: 'mask-icon',
+      href: '/safari-pinned-tab.svg',
+      color: '#ffffff',
+    })
+    link.push({
+      rel: 'apple-touch-icon',
+      href: `/apple-touch-icon${suffix}.png`,
+      sizes: '180x180',
+    })
+    const { webManifest } = pwaInfo
+    if (webManifest) {
+      const { href, useCredentials } = webManifest
+      if (useCredentials) {
+        link.push({
+          rel: 'manifest',
+          href,
+          crossorigin: 'use-credentials',
+        })
+      }
+      else {
+        link.push({
+          rel: 'manifest',
+          href,
+        })
+      }
+    }
+  }
 
   useHeadFixed({
     htmlAttrs: {
@@ -14,9 +54,8 @@ export function setupPageHeader() {
     bodyAttrs: {
       class: 'overflow-x-hidden',
     },
-    link: [
-      { rel: 'icon', type: 'image/svg+png', href: isDev || isPreview ? '/favicon-dev.png' : '/favicon.png' },
-    ],
+    link,
+    meta: [{ name: 'theme-color', content: '#ffffff' }],
   })
 
   // eslint-disable-next-line no-unused-expressions

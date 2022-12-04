@@ -1,4 +1,4 @@
-import type { AccountCredentials, Emoji, Instance, Notification } from 'masto'
+import type { AccountCredentials, Emoji, Instance, Notification, PushSubscription } from 'masto'
 
 export interface AppInfo {
   id: string
@@ -14,6 +14,8 @@ export interface UserLogin {
   server: string
   token?: string
   account: AccountCredentials
+  vapidKey?: string
+  pushSubscription?: PushSubscription
 }
 
 export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'

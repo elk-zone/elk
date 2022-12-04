@@ -3,6 +3,7 @@ import type { AccountCredentials, Instance, WsEvents } from 'masto'
 import { clearUserDrafts } from './statusDrafts'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
+import { useMasto } from '~/composables/masto'
 
 const mock = process.mock
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
@@ -56,7 +57,19 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
         users.value.push(user as UserLogin)
 
       currentUserId.value = me.id
-      servers.value[me.id] = await masto.instances.fetch()
+
+      const [instance, pushSubscription] = await Promise.allSettled([
+        masto.instances.fetch(),
+        masto.pushSubscriptions.fetch(),
+      ])
+
+      if (instance.status === 'fulfilled')
+        servers.value[me.id] = instance.value
+      else
+        throw instance.reason
+
+      // we get 404 response instead empty data
+      user.pushSubscription = pushSubscription.status === 'fulfilled' ? pushSubscription.value : undefined
     }
     catch {
       await signout()
@@ -96,7 +109,6 @@ export async function signout() {
 
   await loginTo(currentUser.value)
 }
-
 const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})
 
 export const useNotifications = () => {

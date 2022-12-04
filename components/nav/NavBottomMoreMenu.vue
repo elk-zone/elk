@@ -47,7 +47,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="buttonEl" class="flex items-center static">
+  <div ref="buttonEl" flex items-center static>
     <slot :change-show="changeShow" :show="visible" />
 
     <!-- Drawer -->
@@ -67,12 +67,11 @@ onBeforeUnmount(() => {
         bg="black/50"
       >
         <div
-          class="
+          class="scrollbar-hide"
           flex-1 min-w-48 py-2
-          overflow-y-auto overscroll-none scrollbar-hide max-h-[calc(100vh-200px)]
-          rounded-t-lg  bg-white/85 dark:bg-neutral-900/85 backdrop-filter backdrop-blur-md
+          overflow-y-auto overscroll-none max-h="[calc(100vh-200px)]"
+          rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter backdrop-blur-md
           border-y-1 border-base
-        "
         >
           <ClientOnly>
             <!-- Nav -->
@@ -83,12 +82,10 @@ onBeforeUnmount(() => {
 
             <!-- Function menu -->
             <button
-              class="
               flex flex-row items-center
-              block px-4 py-3 focus-blue w-full
+              block px-5 py-2 focus-blue w-full
               text-sm text-base capitalize text-left whitespace-nowrap
               transition-colors duration-200 transform
-            "
               hover="bg-gray-100 dark:(bg-gray-700 text-white)"
               @click="toggleDark()"
             >
@@ -97,12 +94,10 @@ onBeforeUnmount(() => {
             </button>
             <!-- 切换语言 -->
             <button
-              class="
               flex flex-row items-center
-              block px-4 py-3 focus-blue w-full
+              block px-5 py-2 focus-blue w-full
               text-sm text-base capitalize text-left whitespace-nowrap
               transition-colors duration-200 transform
-            "
               hover="bg-gray-100 dark:(bg-gray-700 text-white)"
               @click.stop="toggleLocales"
             >

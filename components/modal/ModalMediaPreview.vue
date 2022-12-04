@@ -30,16 +30,32 @@ function onClick(e: MouseEvent) {
 
 <template>
   <div relative h-full w-full flex select-none pointer-events-none>
-    <div absolute top-0 left-0 right-0 text-center>
+    <div absolute top-0 left-0 right-0 text-white text-center>
       {{ mediaPreviewIndex + 1 }} / {{ mediaPreviewList.length }}
     </div>
-    <button v-if="hasNext" btn-action-icon absolute pointer-events-auto top="1/2" right-1 title="Next" @click="next">
-      <div i-ri:arrow-right-s-line />
+    <button
+      v-if="hasNext"
+      pointer-events-auto
+      btn-action-icon bg="black/20" aria-label="Close"
+      hover:bg="black/40" dark:bg="white/30" dark:hover:bg="white/20"
+      absolute top="1/2" right-1
+      :title="$t('action.next')"
+      @click="next"
+    >
+      <div i-ri:arrow-right-s-line text-white />
     </button>
-    <button v-if="hasPrev" btn-action-icon absolute pointer-events-auto top="1/2" left-1 title="Next" @click="prev">
-      <div i-ri:arrow-left-s-line />
+    <button
+      v-if="hasPrev"
+      pointer-events-auto
+      btn-action-icon bg="black/20" aria-label="Close"
+      hover:bg="black/40" dark:bg="white/30" dark:hover:bg="white/20"
+      absolute top="1/2" left-1
+      :title="$t('action.prev')"
+      @click="prev"
+    >
+      <div i-ri:arrow-left-s-line text-white />
     </button>
-    <img :src="current.url || current.previewUrl" :alt="current.description || ''" w="max-[95%]" h="max-[95%]" ma>
+    <img :src="current.url || current.previewUrl" :alt="current.description || ''" max-h="95%" max-w="95%" ma>
 
     <button
       btn-action-icon bg="black/20" aria-label="Close"

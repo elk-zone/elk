@@ -6,6 +6,7 @@ const props = withDefaults(
     status: Status
     actions?: boolean
     hover?: boolean
+    decorated?: boolean
   }>(),
   { actions: true },
 )
@@ -48,19 +49,13 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
-    <div v-if="status.inReplyToAccountId" absolute class="-top-3.5" left-2 bg-base pl-1 pb-1>
-      <StatusReplyingTo :status="status" pt1 />
-    </div>
-    <div v-if="rebloggedBy" absolute class="-top-2.5" right-2 bg-base px-2>
-      <div flex="~ wrap" gap-1 items-center text-secondary text-sm>
-        <div i-ri:repeat-fill mr-1 />
-        <i18n-t keypath="status.reblogged">
-          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
-        </i18n-t>
-      </div>
-    </div>
-    <div v-if="rebloggedBy || status.inReplyToAccountId" h-0.5 />
+  <div :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 pt-3 pb-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
+    <StatusReplyingTo :status="status" />
+    <CommonMetaWrapper v-if="rebloggedBy" text-secondary text-sm>
+      <div i-ri:repeat-fill mr-1 />
+      <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
+    </CommonMetaWrapper>
+    <div v-if="decorated || rebloggedBy || status.inReplyToAccountId" h-1 />
     <div flex gap-4>
       <div relative>
         <AccountHoverWrapper :account="status.account" :class="rebloggedBy && avatarOnAvatar ? '-ml-1' : ''">

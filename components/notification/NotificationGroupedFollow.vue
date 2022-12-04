@@ -13,8 +13,8 @@ const isExpanded = ref(false)
 </script>
 
 <template>
-  <article flex flex-col>
-    <div flex ml-4 items-center>
+  <article flex flex-col relative>
+    <div flex items-center absolute class="-top-3.5" left-2 bg-base px-2>
       <div i-ri:user-follow-fill mr-3 color-primary aria-hidden="true" />
       <template v-if="addSR">
         <span
@@ -30,24 +30,26 @@ const isExpanded = ref(false)
         {{ $t('notification.followed_you_count', count, { named: { followers: count } }) }}
       </span>
     </div>
-    <div v-if="isExpanded">
-      <AccountCard
-        v-for="item in items.items"
-        :key="item.id"
-        :account="item.account"
-        p3
-      />
-    </div>
-    <div v-else flex="~ wrap gap-1" p4>
-      <AccountHoverWrapper
-        v-for="item in items.items"
-        :key="item.id"
-        :account="item.account"
-      >
-        <NuxtLink :to="getAccountRoute(item.account)">
-          <AccountAvatar :account="item.account" w-8 h-8 />
-        </NuxtLink>
-      </AccountHoverWrapper>
+    <div pt-1 pb-2>
+      <div v-if="isExpanded">
+        <AccountCard
+          v-for="item in items.items"
+          :key="item.id"
+          :account="item.account"
+          p3
+        />
+      </div>
+      <div v-else flex="~ wrap gap-1" p4>
+        <AccountHoverWrapper
+          v-for="item in items.items"
+          :key="item.id"
+          :account="item.account"
+        >
+          <NuxtLink :to="getAccountRoute(item.account)">
+            <AccountAvatar :account="item.account" w-12 h-12 />
+          </NuxtLink>
+        </AccountHoverWrapper>
+      </div>
     </div>
   </article>
 </template>

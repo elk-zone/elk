@@ -21,17 +21,17 @@ const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirt
     <template #default="{ item, active }">
       <template v-if="virtualScroller">
         <DynamicScrollerItem :item="item" :active="active" tag="article">
-          <StatusCard :status="item" border="b base" py-3 />
+          <StatusCard :status="item" border="b base" />
         </DynamicScrollerItem>
       </template>
       <template v-else>
-        <StatusCard :status="item" border="b base" py-3 />
+        <StatusCard :status="item" border="b base" />
       </template>
     </template>
     <template #loading>
-      <StatusCardSkeleton border="b base" py-3 />
-      <StatusCardSkeleton border="b base" py-3 op50 />
-      <StatusCardSkeleton border="b base" py-3 op25 />
+      <StatusCardSkeleton border="b base" />
+      <StatusCardSkeleton border="b base" op50 />
+      <StatusCardSkeleton border="b base" op25 />
     </template>
   </CommonPaginator>
 </template>

@@ -19,9 +19,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
 
 <template>
   <div :id="`status-${status.id}`" flex flex-col gap-2 py3 px-4 relative>
-    <div v-if="status.inReplyToAccountId" absolute class="-top-3.5" left-2 bg-base pl-1 pb-1>
-      <StatusReplyingTo :status="status" pt1 />
-    </div>
+    <StatusReplyingTo :status="status" />
     <div v-if="status.inReplyToAccountId" h-0.5 />
     <StatusActionsMore :status="status" absolute right-2 top-2 />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pr5 mr-a>

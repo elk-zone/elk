@@ -57,6 +57,7 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
       const [me, server, pushSubscription] = await Promise.all([
         masto.accounts.verifyCredentials(),
         masto.instances.fetch(),
+        // we get 404 response instead empty data
         masto.pushSubscriptions.fetch().catch(() => Promise.resolve(undefined)),
       ])
 

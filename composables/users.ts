@@ -38,7 +38,9 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   }
 
   const config = useRuntimeConfig()
-  const server = user?.server || useRoute().params.server as string || publicServer.value
+  const route = useRoute()
+  const router = useRouter()
+  const server = user?.server || route.params.server as string || publicServer.value
   const masto = await loginMasto({
     url: `https://${server}`,
     accessToken: user?.token,
@@ -73,6 +75,13 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   }
 
   setMasto(masto)
+
+  if ('server' in route.params) {
+    await router.push({
+      ...route,
+      force: true,
+    })
+  }
 
   return masto
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const buildTime = import.meta.env.__BUILD_TIME__ as string
+const buildCommit = import.meta.env.__BUILD_COMMIT__ as string
 const buildTimeDate = new Date(buildTime)
 
 const timeAgoOptions = useTimeAgoOptions()
@@ -46,7 +47,18 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
     <div>
       <i18n-t keypath="nav_footer.built_at">
         <time :datetime="buildTime" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
-      </i18n-t> · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a>
+      </i18n-t>
+      ·
+      <NuxtLink
+        v-if="buildCommit"
+        external
+        :href="`https://github.com/elk-zone/elk/commit/${buildCommit}`"
+        target="_blank"
+        font-mono
+      >
+        {{ buildCommit.slice(0, 7) }}
+      </NuxtLink>
+      · <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a>
     </div>
   </footer>
 </template>

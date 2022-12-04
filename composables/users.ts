@@ -58,6 +58,9 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
       currentUserId.value = me.id
       servers.value[me.id] = server
 
+      if (!user.account.acct.includes('@'))
+        user.account.acct = `${user.account.acct}@${server.uri}`
+
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)
     }

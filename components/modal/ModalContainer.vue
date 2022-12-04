@@ -58,7 +58,7 @@ whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'n'])),
   <ModalDialog v-model="isEditHistoryDialogOpen">
     <StatusEditPreview :edit="statusEdit" />
   </ModalDialog>
-  <ModalDialog v-model="isKeyboardShortcutsDialogOpen">
+  <ModalDialog v-model="isKeyboardShortcutsDialogOpen" max-w-full sm:max-w-140 md:max-w-170 lg:max-w-220 md:min-w-160>
     <MagickeysKeyboardShortcuts @close="closeKeyboardShortcuts()" />
   </ModalDialog>
 </template>

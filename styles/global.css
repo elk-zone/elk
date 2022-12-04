@@ -24,7 +24,7 @@
   background: #8886;
 }
 
-::-moz-selection { 
+::-moz-selection {
   background: var(--c-bg-selection);
 }
 
@@ -38,11 +38,12 @@ body {
 }
 
 .zen .zen-hide {
-  --at-apply: op0 hover:op100 transition duration-600;
+  --at-apply: 'op0 hover:op100 transition duration-600';
 }
 
 .custom-emoji {
   display: inline-block;
+  overflow: hidden;
   max-height: 1.3em;
   max-width: 1.3em;
   vertical-align: text-bottom;
@@ -50,12 +51,12 @@ body {
 
 .content-rich {
   a {
-    --at-apply: text-primary hover:underline hover:text-primary-active;
+    --at-apply: 'text-primary hover:underline hover:text-primary-active';
     .invisible {
-      --at-apply: hidden;
+      --at-apply: 'hidden';
     }
     .ellipsis {
-      --at-apply: truncate overflow-hidden ws-nowrap;
+      --at-apply: 'truncate overflow-hidden ws-nowrap';
       &::after {
         content: '…';
       }
@@ -94,21 +95,26 @@ body {
 }
 
 .skeleton-loading-bg {
-  background: linear-gradient(90deg,rgba(190,190,190,.2) 25%,rgba(129,129,129,.24) 37%,rgba(190,190,190,.2) 63%);
+  background: linear-gradient(
+    90deg,
+    rgba(190, 190, 190, 0.2) 25%,
+    rgba(129, 129, 129, 0.24) 37%,
+    rgba(190, 190, 190, 0.2) 63%
+  );
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s ease infinite;
 }
 
 @keyframes skeleton-loading {
   0% {
-    background-position: 100% 50%
+    background-position: 100% 50%;
   }
   to {
-    background-position: 0 50%
+    background-position: 0 50%;
   }
 }
 
-html, body , #__nuxt{
+html, body, #__nuxt {
   height: 100vh;
   margin: 0;
   padding: 0;

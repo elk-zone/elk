@@ -1,6 +1,7 @@
 {
   "account": {
     "avatar_description": "{0}的头像",
+    "blocked_by": "您已被此用户拉黑",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
     "favourites": "喜欢的帖文",
@@ -11,7 +12,9 @@
     "following": "关注中",
     "following_count": "正在关注 {0} 人",
     "follows_you": "已关注你",
+    "go_to_profile": "转到个人资料",
     "joined": "已加入",
+    "moved_title": "的新账号是：",
     "muted_users": "已屏蔽的用户",
     "mutuals": "互相关注",
     "pinned": "置顶的帖文",
@@ -30,10 +33,13 @@
     "favourite": "喜欢",
     "favourited": "已喜欢",
     "more": "更多",
+    "next": "下一个",
+    "prev": "上一个",
     "publish": "发布！",
     "reply": "回复",
     "save_changes": "保存更改",
-    "sign_in": "登鹿"
+    "sign_in": "登鹿",
+    "vote": "投票"
   },
   "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
   "app_name": "鹿鸣",
@@ -79,6 +85,10 @@
     "open_in_original_site": "从源站打开",
     "pin_on_profile": "钉选在个人资料上",
     "show_untranslated": "显示原文",
+    "toggle_theme": {
+      "dark": "切换深色模式",
+      "light": "切换亮色模式"
+    },
     "translate_post": "翻译帖子",
     "unblock_account": "解除拉黑 {0}",
     "unblock_domain": "解除拉黑域名 {0}",
@@ -131,6 +141,11 @@
   },
   "status": {
     "edited": "在 {0} 编辑了",
+    "poll": {
+      "count": "{0} 次投票",
+      "ends": "将在 {0} 结束",
+      "finished": "已在 {0} 结束"
+    },
     "reblogged": "{0} 转发了",
     "spoiler_show_less": "隐藏",
     "spoiler_show_more": "显示更多",

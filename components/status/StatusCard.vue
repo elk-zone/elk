@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { Filter, FilterAction, FilterContext, Status } from 'masto'
 
 const props = withDefaults(
   defineProps<{
     status: Status
     actions?: boolean
+    context?: FilterContext
     hover?: boolean
     decorated?: boolean
   }>(),
@@ -45,11 +46,20 @@ const createdAt = useFormattedDateTime(status.createdAt)
 const timeAgoOptions = useTimeAgoOptions(true)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
+// Content Filter logic
+const filterResult = $computed(() => status.filtered?.length ? status.filtered[0] : null)
+const filter = $computed(() => filterResult?.filter)
+
+// a bit of a hack due to Filter being different in v1 and v2
+// clean up when masto.js supports explicit versions: https://github.com/neet/masto.js/issues/722
+const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
+const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
+
 const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 pt-3 pb-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
+  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 pt-3 pb-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
     <StatusReplyingTo :status="status" />
     <CommonMetaWrapper v-if="rebloggedBy" text-secondary text-sm>
       <div i-ri:repeat-fill mr-1 />
@@ -86,9 +96,9 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
           <StatusActionsMore :status="status" mr--2 />
         </div>
         <div :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''">
-          <StatusSpoiler :enabled="status.sensitive">
+          <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="filter?.filterAction">
             <template #spoiler>
-              <p>{{ status.spoilerText }}</p>
+              <p>{{ filterPhrase ? `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` : status.spoilerText }}</p>
             </template>
             <StatusBody :status="status" />
             <StatusPoll v-if="status.poll" :poll="status.poll" />
@@ -107,5 +117,8 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
         <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
       </div>
     </div>
+  </div>
+  <div v-else-if="isFiltered" gap-2 px-4>
+    <p>{{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}</p>
   </div>
 </template>

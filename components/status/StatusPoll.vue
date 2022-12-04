@@ -38,24 +38,27 @@ async function vote(e: Event) {
         {{ option.title }}
       </label>
       <button btn-solid>
-        Vote
+        {{ $t('action.vote') }}
       </button>
     </form>
     <template v-else>
-      <div v-for="(option, index) of poll.options" :key="index" flex justify-between p-1 relative :style="{ '--bar-width': toPercentage((option.votesCount || 0) / poll.votesCount) }">
-        <div absolute top-0 left-0 bottom-0 bg-primary-active rounded-l-sm rounded-r-lg h-full class="w-[var(--bar-width)]" />
-        <div z-1 flex items-center gap-1 px-1 text-inverted>
-          {{ option.title }}
-
-          <div v-if="poll.voted && poll.ownVotes?.includes(index)" i-ri:checkbox-circle-line />
+      <div v-for="(option, index) of poll.options" :key="index" py-1 relative :style="{ '--bar-width': toPercentage((option.votesCount || 0) / poll.votesCount) }">
+        <div flex justify-between pb-2 w-full>
+          <span inline-flex align-items>
+            {{ option.title }}
+            <span v-if="poll.voted && poll.ownVotes?.includes(index)" ml-2 mt-1 inline-block i-ri:checkbox-circle-line />
+          </span>
+          <span text-primary-active> {{ poll.votesCount ? toPercentage((option.votesCount || 0) / (poll.votesCount)) : '0%' }}</span>
         </div>
-        <div z-1>
-          {{ poll.votesCount ? toPercentage((option.votesCount || 0) / (poll.votesCount)) : '0%' }}
+        <div class="bg-gray/40" rounded-l-sm rounded-r-lg h-5px w-full>
+          <div bg-primary-active h-full class="w-[var(--bar-width)]" />
         </div>
       </div>
     </template>
     <div text-sm>
-      {{ poll.votersCount }} votes &middot; {{ poll.expired ? 'finished' : 'ends' }}  {{ expiredTimeAgo }}
+      {{ $t('status.poll.count', [poll.votersCount]) }}
+      &middot;
+      {{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}
     </div>
   </div>
 </template>

@@ -18,15 +18,14 @@ function handleMention(el: Element) {
       const matchUser = href.value.match(UserLinkRE)
       if (matchUser) {
         const [, server, username] = matchUser
-        // Handles need to ignore server subdomains
         const handle = `@${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
-        href.value = `/${handle}`
+        href.value = `/${server}/@${username}`
         return h(AccountHoverWrapper, { handle, class: 'inline-block' }, () => nodeToVNode(el))
       }
       const matchTag = href.value.match(TagLinkRE)
       if (matchTag) {
         const [, , name] = matchTag
-        href.value = `/tags/${name}`
+        href.value = `/${currentServer.value}/tags/${name}`
       }
     }
   }

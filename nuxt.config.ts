@@ -31,6 +31,7 @@ export default defineNuxtConfig({
   vite: {
     define: {
       'import.meta.env.__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
+      'import.meta.env.__BUILD_COMMIT__': JSON.stringify(process.env.COMMIT_REF || ''),
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
       'process.mock': ((isDevelopment || (isCI && process.env.PULL_REQUEST === 'true')) && process.env.MOCK_USER) || 'false',
     },

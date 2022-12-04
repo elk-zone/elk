@@ -1,6 +1,7 @@
 {
   "account": {
     "avatar_description": "{0}'s avatar",
+    "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "favourites": "Favourites",
@@ -11,7 +12,9 @@
     "following": "Following",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
+    "go_to_profile": "Go to profile",
     "joined": "Joined",
+    "moved_title": "has indicated that their new account is now:",
     "muted_users": "Muted users",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
@@ -30,10 +33,13 @@
     "favourite": "Favourite",
     "favourited": "Favourited",
     "more": "More",
+    "next": "Next",
+    "prev": "Prev",
     "publish": "Publish!",
     "reply": "Reply",
     "save_changes": "Save changes",
-    "sign_in": "Sign in"
+    "sign_in": "Sign in",
+    "vote": "Vote"
   },
   "app_desc_short": "A Mastodon client made with 🧡",
   "app_name": "Elk",
@@ -80,6 +86,10 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "show_untranslated": "Show untranslated",
+    "toggle_theme": {
+      "dark": "Toggle dark mode",
+      "light": "Toggle light mode"
+    },
     "translate_post": "Translate post",
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
@@ -132,6 +142,14 @@
   },
   "status": {
     "edited": "Edited {0}",
+    "filter_hidden_phrase": "Filtered by",
+    "filter_removed_phrase": "Removed by filter",
+    "filter_show_anyway": "Show anyway",
+    "poll": {
+      "count": "{0} votes",
+      "ends": "ends {0}",
+      "finished": "finished {0}"
+    },
     "reblogged": "{0} reblogged",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",

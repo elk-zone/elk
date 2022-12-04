@@ -37,9 +37,9 @@ const toggleTranslation = async () => {
 }
 
 const copyLink = async (status: Status) => {
-  const url = getStatusPermalinkRoute(status)?.href
+  const url = getStatusPermalinkRoute(status)
   if (url)
-    await clipboard.copy(`${location.origin}${url}`)
+    await clipboard.copy(`${location.origin}/${url}`)
 }
 const deleteStatus = async () => {
   // TODO confirm to delete

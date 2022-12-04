@@ -73,14 +73,15 @@ onBeforeUnmount(() => {
           rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter backdrop-blur-md
           border-y-1 border-base
         >
-          <ClientOnly>
-            <!-- Nav -->
-            <NavSide />
+          <!-- Nav -->
+          <NavSide />
 
-            <!-- Divider line -->
-            <div border="neutral-300 dark:neutral-700 t-1" m="x-3 y-2" />
+          <!-- Divider line -->
+          <div border="neutral-300 dark:neutral-700 t-1" m="x-3 y-2" />
 
-            <!-- Function menu -->
+          <!-- Function menu -->
+          <div flex="~ col gap2">
+            <!-- Toggle Theme -->
             <button
               flex flex-row items-center
               block px-5 py-2 focus-blue w-full
@@ -92,19 +93,35 @@ onBeforeUnmount(() => {
               <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl mr-4 !align-middle" />
               {{ !isDark ? t('button.toggle_dark') : t('button.toggle_light') }}
             </button>
-            <!-- 切换语言 -->
-            <button
-              flex flex-row items-center
-              block px-5 py-2 focus-blue w-full
-              text-sm text-base capitalize text-left whitespace-nowrap
-              transition-colors duration-200 transform
-              hover="bg-gray-100 dark:(bg-gray-700 text-white)"
-              @click.stop="toggleLocales"
-            >
-              <span class="i-carbon:language flex-shrink-0 text-xl mr-4 !align-middle" />
-              {{ t('button.toggle_langs') }}
-            </button>
-          </ClientOnly>
+            <!-- Switch languages -->
+            <NavSelectLanguage>
+              <button
+                flex flex-row items-center
+                block px-5 py-2 focus-blue w-full
+                text-sm text-base capitalize text-left whitespace-nowrap
+                transition-colors duration-200 transform
+                hover="bg-gray-100 dark:(bg-gray-700 text-white)"
+                @click.stop
+              >
+                <span class="i-ri:earth-line flex-shrink-0 text-xl mr-4 !align-middle" />
+                {{ $t('nav_footer.select_language') }}
+              </button>
+            </NavSelectLanguage>
+            <!-- Toggle Feature Flags -->
+            <NavSelectFeatureFlags v-if="currentUser">
+              <button
+                flex flex-row items-center
+                block px-5 py-2 focus-blue w-full
+                text-sm text-base capitalize text-left whitespace-nowrap
+                transition-colors duration-200 transform
+                hover="bg-gray-100 dark:(bg-gray-700 text-white)"
+                @click.stop
+              >
+                <span class="i-ri:flag-line flex-shrink-0 text-xl mr-4 !align-middle" />
+                {{ $t('nav_footer.select_feature_flags') }}
+              </button>
+            </NavSelectFeatureFlags>
+          </div>
         </div>
       </div>
     </Transition>

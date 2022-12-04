@@ -81,6 +81,10 @@
     "open_in_original_site": "从源站打开",
     "pin_on_profile": "钉选在个人资料上",
     "show_untranslated": "显示原文",
+    "toggle_theme": {
+      "dark": "切换深色模式",
+      "light": "切换亮色模式"
+    },
     "translate_post": "翻译帖子",
     "unblock_account": "解除拉黑 {0}",
     "unblock_domain": "解除拉黑域名 {0}",

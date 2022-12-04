@@ -1,6 +1,7 @@
 {
   "account": {
     "avatar_description": "{0}的头像",
+    "blocked_by": "您已被此用户拉黑",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
     "favourites": "喜欢的帖文",

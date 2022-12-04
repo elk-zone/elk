@@ -1,6 +1,7 @@
 {
   "account": {
     "avatar_description": "{0}'s avatar",
+    "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "favourites": "Favourites",

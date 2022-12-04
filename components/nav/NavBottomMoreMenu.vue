@@ -2,6 +2,14 @@
 import type { ComputedRef } from 'vue'
 import type { LocaleObject } from '#i18n'
 
+const props = defineProps<{
+  modelValue?: boolean
+}>()
+const emits = defineEmits<{
+  (event: 'update:modelValue', value: boolean): void
+}>()
+const visible = useVModel(props, 'modelValue', emits, { passive: true })
+
 const { t, locale, setLocale } = useI18n()
 const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
 
@@ -10,23 +18,22 @@ const toggleLocales = () => {
   setLocale(codes[(codes.indexOf(locale.value) + 1) % codes.length])
 }
 
-const show = ref(false)
 function changeShow() {
-  show.value = !show.value
+  visible.value = !visible.value
 }
 
 const buttonEl = ref<HTMLDivElement>()
 /** Close the drop-down menu if the mouse click is not on the drop-down menu button when the drop-down menu is opened */
 function clickEvent(mouse: MouseEvent) {
   if (mouse.target && !buttonEl.value?.children[0].contains(mouse.target as any)) {
-    if (show.value) {
+    if (visible.value) {
       document.removeEventListener('click', clickEvent)
-      show.value = false
+      visible.value = false
     }
   }
 }
 
-watch(show, (val, oldVal) => {
+watch(visible, (val, oldVal) => {
   if (val && val !== oldVal) {
     if (!import.meta.env.SSR && typeof document !== 'undefined')
       document.addEventListener('click', clickEvent)
@@ -41,7 +48,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="buttonEl" class="flex items-center static">
-    <slot :change-show="changeShow" :show="show" />
+    <slot :change-show="changeShow" :show="visible" />
 
     <!-- Drawer -->
     <Transition
@@ -54,7 +61,7 @@ onBeforeUnmount(() => {
       persisted
     >
       <div
-        v-show="show"
+        v-show="visible"
         absolute inset-x-0 top-auto bottom-full z-20 h-100vh
         flex items-end of-hidden
         bg="black/50"

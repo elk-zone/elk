@@ -1,35 +1,35 @@
 <script setup lang="ts">
-
+// only one icon can be lit up at the same time
+const moreMenuVisible = ref(false)
 </script>
 
 <template>
   <nav h-14 border="t base" flex flex-row text-xl>
     <template v-if="currentUser">
-      <NuxtLink to="/home" active-class="text-primary" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+      <NuxtLink to="/home" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:home-5-line />
       </NuxtLink>
-      <NuxtLink to="/notifications" active-class="text-primary" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+      <NuxtLink to="/notifications" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:notification-4-line />
       </NuxtLink>
     </template>
-    <NuxtLink to="/explore" active-class="text-primary" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+    <NuxtLink to="/explore" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
       <div i-ri:hashtag />
     </NuxtLink>
-    <NuxtLink group to="/public/local" active-class="text-primary" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+    <NuxtLink group to="/public/local" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
       <div i-ri:group-2-line />
     </NuxtLink>
-    <!-- <NuxtLink to="/public" active-class="text-primary" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-      <div i-ri:earth-line />
-    </NuxtLink> -->
+    <template v-if="!currentUser">
+      <NuxtLink to="/public" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+        <div i-ri:earth-line />
+      </NuxtLink>
+    </template>
     <template v-if="currentUser">
-      <NuxtLink to="/conversations" active-class="text-primary" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+      <NuxtLink to="/conversations" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:at-line />
       </NuxtLink>
     </template>
-    <NavBottomMoreMenu v-slot="{ changeShow, show }" flex flex-row items-center place-content-center h-full flex-1 cursor-pointer>
-      <!-- <NuxtLink to="/conversations" active-class="text-primary" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-        <div i-ri:at-line />
-      </NuxtLink> -->
+    <NavBottomMoreMenu v-slot="{ changeShow, show }" v-model="moreMenuVisible" flex flex-row items-center place-content-center h-full flex-1 cursor-pointer>
       <label
         flex items-center place-content-center h-full flex-1
         :class="show ? '!text-primary' : ''"

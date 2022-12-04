@@ -55,7 +55,7 @@ async function render(input: string, emojis?: Record<string, Emoji>) {
   const tree = parseMastodonHTML(input, emojis)
   const html = await renderTree(tree)
   let formatted = ''
-  const serializedText = tree.children.map(n => treeToText(n)).join('').trim()
+  const serializedText = treeToText(tree).trim()
 
   try {
     formatted = format(html, {

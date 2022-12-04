@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { usePushManager } from '~/composables/push-notifications/usePushManager'
-import { STORAGE_KEY_NOTIFICATION } from '~/constants'
+import { PWA_ENABLED, STORAGE_KEY_NOTIFICATION } from '~/constants'
 
 defineProps<{ show: boolean }>()
 const emit = defineEmits<{ (evt: 'warning', enabled: boolean): void }>()
@@ -16,6 +16,9 @@ const {
 } = usePushManager()
 
 const showWarning = $computed(() => {
+  if (!PWA_ENABLED)
+    return false
+
   return isSupported
       && (!isSubscribed.value || (
         (notificationPermission.value === null || notificationPermission.value === 'default')
@@ -38,7 +41,7 @@ onBeforeMount(() => emit('warning', showWarning))
 </script>
 
 <template>
-  <div px5 py4>
+  <div v-if="PWA_ENABLED" px5 py4>
     <template v-if="showWarning">
       <Transition name="slide-down">
         <div v-if="showWarning" flex="~ col" role="alert" aria-labelledby="notifications-warning">

@@ -46,7 +46,7 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <template #actions>
+    <template v-if="PWA_ENABLED" #actions>
       <button
         flex rounded-4 p2
         :title="$t('notification.settings.title')"

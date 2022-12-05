@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { usePushManager } from '~/composables/push-notifications/usePushManager'
-import { PWA_ENABLED, STORAGE_KEY_NOTIFICATION } from '~/constants'
+import { PWA_ENABLED } from '~/constants'
 
 defineProps<{ show: boolean }>()
 const emit = defineEmits<{ (evt: 'warning', enabled: boolean): void }>()
 
-const hiddenNotification = useLocalStorage(STORAGE_KEY_NOTIFICATION, false)
-
 const {
+  hiddenNotification,
   isSubscribed,
   isSupported,
   notificationPermission,

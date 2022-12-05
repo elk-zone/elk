@@ -1,5 +1,6 @@
 import type { CreatePushNotification, SubscriptionResult } from '~/composables/push-notifications/types'
 import { createPushSubscription } from '~/composables/push-notifications/createPushSubscription'
+import { STORAGE_KEY_NOTIFICATION } from '~/constants'
 
 const supportsPushNotifications = typeof window !== 'undefined'
     && 'serviceWorker' in navigator
@@ -10,6 +11,7 @@ export const usePushManager = () => {
   const isSubscribed = ref(false)
   const notificationPermission = ref<PermissionState | undefined>()
   const isSupported = $computed(() => supportsPushNotifications)
+  const hiddenNotification = useLocalStorage(STORAGE_KEY_NOTIFICATION, false)
 
   watch(() => currentUser.value?.pushSubscription, (subscription) => {
     isSubscribed.value = !!subscription
@@ -24,10 +26,13 @@ export const usePushManager = () => {
     if (!token || !server || !vapidKey)
       return 'invalid-state'
 
-    const permission = await navigator.permissions?.query({ name: 'notifications' })
+    let permission: PermissionStatus | undefined
 
-    if (permission.state === 'denied') {
-      notificationPermission.value = permission.state
+    if (!notificationPermission.value || (notificationPermission.value === 'prompt' && !hiddenNotification.value))
+      permission = await navigator.permissions?.query({ name: 'notifications' })
+
+    if (!permission || permission.state === 'denied') {
+      notificationPermission.value = permission?.state
       return 'notification-denied'
     }
 
@@ -60,6 +65,7 @@ export const usePushManager = () => {
   }
 
   return {
+    hiddenNotification,
     isSupported,
     isSubscribed,
     notificationPermission,

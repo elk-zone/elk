@@ -29,6 +29,14 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
         shortcut: { keys: ['?'], isSequence: false },
       },
       {
+        description: 'Next status',
+        shortcut: { keys: ['j'], isSequence: false },
+      },
+      {
+        description: 'Previous status',
+        shortcut: { keys: ['k'], isSequence: false },
+      },
+      {
         description: 'Home',
         shortcut: { keys: ['g', 'h'], isSequence: true },
       },

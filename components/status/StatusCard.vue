@@ -56,7 +56,7 @@ const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.cont
 </script>
 
 <template>
-  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
+  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" aria-roledescription="status-card" @click="onclick" @keydown.enter="onclick">
     <div v-if="rebloggedBy" pl8>
       <div flex="~ wrap" gap-1 items-center text-secondary text-sm>
         <div i-ri:repeat-fill mr-1 />

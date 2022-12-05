@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { logicOr } from '@vueuse/math'
 import type { RouteLocationRaw } from 'vue-router'
 import {
   isEditHistoryDialogOpen,
@@ -19,6 +18,7 @@ const { $scrollToTop } = useNuxtApp()
 
 // disable shortcuts when focused on inputs (https://vueuse.org/core/usemagickeys/#conditionally-disable)
 const activeElement = useActiveElement()
+
 const notUsingInput = computed(() =>
   activeElement.value?.tagName !== 'INPUT'
   && activeElement.value?.tagName !== 'TEXTAREA'
@@ -36,10 +36,59 @@ whenever(logicAnd(notUsingInput, keys['?']), toggleKeyboardShortcuts)
 
 // TODO: is this the correct way of using openPublishDialog()?
 const defaultPublishDialog = () => openPublishDialog('dialog', getDefaultDraft())
-whenever(logicAnd(isAuthenticated, notUsingInput, logicOr(keys.c)), defaultPublishDialog)
+whenever(logicAnd(isAuthenticated, notUsingInput, keys.c), defaultPublishDialog)
 
 whenever(logicAnd(notUsingInput, useMagicSequence(['g', 'h'])), () => navigateTo('/home'))
 whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'n'])), () => navigateTo('/notifications'))
+
+let activeStatus: HTMLElement | null = $ref(null)
+
+const initActiveStatus = () => {
+  activeStatus = document.querySelector<HTMLElement>('[aria-roledescription=status-details]')
+    || document.querySelector<HTMLElement>('[aria-roledescription=status-card]')
+  activeStatus?.focus()
+}
+
+const timelineMoveUp = () => {
+  if (!activeStatus || !activeStatus.isConnected) {
+    initActiveStatus()
+  }
+  else {
+    const prevEl = activeStatus?.previousElementSibling as HTMLElement | null
+    // if (prevEl) {
+    if (prevEl && prevEl.hasAttribute('aria-roledescription') && ['status-details', 'status-card'].includes(`${prevEl.getAttribute('aria-roledescription')}`)) {
+      activeStatus = prevEl
+      activeStatus.focus()
+    }
+  }
+}
+const timelineMoveDown = () => {
+  if (!activeStatus || !activeStatus.isConnected) {
+    initActiveStatus()
+  }
+  else {
+    const nextEl = activeStatus?.nextElementSibling as HTMLElement | null
+    if (nextEl && nextEl.hasAttribute('aria-roledescription') && ['status-details', 'status-card'].includes(`${nextEl.getAttribute('aria-roledescription')}`)) {
+      activeStatus = nextEl
+      activeStatus.focus()
+    }
+  }
+}
+
+whenever(logicAnd(notUsingInput, keys.j), timelineMoveDown)
+whenever(logicAnd(notUsingInput, keys.k), timelineMoveUp)
+
+const toggleFavouriteActiveStatus = () => {
+  (activeStatus || document.querySelector<HTMLElement>('[aria-roledescription=status-details]'))
+    ?.querySelector<HTMLElement>('button[aria-label=Favourite]')?.click()
+}
+whenever(logicAnd(isAuthenticated, notUsingInput, keys.f), toggleFavouriteActiveStatus)
+
+const toggleBoostActiveStatus = () => {
+  (activeStatus || document.querySelector<HTMLElement>('[aria-roledescription=status-details]'))
+    ?.querySelector<HTMLElement>('button[aria-label=Boost]')?.click()
+}
+whenever(logicAnd(isAuthenticated, notUsingInput, keys.b), toggleBoostActiveStatus)
 </script>
 
 <template>

@@ -141,6 +141,9 @@
   },
   "status": {
     "edited": "Edited {0}",
+    "filter_hidden_phrase": "Filtered by",
+    "filter_removed_phrase": "Removed by filter",
+    "filter_show_anyway": "Show anyway",
     "poll": {
       "count": "{0} votes",
       "ends": "ends {0}",
@@ -149,10 +152,7 @@
     "reblogged": "{0} reblogged",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
-    "try_original_site": "Try original site",
-    "filter_show_anyway": "Show anyway",
-    "filter_hidden_phrase": "Filtered by",
-    "filter_removed_phrase": "Removed by filter"
+    "try_original_site": "Try original site"
   },
   "status_history": {
     "created": "created {0}",

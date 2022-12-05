@@ -29,5 +29,8 @@ jobs:
       - name: 🧪 Test project
         run: pnpm test
 
+      - name: 📝 Lint
+        run: pnpm lint
+
       - name: 💪 Type check
         run: pnpm test:typecheck

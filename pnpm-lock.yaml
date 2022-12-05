@@ -6,6 +6,7 @@ specifiers:
   '@iconify-json/carbon': ^1.1.11
   '@iconify-json/logos': ^1.1.19
   '@iconify-json/material-symbols': ^1.1.25
+  '@iconify-json/ph': ^1.1.3
   '@iconify-json/ri': ^1.1.4
   '@iconify-json/twemoji': ^1.1.7
   '@nuxtjs/i18n': ^8.0.0-beta.6
@@ -71,6 +72,7 @@ devDependencies:
   '@iconify-json/carbon': 1.1.11
   '@iconify-json/logos': 1.1.19
   '@iconify-json/material-symbols': 1.1.25
+  '@iconify-json/ph': 1.1.3
   '@iconify-json/ri': 1.1.4
   '@iconify-json/twemoji': 1.1.7
   '@nuxtjs/i18n': 8.0.0-beta.6
@@ -658,6 +660,12 @@ packages:
 
   /@iconify-json/material-symbols/1.1.25:
     resolution: {integrity: sha512-htiXJwIV+HIlnKNdNWfjHwYeUZcPNMXkG+qwknvzeaKhOS9h67jhslhEu83sW1Y3v+OCA8vdVTgEBf+Q4t8+4g==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/ph/1.1.3:
+    resolution: {integrity: sha512-QSzWMGF8GiBPW89RpQ3bEwEjuRWTv/xxskStUpK7tsXlz3qoPTEM5CQxDUpzUmc9luAWViqD/shIUiuNhUeolw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

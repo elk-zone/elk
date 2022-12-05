@@ -1,5 +1,5 @@
 <template>
-  <div flex="~ wrap" gap-1 items-center absolute class="-top-3" right-2 bg-base px-2 py-1 rounded-full>
+  <div flex="~ wrap" gap-1 items-center absolute class="-top-0.5" left-0 bg-base px-3 rounded-rb-2>
     <slot />
   </div>
 </template>

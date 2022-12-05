@@ -9,18 +9,19 @@ const account = useAccountById(status.inReplyToAccountId!)
 </script>
 
 <template>
-  <div v-if="status.inReplyToAccountId" absolute class="-top-3.5" left-2 bg-base px-2 py-1 rounded-full flex="~ wrap" gap-1>
+  <div v-if="status.inReplyToAccountId" absolute class="-top-0.25 pt-0.5 pb-1.5" right-0 bg-base px-4 rounded-lb-2 flex="~ wrap" gap-1>
     <NuxtLink
       v-if="status.inReplyToId"
-      flex="~ wrap" items-center text-sm text-secondary gap-1
+      flex="~ wrap" items-center font-bold text-sm text-secondary gap-1
       :to="getStatusInReplyToRoute(status)"
       :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
     >
-      <div i-ri:chat-quote-fill text-secondary-light />
       <template v-if="account?.id !== status.account.id">
         <AccountInlineInfo v-if="account" :account="account" :link="false" />
         <span v-else>Someone</span>
       </template>
+      <span v-else>Thread</span>
+      <div i-ph:chats-fill text-primary text-lg />
     </NuxtLink>
   </div>
 </template>

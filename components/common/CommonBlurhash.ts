@@ -19,7 +19,6 @@ export default defineComponent({
 
     onMounted(() => {
       const img = document.createElement('img')
-      isLoaded.value = img.complete
       img.onload = () => {
         isLoaded.value = true
       }
@@ -36,6 +35,6 @@ export default defineComponent({
 
     return () => isLoaded.value || !placeholderSrc.value
       ? h('img', { ...attrs, src: props.src })
-      : h('img', { ...attrs, src: placeholderSrc.value })
+      : h('img', { ...attrs, src: placeholderSrc.value, srcset: null })
   },
 })

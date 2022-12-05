@@ -1,5 +1,4 @@
 import type { CreatePushNotification, SubscriptionResult } from '~/composables/push-notifications/types'
-import { requestNotificationPermission } from '~/composables/push-notifications/requestNotificationPermission'
 import { createPushSubscription } from '~/composables/push-notifications/createPushSubscription'
 
 const supportsPushNotifications = typeof window !== 'undefined'
@@ -9,7 +8,7 @@ const supportsPushNotifications = typeof window !== 'undefined'
 
 export const usePushManager = () => {
   const isSubscribed = ref(false)
-  const notificationPermission = ref<NotificationPermission | null>(Notification.permission)
+  const notificationPermission = ref<PermissionState | undefined>()
   const isSupported = $computed(() => supportsPushNotifications)
 
   watch(() => currentUser.value?.pushSubscription, (subscription) => {
@@ -25,13 +24,10 @@ export const usePushManager = () => {
     if (!token || !server || !vapidKey)
       return 'invalid-state'
 
-    let permission: NotificationPermission | null = null
+    const permission = await navigator.permissions?.query({ name: 'notifications' })
 
-    if (notificationPermission.value === null || notificationPermission.value === 'default')
-      permission = await requestNotificationPermission()
-
-    if (permission === null || permission === 'denied') {
-      notificationPermission.value = permission
+    if (permission.state === 'denied') {
+      notificationPermission.value = permission.state
       return 'notification-denied'
     }
 
@@ -48,7 +44,7 @@ export const usePushManager = () => {
       policy: 'all',
     })
     await nextTick()
-    notificationPermission.value = permission
+    notificationPermission.value = permission.state
     // console.log(currentUser.value.pushSubscription)
     return 'subscribed'
   }

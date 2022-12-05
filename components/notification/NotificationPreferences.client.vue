@@ -21,7 +21,7 @@ const showWarning = $computed(() => {
 
   return isSupported
       && (!isSubscribed.value || (
-        (notificationPermission.value === null || notificationPermission.value === 'default')
+        (!notificationPermission.value || notificationPermission.value === 'prompt')
         && !hiddenNotification.value
       ))
 })
@@ -29,7 +29,7 @@ const showWarning = $computed(() => {
 const doSubscribe = async () => {
   const subscription = await subscribe()
   if (subscription === 'subscribed')
-    notificationPermission.value === 'default' && (hiddenNotification.value = true)
+    notificationPermission.value === 'prompt' && (hiddenNotification.value = true)
   else
     hiddenNotification.value = false
 

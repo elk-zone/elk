@@ -1,3 +1,6 @@
+/**
+ * @vitest-environment jsdom
+ */
 import type { Emoji } from 'masto'
 import { describe, expect, it } from 'vitest'
 import { format } from 'prettier'

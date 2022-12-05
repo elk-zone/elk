@@ -8,7 +8,7 @@ const headers: HeadersInit = {
   'cache-control': 'public, max-age=0, must-revalidate',
 }
 
-export default defineEventHandler(async ({ res }) => {
+export default defineEventHandler(async ({ node: { res } }) => {
   const { swDir, swName } = useRuntimeConfig()
   const swPath = await resolvePath(joinURL(swDir, swName))
   const stats = await fs.stat(swPath)

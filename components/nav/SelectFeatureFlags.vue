@@ -13,7 +13,7 @@ const featureFlags = useFeatureFlags()
         {{ $t('feature_flag.virtual_scroll') }}
       </CommonDropdownItem>
       <CommonDropdownItem
-        :checked="featureFlags.experimentalVirtualScroll"
+        :checked="featureFlags.experimentalAvatarOnAvatar"
         @click="toggleFeatureFlag('experimentalAvatarOnAvatar')"
       >
         {{ $t('feature_flag.avatar_on_avatar') }}

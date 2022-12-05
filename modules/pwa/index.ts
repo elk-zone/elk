@@ -4,6 +4,7 @@ import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
 import type { Plugin } from 'vite'
 import { joinURL } from 'ufo'
+import { isCI } from 'std-env'
 import type { VitePWANuxtOptions } from './types'
 import { configurePWAOptions } from './config'
 
@@ -77,7 +78,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         }
       })
     }
-    else if (!options.disable) {
+    else if (!options.disable && !isCI) {
       const { filename = 'sw.js', srcDir = 'public' } = options
       const swSrc = await resolvePath(joinURL(nuxt.options.rootDir, srcDir, filename))
       const stats = await fs.stat(swSrc)

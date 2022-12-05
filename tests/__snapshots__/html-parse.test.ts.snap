@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`html-parse > code frame > html 1`] = `
-"<p>Testing code block</p><p><pre><code class=\\"language-ts\\">import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
+"<p>Testing code block</p><p><pre><code class=\\"language-ts\\">import { useMouse, usePreferredDark } from '@vueuse/core'
 // tracks mouse position
 const { x, y } = useMouse()
 // is the user prefers dark theme
@@ -12,7 +12,7 @@ exports[`html-parse > code frame > text 1`] = `
 "Testing code block
 
 \`\`\`ts
-import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
+import { useMouse, usePreferredDark } from '@vueuse/core'
 // tracks mouse position
 const { x, y } = useMouse()
 // is the user prefers dark theme

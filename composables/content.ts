@@ -72,7 +72,9 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
       [/\*(.*?)\*/g, '<em>$1</em>'],
       [/~~(.*?)~~/g, '<del>$1</del>'],
       [/`([^`]+?)`/g, '<code>$1</code>'],
-    ] as const
+      [/&#(\d+);/g, (_: string, dec: string) => String.fromCharCode(Number(dec))],
+    ] as any
+
     for (const [re, replacement] of replacements) {
       for (const match of node.value.matchAll(re)) {
         if (node.loc) {

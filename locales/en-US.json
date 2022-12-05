@@ -39,13 +39,22 @@
     "reply": "Reply",
     "save_changes": "Save changes",
     "sign_in": "Sign in",
+    "switch_account": "Switch account",
     "vote": "Vote"
   },
   "app_desc_short": "A Mastodon client made with 🧡",
   "app_name": "Elk",
   "command": {
     "activate": "Activate",
-    "complete": "Complete"
+    "complete": "Complete",
+    "compose_desc": "Write a new post",
+    "lang": "Languages",
+    "select_lang": "Select language",
+    "sign_in_desc": "Add an existing account",
+    "switch_account": "Switch to {0}",
+    "switch_account_desc": "Switch to another account",
+    "toggle_dark_mode": "Toggle dark mode",
+    "toggle_zen_mode": "Toggle zen mode"
   },
   "common": {
     "end_of_list": "End of the list",
@@ -141,6 +150,9 @@
   },
   "status": {
     "edited": "Edited {0}",
+    "filter_hidden_phrase": "Filtered by",
+    "filter_removed_phrase": "Removed by filter",
+    "filter_show_anyway": "Show anyway",
     "poll": {
       "count": "{0} votes",
       "ends": "ends {0}",
@@ -149,10 +161,7 @@
     "reblogged": "{0} reblogged",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
-    "try_original_site": "Try original site",
-    "filter_show_anyway": "Show anyway",
-    "filter_hidden_phrase": "Filtered by",
-    "filter_removed_phrase": "Removed by filter"
+    "try_original_site": "Try original site"
   },
   "status_history": {
     "created": "created {0}",

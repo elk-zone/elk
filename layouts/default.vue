@@ -35,7 +35,7 @@
                 <AccountInfo :account="currentUser.account" md:break-words />
               </NuxtLink>
               <VDropdown :distance="0" placement="bottom-end">
-                <button btn-action-icon aria-label="Switch account">
+                <button btn-action-icon :aria-label="$t('action.switch_account')">
                   <div i-ri:more-2-line />
                 </button>
                 <template #popper>

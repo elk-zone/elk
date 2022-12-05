@@ -35,7 +35,7 @@ const switchUser = (user: UserLogin) => {
     </template>
     <div border="t base" pt2>
       <CommonDropdownItem
-        :text=" $t('user.add_existing')"
+        :text="$t('user.add_existing')"
         icon="i-ri:user-add-line"
         @click="openSigninDialog"
       />

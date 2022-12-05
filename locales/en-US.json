@@ -39,13 +39,22 @@
     "reply": "Reply",
     "save_changes": "Save changes",
     "sign_in": "Sign in",
+    "switch_account": "Switch account",
     "vote": "Vote"
   },
   "app_desc_short": "A Mastodon client made with 🧡",
   "app_name": "Elk",
   "command": {
     "activate": "Activate",
-    "complete": "Complete"
+    "complete": "Complete",
+    "compose_desc": "Write a new post",
+    "lang": "Languages",
+    "select_lang": "Select language",
+    "sign_in_desc": "Add an existing account",
+    "switch_account": "Switch to {0}",
+    "switch_account_desc": "Switch to another account",
+    "toggle_dark_mode": "Toggle dark mode",
+    "toggle_zen_mode": "Toggle zen mode"
   },
   "common": {
     "end_of_list": "End of the list",

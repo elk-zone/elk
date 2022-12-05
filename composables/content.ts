@@ -43,6 +43,12 @@ function handleNode(el: Node) {
   return handleCodeBlock(el) || handleMention(el) || el
 }
 
+const decoder = document.createElement('textarea')
+function decode(text: string) {
+  decoder.innerHTML = text
+  return decoder.value
+}
+
 /**
  * Parse raw HTML form Mastodon server to AST,
  * with interop of custom emojis and inline Markdown syntax
@@ -72,7 +78,7 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
       [/\*(.*?)\*/g, '<em>$1</em>'],
       [/~~(.*?)~~/g, '<del>$1</del>'],
       [/`([^`]+?)`/g, '<code>$1</code>'],
-      [/&#(\d+);/g, (_: string, dec: string) => String.fromCharCode(Number(dec))],
+      [/&[^;]+;/g, (val: string) => decode(val)],
     ] as any
 
     for (const [re, replacement] of replacements) {

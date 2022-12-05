@@ -210,9 +210,9 @@ export const provideGlobalCommands = () => {
 
     visible: () => currentUser.value,
 
-    name: t('action.compose'),
+    name: () => t('action.compose'),
     icon: 'i-ri:quill-pen-line',
-    description: t('command.compose_desc'),
+    description: () => t('command.compose_desc'),
 
     onActivate() {
       openPublishDialog()
@@ -222,7 +222,7 @@ export const provideGlobalCommands = () => {
   useCommand({
     scope: 'Preferences',
 
-    name: t('command.toggle_dark_mode'),
+    name: () => t('command.toggle_dark_mode'),
     icon: () => isDark.value ? 'i-ri:sun-line' : 'i-ri:moon-line',
 
     onActivate() {
@@ -233,7 +233,7 @@ export const provideGlobalCommands = () => {
   useCommand({
     scope: 'Preferences',
 
-    name: t('command.toggle_zen_mode'),
+    name: () => t('command.toggle_zen_mode'),
     icon: () => isZenMode.value ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
 
     onActivate() {
@@ -244,7 +244,7 @@ export const provideGlobalCommands = () => {
   useCommand({
     scope: 'Preferences',
 
-    name: t('command.select_lang'),
+    name: () => t('command.select_lang'),
     icon: 'i-ri:earth-line',
 
     onComplete: () => ({
@@ -267,8 +267,8 @@ export const provideGlobalCommands = () => {
   useCommand({
     scope: 'Account',
 
-    name: t('action.sign_in'),
-    description: t('command.sign_in_desc'),
+    name: () => t('action.sign_in'),
+    description: () => t('command.sign_in_desc'),
     icon: 'i-ri:user-add-line',
 
     onActivate() {
@@ -280,7 +280,7 @@ export const provideGlobalCommands = () => {
 
     visible: () => users.value.length > 1,
 
-    name: t('action.switch_account'),
+    name: () => t('action.switch_account'),
     description: t('command.switch_account_desc'),
     icon: 'i-ri:user-shared-line',
 
@@ -295,7 +295,7 @@ export const provideGlobalCommands = () => {
 
     visible: () => user.account.id !== currentUser.value?.account.id,
 
-    name: t('command.switch_account', [getFullHandle(user.account)]),
+    name: () => t('command.switch_account', [getFullHandle(user.account)]),
     icon: 'i-ri:user-shared-line',
 
     onActivate() {

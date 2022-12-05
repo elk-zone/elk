@@ -50,7 +50,8 @@ export const usePushManager = () => {
     })
     await nextTick()
     notificationPermission.value = permission.state
-    // console.log(currentUser.value.pushSubscription)
+    hiddenNotification.value = true
+
     return 'subscribed'
   }
 

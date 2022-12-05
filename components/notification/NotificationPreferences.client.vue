@@ -3,7 +3,6 @@ import { usePushManager } from '~/composables/push-notifications/usePushManager'
 import { PWA_ENABLED } from '~/constants'
 
 defineProps<{ show: boolean }>()
-const emit = defineEmits<{ (evt: 'warning', enabled: boolean): void }>()
 
 const {
   hiddenNotification,
@@ -27,20 +26,18 @@ const showWarning = $computed(() => {
 
 const doSubscribe = async () => {
   const subscription = await subscribe()
-  if (subscription === 'subscribed')
-    notificationPermission.value === 'prompt' && (hiddenNotification.value = true)
-  else
-    hiddenNotification.value = false
-
-  emit('warning', showWarning)
+  // todo: apply some logic based on the result: subscription === 'subscribed'
+  // todo: maybe throwing an error instead just a literal to show a dialog with the error
 }
-
-onActivated(() => emit('warning', showWarning))
-onBeforeMount(() => emit('warning', showWarning))
 </script>
 
 <template>
-  <div v-if="PWA_ENABLED" px5 py4>
+  <div v-if="PWA_ENABLED && (showWarning || show)" px5 py4>
+    <Transition name="slide-down">
+      <div v-if="show" flex="~ col">
+        TODO
+      </div>
+    </Transition>
     <template v-if="showWarning">
       <Transition name="slide-down">
         <div v-if="showWarning" flex="~ col" role="alert" aria-labelledby="notifications-warning">
@@ -66,13 +63,6 @@ onBeforeMount(() => emit('warning', showWarning))
           >
             {{ $t('notification.settings.warning.enable_desktop') }}
           </button>
-        </div>
-      </Transition>
-    </template>
-    <template v-else>
-      <Transition name="slide-down">
-        <div v-if="show" flex="~ col">
-          TODO
         </div>
       </Transition>
     </template>

@@ -7,7 +7,6 @@ definePageMeta({
 
 const { t } = useI18n()
 const showSettings = ref(false)
-const disableSettings = ref(true)
 
 const paginatorAll = useMasto().notifications.iterate()
 const paginatorMention = useMasto().notifications.iterate({ types: ['mention'] })
@@ -51,20 +50,23 @@ useHeadFixed({
     <template v-if="PWA_ENABLED" #actions>
       <button
         flex rounded-4 p2
+        hover:bg-active cursor-pointer transition-100
         :title="$t('notification.settings.title')"
-        :disabled="disableSettings"
-        :class="disableSettings ? null : 'hover:bg-active cursor-pointer transition-100'"
         @click="showSettings = !showSettings"
       >
-        <span aria-hidden="true" i-ri:settings-3-fill :class="disableSettings ? 'op-30' : null" />
+        <span aria-hidden="true" i-ri:settings-3-fill />
       </button>
     </template>
 
     <template #header>
       <CommonTabs v-model="tab" :options="tabs" />
-      <NotificationPreferences :show="showSettings" @warning="disableSettings = $event" />
+      <NotificationPreferences :show="showSettings" />
     </template>
     <slot>
+      <!-- can go also here -->
+      <!--
+      <NotificationPreferences :show="showSettings" />
+-->
       <NotificationPaginator :key="tab" v-bind="{ paginator, stream }" />
     </slot>
   </MainContent>

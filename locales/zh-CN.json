@@ -151,8 +151,8 @@
   "status": {
     "edited": "在 {0} 编辑了",
     "filter_hidden_phrase": "筛选依据",
-    "filter_removed_phrase": "被过滤器移除",
-    "filter_show_anyway": "仍然显示",
+    "filter_removed_phrase": "从筛选中移除",
+    "filter_show_anyway": "仍然展示",
     "poll": {
       "count": "{0} 次投票",
       "ends": "将在 {0} 结束",

@@ -5,6 +5,10 @@ import type { ComputedRef } from 'vue'
 //         `magicSequence['Shift+Ctrl+A']`
 //         `const { Ctrl_A_B } = useMagicSequence()`
 
+/**
+ * source: inspired by https://github.com/vueuse/vueuse/issues/427#issuecomment-815619446
+ * @param keys ordered list of keys making up the sequence
+ */
 export function useMagicSequence(keys: string[]): ComputedRef<boolean> {
   const magicKeys = useMagicKeys()
 

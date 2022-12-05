@@ -15,7 +15,7 @@
     "prepare": "esno scripts/prepare.ts",
     "generate": "nuxi generate",
     "test:unit": "vitest",
-    "test:typecheck": "vue-tsc --noEmit",
+    "test:typecheck": "vue-tsc --noEmit && vue-tsc --noEmit --project service-worker/tsconfig.json",
     "test": "nr test:unit",
     "postinstall": "nuxi prepare && simple-git-hooks"
   },

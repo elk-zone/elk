@@ -1,3 +1,5 @@
+/// <reference lib="WebWorker" />
+/// <reference types="vite/client" />
 import type { PushPayload } from '~/service-worker/types'
 
 declare const self: ServiceWorkerGlobalScope

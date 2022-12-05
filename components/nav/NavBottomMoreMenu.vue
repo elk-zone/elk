@@ -44,6 +44,8 @@ onBeforeUnmount(() => {
   if (!import.meta.env.SSR)
     document.removeEventListener('click', clickEvent)
 })
+// work around a type error when persisted is passed directly: An object literal cannot have multiple properties with the same name.
+const persisted = 'persisted' as string
 </script>
 
 <template>
@@ -58,7 +60,7 @@ onBeforeUnmount(() => {
       leave-active-class="transition duration-250 ease-in  children:(transition duration-250 ease-in)"
       leave-from-class="opacity-100 children:(transform translate-y-0)"
       leave-to-class="opacity-0 children:(transform translate-y-full)"
-      persisted
+      :[persisted]="true"
     >
       <div
         v-show="visible"

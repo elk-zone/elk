@@ -201,7 +201,7 @@ export const useCommands = (cmds: () => CommandProvider[]) => {
 }
 
 export const provideGlobalCommands = () => {
-  const { locale } = useI18n()
+  const { locale, t } = useI18n()
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
   const users = useUsers()
 
@@ -210,9 +210,9 @@ export const provideGlobalCommands = () => {
 
     visible: () => currentUser.value,
 
-    name: 'Compose',
+    name: () => t('action.compose'),
     icon: 'i-ri:quill-pen-line',
-    description: 'Write a new post',
+    description: () => t('command.compose_desc'),
 
     onActivate() {
       openPublishDialog()
@@ -222,7 +222,7 @@ export const provideGlobalCommands = () => {
   useCommand({
     scope: 'Preferences',
 
-    name: 'Toggle dark mode',
+    name: () => t('command.toggle_dark_mode'),
     icon: () => isDark.value ? 'i-ri:sun-line' : 'i-ri:moon-line',
 
     onActivate() {
@@ -233,7 +233,7 @@ export const provideGlobalCommands = () => {
   useCommand({
     scope: 'Preferences',
 
-    name: 'Toggle Zen mode',
+    name: () => t('command.toggle_zen_mode'),
     icon: () => isZenMode.value ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
 
     onActivate() {
@@ -244,7 +244,7 @@ export const provideGlobalCommands = () => {
   useCommand({
     scope: 'Preferences',
 
-    name: 'Select language',
+    name: () => t('command.select_lang'),
     icon: 'i-ri:earth-line',
 
     onComplete: () => ({
@@ -267,8 +267,8 @@ export const provideGlobalCommands = () => {
   useCommand({
     scope: 'Account',
 
-    name: 'Sign in',
-    description: 'Add an existing account',
+    name: () => t('action.sign_in'),
+    description: () => t('command.sign_in_desc'),
     icon: 'i-ri:user-add-line',
 
     onActivate() {
@@ -280,8 +280,8 @@ export const provideGlobalCommands = () => {
 
     visible: () => users.value.length > 1,
 
-    name: 'Switch account',
-    description: 'Switch to another account',
+    name: () => t('action.switch_account'),
+    description: t('command.switch_account_desc'),
     icon: 'i-ri:user-shared-line',
 
     onComplete: () => ({
@@ -295,7 +295,7 @@ export const provideGlobalCommands = () => {
 
     visible: () => user.account.id !== currentUser.value?.account.id,
 
-    name: `Switch to ${getFullHandle(user.account)}`,
+    name: () => t('command.switch_account', [getFullHandle(user.account)]),
     icon: 'i-ri:user-shared-line',
 
     onActivate() {
@@ -307,7 +307,7 @@ export const provideGlobalCommands = () => {
 
     visible: () => currentUser.value,
 
-    name: () => `Sign out ${getFullHandle(currentUser.value!.account)}`,
+    name: () => t('user.sign_out_account', [getFullHandle(currentUser.value!.account)]),
     icon: 'i-ri:logout-box-line',
 
     onActivate() {

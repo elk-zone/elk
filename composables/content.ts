@@ -1,49 +1,52 @@
 import type { Emoji } from 'masto'
-import type { DefaultTreeAdapterMap } from 'parse5'
-import { parseFragment, serialize } from 'parse5'
+import type { Node } from 'ultrahtml'
+import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
 import type { VNode } from 'vue'
 import { Fragment, h, isVNode } from 'vue'
 import { RouterLink } from 'vue-router'
 import ContentCode from '~/components/content/ContentCode.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 
-type Node = DefaultTreeAdapterMap['childNode']
-type Element = DefaultTreeAdapterMap['element']
-
-function handleMention(el: Element) {
+function handleMention(el: Node) {
   // Redirect mentions to the user page
-  if (el.tagName === 'a' && el.attrs.find(i => i.name === 'class' && i.value.includes('mention'))) {
-    const href = el.attrs.find(i => i.name === 'href')
+  if (el.name === 'a' && el.attributes.class?.includes('mention')) {
+    const href = el.attributes.href
     if (href) {
-      const matchUser = href.value.match(UserLinkRE)
+      const matchUser = href.match(UserLinkRE)
       if (matchUser) {
         const [, server, username] = matchUser
         const handle = `@${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
-        href.value = `/${server}/@${username}`
+        el.attributes.href = `/${server}/@${username}`
         return h(AccountHoverWrapper, { handle, class: 'inline-block' }, () => nodeToVNode(el))
       }
-      const matchTag = href.value.match(TagLinkRE)
+      const matchTag = href.match(TagLinkRE)
       if (matchTag) {
         const [, , name] = matchTag
-        href.value = `/${currentServer.value}/tags/${name}`
+        el.attributes.href = `/${currentServer.value}/tags/${name}`
       }
     }
   }
   return undefined
 }
 
-function handleCodeBlock(el: Element) {
-  if (el.tagName === 'pre' && el.childNodes[0]?.nodeName === 'code') {
-    const codeEl = el.childNodes[0] as Element
-    const classes = codeEl.attrs.find(i => i.name === 'class')?.value
+function handleCodeBlock(el: Node) {
+  if (el.name === 'pre' && el.children[0]?.name === 'code') {
+    const codeEl = el.children[0] as Node
+    const classes = codeEl.attributes.class as string
     const lang = classes?.split(/\s/g).find(i => i.startsWith('language-'))?.replace('language-', '')
-    const code = codeEl.childNodes[0] ? treeToText(codeEl.childNodes[0]) : ''
+    const code = codeEl.children[0] ? treeToText(codeEl.children[0]) : ''
     return h(ContentCode, { lang, code: encodeURIComponent(code) })
   }
 }
 
-function handleNode(el: Element) {
+function handleNode(el: Node) {
   return handleCodeBlock(el) || handleMention(el) || el
+}
+
+const decoder = document.createElement('textarea')
+function decode(text: string) {
+  decoder.innerHTML = text
+  return decoder.value
 }
 
 /**
@@ -51,7 +54,7 @@ function handleNode(el: Element) {
  * with interop of custom emojis and inline Markdown syntax
  */
 export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
-  const processed = html
+  let processed = html
     // custom emojis
     .replace(/:([\w-]+?):/g, (_, name) => {
       const emoji = customEmojis[name]
@@ -66,36 +69,38 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
       return `><pre><code${classes}>${code}</code></pre>`
     })
 
-  const tree = parseFragment(processed)
+  walkSync(parse(processed), (node) => {
+    if (node.type !== TEXT_NODE)
+      return
+    const replacements = [
+      [/\*\*\*(.*?)\*\*\*/g, '<b><em>$1</em></b>'],
+      [/\*\*(.*?)\*\*/g, '<b>$1</b>'],
+      [/\*(.*?)\*/g, '<em>$1</em>'],
+      [/~~(.*?)~~/g, '<del>$1</del>'],
+      [/`([^`]+?)`/g, '<code>$1</code>'],
+      [/&[^;]+;/g, (val: string) => decode(val)],
+    ] as any
 
-  function walk(node: Node) {
-    if ('childNodes' in node)
-      node.childNodes = node.childNodes.flatMap(n => walk(n))
-
-    if (node.nodeName === '#text') {
-      // @ts-expect-error casing
-      const text = node.value as string
-      const converted = text
-        .replace(/\*\*\*(.*?)\*\*\*/g, '<b><em>$1</em></b>')
-        .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/~~(.*?)~~/g, '<del>$1</del>')
-        .replace(/`([^`]+?)`/g, '<code>$1</code>')
-
-      if (converted !== text)
-        return parseFragment(converted).childNodes
+    for (const [re, replacement] of replacements) {
+      for (const match of node.value.matchAll(re)) {
+        if (node.loc) {
+          const start = match.index! + node.loc[0].start
+          const end = start + match[0].length + node.loc[0].start
+          processed = processed.slice(0, start) + match[0].replace(re, replacement) + processed.slice(end)
+        }
+        else {
+          processed = processed.replace(match[0], match[0].replace(re, replacement))
+        }
+      }
     }
-    return [node]
-  }
+  })
 
-  tree.childNodes = tree.childNodes.flatMap(n => walk(n))
-
-  return tree
+  return parse(processed)
 }
 
-export function convertMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
+export async function convertMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
   const tree = parseMastodonHTML(html, customEmojis)
-  return serialize(tree)
+  return await render(tree)
 }
 
 /**
@@ -106,31 +111,28 @@ export function contentToVNode(
   customEmojis: Record<string, Emoji> = {},
 ): VNode {
   const tree = parseMastodonHTML(content, customEmojis)
-  return h(Fragment, tree.childNodes.map(n => treeToVNode(n)))
+  return h(Fragment, (tree.children as Node[]).map(n => treeToVNode(n)))
 }
 
 function nodeToVNode(node: Node): VNode | string | null {
-  if (node.nodeName === '#text') {
-    // @ts-expect-error casing
-    return input.value as string
-  }
+  if (node.type === TEXT_NODE)
+    return node.value
 
-  if ('childNodes' in node) {
-    const attrs = Object.fromEntries(node.attrs.map(i => [i.name, i.value]))
-    if (node.nodeName === 'a' && (attrs.href?.startsWith('/') || attrs.href?.startsWith('.'))) {
-      attrs.to = attrs.href
-      delete attrs.href
-      delete attrs.target
+  if ('children' in node) {
+    if (node.name === 'a' && (node.attributes.href?.startsWith('/') || node.attributes.href?.startsWith('.'))) {
+      node.attributes.to = node.attributes.href
+      delete node.attributes.href
+      delete node.attributes.target
       return h(
         RouterLink as any,
-        attrs,
-        () => node.childNodes.map(treeToVNode),
+        node.attributes,
+        () => node.children.map(treeToVNode),
       )
     }
     return h(
-      node.nodeName,
-      attrs,
-      node.childNodes.map(treeToVNode),
+      node.name,
+      node.attributes,
+      node.children.map(treeToVNode),
     )
   }
   return null
@@ -139,12 +141,10 @@ function nodeToVNode(node: Node): VNode | string | null {
 function treeToVNode(
   input: Node,
 ): VNode | string | null {
-  if (input.nodeName === '#text') {
-    // @ts-expect-error casing
+  if (input.type === TEXT_NODE)
     return input.value as string
-  }
 
-  if ('childNodes' in input) {
+  if ('children' in input) {
     const node = handleNode(input)
     if (node == null)
       return null
@@ -156,8 +156,8 @@ function treeToVNode(
 }
 
 export function htmlToText(html: string) {
-  const tree = parseFragment(html)
-  return tree.childNodes.map(n => treeToText(n)).join('').trim()
+  const tree = parse(html)
+  return (tree.children as Node[]).map(n => treeToText(n)).join('').trim()
 }
 
 export function treeToText(input: Node): string {
@@ -165,20 +165,18 @@ export function treeToText(input: Node): string {
   let body = ''
   let post = ''
 
-  if (input.nodeName === '#text')
-    // @ts-expect-error casing
+  if (input.type === TEXT_NODE)
     return input.value
 
-  if (input.nodeName === 'br')
+  if (input.name === 'br')
     return '\n'
 
-  if (['p', 'pre'].includes(input.nodeName))
+  if (['p', 'pre'].includes(input.name))
     pre = '\n'
 
-  if (input.nodeName === 'code') {
-    if (input.parentNode?.nodeName === 'pre') {
-      const clz = input.attrs.find(attr => attr.name === 'class')
-      const lang = clz?.value.replace('language-', '')
+  if (input.name === 'code') {
+    if (input.parent?.name === 'pre') {
+      const lang = input.attributes.class?.replace('language-', '')
 
       pre = `\`\`\`${lang || ''}\n`
       post = '\n```'
@@ -188,24 +186,24 @@ export function treeToText(input: Node): string {
       post = '`'
     }
   }
-  else if (input.nodeName === 'b' || input.nodeName === 'strong') {
+  else if (input.name === 'b' || input.name === 'strong') {
     pre = '**'
     post = '**'
   }
-  else if (input.nodeName === 'i' || input.nodeName === 'em') {
+  else if (input.name === 'i' || input.name === 'em') {
     pre = '*'
     post = '*'
   }
-  else if (input.nodeName === 'del') {
+  else if (input.name === 'del') {
     pre = '~~'
     post = '~~'
   }
 
-  if ('childNodes' in input)
-    body = input.childNodes.map(n => treeToText(n)).join('')
+  if ('children' in input)
+    body = (input.children as Node[]).map(n => treeToText(n)).join('')
 
-  if (input.nodeName === 'img' && input.attrs.some(attr => attr.name === 'class' && attr.value.includes('custom-emoji')))
-    return `:${input.attrs.find(attr => attr.name === 'data-emoji-id')?.value}:`
+  if (input.name === 'img' && input.attributes.class?.includes('custom-emoji'))
+    return `:${input.attributes['data-emoji-id']}:`
 
   return pre + body + post
 }

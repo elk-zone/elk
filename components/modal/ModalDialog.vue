@@ -129,8 +129,7 @@ export default {
         :style="{
           'z-index': zIndex,
         }"
-        class="scrollbar-hide"
-        fixed inset-0 overflow-y-auto overscroll-none
+        fixed inset-0 of-y-auto scrollbar-hide overscroll-none
       >
         <!-- The style `scrollbar-hide overscroll-none overflow-y-scroll` and `h="[calc(100%+0.5px)]"` is used to implement scroll locking, -->
         <!-- corresponding to issue: #106, so please don't remove it. -->
@@ -188,13 +187,5 @@ export default {
   padding-right: env(safe-area-inset-right);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
-}
-
-.scrollbar-hide {
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
 }
 </style>

@@ -1,3 +1,6 @@
+/**
+ * @vitest-environment jsdom
+ */
 /* eslint-disable vue/one-component-per-file */
 import type { Emoji } from 'masto'
 import { describe, expect, it, vi } from 'vitest'

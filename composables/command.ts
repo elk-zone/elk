@@ -200,10 +200,8 @@ export const useCommands = (cmds: () => CommandProvider[]) => {
   tryOnScopeDispose(cleanup)
 }
 
-const { t } = useI18n()
-
 export const provideGlobalCommands = () => {
-  const { locale } = useI18n()
+  const { locale, t } = useI18n()
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
   const users = useUsers()
 

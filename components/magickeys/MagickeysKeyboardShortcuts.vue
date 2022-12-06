@@ -57,6 +57,14 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
         description: 'Compose',
         shortcut: { keys: ['c'], isSequence: false },
       },
+      {
+        description: 'Favourite',
+        shortcut: { keys: ['f'], isSequence: false },
+      },
+      {
+        description: 'Boost',
+        shortcut: { keys: ['b'], isSequence: false },
+      },
     ],
   },
   {

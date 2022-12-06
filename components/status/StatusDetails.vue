@@ -25,7 +25,6 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         <AccountInfo :account="status.account" />
       </AccountHoverWrapper>
     </NuxtLink>
-    <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" />
     <div
       :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''"
     >

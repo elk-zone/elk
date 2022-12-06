@@ -14,7 +14,8 @@ function groupItems(items: Notification[]): (Notification | GroupedNotifications
   let followGroup: Notification[] = []
 
   const bump = () => {
-    if (followGroup.length === 1) {
+    const alwaysGroup = true
+    if (!alwaysGroup && followGroup.length === 1) {
       results.push(followGroup[0])
       followGroup = []
     }
@@ -58,13 +59,13 @@ const { clearNotifications } = useNotifications()
         <NotificationGroupedFollow
           v-if="item.type === 'grouped-follow'"
           :items="item"
-          border="b base" pt-4
+          border="b base"
         />
         <NotificationCard
           v-else
           :notification="item"
           hover:bg-active
-          border="b base" pt-4
+          border="b base"
         />
       </template>
     </template>

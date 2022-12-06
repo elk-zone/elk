@@ -21,10 +21,10 @@ const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
     w-full
   >
     <NuxtLink :to="card.url">
-      <template v-if="card.html">
-        <!-- youtube videos have iframe in card.html -->
+      <!-- youtube videos have iframe in card.html -->
+      <!-- <template v-if="card.html">
         {{ card.html }}
-      </template>
+      </template> -->
       <CommonBlurhash
         v-if="card.image"
         :blurhash="card.blurhash"

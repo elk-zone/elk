@@ -7,6 +7,8 @@ const prop = defineProps<{
 const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
 
 // TODO: handle card.type: CardType
+// TODO: rename component to StatusPreviewCard
+// TODO: fix layout when used on StatusCard
 </script>
 
 <template>
@@ -27,7 +29,6 @@ const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
         :width="card.width"
         :height="card.height"
         :alt="alt"
-        border-b="~ base"
         rounded-lg
         rounded-b-none
         object-cover

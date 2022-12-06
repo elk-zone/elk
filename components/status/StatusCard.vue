@@ -111,9 +111,7 @@ const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.cont
             :actions="false"
           />
         </div>
-        <div v-if="status.card">
-          <StatusLink :card="status.card" />
-        </div>
+        <StatusLink v-if="status.card" :card="status.card" />
         <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
       </div>
     </div>

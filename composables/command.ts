@@ -281,7 +281,7 @@ export const provideGlobalCommands = () => {
     visible: () => users.value.length > 1,
 
     name: () => t('action.switch_account'),
-    description: t('command.switch_account_desc'),
+    description: () => t('command.switch_account_desc'),
     icon: 'i-ri:user-shared-line',
 
     onComplete: () => ({

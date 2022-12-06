@@ -8,9 +8,11 @@ const { edit } = defineProps<{
 
 <template>
   <div px3 py-4 flex="~ col">
-    <div text-center flex="~ row gap-1">
+    <div text-center flex="~ row gap-1 wrap">
       <AccountInlineInfo :account="edit.account" />
-      edited {{ useFormattedDateTime(edit.createdAt).value }}
+      <span>
+        {{ $t('status_history.edited', [useFormattedDateTime(edit.createdAt).value]) }}
+      </span>
     </div>
 
     <div h1px bg="gray/20" my2 />

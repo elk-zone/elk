@@ -20,7 +20,7 @@ const switchUser = (user: UserLogin) => {
 </script>
 
 <template>
-  <div min-w-80 mxa py2 flex="~ col">
+  <div sm:min-w-80 max-w-100vw mxa py2 flex="~ col">
     <template v-for="user of sorted" :key="user.id">
       <button
         flex rounded px4 py3 text-left

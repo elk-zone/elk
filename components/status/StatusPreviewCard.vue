@@ -7,7 +7,6 @@ const prop = defineProps<{
 const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
 
 // TODO: handle card.type: 'link' | 'photo' | 'video' | 'rich';
-// TODO: rename component to StatusPreviewCard
 </script>
 
 <template>

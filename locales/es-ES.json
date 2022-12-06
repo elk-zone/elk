@@ -156,7 +156,7 @@
     "poll": {
       "count": "{0} votos|{0} voto|{0} votos",
       "ends": "finaliza el {0}",
-      "finished": "finalizado el {0}"
+      "finished": "finalizada el {0}"
     },
     "reblogged": "{0} retooteó",
     "spoiler_show_less": "Mostrar menos",

@@ -29,7 +29,7 @@ onKeyStroke('Escape', (e) => {
 
 const commandMode = $computed(() => input.startsWith('>'))
 const result = $computed(() => commandMode
-  ? registry.query(scopes.map(s => s.id).join('.'), input.slice(1))
+  ? registry.query(scopes.map(s => s.id).join('.'), input.slice(1)) ?? { length: 0, items: [], grouped: {} }
   : { length: 0, items: [], grouped: {} })
 let active = $ref(0)
 watch($$(result), (n, o) => {

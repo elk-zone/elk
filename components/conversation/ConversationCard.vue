@@ -18,6 +18,6 @@ const withAccounts = $computed(() =>
       </p>
       <AccountAvatar v-for="account in withAccounts" :key="account.id" h-5 w-5 :account="account" />
     </div>
-    <StatusCard v-if="conversation.lastStatus" :status="conversation.lastStatus" :actions="false" />
+    <StatusCard v-if="conversation.lastStatus" :decorated="true" :status="conversation.lastStatus" :actions="false" />
   </article>
 </template>

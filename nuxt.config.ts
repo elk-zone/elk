@@ -59,7 +59,7 @@ export default defineNuxtConfig({
       apiToken: '',
     },
     public: {
-      env: isCI ? process.env.PULL_REQUEST === 'true' ? 'production' : 'staging' : 'local',
+      env: isCI ? process.env.PULL_REQUEST === 'true' ? 'staging' : 'production' : 'local',
       translateApi: '',
       // Masto uses Mastodon version checks to see what features are enabled.
       // Mastodon alternatives like GoToSocial will always fail these checks, so

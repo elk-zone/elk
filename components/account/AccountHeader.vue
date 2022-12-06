@@ -91,7 +91,7 @@ watchEffect(() => {
 <template>
   <div flex flex-col>
     <button border="b base" z-1>
-      <img h-50 w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])" @click="previewHeader">
+      <img h-50 height="200" w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])" @click="previewHeader">
     </button>
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>

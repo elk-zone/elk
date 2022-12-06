@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const sub = process.dev ? 'dev' : useRuntimeConfig().public.env === 'staging' ? 'preview' : 'alpha'
 </script>
 

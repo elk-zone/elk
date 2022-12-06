@@ -1,5 +1,5 @@
 <script setup>
-const sub = process.dev ? 'dev' : window.location.hostname.includes('deploy-preview') ? 'preview' : 'alpha'
+const sub = process.dev ? 'dev' : useRuntimeConfig().public.env === 'staging' ? 'preview' : 'alpha'
 </script>
 
 <template>

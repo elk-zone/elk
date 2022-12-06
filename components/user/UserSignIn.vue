@@ -23,7 +23,7 @@ onMounted(() => {
 <template>
   <form text-center justify-center items-center max-w-150 py6 flex="~ col gap-3" @submit.prevent="oauth">
     <div flex="~ center" mb2>
-      <img src="/logo.svg" w-12 h-12 mxa alt="logo">
+      <img src="/logo.svg" w-12 h-12 mxa height="48" width="48" alt="logo">
       <div text-3xl>
         {{ $t('action.sign_in') }}
       </div>

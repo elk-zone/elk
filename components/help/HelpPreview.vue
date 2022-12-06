@@ -44,7 +44,7 @@ const teams: Team[] = [
       <div i-ri:close-fill />
     </button>
 
-    <img src="/logo.svg" w-20 h-20 mxa alt="logo">
+    <img src="/logo.svg" w-20 h-20 height="80" width="80" mxa alt="logo">
     <h1 mxa text-4xl mb4>
       {{ $t('help.title') }}
     </h1>

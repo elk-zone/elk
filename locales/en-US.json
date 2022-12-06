@@ -160,8 +160,10 @@
       "finished": "finished {0}"
     },
     "reblogged": "{0} reblogged",
+    "someone": "Someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
+    "thread": "Thread",
     "try_original_site": "Try original site"
   },
   "status_history": {

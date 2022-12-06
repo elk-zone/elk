@@ -62,7 +62,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
 <template>
   <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 pt-3 pb-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" aria-roledescription="status-card" @click="onclick" @keydown.enter="onclick">
     <StatusReplyingTo v-if="showReplyTo" :status="status" />
-    <CommonMetaWrapper v-if="rebloggedBy" text-secondary text-sm>
+    <CommonMetaWrapper v-if="rebloggedBy" text-secondary text-sm ws-nowrap>
       <div i-ri:repeat-fill mr-1 text-primary />
       <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
     </CommonMetaWrapper>
@@ -79,7 +79,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
         </div>
       </div>
       <div flex="~ col 1" min-w-0>
-        <div flex items-center>
+        <div flex items-center space-x-1>
           <AccountHoverWrapper :account="status.account">
             <StatusAccountDetails :account="status.account" />
           </AccountHoverWrapper>
@@ -87,7 +87,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
           <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
             <CommonTooltip :content="createdAt">
               <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
-                <time text-sm hover:underline :datetime="status.createdAt">
+                <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
                   {{ timeago }}
                 </time>
               </a>

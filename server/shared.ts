@@ -21,7 +21,7 @@ const kv = _kv as typeof import('unstorage/dist/drivers/cloudflare-kv-http')['de
 
 const storage = useStorage() as Storage
 
-if (config.env === 'local' || config.storage.driver === 'fs') {
+if (config.storage.driver === 'fs') {
   storage.mount('servers', fs({ base: config.storage.fsBase }))
 }
 else {
@@ -40,7 +40,7 @@ async function fetchAppInfo(server: string) {
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
     body: {
-      client_name: APP_NAME + (config.env === 'local' ? ' (dev)' : ''),
+      client_name: APP_NAME + (config.public.env === 'local' ? ' (dev)' : ''),
       website: 'https://elk.zone',
       redirect_uris: getRedirectURI(server),
       scopes: 'read write follow push',

@@ -1,9 +1,9 @@
 import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
 
-const isDev = process.dev
-const isPreview = window.location.hostname.includes('deploy-preview')
-
 export function setupPageHeader() {
+  const isDev = process.dev
+  const isPreview = useRuntimeConfig().public.env === 'staging'
+
   const i18n = useI18n()
 
   useHeadFixed({

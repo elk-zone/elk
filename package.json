@@ -10,6 +10,7 @@
     "dev": "nuxi dev --port 5314",
     "dev-pwa": "VITE_DEV_PWA=true nuxi dev --port 5314",
     "dev:mocked": "nuxi dev --port 5314 --dotenv .env.mock",
+    "dev:mocked-pwa": "VITE_DEV_PWA=true nuxi dev --port 5314 --dotenv .env.mock",
     "start": "PORT=5314 node .output/server/index.mjs",
     "lint": "eslint .",
     "prepare": "esno scripts/prepare.ts",

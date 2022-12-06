@@ -13,3 +13,6 @@ public/shiki
 *~
 *swp
 *swo
+
+# exclude local stuff
+*.local

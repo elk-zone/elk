@@ -1,6 +1,6 @@
 import type { ComputedRef } from 'vue'
 import { defineStore } from 'pinia'
-import Fuse from 'fuse.js'
+import type Fuse from 'fuse.js'
 import type { LocaleObject } from '#i18n'
 
 // @unocss-include
@@ -72,6 +72,11 @@ export const useCommandRegistry = defineStore('command', () => {
 
   let lastScope = ''
   let lastFuse: Fuse<ResolvedCommand> | undefined
+  let Fuse: typeof import('fuse.js')['default']
+
+  onNuxtReady(async () => {
+    Fuse = Fuse ?? await import('fuse.js').then(r => r.default)
+  })
 
   watch(commands, () => {
     lastFuse = undefined
@@ -86,6 +91,9 @@ export const useCommandRegistry = defineStore('command', () => {
     },
 
     query: (scope: string, query: string) => {
+      if (!Fuse)
+        return
+
       const cmds = commands.value
         .filter(cmd => (cmd.parent ?? '') === scope)
 

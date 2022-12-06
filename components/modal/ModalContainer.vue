@@ -16,6 +16,7 @@ import {
     <HelpPreview @close="closePreviewHelp()" />
   </ModalDialog>
   <ModalDialog v-model="isPublishDialogOpen" max-w-180 flex>
+    <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
     <PublishWidget :draft-key="dialogDraftKey" expanded flex-1 w-0 />
   </ModalDialog>
   <ModalDialog

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const emit = defineEmits(['close'])
+const { t } = useI18n()
 
 /* TODOs:
  * - I18n
@@ -22,53 +23,53 @@ interface ShortcutItemGroup {
 
 const shortcutItemGroups: ShortcutItemGroup[] = [
   {
-    name: 'Navigation',
+    name: t('magic_keys.groups.navigation.title'),
     items: [
       {
-        description: 'Shortcut help',
+        description: t('magic_keys.groups.navigation.shortcut_help'),
         shortcut: { keys: ['?'], isSequence: false },
       },
       {
-        description: 'Next status',
+        description: t('magic_keys.groups.navigation.next_status'),
         shortcut: { keys: ['j'], isSequence: false },
       },
       {
-        description: 'Previous status',
+        description: t('magic_keys.groups.navigation.previous_status'),
         shortcut: { keys: ['k'], isSequence: false },
       },
       {
-        description: 'Home',
+        description: t('magic_keys.groups.navigation.go_to_home'),
         shortcut: { keys: ['g', 'h'], isSequence: true },
       },
       {
-        description: 'Notifications',
+        description: t('magic_keys.groups.navigation.go_to_notifications'),
         shortcut: { keys: ['g', 'n'], isSequence: true },
       },
     ],
   },
   {
-    name: 'Actions',
+    name: t('magic_keys.groups.actions.title'),
     items: [
       {
-        description: 'Command mode',
+        description: t('magic_keys.groups.actions.command_mode'),
         shortcut: { keys: ['cmd', '/'], isSequence: false },
       },
       {
-        description: 'Compose',
+        description: t('magic_keys.groups.actions.compose'),
         shortcut: { keys: ['c'], isSequence: false },
       },
       {
-        description: 'Favourite',
+        description: t('magic_keys.groups.actions.favourite'),
         shortcut: { keys: ['f'], isSequence: false },
       },
       {
-        description: 'Boost',
+        description: t('magic_keys.groups.actions.boost'),
         shortcut: { keys: ['b'], isSequence: false },
       },
     ],
   },
   {
-    name: 'Media',
+    name: t('magic_keys.groups.media.title'),
     items: [],
   },
 ]
@@ -76,11 +77,11 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
 
 <template>
   <div px-3 sm:px-5 py-2 sm:py-4 max-w-220 relative max-h-screen>
-    <button btn-action-icon absolute top-1 sm:top-2 right-1 sm:right-2 m1 aria-label="Close" @click="emit('close')">
+    <button btn-action-icon absolute top-1 sm:top-2 right-1 sm:right-2 m1 :aria-label="$t('modals.aria_label_close')" @click="emit('close')">
       <div i-ri:close-fill />
     </button>
     <h2 text-xl font-700 mb3>
-      Keyboard shortcuts
+      {{ $t('magic_keys.dialog_header') }}
     </h2>
     <div mb2 grid grid-cols-1 md:grid-cols-3 gap-y- md:gap-x-6 lg:gap-x-8>
       <div
@@ -103,7 +104,7 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
               v-for="(key, idx) in item.shortcut.keys"
               :key="idx"
             >
-              <span v-if="idx !== 0" mx1 text-sm op80>{{ item.shortcut.isSequence ? 'then' : '+' }}</span>
+              <span v-if="idx !== 0" mx1 text-sm op80>{{ item.shortcut.isSequence ? $t('magic_keys.sequence_then') : '+' }}</span>
               <code class="px2 md:px1.5 lg:px2 lg:px2 py0 lg:py-0.5" rounded bg-code border="px $c-border-code" shadow-sm my1 font-mono font-600>{{ key }}</code>
             </template>
           </div>

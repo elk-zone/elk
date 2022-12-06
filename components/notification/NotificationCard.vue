@@ -12,7 +12,9 @@ const { notification } = defineProps<{
       <div flex ml-4 items-center absolute class="-top-2.5" right-2 px-2>
         <div i-ri:user-follow-fill mr-1 color-primary />
         <AccountInlineInfo :account="notification.account" mr1 />
-        {{ $t('notification.followed_you') }}
+        <span ws-nowrap>
+          {{ $t('notification.followed_you') }}
+        </span>
       </div>
       <AccountCard :account="notification.account" />
     </template>
@@ -42,7 +44,9 @@ const { notification } = defineProps<{
       <CommonMetaWrapper>
         <div i-ri:edit-2-fill mr-1 text-secondary />
         <AccountInlineInfo :account="notification.account" mr1 />
-        {{ $t('notification.update_status') }}
+        <span ws-nowrap>
+          {{ $t('notification.update_status') }}
+        </span>
       </CommonMetaWrapper>
       <StatusCard :status="notification.status!" :decorated="true" />
     </template>

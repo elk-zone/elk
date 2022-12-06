@@ -9,15 +9,15 @@ const { notification } = defineProps<{
 <template>
   <article flex flex-col relative>
     <template v-if="notification.type === 'follow'">
-      <div flex ml-4 items-center absolute class="-top-2.5" right-2 bg-base px-2>
+      <div flex ml-4 items-center absolute class="-top-2.5" right-2 px-2>
         <div i-ri:user-follow-fill mr-1 color-primary />
         <AccountInlineInfo :account="notification.account" mr1 />
         {{ $t('notification.followed_you') }}
       </div>
-      <AccountCard :account="notification.account" p3 />
+      <AccountCard :account="notification.account" />
     </template>
     <template v-else-if="notification.type === 'follow_request'">
-      <div flex ml-4 items-center class="-top-2.5" absolute right-2 bg-base px-2>
+      <div flex ml-4 items-center class="-top-2.5" absolute right-2 px-2>
         <div i-ri:user-follow-fill mr-1 />
         <AccountInlineInfo :account="notification.account" mr1 />
       </div>

@@ -52,7 +52,7 @@ onReactivated(() => {
       <div v-if="status" min-h-100vh>
         <template v-if="context">
           <template v-for="comment of context?.ancestors" :key="comment.id">
-            <StatusCard :status="comment" context="account" border="t base" />
+            <StatusCard :status="comment" context="account" border="t base" :show-reply-to="false" />
           </template>
         </template>
 

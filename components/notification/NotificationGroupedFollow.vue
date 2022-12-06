@@ -14,7 +14,7 @@ const isExpanded = ref(false)
 
 <template>
   <article flex flex-col relative>
-    <div flex items-center absolute class="-top-3.5" left-2 bg-base px-2>
+    <div flex items-center top-0 left-2 pt-2 px-3>
       <div i-ri:user-follow-fill mr-3 color-primary aria-hidden="true" />
       <template v-if="addSR">
         <span

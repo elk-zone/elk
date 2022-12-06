@@ -14,5 +14,8 @@ public/shiki
 *swp
 *swo
 
-# exclude local stuff
-*.local
+# exclude ssl stuff
+*.cer
+*.cert
+*.crt
+*.key

@@ -1,17 +1,23 @@
 <script setup lang="ts">
 import type { Conversation } from 'masto'
 
-const props = defineProps<{
+const { conversation } = defineProps<{
   conversation: Conversation
 }>()
+
+const withAccounts = $computed(() =>
+  conversation.accounts.filter(account => account.id !== conversation.lastStatus?.account.id),
+)
 </script>
 
 <template>
   <article flex flex-col gap-2>
-    <div flex gap-2 text-sm px-2>
-      {{ $t('conversation.with') }}
-      <AccountInlineInfo v-for="account in conversation.accounts" :key="account.id" :account="account" />
+    <div absolute flex gap-2 text-sm text-secondary font-bold left-3 px2 pt2>
+      <p mr-1>
+        {{ $t('conversation.with') }}
+      </p>
+      <AccountAvatar v-for="account in withAccounts" :key="account.id" h-5 w-5 :account="account" />
     </div>
-    <StatusCard v-if="conversation.lastStatus" :status="conversation.lastStatus" :actions="false" />
+    <StatusCard v-if="conversation.lastStatus" :decorated="true" :status="conversation.lastStatus" :actions="false" />
   </article>
 </template>

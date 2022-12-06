@@ -63,7 +63,7 @@ specifiers:
   vitest: ^0.25.3
   vue-safe-teleport: ^0.1.1
   vue-tsc: ^1.0.11
-  vue-virtual-scroller: 2.0.0-beta.3
+  vue-virtual-scroller: 2.0.0-beta.4
 
 devDependencies:
   '@antfu/eslint-config': 0.33.1_s5ps7njkmjlaqajutnox5ntcla
@@ -128,7 +128,7 @@ devDependencies:
   vitest: 0.25.3_jsdom@20.0.3
   vue-safe-teleport: 0.1.1
   vue-tsc: 1.0.11_typescript@4.9.3
-  vue-virtual-scroller: 2.0.0-beta.3
+  vue-virtual-scroller: 2.0.0-beta.4
 
 packages:
 
@@ -8751,8 +8751,8 @@ packages:
       typescript: 4.9.3
     dev: true
 
-  /vue-virtual-scroller/2.0.0-beta.3:
-    resolution: {integrity: sha512-k0hTAkZRmm3TXpfhW5Ig1fd8VV7+CmgnkebbQ4Uw6wnuQF52YJoaMQTFD3IV/Qi2WNadDB4ETrLUbVdnWboSjg==}
+  /vue-virtual-scroller/2.0.0-beta.4:
+    resolution: {integrity: sha512-JfFRyMCUzjPg+lbDXP4SpWy1aE8lpCbe1AZgwXmQPHZr1eayX5n8GgEuntUi0ixFCzBQzdH7WQwPpchp8UgjtA==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:

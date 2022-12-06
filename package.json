@@ -80,7 +80,7 @@
     "vitest": "^0.25.3",
     "vue-safe-teleport": "^0.1.1",
     "vue-tsc": "^1.0.11",
-    "vue-virtual-scroller": "2.0.0-beta.3"
+    "vue-virtual-scroller": "2.0.0-beta.4"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

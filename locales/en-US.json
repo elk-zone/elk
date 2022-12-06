@@ -1,7 +1,6 @@
 {
   "account": {
     "avatar_description": "{0}'s avatar",
-    "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "favourites": "Favourites",
@@ -12,9 +11,7 @@
     "following": "Following",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
-    "go_to_profile": "Go to profile",
     "joined": "Joined",
-    "moved_title": "has indicated that their new account is now:",
     "muted_users": "Muted users",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
@@ -33,28 +30,16 @@
     "favourite": "Favourite",
     "favourited": "Favourited",
     "more": "More",
-    "next": "Next",
-    "prev": "Prev",
     "publish": "Publish!",
     "reply": "Reply",
     "save_changes": "Save changes",
-    "sign_in": "Sign in",
-    "switch_account": "Switch account",
-    "vote": "Vote"
+    "sign_in": "Sign in"
   },
   "app_desc_short": "A Mastodon client made with 🧡",
   "app_name": "Elk",
   "command": {
     "activate": "Activate",
-    "complete": "Complete",
-    "compose_desc": "Write a new post",
-    "lang": "Languages",
-    "select_lang": "Select language",
-    "sign_in_desc": "Add an existing account",
-    "switch_account": "Switch to {0}",
-    "switch_account_desc": "Switch to another account",
-    "toggle_dark_mode": "Toggle dark mode",
-    "toggle_zen_mode": "Toggle zen mode"
+    "complete": "Complete"
   },
   "common": {
     "end_of_list": "End of the list",
@@ -74,13 +59,6 @@
   "feature_flag": {
     "virtual_scroll": "Virtual Scrolling"
   },
-  "help": {
-    "desc_highlight": "Expect some bugs and missing features here and there.",
-    "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress generic Mastodon client!",
-    "desc_para2": "We are working hard on the development and improving it over time. And we will soon invite you to join the force once we make it open source soon!",
-    "desc_para3": "Before that, to help boosting out development, you can sponsor our team members with the links below.",
-    "title": "Elk is in Preview!"
-  },
   "menu": {
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
@@ -94,10 +72,6 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "show_untranslated": "Show untranslated",
-    "toggle_theme": {
-      "dark": "Toggle dark mode",
-      "light": "Toggle light mode"
-    },
     "translate_post": "Translate post",
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
@@ -150,14 +124,6 @@
   },
   "status": {
     "edited": "Edited {0}",
-    "filter_hidden_phrase": "Filtered by",
-    "filter_removed_phrase": "Removed by filter",
-    "filter_show_anyway": "Show anyway",
-    "poll": {
-      "count": "{0} votes",
-      "ends": "ends {0}",
-      "finished": "finished {0}"
-    },
     "reblogged": "{0} reblogged",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
@@ -175,35 +141,21 @@
     "posts_with_replies": "Posts & Replies"
   },
   "time_ago_options": {
-    "day_future": "in 0 days|tomorrow|in {n} days",
-    "day_past": "0 days ago|yesterday|{n} days ago",
-    "hour_future": "in 0 hours|in 1 hour|in {n} hours",
-    "hour_past": "0 hours ago|1 hour ago|{n} hours ago",
+    "future_day": "in 0 days|tomorrow|in {n} days",
+    "future_hour": "in 0 hours|in 1 hour|in {n} hours",
+    "future_minute": "in 0 minutes|in 1 minute|in {n} minutes",
+    "future_month": "in 0 months|next month|in {n} months",
+    "future_second": "just now|in {n} second|in {n} seconds",
+    "future_week": "in 0 weeks|next week|in {n} weeks",
+    "future_year": "in 0 years|next year|in {n} years",
     "just_now": "just now",
-    "minute_future": "in 0 minutes|in 1 minute|in {n} minutes",
-    "minute_past": "0 minutes ago|1 minute ago|{n} minutes ago",
-    "month_future": "in 0 months|next month|in {n} months",
-    "month_past": "0 months ago|last month|{n} months ago",
-    "second_future": "just now|in {n} second|in {n} seconds",
-    "second_past": "just now|{n} second ago|{n} seconds ago",
-    "short_day_future": "in {n}d",
-    "short_day_past": "{n}d",
-    "short_hour_future": "in {n}h",
-    "short_hour_past": "{n}h",
-    "short_minute_future": "in {n}min",
-    "short_minute_past": "{n}min",
-    "short_month_future": "in {n}mo",
-    "short_month_past": "{n}mo",
-    "short_second_future": "in {n}s",
-    "short_second_past": "{n}s",
-    "short_week_future": "in {n}w",
-    "short_week_past": "{n}w",
-    "short_year_future": "in {n}y",
-    "short_year_past": "{n}y",
-    "week_future": "in 0 weeks|next week|in {n} weeks",
-    "week_past": "0 weeks ago|last week|{n} weeks ago",
-    "year_future": "in 0 years|next year|in {n} years",
-    "year_past": "0 years ago|last year|{n} years ago"
+    "past_day": "0 days ago|yesterday|{n} days ago",
+    "past_hour": "0 hours ago|1 hour ago|{n} hours ago",
+    "past_minute": "0 minutes ago|1 minute ago|{n} minutes ago",
+    "past_month": "0 months ago|last month|{n} months ago",
+    "past_second": "just now|{n} second ago|{n} seconds ago",
+    "past_week": "0 weeks ago|last week|{n} weeks ago",
+    "past_year": "0 years ago|last year|{n} years ago"
   },
   "timeline": {
     "show_new_items": "Show {n} new items"

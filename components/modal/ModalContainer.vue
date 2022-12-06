@@ -96,14 +96,30 @@ whenever(logicAnd(notUsingInput, keys.j), timelineMoveDown)
 whenever(logicAnd(notUsingInput, keys.k), timelineMoveUp)
 
 const toggleFavouriteActiveStatus = () => {
-  (activeStatus || document.querySelector<HTMLElement>('[aria-roledescription=status-details]'))
-    ?.querySelector<HTMLElement>('button[aria-label=Favourite]')?.click()
+  let el: HTMLElement | null
+  if (activeStatus && activeStatus.isConnected) {
+    el = activeStatus
+  }
+  else {
+    // status detail page 'default' (if no other reply status is onfocus/active)
+    el = document.querySelector<HTMLElement>('[aria-roledescription=status-details]')
+  }
+  const button = el?.querySelector<HTMLElement>('button[aria-label=Favourite]')
+  button?.click()
 }
 whenever(logicAnd(isAuthenticated, notUsingInput, keys.f), toggleFavouriteActiveStatus)
 
 const toggleBoostActiveStatus = () => {
-  (activeStatus || document.querySelector<HTMLElement>('[aria-roledescription=status-details]'))
-    ?.querySelector<HTMLElement>('button[aria-label=Boost]')?.click()
+  let el: HTMLElement | null
+  if (activeStatus && activeStatus.isConnected) {
+    el = activeStatus
+  }
+  else {
+    // status detail page 'default' (if no other reply status is onfocus/active)
+    el = document.querySelector<HTMLElement>('[aria-roledescription=status-details]')
+  }
+  const button = el?.querySelector<HTMLElement>('button[aria-label=Boost]')
+  button?.click()
 }
 whenever(logicAnd(isAuthenticated, notUsingInput, keys.b), toggleBoostActiveStatus)
 </script>

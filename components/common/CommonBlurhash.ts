@@ -12,6 +12,10 @@ export default defineComponent({
       type: String,
       required: true,
     },
+    srcset: {
+      type: String,
+      required: false,
+    },
   },
   setup(props, { attrs }) {
     const placeholderSrc = ref<string>()
@@ -19,11 +23,12 @@ export default defineComponent({
 
     onMounted(() => {
       const img = document.createElement('img')
-      isLoaded.value = img.complete
       img.onload = () => {
         isLoaded.value = true
       }
       img.src = props.src
+      if (props.srcset)
+        img.srcset = props.srcset
       setTimeout(() => {
         isLoaded.value = true
       }, 3_000)
@@ -35,7 +40,7 @@ export default defineComponent({
     })
 
     return () => isLoaded.value || !placeholderSrc.value
-      ? h('img', { ...attrs, src: props.src })
+      ? h('img', { ...attrs, src: props.src, srcset: props.srcset })
       : h('img', { ...attrs, src: placeholderSrc.value })
   },
 })

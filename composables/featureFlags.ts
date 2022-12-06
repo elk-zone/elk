@@ -3,6 +3,7 @@ import { STORAGE_KEY_FEATURE_FLAGS } from '~/constants'
 
 export interface FeatureFlags {
   experimentalVirtualScroll: boolean
+  experimentalAvatarOnAvatar: boolean
 }
 export type FeatureFlagsMap = Record<string, FeatureFlags>
 
@@ -11,6 +12,7 @@ export const allFeatureFlags = useLocalStorage<FeatureFlagsMap>(STORAGE_KEY_FEAT
 export function getDefaultFeatureFlags(): FeatureFlags {
   return {
     experimentalVirtualScroll: false,
+    experimentalAvatarOnAvatar: true,
   }
 }
 

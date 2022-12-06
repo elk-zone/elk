@@ -4,26 +4,21 @@ import { resolvePath } from '@nuxt/kit'
 import { joinURL } from 'ufo'
 import { useRuntimeConfig } from '#imports'
 
-const headers: HeadersInit = {
-  'cache-control': 'public, max-age=0, must-revalidate',
-}
-
-export default defineEventHandler(async ({ node: { res } }) => {
+export default defineEventHandler(async (event) => {
   const { swDir, swName } = useRuntimeConfig()
   const swPath = await resolvePath(joinURL(swDir, swName))
   const stats = await fs.stat(swPath)
-  if (stats && stats.isFile()) {
-    res.writeHead(200, {
+
+  if (stats?.isFile()) {
+    setHeaders(event, {
       'content-type': 'application/javascript;charset=UTF-8',
-      ...headers,
+      'cache-control': 'public, max-age=0, must-revalidate',
     })
-    res.write(await fs.readFile(swPath, 'utf-8'))
+    return await fs.readFile(swPath, 'utf-8')
   }
-  else {
-    res.writeHead(404, {
-      ...headers,
-    })
-    res.write('Not Found')
-  }
-  res.end()
+
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Not Found',
+  })
 })

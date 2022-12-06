@@ -21,18 +21,18 @@ const teams: Team[] = [
     github: 'patak-dev',
     display: 'Patak',
     twitter: 'patak_dev',
-    mastodon: 'patak@mas.to',
+    mastodon: 'patak@webtoo.ls',
   },
   {
     github: 'danielroe',
     display: 'Daniel Roe',
     twitter: 'danielcroe',
-    mastodon: 'daniel@daniel.roe',
+    mastodon: 'daniel@roe.dev',
   },
   {
     github: 'sxzz',
     display: 'sxzz',
-    twitter: 'sxzz',
+    twitter: 'sanxiaozhizi',
     mastodon: 'sxzz@mas.to',
   },
 ].sort(() => Math.random() - 0.5)
@@ -59,7 +59,7 @@ const teams: Team[] = [
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of teams" :key="team.github">
         <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full>
-          <img :src="`https://github.com/${team.github}.png`" :alt="team.display" rounded-full w-15 h-15>
+          <img :src="`https://res.cloudinary.com/dchoja2nb/image/twitter_name/h_120,w_120/f_auto/${team.twitter}.jpg`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
         </a>
       </template>
     </p>

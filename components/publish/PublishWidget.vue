@@ -148,7 +148,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 </script>
 
 <template>
-  <div v-if="currentUser" flex="~ col gap-4" py4 px2 sm:px4>
+  <div v-if="currentUser" flex="~ col gap-4" py4 px2 sm:px4 aria-roledescription="publish-widget">
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div text-secondary self-center>

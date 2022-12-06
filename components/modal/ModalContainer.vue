@@ -34,8 +34,15 @@ const navigateTo = (to: string | RouteLocationRaw) => {
 
 whenever(logicAnd(notUsingInput, keys['?']), toggleKeyboardShortcuts)
 
-// TODO: is this the correct way of using openPublishDialog()?
-const defaultPublishDialog = () => openPublishDialog('dialog', getDefaultDraft())
+const defaultPublishDialog = () => {
+  const current = keys.current
+  // exclusive 'c' - not apply in combination
+  // TODO: bugfix -> create PR for vueuse, reset `current` ref on window focus|blur
+  if (!current.has('shift') && !current.has('meta') && !current.has('control') && !current.has('alt')) {
+    // TODO: is this the correct way of using openPublishDialog()?
+    openPublishDialog('dialog', getDefaultDraft())
+  }
+}
 whenever(logicAnd(isAuthenticated, notUsingInput, keys.c), defaultPublishDialog)
 
 whenever(logicAnd(notUsingInput, useMagicSequence(['g', 'h'])), () => navigateTo('/home'))
@@ -49,16 +56,21 @@ const initActiveStatus = () => {
   activeStatus?.focus()
 }
 
+const validAriaRoledescriptionsToNavigatePrevNextInTimeline = ['status-details', 'status-card']
 const timelineMoveUp = () => {
   if (!activeStatus || !activeStatus.isConnected) {
     initActiveStatus()
   }
   else {
-    const prevEl = activeStatus?.previousElementSibling as HTMLElement | null
-    // if (prevEl) {
-    if (prevEl && prevEl.hasAttribute('aria-roledescription') && ['status-details', 'status-card'].includes(`${prevEl.getAttribute('aria-roledescription')}`)) {
-      activeStatus = prevEl
-      activeStatus.focus()
+    let prevEl = activeStatus?.previousElementSibling as HTMLElement | null
+    // in detail view, 'jump over' (reply) publish widget
+    while (prevEl) {
+      if (prevEl && prevEl.hasAttribute('aria-roledescription') && validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(`${prevEl.getAttribute('aria-roledescription')}`)) {
+        activeStatus = prevEl
+        activeStatus.focus()
+        break
+      }
+      prevEl = prevEl?.previousElementSibling as HTMLElement | null
     }
   }
 }
@@ -67,10 +79,15 @@ const timelineMoveDown = () => {
     initActiveStatus()
   }
   else {
-    const nextEl = activeStatus?.nextElementSibling as HTMLElement | null
-    if (nextEl && nextEl.hasAttribute('aria-roledescription') && ['status-details', 'status-card'].includes(`${nextEl.getAttribute('aria-roledescription')}`)) {
-      activeStatus = nextEl
-      activeStatus.focus()
+    let nextEl = activeStatus?.nextElementSibling as HTMLElement | null
+    // in detail view, 'jump over' (reply) publish widget
+    while (nextEl) {
+      if (nextEl && nextEl.hasAttribute('aria-roledescription') && validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(`${nextEl.getAttribute('aria-roledescription')}`)) {
+        activeStatus = nextEl
+        activeStatus.focus()
+        break
+      }
+      nextEl = nextEl?.nextElementSibling as HTMLElement | null
     }
   }
 }

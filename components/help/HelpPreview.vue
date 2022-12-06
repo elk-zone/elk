@@ -21,13 +21,13 @@ const teams: Team[] = [
     github: 'patak-dev',
     display: 'Patak',
     twitter: 'patak_dev',
-    mastodon: 'patak@mas.to',
+    mastodon: 'patak@webtoo.ls',
   },
   {
     github: 'danielroe',
     display: 'Daniel Roe',
     twitter: 'danielcroe',
-    mastodon: 'daniel@daniel.roe',
+    mastodon: 'daniel@roe.dev',
   },
   {
     github: 'sxzz',

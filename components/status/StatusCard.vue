@@ -104,6 +104,7 @@ const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.cont
               :status="status"
               minimized
             />
+            <StatusPreviewCard v-if="status.card" :card="status.card" />
           </StatusSpoiler>
           <StatusCard
             v-if="status.reblog"
@@ -111,7 +112,6 @@ const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.cont
             :actions="false"
           />
         </div>
-        <StatusPreviewCard v-if="status.card" :card="status.card" />
         <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
       </div>
     </div>

@@ -6,29 +6,29 @@ const prop = defineProps<{
 }>()
 const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
 
-// TODO: handle card.type: CardType
+// TODO: handle card.type: 'link' | 'photo' | 'video' | 'rich';
 // TODO: rename component to StatusPreviewCard
-// TODO: fix layout when used on StatusCard
 </script>
 
 <template>
   <div
     v-if="card"
     border="~ base"
+    display-block
     rounded-lg
     object-cover
     h-full
     w-full
   >
-    <NuxtLink :to="card.url">
+    <NuxtLink display-block :to="card.url">
       <CommonBlurhash
         v-if="card.image"
         :blurhash="card.blurhash"
-        class="status-attachment-image"
         :src="card.image"
         :width="card.width"
         :height="card.height"
         :alt="alt"
+        display-block
         rounded-lg
         rounded-b-none
         object-cover

@@ -35,7 +35,7 @@ const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
         h-full
         w-full
       />
-      <div p2 max-h-2xl>
+      <div p4 max-h-2xl>
         <p v-if="card.providerName" text-secondary line-clamp-1 text-ellipsis>
           {{ card.providerName }}
         </p>

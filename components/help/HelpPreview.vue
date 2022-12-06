@@ -32,7 +32,7 @@ const teams: Team[] = [
   {
     github: 'sxzz',
     display: 'sxzz',
-    twitter: 'sxzz',
+    twitter: 'sanxiaozhizi',
     mastodon: 'sxzz@mas.to',
   },
 ].sort(() => Math.random() - 0.5)

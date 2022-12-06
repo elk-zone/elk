@@ -53,7 +53,9 @@ export default defineConfig({
     presetIcons({
       scale: 1.2,
       extraProperties: {
-        color: 'inherit',
+        'color': 'inherit',
+        // Avoid crushing of icons in crowded situations
+        'min-width': '1.2em',
       },
     }),
     presetTypography(),

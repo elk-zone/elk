@@ -101,14 +101,14 @@ watchEffect(() => {
           </button>
           <div flex flex-col>
             <ContentRich
-              font-bold text-2xl ws-nowrap
+              font-bold sm:text-2xl text-xl
               :content="getDisplayName(account, { rich: true })"
               :emojis="account.emojis"
             />
             <AccountHandle :account="account" />
           </div>
         </div>
-        <div absolute top="1/2" right-0 translate-y="-1/2" flex gap-2 items-center>
+        <div absolute top-18 right-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
           <AccountFollowButton :account="account" :command="command" />
           <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>

@@ -149,6 +149,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
 <template>
   <div v-if="currentUser" flex="~ col gap-4" py4 px2 sm:px4>
+    <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div text-secondary self-center>
@@ -160,13 +161,14 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
     </template>
 
     <!-- The h-0 flex-1 here is to avoid the scrolling failure problem that occurs with flex layouts, so don't remove it unless you know what you're doing  -->
-    <div flex gap-4 h-0 flex-1>
+    <div flex gap-4 flex-1>
       <NuxtLink w-12 h-12 :to="getAccountRoute(currentUser.account)">
         <AccountAvatar :account="currentUser.account" f-full h-full />
       </NuxtLink>
+      <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <div
         ref="dropZoneRef"
-        flex flex-col gap-3 flex-1
+        flex w-0 flex-col gap-3 flex-1
         border="2 dashed transparent"
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
@@ -181,10 +183,11 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
         </div>
 
         <!-- The h-0 flex-1 here is to avoid the scrolling failure problem that occurs with flex layouts, so don't remove it unless you know what you're doing  -->
-        <div relative h-0 flex-1 flex flex-col>
+        <div relative flex-1 flex flex-col>
           <EditorContent
             :editor="editor"
             flex
+            class="max-w-100%"
             :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
           />
           <div v-if="shouldExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>

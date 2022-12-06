@@ -16,7 +16,7 @@ import {
     <HelpPreview @close="closePreviewHelp()" />
   </ModalDialog>
   <ModalDialog v-model="isPublishDialogOpen" max-w-180 flex>
-    <PublishWidget :draft-key="dialogDraftKey" expanded flex-1 />
+    <PublishWidget :draft-key="dialogDraftKey" expanded flex-1 w-0 />
   </ModalDialog>
   <ModalDialog
     v-model="isMediaPreviewOpen"

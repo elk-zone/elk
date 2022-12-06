@@ -43,6 +43,9 @@ const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
         <p v-if="card.description" text-secondary line-clamp-2 text-ellipsis>
           {{ card.description }}
         </p>
+        <p v-else text-secondary line-clamp-2 text-ellipsis>
+          {{ card.url }}
+        </p>
       </div>
     </NuxtLink>
   </div>

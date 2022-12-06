@@ -49,7 +49,7 @@ const datetimeFormats = Object.keys(locales).reduce((acc, key) => {
   return acc
 }, <DateTimeFormats>{})
 
-const i18n: NuxtI18nOptions = {
+export const i18n: NuxtI18nOptions = {
   locales,
   strategy: 'no_prefix',
   detectBrowserLanguage: false,
@@ -62,7 +62,4 @@ const i18n: NuxtI18nOptions = {
     datetimeFormats,
   },
   lazy: true,
-
 }
-
-export { i18n }

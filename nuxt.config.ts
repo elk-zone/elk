@@ -1,6 +1,6 @@
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
-import { i18n } from './modules/i18n-configuration'
+import { i18n } from './config/i18n'
 
 export default defineNuxtConfig({
   ssr: false,

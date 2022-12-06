@@ -5,6 +5,8 @@ const prop = defineProps<{
   card: Card
 }>()
 const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
+
+// TODO: handle card.type: CardType
 </script>
 
 <template>
@@ -16,7 +18,7 @@ const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
     h-full
     w-full
   >
-    <NuxtLink :href="card.url">
+    <NuxtLink :to="card.url">
       <CommonBlurhash
         v-if="card.image"
         :blurhash="card.blurhash"
@@ -25,13 +27,14 @@ const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
         :width="card.width"
         :height="card.height"
         :alt="alt"
+        border-b="~ base"
         rounded-lg
         rounded-b-none
         object-cover
         h-full
         w-full
       />
-      <div p2 max-h-2l>
+      <div p2 max-h-2xl>
         <p v-if="card.providerName" text-secondary line-clamp-1 text-ellipsis>
           {{ card.providerName }}
         </p>

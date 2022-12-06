@@ -16,7 +16,7 @@
     "joined": "a rejoint",
     "moved_title": "a indiqué que son nouveau compte est désormais :",
     "muted_users": "Utilisateurs mis en sourdine",
-    "mutuals": "Vous vous suivez mutuellement",
+    "mutuals": "@:account.following",
     "pinned": "Épinglés",
     "posts_count": "{0} messages",
     "profile_description": "En-tête du profil de {0}",
@@ -55,7 +55,6 @@
     "switch_account_desc": "Changer vers un autre compte",
     "toggle_dark_mode": "Passer au thème foncé",
     "toggle_zen_mode": "Passer en mode zen"
-
   },
   "common": {
     "end_of_list": "Fin de liste",
@@ -73,6 +72,7 @@
     "status_not_found": "Message non trouvé"
   },
   "feature_flag": {
+    "avatar_on_avatar": "Avatar sur avatar",
     "virtual_scroll": "Défilement virtuel"
   },
   "help": {

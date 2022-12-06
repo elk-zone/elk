@@ -73,7 +73,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
             <AccountAvatar w-12 h-12 :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-if="(rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)" absolute class="-top-1 -left-2" w-8 h-8 border-base border-3 rounded-full>
+        <div v-if="(rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)" absolute class="-top-1 -left-2" w-8 h-8 border-bg-base border-3 rounded-full>
           <AccountAvatar :account="rebloggedBy" />
         </div>
       </div>

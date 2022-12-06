@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 setupPageHeader()
 await setupI18n()
 

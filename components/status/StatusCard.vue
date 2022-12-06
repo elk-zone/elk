@@ -7,8 +7,10 @@ const props = withDefaults(
     actions?: boolean
     context?: FilterContext
     hover?: boolean
+    decorated?: boolean
+    showReplyTo?: boolean
   }>(),
-  { actions: true },
+  { actions: true, showReplyTo: true },
 )
 
 const status = $computed(() => {
@@ -53,25 +55,28 @@ const filter = $computed(() => filterResult?.filter)
 // clean up when masto.js supports explicit versions: https://github.com/neet/masto.js/issues/722
 const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
 const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
+
+const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
 </script>
 
 <template>
-  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
-    <div v-if="rebloggedBy" pl8>
-      <div flex="~ wrap" gap-1 items-center text-secondary text-sm>
-        <div i-ri:repeat-fill mr-1 />
-        <i18n-t keypath="status.reblogged">
-          <AccountInlineInfo font-bold :account="rebloggedBy" />
-        </i18n-t>
-      </div>
-    </div>
+  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 pt-3 pb-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
+    <StatusReplyingTo v-if="showReplyTo" :status="status" />
+    <CommonMetaWrapper v-if="rebloggedBy" text-secondary text-sm>
+      <div i-ri:repeat-fill mr-1 text-primary />
+      <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
+    </CommonMetaWrapper>
+    <div v-if="decorated || rebloggedBy || (showReplyTo && status.inReplyToAccountId)" h-4 />
     <div flex gap-4>
-      <div>
-        <AccountHoverWrapper :account="status.account">
+      <div relative>
+        <AccountHoverWrapper :account="status.account" :class="rebloggedBy && avatarOnAvatar ? 'mt-4' : 'mt-1'">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
             <AccountAvatar w-12 h-12 :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
+        <div v-if="(rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)" absolute class="-top-1 -left-2" w-8 h-8 border-bg-base border-3 rounded-full>
+          <AccountAvatar :account="rebloggedBy" />
+        </div>
       </div>
       <div flex="~ col 1" min-w-0>
         <div flex items-center>
@@ -91,7 +96,6 @@ const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.cont
           </div>
           <StatusActionsMore :status="status" mr--2 />
         </div>
-        <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
         <div :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''">
           <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="filter?.filterAction">
             <template #spoiler>

@@ -65,15 +65,15 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
       <div i-ri:repeat-fill mr-1 text-primary />
       <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
     </CommonMetaWrapper>
-    <div v-if="decorated || rebloggedBy || status.inReplyToAccountId" h-2 />
+    <div v-if="decorated || rebloggedBy || status.inReplyToAccountId" h-4 />
     <div flex gap-4>
       <div relative>
-        <AccountHoverWrapper :account="status.account" :class="rebloggedBy && avatarOnAvatar ? 'mt-2' : ''">
+        <AccountHoverWrapper :account="status.account" :class="rebloggedBy && avatarOnAvatar ? 'mt-4' : 'mt-1'">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
             <AccountAvatar w-12 h-12 :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-if="(rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)" absolute class="-top-2 -left-2" w-8 h-8 border-base border-3 rounded-full>
+        <div v-if="(rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)" absolute class="-top-1 -left-2" w-8 h-8 border-base border-3 rounded-full>
           <AccountAvatar :account="rebloggedBy" />
         </div>
       </div>

@@ -60,11 +60,11 @@ const validAriaRoledescriptionsToNavigatePrevNextInTimeline = ['status-details',
 
 // work with or without vue-virtual-scroller wrapped StatusCards
 // TODO: find a solution that is less coupled, complex and better maintainable...
-const virtualScrollerWrap = (el: HTMLElement | null) => el?.closest('.vue-recycle-scroller__item-view') || el
+const virtualScrollerWrap = (el: HTMLElement | null) => el?.closest('.vue-recycle-scroller__item-view') as HTMLElement | null || el
 const virtualScrollerUnwrap = (el: HTMLElement | null) => validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(el?.getAttribute('aria-roledescription') || '') ? el : el?.querySelector<HTMLElement>('[aria-roledescription=status-card]') || el
 
-const previousElementSiblingFn = (el: HTMLElement | null) => el?.previousElementSibling
-const nextElementSiblingFn = (el: HTMLElement | null) => el?.nextElementSibling
+const previousElementSiblingFn = (el: HTMLElement | null) => el?.previousElementSibling as HTMLElement | null
+const nextElementSiblingFn = (el: HTMLElement | null) => el?.nextElementSibling as HTMLElement | null
 
 const timelineMoveFocus = (xElementSiblingFn: (el: HTMLElement | null) => (HTMLElement | null)) => {
   if (!activeStatus || !activeStatus.isConnected) {

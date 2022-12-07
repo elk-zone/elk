@@ -1,7 +1,7 @@
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
 import { i18n } from './config/i18n'
-import { pwa } from './modules/pwa-configuration'
+import { pwa } from './config/pwa'
 
 export default defineNuxtConfig({
   ssr: false,

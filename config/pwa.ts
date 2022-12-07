@@ -1,5 +1,5 @@
 import { isCI } from 'std-env'
-import type { VitePWANuxtOptions } from './pwa/types'
+import type { VitePWANuxtOptions } from '../modules/pwa/types'
 
 const suffix = isCI ? '' : '-dev'
 const pwa: VitePWANuxtOptions = {

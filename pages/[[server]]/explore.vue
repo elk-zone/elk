@@ -1,7 +1,26 @@
 <script setup lang="ts">
-const paginator = useMasto().trends.iterateStatuses()
+import { invoke } from '@vueuse/shared'
 
 const { t } = useI18n()
+
+const tabs = $computed(() => [
+  {
+    to: `/${currentServer.value}/explore`,
+    display: 'Posts',
+  },
+  {
+    to: `/${currentServer.value}/explore/tags`,
+    display: 'Hashtags',
+  },
+  {
+    to: `/${currentServer.value}/explore/links`,
+    display: 'News',
+  },
+  {
+    to: `/${currentServer.value}/explore/users`,
+    display: 'For you',
+  },
+] as const)
 
 useHeadFixed({
   title: () => t('nav_side.explore'),
@@ -17,9 +36,9 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <slot>
-      <!-- TODO: Tabs for trending statuses, tags, and links -->
-      <TimelinePaginator :paginator="paginator" context="public" />
-    </slot>
+    <template #header>
+      <CommonRouteTabs replace :options="tabs" />
+    </template>
+    <NuxtPage />
   </MainContent>
 </template>

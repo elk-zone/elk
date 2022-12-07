@@ -63,12 +63,15 @@ const validAriaRoledescriptionsToNavigatePrevNextInTimeline = ['status-details',
 const virtualScrollerWrap = (el: HTMLElement | null) => el?.closest('.vue-recycle-scroller__item-view') || el
 const virtualScrollerUnwrap = (el: HTMLElement | null) => validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(el?.getAttribute('aria-roledescription') || '') ? el : el?.querySelector<HTMLElement>('[aria-roledescription=status-card]') || el
 
-const timelineMoveUp = () => {
+const previousElementSiblingFn = (el: HTMLElement | null) => el?.previousElementSibling
+const nextElementSiblingFn = (el: HTMLElement | null) => el?.nextElementSibling
+
+const timelineMoveFocus = (xElementSiblingFn: (el: HTMLElement | null) => (HTMLElement | null)) => {
   if (!activeStatus || !activeStatus.isConnected) {
     initActiveStatus()
   }
   else {
-    let prevEl = virtualScrollerUnwrap(virtualScrollerWrap(activeStatus)?.previousElementSibling as HTMLElement | null)
+    let prevEl = virtualScrollerUnwrap(xElementSiblingFn(virtualScrollerWrap(activeStatus)))
     // in detail view, 'jump over' (reply) publish widget
     while (prevEl) {
       if (prevEl && prevEl.hasAttribute('aria-roledescription') && validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(`${prevEl.getAttribute('aria-roledescription')}`)) {
@@ -76,30 +79,13 @@ const timelineMoveUp = () => {
         activeStatus.focus()
         break
       }
-      prevEl = virtualScrollerUnwrap(virtualScrollerWrap(prevEl)?.previousElementSibling as HTMLElement | null)
-    }
-  }
-}
-const timelineMoveDown = () => {
-  if (!activeStatus || !activeStatus.isConnected) {
-    initActiveStatus()
-  }
-  else {
-    let nextEl = virtualScrollerUnwrap(virtualScrollerWrap(activeStatus)?.nextElementSibling as HTMLElement | null)
-    // in detail view, 'jump over' (reply) publish widget
-    while (nextEl) {
-      if (nextEl && nextEl.hasAttribute('aria-roledescription') && validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(`${nextEl.getAttribute('aria-roledescription')}`)) {
-        activeStatus = nextEl
-        activeStatus.focus()
-        break
-      }
-      nextEl = virtualScrollerUnwrap(virtualScrollerWrap(nextEl)?.nextElementSibling as HTMLElement | null)
+      prevEl = virtualScrollerUnwrap(xElementSiblingFn(virtualScrollerWrap(prevEl)))
     }
   }
 }
 
-whenever(logicAnd(notUsingInput, keys.j), timelineMoveDown)
-whenever(logicAnd(notUsingInput, keys.k), timelineMoveUp)
+whenever(logicAnd(notUsingInput, keys.j), () => timelineMoveFocus(nextElementSiblingFn))
+whenever(logicAnd(notUsingInput, keys.k), () => timelineMoveFocus(previousElementSiblingFn))
 
 const toggleFavouriteActiveStatus = () => {
   let el: HTMLElement | null

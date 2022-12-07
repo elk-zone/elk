@@ -22,8 +22,8 @@ const isSquare = $computed(() => prop.card.width === prop.card.height)
         v-if="card.image"
         :blurhash="card.blurhash"
         :src="card.image"
-        :width="!isSquare && card.width"
-        :height="!isSquare && card.height"
+        :width="card.width"
+        :height="card.height"
         :alt="alt"
         flex flex-col
         display-block

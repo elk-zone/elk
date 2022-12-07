@@ -28,7 +28,10 @@ export function fetchStatus(id: string, force = false): Promise<Status> {
   return promise
 }
 
-export function fetchAccountById(id: string): Promise<Account> {
+export function fetchAccountById(id?: string | null): Promise<Account | null> {
+  if (!id)
+    return Promise.resolve(null)
+
   const key = `account:${id}`
   const cached = cache.get(key)
   if (cached)
@@ -63,7 +66,7 @@ export function useAccountByHandle(acct: string) {
   return useAsyncState(() => fetchAccountByHandle(acct), null).state
 }
 
-export function useAccountById(id: string) {
+export function useAccountById(id?: string | null) {
   return useAsyncState(() => fetchAccountById(id), null).state
 }
 

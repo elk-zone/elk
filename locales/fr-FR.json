@@ -207,10 +207,10 @@
     "year_past": "il y a 0 année|l'année dernière|il y a {n} années"
   },
   "timeline": {
-    "show_new_items": "Montrer les {n} nouveaux éléments"
+    "show_new_items": "Montrer les {n} nouveaux messages"
   },
   "title": {
-    "federated_timeline": "Fil d'acutalité fédéré",
+    "federated_timeline": "Fil d'actualité fédéré",
     "local_timeline": "Fil d'actualité local"
   },
   "tooltip": {

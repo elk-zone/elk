@@ -72,6 +72,7 @@
     "status_not_found": "Status not found"
   },
   "feature_flag": {
+    "avatar_on_avatar": "Avatar on Avatar",
     "virtual_scroll": "Virtual Scrolling"
   },
   "help": {
@@ -129,7 +130,7 @@
   "notification": {
     "favourited_post": "favourited your post",
     "followed_you": "followed you",
-    "followed_you_count": "{n} people followed you",
+    "followed_you_count": "{n} person followed you|{n} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
@@ -159,8 +160,10 @@
       "finished": "finished {0}"
     },
     "reblogged": "{0} reblogged",
+    "someone": "Someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
+    "thread": "Thread",
     "try_original_site": "Try original site"
   },
   "status_history": {

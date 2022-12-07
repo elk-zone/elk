@@ -5,18 +5,24 @@ const { status } = defineProps<{
   status: Status
 }>()
 
-const account = useAccountById(status.inReplyToAccountId!)
+const account = useAccountById(status.inReplyToAccountId)
 </script>
 
 <template>
-  <NuxtLink
-    v-if="status.inReplyToId"
-    flex="~ wrap" items-center text-sm text-secondary
-    :to="getStatusInReplyToRoute(status)"
-    :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
-  >
-    <div i-ri:reply-fill rotate-180 text-secondary-light class="mr-1.5" />
-    <AccountInlineInfo v-if="account" :account="account" :link="false" />
-    <span v-else>Someone</span>
-  </NuxtLink>
+  <div v-if="status.inReplyToAccountId" absolute top-0 pt-2 right-0 px-4 flex="~ wrap" gap-1>
+    <NuxtLink
+      v-if="status.inReplyToId"
+      flex="~" items-center font-bold text-sm text-secondary gap-1
+      :to="getStatusInReplyToRoute(status)"
+      :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
+    >
+      <div i-ri:reply-fill class="scale-x-[-1]" text-secondary-light />
+      <template v-if="account?.id !== status.account.id">
+        <AccountInlineInfo v-if="account" :account="account" :link="false" />
+        <span v-else ws-nowrap>{{ $t('status.someone') }}</span>
+      </template>
+      <span v-else ws-nowrap>{{ $t('status.thread') }}</span>
+      <div i-ph:chats-fill text-primary text-lg />
+    </NuxtLink>
+  </div>
 </template>

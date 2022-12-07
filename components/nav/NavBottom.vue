@@ -36,7 +36,7 @@ const moreMenuVisible = ref(false)
     </template>
     <NavBottomMoreMenu v-slot="{ changeShow, show }" v-model="moreMenuVisible" flex flex-row items-center place-content-center h-full flex-1 cursor-pointer>
       <label
-        flex items-center place-content-center h-full flex-1 class="selete-none"
+        flex items-center place-content-center h-full flex-1 class="select-none"
         :class="show ? '!text-primary' : ''"
       >
         <input type="checkbox" z="-1" absolute inset-0 opacity-0 @click="changeShow">

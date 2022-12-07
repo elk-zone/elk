@@ -2,11 +2,11 @@ import { pwaInfo } from 'virtual:pwa-info'
 import type { Link } from '@unhead/schema'
 import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
 
-const isDev = process.dev
-const isPreview = window.location.hostname.includes('deploy-preview')
-const suffix = isDev || isPreview ? '-dev' : ''
-
 export function setupPageHeader() {
+  const isDev = process.dev
+  const isPreview = useRuntimeConfig().public.env === 'staging'
+  const suffix = isDev || isPreview ? '-dev' : ''
+
   const i18n = useI18n()
 
   const link: Link[] = [

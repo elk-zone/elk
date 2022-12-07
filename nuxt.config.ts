@@ -1,6 +1,6 @@
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
-import { i18n } from './modules/i18n-configuration'
+import { i18n } from './config/i18n'
 import { pwa } from './modules/pwa-configuration'
 
 export default defineNuxtConfig({
@@ -50,7 +50,6 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    env: isCI ? 'deployed' : 'local',
     deployUrl: !isCI
       ? 'http://localhost:5314'
       : process.env.PULL_REQUEST === 'true'
@@ -62,6 +61,7 @@ export default defineNuxtConfig({
       apiToken: '',
     },
     public: {
+      env: isCI ? process.env.PULL_REQUEST === 'true' ? 'staging' : 'production' : 'local',
       translateApi: '',
       // Masto uses Mastodon version checks to see what features are enabled.
       // Mastodon alternatives like GoToSocial will always fail these checks, so
@@ -69,7 +69,7 @@ export default defineNuxtConfig({
       disableVersionCheck: false,
     },
     storage: {
-      driver: 'cloudflare',
+      driver: isCI ? 'cloudflare' : 'fs',
       fsBase: 'node_modules/.cache/servers',
     },
   },

@@ -56,13 +56,18 @@ const initActiveStatus = () => {
   activeStatus?.focus()
 }
 
+// work with virtual scroller featureFlag
+const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirtualScroll))
+const virtualScrollerWrap = (el: HTMLElement | null) => virtualScroller ? el?.parentElement?.parentElement : el
+const virtualScrollerUnwrap = (el: HTMLElement | null) => virtualScroller ? el?.querySelector<HTMLElement>('[aria-roledescription=status-card]') : el
+
 const validAriaRoledescriptionsToNavigatePrevNextInTimeline = ['status-details', 'status-card']
 const timelineMoveUp = () => {
   if (!activeStatus || !activeStatus.isConnected) {
     initActiveStatus()
   }
   else {
-    let prevEl = activeStatus?.previousElementSibling as HTMLElement | null
+    let prevEl = virtualScrollerUnwrap(virtualScrollerWrap(activeStatus)?.previousElementSibling as HTMLElement | null)
     // in detail view, 'jump over' (reply) publish widget
     while (prevEl) {
       if (prevEl && prevEl.hasAttribute('aria-roledescription') && validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(`${prevEl.getAttribute('aria-roledescription')}`)) {
@@ -70,7 +75,7 @@ const timelineMoveUp = () => {
         activeStatus.focus()
         break
       }
-      prevEl = prevEl?.previousElementSibling as HTMLElement | null
+      prevEl = virtualScrollerUnwrap(virtualScrollerWrap(prevEl)?.previousElementSibling as HTMLElement | null)
     }
   }
 }
@@ -79,7 +84,7 @@ const timelineMoveDown = () => {
     initActiveStatus()
   }
   else {
-    let nextEl = activeStatus?.nextElementSibling as HTMLElement | null
+    let nextEl = virtualScrollerUnwrap(virtualScrollerWrap(activeStatus)?.nextElementSibling as HTMLElement | null)
     // in detail view, 'jump over' (reply) publish widget
     while (nextEl) {
       if (nextEl && nextEl.hasAttribute('aria-roledescription') && validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(`${nextEl.getAttribute('aria-roledescription')}`)) {
@@ -87,7 +92,7 @@ const timelineMoveDown = () => {
         activeStatus.focus()
         break
       }
-      nextEl = nextEl?.nextElementSibling as HTMLElement | null
+      nextEl = virtualScrollerUnwrap(virtualScrollerWrap(nextEl)?.nextElementSibling as HTMLElement | null)
     }
   }
 }

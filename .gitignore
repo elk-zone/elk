@@ -13,9 +13,3 @@ public/shiki
 *~
 *swp
 *swo
-
-# exclude ssl stuff
-*.cer
-*.cert
-*.crt
-*.key

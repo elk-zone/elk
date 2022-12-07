@@ -12,7 +12,7 @@ const withAccounts = $computed(() =>
 
 <template>
   <article v-if="conversation.lastStatus" flex flex-col gap-2>
-    <div v-if="withAccounts.length" absolute flex gap-2 text-sm text-secondary font-bold left-3 px2 pt2>
+    <div absolute flex gap-2 text-sm text-secondary font-bold left-3 px2 pt2>
       <p mr-1>
         {{ $t('conversation.with') }}
       </p>

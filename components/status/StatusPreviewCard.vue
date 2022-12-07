@@ -5,6 +5,7 @@ const prop = defineProps<{
   card: Card
 }>()
 const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
+const isSquare = $computed(() => prop.card.width === prop.card.height)
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 </script>
@@ -16,21 +17,24 @@ const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
     display-block
     rounded-lg
   >
-    <NuxtLink display-block :to="card.url">
+    <NuxtLink display-block :to="card.url" :class="isSquare ? 'flex' : ''">
       <CommonBlurhash
         v-if="card.image"
         :blurhash="card.blurhash"
         :src="card.image"
-        :width="card.width"
-        :height="card.height"
+        :width="!isSquare && card.width"
+        :height="!isSquare && card.height"
         :alt="alt"
+        flex flex-col
         display-block
         rounded-lg
-        rounded-b-none
+        :class="isSquare ? 'rounded-r-none w-32' : 'rounded-b-none w-full'"
         object-cover
-        w-full
       />
-      <div p4 max-h-2xl>
+      <div
+        p4 max-h-2xl
+        flex flex-col
+      >
         <p v-if="card.providerName" text-secondary line-clamp-1 text-ellipsis>
           {{ card.providerName }}
         </p>

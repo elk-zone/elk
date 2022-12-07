@@ -56,12 +56,13 @@ const initActiveStatus = () => {
   activeStatus?.focus()
 }
 
-// work with virtual scroller featureFlag
-const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirtualScroll))
-const virtualScrollerWrap = (el: HTMLElement | null) => virtualScroller ? el?.parentElement?.parentElement : el
-const virtualScrollerUnwrap = (el: HTMLElement | null) => virtualScroller ? el?.querySelector<HTMLElement>('[aria-roledescription=status-card]') : el
-
 const validAriaRoledescriptionsToNavigatePrevNextInTimeline = ['status-details', 'status-card']
+
+// work with or without vue-virtual-scroller wrapped StatusCards
+// TODO: find a solution that is less coupled, complex and better maintainable...
+const virtualScrollerWrap = (el: HTMLElement | null) => el?.closest('.vue-recycle-scroller__item-view') || el
+const virtualScrollerUnwrap = (el: HTMLElement | null) => validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(el?.getAttribute('aria-roledescription') || '') ? el : el?.querySelector<HTMLElement>('[aria-roledescription=status-card]') || el
+
 const timelineMoveUp = () => {
   if (!activeStatus || !activeStatus.isConnected) {
     initActiveStatus()

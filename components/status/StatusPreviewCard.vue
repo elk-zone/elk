@@ -17,7 +17,7 @@ const isSquare = $computed(() => prop.card.width === prop.card.height)
     display-block
     rounded-lg
   >
-    <NuxtLink display-block :to="card.url" :class="isSquare ? 'flex' : ''">
+    <NuxtLink display-block :to="card.url" :class="{ flex: isSquare }">
       <CommonBlurhash
         v-if="card.image"
         :blurhash="card.blurhash"

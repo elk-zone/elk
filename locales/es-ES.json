@@ -43,6 +43,7 @@
     "vote": "Votar"
   },
   "app_desc_short": "Un cliente Mastodon hecho con 🧡",
+  "app_logo": "Logotipo de Elk",
   "app_name": "Elk",
   "command": {
     "activate": "Activar",

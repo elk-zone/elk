@@ -8,24 +8,9 @@ export function setupPageHeader() {
 
   const i18n = useI18n()
 
-  const link: Link[] = [
-    { rel: 'icon', type: 'image/svg+xml', href: `/favicon${suffix}.svg` },
-    { rel: 'alternate icon', type: 'image/x-icon', href: `/favicon${suffix}.ico` },
-    { rel: 'icon', type: 'image/png', href: `/favicon-16x16${suffix}.png`, sizes: '16x16' },
-    { rel: 'icon', type: 'image/png', href: `/favicon-32x32${suffix}.png`, sizes: '32x32' },
-  ]
+  const link: Link[] = []
 
   if (pwaInfo && pwaInfo.webManifest) {
-    link.push({
-      rel: 'mask-icon',
-      href: '/safari-pinned-tab.svg',
-      color: '#ffffff',
-    })
-    link.push({
-      rel: 'apple-touch-icon',
-      href: `/apple-touch-icon${suffix}.png`,
-      sizes: '180x180',
-    })
     const { webManifest } = pwaInfo
     if (webManifest) {
       const { href, useCredentials } = webManifest
@@ -50,6 +35,7 @@ export function setupPageHeader() {
       lang: () => i18n.locale.value,
     },
     titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
+    link,
   })
 
   // eslint-disable-next-line no-unused-expressions

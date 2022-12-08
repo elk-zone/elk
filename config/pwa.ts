@@ -1,11 +1,12 @@
 import { isCI } from 'std-env'
 import type { VitePWANuxtOptions } from '../modules/pwa/types'
 
-const suffix = isCI ? '' : '-dev'
+const isPreview = process.env.PULL_REQUEST === 'true'
+
 const pwa: VitePWANuxtOptions = {
   mode: isCI ? 'production' : 'development',
-  // disabled on deploy and local dev/build until ui stable
-  disable: isCI || !(process.env.VITE_DEV_PWA === 'true'),
+  // disabled PWA only on production
+  disable: (isCI && !isPreview) || !(process.env.VITE_DEV_PWA === 'true'),
   scope: '/',
   srcDir: './service-worker',
   filename: 'sw.ts',
@@ -15,23 +16,23 @@ const pwa: VitePWANuxtOptions = {
   manifest: {
     scope: '/',
     id: '/',
-    name: `Elk${isCI ? '' : ' (dev)'}`,
-    short_name: `Elk${isCI ? '' : ' (dev)'}`,
-    description: `A nimble Mastodon Web Client${isCI ? '' : ' (development)'}`,
+    name: `Elk${isCI ? isPreview ? ' (preview)' : '' : ' (dev)'}`,
+    short_name: `Elk${isCI ? isPreview ? ' (preview)' : '' : ' (dev)'}`,
+    description: `A nimble Mastodon Web Client${isCI ? isPreview ? ' (preview)' : '' : ' (development)'}`,
     theme_color: '#ffffff',
     icons: [
       {
-        src: `pwa-192x192${suffix}.png`,
+        src: 'pwa-192x192.png',
         sizes: '192x192',
         type: 'image/png',
       },
       {
-        src: `pwa-512x512${suffix}.png`,
+        src: 'pwa-512x512.png',
         sizes: '512x512',
         type: 'image/png',
       },
       {
-        src: `logo${suffix}.svg`,
+        src: 'logo.svg',
         sizes: '250x250',
         type: 'image/png',
         purpose: 'any maskable',
@@ -40,18 +41,6 @@ const pwa: VitePWANuxtOptions = {
   },
   injectManifest: {
     globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
-    globIgnores: isCI
-      ? ['**/*-dev.{svg,png,ico}']
-      : [
-          'apple-touch-icon.png',
-          'favicon.ico',
-          'favicon.svg',
-          'favicon-16x16.png',
-          'favicon-32x32.png',
-          'logo.svg',
-          'pwa-192x192.png',
-          'pwa-512x512.png',
-        ],
   },
   devOptions: {
     enabled: process.env.VITE_DEV_PWA === 'true',

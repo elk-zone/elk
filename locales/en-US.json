@@ -43,6 +43,7 @@
     "vote": "Vote"
   },
   "app_desc_short": "A Mastodon client made with 🧡",
+  "app_logo": "Elk Logo",
   "app_name": "Elk",
   "command": {
     "activate": "Activate",
@@ -174,7 +175,7 @@
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
     "poll": {
-      "count": "{0} votes",
+      "count": "{n} votes",
       "ends": "ends {0}",
       "finished": "finished {0}"
     },

@@ -53,7 +53,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    deployUrl: isDevelopment
+    deployUrl: !isCI
       ? 'http://localhost:5314'
       : isPreview
         ? process.env.DEPLOY_PRIME_URL
@@ -78,7 +78,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     publicAssets: [
-      ...(isDevelopment || isPreview ? [{ dir: fileURLToPath(new URL('./public-dev', import.meta.url)) }] : []),
+      ...(!isCI || isPreview ? [{ dir: fileURLToPath(new URL('./public-dev', import.meta.url)) }] : []),
     ],
     prerender: {
       crawlLinks: false,

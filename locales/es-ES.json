@@ -155,9 +155,9 @@
     "filter_removed_phrase": "Eliminado por filtrado",
     "filter_show_anyway": "Mostrar de todas formas",
     "poll": {
-      "count": "{0} votos|{0} voto|{0} votos",
-      "ends": "finaliza el {0}",
-      "finished": "finalizada el {0}"
+      "count": "{n} votos|{n} voto|{n} votos",
+      "ends": "finaliza {0}",
+      "finished": "finalizada {0}"
     },
     "reblogged": "{0} retooteó",
     "spoiler_show_less": "Mostrar menos",
@@ -178,7 +178,7 @@
   "time_ago_options": {
     "day_future": "dentro de 0 días|mañana|dentro de {n} días",
     "day_past": "hace 0 días|ayer|hace {n} días",
-    "hour_future": "dentro de 0 horas|dentro de 1 hora|dentro {n} horas",
+    "hour_future": "dentro de 0 horas|dentro de 1 hora|dentro de {n} horas",
     "hour_past": "hace 0 horas|hace 1 hora|hace {n} horas",
     "just_now": "ahora mismo",
     "minute_future": "dentro de 0 minutos|dentro de 1 minuto|dentro de {n} minutos",

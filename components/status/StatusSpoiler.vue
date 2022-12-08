@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type { FilterAction } from 'masto'
-
-const props = defineProps<{ enabled?: boolean; filter?: FilterAction }>()
+const props = defineProps<{ enabled?: boolean; filter?: boolean }>()
 
 const showContent = ref(!props.enabled)
 const toggleContent = useToggle(showContent)

@@ -11,7 +11,7 @@ watchEffect(() => {
 
 <template>
   <div v-if="enabled" flex flex-col items-start>
-    <div class="content-rich" px-4 pb-2 text-center text-secondary text-sm w-full border-b="~ base" border-b-dotted border-b-2 mt-2>
+    <div class="content-rich" px-4 pb-2 text-center text-secondary text-sm w-full border="~ base" border-0 border-b-dotted border-b-3 mt-2>
       <slot name="spoiler" />
     </div>
     <div flex="~ gap-1 center" w-full mt="-3.5">

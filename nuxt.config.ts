@@ -51,7 +51,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    deployUrl: isDevelopment
+    deployUrl: !isCI
       ? 'http://localhost:5314'
       : isPreview
         ? process.env.DEPLOY_PRIME_URL

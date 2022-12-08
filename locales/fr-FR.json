@@ -155,7 +155,7 @@
     "filter_removed_phrase": "Caché par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
     "poll": {
-      "count": "{0} votes",
+      "count": "{n} votes",
       "ends": "se clôt {0}",
       "finished": "clos {0}"
     },

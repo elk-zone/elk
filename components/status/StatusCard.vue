@@ -121,7 +121,9 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
       </div>
     </div>
   </div>
-  <div v-else-if="isFiltered" gap-2 px-4>
-    <p>{{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}</p>
+  <div v-else-if="isFiltered" gap-2 p-4>
+    <p text-center text-secondary text-sm>
+      {{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}
+    </p>
   </div>
 </template>

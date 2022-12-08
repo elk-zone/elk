@@ -3,7 +3,7 @@ import type { MaybeComputedRef, UseTimeAgoOptions } from '@vueuse/core'
 
 const formatter = Intl.NumberFormat()
 
-export const humanReadableNumber = (
+const humanReadableNumber = (
   num: number,
   { k, m }: { k: string; m: string } = { k: 'K', m: 'M' },
   useFormatter: Intl.NumberFormat = formatter,

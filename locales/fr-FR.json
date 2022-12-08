@@ -156,8 +156,8 @@
     "filter_show_anyway": "Montrer coûte que coûte",
     "poll": {
       "count": "{0} votes",
-      "ends": "fini {0}",
-      "finished": "fini {0}"
+      "ends": "se clôt {0}",
+      "finished": "clos {0}"
     },
     "reblogged": "{0} relayé",
     "someone": "Quelqu'un",

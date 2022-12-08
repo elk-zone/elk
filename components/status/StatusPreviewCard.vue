@@ -6,6 +6,8 @@ const prop = defineProps<{
 }>()
 const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
 const isSquare = $computed(() => prop.card.width === prop.card.height)
+const url = new URL(prop.card.url)
+const description = $computed(() => prop.card.description ? prop.card.description : url.hostname)
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 </script>
@@ -39,11 +41,8 @@ const isSquare = $computed(() => prop.card.width === prop.card.height)
           {{ card.providerName }}
         </p>
         <strong v-if="card.title" line-clamp-1 text-ellipsis>{{ card.title }}</strong>
-        <p v-if="card.description" text-secondary line-clamp-2 text-ellipsis>
-          {{ card.description }}
-        </p>
-        <p v-else text-secondary line-clamp-2 text-ellipsis>
-          {{ card.url }}
+        <p v-if="description" text-secondary line-clamp-2 text-ellipsis>
+          {{ description }}
         </p>
       </div>
     </NuxtLink>

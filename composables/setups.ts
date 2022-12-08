@@ -3,6 +3,7 @@ import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
 export function setupPageHeader() {
   const isDev = process.dev
   const isPreview = useRuntimeConfig().public.env === 'staging'
+  const suffix = isDev || isPreview ? '-dev' : ''
 
   const i18n = useI18n()
 
@@ -15,7 +16,10 @@ export function setupPageHeader() {
       class: 'overflow-x-hidden',
     },
     link: [
-      { rel: 'icon', type: 'image/svg+png', href: isDev || isPreview ? '/favicon-dev.png' : '/favicon.png' },
+      { rel: 'icon', type: 'image/svg+xml', href: `/favicon${suffix}.svg` },
+      { rel: 'alternate icon', type: 'image/x-icon', href: `/favicon${suffix}.ico` },
+      { rel: 'icon', type: 'image/png', href: `/favicon-16x16${suffix}.png`, sizes: '16x16' },
+      { rel: 'icon', type: 'image/png', href: `/favicon-32x32${suffix}.png`, sizes: '32x32' },
     ],
   })
 

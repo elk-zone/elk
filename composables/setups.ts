@@ -11,12 +11,6 @@ export function setupPageHeader() {
       lang: () => i18n.locale.value,
     },
     titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
-    bodyAttrs: {
-      class: 'overflow-x-hidden',
-    },
-    link: [
-      { rel: 'icon', type: 'image/svg+png', href: isDev || isPreview ? '/favicon-dev.png' : '/favicon.png' },
-    ],
   })
 
   // eslint-disable-next-line no-unused-expressions

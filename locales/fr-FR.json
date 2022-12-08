@@ -16,7 +16,7 @@
     "joined": "a rejoint",
     "moved_title": "a indiqué que son nouveau compte est désormais :",
     "muted_users": "Utilisateurs mis en sourdine",
-    "mutuals": "Vous vous suivez mutuellement",
+    "mutuals": "@:account.following",
     "pinned": "Épinglés",
     "posts_count": "{0} messages",
     "profile_description": "En-tête du profil de {0}",
@@ -55,7 +55,6 @@
     "switch_account_desc": "Changer vers un autre compte",
     "toggle_dark_mode": "Passer au thème foncé",
     "toggle_zen_mode": "Passer en mode zen"
-
   },
   "common": {
     "end_of_list": "Fin de liste",
@@ -73,6 +72,7 @@
     "status_not_found": "Message non trouvé"
   },
   "feature_flag": {
+    "avatar_on_avatar": "Avatar sur avatar",
     "virtual_scroll": "Défilement virtuel"
   },
   "help": {
@@ -155,13 +155,15 @@
     "filter_removed_phrase": "Caché par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
     "poll": {
-      "count": "{0} votes",
-      "ends": "fini {0}",
-      "finished": "fini {0}"
+      "count": "{n} votes",
+      "ends": "se clôt {0}",
+      "finished": "clos {0}"
     },
     "reblogged": "{0} relayé",
+    "someone": "Quelqu'un",
     "spoiler_show_less": "Voir moins",
     "spoiler_show_more": "Voir plus",
+    "thread": "Fil de discussion",
     "try_original_site": "Essayer le site d'origine"
   },
   "status_history": {
@@ -185,8 +187,8 @@
     "minute_past": "il y a 0 minute|il y a 1 minute|il y a {n} minutes",
     "month_future": "dans 0 mois|le mois prochain|dans {n} mois",
     "month_past": "il y a 0 mois|le dernier mois|il y a {n} mois",
-    "second_future": "juste maintenant|dans {n} secondes|dans {n} secondes",
-    "second_past": "juste maintenant|il y a {n} seconde|il y a {n} secondes",
+    "second_future": "maintenant|dans {n} secondes|dans {n} secondes",
+    "second_past": "maintenant|il y a {n} seconde|il y a {n} secondes",
     "short_day_future": "dans {n}j",
     "short_day_past": "{n}j",
     "short_hour_future": "dans {n}h",
@@ -207,7 +209,7 @@
     "year_past": "il y a 0 année|l'année dernière|il y a {n} années"
   },
   "timeline": {
-    "show_new_items": "Montrer les {n} nouveaux messages"
+    "show_new_items": "Voir le nouveau message|Voir les {n} nouveaux messages"
   },
   "title": {
     "federated_timeline": "Fil d'actualité fédéré",

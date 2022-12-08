@@ -154,7 +154,7 @@
     "filter_removed_phrase": "从筛选中移除",
     "filter_show_anyway": "仍然展示",
     "poll": {
-      "count": "{0} 次投票",
+      "count": "{n} 次投票",
       "ends": "将在 {0} 结束",
       "finished": "已在 {0} 结束"
     },

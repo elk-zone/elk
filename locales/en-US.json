@@ -182,7 +182,7 @@
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
     "poll": {
-      "count": "{0} votes",
+      "count": "{n} votes",
       "ends": "ends {0}",
       "finished": "finished {0}"
     },

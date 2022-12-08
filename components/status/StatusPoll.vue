@@ -12,6 +12,8 @@ function toPercentage(num: number) {
 }
 const timeAgoOptions = useTimeAgoOptions()
 const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)
+const expiredTimeFormatted = useFormattedDateTime(poll.expiresAt!)
+const { formatHumanReadableNumber } = useHumanReadableNumber()
 
 const masto = useMasto()
 async function vote(e: Event) {
@@ -56,9 +58,11 @@ async function vote(e: Event) {
       </div>
     </template>
     <div text-sm>
-      {{ $t('status.poll.count', [poll.votersCount]) }}
+      {{ $t('status.poll.count', formatHumanReadableNumber(poll.votersCount ?? 0)) }}
       &middot;
-      {{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}
+      <CommonTooltip :content="expiredTimeFormatted" class="inline-block" placement="right">
+        <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>
+      </CommonTooltip>
     </div>
   </div>
 </template>

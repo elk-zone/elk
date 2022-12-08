@@ -1,6 +1,9 @@
+import { fileURLToPath } from 'node:url'
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
 import { i18n } from './config/i18n'
+
+const isPreview = process.env.PULL_REQUEST === 'true'
 
 export default defineNuxtConfig({
   ssr: false,
@@ -48,9 +51,9 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    deployUrl: !isCI
+    deployUrl: isDevelopment
       ? 'http://localhost:5314'
-      : process.env.PULL_REQUEST === 'true'
+      : isPreview
         ? process.env.DEPLOY_PRIME_URL
         : 'https://elk.zone',
     cloudflare: {
@@ -59,7 +62,7 @@ export default defineNuxtConfig({
       apiToken: '',
     },
     public: {
-      env: isCI ? process.env.PULL_REQUEST === 'true' ? 'staging' : 'production' : 'local',
+      env: isCI ? isPreview ? 'staging' : 'production' : 'local',
       translateApi: '',
       // Masto uses Mastodon version checks to see what features are enabled.
       // Mastodon alternatives like GoToSocial will always fail these checks, so
@@ -72,6 +75,9 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
+    publicAssets: [
+      ...(isDevelopment || isPreview ? [{ dir: fileURLToPath(new URL('./public-dev', import.meta.url)) }] : []),
+    ],
     prerender: {
       crawlLinks: false,
       routes: ['/', '/200.html'],
@@ -82,6 +88,15 @@ export default defineNuxtConfig({
     head: {
       // Prevent arbitrary zooming on mobile devices
       viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
+      bodyAttrs: {
+        class: 'overflow-x-hidden',
+      },
+      link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'alternate icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/png', href: '/favicon-16x16.png', sizes: '16x16' },
+        { rel: 'icon', type: 'image/png', href: '/favicon-32x32.png', sizes: '32x32' },
+      ],
     },
   },
   i18n,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Filter, FilterAction, FilterContext, Status } from 'masto'
+import type { FilterContext, Status } from 'masto'
 
 const props = withDefaults(
   defineProps<{
@@ -108,6 +108,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
               :status="status"
               minimized
             />
+            <StatusPreviewCard v-if="status.card" :card="status.card" />
           </StatusSpoiler>
           <StatusCard
             v-if="status.reblog"
@@ -115,6 +116,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
             :actions="false"
           />
         </div>
+        <StatusLink v-if="status.card" :card="status.card" />
         <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
       </div>
     </div>

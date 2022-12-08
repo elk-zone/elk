@@ -9,7 +9,15 @@ const supportsPushNotifications = typeof window !== 'undefined'
 
 export const usePushManager = () => {
   const isSubscribed = ref(false)
-  const notificationPermission = ref<PermissionState | undefined>()
+  const notificationPermission = ref<PermissionState | undefined>(
+    Notification.permission === 'denied'
+      ? 'denied'
+      : Notification.permission === 'granted'
+        ? 'granted'
+        : Notification.permission === 'default'
+          ? 'prompt'
+          : undefined,
+  )
   const isSupported = $computed(() => supportsPushNotifications)
   const hiddenNotification = useLocalStorage(STORAGE_KEY_NOTIFICATION, false)
 

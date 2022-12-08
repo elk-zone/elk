@@ -1,6 +1,7 @@
 {
   "account": {
     "avatar_description": "avatar de {0}",
+    "blocked_by": "Fuiste bloqueado por este usuario.",
     "blocked_domains": "Dominios bloqueados",
     "blocked_users": "Usuarios bloqueados",
     "favourites": "Favoritos",
@@ -11,43 +12,75 @@
     "following": "Siguiendo",
     "following_count": "{0} Siguiendo",
     "follows_you": "Te sigue",
+    "go_to_profile": "Ir al perfil",
     "joined": "Se unió",
+    "moved_title": "ha indicado que su nueva cuenta ahora es:",
     "muted_users": "Usuarios silenciados",
     "mutuals": "Mutuo",
-    "pinned": "Fijado",
+    "pinned": "Publicaciones fijadas",
     "posts_count": "{0} publicaciones|{0} publicación|{0} publicaciones",
-    "profile_description": "encabezado del perfil de {0}",
+    "profile_description": "Encabezado del perfil de {0}",
     "profile_unavailable": "Perfil no disponible",
     "unfollow": "Dejar de seguir"
   },
   "action": {
     "bookmark": "Añadir marcador",
+    "bookmarked": "Guardado como marcador",
     "boost": "Retootear",
+    "boosted": "Retooteado",
     "compose": "Componer",
     "enter_app": "Entrar",
     "favourite": "Favorito",
+    "favourited": "Marcado como favorito",
     "more": "Más",
+    "next": "Siguiente",
+    "prev": "Anterior",
     "publish": "¡Publicar!",
     "reply": "Responder",
     "save_changes": "Guardar",
-    "sign_in": "Iniciar sesión"
+    "sign_in": "Iniciar sesión",
+    "switch_account": "Cambiar cuenta",
+    "vote": "Votar"
   },
   "app_desc_short": "Un cliente Mastodon hecho con 🧡",
   "app_name": "Elk",
   "command": {
     "activate": "Activar",
-    "complete": "Completar"
+    "complete": "Completar",
+    "compose_desc": "Escribir una nueva publicación",
+    "lang": "Idiomas",
+    "select_lang": "Seleccionar idioma",
+    "sign_in_desc": "Agregar una cuenta existente",
+    "switch_account": "Cambiar a {0}",
+    "switch_account_desc": "Cambiar a otra cuenta",
+    "toggle_dark_mode": "Cambiar a modo oscuro",
+    "toggle_zen_mode": "Cambiar a modo Zen"
   },
   "common": {
     "end_of_list": "Fin",
     "error": "ERROR",
-    "not_found": "404 No Encontrado"
+    "kiloSuffix": "K",
+    "megaSuffix": "M",
+    "not_found": "404 No Encontrado",
+    "offline_desc": "Al parecer estás fuera de línea. Por favor, comprueba tu conexión a la red."
+  },
+  "conversation": {
+    "with": "con"
   },
   "error": {
-    "account_not_found": "No se encontró la cuenta {0}"
+    "account_not_found": "No se encontró la cuenta {0}",
+    "status_not_found": "Estado no encontrado"
   },
   "feature_flag": {
+    "avatar_on_avatar": "Avatar en Avatar",
     "virtual_scroll": "Virtual Scrolling"
+  },
+  "help": {
+    "desc_highlight": "Es normal encontrar algunos errores y características faltantes aquí y allá.",
+    "desc_para1": "¡Gracias por el interés en probar Elk, nuestro cliente genérico en desarrollo para Mastodon!",
+    "desc_para2": "Estamos trabajando duro en el desarrollo y mejorándolo constantemente. ¡Y pronto te invitaremos a que te unas una vez que lo hagamos de código abierto!",
+    "desc_para3": "Antes de eso, para ayudar a impulsar el desarrollo, puedes patrocinar a los miembros de nuestro equipo con los enlaces a continuación.",
+    "title": "Elk está en Vista Previa!"
   },
   "menu": {
     "block_account": "Bloquear a {0}",
@@ -62,6 +95,10 @@
     "open_in_original_site": "Abrir página original",
     "pin_on_profile": "Fijar en tu perfil",
     "show_untranslated": "Mostrar original",
+    "toggle_theme": {
+      "dark": "Cambiar a modo oscuro",
+      "light": "Cambiar a modo claro"
+    },
     "translate_post": "Traducir",
     "unblock_account": "Desbloquear a {0}",
     "unblock_domain": "Desbloquear dominio {0}",
@@ -133,9 +170,22 @@
   },
   "status": {
     "edited": "Modificado {0}",
+    "filter_hidden_phrase": "Filtrado por",
+    "filter_removed_phrase": "Eliminado por filtrado",
+    "filter_show_anyway": "Mostrar de todas formas",
+    "poll": {
+      "count": "{0} votos|{0} voto|{0} votos",
+      "ends": "finaliza el {0}",
+      "finished": "finalizada el {0}"
+    },
     "reblogged": "{0} retooteó",
     "spoiler_show_less": "Mostrar menos",
-    "spoiler_show_more": "Mostrar más"
+    "spoiler_show_more": "Mostrar más",
+    "try_original_site": "Ver en la página original"
+  },
+  "status_history": {
+    "created": "creado el {0}",
+    "edited": "editado el {0}"
   },
   "tab": {
     "media": "Media",
@@ -162,14 +212,14 @@
     "short_hour_past": "{n}h",
     "short_minute_future": "en {n}min",
     "short_minute_past": "{n}min",
-    "short_month_future": "en 0meses|en 1mes|en {n}meses",
-    "short_month_past": "0meses|1mes|{n}meses",
-    "short_second_future": "en {n}sg",
-    "short_second_past": "{n}sg",
-    "short_week_future": "en {n}sem",
-    "short_week_past": "{n}sem",
-    "short_year_future": "en 0años|en 1año|en {n}años",
-    "short_year_past": "0años|1año|{n}años",
+    "short_month_future": "en 0 meses|en 1 mes|en {n} meses",
+    "short_month_past": "0 meses|1 mes|{n} meses",
+    "short_second_future": "en {n} seg",
+    "short_second_past": "{n} seg",
+    "short_week_future": "en {n} sem",
+    "short_week_past": "{n} sem",
+    "short_year_future": "en 0 años|en 1 año|en {n} años",
+    "short_year_past": "0 años|1 año|{n} años",
     "week_future": "dentro de 0 semanas|la próxima semana|dentro de {n} semanas",
     "week_past": "hace 0 semanas|la semana pasada|hace {n} semanas",
     "year_future": "dentro de 0 años|el próximo año|dentro de {n} años",

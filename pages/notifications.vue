@@ -59,13 +59,13 @@ useHeadFixed({
 
     <template #header>
       <CommonTabs v-model="tab" :options="tabs" />
-      <NotificationPreferences :show="showSettings" />
-    </template>
-    <slot>
       <!-- can go also here -->
       <!--
-      <NotificationPreferences :show="showSettings" />
+            <NotificationPreferences :show="showSettings" />
 -->
+    </template>
+    <slot>
+      <NotificationPreferences :show="showSettings" />
       <NotificationPaginator :key="tab" v-bind="{ paginator, stream }" />
     </slot>
   </MainContent>

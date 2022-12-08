@@ -15,5 +15,3 @@ export const STORAGE_KEY_FEATURE_FLAGS = 'elk-feature-flags'
 export const STORAGE_KEY_NOTIFICATION = 'elk-notification'
 
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\d-]+\.)+\w+\/(@[@\w\d-\.]+)(\/objects)?(\/\d+)?$/
-
-export const PWA_ENABLED = import.meta.env.VITE_DEV_PWA === 'true'

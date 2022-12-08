@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { PWA_ENABLED } from '~/constants'
-
 definePageMeta({
   middleware: 'auth',
 })
 
 const { t } = useI18n()
 const showSettings = ref(false)
+const pwaEnabled = useRuntimeConfig().public.pwaEnabled
 
 const paginatorAll = useMasto().notifications.iterate()
 const paginatorMention = useMasto().notifications.iterate({ types: ['mention'] })
@@ -47,7 +46,7 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <template v-if="PWA_ENABLED" #actions>
+    <template v-if="pwaEnabled" #actions>
       <button
         flex rounded-4 p2
         hover:bg-active cursor-pointer transition-100

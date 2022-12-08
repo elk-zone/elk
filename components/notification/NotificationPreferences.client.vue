@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { usePushManager } from '~/composables/push-notifications/usePushManager'
-import { PWA_ENABLED } from '~/constants'
 
 defineProps<{ show: boolean }>()
 
@@ -12,9 +11,10 @@ const {
   subscribe,
   unsubscribe,
 } = usePushManager()
+const pwaEnabled = useRuntimeConfig().public.pwaEnabled
 
 const showWarning = $computed(() => {
-  if (!PWA_ENABLED)
+  if (!pwaEnabled)
     return false
 
   return isSupported
@@ -32,7 +32,7 @@ const doSubscribe = async () => {
 </script>
 
 <template>
-  <div v-if="PWA_ENABLED && (showWarning || show)" px5 py4>
+  <div v-if="pwaEnabled && (showWarning || show)" px5 py4>
     <Transition name="slide-down">
       <div v-if="show" flex="~ col">
         TODO

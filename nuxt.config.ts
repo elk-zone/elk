@@ -78,9 +78,6 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
-    '/': {
-      redirect: { to: '/index.html', statusCode: 200 },
-    },
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',

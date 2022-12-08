@@ -18,10 +18,8 @@ const showWarning = $computed(() => {
     return false
 
   return isSupported
-      && (!isSubscribed.value || (
-        (!notificationPermission.value || notificationPermission.value === 'prompt')
-        && !hiddenNotification.value
-      ))
+      && (!isSubscribed.value || !notificationPermission.value || notificationPermission.value === 'prompt')
+      && !hiddenNotification.value
 })
 
 const doSubscribe = async () => {
@@ -40,7 +38,7 @@ const doSubscribe = async () => {
     </Transition>
     <template v-if="showWarning">
       <Transition name="slide-down">
-        <div v-if="showWarning" flex="~ col" role="alert" aria-labelledby="notifications-warning">
+        <div flex="~ col" role="alert" aria-labelledby="notifications-warning">
           <header flex items-center>
             <h2 id="notifications-warning" text-md font-bold w-full>
               {{ $t('notification.settings.warning.enable_title') }}

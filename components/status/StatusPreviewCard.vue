@@ -6,8 +6,7 @@ const prop = defineProps<{
 }>()
 const alt = $computed(() => `${prop.card.title} - ${prop.card.title}`)
 const isSquare = $computed(() => prop.card.width === prop.card.height)
-const url = new URL(prop.card.url)
-const description = $computed(() => prop.card.description ? prop.card.description : url.hostname)
+const description = $computed(() => prop.card.description ? prop.card.description : new URL(prop.card.url).hostname)
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 </script>

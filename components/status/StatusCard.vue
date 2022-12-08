@@ -116,7 +116,6 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
             :actions="false"
           />
         </div>
-        <StatusLink v-if="status.card" :card="status.card" />
         <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
       </div>
     </div>

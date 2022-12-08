@@ -1,3 +1,5 @@
 *.css
+*.png
+*.ico
 https-dev-config/localhost.crt
 https-dev-config/localhost.key

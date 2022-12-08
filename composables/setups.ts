@@ -5,7 +5,6 @@ import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
 export function setupPageHeader() {
   const isDev = process.dev
   const isPreview = useRuntimeConfig().public.env === 'staging'
-  const suffix = isDev || isPreview ? '-dev' : ''
 
   const i18n = useI18n()
 
@@ -51,11 +50,6 @@ export function setupPageHeader() {
       lang: () => i18n.locale.value,
     },
     titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
-    bodyAttrs: {
-      class: 'overflow-x-hidden',
-    },
-    link,
-    meta: [{ name: 'theme-color', content: '#ffffff' }],
   })
 
   // eslint-disable-next-line no-unused-expressions

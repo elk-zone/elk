@@ -27,9 +27,9 @@ defineOptions({
           <div w-17 h-17 rounded-full border-4 border-bg-base z-2 mt--2 ml--1>
             <AccountAvatar :account="account" />
           </div>
-          <div block sm:hidden>
+          <a block sm:hidden href="javascript:;" @click.stop>
             <AccountFollowButton :account="account" />
-          </div>
+          </a>
         </div>
         <div sm:mt-2>
           <div>
@@ -52,9 +52,9 @@ defineOptions({
       <!-- Follow info -->
       <div flex justify-between items-center>
         <AccountPostsFollowers text-sm :account="account" />
-        <div sm:block hidden>
+        <a sm:block hidden href="javascript:;" @click.stop>
           <AccountFollowButton :account="account" />
-        </div>
+        </a>
       </div>
     </div>
   </component>

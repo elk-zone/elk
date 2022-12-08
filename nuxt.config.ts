@@ -77,6 +77,16 @@ export default defineNuxtConfig({
       fsBase: 'node_modules/.cache/servers',
     },
   },
+  routeRules: {
+    '/': {
+      redirect: { to: '/index.html', statusCode: 200 },
+    },
+    '/manifest.webmanifest': {
+      headers: {
+        'Content-Type': 'application/manifest+json',
+      },
+    },
+  },
   nitro: {
     publicAssets: [
       ...(!isCI || isPreview ? [{ dir: fileURLToPath(new URL('./public-dev', import.meta.url)) }] : []),

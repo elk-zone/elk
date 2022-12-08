@@ -35,6 +35,7 @@
 /* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
 body {
   overflow-y: scroll;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .zen .zen-hide {

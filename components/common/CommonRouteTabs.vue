@@ -26,18 +26,19 @@ useCommands(() => command
 </script>
 
 <template>
-  <div flex w-full items-center lg:text-lg>
-    <RouterLink
+  <div flex w-full items-center lg:text-lg of-x-auto scrollbar-hide>
+    <NuxtLink
       v-for="(option, index) in options"
       :key="option?.name || index"
       :to="option.to"
       :replace="replace"
-      relative flex flex-auto cursor-pointer px3 m1 rounded transition-all
+      relative flex flex-auto cursor-pointer sm:px6 px2 rounded transition-all
       tabindex="1"
       hover:bg-active transition-100
       exact-active-class="children:(font-bold !border-primary !op100)"
+      @click="$scrollToTop"
     >
-      <span mxa px4 py3 text-center border-b-3 op50 hover:op70 border-transparent>{{ option.display }}</span>
-    </RouterLink>
+      <span ws-nowrap mxa sm:px2 sm:py3 py2 text-center border-b-3 op50 hover:op70 border-transparent>{{ option.display }}</span>
+    </NuxtLink>
   </div>
 </template>

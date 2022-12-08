@@ -30,10 +30,10 @@ useHeadFixed({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/explore" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+      <span text-lg font-bold flex items-center gap-2 cursor-pointer @click="$scrollToTop">
         <div i-ri:hashtag />
         <span>{{ t('nav_side.explore') }}</span>
-      </NuxtLink>
+      </span>
     </template>
 
     <template #header>

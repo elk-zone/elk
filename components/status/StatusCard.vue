@@ -96,7 +96,12 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
           </div>
           <StatusActionsMore :status="status" mr--2 />
         </div>
-        <div :class="status.visibility === 'direct' ? 'my3 p1 px4 br2 bg-fade border-primary border-1 rounded-3 rounded-tl-none' : ''">
+        <div
+          space-y-2
+          :class="{
+            'my3 p1 px4 br2 bg-fade border-primary border-1 rounded-3 rounded-tl-none': status.visibility === 'direct',
+          }"
+        >
           <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
             <template #spoiler>
               <p>{{ filterPhrase ? `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` : status.spoilerText }}</p>

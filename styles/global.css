@@ -3,7 +3,7 @@
   font-family: "DM Mono";
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/DM-mono-v10.ttf)  format("truetype");
+  src: url(/fonts/DM-mono-v10.ttf) format("truetype");
 }
 @font-face {
   font-display: swap;

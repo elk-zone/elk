@@ -19,7 +19,7 @@ export function fetchStatus(id: string, force = false): Promise<Status> {
   const cached = cache.get(key)
   if (cached && !force)
     return cached
-  const promise = useMasto()?.statuses?.fetch?.(id)
+  const promise = useMasto().statuses.fetch(id)
     .then((status) => {
       cacheStatus(status)
       return status
@@ -36,7 +36,7 @@ export function fetchAccountById(id?: string | null): Promise<Account | null> {
   const cached = cache.get(key)
   if (cached)
     return cached
-  const promise = useMasto()?.accounts?.fetch?.(id)
+  const promise = useMasto().accounts.fetch(id)
     .then((account) => {
       cacheAccount(account, true)
       return account
@@ -50,7 +50,7 @@ export async function fetchAccountByHandle(acct: string): Promise<Account> {
   const cached = cache.get(key)
   if (cached)
     return cached
-  const account = useMasto()?.accounts?.lookup?.({ acct })
+  const account = useMasto().accounts.lookup({ acct })
     .then((r) => {
       if (!r.acct.includes('@') && currentInstance.value)
         r.acct = `${r.acct}@${currentInstance.value.uri}`

@@ -11,16 +11,9 @@ if (useRoute().path === '/signin/callback') {
   useRouter().push('/home')
 }
 
-const paginator = $computed(() => useMasto()?.timelines?.iterateHome?.())
-const stream = asyncComputed(async () => {
-  return useMasto()?.stream?.streamUser?.()
-})
-
-watch(stream, (_, o) => {
-  o?.disconnect?.()
-})
-
-onBeforeUnmount(() => stream.value?.disconnect?.())
+const paginator = useMasto().timelines.iterateHome()
+const stream = await useMasto().stream.streamUser()
+onBeforeUnmount(() => stream.disconnect())
 
 const { t } = useI18n()
 useHeadFixed({

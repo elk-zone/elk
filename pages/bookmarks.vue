@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = $computed(() => useMasto()?.bookmarks?.iterate?.())
+const paginator = useMasto().bookmarks.iterate()
 
 const { t } = useI18n()
 

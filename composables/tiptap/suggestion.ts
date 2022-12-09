@@ -12,10 +12,10 @@ export const MentionSuggestion: Partial<SuggestionOptions> = {
     if (query.length === 0)
       return []
 
-    const mentionPaginator = useMasto()?.search?.({ q: query, type: 'accounts', limit: 25, resolve: true })
-    const results = mentionPaginator && await mentionPaginator.next()
+    const mentionPaginator = useMasto().search({ q: query, type: 'accounts', limit: 25, resolve: true })
+    const results = await mentionPaginator.next()
 
-    return results ? results.value.accounts : []
+    return results.value.accounts
   },
   render: createSuggestionRenderer(),
 }

@@ -1,12 +1,7 @@
 <script setup lang="ts">
-const paginator = $computed(() => useMasto()?.timelines?.iteratePublic?.())
-const stream = asyncComputed(async () => {
-  return useMasto()?.stream?.streamPublicTimeline?.()
-})
-watch(() => stream.value, (_, o) => {
-  o?.disconnect?.()
-})
-onBeforeUnmount(() => stream.value?.disconnect?.())
+const paginator = useMasto().timelines.iteratePublic()
+const stream = await useMasto().stream.streamPublicTimeline()
+onBeforeUnmount(() => stream.disconnect())
 
 const { t } = useI18n()
 

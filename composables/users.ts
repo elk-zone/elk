@@ -1,6 +1,5 @@
 import { login as loginMasto } from 'masto'
 import type { AccountCredentials, Instance, WsEvents } from 'masto'
-import type { RouteLocationRaw } from 'vue-router'
 import { clearUserDrafts } from './statusDrafts'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
@@ -77,23 +76,11 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 
   setMasto(masto)
 
-  let redirectRoute: RouteLocationRaw | undefined
-
-  if (user?.account && currentUserId.value && currentUserId.value !== user.account.id)
-    redirectRoute = { path: '/home', force: true }
-  else if (!user && !currentUserId.value && route.path !== '/public')
-    redirectRoute = { path: '/public', force: true }
-
-  if (redirectRoute) {
-    await router.push(redirectRoute)
-  }
-  else {
-    if ('server' in route.params) {
-      await router.push({
-        ...route,
-        force: true,
-      })
-    }
+  if ('server' in route.params) {
+    await router.push({
+      ...route,
+      force: true,
+    })
   }
 
   return masto

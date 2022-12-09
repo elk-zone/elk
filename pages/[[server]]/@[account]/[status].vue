@@ -15,11 +15,7 @@ const { data: status, pending, refresh: refreshStatus } = useAsyncData(`status:$
   window.history.state?.status as Status | undefined)
   ?? await fetchStatus(id),
 )
-const {
-  data: context,
-  pending: pendingContext,
-  refresh: refreshContext,
-} = useAsyncData(`context:${id}`, () => useMasto()?.statuses?.fetchContext?.(id))
+const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(`context:${id}`, () => useMasto().statuses.fetchContext(id))
 
 const replyDraft = $computed(() => status.value ? getReplyDraft(status.value) : null)
 

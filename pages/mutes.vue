@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = $computed(() => useMasto()?.mutes?.iterate?.())
+const paginator = useMasto().mutes.iterate()
 
 useHeadFixed({
   title: 'Muted users',

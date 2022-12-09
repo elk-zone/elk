@@ -165,9 +165,7 @@ export function useRelationship(account: Account): Ref<Relationship | undefined>
 
 async function fetchRelationships() {
   const requested = Array.from(requestedRelationships.entries()).filter(([, r]) => !r.value)
-  const relationships = await useMasto()?.accounts?.fetchRelationships?.(requested.map(([id]) => id))
-  if (relationships) {
-    for (let i = 0; i < requested.length; i++)
-      requested[i][1].value = relationships[i]
-  }
+  const relationships = await useMasto().accounts.fetchRelationships(requested.map(([id]) => id))
+  for (let i = 0; i < requested.length; i++)
+    requested[i][1].value = relationships[i]
 }

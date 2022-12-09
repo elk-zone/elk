@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = $computed(() => useMasto()?.blocks?.iterate?.())
+const paginator = useMasto().blocks.iterate()
 
 useHeadFixed({
   title: 'Blocked users',

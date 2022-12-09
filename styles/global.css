@@ -1,3 +1,32 @@
+@font-face {
+  font-display: swap;
+  font-family: "DM Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/DM-mono-v10.ttf)  format("truetype");
+}
+@font-face {
+  font-display: swap;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/DM-sans-v11.ttf) format("truetype");
+}
+@font-face {
+  font-display: swap;
+  font-family: "DM Serif Display";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/DM-serif-display-v10.ttf) format("truetype");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Homemade Apple";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/homemade-apple-v18.ttf) format("truetype");
+}
+
 * {
   scrollbar-color: #8885 var(--c-border);
 }

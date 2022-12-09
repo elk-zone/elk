@@ -5,13 +5,19 @@ definePageMeta({
 
 const { t } = useI18n()
 
-const paginatorAll = useMasto().notifications.iterate()
-const paginatorMention = useMasto().notifications.iterate({ types: ['mention'] })
+const paginatorAll = $computed(() => useMasto()?.notifications?.iterate?.())
+const paginatorMention = $computed(() => useMasto()?.notifications?.iterate?.({ types: ['mention'] }))
 
 const { clearNotifications } = useNotifications()
 onActivated(clearNotifications)
 
-const stream = await useMasto().stream.streamUser()
+const stream = asyncComputed(async () => {
+  return useMasto()?.stream?.streamUser?.()
+})
+
+watch(() => stream.value, (_, o) => {
+  o?.disconnect?.()
+})
 
 const tabs = $computed(() => [
   {
@@ -33,6 +39,8 @@ const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
 useHeadFixed({
   title: () => t('nav_side.notifications'),
 })
+
+onBeforeUnmount(() => stream.value?.disconnect?.())
 </script>
 
 <template>

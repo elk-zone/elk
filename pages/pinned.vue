@@ -3,7 +3,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().accounts.iterateStatuses(currentUser.value!.account.id, { pinned: true })
+const paginator = $computed(() => useMasto()?.accounts?.iterateStatuses?.(currentUser.value!.account.id, { pinned: true }))
 const { t } = useI18n()
 
 useHeadFixed({

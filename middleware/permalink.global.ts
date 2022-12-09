@@ -36,14 +36,16 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   try {
     // If we're logged in, search for the local id the account or status corresponds to
-    const { value } = await useMasto().search({ q: `https:/${to.fullPath}`, resolve: true, limit: 1 }).next()
+    const paginator = await useMasto()?.search?.({ q: `https:/${to.fullPath}`, resolve: true, limit: 1 })?.next?.()
 
-    const { accounts, statuses } = value
-    if (statuses[0])
-      return getStatusRoute(statuses[0])
+    if (paginator) {
+      const { accounts, statuses } = paginator.value
+      if (statuses[0])
+        return getStatusRoute(statuses[0])
 
-    if (accounts[0])
-      return getAccountRoute(accounts[0])
+      if (accounts[0])
+        return getAccountRoute(accounts[0])
+    }
   }
   catch {}
 

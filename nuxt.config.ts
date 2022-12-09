@@ -96,10 +96,20 @@ export default defineNuxtConfig({
         { rel: 'alternate icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'icon', type: 'image/png', href: '/favicon-16x16.png', sizes: '16x16' },
         { rel: 'icon', type: 'image/png', href: '/favicon-32x32.png', sizes: '32x32' },
-        { rel: 'preload', href: '/fonts/DM-mono-v10.ttf', as: 'font', type: 'font/ttf' },
-        { rel: 'preload', href: '/fonts/DM-sans-v11.ttf', as: 'font', type: 'font/ttf' },
-        { rel: 'preload', href: '/fonts/DM-serif-display-v10.ttf', as: 'font', type: 'font/ttf' },
-        { rel: 'preload', href: '/fonts/homemade-apple-v18.ttf', as: 'font', type: 'font/ttf' },
+        { rel: 'preload', href: '/fonts/DM-mono-v10.ttf', as: 'font', type: 'font/ttf', crossorigin: 'anonymous' },
+        { rel: 'preload', href: '/fonts/DM-sans-v11.ttf', as: 'font', type: 'font/ttf', crossorigin: 'anonymous' },
+        { rel: 'preload', href: '/fonts/DM-serif-display-v10.ttf', as: 'font', type: 'font/ttf', crossorigin: 'anonymous' },
+        { rel: 'preload', href: '/fonts/homemade-apple-v18.ttf', as: 'font', type: 'font/ttf', crossorigin: 'anonymous' },
+      ],
+      style: [
+        {
+          id: 'elk-fonts', innerHTML: `
+@font-face{font-display:swap;font-family:DM Mono;font-style:normal;font-weight:400;src:url(/fonts/DM-mono-v10.ttf) format("truetype")}
+@font-face{font-display:swap;font-family:DM Sans;font-style:normal;font-weight:400;src:url(/fonts/DM-sans-v11.ttf) format("truetype")}
+@font-face{font-display:swap;font-family:DM Serif Display;font-style:normal;font-weight:400;src:url(/fonts/DM-serif-display-v10.ttf) format("truetype")}
+@font-face{font-display:swap;font-family:"Homemade Apple";font-style:normal;font-weight:400;src:url(/fonts/homemade-apple-v18.ttf) format("truetype")}
+`,
+        },
       ],
     },
   },

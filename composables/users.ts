@@ -84,14 +84,16 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   setMasto(masto)
 
   if ('server' in route.params) {
-    await nextTick()
     // if we're on the account index page we need to force to change the url
     const changeRoute: RouteLocation | undefined = user && user.account
       ? getAccountRoute(user.account)
       : undefined
     const path = changeRoute ? `${changeRoute.params!.server}/@${changeRoute.params!.account}` : undefined
     if (changeRoute && path !== route.fullPath) {
-      await router.push(changeRoute)
+      await router.push({
+        ...changeRoute,
+        force: true,
+      })
     }
     else {
       await router.push({

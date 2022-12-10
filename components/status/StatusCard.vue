@@ -113,7 +113,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
               :status="status"
               minimized
             />
-            <StatusPreviewCard v-if="status.card" :card="status.card" />
+            <StatusPreviewCard v-if="status.card" :card="status.card" :small-picture-only="status.mediaAttachments?.length" />
           </StatusSpoiler>
           <StatusCard
             v-if="status.reblog"

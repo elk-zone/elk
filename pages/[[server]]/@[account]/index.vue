@@ -1,19 +1,10 @@
 <script setup lang="ts">
 const params = useRoute().params
-const accountName = $(computedEager(
-  () => currentUser.value?.account?.acct ?? toShortHandle(params.account as string)),
-)
+const accountName = $(computedEager(() => toShortHandle(params.account as string)))
 
 const { t } = useI18n()
 
-const {
-  data: account,
-  refresh,
-} = $(await useAsyncData(
-    `account:${accountName}`,
-    () => fetchAccountByHandle(accountName).catch(() => null)),
-)
-
+const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null)))
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
 
 if (account) {

@@ -15,13 +15,17 @@ const description = $computed(() => props.card.description ? props.card.descript
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 
-$fetch<string>('/api/og-image', {
-  params: { cardUrl: props.card.url },
-}).then((ogImageUrl) => {
-  // Only override if ogImageUrl is not empty
-  if (ogImageUrl)
-    image.value = ogImageUrl
-}).catch(() => {})
+// Only try to fetch og:image if the card.image is already provided from mastodon
+// We only want to improve the image quality
+if (image.value) {
+  $fetch<string>('/api/og-image', {
+    params: { cardUrl: props.card.url },
+  }).then((ogImageUrl) => {
+    // Only override if ogImageUrl is not empty
+    if (ogImageUrl)
+      image.value = ogImageUrl
+  }).catch(() => {})
+}
 </script>
 
 <template>

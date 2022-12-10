@@ -1,10 +1,8 @@
 import { login as loginMasto } from 'masto'
 import type { AccountCredentials, Instance, WsEvents } from 'masto'
-import type { RouteLocation } from 'vue-router'
 import { clearUserDrafts } from './statusDrafts'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
-import { cacheAccount } from '~/composables/cache'
 
 const mock = process.mock
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
@@ -75,23 +73,10 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   setMasto(masto)
 
   if ('server' in route.params) {
-    // if we're on the account index page we need to force to change the url
-    const changeRoute: RouteLocation | undefined = user && user.account
-      ? getAccountRoute(user.account)
-      : undefined
-    const path = changeRoute ? `${changeRoute.params!.server}/@${changeRoute.params!.account}` : undefined
-    if (changeRoute && path !== route.fullPath) {
-      await router.push({
-        ...changeRoute,
-        force: true,
-      })
-    }
-    else if (user) {
-      await router.push({
-        ...route,
-        force: true,
-      })
-    }
+    await router.push({
+      ...route,
+      force: true,
+    })
   }
 
   return masto
@@ -122,8 +107,6 @@ export async function signout() {
 
   if (!currentUserId.value)
     await useRouter().push(`/${currentServer.value}/public`)
-
-  await nextTick()
 
   await loginTo(currentUser.value)
 }

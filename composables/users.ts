@@ -46,6 +46,7 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   if (!user?.token) {
     publicServer.value = server
     publicInstance.value = await masto.instances.fetch()
+    await navigateTo(`/${currentServer.value}/public`)
   }
 
   else {
@@ -128,9 +129,6 @@ export async function signout() {
 
   // Set currentUserId to next user if available
   currentUserId.value = users.value[0]?.account?.id
-
-  if (!currentUserId.value)
-    await useRouter().push(`/${currentServer.value}/public`)
 
   await loginTo(currentUser.value)
 }

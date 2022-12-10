@@ -2,7 +2,7 @@ import { login as loginMasto } from 'masto'
 import type { AccountCredentials, Instance, WsEvents } from 'masto'
 import type { RouteLocation } from 'vue-router'
 import { clearUserDrafts } from './statusDrafts'
-import type { ElkAccountCredentials, UserLogin } from '~/types'
+import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
 import { cacheAccount } from '~/composables/cache'
 
@@ -55,23 +55,14 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
         masto.instances.fetch(),
       ])
 
-      // we use the hostname for cache entry and server.uri for display server name:
-      // for example, webtoo.ls (server.uri) and m.webtoo.ls (host)
-      const host = new URL(me.url, import.meta.url).hostname
+      if (!me.acct.includes('@'))
+        me.acct = `${me.acct}@${server.uri}`
 
-      const newMe: ElkAccountCredentials = {
-        ...me,
-        displayServerName: server.uri,
-      }
+      cacheAccount(me, true)
 
-      if (!newMe.acct.includes('@'))
-        newMe.acct = `${newMe.acct}@${host}`
-
-      cacheAccount(newMe, true)
-
-      user.account = newMe
-      currentUserId.value = newMe.id
-      servers.value[newMe.id] = server
+      user.account = me
+      currentUserId.value = me.id
+      servers.value[me.id] = server
 
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)

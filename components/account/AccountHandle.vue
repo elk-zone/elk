@@ -5,11 +5,7 @@ const { account } = defineProps<{
   account: Account
 }>()
 
-const serverName = $computed(() =>
-  'displayServerName' in account
-    ? account.displayServerName
-    : getServerName(account),
-)
+const serverName = $computed(() => getServerName(account))
 </script>
 
 <template>

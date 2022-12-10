@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { Account, Field } from 'masto'
 
-const { account } = defineProps<{
+const props = defineProps<{
   account: Account
   command?: boolean
 }>()
+
+const account = $computed(() => props.account)
 
 const { t } = useI18n()
 

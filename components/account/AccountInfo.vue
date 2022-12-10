@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import type { Account } from 'masto'
 
-const { account, as = 'div' } = defineProps<{
+const props = withDefaults(defineProps<{
   account: Account
   as?: string
   hoverCard?: boolean
-}>()
+}>(), {
+  as: 'div',
+})
+
+const account = $computed(() => props.account)
+const displayName = $computed(() => getDisplayName(account, { rich: true }))
 
 defineOptions({
   inheritAttrs: false,
@@ -22,7 +27,7 @@ defineOptions({
     <div flex="~ col" shrink overflow-hidden>
       <ContentRich
         font-bold line-clamp-1 ws-pre-wrap break-all
-        :content="getDisplayName(account, { rich: true })"
+        :content="displayName"
         :emojis="account.emojis"
       />
       <AccountHandle :account="account" text-sm text-secondary-light />

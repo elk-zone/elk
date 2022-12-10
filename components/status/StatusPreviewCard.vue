@@ -8,11 +8,20 @@ const props = defineProps<{
   /** When it is root card in the list, not appear as a child card */
   root?: boolean
 }>()
+const image = ref(props.card.image)
 const alt = $computed(() => `${props.card.title} - ${props.card.title}`)
 const isSquare = $computed(() => props.smallPictureOnly || props.card.width === props.card.height)
 const description = $computed(() => props.card.description ? props.card.description : new URL(props.card.url).hostname)
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
+
+$fetch<string>('/api/og-image', {
+  params: { cardUrl: props.card.url },
+}).then((ogImageUrl) => {
+  // Only override if ogImageUrl is not empty
+  if (ogImageUrl)
+    image.value = ogImageUrl
+}).catch(() => {})
 </script>
 
 <template>
@@ -29,7 +38,7 @@ const description = $computed(() => props.card.description ? props.card.descript
     target="_blank"
   >
     <div
-      v-if="card.image"
+      v-if="image"
       flex flex-col
       display-block of-hidden
 
@@ -42,7 +51,7 @@ const description = $computed(() => props.card.description ? props.card.descript
     >
       <CommonBlurhash
         :blurhash="card.blurhash"
-        :src="card.image"
+        :src="image"
         :width="card.width"
         :height="card.height"
         :alt="alt"

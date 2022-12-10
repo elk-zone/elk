@@ -19,7 +19,7 @@ export const currentUser = computed<UserLogin | undefined>(() => {
       return user
   }
   // Fallback to the first account
-  return users.value[0]
+  return users.value.length > 0 ? users.value[0] : undefined
 })
 
 export const publicServer = ref(DEFAULT_SERVER)
@@ -46,7 +46,6 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   if (!user?.token) {
     publicServer.value = server
     publicInstance.value = await masto.instances.fetch()
-    await navigateTo(`/${currentServer.value}/public`)
   }
 
   else {
@@ -96,7 +95,7 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
         force: true,
       })
     }
-    else {
+    else if (user) {
       await router.push({
         ...route,
         force: true,
@@ -129,6 +128,11 @@ export async function signout() {
 
   // Set currentUserId to next user if available
   currentUserId.value = users.value[0]?.account?.id
+
+  await nextTick()
+
+  if (!currentUserId.value)
+    await useRouter().push(`/${currentServer.value}/public`)
 
   await loginTo(currentUser.value)
 }

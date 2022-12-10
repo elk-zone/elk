@@ -60,6 +60,7 @@ export default defineConfig({
     }),
     presetTypography(),
     presetWebFonts({
+      provider: 'none',
       fonts: {
         sans: 'DM Sans',
         serif: 'DM Serif Display',

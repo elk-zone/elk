@@ -1,11 +1,23 @@
 <script setup lang="ts">
 import {
+  isCommandPanelOpen,
   isEditHistoryDialogOpen,
   isMediaPreviewOpen,
   isPreviewHelpOpen,
   isPublishDialogOpen,
   isSigninDialogOpen,
 } from '~/composables/dialog'
+
+const isMac = useIsMac()
+
+// TODO: temporary, await for keybind system
+// listen to ctrl+/ on windows/linux or cmd+/ on mac
+useEventListener('keydown', (e: KeyboardEvent) => {
+  if (e.key === '/' && (isMac.value ? e.metaKey : e.ctrlKey)) {
+    e.preventDefault()
+    openCommandPanel(true)
+  }
+})
 </script>
 
 <template>
@@ -29,5 +41,8 @@ import {
   </ModalDialog>
   <ModalDialog v-model="isEditHistoryDialogOpen">
     <StatusEditPreview :edit="statusEdit" />
+  </ModalDialog>
+  <ModalDialog v-model="isCommandPanelOpen" max-w-fit flex>
+    <CommandPanel @close="closeCommandPanel()" />
   </ModalDialog>
 </template>

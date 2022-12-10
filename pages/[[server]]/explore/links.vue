@@ -1,14 +1,27 @@
 <script lang="ts" setup>
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
+import { STORAGE_KEY_HIDE_NEWS_TIPS } from '~~/constants'
 const paginator = useMasto().trends.links
 
 const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirtualScroll))
+
+const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_NEWS_TIPS, false)
 </script>
 
 <template>
-  <div space-y-3 text-center p4 border="b base">
-    这些新闻故事正被本站和分布式网络上其他站点的用户谈论。
+  <div
+    v-if="!hideNewsTips"
+    flex="~ gap-2" justify-between items-center
+    px4 py2 sm:py4 border="b base"
+    text-sm text-secondary
+  >
+    <p>
+      {{ $t('help.links_tips') }}
+    </p>
+    <button text-xl hover:text-primary bg-hover-overflow w-1.4em h-1.4em @click="hideNewsTips = true">
+      <div i-ri:close-line />
+    </button>
   </div>
 
   <CommonPaginator v-bind="{ paginator }" :virtual-scroller="virtualScroller">

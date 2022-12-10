@@ -12,5 +12,6 @@ export const STORAGE_KEY_FIRST_VISIT = 'elk-first-visit'
 export const STORAGE_KEY_ZEN_MODE = 'elk-zenmode'
 export const STORAGE_KEY_LANG = 'elk-lang'
 export const STORAGE_KEY_FEATURE_FLAGS = 'elk-feature-flags'
+export const STORAGE_KEY_HIDE_NEWS_TIPS = 'elk-hide-news-tips'
 
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\d-]+\.)+\w+\/(@[@\w\d-\.]+)(\/objects)?(\/\d+)?$/

@@ -32,7 +32,6 @@ const providerName = $computed(() => props.card.providerName ? props.card.provid
       v-if="card.image"
       flex flex-col
       display-block of-hidden
-
       border="base"
       :class="{
         'sm:(min-w-32 w-32 h-32) min-w-22 w-22 h-22 border-r': isSquare,
@@ -53,23 +52,29 @@ const providerName = $computed(() => props.card.providerName ? props.card.provid
       <div i-ri:profile-line w="30%" h="30%" text-secondary />
     </div>
     <div
-      px4 max-h-2xl
-      flex flex-col justify-center
-      :class="{
-        py4: !root,
-      }"
+      px3 max-h-2xl
+      flex flex-col
+      :class="[
+        root ? 'flex-gap-1 py1 sm:py3' : 'py3  justify-center sm:justify-start',
+      ]"
     >
-      <p text-secondary line-clamp-1 ws-pre-wrap break-all>
+      <p
+        text-secondary ws-pre-wrap break-all
+        :class="[
+          !card.description || root
+            ? 'line-clamp-1'
+            : 'hidden sm:line-clamp-1',
+        ]"
+      >
         {{ providerName }}
       </p>
-      <strong v-if="card.title" line-clamp-1 ws-pre-wrap break-all>{{ card.title }}</strong>
+      <strong
+        v-if="card.title" font-normal sm:font-medium line-clamp-1
+        break-all ws-pre-wrap
+      >{{ card.title }}</strong>
       <p
         v-if="card.description"
-        text-secondary ws-pre-wrap break-words
-        :class="{
-          'line-clamp-1 sm:line-clamp-2 ': root,
-          'hidden sm:line-clamp-2': !root,
-        }"
+        line-clamp-1 break-all sm:line-clamp-2 sm:break-words text-secondary ws-pre-wrap
       >
         {{ card.description }}
       </p>

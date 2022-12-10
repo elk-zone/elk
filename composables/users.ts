@@ -129,10 +129,10 @@ export async function signout() {
   // Set currentUserId to next user if available
   currentUserId.value = users.value[0]?.account?.id
 
-  await nextTick()
-
   if (!currentUserId.value)
     await useRouter().push(`/${currentServer.value}/public`)
+
+  await nextTick()
 
   await loginTo(currentUser.value)
 }

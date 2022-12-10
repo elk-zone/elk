@@ -5,8 +5,6 @@ const { account } = defineProps<{
   account: Account
 }>()
 
-// const account = $computed(() => props.account)
-
 const serverName = $computed(() =>
   'displayServerName' in account
     ? account.displayServerName

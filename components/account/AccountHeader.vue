@@ -6,8 +6,6 @@ const { account } = defineProps<{
   command?: boolean
 }>()
 
-// const account = $computed(() => props.account)
-
 const { t } = useI18n()
 
 const createdAt = $(useFormattedDateTime(() => account.createdAt, {

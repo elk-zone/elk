@@ -70,6 +70,7 @@
   },
   "error": {
     "account_not_found": "Account {0} not found",
+    "explore-list-empty": "Nothing is trending right now. Check back later!",
     "status_not_found": "Status not found"
   },
   "feature_flag": {
@@ -81,7 +82,6 @@
     "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress generic Mastodon client!",
     "desc_para2": "We are working hard on the development and improving it over time. And we will soon invite you to join the force once we make it open source soon!",
     "desc_para3": "Before that, to help boosting out development, you can sponsor our team members with the links below.",
-    "links_tips": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "title": "Elk is in Preview!"
   },
   "menu": {
@@ -221,6 +221,8 @@
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
     "change_content_visibility": "Change content visibility",
+    "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
+    "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
     "toggle_code_block": "Toggle code block"
   },
   "user": {

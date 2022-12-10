@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Account } from 'masto'
 
-const props = defineProps<{
+const { account } = defineProps<{
   account: Account
 }>()
 
-const account = $computed(() => props.account)
+// const account = $computed(() => props.account)
 
 const serverName = $computed(() =>
   'displayServerName' in account

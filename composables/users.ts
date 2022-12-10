@@ -19,7 +19,7 @@ export const currentUser = computed<UserLogin | undefined>(() => {
       return user
   }
   // Fallback to the first account
-  return users.value.length > 0 ? users.value[0] : undefined
+  return users.value[0]
 })
 
 export const publicServer = ref(DEFAULT_SERVER)

@@ -2,7 +2,7 @@
 import type { Account } from 'masto'
 
 const params = useRoute().params
-const handle = $(computedEager(() => params.account as string))
+const handle = $(computedEager(() => currentUser.value?.account?.acct ?? params.account as string))
 
 definePageMeta({ name: 'account-index' })
 

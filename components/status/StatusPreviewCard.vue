@@ -48,7 +48,13 @@ const providerName = $computed(() => props.card.providerName ? props.card.provid
         w-full h-full object-cover
       />
     </div>
-    <div v-else min-w-22 w-22 h-22 sm="min-w-32 w-32 h-32" bg="slate-500/10" flex justify-center items-center>
+    <div
+      v-else
+      min-w-22 w-22 h-22 sm="min-w-32 w-32 h-32" bg="slate-500/10" flex justify-center items-center
+      :class="[
+        root ? 'rounded-lg' : '',
+      ]"
+    >
       <div i-ri:profile-line w="30%" h="30%" text-secondary />
     </div>
     <div

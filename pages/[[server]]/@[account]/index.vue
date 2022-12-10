@@ -1,6 +1,11 @@
 <script setup lang="ts">
+const route = useRoute()
+/*
 const params = useRoute().params
 const accountName = $(computedEager(() => toShortHandle(params.account as string)))
+*/
+
+const accountName = $computed(() => currentUser.value?.account?.acct ?? toShortHandle(route.params.account as string))
 
 const { t } = useI18n()
 

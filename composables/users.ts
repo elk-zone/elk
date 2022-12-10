@@ -1,8 +1,10 @@
 import { login as loginMasto } from 'masto'
 import type { AccountCredentials, Instance, WsEvents } from 'masto'
+import type { RouteLocation } from 'vue-router'
 import { clearUserDrafts } from './statusDrafts'
-import type { UserLogin } from '~/types'
+import type { ElkAccountCredentials, UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
+import { cacheAccount } from '~/composables/cache'
 
 const mock = process.mock
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
@@ -31,12 +33,6 @@ export const currentInstance = computed<null | Instance>(() => currentUserId.val
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
 export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }) {
-  if (user) {
-    const existing = users.value.find(u => u.server === user.server && u.token === user.token)
-    if (existing && currentUserId.value !== user.account?.id)
-      currentUserId.value = user.account?.id
-  }
-
   const config = useRuntimeConfig()
   const route = useRoute()
   const router = useRouter()
@@ -59,12 +55,23 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
         masto.instances.fetch(),
       ])
 
-      user.account = me
-      currentUserId.value = me.id
-      servers.value[me.id] = server
+      // we use the hostname for cache entry and server.uri for display server name:
+      // for example, webtoo.ls (server.uri) and m.webtoo.ls (host)
+      const host = new URL(me.url, import.meta.url).hostname
 
-      if (!user.account.acct.includes('@'))
-        user.account.acct = `${user.account.acct}@${server.uri}`
+      const newMe: ElkAccountCredentials = {
+        ...me,
+        displayServerName: server.uri,
+      }
+
+      if (!newMe.acct.includes('@'))
+        newMe.acct = `${newMe.acct}@${host}`
+
+      cacheAccount(newMe, true)
+
+      user.account = newMe
+      currentUserId.value = newMe.id
+      servers.value[newMe.id] = server
 
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)
@@ -77,10 +84,21 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   setMasto(masto)
 
   if ('server' in route.params) {
-    await router.push({
-      ...route,
-      force: true,
-    })
+    await nextTick()
+    // if we're on the account index page we need to force to change the url
+    const changeRoute: RouteLocation | undefined = user && user.account
+      ? getAccountRoute(user.account)
+      : undefined
+    const path = changeRoute ? `${changeRoute.params!.server}/@${changeRoute.params!.account}` : undefined
+    if (changeRoute && path !== route.fullPath) {
+      await router.push(changeRoute)
+    }
+    else {
+      await router.push({
+        ...route,
+        force: true,
+      })
+    }
   }
 
   return masto

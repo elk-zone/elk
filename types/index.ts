@@ -10,6 +10,10 @@ export interface AppInfo {
   vapid_key: string
 }
 
+export interface ElkAccountCredentials extends AccountCredentials {
+  displayServerName: string
+}
+
 export interface UserLogin {
   server: string
   token?: string

@@ -35,6 +35,13 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   }
 
   try {
+    // If we're already on an account page, we can search for this on the new instance
+    if (to.params.account) {
+      const account = await fetchAccountByHandle(to.params.account as string)
+      if (account)
+        return getAccountRoute(account)
+    }
+
     // If we're logged in, search for the local id the account or status corresponds to
     const { value } = await useMasto().search({ q: `https:/${to.fullPath}`, resolve: true, limit: 1 }).next()
 

@@ -28,6 +28,30 @@ export const STATUS_VISIBILITIES = [
   },
 ] as const
 
+export const ACCOUNT_FIELD_ICONS: Record<string, string> = {
+  github: 'i-ri:github-fill',
+  twitter: 'i-ri:twitter-line',
+  mastodon: 'i-ri:mastodon-line',
+  youtube: 'i-ri:youtube-line',
+  twitch: 'i-ri:twitch-line',
+  instagram: 'i-ri:instagram-line',
+  website: 'i-ri:link',
+  site: 'i-ri:link',
+  portfolio: 'i-ri:link',
+  blog: 'i-ri:newspaper-line',
+  home: 'i-ri:home-2-line',
+  sponsors: 'i-ri:heart-3-line',
+  location: 'i-ri:map-pin-2-line',
+  city: 'i-ri:map-pin-2-line',
+  joined: 'i-ri:user-add-line',
+  birth: 'i-ri:calendar-line',
+  tumblr: 'i-ri:tumblr-fill',
+  linkedin: 'i-ri:linkedin-box-fill',
+  facebook: 'i-ri:facebook-fill',
+  patreon: 'i-ri:patreon-fill',
+  discord: 'i-ri:discord-fill',
+}
+
 export function getDisplayName(account?: Account, options?: { rich?: boolean }) {
   const displayName = account?.displayName || account?.username || ''
   if (options?.rich)

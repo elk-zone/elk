@@ -4,17 +4,17 @@ import type { ComponentPublicInstance } from 'vue'
 
 definePageMeta({
   name: 'status',
+  key: route => route.path,
 })
 
 const route = useRoute()
-const serverName = $(computedEager(() => route.params.server as string))
 const id = $(computedEager(() => route.params.status as string))
 const main = ref<ComponentPublicInstance | null>(null)
 let bottomSpace = $ref(0)
 
-const { data: status, pending, refresh: refreshStatus } = useAsyncData(`${serverName}:status:${id}`, async () => (
+const { data: status, pending, refresh: refreshStatus } = useAsyncData(`status:${id}`, async () => (
   window.history.state?.status as Status | undefined)
-  ?? await fetchStatus(id, serverName),
+  ?? await fetchStatus(id),
 )
 const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(`context:${id}`, () => useMasto().statuses.fetchContext(id))
 

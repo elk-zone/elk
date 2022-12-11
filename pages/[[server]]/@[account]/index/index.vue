@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import type { Account } from 'masto'
 
-const route = useRoute()
-const serverName = $(computedEager(() => route.params.server as string))
-const handle = $(computedEager(() => route.params.account as string))
+const params = useRoute().params
+const handle = $(computedEager(() => params.account as string))
 
 definePageMeta({ name: 'account-index' })
 
-const { data: account } = await useAsyncData(`${serverName}:account:${handle}`, async () => (
+const { data: account } = await useAsyncData(`account:${handle}`, async () => (
   window.history.state?.account as Account | undefined)
-  ?? await fetchAccountByHandle(handle, serverName),
+  ?? await fetchAccountByHandle(handle),
 )
 const { t } = useI18n()
 

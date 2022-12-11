@@ -1,11 +1,10 @@
 <script setup lang="ts">
 const params = useRoute().params
-const serverName = $(computedEager(() => params.server as string))
 const handle = $(computedEager(() => params.account as string))
 
 definePageMeta({ name: 'account-following' })
 
-const account = await fetchAccountByHandle(handle, serverName)
+const account = await fetchAccountByHandle(handle)
 const paginator = account ? useMasto().accounts.iterateFollowing(account.id, {}) : null
 </script>
 

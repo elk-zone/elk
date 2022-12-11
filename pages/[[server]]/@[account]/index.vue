@@ -1,14 +1,14 @@
 <script setup lang="ts">
-const route = useRoute()
-const serverName = $(computedEager(() => route.params.server as string))
-const accountName = $(computedEager(() => route.params.account as string))
+definePageMeta({
+  key: route => `${route.params.server}:${route.params.account}`,
+})
+
+const params = useRoute().params
+const accountName = $(computedEager(() => toShortHandle(params.account as string)))
 
 const { t } = useI18n()
 
-const { data: account, refresh } = $(await useAsyncData(
-    `${serverName}:account:${accountName}`,
-    () => fetchAccountByHandle(accountName, serverName).catch(() => null)),
-)
+const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null)))
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
 
 if (account) {

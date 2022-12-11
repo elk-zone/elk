@@ -76,11 +76,14 @@ watchEffect(() => {
             <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
           </button>
           <div flex flex-col>
-            <ContentRich
-              font-bold sm:text-2xl text-xl
-              :content="getDisplayName(account, { rich: true })"
-              :emojis="account.emojis"
-            />
+            <div flex justify-between>
+              <ContentRich
+                font-bold sm:text-2xl text-xl
+                :content="getDisplayName(account, { rich: true })"
+                :emojis="account.emojis"
+              />
+              <AccountBotIndicator v-if="account.bot" />
+            </div>
             <AccountHandle :account="account" />
           </div>
         </div>

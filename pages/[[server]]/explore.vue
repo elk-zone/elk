@@ -16,10 +16,16 @@ const tabs = $computed(() => [
     to: `/${currentServer.value}/explore/links`,
     display: t('tab.news'),
   },
-  {
-    to: `/${currentServer.value}/explore/users`,
-    display: t('tab.for_you'),
-  },
+  // This section can only be accessed after logging in
+  ...invoke(() => currentUser.value
+    ? [
+        {
+          to: `/${currentServer.value}/explore/users`,
+          display: t('tab.for_you'),
+        },
+      ]
+    : [],
+  ),
 ] as const)
 
 useHeadFixed({

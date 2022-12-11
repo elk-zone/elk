@@ -3,28 +3,21 @@ import type { History } from 'masto'
 
 const {
   history,
+  maxDay = 2,
 } = $defineProps<{
   history: History[]
+  maxDay?: number
 }>()
 
-const ongoingHot = $computed(() => {
-  const h: History[] = []
-  for (const item of history) {
-    if ((Number(item.uses) || 0) === 0)
-      break
-    h.push(item)
-  }
-  return h
-})
+const ongoingHot = $computed(() => history.slice(0, maxDay))
 
 const people = $computed(() =>
   ongoingHot.reduce((total: number, item) => total + (Number(item.accounts) || 0), 0),
 )
-const days = $computed(() => ongoingHot.filter(item => !!(Number(item.accounts))).length)
 </script>
 
 <template>
   <p>
-    {{ $t('command.n-people-in-the-past-n-days', [people, days]) }}
+    {{ $t('command.n-people-in-the-past-n-days', [people, maxDay]) }}
   </p>
 </template>

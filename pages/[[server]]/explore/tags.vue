@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 import type { Tag } from 'masto'
 import { STORAGE_KEY_HIDE_TAGS_TIPS } from '~~/constants'
-const { data, pending, error } = useLazyAsyncData(() => useMasto().trends.fetchTags(), { immediate: true })
+
+const { data, pending, error } = useLazyAsyncData(
+  () => useMasto().trends.fetchTags({ limit: 20 }),
+  { immediate: true },
+)
 
 const hideTagsTips = useLocalStorage(STORAGE_KEY_HIDE_TAGS_TIPS, false)
 
@@ -16,11 +20,11 @@ function getTagUrl(tag: Tag) {
   </CommonAlert>
 
   <div v-if="data && data.length">
-    <TagCard v-for="item of data" :key="item.name" :tag="item" border="b base">
-      {{ item.name }}
-      {{ item.following }}
-      {{ item.url }}
-    </TagCard>
+    <TagCard v-for="item of data" :key="item.name" :tag="item" border="b base" />
+
+    <div p5 text-center text-secondary-light italic>
+      {{ $t('common.end_of_list') }}
+    </div>
   </div>
   <div v-else-if="pending">
     <StatusCardSkeleton border="b base" />

@@ -14,8 +14,12 @@ const { data, pending, error } = useLazyAsyncData(
       :account="suggestion.account"
       as="router-link"
       :to="getAccountRoute(suggestion.account)"
-      border="b-2 base"
+      border="b base"
     />
+
+    <div p5 text-center text-secondary-light italic>
+      {{ $t('common.end_of_list') }}
+    </div>
   </div>
   <div v-else-if="pending">
     <StatusCardSkeleton border="b base" />

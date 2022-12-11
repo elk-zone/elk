@@ -85,6 +85,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
           </AccountHoverWrapper>
           <div flex-auto />
           <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
+            <AccountBotIndicator v-if="status.account.bot" mr-2 />
             <CommonTooltip :content="createdAt">
               <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
                 <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">

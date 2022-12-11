@@ -20,11 +20,14 @@ defineOptions({
       <AccountAvatar :account="account" w-12 h-12 />
     </AccountHoverWrapper>
     <div flex="~ col" shrink overflow-hidden>
-      <ContentRich
-        font-bold line-clamp-1 ws-pre-wrap break-all
-        :content="getDisplayName(account, { rich: true })"
-        :emojis="account.emojis"
-      />
+      <div flex="~" gap-2>
+        <ContentRich
+          font-bold line-clamp-1 ws-pre-wrap break-all
+          :content="getDisplayName(account, { rich: true })"
+          :emojis="account.emojis"
+        />
+        <AccountBotIndicator v-if="account.bot" />
+      </div>
       <AccountHandle :account="account" text-sm text-secondary-light />
     </div>
   </component>

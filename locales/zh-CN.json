@@ -49,6 +49,7 @@
     "complete": "完成",
     "compose_desc": "写一条新帖文",
     "lang": "语言",
+    "n-people-in-the-past-n-days": "{0} 人在过去 {1} 天",
     "select_lang": "选择语言",
     "sign_in_desc": "添加现有帐户",
     "switch_account": "切换到{0}",
@@ -69,6 +70,7 @@
   },
   "error": {
     "account_not_found": "未找到用户 {0}",
+    "explore-list-empty": "目前没有热门话题，稍后再来看看吧！",
     "status_not_found": "未找到帖文"
   },
   "feature_flag": {
@@ -168,7 +170,10 @@
     "edited": "在 {0} 编辑了"
   },
   "tab": {
+    "for_you": "推荐关注",
+    "hashtags": "话题标签",
     "media": "媒体",
+    "news": "最新消息",
     "notifications_all": "全部",
     "notifications_mention": "提及",
     "posts": "帖文",
@@ -216,6 +221,9 @@
     "add_content_warning": "添加内容警告标识",
     "add_media": "添加图片、视频或者音频文件",
     "change_content_visibility": "修改内容是否可见",
+    "explore_links_intro": "这些新闻故事正被本站和分布式网络上其他站点的用户谈论。",
+    "explore_posts_intro": "来自本站和分布式网络上其他站点的这些嘟文正在本站引起关注。",
+    "explore_tags_intro": "这些标签正在本站和分布式网络上其他站点的用户中引起关注。",
     "toggle_code_block": "切换代码块"
   },
   "user": {

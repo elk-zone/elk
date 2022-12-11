@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs'
+import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 
 process.env.NITRO_SSL_CERT = readFileSync(fileURLToPath(new URL('./localhost.crt', import.meta.url)), 'utf8')

@@ -16,8 +16,6 @@ const to = $computed(() => new URL(tag.url).pathname)
       <spn>#</spn>
       <span hover:underline>{{ tag.name }}</span>
     </h4>
-    <p text-secondary-light>
-      {{ tag.history?.[0].uses }}
-    </p>
+    <CommonTrending :history="tag.history" />
   </NuxtLink>
 </template>

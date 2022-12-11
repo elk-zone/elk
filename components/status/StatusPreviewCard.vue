@@ -11,7 +11,7 @@ const props = defineProps<{
 const image = ref(props.card.image)
 const alt = $computed(() => `${props.card.title} - ${props.card.title}`)
 const isSquare = $computed(() => props.smallPictureOnly || props.card.width === props.card.height)
-const description = $computed(() => props.card.description ? props.card.description : new URL(props.card.url).hostname)
+const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 
@@ -45,10 +45,9 @@ if (image.value) {
       v-if="image"
       flex flex-col
       display-block of-hidden
-
       border="base"
       :class="{
-        'min-w-32 w-32 h-32 border-r': isSquare,
+        'sm:(min-w-32 w-32 h-32) min-w-22 w-22 h-22 border-r': isSquare,
         'w-full aspect-[1.91] border-b': !isSquare,
         'rounded-lg': root,
       }"
@@ -62,19 +61,41 @@ if (image.value) {
         w-full h-full object-cover
       />
     </div>
-    <div v-else min-w-32 w-32 h-32 bg="slate-500/10" flex justify-center items-center>
+    <div
+      v-else
+      min-w-22 w-22 h-22 sm="min-w-32 w-32 h-32" bg="slate-500/10" flex justify-center items-center
+      :class="[
+        root ? 'rounded-lg' : '',
+      ]"
+    >
       <div i-ri:profile-line w="30%" h="30%" text-secondary />
     </div>
     <div
-      p4 max-h-2xl
+      px3 max-h-2xl
       flex flex-col
+      :class="[
+        root ? 'flex-gap-1 py1 sm:py3' : 'py3  justify-center sm:justify-start',
+      ]"
     >
-      <p v-if="card.providerName" text-secondary line-clamp-1 text-ellipsis>
-        {{ card.providerName }}
+      <p
+        text-secondary ws-pre-wrap break-all
+        :class="[
+          !card.description || root
+            ? 'line-clamp-1'
+            : 'hidden sm:line-clamp-1',
+        ]"
+      >
+        {{ providerName }}
       </p>
-      <strong v-if="card.title" line-clamp-1 text-ellipsis>{{ card.title }}</strong>
-      <p v-if="description" text-secondary line-clamp-2 text-ellipsis>
-        {{ description }}
+      <strong
+        v-if="card.title" font-normal sm:font-medium line-clamp-1
+        break-all ws-pre-wrap
+      >{{ card.title }}</strong>
+      <p
+        v-if="card.description"
+        line-clamp-1 break-all sm:line-clamp-2 sm:break-words text-secondary ws-pre-wrap
+      >
+        {{ card.description }}
       </p>
     </div>
   </NuxtLink>

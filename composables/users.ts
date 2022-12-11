@@ -98,13 +98,14 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 }
 
 export async function removePushNotifications(user: UserLogin) {
-  // unubscribe push notifications
+  // unsubscribe push notifications
   try {
     await useMasto().pushSubscriptions.remove()
   }
   catch {
     // ignore
   }
+  // clear push subscription
   user.pushSubscription = undefined
   // clear request notification permission
   delete useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {}).value[user.account.acct]

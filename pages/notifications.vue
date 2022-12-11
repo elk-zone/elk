@@ -50,10 +50,10 @@ useHeadFixed({
       <button
         flex rounded-4 p2
         hover:bg-active cursor-pointer transition-100
-        :title="$t('notification.settings.title')"
+        :title="$t(showSettings ? 'notification.settings.close_btn' : 'notification.settings.show_btn')"
         @click="showSettings = !showSettings"
       >
-        <span aria-hidden="true" i-ri:settings-3-fill />
+        <span aria-hidden="true" :class="showSettings ? 'i-ri:close-circle-line' : 'i-ri:settings-3-fill'" />
       </button>
     </template>
 

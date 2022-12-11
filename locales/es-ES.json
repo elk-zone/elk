@@ -136,14 +136,19 @@
     "reblogged_post": "retooteó tu publicación",
     "request_to_follow": "ha solicitado seguirte",
     "settings": {
+      "close_btn": "Cerrar ajustes",
       "favourite": "Favoritos:",
       "follow": "Nuevos seguidores:",
       "mention": "Menciones:",
       "reblog": "Retooteo de tus publicaciones:",
-      "title": "Mostrar ajustes",
+      "show_btn": "Mostrar ajustes",
+      "title": "Ajustes de notificaciones",
+      "unsubscribed_with_warning": "Habilite las notificaciones para recibir notificaciones de esta cuenta haciendo clic en el botón \"@:notification.settings.warning.enable_desktop{'\"'}.",
+      "unsupported": "Tu navegador no soporta notificaciones de escritorio.",
       "warning": {
         "enable_close": "Cerrar",
         "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones de escritorio. Puedes controlar con precisión qué tipos de interacciones generan notificaciones de escritorio a través del botón \"Mostrar ajustes\" de arriba una vez que estén habilitadas.",
+        "enable_description_short": "Para cambiar los ajustes de las notificaciones de escritorio cuando Elk no esté abierto, debe habilitar antes las notificaciones de escritorio.",
         "enable_desktop": "Habilitar notificaciones de escritorio",
         "enable_title": "Nunca te pierdas nada"
       }

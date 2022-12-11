@@ -36,39 +36,42 @@ const doSubscribe = async () => {
 </script>
 
 <template>
-  <div v-if="pwaEnabled && (showWarning || show)" px5 py4>
+  <div v-if="pwaEnabled && (showWarning || show)">
     <Transition name="slide-down">
-      <div v-if="show" flex="~ col">
-        TODO
+      <div v-if="show" flex="~ col" border="b base" px5 py4>
+        <header flex items-center pb-2>
+          <h2 id="notifications-title" text-md font-bold w-full>
+            {{ $t('notification.settings.title') }}
+          </h2>
+        </header>
+        <template v-if="isSupported">
+          <template v-if="isSubscribed">
+            TODO: SETTINGS HERE
+          </template>
+          <template v-else>
+            <p v-if="showWarning" role="alert" aria-labelledby="notifications-title">
+              {{ $t('notification.settings.unsubscribed_with_warning') }}
+            </p>
+            <NotificationEnablePushNotification
+              v-else
+              @hide="hideNotification"
+              @subscribe="doSubscribe"
+            />
+          </template>
+        </template>
+        <p v-else role="alert" aria-labelledby="notifications-unsupported">
+          {{ $t('notification.settings.unsupported') }}
+        </p>
       </div>
     </Transition>
     <template v-if="showWarning">
-      <Transition name="slide-down">
-        <div flex="~ col" role="alert" aria-labelledby="notifications-warning">
-          <header flex items-center>
-            <h2 id="notifications-warning" text-md font-bold w-full>
-              {{ $t('notification.settings.warning.enable_title') }}
-            </h2>
-            <button
-              flex rounded-4 p2
-              :title="$t('notification.settings.warning.enable_close')"
-              hover:bg-active cursor-pointer transition-100
-              @click="hideNotification"
-            >
-              <span aria-hidden="true" i-ri:close-circle-line />
-            </button>
-          </header>
-          <p>
-            {{ $t('notification.settings.warning.enable_description') }}
-          </p>
-          <button
-            btn-outline rounded-full font-bold py4 flex="~ gap2 center" m5
-            @click="doSubscribe"
-          >
-            {{ $t('notification.settings.warning.enable_desktop') }}
-          </button>
-        </div>
-      </Transition>
+      <NotificationEnablePushNotification
+        with-header
+        px5
+        py4
+        @hide="hideNotification"
+        @subscribe="doSubscribe"
+      />
     </template>
   </div>
 </template>

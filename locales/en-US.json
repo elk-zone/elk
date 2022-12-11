@@ -50,6 +50,7 @@
     "complete": "Complete",
     "compose_desc": "Write a new post",
     "lang": "Languages",
+    "n-people-in-the-past-n-days": "{0} people in the past {1} days",
     "select_lang": "Select language",
     "sign_in_desc": "Add an existing account",
     "switch_account": "Switch to {0}",

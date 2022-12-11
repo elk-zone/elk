@@ -49,6 +49,7 @@
     "complete": "完成",
     "compose_desc": "写一条新帖文",
     "lang": "语言",
+    "n-people-in-the-past-n-days": "{0} 人在过去 {1} 天",
     "select_lang": "选择语言",
     "sign_in_desc": "添加现有帐户",
     "switch_account": "切换到{0}",

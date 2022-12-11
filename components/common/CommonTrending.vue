@@ -7,14 +7,24 @@ const {
   history: History[]
 }>()
 
+const ongoingHot = $computed(() => {
+  const h: History[] = []
+  for (const item of history) {
+    if ((Number(item.uses) || 0) === 0)
+      break
+    h.push(item)
+  }
+  return h
+})
+
 const people = $computed(() =>
-  history.reduce((total: number, item) => total + (Number(item.accounts) || 0), 0),
+  ongoingHot.reduce((total: number, item) => total + (Number(item.accounts) || 0), 0),
 )
-const days = $computed(() => history.filter(item => !!(Number(item.accounts))).length)
+const days = $computed(() => ongoingHot.filter(item => !!(Number(item.accounts))).length)
 </script>
 
 <template>
   <p>
-    {{ people }} people in the past {{ days }} days
+    {{ $t('command.n-people-in-the-past-n-days', [people, days]) }}
   </p>
 </template>

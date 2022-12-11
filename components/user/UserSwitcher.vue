@@ -12,15 +12,10 @@ const sorted = computed(() => {
 
 const router = useRouter()
 const switchUser = (user: UserLogin) => {
-  if (user.account.id === currentUser.value?.account.id) {
-    router.push({
-      ...getUserAccountRoute(user),
-      force: true,
-    })
-  }
-  else {
+  if (user.account.id === currentUser.value?.account.id)
+    router.push(getAccountRoute(user.account))
+  else
     loginTo(user)
-  }
 }
 </script>
 

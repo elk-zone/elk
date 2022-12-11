@@ -70,11 +70,9 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 
   setMasto(masto)
 
-  // if we've a new one login we must force and replace to the new one account page
   if ('server' in route.params && user?.token) {
     await router.push({
-      ...getUserAccountRoute(user as UserLogin),
-      replace: true,
+      ...route,
       force: true,
     })
   }

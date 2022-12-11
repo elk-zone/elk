@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import type { Tag } from 'masto'
-import { STORAGE_KEY_HIDE_TAGS_TIPS } from '~~/constants'
+import { STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS } from '~~/constants'
 
 const { data, pending, error } = useLazyAsyncData(
   () => useMasto().trends.fetchTags({ limit: 20 }),
   { immediate: true },
 )
 
-const hideTagsTips = useLocalStorage(STORAGE_KEY_HIDE_TAGS_TIPS, false)
+const hideTagsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS, false)
 
 function getTagUrl(tag: Tag) {
   return new URL(tag.url).pathname

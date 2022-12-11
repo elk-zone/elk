@@ -170,7 +170,10 @@
     "edited": "在 {0} 编辑了"
   },
   "tab": {
+    "for_you": "推荐关注",
+    "hashtags": "话题标签",
     "media": "媒体",
+    "news": "最新消息",
     "notifications_all": "全部",
     "notifications_mention": "提及",
     "posts": "帖文",
@@ -219,6 +222,7 @@
     "add_media": "添加图片、视频或者音频文件",
     "change_content_visibility": "修改内容是否可见",
     "explore_links_intro": "这些新闻故事正被本站和分布式网络上其他站点的用户谈论。",
+    "explore_posts_intro": "来自本站和分布式网络上其他站点的这些嘟文正在本站引起关注。",
     "explore_tags_intro": "这些标签正在本站和分布式网络上其他站点的用户中引起关注。",
     "toggle_code_block": "切换代码块"
   },

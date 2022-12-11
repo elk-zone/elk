@@ -6,19 +6,19 @@ const { t } = useI18n()
 const tabs = $computed(() => [
   {
     to: `/${currentServer.value}/explore`,
-    display: 'Posts',
+    display: t('tab.posts'),
   },
   {
     to: `/${currentServer.value}/explore/tags`,
-    display: 'Hashtags',
+    display: t('tab.hashtags'),
   },
   {
     to: `/${currentServer.value}/explore/links`,
-    display: 'News',
+    display: t('tab.news'),
   },
   {
     to: `/${currentServer.value}/explore/users`,
-    display: 'For you',
+    display: t('tab.for_you'),
   },
 ] as const)
 

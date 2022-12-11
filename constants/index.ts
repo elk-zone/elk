@@ -12,7 +12,8 @@ export const STORAGE_KEY_FIRST_VISIT = 'elk-first-visit'
 export const STORAGE_KEY_ZEN_MODE = 'elk-zenmode'
 export const STORAGE_KEY_LANG = 'elk-lang'
 export const STORAGE_KEY_FEATURE_FLAGS = 'elk-feature-flags'
-export const STORAGE_KEY_HIDE_NEWS_TIPS = 'elk-hide-news-tips'
-export const STORAGE_KEY_HIDE_TAGS_TIPS = 'elk-hide-tags-tips'
+export const STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS = 'elk-hide-explore-posts-tips'
+export const STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS = 'elk-hide-explore-news-tips'
+export const STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS = 'elk-hide-explore-tags-tips'
 
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\d-]+\.)+\w+\/(@[@\w\d-\.]+)(\/objects)?(\/\d+)?$/

@@ -2,7 +2,15 @@ import { login as loginMasto } from 'masto'
 import type { AccountCredentials, Instance, WsEvents } from 'masto'
 import { clearUserDrafts } from './statusDrafts'
 import type { UserLogin } from '~/types'
-import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
+import {
+  DEFAULT_POST_CHARS_LIMIT,
+  DEFAULT_SERVER,
+  STORAGE_KEY_CURRENT_USER,
+  STORAGE_KEY_NOTIFICATION,
+  STORAGE_KEY_SERVERS,
+  STORAGE_KEY_USERS,
+} from '~/constants'
+import type { PushNotificationRequest } from '~/composables/push-notifications/types'
 
 const mock = process.mock
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
@@ -89,6 +97,19 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   return masto
 }
 
+export async function removePushNotifications(user: UserLogin) {
+  // unubscribe push notifications
+  try {
+    await useMasto().pushSubscriptions.remove()
+  }
+  catch {
+    // ignore
+  }
+  user.pushSubscription = undefined
+  // clear request notification permission
+  delete useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {}).value[user.account.acct]
+}
+
 export async function signout() {
   // TODO: confirm
   if (!currentUser.value)
@@ -103,6 +124,8 @@ export async function signout() {
     delete servers.value[_currentUserId]
     clearUserDrafts()
     clearUserFeatureFlags()
+
+    await removePushNotifications(currentUser.value)
 
     currentUserId.value = ''
     // Remove the current user from the users

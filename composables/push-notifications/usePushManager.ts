@@ -1,6 +1,7 @@
-import type { CreatePushNotification, SubscriptionResult } from '~/composables/push-notifications/types'
+import type { CreatePushNotification, PushNotificationRequest, SubscriptionResult } from '~/composables/push-notifications/types'
 import { createPushSubscription } from '~/composables/push-notifications/createPushSubscription'
 import { STORAGE_KEY_NOTIFICATION } from '~/constants'
+import { currentUser, removePushNotifications } from '~/composables/users'
 
 const supportsPushNotifications = typeof window !== 'undefined'
     && 'serviceWorker' in navigator
@@ -19,7 +20,7 @@ export const usePushManager = () => {
           : undefined,
   )
   const isSupported = $computed(() => supportsPushNotifications)
-  const hiddenNotification = useLocalStorage(STORAGE_KEY_NOTIFICATION, false)
+  const hiddenNotification = useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {})
 
   watch(() => currentUser.value?.pushSubscription, (subscription) => {
     isSubscribed.value = !!subscription
@@ -29,14 +30,14 @@ export const usePushManager = () => {
     if (!isSupported || !currentUser.value)
       return 'invalid-state'
 
-    const { pushSubscription, server, token, vapidKey } = currentUser.value
+    const { pushSubscription, server, token, vapidKey, account: { acct } } = currentUser.value
 
     if (!token || !server || !vapidKey)
       return 'invalid-state'
 
     let permission: PermissionState | undefined
 
-    if (!notificationPermission.value || (notificationPermission.value === 'prompt' && !hiddenNotification.value)) {
+    if (!notificationPermission.value || (notificationPermission.value === 'prompt' && !hiddenNotification.value[acct])) {
       // safari 16 does not support navigator.permissions.query for notifications
       try {
         permission = (await navigator.permissions?.query({ name: 'notifications' }))?.state
@@ -67,19 +68,16 @@ export const usePushManager = () => {
     })
     await nextTick()
     notificationPermission.value = permission
-    hiddenNotification.value = true
+    hiddenNotification.value[acct] = true
 
     return 'subscribed'
   }
 
   const unsubscribe = async () => {
-    if (!isSupported || !isSubscribed)
+    if (!isSupported || !isSubscribed || !currentUser.value)
       return false
 
-    await useMasto().pushSubscriptions.remove()
-
-    if (currentUser.value)
-      currentUser.value.pushSubscription = undefined
+    await removePushNotifications(currentUser.value)
   }
 
   return {

@@ -17,3 +17,5 @@ export interface CreatePushNotification {
   policy?: SubscriptionPolicy
 }
 
+export type PushNotificationRequest = Record<string, boolean>
+

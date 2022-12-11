@@ -21,13 +21,18 @@ export default defineEventHandler(async (event) => {
     const { url } = inMemoryCache.get(cardUrl)!
     await send(event, url)
 
-    // Remove oldest entry if cache is too big
+    inMemoryCache.set(cardUrl, { url, lastUsed: Date.now() })
+
+    // Remove some oldest entries if cache gets to big
     if (inMemoryCache.size > 5000) {
-      const oldestEntry = [...inMemoryCache.entries()].reduce(
-        (acc, [key, { lastUsed }]) => (lastUsed < acc.lastUsed ? { key, lastUsed } : acc),
-        { key: '', lastUsed: Infinity },
+      // Remove 10% of the oldest entries
+      const entries = Array.from(inMemoryCache.entries()).sort(
+        (a, b) => a[1].lastUsed - b[1].lastUsed,
       )
-      inMemoryCache.delete(oldestEntry.key)
+      const entriesToRemove = Math.floor(entries.length * 0.1)
+
+      for (let i = 0; i < entriesToRemove; i++)
+        inMemoryCache.delete(entries[i][0])
     }
 
     return

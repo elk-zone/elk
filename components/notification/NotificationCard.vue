@@ -18,6 +18,13 @@ const { notification } = defineProps<{
       </div>
       <AccountCard :account="notification.account" />
     </template>
+    <template v-if="notification.type === 'admin.sign_up'">
+      <div flex p2 items-center gap-2>
+        <div i-ri:admin-fill mr-1 color-purple />
+        <span>New Sign Up</span>
+      </div>
+      <AccountCard :account="notification.account" px2 pb2 />
+    </template>
     <template v-else-if="notification.type === 'follow_request'">
       <div flex ml-4 items-center class="-top-2.5" absolute right-2 px-2>
         <div i-ri:user-follow-fill mr-1 />

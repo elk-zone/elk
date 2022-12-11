@@ -96,10 +96,15 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
           </div>
           <StatusActionsMore :status="status" mr--2 />
         </div>
-        <div :class="status.visibility === 'direct' ? 'my3 p1 px4 br2 bg-fade border-primary border-1 rounded-3 rounded-tl-none' : ''">
-          <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="filter?.filterAction">
+        <div
+          space-y-2
+          :class="{
+            'my3 p1 px4 br2 bg-fade border-primary border-1 rounded-3 rounded-tl-none': status.visibility === 'direct',
+          }"
+        >
+          <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
             <template #spoiler>
-              <p>{{ filterPhrase ? `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` : status.spoilerText }}</p>
+              <p>{{ status.spoilerText || `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
             </template>
             <StatusBody :status="status" />
             <StatusPoll v-if="status.poll" :poll="status.poll" />
@@ -116,12 +121,13 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
             :actions="false"
           />
         </div>
-        <StatusLink v-if="status.card" :card="status.card" />
         <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
       </div>
     </div>
   </div>
-  <div v-else-if="isFiltered" gap-2 px-4>
-    <p>{{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}</p>
+  <div v-else-if="isFiltered" gap-2 p-4>
+    <p text-center text-secondary text-sm>
+      {{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}
+    </p>
   </div>
 </template>

@@ -43,6 +43,7 @@ export default defineConfig({
       'flex-center': 'items-center justify-center',
       'flex-v-center': 'items-center',
       'flex-h-center': 'justify-center',
+      'bg-hover-overflow': 'relative z-0 transition-colors duration-250 after-content-empty after:(absolute inset--2px bg-transparent rounded-lg z--1 transition-colors duration-250) hover:after:(bg-active)',
     },
   ],
   presets: [
@@ -60,6 +61,7 @@ export default defineConfig({
     }),
     presetTypography(),
     presetWebFonts({
+      provider: 'none',
       fonts: {
         sans: 'DM Sans',
         serif: 'DM Serif Display',

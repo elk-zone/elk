@@ -14,7 +14,8 @@ export function setCached(key: string, value: any, override = false) {
     cache.set(key, value)
 }
 
-export function fetchStatus(id: string, server = currentServer.value, force = false): Promise<Status> {
+export function fetchStatus(id: string, force = false): Promise<Status> {
+  const server = currentServer.value
   const key = `${server}:status:${id}`
   const cached = cache.get(key)
   if (cached && !force)
@@ -32,7 +33,8 @@ export function fetchAccountById(id?: string | null): Promise<Account | null> {
   if (!id)
     return Promise.resolve(null)
 
-  const key = `${currentServer.value}:account:${id}`
+  const server = currentServer.value
+  const key = `${server}:account:${id}`
   const cached = cache.get(key)
   if (cached)
     return cached
@@ -42,14 +44,15 @@ export function fetchAccountById(id?: string | null): Promise<Account | null> {
       if (!r.acct.includes('@') && uri)
         r.acct = `${r.acct}@${uri}`
 
-      cacheAccount(r, true)
+      cacheAccount(r, server, true)
       return r
     })
   cache.set(key, promise)
   return promise
 }
 
-export async function fetchAccountByHandle(acct: string, server = currentServer.value): Promise<Account> {
+export async function fetchAccountByHandle(acct: string): Promise<Account> {
+  const server = currentServer.value
   const key = `${server}:account:${acct}`
   const cached = cache.get(key)
   if (cached)
@@ -60,7 +63,7 @@ export async function fetchAccountByHandle(acct: string, server = currentServer.
       if (!r.acct.includes('@') && uri)
         r.acct = `${r.acct}@${uri}`
 
-      cacheAccount(r, true)
+      cacheAccount(r, server, true)
       return r
     })
   cache.set(key, account)
@@ -75,15 +78,11 @@ export function useAccountById(id?: string | null) {
   return useAsyncState(() => fetchAccountById(id), null).state
 }
 
-export function cacheStatus(status: Status, override?: boolean) {
-  setCached(`${currentServer.value}:status:${status.id}`, status, override)
+export function cacheStatus(status: Status, server = currentServer.value, override?: boolean) {
+  setCached(`${server}:status:${status.id}`, status, override)
 }
 
-export function cacheAccount(account: Account, override?: boolean) {
-  setCached(`${currentServer.value}:account:${account.id}`, account, override)
-  setCached(`${currentServer.value}:account:${account.acct}`, account, override)
-}
-export function cacheServerAccount(server: string, account: Account, override?: boolean) {
+export function cacheAccount(account: Account, server = currentServer.value, override?: boolean) {
   setCached(`${server}:account:${account.id}`, account, override)
   setCached(`${server}:account:${account.acct}`, account, override)
 }

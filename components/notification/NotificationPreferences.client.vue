@@ -19,7 +19,7 @@ const showWarning = $computed(() => {
 
   return isSupported
       && (!isSubscribed.value || !notificationPermission.value || notificationPermission.value === 'prompt')
-      && !hiddenNotification.value[currentUser.value?.account?.acct ?? '']
+      && !(hiddenNotification.value[currentUser.value?.account?.acct ?? ''] === true)
 })
 
 const doSubscribe = async () => {

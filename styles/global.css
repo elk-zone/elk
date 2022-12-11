@@ -165,3 +165,13 @@ body {
   /* Prevent arbitrary zooming on mobile devices */
   touch-action: pan-x pan-y;
 }
+
+.sparkline--fill {
+  fill: var(--c-primary-active);
+  opacity: 0.2;
+}
+
+.sparkline--line {
+  stroke: var(--c-primary);
+  stroke-width: 2;
+}

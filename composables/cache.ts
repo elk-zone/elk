@@ -14,8 +14,8 @@ export function setCached(key: string, value: any, override = false) {
     cache.set(key, value)
 }
 
-export function fetchStatus(id: string, force = false): Promise<Status> {
-  const key = `${currentServer.value}:status:${id}`
+export function fetchStatus(id: string, server = currentServer.value, force = false): Promise<Status> {
+  const key = `${server}:status:${id}`
   const cached = cache.get(key)
   if (cached && !force)
     return cached
@@ -49,8 +49,8 @@ export function fetchAccountById(id?: string | null): Promise<Account | null> {
   return promise
 }
 
-export async function fetchAccountByHandle(acct: string): Promise<Account> {
-  const key = `${currentServer.value}:account:${acct}`
+export async function fetchAccountByHandle(acct: string, server = currentServer.value): Promise<Account> {
+  const key = `${server}:account:${acct}`
   const cached = cache.get(key)
   if (cached)
     return cached
@@ -82,4 +82,8 @@ export function cacheStatus(status: Status, override?: boolean) {
 export function cacheAccount(account: Account, override?: boolean) {
   setCached(`${currentServer.value}:account:${account.id}`, account, override)
   setCached(`${currentServer.value}:account:${account.acct}`, account, override)
+}
+export function cacheServerAccount(server: string, account: Account, override?: boolean) {
+  setCached(`${server}:account:${account.id}`, account, override)
+  setCached(`${server}:account:${account.acct}`, account, override)
 }

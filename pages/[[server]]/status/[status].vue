@@ -4,7 +4,8 @@ definePageMeta({
   middleware: async (to) => {
     const params = to.params
     const id = params.status as string
-    const status = await fetchStatus(id)
+    const serverName = params.server as string
+    const status = await fetchStatus(id, serverName)
     return getStatusRoute(status)
   },
 })

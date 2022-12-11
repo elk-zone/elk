@@ -56,7 +56,7 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
       if (!me.acct.includes('@'))
         me.acct = `${me.acct}@${server.uri}`
 
-      cacheAccount(me, true)
+      cacheServerAccount(server.uri, me, true)
 
       user.account = me
       currentUserId.value = me.id
@@ -72,9 +72,11 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 
   setMasto(masto)
 
-  if ('server' in route.params) {
+  // if we've a new one login we must force and replace to the new one account page
+  if ('server' in route.params && user?.token) {
     await router.push({
-      ...route,
+      ...getUserAccountRoute(user as UserLogin),
+      replace: true,
       force: true,
     })
   }
@@ -106,7 +108,7 @@ export async function signout() {
   currentUserId.value = users.value[0]?.account?.id
 
   if (!currentUserId.value)
-    await useRouter().push(`/${currentServer.value}/public`)
+    await useRouter().push('/')
 
   await loginTo(currentUser.value)
 }

@@ -1,6 +1,7 @@
 import type { Ref } from 'vue'
 import type { Account, MastoClient, Relationship, Status } from 'masto'
 import { withoutProtocol } from 'ufo'
+import type { UserLogin } from '~/types'
 
 export const useMasto = () => useNuxtApp().$masto.api as MastoClient
 
@@ -61,6 +62,19 @@ export function toShortHandle(fullHandle: string) {
   if (fullHandle.endsWith(`@${server}`))
     return fullHandle.slice(0, -server.length - 1)
   return fullHandle
+}
+
+export function getUserAccountRoute(user: UserLogin) {
+  return useRouter().resolve({
+    name: 'account-index',
+    params: {
+      server: user.server,
+      account: user.account.acct,
+    },
+    state: {
+      account: user.account as any,
+    },
+  })
 }
 
 export function getAccountRoute(account: Account) {

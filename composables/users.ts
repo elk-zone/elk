@@ -125,7 +125,7 @@ export const useNotifications = () => {
   }
 
   async function connect(): Promise<void> {
-    if (!id || notifications[id])
+    if (!id || notifications[id] || !currentUser.value?.token)
       return
 
     const masto = useMasto()

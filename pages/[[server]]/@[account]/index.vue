@@ -5,7 +5,10 @@ const accountName = $(computedEager(() => route.params.account as string))
 
 const { t } = useI18n()
 
-const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName, serverName).catch(() => null)))
+const { data: account, refresh } = $(await useAsyncData(
+    `${serverName}:account:${accountName}`,
+    () => fetchAccountByHandle(accountName, serverName).catch(() => null)),
+)
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
 
 if (account) {

@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import Inspect from 'vite-plugin-inspect'
-import { isCI, isDevelopment } from 'std-env'
+import { isCI } from 'std-env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
 
@@ -38,7 +38,7 @@ export default defineNuxtConfig({
       'import.meta.env.__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
       'import.meta.env.__BUILD_COMMIT__': JSON.stringify(process.env.COMMIT_REF || ''),
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
-      'process.mock': ((isDevelopment || (isCI && process.env.PULL_REQUEST === 'true')) && process.env.MOCK_USER) || 'false',
+      'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
     },
     build: {
       target: 'esnext',

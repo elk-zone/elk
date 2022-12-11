@@ -39,12 +39,6 @@ export const currentInstance = computed<null | Instance>(() => currentUserId.val
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
 export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }) {
-  if (user) {
-    const existing = users.value.find(u => u.server === user.server && u.token === user.token)
-    if (existing && currentUserId.value !== user.account?.id)
-      currentUserId.value = user.account?.id
-  }
-
   const config = useRuntimeConfig()
   const route = useRoute()
   const router = useRouter()
@@ -87,7 +81,7 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 
   setMasto(masto)
 
-  if ('server' in route.params) {
+  if ('server' in route.params && user?.token) {
     await router.push({
       ...route,
       force: true,
@@ -137,7 +131,7 @@ export async function signout() {
   currentUserId.value = users.value[0]?.account?.id
 
   if (!currentUserId.value)
-    await useRouter().push(`/${currentServer.value}/public`)
+    await useRouter().push('/')
 
   await loginTo(currentUser.value)
 }
@@ -154,7 +148,7 @@ export const useNotifications = () => {
   }
 
   async function connect(): Promise<void> {
-    if (!id || notifications[id])
+    if (!id || notifications[id] || !currentUser.value?.token)
       return
 
     const masto = useMasto()

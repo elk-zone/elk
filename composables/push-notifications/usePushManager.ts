@@ -34,13 +34,22 @@ export const usePushManager = () => {
     if (!token || !server || !vapidKey)
       return 'invalid-state'
 
-    let permission: PermissionStatus | undefined
+    let permission: PermissionState | undefined
 
-    if (!notificationPermission.value || (notificationPermission.value === 'prompt' && !hiddenNotification.value))
-      permission = await navigator.permissions?.query({ name: 'notifications' })
+    if (!notificationPermission.value || (notificationPermission.value === 'prompt' && !hiddenNotification.value)) {
+      // safari 16 does not support navigator.permissions.query for notifications
+      try {
+        permission = (await navigator.permissions?.query({ name: 'notifications' }))?.state
+      }
+      catch {
+        permission = await Promise.resolve(Notification.requestPermission()).then((p: NotificationPermission) => {
+          return p === 'default' ? 'prompt' : p
+        })
+      }
+    }
 
-    if (!permission || permission.state === 'denied') {
-      notificationPermission.value = permission?.state
+    if (!permission || permission === 'denied') {
+      notificationPermission.value = permission
       return 'notification-denied'
     }
 
@@ -57,7 +66,7 @@ export const usePushManager = () => {
       policy: 'all',
     })
     await nextTick()
-    notificationPermission.value = permission.state
+    notificationPermission.value = permission
     hiddenNotification.value = true
 
     return 'subscribed'

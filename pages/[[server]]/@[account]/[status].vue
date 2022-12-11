@@ -4,6 +4,7 @@ import type { ComponentPublicInstance } from 'vue'
 
 definePageMeta({
   name: 'status',
+  key: route => route.path,
 })
 
 const route = useRoute()

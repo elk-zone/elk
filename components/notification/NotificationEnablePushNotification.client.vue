@@ -1,5 +1,8 @@
 <script setup lang="ts">
-defineProps<{ withHeader: boolean }>()
+defineProps<{
+  withHeader?: boolean
+  busy?: boolean
+}>()
 
 defineEmits(['hide', 'subscribe'])
 </script>
@@ -14,6 +17,7 @@ defineEmits(['hide', 'subscribe'])
         flex rounded-4 p2
         :title="$t('notification.settings.warning.enable_close')"
         hover:bg-active cursor-pointer transition-100
+        :disabled="busy"
         @click="$emit('hide')"
       >
         <span aria-hidden="true" i-ri:close-circle-line />
@@ -24,8 +28,10 @@ defineEmits(['hide', 'subscribe'])
     </p>
     <button
       btn-outline rounded-full font-bold py4 flex="~ gap2 center" m5
+      :disabled="busy"
       @click="$emit('subscribe')"
     >
+      <span :class="busy ? 'i-ri:loader-2-fill animate-spin' : 'i-ri:check-line'" />
       {{ $t('notification.settings.warning.enable_desktop') }}
     </button>
   </div>

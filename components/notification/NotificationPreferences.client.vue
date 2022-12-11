@@ -3,7 +3,14 @@ import { usePushManager } from '~/composables/push-notifications/usePushManager'
 
 defineProps<{ show: boolean }>()
 
+const busy = ref(false)
+
 const {
+  follow,
+  favourite,
+  reblog,
+  mention,
+  poll,
   hiddenNotification,
   isSubscribed,
   isSupported,
@@ -11,6 +18,7 @@ const {
   subscribe,
   unsubscribe,
 } = usePushManager()
+
 const pwaEnabled = useRuntimeConfig().public.pwaEnabled
 
 const hideNotification = () => {
@@ -29,10 +37,20 @@ const showWarning = $computed(() => {
 })
 
 const doSubscribe = async () => {
-  const subscription = await subscribe()
-  // todo: apply some logic based on the result: subscription === 'subscribed'
-  // todo: maybe throwing an error instead just a literal to show a dialog with the error
+  if (busy.value)
+    return
+
+  busy.value = true
+  try {
+    const subscription = await subscribe()
+    // todo: apply some logic based on the result: subscription === 'subscribed'
+    // todo: maybe throwing an error instead just a literal to show a dialog with the error
+  }
+  finally {
+    busy.value = false
+  }
 }
+onActivated(() => (busy.value = false))
 </script>
 
 <template>
@@ -45,15 +63,20 @@ const doSubscribe = async () => {
           </h2>
         </header>
         <template v-if="isSupported">
-          <template v-if="isSubscribed">
-            TODO: SETTINGS HERE
-          </template>
+          <div v-if="isSubscribed" flex="~ col" gap-y-2>
+            <CommonCheckbox v-model="follow" :label="$t('notification.settings.follow')" />
+            <CommonCheckbox v-model="favourite" :label="$t('notification.settings.favourite')" />
+            <CommonCheckbox v-model="reblog" :label="$t('notification.settings.reblog')" />
+            <CommonCheckbox v-model="mention" :label="$t('notification.settings.mention')" />
+            <CommonCheckbox v-model="poll" :label="$t('notification.settings.poll')" />
+          </div>
           <template v-else>
             <p v-if="showWarning" role="alert" aria-labelledby="notifications-title">
               {{ $t('notification.settings.unsubscribed_with_warning') }}
             </p>
             <NotificationEnablePushNotification
               v-else
+              :busy="busy"
               @hide="hideNotification"
               @subscribe="doSubscribe"
             />
@@ -64,14 +87,14 @@ const doSubscribe = async () => {
         </p>
       </div>
     </Transition>
-    <template v-if="showWarning">
-      <NotificationEnablePushNotification
-        with-header
-        px5
-        py4
-        @hide="hideNotification"
-        @subscribe="doSubscribe"
-      />
-    </template>
+    <NotificationEnablePushNotification
+      v-if="showWarning"
+      with-header
+      px5
+      py4
+      :busy="busy"
+      @hide="hideNotification"
+      @subscribe="doSubscribe"
+    />
   </div>
 </template>

@@ -21,6 +21,12 @@ export const usePushManager = () => {
   )
   const isSupported = $computed(() => supportsPushNotifications)
   const hiddenNotification = useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {})
+  const follow = ref(currentUser.value?.pushSubscription?.alerts.follow ?? false)
+  const favourite = ref(currentUser.value?.pushSubscription?.alerts.favourite ?? false)
+  const reblog = ref(currentUser.value?.pushSubscription?.alerts.reblog ?? false)
+  const mention = ref(currentUser.value?.pushSubscription?.alerts.mention ?? false)
+  const poll = ref(currentUser.value?.pushSubscription?.alerts.poll ?? false)
+  const ready = ref(false)
 
   watch(() => currentUser.value?.pushSubscription, (subscription) => {
     isSubscribed.value = !!subscription
@@ -80,7 +86,47 @@ export const usePushManager = () => {
     await removePushNotifications(currentUser.value)
   }
 
+  const updateSubscription = () => {
+    if (ready.value) {
+      try {
+        useMasto().pushSubscriptions.update({
+          data: {
+            alerts: {
+              follow: follow.value,
+              favourite: favourite.value,
+              reblog: reblog.value,
+              mention: mention.value,
+              poll: poll.value,
+            },
+          },
+        }).then((s) => {
+          if (ready?.value && currentUser?.value)
+            currentUser.value.pushSubscription = s
+        })
+      }
+      catch {
+        // ignore
+      }
+    }
+  }
+
+  watchThrottled(follow, updateSubscription, { throttle: 100 })
+  watchThrottled(favourite, updateSubscription, { throttle: 100 })
+  watchThrottled(reblog, updateSubscription, { throttle: 100 })
+  watchThrottled(mention, updateSubscription, { throttle: 100 })
+  watchThrottled(poll, updateSubscription, { throttle: 100 })
+
+  onActivated(() => nextTick().then(() => ready.value = true))
+  onMounted(() => nextTick().then(() => ready.value = true))
+  onDeactivated(() => nextTick().then(() => ready.value = false))
+  onUnmounted(() => nextTick().then(() => ready.value = false))
+
   return {
+    follow,
+    favourite,
+    reblog,
+    mention,
+    poll,
     hiddenNotification,
     isSupported,
     isSubscribed,

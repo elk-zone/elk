@@ -17,9 +17,9 @@ const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS, false)
       <StatusPreviewCard :card="item" border="!b base" rounded="!none" p="!4" small-picture-only root />
     </template>
     <template #loading>
-      <StatusCardSkeleton border="b base" />
-      <StatusCardSkeleton border="b base" op50 />
-      <StatusCardSkeleton border="b base" op25 />
+      <StatusPreviewCardSkeleton square root border="b base" />
+      <StatusPreviewCardSkeleton square root border="b base" op50 />
+      <StatusPreviewCardSkeleton square root border="b base" op25 />
     </template>
   </CommonPaginator>
 </template>

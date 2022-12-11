@@ -27,9 +27,11 @@ function getTagUrl(tag: Tag) {
     </div>
   </div>
   <div v-else-if="pending">
-    <StatusCardSkeleton border="b base" />
-    <StatusCardSkeleton border="b base" op50 />
-    <StatusCardSkeleton border="b base" op25 />
+    <TagCardSkeleton border="b base" />
+    <TagCardSkeleton border="b base" />
+    <TagCardSkeleton border="b base" op50 />
+    <TagCardSkeleton border="b base" op50 />
+    <TagCardSkeleton border="b base" op25 />
   </div>
   <div v-else-if="error" p5 text-center text-red italic>
     {{ $t('common.error') }}: {{ error }}

@@ -22,9 +22,9 @@ const { data, pending, error } = useLazyAsyncData(
     </div>
   </div>
   <div v-else-if="pending">
-    <StatusCardSkeleton border="b base" />
-    <StatusCardSkeleton border="b base" op50 />
-    <StatusCardSkeleton border="b base" op25 />
+    <AccountBigCardSkeleton border="b base" />
+    <AccountBigCardSkeleton border="b base" op50 />
+    <AccountBigCardSkeleton border="b base" op25 />
   </div>
   <div v-else-if="error" p5 text-center text-red italic>
     {{ $t('common.error') }}: {{ error }}

@@ -5,8 +5,9 @@ definePageMeta({
 
 const { t } = useI18n()
 
-const paginatorAll = useMasto().notifications.iterate()
-const paginatorMention = useMasto().notifications.iterate({ types: ['mention'] })
+// Default limit is 20 notifications, and servers are normally caped to 30
+const paginatorAll = useMasto().notifications.iterate({ limit: 30 })
+const paginatorMention = useMasto().notifications.iterate({ limit: 30, types: ['mention'] })
 
 const { clearNotifications } = useNotifications()
 onActivated(clearNotifications)

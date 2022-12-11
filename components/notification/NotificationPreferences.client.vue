@@ -13,6 +13,12 @@ const {
 } = usePushManager()
 const pwaEnabled = useRuntimeConfig().public.pwaEnabled
 
+const hideNotification = () => {
+  const key = currentUser.value?.account?.acct
+  if (key)
+    hiddenNotification.value[key] = true
+}
+
 const showWarning = $computed(() => {
   if (!pwaEnabled)
     return false
@@ -47,7 +53,7 @@ const doSubscribe = async () => {
               flex rounded-4 p2
               :title="$t('notification.settings.warning.enable_close')"
               hover:bg-active cursor-pointer transition-100
-              @click="hiddenNotification = true"
+              @click="hideNotification"
             >
               <span aria-hidden="true" i-ri:close-circle-line />
             </button>

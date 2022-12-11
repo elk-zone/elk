@@ -13,7 +13,7 @@ const { link = true, avatar = true } = defineProps<{
     <NuxtLink
       :to="link ? getAccountRoute(account) : undefined"
       :class="link ? 'text-link-rounded ml-0 pl-0' : ''"
-      min-w-0 flex gap-1 items-center
+      min-w-0 flex gap-2 items-center
     >
       <AccountAvatar v-if="avatar" :account="account" w-5 h-5 />
       <ContentRich

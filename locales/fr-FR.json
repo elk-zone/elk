@@ -28,6 +28,7 @@
     "bookmarked": "Ajouté aux marque-pages",
     "boost": "Partager",
     "boosted": "Partagé",
+    "close": "Fermer",
     "compose": "Composer",
     "enter_app": "Entrer dans l'application",
     "favourite": "Ajouter aux favoris",
@@ -43,12 +44,14 @@
     "vote": "Voter"
   },
   "app_desc_short": "Un client Mastodon fait avec 🧡",
+  "app_logo": "Logo Elk",
   "app_name": "Elk",
   "command": {
     "activate": "Activer",
     "complete": "Compléter",
     "compose_desc": "Écrire un nouveau message",
     "lang": "Langages",
+    "n-people-in-the-past-n-days": "{0} personnes dans les {1} jours",
     "select_lang": "Sélectionner langue",
     "sign_in_desc": "Ajouter un compte existant",
     "switch_account": "Changer pour le compte {0}",
@@ -69,6 +72,7 @@
   },
   "error": {
     "account_not_found": "Compte {0} non trouvé",
+    "explore-list-empty": "Pas de tendence en ce moment. Revenez plus tard!",
     "status_not_found": "Message non trouvé"
   },
   "feature_flag": {
@@ -171,7 +175,10 @@
     "edited": "a édité {0}"
   },
   "tab": {
+    "for_you": "Pour vous",
+    "hashtags": "Hashtags",
     "media": "Média",
+    "news": "Actualités",
     "notifications_all": "Tout",
     "notifications_mention": "Mentions",
     "posts": "Messages",
@@ -219,6 +226,9 @@
     "add_content_warning": "Ajouter un avertissement de contenu",
     "add_media": "Ajouter des images, une vidéo ou un fichier audio",
     "change_content_visibility": "Ajuster la confidentialité du message",
+    "explore_links_intro": "Ces actualités sont sujets à discussions sur ce serveur et sur d'autres serveurs du réseau décentralisé.",
+    "explore_posts_intro": "Ces publications de ce serveur et d'autres serveurs du réseau décentralisé gagnent du terrain sur ce serveur en ce moment.",
+    "explore_tags_intro": "Ces hashtags gagnent du terrain sur ce serveur et sur d'autres serveurs du réseau décentralisé.",
     "toggle_code_block": "Ajouter un bloc de code"
   },
   "user": {

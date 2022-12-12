@@ -22,8 +22,23 @@ function extractOgImageUrl(html: string): string {
   return match?.[1] ?? ''
 }
 
+async function resolveOgImageUrlManually(cardUrl: string): Promise<string> {
+  const html = await $fetch<string>(cardUrl)
+
+  const ogImageUrl = extractOgImageUrl(html)
+
+  if (!ogImageUrl) {
+    // Throw an error so we can try to apply another fallback
+    throw new Error('Could not find og:image in html.')
+  }
+
+  return ogImageUrl
+}
+
 export default defineEventHandler(async (event) => {
-  const { cardUrl } = getQuery(event)
+  const { url } = getRouterParams(event)
+
+  const cardUrl = decodeURIComponent(url)
 
   if (!cardUrl) {
     throw createError({
@@ -39,16 +54,17 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  let ogImageUrl = ''
-
+  // If anything goes wrong, fail gracefully
   try {
     // First we want to try to get the og:image from the html
     // But sometimes it is not included due to async JS loading
-    const html = await $fetch<string>(cardUrl)
-    ogImageUrl = extractOgImageUrl(html)
+    let ogImageUrl = await resolveOgImageUrlManually(cardUrl).catch(() =>
+      // Try another fallback
+      '',
+    )
 
     if (process.env.NUXT_OPENGRAPH_API) {
-    // If no og:image was found, try to get it from opengraph.io
+      // If no og:image was found, try to get it from opengraph.io
       if (!ogImageUrl) {
         const response = await getOpenGraphClient().getSiteInfo(cardUrl)
 

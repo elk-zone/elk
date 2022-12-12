@@ -22,9 +22,7 @@ watch(cardImage, (image) => {
   imageSrc.value = image
 
   if (image) {
-    $fetch<string>('/api/og-image', {
-      params: { cardUrl: props.card.url },
-    }).then((ogImageUrl) => {
+    $fetch<string>(`/api/og-image/${encodeURIComponent(props.card.url)}`).then((ogImageUrl) => {
       // eslint-disable-next-line no-console
       console.log('ogImageUrl', ogImageUrl)
 

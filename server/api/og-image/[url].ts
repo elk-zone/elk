@@ -78,18 +78,26 @@ export default defineEventHandler(async (event) => {
 
     if (!ogImageUrl.startsWith('https')) {
       // If the og:image is not https, we can't use it
-      throw createError({
+      sendError(event, {
         statusCode: 404, // Must be 404 so the srcset can fallback to the default image
-        statusMessage: 'og:image must be https.',
+        fatal: false,
+        message: 'og:image must be https.',
+        name: 'OgImageError',
+        unhandled: false,
       })
+      return
     }
 
     if (!ogImageUrl) {
       // If nothing helped, send 404 so the srcset can fallback to the default image
-      throw createError({
+      sendError(event, {
         statusCode: 404,
-        statusMessage: 'Could not find og:image.',
+        fatal: false,
+        message: 'Could not find og:image.',
+        name: 'OgImageError',
+        unhandled: false,
       })
+      return
     }
 
     await sendRedirect(event, ogImageUrl)

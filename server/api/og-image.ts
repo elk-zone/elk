@@ -2,11 +2,17 @@ import opengraph from 'opengraph-io'
 
 // This API-Endpoint will be cached via nuxt.config.ts -> nitro.routeRules['/api/og-image'].cache.maxAge = 86400
 
-let openGraphClient: any = null
+type OpenGraphClient = ReturnType<typeof opengraph>
 
-function getOpenGraphClient(): any {
-  if (openGraphClient == null)
-    openGraphClient = opengraph({ appId: process.env.NUXT_OPENGRAPH_API, fullRender: true })
+let openGraphClient: OpenGraphClient
+
+function getOpenGraphClient(): OpenGraphClient {
+  const NUXT_OPENGRAPH_API = process.env.NUXT_OPENGRAPH_API
+  if (typeof NUXT_OPENGRAPH_API !== 'string')
+    throw new Error('Missing NUXT_OPENGRAPH_API environment variable.')
+
+  if (!openGraphClient)
+    openGraphClient = opengraph({ appId: NUXT_OPENGRAPH_API, fullRender: true })!
 
   return openGraphClient
 }

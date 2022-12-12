@@ -75,9 +75,6 @@ export default defineEventHandler(async (event) => {
       }
     }
 
-    // eslint-disable-next-line no-console
-    console.log(JSON.stringify({ cardUrl, ogImageUrl }))
-
     if (!ogImageUrl) {
       // If nothing helped, set cardUrl as default
       ogImageUrl = cardUrl

@@ -42,17 +42,25 @@ export default defineEventHandler(async (event) => {
   const cardUrl = decodeURIComponent(url)
 
   if (!cardUrl) {
-    throw createError({
+    sendError(event, {
       statusCode: 422,
-      statusMessage: 'Missing cardUrl.',
+      fatal: false,
+      message: 'Missing cardUrl.',
+      name: 'OgImageError',
+      unhandled: false,
     })
+    return
   }
 
   if (typeof cardUrl !== 'string') {
-    throw createError({
+    sendError(event, {
       statusCode: 422,
-      statusMessage: 'cardUrl must be string.',
+      fatal: false,
+      message: 'cardUrl must be string.',
+      name: 'OgImageError',
+      unhandled: false,
     })
+    return
   }
 
   // If anything goes wrong, fail gracefully

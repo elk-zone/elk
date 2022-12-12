@@ -84,7 +84,10 @@ export default defineNuxtConfig({
     },
     routeRules: {
       '/api/og-image': {
-        static: true,
+        // static: true, // Not working, gives 502: `Function is not an on-demand builder.`
+        cache: {
+          maxAge: 86400, // 1 day
+        },
       },
     },
   },

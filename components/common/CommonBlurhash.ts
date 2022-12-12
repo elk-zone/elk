@@ -17,7 +17,7 @@ export default defineComponent({
       required: false,
     },
   },
-  setup(props, { attrs }) {
+  setup(props, { attrs, emit }) {
     const placeholderSrc = ref<string>()
     const isLoaded = ref(false)
 
@@ -25,6 +25,9 @@ export default defineComponent({
       const img = document.createElement('img')
       img.onload = () => {
         isLoaded.value = true
+      }
+      img.onerror = (ev) => {
+        emit('onerror', ev)
       }
       img.src = props.src
       if (props.srcset)

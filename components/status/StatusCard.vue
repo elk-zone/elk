@@ -57,6 +57,7 @@ const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
 const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
 
 const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
+const showRebloggedByAvatarOnAvatar = rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id
 </script>
 
 <template>
@@ -69,12 +70,12 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
     <div v-if="decorated || rebloggedBy || (showReplyTo && status.inReplyToAccountId)" h-6 />
     <div flex gap-4>
       <div relative>
-        <AccountHoverWrapper :account="status.account" :class="rebloggedBy && avatarOnAvatar ? 'mt-4' : 'mt-1'">
+        <AccountHoverWrapper :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-4' : 'mt-1'">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
             <AccountAvatar w-12 h-12 :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-if="(rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)" absolute class="-top-2 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
+        <div v-if="showRebloggedByAvatarOnAvatar" absolute class="-top-2 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
           <AccountAvatar :account="rebloggedBy" />
         </div>
       </div>

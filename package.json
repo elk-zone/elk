@@ -18,7 +18,8 @@
     "postinstall": "nuxi prepare && simple-git-hooks"
   },
   "dependencies": {
-    "@fnando/sparkline": "^0.3.10"
+    "@fnando/sparkline": "^0.3.10",
+    "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.33.1",

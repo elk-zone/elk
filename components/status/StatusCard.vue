@@ -66,7 +66,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
       <div i-ri:repeat-fill mr-1 text-primary />
       <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
     </CommonMetaWrapper>
-    <div v-if="decorated || rebloggedBy || (showReplyTo && status.inReplyToAccountId)" h-4 />
+    <div v-if="decorated || rebloggedBy || (showReplyTo && status.inReplyToAccountId)" h-6 />
     <div flex gap-4>
       <div relative>
         <AccountHoverWrapper :account="status.account" :class="rebloggedBy && avatarOnAvatar ? 'mt-4' : 'mt-1'">
@@ -74,7 +74,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
             <AccountAvatar w-12 h-12 :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-if="(rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)" absolute class="-top-1 -left-2" w-8 h-8 border-bg-base border-3 rounded-full>
+        <div v-if="(rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)" absolute class="-top-2 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
           <AccountAvatar :account="rebloggedBy" />
         </div>
       </div>
@@ -85,6 +85,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
           </AccountHoverWrapper>
           <div flex-auto />
           <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
+            <AccountBotIndicator v-if="status.account.bot" mr-2 />
             <CommonTooltip :content="createdAt">
               <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
                 <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">

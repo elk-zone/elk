@@ -8,7 +8,6 @@ const props = defineProps<{
   /** When it is root card in the list, not appear as a child card */
   root?: boolean
 }>()
-const cardImage = $computed(() => props.card.image)
 const alt = $computed(() => `${props.card.title} - ${props.card.title}`)
 const isSquare = $computed(() => props.smallPictureOnly || props.card.width === props.card.height)
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
@@ -35,7 +34,7 @@ const imageSrcset = $computed(() => props.card.image
     target="_blank"
   >
     <div
-      v-if="cardImage"
+      v-if="card.image"
       flex flex-col
       display-block of-hidden
       border="base"
@@ -47,7 +46,7 @@ const imageSrcset = $computed(() => props.card.image
     >
       <CommonBlurhash
         :blurhash="card.blurhash"
-        :src="cardImage"
+        :src="card.image"
         :srcset="imageSrcset"
         :width="card.width"
         :height="card.height"

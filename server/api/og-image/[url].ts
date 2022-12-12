@@ -38,7 +38,6 @@ async function resolveOgImageUrlManually(cardUrl: string): Promise<string> {
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
   const { url } = getRouterParams(event)
-  const { fallbackUrl } = getQuery(event)
 
   const cardUrl = decodeURIComponent(url)
 
@@ -78,8 +77,11 @@ export default defineEventHandler(async (event) => {
     }
 
     if (!ogImageUrl) {
-      // If nothing helped, set cardUrl as default
-      ogImageUrl = decodeURIComponent(fallbackUrl as string)
+      // If nothing helped, send 404 so the srcset can fallback to the default image
+      throw createError({
+        statusCode: 404,
+        statusMessage: 'Could not find og:image.',
+      })
     }
 
     await sendRedirect(event, ogImageUrl)

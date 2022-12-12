@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import Inspect from 'vite-plugin-inspect'
-import { isCI } from 'std-env'
+import { isCI, isDevelopment } from 'std-env'
 import { i18n } from './config/i18n'
 
 const isPreview = process.env.PULL_REQUEST === 'true'
@@ -90,7 +90,7 @@ export default defineNuxtConfig({
     routeRules: {
       '/api/og-image/**': {
         static: isCI,
-        cache: !isCI
+        cache: !isCI && !isDevelopment
           ? { maxAge: 86400 } // 1 day
           : {},
       },

@@ -108,7 +108,9 @@ export default defineEventHandler(async (event) => {
       return
     }
 
-    await sendRedirect(event, ogImageUrl)
+    return $fetch(ogImageUrl, {
+      responseType: 'stream',
+    })
   }
   catch (error) {
     throw createError({

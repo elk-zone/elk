@@ -79,7 +79,7 @@ export default defineEventHandler(async (event) => {
     if (!ogImageUrl.startsWith('https')) {
       // If the og:image is not https, we can't use it
       throw createError({
-        statusCode: 406,
+        statusCode: 404, // Must be 404 so the srcset can fallback to the default image
         statusMessage: 'og:image must be https.',
       })
     }

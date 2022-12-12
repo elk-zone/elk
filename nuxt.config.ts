@@ -65,7 +65,7 @@ export default defineNuxtConfig({
     },
     public: {
       env: isCI ? isPreview ? 'staging' : 'production' : 'local',
-      pwaEnabled: isCI ? isPreview : process.env.VITE_DEV_PWA === 'true',
+      pwaEnabled: isPreview || process.env.VITE_DEV_PWA === 'true',
       translateApi: '',
       // Masto uses Mastodon version checks to see what features are enabled.
       // Mastodon alternatives like GoToSocial will always fail these checks, so

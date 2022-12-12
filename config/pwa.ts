@@ -6,7 +6,7 @@ const isPreview = process.env.PULL_REQUEST === 'true'
 const pwa: VitePWANuxtOptions = {
   mode: isCI ? 'production' : 'development',
   // disabled PWA only on production
-  disable: isCI ? !isPreview : !(process.env.VITE_DEV_PWA === 'true'),
+  disable: !isPreview && process.env.VITE_DEV_PWA !== 'true',
   scope: '/',
   // netlify preset output goes to dist folder
   outDir: isCI ? './dist' : '../.output/public',

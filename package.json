@@ -7,7 +7,7 @@
   "scripts": {
     "build": "nuxi build",
     "build:pwa": "VITE_DEV_PWA=true nuxi build",
-    "build:netlify:pwa": "CI=true PULL_REQUEST=true NITRO_PRESET=netlify nuxi build",
+    "build:netlify:pwa": "NITRO_PRESET=netlify nuxi build",
     "dev": "nuxi dev --port 5314",
     "dev:pwa": "VITE_DEV_PWA=true nuxi dev --port 5314",
     "dev:mocked": "nuxi dev --port 5314 --dotenv .env.mock",

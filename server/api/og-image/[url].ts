@@ -7,12 +7,12 @@ type OpenGraphClient = ReturnType<typeof opengraph>
 let openGraphClient: OpenGraphClient
 
 function getOpenGraphClient(): OpenGraphClient {
-  const NUXT_OPENGRAPH_API = process.env.NUXT_OPENGRAPH_API
-  if (typeof NUXT_OPENGRAPH_API !== 'string')
+  const appId = useRuntimeConfig().opengraphApi
+  if (typeof appId !== 'string')
     throw new Error('Missing NUXT_OPENGRAPH_API environment variable.')
 
   if (!openGraphClient)
-    openGraphClient = opengraph({ appId: NUXT_OPENGRAPH_API, fullRender: true })!
+    openGraphClient = opengraph({ appId, fullRender: true })!
 
   return openGraphClient
 }
@@ -36,6 +36,7 @@ async function resolveOgImageUrlManually(cardUrl: string): Promise<string> {
 }
 
 export default defineEventHandler(async (event) => {
+  const config = useRuntimeConfig()
   const { url } = getRouterParams(event)
   const { fallbackUrl } = getQuery(event)
 
@@ -64,7 +65,7 @@ export default defineEventHandler(async (event) => {
       '',
     )
 
-    if (process.env.NUXT_OPENGRAPH_API) {
+    if (config.opengraphApi) {
       // If no og:image was found, try to get it from opengraph.io
       if (!ogImageUrl) {
         const response = await getOpenGraphClient().getSiteInfo(cardUrl).catch(() =>

@@ -61,6 +61,7 @@ export default defineNuxtConfig({
       namespaceId: '',
       apiToken: '',
     },
+    opengraphApi: '',
     public: {
       env: isCI ? isPreview ? 'staging' : 'production' : 'local',
       translateApi: '',

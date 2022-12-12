@@ -4,6 +4,7 @@ import type { Mutable } from '~/types/utils'
 
 export interface Draft {
   editingStatus?: Status
+  initialText?: string
   params: Omit<Mutable<CreateStatusParams>, 'status'> & {
     status?: Exclude<CreateStatusParams['status'], null>
   }
@@ -28,6 +29,7 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
     inReplyToId,
     visibility = 'public',
     attachments = [],
+    initialText = '',
   } = options
 
   return {
@@ -37,6 +39,7 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
       visibility,
     },
     attachments,
+    initialText,
   }
 }
 
@@ -49,13 +52,25 @@ export async function getDraftFromStatus(status: Status, text?: null | string): 
   })
 }
 
+function mentionHTML(acct: string) {
+  return `<span data-type="mention" data-id="${acct}" contenteditable="false">@${acct}</span>`
+}
+
 export function getReplyDraft(status: Status) {
+  const acountsToMention: string[] = []
+  const userId = currentUser.value?.account.id
+  if (status.account.id !== userId)
+    acountsToMention.push(status.account.acct)
+  acountsToMention.push(...(status.mentions.filter(mention => mention.id !== userId).map(mention => mention.acct)))
   return {
     key: `reply-${status.id}`,
-    draft: () => getDefaultDraft({
-      inReplyToId: status!.id,
-      visibility: status.visibility,
-    }),
+    draft: () => {
+      return getDefaultDraft({
+        initialText: acountsToMention.map(acct => mentionHTML(acct)).join(' '),
+        inReplyToId: status!.id,
+        visibility: status.visibility,
+      })
+    },
   }
 }
 

@@ -104,7 +104,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
           }"
         >
           <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
-            <template #spoiler>
+            <template v-if="status.spoilerText || filterPhrase" #spoiler>
               <p>{{ status.spoilerText || `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
             </template>
             <StatusBody :status="status" />

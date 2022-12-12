@@ -45,7 +45,7 @@ export default defineEventHandler(async (event) => {
     if (!ogImageUrl) {
       const response = await getOpenGraphClient().getSiteInfo(cardUrl)
 
-      ogImageUrl = response?.openGraph?.image?.url ?? ''
+      ogImageUrl = response?.openGraph?.image?.url || response?.hybridGraph?.image || ''
     }
   }
 

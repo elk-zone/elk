@@ -85,10 +85,10 @@ export default defineNuxtConfig({
     },
     routeRules: {
       '/api/og-image/**': {
-        static: true,
-        cache: {
-          maxAge: 86400, // 1 day
-        },
+        static: isCI,
+        cache: !isCI
+          ? { maxAge: 86400 } // 1 day
+          : {},
       },
     },
   },

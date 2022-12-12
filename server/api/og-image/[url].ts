@@ -18,8 +18,8 @@ function getOpenGraphClient(): OpenGraphClient {
 }
 
 function extractOgImageUrl(html: string): string {
-  const match = html.match(/<meta property="og:image" content="([^"]+)" \/>/)
-  return match?.[1] ?? ''
+  const match = html.match(/<meta[^>]*property="og:image"[^>]*content="([^"]+)"|<meta[^>]*content="([^"]+)"[^>]*property="og:image"/)
+  return match?.[1] ?? match?.[2] ?? ''
 }
 
 async function resolveOgImageUrlManually(cardUrl: string): Promise<string> {

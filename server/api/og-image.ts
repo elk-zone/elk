@@ -40,11 +40,13 @@ export default defineEventHandler(async (event) => {
   const html = await $fetch<string>(cardUrl)
   ogImageUrl = extractOgImageUrl(html)
 
-  // If no og:image was found, try to get it from opengraph.io
-  if (!ogImageUrl) {
-    const response = await getOpenGraphClient().getSiteInfo(cardUrl)
+  if (process.env.NUXT_OPENGRAPH_API) {
+    // If no og:image was found, try to get it from opengraph.io
+    if (!ogImageUrl) {
+      const response = await getOpenGraphClient().getSiteInfo(cardUrl)
 
-    ogImageUrl = response?.openGraph?.image?.url ?? ''
+      ogImageUrl = response?.openGraph?.image?.url ?? ''
+    }
   }
 
   // eslint-disable-next-line no-console

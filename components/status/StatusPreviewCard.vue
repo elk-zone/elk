@@ -8,24 +8,31 @@ const props = defineProps<{
   /** When it is root card in the list, not appear as a child card */
   root?: boolean
 }>()
-const image = ref(props.card.image)
+const cardImage = computed(() => props.card.image)
 const alt = $computed(() => `${props.card.title} - ${props.card.title}`)
 const isSquare = $computed(() => props.smallPictureOnly || props.card.width === props.card.height)
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
+const imageSrc = ref<string | null>()
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 
 // Only try to fetch og:image if the card.image is already provided from mastodon
 // We only want to improve the image quality
-if (image.value) {
-  $fetch<string>('/api/og-image', {
-    params: { cardUrl: props.card.url },
-  }).then((ogImageUrl) => {
-    // Only override if ogImageUrl is not empty
-    if (ogImageUrl)
-      image.value = ogImageUrl
-  }).catch(() => {})
-}
+watch(cardImage, (image) => {
+  imageSrc.value = image
+
+  if (image) {
+    $fetch<string>('/api/og-image', {
+      params: { cardUrl: props.card.url },
+    }).then((ogImageUrl) => {
+      console.log('ogImageUrl', ogImageUrl)
+
+      // Only override if ogImageUrl is not empty
+      if (ogImageUrl)
+        imageSrc.value = ogImageUrl
+    }).catch(() => {})
+  }
+}, { immediate: true })
 </script>
 
 <template>
@@ -42,7 +49,7 @@ if (image.value) {
     target="_blank"
   >
     <div
-      v-if="image"
+      v-if="imageSrc"
       flex flex-col
       display-block of-hidden
       border="base"
@@ -54,7 +61,7 @@ if (image.value) {
     >
       <CommonBlurhash
         :blurhash="card.blurhash"
-        :src="image"
+        :src="imageSrc"
         :width="card.width"
         :height="card.height"
         :alt="alt"

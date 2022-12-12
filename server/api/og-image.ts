@@ -1,8 +1,14 @@
+import opengraph from 'opengraph-io'
+
 // This API-Endpoint will be cached via nuxt.config.ts -> nitro.routeRules['/api/og-image'].cache.maxAge = 86400
 
-function extractOgImageUrl(html: string): string {
-  const match = html.match(/<meta property="og:image" content="([^"]+)" \/>/)
-  return match?.[1] ?? ''
+let openGraphClient: any = null
+
+function getOpenGraphClient(): any {
+  if (openGraphClient == null)
+    openGraphClient = opengraph({ appId: process.env.NUXT_OPENGRAPH_API, fullRender: true })
+
+  return openGraphClient
 }
 
 export default defineEventHandler(async (event) => {
@@ -22,8 +28,11 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const html = await $fetch<string>(cardUrl)
-  const ogImageUrl = extractOgImageUrl(html)
+  const response = await getOpenGraphClient().getSiteInfo(cardUrl)
+
+  const ogImageUrl = response?.openGraph?.image?.url ?? ''
+
+  console.log(JSON.stringify({ cardUrl, ogImageUrl }))
 
   await send(event, ogImageUrl)
 })

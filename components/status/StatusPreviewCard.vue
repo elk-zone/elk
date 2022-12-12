@@ -8,30 +8,13 @@ const props = defineProps<{
   /** When it is root card in the list, not appear as a child card */
   root?: boolean
 }>()
-const cardImage = computed(() => props.card.image)
+const cardImage = $computed(() => props.card.image)
 const alt = $computed(() => `${props.card.title} - ${props.card.title}`)
 const isSquare = $computed(() => props.smallPictureOnly || props.card.width === props.card.height)
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
-const imageSrc = ref<string | null>()
+const imageSrcset = $computed(() => props.card.image ? `${props.card.image}, /api/og-image/${encodeURIComponent(props.card.url)} 2x` : '')
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
-
-// Only try to fetch og:image if the card.image is already provided from mastodon
-// We only want to improve the image quality
-watch(cardImage, (image) => {
-  imageSrc.value = image
-
-  if (image) {
-    $fetch<string>(`/api/og-image/${encodeURIComponent(props.card.url)}`).then((ogImageUrl) => {
-      // eslint-disable-next-line no-console
-      console.log('ogImageUrl', ogImageUrl)
-
-      // Only override if ogImageUrl is not empty
-      if (ogImageUrl)
-        imageSrc.value = ogImageUrl
-    }).catch(() => {})
-  }
-}, { immediate: true })
 </script>
 
 <template>
@@ -48,7 +31,7 @@ watch(cardImage, (image) => {
     target="_blank"
   >
     <div
-      v-if="imageSrc"
+      v-if="cardImage"
       flex flex-col
       display-block of-hidden
       border="base"
@@ -60,7 +43,8 @@ watch(cardImage, (image) => {
     >
       <CommonBlurhash
         :blurhash="card.blurhash"
-        :src="imageSrc"
+        :src="cardImage"
+        :srcset="imageSrcset"
         :width="card.width"
         :height="card.height"
         :alt="alt"

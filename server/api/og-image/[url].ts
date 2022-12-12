@@ -66,7 +66,10 @@ export default defineEventHandler(async (event) => {
     if (process.env.NUXT_OPENGRAPH_API) {
       // If no og:image was found, try to get it from opengraph.io
       if (!ogImageUrl) {
-        const response = await getOpenGraphClient().getSiteInfo(cardUrl)
+        const response = await getOpenGraphClient().getSiteInfo(cardUrl).catch(() =>
+          // Try another fallback
+          null,
+        )
 
         ogImageUrl = response?.openGraph?.image?.url || response?.hybridGraph?.image || ''
       }
@@ -75,7 +78,12 @@ export default defineEventHandler(async (event) => {
     // eslint-disable-next-line no-console
     console.log(JSON.stringify({ cardUrl, ogImageUrl }))
 
-    await send(event, ogImageUrl)
+    if (!ogImageUrl) {
+      // If nothing helped, set cardUrl as default
+      ogImageUrl = cardUrl
+    }
+
+    await sendRedirect(event, ogImageUrl)
   }
   catch (error) {
     throw createError({

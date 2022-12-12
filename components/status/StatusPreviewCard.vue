@@ -12,7 +12,9 @@ const cardImage = $computed(() => props.card.image)
 const alt = $computed(() => `${props.card.title} - ${props.card.title}`)
 const isSquare = $computed(() => props.smallPictureOnly || props.card.width === props.card.height)
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
-const imageSrcset = $computed(() => props.card.image ? `${props.card.image}, /api/og-image/${encodeURIComponent(props.card.url)} 2x` : '')
+const imageSrcset = $computed(() => props.card.image
+  ? `${props.card.image}, /api/og-image/${encodeURIComponent(props.card.url)}?fallbackUrl=${encodeURIComponent(props.card.image)} 2x`
+  : '')
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 </script>

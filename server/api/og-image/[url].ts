@@ -37,6 +37,7 @@ async function resolveOgImageUrlManually(cardUrl: string): Promise<string> {
 
 export default defineEventHandler(async (event) => {
   const { url } = getRouterParams(event)
+  const { fallbackUrl } = getQuery(event)
 
   const cardUrl = decodeURIComponent(url)
 
@@ -77,7 +78,7 @@ export default defineEventHandler(async (event) => {
 
     if (!ogImageUrl) {
       // If nothing helped, set cardUrl as default
-      ogImageUrl = cardUrl
+      ogImageUrl = decodeURIComponent(fallbackUrl as string)
     }
 
     await sendRedirect(event, ogImageUrl)

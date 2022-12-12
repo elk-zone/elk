@@ -40,9 +40,9 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
           v-if="status.mediaAttachments?.length"
           :status="status"
         />
+        <StatusPreviewCard v-if="status.card" :card="status.card" />
       </StatusSpoiler>
     </div>
-    <StatusPreviewCard v-if="status.card" :card="status.card" />
     <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>

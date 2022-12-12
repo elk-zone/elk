@@ -17,6 +17,9 @@
     "test": "nr test:unit",
     "postinstall": "nuxi prepare && simple-git-hooks"
   },
+  "dependencies": {
+    "@fnando/sparkline": "^0.3.10"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^0.33.1",
     "@antfu/ni": "^0.18.8",
@@ -38,6 +41,7 @@
     "@tiptap/starter-kit": "2.0.0-beta.204",
     "@tiptap/suggestion": "2.0.0-beta.204",
     "@tiptap/vue-3": "2.0.0-beta.204",
+    "@types/fnando__sparkline": "^0.3.4",
     "@types/fs-extra": "^9.0.13",
     "@types/js-yaml": "^4.0.5",
     "@types/prettier": "^2.7.1",

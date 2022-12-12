@@ -50,6 +50,7 @@
     "complete": "Complete",
     "compose_desc": "Write a new post",
     "lang": "Languages",
+    "n-people-in-the-past-n-days": "{0} people in the past {1} days",
     "select_lang": "Select language",
     "sign_in_desc": "Add an existing account",
     "switch_account": "Switch to {0}",
@@ -70,6 +71,7 @@
   },
   "error": {
     "account_not_found": "Account {0} not found",
+    "explore-list-empty": "Nothing is trending right now. Check back later!",
     "status_not_found": "Status not found"
   },
   "feature_flag": {
@@ -199,7 +201,10 @@
     "edited": "edited {0}"
   },
   "tab": {
+    "for_you": "For you",
+    "hashtags": "Hashtags",
     "media": "Media",
+    "news": "News",
     "notifications_all": "All",
     "notifications_mention": "Mention",
     "posts": "Posts",
@@ -247,6 +252,9 @@
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
     "change_content_visibility": "Change content visibility",
+    "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
+    "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
+    "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
     "toggle_code_block": "Toggle code block"
   },
   "user": {

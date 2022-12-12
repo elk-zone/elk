@@ -8,6 +8,8 @@ export const mediaPreviewIndex = ref(0)
 export const statusEdit = ref<StatusEdit>()
 export const dialogDraftKey = ref<string>()
 
+export const commandPanelInput = ref('')
+
 export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, !process.mock)
 export const isZenMode = useLocalStorage(STORAGE_KEY_ZEN_MODE, false)
 
@@ -17,6 +19,7 @@ export const isKeyboardShortcutsDialogOpen = ref(false)
 export const isMediaPreviewOpen = ref(false)
 export const isEditHistoryDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
+export const isCommandPanelOpen = ref(false)
 
 export const toggleZenMode = useToggle(isZenMode)
 
@@ -74,6 +77,15 @@ export function closePreviewHelp() {
   isPreviewHelpOpen.value = false
 }
 
+export function openCommandPanel(isCommandMode = false) {
+  commandPanelInput.value = isCommandMode ? '>' : ''
+  isCommandPanelOpen.value = true
+}
+
+export function closeCommandPanel() {
+  isCommandPanelOpen.value = false
+}
+
 export function toggleKeyboardShortcuts() {
   isKeyboardShortcutsDialogOpen.value = !isKeyboardShortcutsDialogOpen.value
 }
@@ -81,3 +93,4 @@ export function toggleKeyboardShortcuts() {
 export function closeKeyboardShortcuts() {
   isKeyboardShortcutsDialogOpen.value = false
 }
+

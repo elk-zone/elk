@@ -6,7 +6,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (!('server' in to.params))
     return
 
-  if (!currentUser.value) {
+  const user = currentUser.value
+
+  if (!user) {
     if (from.params.server !== to.params.server) {
       await loginTo({
         server: to.params.server as string,
@@ -16,7 +18,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   }
 
   // No need to additionally resolve an id if we're already logged in
-  if (currentUser.value.server === to.params.server)
+  if (user.server === to.params.server)
     return
 
   // Tags don't need to be redirected to a local id
@@ -29,12 +31,19 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       ...to,
       params: {
         ...to.params,
-        server: currentUser.value.server,
+        server: user.server,
       },
     }
   }
 
   try {
+    // If we're already on an account page, we can search for this on the new instance
+    if (to.params.account) {
+      const account = await fetchAccountByHandle(to.params.account as string)
+      if (account)
+        return getAccountRoute(account)
+    }
+
     // If we're logged in, search for the local id the account or status corresponds to
     const { value } = await useMasto().search({ q: `https:/${to.fullPath}`, resolve: true, limit: 1 }).next()
 

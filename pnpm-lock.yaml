@@ -56,6 +56,7 @@ specifiers:
   shiki-es: ^0.1.2
   simple-git-hooks: ^2.8.1
   std-env: ^3.3.1
+  tauri-plugin-log-api: github:tauri-apps/tauri-plugin-log
   theme-vitesse: ^0.6.0
   tippy.js: ^6.3.7
   typescript: ^4.9.3
@@ -70,6 +71,7 @@ specifiers:
 
 dependencies:
   '@fnando/sparkline': 0.3.10
+  tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/b58475bbc410fa78eb69276c62d0b64c91c07914
 
 devDependencies:
   '@antfu/eslint-config': 0.33.1_s5ps7njkmjlaqajutnox5ntcla
@@ -1313,6 +1315,11 @@ packages:
       picomatch: 2.3.1
       rollup: 2.79.1
     dev: true
+
+  /@tauri-apps/api/1.2.0:
+    resolution: {integrity: sha512-lsI54KI6HGf7VImuf/T9pnoejfgkNoXveP14pVV7XarrQ46rOejIVJLFqHI9sRReJMGdh2YuCoI3cc/yCWCsrw==}
+    engines: {node: '>= 14.6.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
+    dev: false
 
   /@tiptap/core/2.0.0-beta.204:
     resolution: {integrity: sha512-MH4LQE6rvX+DAy83tZH5E6gaA/hO5A6F/w5ZM6En5PcRhNsgpfQl+kjRfeVQYahxouc1mzetayhRe4XQ8PAwng==}
@@ -8008,7 +8015,6 @@ packages:
 
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
-    dev: true
 
   /tsutils/3.21.0_typescript@4.9.3:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
@@ -9020,3 +9026,12 @@ packages:
       compress-commons: 4.1.1
       readable-stream: 3.6.0
     dev: true
+
+  github.com/tauri-apps/tauri-plugin-log/b58475bbc410fa78eb69276c62d0b64c91c07914:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/b58475bbc410fa78eb69276c62d0b64c91c07914}
+    name: tauri-plugin-log-api
+    version: 0.1.0
+    dependencies:
+      '@tauri-apps/api': 1.2.0
+      tslib: 2.4.1
+    dev: false

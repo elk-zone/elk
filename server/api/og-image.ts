@@ -11,6 +11,11 @@ function getOpenGraphClient(): any {
   return openGraphClient
 }
 
+function extractOgImageUrl(html: string): string {
+  const match = html.match(/<meta property="og:image" content="([^"]+)" \/>/)
+  return match?.[1] ?? ''
+}
+
 export default defineEventHandler(async (event) => {
   const { cardUrl } = getQuery(event)
 
@@ -28,10 +33,21 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const response = await getOpenGraphClient().getSiteInfo(cardUrl)
+  let ogImageUrl = ''
 
-  const ogImageUrl = response?.openGraph?.image?.url ?? ''
+  // First we want to try to get the og:image from the html
+  // But sometimes it is not included due to async JS loading
+  const html = await $fetch<string>(cardUrl)
+  ogImageUrl = extractOgImageUrl(html)
 
+  // If no og:image was found, try to get it from opengraph.io
+  if (!ogImageUrl) {
+    const response = await getOpenGraphClient().getSiteInfo(cardUrl)
+
+    ogImageUrl = response?.openGraph?.image?.url ?? ''
+  }
+
+  // eslint-disable-next-line no-console
   console.log(JSON.stringify({ cardUrl, ogImageUrl }))
 
   await send(event, ogImageUrl)

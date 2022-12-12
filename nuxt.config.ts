@@ -82,6 +82,13 @@ export default defineNuxtConfig({
       crawlLinks: false,
       routes: ['/', '/200.html'],
     },
+    routeRules: {
+      '/api/og-image': {
+        cache: {
+          maxAge: 86400, // 1 day
+        },
+      },
+    },
   },
   app: {
     keepalive: true,

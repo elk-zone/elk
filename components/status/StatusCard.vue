@@ -101,7 +101,7 @@ const showRebloggedByAvatarOnAvatar = rebloggedBy && avatarOnAvatar && reblogged
         <div
           space-y-2
           :class="{
-            'my3 p1 px4 br2 bg-fade border-primary border-1 rounded-3 rounded-tl-none': status.visibility === 'direct',
+            'my3 p1 px4 br2 bg-fade border-primary-light border-1 rounded-3 rounded-tl-none': status.visibility === 'direct',
           }"
         >
           <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
@@ -114,8 +114,9 @@ const showRebloggedByAvatarOnAvatar = rebloggedBy && avatarOnAvatar && reblogged
               v-if="status.mediaAttachments?.length"
               :status="status"
               minimized
+              :class="status.visibility === 'direct' ? 'pb4' : ''"
             />
-            <StatusPreviewCard v-if="status.card" :card="status.card" />
+            <StatusPreviewCard v-if="status.card" :card="status.card" :class="status.visibility === 'direct' ? 'pb4' : ''" />
           </StatusSpoiler>
           <StatusCard
             v-if="status.reblog"

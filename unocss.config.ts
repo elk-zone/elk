@@ -15,6 +15,7 @@ export default defineConfig({
       'border-base': 'border-$c-border',
       'border-strong': 'border-$c-text-base',
       'border-bg-base': 'border-$c-bg-base',
+      'border-primary-light': 'border-$c-primary-light',
 
       // background
       'bg-base': 'bg-$c-bg-base',

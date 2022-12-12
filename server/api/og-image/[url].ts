@@ -1,6 +1,6 @@
 import opengraph from 'opengraph-io'
 
-// This API-Endpoint will be cached via nuxt.config.ts -> nitro.routeRules['/api/og-image'].cache.maxAge = 86400
+// This API-Endpoint will be cached via nuxt.config.ts -> nitro.routeRules['/api/og-image/**']
 
 type OpenGraphClient = ReturnType<typeof opengraph>
 

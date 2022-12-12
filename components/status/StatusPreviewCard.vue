@@ -25,6 +25,7 @@ watch(cardImage, (image) => {
     $fetch<string>('/api/og-image', {
       params: { cardUrl: props.card.url },
     }).then((ogImageUrl) => {
+      // eslint-disable-next-line no-console
       console.log('ogImageUrl', ogImageUrl)
 
       // Only override if ogImageUrl is not empty

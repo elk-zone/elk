@@ -12,16 +12,7 @@ export interface Draft {
 }
 export type DraftMap = Record<string, Draft>
 
-const allDrafts = useLocalStorage<Record<string, DraftMap>>(STORAGE_KEY_DRAFTS, {})
-
-export const currentUserDrafts = computed(() => {
-  if (!currentUser.value?.account.id)
-    return {}
-  const id = `${currentUser.value.account.acct}@${currentUser.value.server}`
-  if (!allDrafts.value[id])
-    allDrafts.value[id] = {}
-  return allDrafts.value[id]
-})
+export const currentUserDrafts = useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 
 export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
   const {
@@ -123,18 +114,4 @@ export function directMessageUser(account: Account) {
     status: `@${account.acct} `,
     visibility: 'direct',
   }), true)
-}
-
-export function clearUserDrafts(account?: Account) {
-  if (!account)
-    account = currentUser.value?.account
-
-  if (!account)
-    return
-
-  const id = `${account.acct}@${currentUser.value?.server}`
-  if (!allDrafts.value[id])
-    return
-
-  delete allDrafts.value[id]
 }

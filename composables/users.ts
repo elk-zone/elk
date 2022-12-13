@@ -1,6 +1,6 @@
 import { login as loginMasto } from 'masto'
-import type { AccountCredentials, Instance, WsEvents } from 'masto'
-import { clearUserDrafts } from './statusDrafts'
+import type { Account, AccountCredentials, Instance, WsEvents } from 'masto'
+import type { Ref } from 'vue'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
 
@@ -91,9 +91,8 @@ export async function signout() {
 
   if (index !== -1) {
     // Clear stale data
+    clearUserLocalStorage()
     delete servers.value[_currentUserId]
-    clearUserDrafts()
-    clearUserFeatureFlags()
 
     currentUserId.value = ''
     // Remove the current user from the users
@@ -152,4 +151,46 @@ export function checkLogin() {
     return false
   }
   return true
+}
+
+const userLocalStorages = new Map<string, Ref<Record<string, any>>>()
+
+/**
+ * Create reactive storage for the current user
+ */
+export function useUserLocalStorage<T extends object>(key: string, initial: () => T) {
+  if (!userLocalStorages.has(key))
+    userLocalStorages.set(key, useLocalStorage(key, {}, { deep: true }))
+
+  const all = userLocalStorages.get(key) as Ref<Record<string, T>>
+  const id = currentUser.value?.account.id
+    ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+    : '[anonymous]'
+
+  all.value[id] = Object.assign(initial(), all.value[id] || {})
+  return extendRef(
+    computed(() => all.value[id]),
+    {
+      remove: {
+        value: () => {
+          delete all.value[id]
+        },
+      },
+    })
+}
+
+/**
+ * Clear all storages for the given account
+ */
+export function clearUserLocalStorage(account?: Account) {
+  if (!account)
+    account = currentUser.value?.account
+  if (!account)
+    return
+
+  const id = `${account.acct}@${currentUser.value?.server}`
+  userLocalStorages.forEach((storage) => {
+    if (storage.value[id])
+      delete storage.value[id]
+  })
 }

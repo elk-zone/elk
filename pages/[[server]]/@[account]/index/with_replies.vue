@@ -12,7 +12,7 @@ const { data: account } = await useAsyncData(`account:${handle}`, async () => (
     ?? await fetchAccountByHandle(handle),
 )
 
-const paginator = useMasto().accounts.iterateStatuses(account.value!.id, { onlyMedia: true, excludeReplies: false })
+const paginator = useMasto().accounts.iterateStatuses(account.value!.id, { excludeReplies: false })
 
 if (account) {
   useHeadFixed({

@@ -121,7 +121,7 @@ const type = $computed(() => {
         />
       </button>
     </template>
-    <div absolute left-2 bottom-2>
+    <div absolute left-2 class="bottom-3.5">
       <VDropdown v-if="attachment.description" :distance="6" placement="bottom-start">
         <button font-bold text-sm hover:bg-black class="bg-black/65 px1.2 py0.2" rounded-1 text-white>
           ALT

@@ -72,6 +72,8 @@
   },
   "error": {
     "account_not_found": "No se encontró la cuenta {0}",
+    "explore-list-empty": "Nada es tendencia en este momento. ¡Vuelva más tarde!",
+    "sign_in_error": "No se ha podido conectar con el servidor.",
     "status_not_found": "Estado no encontrado"
   },
   "feature_flag": {

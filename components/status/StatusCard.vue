@@ -57,6 +57,7 @@ const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
 const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
 
 const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
+const showRebloggedByAvatarOnAvatar = rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id
 </script>
 
 <template>
@@ -69,12 +70,12 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
     <div v-if="decorated || rebloggedBy || (showReplyTo && status.inReplyToAccountId)" h-6 />
     <div flex gap-4>
       <div relative>
-        <AccountHoverWrapper :account="status.account" :class="rebloggedBy && avatarOnAvatar ? 'mt-4' : 'mt-1'">
+        <AccountHoverWrapper :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-4' : 'mt-1'">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
             <AccountAvatar w-12 h-12 :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-if="(rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)" absolute class="-top-2 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
+        <div v-if="showRebloggedByAvatarOnAvatar" absolute class="-top-2 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
           <AccountAvatar :account="rebloggedBy" />
         </div>
       </div>
@@ -100,11 +101,11 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
         <div
           space-y-2
           :class="{
-            'my3 p1 px4 br2 bg-fade border-primary border-1 rounded-3 rounded-tl-none': status.visibility === 'direct',
+            'my3 p1 px4 br2 bg-fade border-primary-light border-1 rounded-3 rounded-tl-none': status.visibility === 'direct',
           }"
         >
           <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
-            <template #spoiler>
+            <template v-if="status.spoilerText || filterPhrase" #spoiler>
               <p>{{ status.spoilerText || `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
             </template>
             <StatusBody :status="status" />
@@ -113,8 +114,9 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
               v-if="status.mediaAttachments?.length"
               :status="status"
               minimized
+              :class="status.visibility === 'direct' ? 'pb4' : ''"
             />
-            <StatusPreviewCard v-if="status.card" :card="status.card" />
+            <StatusPreviewCard v-if="status.card" :card="status.card" :class="status.visibility === 'direct' ? 'pb4' : ''" />
           </StatusSpoiler>
           <StatusCard
             v-if="status.reblog"

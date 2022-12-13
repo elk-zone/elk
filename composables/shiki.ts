@@ -1,11 +1,11 @@
 import type { Highlighter, Lang } from 'shiki-es'
 
-export const shiki = ref<Highlighter>()
+const shiki = ref<Highlighter>()
 
 const registeredLang = ref(new Map<string, boolean>())
 let shikiImport: Promise<void> | undefined
 
-export function highlightCode(code: string, lang: Lang) {
+export function useHightlighter(lang: Lang) {
   if (!shikiImport) {
     shikiImport = import('shiki-es')
       .then(async (r) => {
@@ -25,7 +25,7 @@ export function highlightCode(code: string, lang: Lang) {
   }
 
   if (!shiki.value)
-    return code
+    return undefined
 
   if (!registeredLang.value.get(lang)) {
     shiki.value.loadLanguage(lang)
@@ -37,11 +37,27 @@ export function highlightCode(code: string, lang: Lang) {
         console.error(e)
         registeredLang.value.set(lang, false)
       })
-    return code
+    return undefined
   }
 
-  return shiki.value.codeToHtml(code, {
+  return shiki.value
+}
+
+export function useShikiTheme() {
+  return isDark.value ? 'vitesse-dark' : 'vitesse-light'
+}
+
+export function highlightCode(code: string, lang: Lang) {
+  const shiki = useHightlighter(lang)
+  if (!shiki)
+    return code
+
+  return shiki.codeToHtml(code, {
     lang,
-    theme: isDark.value ? 'vitesse-dark' : 'vitesse-light',
+    theme: useShikiTheme(),
   })
+}
+
+export function useShiki() {
+  return shiki
 }

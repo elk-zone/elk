@@ -1,4 +1,5 @@
 <script setup lang="ts">
+setupLogging()
 setupPageHeader()
 await setupI18n()
 provideGlobalCommands()

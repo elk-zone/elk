@@ -34,10 +34,16 @@ const { editor } = useTiptap({
     get: () => draft.params.status,
     set: newVal => draft.params.status = newVal,
   }),
-  placeholder: computed(() => placeholder || draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
+  placeholder: computed(() => placeholder ?? draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
   autofocus: shouldExpanded,
   onSubmit: publish,
-  onFocus() { isExpanded = true },
+  onFocus() {
+    if (!isExpanded && draft.initialText) {
+      editor.value?.chain().insertContent(`${draft.initialText} `).focus('end').run()
+      draft.initialText = ''
+    }
+    isExpanded = true
+  },
   onPaste: handlePaste,
 })
 

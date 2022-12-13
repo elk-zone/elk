@@ -24,7 +24,8 @@
     "postinstall": "nuxi prepare && simple-git-hooks"
   },
   "dependencies": {
-    "@fnando/sparkline": "^0.3.10"
+    "@fnando/sparkline": "^0.3.10",
+    "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.33.1",
@@ -39,7 +40,6 @@
     "@pinia/nuxt": "^0.4.6",
     "@tiptap/extension-character-count": "2.0.0-beta.204",
     "@tiptap/extension-code-block": "2.0.0-beta.204",
-    "@tiptap/extension-code-block-lowlight": "2.0.0-beta.204",
     "@tiptap/extension-mention": "2.0.0-beta.204",
     "@tiptap/extension-paragraph": "2.0.0-beta.204",
     "@tiptap/extension-placeholder": "2.0.0-beta.204",
@@ -69,7 +69,6 @@
     "js-yaml": "^4.1.0",
     "jsdom": "^20.0.3",
     "lint-staged": "^13.0.4",
-    "lowlight": "^2.8.0",
     "lru-cache": "^7.14.1",
     "masto": "^4.7.5",
     "nuxt": "^3.0.0",

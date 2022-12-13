@@ -1,6 +1,6 @@
 import { login as loginMasto } from 'masto'
-import type { AccountCredentials, Instance, WsEvents } from 'masto'
-import { clearUserDrafts } from './statusDrafts'
+import type { Account, AccountCredentials, Instance, WsEvents } from 'masto'
+import type { Ref } from 'vue'
 import type { UserLogin } from '~/types'
 import {
   DEFAULT_POST_CHARS_LIMIT,
@@ -27,6 +27,11 @@ export const currentUser = computed<UserLogin | undefined>(() => {
   // Fallback to the first account
   return users.value[0]
 })
+
+export const currentUserHandle = computed(() => currentUser.value?.account.id
+  ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+  : '[anonymous]',
+)
 
 export const publicServer = ref(DEFAULT_SERVER)
 const publicInstance = ref<Instance | null>(null)
@@ -116,9 +121,8 @@ export async function signout() {
 
   if (index !== -1) {
     // Clear stale data
+    clearUserLocalStorage()
     delete servers.value[_currentUserId]
-    clearUserDrafts()
-    clearUserFeatureFlags()
 
     await removePushNotifications(currentUser.value)
 
@@ -179,4 +183,40 @@ export function checkLogin() {
     return false
   }
   return true
+}
+
+/**
+ * Create reactive storage for the current user
+ */
+export function useUserLocalStorage<T extends object>(key: string, initial: () => T) {
+  // @ts-expect-error bind value to the function
+  const storages = useUserLocalStorage._ = useUserLocalStorage._ || new Map<string, Ref<Record<string, any>>>()
+
+  if (!storages.has(key))
+    storages.set(key, useLocalStorage(key, {}, { deep: true }))
+  const all = storages.get(key) as Ref<Record<string, T>>
+
+  return computed(() => {
+    const id = currentUser.value?.account.id
+      ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+      : '[anonymous]'
+    all.value[id] = Object.assign(initial(), all.value[id] || {})
+    return all.value[id]
+  })
+}
+
+/**
+ * Clear all storages for the given account
+ */
+export function clearUserLocalStorage(account?: Account) {
+  if (!account)
+    account = currentUser.value?.account
+  if (!account)
+    return
+
+  const id = `${account.acct}@${currentUser.value?.server}`
+  userLocalStorages.forEach((storage) => {
+    if (storage.value[id])
+      delete storage.value[id]
+  })
 }

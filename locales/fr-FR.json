@@ -1,6 +1,7 @@
 {
   "account": {
     "avatar_description": "Avatar de {0}",
+    "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur.",
     "blocked_domains": "Domaines bloqués",
     "blocked_users": "Utilisateurs bloqués",
     "favourites": "Favoris",
@@ -8,12 +9,14 @@
     "follow_back": "Suivre en retour",
     "follow_requested": "Abonnement demandé",
     "followers_count": "{0} abonné·e·s",
-    "following": "Suivi",
+    "following": "Suivi·e",
     "following_count": "{0} abonnements",
     "follows_you": "Vous suit",
+    "go_to_profile": "Aller à son profil",
     "joined": "a rejoint",
+    "moved_title": "a indiqué que son nouveau compte est désormais :",
     "muted_users": "Utilisateurs mis en sourdine",
-    "mutuals": "Vous vous suivez mutuellement",
+    "mutuals": "@:account.following",
     "pinned": "Épinglés",
     "posts_count": "{0} messages",
     "profile_description": "En-tête du profil de {0}",
@@ -30,19 +33,31 @@
     "favourite": "Ajouter aux favoris",
     "favourited": "Ajouté aux favoris",
     "more": "Plus",
+    "next": "Suivant",
+    "prev": "Précédent",
     "publish": "Publier",
     "reply": "Répondre",
     "save_changes": "Enregistrer les changements",
-    "sign_in": "Se connecter"
+    "sign_in": "Se connecter",
+    "switch_account": "Changer de compte",
+    "vote": "Voter"
   },
   "app_desc_short": "Un client Mastodon fait avec 🧡",
   "app_name": "Elk",
   "command": {
     "activate": "Activer",
-    "complete": "Compléter"
+    "complete": "Compléter",
+    "compose_desc": "Écrire un nouveau message",
+    "lang": "Langages",
+    "select_lang": "Sélectionner langue",
+    "sign_in_desc": "Ajouter un compte existant",
+    "switch_account": "Changer pour le compte {0}",
+    "switch_account_desc": "Changer vers un autre compte",
+    "toggle_dark_mode": "Passer au thème foncé",
+    "toggle_zen_mode": "Passer en mode zen"
   },
   "common": {
-    "end_of_list": "Fin de la liste",
+    "end_of_list": "Fin de liste",
     "error": "ERREUR",
     "kiloSuffix": "K",
     "megaSuffix": "M",
@@ -57,7 +72,15 @@
     "status_not_found": "Message non trouvé"
   },
   "feature_flag": {
+    "avatar_on_avatar": "Avatar sur avatar",
     "virtual_scroll": "Défilement virtuel"
+  },
+  "help": {
+    "desc_highlight": "Il est possible de rencontrer, par-ci par-là, quelques bugs et fonctionnalités manquantes.",
+    "desc_para1": "Merci de l'intérêt pour Elk, notre client Mastodon en cours de développement !",
+    "desc_para2": "Nous travaillons dur sur le développement et l'améliorons au fur et à mesure. Nous allons prochainement vous inviter à prêter main forte une fois que nous l'aurons rendu open-source",
+    "desc_para3": "Mais avant cela, pour supporter son développement, vous pouvez parrainer les membres de l'équipe avec les liens ci-dessous.",
+    "title": "Elk est mode Preview !"
   },
   "menu": {
     "block_account": "Bloquer {0}",
@@ -72,6 +95,10 @@
     "open_in_original_site": "Ouvrir sur le site d'origine",
     "pin_on_profile": "Épingler sur le profil",
     "show_untranslated": "Montrer le message non-traduit",
+    "toggle_theme": {
+      "dark": "Passer au thème foncé",
+      "light": "Passer au thème clair"
+    },
     "translate_post": "Traduire le message",
     "unblock_account": "Débloquer {0}",
     "unblock_domain": "Débloquer le domaine {0}",
@@ -125,9 +152,19 @@
   },
   "status": {
     "edited": "Edité {0}",
+    "filter_hidden_phrase": "Filtré par",
+    "filter_removed_phrase": "Caché par le filtre",
+    "filter_show_anyway": "Montrer coûte que coûte",
+    "poll": {
+      "count": "{n} votes",
+      "ends": "se clôt {0}",
+      "finished": "clos {0}"
+    },
     "reblogged": "{0} relayé",
-    "spoiler_show_less": "Montrer moins",
-    "spoiler_show_more": "Montrer plus",
+    "someone": "Quelqu'un",
+    "spoiler_show_less": "Voir moins",
+    "spoiler_show_more": "Voir plus",
+    "thread": "Fil de discussion",
     "try_original_site": "Essayer le site d'origine"
   },
   "status_history": {
@@ -153,8 +190,8 @@
     "minute_past": "il y a 0 minute|il y a 1 minute|il y a {n} minutes",
     "month_future": "dans 0 mois|le mois prochain|dans {n} mois",
     "month_past": "il y a 0 mois|le dernier mois|il y a {n} mois",
-    "second_future": "juste maintenant|dans {n} secondes|dans {n} secondes",
-    "second_past": "juste maintenant|il y a {n} seconde|il y a {n} secondes",
+    "second_future": "maintenant|dans {n} secondes|dans {n} secondes",
+    "second_past": "maintenant|il y a {n} seconde|il y a {n} secondes",
     "short_day_future": "dans {n}j",
     "short_day_past": "{n}j",
     "short_hour_future": "dans {n}h",
@@ -175,10 +212,10 @@
     "year_past": "il y a 0 année|l'année dernière|il y a {n} années"
   },
   "timeline": {
-    "show_new_items": "Montrer les {n} nouveaux éléments"
+    "show_new_items": "Voir le nouveau message|Voir les {n} nouveaux messages"
   },
   "title": {
-    "federated_timeline": "Fil d'acutalité fédéré",
+    "federated_timeline": "Fil d'actualité fédéré",
     "local_timeline": "Fil d'actualité local"
   },
   "tooltip": {

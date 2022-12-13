@@ -34,10 +34,16 @@ const { editor } = useTiptap({
     get: () => draft.params.status,
     set: newVal => draft.params.status = newVal,
   }),
-  placeholder: computed(() => placeholder || draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
+  placeholder: computed(() => placeholder ?? draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
   autofocus: shouldExpanded,
   onSubmit: publish,
-  onFocus() { isExpanded = true },
+  onFocus() {
+    if (!isExpanded && draft.initialText) {
+      editor.value?.chain().insertContent(`${draft.initialText} `).focus('end').run()
+      draft.initialText = ''
+    }
+    isExpanded = true
+  },
   onPaste: handlePaste,
 })
 
@@ -159,13 +165,14 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
       <div border="b dashed gray/40" />
     </template>
 
-    <div flex gap-4>
+    <div flex gap-4 flex-1>
       <NuxtLink w-12 h-12 :to="getAccountRoute(currentUser.account)">
         <AccountAvatar :account="currentUser.account" f-full h-full />
       </NuxtLink>
+      <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <div
         ref="dropZoneRef"
-        flex flex-col gap-3 flex-1
+        flex w-0 flex-col gap-3 flex-1
         border="2 dashed transparent"
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
@@ -179,11 +186,12 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
           >
         </div>
 
-        <div relative>
+        <div relative flex-1 flex flex-col>
           <EditorContent
             :editor="editor"
             flex
-            :class="shouldExpanded ? 'min-h-120px max-h-720px of-y-auto' : ''"
+            class="max-w-100%"
+            :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
           />
           <div v-if="shouldExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>
             {{ characterLimit - editor?.storage.characterCount.characters() }}

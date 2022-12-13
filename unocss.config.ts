@@ -15,6 +15,7 @@ export default defineConfig({
       'border-base': 'border-$c-border',
       'border-strong': 'border-$c-text-base',
       'border-bg-base': 'border-$c-bg-base',
+      'border-primary-light': 'border-$c-primary-light',
 
       // background
       'bg-base': 'bg-$c-bg-base',
@@ -43,6 +44,7 @@ export default defineConfig({
       'flex-center': 'items-center justify-center',
       'flex-v-center': 'items-center',
       'flex-h-center': 'justify-center',
+      'bg-hover-overflow': 'relative z-0 transition-colors duration-250 after-content-empty after:(absolute inset--2px bg-transparent rounded-lg z--1 transition-colors duration-250) hover:after:(bg-active)',
     },
   ],
   presets: [
@@ -53,11 +55,14 @@ export default defineConfig({
     presetIcons({
       scale: 1.2,
       extraProperties: {
-        color: 'inherit',
+        'color': 'inherit',
+        // Avoid crushing of icons in crowded situations
+        'min-width': '1.2em',
       },
     }),
     presetTypography(),
     presetWebFonts({
+      provider: 'none',
       fonts: {
         sans: 'DM Sans',
         serif: 'DM Serif Display',
@@ -78,4 +83,12 @@ export default defineConfig({
       },
     },
   },
+  rules: [
+    // scrollbar-hide
+    [/^scrollbar-hide$/, (_, { constructCSS }) => {
+      let res = constructCSS({ 'scrollbar-width': 'none' })
+      res += `\n${res.replace('{scrollbar-width:none;}', '::-webkit-scrollbar{display: none;}')}`
+      return res
+    }],
+  ],
 })

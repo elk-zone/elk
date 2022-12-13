@@ -17,33 +17,9 @@ const createdAt = $(useFormattedDateTime(() => account.createdAt, {
 const namedFields = ref<Field[]>([])
 const iconFields = ref<Field[]>([])
 
-const fieldNameIcons: Record<string, string> = {
-  github: 'i-ri:github-fill',
-  twitter: 'i-ri:twitter-line',
-  mastodon: 'i-ri:mastodon-line',
-  youtube: 'i-ri:youtube-line',
-  twitch: 'i-ri:twitch-line',
-  instagram: 'i-ri:instagram-line',
-  website: 'i-ri:link',
-  site: 'i-ri:link',
-  portfolio: 'i-ri:link',
-  blog: 'i-ri:newspaper-line',
-  home: 'i-ri:home-2-line',
-  sponsors: 'i-ri:heart-3-line',
-  location: 'i-ri:map-pin-2-line',
-  city: 'i-ri:map-pin-2-line',
-  joined: 'i-ri:user-add-line',
-  birth: 'i-ri:calendar-line',
-  tumblr: 'i-ri:tumblr-fill',
-  linkedin: 'i-ri:linkedin-box-fill',
-  facebook: 'i-ri:facebook-fill',
-  patreon: 'i-ri:patreon-fill',
-}
-
 function getFieldNameIcon(fieldName: string) {
   const name = fieldName.trim().toLowerCase()
-  if (fieldNameIcons[name])
-    return fieldNameIcons[name]
+  return ACCOUNT_FIELD_ICONS[name] || undefined
 }
 function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
@@ -91,7 +67,7 @@ watchEffect(() => {
 <template>
   <div flex flex-col>
     <button border="b base" z-1>
-      <img h-50 w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])" @click="previewHeader">
+      <img h-50 height="200" w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])" @click="previewHeader">
     </button>
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
@@ -100,15 +76,18 @@ watchEffect(() => {
             <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
           </button>
           <div flex flex-col>
-            <ContentRich
-              font-bold text-2xl ws-nowrap
-              :content="getDisplayName(account, { rich: true })"
-              :emojis="account.emojis"
-            />
+            <div flex justify-between>
+              <ContentRich
+                font-bold sm:text-2xl text-xl
+                :content="getDisplayName(account, { rich: true })"
+                :emojis="account.emojis"
+              />
+              <AccountBotIndicator v-if="account.bot" />
+            </div>
             <AccountHandle :account="account" />
           </div>
         </div>
-        <div absolute top="1/2" right-0 translate-y="-1/2" flex gap-2 items-center>
+        <div absolute top-18 right-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
           <AccountFollowButton :account="account" :command="command" />
           <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>

@@ -1,11 +1,13 @@
 <script setup lang="ts">
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
-import type { Paginator, Status, WsEvents } from 'masto'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+import type { FilterContext, Paginator, Status, WsEvents } from 'masto'
 
 const { paginator, stream } = defineProps<{
   paginator: Paginator<any, Status[]>
   stream?: WsEvents
+  context?: FilterContext
 }>()
 
 const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirtualScroll))
@@ -21,17 +23,17 @@ const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirt
     <template #default="{ item, active }">
       <template v-if="virtualScroller">
         <DynamicScrollerItem :item="item" :active="active" tag="article">
-          <StatusCard :status="item" border="b base" py-3 />
+          <StatusCard :status="item" border="b base" :context="context" />
         </DynamicScrollerItem>
       </template>
       <template v-else>
-        <StatusCard :status="item" border="b base" py-3 />
+        <StatusCard :status="item" border="b base" :context="context" />
       </template>
     </template>
     <template #loading>
-      <StatusCardSkeleton border="b base" py-3 />
-      <StatusCardSkeleton border="b base" py-3 op50 />
-      <StatusCardSkeleton border="b base" py-3 op25 />
+      <StatusCardSkeleton border="b base" />
+      <StatusCardSkeleton border="b base" op50 />
+      <StatusCardSkeleton border="b base" op25 />
     </template>
   </CommonPaginator>
 </template>

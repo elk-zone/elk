@@ -21,42 +21,47 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 })
 
 export const publicServer = ref(DEFAULT_SERVER)
+const publicInstance = ref<Instance | null>(null)
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
 
 export const useUsers = () => users
 
-export const currentInstance = computed<null | Instance>(() => currentUserId.value ? servers.value[currentUserId.value] ?? null : null)
+export const currentInstance = computed<null | Instance>(() => currentUserId.value ? servers.value[currentUserId.value] ?? null : publicInstance.value)
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
 export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }) {
-  if (user) {
-    const existing = users.value.find(u => u.server === user.server && u.token === user.token)
-    if (existing && currentUserId.value !== user.account?.id)
-      currentUserId.value = user.account?.id
-  }
-
   const config = useRuntimeConfig()
+  const route = useRoute()
+  const router = useRouter()
+  const server = user?.server || route.params.server as string || publicServer.value
   const masto = await loginMasto({
-    url: `https://${user?.server || DEFAULT_SERVER}`,
+    url: `https://${server}`,
     accessToken: user?.token,
     disableVersionCheck: !!config.public.disableVersionCheck,
   })
 
   if (!user?.token) {
-    publicServer.value = user?.server || DEFAULT_SERVER
+    publicServer.value = server
+    publicInstance.value = await masto.instances.fetch()
   }
 
   else {
     try {
-      const me = await masto.accounts.verifyCredentials()
+      const [me, server] = await Promise.all([
+        masto.accounts.verifyCredentials(),
+        masto.instances.fetch(),
+      ])
+
       user.account = me
+      currentUserId.value = me.id
+      servers.value[me.id] = server
+
+      if (!user.account.acct.includes('@'))
+        user.account.acct = `${user.account.acct}@${server.uri}`
 
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)
-
-      currentUserId.value = me.id
-      servers.value[me.id] = await masto.instances.fetch()
     }
     catch {
       await signout()
@@ -64,6 +69,13 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   }
 
   setMasto(masto)
+
+  if ('server' in route.params && user?.token) {
+    await router.push({
+      ...route,
+      force: true,
+    })
+  }
 
   return masto
 }
@@ -92,7 +104,7 @@ export async function signout() {
   currentUserId.value = users.value[0]?.account?.id
 
   if (!currentUserId.value)
-    await useRouter().push('/public')
+    await useRouter().push('/')
 
   await loginTo(currentUser.value)
 }
@@ -109,7 +121,7 @@ export const useNotifications = () => {
   }
 
   async function connect(): Promise<void> {
-    if (!id || notifications[id])
+    if (!id || notifications[id] || !currentUser.value?.token)
       return
 
     const masto = useMasto()

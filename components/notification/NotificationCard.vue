@@ -7,50 +7,66 @@ const { notification } = defineProps<{
 </script>
 
 <template>
-  <article flex flex-col>
+  <article flex flex-col relative>
     <template v-if="notification.type === 'follow'">
-      <div flex ml-4 items-center>
-        <div i-ri:user-follow-fill mr-3 color-primary />
-        <AccountInlineInfo :account="notification.account" mr1 />
-        {{ $t('notification.followed_you') }}
+      <div flex items-center absolute px-3 py-3 bg-base rounded-br-3 top-0 left-0>
+        <div i-ri:user-follow-fill mr-1 color-primary />
+        <ContentRich
+          text-primary mr-1 font-bold line-clamp-1 ws-pre-wrap break-all
+          :content="getDisplayName(notification.account, { rich: true })"
+          :emojis="notification.account.emojis"
+        />
+        <span ws-nowrap>
+          {{ $t('notification.followed_you') }}
+        </span>
       </div>
-      <AccountCard :account="notification.account" p3 />
+      <AccountBigCard :account="notification.account" />
+    </template>
+    <template v-else-if="notification.type === 'admin.sign_up'">
+      <div flex p3 items-center bg-shaded>
+        <div i-ri:admin-fill mr-1 color-purple />
+        <ContentRich
+          text-purple mr-1 font-bold line-clamp-1 ws-pre-wrap break-all
+          :content="getDisplayName(notification.account, { rich: true })"
+          :emojis="notification.account.emojis"
+        />
+        <span>signed up</span>
+      </div>
     </template>
     <template v-else-if="notification.type === 'follow_request'">
-      <div flex ml-4 items-center>
-        <div i-ri:user-follow-fill mr-3 />
+      <div flex ml-4 items-center class="-top-2.5" absolute right-2 px-2>
+        <div i-ri:user-follow-fill text-xl mr-1 />
         <AccountInlineInfo :account="notification.account" mr1 />
-        {{ $t('notification.request_to_follow') }}
       </div>
       <!-- TODO: accept request -->
-      <AccountCard :account="notification.account" p3 />
+      <AccountCard :account="notification.account" />
     </template>
     <template v-else-if="notification.type === 'favourite'">
-      <div flex ml-4 items-center>
-        <div i-ri:heart-fill mr-3 color-red />
-        <AccountInlineInfo :account="notification.account" mr1 />
-        {{ $t('notification.favourited_post') }}
-      </div>
-      <StatusCard :status="notification.status!" p3 />
+      <CommonMetaWrapper z-1>
+        <div i-ri:heart-fill text-xl mr-1 color-red />
+        <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
+      </CommonMetaWrapper>
+      <StatusCard op50 hover:op100 :status="notification.status!" :decorated="true" />
     </template>
     <template v-else-if="notification.type === 'reblog'">
-      <div flex ml-4 items-center>
-        <div i-ri:repeat-fill mr-3 color-green />
-        <AccountInlineInfo :account="notification.account" mr1 />
-        {{ $t('notification.reblogged_post') }}
-      </div>
-      <StatusCard :status="notification.status!" p3 />
+      <CommonMetaWrapper z-1>
+        <div i-ri:repeat-fill text-xl mr-1 color-green />
+        <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
+      </CommonMetaWrapper>
+      <StatusCard op50 hover:op100 :status="notification.status!" :decorated="true" />
     </template>
     <template v-else-if="notification.type === 'update'">
-      <div flex ml-4 items-center>
-        <div i-ri:edit-2-fill mr-3 text-secondary />
+      <CommonMetaWrapper z-1>
+        <div i-ri:edit-2-fill text-xl mr-1 text-secondary />
         <AccountInlineInfo :account="notification.account" mr1 />
-        {{ $t('notification.update_status') }}
-      </div>
-      <StatusCard :status="notification.status!" p3 />
+        <span ws-nowrap>
+          {{ $t('notification.update_status') }}
+        </span>
+      </CommonMetaWrapper>
+      <StatusCard :status="notification.status!" :decorated="true" />
     </template>
     <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
-      <StatusCard :status="notification.status!" p3 />
+      <StatusCard :status="notification.status!" />
     </template>
     <template v-else>
       <div text-red font-bold>

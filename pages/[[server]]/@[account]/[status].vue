@@ -4,6 +4,7 @@ import type { ComponentPublicInstance } from 'vue'
 
 definePageMeta({
   name: 'status',
+  key: route => route.path,
 })
 
 const route = useRoute()
@@ -52,7 +53,7 @@ onReactivated(() => {
       <div v-if="status" min-h-100vh>
         <template v-if="context">
           <template v-for="comment of context?.ancestors" :key="comment.id">
-            <StatusCard :status="comment" border="t base" py3 />
+            <StatusCard :status="comment" context="account" border="t base" :show-reply-to="false" />
           </template>
         </template>
 
@@ -73,7 +74,7 @@ onReactivated(() => {
 
         <template v-if="context">
           <template v-for="comment of context?.descendants" :key="comment.id">
-            <StatusCard :status="comment" border="t base" py3 />
+            <StatusCard :status="comment" context="account" border="t base" />
           </template>
         </template>
 
@@ -83,6 +84,6 @@ onReactivated(() => {
       <StatusNotFound v-else :account="$route.params.account" :status="id" />
     </template>
 
-    <StatusCardSkeleton v-else border="b base" py-3 />
+    <StatusCardSkeleton v-else border="b base" />
   </MainContent>
 </template>

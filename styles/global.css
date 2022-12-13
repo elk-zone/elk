@@ -1,3 +1,32 @@
+@font-face {
+  font-display: swap;
+  font-family: "DM Mono";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/DM-mono-v10.ttf) format("truetype");
+}
+@font-face {
+  font-display: swap;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/DM-sans-v11.ttf) format("truetype");
+}
+@font-face {
+  font-display: swap;
+  font-family: "DM Serif Display";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/DM-serif-display-v10.ttf) format("truetype");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Homemade Apple";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/homemade-apple-v18.ttf) format("truetype");
+}
+
 * {
   scrollbar-color: #8885 var(--c-border);
 }
@@ -24,7 +53,7 @@
   background: #8886;
 }
 
-::-moz-selection { 
+::-moz-selection {
   background: var(--c-bg-selection);
 }
 
@@ -35,27 +64,31 @@
 /* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
 body {
   overflow-y: scroll;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .zen .zen-hide {
-  --at-apply: op0 hover:op100 transition duration-600;
+  --at-apply: 'op0 hover:op100 transition duration-600';
 }
 
 .custom-emoji {
   display: inline-block;
+  overflow: hidden;
   max-height: 1.3em;
   max-width: 1.3em;
   vertical-align: text-bottom;
 }
 
 .content-rich {
+  overflow-wrap: break-word;
+
   a {
-    --at-apply: text-primary hover:underline hover:text-primary-active;
+    --at-apply: 'text-primary hover:underline hover:text-primary-active';
     .invisible {
-      --at-apply: hidden;
+      --at-apply: 'hidden';
     }
     .ellipsis {
-      --at-apply: truncate overflow-hidden ws-nowrap;
+      --at-apply: 'line-clamp-1 ws-pre-wrap break-all';
       &::after {
         content: '…';
       }
@@ -85,6 +118,7 @@ body {
 
 .content-editor {
   --at-apply: outline-none flex-1;
+  max-width: 100%;
 }
 
 .content-editor.content-rich {
@@ -94,21 +128,26 @@ body {
 }
 
 .skeleton-loading-bg {
-  background: linear-gradient(90deg,rgba(190,190,190,.2) 25%,rgba(129,129,129,.24) 37%,rgba(190,190,190,.2) 63%);
+  background: linear-gradient(
+    90deg,
+    rgba(190, 190, 190, 0.2) 25%,
+    rgba(129, 129, 129, 0.24) 37%,
+    rgba(190, 190, 190, 0.2) 63%
+  );
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s ease infinite;
 }
 
 @keyframes skeleton-loading {
   0% {
-    background-position: 100% 50%
+    background-position: 100% 50%;
   }
   to {
-    background-position: 0 50%
+    background-position: 0 50%;
   }
 }
 
-html, body , #__nuxt{
+html, body, #__nuxt {
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -125,4 +164,14 @@ html {
 body {
   /* Prevent arbitrary zooming on mobile devices */
   touch-action: pan-x pan-y;
+}
+
+.sparkline--fill {
+  fill: var(--c-primary-active);
+  opacity: 0.2;
+}
+
+.sparkline--line {
+  stroke: var(--c-primary);
+  stroke-width: 2;
 }

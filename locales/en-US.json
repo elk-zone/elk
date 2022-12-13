@@ -1,6 +1,7 @@
 {
   "account": {
     "avatar_description": "{0}'s avatar",
+    "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "favourites": "Favourites",
@@ -11,7 +12,9 @@
     "following": "Following",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
+    "go_to_profile": "Go to profile",
     "joined": "Joined",
+    "moved_title": "has indicated that their new account is now:",
     "muted_users": "Muted users",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
@@ -30,16 +33,30 @@
     "favourite": "Favourite",
     "favourited": "Favourited",
     "more": "More",
+    "next": "Next",
+    "prev": "Prev",
     "publish": "Publish!",
     "reply": "Reply",
     "save_changes": "Save changes",
-    "sign_in": "Sign in"
+    "sign_in": "Sign in",
+    "switch_account": "Switch account",
+    "vote": "Vote"
   },
   "app_desc_short": "A Mastodon client made with 🧡",
+  "app_logo": "Elk Logo",
   "app_name": "Elk",
   "command": {
     "activate": "Activate",
-    "complete": "Complete"
+    "complete": "Complete",
+    "compose_desc": "Write a new post",
+    "lang": "Languages",
+    "n-people-in-the-past-n-days": "{0} people in the past {1} days",
+    "select_lang": "Select language",
+    "sign_in_desc": "Add an existing account",
+    "switch_account": "Switch to {0}",
+    "switch_account_desc": "Switch to another account",
+    "toggle_dark_mode": "Toggle dark mode",
+    "toggle_zen_mode": "Toggle zen mode"
   },
   "common": {
     "end_of_list": "End of the list",
@@ -54,9 +71,11 @@
   },
   "error": {
     "account_not_found": "Account {0} not found",
+    "explore-list-empty": "Nothing is trending right now. Check back later!",
     "status_not_found": "Status not found"
   },
   "feature_flag": {
+    "avatar_on_avatar": "Avatar on Avatar",
     "virtual_scroll": "Virtual Scrolling"
   },
   "help": {
@@ -79,6 +98,10 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "show_untranslated": "Show untranslated",
+    "toggle_theme": {
+      "dark": "Toggle dark mode",
+      "light": "Toggle light mode"
+    },
     "translate_post": "Translate post",
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
@@ -111,7 +134,7 @@
   "notification": {
     "favourited_post": "favourited your post",
     "followed_you": "followed you",
-    "followed_you_count": "{n} people followed you",
+    "followed_you_count": "{n} person followed you|{n} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
@@ -132,9 +155,19 @@
   },
   "status": {
     "edited": "Edited {0}",
+    "filter_hidden_phrase": "Filtered by",
+    "filter_removed_phrase": "Removed by filter",
+    "filter_show_anyway": "Show anyway",
+    "poll": {
+      "count": "{n} votes",
+      "ends": "ends {0}",
+      "finished": "finished {0}"
+    },
     "reblogged": "{0} reblogged",
+    "someone": "Someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
+    "thread": "Thread",
     "try_original_site": "Try original site"
   },
   "status_history": {
@@ -143,8 +176,11 @@
   },
   "tab": {
     "accounts": "Accounts",
+    "for_you": "For you",
+    "hashtags": "Hashtags",
     "hashtags": "Hashtags",
     "media": "Media",
+    "news": "News",
     "notifications_all": "All",
     "notifications_mention": "Mention",
     "posts": "Posts",
@@ -192,6 +228,9 @@
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
     "change_content_visibility": "Change content visibility",
+    "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
+    "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
+    "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
     "toggle_code_block": "Toggle code block"
   },
   "user": {

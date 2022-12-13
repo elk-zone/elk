@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { FilterContext, Status } from 'masto'
 
 const props = withDefaults(
   defineProps<{
     status: Status
     actions?: boolean
+    context?: FilterContext
     hover?: boolean
+    decorated?: boolean
+    showReplyTo?: boolean
   }>(),
-  { actions: true },
+  { actions: true, showReplyTo: true },
 )
 
 const status = $computed(() => {
@@ -43,36 +46,50 @@ function go(evt: MouseEvent | KeyboardEvent) {
 const createdAt = useFormattedDateTime(status.createdAt)
 const timeAgoOptions = useTimeAgoOptions(true)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
+
+// Content Filter logic
+const filterResult = $computed(() => status.filtered?.length ? status.filtered[0] : null)
+const filter = $computed(() => filterResult?.filter)
+
+// a bit of a hack due to Filter being different in v1 and v2
+// clean up when masto.js supports explicit versions: https://github.com/neet/masto.js/issues/722
+const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
+const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
+
+const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
+const showRebloggedByAvatarOnAvatar = rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" ref="el" flex flex-col gap-2 px-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
-    <div v-if="rebloggedBy" pl8>
-      <div flex="~ wrap" gap-1 items-center text-secondary text-sm>
-        <div i-ri:repeat-fill mr-1 />
-        <i18n-t keypath="status.reblogged">
-          <AccountInlineInfo font-bold :account="rebloggedBy" />
-        </i18n-t>
-      </div>
-    </div>
+  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 pt-3 pb-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
+    <StatusReplyingTo v-if="showReplyTo" :status="status" />
+    <CommonMetaWrapper v-if="rebloggedBy" text-secondary text-sm ws-nowrap>
+      <div i-ri:repeat-fill mr-1 text-primary />
+      <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
+    </CommonMetaWrapper>
+    <div v-if="decorated || rebloggedBy || (showReplyTo && status.inReplyToAccountId)" h-6 />
     <div flex gap-4>
-      <div>
-        <AccountHoverWrapper :account="status.account">
+      <div relative>
+        <AccountHoverWrapper :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-4' : 'mt-1'">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
             <AccountAvatar w-12 h-12 :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
+        <div v-if="showRebloggedByAvatarOnAvatar" absolute class="-top-2 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
+          <AccountAvatar :account="rebloggedBy" />
+        </div>
       </div>
       <div flex="~ col 1" min-w-0>
-        <div flex items-center>
+        <div flex items-center space-x-1>
           <AccountHoverWrapper :account="status.account">
             <StatusAccountDetails :account="status.account" />
           </AccountHoverWrapper>
           <div flex-auto />
           <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
+            <AccountBotIndicator v-if="status.account.bot" mr-2 />
             <CommonTooltip :content="createdAt">
               <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
-                <time text-sm hover:underline :datetime="status.createdAt">
+                <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
                   {{ timeago }}
                 </time>
               </a>
@@ -81,11 +98,15 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
           </div>
           <StatusActionsMore :status="status" mr--2 />
         </div>
-        <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" pt1 />
-        <div :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''">
-          <StatusSpoiler :enabled="status.sensitive">
-            <template #spoiler>
-              <p>{{ status.spoilerText }}</p>
+        <div
+          space-y-2
+          :class="{
+            'my3 p1 px4 br2 bg-fade border-primary-light border-1 rounded-3 rounded-tl-none': status.visibility === 'direct',
+          }"
+        >
+          <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
+            <template v-if="status.spoilerText || filterPhrase" #spoiler>
+              <p>{{ status.spoilerText || `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
             </template>
             <StatusBody :status="status" />
             <StatusPoll v-if="status.poll" :poll="status.poll" />
@@ -93,7 +114,9 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
               v-if="status.mediaAttachments?.length"
               :status="status"
               minimized
+              :class="status.visibility === 'direct' ? 'pb4' : ''"
             />
+            <StatusPreviewCard v-if="status.card" :card="status.card" :class="status.visibility === 'direct' ? 'pb4' : ''" />
           </StatusSpoiler>
           <StatusCard
             v-if="status.reblog"
@@ -104,5 +127,10 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
         <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
       </div>
     </div>
+  </div>
+  <div v-else-if="isFiltered" gap-2 p-4>
+    <p text-center text-secondary text-sm>
+      {{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}
+    </p>
   </div>
 </template>

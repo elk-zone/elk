@@ -19,7 +19,8 @@
     "enter_app": "使い始める",
     "publish": "投稿!",
     "save_changes": "変更を保存",
-    "sign_in": "サインイン"
+    "sign_in": "サインイン",
+    "vote": "投票"
   },
   "common": {
     "end_of_list": "他にはありません",

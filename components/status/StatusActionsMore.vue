@@ -37,9 +37,9 @@ const toggleTranslation = async () => {
 }
 
 const copyLink = async (status: Status) => {
-  const url = getStatusPermalinkRoute(status)?.href
+  const url = getStatusPermalinkRoute(status)
   if (url)
-    await clipboard.copy(`${location.origin}${url}`)
+    await clipboard.copy(`${location.origin}/${url}`)
 }
 const deleteStatus = async () => {
   // TODO confirm to delete
@@ -68,7 +68,7 @@ const deleteAndRedraft = async () => {
   }
 
   const { text } = await useMasto().statuses.remove(status.id)
-  openPublishDialog('dialog', getDraftFromStatus(status, text), true)
+  openPublishDialog('dialog', await getDraftFromStatus(status, text), true)
 }
 
 const reply = () => {
@@ -81,9 +81,9 @@ const reply = () => {
   }
 }
 
-function editStatus() {
+async function editStatus() {
   openPublishDialog(`edit-${status.id}`, {
-    ...getDraftFromStatus(status),
+    ...await getDraftFromStatus(status),
     editingStatus: status,
   })
 }
@@ -145,7 +145,7 @@ function editStatus() {
           @click="copyLink(status)"
         />
 
-        <NuxtLink :to="status.url" target="_blank">
+        <NuxtLink :to="status.url" external target="_blank">
           <CommonDropdownItem
             v-if="status.url"
             :text="$t('menu.open_in_original_site')"

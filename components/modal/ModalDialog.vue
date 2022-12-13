@@ -32,9 +32,6 @@ export interface Props {
    * @default false
    */
   keepAlive?: boolean
-
-  /** customizable class for the div outside of slot */
-  customClass?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -55,14 +52,12 @@ const deactivated = useDeactivated()
 const route = useRoute()
 
 /** scrollable HTML element */
-const elDialogScroll = ref<HTMLDivElement>()
 const elDialogMain = ref<HTMLDivElement>()
 const elDialogRoot = ref<HTMLDivElement>()
 
 defineExpose({
   elDialogRoot,
   elDialogMain,
-  elDialogScroll,
 })
 
 /** close the dialog */
@@ -134,8 +129,7 @@ export default {
         :style="{
           'z-index': zIndex,
         }"
-        class="scrollbar-hide"
-        fixed inset-0 overflow-y-auto overscroll-none
+        fixed inset-0 of-y-auto scrollbar-hide overscroll-none
       >
         <!-- The style `scrollbar-hide overscroll-none overflow-y-scroll` and `h="[calc(100%+0.5px)]"` is used to implement scroll locking, -->
         <!-- corresponding to issue: #106, so please don't remove it. -->
@@ -146,25 +140,14 @@ export default {
         <div class="dialog-mask" absolute inset-0 z-0 bg-black opacity-48 touch-none h="[calc(100%+0.5px)]" @click="clickMask" />
         <!-- Dialog container -->
         <div class="p-safe-area" absolute inset-0 z-1 pointer-events-none opacity-100 flex>
-          <div class="flex-1 flex items-center justify-center p-4">
+          <div flex-1 flex items-center justify-center p-4>
             <!-- We use `class` here to make v-bind being able to be override them -->
             <div
               ref="elDialogMain"
-              class="dialog-main w-full rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-w-125 max-h-full flex flex-col"
+              class="dialog-main w-full rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-w-125 max-h-full of-y-auto overscroll-contain touch-pan-y touch-pan-x"
               v-bind="bindTypeToAny($attrs)"
             >
-              <!-- header -->
-              <slot name="header" />
-              <!-- main -->
-              <div
-                ref="elDialogScroll"
-                class="overflow-y-auto touch-pan-y touch-pan-x overscroll-none flex-1"
-                :class="customClass"
-              >
-                <slot />
-              </div>
-              <!-- footer -->
-              <slot name="footer" />
+              <slot />
             </div>
           </div>
         </div>
@@ -204,13 +187,5 @@ export default {
   padding-right: env(safe-area-inset-right);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
-}
-
-.scrollbar-hide {
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
 }
 </style>

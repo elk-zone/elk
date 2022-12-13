@@ -1,6 +1,7 @@
 {
   "account": {
     "avatar_description": "{0}的头像",
+    "blocked_by": "您已被此用户拉黑",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
     "favourites": "喜欢的帖文",
@@ -11,7 +12,9 @@
     "following": "关注中",
     "following_count": "正在关注 {0} 人",
     "follows_you": "已关注你",
+    "go_to_profile": "转到个人资料",
     "joined": "已加入",
+    "moved_title": "的新账号是：",
     "muted_users": "已屏蔽的用户",
     "mutuals": "互相关注",
     "pinned": "置顶的帖文",
@@ -30,16 +33,29 @@
     "favourite": "喜欢",
     "favourited": "已喜欢",
     "more": "更多",
+    "next": "下一个",
+    "prev": "上一个",
     "publish": "发布！",
     "reply": "回复",
     "save_changes": "保存更改",
-    "sign_in": "登鹿"
+    "sign_in": "登鹿",
+    "switch_account": "切换帐号",
+    "vote": "投票"
   },
   "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
   "app_name": "鹿鸣",
   "command": {
     "activate": "执行",
-    "complete": "完成"
+    "complete": "完成",
+    "compose_desc": "写一条新帖文",
+    "lang": "语言",
+    "n-people-in-the-past-n-days": "{0} 人在过去 {1} 天",
+    "select_lang": "选择语言",
+    "sign_in_desc": "添加现有帐户",
+    "switch_account": "切换到{0}",
+    "switch_account_desc": "切换到另一个帐户",
+    "toggle_dark_mode": "切换深色模式",
+    "toggle_zen_mode": "切换禅模式"
   },
   "common": {
     "end_of_list": "列表到底啦",
@@ -54,6 +70,7 @@
   },
   "error": {
     "account_not_found": "未找到用户 {0}",
+    "explore-list-empty": "目前没有热门话题，稍后再来看看吧！",
     "status_not_found": "未找到帖文"
   },
   "feature_flag": {
@@ -69,7 +86,7 @@
   "menu": {
     "block_account": "拉黑 {0}",
     "block_domain": "拉黑域名 {0}",
-    "copy_link_to_post": "复制这篇文章的链接",
+    "copy_link_to_post": "复制这篇帖文的链接",
     "delete": "删除",
     "delete_and_redraft": "删除并重新编辑",
     "direct_message_account": "私信 {0}",
@@ -77,13 +94,17 @@
     "mention_account": "提及 {0}",
     "mute_account": "屏蔽 {0}",
     "open_in_original_site": "从源站打开",
-    "pin_on_profile": "钉选在个人资料上",
+    "pin_on_profile": "置顶在个人资料上",
     "show_untranslated": "显示原文",
-    "translate_post": "翻译帖子",
+    "toggle_theme": {
+      "dark": "切换深色模式",
+      "light": "切换亮色模式"
+    },
+    "translate_post": "翻译帖文",
     "unblock_account": "解除拉黑 {0}",
     "unblock_domain": "解除拉黑域名 {0}",
     "unmute_account": "解除屏蔽 {0}",
-    "unpin_on_profile": "取消钉选"
+    "unpin_on_profile": "取消置顶"
   },
   "nav_footer": {
     "built_at": "于 {0} 构建",
@@ -122,7 +143,7 @@
     "default_1": "在想些什么？",
     "reply_to_account": "回复 {0}",
     "replying": "回复",
-    "the_thread": "这个帖子"
+    "the_thread": "这个帖文"
   },
   "state": {
     "edited": "（已编辑）",
@@ -132,6 +153,14 @@
   },
   "status": {
     "edited": "在 {0} 编辑了",
+    "filter_hidden_phrase": "筛选依据",
+    "filter_removed_phrase": "从筛选中移除",
+    "filter_show_anyway": "仍然展示",
+    "poll": {
+      "count": "{n} 次投票",
+      "ends": "将在 {0} 结束",
+      "finished": "已在 {0} 结束"
+    },
     "reblogged": "{0} 转发了",
     "spoiler_show_less": "隐藏",
     "spoiler_show_more": "显示更多",
@@ -143,8 +172,11 @@
   },
   "tab": {
     "accounts": "账号",
+    "for_you": "推荐关注",
+    "hashtags": "话题标签",
     "hashtags": "标签",
     "media": "媒体",
+    "news": "最新消息",
     "notifications_all": "全部",
     "notifications_mention": "提及",
     "posts": "帖文",
@@ -192,6 +224,9 @@
     "add_content_warning": "添加内容警告标识",
     "add_media": "添加图片、视频或者音频文件",
     "change_content_visibility": "修改内容是否可见",
+    "explore_links_intro": "这些新闻故事正被本站和分布式网络上其他站点的用户谈论。",
+    "explore_posts_intro": "来自本站和分布式网络上其他站点的这些嘟文正在本站引起关注。",
+    "explore_tags_intro": "这些标签正在本站和分布式网络上其他站点的用户中引起关注。",
     "toggle_code_block": "切换代码块"
   },
   "user": {

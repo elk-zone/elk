@@ -1,11 +1,23 @@
 <script setup lang="ts">
 import {
+  isCommandPanelOpen,
   isEditHistoryDialogOpen,
   isMediaPreviewOpen,
   isPreviewHelpOpen,
   isPublishDialogOpen,
   isSigninDialogOpen,
 } from '~/composables/dialog'
+
+const isMac = useIsMac()
+
+// TODO: temporary, await for keybind system
+// listen to ctrl+/ on windows/linux or cmd+/ on mac
+useEventListener('keydown', (e: KeyboardEvent) => {
+  if (e.key === '/' && (isMac.value ? e.metaKey : e.ctrlKey)) {
+    e.preventDefault()
+    openCommandPanel(true)
+  }
+})
 </script>
 
 <template>
@@ -15,13 +27,22 @@ import {
   <ModalDialog v-model="isPreviewHelpOpen">
     <HelpPreview @close="closePreviewHelp()" />
   </ModalDialog>
-  <ModalDialog v-model="isPublishDialogOpen" max-w-180 md:min-w-160>
-    <PublishWidget :draft-key="dialogDraftKey" expanded />
+  <ModalDialog v-model="isPublishDialogOpen" max-w-180 flex>
+    <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
+    <PublishWidget :draft-key="dialogDraftKey" expanded flex-1 w-0 />
   </ModalDialog>
-  <ModalDialog v-model="isMediaPreviewOpen" w-full max-w-full h-full max-h-full bg-transparent border-0 pointer-events-none>
+  <ModalDialog
+    v-model="isMediaPreviewOpen"
+    pointer-events-none
+    w-full max-w-full h-full max-h-full
+    bg-transparent border-0 shadow-none
+  >
     <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
   </ModalDialog>
   <ModalDialog v-model="isEditHistoryDialogOpen">
     <StatusEditPreview :edit="statusEdit" />
+  </ModalDialog>
+  <ModalDialog v-model="isCommandPanelOpen" max-w-fit flex>
+    <CommandPanel @close="closeCommandPanel()" />
   </ModalDialog>
 </template>

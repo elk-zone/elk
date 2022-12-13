@@ -25,9 +25,8 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         <AccountInfo :account="status.account" />
       </AccountHoverWrapper>
     </NuxtLink>
-    <StatusReplyingTo v-if="status.inReplyToAccountId" :status="status" />
     <div
-      :class="status.visibility === 'direct' ? 'my3 p2 px5 br2 bg-fade rounded-3 rounded-tl-none' : ''"
+      :class="status.visibility === 'direct' ? 'my2 p1 px4 br2 bg-fade border-primary-light border-1 rounded-3 rounded-tl-none' : ''"
     >
       <StatusSpoiler :enabled="status.sensitive">
         <template #spoiler>
@@ -40,7 +39,9 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         <StatusMedia
           v-if="status.mediaAttachments?.length"
           :status="status"
+          :class="status.visibility === 'direct' ? 'pb4' : ''"
         />
+        <StatusPreviewCard v-if="status.card" :card="status.card" :class="status.visibility === 'direct' ? 'pb4' : ''" />
       </StatusSpoiler>
     </div>
     <div flex="~ gap-1" items-center text-secondary text-sm>
@@ -53,12 +54,12 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
           <span ml1 font-bold cursor-pointer>{{ $t('state.edited') }}</span>
         </StatusEditIndicator>
       </div>
-      <div>·</div>
+      <div>&middot;</div>
       <CommonTooltip :content="$t(`visibility.${visibility.value}`)" placement="bottom">
         <div :class="visibility.icon" />
       </CommonTooltip>
       <div v-if="status.application?.name">
-        · {{ status.application?.name }}
+        &middot; {{ status.application?.name }}
       </div>
     </div>
     <StatusActions :status="status" details :command="command" border="t base" pt-2 />

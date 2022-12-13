@@ -9,17 +9,17 @@ const { account, command, ...props } = defineProps<{
 
 const isSelf = $computed(() => currentUser.value?.account.id === account.id)
 const enable = $computed(() => !isSelf && currentUser.value)
-const relationship = $$(props.relationship) ?? useRelationship(account)
+const relationship = $computed(() => props.relationship || useRelationship(account).value)
 
 async function toggleFollow() {
-  const rel = relationship.value
-  rel!.following = !rel!.following
+  relationship!.following = !relationship!.following
   try {
-    relationship.value = await useMasto().accounts[rel!.following ? 'follow' : 'unfollow'](account.id)
+    const newRel = await useMasto().accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+    Object.assign(relationship!, newRel)
   }
   catch {
     // TODO error handling
-    rel!.following = !rel!.following
+    relationship!.following = !relationship!.following
   }
 }
 
@@ -29,21 +29,19 @@ useCommand({
   scope: 'Actions',
   order: -2,
   visible: () => command && enable,
-  name: () => `${relationship.value?.following ? t('account.unfollow') : t('account.follow')} ${getShortHandle(account)}`,
+  name: () => `${relationship?.following ? t('account.unfollow') : t('account.follow')} ${getShortHandle(account)}`,
   icon: 'i-ri:star-line',
   onActivate: () => toggleFollow(),
 })
 
 const buttonStyle = $computed(() => {
-  const rel = relationship.value
-
   // Skeleton while loading, avoid primary color flash
-  if (!rel)
+  if (!relationship)
     return 'text-inverted'
 
   // If following, use a label style with a strong border for Mutuals
-  if (rel.following)
-    return `text-base ${rel.followedBy ? 'border-strong' : 'border-base'}`
+  if (relationship.following)
+    return `text-base ${relationship.followedBy ? 'border-strong' : 'border-base'}`
 
   // If not following, use a button style
   return 'text-inverted bg-primary border-primary'

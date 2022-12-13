@@ -1,13 +1,14 @@
 :root {
   --c-primary: #EA9E44;
   --c-primary-active: #C16929;
+  --c-primary-light: #EA9E4466;
   --c-border: #eee;
 
   --c-bg-base: #fff;
   --c-bg-active: #f6f6f6;
   --c-bg-code: #00000006;
   --c-bg-selection: #8885;
-  --c-bg-fade: #EA9E4422;
+  --c-bg-fade: #EA9E4411;
 
   --c-text-base: #232323;
   --c-text-code: #7ca72f;
@@ -25,7 +26,7 @@
   --c-bg-base: #111;
   --c-bg-active: #191919;
   --c-bg-code: #ffffff06;
-  --c-bg-fade: #EA9E4422;
+  --c-bg-fade: #EA9E4411;
 
   --c-text-base: #fff;
   --c-text-code: #90be3d;

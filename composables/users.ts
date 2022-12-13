@@ -20,6 +20,11 @@ export const currentUser = computed<UserLogin | undefined>(() => {
   return users.value[0]
 })
 
+export const currentUserHandle = computed(() => currentUser.value?.account.id
+  ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+  : '[anonymous]',
+)
+
 export const publicServer = ref(DEFAULT_SERVER)
 const publicInstance = ref<Instance | null>(null)
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
@@ -153,30 +158,24 @@ export function checkLogin() {
   return true
 }
 
-const userLocalStorages = new Map<string, Ref<Record<string, any>>>()
-
 /**
  * Create reactive storage for the current user
  */
 export function useUserLocalStorage<T extends object>(key: string, initial: () => T) {
-  if (!userLocalStorages.has(key))
-    userLocalStorages.set(key, useLocalStorage(key, {}, { deep: true }))
+  // @ts-expect-error bind value to the function
+  const storages = useUserLocalStorage._ = useUserLocalStorage._ || new Map<string, Ref<Record<string, any>>>()
 
-  const all = userLocalStorages.get(key) as Ref<Record<string, T>>
-  const id = currentUser.value?.account.id
-    ? `${currentUser.value.account.acct}@${currentUser.value.server}`
-    : '[anonymous]'
+  if (!storages.has(key))
+    storages.set(key, useLocalStorage(key, {}, { deep: true }))
+  const all = storages.get(key) as Ref<Record<string, T>>
 
-  all.value[id] = Object.assign(initial(), all.value[id] || {})
-  return extendRef(
-    computed(() => all.value[id]),
-    {
-      remove: {
-        value: () => {
-          delete all.value[id]
-        },
-      },
-    })
+  return computed(() => {
+    const id = currentUser.value?.account.id
+      ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+      : '[anonymous]'
+    all.value[id] = Object.assign(initial(), all.value[id] || {})
+    return all.value[id]
+  })
 }
 
 /**

@@ -48,16 +48,16 @@ function mentionHTML(acct: string) {
 }
 
 export function getReplyDraft(status: Status) {
-  const acountsToMention: string[] = []
+  const accountsToMention: string[] = []
   const userId = currentUser.value?.account.id
   if (status.account.id !== userId)
-    acountsToMention.push(status.account.acct)
-  acountsToMention.push(...(status.mentions.filter(mention => mention.id !== userId).map(mention => mention.acct)))
+    accountsToMention.push(status.account.acct)
+  accountsToMention.push(...(status.mentions.filter(mention => mention.id !== userId).map(mention => mention.acct)))
   return {
     key: `reply-${status.id}`,
     draft: () => {
       return getDefaultDraft({
-        initialText: acountsToMention.map(acct => mentionHTML(acct)).join(' '),
+        initialText: accountsToMention.map(acct => mentionHTML(acct)).join(' '),
         inReplyToId: status!.id,
         visibility: status.visibility,
       })

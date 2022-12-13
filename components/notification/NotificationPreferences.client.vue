@@ -63,7 +63,6 @@ const removeSubscription = async () => {
   }
 }
 onActivated(() => (busy.value = false))
-onMounted(() => (busy.value = false))
 </script>
 
 <template>

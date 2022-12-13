@@ -4,6 +4,7 @@ definePageMeta({
 })
 
 const params = useRoute().params
+const serverName = $(computedEager(() => toShortHandle(params.server as string)))
 const accountName = $(computedEager(() => toShortHandle(params.account as string)))
 
 const { t } = useI18n()

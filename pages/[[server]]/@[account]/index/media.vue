@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import type { Account } from 'masto'
-import AccountTabs from '~/components/account/AccountTabs.vue'
+
+definePageMeta({ name: 'account-media' })
 
 const route = useRoute()
 const handle = $(computedEager(() => route.params.account as string))
-
-definePageMeta({ name: 'account-index' })
-
-const { t } = useI18n()
 
 const { data: account } = await useAsyncData(`account:${handle}`, async () => (
   window.history.state?.account as Account | undefined)
     ?? await fetchAccountByHandle(handle),
 )
+const { t } = useI18n()
 
-const paginator = useMasto().accounts.iterateStatuses(account.value!.id, { excludeReplies: true })
+const paginator = useMasto().accounts.iterateStatuses(account.value!.id, { onlyMedia: true, excludeReplies: false })
 </script>
 
 <template>

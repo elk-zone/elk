@@ -20,16 +20,4 @@ const { modelValue } = defineModel<{
     >
     <span ml-2 pointer-events-none>{{ label }}</span>
   </label>
-<!--
-  <label
-    flex items-center place-content-center h-full flex-1 class="select-none"
-    :class="modelValue ? '!text-primary' : ''"
-    @click="modelValue = !modelValue"
-  >
-    <span v-show="checked" i-ri:close-fill />
-    <span v-show="!checked" i-ri:more-fill />
-    <input v-model="modelValue" type="checkbox" z="-1" absolute inset-0 opacity-0 :value="checked">
-    {{ label }}
-  </label>
--->
 </template>

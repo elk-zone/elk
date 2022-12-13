@@ -1,4 +1,4 @@
-import type { Account, AccountCredentials, Emoji, Instance, Notification, PushSubscription } from 'masto'
+import type { Account, AccountCredentials, Emoji, Instance, Notification, PushSubscription, Status } from 'masto'
 
 export interface AppInfo {
   id: string

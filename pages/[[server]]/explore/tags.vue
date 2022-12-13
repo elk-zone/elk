@@ -2,6 +2,8 @@
 import type { Tag } from 'masto'
 import { STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS } from '~~/constants'
 
+const { t } = useI18n()
+
 const { data, pending, error } = useLazyAsyncData(
   () => useMasto().trends.fetchTags({ limit: 20 }),
   { immediate: true },
@@ -12,6 +14,10 @@ const hideTagsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS, false)
 function getTagUrl(tag: Tag) {
   return new URL(tag.url).pathname
 }
+
+useHeadFixed({
+  title: () => `${t('tab.hashtags')} | ${t('nav_side.explore')}`,
+})
 </script>
 
 <template>

@@ -14,7 +14,7 @@ onActivated(clearNotifications)
 const stream = await useMasto().stream.streamUser()
 
 useHeadFixed({
-  title: () => t('nav_side.notifications'),
+  title: () => `${t('tab.notifications_mention')} | ${t('nav_side.notifications')}`,
 })
 </script>
 

@@ -17,10 +17,6 @@ const tabs = $computed(() => [
     display: t('tab.notifications_mention'),
   },
 ] as const)
-
-useHeadFixed({
-  title: () => t('nav_side.notifications'),
-})
 </script>
 
 <template>
@@ -36,10 +32,5 @@ useHeadFixed({
       <CommonRouteTabs replace :options="tabs" />
     </template>
     <NuxtPage />
-    <!--
-    <slot>
-      <NotificationPaginator :key="tab" v-bind="{ paginator, stream }" />
-    </slot>
--->
   </MainContent>
 </template>

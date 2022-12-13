@@ -87,7 +87,7 @@ export const usePushManager = () => {
   }
 
   const updateSubscription = () => {
-    if (ready.value) {
+    if (ready.value && currentUser.value) {
       try {
         useMasto().pushSubscriptions.update({
           data: {
@@ -118,8 +118,8 @@ export const usePushManager = () => {
 
   onActivated(() => nextTick().then(() => ready.value = true))
   onMounted(() => nextTick().then(() => ready.value = true))
-  onDeactivated(() => nextTick().then(() => ready.value = false))
-  onUnmounted(() => nextTick().then(() => ready.value = false))
+  onDeactivated(() => ready.value = false)
+  onUnmounted(() => ready.value = false)
 
   return {
     follow,

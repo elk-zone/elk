@@ -5,44 +5,59 @@ import type { PushPayload } from '~/service-worker/types'
 declare const self: ServiceWorkerGlobalScope
 
 export const onPush = (event: PushEvent) => {
-  const options: PushPayload = event.data!.json()
-  const {
-    access_token,
-    body,
-    icon,
-    notification_id,
-    notification_type,
-    preferred_locale,
-  } = options
+  const promise = isClientFocused().then((isFocused) => {
+    if (isFocused)
+      return Promise.resolve()
 
-  let url = 'home'
-  if (notification_type) {
-    switch (notification_type) {
-      case 'follow':
-        url = 'notifications'
-        break
-      case 'mention':
-        url = 'notifications/mention'
-        break
-    }
-  }
-
-  const notificationOptions: NotificationOptions = {
-    badge: '/pwa-192x192.png',
-    body,
-    data: {
+    const options: PushPayload = event.data!.json()
+    const {
       access_token,
+      body,
+      icon,
+      notification_id,
+      notification_type,
       preferred_locale,
-      url: `/${url}`,
-    },
-    dir: 'auto',
-    icon,
-    lang: preferred_locale,
-    tag: notification_id,
-    timestamp: new Date().getUTCDate(),
-  }
+    } = options
 
-  event.waitUntil(self.registration.showNotification(options.title, notificationOptions))
+    let url = 'home'
+    if (notification_type) {
+      switch (notification_type) {
+        case 'follow':
+          url = 'notifications'
+          break
+        case 'mention':
+          url = 'notifications/mention'
+          break
+      }
+    }
+
+    const notificationOptions: NotificationOptions = {
+      badge: '/pwa-192x192.png',
+      body,
+      data: {
+        access_token,
+        preferred_locale,
+        url: `/${url}`,
+      },
+      dir: 'auto',
+      icon,
+      lang: preferred_locale,
+      tag: notification_id,
+      timestamp: new Date().getUTCDate(),
+    }
+    return self.registration.showNotification(options.title, notificationOptions)
+  })
+
+  event.waitUntil(promise)
+}
+
+export const onNotificationClick = (event: NotificationEvent) => {
+  const reactToNotificationClick = new Promise((resolve) => {
+    event.notification.close()
+    resolve(openUrl(event.notification.data.url))
+  })
+
+  event.waitUntil(reactToNotificationClick)
 }
 
 function findBestClient(clients: WindowClient[]) {
@@ -62,11 +77,9 @@ async function openUrl(url: string) {
 
   await self.clients.openWindow(url)
 }
-export const onNotificationClick = (event: NotificationEvent) => {
-  const reactToNotificationClick = new Promise((resolve) => {
-    event.notification.close()
-    resolve(openUrl(event.notification.data.url))
-  })
 
-  event.waitUntil(reactToNotificationClick)
+function isClientFocused() {
+  return self.clients
+    .matchAll({ type: 'window', includeUncontrolled: true })
+    .then(windowClients => Promise.resolve(windowClients.some(windowClient => windowClient.focused)))
 }

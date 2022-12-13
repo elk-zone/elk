@@ -1,3 +1,4 @@
+// @unocss-include
 export const ACCOUNT_FIELD_ICONS: Record<string, string> = {
   alipay: 'i-ri:alipay-fill',
   bilibili: 'i-ri:bilibili-fill',

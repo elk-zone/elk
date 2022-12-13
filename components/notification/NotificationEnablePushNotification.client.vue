@@ -15,6 +15,7 @@ defineEmits(['hide', 'subscribe'])
       </h2>
       <button
         flex rounded-4 p2
+        type="button"
         :title="$t('notification.settings.warning.enable_close')"
         hover:bg-active cursor-pointer transition-100
         :disabled="busy"
@@ -28,10 +29,11 @@ defineEmits(['hide', 'subscribe'])
     </p>
     <button
       btn-outline rounded-full font-bold py4 flex="~ gap2 center" m5
+      type="button"
       :disabled="busy"
       @click="$emit('subscribe')"
     >
-      <span :class="busy ? 'i-ri:loader-2-fill animate-spin' : 'i-ri:check-line'" />
+      <span aria-hidden="true" :class="busy ? 'i-ri:loader-2-fill animate-spin' : 'i-ri:check-line'" />
       {{ $t('notification.settings.warning.enable_desktop') }}
     </button>
   </div>

@@ -50,7 +50,20 @@ const doSubscribe = async () => {
     busy.value = false
   }
 }
+const removeSubscription = async () => {
+  if (busy.value)
+    return
+
+  busy.value = true
+  try {
+    await unsubscribe()
+  }
+  finally {
+    busy.value = false
+  }
+}
 onActivated(() => (busy.value = false))
+onMounted(() => (busy.value = false))
 </script>
 
 <template>
@@ -69,6 +82,15 @@ onActivated(() => (busy.value = false))
             <CommonCheckbox v-model="reblog" :label="$t('notification.settings.reblog')" />
             <CommonCheckbox v-model="mention" :label="$t('notification.settings.mention')" />
             <CommonCheckbox v-model="poll" :label="$t('notification.settings.poll')" />
+            <button
+              btn-outline rounded-full font-bold py4 flex="~ gap2 center" m5
+              type="button"
+              :disabled="busy"
+              @click="removeSubscription"
+            >
+              <span :class="busy ? 'i-ri:loader-2-fill animate-spin' : 'i-ri:check-line'" />
+              {{ $t('notification.settings.unsubscribe') }}
+            </button>
           </div>
           <template v-else>
             <p v-if="showWarning" role="alert" aria-labelledby="notifications-title">

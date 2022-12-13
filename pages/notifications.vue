@@ -32,7 +32,7 @@ const tabs = $computed(() => [
 
     <template v-if="pwaEnabled" #actions>
       <button
-        flex rounded-4 p2
+        flex rounded-4 p1
         hover:bg-active cursor-pointer transition-100
         :title="$t(showSettings ? 'notification.settings.close_btn' : 'notification.settings.show_btn')"
         @click="showSettings = !showSettings"
@@ -44,9 +44,12 @@ const tabs = $computed(() => [
     <template #header>
       <CommonRouteTabs replace :options="tabs" />
     </template>
-    <template v-if="pwaEnabled">
-      <NotificationPreferences :show="showSettings" />
-    </template>
-    <NuxtPage :show="showSettings" />
+
+    <slot>
+      <template v-if="pwaEnabled">
+        <NotificationPreferences :show="showSettings" />
+      </template>
+      <NuxtPage />
+    </slot>
   </MainContent>
 </template>

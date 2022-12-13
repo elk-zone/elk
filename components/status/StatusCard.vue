@@ -120,7 +120,7 @@ const showRebloggedByAvatarOnAvatar = rebloggedBy && avatarOnAvatar && reblogged
               minimized
               :class="status.visibility === 'direct' ? 'pb4' : ''"
             />
-            <StatusPreviewCard v-if="status.card" :card="status.card" :class="status.visibility === 'direct' ? 'pb4' : ''" />
+            <StatusPreviewCard v-if="status.card" :card="status.card" :class="status.visibility === 'direct' ? 'pb4' : ''" :small-picture-only="status.mediaAttachments?.length > 0" />
           </StatusSpoiler>
           <StatusCard
             v-if="status.reblog"

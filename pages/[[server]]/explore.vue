@@ -27,10 +27,6 @@ const tabs = $computed(() => [
     : [],
   ),
 ] as const)
-
-useHeadFixed({
-  title: () => t('nav_side.explore'),
-})
 </script>
 
 <template>

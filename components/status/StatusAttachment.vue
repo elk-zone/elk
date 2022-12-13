@@ -130,7 +130,7 @@ const type = $computed(() => {
           ALT
         </button>
         <template #popper>
-          <div p4 flex flex-col gap-2>
+          <div p4 flex flex-col gap-2 max-w-130>
             <div flex justify-between>
               <h2 font-bold text-xl text-secondary>
                 Description

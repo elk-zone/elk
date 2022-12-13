@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  key: route => `${route.params.server}:${route.params.account}`,
+})
+
 const params = useRoute().params
 const accountName = $(computedEager(() => toShortHandle(params.account as string)))
 

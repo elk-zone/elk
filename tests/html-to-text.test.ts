@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 import { describe, expect, it } from 'vitest'
-import { htmlToText } from '../composables/content'
+import { htmlToText } from '~/composables/content-parse'
 
 describe('html-to-text', () => {
   it('inline code', () => {

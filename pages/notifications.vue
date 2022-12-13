@@ -5,34 +5,18 @@ definePageMeta({
 
 const { t } = useI18n()
 
-const paginatorAll = useMasto().notifications.iterate()
-const paginatorMention = useMasto().notifications.iterate({ types: ['mention'] })
-
-const { clearNotifications } = useNotifications()
-onActivated(clearNotifications)
-
-const stream = await useMasto().stream.streamUser()
-
 const tabs = $computed(() => [
   {
     name: 'all',
+    to: '/notifications',
     display: t('tab.notifications_all'),
-    paginator: paginatorAll,
   },
   {
     name: 'mention',
+    to: '/notifications/mention',
     display: t('tab.notifications_mention'),
-    paginator: paginatorMention,
   },
 ] as const)
-
-// Don't use local storage because it is better to default to Posts every time you visit a user's profile.
-const tab = $ref(tabs[0].name)
-const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
-
-useHeadFixed({
-  title: () => t('nav_side.notifications'),
-})
 </script>
 
 <template>
@@ -45,10 +29,8 @@ useHeadFixed({
     </template>
 
     <template #header>
-      <CommonTabs v-model="tab" :options="tabs" />
+      <CommonRouteTabs replace :options="tabs" />
     </template>
-    <slot>
-      <NotificationPaginator :key="tab" v-bind="{ paginator, stream }" />
-    </slot>
+    <NuxtPage />
   </MainContent>
 </template>

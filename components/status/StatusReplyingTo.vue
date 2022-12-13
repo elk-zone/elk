@@ -9,7 +9,7 @@ const account = useAccountById(status.inReplyToAccountId)
 </script>
 
 <template>
-  <div v-if="status.inReplyToAccountId" absolute top-0 pt-2 right-0 px-4 flex="~ wrap" gap-1>
+  <div v-if="status.inReplyToAccountId" flex="~ wrap" gap-1>
     <NuxtLink
       v-if="status.inReplyToId"
       flex="~" items-center font-bold text-sm text-secondary gap-1

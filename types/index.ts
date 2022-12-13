@@ -1,4 +1,5 @@
-import type { AccountCredentials, Emoji, Instance, Notification } from 'masto'
+import type { Account, AccountCredentials, Attachment, CreateStatusParams, Emoji, Instance, Notification, Status } from 'masto'
+import type { Mutable } from './utils'
 
 export interface AppInfo {
   id: string
@@ -26,8 +27,33 @@ export interface ServerInfo extends Instance {
 
 export interface GroupedNotifications {
   id: string
-  type: string
+  type: Exclude<string, 'grouped-reblogs-and-favourites'>
   items: Notification[]
 }
 
+export interface GroupedAccountLike {
+  account: Account
+  favourite?: Notification
+  reblog?: Notification
+}
+
+export interface GroupedLikeNotifications {
+  id: string
+  type: 'grouped-reblogs-and-favourites'
+  status: Status
+  likes: GroupedAccountLike[]
+}
+
+export type NotificationSlot = GroupedNotifications | GroupedLikeNotifications | Notification
+
 export type TranslateFn = ReturnType<typeof useI18n>['t']
+
+export interface Draft {
+  editingStatus?: Status
+  initialText?: string
+  params: Omit<Mutable<CreateStatusParams>, 'status'> & {
+    status?: Exclude<CreateStatusParams['status'], null>
+  }
+  attachments: Attachment[]
+}
+export type DraftMap = Record<string, Draft>

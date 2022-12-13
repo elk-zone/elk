@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import Inspect from 'vite-plugin-inspect'
-import { isCI, isDevelopment } from 'std-env'
+import { isCI } from 'std-env'
 import { i18n } from './config/i18n'
 
 const isPreview = process.env.PULL_REQUEST === 'true'
@@ -32,14 +32,18 @@ export default defineNuxtConfig({
     querystring: 'rollup-plugin-node-polyfills/polyfills/qs',
   },
   vite: {
+    // to make use of `TAURI_PLATFORM`, `TAURI_ARCH`, `TAURI_FAMILY`,
+    // `TAURI_PLATFORM_VERSION`, `TAURI_PLATFORM_TYPE` and `TAURI_DEBUG`
+    // env variables
+    envPrefix: ['VITE_', 'TAURI_'],
     define: {
       'import.meta.env.__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
       'import.meta.env.__BUILD_COMMIT__': JSON.stringify(process.env.COMMIT_REF || ''),
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
-      'process.mock': ((isDevelopment || (isCI && process.env.PULL_REQUEST === 'true')) && process.env.MOCK_USER) || 'false',
+      'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
     },
     build: {
-      target: 'esnext',
+      target: process.env.TAURI_PLATFORM ? ['es2021', 'chrome100', 'safari13'] : 'esnext',
     },
     plugins: [
       Inspect(),
@@ -87,7 +91,7 @@ export default defineNuxtConfig({
     keepalive: true,
     head: {
       // Prevent arbitrary zooming on mobile devices
-      viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
+      viewport: 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover',
       bodyAttrs: {
         class: 'overflow-x-hidden',
       },

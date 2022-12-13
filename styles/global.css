@@ -64,6 +64,7 @@
 /* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
 body {
   overflow-y: scroll;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .zen .zen-hide {
@@ -103,7 +104,7 @@ body {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.9em leading-0.8em;
   }
   pre code {
-    --at-apply: bg-transparent px0 py0 rounded-none;
+    --at-apply: bg-transparent px0 py0 rounded-none leading-1.6em;
   }
 
   .code-block {
@@ -163,4 +164,14 @@ html {
 body {
   /* Prevent arbitrary zooming on mobile devices */
   touch-action: pan-x pan-y;
+}
+
+.sparkline--fill {
+  fill: var(--c-primary-active);
+  opacity: 0.2;
+}
+
+.sparkline--line {
+  stroke: var(--c-primary);
+  stroke-width: 2;
 }

@@ -1,5 +1,5 @@
 import type { Attachment, StatusEdit } from 'masto'
-import type { Draft } from './statusDrafts'
+import type { Draft } from '~/types'
 import { STORAGE_KEY_FIRST_VISIT, STORAGE_KEY_ZEN_MODE } from '~/constants'
 
 export const mediaPreviewList = ref<Attachment[]>([])

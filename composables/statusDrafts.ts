@@ -1,26 +1,8 @@
-import type { Account, Attachment, CreateStatusParams, Status } from 'masto'
+import type { Account, Status } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
-import type { Mutable } from '~/types/utils'
+import type { Draft, DraftMap } from '~/types'
 
-export interface Draft {
-  editingStatus?: Status
-  params: Omit<Mutable<CreateStatusParams>, 'status'> & {
-    status?: Exclude<CreateStatusParams['status'], null>
-  }
-  attachments: Attachment[]
-}
-export type DraftMap = Record<string, Draft>
-
-const allDrafts = useLocalStorage<Record<string, DraftMap>>(STORAGE_KEY_DRAFTS, {})
-
-export const currentUserDrafts = computed(() => {
-  if (!currentUser.value?.account.id)
-    return {}
-  const id = `${currentUser.value.account.acct}@${currentUser.value.server}`
-  if (!allDrafts.value[id])
-    allDrafts.value[id] = {}
-  return allDrafts.value[id]
-})
+export const currentUserDrafts = useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 
 export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
   const {
@@ -28,6 +10,7 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
     inReplyToId,
     visibility = 'public',
     attachments = [],
+    initialText = '',
   } = options
 
   return {
@@ -37,6 +20,7 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
       visibility,
     },
     attachments,
+    initialText,
   }
 }
 
@@ -49,13 +33,25 @@ export async function getDraftFromStatus(status: Status, text?: null | string): 
   })
 }
 
+function mentionHTML(acct: string) {
+  return `<span data-type="mention" data-id="${acct}" contenteditable="false">@${acct}</span>`
+}
+
 export function getReplyDraft(status: Status) {
+  const accountsToMention: string[] = []
+  const userId = currentUser.value?.account.id
+  if (status.account.id !== userId)
+    accountsToMention.push(status.account.acct)
+  accountsToMention.push(...(status.mentions.filter(mention => mention.id !== userId).map(mention => mention.acct)))
   return {
     key: `reply-${status.id}`,
-    draft: () => getDefaultDraft({
-      inReplyToId: status!.id,
-      visibility: status.visibility,
-    }),
+    draft: () => {
+      return getDefaultDraft({
+        initialText: accountsToMention.map(acct => mentionHTML(acct)).join(' '),
+        inReplyToId: status!.id,
+        visibility: status.visibility,
+      })
+    },
   }
 }
 
@@ -108,18 +104,4 @@ export function directMessageUser(account: Account) {
     status: `@${account.acct} `,
     visibility: 'direct',
   }), true)
-}
-
-export function clearUserDrafts(account?: Account) {
-  if (!account)
-    account = currentUser.value?.account
-
-  if (!account)
-    return
-
-  const id = `${account.acct}@${currentUser.value?.server}`
-  if (!allDrafts.value[id])
-    return
-
-  delete allDrafts.value[id]
 }

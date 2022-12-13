@@ -26,7 +26,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
       </AccountHoverWrapper>
     </NuxtLink>
     <div
-      :class="status.visibility === 'direct' ? 'my2 p1 px4 br2 bg-fade border-primary border-1 rounded-3 rounded-tl-none' : ''"
+      :class="status.visibility === 'direct' ? 'my2 p1 px4 br2 bg-fade border-primary-light border-1 rounded-3 rounded-tl-none' : ''"
     >
       <StatusSpoiler :enabled="status.sensitive">
         <template #spoiler>
@@ -39,8 +39,9 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
         <StatusMedia
           v-if="status.mediaAttachments?.length"
           :status="status"
+          :class="status.visibility === 'direct' ? 'pb4' : ''"
         />
-        <StatusPreviewCard v-if="status.card" :card="status.card" :small-picture-only="status.mediaAttachments?.length" />
+        <StatusPreviewCard v-if="status.card" :card="status.card" :class="status.visibility === 'direct' ? 'pb4' : ''" :small-picture-only="status.mediaAttachments?.length > 0" />
       </StatusSpoiler>
     </div>
     <div flex="~ gap-1" items-center text-secondary text-sm>

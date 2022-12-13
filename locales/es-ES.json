@@ -170,8 +170,11 @@
     "edited": "editado el {0}"
   },
   "tab": {
-    "media": "Media",
-    "notifications_all": "Todos",
+    "for_you": "Para tí",
+    "hashtags": "Etiquetas",
+    "media": "Medios de comunicación",
+    "news": "Noticias",
+    "notifications_all": "Todas",
     "notifications_mention": "Menciones",
     "posts": "Publicaciones",
     "posts_with_replies": "Publicaciones y respuestas"

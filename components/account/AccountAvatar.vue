@@ -16,7 +16,7 @@ const error = $ref(false)
     :alt="$t('account.avatar_description', [account.username])"
     loading="lazy"
     rounded-full
-    :class="loaded ? 'bg-gray' : 'bg-gray:10'"
+    :class="loaded ? 'bg-base' : 'bg-gray:10'"
     v-bind="$attrs"
     @load="loaded = true"
     @error="error = true"

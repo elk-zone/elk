@@ -35,7 +35,7 @@ const reply = () => {
     <div flex-1>
       <StatusActionButton
         :content="$t('action.reply')"
-        :text="status.repliesCount"
+        :text="status.repliesCount || ''"
         color="text-blue" hover="text-blue" group-hover="bg-blue/10"
         icon="i-ri:chat-3-line"
         :command="command"
@@ -46,7 +46,7 @@ const reply = () => {
     <div flex-1>
       <StatusActionButton
         :content="$t('action.boost')"
-        :text="status.reblogsCount"
+        :text="status.reblogsCount || ''"
         color="text-green" hover="text-green" group-hover="bg-green/10"
         icon="i-ri:repeat-line"
         active-icon="i-ri:repeat-fill"
@@ -60,7 +60,7 @@ const reply = () => {
     <div flex-1>
       <StatusActionButton
         :content="$t('action.favourite')"
-        :text="status.favouritesCount"
+        :text="status.favouritesCount || ''"
         color="text-rose" hover="text-rose" group-hover="bg-rose/10"
         icon="i-ri:heart-3-line"
         active-icon="i-ri:heart-3-fill"

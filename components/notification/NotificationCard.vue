@@ -44,33 +44,33 @@ const { notification } = defineProps<{
     <template v-else-if="notification.type === 'favourite'">
       <StatusCard :status="notification.status!" :faded="true">
         <template #meta>
-          <CommonMetaWrapper>
+          <div flex="~" gap-1 items-center>
             <div i-ri:heart-fill text-xl mr-1 color-red />
             <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
-          </CommonMetaWrapper>
+          </div>
         </template>
       </StatusCard>
     </template>
     <template v-else-if="notification.type === 'reblog'">
       <StatusCard :status="notification.status!" :faded="true">
         <template #meta>
-          <CommonMetaWrapper>
+          <div flex="~" gap-1 items-center>
             <div i-ri:repeat-fill text-xl mr-1 color-green />
             <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
-          </CommonMetaWrapper>
+          </div>
         </template>
       </StatusCard>
     </template>
     <template v-else-if="notification.type === 'update'">
       <StatusCard :status="notification.status!" :faded="true">
         <template #meta>
-          <CommonMetaWrapper z-1>
+          <div flex="~" gap-1 items-center>
             <div i-ri:edit-2-fill text-xl mr-1 text-secondary />
             <AccountInlineInfo :account="notification.account" mr1 />
             <span ws-nowrap>
               {{ $t('notification.update_status') }}
             </span>
-          </CommonMetaWrapper>
+          </div>
         </template>
       </StatusCard>
     </template>

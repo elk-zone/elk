@@ -64,10 +64,10 @@ const showRebloggedByAvatarOnAvatar = rebloggedBy && avatarOnAvatar && reblogged
   <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 pt-3 pb-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
     <div flex justify-between pb1>
       <slot name="meta">
-        <CommonMetaWrapper v-if="rebloggedBy" text-secondary text-sm ws-nowrap>
+        <div v-if="rebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center>
           <div i-ri:repeat-fill mr-1 text-primary />
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
-        </CommonMetaWrapper>
+        </div>
         <div v-else />
       </slot>
       <StatusReplyingTo v-if="showReplyTo" :status="status" :class="faded ? 'text-secondary-light' : ''" />

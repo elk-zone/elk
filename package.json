@@ -10,6 +10,7 @@
     "dev:mocked": "nuxi dev --port 5314 --dotenv .env.mock",
     "start": "PORT=5314 node .output/server/index.mjs",
     "lint": "eslint .",
+    "typecheck": "nuxi typecheck",
     "prepare": "esno scripts/prepare.ts",
     "generate": "nuxi generate",
     "test:unit": "vitest",

@@ -3,7 +3,7 @@ import type { CreateStatusParams, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
-import type { Draft } from '~/composables/statusDrafts'
+import type { Draft } from '~/types'
 
 const {
   draftKey,

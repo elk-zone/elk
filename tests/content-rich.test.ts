@@ -6,7 +6,7 @@ import type { Emoji } from 'masto'
 import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
-import { contentToVNode } from '~/composables/content'
+import { contentToVNode } from '~/composables/content-render'
 
 describe('content-rich', () => {
   it('empty', async () => {
@@ -85,7 +85,11 @@ vi.mock('vue-router', () => {
   }
 })
 
-vi.mock('../components/content/ContentCode.vue', () => {
+vi.mock('~/composables/dialog.ts', () => {
+  return {}
+})
+
+vi.mock('~/components/content/ContentCode.vue', () => {
   return {
     default: defineComponent({
       props: {
@@ -95,7 +99,6 @@ vi.mock('../components/content/ContentCode.vue', () => {
         },
         lang: {
           type: String,
-          required: true,
         },
       },
       setup(props) {
@@ -106,9 +109,10 @@ vi.mock('../components/content/ContentCode.vue', () => {
   }
 })
 
-vi.mock('../components/account/AccountHoverWrapper.vue', () => {
+vi.mock('~/components/account/AccountHoverWrapper.vue', () => {
   return {
     default: defineComponent({
+      props: ['handle', 'class'],
       setup(_, { slots }) {
         return () => slots?.default?.()
       },

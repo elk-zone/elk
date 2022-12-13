@@ -147,7 +147,11 @@ export const useNotifications = () => {
   watch(currentUser, disconnect)
   connect()
 
-  return { notifications: computed(() => id ? notifications[id]?.[1] ?? 0 : 0), disconnect, clearNotifications }
+  return {
+    notifications: computed(() => id ? notifications[id]?.[1] ?? 0 : 0),
+    disconnect,
+    clearNotifications,
+  }
 }
 
 export function checkLogin() {
@@ -188,7 +192,8 @@ export function clearUserLocalStorage(account?: Account) {
     return
 
   const id = `${account.acct}@${currentUser.value?.server}`
-  userLocalStorages.forEach((storage) => {
+  // @ts-expect-error bind value to the function
+  ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>>).forEach((storage) => {
     if (storage.value[id])
       delete storage.value[id]
   })

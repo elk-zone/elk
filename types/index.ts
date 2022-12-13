@@ -1,4 +1,5 @@
-import type { Account, AccountCredentials, Emoji, Instance, Notification, Status } from 'masto'
+import type { Account, AccountCredentials, Attachment, CreateStatusParams, Emoji, Instance, Notification, Status } from 'masto'
+import type { Mutable } from './utils'
 
 export interface AppInfo {
   id: string
@@ -46,3 +47,13 @@ export interface GroupedLikeNotifications {
 export type NotificationSlot = GroupedNotifications | GroupedLikeNotifications | Notification
 
 export type TranslateFn = ReturnType<typeof useI18n>['t']
+
+export interface Draft {
+  editingStatus?: Status
+  initialText?: string
+  params: Omit<Mutable<CreateStatusParams>, 'status'> & {
+    status?: Exclude<CreateStatusParams['status'], null>
+  }
+  attachments: Attachment[]
+}
+export type DraftMap = Record<string, Draft>

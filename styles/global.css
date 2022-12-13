@@ -104,7 +104,7 @@ body {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.9em leading-0.8em;
   }
   pre code {
-    --at-apply: bg-transparent px0 py0 rounded-none;
+    --at-apply: bg-transparent px0 py0 rounded-none leading-1.6em;
   }
 
   .code-block {

@@ -54,6 +54,9 @@ export const usePushManager = () => {
         })
       }
     }
+    else {
+      permission = notificationPermission.value
+    }
 
     if (!permission || permission === 'denied') {
       notificationPermission.value = permission

@@ -1,16 +1,6 @@
-import type { Account, Attachment, CreateStatusParams, Status } from 'masto'
+import type { Account, Status } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
-import type { Mutable } from '~/types/utils'
-
-export interface Draft {
-  editingStatus?: Status
-  initialText?: string
-  params: Omit<Mutable<CreateStatusParams>, 'status'> & {
-    status?: Exclude<CreateStatusParams['status'], null>
-  }
-  attachments: Attachment[]
-}
-export type DraftMap = Record<string, Draft>
+import type { Draft, DraftMap } from '~/types'
 
 export const currentUserDrafts = useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 

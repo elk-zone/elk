@@ -16,6 +16,7 @@
     "start": "PORT=5314 node .output/server/index.mjs",
     "start:https": "PORT=5314 node ./https-dev-config/local-https-server.mjs",
     "lint": "eslint .",
+    "typecheck": "nuxi typecheck",
     "prepare": "esno scripts/prepare.ts",
     "generate": "nuxi generate",
     "test:unit": "vitest",

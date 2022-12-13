@@ -29,7 +29,7 @@ function onClick(e: MouseEvent) {
 </script>
 
 <template>
-  <div relative h-full w-full flex select-none pointer-events-none>
+  <div relative h-full w-full flex select-none pointer-events-none pt-10>
     <button
       v-if="hasNext" pointer-events-auto btn-action-icon bg="black/20" :aria-label="$t('action.previous')"
       hover:bg="black/40" dark:bg="white/30" dark:hover:bg="white/20" absolute top="1/2" right-1
@@ -45,25 +45,23 @@ function onClick(e: MouseEvent) {
       <div i-ri:arrow-left-s-line text-white />
     </button>
     <img
-      :src="current.url || current.previewUrl" :alt="current.description || ''" max-h="95%" max-w="95%" mx-auto
-      mt-13
-      z-10
+      :src="current.url || current.previewUrl" :alt="current.description || ''" max-h-full max-w-full ma
     >
 
     <div absolute top-0 w-full flex justify-between>
       <button
         btn-action-icon bg="black/30" aria-label="action.close" hover:bg="black/40" dark:bg="white/30"
-        dark:hover:bg="white/20" pointer-events-auto @click="emit('close')"
+        dark:hover:bg="white/20" pointer-events-auto shrink-0 @click="emit('close')"
       >
         <div i-ri:close-fill text-white />
       </button>
       <div bg="black/30" dark:bg="white/10" my-auto text-white rounded-full flex="~ center" overflow-hidden>
-        <div v-if="mediaPreviewList.length > 1" p="y-1 x-2" rounded-r-0>
+        <div v-if="mediaPreviewList.length > 1" p="y-1 x-2" rounded-r-0 shrink-0>
           {{ mediaPreviewIndex + 1 }} / {{ mediaPreviewList.length }}
         </div>
         <p
           v-if="current.description" bg="dark/30" dark:bg="white/10" p="y-1 x-2" rounded-r-full line-clamp-1
-          ws-pre-wrap break-all :title="current.description"
+          ws-pre-wrap break-all :title="current.description" shrink-0
         >
           {{ current.description }}
         </p>

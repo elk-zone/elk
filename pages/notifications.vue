@@ -18,9 +18,6 @@ const tabs = $computed(() => [
   },
 ] as const)
 
-// Don't use local storage because it is better to default to Posts every time you visit a user's profile.
-const tab = $ref<'all' | 'mention'>(tabs[0].name)
-
 useHeadFixed({
   title: () => t('nav_side.notifications'),
 })

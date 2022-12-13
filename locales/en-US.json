@@ -102,7 +102,8 @@
     "home": "Home",
     "local": "Local",
     "notifications": "Notifications",
-    "profile": "Profile"
+    "profile": "Profile",
+    "search": "Search"
   },
   "nav_user": {
     "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
@@ -141,6 +142,8 @@
     "edited": "edited {0}"
   },
   "tab": {
+    "accounts": "Accounts",
+    "hashtags": "Hashtags",
     "media": "Media",
     "notifications_all": "All",
     "notifications_mention": "Mention",

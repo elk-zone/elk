@@ -59,9 +59,9 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
   }
 
   return {
-    accounts: readonly(accounts),
-    hashtags: readonly(hashtags),
-    statuses: readonly(statuses),
+    accounts,
+    hashtags,
+    statuses,
     loading: readonly(loading),
     next,
   }

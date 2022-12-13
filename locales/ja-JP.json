@@ -55,7 +55,8 @@
     "home": "ホーム",
     "local": "ローカル",
     "notifications": "通知",
-    "profile": "プロフィール"
+    "profile": "プロフィール",
+    "search": "検索"
   },
   "nav_user": {
     "sign_in_desc": "サインインすると、アカウントやハッシュタグをフォローしたり、お気に入りしたり、投稿を共有したり返信するほか、異なるサーバー上のあなたのアカウントから交流できます。"
@@ -73,6 +74,8 @@
     "uploading": "更新中..."
   },
   "tab": {
+    "accounts": "アカウント",
+    "hashtags": "ハッシュタグ",
     "media": "メディア",
     "posts": "投稿",
     "posts_with_replies": "投稿と返信"

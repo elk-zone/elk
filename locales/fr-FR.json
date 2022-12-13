@@ -95,7 +95,8 @@
     "home": "Accueil",
     "local": "Local",
     "notifications": "Notifications",
-    "profile": "Profil"
+    "profile": "Profil",
+    "search": "Rechercher"
   },
   "nav_user": {
     "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, mettre en favoris, partager et répondre à des messages, ou interagir à partir de votre compte sur un autre serveur..."
@@ -134,6 +135,8 @@
     "edited": "a édité {0}"
   },
   "tab": {
+    "accounts": "Comptes",
+    "hashtags": "Hashtags",
     "media": "Média",
     "notifications_all": "Tout",
     "notifications_mention": "Mentions",

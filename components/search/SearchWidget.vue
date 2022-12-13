@@ -1,65 +1,86 @@
 <script setup lang="ts">
 const query = ref('')
 const { accounts, hashtags, loading } = useSearch(query)
+const index = ref(0)
+
+const { t } = useI18n()
+const el = ref<HTMLElement>()
+const router = useRouter()
+const { focused } = useFocusWithin(el)
+
+const results = computed(() => {
+  if (query.value.length === 0)
+    return []
+
+  const results = [
+    ...hashtags.value.slice(0, 3).map(hashtag => ({ type: 'hashtag', hashtag, to: `/tags/${hashtag.name}` })),
+    ...accounts.value.map(account => ({ type: 'account', account, to: `/@${account.acct}` })),
+    {
+      type: 'action',
+      to: `/search?q=${query.value}`,
+      action: {
+        label: `Search for ${query.value}`,
+      },
+    },
+  ]
+
+  return results
+})
+
+// Reset index when results change
+watch([results, focused], () => index.value = -1)
+
+const shift = (delta: number) => index.value = (index.value + delta % results.value.length + results.value.length) % results.value.length
+
+const activate = () => {
+  (document.activeElement as HTMLElement).blur()
+  const currentIndex = index.value
+  index.value = -1
+
+  if (query.value.length === 0)
+    return
+
+  if (currentIndex === -1)
+    router.push(`/search?q=${query.value}`)
+
+  router.push(results.value[currentIndex].to)
+}
 </script>
 
 <template>
-  <div py2 px4 relative group>
+  <div ref="el" relative px4 py2 group>
     <div bg-base border="~ base" h10 rounded-full flex="~ row" items-center relative outline-primary outline-1 focus-within:outline transition-all transition-duration-500>
       <div i-ri:search-2-line mx4 absolute pointer-events-none text-secondary mt="1px" />
-      <input v-model="query" h-full rounded-full w-full pl-10 bg-transparent outline="focus:none" pr-4 placeholder="Search Elk" pb="1px" placeholder-text-secondary>
+      <input
+        ref="input"
+        v-model="query"
+        h-full
+        pl-10
+        rounded-full
+        w-full
+        bg-transparent
+        outline="focus:none"
+        pr-4
+        :placeholder="`${t('nav_side.search')} Elk`"
+        pb="1px"
+        placeholder-text-secondary
+        @keydown.down.prevent="shift(1)"
+        @keydown.up.prevent="shift(-1)"
+        @keypress.enter="activate"
+      >
     </div>
-
-    <!-- Search Results -->
-    <div absolute mt-2 block left-0 right-0 px-4 z-5 group-focus-within="op100 pointer-events-auto" op0 pointer-events-none transition-opacity transition-100>
-      <div bg-base border="~ base" rounded-md max-h-120 overflow-auto overflow-x-hidden>
-        <template v-if="(!loading && !query) || !query">
-          <div py2 px-4 text-secondary text-sm text-center>
-            Try searching for accounts or hashtags
-          </div>
+    <!-- Results -->
+    <div p4 left-0 top-10 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
+      <div w-full bg-base border="~ base" rounded max-h-100 overflow-auto py2>
+        <template v-if="query.length === 0">
+          Try searching for accounts or hashtags
         </template>
-
-        <!-- Twitter seems to only include 3 hashtag results in a search. For now we'll copy that unless we come up with a better solution -->
-        <template v-if="hashtags && query">
-          <NuxtLink v-for="hashtag in hashtags.slice(0, 3)" :key="hashtag.name" :to="`/tags/${hashtag}`" px4 py2 block flex flex-row items-center gap-3>
-            <div w-12 h-12 rounded-full bg-active flex place-items-center place-content-center>
-              <div i-ri:hashtag text-secondary text-lg />
-            </div>
-            <div flex flex-col>
-              <span>
-                {{ hashtag.name }}
-              </span>
-              <span text-xs text-secondary>
-                {{ hashtag.following ? 'Following' : 'Not Following' }}
-              </span>
-            </div>
-          </NuxtLink>
+        <div v-if="loading" flex flex-col items-center gap-2 py-4>
+          <span text-secondary>Loading...</span>
+        </div>
+        <template v-else>
+          <SearchResult v-for="(result, i) in results" :key="result.to" :active="index === parseInt(i.toString())" :result="result" :tabindex="focused ? 0 : -1" />
         </template>
-
-        <template v-if="accounts && query">
-          <NuxtLink v-for="account in accounts" :key="account.id" :to="getAccountRoute(account)" px4 py2 block>
-            <AccountInfo :account="account" />
-          </NuxtLink>
-        </template>
-
-        <!-- Loading Skeleton -->
-        <template v-if="loading && query">
-          <div flex flex-col gap-2 px-4 py4>
-            <div v-for="_ in 3" :key="_" flex gap-4>
-              <div>
-                <div w-12 h-12 rounded-full class="skeleton-loading-bg" />
-              </div>
-              <div flex="~ col 1 gap-2" pb2 min-w-0>
-                <div flex class="skeleton-loading-bg" h-5 w-20 rounded />
-                <div flex class="skeleton-loading-bg" h-4 w-full rounded />
-              </div>
-            </div>
-          </div>
-        </template>
-
-        <NuxtLink v-if="query && !loading" to="/" block w-full text-center text-sm py2 hover:bg-active flex flex-row items-center justify-center text-secondary border="t-1 base">
-          View More Results
-        </NuxtLink>
       </div>
     </div>
   </div>

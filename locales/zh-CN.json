@@ -102,7 +102,8 @@
     "home": "主页",
     "local": "本地",
     "notifications": "通知",
-    "profile": "个人资料"
+    "profile": "个人资料",
+    "search": "搜索"
   },
   "nav_user": {
     "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。"
@@ -141,6 +142,8 @@
     "edited": "在 {0} 编辑了"
   },
   "tab": {
+    "accounts": "账号",
+    "hashtags": "标签",
     "media": "媒体",
     "notifications_all": "全部",
     "notifications_mention": "提及",

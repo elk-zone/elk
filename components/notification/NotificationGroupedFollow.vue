@@ -51,7 +51,7 @@ const isExpanded = ref(false)
           p3
         />
       </div>
-      <div v-else flex="~ wrap gap-2" p4>
+      <div v-else flex="~ wrap gap-1.75" p4>
         <AccountHoverWrapper
           v-for="item in items.items"
           :key="item.id"

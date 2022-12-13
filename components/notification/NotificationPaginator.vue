@@ -8,7 +8,6 @@ const { paginator, stream } = defineProps<{
 }>()
 
 const groupCapacity = Number.MAX_VALUE // No limit
-const minFollowGroupSize = 5 // Below this limit, show a profile card for each follow
 
 // Group by type (and status when applicable)
 const groupId = (item: Notification): string => {

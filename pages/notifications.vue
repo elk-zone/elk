@@ -5,31 +5,21 @@ definePageMeta({
 
 const { t } = useI18n()
 
-// Default limit is 20 notifications, and servers are normally caped to 30
-const paginatorAll = useMasto().notifications.iterate({ limit: 30 })
-const paginatorMention = useMasto().notifications.iterate({ limit: 30, types: ['mention'] })
-
-const { clearNotifications } = useNotifications()
-onActivated(clearNotifications)
-
-const stream = await useMasto().stream.streamUser()
-
 const tabs = $computed(() => [
   {
     name: 'all',
+    to: '/notifications',
     display: t('tab.notifications_all'),
-    paginator: paginatorAll,
   },
   {
     name: 'mention',
+    to: '/notifications/mention',
     display: t('tab.notifications_mention'),
-    paginator: paginatorMention,
   },
 ] as const)
 
 // Don't use local storage because it is better to default to Posts every time you visit a user's profile.
-const tab = $ref(tabs[0].name)
-const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
+const tab = $ref<'all' | 'mention'>(tabs[0].name)
 
 useHeadFixed({
   title: () => t('nav_side.notifications'),
@@ -46,10 +36,13 @@ useHeadFixed({
     </template>
 
     <template #header>
-      <CommonTabs v-model="tab" :options="tabs" />
+      <CommonRouteTabs replace :options="tabs" />
     </template>
+    <NuxtPage />
+    <!--
     <slot>
       <NotificationPaginator :key="tab" v-bind="{ paginator, stream }" />
     </slot>
+-->
   </MainContent>
 </template>

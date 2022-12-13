@@ -42,28 +42,37 @@ const { notification } = defineProps<{
       <AccountCard :account="notification.account" />
     </template>
     <template v-else-if="notification.type === 'favourite'">
-      <CommonMetaWrapper z-1>
-        <div i-ri:heart-fill text-xl mr-1 color-red />
-        <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
-      </CommonMetaWrapper>
-      <StatusCard op50 hover:op100 :status="notification.status!" :decorated="true" />
+      <StatusCard :status="notification.status!" :faded="true">
+        <template #meta>
+          <CommonMetaWrapper>
+            <div i-ri:heart-fill text-xl mr-1 color-red />
+            <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
+          </CommonMetaWrapper>
+        </template>
+      </StatusCard>
     </template>
     <template v-else-if="notification.type === 'reblog'">
-      <CommonMetaWrapper z-1>
-        <div i-ri:repeat-fill text-xl mr-1 color-green />
-        <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
-      </CommonMetaWrapper>
-      <StatusCard op50 hover:op100 :status="notification.status!" :decorated="true" />
+      <StatusCard :status="notification.status!" :faded="true">
+        <template #meta>
+          <CommonMetaWrapper>
+            <div i-ri:repeat-fill text-xl mr-1 color-green />
+            <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
+          </CommonMetaWrapper>
+        </template>
+      </StatusCard>
     </template>
     <template v-else-if="notification.type === 'update'">
-      <CommonMetaWrapper z-1>
-        <div i-ri:edit-2-fill text-xl mr-1 text-secondary />
-        <AccountInlineInfo :account="notification.account" mr1 />
-        <span ws-nowrap>
-          {{ $t('notification.update_status') }}
-        </span>
-      </CommonMetaWrapper>
-      <StatusCard :status="notification.status!" :decorated="true" />
+      <StatusCard :status="notification.status!" :faded="true">
+        <template #meta>
+          <CommonMetaWrapper z-1>
+            <div i-ri:edit-2-fill text-xl mr-1 text-secondary />
+            <AccountInlineInfo :account="notification.account" mr1 />
+            <span ws-nowrap>
+              {{ $t('notification.update_status') }}
+            </span>
+          </CommonMetaWrapper>
+        </template>
+      </StatusCard>
     </template>
     <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
       <StatusCard :status="notification.status!" />

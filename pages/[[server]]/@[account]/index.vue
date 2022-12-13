@@ -4,19 +4,12 @@ definePageMeta({
 })
 
 const params = useRoute().params
-const serverName = $(computedEager(() => toShortHandle(params.server as string)))
 const accountName = $(computedEager(() => toShortHandle(params.account as string)))
 
 const { t } = useI18n()
 
 const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null)))
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
-
-if (account) {
-  useHeadFixed({
-    title: () => `${getDisplayName(account)} (@${account.acct})`,
-  })
-}
 
 onReactivated(() => {
   // Silently update data when reentering the page

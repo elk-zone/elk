@@ -1,18 +1,24 @@
 <script setup lang="ts">
 import type { Account } from 'masto'
 
-const route = useRoute()
-const handle = $(computedEager(() => route.params.account as string))
-
 definePageMeta({ name: 'account-replies' })
+
+const { t } = useI18n()
+const params = useRoute().params
+const handle = $(computedEager(() => params.account as string))
 
 const { data: account } = await useAsyncData(`account:${handle}`, async () => (
   window.history.state?.account as Account | undefined)
     ?? await fetchAccountByHandle(handle),
 )
-const { t } = useI18n()
 
 const paginator = useMasto().accounts.iterateStatuses(account.value!.id, { onlyMedia: true, excludeReplies: false })
+
+if (account) {
+  useHeadFixed({
+    title: () => `${t('tab.posts_with_replies')} | ${getDisplayName(account.value!)} (@${account.value!.acct})`,
+  })
+}
 </script>
 
 <template>

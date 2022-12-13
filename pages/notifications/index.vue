@@ -1,8 +1,4 @@
 <script setup lang="ts">
-definePageMeta({
-  middleware: 'auth',
-})
-
 const { t } = useI18n()
 
 // Default limit is 20 notifications, and servers are normally caped to 30

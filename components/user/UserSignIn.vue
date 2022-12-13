@@ -3,9 +3,9 @@ import { DEFAULT_SERVER } from '~/constants'
 
 const input = $ref<HTMLInputElement>()
 let server = $ref<string>('')
-let busy = $ref(false)
-let error = $ref(false)
-let showError = $ref(false)
+let busy = $ref<boolean>(false)
+let error = $ref<boolean>(false)
+let displayError = $ref<boolean>(false)
 
 async function oauth() {
   if (busy)
@@ -13,16 +13,18 @@ async function oauth() {
 
   busy = true
   error = false
-  showError = false
+  displayError = false
+
+  await nextTick()
 
   if (server)
     server = server.split('/')[0]
 
   try {
-    location.href = await $fetch(`/api/${server || DEFAULT_SERVER}/login`)
+    location.href = await $fetch<string>(`/api/${server || DEFAULT_SERVER}/login`)
   }
   catch {
-    showError = true
+    displayError = true
     error = true
     await nextTick()
     input?.focus()
@@ -38,8 +40,8 @@ async function handleInput() {
   if (server.startsWith('https://'))
     server = server.replace('https://', '')
 
-  if (server.length > 0)
-    showError = false
+  if (server?.length)
+    displayError = false
 }
 
 onMounted(() => {
@@ -63,7 +65,7 @@ onMounted(() => {
         flex bg-gray:10 px4 py2 mxa rounded
         border="~ base" items-center font-mono
         focus:outline-none focus:ring="2 primary inset"
-        :class="showError ? 'border-red-600 dark:border-red-400' : null"
+        :class="displayError ? 'border-red-600 dark:border-red-400' : null"
       >
         <span text-secondary-light mr1>https://</span>
         <input
@@ -75,7 +77,7 @@ onMounted(() => {
       </div>
       <div min-h-4>
         <Transition css enter-active-class="animate animate-fade-in">
-          <p v-if="showError" role="alert" p-0 m-0 text-xs text-red-600 dark:text-red-400>
+          <p v-if="displayError" role="alert" p-0 m-0 text-xs text-red-600 dark:text-red-400>
             {{ $t('error.sign_in_error') }}
           </p>
         </Transition>

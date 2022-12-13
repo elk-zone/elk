@@ -91,7 +91,7 @@ export default defineNuxtConfig({
     keepalive: true,
     head: {
       // Prevent arbitrary zooming on mobile devices
-      viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no',
+      viewport: 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover',
       bodyAttrs: {
         class: 'overflow-x-hidden',
       },

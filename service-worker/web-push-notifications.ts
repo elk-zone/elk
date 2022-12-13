@@ -15,10 +15,17 @@ export const onPush = (event: PushEvent) => {
     preferred_locale,
   } = options
 
-  // TODO: check mention, there are 2 tabs but no page
-  const url = notification_type === 'follow'
-    ? 'notifications'
-    : 'home'
+  let url = 'home'
+  if (notification_type) {
+    switch (notification_type) {
+      case 'follow':
+        url = 'notifications'
+        break
+      case 'mention':
+        url = 'notifications/mention'
+        break
+    }
+  }
 
   const notificationOptions: NotificationOptions = {
     badge: '/pwa-192x192.png',

@@ -40,6 +40,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
           v-if="status.mediaAttachments?.length"
           :status="status"
           :class="status.visibility === 'direct' ? 'pb4' : ''"
+          full-size
         />
         <StatusPreviewCard v-if="status.card" :card="status.card" :class="status.visibility === 'direct' ? 'pb4' : ''" />
       </StatusSpoiler>

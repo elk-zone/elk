@@ -4,6 +4,8 @@ definePageMeta({
 })
 
 const { t } = useI18n()
+const showSettings = ref(false)
+const pwaEnabled = useRuntimeConfig().public.pwaEnabled
 
 const tabs = $computed(() => [
   {
@@ -28,9 +30,23 @@ const tabs = $computed(() => [
       </NuxtLink>
     </template>
 
+    <template v-if="pwaEnabled" #actions>
+      <button
+        flex rounded-4 p2
+        hover:bg-active cursor-pointer transition-100
+        :title="$t(showSettings ? 'notification.settings.close_btn' : 'notification.settings.show_btn')"
+        @click="showSettings = !showSettings"
+      >
+        <span aria-hidden="true" :class="showSettings ? 'i-ri:close-circle-line' : 'i-ri:settings-3-fill'" />
+      </button>
+    </template>
+
     <template #header>
       <CommonRouteTabs replace :options="tabs" />
     </template>
-    <NuxtPage />
+    <template v-if="pwaEnabled">
+      <NotificationPreferences :show="showSettings" />
+    </template>
+    <NuxtPage :show="showSettings" />
   </MainContent>
 </template>

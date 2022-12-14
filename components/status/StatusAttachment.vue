@@ -30,7 +30,7 @@ const aspectRatio = computed(() => {
   if (fullSize)
     return rawAspectRatio.value
   if (rawAspectRatio.value)
-    return clamp(rawAspectRatio.value, 0.8, 1.5)
+    return clamp(rawAspectRatio.value, 0.8, 2.5)
   return undefined
 })
 

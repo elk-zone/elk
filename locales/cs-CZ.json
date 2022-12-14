@@ -46,7 +46,7 @@
     "switch_account": "Přepnout účet",
     "vote": "Hlasovat"
   },
-  "app_desc_short": "Elk - Mastodon klient vytvořený s 🧡",
+  "app_desc_short": "Elk - hbitý webklient pro Mastodon.",
   "app_logo": "logo Elk",
   "app_name": "Elk",
   "command": {

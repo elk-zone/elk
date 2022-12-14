@@ -46,7 +46,7 @@
     "switch_account": "Account wechseln",
     "vote": "Abstimmen"
   },
-  "app_desc_short": "Ein mit 🧡 gemachter Mastodon-Client",
+  "app_desc_short": "Ein flinker Mastodon Web-Client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
   "command": {

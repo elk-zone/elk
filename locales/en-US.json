@@ -167,7 +167,7 @@
       "dismiss": "Dismiss"
     },
     "poll": {
-      "count": "{n} votes",
+      "count": "{n} votes|{n} vote|{n} votes",
       "ends": "ends {0}",
       "finished": "finished {0}"
     },
@@ -224,7 +224,7 @@
     "year_past": "0 years ago|last year|{n} years ago"
   },
   "timeline": {
-    "show_new_items": "Show {n} new items"
+    "show_new_items": "Show {n} new items|Show {n} new item|Show {n} new items"
   },
   "title": {
     "federated_timeline": "Federated Timeline",

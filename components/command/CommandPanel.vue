@@ -53,24 +53,32 @@ const intoView = (index: number) => {
   if (el)
     el.scrollIntoView({ block: 'nearest' })
 }
+
+function setActive(index: number) {
+  const len = result.length
+  active = (index + len) % len
+  intoView(active)
+}
+
 const onKeyDown = (e: KeyboardEvent) => {
   switch (e.key) {
+    case 'p':
     case 'ArrowUp': {
+      if (e.key === 'p' && !e.ctrlKey)
+        break
       e.preventDefault()
 
-      active = Math.max(0, active - 1)
-
-      intoView(active)
+      setActive(active - 1)
 
       break
     }
-
+    case 'n':
     case 'ArrowDown': {
+      if (e.key === 'n' && !e.ctrlKey)
+        break
       e.preventDefault()
 
-      active = Math.min(result.length - 1, active + 1)
-
-      intoView(active)
+      setActive(active + 1)
 
       break
     }
@@ -88,9 +96,7 @@ const onKeyDown = (e: KeyboardEvent) => {
     case 'End': {
       e.preventDefault()
 
-      active = result.length - 1
-
-      intoView(active)
+      setActive(result.length - 1)
 
       break
     }

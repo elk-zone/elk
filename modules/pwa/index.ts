@@ -1,10 +1,7 @@
-import { promises as fs } from 'node:fs'
-import { addServerHandler, createResolver, defineNuxtModule, resolvePath } from '@nuxt/kit'
+import { defineNuxtModule } from '@nuxt/kit'
 import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
 import type { Plugin } from 'vite'
-import { joinURL } from 'ufo'
-import { isCI } from 'std-env'
 import type { VitePWANuxtOptions } from './types'
 import { configurePWAOptions } from './config'
 
@@ -19,17 +16,17 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     scope: nuxt.options.app.baseURL,
   }),
   async setup(options, nuxt) {
-    const resolver = createResolver(import.meta.url)
-
-    nuxt.hook('nitro:init', (nitro) => {
-      options.outDir = nitro.options.output.publicDir
-    })
-
     let vitePwaClientPlugin: Plugin | undefined
     const resolveVitePluginPWAAPI = (): VitePluginPWAAPI | undefined => {
       return vitePwaClientPlugin?.api
     }
 
+    // TODO: combine with configurePWAOptions?
+    nuxt.hook('nitro:init', (nitro) => {
+      options.outDir = nitro.options.output.publicDir
+      options.injectManifest = options.injectManifest || {}
+      options.injectManifest.globDirectory = nitro.options.output.publicDir
+    })
     nuxt.hook('vite:extend', ({ config }) => {
       const plugin = config.plugins?.find(p => p && typeof p === 'object' && 'name' in p && p.name === 'vite-plugin-pwa')
       if (plugin)
@@ -48,68 +45,39 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         vitePwaClientPlugin = plugins.find(p => p.name === 'vite-plugin-pwa') as Plugin
     })
 
-    const generateSWStrategy = !options.strategies || options.strategies === 'generateSW'
-
     if (nuxt.options.dev) {
       const webManifest = `${nuxt.options.app.baseURL}${options.devOptions?.webManifestUrl ?? options.manifestFilename ?? 'manifest.webmanifest'}`
       const devSw = `${nuxt.options.app.baseURL}dev-sw.js?dev-sw`
       const workbox = `${nuxt.options.app.baseURL}workbox-`
-      nuxt.hooks.hook('vite:serverCreated', (viteServer, { isClient }) => {
-        if (isClient) {
-          viteServer.middlewares.stack.push({
-            route: webManifest,
-            // @ts-expect-error just ignore
-            handle: (_req, _res, next) => {
-              next()
-            },
-          })
-          viteServer.middlewares.stack.push({
-            route: devSw,
-            // @ts-expect-error just ignore
-            handle: (_req, _res, next) => {
-              next()
-            },
-          })
-          if (generateSWStrategy) {
-            viteServer.middlewares.stack.push({
-              route: workbox,
-              // @ts-expect-error just ignore
-              handle: (_req, _res, next) => {
-                next()
-              },
-            })
-          }
-        }
-      })
-    }
-    else if (!options.disable && !isCI) {
-      const { filename = 'sw.js', srcDir = 'public' } = options
-      const swSrc = await resolvePath(joinURL(nuxt.options.rootDir, srcDir, filename))
-      const stats = await fs.stat(swSrc)
-      let useFilename = filename
-      if (stats && stats.isFile() && options.strategies === 'injectManifest' && filename.endsWith('.ts'))
-        useFilename = `${filename.substring(0, filename.lastIndexOf('.'))}.js`
+      // @ts-expect-error just ignore
+      const emptyHandle = (_req, _res, next) => {
+        next()
+      }
+      nuxt.hook('vite:serverCreated', (viteServer, { isServer }) => {
+        if (isServer)
+          return
 
-      addServerHandler({
-        route: `${nuxt.options.app.baseURL}${useFilename}`,
-        handler: resolver.resolve('./runtime/sw.ts'),
-        middleware: true,
-        method: 'GET',
+        viteServer.middlewares.stack.push({ route: webManifest, handle: emptyHandle })
+        viteServer.middlewares.stack.push({ route: devSw, handle: emptyHandle })
       })
-      nuxt.hook('nitro:build:before', async (nitro) => {
-        nitro.options.runtimeConfig.swDir = options.outDir
-        nitro.options.runtimeConfig.swName = useFilename
+      if (!options.strategies || options.strategies === 'generateSW') {
+        nuxt.hook('vite:serverCreated', (viteServer, { isServer }) => {
+          if (isServer)
+            return
+
+          viteServer.middlewares.stack.push({ route: workbox, handle: emptyHandle })
+        })
+        nuxt.hook('close', async () => {
+          // todo: cleanup dev-dist folder
+        })
+      }
+    }
+    else {
+      nuxt.hook('nitro:init', (nitro) => {
+        nitro.hooks.hook('rollup:before', async () => {
+          await resolveVitePluginPWAAPI()?.generateSW()
+        })
       })
     }
-    nuxt.hook('close', async () => {
-      if (nuxt.options.dev) {
-        if (generateSWStrategy) {
-          // todo: cleanup dev-dist folder
-        }
-      }
-      else {
-        await resolveVitePluginPWAAPI()?.generateSW()
-      }
-    })
   },
 })

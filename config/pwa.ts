@@ -40,7 +40,6 @@ const pwa: VitePWANuxtOptions = {
     ],
   },
   injectManifest: {
-    globDirectory: isCI ? './dist' : '.output/public',
     globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
   },
   devOptions: {

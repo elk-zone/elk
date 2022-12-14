@@ -151,6 +151,12 @@ async function onDrop(files: File[] | null) {
 }
 
 const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
+
+defineExpose({
+  focusEditor: () => {
+    editor.value?.commands?.focus?.()
+  },
+})
 </script>
 
 <template>

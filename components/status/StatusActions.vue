@@ -7,6 +7,8 @@ const props = defineProps<{
   command?: boolean
 }>()
 
+const focusEditor = inject<() => void>('focus-editor')
+
 const { details, command } = $(props)
 
 const {
@@ -21,7 +23,7 @@ const reply = () => {
   if (!checkLogin())
     return
   if (details) {
-    // TODO focus to editor
+    focusEditor?.()
   }
   else {
     const { key, draft } = getReplyDraft(status)

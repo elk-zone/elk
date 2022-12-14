@@ -144,7 +144,7 @@ export default {
             <!-- We use `class` here to make v-bind being able to be override them -->
             <div
               ref="elDialogMain"
-              class="dialog-main w-full rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-w-125 max-h-full of-y-auto overscroll-contain touch-pan-y touch-pan-x"
+              class="dialog-main rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-h-full of-y-auto overscroll-contain touch-pan-y touch-pan-x"
               v-bind="bindTypeToAny($attrs)"
             >
               <slot />

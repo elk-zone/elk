@@ -2,9 +2,16 @@
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import { STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS } from '~~/constants'
+
+const { t } = useI18n()
+
 const paginator = useMasto().trends.links
 
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS, false)
+
+useHeadFixed({
+  title: () => `${t('tab.news')} | ${t('nav_side.explore')}`,
+})
 </script>
 
 <template>

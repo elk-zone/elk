@@ -6,7 +6,8 @@ const props = defineProps<{
 }>()
 const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumber()
 
-const statusesCount = $computed(() => formatNumber(props.account.statusesCount))
+const statusesCount = $computed(() => formatHumanReadableNumber(props.account.statusesCount))
+const statusesCountSR = $computed(() => forSR(props.account.statusesCount))
 const followingCount = $computed(() => formatHumanReadableNumber(props.account.followingCount))
 const followingCountSR = $computed(() => forSR(props.account.followingCount))
 const followersCount = $computed(() => formatHumanReadableNumber(props.account.followersCount))
@@ -15,31 +16,48 @@ const followersCountSR = $computed(() => forSR(props.account.followersCount))
 
 <template>
   <div flex gap-5>
-    <NuxtLink :to="getAccountRoute(account)" text-secondary exact-active-class="text-primary">
+    <NuxtLink
+      :to="getAccountRoute(account)"
+      text-secondary
+      exact-active-class="text-primary"
+      :class="statusesCountSR ? 'flex gap-x-1' : null"
+    >
       <template #default="{ isExactActive }">
         <i18n-t keypath="account.posts_count" :plural="account.statusesCount">
-          <span font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ statusesCount }}</span>
+          <CommonTooltip v-if="statusesCountSR" :content="formatNumber(account.statusesCount)" placement="bottom">
+            <span aria-hidden="true" font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ statusesCount }}</span>
+            <span sr-only font-bold>{{ account.statusesCount }}</span>
+          </CommonTooltip>
+          <span v-else font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ statusesCount }}</span>
         </i18n-t>
       </template>
     </NuxtLink>
-    <NuxtLink :to="getAccountFollowingRoute(account)" text-secondary exact-active-class="text-primary">
+    <NuxtLink
+      :to="getAccountFollowingRoute(account)"
+      text-secondary exact-active-class="text-primary"
+      :class="followingCountSR ? 'flex gap-x-1' : null"
+    >
       <template #default="{ isExactActive }">
-        <i18n-t keypath="account.following_count">
-          <span v-if="followingCountSR">
+        <i18n-t keypath="account.following_count" :plural="account.followingCount">
+          <CommonTooltip v-if="followingCountSR" :content="formatNumber(account.followingCount)" placement="bottom">
             <span aria-hidden="true" font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followingCount }}</span>
             <span sr-only font-bold>{{ account.followingCount }}</span>
-          </span>
+          </CommonTooltip>
           <span v-else font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followingCount }}</span>
         </i18n-t>
       </template>
     </NuxtLink>
-    <NuxtLink :to="getAccountFollowersRoute(account)" text-secondary exact-active-class="text-primary">
+    <NuxtLink
+      :to="getAccountFollowersRoute(account)"
+      text-secondary exact-active-class="text-primary"
+      :class="followersCountSR ? 'flex gap-x-1' : null"
+    >
       <template #default="{ isExactActive }">
         <i18n-t keypath="account.followers_count" :plural="account.followersCount">
-          <span v-if="followersCountSR">
+          <CommonTooltip v-if="followersCountSR" :content="formatNumber(account.followersCount)" placement="bottom">
             <span aria-hidden="true" font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followersCount }}</span>
             <span sr-only font-bold>{{ account.followersCount }}</span>
-          </span>
+          </CommonTooltip>
           <span v-else font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followersCount }}</span>
         </i18n-t>
       </template>

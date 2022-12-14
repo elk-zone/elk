@@ -16,21 +16,33 @@ const isExpanded = ref(false)
   <article flex flex-col relative>
     <div flex items-center top-0 left-2 pt-2 px-3>
       <div i-ri:user-follow-fill mr-3 color-primary aria-hidden="true" />
-      <template v-if="addSR">
-        <span
-          aria-hidden="true"
-        >
-          {{ $t('notification.followed_you_count', count, { named: { followers: formatHumanReadableNumber(count) } }) }}
-        </span>
-        <span sr-only>
+      <template v-if="count > 1">
+        <template v-if="addSR">
+          <span
+            aria-hidden="true"
+          >
+            {{ $t('notification.followed_you_count', count, { named: { followers: formatHumanReadableNumber(count) } }) }}
+          </span>
+          <span sr-only>
+            {{ $t('notification.followed_you_count', count, { named: { followers: count } }) }}
+          </span>
+        </template>
+        <span v-else>
           {{ $t('notification.followed_you_count', count, { named: { followers: count } }) }}
         </span>
       </template>
-      <span v-else>
-        {{ $t('notification.followed_you_count', count, { named: { followers: count } }) }}
-      </span>
+      <template v-else>
+        <ContentRich
+          text-primary mr-1 font-bold line-clamp-1 ws-pre-wrap break-all
+          :content="getDisplayName(items.items[0]?.account, { rich: true })"
+          :emojis="items.items[0]?.account.emojis"
+        />
+        <span mr-1 ws-nowrap>
+          {{ $t('notification.followed_you') }}
+        </span>
+      </template>
     </div>
-    <div pt-1 pb-2>
+    <div pb-2>
       <div v-if="isExpanded">
         <AccountCard
           v-for="item in items.items"
@@ -39,7 +51,7 @@ const isExpanded = ref(false)
           p3
         />
       </div>
-      <div v-else flex="~ wrap gap-1" p4>
+      <div v-else flex="~ wrap gap-1.75" p4>
         <AccountHoverWrapper
           v-for="item in items.items"
           :key="item.id"

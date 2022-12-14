@@ -8,8 +8,17 @@ const props = defineProps<{
   /** When it is root card in the list, not appear as a child card */
   root?: boolean
 }>()
+
+// mastodon's default max og image width
+const ogImageWidth = 400
+
 const alt = $computed(() => `${props.card.title} - ${props.card.title}`)
-const isSquare = $computed(() => props.smallPictureOnly || props.card.width === props.card.height)
+const isSquare = $computed(() => (
+  props.smallPictureOnly
+  || props.card.width === props.card.height
+  || Number(props.card.width || 0) < ogImageWidth
+  || Number(props.card.height || 0) < ogImageWidth / 2
+))
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';

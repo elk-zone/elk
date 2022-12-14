@@ -4,11 +4,13 @@
     "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
+    "bot": "BOT",
     "favourites": "Favourites",
     "follow": "Follow",
     "follow_back": "Follow back",
     "follow_requested": "Requested",
-    "followers_count": "{0} Followers",
+    "followers": "Followers",
+    "followers_count": "{0} Followers|{0} Follower|{0} Followers",
     "following": "Following",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
@@ -18,7 +20,8 @@
     "muted_users": "Muted users",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
-    "posts_count": "{0} Posts",
+    "posts": "Posts",
+    "posts_count": "{0} posts|{0} post|{0} posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
     "unfollow": "Unfollow"
@@ -28,6 +31,7 @@
     "bookmarked": "Bookmarked",
     "boost": "Boost",
     "boosted": "Boosted",
+    "close": "Close",
     "compose": "Compose",
     "enter_app": "Enter App",
     "favourite": "Favourite",
@@ -72,6 +76,7 @@
   "error": {
     "account_not_found": "Account {0} not found",
     "explore-list-empty": "Nothing is trending right now. Check back later!",
+    "sign_in_error": "Cannot connect to the server.",
     "status_not_found": "Status not found"
   },
   "feature_flag": {
@@ -133,7 +138,7 @@
   "notification": {
     "favourited_post": "favourited your post",
     "followed_you": "followed you",
-    "followed_you_count": "{n} person followed you|{n} people followed you",
+    "followed_you_count": "{followers} people followed you|{followers} person followed you|{followers} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
@@ -183,8 +188,12 @@
     "filter_hidden_phrase": "Filtered by",
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
+    "img_alt": {
+      "desc": "Description",
+      "dismiss": "Dismiss"
+    },
     "poll": {
-      "count": "{n} votes",
+      "count": "{n} votes|{n} vote|{n} votes",
       "ends": "ends {0}",
       "finished": "finished {0}"
     },
@@ -241,7 +250,7 @@
     "year_past": "0 years ago|last year|{n} years ago"
   },
   "timeline": {
-    "show_new_items": "Show {n} new items"
+    "show_new_items": "Show {n} new items|Show {n} new item|Show {n} new items"
   },
   "title": {
     "federated_timeline": "Federated Timeline",

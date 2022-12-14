@@ -18,7 +18,6 @@ export default defineEventHandler(async (event) => {
     redirect_uri: getRedirectURI(server),
     response_type: 'code',
   })
-  const url = `https://${server}/oauth/authorize?${query}`
 
-  await sendRedirect(event, url, 302)
+  return `https://${server}/oauth/authorize?${query}`
 })

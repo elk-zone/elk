@@ -11,6 +11,7 @@ const route = useRoute()
 const id = $(computedEager(() => route.params.status as string))
 const main = ref<ComponentPublicInstance | null>(null)
 let bottomSpace = $ref(0)
+const publishWidget = ref()
 
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(`status:${id}`, async () => (
   window.history.state?.status as Status | undefined)
@@ -39,6 +40,12 @@ if (pendingContext) {
   })
 }
 
+const focusEditor = () => {
+  publishWidget.value?.focusEditor?.()
+}
+
+provide('focus-editor', focusEditor)
+
 onReactivated(() => {
   // Silently update data when reentering the page
   // The user will see the previous content first, and any changes will be updated to the UI when the request is completed
@@ -66,6 +73,7 @@ onReactivated(() => {
         />
         <PublishWidget
           v-if="currentUser"
+          ref="publishWidget"
           :draft-key="replyDraft!.key"
           :initial="replyDraft!.draft"
           border="t base"

@@ -11,10 +11,12 @@ const humanReadableNumber = (
   if (num < 10000)
     return useFormatter.format(num)
 
+  // show 1 decimal: we cannot use toFixed(1), it is a string
   if (num < 1000000)
-    return `${Math.floor(num / 1000)}${k}`
+    return `${useFormatter.format(Math.floor(num / 100) / 10)}${k}`
 
-  return `${Math.floor(num / 1000000)}${m}`
+  // show 2 decimals: we cannot use toFixed(2), it is a string
+  return `${useFormatter.format(Math.floor(num / 10000) / 100)}${m}`
 }
 
 export const formattedNumber = (num: number, useFormatter: Intl.NumberFormat = formatter) => {

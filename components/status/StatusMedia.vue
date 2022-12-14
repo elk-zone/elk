@@ -3,7 +3,7 @@ import type { Status } from 'masto'
 
 const { status } = defineProps<{
   status: Status
-  minimized?: boolean
+  fullSize?: boolean
 }>()
 </script>
 
@@ -13,7 +13,7 @@ const { status } = defineProps<{
       <StatusAttachment
         :attachment="attachment"
         :attachments="status.mediaAttachments"
-        :class="{ 'max-h-72': minimized }"
+        :full-size="fullSize"
         w-full
         h-full
       />

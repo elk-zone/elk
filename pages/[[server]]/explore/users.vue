@@ -1,9 +1,15 @@
 <script lang="ts" setup>
+const { t } = useI18n()
+
 // limit: 20 is the default configuration of the official client
 const { data, pending, error } = useLazyAsyncData(
   () => useMasto().suggestions.fetchAll({ limit: 20 }),
   { immediate: true },
 )
+
+useHeadFixed({
+  title: () => `${t('tab.for_you')} | ${t('nav_side.explore')}`,
+})
 </script>
 
 <template>

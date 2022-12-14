@@ -11,12 +11,6 @@ const { t } = useI18n()
 const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null)))
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
 
-if (account) {
-  useHeadFixed({
-    title: () => `${getDisplayName(account)} (@${account.acct})`,
-  })
-}
-
 onReactivated(() => {
   // Silently update data when reentering the page
   // The user will see the previous content first, and any changes will be updated to the UI when the request is completed

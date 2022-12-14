@@ -1,9 +1,15 @@
 <script lang="ts" setup>
 import { STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS } from '~~/constants'
 
+const { t } = useI18n()
+
 const paginator = useMasto().trends.iterateStatuses()
 
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS, false)
+
+useHeadFixed({
+  title: () => `${t('tab.posts')} | ${t('nav_side.explore')}`,
+})
 </script>
 
 <template>

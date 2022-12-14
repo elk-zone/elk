@@ -141,10 +141,10 @@ const type = $computed(() => {
           <div p4 flex flex-col gap-2 max-w-130>
             <div flex justify-between>
               <h2 font-bold text-xl text-secondary>
-                Description
+                {{ $t('status.img_alt.desc') }}
               </h2>
               <button v-close-popper text-sm btn-outline py0 px2 text-secondary border-base>
-                Dismiss
+                {{ $t('status.img_alt.dismiss') }}
               </button>
             </div>
             <p>

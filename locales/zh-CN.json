@@ -161,6 +161,10 @@
     "filter_hidden_phrase": "筛选依据",
     "filter_removed_phrase": "从筛选中移除",
     "filter_show_anyway": "仍然展示",
+    "img_alt": {
+      "desc": "描述",
+      "dismiss": "忽略"
+    },
     "poll": {
       "count": "{n} 次投票",
       "ends": "将在 {0} 结束",

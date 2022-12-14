@@ -161,6 +161,10 @@
     "filter_hidden_phrase": "Filtered by",
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
+    "img_alt": {
+      "desc": "Description",
+      "dismiss": "Dismiss"
+    },
     "poll": {
       "count": "{n} votes",
       "ends": "ends {0}",

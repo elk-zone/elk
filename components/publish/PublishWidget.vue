@@ -189,8 +189,7 @@ const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
         <div relative flex-1 flex flex-col>
           <EditorContent
             :editor="editor"
-            flex
-            class="max-w-100%"
+            flex max-w-full
             :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
           />
           <div v-if="shouldExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>

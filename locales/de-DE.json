@@ -65,7 +65,7 @@
   "common": {
     "end_of_list": "Ende der Liste",
     "error": "FEHLER",
-    "kiloSuffix": "K",
+    "kiloSuffix": "T",
     "megaSuffix": "M",
     "not_found": "404 Nicht Gefunden",
     "offline_desc": "Anscheinend bist du offline. Bitte überprüfe deine Netzwerkverbindung."

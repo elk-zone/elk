@@ -21,6 +21,10 @@ export default defineNuxtModule<VitePWANuxtOptions>({
   async setup(options, nuxt) {
     const resolver = createResolver(import.meta.url)
 
+    nuxt.hook('nitro:init', (nitro) => {
+      options.outDir = nitro.options.output.publicDir
+    })
+
     let vitePwaClientPlugin: Plugin | undefined
     const resolveVitePluginPWAAPI = (): VitePluginPWAAPI | undefined => {
       return vitePwaClientPlugin?.api
@@ -92,9 +96,9 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         middleware: true,
         method: 'GET',
       })
-      nuxt.hook('nitro:build:before', async (builder) => {
-        builder.options.runtimeConfig.swDir = options.outDir as string
-        builder.options.runtimeConfig.swName = useFilename
+      nuxt.hook('nitro:build:before', async (nitro) => {
+        nitro.options.runtimeConfig.swDir = options.outDir
+        nitro.options.runtimeConfig.swName = useFilename
       })
     }
     nuxt.hook('close', async () => {

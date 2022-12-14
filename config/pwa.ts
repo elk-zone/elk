@@ -8,8 +8,6 @@ const pwa: VitePWANuxtOptions = {
   // disabled PWA only on production
   disable: !isPreview && process.env.VITE_DEV_PWA !== 'true',
   scope: '/',
-  // netlify preset output goes to dist folder
-  outDir: isCI ? './dist' : '../.output/public',
   srcDir: './service-worker',
   filename: 'sw.ts',
   strategies: 'injectManifest',

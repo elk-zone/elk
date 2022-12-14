@@ -4,6 +4,7 @@
     "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
+    "bot": "BOT",
     "favourites": "Favourites",
     "follow": "Follow",
     "follow_back": "Follow back",
@@ -160,6 +161,10 @@
     "filter_hidden_phrase": "Filtered by",
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
+    "img_alt": {
+      "desc": "Description",
+      "dismiss": "Dismiss"
+    },
     "poll": {
       "count": "{n} votes",
       "ends": "ends {0}",

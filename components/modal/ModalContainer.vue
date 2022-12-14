@@ -11,8 +11,16 @@ import {
 const isMac = useIsMac()
 
 // TODO: temporary, await for keybind system
+// open search panel
+// listen to ctrl+k on windows/linux or cmd+k on mac
+// open command panel
 // listen to ctrl+/ on windows/linux or cmd+/ on mac
+// or shift+ctrl+k on windows/linux or shift+cmd+k on mac
 useEventListener('keydown', (e: KeyboardEvent) => {
+  if (e.key === 'k' && (isMac.value ? e.metaKey : e.ctrlKey)) {
+    e.preventDefault()
+    openCommandPanel(e.shiftKey)
+  }
   if (e.key === '/' && (isMac.value ? e.metaKey : e.ctrlKey)) {
     e.preventDefault()
     openCommandPanel(true)
@@ -24,7 +32,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   <ModalDialog v-model="isSigninDialogOpen" py-4 px-8>
     <UserSignIn />
   </ModalDialog>
-  <ModalDialog v-model="isPreviewHelpOpen">
+  <ModalDialog v-model="isPreviewHelpOpen" max-w-125>
     <HelpPreview @close="closePreviewHelp()" />
   </ModalDialog>
   <ModalDialog v-model="isPublishDialogOpen" max-w-180 flex>

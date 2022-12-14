@@ -4,10 +4,12 @@
     "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
+    "bot": "BOT",
     "favourites": "Favourites",
     "follow": "Follow",
     "follow_back": "Follow back",
     "follow_requested": "Requested",
+    "followers": "Followers",
     "followers_count": "{0} Followers",
     "following": "Following",
     "following_count": "{0} Following",
@@ -18,6 +20,7 @@
     "muted_users": "Muted users",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
+    "posts": "Posts",
     "posts_count": "{0} Posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
@@ -28,6 +31,7 @@
     "bookmarked": "Bookmarked",
     "boost": "Boost",
     "boosted": "Boosted",
+    "close": "Close",
     "compose": "Compose",
     "enter_app": "Enter App",
     "favourite": "Favourite",
@@ -72,6 +76,7 @@
   "error": {
     "account_not_found": "Account {0} not found",
     "explore-list-empty": "Nothing is trending right now. Check back later!",
+    "sign_in_error": "Cannot connect to the server.",
     "status_not_found": "Status not found"
   },
   "feature_flag": {
@@ -157,6 +162,10 @@
     "filter_hidden_phrase": "Filtered by",
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
+    "img_alt": {
+      "desc": "Description",
+      "dismiss": "Dismiss"
+    },
     "poll": {
       "count": "{n} votes",
       "ends": "ends {0}",

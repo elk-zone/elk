@@ -8,7 +8,6 @@ const { paginator, stream } = defineProps<{
 }>()
 
 const groupCapacity = Number.MAX_VALUE // No limit
-const minFollowGroupSize = 5 // Below this limit, show a profile card for each follow
 
 // Group by type (and status when applicable)
 const groupId = (item: Notification): string => {
@@ -40,12 +39,22 @@ function groupItems(items: Notification[]): NotificationSlot[] {
     // Only group follow notifications when there are too many in a row
     // This normally happens when you transfer an account, if not, show
     // a big profile card for each follow
-    if (group[0].type === 'follow' && group.length > minFollowGroupSize) {
-      results.push({
-        id: `grouped-${id++}`,
-        type: `grouped-${group[0].type}`,
-        items: group,
-      })
+    if (group[0].type === 'follow') {
+      const toGroup = []
+      for (const item of group) {
+        const hasHeader = !item.account.header.endsWith('/original/missing.png')
+        if (hasHeader && (item.account.followersCount > 250 || (group.length === 1 && item.account.followersCount > 25)))
+          results.push(item)
+        else
+          toGroup.push(item)
+      }
+      if (toGroup.length > 0) {
+        results.push({
+          id: `grouped-${id++}`,
+          type: `grouped-${group[0].type}`,
+          items: toGroup,
+        })
+      }
       return
     }
 

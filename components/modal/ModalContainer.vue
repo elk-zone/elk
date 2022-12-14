@@ -32,7 +32,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   <ModalDialog v-model="isSigninDialogOpen" py-4 px-8>
     <UserSignIn />
   </ModalDialog>
-  <ModalDialog v-model="isPreviewHelpOpen">
+  <ModalDialog v-model="isPreviewHelpOpen" max-w-125>
     <HelpPreview @close="closePreviewHelp()" />
   </ModalDialog>
   <ModalDialog v-model="isPublishDialogOpen" max-w-180 flex>

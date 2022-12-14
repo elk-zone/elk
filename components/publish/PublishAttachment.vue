@@ -15,7 +15,7 @@ defineEmits<{
 }>()
 
 const isEditDialogOpen = ref(false)
-const description = ref(props.attachment.description)
+const description = ref(props.attachment.description ?? '')
 </script>
 
 <template>

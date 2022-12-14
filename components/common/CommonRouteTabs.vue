@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
 
-const { options, command, replace } = $defineProps<{
+const { options, command, replace, preventScrollTop = false } = $defineProps<{
   options: {
     to: RouteLocationRaw
     display: string
@@ -10,6 +10,7 @@ const { options, command, replace } = $defineProps<{
   }[]
   command?: boolean
   replace?: boolean
+  preventScrollTop?: boolean
 }>()
 
 const router = useRouter()
@@ -36,7 +37,7 @@ useCommands(() => command
       tabindex="1"
       hover:bg-active transition-100
       exact-active-class="children:(font-bold !border-primary !op100)"
-      @click="$scrollToTop"
+      @click="!preventScrollTop && $scrollToTop()"
     >
       <span ws-nowrap mxa sm:px2 sm:py3 py2 text-center border-b-3 op50 hover:op70 border-transparent>{{ option.display }}</span>
     </NuxtLink>

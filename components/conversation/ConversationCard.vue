@@ -12,12 +12,15 @@ const withAccounts = $computed(() =>
 
 <template>
   <article v-if="conversation.lastStatus" flex flex-col gap-2>
-    <div absolute flex gap-2 text-sm text-secondary font-bold left-3 px2 pt2>
-      <p mr-1>
-        {{ $t('conversation.with') }}
-      </p>
-      <AccountAvatar v-for="account in withAccounts" :key="account.id" h-5 w-5 :account="account" />
-    </div>
-    <StatusCard v-if="conversation.lastStatus" :decorated="true" :status="conversation.lastStatus" :actions="false" />
+    <StatusCard v-if="conversation.lastStatus" :status="conversation.lastStatus" :actions="false">
+      <template #meta>
+        <div flex gap-2 text-sm text-secondary font-bold>
+          <p mr-1>
+            {{ $t('conversation.with') }}
+          </p>
+          <AccountAvatar v-for="account in withAccounts" :key="account.id" h-5 w-5 :account="account" />
+        </div>
+      </template>
+    </StatusCard>
   </article>
 </template>

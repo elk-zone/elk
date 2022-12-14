@@ -7,7 +7,7 @@ const props = withDefaults(
     actions?: boolean
     context?: FilterContext
     hover?: boolean
-    decorated?: boolean
+    faded?: boolean
     showReplyTo?: boolean
   }>(),
   { actions: true, showReplyTo: true },
@@ -62,13 +62,17 @@ const showRebloggedByAvatarOnAvatar = rebloggedBy && avatarOnAvatar && reblogged
 
 <template>
   <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 pt-3 pb-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
-    <StatusReplyingTo v-if="showReplyTo" :status="status" />
-    <CommonMetaWrapper v-if="rebloggedBy" text-secondary text-sm ws-nowrap>
-      <div i-ri:repeat-fill mr-1 text-primary />
-      <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
-    </CommonMetaWrapper>
-    <div v-if="decorated || rebloggedBy || (showReplyTo && status.inReplyToAccountId)" h-6 />
-    <div flex gap-4>
+    <div flex justify-between pb1>
+      <slot name="meta">
+        <div v-if="rebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center>
+          <div i-ri:repeat-fill mr-1 text-primary />
+          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
+        </div>
+        <div v-else />
+      </slot>
+      <StatusReplyingTo v-if="showReplyTo" :status="status" :class="faded ? 'text-secondary-light' : ''" />
+    </div>
+    <div flex gap-4 :class="faded ? 'text-secondary' : ''">
       <div relative>
         <AccountHoverWrapper :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-4' : 'mt-1'">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
@@ -109,14 +113,21 @@ const showRebloggedByAvatarOnAvatar = rebloggedBy && avatarOnAvatar && reblogged
               <p>{{ status.spoilerText || `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
             </template>
             <StatusBody :status="status" />
-            <StatusPoll v-if="status.poll" :poll="status.poll" />
+            <StatusPoll
+              v-if="status.poll"
+              :poll="status.poll"
+            />
             <StatusMedia
               v-if="status.mediaAttachments?.length"
               :status="status"
-              minimized
               :class="status.visibility === 'direct' ? 'pb4' : ''"
             />
-            <StatusPreviewCard v-if="status.card" :card="status.card" :class="status.visibility === 'direct' ? 'pb4' : ''" />
+            <StatusPreviewCard
+              v-if="status.card"
+              :card="status.card"
+              :class="status.visibility === 'direct' ? 'pb4' : ''"
+              :small-picture-only="status.mediaAttachments?.length > 0"
+            />
           </StatusSpoiler>
           <StatusCard
             v-if="status.reblog"

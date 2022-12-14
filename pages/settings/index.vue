@@ -1,18 +1,8 @@
 <template>
-  <MainContent>
-    <template #title>
-      <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:test-tube-line />
-        <span>Settings</span>
-      </div>
-    </template>
-    <div text-center mt-10>
-      <h1 text-4xl>
-        🚧
-      </h1>
-      <h3 text-xl>
-        Settings
-      </h3>
+  <div min-h-screen flex justify-center items-center>
+    <div text-center flex="~ col gap-2" items-center>
+      <div i-ri:settings-4-line text-5xl />
+      <span text-xl>Select a settings</span>
     </div>
-  </MainContent>
+  </div>
 </template>

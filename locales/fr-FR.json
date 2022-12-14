@@ -4,10 +4,12 @@
     "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur.",
     "blocked_domains": "Domaines bloqués",
     "blocked_users": "Utilisateurs bloqués",
+    "bot": "Automatisé",
     "favourites": "Favoris",
     "follow": "Suivre",
     "follow_back": "Suivre en retour",
     "follow_requested": "Abonnement demandé",
+    "followers": "Abonné·e·s",
     "followers_count": "{0} abonné·e·s",
     "following": "Suivi·e",
     "following_count": "{0} abonnements",
@@ -18,6 +20,7 @@
     "muted_users": "Utilisateurs mis en sourdine",
     "mutuals": "@:account.following",
     "pinned": "Épinglés",
+    "posts": "Messages",
     "posts_count": "{0} messages",
     "profile_description": "En-tête du profil de {0}",
     "profile_unavailable": "Profil non accessible",
@@ -73,6 +76,7 @@
   "error": {
     "account_not_found": "Compte {0} non trouvé",
     "explore-list-empty": "Pas de tendence en ce moment. Revenez plus tard!",
+    "sign_in_error": "Impossible de se connecter au serveur.",
     "status_not_found": "Message non trouvé"
   },
   "feature_flag": {
@@ -158,6 +162,10 @@
     "filter_hidden_phrase": "Filtré par",
     "filter_removed_phrase": "Caché par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
+    "img_alt": {
+      "desc": "Description",
+      "dismiss": "Fermer"
+    },
     "poll": {
       "count": "{n} votes",
       "ends": "se clôt {0}",

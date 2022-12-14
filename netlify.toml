@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "pnpm run prepare && pnpm run test && pnpm run lint && pnpm test:typecheck && pnpm run build"
+  command = "pnpm run build && pnpm run test && pnpm run lint && pnpm test:typecheck"
 
 # Redirect to Discord server
 [[redirects]]

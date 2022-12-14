@@ -1,4 +1,3 @@
 {
-  "extends": "./.nuxt/tsconfig.json",
-  "exclude": ["service-worker"]
+  "extends": "./.nuxt/tsconfig.json"
 }

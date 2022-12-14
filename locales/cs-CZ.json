@@ -1,0 +1,259 @@
+{
+  "account": {
+    "avatar_description": "profilová fotka uživatele {0}",
+    "blocked_by": "Tohoto uživatele jste zablokovali.",
+    "blocked_domains": "Zablokované domény",
+    "blocked_users": "Zablokovaní uživatelé",
+    "bot": "ROBOT",
+    "favourites": "Oblíbené",
+    "follow": "Sledovat",
+    "follow_back": "Taky sledovat",
+    "follow_requested": "Požádáno o sledování",
+    "followers": "Sledující",
+    "followers_count": "{0} sledujících",
+    "following": "Sleduje",
+    "following_count": "{0} sleduje",
+    "follows_you": "Sleduje vás",
+    "go_to_profile": "Jít na profil",
+    "joined": "Joined",
+    "moved_title": "uživatel se přestěhoval na adresu:",
+    "muted_users": "Ztlumení",
+    "mutuals": "Přátelé",
+    "pinned": "Připnuto",
+    "posts": "Příspěvky",
+    "posts_count": "{0} příspěvků",
+    "profile_description": "pozadí profilu {0}",
+    "profile_unavailable": "Profil není dostupný",
+    "unfollow": "Přestat sledovat"
+  },
+  "action": {
+    "bookmark": "Uložit do záložek",
+    "bookmarked": "Založeno",
+    "boost": "Přeposlat",
+    "boosted": "Přeposláno",
+    "close": "Zavřít",
+    "compose": "Napsat",
+    "enter_app": "Spustit aplikaci",
+    "favourite": "Přidat k oblíbeným",
+    "favourited": "Oblíbené",
+    "more": "Více",
+    "next": "Dále",
+    "prev": "Zpět",
+    "publish": "Zveřejnit!",
+    "reply": "Odpovědět",
+    "save_changes": "Uložit změny",
+    "sign_in": "Přihlásit se",
+    "switch_account": "Přepnout účet",
+    "vote": "Hlasovat"
+  },
+  "app_desc_short": "Elk - Mastodon klient vytvořený s 🧡",
+  "app_logo": "logo Elk",
+  "app_name": "Elk",
+  "command": {
+    "activate": "Aktivovat",
+    "complete": "Dokončit",
+    "compose_desc": "Napsat příspěvek",
+    "lang": "Jazyky",
+    "n-people-in-the-past-n-days": "{0} lidí v posledních {1} dnech",
+    "select_lang": "Vybrat jazyk",
+    "sign_in_desc": "Přidat existující účet",
+    "switch_account": "Přepnout na {0}",
+    "switch_account_desc": "Přepnout na jiný účet",
+    "toggle_dark_mode": "Zapnout tmavý režim",
+    "toggle_zen_mode": "Zapnout zenový režim"
+  },
+  "common": {
+    "end_of_list": "Konec seznamu",
+    "error": "CHYBA",
+    "kiloSuffix": "K",
+    "megaSuffix": "M",
+    "not_found": "404 Nenalezeno!",
+    "offline_desc": "Zdá se, že jste offline. Zkontrolujte připojení k internetu."
+  },
+  "conversation": {
+    "with": "s"
+  },
+  "error": {
+    "account_not_found": "Účet {0} nenalezen",
+    "explore-list-empty": "Momentálně tu není nic zajímavého. Zkuste to jindy.",
+    "sign_in_error": "Nemohu se připojit k serveru.",
+    "status_not_found": "Status nenalezen"
+  },
+  "feature_flag": {
+    "avatar_on_avatar": "Avatar on Avatar",
+    "virtual_scroll": "Virtual Scrolling"
+  },
+  "help": {
+    "desc_highlight": "Z toho důvodu může tu a tam nastat chyba nebo chybět nějaká ta funkce.",
+    "desc_para1": "Těší nás váš zájem o Elk - Mastodoní klient na kterém právě pracujeme.",
+    "desc_para2": "Pracujeme na vývoji a průběžně Elk vylepšujeme. Brzy ho zveřejníme jako open source a budete mít možnost přispět svou troškou do mlýna.",
+    "desc_para3": "Předtím můžete přispět do klobouku našim vývojářům na níže uvedených odkazech:",
+    "title": "Elk ještě není hotový"
+  },
+  "menu": {
+    "block_account": "Zablokovat {0}",
+    "block_domain": "Zablokovat doménu {0}",
+    "copy_link_to_post": "Zkopírovat odkaz na příspěvek",
+    "delete": "Odstranit",
+    "delete_and_redraft": "Odstranit a přepsat",
+    "direct_message_account": "Napsat soukromou zprávu pro {0}",
+    "edit": "Upravit",
+    "mention_account": "Zmínit {0}",
+    "mute_account": "Umlčet {0}",
+    "open_in_original_site": "Otevřít na původní stránce",
+    "pin_on_profile": "Připíchnout na profil",
+    "show_untranslated": "Zobrazit nepřeložené",
+    "toggle_theme": {
+      "dark": "Zapnout tmavý vzhled",
+      "light": "Zapnout světlý vzhled"
+    },
+    "translate_post": "Přeložit příspěvek",
+    "unblock_account": "Odblokovat {0}",
+    "unblock_domain": "Odblokovat doménu {0}",
+    "unmute_account": "Odmlčet {0}",
+    "unpin_on_profile": "Odepnout z profilu"
+  },
+  "nav_footer": {
+    "built_at": "Zprovozněno {0}",
+    "select_feature_flags": "Zapnout funkce",
+    "select_language": "Vybrat jazyk",
+    "show_intro": "Zobrazit více informací o aplikaci",
+    "toggle_theme": "Přepnout vzhled",
+    "zen_mode": "Tichý režim"
+  },
+  "nav_side": {
+    "bookmarks": "Záložky",
+    "conversations": "Pošta",
+    "explore": "Zajímavé",
+    "favourites": "Oblíbené",
+    "federated": "Federované",
+    "home": "Hlavní stránka",
+    "local": "Lokální",
+    "notifications": "Upozornění",
+    "profile": "Profil"
+  },
+  "nav_user": {
+    "sign_in_desc": "Přihlaste se, abyste mohli sledovat profily nebo hashtagy, psát a sdílet příspěvky a odpovídat na ně na tomto nebo jiných serverech."
+  },
+  "notification": {
+    "favourited_post": "si oblíbil váš příspěvek",
+    "followed_you": "vás nyní sleduje",
+    "followed_you_count": "{n} osoba vás začala sledovat|{n} lidí vás začalo sledovat",
+    "missing_type": "MISSING notification.type:",
+    "reblogged_post": "přeposlal váš příspěvek",
+    "request_to_follow": "požádal o sledování",
+    "update_status": "aktualizoval svůj status"
+  },
+  "placeholder": {
+    "content_warning": "Sem napište varování",
+    "default_1": "O čem chcete psát?",
+    "reply_to_account": "Odpovědět {0}",
+    "replying": "Sem napište odpověď",
+    "the_thread": "vlákno"
+  },
+  "state": {
+    "edited": "(Upraveno)",
+    "editing": "Upravuje se",
+    "loading": "Čekejte...",
+    "uploading": "Nahrává se..."
+  },
+  "status": {
+    "edited": "Upraveno {0}",
+    "filter_hidden_phrase": "Vyfiltrováno",
+    "filter_removed_phrase": "Vyfiltrováno",
+    "filter_show_anyway": "Ukázat i tak",
+    "img_alt": {
+      "desc": "Popis",
+      "dismiss": "Skrýt"
+    },
+    "poll": {
+      "count": "{n} hlasů|{n} hlas|{n} hlasů",
+      "ends": "končí {0}",
+      "finished": "ukončeno {0}"
+    },
+    "reblogged": "{0} přeposlal",
+    "someone": "Někdo",
+    "spoiler_show_less": "Skrýt",
+    "spoiler_show_more": "Ukázat",
+    "thread": "Vlákno",
+    "try_original_site": "Zkus původní stránku"
+  },
+  "status_history": {
+    "created": "vytvořeno {0}",
+    "edited": "upraveno {0}"
+  },
+  "tab": {
+    "for_you": "Možná znáte",
+    "hashtags": "Hashtagy",
+    "media": "Multimédia",
+    "news": "Zprávy",
+    "notifications_all": "Vše",
+    "notifications_mention": "Zmínky",
+    "posts": "Příspěvky",
+    "posts_with_replies": "Příspěvky a odpovědi"
+  },
+  "time_ago_options": {
+    "day_future": "za 0 dní|zítra|za {n} dní",
+    "day_past": "před 0 dny|včera|{n} dní zpátky",
+    "hour_future": "za 0 hodin|za hodinu|za {n} hodin",
+    "hour_past": "před 0 hodinami|před hodinou|před {n} hodinami",
+    "just_now": "nyní",
+    "minute_future": "za 0 minut|za minutu|za {n} minut",
+    "minute_past": "před 0 minutami|před minutou|před {n} minutami",
+    "month_future": "za 0 měsíců|příští měsíc|za {n} měsíců",
+    "month_past": "před 0 měsíci|minulý měsíc|před {n} měsíci",
+    "second_future": "právě teď|za {n} sekund|za {n} sekund",
+    "second_past": "právě teď|před {n} sekundami|před {n} sekundami",
+    "short_day_future": "za {n}d",
+    "short_day_past": "{n}d",
+    "short_hour_future": "za {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "za {n}min",
+    "short_minute_past": "{n}min",
+    "short_month_future": "za {n}měs.",
+    "short_month_past": "{n}měs.",
+    "short_second_future": "za {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "za {n}t.",
+    "short_week_past": "{n}t",
+    "short_year_future": "za {n}r",
+    "short_year_past": "{n}r",
+    "week_future": "za 0 týdnů|příští týden|za {n} týdnů",
+    "week_past": "před 0 týdny|minulý týden|před {n} týdny",
+    "year_future": "za 0 let|příští rok|za {n} let",
+    "year_past": "před 0 roky|minulý rok|před {n} lety "
+  },
+  "timeline": {
+    "show_new_items": "Ukázat {n} nových položek|Ukázat {n} novou položku|Ukázat {n} nových položek"
+  },
+  "title": {
+    "federated_timeline": "Federovaná časová osa",
+    "local_timeline": "Lokální časová osa"
+  },
+  "tooltip": {
+    "add_content_warning": "Přidat varování",
+    "add_media": "Přidat obrázek, video nebo nahrávku",
+    "change_content_visibility": "Změnit viditelnost příspěvku",
+    "explore_links_intro": "O těchto zprávách se nyní mluví na tomto nebo dalších serverech.",
+    "explore_posts_intro": "Tyto příspěvky jsou nyní populární na tomto nebo dalších serverech.",
+    "explore_tags_intro": "Tyto hashtagy se nyní šíří mezi lidmi na tomto nebo dalších serverech.",
+    "toggle_code_block": "Přepnout na režim kódu"
+  },
+  "user": {
+    "add_existing": "Přidat existující účet",
+    "server_address_label": "Adresa Mastodon serveru:",
+    "sign_out_account": "Odhlásit {0}",
+    "tip_no_account": "Pokud nemáte účet na Mastodonu, {0}.",
+    "tip_register_account": "vyberte server a zaregistrujte se"
+  },
+  "visibility": {
+    "direct": "Soukromé",
+    "direct_desc": "Uvidí to pouze uživatelé, které zmíníte.",
+    "private": "Jen pro sledující",
+    "private_desc": "Uvidí to jen sledující.",
+    "public": "Veřejné",
+    "public_desc": "Uvidí to všichni.",
+    "unlisted": "Nenabízené",
+    "unlisted_desc": "Uvidí to všichni, ale nebude to nabízeno mezi Zajímavými."
+  }
+}

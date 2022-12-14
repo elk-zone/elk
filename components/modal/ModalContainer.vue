@@ -29,7 +29,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
 </script>
 
 <template>
-  <ModalDialog v-model="isSigninDialogOpen" py-4 px-8>
+  <ModalDialog v-model="isSigninDialogOpen" py-4 px-8 max-w-125>
     <UserSignIn />
   </ModalDialog>
   <ModalDialog v-model="isPreviewHelpOpen" max-w-125>
@@ -47,7 +47,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   >
     <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
   </ModalDialog>
-  <ModalDialog v-model="isEditHistoryDialogOpen">
+  <ModalDialog v-model="isEditHistoryDialogOpen" max-w-125>
     <StatusEditPreview :edit="statusEdit" />
   </ModalDialog>
   <ModalDialog v-model="isCommandPanelOpen" max-w-fit flex>

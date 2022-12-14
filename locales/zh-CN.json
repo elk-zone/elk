@@ -8,6 +8,7 @@
     "follow": "关注",
     "follow_back": "回关",
     "follow_requested": "已申请关注",
+    "followers": "关注者",
     "followers_count": "被 {0} 人关注",
     "following": "关注中",
     "following_count": "正在关注 {0} 人",
@@ -18,6 +19,7 @@
     "muted_users": "已屏蔽的用户",
     "mutuals": "互相关注",
     "pinned": "置顶的帖文",
+    "posts": "帖文",
     "posts_count": "{0} 条帖文",
     "profile_description": "{0}的个人资料头图",
     "profile_unavailable": "个人资料不可见",
@@ -43,6 +45,7 @@
     "vote": "投票"
   },
   "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
+  "app_logo": "应用图标",
   "app_name": "鹿鸣",
   "command": {
     "activate": "执行",
@@ -71,9 +74,11 @@
   "error": {
     "account_not_found": "未找到用户 {0}",
     "explore-list-empty": "目前没有热门话题，稍后再来看看吧！",
+    "sign_in_error": "无法连接服务器",
     "status_not_found": "未找到帖文"
   },
   "feature_flag": {
+    "avatar_on_avatar": "头像堆叠",
     "virtual_scroll": "虚拟滚动"
   },
   "help": {
@@ -161,8 +166,10 @@
       "finished": "已在 {0} 结束"
     },
     "reblogged": "{0} 转发了",
+    "someone": "某人",
     "spoiler_show_less": "隐藏",
     "spoiler_show_more": "显示更多",
+    "thread": "帖文串",
     "try_original_site": "尝试从源站打开"
   },
   "status_history": {

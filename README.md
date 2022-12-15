@@ -1,4 +1,5 @@
 # Elk
+*A nimble Mastodon web client*
 
 <p align="center">
   <a href="https://viteconf.org" target="_blank" rel="noopener noreferrer">
@@ -11,8 +12,6 @@
   <a href="https://pr.new/elk-zone/elk"><img src="https://developer.stackblitz.com/img/start_pr_dark_small.svg" alt="Start new PR in StackBlitz Codeflow"></a>
 </p>
 <br/>
-
-A nimble Mastodon web client made with 🧡
 
 Elk is in early alpha, but it is already quite usable. We would love your feedback and contributions.
 

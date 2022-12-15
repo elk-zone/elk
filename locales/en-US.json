@@ -10,7 +10,7 @@
     "follow_back": "Follow back",
     "follow_requested": "Requested",
     "followers": "Followers",
-    "followers_count": "{0} Followers",
+    "followers_count": "{0} Followers|{0} Follower|{0} Followers",
     "following": "Following",
     "following_count": "{0} Following",
     "follows_you": "Follows you",
@@ -21,7 +21,7 @@
     "mutuals": "Mutuals",
     "pinned": "Pinned",
     "posts": "Posts",
-    "posts_count": "{0} Posts",
+    "posts_count": "{0} posts|{0} post|{0} posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
     "unfollow": "Unfollow"
@@ -46,7 +46,7 @@
     "switch_account": "Switch account",
     "vote": "Vote"
   },
-  "app_desc_short": "A Mastodon client made with 🧡",
+  "app_desc_short": "A nimble Mastodon web client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
   "command": {
@@ -138,7 +138,7 @@
   "notification": {
     "favourited_post": "favourited your post",
     "followed_you": "followed you",
-    "followed_you_count": "{n} person followed you|{n} people followed you",
+    "followed_you_count": "{followers} people followed you|{followers} person followed you|{followers} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",

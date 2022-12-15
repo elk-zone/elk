@@ -35,10 +35,24 @@ if (props.command) {
       group-focus-visible:ring="2 current"
     >
       <div flex-1 flex items-center md:gap2 gap4>
-        <div v-if="icon" :class="icon" md:text-size-inherit text-xl />
-        <slot>
-          <span>{{ text }}</span>
-        </slot>
+        <div
+          flex items-center justify-center
+          :class="$slots.description ? 'w-12 h-12' : ''"
+        >
+          <slot name="icon">
+            <div v-if="icon" :class="icon" md:text-size-inherit text-xl />
+          </slot>
+        </div>
+        <div space-y-1>
+          <p>
+            <slot>
+              <span>{{ text }}</span>
+            </slot>
+          </p>
+          <p v-if="$slots.description" text-sm text-secondary>
+            <slot name="description" />
+          </p>
+        </div>
       </div>
       <div i-ri:arrow-right-s-line text-xl text-secondary-light />
     </div>

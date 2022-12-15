@@ -2,8 +2,7 @@
   <MainContent>
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:test-tube-line />
-        <span>Profile</span>
+        <span>{{ $t('settings.preferences.label') }}</span>
       </div>
     </template>
     <div text-center mt-10>
@@ -11,8 +10,9 @@
         🚧
       </h1>
       <h3 text-xl>
-        Profile
+        {{ $t('settings.preferences.label') }}
       </h3>
     </div>
   </MainContent>
 </template>
+

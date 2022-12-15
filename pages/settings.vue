@@ -15,12 +15,18 @@ definePageMeta({
           </div>
         </template>
         <div w-97>
-          <SettingsNavItem command icon="i-ri:user-settings-line" to="/settings/profile">
-            Profile
-          </SettingsNavItem>
-          <SettingsNavItem command icon="i-ri:hashtag" to="/settings/featured_tags">
-            Featured tags
-          </SettingsNavItem>
+          <SettingsNavItem
+            command
+            icon="i-ri:user-line"
+            :text="$t('settings.profile.label')"
+            to="/settings/profile"
+          />
+          <SettingsNavItem
+            command
+            icon="i-ri:settings-2-line"
+            :text="$t('settings.preferences.label')"
+            to="/settings/preferences"
+          />
         </div>
       </MainContent>
     </div>

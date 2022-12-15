@@ -150,6 +150,23 @@
     "replying": "回复",
     "the_thread": "这个帖文"
   },
+  "settings": {
+    "preferences": {
+      "label": "首选项"
+    },
+    "profile": {
+      "appearance": {
+        "description": "编辑个人资料，例如头像、用户名、个人简介等。",
+        "label": "外观",
+        "title": "编辑个人资料"
+      },
+      "featured_tags": {
+        "description": "人们可以在这些标签下浏览你的公共嘟文。",
+        "label": "精选的话题标签"
+      },
+      "label": "个人资料"
+    }
+  },
   "state": {
     "edited": "（已编辑）",
     "editing": "编辑中",

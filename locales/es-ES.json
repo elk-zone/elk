@@ -140,14 +140,26 @@
     "reblogged_post": "retooteó tu publicación",
     "request_to_follow": "ha solicitado seguirte",
     "settings": {
+      "alerts": {
+        "favourite": "Favoritos",
+        "follow": "Nuevos seguidores",
+        "mention": "Menciones",
+        "poll": "Encuesta",
+        "reblog": "Retooteo de tus publicaciones",
+        "title": "¿Qué notificaciones recibir?"
+      },
       "close_btn": "Cerrar ajustes",
-      "favourite": "Favoritos",
-      "follow": "Nuevos seguidores",
-      "mention": "Menciones",
-      "poll": "Encuesta",
-      "reblog": "Retooteo de tus publicaciones",
+      "policy": {
+        "all": "De cualquier persona",
+        "followed": "De personas que sigo",
+        "follower": "De personas que me siguen",
+        "none": "De nadie",
+        "title": "¿De quién puedo recibir notificaciones?"
+      },
+      "save_settings": "Guardar cambios en los ajustes",
       "show_btn": "Mostrar ajustes",
-      "title": "Ajustes de notificaciones",
+      "title": "Ajustes de notificaciones de escritorio",
+      "undo_settings": "Deshacer cambios en los ajustes",
       "unsubscribe": "Cancelar notificaciones de escritorio",
       "unsubscribed_with_warning": "Habilite las notificaciones para recibir notificaciones de esta cuenta haciendo clic en el botón \"@:notification.settings.warning.enable_desktop{'\"'}.",
       "unsupported": "Tu navegador no soporta notificaciones de escritorio.",

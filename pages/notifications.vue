@@ -19,6 +19,10 @@ const tabs = $computed(() => [
     display: t('tab.notifications_mention'),
   },
 ] as const)
+
+onActivated(() => {
+  showSettings.value = false
+})
 </script>
 
 <template>
@@ -37,7 +41,7 @@ const tabs = $computed(() => [
         :title="$t(showSettings ? 'notification.settings.close_btn' : 'notification.settings.show_btn')"
         @click="showSettings = !showSettings"
       >
-        <span aria-hidden="true" :class="showSettings ? 'i-ri:close-circle-line' : 'i-ri:settings-3-fill'" />
+        <span aria-hidden="true" w-1.75em h-1.75em :class="showSettings ? 'i-ri:close-circle-line' : 'i-ri:settings-3-fill'" />
       </button>
     </template>
 

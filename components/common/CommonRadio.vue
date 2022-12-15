@@ -1,21 +1,23 @@
 <script setup lang="ts">
 defineProps<{
   label: string
+  value: any
 }>()
 const { modelValue } = defineModel<{
-  modelValue: boolean
+  modelValue: any
 }>()
 </script>
 
 <template>
-  <label class="common-checkbox flex items-center cursor-pointer mb--2px pb-1px text-lg w-full gap-y-1" @click.prevent="modelValue = !modelValue">
+  <label class="common-radio flex items-center cursor-pointer text-lg w-full gap-y-1" @click.prevent="modelValue = value">
     <span
-      :class="modelValue ? 'i-ri:checkbox-line' : 'i-ri:checkbox-blank-line'"
+      :class="modelValue === value ? 'i-ri:radio-button-line' : 'i-ri:checkbox-blank-circle-line'"
       aria-hidden="true"
     />
     <input
       v-model="modelValue"
-      type="checkbox"
+      type="radio"
+      :value="value"
       sr-only
     >
     <span ml-2 pointer-events-none>{{ label }}</span>
@@ -23,7 +25,7 @@ const { modelValue } = defineModel<{
 </template>
 
 <style>
-.common-checkbox:focus-within {
+.common-radio:focus-within {
   outline: none;
   border-bottom: 1px solid var(--c-text-base);
 }

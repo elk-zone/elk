@@ -7,10 +7,11 @@ import {
   DEFAULT_SERVER,
   STORAGE_KEY_CURRENT_USER,
   STORAGE_KEY_NOTIFICATION,
+  STORAGE_KEY_NOTIFICATION_POLICY,
   STORAGE_KEY_SERVERS,
   STORAGE_KEY_USERS,
 } from '~/constants'
-import type { PushNotificationRequest } from '~/composables/push-notifications/types'
+import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
 
 const mock = process.mock
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
@@ -106,8 +107,11 @@ export async function removePushNotifications(user: UserLogin) {
   }
   // clear push subscription
   user.pushSubscription = undefined
+  const { acct } = user.account
   // clear request notification permission
-  delete useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {}).value[user.account.acct]
+  delete useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {}).value[acct]
+  // clear push notification policy
+  delete useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {}).value[acct]
 }
 
 export async function signout() {

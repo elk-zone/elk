@@ -143,14 +143,26 @@
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
     "settings": {
+      "alerts": {
+        "favourite": "Favourites",
+        "follow": "New followers",
+        "mention": "Mentions",
+        "poll": "Poll",
+        "reblog": "Reblog your post",
+        "title": "What notifications to receive?"
+      },
       "close_btn": "Close settings",
-      "favourite": "Favourites",
-      "follow": "New followers",
-      "mention": "Mentions",
-      "poll": "Poll",
-      "reblog": "Reblog your post",
+      "policy": {
+        "all": "From anyone",
+        "followed": "Of people I follow",
+        "follower": "Of people who follow me",
+        "none": "From no one",
+        "title": "Who can I receive notifications from?"
+      },
+      "save_settings": "Save settings changes",
       "show_btn": "Show settings",
-      "title": "Notification settings",
+      "title": "Desktop notification settings",
+      "undo_settings": "Undo settings changes",
       "unsubscribe": "Disable desktop notifications",
       "unsubscribed_with_warning": "Enable notifications to receive notifications from this account by clicking \"@:notification.settings.warning.enable_desktop{'\"'} button.",
       "unsupported": "Your browser does not support desktop notifications.",

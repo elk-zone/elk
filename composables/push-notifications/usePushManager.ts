@@ -1,6 +1,11 @@
-import type { CreatePushNotification, PushNotificationRequest, SubscriptionResult } from '~/composables/push-notifications/types'
+import type {
+  CreatePushNotification,
+  PushNotificationPolicy,
+  PushNotificationRequest,
+  SubscriptionResult,
+} from '~/composables/push-notifications/types'
 import { createPushSubscription } from '~/composables/push-notifications/createPushSubscription'
-import { STORAGE_KEY_NOTIFICATION } from '~/constants'
+import { STORAGE_KEY_NOTIFICATION, STORAGE_KEY_NOTIFICATION_POLICY } from '~/constants'
 import { currentUser, removePushNotifications } from '~/composables/users'
 
 const supportsPushNotifications = typeof window !== 'undefined'
@@ -21,15 +26,37 @@ export const usePushManager = () => {
   )
   const isSupported = $computed(() => supportsPushNotifications)
   const hiddenNotification = useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {})
-  const follow = ref(currentUser.value?.pushSubscription?.alerts.follow ?? false)
-  const favourite = ref(currentUser.value?.pushSubscription?.alerts.favourite ?? false)
-  const reblog = ref(currentUser.value?.pushSubscription?.alerts.reblog ?? false)
-  const mention = ref(currentUser.value?.pushSubscription?.alerts.mention ?? false)
-  const poll = ref(currentUser.value?.pushSubscription?.alerts.poll ?? false)
-  const ready = ref(false)
+  const configuredPolicy = useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {})
+  const pushNotificationData = ref({
+    follow: currentUser.value?.pushSubscription?.alerts.follow ?? true,
+    favourite: currentUser.value?.pushSubscription?.alerts.favourite ?? true,
+    reblog: currentUser.value?.pushSubscription?.alerts.reblog ?? true,
+    mention: currentUser.value?.pushSubscription?.alerts.mention ?? true,
+    poll: currentUser.value?.pushSubscription?.alerts.poll ?? true,
+    policy: configuredPolicy.value[currentUser.value?.account?.acct ?? ''] ?? 'all',
+  })
+  const { history, commit, clear } = useManualRefHistory(pushNotificationData, { clone: true })
+  const saveEnabled = computed(() => {
+    const current = pushNotificationData.value
+    const previous = history.value?.[0]?.snapshot
+    return current.favourite !== previous.favourite
+      || current.reblog !== previous.reblog
+      || current.mention !== previous.mention
+      || current.follow !== previous.follow
+      || current.poll !== previous.poll
+      || current.policy !== previous.policy
+  })
 
   watch(() => currentUser.value?.pushSubscription, (subscription) => {
     isSubscribed.value = !!subscription
+    pushNotificationData.value = {
+      follow: subscription?.alerts.follow ?? false,
+      favourite: subscription?.alerts.favourite ?? false,
+      reblog: subscription?.alerts.reblog ?? false,
+      mention: subscription?.alerts.mention ?? false,
+      poll: subscription?.alerts.poll ?? false,
+      policy: configuredPolicy.value[currentUser.value?.account?.acct ?? ''] ?? 'all',
+    }
   }, { immediate: true, flush: 'post' })
 
   const subscribe = async (notificationData?: CreatePushNotification): Promise<SubscriptionResult> => {
@@ -89,51 +116,55 @@ export const usePushManager = () => {
     await removePushNotifications(currentUser.value)
   }
 
-  const updateSubscription = () => {
-    if (ready.value && currentUser.value) {
-      try {
-        useMasto().pushSubscriptions.update({
-          data: {
-            alerts: {
-              follow: follow.value,
-              favourite: favourite.value,
-              reblog: reblog.value,
-              mention: mention.value,
-              poll: poll.value,
-            },
+  const saveSettings = async () => {
+    commit()
+    configuredPolicy.value[currentUser.value!.account.acct ?? ''] = pushNotificationData.value.policy
+    await nextTick()
+    clear()
+    await nextTick()
+  }
+
+  const undoChanges = () => {
+    const current = pushNotificationData.value
+    const previous = history.value[0].snapshot
+    current.favourite = previous.favourite
+    current.reblog = previous.reblog
+    current.mention = previous.mention
+    current.follow = previous.follow
+    current.poll = previous.poll
+    current.policy = previous.policy
+    configuredPolicy.value[currentUser.value!.account.acct ?? ''] = previous.policy
+    commit()
+    clear()
+  }
+
+  const updateSubscription = async () => {
+    if (currentUser.value) {
+      currentUser.value.pushSubscription = await useMasto().pushSubscriptions.update({
+        data: {
+          alerts: {
+            follow: pushNotificationData.value.follow,
+            favourite: pushNotificationData.value.favourite,
+            reblog: pushNotificationData.value.reblog,
+            mention: pushNotificationData.value.mention,
+            poll: pushNotificationData.value.poll,
           },
-        }).then((s) => {
-          if (ready?.value && currentUser?.value)
-            currentUser.value.pushSubscription = s
-        })
-      }
-      catch {
-        // ignore
-      }
+          policy: pushNotificationData.value.policy,
+        },
+      })
+      await saveSettings()
     }
   }
 
-  watchThrottled(follow, updateSubscription, { throttle: 100 })
-  watchThrottled(favourite, updateSubscription, { throttle: 100 })
-  watchThrottled(reblog, updateSubscription, { throttle: 100 })
-  watchThrottled(mention, updateSubscription, { throttle: 100 })
-  watchThrottled(poll, updateSubscription, { throttle: 100 })
-
-  onActivated(() => nextTick().then(() => ready.value = true))
-  onMounted(() => nextTick().then(() => ready.value = true))
-  onDeactivated(() => ready.value = false)
-  onUnmounted(() => ready.value = false)
-
   return {
-    follow,
-    favourite,
-    reblog,
-    mention,
-    poll,
+    pushNotificationData,
+    saveEnabled,
+    undoChanges,
     hiddenNotification,
     isSupported,
     isSubscribed,
     notificationPermission,
+    updateSubscription,
     subscribe,
     unsubscribe,
   }

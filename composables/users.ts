@@ -85,6 +85,24 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   return masto
 }
 
+export function setAccountInfo(userId: string, account: AccountCredentials) {
+  const index = getUsersIndexByUserId(userId)
+  if (index === -1)
+    return false
+
+  users.value[index].account = account
+  return true
+}
+
+export async function pullMyAccountInfo() {
+  const me = await useMasto().accounts.verifyCredentials()
+  setAccountInfo(currentUserId.value, me)
+}
+
+export function getUsersIndexByUserId(userId: string) {
+  return users.value.findIndex(u => u.account?.id === userId)
+}
+
 export async function signout() {
   // TODO: confirm
   if (!currentUser.value)

@@ -151,7 +151,7 @@
         "reblog": "Reblog your post",
         "title": "What notifications to receive?"
       },
-      "close_btn": "Close settings",
+      "close_btn": "Close desktop notification settings",
       "policy": {
         "all": "From anyone",
         "followed": "Of people I follow",
@@ -160,7 +160,7 @@
         "title": "Who can I receive notifications from?"
       },
       "save_settings": "Save settings changes",
-      "show_btn": "Show settings",
+      "show_btn": "Show desktop notification settings",
       "title": "Desktop notification settings",
       "undo_settings": "Undo settings changes",
       "unsubscribe": "Disable desktop notifications",

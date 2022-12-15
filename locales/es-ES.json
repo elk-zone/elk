@@ -148,7 +148,7 @@
         "reblog": "Retooteo de tus publicaciones",
         "title": "¿Qué notificaciones recibir?"
       },
-      "close_btn": "Cerrar ajustes",
+      "close_btn": "Cerrar ajuste de las notificaciones de escritorio",
       "policy": {
         "all": "De cualquier persona",
         "followed": "De personas que sigo",
@@ -157,7 +157,7 @@
         "title": "¿De quién puedo recibir notificaciones?"
       },
       "save_settings": "Guardar cambios en los ajustes",
-      "show_btn": "Mostrar ajustes",
+      "show_btn": "Mostrar ajustes de las notificaciones de escritorio",
       "title": "Ajustes de notificaciones de escritorio",
       "undo_settings": "Deshacer cambios en los ajustes",
       "unsubscribe": "Cancelar notificaciones de escritorio",

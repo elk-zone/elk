@@ -2,6 +2,7 @@
 defineProps<{
   label: string
   value: any
+  hover?: boolean
 }>()
 const { modelValue } = defineModel<{
   modelValue: any
@@ -9,7 +10,11 @@ const { modelValue } = defineModel<{
 </script>
 
 <template>
-  <label class="common-radio flex items-center cursor-pointer text-lg w-full gap-y-1" @click.prevent="modelValue = value">
+  <label
+    class="common-radio flex items-center cursor-pointer py-1 text-md w-full gap-y-1"
+    :class="hover ? 'hover:bg-active ml--2 pl-4' : null"
+    @click.prevent="modelValue = value"
+  >
     <span
       :class="modelValue === value ? 'i-ri:radio-button-line' : 'i-ri:checkbox-blank-circle-line'"
       aria-hidden="true"

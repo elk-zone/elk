@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   label: string
+  hover?: boolean
 }>()
 const { modelValue } = defineModel<{
   modelValue: boolean
@@ -8,7 +9,11 @@ const { modelValue } = defineModel<{
 </script>
 
 <template>
-  <label class="common-checkbox flex items-center cursor-pointer mb--2px pb-1px text-lg w-full gap-y-1" @click.prevent="modelValue = !modelValue">
+  <label
+    class="common-checkbox flex items-center cursor-pointer py-1 text-md w-full gap-y-1"
+    :class="hover ? 'hover:bg-active ml--2 pl-4' : null"
+    @click.prevent="modelValue = !modelValue"
+  >
     <span
       :class="modelValue ? 'i-ri:checkbox-line' : 'i-ri:checkbox-blank-line'"
       aria-hidden="true"

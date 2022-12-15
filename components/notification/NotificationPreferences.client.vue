@@ -107,18 +107,18 @@ onActivated(() => (busy = false))
             <form flex="~ col" gap-y-2 @submit.prevent="saveSettings">
               <fieldset flex="~ col" gap-y-1 py-1>
                 <legend>{{ $t('notification.settings.alerts.title') }}</legend>
-                <CommonCheckbox v-model="pushNotificationData.follow" :label="$t('notification.settings.alerts.follow')" />
-                <CommonCheckbox v-model="pushNotificationData.favourite" :label="$t('notification.settings.alerts.favourite')" />
-                <CommonCheckbox v-model="pushNotificationData.reblog" :label="$t('notification.settings.alerts.reblog')" />
-                <CommonCheckbox v-model="pushNotificationData.mention" :label="$t('notification.settings.alerts.mention')" />
-                <CommonCheckbox v-model="pushNotificationData.poll" :label="$t('notification.settings.alerts.poll')" />
+                <CommonCheckbox v-model="pushNotificationData.follow" hover :label="$t('notification.settings.alerts.follow')" />
+                <CommonCheckbox v-model="pushNotificationData.favourite" hover :label="$t('notification.settings.alerts.favourite')" />
+                <CommonCheckbox v-model="pushNotificationData.reblog" hover :label="$t('notification.settings.alerts.reblog')" />
+                <CommonCheckbox v-model="pushNotificationData.mention" hover :label="$t('notification.settings.alerts.mention')" />
+                <CommonCheckbox v-model="pushNotificationData.poll" hover :label="$t('notification.settings.alerts.poll')" />
               </fieldset>
               <fieldset flex="~ col" gap-y-1 py-1>
                 <legend>{{ $t('notification.settings.policy.title') }}</legend>
-                <CommonRadio v-model="pushNotificationData.policy" value="all" :label="$t('notification.settings.policy.all')" />
-                <CommonRadio v-model="pushNotificationData.policy" value="followed" :label="$t('notification.settings.policy.followed')" />
-                <CommonRadio v-model="pushNotificationData.policy" value="follower" :label="$t('notification.settings.policy.follower')" />
-                <CommonRadio v-model="pushNotificationData.policy" value="none" :label="$t('notification.settings.policy.none')" />
+                <CommonRadio v-model="pushNotificationData.policy" hover value="all" :label="$t('notification.settings.policy.all')" />
+                <CommonRadio v-model="pushNotificationData.policy" hover value="followed" :label="$t('notification.settings.policy.followed')" />
+                <CommonRadio v-model="pushNotificationData.policy" hover value="follower" :label="$t('notification.settings.policy.follower')" />
+                <CommonRadio v-model="pushNotificationData.policy" hover value="none" :label="$t('notification.settings.policy.none')" />
               </fieldset>
               <div flex="~ col" gap-y-4 py-1 sm="~ justify-between flex-row">
                 <button
@@ -141,7 +141,8 @@ onActivated(() => (busy = false))
                 </button>
               </div>
             </form>
-            <form border="t base" class="bg-$c-bg-btn-disabled" mt-4 @submit.prevent="removeSubscription">
+            <form flex="~ col" mt-4 @submit.prevent="removeSubscription">
+              <span border="b base 2px" class="bg-$c-text-secondary" />
               <button
                 btn-outline rounded-full font-bold py-4 flex="~ gap2 center" m5
                 :class="busy ? 'border-transparent' : null"

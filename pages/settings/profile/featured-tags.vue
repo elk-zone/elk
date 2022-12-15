@@ -1,4 +1,4 @@
-<template back>
+<template>
   <MainContent back>
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">

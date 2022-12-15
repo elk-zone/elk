@@ -53,6 +53,7 @@ specifiers:
   shiki: ^0.11.1
   shiki-es: ^0.1.2
   simple-git-hooks: ^2.8.1
+  slimeform: ^0.8.0
   std-env: ^3.3.1
   tauri-plugin-log-api: github:tauri-apps/tauri-plugin-log
   theme-vitesse: ^0.6.0
@@ -69,6 +70,7 @@ specifiers:
 
 dependencies:
   '@fnando/sparkline': 0.3.10
+  slimeform: 0.8.0
   tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/b58475bbc410fa78eb69276c62d0b64c91c07914
 
 devDependencies:
@@ -7570,6 +7572,12 @@ packages:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 4.0.0
     dev: true
+
+  /slimeform/0.8.0:
+    resolution: {integrity: sha512-oh0GY3qPkN1ouH3TQex/+SbVsgGmJhZvgz8NqfECuMuSy7k0NOQNUudH/bebcAY7fIk5nVunMS2GPfo4UWwmDw==}
+    peerDependencies:
+      vue: '>=3'
+    dev: false
 
   /snake-case/3.0.4:
     resolution: {integrity: sha512-LAOh4z89bGQvl9pFfNF8V146i7o7/CqFPbqzYgP+yYzDIDeS9HaNFtXABamRW+AQzEVODcvE79ljJ+8a9YSdMg==}

@@ -9,8 +9,8 @@
       />
     </div>
 
-    <template #popper>
-      <UserSwitcher ref="switcher" />
+    <template #popper="{ hide }">
+      <UserSwitcher ref="switcher" @click="hide()" />
     </template>
   </VDropdown>
   <button v-else btn-solid text-sm px-2 py-1 text-center @click="openSigninDialog()">

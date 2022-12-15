@@ -38,8 +38,8 @@
                 <button btn-action-icon :aria-label="$t('action.switch_account')">
                   <div i-ri:more-2-line />
                 </button>
-                <template #popper>
-                  <UserSwitcher />
+                <template #popper="{ hide }">
+                  <UserSwitcher @click="hide" />
                 </template>
               </VDropdown>
             </div>

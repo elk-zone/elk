@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CreateStatusParams, StatusVisibility } from 'masto'
+import type { Attachment, CreateStatusParams, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
@@ -97,6 +97,11 @@ async function uploadAttachments(files: File[]) {
     draft.attachments.push(attachment)
   }
   isUploading = false
+}
+
+async function setDescription(att: Attachment, description: string) {
+  att.description = description
+  await useMasto().mediaAttachments.update(att.id, { description: att.description })
 }
 
 function removeAttachment(index: number) {
@@ -213,6 +218,7 @@ defineExpose({
             v-for="(att, idx) in draft.attachments" :key="att.id"
             :attachment="att"
             @remove="removeAttachment(idx)"
+            @set-description="setDescription(att, $event)"
           />
         </div>
       </div>

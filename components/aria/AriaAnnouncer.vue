@@ -25,7 +25,7 @@ const onMessage = (event: AriaAnnounceType, message?: string) => {
     ariaLive = 'polite'
 }
 
-watch(locale, (ol, l) => {
+watch(locale, (l, ol) => {
   if (ol) {
     announce(t('a11y.locale_changing', [localeMap[ol] ?? ol]))
     setTimeout(() => {

@@ -1,4 +1,9 @@
 {
+  "a11y": {
+    "loading_page": "Loading page, wait please",
+    "loading_titled_page": "Loading {0} page, wait please",
+    "route_loaded": "Page {0} loaded"
+  },
   "account": {
     "avatar_description": "{0}'s avatar",
     "blocked_by": "You're blocked by this user.",

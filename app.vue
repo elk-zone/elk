@@ -13,5 +13,6 @@ const key = computed(() => `${currentServer.value}:${currentUser.value?.account.
   <NuxtLayout :key="key">
     <NuxtPage />
   </NuxtLayout>
+  <AriaAnnouncer />
   <TeleportTarget id="teleport-end" />
 </template>

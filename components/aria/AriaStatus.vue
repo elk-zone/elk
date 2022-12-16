@@ -20,6 +20,8 @@ defineExpose({
 <template>
   <slot />
   <p sr-only role="status" :aria-live="_ariaLive">
-    {{ status }}
+    <slot name="status" :status="status">
+      {{ status }}
+    </slot>
   </p>
 </template>

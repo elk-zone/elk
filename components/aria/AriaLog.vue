@@ -29,7 +29,9 @@ defineExpose({
       </component>
       <ul>
         <li v-for="log in logs" :key="log">
-          {{ log }}
+          <slot name="log" :log="log">
+            {{ log }}
+          </slot>
         </li>
       </ul>
     </div>

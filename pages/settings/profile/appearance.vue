@@ -20,7 +20,7 @@ const onlineSrc = $computed(() => ({
 const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => ({
     displayName: my?.displayName ?? '',
-    note: my?.note ?? '',
+    note: my?.source.note ?? '',
 
     avatar: null as null | File,
     header: null as null | File,

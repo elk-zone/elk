@@ -7,10 +7,6 @@ export const useAriaAnnouncer = () => {
     ariaAnnouncer.emit('announce', message)
   }
 
-  const announceImmediate = (message: string) => {
-    ariaAnnouncer.emit('announce', message)
-  }
-
   const mute = () => {
     ariaAnnouncer.emit('mute')
   }
@@ -19,7 +15,7 @@ export const useAriaAnnouncer = () => {
     ariaAnnouncer.emit('unmute')
   }
 
-  return { announce, announceImmediate, ariaAnnouncer, mute, unmute }
+  return { announce, ariaAnnouncer, mute, unmute }
 }
 
 export const useAriaLog = () => {

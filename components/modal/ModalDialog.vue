@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import { useDeactivated } from '~/composables/lifecycle'
 
 export interface Props {
@@ -32,6 +33,11 @@ export interface Props {
    * @default false
    */
   keepAlive?: boolean
+
+  /**
+   * The aria-labelledby id for the dialog.
+   */
+  dialogLabelledBy?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -42,7 +48,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emits = defineEmits<{
-  /** v-model dislog visibility */
+  /** v-model dialog visibility */
   (event: 'update:modelValue', value: boolean): void
 }>()
 
@@ -54,6 +60,13 @@ const route = useRoute()
 /** scrollable HTML element */
 const elDialogMain = ref<HTMLDivElement>()
 const elDialogRoot = ref<HTMLDivElement>()
+
+const { activate } = useFocusTrap(elDialogRoot, {
+  immediate: true,
+  allowOutsideClick: true,
+  clickOutsideDeactivates: true,
+  escapeDeactivates: true,
+})
 
 defineExpose({
   elDialogRoot,
@@ -102,6 +115,11 @@ const isVShow = computed(() => {
 
 const bindTypeToAny = ($attrs: any) => $attrs as any
 
+const trapFocusDialog = () => {
+  if (isVShow.value)
+    nextTick().then(() => activate())
+}
+
 useEventListener('keydown', (e: KeyboardEvent) => {
   if (!visible.value)
     return
@@ -119,13 +137,15 @@ export default {
 </script>
 
 <template>
-  <SafeTeleport to="#teleport-end">
+  <SafeTeleport to="#teleport-end" @transitionend="trapFocusDialog">
     <!-- Dialog component -->
     <Transition name="dialog-visible">
       <div
         v-if="isVIf"
         v-show="isVShow"
         ref="elDialogRoot"
+        aria-modal="true"
+        :aria-labelledby="dialogLabelledBy"
         :style="{
           'z-index': zIndex,
         }"

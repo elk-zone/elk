@@ -8,6 +8,7 @@ import type {
   RequiredUserLogin,
 } from '~/composables/push-notifications/types'
 import { useMasto } from '~/composables/masto'
+import { currentUser, removePushNotifications } from '~/composables/users'
 
 export const createPushSubscription = async (
   user: RequiredUserLogin,
@@ -28,13 +29,11 @@ export const createPushSubscription = async (
         if (subscriptionServerKey === currentServerKey && subscription.endpoint === serverEndpoint && user.pushSubscription) {
           return Promise.resolve(user.pushSubscription)
         }
-        else {
-          // Something went wrong, try to subscribe again
-          return unsubscribe({ registration, subscription }).then(
-            registration => subscribe(registration, vapidKey),
-          ).then(
-            subscription => sendSubscriptionToBackend(subscription, notificationData),
-          )
+        else if (user.pushSubscription) {
+          // if we have a subscription, but it is not valid, we need to remove it
+          return unsubscribeFromBackend(false)
+            .then(() => subscribe(registration, vapidKey))
+            .then(subscription => sendSubscriptionToBackend(subscription, notificationData))
         }
       }
 
@@ -50,7 +49,7 @@ export const createPushSubscription = async (
 
       return getRegistration()
         .then(getPushSubscription)
-        .then(unsubscribe)
+        .then(() => unsubscribeFromBackend(true))
         .then(() => Promise.resolve(undefined))
         .catch((e) => {
           console.error(e)
@@ -93,13 +92,10 @@ async function subscribe(
   })
 }
 
-async function unsubscribe(
-  { registration, subscription }: PushManagerSubscriptionInfo,
-): Promise<ServiceWorkerRegistration> {
-  if (subscription)
-    await subscription.unsubscribe()
-
-  return registration
+async function unsubscribeFromBackend(fromSWPushManager: boolean) {
+  const cu = currentUser.value
+  if (cu)
+    await removePushNotifications(cu, fromSWPushManager)
 }
 
 async function sendSubscriptionToBackend(

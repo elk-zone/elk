@@ -97,7 +97,7 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   return masto
 }
 
-export async function removePushNotifications(user: UserLogin) {
+export async function removePushNotifications(user: UserLogin, fromSWPushManager = true) {
   // unsubscribe push notifications
   try {
     await useMasto().pushSubscriptions.remove()
@@ -112,6 +112,20 @@ export async function removePushNotifications(user: UserLogin) {
   delete useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {}).value[acct]
   // clear push notification policy
   delete useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {}).value[acct]
+
+  // we remove the sw push manager if required and there are no more accounts with subscriptions
+  if (fromSWPushManager && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
+    // clear sw push subscription
+    try {
+      const registration = await navigator.serviceWorker.ready
+      const subscription = await registration.pushManager.getSubscription()
+      if (subscription)
+        await subscription.unsubscribe()
+    }
+    catch {
+      // juts ignore
+    }
+  }
 }
 
 export async function signout() {

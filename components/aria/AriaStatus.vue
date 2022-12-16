@@ -2,9 +2,12 @@
 import type { AriaLive } from '~/composables/aria/types'
 import { useAriaStatus } from '~/composables/aria'
 
-const { ariaLive = 'polite' } = $defineProps<{
+const { ariaLive } = $defineProps<{
   ariaLive?: AriaLive
 }>()
+
+// to fix TSC error
+const _ariaLive = $computed(() => ariaLive ?? 'polite')
 
 const { announceStatus, clearStatus, status } = useAriaStatus()
 
@@ -16,7 +19,7 @@ defineExpose({
 
 <template>
   <slot />
-  <p sr-only role="status" :aria-live="ariaLive">
+  <p sr-only role="status" :aria-live="_ariaLive">
     {{ status }}
   </p>
 </template>

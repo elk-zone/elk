@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { ComputedRef } from 'vue'
 import type { AriaAnnounceType, AriaLive } from '~/composables/aria/types'
 import { useAriaAnnouncer } from '~/composables/aria'
 import type { LocaleObject } from '#i18n'

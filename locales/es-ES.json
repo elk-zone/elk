@@ -2,6 +2,8 @@
   "a11y": {
     "loading_page": "Cargando página, espere por favor",
     "loading_titled_page": "Cargando página {0}, espere por favor",
+    "locale_changed": "Idioma cambiado a {0}",
+    "locale_changing": "Cambiando idioma, espere por favor",
     "route_loaded": "Página {0} cargada"
   },
   "account": {

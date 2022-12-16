@@ -1,7 +1,9 @@
 {
   "a11y": {
-    "loading_page": "Loading page, wait please",
-    "loading_titled_page": "Loading {0} page, wait please",
+    "loading_page": "Loading page, please wait",
+    "loading_titled_page": "Loading {0} page, please wait",
+    "locale_changed": "Language changed to {0}",
+    "locale_changing": "Changing language, please wait",
     "route_loaded": "Page {0} loaded"
   },
   "account": {

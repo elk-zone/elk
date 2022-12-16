@@ -41,6 +41,7 @@
     "prev": "Prev",
     "publish": "Publish!",
     "reply": "Reply",
+    "save": "Save",
     "save_changes": "Save changes",
     "sign_in": "Sign in",
     "switch_account": "Switch account",
@@ -158,7 +159,9 @@
     },
     "profile": {
       "appearance": {
+        "bio": "Bio",
         "description": "Edit avatar, username, profile, etc.",
+        "display_name": "Display name",
         "label": "Appearance",
         "title": "Edit profile"
       },

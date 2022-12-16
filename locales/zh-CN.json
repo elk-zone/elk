@@ -40,6 +40,7 @@
     "prev": "上一个",
     "publish": "发布！",
     "reply": "回复",
+    "save": "保存",
     "save_changes": "保存更改",
     "sign_in": "登鹿",
     "switch_account": "切换帐号",
@@ -157,7 +158,9 @@
     },
     "profile": {
       "appearance": {
+        "bio": "简介",
         "description": "编辑个人资料，例如头像、用户名、个人简介等。",
+        "display_name": "昵称",
         "label": "外观",
         "title": "编辑个人资料"
       },

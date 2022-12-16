@@ -29,3 +29,5 @@ export function noop() {}
 export const useIsMac = () => computed(() =>
   useRequestHeaders(['user-agent'])['user-agent']?.includes('Macintosh')
     ?? navigator?.platform?.includes('Mac') ?? false)
+
+export const isEmptyObject = (object: Object) => Object.keys(object).length === 0

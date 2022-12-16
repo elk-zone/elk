@@ -3,14 +3,21 @@ import { invoke } from '@vueuse/shared'
 import type { UpdateCredentialsParams } from 'masto'
 import { useForm } from 'slimeform'
 
+const router = useRouter()
+
 const my = $computed(() => currentUser.value?.account)
+
+watch($$(my), (value) => {
+  if (!value)
+    router.push('/')
+})
 
 const onlineSrc = $computed(() => ({
   avatar: my?.avatar || '',
   header: my?.header || '',
 }))
 
-const { form, reset, submitter } = useForm({
+const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => ({
     displayName: my?.displayName ?? '',
     note: my?.note ?? '',
@@ -31,8 +38,9 @@ invoke(async () => {
   reset()
 })
 
+const isCanSubmit = computed(() => !isError.value && !isEmptyObject(dirtyFields.value))
+
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
-  // ...
   const res = await useMasto().accounts.updateCredentials(dirtyFields.value)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))
@@ -44,6 +52,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   }
 
   setAccountInfo(my!.id, res.account)
+  reset()
 })
 </script>
 
@@ -54,16 +63,42 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <span>{{ $t('settings.profile.appearance.title') }}</span>
       </div>
     </template>
-    <div text-center mt-10>
-      <h1 text-4xl>
-        🚧
-      </h1>
-      <h3 text-xl>
-        {{ $t('settings.profile.appearance.title') }}
-      </h3>
-    </div>
-    <form @submit.prevent="submit">
-      <!-- Form -->
+
+    <form space-y-5 px4 py3 @submit.prevent="submit">
+      <!-- display name -->
+      <label space-y-2 block>
+        <p font-medium>
+          {{ $t('settings.profile.appearance.display_name') }}
+        </p>
+        <input v-model="form.displayName" type="text" p2 rounded w-full bg-transparent outline-none border="~ base">
+      </label>
+
+      <!-- note -->
+      <label space-y-2 block>
+        <p font-medium>
+          {{ $t('settings.profile.appearance.bio') }}
+        </p>
+        <textarea v-model="form.note" maxlength="500" min-h-10ex p2 rounded w-full bg-transparent outline-none border="~ base" />
+      </label>
+
+      <!-- submit -->
+      <div text-right>
+        <button
+          type="submit"
+          btn-solid rounded-full text-sm
+          flex-inline gap-x-2 items-center
+          :disabled="submitting || !isCanSubmit"
+        >
+          <span
+            aria-hidden="true"
+            inline-block
+            :class="submitting ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:save-line'"
+          />
+          <span>
+            {{ $t('action.save') }}
+          </span>
+        </button>
+      </div>
     </form>
   </MainContent>
 </template>

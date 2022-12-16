@@ -22,15 +22,11 @@ export const useAriaLog = () => {
   let logs = $ref<any[]>([])
 
   const announceLogs = (messages: any[]) => {
-    requestAnimationFrame(() => {
-      logs = messages
-    })
+    logs = messages
   }
 
   const appendLogs = (messages: any[]) => {
-    requestAnimationFrame(() => {
-      logs = logs.concat(messages)
-    })
+    logs = logs.concat(messages)
   }
 
   const clearLogs = () => {
@@ -49,9 +45,7 @@ export const useAriaStatus = () => {
   let status = $ref<any>('')
 
   const announceStatus = (message: any) => {
-    requestAnimationFrame(() => {
-      status = message
-    })
+    status = message
   }
 
   const clearStatus = () => {

@@ -70,17 +70,11 @@ const providerName = $computed(() => props.card.providerName ? props.card.provid
       px3 max-h-2xl
       flex flex-col
       :class="[
-        root ? 'flex-gap-1 py1 sm:py3' : 'py3  justify-center sm:justify-start',
+        root ? 'flex-gap-1 py1 sm:py3' : 'py1 justify-center sm:justify-start',
       ]"
+      my-auto
     >
-      <p
-        text-secondary ws-pre-wrap break-all
-        :class="[
-          !card.description || root
-            ? 'line-clamp-1'
-            : 'hidden sm:line-clamp-1',
-        ]"
-      >
+      <p text-secondary ws-pre-wrap break-all line-clamp-1>
         {{ providerName }}
       </p>
       <strong
@@ -89,7 +83,7 @@ const providerName = $computed(() => props.card.providerName ? props.card.provid
       >{{ card.title }}</strong>
       <p
         v-if="card.description"
-        line-clamp-1 break-all sm:line-clamp-2 sm:break-words text-secondary ws-pre-wrap
+        line-clamp-1 break-all sm:break-words text-secondary ws-pre-wrap :class="[root ? 'sm:line-clamp-2' : '']"
       >
         {{ card.description }}
       </p>

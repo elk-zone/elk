@@ -8,6 +8,11 @@ const router = useRouter()
 const { t, locale, locales } = useI18n()
 const { ariaAnnouncer, announce } = useAriaAnnouncer()
 
+const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
+  acc[l.code!] = l.name!
+  return acc
+}, {} as Record<string, string>)
+
 let ariaLive = $ref<AriaLive>('polite')
 let ariaMessage = $ref<string>('')
 
@@ -22,12 +27,9 @@ const onMessage = (event: AriaAnnounceType, message?: string) => {
 
 watch(locale, (ol, l) => {
   if (ol) {
-    const ls = locales as ComputedRef<LocaleObject[]>
-    const localName = ls.value.find(x => x.code === ol)?.name
-    const toLocalName = ls.value.find(x => x.code === ol)?.name
-    announce(t('a11y.locale_changing', [localName ?? ol]))
+    announce(t('a11y.locale_changing', [localeMap[ol] ?? ol]))
     setTimeout(() => {
-      announce(t('a11y.locale_changed', [toLocalName ?? l]))
+      announce(t('a11y.locale_changed', [localeMap[l] ?? l]))
     }, 1000)
   }
 }, { immediate: true })

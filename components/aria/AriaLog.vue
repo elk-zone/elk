@@ -25,18 +25,16 @@ defineExpose({
 
 <template>
   <slot />
-  <div sr-only>
-    <div role="log" :aria-live="ariaLive">
-      <component :is="heading">
-        {{ title }}
-      </component>
-      <ul>
-        <li v-for="log in logs" :key="messageKey(log)">
-          <slot name="log" :log="log">
-            {{ log }}
-          </slot>
-        </li>
-      </ul>
-    </div>
+  <div sr-only role="log" :aria-live="ariaLive">
+    <component :is="heading">
+      {{ title }}
+    </component>
+    <ul>
+      <li v-for="log in logs" :key="messageKey(log)">
+        <slot name="log" :log="log">
+          {{ log }}
+        </slot>
+      </li>
+    </ul>
   </div>
 </template>

@@ -27,12 +27,19 @@ export const useAriaLog = () => {
     })
   }
 
+  const appendLogs = (messages: string[]) => {
+    requestAnimationFrame(() => {
+      logs = logs.concat(messages)
+    })
+  }
+
   const clearLogs = () => {
     logs = []
   }
 
   return {
     announceLogs,
+    appendLogs,
     clearLogs,
     logs,
   }

@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 import { invoke } from '@vueuse/shared'
-import type { UpdateCredentialsParams } from 'masto'
 import { useForm } from 'slimeform'
+
+definePageMeta({
+  // Keep alive the form page will reduce raw data timeliness and its status timeliness
+  keepalive: false,
+})
 
 const router = useRouter()
 

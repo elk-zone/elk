@@ -6,9 +6,11 @@ import { useAriaLog } from '~/composables/aria'
 withDefaults(defineProps<{
   title: string
   ariaLive?: AriaLive
+  messageKey?: (message: any) => any
   heading?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }>(), {
   heading: 'h2',
+  messageKey: (message: any) => message,
   ariaLive: 'polite',
 })
 
@@ -29,7 +31,7 @@ defineExpose({
         {{ title }}
       </component>
       <ul>
-        <li v-for="log in logs" :key="log">
+        <li v-for="log in logs" :key="messageKey(log)">
           <slot name="log" :log="log">
             {{ log }}
           </slot>

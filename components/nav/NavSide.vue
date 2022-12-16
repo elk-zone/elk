@@ -38,7 +38,7 @@ const { notifications } = useNotifications()
           :emojis="currentUser.account.emojis"
         />
       </NavSideItem>
-      <NavSideItem text="Settings" to="/settings" icon="i-ri:settings-4-line " />
+      <NavSideItem :text="$t('nav_side.settings')" to="/settings" icon="i-ri:settings-4-line " />
     </template>
   </nav>
 </template>

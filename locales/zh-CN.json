@@ -129,7 +129,8 @@
     "home": "主页",
     "local": "本地",
     "notifications": "通知",
-    "profile": "个人资料"
+    "profile": "个人资料",
+    "settings": "设置"
   },
   "nav_user": {
     "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。"

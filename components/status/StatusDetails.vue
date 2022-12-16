@@ -50,6 +50,7 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
           :card="status.card"
           :class="status.visibility === 'direct' ? 'pb4' : ''"
           :small-picture-only="status.mediaAttachments?.length > 0"
+          mt-2
         />
       </StatusSpoiler>
     </div>

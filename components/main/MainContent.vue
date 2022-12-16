@@ -20,7 +20,7 @@ defineProps<{
           </div>
           <div h-7 w-1px />
         </div>
-        <div flex items-center flex-shrink-0>
+        <div flex items-center flex-shrink-0 gap-x-2>
           <slot name="actions" />
           <NavUser v-if="isMediumScreen" />
         </div>

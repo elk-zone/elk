@@ -74,14 +74,7 @@ const providerName = $computed(() => props.card.providerName ? props.card.provid
       ]"
       my-auto
     >
-      <p
-        text-secondary ws-pre-wrap break-all
-        :class="[
-          !card.description || root
-            ? 'line-clamp-1'
-            : 'sm:line-clamp-1',
-        ]"
-      >
+      <p text-secondary ws-pre-wrap break-all line-clamp-1>
         {{ providerName }}
       </p>
       <strong

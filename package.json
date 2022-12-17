@@ -6,15 +6,21 @@
   "homepage": "https://elk.zone/",
   "scripts": {
     "build": "nuxi build",
+    "build:pwa": "VITE_DEV_PWA=true nuxi build",
+    "build:netlify:pwa": "VITE_DEV_PWA=true NITRO_PRESET=netlify nuxi build",
     "dev": "nuxi dev --port 5314",
+    "dev:pwa": "VITE_DEV_PWA=true nuxi dev --port 5314",
     "dev:mocked": "nuxi dev --port 5314 --dotenv .env.mock",
+    "dev:mocked:pwa": "VITE_DEV_PWA=true nuxi dev --port 5314 --dotenv .env.mock",
+    "dev:mocked:pwa:ssl": "VITE_DEV_PWA=true nuxi dev --port 5314 --https --ssl-cert ./https-dev-config/localhost.crt --ssl-key ./https-dev-config/localhost.key --dotenv .env.mock",
     "start": "PORT=5314 node .output/server/index.mjs",
+    "start:https": "PORT=5314 node ./https-dev-config/local-https-server.mjs",
     "lint": "eslint .",
     "typecheck": "nuxi typecheck",
     "prepare": "esno scripts/prepare.ts",
     "generate": "nuxi generate",
     "test:unit": "vitest",
-    "test:typecheck": "vue-tsc --noEmit",
+    "test:typecheck": "vue-tsc --noEmit && vue-tsc --noEmit --project service-worker/tsconfig.json",
     "test": "nr test:unit",
     "postinstall": "nuxi prepare && simple-git-hooks"
   },
@@ -82,9 +88,11 @@
     "ultrahtml": "^1.0.4",
     "unplugin-auto-import": "^0.12.0",
     "vite-plugin-inspect": "^0.7.9",
+    "vite-plugin-pwa": "^0.13.3",
     "vitest": "^0.25.3",
     "vue-tsc": "^1.0.11",
-    "vue-virtual-scroller": "2.0.0-beta.4"
+    "vue-virtual-scroller": "2.0.0-beta.4",
+    "workbox-window": "^6.5.4"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

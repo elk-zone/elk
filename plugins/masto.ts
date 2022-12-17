@@ -43,7 +43,11 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   if (process.client) {
     const { query } = useRoute()
     const user = typeof query.server === 'string' && typeof query.token === 'string'
-      ? { server: query.server, token: query.token }
+      ? {
+          server: query.server,
+          token: query.token,
+          vapidKey: typeof query.vapid_key === 'string' ? query.vapid_key : undefined,
+        }
       : currentUser.value
 
     nuxtApp.hook('app:suspense:resolve', () => {

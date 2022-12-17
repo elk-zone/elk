@@ -32,6 +32,6 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  const url = `/signin/callback?${stringifyQuery({ server, token: result.access_token })}`
+  const url = `/signin/callback?${stringifyQuery({ server, token: result.access_token, vapid_key: app.vapid_key })}`
   await sendRedirect(event, url, 302)
 })

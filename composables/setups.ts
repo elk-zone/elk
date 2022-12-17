@@ -1,3 +1,5 @@
+import { pwaInfo } from 'virtual:pwa-info'
+import type { Link } from '@unhead/schema'
 import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
 
 export function setupPageHeader() {
@@ -6,11 +8,34 @@ export function setupPageHeader() {
 
   const i18n = useI18n()
 
+  const link: Link[] = []
+
+  if (pwaInfo && pwaInfo.webManifest) {
+    const { webManifest } = pwaInfo
+    if (webManifest) {
+      const { href, useCredentials } = webManifest
+      if (useCredentials) {
+        link.push({
+          rel: 'manifest',
+          href,
+          crossorigin: 'use-credentials',
+        })
+      }
+      else {
+        link.push({
+          rel: 'manifest',
+          href,
+        })
+      }
+    }
+  }
+
   useHeadFixed({
     htmlAttrs: {
       lang: () => i18n.locale.value,
     },
     titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
+    link,
   })
 
   // eslint-disable-next-line no-unused-expressions

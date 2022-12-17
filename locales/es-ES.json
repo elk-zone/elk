@@ -141,6 +141,38 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "retooteó tu publicación",
     "request_to_follow": "ha solicitado seguirte",
+    "settings": {
+      "alerts": {
+        "favourite": "Favoritos",
+        "follow": "Nuevos seguidores",
+        "mention": "Menciones",
+        "poll": "Encuestas",
+        "reblog": "Retooteo de tus publicaciones",
+        "title": "¿Qué notificaciones recibir?"
+      },
+      "close_btn": "Cerrar ajuste de las notificaciones de escritorio",
+      "policy": {
+        "all": "De cualquier persona",
+        "followed": "De personas que sigo",
+        "follower": "De personas que me siguen",
+        "none": "De nadie",
+        "title": "¿De quién puedo recibir notificaciones?"
+      },
+      "save_settings": "Guardar cambios en los ajustes",
+      "show_btn": "Mostrar ajustes de las notificaciones de escritorio",
+      "title": "Ajustes de notificaciones de escritorio",
+      "undo_settings": "Deshacer cambios en los ajustes",
+      "unsubscribe": "Cancelar notificaciones de escritorio",
+      "unsubscribed_with_warning": "Habilite las notificaciones para recibir notificaciones de esta cuenta haciendo clic en el botón \"@:notification.settings.warning.enable_desktop{'\"'}.",
+      "unsupported": "Tu navegador no soporta notificaciones de escritorio.",
+      "warning": {
+        "enable_close": "Cerrar",
+        "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones de escritorio. Puedes controlar con precisión qué tipos de interacciones generan notificaciones de escritorio a través del botón \"Mostrar ajustes\" de arriba una vez que estén habilitadas.",
+        "enable_description_short": "Para cambiar los ajustes de las notificaciones de escritorio cuando Elk no esté abierto, debe habilitar antes las notificaciones de escritorio.",
+        "enable_desktop": "Habilitar notificaciones de escritorio",
+        "enable_title": "Nunca te pierdas nada"
+      }
+    },
     "update_status": "ha actualizado su estado"
   },
   "placeholder": {
@@ -149,6 +181,12 @@
     "reply_to_account": "Responder a {0}",
     "replying": "Respondiendo",
     "the_thread": "el hilo"
+  },
+  "pwa": {
+    "close": "Cerrar",
+    "message": "@:pwa.title{','} haz click en el botón @:pwa.reload para actualizar.",
+    "reload": "Recargar",
+    "title": "Nueva versión de Elk disponible"
   },
   "state": {
     "edited": "(Editado)",

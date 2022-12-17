@@ -144,6 +144,38 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
+    "settings": {
+      "alerts": {
+        "favourite": "Favourites",
+        "follow": "New followers",
+        "mention": "Mentions",
+        "poll": "Polls",
+        "reblog": "Reblog your post",
+        "title": "What notifications to receive?"
+      },
+      "close_btn": "Close desktop notification settings",
+      "policy": {
+        "all": "From anyone",
+        "followed": "Of people I follow",
+        "follower": "Of people who follow me",
+        "none": "From no one",
+        "title": "Who can I receive notifications from?"
+      },
+      "save_settings": "Save settings changes",
+      "show_btn": "Show desktop notification settings",
+      "title": "Desktop notification settings",
+      "undo_settings": "Undo settings changes",
+      "unsubscribe": "Disable desktop notifications",
+      "unsubscribed_with_warning": "Enable notifications to receive notifications from this account by clicking \"@:notification.settings.warning.enable_desktop{'\"'} button.",
+      "unsupported": "Your browser does not support desktop notifications.",
+      "warning": {
+        "enable_close": "Close",
+        "enable_description": "To receive notifications when Elk is not open, enable desktop notifications. You can control precisely what types of interactions generate desktop notifications via the \"Show Settings\" button above once enabled.",
+        "enable_description_short": "To change desktop notification settings when Elk is not open, you must first enable desktop notifications.",
+        "enable_desktop": "Enable desktop notifications",
+        "enable_title": "Never miss anything"
+      }
+    },
     "update_status": "updated their status"
   },
   "placeholder": {
@@ -152,6 +184,12 @@
     "reply_to_account": "Reply to {0}",
     "replying": "Replying",
     "the_thread": "the thread"
+  },
+  "pwa": {
+    "close": "Close",
+    "message": "@:pwa.title{','} click on @:pwa.reload button to update.",
+    "reload": "Reload",
+    "title": "New Elk version available"
   },
   "search": {
     "search_desc": "Search for people & hashtags"

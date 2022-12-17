@@ -21,7 +21,8 @@
   "dependencies": {
     "@fnando/sparkline": "^0.3.10",
     "slimeform": "^0.8.0",
-    "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log"
+    "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log",
+    "vue-advanced-cropper": "^2.8.6"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.33.1",

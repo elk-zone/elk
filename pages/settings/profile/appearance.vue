@@ -24,7 +24,7 @@ const onlineSrc = $computed(() => ({
 const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => ({
     displayName: my?.displayName ?? '',
-    note: my?.source.note ?? '',
+    note: my?.source.note.replaceAll('\r', '') ?? '',
 
     avatar: null as null | File,
     header: null as null | File,
@@ -69,12 +69,20 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
     </template>
 
     <form space-y-5 px4 py3 @submit.prevent="submit">
+      <!-- avatar -->
+      <div space-y-2>
+        <p font-medium>
+          Avatar
+        </p>
+        <SettingsUploadAvatar v-model="form.avatar" :original="onlineSrc.avatar" />
+      </div>
+
       <!-- display name -->
       <label space-y-2 block>
         <p font-medium>
           {{ $t('settings.profile.appearance.display_name') }}
         </p>
-        <input v-model="form.displayName" type="text" p2 rounded w-full bg-transparent outline-none border="~ base">
+        <input v-model="form.displayName" type="text" input-base>
       </label>
 
       <!-- note -->
@@ -82,7 +90,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <p font-medium>
           {{ $t('settings.profile.appearance.bio') }}
         </p>
-        <textarea v-model="form.note" maxlength="500" min-h-10ex p2 rounded w-full bg-transparent outline-none border="~ base" />
+        <textarea v-model="form.note" maxlength="500" min-h-10ex input-base />
       </label>
 
       <!-- submit -->

@@ -3,6 +3,7 @@
   --c-primary-active: #C16929;
   --c-primary-light: #EA9E4466;
   --c-border: #eee;
+  --c-border-dark: #dccfcf;
 
   --c-bg-base: #fff;
   --c-bg-active: #f6f6f6;
@@ -18,10 +19,15 @@
   --c-bg-btn-disabled: #a1a1a1;
   --c-text-btn-disabled: #fff;
   --c-text-btn: #232323;
+
+  --c-success: #67C23A;
+  --c-warning: #E6A23C;
+  --c-error: #F56C6C;
 }
 
 .dark {
   --c-border: #222;
+  --c-border-dark: #545251;
 
   --c-bg-base: #111;
   --c-bg-active: #191919;

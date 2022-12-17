@@ -33,6 +33,8 @@
     "boosted": "Boosted",
     "close": "Close",
     "compose": "Compose",
+    "confirm": "Confirm",
+    "edit": "Edit",
     "enter_app": "Enter App",
     "favourite": "Favourite",
     "favourited": "Favourited",
@@ -77,8 +79,10 @@
   "error": {
     "account_not_found": "Account {0} not found",
     "explore-list-empty": "Nothing is trending right now. Check back later!",
+    "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
     "sign_in_error": "Cannot connect to the server.",
-    "status_not_found": "Status not found"
+    "status_not_found": "Status not found",
+    "unsupported_file_format": "Unsupported file format"
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar on Avatar",

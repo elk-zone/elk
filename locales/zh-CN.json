@@ -32,6 +32,8 @@
     "boost": "转发",
     "boosted": "已转发",
     "compose": "撰写",
+    "confirm": "确认",
+    "edit": "编辑",
     "enter_app": "进入应用",
     "favourite": "喜欢",
     "favourited": "已喜欢",
@@ -76,8 +78,10 @@
   "error": {
     "account_not_found": "未找到用户 {0}",
     "explore-list-empty": "目前没有热门话题，稍后再来看看吧！",
+    "file_size_cannot_exceed_n_mb": "文件大小不能超过 {0}MB",
     "sign_in_error": "无法连接服务器",
-    "status_not_found": "未找到帖文"
+    "status_not_found": "未找到帖文",
+    "unsupported_file_format": "不支持的文件格式"
   },
   "feature_flag": {
     "avatar_on_avatar": "头像堆叠",

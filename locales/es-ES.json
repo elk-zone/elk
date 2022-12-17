@@ -128,7 +128,8 @@
     "home": "Inicio",
     "local": "Local",
     "notifications": "Notificaciones",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "search": "Buscar"
   },
   "nav_user": {
     "sign_in_desc": "Inicia sesión para seguir perfiles o hashtags, marcar como favorito, compartir and responder a publicaciones, o interactuar desde tu usuario con un servidor diferente."

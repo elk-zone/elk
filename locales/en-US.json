@@ -131,7 +131,8 @@
     "home": "Home",
     "local": "Local",
     "notifications": "Notifications",
-    "profile": "Profile"
+    "profile": "Profile",
+    "search": "Search"
   },
   "nav_user": {
     "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
@@ -151,6 +152,9 @@
     "reply_to_account": "Reply to {0}",
     "replying": "Replying",
     "the_thread": "the thread"
+  },
+  "search": {
+    "search_desc": "Search for people & hashtags"
   },
   "state": {
     "edited": "(Edited)",
@@ -184,6 +188,7 @@
     "edited": "edited {0}"
   },
   "tab": {
+    "accounts": "Accounts",
     "for_you": "For you",
     "hashtags": "Hashtags",
     "media": "Media",

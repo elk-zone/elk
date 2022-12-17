@@ -25,7 +25,7 @@ useCommand({
 </script>
 
 <template>
-  <NuxtLink :to="to" active-class="text-primary" group focus:outline-none @click="$scrollToTop">
+  <NuxtLink :to="to" :active-class="isMastoInitialised ? 'text-primary' : ''" group focus:outline-none @click="$scrollToTop">
     <div flex w-fit px5 py2 md:gap2 gap4 items-center transition-100 rounded-full group-hover:bg-active group-focus-visible:ring="2 current">
       <slot name="icon">
         <div :class="icon" md:text-size-inherit text-xl />

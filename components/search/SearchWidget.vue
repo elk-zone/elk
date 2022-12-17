@@ -15,13 +15,15 @@ const results = computed(() => {
   const results = [
     ...hashtags.value.slice(0, 3).map(hashtag => ({ type: 'hashtag', hashtag, to: `/tags/${hashtag.name}` })),
     ...accounts.value.map(account => ({ type: 'account', account, to: `/@${account.acct}` })),
-    {
-      type: 'action',
-      to: `/search?q=${query.value}`,
-      action: {
-        label: `Search for ${query.value}`,
-      },
-    },
+
+    // Disable until search page is implemented
+    // {
+    //   type: 'action',
+    //   to: `/search?q=${query.value}`,
+    //   action: {
+    //     label: `Search for ${query.value}`,
+    //   },
+    // },
   ]
 
   return results
@@ -40,8 +42,9 @@ const activate = () => {
   if (query.value.length === 0)
     return
 
-  if (currentIndex === -1)
-    router.push(`/search?q=${query.value}`)
+  // Disable until search page is implemented
+  // if (currentIndex === -1)
+  //   router.push(`/search?q=${query.value}`)
 
   router.push(results.value[currentIndex].to)
 }
@@ -72,15 +75,17 @@ const activate = () => {
     <!-- Results -->
     <div p4 left-0 top-10 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
       <div w-full bg-base border="~ base" rounded max-h-100 overflow-auto py2>
-        <template v-if="query.length === 0">
-          Try searching for accounts or hashtags
-        </template>
-        <div v-if="loading" flex flex-col items-center gap-2 py-4>
-          <span text-secondary>Loading...</span>
-        </div>
-        <template v-else>
+        <span v-if="query.length === 0" block text-center text-sm text-secondary>
+          {{ t('search.search_desc') }}
+        </span>
+        <template v-if="!loading">
           <SearchResult v-for="(result, i) in results" :key="result.to" :active="index === parseInt(i.toString())" :result="result" :tabindex="focused ? 0 : -1" />
         </template>
+        <div v-else>
+          <SearchResultSkeleton />
+          <SearchResultSkeleton />
+          <SearchResultSkeleton />
+        </div>
       </div>
     </div>
   </div>

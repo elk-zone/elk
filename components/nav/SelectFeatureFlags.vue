@@ -19,7 +19,7 @@ const featureFlags = useFeatureFlags()
         {{ $t('feature_flag.avatar_on_avatar') }}
       </CommonDropdownItem>
       <CommonDropdownItem
-        :checked="featureFlags.experimentalAvatarOnAvatar"
+        :checked="featureFlags.experimentalGitHubCards"
         @click="toggleFeatureFlag('experimentalGitHubCards')"
       >
         {{ $t('feature_flag.github_cards') }}

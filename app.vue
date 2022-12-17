@@ -13,5 +13,4 @@ const key = computed(() => `${currentServer.value}:${currentUser.value?.account.
   <NuxtLayout :key="key">
     <NuxtPage />
   </NuxtLayout>
-  <TeleportTarget id="teleport-end" />
 </template>

@@ -63,7 +63,6 @@ specifiers:
   unplugin-auto-import: ^0.12.0
   vite-plugin-inspect: ^0.7.9
   vitest: ^0.25.3
-  vue-safe-teleport: ^0.1.1
   vue-tsc: ^1.0.11
   vue-virtual-scroller: 2.0.0-beta.4
 
@@ -132,7 +131,6 @@ devDependencies:
   unplugin-auto-import: 0.12.0
   vite-plugin-inspect: 0.7.9
   vitest: 0.25.3_jsdom@20.0.3
-  vue-safe-teleport: 0.1.1
   vue-tsc: 1.0.11_typescript@4.9.3
   vue-virtual-scroller: 2.0.0-beta.4
 
@@ -8708,12 +8706,6 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.4.5
       vue: 3.2.45
-    dev: true
-
-  /vue-safe-teleport/0.1.1:
-    resolution: {integrity: sha512-fHA4mod2oF7am2yEUtT0CsxAwfNBt6hWuYTVWzGxrY8vzxxgHMFnPjdZTKl01qGcKEMYYO38LmWizL7oGMVPGw==}
-    peerDependencies:
-      vue: ^3.2.0
     dev: true
 
   /vue-template-compiler/2.7.14:

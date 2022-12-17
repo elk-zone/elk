@@ -137,7 +137,7 @@ export default {
 </script>
 
 <template>
-  <SafeTeleport to="#teleport-end" @transitionend="trapFocusDialog">
+  <Teleport to="body" @transitionend="trapFocusDialog">
     <!-- Dialog component -->
     <Transition name="dialog-visible">
       <div
@@ -173,7 +173,7 @@ export default {
         </div>
       </div>
     </Transition>
-  </SafeTeleport>
+  </Teleport>
 </template>
 
 <style lang="postcss" scoped>

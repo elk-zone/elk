@@ -81,6 +81,7 @@
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar on Avatar",
+    "github_cards": "GitHub Cards",
     "virtual_scroll": "Virtual Scrolling"
   },
   "help": {

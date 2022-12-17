@@ -5,17 +5,13 @@ defineOptions({
   name: 'ContentRich',
 })
 
-const { content, emojis, markdown = true } = defineProps<{
+const props = defineProps<{
   content: string
-  markdown?: boolean
   emojis?: Emoji[]
 }>()
 
 export default () => h(
   'span',
   { class: 'content-rich' },
-  contentToVNode(content, {
-    emojis: emojisArrayToObject(emojis || []),
-    markdown,
-  }),
+  contentToVNode(props.content, emojisArrayToObject(props.emojis || [])),
 )

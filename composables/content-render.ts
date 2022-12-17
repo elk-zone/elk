@@ -13,12 +13,9 @@ import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 */
 export function contentToVNode(
   content: string,
-  { emojis = {}, markdown = true }: {
-    emojis?: Record<string, Emoji>
-    markdown?: boolean
-  } = {},
+  customEmojis: Record<string, Emoji> = {},
 ): VNode {
-  const tree = parseMastodonHTML(content, emojis, markdown)
+  const tree = parseMastodonHTML(content, customEmojis)
   return h(Fragment, (tree.children as Node[]).map(n => treeToVNode(n)))
 }
 

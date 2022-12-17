@@ -12,7 +12,7 @@ function decode(text: string) {
  * Parse raw HTML form Mastodon server to AST,
  * with interop of custom emojis and inline Markdown syntax
  */
-export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}, markdown = true) {
+export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
   let processed = html
     // custom emojis
     .replace(/:([\w-]+?):/g, (_, name) => {
@@ -21,49 +21,45 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
         return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
       return `:${name}:`
     })
-
-  if (markdown) {
     // handle code blocks
-    processed = processed
-      .replace(/>(```|~~~)(\w*)([\s\S]+?)\1/g, (_1, _2, lang, raw) => {
-        const code = htmlToText(raw)
-        const classes = lang ? ` class="language-${lang}"` : ''
-        return `><pre><code${classes}>${code}</code></pre>`
-      })
+    .replace(/>(```|~~~)(\w*)([\s\S]+?)\1/g, (_1, _2, lang, raw) => {
+      const code = htmlToText(raw)
+      const classes = lang ? ` class="language-${lang}"` : ''
+      return `><pre><code${classes}>${code}</code></pre>`
+    })
 
-    walkSync(parse(processed), (node) => {
-      if (node.type !== TEXT_NODE)
-        return
-      const replacements = [
-        [/\*\*\*(.*?)\*\*\*/g, '<b><em>$1</em></b>'],
-        [/\*\*(.*?)\*\*/g, '<b>$1</b>'],
-        [/\*(.*?)\*/g, '<em>$1</em>'],
-        [/~~(.*?)~~/g, '<del>$1</del>'],
-        [/`([^`]+?)`/g, '<code>$1</code>'],
-        [/&[^;]+;/g, (val: string) => decode(val)],
-      ] as any
+  walkSync(parse(processed), (node) => {
+    if (node.type !== TEXT_NODE)
+      return
+    const replacements = [
+      [/\*\*\*(.*?)\*\*\*/g, '<b><em>$1</em></b>'],
+      [/\*\*(.*?)\*\*/g, '<b>$1</b>'],
+      [/\*(.*?)\*/g, '<em>$1</em>'],
+      [/~~(.*?)~~/g, '<del>$1</del>'],
+      [/`([^`]+?)`/g, '<code>$1</code>'],
+      [/&[^;]+;/g, (val: string) => decode(val)],
+    ] as any
 
-      for (const [re, replacement] of replacements) {
-        for (const match of node.value.matchAll(re)) {
-          if (node.loc) {
-            const start = match.index! + node.loc[0].start
-            const end = start + match[0].length + node.loc[0].start
-            processed = processed.slice(0, start) + match[0].replace(re, replacement) + processed.slice(end)
-          }
-          else {
-            processed = processed.replace(match[0], match[0].replace(re, replacement))
-          }
+    for (const [re, replacement] of replacements) {
+      for (const match of node.value.matchAll(re)) {
+        if (node.loc) {
+          const start = match.index! + node.loc[0].start
+          const end = start + match[0].length + node.loc[0].start
+          processed = processed.slice(0, start) + match[0].replace(re, replacement) + processed.slice(end)
+        }
+        else {
+          processed = processed.replace(match[0], match[0].replace(re, replacement))
         }
       }
-    })
-  }
+    }
+  })
 
   return parse(processed)
 }
 
-export function convertMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
+export async function convertMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
   const tree = parseMastodonHTML(html, customEmojis)
-  return render(tree)
+  return await render(tree)
 }
 
 export function htmlToText(html: string) {

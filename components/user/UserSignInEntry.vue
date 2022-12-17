@@ -1,6 +1,6 @@
 <template>
   <div p8 flex="~ col gap4">
-    <p text-sm>
+    <p v-if="isMastoInitialised" text-sm>
       Viewing <strong>{{ currentServer }}</strong> public data
     </p>
     <p text-sm text-secondary>

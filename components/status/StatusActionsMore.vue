@@ -162,7 +162,7 @@ async function editStatus() {
           @click="toggleTranslation"
         />
 
-        <template v-if="currentUser">
+        <template v-if="isMastoInitialised && currentUser">
           <template v-if="isAuthor">
             <CommonDropdownItem
               :text="status.pinned ? $t('menu.unpin_on_profile') : $t('menu.pin_on_profile')"

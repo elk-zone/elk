@@ -13,7 +13,7 @@ export function getDefaultFeatureFlags(): FeatureFlags {
   }
 }
 
-export const currentUserFeatureFlags = useUserLocalStorage(STORAGE_KEY_FEATURE_FLAGS, getDefaultFeatureFlags)
+export const currentUserFeatureFlags = process.server ? computed(getDefaultFeatureFlags) : useUserLocalStorage(STORAGE_KEY_FEATURE_FLAGS, getDefaultFeatureFlags)
 
 export function useFeatureFlags() {
   const featureFlags = currentUserFeatureFlags.value

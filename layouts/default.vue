@@ -7,7 +7,7 @@
             <NavTitle mx3 mt4 mb2 self-start />
             <div flex="~ col" overflow-y-auto>
               <NavSide />
-              <PublishButton v-if="currentUser" m5 />
+              <PublishButton v-if="isMastoInitialised && currentUser" m5 />
               <div flex-auto />
             </div>
           </slot>
@@ -18,15 +18,15 @@
           <slot />
         </div>
         <div sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
-          <CommonOfflineChecker :small-screen="isSmallScreen" />
-          <NavBottom v-if="isSmallScreen" />
+          <CommonOfflineChecker :small-screen="isHydrated && isSmallScreen" />
+          <NavBottom v-if="isHydrated && isSmallScreen" />
         </div>
       </div>
       <aside class="hidden md:none lg:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col">
           <slot name="right">
-            <UserSignInEntry v-if="!currentUser" />
-            <div v-if="currentUser" py6 px4 w-full flex="~" items-center justify-between>
+            <UserSignInEntry v-if="isMastoInitialised && !currentUser" />
+            <div v-if="isMastoInitialised && currentUser" py6 px4 w-full flex="~" items-center justify-between>
               <NuxtLink
                 p2 rounded-full text-start w-full
                 hover:bg-active cursor-pointer transition-100

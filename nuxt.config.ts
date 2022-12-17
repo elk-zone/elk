@@ -6,7 +6,6 @@ import { i18n } from './config/i18n'
 const isPreview = process.env.PULL_REQUEST === 'true'
 
 export default defineNuxtConfig({
-  ssr: false,
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',

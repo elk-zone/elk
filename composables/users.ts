@@ -73,8 +73,6 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
     }
   }
 
-  setMasto(masto)
-
   if ('server' in route.params && user?.token) {
     await router.push({
       ...route,
@@ -117,6 +115,7 @@ const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, nu
 
 export const useNotifications = () => {
   const id = currentUser.value?.account.id
+  const masto = useMasto()
 
   const clearNotifications = () => {
     if (!id || !notifications[id])
@@ -125,10 +124,9 @@ export const useNotifications = () => {
   }
 
   async function connect(): Promise<void> {
-    if (!id || notifications[id] || !currentUser.value?.token)
+    if (!isMastoInitialised.value || !id || notifications[id] || !currentUser.value?.token)
       return
 
-    const masto = useMasto()
     const stream = masto.stream.streamUser()
     notifications[id] = [stream, 0]
     ;(await stream).on('notification', () => {

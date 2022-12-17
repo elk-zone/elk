@@ -6,6 +6,7 @@ defineProps<{
 }>()
 
 defineEmits(['hide', 'subscribe'])
+const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
 </script>
 
 <template>
@@ -32,7 +33,7 @@ defineEmits(['hide', 'subscribe'])
       btn-outline rounded-full font-bold py4 flex="~ gap2 center" m5
       type="button"
       :class="busy ? 'border-transparent' : null"
-      :disabled="busy"
+      :disabled="busy || isLegacyAccount"
       @click="$emit('subscribe')"
     >
       <span aria-hidden="true" :class="busy && animate ? 'i-ri:loader-2-fill animate-spin' : 'i-ri:check-line'" />

@@ -73,6 +73,7 @@
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar sur avatar",
+    "github_cards": "GitHub Cards",
     "virtual_scroll": "Défilement virtuel"
   },
   "help": {

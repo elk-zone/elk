@@ -10,6 +10,7 @@ const {
   initial = getDefaultDraft() as never /* Bug of vue-core */,
   expanded: _expanded = false,
   placeholder,
+  dialogLabelledBy,
 } = defineProps<{
   draftKey: string
   initial?: () => Draft
@@ -17,6 +18,7 @@ const {
   inReplyToId?: string
   inReplyToVisibility?: StatusVisibility
   expanded?: boolean
+  dialogLabelledBy?: string
 }>()
 
 const emit = defineEmits(['published'])
@@ -168,7 +170,7 @@ defineExpose({
   <div v-if="currentUser" flex="~ col gap-4" py4 px2 sm:px4>
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
-        <div text-secondary self-center>
+        <div id="state-editing" text-secondary self-center>
           {{ $t('state.editing') }}
         </div>
         <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" px-0 />
@@ -217,6 +219,7 @@ defineExpose({
           <PublishAttachment
             v-for="(att, idx) in draft.attachments" :key="att.id"
             :attachment="att"
+            :dialog-labelled-by="dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : null)"
             @remove="removeAttachment(idx)"
             @set-description="setDescription(att, $event)"
           />

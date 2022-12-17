@@ -5,6 +5,7 @@ const props = withDefaults(defineProps<{
   attachment: Attachment
   alt?: string
   removable?: boolean
+  dialogLabelledBy?: string
 }>(), {
   removable: true,
 })
@@ -38,10 +39,15 @@ const description = ref(props.attachment.description ?? '')
         Edit
       </button>
     </div>
-    <ModalDialog v-model="isEditDialogOpen" py-6 px-6 max-w-300>
+    <ModalDialog
+      v-model="isEditDialogOpen"
+      :dialog-labelled-by="dialogLabelledBy"
+      py-6
+      px-6 max-w-300
+    >
       <div flex gap-5>
         <div flex flex-col gap-2 justify-between>
-          <h1 font-bold>
+          <h1 id="edit-attachment" font-bold>
             Description
           </h1>
           <div flex flex-col gap-2>

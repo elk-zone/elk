@@ -14,7 +14,6 @@ specifiers:
   '@pinia/nuxt': ^0.4.6
   '@tiptap/extension-character-count': 2.0.0-beta.204
   '@tiptap/extension-code-block': 2.0.0-beta.204
-  '@tiptap/extension-code-block-lowlight': 2.0.0-beta.204
   '@tiptap/extension-mention': 2.0.0-beta.204
   '@tiptap/extension-paragraph': 2.0.0-beta.204
   '@tiptap/extension-placeholder': 2.0.0-beta.204
@@ -44,7 +43,6 @@ specifiers:
   js-yaml: ^4.1.0
   jsdom: ^20.0.3
   lint-staged: ^13.0.4
-  lowlight: ^2.8.0
   lru-cache: ^7.14.1
   masto: ^4.7.5
   nuxt: ^3.0.0
@@ -65,7 +63,6 @@ specifiers:
   unplugin-auto-import: ^0.12.0
   vite-plugin-inspect: ^0.7.9
   vitest: ^0.25.3
-  vue-safe-teleport: ^0.1.1
   vue-tsc: ^1.0.11
   vue-virtual-scroller: 2.0.0-beta.4
 
@@ -86,7 +83,6 @@ devDependencies:
   '@pinia/nuxt': 0.4.6_typescript@4.9.3
   '@tiptap/extension-character-count': 2.0.0-beta.204
   '@tiptap/extension-code-block': 2.0.0-beta.204
-  '@tiptap/extension-code-block-lowlight': 2.0.0-beta.204_czakdrv4w4d5ggkubz4l2tz4ny
   '@tiptap/extension-mention': 2.0.0-beta.204_ggkstofzpnfxkp3gzsos4mewvi
   '@tiptap/extension-paragraph': 2.0.0-beta.204
   '@tiptap/extension-placeholder': 2.0.0-beta.204
@@ -116,7 +112,6 @@ devDependencies:
   js-yaml: 4.1.0
   jsdom: 20.0.3
   lint-staged: 13.0.4
-  lowlight: 2.8.0
   lru-cache: 7.14.1
   masto: 4.7.5
   nuxt: 3.0.0_s5ps7njkmjlaqajutnox5ntcla
@@ -136,7 +131,6 @@ devDependencies:
   unplugin-auto-import: 0.12.0
   vite-plugin-inspect: 0.7.9
   vitest: 0.25.3_jsdom@20.0.3
-  vue-safe-teleport: 0.1.1
   vue-tsc: 1.0.11_typescript@4.9.3
   vue-virtual-scroller: 2.0.0-beta.4
 
@@ -1376,18 +1370,6 @@ packages:
       prosemirror-state: 1.4.2
     dev: true
 
-  /@tiptap/extension-code-block-lowlight/2.0.0-beta.204_czakdrv4w4d5ggkubz4l2tz4ny:
-    resolution: {integrity: sha512-6n2RWlMv7V3NANK+5UfxOMaK83ps8BucleQ/XdNcZuj/glTZco8Z+2E+kazW92c4IFrSgteriYg5ZqC2NBYXrg==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0-beta.193
-      '@tiptap/extension-code-block': ^2.0.0-beta.193
-    dependencies:
-      '@tiptap/extension-code-block': 2.0.0-beta.204
-      prosemirror-model: 1.18.3
-      prosemirror-state: 1.4.2
-      prosemirror-view: 1.29.1
-    dev: true
-
   /@tiptap/extension-code-block/2.0.0-beta.204:
     resolution: {integrity: sha512-IIkZsBT7rxhK7yHnM2LRQfS6i+HNQxU+E6tRtPYF40YSg1xMZSC/xDy0k+NEU/xM6ZVesRofW3voB6svFPPDtw==}
     peerDependencies:
@@ -1642,12 +1624,6 @@ packages:
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
     dependencies:
       '@types/node': 18.11.10
-    dev: true
-
-  /@types/hast/2.3.4:
-    resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
-    dependencies:
-      '@types/unist': 2.0.6
     dev: true
 
   /@types/js-yaml/4.0.5:
@@ -4508,12 +4484,6 @@ packages:
       reusify: 1.0.4
     dev: true
 
-  /fault/2.0.1:
-    resolution: {integrity: sha512-WtySTkS4OKev5JtpHXnib4Gxiurzh5NCGvWrFaZ34m6JehfTUhKZvn9njTfw48t6JumVQOmrKqpmGcdwxnhqBQ==}
-    dependencies:
-      format: 0.2.2
-    dev: true
-
   /fetch-blob/3.2.0:
     resolution: {integrity: sha512-7yAQpD2UMJzLi1Dqv7qFYnPbaPx7ZfFK6PiIxQ4PfkGPyNyl2Ugx+a/umUonmKqjhM4DnfbMvdX6otXq83soQQ==}
     engines: {node: ^12.20 || >= 14.13}
@@ -4622,11 +4592,6 @@ packages:
       asynckit: 0.4.0
       combined-stream: 1.0.8
       mime-types: 2.1.35
-    dev: true
-
-  /format/0.2.2:
-    resolution: {integrity: sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww==}
-    engines: {node: '>=0.4.x'}
     dev: true
 
   /formdata-polyfill/4.0.10:
@@ -4964,11 +4929,6 @@ packages:
     dependencies:
       capital-case: 1.0.4
       tslib: 2.4.1
-    dev: true
-
-  /highlight.js/11.7.0:
-    resolution: {integrity: sha512-1rRqesRFhMO/PRF+G86evnyJkCgaZFOI+Z6kdj15TA18funfoqJXvgPCLSf0SWq3SRfg1j3HlDs8o4s3EGq1oQ==}
-    engines: {node: '>=12.0.0'}
     dev: true
 
   /hookable/5.4.2:
@@ -5769,14 +5729,6 @@ packages:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
       tslib: 2.4.1
-    dev: true
-
-  /lowlight/2.8.0:
-    resolution: {integrity: sha512-WeExw1IKEkel9ZcYwzpvcFzORIB0IlleTcxJYoEuUgHASuYe/OBYbV6ym/AetG7unNVCBU/SXpgTgs2nT93mhg==}
-    dependencies:
-      '@types/hast': 2.3.4
-      fault: 2.0.1
-      highlight.js: 11.7.0
     dev: true
 
   /lru-cache/6.0.0:
@@ -8754,12 +8706,6 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.4.5
       vue: 3.2.45
-    dev: true
-
-  /vue-safe-teleport/0.1.1:
-    resolution: {integrity: sha512-fHA4mod2oF7am2yEUtT0CsxAwfNBt6hWuYTVWzGxrY8vzxxgHMFnPjdZTKl01qGcKEMYYO38LmWizL7oGMVPGw==}
-    peerDependencies:
-      vue: ^3.2.0
     dev: true
 
   /vue-template-compiler/2.7.14:

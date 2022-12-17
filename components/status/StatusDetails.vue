@@ -35,13 +35,23 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
           </p>
         </template>
         <StatusBody :status="status" :with-action="false" text-2xl />
-        <StatusPoll v-if="status.poll" :poll="status.poll" />
+        <StatusPoll
+          v-if="status.poll"
+          :poll="status.poll"
+        />
         <StatusMedia
           v-if="status.mediaAttachments?.length"
           :status="status"
           :class="status.visibility === 'direct' ? 'pb4' : ''"
+          full-size
         />
-        <StatusPreviewCard v-if="status.card" :card="status.card" :class="status.visibility === 'direct' ? 'pb4' : ''" />
+        <StatusPreviewCard
+          v-if="status.card"
+          :card="status.card"
+          :class="status.visibility === 'direct' ? 'pb4' : ''"
+          :small-picture-only="status.mediaAttachments?.length > 0"
+          mt-2
+        />
       </StatusSpoiler>
     </div>
     <div flex="~ gap-1" items-center text-secondary text-sm>

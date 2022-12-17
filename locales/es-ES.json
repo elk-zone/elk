@@ -8,6 +8,7 @@
     "follow": "Seguir",
     "follow_back": "Seguir de vuelta",
     "follow_requested": "Enviado",
+    "followers": "Seguidores",
     "followers_count": "{0} Seguidores|{0} Seguidor|{0} Seguidores",
     "following": "Siguiendo",
     "following_count": "{0} Siguiendo",
@@ -18,6 +19,7 @@
     "muted_users": "Usuarios silenciados",
     "mutuals": "Mutuo",
     "pinned": "Publicaciones fijadas",
+    "posts": "Publicaciones",
     "posts_count": "{0} publicaciones|{0} publicación|{0} publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
     "profile_unavailable": "Perfil no disponible",
@@ -70,6 +72,8 @@
   },
   "error": {
     "account_not_found": "No se encontró la cuenta {0}",
+    "explore-list-empty": "Nada es tendencia en este momento. ¡Vuelva más tarde!",
+    "sign_in_error": "No se ha podido conectar con el servidor.",
     "status_not_found": "Estado no encontrado"
   },
   "feature_flag": {
@@ -171,10 +175,11 @@
     "edited": "editado el {0}"
   },
   "tab": {
-    "accounts": "Cuentas",
-    "hashtags": "Hashtags",
-    "media": "Media",
-    "notifications_all": "Todos",
+    "for_you": "Para tí",
+    "hashtags": "Etiquetas",
+    "media": "Multimedia",
+    "news": "Noticias",
+    "notifications_all": "Todas",
     "notifications_mention": "Menciones",
     "posts": "Publicaciones",
     "posts_with_replies": "Publicaciones y respuestas"

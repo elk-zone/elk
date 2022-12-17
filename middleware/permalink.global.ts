@@ -38,7 +38,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   try {
     // If we're already on an account page, we can search for this on the new instance
-    if (to.params.account) {
+    if (to.params.account && to.name !== 'status' && to.params.account.includes('@')) {
       const account = await fetchAccountByHandle(to.params.account as string)
       if (account)
         return getAccountRoute(account)

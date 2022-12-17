@@ -1,6 +1,6 @@
 import { login as loginMasto } from 'masto'
-import type { AccountCredentials, Instance, WsEvents } from 'masto'
-import { clearUserDrafts } from './statusDrafts'
+import type { Account, AccountCredentials, Instance, WsEvents } from 'masto'
+import type { Ref } from 'vue'
 import type { UserLogin } from '~/types'
 import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
 
@@ -19,6 +19,11 @@ export const currentUser = computed<UserLogin | undefined>(() => {
   // Fallback to the first account
   return users.value[0]
 })
+
+export const currentUserHandle = computed(() => currentUser.value?.account.id
+  ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+  : '[anonymous]',
+)
 
 export const publicServer = ref(DEFAULT_SERVER)
 const publicInstance = ref<Instance | null>(null)
@@ -68,8 +73,6 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
     }
   }
 
-  setMasto(masto)
-
   if ('server' in route.params && user?.token) {
     await router.push({
       ...route,
@@ -91,9 +94,8 @@ export async function signout() {
 
   if (index !== -1) {
     // Clear stale data
+    clearUserLocalStorage()
     delete servers.value[_currentUserId]
-    clearUserDrafts()
-    clearUserFeatureFlags()
 
     currentUserId.value = ''
     // Remove the current user from the users
@@ -113,6 +115,7 @@ const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, nu
 
 export const useNotifications = () => {
   const id = currentUser.value?.account.id
+  const masto = useMasto()
 
   const clearNotifications = () => {
     if (!id || !notifications[id])
@@ -121,10 +124,9 @@ export const useNotifications = () => {
   }
 
   async function connect(): Promise<void> {
-    if (!id || notifications[id] || !currentUser.value?.token)
+    if (!isMastoInitialised.value || !id || notifications[id] || !currentUser.value?.token)
       return
 
-    const masto = useMasto()
     const stream = masto.stream.streamUser()
     notifications[id] = [stream, 0]
     ;(await stream).on('notification', () => {
@@ -143,7 +145,11 @@ export const useNotifications = () => {
   watch(currentUser, disconnect)
   connect()
 
-  return { notifications: computed(() => id ? notifications[id]?.[1] ?? 0 : 0), disconnect, clearNotifications }
+  return {
+    notifications: computed(() => id ? notifications[id]?.[1] ?? 0 : 0),
+    disconnect,
+    clearNotifications,
+  }
 }
 
 export function checkLogin() {
@@ -152,4 +158,41 @@ export function checkLogin() {
     return false
   }
   return true
+}
+
+/**
+ * Create reactive storage for the current user
+ */
+export function useUserLocalStorage<T extends object>(key: string, initial: () => T) {
+  // @ts-expect-error bind value to the function
+  const storages = useUserLocalStorage._ = useUserLocalStorage._ || new Map<string, Ref<Record<string, any>>>()
+
+  if (!storages.has(key))
+    storages.set(key, useLocalStorage(key, {}, { deep: true }))
+  const all = storages.get(key) as Ref<Record<string, T>>
+
+  return computed(() => {
+    const id = currentUser.value?.account.id
+      ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+      : '[anonymous]'
+    all.value[id] = Object.assign(initial(), all.value[id] || {})
+    return all.value[id]
+  })
+}
+
+/**
+ * Clear all storages for the given account
+ */
+export function clearUserLocalStorage(account?: Account) {
+  if (!account)
+    account = currentUser.value?.account
+  if (!account)
+    return
+
+  const id = `${account.acct}@${currentUser.value?.server}`
+  // @ts-expect-error bind value to the function
+  ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>>).forEach((storage) => {
+    if (storage.value[id])
+      delete storage.value[id]
+  })
 }

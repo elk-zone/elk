@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const params = useRoute().params
 const handle = $(computedEager(() => params.account as string))
 
@@ -6,6 +7,12 @@ definePageMeta({ name: 'account-followers' })
 
 const account = await fetchAccountByHandle(handle)
 const paginator = account ? useMasto().accounts.iterateFollowers(account.id, {}) : null
+
+if (account) {
+  useHeadFixed({
+    title: () => `${t('account.followers')} | ${getDisplayName(account)} (@${account})`,
+  })
+}
 </script>
 
 <template>

@@ -2,9 +2,13 @@
 import { clamp } from '@vueuse/core'
 import type { Attachment } from 'masto'
 
-const { attachment } = defineProps<{
+const {
+  attachment,
+  fullSize = false,
+} = defineProps<{
   attachment: Attachment
   attachments?: Attachment[]
+  fullSize?: boolean
 }>()
 
 const src = $computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
@@ -23,8 +27,10 @@ const rawAspectRatio = computed(() => {
 })
 
 const aspectRatio = computed(() => {
+  if (fullSize)
+    return rawAspectRatio.value
   if (rawAspectRatio.value)
-    return clamp(rawAspectRatio.value, 0.5, 2)
+    return clamp(rawAspectRatio.value, 0.8, 2.5)
   return undefined
 })
 
@@ -54,70 +60,99 @@ const type = $computed(() => {
 </script>
 
 <template>
-  <template v-if="type === 'video'">
-    <video
-      :poster="attachment.previewUrl"
-      controls
-      border="~ base"
-      object-cover
-      :width="attachment.meta?.original?.width"
-      :height="attachment.meta?.original?.height"
-      :style="{
-        aspectRatio,
-        objectPosition,
-      }"
-    >
-      <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
-    </video>
-  </template>
-  <template v-else-if="type === 'gifv'">
-    <video
-      :poster="attachment.previewUrl"
-      loop
-      autoplay
-      border="~ base"
-      object-cover
-      :width="attachment.meta?.original?.width"
-      :height="attachment.meta?.original?.height"
-      :style="{
-        aspectRatio,
-        objectPosition,
-      }"
-    >
-      <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
-    </video>
-  </template>
-  <template v-else-if="type === 'audio'">
-    <audio controls border="~ base">
-      <source :src="attachment.url || attachment.previewUrl" type="audio/mp3">
-    </audio>
-  </template>
-  <template v-else>
-    <button
-      focus:outline-none
-      focus:ring="2 primary inset"
-      rounded-lg
-      aria-label="Open image preview dialog"
-      @click="openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
-    >
-      <CommonBlurhash
-        :blurhash="attachment.blurhash"
-        class="status-attachment-image"
-        :src="src"
-        :srcset="srcset"
+  <div relative ma flex>
+    <template v-if="type === 'video'">
+      <video
+        :poster="attachment.previewUrl"
+        controls
+        border="~ base"
+        object-cover
         :width="attachment.meta?.original?.width"
         :height="attachment.meta?.original?.height"
-        :alt="attachment.description!"
         :style="{
           aspectRatio,
           objectPosition,
         }"
+      >
+        <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
+      </video>
+    </template>
+    <template v-else-if="type === 'gifv'">
+      <video
+        :poster="attachment.previewUrl"
+        loop
+        autoplay
         border="~ base"
+        object-cover
+        :width="attachment.meta?.original?.width"
+        :height="attachment.meta?.original?.height"
+        :style="{
+          aspectRatio,
+          objectPosition,
+        }"
+      >
+        <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
+      </video>
+    </template>
+    <template v-else-if="type === 'audio'">
+      <audio controls border="~ base">
+        <source :src="attachment.url || attachment.previewUrl" type="audio/mp3">
+      </audio>
+    </template>
+    <template v-else>
+      <button
+        focus:outline-none
+        focus:ring="2 primary inset"
         rounded-lg
         h-full
         w-full
-        object-cover
-      />
-    </button>
-  </template>
+        aria-label="Open image preview dialog"
+        @click="openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
+      >
+        <CommonBlurhash
+          :blurhash="attachment.blurhash"
+          class="status-attachment-image"
+          :src="src"
+          :srcset="srcset"
+          :width="attachment.meta?.original?.width"
+          :height="attachment.meta?.original?.height"
+          :alt="attachment.description!"
+          :style="{
+            aspectRatio,
+            objectPosition,
+          }"
+          border="~ base"
+          rounded-lg
+          h-full
+          w-full
+          object-cover
+        />
+      </button>
+    </template>
+    <div v-if="attachment.description" absolute left-2 class="bottom-2">
+      <VDropdown :distance="6" placement="bottom-start">
+        <button font-bold text-sm hover:bg-black class="bg-black/65 px1.2 py0.2" rounded-1 text-white>
+          <div hidden>
+            read image description
+          </div>
+          ALT
+        </button>
+        <template #popper>
+          <div p4 flex flex-col gap-2 max-w-130>
+            <div flex justify-between>
+              <h2 font-bold text-xl text-secondary>
+                {{ $t('status.img_alt.desc') }}
+              </h2>
+              <button v-close-popper text-sm btn-outline py0 px2 text-secondary border-base>
+                {{ $t('status.img_alt.dismiss') }}
+              </button>
+            </div>
+            <p>
+              {{ attachment.description }}
+            </p>
+          </div>
+        </template>
+      </VDropdown>
+    </div>
+  </div>
 </template>

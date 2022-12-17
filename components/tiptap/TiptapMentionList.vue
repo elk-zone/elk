@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Account } from 'masto'
+import CommonScrollIntoView from '../common/CommonScrollIntoView.vue'
 
 const { items, command } = defineProps<{
   items: Account[]
@@ -50,15 +51,16 @@ defineExpose({
       </div>
     </template>
     <template v-if="items.length">
-      <button
-        v-for="(item, index) in items"
-        :key="index"
+      <CommonScrollIntoView
+        v-for="(item, index) in items" :key="index"
+        :active="index === selectedIndex"
+        as="button"
         :class="index === selectedIndex ? 'bg-active' : 'text-secondary'"
         block m0 w-full text-left px2 py1
         @click="selectItem(index)"
       >
         <AccountInfo :account="item" />
-      </button>
+      </CommonScrollIntoView>
     </template>
   </div>
   <div v-else />

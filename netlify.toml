@@ -9,7 +9,7 @@
   status = 301
   force = true
 
-[[redirects]]
+[[rewrites]]
   from = "/*"
-  to = "/200.html"
+  to = "/index.html"
   status = 200

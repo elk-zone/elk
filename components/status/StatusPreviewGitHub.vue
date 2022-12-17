@@ -55,6 +55,10 @@ const meta = $computed(() => {
     number,
     avatar,
   })
+  /* It is rate limited for anonymous usage, leaving this to play, but for now it is probably better to avoid the call
+     We can't show the author of the PR or issue without this info, because the handle isn't in the meta. I think we
+     could ask GitHub to add it.
+
   if (number) {
     fetch(`https://api.github.com/repos/${user}/${repo}/issues/${number}`).then(res => res.json()).then((data) => {
       info.extra = {
@@ -66,6 +70,7 @@ const meta = $computed(() => {
       }
     })
   }
+  */
   return info
 })
 </script>
@@ -85,12 +90,12 @@ const meta = $computed(() => {
     }"
   >
     <div p4 px-6 flex flex-col justify-between h-full>
-      <div flex justify-between items-center gap-8 h-full mb-2>
+      <div flex justify-between items-center gap-6 h-full mb-2>
         <div flex flex-col gap-2>
-          <a flex text-3xl flex-wrap :href="card.url">
-            <p v-if="meta.repo" flex gap-1>
+          <a flex gap-1 text-3xl flex-wrap :href="card.url">
+            <template v-if="meta.repo">
               <span>{{ meta.user }}</span><span text-secondary-light>/</span><span text-primary font-bold>{{ meta.repo }}</span>
-            </p>
+            </template>
             <span v-else>{{ meta.user }}</span>
           </a>
           <div flex flex-col>

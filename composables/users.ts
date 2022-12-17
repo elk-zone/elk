@@ -96,6 +96,9 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 }
 
 export async function removePushNotifications(user: UserLogin, fromSWPushManager = true) {
+  if (!useRuntimeConfig().public.pwaEnabled || !user.pushSubscription)
+    return
+
   // unsubscribe push notifications
   try {
     await useMasto().pushSubscriptions.remove()

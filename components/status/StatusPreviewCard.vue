@@ -21,6 +21,7 @@ const isSquare = $computed(() => (
 ))
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
 
+const gitHubCards = $(computedEager(() => useFeatureFlags().experimentalGitHubCards))
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 </script>
 
@@ -37,8 +38,9 @@ const providerName = $computed(() => props.card.providerName ? props.card.provid
     }"
     target="_blank"
   >
+    <StatusPreviewGitHub v-if="gitHubCards && providerName === 'GitHub'" :card="card" />
     <div
-      v-if="card.image"
+      v-else-if="card.image"
       flex flex-col
       display-block of-hidden
       border="base"

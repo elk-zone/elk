@@ -28,6 +28,7 @@
     "not_found": "404 Not Found"
   },
   "feature_flag": {
+    "github_cards": "GitHub Cards",
     "virtual_scroll": "仮想スクロール"
   },
   "menu": {

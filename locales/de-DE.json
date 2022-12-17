@@ -57,6 +57,7 @@
     "status_not_found": "Status nicht gefunden"
   },
   "feature_flag": {
+    "github_cards": "GitHub Cards",
     "virtual_scroll": "Virtuelles Scrollen"
   },
   "menu": {

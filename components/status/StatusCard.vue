@@ -57,7 +57,7 @@ const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
 const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
 
 const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
-const showRebloggedByAvatarOnAvatar = rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id
+const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)
 </script>
 
 <template>

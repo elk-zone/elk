@@ -5,7 +5,7 @@ const cache = new LRU<string, any>({
   max: 1000,
 })
 
-if (process.dev)
+if (process.dev && process.client)
   // eslint-disable-next-line no-console
   console.log({ cache })
 

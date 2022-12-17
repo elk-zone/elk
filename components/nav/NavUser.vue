@@ -1,5 +1,5 @@
 <template>
-  <VDropdown v-if="currentUser">
+  <VDropdown v-if="isMastoInitialised && currentUser">
     <div style="-webkit-touch-callout: none;">
       <AccountAvatar
         ref="avatar"

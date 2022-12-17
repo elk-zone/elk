@@ -7,7 +7,6 @@ import { pwa } from './config/pwa'
 const isPreview = process.env.PULL_REQUEST === 'true'
 
 export default defineNuxtConfig({
-  ssr: false,
   typescript: {
     tsConfig: {
       exclude: ['../service-worker'],

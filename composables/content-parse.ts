@@ -2,7 +2,7 @@ import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
 
-const decoder = document.createElement('textarea')
+const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
 function decode(text: string) {
   decoder.innerHTML = text
   return decoder.value

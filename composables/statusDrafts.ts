@@ -2,7 +2,7 @@ import type { Account, Status } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 
-export const currentUserDrafts = useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
+export const currentUserDrafts = process.server ? computed<DraftMap>(() => ({})) : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 
 export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
   const {

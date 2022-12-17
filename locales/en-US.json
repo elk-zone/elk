@@ -81,6 +81,7 @@
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar on Avatar",
+    "github_cards": "GitHub Cards",
     "virtual_scroll": "Virtual Scrolling"
   },
   "help": {
@@ -130,7 +131,8 @@
     "home": "Home",
     "local": "Local",
     "notifications": "Notifications",
-    "profile": "Profile"
+    "profile": "Profile",
+    "search": "Search"
   },
   "nav_user": {
     "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
@@ -189,6 +191,9 @@
     "reload": "Reload",
     "title": "New Elk version available"
   },
+  "search": {
+    "search_desc": "Search for people & hashtags"
+  },
   "state": {
     "edited": "(Edited)",
     "editing": "Editing",
@@ -221,6 +226,7 @@
     "edited": "edited {0}"
   },
   "tab": {
+    "accounts": "Accounts",
     "for_you": "For you",
     "hashtags": "Hashtags",
     "media": "Media",

@@ -80,6 +80,7 @@
   },
   "feature_flag": {
     "avatar_on_avatar": "头像堆叠",
+    "github_cards": "GitHub Cards",
     "virtual_scroll": "虚拟滚动"
   },
   "help": {
@@ -129,7 +130,8 @@
     "home": "主页",
     "local": "本地",
     "notifications": "通知",
-    "profile": "个人资料"
+    "profile": "个人资料",
+    "search": "搜索"
   },
   "nav_user": {
     "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。"
@@ -182,6 +184,7 @@
     "edited": "在 {0} 编辑了"
   },
   "tab": {
+    "accounts": "账号",
     "for_you": "推荐关注",
     "hashtags": "话题标签",
     "media": "媒体",

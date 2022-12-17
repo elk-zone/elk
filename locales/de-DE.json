@@ -57,6 +57,7 @@
     "status_not_found": "Status nicht gefunden"
   },
   "feature_flag": {
+    "github_cards": "GitHub Cards",
     "virtual_scroll": "Virtuelles Scrollen"
   },
   "menu": {
@@ -95,7 +96,8 @@
     "home": "Startseite",
     "local": "Lokale Timeline",
     "notifications": "Mitteilungen",
-    "profile": "Profil"
+    "profile": "Profil",
+    "search": "Suche"
   },
   "nav_user": {
     "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren."
@@ -134,6 +136,8 @@
     "edited": "Bearbeitet: {0}"
   },
   "tab": {
+    "accounts": "Benutzer",
+    "hashtags": "Hashtags",
     "media": "Medien",
     "notifications_all": "Alle",
     "notifications_mention": "Erwähnungen",

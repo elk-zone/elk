@@ -7,7 +7,7 @@ export const isHydrated = computed(() => {
     return false
 
   const hydrated = ref(false)
-  nuxtApp.hookOnce('app:suspense:resolve', () => {
+  nuxtApp.hooks.hookOnce('app:suspense:resolve', () => {
     hydrated.value = true
   })
   return hydrated

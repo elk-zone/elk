@@ -81,6 +81,7 @@ watchEffect(() => {
                 font-bold sm:text-2xl text-xl
                 :content="getDisplayName(account, { rich: true })"
                 :emojis="account.emojis"
+                :markdown="false"
               />
               <AccountBotIndicator v-if="account.bot" />
             </div>

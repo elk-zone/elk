@@ -41,6 +41,10 @@ defineProps<{
           </a>
         </div>
       </div>
+      <div flex justify-between>
+        <div />
+        <div text-2xl i-ri:mastodon-fill text-secondary />
+      </div>
     </div>
   </div>
 </template>

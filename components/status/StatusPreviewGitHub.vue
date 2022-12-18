@@ -90,22 +90,22 @@ const meta = $computed(() => {
     }"
   >
     <div p4 px-6 flex flex-col justify-between h-full>
-      <div flex justify-between items-center gap-6 h-full mb-2>
+      <div flex justify-between items-center gap-4 h-full mb-2>
         <div flex flex-col gap-2>
-          <a flex gap-1 text-3xl flex-wrap :href="card.url">
+          <a flex gap-1 text-xl sm:text-3xl flex-wrap leading-none :href="card.url">
             <template v-if="meta.repo">
               <span>{{ meta.user }}</span><span text-secondary-light>/</span><span text-primary font-bold>{{ meta.repo }}</span>
             </template>
             <span v-else>{{ meta.user }}</span>
           </a>
-          <div flex flex-col>
-            <p v-if="meta.type === 'issue'" font-bold text-xl text-primary>
-              Issue #{{ meta.number }}
-            </p>
-            <p v-if="meta.type === 'pull'" font-bold text-xl text-primary>
+          <div sm:text-lg>
+            <span v-if="meta.type === 'issue'" text-secondary-light mr-2>
+              #{{ meta.number }}
+            </span>
+            <span v-if="meta.type === 'pull'" text-secondary-light mr-2>
               PR #{{ meta.number }}
-            </p>
-            <span text-secondary-light leading-tight>{{ meta.details }}</span>
+            </span>
+            <span text-secondary leading-tight>{{ meta.details }}</span>
           </div>
         </div>
         <div>

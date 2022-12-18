@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import Inspect from 'vite-plugin-inspect'
-import { isCI } from 'std-env'
+import { isCI, isDevelopment } from 'std-env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
 
@@ -73,7 +73,7 @@ export default defineNuxtConfig({
     },
     public: {
       env: isCI ? isPreview ? 'staging' : 'production' : 'local',
-      pwaEnabled: isCI || process.env.VITE_DEV_PWA === 'true',
+      pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
       translateApi: '',
       // Masto uses Mastodon version checks to see what features are enabled.
       // Mastodon alternatives like GoToSocial will always fail these checks, so

@@ -29,7 +29,7 @@ function onClick(e: MouseEvent) {
 </script>
 
 <template>
-  <div relative h-full w-full flex select-none pointer-events-none pt-12>
+  <div relative h-full w-full flex pt-12>
     <button
       v-if="hasNext" pointer-events-auto btn-action-icon bg="black/20" :aria-label="$t('action.previous')"
       hover:bg="black/40" dark:bg="white/30" dark:hover:bg="white/20" absolute top="1/2" right-1

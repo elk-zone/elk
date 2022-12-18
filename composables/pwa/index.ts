@@ -34,6 +34,10 @@ export const usePWA = () => {
     needRefresh.value = false
   }
 
+  watchDebounced(isDark, (dark) => {
+    document.documentElement.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark === true ? '#111111' : '#ffffff')
+  }, { debounce: 100, flush: 'post' })
+
   return {
     needRefresh,
     updateServiceWorker,

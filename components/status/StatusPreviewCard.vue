@@ -26,7 +26,9 @@ const gitHubCards = $(computedEager(() => useFeatureFlags().experimentalGitHubCa
 </script>
 
 <template>
+  <StatusPreviewGitHub v-if="gitHubCards && providerName === 'GitHub'" :card="card" />
   <NuxtLink
+    v-else
     block
     of-hidden
     hover:bg-active
@@ -38,9 +40,8 @@ const gitHubCards = $(computedEager(() => useFeatureFlags().experimentalGitHubCa
     }"
     target="_blank"
   >
-    <StatusPreviewGitHub v-if="gitHubCards && providerName === 'GitHub'" :card="card" />
     <div
-      v-else-if="card.image"
+      v-if="card.image"
       flex flex-col
       display-block of-hidden
       border="base"
@@ -68,27 +69,6 @@ const gitHubCards = $(computedEager(() => useFeatureFlags().experimentalGitHubCa
     >
       <div i-ri:profile-line w="30%" h="30%" text-secondary />
     </div>
-    <div
-      px3 max-h-2xl
-      flex flex-col
-      :class="[
-        root ? 'flex-gap-1 py1 sm:py3' : 'py1 justify-center sm:justify-start',
-      ]"
-      my-auto
-    >
-      <p text-secondary ws-pre-wrap break-all line-clamp-1>
-        {{ providerName }}
-      </p>
-      <strong
-        v-if="card.title" font-normal sm:font-medium line-clamp-1
-        break-all ws-pre-wrap
-      >{{ card.title }}</strong>
-      <p
-        v-if="card.description"
-        line-clamp-1 break-all sm:break-words text-secondary ws-pre-wrap :class="[root ? 'sm:line-clamp-2' : '']"
-      >
-        {{ card.description }}
-      </p>
-    </div>
+    <StatusPreviewCardInfo :root="root" :card="card" :provider="providerName" />
   </NuxtLink>
 </template>

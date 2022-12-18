@@ -7,6 +7,7 @@ const props = defineProps<{
   root?: boolean
   /** For the preview image, only the small image mode is displayed */
   provider?: string
+  isSquare?: boolean
 }>()
 </script>
 
@@ -28,7 +29,7 @@ const props = defineProps<{
     >{{ card.title }}</strong>
     <p
       v-if="card.description"
-      line-clamp-1 break-all sm:break-words text-secondary ws-pre-wrap :class="[root ? 'sm:line-clamp-2' : '']"
+      line-clamp-1 break-all sm:break-normal text-secondary ws-pre-wrap sm:line-clamp-2
     >
       {{ card.description }}
     </p>

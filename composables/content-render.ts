@@ -45,11 +45,12 @@ export function nodeToVNode(node: Node): VNode | string | null {
   }
   return null
 }
+
 function treeToVNode(
   input: Node,
 ): VNode | string | null {
   if (input.type === TEXT_NODE)
-    return input.value as string
+    return decode(input.value) as string
 
   if ('children' in input) {
     const node = handleNode(input)
@@ -96,4 +97,10 @@ function handleCodeBlock(el: Node) {
 
 function handleNode(el: Node) {
   return handleCodeBlock(el) || handleMention(el) || el
+}
+
+const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
+function decode(text: string) {
+  decoder.innerHTML = text
+  return decoder.value
 }

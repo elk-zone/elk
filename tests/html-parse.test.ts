@@ -52,6 +52,12 @@ describe('html-parse', () => {
     expect(formatted).toMatchSnapshot('html')
     expect(serializedText).toMatchSnapshot('text')
   })
+
+  // it('html entities', async () => {
+  //   const { formatted, serializedText } = await render('<p>Hello &lt;world&gt;.</p>')
+  //   expect(formatted).toMatchSnapshot('html')
+  //   expect(serializedText).toMatchSnapshot('text')
+  // })
 })
 
 async function render(input: string, emojis?: Record<string, Emoji>) {

@@ -2,12 +2,6 @@ import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
 
-const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
-function decode(text: string) {
-  decoder.innerHTML = text
-  return decoder.value
-}
-
 /**
  * Parse raw HTML form Mastodon server to AST,
  * with interop of custom emojis and inline Markdown syntax
@@ -40,7 +34,6 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
         [/\*(.*?)\*/g, '<em>$1</em>'],
         [/~~(.*?)~~/g, '<del>$1</del>'],
         [/`([^`]+?)`/g, '<code>$1</code>'],
-        [/&[^;]+;/g, (val: string) => decode(val)],
       ] as any
 
       for (const [re, replacement] of replacements) {

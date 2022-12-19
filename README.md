@@ -13,18 +13,15 @@
 </p>
 <br/>
 
-Elk is in early alpha, but it is already quite usable. We would love your feedback and contributions.
+# Elk is in early alpha ⚠️ 
 
-Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to learn more and get involved!
+It is already quite usable, but it isn't ready for wide adoption yet. We recommend you to use if if you would like to help us building it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
-The client is deployed to [elk.zone](https://elk.zone), you can share screenshots on social media but avoid sharing this URL or the discord server until we open the repo.
-
-> **Note** 
-> If you would like to contribute, until the repo is open, please create branches in the main repository and send a PR from there.
+The client is deployed to [elk.zone](https://elk.zone), you can share screenshots on social media but we prefer you avoid sharing this URL directly until the app is more polished. Feel free to share the URL with your friedns and invite others you think could be interested in helping to improve Elk.
 
 # Contributing
 
-Hi! We're really excited that you're interested in contributing to Elk! Before submitting your contribution, please read through the following guide.
+We're really excited that you're interested in contributing to Elk! Before submitting your contribution, please read through the following guide.
 
 ## Online
 

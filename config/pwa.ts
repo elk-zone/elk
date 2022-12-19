@@ -31,12 +31,14 @@ const pwa: VitePWANuxtOptions = {
         sizes: '512x512',
         type: 'image/png',
       },
+      /*
       {
         src: 'logo.svg',
         sizes: '250x250',
         type: 'image/png',
         purpose: 'any maskable',
       },
+*/
     ],
   },
   injectManifest: {

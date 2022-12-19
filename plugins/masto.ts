@@ -12,7 +12,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         return initialised
 
       if (key === 'loginTo') {
-        return (...args: any[]) => {
+        return (...args: any[]): Promise<MastoClient> => {
           apiPromise.value = loginTo(...args).then((r) => {
             api.value = r
             return masto
@@ -23,14 +23,14 @@ export default defineNuxtPlugin(async (nuxtApp) => {
               statusMessage: 'Could not log into account.',
             })
           })
-          return apiPromise
+          return apiPromise.value
         }
       }
 
       if (api.value && key in api.value)
         return api.value[key as keyof MastoClient]
 
-      if (!api) {
+      if (!api.value) {
         return new Proxy({}, {
           get(_, subkey) {
             return (...args: any[]) => apiPromise.value?.then((r: any) => r[key][subkey](...args))

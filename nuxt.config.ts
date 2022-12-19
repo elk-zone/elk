@@ -117,7 +117,6 @@ export default defineNuxtConfig({
         { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#ffffff' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
       ],
-      meta: [{ name: 'theme-color', content: '#ffffff' }],
     },
   },
   i18n,

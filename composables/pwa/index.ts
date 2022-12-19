@@ -3,6 +3,10 @@ import { useRegisterSW } from 'virtual:pwa-register/vue'
 export const usePWA = () => {
   const online = useOnline()
 
+  useHead({
+    meta: [{ id: 'theme-color', name: 'theme-color', content: computed(() => isDark.value ? '#111111' : '#ffffff') }],
+  })
+
   const {
     needRefresh,
     updateServiceWorker,
@@ -33,10 +37,6 @@ export const usePWA = () => {
   const close = async () => {
     needRefresh.value = false
   }
-
-  watchDebounced(isDark, (dark) => {
-    document.documentElement.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark === true ? '#111111' : '#ffffff')
-  }, { debounce: 100, flush: 'post' })
 
   return {
     needRefresh,

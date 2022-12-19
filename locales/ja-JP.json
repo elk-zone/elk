@@ -33,6 +33,7 @@
   },
   "feature_flag": {
     "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "仮想スクロール"
   },
   "menu": {

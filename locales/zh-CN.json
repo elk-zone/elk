@@ -85,6 +85,7 @@
   "feature_flag": {
     "avatar_on_avatar": "头像堆叠",
     "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "虚拟滚动"
   },
   "help": {

@@ -3,7 +3,7 @@
     <div v-if="isMastoInitialised" v-show="showUserSwitcherSidebar" fixed h-full hidden md:block bg-code border-r-1 border-base>
       <UserPicker />
     </div>
-    <main flex w-full mxa lg:max-w-80rem md:pl-20>
+    <main flex w-full mxa lg:max-w-80rem :class="isMastoInitialised && showUserSwitcherSidebar ? 'md:pl-20' : ''">
       <aside class="hidden md:block w-1/4 zen-hide" relative>
         <div sticky top-0 h-screen flex="~ col">
           <slot name="left">

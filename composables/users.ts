@@ -246,4 +246,4 @@ export function clearUserLocalStorage(account?: Account) {
 }
 
 const userSwitcherSidebar = eagerComputed(() => useFeatureFlags().experimentalUserSwitcherSidebar)
-export const showUserSwitcherSidebar = computed(() => users.value.length > 0 && userSwitcherSidebar.value)
+export const showUserSwitcherSidebar = computed(() => users.value.length > 1 && userSwitcherSidebar.value)

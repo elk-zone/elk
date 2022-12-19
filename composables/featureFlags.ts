@@ -33,3 +33,6 @@ export function toggleFeatureFlag(key: keyof FeatureFlags) {
   else
     featureFlags[key] = true
 }
+
+const userSwitcherSidebar = eagerComputed(() => useFeatureFlags().experimentalUserSwitcherSidebar)
+export const showUserSwitcherSidebar = computed(() => useUsers().value.length > 1 && userSwitcherSidebar.value)

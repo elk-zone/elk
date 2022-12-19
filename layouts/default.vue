@@ -1,6 +1,6 @@
 <template>
   <div h-full :class="{ zen: isZenMode }">
-    <div v-show="showUserSwitcherSidebar" fixed h-full hidden md:block bg-code border-r-1 border-base>
+    <div v-if="isMastoInitialised" v-show="showUserSwitcherSidebar" fixed h-full hidden md:block bg-code border-r-1 border-base>
       <UserPicker />
     </div>
     <main flex w-full mxa lg:max-w-80rem md:pl-20>

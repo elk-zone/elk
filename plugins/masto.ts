@@ -30,7 +30,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
       if (api.value && key in api.value)
         return api.value[key as keyof MastoClient]
 
-      if (!api) {
+      if (!api.value) {
         return new Proxy({}, {
           get(_, subkey) {
             return (...args: any[]) => apiPromise.value?.then((r: any) => r[key][subkey](...args))

@@ -24,7 +24,7 @@ const providerName = $computed(() => props.card.providerName ? props.card.provid
 const gitHubCards = $(computedEager(() => useFeatureFlags().experimentalGitHubCards))
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
-const CardTypeIconMap = new Map<CardType, string>([
+const cardTypeIconMap = new Map<CardType, string>([
   ['link', 'i-ri:profile-line'],
   ['photo', 'i-ri:image-line'],
   ['video', 'i-ri:play-line'],
@@ -74,7 +74,7 @@ const CardTypeIconMap = new Map<CardType, string>([
         root ? 'rounded-lg' : '',
       ]"
     >
-      <div :class="CardTypeIconMap.get(card.type)" w="30%" h="30%" text-secondary />
+      <div :class="cardTypeIconMap.get(card.type)" w="30%" h="30%" text-secondary />
     </div>
     <StatusPreviewCardInfo :root="root" :card="card" :provider="providerName" />
   </NuxtLink>

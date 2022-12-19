@@ -29,8 +29,11 @@ export const currentUser = computed<UserLogin | undefined>(() => {
   return users.value[0]
 })
 
+const publicInstance = ref<Instance | null>(null)
+export const currentInstance = computed<null | Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+
 export const currentUserHandle = computed(() => currentUser.value?.account.id
-  ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+  ? `${currentUser.value.account.acct}@${currentInstance.value!.uri}`
   : '[anonymous]',
 )
 
@@ -38,9 +41,6 @@ export const publicServer = ref(DEFAULT_SERVER)
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
 
 export const useUsers = () => users
-
-const publicInstance = ref<Instance | null>(null)
-export const currentInstance = computed<null | Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 

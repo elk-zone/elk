@@ -43,7 +43,7 @@ export function getShortHandle({ acct }: Account) {
 export function getServerName(account: Account) {
   if (account.acct.includes('@'))
     return account.acct.split('@')[1]
-  return account.url.match(UserLinkRE)?.[1] || currentUser.value?.server || ''
+  return account.url.match(UserLinkRE)?.[1] || currentInstance.value?.uri || ''
 }
 
 export function getFullHandle(account: Account) {

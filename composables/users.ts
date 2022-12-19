@@ -222,7 +222,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
 
   return computed(() => {
     const id = currentUser.value?.account.id
-      ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+      ? `${currentUser.value.account.acct}@${currentInstance.value!.uri}`
       : '[anonymous]'
     all.value[id] = Object.assign(initial(), all.value[id] || {})
     return all.value[id]
@@ -238,7 +238,7 @@ export function clearUserLocalStorage(account?: Account) {
   if (!account)
     return
 
-  const id = `${account.acct}@${currentUser.value?.server}`
+  const id = `${account.acct}@${currentInstance.value!.uri}`
   // @ts-expect-error bind value to the function
   ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>>).forEach((storage) => {
     if (storage.value[id])

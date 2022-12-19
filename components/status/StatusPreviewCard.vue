@@ -74,9 +74,7 @@ const CardTypeIconMap = new Map<CardType, string>([
         root ? 'rounded-lg' : '',
       ]"
     >
-      <div
-        :class="CardTypeIconMap.get(card.type)" w="30%" h="30%" text-secondary
-      />
+      <div :class="CardTypeIconMap.get(card.type)" w="30%" h="30%" text-secondary />
     </div>
     <StatusPreviewCardInfo :root="root" :card="card" :provider="providerName" />
   </NuxtLink>

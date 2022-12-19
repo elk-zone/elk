@@ -23,6 +23,7 @@ const providerName = $computed(() => props.card.providerName ? props.card.provid
 
 const gitHubCards = $(computedEager(() => useFeatureFlags().experimentalGitHubCards))
 
+// TODO: regex test the card.title value
 const isMastodonLink = true
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';

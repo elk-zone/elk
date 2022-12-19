@@ -52,7 +52,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
     nuxtApp.hook('app:suspense:resolve', () => {
       // TODO: improve upstream to make this synchronous (delayed auth)
-      masto.loginTo(user)
+      if (!masto.loggedIn.value)
+        masto.loginTo(user)
     })
   }
 

@@ -10,7 +10,7 @@ const moreMenuVisible = ref(false)
     class="after-content-empty after:(h-[calc(100%+0.5px)] w-0.1px pointer-events-none)"
   >
     <!-- These weird styles above are used for scroll locking, don't change it unless you know exactly what you're doing. -->
-    <template v-if="currentUser">
+    <template v-if="isMastoInitialised && currentUser">
       <NuxtLink to="/home" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:home-5-line />
       </NuxtLink>
@@ -24,12 +24,12 @@ const moreMenuVisible = ref(false)
     <NuxtLink group :to="`/${currentServer}/public/local`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
       <div i-ri:group-2-line />
     </NuxtLink>
-    <template v-if="!currentUser">
+    <template v-if="!isMastoInitialised || !currentUser">
       <NuxtLink :to="`/${currentServer}/public`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:earth-line />
       </NuxtLink>
     </template>
-    <template v-if="currentUser">
+    <template v-if="isMastoInitialised && currentUser">
       <NuxtLink to="/conversations" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:at-line />
       </NuxtLink>

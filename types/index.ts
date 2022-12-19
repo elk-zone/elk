@@ -1,4 +1,5 @@
-import type { Account, AccountCredentials, Attachment, CreateStatusParams, Emoji, Instance, Notification, Status } from 'masto'
+import type { Account, AccountCredentials, Attachment, CreateStatusParams, Emoji, Instance, MastoClient, Notification, PushSubscription, Status } from 'masto'
+import type { Ref } from 'vue'
 import type { Mutable } from './utils'
 
 export interface AppInfo {
@@ -15,6 +16,13 @@ export interface UserLogin {
   server: string
   token?: string
   account: AccountCredentials
+  vapidKey?: string
+  pushSubscription?: PushSubscription
+}
+
+export interface ElkMasto extends MastoClient {
+  loginTo (user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }): Promise<MastoClient>
+  loggedIn: Ref<boolean>
 }
 
 export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'

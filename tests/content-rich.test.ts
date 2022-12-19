@@ -55,7 +55,7 @@ describe('content-rich', () => {
 })
 
 async function render(content: string, emojis?: Record<string, Emoji>) {
-  const vnode = contentToVNode(content, emojis)
+  const vnode = contentToVNode(content, { emojis })
   const html = (await renderToString(vnode))
     .replace(/<!--[\[\]]-->/g, '')
   let formatted = ''

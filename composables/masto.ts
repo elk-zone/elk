@@ -1,12 +1,11 @@
 import type { Ref } from 'vue'
-import type { Account, MastoClient, Relationship, Status } from 'masto'
+import type { Account, Relationship, Status } from 'masto'
 import { withoutProtocol } from 'ufo'
+import type { ElkMasto } from '~/types'
 
-export const useMasto = () => useNuxtApp().$masto.api as MastoClient
+export const useMasto = () => useNuxtApp().$masto as ElkMasto
 
-export const setMasto = (masto: MastoClient) => {
-  useNuxtApp().$masto?.replace(masto)
-}
+export const isMastoInitialised = computed(() => process.client && useMasto().loggedIn.value)
 
 // @unocss-include
 export const STATUS_VISIBILITIES = [

@@ -8,10 +8,9 @@ export interface TranslationResponse {
   }
 }
 
-const config = useRuntimeConfig()
-
 export const languageCode = process.server ? 'en' : navigator.language.replace(/-.*$/, '')
 export async function translateText(text: string, from?: string | null, to?: string) {
+  const config = useRuntimeConfig()
   const { translatedText } = await $fetch<TranslationResponse>(config.public.translateApi, {
     method: 'POST',
     body: {
@@ -41,7 +40,7 @@ export function useTranslation(status: Status) {
   }
 
   return {
-    enabled: !!config.public.translateApi,
+    enabled: !!useRuntimeConfig().public.translateApi,
     toggle,
     translation,
   }

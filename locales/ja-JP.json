@@ -2,6 +2,7 @@
   "account": {
     "blocked_domains": "ブロックしたドメイン",
     "blocked_users": "ブロックしたユーザー",
+    "blocking": "Blocked",
     "favourites": "お気に入り",
     "follow": "フォローする",
     "follow_back": "フォローバックする",
@@ -10,9 +11,12 @@
     "following_count": "{0} フォロー中",
     "follows_you": "フォローされています",
     "muted_users": "ミュート済み",
+    "muting": "Muted",
     "pinned": "固定された投稿",
     "posts_count": "{0} 投稿",
-    "unfollow": "フォロー解除"
+    "unblock": "Unblock",
+    "unfollow": "フォロー解除",
+    "unmute": "Unmute"
   },
   "action": {
     "compose": "今なにしてる？",
@@ -28,6 +32,8 @@
     "not_found": "404 Not Found"
   },
   "feature_flag": {
+    "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "仮想スクロール"
   },
   "menu": {
@@ -56,7 +62,8 @@
     "home": "ホーム",
     "local": "ローカル",
     "notifications": "通知",
-    "profile": "プロフィール"
+    "profile": "プロフィール",
+    "search": "検索"
   },
   "nav_user": {
     "sign_in_desc": "サインインすると、アカウントやハッシュタグをフォローしたり、お気に入りしたり、投稿を共有したり返信するほか、異なるサーバー上のあなたのアカウントから交流できます。"
@@ -74,6 +81,8 @@
     "uploading": "更新中..."
   },
   "tab": {
+    "accounts": "アカウント",
+    "hashtags": "ハッシュタグ",
     "media": "メディア",
     "posts": "投稿",
     "posts_with_replies": "投稿と返信"

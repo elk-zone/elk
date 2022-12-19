@@ -56,23 +56,25 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvent
     bound.update()
   }
 
-  useIntervalFn(() => {
-    bound.update()
-  }, 1000)
+  if (process.client) {
+    useIntervalFn(() => {
+      bound.update()
+    }, 1000)
 
-  watch(
-    () => [isInScreen, state],
-    () => {
-      if (
-        isInScreen
+    watch(
+      () => [isInScreen, state],
+      () => {
+        if (
+          isInScreen
         && state.value === 'idle'
         // No new content is loaded when the keepAlive page enters the background
         && deactivated.value === false
-      )
-        loadNext()
-    },
-    { immediate: true },
-  )
+        )
+          loadNext()
+      },
+      { immediate: true },
+    )
+  }
 
   return {
     items,

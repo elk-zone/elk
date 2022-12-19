@@ -4,6 +4,7 @@
     "blocked_by": "您已被此用户拉黑",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
+    "blocking": "Blocked",
     "bot": "机器人",
     "favourites": "喜欢的帖文",
     "follow": "关注",
@@ -18,13 +19,16 @@
     "joined": "已加入",
     "moved_title": "的新账号是：",
     "muted_users": "已屏蔽的用户",
+    "muting": "Muted",
     "mutuals": "互相关注",
     "pinned": "置顶的帖文",
     "posts": "帖文",
     "posts_count": "{0} 条帖文",
     "profile_description": "{0}的个人资料头图",
     "profile_unavailable": "个人资料不可见",
-    "unfollow": "取消关注"
+    "unblock": "Unblock",
+    "unfollow": "取消关注",
+    "unmute": "Unmute"
   },
   "action": {
     "bookmark": "收藏",
@@ -80,6 +84,8 @@
   },
   "feature_flag": {
     "avatar_on_avatar": "头像堆叠",
+    "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "虚拟滚动"
   },
   "help": {
@@ -129,7 +135,8 @@
     "home": "主页",
     "local": "本地",
     "notifications": "通知",
-    "profile": "个人资料"
+    "profile": "个人资料",
+    "search": "搜索"
   },
   "nav_user": {
     "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。"
@@ -182,6 +189,7 @@
     "edited": "在 {0} 编辑了"
   },
   "tab": {
+    "accounts": "账号",
     "for_you": "推荐关注",
     "hashtags": "话题标签",
     "media": "媒体",

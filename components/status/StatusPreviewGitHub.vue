@@ -5,13 +5,11 @@ const props = defineProps<{
   card: Card
 }>()
 
-const isSquare = false
-const root = true
-
 type UrlType = 'user' | 'repo' | 'issue' | 'pull'
 interface Meta {
   type: UrlType
-  user: string
+  user?: string
+  titleUrl: string
   avatar: string
   details: string
   repo?: string
@@ -28,7 +26,7 @@ interface Meta {
 const meta = $computed(() => {
   const { url } = props.card
   const path = url.split('https://github.com/')[1]
-  const user = path.match(/([\w-]+)\//)![1]
+  const user = path.match(/([\w-]+)\//)?.[1]
   const repo = path.match(/[\w-]+\/([\w-]+)/)?.[1]
   const repoPath = `${user}/${repo}`
   const inRepoPath = path.split(`${repoPath}/`)?.[1]
@@ -50,6 +48,7 @@ const meta = $computed(() => {
   const info = $ref<Meta>({
     type,
     user,
+    titleUrl: `https://github.com/${user}${repo ? `/${repo}` : ''}`,
     details,
     repo,
     number,
@@ -83,22 +82,20 @@ const meta = $computed(() => {
     bg-code
     relative
     border="base"
-    :class="{
-      'sm:(min-w-32 w-32 h-32) min-w-22 w-22 h-22 border-r': isSquare,
-      'w-full aspect-[1.91] border-b': !isSquare,
-      'rounded-lg': root,
-    }"
+    w-full min-h-50 md:min-h-60 border-b
+    justify-center
+    rounded-lg
   >
-    <div p4 px-6 flex flex-col justify-between h-full>
-      <div flex justify-between items-center gap-4 h-full mb-2>
+    <div p4 sm:px-8 flex flex-col justify-between min-h-50 md:min-h-60 h-full>
+      <div flex justify-between items-center gap-2 sm:gap-6 h-full mb-2 min-h-35 md:min-h-45>
         <div flex flex-col gap-2>
-          <a flex gap-1 text-xl sm:text-3xl flex-wrap leading-none :href="card.url">
+          <a flex gap-1 text-xl sm:text-3xl flex-wrap leading-none :href="meta.titleUrl" target="_blank">
             <template v-if="meta.repo">
               <span>{{ meta.user }}</span><span text-secondary-light>/</span><span text-primary font-bold>{{ meta.repo }}</span>
             </template>
             <span v-else>{{ meta.user }}</span>
           </a>
-          <div sm:text-lg>
+          <a sm:text-lg :href="card.url" target="_blank">
             <span v-if="meta.type === 'issue'" text-secondary-light mr-2>
               #{{ meta.number }}
             </span>
@@ -106,10 +103,12 @@ const meta = $computed(() => {
               PR #{{ meta.number }}
             </span>
             <span text-secondary leading-tight>{{ meta.details }}</span>
-          </div>
+          </a>
         </div>
         <div>
-          <img w-30 aspect-square width="20" height="20" rounded-2 :src="meta.avatar">
+          <a :href="meta.titleUrl" target="_blank">
+            <img w-30 aspect-square width="20" height="20" rounded-2 :src="meta.avatar">
+          </a>
         </div>
       </div>
       <div flex justify-between>

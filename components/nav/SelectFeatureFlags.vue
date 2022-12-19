@@ -24,6 +24,12 @@ const featureFlags = useFeatureFlags()
       >
         {{ $t('feature_flag.github_cards') }}
       </CommonDropdownItem>
+      <CommonDropdownItem
+        :checked="featureFlags.experimentalUserSwitcherSidebar"
+        @click="toggleFeatureFlag('experimentalUserSwitcherSidebar')"
+      >
+        {{ $t('feature_flag.user_switcher_sidebar') }}
+      </CommonDropdownItem>
     </template>
   </CommonDropdown>
 </template>

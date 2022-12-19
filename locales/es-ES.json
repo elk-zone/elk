@@ -4,6 +4,7 @@
     "blocked_by": "Fuiste bloqueado por este usuario.",
     "blocked_domains": "Dominios bloqueados",
     "blocked_users": "Usuarios bloqueados",
+    "blocking": "Blocked",
     "favourites": "Favoritos",
     "follow": "Seguir",
     "follow_back": "Seguir de vuelta",
@@ -17,13 +18,16 @@
     "joined": "Se unió",
     "moved_title": "ha indicado que su nueva cuenta ahora es:",
     "muted_users": "Usuarios silenciados",
+    "muting": "Muted",
     "mutuals": "Mutuo",
     "pinned": "Publicaciones fijadas",
     "posts": "Publicaciones",
     "posts_count": "{0} publicaciones|{0} publicación|{0} publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
     "profile_unavailable": "Perfil no disponible",
-    "unfollow": "Dejar de seguir"
+    "unblock": "Unblock",
+    "unfollow": "Dejar de seguir",
+    "unmute": "Unmute"
   },
   "action": {
     "bookmark": "Añadir marcador",
@@ -79,6 +83,7 @@
   "feature_flag": {
     "avatar_on_avatar": "Avatar en Avatar",
     "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "Virtual Scrolling"
   },
   "help": {
@@ -183,7 +188,6 @@
     "the_thread": "el hilo"
   },
   "pwa": {
-    "close": "Cerrar",
     "message": "@:pwa.title{','} haz click en el botón @:pwa.reload para actualizar.",
     "reload": "Recargar",
     "title": "Nueva versión de Elk disponible"

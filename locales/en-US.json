@@ -4,6 +4,7 @@
     "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
+    "blocking": "Blocked",
     "bot": "BOT",
     "favourites": "Favourites",
     "follow": "Follow",
@@ -18,13 +19,16 @@
     "joined": "Joined",
     "moved_title": "has indicated that their new account is now:",
     "muted_users": "Muted users",
+    "muting": "Muted",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
     "posts": "Posts",
     "posts_count": "{0} posts|{0} post|{0} posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
-    "unfollow": "Unfollow"
+    "unblock": "Unblock",
+    "unfollow": "Unfollow",
+    "unmute": "Unmute"
   },
   "action": {
     "bookmark": "Bookmark",
@@ -82,6 +86,7 @@
   "feature_flag": {
     "avatar_on_avatar": "Avatar on Avatar",
     "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "Virtual Scrolling"
   },
   "help": {
@@ -186,10 +191,10 @@
     "the_thread": "the thread"
   },
   "pwa": {
-    "close": "Close",
-    "message": "@:pwa.title{','} click on @:pwa.reload button to update.",
+    "dismiss": "Dismiss",
+    "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
     "reload": "Reload",
-    "title": "New Elk version available"
+    "title": "New Elk update available"
   },
   "search": {
     "search_desc": "Search for people & hashtags"

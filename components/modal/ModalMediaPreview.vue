@@ -53,7 +53,7 @@ function onClick(e: MouseEvent) {
         btn-action-icon bg="black/30" aria-label="action.close" hover:bg="black/40" dark:bg="white/30"
         dark:hover:bg="white/20" pointer-events-auto shrink-0 @click="emit('close')"
       >
-        <div i-ri:close-fill text-white />
+        <div i-ri:close-line text-white />
       </button>
       <div bg="black/30" dark:bg="white/10" ml-4 my-auto text-white rounded-full flex="~ center" overflow-hidden>
         <div v-if="mediaPreviewList.length > 1" p="y-1 x-2" rounded-r-0 shrink-0>

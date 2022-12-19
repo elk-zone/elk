@@ -58,7 +58,7 @@ const teams: Team[] = [
     {{ $t('help.desc_para3') }}
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of teams" :key="team.github">
-        <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full>
+        <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
           <img :src="`https://res.cloudinary.com/dchoja2nb/image/twitter_name/h_120,w_120/f_auto/${team.twitter}.jpg`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
         </a>
       </template>
@@ -67,7 +67,7 @@ const teams: Team[] = [
       <span text-lg font-script>The Elk Team</span>
     </p>
 
-    <button btn-solid mxa @click="emit('close')">
+    <button btn-solid mxa tabindex="2" @click="emit('close')">
       {{ $t('action.enter_app') }}
     </button>
   </div>

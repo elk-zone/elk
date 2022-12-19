@@ -65,7 +65,7 @@ specifiers:
   vite-plugin-pwa: ^0.13.3
   vitest: ^0.25.3
   vue-tsc: ^1.0.11
-  vue-virtual-scroller: 2.0.0-beta.4
+  vue-virtual-scroller: 2.0.0-beta.7
   workbox-window: ^6.5.4
 
 dependencies:
@@ -132,10 +132,10 @@ devDependencies:
   ultrahtml: 1.0.4
   unplugin-auto-import: 0.12.0
   vite-plugin-inspect: 0.7.9
-  vite-plugin-pwa: 0.13.3
+  vite-plugin-pwa: 0.13.3_workbox-window@6.5.4
   vitest: 0.25.3_jsdom@20.0.3
   vue-tsc: 1.0.11_typescript@4.9.3
-  vue-virtual-scroller: 2.0.0-beta.4
+  vue-virtual-scroller: 2.0.0-beta.7
   workbox-window: 6.5.4
 
 packages:
@@ -9721,10 +9721,11 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa/0.13.3:
+  /vite-plugin-pwa/0.13.3_workbox-window@6.5.4:
     resolution: {integrity: sha512-cjWXpZ7slAY14OKz7M8XdgTIi9wjf6OD6NkhiMAc+ogxnbUrecUwLdRtfGPCPsN2ftut5gaN1jTghb11p6IQAA==}
     peerDependencies:
       vite: ^3.1.0
+      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
       debug: 4.3.4
@@ -10020,8 +10021,8 @@ packages:
       typescript: 4.9.3
     dev: true
 
-  /vue-virtual-scroller/2.0.0-beta.4:
-    resolution: {integrity: sha512-JfFRyMCUzjPg+lbDXP4SpWy1aE8lpCbe1AZgwXmQPHZr1eayX5n8GgEuntUi0ixFCzBQzdH7WQwPpchp8UgjtA==}
+  /vue-virtual-scroller/2.0.0-beta.7:
+    resolution: {integrity: sha512-OrouVj1i2939jaLjVfu8f5fsDlbzhAb4bOsYZYrAkpcVLylAmMoGtIL7eT3hJrdTiaKbwQpRdnv7DKf9Fn+tHg==}
     peerDependencies:
       vue: ^3.2.0
     dependencies:

@@ -75,9 +75,7 @@ const CardTypeIconMap = new Map<CardType, string>([
       ]"
     >
       <div
-        :class="[
-          CardTypeIconMap.get(card.type),
-        ]" w="30%" h="30%" text-secondary
+        :class="CardTypeIconMap.get(card.type)" w="30%" h="30%" text-secondary
       />
     </div>
     <StatusPreviewCardInfo :root="root" :card="card" :provider="providerName" />

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Card } from 'masto'
+import type { Card, CardType } from 'masto'
 
 const props = defineProps<{
   card: Card
@@ -22,7 +22,14 @@ const isSquare = $computed(() => (
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
 
 const gitHubCards = $(computedEager(() => useFeatureFlags().experimentalGitHubCards))
+
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
+const cardTypeIconMap: Record<CardType, string> = {
+  link: 'i-ri:profile-line',
+  photo: 'i-ri:image-line',
+  video: 'i-ri:play-line',
+  rich: 'i-ri:profile-line',
+}
 </script>
 
 <template>
@@ -67,7 +74,7 @@ const gitHubCards = $(computedEager(() => useFeatureFlags().experimentalGitHubCa
         root ? 'rounded-lg' : '',
       ]"
     >
-      <div i-ri:profile-line w="30%" h="30%" text-secondary />
+      <div :class="cardTypeIconMap[card.type]" w="30%" h="30%" text-secondary />
     </div>
     <StatusPreviewCardInfo :root="root" :card="card" :provider="providerName" />
   </NuxtLink>

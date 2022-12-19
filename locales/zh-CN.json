@@ -4,6 +4,7 @@
     "blocked_by": "您已被此用户拉黑",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
+    "blocking": "Blocked",
     "bot": "机器人",
     "favourites": "喜欢的帖文",
     "follow": "关注",
@@ -24,6 +25,7 @@
     "posts_count": "{0} 条帖文",
     "profile_description": "{0}的个人资料头图",
     "profile_unavailable": "个人资料不可见",
+    "unblock": "Unblock",
     "unfollow": "取消关注"
   },
   "action": {

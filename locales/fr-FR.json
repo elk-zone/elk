@@ -4,6 +4,7 @@
     "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur.",
     "blocked_domains": "Domaines bloqués",
     "blocked_users": "Utilisateurs bloqués",
+    "blocking": "Blocked",
     "bot": "Automatisé",
     "favourites": "Favoris",
     "follow": "Suivre",
@@ -24,6 +25,7 @@
     "posts_count": "{0} messages",
     "profile_description": "En-tête du profil de {0}",
     "profile_unavailable": "Profil non accessible",
+    "unblock": "Unblock",
     "unfollow": "Ne plus suivre"
   },
   "action": {

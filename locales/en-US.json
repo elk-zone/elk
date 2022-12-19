@@ -4,6 +4,7 @@
     "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
+    "blocking": "Blocked",
     "bot": "BOT",
     "favourites": "Favourites",
     "follow": "Follow",
@@ -24,6 +25,7 @@
     "posts_count": "{0} posts|{0} post|{0} posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
+    "unblock": "Unblock",
     "unfollow": "Unfollow"
   },
   "action": {

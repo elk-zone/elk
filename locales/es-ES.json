@@ -4,6 +4,7 @@
     "blocked_by": "Fuiste bloqueado por este usuario.",
     "blocked_domains": "Dominios bloqueados",
     "blocked_users": "Usuarios bloqueados",
+    "blocking": "Blocked",
     "favourites": "Favoritos",
     "follow": "Seguir",
     "follow_back": "Seguir de vuelta",
@@ -23,6 +24,7 @@
     "posts_count": "{0} publicaciones|{0} publicación|{0} publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
     "profile_unavailable": "Perfil no disponible",
+    "unblock": "Unblock",
     "unfollow": "Dejar de seguir"
   },
   "action": {

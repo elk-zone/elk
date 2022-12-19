@@ -2,6 +2,7 @@
   "account": {
     "blocked_domains": "ブロックしたドメイン",
     "blocked_users": "ブロックしたユーザー",
+    "blocking": "Blocked",
     "favourites": "お気に入り",
     "follow": "フォローする",
     "follow_back": "フォローバックする",
@@ -12,6 +13,7 @@
     "muted_users": "ミュート済み",
     "pinned": "固定された投稿",
     "posts_count": "{0} 投稿",
+    "unblock": "Unblock",
     "unfollow": "フォロー解除"
   },
   "action": {

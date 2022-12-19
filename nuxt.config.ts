@@ -4,7 +4,7 @@ import { isCI, isDevelopment } from 'std-env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
 
-const isPreview = process.env.PULL_REQUEST === 'true'
+const isPreview = process.env.PULL_REQUEST === 'true' || process.env.CONTEXT === 'deploy-preview' || process.env.CONTEXT === 'dev'
 
 export default defineNuxtConfig({
   typescript: {

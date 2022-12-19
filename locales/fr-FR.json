@@ -82,6 +82,7 @@
   "feature_flag": {
     "avatar_on_avatar": "Avatar sur avatar",
     "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "Défilement virtuel"
   },
   "help": {

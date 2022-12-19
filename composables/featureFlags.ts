@@ -4,6 +4,7 @@ export interface FeatureFlags {
   experimentalVirtualScroll: boolean
   experimentalAvatarOnAvatar: boolean
   experimentalGitHubCards: boolean
+  experimentalUserSwitcherSidebar: boolean
 }
 export type FeatureFlagsMap = Record<string, FeatureFlags>
 
@@ -12,6 +13,7 @@ export function getDefaultFeatureFlags(): FeatureFlags {
     experimentalVirtualScroll: false,
     experimentalAvatarOnAvatar: true,
     experimentalGitHubCards: true,
+    experimentalUserSwitcherSidebar: true,
   }
 }
 

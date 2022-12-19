@@ -19,6 +19,7 @@
     "joined": "Joined",
     "moved_title": "has indicated that their new account is now:",
     "muted_users": "Muted users",
+    "muting": "Muted",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
     "posts": "Posts",
@@ -26,7 +27,8 @@
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
     "unblock": "Unblock",
-    "unfollow": "Unfollow"
+    "unfollow": "Unfollow",
+    "unmute": "Unmute"
   },
   "action": {
     "bookmark": "Bookmark",

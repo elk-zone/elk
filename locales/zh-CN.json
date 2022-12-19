@@ -19,6 +19,7 @@
     "joined": "已加入",
     "moved_title": "的新账号是：",
     "muted_users": "已屏蔽的用户",
+    "muting": "Muted",
     "mutuals": "互相关注",
     "pinned": "置顶的帖文",
     "posts": "帖文",
@@ -26,7 +27,8 @@
     "profile_description": "{0}的个人资料头图",
     "profile_unavailable": "个人资料不可见",
     "unblock": "Unblock",
-    "unfollow": "取消关注"
+    "unfollow": "取消关注",
+    "unmute": "Unmute"
   },
   "action": {
     "bookmark": "收藏",

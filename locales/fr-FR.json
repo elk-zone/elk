@@ -19,6 +19,7 @@
     "joined": "a rejoint",
     "moved_title": "a indiqué que son nouveau compte est désormais :",
     "muted_users": "Utilisateurs mis en sourdine",
+    "muting": "Muted",
     "mutuals": "@:account.following",
     "pinned": "Épinglés",
     "posts": "Messages",
@@ -26,7 +27,8 @@
     "profile_description": "En-tête du profil de {0}",
     "profile_unavailable": "Profil non accessible",
     "unblock": "Unblock",
-    "unfollow": "Ne plus suivre"
+    "unfollow": "Ne plus suivre",
+    "unmute": "Unmute"
   },
   "action": {
     "bookmark": "Ajouter aux marque-pages",

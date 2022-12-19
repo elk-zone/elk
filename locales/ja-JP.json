@@ -11,10 +11,12 @@
     "following_count": "{0} フォロー中",
     "follows_you": "フォローされています",
     "muted_users": "ミュート済み",
+    "muting": "Muted",
     "pinned": "固定された投稿",
     "posts_count": "{0} 投稿",
     "unblock": "Unblock",
-    "unfollow": "フォロー解除"
+    "unfollow": "フォロー解除",
+    "unmute": "Unmute"
   },
   "action": {
     "compose": "今なにしてる？",

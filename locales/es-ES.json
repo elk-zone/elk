@@ -18,6 +18,7 @@
     "joined": "Se unió",
     "moved_title": "ha indicado que su nueva cuenta ahora es:",
     "muted_users": "Usuarios silenciados",
+    "muting": "Muted",
     "mutuals": "Mutuo",
     "pinned": "Publicaciones fijadas",
     "posts": "Publicaciones",
@@ -25,7 +26,8 @@
     "profile_description": "Encabezado del perfil de {0}",
     "profile_unavailable": "Perfil no disponible",
     "unblock": "Unblock",
-    "unfollow": "Dejar de seguir"
+    "unfollow": "Dejar de seguir",
+    "unmute": "Unmute"
   },
   "action": {
     "bookmark": "Añadir marcador",

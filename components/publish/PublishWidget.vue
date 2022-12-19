@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CreateStatusParams, StatusVisibility } from 'masto'
+import type { Attachment, CreateStatusParams, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
@@ -10,6 +10,7 @@ const {
   initial = getDefaultDraft() as never /* Bug of vue-core */,
   expanded: _expanded = false,
   placeholder,
+  dialogLabelledBy,
 } = defineProps<{
   draftKey: string
   initial?: () => Draft
@@ -17,6 +18,7 @@ const {
   inReplyToId?: string
   inReplyToVisibility?: StatusVisibility
   expanded?: boolean
+  dialogLabelledBy?: string
 }>()
 
 const emit = defineEmits(['published'])
@@ -99,6 +101,11 @@ async function uploadAttachments(files: File[]) {
   isUploading = false
 }
 
+async function setDescription(att: Attachment, description: string) {
+  att.description = description
+  await useMasto().mediaAttachments.update(att.id, { description: att.description })
+}
+
 function removeAttachment(index: number) {
   draft.attachments.splice(index, 1)
 }
@@ -160,10 +167,10 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="currentUser" flex="~ col gap-4" py4 px2 sm:px4>
+  <div v-if="isMastoInitialised && currentUser" flex="~ col gap-4" py4 px2 sm:px4>
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
-        <div text-secondary self-center>
+        <div id="state-editing" text-secondary self-center>
           {{ $t('state.editing') }}
         </div>
         <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" px-0 />
@@ -212,7 +219,9 @@ defineExpose({
           <PublishAttachment
             v-for="(att, idx) in draft.attachments" :key="att.id"
             :attachment="att"
+            :dialog-labelled-by="dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : null)"
             @remove="removeAttachment(idx)"
+            @set-description="setDescription(att, $event)"
           />
         </div>
       </div>

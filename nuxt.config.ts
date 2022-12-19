@@ -1,12 +1,17 @@
 import { fileURLToPath } from 'node:url'
 import Inspect from 'vite-plugin-inspect'
-import { isCI } from 'std-env'
+import { isCI, isDevelopment } from 'std-env'
 import { i18n } from './config/i18n'
+import { pwa } from './config/pwa'
 
 const isPreview = process.env.PULL_REQUEST === 'true'
 
 export default defineNuxtConfig({
-  ssr: false,
+  typescript: {
+    tsConfig: {
+      exclude: ['../service-worker'],
+    },
+  },
   modules: [
     '@vueuse/nuxt',
     '@unocss/nuxt',
@@ -15,6 +20,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '~/modules/purge-comments',
     '~/modules/setup-components',
+    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
   ],
   experimental: {
     reactivityTransform: true,
@@ -67,6 +73,7 @@ export default defineNuxtConfig({
     },
     public: {
       env: isCI ? isPreview ? 'staging' : 'production' : 'local',
+      pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
       translateApi: '',
       // Masto uses Mastodon version checks to see what features are enabled.
       // Mastodon alternatives like GoToSocial will always fail these checks, so
@@ -76,6 +83,13 @@ export default defineNuxtConfig({
     storage: {
       driver: isCI ? 'cloudflare' : 'fs',
       fsBase: 'node_modules/.cache/servers',
+    },
+  },
+  routeRules: {
+    '/manifest.webmanifest': {
+      headers: {
+        'Content-Type': 'application/manifest+json',
+      },
     },
   },
   nitro: {
@@ -100,10 +114,14 @@ export default defineNuxtConfig({
         { rel: 'alternate icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'icon', type: 'image/png', href: '/favicon-16x16.png', sizes: '16x16' },
         { rel: 'icon', type: 'image/png', href: '/favicon-32x32.png', sizes: '32x32' },
+        { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#ffffff' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
       ],
+      meta: [{ name: 'theme-color', content: '#ffffff' }],
     },
   },
   i18n,
+  pwa,
 })
 
 declare global {

@@ -4,6 +4,7 @@
     "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
+    "blocking": "Blocked",
     "bot": "BOT",
     "favourites": "Favourites",
     "follow": "Follow",
@@ -18,13 +19,16 @@
     "joined": "Joined",
     "moved_title": "has indicated that their new account is now:",
     "muted_users": "Muted users",
+    "muting": "Muted",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
     "posts": "Posts",
     "posts_count": "{0} posts|{0} post|{0} posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
-    "unfollow": "Unfollow"
+    "unblock": "Unblock",
+    "unfollow": "Unfollow",
+    "unmute": "Unmute"
   },
   "action": {
     "bookmark": "Bookmark",
@@ -81,6 +85,8 @@
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar on Avatar",
+    "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "Virtual Scrolling"
   },
   "help": {
@@ -130,7 +136,8 @@
     "home": "Home",
     "local": "Local",
     "notifications": "Notifications",
-    "profile": "Profile"
+    "profile": "Profile",
+    "search": "Search"
   },
   "nav_user": {
     "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
@@ -142,6 +149,38 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
+    "settings": {
+      "alerts": {
+        "favourite": "Favourites",
+        "follow": "New followers",
+        "mention": "Mentions",
+        "poll": "Polls",
+        "reblog": "Reblog your post",
+        "title": "What notifications to receive?"
+      },
+      "close_btn": "Close desktop notification settings",
+      "policy": {
+        "all": "From anyone",
+        "followed": "Of people I follow",
+        "follower": "Of people who follow me",
+        "none": "From no one",
+        "title": "Who can I receive notifications from?"
+      },
+      "save_settings": "Save settings changes",
+      "show_btn": "Show desktop notification settings",
+      "title": "Desktop notification settings",
+      "undo_settings": "Undo settings changes",
+      "unsubscribe": "Disable desktop notifications",
+      "unsubscribed_with_warning": "Enable notifications to receive notifications from this account by clicking \"@:notification.settings.warning.enable_desktop{'\"'} button.",
+      "unsupported": "Your browser does not support desktop notifications.",
+      "warning": {
+        "enable_close": "Close",
+        "enable_description": "To receive notifications when Elk is not open, enable desktop notifications. You can control precisely what types of interactions generate desktop notifications via the \"Show Settings\" button above once enabled.",
+        "enable_description_short": "To change desktop notification settings when Elk is not open, you must first enable desktop notifications.",
+        "enable_desktop": "Enable desktop notifications",
+        "enable_title": "Never miss anything"
+      }
+    },
     "update_status": "updated their status"
   },
   "placeholder": {
@@ -150,6 +189,15 @@
     "reply_to_account": "Reply to {0}",
     "replying": "Replying",
     "the_thread": "the thread"
+  },
+  "pwa": {
+    "dismiss": "Dismiss",
+    "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
+    "reload": "Reload",
+    "title": "New Elk update available"
+  },
+  "search": {
+    "search_desc": "Search for people & hashtags"
   },
   "state": {
     "edited": "(Edited)",
@@ -183,6 +231,7 @@
     "edited": "edited {0}"
   },
   "tab": {
+    "accounts": "Accounts",
     "for_you": "For you",
     "hashtags": "Hashtags",
     "media": "Media",

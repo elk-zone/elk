@@ -96,7 +96,7 @@ onBeforeUnmount(() => {
               </button>
             </NavSelectLanguage>
             <!-- Toggle Feature Flags -->
-            <NavSelectFeatureFlags v-if="currentUser">
+            <NavSelectFeatureFlags v-if="isMastoInitialised && currentUser">
               <button
                 flex flex-row items-center
                 block px-5 py-2 focus-blue w-full

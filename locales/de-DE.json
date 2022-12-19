@@ -81,6 +81,8 @@
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar auf Avatar",
+    "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "Virtuelles Scrollen"
   },
   "help": {
@@ -130,7 +132,8 @@
     "home": "Startseite",
     "local": "Lokale Timeline",
     "notifications": "Mitteilungen",
-    "profile": "Profil"
+    "profile": "Profil",
+    "search": "Suche"
   },
   "nav_user": {
     "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren."
@@ -184,6 +187,7 @@
   },
   "tab": {
     "for_you": "Für dich",
+    "accounts": "Benutzer",
     "hashtags": "Hashtags",
     "media": "Medien",
     "news": "Nachrichten",

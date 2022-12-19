@@ -33,6 +33,11 @@ const locales: LocaleObject[] = [
     file: 'fr-FR.json',
     name: 'Français',
   },
+  {
+    code: 'cs-CZ',
+    file: 'cs-CZ.json',
+    name: 'Česky',
+  },
 ].sort((a, b) => a.code.localeCompare(b.code))
 
 const datetimeFormats = Object.keys(locales).reduce((acc, key) => {

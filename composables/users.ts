@@ -2,7 +2,16 @@ import { login as loginMasto } from 'masto'
 import type { Account, AccountCredentials, Instance, WsEvents } from 'masto'
 import type { Ref } from 'vue'
 import type { UserLogin } from '~/types'
-import { DEFAULT_POST_CHARS_LIMIT, DEFAULT_SERVER, STORAGE_KEY_CURRENT_USER, STORAGE_KEY_SERVERS, STORAGE_KEY_USERS } from '~/constants'
+import {
+  DEFAULT_POST_CHARS_LIMIT,
+  DEFAULT_SERVER,
+  STORAGE_KEY_CURRENT_USER,
+  STORAGE_KEY_NOTIFICATION,
+  STORAGE_KEY_NOTIFICATION_POLICY,
+  STORAGE_KEY_SERVERS,
+  STORAGE_KEY_USERS,
+} from '~/constants'
+import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
 
 const mock = process.mock
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
@@ -53,12 +62,15 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 
   else {
     try {
-      const [me, server] = await Promise.all([
+      const [me, server, pushSubscription] = await Promise.all([
         masto.accounts.verifyCredentials(),
         masto.instances.fetch(),
+        // we get 404 response instead empty data
+        masto.pushSubscriptions.fetch().catch(() => Promise.resolve(undefined)),
       ])
 
       user.account = me
+      user.pushSubscription = pushSubscription
       currentUserId.value = me.id
       servers.value[me.id] = server
 
@@ -73,8 +85,6 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
     }
   }
 
-  setMasto(masto)
-
   if ('server' in route.params && user?.token) {
     await router.push({
       ...route,
@@ -83,6 +93,40 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
   }
 
   return masto
+}
+
+export async function removePushNotifications(user: UserLogin, fromSWPushManager = true) {
+  if (!useRuntimeConfig().public.pwaEnabled || !user.pushSubscription)
+    return
+
+  // unsubscribe push notifications
+  try {
+    await useMasto().pushSubscriptions.remove()
+  }
+  catch {
+    // ignore
+  }
+  // clear push subscription
+  user.pushSubscription = undefined
+  const { acct } = user.account
+  // clear request notification permission
+  delete useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {}).value[acct]
+  // clear push notification policy
+  delete useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {}).value[acct]
+
+  // we remove the sw push manager if required and there are no more accounts with subscriptions
+  if (fromSWPushManager && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
+    // clear sw push subscription
+    try {
+      const registration = await navigator.serviceWorker.ready
+      const subscription = await registration.pushManager.getSubscription()
+      if (subscription)
+        await subscription.unsubscribe()
+    }
+    catch {
+      // juts ignore
+    }
+  }
 }
 
 export async function signout() {
@@ -98,6 +142,8 @@ export async function signout() {
     // Clear stale data
     clearUserLocalStorage()
     delete servers.value[_currentUserId]
+
+    await removePushNotifications(currentUser.value)
 
     currentUserId.value = ''
     // Remove the current user from the users
@@ -117,6 +163,7 @@ const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, nu
 
 export const useNotifications = () => {
   const id = currentUser.value?.account.id
+  const masto = useMasto()
 
   const clearNotifications = () => {
     if (!id || !notifications[id])
@@ -125,10 +172,9 @@ export const useNotifications = () => {
   }
 
   async function connect(): Promise<void> {
-    if (!id || notifications[id] || !currentUser.value?.token)
+    if (!isMastoInitialised.value || !id || notifications[id] || !currentUser.value?.token)
       return
 
-    const masto = useMasto()
     const stream = masto.stream.streamUser()
     notifications[id] = [stream, 0]
     ;(await stream).on('notification', () => {

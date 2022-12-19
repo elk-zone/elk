@@ -63,6 +63,7 @@ export const useTimeAgoOptions = (short = false): UseTimeAgoOptions<false> => {
   const prefix = short ? 'short_' : ''
 
   return {
+    rounding: 'floor',
     showSecond: !short,
     updateInterval: short ? 60_000 : 1_000,
     messages: {

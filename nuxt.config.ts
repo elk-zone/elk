@@ -35,8 +35,9 @@ export default defineNuxtConfig({
     '~/styles/dropdown.css',
   ],
   alias: {
-    querystring: 'rollup-plugin-node-polyfills/polyfills/qs',
-    masto: 'masto/fetch',
+    'querystring': 'rollup-plugin-node-polyfills/polyfills/qs',
+    'masto/fetch': 'masto/fetch',
+    'masto': 'masto/fetch',
   },
   vite: {
     // to make use of `TAURI_PLATFORM`, `TAURI_ARCH`, `TAURI_FAMILY`,

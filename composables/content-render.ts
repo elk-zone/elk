@@ -4,7 +4,7 @@ import type { Node } from 'ultrahtml'
 import { Fragment, h, isVNode } from 'vue'
 import type { VNode } from 'vue'
 import { RouterLink } from 'vue-router'
-import { parseMastodonHTML, decodeHtml } from './content-parse'
+import { decodeHtml, parseMastodonHTML } from './content-parse'
 import ContentCode from '~/components/content/ContentCode.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 

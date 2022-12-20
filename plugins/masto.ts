@@ -1,45 +1,5 @@
-import type { MastoClient } from 'masto'
-import type { ElkMasto } from '~/types'
-
 export default defineNuxtPlugin(async (nuxtApp) => {
-  const api = shallowRef<MastoClient | null>(null)
-  const apiPromise = ref<Promise<MastoClient> | null>(null)
-  const initialised = computed(() => !!api.value)
-
-  const masto = new Proxy({} as ElkMasto, {
-    get(_, key: keyof ElkMasto) {
-      if (key === 'loggedIn')
-        return initialised
-
-      if (key === 'loginTo') {
-        return (...args: any[]): Promise<MastoClient> => {
-          return apiPromise.value = loginTo(...args).then((r) => {
-            api.value = r
-            return masto
-          }).catch(() => {
-            // Show error page when Mastodon server is down
-            throw createError({
-              fatal: true,
-              statusMessage: 'Could not log into account.',
-            })
-          })
-        }
-      }
-
-      if (api.value && key in api.value)
-        return api.value[key as keyof MastoClient]
-
-      if (!api.value) {
-        return new Proxy({}, {
-          get(_, subkey) {
-            return (...args: any[]) => apiPromise.value?.then((r: any) => r[key][subkey](...args))
-          },
-        })
-      }
-
-      return undefined
-    },
-  })
+  const masto = createMasto()
 
   if (process.client) {
     const { query } = useRoute()

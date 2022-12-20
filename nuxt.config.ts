@@ -71,6 +71,12 @@ export default defineNuxtConfig({
       namespaceId: '',
       apiToken: '',
     },
+    github: {
+      // oauth flow
+      clientId: '',
+      clientSecret: '',
+      inviteToken: '',
+    },
     public: {
       env: isCI ? isPreview ? 'staging' : 'production' : 'local',
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',

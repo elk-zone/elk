@@ -11,7 +11,7 @@ definePageMeta({
       const { host, pathname } = parseURL(permalink)
 
       if (host)
-        return pathname
+        return `/${host}${pathname}`
     }
 
     // We've reached a page that doesn't exist

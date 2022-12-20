@@ -26,13 +26,15 @@ useCommand({
 
 <template>
   <NuxtLink :to="to" :active-class="isMastoInitialised ? 'text-primary' : ''" group focus:outline-none @click="$scrollToTop">
-    <div flex w-fit px5 py2 gap4 items-center transition-100 rounded-full group-hover:bg-active group-focus-visible:ring="2 current">
-      <slot name="icon">
-        <div :class="icon" text-xl />
-      </slot>
-      <slot>
-        <span hidden lg:block>{{ text }}</span>
-      </slot>
-    </div>
+    <CommonTooltip :disabled="!isMediumScreen" :content="text" placement="right">
+      <div flex w-fit px2 mx3 lg:mx0 lg:px5 py2 gap4 items-center transition-100 rounded-full group-hover:bg-active group-focus-visible:ring="2 current">
+        <slot name="icon">
+          <div :class="icon" text-xl />
+        </slot>
+        <slot>
+          <span hidden lg:block>{{ text }}</span>
+        </slot>
+      </div>
+    </CommonTooltip>
   </NuxtLink>
 </template>

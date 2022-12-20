@@ -55,6 +55,11 @@ const teams: Team[] = [
       <b text-primary>{{ $t('help.desc_highlight') }}</b>
       {{ $t('help.desc_para2') }}
     </p>
+    <p>
+      Before that, if you'd like to help with testing, giving feedback, or contributing, <a font-bold text-primary href="/m.webtoo.ls/@elk" target="_blank">
+        reach out to us on Mastodon
+      </a> and get involved.
+    </p>
     {{ $t('help.desc_para3') }}
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of teams" :key="team.github">
@@ -63,8 +68,8 @@ const teams: Team[] = [
         </a>
       </template>
     </p>
-    <p italic text-2xl>
-      <span text-lg font-script>The Elk Team</span>
+    <p italic flex justify-center w-full>
+      <span text-xl font-script>The Elk Team</span>
     </p>
 
     <button btn-solid mxa tabindex="2" @click="emit('close')">

@@ -85,4 +85,3 @@ export const useTimeAgoOptions = (short = false): UseTimeAgoOptions<false> => {
     },
   }
 }
-

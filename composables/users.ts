@@ -15,7 +15,7 @@ import type { PushNotificationPolicy, PushNotificationRequest } from '~/composab
 
 const mock = process.mock
 const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
-const servers = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
+const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 
 export const currentUser = computed<UserLogin | undefined>(() => {
@@ -29,18 +29,18 @@ export const currentUser = computed<UserLogin | undefined>(() => {
   return users.value[0]
 })
 
+const publicInstance = ref<Instance | null>(null)
+export const currentInstance = computed<null | Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+
+export const publicServer = ref(DEFAULT_SERVER)
+export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
+
 export const currentUserHandle = computed(() => currentUser.value?.account.id
-  ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+  ? `${currentUser.value.account.acct}@${currentInstance.value?.uri || currentServer.value}`
   : '[anonymous]',
 )
 
-export const publicServer = ref(DEFAULT_SERVER)
-const publicInstance = ref<Instance | null>(null)
-export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
-
 export const useUsers = () => users
-
-export const currentInstance = computed<null | Instance>(() => currentUserId.value ? servers.value[currentUserId.value] ?? null : publicInstance.value)
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
@@ -62,7 +62,7 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
 
   else {
     try {
-      const [me, server, pushSubscription] = await Promise.all([
+      const [me, instance, pushSubscription] = await Promise.all([
         masto.accounts.verifyCredentials(),
         masto.instances.fetch(),
         // we get 404 response instead empty data
@@ -72,10 +72,10 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
       user.account = me
       user.pushSubscription = pushSubscription
       currentUserId.value = me.id
-      servers.value[me.id] = server
+      instances.value[server] = instance
 
       if (!user.account.acct.includes('@'))
-        user.account.acct = `${user.account.acct}@${server.uri}`
+        user.account.acct = `${user.account.acct}@${instance.uri}`
 
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)
@@ -141,7 +141,8 @@ export async function signout() {
   if (index !== -1) {
     // Clear stale data
     clearUserLocalStorage()
-    delete servers.value[_currentUserId]
+    if (!users.value.some((u, i) => u.server === currentUser.value!.server && i !== index))
+      delete instances.value[currentUser.value.server]
 
     await removePushNotifications(currentUser.value)
 
@@ -221,7 +222,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
 
   return computed(() => {
     const id = currentUser.value?.account.id
-      ? `${currentUser.value.account.acct}@${currentUser.value.server}`
+      ? `${currentUser.value.account.acct}@${currentInstance.value?.uri || currentServer.value}`
       : '[anonymous]'
     all.value[id] = Object.assign(initial(), all.value[id] || {})
     return all.value[id]
@@ -237,7 +238,7 @@ export function clearUserLocalStorage(account?: Account) {
   if (!account)
     return
 
-  const id = `${account.acct}@${currentUser.value?.server}`
+  const id = `${account.acct}@${currentInstance.value?.uri || currentServer.value}`
   // @ts-expect-error bind value to the function
   ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>>).forEach((storage) => {
     if (storage.value[id])

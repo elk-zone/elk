@@ -43,9 +43,9 @@
         <div min-h-screen>
           <slot />
         </div>
-        <div sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
-          <CommonOfflineChecker :small-screen="isHydrated && isSmallScreen" />
-          <NavBottom v-if="isHydrated && isSmallScreen" />
+        <div sm:hidden sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
+          <CommonOfflineChecker :small-screen="isHydrated" />
+          <NavBottom v-if="isHydrated" />
         </div>
       </div>
       <aside class="hidden sm:none lg:block w-1/4 zen-hide">

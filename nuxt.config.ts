@@ -71,6 +71,15 @@ export default defineNuxtConfig({
       namespaceId: '',
       apiToken: '',
     },
+    discord: {
+      inviteUrl: 'https://chat.elk.zone',
+    },
+    github: {
+      // oauth flow
+      clientId: '',
+      clientSecret: '',
+      inviteToken: '',
+    },
     public: {
       env: isCI ? isPreview ? 'staging' : 'production' : 'local',
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',

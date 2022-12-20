@@ -29,9 +29,9 @@ specifiers:
   '@unocss/nuxt': ^0.47.6
   '@vitejs/plugin-vue': ^3.2.0
   '@vue-macros/nuxt': ^0.1.2
-  '@vueuse/core': ^9.8.1
-  '@vueuse/integrations': ^9.8.1
-  '@vueuse/nuxt': ^9.8.1
+  '@vueuse/core': ^9.8.2
+  '@vueuse/integrations': ^9.8.2
+  '@vueuse/nuxt': ^9.8.2
   blurhash: ^2.0.4
   browser-fs-access: ^0.31.1
   eslint: ^8.29.0
@@ -80,8 +80,8 @@ dependencies:
   '@tiptap/starter-kit': 2.0.0-beta.204
   '@tiptap/suggestion': 2.0.0-beta.204
   '@tiptap/vue-3': 2.0.0-beta.204
-  '@vueuse/core': 9.8.1
-  '@vueuse/integrations': 9.8.1_7zhv6s73i5wtygx2wkeytrmn7q
+  '@vueuse/core': 9.8.2
+  '@vueuse/integrations': 9.8.2_7zhv6s73i5wtygx2wkeytrmn7q
   blurhash: 2.0.4
   browser-fs-access: 0.31.1
   floating-vue: 2.0.0-beta.20
@@ -118,8 +118,8 @@ devDependencies:
   '@types/wicg-file-system-access': 2020.9.5
   '@unocss/nuxt': 0.47.6
   '@vitejs/plugin-vue': 3.2.0
-  '@vue-macros/nuxt': 0.1.2_6ritmmup5l45a74fhuyzhz63ni
-  '@vueuse/nuxt': 9.8.1_nuxt@3.0.0
+  '@vue-macros/nuxt': 0.1.2_bvgxowbvgmi7uddrvyjqbdegoy
+  '@vueuse/nuxt': 9.8.2_nuxt@3.0.0
   eslint: 8.29.0
   esno: 0.16.3
   fs-extra: 11.1.0
@@ -133,7 +133,7 @@ devDependencies:
   std-env: 3.3.1
   theme-vitesse: 0.6.0
   typescript: 4.9.3
-  unplugin-auto-import: 0.12.0_@vueuse+core@9.8.1
+  unplugin-auto-import: 0.12.0_@vueuse+core@9.8.2
   vite-plugin-inspect: 0.7.9
   vite-plugin-pwa: 0.13.3_workbox-window@6.5.4
   vitest: 0.25.3_jsdom@20.0.3
@@ -3145,7 +3145,7 @@ packages:
       magic-string: 0.26.7
     dev: true
 
-  /@vue-macros/define-model/1.0.0_@vueuse+core@9.8.1:
+  /@vue-macros/define-model/1.0.0_@vueuse+core@9.8.2:
     resolution: {integrity: sha512-Nyh1fidDcfCzEKAo/ljwdQbpgMOrNowdJomB/qnkz/Lx4CVEaRk87LA2o3T99qIOogRfya8af+bLM8dNOq8dAQ==}
     engines: {node: '>=14.19.0'}
     peerDependencies:
@@ -3156,7 +3156,7 @@ packages:
     dependencies:
       '@rollup/pluginutils': 4.2.1
       '@vue-macros/common': 0.13.4
-      '@vueuse/core': 9.8.1
+      '@vueuse/core': 9.8.2
       ast-walker-scope: 0.3.0
       unplugin: 1.0.0
     dev: true
@@ -3221,7 +3221,7 @@ packages:
       - webpack
     dev: true
 
-  /@vue-macros/nuxt/0.1.2_6ritmmup5l45a74fhuyzhz63ni:
+  /@vue-macros/nuxt/0.1.2_bvgxowbvgmi7uddrvyjqbdegoy:
     resolution: {integrity: sha512-WY1i1LyPeG0g+qIZSOU1plYswyXW6bYbe3fKNlnZuGrku1f62VruYDwEiJAr/YfqD4WSngLTzLwFDxGqq5CxWA==}
     engines: {node: '>=14.19.0'}
     peerDependencies:
@@ -3230,7 +3230,7 @@ packages:
       '@nuxt/kit': 3.0.0
       '@vue-macros/volar': 0.5.4_vue-tsc@1.0.11
       nuxt: 3.0.0_s5ps7njkmjlaqajutnox5ntcla
-      unplugin-vue-macros: 1.0.3_@vueuse+core@9.8.1
+      unplugin-vue-macros: 1.0.3_@vueuse+core@9.8.2
     transitivePeerDependencies:
       - '@vueuse/core'
       - esbuild
@@ -3418,12 +3418,12 @@ packages:
     resolution: {integrity: sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==}
     dev: true
 
-  /@vueuse/core/9.8.1:
-    resolution: {integrity: sha512-QgJ8XVlOXZwNiaxSztS71KmqmhbDnOmIt+WR2HukHcb1KWYQxDot9YyIXnUX6fLF+GtTzL0DqPl3sRvEe7sr4g==}
+  /@vueuse/core/9.8.2:
+    resolution: {integrity: sha512-aWiCmcYIpPt7xjuqYiceODEMHchDYthrJ4AqI+FXPZrR23PZOqdiktbUVyQl2kGlR3H4i9UJ/uimQrwhz9UouQ==}
     dependencies:
       '@types/web-bluetooth': 0.0.16
-      '@vueuse/metadata': 9.8.1
-      '@vueuse/shared': 9.8.1
+      '@vueuse/metadata': 9.8.2
+      '@vueuse/shared': 9.8.2
       vue-demi: 0.13.11
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -3441,8 +3441,8 @@ packages:
       vue: 3.2.45
     dev: true
 
-  /@vueuse/integrations/9.8.1_7zhv6s73i5wtygx2wkeytrmn7q:
-    resolution: {integrity: sha512-tJqk1IfWRBEpWzPdRZx+c9Ta7wq82SZ8I4uxCR2Gzp1Z2yRBqjfPqUyJjOB9bXT2TtESoZVdSEsAJkEuYHa0+A==}
+  /@vueuse/integrations/9.8.2_7zhv6s73i5wtygx2wkeytrmn7q:
+    resolution: {integrity: sha512-8nIMfD5HezootbTt5Un6AkiK9CL657YxI1ZFtcQa5CggKhYjyoLiJn68HaQ80GeE4LJ++F51qksENKoTukIWQA==}
     peerDependencies:
       async-validator: '*'
       axios: '*'
@@ -3479,8 +3479,8 @@ packages:
       universal-cookie:
         optional: true
     dependencies:
-      '@vueuse/core': 9.8.1
-      '@vueuse/shared': 9.8.1
+      '@vueuse/core': 9.8.2
+      '@vueuse/shared': 9.8.2
       focus-trap: 7.2.0
       fuse.js: 6.6.2
       vue-demi: 0.13.11
@@ -3489,17 +3489,17 @@ packages:
       - vue
     dev: false
 
-  /@vueuse/metadata/9.8.1:
-    resolution: {integrity: sha512-9/qHh71tC7Mc0Lt7hAsKaiRRX3etWim22eRvSOjZyaAnFgvlHxYv4UbEkREt4diYBSs2Pjx9Jb93JTETy8tv1w==}
+  /@vueuse/metadata/9.8.2:
+    resolution: {integrity: sha512-N4E/BKS+9VsUeD4WLVRU1J2kCOLh+iikBcMtipFcTyL204132vDYHs27zLAVabJYGnhC0dIVGdhg9pbOZiY2TQ==}
 
-  /@vueuse/nuxt/9.8.1_nuxt@3.0.0:
-    resolution: {integrity: sha512-zPGpvxTvCf60o/xvoEC0b1KHoCuV/HzyF+8cwXevyuoeOwpTxpVlHf/wzMNBZGazkzYKV8oI4L3zNVfL7umz0A==}
+  /@vueuse/nuxt/9.8.2_nuxt@3.0.0:
+    resolution: {integrity: sha512-X0pUe/LNRTVNugewwagbzjKkAd/qC6mtkYIeTynTShSkS1RPl44gb6tH3YO1vU201DIhwGNpzM43JOt0FrFyvw==}
     peerDependencies:
       nuxt: ^3.0.0
     dependencies:
       '@nuxt/kit': 3.0.0
-      '@vueuse/core': 9.8.1
-      '@vueuse/metadata': 9.8.1
+      '@vueuse/core': 9.8.2
+      '@vueuse/metadata': 9.8.2
       local-pkg: 0.4.2
       nuxt: 3.0.0_s5ps7njkmjlaqajutnox5ntcla
       vue-demi: 0.13.11
@@ -3510,8 +3510,8 @@ packages:
       - vue
     dev: true
 
-  /@vueuse/shared/9.8.1:
-    resolution: {integrity: sha512-CkrAkr8ZuTdvK3ZJbkitWCKU0iv17KmmoNNHQwiMReSn+d8hUd4XJU9qd4d/qXykVAeC/jxkJLsMsuLzpjNa+Q==}
+  /@vueuse/shared/9.8.2:
+    resolution: {integrity: sha512-ACjrPQzowd5dnabNJt9EoGVobco9/ENiA5qP53vjiuxndlJYuc/UegwhXC7KdQbPX4F45a50+45K3g1wNqOzmA==}
     dependencies:
       vue-demi: 0.13.11
     transitivePeerDependencies:
@@ -9451,7 +9451,7 @@ packages:
       - vite
     dev: true
 
-  /unplugin-auto-import/0.12.0_@vueuse+core@9.8.1:
+  /unplugin-auto-import/0.12.0_@vueuse+core@9.8.2:
     resolution: {integrity: sha512-y1flixUHt0UioxeUwXe4N9GmIJskBz7uoC2qFGaUJO1feN9PYITHhRVqfXxYt7VAaZ24InNIeZIAIoQbRm3ZPw==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -9462,7 +9462,7 @@ packages:
     dependencies:
       '@antfu/utils': 0.7.2
       '@rollup/pluginutils': 5.0.2
-      '@vueuse/core': 9.8.1
+      '@vueuse/core': 9.8.2
       local-pkg: 0.4.2
       magic-string: 0.26.7
       unimport: 1.0.1
@@ -9503,7 +9503,7 @@ packages:
       unplugin: 1.0.0
     dev: true
 
-  /unplugin-vue-macros/1.0.3_@vueuse+core@9.8.1:
+  /unplugin-vue-macros/1.0.3_@vueuse+core@9.8.2:
     resolution: {integrity: sha512-QONC2iP0JNmIpbpL2jwsY89Lq6oTZf8JSbhQSVGB7xu+/iY52ZdfEB/bysai3lS5ScTH3M4y0KQHWVcyxBof7g==}
     engines: {node: '>=14.19.0'}
     peerDependencies:
@@ -9511,7 +9511,7 @@ packages:
     dependencies:
       '@rollup/pluginutils': 4.2.1
       '@vue-macros/better-define': 1.0.0
-      '@vue-macros/define-model': 1.0.0_@vueuse+core@9.8.1
+      '@vue-macros/define-model': 1.0.0_@vueuse+core@9.8.2
       '@vue-macros/define-props': 0.0.3
       '@vue-macros/define-render': 1.0.1
       '@vue-macros/define-slots': 0.0.6

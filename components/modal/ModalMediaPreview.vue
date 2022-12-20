@@ -22,14 +22,14 @@ function prev() {
 
 function onClick(e: MouseEvent) {
   const path = e.composedPath() as HTMLElement[]
-  const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
+  const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO', 'P'].includes(el.tagName?.toUpperCase()))
   if (!el)
     emit('close')
 }
 </script>
 
 <template>
-  <div relative h-full w-full flex select-none pointer-events-none pt-12>
+  <div relative h-full w-full flex pt-12 @click="onClick">
     <button
       v-if="hasNext" pointer-events-auto btn-action-icon bg="black/20" :aria-label="$t('action.previous')"
       hover:bg="black/40" dark:bg="white/30" dark:hover:bg="white/20" absolute top="1/2" right-1
@@ -53,7 +53,7 @@ function onClick(e: MouseEvent) {
         btn-action-icon bg="black/30" aria-label="action.close" hover:bg="black/40" dark:bg="white/30"
         dark:hover:bg="white/20" pointer-events-auto shrink-0 @click="emit('close')"
       >
-        <div i-ri:close-fill text-white />
+        <div i-ri:close-line text-white />
       </button>
       <div bg="black/30" dark:bg="white/10" ml-4 my-auto text-white rounded-full flex="~ center" overflow-hidden>
         <div v-if="mediaPreviewList.length > 1" p="y-1 x-2" rounded-r-0 shrink-0>

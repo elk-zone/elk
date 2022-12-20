@@ -23,7 +23,7 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
         :disabled="busy"
         @click="$emit('hide')"
       >
-        <span aria-hidden="true" i-ri:close-circle-line />
+        <span aria-hidden="true" i-ri:close-line />
       </button>
     </header>
     <p>

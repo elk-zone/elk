@@ -188,7 +188,6 @@
     "the_thread": "el hilo"
   },
   "pwa": {
-    "close": "Cerrar",
     "message": "@:pwa.title{','} haz click en el botón @:pwa.reload para actualizar.",
     "reload": "Recargar",
     "title": "Nueva versión de Elk disponible"

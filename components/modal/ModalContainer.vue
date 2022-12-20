@@ -42,7 +42,6 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     </ModalDialog>
     <ModalDialog
       v-model="isMediaPreviewOpen"
-      pointer-events-none
       w-full max-w-full h-full max-h-full
       bg-transparent border-0 shadow-none
     >

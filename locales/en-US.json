@@ -191,10 +191,10 @@
     "the_thread": "the thread"
   },
   "pwa": {
-    "close": "Close",
-    "message": "@:pwa.title{','} click on @:pwa.reload button to update.",
+    "dismiss": "Dismiss",
+    "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
     "reload": "Reload",
-    "title": "New Elk version available"
+    "title": "New Elk update available"
   },
   "search": {
     "search_desc": "Search for people & hashtags"

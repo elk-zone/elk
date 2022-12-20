@@ -36,6 +36,7 @@ export default defineNuxtConfig({
   ],
   alias: {
     querystring: 'rollup-plugin-node-polyfills/polyfills/qs',
+    masto: 'masto/fetch',
   },
   vite: {
     // to make use of `TAURI_PLATFORM`, `TAURI_ARCH`, `TAURI_FAMILY`,

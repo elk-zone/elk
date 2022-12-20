@@ -4,7 +4,7 @@ import type { Node } from 'ultrahtml'
 import { Fragment, h, isVNode } from 'vue'
 import type { VNode } from 'vue'
 import { RouterLink } from 'vue-router'
-import { parseMastodonHTML } from './content-parse'
+import { parseMastodonHTML, decodeHtml } from './content-parse'
 import ContentCode from '~/components/content/ContentCode.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 
@@ -50,7 +50,7 @@ function treeToVNode(
   input: Node,
 ): VNode | string | null {
   if (input.type === TEXT_NODE)
-    return decode(input.value) as string
+    return decodeHtml(input.value)
 
   if ('children' in input) {
     const node = handleNode(input)
@@ -97,10 +97,4 @@ function handleCodeBlock(el: Node) {
 
 function handleNode(el: Node) {
   return handleCodeBlock(el) || handleMention(el) || el
-}
-
-const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
-function decode(text: string) {
-  decoder.innerHTML = text
-  return decoder.value
 }

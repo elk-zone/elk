@@ -2,6 +2,12 @@ import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
 
+const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
+export function decodeHtml(text: string) {
+  decoder.innerHTML = text
+  return decoder.value
+}
+
 /**
  * Parse raw HTML form Mastodon server to AST,
  * with interop of custom emojis and inline Markdown syntax
@@ -70,7 +76,7 @@ export function treeToText(input: Node): string {
   let post = ''
 
   if (input.type === TEXT_NODE)
-    return input.value
+    return decodeHtml(input.value)
 
   if (input.name === 'br')
     return '\n'

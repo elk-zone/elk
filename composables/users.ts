@@ -85,7 +85,7 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
     }
   }
 
-  if ('server' in route.params && user?.token) {
+  if ('server' in route.params && user?.token && !useNuxtApp()._processingMiddleware) {
     await router.push({
       ...route,
       force: true,

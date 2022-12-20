@@ -71,6 +71,9 @@ export default defineNuxtConfig({
       namespaceId: '',
       apiToken: '',
     },
+    discord: {
+      inviteUrl: 'https://chat.elk.zone',
+    },
     github: {
       // oauth flow
       clientId: '',

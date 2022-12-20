@@ -61,6 +61,6 @@ export default defineEventHandler(async (event) => {
 
   return sendRedirect(
     event,
-    'https://chat.elk.zone',
+    config.discord.inviteUrl,
   )
 })

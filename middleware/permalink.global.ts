@@ -2,8 +2,10 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (process.server)
     return
 
+  const masto = useMasto()
+
   // Skip running middleware before masto has been initialised
-  if (!useNuxtApp().$masto)
+  if (!masto)
     return
 
   if (!('server' in to.params))
@@ -13,7 +15,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   if (!user) {
     if (from.params.server !== to.params.server) {
-      await loginTo({
+      await masto.loginTo({
         server: to.params.server as string,
       })
     }
@@ -47,7 +49,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         return getAccountRoute(account)
     }
 
-    const masto = useMasto()
     if (!masto.loggedIn.value)
       await masto.loginTo(currentUser.value)
 

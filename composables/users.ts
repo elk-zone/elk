@@ -32,13 +32,13 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 const publicInstance = ref<Instance | null>(null)
 export const currentInstance = computed<null | Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
 
-export const currentUserHandle = computed(() => currentUser.value?.account.id
-  ? `${currentUser.value.account.acct}@${currentInstance.value!.uri}`
-  : '[anonymous]',
-)
-
 export const publicServer = ref(DEFAULT_SERVER)
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
+
+export const currentUserHandle = computed(() => currentUser.value?.account.id
+  ? `${currentUser.value.account.acct}@${currentInstance.value?.uri || currentServer.value}`
+  : '[anonymous]',
+)
 
 export const useUsers = () => users
 
@@ -222,7 +222,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
 
   return computed(() => {
     const id = currentUser.value?.account.id
-      ? `${currentUser.value.account.acct}@${currentInstance.value!.uri}`
+      ? `${currentUser.value.account.acct}@${currentInstance.value?.uri || currentServer.value}`
       : '[anonymous]'
     all.value[id] = Object.assign(initial(), all.value[id] || {})
     return all.value[id]
@@ -238,7 +238,7 @@ export function clearUserLocalStorage(account?: Account) {
   if (!account)
     return
 
-  const id = `${account.acct}@${currentInstance.value!.uri}`
+  const id = `${account.acct}@${currentInstance.value?.uri || currentServer.value}`
   // @ts-expect-error bind value to the function
   ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>>).forEach((storage) => {
     if (storage.value[id])

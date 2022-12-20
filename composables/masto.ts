@@ -43,7 +43,8 @@ export function getShortHandle({ acct }: Account) {
 export function getServerName(account: Account) {
   if (account.acct.includes('@'))
     return account.acct.split('@')[1]
-  return account.url.match(UserLinkRE)?.[1] || currentUser.value?.server || ''
+  // We should only lack the server name if we're on the same server as the account
+  return currentInstance.value?.uri || ''
 }
 
 export function getFullHandle(account: Account) {
@@ -64,8 +65,9 @@ export function toShortHandle(fullHandle: string) {
 
 export function getAccountRoute(account: Account) {
   let handle = getFullHandle(account).slice(1)
-  if (handle.endsWith(`@${currentServer.value}`))
-    handle = handle.slice(0, -currentServer.value.length - 1)
+  const uri = currentInstance.value?.uri ?? currentServer.value
+  if (currentInstance.value && handle.endsWith(`@${uri}`))
+    handle = handle.slice(0, -uri.length - 1)
 
   return useRouter().resolve({
     name: 'account-index',

@@ -12,8 +12,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
         return initialised
 
       if (key === 'loginTo') {
-        return (...args: any[]) => {
-          apiPromise.value = loginTo(...args).then((r) => {
+        return (...args: any[]): Promise<MastoClient> => {
+          return apiPromise.value = loginTo(...args).then((r) => {
             api.value = r
             return masto
           }).catch(() => {
@@ -23,7 +23,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
               statusMessage: 'Could not log into account.',
             })
           })
-          return apiPromise
         }
       }
 
@@ -37,6 +36,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
           },
         })
       }
+
+      return undefined
     },
   })
 

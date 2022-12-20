@@ -19,9 +19,8 @@ const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS,
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 
 export const currentUser = computed<UserLogin | undefined>(() => {
-  let user: UserLogin | undefined
   if (currentUserId.value) {
-    user = users.value.find(user => user.account?.id === currentUserId.value)
+    const user = users.value.find(user => user.account?.id === currentUserId.value)
     if (user)
       return user
   }

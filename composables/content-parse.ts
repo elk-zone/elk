@@ -3,7 +3,7 @@ import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
 
 const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
-function decode(text: string) {
+export function decodeHtml(text: string) {
   decoder.innerHTML = text
   return decoder.value
 }
@@ -40,7 +40,6 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
         [/\*(.*?)\*/g, '<em>$1</em>'],
         [/~~(.*?)~~/g, '<del>$1</del>'],
         [/`([^`]+?)`/g, '<code>$1</code>'],
-        [/&[^;]+;/g, (val: string) => decode(val)],
       ] as any
 
       for (const [re, replacement] of replacements) {
@@ -77,7 +76,7 @@ export function treeToText(input: Node): string {
   let post = ''
 
   if (input.type === TEXT_NODE)
-    return input.value
+    return decodeHtml(input.value)
 
   if (input.name === 'br')
     return '\n'

@@ -58,6 +58,13 @@ exports[`html-parse > empty > html 1`] = `""`;
 
 exports[`html-parse > empty > text 1`] = `""`;
 
+exports[`html-parse > html entities > html 1`] = `
+"<p>Hello &lt;World /&gt;.</p>
+"
+`;
+
+exports[`html-parse > html entities > text 1`] = `"Hello <World />."`;
+
 exports[`html-parse > inline markdown > html 1`] = `"<p>text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p><p><pre><code class=\\"language-js\\">code block</code></pre></p>"`;
 
 exports[`html-parse > inline markdown > text 1`] = `

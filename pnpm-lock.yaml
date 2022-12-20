@@ -82,6 +82,7 @@ dependencies:
   '@tiptap/vue-3': 2.0.0-beta.204
   '@vueuse/core': 9.8.1
   '@vueuse/integrations': 9.8.1_7zhv6s73i5wtygx2wkeytrmn7q
+  blurhash: 2.0.4
   browser-fs-access: 0.31.1
   floating-vue: 2.0.0-beta.20
   focus-trap: 7.2.0
@@ -119,7 +120,6 @@ devDependencies:
   '@vitejs/plugin-vue': 3.2.0
   '@vue-macros/nuxt': 0.1.2_6ritmmup5l45a74fhuyzhz63ni
   '@vueuse/nuxt': 9.8.1_nuxt@3.0.0
-  blurhash: 2.0.4
   eslint: 8.29.0
   esno: 0.16.3
   fs-extra: 11.1.0
@@ -3862,7 +3862,7 @@ packages:
 
   /blurhash/2.0.4:
     resolution: {integrity: sha512-r/As72u2FbucLoK5NTegM/GucxJc3d8GvHc4ngo13IO/nt2HU4gONxNLq1XPN6EM/V8Y9URIa7PcSz2RZu553A==}
-    dev: true
+    dev: false
 
   /boolbase/1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}

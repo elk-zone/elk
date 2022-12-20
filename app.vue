@@ -1,6 +1,5 @@
 <script setup lang="ts">
 setupI18n()
-setupLogging()
 setupPageHeader()
 provideGlobalCommands()
 

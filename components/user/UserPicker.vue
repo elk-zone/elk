@@ -4,11 +4,12 @@ import type { UserLogin } from '~/types'
 const all = useUsers()
 
 const router = useRouter()
+const masto = useMasto()
 const switchUser = (user: UserLogin) => {
   if (user.account.id === currentUser.value?.account.id)
     router.push(getAccountRoute(user.account))
   else
-    loginTo(user)
+    masto.loginTo(user)
 }
 </script>
 

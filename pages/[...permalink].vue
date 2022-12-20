@@ -10,10 +10,8 @@ definePageMeta({
     if (hasProtocol(permalink)) {
       const { host, pathname } = parseURL(permalink)
 
-      if (host) {
-        await loginTo({ server: host })
-        return pathname
-      }
+      if (host)
+        return `/${host}${pathname}`
     }
 
     // We've reached a page that doesn't exist

@@ -133,6 +133,8 @@ export async function signout() {
   if (!currentUser.value)
     return
 
+  const masto = useMasto()
+
   const _currentUserId = currentUser.value.account.id
 
   const index = users.value.findIndex(u => u.account?.id === _currentUserId)
@@ -156,7 +158,7 @@ export async function signout() {
   if (!currentUserId.value)
     await useRouter().push('/')
 
-  await loginTo(currentUser.value)
+  await masto.loginTo(currentUser.value)
 }
 
 const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Notification } from 'masto'
+import type { Notification } from 'masto/fetch'
 
 const { notification } = defineProps<{
   notification: Notification

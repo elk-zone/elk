@@ -1,4 +1,4 @@
-import type { Attachment, StatusEdit } from 'masto'
+import type { Attachment, StatusEdit } from 'masto/fetch'
 import type { Draft } from '~/types'
 import { STORAGE_KEY_FIRST_VISIT, STORAGE_KEY_ZEN_MODE } from '~/constants'
 

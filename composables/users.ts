@@ -1,5 +1,5 @@
-import { login as loginMasto } from 'masto'
-import type { Account, AccountCredentials, Instance, WsEvents } from 'masto'
+import { login as loginMasto } from 'masto/fetch'
+import type { Account, AccountCredentials, Instance, WsEvents } from 'masto/fetch'
 import type { Ref } from 'vue'
 import type { UserLogin } from '~/types'
 import {

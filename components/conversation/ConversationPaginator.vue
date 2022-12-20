@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Conversation, Paginator } from 'masto'
+import type { Conversation, Paginator } from 'masto/fetch'
 
 const { paginator } = defineProps<{
   paginator: Paginator<any, Conversation[]>

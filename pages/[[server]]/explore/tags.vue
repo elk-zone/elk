@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Tag } from 'masto'
+import type { Tag } from 'masto/fetch'
 import { STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS } from '~~/constants'
 
 const { t } = useI18n()

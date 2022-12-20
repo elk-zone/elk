@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Tag } from 'masto'
+import type { Tag } from 'masto/fetch'
 
 const { tag } = defineProps<{
   tag: Tag

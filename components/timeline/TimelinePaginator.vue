@@ -2,7 +2,7 @@
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { FilterContext, Paginator, Status, WsEvents } from 'masto'
+import type { FilterContext, Paginator, Status, WsEvents } from 'masto/fetch'
 
 const { paginator, stream } = defineProps<{
   paginator: Paginator<any, Status[]>

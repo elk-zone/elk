@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Conversation } from 'masto'
+import type { Conversation } from 'masto/fetch'
 
 const { conversation } = defineProps<{
   conversation: Conversation

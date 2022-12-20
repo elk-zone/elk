@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { History } from 'masto'
+import type { History } from 'masto/fetch'
 
 const {
   history,

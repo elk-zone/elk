@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Status, StatusEdit } from 'masto'
+import type { Status, StatusEdit } from 'masto/fetch'
 
 const { status } = defineProps<{
   status: Status

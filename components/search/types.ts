@@ -1,4 +1,4 @@
-import type { Account } from 'masto'
+import type { Account } from 'masto/fetch'
 
 export interface SearchResult {
   type: 'account' | 'hashtag' | 'action'

@@ -1,4 +1,4 @@
-import type { Status } from 'masto'
+import type { Status } from 'masto/fetch'
 
 export interface TranslationResponse {
   translatedText: string

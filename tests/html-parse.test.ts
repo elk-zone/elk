@@ -1,7 +1,7 @@
 /**
  * @vitest-environment jsdom
  */
-import type { Emoji } from 'masto'
+import type { Emoji } from 'masto/fetch'
 import { describe, expect, it } from 'vitest'
 import { format } from 'prettier'
 import { render as renderTree } from 'ultrahtml'

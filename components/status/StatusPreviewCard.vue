@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Card, CardType } from 'masto'
+import type { Card, CardType } from 'masto/fetch'
 
 const props = defineProps<{
   card: Card

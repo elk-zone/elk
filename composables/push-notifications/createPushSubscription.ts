@@ -1,7 +1,7 @@
 import type {
   CreatePushSubscriptionParams,
   PushSubscription as MastoPushSubscription,
-} from 'masto'
+} from 'masto/fetch'
 import type {
   CreatePushNotification,
   PushManagerSubscriptionInfo,

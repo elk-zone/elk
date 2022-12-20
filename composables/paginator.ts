@@ -1,4 +1,4 @@
-import type { Paginator, WsEvents } from 'masto'
+import type { Paginator, WsEvents } from 'masto/fetch'
 import { useDeactivated } from './lifecycle'
 import type { PaginatorState } from '~/types'
 

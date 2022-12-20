@@ -1,4 +1,4 @@
-import type { Emoji } from 'masto'
+import type { Emoji } from 'masto/fetch'
 
 export const UserLinkRE = /^https?:\/\/([^/]+)\/@([^/]+)$/
 export const TagLinkRE = /^https?:\/\/([^/]+)\/tags\/([^/]+)$/

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Tag } from 'masto'
+import type { Tag } from 'masto/fetch'
 
 const {
   tag,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Account, Paginator } from 'masto'
+import type { Account, Paginator } from 'masto/fetch'
 
 const { paginator } = defineProps<{
   paginator: Paginator<any, Account[]>

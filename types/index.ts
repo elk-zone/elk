@@ -1,4 +1,4 @@
-import type { Account, AccountCredentials, Attachment, CreateStatusParams, Emoji, Instance, MastoClient, Notification, PushSubscription, Status } from 'masto'
+import type { Account, AccountCredentials, Attachment, CreateStatusParams, Emoji, Instance, MastoClient, Notification, PushSubscription, Status } from 'masto/fetch'
 import type { Ref } from 'vue'
 import type { Mutable } from './utils'
 

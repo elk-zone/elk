@@ -1,4 +1,4 @@
-import type { Emoji } from 'masto'
+import type { Emoji } from 'masto/fetch'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
 

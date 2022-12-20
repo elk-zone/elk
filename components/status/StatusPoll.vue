@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Poll } from 'masto'
+import type { Poll } from 'masto/fetch'
 
 const { poll: _poll } = defineProps<{
   poll: Poll

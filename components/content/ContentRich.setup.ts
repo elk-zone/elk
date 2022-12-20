@@ -1,4 +1,4 @@
-import type { Emoji } from 'masto'
+import type { Emoji } from 'masto/fetch'
 import { emojisArrayToObject } from '~/composables/utils'
 
 defineOptions({

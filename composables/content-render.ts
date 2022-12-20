@@ -1,4 +1,4 @@
-import type { Emoji } from 'masto'
+import type { Emoji } from 'masto/fetch'
 import { TEXT_NODE } from 'ultrahtml'
 import type { Node } from 'ultrahtml'
 import { Fragment, h, isVNode } from 'vue'

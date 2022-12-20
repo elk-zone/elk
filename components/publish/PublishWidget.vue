@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Attachment, CreateStatusParams, StatusVisibility } from 'masto'
+import type { Attachment, CreateStatusParams, StatusVisibility } from 'masto/fetch'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'

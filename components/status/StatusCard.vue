@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FilterContext, Status } from 'masto'
+import type { FilterContext, Status } from 'masto/fetch'
 
 const props = withDefaults(
   defineProps<{

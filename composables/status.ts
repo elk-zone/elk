@@ -1,4 +1,4 @@
-import type { Status } from 'masto'
+import type { Status } from 'masto/fetch'
 
 type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned'
 type CountField = 'reblogsCount' | 'favouritesCount'

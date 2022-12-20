@@ -1,5 +1,5 @@
 import LRU from 'lru-cache'
-import type { Account, Status } from 'masto'
+import type { Account, Status } from 'masto/fetch'
 
 const cache = new LRU<string, any>({
   max: 1000,

@@ -1,5 +1,5 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { Account, Status } from 'masto'
+import type { Account, Status } from 'masto/fetch'
 
 export interface UseSearchOptions {
   type?: MaybeRef<'accounts' | 'hashtags' | 'statuses'>

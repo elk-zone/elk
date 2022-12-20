@@ -1,4 +1,4 @@
-import type { MastoClient } from 'masto'
+import type { MastoClient } from 'masto/fetch'
 import type { ElkMasto } from '~/types'
 
 export default defineNuxtPlugin(async (nuxtApp) => {

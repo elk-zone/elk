@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Account, Relationship } from 'masto'
+import type { Account, Relationship } from 'masto/fetch'
 
 const { account, command, ...props } = defineProps<{
   account: Account

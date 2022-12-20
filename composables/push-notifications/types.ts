@@ -1,4 +1,4 @@
-import type { PushSubscription as MastoPushSubscription, PushSubscriptionAlerts, SubscriptionPolicy } from 'masto'
+import type { PushSubscription as MastoPushSubscription, PushSubscriptionAlerts, SubscriptionPolicy } from 'masto/fetch'
 
 import type { UserLogin } from '~/types'
 

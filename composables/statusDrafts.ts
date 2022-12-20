@@ -1,4 +1,4 @@
-import type { Account, Status } from 'masto'
+import type { Account, Status } from 'masto/fetch'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 

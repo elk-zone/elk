@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Notification, Paginator, WsEvents } from 'masto'
+import type { Notification, Paginator, WsEvents } from 'masto/fetch'
 import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{

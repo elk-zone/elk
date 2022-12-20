@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Account } from 'masto'
+import type { Account } from 'masto/fetch'
 const { account, as = 'div' } = $defineProps<{
   account: Account
   as?: string

@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { Account, Relationship, Status } from 'masto'
+import type { Account, Relationship, Status } from 'masto/fetch'
 import { withoutProtocol } from 'ufo'
 import type { ElkMasto } from '~/types'
 

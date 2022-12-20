@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { clamp } from '@vueuse/core'
-import type { Attachment } from 'masto'
+import type { Attachment } from 'masto/fetch'
 
 const {
   attachment,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Attachment } from 'masto'
+import type { Attachment } from 'masto/fetch'
 
 const props = withDefaults(defineProps<{
   attachment: Attachment

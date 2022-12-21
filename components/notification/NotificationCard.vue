@@ -32,7 +32,7 @@ const { notification } = defineProps<{
           :content="getDisplayName(notification.account, { rich: true })"
           :emojis="notification.account.emojis"
         />
-        <span>signed up</span>
+        <span>{{ $t("notification.signed_up") }}</span>
       </div>
     </template>
     <template v-else-if="notification.type === 'follow_request'">

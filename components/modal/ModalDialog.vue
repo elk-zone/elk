@@ -62,7 +62,7 @@ const elDialogMain = ref<HTMLDivElement>()
 const elDialogRoot = ref<HTMLDivElement>()
 
 const { activate } = useFocusTrap(elDialogRoot, {
-  immediate: true,
+  immediate: false,
   allowOutsideClick: true,
   clickOutsideDeactivates: true,
   escapeDeactivates: true,
@@ -137,9 +137,9 @@ export default {
 </script>
 
 <template>
-  <Teleport to="body" @transitionend="trapFocusDialog">
+  <Teleport to="body">
     <!-- Dialog component -->
-    <Transition name="dialog-visible">
+    <Transition name="dialog-visible" @transitionend="trapFocusDialog">
       <div
         v-if="isVIf"
         v-show="isVShow"

@@ -52,6 +52,8 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
     url: `https://${server}`,
     accessToken: user?.token,
     disableVersionCheck: !!config.public.disableVersionCheck,
+    // Suppress warning of `masto/fetch` usage
+    disableExperimentalWarning: true,
   })
 
   if (!user?.token) {

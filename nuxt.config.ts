@@ -37,7 +37,9 @@ export default defineNuxtConfig({
     '~/styles/dropdown.css',
   ],
   alias: {
-    querystring: 'rollup-plugin-node-polyfills/polyfills/qs',
+    'querystring': 'rollup-plugin-node-polyfills/polyfills/qs',
+    'masto/fetch': 'masto/fetch',
+    'masto': 'masto/fetch',
   },
   vite: {
     define: {

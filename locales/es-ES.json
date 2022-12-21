@@ -1,14 +1,15 @@
 {
   "account": {
     "avatar_description": "avatar de {0}",
-    "blocked_by": "Fuiste bloqueado por este usuario.",
+    "blocked_by": "Estás bloqueado por este usuario.",
     "blocked_domains": "Dominios bloqueados",
     "blocked_users": "Usuarios bloqueados",
-    "blocking": "Blocked",
+    "blocking": "Bloqueado",
+    "bot": "BOT",
     "favourites": "Favoritos",
     "follow": "Seguir",
     "follow_back": "Seguir de vuelta",
-    "follow_requested": "Enviado",
+    "follow_requested": "Solicitado",
     "followers": "Seguidores",
     "followers_count": "{0} Seguidores|{0} Seguidor|{0} Seguidores",
     "following": "Siguiendo",
@@ -18,23 +19,24 @@
     "joined": "Se unió",
     "moved_title": "ha indicado que su nueva cuenta ahora es:",
     "muted_users": "Usuarios silenciados",
-    "muting": "Muted",
+    "muting": "Silenciado",
     "mutuals": "Mutuo",
     "pinned": "Publicaciones fijadas",
     "posts": "Publicaciones",
     "posts_count": "{0} publicaciones|{0} publicación|{0} publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
     "profile_unavailable": "Perfil no disponible",
-    "unblock": "Unblock",
+    "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
-    "unmute": "Unmute"
+    "unmute": "Dejar de silenciar"
   },
   "action": {
     "bookmark": "Añadir marcador",
     "bookmarked": "Guardado como marcador",
     "boost": "Retootear",
     "boosted": "Retooteado",
-    "compose": "Componer",
+    "close": "Cerrar",
+    "compose": "Redactar",
     "enter_app": "Entrar",
     "favourite": "Favorito",
     "favourited": "Marcado como favorito",
@@ -56,6 +58,7 @@
     "complete": "Completar",
     "compose_desc": "Escribir una nueva publicación",
     "lang": "Idiomas",
+    "n-people-in-the-past-n-days": "{0} personas en los últimos {1} días",
     "select_lang": "Seleccionar idioma",
     "sign_in_desc": "Agregar una cuenta existente",
     "switch_account": "Cambiar a {0}",
@@ -66,6 +69,7 @@
   "common": {
     "end_of_list": "Fin",
     "error": "ERROR",
+    "in": "en",
     "kiloSuffix": "K",
     "megaSuffix": "M",
     "not_found": "404 No Encontrado",
@@ -188,9 +192,13 @@
     "the_thread": "el hilo"
   },
   "pwa": {
+    "dismiss": "Descartar",
     "message": "@:pwa.title{','} haz click en el botón @:pwa.reload para actualizar.",
     "reload": "Recargar",
     "title": "Nueva versión de Elk disponible"
+  },
+  "search": {
+    "search_desc": "Buscar personas y etiquetas"
   },
   "state": {
     "edited": "(Editado)",
@@ -203,14 +211,20 @@
     "filter_hidden_phrase": "Filtrado por",
     "filter_removed_phrase": "Eliminado por filtrado",
     "filter_show_anyway": "Mostrar de todas formas",
+    "img_alt": {
+      "desc": "Descripción",
+      "dismiss": "Descartar"
+    },
     "poll": {
       "count": "{n} votos|{n} voto|{n} votos",
       "ends": "finaliza {0}",
       "finished": "finalizada {0}"
     },
     "reblogged": "{0} retooteó",
+    "someone": "Alguien",
     "spoiler_show_less": "Mostrar menos",
     "spoiler_show_more": "Mostrar más",
+    "thread": "Hilo",
     "try_original_site": "Ver en la página original"
   },
   "status_history": {
@@ -218,7 +232,8 @@
     "edited": "editado el {0}"
   },
   "tab": {
-    "for_you": "Para tí",
+    "accounts": "Cuentas",
+    "for_you": "Para ti",
     "hashtags": "Etiquetas",
     "media": "Multimedia",
     "news": "Noticias",
@@ -269,6 +284,9 @@
     "add_content_warning": "Añadir advertencia de contenido",
     "add_media": "Añadir imágenes, video o audio",
     "change_content_visibility": "Cambiar visibilidad de contenido",
+    "explore_links_intro": "Estas noticias están siendo comentadas por la gente en este y otros servidores de la red descentralizada en este momento.",
+    "explore_posts_intro": "Estos mensajes de este y otros servidores de la red descentralizada están ganando tracción en este servidor en este momento.",
+    "explore_tags_intro": "Estas etiquetas están ganando tracción entre la gente de este y otros servidores de la red descentralizada en este momento.",
     "toggle_code_block": "Cambiar a bloque de código"
   },
   "user": {

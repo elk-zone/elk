@@ -23,7 +23,7 @@ interface Meta {
 const meta = $computed(() => {
   const { url } = props.card
   const path = url.split('https://github.com/')[1]
-  const user = path.match(/([\w-]+)\//)?.[1]
+  const user = path.match(/([\w-]+)(\/|$)/)?.[1]
   const repo = path.match(/[\w-]+\/([\w-]+)/)?.[1]
   const repoPath = `${user}/${repo}`
   const inRepoPath = path.split(`${repoPath}/`)?.[1]

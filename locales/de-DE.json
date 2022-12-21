@@ -1,20 +1,26 @@
 {
   "account": {
     "avatar_description": "{0}'s Avatar",
+    "blocked_by": "Du wurdest von diesem Benzutzer geblockt",
     "blocked_domains": "Gesperrte Domänen",
     "blocked_users": "Gesperrte Benutzer",
+    "bot": "BOT",
     "favourites": "Favoriten",
     "follow": "Folgen",
     "follow_back": "Folge zurück",
     "follow_requested": "Angefragt",
+    "followers": "Follower",
     "followers_count": "{0} Follower",
     "following": "Folge ich",
     "following_count": "{0} Folge ich",
     "follows_you": "Folgt dir",
+    "go_to_profile": "Gehe zu Profil",
     "joined": "Beigetreten",
+    "moved_title": "hat angegeben, das dies der neue Account ist:",
     "muted_users": "Stummgeschaltete Benutzer",
     "mutuals": "Freunde",
     "pinned": "Angepinnt",
+    "posts": "Beiträge",
     "posts_count": "{0} Beiträge",
     "profile_description": "{0}'s Profil",
     "profile_unavailable": "Profil nicht verfügbar",
@@ -25,26 +31,41 @@
     "bookmarked": "Gemerkt",
     "boost": "Teilen",
     "boosted": "Geteilt",
+    "close": "Schliessen",
     "compose": "Schreiben",
     "enter_app": "App öffnen",
     "favourite": "Favorisieren",
     "favourited": "Favorisiert",
     "more": "Mehr",
+    "next": "Nächster",
+    "prev": "Vorheriger",
     "publish": "Veröffentlichen!",
     "reply": "Antworten",
     "save_changes": "Änderungen speichern",
-    "sign_in": "Anmelden"
+    "sign_in": "Anmelden",
+    "switch_account": "Account wechseln",
+    "vote": "Abstimmen"
   },
-  "app_desc_short": "Ein mit 🧡 gemachter Mastodon-Client",
+  "app_desc_short": "Ein flinker Mastodon Web-Client",
+  "app_logo": "Elk Logo",
   "app_name": "Elk",
   "command": {
     "activate": "Aktivieren",
-    "complete": "Vollständig"
+    "complete": "Vollständig",
+    "compose_desc": "Schreib einen neuen Beitrag",
+    "lang": "Sprache",
+    "n-people-in-the-past-n-days": "{0} Personen in den vergangenen {1} Tagen",
+    "select_lang": "Sprache auswählen",
+    "sign_in_desc": "Bestehenden Benutzer hinzufügen",
+    "switch_account": "Zu {0} wechseln",
+    "switch_account_desc": "Zu einem anderen Benutzer wechseln",
+    "toggle_dark_mode": "Dunkles Thema ändern",
+    "toggle_zen_mode": "Zen-Modus ändern"
   },
   "common": {
     "end_of_list": "Ende der Liste",
     "error": "FEHLER",
-    "kiloSuffix": "K",
+    "kiloSuffix": "T",
     "megaSuffix": "M",
     "not_found": "404 Nicht Gefunden",
     "offline_desc": "Anscheinend bist du offline. Bitte überprüfe deine Netzwerkverbindung."
@@ -54,10 +75,22 @@
   },
   "error": {
     "account_not_found": "Benutzer {0} nicht gefunden",
+    "explore-list-empty": "Momentan ist nichts im Trend. Schau später nochmal vorbei!",
+    "sign_in_error": "Kann nicht zu Server verbinden",
     "status_not_found": "Status nicht gefunden"
   },
   "feature_flag": {
+    "avatar_on_avatar": "Avatar auf Avatar",
+    "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "Virtuelles Scrollen"
+  },
+  "help": {
+    "desc_highlight": "Erwarte hier und da einige Bugs und fehlende Funktionen.",
+    "desc_para1": "Danke für dein Interesse in Elk, unser noch in der Bearbeitung befindliche, generische Mastodon Client!",
+    "desc_para2": "Wir arbeiten hart an der entwicklung und verbessern sie mit der Zeit. Und wir laden dich schon sehr bald ein uns zu helfen, sobald wir es Quelloffen machen!",
+    "desc_para3": "Doch in der Zwischenzeit kannst du der Entwicklung aushelfen, indem du unsere Teammitglieder durch die unten stehenden Links unterstützt.",
+    "title": "Elk ist in der Alpha!"
   },
   "menu": {
     "block_account": "Sperre {0}",
@@ -72,6 +105,10 @@
     "open_in_original_site": "Auf Originalseite öffnen",
     "pin_on_profile": "An Profil anpinnen",
     "show_untranslated": "Übersetzung schliessen",
+    "toggle_theme": {
+      "dark": "Dunkles Thema ändern",
+      "light": "Helles Thema ändern"
+    },
     "translate_post": "Beitrag übersetzen",
     "unblock_account": "Entsperre {0}",
     "unblock_domain": "Entsperren Domain {0}",
@@ -95,7 +132,8 @@
     "home": "Startseite",
     "local": "Lokale Timeline",
     "notifications": "Mitteilungen",
-    "profile": "Profil"
+    "profile": "Profil",
+    "search": "Suche"
   },
   "nav_user": {
     "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren."
@@ -103,7 +141,7 @@
   "notification": {
     "favourited_post": "hat deinen Beitrag favorisiert",
     "followed_you": "folgt dir",
-    "followed_you_count": "{n} Benutzer folgen dir",
+    "followed_you_count": "{n} Benutzer folgt dir|{n} Benutzer folgen dir",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "hat deinen Beitrag geteilt",
     "request_to_follow": "möchte dir folgen",
@@ -124,9 +162,23 @@
   },
   "status": {
     "edited": "Zuletzt bearbeitet: {0}",
+    "filter_hidden_phrase": "Versteckt durch",
+    "filter_removed_phrase": "Entfernt durch Filter",
+    "filter_show_anyway": "Trotzdem zeigen",
+    "img_alt": {
+      "desc": "Beschreibung",
+      "dismiss": "Schliessen"
+    },
+    "poll": {
+      "count": "{0} Stimmen|{n} Stimme|{n} Stimmen",
+      "ends": "Endet: {0}",
+      "finished": "Beendet: {0}"
+    },
     "reblogged": "{0} teilte",
+    "someone": "Jemand",
     "spoiler_show_less": "Zeige weniger",
-    "spoiler_show_more": "zeige mehr",
+    "spoiler_show_more": "Zeige mehr",
+    "thread": "Thread",
     "try_original_site": "Versuche die original Seite"
   },
   "status_history": {
@@ -134,7 +186,11 @@
     "edited": "Bearbeitet: {0}"
   },
   "tab": {
+    "accounts": "Benutzer",
+    "for_you": "Für dich",
+    "hashtags": "Hashtags",
     "media": "Medien",
+    "news": "Nachrichten",
     "notifications_all": "Alle",
     "notifications_mention": "Erwähnungen",
     "posts": "Beiträge",
@@ -172,7 +228,7 @@
     "year_past": "vor 0 Jahren|letztes Jahren|vor {n} Jahren"
   },
   "timeline": {
-    "show_new_items": "Zeige {n} neue Beiträge"
+    "show_new_items": "Zeige {n} neue Beiträge|Zeige {n} neuen Beitrag|Zeige {n} neue Beiträge"
   },
   "title": {
     "federated_timeline": "Förderierte Timeline",
@@ -182,6 +238,9 @@
     "add_content_warning": "Inhaltswarnung hinzufügen",
     "add_media": "Füge Bilder, ein Video oder eine Audiodatei hinzu",
     "change_content_visibility": "Ändere die Sichtbarkeit von Inhalten",
+    "explore_links_intro": "Diese Nachrichten werden gerade von Leuten auf diesem und anderen Servern des dezentralen Netzwerks besprochen.",
+    "explore_posts_intro": "Diese Beiträge von diesem Server gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzweks an Reichweite.",
+    "explore_tags_intro": "Diese Hashtags gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzweks an Reichweite.",
     "toggle_code_block": "Codeblock umschalten"
   },
   "user": {

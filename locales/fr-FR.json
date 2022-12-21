@@ -4,6 +4,7 @@
     "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur.",
     "blocked_domains": "Domaines bloqués",
     "blocked_users": "Utilisateurs bloqués",
+    "blocking": "Blocked",
     "bot": "Automatisé",
     "favourites": "Favoris",
     "follow": "Suivre",
@@ -18,13 +19,16 @@
     "joined": "a rejoint",
     "moved_title": "a indiqué que son nouveau compte est désormais :",
     "muted_users": "Utilisateurs mis en sourdine",
+    "muting": "Muted",
     "mutuals": "@:account.following",
     "pinned": "Épinglés",
     "posts": "Messages",
     "posts_count": "{0} messages",
     "profile_description": "En-tête du profil de {0}",
     "profile_unavailable": "Profil non accessible",
-    "unfollow": "Ne plus suivre"
+    "unblock": "Unblock",
+    "unfollow": "Ne plus suivre",
+    "unmute": "Unmute"
   },
   "action": {
     "bookmark": "Ajouter aux marque-pages",
@@ -81,6 +85,8 @@
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar sur avatar",
+    "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "Défilement virtuel"
   },
   "help": {
@@ -130,7 +136,8 @@
     "home": "Accueil",
     "local": "Local",
     "notifications": "Notifications",
-    "profile": "Profil"
+    "profile": "Profil",
+    "search": "Rechercher"
   },
   "nav_user": {
     "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, mettre en favoris, partager et répondre à des messages, ou interagir à partir de votre compte sur un autre serveur..."

@@ -15,6 +15,12 @@ const status = $computed(() => {
 const createdAt = useFormattedDateTime(status.createdAt)
 
 const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === status.visibility)!)
+
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => `${status.account.displayName || status.account.acct} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
+})
 </script>
 
 <template>

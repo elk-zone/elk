@@ -41,7 +41,7 @@ const teams: Team[] = [
 <template>
   <div my-8 px-3 sm:px-8 md:max-w-200 flex="~ col gap-4" relative>
     <button btn-action-icon absolute top--8 right-0 m1 aria-label="Close" @click="emit('close')">
-      <div i-ri:close-fill />
+      <div i-ri:close-line />
     </button>
 
     <img src="/logo.svg" w-20 h-20 height="80" width="80" mxa alt="logo">
@@ -55,19 +55,24 @@ const teams: Team[] = [
       <b text-primary>{{ $t('help.desc_highlight') }}</b>
       {{ $t('help.desc_para2') }}
     </p>
+    <p>
+      Before that, if you'd like to help with testing, giving feedback, or contributing, <a font-bold text-primary href="/m.webtoo.ls/@elk" target="_blank">
+        reach out to us on Mastodon
+      </a> and get involved.
+    </p>
     {{ $t('help.desc_para3') }}
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of teams" :key="team.github">
-        <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full>
+        <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
           <img :src="`https://res.cloudinary.com/dchoja2nb/image/twitter_name/h_120,w_120/f_auto/${team.twitter}.jpg`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
         </a>
       </template>
     </p>
-    <p italic text-2xl>
-      <span text-lg font-script>The Elk Team</span>
+    <p italic flex justify-center w-full>
+      <span text-xl font-script>The Elk Team</span>
     </p>
 
-    <button btn-solid mxa @click="emit('close')">
+    <button btn-solid mxa tabindex="2" @click="emit('close')">
       {{ $t('action.enter_app') }}
     </button>
   </div>

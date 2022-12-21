@@ -4,7 +4,7 @@ import type { Node } from 'ultrahtml'
 import { Fragment, h, isVNode } from 'vue'
 import type { VNode } from 'vue'
 import { RouterLink } from 'vue-router'
-import { parseMastodonHTML } from './content-parse'
+import { decodeHtml, parseMastodonHTML } from './content-parse'
 import ContentCode from '~/components/content/ContentCode.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 
@@ -13,9 +13,12 @@ import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 */
 export function contentToVNode(
   content: string,
-  customEmojis: Record<string, Emoji> = {},
+  { emojis = {}, markdown = true }: {
+    emojis?: Record<string, Emoji>
+    markdown?: boolean
+  } = {},
 ): VNode {
-  const tree = parseMastodonHTML(content, customEmojis)
+  const tree = parseMastodonHTML(content, emojis, markdown)
   return h(Fragment, (tree.children as Node[]).map(n => treeToVNode(n)))
 }
 
@@ -42,11 +45,12 @@ export function nodeToVNode(node: Node): VNode | string | null {
   }
   return null
 }
+
 function treeToVNode(
   input: Node,
 ): VNode | string | null {
   if (input.type === TEXT_NODE)
-    return input.value as string
+    return decodeHtml(input.value)
 
   if ('children' in input) {
     const node = handleNode(input)

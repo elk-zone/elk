@@ -63,6 +63,7 @@ export const useTimeAgoOptions = (short = false): UseTimeAgoOptions<false> => {
   const prefix = short ? 'short_' : ''
 
   return {
+    rounding: 'floor',
     showSecond: !short,
     updateInterval: short ? 60_000 : 1_000,
     messages: {
@@ -78,10 +79,10 @@ export const useTimeAgoOptions = (short = false): UseTimeAgoOptions<false> => {
       week: (n, p) => t(`time_ago_options.${prefix}week_${p ? 'past' : 'future'}`, n),
       month: (n, p) => t(`time_ago_options.${prefix}month_${p ? 'past' : 'future'}`, n),
       year: (n, p) => t(`time_ago_options.${prefix}year_${p ? 'past' : 'future'}`, n),
+      invalid: '',
     },
     fullDateFormatter(date) {
       return d(date, short ? 'short' : 'long')
     },
   }
 }
-

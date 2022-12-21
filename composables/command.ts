@@ -205,6 +205,7 @@ export const provideGlobalCommands = () => {
   const { locale, t } = useI18n()
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
   const users = useUsers()
+  const masto = useMasto()
 
   useCommand({
     scope: 'Actions',
@@ -300,7 +301,7 @@ export const provideGlobalCommands = () => {
     icon: 'i-ri:user-shared-line',
 
     onActivate() {
-      loginTo(user)
+      masto.loginTo(user)
     },
   })))
   useCommand({

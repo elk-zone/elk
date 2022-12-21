@@ -9,18 +9,20 @@ const { notification } = defineProps<{
 <template>
   <article flex flex-col relative>
     <template v-if="notification.type === 'follow'">
-      <div flex items-center absolute px-3 py-3 bg-base rounded-br-3 top-0 left-0>
-        <div i-ri:user-follow-fill mr-1 color-primary />
-        <ContentRich
-          text-primary mr-1 font-bold line-clamp-1 ws-pre-wrap break-all
-          :content="getDisplayName(notification.account, { rich: true })"
-          :emojis="notification.account.emojis"
-        />
-        <span ws-nowrap>
-          {{ $t('notification.followed_you') }}
-        </span>
-      </div>
-      <AccountBigCard :account="notification.account" />
+      <NuxtLink :to="getAccountRoute(notification.account)">
+        <div flex items-center absolute pl-3 pr-4 py-3 bg-base rounded-br-3 top-0 left-0>
+          <div i-ri:user-follow-fill mr-1 color-primary />
+          <ContentRich
+            text-primary mr-1 font-bold line-clamp-1 ws-pre-wrap break-all
+            :content="getDisplayName(notification.account, { rich: true })"
+            :emojis="notification.account.emojis"
+          />
+          <span ws-nowrap>
+            {{ $t('notification.followed_you') }}
+          </span>
+        </div>
+        <AccountBigCard :account="notification.account" />
+      </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'admin.sign_up'">
       <div flex p3 items-center bg-shaded>

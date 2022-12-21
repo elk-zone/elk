@@ -9,6 +9,10 @@ export default defineConfig({
       '~/': `${resolve(__dirname)}/`,
     },
   },
+  define: {
+    'process.server': 'false',
+    'process.client': 'true',
+  },
   plugins: [
     Vue(),
     AutoImport({

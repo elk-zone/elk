@@ -4,6 +4,7 @@
     "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
+    "blocking": "Blocked",
     "bot": "BOT",
     "favourites": "Favourites",
     "follow": "Follow",
@@ -18,13 +19,16 @@
     "joined": "Joined",
     "moved_title": "has indicated that their new account is now:",
     "muted_users": "Muted users",
+    "muting": "Muted",
     "mutuals": "Mutuals",
     "pinned": "Pinned",
     "posts": "Posts",
     "posts_count": "{0} posts|{0} post|{0} posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
-    "unfollow": "Unfollow"
+    "unblock": "Unblock",
+    "unfollow": "Unfollow",
+    "unmute": "Unmute"
   },
   "action": {
     "bookmark": "Bookmark",
@@ -68,6 +72,7 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
+    "in": "in",
     "kiloSuffix": "K",
     "megaSuffix": "M",
     "not_found": "404 Not Found",
@@ -86,13 +91,15 @@
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar on Avatar",
+    "github_cards": "GitHub Cards",
+    "user_switcher_sidebar": "User Switcher Sidebar",
     "virtual_scroll": "Virtual Scrolling"
   },
   "help": {
     "desc_highlight": "Expect some bugs and missing features here and there.",
     "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress generic Mastodon client!",
-    "desc_para2": "We are working hard on the development and improving it over time. And we will soon invite you to join the force once we make it open source soon!",
-    "desc_para3": "Before that, to help boosting out development, you can sponsor our team members with the links below.",
+    "desc_para2": "We are working hard on the development and improving it over time. We will open source the app once it is ready for public use.",
+    "desc_para3": "To help boosting out development, you can sponsor our team members with the links below. We hope you enjoy Elk!",
     "title": "Elk is in Preview!"
   },
   "menu": {
@@ -136,6 +143,7 @@
     "local": "Local",
     "notifications": "Notifications",
     "profile": "Profile",
+    "search": "Search",
     "settings": "Settings"
   },
   "nav_user": {
@@ -148,6 +156,38 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
+    "settings": {
+      "alerts": {
+        "favourite": "Favourites",
+        "follow": "New followers",
+        "mention": "Mentions",
+        "poll": "Polls",
+        "reblog": "Reblog your post",
+        "title": "What notifications to receive?"
+      },
+      "close_btn": "Close desktop notification settings",
+      "policy": {
+        "all": "From anyone",
+        "followed": "Of people I follow",
+        "follower": "Of people who follow me",
+        "none": "From no one",
+        "title": "Who can I receive notifications from?"
+      },
+      "save_settings": "Save settings changes",
+      "show_btn": "Show desktop notification settings",
+      "title": "Desktop notification settings",
+      "undo_settings": "Undo settings changes",
+      "unsubscribe": "Disable desktop notifications",
+      "unsubscribed_with_warning": "Enable notifications to receive notifications from this account by clicking \"@:notification.settings.warning.enable_desktop{'\"'} button.",
+      "unsupported": "Your browser does not support desktop notifications.",
+      "warning": {
+        "enable_close": "Close",
+        "enable_description": "To receive notifications when Elk is not open, enable desktop notifications. You can control precisely what types of interactions generate desktop notifications via the \"Show Settings\" button above once enabled.",
+        "enable_description_short": "To change desktop notification settings when Elk is not open, you must first enable desktop notifications.",
+        "enable_desktop": "Enable desktop notifications",
+        "enable_title": "Never miss anything"
+      }
+    },
     "update_status": "updated their status"
   },
   "placeholder": {
@@ -156,6 +196,15 @@
     "reply_to_account": "Reply to {0}",
     "replying": "Replying",
     "the_thread": "the thread"
+  },
+  "pwa": {
+    "dismiss": "Dismiss",
+    "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
+    "reload": "Reload",
+    "title": "New Elk update available"
+  },
+  "search": {
+    "search_desc": "Search for people & hashtags"
   },
   "settings": {
     "preferences": {
@@ -208,6 +257,7 @@
     "edited": "edited {0}"
   },
   "tab": {
+    "accounts": "Accounts",
     "for_you": "For you",
     "hashtags": "Hashtags",
     "media": "Media",

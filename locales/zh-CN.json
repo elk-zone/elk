@@ -4,6 +4,7 @@
     "blocked_by": "您已被此用户拉黑",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
+    "blocking": "已拉黑",
     "bot": "机器人",
     "favourites": "喜欢的帖文",
     "follow": "关注",
@@ -11,26 +12,30 @@
     "follow_requested": "已申请关注",
     "followers": "关注者",
     "followers_count": "被 {0} 人关注",
-    "following": "关注中",
+    "following": "正在关注",
     "following_count": "正在关注 {0} 人",
     "follows_you": "已关注你",
     "go_to_profile": "转到个人资料",
     "joined": "已加入",
     "moved_title": "的新账号是：",
     "muted_users": "已屏蔽的用户",
+    "muting": "已屏蔽",
     "mutuals": "互相关注",
     "pinned": "置顶的帖文",
     "posts": "帖文",
     "posts_count": "{0} 条帖文",
     "profile_description": "{0}的个人资料头图",
     "profile_unavailable": "个人资料不可见",
-    "unfollow": "取消关注"
+    "unblock": "取消拉黑",
+    "unfollow": "取消关注",
+    "unmute": "取消屏蔽"
   },
   "action": {
     "bookmark": "收藏",
     "bookmarked": "已收藏",
     "boost": "转发",
     "boosted": "已转发",
+    "close": "关闭",
     "compose": "撰写",
     "confirm": "确认",
     "edit": "编辑",
@@ -67,6 +72,7 @@
   "common": {
     "end_of_list": "列表到底啦",
     "error": "错误",
+    "in": "在",
     "kiloSuffix": "K",
     "megaSuffix": "M",
     "not_found": "无法找到相关内容",
@@ -85,6 +91,8 @@
   },
   "feature_flag": {
     "avatar_on_avatar": "头像堆叠",
+    "github_cards": "Github 卡片",
+    "user_switcher_sidebar": "用户切换侧边栏",
     "virtual_scroll": "虚拟滚动"
   },
   "help": {
@@ -135,6 +143,7 @@
     "local": "本地",
     "notifications": "通知",
     "profile": "个人资料",
+    "search": "搜索",
     "settings": "设置"
   },
   "nav_user": {
@@ -147,6 +156,38 @@
     "missing_type": "未知的通知类型：",
     "reblogged_post": "转发了你的帖文",
     "request_to_follow": "请求关注你",
+    "settings": {
+      "alerts": {
+        "favourite": "喜欢的",
+        "follow": "新的关注者",
+        "mention": "提及",
+        "poll": "投票",
+        "reblog": "转发了你的帖文",
+        "title": "接收了什么通知？"
+      },
+      "close_btn": "关闭桌面通知设置",
+      "policy": {
+        "all": "任何人",
+        "followed": "我关注的人",
+        "follower": "关注我的人",
+        "none": "无人",
+        "title": "我可以从谁那里接收通知？"
+      },
+      "save_settings": "保存设置改动",
+      "show_btn": "打开桌面通知设置",
+      "title": "桌面通知设置",
+      "undo_settings": "撤销设置改动",
+      "unsubscribe": "禁用桌面通知",
+      "unsubscribed_with_warning": "通过点击“@:{'notification.settings.warning.enable_desktop'}”按钮来启用接收此账号的通知。",
+      "unsupported": "你的浏览器不支持桌面通知",
+      "warning": {
+        "enable_close": "关闭",
+        "enable_description": "若想在鹿鸣没有打开时接收通知，请启用桌面通知功能。一旦启动，你可以通过上面的“打开设置”按钮来 精确控制哪种类型的互动可以产生桌面通知。",
+        "enable_description_short": "若想在鹿鸣没有打开时修改桌面通知设置，请启用桌面通知功能。",
+        "enable_desktop": "启用桌面通知功能",
+        "enable_title": "不错过任何事"
+      }
+    },
     "update_status": "更新了他们的状态"
   },
   "placeholder": {
@@ -155,6 +196,15 @@
     "reply_to_account": "回复 {0}",
     "replying": "回复",
     "the_thread": "这个帖文"
+  },
+  "pwa": {
+    "dismiss": "忽略",
+    "message": "@:{'pwa.title'}，点击@:{'pwa.reload'}按钮来更新。",
+    "reload": "重启",
+    "title": "鹿鸣存在新的更新"
+  },
+  "search": {
+    "search_desc": "搜索用户或话题标签"
   },
   "settings": {
     "preferences": {
@@ -207,6 +257,7 @@
     "edited": "在 {0} 编辑了"
   },
   "tab": {
+    "accounts": "账号",
     "for_you": "推荐关注",
     "hashtags": "话题标签",
     "media": "媒体",

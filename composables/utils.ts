@@ -2,6 +2,7 @@ import type { Emoji } from 'masto'
 
 export const UserLinkRE = /^https?:\/\/([^/]+)\/@([^/]+)$/
 export const TagLinkRE = /^https?:\/\/([^/]+)\/tags\/([^/]+)$/
+export const HTMLTagRE = /<[^>]+>/g
 
 export function getDataUrlFromArr(arr: Uint8ClampedArray, w: number, h: number) {
   if (typeof w === 'undefined' || typeof h === 'undefined')
@@ -29,3 +30,7 @@ export function noop() {}
 export const useIsMac = () => computed(() =>
   useRequestHeaders(['user-agent'])['user-agent']?.includes('Macintosh')
     ?? navigator?.platform?.includes('Mac') ?? false)
+
+export function removeHTMLTags(str: string) {
+  return str.replaceAll(HTMLTagRE, '')
+}

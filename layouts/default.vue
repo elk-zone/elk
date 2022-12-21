@@ -1,11 +1,11 @@
 <template>
   <div h-full :class="{ zen: isZenMode }">
-    <div v-if="isMastoInitialised" v-show="showUserSwitcherSidebar" fixed h-full hidden lg:block bg-code border-r-1 border-base>
+    <div v-if="isMastoInitialised && showUserSwitcherSidebar" fixed h-full hidden lg:block bg-code border-r-1 border-base>
       <UserPicker />
     </div>
-    <main flex w-full mxa lg:max-w-80rem :class="isMastoInitialised && showUserSwitcherSidebar ? 'lg:pl-20' : ''">
+    <main flex w-full mxa lg:max-w-80rem :class="isMastoInitialised && showUserSwitcherSidebar ? 'user-switcher-sidebar' : ''">
       <aside class="hidden sm:flex w-1/8 md:w-1/6 justify-end lg:w-1/4 zen-hide" relative>
-        <div sticky top-0 w-20 lg:w-auto h-screen flex="~ col">
+        <div sticky top-0 w-20 lg:w-100 h-screen flex="~ col">
           <slot name="left">
             <NavTitle mx3 mt4 mb2 self-start />
             <div flex="~ col" overflow-y-auto justify-between h-full>
@@ -61,3 +61,11 @@
     <ModalContainer />
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 1500px) and (min-width: 1024px) {
+  .user-switcher-sidebar {
+    padding-left: min(5rem, calc((1500px - 100vw) / 2));
+  }
+}
+</style>

@@ -14,10 +14,10 @@
                 <PublishButton v-if="isMastoInitialised && currentUser" m5 />
               </div>
               <div flex flex-col>
-                <UserSignInEntry v-if="isMastoInitialised && !currentUser && !isSmallScreen && !isMediumScreen" />
+                <UserSignInEntry v-if="isMastoInitialised && !currentUser" sm:hidden />
                 <div v-if="isMastoInitialised && currentUser" p6 pb8 w-full flex="~" items-center justify-between>
                   <NuxtLink
-                    v-if="!isMediumScreen"
+                    hidden lg:block
                     rounded-full text-start w-full
                     hover:bg-active cursor-pointer transition-100
                     :to="getAccountRoute(currentUser.account)"
@@ -26,8 +26,8 @@
                   </NuxtLink>
                   <VDropdown :distance="0" placement="bottom-end">
                     <button btn-action-icon :aria-label="$t('action.switch_account')">
-                      <div v-if="!isMediumScreen" i-ri:more-2-line />
-                      <AccountAvatar v-else :account="currentUser.account" w-9 h-9 />
+                      <div hidden lg:block i-ri:more-2-line />
+                      <AccountAvatar lg:hidden :account="currentUser.account" w-9 h-9 />
                     </button>
                     <template #popper="{ hide }">
                       <UserSwitcher @click="hide" />

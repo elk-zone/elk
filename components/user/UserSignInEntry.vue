@@ -1,5 +1,5 @@
 <template>
-  <div p8 flex="~ col gap4">
+  <div p8 flex="~ col gap4" hidden lg:block>
     <p v-if="isMastoInitialised" text-sm>
       Viewing <strong>{{ currentServer }}</strong> public data
     </p>

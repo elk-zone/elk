@@ -32,7 +32,7 @@ useCommand({
           <div :class="icon" text-xl />
         </slot>
         <slot>
-          <span hidden lg:block>{{ text }}</span>
+          <span block sm:hidden lg:block>{{ text }}</span>
         </slot>
       </div>
     </CommonTooltip>

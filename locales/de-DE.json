@@ -251,7 +251,7 @@
     "tip_register_account": "wähle einen Server aus und registriere einen"
   },
   "visibility": {
-    "direct": "Nur Erwähnte Nutzer",
+    "direct": "Nur erwähnte Nutzer",
     "direct_desc": "Nur für erwähnte Nutzer sichtbar",
     "private": "Nur Follower",
     "private_desc": "Nur für Follower sichtbar",

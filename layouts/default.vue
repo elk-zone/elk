@@ -14,7 +14,7 @@
                 <PublishButton v-if="isMastoInitialised && currentUser" m5 />
               </div>
               <div flex flex-col>
-                <UserSignInEntry v-if="isMastoInitialised && !currentUser" />
+                <UserSignInEntry v-if="isMastoInitialised && !currentUser && !isSmallScreen && !isMediumScreen" />
                 <div v-if="isMastoInitialised && currentUser" p6 pb8 w-full flex="~" items-center justify-between>
                   <NuxtLink
                     v-if="!isMediumScreen"

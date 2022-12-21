@@ -52,6 +52,8 @@ export async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: Ac
     url: `https://${server}`,
     accessToken: user?.token,
     disableVersionCheck: !!config.public.disableVersionCheck,
+    // Suppress warning of `masto/fetch` usage
+    disableExperimentalWarning: true,
   })
 
   if (!user?.token) {

@@ -128,7 +128,7 @@
     "conversations": "Direktnachrichten",
     "explore": "Entdecken",
     "favourites": "Favoriten",
-    "federated": "Förderierte Timeline",
+    "federated": "Föderierte Timeline",
     "home": "Startseite",
     "local": "Lokale Timeline",
     "notifications": "Mitteilungen",
@@ -231,7 +231,7 @@
     "show_new_items": "Zeige {n} neue Beiträge|Zeige {n} neuen Beitrag|Zeige {n} neue Beiträge"
   },
   "title": {
-    "federated_timeline": "Förderierte Timeline",
+    "federated_timeline": "Föderierte Timeline",
     "local_timeline": "Lokale Timeline"
   },
   "tooltip": {

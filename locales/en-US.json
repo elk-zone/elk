@@ -31,12 +31,14 @@
     "unmute": "Unmute"
   },
   "action": {
+    "apply": "Apply",
     "bookmark": "Bookmark",
     "bookmarked": "Bookmarked",
     "boost": "Boost",
     "boosted": "Boosted",
     "close": "Close",
     "compose": "Compose",
+    "edit": "Edit",
     "enter_app": "Enter App",
     "favourite": "Favourite",
     "favourited": "Favourited",
@@ -53,6 +55,10 @@
   "app_desc_short": "A nimble Mastodon web client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Description",
+    "remove_label": "Remove attachment"
+  },
   "command": {
     "activate": "Activate",
     "complete": "Complete",

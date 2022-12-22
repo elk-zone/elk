@@ -165,7 +165,7 @@
         "reblog": "Reblog your post",
         "title": "What notifications to receive?"
       },
-      "close_btn": "Close push notification settings",
+      "close_btn": "Close push notifications settings",
       "policy": {
         "all": "From anyone",
         "followed": "Of people I follow",

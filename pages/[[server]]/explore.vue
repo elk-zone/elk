@@ -41,6 +41,6 @@ const tabs = $computed(() => [
     <template #header>
       <CommonRouteTabs replace :options="tabs" />
     </template>
-    <NuxtPage />
+    <NuxtPage v-if="isMastoInitialised" />
   </MainContent>
 </template>

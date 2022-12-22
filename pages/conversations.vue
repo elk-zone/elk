@@ -3,8 +3,6 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().conversations.iterate()
-
 const { t } = useI18n()
 
 useHeadFixed({
@@ -21,8 +19,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <slot>
-      <ConversationPaginator :paginator="paginator" />
-    </slot>
+    <TimelineConversations v-if="isMastoInitialised" />
   </MainContent>
 </template>

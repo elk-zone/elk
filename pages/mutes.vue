@@ -2,9 +2,6 @@
 definePageMeta({
   middleware: 'auth',
 })
-
-const paginator = useMasto().mutes.iterate()
-
 useHeadFixed({
   title: 'Muted users',
 })
@@ -15,6 +12,7 @@ useHeadFixed({
     <template #title>
       <span text-lg font-bold>{{ $t('account.muted_users') }}</span>
     </template>
-    <AccountPaginator :paginator="paginator" />
+
+    <TimelineMutes v-if="isMastoInitialised" />
   </MainContent>
 </template>

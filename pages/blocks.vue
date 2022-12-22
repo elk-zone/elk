@@ -3,8 +3,6 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().blocks.iterate()
-
 useHeadFixed({
   title: 'Blocked users',
 })
@@ -15,6 +13,7 @@ useHeadFixed({
     <template #title>
       <span text-lg font-bold>{{ $t('account.blocked_users') }}</span>
     </template>
-    <AccountPaginator :paginator="paginator" />
+
+    <TimelineBlocks v-if="isMastoInitialised" />
   </MainContent>
 </template>

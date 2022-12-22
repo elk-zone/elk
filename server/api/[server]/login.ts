@@ -1,4 +1,5 @@
 import { stringifyQuery } from 'ufo'
+import { createError, defineEventHandler, getRouterParams } from 'h3'
 import { getApp, getRedirectURI } from '~/server/shared'
 
 export default defineEventHandler(async (event) => {

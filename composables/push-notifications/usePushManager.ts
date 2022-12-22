@@ -61,7 +61,7 @@ export const usePushManager = () => {
     }
   }, { immediate: true, flush: 'post' })
 
-  const subscribe = async (notificationData?: CreatePushNotification, policy?: SubscriptionPolicy): Promise<SubscriptionResult> => {
+  const subscribe = async (notificationData?: CreatePushNotification, policy?: SubscriptionPolicy, force?: boolean): Promise<SubscriptionResult> => {
     if (!isSupported || !currentUser.value)
       return 'invalid-state'
 
@@ -92,17 +92,22 @@ export const usePushManager = () => {
       return 'notification-denied'
     }
 
-    currentUser.value.pushSubscription = await createPushSubscription({
-      pushSubscription, server, token, vapidKey,
-    }, notificationData ?? {
-      alerts: {
-        follow: true,
-        favourite: true,
-        reblog: true,
-        mention: true,
-        poll: true,
+    currentUser.value.pushSubscription = await createPushSubscription(
+      {
+        pushSubscription, server, token, vapidKey,
       },
-    }, policy ?? 'all')
+      notificationData ?? {
+        alerts: {
+          follow: true,
+          favourite: true,
+          reblog: true,
+          mention: true,
+          poll: true,
+        },
+      },
+      policy ?? 'all',
+      force,
+    )
     await nextTick()
     notificationPermission.value = permission
     hiddenNotification.value[acct] = true
@@ -117,9 +122,17 @@ export const usePushManager = () => {
     await removePushNotifications(currentUser.value)
   }
 
-  const saveSettings = async () => {
+  const saveSettings = async (policy?: SubscriptionPolicy) => {
+    if (policy)
+      pushNotificationData.value.policy = policy
+
     commit()
-    configuredPolicy.value[currentUser.value!.account.acct ?? ''] = pushNotificationData.value.policy
+
+    if (policy)
+      configuredPolicy.value[currentUser.value!.account.acct ?? ''] = policy
+    else
+      configuredPolicy.value[currentUser.value!.account.acct ?? ''] = pushNotificationData.value.policy
+
     await nextTick()
     clear()
     await nextTick()
@@ -151,13 +164,21 @@ export const usePushManager = () => {
           poll: pushNotificationData.value.poll,
         },
       }
-      if (previous.policy !== pushNotificationData.value.policy)
-        await subscribe(data, pushNotificationData.value.policy)
 
+      const policy = pushNotificationData.value.policy
+
+      const policyChanged = previous.policy !== policy
+
+      // to change policy we need to resubscribe
+      if (policyChanged)
+        await subscribe(data, policy, true)
       else
         currentUser.value.pushSubscription = await masto.pushSubscriptions.update({ data })
 
-      await saveSettings()
+      policyChanged && await nextTick()
+
+      // force change policy when changed: watch is resetting it on push subscription update
+      await saveSettings(policyChanged ? policy : undefined)
     }
   }
 

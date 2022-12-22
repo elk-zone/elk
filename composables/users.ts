@@ -96,17 +96,7 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
   return masto
 }
 
-export async function removePushNotifications(user: UserLogin, fromSWPushManager = true) {
-  if (!useRuntimeConfig().public.pwaEnabled || !user.pushSubscription)
-    return
-
-  // unsubscribe push notifications
-  try {
-    await useMasto().pushSubscriptions.remove()
-  }
-  catch {
-    // ignore
-  }
+export async function removePushNotificationData(user: UserLogin, fromSWPushManager = true) {
   // clear push subscription
   user.pushSubscription = undefined
   const { acct } = user.account
@@ -130,6 +120,19 @@ export async function removePushNotifications(user: UserLogin, fromSWPushManager
   }
 }
 
+export async function removePushNotifications(user: UserLogin) {
+  if (!useRuntimeConfig().public.pwaEnabled || !user.pushSubscription)
+    return
+
+  // unsubscribe push notifications
+  try {
+    await useMasto().pushSubscriptions.remove()
+  }
+  catch {
+    // ignore
+  }
+}
+
 export async function signout() {
   // TODO: confirm
   if (!currentUser.value)
@@ -148,6 +151,8 @@ export async function signout() {
       delete instances.value[currentUser.value.server]
 
     await removePushNotifications(currentUser.value)
+
+    await removePushNotificationData(currentUser.value)
 
     currentUserId.value = ''
     // Remove the current user from the users

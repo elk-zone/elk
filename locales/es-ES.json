@@ -165,7 +165,7 @@
         "reblog": "Retooteo de tus publicaciones",
         "title": "¿Qué notificaciones recibir?"
       },
-      "close_btn": "Cerrar ajuste de las notificaciones de escritorio",
+      "close_btn": "Cerrar ajustes de las notificaciones push",
       "policy": {
         "all": "De cualquier persona",
         "followed": "De personas que sigo",
@@ -173,18 +173,18 @@
         "none": "De nadie",
         "title": "¿De quién puedo recibir notificaciones?"
       },
-      "save_settings": "Guardar cambios en los ajustes",
-      "show_btn": "Mostrar ajustes de las notificaciones de escritorio",
-      "title": "Ajustes de notificaciones de escritorio",
-      "undo_settings": "Deshacer cambios en los ajustes",
-      "unsubscribe": "Cancelar notificaciones de escritorio",
-      "unsubscribed_with_warning": "Habilite las notificaciones para recibir notificaciones de esta cuenta haciendo clic en el botón \"@:notification.settings.warning.enable_desktop{'\"'}.",
-      "unsupported": "Tu navegador no soporta notificaciones de escritorio.",
+      "save_settings": "Guardar cambios",
+      "show_btn": "Mostrar ajustes de las notificaciones push",
+      "title": "Ajustes de notificaciones push",
+      "undo_settings": "Deshacer cambios",
+      "unsubscribe": "Cancelar notificaciones push",
+      "unsubscribed_with_warning": "Habilite las notificaciones push para recibir notificaciones de esta cuenta haciendo clic en el botón \"@:notification.settings.warning.enable_desktop{'\"'}.",
+      "unsupported": "Tu navegador no soporta notificaciones push.",
       "warning": {
         "enable_close": "Cerrar",
-        "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones de escritorio. Puedes controlar con precisión qué tipos de interacciones generan notificaciones de escritorio a través del botón \"Mostrar ajustes\" de arriba una vez que estén habilitadas.",
-        "enable_description_short": "Para cambiar los ajustes de las notificaciones de escritorio cuando Elk no esté abierto, debe habilitar antes las notificaciones de escritorio.",
-        "enable_desktop": "Habilitar notificaciones de escritorio",
+        "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones push. Puedes controlar con precisión qué tipos de interacciones generan notificaciones push a través del botón \"@:notification.settings.show_btn{'\"'} de arriba una vez que estén habilitadas.",
+        "enable_description_short": "Para cambiar los ajustes de las notificaciones push cuando Elk no esté abierto, debe habilitar antes las notificaciones push.",
+        "enable_desktop": "Habilitar notificaciones push",
         "enable_title": "Nunca te pierdas nada"
       }
     },

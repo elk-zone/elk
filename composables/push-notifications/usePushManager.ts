@@ -120,6 +120,7 @@ export const usePushManager = () => {
       return false
 
     await removePushNotifications(currentUser.value)
+    await removePushNotificationData(currentUser.value)
   }
 
   const saveSettings = async (policy?: SubscriptionPolicy) => {

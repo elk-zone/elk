@@ -31,12 +31,14 @@
     "unmute": "Dejar de silenciar"
   },
   "action": {
+    "apply": "Aplicar",
     "bookmark": "Añadir marcador",
     "bookmarked": "Guardado como marcador",
     "boost": "Retootear",
     "boosted": "Retooteado",
     "close": "Cerrar",
     "compose": "Redactar",
+    "edit": "Editar",
     "enter_app": "Entrar",
     "favourite": "Favorito",
     "favourited": "Marcado como favorito",
@@ -50,9 +52,13 @@
     "switch_account": "Cambiar cuenta",
     "vote": "Votar"
   },
-  "app_desc_short": "Un cliente Mastodon hecho con 🧡",
+  "app_desc_short": "Un ágil cliente web de Mastodon",
   "app_logo": "Logotipo de Elk",
   "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Descripción",
+    "remove_label": "Eliminar archivo adjunto"
+  },
   "command": {
     "activate": "Activar",
     "complete": "Completar",
@@ -138,7 +144,7 @@
     "local": "Local",
     "notifications": "Notificaciones",
     "profile": "Perfil",
-    "search": "Buscar"
+    "search": "Buscar {0}"
   },
   "nav_user": {
     "sign_in_desc": "Inicia sesión para seguir perfiles o hashtags, marcar como favorito, compartir and responder a publicaciones, o interactuar desde tu usuario con un servidor diferente."

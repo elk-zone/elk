@@ -1,9 +1,9 @@
 {
   "account": {
     "avatar_description": "{0}'s Avatar",
-    "blocked_by": "Du wurdest von diesem*r Nutzer*in geblockt",
+    "blocked_by": "Du wurdest von diesem Nutzer geblockt",
     "blocked_domains": "Gesperrte Domänen",
-    "blocked_users": "Gesperrte Nutzer*innen",
+    "blocked_users": "Gesperrte Nutzer",
     "bot": "BOT",
     "favourites": "Favoriten",
     "follow": "Folgen",
@@ -17,7 +17,7 @@
     "go_to_profile": "Gehe zum Profil",
     "joined": "Beigetreten",
     "moved_title": "hat angegeben, dass dies der neue Account ist:",
-    "muted_users": "Stummgeschaltete Nutzer*innen",
+    "muted_users": "Stummgeschaltete Nutzer",
     "mutuals": "Freunde",
     "pinned": "Angepinnt",
     "posts": "Beiträge",
@@ -56,9 +56,9 @@
     "lang": "Sprache",
     "n-people-in-the-past-n-days": "{0} Personen in den vergangenen {1} Tagen",
     "select_lang": "Sprache auswählen",
-    "sign_in_desc": "Bestehende*n Nutzer*in hinzufügen",
+    "sign_in_desc": "Bestehenden Nutzer hinzufügen",
     "switch_account": "Zu {0} wechseln",
-    "switch_account_desc": "Zu einem*r anderen Nutzer*in wechseln",
+    "switch_account_desc": "Zu einem anderen Nutzer wechseln",
     "toggle_dark_mode": "Farbschema ändern",
     "toggle_zen_mode": "Zen-Modus ändern"
   },
@@ -74,7 +74,7 @@
     "with": "mit"
   },
   "error": {
-    "account_not_found": "Nutzer*in {0} nicht gefunden",
+    "account_not_found": "Nutzer {0} nicht gefunden",
     "explore-list-empty": "Momentan ist nichts im Trend. Schau später nochmal vorbei!",
     "sign_in_error": "Kann nicht zu Server verbinden",
     "status_not_found": "Beitrag nicht gefunden"
@@ -141,7 +141,7 @@
   "notification": {
     "favourited_post": "hat deinen Beitrag favorisiert",
     "followed_you": "folgt dir",
-    "followed_you_count": "{n} Nutzer*in folgt dir|{n} Nutzer*innen folgen dir",
+    "followed_you_count": "{n} Nutzer folgt dir|{n} Nutzer folgen dir",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "hat deinen Beitrag geteilt",
     "request_to_follow": "möchte dir folgen",
@@ -187,7 +187,7 @@
     "edited": "Bearbeitet: {0}"
   },
   "tab": {
-    "accounts": "Nutzer*innen",
+    "accounts": "Nutzer",
     "for_you": "Für dich",
     "hashtags": "Hashtags",
     "media": "Medien",
@@ -252,8 +252,8 @@
     "tip_register_account": "wähle einen Server aus und registriere eines"
   },
   "visibility": {
-    "direct": "Nur erwähnte Nutzer*innen",
-    "direct_desc": "Nur für erwähnte Nutzer*innen sichtbar",
+    "direct": "Nur erwähnte Nutzer",
+    "direct_desc": "Nur für erwähnte Nutzer sichtbar",
     "private": "Nur Follower",
     "private_desc": "Nur für Follower sichtbar",
     "public": "Öffentlich",

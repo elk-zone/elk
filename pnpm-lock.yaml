@@ -45,7 +45,7 @@ specifiers:
   jsdom: ^20.0.3
   lint-staged: ^13.0.4
   lru-cache: ^7.14.1
-  masto: ^4.7.5
+  masto: ^4.11.1
   nuxt: ^3.0.0
   pinia: ^2.0.27
   postcss-nested: ^6.0.0
@@ -91,7 +91,7 @@ dependencies:
   fuse.js: 6.6.2
   js-yaml: 4.1.0
   lru-cache: 7.14.1
-  masto: 4.7.5
+  masto: 4.11.1
   pinia: 2.0.27_typescript@4.9.3
   shiki: 0.11.1
   shiki-es: 0.1.2
@@ -5474,6 +5474,11 @@ packages:
 
   /eventemitter3/4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
+    dev: true
+
+  /eventemitter3/5.0.0:
+    resolution: {integrity: sha512-riuVbElZZNXLeLEoprfNYoDSwTBRR44X3mnhdI1YcnENpWTCsTTVZ2zFuqQcpoyqPQIUXdiPEU0ECAq0KQRaHg==}
+    dev: false
 
   /execa/5.1.1:
     resolution: {integrity: sha512-8uSpZZocAZRBAPIEINJj3Lo9HyGitllczc27Eh5YYojjMFMn8yHMDMaUHE2Jqfq05D/wucwI4JGURyXt1vchyg==}
@@ -6900,12 +6905,12 @@ packages:
       semver: 6.3.0
     dev: true
 
-  /masto/4.7.5:
-    resolution: {integrity: sha512-FRqr5yAAJm6PVCPqxrQt7uIwCft+FmPZgcjvLpzo4kzhgvBPGax70rFiGrULYZ34ehnrbcGOp4J+VcM1FxDU2w==}
+  /masto/4.11.1:
+    resolution: {integrity: sha512-siTQNhfLV1JjOERCGgjagMvD6q0K0hLuhOXrbXNcYzHAwpbPeSeAM6CSpIRrZ8zFDepOR62Djs/GtJdTR21Rfw==}
     dependencies:
       axios: 1.1.3
       change-case: 4.1.2
-      eventemitter3: 4.0.7
+      eventemitter3: 5.0.0
       isomorphic-form-data: 2.0.0
       isomorphic-ws: 5.0.0_ws@8.11.0
       semver: 7.3.8

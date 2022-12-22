@@ -5,6 +5,7 @@ import _kv from 'unstorage/drivers/cloudflare-kv-http'
 
 import { parseURL } from 'ufo'
 
+import { $fetch } from 'ofetch'
 import type { Storage } from 'unstorage'
 
 import cached from './cache-driver'

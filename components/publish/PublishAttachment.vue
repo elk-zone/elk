@@ -27,11 +27,11 @@ const description = ref(props.attachment.description ?? '')
         v-if="removable"
         aria-label="Remove attachment"
         hover:bg="gray/40" transition-100 p-1 rounded-5 cursor-pointer
-        :class="[isHydrated && isSmallScreen ? '' : 'op-0 group-hover:op-100hover:']"
+        :class="[isHydrated.value && isSmallScreen ? '' : 'op-0 group-hover:op-100hover:']"
         mix-blend-difference
         @click="$emit('remove')"
       >
-        <div i-ri:close-line text-3 :class="[isHydrated && isSmallScreen ? 'text-6' : 'text-3']" />
+        <div i-ri:close-line text-3 :class="[isHydrated.value && isSmallScreen ? 'text-6' : 'text-3']" />
       </div>
     </div>
     <div absolute right-2 bottom-2>

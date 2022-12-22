@@ -44,7 +44,7 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
       </button>
     </div>
     <div>{{ $t('app_desc_short') }}</div>
-    <div v-if="isMastoInitialised">
+    <div>
       <i18n-t keypath="nav_footer.built_at">
         <time :datetime="buildTime" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
       </i18n-t>

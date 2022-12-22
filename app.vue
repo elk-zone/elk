@@ -13,7 +13,7 @@ const { params } = useRoute()
   <NuxtLoadingIndicator color="repeating-linear-gradient(to right,var(--c-primary) 0%,var(--c-primary-active) 100%)" />
   <NuxtLayout :key="key">
     <!-- TODO: rework the /[account] routes to remove conditional loading -->
-    <NuxtPage v-if="!params.server || isMastoInitialised" />
+    <NuxtPage v-if="!params.account || isMastoInitialised" />
   </NuxtLayout>
   <PWAPrompt />
 </template>

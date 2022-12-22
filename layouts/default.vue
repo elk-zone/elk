@@ -39,7 +39,7 @@
           </slot>
         </div>
       </aside>
-      <div class="w-full mb14 sm:(w-600px mb0) min-h-screen" border="none sm:l sm:r base">
+      <div class="w-600px mb0 md:(w-full mb14) min-h-screen" border="none sm:l sm:r base">
         <div min-h-screen>
           <slot />
         </div>

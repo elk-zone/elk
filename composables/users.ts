@@ -44,14 +44,13 @@ export const useUsers = () => users
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
 async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }) {
-  const config = useRuntimeConfig()
   const route = useRoute()
   const router = useRouter()
   const server = user?.server || route.params.server as string || publicServer.value
   const masto = await loginMasto({
     url: `https://${server}`,
     accessToken: user?.token,
-    disableVersionCheck: !!config.public.disableVersionCheck,
+    disableVersionCheck: true,
     // Suppress warning of `masto/fetch` usage
     disableExperimentalWarning: true,
   })

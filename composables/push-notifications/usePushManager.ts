@@ -151,13 +151,12 @@ export const usePushManager = () => {
           poll: pushNotificationData.value.poll,
         },
       }
-      if (previous.policy !== pushNotificationData.value.policy) {
-        await masto.pushSubscriptions.remove()
+      if (previous.policy !== pushNotificationData.value.policy)
         await subscribe(data, pushNotificationData.value.policy)
-      }
-      else {
+
+      else
         currentUser.value.pushSubscription = await masto.pushSubscriptions.update({ data })
-      }
+
       await saveSettings()
     }
   }

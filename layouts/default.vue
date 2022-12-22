@@ -51,7 +51,7 @@
       <aside class="hidden sm:none lg:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col" py3>
           <slot name="right">
-            <SearchWidget v-if="isMastoInitialised" />
+            <SearchWidget />
             <div flex-auto />
             <NavFooter />
           </slot>

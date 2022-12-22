@@ -88,7 +88,7 @@
     "account_not_found": "Account {0} not found",
     "explore-list-empty": "Nothing is trending right now. Check back later!",
     "sign_in_error": "Cannot connect to the server.",
-    "status_not_found": "Status not found"
+    "status_not_found": "Post not found"
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar on Avatar",
@@ -144,7 +144,7 @@
     "local": "Local",
     "notifications": "Notifications",
     "profile": "Profile",
-    "search": "Search"
+    "search": "Search {0}"
   },
   "nav_user": {
     "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
@@ -188,7 +188,8 @@
         "enable_title": "Never miss anything"
       }
     },
-    "update_status": "updated their status"
+    "signed_up": "signed up",
+    "update_status": "updated their post"
   },
   "placeholder": {
     "content_warning": "Write your warning here",

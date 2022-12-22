@@ -11,7 +11,7 @@
             <div flex="~ col" overflow-y-auto justify-between h-full>
               <div flex flex-col>
                 <NavSide />
-                <PublishButton v-if="isMastoInitialised && currentUser" m5 />
+                <PublishButton m5 />
               </div>
               <div flex flex-col>
                 <UserSignInEntry v-if="isMastoInitialised && !currentUser" sm:hidden />

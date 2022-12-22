@@ -1,6 +1,7 @@
 import type {
   CreatePushSubscriptionParams,
   PushSubscription as MastoPushSubscription,
+  SubscriptionPolicy,
 } from 'masto'
 import type {
   CreatePushNotification,
@@ -13,6 +14,7 @@ import { currentUser, removePushNotifications } from '~/composables/users'
 export const createPushSubscription = async (
   user: RequiredUserLogin,
   notificationData: CreatePushNotification,
+  policy: SubscriptionPolicy = 'all',
 ): Promise<MastoPushSubscription | undefined> => {
   const { server: serverEndpoint, vapidKey } = user
 
@@ -33,12 +35,12 @@ export const createPushSubscription = async (
           // if we have a subscription, but it is not valid, we need to remove it
           return unsubscribeFromBackend(false)
             .then(() => subscribe(registration, vapidKey))
-            .then(subscription => sendSubscriptionToBackend(subscription, notificationData))
+            .then(subscription => sendSubscriptionToBackend(subscription, notificationData, policy))
         }
       }
 
       return subscribe(registration, vapidKey).then(
-        subscription => sendSubscriptionToBackend(subscription, notificationData),
+        subscription => sendSubscriptionToBackend(subscription, notificationData, policy),
       )
     })
     .catch((error) => {
@@ -101,9 +103,11 @@ async function unsubscribeFromBackend(fromSWPushManager: boolean) {
 async function sendSubscriptionToBackend(
   subscription: PushSubscription,
   data: CreatePushNotification,
+  policy: SubscriptionPolicy,
 ): Promise<MastoPushSubscription> {
   const { endpoint, keys } = subscription.toJSON()
   const params: CreatePushSubscriptionParams = {
+    policy,
     subscription: {
       endpoint: endpoint!,
       keys: {

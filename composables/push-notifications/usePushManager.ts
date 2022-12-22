@@ -2,6 +2,7 @@ import type {
   CreatePushNotification,
   PushNotificationPolicy,
   PushNotificationRequest,
+  RequiredUserLogin,
   SubscriptionResult,
 } from '~/composables/push-notifications/types'
 import { createPushSubscription } from '~/composables/push-notifications/createPushSubscription'
@@ -14,6 +15,7 @@ const supportsPushNotifications = typeof window !== 'undefined'
     && 'getKey' in PushSubscription.prototype
 
 export const usePushManager = () => {
+  const masto = useMasto()
   const isSubscribed = ref(false)
   const notificationPermission = ref<PermissionState | undefined>(
     Notification.permission === 'denied'
@@ -140,18 +142,27 @@ export const usePushManager = () => {
 
   const updateSubscription = async () => {
     if (currentUser.value) {
-      currentUser.value.pushSubscription = await useMasto().pushSubscriptions.update({
-        data: {
-          alerts: {
-            follow: pushNotificationData.value.follow,
-            favourite: pushNotificationData.value.favourite,
-            reblog: pushNotificationData.value.reblog,
-            mention: pushNotificationData.value.mention,
-            poll: pushNotificationData.value.poll,
-          },
-          policy: pushNotificationData.value.policy,
+      const previous = history.value[0].snapshot
+      const data = {
+        alerts: {
+          follow: pushNotificationData.value.follow,
+          favourite: pushNotificationData.value.favourite,
+          reblog: pushNotificationData.value.reblog,
+          mention: pushNotificationData.value.mention,
+          poll: pushNotificationData.value.poll,
         },
-      })
+      }
+      if (previous.policy !== pushNotificationData.value.policy) {
+        await masto.pushSubscriptions.remove()
+        currentUser.value.pushSubscription = await createPushSubscription(
+          currentUser.value as RequiredUserLogin,
+          data,
+          pushNotificationData.value.policy,
+        )
+      }
+      else {
+        currentUser.value.pushSubscription = await masto.pushSubscriptions.update({ data })
+      }
       await saveSettings()
     }
   }

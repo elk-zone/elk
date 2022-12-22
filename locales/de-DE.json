@@ -133,7 +133,7 @@
     "local": "Lokal",
     "notifications": "Mitteilungen",
     "profile": "Profil",
-    "search": "Durchsuche"
+    "search": "Durchsuche {0}"
   },
   "nav_user": {
     "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren."
@@ -154,6 +154,9 @@
     "reply_to_account": "Antwort an {0}",
     "replying": "Antworten",
     "the_thread": "Der Thread"
+  },
+  "search": {
+    "search_desc": "Suche nach Nutzern & Hashtags"
   },
   "state": {
     "edited": "(bearbeitet)",

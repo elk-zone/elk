@@ -30,7 +30,7 @@ useHeadFixed({
       </NuxtLink>
     </template>
     <slot>
-      <PublishWidget draft-key="home" border="b base" />
+      <LazyPublishWidget v-if="isMastoInitialised && currentUser" draft-key="home" border="b base" />
       <TimelinePaginator v-bind="{ paginator, stream }" context="home" />
     </slot>
   </MainContent>

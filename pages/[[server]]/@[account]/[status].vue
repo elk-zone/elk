@@ -71,8 +71,8 @@ onReactivated(() => {
           border="t base"
           style="scroll-margin-top: 60px"
         />
-        <PublishWidget
-          v-if="currentUser"
+        <LazyPublishWidget
+          v-if="isMastoInitialised && currentUser"
           ref="publishWidget"
           :draft-key="replyDraft!.key"
           :initial="replyDraft!.draft"

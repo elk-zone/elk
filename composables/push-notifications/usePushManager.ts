@@ -1,8 +1,8 @@
+import type { SubscriptionPolicy } from 'masto'
 import type {
   CreatePushNotification,
   PushNotificationPolicy,
   PushNotificationRequest,
-  RequiredUserLogin,
   SubscriptionResult,
 } from '~/composables/push-notifications/types'
 import { createPushSubscription } from '~/composables/push-notifications/createPushSubscription'
@@ -61,7 +61,7 @@ export const usePushManager = () => {
     }
   }, { immediate: true, flush: 'post' })
 
-  const subscribe = async (notificationData?: CreatePushNotification): Promise<SubscriptionResult> => {
+  const subscribe = async (notificationData?: CreatePushNotification, policy?: SubscriptionPolicy): Promise<SubscriptionResult> => {
     if (!isSupported || !currentUser.value)
       return 'invalid-state'
 
@@ -102,8 +102,7 @@ export const usePushManager = () => {
         mention: true,
         poll: true,
       },
-      policy: 'all',
-    })
+    }, policy ?? 'all')
     await nextTick()
     notificationPermission.value = permission
     hiddenNotification.value[acct] = true
@@ -154,11 +153,7 @@ export const usePushManager = () => {
       }
       if (previous.policy !== pushNotificationData.value.policy) {
         await masto.pushSubscriptions.remove()
-        currentUser.value.pushSubscription = await createPushSubscription(
-          currentUser.value as RequiredUserLogin,
-          data,
-          pushNotificationData.value.policy,
-        )
+        await subscribe(data, pushNotificationData.value.policy)
       }
       else {
         currentUser.value.pushSubscription = await masto.pushSubscriptions.update({ data })

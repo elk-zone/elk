@@ -1,11 +1,10 @@
 <script setup lang="ts">
 setupI18n()
-setupLogging()
 setupPageHeader()
 provideGlobalCommands()
 
 // We want to trigger rerendering the page when account changes
-const key = computed(() => `${currentServer.value}:${currentUser.value?.account.id || ''}`)
+const key = computed(() => `${currentUser.value?.server ?? currentServer.value}:${currentUser.value?.account.id || ''}`)
 </script>
 
 <template>

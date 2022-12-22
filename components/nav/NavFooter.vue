@@ -44,21 +44,24 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
       </button>
     </div>
     <div>{{ $t('app_desc_short') }}</div>
-    <div v-if="isMastoInitialised">
+    <div>
       <i18n-t keypath="nav_footer.built_at">
         <time :datetime="buildTime" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
       </i18n-t>
-      &middot;
-      <NuxtLink
-        v-if="buildCommit"
-        external
-        :href="`https://github.com/elk-zone/elk/commit/${buildCommit}`"
-        target="_blank"
-        font-mono
-      >
-        {{ buildCommit.slice(0, 7) }}
-      </NuxtLink>
-      &middot; <a href="https://github.com/elk-zone/elk" target="_blank">GitHub</a>
+      <template v-if="buildCommit">
+        &middot;
+        <NuxtLink
+          external
+          :href="`https://github.com/elk-zone/elk/commit/${buildCommit}`"
+          target="_blank"
+          font-mono
+        >
+          {{ buildCommit.slice(0, 7) }}
+        </NuxtLink>
+      </template>
+    </div>
+    <div>
+      <a href="https://m.webtoo.ls/@elk" target="_blank">Mastodon</a> &middot; <a href="https://chat.elk.zone" target="_blank">Discord</a> &middot; <a href="https://github.com/elk-zone" target="_blank">GitHub</a>
     </div>
   </footer>
 </template>

@@ -21,8 +21,10 @@ export default defineNuxtConfig({
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
+    '~/modules/tauri/index',
   ],
   experimental: {
+    payloadExtraction: false,
     reactivityTransform: true,
     inlineSSRStyles: false,
   },
@@ -35,13 +37,11 @@ export default defineNuxtConfig({
     '~/styles/dropdown.css',
   ],
   alias: {
-    querystring: 'rollup-plugin-node-polyfills/polyfills/qs',
+    'querystring': 'rollup-plugin-node-polyfills/polyfills/qs',
+    'masto/fetch': 'masto/fetch',
+    'masto': 'masto/fetch',
   },
   vite: {
-    // to make use of `TAURI_PLATFORM`, `TAURI_ARCH`, `TAURI_FAMILY`,
-    // `TAURI_PLATFORM_VERSION`, `TAURI_PLATFORM_TYPE` and `TAURI_DEBUG`
-    // env variables
-    envPrefix: ['VITE_', 'TAURI_'],
     define: {
       'import.meta.env.__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
       'import.meta.env.__BUILD_COMMIT__': JSON.stringify(process.env.COMMIT_REF || ''),
@@ -49,7 +49,7 @@ export default defineNuxtConfig({
       'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
     },
     build: {
-      target: process.env.TAURI_PLATFORM ? ['es2021', 'chrome100', 'safari13'] : 'esnext',
+      target: 'esnext',
     },
     plugins: [
       Inspect(),
@@ -70,6 +70,15 @@ export default defineNuxtConfig({
       accountId: '',
       namespaceId: '',
       apiToken: '',
+    },
+    discord: {
+      inviteUrl: 'https://chat.elk.zone',
+    },
+    github: {
+      // oauth flow
+      clientId: '',
+      clientSecret: '',
+      inviteToken: '',
     },
     public: {
       env: isCI ? isPreview ? 'staging' : 'production' : 'local',

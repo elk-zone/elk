@@ -1,6 +1,11 @@
 export default defineNuxtRouteMiddleware(async (to, from) => {
+  if (process.server)
+    return
+
+  const masto = useMasto()
+
   // Skip running middleware before masto has been initialised
-  if (!useNuxtApp().$masto)
+  if (!masto)
     return
 
   if (!('server' in to.params))
@@ -10,7 +15,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   if (!user) {
     if (from.params.server !== to.params.server) {
-      await loginTo({
+      await masto.loginTo({
         server: to.params.server as string,
       })
     }
@@ -44,8 +49,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         return getAccountRoute(account)
     }
 
+    if (!masto.loggedIn.value)
+      await masto.loginTo(currentUser.value)
+
     // If we're logged in, search for the local id the account or status corresponds to
-    const { value } = await useMasto().search({ q: `https:/${to.fullPath}`, resolve: true, limit: 1 }).next()
+    const { value } = await masto.search({ q: `https:/${to.fullPath}`, resolve: true, limit: 1 }).next()
 
     const { accounts, statuses } = value
     if (statuses[0])

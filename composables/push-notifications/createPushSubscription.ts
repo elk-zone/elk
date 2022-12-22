@@ -116,4 +116,3 @@ async function sendSubscriptionToBackend(
 
   return await useMasto().pushSubscriptions.create(params)
 }
-

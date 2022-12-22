@@ -19,4 +19,3 @@ export interface CreatePushNotification {
 
 export type PushNotificationRequest = Record<string, boolean>
 export type PushNotificationPolicy = Record<string, SubscriptionPolicy>
-

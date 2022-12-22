@@ -1,10 +1,10 @@
 export const isHydrated = computed(() => {
   if (process.server)
-    return false
+    return { value: false }
 
   const nuxtApp = useNuxtApp()
   if (!nuxtApp.isHydrating)
-    return false
+    return { value: false }
 
   const hydrated = ref(false)
   nuxtApp.hooks.hookOnce('app:suspense:resolve', () => {

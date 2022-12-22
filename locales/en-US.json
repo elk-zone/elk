@@ -38,12 +38,14 @@
     "unmute": "Unmute"
   },
   "action": {
+    "apply": "Apply",
     "bookmark": "Bookmark",
     "bookmarked": "Bookmarked",
     "boost": "Boost",
     "boosted": "Boosted",
     "close": "Close",
     "compose": "Compose",
+    "edit": "Edit",
     "enter_app": "Enter App",
     "favourite": "Favourite",
     "favourited": "Favourited",
@@ -60,6 +62,10 @@
   "app_desc_short": "A nimble Mastodon web client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Description",
+    "remove_label": "Remove attachment"
+  },
   "command": {
     "activate": "Activate",
     "complete": "Complete",
@@ -76,6 +82,7 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
+    "in": "in",
     "kiloSuffix": "K",
     "megaSuffix": "M",
     "not_found": "404 Not Found",
@@ -99,8 +106,8 @@
   "help": {
     "desc_highlight": "Expect some bugs and missing features here and there.",
     "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress generic Mastodon client!",
-    "desc_para2": "We are working hard on the development and improving it over time. And we will soon invite you to join the force once we make it open source soon!",
-    "desc_para3": "Before that, to help boosting out development, you can sponsor our team members with the links below.",
+    "desc_para2": "We are working hard on the development and improving it over time. We will open source the app once it is ready for public use.",
+    "desc_para3": "To help boosting out development, you can sponsor our team members with the links below. We hope you enjoy Elk!",
     "title": "Elk is in Preview!"
   },
   "menu": {

@@ -1,4 +1,5 @@
 import { stringifyQuery } from 'vue-router'
+import { createError, defineEventHandler, getQuery, getRouterParams, sendRedirect } from 'h3'
 import { getApp, getRedirectURI } from '~/server/shared'
 
 export default defineEventHandler(async (event) => {

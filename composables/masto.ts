@@ -114,7 +114,7 @@ export function getStatusRoute(status: Status) {
     name: 'status',
     params: {
       server: currentServer.value,
-      account: getFullHandle(status.account).slice(1),
+      account: extractAccountHandle(status.account),
       status: status.id,
     },
     state: {

@@ -1,4 +1,11 @@
 {
+  "a11y": {
+    "loading_page": "Loading page, please wait",
+    "loading_titled_page": "Loading {0} page, please wait",
+    "locale_changed": "Language changed to {0}",
+    "locale_changing": "Changing language, please wait",
+    "route_loaded": "Page {0} loaded"
+  },
   "account": {
     "avatar_description": "{0}'s avatar",
     "blocked_by": "You're blocked by this user.",

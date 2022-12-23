@@ -66,3 +66,10 @@ export async function setupI18n() {
     })
   })
 }
+
+export async function setupFontSize() {
+  if (!process.server) {
+    setFontSizeCSSVar()
+    watch(fontSize, setFontSizeCSSVar)
+  }
+}

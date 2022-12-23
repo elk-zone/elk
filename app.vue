@@ -1,5 +1,6 @@
 <script setup lang="ts">
 setupI18n()
+setupFontSize()
 setupPageHeader()
 provideGlobalCommands()
 

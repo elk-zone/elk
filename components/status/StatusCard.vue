@@ -81,7 +81,7 @@ const isDM = $computed(() => status.visibility === 'direct')
             <AccountAvatar w-12 h-12 :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-if="showRebloggedByAvatarOnAvatar" absolute class="-top-2 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
+        <div v-if="showRebloggedByAvatarOnAvatar" absolute class="-top-1 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
           <AccountAvatar :account="rebloggedBy" />
         </div>
       </div>

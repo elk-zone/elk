@@ -30,6 +30,13 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
           </button>
         </CommonTooltip>
       </NavSelectLanguage>
+      <NavSelectFontSize>
+        <CommonTooltip :content="$t('nav_footer.select_font_size')">
+          <button flex :aria-label="$t('nav_footer.select_font_size')">
+            <div i-ri:font-size text-lg />
+          </button>
+        </CommonTooltip>
+      </NavSelectFontSize>
       <NavSelectFeatureFlags v-if="isMastoInitialised && currentUser">
         <CommonTooltip :content="$t('nav_footer.select_feature_flags')">
           <button flex :aria-label="$t('nav_footer.select_feature_flags')">

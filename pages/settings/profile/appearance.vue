@@ -69,6 +69,13 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
     </template>
 
     <form space-y-5 px4 py3 @submit.prevent="submit">
+      <!-- banner -->
+      <div space-y-2>
+        <p font-medium>
+          Banner
+        </p>
+        <SettingsUploadHeader v-model="form.header" :original="onlineSrc.header" />
+      </div>
       <!-- avatar -->
       <div space-y-2>
         <p font-medium>

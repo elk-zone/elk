@@ -98,7 +98,7 @@ body {
     --at-apply: font-bold;
   }
   p {
-    --at-apply: my-2;
+    --at-apply: my-1;
   }
   code {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.9em leading-0.8em;

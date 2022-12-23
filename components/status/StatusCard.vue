@@ -58,19 +58,21 @@ const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.cont
 
 const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
 const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)
+
+const isDM = $computed(() => status.visibility === 'direct')
 </script>
 
 <template>
-  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 pt-3 pb-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
-    <div flex justify-between pb1>
+  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-1 px-4 pt-1 class="pb-1.5" transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
+    <div flex justify-between>
       <slot name="meta">
-        <div v-if="rebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center>
+        <div v-if="rebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1>
           <div i-ri:repeat-fill mr-1 text-primary />
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
         </div>
         <div v-else />
       </slot>
-      <StatusReplyingTo v-if="showReplyTo" :status="status" :class="faded ? 'text-secondary-light' : ''" />
+      <StatusReplyingTo v-if="showReplyTo" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
     </div>
     <div flex gap-4 :class="faded ? 'text-secondary' : ''">
       <div relative>
@@ -103,9 +105,9 @@ const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAva
           <StatusActionsMore :status="status" mr--2 />
         </div>
         <div
-          space-y-2
+          space-y-3
           :class="{
-            'my3 p1 px4 br2 bg-fade border-primary-light border-1 rounded-3 rounded-tl-none': status.visibility === 'direct',
+            'mt2 pt1 pb0.5 px3.5 br2 bg-fade border-primary-light border-1 rounded-3 rounded-tl-none': isDM,
           }"
         >
           <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
@@ -120,22 +122,21 @@ const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAva
             <StatusMedia
               v-if="status.mediaAttachments?.length"
               :status="status"
-              :class="status.visibility === 'direct' ? 'pb4' : ''"
             />
             <StatusPreviewCard
               v-if="status.card"
               :card="status.card"
-              :class="status.visibility === 'direct' ? 'pb4' : ''"
               :small-picture-only="status.mediaAttachments?.length > 0"
             />
+            <StatusCard
+              v-if="status.reblog"
+              :status="status.reblog" border="~ rounded"
+              :actions="false"
+            />
+            <div v-if="isDM" />
           </StatusSpoiler>
-          <StatusCard
-            v-if="status.reblog"
-            :status="status.reblog" border="~ rounded"
-            :actions="false"
-          />
         </div>
-        <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
+        <StatusActions v-if="(actions !== false && !isZenMode)" :status="status" :class="isDM ? 'mt1' : 'mt2'" />
       </div>
     </div>
   </div>

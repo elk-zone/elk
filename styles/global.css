@@ -88,7 +88,7 @@ body {
       --at-apply: 'hidden';
     }
     .ellipsis {
-      --at-apply: 'line-clamp-1 ws-pre-wrap break-all';
+      --at-apply: 'line-clamp-1 ws-pre-wrap break-all inline';
       &::after {
         content: '…';
       }

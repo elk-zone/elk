@@ -11,6 +11,8 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
     visibility = 'public',
     attachments = [],
     initialText = '',
+    sensitive = false,
+    spoilerText = '',
   } = options
 
   return {
@@ -18,6 +20,8 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
       status,
       inReplyToId,
       visibility,
+      sensitive,
+      spoilerText,
     },
     attachments,
     initialText,
@@ -30,6 +34,8 @@ export async function getDraftFromStatus(status: Status, text?: null | string): 
     mediaIds: status.mediaAttachments.map(att => att.id),
     visibility: status.visibility,
     attachments: status.mediaAttachments,
+    sensitive: status.sensitive,
+    spoilerText: status.spoilerText,
   })
 }
 

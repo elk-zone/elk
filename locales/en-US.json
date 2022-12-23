@@ -31,6 +31,7 @@
     "unmute": "Unmute"
   },
   "action": {
+    "apply": "Apply",
     "bookmark": "Bookmark",
     "bookmarked": "Bookmarked",
     "boost": "Boost",
@@ -56,6 +57,10 @@
   "app_desc_short": "A nimble Mastodon web client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Description",
+    "remove_label": "Remove attachment"
+  },
   "command": {
     "activate": "Activate",
     "complete": "Complete",
@@ -86,7 +91,7 @@
     "explore-list-empty": "Nothing is trending right now. Check back later!",
     "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
     "sign_in_error": "Cannot connect to the server.",
-    "status_not_found": "Status not found",
+    "status_not_found": "Post not found",
     "unsupported_file_format": "Unsupported file format"
   },
   "feature_flag": {
@@ -143,7 +148,7 @@
     "local": "Local",
     "notifications": "Notifications",
     "profile": "Profile",
-    "search": "Search",
+    "search": "Search {0}",
     "settings": "Settings"
   },
   "nav_user": {
@@ -165,7 +170,7 @@
         "reblog": "Reblog your post",
         "title": "What notifications to receive?"
       },
-      "close_btn": "Close desktop notification settings",
+      "close_btn": "Close push notifications settings",
       "policy": {
         "all": "From anyone",
         "followed": "Of people I follow",
@@ -174,21 +179,22 @@
         "title": "Who can I receive notifications from?"
       },
       "save_settings": "Save settings changes",
-      "show_btn": "Show desktop notification settings",
-      "title": "Desktop notification settings",
+      "show_btn": "Show push notifications settings",
+      "title": "Push notifications settings",
       "undo_settings": "Undo settings changes",
-      "unsubscribe": "Disable desktop notifications",
+      "unsubscribe": "Disable push notifications",
       "unsubscribed_with_warning": "Enable notifications to receive notifications from this account by clicking \"@:notification.settings.warning.enable_desktop{'\"'} button.",
-      "unsupported": "Your browser does not support desktop notifications.",
+      "unsupported": "Your browser does not support push notifications.",
       "warning": {
         "enable_close": "Close",
-        "enable_description": "To receive notifications when Elk is not open, enable desktop notifications. You can control precisely what types of interactions generate desktop notifications via the \"Show Settings\" button above once enabled.",
-        "enable_description_short": "To change desktop notification settings when Elk is not open, you must first enable desktop notifications.",
-        "enable_desktop": "Enable desktop notifications",
+        "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:notification.settings.show_btn{'\"'} button above once enabled.",
+        "enable_description_short": "To change push notifications settings when Elk is not open, you must first enable push notifications.",
+        "enable_desktop": "Enable push notifications",
         "enable_title": "Never miss anything"
       }
     },
-    "update_status": "updated their status"
+    "signed_up": "signed up",
+    "update_status": "updated their post"
   },
   "placeholder": {
     "content_warning": "Write your warning here",

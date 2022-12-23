@@ -1,20 +1,21 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { Account, Status } from 'masto'
+import type { Account, Paginator, Results, SearchParams, Status } from 'masto'
 
 export interface UseSearchOptions {
   type?: MaybeRef<'accounts' | 'hashtags' | 'statuses'>
 }
 
 export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
-  let paginator = useMasto().search({ q: unref(query), type: unref(options?.type) })
   const done = ref(false)
   const loading = ref(false)
   const statuses = ref<Status[]>([])
   const accounts = ref<Account[]>([])
   const hashtags = ref<any[]>([])
 
+  let paginator: Paginator<SearchParams, Results> | undefined
+
   debouncedWatch(() => unref(query), async () => {
-    if (!unref(query))
+    if (!unref(query) || !isMastoInitialised.value)
       return
 
     loading.value = true
@@ -36,7 +37,7 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
   }, { debounce: 500 })
 
   const next = async () => {
-    if (!unref(query))
+    if (!unref(query) || !isMastoInitialised.value || !paginator)
       return
 
     loading.value = true

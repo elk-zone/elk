@@ -1,3 +1,4 @@
+import type { SubscriptionPolicy } from 'masto'
 import type {
   CreatePushNotification,
   PushNotificationPolicy,
@@ -14,6 +15,7 @@ const supportsPushNotifications = typeof window !== 'undefined'
     && 'getKey' in PushSubscription.prototype
 
 export const usePushManager = () => {
+  const masto = useMasto()
   const isSubscribed = ref(false)
   const notificationPermission = ref<PermissionState | undefined>(
     Notification.permission === 'denied'
@@ -59,7 +61,7 @@ export const usePushManager = () => {
     }
   }, { immediate: true, flush: 'post' })
 
-  const subscribe = async (notificationData?: CreatePushNotification): Promise<SubscriptionResult> => {
+  const subscribe = async (notificationData?: CreatePushNotification, policy?: SubscriptionPolicy, force?: boolean): Promise<SubscriptionResult> => {
     if (!isSupported || !currentUser.value)
       return 'invalid-state'
 
@@ -90,18 +92,22 @@ export const usePushManager = () => {
       return 'notification-denied'
     }
 
-    currentUser.value.pushSubscription = await createPushSubscription({
-      pushSubscription, server, token, vapidKey,
-    }, notificationData ?? {
-      alerts: {
-        follow: true,
-        favourite: true,
-        reblog: true,
-        mention: true,
-        poll: true,
+    currentUser.value.pushSubscription = await createPushSubscription(
+      {
+        pushSubscription, server, token, vapidKey,
       },
-      policy: 'all',
-    })
+      notificationData ?? {
+        alerts: {
+          follow: true,
+          favourite: true,
+          reblog: true,
+          mention: true,
+          poll: true,
+        },
+      },
+      policy ?? 'all',
+      force,
+    )
     await nextTick()
     notificationPermission.value = permission
     hiddenNotification.value[acct] = true
@@ -114,11 +120,20 @@ export const usePushManager = () => {
       return false
 
     await removePushNotifications(currentUser.value)
+    await removePushNotificationData(currentUser.value)
   }
 
-  const saveSettings = async () => {
+  const saveSettings = async (policy?: SubscriptionPolicy) => {
+    if (policy)
+      pushNotificationData.value.policy = policy
+
     commit()
-    configuredPolicy.value[currentUser.value!.account.acct ?? ''] = pushNotificationData.value.policy
+
+    if (policy)
+      configuredPolicy.value[currentUser.value!.account.acct ?? ''] = policy
+    else
+      configuredPolicy.value[currentUser.value!.account.acct ?? ''] = pushNotificationData.value.policy
+
     await nextTick()
     clear()
     await nextTick()
@@ -140,19 +155,31 @@ export const usePushManager = () => {
 
   const updateSubscription = async () => {
     if (currentUser.value) {
-      currentUser.value.pushSubscription = await useMasto().pushSubscriptions.update({
-        data: {
-          alerts: {
-            follow: pushNotificationData.value.follow,
-            favourite: pushNotificationData.value.favourite,
-            reblog: pushNotificationData.value.reblog,
-            mention: pushNotificationData.value.mention,
-            poll: pushNotificationData.value.poll,
-          },
-          policy: pushNotificationData.value.policy,
+      const previous = history.value[0].snapshot
+      const data = {
+        alerts: {
+          follow: pushNotificationData.value.follow,
+          favourite: pushNotificationData.value.favourite,
+          reblog: pushNotificationData.value.reblog,
+          mention: pushNotificationData.value.mention,
+          poll: pushNotificationData.value.poll,
         },
-      })
-      await saveSettings()
+      }
+
+      const policy = pushNotificationData.value.policy
+
+      const policyChanged = previous.policy !== policy
+
+      // to change policy we need to resubscribe
+      if (policyChanged)
+        await subscribe(data, policy, true)
+      else
+        currentUser.value.pushSubscription = await masto.pushSubscriptions.update({ data })
+
+      policyChanged && await nextTick()
+
+      // force change policy when changed: watch is resetting it on push subscription update
+      await saveSettings(policyChanged ? policy : undefined)
     }
   }
 

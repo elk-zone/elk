@@ -44,14 +44,13 @@ export const useUsers = () => users
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
 async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }) {
-  const config = useRuntimeConfig()
   const route = useRoute()
   const router = useRouter()
   const server = user?.server || route.params.server as string || publicServer.value
   const masto = await loginMasto({
     url: `https://${server}`,
     accessToken: user?.token,
-    disableVersionCheck: !!config.public.disableVersionCheck,
+    disableVersionCheck: true,
     // Suppress warning of `masto/fetch` usage
     disableExperimentalWarning: true,
   })
@@ -114,17 +113,7 @@ export function getUsersIndexByUserId(userId: string) {
   return users.value.findIndex(u => u.account?.id === userId)
 }
 
-export async function removePushNotifications(user: UserLogin, fromSWPushManager = true) {
-  if (!useRuntimeConfig().public.pwaEnabled || !user.pushSubscription)
-    return
-
-  // unsubscribe push notifications
-  try {
-    await useMasto().pushSubscriptions.remove()
-  }
-  catch {
-    // ignore
-  }
+export async function removePushNotificationData(user: UserLogin, fromSWPushManager = true) {
   // clear push subscription
   user.pushSubscription = undefined
   const { acct } = user.account
@@ -148,6 +137,19 @@ export async function removePushNotifications(user: UserLogin, fromSWPushManager
   }
 }
 
+export async function removePushNotifications(user: UserLogin) {
+  if (!useRuntimeConfig().public.pwaEnabled || !user.pushSubscription)
+    return
+
+  // unsubscribe push notifications
+  try {
+    await useMasto().pushSubscriptions.remove()
+  }
+  catch {
+    // ignore
+  }
+}
+
 export async function signout() {
   // TODO: confirm
   if (!currentUser.value)
@@ -166,6 +168,8 @@ export async function signout() {
       delete instances.value[currentUser.value.server]
 
     await removePushNotifications(currentUser.value)
+
+    await removePushNotificationData(currentUser.value)
 
     currentUserId.value = ''
     // Remove the current user from the users

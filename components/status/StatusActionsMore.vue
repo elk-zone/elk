@@ -85,7 +85,7 @@ async function editStatus() {
   openPublishDialog(`edit-${status.id}`, {
     ...await getDraftFromStatus(status),
     editingStatus: status,
-  })
+  }, true)
 }
 </script>
 

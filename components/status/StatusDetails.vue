@@ -75,7 +75,10 @@ useHeadFixed({
         <div :class="visibility.icon" />
       </CommonTooltip>
       <div v-if="status.application?.name">
-        &middot; {{ status.application?.name }}
+        &middot;
+      </div>
+      <div v-if="status.application?.name">
+        {{ status.application?.name }}
       </div>
     </div>
     <StatusActions :status="status" details :command="command" border="t base" pt-2 />

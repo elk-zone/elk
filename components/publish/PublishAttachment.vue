@@ -25,18 +25,18 @@ const description = ref(props.attachment.description ?? '')
     <div absolute right-2 top-2>
       <div
         v-if="removable"
-        aria-label="Remove attachment"
+        :aria-label="$t('attachment.remove_label')"
         hover:bg="gray/40" transition-100 p-1 rounded-5 cursor-pointer
-        :class="[isHydrated && isSmallScreen ? '' : 'op-0 group-hover:op-100hover:']"
+        :class="[isHydrated.value && isSmallScreen ? '' : 'op-0 group-hover:op-100hover:']"
         mix-blend-difference
         @click="$emit('remove')"
       >
-        <div i-ri:close-line text-3 :class="[isHydrated && isSmallScreen ? 'text-6' : 'text-3']" />
+        <div i-ri:close-line text-3 :class="[isHydrated.value && isSmallScreen ? 'text-6' : 'text-3']" />
       </div>
     </div>
     <div absolute right-2 bottom-2>
       <button class="bg-black/75" text-white px2 py1 rounded-2 @click="isEditDialogOpen = true">
-        Edit
+        {{ $t('action.edit') }}
       </button>
     </div>
     <ModalDialog
@@ -45,19 +45,19 @@ const description = ref(props.attachment.description ?? '')
       py-6
       px-6 max-w-300
     >
-      <div flex gap-5>
+      <div flex flex-col-reverse gap-5 md:flex-row>
         <div flex flex-col gap-2 justify-between>
           <h1 id="edit-attachment" font-bold>
-            Description
+            {{ $t('attachment.edit_title') }}
           </h1>
           <div flex flex-col gap-2>
-            <textarea v-model="description" p-3 w-100 h-50 bg-base rounded-2 border-strong border-1 />
+            <textarea v-model="description" p-3 h-50 bg-base rounded-2 border-strong border-1 md:w-100 />
             <button btn-outline @click="$emit('setDescription', description)">
-              Apply
+              {{ $t('action.apply') }}
             </button>
           </div>
           <button btn-outline @click="isEditDialogOpen = false">
-            Close
+            {{ $t('action.close') }}
           </button>
         </div>
         <StatusAttachment :attachment="attachment" w-full />

@@ -143,7 +143,7 @@
     "local": "本地",
     "notifications": "通知",
     "profile": "个人资料",
-    "search": "搜索",
+    "search": "搜索 {0}",
     "settings": "设置"
   },
   "nav_user": {

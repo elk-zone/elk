@@ -53,7 +53,7 @@
           <slot name="right">
             <SearchWidget />
             <div flex-auto />
-            <PWAPrompt />
+            <PwaPrompt />
             <NavFooter />
           </slot>
         </div>

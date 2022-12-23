@@ -44,3 +44,5 @@ export const usePWA = () => {
     close,
   }
 }
+
+export const pwa = reactive(usePWA())

@@ -47,6 +47,7 @@ function selectImage(e: Event) {
   }
   else {
     vmFile.value = image
+    clearInput()
   }
 }
 

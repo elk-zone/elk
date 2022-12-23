@@ -74,14 +74,31 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <p font-medium>
           Banner
         </p>
-        <SettingsUploadHeader v-model="form.header" :original="onlineSrc.header" />
+
+        <div rounded of-hidden bg="gray-500/20" aspect="3">
+          <CommonInputImage
+            ref="elInputImage"
+            v-model="form.header"
+            :original="onlineSrc.header"
+            w-full h-full
+          />
+        </div>
+        <CommonCropImage v-model="form.header" :stencil-aspect-ratio="3 / 1" />
       </div>
       <!-- avatar -->
       <div space-y-2>
         <p font-medium>
           Avatar
         </p>
-        <SettingsUploadAvatar v-model="form.avatar" :original="onlineSrc.avatar" />
+        <CommonInputImage
+          v-model="form.avatar"
+          :original="onlineSrc.avatar"
+          border="rounded-full"
+          shadow="~"
+          w="sm:120px 80px" min-w="sm:120px 80px"
+          h="sm:120px 80px"
+        />
+        <CommonCropImage v-model="form.avatar" />
       </div>
 
       <!-- display name -->

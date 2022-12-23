@@ -11,6 +11,10 @@ if (useRoute().path === '/signin/callback') {
   useRouter().push('/home')
 }
 
+const paginator = useMasto().timelines.iterateHome()
+const stream = await useMasto().stream.streamUser()
+onBeforeUnmount(() => stream.disconnect())
+
 const { t } = useI18n()
 useHeadFixed({
   title: () => t('nav_side.home'),
@@ -25,7 +29,9 @@ useHeadFixed({
         <span>{{ $t('nav_side.home') }}</span>
       </NuxtLink>
     </template>
-
-    <TimelineHome v-if="isMastoInitialised" />
+    <slot>
+      <PublishWidget draft-key="home" border="b base" />
+      <TimelinePaginator v-bind="{ paginator, stream }" context="home" />
+    </slot>
   </MainContent>
 </template>

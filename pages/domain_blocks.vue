@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import TimelineDomainBlocks from '~~/components/timeline/TimelineDomainBlocks.vue'
-
 definePageMeta({
   middleware: 'auth',
 })
 
+const paginator = useMasto().domainBlocks.iterate()
+
 useHeadFixed({
   title: 'Blocked domains',
 })
+
+const unblock = async (domain: string) => {
+  await useMasto().domainBlocks.unblock(domain)
+}
 </script>
 
 <template>
@@ -16,6 +20,15 @@ useHeadFixed({
       <span text-lg font-bold>{{ $t('account.blocked_domains') }}</span>
     </template>
 
-    <TimelineDomainBlocks v-if="isMastoInitialised" />
+    <CommonPaginator :paginator="paginator">
+      <template #default="{ item }">
+        <CommonDropdownItem class="!cursor-auto">
+          {{ item }}
+          <template #actions>
+            <div i-ri:lock-unlock-line text-primary cursor-pointer @click="unblock(item)" />
+          </template>
+        </CommonDropdownItem>
+      </template>
+    </CommonPaginator>
   </MainContent>
 </template>

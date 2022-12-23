@@ -63,17 +63,21 @@ export function toShortHandle(fullHandle: string) {
   return fullHandle
 }
 
-export function getAccountRoute(account: Account) {
+export function extractAccountHandle(account: Account) {
   let handle = getFullHandle(account).slice(1)
   const uri = currentInstance.value?.uri ?? currentServer.value
   if (currentInstance.value && handle.endsWith(`@${uri}`))
     handle = handle.slice(0, -uri.length - 1)
 
+  return handle
+}
+
+export function getAccountRoute(account: Account) {
   return useRouter().resolve({
     name: 'account-index',
     params: {
       server: currentServer.value,
-      account: handle,
+      account: extractAccountHandle(account),
     },
     state: {
       account: account as any,
@@ -85,7 +89,7 @@ export function getAccountFollowingRoute(account: Account) {
     name: 'account-following',
     params: {
       server: currentServer.value,
-      account: getFullHandle(account).slice(1),
+      account: extractAccountHandle(account),
     },
     state: {
       account: account as any,
@@ -97,7 +101,7 @@ export function getAccountFollowersRoute(account: Account) {
     name: 'account-followers',
     params: {
       server: currentServer.value,
-      account: getFullHandle(account).slice(1),
+      account: extractAccountHandle(account),
     },
     state: {
       account: account as any,
@@ -110,7 +114,7 @@ export function getStatusRoute(status: Status) {
     name: 'status',
     params: {
       server: currentServer.value,
-      account: getFullHandle(status.account).slice(1),
+      account: extractAccountHandle(status.account),
       status: status.id,
     },
     state: {

@@ -1,4 +1,4 @@
-import type { PushSubscription as MastoPushSubscription, PushSubscriptionAlerts, SubscriptionPolicy } from 'masto'
+import type { Emoji, PushSubscription as MastoPushSubscription, PushSubscriptionAlerts, SubscriptionPolicy } from 'masto'
 
 import type { UserLogin } from '~/types'
 
@@ -19,3 +19,8 @@ export interface CreatePushNotification {
 
 export type PushNotificationRequest = Record<string, boolean>
 export type PushNotificationPolicy = Record<string, SubscriptionPolicy>
+
+export interface CustomEmojisInfo {
+  lastUpdate: number
+  emojis: Emoji[]
+}

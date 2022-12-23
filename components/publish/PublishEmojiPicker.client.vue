@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Picker } from 'emoji-mart'
+import { updateCustomEmojis } from '~/composables/emojis'
 
 const emit = defineEmits<{
   (e: 'select', code: string): void
@@ -10,24 +11,31 @@ let picker = $ref<Picker>()
 
 async function openEmojiPicker() {
   if (!picker) {
+    updateCustomEmojis()
+    const promise = import('@emoji-mart/data').then(r => r.default)
     const { Picker } = await import('emoji-mart')
     picker = new Picker({
-      data: () => import('@emoji-mart/data').then(r => r.default),
+      data: () => promise,
       onEmojiSelect(e: any) {
-        emit('select', e.native)
+        emit('select', e.native || e.shortcodes)
       },
       theme: isDark.value ? 'dark' : 'light',
+      custom: customEmojisData.value,
     })
     // TODO: custom picker
     el?.appendChild(picker as any as HTMLElement)
   }
 }
 
-watchEffect(() => {
-  if (!picker)
-    return
-  picker.update({
+watch(isDark, () => {
+  picker?.update({
     theme: isDark.value ? 'dark' : 'light',
+  })
+})
+
+watch(customEmojisData, () => {
+  picker?.update({
+    custom: customEmojisData.value,
   })
 })
 </script>
@@ -40,7 +48,7 @@ watchEffect(() => {
       <div i-ri:emotion-line />
     </button>
     <template #popper>
-      <div ref="el" />
+      <div ref="el" min-w-10 min-h-10 />
     </template>
   </VDropdown>
 </template>

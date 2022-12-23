@@ -21,10 +21,12 @@ const { t } = useI18n()
 useHeadFixed({
   title: () => `${status.account.displayName || status.account.acct} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
 })
+
+const isDM = $computed(() => status.visibility === 'direct')
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" flex flex-col gap-2 py3 px-4 relative>
+  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 px-4 relative>
     <StatusActionsMore :status="status" absolute right-2 top-2 />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pr5 mr-a>
       <AccountHoverWrapper :account="status.account">
@@ -32,7 +34,10 @@ useHeadFixed({
       </AccountHoverWrapper>
     </NuxtLink>
     <div
-      :class="status.visibility === 'direct' ? 'my2 p1 px4 br2 bg-fade border-primary-light border-1 rounded-3 rounded-tl-none' : ''"
+      space-y-3
+      :class="{
+        'pt2 pb0.5 px3.5 br2 bg-fade border-primary-light border-1 rounded-3': isDM,
+      }"
     >
       <StatusSpoiler :enabled="status.sensitive">
         <template #spoiler>
@@ -40,7 +45,7 @@ useHeadFixed({
             {{ status.spoilerText }}
           </p>
         </template>
-        <StatusBody :status="status" :with-action="false" text-2xl />
+        <StatusBody :status="status" :with-action="false" text-xl />
         <StatusPoll
           v-if="status.poll"
           :poll="status.poll"
@@ -48,16 +53,15 @@ useHeadFixed({
         <StatusMedia
           v-if="status.mediaAttachments?.length"
           :status="status"
-          :class="status.visibility === 'direct' ? 'pb4' : ''"
           full-size
         />
         <StatusPreviewCard
           v-if="status.card"
           :card="status.card"
-          :class="status.visibility === 'direct' ? 'pb4' : ''"
           :small-picture-only="status.mediaAttachments?.length > 0"
           mt-2
         />
+        <div v-if="isDM" />
       </StatusSpoiler>
     </div>
     <div flex="~ gap-1" items-center text-secondary text-sm>

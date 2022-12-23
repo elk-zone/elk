@@ -65,8 +65,11 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
       const [me, instance, pushSubscription] = await Promise.all([
         masto.accounts.verifyCredentials(),
         masto.instances.fetch(),
-        // we get 404 response instead empty data
-        masto.pushSubscriptions.fetch().catch(() => Promise.resolve(undefined)),
+        // if PWA is not enabled, don't get push subscription
+        useRuntimeConfig().public.pwaEnabled
+          // we get 404 response instead empty data
+          ? masto.pushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
+          : Promise.resolve(undefined),
       ])
 
       user.account = me

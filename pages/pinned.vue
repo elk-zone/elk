@@ -18,6 +18,6 @@ useHeadFixed({
       <span>{{ t('account.pinned') }}</span>
     </template>
 
-    <TimelinePinned v-if="isMastoInitialised" />
+    <TimelinePaginator :paginator="paginator" />
   </MainContent>
 </template>

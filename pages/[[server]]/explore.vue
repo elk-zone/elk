@@ -17,11 +17,15 @@ const tabs = $computed(() => [
     display: t('tab.news'),
   },
   // This section can only be accessed after logging in
-  {
-    to: `/${currentServer.value}/explore/users`,
-    display: t('tab.for_you'),
-    disabled: !isMastoInitialised.value || !currentUser.value,
-  },
+  ...invoke(() => currentUser.value
+    ? [
+        {
+          to: `/${currentServer.value}/explore/users`,
+          display: t('tab.for_you'),
+        },
+      ]
+    : [],
+  ),
 ] as const)
 </script>
 
@@ -37,6 +41,6 @@ const tabs = $computed(() => [
     <template #header>
       <CommonRouteTabs replace :options="tabs" />
     </template>
-    <NuxtPage v-if="isMastoInitialised" />
+    <NuxtPage />
   </MainContent>
 </template>

@@ -2,11 +2,15 @@
 definePageMeta({
   wideLayout: true,
 })
+
+const route = useRoute()
+
+const isRootPath = computedEager(() => route.name === 'settings')
 </script>
 
 <template>
   <div min-h-screen flex>
-    <div border="none md:l md:r base">
+    <div border="x base" :class="isRootPath ? 'block lg:flex-none flex-1' : 'hidden lg:block'">
       <MainContent>
         <template #title>
           <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
@@ -14,7 +18,7 @@ definePageMeta({
             <span>{{ $t('nav_side.settings') }}</span>
           </div>
         </template>
-        <div w-97>
+        <div xl:w-97 lg:w-78 w-full>
           <SettingsNavItem
             command
             icon="i-ri:user-line"
@@ -30,7 +34,7 @@ definePageMeta({
         </div>
       </MainContent>
     </div>
-    <div flex-1>
+    <div flex-1 :class="isRootPath ? 'hidden lg:block' : 'block'">
       <NuxtPage />
     </div>
   </div>

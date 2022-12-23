@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@antfu/eslint-config': ^0.34.0
   '@antfu/ni': ^0.18.8
+  '@emoji-mart/data': ^1.1.0
   '@fnando/sparkline': ^0.3.10
   '@iconify-json/carbon': ^1.1.11
   '@iconify-json/logos': ^1.1.19
@@ -34,6 +35,7 @@ specifiers:
   '@vueuse/nuxt': ^9.8.2
   blurhash: ^2.0.4
   browser-fs-access: ^0.31.1
+  emoji-mart: ^5.4.0
   eslint: ^8.29.0
   esno: ^0.16.3
   floating-vue: 2.0.0-beta.20
@@ -105,6 +107,7 @@ dependencies:
 devDependencies:
   '@antfu/eslint-config': 0.34.0_s5ps7njkmjlaqajutnox5ntcla
   '@antfu/ni': 0.18.8
+  '@emoji-mart/data': 1.1.0
   '@iconify-json/carbon': 1.1.11
   '@iconify-json/logos': 1.1.19
   '@iconify-json/material-symbols': 1.1.25
@@ -122,6 +125,7 @@ devDependencies:
   '@vitejs/plugin-vue': 3.2.0
   '@vue-macros/nuxt': 0.1.2_bvgxowbvgmi7uddrvyjqbdegoy
   '@vueuse/nuxt': 9.8.2_nuxt@3.0.0
+  emoji-mart: 5.4.0
   eslint: 8.29.0
   esno: 0.16.3
   fs-extra: 11.1.0
@@ -1459,6 +1463,10 @@ packages:
       mime: 3.0.0
     dev: true
 
+  /@emoji-mart/data/1.1.0:
+    resolution: {integrity: sha512-gwwGC0v5+BQM5On8hy0Uw7qT+xBHVLFuamHj8wHLo4JkuYM+XlGbQuQZj/X7JJLQuBiHs4d3Xh2O+h6YlbtCCA==}
+    dev: true
+
   /@esbuild-kit/cjs-loader/2.4.1:
     resolution: {integrity: sha512-lhc/XLith28QdW0HpHZvZKkorWgmCNT7sVelMHDj3HFdTfdqkwEKvT+aXVQtNAmCC39VJhunDkWhONWB7335mg==}
     dependencies:
@@ -1624,8 +1632,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.3.0-beta.10
-      '@intlify/shared': 9.3.0-beta.10
+      '@intlify/message-compiler': 9.3.0-beta.11
+      '@intlify/shared': 9.3.0-beta.11
       jsonc-eslint-parser: 1.4.1
       source-map: 0.6.1
       vue-i18n: 9.3.0-beta.10
@@ -1657,8 +1665,21 @@ packages:
       source-map: 0.6.1
     dev: true
 
+  /@intlify/message-compiler/9.3.0-beta.11:
+    resolution: {integrity: sha512-gGGfBGzM7JBXp1Q9gbDAy5jELz9ho3ILqnpxp2yp64+gkqohrqc2YXIvCdwZoc6AtKIh/Zmv4sWVqxkvMsBWtQ==}
+    engines: {node: '>= 14'}
+    dependencies:
+      '@intlify/shared': 9.3.0-beta.11
+      source-map: 0.6.1
+    dev: true
+
   /@intlify/shared/9.3.0-beta.10:
     resolution: {integrity: sha512-h93uAanbAt/XgjDHclrVB7xix6r7Uz11wx0iGNOCdHP7aA2LCJjUT3uNbekJjjbo+Fl5jzTSJZdm2SexzoqhRA==}
+    engines: {node: '>= 14'}
+    dev: true
+
+  /@intlify/shared/9.3.0-beta.11:
+    resolution: {integrity: sha512-CtbotesxTRiC3bRyXyv1NG39fkqJ790f8z8xFaeIXSZpOdiyxoh5BIyypCzSFQZDGLwz0Q9gyWbW1XpxQJm68Q==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -1678,7 +1699,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 3.4.0_vue-i18n@9.3.0-beta.10
-      '@intlify/shared': 9.3.0-beta.10
+      '@intlify/shared': 9.3.0-beta.11
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.2.45
       debug: 4.3.4
@@ -4723,6 +4744,10 @@ packages:
 
   /electron-to-chromium/1.4.284:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
+    dev: true
+
+  /emoji-mart/5.4.0:
+    resolution: {integrity: sha512-xrRrUmMqZG64oRxmUZcf8zSMUGQtIUYUL3aZD5iMkqAve+I9wMNh3OVOXL7NW9fEm48L2LI3BUPpj/DUIAJrVg==}
     dev: true
 
   /emoji-regex/8.0.0:
@@ -9966,7 +9991,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.10
+      '@intlify/shared': 9.3.0-beta.11
       '@intlify/vue-i18n-bridge': 0.8.0_vue-i18n@9.3.0-beta.10
       '@intlify/vue-router-bridge': 0.8.0
       ufo: 1.0.1

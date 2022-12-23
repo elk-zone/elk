@@ -175,3 +175,7 @@ body {
   stroke: var(--c-primary);
   stroke-width: 2;
 }
+
+em-emoji-picker {
+  --border-radius: 0;
+}

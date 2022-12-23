@@ -104,8 +104,10 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
   // clear push notification policy
   delete useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {}).value[acct]
 
+  const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+
   // we remove the sw push manager if required and there are no more accounts with subscriptions
-  if (fromSWPushManager && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
+  if (pwaEnabled && fromSWPushManager && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
     // clear sw push subscription
     try {
       const registration = await navigator.serviceWorker.ready
@@ -120,7 +122,7 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
 }
 
 export async function removePushNotifications(user: UserLogin) {
-  if (!useRuntimeConfig().public.pwaEnabled || !user.pushSubscription)
+  if (!user.pushSubscription)
     return
 
   // unsubscribe push notifications

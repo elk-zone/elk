@@ -209,7 +209,8 @@
     "dismiss": "Dismiss",
     "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
     "reload": "Reload",
-    "title": "New Elk update available"
+    "title": "New Elk update available!",
+    "update": "Update"
   },
   "search": {
     "search_desc": "Search for people & hashtags"

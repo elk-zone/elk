@@ -13,5 +13,4 @@ const key = computed(() => `${currentUser.value?.server ?? currentServer.value}:
     <NuxtPage v-if="isMastoInitialised" />
   </NuxtLayout>
   <AriaAnnouncer />
-  <PWAPrompt />
 </template>

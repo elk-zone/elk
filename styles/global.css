@@ -1,5 +1,5 @@
 html {
-  font-size: var(--font-size);
+  font-size: var(--font-size, 15px);
 }
 
 @font-face {

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-import { FontSize } from 'composables/fontSize'
-const sizes = ['xs', 'sm', 'md', 'lg', 'xl']
+import type { FontSize } from '~/composables/fontSize'
+
+const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as FontSize[]
+const fontSize = getFontSize()
 </script>
 
 <template>
@@ -12,7 +14,7 @@ const sizes = ['xs', 'sm', 'md', 'lg', 'xl']
         v-for="size in sizes"
         :key="size"
         :checked="size === fontSize"
-        @click="setFontSize(size as FontSize)"
+        @click="fontSize = size"
       >
         {{ size }}
       </CommonDropdownItem>

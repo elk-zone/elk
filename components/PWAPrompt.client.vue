@@ -15,7 +15,7 @@ const { close, needRefresh, updateServiceWorker } = usePWA()
     z11
     fixed
     bottom-14 md:bottom-0 right-0
-    m-2 p-4 w-100
+    m-2 p-4 w-100 max-w-fit
     bg-base border="~ base"
     rounded
     text-left

@@ -68,14 +68,10 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
       </div>
     </template>
 
-    <form space-y-5 px4 py3 @submit.prevent="submit">
-      <!-- banner -->
-      <div space-y-2>
-        <p font-medium>
-          Banner
-        </p>
-
-        <div rounded of-hidden bg="gray-500/20" aspect="3">
+    <form space-y-5 @submit.prevent="submit">
+      <div>
+        <!-- banner -->
+        <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
             ref="elInputImage"
             v-model="form.header"
@@ -84,56 +80,55 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
           />
         </div>
         <CommonCropImage v-model="form.header" :stencil-aspect-ratio="3 / 1" />
-      </div>
-      <!-- avatar -->
-      <div space-y-2>
-        <p font-medium>
-          Avatar
-        </p>
-        <CommonInputImage
-          v-model="form.avatar"
-          :original="onlineSrc.avatar"
-          border="rounded-full"
-          shadow="~"
-          w="sm:120px 80px" min-w="sm:120px 80px"
-          h="sm:120px 80px"
-        />
+
+        <!-- avatar -->
+        <div px-4>
+          <CommonInputImage
+            v-model="form.avatar"
+            :original="onlineSrc.avatar"
+            mt--10
+            rounded-full border="bg-base 4"
+            w="sm:30 24" min-w="sm:30 24" h="sm:30 24"
+          />
+        </div>
         <CommonCropImage v-model="form.avatar" />
       </div>
 
-      <!-- display name -->
-      <label space-y-2 block>
-        <p font-medium>
-          {{ $t('settings.profile.appearance.display_name') }}
-        </p>
-        <input v-model="form.displayName" type="text" input-base>
-      </label>
+      <div px4 py3 space-y-5>
+        <!-- display name -->
+        <label space-y-2 block>
+          <p font-medium>
+            {{ $t('settings.profile.appearance.display_name') }}
+          </p>
+          <input v-model="form.displayName" type="text" input-base>
+        </label>
 
-      <!-- note -->
-      <label space-y-2 block>
-        <p font-medium>
-          {{ $t('settings.profile.appearance.bio') }}
-        </p>
-        <textarea v-model="form.note" maxlength="500" min-h-10ex input-base />
-      </label>
+        <!-- note -->
+        <label space-y-2 block>
+          <p font-medium>
+            {{ $t('settings.profile.appearance.bio') }}
+          </p>
+          <textarea v-model="form.note" maxlength="500" min-h-10ex input-base />
+        </label>
 
-      <!-- submit -->
-      <div text-right>
-        <button
-          type="submit"
-          btn-solid rounded-full text-sm
-          flex-inline gap-x-2 items-center
-          :disabled="submitting || !isCanSubmit"
-        >
-          <span
-            aria-hidden="true"
-            inline-block
-            :class="submitting ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:save-line'"
-          />
-          <span>
-            {{ $t('action.save') }}
-          </span>
-        </button>
+        <!-- submit -->
+        <div text-right>
+          <button
+            type="submit"
+            btn-solid rounded-full text-sm
+            flex-inline gap-x-2 items-center
+            :disabled="submitting || !isCanSubmit"
+          >
+            <span
+              aria-hidden="true"
+              inline-block
+              :class="submitting ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:save-line'"
+            />
+            <span>
+              {{ $t('action.save') }}
+            </span>
+          </button>
+        </div>
       </div>
     </form>
   </MainContent>

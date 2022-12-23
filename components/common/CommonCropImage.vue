@@ -71,37 +71,39 @@ const cropImage = () => {
 </script>
 
 <template>
-  <ModalDialog v-model="cropperDialog" :use-v-if="false" flex flex-col of-hidden max-w-500px>
-    <div text-lg text-center my2 px3>
-      <h1>
-        {{ $t('action.edit') }}
-      </h1>
-    </div>
-    <div aspect-ratio-1 w-full>
-      <Cropper
-        ref="cropper"
-        class="overflow-hidden w-full h-full m-auto"
-        :src="cropperImage.src"
-        :resize-image="{
-          adjustStencil: false,
-        }"
-        :stencil-size="stencilSize"
-        :stencil-props="{
-          aspectRatio: props.stencilAspectRatio,
-          movable: false,
-          resizable: false,
-          handlers: {},
-        }"
-        image-restriction="stencil"
-      />
-    </div>
-    <div m-4>
-      <button
-        btn-solid w-full rounded text-sm
-        @click="cropImage()"
-      >
-        {{ $t('action.confirm') }}
-      </button>
+  <ModalDialog v-model="cropperDialog" :use-v-if="false" max-w-500px flex>
+    <div flex-1 w-0>
+      <div text-lg text-center my2 px3>
+        <h1>
+          {{ $t('action.edit') }}
+        </h1>
+      </div>
+      <div aspect-ratio-1>
+        <Cropper
+          ref="cropper"
+          class="overflow-hidden w-full h-full"
+          :src="cropperImage.src"
+          :resize-image="{
+            adjustStencil: false,
+          }"
+          :stencil-size="stencilSize"
+          :stencil-props="{
+            aspectRatio: props.stencilAspectRatio,
+            movable: false,
+            resizable: false,
+            handlers: {},
+          }"
+          image-restriction="stencil"
+        />
+      </div>
+      <div m-4>
+        <button
+          btn-solid w-full rounded text-sm
+          @click="cropImage()"
+        >
+          {{ $t('action.confirm') }}
+        </button>
+      </div>
     </div>
   </ModalDialog>
 </template>

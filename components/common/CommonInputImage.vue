@@ -84,7 +84,7 @@ defineExpose({
 
 <template>
   <label
-    class="bg-slate-500/10 border border-dark focus-within:(outline outline-primary)"
+    class="bg-slate-500/10 focus-within:(outline outline-primary)"
     relative
     flex justify-center items-center
     cursor-pointer
@@ -98,16 +98,18 @@ defineExpose({
       w-full
       h-full
     >
-    <span v-else i-ri:upload-line text-3xl />
+    <div absolute bg="black/50" text-white rounded-full text-xl w12 h12 flex justify-center items-center hover="bg-black/40 text-primary">
+      <div i-ri:upload-line />
+    </div>
 
-    <span
+    <div
       v-if="loading"
       absolute inset-0
       bg="black/30" text-white
       flex justify-center items-center
     >
-      <span class="i-ri:loader-4-line animate-spin animate-duration-[2.5s]" text-4xl />
-    </span>
+      <div class="i-ri:loader-4-line animate-spin animate-duration-[2.5s]" text-4xl />
+    </div>
     <input
       ref="elInput"
       type="file"

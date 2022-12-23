@@ -44,7 +44,15 @@ const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly &
 </script>
 
 <template>
-  <NuxtLink :to="to" :disabled="noUserDisable" :class="noUserVisual ? 'op25 pointer-events-none ' : ''" :active-class="activeClass" group focus:outline-none @click="$scrollToTop">
+  <NuxtLink
+    :to="noUserDisable ? null : to"
+    :role="noUserDisable ? 'link' : null"
+    :aria-disabled="noUserDisable ? 'true' : null"
+    :disabled="noUserDisable"
+    :class="noUserVisual ? 'op25 pointer-events-none ' : ''"
+    :active-class="activeClass" group focus:outline-none
+    @click="$scrollToTop"
+  >
     <CommonTooltip :disabled="!isMediumScreen" :content="text" placement="right">
       <div flex w-fit px2 mx3 lg:mx0 lg:px5 py2 gap4 items-center transition-100 rounded-full group-hover:bg-active group-focus-visible:ring="2 current">
         <slot name="icon">

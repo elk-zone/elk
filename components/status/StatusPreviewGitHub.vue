@@ -23,25 +23,42 @@ interface Meta {
 const meta = $computed(() => {
   const { url } = props.card
   const path = url.split('https://github.com/')[1]
-  const user = path.match(/([\w-]+)(\/|$)/)?.[1]
-  const repo = path.match(/[\w-]+\/([\w-]+)/)?.[1]
-  const repoPath = `${user}/${repo}`
-  const inRepoPath = path.split(`${repoPath}/`)?.[1]
-  let number: string | undefined
+
+  // Supported paths
+  // /user
+  // /user/repo
+  // /user/repo/issues/number.*
+  // /user/repo/pull/number.*
+  // /orgs/user.*
+
+  const firstName = path.match(/([\w-]+)(\/|$)/)?.[1]
+  const secondName = path.match(/[\w-]+\/([\w-]+)/)?.[1]
+  const firstIsUser = firstName !== 'orgs' && firstName !== 'sponsors'
+  const user = firstIsUser ? firstName : secondName
+  const repo = firstIsUser ? secondName : undefined
+
   let type: UrlType = repo ? 'repo' : 'user'
-  if (inRepoPath) {
-    number = inRepoPath.match(/issues\/(\d+)/)?.[1]
-    if (number) {
-      type = 'issue'
-    }
-    else {
-      number = inRepoPath.match(/pull\/(\d+)/)?.[1]
-      if (number)
-        type = 'pull'
+  let number: string | undefined
+  let details = (props.card.title ?? '').replace('GitHub - ', '').split(' · ')[0]
+
+  if (repo) {
+    const repoPath = `${user}/${repo}`
+    details = details.replace(`${repoPath}: `, '')
+    const inRepoPath = path.split(`${repoPath}/`)?.[1]
+    if (inRepoPath) {
+      number = inRepoPath.match(/issues\/(\d+)/)?.[1]
+      if (number) {
+        type = 'issue'
+      }
+      else {
+        number = inRepoPath.match(/pull\/(\d+)/)?.[1]
+        if (number)
+          type = 'pull'
+      }
     }
   }
+
   const avatar = `https://github.com/${user}.png?size=256`
-  const details = (props.card.title ?? '').replace('GitHub - ', '').replace(`${repoPath}: `, '').split(' · ')[0]
 
   const author = props.card.authorName
   const info = $ref<Meta>({

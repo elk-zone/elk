@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 definePageMeta({
-  layout: 'settings',
+  wideLayout: true,
 })
 </script>
 
@@ -11,7 +11,7 @@ definePageMeta({
         <template #title>
           <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
             <div i-ri:settings-4-line />
-            <span>Settings</span>
+            <span>{{ $t('nav_side.settings') }}</span>
           </div>
         </template>
         <div w-97>

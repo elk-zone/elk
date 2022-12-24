@@ -223,7 +223,8 @@
         "label": "精选的话题标签"
       },
       "label": "个人资料"
-    }
+    },
+    "select_a_settings": "在左侧选择一个设置"
   },
   "state": {
     "edited": "（已编辑）",

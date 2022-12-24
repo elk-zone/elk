@@ -238,7 +238,8 @@
         "label": "Featured hashtags"
       },
       "label": "Profile"
-    }
+    },
+    "select_a_settings": "Select a settings"
   },
   "state": {
     "edited": "(Edited)",

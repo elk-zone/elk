@@ -110,7 +110,7 @@ onMounted(async () => {
         <div
           absolute left-6em right-0 top="100%"
           bg-base rounded border="~ base"
-          text-left
+          text-left z-10 shadow
         >
           <div
             v-for="server, idx in filteredServers"

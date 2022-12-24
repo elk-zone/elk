@@ -73,7 +73,7 @@ export async function listServers() {
       continue
     const id = key.split(':').pop()!.replace(/\.json$/, '')
     if (id)
-      servers.add(id)
+      servers.add(id.toLocaleLowerCase())
   }
   return Array.from(servers).sort()
 }

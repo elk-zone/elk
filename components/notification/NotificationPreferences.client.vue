@@ -161,6 +161,7 @@ onActivated(() => (busy = false))
               v-else
               :animate="animateSubscription"
               :busy="busy"
+              :show-re-auth-message="!showWarning"
               @hide="hideNotification"
               @subscribe="doSubscribe"
             />
@@ -173,6 +174,7 @@ onActivated(() => (busy = false))
     </Transition>
     <NotificationEnablePushNotification
       v-if="showWarning"
+      :show-re-auth-message="true"
       with-header
       px5
       py4

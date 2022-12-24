@@ -1,5 +1,6 @@
 <script setup lang="ts">
 defineProps<{
+  showReAuthMessage: boolean
   withHeader?: boolean
   busy?: boolean
   animate?: boolean
@@ -29,7 +30,7 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
     <p>
       {{ $t(withHeader ? 'notification.settings.warning.enable_description' : 'notification.settings.warning.enable_description_short') }}
     </p>
-    <p v-if="isLegacyAccount">
+    <p v-if="isLegacyAccount && showReAuthMessage">
       {{ $t('notification.settings.warning.re_auth') }}
     </p>
     <button

@@ -103,14 +103,14 @@ onMounted(async () => {
           v-model="server"
           outline-none bg-transparent w-full max-w-50
           @input="handleInput"
-          @keydown.down="move(-1)"
-          @keydown.up="move(1)"
+          @keydown.down="move(1)"
+          @keydown.up="move(-1)"
           @keydown.enter="onEnter"
         >
         <div
           absolute left-6em right-0 top="100%"
           bg-base rounded border="~ base"
-          text-left z-10 shadow
+          text-left z-10 shadow of-auto
         >
           <div
             v-for="server, idx in filteredServers"

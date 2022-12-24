@@ -62,6 +62,8 @@ watchEffect(() => {
   namedFields.value = named
   iconFields.value = icons
 })
+
+const isSelf = $computed(() => currentUser.value?.account.id === account.id)
 </script>
 
 <template>
@@ -91,6 +93,15 @@ watchEffect(() => {
         <div absolute top-18 right-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
           <AccountFollowButton :account="account" :command="command" />
+          <!-- Edit profile -->
+          <NuxtLink
+            v-if="isSelf"
+            to="/settings/profile/appearance"
+            gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1
+            hover="border-primary text-primary bg-active"
+          >
+            {{ $t('settings.profile.appearance.title') }}
+          </NuxtLink>
           <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
             <div rounded p2 group-hover="bg-rose/10">
               <div i-ri:bell-line />

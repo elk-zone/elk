@@ -29,6 +29,9 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
     <p>
       {{ $t(withHeader ? 'notification.settings.warning.enable_description' : 'notification.settings.warning.enable_description_short') }}
     </p>
+    <p v-if="isLegacyAccount">
+      {{ $t('notification.settings.warning.re_auth') }}
+    </p>
     <button
       btn-outline rounded-full font-bold py4 flex="~ gap2 center" m5
       type="button"

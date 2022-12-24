@@ -9,7 +9,8 @@ let busy = $ref<boolean>(false)
 let error = $ref<boolean>(false)
 let displayError = $ref<boolean>(false)
 let knownServers = $ref<string[]>([])
-let acIndex = $ref(0)
+let autocompleteIndex = $ref(0)
+let autocompleteShow = $ref(false)
 
 async function oauth() {
   if (busy)
@@ -55,19 +56,22 @@ const filteredServers = $computed(() => {
     return []
 
   const results = fuse.search(server, { limit: 6 }).map(result => result.item)
-  if (results.length === 1 && results[0] === server)
+  if (results[0] === server)
     return []
 
   return results
 })
 
 function move(delta: number) {
-  acIndex = ((acIndex + delta) + filteredServers.length) % filteredServers.length
+  autocompleteIndex = ((autocompleteIndex + delta) + filteredServers.length) % filteredServers.length
 }
 
-function onEnter() {
-  if (filteredServers[acIndex])
-    server = filteredServers[acIndex]
+function onEnter(e: KeyboardEvent) {
+  if (autocompleteShow === true && filteredServers[autocompleteIndex]) {
+    server = filteredServers[autocompleteIndex]
+    e.preventDefault()
+    autocompleteShow = false
+  }
 }
 
 onMounted(async () => {
@@ -106,8 +110,12 @@ onMounted(async () => {
           @keydown.down="move(1)"
           @keydown.up="move(-1)"
           @keydown.enter="onEnter"
+          @keydown.esc.prevent="autocompleteShow = false"
+          @blur="autocompleteShow = false"
+          @focus="autocompleteShow = true"
         >
         <div
+          v-if="autocompleteShow && filteredServers.length"
           absolute left-6em right-0 top="100%"
           bg-base rounded border="~ base"
           text-left z-10 shadow of-auto
@@ -117,7 +125,7 @@ onMounted(async () => {
             :key="server"
             :value="server"
             px-2 py1 font-mono
-            :class="acIndex === idx ? 'text-primary font-bold' : null"
+            :class="autocompleteIndex === idx ? 'text-primary font-bold' : null"
           >
             {{ server }}
           </div>

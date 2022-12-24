@@ -1,4 +1,11 @@
 {
+  "a11y": {
+    "loading_page": "Chargement de la page, veuillez patienter",
+    "loading_titled_page": "Chargement de la page {0}, veuillez patienter",
+    "locale_changed": "Langue changée à {0}",
+    "locale_changing": "Changement de langue, veuillez patienter",
+    "route_loaded": "Page {0} chargée"
+  },
   "account": {
     "avatar_description": "Avatar de {0}",
     "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur.",
@@ -31,12 +38,14 @@
     "unmute": "Unmute"
   },
   "action": {
+    "apply": "Appliquer",
     "bookmark": "Ajouter aux marque-pages",
     "bookmarked": "Ajouté aux marque-pages",
     "boost": "Partager",
     "boosted": "Partagé",
     "close": "Fermer",
     "compose": "Composer",
+    "edit": "Editer",
     "enter_app": "Entrer dans l'application",
     "favourite": "Ajouter aux favoris",
     "favourited": "Ajouté aux favoris",
@@ -53,6 +62,10 @@
   "app_desc_short": "Un client Mastodon fait avec 🧡",
   "app_logo": "Logo Elk",
   "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Description",
+    "remove_label": "Retirer le fichier attaché"
+  },
   "command": {
     "activate": "Activer",
     "complete": "Compléter",
@@ -69,6 +82,7 @@
   "common": {
     "end_of_list": "Fin de liste",
     "error": "ERREUR",
+    "in": "sur",
     "kiloSuffix": "K",
     "megaSuffix": "M",
     "not_found": "404 Introuvable",
@@ -149,6 +163,39 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "a relayé votre message",
     "request_to_follow": "vous demande de le suivre",
+    "settings": {
+      "alerts": {
+        "favourite": "Favoris",
+        "follow": "Nouveaux abonné·e·s",
+        "mention": "Mentions",
+        "poll": "Sondages",
+        "reblog": "A republié votre message",
+        "title": "Quelles notifications recevoir ?"
+      },
+      "close_btn": "Fermer les paramètres des notifications push",
+      "policy": {
+        "all": "De n'importe qui",
+        "followed": "Des personnes que je suis",
+        "follower": "Des personnes qui me suivent",
+        "none": "De personne",
+        "title": "De que je peux recevoir des notifications ?"
+      },
+      "save_settings": "Enregistrer les paramètres",
+      "show_btn": "Montrer les paramètres de notification push",
+      "title": "Paramètres des notifications push",
+      "undo_settings": "Annuler les changements de paramètres",
+      "unsubscribe": "Désactiver les notifications push",
+      "unsubscribed_with_warning": "Activez les notifications pour recevoir des notifications de ce compte en cliquant sur le bouton \"@:notification.settings.warning.enable_desktop{'\"'}.",
+      "unsupported": "Votre navigateur ne prend pas en charge les notifications push.",
+      "warning": {
+        "enable_close": "Fermer",
+        "enable_description": "Pour recevoir des notifications lorsque Elk n'est pas ouvert, activez les notifications push. \nVous pouvez contrôler précisément quels types d'interactions génèrent des notifications push via le bouton \"@:notification.settings.show_btn{'\"'} ci-dessus une fois activé.",
+        "enable_description_short": "Pour modifier les paramètres des notifications push lorsque Elk n'est pas ouvert, vous devez d'abord activer les notifications push.",
+        "enable_desktop": "Activer les notifications push",
+        "enable_title": "Ne manquez jamais rien"
+      }
+    },
+    "signed_up": "s'est inscrit·e",
     "update_status": "a posté un nouveau message"
   },
   "placeholder": {
@@ -157,6 +204,17 @@
     "reply_to_account": "Répondre à {0}",
     "replying": "Répondre",
     "the_thread": "Le thread"
+  },
+  "pwa": {
+    "dismiss": "Fermer",
+    "message": "@:pwa.title{','} cliquez sur le bouton @:pwa.reload pour mettre à jour.",
+    "reload": "Recharger",
+    "title": "Nouvelle mise à jour Elk disponible !",
+    "update": "Mettre à jour",
+    "update_available_short": "Mettre à jour Elk"
+  },
+  "search": {
+    "search_desc": "Recherche de personnes & hashtags"
   },
   "state": {
     "edited": "(Édité)",
@@ -190,6 +248,7 @@
     "edited": "a édité {0}"
   },
   "tab": {
+    "accounts": "Comptes",
     "for_you": "Pour vous",
     "hashtags": "Hashtags",
     "media": "Média",
@@ -241,6 +300,7 @@
     "add_content_warning": "Ajouter un avertissement de contenu",
     "add_media": "Ajouter des images, une vidéo ou un fichier audio",
     "change_content_visibility": "Ajuster la confidentialité du message",
+    "emoji": "Emoji",
     "explore_links_intro": "Ces actualités sont sujets à discussions sur ce serveur et sur d'autres serveurs du réseau décentralisé.",
     "explore_posts_intro": "Ces publications de ce serveur et d'autres serveurs du réseau décentralisé gagnent du terrain sur ce serveur en ce moment.",
     "explore_tags_intro": "Ces hashtags gagnent du terrain sur ce serveur et sur d'autres serveurs du réseau décentralisé.",

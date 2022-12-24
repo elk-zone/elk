@@ -1,5 +1,6 @@
 <script setup lang="ts">
 setupI18n()
+setupFontSize()
 setupPageHeader()
 provideGlobalCommands()
 
@@ -12,5 +13,5 @@ const key = computed(() => `${currentUser.value?.server ?? currentServer.value}:
   <NuxtLayout :key="key">
     <NuxtPage v-if="isMastoInitialised" />
   </NuxtLayout>
-  <PWAPrompt />
+  <AriaAnnouncer />
 </template>

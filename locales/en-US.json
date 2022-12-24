@@ -1,4 +1,11 @@
 {
+  "a11y": {
+    "loading_page": "Loading page, please wait",
+    "loading_titled_page": "Loading {0} page, please wait",
+    "locale_changed": "Language changed to {0}",
+    "locale_changing": "Changing language, please wait",
+    "route_loaded": "Page {0} loaded"
+  },
   "account": {
     "avatar_description": "{0}'s avatar",
     "blocked_by": "You're blocked by this user.",
@@ -207,7 +214,9 @@
     "dismiss": "Dismiss",
     "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
     "reload": "Reload",
-    "title": "New Elk update available"
+    "title": "New Elk update available!",
+    "update": "Update",
+    "update_available_short": "Update Elk"
   },
   "search": {
     "search_desc": "Search for people & hashtags"
@@ -315,6 +324,7 @@
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
     "change_content_visibility": "Change content visibility",
+    "emoji": "Emoji",
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",

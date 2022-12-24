@@ -59,6 +59,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
           <slot name="right">
             <SearchWidget />
             <div flex-auto />
+            <PwaPrompt />
             <NavFooter />
           </slot>
         </div>

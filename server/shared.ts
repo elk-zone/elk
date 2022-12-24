@@ -64,3 +64,16 @@ export async function getApp(server: string) {
     return null
   }
 }
+
+export async function listServers() {
+  const keys = await storage.getKeys()
+  const servers = new Set<string>()
+  for await (const key of keys) {
+    if (!key.startsWith('servers:'))
+      continue
+    const id = key.split(':').pop()!.replace(/\.json$/, '')
+    if (id)
+      servers.add(id.toLocaleLowerCase())
+  }
+  return Array.from(servers).sort()
+}

@@ -59,6 +59,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.34.0",
     "@antfu/ni": "^0.18.8",
+    "@emoji-mart/data": "^1.1.0",
     "@iconify-json/carbon": "^1.1.11",
     "@iconify-json/logos": "^1.1.19",
     "@iconify-json/material-symbols": "^1.1.25",
@@ -76,6 +77,7 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "@vue-macros/nuxt": "^0.1.2",
     "@vueuse/nuxt": "^9.8.2",
+    "emoji-mart": "^5.4.0",
     "eslint": "^8.29.0",
     "esno": "^0.16.3",
     "fs-extra": "^11.1.0",

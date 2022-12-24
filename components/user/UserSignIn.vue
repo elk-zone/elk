@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
+import { $fetch } from 'ofetch'
 import { DEFAULT_SERVER } from '~/constants'
 
 const input = $ref<HTMLInputElement>()

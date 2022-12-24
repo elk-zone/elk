@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Fuse from 'fuse.js'
 import { DEFAULT_SERVER } from '~/constants'
 
 const input = $ref<HTMLInputElement>()
@@ -6,6 +7,8 @@ let server = $ref<string>('')
 let busy = $ref<boolean>(false)
 let error = $ref<boolean>(false)
 let displayError = $ref<boolean>(false)
+let knownServers = $ref<string[]>([])
+let acIndex = $ref(0)
 
 async function oauth() {
   if (busy)
@@ -44,8 +47,32 @@ async function handleInput() {
     displayError = false
 }
 
-onMounted(() => {
+let fuse = $shallowRef(new Fuse([] as string[]))
+
+const filteredServers = $computed(() => {
+  if (!server)
+    return []
+
+  const results = fuse.search(server, { limit: 6 }).map(result => result.item)
+  if (results.length === 1 && results[0] === server)
+    return []
+
+  return results
+})
+
+function move(delta: number) {
+  acIndex = ((acIndex + delta) + filteredServers.length) % filteredServers.length
+}
+
+function onEnter() {
+  if (filteredServers[acIndex])
+    server = filteredServers[acIndex]
+}
+
+onMounted(async () => {
   input?.focus()
+  knownServers = await $fetch('/api/list-servers')
+  fuse = new Fuse(knownServers, { shouldSort: true })
 })
 </script>
 
@@ -65,15 +92,35 @@ onMounted(() => {
         flex bg-gray:10 px4 py2 mxa rounded
         border="~ base" items-center font-mono
         focus:outline-none focus:ring="2 primary inset"
+        relative
         :class="displayError ? 'border-red-600 dark:border-red-400' : null"
       >
         <span text-secondary-light mr1>https://</span>
+
         <input
           ref="input"
           v-model="server"
           outline-none bg-transparent w-full max-w-50
           @input="handleInput"
+          @keydown.down="move(-1)"
+          @keydown.up="move(1)"
+          @keydown.enter="onEnter"
         >
+        <div
+          absolute left-6em right-0 top="100%"
+          bg-base rounded border="~ base"
+          text-left
+        >
+          <div
+            v-for="server, idx in filteredServers"
+            :key="server"
+            :value="server"
+            px-2 py1 font-mono
+            :class="acIndex === idx ? 'text-primary font-bold' : null"
+          >
+            {{ server }}
+          </div>
+        </div>
       </div>
       <div min-h-4>
         <Transition css enter-active-class="animate animate-fade-in">

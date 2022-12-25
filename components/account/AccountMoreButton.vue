@@ -9,29 +9,30 @@ let relationship = $(useRelationship(account))
 
 const isSelf = $computed(() => currentUser.value?.account.id === account.id)
 
+const masto = useMasto()
 const toggleMute = async () => {
   // TODO: Add confirmation
 
   relationship!.muting = !relationship!.muting
   relationship = relationship!.muting
-    ? await useMasto().accounts.mute(account.id, {
+    ? await masto.accounts.mute(account.id, {
       // TODO support more options
     })
-    : await useMasto().accounts.unmute(account.id)
+    : await masto.accounts.unmute(account.id)
 }
 
 const toggleBlockUser = async () => {
   // TODO: Add confirmation
 
   relationship!.blocking = !relationship!.blocking
-  relationship = await useMasto().accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
+  relationship = await masto.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
 }
 
 const toggleBlockDomain = async () => {
   // TODO: Add confirmation
 
   relationship!.domainBlocking = !relationship!.domainBlocking
-  await useMasto().domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
+  await masto.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
 }
 </script>
 

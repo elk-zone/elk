@@ -11,8 +11,9 @@ if (useRoute().path === '/signin/callback') {
   useRouter().push('/home')
 }
 
-const paginator = useMasto().timelines.iterateHome()
-const stream = await useMasto().stream.streamUser()
+const masto = useMasto()
+const paginator = masto.timelines.iterateHome()
+const stream = await masto.stream.streamUser()
 onBeforeUnmount(() => stream.disconnect())
 
 const { t } = useI18n()

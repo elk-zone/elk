@@ -9,6 +9,7 @@ export interface StatusActionsProps {
 
 export function useStatusActions(props: StatusActionsProps) {
   let status = $ref<Status>({ ...props.status })
+  const masto = useMasto()
 
   watch(
     () => props.status,
@@ -42,7 +43,7 @@ export function useStatusActions(props: StatusActionsProps) {
   }
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
-    () => useMasto().statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
+    () => masto.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
       if (status.reblogged)
       // returns the original status
         return res.reblog!
@@ -53,18 +54,18 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleFavourite = () => toggleStatusAction(
     'favourited',
-    () => useMasto().statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+    () => masto.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
     'favouritesCount',
   )
 
   const toggleBookmark = () => toggleStatusAction(
     'bookmarked',
-    () => useMasto().statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
+    () => masto.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
   )
 
   const togglePin = async () => toggleStatusAction(
     'pinned',
-    () => useMasto().statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+    () => masto.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
   )
 
   return {

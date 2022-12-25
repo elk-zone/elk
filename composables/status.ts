@@ -33,11 +33,13 @@ export function useStatusActions(props: StatusActionsProps) {
     isLoading[action] = true
     fetchNewStatus().then((newStatus) => {
       Object.assign(status, newStatus)
+      cacheStatus(newStatus, undefined, true)
     }).finally(() => {
       isLoading[action] = false
     })
     // Optimistic update
     status[action] = !status[action]
+    cacheStatus(status, undefined, true)
     if (countField)
       status[countField] += status[action] ? 1 : -1
   }

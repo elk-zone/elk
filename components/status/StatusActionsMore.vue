@@ -36,6 +36,7 @@ const toggleTranslation = async () => {
   isLoading.translation = false
 }
 
+const masto = useMasto()
 const copyLink = async (status: Status) => {
   const url = getStatusPermalinkRoute(status)
   if (url)
@@ -50,9 +51,10 @@ const deleteStatus = async () => {
       return
   }
 
-  await useMasto().statuses.remove(status.id)
+  removeCachedStatus(status.id)
+  await masto.statuses.remove(status.id)
 
-  if (route.name === '@account-status')
+  if (route.name === 'status')
     router.back()
 
   // TODO when timeline, remove this item
@@ -67,7 +69,8 @@ const deleteAndRedraft = async () => {
       return
   }
 
-  const { text } = await useMasto().statuses.remove(status.id)
+  removeCachedStatus(status.id)
+  const { text } = await masto.statuses.remove(status.id)
   openPublishDialog('dialog', await getDraftFromStatus(status, text), true)
 }
 

@@ -11,7 +11,7 @@ let picker = $ref<Picker>()
 
 async function openEmojiPicker() {
   if (!picker) {
-    updateCustomEmojis()
+    await updateCustomEmojis()
     const promise = import('@emoji-mart/data').then(r => r.default)
     const { Picker } = await import('emoji-mart')
     picker = new Picker({
@@ -22,9 +22,15 @@ async function openEmojiPicker() {
       theme: isDark.value ? 'dark' : 'light',
       custom: customEmojisData.value,
     })
-    // TODO: custom picker
-    el?.appendChild(picker as any as HTMLElement)
   }
+  await nextTick()
+  // TODO: custom picker
+  el?.appendChild(picker as any as HTMLElement)
+}
+
+const hidePicker = () => {
+  if (picker)
+    el?.removeChild(picker as any as HTMLElement)
 }
 
 watch(isDark, () => {
@@ -43,6 +49,7 @@ watch(customEmojisData, () => {
 <template>
   <VDropdown
     @apply-show="openEmojiPicker()"
+    @apply-hide="hidePicker()"
   >
     <button btn-action-icon :title="$t('tooltip.emoji')">
       <div i-ri:emotion-line />

@@ -74,16 +74,19 @@ const isDM = $computed(() => status.visibility === 'direct')
       </slot>
       <StatusReplyingTo v-if="showReplyTo" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
     </div>
-    <div flex gap-4 :class="faded ? 'text-secondary' : ''">
+    <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
-        <AccountHoverWrapper :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-4' : 'mt-1'">
+        <template v-if="showRebloggedByAvatarOnAvatar">
+          <div absolute top--3px left--0.8 z--1 w-25px h-25px rounded-full>
+            <AccountAvatar :account="rebloggedBy" />
+          </div>
+        </template>
+        <AccountHoverWrapper :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
-            <AccountAvatar w-12 h-12 :account="status.account" />
+            <!-- 50px === 48px + 2px of border -->
+            <AccountAvatar :account="status.account" w-52px h-52px :class="showRebloggedByAvatarOnAvatar ? 'mt-11px border-2 border-bg-base' : 'p-2px mt-3px'" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-if="showRebloggedByAvatarOnAvatar" absolute class="-top-1 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
-          <AccountAvatar :account="rebloggedBy" />
-        </div>
       </div>
       <div flex="~ col 1" min-w-0>
         <div flex items-center space-x-1>

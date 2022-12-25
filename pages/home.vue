@@ -6,11 +6,6 @@ definePageMeta({
   alias: ['/signin/callback'],
 })
 
-if (useRoute().path === '/signin/callback') {
-  // This only cleans up the URL; page content should stay the same
-  useRouter().push('/home')
-}
-
 const { t } = useI18n()
 useHeadFixed({
   title: () => t('nav_side.home'),

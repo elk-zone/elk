@@ -43,7 +43,7 @@ export const onPush = (event: PushEvent) => {
       icon,
       lang: preferred_locale,
       tag: notification_id,
-      timestamp: new Date().getUTCDate(),
+      timestamp: new Date().getTime(),
     }
     return self.registration.showNotification(options.title, notificationOptions)
   })

@@ -74,14 +74,14 @@ export const usePushManager = () => {
 
     if (!notificationPermission.value || (notificationPermission.value === 'prompt' && !hiddenNotification.value[acct])) {
       // safari 16 does not support navigator.permissions.query for notifications
-      try {
-        permission = (await navigator.permissions?.query({ name: 'notifications' }))?.state
-      }
-      catch {
-        permission = await Promise.resolve(Notification.requestPermission()).then((p: NotificationPermission) => {
-          return p === 'default' ? 'prompt' : p
-        })
-      }
+      // try {
+      //   permission = (await navigator.permissions?.query({ name: 'notifications' }))?.state
+      // }
+      // catch {
+      permission = await Promise.resolve(Notification.requestPermission()).then((p: NotificationPermission) => {
+        return p === 'default' ? 'prompt' : p
+      })
+      // }
     }
     else {
       permission = notificationPermission.value

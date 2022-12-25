@@ -234,14 +234,16 @@ defineExpose({
               <div aria-hidden="true" i-ri:error-warning-fill />
               <p>{{ $t('state.upload_failed') }}</p>
             </div>
-            <button
-              flex rounded-4 p1
-              hover:bg-active cursor-pointer transition-100
-              :title="$t('action.clear_upload_failed')"
-              @click="failed = []"
-            >
-              <span aria-hidden="true" w-1.75em h-1.75em i-ri:close-line />
-            </button>
+            <CommonTooltip placement="bottom" :content="$t('action.clear_upload_failed')">
+              <button
+                flex rounded-4 p1
+                hover:bg-active cursor-pointer transition-100
+                :aria-label="$t('action.clear_upload_failed')"
+                @click="failed = []"
+              >
+                <span aria-hidden="true" w-1.75em h-1.75em i-ri:close-line />
+              </button>
+            </CommonTooltip>
           </head>
           <ol>
             <li v-for="file in failed" :key="file.name">

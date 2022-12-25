@@ -136,6 +136,7 @@
   "nav_footer": {
     "built_at": "Built {0}",
     "select_feature_flags": "Toggle Feature Flags",
+    "select_font_size": "Select Font Size",
     "select_language": "Select Language",
     "show_intro": "Show intro",
     "toggle_theme": "Toggle Theme",

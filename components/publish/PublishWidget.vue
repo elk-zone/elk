@@ -108,6 +108,7 @@ async function uploadAttachments(files: File[]) {
       draft.attachments.push(attachment)
     }
     catch (e) {
+      // TODO: add some human-readable error message, problem is that masto api will not return response code
       console.error(e)
       failed = [...failed, file]
     }
@@ -228,7 +229,14 @@ defineExpose({
           <div i-ri:loader-2-fill animate-spin />
           {{ $t('state.uploading') }}
         </div>
-        <div v-else-if="failed.length > 0" role="alert" aria-describedby="upload-failed" flex="~ col" gap-1 text-sm p1 text-red-600 dark:text-red-400>
+        <div
+          v-else-if="failed.length > 0"
+          role="alert"
+          aria-describedby="upload-failed"
+          flex="~ col"
+          gap-1 text-sm pt-1 pl-2 pr-1 pb-2 text-red-600 dark:text-red-400
+          border="~ base rounded red-600 dark:red-400"
+        >
           <head id="upload-failed" flex justify-between>
             <div flex items-center gap-x-2 font-bold>
               <div aria-hidden="true" i-ri:error-warning-fill />
@@ -245,7 +253,7 @@ defineExpose({
               </button>
             </CommonTooltip>
           </head>
-          <ol>
+          <ol pl-2 sm:pl-1>
             <li v-for="file in failed" :key="file.name">
               {{ file.name }}
             </li>

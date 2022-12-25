@@ -43,6 +43,7 @@
     "bookmarked": "Guardado como marcador",
     "boost": "Retootear",
     "boosted": "Retooteado",
+    "clear_upload_failed": "Limpiar errores de subida de archivos",
     "close": "Cerrar",
     "compose": "Redactar",
     "edit": "Editar",
@@ -219,6 +220,7 @@
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Cargando...",
+    "upload_failed": "Subida fallida",
     "uploading": "Subiendo..."
   },
   "status": {

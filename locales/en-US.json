@@ -43,6 +43,7 @@
     "bookmarked": "Bookmarked",
     "boost": "Boost",
     "boosted": "Boosted",
+    "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
     "edit": "Edit",
@@ -222,6 +223,7 @@
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
+    "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },
   "status": {

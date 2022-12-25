@@ -79,9 +79,6 @@ export function getAccountRoute(account: Account) {
       server: currentServer.value,
       account: extractAccountHandle(account),
     },
-    state: {
-      account: account as any,
-    },
   })
 }
 export function getAccountFollowingRoute(account: Account) {
@@ -91,9 +88,6 @@ export function getAccountFollowingRoute(account: Account) {
       server: currentServer.value,
       account: extractAccountHandle(account),
     },
-    state: {
-      account: account as any,
-    },
   })
 }
 export function getAccountFollowersRoute(account: Account) {
@@ -102,9 +96,6 @@ export function getAccountFollowersRoute(account: Account) {
     params: {
       server: currentServer.value,
       account: extractAccountHandle(account),
-    },
-    state: {
-      account: account as any,
     },
   })
 }
@@ -116,9 +107,6 @@ export function getStatusRoute(status: Status) {
       server: currentServer.value,
       account: extractAccountHandle(status.account),
       status: status.id,
-    },
-    state: {
-      status: status as any,
     },
   })
 }

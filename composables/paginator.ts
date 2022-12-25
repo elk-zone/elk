@@ -20,14 +20,27 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvent
   }
 
   stream?.on(eventType, (status) => {
+    if ('uri' in status)
+      cacheStatus(status, undefined, true)
+
     prevItems.value.unshift(status as any)
   })
 
   // TODO: update statuses
   stream?.on('status.update', (status) => {
+    cacheStatus(status, undefined, true)
+
     const index = items.value.findIndex((s: any) => s.id === status.id)
     if (index >= 0)
       items.value[index] = status as any
+  })
+
+  stream?.on('delete', (id) => {
+    removeCachedStatus(id)
+
+    const index = items.value.findIndex((s: any) => s.id === id)
+    if (index >= 0)
+      items.value.splice(index, 1)
   })
 
   async function loadNext() {

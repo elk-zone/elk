@@ -135,10 +135,11 @@
   },
   "nav_footer": {
     "built_at": "Compilado {0}",
-    "select_feature_flags": "Cambiar Marcadores de Funcionalidades",
-    "select_language": "Seleccionar Idioma",
+    "select_feature_flags": "Cambiar marcadores de funcionalidades",
+    "select_font_size": "Cambiar tamaño de letra",
+    "select_language": "Cambiar idioma",
     "show_intro": "Mostrar intro",
-    "toggle_theme": "Cambiar Tema",
+    "toggle_theme": "Cambiar tema",
     "zen_mode": "Modo Zen"
   },
   "nav_side": {

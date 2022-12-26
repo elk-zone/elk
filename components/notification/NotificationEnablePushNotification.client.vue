@@ -36,7 +36,7 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
     <button
       btn-outline rounded-full font-bold py4 flex="~ gap2 center" m5
       type="button"
-      :class="busy ? 'border-transparent' : null"
+      :class="busy || isLegacyAccount ? 'border-transparent' : null"
       :disabled="busy || isLegacyAccount"
       @click="$emit('subscribe')"
     >

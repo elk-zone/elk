@@ -75,8 +75,7 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvent
     }, 1000)
 
     if (!isMastoInitialised.value) {
-      const unsub = watch(isMastoInitialised, () => {
-        unsub()
+      watchOnce(isMastoInitialised, () => {
         state.value = 'idle'
         loadNext()
       })

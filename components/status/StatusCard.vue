@@ -76,7 +76,7 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
     :lang="status.language ?? undefined"
-    dir="auto"
+    :dir="status.language ? 'auto' : 'lrt'"
     @click="onclick"
     @keydown.enter="onclick"
   >

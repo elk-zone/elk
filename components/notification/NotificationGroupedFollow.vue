@@ -19,7 +19,7 @@ const dir = $computed(() => {
 </script>
 
 <template>
-  <article flex flex-col relative :lang="lang" :dir="dir">
+  <article flex flex-col relative :lang="lang ?? undefined" :dir="dir">
     <div flex items-center top-0 left-2 pt-2 px-3>
       <div i-ri:user-follow-fill mr-3 color-primary aria-hidden="true" />
       <template v-if="count > 1">

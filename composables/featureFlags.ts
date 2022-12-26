@@ -4,7 +4,7 @@ export interface FeatureFlags {
   experimentalVirtualScroll: boolean
   experimentalAvatarOnAvatar: boolean
   experimentalGitHubCards: boolean
-  experimentalUserSwitcherSidebar: boolean
+  experimentalUserPicker: boolean
 }
 export type FeatureFlagsMap = Record<string, FeatureFlags>
 
@@ -13,7 +13,7 @@ export function getDefaultFeatureFlags(): FeatureFlags {
     experimentalVirtualScroll: false,
     experimentalAvatarOnAvatar: true,
     experimentalGitHubCards: true,
-    experimentalUserSwitcherSidebar: true,
+    experimentalUserPicker: true,
   }
 }
 
@@ -36,5 +36,5 @@ export function toggleFeatureFlag(key: keyof FeatureFlags) {
     featureFlags[key] = true
 }
 
-const userSwitcherSidebar = eagerComputed(() => useFeatureFlags().experimentalUserSwitcherSidebar)
-export const showUserSwitcherSidebar = computed(() => useUsers().value.length > 1 && userSwitcherSidebar.value)
+const userPicker = eagerComputed(() => useFeatureFlags().experimentalUserPicker)
+export const showUserPicker = computed(() => useUsers().value.length > 1 && userPicker.value)

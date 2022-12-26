@@ -92,7 +92,7 @@
   "feature_flag": {
     "avatar_on_avatar": "头像堆叠",
     "github_cards": "Github 卡片",
-    "user_switcher_sidebar": "用户切换侧边栏",
+    "user_picker": "用户切换侧边栏",
     "virtual_scroll": "虚拟滚动"
   },
   "help": {

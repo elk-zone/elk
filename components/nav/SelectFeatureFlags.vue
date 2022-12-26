@@ -21,10 +21,10 @@
         {{ $t('feature_flag.github_cards') }}
       </CommonDropdownItem>
       <CommonDropdownItem
-        :checked="currentUserFeatureFlags.experimentalUserSwitcherSidebar"
-        @click="toggleFeatureFlag('experimentalUserSwitcherSidebar')"
+        :checked="currentUserFeatureFlags.experimentalUserPicker"
+        @click="toggleFeatureFlag('experimentalUserPicker')"
       >
-        {{ $t('feature_flag.user_switcher_sidebar') }}
+        {{ $t('feature_flag.user_picker') }}
       </CommonDropdownItem>
     </template>
   </CommonDropdown>

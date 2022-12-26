@@ -49,7 +49,7 @@ const locales: LocaleObject[] = [
   {
     code: 'ar',
     file: 'ar-EG.json',
-    name: 'عربي',
+    name: 'العربية',
     dir: 'rtl',
   },
 ].sort((a, b) => a.code.localeCompare(b.code))

@@ -88,7 +88,12 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
     }
   }
 
-  if ('server' in route.params && user?.token && !useNuxtApp()._processingMiddleware) {
+  // This only cleans up the URL; page content should stay the same
+  if (route.path === '/signin/callback') {
+    await router.push('/home')
+  }
+
+  else if ('server' in route.params && user?.token && !useNuxtApp()._processingMiddleware) {
     await router.push({
       ...route,
       force: true,

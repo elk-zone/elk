@@ -182,7 +182,7 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="isMastoInitialised && currentUser" flex="~ col gap-4" py4 px2 sm:px4>
+  <div v-if="isMastoInitialised && currentUser" flex="~ col gap-4" py3 px2 sm:px4>
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div id="state-editing" text-secondary self-center>
@@ -194,8 +194,8 @@ defineExpose({
     </template>
 
     <div flex gap-4 flex-1>
-      <NuxtLink w-12 h-12 :to="getAccountRoute(currentUser.account)">
-        <AccountAvatar :account="currentUser.account" f-full h-full />
+      <NuxtLink :to="getAccountRoute(currentUser.account)">
+        <AccountAvatar :account="currentUser.account" account-avatar-normal />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <div

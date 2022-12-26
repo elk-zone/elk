@@ -76,16 +76,18 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
       </slot>
       <StatusReplyingTo v-if="showReplyTo" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
     </div>
-    <div flex gap-4 :class="faded ? 'text-secondary' : ''">
+    <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
-        <AccountHoverWrapper :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-4' : 'mt-1'">
+        <template v-if="showRebloggedByAvatarOnAvatar">
+          <div absolute top--3px left--0.8 z--1 w-25px h-25px rounded-full>
+            <AccountAvatar :account="rebloggedBy" />
+          </div>
+        </template>
+        <AccountHoverWrapper :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
-            <AccountAvatar w-12 h-12 :account="status.account" />
+            <AccountAvatar :account="status.account" account-avatar-normal :class="showRebloggedByAvatarOnAvatar ? 'mt-11px ' : 'mt-3px'" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-if="showRebloggedByAvatarOnAvatar" absolute class="-top-1 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
-          <AccountAvatar :account="rebloggedBy" />
-        </div>
         <div v-if="connectReply" w-full h-full flex justify-center>
           <div h-full class="w-2.5px" bg-border />
         </div>

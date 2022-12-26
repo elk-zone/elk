@@ -9,6 +9,7 @@ const props = withDefaults(
     hover?: boolean
     faded?: boolean
     showReplyTo?: boolean
+    connectReply?: boolean
   }>(),
   { actions: true, showReplyTo: true },
 )
@@ -60,6 +61,7 @@ const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvata
 const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)
 
 const isDM = $computed(() => status.visibility === 'direct')
+const isSelf = $computed(() => status.account.id === currentUser.value?.account.id)
 </script>
 
 <template>
@@ -74,15 +76,20 @@ const isDM = $computed(() => status.visibility === 'direct')
       </slot>
       <StatusReplyingTo v-if="showReplyTo" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
     </div>
-    <div flex gap-4 :class="faded ? 'text-secondary' : ''">
+    <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
-        <AccountHoverWrapper :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-4' : 'mt-1'">
+        <template v-if="showRebloggedByAvatarOnAvatar">
+          <div absolute top--3px left--0.8 z--1 w-25px h-25px rounded-full>
+            <AccountAvatar :account="rebloggedBy" />
+          </div>
+        </template>
+        <AccountHoverWrapper :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
-            <AccountAvatar w-12 h-12 :account="status.account" />
+            <AccountAvatar :account="status.account" account-avatar-normal :class="showRebloggedByAvatarOnAvatar ? 'mt-11px ' : 'mt-3px'" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-if="showRebloggedByAvatarOnAvatar" absolute class="-top-1 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
-          <AccountAvatar :account="rebloggedBy" />
+        <div v-if="connectReply" w-full h-full flex justify-center>
+          <div h-full class="w-2.5px" bg-border />
         </div>
       </div>
       <div flex="~ col 1" min-w-0>
@@ -104,39 +111,10 @@ const isDM = $computed(() => status.visibility === 'direct')
           </div>
           <StatusActionsMore :status="status" mr--2 />
         </div>
-        <div
-          space-y-3
-          :class="{
-            'mt2 pt1 pb0.5 px3.5 br2 bg-fade border-primary-light border-1 rounded-3 rounded-tl-none': isDM,
-          }"
-        >
-          <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
-            <template v-if="status.spoilerText || filterPhrase" #spoiler>
-              <p>{{ status.spoilerText || `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
-            </template>
-            <StatusBody :status="status" />
-            <StatusPoll
-              v-if="status.poll"
-              :poll="status.poll"
-            />
-            <StatusMedia
-              v-if="status.mediaAttachments?.length"
-              :status="status"
-            />
-            <StatusPreviewCard
-              v-if="status.card"
-              :card="status.card"
-              :small-picture-only="status.mediaAttachments?.length > 0"
-            />
-            <StatusCard
-              v-if="status.reblog"
-              :status="status.reblog" border="~ rounded"
-              :actions="false"
-            />
-            <div v-if="isDM" />
-          </StatusSpoiler>
+        <StatusContent :status="status" :context="context" mb2 :class="{ mt2: isDM }" />
+        <div>
+          <StatusActions v-if="(actions !== false && !isZenMode)" :status="status" />
         </div>
-        <StatusActions v-if="(actions !== false && !isZenMode)" :status="status" :class="isDM ? 'mt1' : 'mt2'" />
       </div>
     </div>
   </div>

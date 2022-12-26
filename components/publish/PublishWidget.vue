@@ -54,6 +54,7 @@ const currentVisibility = $computed(() => {
 })
 
 let isUploading = $ref<boolean>(false)
+let failed = $ref<File[]>([])
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -94,20 +95,30 @@ async function toggleSensitive() {
   draft.params.sensitive = !draft.params.sensitive
 }
 
+const masto = useMasto()
+
 async function uploadAttachments(files: File[]) {
   isUploading = true
+  failed = []
   for (const file of files) {
-    const attachment = await useMasto().mediaAttachments.create({
-      file,
-    })
-    draft.attachments.push(attachment)
+    try {
+      const attachment = await masto.mediaAttachments.create({
+        file,
+      })
+      draft.attachments.push(attachment)
+    }
+    catch (e) {
+      // TODO: add some human-readable error message, problem is that masto api will not return response code
+      console.error(e)
+      failed = [...failed, file]
+    }
   }
   isUploading = false
 }
 
 async function setDescription(att: Attachment, description: string) {
   att.description = description
-  await useMasto().mediaAttachments.update(att.id, { description: att.description })
+  await masto.mediaAttachments.update(att.id, { description: att.description })
 }
 
 function removeAttachment(index: number) {
@@ -141,9 +152,9 @@ async function publish() {
     isSending = true
 
     if (!draft.editingStatus)
-      await useMasto().statuses.create(payload)
+      await masto.statuses.create(payload)
     else
-      await useMasto().statuses.update(draft.editingStatus.id, payload)
+      await masto.statuses.update(draft.editingStatus.id, payload)
 
     draft = initial()
     isPublishDialogOpen.value = false
@@ -171,7 +182,7 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="isMastoInitialised && currentUser" flex="~ col gap-4" py4 px2 sm:px4>
+  <div v-if="isMastoInitialised && currentUser" flex="~ col gap-4" py3 px2 sm:px4>
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div id="state-editing" text-secondary self-center>
@@ -183,8 +194,8 @@ defineExpose({
     </template>
 
     <div flex gap-4 flex-1>
-      <NuxtLink w-12 h-12 :to="getAccountRoute(currentUser.account)">
-        <AccountAvatar :account="currentUser.account" f-full h-full />
+      <NuxtLink :to="getAccountRoute(currentUser.account)">
+        <AccountAvatar :account="currentUser.account" account-avatar-normal />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <div
@@ -217,6 +228,36 @@ defineExpose({
         <div v-if="isUploading" flex gap-1 items-center text-sm p1 text-primary>
           <div i-ri:loader-2-fill animate-spin />
           {{ $t('state.uploading') }}
+        </div>
+        <div
+          v-else-if="failed.length > 0"
+          role="alert"
+          aria-describedby="upload-failed"
+          flex="~ col"
+          gap-1 text-sm pt-1 pl-2 pr-1 pb-2 text-red-600 dark:text-red-400
+          border="~ base rounded red-600 dark:red-400"
+        >
+          <head id="upload-failed" flex justify-between>
+            <div flex items-center gap-x-2 font-bold>
+              <div aria-hidden="true" i-ri:error-warning-fill />
+              <p>{{ $t('state.upload_failed') }}</p>
+            </div>
+            <CommonTooltip placement="bottom" :content="$t('action.clear_upload_failed')">
+              <button
+                flex rounded-4 p1
+                hover:bg-active cursor-pointer transition-100
+                :aria-label="$t('action.clear_upload_failed')"
+                @click="failed = []"
+              >
+                <span aria-hidden="true" w-1.75em h-1.75em i-ri:close-line />
+              </button>
+            </CommonTooltip>
+          </head>
+          <ol pl-2 sm:pl-1>
+            <li v-for="file in failed" :key="file.name">
+              {{ file.name }}
+            </li>
+          </ol>
         </div>
 
         <div v-if="draft.attachments.length" flex="~ col gap-2" overflow-auto>

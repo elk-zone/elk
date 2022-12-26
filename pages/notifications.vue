@@ -53,6 +53,7 @@ onActivated(() => {
       <template v-if="pwaEnabled">
         <NotificationPreferences :show="showSettings" />
       </template>
+
       <NuxtPage />
     </slot>
   </MainContent>

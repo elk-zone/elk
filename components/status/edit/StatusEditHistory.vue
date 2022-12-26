@@ -5,7 +5,8 @@ const { status } = defineProps<{
   status: Status
 }>()
 
-const { data: statusEdits } = useAsyncData(`status:history:${status.id}`, () => useMasto().statuses.fetchHistory(status.id).then(res => res.reverse()))
+const masto = useMasto()
+const { data: statusEdits } = useAsyncData(`status:history:${status.id}`, () => masto.statuses.fetchHistory(status.id).then(res => res.reverse()))
 
 const showHistory = (edit: StatusEdit) => {
   openEditHistoryDialog(edit)

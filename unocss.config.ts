@@ -20,6 +20,7 @@ export default defineConfig({
 
       // background
       'bg-base': 'bg-$c-bg-base',
+      'bg-border': 'bg-$c-border',
       'bg-active': 'bg-$c-bg-active',
       'bg-code': 'bg-$c-bg-code',
       'bg-fade': 'bg-$c-bg-fade',
@@ -52,6 +53,9 @@ export default defineConfig({
       'flex-v-center': 'items-center',
       'flex-h-center': 'justify-center',
       'bg-hover-overflow': 'relative z-0 transition-colors duration-250 after-content-empty after:(absolute inset--2px bg-transparent rounded-lg z--1 transition-colors duration-250) hover:after:(bg-active)',
+
+      // account
+      'account-avatar-normal': 'w-54px h-54px border-3 border-bg-base',
     },
   ],
   presets: [

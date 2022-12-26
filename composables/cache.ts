@@ -13,6 +13,9 @@ export function setCached(key: string, value: any, override = false) {
   if (override || !cache.has(key))
     cache.set(key, value)
 }
+function removeCached(key: string) {
+  cache.delete(key)
+}
 
 export function fetchStatus(id: string, force = false): Promise<Status> {
   const server = currentServer.value
@@ -80,6 +83,10 @@ export function useAccountById(id?: string | null) {
 
 export function cacheStatus(status: Status, server = currentServer.value, override?: boolean) {
   setCached(`${server}:status:${status.id}`, status, override)
+}
+
+export function removeCachedStatus(id: string, server = currentServer.value) {
+  removeCached(`${server}:status:${id}`)
 }
 
 export function cacheAccount(account: Account, server = currentServer.value, override?: boolean) {

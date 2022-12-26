@@ -128,6 +128,7 @@
   "nav_footer": {
     "built_at": "于 {0} 构建",
     "select_feature_flags": "功能开关",
+    "select_font_size": "字体大小",
     "select_language": "选择语言",
     "show_intro": "应用介绍",
     "toggle_theme": "切换主题",

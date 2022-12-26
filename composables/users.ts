@@ -88,7 +88,12 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
     }
   }
 
-  if ('server' in route.params && user?.token && !useNuxtApp()._processingMiddleware) {
+  // This only cleans up the URL; page content should stay the same
+  if (route.path === '/signin/callback') {
+    await router.push('/home')
+  }
+
+  else if ('server' in route.params && user?.token && !useNuxtApp()._processingMiddleware) {
     await router.push({
       ...route,
       force: true,
@@ -307,6 +312,17 @@ export const createMasto = () => {
       if (!api.value) {
         return new Proxy({}, {
           get(_, subkey) {
+            if (typeof subkey === 'string' && subkey.startsWith('iterate')) {
+              return (...args: any[]) => {
+                let paginator: any
+                function next() {
+                  paginator = paginator || (api.value as any)?.[key][subkey](...args)
+                  return paginator.next()
+                }
+                return { next }
+              }
+            }
+
             return (...args: any[]) => apiPromise.value?.then((r: any) => r[key][subkey](...args))
           },
         })

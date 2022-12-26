@@ -6,10 +6,10 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
 
 <template>
   <div h-full :class="{ zen: isZenMode }">
-    <div v-if="isMastoInitialised && showUserSwitcherSidebar" fixed h-full hidden lg:block bg-code border-r-1 border-base>
+    <div v-if="isHydrated.value && showUserSwitcherSidebar" fixed h-full hidden lg:block bg-code border-r-1 border-base>
       <UserPicker />
     </div>
-    <main flex w-full mxa lg:max-w-80rem :class="isMastoInitialised && showUserSwitcherSidebar ? 'user-switcher-sidebar' : ''">
+    <main flex w-full mxa lg:max-w-80rem :class="isHydrated.value && showUserSwitcherSidebar ? 'user-switcher-sidebar' : ''">
       <aside class="hidden sm:flex w-1/8 md:w-1/6 justify-end lg:w-1/4 zen-hide" relative>
         <div sticky top-0 w-20 lg:w-100 h-screen flex="~ col">
           <slot name="left">
@@ -19,9 +19,9 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
                 <NavSide />
                 <PublishButton m5 />
               </div>
-              <div flex flex-col>
-                <UserSignInEntry v-if="isMastoInitialised && !currentUser" sm:hidden />
-                <div v-if="isMastoInitialised && currentUser" p6 pb8 w-full flex="~" items-center justify-between>
+              <div v-if="isMastoInitialised" flex flex-col>
+                <UserSignInEntry v-if="!currentUser" sm:hidden />
+                <div v-if="currentUser" p6 pb8 w-full flex="~" items-center justify-between>
                   <NuxtLink
                     hidden lg:block
                     rounded-full text-start w-full
@@ -45,7 +45,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
           </slot>
         </div>
       </aside>
-      <div class="w-full min-h-screen" :class="wideLayout ? 'lg:w-full sm:w-600px' : 'sm:w-600px'" border="none sm:l sm:r base">
+      <div class="w-full min-h-screen" :class="wideLayout ? 'lg:w-full sm:w-600px' : 'sm:w-600px'" sm:border-l sm:border-r border-base>
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>

@@ -110,7 +110,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
         </div>
       </div>
       <div v-if="account.note">
-        <ContentRich text-4 text-secondary :content="account.note" :emojis="account.emojis" />
+        <ContentRich text-4 text-base :content="account.note" :emojis="account.emojis" />
       </div>
       <div v-if="namedFields.length" flex="~ col wrap gap1">
         <div v-for="field in namedFields" :key="field.name" flex="~ gap-1" items-center>

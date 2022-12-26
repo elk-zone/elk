@@ -11,10 +11,11 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
 const enable = $computed(() => !isSelf && currentUser.value)
 const relationship = $computed(() => props.relationship || useRelationship(account).value)
 
+const masto = useMasto()
 async function toggleFollow() {
   relationship!.following = !relationship!.following
   try {
-    const newRel = await useMasto().accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+    const newRel = await masto.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -26,7 +27,7 @@ async function toggleFollow() {
 async function unblock() {
   relationship!.blocking = false
   try {
-    const newRel = await useMasto().accounts.unblock(account.id)
+    const newRel = await masto.accounts.unblock(account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -38,7 +39,7 @@ async function unblock() {
 async function unmute() {
   relationship!.muting = false
   try {
-    const newRel = await useMasto().accounts.unmute(account.id)
+    const newRel = await masto.accounts.unmute(account.id)
     Object.assign(relationship!, newRel)
   }
   catch {

@@ -15,7 +15,7 @@ useHeadFixed({
 </script>
 
 <template>
-  <CommonAlert v-if="!hideNewsTips" @close="hideNewsTips = true">
+  <CommonAlert v-if="isHydrated.value && !hideNewsTips" @close="hideNewsTips = true">
     <p>{{ $t('tooltip.explore_links_intro') }}</p>
   </CommonAlert>
 

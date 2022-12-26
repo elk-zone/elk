@@ -43,6 +43,7 @@
     "bookmarked": "Bookmarked",
     "boost": "Boost",
     "boosted": "Boosted",
+    "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
     "confirm": "Confirm",
@@ -140,6 +141,7 @@
   "nav_footer": {
     "built_at": "Built {0}",
     "select_feature_flags": "Toggle Feature Flags",
+    "select_font_size": "Select Font Size",
     "select_language": "Select Language",
     "show_intro": "Show intro",
     "toggle_theme": "Toggle Theme",
@@ -197,7 +199,8 @@
         "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:notification.settings.show_btn{'\"'} button above once enabled.",
         "enable_description_short": "To change push notifications settings when Elk is not open, you must first enable push notifications.",
         "enable_desktop": "Enable push notifications",
-        "enable_title": "Never miss anything"
+        "enable_title": "Never miss anything",
+        "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
       }
     },
     "signed_up": "signed up",
@@ -245,6 +248,7 @@
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
+    "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },
   "status": {

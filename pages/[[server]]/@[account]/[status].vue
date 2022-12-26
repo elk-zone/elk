@@ -82,7 +82,7 @@ onReactivated(() => {
           @published="refreshContext()"
         />
 
-        <template v-for="[comment, di] of context?.descendants" :key="comment.id">
+        <template v-for="(comment, di) of context?.descendants" :key="comment.id">
           <StatusCard
             :status="comment" :actions="comment.visibility !== 'direct'" context="account"
             :connect-reply="comment.id === context?.descendants[di + 1]?.inReplyToId"

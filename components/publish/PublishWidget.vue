@@ -54,6 +54,7 @@ const currentVisibility = $computed(() => {
 })
 
 let isUploading = $ref<boolean>(false)
+let failed = $ref<File[]>([])
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -98,11 +99,19 @@ const masto = useMasto()
 
 async function uploadAttachments(files: File[]) {
   isUploading = true
+  failed = []
   for (const file of files) {
-    const attachment = await masto.mediaAttachments.create({
-      file,
-    })
-    draft.attachments.push(attachment)
+    try {
+      const attachment = await masto.mediaAttachments.create({
+        file,
+      })
+      draft.attachments.push(attachment)
+    }
+    catch (e) {
+      // TODO: add some human-readable error message, problem is that masto api will not return response code
+      console.error(e)
+      failed = [...failed, file]
+    }
   }
   isUploading = false
 }
@@ -219,6 +228,36 @@ defineExpose({
         <div v-if="isUploading" flex gap-1 items-center text-sm p1 text-primary>
           <div i-ri:loader-2-fill animate-spin />
           {{ $t('state.uploading') }}
+        </div>
+        <div
+          v-else-if="failed.length > 0"
+          role="alert"
+          aria-describedby="upload-failed"
+          flex="~ col"
+          gap-1 text-sm pt-1 pl-2 pr-1 pb-2 text-red-600 dark:text-red-400
+          border="~ base rounded red-600 dark:red-400"
+        >
+          <head id="upload-failed" flex justify-between>
+            <div flex items-center gap-x-2 font-bold>
+              <div aria-hidden="true" i-ri:error-warning-fill />
+              <p>{{ $t('state.upload_failed') }}</p>
+            </div>
+            <CommonTooltip placement="bottom" :content="$t('action.clear_upload_failed')">
+              <button
+                flex rounded-4 p1
+                hover:bg-active cursor-pointer transition-100
+                :aria-label="$t('action.clear_upload_failed')"
+                @click="failed = []"
+              >
+                <span aria-hidden="true" w-1.75em h-1.75em i-ri:close-line />
+              </button>
+            </CommonTooltip>
+          </head>
+          <ol pl-2 sm:pl-1>
+            <li v-for="file in failed" :key="file.name">
+              {{ file.name }}
+            </li>
+          </ol>
         </div>
 
         <div v-if="draft.attachments.length" flex="~ col gap-2" overflow-auto>

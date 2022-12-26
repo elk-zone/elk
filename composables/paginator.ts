@@ -3,7 +3,7 @@ import { useDeactivated } from './lifecycle'
 import type { PaginatorState } from '~/types'
 
 export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvents, eventType: 'notification' | 'update' = 'update') {
-  const state = ref<PaginatorState>('idle')
+  const state = ref<PaginatorState>(isMastoInitialised.value ? 'idle' : 'loading')
   const items = ref<T[]>([])
   const nextItems = ref<T[]>([])
   const prevItems = ref<T[]>([])
@@ -73,6 +73,14 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvent
     useIntervalFn(() => {
       bound.update()
     }, 1000)
+
+    if (!isMastoInitialised.value) {
+      const unsub = watch(isMastoInitialised, () => {
+        unsub()
+        state.value = 'idle'
+        loadNext()
+      })
+    }
 
     watch(
       () => [isInScreen, state],

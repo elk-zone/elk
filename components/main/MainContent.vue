@@ -23,7 +23,7 @@ defineProps<{
         <div flex items-center flex-shrink-0 gap-x-2>
           <slot name="actions" />
           <PwaBadge lg:hidden />
-          <NavUser v-if="isHydrated.value" />
+          <NavUser v-if="isMastoInitialised" />
         </div>
       </div>
       <slot name="header" />

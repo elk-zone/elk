@@ -236,7 +236,7 @@ defineExpose({
           flex="~ col"
           gap-1 text-sm
           pt-1 pl-2 pr-1 pb-2
-          rlt="pl-1 pr-2"
+          rtl="pl-1 pr-2"
           text-red-600 dark:text-red-400
           border="~ base rounded red-600 dark:red-400"
         >

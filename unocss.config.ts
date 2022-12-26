@@ -19,6 +19,7 @@ export default defineConfig({
 
       // background
       'bg-base': 'bg-$c-bg-base',
+      'bg-border': 'bg-$c-border',
       'bg-active': 'bg-$c-bg-active',
       'bg-code': 'bg-$c-bg-code',
       'bg-fade': 'bg-$c-bg-fade',

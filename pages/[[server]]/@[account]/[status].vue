@@ -59,35 +59,38 @@ onReactivated(() => {
   <MainContent back>
     <template v-if="!pending">
       <div v-if="status" min-h-100vh mt--1px>
-        <template v-if="context">
-          <template v-for="comment of context?.ancestors" :key="comment.id">
-            <StatusCard :status="comment" context="account" border="t base" :show-reply-to="false" />
-          </template>
+        <template v-for="comment of context?.ancestors" :key="comment.id">
+          <StatusCard
+            :status="comment" :actions="comment.visibility !== 'direct'" context="account"
+            :show-reply-to="false" :connect-reply="true"
+          />
         </template>
 
         <StatusDetails
           ref="main"
           :status="status"
           command
-          border="t base"
           style="scroll-margin-top: 60px"
+          :actions="status.visibility !== 'direct'"
         />
         <PublishWidget
           v-if="currentUser"
           ref="publishWidget"
           :draft-key="replyDraft!.key"
           :initial="replyDraft!.draft"
-          border="t base"
           @published="refreshContext()"
         />
 
-        <template v-if="context">
-          <template v-for="comment of context?.descendants" :key="comment.id">
-            <StatusCard :status="comment" context="account" border="t base" />
-          </template>
+        <template v-for="comment, di of context?.descendants" :key="comment.id">
+          <StatusCard
+            :status="comment" :actions="comment.visibility !== 'direct'" context="account"
+            :connect-reply="comment.id === context?.descendants[di + 1]?.inReplyToId"
+            :show-reply-to="di !== 0 && comment.inReplyToId !== context?.descendants[di - 1]?.id"
+            :class="{ 'border-t border-base': di !== 0 && comment.inReplyToId !== context?.descendants[di - 1]?.id }"
+          />
         </template>
 
-        <div border="t base" :style="{ height: `${bottomSpace}px` }" />
+        <div :style="{ height: `${bottomSpace}px` }" />
       </div>
 
       <StatusNotFound v-else :account="$route.params.account" :status="id" />

@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   status: Status
   command?: boolean
-}>()
+  actions?: boolean
+}>(), {
+  actions: true,
+})
 
 const status = $computed(() => {
   if (props.status.reblog && props.status.reblog)
@@ -33,37 +36,7 @@ const isDM = $computed(() => status.visibility === 'direct')
         <AccountInfo :account="status.account" />
       </AccountHoverWrapper>
     </NuxtLink>
-    <div
-      space-y-3
-      :class="{
-        'pt2 pb0.5 px3.5 br2 bg-fade border-primary-light border-1 rounded-3': isDM,
-      }"
-    >
-      <StatusSpoiler :enabled="status.sensitive">
-        <template #spoiler>
-          <p text-2xl>
-            {{ status.spoilerText }}
-          </p>
-        </template>
-        <StatusBody :status="status" :with-action="false" text-xl />
-        <StatusPoll
-          v-if="status.poll"
-          :poll="status.poll"
-        />
-        <StatusMedia
-          v-if="status.mediaAttachments?.length"
-          :status="status"
-          full-size
-        />
-        <StatusPreviewCard
-          v-if="status.card"
-          :card="status.card"
-          :small-picture-only="status.mediaAttachments?.length > 0"
-          mt-2
-        />
-        <div v-if="isDM" />
-      </StatusSpoiler>
-    </div>
+    <StatusContent :status="status" context="details" />
     <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>
@@ -85,6 +58,8 @@ const isDM = $computed(() => status.visibility === 'direct')
         {{ status.application?.name }}
       </div>
     </div>
-    <StatusActions :status="status" details :command="command" border="t base" pt-2 />
+    <div border="t base" pt-2>
+      <StatusActions v-if="actions" :status="status" details :command="command" />
+    </div>
   </div>
 </template>

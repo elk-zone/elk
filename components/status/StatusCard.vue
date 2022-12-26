@@ -87,7 +87,7 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
           <AccountAvatar :account="rebloggedBy" />
         </div>
         <div v-if="connectReply" w-full h-full flex justify-center>
-          <div h-full w1 bg-border />
+          <div h-full class="w-2.5px" bg-border />
         </div>
       </div>
       <div flex="~ col 1" min-w-0>

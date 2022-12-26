@@ -24,9 +24,9 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
   <div
     space-y-3
     :class="{
-      'pt2 pb0.5 px3.5 br2 rounded-3 rounded-tl-none': isDM,
-      'bg-fade': isDM && !isSelf,
-      'bg-code': isDM && isSelf,
+      'pt2 pb0.5 px3.5 br2 border-1 rounded-3 rounded-tl-none': isDM,
+      'bg-fade border-primary-light': isDM && !isSelf,
+      'bg-code border-base': isDM && isSelf,
     }"
   >
     <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">

@@ -12,8 +12,11 @@ const { notification } = defineProps<{
       <NuxtLink :to="getAccountRoute(notification.account)">
         <div
           flex items-center absolute
-          lrt="pl-3 pr-4 left-0 rounded-br-3"
-          rtl="pr-3 pl-4 right-0 rounded-bl-3"
+          pl-3 pr-4 lrt-left-0
+          rounded-br-3
+          rtl="pr-3 pl-4 right-0"
+          rtl-rounded-bl-3
+          rtl-rounded-br-0
           py-3 bg-base top-0
         >
           <div i-ri:user-follow-fill mr-1 color-primary />

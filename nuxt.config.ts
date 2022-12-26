@@ -40,6 +40,8 @@ export default defineNuxtConfig({
     'querystring': 'rollup-plugin-node-polyfills/polyfills/qs',
     'masto/fetch': 'masto/fetch',
     'masto': 'masto/fetch',
+    'change-case': 'scule',
+    'semver': 'unenv/runtime/mock/empty',
   },
   vite: {
     define: {
@@ -84,10 +86,6 @@ export default defineNuxtConfig({
       env: isCI ? isPreview ? 'staging' : 'production' : 'local',
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
       translateApi: '',
-      // Masto uses Mastodon version checks to see what features are enabled.
-      // Mastodon alternatives like GoToSocial will always fail these checks, so
-      // provide a way to disable them.
-      disableVersionCheck: false,
     },
     storage: {
       driver: isCI ? 'cloudflare' : 'fs',
@@ -108,6 +106,9 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: false,
       routes: ['/', '/200.html'],
+    },
+    routeRules: {
+      '/list-servers': { swr: true },
     },
   },
   app: {

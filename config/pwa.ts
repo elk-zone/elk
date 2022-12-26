@@ -6,7 +6,7 @@ const isPreview = process.env.PULL_REQUEST === 'true'
 const pwa: VitePWANuxtOptions = {
   mode: isCI ? 'production' : 'development',
   // disable PWA only when in preview mode
-  disable: isPreview || (isDevelopment && process.env.VITE_DEV_PWA !== 'true'),
+  disable: /* temporarily test in CI isPreview || */ (isDevelopment && process.env.VITE_DEV_PWA !== 'true'),
   scope: '/',
   srcDir: './service-worker',
   filename: 'sw.ts',

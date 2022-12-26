@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   status: Status
   command?: boolean
-}>()
+  actions?: boolean
+}>(), {
+  actions: true,
+})
 
 const status = $computed(() => {
   if (props.status.reblog && props.status.reblog)
@@ -21,45 +24,19 @@ const { t } = useI18n()
 useHeadFixed({
   title: () => `${status.account.displayName || status.account.acct} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
 })
+
+const isDM = $computed(() => status.visibility === 'direct')
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" flex flex-col gap-2 py3 px-4 relative>
+  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 px-4 relative>
     <StatusActionsMore :status="status" absolute right-2 top-2 />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pr5 mr-a>
       <AccountHoverWrapper :account="status.account">
         <AccountInfo :account="status.account" />
       </AccountHoverWrapper>
     </NuxtLink>
-    <div
-      :class="status.visibility === 'direct' ? 'my2 p1 px4 br2 bg-fade border-primary-light border-1 rounded-3 rounded-tl-none' : ''"
-    >
-      <StatusSpoiler :enabled="status.sensitive">
-        <template #spoiler>
-          <p text-2xl>
-            {{ status.spoilerText }}
-          </p>
-        </template>
-        <StatusBody :status="status" :with-action="false" text-2xl />
-        <StatusPoll
-          v-if="status.poll"
-          :poll="status.poll"
-        />
-        <StatusMedia
-          v-if="status.mediaAttachments?.length"
-          :status="status"
-          :class="status.visibility === 'direct' ? 'pb4' : ''"
-          full-size
-        />
-        <StatusPreviewCard
-          v-if="status.card"
-          :card="status.card"
-          :class="status.visibility === 'direct' ? 'pb4' : ''"
-          :small-picture-only="status.mediaAttachments?.length > 0"
-          mt-2
-        />
-      </StatusSpoiler>
-    </div>
+    <StatusContent :status="status" context="details" />
     <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>
@@ -75,9 +52,14 @@ useHeadFixed({
         <div :class="visibility.icon" />
       </CommonTooltip>
       <div v-if="status.application?.name">
-        &middot; {{ status.application?.name }}
+        &middot;
+      </div>
+      <div v-if="status.application?.name">
+        {{ status.application?.name }}
       </div>
     </div>
-    <StatusActions :status="status" details :command="command" border="t base" pt-2 />
+    <div border="t base" pt-2>
+      <StatusActions v-if="actions" :status="status" details :command="command" />
+    </div>
   </div>
 </template>

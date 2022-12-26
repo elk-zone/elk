@@ -32,7 +32,7 @@ const { notification } = defineProps<{
           :content="getDisplayName(notification.account, { rich: true })"
           :emojis="notification.account.emojis"
         />
-        <span>signed up</span>
+        <span>{{ $t("notification.signed_up") }}</span>
       </div>
     </template>
     <template v-else-if="notification.type === 'follow_request'">
@@ -46,7 +46,7 @@ const { notification } = defineProps<{
     <template v-else-if="notification.type === 'favourite'">
       <StatusCard :status="notification.status!" :faded="true">
         <template #meta>
-          <div flex="~" gap-1 items-center>
+          <div flex="~" gap-1 items-center mt1>
             <div i-ri:heart-fill text-xl mr-1 color-red />
             <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
           </div>
@@ -56,7 +56,7 @@ const { notification } = defineProps<{
     <template v-else-if="notification.type === 'reblog'">
       <StatusCard :status="notification.status!" :faded="true">
         <template #meta>
-          <div flex="~" gap-1 items-center>
+          <div flex="~" gap-1 items-center mt1>
             <div i-ri:repeat-fill text-xl mr-1 color-green />
             <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
           </div>
@@ -66,7 +66,7 @@ const { notification } = defineProps<{
     <template v-else-if="notification.type === 'update'">
       <StatusCard :status="notification.status!" :faded="true">
         <template #meta>
-          <div flex="~" gap-1 items-center>
+          <div flex="~" gap-1 items-center mt1>
             <div i-ri:edit-2-fill text-xl mr-1 text-secondary />
             <AccountInlineInfo :account="notification.account" mr1 />
             <span ws-nowrap>

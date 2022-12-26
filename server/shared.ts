@@ -2,6 +2,7 @@
 import _fs from 'unstorage/drivers/fs'
 // @ts-expect-error unstorage needs to provide backwards-compatible subpath types
 import _kv from 'unstorage/drivers/cloudflare-kv-http'
+
 import { parseURL } from 'ufo'
 
 import { $fetch } from 'ofetch'
@@ -24,7 +25,7 @@ const storage = useStorage() as Storage
 if (config.storage.driver === 'fs') {
   storage.mount('servers', fs({ base: config.storage.fsBase }))
 }
-else {
+else if (config.storage.driver === 'cloudflare') {
   storage.mount('servers', cached(kv({
     accountId: config.cloudflare.accountId,
     namespaceId: config.cloudflare.namespaceId,
@@ -62,4 +63,17 @@ export async function getApp(server: string) {
   catch {
     return null
   }
+}
+
+export async function listServers() {
+  const keys = await storage.getKeys()
+  const servers = new Set<string>()
+  for await (const key of keys) {
+    if (!key.startsWith('servers:'))
+      continue
+    const id = key.split(':').pop()!.replace(/\.json$/, '')
+    if (id)
+      servers.add(id.toLocaleLowerCase())
+  }
+  return Array.from(servers).sort()
 }

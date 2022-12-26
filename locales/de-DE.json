@@ -1,23 +1,23 @@
 {
   "account": {
     "avatar_description": "{0}'s Avatar",
-    "blocked_by": "Du wurdest von diesem Benzutzer geblockt",
+    "blocked_by": "Du wurdest von diesem Nutzer geblockt",
     "blocked_domains": "Gesperrte Domänen",
-    "blocked_users": "Gesperrte Benutzer",
+    "blocked_users": "Gesperrte Nutzer",
     "bot": "BOT",
     "favourites": "Favoriten",
     "follow": "Folgen",
-    "follow_back": "Folge zurück",
+    "follow_back": "Zurück folgen",
     "follow_requested": "Angefragt",
     "followers": "Follower",
     "followers_count": "{0} Follower",
-    "following": "Folge ich",
-    "following_count": "{0} Folge ich",
+    "following": "Du folgst",
+    "following_count": "Folgt {0}",
     "follows_you": "Folgt dir",
-    "go_to_profile": "Gehe zu Profil",
+    "go_to_profile": "Gehe zum Profil",
     "joined": "Beigetreten",
-    "moved_title": "hat angegeben, das dies der neue Account ist:",
-    "muted_users": "Stummgeschaltete Benutzer",
+    "moved_title": "hat angegeben, dass dies der neue Account ist:",
+    "muted_users": "Stummgeschaltete Nutzer",
     "mutuals": "Freunde",
     "pinned": "Angepinnt",
     "posts": "Beiträge",
@@ -32,7 +32,7 @@
     "boost": "Teilen",
     "boosted": "Geteilt",
     "close": "Schliessen",
-    "compose": "Schreiben",
+    "compose": "Verfassen",
     "enter_app": "App öffnen",
     "favourite": "Favorisieren",
     "favourited": "Favorisiert",
@@ -56,10 +56,10 @@
     "lang": "Sprache",
     "n-people-in-the-past-n-days": "{0} Personen in den vergangenen {1} Tagen",
     "select_lang": "Sprache auswählen",
-    "sign_in_desc": "Bestehenden Benutzer hinzufügen",
+    "sign_in_desc": "Bestehenden Nutzer hinzufügen",
     "switch_account": "Zu {0} wechseln",
-    "switch_account_desc": "Zu einem anderen Benutzer wechseln",
-    "toggle_dark_mode": "Dunkles Thema ändern",
+    "switch_account_desc": "Zu einem anderen Nutzer wechseln",
+    "toggle_dark_mode": "Farbschema ändern",
     "toggle_zen_mode": "Zen-Modus ändern"
   },
   "common": {
@@ -74,10 +74,10 @@
     "with": "mit"
   },
   "error": {
-    "account_not_found": "Benutzer {0} nicht gefunden",
+    "account_not_found": "Nutzer {0} nicht gefunden",
     "explore-list-empty": "Momentan ist nichts im Trend. Schau später nochmal vorbei!",
     "sign_in_error": "Kann nicht zu Server verbinden",
-    "status_not_found": "Status nicht gefunden"
+    "status_not_found": "Beitrag nicht gefunden"
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar auf Avatar",
@@ -88,7 +88,7 @@
   "help": {
     "desc_highlight": "Erwarte hier und da einige Bugs und fehlende Funktionen.",
     "desc_para1": "Danke für dein Interesse in Elk, unser noch in der Bearbeitung befindliche, generische Mastodon Client!",
-    "desc_para2": "Wir arbeiten hart an der entwicklung und verbessern sie mit der Zeit. Und wir laden dich schon sehr bald ein uns zu helfen, sobald wir es Quelloffen machen!",
+    "desc_para2": "Wir arbeiten hart an der Entwicklung und verbessern ihn mit der Zeit. Und wir laden dich schon sehr bald ein uns zu helfen, sobald wir ihn Quelloffen machen!",
     "desc_para3": "Doch in der Zwischenzeit kannst du der Entwicklung aushelfen, indem du unsere Teammitglieder durch die unten stehenden Links unterstützt.",
     "title": "Elk ist in der Alpha!"
   },
@@ -106,8 +106,8 @@
     "pin_on_profile": "An Profil anpinnen",
     "show_untranslated": "Übersetzung schliessen",
     "toggle_theme": {
-      "dark": "Dunkles Thema ändern",
-      "light": "Helles Thema ändern"
+      "dark": "Dunkles Farbschema aktivieren",
+      "light": "Helles Farbschema aktivieren"
     },
     "translate_post": "Beitrag übersetzen",
     "unblock_account": "Entsperre {0}",
@@ -117,10 +117,10 @@
   },
   "nav_footer": {
     "built_at": "Letzter Build: {0}",
-    "select_feature_flags": "Feature-Flags umschalten",
+    "select_feature_flags": "Feature-Flags aktivieren",
     "select_language": "Sprache auswählen",
     "show_intro": "Intro anzeigen",
-    "toggle_theme": "Farbschema umschalten",
+    "toggle_theme": "Farbschema wechseln",
     "zen_mode": "Zen-Modus"
   },
   "nav_side": {
@@ -128,12 +128,12 @@
     "conversations": "Direktnachrichten",
     "explore": "Entdecken",
     "favourites": "Favoriten",
-    "federated": "Förderierte Timeline",
+    "federated": "Föderiert",
     "home": "Startseite",
-    "local": "Lokale Timeline",
+    "local": "Lokal",
     "notifications": "Mitteilungen",
     "profile": "Profil",
-    "search": "Suche"
+    "search": "Durchsuche {0}"
   },
   "nav_user": {
     "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren."
@@ -141,11 +141,12 @@
   "notification": {
     "favourited_post": "hat deinen Beitrag favorisiert",
     "followed_you": "folgt dir",
-    "followed_you_count": "{n} Benutzer folgt dir|{n} Benutzer folgen dir",
+    "followed_you_count": "{n} Nutzer folgt dir|{n} Nutzer folgen dir",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "hat deinen Beitrag geteilt",
     "request_to_follow": "möchte dir folgen",
-    "update_status": "hat seinen/ihren Status aktualisiert"
+    "signed_up": "hat sich registriert",
+    "update_status": "hat diesen Beitrag aktualisiert"
   },
   "placeholder": {
     "content_warning": "Schreib hier deine Warnung",
@@ -153,6 +154,9 @@
     "reply_to_account": "Antwort an {0}",
     "replying": "Antworten",
     "the_thread": "Der Thread"
+  },
+  "search": {
+    "search_desc": "Suche nach Nutzern & Hashtags"
   },
   "state": {
     "edited": "(bearbeitet)",
@@ -186,7 +190,7 @@
     "edited": "Bearbeitet: {0}"
   },
   "tab": {
-    "accounts": "Benutzer",
+    "accounts": "Nutzer",
     "for_you": "Für dich",
     "hashtags": "Hashtags",
     "media": "Medien",
@@ -231,7 +235,7 @@
     "show_new_items": "Zeige {n} neue Beiträge|Zeige {n} neuen Beitrag|Zeige {n} neue Beiträge"
   },
   "title": {
-    "federated_timeline": "Förderierte Timeline",
+    "federated_timeline": "Föderierte Timeline",
     "local_timeline": "Lokale Timeline"
   },
   "tooltip": {
@@ -248,11 +252,11 @@
     "server_address_label": "Mastodon Server Adresse",
     "sign_out_account": "{0} abmelden",
     "tip_no_account": "Wenn du noch kein Mastodon-Konto hast, {0}.",
-    "tip_register_account": "wähle einen Server aus und registriere einen"
+    "tip_register_account": "wähle einen Server aus und registriere eines"
   },
   "visibility": {
-    "direct": "Nur Erwähnte Benutzer",
-    "direct_desc": "Nur für erwähnte Benutzer sichtbar",
+    "direct": "Nur erwähnte Nutzer",
+    "direct_desc": "Nur für erwähnte Nutzer sichtbar",
     "private": "Nur Follower",
     "private_desc": "Nur für Follower sichtbar",
     "public": "Öffentlich",

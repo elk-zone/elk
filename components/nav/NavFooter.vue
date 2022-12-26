@@ -30,6 +30,13 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
           </button>
         </CommonTooltip>
       </NavSelectLanguage>
+      <NavSelectFontSize>
+        <CommonTooltip :content="$t('nav_footer.select_font_size')">
+          <button flex :aria-label="$t('nav_footer.select_font_size')">
+            <div i-ri:font-size text-lg />
+          </button>
+        </CommonTooltip>
+      </NavSelectFontSize>
       <NavSelectFeatureFlags v-if="isMastoInitialised && currentUser">
         <CommonTooltip :content="$t('nav_footer.select_feature_flags')">
           <button flex :aria-label="$t('nav_footer.select_feature_flags')">
@@ -44,7 +51,7 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
       </button>
     </div>
     <div>{{ $t('app_desc_short') }}</div>
-    <div v-if="isMastoInitialised">
+    <div>
       <i18n-t keypath="nav_footer.built_at">
         <time :datetime="buildTime" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
       </i18n-t>

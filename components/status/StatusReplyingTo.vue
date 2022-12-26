@@ -9,10 +9,10 @@ const account = useAccountById(status.inReplyToAccountId)
 </script>
 
 <template>
-  <div v-if="status.inReplyToAccountId" flex="~ wrap" gap-1>
+  <div v-if="status.inReplyToAccountId" flex="~ wrap" gap-1 items-end>
     <NuxtLink
       v-if="status.inReplyToId"
-      flex="~" items-center font-bold text-sm text-secondary gap-1
+      flex="~" items-center h-auto font-bold text-sm text-secondary gap-1
       :to="getStatusInReplyToRoute(status)"
       :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
     >

@@ -3,7 +3,6 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().favourites.iterate()
 const { t } = useI18n()
 
 useHeadFixed({
@@ -19,8 +18,7 @@ useHeadFixed({
         <span>{{ t('nav_side.favourites') }}</span>
       </NuxtLink>
     </template>
-    <slot>
-      <TimelinePaginator :paginator="paginator" />
-    </slot>
+
+    <TimelineFavourites v-if="isMastoInitialised" />
   </MainContent>
 </template>

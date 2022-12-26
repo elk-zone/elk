@@ -1,4 +1,11 @@
 {
+  "a11y": {
+    "loading_page": "Loading page, please wait",
+    "loading_titled_page": "Loading {0} page, please wait",
+    "locale_changed": "Language changed to {0}",
+    "locale_changing": "Changing language, please wait",
+    "route_loaded": "Page {0} loaded"
+  },
   "account": {
     "avatar_description": "{0}'s avatar",
     "blocked_by": "You're blocked by this user.",
@@ -31,12 +38,16 @@
     "unmute": "Unmute"
   },
   "action": {
+    "apply": "Apply",
     "bookmark": "Bookmark",
     "bookmarked": "Bookmarked",
     "boost": "Boost",
     "boosted": "Boosted",
+    "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
+    "confirm": "Confirm",
+    "edit": "Edit",
     "enter_app": "Enter App",
     "favourite": "Favourite",
     "favourited": "Favourited",
@@ -45,6 +56,7 @@
     "prev": "Prev",
     "publish": "Publish!",
     "reply": "Reply",
+    "save": "Save",
     "save_changes": "Save changes",
     "sign_in": "Sign in",
     "switch_account": "Switch account",
@@ -53,6 +65,10 @@
   "app_desc_short": "A nimble Mastodon web client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Description",
+    "remove_label": "Remove attachment"
+  },
   "command": {
     "activate": "Activate",
     "complete": "Complete",
@@ -81,8 +97,10 @@
   "error": {
     "account_not_found": "Account {0} not found",
     "explore-list-empty": "Nothing is trending right now. Check back later!",
+    "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
     "sign_in_error": "Cannot connect to the server.",
-    "status_not_found": "Status not found"
+    "status_not_found": "Post not found",
+    "unsupported_file_format": "Unsupported file format"
   },
   "feature_flag": {
     "avatar_on_avatar": "Avatar on Avatar",
@@ -123,6 +141,7 @@
   "nav_footer": {
     "built_at": "Built {0}",
     "select_feature_flags": "Toggle Feature Flags",
+    "select_font_size": "Select Font Size",
     "select_language": "Select Language",
     "show_intro": "Show intro",
     "toggle_theme": "Toggle Theme",
@@ -138,7 +157,8 @@
     "local": "Local",
     "notifications": "Notifications",
     "profile": "Profile",
-    "search": "Search"
+    "search": "Search {0}",
+    "settings": "Settings"
   },
   "nav_user": {
     "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
@@ -159,7 +179,7 @@
         "reblog": "Reblog your post",
         "title": "What notifications to receive?"
       },
-      "close_btn": "Close desktop notification settings",
+      "close_btn": "Close push notifications settings",
       "policy": {
         "all": "From anyone",
         "followed": "Of people I follow",
@@ -168,21 +188,23 @@
         "title": "Who can I receive notifications from?"
       },
       "save_settings": "Save settings changes",
-      "show_btn": "Show desktop notification settings",
-      "title": "Desktop notification settings",
+      "show_btn": "Show push notifications settings",
+      "title": "Push notifications settings",
       "undo_settings": "Undo settings changes",
-      "unsubscribe": "Disable desktop notifications",
+      "unsubscribe": "Disable push notifications",
       "unsubscribed_with_warning": "Enable notifications to receive notifications from this account by clicking \"@:notification.settings.warning.enable_desktop{'\"'} button.",
-      "unsupported": "Your browser does not support desktop notifications.",
+      "unsupported": "Your browser does not support push notifications.",
       "warning": {
         "enable_close": "Close",
-        "enable_description": "To receive notifications when Elk is not open, enable desktop notifications. You can control precisely what types of interactions generate desktop notifications via the \"Show Settings\" button above once enabled.",
-        "enable_description_short": "To change desktop notification settings when Elk is not open, you must first enable desktop notifications.",
-        "enable_desktop": "Enable desktop notifications",
-        "enable_title": "Never miss anything"
+        "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:notification.settings.show_btn{'\"'} button above once enabled.",
+        "enable_description_short": "To change push notifications settings when Elk is not open, you must first enable push notifications.",
+        "enable_desktop": "Enable push notifications",
+        "enable_title": "Never miss anything",
+        "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
       }
     },
-    "update_status": "updated their status"
+    "signed_up": "signed up",
+    "update_status": "updated their post"
   },
   "placeholder": {
     "content_warning": "Write your warning here",
@@ -195,15 +217,38 @@
     "dismiss": "Dismiss",
     "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
     "reload": "Reload",
-    "title": "New Elk update available"
+    "title": "New Elk update available!",
+    "update": "Update",
+    "update_available_short": "Update Elk"
   },
   "search": {
     "search_desc": "Search for people & hashtags"
+  },
+  "settings": {
+    "preferences": {
+      "label": "Preferences"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bio",
+        "description": "Edit avatar, username, profile, etc.",
+        "display_name": "Display name",
+        "label": "Appearance",
+        "title": "Edit profile"
+      },
+      "featured_tags": {
+        "description": "People can browse your public posts under these hashtags.",
+        "label": "Featured hashtags"
+      },
+      "label": "Profile"
+    },
+    "select_a_settings": "Select a settings"
   },
   "state": {
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
+    "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },
   "status": {
@@ -284,6 +329,7 @@
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
     "change_content_visibility": "Change content visibility",
+    "emoji": "Emoji",
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",

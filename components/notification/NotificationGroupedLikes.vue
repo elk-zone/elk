@@ -10,7 +10,7 @@ const { group } = defineProps<{
   <article flex flex-col relative>
     <StatusCard :status="group.status!" :faded="true">
       <template #meta>
-        <div flex flex-col gap-2>
+        <div flex flex-col gap-1 mt-1>
           <div v-for="like of group.likes" :key="like.account.id" flex>
             <div v-if="like.reblog" i-ri:repeat-fill text-xl mr-2 color-green />
             <div v-if="like.favourite && !like.reblog" i-ri:heart-fill text-xl mr-2 color-red />

@@ -52,7 +52,7 @@ const activate = () => {
 
 <template>
   <div ref="el" relative px4 py2 group>
-    <div bg-base border="~ base" h10 rounded-full flex="~ row" items-center relative outline-primary outline-1 focus-within:outline transition-all transition-duration-500>
+    <div bg-base border="~ base" h10 rounded-full flex="~ row" items-center relative outline-primary outline-1 focus-within:outline>
       <div i-ri:search-2-line mx4 absolute pointer-events-none text-secondary mt="1px" />
       <input
         ref="input"
@@ -64,7 +64,7 @@ const activate = () => {
         bg-transparent
         outline="focus:none"
         pr-4
-        :placeholder="`${t('nav_side.search')} Elk`"
+        :placeholder="t('nav_side.search', ['Elk'])"
         pb="1px"
         placeholder-text-secondary
         @keydown.down.prevent="shift(1)"

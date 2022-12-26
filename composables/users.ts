@@ -44,14 +44,13 @@ export const useUsers = () => users
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
 async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }) {
-  const config = useRuntimeConfig()
   const route = useRoute()
   const router = useRouter()
   const server = user?.server || route.params.server as string || publicServer.value
   const masto = await loginMasto({
     url: `https://${server}`,
     accessToken: user?.token,
-    disableVersionCheck: !!config.public.disableVersionCheck,
+    disableVersionCheck: true,
     // Suppress warning of `masto/fetch` usage
     disableExperimentalWarning: true,
   })
@@ -66,8 +65,11 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
       const [me, instance, pushSubscription] = await Promise.all([
         masto.accounts.verifyCredentials(),
         masto.instances.fetch(),
-        // we get 404 response instead empty data
-        masto.pushSubscriptions.fetch().catch(() => Promise.resolve(undefined)),
+        // if PWA is not enabled, don't get push subscription
+        useRuntimeConfig().public.pwaEnabled
+          // we get 404 response instead empty data
+          ? masto.pushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
+          : Promise.resolve(undefined),
       ])
 
       user.account = me
@@ -86,7 +88,12 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
     }
   }
 
-  if ('server' in route.params && user?.token && !useNuxtApp()._processingMiddleware) {
+  // This only cleans up the URL; page content should stay the same
+  if (route.path === '/signin/callback') {
+    await router.push('/home')
+  }
+
+  else if ('server' in route.params && user?.token && !useNuxtApp()._processingMiddleware) {
     await router.push({
       ...route,
       force: true,
@@ -96,17 +103,25 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
   return masto
 }
 
-export async function removePushNotifications(user: UserLogin, fromSWPushManager = true) {
-  if (!useRuntimeConfig().public.pwaEnabled || !user.pushSubscription)
-    return
+export function setAccountInfo(userId: string, account: AccountCredentials) {
+  const index = getUsersIndexByUserId(userId)
+  if (index === -1)
+    return false
 
-  // unsubscribe push notifications
-  try {
-    await useMasto().pushSubscriptions.remove()
-  }
-  catch {
-    // ignore
-  }
+  users.value[index].account = account
+  return true
+}
+
+export async function pullMyAccountInfo() {
+  const me = await useMasto().accounts.verifyCredentials()
+  setAccountInfo(currentUserId.value, me)
+}
+
+export function getUsersIndexByUserId(userId: string) {
+  return users.value.findIndex(u => u.account?.id === userId)
+}
+
+export async function removePushNotificationData(user: UserLogin, fromSWPushManager = true) {
   // clear push subscription
   user.pushSubscription = undefined
   const { acct } = user.account
@@ -115,8 +130,10 @@ export async function removePushNotifications(user: UserLogin, fromSWPushManager
   // clear push notification policy
   delete useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {}).value[acct]
 
+  const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+
   // we remove the sw push manager if required and there are no more accounts with subscriptions
-  if (fromSWPushManager && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
+  if (pwaEnabled && fromSWPushManager && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
     // clear sw push subscription
     try {
       const registration = await navigator.serviceWorker.ready
@@ -127,6 +144,19 @@ export async function removePushNotifications(user: UserLogin, fromSWPushManager
     catch {
       // juts ignore
     }
+  }
+}
+
+export async function removePushNotifications(user: UserLogin) {
+  if (!user.pushSubscription)
+    return
+
+  // unsubscribe push notifications
+  try {
+    await useMasto().pushSubscriptions.remove()
+  }
+  catch {
+    // ignore
   }
 }
 
@@ -148,6 +178,8 @@ export async function signout() {
       delete instances.value[currentUser.value.server]
 
     await removePushNotifications(currentUser.value)
+
+    await removePushNotificationData(currentUser.value)
 
     currentUserId.value = ''
     // Remove the current user from the users
@@ -280,6 +312,17 @@ export const createMasto = () => {
       if (!api.value) {
         return new Proxy({}, {
           get(_, subkey) {
+            if (typeof subkey === 'string' && subkey.startsWith('iterate')) {
+              return (...args: any[]) => {
+                let paginator: any
+                function next() {
+                  paginator = paginator || (api.value as any)?.[key][subkey](...args)
+                  return paginator.next()
+                }
+                return { next }
+              }
+            }
+
             return (...args: any[]) => apiPromise.value?.then((r: any) => r[key][subkey](...args))
           },
         })

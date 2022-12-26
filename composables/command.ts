@@ -14,6 +14,7 @@ const scopes = [
   'Account',
   'Languages',
   'Switch account',
+  'Settings',
 ] as const
 
 export type CommandScopeNames = typeof scopes[number]

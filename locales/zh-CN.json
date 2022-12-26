@@ -37,6 +37,8 @@
     "boosted": "已转发",
     "close": "关闭",
     "compose": "撰写",
+    "confirm": "确认",
+    "edit": "编辑",
     "enter_app": "进入应用",
     "favourite": "喜欢",
     "favourited": "已喜欢",
@@ -45,6 +47,7 @@
     "prev": "上一个",
     "publish": "发布！",
     "reply": "回复",
+    "save": "保存",
     "save_changes": "保存更改",
     "sign_in": "登鹿",
     "switch_account": "切换帐号",
@@ -81,8 +84,10 @@
   "error": {
     "account_not_found": "未找到用户 {0}",
     "explore-list-empty": "目前没有热门话题，稍后再来看看吧！",
+    "file_size_cannot_exceed_n_mb": "文件大小不能超过 {0}MB",
     "sign_in_error": "无法连接服务器",
-    "status_not_found": "未找到帖文"
+    "status_not_found": "未找到帖文",
+    "unsupported_file_format": "不支持的文件格式"
   },
   "feature_flag": {
     "avatar_on_avatar": "头像堆叠",
@@ -123,6 +128,7 @@
   "nav_footer": {
     "built_at": "于 {0} 构建",
     "select_feature_flags": "功能开关",
+    "select_font_size": "字体大小",
     "select_language": "选择语言",
     "show_intro": "应用介绍",
     "toggle_theme": "切换主题",
@@ -138,7 +144,8 @@
     "local": "本地",
     "notifications": "通知",
     "profile": "个人资料",
-    "search": "搜索"
+    "search": "搜索 {0}",
+    "settings": "设置"
   },
   "nav_user": {
     "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。"
@@ -199,6 +206,26 @@
   },
   "search": {
     "search_desc": "搜索用户或话题标签"
+  },
+  "settings": {
+    "preferences": {
+      "label": "首选项"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "简介",
+        "description": "编辑个人资料，例如头像、用户名、个人简介等。",
+        "display_name": "昵称",
+        "label": "外观",
+        "title": "编辑个人资料"
+      },
+      "featured_tags": {
+        "description": "人们可以在这些标签下浏览你的公共嘟文。",
+        "label": "精选的话题标签"
+      },
+      "label": "个人资料"
+    },
+    "select_a_settings": "在左侧选择一个设置"
   },
   "state": {
     "edited": "（已编辑）",

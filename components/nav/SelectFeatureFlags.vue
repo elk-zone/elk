@@ -1,31 +1,27 @@
-<script setup lang="ts">
-const featureFlags = useFeatureFlags()
-</script>
-
 <template>
   <CommonDropdown placement="top">
     <slot />
     <template #popper>
       <CommonDropdownItem
-        :checked="featureFlags.experimentalVirtualScroll"
+        :checked="currentUserFeatureFlags.experimentalVirtualScroll"
         @click="toggleFeatureFlag('experimentalVirtualScroll')"
       >
         {{ $t('feature_flag.virtual_scroll') }}
       </CommonDropdownItem>
       <CommonDropdownItem
-        :checked="featureFlags.experimentalAvatarOnAvatar"
+        :checked="currentUserFeatureFlags.experimentalAvatarOnAvatar"
         @click="toggleFeatureFlag('experimentalAvatarOnAvatar')"
       >
         {{ $t('feature_flag.avatar_on_avatar') }}
       </CommonDropdownItem>
       <CommonDropdownItem
-        :checked="featureFlags.experimentalGitHubCards"
+        :checked="currentUserFeatureFlags.experimentalGitHubCards"
         @click="toggleFeatureFlag('experimentalGitHubCards')"
       >
         {{ $t('feature_flag.github_cards') }}
       </CommonDropdownItem>
       <CommonDropdownItem
-        :checked="featureFlags.experimentalUserSwitcherSidebar"
+        :checked="currentUserFeatureFlags.experimentalUserSwitcherSidebar"
         @click="toggleFeatureFlag('experimentalUserSwitcherSidebar')"
       >
         {{ $t('feature_flag.user_switcher_sidebar') }}

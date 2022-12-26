@@ -16,7 +16,7 @@ const { translation } = useTranslation(status)
       :emojis="status.emojis"
       :lang="status.language"
     />
-    <div v-else h-3 />
+    <div v-else />
     <template v-if="translation.visible">
       <div my2 h-px border="b base" bg-base />
       <ContentRich :content="translation.text" :emojis="status.emojis" />

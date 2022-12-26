@@ -14,7 +14,7 @@ defineOptions({
 </script>
 
 <template>
-  <VMenu v-if="!disabled && account" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs">
+  <VMenu v-if="!disabled && account" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
     <slot />
     <template #popper>
       <AccountHoverCard v-if="account" :account="account" />

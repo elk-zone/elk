@@ -17,7 +17,7 @@ defineOptions({
 <template>
   <component :is="as" flex gap-3 v-bind="$attrs">
     <AccountHoverWrapper :disabled="!hoverCard" :account="account" shrink-0>
-      <AccountAvatar :account="account" w-52px h-52px p-2px />
+      <AccountAvatar :account="account" account-avatar-normal />
     </AccountHoverWrapper>
     <div flex="~ col" shrink overflow-hidden justify-center leading-none>
       <div flex="~" gap-2>

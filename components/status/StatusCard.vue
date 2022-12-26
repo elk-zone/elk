@@ -65,7 +65,21 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
 </script>
 
 <template>
-  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-1 px-4 pt-1 class="pb-1.5" transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
+  <div
+    v-if="filter?.filterAction !== 'hide'"
+    :id="`status-${status.id}`"
+    ref="el"
+    relative flex flex-col gap-1 px-4 pt-1
+    class="pb-1.5"
+    transition-100
+    :class="{ 'hover:bg-active': hover }"
+    tabindex="0"
+    focus:outline-none focus-visible:ring="2 primary"
+    :lang="status.language"
+    dir="auto"
+    @click="onclick"
+    @keydown.enter="onclick"
+  >
     <div flex justify-between>
       <slot name="meta">
         <div v-if="rebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1>

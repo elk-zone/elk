@@ -8,7 +8,7 @@ const accountName = $(computedEager(() => toShortHandle(params.account as string
 
 const { t } = useI18n()
 
-const { data: account, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null)))
+const { data: account, pending, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null), { watch: [isMastoInitialised], immediate: isMastoInitialised.value }))
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
 
 onReactivated(() => {
@@ -24,7 +24,8 @@ onReactivated(() => {
       <span text-lg font-bold>{{ account ? getDisplayName(account) : t('nav_side.profile') }}</span>
     </template>
 
-    <template v-if="account">
+    <template v-if="pending" />
+    <template v-else-if="account">
       <AccountMoved v-if="account.moved" :account="account" />
       <AccountHeader :account="account" command border="b base" :class="{ 'op-50 grayscale-50': !!account.moved }" />
 

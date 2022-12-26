@@ -13,9 +13,10 @@ const main = ref<ComponentPublicInstance | null>(null)
 let bottomSpace = $ref(0)
 const publishWidget = ref()
 
-const { data: status, pending, refresh: refreshStatus } = useAsyncData(`status:${id}`, async () => (
-  window.history.state?.status as Status | undefined)
-  ?? await fetchStatus(id),
+const { data: status, pending, refresh: refreshStatus } = useAsyncData(
+  `status:${id}`,
+  async () => (window.history.state?.status as Status | undefined) ?? await fetchStatus(id),
+  { watch: [isMastoInitialised], immediate: isMastoInitialised.value },
 )
 const masto = useMasto()
 const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(`context:${id}`, () => masto.statuses.fetchContext(id))

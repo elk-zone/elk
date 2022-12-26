@@ -93,7 +93,7 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
         <template v-if="showRebloggedByAvatarOnAvatar">
-          <div absolute top--3px left--0.8 z--1 w-25px h-25px rounded-full>
+          <div absolute top--3px lrt-left--0.8 rtl-right--0.8 z--1 w-25px h-25px rounded-full>
             <AccountAvatar :account="rebloggedBy" />
           </div>
         </template>

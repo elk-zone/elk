@@ -1,6 +1,8 @@
 import { pwaInfo } from 'virtual:pwa-info'
 import type { Link } from '@unhead/schema'
+import type { Directions } from 'vue-i18n-routing'
 import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
+import type { LocaleObject } from '#i18n'
 
 export function setupPageHeader() {
   const isDev = process.dev
@@ -30,9 +32,15 @@ export function setupPageHeader() {
     }
   }
 
+  const localeMap = (i18n.locales.value as LocaleObject[]).reduce((acc, l) => {
+    acc[l.code!] = l.dir ?? 'ltr'
+    return acc
+  }, {} as Record<string, Directions>)
+
   useHeadFixed({
     htmlAttrs: {
       lang: () => i18n.locale.value,
+      dir: () => localeMap[i18n.locale.value] ?? 'ltr',
     },
     titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
     link,

@@ -44,6 +44,13 @@ const switchUser = (user: UserLogin) => {
         icon="i-ri:user-add-line"
         @click="openSigninDialog"
       />
+
+      <NuxtLink to="/settings">
+        <CommonDropdownItem
+          :text="$t('nav_side.settings')"
+          icon="i-ri:settings-4-line"
+        />
+      </NuxtLink>
       <CommonDropdownItem
         v-if="isMastoInitialised && currentUser"
         :text="$t('user.sign_out_account', [getFullHandle(currentUser.account)])"

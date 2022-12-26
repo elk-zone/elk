@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+const route = useRoute()
+
+const wideLayout = computed(() => route.meta.wideLayout ?? false)
+</script>
+
 <template>
   <div h-full :class="{ zen: isZenMode }">
     <div v-if="isHydrated.value && showUserSwitcherSidebar" fixed h-full hidden lg:block bg-code border-r-1 border-base>
@@ -39,7 +45,7 @@
           </slot>
         </div>
       </aside>
-      <div class="w-full sm:w-600px min-h-screen sm:border-l sm:border-r border-base">
+      <div class="w-full min-h-screen" :class="wideLayout ? 'lg:w-full sm:w-600px' : 'sm:w-600px'" sm:border-l sm:border-r border-base>
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
@@ -48,7 +54,7 @@
           <NavBottom v-if="isHydrated.value" />
         </div>
       </div>
-      <aside class="hidden sm:none lg:block w-1/4 zen-hide">
+      <aside v-if="!wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col" py3>
           <slot name="right">
             <SearchWidget />

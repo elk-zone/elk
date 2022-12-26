@@ -3,8 +3,6 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().bookmarks.iterate()
-
 const { t } = useI18n()
 
 useHeadFixed({
@@ -21,8 +19,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <slot>
-      <TimelinePaginator :paginator="paginator" />
-    </slot>
+    <TimelineBookmarks v-if="isMastoInitialised" />
   </MainContent>
 </template>

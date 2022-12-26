@@ -1,5 +1,6 @@
 {
   "type": "module",
+  "version": "0.0.1",
   "private": true,
   "packageManager": "pnpm@7.9.0",
   "license": "MIT",
@@ -20,7 +21,8 @@
     "test:unit": "vitest",
     "test:typecheck": "vue-tsc --noEmit && vue-tsc --noEmit --project service-worker/tsconfig.json",
     "test": "nr test:unit",
-    "postinstall": "nuxi prepare && simple-git-hooks"
+    "postinstall": "nuxi prepare && simple-git-hooks",
+    "release": "bumpp && esno scripts/release.ts"
   },
   "dependencies": {
     "@fnando/sparkline": "^0.3.10",
@@ -77,6 +79,7 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "@vue-macros/nuxt": "^0.2.2",
     "@vueuse/nuxt": "^9.9.0",
+    "bumpp": "^8.2.1",
     "emoji-mart": "^5.4.0",
     "eslint": "^8.30.0",
     "esno": "^0.16.3",
@@ -87,6 +90,7 @@
     "postcss-nested": "^6.0.0",
     "prettier": "^2.8.1",
     "rollup-plugin-node-polyfills": "^0.2.1",
+    "simple-git": "^3.15.1",
     "simple-git-hooks": "^2.8.1",
     "std-env": "^3.3.1",
     "theme-vitesse": "^0.6.0",

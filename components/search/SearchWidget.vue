@@ -59,11 +59,13 @@ const activate = () => {
         v-model="query"
         h-full
         pl-10
+        rtl-pr-10
         rounded-full
         w-full
         bg-transparent
         outline="focus:none"
         pr-4
+        rtl-pl-4
         :placeholder="t('nav_side.search', ['Elk'])"
         pb="1px"
         placeholder-text-secondary

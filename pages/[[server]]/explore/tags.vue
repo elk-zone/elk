@@ -22,7 +22,7 @@ useHeadFixed({
 </script>
 
 <template>
-  <CommonAlert v-if="!hideTagsTips && data && data.length" @close="hideTagsTips = true">
+  <CommonAlert v-if="isHydrated.value && !hideTagsTips && data && data.length" @close="hideTagsTips = true">
     <p>{{ $t('tooltip.explore_tags_intro') }}</p>
   </CommonAlert>
 

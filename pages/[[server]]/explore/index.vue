@@ -13,7 +13,7 @@ useHeadFixed({
 </script>
 
 <template>
-  <CommonAlert v-if="!hideNewsTips" @close="hideNewsTips = true">
+  <CommonAlert v-if="isHydrated.value && !hideNewsTips" @close="hideNewsTips = true">
     <p>{{ $t('tooltip.explore_posts_intro') }}</p>
   </CommonAlert>
   <!-- TODO: Tabs for trending statuses, tags, and links -->

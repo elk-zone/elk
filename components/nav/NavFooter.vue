@@ -1,11 +1,10 @@
 <script setup lang="ts">
-const buildTime = import.meta.env.__BUILD_TIME__ as string
-const buildCommit = import.meta.env.__BUILD_COMMIT__ as string
-const buildTimeDate = new Date(buildTime)
+import buildInfo from 'virtual:build-info'
 
 const timeAgoOptions = useTimeAgoOptions()
 
-const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
+const buildTimeDate = new Date(buildInfo.time)
+const buildTimeAgo = useTimeAgo(buildTimeDate, timeAgoOptions)
 </script>
 
 <template>
@@ -53,17 +52,21 @@ const buildTimeAgo = useTimeAgo(buildTime, timeAgoOptions)
     <div>{{ $t('app_desc_short') }}</div>
     <div>
       <i18n-t keypath="nav_footer.built_at">
-        <time :datetime="buildTime" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
+        <time :datetime="String(buildTimeDate)" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
       </i18n-t>
-      <template v-if="buildCommit">
+      <template v-if="buildInfo.version">
+        &middot;
+        v{{ buildInfo.version }}
+      </template>
+      <template v-if="buildInfo.commit && buildInfo.branch !== 'release'">
         &middot;
         <NuxtLink
           external
-          :href="`https://github.com/elk-zone/elk/commit/${buildCommit}`"
+          :href="`https://github.com/elk-zone/elk/commit/${buildInfo.commit}`"
           target="_blank"
           font-mono
         >
-          {{ buildCommit.slice(0, 7) }}
+          {{ buildInfo.commit.slice(0, 7) }}
         </NuxtLink>
       </template>
     </div>

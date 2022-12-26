@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '~/modules/purge-comments',
     '~/modules/setup-components',
+    '~/modules/build-info',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/tauri/index',
   ],
@@ -45,8 +46,6 @@ export default defineNuxtConfig({
   },
   vite: {
     define: {
-      'import.meta.env.__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
-      'import.meta.env.__BUILD_COMMIT__': JSON.stringify(process.env.COMMIT_REF || ''),
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
       'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
     },

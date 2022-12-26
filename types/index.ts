@@ -65,3 +65,10 @@ export interface Draft {
   attachments: Attachment[]
 }
 export type DraftMap = Record<string, Draft>
+
+export interface BuildInfo {
+  version: string
+  commit: string
+  time: number
+  branch: string
+}

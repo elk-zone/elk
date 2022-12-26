@@ -1,4 +1,11 @@
 {
+  "a11y": {
+    "loading_page": "Cargando página, espere por favor",
+    "loading_titled_page": "Cargando página {0}, espere por favor",
+    "locale_changed": "Idioma cambiado a {0}",
+    "locale_changing": "Cambiando idioma, espere por favor",
+    "route_loaded": "Página {0} cargada"
+  },
   "account": {
     "avatar_description": "avatar de {0}",
     "blocked_by": "Estás bloqueado por este usuario.",
@@ -36,6 +43,7 @@
     "bookmarked": "Guardado como marcador",
     "boost": "Retootear",
     "boosted": "Retooteado",
+    "clear_upload_failed": "Limpiar errores de subida de archivos",
     "close": "Cerrar",
     "compose": "Redactar",
     "edit": "Editar",
@@ -128,10 +136,11 @@
   },
   "nav_footer": {
     "built_at": "Compilado {0}",
-    "select_feature_flags": "Cambiar Marcadores de Funcionalidades",
-    "select_language": "Seleccionar Idioma",
+    "select_feature_flags": "Cambiar marcadores de funcionalidades",
+    "select_font_size": "Cambiar tamaño de letra",
+    "select_language": "Cambiar idioma",
     "show_intro": "Mostrar intro",
-    "toggle_theme": "Cambiar Tema",
+    "toggle_theme": "Cambiar tema",
     "zen_mode": "Modo Zen"
   },
   "nav_side": {
@@ -185,7 +194,8 @@
         "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones push. Puedes controlar con precisión qué tipos de interacciones generan notificaciones push a través del botón \"@:notification.settings.show_btn{'\"'} de arriba una vez que estén habilitadas.",
         "enable_description_short": "Para cambiar los ajustes de las notificaciones push cuando Elk no esté abierto, debe habilitar antes las notificaciones push.",
         "enable_desktop": "Habilitar notificaciones push",
-        "enable_title": "Nunca te pierdas nada"
+        "enable_title": "Nunca te pierdas nada",
+        "re_auth": "Parace que su servidor no soporta notificaciones push. Pruebe a cerrar la sesión y volver a iniciarla, si este mensaje sigue apareciendo contacte con el administrador de su servidor."
       }
     },
     "update_status": "ha actualizado su estado"
@@ -210,6 +220,7 @@
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Cargando...",
+    "upload_failed": "Subida fallida",
     "uploading": "Subiendo..."
   },
   "status": {

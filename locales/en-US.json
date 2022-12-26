@@ -1,4 +1,11 @@
 {
+  "a11y": {
+    "loading_page": "Loading page, please wait",
+    "loading_titled_page": "Loading {0} page, please wait",
+    "locale_changed": "Language changed to {0}",
+    "locale_changing": "Changing language, please wait",
+    "route_loaded": "Page {0} loaded"
+  },
   "account": {
     "avatar_description": "{0}'s avatar",
     "blocked_by": "You're blocked by this user.",
@@ -36,6 +43,7 @@
     "bookmarked": "Bookmarked",
     "boost": "Boost",
     "boosted": "Boosted",
+    "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
     "edit": "Edit",
@@ -129,6 +137,7 @@
   "nav_footer": {
     "built_at": "Built {0}",
     "select_feature_flags": "Toggle Feature Flags",
+    "select_font_size": "Select Font Size",
     "select_language": "Select Language",
     "show_intro": "Show intro",
     "toggle_theme": "Toggle Theme",
@@ -185,7 +194,8 @@
         "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:notification.settings.show_btn{'\"'} button above once enabled.",
         "enable_description_short": "To change push notifications settings when Elk is not open, you must first enable push notifications.",
         "enable_desktop": "Enable push notifications",
-        "enable_title": "Never miss anything"
+        "enable_title": "Never miss anything",
+        "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
       }
     },
     "signed_up": "signed up",
@@ -202,7 +212,9 @@
     "dismiss": "Dismiss",
     "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
     "reload": "Reload",
-    "title": "New Elk update available"
+    "title": "New Elk update available!",
+    "update": "Update",
+    "update_available_short": "Update Elk"
   },
   "search": {
     "search_desc": "Search for people & hashtags"
@@ -211,6 +223,7 @@
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
+    "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },
   "status": {
@@ -291,6 +304,7 @@
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
     "change_content_visibility": "Change content visibility",
+    "emoji": "Emoji",
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",

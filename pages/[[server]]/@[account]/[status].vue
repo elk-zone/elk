@@ -17,7 +17,8 @@ const { data: status, pending, refresh: refreshStatus } = useAsyncData(`status:$
   window.history.state?.status as Status | undefined)
   ?? await fetchStatus(id),
 )
-const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(`context:${id}`, () => useMasto().statuses.fetchContext(id))
+const masto = useMasto()
+const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(`context:${id}`, () => masto.statuses.fetchContext(id))
 
 const replyDraft = $computed(() => status.value ? getReplyDraft(status.value) : null)
 
@@ -57,7 +58,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template v-if="!pending">
-      <div v-if="status" min-h-100vh>
+      <div v-if="status" min-h-100vh mt--1px>
         <template v-if="context">
           <template v-for="comment of context?.ancestors" :key="comment.id">
             <StatusCard :status="comment" context="account" border="t base" :show-reply-to="false" />

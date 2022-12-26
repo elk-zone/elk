@@ -10,13 +10,17 @@ const props = withDefaults(defineProps<{
   removable: true,
 })
 
-defineEmits<{
+const emit = defineEmits<{
   (evt: 'remove'): void
   (evt: 'setDescription', description: string): void
 }>()
 
 const isEditDialogOpen = ref(false)
 const description = ref(props.attachment.description ?? '')
+const toggleApply = () => {
+  isEditDialogOpen.value = false
+  emit('setDescription', unref(description))
+}
 </script>
 
 <template>
@@ -45,14 +49,14 @@ const description = ref(props.attachment.description ?? '')
       py-6
       px-6 max-w-300
     >
-      <div flex gap-5>
+      <div flex flex-col-reverse gap-5 md:flex-row>
         <div flex flex-col gap-2 justify-between>
           <h1 id="edit-attachment" font-bold>
             {{ $t('attachment.edit_title') }}
           </h1>
           <div flex flex-col gap-2>
-            <textarea v-model="description" p-3 w-100 h-50 bg-base rounded-2 border-strong border-1 />
-            <button btn-outline @click="$emit('setDescription', description)">
+            <textarea v-model="description" p-3 h-50 bg-base rounded-2 border-strong border-1 md:w-100 />
+            <button btn-outline @click="toggleApply">
               {{ $t('action.apply') }}
             </button>
           </div>

@@ -107,6 +107,9 @@ export default defineNuxtConfig({
       crawlLinks: false,
       routes: ['/', '/200.html'],
     },
+    routeRules: {
+      '/list-servers': { swr: true },
+    },
   },
   app: {
     keepalive: true,

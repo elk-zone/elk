@@ -55,5 +55,5 @@ const reload = async () => {
       </slot>
     </MainContent>
   </NuxtLayout>
-  <PWAPrompt />
+  <AriaAnnouncer />
 </template>

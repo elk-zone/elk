@@ -1,5 +1,6 @@
 <script setup lang="ts">
 setupI18n()
+setupFontSize()
 setupPageHeader()
 provideGlobalCommands()
 
@@ -15,5 +16,5 @@ const { params } = useRoute()
     <!-- TODO: rework the /[account] routes to remove conditional loading -->
     <NuxtPage v-if="(!params.account && $route.path !== '/signin/callback') || isMastoInitialised" />
   </NuxtLayout>
-  <PWAPrompt />
+  <AriaAnnouncer />
 </template>

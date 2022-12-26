@@ -39,7 +39,7 @@
           </slot>
         </div>
       </aside>
-      <div class="w-full sm:w-600px min-h-screen" border="none sm:l sm:r base">
+      <div class="w-full sm:w-600px min-h-screen sm:border-l sm:border-r border-base">
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
@@ -53,6 +53,7 @@
           <slot name="right">
             <SearchWidget />
             <div flex-auto />
+            <PwaPrompt />
             <NavFooter />
           </slot>
         </div>

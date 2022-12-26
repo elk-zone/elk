@@ -1,3 +1,7 @@
+html {
+  font-size: var(--font-size, 15px);
+}
+
 @font-face {
   font-display: swap;
   font-family: "DM Mono";
@@ -80,6 +84,7 @@ body {
 }
 
 .content-rich {
+  line-height: calc(4 / 3 * 1em);
   overflow-wrap: break-word;
 
   a {
@@ -88,7 +93,7 @@ body {
       --at-apply: 'hidden';
     }
     .ellipsis {
-      --at-apply: 'line-clamp-1 ws-pre-wrap break-all';
+      --at-apply: 'line-clamp-1 ws-pre-wrap break-all inline';
       &::after {
         content: '…';
       }
@@ -98,7 +103,7 @@ body {
     --at-apply: font-bold;
   }
   p {
-    --at-apply: my-2;
+    --at-apply: my-1;
   }
   code {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.9em leading-0.8em;
@@ -174,4 +179,8 @@ body {
 .sparkline--line {
   stroke: var(--c-primary);
   stroke-width: 2;
+}
+
+em-emoji-picker {
+  --border-radius: 0;
 }

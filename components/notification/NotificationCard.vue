@@ -18,6 +18,8 @@ const { notification } = defineProps<{
           rtl-rounded-bl-3
           rtl-rounded-br-0
           py-3 bg-base top-0
+          :lang="notification.status?.language ?? undefined"
+          :dir="notification.status?.language ? 'auto' : 'ltr'"
         >
           <div i-ri:user-follow-fill mr-1 color-primary />
           <ContentRich
@@ -29,7 +31,11 @@ const { notification } = defineProps<{
             {{ $t('notification.followed_you') }}
           </span>
         </div>
-        <AccountBigCard :account="notification.account" />
+        <AccountBigCard
+          :account="notification.account"
+          :lang="notification.status?.language ?? undefined"
+          :dir="notification.status?.language ? 'auto' : 'ltr'"
+        />
       </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'admin.sign_up'">

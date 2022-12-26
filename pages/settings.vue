@@ -10,7 +10,7 @@ const isRootPath = computedEager(() => route.name === 'settings')
 
 <template>
   <div min-h-screen flex>
-    <div border="x base" :class="isRootPath ? 'block lg:flex-none flex-1' : 'hidden lg:block'">
+    <div border="r base" :class="isRootPath ? 'block lg:flex-none flex-1' : 'hidden lg:block'">
       <MainContent>
         <template #title>
           <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
@@ -27,9 +27,27 @@ const isRootPath = computedEager(() => route.name === 'settings')
           />
           <SettingsNavItem
             command
+            icon="i-ri-compasses-2-line"
+            :text="$t('settings.interface.label')"
+            to="/settings/interface"
+          />
+          <SettingsNavItem
+            command
+            icon="i-ri-globe-line"
+            :text="$t('settings.language.label')"
+            to="/settings/language"
+          />
+          <SettingsNavItem
+            command
             icon="i-ri:settings-2-line"
             :text="$t('settings.preferences.label')"
             to="/settings/preferences"
+          />
+          <SettingsNavItem
+            command
+            icon="i-ri:information-line"
+            :text="$t('settings.about.label')"
+            to="/settings/about"
           />
         </div>
       </MainContent>

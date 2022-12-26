@@ -225,6 +225,15 @@
     "search_desc": "Search for people & hashtags"
   },
   "settings": {
+    "about": {
+      "label": "About"
+    },
+    "interface": {
+      "label": "Interface"
+    },
+    "language": {
+      "label": "Language"
+    },
     "preferences": {
       "label": "Preferences"
     },

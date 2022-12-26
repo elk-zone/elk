@@ -33,14 +33,14 @@ export function setupPageHeader() {
   }
 
   const localeMap = (i18n.locales.value as LocaleObject[]).reduce((acc, l) => {
-    acc[l.code!] = l.dir ?? 'ltr'
+    acc[l.code!] = l.dir ?? 'auto'
     return acc
   }, {} as Record<string, Directions>)
 
   useHeadFixed({
     htmlAttrs: {
       lang: () => i18n.locale.value,
-      dir: () => localeMap[i18n.locale.value] ?? 'ltr',
+      dir: () => localeMap[i18n.locale.value] ?? 'auto',
     },
     titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
     link,

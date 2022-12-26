@@ -10,7 +10,12 @@ const { notification } = defineProps<{
   <article flex flex-col relative>
     <template v-if="notification.type === 'follow'">
       <NuxtLink :to="getAccountRoute(notification.account)">
-        <div flex items-center absolute pl-3 pr-4 py-3 bg-base rounded-br-3 top-0 left-0>
+        <div
+          flex items-center absolute
+          lrt="pl-3 pr-4 left-0 rounded-br-3"
+          rtl="pr-3 pl-4 right-0 rounded-bl-3"
+          py-3 bg-base top-0
+        >
           <div i-ri:user-follow-fill mr-1 color-primary />
           <ContentRich
             text-primary mr-1 font-bold line-clamp-1 ws-pre-wrap break-all

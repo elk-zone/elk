@@ -53,7 +53,6 @@
     "activate": "Aktivieren",
     "complete": "Vollständig",
     "compose_desc": "Schreib einen neuen Beitrag",
-    "lang": "Sprache",
     "n-people-in-the-past-n-days": "{0} Personen in den vergangenen {1} Tagen",
     "select_lang": "Sprache auswählen",
     "sign_in_desc": "Bestehenden Nutzer hinzufügen",
@@ -78,12 +77,6 @@
     "explore-list-empty": "Momentan ist nichts im Trend. Schau später nochmal vorbei!",
     "sign_in_error": "Kann nicht zu Server verbinden",
     "status_not_found": "Beitrag nicht gefunden"
-  },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar auf Avatar",
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "Virtuelles Scrollen"
   },
   "help": {
     "desc_highlight": "Erwarte hier und da einige Bugs und fehlende Funktionen.",
@@ -115,16 +108,9 @@
     "unmute_account": "Stummschaltung von {0} aufheben",
     "unpin_on_profile": "Von Profil lösen"
   },
-  "nav_footer": {
-    "built_at": "Letzter Build: {0}",
-    "select_feature_flags": "Feature-Flags aktivieren",
-    "select_language": "Sprache auswählen",
-    "show_intro": "Intro anzeigen",
-    "toggle_theme": "Farbschema wechseln",
-    "zen_mode": "Zen-Modus"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "Lesezeichen",
+    "built_at": "Letzter Build: {0}",
     "conversations": "Direktnachrichten",
     "explore": "Entdecken",
     "favourites": "Favoriten",
@@ -133,10 +119,12 @@
     "local": "Lokal",
     "notifications": "Mitteilungen",
     "profile": "Profil",
-    "search": "Durchsuche {0}"
-  },
-  "nav_user": {
-    "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren."
+    "search": "Durchsuche {0}",
+    "select_feature_flags": "Feature-Flags aktivieren",
+    "select_language": "Sprache auswählen",
+    "show_intro": "Intro anzeigen",
+    "toggle_theme": "Farbschema wechseln",
+    "zen_mode": "Zen-Modus"
   },
   "notification": {
     "favourited_post": "hat deinen Beitrag favorisiert",
@@ -157,6 +145,14 @@
   },
   "search": {
     "search_desc": "Suche nach Nutzern & Hashtags"
+  },
+  "settings": {
+    "feature_flags": {
+      "avatar_on_avatar": "Avatar auf Avatar",
+      "github_cards": "GitHub Cards",
+      "user_switcher_sidebar": "User Switcher Sidebar",
+      "virtual_scroll": "Virtuelles Scrollen"
+    }
   },
   "state": {
     "edited": "(bearbeitet)",
@@ -190,7 +186,6 @@
     "edited": "Bearbeitet: {0}"
   },
   "tab": {
-    "accounts": "Nutzer",
     "for_you": "Für dich",
     "hashtags": "Hashtags",
     "media": "Medien",
@@ -250,6 +245,7 @@
   "user": {
     "add_existing": "Bestehendes Konto hinzufügen",
     "server_address_label": "Mastodon Server Adresse",
+    "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren.",
     "sign_out_account": "{0} abmelden",
     "tip_no_account": "Wenn du noch kein Mastodon-Konto hast, {0}.",
     "tip_register_account": "wähle einen Server aus und registriere eines"

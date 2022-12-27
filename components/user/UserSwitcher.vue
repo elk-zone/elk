@@ -44,10 +44,9 @@ const switchUser = (user: UserLogin) => {
         icon="i-ri:user-add-line"
         @click="openSigninDialog"
       />
-
       <NuxtLink to="/settings">
         <CommonDropdownItem
-          :text="$t('nav_side.settings')"
+          :text="$t('nav.settings')"
           icon="i-ri:settings-4-line"
         />
       </NuxtLink>

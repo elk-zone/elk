@@ -92,7 +92,7 @@ onBeforeUnmount(() => {
                 @click.stop
               >
                 <span class="i-ri:earth-line flex-shrink-0 text-xl mr-4 !align-middle" />
-                {{ $t('nav_footer.select_language') }}
+                {{ $t('nav.select_language') }}
               </button>
             </NavSelectLanguage>
             <!-- Switch font size -->
@@ -106,7 +106,7 @@ onBeforeUnmount(() => {
                 @click.stop
               >
                 <span class="i-ri:font-size flex-shrink-0 text-xl mr-4 !align-middle" />
-                {{ $t('nav_footer.select_font_size') }}
+                {{ $t('nav.select_font_size') }}
               </button>
             </NavSelectFontSize>
             <!-- Toggle Feature Flags -->
@@ -120,7 +120,7 @@ onBeforeUnmount(() => {
                 @click.stop
               >
                 <span class="i-ri:flag-line flex-shrink-0 text-xl mr-4 !align-middle" />
-                {{ $t('nav_footer.select_feature_flags') }}
+                {{ $t('nav.select_feature_flags') }}
               </button>
             </NavSelectFeatureFlags>
           </div>

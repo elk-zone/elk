@@ -57,7 +57,6 @@
     "activate": "تفعيل",
     "complete": "أكمل",
     "compose_desc": "اكتب منشور جديد",
-    "lang": "اللغات",
     "n-people-in-the-past-n-days": "{0} أشخاص في الأيام ال {1} الماضية",
     "select_lang": "اختار اللغة",
     "sign_in_desc": "إضافة حساب قائم",
@@ -82,12 +81,6 @@
     "explore-list-empty": "لا توجد مشاركات شائعة الآن. تحقق مرة أخرى لاحقًا!",
     "sign_in_error": "لا يمكن الاتصال بالموقع",
     "status_not_found": "لا يمكن إيجاد المنشور"
-  },
-  "feature_flag": {
-    "avatar_on_avatar": "الصورة الرمزية على الصورة الرمزية",
-    "github_cards": "GitHub بطاقات",
-    "user_switcher_sidebar": "الشريط الجانبي لمبدل المستخدم",
-    "virtual_scroll": "التمرير الافتراضي"
   },
   "help": {
     "desc_highlight": "توقع بعض الأخطاء والميزات المفقودة هنا وهناك.",
@@ -119,16 +112,9 @@
     "unmute_account": "إلغاء كتم الحساب {0}",
     "unpin_on_profile": "إلغاء التثبيت من الملف الشخصي"
   },
-  "nav_footer": {
-    "built_at": "Built {0}",
-    "select_feature_flags": "تبديل علامات الميزات",
-    "select_language": "اختار اللغة",
-    "show_intro": "عرض المقدمة",
-    "toggle_theme": "تبديل المظهر",
-    "zen_mode": "الوضع الهادئ"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "الفواصل المرجعية",
+    "built_at": "Built {0}",
     "conversations": "المحادثات",
     "explore": "استكشف",
     "favourites": "المفضلة",
@@ -137,10 +123,12 @@
     "local": "المحلي",
     "notifications": "الإشعارات",
     "profile": "الصفحة التعريفية",
-    "search": "البحث"
-  },
-  "nav_user": {
-    "sign_in_desc": "قم بتسجيل الدخول لمتابعة الملفات الشخصية والمشاركة والرد على المنشورات أو التفاعل من حسابك على خادم مختلف"
+    "search": "البحث",
+    "select_feature_flags": "تبديل علامات الميزات",
+    "select_language": "اختار اللغة",
+    "show_intro": "عرض المقدمة",
+    "toggle_theme": "تبديل المظهر",
+    "zen_mode": "الوضع الهادئ"
   },
   "notification": {
     "favourited_post": "أُعجِب بمنشورك",
@@ -192,12 +180,18 @@
   },
   "pwa": {
     "dismiss": "تجاهل",
-    "message": "@:pwa.title{','} اضغط على @:pwa.reload الزر للتحديث",
-    "reload": "تحديث",
     "title": "يتوفر تحديث Elk الجديد"
   },
   "search": {
     "search_desc": "ابحث عن الأشخاص والهاشتاج"
+  },
+  "settings": {
+    "feature_flags": {
+      "avatar_on_avatar": "الصورة الرمزية على الصورة الرمزية",
+      "github_cards": "GitHub بطاقات",
+      "user_switcher_sidebar": "الشريط الجانبي لمبدل المستخدم",
+      "virtual_scroll": "التمرير الافتراضي"
+    }
   },
   "state": {
     "edited": "(معدل)",
@@ -231,7 +225,6 @@
     "edited": "تم تعديله في {0}"
   },
   "tab": {
-    "accounts": "الحسابات",
     "for_you": "مصممة لك",
     "hashtags": "هاشتاغ",
     "media": "الصور/الفيديو",
@@ -291,6 +284,7 @@
   "user": {
     "add_existing": "إضافة حساب قائم",
     "server_address_label": "عنوان خادم ماستودون",
+    "sign_in_desc": "قم بتسجيل الدخول لمتابعة الملفات الشخصية والمشاركة والرد على المنشورات أو التفاعل من حسابك على خادم مختلف",
     "sign_out_account": "تسجيل الخروج من {0}",
     "tip_no_account": "إذا ليس لديك حساب ماستودون ، {0}",
     "tip_register_account": "اختر خادم ماستودون الخاص بك وقم بتسجيل حساب"

@@ -19,5 +19,9 @@
   "i18n-ally.keystyle": "nested",
   "i18n-ally.sourceLanguage": "en-US",
   "i18n-ally.preferredDelimiter": "_",
-  "i18n-ally.sortKeys": true
+  "i18n-ally.sortKeys": true,
+  "i18n-ally.keysInUse": [
+    "time_ago_options.*",
+    "visibility.*"
+  ]
 }

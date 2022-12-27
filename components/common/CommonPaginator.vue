@@ -25,8 +25,7 @@ defineSlots<{
     item: any
     active?: boolean
     older?: any
-    newer?: any
-    index?: number
+    newer?: any // newer is undefined when index === 0
   }
   updater: {
     number: number
@@ -53,18 +52,18 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
           <slot
             :item="item"
             :active="active"
-            :index="index"
+            :older="items[index + 1]"
+            :newer="items[index - 1]"
           />
         </DynamicScroller>
       </template>
       <template v-else>
         <slot
-          v-for="item, i of items"
+          v-for="item, index of items"
           :key="item[keyProp]"
           :item="item"
-          :older="items[i + 1]"
-          :newer="items[i - 1]"
-          :index="i"
+          :older="items[index + 1]"
+          :newer="items[index - 1]"
         />
       </template>
     </slot>

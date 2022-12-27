@@ -8,8 +8,13 @@ const props = withDefaults(
     context?: FilterContext
     hover?: boolean
     faded?: boolean
-    showReplyTo?: boolean
-    connectReply?: boolean
+
+    // If we know the prev and next status in the timeline, we can simplify the card
+    older?: Status
+    newer?: Status
+    // Manual overrides
+    hasOlder?: boolean
+    hasNewer?: boolean
   }>(),
   { actions: true, showReplyTo: true },
 )
@@ -19,6 +24,10 @@ const status = $computed(() => {
     return props.status.reblog
   return props.status
 })
+
+// Use original status, avoid connecting a reblog (review if we should relax this)
+const directReply = $computed(() => props.hasNewer || (!!props.status.inReplyToId && props.status.inReplyToId === props.newer?.id))
+const connectReply = $computed(() => props.hasOlder || props.status.id === props.older?.inReplyToId)
 
 const rebloggedBy = $computed(() => props.status.reblog ? props.status.account : null)
 
@@ -72,7 +81,7 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
     relative flex flex-col gap-1 px-4 pt-1
     class="pb-1.5"
     transition-100
-    :class="{ 'hover:bg-active': hover }"
+    :class="{ 'hover:bg-active': hover, 'border-t border-base': newer && !directReply }"
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
     :lang="status.language ?? undefined"
@@ -88,7 +97,7 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
         </div>
         <div v-else />
       </slot>
-      <StatusReplyingTo v-if="showReplyTo" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
+      <StatusReplyingTo v-if="!directReply" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>

@@ -14,18 +14,23 @@ const switchUser = (user: UserLogin) => {
 </script>
 
 <template>
-  <div flex="~ col" pb8 px4 gap-6 w-20 h-full justify-end>
-    <template v-for="user of all" :key="user.id">
-      <button
-        flex rounded
-        cursor-pointer
-        aria-label="Switch user"
-        :class="user.account.id === currentUser?.account.id ? '' : 'grayscale'"
-        hover:filter-none
-        @click="switchUser(user)"
-      >
-        <AccountAvatar w-12 h-12 :account="user.account" :hover-card="false" />
-      </button>
-    </template>
+  <div flex justify-start items-end px-2 gap-5>
+    <div flex="~ wrap-reverse" gap-5>
+      <template v-for="user of all" :key="user.id">
+        <button
+          flex rounded
+          cursor-pointer
+          aria-label="Switch user"
+          :class="user.account.id === currentUser?.account.id ? '' : 'op25 grayscale'"
+          hover="filter-none op100"
+          @click="switchUser(user)"
+        >
+          <AccountAvatar w-13 h-13 :account="user.account" />
+        </button>
+      </template>
+    </div>
+    <div flex items-center justify-center w-13 h-13>
+      <UserDropdown />
+    </div>
   </div>
 </template>

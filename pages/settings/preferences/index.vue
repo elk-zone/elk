@@ -32,10 +32,10 @@ const { lg } = breakpoints
       {{ $t('settings.feature_flags.github_cards') }}
     </SettingsToggle>
     <SettingsToggle
-      :checked="currentUserFeatureFlags.experimentalUserSwitcherSidebar"
-      @click="toggleFeatureFlag('experimentalUserSwitcherSidebar')"
+      :checked="currentUserFeatureFlags.experimentalUserPicker"
+      @click="toggleFeatureFlag('experimentalUserPicker')"
     >
-      {{ $t('settings.feature_flags.user_switcher_sidebar') }}
+      {{ $t('settings.feature_flags.user_picker') }}
     </SettingsToggle>
   </MainContent>
 </template>

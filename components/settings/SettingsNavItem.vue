@@ -36,7 +36,7 @@ if (props.command) {
     >
       <div flex-1 flex items-center md:gap2 gap4>
         <div
-          flex items-center justify-center
+          flex items-center justify-center flex-shrink-0
           :class="$slots.description ? 'w-12 h-12' : ''"
         >
           <slot name="icon">

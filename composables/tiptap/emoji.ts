@@ -49,18 +49,29 @@ export const Emoji = Node.create({
   },
 
   addInputRules() {
+    const inputRule = nodeInputRule({
+      find: EMOJI_REGEX,
+      type: this.type,
+      getAttributes: (match) => {
+        const [native] = match
+        return {
+          native,
+          fallback: native,
+        }
+      },
+    })
+    // Error catch for unsupported emoji
+    const handler = inputRule.handler.bind(inputRule)
+    inputRule.handler = (...args) => {
+      try {
+        return handler(...args)
+      }
+      catch (e) {
+        return null
+      }
+    }
     return [
-      nodeInputRule({
-        find: EMOJI_REGEX,
-        type: this.type,
-        getAttributes: (match) => {
-          const [native] = match
-          return {
-            native,
-            fallback: native,
-          }
-        },
-      }),
+      inputRule,
     ]
   },
 })

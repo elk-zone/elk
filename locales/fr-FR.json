@@ -70,7 +70,6 @@
     "activate": "Activer",
     "complete": "Compléter",
     "compose_desc": "Écrire un nouveau message",
-    "lang": "Langages",
     "n-people-in-the-past-n-days": "{0} personnes dans les {1} jours",
     "select_lang": "Sélectionner langue",
     "sign_in_desc": "Ajouter un compte existant",
@@ -196,8 +195,6 @@
   },
   "pwa": {
     "dismiss": "Fermer",
-    "message": "@:pwa.title{','} cliquez sur le bouton @:pwa.reload pour mettre à jour.",
-    "reload": "Recharger",
     "title": "Nouvelle mise à jour Elk disponible !",
     "update": "Mettre à jour",
     "update_available_short": "Mettre à jour Elk"
@@ -245,7 +242,6 @@
     "edited": "a édité {0}"
   },
   "tab": {
-    "accounts": "Comptes",
     "for_you": "Pour vous",
     "hashtags": "Hashtags",
     "media": "Média",

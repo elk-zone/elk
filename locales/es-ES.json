@@ -71,7 +71,6 @@
     "activate": "Activar",
     "complete": "Completar",
     "compose_desc": "Escribir una nueva publicación",
-    "lang": "Idiomas",
     "n-people-in-the-past-n-days": "{0} personas en los últimos {1} días",
     "select_lang": "Seleccionar idioma",
     "sign_in_desc": "Agregar una cuenta existente",
@@ -198,8 +197,6 @@
   },
   "pwa": {
     "dismiss": "Descartar",
-    "message": "@:pwa.title{','} haz click en el botón @:pwa.reload para actualizar.",
-    "reload": "Recargar",
     "title": "Nueva versión de Elk disponible"
   },
   "search": {
@@ -246,7 +243,6 @@
     "edited": "editado el {0}"
   },
   "tab": {
-    "accounts": "Cuentas",
     "for_you": "Para ti",
     "hashtags": "Etiquetas",
     "media": "Multimedia",

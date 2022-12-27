@@ -57,7 +57,6 @@
     "activate": "تفعيل",
     "complete": "أكمل",
     "compose_desc": "اكتب منشور جديد",
-    "lang": "اللغات",
     "n-people-in-the-past-n-days": "{0} أشخاص في الأيام ال {1} الماضية",
     "select_lang": "اختار اللغة",
     "sign_in_desc": "إضافة حساب قائم",
@@ -181,8 +180,6 @@
   },
   "pwa": {
     "dismiss": "تجاهل",
-    "message": "@:pwa.title{','} اضغط على @:pwa.reload الزر للتحديث",
-    "reload": "تحديث",
     "title": "يتوفر تحديث Elk الجديد"
   },
   "search": {
@@ -228,7 +225,6 @@
     "edited": "تم تعديله في {0}"
   },
   "tab": {
-    "accounts": "الحسابات",
     "for_you": "مصممة لك",
     "hashtags": "هاشتاغ",
     "media": "الصور/الفيديو",

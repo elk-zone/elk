@@ -38,7 +38,7 @@ onActivated(() => {
       <button
         flex rounded-4 p1
         hover:bg-active cursor-pointer transition-100
-        :title="$t(showSettings ? 'notification.settings.close_btn' : 'notification.settings.show_btn')"
+        :title="showSettings ? t('notification.settings.close_btn') : t('notification.settings.show_btn')"
         @click="showSettings = !showSettings"
       >
         <span aria-hidden="true" w-1.75em h-1.75em :class="showSettings ? 'i-ri:close-line' : 'i-ri:settings-line'" />

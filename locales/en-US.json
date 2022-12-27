@@ -73,7 +73,6 @@
     "activate": "Activate",
     "complete": "Complete",
     "compose_desc": "Write a new post",
-    "lang": "Languages",
     "n-people-in-the-past-n-days": "{0} people in the past {1} days",
     "select_lang": "Select language",
     "sign_in_desc": "Add an existing account",
@@ -204,8 +203,6 @@
   },
   "pwa": {
     "dismiss": "Dismiss",
-    "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
-    "reload": "Reload",
     "title": "New Elk update available!",
     "update": "Update",
     "update_available_short": "Update Elk"
@@ -282,7 +279,6 @@
     "edited": "edited {0}"
   },
   "tab": {
-    "accounts": "Accounts",
     "for_you": "For you",
     "hashtags": "Hashtags",
     "media": "Media",

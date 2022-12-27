@@ -53,7 +53,6 @@
     "activate": "Aktivieren",
     "complete": "Vollständig",
     "compose_desc": "Schreib einen neuen Beitrag",
-    "lang": "Sprache",
     "n-people-in-the-past-n-days": "{0} Personen in den vergangenen {1} Tagen",
     "select_lang": "Sprache auswählen",
     "sign_in_desc": "Bestehenden Nutzer hinzufügen",
@@ -187,7 +186,6 @@
     "edited": "Bearbeitet: {0}"
   },
   "tab": {
-    "accounts": "Nutzer",
     "for_you": "Für dich",
     "hashtags": "Hashtags",
     "media": "Medien",

@@ -52,7 +52,7 @@
     "local": "ローカル",
     "notifications": "通知",
     "profile": "プロフィール",
-    "search": "検索 {0}",
+    "search": "検索",
     "select_feature_flags": "実験的機能を切り替え",
     "select_language": "言語を選択",
     "toggle_theme": "テーマを切り替え",

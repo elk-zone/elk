@@ -1,6 +1,7 @@
 import { pwaInfo } from 'virtual:pwa-info'
 import type { Link } from '@unhead/schema'
 import type { Directions } from 'vue-i18n-routing'
+import { init as initEmojis } from 'emoji-mart'
 import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
 import type { LocaleObject } from '#i18n'
 
@@ -72,5 +73,11 @@ export async function setupI18n() {
     watchEffect(() => {
       localeStorage.value = locale.value
     })
+  })
+}
+
+export function setupEmojis() {
+  initEmojis({
+    data: () => import('@emoji-mart/data').then(r => r.default),
   })
 }

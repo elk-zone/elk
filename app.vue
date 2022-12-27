@@ -2,6 +2,7 @@
 setupI18n()
 setupFontSize()
 setupPageHeader()
+setupEmojis()
 provideGlobalCommands()
 
 // We want to trigger rerendering the page when account changes

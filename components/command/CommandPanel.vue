@@ -18,9 +18,29 @@ onMounted(() => {
 })
 
 const commandMode = $computed(() => input.startsWith('>'))
+
+const query = $computed(() => commandMode ? '' : input.trim())
+
+const { accounts, hashtags, loading } = useSearch($$(query))
+
+const searchResult = $computed(() => {
+  if (query.length === 0 || loading.value)
+    return { length: 0, items: [], grouped: {} }
+  const hashtagList = hashtags.value.slice(0, 3).map(hashtag => ({ type: 'hashtag', hashtag, to: `/tags/${hashtag.name}` }))
+  const accountList = accounts.value.map(account => ({ type: 'account', account, to: `/@${account.acct}` }))
+  return {
+    grouped: [
+      ['Hashtags', hashtagList],
+      ['Users', accountList],
+    ] as any[],
+    items: [...hashtagList, ...accountList] as any[],
+    length: hashtagList.length + accountList.length,
+  }
+})
+
 const result = $computed(() => commandMode
   ? registry.query(scopes.map(s => s.id).join('.'), input.slice(1))
-  : { length: 0, items: [], grouped: {} })
+  : searchResult)
 let active = $ref(0)
 watch($$(result), (n, o) => {
   if (n.length !== o.length || !n.items.every((i, idx) => i === o.items[idx]))
@@ -158,33 +178,46 @@ const onKeyDown = (e: KeyboardEvent) => {
 
     <!-- Results -->
     <div ref="resultEl" class="flex-1 mx-1 overflow-y-auto">
+      <template v-if="loading">
+        <SearchResultSkeleton />
+        <SearchResultSkeleton />
+        <SearchResultSkeleton />
+      </template>
+      <!-- <template v-for="[scope, group] in searchResult" :key="scope">
+        <div class="mt-2 px-2 py-1 text-sm text-secondary">
+          {{ scope }}
+        </div>
+        <SearchResult v-for="(item, i) in group" :key="item.to" :active="active === parseInt(i.toString())" :result="item" />
+      </template> -->
       <template v-for="[scope, group] in result.grouped" :key="scope">
         <div class="mt-2 px-2 py-1 text-sm text-secondary">
           {{ scope }}
         </div>
 
-        <template v-for="cmd in group" :key="cmd.index">
+        <template v-for="(item, i) in group" :key="i">
+          <SearchResult v-if="!commandMode" :active="active === parseInt(i.toString())" :result="item" />
           <div
+            v-else
             class="flex px-3 py-2 my-1 items-center rounded-lg hover:bg-active transition-all duration-65 ease-in-out cursor-pointer scroll-m-10"
-            :class="{ 'bg-active': active === cmd.index }"
-            :data-index="cmd.index"
-            @click="onCommandActivate(cmd)"
+            :class="{ 'bg-active': active === item.index }"
+            :data-index="item.index"
+            @click="onCommandActivate(item)"
           >
-            <div v-if="cmd.icon" mr-2 :class="cmd.icon" />
+            <div v-if="item.icon" mr-2 :class="item.icon" />
 
             <div class="flex-1 flex items-baseline gap-2">
-              <div :class="{ 'font-medium': active === cmd.index }">
-                {{ cmd.name }}
+              <div :class="{ 'font-medium': active === item.index }">
+                {{ item.name }}
               </div>
-              <div v-if="cmd.description" class="text-xs text-secondary">
-                {{ cmd.description }}
+              <div v-if="item.description" class="text-xs text-secondary">
+                {{ item.description }}
               </div>
             </div>
 
             <div
-              v-if="cmd.onComplete"
+              v-if="item.onComplete"
               class="flex items-center gap-1 transition-all duration-65 ease-in-out"
-              :class="active === cmd.index ? 'opacity-100' : 'opacity-0'"
+              :class="active === item.index ? 'opacity-100' : 'opacity-0'"
             >
               <div class="text-xs text-secondary">
                 {{ $t('command.complete') }}
@@ -192,9 +225,9 @@ const onKeyDown = (e: KeyboardEvent) => {
               <CommandKey name="Tab" />
             </div>
             <div
-              v-if="cmd.onActivate"
+              v-if="item.onActivate"
               class="flex items-center gap-1 transition-all duration-65 ease-in-out"
-              :class="active === cmd.index ? 'opacity-100' : 'opacity-0'"
+              :class="active === item.index ? 'opacity-100' : 'opacity-0'"
             >
               <div class="text-xs text-secondary">
                 {{ $t('command.activate') }}

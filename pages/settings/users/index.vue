@@ -70,16 +70,18 @@ async function importTokens() {
       </div>
     </template>
     <div p4>
-      <div flex="~ col gap2">
-        <div v-for="user of loggedInUsers" :key="user.account.id">
-          <AccountInfo :account="user.account" :hover-card="false" />
+      <template v-if="loggedInUsers.length">
+        <div flex="~ col gap2">
+          <div v-for="user of loggedInUsers" :key="user.account.id">
+            <AccountInfo :account="user.account" :hover-card="false" />
+          </div>
         </div>
-      </div>
-      <div my4 border="t base" />
-      <button btn-text flex="~ gap-2" items-center @click="exportTokens">
-        <div i-ri-download-2-line />
-        Export User Tokens
-      </button>
+        <div my4 border="t base" />
+        <button btn-text flex="~ gap-2" items-center @click="exportTokens">
+          <div i-ri-download-2-line />
+          Export User Tokens
+        </button>
+      </template>
       <button btn-text flex="~ gap-2" items-center @click="importTokens">
         <div i-ri-upload-2-line />
         Import User Tokens

@@ -65,7 +65,21 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
 </script>
 
 <template>
-  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-1 px-4 pt-1 class="pb-1.5" transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
+  <div
+    v-if="filter?.filterAction !== 'hide'"
+    :id="`status-${status.id}`"
+    ref="el"
+    relative flex flex-col gap-1 px-4 pt-1
+    class="pb-1.5"
+    transition-100
+    :class="{ 'hover:bg-active': hover }"
+    tabindex="0"
+    focus:outline-none focus-visible:ring="2 primary"
+    :lang="status.language ?? undefined"
+    :dir="status.language ? 'auto' : 'ltr'"
+    @click="onclick"
+    @keydown.enter="onclick"
+  >
     <div flex justify-between>
       <slot name="meta">
         <div v-if="rebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1>
@@ -79,7 +93,7 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
         <template v-if="showRebloggedByAvatarOnAvatar">
-          <div absolute top--3px left--0.8 z--1 w-25px h-25px rounded-full>
+          <div absolute top--3px lrt-left--0.8 rtl-right--0.8 z--1 w-25px h-25px rounded-full>
             <AccountAvatar :account="rebloggedBy" />
           </div>
         </template>

@@ -85,6 +85,7 @@ body {
   overflow: hidden;
   max-height: 1.3em;
   max-width: 1.3em;
+  margin: 0 0.2em;
   vertical-align: text-bottom;
 }
 
@@ -131,12 +132,6 @@ body {
 .content-editor {
   --at-apply: outline-none flex-1;
   max-width: 100%;
-}
-
-.content-editor.content-rich {
-  p {
-    --at-apply: my-0;
-  }
 }
 
 .skeleton-loading-bg {

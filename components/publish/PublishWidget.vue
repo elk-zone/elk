@@ -65,11 +65,11 @@ async function handlePaste(evt: ClipboardEvent) {
   await uploadAttachments(Array.from(files))
 }
 
-function insertText(text: string) {
-  editor.value?.chain().insertContent(text).focus().run()
+function insertEmoji(name: string) {
+  editor.value?.chain().focus().insertEmoji(name).run()
 }
-function insertEmoji(image: any) {
-  editor.value?.chain().focus().setEmoji(image).run()
+function insertCustomEmoji(image: any) {
+  editor.value?.chain().focus().insertCustomEmoji(image).run()
 }
 
 async function pickAttachments() {
@@ -196,7 +196,7 @@ defineExpose({
       <div border="b dashed gray/40" />
     </template>
 
-    <div flex gap-4 flex-1>
+    <div flex gap-3 flex-1>
       <NuxtLink :to="getAccountRoute(currentUser.account)">
         <AccountAvatar :account="currentUser.account" account-avatar-normal />
       </NuxtLink>
@@ -280,7 +280,10 @@ defineExpose({
         v-if="shouldExpanded" flex="~ gap-2 1" m="l--1" pt-2 justify="between" max-full
         border="t base"
       >
-        <PublishEmojiPicker @select="insertText" @select-custom="insertEmoji" />
+        <PublishEmojiPicker
+          @select="insertEmoji"
+          @select-custom="insertCustomEmoji"
+        />
 
         <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">
           <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">

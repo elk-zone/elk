@@ -14,6 +14,7 @@ import { Plugin } from 'prosemirror-state'
 import type { Ref } from 'vue'
 import { HashSuggestion, MentionSuggestion } from './tiptap/suggestion'
 import { CodeBlockShiki } from './tiptap/shiki'
+import { CustomEmoji } from './tiptap/custom-emoji'
 import { Emoji } from './tiptap/emoji'
 
 export interface UseTiptapOptions {
@@ -43,7 +44,7 @@ export function useTiptap(options: UseTiptapOptions) {
       Code,
       Text,
       Emoji,
-      Emoji.configure({
+      CustomEmoji.configure({
         inline: true,
         HTMLAttributes: {
           class: 'custom-emoji',

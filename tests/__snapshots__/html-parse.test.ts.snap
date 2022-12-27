@@ -54,6 +54,21 @@ exports[`html-parse > custom emoji > html 1`] = `
 
 exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe :nuxt:"`;
 
+exports[`html-parse > emojis > html 1`] = `
+"🇫🇷 👨<em-emoji native=\\"‍\\" fallback=\\"‍\\"></em-emoji>👩<em-emoji
+  native=\\"‍\\"
+  fallback=\\"‍\\"
+></em-emoji
+>👦 👩<em-emoji native=\\"‍\\" fallback=\\"‍\\"></em-emoji>🚒🧑🏽<em-emoji
+  native=\\"‍\\"
+  fallback=\\"‍\\"
+></em-emoji
+>🚀
+"
+`;
+
+exports[`html-parse > emojis > text 1`] = `"🇫🇷 👨‍👩‍👦 👩‍🚒🧑🏽‍🚀"`;
+
 exports[`html-parse > empty > html 1`] = `""`;
 
 exports[`html-parse > empty > text 1`] = `""`;

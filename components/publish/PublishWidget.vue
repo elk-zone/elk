@@ -296,7 +296,7 @@ defineExpose({
             <button
               btn-action-icon
               :aria-label="$t('tooltip.toggle_code_block')"
-              :class="editor.isActive('codeBlock') ? 'op100' : 'op50'"
+              :class="editor.isActive('codeBlock') ? 'text-primary' : ''"
               @click="editor?.chain().focus().toggleCodeBlock().run()"
             >
               <div i-ri:code-s-slash-line />

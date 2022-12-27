@@ -38,6 +38,7 @@ specifiers:
   browser-fs-access: ^0.31.1
   bumpp: ^8.2.1
   emoji-mart: ^5.4.0
+  emoji-regex: ^10.2.1
   eslint: ^8.30.0
   esno: ^0.16.3
   file-saver: ^2.0.5
@@ -136,6 +137,7 @@ devDependencies:
   '@vueuse/nuxt': 9.9.0_nuxt@3.0.0
   bumpp: 8.2.1
   emoji-mart: 5.4.0
+  emoji-regex: 10.2.1
   eslint: 8.30.0
   esno: 0.16.3
   file-saver: 2.0.5
@@ -4843,6 +4845,10 @@ packages:
 
   /emoji-mart/5.4.0:
     resolution: {integrity: sha512-xrRrUmMqZG64oRxmUZcf8zSMUGQtIUYUL3aZD5iMkqAve+I9wMNh3OVOXL7NW9fEm48L2LI3BUPpj/DUIAJrVg==}
+    dev: true
+
+  /emoji-regex/10.2.1:
+    resolution: {integrity: sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==}
     dev: true
 
   /emoji-regex/8.0.0:

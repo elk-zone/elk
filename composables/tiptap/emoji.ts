@@ -24,6 +24,9 @@ export const Emoji = Node.create({
       native: {
         default: null,
       },
+      fallback: {
+        default: null,
+      },
     }
   },
 
@@ -38,6 +41,7 @@ export const Emoji = Node.create({
           type: this.name,
           attrs: {
             native: name,
+            fallback: name,
           },
         })
       },
@@ -51,7 +55,10 @@ export const Emoji = Node.create({
         type: this.type,
         getAttributes: (match) => {
           const [native] = match
-          return { native }
+          return {
+            native,
+            fallback: native,
+          }
         },
       }),
     ]

@@ -2,8 +2,9 @@
 import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
+import createEmojiRegex from 'emoji-regex'
 
-export const EMOJI_REGEX = /(\p{Emoji_Presentation})/ug
+export const EMOJI_REGEX = createEmojiRegex()
 
 const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
 export function decodeHtml(text: string) {
@@ -25,7 +26,7 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
         ? `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
         : `:${name}:`
     })
-    .replace(EMOJI_REGEX, '<em-emoji native="$1" />')
+    .replace(EMOJI_REGEX, '<em-emoji native="$&" fallback="$&" />')
 
   if (markdown) {
     // handle code blocks

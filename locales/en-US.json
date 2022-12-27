@@ -244,7 +244,10 @@
       },
       "label": "Profile"
     },
-    "select_a_settings": "Select a settings"
+    "select_a_settings": "Select a settings",
+    "users": {
+      "label": "Logged in users"
+    }
   },
   "state": {
     "edited": "(Edited)",

@@ -45,6 +45,12 @@ const isRootPath = computedEager(() => route.name === 'settings')
           />
           <SettingsNavItem
             command
+            icon="i-ri-group-line"
+            :text="$t('settings.users.label')"
+            to="/settings/users"
+          />
+          <SettingsNavItem
+            command
             icon="i-ri:information-line"
             :text="$t('settings.about.label')"
             to="/settings/about"

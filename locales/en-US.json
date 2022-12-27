@@ -132,17 +132,9 @@
     "unmute_account": "Unmute {0}",
     "unpin_on_profile": "Unpin on profile"
   },
-  "nav_footer": {
-    "built_at": "Built {0}",
-    "select_feature_flags": "Toggle Feature Flags",
-    "select_font_size": "Select Font Size",
-    "select_language": "Select Language",
-    "show_intro": "Show intro",
-    "toggle_theme": "Toggle Theme",
-    "zen_mode": "Zen Mode"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "Bookmarks",
+    "built_at": "Built {0}",
     "conversations": "Conversations",
     "explore": "Explore",
     "favourites": "Favourites",
@@ -152,10 +144,13 @@
     "notifications": "Notifications",
     "profile": "Profile",
     "search": "Search {0}",
-    "settings": "Settings"
-  },
-  "nav_user": {
-    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
+    "select_feature_flags": "Toggle Feature Flags",
+    "select_font_size": "Select Font Size",
+    "select_language": "Select Language",
+    "settings": "Settings",
+    "show_intro": "Show intro",
+    "toggle_theme": "Toggle Theme",
+    "zen_mode": "Zen Mode"
   },
   "notification": {
     "favourited_post": "favourited your post",
@@ -225,7 +220,7 @@
     "feature_flags": {
       "avatar_on_avatar": "Avatar on Avatar",
       "github_cards": "GitHub Cards",
-      "title": "Experimental Feature Flags",
+      "title": "Experimental Features",
       "user_switcher_sidebar": "User Switcher Sidebar",
       "virtual_scroll": "Virtual Scrolling"
     },
@@ -348,6 +343,8 @@
   "user": {
     "add_existing": "Add an existing account",
     "server_address_label": "Mastodon Server Address",
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server.",
+    "sign_in_notice_title": "Viewing {0} public data",
     "sign_out_account": "Sign out {0}",
     "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
     "tip_register_account": "pick your server and register one"

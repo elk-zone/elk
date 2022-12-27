@@ -109,16 +109,9 @@
     "unmute_account": "Odmlčet {0}",
     "unpin_on_profile": "Odepnout z profilu"
   },
-  "nav_footer": {
-    "built_at": "Zprovozněno {0}",
-    "select_feature_flags": "Zapnout funkce",
-    "select_language": "Vybrat jazyk",
-    "show_intro": "Zobrazit více informací o aplikaci",
-    "toggle_theme": "Přepnout vzhled",
-    "zen_mode": "Tichý režim"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "Záložky",
+    "built_at": "Zprovozněno {0}",
     "conversations": "Pošta",
     "explore": "Zajímavé",
     "favourites": "Oblíbené",
@@ -126,10 +119,12 @@
     "home": "Hlavní stránka",
     "local": "Lokální",
     "notifications": "Upozornění",
-    "profile": "Profil"
-  },
-  "nav_user": {
-    "sign_in_desc": "Přihlaste se, abyste mohli sledovat profily nebo hashtagy, psát a sdílet příspěvky a odpovídat na ně na tomto nebo jiných serverech."
+    "profile": "Profil",
+    "select_feature_flags": "Zapnout funkce",
+    "select_language": "Vybrat jazyk",
+    "show_intro": "Zobrazit více informací o aplikaci",
+    "toggle_theme": "Přepnout vzhled",
+    "zen_mode": "Tichý režim"
   },
   "notification": {
     "favourited_post": "si oblíbil váš příspěvek",
@@ -246,6 +241,7 @@
   "user": {
     "add_existing": "Přidat existující účet",
     "server_address_label": "Adresa Mastodon serveru:",
+    "sign_in_desc": "Přihlaste se, abyste mohli sledovat profily nebo hashtagy, psát a sdílet příspěvky a odpovídat na ně na tomto nebo jiných serverech.",
     "sign_out_account": "Odhlásit {0}",
     "tip_no_account": "Pokud nemáte účet na Mastodonu, {0}.",
     "tip_register_account": "vyberte server a zaregistrujte se"

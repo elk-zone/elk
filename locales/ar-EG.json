@@ -113,16 +113,9 @@
     "unmute_account": "إلغاء كتم الحساب {0}",
     "unpin_on_profile": "إلغاء التثبيت من الملف الشخصي"
   },
-  "nav_footer": {
-    "built_at": "Built {0}",
-    "select_feature_flags": "تبديل علامات الميزات",
-    "select_language": "اختار اللغة",
-    "show_intro": "عرض المقدمة",
-    "toggle_theme": "تبديل المظهر",
-    "zen_mode": "الوضع الهادئ"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "الفواصل المرجعية",
+    "built_at": "Built {0}",
     "conversations": "المحادثات",
     "explore": "استكشف",
     "favourites": "المفضلة",
@@ -131,10 +124,12 @@
     "local": "المحلي",
     "notifications": "الإشعارات",
     "profile": "الصفحة التعريفية",
-    "search": "البحث"
-  },
-  "nav_user": {
-    "sign_in_desc": "قم بتسجيل الدخول لمتابعة الملفات الشخصية والمشاركة والرد على المنشورات أو التفاعل من حسابك على خادم مختلف"
+    "search": "البحث",
+    "select_feature_flags": "تبديل علامات الميزات",
+    "select_language": "اختار اللغة",
+    "show_intro": "عرض المقدمة",
+    "toggle_theme": "تبديل المظهر",
+    "zen_mode": "الوضع الهادئ"
   },
   "notification": {
     "favourited_post": "أُعجِب بمنشورك",
@@ -293,6 +288,7 @@
   "user": {
     "add_existing": "إضافة حساب قائم",
     "server_address_label": "عنوان خادم ماستودون",
+    "sign_in_desc": "قم بتسجيل الدخول لمتابعة الملفات الشخصية والمشاركة والرد على المنشورات أو التفاعل من حسابك على خادم مختلف",
     "sign_out_account": "تسجيل الخروج من {0}",
     "tip_no_account": "إذا ليس لديك حساب ماستودون ، {0}",
     "tip_register_account": "اختر خادم ماستودون الخاص بك وقم بتسجيل حساب"

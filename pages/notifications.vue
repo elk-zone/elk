@@ -30,7 +30,7 @@ onActivated(() => {
     <template #title>
       <NuxtLink to="/notifications" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:notification-4-line />
-        <span>{{ t('nav_side.notifications') }}</span>
+        <span>{{ t('nav.notifications') }}</span>
       </NuxtLink>
     </template>
 

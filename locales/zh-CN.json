@@ -89,7 +89,6 @@
     "status_not_found": "未找到帖文",
     "unsupported_file_format": "不支持的文件格式"
   },
-
   "help": {
     "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
     "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Mastodon 客户端。",
@@ -120,17 +119,9 @@
     "unmute_account": "解除屏蔽 {0}",
     "unpin_on_profile": "取消置顶"
   },
-  "nav_footer": {
-    "built_at": "于 {0} 构建",
-    "select_feature_flags": "功能开关",
-    "select_font_size": "字体大小",
-    "select_language": "选择语言",
-    "show_intro": "应用介绍",
-    "toggle_theme": "切换主题",
-    "zen_mode": "禅模式"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "书签",
+    "built_at": "于 {0} 构建",
     "conversations": "私信",
     "explore": "探索",
     "favourites": "喜欢",
@@ -140,10 +131,13 @@
     "notifications": "通知",
     "profile": "个人资料",
     "search": "搜索 {0}",
-    "settings": "设置"
-  },
-  "nav_user": {
-    "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。"
+    "select_feature_flags": "功能开关",
+    "select_font_size": "字体大小",
+    "select_language": "选择语言",
+    "settings": "设置",
+    "show_intro": "应用介绍",
+    "toggle_theme": "切换主题",
+    "zen_mode": "禅模式"
   },
   "notification": {
     "favourited_post": "点赞了你的帖文",
@@ -320,6 +314,8 @@
   "user": {
     "add_existing": "添加现有帐户",
     "server_address_label": "Mastodon 服务器地址",
+    "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。",
+    "sign_in_notice_title": "正在查看 {0} 的公共数据",
     "sign_out_account": "登出 {0}",
     "tip_no_account": "如果您还没有 Mastodon 账户，{0}。",
     "tip_register_account": "选择您的服务器并注册一个"

@@ -46,7 +46,7 @@ const switchUser = (user: UserLogin) => {
       />
       <NuxtLink to="/settings">
         <CommonDropdownItem
-          :text="$t('nav_side.settings')"
+          :text="$t('nav.settings')"
           icon="i-ri:settings-4-line"
         />
       </NuxtLink>

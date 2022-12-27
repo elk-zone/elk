@@ -45,6 +45,8 @@ export default defineConfig({
       'input-base': 'p2 rounded w-full bg-transparent border border-dark input-base-focus input-base-disabled',
       'input-error': 'border-$c-error focus:(outline-offset-0 outline-$c-error outline-1px)',
 
+      'select-settings': 'p3 border border-base rounded w-full block bg-base',
+
       // link
       'text-link-rounded': 'focus:outline-none focus:ring-(2 primary inset) hover:bg-active rounded md:rounded-full px2 mx--2',
 

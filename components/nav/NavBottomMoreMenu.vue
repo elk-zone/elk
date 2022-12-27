@@ -81,34 +81,17 @@ onBeforeUnmount(() => {
               <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl mr-4 !align-middle" />
               {{ !isDark ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
             </button>
-            <!-- Switch languages -->
-            <NavSelectLanguage>
-              <button
-                flex flex-row items-center
-                block px-5 py-2 focus-blue w-full
-                text-sm text-base capitalize text-left whitespace-nowrap
-                transition-colors duration-200 transform
-                hover="bg-gray-100 dark:(bg-gray-700 text-white)"
-                @click.stop
-              >
-                <span class="i-ri:earth-line flex-shrink-0 text-xl mr-4 !align-middle" />
-                {{ $t('nav.select_language') }}
-              </button>
-            </NavSelectLanguage>
-            <!-- Switch font size -->
-            <NavSelectFontSize>
-              <button
-                flex flex-row items-center
-                block px-5 py-2 focus-blue w-full
-                text-sm text-base capitalize text-left whitespace-nowrap
-                transition-colors duration-200 transform
-                hover="bg-gray-100 dark:(bg-gray-700 text-white)"
-                @click.stop
-              >
-                <span class="i-ri:font-size flex-shrink-0 text-xl mr-4 !align-middle" />
-                {{ $t('nav.select_font_size') }}
-              </button>
-            </NavSelectFontSize>
+            <NuxtLink
+              flex flex-row items-center
+              block px-5 py-2 focus-blue w-full
+              text-sm text-base capitalize text-left whitespace-nowrap
+              transition-colors duration-200 transform
+              hover="bg-gray-100 dark:(bg-gray-700 text-white)"
+              to="/settings"
+            >
+              <span class="i-ri:settings-2-line flex-shrink-0 text-xl mr-4 !align-middle" />
+              {{ $t('nav.settings') }}
+            </NuxtLink>
           </div>
         </div>
       </div>

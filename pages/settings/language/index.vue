@@ -9,13 +9,11 @@ const { lg } = breakpoints
         <span>{{ $t('settings.language.label') }}</span>
       </div>
     </template>
-    <div text-center mt-10>
-      <h1 text-4xl>
-        🚧
-      </h1>
-      <h3 text-xl>
-        {{ $t('settings.language.label') }}
-      </h3>
+    <div p6>
+      <label space-y-2>
+        <p font-medium>{{ $t('settings.language.display_language') }}</p>
+        <SettingsLanguage select-settings />
+      </label>
     </div>
   </MainContent>
 </template>

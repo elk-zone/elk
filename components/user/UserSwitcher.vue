@@ -39,17 +39,17 @@ const switchUser = (user: UserLogin) => {
       </button>
     </template>
     <div border="t base" pt2>
-      <CommonDropdownItem
-        :text="$t('user.add_existing')"
-        icon="i-ri:user-add-line"
-        @click="openSigninDialog"
-      />
       <NuxtLink to="/settings">
         <CommonDropdownItem
           :text="$t('nav.settings')"
           icon="i-ri:settings-4-line"
         />
       </NuxtLink>
+      <CommonDropdownItem
+        :text="$t('user.add_existing')"
+        icon="i-ri:user-add-line"
+        @click="openSigninDialog"
+      />
       <CommonDropdownItem
         v-if="isMastoInitialised && currentUser"
         :text="$t('user.sign_out_account', [getFullHandle(currentUser.account)])"

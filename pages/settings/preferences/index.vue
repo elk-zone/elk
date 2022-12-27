@@ -13,29 +13,29 @@ const { lg } = breakpoints
       <div i-ri-flask-line />
       {{ $t('settings.feature_flags.title') }}
     </h3>
-    <SettingsToggle
+    <SettingsToggleItem
       :checked="currentUserFeatureFlags.experimentalVirtualScroll"
       @click="toggleFeatureFlag('experimentalVirtualScroll')"
     >
       {{ $t('settings.feature_flags.virtual_scroll') }}
-    </SettingsToggle>
-    <SettingsToggle
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="currentUserFeatureFlags.experimentalAvatarOnAvatar"
       @click="toggleFeatureFlag('experimentalAvatarOnAvatar')"
     >
       {{ $t('settings.feature_flags.avatar_on_avatar') }}
-    </SettingsToggle>
-    <SettingsToggle
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="currentUserFeatureFlags.experimentalGitHubCards"
       @click="toggleFeatureFlag('experimentalGitHubCards')"
     >
       {{ $t('settings.feature_flags.github_cards') }}
-    </SettingsToggle>
-    <SettingsToggle
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="currentUserFeatureFlags.experimentalUserPicker"
       @click="toggleFeatureFlag('experimentalUserPicker')"
     >
       {{ $t('settings.feature_flags.user_picker') }}
-    </SettingsToggle>
+    </SettingsToggleItem>
   </MainContent>
 </template>

@@ -31,20 +31,6 @@ const buildTimeAgo = useTimeAgo(buildTimeDate, timeAgoOptions)
           :aria-label="$t('nav.settings')"
         />
       </CommonTooltip>
-      <NavSelectLanguage>
-        <CommonTooltip :content="$t('nav.select_language')">
-          <button flex :aria-label="$t('nav.select_language')">
-            <div i-ri:earth-line text-lg />
-          </button>
-        </CommonTooltip>
-      </NavSelectLanguage>
-      <NavSelectFontSize>
-        <CommonTooltip :content="$t('nav.select_font_size')">
-          <button flex :aria-label="$t('nav.select_font_size')">
-            <div i-ri:font-size text-lg />
-          </button>
-        </CommonTooltip>
-      </NavSelectFontSize>
     </div>
     <div>
       <button cursor-pointer hover:underline @click="openPreviewHelp">

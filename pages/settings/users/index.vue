@@ -69,7 +69,7 @@ async function importTokens() {
         <span>{{ $t('settings.users.label') }}</span>
       </div>
     </template>
-    <div p4>
+    <div p6>
       <template v-if="loggedInUsers.length">
         <div flex="~ col gap2">
           <div v-for="user of loggedInUsers" :key="user.account.id">

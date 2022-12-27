@@ -144,8 +144,8 @@
     "profile": "Profile",
     "search": "Search",
     "select_feature_flags": "Toggle Feature Flags",
-    "select_font_size": "Select Font Size",
-    "select_language": "Select Language",
+    "select_font_size": "Font Size",
+    "select_language": "Display Language",
     "settings": "Settings",
     "show_intro": "Show intro",
     "toggle_theme": "Toggle Theme",
@@ -222,9 +222,12 @@
       "virtual_scroll": "Virtual Scrolling"
     },
     "interface": {
+      "color_mode": "Color Mode",
+      "font_size": "Font Size",
       "label": "Interface"
     },
     "language": {
+      "display_language": "Display Language",
       "label": "Language"
     },
     "preferences": {

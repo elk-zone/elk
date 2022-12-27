@@ -14,24 +14,28 @@ const moreMenuVisible = ref(false)
       <NuxtLink to="/home" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:home-5-line />
       </NuxtLink>
+      <NuxtLink to="/search" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+        <div i-ri:search-line />
+      </NuxtLink>
       <NuxtLink to="/notifications" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:notification-4-line />
       </NuxtLink>
-    </template>
-    <NuxtLink :to="`/${currentServer}/explore`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-      <div i-ri:hashtag />
-    </NuxtLink>
-    <NuxtLink group :to="`/${currentServer}/public/local`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-      <div i-ri:group-2-line />
-    </NuxtLink>
-    <template v-if="!isMastoInitialised || !currentUser">
-      <NuxtLink :to="`/${currentServer}/public`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-        <div i-ri:earth-line />
-      </NuxtLink>
-    </template>
-    <template v-if="isMastoInitialised && currentUser">
       <NuxtLink to="/conversations" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:at-line />
+      </NuxtLink>
+    </template>
+    <template v-if="isMastoInitialised && !currentUser">
+      <NuxtLink :to="`/${currentServer}/explore`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+        <div i-ri:hashtag />
+      </NuxtLink>
+      <NuxtLink to="/search" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+        <div i-ri:search-line />
+      </NuxtLink>
+      <NuxtLink group :to="`/${currentServer}/public/local`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+        <div i-ri:group-2-line />
+      </NuxtLink>
+      <NuxtLink :to="`/${currentServer}/public`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+        <div i-ri:earth-line />
       </NuxtLink>
     </template>
     <NavBottomMoreMenu v-slot="{ changeShow, show }" v-model="moreMenuVisible" flex flex-row items-center place-content-center h-full flex-1 cursor-pointer>

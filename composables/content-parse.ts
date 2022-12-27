@@ -1,7 +1,6 @@
 import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
-import { currentCustomEmojisObject } from '~/composables/emojis'
 
 const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
 export function decodeHtml(text: string) {
@@ -17,7 +16,7 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
   let processed = html
     // custom emojis
     .replace(/:([\w-]+?):/g, (_, name) => {
-      const emoji = customEmojis[name] ?? currentCustomEmojisObject.value[name]
+      const emoji = customEmojis[name]
 
       return emoji
         ? `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`

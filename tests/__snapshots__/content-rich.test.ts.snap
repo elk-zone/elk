@@ -36,7 +36,7 @@ exports[`content-rich > empty 1`] = `""`;
 
 exports[`content-rich > link + mention 1`] = `
 "<p>
-  Happy <em-emoji native=\\"🤗\\"></em-emoji> we’re now using
+  Happy <em-emoji native=\\"🤗\\" fallback=\\"🤗\\"></em-emoji> we’re now using
   <span class=\\"h-card\\"
     ><a
       class=\\"u-url mention\\"

@@ -55,15 +55,10 @@ exports[`html-parse > custom emoji > html 1`] = `
 exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe :nuxt:"`;
 
 exports[`html-parse > emojis > html 1`] = `
-"🇫🇷 👨<em-emoji native=\\"‍\\" fallback=\\"‍\\"></em-emoji>👩<em-emoji
-  native=\\"‍\\"
-  fallback=\\"‍\\"
-></em-emoji
->👦 👩<em-emoji native=\\"‍\\" fallback=\\"‍\\"></em-emoji>🚒🧑🏽<em-emoji
-  native=\\"‍\\"
-  fallback=\\"‍\\"
-></em-emoji
->🚀
+"<em-emoji native=\\"🇫🇷\\" fallback=\\"🇫🇷\\"></em-emoji>
+<em-emoji native=\\"👨‍👩‍👦\\" fallback=\\"👨‍👩‍👦\\"></em-emoji>
+<em-emoji native=\\"👩‍🚒\\" fallback=\\"👩‍🚒\\"></em-emoji
+><em-emoji native=\\"🧑🏽‍🚀\\" fallback=\\"🧑🏽‍🚀\\"></em-emoji>
 "
 `;
 
@@ -92,7 +87,7 @@ code block
 
 exports[`html-parse > link + mention > html 1`] = `
 "<p>
-  Happy <em-emoji native=\\"🤗\\"></em-emoji> we’re now using
+  Happy <em-emoji native=\\"🤗\\" fallback=\\"🤗\\"></em-emoji> we’re now using
   <span class=\\"h-card\\"
     ><a
       href=\\"https://mas.to/@vitest\\"

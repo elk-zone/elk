@@ -52,7 +52,7 @@ exports[`html-parse > custom emoji > html 1`] = `
 "
 `;
 
-exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe  :nuxt:"`;
+exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe :nuxt:"`;
 
 exports[`html-parse > empty > html 1`] = `""`;
 
@@ -100,4 +100,4 @@ exports[`html-parse > link + mention > html 1`] = `
 "
 `;
 
-exports[`html-parse > link + mention > text 1`] = `"Happy  we’re now using @vitest (migrated from chai+mocha) https://github.com/ayoayco/astro-reactive-library/pull/203"`;
+exports[`html-parse > link + mention > text 1`] = `"Happy 🤗 we’re now using @vitest (migrated from chai+mocha) https://github.com/ayoayco/astro-reactive-library/pull/203"`;

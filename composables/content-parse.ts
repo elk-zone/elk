@@ -19,9 +19,10 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
     // custom emojis
     .replace(/:([\w-]+?):/g, (_, name) => {
       const emoji = customEmojis[name]
-      if (emoji)
-        return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
-      return `:${name}:`
+
+      return emoji
+        ? `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
+        : `:${name}:`
     })
     .replace(EMOJI_REGEX, '<em-emoji native="$1" />')
 
@@ -115,8 +116,9 @@ export function treeToText(input: Node): string {
   if ('children' in input)
     body = (input.children as Node[]).map(n => treeToText(n)).join('')
 
+  // add spaces around emoji to prevent parsing errors: 2 or more consecutive emojis will not be parsed
   if (input.name === 'img' && input.attributes.class?.includes('custom-emoji'))
-    return `:${input.attributes['data-emoji-id']}:`
+    return ` :${input.attributes['data-emoji-id']}: `
 
   return pre + body + post
 }

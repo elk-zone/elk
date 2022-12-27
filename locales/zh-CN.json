@@ -31,6 +31,7 @@
     "unmute": "取消屏蔽"
   },
   "action": {
+    "apply": "应用",
     "bookmark": "收藏",
     "bookmarked": "已收藏",
     "boost": "转发",
@@ -56,6 +57,9 @@
   "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
   "app_logo": "应用图标",
   "app_name": "鹿鸣",
+  "attachment": {
+    "edit_title": "描述"
+  },
   "command": {
     "activate": "执行",
     "complete": "完成",

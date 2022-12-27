@@ -79,12 +79,6 @@
     "sign_in_error": "Nemohu se připojit k serveru.",
     "status_not_found": "Status nenalezen"
   },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar on Avatar",
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "Virtual Scrolling"
-  },
   "help": {
     "desc_highlight": "Z toho důvodu může tu a tam nastat chyba nebo chybět nějaká ta funkce.",
     "desc_para1": "Těší nás váš zájem o Elk - Mastodoní klient na kterém právě pracujeme.",
@@ -152,6 +146,14 @@
     "reply_to_account": "Odpovědět {0}",
     "replying": "Sem napište odpověď",
     "the_thread": "vlákno"
+  },
+  "settings": {
+    "feature_flags": {
+      "avatar_on_avatar": "Avatar on Avatar",
+      "github_cards": "GitHub Cards",
+      "user_switcher_sidebar": "User Switcher Sidebar",
+      "virtual_scroll": "Virtual Scrolling"
+    }
   },
   "state": {
     "edited": "(Upraveno)",

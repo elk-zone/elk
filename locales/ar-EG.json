@@ -83,12 +83,6 @@
     "sign_in_error": "لا يمكن الاتصال بالموقع",
     "status_not_found": "لا يمكن إيجاد المنشور"
   },
-  "feature_flag": {
-    "avatar_on_avatar": "الصورة الرمزية على الصورة الرمزية",
-    "github_cards": "GitHub بطاقات",
-    "user_switcher_sidebar": "الشريط الجانبي لمبدل المستخدم",
-    "virtual_scroll": "التمرير الافتراضي"
-  },
   "help": {
     "desc_highlight": "توقع بعض الأخطاء والميزات المفقودة هنا وهناك.",
     "desc_para1": "نشكرك على اهتمامك بتجربة Elk ، عميل ماستدون العام!",
@@ -198,6 +192,14 @@
   },
   "search": {
     "search_desc": "ابحث عن الأشخاص والهاشتاج"
+  },
+  "settings": {
+    "feature_flags": {
+      "avatar_on_avatar": "الصورة الرمزية على الصورة الرمزية",
+      "github_cards": "GitHub بطاقات",
+      "user_switcher_sidebar": "الشريط الجانبي لمبدل المستخدم",
+      "virtual_scroll": "التمرير الافتراضي"
+    }
   },
   "state": {
     "edited": "(معدل)",

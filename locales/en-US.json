@@ -102,12 +102,6 @@
     "status_not_found": "Post not found",
     "unsupported_file_format": "Unsupported file format"
   },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar on Avatar",
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "Virtual Scrolling"
-  },
   "help": {
     "desc_highlight": "Expect some bugs and missing features here and there.",
     "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress generic Mastodon client!",
@@ -227,6 +221,13 @@
   "settings": {
     "about": {
       "label": "About"
+    },
+    "feature_flags": {
+      "avatar_on_avatar": "Avatar on Avatar",
+      "github_cards": "GitHub Cards",
+      "title": "Experimental Feature Flags",
+      "user_switcher_sidebar": "User Switcher Sidebar",
+      "virtual_scroll": "Virtual Scrolling"
     },
     "interface": {
       "label": "Interface"

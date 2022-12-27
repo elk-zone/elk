@@ -89,12 +89,7 @@
     "status_not_found": "未找到帖文",
     "unsupported_file_format": "不支持的文件格式"
   },
-  "feature_flag": {
-    "avatar_on_avatar": "头像堆叠",
-    "github_cards": "Github 卡片",
-    "user_switcher_sidebar": "用户切换侧边栏",
-    "virtual_scroll": "虚拟滚动"
-  },
+
   "help": {
     "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
     "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Mastodon 客户端。",
@@ -208,6 +203,12 @@
     "search_desc": "搜索用户或话题标签"
   },
   "settings": {
+    "feature_flags": {
+      "avatar_on_avatar": "头像堆叠",
+      "github_cards": "Github 卡片",
+      "user_switcher_sidebar": "用户切换侧边栏",
+      "virtual_scroll": "虚拟滚动"
+    },
     "preferences": {
       "label": "首选项"
     },

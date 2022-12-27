@@ -79,12 +79,6 @@
     "sign_in_error": "Kann nicht zu Server verbinden",
     "status_not_found": "Beitrag nicht gefunden"
   },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar auf Avatar",
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "Virtuelles Scrollen"
-  },
   "help": {
     "desc_highlight": "Erwarte hier und da einige Bugs und fehlende Funktionen.",
     "desc_para1": "Danke für dein Interesse in Elk, unser noch in der Bearbeitung befindliche, generische Mastodon Client!",
@@ -157,6 +151,14 @@
   },
   "search": {
     "search_desc": "Suche nach Nutzern & Hashtags"
+  },
+  "settings": {
+    "feature_flags": {
+      "avatar_on_avatar": "Avatar auf Avatar",
+      "github_cards": "GitHub Cards",
+      "user_switcher_sidebar": "User Switcher Sidebar",
+      "virtual_scroll": "Virtuelles Scrollen"
+    }
   },
   "state": {
     "edited": "(bearbeitet)",

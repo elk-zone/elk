@@ -22,6 +22,15 @@ const buildTimeAgo = useTimeAgo(buildTimeDate, timeAgoOptions)
           @click="toggleZenMode()"
         />
       </CommonTooltip>
+      <CommonTooltip :content="$t('nav_side.settings')">
+        <NuxtLink
+          flex
+          text-lg
+          to="/settings"
+          i-ri:settings-4-line
+          :aria-label="$t('nav_side.settings')"
+        />
+      </CommonTooltip>
       <NavSelectLanguage>
         <CommonTooltip :content="$t('nav_footer.select_language')">
           <button flex :aria-label="$t('nav_footer.select_language')">
@@ -36,13 +45,6 @@ const buildTimeAgo = useTimeAgo(buildTimeDate, timeAgoOptions)
           </button>
         </CommonTooltip>
       </NavSelectFontSize>
-      <NavSelectFeatureFlags v-if="isMastoInitialised && currentUser">
-        <CommonTooltip :content="$t('nav_footer.select_feature_flags')">
-          <button flex :aria-label="$t('nav_footer.select_feature_flags')">
-            <div i-ri:flag-line text-lg />
-          </button>
-        </CommonTooltip>
-      </NavSelectFeatureFlags>
     </div>
     <div>
       <button cursor-pointer hover:underline @click="openPreviewHelp">

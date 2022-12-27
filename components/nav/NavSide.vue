@@ -21,6 +21,5 @@ const { notifications } = useNotifications()
     <NavSideItem :text="$t('nav_side.conversations')" to="/conversations" icon="i-ri:at-line" user-only />
     <NavSideItem :text="$t('nav_side.favourites')" to="/favourites" icon="i-ri:heart-3-line" user-only />
     <NavSideItem :text="$t('nav_side.bookmarks')" to="/bookmarks" icon="i-ri:bookmark-line " user-only />
-    <NavSideItem :text="$t('nav_side.settings')" to="/settings" icon="i-ri:settings-4-line " user-only />
   </nav>
 </template>

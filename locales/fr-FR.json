@@ -97,12 +97,6 @@
     "sign_in_error": "Impossible de se connecter au serveur.",
     "status_not_found": "Message non trouvé"
   },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar sur avatar",
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "Défilement virtuel"
-  },
   "help": {
     "desc_highlight": "Il est possible de rencontrer, par-ci par-là, quelques bugs et fonctionnalités manquantes.",
     "desc_para1": "Merci de l'intérêt pour Elk, notre client Mastodon en cours de développement !",
@@ -215,6 +209,14 @@
   },
   "search": {
     "search_desc": "Recherche de personnes & hashtags"
+  },
+  "settings": {
+    "feature_flags": {
+      "avatar_on_avatar": "Avatar sur avatar",
+      "github_cards": "GitHub Cards",
+      "user_switcher_sidebar": "User Switcher Sidebar",
+      "virtual_scroll": "Défilement virtuel"
+    }
   },
   "state": {
     "edited": "(Édité)",

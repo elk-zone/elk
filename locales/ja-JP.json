@@ -31,11 +31,6 @@
     "error": "ERROR",
     "not_found": "404 Not Found"
   },
-  "feature_flag": {
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "仮想スクロール"
-  },
   "menu": {
     "block_account": "{0}さんをブロックする",
     "block_domain": "{0}をドメインブロック",
@@ -75,6 +70,13 @@
     "reblogged_post": "さんがあなたの投稿をブーストしました",
     "request_to_follow": "さんがあなたへフォローをリクエストしました",
     "update_status": "さんが投稿を更新しました"
+  },
+  "settings": {
+    "feature_flags": {
+      "github_cards": "GitHub Cards",
+      "user_switcher_sidebar": "User Switcher Sidebar",
+      "virtual_scroll": "仮想スクロール"
+    }
   },
   "state": {
     "editing": "編集中",

@@ -76,9 +76,11 @@ export async function setupI18n() {
 }
 
 export async function setupEmojis() {
-  const promise = import('@emoji-mart/data').then(r => r.default)
-  const { init } = await import('emoji-mart')
-  init({
-    data: () => promise,
-  })
+  if (process.client) {
+    const promise = import('@emoji-mart/data').then(r => r.default)
+    const { init } = await import('emoji-mart')
+    init({
+      data: () => promise,
+    })
+  }
 }

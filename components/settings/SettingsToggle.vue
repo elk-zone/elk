@@ -1,33 +1,15 @@
-<script lang="ts" setup>
-const props = defineProps<{
-  text?: string
+<script setup lang="ts">
+defineProps<{
   icon?: string
-  to: string | Record<string, string>
-  command?: boolean
+  text?: string
+  checked: boolean
 }>()
-
-const router = useRouter()
-
-if (props.command) {
-  useCommand({
-    scope: 'Settings',
-
-    name: () => props.text ?? (typeof props.to === 'string' ? props.to as string : props.to.name),
-    icon: () => props.icon || '',
-
-    onActivate() {
-      router.push(props.to)
-    },
-  })
-}
 </script>
 
 <template>
-  <NuxtLink
-    :to="to"
+  <button
     exact-active-class="text-primary"
     block w-full group focus:outline-none
-    @click="$scrollToTop"
   >
     <div
       w-full flex w-fit px5 py3 md:gap2 gap4 items-center
@@ -44,7 +26,7 @@ if (props.command) {
           </slot>
         </div>
         <div space-y-1>
-          <p>
+          <p :class="checked ? 'text-base' : 'text-secondary'">
             <slot>
               <span>{{ text }}</span>
             </slot>
@@ -54,7 +36,7 @@ if (props.command) {
           </p>
         </div>
       </div>
-      <div i-ri:arrow-right-s-line text-xl text-secondary-light />
+      <div text-lg :class="checked ? 'i-ri-checkbox-line text-primary' : 'i-ri-checkbox-blank-line text-secondary'" />
     </div>
-  </NuxtLink>
+  </button>
 </template>

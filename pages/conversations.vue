@@ -6,7 +6,7 @@ definePageMeta({
 const { t } = useI18n()
 
 useHeadFixed({
-  title: () => t('nav_side.conversations'),
+  title: () => t('nav.conversations'),
 })
 </script>
 
@@ -15,7 +15,7 @@ useHeadFixed({
     <template #title>
       <NuxtLink to="/conversations" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:at-line />
-        <span>{{ t('nav_side.conversations') }}</span>
+        <span>{{ t('nav.conversations') }}</span>
       </NuxtLink>
     </template>
 

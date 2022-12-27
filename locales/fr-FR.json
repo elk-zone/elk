@@ -70,7 +70,6 @@
     "activate": "Activer",
     "complete": "Compléter",
     "compose_desc": "Écrire un nouveau message",
-    "lang": "Langages",
     "n-people-in-the-past-n-days": "{0} personnes dans les {1} jours",
     "select_lang": "Sélectionner langue",
     "sign_in_desc": "Ajouter un compte existant",
@@ -96,12 +95,6 @@
     "explore-list-empty": "Pas de tendence en ce moment. Revenez plus tard!",
     "sign_in_error": "Impossible de se connecter au serveur.",
     "status_not_found": "Message non trouvé"
-  },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar sur avatar",
-    "github_cards": "GitHub Cards",
-    "user_picker": "User Picker",
-    "virtual_scroll": "Défilement virtuel"
   },
   "help": {
     "desc_highlight": "Il est possible de rencontrer, par-ci par-là, quelques bugs et fonctionnalités manquantes.",
@@ -133,16 +126,9 @@
     "unmute_account": "Enlever la sourdine à {0}",
     "unpin_on_profile": "Désépingler du profil"
   },
-  "nav_footer": {
-    "built_at": "Dernier build {0}",
-    "select_feature_flags": "Activer/Désactiver Feature Flags",
-    "select_language": "Selectionner langue",
-    "show_intro": "Ré-afficher l'introduction",
-    "toggle_theme": "Changer de thème",
-    "zen_mode": "Mode Zen"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "Marque-pages",
+    "built_at": "Dernier build {0}",
     "conversations": "Conversations",
     "explore": "Explorer",
     "favourites": "Favoris",
@@ -151,10 +137,12 @@
     "local": "Local",
     "notifications": "Notifications",
     "profile": "Profil",
-    "search": "Rechercher {0}"
-  },
-  "nav_user": {
-    "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, mettre en favoris, partager et répondre à des messages, ou interagir à partir de votre compte sur un autre serveur..."
+    "search": "Rechercher {0}",
+    "select_feature_flags": "Activer/Désactiver Feature Flags",
+    "select_language": "Selectionner langue",
+    "show_intro": "Ré-afficher l'introduction",
+    "toggle_theme": "Changer de thème",
+    "zen_mode": "Mode Zen"
   },
   "notification": {
     "favourited_post": "aime votre message",
@@ -207,14 +195,20 @@
   },
   "pwa": {
     "dismiss": "Fermer",
-    "message": "@:pwa.title{','} cliquez sur le bouton @:pwa.reload pour mettre à jour.",
-    "reload": "Recharger",
     "title": "Nouvelle mise à jour Elk disponible !",
     "update": "Mettre à jour",
     "update_available_short": "Mettre à jour Elk"
   },
   "search": {
     "search_desc": "Recherche de personnes & hashtags"
+  },
+  "settings": {
+    "feature_flags": {
+      "avatar_on_avatar": "Avatar sur avatar",
+      "github_cards": "GitHub Cards",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Défilement virtuel"
+    }
   },
   "state": {
     "edited": "(Édité)",
@@ -248,7 +242,6 @@
     "edited": "a édité {0}"
   },
   "tab": {
-    "accounts": "Comptes",
     "for_you": "Pour vous",
     "hashtags": "Hashtags",
     "media": "Média",
@@ -309,6 +302,7 @@
   "user": {
     "add_existing": "Ajouter un compte existant",
     "server_address_label": "Adresse du serveur mastodon",
+    "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, mettre en favoris, partager et répondre à des messages, ou interagir à partir de votre compte sur un autre serveur...",
     "sign_out_account": "Se déconnecter de {0}",
     "tip_no_account": "Si vous n'avez pas encore de compte Mastodon, {0}.",
     "tip_register_account": "choisissez votre serveur et enregistrez-en un"

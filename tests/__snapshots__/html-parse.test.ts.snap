@@ -77,7 +77,7 @@ code block
 
 exports[`html-parse > link + mention > html 1`] = `
 "<p>
-  Happy 🤗 we’re now using
+  Happy <em-emoji native=\\"🤗\\"></em-emoji> we’re now using
   <span class=\\"h-card\\"
     ><a
       href=\\"https://mas.to/@vitest\\"

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Status, StatusEdit } from 'masto'
+import { formatTimeAgo } from '@vueuse/core'
 
 const { status } = defineProps<{
   status: Status
@@ -23,9 +24,17 @@ const timeAgoOptions = useTimeAgoOptions()
       @click="showHistory(edit)"
     >
       {{ getDisplayName(edit.account) }}
-      <i18n-t :keypath="`status_history.${idx === statusEdits.length - 1 ? 'created' : 'edited'}`">
-        {{ useTimeAgo(edit.createdAt, timeAgoOptions).value }}
-      </i18n-t>
+
+      <template v-if="idx === statusEdits.length - 1">
+        <i18n-t keypath="status_history.created">
+          {{ formatTimeAgo(new Date(edit.createdAt), timeAgoOptions) }}
+        </i18n-t>
+      </template>
+      <template v-else>
+        <i18n-t keypath="status_history.edited">
+          {{ formatTimeAgo(new Date(edit.createdAt), timeAgoOptions) }}
+        </i18n-t>
+      </template>
     </CommonDropdownItem>
   </template>
   <template v-else>

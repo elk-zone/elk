@@ -17,7 +17,7 @@ function getTagUrl(tag: Tag) {
 }
 
 useHeadFixed({
-  title: () => `${t('tab.hashtags')} | ${t('nav_side.explore')}`,
+  title: () => `${t('tab.hashtags')} | ${t('nav.explore')}`,
 })
 </script>
 

@@ -30,7 +30,7 @@ const tabs = $computed(() => [
     <template #title>
       <span text-lg font-bold flex items-center gap-2 cursor-pointer @click="$scrollToTop">
         <div i-ri:hashtag />
-        <span>{{ t('nav_side.explore') }}</span>
+        <span>{{ t('nav.explore') }}</span>
       </span>
     </template>
 

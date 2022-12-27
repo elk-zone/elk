@@ -109,20 +109,6 @@ onBeforeUnmount(() => {
                 {{ $t('nav.select_font_size') }}
               </button>
             </NavSelectFontSize>
-            <!-- Toggle Feature Flags -->
-            <NavSelectFeatureFlags v-if="isMastoInitialised && currentUser">
-              <button
-                flex flex-row items-center
-                block px-5 py-2 focus-blue w-full
-                text-sm text-base capitalize text-left whitespace-nowrap
-                transition-colors duration-200 transform
-                hover="bg-gray-100 dark:(bg-gray-700 text-white)"
-                @click.stop
-              >
-                <span class="i-ri:flag-line flex-shrink-0 text-xl mr-4 !align-middle" />
-                {{ $t('nav.select_feature_flags') }}
-              </button>
-            </NavSelectFeatureFlags>
           </div>
         </div>
       </div>

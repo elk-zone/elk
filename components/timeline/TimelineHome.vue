@@ -23,7 +23,7 @@ function preprocess(items: Status[]) {
 
 <template>
   <div>
-    <PublishWidget draft-key="home" />
+    <PublishWidget draft-key="home" border="b base" />
     <TimelinePaginator v-bind="{ paginator, stream, preprocess }" context="home" />
   </div>
 </template>

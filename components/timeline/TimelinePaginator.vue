@@ -21,14 +21,14 @@ const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirt
         {{ $t('timeline.show_new_items', number) }}
       </button>
     </template>
-    <template #default="{ item, older, newer, active }">
+    <template #default="{ item, older, newer, active, index }">
       <template v-if="virtualScroller">
         <DynamicScrollerItem :item="item" :active="active" tag="article">
           <StatusCard
             :status="item" :context="context"
             :connect-reply="item.id === older?.inReplyToId"
             :show-reply-to="!(item.inReplyToId && item.inReplyToId === newer?.id)"
-            :class="{ 'border-t border-base': !(item.inReplyToId && item.inReplyToId === newer?.id) }"
+            :class="{ 'border-t border-base': index !== 0 && !(item.inReplyToId && item.inReplyToId === newer?.id) }"
           />
         </DynamicScrollerItem>
       </template>

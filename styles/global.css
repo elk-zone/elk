@@ -83,6 +83,18 @@ body {
   vertical-align: text-bottom;
 }
 
+.iconify-emoji {
+  display: inline-block;
+  overflow: hidden;
+  max-height: 1.1em;
+  max-width: 1.1em;
+  vertical-align: text-bottom;
+}
+
+.iconify-emoji-padded {
+  transform: scale(1.2);
+}
+
 .content-rich {
   line-height: calc(4 / 3 * 1em);
   overflow-wrap: break-word;

@@ -1,6 +1,8 @@
 import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
+import { findAndReplaceEmojisInText } from '@iconify/utils'
+import { emojiFilename, emojiPrefix, emojiRegEx } from '../config/emojis'
 
 const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
 export function decodeHtml(text: string) {
@@ -13,7 +15,11 @@ export function decodeHtml(text: string) {
  * with interop of custom emojis and inline Markdown syntax
  */
 export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}, markdown = true) {
-  let processed = html
+  let processed = (findAndReplaceEmojisInText(emojiRegEx, html, (match) => {
+    const file = emojiFilename(match)
+    const className = `iconify-emoji iconify-emoji--${emojiPrefix}${file.padding ? ' iconify-emoji-padded' : ''}`
+    return `<img src="/emojis/${emojiPrefix}/${file.filename}" alt="${match.match}" class="${className}" />`
+  }) || html)
     // custom emojis
     .replace(/:([\w-]+?):/g, (_, name) => {
       const emoji = customEmojis[name]
@@ -112,8 +118,12 @@ export function treeToText(input: Node): string {
   if ('children' in input)
     body = (input.children as Node[]).map(n => treeToText(n)).join('')
 
-  if (input.name === 'img' && input.attributes.class?.includes('custom-emoji'))
-    return `:${input.attributes['data-emoji-id']}:`
+  if (input.name === 'img') {
+    if (input.attributes.class?.includes('custom-emoji'))
+      return `:${input.attributes['data-emoji-id']}:`
+    if (input.attributes.class?.includes('iconify-emoji'))
+      return input.attributes.alt
+  }
 
   return pre + body + post
 }

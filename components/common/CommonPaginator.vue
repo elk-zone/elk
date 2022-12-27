@@ -4,18 +4,21 @@ import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { Paginator, WsEvents } from 'masto'
 
-const { paginator, stream, keyProp = 'id', virtualScroller = false, eventType = 'update' } = defineProps<{
+const { paginator, stream, keyProp = 'id', virtualScroller = false, eventType = 'update', preprocess } = defineProps<{
   paginator: Paginator<any, any[]>
   keyProp?: string
   virtualScroller?: boolean
   stream?: WsEvents
   eventType?: 'notification' | 'update'
+  preprocess?: (items: any[]) => any[]
 }>()
 
 defineSlots<{
   default: {
     item: any
     active?: boolean
+    older?: any
+    newer?: any
   }
   updater: {
     number: number
@@ -24,7 +27,7 @@ defineSlots<{
   loading: {}
 }>()
 
-const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream, eventType)
+const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream, eventType, preprocess)
 </script>
 
 <template>
@@ -44,9 +47,11 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
       </template>
       <template v-else>
         <slot
-          v-for="item of items"
+          v-for="item, i of items"
           :key="item[keyProp]"
           :item="item"
+          :older="items[i + 1]"
+          :newer="items[i - 1]"
         />
       </template>
     </slot>

@@ -2,7 +2,12 @@ import type { Paginator, WsEvents } from 'masto'
 import { useDeactivated } from './lifecycle'
 import type { PaginatorState } from '~/types'
 
-export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvents, eventType: 'notification' | 'update' = 'update') {
+export function usePaginator<T>(
+  paginator: Paginator<any, T[]>,
+  stream?: WsEvents,
+  eventType: 'notification' | 'update' = 'update',
+  preprocess: (items: T[]) => T[] = (items: T[]) => items,
+) {
   const state = ref<PaginatorState>(isMastoInitialised.value ? 'idle' : 'loading')
   const items = ref<T[]>([])
   const nextItems = ref<T[]>([])
@@ -52,7 +57,7 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvent
       const result = await paginator.next()
 
       if (result.value?.length) {
-        nextItems.value = result.value
+        nextItems.value = preprocess(result.value) as any
         items.value.push(...nextItems.value)
         state.value = 'idle'
       }

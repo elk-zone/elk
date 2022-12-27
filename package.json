@@ -25,7 +25,7 @@
   "dependencies": {
     "@fnando/sparkline": "^0.3.10",
     "@iconify-emoji/twemoji": "^1.0.0",
-    "@iconify/utils": "^2.0.5",
+    "@iconify/utils": "^2.0.6",
     "@tiptap/extension-character-count": "2.0.0-beta.204",
     "@tiptap/extension-code-block": "2.0.0-beta.204",
     "@tiptap/extension-mention": "2.0.0-beta.204",

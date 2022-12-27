@@ -77,6 +77,7 @@ onReactivated(() => {
         <PublishWidget
           v-if="currentUser"
           ref="publishWidget"
+          border="y base"
           :draft-key="replyDraft!.key"
           :initial="replyDraft!.draft"
           @published="refreshContext()"

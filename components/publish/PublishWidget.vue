@@ -68,6 +68,9 @@ async function handlePaste(evt: ClipboardEvent) {
 function insertText(text: string) {
   editor.value?.chain().insertContent(text).focus().run()
 }
+function insertEmoji(image: any) {
+  editor.value?.chain().focus().setEmoji(image).run()
+}
 
 async function pickAttachments() {
   const files = await fileOpen([
@@ -277,7 +280,7 @@ defineExpose({
         v-if="shouldExpanded" flex="~ gap-2 1" m="l--1" pt-2 justify="between" max-full
         border="t base"
       >
-        <PublishEmojiPicker @select="insertText" />
+        <PublishEmojiPicker @select="insertText" @select-custom="insertEmoji" />
 
         <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">
           <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">

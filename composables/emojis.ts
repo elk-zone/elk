@@ -1,6 +1,7 @@
 import type { Emoji } from 'masto'
 import type { CustomEmojisInfo } from './push-notifications/types'
 import { STORAGE_KEY_CUSTOM_EMOJIS } from '~/constants'
+import { emojisArrayToObject } from '~/composables/utils'
 
 const TTL = 1000 * 60 * 60 * 24 // 1 day
 
@@ -14,6 +15,8 @@ function getDefault(): CustomEmojisInfo {
 export const currentCustomEmojis = process.server
   ? computed(getDefault)
   : useUserLocalStorage(STORAGE_KEY_CUSTOM_EMOJIS, getDefault)
+
+export const currentCustomEmojisObject = computed(() => emojisArrayToObject(currentCustomEmojis.value.emojis))
 
 export async function updateCustomEmojis() {
   if (Date.now() - currentCustomEmojis.value.lastUpdate < TTL)

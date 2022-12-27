@@ -1,6 +1,7 @@
 import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
+import { currentCustomEmojisObject } from '~/composables/emojis'
 
 const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
 export function decodeHtml(text: string) {
@@ -16,10 +17,11 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
   let processed = html
     // custom emojis
     .replace(/:([\w-]+?):/g, (_, name) => {
-      const emoji = customEmojis[name]
-      if (emoji)
-        return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
-      return `:${name}:`
+      const emoji = customEmojis[name] ?? currentCustomEmojisObject.value[name]
+
+      return emoji
+        ? `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
+        : `:${name}:`
     })
 
   if (markdown) {
@@ -112,8 +114,9 @@ export function treeToText(input: Node): string {
   if ('children' in input)
     body = (input.children as Node[]).map(n => treeToText(n)).join('')
 
+  // add spaces around emoji to prevent parsing errors: 2 or more consecutive emojis will not be parsed
   if (input.name === 'img' && input.attributes.class?.includes('custom-emoji'))
-    return `:${input.attributes['data-emoji-id']}:`
+    return ` :${input.attributes['data-emoji-id']}: `
 
   return pre + body + post
 }

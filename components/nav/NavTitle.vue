@@ -15,7 +15,7 @@ const sub = env === 'local' ? 'dev' : env === 'staging' ? 'preview' : 'alpha'
     to="/"
     external
   >
-    <img :alt="$t('app_logo')" src="/logo.svg" shrink-0 aspect="1/1" h-10>
+    <img :alt="$t('app_logo')" src="/logo.svg" shrink-0 aspect="1/1" sm:h-8 lg:h-10>
     <div hidden lg:block>
       {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ sub }}</sup>
     </div>

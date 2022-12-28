@@ -49,7 +49,7 @@ const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly &
       <div
         flex items-center gap4
         w-fit rounded-full
-        px2 py2 mxa
+        px2 py2 mx3 sm:mxa
         lg="mx0 px5"
         transition-100
         group-hover:bg-active group-focus-visible:ring="2 current"

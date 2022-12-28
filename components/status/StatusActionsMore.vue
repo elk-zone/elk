@@ -16,6 +16,7 @@ const {
   toggleFavourite,
   togglePin,
   toggleReblog,
+  toggleMute,
 } = $(useStatusActions(props))
 
 const clipboard = useClipboard()
@@ -146,6 +147,15 @@ async function editStatus() {
           icon="i-ri:link"
           :command="command"
           @click="copyLink(status)"
+        />
+
+        <CommonDropdownItem
+          v-if="currentUser && status.mentions.some(m => m.username === currentUser!.account.username)"
+          :text="$t('menu.mute_conversation')"
+          icon="i-ri:eye-off-line"
+          :command="command"
+          :disabled="isLoading.muted"
+          @click="toggleMute()"
         />
 
         <NuxtLink :to="status.url" external target="_blank">

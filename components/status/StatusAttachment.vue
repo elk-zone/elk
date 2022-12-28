@@ -66,8 +66,8 @@ useIntersectionObserver(video, (entries) => {
     return
 
   entries.forEach((entry) => {
-    if (entry.intersectionRatio !== 1 && !video.value!.paused)
-      video.value!.pause()
+    if (entry.intersectionRatio !== 1)
+      !video.value!.paused && video.value!.pause()
     else
       video.value!.play()
   })

@@ -65,8 +65,11 @@ async function handlePaste(evt: ClipboardEvent) {
   await uploadAttachments(Array.from(files))
 }
 
-function insertText(text: string) {
-  editor.value?.chain().insertContent(text).focus().run()
+function insertEmoji(name: string) {
+  editor.value?.chain().focus().insertEmoji(name).run()
+}
+function insertCustomEmoji(image: any) {
+  editor.value?.chain().focus().insertCustomEmoji(image).run()
 }
 
 async function pickAttachments() {
@@ -193,7 +196,7 @@ defineExpose({
       <div border="b dashed gray/40" />
     </template>
 
-    <div flex gap-4 flex-1>
+    <div flex gap-3 flex-1>
       <NuxtLink :to="getAccountRoute(currentUser.account)">
         <AccountAvatar :account="currentUser.account" account-avatar-normal />
       </NuxtLink>
@@ -234,7 +237,10 @@ defineExpose({
           role="alert"
           aria-describedby="upload-failed"
           flex="~ col"
-          gap-1 text-sm pt-1 pl-2 pr-1 pb-2 text-red-600 dark:text-red-400
+          gap-1 text-sm
+          pt-1 pl-2 pr-1 pb-2
+          rtl="pl-1 pr-2"
+          text-red-600 dark:text-red-400
           border="~ base rounded red-600 dark:red-400"
         >
           <head id="upload-failed" flex justify-between>
@@ -277,7 +283,10 @@ defineExpose({
         v-if="shouldExpanded" flex="~ gap-2 1" m="l--1" pt-2 justify="between" max-full
         border="t base"
       >
-        <PublishEmojiPicker @select="insertText" />
+        <PublishEmojiPicker
+          @select="insertEmoji"
+          @select-custom="insertCustomEmoji"
+        />
 
         <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">
           <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
@@ -290,7 +299,7 @@ defineExpose({
             <button
               btn-action-icon
               :aria-label="$t('tooltip.toggle_code_block')"
-              :class="editor.isActive('codeBlock') ? 'op100' : 'op50'"
+              :class="editor.isActive('codeBlock') ? 'text-primary' : ''"
               @click="editor?.chain().focus().toggleCodeBlock().run()"
             >
               <div i-ri:code-s-slash-line />

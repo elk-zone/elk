@@ -10,7 +10,17 @@ const { notification } = defineProps<{
   <article flex flex-col relative>
     <template v-if="notification.type === 'follow'">
       <NuxtLink :to="getAccountRoute(notification.account)">
-        <div flex items-center absolute pl-3 pr-4 py-3 bg-base rounded-br-3 top-0 left-0>
+        <div
+          flex items-center absolute
+          pl-3 pr-4 left-0 rtl-left-none
+          rounded-br-3
+          rtl="pr-3 pl-4 right-0"
+          rtl-rounded-bl-3
+          rtl-rounded-br-0
+          py-3 bg-base top-0
+          :lang="notification.status?.language ?? undefined"
+          :dir="notification.status?.language ? 'auto' : 'ltr'"
+        >
           <div i-ri:user-follow-fill mr-1 color-primary />
           <ContentRich
             text-primary mr-1 font-bold line-clamp-1 ws-pre-wrap break-all
@@ -21,7 +31,11 @@ const { notification } = defineProps<{
             {{ $t('notification.followed_you') }}
           </span>
         </div>
-        <AccountBigCard :account="notification.account" />
+        <AccountBigCard
+          :account="notification.account"
+          :lang="notification.status?.language ?? undefined"
+          :dir="notification.status?.language ? 'auto' : 'ltr'"
+        />
       </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'admin.sign_up'">

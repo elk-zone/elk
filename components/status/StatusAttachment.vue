@@ -80,8 +80,11 @@ const type = $computed(() => {
     <template v-else-if="type === 'gifv'">
       <video
         :poster="attachment.previewUrl"
+        preload="none"
         loop
+        playsinline
         autoplay
+        muted
         border="~ base"
         object-cover
         :width="attachment.meta?.original?.width"

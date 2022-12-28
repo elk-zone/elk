@@ -6,10 +6,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
 
 <template>
   <div h-full :class="{ zen: isZenMode }">
-    <div v-if="isHydrated.value && showUserSwitcherSidebar" fixed h-full hidden lg:block bg-code border-r-1 border-base>
-      <UserPicker />
-    </div>
-    <main flex w-full mxa lg:max-w-80rem :class="isHydrated.value && showUserSwitcherSidebar ? 'user-switcher-sidebar' : ''">
+    <main flex w-full mxa lg:max-w-80rem>
       <aside class="hidden sm:flex w-1/8 md:w-1/6 justify-end lg:w-1/4 zen-hide" relative>
         <div sticky top-0 w-20 lg:w-100 h-screen flex="~ col" lt-lg-items-center>
           <slot name="left">
@@ -21,24 +18,22 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
               </div>
               <div v-if="isMastoInitialised" flex flex-col>
                 <UserSignInEntry v-if="!currentUser" sm:hidden />
-                <div v-if="currentUser" p6 pb8 w-full flex="~" items-center justify-between>
-                  <NuxtLink
-                    hidden lg:block
-                    rounded-full text-start w-full
-                    hover:bg-active cursor-pointer transition-100
-                    :to="getAccountRoute(currentUser.account)"
-                  >
-                    <AccountInfo :account="currentUser.account" md:break-words />
-                  </NuxtLink>
-                  <VDropdown :distance="0" placement="bottom-end">
-                    <button btn-action-icon :aria-label="$t('action.switch_account')">
-                      <div hidden lg:block i-ri:more-2-line />
-                      <AccountAvatar lg:hidden :account="currentUser.account" w-9 h-9 />
-                    </button>
-                    <template #popper="{ hide }">
-                      <UserSwitcher @click="hide" />
-                    </template>
-                  </VDropdown>
+                <div v-if="currentUser" p6 pb8 w-full>
+                  <div hidden lg-block>
+                    <UserPicker v-if="showUserPicker" />
+                    <div v-else flex="~" items-center justify-between>
+                      <NuxtLink
+                        hidden lg:block
+                        rounded-full text-start w-full
+                        hover:bg-active cursor-pointer transition-100
+                        :to="getAccountRoute(currentUser.account)"
+                      >
+                        <AccountInfo :account="currentUser.account" md:break-words />
+                      </NuxtLink>
+                      <UserDropdown />
+                    </div>
+                  </div>
+                  <UserDropdown lg:hidden />
                 </div>
               </div>
             </div>
@@ -68,11 +63,3 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
     <ModalContainer />
   </div>
 </template>
-
-<style scoped>
-@media (max-width: 1500px) and (min-width: 1024px) {
-  .user-switcher-sidebar {
-    padding-left: min(5rem, calc((1500px - 100vw) / 2));
-  }
-}
-</style>

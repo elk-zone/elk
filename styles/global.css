@@ -4,31 +4,36 @@ html {
 
 @font-face {
   font-display: swap;
-  font-family: "DM Mono";
+  font-family: 'DM Mono';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/DM-mono-v10.ttf) format("truetype");
+  src: url(/fonts/DM-mono-v10.ttf) format('truetype');
 }
 @font-face {
   font-display: swap;
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/DM-sans-v11.ttf) format("truetype");
+  src: url(/fonts/DM-sans-v11.ttf) format('truetype');
 }
 @font-face {
   font-display: swap;
-  font-family: "DM Serif Display";
+  font-family: 'DM Serif Display';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/DM-serif-display-v10.ttf) format("truetype");
+  src: url(/fonts/DM-serif-display-v10.ttf) format('truetype');
 }
 @font-face {
   font-display: swap;
-  font-family: "Homemade Apple";
+  font-family: 'Homemade Apple';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/homemade-apple-v18.ttf) format("truetype");
+  src: url(/fonts/homemade-apple-v18.ttf) format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'EmojiMart';
+  src: url('/fonts/seguiemj.ttf') format('truetype');
 }
 
 * {
@@ -99,7 +104,8 @@ body {
       }
     }
   }
-  b, strong {
+  b,
+  strong {
     --at-apply: font-bold;
   }
   p {
@@ -113,7 +119,8 @@ body {
   }
 
   .code-block {
-    --at-apply: font-mono bg-code text-base p3 mt-2 rounded overflow-auto leading-1.6em;
+    --at-apply: font-mono bg-code text-base p3 mt-2 rounded overflow-auto
+      leading-1.6em;
 
     .shiki {
       background: transparent !important;
@@ -124,11 +131,9 @@ body {
 .content-editor {
   --at-apply: outline-none flex-1;
   max-width: 100%;
-}
 
-.content-editor.content-rich {
-  p {
-    --at-apply: my-0;
+  .custom-emoji {
+    margin: 0 0.2em;
   }
 }
 
@@ -152,7 +157,9 @@ body {
   }
 }
 
-html, body, #__nuxt {
+html,
+body,
+#__nuxt {
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -183,6 +190,10 @@ body {
 
 em-emoji-picker {
   --border-radius: 0;
+}
+em-emoji {
+  font-size: 1.2em;
+  line-height: 1em;
 }
 
 footer {

@@ -103,5 +103,6 @@ export default defineConfig({
       res += `\n${res.replace('{scrollbar-width:none;}', '::-webkit-scrollbar{display: none;}')}`
       return res
     }],
+    ['box-shadow-outline', { 'box-shadow': '0 0 0 1px var(--c-primary)' }],
   ],
 })

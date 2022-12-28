@@ -44,7 +44,7 @@ export function useHightlighter(lang: Lang) {
 }
 
 export function useShikiTheme() {
-  return useColorModeRef().value ? 'vitesse-dark' : 'vitesse-light'
+  return useColorMode().value === 'dark' ? 'vitesse-dark' : 'vitesse-light'
 }
 
 export function highlightCode(code: string, lang: Lang) {

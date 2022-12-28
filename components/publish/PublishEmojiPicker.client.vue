@@ -8,7 +8,7 @@ const emit = defineEmits<{
 
 const el = $ref<HTMLElement>()
 let picker = $ref<Picker>()
-const colorMode = useColorModeRef()
+const colorMode = useColorMode()
 
 async function openEmojiPicker() {
   await updateCustomEmojis()

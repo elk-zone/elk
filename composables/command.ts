@@ -206,7 +206,7 @@ export const provideGlobalCommands = () => {
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
   const users = useUsers()
   const masto = useMasto()
-  const colorMode = useColorModeRef()
+  const colorMode = useColorMode()
 
   useCommand({
     scope: 'Actions',
@@ -229,7 +229,7 @@ export const provideGlobalCommands = () => {
     icon: () => colorMode.value === 'light' ? 'i-ri:sun-line' : 'i-ri:moon-line',
 
     onActivate() {
-      colorMode.value = colorMode.value === 'light' ? 'dark' : 'light'
+      colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'
     },
   })
 

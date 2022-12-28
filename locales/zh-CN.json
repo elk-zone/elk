@@ -198,11 +198,24 @@
     "search_desc": "搜索用户或话题标签"
   },
   "settings": {
+    "about": {
+      "label": "关于"
+    },
     "feature_flags": {
       "avatar_on_avatar": "头像堆叠",
       "github_cards": "GitHub 卡片",
+      "title": "实验功能",
       "user_switcher_sidebar": "用户切换侧边栏",
       "virtual_scroll": "虚拟滚动"
+    },
+    "interface": {
+      "color_mode": "颜色",
+      "font_size": "字号",
+      "label": "外观"
+    },
+    "language": {
+      "display_language": "首选语言",
+      "label": "语言"
     },
     "preferences": {
       "label": "首选项"
@@ -221,7 +234,10 @@
       },
       "label": "个人资料"
     },
-    "select_a_settings": "在左侧选择一个设置"
+    "select_a_settings": "在左侧选择一个设置",
+    "users": {
+      "label": "当前用户"
+    }
   },
   "state": {
     "edited": "（已编辑）",

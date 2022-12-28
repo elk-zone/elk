@@ -45,12 +45,12 @@ const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly &
 
 <template>
   <NuxtLink
-    :to="noUserDisable ? null : to"
-    :role="noUserDisable ? 'link' : null"
-    :aria-disabled="noUserDisable ? 'true' : null"
+    :to="to"
     :disabled="noUserDisable"
     :class="noUserVisual ? 'op25 pointer-events-none ' : ''"
-    :active-class="activeClass" group focus:outline-none
+    :active-class="activeClass"
+    group focus:outline-none disabled:pointer-events-none
+    :tabindex="noUserDisable ? -1 : null"
     @click="$scrollToTop"
   >
     <CommonTooltip :disabled="!isMediumScreen" :content="text" placement="right">

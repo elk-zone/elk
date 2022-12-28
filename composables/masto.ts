@@ -41,7 +41,7 @@ export function getShortHandle({ acct }: Account) {
 }
 
 export function getServerName(account: Account) {
-  if (account.acct.includes('@'))
+  if (account.acct?.includes('@'))
     return account.acct.split('@')[1]
   // We should only lack the server name if we're on the same server as the account
   return currentInstance.value?.uri || ''

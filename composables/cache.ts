@@ -44,7 +44,7 @@ export function fetchAccountById(id?: string | null): Promise<Account | null> {
   const uri = currentInstance.value?.uri
   const promise = useMasto().accounts.fetch(id)
     .then((r) => {
-      if (!r.acct.includes('@') && uri)
+      if (r.acct && !r.acct.includes('@') && uri)
         r.acct = `${r.acct}@${uri}`
 
       cacheAccount(r, server, true)
@@ -63,7 +63,7 @@ export async function fetchAccountByHandle(acct: string): Promise<Account> {
   const uri = currentInstance.value?.uri
   const account = useMasto().accounts.lookup({ acct })
     .then((r) => {
-      if (!r.acct.includes('@') && uri)
+      if (r.acct && !r.acct.includes('@') && uri)
         r.acct = `${r.acct}@${uri}`
 
       cacheAccount(r, server, true)

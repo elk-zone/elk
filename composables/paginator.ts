@@ -28,6 +28,10 @@ export function usePaginator<T>(
     if ('uri' in status)
       cacheStatus(status, undefined, true)
 
+    const index = prevItems.value.findIndex((i: any) => i.id === status.id)
+    if (index >= 0)
+      prevItems.value.splice(index, 1)
+
     prevItems.value.unshift(status as any)
   })
 

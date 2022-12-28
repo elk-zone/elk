@@ -24,7 +24,7 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
   <div
     space-y-3
     :class="{
-      'pt2 pb0.5 px3.5 br2 border-1 rounded-3 rounded-tl-none': isDM,
+      'pt2 pb0.5 px3.5 border-1 rounded-3 rounded-ss-none': isDM,
       'bg-fade border-primary-light': isDM && !isSelf,
       'bg-code border-base': isDM && isSelf,
     }"

@@ -103,5 +103,6 @@ export default defineConfig({
       res += `\n${res.replace('{scrollbar-width:none;}', '::-webkit-scrollbar{display: none;}')}`
       return res
     }],
+    ['rounded-ss-none', { 'border-start-start-radius': '0' }],
   ],
 })

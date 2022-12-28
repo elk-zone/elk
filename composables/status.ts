@@ -1,6 +1,6 @@
 import type { Status } from 'masto'
 
-type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned'
+type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
 type CountField = 'reblogsCount' | 'favouritesCount'
 
 export interface StatusActionsProps {
@@ -72,8 +72,8 @@ export function useStatusActions(props: StatusActionsProps) {
   )
 
   const toggleMute = async () => toggleStatusAction(
-    'pinned',
-    () => masto.statuses[status.muted ? 'mute' : 'unmute'](status.id),
+    'muted',
+    () => masto.statuses[status.muted ? 'unmute' : 'mute'](status.id),
   )
 
   return {

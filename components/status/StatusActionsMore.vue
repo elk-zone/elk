@@ -151,8 +151,8 @@ async function editStatus() {
 
         <CommonDropdownItem
           v-if="currentUser && status.mentions.some(m => m.username === currentUser!.account.username)"
-          :text="$t('menu.mute_conversation')"
-          icon="i-ri:eye-off-line"
+          :text="status.muted ? $t('menu.unmute_conversation') : $t('menu.mute_conversation')"
+          :icon="status.muted ? 'i-ri:eye-line' : 'i-ri:eye-off-line'"
           :command="command"
           :disabled="isLoading.muted"
           @click="toggleMute()"

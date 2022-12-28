@@ -111,6 +111,7 @@
     "unblock_account": "رفع الحظر عن {0}",
     "unblock_domain": "رفع الحظر عن النطاق {0}",
     "unmute_account": "إلغاء كتم الحساب {0}",
+    "unmute_conversation": "إعادة الصوت",
     "unpin_on_profile": "إلغاء التثبيت من الملف الشخصي"
   },
   "nav": {

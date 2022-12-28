@@ -125,6 +125,7 @@
     "unblock_account": "Débloquer {0}",
     "unblock_domain": "Débloquer le domaine {0}",
     "unmute_account": "Enlever la sourdine à {0}",
+    "unmute_conversation": "Réactiver le message",
     "unpin_on_profile": "Désépingler du profil"
   },
   "nav": {

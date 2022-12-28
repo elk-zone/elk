@@ -126,6 +126,7 @@
     "unblock_account": "Desbloquear a {0}",
     "unblock_domain": "Desbloquear dominio {0}",
     "unmute_account": "Dejar de silenciar a {0}",
+    "unmute_conversation": "Dejar de silenciar la publicación",
     "unpin_on_profile": "Desfijar del perfil"
   },
   "nav": {

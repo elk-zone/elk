@@ -107,6 +107,7 @@
     "unblock_account": "Entsperre {0}",
     "unblock_domain": "Entsperren Domain {0}",
     "unmute_account": "Stummschaltung von {0} aufheben",
+    "unmute_conversation": "Stummschaltung aufheben",
     "unpin_on_profile": "Von Profil lösen"
   },
   "nav": {

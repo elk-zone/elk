@@ -130,6 +130,7 @@
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
     "unmute_account": "Unmute {0}",
+    "unmute_conversation": "Unmute this post",
     "unpin_on_profile": "Unpin on profile"
   },
   "nav": {

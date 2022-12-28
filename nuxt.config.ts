@@ -92,6 +92,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
+    '/api/list-servers': { swr: true },
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',
@@ -105,9 +106,6 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: false,
       routes: ['/', '/200.html'],
-    },
-    routeRules: {
-      '/list-servers': { swr: true },
     },
   },
   app: {

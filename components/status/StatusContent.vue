@@ -7,7 +7,6 @@ const { status, context } = defineProps<{
 }>()
 
 const isDM = $computed(() => status.visibility === 'direct')
-const isSelf = $computed(() => status.account.id === currentUser.value?.account.id)
 const isDetails = $computed(() => context === 'details')
 
 // Content Filter logic
@@ -25,8 +24,7 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
     space-y-3
     :class="{
       'pt2 pb0.5 px3.5 br2 border-1 rounded-3 rounded-tl-none': isDM,
-      'bg-fade border-primary-light': isDM && !isSelf,
-      'bg-code border-base': isDM && isSelf,
+      'bg-fade border-primary-light': isDM,
     }"
   >
     <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">

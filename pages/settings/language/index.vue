@@ -1,9 +1,5 @@
-<script lang="ts" setup>
-const { lg } = breakpoints
-</script>
-
 <template>
-  <MainContent :back="!lg">
+  <MainContent back-on-small-screen>
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <span>{{ $t('settings.language.label') }}</span>

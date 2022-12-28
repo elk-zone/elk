@@ -53,19 +53,17 @@ const activate = () => {
 <template>
   <div ref="el" relative px4 py2 group>
     <div bg-base border="~ base" h10 rounded-full flex="~ row" items-center relative outline-primary outline-1 focus-within:outline>
-      <div i-ri:search-2-line mx4 absolute pointer-events-none text-secondary mt="1px" />
+      <div i-ri:search-2-line mx4 absolute pointer-events-none text-secondary mt="1px" class="rtl-flip" />
       <input
         ref="input"
         v-model="query"
         h-full
-        pl-10
-        rtl-pr-10
+        ps-10
         rounded-full
         w-full
         bg-transparent
         outline="focus:none"
-        pr-4
-        rtl-pl-4
+        pe-4
         :placeholder="t('nav.search')"
         pb="1px"
         placeholder-text-secondary

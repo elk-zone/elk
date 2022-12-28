@@ -31,12 +31,15 @@
     "unmute": "取消屏蔽"
   },
   "action": {
+    "apply": "应用",
     "bookmark": "收藏",
     "bookmarked": "已收藏",
     "boost": "转发",
     "boosted": "已转发",
     "close": "关闭",
     "compose": "撰写",
+    "confirm": "确认",
+    "edit": "编辑",
     "enter_app": "进入应用",
     "favourite": "喜欢",
     "favourited": "已喜欢",
@@ -45,6 +48,7 @@
     "prev": "上一个",
     "publish": "发布！",
     "reply": "回复",
+    "save": "保存",
     "save_changes": "保存更改",
     "sign_in": "登鹿",
     "switch_account": "切换帐号",
@@ -53,11 +57,13 @@
   "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
   "app_logo": "应用图标",
   "app_name": "鹿鸣",
+  "attachment": {
+    "edit_title": "描述"
+  },
   "command": {
     "activate": "执行",
     "complete": "完成",
     "compose_desc": "写一条新帖文",
-    "lang": "语言",
     "n-people-in-the-past-n-days": "{0} 人在过去 {1} 天",
     "select_lang": "选择语言",
     "sign_in_desc": "添加现有帐户",
@@ -81,14 +87,10 @@
   "error": {
     "account_not_found": "未找到用户 {0}",
     "explore-list-empty": "目前没有热门话题，稍后再来看看吧！",
+    "file_size_cannot_exceed_n_mb": "文件大小不能超过 {0}MB",
     "sign_in_error": "无法连接服务器",
-    "status_not_found": "未找到帖文"
-  },
-  "feature_flag": {
-    "avatar_on_avatar": "头像堆叠",
-    "github_cards": "Github 卡片",
-    "user_switcher_sidebar": "用户切换侧边栏",
-    "virtual_scroll": "虚拟滚动"
+    "status_not_found": "未找到帖文",
+    "unsupported_file_format": "不支持的文件格式"
   },
   "help": {
     "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
@@ -120,16 +122,9 @@
     "unmute_account": "解除屏蔽 {0}",
     "unpin_on_profile": "取消置顶"
   },
-  "nav_footer": {
-    "built_at": "于 {0} 构建",
-    "select_feature_flags": "功能开关",
-    "select_language": "选择语言",
-    "show_intro": "应用介绍",
-    "toggle_theme": "切换主题",
-    "zen_mode": "禅模式"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "书签",
+    "built_at": "于 {0} 构建",
     "conversations": "私信",
     "explore": "探索",
     "favourites": "喜欢",
@@ -138,10 +133,14 @@
     "local": "本地",
     "notifications": "通知",
     "profile": "个人资料",
-    "search": "搜索 {0}"
-  },
-  "nav_user": {
-    "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。"
+    "search": "搜索",
+    "select_feature_flags": "功能开关",
+    "select_font_size": "字体大小",
+    "select_language": "选择语言",
+    "settings": "设置",
+    "show_intro": "应用介绍",
+    "toggle_theme": "切换主题",
+    "zen_mode": "禅模式"
   },
   "notification": {
     "favourited_post": "点赞了你的帖文",
@@ -193,12 +192,52 @@
   },
   "pwa": {
     "dismiss": "忽略",
-    "message": "@:{'pwa.title'}，点击@:{'pwa.reload'}按钮来更新。",
-    "reload": "重启",
     "title": "鹿鸣存在新的更新"
   },
   "search": {
     "search_desc": "搜索用户或话题标签"
+  },
+  "settings": {
+    "about": {
+      "label": "关于"
+    },
+    "feature_flags": {
+      "avatar_on_avatar": "头像堆叠",
+      "github_cards": "GitHub 卡片",
+      "title": "实验功能",
+      "user_switcher_sidebar": "用户切换侧边栏",
+      "virtual_scroll": "虚拟滚动"
+    },
+    "interface": {
+      "color_mode": "颜色",
+      "font_size": "字号",
+      "label": "外观"
+    },
+    "language": {
+      "display_language": "首选语言",
+      "label": "语言"
+    },
+    "preferences": {
+      "label": "首选项"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "简介",
+        "description": "编辑个人资料，例如头像、用户名、个人简介等。",
+        "display_name": "昵称",
+        "label": "外观",
+        "title": "编辑个人资料"
+      },
+      "featured_tags": {
+        "description": "人们可以在这些标签下浏览你的公共嘟文。",
+        "label": "精选的话题标签"
+      },
+      "label": "个人资料"
+    },
+    "select_a_settings": "在左侧选择一个设置",
+    "users": {
+      "label": "当前用户"
+    }
   },
   "state": {
     "edited": "（已编辑）",
@@ -232,7 +271,6 @@
     "edited": "在 {0} 编辑了"
   },
   "tab": {
-    "accounts": "账号",
     "for_you": "推荐关注",
     "hashtags": "话题标签",
     "media": "媒体",
@@ -292,6 +330,8 @@
   "user": {
     "add_existing": "添加现有帐户",
     "server_address_label": "Mastodon 服务器地址",
+    "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。",
+    "sign_in_notice_title": "正在查看 {0} 的公共数据",
     "sign_out_account": "登出 {0}",
     "tip_no_account": "如果您还没有 Mastodon 账户，{0}。",
     "tip_register_account": "选择您的服务器并注册一个"

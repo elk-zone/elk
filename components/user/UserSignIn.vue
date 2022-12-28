@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Fuse from 'fuse.js'
+import { $fetch } from 'ofetch'
 import { DEFAULT_SERVER } from '~/constants'
 
 const input = $ref<HTMLInputElement>()
@@ -6,6 +8,9 @@ let server = $ref<string>('')
 let busy = $ref<boolean>(false)
 let error = $ref<boolean>(false)
 let displayError = $ref<boolean>(false)
+let knownServers = $ref<string[]>([])
+let autocompleteIndex = $ref(0)
+let autocompleteShow = $ref(false)
 
 async function oauth() {
   if (busy)
@@ -44,8 +49,35 @@ async function handleInput() {
     displayError = false
 }
 
-onMounted(() => {
+let fuse = $shallowRef(new Fuse([] as string[]))
+
+const filteredServers = $computed(() => {
+  if (!server)
+    return []
+
+  const results = fuse.search(server, { limit: 6 }).map(result => result.item)
+  if (results[0] === server)
+    return []
+
+  return results
+})
+
+function move(delta: number) {
+  autocompleteIndex = ((autocompleteIndex + delta) + filteredServers.length) % filteredServers.length
+}
+
+function onEnter(e: KeyboardEvent) {
+  if (autocompleteShow === true && filteredServers[autocompleteIndex]) {
+    server = filteredServers[autocompleteIndex]
+    e.preventDefault()
+    autocompleteShow = false
+  }
+}
+
+onMounted(async () => {
   input?.focus()
+  knownServers = await $fetch('/api/list-servers')
+  fuse = new Fuse(knownServers, { shouldSort: true })
 })
 </script>
 
@@ -65,15 +97,39 @@ onMounted(() => {
         flex bg-gray:10 px4 py2 mxa rounded
         border="~ base" items-center font-mono
         focus:outline-none focus:ring="2 primary inset"
+        relative
         :class="displayError ? 'border-red-600 dark:border-red-400' : null"
       >
         <span text-secondary-light mr1>https://</span>
+
         <input
           ref="input"
           v-model="server"
           outline-none bg-transparent w-full max-w-50
           @input="handleInput"
+          @keydown.down="move(1)"
+          @keydown.up="move(-1)"
+          @keydown.enter="onEnter"
+          @keydown.esc.prevent="autocompleteShow = false"
+          @blur="autocompleteShow = false"
+          @focus="autocompleteShow = true"
         >
+        <div
+          v-if="autocompleteShow && filteredServers.length"
+          absolute left-6em right-0 top="100%"
+          bg-base rounded border="~ base"
+          text-left z-10 shadow of-auto
+        >
+          <div
+            v-for="name, idx in filteredServers"
+            :key="name"
+            :value="name"
+            px-2 py1 font-mono
+            :class="autocompleteIndex === idx ? 'text-primary font-bold' : null"
+          >
+            {{ name }}
+          </div>
+        </div>
       </div>
       <div min-h-4>
         <Transition css enter-active-class="animate animate-fade-in">

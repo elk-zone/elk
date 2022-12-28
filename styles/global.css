@@ -1,30 +1,39 @@
+html {
+  font-size: var(--font-size, 15px);
+}
+
 @font-face {
   font-display: swap;
-  font-family: "DM Mono";
+  font-family: 'DM Mono';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/DM-mono-v10.ttf) format("truetype");
+  src: url(/fonts/DM-mono-v10.ttf) format('truetype');
 }
 @font-face {
   font-display: swap;
-  font-family: "DM Sans";
+  font-family: 'DM Sans';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/DM-sans-v11.ttf) format("truetype");
+  src: url(/fonts/DM-sans-v11.ttf) format('truetype');
 }
 @font-face {
   font-display: swap;
-  font-family: "DM Serif Display";
+  font-family: 'DM Serif Display';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/DM-serif-display-v10.ttf) format("truetype");
+  src: url(/fonts/DM-serif-display-v10.ttf) format('truetype');
 }
 @font-face {
   font-display: swap;
-  font-family: "Homemade Apple";
+  font-family: 'Homemade Apple';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/homemade-apple-v18.ttf) format("truetype");
+  src: url(/fonts/homemade-apple-v18.ttf) format('truetype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'EmojiMart';
+  src: url('/fonts/seguiemj.ttf') format('truetype');
 }
 
 * {
@@ -80,6 +89,7 @@ body {
 }
 
 .content-rich {
+  line-height: calc(4 / 3 * 1em);
   overflow-wrap: break-word;
 
   a {
@@ -88,17 +98,18 @@ body {
       --at-apply: 'hidden';
     }
     .ellipsis {
-      --at-apply: 'line-clamp-1 ws-pre-wrap break-all';
+      --at-apply: 'line-clamp-1 ws-pre-wrap break-all inline';
       &::after {
         content: '…';
       }
     }
   }
-  b, strong {
+  b,
+  strong {
     --at-apply: font-bold;
   }
   p {
-    --at-apply: my-2;
+    --at-apply: my-1;
   }
   code {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.9em leading-0.8em;
@@ -108,7 +119,8 @@ body {
   }
 
   .code-block {
-    --at-apply: font-mono bg-code text-base p3 mt-2 rounded overflow-auto leading-1.6em;
+    --at-apply: font-mono bg-code text-base p3 mt-2 rounded overflow-auto
+      leading-1.6em;
 
     .shiki {
       background: transparent !important;
@@ -119,11 +131,9 @@ body {
 .content-editor {
   --at-apply: outline-none flex-1;
   max-width: 100%;
-}
 
-.content-editor.content-rich {
-  p {
-    --at-apply: my-0;
+  .custom-emoji {
+    margin: 0 0.2em;
   }
 }
 
@@ -147,7 +157,9 @@ body {
   }
 }
 
-html, body, #__nuxt {
+html,
+body,
+#__nuxt {
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -174,4 +186,18 @@ body {
 .sparkline--line {
   stroke: var(--c-primary);
   stroke-width: 2;
+}
+
+em-emoji-picker {
+  --border-radius: 0;
+}
+em-emoji {
+  font-size: 1.2em;
+  line-height: 1em;
+}
+
+footer {
+  a {
+    --at-apply: 'hover:underline';
+  }
 }

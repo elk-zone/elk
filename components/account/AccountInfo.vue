@@ -17,18 +17,18 @@ defineOptions({
 <template>
   <component :is="as" flex gap-3 v-bind="$attrs">
     <AccountHoverWrapper :disabled="!hoverCard" :account="account" shrink-0>
-      <AccountAvatar :account="account" w-12 h-12 />
+      <AccountAvatar :account="account" account-avatar-normal />
     </AccountHoverWrapper>
-    <div flex="~ col" shrink overflow-hidden>
+    <div flex="~ col" shrink overflow-hidden justify-center leading-none>
       <div flex="~" gap-2>
         <ContentRich
-          font-bold line-clamp-1 ws-pre-wrap break-all
+          font-bold line-clamp-1 ws-pre-wrap break-all text-lg
           :content="getDisplayName(account, { rich: true })"
           :emojis="account.emojis"
         />
         <AccountBotIndicator v-if="account.bot" />
       </div>
-      <AccountHandle :account="account" text-sm text-secondary-light />
+      <AccountHandle :account="account" text-secondary-light />
     </div>
   </component>
 </template>

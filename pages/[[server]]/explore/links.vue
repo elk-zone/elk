@@ -10,12 +10,12 @@ const paginator = useMasto().trends.links
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS, false)
 
 useHeadFixed({
-  title: () => `${t('tab.news')} | ${t('nav_side.explore')}`,
+  title: () => `${t('tab.news')} | ${t('nav.explore')}`,
 })
 </script>
 
 <template>
-  <CommonAlert v-if="!hideNewsTips" @close="hideNewsTips = true">
+  <CommonAlert v-if="isHydrated.value && !hideNewsTips" @close="hideNewsTips = true">
     <p>{{ $t('tooltip.explore_links_intro') }}</p>
   </CommonAlert>
 

@@ -2,13 +2,14 @@
 const { t } = useI18n()
 
 // limit: 20 is the default configuration of the official client
+const masto = useMasto()
 const { data, pending, error } = useLazyAsyncData(
-  () => useMasto().suggestions.fetchAll({ limit: 20 }),
+  () => masto.suggestions.fetchAll({ limit: 20 }),
   { immediate: true },
 )
 
 useHeadFixed({
-  title: () => `${t('tab.for_you')} | ${t('nav_side.explore')}`,
+  title: () => `${t('tab.for_you')} | ${t('nav.explore')}`,
 })
 </script>
 

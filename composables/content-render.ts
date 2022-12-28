@@ -29,11 +29,11 @@ export function nodeToVNode(node: Node): VNode | string | null {
   if ('children' in node) {
     if (node.name === 'a' && (node.attributes.href?.startsWith('/') || node.attributes.href?.startsWith('.'))) {
       node.attributes.to = node.attributes.href
-      delete node.attributes.href
-      delete node.attributes.target
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { href, target, ...attrs } = node.attributes
       return h(
         RouterLink as any,
-        node.attributes,
+        attrs,
         () => node.children.map(treeToVNode),
       )
     }

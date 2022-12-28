@@ -2,10 +2,11 @@
 const params = useRoute().params
 const tagName = $(computedEager(() => params.tag as string))
 
-const { data: tag, refresh } = $(await useAsyncData(() => useMasto().tags.fetch(tagName)))
+const masto = useMasto()
+const { data: tag, refresh } = $(await useAsyncData(() => masto.tags.fetch(tagName), { watch: [isMastoInitialised], immediate: isMastoInitialised.value }))
 
-const paginator = useMasto().timelines.iterateHashtag(tagName)
-const stream = await useMasto().stream.streamTagTimeline(tagName)
+const paginator = masto.timelines.iterateHashtag(tagName)
+const stream = await masto.stream.streamTagTimeline(tagName)
 onBeforeUnmount(() => stream.disconnect())
 
 if (tag) {

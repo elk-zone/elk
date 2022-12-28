@@ -59,12 +59,14 @@ const activate = () => {
         v-model="query"
         h-full
         pl-10
+        rtl-pr-10
         rounded-full
         w-full
         bg-transparent
         outline="focus:none"
         pr-4
-        :placeholder="t('nav_side.search', ['Elk'])"
+        rtl-pl-4
+        :placeholder="t('nav.search')"
         pb="1px"
         placeholder-text-secondary
         @keydown.down.prevent="shift(1)"

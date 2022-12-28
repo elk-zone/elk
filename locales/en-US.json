@@ -1,4 +1,11 @@
 {
+  "a11y": {
+    "loading_page": "Loading page, please wait",
+    "loading_titled_page": "Loading {0} page, please wait",
+    "locale_changed": "Language changed to {0}",
+    "locale_changing": "Changing language, please wait",
+    "route_loaded": "Page {0} loaded"
+  },
   "account": {
     "avatar_description": "{0}'s avatar",
     "blocked_by": "You're blocked by this user.",
@@ -6,7 +13,7 @@
     "blocked_users": "Blocked users",
     "blocking": "Blocked",
     "bot": "BOT",
-    "favourites": "Favourites",
+    "favourites": "Favorites",
     "follow": "Follow",
     "follow_back": "Follow back",
     "follow_requested": "Requested",
@@ -36,17 +43,20 @@
     "bookmarked": "Bookmarked",
     "boost": "Boost",
     "boosted": "Boosted",
+    "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
+    "confirm": "Confirm",
     "edit": "Edit",
     "enter_app": "Enter App",
-    "favourite": "Favourite",
-    "favourited": "Favourited",
+    "favourite": "Favorite",
+    "favourited": "Favorited",
     "more": "More",
     "next": "Next",
     "prev": "Prev",
     "publish": "Publish!",
     "reply": "Reply",
+    "save": "Save",
     "save_changes": "Save changes",
     "sign_in": "Sign in",
     "switch_account": "Switch account",
@@ -63,7 +73,6 @@
     "activate": "Activate",
     "complete": "Complete",
     "compose_desc": "Write a new post",
-    "lang": "Languages",
     "n-people-in-the-past-n-days": "{0} people in the past {1} days",
     "select_lang": "Select language",
     "sign_in_desc": "Add an existing account",
@@ -87,14 +96,10 @@
   "error": {
     "account_not_found": "Account {0} not found",
     "explore-list-empty": "Nothing is trending right now. Check back later!",
+    "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
     "sign_in_error": "Cannot connect to the server.",
-    "status_not_found": "Post not found"
-  },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar on Avatar",
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "Virtual Scrolling"
+    "status_not_found": "Post not found",
+    "unsupported_file_format": "Unsupported file format"
   },
   "help": {
     "desc_highlight": "Expect some bugs and missing features here and there.",
@@ -126,31 +131,28 @@
     "unmute_account": "Unmute {0}",
     "unpin_on_profile": "Unpin on profile"
   },
-  "nav_footer": {
-    "built_at": "Built {0}",
-    "select_feature_flags": "Toggle Feature Flags",
-    "select_language": "Select Language",
-    "show_intro": "Show intro",
-    "toggle_theme": "Toggle Theme",
-    "zen_mode": "Zen Mode"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "Bookmarks",
+    "built_at": "Built {0}",
     "conversations": "Conversations",
     "explore": "Explore",
-    "favourites": "Favourites",
+    "favourites": "Favorites",
     "federated": "Federated",
     "home": "Home",
     "local": "Local",
     "notifications": "Notifications",
     "profile": "Profile",
-    "search": "Search {0}"
-  },
-  "nav_user": {
-    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
+    "search": "Search",
+    "select_feature_flags": "Toggle Feature Flags",
+    "select_font_size": "Font Size",
+    "select_language": "Display Language",
+    "settings": "Settings",
+    "show_intro": "Show intro",
+    "toggle_theme": "Toggle Theme",
+    "zen_mode": "Zen Mode"
   },
   "notification": {
-    "favourited_post": "favourited your post",
+    "favourited_post": "favorited your post",
     "followed_you": "followed you",
     "followed_you_count": "{followers} people followed you|{followers} person followed you|{followers} people followed you",
     "missing_type": "MISSING notification.type:",
@@ -158,7 +160,7 @@
     "request_to_follow": "requested to follow you",
     "settings": {
       "alerts": {
-        "favourite": "Favourites",
+        "favourite": "Favorites",
         "follow": "New followers",
         "mention": "Mentions",
         "poll": "Polls",
@@ -185,7 +187,8 @@
         "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:notification.settings.show_btn{'\"'} button above once enabled.",
         "enable_description_short": "To change push notifications settings when Elk is not open, you must first enable push notifications.",
         "enable_desktop": "Enable push notifications",
-        "enable_title": "Never miss anything"
+        "enable_title": "Never miss anything",
+        "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
       }
     },
     "signed_up": "signed up",
@@ -200,17 +203,60 @@
   },
   "pwa": {
     "dismiss": "Dismiss",
-    "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
-    "reload": "Reload",
-    "title": "New Elk update available"
+    "title": "New Elk update available!",
+    "update": "Update",
+    "update_available_short": "Update Elk"
   },
   "search": {
     "search_desc": "Search for people & hashtags"
+  },
+  "settings": {
+    "about": {
+      "label": "About"
+    },
+    "feature_flags": {
+      "avatar_on_avatar": "Avatar on Avatar",
+      "github_cards": "GitHub Cards",
+      "title": "Experimental Features",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Virtual Scrolling"
+    },
+    "interface": {
+      "color_mode": "Color Mode",
+      "font_size": "Font Size",
+      "label": "Interface"
+    },
+    "language": {
+      "display_language": "Display Language",
+      "label": "Language"
+    },
+    "preferences": {
+      "label": "Preferences"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bio",
+        "description": "Edit avatar, username, profile, etc.",
+        "display_name": "Display name",
+        "label": "Appearance",
+        "title": "Edit profile"
+      },
+      "featured_tags": {
+        "description": "People can browse your public posts under these hashtags.",
+        "label": "Featured hashtags"
+      },
+      "label": "Profile"
+    },
+    "select_a_settings": "Select a settings",
+    "users": {
+      "label": "Logged in users"
+    }
   },
   "state": {
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
+    "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },
   "status": {
@@ -239,7 +285,6 @@
     "edited": "edited {0}"
   },
   "tab": {
-    "accounts": "Accounts",
     "for_you": "For you",
     "hashtags": "Hashtags",
     "media": "Media",
@@ -291,6 +336,7 @@
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
     "change_content_visibility": "Change content visibility",
+    "emoji": "Emoji",
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
@@ -299,6 +345,8 @@
   "user": {
     "add_existing": "Add an existing account",
     "server_address_label": "Mastodon Server Address",
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
+    "sign_in_notice_title": "Viewing {0} public data",
     "sign_out_account": "Sign out {0}",
     "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
     "tip_register_account": "pick your server and register one"

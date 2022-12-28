@@ -3,11 +3,10 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().favourites.iterate()
 const { t } = useI18n()
 
 useHeadFixed({
-  title: () => t('nav_side.favourites'),
+  title: () => t('nav.favourites'),
 })
 </script>
 
@@ -16,11 +15,10 @@ useHeadFixed({
     <template #title>
       <NuxtLink to="/favourites" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:heart-3-line />
-        <span>{{ t('nav_side.favourites') }}</span>
+        <span>{{ t('nav.favourites') }}</span>
       </NuxtLink>
     </template>
-    <slot>
-      <TimelinePaginator :paginator="paginator" />
-    </slot>
+
+    <TimelineFavourites v-if="isMastoInitialised" />
   </MainContent>
 </template>

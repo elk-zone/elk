@@ -34,6 +34,12 @@ describe('html-parse', () => {
     expect(serializedText).toMatchSnapshot('text')
   })
 
+  it('emojis', async () => {
+    const { formatted, serializedText } = await render('🇫🇷 👨‍👩‍👦 👩‍🚒🧑🏽‍🚀')
+    expect(formatted).toMatchSnapshot('html')
+    expect(serializedText).toMatchSnapshot('text')
+  })
+
   it('code frame', async () => {
     // https://mas.to/@antfu/109396489827394721
     const { formatted, serializedText } = await render('<p>Testing code block</p><p>```ts<br />import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;</p><p>// tracks mouse position<br />const { x, y } = useMouse()</p><p>// is the user prefers dark theme<br />const isDark = usePreferredDark()<br />```</p>')

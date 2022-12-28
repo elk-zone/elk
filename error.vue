@@ -6,8 +6,6 @@ const { error } = defineProps<{
   error: Partial<NuxtError>
 }>()
 
-setupPageHeader()
-
 // add more custom status codes messages here
 const errorCodes: Record<number, string> = {
   404: 'Page not found',
@@ -55,5 +53,5 @@ const reload = async () => {
       </slot>
     </MainContent>
   </NuxtLayout>
-  <PWAPrompt />
+  <AriaAnnouncer />
 </template>

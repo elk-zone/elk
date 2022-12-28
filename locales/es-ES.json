@@ -1,4 +1,11 @@
 {
+  "a11y": {
+    "loading_page": "Cargando página, espere por favor",
+    "loading_titled_page": "Cargando página {0}, espere por favor",
+    "locale_changed": "Idioma cambiado a {0}",
+    "locale_changing": "Cambiando idioma, espere por favor",
+    "route_loaded": "Página {0} cargada"
+  },
   "account": {
     "avatar_description": "avatar de {0}",
     "blocked_by": "Estás bloqueado por este usuario.",
@@ -36,6 +43,7 @@
     "bookmarked": "Guardado como marcador",
     "boost": "Retootear",
     "boosted": "Retooteado",
+    "clear_upload_failed": "Limpiar errores de subida de archivos",
     "close": "Cerrar",
     "compose": "Redactar",
     "edit": "Editar",
@@ -63,7 +71,6 @@
     "activate": "Activar",
     "complete": "Completar",
     "compose_desc": "Escribir una nueva publicación",
-    "lang": "Idiomas",
     "n-people-in-the-past-n-days": "{0} personas en los últimos {1} días",
     "select_lang": "Seleccionar idioma",
     "sign_in_desc": "Agregar una cuenta existente",
@@ -89,12 +96,6 @@
     "explore-list-empty": "Nada es tendencia en este momento. ¡Vuelva más tarde!",
     "sign_in_error": "No se ha podido conectar con el servidor.",
     "status_not_found": "Estado no encontrado"
-  },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar en Avatar",
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "Virtual Scrolling"
   },
   "help": {
     "desc_highlight": "Es normal encontrar algunos errores y características faltantes aquí y allá.",
@@ -126,16 +127,9 @@
     "unmute_account": "Dejar de silenciar a {0}",
     "unpin_on_profile": "Desfijar del perfil"
   },
-  "nav_footer": {
-    "built_at": "Compilado {0}",
-    "select_feature_flags": "Cambiar Marcadores de Funcionalidades",
-    "select_language": "Seleccionar Idioma",
-    "show_intro": "Mostrar intro",
-    "toggle_theme": "Cambiar Tema",
-    "zen_mode": "Modo Zen"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "Marcadores",
+    "built_at": "Compilado {0}",
     "conversations": "Conversaciones",
     "explore": "Explorar",
     "favourites": "Favoritos",
@@ -144,10 +138,13 @@
     "local": "Local",
     "notifications": "Notificaciones",
     "profile": "Perfil",
-    "search": "Buscar {0}"
-  },
-  "nav_user": {
-    "sign_in_desc": "Inicia sesión para seguir perfiles o hashtags, marcar como favorito, compartir and responder a publicaciones, o interactuar desde tu usuario con un servidor diferente."
+    "search": "Buscar",
+    "select_feature_flags": "Cambiar marcadores de funcionalidades",
+    "select_font_size": "Cambiar tamaño de letra",
+    "select_language": "Cambiar idioma",
+    "show_intro": "Mostrar intro",
+    "toggle_theme": "Cambiar tema",
+    "zen_mode": "Modo Zen"
   },
   "notification": {
     "favourited_post": "marcó tu publicación como favorito",
@@ -185,7 +182,8 @@
         "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones push. Puedes controlar con precisión qué tipos de interacciones generan notificaciones push a través del botón \"@:notification.settings.show_btn{'\"'} de arriba una vez que estén habilitadas.",
         "enable_description_short": "Para cambiar los ajustes de las notificaciones push cuando Elk no esté abierto, debe habilitar antes las notificaciones push.",
         "enable_desktop": "Habilitar notificaciones push",
-        "enable_title": "Nunca te pierdas nada"
+        "enable_title": "Nunca te pierdas nada",
+        "re_auth": "Parace que su servidor no soporta notificaciones push. Pruebe a cerrar la sesión y volver a iniciarla, si este mensaje sigue apareciendo contacte con el administrador de su servidor."
       }
     },
     "update_status": "ha actualizado su estado"
@@ -199,17 +197,24 @@
   },
   "pwa": {
     "dismiss": "Descartar",
-    "message": "@:pwa.title{','} haz click en el botón @:pwa.reload para actualizar.",
-    "reload": "Recargar",
     "title": "Nueva versión de Elk disponible"
   },
   "search": {
     "search_desc": "Buscar personas y etiquetas"
   },
+  "settings": {
+    "feature_flags": {
+      "avatar_on_avatar": "Avatar en Avatar",
+      "github_cards": "GitHub Cards",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Virtual Scrolling"
+    }
+  },
   "state": {
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Cargando...",
+    "upload_failed": "Subida fallida",
     "uploading": "Subiendo..."
   },
   "status": {
@@ -238,7 +243,6 @@
     "edited": "editado el {0}"
   },
   "tab": {
-    "accounts": "Cuentas",
     "for_you": "Para ti",
     "hashtags": "Etiquetas",
     "media": "Multimedia",
@@ -298,6 +302,7 @@
   "user": {
     "add_existing": "Agregar una cuenta existente",
     "server_address_label": "Dirección de Servidor de Mastodon",
+    "sign_in_desc": "Inicia sesión para seguir perfiles o hashtags, marcar como favorito, compartir and responder a publicaciones, o interactuar desde tu usuario con un servidor diferente.",
     "sign_out_account": "Cerrar sesión {0}",
     "tip_no_account": "Si aún no tienes una cuenta Mastodon, {0}.",
     "tip_register_account": "selecciona tu servidor y registrate"

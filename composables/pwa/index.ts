@@ -1,15 +1,10 @@
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 
-export const usePWA = () => {
+export function usePWA() {
   const online = useOnline()
 
-  useHead({
-    meta: [{ id: 'theme-color', name: 'theme-color', content: computed(() => isDark.value ? '#111111' : '#ffffff') }],
-  })
-
   const {
-    needRefresh,
-    updateServiceWorker,
+    needRefresh, updateServiceWorker,
   } = useRegisterSW({
     immediate: true,
     onRegisteredSW(swUrl, r) {
@@ -44,3 +39,5 @@ export const usePWA = () => {
     close,
   }
 }
+
+export const pwa = reactive(usePWA())

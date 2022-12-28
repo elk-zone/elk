@@ -2,11 +2,17 @@ import type { NuxtI18nOptions } from '@nuxtjs/i18n'
 import type { DateTimeFormats } from '@intlify/core-base'
 import type { LocaleObject } from '#i18n'
 
+// @ts-expect-error dir is there, ts complaining
 const locales: LocaleObject[] = [
   {
     code: 'en-US',
     file: 'en-US.json',
-    name: 'English',
+    name: 'English (US)',
+  },
+  {
+    code: 'en-GB',
+    file: 'en-GB.json',
+    name: 'English (UK)',
   },
   {
     code: 'de-DE',
@@ -37,6 +43,12 @@ const locales: LocaleObject[] = [
     code: 'cs-CZ',
     file: 'cs-CZ.json',
     name: 'Česky',
+  },
+  {
+    code: 'ar',
+    file: 'ar-EG.json',
+    name: 'العربية',
+    dir: 'rtl',
   },
 ].sort((a, b) => a.code.localeCompare(b.code))
 

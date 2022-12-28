@@ -1,45 +1,46 @@
+<script lang="ts" setup>
+const route = useRoute()
+
+const wideLayout = computed(() => route.meta.wideLayout ?? false)
+</script>
+
 <template>
   <div h-full :class="{ zen: isZenMode }">
-    <div v-if="isMastoInitialised && showUserSwitcherSidebar" fixed h-full hidden lg:block bg-code border-r-1 border-base>
-      <UserPicker />
-    </div>
-    <main flex w-full mxa lg:max-w-80rem :class="isMastoInitialised && showUserSwitcherSidebar ? 'user-switcher-sidebar' : ''">
+    <main flex w-full mxa lg:max-w-80rem>
       <aside class="hidden sm:flex w-1/8 md:w-1/6 justify-end lg:w-1/4 zen-hide" relative>
-        <div sticky top-0 w-20 lg:w-100 h-screen flex="~ col">
+        <div sticky top-0 w-20 lg:w-100 h-screen flex="~ col" lt-lg-items-center>
           <slot name="left">
-            <NavTitle mx3 mt4 mb2 self-start />
-            <div flex="~ col" overflow-y-auto justify-between h-full>
+            <NavTitle mt4 mb2 lg:mx-3 />
+            <div flex="~ col" overflow-y-auto justify-between h-full max-w-full>
               <div flex flex-col>
                 <NavSide />
-                <PublishButton m5 />
+                <PublishButton m="y5 xa" lg:m="x5 l3" />
               </div>
-              <div flex flex-col>
-                <UserSignInEntry v-if="isMastoInitialised && !currentUser" sm:hidden />
-                <div v-if="isMastoInitialised && currentUser" p6 pb8 w-full flex="~" items-center justify-between>
-                  <NuxtLink
-                    hidden lg:block
-                    rounded-full text-start w-full
-                    hover:bg-active cursor-pointer transition-100
-                    :to="getAccountRoute(currentUser.account)"
-                  >
-                    <AccountInfo :account="currentUser.account" md:break-words />
-                  </NuxtLink>
-                  <VDropdown :distance="0" placement="bottom-end">
-                    <button btn-action-icon :aria-label="$t('action.switch_account')">
-                      <div hidden lg:block i-ri:more-2-line />
-                      <AccountAvatar lg:hidden :account="currentUser.account" w-9 h-9 />
-                    </button>
-                    <template #popper="{ hide }">
-                      <UserSwitcher @click="hide" />
-                    </template>
-                  </VDropdown>
+              <div v-if="isMastoInitialised" flex flex-col>
+                <UserSignInEntry v-if="!currentUser" sm:hidden />
+                <div v-if="currentUser" p6 pb8 w-full>
+                  <div hidden lg-block>
+                    <UserPicker v-if="showUserPicker" />
+                    <div v-else flex="~" items-center justify-between>
+                      <NuxtLink
+                        hidden lg:block
+                        rounded-full text-start w-full
+                        hover:bg-active cursor-pointer transition-100
+                        :to="getAccountRoute(currentUser.account)"
+                      >
+                        <AccountInfo :account="currentUser.account" md:break-words />
+                      </NuxtLink>
+                      <UserDropdown />
+                    </div>
+                  </div>
+                  <UserDropdown lg:hidden />
                 </div>
               </div>
             </div>
           </slot>
         </div>
       </aside>
-      <div class="w-full sm:w-600px min-h-screen" border="none sm:l sm:r base">
+      <div class="w-full min-h-screen" :class="wideLayout ? 'lg:w-full sm:w-600px' : 'sm:w-600px'" sm:border-l sm:border-r border-base>
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
@@ -48,11 +49,12 @@
           <NavBottom v-if="isHydrated.value" />
         </div>
       </div>
-      <aside class="hidden sm:none lg:block w-1/4 zen-hide">
+      <aside v-if="!wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col" py3>
           <slot name="right">
             <SearchWidget />
             <div flex-auto />
+            <PwaPrompt />
             <NavFooter />
           </slot>
         </div>
@@ -61,11 +63,3 @@
     <ModalContainer />
   </div>
 </template>
-
-<style scoped>
-@media (max-width: 1500px) and (min-width: 1024px) {
-  .user-switcher-sidebar {
-    padding-left: min(5rem, calc((1500px - 100vw) / 2));
-  }
-}
-</style>

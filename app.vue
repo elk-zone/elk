@@ -1,5 +1,4 @@
 <script setup lang="ts">
-setupI18n()
 setupPageHeader()
 provideGlobalCommands()
 
@@ -10,7 +9,7 @@ const key = computed(() => `${currentUser.value?.server ?? currentServer.value}:
 <template>
   <NuxtLoadingIndicator color="repeating-linear-gradient(to right,var(--c-primary) 0%,var(--c-primary-active) 100%)" />
   <NuxtLayout :key="key">
-    <NuxtPage v-if="isMastoInitialised" />
+    <NuxtPage />
   </NuxtLayout>
-  <PWAPrompt />
+  <AriaAnnouncer />
 </template>

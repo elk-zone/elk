@@ -1,4 +1,5 @@
-import type { AriaAnnounceType } from '~/composables/aria/types'
+export type AriaLive = 'off' | 'polite' | 'assertive'
+export type AriaAnnounceType = 'announce' | 'mute' | 'unmute'
 
 const ariaAnnouncer = useEventBus<AriaAnnounceType, string | undefined>(Symbol('aria-announcer'))
 

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
-import { useDeactivated } from '~/composables/lifecycle'
 
 export interface Props {
   /** v-model dislog visibility */

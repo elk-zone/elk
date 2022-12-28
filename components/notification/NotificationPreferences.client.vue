@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { usePushManager } from '~/composables/push-notifications/usePushManager'
-
 defineProps<{ show: boolean }>()
 
 let busy = $ref<boolean>(false)

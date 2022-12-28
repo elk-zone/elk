@@ -142,7 +142,7 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
       </div>
     </div>
   </div>
-  <div v-else-if="isFiltered" gap-2 p-4>
+  <div v-else-if="isFiltered" gap-2 p-4 :class="{ 'border-t border-base': newer }">
     <p text-center text-secondary text-sm>
       {{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}
     </p>

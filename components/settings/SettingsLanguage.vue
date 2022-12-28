@@ -8,7 +8,7 @@ const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
 
 <template>
   <select :value="locale" @input="e => setLocale((e.target as any).value)">
-    <option v-for="item in locales" :key="item.code" :value="item.code">
+    <option v-for="item in locales" :key="item.code" :value="item.code" :selected="locale === item.code">
       {{ item.name }}
     </option>
   </select>

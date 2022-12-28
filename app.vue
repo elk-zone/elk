@@ -1,9 +1,6 @@
 <script setup lang="ts">
 setupPageHeader()
-setupEmojis()
 provideGlobalCommands()
-
-await setupI18n()
 
 // We want to trigger rerendering the page when account changes
 const key = computed(() => `${currentUser.value?.server ?? currentServer.value}:${currentUser.value?.account.id || ''}`)

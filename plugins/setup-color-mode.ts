@@ -1,9 +1,9 @@
 import type { ColorMode } from '~/types'
 import { InjectionKeyColorMode } from '~/constants/symbols'
-import { COOKIE_KEY_COLOR_MODE } from '~/constants'
+import { COOKIE_KEY_COLOR_MODE, COOKIE_MAX_AGE } from '~/constants'
 
 export default defineNuxtPlugin((nuxt) => {
-  const cookieColorMode = useCookie<ColorMode | null>(COOKIE_KEY_COLOR_MODE, { default: () => null })
+  const cookieColorMode = useCookie<ColorMode | null>(COOKIE_KEY_COLOR_MODE, { maxAge: COOKIE_MAX_AGE })
 
   const preferColorMode = process.server ? computed(() => 'light') : usePreferredColorScheme()
   const colorMode = computed<ColorMode>({

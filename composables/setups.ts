@@ -1,7 +1,7 @@
 import { pwaInfo } from 'virtual:pwa-info'
 import type { Link } from '@unhead/schema'
 import type { Directions } from 'vue-i18n-routing'
-import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
+import { APP_NAME, COOKIE_MAX_AGE, STORAGE_KEY_LANG } from '~/constants'
 import type { LocaleObject } from '#i18n'
 
 export function setupPageHeader() {
@@ -49,27 +49,26 @@ export function setupPageHeader() {
 
 export async function setupI18n() {
   const { locale, setLocale, locales } = useI18n()
-  const nuxtApp = useNuxtApp()
-  nuxtApp.hook('app:suspense:resolve', async () => {
-    const isFirstVisit = process.server ? false : !window.localStorage.getItem(STORAGE_KEY_LANG)
-    const localeStorage = process.server ? ref('en-US') : useLocalStorage(STORAGE_KEY_LANG, locale.value)
+  const cookieLocale = useCookie(STORAGE_KEY_LANG, { maxAge: COOKIE_MAX_AGE })
+  const isFirstVisit = cookieLocale.value == null
 
-    if (isFirstVisit) {
-      const userLang = (navigator.language || 'en-US').toLowerCase()
-      // cause vue-i18n not explicit export LocaleObject type
-      const supportLocales = unref(locales) as { code: string }[]
-      const lang = supportLocales.find(locale => userLang.startsWith(locale.code.toLowerCase()))?.code
+  if (process.client && isFirstVisit) {
+    const userLang = (navigator.language || 'en-US').toLowerCase()
+    // cause vue-i18n not explicit export LocaleObject type
+    const supportLocales = unref(locales) as { code: string }[]
+    const lang = supportLocales.find(locale => userLang.startsWith(locale.code.toLowerCase()))?.code
       || supportLocales.find(locale => userLang.startsWith(locale.code.split('-')[0]))?.code
-      localeStorage.value = lang || 'en-US'
-    }
+    cookieLocale.value = lang || 'en-US'
+  }
 
-    if (localeStorage.value !== locale.value)
-      await setLocale(localeStorage.value)
+  if (cookieLocale.value && cookieLocale.value !== locale.value)
+    await setLocale(cookieLocale.value)
 
+  if (process.client) {
     watchEffect(() => {
-      localeStorage.value = locale.value
+      cookieLocale.value = locale.value
     })
-  })
+  }
 }
 
 export async function setupEmojis() {

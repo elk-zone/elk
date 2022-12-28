@@ -26,8 +26,9 @@ const status = $computed(() => {
 })
 
 // Use original status, avoid connecting a reblog (review if we should relax this)
-const directReply = $computed(() => props.hasNewer || (!!props.status.inReplyToId && props.status.inReplyToId === props.newer?.id))
-const connectReply = $computed(() => props.hasOlder || props.status.id === props.older?.inReplyToId)
+const directReply = $computed(() => props.hasNewer || (!!props.status.inReplyToId && (props.status.inReplyToId === props.newer?.id || props.status.inReplyToId === props.newer?.reblog?.id)))
+// Use reblogged status, connect it to further replies
+const connectReply = $computed(() => props.hasOlder || status.id === props.older?.inReplyToId)
 
 const rebloggedBy = $computed(() => props.status.reblog ? props.status.account : null)
 

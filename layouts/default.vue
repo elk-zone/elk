@@ -11,13 +11,13 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
     </div>
     <main flex w-full mxa lg:max-w-80rem :class="isHydrated.value && showUserSwitcherSidebar ? 'user-switcher-sidebar' : ''">
       <aside class="hidden sm:flex w-1/8 md:w-1/6 justify-end lg:w-1/4 zen-hide" relative>
-        <div sticky top-0 w-20 lg:w-100 h-screen flex="~ col">
+        <div sticky top-0 w-20 lg:w-100 h-screen flex="~ col" lt-lg-items-center>
           <slot name="left">
-            <NavTitle mx3 mt4 mb2 self-start />
-            <div flex="~ col" overflow-y-auto justify-between h-full>
+            <NavTitle mt4 mb2 lg:mx-3 />
+            <div flex="~ col" overflow-y-auto justify-between h-full max-w-full>
               <div flex flex-col>
                 <NavSide />
-                <PublishButton m5 />
+                <PublishButton m="y5 xa" lg:m="x5 l3" />
               </div>
               <div v-if="isMastoInitialised" flex flex-col>
                 <UserSignInEntry v-if="!currentUser" sm:hidden />

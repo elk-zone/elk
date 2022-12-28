@@ -79,6 +79,7 @@ useIntersectionObserver(video, (entries) => {
     <template v-if="type === 'video'">
       <video
         ref="video"
+        preload="none"
         :poster="attachment.previewUrl"
         muted
         loop
@@ -99,6 +100,7 @@ useIntersectionObserver(video, (entries) => {
     <template v-else-if="type === 'gifv'">
       <video
         ref="video"
+        preload="none"
         :poster="attachment.previewUrl"
         muted
         loop

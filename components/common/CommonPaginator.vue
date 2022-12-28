@@ -15,7 +15,7 @@ const {
   paginator: Paginator<any, any[]>
   keyProp?: string
   virtualScroller?: boolean
-  stream?: WsEvents
+  stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
   preprocess?: (items: any[]) => any[]
 }>()

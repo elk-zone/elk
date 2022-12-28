@@ -13,7 +13,7 @@
     "blocked_users": "Blocked users",
     "blocking": "Blocked",
     "bot": "BOT",
-    "favourites": "Favorites",
+    "favourites": "Favourites",
     "follow": "Follow",
     "follow_back": "Follow back",
     "follow_requested": "Requested",
@@ -49,8 +49,8 @@
     "confirm": "Confirm",
     "edit": "Edit",
     "enter_app": "Enter App",
-    "favourite": "Favorite",
-    "favourited": "Favorited",
+    "favourite": "Favourite",
+    "favourited": "Favourited",
     "more": "More",
     "next": "Next",
     "prev": "Prev",
@@ -136,7 +136,7 @@
     "built_at": "Built {0}",
     "conversations": "Conversations",
     "explore": "Explore",
-    "favourites": "Favorites",
+    "favourites": "Favourites",
     "federated": "Federated",
     "home": "Home",
     "local": "Local",
@@ -152,7 +152,7 @@
     "zen_mode": "Zen Mode"
   },
   "notification": {
-    "favourited_post": "favorited your post",
+    "favourited_post": "favourited your post",
     "followed_you": "followed you",
     "followed_you_count": "{followers} people followed you|{followers} person followed you|{followers} people followed you",
     "missing_type": "MISSING notification.type:",
@@ -160,7 +160,7 @@
     "request_to_follow": "requested to follow you",
     "settings": {
       "alerts": {
-        "favourite": "Favorites",
+        "favourite": "Favourites",
         "follow": "New followers",
         "mention": "Mentions",
         "poll": "Polls",
@@ -342,7 +342,7 @@
   "user": {
     "add_existing": "Add an existing account",
     "server_address_label": "Mastodon Server Address",
-    "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server.",
     "sign_in_notice_title": "Viewing {0} public data",
     "sign_out_account": "Sign out {0}",
     "tip_no_account": "If you don't have a Mastodon account yet, {0}.",

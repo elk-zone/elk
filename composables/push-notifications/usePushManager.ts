@@ -5,14 +5,12 @@ import type {
   PushNotificationRequest,
   SubscriptionResult,
 } from '~/composables/push-notifications/types'
-import { createPushSubscription } from '~/composables/push-notifications/createPushSubscription'
 import { STORAGE_KEY_NOTIFICATION, STORAGE_KEY_NOTIFICATION_POLICY } from '~/constants'
-import { currentUser, removePushNotifications } from '~/composables/users'
 
 const supportsPushNotifications = typeof window !== 'undefined'
-    && 'serviceWorker' in navigator
-    && 'PushManager' in window
-    && 'getKey' in PushSubscription.prototype
+  && 'serviceWorker' in navigator
+  && 'PushManager' in window
+  && 'getKey' in PushSubscription.prototype
 
 export const usePushManager = () => {
   const masto = useMasto()

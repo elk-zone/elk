@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 const paginator = useMasto().timelines.iterateHome()
-const stream = await useMasto().stream.streamUser()
-onBeforeUnmount(() => stream.disconnect())
+const stream = useMasto().stream.streamUser()
+onBeforeUnmount(() => stream?.then(s => s.disconnect()))
 
 const maxDistance = 10
 function preprocess(items: Status[]) {

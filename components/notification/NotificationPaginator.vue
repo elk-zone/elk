@@ -4,7 +4,7 @@ import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
   paginator: Paginator<any, Notification[]>
-  stream?: WsEvents
+  stream?: Promise<WsEvents>
 }>()
 
 const groupCapacity = Number.MAX_VALUE // No limit

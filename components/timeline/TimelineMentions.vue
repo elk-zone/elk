@@ -5,7 +5,7 @@ const paginator = useMasto().notifications.iterate({ limit: 30, types: ['mention
 const { clearNotifications } = useNotifications()
 onActivated(clearNotifications)
 
-const stream = await useMasto().stream.streamUser()
+const stream = useMasto().stream.streamUser()
 </script>
 
 <template>

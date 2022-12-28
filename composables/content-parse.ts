@@ -120,7 +120,7 @@ export function treeToText(input: Node): string {
 
   // add spaces around emoji to prevent parsing errors: 2 or more consecutive emojis will not be parsed
   if (input.name === 'img' && input.attributes.class?.includes('custom-emoji'))
-    return `:${input.attributes['data-emoji-id']}:`
+    return ` :${input.attributes['data-emoji-id']}: `
 
   if (input.name === 'em-emoji')
     return `${input.attributes.native}`

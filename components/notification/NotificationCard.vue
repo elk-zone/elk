@@ -12,7 +12,7 @@ const { notification } = defineProps<{
       <NuxtLink :to="getAccountRoute(notification.account)">
         <div
           flex items-center absolute
-          pl-3 pr-4 lrt-left-0
+          pl-3 pr-4 left-0 rtl-left-none
           rounded-br-3
           rtl="pr-3 pl-4 right-0"
           rtl-rounded-bl-3

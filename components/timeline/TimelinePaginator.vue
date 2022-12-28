@@ -24,21 +24,11 @@ const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirt
     <template #default="{ item, older, newer, active }">
       <template v-if="virtualScroller">
         <DynamicScrollerItem :item="item" :active="active" tag="article">
-          <StatusCard
-            :status="item" :context="context"
-            :connect-reply="item.id === older?.inReplyToId"
-            :show-reply-to="!(item.inReplyToId && item.inReplyToId === newer?.id)"
-            :class="{ 'border-t border-base': !(item.inReplyToId && item.inReplyToId === newer?.id) }"
-          />
+          <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
         </DynamicScrollerItem>
       </template>
       <template v-else>
-        <StatusCard
-          :status="item" :context="context"
-          :connect-reply="item.id === older?.inReplyToId"
-          :show-reply-to="!(item.inReplyToId && item.inReplyToId === newer?.id)"
-          :class="{ 'border-t border-base': !(item.inReplyToId && item.inReplyToId === newer?.id) }"
-        />
+        <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
       </template>
     </template>
     <template #loading>

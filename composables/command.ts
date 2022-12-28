@@ -206,6 +206,7 @@ export const provideGlobalCommands = () => {
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
   const users = useUsers()
   const masto = useMasto()
+  const colorMode = useColorModeRef()
 
   useCommand({
     scope: 'Actions',
@@ -225,10 +226,10 @@ export const provideGlobalCommands = () => {
     scope: 'Preferences',
 
     name: () => t('command.toggle_dark_mode'),
-    icon: () => isDark.value ? 'i-ri:sun-line' : 'i-ri:moon-line',
+    icon: () => colorMode.value === 'light' ? 'i-ri:sun-line' : 'i-ri:moon-line',
 
     onActivate() {
-      toggleDark()
+      colorMode.value = colorMode.value === 'light' ? 'dark' : 'light'
     },
   })
 

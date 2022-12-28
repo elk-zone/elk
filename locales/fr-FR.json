@@ -137,7 +137,7 @@
     "local": "Local",
     "notifications": "Notifications",
     "profile": "Profil",
-    "search": "Rechercher {0}",
+    "search": "Rechercher",
     "select_feature_flags": "Activer/Désactiver Feature Flags",
     "select_language": "Selectionner langue",
     "show_intro": "Ré-afficher l'introduction",

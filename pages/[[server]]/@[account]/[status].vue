@@ -63,7 +63,7 @@ onReactivated(() => {
         <template v-for="comment of context?.ancestors" :key="comment.id">
           <StatusCard
             :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-            :show-reply-to="false" :connect-reply="true"
+            :has-older="true" :has-newer="true"
           />
         </template>
 
@@ -86,9 +86,7 @@ onReactivated(() => {
         <template v-for="(comment, di) of context?.descendants" :key="comment.id">
           <StatusCard
             :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-            :connect-reply="comment.id === context?.descendants[di + 1]?.inReplyToId"
-            :show-reply-to="di !== 0 && comment.inReplyToId !== context?.descendants[di - 1]?.id"
-            :class="{ 'border-t border-base': di !== 0 && comment.inReplyToId !== context?.descendants[di - 1]?.id }"
+            :older="context?.descendants[di + 1]" :newer="context?.descendants[di - 1]" :has-newer="di === 0"
           />
         </template>
 

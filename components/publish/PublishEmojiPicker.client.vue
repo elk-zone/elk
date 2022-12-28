@@ -9,12 +9,13 @@ const emit = defineEmits<{
 
 const el = $ref<HTMLElement>()
 let picker = $ref<Picker>()
+const colorMode = useColorModeRef()
 
 async function openEmojiPicker() {
   await updateCustomEmojis()
   if (picker) {
     picker.update({
-      theme: isDark.value ? 'dark' : 'light',
+      theme: colorMode.value,
       custom: customEmojisData.value,
     })
   }
@@ -28,7 +29,7 @@ async function openEmojiPicker() {
           ? emit('select', native)
           : emit('selectCustom', { src, alt, 'data-emoji-id': name })
       },
-      theme: isDark.value ? 'dark' : 'light',
+      theme: colorMode.value,
       custom: customEmojisData.value,
     })
   }

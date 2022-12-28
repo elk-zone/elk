@@ -63,13 +63,13 @@ async function importTokens() {
 </script>
 
 <template>
-  <MainContent :back="!lg">
+  <MainContent back-on-small-screen>
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <span>{{ $t('settings.users.label') }}</span>
       </div>
     </template>
-    <div p4>
+    <div p6>
       <template v-if="loggedInUsers.length">
         <div flex="~ col gap2">
           <div v-for="user of loggedInUsers" :key="user.account.id">

@@ -121,13 +121,13 @@ onMounted(async () => {
           text-left z-10 shadow of-auto
         >
           <div
-            v-for="server, idx in filteredServers"
-            :key="server"
-            :value="server"
+            v-for="name, idx in filteredServers"
+            :key="name"
+            :value="name"
             px-2 py1 font-mono
             :class="autocompleteIndex === idx ? 'text-primary font-bold' : null"
           >
-            {{ server }}
+            {{ name }}
           </div>
         </div>
       </div>

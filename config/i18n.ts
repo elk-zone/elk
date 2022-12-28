@@ -10,6 +10,11 @@ const locales: LocaleObject[] = [
     name: 'English',
   },
   {
+    code: 'en-GB',
+    file: 'en-GB.json',
+    name: 'English',
+  },
+  {
     code: 'de-DE',
     file: 'de-DE.json',
     name: 'Deutsch',

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { FontSize } from '~/composables/fontSize'
+import type { FontSize } from '~/types'
 
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as FontSize[]
-const fontSize = getFontSize()
+const fontSize = useFontSizeRef()
 </script>
 
 <template>

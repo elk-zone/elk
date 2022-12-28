@@ -1,6 +1,10 @@
 <script setup lang="ts">
-function setDark(v: boolean) {
-  isDark.value = v
+import type { ColorMode } from '~/types'
+
+const colorMode = useColorModeRef()
+
+function setColorMode(mode: ColorMode) {
+  colorMode.value = mode
 }
 </script>
 
@@ -8,16 +12,16 @@ function setDark(v: boolean) {
   <div flex="~ gap4" w-full>
     <button
       btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base
-      :class="isDark ? 'pointer-events-none' : 'filter-saturate-0'"
-      @click="setDark(true)"
+      :class="colorMode === 'dark' ? 'pointer-events-none' : 'filter-saturate-0'"
+      @click="setColorMode('dark')"
     >
       <div i-ri:moon-line />
       Dark Mode
     </button>
     <button
       btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base
-      :class="!isDark ? 'pointer-events-none' : 'filter-saturate-0'"
-      @click="setDark(false)"
+      :class="colorMode === 'light' ? 'pointer-events-none' : 'filter-saturate-0'"
+      @click="setColorMode('light')"
     >
       <div i-ri:sun-line />
       Light Mode

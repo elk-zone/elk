@@ -6,6 +6,7 @@ const emits = defineEmits<{
   (event: 'update:modelValue', value: boolean): void
 }>()
 const visible = useVModel(props, 'modelValue', emits, { passive: true })
+const colorMode = useColorModeRef()
 
 function changeShow() {
   visible.value = !visible.value
@@ -20,6 +21,10 @@ function clickEvent(mouse: MouseEvent) {
       visible.value = false
     }
   }
+}
+
+function toggleDark() {
+  colorMode.value = colorMode.value === 'dark' ? 'light' : 'dark'
 }
 
 watch(visible, (val) => {
@@ -79,7 +84,7 @@ onBeforeUnmount(() => {
               @click="toggleDark()"
             >
               <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl mr-4 !align-middle" />
-              {{ !isDark ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
+              {{ colorMode === 'light' ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
             </button>
             <NuxtLink
               flex flex-row items-center

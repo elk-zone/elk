@@ -5,6 +5,11 @@ const timeAgoOptions = useTimeAgoOptions()
 
 const buildTimeDate = new Date(buildInfo.time)
 const buildTimeAgo = useTimeAgo(buildTimeDate, timeAgoOptions)
+
+const colorMode = useColorModeRef()
+function toggleDark() {
+  colorMode.value = colorMode.value === 'dark' ? 'light' : 'dark'
+}
 </script>
 
 <template>

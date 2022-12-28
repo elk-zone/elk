@@ -45,9 +45,6 @@ export function setupPageHeader() {
     titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
     link,
   })
-
-  // eslint-disable-next-line no-unused-expressions
-  isDark.value
 }
 
 export async function setupI18n() {

@@ -72,3 +72,6 @@ export interface BuildInfo {
   time: number
   branch: string
 }
+
+export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type ColorMode = 'light' | 'dark'

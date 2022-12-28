@@ -1,9 +1,9 @@
 {
   "account": {
     "avatar_description": "{0}'s Avatar",
-    "blocked_by": "Du wurdest von diesem Nutzer geblockt",
+    "blocked_by": "Du wurdest von diesem Account geblockt",
     "blocked_domains": "Gesperrte Domänen",
-    "blocked_users": "Gesperrte Nutzer",
+    "blocked_users": "Gesperrte Accounts",
     "bot": "BOT",
     "favourites": "Favoriten",
     "follow": "Folgen",
@@ -17,7 +17,7 @@
     "go_to_profile": "Gehe zum Profil",
     "joined": "Beigetreten",
     "moved_title": "hat angegeben, dass dies der neue Account ist:",
-    "muted_users": "Stummgeschaltete Nutzer",
+    "muted_users": "Stummgeschaltete Accounts",
     "mutuals": "Freunde",
     "pinned": "Angepinnt",
     "posts": "Beiträge",
@@ -55,9 +55,9 @@
     "compose_desc": "Schreib einen neuen Beitrag",
     "n-people-in-the-past-n-days": "{0} Personen in den vergangenen {1} Tagen",
     "select_lang": "Sprache auswählen",
-    "sign_in_desc": "Bestehenden Nutzer hinzufügen",
+    "sign_in_desc": "Bestehenden Account hinzufügen",
     "switch_account": "Zu {0} wechseln",
-    "switch_account_desc": "Zu einem anderen Nutzer wechseln",
+    "switch_account_desc": "Zu einem anderen Account wechseln",
     "toggle_dark_mode": "Farbschema ändern",
     "toggle_zen_mode": "Zen-Modus ändern"
   },
@@ -73,7 +73,7 @@
     "with": "mit"
   },
   "error": {
-    "account_not_found": "Nutzer {0} nicht gefunden",
+    "account_not_found": "Account {0} nicht gefunden",
     "explore-list-empty": "Momentan ist nichts im Trend. Schau später nochmal vorbei!",
     "sign_in_error": "Kann nicht zu Server verbinden",
     "status_not_found": "Beitrag nicht gefunden"
@@ -129,7 +129,7 @@
   "notification": {
     "favourited_post": "hat deinen Beitrag favorisiert",
     "followed_you": "folgt dir",
-    "followed_you_count": "{n} Nutzer folgt dir|{n} Nutzer folgen dir",
+    "followed_you_count": "{n} Account folgt dir|{n} Accounts folgen dir",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "hat deinen Beitrag geteilt",
     "request_to_follow": "möchte dir folgen",
@@ -144,7 +144,7 @@
     "the_thread": "Der Thread"
   },
   "search": {
-    "search_desc": "Suche nach Nutzern & Hashtags"
+    "search_desc": "Suche nach Accounts & Hashtags"
   },
   "settings": {
     "feature_flags": {
@@ -251,8 +251,8 @@
     "tip_register_account": "wähle einen Server aus und registriere eines"
   },
   "visibility": {
-    "direct": "Nur erwähnte Nutzer",
-    "direct_desc": "Nur für erwähnte Nutzer sichtbar",
+    "direct": "Nur erwähnte Accounts",
+    "direct_desc": "Nur für erwähnte Accounts sichtbar",
     "private": "Nur Follower",
     "private_desc": "Nur für Follower sichtbar",
     "public": "Öffentlich",

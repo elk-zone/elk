@@ -68,10 +68,10 @@ const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
 const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
 
 const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
+const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
 const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)
 
 const isDM = $computed(() => status.visibility === 'direct')
-const isSelf = $computed(() => status.account.id === currentUser.value?.account.id)
 </script>
 
 <template>
@@ -92,7 +92,7 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
   >
     <div flex justify-between>
       <slot name="meta">
-        <div v-if="rebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1>
+        <div v-if="rebloggedBy && !collapseRebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1>
           <div i-ri:repeat-fill mr-1 text-primary />
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
         </div>
@@ -102,11 +102,12 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
-        <template v-if="showRebloggedByAvatarOnAvatar">
-          <div absolute top--3px left--0.8 rtl-left-none rtl-right--0.8 z--1 w-25px h-25px rounded-full>
-            <AccountAvatar :account="rebloggedBy" />
-          </div>
-        </template>
+        <div v-if="showRebloggedByAvatarOnAvatar" absolute top--3px left--0.8 rtl-left-none rtl-right--0.8 z--1 w-25px h-25px rounded-full>
+          <AccountAvatar :account="rebloggedBy" />
+        </div>
+        <div v-else-if="collapseRebloggedBy" absolute left--0.8 rtl-left-none rtl-right--0.8 w-5.5 h-5.5 rounded-full bg-base>
+          <div i-ri:repeat-fill mr-1 text-primary text-sm />
+        </div>
         <AccountHoverWrapper :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
             <AccountBigAvatar :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-11px ' : 'mt-3px'" />

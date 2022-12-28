@@ -22,6 +22,7 @@ specifiers:
   '@tiptap/starter-kit': 2.0.0-beta.204
   '@tiptap/suggestion': 2.0.0-beta.204
   '@tiptap/vue-3': 2.0.0-beta.204
+  '@types/file-saver': ^2.0.5
   '@types/fnando__sparkline': ^0.3.4
   '@types/fs-extra': ^9.0.13
   '@types/js-yaml': ^4.0.5
@@ -37,8 +38,10 @@ specifiers:
   browser-fs-access: ^0.31.1
   bumpp: ^8.2.1
   emoji-mart: ^5.4.0
+  emoji-regex: ^10.2.1
   eslint: ^8.30.0
   esno: ^0.16.3
+  file-saver: ^2.0.5
   floating-vue: 2.0.0-beta.20
   focus-trap: ^7.2.0
   form-data: ^4.0.0
@@ -122,6 +125,7 @@ devDependencies:
   '@iconify-json/twemoji': 1.1.7
   '@nuxtjs/i18n': 8.0.0-beta.7
   '@pinia/nuxt': 0.4.6_typescript@4.9.4
+  '@types/file-saver': 2.0.5
   '@types/fnando__sparkline': 0.3.4
   '@types/fs-extra': 9.0.13
   '@types/js-yaml': 4.0.5
@@ -133,8 +137,10 @@ devDependencies:
   '@vueuse/nuxt': 9.9.0_nuxt@3.0.0
   bumpp: 8.2.1
   emoji-mart: 5.4.0
+  emoji-regex: 10.2.1
   eslint: 8.30.0
   esno: 0.16.3
+  file-saver: 2.0.5
   fs-extra: 11.1.0
   jsdom: 20.0.3
   lint-staged: 13.1.0
@@ -2652,6 +2658,10 @@ packages:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
 
+  /@types/file-saver/2.0.5:
+    resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
+    dev: true
+
   /@types/fnando__sparkline/0.3.4:
     resolution: {integrity: sha512-FWU1zw7CVJYVeDk77FGphTUabfPims4F/Yq+WFB0Gh647lLtiXHWn8vpfT95Fl65IsNBDOhEbxJdhmERMGubNQ==}
     dev: true
@@ -4837,6 +4847,10 @@ packages:
     resolution: {integrity: sha512-xrRrUmMqZG64oRxmUZcf8zSMUGQtIUYUL3aZD5iMkqAve+I9wMNh3OVOXL7NW9fEm48L2LI3BUPpj/DUIAJrVg==}
     dev: true
 
+  /emoji-regex/10.2.1:
+    resolution: {integrity: sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==}
+    dev: true
+
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
     dev: true
@@ -5690,6 +5704,10 @@ packages:
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
       flat-cache: 3.0.4
+    dev: true
+
+  /file-saver/2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
     dev: true
 
   /file-uri-to-path/1.0.0:

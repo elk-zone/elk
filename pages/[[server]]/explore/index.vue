@@ -8,7 +8,7 @@ const paginator = useMasto().trends.iterateStatuses()
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS, false)
 
 useHeadFixed({
-  title: () => `${t('tab.posts')} | ${t('nav_side.explore')}`,
+  title: () => `${t('tab.posts')} | ${t('nav.explore')}`,
 })
 </script>
 

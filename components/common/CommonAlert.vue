@@ -19,7 +19,7 @@ function close() {
 <template>
   <div
     flex="~ gap-2" justify-between items-center
-    class="border-b border-base text-sm text-secondary px4 py2 sm:py4"
+    border="b base" text-sm text-secondary px4 py2 sm:py4
   >
     <div>
       <slot />

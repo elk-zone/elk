@@ -31,11 +31,6 @@
     "error": "ERROR",
     "not_found": "404 Not Found"
   },
-  "feature_flag": {
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "仮想スクロール"
-  },
   "menu": {
     "block_account": "{0}さんをブロックする",
     "block_domain": "{0}をドメインブロック",
@@ -47,13 +42,7 @@
     "unblock_domain": "{0}のドメインブロックを解除",
     "unmute_account": "{0}さんのミュートを解除"
   },
-  "nav_footer": {
-    "select_feature_flags": "実験的機能を切り替え",
-    "select_language": "言語を選択",
-    "toggle_theme": "テーマを切り替え",
-    "zen_mode": "禅モード"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "ブックマーク",
     "conversations": "会話",
     "explore": "話題の投稿",
@@ -63,10 +52,11 @@
     "local": "ローカル",
     "notifications": "通知",
     "profile": "プロフィール",
-    "search": "検索 {0}"
-  },
-  "nav_user": {
-    "sign_in_desc": "サインインすると、アカウントやハッシュタグをフォローしたり、お気に入りしたり、投稿を共有したり返信するほか、異なるサーバー上のあなたのアカウントから交流できます。"
+    "search": "検索",
+    "select_feature_flags": "実験的機能を切り替え",
+    "select_language": "言語を選択",
+    "toggle_theme": "テーマを切り替え",
+    "zen_mode": "禅モード"
   },
   "notification": {
     "favourited_post": "さんがあなたの投稿お気に入り登録しました",
@@ -76,12 +66,18 @@
     "request_to_follow": "さんがあなたへフォローをリクエストしました",
     "update_status": "さんが投稿を更新しました"
   },
+  "settings": {
+    "feature_flags": {
+      "github_cards": "GitHub Cards",
+      "user_picker": "User Picker",
+      "virtual_scroll": "仮想スクロール"
+    }
+  },
   "state": {
     "editing": "編集中",
     "uploading": "更新中..."
   },
   "tab": {
-    "accounts": "アカウント",
     "hashtags": "ハッシュタグ",
     "media": "メディア",
     "posts": "投稿",
@@ -99,5 +95,8 @@
     "add_media": "画像、動画、音声ファイルを追加",
     "change_content_visibility": "公開範囲を変更",
     "toggle_code_block": "コードブロックを切り替え"
+  },
+  "user": {
+    "sign_in_desc": "サインインすると、アカウントやハッシュタグをフォローしたり、お気に入りしたり、投稿を共有したり返信するほか、異なるサーバー上のあなたのアカウントから交流できます。"
   }
 }

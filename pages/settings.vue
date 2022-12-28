@@ -15,7 +15,7 @@ const isRootPath = computedEager(() => route.name === 'settings')
         <template #title>
           <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
             <div i-ri:settings-4-line />
-            <span>{{ $t('nav_side.settings') }}</span>
+            <span>{{ $t('nav.settings') }}</span>
           </div>
         </template>
         <div xl:w-97 lg:w-78 w-full>
@@ -42,6 +42,12 @@ const isRootPath = computedEager(() => route.name === 'settings')
             icon="i-ri:settings-2-line"
             :text="$t('settings.preferences.label')"
             to="/settings/preferences"
+          />
+          <SettingsNavItem
+            command
+            icon="i-ri-group-line"
+            :text="$t('settings.users.label')"
+            to="/settings/users"
           />
           <SettingsNavItem
             command

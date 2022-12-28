@@ -8,26 +8,27 @@ const { paginator, stream } = defineProps<{
   paginator: Paginator<any, Status[]>
   stream?: WsEvents
   context?: FilterContext
+  preprocess?: (items: any[]) => any[]
 }>()
 
 const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirtualScroll))
 </script>
 
 <template>
-  <CommonPaginator v-bind="{ paginator, stream }" :virtual-scroller="virtualScroller">
+  <CommonPaginator v-bind="{ paginator, stream, preprocess }" :virtual-scroller="virtualScroller">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
         {{ $t('timeline.show_new_items', number) }}
       </button>
     </template>
-    <template #default="{ item, active }">
+    <template #default="{ item, older, newer, active }">
       <template v-if="virtualScroller">
         <DynamicScrollerItem :item="item" :active="active" tag="article">
-          <StatusCard :status="item" border="b base" :context="context" />
+          <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
         </DynamicScrollerItem>
       </template>
       <template v-else>
-        <StatusCard :status="item" border="b base" :context="context" />
+        <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
       </template>
     </template>
     <template #loading>

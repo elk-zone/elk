@@ -7,44 +7,42 @@ const locales: LocaleObject[] = [
   {
     code: 'en-US',
     file: 'en-US.json',
-    name: 'English',
-    dir: 'ltr',
+    name: 'English (US)',
+  },
+  {
+    code: 'en-GB',
+    file: 'en-GB.json',
+    name: 'English (UK)',
   },
   {
     code: 'de-DE',
     file: 'de-DE.json',
     name: 'Deutsch',
-    dir: 'ltr',
   },
   {
     code: 'zh-CN',
     file: 'zh-CN.json',
     name: '简体中文',
-    dir: 'ltr',
   },
   {
     code: 'ja-JP',
     file: 'ja-JP.json',
     name: '日本語',
-    dir: 'ltr',
   },
   {
     code: 'es-ES',
     file: 'es-ES.json',
     name: 'Español',
-    dir: 'ltr',
   },
   {
     code: 'fr-FR',
     file: 'fr-FR.json',
     name: 'Français',
-    dir: 'ltr',
   },
   {
     code: 'cs-CZ',
     file: 'cs-CZ.json',
     name: 'Česky',
-    dir: 'ltr',
   },
   {
     code: 'ar',

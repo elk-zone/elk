@@ -5,53 +5,46 @@ const timeAgoOptions = useTimeAgoOptions()
 
 const buildTimeDate = new Date(buildInfo.time)
 const buildTimeAgo = useTimeAgo(buildTimeDate, timeAgoOptions)
+
+const colorMode = useColorModeRef()
+function toggleDark() {
+  colorMode.value = colorMode.value === 'dark' ? 'light' : 'dark'
+}
 </script>
 
 <template>
   <footer p4 text-sm text-secondary-light flex="~ col">
     <div flex="~ gap2" items-center mb4>
-      <CommonTooltip :content="$t('nav_footer.toggle_theme')">
-        <button flex i-ri:sun-line dark:i-ri:moon-line text-lg :aria-label="$t('nav_footer.toggle_theme')" @click="toggleDark()" />
+      <CommonTooltip :content="$t('nav.toggle_theme')">
+        <button flex i-ri:sun-line dark:i-ri:moon-line text-lg :aria-label="$t('nav.toggle_theme')" @click="toggleDark()" />
       </CommonTooltip>
-      <CommonTooltip :content="$t('nav_footer.zen_mode')">
+      <CommonTooltip :content="$t('nav.zen_mode')">
         <button
           flex
           text-lg
           :class="isZenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
-          :aria-label="$t('nav_footer.zen_mode')"
+          :aria-label="$t('nav.zen_mode')"
           @click="toggleZenMode()"
         />
       </CommonTooltip>
-      <NavSelectLanguage>
-        <CommonTooltip :content="$t('nav_footer.select_language')">
-          <button flex :aria-label="$t('nav_footer.select_language')">
-            <div i-ri:earth-line text-lg />
-          </button>
-        </CommonTooltip>
-      </NavSelectLanguage>
-      <NavSelectFontSize>
-        <CommonTooltip :content="$t('nav_footer.select_font_size')">
-          <button flex :aria-label="$t('nav_footer.select_font_size')">
-            <div i-ri:font-size text-lg />
-          </button>
-        </CommonTooltip>
-      </NavSelectFontSize>
-      <NavSelectFeatureFlags v-if="isMastoInitialised && currentUser">
-        <CommonTooltip :content="$t('nav_footer.select_feature_flags')">
-          <button flex :aria-label="$t('nav_footer.select_feature_flags')">
-            <div i-ri:flag-line text-lg />
-          </button>
-        </CommonTooltip>
-      </NavSelectFeatureFlags>
+      <CommonTooltip :content="$t('nav.settings')">
+        <NuxtLink
+          flex
+          text-lg
+          to="/settings"
+          i-ri:settings-4-line
+          :aria-label="$t('nav.settings')"
+        />
+      </CommonTooltip>
     </div>
     <div>
       <button cursor-pointer hover:underline @click="openPreviewHelp">
-        {{ $t('nav_footer.show_intro') }}
+        {{ $t('nav.show_intro') }}
       </button>
     </div>
     <div>{{ $t('app_desc_short') }}</div>
     <div>
-      <i18n-t keypath="nav_footer.built_at">
+      <i18n-t keypath="nav.built_at">
         <time :datetime="String(buildTimeDate)" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
       </i18n-t>
       <template v-if="buildInfo.version">

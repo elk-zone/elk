@@ -4,16 +4,18 @@ import { updateCustomEmojis } from '~/composables/emojis'
 
 const emit = defineEmits<{
   (e: 'select', code: string): void
+  (e: 'selectCustom', image: any): void
 }>()
 
 const el = $ref<HTMLElement>()
 let picker = $ref<Picker>()
+const colorMode = useColorModeRef()
 
 async function openEmojiPicker() {
   await updateCustomEmojis()
   if (picker) {
     picker.update({
-      theme: isDark.value ? 'dark' : 'light',
+      theme: colorMode.value,
       custom: customEmojisData.value,
     })
   }
@@ -22,10 +24,12 @@ async function openEmojiPicker() {
     const { Picker } = await import('emoji-mart')
     picker = new Picker({
       data: () => promise,
-      onEmojiSelect(e: any) {
-        emit('select', e.native || e.shortcodes)
+      onEmojiSelect({ native, src, alt, name }: any) {
+        native
+          ? emit('select', native)
+          : emit('selectCustom', { src, alt, 'data-emoji-id': name })
       },
-      theme: isDark.value ? 'dark' : 'light',
+      theme: colorMode.value,
       custom: customEmojisData.value,
     })
   }

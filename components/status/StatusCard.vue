@@ -8,8 +8,13 @@ const props = withDefaults(
     context?: FilterContext
     hover?: boolean
     faded?: boolean
-    showReplyTo?: boolean
-    connectReply?: boolean
+
+    // If we know the prev and next status in the timeline, we can simplify the card
+    older?: Status
+    newer?: Status
+    // Manual overrides
+    hasOlder?: boolean
+    hasNewer?: boolean
   }>(),
   { actions: true, showReplyTo: true },
 )
@@ -19,6 +24,11 @@ const status = $computed(() => {
     return props.status.reblog
   return props.status
 })
+
+// Use original status, avoid connecting a reblog (review if we should relax this)
+const directReply = $computed(() => props.hasNewer || (!!props.status.inReplyToId && (props.status.inReplyToId === props.newer?.id || props.status.inReplyToId === props.newer?.reblog?.id)))
+// Use reblogged status, connect it to further replies
+const connectReply = $computed(() => props.hasOlder || status.id === props.older?.inReplyToId)
 
 const rebloggedBy = $computed(() => props.status.reblog ? props.status.account : null)
 
@@ -65,7 +75,21 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
 </script>
 
 <template>
-  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-1 px-4 pt-1 class="pb-1.5" transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" @click="onclick" @keydown.enter="onclick">
+  <div
+    v-if="filter?.filterAction !== 'hide'"
+    :id="`status-${status.id}`"
+    ref="el"
+    relative flex flex-col gap-1 px-4 pt-1
+    class="pb-1.5"
+    transition-100
+    :class="{ 'hover:bg-active': hover, 'border-t border-base': newer && !directReply }"
+    tabindex="0"
+    focus:outline-none focus-visible:ring="2 primary"
+    :lang="status.language ?? undefined"
+    :dir="status.language ? 'auto' : 'ltr'"
+    @click="onclick"
+    @keydown.enter="onclick"
+  >
     <div flex justify-between>
       <slot name="meta">
         <div v-if="rebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1>
@@ -74,12 +98,12 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
         </div>
         <div v-else />
       </slot>
-      <StatusReplyingTo v-if="showReplyTo" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
+      <StatusReplyingTo v-if="!directReply" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
         <template v-if="showRebloggedByAvatarOnAvatar">
-          <div absolute top--3px left--0.8 z--1 w-25px h-25px rounded-full>
+          <div absolute top--3px left--0.8 rtl-left-none rtl-right--0.8 z--1 w-25px h-25px rounded-full>
             <AccountAvatar :account="rebloggedBy" />
           </div>
         </template>

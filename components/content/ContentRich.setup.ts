@@ -1,5 +1,6 @@
 import type { Emoji } from 'masto'
 import { emojisArrayToObject } from '~/composables/utils'
+import { currentCustomEmojis } from '~/composables/emojis'
 
 defineOptions({
   name: 'ContentRich',
@@ -11,11 +12,21 @@ const { content, emojis, markdown = true } = defineProps<{
   emojis?: Emoji[]
 }>()
 
+const useEmojis = computed(() => {
+  const result: Emoji[] = []
+  if (emojis)
+    result.push(...emojis)
+
+  result.push(...currentCustomEmojis.value.emojis)
+
+  return emojisArrayToObject(result)
+})
+
 export default () => h(
   'span',
   { class: 'content-rich' },
   contentToVNode(content, {
-    emojis: emojisArrayToObject(emojis || []),
+    emojis: useEmojis.value,
     markdown,
   }),
 )

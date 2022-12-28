@@ -14,19 +14,17 @@ export function decodeHtml(text: string) {
  * Parse raw HTML form Mastodon server to AST,
  * with interop of custom emojis and inline Markdown syntax
  */
-export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}, markdown = true) {
-  let processed = (findAndReplaceEmojisInText(emojiRegEx, html, (match) => {
-    const file = emojiFilename(match)
-    const className = `iconify-emoji iconify-emoji--${emojiPrefix}${file.padding ? ' iconify-emoji-padded' : ''}`
-    return `<img src="/emojis/${emojiPrefix}/${file.filename}" alt="${match.match}" class="${className}" />`
-  }) || html)
-    // custom emojis
-    .replace(/:([\w-]+?):/g, (_, name) => {
-      const emoji = customEmojis[name]
-      if (emoji)
-        return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
-      return `:${name}:`
-    })
+export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}, markdown = true, forTiptap = false) {
+  // unicode emojis to images, but only if not converting HTML for Tiptap
+  let processed = forTiptap ? html : replaceUnicodeEmoji(html)
+
+  // custom emojis
+  processed = processed.replace(/:([\w-]+?):/g, (_, name) => {
+    const emoji = customEmojis[name]
+    if (emoji)
+      return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
+    return `:${name}:`
+  })
 
   if (markdown) {
     // handle code blocks
@@ -66,8 +64,11 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
   return parse(processed)
 }
 
+/**
+ * Converts raw HTML form Mastodon server to HTML for Tiptap editor
+ */
 export function convertMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
-  const tree = parseMastodonHTML(html, customEmojis)
+  const tree = parseMastodonHTML(html, customEmojis, true, true)
   return render(tree)
 }
 
@@ -126,4 +127,15 @@ export function treeToText(input: Node): string {
   }
 
   return pre + body + post
+}
+
+/**
+ * Replace unicode emojis with locally hosted images
+ */
+export function replaceUnicodeEmoji(html: string) {
+  return findAndReplaceEmojisInText(emojiRegEx, html, (match) => {
+    const file = emojiFilename(match)
+    const className = `iconify-emoji iconify-emoji--${emojiPrefix}${file.padding ? ' iconify-emoji-padded' : ''}`
+    return `<img src="/emojis/${emojiPrefix}/${file.filename}" alt="${match.match}" class="${className}" />`
+  }) || html
 }

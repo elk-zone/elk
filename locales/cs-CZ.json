@@ -95,6 +95,7 @@
     "edit": "Upravit",
     "mention_account": "Zmínit {0}",
     "mute_account": "Umlčet {0}",
+    "mute_conversation": "Umlčet příspěvek",
     "open_in_original_site": "Otevřít na původní stránce",
     "pin_on_profile": "Připíchnout na profil",
     "show_untranslated": "Zobrazit nepřeložené",
@@ -106,6 +107,7 @@
     "unblock_account": "Odblokovat {0}",
     "unblock_domain": "Odblokovat doménu {0}",
     "unmute_account": "Odmlčet {0}",
+    "unmute_conversation": "Přestat ignorovat příspěvek",
     "unpin_on_profile": "Odepnout z profilu"
   },
   "nav": {

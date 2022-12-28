@@ -118,6 +118,7 @@
     "edit": "Edit",
     "mention_account": "Mention {0}",
     "mute_account": "Mute {0}",
+    "mute_conversation": "Mute this post",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "show_untranslated": "Show untranslated",
@@ -129,6 +130,7 @@
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
     "unmute_account": "Unmute {0}",
+    "unmute_conversation": "Unmute this post",
     "unpin_on_profile": "Unpin on profile"
   },
   "nav": {

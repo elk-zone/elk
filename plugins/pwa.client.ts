@@ -1,6 +1,6 @@
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 
-export function usePWA() {
+export default defineNuxtPlugin(() => {
   const online = useOnline()
 
   const {
@@ -34,10 +34,12 @@ export function usePWA() {
   }
 
   return {
-    needRefresh,
-    updateServiceWorker,
-    close,
+    provide: {
+      pwa: reactive({
+        needRefresh,
+        updateServiceWorker,
+        close,
+      }),
+    },
   }
-}
-
-export const pwa = reactive(usePWA())
+})

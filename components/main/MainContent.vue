@@ -1,9 +1,9 @@
 <script setup lang="ts">
 defineProps<{
-  /**
-   * Show the back button on small screens
-   */
+  /** Show the back button on small screens */
   backOnSmallScreen?: boolean
+  /** Show the back button on both small and big screens */
+  back?: boolean
 }>()
 </script>
 
@@ -16,7 +16,8 @@ defineProps<{
       <div flex justify-between px5 py4>
         <div flex gap-3 items-center overflow-hidden>
           <NuxtLink
-            v-if="backOnSmallScreen" lg:hidden flex="~ gap1" items-center btn-text p-0
+            v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0
+            :class="{ 'lg:hidden': backOnSmallScreen }"
             @click="$router.go(-1)"
           >
             <div i-ri:arrow-left-line />

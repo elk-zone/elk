@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { Poll } from 'masto'
+import type { Status } from 'masto'
 
-const { poll: _poll } = defineProps<{
-  poll: Poll
+const { status } = defineProps<{
+  status: Status
 }>()
-const poll = reactive({ ..._poll })
+const poll = reactive({ ...status.poll! })
 
 function toPercentage(num: number) {
   const percentage = 100 * num
@@ -19,7 +19,6 @@ const masto = useMasto()
 async function vote(e: Event) {
   const formData = new FormData(e.target as HTMLFormElement)
   const choices = formData.getAll('choices') as string[]
-  await masto.poll.vote(poll.id, { choices })
 
   // Update the poll optimistically
   for (const [index, option] of poll.options.entries()) {
@@ -29,6 +28,9 @@ async function vote(e: Event) {
   poll.voted = true
   poll.votesCount++
   poll.votersCount = (poll.votersCount || 0) + 1
+  cacheStatus({ ...status, poll }, undefined, true)
+
+  await masto.poll.vote(poll.id, { choices })
 }
 </script>
 

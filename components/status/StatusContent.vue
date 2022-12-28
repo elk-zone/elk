@@ -34,10 +34,7 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
         <p>{{ status.spoilerText || `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
       </template>
       <StatusBody :status="status" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
-      <StatusPoll
-        v-if="status.poll"
-        :poll="status.poll"
-      />
+      <StatusPoll v-if="status.poll" :status="status" />
       <StatusMedia
         v-if="status.mediaAttachments?.length"
         :status="status"

@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import type { CommandScope, QueryIndexedCommand } from '@/composables/command'
+import type { SearchResult as SearchResultType } from '@/components/search/types'
+import type { CommandScope, QueryResult, QueryResultItem } from '@/composables/command'
 
 const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
 const registry = useCommandRegistry()
+
+const router = useRouter()
 
 const inputEl = $ref<HTMLInputElement>()
 const resultEl = $ref<HTMLDivElement>()
@@ -23,24 +26,46 @@ const query = $computed(() => commandMode ? '' : input.trim())
 
 const { accounts, hashtags, loading } = useSearch($$(query))
 
-const searchResult = $computed(() => {
+const toSearchQueryResultItem = (search: SearchResultType): QueryResultItem => ({
+  index: 0,
+  type: 'search',
+  search,
+  onActivate: () => router.push(search.to),
+})
+
+const searchResult = $computed<QueryResult>(() => {
   if (query.length === 0 || loading.value)
-    return { length: 0, items: [], grouped: {} }
-  const hashtagList = hashtags.value.slice(0, 3).map(hashtag => ({ type: 'hashtag', hashtag, to: `/tags/${hashtag.name}` }))
-  const accountList = accounts.value.map(account => ({ type: 'account', account, to: `/@${account.acct}` }))
+    return { length: 0, items: [], grouped: {} as any }
+
+  const hashtagList = hashtags.value.slice(0, 3)
+    .map<SearchResultType>(hashtag => ({ type: 'hashtag', hashtag, to: `/tags/${hashtag.name}` }))
+    .map(toSearchQueryResultItem)
+  const accountList = accounts.value
+    .map<SearchResultType>(account => ({ type: 'account', account, to: `/@${account.acct}` }))
+    .map(toSearchQueryResultItem)
+
+  const grouped: QueryResult['grouped'] = new Map()
+  grouped.set('Hashtags', hashtagList)
+  grouped.set('Users', accountList)
+
+  let index = 0
+  for (const items of grouped.values()) {
+    for (const item of items)
+      item.index = index++
+  }
+
   return {
-    grouped: [
-      ['Hashtags', hashtagList],
-      ['Users', accountList],
-    ] as any[],
-    items: [...hashtagList, ...accountList] as any[],
+    grouped,
+    items: [...hashtagList, ...accountList],
     length: hashtagList.length + accountList.length,
   }
 })
 
-const result = $computed(() => commandMode
+const result = $computed<QueryResult>(() => commandMode
   ? registry.query(scopes.map(s => s.id).join('.'), input.slice(1))
-  : searchResult)
+  : searchResult,
+)
+
 let active = $ref(0)
 watch($$(result), (n, o) => {
   if (n.length !== o.length || !n.items.every((i, idx) => i === o.items[idx]))
@@ -49,7 +74,7 @@ watch($$(result), (n, o) => {
 
 const findItemEl = (index: number) =>
   resultEl?.querySelector(`[data-index="${index}"]`) as HTMLDivElement | null
-const onCommandActivate = (item: QueryIndexedCommand) => {
+const onCommandActivate = (item: QueryResultItem) => {
   if (item.onActivate) {
     item.onActivate()
     emit('close')
@@ -59,13 +84,14 @@ const onCommandActivate = (item: QueryIndexedCommand) => {
     input = '>'
   }
 }
-const onCommandComplete = (item: QueryIndexedCommand) => {
+const onCommandComplete = (item: QueryResultItem) => {
   if (item.onComplete) {
     scopes.push(item.onComplete())
     input = '>'
   }
   else if (item.onActivate) {
     item.onActivate()
+    emit('close')
   }
 }
 const intoView = (index: number) => {
@@ -183,60 +209,25 @@ const onKeyDown = (e: KeyboardEvent) => {
         <SearchResultSkeleton />
         <SearchResultSkeleton />
       </template>
-      <!-- <template v-for="[scope, group] in searchResult" :key="scope">
-        <div class="mt-2 px-2 py-1 text-sm text-secondary">
-          {{ scope }}
-        </div>
-        <SearchResult v-for="(item, i) in group" :key="item.to" :active="active === parseInt(i.toString())" :result="item" />
-      </template> -->
-      <template v-for="[scope, group] in result.grouped" :key="scope">
-        <div class="mt-2 px-2 py-1 text-sm text-secondary">
-          {{ scope }}
-        </div>
-
-        <template v-for="(item, i) in group" :key="i">
-          <SearchResult v-if="!commandMode" :active="active === parseInt(i.toString())" :result="item" />
-          <div
-            v-else
-            class="flex px-3 py-2 my-1 items-center rounded-lg hover:bg-active transition-all duration-65 ease-in-out cursor-pointer scroll-m-10"
-            :class="{ 'bg-active': active === item.index }"
-            :data-index="item.index"
-            @click="onCommandActivate(item)"
-          >
-            <div v-if="item.icon" mr-2 :class="item.icon" />
-
-            <div class="flex-1 flex items-baseline gap-2">
-              <div :class="{ 'font-medium': active === item.index }">
-                {{ item.name }}
-              </div>
-              <div v-if="item.description" class="text-xs text-secondary">
-                {{ item.description }}
-              </div>
-            </div>
-
-            <div
-              v-if="item.onComplete"
-              class="flex items-center gap-1 transition-all duration-65 ease-in-out"
-              :class="active === item.index ? 'opacity-100' : 'opacity-0'"
-            >
-              <div class="text-xs text-secondary">
-                {{ $t('command.complete') }}
-              </div>
-              <CommandKey name="Tab" />
-            </div>
-            <div
-              v-if="item.onActivate"
-              class="flex items-center gap-1 transition-all duration-65 ease-in-out"
-              :class="active === item.index ? 'opacity-100' : 'opacity-0'"
-            >
-              <div class="text-xs text-secondary">
-                {{ $t('command.activate') }}
-              </div>
-              <CommandKey name="Enter" />
-            </div>
+      <template v-else-if="result.length">
+        <template v-for="[scope, group] in result.grouped" :key="scope">
+          <div class="mt-2 px-2 py-1 text-sm text-secondary">
+            {{ scope }}
           </div>
+
+          <template v-for="item in group" :key="item.index">
+            <SearchResult v-if="item.type === 'search'" :active="active === item.index" :result="item.search" />
+            <CommandItem v-else :index="item.index" :cmd="item.cmd" :active="active === item.index" @activate="onCommandActivate(item)" />
+          </template>
         </template>
       </template>
+      <div v-else p5 text-center text-secondary italic>
+        {{
+          input.length
+            ? $t('common.not_found')
+            : $t('search.search_desc')
+        }}
+      </div>
     </div>
 
     <div class="w-full border-b-1 border-base" />

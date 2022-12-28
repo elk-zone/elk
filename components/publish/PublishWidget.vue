@@ -188,7 +188,7 @@ defineExpose({
 
     <div flex gap-3 flex-1>
       <NuxtLink :to="getAccountRoute(currentUser.account)">
-        <AccountAvatar :account="currentUser.account" account-avatar-normal />
+        <AccountBigAvatar :account="currentUser.account" />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <div

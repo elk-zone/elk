@@ -109,7 +109,7 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
         </template>
         <AccountHoverWrapper :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
-            <AccountAvatar :account="status.account" account-avatar-normal :class="showRebloggedByAvatarOnAvatar ? 'mt-11px ' : 'mt-3px'" />
+            <AccountBigAvatar :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-11px ' : 'mt-3px'" />
           </NuxtLink>
         </AccountHoverWrapper>
         <div v-if="connectReply" w-full h-full flex justify-center>

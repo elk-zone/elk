@@ -10,7 +10,7 @@ const isRootPath = computedEager(() => route.name === 'settings')
 
 <template>
   <div min-h-screen flex>
-    <div border="r base" :class="isRootPath ? 'block lg:flex-none flex-1' : 'hidden lg:block'">
+    <div border="e base" :class="isRootPath ? 'block lg:flex-none flex-1' : 'hidden lg:block'">
       <MainContent>
         <template #title>
           <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">

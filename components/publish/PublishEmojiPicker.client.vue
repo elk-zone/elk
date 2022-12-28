@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Picker } from 'emoji-mart'
-import { updateCustomEmojis } from '~/composables/emojis'
 
 const emit = defineEmits<{
   (e: 'select', code: string): void

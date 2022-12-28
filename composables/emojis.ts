@@ -1,7 +1,6 @@
 import type { Emoji } from 'masto'
 import type { CustomEmojisInfo } from './push-notifications/types'
 import { STORAGE_KEY_CUSTOM_EMOJIS } from '~/constants'
-import { useUserLocalStorage } from '~/composables/users'
 
 const TTL = 1000 * 60 * 60 * 24 // 1 day
 

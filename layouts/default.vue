@@ -14,7 +14,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
             <div flex="~ col" overflow-y-auto justify-between h-full max-w-full>
               <div flex flex-col>
                 <NavSide />
-                <PublishButton m="y5 xa" lg:m="x5 l3" />
+                <PublishButton m="y5 xa" lg:m="r5 l3" lg:rtl-m="l5 r3" />
               </div>
               <div v-if="isMastoInitialised" flex flex-col>
                 <UserSignInEntry v-if="!currentUser" sm:hidden />

@@ -1,9 +1,10 @@
-import { fileURLToPath } from 'node:url'
+import { createResolver } from '@nuxt/kit'
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
 
+const { resolve } = createResolver(import.meta.url)
 const isPreview = process.env.PULL_REQUEST === 'true' || process.env.CONTEXT === 'deploy-preview' || process.env.CONTEXT === 'dev'
 
 export default defineNuxtConfig({
@@ -43,6 +44,12 @@ export default defineNuxtConfig({
     'masto': 'masto/fetch',
     'change-case': 'scule',
     'semver': 'unenv/runtime/mock/empty',
+  },
+  imports: {
+    dirs: [
+      './composables/push-notifications',
+      './composables/tiptap',
+    ],
   },
   vite: {
     define: {
@@ -92,6 +99,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
+    '/api/list-servers': { swr: true },
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',
@@ -100,14 +108,11 @@ export default defineNuxtConfig({
   },
   nitro: {
     publicAssets: [
-      ...(!isCI || isPreview ? [{ dir: fileURLToPath(new URL('./public-dev', import.meta.url)) }] : []),
+      ...(!isCI || isPreview ? [{ dir: resolve('./public-dev') }] : []),
     ],
     prerender: {
       crawlLinks: false,
       routes: ['/', '/200.html'],
-    },
-    routeRules: {
-      '/list-servers': { swr: true },
     },
   },
   app: {

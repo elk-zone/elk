@@ -10,7 +10,7 @@ definePageMeta({
 const route = useRoute()
 const id = $(computedEager(() => route.params.status as string))
 const main = ref<ComponentPublicInstance | null>(null)
-let bottomSpace = $ref(0)
+
 const publishWidget = ref()
 
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
@@ -28,8 +28,6 @@ function scrollTo() {
   if (!statusElement)
     return
 
-  const statusRect = statusElement.getBoundingClientRect()
-  bottomSpace = window.innerHeight - statusRect.height
   statusElement.scrollIntoView(true)
 }
 
@@ -59,7 +57,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template v-if="!pending">
-      <div v-if="status" min-h-100vh mt--1px>
+      <div v-if="status" mt--1px>
         <template v-for="comment of context?.ancestors" :key="comment.id">
           <StatusCard
             :status="comment" :actions="comment.visibility !== 'direct'" context="account"
@@ -89,8 +87,6 @@ onReactivated(() => {
             :older="context?.descendants[di + 1]" :newer="context?.descendants[di - 1]" :has-newer="di === 0"
           />
         </template>
-
-        <div :style="{ height: `${bottomSpace}px` }" />
       </div>
 
       <StatusNotFound v-else :account="$route.params.account" :status="id" />

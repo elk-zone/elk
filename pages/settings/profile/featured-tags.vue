@@ -1,3 +1,9 @@
+<script setup lang="ts">
+definePageMeta({
+  middleware: 'auth',
+})
+</script>
+
 <template>
   <MainContent back>
     <template #title>

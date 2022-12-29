@@ -20,6 +20,7 @@ const isRootPath = computedEager(() => route.name === 'settings')
         </template>
         <div xl:w-97 lg:w-78 w-full>
           <SettingsNavItem
+            v-if="currentUser"
             command
             icon="i-ri:user-line"
             :text="$t('settings.profile.label')"

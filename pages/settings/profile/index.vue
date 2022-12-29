@@ -1,3 +1,9 @@
+<script setup lang="ts">
+definePageMeta({
+  middleware: 'auth',
+})
+</script>
+
 <template>
   <MainContent back-on-small-screen>
     <template #title>

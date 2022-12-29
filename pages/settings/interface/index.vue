@@ -10,10 +10,12 @@
         <p font-medium>{{ $t('settings.interface.font_size') }}</p>
         <SettingsFontSize select-settings />
       </label>
-      <label space-y-2>
-        <p font-medium>{{ $t('settings.interface.color_mode') }}</p>
+      <div space-y-2>
+        <p font-medium>
+          {{ $t('settings.interface.color_mode') }}
+        </p>
         <SettingsColorMode />
-      </label>
+      </div>
     </div>
   </MainContent>
 </template>

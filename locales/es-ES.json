@@ -205,11 +205,49 @@
     "search_desc": "Buscar personas y etiquetas"
   },
   "settings": {
+    "about": {
+      "label": "Acerca de"
+    },
     "feature_flags": {
       "avatar_on_avatar": "Avatar en Avatar",
-      "github_cards": "GitHub Cards",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
+      "github_cards": "Tarjetas GitHub",
+      "title": "Características experimentales",
+      "user_picker": "Selector de usuarios",
+      "virtual_scroll": "Desplazamiento virtual"
+    },
+    "interface": {
+      "color_mode": "Modos de color",
+      "dark_mode": "Modo Oscuro",
+      "font_size": "Tamaño de Letra",
+      "label": "Interfaz",
+      "light_mode": "Modo Claro"
+    },
+    "language": {
+      "display_language": "Idioma de la pantalla",
+      "label": "Idioma"
+    },
+    "preferences": {
+      "label": "Preferencias"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bio",
+        "description": "Editar avatar, nombre de usuario, perfil, etc.",
+        "display_name": "Nombre a mostrar",
+        "label": "Apariencia",
+        "title": "Editar perfil"
+      },
+      "featured_tags": {
+        "description": "Las personas pueden navegar por sus publicaciones públicas con estos hashtags.",
+        "label": "Hashtags destacados"
+      },
+      "label": "Perfil"
+    },
+    "select_a_settings": "Seleccionar una configuración",
+    "users": {
+      "export": "Exportar tokens de usuario",
+      "import": "Importar tokens de usuario",
+      "label": "Usuarios conectados"
     }
   },
   "state": {

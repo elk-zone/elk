@@ -27,7 +27,7 @@ export const onPush = (event: PushEvent) => {
       data: {
         access_token,
         preferred_locale,
-        url: `/${url}?notification_id=${notification_id}`,
+        url: `/${url}`,
       },
       dir: 'auto',
       icon,

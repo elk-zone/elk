@@ -3,8 +3,8 @@ import type { Status } from 'masto'
 
 const { status, collapsed = false, simplified = false } = defineProps<{
   status: Status
-  collapsed: boolean
-  simplified: boolean
+  collapsed?: boolean
+  simplified?: boolean
 }>()
 
 const isSelf = $computed(() => status.inReplyToAccountId === status.account.id)

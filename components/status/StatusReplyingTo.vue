@@ -20,14 +20,14 @@ const account = isSelf ? computed(() => status.account) : useAccountById(status.
       :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
     >
       <template v-if="account">
-        <div i-ri:reply-fill :class="collapsed ? '' : 'scale-x-[-1]'" text-secondary-light />
+        <div i-ri:reply-fill :class="collapsed ? '' : 'scale-x-[-1]'" text-secondary-light mr-0.5 />
         <template v-if="!isSelf">
-          <AccountAvatar v-if="simplified" :account="account" :link="false" w-5 h-5 />
+          <AccountAvatar v-if="simplified || status.inReplyToAccountId === currentUser?.account.id" :account="account" :link="false" w-5 h-5 />
           <AccountInlineInfo v-else :account="account" :link="false" />
         </template>
         <span v-else-if="!collapsed" ws-nowrap>{{ $t('status.thread') }}</span>
       </template>
-      <div i-ph:chats-fill text-primary text-lg />
+      <div i-ph:chats-fill text-primary text-lg ml-0.5 />
     </NuxtLink>
   </div>
 </template>

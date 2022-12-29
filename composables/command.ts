@@ -240,6 +240,7 @@ export const useCommands = (cmds: () => CommandProvider[]) => {
 export const provideGlobalCommands = () => {
   const { locale, t } = useI18n()
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
+  const router = useRouter()
   const users = useUsers()
   const masto = useMasto()
   const colorMode = useColorMode()
@@ -255,6 +256,17 @@ export const provideGlobalCommands = () => {
 
     onActivate() {
       openPublishDialog()
+    },
+  })
+
+  useCommand({
+    scope: 'Navigation',
+
+    name: () => t('nav.settings'),
+    icon: 'i-ri:settings-4-line',
+
+    onActivate() {
+      router.push('/settings')
     },
   })
 

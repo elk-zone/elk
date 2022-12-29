@@ -15,6 +15,9 @@ const props = withDefaults(
     // Manual overrides
     hasOlder?: boolean
     hasNewer?: boolean
+    // When looking into a detailed view of a post, we can simplify the replying badges
+    // to the main expanded post
+    main?: Status
   }>(),
   { actions: true, showReplyTo: true },
 )
@@ -74,8 +77,10 @@ const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAva
 // Collapse ReplyingTo badge if it is a self-reply (thread)
 const collapseReplyingTo = $computed(() => (!rebloggedBy || collapseRebloggedBy) && status.inReplyToAccountId === status.account.id)
 
-// Only show avatar in ReplyingTo badge if it was reblogged by the same account
-const simplifyReplyingTo = $computed(() => rebloggedBy && rebloggedBy.id === status.inReplyToAccountId)
+// Only show avatar in ReplyingTo badge if it was reblogged by the same account or if it is against the main post
+const simplifyReplyingTo = $computed(() =>
+  (props.main && props.main.account.id === status.inReplyToAccountId) || (rebloggedBy && rebloggedBy.id === status.inReplyToAccountId),
+)
 
 const isDM = $computed(() => status.visibility === 'direct')
 </script>

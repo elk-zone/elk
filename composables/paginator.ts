@@ -103,7 +103,7 @@ export function usePaginator<T>(
         )
           loadNext()
       },
-      { immediate: true },
+      { immediate: false },
     )
   }
 

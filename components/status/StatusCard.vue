@@ -28,8 +28,8 @@ const status = $computed(() => {
   return props.status
 })
 
-// Use original status, avoid connecting a reblog (review if we should relax this)
-const directReply = $computed(() => props.hasNewer || (!!props.status.inReplyToId && (props.status.inReplyToId === props.newer?.id || props.status.inReplyToId === props.newer?.reblog?.id)))
+// Use original status, avoid connecting a reblog
+const directReply = $computed(() => props.hasNewer || (!!status.inReplyToId && (status.inReplyToId === props.newer?.id || status.inReplyToId === props.newer?.reblog?.id)))
 // Use reblogged status, connect it to further replies
 const connectReply = $computed(() => props.hasOlder || status.id === props.older?.inReplyToId)
 
@@ -103,7 +103,7 @@ const isDM = $computed(() => status.visibility === 'direct')
   >
     <div flex justify-between>
       <slot name="meta">
-        <div v-if="rebloggedBy && !collapseRebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1>
+        <div v-if="rebloggedBy && !collapseRebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1 bg-base>
           <div i-ri:repeat-fill mr-1 text-primary />
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
         </div>

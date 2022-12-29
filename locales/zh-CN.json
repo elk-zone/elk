@@ -275,7 +275,7 @@
       "dismiss": "忽略"
     },
     "poll": {
-      "count": "{n} 次投票",
+      "count": "{0} 次投票",
       "ends": "将在 {0} 结束",
       "finished": "已在 {0} 结束"
     },
@@ -332,7 +332,7 @@
     "year_past": "现在|去年|{n}年前"
   },
   "timeline": {
-    "show_new_items": "展示 {n} 条新帖文"
+    "show_new_items": "展示 {v} 条新帖文"
   },
   "title": {
     "federated_timeline": "跨站时间线",

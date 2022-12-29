@@ -92,7 +92,7 @@ onMounted(async () => {
 <template>
   <form text-center justify-center items-center max-w-150 py6 flex="~ col gap-3" @submit.prevent="oauth">
     <div flex="~ center" mb2>
-      <img src="/logo.svg" w-12 h-12 mxa height="48" width="48" alt="logo">
+      <img src="/logo.svg" w-12 h-12 mxa height="48" width="48" :alt="$t('app_logo')" class="rtl-flip">
       <div text-3xl>
         {{ $t('action.sign_in') }}
       </div>
@@ -130,7 +130,7 @@ onMounted(async () => {
           class="max-h-[8rem]"
         >
           <button
-            v-for="name, idx in filteredServers"
+            v-for="(name, idx) in filteredServers"
             :id="toSelector(name)"
             :key="name"
             :value="name"
@@ -159,7 +159,7 @@ onMounted(async () => {
       </span>
     </div>
     <button flex="~ row" gap-x-2 items-center btn-solid mt2 :disabled="!server || busy">
-      <span aria-hidden="true" inline-block :class="busy ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:login-circle-line'" />
+      <span aria-hidden="true" inline-block :class="busy ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:login-circle-line'" class="rtl-flip" />
       {{ $t('action.sign_in') }}
     </button>
   </form>

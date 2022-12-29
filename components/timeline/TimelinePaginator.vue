@@ -11,6 +11,7 @@ const { paginator, stream } = defineProps<{
   preprocess?: (items: any[]) => any[]
 }>()
 
+const { formatNumber } = useHumanReadableNumber()
 const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirtualScroll))
 </script>
 
@@ -18,7 +19,7 @@ const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirt
   <CommonPaginator v-bind="{ paginator, stream, preprocess }" :virtual-scroller="virtualScroller">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
-        {{ $t('timeline.show_new_items', number) }}
+        {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
     <template #default="{ item, older, newer, active }">

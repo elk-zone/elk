@@ -267,7 +267,7 @@
       "dismiss": "Descartar"
     },
     "poll": {
-      "count": "{n} votos|{n} voto|{n} votos",
+      "count": "{0} votos|{0} voto|{0} votos",
       "ends": "finaliza {0}",
       "finished": "finalizada {0}"
     },
@@ -324,7 +324,7 @@
     "year_past": "hace 0 años|el año pasado|hace {n} años"
   },
   "timeline": {
-    "show_new_items": "Mostrar {n} nuevas publicaciones|Mostrar {n} nueva publicación|Mostrar {n} nuevas publicaciones"
+    "show_new_items": "Mostrar {v} nuevas publicaciones|Mostrar {v} nueva publicación|Mostrar {v} nuevas publicaciones"
   },
   "title": {
     "federated_timeline": "Línea de tiempo federada",

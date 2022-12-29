@@ -1,7 +1,6 @@
 <script lang="ts" setup>
+import { fileOpen } from 'browser-fs-access'
 import type { UserLogin } from '~/types'
-
-const { lg } = breakpoints
 
 const loggedInUsers = useUsers()
 
@@ -22,43 +21,35 @@ async function exportTokens() {
 }
 
 async function importTokens() {
-  const input = document.createElement('input') as HTMLInputElement
-  input.type = 'file'
-  input.accept = 'application/json'
-  input.multiple = false
-
-  input.addEventListener('change', async (e) => {
-    const file = (e.target as any)?.files?.[0] as File
-    if (!file)
-      return
-
-    try {
-      const content = await file.text()
-      const data = JSON.parse(content)
-      if (data.version !== 1)
-        throw new Error('Invalid version')
-      const users = data.users as UserLogin[]
-      const newUsers: UserLogin[] = []
-      for (const user of users) {
-        if (loggedInUsers.value.some(u => u.server === user.server && u.account.id === user.account.id))
-          continue
-        newUsers.push(user)
-      }
-      if (newUsers.length === 0) {
-        alert('No new users found')
-        return
-      }
-      if (!confirm(`Found ${newUsers.length} new users, are you sure you want to import them?`))
-        return
-      loggedInUsers.value = [...loggedInUsers.value, ...newUsers]
-    }
-    catch (e) {
-      console.error(e)
-      alert('Invalid Elk tokens file')
-    }
+  const file = await fileOpen({
+    description: 'Token File',
+    mimeTypes: ['application/json'],
   })
 
-  input.click()
+  try {
+    const content = await file.text()
+    const data = JSON.parse(content)
+    if (data.version !== 1)
+      throw new Error('Invalid version')
+    const users = data.users as UserLogin[]
+    const newUsers: UserLogin[] = []
+    for (const user of users) {
+      if (loggedInUsers.value.some(u => u.server === user.server && u.account.id === user.account.id))
+        continue
+      newUsers.push(user)
+    }
+    if (newUsers.length === 0) {
+      alert('No new users found')
+      return
+    }
+    if (!confirm(`Found ${newUsers.length} new users, are you sure you want to import them?`))
+      return
+    loggedInUsers.value = [...loggedInUsers.value, ...newUsers]
+  }
+  catch (e) {
+    console.error(e)
+    alert('Invalid Elk tokens file')
+  }
 }
 </script>
 

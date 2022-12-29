@@ -144,7 +144,7 @@
     "local": "Local",
     "notifications": "Notifications",
     "profile": "Profile",
-    "search": "Search {0}",
+    "search": "Search",
     "select_feature_flags": "Toggle Feature Flags",
     "select_font_size": "Select Font Size",
     "select_language": "Select Language",
@@ -224,9 +224,12 @@
       "virtual_scroll": "Virtual Scrolling"
     },
     "interface": {
+      "color_mode": "Color Mode",
+      "font_size": "Font Size",
       "label": "Interface"
     },
     "language": {
+      "display_language": "Display Language",
       "label": "Language"
     },
     "preferences": {

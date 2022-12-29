@@ -10,21 +10,15 @@
       command
       icon="i-ri:user-settings-line"
       :text="$t('settings.profile.appearance.label')"
+      :description="$t('settings.profile.appearance.description')"
       to="/settings/profile/appearance"
-    >
-      <template #description>
-        {{ $t('settings.profile.appearance.description') }}
-      </template>
-    </SettingsNavItem>
+    />
     <SettingsNavItem
       command
       icon="i-ri:hashtag"
       :text="$t('settings.profile.featured_tags.label')"
+      :description="$t('settings.profile.featured_tags.description')"
       to="/settings/profile/featured-tags"
-    >
-      <template #description>
-        {{ $t('settings.profile.featured_tags.description') }}
-      </template>
-    </SettingsNavItem>
+    />
   </MainContent>
 </template>

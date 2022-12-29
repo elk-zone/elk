@@ -125,14 +125,16 @@ const isDM = $computed(() => status.visibility === 'direct')
           <div flex-auto />
           <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
             <AccountBotIndicator v-if="status.account.bot" mr-2 />
-            <CommonTooltip :content="createdAt">
-              <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
-                <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
-                  {{ timeago }}
-                </time>
-              </a>
-            </CommonTooltip>
-            <StatusEditIndicator :status="status" inline />
+            <div flex>
+              <CommonTooltip :content="createdAt">
+                <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
+                  <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
+                    {{ timeago }}
+                  </time>
+                </a>
+              </CommonTooltip>
+              <StatusEditIndicator :status="status" inline />
+            </div>
           </div>
           <StatusActionsMore :status="status" mr--2 />
         </div>

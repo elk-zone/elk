@@ -227,7 +227,7 @@
         "bio": "简介",
         "description": "编辑个人资料，例如头像、用户名、个人简介等。",
         "display_name": "昵称",
-        "label": "账号信息",
+        "label": "个人资料",
         "title": "编辑个人资料"
       },
       "featured_tags": {

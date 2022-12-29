@@ -13,7 +13,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
             <NavTitle mt4 mb2 lg:mx-3 />
             <div flex="~ col" overflow-y-auto justify-between h-full max-w-full>
               <div flex flex-col>
-                <NavSide />
+                <NavSide command />
                 <PublishButton m="y5 xa" lg:m="r5 l3" lg:rtl-m="l5 r3" />
               </div>
               <div v-if="isMastoInitialised" flex flex-col>

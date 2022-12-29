@@ -8,18 +8,17 @@ const props = defineProps<{
 
 const router = useRouter()
 
-if (props.command) {
-  useCommand({
-    scope: 'Settings',
+useCommand({
+  scope: 'Settings',
 
-    name: () => props.text ?? (typeof props.to === 'string' ? props.to as string : props.to.name),
-    icon: () => props.icon || '',
+  name: () => props.text ?? (typeof props.to === 'string' ? props.to as string : props.to.name),
+  icon: () => props.icon || '',
+  visible: () => props.command,
 
-    onActivate() {
-      router.push(props.to)
-    },
-  })
-}
+  onActivate() {
+    router.push(props.to)
+  },
+})
 </script>
 
 <template>

@@ -70,7 +70,12 @@ const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.cont
 const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
 const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
 const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)
+
+// Collapse ReplyingTo badge if it is a self-reply (thread)
 const collapseReplyingTo = $computed(() => (!rebloggedBy || collapseRebloggedBy) && status.inReplyToAccountId === status.account.id)
+
+// Only show avatar in ReplyingTo badge if it was reblogged by the same account
+const simplifyReplyingTo = $computed(() => rebloggedBy && rebloggedBy.id === status.inReplyToAccountId)
 
 const isDM = $computed(() => status.visibility === 'direct')
 </script>
@@ -99,7 +104,7 @@ const isDM = $computed(() => status.visibility === 'direct')
         </div>
         <div v-else />
       </slot>
-      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
+      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" py1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>

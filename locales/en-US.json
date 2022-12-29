@@ -225,8 +225,10 @@
     },
     "interface": {
       "color_mode": "Color Mode",
+      "dark_mode": "Dark Mode",
       "font_size": "Font Size",
-      "label": "Interface"
+      "label": "Interface",
+      "light_mode": "Light Mode"
     },
     "language": {
       "display_language": "Display Language",
@@ -251,6 +253,8 @@
     },
     "select_a_settings": "Select a settings",
     "users": {
+      "export": "Export User Tokens",
+      "import": "Import User Tokens",
       "label": "Logged in users"
     }
   },

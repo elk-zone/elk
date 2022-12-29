@@ -68,10 +68,16 @@ const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
 const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
 
 const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
+const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
 const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)
 
+// Collapse ReplyingTo badge if it is a self-reply (thread)
+const collapseReplyingTo = $computed(() => (!rebloggedBy || collapseRebloggedBy) && status.inReplyToAccountId === status.account.id)
+
+// Only show avatar in ReplyingTo badge if it was reblogged by the same account
+const simplifyReplyingTo = $computed(() => rebloggedBy && rebloggedBy.id === status.inReplyToAccountId)
+
 const isDM = $computed(() => status.visibility === 'direct')
-const isSelf = $computed(() => status.account.id === currentUser.value?.account.id)
 </script>
 
 <template>
@@ -92,24 +98,25 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
   >
     <div flex justify-between>
       <slot name="meta">
-        <div v-if="rebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1>
+        <div v-if="rebloggedBy && !collapseRebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1>
           <div i-ri:repeat-fill mr-1 text-primary />
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
         </div>
         <div v-else />
       </slot>
-      <StatusReplyingTo v-if="!directReply" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
+      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" py1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
-        <template v-if="showRebloggedByAvatarOnAvatar">
-          <div absolute top--3px left--0.8 rtl-left-none rtl-right--0.8 z--1 w-25px h-25px rounded-full>
-            <AccountAvatar :account="rebloggedBy" />
-          </div>
-        </template>
+        <div v-if="showRebloggedByAvatarOnAvatar" absolute top--3px left--0.8 rtl-left-none rtl-right--0.8 z--1 w-25px h-25px rounded-full>
+          <AccountAvatar :account="rebloggedBy" />
+        </div>
+        <div v-else-if="collapseRebloggedBy" absolute left--0.8 rtl-left-none rtl-right--0.8 w-5.5 h-5.5 rounded-full bg-base>
+          <div i-ri:repeat-fill mr-1 text-primary text-sm />
+        </div>
         <AccountHoverWrapper :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
-            <AccountAvatar :account="status.account" account-avatar-normal :class="showRebloggedByAvatarOnAvatar ? 'mt-11px ' : 'mt-3px'" />
+            <AccountBigAvatar :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-11px ' : 'mt-3px'" />
           </NuxtLink>
         </AccountHoverWrapper>
         <div v-if="connectReply" w-full h-full flex justify-center>
@@ -121,17 +128,22 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
           <AccountHoverWrapper :account="status.account">
             <StatusAccountDetails :account="status.account" />
           </AccountHoverWrapper>
+          <div v-if="!directReply && collapseReplyingTo" flex="~" pl-1 items-center justify-center>
+            <StatusReplyingTo :collapsed="true" :status="status" :class="faded ? 'text-secondary-light' : ''" />
+          </div>
           <div flex-auto />
           <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
             <AccountBotIndicator v-if="status.account.bot" mr-2 />
-            <CommonTooltip :content="createdAt">
-              <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
-                <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
-                  {{ timeago }}
-                </time>
-              </a>
-            </CommonTooltip>
-            <StatusEditIndicator :status="status" inline />
+            <div flex>
+              <CommonTooltip :content="createdAt">
+                <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
+                  <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
+                    {{ timeago }}
+                  </time>
+                </a>
+              </CommonTooltip>
+              <StatusEditIndicator :status="status" inline />
+            </div>
           </div>
           <StatusActionsMore :status="status" mr--2 />
         </div>
@@ -142,7 +154,7 @@ const isSelf = $computed(() => status.account.id === currentUser.value?.account.
       </div>
     </div>
   </div>
-  <div v-else-if="isFiltered" gap-2 p-4>
+  <div v-else-if="isFiltered" gap-2 p-4 :class="{ 'border-t border-base': newer }">
     <p text-center text-secondary text-sm>
       {{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}
     </p>

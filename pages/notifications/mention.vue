@@ -6,5 +6,5 @@ useHeadFixed({
 </script>
 
 <template>
-  <TimelineNotifications v-if="isMastoInitialised" />
+  <TimelineMentions v-if="isMastoInitialised" />
 </template>

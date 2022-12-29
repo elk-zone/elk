@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Picker } from 'emoji-mart'
-import { updateCustomEmojis } from '~/composables/emojis'
 
 const emit = defineEmits<{
   (e: 'select', code: string): void
@@ -9,7 +8,7 @@ const emit = defineEmits<{
 
 const el = $ref<HTMLElement>()
 let picker = $ref<Picker>()
-const colorMode = useColorModeRef()
+const colorMode = useColorMode()
 
 async function openEmojiPicker() {
   await updateCustomEmojis()

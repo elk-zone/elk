@@ -1,6 +1,6 @@
 import type { Status } from 'masto'
 
-type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned'
+type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
 type CountField = 'reblogsCount' | 'favouritesCount'
 
 export interface StatusActionsProps {
@@ -24,6 +24,7 @@ export function useStatusActions(props: StatusActionsProps) {
     bookmarked: false,
     pinned: false,
     translation: false,
+    muted: false,
   })
 
   async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<Status>, countField?: CountField) {
@@ -70,9 +71,15 @@ export function useStatusActions(props: StatusActionsProps) {
     () => masto.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
   )
 
+  const toggleMute = async () => toggleStatusAction(
+    'muted',
+    () => masto.statuses[status.muted ? 'unmute' : 'mute'](status.id),
+  )
+
   return {
     status: $$(status),
     isLoading: $$(isLoading),
+    toggleMute,
     toggleReblog,
     toggleFavourite,
     toggleBookmark,

@@ -18,7 +18,7 @@ const { notifications } = useNotifications()
 
     <!-- Use Search for small screens once the right sidebar is collapsed -->
     <NavSideItem :text="$t('nav.search')" to="/search" icon="i-ri:search-line" lg:hidden />
-    <NavSideItem :text="$t('nav.explore')" :to="`/${currentServer}/explore`" icon="i-ri:hashtag" hidden lg:block />
+    <NavSideItem :text="$t('nav.explore')" :to="`/${currentServer}/explore`" icon="i-ri:hashtag" />
 
     <NavSideItem :text="$t('nav.local')" :to="`/${currentServer}/public/local`" icon="i-ri:group-2-line " />
     <NavSideItem :text="$t('nav.federated')" :to="`/${currentServer}/public`" icon="i-ri:earth-line" />

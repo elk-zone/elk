@@ -3,7 +3,7 @@ import type { VitePWANuxtOptions } from '../modules/pwa/types'
 
 const isPreview = process.env.PULL_REQUEST === 'true'
 
-const pwa: VitePWANuxtOptions = {
+export const pwa: VitePWANuxtOptions = {
   mode: isCI ? 'production' : 'development',
   // disable PWA only when in preview mode
   disable: /* temporarily test in CI isPreview || */ (isDevelopment && process.env.VITE_DEV_PWA !== 'true'),
@@ -49,5 +49,3 @@ const pwa: VitePWANuxtOptions = {
     type: 'module',
   },
 }
-
-export { pwa }

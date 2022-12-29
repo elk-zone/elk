@@ -54,7 +54,7 @@ if (props.command) {
           </p>
         </div>
       </div>
-      <div i-ri:arrow-right-s-line text-xl text-secondary-light class="rtl-flip" />
+      <div i-ri:arrow-right-s-line rtl-i-ri:arrow-left-s-line text-xl text-secondary-light class="rtl-flip" />
     </div>
   </NuxtLink>
 </template>

@@ -6,7 +6,7 @@ import type { FilterContext, Paginator, Status, WsEvents } from 'masto'
 
 const { paginator, stream } = defineProps<{
   paginator: Paginator<any, Status[]>
-  stream?: WsEvents
+  stream?: Promise<WsEvents>
   context?: FilterContext
   preprocess?: (items: any[]) => any[]
 }>()

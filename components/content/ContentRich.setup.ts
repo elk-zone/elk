@@ -1,6 +1,4 @@
 import type { Emoji } from 'masto'
-import { emojisArrayToObject } from '~/composables/utils'
-import { currentCustomEmojis } from '~/composables/emojis'
 
 defineOptions({
   name: 'ContentRich',

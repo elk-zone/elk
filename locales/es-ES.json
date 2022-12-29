@@ -114,6 +114,7 @@
     "edit": "Editar",
     "mention_account": "Mencionar a {0}",
     "mute_account": "Silenciar a {0}",
+    "mute_conversation": "Silenciar publicación",
     "open_in_original_site": "Abrir página original",
     "pin_on_profile": "Fijar en tu perfil",
     "show_untranslated": "Mostrar original",
@@ -125,6 +126,7 @@
     "unblock_account": "Desbloquear a {0}",
     "unblock_domain": "Desbloquear dominio {0}",
     "unmute_account": "Dejar de silenciar a {0}",
+    "unmute_conversation": "Dejar de silenciar la publicación",
     "unpin_on_profile": "Desfijar del perfil"
   },
   "nav": {

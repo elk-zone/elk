@@ -113,6 +113,7 @@
     "edit": "Éditer",
     "mention_account": "Mentionner {0}",
     "mute_account": "Mettre en sourdine {0}",
+    "mute_conversation": "Message muet",
     "open_in_original_site": "Ouvrir sur le site d'origine",
     "pin_on_profile": "Épingler sur le profil",
     "show_untranslated": "Montrer le message non-traduit",
@@ -124,6 +125,7 @@
     "unblock_account": "Débloquer {0}",
     "unblock_domain": "Débloquer le domaine {0}",
     "unmute_account": "Enlever la sourdine à {0}",
+    "unmute_conversation": "Réactiver le message",
     "unpin_on_profile": "Désépingler du profil"
   },
   "nav": {

@@ -15,7 +15,7 @@ const {
   paginator: Paginator<any, any[]>
   keyProp?: string
   virtualScroller?: boolean
-  stream?: WsEvents
+  stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
   preprocess?: (items: any[]) => any[]
 }>()
@@ -50,6 +50,7 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
           page-mode
         >
           <slot
+            :key="item[keyProp]"
             :item="item"
             :active="active"
             :older="items[index + 1]"

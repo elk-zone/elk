@@ -37,10 +37,12 @@
     "direct_message_account": "{0}さんにダイレクトメッセージ",
     "mention_account": "{0}さんにメンション",
     "mute_account": "{0}さんをミュート",
+    "mute_conversation": "ミュートポスト",
     "open_in_original_site": "元のサイトで開く",
     "unblock_account": "{0}さんのブロックを解除",
     "unblock_domain": "{0}のドメインブロックを解除",
-    "unmute_account": "{0}さんのミュートを解除"
+    "unmute_account": "{0}さんのミュートを解除",
+    "unmute_conversation": "投稿のミュートを解除"
   },
   "nav": {
     "bookmarks": "ブックマーク",

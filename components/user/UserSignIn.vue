@@ -62,8 +62,12 @@ const filteredServers = $computed(() => {
   return results
 })
 
+function toSelector(server: string) {
+  return server.replace(/[^\w-]/g, '-')
+}
 function move(delta: number) {
   autocompleteIndex = ((autocompleteIndex + delta) + filteredServers.length) % filteredServers.length
+  document.querySelector(`#${toSelector(filteredServers[autocompleteIndex])}`)?.scrollIntoView(false)
 }
 
 function onEnter(e: KeyboardEvent) {
@@ -72,6 +76,10 @@ function onEnter(e: KeyboardEvent) {
     e.preventDefault()
     autocompleteShow = false
   }
+}
+
+function select(index: number) {
+  server = filteredServers[index]
 }
 
 onMounted(async () => {
@@ -111,24 +119,27 @@ onMounted(async () => {
           @keydown.up="move(-1)"
           @keydown.enter="onEnter"
           @keydown.esc.prevent="autocompleteShow = false"
-          @blur="autocompleteShow = false"
           @focus="autocompleteShow = true"
         >
         <div
           v-if="autocompleteShow && filteredServers.length"
           absolute left-6em right-0 top="100%"
           bg-base rounded border="~ base"
-          text-left z-10 shadow of-auto
+          z-10 shadow of-auto
+          overflow-y-auto
+          class="max-h-[8rem]"
         >
-          <div
+          <button
             v-for="name, idx in filteredServers"
+            :id="toSelector(name)"
             :key="name"
             :value="name"
-            px-2 py1 font-mono
+            px-2 py1 font-mono w-full text-left
             :class="autocompleteIndex === idx ? 'text-primary font-bold' : null"
+            @click="select(idx)"
           >
             {{ name }}
-          </div>
+          </button>
         </div>
       </div>
       <div min-h-4>

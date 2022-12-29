@@ -73,24 +73,12 @@ function insertCustomEmoji(image: any) {
 }
 
 async function pickAttachments() {
-  const files = await fileOpen([
-    {
-      description: 'Attachments',
-      multiple: true,
-      mimeTypes: ['image/*'],
-      extensions: ['.png', '.gif', '.jpeg', '.jpg', '.webp', '.avif', '.heic', '.heif'],
-    },
-    {
-      description: 'Attachments',
-      mimeTypes: ['video/*'],
-      extensions: ['.webm', '.mp4', '.m4v', '.mov', '.ogv', '.3gp'],
-    },
-    {
-      description: 'Attachments',
-      mimeTypes: ['audio/*'],
-      extensions: ['.mp3', '.ogg', '.oga', '.wav', '.flac', '.opus', '.aac', '.m4a', '.3gp', '.wma'],
-    },
-  ])
+  const mimeTypes = currentInstance.value!.configuration.mediaAttachments.supportedMimeTypes
+  const files = await fileOpen({
+    description: 'Attachments',
+    multiple: true,
+    mimeTypes,
+  })
   await uploadAttachments(files)
 }
 
@@ -103,7 +91,9 @@ const masto = useMasto()
 async function uploadAttachments(files: File[]) {
   isUploading = true
   failed = []
-  for (const file of files) {
+  // TODO: display some kind of message if too many media are selected
+  const limit = currentInstance.value!.configuration.statuses.maxMediaAttachments || 4
+  for (const file of files.slice(0, limit)) {
     try {
       const attachment = await masto.mediaAttachments.create({
         file,
@@ -198,7 +188,7 @@ defineExpose({
 
     <div flex gap-3 flex-1>
       <NuxtLink :to="getAccountRoute(currentUser.account)">
-        <AccountAvatar :account="currentUser.account" account-avatar-normal />
+        <AccountBigAvatar :account="currentUser.account" />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <div

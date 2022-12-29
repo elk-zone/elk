@@ -70,6 +70,7 @@ const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.cont
 const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
 const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
 const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)
+const collapseReplyingTo = $computed(() => (!rebloggedBy || collapseRebloggedBy) && status.inReplyToAccountId === status.account.id)
 
 const isDM = $computed(() => status.visibility === 'direct')
 </script>
@@ -98,7 +99,7 @@ const isDM = $computed(() => status.visibility === 'direct')
         </div>
         <div v-else />
       </slot>
-      <StatusReplyingTo v-if="!directReply" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
+      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :class="faded ? 'text-secondary-light' : ''" py1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
@@ -122,6 +123,9 @@ const isDM = $computed(() => status.visibility === 'direct')
           <AccountHoverWrapper :account="status.account">
             <StatusAccountDetails :account="status.account" />
           </AccountHoverWrapper>
+          <div v-if="!directReply && collapseReplyingTo" flex="~" pl-1 items-center justify-center>
+            <StatusReplyingTo :collapsed="true" :status="status" :class="faded ? 'text-secondary-light' : ''" />
+          </div>
           <div flex-auto />
           <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
             <AccountBotIndicator v-if="status.account.bot" mr-2 />

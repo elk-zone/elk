@@ -19,17 +19,7 @@ export const onPush = (event: PushEvent) => {
       preferred_locale,
     } = options
 
-    let url = 'home'
-    if (notification_type) {
-      switch (notification_type) {
-        case 'follow':
-          url = 'notifications'
-          break
-        case 'mention':
-          url = 'notifications/mention'
-          break
-      }
-    }
+    const url = notification_type === 'mention' ? 'notifications/mention' : 'notifications'
 
     const notificationOptions: NotificationOptions = {
       badge: '/pwa-192x192.png',

@@ -142,8 +142,7 @@
     "content_warning": "Schreib hier deine Warnung",
     "default_1": "Was geht dir gerade durch den Kopf?",
     "reply_to_account": "Antwort an {0}",
-    "replying": "Antworten",
-    "the_thread": "Der Thread"
+    "replying": "Antworten"
   },
   "search": {
     "search_desc": "Suche nach Accounts & Hashtags"
@@ -180,7 +179,6 @@
     "someone": "Jemand",
     "spoiler_show_less": "Zeige weniger",
     "spoiler_show_more": "Zeige mehr",
-    "thread": "Thread",
     "try_original_site": "Versuche die original Seite"
   },
   "status_history": {

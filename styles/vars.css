@@ -1,12 +1,12 @@
 :root {
-  --c-primary: #EA9E44;
-  --c-primary-active: #C16929;
-  --c-primary-light: #EA9E441A;
+  --c-primary: #d98018;
+  --c-primary-active: #9a5420;
+  --c-primary-light: #d980181A;
   --c-border: #eee;
   --c-border-dark: #dccfcf;
 
-  --c-bg-base: #fff;
-  --c-bg-active: #f6f6f6;
+  --c-bg-base: #fafafa;
+  --c-bg-active: #f2f2f2;
   --c-bg-code: #00000006;
   --c-bg-selection: #8885;
   --c-bg-fade: #EA9E4411;
@@ -26,6 +26,10 @@
 }
 
 .dark {
+  --c-primary: #EA9E44;
+  --c-primary-active: #C16929;
+  --c-primary-light: #EA9E441A;
+  
   --c-border: #222;
   --c-border-dark: #545251;
 
@@ -34,7 +38,7 @@
   --c-bg-code: #ffffff06;
   --c-bg-fade: #EA9E4411;
 
-  --c-text-base: #fff;
+  --c-text-base: #f3f3f3;
   --c-text-code: #ecd88e;
   --c-text-secondary: #888;
   --c-text-secondary-light: #686868;

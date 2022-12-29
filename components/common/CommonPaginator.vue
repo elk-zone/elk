@@ -50,6 +50,7 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
           page-mode
         >
           <slot
+            :key="item[keyProp]"
             :item="item"
             :active="active"
             :older="items[index + 1]"

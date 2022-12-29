@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
+    '@nuxtjs/color-mode',
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-info',
@@ -130,6 +131,7 @@ export default defineNuxtConfig({
       ],
     },
   },
+  colorMode: { classSuffix: '' },
   i18n,
   pwa,
 })

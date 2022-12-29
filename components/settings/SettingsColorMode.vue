@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { ColorMode } from '~/types'
 
-const colorMode = useColorModeRef()
+const colorMode = useColorMode()
 
 function setColorMode(mode: ColorMode) {
-  colorMode.value = mode
+  colorMode.preference = mode
 }
 </script>
 
@@ -12,7 +12,7 @@ function setColorMode(mode: ColorMode) {
   <div flex="~ gap4" w-full>
     <button
       btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base
-      :class="colorMode === 'dark' ? 'pointer-events-none' : 'filter-saturate-0'"
+      :class="colorMode.value === 'dark' ? 'pointer-events-none' : 'filter-saturate-0'"
       @click="setColorMode('dark')"
     >
       <div i-ri:moon-line />
@@ -20,7 +20,7 @@ function setColorMode(mode: ColorMode) {
     </button>
     <button
       btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base
-      :class="colorMode === 'light' ? 'pointer-events-none' : 'filter-saturate-0'"
+      :class="colorMode.value === 'light' ? 'pointer-events-none' : 'filter-saturate-0'"
       @click="setColorMode('light')"
     >
       <div i-ri:sun-line />

@@ -5,7 +5,7 @@ defineProps<{
 }>()
 
 const dropdown = $ref<any>()
-const colorMode = useColorModeRef()
+const colorMode = useColorMode()
 
 provide(dropdownContextKey, {
   hide: () => dropdown.hide(),
@@ -13,7 +13,7 @@ provide(dropdownContextKey, {
 </script>
 
 <template>
-  <VDropdown v-bind="$attrs" ref="dropdown" :class="colorMode" :placement="placement || 'auto'">
+  <VDropdown v-bind="$attrs" ref="dropdown" :class="colorMode.value" :placement="placement || 'auto'">
     <slot />
     <template #popper="scope">
       <slot name="popper" v-bind="scope" />

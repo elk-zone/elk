@@ -208,10 +208,11 @@ export const useCommandRegistry = defineStore('command', () => {
 export const useCommand = (cmd: CommandProvider) => {
   const registry = useCommandRegistry()
 
-  registry.register(cmd)
-
+  const register = () => registry.register(cmd)
   const cleanup = () => registry.remove(cmd)
 
+  register()
+  onActivated(register)
   onDeactivated(cleanup)
   tryOnScopeDispose(cleanup)
 }

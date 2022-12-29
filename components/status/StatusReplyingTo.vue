@@ -5,7 +5,8 @@ const { status } = defineProps<{
   status: Status
 }>()
 
-const account = useAccountById(status.inReplyToAccountId)
+const isSelf = $computed(() => status.inReplyToAccountId === status.account.id)
+const account = isSelf ? computed(() => status.account) : useAccountById(status.inReplyToAccountId)
 </script>
 
 <template>
@@ -17,7 +18,7 @@ const account = useAccountById(status.inReplyToAccountId)
       :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
     >
       <div i-ri:reply-fill class="scale-x-[-1]" text-secondary-light />
-      <template v-if="account?.id !== status.account.id">
+      <template v-if="!isSelf">
         <AccountInlineInfo v-if="account" :account="account" :link="false" />
         <span v-else ws-nowrap>{{ $t('status.someone') }}</span>
       </template>

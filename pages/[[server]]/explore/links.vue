@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-// @ts-expect-error missing types
-import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import { STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS } from '~~/constants'
 
 const { t } = useI18n()

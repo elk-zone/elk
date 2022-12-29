@@ -1,4 +1,11 @@
 {
+  "a11y": {
+    "loading_page": "加载页面中，请稍后",
+    "loading_titled_page": "加载{0}页面中，请稍后",
+    "locale_changed": "语言已更改为{0}",
+    "locale_changing": "更改语言中，请稍后",
+    "route_loaded": "页面{0}已加载"
+  },
   "account": {
     "avatar_description": "{0}的头像",
     "blocked_by": "您已被此用户拉黑",
@@ -36,6 +43,7 @@
     "bookmarked": "已收藏",
     "boost": "转发",
     "boosted": "已转发",
+    "clear_upload_failed": "清除上传失败",
     "close": "关闭",
     "compose": "撰写",
     "confirm": "确认",
@@ -58,7 +66,8 @@
   "app_logo": "应用图标",
   "app_name": "鹿鸣",
   "attachment": {
-    "edit_title": "描述"
+    "edit_title": "描述",
+    "remove_label": "移除附件"
   },
   "command": {
     "activate": "执行",
@@ -180,9 +189,11 @@
         "enable_description": "若想在鹿鸣没有打开时接收通知，请启用桌面通知功能。一旦启动，你可以通过上面的“打开设置”按钮来 精确控制哪种类型的互动可以产生桌面通知。",
         "enable_description_short": "若想在鹿鸣没有打开时修改桌面通知设置，请启用桌面通知功能。",
         "enable_desktop": "启用桌面通知功能",
-        "enable_title": "不错过任何事"
+        "enable_title": "不错过任何事",
+        "re_auth": "您的服务器似乎不支持推送通知。尝试退出用户并重新登录。如果此消息仍然出现，请联系您服务器的管理员。"
       }
     },
+    "signed_up": "注册了",
     "update_status": "更新了他们的状态"
   },
   "placeholder": {
@@ -194,7 +205,9 @@
   },
   "pwa": {
     "dismiss": "忽略",
-    "title": "鹿鸣存在新的更新"
+    "title": "鹿鸣存在新的更新",
+    "update": "更新",
+    "update_available_short": "更新鹿鸣"
   },
   "search": {
     "search_desc": "搜索用户或话题标签"
@@ -207,13 +220,15 @@
       "avatar_on_avatar": "头像堆叠",
       "github_cards": "GitHub 卡片",
       "title": "实验功能",
-      "user_switcher_sidebar": "用户切换侧边栏",
+      "user_picker": "用户选择器",
       "virtual_scroll": "虚拟滚动"
     },
     "interface": {
       "color_mode": "颜色",
+      "dark_mode": "暗色模式",
       "font_size": "字号",
-      "label": "外观"
+      "label": "外观",
+      "light_mode": "亮色模式"
     },
     "language": {
       "display_language": "首选语言",
@@ -227,7 +242,7 @@
         "bio": "简介",
         "description": "编辑个人资料，例如头像、用户名、个人简介等。",
         "display_name": "昵称",
-        "label": "外观",
+        "label": "个人资料",
         "title": "编辑个人资料"
       },
       "featured_tags": {
@@ -238,6 +253,8 @@
     },
     "select_a_settings": "在左侧选择一个设置",
     "users": {
+      "export": "导出用户令牌",
+      "import": "导入用户令牌",
       "label": "当前用户"
     }
   },
@@ -245,6 +262,7 @@
     "edited": "（已编辑）",
     "editing": "编辑中",
     "loading": "加载中...",
+    "upload_failed": "上传失败",
     "uploading": "上传中..."
   },
   "status": {
@@ -324,6 +342,7 @@
     "add_content_warning": "添加内容警告标识",
     "add_media": "添加图片、视频或者音频文件",
     "change_content_visibility": "修改内容是否可见",
+    "emoji": "表情符号",
     "explore_links_intro": "这些新闻故事正被本站和分布式网络上其他站点的用户谈论。",
     "explore_posts_intro": "来自本站和分布式网络上其他站点的这些嘟文正在本站引起关注。",
     "explore_tags_intro": "这些标签正在本站和分布式网络上其他站点的用户中引起关注。",

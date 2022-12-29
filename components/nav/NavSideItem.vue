@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { warn } from 'vue'
+
 const props = withDefaults(defineProps<{
   text?: string
   icon: string
   to: string | Record<string, string>
   userOnly?: boolean
+  command?: boolean
 }>(), {
   userOnly: false,
 })
@@ -20,6 +23,7 @@ useCommand({
 
   name: () => props.text ?? (typeof props.to === 'string' ? props.to as string : props.to.name),
   icon: () => props.icon,
+  visible: () => props.command,
 
   onActivate() {
     router.push(props.to)

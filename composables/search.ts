@@ -7,6 +7,7 @@ export interface UseSearchOptions {
 
 export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
   const done = ref(false)
+  const masto = useMasto()
   const loading = ref(false)
   const statuses = ref<Status[]>([])
   const accounts = ref<Account[]>([])
@@ -24,7 +25,7 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
-    paginator = useMasto().search({ q: unref(query), type: unref(options?.type) })
+    paginator = masto.search({ q: unref(query), resolve: true, type: unref(options?.type) })
     const nextResults = await paginator.next()
 
     done.value = nextResults.done || false

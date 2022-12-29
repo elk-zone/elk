@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  name: 'tag',
+})
+
 const params = useRoute().params
 const tagName = $(computedEager(() => params.tag as string))
 

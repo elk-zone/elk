@@ -145,7 +145,7 @@ const isDM = $computed(() => status.visibility === 'direct')
               <StatusEditIndicator :status="status" inline />
             </div>
           </div>
-          <StatusActionsMore :status="status" mr--2 />
+          <StatusActionsMore v-if="actions !== false" :status="status" mr--2 />
         </div>
         <StatusContent :status="status" :context="context" mb2 :class="{ mt2: isDM }" />
         <div>

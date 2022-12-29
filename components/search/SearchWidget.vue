@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const query = ref('')
-const { accounts, hashtags, loading } = useSearch(query)
+const { accounts, hashtags, loading, statuses } = useSearch(query)
 const index = ref(0)
 
 const { t } = useI18n()
@@ -13,8 +13,9 @@ const results = computed(() => {
     return []
 
   const results = [
-    ...hashtags.value.slice(0, 3).map(hashtag => ({ type: 'hashtag', hashtag, to: `/tags/${hashtag.name}` })),
-    ...accounts.value.map(account => ({ type: 'account', account, to: `/@${account.acct}` })),
+    ...hashtags.value.slice(0, 3).map(hashtag => ({ type: 'hashtag', hashtag, to: getTagRoute(hashtag.name) })),
+    ...accounts.value.map(account => ({ type: 'account', account, to: getAccountRoute(account) })),
+    ...statuses.value.map(status => ({ type: 'status', status, to: getStatusRoute(status) })),
 
     // Disable until search page is implemented
     // {

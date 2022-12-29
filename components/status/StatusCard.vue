@@ -15,6 +15,9 @@ const props = withDefaults(
     // Manual overrides
     hasOlder?: boolean
     hasNewer?: boolean
+    // When looking into a detailed view of a post, we can simplify the replying badges
+    // to the main expanded post
+    main?: Status
   }>(),
   { actions: true, showReplyTo: true },
 )
@@ -25,8 +28,8 @@ const status = $computed(() => {
   return props.status
 })
 
-// Use original status, avoid connecting a reblog (review if we should relax this)
-const directReply = $computed(() => props.hasNewer || (!!props.status.inReplyToId && (props.status.inReplyToId === props.newer?.id || props.status.inReplyToId === props.newer?.reblog?.id)))
+// Use original status, avoid connecting a reblog
+const directReply = $computed(() => props.hasNewer || (!!status.inReplyToId && (status.inReplyToId === props.newer?.id || status.inReplyToId === props.newer?.reblog?.id)))
 // Use reblogged status, connect it to further replies
 const connectReply = $computed(() => props.hasOlder || status.id === props.older?.inReplyToId)
 
@@ -74,8 +77,10 @@ const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAva
 // Collapse ReplyingTo badge if it is a self-reply (thread)
 const collapseReplyingTo = $computed(() => (!rebloggedBy || collapseRebloggedBy) && status.inReplyToAccountId === status.account.id)
 
-// Only show avatar in ReplyingTo badge if it was reblogged by the same account
-const simplifyReplyingTo = $computed(() => rebloggedBy && rebloggedBy.id === status.inReplyToAccountId)
+// Only show avatar in ReplyingTo badge if it was reblogged by the same account or if it is against the main post
+const simplifyReplyingTo = $computed(() =>
+  (props.main && props.main.account.id === status.inReplyToAccountId) || (rebloggedBy && rebloggedBy.id === status.inReplyToAccountId),
+)
 
 const isDM = $computed(() => status.visibility === 'direct')
 </script>
@@ -98,7 +103,7 @@ const isDM = $computed(() => status.visibility === 'direct')
   >
     <div flex justify-between>
       <slot name="meta">
-        <div v-if="rebloggedBy && !collapseRebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1>
+        <div v-if="rebloggedBy && !collapseRebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1 bg-base>
           <div i-ri:repeat-fill mr-1 text-primary />
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
         </div>

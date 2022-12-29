@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps<{
   text?: string
+  description?: string
   icon?: string
   to: string | Record<string, string>
   command?: boolean
@@ -12,6 +13,7 @@ useCommand({
   scope: 'Settings',
 
   name: () => props.text ?? (typeof props.to === 'string' ? props.to as string : props.to.name),
+  description: () => props.description,
   icon: () => props.icon || '',
   visible: () => props.command,
 
@@ -49,7 +51,9 @@ useCommand({
             </slot>
           </p>
           <p v-if="$slots.description" text-sm text-secondary>
-            <slot name="description" />
+            <slot name="description">
+              {{ description }}
+            </slot>
           </p>
         </div>
       </div>

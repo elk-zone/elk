@@ -3,6 +3,7 @@ import { invoke } from '@vueuse/shared'
 import { useForm } from 'slimeform'
 
 definePageMeta({
+  middleware: 'auth',
   // Keep alive the form page will reduce raw data timeliness and its status timeliness
   keepalive: false,
 })

@@ -1,4 +1,11 @@
 {
+  "a11y": {
+    "loading_page": "الصفحة قيد التحميل، يرجى الانتظار",
+    "loading_titled_page": "الصفحة {0} قيد التحميل ، يرجى الانتظار",
+    "locale_changed": "تم تغيير اللغة إلى {0}",
+    "locale_changing": "يتم تغيير اللغة، يرجى الانتظار",
+    "route_loaded": "تم تحميل الصفحة {0}"
+  },
   "account": {
     "avatar_description": "صورة حساب {0}",
     "blocked_by": "تم حظرك من قبل هذا المستخدم",
@@ -31,12 +38,16 @@
     "unmute": "إلغاء كتم"
   },
   "action": {
-    "bookmark": "إضافة إلى المرجعية",
-    "bookmarked": "مضاف إلى المرجعية",
+    "apply": "تطبيق",
+    "bookmark": "إضافة إلى العلامات المرجعية",
+    "bookmarked": "مضاف إلى العلامات المرجعية",
     "boost": "إعادة نشر",
     "boosted": "أعيد نشرها",
+    "clear_upload_failed": "مسح أخطاء تحميل الملف",
     "close": "أغلق",
     "compose": "منشور جديد",
+    "confirm": "أكد",
+    "edit": "تعديل",
     "enter_app": "أدخل التطبيق",
     "favourite": "إضافة إلى المفضلين",
     "favourited": "مضاف إلى المفضلين",
@@ -45,6 +56,7 @@
     "prev": "السابق",
     "publish": "!نشر",
     "reply": "رد",
+    "save": "حفظ",
     "save_changes": "حفظ التغييرات",
     "sign_in": "تسجيل الدخول",
     "switch_account": "تغيير الحساب",
@@ -53,6 +65,10 @@
   "app_desc_short": "موقع الكتروني ماستدون رشيق",
   "app_logo": "Elk شعار",
   "app_name": "Elk",
+  "attachment": {
+    "edit_title": "وصف",
+    "remove_label": "قم بإزالة المرفق"
+  },
   "command": {
     "activate": "تفعيل",
     "complete": "أكمل",
@@ -68,6 +84,7 @@
   "common": {
     "end_of_list": "نهاية القائمة",
     "error": "حدث خطأ",
+    "in": "في",
     "kiloSuffix": "ألف",
     "megaSuffix": "مليون",
     "not_found": "404 غير معثور عليه",
@@ -79,8 +96,10 @@
   "error": {
     "account_not_found": "حساب {0} غير موجود",
     "explore-list-empty": "لا توجد مشاركات شائعة الآن. تحقق مرة أخرى لاحقًا!",
+    "file_size_cannot_exceed_n_mb": "لا يمكن أن يتجاوز حجم الملف {0} ميغابايت",
     "sign_in_error": "لا يمكن الاتصال بالموقع",
-    "status_not_found": "لا يمكن إيجاد المنشور"
+    "status_not_found": "لا يمكن إيجاد المنشور",
+    "unsupported_file_format": "لا يمكن تحميل هذا النوع من الملفات"
   },
   "help": {
     "desc_highlight": "توقع بعض الأخطاء والميزات المفقودة هنا وهناك.",
@@ -111,23 +130,25 @@
     "unblock_account": "رفع الحظر عن {0}",
     "unblock_domain": "رفع الحظر عن النطاق {0}",
     "unmute_account": "إلغاء كتم الحساب {0}",
-    "unmute_conversation": "إعادة الصوت",
+    "unmute_conversation": "إلغاء كتم المحادثة",
     "unpin_on_profile": "إلغاء التثبيت من الملف الشخصي"
   },
   "nav": {
-    "bookmarks": "الفواصل المرجعية",
+    "bookmarks": "العلامات المرجعية",
     "built_at": "Built {0}",
     "conversations": "المحادثات",
     "explore": "استكشف",
     "favourites": "المفضلة",
     "federated": "الفديرالية",
-    "home": "الخيط الزمني الرئيسي",
+    "home": "الرئيسيّة",
     "local": "المحلي",
-    "notifications": "الإشعارات",
+    "notifications": "التنبيهات",
     "profile": "الصفحة التعريفية",
     "search": "البحث",
     "select_feature_flags": "تبديل علامات الميزات",
+    "select_font_size": "حجم الخط",
     "select_language": "اختار اللغة",
+    "settings": "الإعدادات",
     "show_intro": "عرض المقدمة",
     "toggle_theme": "تبديل المظهر",
     "zen_mode": "الوضع الهادئ"
@@ -146,31 +167,33 @@
         "mention": "المنشورات التي تذكرني",
         "poll": "استطلاعات الرأي",
         "reblog": "إعادة نشر منشورك",
-        "title": "ما هي الإشعارات التي تريد تلقيها؟"
+        "title": "ما هي التنبيهات التي تريد تلقيها؟"
       },
-      "close_btn": "أغلق إعدادات الإشعارات",
+      "close_btn": "أغلق إعدادات التنبيهات",
       "policy": {
         "all": "من اي شخص",
         "followed": "من الناس الذين أتابعهم",
         "follower": "من الناس الذين يتبعونني",
         "none": "من لا أحد",
-        "title": "من الذي يمكنني تلقي إشعارات منه؟"
+        "title": "من الذي يمكنني تلقي التنبيهات منه؟"
       },
       "save_settings": "حفظ التغييرات الإعدادات",
-      "show_btn": "إظهار إعدادات الإشعارات",
-      "title": "إعدادات الإشعارات",
+      "show_btn": "إظهار إعدادات التنبيهات",
+      "title": "إعدادات التنبيهات",
       "undo_settings": "تراجع عن تغييرات الإعدادات",
-      "unsubscribe": "تعطيل الإشعارات",
-      "unsubscribed_with_warning": "مكّن الإشعارات لتلقي الإشعارات من هذا الحساب بالنقر فوق الزر \"@:notification.settings.warning.enable_desktop{'\"'}",
-      "unsupported": "متصفحك لا يدعم الإشعارات",
+      "unsubscribe": "تعطيل التنبيهات",
+      "unsubscribed_with_warning": "مكّن الإشعارات لتلقي التنبيهات من هذا الحساب بالنقر فوق الزر \"@:notification.settings.warning.enable_desktop{'\"'}",
+      "unsupported": "متصفحك لا يدعم التنبيهات",
       "warning": {
         "enable_close": "أغلق",
-        "enable_description": "لتلقي إشعارات عندما لا يكون Elk مفتوحًا ، قم بتمكين إشعارات النظام. يمكنك التحكم بدقة في أنواع التفاعلات التي تنشئ إشعارات النظام عبر الزر \"Show Settings\" أعلاه بمجرد تمكينه.",
-        "enable_description_short": "لتغيير إعدادات إشعارات النظام عندما لا يكون Elk مفتوحًا ، يجب أولاً تمكين إشعارات النظام.",
-        "enable_desktop": "تفعيل إشعارات النظام",
-        "enable_title": "لا تفوت أي شيء"
+        "enable_description": "لتلقي التنبيهات عندما لا يكون Elk مفتوحًا، قم بتمكين تنبيهات النظام. يمكنك التحكم بدقة في أنواع التفاعلات التي تنشئ تنبيهات النظام عبر الزر \"Show Settings\" أعلاه.",
+        "enable_description_short": "لتغيير إعدادات تنبيهات النظام عندما لا يكون Elk مفتوحًا، يجب أولاً تمكين تنبيهات النظام.",
+        "enable_desktop": "تفعيل تنبيهات النظام",
+        "enable_title": "لا تفوت عليك أي شيء",
+        "re_auth": "يبدو أن الخادم الخاص بك لا يدعم دفع التنبيهات. حاول تسجيل الخروج ثم تسجيل الدخول مرة أخرى ، إذا استمرت هذه الرسالة في الظهور ، فاتصل بمسؤول الخادم."
       }
     },
+    "signed_up": "تسجل",
     "update_status": "قام(ت) بتحديث حالته(ا)"
   },
   "placeholder": {
@@ -182,23 +205,65 @@
   },
   "pwa": {
     "dismiss": "تجاهل",
-    "title": "يتوفر تحديث Elk الجديد"
+    "title": "يتوفر تحديث Elk الجديد",
+    "update": "تحديث",
+    "update_available_short": "تحديث Elk"
   },
   "search": {
     "search_desc": "ابحث عن الأشخاص والهاشتاج"
   },
   "settings": {
+    "about": {
+      "label": "بشأن Elk"
+    },
     "feature_flags": {
       "avatar_on_avatar": "الصورة الرمزية على الصورة الرمزية",
       "github_cards": "GitHub بطاقات",
+      "title": "الميزات التجريبية",
       "user_picker": "الشريط الجانبي لمبدل المستخدم",
       "virtual_scroll": "التمرير الافتراضي"
+    },
+    "interface": {
+      "color_mode": "وضع اللون",
+      "dark_mode": "الوضع الداكن",
+      "default": "(إفتراضي)",
+      "font_size": "حجم الخط",
+      "label": "واجهه المستخدم",
+      "light_mode": "وضع الضوء"
+    },
+    "language": {
+      "display_language": "اللغة المعروضة",
+      "label": "اللغة"
+    },
+    "preferences": {
+      "label": "التفضيلات"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "النبذة التعريفية",
+        "description": "تعديل الصورة الرمزية واسم المستخدم والملف الشخصي...",
+        "display_name": "الاسم المعروض",
+        "label": "المظهر",
+        "title": "تعديل الملف الشخصي"
+      },
+      "featured_tags": {
+        "description": "يمكن للأشخاص تصفح مشاركاتك العامة تحت علامات الهاشتاغ هذه",
+        "label": "الهاشتاغ البارزة"
+      },
+      "label": "الملف الشخصي"
+    },
+    "select_a_settings": "اختر الإعداد",
+    "users": {
+      "export": "Export User Tokens",
+      "import": "Import User Tokens",
+      "label": "المستخدمون المسجلون"
     }
   },
   "state": {
     "edited": "(معدل)",
     "editing": "تعديل",
     "loading": "جاري التحميل ...",
+    "upload_failed": "التحميل فشل",
     "uploading": "جاري التحميل ..."
   },
   "status": {
@@ -219,7 +284,6 @@
     "someone": "شخص ما",
     "spoiler_show_less": "عرض أقل",
     "spoiler_show_more": "عرض المزيد",
-    "thread": "المحادثة",
     "try_original_site": "جرب الموقع الأصلي"
   },
   "status_history": {
@@ -237,35 +301,35 @@
     "posts_with_replies": "المنشورات والردود"
   },
   "time_ago_options": {
-    "day_future": "في 0 يوم|غداً|في {v} يوم",
-    "day_past": "قبل {v} يوم|البارحة| قبل 0 يوم",
-    "hour_future": "في 0 ساعة|في 1 ساعة|في {v} ساعة",
-    "hour_past": "قبل 0 ساعة|قبل ساعة واحدة|{v} من الساعات الماضية",
+    "day_future": "في 0 يوم|غداً|في {n} أيام",
+    "day_past": "منذ 0 يوم|البارحة|منذ {n} أيام",
+    "hour_future": "في 0 ساعة|في 1 ساعة|في {n} ساعات",
+    "hour_past": "قبل 0 ساعة|قبل ساعة واحدة|منذ {n} الساعات",
     "just_now": "الآن",
-    "minute_future": "في 0 دقيقة|في دقيقة واحدة|في {v} دقيقة",
-    "minute_past": "قبل 0 دقيقة|قبل دقيقة واحدة|قبل {v} دقيقة",
-    "month_future": "في 0 شهر|الشهر القادم|في {v} شهر",
-    "month_past": "قبل 0 شهر|الشهر الماضي|منذ {v} شهر",
-    "second_future": "الآن|في ثانية|في {v} ثواني",
-    "second_past": "للتو|منذ ثانية|منذ {v} ثانية",
-    "short_day_future": "في {v} ي",
-    "short_day_past": "{v}ي",
-    "short_hour_future": "في {v} س",
-    "short_hour_past": "{v}س",
-    "short_minute_future": "في {v} دق",
-    "short_minute_past": "{v}دق",
-    "short_month_future": "في {v} ش",
-    "short_month_past": "{v}ش",
-    "short_second_future": "في {v} ",
-    "short_second_past": "{v}",
-    "short_week_future": "في {v} اسبوع",
-    "short_week_past": "{v}اسبوع",
-    "short_year_future": "في {v} سنة",
-    "short_year_past": "{v}سنة",
-    "week_future": "في 0 أسبوع | الأسبوع القادم | في {v} أسبوع",
-    "week_past": "قبل 0 أسبوع | الأسبوع الماضي | {v} أسبوع مضى",
-    "year_future": "في 0 سنة|العام القادم|في {v} سنة",
-    "year_past": "منذ 0 سنة|العام الماضي|منذ {v} سنة"
+    "minute_future": "في 0 دقيقة|في دقيقة واحدة|في {n} دقائق",
+    "minute_past": "قبل 0 دقيقة|قبل دقيقة واحدة|قبل {n} دقائق",
+    "month_future": "في 0 شهر|الشهر القادم|في {n} أشهر",
+    "month_past": "قبل 0 شهر|الشهر الماضي|منذ {n} أشهر",
+    "second_future": "الآن|في ثانية|في {n} ثواني",
+    "second_past": "للتو|منذ ثانية|منذ {n} ثانية",
+    "short_day_future": "في {n} أيام",
+    "short_day_past": "{n} أيام",
+    "short_hour_future": "في {n} س",
+    "short_hour_past": "{n} س",
+    "short_minute_future": "في {n} دقائق",
+    "short_minute_past": "{n} دقائق",
+    "short_month_future": "في {n} أشهر",
+    "short_month_past": "{n} أشهر",
+    "short_second_future": "في {n} ثواني",
+    "short_second_past": "{n} ثواني",
+    "short_week_future": "في {n} أسابيع",
+    "short_week_past": "{n} أسابيع",
+    "short_year_future": "في {n} سنين",
+    "short_year_past": "{n} سنين",
+    "week_future": "في 0 أسبوع|الأسبوع القادم|في {n} أسابيع",
+    "week_past": "منذ 0 أسبوع|الأسبوع الماضي|منذ {n} أسابيع",
+    "year_future": "هذه السنة|العام القادم|في {n} سنين",
+    "year_past": "هذه السنة|العام الماضي|منذ {n} سنين"
   },
   "timeline": {
     "show_new_items": "إظهار {v} عناصر جديدة|إظهار {v} عنصر جديد|إظهار {v} عناصر جديدة"
@@ -278,15 +342,17 @@
     "add_content_warning": "إضافة تحذير المحتوى",
     "add_media": "أضف صورًا أو مقطع فيديو أو ملفًا صوتيًا",
     "change_content_visibility": "تغيير خصوصية المحتوى",
+    "emoji": "رمز تعبيري",
     "explore_links_intro": "يتم التحدث عن هذه القصص الإخبارية من قبل الأشخاص الموجودين على هذه الشبكة وغيرها من الشبكات اللامركزية في الوقت الحالي",
-    "explore_posts_intro": "تكتسب هذه المنشورات من هذه الشبكة وغيرها من الشبكات اللامركزية زخمًا على هذه الشبكة في الوقت الحالي",
-    "explore_tags_intro": "تكتسب هذه الهاشتاغ زخمًا بين الأشخاص على هذه الشبكة وغيرها من الشبكات اللامركزية في الوقت الحالي",
+    "explore_posts_intro": "تكتسب هذه المنشورات الكثير من النشاط على الشبكة وغيرها من الشبكات اللامركزية في الوقت الحالي",
+    "explore_tags_intro": "تكتسب هذه الهاشتاغ الكثير من النشاط بين الأشخاص على هذه الشبكة وغيرها من الشبكات اللامركزية في الوقت الحالي",
     "toggle_code_block": "تبديل كتلة التعليمات البرمجية"
   },
   "user": {
     "add_existing": "إضافة حساب قائم",
     "server_address_label": "عنوان خادم ماستودون",
     "sign_in_desc": "قم بتسجيل الدخول لمتابعة الملفات الشخصية والمشاركة والرد على المنشورات أو التفاعل من حسابك على خادم مختلف",
+    "sign_in_notice_title": "عرض البيانات العامة من {0}",
     "sign_out_account": "تسجيل الخروج من {0}",
     "tip_no_account": "إذا ليس لديك حساب ماستودون ، {0}",
     "tip_register_account": "اختر خادم ماستودون الخاص بك وقم بتسجيل حساب"

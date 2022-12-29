@@ -111,6 +111,16 @@ export function getStatusRoute(status: Status) {
   })
 }
 
+export function getTagRoute(tag: string) {
+  return useRouter().resolve({
+    name: 'tag',
+    params: {
+      server: currentServer.value,
+      tag,
+    },
+  })
+}
+
 export function getStatusPermalinkRoute(status: Status) {
   return status.url ? withoutProtocol(status.url) : null
 }

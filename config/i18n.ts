@@ -2,7 +2,8 @@ import type { NuxtI18nOptions } from '@nuxtjs/i18n'
 import type { DateTimeFormats } from '@intlify/core-base'
 import type { LocaleObject } from '#i18n'
 
-const locales = ([
+// @ts-expect-error dir is there, ts complaining
+const locales: LocaleObject[] = [
   {
     code: 'en-US',
     file: 'en-US.json',
@@ -49,7 +50,7 @@ const locales = ([
     name: 'العربية',
     dir: 'rtl',
   },
-] satisfies LocaleObject[]).sort((a, b) => a.code.localeCompare(b.code))
+].sort((a, b) => a.code.localeCompare(b.code))
 
 const datetimeFormats = Object.keys(locales).reduce((acc, key) => {
   acc[key] = {

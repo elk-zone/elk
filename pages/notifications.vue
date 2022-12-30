@@ -41,7 +41,7 @@ onActivated(() => {
         :title="showSettings ? t('notification.settings.close_btn') : t('notification.settings.show_btn')"
         @click="showSettings = !showSettings"
       >
-        <span aria-hidden="true" w-1.75em h-1.75em :class="showSettings ? 'i-ri:close-line' : 'i-ri:settings-line'" />
+        <span aria-hidden="true" :class="showSettings ? 'i-ri:close-line' : 'i-ri:settings-line'" />
       </button>
     </template>
 

@@ -12,6 +12,8 @@ const error = $ref(false)
 <template>
   <img
     :key="account.avatar"
+    width="400"
+    height="400"
     :src="error ? 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' : account.avatar"
     :alt="$t('account.avatar_description', [account.username])"
     loading="lazy"

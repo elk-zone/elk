@@ -26,7 +26,7 @@ onActivated(() => {
 </script>
 
 <template>
-  <MainContent large-header>
+  <MainContent>
     <template #title>
       <NuxtLink to="/notifications" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:notification-4-line />

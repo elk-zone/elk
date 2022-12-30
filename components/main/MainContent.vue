@@ -4,14 +4,13 @@ defineProps<{
   backOnSmallScreen?: boolean
   /** Show the back button on both small and big screens */
   back?: boolean
-  largeHeader?: boolean
 }>()
 </script>
 
 <template>
-  <div relative :class="largeHeader ? 'mobile-padding-top-large-header' : 'mobile-padding-top'" sm:pt-0>
+  <div relative>
     <div
-      fixed sm:sticky w-full top-0 z10
+      sticky top-0 z10
       border="b base" bg-base
     >
       <div flex justify-between px5 py4>

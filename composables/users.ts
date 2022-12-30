@@ -33,6 +33,9 @@ const initializeUsers = (): Ref<UserLogin[]> | RemovableRef<UserLogin[]> => {
   try {
     _users.value = oldUsers.value.map(u => JSON.parse(JSON.stringify(u)))
   }
+  catch {
+    _users.value = mock ? [mock.user] : []
+  }
   finally {
     oldUsers.value = null
   }

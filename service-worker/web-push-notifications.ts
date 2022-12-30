@@ -11,24 +11,25 @@ export const onPush = (event: PushEvent) => {
       return Promise.resolve()
 
     const options: PushPayload = event.data!.json()
-    const {
-      access_token,
-      body,
-      icon,
-      notification_id,
-      notification_type,
-      preferred_locale,
-    } = options
 
-    return findNotification(access_token, notification_id)
+    return findNotification(options)
       .catch((e) => {
         console.error('unhandled error finding notification', e)
         return Promise.resolve(undefined)
       })
-      .then((data) => {
+      .then((notificationInfo) => {
+        const {
+          access_token,
+          body,
+          icon,
+          notification_id,
+          notification_type,
+          preferred_locale,
+        } = options
         let url = notification_type === 'mention' ? 'notifications/mention' : 'notifications'
-        if (data && data.notification.status) {
-          const { user, notification } = data
+        // TODO review url redirection for each notification type
+        if (notificationInfo) {
+          const { user, notification } = notificationInfo
           url = `${user.server}/@${user.account.username}/${notification.status!.id}`
         }
 

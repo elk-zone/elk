@@ -31,10 +31,5 @@ const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirt
         <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
       </template>
     </template>
-    <template #loading>
-      <StatusCardSkeleton border="b base" />
-      <StatusCardSkeleton border="b base" op50 />
-      <StatusCardSkeleton border="b base" op25 />
-    </template>
   </CommonPaginator>
 </template>

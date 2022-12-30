@@ -18,31 +18,26 @@ import type { PushNotificationPolicy, PushNotificationRequest } from '~/composab
 const mock = process.mock
 
 const initializeUsers = (): Ref<UserLogin[]> | RemovableRef<UserLogin[]> => {
-  // don't initialize with null
-  const oldUsers = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, [])
-  if (oldUsers.value.length === 0) {
-    return process.server
-      ? ref<UserLogin[]>(mock ? [mock.user] : [])
-      : useIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
+  let defaultUsers = mock ? [mock.user] : []
+
+  // Backward compatibility with localStorage
+  let removeUsersOnLocalStorage = false
+  if (globalThis?.localStorage) {
+    const usersOnLocalStoratgeString = globalThis.localStorage.getItem(STORAGE_KEY_USERS)
+    if (usersOnLocalStoratgeString) {
+      defaultUsers = JSON.parse(usersOnLocalStoratgeString)
+      removeUsersOnLocalStorage = true
+    }
   }
 
-  const _users = process.server
-    ? ref<UserLogin[]>([])
-    : useIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, [], { deep: true })
+  const users = process.server
+    ? ref<UserLogin[]>(defaultUsers)
+    : useIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, { deep: true })
 
-  try {
-    _users.value = oldUsers.value.slice()
-  }
-  catch {
-    if (mock)
-      _users.value = [mock.user]
-  }
-  finally {
-    // don't remove entry from localStorage: there are a lot of observers
-    oldUsers.value = []
-  }
+  if (removeUsersOnLocalStorage)
+    globalThis.localStorage.removeItem(STORAGE_KEY_USERS)
 
-  return _users
+  return users
 }
 
 const users = initializeUsers()

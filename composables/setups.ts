@@ -44,5 +44,8 @@ export function setupPageHeader() {
     },
     titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
     link,
+    meta: [
+      { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+    ],
   })
 }

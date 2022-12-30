@@ -213,9 +213,6 @@ defineExpose({
             flex max-w-full
             :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
           />
-          <div v-if="shouldExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>
-            {{ characterLimit - editor?.storage.characterCount.characters() }}
-          </div>
         </div>
 
         <div v-if="isUploading" flex gap-1 items-center text-sm p1 text-primary>
@@ -298,6 +295,10 @@ defineExpose({
         </template>
 
         <div flex-auto />
+
+        <div pointer-events-none pr-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5>
+          {{ editor?.storage.characterCount.characters() }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
+        </div>
 
         <CommonTooltip placement="bottom" :content="$t('tooltip.add_content_warning')">
           <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">

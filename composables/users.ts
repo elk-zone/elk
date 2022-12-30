@@ -16,7 +16,7 @@ import type { PushNotificationPolicy, PushNotificationRequest } from '~/composab
 
 const mock = process.mock
 const users = process.server
-  ? computed<UserLogin[]>(() => mock ? [mock.user] : [])
+  ? ref<UserLogin[]>(mock ? [mock.user] : [])
   : useIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
 const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')

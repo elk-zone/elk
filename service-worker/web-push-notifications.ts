@@ -1,6 +1,6 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
-import { findNotification } from './notification'
+import { createNotificationOptions, findNotification } from './notification'
 import type { PushPayload } from '~/service-worker/types'
 
 declare const self: ServiceWorkerGlobalScope
@@ -18,36 +18,7 @@ export const onPush = (event: PushEvent) => {
         return Promise.resolve(undefined)
       })
       .then((notificationInfo) => {
-        const {
-          access_token,
-          body,
-          icon,
-          notification_id,
-          notification_type,
-          preferred_locale,
-        } = options
-        let url = notification_type === 'mention' ? 'notifications/mention' : 'notifications'
-        // TODO review url redirection for each notification type
-        if (notificationInfo) {
-          const { user, notification } = notificationInfo
-          url = `${user.server}/@${user.account.username}/${notification.status!.id}`
-        }
-
-        const notificationOptions: NotificationOptions = {
-          badge: '/pwa-192x192.png',
-          body,
-          data: {
-            access_token,
-            preferred_locale,
-            url: `/${url}`,
-          },
-          dir: 'auto',
-          icon,
-          lang: preferred_locale,
-          tag: notification_id,
-          timestamp: new Date().getTime(),
-        }
-        return self.registration.showNotification(options.title, notificationOptions)
+        return self.registration.showNotification(options.title, createNotificationOptions(options, notificationInfo))
       })
   })
 

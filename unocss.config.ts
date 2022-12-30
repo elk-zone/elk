@@ -101,5 +101,7 @@ export default defineConfig({
       return res
     }],
     ['box-shadow-outline', { 'box-shadow': '0 0 0 1px var(--c-primary)' }],
+    ['mobile-padding-top', { 'padding-top': 'calc(4rem + 1px)' }], // in sm screen size header is fixed (instead of sticky) and parent have this padding, to prevent flickering in iOS Safari
+    ['mobile-padding-bottom', { 'padding-bottom': '3.5rem' }], // in sm screen size footer is fixed (instead of sticky) and parent have this padding, to prevent flickering in iOS Safari
   ],
 })

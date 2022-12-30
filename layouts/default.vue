@@ -40,11 +40,11 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
           </slot>
         </div>
       </aside>
-      <div class="w-full min-h-screen" :class="wideLayout ? 'lg:w-full sm:w-600px' : 'sm:w-600px'" sm:border-l sm:border-r border-base>
+      <div class="w-full min-h-screen" :class="wideLayout ? 'lg:w-full sm:w-600px' : 'sm:w-600px'" sm:border-l sm:border-r border-base mobile-padding-bottom sm:pb-0>
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
-        <div sm:hidden sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
+        <div sm:hidden fixed w-full left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
           <CommonOfflineChecker :small-screen="isHydrated.value" />
           <NavBottom v-if="isHydrated.value" />
         </div>

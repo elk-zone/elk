@@ -8,9 +8,9 @@ defineProps<{
 </script>
 
 <template>
-  <div relative>
+  <div relative mobile-padding-top sm:pt-0>
     <div
-      sticky top-0 z10
+      fixed sm:sticky w-full top-0 z10
       border="b base" bg-base
     >
       <div flex justify-between px5 py4>

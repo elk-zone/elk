@@ -213,9 +213,6 @@ defineExpose({
             flex max-w-full
             :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
           />
-          <div v-if="shouldExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>
-            {{ characterLimit - editor?.storage.characterCount.characters() }}
-          </div>
         </div>
 
         <div v-if="isUploading" flex gap-1 items-center text-sm p1 text-primary>
@@ -330,6 +327,9 @@ defineExpose({
           </CommonDropdown>
         </CommonTooltip>
 
+        <div pointer-events-none pr-1 pt-2 text-sm text-secondary-light>
+          {{editor?.storage.characterCount.characters()}}/{{characterLimit}}
+        </div>
         <button
           btn-solid rounded-full text-sm
           :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"

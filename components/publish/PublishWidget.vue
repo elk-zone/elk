@@ -296,6 +296,10 @@ defineExpose({
 
         <div flex-auto />
 
+        <div pointer-events-none pr-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5>
+          {{ editor?.storage.characterCount.characters() }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
+        </div>
+
         <CommonTooltip placement="bottom" :content="$t('tooltip.add_content_warning')">
           <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
             <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
@@ -327,9 +331,6 @@ defineExpose({
           </CommonDropdown>
         </CommonTooltip>
 
-        <div pointer-events-none pr-1 pt-2 text-sm text-secondary-light>
-          {{editor?.storage.characterCount.characters()}}/{{characterLimit}}
-        </div>
         <button
           btn-solid rounded-full text-sm
           :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"

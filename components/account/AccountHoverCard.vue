@@ -16,7 +16,9 @@ const relationship = $(useRelationship(account))
       </NuxtLink>
       <AccountFollowButton text-sm :account="account" :relationship="relationship" />
     </div>
-    <ContentRich text-4 text-secondary :content="account.note" :emojis="account.emojis" />
+    <div v-if="account.note" max-h-100 overflow-y-auto>
+      <ContentRich text-4 text-secondary :content="account.note" :emojis="account.emojis" />
+    </div>
     <AccountPostsFollowers text-sm :account="account" />
   </div>
 </template>

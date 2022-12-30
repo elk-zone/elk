@@ -23,9 +23,9 @@ const initializeUsers = (): Ref<UserLogin[]> | RemovableRef<UserLogin[]> => {
   // Backward compatibility with localStorage
   let removeUsersOnLocalStorage = false
   if (globalThis?.localStorage) {
-    const usersOnLocalStoratgeString = globalThis.localStorage.getItem(STORAGE_KEY_USERS)
-    if (usersOnLocalStoratgeString) {
-      defaultUsers = JSON.parse(usersOnLocalStoratgeString)
+    const usersOnLocalStorageString = globalThis.localStorage.getItem(STORAGE_KEY_USERS)
+    if (usersOnLocalStorageString) {
+      defaultUsers = JSON.parse(usersOnLocalStorageString)
       removeUsersOnLocalStorage = true
     }
   }

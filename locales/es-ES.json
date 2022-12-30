@@ -267,7 +267,7 @@
       "dismiss": "Descartar"
     },
     "poll": {
-      "count": "{n} votos|{n} voto|{n} votos",
+      "count": "{0} votos|{0} voto|{0} votos",
       "ends": "finaliza {0}",
       "finished": "finalizada {0}"
     },

@@ -228,7 +228,7 @@
       "dismiss": "Fermer"
     },
     "poll": {
-      "count": "{n} votes",
+      "count": "{0} votes",
       "ends": "se clôt {0}",
       "finished": "clos {0}"
     },

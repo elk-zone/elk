@@ -35,7 +35,8 @@ export const usePushManager = () => {
     poll: currentUser.value?.pushSubscription?.alerts.poll ?? true,
     policy: configuredPolicy.value[currentUser.value?.account?.acct ?? ''] ?? 'all',
   })
-  const { history, commit, clear } = useManualRefHistory(pushNotificationData, { clone: true })
+  // don't clone, we're using indexeddb
+  const { history, commit, clear } = useManualRefHistory(pushNotificationData)
   const saveEnabled = computed(() => {
     const current = pushNotificationData.value
     const previous = history.value?.[0]?.snapshot

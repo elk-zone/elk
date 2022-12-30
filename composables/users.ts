@@ -1,4 +1,5 @@
 import { login as loginMasto } from 'masto'
+import { useIDBKeyval } from '@vueuse/integrations/useIDBKeyval'
 import type { Account, AccountCredentials, Instance, MastoClient, WsEvents } from 'masto'
 import type { Ref } from 'vue'
 import type { ElkMasto, UserLogin } from '~/types'
@@ -14,7 +15,9 @@ import {
 import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
 
 const mock = process.mock
-const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
+const users = process.server
+  ? computed<UserLogin[]>(() => mock ? [mock.user] : [])
+  : useIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
 const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 

@@ -1,5 +1,6 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
+import { findNotification } from './notification'
 import type { PushPayload } from '~/service-worker/types'
 
 declare const self: ServiceWorkerGlobalScope
@@ -19,23 +20,34 @@ export const onPush = (event: PushEvent) => {
       preferred_locale,
     } = options
 
-    const url = notification_type === 'mention' ? 'notifications/mention' : 'notifications'
+    return findNotification(access_token, notification_id)
+      .catch((e) => {
+        console.error('unhandled error finding notification', e)
+        return Promise.resolve(undefined)
+      })
+      .then((data) => {
+        let url = notification_type === 'mention' ? 'notifications/mention' : 'notifications'
+        if (data && data.notification.status) {
+          const { user, notification } = data
+          url = `${user.server}/@${user.account.username}/${notification.status!.id}`
+        }
 
-    const notificationOptions: NotificationOptions = {
-      badge: '/pwa-192x192.png',
-      body,
-      data: {
-        access_token,
-        preferred_locale,
-        url: `/${url}`,
-      },
-      dir: 'auto',
-      icon,
-      lang: preferred_locale,
-      tag: notification_id,
-      timestamp: new Date().getTime(),
-    }
-    return self.registration.showNotification(options.title, notificationOptions)
+        const notificationOptions: NotificationOptions = {
+          badge: '/pwa-192x192.png',
+          body,
+          data: {
+            access_token,
+            preferred_locale,
+            url: `/${url}`,
+          },
+          dir: 'auto',
+          icon,
+          lang: preferred_locale,
+          tag: notification_id,
+          timestamp: new Date().getTime(),
+        }
+        return self.registration.showNotification(options.title, notificationOptions)
+      })
   })
 
   event.waitUntil(promise)

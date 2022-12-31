@@ -5,7 +5,7 @@ import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
 import type { Draft } from '~/types'
 
-type FileUploadError = [string, string]
+type FileUploadError = [filename: string, message: string]
 
 const {
   draftKey,

@@ -109,7 +109,7 @@ onMounted(async () => {
         relative
         :class="displayError ? 'border-red-600 dark:border-red-400' : null"
       >
-        <span text-secondary-light mr1>https://</span>
+        <span text-secondary-light me1>https://</span>
 
         <input
           ref="input"

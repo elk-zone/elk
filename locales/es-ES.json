@@ -251,6 +251,8 @@
     }
   },
   "state": {
+    "attachments_exceed_server_limit": "Número máximo de archivos adjuntos por publicación excedido.",
+    "attachments_limit_error": "Límite por publicación excedido",
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Cargando...",

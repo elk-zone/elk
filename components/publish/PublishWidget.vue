@@ -109,11 +109,11 @@ async function uploadAttachments(files: File[]) {
         console.error(e)
         failed = [...failed, file]
       } 
-    } else {
+    } 
+    else {
       isExceedingAttachmentLimit = true
       failed = [...failed, file]
     }
-    console.log(`isExceedingAttachmentLimit: ${isExceedingAttachmentLimit}`)
   }
   isUploading = false
 }
@@ -255,7 +255,9 @@ defineExpose({
               </button>
             </CommonTooltip>
           </head>
-          <div v-if="isExceedingAttachmentLimit" pl-2 sm:pl-1 text-small>{{ $t('state.attachments_exceed_server_limit')}}</div>
+          <div v-if="isExceedingAttachmentLimit" pl-2 sm:pl-1 text-small>
+            {{ $t('state.attachments_exceed_server_limit') }}
+          </div>
           <ol pl-2 sm:pl-1>
             <li v-for="file in failed" :key="file.name">
               {{ file.name }}

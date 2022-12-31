@@ -54,6 +54,7 @@ const currentVisibility = $computed(() => {
 })
 
 let isUploading = $ref<boolean>(false)
+let isExceedingAttachmentLimit = $ref<boolean>(false)
 let failed = $ref<File[]>([])
 
 async function handlePaste(evt: ClipboardEvent) {
@@ -92,17 +93,25 @@ async function uploadAttachments(files: File[]) {
   isUploading = true
   failed = []
   // TODO: display some kind of message if too many media are selected
+  // DONE
   const limit = currentInstance.value!.configuration.statuses.maxMediaAttachments || 4
   for (const file of files.slice(0, limit)) {
-    try {
-      const attachment = await masto.mediaAttachments.create({
-        file,
-      })
-      draft.attachments.push(attachment)
+    if (draft.attachments.length < limit) {
+      isExceedingAttachmentLimit = false
+      try {
+        const attachment = await masto.mediaAttachments.create({
+          file,
+        })
+        draft.attachments.push(attachment)
+      }
+      catch (e) {
+        // TODO: add some human-readable error message, problem is that masto api will not return response code
+        console.error(e)
+        failed = [...failed, file]
+      }
     }
-    catch (e) {
-      // TODO: add some human-readable error message, problem is that masto api will not return response code
-      console.error(e)
+    else {
+      isExceedingAttachmentLimit = true
       failed = [...failed, file]
     }
   }
@@ -246,6 +255,9 @@ defineExpose({
               </button>
             </CommonTooltip>
           </head>
+          <div v-if="isExceedingAttachmentLimit" pl-2 sm:pl-1 text-small>
+            {{ $t('state.attachments_exceed_server_limit') }}
+          </div>
           <ol pl-2 sm:pl-1>
             <li v-for="file in failed" :key="file.name">
               {{ file.name }}

@@ -97,7 +97,6 @@ const isDM = $computed(() => status.visibility === 'direct')
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
     :lang="status.language ?? undefined"
-    :dir="status.language ? 'auto' : 'ltr'"
     @click="onclick"
     @keydown.enter="onclick"
   >

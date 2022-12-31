@@ -13,13 +13,10 @@ const isExpanded = ref(false)
 const lang = $computed(() => {
   return count > 1 || count === 0 ? undefined : items.items[0].status?.language
 })
-const dir = $computed(() => {
-  return lang ? 'auto' : 'ltr'
-})
 </script>
 
 <template>
-  <article flex flex-col relative :lang="lang ?? undefined" :dir="dir">
+  <article flex flex-col relative :lang="lang ?? undefined">
     <div flex items-center top-0 left-2 pt-2 px-3>
       <div i-ri:user-follow-fill me-3 color-primary aria-hidden="true" />
       <template v-if="count > 1">

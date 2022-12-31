@@ -16,7 +16,6 @@ const { notification } = defineProps<{
           rounded-ie-be-3
           py-3 bg-base top-0
           :lang="notification.status?.language ?? undefined"
-          :dir="notification.status?.language ? 'auto' : 'ltr'"
         >
           <div i-ri:user-follow-fill me-1 color-primary />
           <ContentRich
@@ -31,7 +30,6 @@ const { notification } = defineProps<{
         <AccountBigCard
           :account="notification.account"
           :lang="notification.status?.language ?? undefined"
-          :dir="notification.status?.language ? 'auto' : 'ltr'"
         />
       </NuxtLink>
     </template>

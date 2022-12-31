@@ -96,7 +96,7 @@ async function uploadAttachments(files: File[]) {
   // DONE
   const limit = currentInstance.value!.configuration.statuses.maxMediaAttachments || 4
   for (const file of files.slice(0, limit)) {
-    if(draft.attachments.length < limit){
+    if (draft.attachments.length < limit) {
       isExceedingAttachmentLimit = false
       try {
         const attachment = await masto.mediaAttachments.create({

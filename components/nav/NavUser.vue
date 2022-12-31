@@ -4,7 +4,8 @@
       <AccountAvatar
         ref="avatar"
         :account="currentUser.account"
-        h="2em"
+        h-8
+        w-8
         :draggable="false"
       />
     </div>

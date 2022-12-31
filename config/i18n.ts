@@ -27,6 +27,11 @@ const locales: LocaleObjectData[] = [
     name: '简体中文',
   },
   {
+    code: 'zh-TW',
+    file: 'zh-TW.json',
+    name: '繁体中文',
+  },
+  {
     code: 'ja-JP',
     file: 'ja-JP.json',
     name: '日本語',

@@ -8,10 +8,11 @@ defineProps<{
 </script>
 
 <template>
-  <div relative>
+  <div>
     <div
-      sticky top-0 z10
-      border="b base" bg-base
+      sticky top-0 z10 backdrop-blur
+      pt="[env(safe-area-inset-top,0)]"
+      border="b base" bg="[rgba(var(--c-bg-base-rgb),0.7)]"
     >
       <div flex justify-between px5 py4>
         <div flex gap-3 items-center overflow-hidden>

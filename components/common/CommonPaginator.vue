@@ -70,10 +70,7 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
     </slot>
     <div ref="endAnchor" />
     <slot v-if="state === 'loading'" name="loading">
-      <div p5 text-center flex="~ col" items-center animate-pulse>
-        <div text-secondary i-ri:loader-2-fill animate-spin text-2xl />
-        <span text-secondary>{{ $t('state.loading') }}</span>
-      </div>
+      <TimelineSkeleton />
     </slot>
     <div v-else-if="state === 'done'" p5 text-secondary italic text-center>
       {{ $t('common.end_of_list') }}

@@ -109,7 +109,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           </button> -->
         </div>
       </div>
-      <div v-if="account.note">
+      <div v-if="account.note" max-h-100 overflow-y-auto>
         <ContentRich text-4 text-base :content="account.note" :emojis="account.emojis" />
       </div>
       <div v-if="namedFields.length" flex="~ col wrap gap1">

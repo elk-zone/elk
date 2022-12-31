@@ -64,14 +64,8 @@ const votersCountSR = $computed(() => forSR(votersCount))
         </div>
       </div>
     </template>
-    <div text-sm flex="~ inline" gap-x-1>
-      <i18n-t keypath="status.poll.count" :plural="votersCount">
-        <CommonTooltip v-if="votersCountSR" :content="votersCountNumber" placement="top">
-          <span aria-hidden="true">{{ votersCountHR }}</span>
-          <span sr-only>{{ votersCountNumber }}</span>
-        </CommonTooltip>
-        <span v-else>{{ votersCountNumber }}</span>
-      </i18n-t>
+    <div text-sm>
+      {{ $t('status.poll.count', [formatHumanReadableNumber(poll.votersCount ?? 0)]) }}
       &middot;
       <CommonTooltip :content="expiredTimeFormatted" class="inline-block" placement="right">
         <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>

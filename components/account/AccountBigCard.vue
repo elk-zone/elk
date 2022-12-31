@@ -43,7 +43,7 @@ defineOptions({
         </div>
       </div>
       <!-- Note -->
-      <div v-if="account.note">
+      <div v-if="account.note" max-h-100 overflow-y-auto>
         <ContentRich
           :content="account.note" :emojis="account.emojis"
           line-clamp-2

@@ -213,13 +213,6 @@ defineExpose({
             flex max-w-full
             :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
           />
-          <div
-            v-if="shouldExpanded"
-            absolute right-0 rtl-right-auto rtl-left-0 bottom-0
-            pointer-events-none text-sm text-secondary-light
-          >
-            {{ characterLimit - editor?.storage.characterCount.characters() }}
-          </div>
         </div>
 
         <div v-if="isUploading" flex gap-1 items-center text-sm p1 text-primary>
@@ -253,7 +246,7 @@ defineExpose({
               </button>
             </CommonTooltip>
           </head>
-          <ol pl-2 sm:pl-1>
+          <ol ps-2 sm:ps-1>
             <li v-for="file in failed" :key="file.name">
               {{ file.name }}
             </li>
@@ -274,7 +267,7 @@ defineExpose({
     <div flex gap-4>
       <div w-12 h-full sm:block hidden />
       <div
-        v-if="shouldExpanded" flex="~ gap-2 1" m="l--1" pt-2 justify="between" max-full
+        v-if="shouldExpanded" flex="~ gap-2 1" m="s--1" pt-2 justify="between" max-full
         border="t base"
       >
         <PublishEmojiPicker
@@ -302,6 +295,10 @@ defineExpose({
         </template>
 
         <div flex-auto />
+
+        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5>
+          {{ editor?.storage.characterCount.characters() }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
+        </div>
 
         <CommonTooltip placement="bottom" :content="$t('tooltip.add_content_warning')">
           <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">

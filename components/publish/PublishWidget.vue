@@ -108,8 +108,8 @@ async function uploadAttachments(files: File[]) {
         // TODO: add some human-readable error message, problem is that masto api will not return response code
         console.error(e)
         failed = [...failed, file]
-      } 
-    } 
+      }
+    }
     else {
       isExceedingAttachmentLimit = true
       failed = [...failed, file]

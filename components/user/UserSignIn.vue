@@ -113,6 +113,7 @@ onMounted(async () => {
         <input
           ref="input"
           v-model="server"
+          inputmode="url"
           outline-none bg-transparent w-full max-w-50
           @input="handleInput"
           @keydown.down="move(1)"

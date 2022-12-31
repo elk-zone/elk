@@ -12,10 +12,10 @@ export interface CarouselOptions {
 }
 
 export const useImageGesture = (
-  element: MaybeRef<HTMLElement>,
+  domTarget: MaybeRef<HTMLElement>,
   carouselOptions?: CarouselOptions,
 ) => {
-  const { motionProperties } = useMotionProperties(element, {
+  const { motionProperties } = useMotionProperties(domTarget, {
     cursor: 'grab',
     scale: 1,
     x: 0,
@@ -36,13 +36,13 @@ export const useImageGesture = (
       if (!pinching)
         set({ x, y, cursor: 'grabbing' })
     },
-    onDragEnd({ vxvy: [vx, vy], pinching }) {
+    onDragEnd({ vxvy: [vx], pinching }) {
       if (pinching)
         return
 
       set({ cursor: 'grab' })
       if (carouselOptions) {
-        const isSwipe = Math.abs(vx) > 0.5 || Math.abs(vy) > 0.5
+        const isSwipe = Math.abs(vx) > 0.25
         if (isSwipe) {
           if (vx > 0 && unref(carouselOptions.hasPrev))
             carouselOptions.onPrev()
@@ -60,7 +60,7 @@ export const useImageGesture = (
     onWheel({ event, dragging, pinching }) {
       if (!dragging && !pinching && event.altKey) {
         event.preventDefault()
-        // @ts-expect-error why is ts complaining here (scale)?
+        // @ts-expect-error why is ts complaining here (motionProperties.scale)?
         set({ scale: motionProperties.scale + event.deltaY * 0.001 })
       }
     },
@@ -73,8 +73,5 @@ export const useImageGesture = (
     },
   }
 
-  useGesture(
-    handlers,
-    { domTarget: element },
-  )
+  useGesture(handlers, { domTarget })
 }

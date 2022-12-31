@@ -102,6 +102,7 @@ onMounted(async () => {
     </div>
     <div :class="error ? 'animate animate-shake-x animate-delay-100' : null">
       <div
+        dir="ltr"
         flex bg-gray:10 px4 py2 mxa rounded
         border="~ base" items-center font-mono
         focus:outline-none focus:ring="2 primary inset"
@@ -151,7 +152,7 @@ onMounted(async () => {
       </div>
     </div>
     <div text-secondary text-sm flex>
-      <div i-ri:lightbulb-line mr-1 />
+      <div i-ri:lightbulb-line me-1 />
       <span>
         <i18n-t keypath="user.tip_no_account">
           <a href="https://joinmastodon.org/servers" target="_blank" hover="underline text-primary">{{ $t('user.tip_register_account') }}</a>

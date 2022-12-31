@@ -12,18 +12,15 @@ const { notification } = defineProps<{
       <NuxtLink :to="getAccountRoute(notification.account)">
         <div
           flex items-center absolute
-          pl-3 pr-4 left-0 rtl-left-none
-          rounded-br-3
-          rtl="pr-3 pl-4 right-0"
-          rtl-rounded-bl-3
-          rtl-rounded-br-0
+          ps-3 pe-4 inset-is-0
+          rounded-ie-be-3
           py-3 bg-base top-0
           :lang="notification.status?.language ?? undefined"
           :dir="notification.status?.language ? 'auto' : 'ltr'"
         >
-          <div i-ri:user-follow-fill mr-1 color-primary />
+          <div i-ri:user-follow-fill me-1 color-primary />
           <ContentRich
-            text-primary mr-1 font-bold line-clamp-1 ws-pre-wrap break-all
+            text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
             :content="getDisplayName(notification.account, { rich: true })"
             :emojis="notification.account.emojis"
           />
@@ -40,9 +37,9 @@ const { notification } = defineProps<{
     </template>
     <template v-else-if="notification.type === 'admin.sign_up'">
       <div flex p3 items-center bg-shaded>
-        <div i-ri:admin-fill mr-1 color-purple />
+        <div i-ri:admin-fill me-1 color-purple />
         <ContentRich
-          text-purple mr-1 font-bold line-clamp-1 ws-pre-wrap break-all
+          text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
           :content="getDisplayName(notification.account, { rich: true })"
           :emojis="notification.account.emojis"
         />
@@ -50,9 +47,9 @@ const { notification } = defineProps<{
       </div>
     </template>
     <template v-else-if="notification.type === 'follow_request'">
-      <div flex ml-4 items-center class="-top-2.5" absolute right-2 px-2>
-        <div i-ri:user-follow-fill text-xl mr-1 />
-        <AccountInlineInfo :account="notification.account" mr1 />
+      <div flex ms-4 items-center class="-top-2.5" absolute inset-ie-2 px-2>
+        <div i-ri:user-follow-fill text-xl me-1 />
+        <AccountInlineInfo :account="notification.account" me1 />
       </div>
       <!-- TODO: accept request -->
       <AccountCard :account="notification.account" />
@@ -61,8 +58,8 @@ const { notification } = defineProps<{
       <StatusCard :status="notification.status!" :faded="true">
         <template #meta>
           <div flex="~" gap-1 items-center mt1>
-            <div i-ri:heart-fill text-xl mr-1 color-red />
-            <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
+            <div i-ri:heart-fill text-xl me-1 color-red />
+            <AccountInlineInfo text-primary font-bold :account="notification.account" me1 />
           </div>
         </template>
       </StatusCard>
@@ -71,8 +68,8 @@ const { notification } = defineProps<{
       <StatusCard :status="notification.status!" :faded="true">
         <template #meta>
           <div flex="~" gap-1 items-center mt1>
-            <div i-ri:repeat-fill text-xl mr-1 color-green />
-            <AccountInlineInfo text-primary font-bold :account="notification.account" mr1 />
+            <div i-ri:repeat-fill text-xl me-1 color-green />
+            <AccountInlineInfo text-primary font-bold :account="notification.account" me1 />
           </div>
         </template>
       </StatusCard>
@@ -81,8 +78,8 @@ const { notification } = defineProps<{
       <StatusCard :status="notification.status!" :faded="true">
         <template #meta>
           <div flex="~" gap-1 items-center mt1>
-            <div i-ri:edit-2-fill text-xl mr-1 text-secondary />
-            <AccountInlineInfo :account="notification.account" mr1 />
+            <div i-ri:edit-2-fill text-xl me-1 text-secondary />
+            <AccountInlineInfo :account="notification.account" me1 />
             <span ws-nowrap>
               {{ $t('notification.update_status') }}
             </span>

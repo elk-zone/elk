@@ -55,7 +55,7 @@ const votersCountSR = $computed(() => forSR(votersCount))
         <div flex justify-between pb-2 w-full>
           <span inline-flex align-items>
             {{ option.title }}
-            <span v-if="poll.voted && poll.ownVotes?.includes(index)" ltr-ml-2 rtl-mr-2 mt-1 inline-block i-ri:checkbox-circle-line />
+            <span v-if="poll.voted && poll.ownVotes?.includes(index)" ms-2 mt-1 inline-block i-ri:checkbox-circle-line />
           </span>
           <span text-primary-active> {{ formatPercentage(votersCount > 0 ? (option.votesCount || 0) / votersCount : 0) }}</span>
         </div>

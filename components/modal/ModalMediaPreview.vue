@@ -1,9 +1,26 @@
 <script setup lang="ts">
+import { useImageGesture } from '~/composables/gestures'
+
 const emit = defineEmits(['close'])
+
+const img = ref()
 
 const current = computed(() => mediaPreviewList.value[mediaPreviewIndex.value])
 const hasNext = computed(() => mediaPreviewIndex.value < mediaPreviewList.value.length - 1)
 const hasPrev = computed(() => mediaPreviewIndex.value > 0)
+
+useImageGesture(img, {
+  hasNext,
+  hasPrev,
+  onNext() {
+    if (hasNext.value)
+      mediaPreviewIndex.value++
+  },
+  onPrev() {
+    if (hasPrev.value)
+      mediaPreviewIndex.value--
+  },
+})
 
 const keys = useMagicKeys()
 
@@ -45,7 +62,10 @@ function onClick(e: MouseEvent) {
       <div i-ri:arrow-left-s-line text-white />
     </button>
     <img
-      :src="current.url || current.previewUrl" :alt="current.description || ''" max-h-full max-w-full ma
+      ref="img"
+      :src="current.url || current.previewUrl"
+      :alt="current.description || ''"
+      max-h-full max-w-full ma
     >
 
     <div absolute top-0 w-full flex justify-between>

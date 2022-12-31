@@ -56,12 +56,10 @@ const locales: LocaleObjectData[] = [
     file: 'ar-EG.json',
     name: 'العربية',
     dir: 'rtl',
-    /* TODO: include this once ar-EG ready for all plurals updated
     pluralRule: (choice: number) => {
       const name = new Intl.PluralRules('ar-EG').select(choice)
       return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
     },
-*/
   },
 ].sort((a, b) => a.code.localeCompare(b.code))
 

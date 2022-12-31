@@ -101,6 +101,5 @@ export default defineConfig({
       return res
     }],
     ['box-shadow-outline', { 'box-shadow': '0 0 0 1px var(--c-primary)' }],
-    ['rounded-ss-none', { 'border-start-start-radius': '0' }],
   ],
 })

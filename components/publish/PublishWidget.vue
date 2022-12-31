@@ -310,7 +310,7 @@ defineExpose({
           <CommonDropdown>
             <button :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon w-12>
               <div :class="currentVisibility.icon" />
-              <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
+              <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
             </button>
 
             <template #popper>

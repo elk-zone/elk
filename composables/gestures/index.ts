@@ -64,15 +64,13 @@ export const useImageGesture = (
         set({ scale: motionProperties.scale + event.deltaY * 0.001 })
       }
     },
-    /* TODO: on double click or double tap, reset scale
-    onTap: ({ event }) => {
+    onDblclick() {
+      set({ scale: 1 })
+    },
+    onTouchstart(event) {
       if (event.touches === 2)
         set({ scale: 1 })
     },
-    onDoubleClick: () => {
-      set({ scale: 1 })
-    },
-    */
   }
 
   useGesture(

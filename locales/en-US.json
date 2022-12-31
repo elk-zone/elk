@@ -260,6 +260,7 @@
     }
   },
   "state": {
+    "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
@@ -276,7 +277,7 @@
       "dismiss": "Dismiss"
     },
     "poll": {
-      "count": "{n} votes|{n} vote|{n} votes",
+      "count": "{0} votes|{0} vote|{0} votes",
       "ends": "ends {0}",
       "finished": "finished {0}"
     },

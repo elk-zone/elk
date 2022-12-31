@@ -171,7 +171,7 @@
       "dismiss": "Schliessen"
     },
     "poll": {
-      "count": "{0} Stimmen|{n} Stimme|{n} Stimmen",
+      "count": "{0} Stimmen|{0} Stimme|{0} Stimmen",
       "ends": "Endet: {0}",
       "finished": "Beendet: {0}"
     },

@@ -60,7 +60,7 @@ async function vote(e: Event) {
       </div>
     </template>
     <div text-sm>
-      {{ $t('status.poll.count', formatHumanReadableNumber(poll.votersCount ?? 0)) }}
+      {{ $t('status.poll.count', [formatHumanReadableNumber(poll.votersCount ?? 0)]) }}
       &middot;
       <CommonTooltip :content="expiredTimeFormatted" class="inline-block" placement="right">
         <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>

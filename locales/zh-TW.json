@@ -7,7 +7,7 @@
     "route_loaded": "頁面{0}已加載"
   },
   "account": {
-    "avatar_description": "{0}的頭像",
+    "avatar_description": "{0} 的頭像",
     "blocked_by": "您已被此用戶拉黑",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用戶",
@@ -31,7 +31,7 @@
     "pinned": "置頂的帖文",
     "posts": "帖文",
     "posts_count": "{0} 條帖文",
-    "profile_description": "{0}的個人資料頭圖",
+    "profile_description": "{0} 的個人資料頭圖",
     "profile_unavailable": "個人資料不可見",
     "unblock": "取消拉黑",
     "unfollow": "取消關注",
@@ -76,7 +76,7 @@
     "n-people-in-the-past-n-days": "{0} 人在過去 {1} 天",
     "select_lang": "選擇語言",
     "sign_in_desc": "添加現有帳戶",
-    "switch_account": "切換到{0}",
+    "switch_account": "切換到 {0}",
     "switch_account_desc": "切換到另一個帳戶",
     "toggle_dark_mode": "切換深色模式",
     "toggle_zen_mode": "切換禪模式"
@@ -333,7 +333,7 @@
     "year_past": "現在|去年|{n}年前"
   },
   "timeline": {
-    "show_new_items": "展示 {n} 條新帖文"
+    "show_new_items": "展示 {v} 條新帖文"
   },
   "title": {
     "federated_timeline": "跨站時間線",

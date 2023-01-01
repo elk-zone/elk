@@ -78,6 +78,13 @@ function onEnter(e: KeyboardEvent) {
   }
 }
 
+function escapeAutocomplete(evt: KeyboardEvent) {
+  if (!autocompleteShow)
+    return
+  autocompleteShow = false
+  evt.stopPropagation()
+}
+
 function select(index: number) {
   server = filteredServers[index]
 }
@@ -87,12 +94,16 @@ onMounted(async () => {
   knownServers = await $fetch('/api/list-servers')
   fuse = new Fuse(knownServers, { shouldSort: true })
 })
+
+onClickOutside($$(input), () => {
+  autocompleteShow = false
+})
 </script>
 
 <template>
   <form text-center justify-center items-center max-w-150 py6 flex="~ col gap-3" @submit.prevent="oauth">
     <div flex="~ center" mb2>
-      <img src="/logo.svg" w-12 h-12 mxa height="48" width="48" alt="logo">
+      <img src="/logo.svg" w-12 h-12 mxa height="48" width="48" :alt="$t('app_logo')" class="rtl-flip">
       <div text-3xl>
         {{ $t('action.sign_in') }}
       </div>
@@ -102,13 +113,14 @@ onMounted(async () => {
     </div>
     <div :class="error ? 'animate animate-shake-x animate-delay-100' : null">
       <div
+        dir="ltr"
         flex bg-gray:10 px4 py2 mxa rounded
         border="~ base" items-center font-mono
         focus:outline-none focus:ring="2 primary inset"
         relative
         :class="displayError ? 'border-red-600 dark:border-red-400' : null"
       >
-        <span text-secondary-light mr1>https://</span>
+        <span text-secondary-light me1>https://</span>
 
         <input
           ref="input"
@@ -123,7 +135,7 @@ onMounted(async () => {
           @keydown.down="move(1)"
           @keydown.up="move(-1)"
           @keydown.enter="onEnter"
-          @keydown.esc.prevent="autocompleteShow = false"
+          @keydown.esc.prevent="escapeAutocomplete"
           @focus="autocompleteShow = true"
         >
         <div
@@ -135,7 +147,7 @@ onMounted(async () => {
           class="max-h-[8rem]"
         >
           <button
-            v-for="name, idx in filteredServers"
+            v-for="(name, idx) in filteredServers"
             :id="toSelector(name)"
             :key="name"
             :value="name"
@@ -156,7 +168,7 @@ onMounted(async () => {
       </div>
     </div>
     <div text-secondary text-sm flex>
-      <div i-ri:lightbulb-line mr-1 />
+      <div i-ri:lightbulb-line me-1 />
       <span>
         <i18n-t keypath="user.tip_no_account">
           <a href="https://joinmastodon.org/servers" target="_blank" hover="underline text-primary">{{ $t('user.tip_register_account') }}</a>
@@ -164,7 +176,7 @@ onMounted(async () => {
       </span>
     </div>
     <button flex="~ row" gap-x-2 items-center btn-solid mt2 :disabled="!server || busy">
-      <span aria-hidden="true" inline-block :class="busy ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:login-circle-line'" />
+      <span aria-hidden="true" inline-block :class="busy ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:login-circle-line'" class="rtl-flip" />
       {{ $t('action.sign_in') }}
     </button>
   </form>

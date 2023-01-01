@@ -251,6 +251,8 @@
     }
   },
   "state": {
+    "attachments_exceed_server_limit": "Número máximo de archivos adjuntos por publicación excedido.",
+    "attachments_limit_error": "Límite por publicación excedido",
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Cargando...",
@@ -324,7 +326,7 @@
     "year_past": "hace 0 años|el año pasado|hace {n} años"
   },
   "timeline": {
-    "show_new_items": "Mostrar {n} nuevas publicaciones|Mostrar {n} nueva publicación|Mostrar {n} nuevas publicaciones"
+    "show_new_items": "Mostrar {v} nuevas publicaciones|Mostrar {v} nueva publicación|Mostrar {v} nuevas publicaciones"
   },
   "title": {
     "federated_timeline": "Línea de tiempo federada",

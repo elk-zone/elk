@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Status } from 'masto'
 import {
   isCommandPanelOpen,
   isEditHistoryDialogOpen,
@@ -26,6 +27,15 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     openCommandPanel(true)
   }
 })
+
+const handlePublished = (status: Status) => {
+  lastPublishDialogStatus.value = status
+  isPublishDialogOpen.value = false
+}
+
+const handlePublishClose = () => {
+  lastPublishDialogStatus.value = null
+}
 </script>
 
 <template>
@@ -36,9 +46,16 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     <ModalDialog v-model="isPreviewHelpOpen" max-w-125>
       <HelpPreview @close="closePreviewHelp()" />
     </ModalDialog>
-    <ModalDialog v-model="isPublishDialogOpen" max-w-180 flex>
+    <ModalDialog
+      v-model="isPublishDialogOpen"
+      max-w-180 flex
+      @close="handlePublishClose"
+    >
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
-      <PublishWidget :draft-key="dialogDraftKey" expanded flex-1 w-0 />
+      <PublishWidget
+        :draft-key="dialogDraftKey" expanded flex-1 w-0
+        @published="handlePublished"
+      />
     </ModalDialog>
     <ModalDialog
       v-model="isMediaPreviewOpen"

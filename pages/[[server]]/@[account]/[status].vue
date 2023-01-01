@@ -89,7 +89,7 @@ onReactivated(() => {
         </template>
       </div>
 
-      <StatusNotFound v-else :account="$route.params.account" :status="id" />
+      <StatusNotFound v-else :account="route.params.account" :status="id" />
     </template>
 
     <StatusCardSkeleton v-else border="b base" />

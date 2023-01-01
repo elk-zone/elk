@@ -86,6 +86,7 @@ useIntersectionObserver(video, (entries) => {
         playsinline
         controls
         border="~ base"
+        rounded-lg
         object-cover
         :width="attachment.meta?.original?.width"
         :height="attachment.meta?.original?.height"
@@ -106,6 +107,7 @@ useIntersectionObserver(video, (entries) => {
         loop
         playsinline
         border="~ base"
+        rounded-lg
         object-cover
         :width="attachment.meta?.original?.width"
         :height="attachment.meta?.original?.height"

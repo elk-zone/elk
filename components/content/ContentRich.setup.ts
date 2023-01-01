@@ -22,7 +22,7 @@ const useEmojis = computed(() => {
 
 export default () => h(
   'span',
-  { class: 'content-rich' },
+  { class: 'content-rich', dir: 'auto' },
   contentToVNode(content, {
     emojis: useEmojis.value,
     markdown,

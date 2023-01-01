@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
               hover="bg-gray-100 dark:(bg-gray-700 text-white)"
               @click="toggleDark()"
             >
-              <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl mr-4 rtl-mr-0 rtl-ml-4 !align-middle" />
+              <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl me-4 !align-middle" />
               {{ colorMode.value === 'light' ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
             </button>
             <NuxtLink
@@ -94,7 +94,7 @@ onBeforeUnmount(() => {
               hover="bg-gray-100 dark:(bg-gray-700 text-white)"
               to="/settings"
             >
-              <span class="i-ri:settings-2-line flex-shrink-0 text-xl mr-4 rtl-mr-0 rtl-ml-4 !align-middle" />
+              <span class="i-ri:settings-2-line flex-shrink-0 text-xl me-4 !align-middle" />
               {{ $t('nav.settings') }}
             </NuxtLink>
           </div>

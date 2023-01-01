@@ -209,7 +209,6 @@
       "label": "Acerca de"
     },
     "feature_flags": {
-      "avatar_on_avatar": "Avatar en Avatar",
       "github_cards": "Tarjetas GitHub",
       "title": "Características experimentales",
       "user_picker": "Selector de usuarios",

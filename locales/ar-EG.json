@@ -189,7 +189,6 @@
   },
   "settings": {
     "feature_flags": {
-      "avatar_on_avatar": "الصورة الرمزية على الصورة الرمزية",
       "github_cards": "GitHub بطاقات",
       "user_picker": "الشريط الجانبي لمبدل المستخدم",
       "virtual_scroll": "التمرير الافتراضي"

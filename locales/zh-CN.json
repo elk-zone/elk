@@ -217,7 +217,6 @@
       "label": "关于"
     },
     "feature_flags": {
-      "avatar_on_avatar": "头像堆叠",
       "github_cards": "GitHub 卡片",
       "title": "实验功能",
       "user_picker": "用户选择器",

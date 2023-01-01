@@ -83,8 +83,6 @@
     "end_of_list": "Fin",
     "error": "ERROR",
     "in": "en",
-    "kiloSuffix": "K",
-    "megaSuffix": "M",
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer estás fuera de línea. Por favor, comprueba tu conexión a la red."
   },

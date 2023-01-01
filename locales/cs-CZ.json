@@ -64,8 +64,6 @@
   "common": {
     "end_of_list": "Konec seznamu",
     "error": "CHYBA",
-    "kiloSuffix": "K",
-    "megaSuffix": "M",
     "not_found": "404 Nenalezeno!",
     "offline_desc": "Zdá se, že jste offline. Zkontrolujte připojení k internetu."
   },

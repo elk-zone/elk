@@ -46,12 +46,13 @@ const props = withDefaults(defineProps<Props>(), {
   keepAlive: false,
 })
 
-const emits = defineEmits<{
+const emit = defineEmits<{
   /** v-model dialog visibility */
   (event: 'update:modelValue', value: boolean): void
+  (event: 'close',): void
 }>()
 
-const visible = useVModel(props, 'modelValue', emits, { passive: true })
+const visible = useVModel(props, 'modelValue', emit, { passive: true })
 
 const deactivated = useDeactivated()
 const route = useRoute()
@@ -75,6 +76,7 @@ defineExpose({
 /** close the dialog */
 function close() {
   visible.value = false
+  emit('close')
 }
 
 function clickMask() {

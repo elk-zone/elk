@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Attachment, CreateStatusParams, StatusVisibility } from 'masto'
+import type { Attachment, CreateStatusParams, Status, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
@@ -21,7 +21,9 @@ const {
   dialogLabelledBy?: string
 }>()
 
-const emit = defineEmits(['published'])
+const emit = defineEmits<{
+  (evt: 'published', status: Status): void
+}>()
 
 const { t } = useI18n()
 // eslint-disable-next-line prefer-const
@@ -153,14 +155,14 @@ async function publish() {
   try {
     isSending = true
 
+    let status: Status
     if (!draft.editingStatus)
-      await masto.statuses.create(payload)
+      status = await masto.statuses.create(payload)
     else
-      await masto.statuses.update(draft.editingStatus.id, payload)
+      status = await masto.statuses.update(draft.editingStatus.id, payload)
 
     draft = initial()
-    isPublishDialogOpen.value = false
-    emit('published')
+    emit('published', status)
   }
   finally {
     isSending = false

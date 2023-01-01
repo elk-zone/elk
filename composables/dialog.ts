@@ -1,4 +1,4 @@
-import type { Attachment, StatusEdit } from 'masto'
+import type { Attachment, Status, StatusEdit } from 'masto'
 import type { Draft } from '~/types'
 import { STORAGE_KEY_FIRST_VISIT, STORAGE_KEY_ZEN_MODE } from '~/constants'
 
@@ -20,13 +20,15 @@ export const isEditHistoryDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
 export const isCommandPanelOpen = ref(false)
 
+export const lastPublishDialogStatus = ref<Status | null>(null)
+
 export const toggleZenMode = useToggle(isZenMode)
 
 export function openSigninDialog() {
   isSigninDialogOpen.value = true
 }
 
-export function openPublishDialog(draftKey = 'dialog', draft?: Draft, overwrite = false): void {
+export async function openPublishDialog(draftKey = 'dialog', draft?: Draft, overwrite = false): Promise<void> {
   dialogDraftKey.value = draftKey
 
   if (draft) {
@@ -45,6 +47,8 @@ export function openPublishDialog(draftKey = 'dialog', draft?: Draft, overwrite 
       currentUserDrafts.value[draftKey] = draft
   }
   isPublishDialogOpen.value = true
+
+  await until(isPublishDialogOpen).toBe(false)
 }
 
 if (isPreviewHelpOpen.value) {

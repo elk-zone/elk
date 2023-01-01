@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { Field, UpdateCredentialsParams } from 'masto'
 import { useForm } from 'slimeform'
 
 definePageMeta({
@@ -15,18 +16,25 @@ const onlineSrc = $computed(() => ({
 }))
 
 const { form, reset, submitter, dirtyFields, isError } = useForm({
-  form: () => ({
-    displayName: acccount?.displayName ?? '',
-    note: acccount?.source.note.replaceAll('\r', '') ?? '',
+  form: () => {
+    const fieldsAttributes = Array.from({ length: 4 }, (_, i) => {
+      return acccount?.fields?.[i] || { name: '', value: '' }
+    })
+    return {
+      displayName: acccount?.displayName ?? '',
+      note: acccount?.source.note.replaceAll('\r', '') ?? '',
 
-    avatar: null as null | File,
-    header: null as null | File,
+      avatar: null as null | File,
+      header: null as null | File,
+
+      fieldsAttributes,
 
     // These look more like account and privacy settings than appearance settings
     // discoverable: false,
     // bot: false,
     // locked: false,
-  }),
+    }
+  },
 })
 
 watch(isMastoInitialised, async (val) => {
@@ -41,7 +49,7 @@ watch(isMastoInitialised, async (val) => {
 const isCanSubmit = computed(() => !isError.value && !isEmptyObject(dirtyFields.value))
 
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
-  const res = await useMasto().accounts.updateCredentials(dirtyFields.value)
+  const res = await useMasto().accounts.updateCredentials(dirtyFields.value as UpdateCredentialsParams)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))
 
@@ -107,6 +115,35 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
           </p>
           <textarea v-model="form.note" maxlength="500" min-h-10ex input-base />
         </label>
+
+        <!-- metadata -->
+        <div space-y-2>
+          <div font-medium>
+            Profile metadata
+          </div>
+          <div text-sm text-secondary>
+            You can have up to 4 items displayed as a table on your profile
+          </div>
+
+          <div flex="~ col gap4">
+            <div v-for="i in 4" :key="i" flex="~ gap3">
+              <input
+                v-model="form.fieldsAttributes[i - 1].name"
+                type="text"
+                p2 border-rounded w-full bg-transparent
+                outline-none border="~ base"
+                placeholder="Label"
+              >
+              <input
+                v-model="form.fieldsAttributes[i - 1].value"
+                type="text"
+                p2 border-rounded w-full bg-transparent
+                outline-none border="~ base"
+                placeholder="Content"
+              >
+            </div>
+          </div>
+        </div>
 
         <!-- submit -->
         <div text-right>

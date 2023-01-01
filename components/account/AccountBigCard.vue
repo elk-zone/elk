@@ -24,7 +24,7 @@ defineOptions({
       <!-- User info -->
       <div flex sm:flex-row flex-col flex-gap-2>
         <div flex items-center justify-between>
-          <div w-17 h-17 rounded-full border-4 border-bg-base z-2 mt--2 ml--1>
+          <div w-17 h-17 rounded-full border-4 border-bg-base z-2 mt--2 ms--1>
             <AccountAvatar :account="account" />
           </div>
           <a block sm:hidden href="javascript:;" @click.stop>

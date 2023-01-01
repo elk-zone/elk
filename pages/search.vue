@@ -11,7 +11,7 @@ useHeadFixed({
   <MainContent>
     <template #title>
       <NuxtLink to="/search" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:search-line />
+        <div i-ri:search-line class="rtl-flip" />
         <span>{{ $t('nav.search') }}</span>
       </NuxtLink>
     </template>

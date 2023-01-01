@@ -11,7 +11,7 @@ const { modelValue } = defineModel<{
 <template>
   <label
     class="common-checkbox flex items-center cursor-pointer py-1 text-md w-full gap-y-1"
-    :class="hover ? 'hover:bg-active ml--2 pl-4' : null"
+    :class="hover ? 'hover:bg-active ms--2 ps-4' : null"
     @click.prevent="modelValue = !modelValue"
   >
     <span
@@ -23,7 +23,7 @@ const { modelValue } = defineModel<{
       type="checkbox"
       sr-only
     >
-    <span ml-2 pointer-events-none>{{ label }}</span>
+    <span ms-2 pointer-events-none>{{ label }}</span>
   </label>
 </template>
 

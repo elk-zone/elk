@@ -224,7 +224,7 @@
     "year_past": "před 0 roky|minulý rok|před {n} lety "
   },
   "timeline": {
-    "show_new_items": "Ukázat {n} nových položek|Ukázat {n} novou položku|Ukázat {n} nových položek"
+    "show_new_items": "Ukázat {v} nových položek|Ukázat {v} novou položku|Ukázat {v} nových položek"
   },
   "title": {
     "federated_timeline": "Federovaná časová osa",

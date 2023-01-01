@@ -22,6 +22,12 @@ useImageGesture(img, {
   },
 })
 
+// stop global zooming
+useEventListener('wheel', (evt) => {
+  if (evt.ctrlKey && (evt.deltaY < 0 || evt.deltaY > 0))
+    evt.preventDefault()
+}, { passive: false })
+
 const keys = useMagicKeys()
 
 whenever(keys.arrowLeft, prev)

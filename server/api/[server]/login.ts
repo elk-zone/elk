@@ -4,8 +4,9 @@ import { getApp, getRedirectURI } from '~/server/shared'
 
 export default defineEventHandler(async (event) => {
   let { server } = getRouterParams(event)
+  const { origin } = await readBody(event)
   server = server.toLocaleLowerCase().trim()
-  const app = await getApp(server)
+  const app = await getApp(origin, server)
 
   if (!app) {
     throw createError({
@@ -17,7 +18,7 @@ export default defineEventHandler(async (event) => {
   const query = stringifyQuery({
     client_id: app.client_id,
     scope: 'read write follow push',
-    redirect_uri: getRedirectURI(server),
+    redirect_uri: getRedirectURI(origin, server),
     response_type: 'code',
   })
 

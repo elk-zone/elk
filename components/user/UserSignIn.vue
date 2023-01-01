@@ -26,7 +26,12 @@ async function oauth() {
     server = server.split('/')[0]
 
   try {
-    location.href = await $fetch<string>(`/api/${server || DEFAULT_SERVER}/login`)
+    location.href = await $fetch<string>(`/api/${server || DEFAULT_SERVER}/login`, {
+      method: 'POST',
+      body: {
+        origin: location.origin,
+      },
+    })
   }
   catch {
     displayError = true

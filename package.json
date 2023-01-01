@@ -44,6 +44,7 @@
     "focus-trap": "^7.2.0",
     "form-data": "^4.0.0",
     "fuse.js": "^6.6.2",
+    "idb-keyval": "^6.2.0",
     "js-yaml": "^4.1.0",
     "lru-cache": "^7.14.1",
     "masto": "^4.11.1",

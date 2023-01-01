@@ -48,6 +48,7 @@ specifiers:
   form-data: ^4.0.0
   fs-extra: ^11.1.0
   fuse.js: ^6.6.2
+  idb-keyval: ^6.2.0
   js-yaml: ^4.1.0
   jsdom: ^20.0.3
   lint-staged: ^13.1.0
@@ -93,13 +94,14 @@ dependencies:
   '@tiptap/suggestion': 2.0.0-beta.204
   '@tiptap/vue-3': 2.0.0-beta.204
   '@vueuse/core': 9.9.0
-  '@vueuse/integrations': 9.9.0_7zhv6s73i5wtygx2wkeytrmn7q
+  '@vueuse/integrations': 9.9.0_ha7ivgav6uqpoo2b5thfugqwjq
   blurhash: 2.0.4
   browser-fs-access: 0.31.1
   floating-vue: 2.0.0-beta.20
   focus-trap: 7.2.0
   form-data: 4.0.0
   fuse.js: 6.6.2
+  idb-keyval: 6.2.0
   js-yaml: 4.1.0
   lru-cache: 7.14.1
   masto: 4.11.1
@@ -157,7 +159,7 @@ devDependencies:
   typescript: 4.9.4
   unplugin-auto-import: 0.12.1_@vueuse+core@9.9.0
   vite-plugin-inspect: 0.7.11
-  vite-plugin-pwa: 0.13.3_workbox-window@6.5.4
+  vite-plugin-pwa: 0.13.3
   vitest: 0.26.2_jsdom@20.0.3
   vue-tsc: 1.0.16_typescript@4.9.4
   workbox-window: 6.5.4
@@ -1621,8 +1623,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.3.0-beta.11
-      '@intlify/shared': 9.3.0-beta.11
+      '@intlify/message-compiler': 9.3.0-beta.12
+      '@intlify/shared': 9.3.0-beta.12
       jsonc-eslint-parser: 1.4.1
       source-map: 0.6.1
       vue-i18n: 9.3.0-beta.10
@@ -1654,8 +1656,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /@intlify/message-compiler/9.3.0-beta.11:
-    resolution: {integrity: sha512-gGGfBGzM7JBXp1Q9gbDAy5jELz9ho3ILqnpxp2yp64+gkqohrqc2YXIvCdwZoc6AtKIh/Zmv4sWVqxkvMsBWtQ==}
+  /@intlify/message-compiler/9.3.0-beta.12:
+    resolution: {integrity: sha512-A8/s7pb3v8nf6HG77qFPJntxgQKI9GXxGnkn7aO+b03/X/GkF/4WceDSAIk3i+yLeIgszeBn9GZ23tSg4sTEHA==}
     engines: {node: '>= 14'}
     dependencies:
       '@intlify/shared': 9.3.0-beta.11
@@ -1669,6 +1671,11 @@ packages:
 
   /@intlify/shared/9.3.0-beta.11:
     resolution: {integrity: sha512-CtbotesxTRiC3bRyXyv1NG39fkqJ790f8z8xFaeIXSZpOdiyxoh5BIyypCzSFQZDGLwz0Q9gyWbW1XpxQJm68Q==}
+    engines: {node: '>= 14'}
+    dev: true
+
+  /@intlify/shared/9.3.0-beta.12:
+    resolution: {integrity: sha512-WsmaS54sA8xuwezPKpa/OMoaX1v2VF2fCgAmYS6prDr2ir0CkUFWPm9A8ilmxzv4nkS61/v8+vf4lGGkn5uBdA==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -1688,7 +1695,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 3.4.0_vue-i18n@9.3.0-beta.10
-      '@intlify/shared': 9.3.0-beta.11
+      '@intlify/shared': 9.3.0-beta.12
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.2.45
       debug: 4.3.4
@@ -3514,7 +3521,7 @@ packages:
       vue: 3.2.45
     dev: true
 
-  /@vueuse/integrations/9.9.0_7zhv6s73i5wtygx2wkeytrmn7q:
+  /@vueuse/integrations/9.9.0_ha7ivgav6uqpoo2b5thfugqwjq:
     resolution: {integrity: sha512-/wr3jrMlzbPNd38dO85NOT4j7vga9+eQewEZFXHJAFEvKnRxBy/Ytp1pt4Sz8dVOLLYMBHfSaVAra91ftfIh0w==}
     peerDependencies:
       async-validator: '*'
@@ -3556,6 +3563,7 @@ packages:
       '@vueuse/shared': 9.9.0
       focus-trap: 7.2.0
       fuse.js: 6.6.2
+      idb-keyval: 6.2.0
       vue-demi: 0.13.11
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -6186,6 +6194,12 @@ packages:
       safer-buffer: 2.1.2
     dev: true
 
+  /idb-keyval/6.2.0:
+    resolution: {integrity: sha512-uw+MIyQn2jl3+hroD7hF8J7PUviBU7BPKWw4f/ISf32D4LoGu98yHjrzWWJDASu9QNrX10tCJqk9YY0ClWm8Ng==}
+    dependencies:
+      safari-14-idb-fix: 3.0.0
+    dev: false
+
   /idb/7.1.1:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
     dev: true
@@ -8590,6 +8604,10 @@ packages:
       tslib: 2.4.1
     dev: true
 
+  /safari-14-idb-fix/3.0.0:
+    resolution: {integrity: sha512-eBNFLob4PMq8JA1dGyFn6G97q3/WzNtFK4RnzT1fnLq+9RyrGknzYiM/9B12MnKAxuj1IXr7UKYtTNtjyKMBog==}
+    dev: false
+
   /safe-buffer/5.1.2:
     resolution: {integrity: sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==}
 
@@ -9817,11 +9835,10 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa/0.13.3_workbox-window@6.5.4:
+  /vite-plugin-pwa/0.13.3:
     resolution: {integrity: sha512-cjWXpZ7slAY14OKz7M8XdgTIi9wjf6OD6NkhiMAc+ogxnbUrecUwLdRtfGPCPsN2ftut5gaN1jTghb11p6IQAA==}
     peerDependencies:
       vite: ^3.1.0
-      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
       debug: 4.3.4
@@ -10069,7 +10086,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.11
+      '@intlify/shared': 9.3.0-beta.12
       '@intlify/vue-i18n-bridge': 0.8.0_vue-i18n@9.3.0-beta.10
       '@intlify/vue-router-bridge': 0.8.0
       ufo: 1.0.1

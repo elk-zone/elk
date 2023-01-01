@@ -1,6 +1,8 @@
 import { login as loginMasto } from 'masto'
+import { useIDBKeyval } from '@vueuse/integrations/useIDBKeyval'
 import type { Account, AccountCredentials, Instance, MastoClient, WsEvents } from 'masto'
 import type { Ref } from 'vue'
+import type { RemovableRef } from '@vueuse/core'
 import type { ElkMasto, UserLogin } from '~/types'
 import {
   DEFAULT_POST_CHARS_LIMIT,
@@ -14,7 +16,31 @@ import {
 import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
 
 const mock = process.mock
-const users = useLocalStorage<UserLogin[]>(STORAGE_KEY_USERS, mock ? [mock.user] : [], { deep: true })
+
+const initializeUsers = (): Ref<UserLogin[]> | RemovableRef<UserLogin[]> => {
+  let defaultUsers = mock ? [mock.user] : []
+
+  // Backward compatibility with localStorage
+  let removeUsersOnLocalStorage = false
+  if (globalThis?.localStorage) {
+    const usersOnLocalStorageString = globalThis.localStorage.getItem(STORAGE_KEY_USERS)
+    if (usersOnLocalStorageString) {
+      defaultUsers = JSON.parse(usersOnLocalStorageString)
+      removeUsersOnLocalStorage = true
+    }
+  }
+
+  const users = process.server
+    ? ref<UserLogin[]>(defaultUsers)
+    : useIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, { deep: true })
+
+  if (removeUsersOnLocalStorage)
+    globalThis.localStorage.removeItem(STORAGE_KEY_USERS)
+
+  return users
+}
+
+const users = initializeUsers()
 const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 

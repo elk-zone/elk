@@ -40,7 +40,7 @@ const votersCountSR = $computed(() => forSR(votersCount))
 </script>
 
 <template>
-  <div flex flex-col w-full items-stretch gap-3>
+  <div flex flex-col w-full items-stretch gap-3 dir="auto">
     <form v-if="!poll.voted && !poll.expired" flex flex-col gap-4 accent-primary @click.stop="noop" @submit.prevent="vote">
       <label v-for="(option, index) of poll.options" :key="index" flex items-center gap-2 px-2>
         <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'">

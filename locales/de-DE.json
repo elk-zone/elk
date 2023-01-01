@@ -227,7 +227,7 @@
     "year_past": "vor 0 Jahren|letztes Jahren|vor {n} Jahren"
   },
   "timeline": {
-    "show_new_items": "Zeige {n} neue Beiträge|Zeige {n} neuen Beitrag|Zeige {n} neue Beiträge"
+    "show_new_items": "Zeige {v} neue Beiträge|Zeige {v} neuen Beitrag|Zeige {v} neue Beiträge"
   },
   "title": {
     "federated_timeline": "Föderierte Timeline",

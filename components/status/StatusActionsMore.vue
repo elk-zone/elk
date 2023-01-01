@@ -94,7 +94,7 @@ async function editStatus() {
 </script>
 
 <template>
-  <CommonDropdown flex-none ml3 placement="bottom" :eager-mount="command">
+  <CommonDropdown flex-none ms3 placement="bottom" :eager-mount="command">
     <StatusActionButton
       :content="$t('action.more')"
       color="text-purple"

@@ -44,7 +44,7 @@ const teams: Team[] = [
       <div i-ri:close-line />
     </button>
 
-    <img src="/logo.svg" w-20 h-20 height="80" width="80" mxa alt="logo">
+    <img :alt="$t('app_logo')" src="/logo.svg" w-20 h-20 height="80" width="80" mxa class="rtl-flip">
     <h1 mxa text-4xl mb4>
       {{ $t('help.title') }}
     </h1>

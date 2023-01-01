@@ -97,14 +97,13 @@ const isDM = $computed(() => status.visibility === 'direct')
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
     :lang="status.language ?? undefined"
-    :dir="status.language ? 'auto' : 'ltr'"
     @click="onclick"
     @keydown.enter="onclick"
   >
     <div flex justify-between>
       <slot name="meta">
         <div v-if="rebloggedBy && !collapseRebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1 bg-base>
-          <div i-ri:repeat-fill mr-1 text-primary />
+          <div i-ri:repeat-fill me-1 text-primary />
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
         </div>
         <div v-else />
@@ -113,11 +112,11 @@ const isDM = $computed(() => status.visibility === 'direct')
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
-        <div v-if="showRebloggedByAvatarOnAvatar" absolute top--3px left--0.8 rtl-left-none rtl-right--0.8 z--1 w-25px h-25px rounded-full>
+        <div v-if="showRebloggedByAvatarOnAvatar" absolute top--3px inset-is--0.8 z--1 w-25px h-25px rounded-full>
           <AccountAvatar :account="rebloggedBy" />
         </div>
-        <div v-else-if="collapseRebloggedBy" absolute left--0.8 rtl-left-none rtl-right--0.8 w-5.5 h-5.5 rounded-full bg-base>
-          <div i-ri:repeat-fill mr-1 text-primary text-sm />
+        <div v-else-if="collapseRebloggedBy" absolute inset-is--0.8 w-5.5 h-5.5 rounded-full bg-base>
+          <div i-ri:repeat-fill me-1 text-primary text-sm />
         </div>
         <AccountHoverWrapper :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
@@ -133,12 +132,12 @@ const isDM = $computed(() => status.visibility === 'direct')
           <AccountHoverWrapper :account="status.account">
             <StatusAccountDetails :account="status.account" />
           </AccountHoverWrapper>
-          <div v-if="!directReply && collapseReplyingTo" flex="~" pl-1 items-center justify-center>
+          <div v-if="!directReply && collapseReplyingTo" flex="~" ps-1 items-center justify-center>
             <StatusReplyingTo :collapsed="true" :status="status" :class="faded ? 'text-secondary-light' : ''" />
           </div>
           <div flex-auto />
           <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
-            <AccountBotIndicator v-if="status.account.bot" mr-2 />
+            <AccountBotIndicator v-if="status.account.bot" me-2 />
             <div flex>
               <CommonTooltip :content="createdAt">
                 <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
@@ -150,7 +149,7 @@ const isDM = $computed(() => status.visibility === 'direct')
               <StatusEditIndicator :status="status" inline />
             </div>
           </div>
-          <StatusActionsMore v-if="actions !== false" :status="status" mr--2 />
+          <StatusActionsMore v-if="actions !== false" :status="status" me--2 />
         </div>
         <StatusContent :status="status" :context="context" mb2 :class="{ mt2: isDM }" />
         <div>

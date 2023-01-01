@@ -53,7 +53,7 @@ const switchUser = (user: UserLogin) => {
       <CommonDropdownItem
         v-if="isMastoInitialised && currentUser"
         :text="$t('user.sign_out_account', [getFullHandle(currentUser.account)])"
-        icon="i-ri:logout-box-line"
+        icon="i-ri:logout-box-line rtl-flip"
         @click="signout"
       />
     </div>

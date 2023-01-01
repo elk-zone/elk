@@ -28,9 +28,9 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
   }
 }
 
-export async function getDraftFromStatus(status: Status, text?: null | string): Promise<Draft> {
+export async function getDraftFromStatus(status: Status): Promise<Draft> {
   return getDefaultDraft({
-    status: text || await convertMastodonHTML(status.content),
+    status: await convertMastodonHTML(status.content),
     mediaIds: status.mediaAttachments.map(att => att.id),
     visibility: status.visibility,
     attachments: status.mediaAttachments,

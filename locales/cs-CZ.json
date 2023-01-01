@@ -146,7 +146,6 @@
   },
   "settings": {
     "feature_flags": {
-      "avatar_on_avatar": "Avatar on Avatar",
       "github_cards": "GitHub Cards",
       "user_picker": "User Picker",
       "virtual_scroll": "Virtual Scrolling"

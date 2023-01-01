@@ -217,7 +217,6 @@
       "label": "About"
     },
     "feature_flags": {
-      "avatar_on_avatar": "Avatar on Avatar",
       "github_cards": "GitHub Cards",
       "title": "Experimental Features",
       "user_picker": "User Picker",
@@ -261,6 +260,7 @@
   },
   "state": {
     "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
+    "attachments_limit_error": "Limit per post exceeded",
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",

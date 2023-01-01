@@ -71,8 +71,12 @@ const deleteAndRedraft = async () => {
   }
 
   removeCachedStatus(status.id)
-  const { text } = await masto.statuses.remove(status.id)
-  openPublishDialog('dialog', await getDraftFromStatus(status, text), true)
+  await masto.statuses.remove(status.id)
+  await openPublishDialog('dialog', await getDraftFromStatus(status), true)
+
+  // Go to the new status, if the page is the old status
+  if (lastPublishDialogStatus.value && route.matched.some(m => m.path === '/:server?/@:account/:status'))
+    router.push(getStatusRoute(lastPublishDialogStatus.value))
 }
 
 const reply = () => {

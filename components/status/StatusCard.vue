@@ -70,9 +70,7 @@ const filter = $computed(() => filterResult?.filter)
 const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
 const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
 
-const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
 const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
-const showRebloggedByAvatarOnAvatar = $computed(() => rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)
 
 // Collapse ReplyingTo badge if it is a self-reply (thread)
 const collapseReplyingTo = $computed(() => (!rebloggedBy || collapseRebloggedBy) && status.inReplyToAccountId === status.account.id)
@@ -90,7 +88,7 @@ const isDM = $computed(() => status.visibility === 'direct')
     v-if="filter?.filterAction !== 'hide'"
     :id="`status-${status.id}`"
     ref="el"
-    relative flex flex-col gap-1 px-4 pt-1
+    relative flex flex-col gap-1 pl-3 pr-4 pt-1
     class="pb-1.5"
     transition-100
     :class="{ 'hover:bg-active': hover, 'border-t border-base': newer && !directReply }"
@@ -102,25 +100,25 @@ const isDM = $computed(() => status.visibility === 'direct')
   >
     <div flex justify-between>
       <slot name="meta">
-        <div v-if="rebloggedBy && !collapseRebloggedBy" text-secondary text-sm ws-nowrap flex="~" gap-1 items-center py1 bg-base>
-          <div i-ri:repeat-fill me-1 text-primary />
-          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
+        <div v-if="rebloggedBy && !collapseRebloggedBy" relative text-secondary ws-nowrap flex="~" items-center pt1 pb0.5 px-1px bg-base>
+          <div i-ri:repeat-fill me-46px text-primary w-16px h-16px />
+          <div absolute top-1 ms-24px w-32px h-32px rounded-full>
+            <AccountAvatar :account="rebloggedBy" />
+          </div>
+          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" text-sm />
         </div>
         <div v-else />
       </slot>
-      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" py1 />
+      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" pt1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
-      <div relative>
-        <div v-if="showRebloggedByAvatarOnAvatar" absolute top--3px inset-is--0.8 z--1 w-25px h-25px rounded-full>
-          <AccountAvatar :account="rebloggedBy" />
-        </div>
-        <div v-else-if="collapseRebloggedBy" absolute inset-is--0.8 w-5.5 h-5.5 rounded-full bg-base>
+      <div z-2>
+        <div v-if="collapseRebloggedBy" absolute inset-is--0.8 w-5.5 h-5.5 rounded-full bg-base>
           <div i-ri:repeat-fill me-1 text-primary text-sm />
         </div>
         <AccountHoverWrapper :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
-            <AccountBigAvatar :account="status.account" :class="showRebloggedByAvatarOnAvatar ? 'mt-11px ' : 'mt-3px'" />
+            <AccountBigAvatar :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
         <div v-if="connectReply" w-full h-full flex justify-center>

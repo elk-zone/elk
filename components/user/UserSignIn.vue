@@ -78,6 +78,13 @@ function onEnter(e: KeyboardEvent) {
   }
 }
 
+function escapeAutocomplete(evt: KeyboardEvent) {
+  if (!autocompleteShow)
+    return
+  autocompleteShow = false
+  evt.stopPropagation()
+}
+
 function select(index: number) {
   server = filteredServers[index]
 }
@@ -86,6 +93,10 @@ onMounted(async () => {
   input?.focus()
   knownServers = await $fetch('/api/list-servers')
   fuse = new Fuse(knownServers, { shouldSort: true })
+})
+
+onClickOutside($$(input), () => {
+  autocompleteShow = false
 })
 </script>
 
@@ -123,7 +134,7 @@ onMounted(async () => {
           @keydown.down="move(1)"
           @keydown.up="move(-1)"
           @keydown.enter="onEnter"
-          @keydown.esc.prevent="autocompleteShow = false"
+          @keydown.esc.prevent="escapeAutocomplete"
           @focus="autocompleteShow = true"
         >
         <div

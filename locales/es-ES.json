@@ -174,6 +174,12 @@
       },
       "save_settings": "Guardar cambios",
       "show_btn": "Mostrar ajustes de las notificaciones push",
+      "subscription_error": {
+        "clear_error": "Limpiar error",
+        "permission_denied": "Permiso denegado: habilite las notificaciones en su navegador.",
+        "request_error": "Se produjo un error al solicitar la suscripción, inténtalo de nuevo y si el error persiste, notifique la incidencia en el repositorio de Elk.",
+        "title": "No se pudo suscribir a las notificaciones push"
+      },
       "title": "Ajustes de notificaciones push",
       "undo_settings": "Deshacer cambios",
       "unsubscribe": "Cancelar notificaciones push",

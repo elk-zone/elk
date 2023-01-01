@@ -23,7 +23,7 @@ const {
     :data-index="index"
     @click="emits('activate')"
   >
-    <div v-if="cmd.icon" mr-2 :class="cmd.icon" />
+    <div v-if="cmd.icon" me-2 :class="cmd.icon" />
 
     <div class="flex-1 flex items-baseline gap-2">
       <div :class="{ 'font-medium': active }">

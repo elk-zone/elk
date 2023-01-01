@@ -334,7 +334,7 @@
     "year_past": "0 years ago|last year|{n} years ago"
   },
   "timeline": {
-    "show_new_items": "Show {n} new items|Show {n} new item|Show {n} new items"
+    "show_new_items": "Show {v} new items|Show {v} new item|Show {v} new items"
   },
   "title": {
     "federated_timeline": "Federated Timeline",

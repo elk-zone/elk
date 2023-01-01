@@ -102,10 +102,10 @@ const meta = $computed(() => {
             <span v-else>{{ meta.user }}</span>
           </a>
           <a sm:text-lg :href="card.url" target="_blank">
-            <span v-if="meta.type === 'issue'" text-secondary-light mr-2>
+            <span v-if="meta.type === 'issue'" text-secondary-light me-2>
               #{{ meta.number }}
             </span>
-            <span v-if="meta.type === 'pull'" text-secondary-light mr-2>
+            <span v-if="meta.type === 'pull'" text-secondary-light me-2>
               PR #{{ meta.number }}
             </span>
             <span text-secondary leading-tight>{{ meta.details }}</span>

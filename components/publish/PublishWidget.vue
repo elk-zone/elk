@@ -236,8 +236,7 @@ defineExpose({
           :aria-describedby="isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'"
           flex="~ col"
           gap-1 text-sm
-          pt-1 pl-2 pr-1 pb-2
-          rtl="pl-1 pr-2"
+          pt-1 ps-2 pe-1 pb-2
           text-red-600 dark:text-red-400
           border="~ base rounded red-600 dark:red-400"
         >
@@ -257,10 +256,10 @@ defineExpose({
               </button>
             </CommonTooltip>
           </head>
-          <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" pl-2 sm:pl-1 text-small>
+          <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-small>
             {{ $t('state.attachments_exceed_server_limit') }}
           </div>
-          <ol pl-2 sm:pl-1>
+          <ol ps-2 sm:ps-1>
             <li v-for="error in failed" :key="error[0]" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
               <strong>{{ error[1] }}:</strong>
               <span>{{ error[0] }}</span>
@@ -282,7 +281,7 @@ defineExpose({
     <div flex gap-4>
       <div w-12 h-full sm:block hidden />
       <div
-        v-if="shouldExpanded" flex="~ gap-2 1" m="l--1" pt-2 justify="between" max-full
+        v-if="shouldExpanded" flex="~ gap-2 1" m="s--1" pt-2 justify="between" max-full
         border="t base"
       >
         <PublishEmojiPicker
@@ -311,7 +310,7 @@ defineExpose({
 
         <div flex-auto />
 
-        <div pointer-events-none pr-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5>
+        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5>
           {{ editor?.storage.characterCount.characters() }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
         </div>
 
@@ -326,7 +325,7 @@ defineExpose({
           <CommonDropdown>
             <button :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon w-12>
               <div :class="currentVisibility.icon" />
-              <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
+              <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
             </button>
 
             <template #popper>

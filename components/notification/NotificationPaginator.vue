@@ -99,13 +99,14 @@ function groupItems(items: Notification[]): NotificationSlot[] {
 }
 
 const { clearNotifications } = useNotifications()
+const { formatNumber } = useHumanReadableNumber()
 </script>
 
 <template>
   <CommonPaginator :paginator="paginator" :stream="stream" :eager="3" event-type="notification">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
-        {{ $t('timeline.show_new_items', [number]) }}
+        {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
     <template #items="{ items }">

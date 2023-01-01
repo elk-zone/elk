@@ -45,8 +45,8 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
           <slot />
         </div>
         <div sm:hidden sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
-          <CommonOfflineChecker :small-screen="isHydrated.value" />
-          <NavBottom v-if="isHydrated.value" />
+          <CommonOfflineChecker :small-screen="isHydrated" />
+          <NavBottom v-if="isHydrated" />
         </div>
       </div>
       <aside v-if="!wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">

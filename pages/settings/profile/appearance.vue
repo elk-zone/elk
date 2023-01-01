@@ -69,6 +69,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <!-- banner -->
         <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
+            v-if="isHydrated"
             ref="elInputImage"
             v-model="form.header"
             :original="onlineSrc.header"
@@ -80,6 +81,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <!-- avatar -->
         <div px-4>
           <CommonInputImage
+            v-if="isHydrated"
             v-model="form.avatar"
             :original="onlineSrc.avatar"
             mt--10

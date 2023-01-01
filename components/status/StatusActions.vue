@@ -19,6 +19,8 @@ const {
   toggleReblog,
 } = $(useStatusActions(props))
 
+const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumber()
+
 const reply = () => {
   if (!checkLogin())
     return
@@ -42,7 +44,17 @@ const reply = () => {
         icon="i-ri:chat-3-line"
         :command="command"
         @click="reply"
-      />
+      >
+        <template v-if="status.repliesCount" #text>
+          <i18n-t keypath="action.reply_count" :plural="status.repliesCount">
+            <CommonTooltip v-if="forSR(status.repliesCount)" :content="formatNumber(status.repliesCount)" placement="bottom">
+              <span aria-hidden="true">{{ formatHumanReadableNumber(status.repliesCount) }}</span>
+              <span sr-only>{{ formatNumber(status.repliesCount) }}</span>
+            </CommonTooltip>
+            <span v-else>{{ formatHumanReadableNumber(status.repliesCount) }}</span>
+          </i18n-t>
+        </template>
+      </StatusActionButton>
     </div>
 
     <div flex-1>
@@ -56,7 +68,17 @@ const reply = () => {
         :disabled="isLoading.reblogged"
         :command="command"
         @click="toggleReblog()"
-      />
+      >
+        <template v-if="status.reblogsCount" #text>
+          <i18n-t keypath="action.boost_count" :plural="status.reblogsCount">
+            <CommonTooltip v-if="forSR(status.repliesCount)" :content="formatNumber(status.repliesCount)" placement="bottom">
+              <span aria-hidden="true">{{ formatHumanReadableNumber(status.repliesCount) }}</span>
+              <span sr-only>{{ formatNumber(status.repliesCount) }}</span>
+            </CommonTooltip>
+            <span v-else>{{ formatHumanReadableNumber(status.repliesCount) }}</span>
+          </i18n-t>
+        </template>
+      </StatusActionButton>
     </div>
 
     <div flex-1>
@@ -70,7 +92,17 @@ const reply = () => {
         :disabled="isLoading.favourited"
         :command="command"
         @click="toggleFavourite()"
-      />
+      >
+        <template v-if="status.favouritesCount" #text>
+          <i18n-t keypath="action.favourite_count" :plural="status.favouritesCount">
+            <CommonTooltip v-if="forSR(status.favouritesCount)" :content="formatNumber(status.favouritesCount)" placement="bottom">
+              <span aria-hidden="true">{{ formatHumanReadableNumber(status.favouritesCount) }}</span>
+              <span sr-only>{{ formatNumber(status.favouritesCount) }}</span>
+            </CommonTooltip>
+            <span v-else>{{ formatHumanReadableNumber(status.favouritesCount) }}</span>
+          </i18n-t>
+        </template>
+      </StatusActionButton>
     </div>
 
     <div flex-none>

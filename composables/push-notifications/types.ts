@@ -2,7 +2,7 @@ import type { Emoji, PushSubscription as MastoPushSubscription, PushSubscription
 
 import type { UserLogin } from '~/types'
 
-export type SubscriptionResult = 'subscribed' | 'notification-denied' | 'invalid-state'
+export type SubscriptionResult = 'subscribed' | 'notification-denied' | 'not-supported' | 'invalid-vapid-key' | 'no-user'
 export interface PushManagerSubscriptionInfo {
   registration: ServiceWorkerRegistration
   subscription: PushSubscription | null

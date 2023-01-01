@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import type { Attachment, CreateStatusParams, StatusVisibility } from 'masto'
+import type { Attachment, CreateStatusParams, Status, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
 import type { Draft } from '~/types'
+
+type FileUploadError = [filename: string, message: string]
 
 const {
   draftKey,
@@ -21,7 +23,9 @@ const {
   dialogLabelledBy?: string
 }>()
 
-const emit = defineEmits(['published'])
+const emit = defineEmits<{
+  (evt: 'published', status: Status): void
+}>()
 
 const { t } = useI18n()
 // eslint-disable-next-line prefer-const
@@ -54,7 +58,8 @@ const currentVisibility = $computed(() => {
 })
 
 let isUploading = $ref<boolean>(false)
-let failed = $ref<File[]>([])
+let isExceedingAttachmentLimit = $ref<boolean>(false)
+let failed = $ref<FileUploadError[]>([])
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -92,18 +97,26 @@ async function uploadAttachments(files: File[]) {
   isUploading = true
   failed = []
   // TODO: display some kind of message if too many media are selected
+  // DONE
   const limit = currentInstance.value!.configuration.statuses.maxMediaAttachments || 4
   for (const file of files.slice(0, limit)) {
-    try {
-      const attachment = await masto.mediaAttachments.create({
-        file,
-      })
-      draft.attachments.push(attachment)
+    if (draft.attachments.length < limit) {
+      isExceedingAttachmentLimit = false
+      try {
+        const attachment = await masto.mediaAttachments.create({
+          file,
+        })
+        draft.attachments.push(attachment)
+      }
+      catch (e) {
+        // TODO: add some human-readable error message, problem is that masto api will not return response code
+        console.error(e)
+        failed = [...failed, [file.name, (e as Error).message]]
+      }
     }
-    catch (e) {
-      // TODO: add some human-readable error message, problem is that masto api will not return response code
-      console.error(e)
-      failed = [...failed, file]
+    else {
+      isExceedingAttachmentLimit = true
+      failed = [...failed, [file.name, t('state.attachments_limit_error')]]
     }
   }
   isUploading = false
@@ -144,14 +157,14 @@ async function publish() {
   try {
     isSending = true
 
+    let status: Status
     if (!draft.editingStatus)
-      await masto.statuses.create(payload)
+      status = await masto.statuses.create(payload)
     else
-      await masto.statuses.update(draft.editingStatus.id, payload)
+      status = await masto.statuses.update(draft.editingStatus.id, payload)
 
     draft = initial()
-    isPublishDialogOpen.value = false
-    emit('published')
+    emit('published', status)
   }
   finally {
     isSending = false
@@ -222,11 +235,10 @@ defineExpose({
         <div
           v-else-if="failed.length > 0"
           role="alert"
-          aria-describedby="upload-failed"
+          :aria-describedby="isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'"
           flex="~ col"
           gap-1 text-sm
-          pt-1 pl-2 pr-1 pb-2
-          rtl="pl-1 pr-2"
+          pt-1 ps-2 pe-1 pb-2
           text-red-600 dark:text-red-400
           border="~ base rounded red-600 dark:red-400"
         >
@@ -246,9 +258,13 @@ defineExpose({
               </button>
             </CommonTooltip>
           </head>
-          <ol pl-2 sm:pl-1>
-            <li v-for="file in failed" :key="file.name">
-              {{ file.name }}
+          <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-small>
+            {{ $t('state.attachments_exceed_server_limit') }}
+          </div>
+          <ol ps-2 sm:ps-1>
+            <li v-for="error in failed" :key="error[0]" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+              <strong>{{ error[1] }}:</strong>
+              <span>{{ error[0] }}</span>
             </li>
           </ol>
         </div>
@@ -267,7 +283,7 @@ defineExpose({
     <div flex gap-4>
       <div w-12 h-full sm:block hidden />
       <div
-        v-if="shouldExpanded" flex="~ gap-2 1" m="l--1" pt-2 justify="between" max-full
+        v-if="shouldExpanded" flex="~ gap-2 1" m="s--1" pt-2 justify="between" max-full
         border="t base"
       >
         <PublishEmojiPicker
@@ -296,7 +312,7 @@ defineExpose({
 
         <div flex-auto />
 
-        <div pointer-events-none pr-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5>
+        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5>
           {{ editor?.storage.characterCount.characters() }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
         </div>
 
@@ -311,7 +327,7 @@ defineExpose({
           <CommonDropdown>
             <button :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon w-12>
               <div :class="currentVisibility.icon" />
-              <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
+              <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
             </button>
 
             <template #popper>

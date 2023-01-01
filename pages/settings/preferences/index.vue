@@ -16,12 +16,6 @@
       {{ $t('settings.feature_flags.virtual_scroll') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="currentUserFeatureFlags.experimentalAvatarOnAvatar"
-      @click="toggleFeatureFlag('experimentalAvatarOnAvatar')"
-    >
-      {{ $t('settings.feature_flags.avatar_on_avatar') }}
-    </SettingsToggleItem>
-    <SettingsToggleItem
       :checked="currentUserFeatureFlags.experimentalGitHubCards"
       @click="toggleFeatureFlag('experimentalGitHubCards')"
     >

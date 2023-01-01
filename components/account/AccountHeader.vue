@@ -90,7 +90,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
             <AccountHandle :account="account" />
           </div>
         </div>
-        <div absolute top-18 right-0 flex gap-2 items-center>
+        <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->

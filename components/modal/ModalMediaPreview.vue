@@ -75,12 +75,12 @@ function onClick(e: MouseEvent) {
       >
         <div i-ri:close-line text-white />
       </button>
-      <div bg="black/30" dark:bg="white/10" ml-4 my-auto text-white rounded-full flex="~ center" overflow-hidden>
+      <div bg="black/30" dark:bg="white/10" ms-4 my-auto text-white rounded-full flex="~ center" overflow-hidden>
         <div v-if="mediaPreviewList.length > 1" p="y-1 x-2" rounded-r-0 shrink-0>
           {{ mediaPreviewIndex + 1 }} / {{ mediaPreviewList.length }}
         </div>
         <p
-          v-if="current.description" bg="dark/30" dark:bg="white/10" p="y-1 x-2" rounded-r-full line-clamp-1
+          v-if="current.description" bg="dark/30" dark:bg="white/10" p="y-1 x-2" rounded-ie-full line-clamp-1
           ws-pre-wrap break-all :title="current.description" w-full
         >
           {{ current.description }}

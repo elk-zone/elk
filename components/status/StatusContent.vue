@@ -23,8 +23,8 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
   <div
     space-y-3
     :class="{
-      'pt2 pb0.5 px3.5 br2 border-1 rounded-3 rounded-tl-none': isDM,
-      'bg-fade border-primary-light': isDM,
+      'pt2 pb0.5 px3.5 bg-fade border-1 border-primary-light rounded-5 mx--1': isDM,
+      'ms--3.5 mt--1': isDM && context !== 'details',
     }"
   >
     <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />

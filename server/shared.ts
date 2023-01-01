@@ -3,7 +3,7 @@ import _fs from 'unstorage/drivers/fs'
 // @ts-expect-error unstorage needs to provide backwards-compatible subpath types
 import _kv from 'unstorage/drivers/cloudflare-kv-http'
 
-import { parseURL } from 'ufo'
+import { stringifyQuery } from 'ufo'
 
 import { $fetch } from 'ofetch'
 import type { Storage } from 'unstorage'
@@ -14,8 +14,6 @@ import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
 
 const config = useRuntimeConfig()
-export const HOST_URL = config.deployUrl
-export const HOST_DOMAIN = parseURL(HOST_URL).host!
 
 const fs = _fs as typeof import('unstorage/dist/drivers/fs')['default']
 const kv = _kv as typeof import('unstorage/dist/drivers/cloudflare-kv-http')['default']
@@ -33,30 +31,30 @@ else if (config.storage.driver === 'cloudflare') {
   })))
 }
 
-export function getRedirectURI(server: string) {
-  return `${HOST_URL}/api/${server}/oauth`
+export function getRedirectURI(origin: string, server: string) {
+  return `${origin}/api/${server}/oauth?${stringifyQuery({ origin })}`
 }
 
-async function fetchAppInfo(server: string) {
+async function fetchAppInfo(origin: string, server: string) {
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
     body: {
       client_name: APP_NAME + (config.public.env === 'local' ? ' (dev)' : ''),
       website: 'https://elk.zone',
-      redirect_uris: getRedirectURI(server),
+      redirect_uris: getRedirectURI(origin, server),
       scopes: 'read write follow push',
     },
   })
   return app
 }
 
-export async function getApp(server: string) {
-  const key = `servers:${HOST_DOMAIN.replace(/[^\w\d]/g, '-')}:${server}.json`
+export async function getApp(origin: string, server: string) {
+  const key = `servers:${origin.replace(/[^\w\d]/g, '-')}:${server}.json`
 
   try {
     if (await storage.hasItem(key))
       return await storage.getItem(key) as Promise<AppInfo>
-    const appInfo = await fetchAppInfo(server)
+    const appInfo = await fetchAppInfo(origin, server)
     await storage.setItem(key, appInfo)
     return appInfo
   }

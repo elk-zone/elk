@@ -64,8 +64,6 @@
   "common": {
     "end_of_list": "Konec seznamu",
     "error": "CHYBA",
-    "kiloSuffix": "K",
-    "megaSuffix": "M",
     "not_found": "404 Nenalezeno!",
     "offline_desc": "Zdá se, že jste offline. Zkontrolujte připojení k internetu."
   },
@@ -146,7 +144,6 @@
   },
   "settings": {
     "feature_flags": {
-      "avatar_on_avatar": "Avatar on Avatar",
       "github_cards": "GitHub Cards",
       "user_picker": "User Picker",
       "virtual_scroll": "Virtual Scrolling"
@@ -225,7 +222,7 @@
     "year_past": "před 0 roky|minulý rok|před {n} lety "
   },
   "timeline": {
-    "show_new_items": "Ukázat {n} nových položek|Ukázat {n} novou položku|Ukázat {n} nových položek"
+    "show_new_items": "Ukázat {v} nových položek|Ukázat {v} novou položku|Ukázat {v} nových položek"
   },
   "title": {
     "federated_timeline": "Federovaná časová osa",

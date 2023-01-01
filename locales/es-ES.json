@@ -83,8 +83,6 @@
     "end_of_list": "Fin",
     "error": "ERROR",
     "in": "en",
-    "kiloSuffix": "K",
-    "megaSuffix": "M",
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer estás fuera de línea. Por favor, comprueba tu conexión a la red."
   },
@@ -174,6 +172,12 @@
       },
       "save_settings": "Guardar cambios",
       "show_btn": "Mostrar ajustes de las notificaciones push",
+      "subscription_error": {
+        "clear_error": "Limpiar error",
+        "permission_denied": "Permiso denegado: habilite las notificaciones en su navegador.",
+        "request_error": "Se produjo un error al solicitar la suscripción, inténtalo de nuevo y si el error persiste, notifique la incidencia en el repositorio de Elk.",
+        "title": "No se pudo suscribir a las notificaciones push"
+      },
       "title": "Ajustes de notificaciones push",
       "undo_settings": "Deshacer cambios",
       "unsubscribe": "Cancelar notificaciones push",
@@ -209,7 +213,6 @@
       "label": "Acerca de"
     },
     "feature_flags": {
-      "avatar_on_avatar": "Avatar en Avatar",
       "github_cards": "Tarjetas GitHub",
       "title": "Características experimentales",
       "user_picker": "Selector de usuarios",
@@ -251,6 +254,8 @@
     }
   },
   "state": {
+    "attachments_exceed_server_limit": "Número máximo de archivos adjuntos por publicación excedido.",
+    "attachments_limit_error": "Límite por publicación excedido",
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Cargando...",
@@ -324,7 +329,7 @@
     "year_past": "hace 0 años|el año pasado|hace {n} años"
   },
   "timeline": {
-    "show_new_items": "Mostrar {n} nuevas publicaciones|Mostrar {n} nueva publicación|Mostrar {n} nuevas publicaciones"
+    "show_new_items": "Mostrar {v} nuevas publicaciones|Mostrar {v} nueva publicación|Mostrar {v} nuevas publicaciones"
   },
   "title": {
     "federated_timeline": "Línea de tiempo federada",

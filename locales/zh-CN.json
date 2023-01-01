@@ -7,7 +7,7 @@
     "route_loaded": "页面{0}已加载"
   },
   "account": {
-    "avatar_description": "{0}的头像",
+    "avatar_description": "{0} 的头像",
     "blocked_by": "您已被此用户拉黑",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
@@ -31,7 +31,7 @@
     "pinned": "置顶的帖文",
     "posts": "帖文",
     "posts_count": "{0} 条帖文",
-    "profile_description": "{0}的个人资料头图",
+    "profile_description": "{0} 的个人资料头图",
     "profile_unavailable": "个人资料不可见",
     "unblock": "取消拉黑",
     "unfollow": "取消关注",
@@ -76,7 +76,7 @@
     "n-people-in-the-past-n-days": "{0} 人在过去 {1} 天",
     "select_lang": "选择语言",
     "sign_in_desc": "添加现有帐户",
-    "switch_account": "切换到{0}",
+    "switch_account": "切换到 {0}",
     "switch_account_desc": "切换到另一个帐户",
     "toggle_dark_mode": "切换深色模式",
     "toggle_zen_mode": "切换禅模式"
@@ -85,8 +85,6 @@
     "end_of_list": "列表到底啦",
     "error": "错误",
     "in": "在",
-    "kiloSuffix": "K",
-    "megaSuffix": "M",
     "not_found": "无法找到相关内容",
     "offline_desc": "您目前已离线，请检查网络连接。"
   },
@@ -217,7 +215,6 @@
       "label": "关于"
     },
     "feature_flags": {
-      "avatar_on_avatar": "头像堆叠",
       "github_cards": "GitHub 卡片",
       "title": "实验功能",
       "user_picker": "用户选择器",
@@ -333,7 +330,7 @@
     "year_past": "现在|去年|{n}年前"
   },
   "timeline": {
-    "show_new_items": "展示 {n} 条新帖文"
+    "show_new_items": "展示 {v} 条新帖文"
   },
   "title": {
     "federated_timeline": "跨站时间线",

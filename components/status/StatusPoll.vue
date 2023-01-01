@@ -66,7 +66,7 @@ const votersCountSR = $computed(() => forSR(votersCount))
     </template>
     <div text-sm flex="~ inline" gap-x-1>
       <i18n-t keypath="status.poll.count" :plural="votersCount">
-        <CommonTooltip v-if="votersCountSR" :content="votersCountNumber" placement="top">
+        <CommonTooltip v-if="votersCountSR" :content="votersCountNumber" placement="bottom">
           <span aria-hidden="true">{{ votersCountHR }}</span>
           <span sr-only>{{ votersCountNumber }}</span>
         </CommonTooltip>

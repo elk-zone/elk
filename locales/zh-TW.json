@@ -333,7 +333,7 @@
     "year_past": "現在|去年|{n}年前"
   },
   "timeline": {
-    "show_new_items": "展示 {n} 條新帖文"
+    "show_new_items": "展示 {v} 條新帖文"
   },
   "title": {
     "federated_timeline": "跨站時間線",

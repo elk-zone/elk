@@ -70,7 +70,6 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
             v-if="isHydrated"
-            ref="elInputImage"
             v-model="form.header"
             :original="onlineSrc.header"
             w-full h-full

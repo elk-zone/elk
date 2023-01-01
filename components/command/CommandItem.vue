@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { ResolvedCommand } from '@/composables/command'
 
-const emits = defineEmits<{
+const emit = defineEmits<{
   (event: 'activate'): void
 }>()
 
@@ -21,7 +21,7 @@ const {
     class="flex px-3 py-2 my-1 items-center rounded-lg hover:bg-active transition-all duration-65 ease-in-out cursor-pointer scroll-m-10"
     :class="{ 'bg-active': active }"
     :data-index="index"
-    @click="emits('activate')"
+    @click="emit('activate')"
   >
     <div v-if="cmd.icon" me-2 :class="cmd.icon" />
 

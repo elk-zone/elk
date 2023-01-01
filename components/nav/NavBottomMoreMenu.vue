@@ -2,10 +2,10 @@
 const props = defineProps<{
   modelValue?: boolean
 }>()
-const emits = defineEmits<{
+const emit = defineEmits<{
   (event: 'update:modelValue', value: boolean): void
 }>()
-const visible = useVModel(props, 'modelValue', emits, { passive: true })
+const visible = useVModel(props, 'modelValue', emit, { passive: true })
 const colorMode = useColorMode()
 
 function changeShow() {

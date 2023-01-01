@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { UserLogin } from '~/types'
 
-const emits = defineEmits<{
+const emit = defineEmits<{
   (event: 'click'): void
 }>()
 
@@ -25,7 +25,7 @@ const switchUser = (user: UserLogin) => {
 </script>
 
 <template>
-  <div sm:min-w-80 max-w-100vw mxa py2 flex="~ col" @click="emits('click')">
+  <div sm:min-w-80 max-w-100vw mxa py2 flex="~ col" @click="emit('click')">
     <template v-for="user of sorted" :key="user.id">
       <button
         flex rounded px4 py3 text-left

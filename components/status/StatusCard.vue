@@ -100,12 +100,12 @@ const isDM = $computed(() => status.visibility === 'direct')
   >
     <div flex justify-between>
       <slot name="meta">
-        <div v-if="rebloggedBy && !collapseRebloggedBy" relative text-secondary text-sm ws-nowrap flex="~" gap-1 items-center pt1 pb0.5 px-1 bg-base>
-          <div i-ri:repeat-fill me-11 text-primary />
-          <div absolute top-1.5 inset-is-7 w-30px h-30px rounded-full>
+        <div v-if="rebloggedBy && !collapseRebloggedBy" relative text-secondary ws-nowrap flex="~" items-center pt1 pb0.5 px-1px bg-base>
+          <div i-ri:repeat-fill me-46px text-primary w-16px h-16px />
+          <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountAvatar :account="rebloggedBy" />
           </div>
-          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" />
+          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" text-sm />
         </div>
         <div v-else />
       </slot>

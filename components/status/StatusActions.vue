@@ -21,16 +21,6 @@ const {
 
 const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumber()
 
-const replyCount = $computed(() => formatNumber(status.repliesCount))
-const replyCountHR = $computed(() => formatHumanReadableNumber(status.repliesCount))
-const replyCountSR = $computed(() => forSR(status.repliesCount))
-const rebloggedCount = $computed(() => formatNumber(status.repliesCount))
-const rebloggedCountHR = $computed(() => formatHumanReadableNumber(status.repliesCount))
-const rebloggedCountSR = $computed(() => forSR(status.repliesCount))
-const favouritesCount = $computed(() => formatNumber(status.favouritesCount))
-const favouritesCountHR = $computed(() => formatHumanReadableNumber(status.favouritesCount))
-const favouritesCountSR = $computed(() => forSR(status.favouritesCount))
-
 const reply = () => {
   if (!checkLogin())
     return
@@ -57,11 +47,11 @@ const reply = () => {
       >
         <template v-if="status.repliesCount" #text>
           <i18n-t keypath="action.reply_count" :plural="status.repliesCount">
-            <CommonTooltip v-if="replyCountSR" :content="replyCount" placement="bottom">
-              <span aria-hidden="true">{{ replyCountHR }}</span>
-              <span sr-only>{{ replyCount }}</span>
+            <CommonTooltip v-if="forSR(status.repliesCount)" :content="formatNumber(status.repliesCount)" placement="bottom">
+              <span aria-hidden="true">{{ formatHumanReadableNumber(status.repliesCount) }}</span>
+              <span sr-only>{{ formatNumber(status.repliesCount) }}</span>
             </CommonTooltip>
-            <span v-else>{{ replyCountHR }}</span>
+            <span v-else>{{ formatHumanReadableNumber(status.repliesCount) }}</span>
           </i18n-t>
         </template>
       </StatusActionButton>
@@ -81,11 +71,11 @@ const reply = () => {
       >
         <template v-if="status.reblogsCount" #text>
           <i18n-t keypath="action.boost_count" :plural="status.reblogsCount">
-            <CommonTooltip v-if="rebloggedCountSR" :content="rebloggedCount" placement="bottom">
-              <span aria-hidden="true">{{ rebloggedCountHR }}</span>
-              <span sr-only>{{ rebloggedCount }}</span>
+            <CommonTooltip v-if="forSR(status.repliesCount)" :content="formatNumber(status.repliesCount)" placement="bottom">
+              <span aria-hidden="true">{{ formatHumanReadableNumber(status.repliesCount) }}</span>
+              <span sr-only>{{ formatNumber(status.repliesCount) }}</span>
             </CommonTooltip>
-            <span v-else>{{ rebloggedCountHR }}</span>
+            <span v-else>{{ formatHumanReadableNumber(status.repliesCount) }}</span>
           </i18n-t>
         </template>
       </StatusActionButton>
@@ -105,11 +95,11 @@ const reply = () => {
       >
         <template v-if="status.favouritesCount" #text>
           <i18n-t keypath="action.favourite_count" :plural="status.favouritesCount">
-            <CommonTooltip v-if="favouritesCountSR" :content="favouritesCount" placement="bottom">
-              <span aria-hidden="true">{{ favouritesCountHR }}</span>
-              <span sr-only>{{ favouritesCount }}</span>
+            <CommonTooltip v-if="forSR(status.favouritesCount)" :content="formatNumber(status.favouritesCount)" placement="bottom">
+              <span aria-hidden="true">{{ formatHumanReadableNumber(status.favouritesCount) }}</span>
+              <span sr-only>{{ formatNumber(status.favouritesCount) }}</span>
             </CommonTooltip>
-            <span v-else>{{ favouritesCountHR }}</span>
+            <span v-else>{{ formatHumanReadableNumber(status.favouritesCount) }}</span>
           </i18n-t>
         </template>
       </StatusActionButton>

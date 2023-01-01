@@ -149,7 +149,7 @@ const isDM = $computed(() => status.visibility === 'direct')
           </div>
           <StatusActionsMore v-if="actions !== false" :status="status" me--2 />
         </div>
-        <StatusContent :status="status" :context="context" mb2 :class="{ mt2: isDM }" />
+        <StatusContent :status="status" :context="context" mb2 :class="{ 'mt-2 mb1': isDM }" />
         <div>
           <StatusActions v-if="(actions !== false && !isZenMode)" :status="status" />
         </div>

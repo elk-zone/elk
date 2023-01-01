@@ -17,6 +17,10 @@ defineOptions({
   inheritAttrs: false,
 })
 
+defineSlots<{
+  text: {}
+}>()
+
 const el = ref<HTMLDivElement>()
 
 useCommand({
@@ -58,10 +62,14 @@ useCommand({
       </div>
     </CommonTooltip>
 
-    <CommonAnimateNumber v-if="text !== undefined" :increased="active" text-sm>
-      <span text-secondary-light>{{ text }}</span>
+    <CommonAnimateNumber v-if="text !== undefined || $slots.text" :increased="active" text-sm>
+      <span text-secondary-light>
+        <slot name="text">{{ text }}</slot>
+      </span>
       <template #next>
-        <span :class="[color]">{{ text }}</span>
+        <span :class="[color]">
+          <slot name="text">{{ text }}</slot>
+        </span>
       </template>
     </CommonAnimateNumber>
   </component>

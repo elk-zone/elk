@@ -156,7 +156,7 @@
   "notification": {
     "favourited_post": "أُعجِب بمنشورك",
     "followed_you": "بدأ في متابعتك",
-    "followed_you_count": "تبعك {followers} أشخاص|تبعك {followers} شخص| تبعك {followers} أشخاص",
+    "followed_you_count": "لم يتبعك أحد|تبعك شخص واحد|تبعك شخصان|تبعك {followers} أشخاص|تبعك {followers} شخص| تبعك {followers} شخص",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "اعاد نشر منشورك",
     "request_to_follow": "طلب(ت) متابعتك",

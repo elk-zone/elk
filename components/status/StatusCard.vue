@@ -31,7 +31,7 @@ const status = $computed(() => {
 // Use original status, avoid connecting a reblog
 const directReply = $computed(() => props.hasNewer || (!!status.inReplyToId && (status.inReplyToId === props.newer?.id || status.inReplyToId === props.newer?.reblog?.id)))
 // Use reblogged status, connect it to further replies
-const connectReply = $computed(() => props.hasOlder || status.id === props.older?.inReplyToId)
+const connectReply = $computed(() => props.hasOlder || status.id === props.older?.inReplyToId || status.id === props.older?.reblog?.inReplyToId)
 
 const rebloggedBy = $computed(() => props.status.reblog ? props.status.account : null)
 
@@ -112,7 +112,7 @@ const isDM = $computed(() => status.visibility === 'direct')
       <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" pt1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
-      <div z-2 relative>
+      <div relative>
         <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
           <div i-ri:repeat-fill text-primary w-16px h-16px />
         </div>

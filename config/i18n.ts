@@ -107,11 +107,13 @@ const numberFormats = Object.values(locales).reduce((acc, data) => {
         maximumFractionDigits: 0,
       },
       kiloCounting: {
-        style: 'decimal',
+        notation: 'compact',
+        compactDisplay: 'short',
         maximumFractionDigits: 1,
       },
       millionCounting: {
-        style: 'decimal',
+        notation: 'compact',
+        compactDisplay: 'short',
         maximumFractionDigits: 2,
       },
     }

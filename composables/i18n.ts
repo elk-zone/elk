@@ -8,18 +8,18 @@ export const formattedNumber = (num: number, useFormatter: Intl.NumberFormat = f
 }
 
 export const useHumanReadableNumber = () => {
-  const { t, n, locale } = useI18n()
+  const { n, locale } = useI18n()
 
   const fn = (num: number) => {
-    if (num < 10000)
-      return n(num, 'smallCounting', locale.value)
-
-    // show 1 decimal: we cannot use toFixed(1), it is a string
-    if (num < 1000000)
-      return `${n(Math.floor(num / 100) / 10, 'kiloCounting', locale.value)}${t('common.kiloSuffix')}`
-
-    // show 2 decimals: we cannot use toFixed(2), it is a string
-    return `${n(Math.floor(num / 10000) / 100, 'millionCounting', locale.value)}${t('common.megaSuffix')}`
+    return n(
+      num,
+      num < 10000
+        ? 'smallCounting'
+        : num < 1000000
+          ? 'kiloCounting'
+          : 'millionCounting',
+      locale.value,
+    )
   }
 
   return {

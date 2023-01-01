@@ -85,8 +85,6 @@
     "end_of_list": "End of the list",
     "error": "ERROR",
     "in": "in",
-    "kiloSuffix": "K",
-    "megaSuffix": "M",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
   },

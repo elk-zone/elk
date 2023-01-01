@@ -5,14 +5,14 @@ specifiers:
   '@antfu/ni': ^0.18.8
   '@emoji-mart/data': ^1.1.0
   '@fnando/sparkline': ^0.3.10
-  '@iconify-emoji/twemoji': ^1.0.0
+  '@iconify-emoji/twemoji': ^1.0.2
   '@iconify-json/carbon': ^1.1.11
   '@iconify-json/logos': ^1.1.19
   '@iconify-json/material-symbols': ^1.1.26
   '@iconify-json/ph': ^1.1.3
   '@iconify-json/ri': ^1.1.4
   '@iconify-json/twemoji': ^1.1.7
-  '@iconify/utils': ^2.0.6
+  '@iconify/utils': ^2.0.7
   '@nuxtjs/i18n': ^8.0.0-beta.7
   '@pinia/nuxt': ^0.4.6
   '@tiptap/extension-character-count': 2.0.0-beta.204
@@ -78,8 +78,8 @@ specifiers:
 
 dependencies:
   '@fnando/sparkline': 0.3.10
-  '@iconify-emoji/twemoji': 1.0.0
-  '@iconify/utils': 2.0.6
+  '@iconify-emoji/twemoji': 1.0.2
+  '@iconify/utils': 2.0.7
   '@tiptap/extension-character-count': 2.0.0-beta.204
   '@tiptap/extension-code-block': 2.0.0-beta.204
   '@tiptap/extension-mention': 2.0.0-beta.204_ggkstofzpnfxkp3gzsos4mewvi
@@ -1569,8 +1569,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@iconify-emoji/twemoji/1.0.0:
-    resolution: {integrity: sha512-+tk3OEAdun36ojEN0sGGl5k+uTaF7ONZfiTpe6wu0dRtpo6M0geRNuVJB7XNAe5O3cYq+nPyku7j9MG7dyVwNg==}
+  /@iconify-emoji/twemoji/1.0.2:
+    resolution: {integrity: sha512-C4W6ov4BkDXiVU3GzyqyVo8SBbU21KivXnZERgAnrYZEKjuiI3JwPDnu9oVJPsUkNI/Q4SM8iVnXjGW6kxt9DQ==}
     dev: false
 
   /@iconify-json/carbon/1.1.11:
@@ -1612,8 +1612,8 @@ packages:
   /@iconify/types/2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
-  /@iconify/utils/2.0.6:
-    resolution: {integrity: sha512-XVC4T1gKbtKBjwvWdTthYkRWNNiGDfsbyuTvFdbcOux77KIF2w03hQMxKcMTtFwezzW/DV5CC3DNZfY3Tcs0hA==}
+  /@iconify/utils/2.0.7:
+    resolution: {integrity: sha512-xFsq4FGXNZKZoZVpf/DB+LO76yxK1pu0KwE1BM/z5bNimVEo6sac7pSZD1Q2Q+x+i4iThFdIZh9IaxRT/Y6aEw==}
     dependencies:
       '@antfu/install-pkg': 0.1.1
       '@antfu/utils': 0.7.2
@@ -1636,8 +1636,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.3.0-beta.11
-      '@intlify/shared': 9.3.0-beta.11
+      '@intlify/message-compiler': 9.3.0-beta.12
+      '@intlify/shared': 9.3.0-beta.12
       jsonc-eslint-parser: 1.4.1
       source-map: 0.6.1
       vue-i18n: 9.3.0-beta.10
@@ -1669,8 +1669,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /@intlify/message-compiler/9.3.0-beta.11:
-    resolution: {integrity: sha512-gGGfBGzM7JBXp1Q9gbDAy5jELz9ho3ILqnpxp2yp64+gkqohrqc2YXIvCdwZoc6AtKIh/Zmv4sWVqxkvMsBWtQ==}
+  /@intlify/message-compiler/9.3.0-beta.12:
+    resolution: {integrity: sha512-A8/s7pb3v8nf6HG77qFPJntxgQKI9GXxGnkn7aO+b03/X/GkF/4WceDSAIk3i+yLeIgszeBn9GZ23tSg4sTEHA==}
     engines: {node: '>= 14'}
     dependencies:
       '@intlify/shared': 9.3.0-beta.11
@@ -1684,6 +1684,11 @@ packages:
 
   /@intlify/shared/9.3.0-beta.11:
     resolution: {integrity: sha512-CtbotesxTRiC3bRyXyv1NG39fkqJ790f8z8xFaeIXSZpOdiyxoh5BIyypCzSFQZDGLwz0Q9gyWbW1XpxQJm68Q==}
+    engines: {node: '>= 14'}
+    dev: true
+
+  /@intlify/shared/9.3.0-beta.12:
+    resolution: {integrity: sha512-WsmaS54sA8xuwezPKpa/OMoaX1v2VF2fCgAmYS6prDr2ir0CkUFWPm9A8ilmxzv4nkS61/v8+vf4lGGkn5uBdA==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -1703,7 +1708,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 3.4.0_vue-i18n@9.3.0-beta.10
-      '@intlify/shared': 9.3.0-beta.11
+      '@intlify/shared': 9.3.0-beta.12
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.2.45
       debug: 4.3.4
@@ -2942,7 +2947,7 @@ packages:
   /@unocss/preset-icons/0.48.0:
     resolution: {integrity: sha512-3vro36gTkjEic5rO9BcUudby8tQ9ZRCduKZ1+4CKP0hKoB58nDm1QZM+kvWQ8RVN2xoSU9vWkHhx1RLl8miE0g==}
     dependencies:
-      '@iconify/utils': 2.0.6
+      '@iconify/utils': 2.0.7
       '@unocss/core': 0.48.0
       ohmyfetch: 0.4.21
     transitivePeerDependencies:
@@ -10086,7 +10091,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.11
+      '@intlify/shared': 9.3.0-beta.12
       '@intlify/vue-i18n-bridge': 0.8.0_vue-i18n@9.3.0-beta.10
       '@intlify/vue-router-bridge': 0.8.0
       ufo: 1.0.1

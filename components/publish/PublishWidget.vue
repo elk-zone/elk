@@ -5,6 +5,8 @@ import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
 import type { Draft } from '~/types'
 
+type FileUploadError = [filename: string, message: string]
+
 const {
   draftKey,
   initial = getDefaultDraft() as never /* Bug of vue-core */,
@@ -57,7 +59,7 @@ const currentVisibility = $computed(() => {
 
 let isUploading = $ref<boolean>(false)
 let isExceedingAttachmentLimit = $ref<boolean>(false)
-let failed = $ref<File[]>([])
+let failed = $ref<FileUploadError[]>([])
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -109,12 +111,12 @@ async function uploadAttachments(files: File[]) {
       catch (e) {
         // TODO: add some human-readable error message, problem is that masto api will not return response code
         console.error(e)
-        failed = [...failed, file]
+        failed = [...failed, [file.name, (e as Error).message]]
       }
     }
     else {
       isExceedingAttachmentLimit = true
-      failed = [...failed, file]
+      failed = [...failed, [file.name, t('state.attachments_limit_error')]]
     }
   }
   isUploading = false
@@ -233,7 +235,7 @@ defineExpose({
         <div
           v-else-if="failed.length > 0"
           role="alert"
-          aria-describedby="upload-failed"
+          :aria-describedby="isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'"
           flex="~ col"
           gap-1 text-sm
           pt-1 ps-2 pe-1 pb-2
@@ -256,12 +258,13 @@ defineExpose({
               </button>
             </CommonTooltip>
           </head>
-          <div v-if="isExceedingAttachmentLimit" ps-2 sm:ps-1 text-small>
+          <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-small>
             {{ $t('state.attachments_exceed_server_limit') }}
           </div>
           <ol ps-2 sm:ps-1>
-            <li v-for="file in failed" :key="file.name">
-              {{ file.name }}
+            <li v-for="error in failed" :key="error[0]" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+              <strong>{{ error[1] }}:</strong>
+              <span>{{ error[0] }}</span>
             </li>
           </ol>
         </div>

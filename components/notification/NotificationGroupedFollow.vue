@@ -13,15 +13,12 @@ const isExpanded = ref(false)
 const lang = $computed(() => {
   return count > 1 || count === 0 ? undefined : items.items[0].status?.language
 })
-const dir = $computed(() => {
-  return lang ? 'auto' : 'ltr'
-})
 </script>
 
 <template>
-  <article flex flex-col relative :lang="lang ?? undefined" :dir="dir">
+  <article flex flex-col relative :lang="lang ?? undefined">
     <div flex items-center top-0 left-2 pt-2 px-3>
-      <div i-ri:user-follow-fill mr-3 color-primary aria-hidden="true" />
+      <div i-ri:user-follow-fill me-3 color-primary aria-hidden="true" />
       <template v-if="count > 1">
         <template v-if="addSR">
           <span
@@ -39,11 +36,11 @@ const dir = $computed(() => {
       </template>
       <template v-else>
         <ContentRich
-          text-primary mr-1 font-bold line-clamp-1 ws-pre-wrap break-all
+          text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
           :content="getDisplayName(items.items[0]?.account, { rich: true })"
           :emojis="items.items[0]?.account.emojis"
         />
-        <span mr-1 ws-nowrap>
+        <span me-1 ws-nowrap>
           {{ $t('notification.followed_you') }}
         </span>
       </template>

@@ -21,7 +21,7 @@ defineProps<{
             :class="{ 'lg:hidden': backOnSmallScreen }"
             @click="$router.go(-1)"
           >
-            <div i-ri:arrow-left-line />
+            <div i-ri:arrow-left-line class="rtl-flip" />
           </NuxtLink>
           <div truncate>
             <slot name="title" />

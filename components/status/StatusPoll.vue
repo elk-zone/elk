@@ -13,7 +13,7 @@ function toPercentage(num: number) {
 const timeAgoOptions = useTimeAgoOptions()
 const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)
 const expiredTimeFormatted = useFormattedDateTime(poll.expiresAt!)
-const { formatHumanReadableNumber } = useHumanReadableNumber()
+const { formatHumanReadableNumber, formatNumber, formatPercentage, forSR } = useHumanReadableNumber()
 
 const masto = useMasto()
 async function vote(e: Event) {
@@ -32,10 +32,15 @@ async function vote(e: Event) {
 
   await masto.poll.vote(poll.id, { choices })
 }
+
+const votersCount = $computed(() => poll.votersCount ?? 0)
+const votersCountHR = $computed(() => formatHumanReadableNumber(votersCount))
+const votersCountNumber = $computed(() => formatNumber(votersCount))
+const votersCountSR = $computed(() => forSR(votersCount))
 </script>
 
 <template>
-  <div flex flex-col w-full items-stretch gap-3>
+  <div flex flex-col w-full items-stretch gap-3 dir="auto">
     <form v-if="!poll.voted && !poll.expired" flex flex-col gap-4 accent-primary @click.stop="noop" @submit.prevent="vote">
       <label v-for="(option, index) of poll.options" :key="index" flex items-center gap-2 px-2>
         <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'">
@@ -50,17 +55,23 @@ async function vote(e: Event) {
         <div flex justify-between pb-2 w-full>
           <span inline-flex align-items>
             {{ option.title }}
-            <span v-if="poll.voted && poll.ownVotes?.includes(index)" ml-2 mt-1 inline-block i-ri:checkbox-circle-line />
+            <span v-if="poll.voted && poll.ownVotes?.includes(index)" ms-2 mt-1 inline-block i-ri:checkbox-circle-line />
           </span>
-          <span text-primary-active> {{ poll.votesCount ? toPercentage((option.votesCount || 0) / (poll.votesCount)) : '0%' }}</span>
+          <span text-primary-active> {{ formatPercentage(votersCount > 0 ? (option.votesCount || 0) / votersCount : 0) }}</span>
         </div>
         <div class="bg-gray/40" rounded-l-sm rounded-r-lg h-5px w-full>
           <div bg-primary-active h-full class="w-[var(--bar-width)]" />
         </div>
       </div>
     </template>
-    <div text-sm>
-      {{ $t('status.poll.count', [formatHumanReadableNumber(poll.votersCount ?? 0)]) }}
+    <div text-sm flex="~ inline" gap-x-1>
+      <i18n-t keypath="status.poll.count" :plural="votersCount">
+        <CommonTooltip v-if="votersCountSR" :content="votersCountNumber" placement="bottom">
+          <span aria-hidden="true">{{ votersCountHR }}</span>
+          <span sr-only>{{ votersCountNumber }}</span>
+        </CommonTooltip>
+        <span v-else>{{ votersCountNumber }}</span>
+      </i18n-t>
       &middot;
       <CommonTooltip :content="expiredTimeFormatted" class="inline-block" placement="right">
         <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>

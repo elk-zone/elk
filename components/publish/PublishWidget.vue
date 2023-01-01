@@ -3,6 +3,7 @@ import type { Attachment, CreateStatusParams, Status, StatusVisibility } from 'm
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
+import ISO6391 from 'iso-639-1'
 import type { Draft } from '~/types'
 
 type FileUploadError = [filename: string, message: string]
@@ -133,6 +134,10 @@ function removeAttachment(index: number) {
 
 function chooseVisibility(visibility: StatusVisibility) {
   draft.params.visibility = visibility
+}
+
+function chooseLanguage(language: string | null) {
+  draft.params.language = language
 }
 
 async function publish() {
@@ -321,6 +326,41 @@ defineExpose({
             <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
             <div v-else i-ri:alarm-warning-line />
           </button>
+        </CommonTooltip>
+
+        <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
+          <CommonDropdown placement="bottom">
+            <button btn-action-icon :aria-label="$t('tooltip.change_language')">
+              <div i-ri:translate-2 />
+              <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+            </button>
+
+            <template #popper>
+              <div min-w-80 p3>
+                <!-- TODO search lang -->
+                <!-- <input
+                  placeholder="Search"
+                  p2 mb2 border-rounded w-full bg-transparent
+                  outline-none border="~ base"
+                > -->
+                <div max-h-40vh overflow-auto>
+                  <CommonDropdownItem
+                    v-for="code in [null, ...ISO6391.getAllCodes()]"
+                    :key="code"
+                    :checked="code === (draft.params.language || null)"
+                    @click="chooseLanguage(code)"
+                  >
+                    {{ code ? ISO6391.getNativeName(code) : 'None' }}
+                    <template #description>
+                      <template v-if="code">
+                        {{ ISO6391.getName(code) }}
+                      </template>
+                    </template>
+                  </CommonDropdownItem>
+                </div>
+              </div>
+            </template>
+          </CommonDropdown>
         </CommonTooltip>
 
         <CommonTooltip placement="bottom" :content="$t('tooltip.change_content_visibility')">

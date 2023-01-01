@@ -139,8 +139,8 @@ export function setAccountInfo(userId: string, account: AccountCredentials) {
 }
 
 export async function pullMyAccountInfo() {
-  const me = await useMasto().accounts.verifyCredentials()
-  setAccountInfo(currentUserId.value, me)
+  const account = await useMasto().accounts.verifyCredentials()
+  setAccountInfo(currentUserId.value, account)
 }
 
 export function getUsersIndexByUserId(userId: string) {

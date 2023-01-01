@@ -112,9 +112,9 @@ const isDM = $computed(() => status.visibility === 'direct')
       <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" pt1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
-      <div z-2>
-        <div v-if="collapseRebloggedBy" absolute inset-is--0.8 w-5.5 h-5.5 rounded-full bg-base>
-          <div i-ri:repeat-fill me-1 text-primary text-sm />
+      <div z-2 relative>
+        <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
+          <div i-ri:repeat-fill text-primary w-16px h-16px />
         </div>
         <AccountHoverWrapper :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>

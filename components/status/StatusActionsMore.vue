@@ -71,8 +71,8 @@ const deleteAndRedraft = async () => {
   }
 
   removeCachedStatus(status.id)
-  const { text } = await masto.statuses.remove(status.id)
-  openPublishDialog('dialog', await getDraftFromStatus(status, text), true)
+  await masto.statuses.remove(status.id)
+  openPublishDialog('dialog', await getDraftFromStatus(status), true)
 }
 
 const reply = () => {

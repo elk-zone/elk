@@ -42,18 +42,24 @@
     "bookmark": "Ajouter aux marque-pages",
     "bookmarked": "Ajouté aux marque-pages",
     "boost": "Partager",
+    "boost_count": "{0}",
     "boosted": "Partagé",
+    "clear_upload_failed": "Effacer les erreurs de téléversement de fichier",
     "close": "Fermer",
     "compose": "Composer",
+    "confirm": "Confirmer",
     "edit": "Editer",
     "enter_app": "Entrer dans l'application",
     "favourite": "Ajouter aux favoris",
+    "favourite_count": "{0}",
     "favourited": "Ajouté aux favoris",
     "more": "Plus",
     "next": "Suivant",
     "prev": "Précédent",
     "publish": "Publier",
     "reply": "Répondre",
+    "reply_count": "{0}",
+    "save": "Enregistrer",
     "save_changes": "Enregistrer les changements",
     "sign_in": "Se connecter",
     "switch_account": "Changer de compte",
@@ -91,8 +97,10 @@
   "error": {
     "account_not_found": "Compte {0} non trouvé",
     "explore-list-empty": "Pas de tendence en ce moment. Revenez plus tard!",
+    "file_size_cannot_exceed_n_mb": "La taille du fichier dépasse les {0}MB",
     "sign_in_error": "Impossible de se connecter au serveur.",
-    "status_not_found": "Message non trouvé"
+    "status_not_found": "Message non trouvé",
+    "unsupported_file_format": "Format de fichier non supporté"
   },
   "help": {
     "desc_highlight": "Il est possible de rencontrer, par-ci par-là, quelques bugs et fonctionnalités manquantes.",
@@ -139,7 +147,9 @@
     "profile": "Profil",
     "search": "Rechercher",
     "select_feature_flags": "Activer/Désactiver Feature Flags",
+    "select_font_size": "Taille de la police",
     "select_language": "Selectionner langue",
+    "settings": "Paramètres",
     "show_intro": "Ré-afficher l'introduction",
     "toggle_theme": "Changer de thème",
     "zen_mode": "Mode Zen"
@@ -170,6 +180,12 @@
       },
       "save_settings": "Enregistrer les paramètres",
       "show_btn": "Montrer les paramètres de notification push",
+      "subscription_error": {
+        "clear_error": "Effacer l'erreur",
+        "permission_denied": "Autorisation refusée : activez les notifications dans votre navigateur.",
+        "request_error": "Une erreur s'est produite lors de la demande d'abonnement, réessayez et si l'erreur persiste, veuillez signaler le problème auprès du dépôt Elk.",
+        "title": "Impossible de s'abonner aux notifications push"
+      },
       "title": "Paramètres des notifications push",
       "undo_settings": "Annuler les changements de paramètres",
       "unsubscribe": "Désactiver les notifications push",
@@ -180,7 +196,8 @@
         "enable_description": "Pour recevoir des notifications lorsque Elk n'est pas ouvert, activez les notifications push. \nVous pouvez contrôler précisément quels types d'interactions génèrent des notifications push via le bouton \"@:notification.settings.show_btn{'\"'} ci-dessus une fois activé.",
         "enable_description_short": "Pour modifier les paramètres des notifications push lorsque Elk n'est pas ouvert, vous devez d'abord activer les notifications push.",
         "enable_desktop": "Activer les notifications push",
-        "enable_title": "Ne manquez jamais rien"
+        "enable_title": "Ne manquez jamais rien",
+        "re_auth": "Il semble que votre serveur ne supporte pas les notifications push. \nEssayez de vous déconnecter et de vous reconnecter, si ce message persiste, contactez l'administrateur de votre serveur."
       }
     },
     "signed_up": "s'est inscrit·e",
@@ -203,16 +220,58 @@
     "search_desc": "Recherche de personnes & hashtags"
   },
   "settings": {
+    "about": {
+      "label": "À propos"
+    },
     "feature_flags": {
       "github_cards": "GitHub Cards",
+      "title": "Fonctionnalités expérimentales",
       "user_picker": "User Picker",
       "virtual_scroll": "Défilement virtuel"
+    },
+    "interface": {
+      "color_mode": "Couleur de thème",
+      "dark_mode": "Mode sombre",
+      "default": "(défaut)",
+      "font_size": "Taille de police",
+      "label": "Interface",
+      "light_mode": "Mode lumineux"
+    },
+    "language": {
+      "display_language": "Langue d'affichage",
+      "label": "Langue"
+    },
+    "preferences": {
+      "label": "Préférences"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bio",
+        "description": "Editer l'avatar, nom d'utilisateur, profile, etc.",
+        "display_name": "Nom d'affichage",
+        "label": "Apparence",
+        "title": "Editer le profile"
+      },
+      "featured_tags": {
+        "description": "Les gens peuvent parcourir vos messages publics sous ces hashtags.",
+        "label": "Hashtags en vedette"
+      },
+      "label": "Profil"
+    },
+    "select_a_settings": "Sélectionner un paramètre",
+    "users": {
+      "export": "Exporter les tokens d'utilisateur",
+      "import": "Importer des tokens d'utilisateur",
+      "label": "Utilisateurs connectés"
     }
   },
   "state": {
+    "attachments_exceed_server_limit": "Le nombre de pièces jointes a dépassé la limite par message.",
+    "attachments_limit_error": "Limite par publication dépassée",
     "edited": "(Édité)",
     "editing": "Édition",
     "loading": "Chargement...",
+    "upload_failed": "Le téléversement a échoué",
     "uploading": "Téléversement en cours..."
   },
   "status": {
@@ -292,6 +351,7 @@
     "add_content_warning": "Ajouter un avertissement de contenu",
     "add_media": "Ajouter des images, une vidéo ou un fichier audio",
     "change_content_visibility": "Ajuster la confidentialité du message",
+    "change_language": "Changer la langue",
     "emoji": "Emoji",
     "explore_links_intro": "Ces actualités sont sujets à discussions sur ce serveur et sur d'autres serveurs du réseau décentralisé.",
     "explore_posts_intro": "Ces publications de ce serveur et d'autres serveurs du réseau décentralisé gagnent du terrain sur ce serveur en ce moment.",
@@ -302,6 +362,7 @@
     "add_existing": "Ajouter un compte existant",
     "server_address_label": "Adresse du serveur mastodon",
     "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, mettre en favoris, partager et répondre à des messages, ou interagir à partir de votre compte sur un autre serveur...",
+    "sign_in_notice_title": "Affichage de {0} données publiques",
     "sign_out_account": "Se déconnecter de {0}",
     "tip_no_account": "Si vous n'avez pas encore de compte Mastodon, {0}.",
     "tip_register_account": "choisissez votre serveur et enregistrez-en un"

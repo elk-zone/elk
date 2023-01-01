@@ -125,11 +125,12 @@ onClickOutside($$(input), () => {
         <input
           ref="input"
           v-model="server"
+          autocapitalize="off"
+          inputmode="url"
           outline-none bg-transparent w-full max-w-50
           spellcheck="false"
           autocorrect="off"
           autocomplete="off"
-          autocapitalize="none"
           @input="handleInput"
           @keydown.down="move(1)"
           @keydown.up="move(-1)"

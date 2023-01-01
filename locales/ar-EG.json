@@ -217,7 +217,6 @@
       "label": "بشأن Elk"
     },
     "feature_flags": {
-      "avatar_on_avatar": "الصورة الرمزية على الصورة الرمزية",
       "github_cards": "GitHub بطاقات",
       "title": "الميزات التجريبية",
       "user_picker": "الشريط الجانبي لمبدل المستخدم",

@@ -217,7 +217,6 @@
       "label": "About"
     },
     "feature_flags": {
-      "avatar_on_avatar": "Avatar on Avatar",
       "github_cards": "GitHub Cards",
       "title": "Experimental Features",
       "user_picker": "User Picker",

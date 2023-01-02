@@ -14,7 +14,7 @@ To develop and test the Elk package:
 
 2. Ensure using the latest Node.js (16.x)
 
-3. Elk uses pnpm v7, tou must enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`.
+3. Elk uses pnpm v7, you must enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`.
 
 4. Check out a branch where you can work and commit your changes:
 ```shell

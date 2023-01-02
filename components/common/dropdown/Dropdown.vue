@@ -7,8 +7,13 @@ defineProps<{
 const dropdown = $ref<any>()
 const colorMode = useColorMode()
 
+const hide = () => dropdown.hide()
 provide(dropdownContextKey, {
-  hide: () => dropdown.hide(),
+  hide,
+})
+
+defineExpose({
+  hide,
 })
 </script>
 

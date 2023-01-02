@@ -17,8 +17,9 @@ const onlineSrc = $computed(() => ({
 
 const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => {
+    // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: 4 }, (_, i) => {
-      return acccount?.fields?.[i] || { name: '', value: '' }
+      return { ...acccount?.fields?.[i] || { name: '', value: '' } }
     })
     return {
       displayName: acccount?.displayName ?? '',
@@ -144,6 +145,8 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
             </div>
           </div>
         </div>
+
+        {{ dirtyFields }}
 
         <!-- submit -->
         <div text-right>

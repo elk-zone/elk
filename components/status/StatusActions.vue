@@ -71,11 +71,11 @@ const reply = () => {
       >
         <template v-if="status.reblogsCount" #text>
           <i18n-t keypath="action.boost_count" :plural="status.reblogsCount">
-            <CommonTooltip v-if="forSR(status.repliesCount)" :content="formatNumber(status.repliesCount)" placement="bottom">
-              <span aria-hidden="true">{{ formatHumanReadableNumber(status.repliesCount) }}</span>
-              <span sr-only>{{ formatNumber(status.repliesCount) }}</span>
+            <CommonTooltip v-if="forSR(status.reblogsCount)" :content="formatNumber(status.reblogsCount)" placement="bottom">
+              <span aria-hidden="true">{{ formatHumanReadableNumber(status.reblogsCount) }}</span>
+              <span sr-only>{{ formatNumber(status.reblogsCount) }}</span>
             </CommonTooltip>
-            <span v-else>{{ formatHumanReadableNumber(status.repliesCount) }}</span>
+            <span v-else>{{ formatHumanReadableNumber(status.reblogsCount) }}</span>
           </i18n-t>
         </template>
       </StatusActionButton>

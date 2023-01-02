@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { UpdateCredentialsParams } from 'masto'
 import { useForm } from 'slimeform'
+import { parse } from 'ultrahtml'
 
 definePageMeta({
   middleware: 'auth',
@@ -19,7 +20,13 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: 4 }, (_, i) => {
-      return { ...account?.fields?.[i] || { name: '', value: '' } }
+      const field = { ...account?.fields?.[i] || { name: '', value: '' } }
+
+      const linkElement = (parse(field.value)?.children?.[0])
+      if (linkElement && linkElement?.attributes?.href)
+        field.value = linkElement.attributes.href
+
+      return field
     })
     return {
       displayName: account?.displayName ?? '',

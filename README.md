@@ -23,9 +23,9 @@ The client is deployed to [elk.zone](https://elk.zone), you can share screenshot
 
 We want to thanks the generous sponsoring and help of:
 
-<div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;" >
+<div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
   <div style="border-radius: 20px; background-color: #22272e; width: 500px; height: 100px; display: grid; align-items: center; justify-items: center;">
-    <a href="https://nuxtlabs.com/" target="_blank" rel="noopener noreferrer">
+    <a href="https://nuxtlabs.com/" target="_blank" rel="noopener noreferrer" >
       <img src="https://user-images.githubusercontent.com/11247099/210197359-83cb4232-3647-4400-8ac8-b68909ed4516.svg" alt="NuxtLabs" height="50">
     </a>
   </div>
@@ -64,7 +64,7 @@ pnpm i
 pnpm run dev
 ```
 
-`Warning`: you will need `corepack` enabled, check out the [Elk Contributing Guide](./CONTRIBUTING) for a detailed guide on how to set up the project locally.
+`Warning`: you will need `corepack` enabled, check out the [Elk Contributing Guide](./CONTRIBUTING.md) for a detailed guide on how to set up the project locally.
 
 We recommend installing [ni](https://github.com/antfu/ni#ni), that will use the right package manager in each of your projects. If `ni` is installed, you can instead run:
 

@@ -10,7 +10,7 @@ export const teams: Team[] = [
     github: 'antfu',
     display: 'Anthony Fu',
     twitter: 'antfu7',
-    mastodon: 'antfu@mas.to',
+    mastodon: 'antfu@webtoo.ls',
   },
   {
     github: 'patak-dev',
@@ -28,6 +28,6 @@ export const teams: Team[] = [
     github: 'sxzz',
     display: '三咲智子 Kevin Deng',
     twitter: 'sanxiaozhizi',
-    mastodon: 'sxzz@mas.to',
+    mastodon: 'sxzz@webtoo.ls',
   },
 ].sort(() => Math.random() - 0.5)

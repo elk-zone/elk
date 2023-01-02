@@ -42,7 +42,10 @@ export const pwa: VitePWANuxtOptions = {
     ],
   },
   injectManifest: {
+    // fonts/seguiemj.ttf is 2.77 MB, and won't be precached
+    maximumFileSizeToCacheInBytes: 3000000,
     globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
+    globIgnores: ['emojis/twemoji/*.svg'],
   },
   devOptions: {
     enabled: process.env.VITE_DEV_PWA === 'true',

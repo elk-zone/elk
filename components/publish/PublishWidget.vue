@@ -288,7 +288,7 @@ defineExpose({
     <div flex gap-4>
       <div w-12 h-full sm:block hidden />
       <div
-        v-if="shouldExpanded" flex="~ gap-2 1" m="s--1" pt-2 justify="between" max-full
+        v-if="shouldExpanded" flex="~ gap-1 1" m="s--1" pt-2 justify="between" max-w-full
         border="t base"
       >
         <PublishEmojiPicker
@@ -330,13 +330,13 @@ defineExpose({
 
         <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
           <CommonDropdown placement="bottom">
-            <button btn-action-icon :aria-label="$t('tooltip.change_language')">
+            <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-12 mr--1>
               <div i-ri:translate-2 />
               <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
             </button>
 
             <template #popper>
-              <div min-w-80 p3>
+              <div min-w-80>
                 <!-- TODO search lang -->
                 <!-- <input
                   placeholder="Search"

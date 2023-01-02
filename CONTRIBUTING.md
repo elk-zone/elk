@@ -37,10 +37,15 @@ Sometimes when you push your changes, the CI can fail, but we cannot check the l
 
 Elk supports `right-to-left` languages, we need to make sure that the UI is working correctly in both directions.
 
+Simple approach used by most websites of relying on direction set in HTML element does not work because direction for various items, such as timeline, does not always match direction set in HTML.
+
 We've added some `UnoCSS` utilities styles to help you with that:
 - Do not use `left/right` padding and margin: for example `pl-1`. Use `padding-inline-start/end` instead. So `pl-1` should be `ps-1`, `pr-1` should be `pe-1`. Same rules applies for margin.
-- For icons that should be rotated for RTL, add `class="rtl-flip"`.
-- For absolute positioned elements, don't use `left/right`: for example `left-0`. Use `inset-inline-start/end` instead.
+- Do not use `rtl-` classes, such as `rtl-left-0`.
+- For icons that should be rotated for RTL, add `class="rtl-flip"`. This can only be used for icons outside of elements with `dir="auto"`, such as timeline, and is the only exception from rule above. For icons inside timeline it might not work as expected.
+- For absolute positioned elements, don't use `left/right`: for example `left-0`. Use `inset-inline-start/end` instead. `UnoCSS` shortcuts are `inset-is` for `inset-inline-start` and `inset-ie` for `inset-inline-end`. Example: `left-0` should be replaced with `inset-is-0`.
+- If you need to change border radius for an entire left or right side, use `border-inline-start/end`. `UnoCSS` shortcuts are `rounded-is` for left side, `rounded-ie` for right side. Example: `rounded-l-5` should be replaced with `rounded-ie-5`.
+- If you need to change border radius for one corner, use `border-start-end-radius` and similar rules. `UnoCSS` shortcuts are `rounded` + top/bottom as either `-bs` (top) or `-be` (bottom) + left/right as either `-is` (left) or `-ie` (right). Example: `rounded-tl-0` should be replaced with `rounded-bs-is-0`.
 
 ## Internalization
 

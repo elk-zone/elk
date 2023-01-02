@@ -47,6 +47,6 @@ const accountFieldIconsLowercase = Object.fromEntries(
 )
 
 export const getAccountFieldIcon = (value: string) => {
-  const name = unref(value).trim().toLowerCase()
+  const name = value.trim().toLowerCase()
   return accountFieldIconsLowercase[name] || undefined
 }

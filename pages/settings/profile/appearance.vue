@@ -127,10 +127,10 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <!-- metadata -->
         <div space-y-2>
           <div font-medium>
-            Profile metadata
+            {{ $t('settings.profile.appearance.profile_metadata') }}
           </div>
           <div text-sm text-secondary>
-            You can have up to 4 items displayed as a table on your profile
+            {{ $t('settings.profile.appearance.profile_metadata_desc') }}
           </div>
 
           <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />

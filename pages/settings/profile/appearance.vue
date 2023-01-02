@@ -30,13 +30,19 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
 
       fieldsAttributes,
 
-    // These look more like account and privacy settings than appearance settings
-    // discoverable: false,
-    // bot: false,
-    // locked: false,
+      // These look more like account and privacy settings than appearance settings
+      // discoverable: false,
+      // bot: false,
+      // locked: false,
     }
   },
 })
+
+const fieldIcons = computed(() =>
+  Array.from({ length: 4 }, (_, i) =>
+    getAccountFieldIcon(form.fieldsAttributes[i].name),
+  ),
+)
 
 watch(isMastoInitialised, async (val) => {
   if (!val)
@@ -126,8 +132,30 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
             You can have up to 4 items displayed as a table on your profile
           </div>
 
-          <div flex="~ col gap4">
-            <div v-for="i in 4" :key="i" flex="~ gap3">
+          <div v-if="isHydrated" flex="~ col gap4">
+            <div v-for="i in 4" :key="i" flex="~ gap3" items-center>
+              <CommonDropdown placement="left">
+                <CommonTooltip content="Pick a icon">
+                  <button btn-action-icon>
+                    <div :class="fieldIcons[i - 1] || 'i-ri:question-mark'" />
+                  </button>
+                </CommonTooltip>
+                <template #popper>
+                  <div flex="~ wrap gap-1" max-w-50 m2>
+                    <CommonTooltip
+                      v-for="(icon, text) in accountFieldIcons"
+                      :key="icon"
+                      :content="text"
+                    >
+                      <template v-if="text !== 'Joined'">
+                        <div btn-action-icon @click="form.fieldsAttributes[i - 1].name = text">
+                          <div text-xl :class="icon" />
+                        </div>
+                      </template>
+                    </CommonTooltip>
+                  </div>
+                </template>
+              </CommonDropdown>
               <input
                 v-model="form.fieldsAttributes[i - 1].name"
                 type="text"
@@ -145,8 +173,6 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
             </div>
           </div>
         </div>
-
-        {{ dirtyFields }}
 
         <!-- submit -->
         <div text-right>

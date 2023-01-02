@@ -129,22 +129,30 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
           <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
         </div>
 
-        <!-- submit -->
-        <div text-right>
+        <!-- actions -->
+        <div flex="~ gap2" justify-end>
+          <button
+            type="button"
+            btn-text text-sm
+            flex gap-x-2 items-center
+            text-red
+            @click="reset()"
+          >
+            <div aria-hidden="true" i-ri:eraser-line />
+            {{ $t('action.reset') }}
+          </button>
+
           <button
             type="submit"
             btn-solid rounded-full text-sm
-            flex-inline gap-x-2 items-center
+            flex gap-x-2 items-center
             :disabled="submitting || !isCanSubmit"
           >
-            <span
+            <div
               aria-hidden="true"
-              inline-block
               :class="submitting ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:save-line'"
             />
-            <span>
-              {{ $t('action.save') }}
-            </span>
+            {{ $t('action.save') }}
           </button>
         </div>
       </div>

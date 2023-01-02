@@ -110,6 +110,10 @@
     "desc_para3": "To help boosting out development, you can sponsor our team members with the links below. We hope you enjoy Elk!",
     "title": "Elk is in Preview!"
   },
+  "language": {
+    "none": "None",
+    "search": "Search"
+  },
   "menu": {
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",

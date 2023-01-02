@@ -6,7 +6,7 @@ const sub = env === 'local' ? 'dev' : env === 'staging' ? 'preview' : 'alpha'
 <template>
   <!-- Use external to force refresh page and jump to top of timeline -->
   <NuxtLink
-    flex items-center gap-2
+    flex items-end gap-2
     w-fit
     py2 px-2 lg:px-3
     text-2xl hover:bg-active

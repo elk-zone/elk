@@ -21,7 +21,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>{{ account ? getDisplayName(account) : t('nav.profile') }}</span>
+      <ContentRich text-lg font-bold :content="account ? getDisplayName(account) : t('nav.profile')" />
     </template>
 
     <template v-if="pending" />

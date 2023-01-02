@@ -18,7 +18,7 @@
     "follow_back": "Suivre en retour",
     "follow_requested": "Abonnement demandé",
     "followers": "Abonné·e·s",
-    "followers_count": "{0} abonné·e·s",
+    "followers_count": "{0} abonné·e|{0} abonné·e|{0} abonné·e·s",
     "following": "Suivi·e",
     "following_count": "{0} abonnements",
     "follows_you": "Vous suit",
@@ -154,7 +154,7 @@
   "notification": {
     "favourited_post": "aime votre message",
     "followed_you": "vous suit",
-    "followed_you_count": "{n} personnes vous suivent",
+    "followed_you_count": "{followers} personnes vous suivent|{followers} personne vous suit|{followers} personnes vous suivent",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "a relayé votre message",
     "request_to_follow": "vous demande de le suivre",

@@ -8,22 +8,22 @@ definePageMeta({
   keepalive: false,
 })
 
-const acccount = $computed(() => currentUser.value?.account)
+const account = $computed(() => currentUser.value?.account)
 
 const onlineSrc = $computed(() => ({
-  avatar: acccount?.avatar || '',
-  header: acccount?.header || '',
+  avatar: account?.avatar || '',
+  header: account?.header || '',
 }))
 
 const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: 4 }, (_, i) => {
-      return { ...acccount?.fields?.[i] || { name: '', value: '' } }
+      return { ...account?.fields?.[i] || { name: '', value: '' } }
     })
     return {
-      displayName: acccount?.displayName ?? '',
-      note: acccount?.source.note.replaceAll('\r', '') ?? '',
+      displayName: account?.displayName ?? '',
+      note: account?.source.note.replaceAll('\r', '') ?? '',
 
       avatar: null as null | File,
       header: null as null | File,
@@ -60,7 +60,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
     return
   }
 
-  setAccountInfo(acccount!.id, res.account)
+  setAccountInfo(account!.id, res.account)
   reset()
 })
 </script>

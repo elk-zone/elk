@@ -12,14 +12,14 @@ definePageMeta({
       </div>
     </template>
 
-    <SettingsNavItem
+    <SettingsItem
       command
       icon="i-ri:user-settings-line"
       :text="$t('settings.profile.appearance.label')"
       :description="$t('settings.profile.appearance.description')"
       to="/settings/profile/appearance"
     />
-    <SettingsNavItem
+    <SettingsItem
       command
       icon="i-ri:hashtag"
       :text="$t('settings.profile.featured_tags.label')"

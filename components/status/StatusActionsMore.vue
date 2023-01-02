@@ -172,7 +172,7 @@ async function editStatus() {
         <CommonDropdownItem
           v-if="isShareSupported"
           :text="$t('menu.share_post')"
-          icon="i-ri:share-forward-line"
+          icon="i-ri:share-line"
           :command="command"
           @click="shareLink(status)"
         />

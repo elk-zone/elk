@@ -4,6 +4,7 @@ import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
 import ISO6391 from 'iso-639-1'
+import Fuse from 'fuse.js'
 import type { Draft } from '~/types'
 
 type FileUploadError = [filename: string, message: string]
@@ -185,6 +186,29 @@ async function onDrop(files: File[] | null) {
 
 const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
+const languageKeyword = $ref('')
+const languageList: {
+  code: string | null
+  nativeName: string
+  name?: string
+}[] = [{
+  code: null,
+  nativeName: 'None',
+}, ...ISO6391.getAllCodes().map(code => ({
+  code,
+  nativeName: ISO6391.getNativeName(code),
+  name: ISO6391.getName(code),
+}))]
+const fuse = new Fuse(languageList, {
+  keys: ['code', 'nativeName', 'name'],
+  shouldSort: true,
+})
+const languages = $computed(() =>
+  languageKeyword.trim()
+    ? fuse.search(languageKeyword).map(r => r.item)
+    : languageList,
+)
+
 defineExpose({
   focusEditor: () => {
     editor.value?.commands?.focus?.()
@@ -336,24 +360,24 @@ defineExpose({
             </button>
 
             <template #popper>
-              <div min-w-80>
-                <!-- TODO search lang -->
-                <!-- <input
+              <div min-w-80 p3>
+                <input
+                  v-model="languageKeyword"
                   placeholder="Search"
                   p2 mb2 border-rounded w-full bg-transparent
                   outline-none border="~ base"
-                > -->
+                >
                 <div max-h-40vh overflow-auto>
                   <CommonDropdownItem
-                    v-for="code in [null, ...ISO6391.getAllCodes()]"
+                    v-for="{ code, nativeName, name } in languages"
                     :key="code"
                     :checked="code === (draft.params.language || null)"
                     @click="chooseLanguage(code)"
                   >
-                    {{ code ? ISO6391.getNativeName(code) : 'None' }}
+                    {{ nativeName }}
                     <template #description>
-                      <template v-if="code">
-                        {{ ISO6391.getName(code) }}
+                      <template v-if="name">
+                        {{ name }}
                       </template>
                     </template>
                   </CommonDropdownItem>

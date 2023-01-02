@@ -6,18 +6,24 @@ const { form } = defineModel<{
     fieldsAttributes: NonNullable<UpdateCredentialsParams['fieldsAttributes']>
   }
 }>()
+const dropdown = $ref<any>()
 
 const fieldIcons = computed(() =>
   Array.from({ length: 4 }, (_, i) =>
     getAccountFieldIcon(form.value.fieldsAttributes[i].name),
   ),
 )
+
+const chooseIcon = (i: number, text: string) => {
+  form.value.fieldsAttributes[i].name = text
+  dropdown[i]?.hide()
+}
 </script>
 
 <template>
   <div flex="~ col gap4">
     <div v-for="i in 4" :key="i" flex="~ gap3" items-center>
-      <CommonDropdown placement="left">
+      <CommonDropdown ref="dropdown" placement="left">
         <CommonTooltip content="Pick a icon">
           <button btn-action-icon>
             <div :class="fieldIcons[i - 1] || 'i-ri:question-mark'" />
@@ -31,7 +37,7 @@ const fieldIcons = computed(() =>
               :content="text"
             >
               <template v-if="text !== 'Joined'">
-                <div btn-action-icon @click="form.fieldsAttributes[i - 1].name = text">
+                <div btn-action-icon @click="chooseIcon(i - 1, text)">
                   <div text-xl :class="icon" />
                 </div>
               </template>

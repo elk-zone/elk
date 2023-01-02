@@ -6,7 +6,7 @@ Refer also to https://github.com/antfu/contribute.
 
 ## Set up your local development environment
 
-The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/).
+The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/) (Note: on Linux in a standard Node 16+ environment, you should follow the instructions to install via Node's `corepack` rather than using the `curl` command).
 
 To develop and test the Elk package:
 
@@ -26,6 +26,21 @@ git checkout -b my-new-branch
 6. Run `pnpm nuxi prepare` in Elk's root folder
 
 7. Run `pnpm dev` in Elk's root folder to start dev server or `pnpm dev:mocked` to start dev server with `@elkdev@universeodon.com` user.
+
+### Running PWA on dev server
+
+In order to run Elk with PWA enabled, run `pnpm run dev:pwa` in Elk's root folder to start dev server or `pnpm dev:pwa:mocked` to start dev server with `@elkdev@universeodon.com` user.
+
+You should test the Elk PWA application on private browsing mode on any Chromium based browser: will not work on Firefox and Safari.
+
+If not using private browsing mode, you will need to uninstall the PWA application from your browser once you finish testing:
+- Open `Dev Tools` (`Option + ⌘ + J` on MacOS, `Shift + CTRL + J` on Windows/Linux)
+- Go to `Application > Storage`, you should check following checkboxes:
+    - Application: [x] Unregister service worker
+    - Storage: [x] IndexedDB and [x] Local and session storage
+    - Cache: [x] Cache storage and [x] Application cache
+- Click on `Clear site data` button
+- Go to `Application > Service Workers` and check the current `service worker` is missing or has the state `deleted` or `redundant
 
 ## CI errors
 

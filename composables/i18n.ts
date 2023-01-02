@@ -1,5 +1,4 @@
-import type { MaybeRef } from '@vueuse/shared'
-import type { MaybeComputedRef, UseTimeAgoOptions } from '@vueuse/core'
+import type { MaybeComputedRef, MaybeRef, UseTimeAgoOptions } from '@vueuse/core'
 
 const formatter = Intl.NumberFormat()
 
@@ -31,7 +30,7 @@ export const useHumanReadableNumber = () => {
 }
 
 export const useFormattedDateTime = (
-  value: MaybeComputedRef<string | Date | undefined | null>,
+  value: MaybeComputedRef<string | number | Date | undefined | null>,
   options: Intl.DateTimeFormatOptions = { dateStyle: 'long', timeStyle: 'medium' },
 ) => {
   const { locale } = useI18n()

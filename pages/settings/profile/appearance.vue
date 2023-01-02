@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { UpdateCredentialsParams } from 'masto'
 import { useForm } from 'slimeform'
+import { parse } from 'ultrahtml'
 
 definePageMeta({
   middleware: 'auth',
@@ -19,7 +20,13 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: 4 }, (_, i) => {
-      return { ...account?.fields?.[i] || { name: '', value: '' } }
+      const field = { ...account?.fields?.[i] || { name: '', value: '' } }
+
+      const linkElement = (parse(field.value)?.children?.[0])
+      if (linkElement && linkElement?.attributes?.href)
+        field.value = linkElement.attributes.href
+
+      return field
     })
     return {
       displayName: account?.displayName ?? '',
@@ -129,22 +136,30 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
           <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
         </div>
 
-        <!-- submit -->
-        <div text-right>
+        <!-- actions -->
+        <div flex="~ gap2" justify-end>
+          <button
+            type="button"
+            btn-text text-sm
+            flex gap-x-2 items-center
+            text-red
+            @click="reset()"
+          >
+            <div aria-hidden="true" i-ri:eraser-line />
+            {{ $t('action.reset') }}
+          </button>
+
           <button
             type="submit"
             btn-solid rounded-full text-sm
-            flex-inline gap-x-2 items-center
+            flex gap-x-2 items-center
             :disabled="submitting || !isCanSubmit"
           >
-            <span
+            <div
               aria-hidden="true"
-              inline-block
               :class="submitting ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:save-line'"
             />
-            <span>
-              {{ $t('action.save') }}
-            </span>
+            {{ $t('action.save') }}
           </button>
         </div>
       </div>

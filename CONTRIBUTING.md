@@ -27,6 +27,23 @@ git checkout -b my-new-branch
 
 7. Run `pnpm dev` in Elk's root folder to start dev server or `pnpm dev:mocked` to start dev server with `@elkdev@universeodon.com` user.
 
+## CI errors
+
+Sometimes when you push your changes, the CI can fail, but we cannot check the logs to see what went wrong, run the following commands on your local environment:
+- `pnpm test:unit` to run unit tests, maybe you also need to update snapshots
+- `pnpm test:typecheck` to run TypeScript checks run on CI
+
+## RTL Support
+
+Elk supports `right-to-left` languages, we need to make sure that the UI is working correctly in both directions.
+
+We've added some `UnoCSS` utilities styles to help you with that:
+- Do not use `left/right` padding and margin: for example `pl-1`. Use `padding-inline-start/end` instead. So `pl-1` should be `ps-1`, `pr-1` should be `pe-1`. Same rules applies for margin.
+- For icons that should be rotated for RTL, add `class="rtl-flip"`.
+- For absolute positioned elements, don't use `left/right`: for example `left-0`. Use `inset-inline-start/end` instead.
+
+```html
+
 ## Internalization
 
 We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i18n.nuxtjs.org/) to handle internalization.

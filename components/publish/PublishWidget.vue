@@ -288,7 +288,7 @@ defineExpose({
     <div flex gap-4>
       <div w-12 h-full sm:block hidden />
       <div
-        v-if="shouldExpanded" flex="~ gap-1 1" m="s--1" pt-2 justify="between" max-w-full
+        v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="between" max-w-full
         border="t base"
       >
         <PublishEmojiPicker
@@ -388,7 +388,7 @@ defineExpose({
         </CommonTooltip>
 
         <button
-          btn-solid rounded-full text-sm
+          btn-solid rounded-full text-sm w-full md:w-fit
           :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
           @click="publish"
         >

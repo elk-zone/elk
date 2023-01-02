@@ -118,12 +118,13 @@ const reply = () => {
       />
     </div>
 
-    <div
-      v-if="status.localOnly"
-      class="i-ri:link-unlink-m local-only"
-      flex-none
-      text-secondary
-    />
+    <CommonTooltip v-if="status.localOnly" :content="$t('action.local_only')" placement="bottom">
+      <div
+        class="i-ri:link-unlink-m local-only"
+        flex-none
+        text-secondary
+      />
+    </CommonTooltip>
   </div>
 </template>
 

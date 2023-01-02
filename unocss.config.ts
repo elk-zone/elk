@@ -37,7 +37,7 @@ export default defineConfig({
       'btn-solid': 'btn-base px-4 py-2 rounded text-$c-text-btn bg-$c-primary hover:bg-$c-primary-active',
       'btn-outline': 'btn-base px-4 py-2 rounded text-$c-primary border border-$c-primary hover:bg-$c-primary hover:text-inverted',
       'btn-text': 'btn-base px-4 py-2 text-$c-primary hover:text-$c-primary-active',
-      'btn-action-icon': 'btn-base hover:bg-active rounded-full h9 w9 flex items-center justify-center',
+      'btn-action-icon': 'btn-base hover:bg-active rounded-full h9 w9 flex items-center justify-center disabled:bg-transparent disabled:text-$c-text-secondary',
 
       // input
       'input-base-focus': 'focus:outline-none focus:border-$c-primary',

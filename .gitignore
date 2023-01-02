@@ -10,6 +10,7 @@ dist
 .netlify/
 
 public/shiki
+public/emojis
 
 *~
 *swp

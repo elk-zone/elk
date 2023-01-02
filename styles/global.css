@@ -30,11 +30,6 @@ html {
   font-weight: 400;
   src: url(/fonts/homemade-apple-v18.ttf) format('truetype');
 }
-@font-face {
-  font-display: swap;
-  font-family: 'EmojiMart';
-  src: url('/fonts/seguiemj.ttf') format('truetype');
-}
 
 * {
   scrollbar-color: #8885 var(--c-border);
@@ -86,6 +81,19 @@ body {
   max-height: 1.3em;
   max-width: 1.3em;
   vertical-align: text-bottom;
+}
+
+.iconify-emoji {
+  display: inline-block;
+  overflow: hidden;
+  max-height: 1.2em;
+  max-width: 1.2em;
+  vertical-align: text-bottom;
+  margin: 0 0.1em;
+}
+
+.iconify-emoji-padded {
+  transform: scale(1.2);
 }
 
 .content-rich {
@@ -194,10 +202,6 @@ html[dir="rtl"] .rtl-flip {
 
 em-emoji-picker {
   --border-radius: 0;
-}
-em-emoji {
-  font-size: 1.2em;
-  line-height: 1em;
 }
 
 footer {

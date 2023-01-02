@@ -2,9 +2,8 @@
 import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
-import createEmojiRegex from 'emoji-regex'
-
-export const EMOJI_REGEX = createEmojiRegex()
+import { findAndReplaceEmojisInText } from '@iconify/utils'
+import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
 export function decodeHtml(text: string) {
@@ -16,17 +15,17 @@ export function decodeHtml(text: string) {
  * Parse raw HTML form Mastodon server to AST,
  * with interop of custom emojis and inline Markdown syntax
  */
-export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}, markdown = true) {
-  let processed = html
-    // custom emojis
-    .replace(/:([\w-]+?):/g, (_, name) => {
-      const emoji = customEmojis[name]
+export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}, markdown = true, forTiptap = false) {
+  // unicode emojis to images, but only if not converting HTML for Tiptap
+  let processed = forTiptap ? html : replaceUnicodeEmoji(html)
 
-      return emoji
-        ? `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
-        : `:${name}:`
-    })
-    .replace(EMOJI_REGEX, '<em-emoji native="$&" fallback="$&" />')
+  // custom emojis
+  processed = processed.replace(/:([\w-]+?):/g, (_, name) => {
+    const emoji = customEmojis[name]
+    if (emoji)
+      return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
+    return `:${name}:`
+  })
 
   if (markdown) {
     // handle code blocks
@@ -66,8 +65,11 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
   return parse(processed)
 }
 
+/**
+ * Converts raw HTML form Mastodon server to HTML for Tiptap editor
+ */
 export function convertMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
-  const tree = parseMastodonHTML(html, customEmojis)
+  const tree = parseMastodonHTML(html, customEmojis, true, true)
   return render(tree)
 }
 
@@ -118,12 +120,22 @@ export function treeToText(input: Node): string {
   if ('children' in input)
     body = (input.children as Node[]).map(n => treeToText(n)).join('')
 
-  // add spaces around emoji to prevent parsing errors: 2 or more consecutive emojis will not be parsed
-  if (input.name === 'img' && input.attributes.class?.includes('custom-emoji'))
-    return ` :${input.attributes['data-emoji-id']}: `
-
-  if (input.name === 'em-emoji')
-    return `${input.attributes.native}`
+  if (input.name === 'img') {
+    if (input.attributes.class?.includes('custom-emoji'))
+      return `:${input.attributes['data-emoji-id']}:`
+    if (input.attributes.class?.includes('iconify-emoji'))
+      return input.attributes.alt
+  }
 
   return pre + body + post
+}
+
+/**
+ * Replace unicode emojis with locally hosted images
+ */
+export function replaceUnicodeEmoji(html: string) {
+  return findAndReplaceEmojisInText(emojiRegEx, html, (match) => {
+    const attrs = getEmojiAttributes(match)
+    return `<img src="${attrs.src}" alt="${attrs.alt}" class="${attrs.class}" />`
+  }) || html
 }

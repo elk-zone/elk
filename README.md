@@ -3,7 +3,7 @@
 
 <p align="center">
   <a href="https://elk.zone" target="_blank" rel="noopener noreferrer">
-    <img width="180" height="180" src="./elk.svg" alt="Vite logo">
+    <img width="180" height="180" src="./elk.svg" alt="Elk logo">
   </a>
 </p>
 <br/>

@@ -255,7 +255,7 @@
       },
       "label": "Profile"
     },
-    "select_a_settings": "Select a settings",
+    "select_a_settings": "Select a setting",
     "users": {
       "export": "Export User Tokens",
       "import": "Import User Tokens",

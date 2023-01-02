@@ -35,9 +35,8 @@ Elk will use named interpolation only to handle plurals for number formatting. W
 Check [Custom Plural Number Formatting Entries](#custom-plural-number-formatting-entries) for custom plural entries in Elk with available values for interpolation.
 
 When using plural number formatting, we'll have always `{n}` available in the message, for example, `You have {n} new notifications`, and we'll use `n` prop to pass the number of notifications.
-The exception to previous rule is when we're using `plural` **with** `i18n-t` component, in this case, we'll need to use `{0}` instead `{v}` to access the number.
 
-We've included `v` named parameter, it will be used to pass the formatted number using [Intl.NumberFormat::format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format): will be the number with separators symbols.
+We've included `v` named parameter, it will be used to pass the formatted number using [Intl.NumberFormat::format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format): will be the number with separators symbols. The exception to previous rule is when we're using `plural` **with** `i18n-t` component, in this case, we'll need to use `{0}` instead `{v}` to access the number.
 
 Additionally, Elk will use [compact notation for numbers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#parameters) for some entries, check `notation` and `compactDisplay` options: for example, `1K` for `1000`, `1M` for `1000000`, `1B` for `1000000000` and so on. That entry will be available in the message using `{v}` named parameter (or `{0}` if using the message **with** `i18n-t` component).
 

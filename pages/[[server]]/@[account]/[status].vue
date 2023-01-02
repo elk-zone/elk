@@ -15,7 +15,7 @@ const publishWidget = ref()
 
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   `status:${id}`,
-  async () => (window.history.state?.status as Status | undefined) ?? await fetchStatus(id),
+  () => fetchStatus(id),
   { watch: [isMastoInitialised], immediate: isMastoInitialised.value },
 )
 const masto = useMasto()

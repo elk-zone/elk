@@ -38,11 +38,27 @@ const toggleTranslation = async () => {
 }
 
 const masto = useMasto()
-const copyLink = async (status: Status) => {
+
+const getPermalinkUrl = (status: Status) => {
   const url = getStatusPermalinkRoute(status)
   if (url)
-    await clipboard.copy(`${location.origin}/${url}`)
+    return `${location.origin}/${url}`
+  return null
 }
+
+const copyLink = async (status: Status) => {
+  const url = getPermalinkUrl(status)
+  if (url)
+    await clipboard.copy(url)
+}
+
+const { share, isSupported: isShareSupported } = useShare()
+const shareLink = async (status: Status) => {
+  const url = getPermalinkUrl(status)
+  if (url)
+    await share({ url })
+}
+
 const deleteStatus = async () => {
   // TODO confirm to delete
   if (process.dev) {
@@ -151,6 +167,14 @@ async function editStatus() {
           icon="i-ri:link"
           :command="command"
           @click="copyLink(status)"
+        />
+
+        <CommonDropdownItem
+          v-if="isShareSupported"
+          :text="$t('menu.share_post')"
+          icon="i-ri:share-line"
+          :command="command"
+          @click="shareLink(status)"
         />
 
         <CommonDropdownItem

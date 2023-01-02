@@ -12,7 +12,7 @@ We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i
 
 Check [Pluralization rule callback](https://vue-i18n.intlify.dev/guide/essentials/pluralization.html#custom-pluralization) for more info.
 
-## Messages interporlation
+## Messages interpolation
 
 Most of the messages used in Elk do not require any interpolation, however, there are some messages that require interpolation: check [Message Format Syntax](https://vue-i18n.intlify.dev/guide/essentials/syntax.html) for more info.
 
@@ -34,7 +34,7 @@ Elk will use named interpolation only to handle plurals for number formatting. W
 
 Check [Custom Plural Number Formatting Entries](#custom-plural-number-formatting-entries) for custom plural entries in Elk with available values for interpolation.
 
-When using plural number formatting, we'll have always `{n}` available in the message, for example, `You have {n} new notifications`, and we'll use `n` prop to pass the number of notifications.
+When using plural number formatting, we'll have always `{n}` available in the message, for example, `You have {n} new notifications|You have {n} new notification|You have {n} new notifications` or `You have no new notifications|You have 1 new notification|You have {n} new notifications`.
 
 We've included `v` named parameter, it will be used to pass the formatted number using [Intl.NumberFormat::format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format): will be the number with separators symbols. The exception to previous rule is when we're using `plural` **with** `i18n-t` component, in this case, we'll need to use `{0}` instead `{v}` to access the number.
 

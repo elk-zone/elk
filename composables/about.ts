@@ -26,7 +26,7 @@ export const teams: Team[] = [
   },
   {
     github: 'sxzz',
-    display: 'sxzz',
+    display: '三咲智子 Kevin Deng',
     twitter: 'sanxiaozhizi',
     mastodon: 'sxzz@mas.to',
   },

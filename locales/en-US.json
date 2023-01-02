@@ -59,6 +59,7 @@
     "publish": "Publish!",
     "reply": "Reply",
     "reply_count": "{0}",
+    "reset": "Reset",
     "save": "Save",
     "save_changes": "Save changes",
     "sign_in": "Sign in",
@@ -122,6 +123,7 @@
     "mute_conversation": "Mute this post",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
+    "share_post": "Share this post",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
       "dark": "Toggle dark mode",

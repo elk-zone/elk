@@ -42,8 +42,6 @@ We've added some `UnoCSS` utilities styles to help you with that:
 - For icons that should be rotated for RTL, add `class="rtl-flip"`.
 - For absolute positioned elements, don't use `left/right`: for example `left-0`. Use `inset-inline-start/end` instead.
 
-```html
-
 ## Internalization
 
 We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i18n.nuxtjs.org/) to handle internalization.

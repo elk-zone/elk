@@ -98,13 +98,13 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
           : Promise.resolve(undefined),
       ])
 
+      if (!me.acct.includes('@'))
+        me.acct = `${me.acct}@${instance.uri}`
+
       user.account = me
       user.pushSubscription = pushSubscription
       currentUserId.value = me.id
       instances.value[server] = instance
-
-      if (!user.account.acct.includes('@'))
-        user.account.acct = `${user.account.acct}@${instance.uri}`
 
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)
@@ -140,7 +140,11 @@ export function setAccountInfo(userId: string, account: AccountCredentials) {
 
 export async function pullMyAccountInfo() {
   const account = await useMasto().accounts.verifyCredentials()
+  if (!account.acct.includes('@'))
+    account.acct = `${account.acct}@${currentInstance.value!.uri}`
+
   setAccountInfo(currentUserId.value, account)
+  cacheAccount(account, currentServer.value, true)
 }
 
 export function getUsersIndexByUserId(userId: string) {
@@ -283,7 +287,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
 
   return computed(() => {
     const id = currentUser.value?.account.id
-      ? `${currentUser.value.account.acct}@${currentInstance.value?.uri || currentServer.value}`
+      ? currentUser.value.account.acct
       : '[anonymous]'
     all.value[id] = Object.assign(initial(), all.value[id] || {})
     return all.value[id]

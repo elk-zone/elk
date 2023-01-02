@@ -19,17 +19,43 @@ It is already quite usable, but it isn't ready for wide adoption yet. We recomme
 
 The client is deployed to [elk.zone](https://elk.zone), you can share screenshots on social media but we prefer you avoid sharing this URL directly until the app is more polished. Feel free to share the URL with your friedns and invite others you think could be interested in helping to improve Elk.
 
-# Contributing
+## Sponsors
+
+We want to thanks the generous sponsoring and help of:
+
+<div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;" >
+  <div style="border-radius: 20px; background-color: #22272e; width: 500px; height: 100px; display: grid; align-items: center; justify-items: center;">
+    <a href="https://nuxtlabs.com/" target="_blank" rel="noopener noreferrer">
+      <img src="https://user-images.githubusercontent.com/11247099/210197359-83cb4232-3647-4400-8ac8-b68909ed4516.svg" alt="NuxtLabs" height="50">
+    </a>
+  </div>
+  <div style="border-radius: 20px; background-color: #22272e; width: 500px; height: 100px; display: grid; align-items: center; justify-items: center;">
+    <a href="https://stackblitz.com/" target="_blank" rel="noopener noreferrer"  style="transform: translate(0, 5px);">
+      <img src="https://user-images.githubusercontent.com/11247099/210197445-61a76633-2907-47cc-8a9a-f5e1669552fa.svg" alt="StackBlitz" height="70">
+    </a>
+  </div>
+</div>
+
+And all the companies and individuals sponsoring Elk Team members. If you're enjoying the app, consider sponsoring our team:
+
+- [Anthony Fu](https://github.com/sponsors/antfu)
+- [Daniel Roe](https://github.com/sponsors/danielroe)
+- [三咲智子 Kevin Deng](https://github.com/sponsors/sxzz)
+- [Patak](https://github.com/sponsors/patak-dev)
+
+We would also appreciate sponsoring other contributors to the Elk project. If someone helps you solve an issue or implement a feature you wanted, supporting them would help make this project and OS more sustainable.
+
+## Contributing
 
 We're really excited that you're interested in contributing to Elk! Before submitting your contribution, please read through the following guide.
 
-## Online
+### Online
 
 You can use [StackBlitz CodeFlow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a CodeFlow button on PRs to review them without a local setup. Once the elk repo has been cloned in CodeFlow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [CodeFlow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 
 
 [![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
 
-## Local Setup
+### Local Setup
 
 Clone the repository and run on the root folder:
 
@@ -47,7 +73,7 @@ ni
 nr dev
 ```
 
-## Testing
+### Testing
 
 Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 
@@ -55,7 +81,7 @@ Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 nr test
 ```
 
-# Stack
+## Stack
 
 - [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
 - [Nuxt](https://nuxt.com/) - The Intuitive Web Framework
@@ -69,6 +95,6 @@ nr test
 - [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
 - [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update and push notifications
 
-# License
+## License
 
 [MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors

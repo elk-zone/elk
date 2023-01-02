@@ -17,10 +17,6 @@ const createdAt = $(useFormattedDateTime(() => account.createdAt, {
 const namedFields = ref<Field[]>([])
 const iconFields = ref<Field[]>([])
 
-function getFieldNameIcon(fieldName: string) {
-  const name = fieldName.trim().toLowerCase()
-  return ACCOUNT_FIELD_ICONS[name] || undefined
-}
 function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
 }
@@ -48,7 +44,7 @@ watchEffect(() => {
   const icons: Field[] = []
 
   account.fields?.forEach((field) => {
-    const icon = getFieldNameIcon(field.name)
+    const icon = getAccountFieldIcon(field.name)
     if (icon)
       icons.push(field)
     else
@@ -122,7 +118,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
       </div>
       <div v-if="iconFields.length" flex="~ wrap gap-4">
         <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" items-center>
-          <div text-secondary :class="getFieldNameIcon(field.name)" :title="getFieldIconTitle(field.name)" />
+          <div text-secondary :class="getAccountFieldIcon(field.name)" :title="getFieldIconTitle(field.name)" />
           <ContentRich text-sm filter-saturate-0 :content="field.value" :emojis="account.emojis" />
         </div>
       </div>

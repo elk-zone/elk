@@ -1,9 +1,10 @@
-import { fileURLToPath } from 'node:url'
+import { createResolver } from '@nuxt/kit'
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
 
+const { resolve } = createResolver(import.meta.url)
 const isPreview = process.env.PULL_REQUEST === 'true' || process.env.CONTEXT === 'deploy-preview' || process.env.CONTEXT === 'dev'
 
 export default defineNuxtConfig({
@@ -18,8 +19,10 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
+    '@nuxtjs/color-mode',
     '~/modules/purge-comments',
     '~/modules/setup-components',
+    '~/modules/build-info',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/tauri/index',
   ],
@@ -43,10 +46,14 @@ export default defineNuxtConfig({
     'change-case': 'scule',
     'semver': 'unenv/runtime/mock/empty',
   },
+  imports: {
+    dirs: [
+      './composables/push-notifications',
+      './composables/tiptap',
+    ],
+  },
   vite: {
     define: {
-      'import.meta.env.__BUILD_TIME__': JSON.stringify(new Date().toISOString()),
-      'import.meta.env.__BUILD_COMMIT__': JSON.stringify(process.env.COMMIT_REF || ''),
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
       'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
     },
@@ -93,6 +100,7 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
+    '/api/list-servers': { swr: true },
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',
@@ -101,14 +109,11 @@ export default defineNuxtConfig({
   },
   nitro: {
     publicAssets: [
-      ...(!isCI || isPreview ? [{ dir: fileURLToPath(new URL('./public-dev', import.meta.url)) }] : []),
+      ...(!isCI || isPreview ? [{ dir: resolve('./public-dev') }] : []),
     ],
     prerender: {
       crawlLinks: false,
       routes: ['/', '/200.html'],
-    },
-    routeRules: {
-      '/list-servers': { swr: true },
     },
   },
   app: {
@@ -124,8 +129,12 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
+      meta: [
+        { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+      ],
     },
   },
+  colorMode: { classSuffix: '' },
   i18n,
   pwa,
 })

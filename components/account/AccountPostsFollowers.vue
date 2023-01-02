@@ -26,7 +26,7 @@ const followersCountSR = $computed(() => forSR(props.account.followersCount))
         <i18n-t keypath="account.posts_count" :plural="account.statusesCount">
           <CommonTooltip v-if="statusesCountSR" :content="formatNumber(account.statusesCount)" placement="bottom">
             <span aria-hidden="true" font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ statusesCount }}</span>
-            <span sr-only font-bold>{{ account.statusesCount }}</span>
+            <span sr-only font-bold>{{ formatNumber(account.statusesCount) }}</span>
           </CommonTooltip>
           <span v-else font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ statusesCount }}</span>
         </i18n-t>
@@ -41,7 +41,7 @@ const followersCountSR = $computed(() => forSR(props.account.followersCount))
         <i18n-t keypath="account.following_count" :plural="account.followingCount">
           <CommonTooltip v-if="followingCountSR" :content="formatNumber(account.followingCount)" placement="bottom">
             <span aria-hidden="true" font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followingCount }}</span>
-            <span sr-only font-bold>{{ account.followingCount }}</span>
+            <span sr-only font-bold>{{ formatNumber(account.followingCount) }}</span>
           </CommonTooltip>
           <span v-else font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followingCount }}</span>
         </i18n-t>
@@ -56,7 +56,7 @@ const followersCountSR = $computed(() => forSR(props.account.followersCount))
         <i18n-t keypath="account.followers_count" :plural="account.followersCount">
           <CommonTooltip v-if="followersCountSR" :content="formatNumber(account.followersCount)" placement="bottom">
             <span aria-hidden="true" font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followersCount }}</span>
-            <span sr-only font-bold>{{ account.followersCount }}</span>
+            <span sr-only font-bold>{{ formatNumber(account.followersCount) }}</span>
           </CommonTooltip>
           <span v-else font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followersCount }}</span>
         </i18n-t>

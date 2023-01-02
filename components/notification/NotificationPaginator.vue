@@ -4,7 +4,7 @@ import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
   paginator: Paginator<any, Notification[]>
-  stream?: WsEvents
+  stream?: Promise<WsEvents>
 }>()
 
 const groupCapacity = Number.MAX_VALUE // No limit
@@ -70,7 +70,7 @@ function groupItems(items: Notification[]): NotificationSlot[] {
         }
         like[notification.type === 'reblog' ? 'reblog' : 'favourite'] = notification
       }
-      likes.sort((a, b) => b.reblog && !a.reblog ? 1 : -1)
+      likes.sort((a, b) => a.reblog ? !b.reblog || (a.favourite && !b.favourite) ? -1 : 0 : 0)
       results.push({
         id: `grouped-${id++}`,
         type: 'grouped-reblogs-and-favourites',
@@ -99,13 +99,14 @@ function groupItems(items: Notification[]): NotificationSlot[] {
 }
 
 const { clearNotifications } = useNotifications()
+const { formatNumber } = useHumanReadableNumber()
 </script>
 
 <template>
   <CommonPaginator :paginator="paginator" :stream="stream" :eager="3" event-type="notification">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
-        {{ $t('timeline.show_new_items', [number]) }}
+        {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
     <template #items="{ items }">

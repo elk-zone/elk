@@ -11,12 +11,14 @@ const relationship = $(useRelationship(account))
 <template>
   <div v-show="relationship" flex="~ col gap2" rounded min-w-90 max-w-120 z-100 overflow-hidden p-4>
     <div flex="~ gap2" items-center>
-      <NuxtLink :to="getAccountRoute(account)" flex-auto rounded-full hover:bg-active transition-100 pr5 mr-a>
+      <NuxtLink :to="getAccountRoute(account)" flex-auto rounded-full hover:bg-active transition-100 pe5 me-a>
         <AccountInfo :account="account" />
       </NuxtLink>
       <AccountFollowButton text-sm :account="account" :relationship="relationship" />
     </div>
-    <ContentRich text-4 text-secondary :content="account.note" :emojis="account.emojis" />
+    <div v-if="account.note" max-h-100 overflow-y-auto>
+      <ContentRich text-4 text-secondary :content="account.note" :emojis="account.emojis" />
+    </div>
     <AccountPostsFollowers text-sm :account="account" />
   </div>
 </template>

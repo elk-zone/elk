@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import { usePushManager } from '~/composables/push-notifications/usePushManager'
+import NotificationSubscribePushNotificationError
+  from '~/components/notification/NotificationSubscribePushNotificationError.vue'
 
 defineProps<{ show: boolean }>()
-
-let busy = $ref<boolean>(false)
-let animateSave = $ref<boolean>(false)
-let animateSubscription = $ref<boolean>(false)
-let animateRemoveSubscription = $ref<boolean>(false)
 
 const {
   pushNotificationData,
@@ -20,8 +16,16 @@ const {
   subscribe,
   unsubscribe,
 } = usePushManager()
+const { t } = useI18n()
 
 const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+
+let busy = $ref<boolean>(false)
+let animateSave = $ref<boolean>(false)
+let animateSubscription = $ref<boolean>(false)
+let animateRemoveSubscription = $ref<boolean>(false)
+let subscribeError = $ref<string>('')
+let showSubscribeError = $ref<boolean>(false)
 
 const hideNotification = () => {
   const key = currentUser.value?.account?.acct
@@ -65,10 +69,15 @@ const doSubscribe = async () => {
   animateSubscription = true
 
   try {
-    const subscription = await subscribe()
-    // todo: apply some logic based on the result: subscription === 'subscribed'
-    // todo: maybe throwing an error instead just a literal to show a dialog with the error
-    // todo: handle error
+    const result = await subscribe()
+    if (result !== 'subscribed') {
+      subscribeError = t(`notification.settings.subscription_error.${result === 'notification-denied' ? 'permission_denied' : 'request_error'}`)
+      showSubscribeError = true
+    }
+  }
+  catch {
+    subscribeError = t('notification.settings.subscription_error.request_error')
+    showSubscribeError = true
   }
   finally {
     busy = false
@@ -164,7 +173,16 @@ onActivated(() => (busy = false))
               :show-re-auth-message="!showWarning"
               @hide="hideNotification"
               @subscribe="doSubscribe"
-            />
+            >
+              <template #error>
+                <Transition name="slide-down">
+                  <NotificationSubscribePushNotificationError
+                    v-model="showSubscribeError"
+                    :message="subscribeError"
+                  />
+                </transition>
+              </template>
+            </NotificationEnablePushNotification>
           </template>
         </template>
         <p v-else role="alert" aria-labelledby="notifications-unsupported">
@@ -174,7 +192,7 @@ onActivated(() => (busy = false))
     </Transition>
     <NotificationEnablePushNotification
       v-if="showWarning"
-      :show-re-auth-message="true"
+      show-re-auth-message
       with-header
       px5
       py4
@@ -182,6 +200,15 @@ onActivated(() => (busy = false))
       :busy="busy"
       @hide="hideNotification"
       @subscribe="doSubscribe"
-    />
+    >
+      <template #error>
+        <Transition name="slide-down">
+          <NotificationSubscribePushNotificationError
+            v-model="showSubscribeError"
+            :message="subscribeError"
+          />
+        </Transition>
+      </template>
+    </NotificationEnablePushNotification>
   </div>
 </template>

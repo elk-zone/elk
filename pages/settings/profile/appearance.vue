@@ -1,30 +1,23 @@
 <script lang="ts" setup>
-import { invoke } from '@vueuse/shared'
 import { useForm } from 'slimeform'
 
 definePageMeta({
+  middleware: 'auth',
   // Keep alive the form page will reduce raw data timeliness and its status timeliness
   keepalive: false,
 })
 
-const router = useRouter()
-
-const my = $computed(() => currentUser.value?.account)
-
-watch($$(my), (value) => {
-  if (!value)
-    router.push('/')
-})
+const acccount = $computed(() => currentUser.value?.account)
 
 const onlineSrc = $computed(() => ({
-  avatar: my?.avatar || '',
-  header: my?.header || '',
+  avatar: acccount?.avatar || '',
+  header: acccount?.header || '',
 }))
 
 const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => ({
-    displayName: my?.displayName ?? '',
-    note: my?.source.note.replaceAll('\r', '') ?? '',
+    displayName: acccount?.displayName ?? '',
+    note: acccount?.source.note.replaceAll('\r', '') ?? '',
 
     avatar: null as null | File,
     header: null as null | File,
@@ -36,8 +29,11 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
   }),
 })
 
-// Keep the information to be edited up to date
-invoke(async () => {
+watch(isMastoInitialised, async (val) => {
+  if (!val)
+    return
+
+  // Keep the information to be edited up to date
   await pullMyAccountInfo()
   reset()
 })
@@ -55,7 +51,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
     return
   }
 
-  setAccountInfo(my!.id, res.account)
+  setAccountInfo(acccount!.id, res.account)
   reset()
 })
 </script>
@@ -73,7 +69,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <!-- banner -->
         <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
-            ref="elInputImage"
+            v-if="isHydrated"
             v-model="form.header"
             :original="onlineSrc.header"
             w-full h-full
@@ -84,6 +80,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <!-- avatar -->
         <div px-4>
           <CommonInputImage
+            v-if="isHydrated"
             v-model="form.avatar"
             :original="onlineSrc.avatar"
             mt--10

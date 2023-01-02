@@ -65,3 +65,13 @@ export interface Draft {
   attachments: Attachment[]
 }
 export type DraftMap = Record<string, Draft>
+
+export interface BuildInfo {
+  version: string
+  commit: string
+  time: number
+  branch: string
+}
+
+export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type ColorMode = 'light' | 'dark'

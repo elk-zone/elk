@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import type { Attachment, CreateStatusParams, StatusVisibility } from 'masto'
+import type { Attachment, CreateStatusParams, Status, StatusVisibility } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
+import ISO6391 from 'iso-639-1'
 import type { Draft } from '~/types'
+
+type FileUploadError = [filename: string, message: string]
 
 const {
   draftKey,
@@ -21,7 +24,9 @@ const {
   dialogLabelledBy?: string
 }>()
 
-const emit = defineEmits(['published'])
+const emit = defineEmits<{
+  (evt: 'published', status: Status): void
+}>()
 
 const { t } = useI18n()
 // eslint-disable-next-line prefer-const
@@ -54,7 +59,8 @@ const currentVisibility = $computed(() => {
 })
 
 let isUploading = $ref<boolean>(false)
-let failed = $ref<File[]>([])
+let isExceedingAttachmentLimit = $ref<boolean>(false)
+let failed = $ref<FileUploadError[]>([])
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -65,29 +71,20 @@ async function handlePaste(evt: ClipboardEvent) {
   await uploadAttachments(Array.from(files))
 }
 
-function insertText(text: string) {
-  editor.value?.chain().insertContent(text).focus().run()
+function insertEmoji(name: string) {
+  editor.value?.chain().focus().insertEmoji(name).run()
+}
+function insertCustomEmoji(image: any) {
+  editor.value?.chain().focus().insertCustomEmoji(image).run()
 }
 
 async function pickAttachments() {
-  const files = await fileOpen([
-    {
-      description: 'Attachments',
-      multiple: true,
-      mimeTypes: ['image/*'],
-      extensions: ['.png', '.gif', '.jpeg', '.jpg', '.webp', '.avif', '.heic', '.heif'],
-    },
-    {
-      description: 'Attachments',
-      mimeTypes: ['video/*'],
-      extensions: ['.webm', '.mp4', '.m4v', '.mov', '.ogv', '.3gp'],
-    },
-    {
-      description: 'Attachments',
-      mimeTypes: ['audio/*'],
-      extensions: ['.mp3', '.ogg', '.oga', '.wav', '.flac', '.opus', '.aac', '.m4a', '.3gp', '.wma'],
-    },
-  ])
+  const mimeTypes = currentInstance.value!.configuration.mediaAttachments.supportedMimeTypes
+  const files = await fileOpen({
+    description: 'Attachments',
+    multiple: true,
+    mimeTypes,
+  })
   await uploadAttachments(files)
 }
 
@@ -100,17 +97,27 @@ const masto = useMasto()
 async function uploadAttachments(files: File[]) {
   isUploading = true
   failed = []
-  for (const file of files) {
-    try {
-      const attachment = await masto.mediaAttachments.create({
-        file,
-      })
-      draft.attachments.push(attachment)
+  // TODO: display some kind of message if too many media are selected
+  // DONE
+  const limit = currentInstance.value!.configuration.statuses.maxMediaAttachments || 4
+  for (const file of files.slice(0, limit)) {
+    if (draft.attachments.length < limit) {
+      isExceedingAttachmentLimit = false
+      try {
+        const attachment = await masto.mediaAttachments.create({
+          file,
+        })
+        draft.attachments.push(attachment)
+      }
+      catch (e) {
+        // TODO: add some human-readable error message, problem is that masto api will not return response code
+        console.error(e)
+        failed = [...failed, [file.name, (e as Error).message]]
+      }
     }
-    catch (e) {
-      // TODO: add some human-readable error message, problem is that masto api will not return response code
-      console.error(e)
-      failed = [...failed, file]
+    else {
+      isExceedingAttachmentLimit = true
+      failed = [...failed, [file.name, t('state.attachments_limit_error')]]
     }
   }
   isUploading = false
@@ -127,6 +134,10 @@ function removeAttachment(index: number) {
 
 function chooseVisibility(visibility: StatusVisibility) {
   draft.params.visibility = visibility
+}
+
+function chooseLanguage(language: string | null) {
+  draft.params.language = language
 }
 
 async function publish() {
@@ -151,14 +162,14 @@ async function publish() {
   try {
     isSending = true
 
+    let status: Status
     if (!draft.editingStatus)
-      await masto.statuses.create(payload)
+      status = await masto.statuses.create(payload)
     else
-      await masto.statuses.update(draft.editingStatus.id, payload)
+      status = await masto.statuses.update(draft.editingStatus.id, payload)
 
     draft = initial()
-    isPublishDialogOpen.value = false
-    emit('published')
+    emit('published', status)
   }
   finally {
     isSending = false
@@ -193,9 +204,9 @@ defineExpose({
       <div border="b dashed gray/40" />
     </template>
 
-    <div flex gap-4 flex-1>
+    <div flex gap-3 flex-1>
       <NuxtLink :to="getAccountRoute(currentUser.account)">
-        <AccountAvatar :account="currentUser.account" account-avatar-normal />
+        <AccountBigAvatar :account="currentUser.account" />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <div
@@ -220,9 +231,6 @@ defineExpose({
             flex max-w-full
             :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
           />
-          <div v-if="shouldExpanded" absolute right-0 bottom-0 pointer-events-none text-sm text-secondary-light>
-            {{ characterLimit - editor?.storage.characterCount.characters() }}
-          </div>
         </div>
 
         <div v-if="isUploading" flex gap-1 items-center text-sm p1 text-primary>
@@ -232,9 +240,11 @@ defineExpose({
         <div
           v-else-if="failed.length > 0"
           role="alert"
-          aria-describedby="upload-failed"
+          :aria-describedby="isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'"
           flex="~ col"
-          gap-1 text-sm pt-1 pl-2 pr-1 pb-2 text-red-600 dark:text-red-400
+          gap-1 text-sm
+          pt-1 ps-2 pe-1 pb-2
+          text-red-600 dark:text-red-400
           border="~ base rounded red-600 dark:red-400"
         >
           <head id="upload-failed" flex justify-between>
@@ -253,9 +263,13 @@ defineExpose({
               </button>
             </CommonTooltip>
           </head>
-          <ol pl-2 sm:pl-1>
-            <li v-for="file in failed" :key="file.name">
-              {{ file.name }}
+          <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-small>
+            {{ $t('state.attachments_exceed_server_limit') }}
+          </div>
+          <ol ps-2 sm:ps-1>
+            <li v-for="error in failed" :key="error[0]" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+              <strong>{{ error[1] }}:</strong>
+              <span>{{ error[0] }}</span>
             </li>
           </ol>
         </div>
@@ -274,10 +288,13 @@ defineExpose({
     <div flex gap-4>
       <div w-12 h-full sm:block hidden />
       <div
-        v-if="shouldExpanded" flex="~ gap-2 1" m="l--1" pt-2 justify="between" max-full
+        v-if="shouldExpanded" flex="~ gap-2 1" m="s--1" pt-2 justify="between" max-full
         border="t base"
       >
-        <PublishEmojiPicker @select="insertText" />
+        <PublishEmojiPicker
+          @select="insertEmoji"
+          @select-custom="insertCustomEmoji"
+        />
 
         <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">
           <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
@@ -290,7 +307,7 @@ defineExpose({
             <button
               btn-action-icon
               :aria-label="$t('tooltip.toggle_code_block')"
-              :class="editor.isActive('codeBlock') ? 'op100' : 'op50'"
+              :class="editor.isActive('codeBlock') ? 'text-primary' : ''"
               @click="editor?.chain().focus().toggleCodeBlock().run()"
             >
               <div i-ri:code-s-slash-line />
@@ -300,6 +317,10 @@ defineExpose({
 
         <div flex-auto />
 
+        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5>
+          {{ editor?.storage.characterCount.characters() }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
+        </div>
+
         <CommonTooltip placement="bottom" :content="$t('tooltip.add_content_warning')">
           <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
             <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
@@ -307,11 +328,46 @@ defineExpose({
           </button>
         </CommonTooltip>
 
+        <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
+          <CommonDropdown placement="bottom">
+            <button btn-action-icon :aria-label="$t('tooltip.change_language')">
+              <div i-ri:translate-2 />
+              <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+            </button>
+
+            <template #popper>
+              <div min-w-80 p3>
+                <!-- TODO search lang -->
+                <!-- <input
+                  placeholder="Search"
+                  p2 mb2 border-rounded w-full bg-transparent
+                  outline-none border="~ base"
+                > -->
+                <div max-h-40vh overflow-auto>
+                  <CommonDropdownItem
+                    v-for="code in [null, ...ISO6391.getAllCodes()]"
+                    :key="code"
+                    :checked="code === (draft.params.language || null)"
+                    @click="chooseLanguage(code)"
+                  >
+                    {{ code ? ISO6391.getNativeName(code) : 'None' }}
+                    <template #description>
+                      <template v-if="code">
+                        {{ ISO6391.getName(code) }}
+                      </template>
+                    </template>
+                  </CommonDropdownItem>
+                </div>
+              </div>
+            </template>
+          </CommonDropdown>
+        </CommonTooltip>
+
         <CommonTooltip placement="bottom" :content="$t('tooltip.change_content_visibility')">
           <CommonDropdown>
             <button :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon w-12>
               <div :class="currentVisibility.icon" />
-              <div i-ri:arrow-down-s-line text-sm text-secondary mr--1 />
+              <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
             </button>
 
             <template #popper>

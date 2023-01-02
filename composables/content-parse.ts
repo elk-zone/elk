@@ -1,3 +1,4 @@
+// @unimport-disable
 import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'

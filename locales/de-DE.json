@@ -1,9 +1,9 @@
 {
   "account": {
     "avatar_description": "{0}'s Avatar",
-    "blocked_by": "Du wurdest von diesem Nutzer geblockt",
+    "blocked_by": "Du wurdest von diesem Account geblockt",
     "blocked_domains": "Gesperrte Domänen",
-    "blocked_users": "Gesperrte Nutzer",
+    "blocked_users": "Gesperrte Accounts",
     "bot": "BOT",
     "favourites": "Favoriten",
     "follow": "Folgen",
@@ -17,7 +17,7 @@
     "go_to_profile": "Gehe zum Profil",
     "joined": "Beigetreten",
     "moved_title": "hat angegeben, dass dies der neue Account ist:",
-    "muted_users": "Stummgeschaltete Nutzer",
+    "muted_users": "Stummgeschaltete Accounts",
     "mutuals": "Freunde",
     "pinned": "Angepinnt",
     "posts": "Beiträge",
@@ -53,20 +53,17 @@
     "activate": "Aktivieren",
     "complete": "Vollständig",
     "compose_desc": "Schreib einen neuen Beitrag",
-    "lang": "Sprache",
     "n-people-in-the-past-n-days": "{0} Personen in den vergangenen {1} Tagen",
     "select_lang": "Sprache auswählen",
-    "sign_in_desc": "Bestehenden Nutzer hinzufügen",
+    "sign_in_desc": "Bestehenden Account hinzufügen",
     "switch_account": "Zu {0} wechseln",
-    "switch_account_desc": "Zu einem anderen Nutzer wechseln",
+    "switch_account_desc": "Zu einem anderen Account wechseln",
     "toggle_dark_mode": "Farbschema ändern",
     "toggle_zen_mode": "Zen-Modus ändern"
   },
   "common": {
     "end_of_list": "Ende der Liste",
     "error": "FEHLER",
-    "kiloSuffix": "T",
-    "megaSuffix": "M",
     "not_found": "404 Nicht Gefunden",
     "offline_desc": "Anscheinend bist du offline. Bitte überprüfe deine Netzwerkverbindung."
   },
@@ -74,16 +71,10 @@
     "with": "mit"
   },
   "error": {
-    "account_not_found": "Nutzer {0} nicht gefunden",
+    "account_not_found": "Account {0} nicht gefunden",
     "explore-list-empty": "Momentan ist nichts im Trend. Schau später nochmal vorbei!",
     "sign_in_error": "Kann nicht zu Server verbinden",
     "status_not_found": "Beitrag nicht gefunden"
-  },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar auf Avatar",
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "Virtuelles Scrollen"
   },
   "help": {
     "desc_highlight": "Erwarte hier und da einige Bugs und fehlende Funktionen.",
@@ -102,6 +93,7 @@
     "edit": "Bearbeiten",
     "mention_account": "Erwähne {0}",
     "mute_account": "{0} stummschalten",
+    "mute_conversation": "Diesem Beitrag stummschalten",
     "open_in_original_site": "Auf Originalseite öffnen",
     "pin_on_profile": "An Profil anpinnen",
     "show_untranslated": "Übersetzung schliessen",
@@ -113,18 +105,12 @@
     "unblock_account": "Entsperre {0}",
     "unblock_domain": "Entsperren Domain {0}",
     "unmute_account": "Stummschaltung von {0} aufheben",
+    "unmute_conversation": "Stummschaltung aufheben",
     "unpin_on_profile": "Von Profil lösen"
   },
-  "nav_footer": {
-    "built_at": "Letzter Build: {0}",
-    "select_feature_flags": "Feature-Flags aktivieren",
-    "select_language": "Sprache auswählen",
-    "show_intro": "Intro anzeigen",
-    "toggle_theme": "Farbschema wechseln",
-    "zen_mode": "Zen-Modus"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "Lesezeichen",
+    "built_at": "Letzter Build: {0}",
     "conversations": "Direktnachrichten",
     "explore": "Entdecken",
     "favourites": "Favoriten",
@@ -133,15 +119,17 @@
     "local": "Lokal",
     "notifications": "Mitteilungen",
     "profile": "Profil",
-    "search": "Durchsuche {0}"
-  },
-  "nav_user": {
-    "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren."
+    "search": "Durchsuche",
+    "select_feature_flags": "Feature-Flags aktivieren",
+    "select_language": "Sprache auswählen",
+    "show_intro": "Intro anzeigen",
+    "toggle_theme": "Farbschema wechseln",
+    "zen_mode": "Zen-Modus"
   },
   "notification": {
     "favourited_post": "hat deinen Beitrag favorisiert",
     "followed_you": "folgt dir",
-    "followed_you_count": "{n} Nutzer folgt dir|{n} Nutzer folgen dir",
+    "followed_you_count": "{n} Account folgt dir|{n} Accounts folgen dir",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "hat deinen Beitrag geteilt",
     "request_to_follow": "möchte dir folgen",
@@ -152,11 +140,17 @@
     "content_warning": "Schreib hier deine Warnung",
     "default_1": "Was geht dir gerade durch den Kopf?",
     "reply_to_account": "Antwort an {0}",
-    "replying": "Antworten",
-    "the_thread": "Der Thread"
+    "replying": "Antworten"
   },
   "search": {
-    "search_desc": "Suche nach Nutzern & Hashtags"
+    "search_desc": "Suche nach Accounts & Hashtags"
+  },
+  "settings": {
+    "feature_flags": {
+      "github_cards": "GitHub Cards",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Virtuelles Scrollen"
+    }
   },
   "state": {
     "edited": "(bearbeitet)",
@@ -174,7 +168,7 @@
       "dismiss": "Schliessen"
     },
     "poll": {
-      "count": "{0} Stimmen|{n} Stimme|{n} Stimmen",
+      "count": "{0} Stimmen|{0} Stimme|{0} Stimmen",
       "ends": "Endet: {0}",
       "finished": "Beendet: {0}"
     },
@@ -182,7 +176,6 @@
     "someone": "Jemand",
     "spoiler_show_less": "Zeige weniger",
     "spoiler_show_more": "Zeige mehr",
-    "thread": "Thread",
     "try_original_site": "Versuche die original Seite"
   },
   "status_history": {
@@ -190,7 +183,6 @@
     "edited": "Bearbeitet: {0}"
   },
   "tab": {
-    "accounts": "Nutzer",
     "for_you": "Für dich",
     "hashtags": "Hashtags",
     "media": "Medien",
@@ -232,7 +224,7 @@
     "year_past": "vor 0 Jahren|letztes Jahren|vor {n} Jahren"
   },
   "timeline": {
-    "show_new_items": "Zeige {n} neue Beiträge|Zeige {n} neuen Beitrag|Zeige {n} neue Beiträge"
+    "show_new_items": "Zeige {v} neue Beiträge|Zeige {v} neuen Beitrag|Zeige {v} neue Beiträge"
   },
   "title": {
     "federated_timeline": "Föderierte Timeline",
@@ -250,13 +242,14 @@
   "user": {
     "add_existing": "Bestehendes Konto hinzufügen",
     "server_address_label": "Mastodon Server Adresse",
+    "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren.",
     "sign_out_account": "{0} abmelden",
     "tip_no_account": "Wenn du noch kein Mastodon-Konto hast, {0}.",
     "tip_register_account": "wähle einen Server aus und registriere eines"
   },
   "visibility": {
-    "direct": "Nur erwähnte Nutzer",
-    "direct_desc": "Nur für erwähnte Nutzer sichtbar",
+    "direct": "Nur erwähnte Accounts",
+    "direct_desc": "Nur für erwähnte Accounts sichtbar",
     "private": "Nur Follower",
     "private_desc": "Nur für Follower sichtbar",
     "public": "Öffentlich",

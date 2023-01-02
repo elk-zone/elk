@@ -2,7 +2,12 @@ import type { Paginator, WsEvents } from 'masto'
 import { useDeactivated } from './lifecycle'
 import type { PaginatorState } from '~/types'
 
-export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvents, eventType: 'notification' | 'update' = 'update') {
+export function usePaginator<T>(
+  paginator: Paginator<any, T[]>,
+  stream?: Promise<WsEvents>,
+  eventType: 'notification' | 'update' = 'update',
+  preprocess: (items: T[]) => T[] = (items: T[]) => items,
+) {
   const state = ref<PaginatorState>(isMastoInitialised.value ? 'idle' : 'loading')
   const items = ref<T[]>([])
   const nextItems = ref<T[]>([])
@@ -19,28 +24,34 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvent
     prevItems.value = []
   }
 
-  stream?.on(eventType, (status) => {
-    if ('uri' in status)
+  stream?.then((s) => {
+    s.on(eventType, (status) => {
+      if ('uri' in status)
+        cacheStatus(status, undefined, true)
+
+      const index = prevItems.value.findIndex((i: any) => i.id === status.id)
+      if (index >= 0)
+        prevItems.value.splice(index, 1)
+
+      prevItems.value.unshift(status as any)
+    })
+
+    // TODO: update statuses
+    s.on('status.update', (status) => {
       cacheStatus(status, undefined, true)
 
-    prevItems.value.unshift(status as any)
-  })
+      const index = items.value.findIndex((s: any) => s.id === status.id)
+      if (index >= 0)
+        items.value[index] = status as any
+    })
 
-  // TODO: update statuses
-  stream?.on('status.update', (status) => {
-    cacheStatus(status, undefined, true)
+    s.on('delete', (id) => {
+      removeCachedStatus(id)
 
-    const index = items.value.findIndex((s: any) => s.id === status.id)
-    if (index >= 0)
-      items.value[index] = status as any
-  })
-
-  stream?.on('delete', (id) => {
-    removeCachedStatus(id)
-
-    const index = items.value.findIndex((s: any) => s.id === id)
-    if (index >= 0)
-      items.value.splice(index, 1)
+      const index = items.value.findIndex((s: any) => s.id === id)
+      if (index >= 0)
+        items.value.splice(index, 1)
+    })
   })
 
   async function loadNext() {
@@ -52,7 +63,7 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvent
       const result = await paginator.next()
 
       if (result.value?.length) {
-        nextItems.value = result.value
+        nextItems.value = preprocess(result.value) as any
         items.value.push(...nextItems.value)
         state.value = 'idle'
       }
@@ -86,13 +97,12 @@ export function usePaginator<T>(paginator: Paginator<any, T[]>, stream?: WsEvent
       () => {
         if (
           isInScreen
-        && state.value === 'idle'
-        // No new content is loaded when the keepAlive page enters the background
-        && deactivated.value === false
+          && state.value === 'idle'
+          // No new content is loaded when the keepAlive page enters the background
+          && deactivated.value === false
         )
           loadNext()
       },
-      { immediate: true },
     )
   }
 

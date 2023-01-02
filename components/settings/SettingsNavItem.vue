@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps<{
   text?: string
+  description?: string
   icon?: string
   to: string | Record<string, string>
   command?: boolean
@@ -8,18 +9,18 @@ const props = defineProps<{
 
 const router = useRouter()
 
-if (props.command) {
-  useCommand({
-    scope: 'Settings',
+useCommand({
+  scope: 'Settings',
 
-    name: () => props.text ?? (typeof props.to === 'string' ? props.to as string : props.to.name),
-    icon: () => props.icon || '',
+  name: () => props.text ?? (typeof props.to === 'string' ? props.to as string : props.to.name),
+  description: () => props.description,
+  icon: () => props.icon || '',
+  visible: () => props.command,
 
-    onActivate() {
-      router.push(props.to)
-    },
-  })
-}
+  onActivate() {
+    router.push(props.to)
+  },
+})
 </script>
 
 <template>
@@ -36,7 +37,7 @@ if (props.command) {
     >
       <div flex-1 flex items-center md:gap2 gap4>
         <div
-          flex items-center justify-center
+          flex items-center justify-center flex-shrink-0
           :class="$slots.description ? 'w-12 h-12' : ''"
         >
           <slot name="icon">
@@ -50,11 +51,13 @@ if (props.command) {
             </slot>
           </p>
           <p v-if="$slots.description" text-sm text-secondary>
-            <slot name="description" />
+            <slot name="description">
+              {{ description }}
+            </slot>
           </p>
         </div>
       </div>
-      <div i-ri:arrow-right-s-line text-xl text-secondary-light />
+      <div i-ri:arrow-right-s-line text-xl text-secondary-light class="rtl-flip" />
     </div>
   </NuxtLink>
 </template>

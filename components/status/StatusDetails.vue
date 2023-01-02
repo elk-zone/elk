@@ -29,9 +29,9 @@ const isDM = $computed(() => status.visibility === 'direct')
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 px-4 relative>
-    <StatusActionsMore :status="status" absolute right-2 top-2 />
-    <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pr5 mr-a>
+  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 px-4 relative :lang="status.language ?? undefined">
+    <StatusActionsMore :status="status" absolute inset-ie-2 top-2 />
+    <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pe5 me-a>
       <AccountHoverWrapper :account="status.account">
         <AccountInfo :account="status.account" />
       </AccountHoverWrapper>
@@ -44,7 +44,7 @@ const isDM = $computed(() => status.visibility === 'direct')
           :status="status"
           :inline="false"
         >
-          <span ml1 font-bold cursor-pointer>{{ $t('state.edited') }}</span>
+          <span ms1 font-bold cursor-pointer>{{ $t('state.edited') }}</span>
         </StatusEditIndicator>
       </div>
       <div>&middot;</div>

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  name: 'tag',
+})
+
 const params = useRoute().params
 const tagName = $(computedEager(() => params.tag as string))
 
@@ -6,8 +10,8 @@ const masto = useMasto()
 const { data: tag, refresh } = $(await useAsyncData(() => masto.tags.fetch(tagName), { watch: [isMastoInitialised], immediate: isMastoInitialised.value }))
 
 const paginator = masto.timelines.iterateHashtag(tagName)
-const stream = await masto.stream.streamTagTimeline(tagName)
-onBeforeUnmount(() => stream.disconnect())
+const stream = masto.stream.streamTagTimeline(tagName)
+onBeforeUnmount(() => stream.then(s => s.disconnect()))
 
 if (tag) {
   useHeadFixed({

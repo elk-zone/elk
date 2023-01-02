@@ -1,15 +1,10 @@
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 
-export const usePWA = () => {
+export default defineNuxtPlugin(() => {
   const online = useOnline()
 
-  useHead({
-    meta: [{ id: 'theme-color', name: 'theme-color', content: computed(() => isDark.value ? '#111111' : '#ffffff') }],
-  })
-
   const {
-    needRefresh,
-    updateServiceWorker,
+    needRefresh, updateServiceWorker,
   } = useRegisterSW({
     immediate: true,
     onRegisteredSW(swUrl, r) {
@@ -39,10 +34,12 @@ export const usePWA = () => {
   }
 
   return {
-    needRefresh,
-    updateServiceWorker,
-    close,
+    provide: {
+      pwa: reactive({
+        needRefresh,
+        updateServiceWorker,
+        close,
+      }),
+    },
   }
-}
-
-export const pwa = reactive(usePWA())
+})

@@ -5,10 +5,15 @@ const disabledVisual = computed(() => isMastoInitialised.value && !currentUser.v
 
 <template>
   <button
-    color-primary rounded-full ml-7 lg:ml-3 w-9 lg:w-auto font-bold py2 lg:py4 flex="~ gap2 center"
+    flex="~ gap2 center"
+    w-9 h-9 py2
+    lg="w-auto h-auto py-4"
+    rounded-full
     cursor-pointer disabled:pointer-events-none
-    text-primary border-1 border-primary
-    :disabled="disabled" :class="disabledVisual ? 'op25' : 'hover:bg-primary hover:text-inverted'"
+    text-primary font-bold
+    border-1 border-primary
+    :class="disabledVisual ? 'op25' : 'hover:bg-primary hover:text-inverted'"
+    :disabled="disabled"
     @click="openPublishDialog()"
   >
     <div i-ri:quill-pen-line />

@@ -2,7 +2,7 @@
 *A nimble Mastodon web client*
 
 <p align="center">
-  <a href="https://viteconf.org" target="_blank" rel="noopener noreferrer">
+  <a href="https://elk.zone" target="_blank" rel="noopener noreferrer">
     <img width="180" src="https://elk.zone/logo.svg" alt="Vite logo">
   </a>
 </p>
@@ -25,7 +25,7 @@ We're really excited that you're interested in contributing to Elk! Before submi
 
 ## Online
 
-You can use [StackBlitz CodeFlow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a CodeFlow button on PRs to review them without a local setup.
+You can use [StackBlitz CodeFlow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a CodeFlow button on PRs to review them without a local setup. Once the elk repo has been cloned in CodeFlow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [CodeFlow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 
 
 [![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
 

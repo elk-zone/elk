@@ -45,6 +45,8 @@ export default defineConfig({
       'input-base': 'p2 rounded w-full bg-transparent border border-dark input-base-focus input-base-disabled',
       'input-error': 'border-$c-error focus:(outline-offset-0 outline-$c-error outline-1px)',
 
+      'select-settings': 'p3 border border-base rounded w-full block bg-base',
+
       // link
       'text-link-rounded': 'focus:outline-none focus:ring-(2 primary inset) hover:bg-active rounded md:rounded-full px2 mx--2',
 
@@ -53,9 +55,6 @@ export default defineConfig({
       'flex-v-center': 'items-center',
       'flex-h-center': 'justify-center',
       'bg-hover-overflow': 'relative z-0 transition-colors duration-250 after-content-empty after:(absolute inset--2px bg-transparent rounded-lg z--1 transition-colors duration-250) hover:after:(bg-active)',
-
-      // account
-      'account-avatar-normal': 'w-54px h-54px border-3 border-bg-base',
     },
   ],
   presets: [
@@ -101,5 +100,6 @@ export default defineConfig({
       res += `\n${res.replace('{scrollbar-width:none;}', '::-webkit-scrollbar{display: none;}')}`
       return res
     }],
+    ['box-shadow-outline', { 'box-shadow': '0 0 0 1px var(--c-primary)' }],
   ],
 })

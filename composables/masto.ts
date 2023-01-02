@@ -41,7 +41,7 @@ export function getShortHandle({ acct }: Account) {
 }
 
 export function getServerName(account: Account) {
-  if (account.acct.includes('@'))
+  if (account.acct?.includes('@'))
     return account.acct.split('@')[1]
   // We should only lack the server name if we're on the same server as the account
   return currentInstance.value?.uri || ''
@@ -111,6 +111,16 @@ export function getStatusRoute(status: Status) {
   })
 }
 
+export function getTagRoute(tag: string) {
+  return useRouter().resolve({
+    name: 'tag',
+    params: {
+      server: currentServer.value,
+      tag,
+    },
+  })
+}
+
 export function getStatusPermalinkRoute(status: Status) {
   return status.url ? withoutProtocol(status.url) : null
 }
@@ -161,4 +171,21 @@ async function fetchRelationships() {
   const relationships = await useMasto().accounts.fetchRelationships(requested.map(([id]) => id))
   for (let i = 0; i < requested.length; i++)
     requested[i][1].value = relationships[i]
+}
+
+const maxDistance = 10
+export function timelineWithReorderedReplies(items: Status[]) {
+  const newItems = [...items]
+  // TODO: Basic reordering, we should get something more efficient and robust
+  for (let i = items.length - 1; i > 0; i--) {
+    for (let k = 1; k <= maxDistance && i - k >= 0; k++) {
+      const inReplyToId = newItems[i - k].inReplyToId ?? newItems[i - k].reblog?.inReplyToId
+      if (inReplyToId && (inReplyToId === newItems[i].reblog?.id || inReplyToId === newItems[i].id)) {
+        const item = newItems.splice(i, 1)[0]
+        newItems.splice(i - k, 0, item)
+        k = 1
+      }
+    }
+  }
+  return newItems
 }

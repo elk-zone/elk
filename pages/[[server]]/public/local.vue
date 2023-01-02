@@ -1,7 +1,4 @@
 <script setup lang="ts">
-const paginator = useMasto().timelines.iteratePublic({ local: true })
-const stream = await useMasto().stream.streamCommunityTimeline()
-onBeforeUnmount(() => stream.disconnect())
 
 const { t } = useI18n()
 
@@ -19,8 +16,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <slot>
-      <TimelinePaginator v-bind="{ paginator, stream }" context="public" />
-    </slot>
+    <TimelinePublicLocal v-if="isMastoInitialised" />
   </MainContent>
 </template>

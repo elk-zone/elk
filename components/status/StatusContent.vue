@@ -7,7 +7,6 @@ const { status, context } = defineProps<{
 }>()
 
 const isDM = $computed(() => status.visibility === 'direct')
-const isSelf = $computed(() => status.account.id === currentUser.value?.account.id)
 const isDetails = $computed(() => context === 'details')
 
 // Content Filter logic
@@ -24,20 +23,20 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
   <div
     space-y-3
     :class="{
-      'pt2 pb0.5 px3.5 br2 border-1 rounded-3 rounded-tl-none': isDM,
-      'bg-fade border-primary-light': isDM && !isSelf,
-      'bg-code border-base': isDM && isSelf,
+      'pt2 pb0.5 px3.5 bg-fade border-1 border-primary-light rounded-5 mx--1': isDM,
+      'ms--3.5 mt--1': isDM && context !== 'details',
     }"
   >
+    <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
     <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
-      <template v-if="status.spoilerText || filterPhrase" #spoiler>
-        <p>{{ status.spoilerText || `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
+      <template v-if="filterPhrase" #spoiler>
+        <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
       </template>
-      <StatusBody :status="status" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
-      <StatusPoll
-        v-if="status.poll"
-        :poll="status.poll"
-      />
+      <template v-else-if="status.spoilerText" #spoiler>
+        <p>{{ status.spoilerText }}</p>
+      </template>
+      <StatusBody v-if="!status.sensitive || status.spoilerText" :status="status" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+      <StatusPoll v-if="status.poll" :status="status" />
       <StatusMedia
         v-if="status.mediaAttachments?.length"
         :status="status"

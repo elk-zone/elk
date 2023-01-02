@@ -9,7 +9,7 @@ const { data, pending, error } = useLazyAsyncData(
 )
 
 useHeadFixed({
-  title: () => `${t('tab.for_you')} | ${t('nav_side.explore')}`,
+  title: () => `${t('tab.for_you')} | ${t('nav.explore')}`,
 })
 </script>
 

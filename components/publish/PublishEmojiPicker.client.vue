@@ -1,25 +1,34 @@
 <script setup lang="ts">
 import type { Picker } from 'emoji-mart'
-import { updateCustomEmojis } from '~/composables/emojis'
 
 const emit = defineEmits<{
   (e: 'select', code: string): void
+  (e: 'selectCustom', image: any): void
 }>()
 
 const el = $ref<HTMLElement>()
 let picker = $ref<Picker>()
+const colorMode = useColorMode()
 
 async function openEmojiPicker() {
-  if (!picker) {
-    await updateCustomEmojis()
+  await updateCustomEmojis()
+  if (picker) {
+    picker.update({
+      theme: colorMode.value,
+      custom: customEmojisData.value,
+    })
+  }
+  else {
     const promise = import('@emoji-mart/data').then(r => r.default)
     const { Picker } = await import('emoji-mart')
     picker = new Picker({
       data: () => promise,
-      onEmojiSelect(e: any) {
-        emit('select', e.native || e.shortcodes)
+      onEmojiSelect({ native, src, alt, name }: any) {
+        native
+          ? emit('select', native)
+          : emit('selectCustom', { src, alt, 'data-emoji-id': name })
       },
-      theme: isDark.value ? 'dark' : 'light',
+      theme: colorMode.value,
       custom: customEmojisData.value,
     })
   }
@@ -28,28 +37,16 @@ async function openEmojiPicker() {
   el?.appendChild(picker as any as HTMLElement)
 }
 
-const hidePicker = () => {
+const hideEmojiPicker = () => {
   if (picker)
     el?.removeChild(picker as any as HTMLElement)
 }
-
-watch(isDark, () => {
-  picker?.update({
-    theme: isDark.value ? 'dark' : 'light',
-  })
-})
-
-watch(customEmojisData, () => {
-  picker?.update({
-    custom: customEmojisData.value,
-  })
-})
 </script>
 
 <template>
   <VDropdown
     @apply-show="openEmojiPicker()"
-    @apply-hide="hidePicker()"
+    @apply-hide="hideEmojiPicker()"
   >
     <button btn-action-icon :title="$t('tooltip.emoji')">
       <div i-ri:emotion-line />

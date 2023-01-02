@@ -53,7 +53,6 @@
     "activate": "Aktivovat",
     "complete": "Dokončit",
     "compose_desc": "Napsat příspěvek",
-    "lang": "Jazyky",
     "n-people-in-the-past-n-days": "{0} lidí v posledních {1} dnech",
     "select_lang": "Vybrat jazyk",
     "sign_in_desc": "Přidat existující účet",
@@ -65,8 +64,6 @@
   "common": {
     "end_of_list": "Konec seznamu",
     "error": "CHYBA",
-    "kiloSuffix": "K",
-    "megaSuffix": "M",
     "not_found": "404 Nenalezeno!",
     "offline_desc": "Zdá se, že jste offline. Zkontrolujte připojení k internetu."
   },
@@ -78,12 +75,6 @@
     "explore-list-empty": "Momentálně tu není nic zajímavého. Zkuste to jindy.",
     "sign_in_error": "Nemohu se připojit k serveru.",
     "status_not_found": "Status nenalezen"
-  },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar on Avatar",
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "Virtual Scrolling"
   },
   "help": {
     "desc_highlight": "Z toho důvodu může tu a tam nastat chyba nebo chybět nějaká ta funkce.",
@@ -102,6 +93,7 @@
     "edit": "Upravit",
     "mention_account": "Zmínit {0}",
     "mute_account": "Umlčet {0}",
+    "mute_conversation": "Umlčet příspěvek",
     "open_in_original_site": "Otevřít na původní stránce",
     "pin_on_profile": "Připíchnout na profil",
     "show_untranslated": "Zobrazit nepřeložené",
@@ -113,18 +105,12 @@
     "unblock_account": "Odblokovat {0}",
     "unblock_domain": "Odblokovat doménu {0}",
     "unmute_account": "Odmlčet {0}",
+    "unmute_conversation": "Přestat ignorovat příspěvek",
     "unpin_on_profile": "Odepnout z profilu"
   },
-  "nav_footer": {
-    "built_at": "Zprovozněno {0}",
-    "select_feature_flags": "Zapnout funkce",
-    "select_language": "Vybrat jazyk",
-    "show_intro": "Zobrazit více informací o aplikaci",
-    "toggle_theme": "Přepnout vzhled",
-    "zen_mode": "Tichý režim"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "Záložky",
+    "built_at": "Zprovozněno {0}",
     "conversations": "Pošta",
     "explore": "Zajímavé",
     "favourites": "Oblíbené",
@@ -132,10 +118,13 @@
     "home": "Hlavní stránka",
     "local": "Lokální",
     "notifications": "Upozornění",
-    "profile": "Profil"
-  },
-  "nav_user": {
-    "sign_in_desc": "Přihlaste se, abyste mohli sledovat profily nebo hashtagy, psát a sdílet příspěvky a odpovídat na ně na tomto nebo jiných serverech."
+    "profile": "Profil",
+    "search": "Vyhledávání",
+    "select_feature_flags": "Zapnout funkce",
+    "select_language": "Vybrat jazyk",
+    "show_intro": "Zobrazit více informací o aplikaci",
+    "toggle_theme": "Přepnout vzhled",
+    "zen_mode": "Tichý režim"
   },
   "notification": {
     "favourited_post": "si oblíbil váš příspěvek",
@@ -153,6 +142,13 @@
     "replying": "Sem napište odpověď",
     "the_thread": "vlákno"
   },
+  "settings": {
+    "feature_flags": {
+      "github_cards": "GitHub Cards",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Virtual Scrolling"
+    }
+  },
   "state": {
     "edited": "(Upraveno)",
     "editing": "Upravuje se",
@@ -169,7 +165,7 @@
       "dismiss": "Skrýt"
     },
     "poll": {
-      "count": "{n} hlasů|{n} hlas|{n} hlasů",
+      "count": "{0} hlasů|{0} hlas|{0} hlasů",
       "ends": "končí {0}",
       "finished": "ukončeno {0}"
     },
@@ -226,7 +222,7 @@
     "year_past": "před 0 roky|minulý rok|před {n} lety "
   },
   "timeline": {
-    "show_new_items": "Ukázat {n} nových položek|Ukázat {n} novou položku|Ukázat {n} nových položek"
+    "show_new_items": "Ukázat {v} nových položek|Ukázat {v} novou položku|Ukázat {v} nových položek"
   },
   "title": {
     "federated_timeline": "Federovaná časová osa",
@@ -244,6 +240,7 @@
   "user": {
     "add_existing": "Přidat existující účet",
     "server_address_label": "Adresa Mastodon serveru:",
+    "sign_in_desc": "Přihlaste se, abyste mohli sledovat profily nebo hashtagy, psát a sdílet příspěvky a odpovídat na ně na tomto nebo jiných serverech.",
     "sign_out_account": "Odhlásit {0}",
     "tip_no_account": "Pokud nemáte účet na Mastodonu, {0}.",
     "tip_register_account": "vyberte server a zaregistrujte se"

@@ -1,13 +1,9 @@
 <script setup lang="ts">
-setupI18n()
-setupFontSize()
 setupPageHeader()
 provideGlobalCommands()
 
 // We want to trigger rerendering the page when account changes
 const key = computed(() => `${currentUser.value?.server ?? currentServer.value}:${currentUser.value?.account.id || ''}`)
-
-const { params } = useRoute()
 </script>
 
 <template>

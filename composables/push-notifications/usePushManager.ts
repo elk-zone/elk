@@ -5,14 +5,12 @@ import type {
   PushNotificationRequest,
   SubscriptionResult,
 } from '~/composables/push-notifications/types'
-import { createPushSubscription } from '~/composables/push-notifications/createPushSubscription'
 import { STORAGE_KEY_NOTIFICATION, STORAGE_KEY_NOTIFICATION_POLICY } from '~/constants'
-import { currentUser, removePushNotifications } from '~/composables/users'
 
 const supportsPushNotifications = typeof window !== 'undefined'
-    && 'serviceWorker' in navigator
-    && 'PushManager' in window
-    && 'getKey' in PushSubscription.prototype
+  && 'serviceWorker' in navigator
+  && 'PushManager' in window
+  && 'getKey' in PushSubscription.prototype
 
 export const usePushManager = () => {
   const masto = useMasto()
@@ -37,7 +35,8 @@ export const usePushManager = () => {
     poll: currentUser.value?.pushSubscription?.alerts.poll ?? true,
     policy: configuredPolicy.value[currentUser.value?.account?.acct ?? ''] ?? 'all',
   })
-  const { history, commit, clear } = useManualRefHistory(pushNotificationData, { clone: true })
+  // don't clone, we're using indexeddb
+  const { history, commit, clear } = useManualRefHistory(pushNotificationData)
   const saveEnabled = computed(() => {
     const current = pushNotificationData.value
     const previous = history.value?.[0]?.snapshot
@@ -61,33 +60,28 @@ export const usePushManager = () => {
     }
   }, { immediate: true, flush: 'post' })
 
-  const subscribe = async (notificationData?: CreatePushNotification, policy?: SubscriptionPolicy, force?: boolean): Promise<SubscriptionResult> => {
-    if (!isSupported || !currentUser.value)
-      return 'invalid-state'
+  const subscribe = async (
+    notificationData?: CreatePushNotification,
+    policy?: SubscriptionPolicy,
+    force?: boolean,
+  ): Promise<SubscriptionResult> => {
+    if (!isSupported)
+      return 'not-supported'
+
+    if (!currentUser.value)
+      return 'no-user'
 
     const { pushSubscription, server, token, vapidKey, account: { acct } } = currentUser.value
 
     if (!token || !server || !vapidKey)
-      return 'invalid-state'
+      return 'invalid-vapid-key'
 
-    let permission: PermissionState | undefined
+    // always request permission, browsers should remember user decision
+    const permission = await Promise.resolve(Notification.requestPermission()).then((p) => {
+      return p === 'default' ? 'prompt' : p
+    })
 
-    if (!notificationPermission.value || (notificationPermission.value === 'prompt' && !hiddenNotification.value[acct])) {
-      // safari 16 does not support navigator.permissions.query for notifications
-      // try {
-      //   permission = (await navigator.permissions?.query({ name: 'notifications' }))?.state
-      // }
-      // catch {
-      permission = await Promise.resolve(Notification.requestPermission()).then((p: NotificationPermission) => {
-        return p === 'default' ? 'prompt' : p
-      })
-      // }
-    }
-    else {
-      permission = notificationPermission.value
-    }
-
-    if (!permission || permission === 'denied') {
+    if (permission === 'denied') {
       notificationPermission.value = permission
       return 'notification-denied'
     }

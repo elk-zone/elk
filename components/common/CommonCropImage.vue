@@ -16,11 +16,11 @@ const props = withDefaults(defineProps<Props>(), {
   stencilSizePercentage: 0.9,
 })
 
-const emits = defineEmits<{
+const emit = defineEmits<{
   (event: 'update:modelValue', value: File): void
 }>()
 
-const vmFile = useVModel(props, 'modelValue', emits, { passive: true })
+const vmFile = useVModel(props, 'modelValue', emit, { passive: true })
 
 const cropperDialog = ref(false)
 

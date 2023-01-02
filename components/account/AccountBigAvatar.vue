@@ -1,0 +1,16 @@
+<script setup lang="ts">
+import type { Account } from 'masto'
+
+// Avatar with a background base achieving a 3px border to be used in status cards
+// The border is used for Avatar on Avatar for reblogs and connecting replies
+
+defineProps<{
+  account: Account
+}>()
+</script>
+
+<template>
+  <div :key="account.avatar" v-bind="$attrs" rounded-full bg-base w-54px h-54px flex items-center justify-center>
+    <AccountAvatar :account="account" w-48px h-48px />
+  </div>
+</template>

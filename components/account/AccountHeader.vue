@@ -90,7 +90,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
             <AccountHandle :account="account" />
           </div>
         </div>
-        <div absolute top-18 right-0 flex gap-2 items-center>
+        <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->
@@ -109,7 +109,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           </button> -->
         </div>
       </div>
-      <div v-if="account.note">
+      <div v-if="account.note" max-h-100 overflow-y-auto>
         <ContentRich text-4 text-base :content="account.note" :emojis="account.emojis" />
       </div>
       <div v-if="namedFields.length" flex="~ col wrap gap1">

@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
 
-const { status } = defineProps<{
+const { status, collapsed = false, simplified = false } = defineProps<{
   status: Status
+  collapsed?: boolean
+  simplified?: boolean
 }>()
 
-const account = useAccountById(status.inReplyToAccountId)
+const isSelf = $computed(() => status.inReplyToAccountId === status.account.id)
+const account = isSelf ? computed(() => status.account) : useAccountById(status.inReplyToAccountId)
 </script>
 
 <template>
@@ -16,12 +19,13 @@ const account = useAccountById(status.inReplyToAccountId)
       :to="getStatusInReplyToRoute(status)"
       :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
     >
-      <div i-ri:reply-fill class="scale-x-[-1]" text-secondary-light />
-      <template v-if="account?.id !== status.account.id">
-        <AccountInlineInfo v-if="account" :account="account" :link="false" />
-        <span v-else ws-nowrap>{{ $t('status.someone') }}</span>
+      <template v-if="account">
+        <div i-ri:reply-fill :class="collapsed ? '' : 'scale-x-[-1]'" text-secondary-light />
+        <template v-if="!collapsed">
+          <AccountAvatar v-if="isSelf || simplified || status.inReplyToAccountId === currentUser?.account.id" :account="account" :link="false" w-5 h-5 mx-0.5 />
+          <AccountInlineInfo v-else :account="account" :link="false" mx-0.5 />
+        </template>
       </template>
-      <span v-else ws-nowrap>{{ $t('status.thread') }}</span>
       <div i-ph:chats-fill text-primary text-lg />
     </NuxtLink>
   </div>

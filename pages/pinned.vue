@@ -14,7 +14,7 @@ useHeadFixed({
 <template>
   <MainContent>
     <template #title>
-      <div i-ri:pushpin-line h-6 mr-1 />
+      <div i-ri:pushpin-line h-6 me-1 />
       <span>{{ t('account.pinned') }}</span>
     </template>
 

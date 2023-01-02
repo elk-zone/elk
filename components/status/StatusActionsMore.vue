@@ -16,6 +16,7 @@ const {
   toggleFavourite,
   togglePin,
   toggleReblog,
+  toggleMute,
 } = $(useStatusActions(props))
 
 const clipboard = useClipboard()
@@ -70,8 +71,12 @@ const deleteAndRedraft = async () => {
   }
 
   removeCachedStatus(status.id)
-  const { text } = await masto.statuses.remove(status.id)
-  openPublishDialog('dialog', await getDraftFromStatus(status, text), true)
+  await masto.statuses.remove(status.id)
+  await openPublishDialog('dialog', await getDraftFromStatus(status), true)
+
+  // Go to the new status, if the page is the old status
+  if (lastPublishDialogStatus.value && route.matched.some(m => m.path === '/:server?/@:account/:status'))
+    router.push(getStatusRoute(lastPublishDialogStatus.value))
 }
 
 const reply = () => {
@@ -93,7 +98,7 @@ async function editStatus() {
 </script>
 
 <template>
-  <CommonDropdown flex-none ml3 placement="bottom" :eager-mount="command">
+  <CommonDropdown flex-none ms3 placement="bottom" :eager-mount="command">
     <StatusActionButton
       :content="$t('action.more')"
       color="text-purple"
@@ -146,6 +151,15 @@ async function editStatus() {
           icon="i-ri:link"
           :command="command"
           @click="copyLink(status)"
+        />
+
+        <CommonDropdownItem
+          v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some(m => m.id === currentUser!.account.id))"
+          :text="status.muted ? $t('menu.unmute_conversation') : $t('menu.mute_conversation')"
+          :icon="status.muted ? 'i-ri:eye-line' : 'i-ri:eye-off-line'"
+          :command="command"
+          :disabled="isLoading.muted"
+          @click="toggleMute()"
         />
 
         <NuxtLink :to="status.url" external target="_blank">

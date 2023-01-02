@@ -4,18 +4,28 @@ import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { Paginator, WsEvents } from 'masto'
 
-const { paginator, stream, keyProp = 'id', virtualScroller = false, eventType = 'update' } = defineProps<{
+const {
+  paginator,
+  stream,
+  keyProp = 'id',
+  virtualScroller = false,
+  eventType = 'update',
+  preprocess,
+} = defineProps<{
   paginator: Paginator<any, any[]>
   keyProp?: string
   virtualScroller?: boolean
-  stream?: WsEvents
+  stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
+  preprocess?: (items: any[]) => any[]
 }>()
 
 defineSlots<{
   default: {
     item: any
     active?: boolean
+    older?: any
+    newer?: any // newer is undefined when index === 0
   }
   updater: {
     number: number
@@ -24,7 +34,7 @@ defineSlots<{
   loading: {}
 }>()
 
-const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream, eventType)
+const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream, eventType, preprocess)
 </script>
 
 <template>
@@ -33,29 +43,34 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
     <slot name="items" :items="items">
       <template v-if="virtualScroller">
         <DynamicScroller
-          v-slot="{ item, active }"
+          v-slot="{ item, active, index }"
           :items="items"
           :min-item-size="200"
           :key-field="keyProp"
           page-mode
         >
-          <slot :item="item" :active="active" />
+          <slot
+            :key="item[keyProp]"
+            :item="item"
+            :active="active"
+            :older="items[index + 1]"
+            :newer="items[index - 1]"
+          />
         </DynamicScroller>
       </template>
       <template v-else>
         <slot
-          v-for="item of items"
+          v-for="item, index of items"
           :key="item[keyProp]"
           :item="item"
+          :older="items[index + 1]"
+          :newer="items[index - 1]"
         />
       </template>
     </slot>
     <div ref="endAnchor" />
     <slot v-if="state === 'loading'" name="loading">
-      <div p5 text-center flex="~ col" items-center animate-pulse>
-        <div text-secondary i-ri:loader-2-fill animate-spin text-2xl />
-        <span text-secondary>{{ $t('state.loading') }}</span>
-      </div>
+      <TimelineSkeleton />
     </slot>
     <div v-else-if="state === 'done'" p5 text-secondary italic text-center>
       {{ $t('common.end_of_list') }}

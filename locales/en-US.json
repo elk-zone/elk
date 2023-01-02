@@ -13,7 +13,7 @@
     "blocked_users": "Blocked users",
     "blocking": "Blocked",
     "bot": "BOT",
-    "favourites": "Favourites",
+    "favourites": "Favorites",
     "follow": "Follow",
     "follow_back": "Follow back",
     "follow_requested": "Requested",
@@ -42,6 +42,7 @@
     "bookmark": "Bookmark",
     "bookmarked": "Bookmarked",
     "boost": "Boost",
+    "boost_count": "{0}",
     "boosted": "Boosted",
     "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
@@ -49,13 +50,15 @@
     "confirm": "Confirm",
     "edit": "Edit",
     "enter_app": "Enter App",
-    "favourite": "Favourite",
-    "favourited": "Favourited",
+    "favourite": "Favorite",
+    "favourite_count": "{0}",
+    "favourited": "Favorited",
     "more": "More",
     "next": "Next",
     "prev": "Prev",
     "publish": "Publish!",
     "reply": "Reply",
+    "reply_count": "{0}",
     "save": "Save",
     "save_changes": "Save changes",
     "sign_in": "Sign in",
@@ -73,7 +76,6 @@
     "activate": "Activate",
     "complete": "Complete",
     "compose_desc": "Write a new post",
-    "lang": "Languages",
     "n-people-in-the-past-n-days": "{0} people in the past {1} days",
     "select_lang": "Select language",
     "sign_in_desc": "Add an existing account",
@@ -86,8 +88,6 @@
     "end_of_list": "End of the list",
     "error": "ERROR",
     "in": "in",
-    "kiloSuffix": "K",
-    "megaSuffix": "M",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
   },
@@ -101,12 +101,6 @@
     "sign_in_error": "Cannot connect to the server.",
     "status_not_found": "Post not found",
     "unsupported_file_format": "Unsupported file format"
-  },
-  "feature_flag": {
-    "avatar_on_avatar": "Avatar on Avatar",
-    "github_cards": "GitHub Cards",
-    "user_switcher_sidebar": "User Switcher Sidebar",
-    "virtual_scroll": "Virtual Scrolling"
   },
   "help": {
     "desc_highlight": "Expect some bugs and missing features here and there.",
@@ -125,6 +119,7 @@
     "edit": "Edit",
     "mention_account": "Mention {0}",
     "mute_account": "Mute {0}",
+    "mute_conversation": "Mute this post",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "show_untranslated": "Show untranslated",
@@ -136,35 +131,31 @@
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
     "unmute_account": "Unmute {0}",
+    "unmute_conversation": "Unmute this post",
     "unpin_on_profile": "Unpin on profile"
   },
-  "nav_footer": {
-    "built_at": "Built {0}",
-    "select_feature_flags": "Toggle Feature Flags",
-    "select_font_size": "Select Font Size",
-    "select_language": "Select Language",
-    "show_intro": "Show intro",
-    "toggle_theme": "Toggle Theme",
-    "zen_mode": "Zen Mode"
-  },
-  "nav_side": {
+  "nav": {
     "bookmarks": "Bookmarks",
+    "built_at": "Built {0}",
     "conversations": "Conversations",
     "explore": "Explore",
-    "favourites": "Favourites",
+    "favourites": "Favorites",
     "federated": "Federated",
     "home": "Home",
     "local": "Local",
     "notifications": "Notifications",
     "profile": "Profile",
-    "search": "Search {0}",
-    "settings": "Settings"
-  },
-  "nav_user": {
-    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
+    "search": "Search",
+    "select_feature_flags": "Toggle Feature Flags",
+    "select_font_size": "Font Size",
+    "select_language": "Display Language",
+    "settings": "Settings",
+    "show_intro": "Show intro",
+    "toggle_theme": "Toggle Theme",
+    "zen_mode": "Zen Mode"
   },
   "notification": {
-    "favourited_post": "favourited your post",
+    "favourited_post": "favorited your post",
     "followed_you": "followed you",
     "followed_you_count": "{followers} people followed you|{followers} person followed you|{followers} people followed you",
     "missing_type": "MISSING notification.type:",
@@ -172,7 +163,7 @@
     "request_to_follow": "requested to follow you",
     "settings": {
       "alerts": {
-        "favourite": "Favourites",
+        "favourite": "Favorites",
         "follow": "New followers",
         "mention": "Mentions",
         "poll": "Polls",
@@ -189,6 +180,12 @@
       },
       "save_settings": "Save settings changes",
       "show_btn": "Show push notifications settings",
+      "subscription_error": {
+        "clear_error": "Clear error",
+        "permission_denied": "Permission denied: enable notifications in your browser.",
+        "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
+        "title": "Could not subscribe to push notifications"
+      },
       "title": "Push notifications settings",
       "undo_settings": "Undo settings changes",
       "unsubscribe": "Disable push notifications",
@@ -215,8 +212,6 @@
   },
   "pwa": {
     "dismiss": "Dismiss",
-    "message": "@:pwa.title{','} click on the @:pwa.reload button to update.",
-    "reload": "Reload",
     "title": "New Elk update available!",
     "update": "Update",
     "update_available_short": "Update Elk"
@@ -225,6 +220,27 @@
     "search_desc": "Search for people & hashtags"
   },
   "settings": {
+    "about": {
+      "label": "About"
+    },
+    "feature_flags": {
+      "github_cards": "GitHub Cards",
+      "title": "Experimental Features",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Virtual Scrolling"
+    },
+    "interface": {
+      "color_mode": "Color Mode",
+      "dark_mode": "Dark Mode",
+      "default": " (default)",
+      "font_size": "Font Size",
+      "label": "Interface",
+      "light_mode": "Light Mode"
+    },
+    "language": {
+      "display_language": "Display Language",
+      "label": "Language"
+    },
     "preferences": {
       "label": "Preferences"
     },
@@ -242,9 +258,16 @@
       },
       "label": "Profile"
     },
-    "select_a_settings": "Select a settings"
+    "select_a_settings": "Select a settings",
+    "users": {
+      "export": "Export User Tokens",
+      "import": "Import User Tokens",
+      "label": "Logged in users"
+    }
   },
   "state": {
+    "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
+    "attachments_limit_error": "Limit per post exceeded",
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
@@ -261,7 +284,7 @@
       "dismiss": "Dismiss"
     },
     "poll": {
-      "count": "{n} votes|{n} vote|{n} votes",
+      "count": "{0} votes|{0} vote|{0} votes",
       "ends": "ends {0}",
       "finished": "finished {0}"
     },
@@ -269,7 +292,6 @@
     "someone": "Someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
-    "thread": "Thread",
     "try_original_site": "Try original site"
   },
   "status_history": {
@@ -277,7 +299,6 @@
     "edited": "edited {0}"
   },
   "tab": {
-    "accounts": "Accounts",
     "for_you": "For you",
     "hashtags": "Hashtags",
     "media": "Media",
@@ -319,7 +340,7 @@
     "year_past": "0 years ago|last year|{n} years ago"
   },
   "timeline": {
-    "show_new_items": "Show {n} new items|Show {n} new item|Show {n} new items"
+    "show_new_items": "Show {v} new items|Show {v} new item|Show {v} new items"
   },
   "title": {
     "federated_timeline": "Federated Timeline",
@@ -329,6 +350,7 @@
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
     "change_content_visibility": "Change content visibility",
+    "change_language": "Change language",
     "emoji": "Emoji",
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
@@ -338,6 +360,8 @@
   "user": {
     "add_existing": "Add an existing account",
     "server_address_label": "Mastodon Server Address",
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
+    "sign_in_notice_title": "Viewing {0} public data",
     "sign_out_account": "Sign out {0}",
     "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
     "tip_register_account": "pick your server and register one"

@@ -57,15 +57,36 @@ const type = $computed(() => {
   }
   return 'unknown'
 })
+
+const video = ref<HTMLVideoElement | undefined>()
+const prefersReducedMotion = usePreferredReducedMotion()
+
+useIntersectionObserver(video, (entries) => {
+  if (prefersReducedMotion.value === 'reduce')
+    return
+
+  entries.forEach((entry) => {
+    if (entry.intersectionRatio <= 0.75)
+      !video.value!.paused && video.value!.pause()
+    else
+      video.value!.play()
+  })
+}, { threshold: 0.75 })
 </script>
 
 <template>
   <div relative ma flex>
     <template v-if="type === 'video'">
       <video
+        ref="video"
+        preload="none"
         :poster="attachment.previewUrl"
+        muted
+        loop
+        playsinline
         controls
         border="~ base"
+        rounded-lg
         object-cover
         :width="attachment.meta?.original?.width"
         :height="attachment.meta?.original?.height"
@@ -79,10 +100,14 @@ const type = $computed(() => {
     </template>
     <template v-else-if="type === 'gifv'">
       <video
+        ref="video"
+        preload="none"
         :poster="attachment.previewUrl"
+        muted
         loop
-        autoplay
+        playsinline
         border="~ base"
+        rounded-lg
         object-cover
         :width="attachment.meta?.original?.width"
         :height="attachment.meta?.original?.height"
@@ -116,7 +141,7 @@ const type = $computed(() => {
           :srcset="srcset"
           :width="attachment.meta?.original?.width"
           :height="attachment.meta?.original?.height"
-          :alt="attachment.description!"
+          :alt="attachment.description ?? 'Image'"
           :style="{
             aspectRatio,
             objectPosition,

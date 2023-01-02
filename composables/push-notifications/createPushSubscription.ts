@@ -8,8 +8,6 @@ import type {
   PushManagerSubscriptionInfo,
   RequiredUserLogin,
 } from '~/composables/push-notifications/types'
-import { useMasto } from '~/composables/masto'
-import { currentUser, removePushNotificationData, removePushNotifications } from '~/composables/users'
 
 export const createPushSubscription = async (
   user: RequiredUserLogin,

@@ -10,12 +10,12 @@ definePageMeta({
 const route = useRoute()
 const id = $(computedEager(() => route.params.status as string))
 const main = ref<ComponentPublicInstance | null>(null)
-let bottomSpace = $ref(0)
+
 const publishWidget = ref()
 
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   `status:${id}`,
-  async () => (window.history.state?.status as Status | undefined) ?? await fetchStatus(id),
+  () => fetchStatus(id),
   { watch: [isMastoInitialised], immediate: isMastoInitialised.value },
 )
 const masto = useMasto()
@@ -28,8 +28,6 @@ function scrollTo() {
   if (!statusElement)
     return
 
-  const statusRect = statusElement.getBoundingClientRect()
-  bottomSpace = window.innerHeight - statusRect.height
   statusElement.scrollIntoView(true)
 }
 
@@ -59,11 +57,11 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template v-if="!pending">
-      <div v-if="status" min-h-100vh mt--1px>
+      <div v-if="status" mt--1px>
         <template v-for="comment of context?.ancestors" :key="comment.id">
           <StatusCard
             :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-            :show-reply-to="false" :connect-reply="true"
+            :has-older="true" :has-newer="true"
           />
         </template>
 
@@ -77,24 +75,21 @@ onReactivated(() => {
         <PublishWidget
           v-if="currentUser"
           ref="publishWidget"
+          border="y base"
           :draft-key="replyDraft!.key"
           :initial="replyDraft!.draft"
           @published="refreshContext()"
         />
 
-        <template v-for="comment, di of context?.descendants" :key="comment.id">
+        <template v-for="(comment, di) of context?.descendants" :key="comment.id">
           <StatusCard
             :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-            :connect-reply="comment.id === context?.descendants[di + 1]?.inReplyToId"
-            :show-reply-to="di !== 0 && comment.inReplyToId !== context?.descendants[di - 1]?.id"
-            :class="{ 'border-t border-base': di !== 0 && comment.inReplyToId !== context?.descendants[di - 1]?.id }"
+            :older="context?.descendants[di + 1]" :newer="context?.descendants[di - 1]" :has-newer="di === 0" :main="status"
           />
         </template>
-
-        <div :style="{ height: `${bottomSpace}px` }" />
       </div>
 
-      <StatusNotFound v-else :account="$route.params.account" :status="id" />
+      <StatusNotFound v-else :account="route.params.account" :status="id" />
     </template>
 
     <StatusCardSkeleton v-else border="b base" />

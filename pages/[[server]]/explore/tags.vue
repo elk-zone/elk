@@ -17,12 +17,12 @@ function getTagUrl(tag: Tag) {
 }
 
 useHeadFixed({
-  title: () => `${t('tab.hashtags')} | ${t('nav_side.explore')}`,
+  title: () => `${t('tab.hashtags')} | ${t('nav.explore')}`,
 })
 </script>
 
 <template>
-  <CommonAlert v-if="isHydrated.value && !hideTagsTips && data && data.length" @close="hideTagsTips = true">
+  <CommonAlert v-if="isHydrated && !hideTagsTips && data && data.length" @close="hideTagsTips = true">
     <p>{{ $t('tooltip.explore_tags_intro') }}</p>
   </CommonAlert>
 

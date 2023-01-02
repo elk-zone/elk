@@ -1,72 +1,136 @@
 import type { NuxtI18nOptions } from '@nuxtjs/i18n'
-import type { DateTimeFormats } from '@intlify/core-base'
+import type { DateTimeFormats, NumberFormats, PluralizationRule, PluralizationRules } from '@intlify/core-base'
+
 import type { LocaleObject } from '#i18n'
 
+interface LocaleObjectData extends LocaleObject {
+  numberFormats?: NumberFormats
+  dateTimeFormats?: DateTimeFormats
+  pluralRule?: PluralizationRule
+}
+
 // @ts-expect-error dir is there, ts complaining
-const locales: LocaleObject[] = [
+const locales: LocaleObjectData[] = [
   {
     code: 'en-US',
     file: 'en-US.json',
-    name: 'English',
-    dir: 'ltr',
+    name: 'English (US)',
+  },
+  {
+    code: 'en-GB',
+    file: 'en-GB.json',
+    name: 'English (UK)',
   },
   {
     code: 'de-DE',
     file: 'de-DE.json',
     name: 'Deutsch',
-    dir: 'ltr',
   },
   {
     code: 'zh-CN',
     file: 'zh-CN.json',
     name: '简体中文',
-    dir: 'ltr',
+  },
+  {
+    code: 'zh-TW',
+    file: 'zh-TW.json',
+    name: '繁体中文',
   },
   {
     code: 'ja-JP',
     file: 'ja-JP.json',
     name: '日本語',
-    dir: 'ltr',
   },
   {
     code: 'es-ES',
     file: 'es-ES.json',
     name: 'Español',
-    dir: 'ltr',
   },
   {
     code: 'fr-FR',
     file: 'fr-FR.json',
     name: 'Français',
-    dir: 'ltr',
   },
   {
     code: 'cs-CZ',
     file: 'cs-CZ.json',
     name: 'Česky',
-    dir: 'ltr',
   },
   {
-    code: 'ar',
+    code: 'ar-EG',
     file: 'ar-EG.json',
     name: 'العربية',
     dir: 'rtl',
+    pluralRule: (choice: number) => {
+      const name = new Intl.PluralRules('ar-EG').select(choice)
+      return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
+    },
   },
 ].sort((a, b) => a.code.localeCompare(b.code))
 
-const datetimeFormats = Object.keys(locales).reduce((acc, key) => {
-  acc[key] = {
-    short: {
-      dateStyle: 'short',
-      timeStyle: 'short',
-    },
-    long: {
-      dateStyle: 'long',
-      timeStyle: 'medium',
-    },
+const datetimeFormats = Object.values(locales).reduce((acc, data) => {
+  const dateTimeFormats = data.dateTimeFormats
+  if (dateTimeFormats) {
+    acc[data.code] = { ...dateTimeFormats }
+    delete data.dateTimeFormats
   }
+  else {
+    acc[data.code] = {
+      short: {
+        dateStyle: 'short',
+        timeStyle: 'short',
+      },
+      long: {
+        dateStyle: 'long',
+        timeStyle: 'medium',
+      },
+    }
+  }
+
   return acc
 }, <DateTimeFormats>{})
+
+const numberFormats = Object.values(locales).reduce((acc, data) => {
+  const numberFormats = data.numberFormats
+  if (numberFormats) {
+    acc[data.code] = { ...numberFormats }
+    delete data.numberFormats
+  }
+  else {
+    acc[data.code] = {
+      percentage: {
+        style: 'percent',
+        maximumFractionDigits: 1,
+      },
+      smallCounting: {
+        style: 'decimal',
+        maximumFractionDigits: 0,
+      },
+      kiloCounting: {
+        notation: 'compact',
+        compactDisplay: 'short',
+        maximumFractionDigits: 1,
+      },
+      millionCounting: {
+        notation: 'compact',
+        compactDisplay: 'short',
+        maximumFractionDigits: 2,
+      },
+    }
+  }
+
+  return acc
+}, <NumberFormats>{})
+
+const pluralRules = Object.values(locales).reduce((acc, data) => {
+  const pluralRule = data.pluralRule
+  if (pluralRule) {
+    acc[data.code] = pluralRule
+    delete data.pluralRule
+  }
+
+  return acc
+}, <PluralizationRules>{})
 
 export const i18n: NuxtI18nOptions = {
   locales,
@@ -79,6 +143,8 @@ export const i18n: NuxtI18nOptions = {
     fallbackWarn: false,
     missingWarn: false,
     datetimeFormats,
+    numberFormats,
+    pluralRules,
   },
   lazy: true,
 }

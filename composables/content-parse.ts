@@ -3,7 +3,7 @@ import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
 import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
-import { emojiFilename, emojiPrefix, emojiRegEx } from '../config/emojis'
+import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
 export function decodeHtml(text: string) {
@@ -135,8 +135,7 @@ export function treeToText(input: Node): string {
  */
 export function replaceUnicodeEmoji(html: string) {
   return findAndReplaceEmojisInText(emojiRegEx, html, (match) => {
-    const file = emojiFilename(match)
-    const className = `iconify-emoji iconify-emoji--${emojiPrefix}${file.padding ? ' iconify-emoji-padded' : ''}`
-    return `<img src="/emojis/${emojiPrefix}/${file.filename}" alt="${match.match}" class="${className}" />`
+    const attrs = getEmojiAttributes(match)
+    return `<img src="${attrs.src}" alt="${attrs.alt}" class="${attrs.class}" />`
   }) || html
 }

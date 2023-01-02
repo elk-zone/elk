@@ -1,9 +1,9 @@
-import { emojiRegEx } from '@iconify-emoji/twemoji'
 import {
   Node,
   mergeAttributes,
   nodeInputRule,
 } from '@tiptap/core'
+import { emojiRegEx, getEmojiAttributes } from '~/config/emojis'
 
 export const Emoji = Node.create({
   name: 'em-emoji',
@@ -15,35 +15,35 @@ export const Emoji = Node.create({
   parseHTML() {
     return [
       {
-        tag: 'em-emoji[native]',
+        tag: 'img.iconify-emoji',
       },
     ]
   },
 
   addAttributes() {
     return {
-      native: {
+      alt: {
         default: null,
       },
-      fallback: {
+      src: {
+        default: null,
+      },
+      class: {
         default: null,
       },
     }
   },
 
   renderHTML(args) {
-    return ['em-emoji', mergeAttributes(this.options.HTMLAttributes, args.HTMLAttributes)]
+    return ['img', mergeAttributes(this.options.HTMLAttributes, args.HTMLAttributes)]
   },
 
   addCommands() {
     return {
-      insertEmoji: name => ({ commands }) => {
+      insertEmoji: code => ({ commands }) => {
         return commands.insertContent({
           type: this.name,
-          attrs: {
-            native: name,
-            fallback: name,
-          },
+          attrs: getEmojiAttributes(code),
         })
       },
     }
@@ -55,10 +55,7 @@ export const Emoji = Node.create({
       type: this.type,
       getAttributes: (match) => {
         const [native] = match
-        return {
-          native,
-          fallback: native,
-        }
+        return getEmojiAttributes(native)
       },
     })
     // Error catch for unsupported emoji

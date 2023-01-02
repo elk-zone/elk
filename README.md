@@ -35,7 +35,7 @@ And all the companies and individuals sponsoring Elk Team members. If you're enj
 
 - [Anthony Fu](https://github.com/sponsors/antfu)
 - [Daniel Roe](https://github.com/sponsors/danielroe)
-- [Kevin Deng](https://github.com/sponsors/sxzz)
+- [三咲智子 Kevin Deng](https://github.com/sponsors/sxzz)
 - [Patak](https://github.com/sponsors/patak-dev)
 
 We would also appreciate sponsoring other contributors to the Elk project. If someone helps you solve an issue or implement a feature you wanted, supporting them would help make this project and OS more sustainable.

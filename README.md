@@ -23,13 +23,18 @@ The client is deployed to [elk.zone](https://elk.zone), you can share screenshot
 
 We want to thanks the generous sponsoring and help of:
 
-<a href="https://nuxtlabs.com/" target="_blank" rel="noopener noreferrer">
-<img src="https://user-images.githubusercontent.com/11247099/210197359-83cb4232-3647-4400-8ac8-b68909ed4516.svg" alt="NuxtLabs" height="50">
-</a>
-<br><br>
-<a href="https://stackblitz.com/" target="_blank" rel="noopener noreferrer">
-<img src="https://user-images.githubusercontent.com/11247099/210197445-61a76633-2907-47cc-8a9a-f5e1669552fa.svg" alt="StackBlitz" height="70">
-</a>
+<div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;" >
+  <div style="border-radius: 20px; background-color: #22272e; width: 500px; height: 100px; display: grid; align-items: center; justify-items: center;">
+    <a href="https://nuxtlabs.com/" target="_blank" rel="noopener noreferrer">
+      <img src="https://user-images.githubusercontent.com/11247099/210197359-83cb4232-3647-4400-8ac8-b68909ed4516.svg" alt="NuxtLabs" height="50">
+    </a>
+  </div>
+  <div style="border-radius: 20px; background-color: #22272e; width: 500px; height: 100px; display: grid; align-items: center; justify-items: center;">
+    <a href="https://stackblitz.com/" target="_blank" rel="noopener noreferrer"  style="transform: translate(0, 5px);">
+      <img src="https://user-images.githubusercontent.com/11247099/210197445-61a76633-2907-47cc-8a9a-f5e1669552fa.svg" alt="StackBlitz" height="70">
+    </a>
+  </div>
+</div>
 
 And all the companies and individuals sponsoring Elk Team members. If you're enjoying the app, consider sponsoring our team:
 

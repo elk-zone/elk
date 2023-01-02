@@ -90,4 +90,4 @@ nr test
 
 ## License
 
-MIT
+[MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors

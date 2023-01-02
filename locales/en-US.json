@@ -316,6 +316,12 @@
     "posts": "Posts",
     "posts_with_replies": "Posts & Replies"
   },
+  "tag": {
+    "follow": "Follow",
+    "follow_label": "Follow {0} tag",
+    "unfollow": "Unfollow",
+    "unfollow_label": "Unfollow {0} tag"
+  },
   "time_ago_options": {
     "day_future": "in 0 days|tomorrow|in {n} days",
     "day_past": "0 days ago|yesterday|{n} days ago",

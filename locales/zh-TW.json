@@ -270,7 +270,7 @@
     "filter_show_anyway": "仍然展示",
     "img_alt": {
       "desc": "描述",
-      "dismiss": "忽略"
+      "dismiss": "關閉"
     },
     "poll": {
       "count": "{0} 次投票",

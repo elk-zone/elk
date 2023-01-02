@@ -69,7 +69,7 @@ You can run this code in your browser console to see how it works:
 
 **Warning**:
 **{0} should be use** or **{v} should be use** or **{followers} should be use**: with the exception of custom plural entries where the number (`{n}`) is required.
-
+Either **{0}**, **{v}** or **{followers}** should be used with the exception being custom plurals entries using the `{n}` placeholder.
 This is the full list of entries that will be available for number formatting in Elk:
 - `action.boost_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
 - `action.favourite_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be use**

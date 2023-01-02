@@ -52,13 +52,28 @@ exports[`html-parse > custom emoji > html 1`] = `
 "
 `;
 
-exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe  :nuxt:"`;
+exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe :nuxt:"`;
 
 exports[`html-parse > emojis > html 1`] = `
-"<em-emoji native=\\"🇫🇷\\" fallback=\\"🇫🇷\\"></em-emoji>
-<em-emoji native=\\"👨‍👩‍👦\\" fallback=\\"👨‍👩‍👦\\"></em-emoji>
-<em-emoji native=\\"👩‍🚒\\" fallback=\\"👩‍🚒\\"></em-emoji
-><em-emoji native=\\"🧑🏽‍🚀\\" fallback=\\"🧑🏽‍🚀\\"></em-emoji>
+"<img
+  src=\\"/emojis/twemoji/1f1eb-1f1f7.svg\\"
+  alt=\\"🇫🇷\\"
+  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+/>
+<img
+  src=\\"/emojis/twemoji/1f468-200d-1f469-200d-1f466.svg\\"
+  alt=\\"👨‍👩‍👦\\"
+  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+/>
+<img
+  src=\\"/emojis/twemoji/1f469-200d-1f692.svg\\"
+  alt=\\"👩‍🚒\\"
+  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+/><img
+  src=\\"/emojis/twemoji/1f9d1-1f3fd-200d-1f680.svg\\"
+  alt=\\"🧑🏽‍🚀\\"
+  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+/>
 "
 `;
 
@@ -87,7 +102,13 @@ code block
 
 exports[`html-parse > link + mention > html 1`] = `
 "<p>
-  Happy <em-emoji native=\\"🤗\\" fallback=\\"🤗\\"></em-emoji> we’re now using
+  Happy
+  <img
+    src=\\"/emojis/twemoji/1f917.svg\\"
+    alt=\\"🤗\\"
+    class=\\"iconify-emoji iconify-emoji--twemoji\\"
+  />
+  we’re now using
   <span class=\\"h-card\\"
     ><a
       href=\\"https://mas.to/@vitest\\"

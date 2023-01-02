@@ -6,7 +6,7 @@ Refer also to https://github.com/antfu/contribute.
 
 ## Set up your local development environment
 
-The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/).
+The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/) (Note: on Linux in a standard Node 16+ environment, you should follow the instructions to install via Node's `corepack` rather than using the `curl` command).
 
 To develop and test the Elk package:
 

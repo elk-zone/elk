@@ -387,11 +387,11 @@ defineExpose({
           </CommonDropdown>
         </CommonTooltip>
 
-        <CommonTooltip placement="bottom" :content="$t('tooltip.change_content_visibility')">
+        <CommonTooltip placement="bottom" :content="draft.editingStatus ? $t(`visibility.${currentVisibility.value}`) : $t('tooltip.change_content_visibility')">
           <CommonDropdown>
-            <button :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon w-12>
+            <button :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon :class="{ 'w-12': !draft.editingStatus }">
               <div :class="currentVisibility.icon" />
-              <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+              <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
             </button>
 
             <template #popper>

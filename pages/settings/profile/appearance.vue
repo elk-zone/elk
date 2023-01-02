@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Field, UpdateCredentialsParams } from 'masto'
+import type { UpdateCredentialsParams } from 'masto'
 import { useForm } from 'slimeform'
 
 definePageMeta({

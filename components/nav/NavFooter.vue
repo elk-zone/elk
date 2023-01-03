@@ -64,7 +64,7 @@ function toggleDark() {
       </template>
     </div>
     <div>
-      <a href="https://m.webtoo.ls/@elk" target="_blank">Mastodon</a> &middot; <a href="https://chat.elk.zone" target="_blank">Discord</a> &middot; <a href="https://github.com/elk-zone" target="_blank">GitHub</a>
+      <a href="/m.webtoo.ls/@elk" target="_blank">Mastodon</a> &middot; <a href="https://chat.elk.zone" target="_blank">Discord</a> &middot; <a href="https://github.com/elk-zone" target="_blank">GitHub</a>
     </div>
   </footer>
 </template>

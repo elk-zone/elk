@@ -44,7 +44,7 @@ const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLo
 const users = await initializeUsers()
 const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
-const isGuestId = computed(() => currentUserId.value.startsWith(`${GUEST_ID}@`))
+const isGuestId = computed(() => !currentUserId.value || currentUserId.value.startsWith(`${GUEST_ID}@`))
 
 export const currentUser = computed<UserLogin | undefined>(() => {
   if (!currentUserId.value)
@@ -65,8 +65,9 @@ export const currentInstance = computed<null | Instance>(() => {
 })
 export const checkUser = (val: UserLogin | undefined): val is UserLogin<true> => !!(val && !val.guest)
 export const isGuest = computed(() => !checkUser(currentUser.value))
+export const getUniqueUserId = (user: UserLogin) => user.guest ? `${GUEST_ID}@${user.server}` : user.account.id
 export const isSameUser = (a: UserLogin | undefined, b: UserLogin | undefined) =>
-  a && b && a.server === b.server && a.token === b.token
+  a && b && getUniqueUserId(a) === getUniqueUserId(b)
 
 export const currentUserHandle = computed(() =>
   isGuestId.value ? GUEST_ID : currentUser.value!.account!.acct
@@ -216,11 +217,7 @@ export async function signout() {
   if (!currentUser.value)
     return
 
-  const masto = useMasto()
-
-  const _currentUserId = currentUser.value.account!.id
-
-  const index = users.value.findIndex(u => u.account?.id === _currentUserId)
+  const index = users.value.findIndex(u => isSameUser(u, currentUser.value))
 
   if (index !== -1) {
     // Clear stale data
@@ -244,6 +241,7 @@ export async function signout() {
   if (!currentUserId.value)
     await useRouter().push('/')
 
+  const masto = useMasto()
   await masto.loginTo(currentUser.value)
 }
 

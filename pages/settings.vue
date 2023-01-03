@@ -27,7 +27,7 @@ const isRootPath = computedEager(() => route.name === 'settings')
           </template>
           <div xl:w-97 lg:w-78 w-full>
             <SettingsItem
-              v-if="isHydrated && currentUser "
+              v-if="isHydrated && !isGuest"
               command
               icon="i-ri:user-line"
               :text="$t('settings.profile.label')"

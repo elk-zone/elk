@@ -40,7 +40,7 @@ async function importTokens() {
     const users = data.users as UserLogin[]
     const newUsers: UserLogin[] = []
     for (const user of users) {
-      if (loggedInUsers.value.some(u => u.server === user.server && u.account.id === user.account.id))
+      if (loggedInUsers.value.some(u => isSameUser(u, user)))
         continue
       newUsers.push(user)
     }
@@ -69,8 +69,11 @@ async function importTokens() {
     <div p6>
       <template v-if="loggedInUsers.length">
         <div flex="~ col gap2">
-          <div v-for="user of loggedInUsers" :key="user.account.id">
-            <AccountInfo :account="user.account" :hover-card="false" />
+          <div v-for="user of loggedInUsers" :key="getUniqueUserId(user)">
+            <AccountInfo v-if="!user.guest" :account="user.account" :hover-card="false" />
+            <div v-else>
+              TODO: Guest @ settings/users/index.vue
+            </div>
           </div>
         </div>
         <div my4 border="t base" />

@@ -98,6 +98,7 @@ body {
 
 em-emoji-picker {
   --border-radius: 0;
+  width: 352px;
 }
 
 .content-rich {

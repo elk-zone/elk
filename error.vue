@@ -6,8 +6,6 @@ const { error } = defineProps<{
   error: Partial<NuxtError>
 }>()
 
-setupPageHeader()
-
 // add more custom status codes messages here
 const errorCodes: Record<number, string> = {
   404: 'Page not found',
@@ -18,11 +16,12 @@ const defaultMessage = 'Something went wrong'
 const message = error.message ?? errorCodes[error.statusCode!] ?? defaultMessage
 
 const state = ref<'error' | 'reloading'>('error')
+const masto = useMasto()
 const reload = async () => {
   state.value = 'reloading'
   try {
-    if (!useMasto())
-      await loginTo(currentUser.value)
+    if (!masto.loggedIn.value)
+      await masto.loginTo(currentUser.value)
     clearError({ redirect: currentUser.value ? '/home' : `/${currentServer.value}/public` })
   }
   catch {
@@ -54,5 +53,5 @@ const reload = async () => {
       </slot>
     </MainContent>
   </NuxtLayout>
-  <PWAPrompt />
+  <AriaAnnouncer />
 </template>

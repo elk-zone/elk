@@ -2,14 +2,16 @@
 /// <reference types="vite/client" />
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
+import { CacheableResponsePlugin } from 'workbox-cacheable-response'
+import { StaleWhileRevalidate } from 'workbox-strategies'
+import { ExpirationPlugin } from 'workbox-expiration'
+// import * as navigationPreload from 'workbox-navigation-preload'
 import { onNotificationClick, onPush } from './web-push-notifications'
 
 declare const self: ServiceWorkerGlobalScope
-/*
-import { CacheableResponsePlugin } from 'workbox-cacheable-response'
-import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
-import { ExpirationPlugin } from 'workbox-expiration'
-*/
+
+// if (import.meta.env.PROD)
+//   navigationPreload.enable()
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING')
@@ -37,6 +39,21 @@ if (import.meta.env.PROD)
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {
+  // include emoji/twemoji icons
+  registerRoute(
+    ({ sameOrigin, request, url }) =>
+      sameOrigin
+        && request.destination === 'image'
+        && url.pathname.startsWith('/emojis/twemoji/'),
+    new StaleWhileRevalidate({
+      cacheName: 'elk-emojis',
+      plugins: [
+        new CacheableResponsePlugin({ statuses: [200] }),
+        // 15 days max
+        new ExpirationPlugin({ maxAgeSeconds: 60 * 60 * 24 * 15 }),
+      ],
+    }),
+  )
   // external assets: rn avatars from mas.to
   // requires <img crossorigin="anonymous".../> and http header: Allow-Control-Allow-Origin: *
 /*

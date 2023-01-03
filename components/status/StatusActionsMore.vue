@@ -16,6 +16,7 @@ const {
   toggleFavourite,
   togglePin,
   toggleReblog,
+  toggleMute,
 } = $(useStatusActions(props))
 
 const clipboard = useClipboard()
@@ -36,11 +37,28 @@ const toggleTranslation = async () => {
   isLoading.translation = false
 }
 
-const copyLink = async (status: Status) => {
+const masto = useMasto()
+
+const getPermalinkUrl = (status: Status) => {
   const url = getStatusPermalinkRoute(status)
   if (url)
-    await clipboard.copy(`${location.origin}/${url}`)
+    return `${location.origin}/${url}`
+  return null
 }
+
+const copyLink = async (status: Status) => {
+  const url = getPermalinkUrl(status)
+  if (url)
+    await clipboard.copy(url)
+}
+
+const { share, isSupported: isShareSupported } = useShare()
+const shareLink = async (status: Status) => {
+  const url = getPermalinkUrl(status)
+  if (url)
+    await share({ url })
+}
+
 const deleteStatus = async () => {
   // TODO confirm to delete
   if (process.dev) {
@@ -50,9 +68,10 @@ const deleteStatus = async () => {
       return
   }
 
-  await useMasto().statuses.remove(status.id)
+  removeCachedStatus(status.id)
+  await masto.statuses.remove(status.id)
 
-  if (route.name === '@account-status')
+  if (route.name === 'status')
     router.back()
 
   // TODO when timeline, remove this item
@@ -67,8 +86,13 @@ const deleteAndRedraft = async () => {
       return
   }
 
-  const { text } = await useMasto().statuses.remove(status.id)
-  openPublishDialog('dialog', await getDraftFromStatus(status, text), true)
+  removeCachedStatus(status.id)
+  await masto.statuses.remove(status.id)
+  await openPublishDialog('dialog', await getDraftFromStatus(status), true)
+
+  // Go to the new status, if the page is the old status
+  if (lastPublishDialogStatus.value && route.matched.some(m => m.path === '/:server?/@:account/:status'))
+    router.push(getStatusRoute(lastPublishDialogStatus.value))
 }
 
 const reply = () => {
@@ -85,12 +109,12 @@ async function editStatus() {
   openPublishDialog(`edit-${status.id}`, {
     ...await getDraftFromStatus(status),
     editingStatus: status,
-  })
+  }, true)
 }
 </script>
 
 <template>
-  <CommonDropdown flex-none ml3 placement="bottom" :eager-mount="command">
+  <CommonDropdown flex-none ms3 placement="bottom" :eager-mount="command">
     <StatusActionButton
       :content="$t('action.more')"
       color="text-purple"
@@ -143,6 +167,23 @@ async function editStatus() {
           icon="i-ri:link"
           :command="command"
           @click="copyLink(status)"
+        />
+
+        <CommonDropdownItem
+          v-if="isShareSupported"
+          :text="$t('menu.share_post')"
+          icon="i-ri:share-line"
+          :command="command"
+          @click="shareLink(status)"
+        />
+
+        <CommonDropdownItem
+          v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some(m => m.id === currentUser!.account.id))"
+          :text="status.muted ? $t('menu.unmute_conversation') : $t('menu.mute_conversation')"
+          :icon="status.muted ? 'i-ri:eye-line' : 'i-ri:eye-off-line'"
+          :command="command"
+          :disabled="isLoading.muted"
+          @click="toggleMute()"
         />
 
         <NuxtLink :to="status.url" external target="_blank">

@@ -45,4 +45,3 @@ export function useTranslation(status: Status) {
     translation,
   }
 }
-

@@ -3,12 +3,10 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().bookmarks.iterate()
-
 const { t } = useI18n()
 
 useHeadFixed({
-  title: () => t('nav_side.bookmarks'),
+  title: () => t('nav.bookmarks'),
 })
 </script>
 
@@ -17,12 +15,10 @@ useHeadFixed({
     <template #title>
       <NuxtLink to="/bookmarks" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:bookmark-line />
-        <span>{{ t('nav_side.bookmarks') }}</span>
+        <span>{{ t('nav.bookmarks') }}</span>
       </NuxtLink>
     </template>
 
-    <slot>
-      <TimelinePaginator :paginator="paginator" />
-    </slot>
+    <TimelineBookmarks v-if="isMastoInitialised" />
   </MainContent>
 </template>

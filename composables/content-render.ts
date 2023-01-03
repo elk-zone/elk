@@ -4,7 +4,7 @@ import type { Node } from 'ultrahtml'
 import { Fragment, h, isVNode } from 'vue'
 import type { VNode } from 'vue'
 import { RouterLink } from 'vue-router'
-import { parseMastodonHTML } from './content-parse'
+import { decodeHtml, parseMastodonHTML } from './content-parse'
 import ContentCode from '~/components/content/ContentCode.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 
@@ -29,11 +29,11 @@ export function nodeToVNode(node: Node): VNode | string | null {
   if ('children' in node) {
     if (node.name === 'a' && (node.attributes.href?.startsWith('/') || node.attributes.href?.startsWith('.'))) {
       node.attributes.to = node.attributes.href
-      delete node.attributes.href
-      delete node.attributes.target
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { href, target, ...attrs } = node.attributes
       return h(
         RouterLink as any,
-        node.attributes,
+        attrs,
         () => node.children.map(treeToVNode),
       )
     }
@@ -45,11 +45,12 @@ export function nodeToVNode(node: Node): VNode | string | null {
   }
   return null
 }
+
 function treeToVNode(
   input: Node,
 ): VNode | string | null {
   if (input.type === TEXT_NODE)
-    return input.value as string
+    return decodeHtml(input.value)
 
   if ('children' in input) {
     const node = handleNode(input)

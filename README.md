@@ -2,8 +2,8 @@
 *A nimble Mastodon web client*
 
 <p align="center">
-  <a href="https://viteconf.org" target="_blank" rel="noopener noreferrer">
-    <img width="180" src="https://elk.zone/logo.svg" alt="Vite logo">
+  <a href="https://elk.zone" target="_blank" rel="noopener noreferrer">
+    <img width="180" height="180" src="./elk.svg" alt="Elk logo">
   </a>
 </p>
 <br/>
@@ -13,26 +13,45 @@
 </p>
 <br/>
 
-Elk is in early alpha, but it is already quite usable. We would love your feedback and contributions.
+# Elk is in early alpha ⚠️ 
 
-Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to learn more and get involved!
+It is already quite usable, but it isn't ready for wide adoption yet. We recommend you to use if if you would like to help us building it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
-The client is deployed to [elk.zone](https://elk.zone), you can share screenshots on social media but avoid sharing this URL or the discord server until we open the repo.
+The client is deployed to [elk.zone](https://elk.zone), you can share screenshots on social media but we prefer you avoid sharing this URL directly until the app is more polished. Feel free to share the URL with your friedns and invite others you think could be interested in helping to improve Elk.
 
-> **Note** 
-> If you would like to contribute, until the repo is open, please create branches in the main repository and send a PR from there.
+## Sponsors
 
-# Contributing
+We want to thanks the generous sponsoring and help of:
 
-Hi! We're really excited that you're interested in contributing to Elk! Before submitting your contribution, please read through the following guide.
+<a href="https://nuxtlabs.com/" target="_blank" rel="noopener noreferrer" >
+  <img src="./images/nuxtlabs.svg" alt="NuxtLabs" height="85">
+</a>
+<br><br>
+<a href="https://stackblitz.com/" target="_blank" rel="noopener noreferrer" >
+  <img src="./images/stackblitz.svg" alt="StackBlitz" height="85">
+</a>
+<br><br>
 
-## Online
+And all the companies and individuals sponsoring Elk Team members. If you're enjoying the app, consider sponsoring our team:
 
-You can use [StackBlitz CodeFlow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a CodeFlow button on PRs to review them without a local setup.
+- [Anthony Fu](https://github.com/sponsors/antfu)
+- [Daniel Roe](https://github.com/sponsors/danielroe)
+- [三咲智子 Kevin Deng](https://github.com/sponsors/sxzz)
+- [Patak](https://github.com/sponsors/patak-dev)
+
+We would also appreciate sponsoring other contributors to the Elk project. If someone helps you solve an issue or implement a feature you wanted, supporting them would help make this project and OS more sustainable.
+
+## Contributing
+
+We're really excited that you're interested in contributing to Elk! Before submitting your contribution, please read through the following guide.
+
+### Online
+
+You can use [StackBlitz CodeFlow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a CodeFlow button on PRs to review them without a local setup. Once the elk repo has been cloned in CodeFlow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [CodeFlow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 
 
 [![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
 
-## Local Setup
+### Local Setup
 
 Clone the repository and run on the root folder:
 
@@ -41,6 +60,8 @@ pnpm i
 pnpm run dev
 ```
 
+`Warning`: you will need `corepack` enabled, check out the [Elk Contributing Guide](./CONTRIBUTING.md) for a detailed guide on how to set up the project locally.
+
 We recommend installing [ni](https://github.com/antfu/ni#ni), that will use the right package manager in each of your projects. If `ni` is installed, you can instead run:
 
 ```
@@ -48,7 +69,7 @@ ni
 nr dev
 ```
 
-## Testing
+### Testing
 
 Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 
@@ -56,7 +77,7 @@ Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 nr test
 ```
 
-# Stack
+## Stack
 
 - [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
 - [Nuxt](https://nuxt.com/) - The Intuitive Web Framework
@@ -70,6 +91,6 @@ nr test
 - [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
 - [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update and push notifications
 
-# License
+## License
 
-MIT
+[MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors

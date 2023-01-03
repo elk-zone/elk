@@ -41,9 +41,10 @@ export function getShortHandle({ acct }: Account) {
 }
 
 export function getServerName(account: Account) {
-  if (account.acct.includes('@'))
+  if (account.acct?.includes('@'))
     return account.acct.split('@')[1]
-  return account.url.match(UserLinkRE)?.[1] || currentUser.value?.server || ''
+  // We should only lack the server name if we're on the same server as the account
+  return currentInstance.value?.uri || ''
 }
 
 export function getFullHandle(account: Account) {
@@ -62,19 +63,21 @@ export function toShortHandle(fullHandle: string) {
   return fullHandle
 }
 
-export function getAccountRoute(account: Account) {
+export function extractAccountHandle(account: Account) {
   let handle = getFullHandle(account).slice(1)
-  if (handle.endsWith(`@${currentServer.value}`))
-    handle = handle.slice(0, -currentServer.value.length - 1)
+  const uri = currentInstance.value?.uri ?? currentServer.value
+  if (currentInstance.value && handle.endsWith(`@${uri}`))
+    handle = handle.slice(0, -uri.length - 1)
 
+  return handle
+}
+
+export function getAccountRoute(account: Account) {
   return useRouter().resolve({
     name: 'account-index',
     params: {
       server: currentServer.value,
-      account: handle,
-    },
-    state: {
-      account: account as any,
+      account: extractAccountHandle(account),
     },
   })
 }
@@ -83,10 +86,7 @@ export function getAccountFollowingRoute(account: Account) {
     name: 'account-following',
     params: {
       server: currentServer.value,
-      account: getFullHandle(account).slice(1),
-    },
-    state: {
-      account: account as any,
+      account: extractAccountHandle(account),
     },
   })
 }
@@ -95,10 +95,7 @@ export function getAccountFollowersRoute(account: Account) {
     name: 'account-followers',
     params: {
       server: currentServer.value,
-      account: getFullHandle(account).slice(1),
-    },
-    state: {
-      account: account as any,
+      account: extractAccountHandle(account),
     },
   })
 }
@@ -108,11 +105,18 @@ export function getStatusRoute(status: Status) {
     name: 'status',
     params: {
       server: currentServer.value,
-      account: getFullHandle(status.account).slice(1),
+      account: extractAccountHandle(status.account),
       status: status.id,
     },
-    state: {
-      status: status as any,
+  })
+}
+
+export function getTagRoute(tag: string) {
+  return useRouter().resolve({
+    name: 'tag',
+    params: {
+      server: currentServer.value,
+      tag,
     },
   })
 }
@@ -167,4 +171,21 @@ async function fetchRelationships() {
   const relationships = await useMasto().accounts.fetchRelationships(requested.map(([id]) => id))
   for (let i = 0; i < requested.length; i++)
     requested[i][1].value = relationships[i]
+}
+
+const maxDistance = 10
+export function timelineWithReorderedReplies(items: Status[]) {
+  const newItems = [...items]
+  // TODO: Basic reordering, we should get something more efficient and robust
+  for (let i = items.length - 1; i > 0; i--) {
+    for (let k = 1; k <= maxDistance && i - k >= 0; k++) {
+      const inReplyToId = newItems[i - k].inReplyToId ?? newItems[i - k].reblog?.inReplyToId
+      if (inReplyToId && (inReplyToId === newItems[i].reblog?.id || inReplyToId === newItems[i].id)) {
+        const item = newItems.splice(i, 1)[0]
+        newItems.splice(i - k, 0, item)
+        k = 1
+      }
+    }
+  }
+  return newItems
 }

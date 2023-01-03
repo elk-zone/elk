@@ -8,12 +8,12 @@ const paginator = useMasto().trends.iterateStatuses()
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS, false)
 
 useHeadFixed({
-  title: () => `${t('tab.posts')} | ${t('nav_side.explore')}`,
+  title: () => `${t('tab.posts')} | ${t('nav.explore')}`,
 })
 </script>
 
 <template>
-  <CommonAlert v-if="!hideNewsTips" @close="hideNewsTips = true">
+  <CommonAlert v-if="isHydrated && !hideNewsTips" @close="hideNewsTips = true">
     <p>{{ $t('tooltip.explore_posts_intro') }}</p>
   </CommonAlert>
   <!-- TODO: Tabs for trending statuses, tags, and links -->

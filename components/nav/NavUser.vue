@@ -1,10 +1,11 @@
 <template>
-  <VDropdown v-if="isMastoInitialised && currentUser">
+  <VDropdown v-if="isMastoInitialised && currentUser" sm:hidden>
     <div style="-webkit-touch-callout: none;">
       <AccountAvatar
         ref="avatar"
         :account="currentUser.account"
-        h="2em"
+        h-8
+        w-8
         :draggable="false"
       />
     </div>
@@ -13,7 +14,7 @@
       <UserSwitcher ref="switcher" @click="hide()" />
     </template>
   </VDropdown>
-  <button v-else btn-solid text-sm px-2 py-1 text-center @click="openSigninDialog()">
+  <button v-else btn-solid text-sm px-2 py-1 text-center lg:hidden @click="openSigninDialog()">
     {{ $t('action.sign_in') }}
   </button>
 </template>

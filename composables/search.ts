@@ -1,20 +1,22 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { Account, Status } from 'masto'
+import type { Account, Paginator, Results, SearchParams, Status } from 'masto'
 
 export interface UseSearchOptions {
   type?: MaybeRef<'accounts' | 'hashtags' | 'statuses'>
 }
 
 export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
-  let paginator = useMasto().search({ q: unref(query), type: unref(options?.type) })
   const done = ref(false)
+  const masto = useMasto()
   const loading = ref(false)
   const statuses = ref<Status[]>([])
   const accounts = ref<Account[]>([])
   const hashtags = ref<any[]>([])
 
+  let paginator: Paginator<SearchParams, Results> | undefined
+
   debouncedWatch(() => unref(query), async () => {
-    if (!unref(query))
+    if (!unref(query) || !isMastoInitialised.value)
       return
 
     loading.value = true
@@ -23,7 +25,7 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
-    paginator = useMasto().search({ q: unref(query), type: unref(options?.type) })
+    paginator = masto.search({ q: unref(query), resolve: !!currentUser.value, type: unref(options?.type) })
     const nextResults = await paginator.next()
 
     done.value = nextResults.done || false
@@ -36,7 +38,7 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
   }, { debounce: 500 })
 
   const next = async () => {
-    if (!unref(query))
+    if (!unref(query) || !isMastoInitialised.value || !paginator)
       return
 
     loading.value = true

@@ -36,7 +36,13 @@ exports[`content-rich > empty 1`] = `""`;
 
 exports[`content-rich > link + mention 1`] = `
 "<p>
-  Happy 🤗 we’re now using
+  Happy
+  <img
+    src=\\"/emojis/twemoji/1f917.svg\\"
+    alt=\\"🤗\\"
+    class=\\"iconify-emoji iconify-emoji--twemoji\\"
+  />
+  we’re now using
   <span class=\\"h-card\\"
     ><a
       class=\\"u-url mention\\"

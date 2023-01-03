@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const query = ref('')
-const { accounts, hashtags, loading } = useSearch(query)
+const { accounts, hashtags, loading, statuses } = useSearch(query)
 const index = ref(0)
 
 const { t } = useI18n()
@@ -13,8 +13,9 @@ const results = computed(() => {
     return []
 
   const results = [
-    ...hashtags.value.slice(0, 3).map(hashtag => ({ type: 'hashtag', hashtag, to: `/tags/${hashtag.name}` })),
-    ...accounts.value.map(account => ({ type: 'account', account, to: `/@${account.acct}` })),
+    ...hashtags.value.slice(0, 3).map(hashtag => ({ type: 'hashtag', hashtag, to: getTagRoute(hashtag.name) })),
+    ...accounts.value.map(account => ({ type: 'account', account, to: getAccountRoute(account) })),
+    ...statuses.value.map(status => ({ type: 'status', status, to: getStatusRoute(status) })),
 
     // Disable until search page is implemented
     // {
@@ -52,19 +53,19 @@ const activate = () => {
 
 <template>
   <div ref="el" relative px4 py2 group>
-    <div bg-base border="~ base" h10 rounded-full flex="~ row" items-center relative outline-primary outline-1 focus-within:outline transition-all transition-duration-500>
-      <div i-ri:search-2-line mx4 absolute pointer-events-none text-secondary mt="1px" />
+    <div bg-base border="~ base" h10 rounded-full flex="~ row" items-center relative focus-within:box-shadow-outline>
+      <div i-ri:search-2-line mx4 absolute pointer-events-none text-secondary mt="1px" class="rtl-flip" />
       <input
         ref="input"
         v-model="query"
         h-full
-        pl-10
+        ps-10
         rounded-full
         w-full
         bg-transparent
         outline="focus:none"
-        pr-4
-        :placeholder="`${t('nav_side.search')} Elk`"
+        pe-4
+        :placeholder="t('nav.search')"
         pb="1px"
         placeholder-text-secondary
         @keydown.down.prevent="shift(1)"

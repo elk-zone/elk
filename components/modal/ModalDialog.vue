@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
-import { useDeactivated } from '~/composables/lifecycle'
 
 export interface Props {
   /** v-model dislog visibility */
@@ -47,12 +46,13 @@ const props = withDefaults(defineProps<Props>(), {
   keepAlive: false,
 })
 
-const emits = defineEmits<{
+const emit = defineEmits<{
   /** v-model dialog visibility */
   (event: 'update:modelValue', value: boolean): void
+  (event: 'close',): void
 }>()
 
-const visible = useVModel(props, 'modelValue', emits, { passive: true })
+const visible = useVModel(props, 'modelValue', emit, { passive: true })
 
 const deactivated = useDeactivated()
 const route = useRoute()
@@ -62,7 +62,7 @@ const elDialogMain = ref<HTMLDivElement>()
 const elDialogRoot = ref<HTMLDivElement>()
 
 const { activate } = useFocusTrap(elDialogRoot, {
-  immediate: true,
+  immediate: false,
   allowOutsideClick: true,
   clickOutsideDeactivates: true,
   escapeDeactivates: true,
@@ -76,6 +76,7 @@ defineExpose({
 /** close the dialog */
 function close() {
   visible.value = false
+  emit('close')
 }
 
 function clickMask() {
@@ -137,9 +138,9 @@ export default {
 </script>
 
 <template>
-  <Teleport to="body" @transitionend="trapFocusDialog">
+  <Teleport to="body">
     <!-- Dialog component -->
-    <Transition name="dialog-visible">
+    <Transition name="dialog-visible" @transitionend="trapFocusDialog">
       <div
         v-if="isVIf"
         v-show="isVShow"

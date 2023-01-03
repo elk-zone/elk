@@ -1,6 +1,6 @@
 import type { Status } from 'masto'
 
-type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned'
+type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
 type CountField = 'reblogsCount' | 'favouritesCount'
 
 export interface StatusActionsProps {
@@ -9,6 +9,7 @@ export interface StatusActionsProps {
 
 export function useStatusActions(props: StatusActionsProps) {
   let status = $ref<Status>({ ...props.status })
+  const masto = useMasto()
 
   watch(
     () => props.status,
@@ -23,6 +24,7 @@ export function useStatusActions(props: StatusActionsProps) {
     bookmarked: false,
     pinned: false,
     translation: false,
+    muted: false,
   })
 
   async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<Status>, countField?: CountField) {
@@ -32,17 +34,19 @@ export function useStatusActions(props: StatusActionsProps) {
     isLoading[action] = true
     fetchNewStatus().then((newStatus) => {
       Object.assign(status, newStatus)
+      cacheStatus(newStatus, undefined, true)
     }).finally(() => {
       isLoading[action] = false
     })
     // Optimistic update
     status[action] = !status[action]
+    cacheStatus(status, undefined, true)
     if (countField)
       status[countField] += status[action] ? 1 : -1
   }
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
-    () => useMasto().statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
+    () => masto.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
       if (status.reblogged)
       // returns the original status
         return res.reblog!
@@ -53,23 +57,29 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleFavourite = () => toggleStatusAction(
     'favourited',
-    () => useMasto().statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+    () => masto.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
     'favouritesCount',
   )
 
   const toggleBookmark = () => toggleStatusAction(
     'bookmarked',
-    () => useMasto().statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
+    () => masto.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
   )
 
   const togglePin = async () => toggleStatusAction(
     'pinned',
-    () => useMasto().statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+    () => masto.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+  )
+
+  const toggleMute = async () => toggleStatusAction(
+    'muted',
+    () => masto.statuses[status.muted ? 'unmute' : 'mute'](status.id),
   )
 
   return {
     status: $$(status),
     isLoading: $$(isLoading),
+    toggleMute,
     toggleReblog,
     toggleFavourite,
     toggleBookmark,

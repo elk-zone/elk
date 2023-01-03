@@ -4,8 +4,9 @@ import { STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS } from '~~/constants'
 
 const { t } = useI18n()
 
+const masto = useMasto()
 const { data, pending, error } = useLazyAsyncData(
-  () => useMasto().trends.fetchTags({ limit: 20 }),
+  () => masto.trends.fetchTags({ limit: 20 }),
   { immediate: true },
 )
 
@@ -16,12 +17,12 @@ function getTagUrl(tag: Tag) {
 }
 
 useHeadFixed({
-  title: () => `${t('tab.hashtags')} | ${t('nav_side.explore')}`,
+  title: () => `${t('tab.hashtags')} | ${t('nav.explore')}`,
 })
 </script>
 
 <template>
-  <CommonAlert v-if="!hideTagsTips && data && data.length" @close="hideTagsTips = true">
+  <CommonAlert v-if="isHydrated && !hideTagsTips && data && data.length" @close="hideTagsTips = true">
     <p>{{ $t('tooltip.explore_tags_intro') }}</p>
   </CommonAlert>
 

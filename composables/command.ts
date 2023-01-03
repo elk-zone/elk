@@ -2,6 +2,7 @@ import type { ComputedRef } from 'vue'
 import { defineStore } from 'pinia'
 import Fuse from 'fuse.js'
 import type { LocaleObject } from '#i18n'
+import type { SearchResult } from '@/components/search/types'
 
 // @unocss-include
 
@@ -14,6 +15,9 @@ const scopes = [
   'Account',
   'Languages',
   'Switch account',
+  'Settings',
+  'Hashtags',
+  'Users',
 ] as const
 
 export type CommandScopeNames = typeof scopes[number]
@@ -41,16 +45,37 @@ export interface CommandProvider {
   onComplete?: () => CommandScope
 }
 
-export type ResolvedCommand =
-  Exclude<CommandProvider, 'icon' | 'name' | 'description' | 'bindings'> & {
-    icon: string
-    name: string
-    description: string | undefined
-    bindings: string[] | undefined
-  }
+export type ResolvedCommand = Exclude<CommandProvider, 'icon' | 'name' | 'description' | 'bindings'> & {
+  icon: string
+  name: string
+  description: string | undefined
+  bindings: string[] | undefined
+}
 
-export type QueryIndexedCommand = ResolvedCommand & {
+export interface BaseQueryResultItem {
   index: number
+  type: string
+  scope?: CommandScopeNames
+  onActivate?: () => void
+  onComplete?: () => CommandScope
+}
+
+export interface SearchQueryResultItem extends BaseQueryResultItem {
+  type: 'search'
+  search: SearchResult
+}
+
+export interface CommandQueryResultItem extends BaseQueryResultItem {
+  type: 'command'
+  cmd: ResolvedCommand
+}
+
+export type QueryResultItem = SearchQueryResultItem | CommandQueryResultItem
+
+export interface QueryResult {
+  length: number
+  items: QueryResultItem[]
+  grouped: Map<CommandScopeNames, QueryResultItem[]>
 }
 
 const r = <T extends Object | undefined>(i: T | (() => T)): T =>
@@ -85,7 +110,7 @@ export const useCommandRegistry = defineStore('command', () => {
       providers.delete(provider)
     },
 
-    query: (scope: string, query: string) => {
+    query: (scope: string, query: string): QueryResult => {
       const cmds = commands.value
         .filter(cmd => (cmd.parent ?? '') === scope)
 
@@ -104,7 +129,7 @@ export const useCommandRegistry = defineStore('command', () => {
           .map(({ item }) => ({ ...item }))
 
         // group by scope
-        const grouped = new Map<CommandScopeNames, QueryIndexedCommand[]>()
+        const grouped = new Map<CommandScopeNames, CommandQueryResultItem[]>()
         for (const cmd of res) {
           const scope = cmd.scope ?? ''
           if (!grouped.has(scope))
@@ -112,13 +137,17 @@ export const useCommandRegistry = defineStore('command', () => {
           grouped
             .get(scope)!
             .push({
-              ...cmd,
               index: 0,
+              type: 'command',
+              scope,
+              cmd,
+              onActivate: cmd.onActivate,
+              onComplete: cmd.onComplete,
             })
         }
 
         let index = 0
-        const indexed: QueryIndexedCommand[] = []
+        const indexed: CommandQueryResultItem[] = []
         for (const items of grouped.values()) {
           for (const cmd of items) {
             cmd.index = index++
@@ -136,21 +165,28 @@ export const useCommandRegistry = defineStore('command', () => {
       else {
         const indexed = cmds.map((cmd, index) => ({ ...cmd, index }))
 
-        const grouped = new Map<CommandScopeNames, QueryIndexedCommand[]>(
+        const grouped = new Map<CommandScopeNames, CommandQueryResultItem[]>(
           scopes.map(scope => [scope, []]))
         for (const cmd of indexed) {
           const scope = cmd.scope ?? ''
-          grouped.get(scope)!.push(cmd)
+          grouped.get(scope)!.push({
+            index: cmd.index,
+            type: 'command',
+            scope,
+            cmd,
+            onActivate: cmd.onActivate,
+            onComplete: cmd.onComplete,
+          })
         }
 
         let index = 0
-        const sorted: QueryIndexedCommand[] = []
+        const sorted: CommandQueryResultItem[] = []
         for (const [scope, items] of grouped) {
           if (items.length === 0) {
             grouped.delete(scope)
           }
           else {
-            const o = (cmd: QueryIndexedCommand) => (cmd.order ?? 0) * 100 + cmd.index
+            const o = (item: CommandQueryResultItem) => (item.cmd.order ?? 0) * 100 + item.index
             items.sort((a, b) => o(a) - o(b))
             for (const cmd of items) {
               cmd.index = index++
@@ -172,10 +208,11 @@ export const useCommandRegistry = defineStore('command', () => {
 export const useCommand = (cmd: CommandProvider) => {
   const registry = useCommandRegistry()
 
-  registry.register(cmd)
-
+  const register = () => registry.register(cmd)
   const cleanup = () => registry.remove(cmd)
 
+  register()
+  onActivated(register)
   onDeactivated(cleanup)
   tryOnScopeDispose(cleanup)
 }
@@ -203,7 +240,10 @@ export const useCommands = (cmds: () => CommandProvider[]) => {
 export const provideGlobalCommands = () => {
   const { locale, t } = useI18n()
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
+  const router = useRouter()
   const users = useUsers()
+  const masto = useMasto()
+  const colorMode = useColorMode()
 
   useCommand({
     scope: 'Actions',
@@ -220,13 +260,24 @@ export const provideGlobalCommands = () => {
   })
 
   useCommand({
+    scope: 'Navigation',
+
+    name: () => t('nav.settings'),
+    icon: 'i-ri:settings-4-line',
+
+    onActivate() {
+      router.push('/settings')
+    },
+  })
+
+  useCommand({
     scope: 'Preferences',
 
     name: () => t('command.toggle_dark_mode'),
-    icon: () => isDark.value ? 'i-ri:sun-line' : 'i-ri:moon-line',
+    icon: () => colorMode.value === 'light' ? 'i-ri:sun-line' : 'i-ri:moon-line',
 
     onActivate() {
-      toggleDark()
+      colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'
     },
   })
 
@@ -299,7 +350,7 @@ export const provideGlobalCommands = () => {
     icon: 'i-ri:user-shared-line',
 
     onActivate() {
-      loginTo(user)
+      masto.loginTo(user)
     },
   })))
   useCommand({

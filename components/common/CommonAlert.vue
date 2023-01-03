@@ -4,14 +4,14 @@ const props = withDefaults(defineProps<{
 }>(), {
   modelValue: true,
 })
-const emits = defineEmits<{
+const emit = defineEmits<{
   (e: 'update:modelValue', v: boolean): void
   (event: 'close'): void
 }>()
-const visible = useVModel(props, 'modelValue', emits, { passive: true })
+const visible = useVModel(props, 'modelValue', emit, { passive: true })
 
 function close() {
-  emits('close')
+  emit('close')
   visible.value = false
 }
 </script>
@@ -19,7 +19,7 @@ function close() {
 <template>
   <div
     flex="~ gap-2" justify-between items-center
-    class="border-b border-base text-sm text-secondary px4 py2 sm:py4"
+    border="b base" text-sm text-secondary px4 py2 sm:py4
   >
     <div>
       <slot />

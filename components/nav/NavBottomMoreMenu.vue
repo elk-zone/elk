@@ -2,10 +2,11 @@
 const props = defineProps<{
   modelValue?: boolean
 }>()
-const emits = defineEmits<{
+const emit = defineEmits<{
   (event: 'update:modelValue', value: boolean): void
 }>()
-const visible = useVModel(props, 'modelValue', emits, { passive: true })
+const visible = useVModel(props, 'modelValue', emit, { passive: true })
+const colorMode = useColorMode()
 
 function changeShow() {
   visible.value = !visible.value
@@ -20,6 +21,10 @@ function clickEvent(mouse: MouseEvent) {
       visible.value = false
     }
   }
+}
+
+function toggleDark() {
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
 }
 
 watch(visible, (val) => {
@@ -78,37 +83,20 @@ onBeforeUnmount(() => {
               hover="bg-gray-100 dark:(bg-gray-700 text-white)"
               @click="toggleDark()"
             >
-              <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl mr-4 !align-middle" />
-              {{ !isDark ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
+              <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl me-4 !align-middle" />
+              {{ colorMode.value === 'light' ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
             </button>
-            <!-- Switch languages -->
-            <NavSelectLanguage>
-              <button
-                flex flex-row items-center
-                block px-5 py-2 focus-blue w-full
-                text-sm text-base capitalize text-left whitespace-nowrap
-                transition-colors duration-200 transform
-                hover="bg-gray-100 dark:(bg-gray-700 text-white)"
-                @click.stop
-              >
-                <span class="i-ri:earth-line flex-shrink-0 text-xl mr-4 !align-middle" />
-                {{ $t('nav_footer.select_language') }}
-              </button>
-            </NavSelectLanguage>
-            <!-- Toggle Feature Flags -->
-            <NavSelectFeatureFlags v-if="isMastoInitialised && currentUser">
-              <button
-                flex flex-row items-center
-                block px-5 py-2 focus-blue w-full
-                text-sm text-base capitalize text-left whitespace-nowrap
-                transition-colors duration-200 transform
-                hover="bg-gray-100 dark:(bg-gray-700 text-white)"
-                @click.stop
-              >
-                <span class="i-ri:flag-line flex-shrink-0 text-xl mr-4 !align-middle" />
-                {{ $t('nav_footer.select_feature_flags') }}
-              </button>
-            </NavSelectFeatureFlags>
+            <NuxtLink
+              flex flex-row items-center
+              block px-5 py-2 focus-blue w-full
+              text-sm text-base capitalize text-left whitespace-nowrap
+              transition-colors duration-200 transform
+              hover="bg-gray-100 dark:(bg-gray-700 text-white)"
+              to="/settings"
+            >
+              <span class="i-ri:settings-2-line flex-shrink-0 text-xl me-4 !align-middle" />
+              {{ $t('nav.settings') }}
+            </NuxtLink>
           </div>
         </div>
       </div>

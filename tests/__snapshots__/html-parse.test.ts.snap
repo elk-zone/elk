@@ -54,9 +54,41 @@ exports[`html-parse > custom emoji > html 1`] = `
 
 exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe :nuxt:"`;
 
+exports[`html-parse > emojis > html 1`] = `
+"<img
+  src=\\"/emojis/twemoji/1f1eb-1f1f7.svg\\"
+  alt=\\"🇫🇷\\"
+  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+/>
+<img
+  src=\\"/emojis/twemoji/1f468-200d-1f469-200d-1f466.svg\\"
+  alt=\\"👨‍👩‍👦\\"
+  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+/>
+<img
+  src=\\"/emojis/twemoji/1f469-200d-1f692.svg\\"
+  alt=\\"👩‍🚒\\"
+  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+/><img
+  src=\\"/emojis/twemoji/1f9d1-1f3fd-200d-1f680.svg\\"
+  alt=\\"🧑🏽‍🚀\\"
+  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+/>
+"
+`;
+
+exports[`html-parse > emojis > text 1`] = `"🇫🇷 👨‍👩‍👦 👩‍🚒🧑🏽‍🚀"`;
+
 exports[`html-parse > empty > html 1`] = `""`;
 
 exports[`html-parse > empty > text 1`] = `""`;
+
+exports[`html-parse > html entities > html 1`] = `
+"<p>Hello &lt;World /&gt;.</p>
+"
+`;
+
+exports[`html-parse > html entities > text 1`] = `"Hello <World />."`;
 
 exports[`html-parse > inline markdown > html 1`] = `"<p>text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p><p><pre><code class=\\"language-js\\">code block</code></pre></p>"`;
 
@@ -70,7 +102,13 @@ code block
 
 exports[`html-parse > link + mention > html 1`] = `
 "<p>
-  Happy 🤗 we’re now using
+  Happy
+  <img
+    src=\\"/emojis/twemoji/1f917.svg\\"
+    alt=\\"🤗\\"
+    class=\\"iconify-emoji iconify-emoji--twemoji\\"
+  />
+  we’re now using
   <span class=\\"h-card\\"
     ><a
       href=\\"https://mas.to/@vitest\\"

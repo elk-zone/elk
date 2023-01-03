@@ -11,15 +11,40 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
 const enable = $computed(() => !isSelf && currentUser.value)
 const relationship = $computed(() => props.relationship || useRelationship(account).value)
 
+const masto = useMasto()
 async function toggleFollow() {
   relationship!.following = !relationship!.following
   try {
-    const newRel = await useMasto().accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+    const newRel = await masto.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
     // TODO error handling
     relationship!.following = !relationship!.following
+  }
+}
+
+async function unblock() {
+  relationship!.blocking = false
+  try {
+    const newRel = await masto.accounts.unblock(account.id)
+    Object.assign(relationship!, newRel)
+  }
+  catch {
+    // TODO error handling
+    relationship!.blocking = true
+  }
+}
+
+async function unmute() {
+  relationship!.muting = false
+  try {
+    const newRel = await masto.accounts.unmute(account.id)
+    Object.assign(relationship!, newRel)
+  }
+  catch {
+    // TODO error handling
+    relationship!.muting = true
   }
 }
 
@@ -39,6 +64,12 @@ const buttonStyle = $computed(() => {
   if (!relationship)
     return 'text-inverted'
 
+  if (relationship.blocking)
+    return 'text-inverted bg-red border-red'
+
+  if (relationship.muting)
+    return 'text-base bg-code border-base'
+
   // If following, use a label style with a strong border for Mutuals
   if (relationship.following)
     return `text-base ${relationship.followedBy ? 'border-strong' : 'border-base'}`
@@ -54,9 +85,20 @@ const buttonStyle = $computed(() => {
     gap-1 items-center group
     :disabled="relationship?.requested"
     border-1
-    rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1 :class="buttonStyle" :hover="relationship?.following ? 'border-red text-red' : 'bg-base border-primary text-primary'" @click="toggleFollow"
+    rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1
+    :class="buttonStyle"
+    :hover="!relationship?.blocking && !relationship?.muting && relationship?.following ? 'border-red text-red' : 'bg-base border-primary text-primary'"
+    @click="relationship?.blocking ? unblock() : relationship?.muting ? unmute() : toggleFollow()"
   >
-    <template v-if="relationship?.following">
+    <template v-if="relationship?.blocking">
+      <span group-hover="hidden">{{ $t('account.blocking') }}</span>
+      <span hidden group-hover="inline">{{ $t('account.unblock') }}</span>
+    </template>
+    <template v-if="relationship?.muting">
+      <span group-hover="hidden">{{ $t('account.muting') }}</span>
+      <span hidden group-hover="inline">{{ $t('account.unmute') }}</span>
+    </template>
+    <template v-else-if="relationship?.following">
       <span group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
       <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
     </template>

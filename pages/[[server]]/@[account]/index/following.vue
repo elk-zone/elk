@@ -10,7 +10,7 @@ const paginator = account ? useMasto().accounts.iterateFollowing(account.id, {})
 
 if (account) {
   useHeadFixed({
-    title: () => `${t('account.following')} | ${getDisplayName(account)} (@${account})`,
+    title: () => `${t('account.following')} | ${getDisplayName(account)} (@${account.acct})`,
   })
 }
 </script>

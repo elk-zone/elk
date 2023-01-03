@@ -8,43 +8,59 @@ const props = defineProps<{
 type UrlType = 'user' | 'repo' | 'issue' | 'pull'
 interface Meta {
   type: UrlType
-  user: string
+  user?: string
   titleUrl: string
   avatar: string
   details: string
   repo?: string
   number?: string
-  extra?: {
-    state: string
-    author?: {
-      avatar: string
-      user: string
-    }
+  author?: {
+    avatar: string
+    user: string
   }
 }
 
 const meta = $computed(() => {
   const { url } = props.card
   const path = url.split('https://github.com/')[1]
-  const user = path.match(/([\w-]+)\//)![1]
-  const repo = path.match(/[\w-]+\/([\w-]+)/)?.[1]
-  const repoPath = `${user}/${repo}`
-  const inRepoPath = path.split(`${repoPath}/`)?.[1]
-  let number: string | undefined
+
+  // Supported paths
+  // /user
+  // /user/repo
+  // /user/repo/issues/number.*
+  // /user/repo/pull/number.*
+  // /orgs/user.*
+
+  const firstName = path.match(/([\w-]+)(\/|$)/)?.[1]
+  const secondName = path.match(/[\w-]+\/([\w-]+)/)?.[1]
+  const firstIsUser = firstName !== 'orgs' && firstName !== 'sponsors'
+  const user = firstIsUser ? firstName : secondName
+  const repo = firstIsUser ? secondName : undefined
+
   let type: UrlType = repo ? 'repo' : 'user'
-  if (inRepoPath) {
-    number = inRepoPath.match(/issues\/(\d+)/)?.[1]
-    if (number) {
-      type = 'issue'
-    }
-    else {
-      number = inRepoPath.match(/pull\/(\d+)/)?.[1]
-      if (number)
-        type = 'pull'
+  let number: string | undefined
+  let details = (props.card.title ?? '').replace('GitHub - ', '').split(' · ')[0]
+
+  if (repo) {
+    const repoPath = `${user}/${repo}`
+    details = details.replace(`${repoPath}: `, '')
+    const inRepoPath = path.split(`${repoPath}/`)?.[1]
+    if (inRepoPath) {
+      number = inRepoPath.match(/issues\/(\d+)/)?.[1]
+      if (number) {
+        type = 'issue'
+      }
+      else {
+        number = inRepoPath.match(/pull\/(\d+)/)?.[1]
+        if (number)
+          type = 'pull'
+      }
     }
   }
-  const avatar = `https://github.com/${user}.png`
-  const details = (props.card.title ?? '').replace('GitHub - ', '').replace(`${repoPath}: `, '').split(' · ')[0]
+
+  const avatar = `https://github.com/${user}.png?size=256`
+
+  const author = props.card.authorName
   const info = $ref<Meta>({
     type,
     user,
@@ -53,23 +69,13 @@ const meta = $computed(() => {
     repo,
     number,
     avatar,
+    author: author
+      ? {
+          avatar: `https://github.com/${author}.png?size=64`,
+          user: author,
+        }
+      : undefined,
   })
-  /* It is rate limited for anonymous usage, leaving this to play, but for now it is probably better to avoid the call
-     We can't show the author of the PR or issue without this info, because the handle isn't in the meta. I think we
-     could ask GitHub to add it.
-
-  if (number) {
-    fetch(`https://api.github.com/repos/${user}/${repo}/issues/${number}`).then(res => res.json()).then((data) => {
-      info.extra = {
-        state: data.state as string,
-        author: {
-          avatar: data.user.avatar_url as string,
-          user: data.user.login as string,
-        },
-      }
-    })
-  }
-  */
   return info
 })
 </script>
@@ -96,10 +102,10 @@ const meta = $computed(() => {
             <span v-else>{{ meta.user }}</span>
           </a>
           <a sm:text-lg :href="card.url" target="_blank">
-            <span v-if="meta.type === 'issue'" text-secondary-light mr-2>
+            <span v-if="meta.type === 'issue'" text-secondary-light me-2>
               #{{ meta.number }}
             </span>
-            <span v-if="meta.type === 'pull'" text-secondary-light mr-2>
+            <span v-if="meta.type === 'pull'" text-secondary-light me-2>
               PR #{{ meta.number }}
             </span>
             <span text-secondary leading-tight>{{ meta.details }}</span>
@@ -112,14 +118,14 @@ const meta = $computed(() => {
         </div>
       </div>
       <div flex justify-between>
-        <div v-if="meta.extra" flex gap-2 items-center>
+        <div v-if="meta.author" flex class="gap-2.5" items-center>
           <div>
-            <img w-6 aspect-square width="20" height="20" rounded-full :src="meta.extra?.author?.avatar">
+            <img w-8 aspect-square width="25" height="25" rounded-full :src="meta.author?.avatar">
           </div>
-          <span text-xl text-primary font-bold>@{{ meta.extra?.author?.user }}</span>
+          <span text-lg text-primary>@{{ meta.author?.user }}</span>
         </div>
         <div v-else />
-        <div text-2xl i-ri:github-fill text-secondary />
+        <div text-3xl i-ri:github-fill text-secondary />
       </div>
     </div>
   </div>

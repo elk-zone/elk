@@ -3,10 +3,10 @@ import type { VitePWANuxtOptions } from '../modules/pwa/types'
 
 const isPreview = process.env.PULL_REQUEST === 'true'
 
-const pwa: VitePWANuxtOptions = {
+export const pwa: VitePWANuxtOptions = {
   mode: isCI ? 'production' : 'development',
-  // disable PWA only in development
-  disable: isDevelopment && process.env.VITE_DEV_PWA !== 'true',
+  // disable PWA only when in preview mode
+  disable: /* temporarily test in CI isPreview || */ (isDevelopment && process.env.VITE_DEV_PWA !== 'true'),
   scope: '/',
   srcDir: './service-worker',
   filename: 'sw.ts',
@@ -31,21 +31,24 @@ const pwa: VitePWANuxtOptions = {
         sizes: '512x512',
         type: 'image/png',
       },
+      /*
       {
         src: 'logo.svg',
         sizes: '250x250',
         type: 'image/png',
         purpose: 'any maskable',
       },
+*/
     ],
   },
   injectManifest: {
+    // fonts/seguiemj.ttf is 2.77 MB, and won't be precached
+    maximumFileSizeToCacheInBytes: 3000000,
     globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
+    globIgnores: ['emojis/twemoji/*.svg'],
   },
   devOptions: {
     enabled: process.env.VITE_DEV_PWA === 'true',
     type: 'module',
   },
 }
-
-export { pwa }

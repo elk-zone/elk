@@ -1,18 +1,19 @@
 import type {
   CreatePushSubscriptionParams,
   PushSubscription as MastoPushSubscription,
+  SubscriptionPolicy,
 } from 'masto'
 import type {
   CreatePushNotification,
   PushManagerSubscriptionInfo,
   RequiredUserLogin,
 } from '~/composables/push-notifications/types'
-import { useMasto } from '~/composables/masto'
-import { currentUser, removePushNotifications } from '~/composables/users'
 
 export const createPushSubscription = async (
   user: RequiredUserLogin,
   notificationData: CreatePushNotification,
+  policy: SubscriptionPolicy = 'all',
+  force = false,
 ): Promise<MastoPushSubscription | undefined> => {
   const { server: serverEndpoint, vapidKey } = user
 
@@ -26,19 +27,21 @@ export const createPushSubscription = async (
         // If the VAPID public key did not change and the endpoint corresponds
         // to the endpoint saved in the backend, the subscription is valid
         // If push subscription is not there, we need to create it: it is fetched on login
-        if (subscriptionServerKey === currentServerKey && subscription.endpoint === serverEndpoint && user.pushSubscription) {
+        if (subscriptionServerKey === currentServerKey && subscription.endpoint === serverEndpoint && (!force && user.pushSubscription)) {
           return Promise.resolve(user.pushSubscription)
         }
         else if (user.pushSubscription) {
-          // if we have a subscription, but it is not valid, we need to remove it
-          return unsubscribeFromBackend(false)
+          // if we have a subscription, but it is not valid or forcing renew, we need to remove it
+          // we need to prevent removing push notification data
+          return unsubscribeFromBackend(false, false)
+            .catch(removePushNotificationDataOnError)
             .then(() => subscribe(registration, vapidKey))
-            .then(subscription => sendSubscriptionToBackend(subscription, notificationData))
+            .then(subscription => sendSubscriptionToBackend(subscription, notificationData, policy))
         }
       }
 
       return subscribe(registration, vapidKey).then(
-        subscription => sendSubscriptionToBackend(subscription, notificationData),
+        subscription => sendSubscriptionToBackend(subscription, notificationData, policy),
       )
     })
     .catch((error) => {
@@ -92,18 +95,30 @@ async function subscribe(
   })
 }
 
-async function unsubscribeFromBackend(fromSWPushManager: boolean) {
+async function unsubscribeFromBackend(fromSWPushManager: boolean, removePushNotification = true) {
+  const cu = currentUser.value
+  if (cu) {
+    await removePushNotifications(cu)
+    removePushNotification && await removePushNotificationData(cu, fromSWPushManager)
+  }
+}
+
+async function removePushNotificationDataOnError(e: Error) {
   const cu = currentUser.value
   if (cu)
-    await removePushNotifications(cu, fromSWPushManager)
+    await removePushNotificationData(cu, true)
+
+  throw e
 }
 
 async function sendSubscriptionToBackend(
   subscription: PushSubscription,
   data: CreatePushNotification,
+  policy: SubscriptionPolicy,
 ): Promise<MastoPushSubscription> {
   const { endpoint, keys } = subscription.toJSON()
   const params: CreatePushSubscriptionParams = {
+    policy,
     subscription: {
       endpoint: endpoint!,
       keys: {
@@ -116,4 +131,3 @@ async function sendSubscriptionToBackend(
 
   return await useMasto().pushSubscriptions.create(params)
 }
-

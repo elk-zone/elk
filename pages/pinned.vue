@@ -19,6 +19,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <TimelinePinned v-if="isMastoInitialised && currentUser" />
+    <TimelinePinned v-if="isMastoInitialised && !isGuest" />
   </MainContent>
 </template>

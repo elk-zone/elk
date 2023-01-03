@@ -56,7 +56,7 @@ const handleShowCommit = () => {
     <SettingsItem
       text="Mastodon"
       icon="i-ri:mastodon-line"
-      to="https://m.webtoo.ls/@elk"
+      to="/m.webtoo.ls/@elk"
       external target="_blank"
     />
     <SettingsItem

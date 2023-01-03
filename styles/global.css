@@ -96,6 +96,11 @@ body {
   transform: scale(1.2);
 }
 
+em-emoji-picker {
+  --border-radius: 0;
+  width: 352px;
+}
+
 .content-rich {
   overflow-wrap: break-word;
 

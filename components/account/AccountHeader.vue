@@ -118,7 +118,9 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
       </div>
       <div v-if="iconFields.length" flex="~ wrap gap-4">
         <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" items-center>
-          <div text-secondary :class="getAccountFieldIcon(field.name)" :title="getFieldIconTitle(field.name)" />
+          <CommonTooltip :content="getFieldIconTitle(field.name)">
+            <div text-secondary :class="getAccountFieldIcon(field.name)" :title="getFieldIconTitle(field.name)" />
+          </CommonTooltip>
           <ContentRich text-sm filter-saturate-0 :content="field.value" :emojis="account.emojis" />
         </div>
       </div>

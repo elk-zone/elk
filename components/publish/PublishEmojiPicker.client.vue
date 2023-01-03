@@ -45,6 +45,7 @@ const hideEmojiPicker = () => {
 
 <template>
   <VDropdown
+    auto-boundary-max-size
     @apply-show="openEmojiPicker()"
     @apply-hide="hideEmojiPicker()"
   >

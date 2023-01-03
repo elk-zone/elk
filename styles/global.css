@@ -101,7 +101,6 @@ em-emoji-picker {
 }
 
 .content-rich {
-  line-height: calc(4 / 3 * 1em);
   overflow-wrap: break-word;
 
   a {
@@ -121,7 +120,13 @@ em-emoji-picker {
     --at-apply: font-bold;
   }
   p {
-    --at-apply: my-1;
+    --at-apply: my-2;
+  }
+  p:first-child {
+    --at-apply: mt-1;
+  }
+  p:last-child {
+    --at-apply: mb-1;
   }
   code {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.9em leading-0.8em;
@@ -138,6 +143,10 @@ em-emoji-picker {
       background: transparent !important;
     }
   }
+}
+
+.line-compact {
+  line-height: calc(4 / 3 * 1em);
 }
 
 .content-editor {

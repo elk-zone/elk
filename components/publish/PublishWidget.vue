@@ -5,6 +5,7 @@ import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
 import ISO6391 from 'iso-639-1'
 import Fuse from 'fuse.js'
+import { statusVisibilities } from '~/composables/masto/icons'
 import type { Draft } from '~/types'
 
 type FileUploadError = [filename: string, message: string]
@@ -56,7 +57,7 @@ const { editor } = useTiptap({
 })
 
 const currentVisibility = $computed(() => {
-  return STATUS_VISIBILITIES.find(v => v.value === draft.params.visibility) || STATUS_VISIBILITIES[0]
+  return statusVisibilities.find(v => v.value === draft.params.visibility) || statusVisibilities[0]
 })
 
 let isUploading = $ref<boolean>(false)
@@ -353,7 +354,7 @@ defineExpose({
         </CommonTooltip>
 
         <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
-          <CommonDropdown placement="bottom">
+          <CommonDropdown placement="bottom" auto-boundary-max-size>
             <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-12 mr--1>
               <div i-ri:translate-2 />
               <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
@@ -396,7 +397,7 @@ defineExpose({
 
             <template #popper>
               <CommonDropdownItem
-                v-for="visibility in STATUS_VISIBILITIES"
+                v-for="visibility in statusVisibilities"
                 :key="visibility.value"
                 :icon="visibility.icon"
                 :checked="visibility.value === draft.params.visibility"

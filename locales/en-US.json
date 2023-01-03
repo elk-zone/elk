@@ -108,6 +108,9 @@
     "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress generic Mastodon client!",
     "desc_para2": "We are working hard on the development and improving it over time. We will open source the app once it is ready for public use.",
     "desc_para3": "To help boosting out development, you can sponsor our team members with the links below. We hope you enjoy Elk!",
+    "desc_para4": "Before that, if you'd like to help with testing, giving feedback, or contributing,",
+    "desc_para5": "reach out to us on Mastodon",
+    "desc_para6": "and get involved.",
     "title": "Elk is in Preview!"
   },
   "language": {

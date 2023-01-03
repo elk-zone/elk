@@ -52,3 +52,22 @@ export const getAccountFieldIcon = (value: string) => {
   const name = value.trim().toLowerCase()
   return accountFieldIconsLowercase[name] || undefined
 }
+
+export const statusVisibilities = [
+  {
+    value: 'public',
+    icon: 'i-ri:global-line',
+  },
+  {
+    value: 'unlisted',
+    icon: 'i-ri:lock-unlock-line',
+  },
+  {
+    value: 'private',
+    icon: 'i-ri:lock-line',
+  },
+  {
+    value: 'direct',
+    icon: 'i-ri:at-line',
+  },
+] as const

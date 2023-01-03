@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { warn } from 'vue'
-
 const props = withDefaults(defineProps<{
   text?: string
   icon: string
@@ -31,7 +29,7 @@ useCommand({
 })
 
 let activeClass = $ref('text-primary')
-watch(isMastoInitialised, async () => {
+onMastoInit(async () => {
   if (!props.userOnly) {
     // TODO: force NuxtLink to reevaluate, we now we are in this route though, so we should force it to active
     // we don't have currentServer defined until later

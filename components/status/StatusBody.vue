@@ -12,6 +12,7 @@ const { translation } = useTranslation(status)
   <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }">
     <ContentRich
       v-if="status.content"
+      class="line-compact"
       :content="status.content"
       :emojis="status.emojis"
       :lang="status.language"
@@ -19,7 +20,7 @@ const { translation } = useTranslation(status)
     <div v-else />
     <template v-if="translation.visible">
       <div my2 h-px border="b base" bg-base />
-      <ContentRich :content="translation.text" :emojis="status.emojis" />
+      <ContentRich class="line-compact" :content="translation.text" :emojis="status.emojis" />
     </template>
   </div>
 </template>

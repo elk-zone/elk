@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
+import { statusVisibilities } from '~/composables/masto/icons'
 
 const props = withDefaults(defineProps<{
   status: Status
@@ -17,7 +18,7 @@ const status = $computed(() => {
 
 const createdAt = useFormattedDateTime(status.createdAt)
 
-const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === status.visibility)!)
+const visibility = $computed(() => statusVisibilities.find(v => v.value === status.visibility)!)
 
 const { t } = useI18n()
 

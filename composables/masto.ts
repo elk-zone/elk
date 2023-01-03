@@ -7,25 +7,11 @@ export const useMasto = () => useNuxtApp().$masto as ElkMasto
 
 export const isMastoInitialised = computed(() => process.client && useMasto().loggedIn.value)
 
-// @unocss-include
-export const STATUS_VISIBILITIES = [
-  {
-    value: 'public',
-    icon: 'i-ri:global-line',
-  },
-  {
-    value: 'unlisted',
-    icon: 'i-ri:lock-unlock-line',
-  },
-  {
-    value: 'private',
-    icon: 'i-ri:lock-line',
-  },
-  {
-    value: 'direct',
-    icon: 'i-ri:at-line',
-  },
-] as const
+export const onMastoInit = (cb: () => unknown) => {
+  watchOnce(isMastoInitialised, () => {
+    cb()
+  }, { immediate: isMastoInitialised.value })
+}
 
 export function getDisplayName(account?: Account, options?: { rich?: boolean }) {
   const displayName = account?.displayName || account?.username || ''

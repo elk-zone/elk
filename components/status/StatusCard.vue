@@ -103,7 +103,11 @@ const isDM = $computed(() => status.visibility === 'direct')
         <div v-if="rebloggedBy && !collapseRebloggedBy" relative text-secondary ws-nowrap flex="~" items-center pt1 pb0.5 px-1px bg-base>
           <div i-ri:repeat-fill me-46px text-primary w-16px h-16px />
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
-            <AccountAvatar :account="rebloggedBy" />
+            <AccountHoverWrapper :account="rebloggedBy">
+              <NuxtLink :to="getAccountRoute(rebloggedBy)">
+                <AccountAvatar :account="rebloggedBy" />
+              </NuxtLink>
+            </AccountHoverWrapper>
           </div>
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" text-sm />
         </div>

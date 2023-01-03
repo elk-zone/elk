@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { UpdateCredentialsParams } from 'masto'
+import { accountFieldIcons, getAccountFieldIcon } from '~/composables/masto/icons'
 
 const { form } = defineModel<{
   form: {
@@ -25,7 +26,7 @@ const chooseIcon = (i: number, text: string) => {
     <div v-for="i in 4" :key="i" flex="~ gap3" items-center>
       <CommonDropdown ref="dropdown" placement="left">
         <CommonTooltip content="Pick a icon">
-          <button btn-action-icon>
+          <button type="button" btn-action-icon>
             <div :class="fieldIcons[i - 1] || 'i-ri:question-mark'" />
           </button>
         </CommonTooltip>
@@ -37,9 +38,9 @@ const chooseIcon = (i: number, text: string) => {
               :content="text"
             >
               <template v-if="text !== 'Joined'">
-                <div btn-action-icon @click="chooseIcon(i - 1, text)">
+                <button type="button" btn-action-icon @click="chooseIcon(i - 1, text)">
                   <div text-xl :class="icon" />
-                </div>
+                </button>
               </template>
             </CommonTooltip>
           </div>

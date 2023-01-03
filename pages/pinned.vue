@@ -3,7 +3,6 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().accounts.iterateStatuses(currentUser.value!.account.id, { pinned: true })
 const { t } = useI18n()
 
 useHeadFixed({
@@ -14,10 +13,12 @@ useHeadFixed({
 <template>
   <MainContent>
     <template #title>
-      <div i-ri:pushpin-line h-6 me-1 />
-      <span>{{ t('account.pinned') }}</span>
+      <NuxtLink to="/public/pinned" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:pushpin-line />
+        <span>{{ t('account.pinned') }}</span>
+      </NuxtLink>
     </template>
 
-    <TimelinePinned v-if="isMastoInitialised" />
+    <TimelinePinned v-if="isMastoInitialised && currentUser" />
   </MainContent>
 </template>

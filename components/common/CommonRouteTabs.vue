@@ -40,7 +40,7 @@ useCommands(() => command
         relative flex flex-auto cursor-pointer sm:px6 px2 rounded transition-all
         tabindex="1"
         hover:bg-active transition-100
-        exact-active-class="children:(text-secondary !border-primary !op100)"
+        exact-active-class="children:(text-secondary !border-primary !op100 !text-base)"
         @click="!preventScrollTop && $scrollToTop()"
       >
         <span ws-nowrap mxa sm:px2 sm:py3 py2 text-center border-b-3 text-secondary-light hover:text-secondary border-transparent>{{ option.display }}</span>

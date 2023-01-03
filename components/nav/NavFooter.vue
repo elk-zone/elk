@@ -29,15 +29,12 @@ function toggleDark() {
       </CommonTooltip>
     </div>
     <div>
-      <button cursor-pointer hover:underline @click="openPreviewHelp">
-        {{ $t('nav.show_intro') }}
-      </button>
-    </div>
-    <div>{{ $t('app_desc_short') }}</div>
-    <div>
       <i18n-t v-if="isHydrated" keypath="nav.built_at">
         <time :datetime="String(buildTimeDate)" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
       </i18n-t>
+      <span v-else>
+        {{ $t('nav.built_at', [$d(buildTimeDate, 'shortDate')]) }}
+      </span>
       <template v-if="buildInfo.version">
         &middot;
         v{{ buildInfo.version }}
@@ -55,7 +52,15 @@ function toggleDark() {
       </template>
     </div>
     <div>
-      <a href="/m.webtoo.ls/@elk" target="_blank">Mastodon</a> &middot; <a href="https://chat.elk.zone" target="_blank">Discord</a> &middot; <a href="https://github.com/elk-zone" target="_blank">GitHub</a>
+      <NuxtLink cursor-pointer hover:underline to="/settings/about">
+        {{ $t('settings.about.label') }}
+      </NuxtLink>
+      &middot;
+      <a href="/m.webtoo.ls/@elk" target="_blank">Mastodon</a>
+      &middot;
+      <a href="https://chat.elk.zone" target="_blank">Discord</a>
+      &middot;
+      <a href="https://github.com/elk-zone" target="_blank">GitHub</a>
     </div>
   </footer>
 </template>

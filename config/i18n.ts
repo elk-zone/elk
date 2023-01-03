@@ -76,6 +76,9 @@ const datetimeFormats = Object.values(locales).reduce((acc, data) => {
   }
   else {
     acc[data.code] = {
+      shortDate: {
+        dateStyle: 'short',
+      },
       short: {
         dateStyle: 'short',
         timeStyle: 'short',

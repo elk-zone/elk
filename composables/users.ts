@@ -1,5 +1,4 @@
 import { login as loginMasto } from 'masto'
-import { useIDBKeyval } from '@vueuse/integrations/useIDBKeyval'
 import type { Account, AccountCredentials, Instance, MastoClient, WsEvents } from 'masto'
 import type { Ref } from 'vue'
 import type { RemovableRef } from '@vueuse/core'
@@ -14,10 +13,11 @@ import {
   STORAGE_KEY_USERS,
 } from '~/constants'
 import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
+import { useAsyncIDBKeyval } from '~/composables/idb'
 
 const mock = process.mock
 
-const initializeUsers = (): Ref<UserLogin[]> | RemovableRef<UserLogin[]> => {
+const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>> => {
   let defaultUsers = mock ? [mock.user] : []
 
   // Backward compatibility with localStorage
@@ -32,7 +32,7 @@ const initializeUsers = (): Ref<UserLogin[]> | RemovableRef<UserLogin[]> => {
 
   const users = process.server
     ? ref<UserLogin[]>(defaultUsers)
-    : useIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, { deep: true })
+    : await useAsyncIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, { deep: true })
 
   if (removeUsersOnLocalStorage)
     globalThis.localStorage.removeItem(STORAGE_KEY_USERS)
@@ -40,7 +40,7 @@ const initializeUsers = (): Ref<UserLogin[]> | RemovableRef<UserLogin[]> => {
   return users
 }
 
-const users = initializeUsers()
+const users = await initializeUsers()
 const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 

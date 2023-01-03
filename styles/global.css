@@ -200,10 +200,6 @@ html[dir="rtl"] .rtl-flip {
   transform: scale(-1, 1)
 }
 
-em-emoji-picker {
-  --border-radius: 0;
-}
-
 footer {
   a {
     --at-apply: 'hover:underline';

@@ -160,16 +160,34 @@ async function fetchRelationships() {
 }
 
 const maxDistance = 10
+
+// Checks if (b) is a reply to (a)
+function areStatusesConsecutive(a: Status, b: Status) {
+  const inReplyToId = b.inReplyToId ?? b.reblog?.inReplyToId
+  return !!inReplyToId && (inReplyToId === a.reblog?.id || inReplyToId === a.id)
+}
+
 export function timelineWithReorderedReplies(items: Status[]) {
   const newItems = [...items]
   // TODO: Basic reordering, we should get something more efficient and robust
   for (let i = items.length - 1; i > 0; i--) {
     for (let k = 1; k <= maxDistance && i - k >= 0; k++) {
-      const inReplyToId = newItems[i - k].inReplyToId ?? newItems[i - k].reblog?.inReplyToId
-      if (inReplyToId && (inReplyToId === newItems[i].reblog?.id || inReplyToId === newItems[i].id)) {
+      // Check if the [i-k] item is a reply to the [i] item
+      // This means that they are in the wrong order
+      if (areStatusesConsecutive(newItems[i], newItems[i - k])) {
         const item = newItems.splice(i, 1)[0]
-        newItems.splice(i - k, 0, item)
+        newItems.splice(i - k, 0, item) // insert older item before the newer one
         k = 1
+      }
+      else if (k > 1) {
+        // Check if the [i] item is a reply to the [i-k] item
+        // This means that they are in the correct order but there are posts between them
+        if (areStatusesConsecutive(newItems[i - k], newItems[i])) {
+          const item = newItems.splice(i, 1)[0]
+          // insert older item after the newer one
+          newItems.splice(i - k + 1, 0, item)
+          k = 1
+        }
       }
     }
   }

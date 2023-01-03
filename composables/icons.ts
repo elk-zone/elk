@@ -14,6 +14,8 @@ export const accountFieldIcons: Record<string, string> = Object.fromEntries(Obje
   Home: 'i-ri:home-2-line',
   Instagram: 'i-ri:instagram-line',
   Joined: 'i-ri:user-add-line',
+  Language: 'i-ri:translate-2',
+  Languages: 'i-ri:translate-2',
   LinkedIn: 'i-ri:linkedin-box-fill',
   Location: 'i-ri:map-pin-2-line',
   Mastodon: 'i-ri:mastodon-line',

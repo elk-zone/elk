@@ -44,7 +44,7 @@ function toggleDark() {
     </div>
     <div>{{ $t('app_desc_short') }}</div>
     <div>
-      <i18n-t keypath="nav.built_at">
+      <i18n-t v-if="isHydrated" keypath="nav.built_at">
         <time :datetime="String(buildTimeDate)" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
       </i18n-t>
       <template v-if="buildInfo.version">

@@ -40,7 +40,7 @@ If not using private browsing mode, you will need to uninstall the PWA applicati
     - Storage: [x] IndexedDB and [x] Local and session storage
     - Cache: [x] Cache storage and [x] Application cache
 - Click on `Clear site data` button
-- Go to `Application > Service Workers` and check the current `service worker` is missing or has the state `deleted` or `redundant
+- Go to `Application > Service Workers` and check the current `service worker` is missing or has the state `deleted` or `redundant`
 
 ## CI errors
 

@@ -66,6 +66,8 @@ const { activate } = useFocusTrap(elDialogRoot, {
   allowOutsideClick: true,
   clickOutsideDeactivates: true,
   escapeDeactivates: true,
+  preventScroll: true,
+  returnFocusOnDeactivate: true,
 })
 
 defineExpose({

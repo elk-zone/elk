@@ -126,6 +126,7 @@ useIntersectionObserver(video, (entries) => {
     </template>
     <template v-else>
       <button
+        type="button"
         focus:outline-none
         focus:ring="2 primary inset"
         rounded-lg

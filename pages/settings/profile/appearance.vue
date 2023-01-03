@@ -45,10 +45,7 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
   },
 })
 
-watch(isMastoInitialised, async (val) => {
-  if (!val)
-    return
-
+onMastoInit(async () => {
   // Keep the information to be edited up to date
   await pullMyAccountInfo()
   reset()

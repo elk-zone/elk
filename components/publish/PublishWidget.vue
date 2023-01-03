@@ -354,7 +354,7 @@ defineExpose({
         </CommonTooltip>
 
         <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
-          <CommonDropdown placement="bottom">
+          <CommonDropdown placement="bottom" auto-boundary-max-size>
             <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-12 mr--1>
               <div i-ri:translate-2 />
               <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />

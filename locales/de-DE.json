@@ -83,6 +83,10 @@
     "desc_para3": "Doch in der Zwischenzeit kannst du der Entwicklung aushelfen, indem du unsere Teammitglieder durch die unten stehenden Links unterstützt.",
     "title": "Elk ist in der Alpha!"
   },
+  "language": {
+    "none": "Keine",
+    "search": "Suche"
+  },
   "menu": {
     "block_account": "Sperre {0}",
     "block_domain": "Sperre Domain {0}",
@@ -119,9 +123,10 @@
     "local": "Lokal",
     "notifications": "Mitteilungen",
     "profile": "Profil",
-    "search": "Durchsuche",
+    "search": "Suche",
     "select_feature_flags": "Feature-Flags aktivieren",
     "select_language": "Sprache auswählen",
+    "settings": "Einstellungen",
     "show_intro": "Intro anzeigen",
     "toggle_theme": "Farbschema wechseln",
     "zen_mode": "Zen-Modus"
@@ -146,10 +151,51 @@
     "search_desc": "Suche nach Accounts & Hashtags"
   },
   "settings": {
+    "about": {
+      "label": "Info"
+    },
     "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "user_picker": "User Picker",
+      "github_cards": "GitHub-Karten",
+      "title": "Experimentelle Funktionen",
+      "user_picker": "Benutzerauswahl",
       "virtual_scroll": "Virtuelles Scrollen"
+    },
+    "interface": {
+      "color_mode": "Farbschema",
+      "dark_mode": "Dunkles Farbschema",
+      "default": " (Standard)",
+      "font_size": "Schriftgröße",
+      "label": "Oberfläche",
+      "light_mode": "Helles Farbschema"
+    },
+    "language": {
+      "display_language": "Anzeigesprache",
+      "label": "Sprache"
+    },
+    "preferences": {
+      "label": "Einstellungen"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bio",
+        "description": "Avatar, Benutzername, Profil, etc. bearbeiten",
+        "display_name": "Anzeigename",
+        "label": "Erscheinungsbild",
+        "profile_metadata": "Profil-Metadaten",
+        "profile_metadata_desc": "Du kannst bis zu vier Einträge als Tabelle in deinem Profil anzeigen lassen",
+        "title": "Profil bearbeiten"
+      },
+      "featured_tags": {
+        "description": "Leute können deine öffentlichen Beiträge mit diesen Hashtags ansehen.",
+        "label": "Ausgewählte Hashtags"
+      },
+      "label": "Profil"
+    },
+    "select_a_settings": "Einstellung auswählen",
+    "users": {
+      "export": "Benutzer-Token exportieren",
+      "import": "Benutzer-Token importieren",
+      "label": "Eingeloggte Benutzer"
     }
   },
   "state": {
@@ -192,6 +238,12 @@
     "posts": "Beiträge",
     "posts_with_replies": "Beiträge und Antworten"
   },
+  "tag": {
+    "follow": "Folgen",
+    "follow_label": "Folge dem {0}-Tag",
+    "unfollow": "Entfolgen",
+    "unfollow_label": "Entfolge dem {0}-Tag"
+  },
   "time_ago_options": {
     "day_future": "in 0 Tagen|morgen|in {n} Tagen",
     "day_past": "vor 0 Tagen|gestern|vor {n} Tagen",
@@ -232,8 +284,9 @@
   },
   "tooltip": {
     "add_content_warning": "Inhaltswarnung hinzufügen",
-    "add_media": "Füge Bilder, ein Video oder eine Audiodatei hinzu",
-    "change_content_visibility": "Ändere die Sichtbarkeit von Inhalten",
+    "add_media": "Bilder, ein Video oder eine Audiodatei hinzufügen",
+    "change_content_visibility": "Sichtbarkeit von Inhalten ändern",
+    "change_language": "Sprache ändern",
     "explore_links_intro": "Diese Nachrichten werden gerade von Leuten auf diesem und anderen Servern des dezentralen Netzwerks besprochen.",
     "explore_posts_intro": "Diese Beiträge von diesem Server gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzweks an Reichweite.",
     "explore_tags_intro": "Diese Hashtags gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzweks an Reichweite.",

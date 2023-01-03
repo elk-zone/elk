@@ -110,6 +110,10 @@
     "desc_para3": "To help boosting out development, you can sponsor our team members with the links below. We hope you enjoy Elk!",
     "title": "Elk is in Preview!"
   },
+  "language": {
+    "none": "None",
+    "search": "Search"
+  },
   "menu": {
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
@@ -252,6 +256,8 @@
         "description": "Edit avatar, username, profile, etc.",
         "display_name": "Display name",
         "label": "Appearance",
+        "profile_metadata": "Profile metadata",
+        "profile_metadata_desc": "You can have up to 4 items displayed as a table on your profile",
         "title": "Edit profile"
       },
       "featured_tags": {
@@ -309,6 +315,12 @@
     "notifications_mention": "Mention",
     "posts": "Posts",
     "posts_with_replies": "Posts & Replies"
+  },
+  "tag": {
+    "follow": "Follow",
+    "follow_label": "Follow {0} tag",
+    "unfollow": "Unfollow",
+    "unfollow_label": "Unfollow {0} tag"
   },
   "time_ago_options": {
     "day_future": "in 0 days|tomorrow|in {n} days",

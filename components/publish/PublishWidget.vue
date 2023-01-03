@@ -193,7 +193,7 @@ const languageList: {
   name?: string
 }[] = [{
   code: null,
-  nativeName: 'None',
+  nativeName: t('language.none'),
 }, ...ISO6391.getAllCodes().map(code => ({
   code,
   nativeName: ISO6391.getNativeName(code),
@@ -363,7 +363,7 @@ defineExpose({
               <div min-w-80 p3>
                 <input
                   v-model="languageKeyword"
-                  placeholder="Search"
+                  :placeholder="t('language.search')"
                   p2 mb2 border-rounded w-full bg-transparent
                   outline-none border="~ base"
                 >

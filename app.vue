@@ -3,7 +3,7 @@ setupPageHeader()
 provideGlobalCommands()
 
 // We want to trigger rerendering the page when account changes
-const key = computed(() => currentUser.value ? getUniqueUserId(currentUser.value) : '')
+const key = computed(() => getUniqueUserId(currentUser.value))
 </script>
 
 <template>

@@ -109,7 +109,7 @@ export const usePushManager = () => {
   }
 
   const unsubscribe = async () => {
-    if (!isSupported || !isSubscribed || !checkUser(currentUser.value))
+    if (!isSupported || !isSubscribed || !checkAuth(currentUser.value))
       return false
 
     await removePushNotifications(currentUser.value)
@@ -117,7 +117,7 @@ export const usePushManager = () => {
   }
 
   const saveSettings = async (policy?: SubscriptionPolicy) => {
-    if (!checkUser(currentUser.value))
+    if (!checkAuth(currentUser.value))
       return
 
     if (policy)
@@ -136,7 +136,7 @@ export const usePushManager = () => {
   }
 
   const undoChanges = () => {
-    if (!checkUser(currentUser.value))
+    if (!checkAuth(currentUser.value))
       return
 
     const current = pushNotificationData.value

@@ -24,7 +24,7 @@ const account = isSelf ? computed(() => status.account) : useAccountById(status.
         <template v-if="!collapsed">
           <AccountAvatar
             v-if="isSelf || simplified
-              || (checkUser(currentUser) && status.inReplyToAccountId === currentUser?.account.id)"
+              || (checkAuth(currentUser) && status.inReplyToAccountId === currentUser?.account.id)"
             :account="account" :link="false" w-5 h-5 mx-0.5
           />
           <AccountInlineInfo v-else :account="account" :link="false" mx-0.5 />

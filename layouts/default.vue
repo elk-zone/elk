@@ -24,7 +24,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
                     <UserPicker v-if="showUserPicker" />
                     <div v-else flex="~" items-center justify-between>
                       <NuxtLink
-                        v-if="checkUser(currentUser)"
+                        v-if="checkAuth(currentUser)"
                         hidden xl:block
                         rounded-full text-start w-full
                         hover:bg-active cursor-pointer transition-100

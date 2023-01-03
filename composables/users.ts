@@ -70,8 +70,8 @@ export const currentServer = computed<string>(() => currentUser.value.server)
 export const currentInstance = computed<null | Instance>(() => {
   return instances.value[currentServer.value] ?? null
 })
-export const checkUser = (val: UserLogin | undefined): val is UserLogin<true> => !!(val && !val.guest)
-export const isGuest = computed(() => !checkUser(currentUser.value))
+export const checkAuth = (val: UserLogin | undefined): val is UserLogin<true> => !!(val && !val.guest)
+export const isGuest = computed(() => !checkAuth(currentUser.value))
 export const getUniqueUserId = (user: UserLogin) =>
   user.guest ? `${GUEST_ID}@${user.server}` : user.account.id
 export const isSameUser = (a: UserLogin | undefined, b: UserLogin | undefined) =>
@@ -264,7 +264,7 @@ export async function signout() {
     if (!users.value.some((u, i) => u.server === currentUser.value.server && i !== index))
       delete instances.value[currentUser.value.server]
 
-    if (checkUser(currentUser.value)) {
+    if (checkAuth(currentUser.value)) {
       await removePushNotifications(currentUser.value)
       await removePushNotificationData(currentUser.value)
     }

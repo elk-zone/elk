@@ -7,7 +7,7 @@ const { account } = defineProps<{
 }>()
 let relationship = $(useRelationship(account))
 
-const isSelf = $computed(() => checkUser(currentUser.value) && currentUser.value.account.id === account.id)
+const isSelf = $computed(() => checkAuth(currentUser.value) && currentUser.value.account.id === account.id)
 
 const masto = useMasto()
 const toggleMute = async () => {

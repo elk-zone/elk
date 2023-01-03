@@ -235,7 +235,7 @@ const onKeyDown = (e: KeyboardEvent) => {
     <!-- Footer -->
     <div class="flex items-center px-3 py-1 text-xs">
       <div i-ri:lightbulb-flash-line /> Tip: Use
-      <!-- <CommandKey name="Ctrl+K" /> to search, -->
+      <CommandKey name="Ctrl+K" /> to search,
       <CommandKey name="Ctrl+/" /> to activate command mode.
     </div>
   </div>

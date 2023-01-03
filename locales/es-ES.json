@@ -102,6 +102,10 @@
     "desc_para3": "Antes de eso, para ayudar a impulsar el desarrollo, puedes patrocinar a los miembros de nuestro equipo con los enlaces a continuación.",
     "title": "Elk está en Vista Previa!"
   },
+  "language": {
+    "none": "Ninguno",
+    "search": "Buscar"
+  },
   "menu": {
     "block_account": "Bloquear a {0}",
     "block_domain": "Bloquear dominio {0}",
@@ -142,6 +146,7 @@
     "select_feature_flags": "Cambiar marcadores de funcionalidades",
     "select_font_size": "Cambiar tamaño de letra",
     "select_language": "Cambiar idioma",
+    "settings": "Ajustes",
     "show_intro": "Mostrar intro",
     "toggle_theme": "Cambiar tema",
     "zen_mode": "Modo Zen"
@@ -339,6 +344,8 @@
     "add_content_warning": "Añadir advertencia de contenido",
     "add_media": "Añadir imágenes, video o audio",
     "change_content_visibility": "Cambiar visibilidad de contenido",
+    "change_language": "Cambiar idioma",
+    "emoji": "Emoji",
     "explore_links_intro": "Estas noticias están siendo comentadas por la gente en este y otros servidores de la red descentralizada en este momento.",
     "explore_posts_intro": "Estos mensajes de este y otros servidores de la red descentralizada están ganando tracción en este servidor en este momento.",
     "explore_tags_intro": "Estas etiquetas están ganando tracción entre la gente de este y otros servidores de la red descentralizada en este momento.",

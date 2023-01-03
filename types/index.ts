@@ -12,12 +12,22 @@ export interface AppInfo {
   vapid_key: string
 }
 
-export type UserLogin = {
+interface UserLoginWithToken {
+  account: AccountCredentials
+  guest: false
+}
+
+interface UserLoginGuest {
+  account?: undefined
+  guest: true
+}
+
+export type UserLogin<WithToken extends boolean = boolean> = {
   server: string
   token?: string
   vapidKey?: string
   pushSubscription?: PushSubscription
-} & ({ account: AccountCredentials; guest: false } | { account?: undefined; guest: true })
+} & ((WithToken extends false ? UserLoginGuest : never) | (WithToken extends true ? UserLoginWithToken : never))
 
 export interface ElkMasto extends MastoClient {
   loginTo(user?: UserLogin): Promise<MastoClient>

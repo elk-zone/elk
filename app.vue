@@ -3,7 +3,7 @@ setupPageHeader()
 provideGlobalCommands()
 
 // We want to trigger rerendering the page when account changes
-const key = computed(() => `${currentUser.value?.server ?? currentServer.value}:${currentUser.value?.account.id || ''}`)
+const key = computed(() => `${currentServer.value}:${isGuest.value ? '[anonymous]' : currentUser.value!.account!.id || ''}`)
 </script>
 
 <template>

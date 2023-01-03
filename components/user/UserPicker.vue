@@ -6,7 +6,7 @@ const all = useUsers()
 const router = useRouter()
 const masto = useMasto()
 const switchUser = (user: UserLogin) => {
-  if (!user.guest && !currentUser.value?.guest && user.account.id === currentUser.value?.account.id)
+  if (!user.guest && !isGuest.value && user.account.id === currentUser.value!.account!.id)
     router.push(getAccountRoute(user.account))
   else
     masto.loginTo(user)
@@ -25,7 +25,8 @@ const switchUser = (user: UserLogin) => {
           hover="filter-none op100"
           @click="switchUser(user)"
         >
-          <AccountAvatar w-13 h-13 :account="user.account" />
+          <AccountAvatar v-if="!user.guest" w-13 h-13 :account="user.account" />
+          <span v-else>TODO: Guest</span>
         </button>
       </template>
     </div>

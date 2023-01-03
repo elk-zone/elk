@@ -43,28 +43,30 @@ const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLo
 const users = await initializeUsers()
 const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
+const isGuestId = computed(() => currentUserId.value.startsWith('[anonymous]@'))
 
 export const currentUser = computed<UserLogin | undefined>(() => {
   if (!currentUserId.value)
     // Fallback to the first account
     return users.value[0]
 
-  const user = users.value.find(user => user.account?.id === currentUserId.value)
-  if (user)
-    return user
-})
+  if (isGuestId.value) {
+    const server = currentUserId.value.replace('[anonymous]@', '')
+    return users.value.find(user => user.guest && user.server === server)
+  }
 
-export const isGuest = computed(
-  () => currentUserId.value.startsWith('[anonymous]@') || !currentUser.value?.account?.acct,
-)
+  return users.value.find(user => user.account?.id === currentUserId.value)
+})
 
 export const currentServer = computed<string>(() => currentUser.value?.server || DEFAULT_SERVER)
 export const currentInstance = computed<null | Instance>(() => {
   return instances.value[currentServer.value] ?? null
 })
+export const checkUser = (val: UserLogin | undefined): val is UserLogin<true> => !!(val && !val.guest)
+export const isGuest = computed(() => !checkUser(currentUser.value))
 
 export const currentUserHandle = computed(() =>
-  isGuest.value ? '[anonymous]' : currentUser.value!.account!.acct
+  isGuestId.value ? '[anonymous]' : currentUser.value!.account!.acct
   ,
 )
 
@@ -75,7 +77,7 @@ export const characterLimit = computed(() => currentInstance.value?.configuratio
 async function loginTo(user?: UserLogin) {
   const route = useRoute()
   const router = useRouter()
-  const server = user?.server || (route.params.server as string)
+  const server = user?.server || (route.params.server as string) || DEFAULT_SERVER
   const masto = await loginMasto({
     url: `https://${server}`,
     accessToken: user?.token,
@@ -87,9 +89,11 @@ async function loginTo(user?: UserLogin) {
   if (!user?.token) {
     const instance = await masto.instances.fetch()
 
-    currentUserId.value = `[anonymous]@${server}`
     instances.value[server] = instance
-    users.value.push({ server, guest: true })
+    if (!users.value.some(u => u.server === server && u.guest))
+      users.value.push({ server, guest: true })
+
+    currentUserId.value = `[anonymous]@${server}`
   }
 
   else {
@@ -183,7 +187,7 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
   }
 }
 
-export async function removePushNotifications(user: UserLogin) {
+export async function removePushNotifications(user: UserLogin<true>) {
   if (!user.pushSubscription)
     return
 
@@ -213,9 +217,10 @@ export async function signout() {
     if (!users.value.some((u, i) => u.server === currentUser.value!.server && i !== index))
       delete instances.value[currentUser.value.server]
 
-    await removePushNotifications(currentUser.value)
-
-    await removePushNotificationData(currentUser.value)
+    if (checkUser(currentUser.value)) {
+      await removePushNotifications(currentUser.value)
+      await removePushNotificationData(currentUser.value)
+    }
 
     currentUserId.value = ''
     // Remove the current user from the users
@@ -234,7 +239,7 @@ export async function signout() {
 const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})
 
 export const useNotifications = () => {
-  const id = currentUser.value?.account!.id
+  const id = $computed(() => currentUser.value?.account?.id)
   const masto = useMasto()
 
   const clearNotifications = () => {
@@ -292,7 +297,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
   const all = storages.get(key) as Ref<Record<string, T>>
 
   return computed(() => {
-    const id = isGuest.value
+    const id = isGuestId.value
       ? '[anonymous]'
       : currentUser.value!.account!.acct
     all.value[id] = Object.assign(initial(), all.value[id] || {})

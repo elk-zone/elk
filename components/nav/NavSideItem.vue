@@ -41,8 +41,8 @@ onMastoInit(async () => {
 
 // Optimize rendering for the common case of being logged in, only show visual feedback for disabled user-only items
 // when we know there is no user.
-const noUserDisable = computed(() => !isMastoInitialised.value || (props.userOnly && !currentUser.value))
-const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly && !currentUser.value)
+const noUserDisable = computed(() => !isMastoInitialised.value || (props.userOnly && isGuest.value))
+const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly && isGuest.value)
 </script>
 
 <template>

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { invoke } from '@vueuse/shared'
-
 const { t } = useI18n()
 
 const tabs = $computed(() => [
@@ -20,7 +18,7 @@ const tabs = $computed(() => [
   {
     to: `/${currentServer.value}/explore/users`,
     display: t('tab.for_you'),
-    disabled: !isMastoInitialised.value || !currentUser.value,
+    disabled: !isMastoInitialised.value || isGuest.value,
   },
 ] as const)
 </script>

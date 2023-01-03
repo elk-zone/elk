@@ -6,6 +6,7 @@ import type {
   SubscriptionResult,
 } from '~/composables/push-notifications/types'
 import { STORAGE_KEY_NOTIFICATION, STORAGE_KEY_NOTIFICATION_POLICY } from '~/constants'
+import type { UserLogin } from '~/types'
 
 const supportsPushNotifications = typeof window !== 'undefined'
   && 'serviceWorker' in navigator
@@ -68,10 +69,10 @@ export const usePushManager = () => {
     if (!isSupported)
       return 'not-supported'
 
-    if (!currentUser.value)
+    if (isGuest.value)
       return 'no-user'
 
-    const { pushSubscription, server, token, vapidKey, account: { acct } } = currentUser.value
+    const { pushSubscription, server, token, vapidKey, account: { acct } } = currentUser.value as UserLogin<true>
 
     if (!token || !server || !vapidKey)
       return 'invalid-vapid-key'
@@ -86,10 +87,8 @@ export const usePushManager = () => {
       return 'notification-denied'
     }
 
-    currentUser.value.pushSubscription = await createPushSubscription(
-      {
-        pushSubscription, server, token, vapidKey,
-      },
+    currentUser.value!.pushSubscription = await createPushSubscription(
+      { pushSubscription, server, token, vapidKey },
       notificationData ?? {
         alerts: {
           follow: true,
@@ -110,7 +109,7 @@ export const usePushManager = () => {
   }
 
   const unsubscribe = async () => {
-    if (!isSupported || !isSubscribed || !currentUser.value)
+    if (!isSupported || !isSubscribed || !checkUser(currentUser.value))
       return false
 
     await removePushNotifications(currentUser.value)

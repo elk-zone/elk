@@ -2,12 +2,16 @@
   <VDropdown v-if="isMastoInitialised && currentUser" sm:hidden>
     <div style="-webkit-touch-callout: none;">
       <AccountAvatar
+        v-if="!currentUser.guest"
         ref="avatar"
         :account="currentUser.account"
         h-8
         w-8
         :draggable="false"
       />
+      <div v-else>
+        TODO: Guest
+      </div>
     </div>
 
     <template #popper="{ hide }">

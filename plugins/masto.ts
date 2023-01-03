@@ -8,6 +8,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
           server: query.server,
           token: query.token,
           vapidKey: typeof query.vapid_key === 'string' ? query.vapid_key : undefined,
+          guest: false,
         }
       : currentUser.value
 

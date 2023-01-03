@@ -16,6 +16,7 @@ import type { PushNotificationPolicy, PushNotificationRequest } from '~/composab
 import { useAsyncIDBKeyval } from '~/composables/idb'
 
 const mock = process.mock
+export const GUEST_ID = '[anonymous]'
 
 const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>> => {
   let defaultUsers = mock ? [mock.user] : []
@@ -43,7 +44,7 @@ const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLo
 const users = await initializeUsers()
 const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
-const isGuestId = computed(() => currentUserId.value.startsWith('[anonymous]@'))
+const isGuestId = computed(() => currentUserId.value.startsWith(`${GUEST_ID}@`))
 
 export const currentUser = computed<UserLogin | undefined>(() => {
   if (!currentUserId.value)
@@ -51,7 +52,7 @@ export const currentUser = computed<UserLogin | undefined>(() => {
     return users.value[0]
 
   if (isGuestId.value) {
-    const server = currentUserId.value.replace('[anonymous]@', '')
+    const server = currentUserId.value.replace(`${GUEST_ID}@`, '')
     return users.value.find(user => user.guest && user.server === server)
   }
 
@@ -66,7 +67,7 @@ export const checkUser = (val: UserLogin | undefined): val is UserLogin<true> =>
 export const isGuest = computed(() => !checkUser(currentUser.value))
 
 export const currentUserHandle = computed(() =>
-  isGuestId.value ? '[anonymous]' : currentUser.value!.account!.acct
+  isGuestId.value ? GUEST_ID : currentUser.value!.account!.acct
   ,
 )
 
@@ -93,7 +94,7 @@ async function loginTo(user?: UserLogin) {
     if (!users.value.some(u => u.server === server && u.guest))
       users.value.push({ server, guest: true })
 
-    currentUserId.value = `[anonymous]@${server}`
+    currentUserId.value = `${GUEST_ID}@${server}`
   }
 
   else {
@@ -298,7 +299,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
 
   return computed(() => {
     const id = isGuestId.value
-      ? '[anonymous]'
+      ? GUEST_ID
       : currentUser.value!.account!.acct
     all.value[id] = Object.assign(initial(), all.value[id] || {})
     return all.value[id]

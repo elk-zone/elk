@@ -43,7 +43,7 @@ export const pwa: VitePWANuxtOptions = {
   },
   injectManifest: {
     globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
-    globIgnores: ['emojis/*'],
+    globIgnores: ['emojis/**'],
   },
   devOptions: {
     enabled: process.env.VITE_DEV_PWA === 'true',

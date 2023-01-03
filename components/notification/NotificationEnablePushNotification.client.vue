@@ -12,7 +12,7 @@ defineSlots<{
   error: {}
 }>()
 
-const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
+const isLegacyAccount = computed(() => !currentUser.value.vapidKey)
 </script>
 
 <template>

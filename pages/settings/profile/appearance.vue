@@ -15,7 +15,7 @@ useHeadFixed({
   title: () => `${t('settings.profile.appearance.title')} | ${t('nav.settings')}`,
 })
 
-const account = $computed(() => currentUser.value?.account)
+const account = $computed(() => currentUser.value.account)
 
 const onlineSrc = $computed(() => ({
   avatar: account?.avatar || '',

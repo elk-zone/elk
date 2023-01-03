@@ -261,7 +261,7 @@ export async function signout() {
   if (index !== -1) {
     // Clear stale data
     clearUserLocalStorage()
-    if (!users.value.some((u, i) => u.server === currentUser.value!.server && i !== index))
+    if (!users.value.some((u, i) => u.server === currentUser.value.server && i !== index))
       delete instances.value[currentUser.value.server]
 
     if (checkUser(currentUser.value)) {
@@ -284,7 +284,7 @@ export async function signout() {
 const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})
 
 export const useNotifications = () => {
-  const id = $computed(() => currentUser.value?.account?.id)
+  const id = $computed(() => currentUser.value.account?.id)
   const masto = useMasto()
 
   const clearNotifications = () => {
@@ -294,7 +294,7 @@ export const useNotifications = () => {
   }
 
   async function connect(): Promise<void> {
-    if (!isMastoInitialised.value || !id || notifications[id] || !currentUser.value?.token)
+    if (!isMastoInitialised.value || !id || notifications[id] || !currentUser.value.token)
       return
 
     const stream = masto.stream.streamUser()
@@ -344,7 +344,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
   return computed(() => {
     const id = currentUser.value.guest
       ? GUEST_ID
-      : currentUser.value!.account!.acct
+      : currentUser.value.account!.acct
     all.value[id] = Object.assign(initial(), all.value[id] || {})
     return all.value[id]
   })
@@ -355,7 +355,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
  */
 export function clearUserLocalStorage(account?: Account) {
   if (!account)
-    account = currentUser.value?.account
+    account = currentUser.value.account
   if (!account)
     return
 

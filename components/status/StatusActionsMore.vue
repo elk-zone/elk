@@ -23,7 +23,7 @@ const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
 
-const isAuthor = $computed(() => checkUser(currentUser.value) && status.account.id === currentUser.value?.account.id)
+const isAuthor = $computed(() => checkUser(currentUser.value) && status.account.id === currentUser.value.account.id)
 
 const {
   toggle: _toggleTranslation,

@@ -29,12 +29,12 @@ export const usePushManager = () => {
   const hiddenNotification = useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {})
   const configuredPolicy = useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {})
   const pushNotificationData = ref({
-    follow: currentUser.value?.pushSubscription?.alerts.follow ?? true,
-    favourite: currentUser.value?.pushSubscription?.alerts.favourite ?? true,
-    reblog: currentUser.value?.pushSubscription?.alerts.reblog ?? true,
-    mention: currentUser.value?.pushSubscription?.alerts.mention ?? true,
-    poll: currentUser.value?.pushSubscription?.alerts.poll ?? true,
-    policy: configuredPolicy.value[currentUser.value?.account?.acct ?? ''] ?? 'all',
+    follow: currentUser.value.pushSubscription?.alerts.follow ?? true,
+    favourite: currentUser.value.pushSubscription?.alerts.favourite ?? true,
+    reblog: currentUser.value.pushSubscription?.alerts.reblog ?? true,
+    mention: currentUser.value.pushSubscription?.alerts.mention ?? true,
+    poll: currentUser.value.pushSubscription?.alerts.poll ?? true,
+    policy: configuredPolicy.value[currentUser.value.account?.acct ?? ''] ?? 'all',
   })
   // don't clone, we're using indexeddb
   const { history, commit, clear } = useManualRefHistory(pushNotificationData)
@@ -49,7 +49,7 @@ export const usePushManager = () => {
       || current.policy !== previous.policy
   })
 
-  watch(() => currentUser.value?.pushSubscription, (subscription) => {
+  watch(() => currentUser.value.pushSubscription, (subscription) => {
     isSubscribed.value = !!subscription
     pushNotificationData.value = {
       follow: subscription?.alerts.follow ?? false,
@@ -57,7 +57,7 @@ export const usePushManager = () => {
       reblog: subscription?.alerts.reblog ?? false,
       mention: subscription?.alerts.mention ?? false,
       poll: subscription?.alerts.poll ?? false,
-      policy: configuredPolicy.value[currentUser.value?.account?.acct ?? ''] ?? 'all',
+      policy: configuredPolicy.value[currentUser.value.account?.acct ?? ''] ?? 'all',
     }
   }, { immediate: true, flush: 'post' })
 
@@ -87,7 +87,7 @@ export const usePushManager = () => {
       return 'notification-denied'
     }
 
-    currentUser.value!.pushSubscription = await createPushSubscription(
+    currentUser.value.pushSubscription = await createPushSubscription(
       { pushSubscription, server, token, vapidKey },
       notificationData ?? {
         alerts: {
@@ -126,9 +126,9 @@ export const usePushManager = () => {
     commit()
 
     if (policy)
-      configuredPolicy.value[currentUser.value!.account.acct ?? ''] = policy
+      configuredPolicy.value[currentUser.value.account.acct ?? ''] = policy
     else
-      configuredPolicy.value[currentUser.value!.account.acct ?? ''] = pushNotificationData.value.policy
+      configuredPolicy.value[currentUser.value.account.acct ?? ''] = pushNotificationData.value.policy
 
     await nextTick()
     clear()
@@ -147,7 +147,7 @@ export const usePushManager = () => {
     current.follow = previous.follow
     current.poll = previous.poll
     current.policy = previous.policy
-    configuredPolicy.value[currentUser.value!.account.acct ?? ''] = previous.policy
+    configuredPolicy.value[currentUser.value.account.acct ?? ''] = previous.policy
     commit()
     clear()
   }

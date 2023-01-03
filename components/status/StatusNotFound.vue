@@ -6,7 +6,7 @@ const { account, status } = defineProps<{
 
 const originalUrl = computed(() => {
   const [handle, _server] = account.split('@')
-  const server = _server || currentUser.value?.server
+  const server = _server || currentUser.value.server
   if (!server)
     return null
 

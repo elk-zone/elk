@@ -25,7 +25,7 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
-    paginator = masto.search({ q: unref(query), resolve: !!currentUser.value, type: unref(options?.type) })
+    paginator = masto.search({ q: unref(query), resolve: !isGuest.value, type: unref(options?.type) })
     const nextResults = await paginator.next()
 
     done.value = nextResults.done || false

@@ -7,8 +7,8 @@ const { account, command, ...props } = defineProps<{
   command?: boolean
 }>()
 
-const isSelf = $computed(() => currentUser.value?.account.id === account.id)
-const enable = $computed(() => !isSelf && currentUser.value)
+const isSelf = $computed(() => checkUser(currentUser.value) && currentUser.value.account.id === account.id)
+const enable = $computed(() => !isSelf && !isGuest.value)
 const relationship = $computed(() => props.relationship || useRelationship(account).value)
 
 const masto = useMasto()

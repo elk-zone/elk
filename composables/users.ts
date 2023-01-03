@@ -65,6 +65,8 @@ export const currentInstance = computed<null | Instance>(() => {
 })
 export const checkUser = (val: UserLogin | undefined): val is UserLogin<true> => !!(val && !val.guest)
 export const isGuest = computed(() => !checkUser(currentUser.value))
+export const isSameUser = (a: UserLogin | undefined, b: UserLogin | undefined) =>
+  a && b && a.server === b.server && a.token === b.token
 
 export const currentUserHandle = computed(() =>
   isGuestId.value ? GUEST_ID : currentUser.value!.account!.acct
@@ -138,6 +140,14 @@ async function loginTo(user?: UserLogin) {
   }
 
   return masto
+}
+
+export const switchUser = (user: UserLogin, masto: ElkMasto) => {
+  const router = useRouter()
+  if (!user.guest && !isGuest.value && user.account.id === currentUser.value!.account!.id)
+    router.push(getAccountRoute(user.account))
+  else
+    masto.loginTo(user)
 }
 
 export function setAccountInfo(userId: string, account: AccountCredentials) {

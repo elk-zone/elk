@@ -141,7 +141,7 @@ const requestedRelationships = new Map<string, Ref<Relationship | undefined>>()
 let timeoutHandle: NodeJS.Timeout | undefined
 
 export function useRelationship(account: Account): Ref<Relationship | undefined> {
-  if (!currentUser.value)
+  if (isGuest.value)
     return ref()
   let relationship = requestedRelationships.get(account.id)
   if (relationship)

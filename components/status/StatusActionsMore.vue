@@ -23,7 +23,7 @@ const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
 
-const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
+const isAuthor = $computed(() => checkUser(currentUser.value) && status.account.id === currentUser.value?.account.id)
 
 const {
   toggle: _toggleTranslation,
@@ -178,7 +178,7 @@ async function editStatus() {
         />
 
         <CommonDropdownItem
-          v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some(m => m.id === currentUser!.account.id))"
+          v-if="!isGuest && (status.account.id === currentUser!.account!.id || status.mentions.some(m => m.id === currentUser!.account!.id))"
           :text="status.muted ? $t('menu.unmute_conversation') : $t('menu.mute_conversation')"
           :icon="status.muted ? 'i-ri:eye-line' : 'i-ri:eye-off-line'"
           :command="command"

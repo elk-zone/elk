@@ -18,11 +18,13 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
               </div>
               <div v-if="isMastoInitialised" flex flex-col>
                 <UserSignInEntry v-if="!currentUser" sm:hidden />
+                <!-- TODO -->
                 <div v-if="currentUser" p6 pb8 w-full>
                   <div hidden xl-block>
                     <UserPicker v-if="showUserPicker" />
                     <div v-else flex="~" items-center justify-between>
                       <NuxtLink
+                        v-if="checkUser(currentUser)"
                         hidden xl:block
                         rounded-full text-start w-full
                         hover:bg-active cursor-pointer transition-100
@@ -30,6 +32,9 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
                       >
                         <AccountInfo :account="currentUser.account" md:break-words />
                       </NuxtLink>
+                      <div v-else>
+                        TODO: guest {{ currentUser.server }} @ default.vue
+                      </div>
                       <UserDropdown />
                     </div>
                   </div>

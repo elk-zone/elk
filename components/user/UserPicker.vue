@@ -1,16 +1,6 @@
 <script setup lang="ts">
-import type { UserLogin } from '~/types'
-
 const all = useUsers()
-
-const router = useRouter()
 const masto = useMasto()
-const switchUser = (user: UserLogin) => {
-  if (!user.guest && !isGuest.value && user.account.id === currentUser.value!.account!.id)
-    router.push(getAccountRoute(user.account))
-  else
-    masto.loginTo(user)
-}
 </script>
 
 <template>
@@ -23,10 +13,10 @@ const switchUser = (user: UserLogin) => {
           aria-label="Switch user"
           :class="user.account?.id === currentUser?.account?.id ? '' : 'op25 grayscale'"
           hover="filter-none op100"
-          @click="switchUser(user)"
+          @click="switchUser(user, masto)"
         >
           <AccountAvatar v-if="!user.guest" w-13 h-13 :account="user.account" />
-          <span v-else>TODO: Guest</span>
+          <span v-else>TODO: Guest from {{ user.server }}</span>
         </button>
       </template>
     </div>

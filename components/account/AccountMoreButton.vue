@@ -53,7 +53,7 @@ const toggleBlockDomain = async () => {
         />
       </NuxtLink>
 
-      <template v-if="currentUser">
+      <template v-if="!isGuest">
         <template v-if="!isSelf">
           <CommonDropdownItem
             :text="$t('menu.mention_account', [`@${account.acct}`])"

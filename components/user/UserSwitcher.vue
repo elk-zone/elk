@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { UserLogin } from '~/types'
-
 const emit = defineEmits<{
   (event: 'click'): void
 }>()
@@ -8,20 +6,10 @@ const emit = defineEmits<{
 const all = useUsers()
 
 const sorted = computed(() => {
-  return [
-    currentUser.value!,
-    ...all.value.filter(account => account.token !== currentUser.value?.token),
-  ].filter(Boolean)
+  return all.value.sort((a, b) => isSameUser(a, currentUser.value) ? -1 : isSameUser(b, currentUser.value) ? 1 : 0)
 })
 
-const router = useRouter()
 const masto = useMasto()
-const switchUser = (user: UserLogin) => {
-  if (user.account.id === currentUser.value?.account.id)
-    router.push(getAccountRoute(user.account))
-  else
-    masto.loginTo(user)
-}
 </script>
 
 <template>
@@ -31,11 +19,12 @@ const switchUser = (user: UserLogin) => {
         flex rounded px4 py3 text-left
         hover:bg-active cursor-pointer transition-100
         aria-label="Switch user"
-        @click="switchUser(user)"
+        @click="switchUser(user, masto)"
       >
-        <AccountInfo :account="user.account" :hover-card="false" />
+        <AccountInfo v-if="!user.guest" :account="user.account" :hover-card="false" />
+        <span v-else>TODO: Guest from {{ user.server }}</span>
         <div flex-auto />
-        <div v-if="user.token === currentUser?.token" i-ri:check-line text-primary mya text-2xl />
+        <div v-if="isSameUser(user, currentUser)" i-ri:check-line text-primary mya text-2xl />
       </button>
     </template>
     <div border="t base" pt2>
@@ -46,7 +35,7 @@ const switchUser = (user: UserLogin) => {
       />
       <CommonDropdownItem
         v-if="isMastoInitialised && currentUser"
-        :text="$t('user.sign_out_account', [getFullHandle(currentUser.account)])"
+        :text="$t('user.sign_out_account', [getFullHandle(currentUser)])"
         icon="i-ri:logout-box-line rtl-flip"
         @click="signout"
       />

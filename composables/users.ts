@@ -89,6 +89,8 @@ async function loginTo({ server, token, vapidKey, pushSubscription, guest = fals
   const route = useRoute()
   const router = useRouter()
 
+  const oldServer = currentUser.value.server
+
   let user: UserLogin | undefined = token
     ? users.value.find(u => u.server === server && u.token === token)
     : ((guest
@@ -150,11 +152,17 @@ async function loginTo({ server, token, vapidKey, pushSubscription, guest = fals
   currentUserId.value = getUniqueUserId(user)
 
   // This only cleans up the URL; page content should stay the same
-  if (route.path === '/signin/callback') {
+  if (!user.guest && (route.path === '/signin/callback' || route.path === '/')) {
     await router.push('/home')
   }
-
+  else if (isGuest.value && route.meta.middleware === 'auth') {
+    await router.push(`/${server}/public`)
+  }
   else if ('server' in route.params && user.server !== route.params.server) {
+    if (!route.params.account.includes('@'))
+    // convert to long handle
+      route.params.account += `@${oldServer}`
+
     await router.push({
       ...route,
       params: {

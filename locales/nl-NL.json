@@ -357,40 +357,40 @@
     "year_past": "0 jaar geleden|vorig jaar|{n} jaar geleden"
   },
   "timeline": {
-    "show_new_items": "Show {v} new items|Show {v} new item|Show {v} new items"
+    "show_new_items": "Laat {v} nieuwe artikelen zien|Laat {v} nieuw artikel zien|Laat {v} nieuwe artikelen zien"
   },
   "title": {
-    "federated_timeline": "Federated Timeline",
-    "local_timeline": "Local Timeline"
+    "federated_timeline": "Gefedereerde Tijdlijn",
+    "local_timeline": "Lokale Tijdlijn"
   },
   "tooltip": {
-    "add_content_warning": "Add content warning",
-    "add_media": "Add images, a video or an audio file",
-    "change_content_visibility": "Change content visibility",
-    "change_language": "Change language",
+    "add_content_warning": "Voeg inhoud waarschuwing toe",
+    "add_media": "Voeg fotos, een video of een audio bestand toe",
+    "change_content_visibility": "Verander inhoud zichtbaarheid",
+    "change_language": "Verander taal",
     "emoji": "Emoji",
-    "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
-    "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
-    "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
-    "toggle_code_block": "Toggle code block"
+    "explore_links_intro": "Deze nieuws artikelen worden veel over gepraat op deze en anderen servers op het decentralized network op dit moment.",
+    "explore_posts_intro": "Deze posts van deze en andere servers op het decentralized network krijgen veel aandacht op deze server op dit moment.",
+    "explore_tags_intro": "Deze hashtags krijgen veel aandacht op dit moment op deze en anderen servers op het decentralized network.",
+    "toggle_code_block": "Zet code blok aan/uit"
   },
   "user": {
-    "add_existing": "Add an existing account",
+    "add_existing": "Voeg een bestaand account toe",
     "server_address_label": "Mastodon Server Address",
-    "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
-    "sign_in_notice_title": "Viewing {0} public data",
+    "sign_in_desc": "Sign in om profielen te volgen of hashtags, markeer posts als favoriet, deel en reageer op posts, of interact vanaf je account op een anderen server.",
+    "sign_in_notice_title": "Bekijkt {0} publieke data",
     "sign_out_account": "Sign out {0}",
-    "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
-    "tip_register_account": "pick your server and register one"
+    "tip_no_account": "Als je nog geen Mastodon account hebt, {0}.",
+    "tip_register_account": "kies jou server en registreer een account"
   },
   "visibility": {
     "direct": "Direct",
-    "direct_desc": "Visible for mentioned users only",
-    "private": "Followers only",
-    "private_desc": "Visible for followers only",
-    "public": "Public",
-    "public_desc": "Visible for all",
-    "unlisted": "Unlisted",
-    "unlisted_desc": "Visible for all, but opted-out of discovery features"
+    "direct_desc": "Zichtbaar voor alleen vermelden gebruikers",
+    "private": "Alleen volgers",
+    "private_desc": "Alleen zichtbaar voor volgers",
+    "public": "Publiek",
+    "public_desc": "Zichtbaar voor iedereen",
+    "unlisted": "Niet vermeld",
+    "unlisted_desc": "Zichtbaar voor iedereen, maar kan niet gevonden worden via discovery functies"
   }
 }

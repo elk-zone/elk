@@ -48,7 +48,7 @@ async function oauth() {
 }
 
 function explore() {
-  masto.loginTo({ server, guest: true })
+  masto.loginTo({ server, guestOnly: true })
 }
 
 async function handleInput() {

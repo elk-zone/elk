@@ -117,6 +117,9 @@ export const usePushManager = () => {
   }
 
   const saveSettings = async (policy?: SubscriptionPolicy) => {
+    if (!checkUser(currentUser.value))
+      return
+
     if (policy)
       pushNotificationData.value.policy = policy
 
@@ -133,6 +136,9 @@ export const usePushManager = () => {
   }
 
   const undoChanges = () => {
+    if (!checkUser(currentUser.value))
+      return
+
     const current = pushNotificationData.value
     const previous = history.value[0].snapshot
     current.favourite = previous.favourite

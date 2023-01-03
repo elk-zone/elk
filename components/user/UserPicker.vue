@@ -16,7 +16,9 @@ const masto = useMasto()
           @click="switchUser(user, masto)"
         >
           <AccountAvatar v-if="!user.guest" w-13 h-13 :account="user.account" />
-          <span v-else>TODO: Guest from {{ user.server }}</span>
+          <div v-else bg="gray/40" rounded-full w-13 h-13 flex shrink-0 items-center justify-center text-5>
+            G
+          </div>
         </button>
       </template>
     </div>

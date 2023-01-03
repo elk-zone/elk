@@ -22,7 +22,7 @@ const masto = useMasto()
         @click="switchUser(user, masto)"
       >
         <AccountInfo v-if="!user.guest" :account="user.account" :hover-card="false" />
-        <span v-else>TODO: Guest from {{ user.server }}</span>
+        <AccountGuest v-else :user="user" />
         <div flex-auto />
         <div v-if="isSameUser(user, currentUser)" i-ri:check-line text-primary mya text-2xl />
       </button>
@@ -34,7 +34,7 @@ const masto = useMasto()
         @click="openSigninDialog"
       />
       <CommonDropdownItem
-        v-if="isMastoInitialised && currentUser"
+        v-if="isMastoInitialised && canSignOut"
         :text="$t('user.sign_out_account', [getFullHandle(currentUser)])"
         icon="i-ri:logout-box-line rtl-flip"
         @click="signout"

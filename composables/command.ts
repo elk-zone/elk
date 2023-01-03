@@ -248,7 +248,7 @@ export const provideGlobalCommands = () => {
   useCommand({
     scope: 'Actions',
 
-    visible: () => currentUser.value,
+    visible: () => !isGuest.value,
 
     name: () => t('action.compose'),
     icon: 'i-ri:quill-pen-line',
@@ -344,9 +344,9 @@ export const provideGlobalCommands = () => {
     parent: 'account-switch',
     scope: 'Switch account',
 
-    visible: () => !user.guest && user.account.id !== currentUser.value?.account?.id,
+    visible: () => !isSameUser(user, currentUser.value),
 
-    name: () => t('command.switch_account', [getFullHandle(user)]),
+    name: () => t('command.switch_account', [user.guest ? `guest from ${user.server}` : getFullHandle(user)]),
     icon: 'i-ri:user-shared-line',
 
     onActivate() {
@@ -356,8 +356,8 @@ export const provideGlobalCommands = () => {
   useCommand({
     scope: 'Account',
 
-    visible: () => currentUser.value,
-    name: () => currentUser.value ? t('user.sign_out_account', [getFullHandle(currentUser.value)]) : '',
+    visible: () => canSignOut.value,
+    name: () => t('user.sign_out_account', [getFullHandle(currentUser.value)]),
     icon: 'i-ri:logout-box-line',
 
     onActivate() {

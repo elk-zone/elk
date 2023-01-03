@@ -71,9 +71,7 @@ async function importTokens() {
         <div flex="~ col gap2">
           <div v-for="user of loggedInUsers" :key="getUniqueUserId(user)">
             <AccountInfo v-if="!user.guest" :account="user.account" :hover-card="false" />
-            <div v-else>
-              TODO: Guest @ settings/users/index.vue
-            </div>
+            <AccountGuest v-else :user="user" />
           </div>
         </div>
         <div my4 border="t base" />

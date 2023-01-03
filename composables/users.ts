@@ -45,107 +45,133 @@ const users = await initializeUsers()
 const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 const isGuestId = computed(() => !currentUserId.value || currentUserId.value.startsWith(`${GUEST_ID}@`))
+const defaultUser: UserLogin<false> = {
+  server: DEFAULT_SERVER,
+  guest: true,
+}
 
-export const currentUser = computed<UserLogin | undefined>(() => {
-  if (!currentUserId.value)
-    // Fallback to the first account
-    return users.value[0]
-
-  if (isGuestId.value) {
-    const server = currentUserId.value.replace(`${GUEST_ID}@`, '')
-    return users.value.find(user => user.guest && user.server === server)
+export const currentUser = computed<UserLogin>(() => {
+  let user: UserLogin | undefined
+  if (!currentUserId.value) {
+  // Fallback to the first account
+    user = users.value[0]
   }
-
-  return users.value.find(user => user.account?.id === currentUserId.value)
+  else if (isGuestId.value) {
+    const server = currentUserId.value.replace(`${GUEST_ID}@`, '')
+    user = users.value.find(user => user.guest && user.server === server)
+  }
+  else {
+    user = users.value.find(user => user.account?.id === currentUserId.value)
+  }
+  return user || defaultUser
 })
 
-export const currentServer = computed<string>(() => currentUser.value?.server || DEFAULT_SERVER)
+export const currentServer = computed<string>(() => currentUser.value.server)
 export const currentInstance = computed<null | Instance>(() => {
   return instances.value[currentServer.value] ?? null
 })
 export const checkUser = (val: UserLogin | undefined): val is UserLogin<true> => !!(val && !val.guest)
 export const isGuest = computed(() => !checkUser(currentUser.value))
-export const getUniqueUserId = (user: UserLogin) => user.guest ? `${GUEST_ID}@${user.server}` : user.account.id
+export const getUniqueUserId = (user: UserLogin) =>
+  user.guest ? `${GUEST_ID}@${user.server}` : user.account.id
 export const isSameUser = (a: UserLogin | undefined, b: UserLogin | undefined) =>
   a && b && getUniqueUserId(a) === getUniqueUserId(b)
 
 export const currentUserHandle = computed(() =>
-  isGuestId.value ? GUEST_ID : currentUser.value!.account!.acct
-  ,
+  currentUser.value.guest ? GUEST_ID : currentUser.value.account!.acct,
 )
 
 export const useUsers = () => users
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
-async function loginTo(user?: UserLogin) {
+async function loginTo({ server, token, vapidKey, pushSubscription, guest = false }: { guest?: boolean } & Omit<UserLogin, 'guest'>) {
   const route = useRoute()
   const router = useRouter()
-  const server = user?.server || (route.params.server as string) || DEFAULT_SERVER
+
+  let user: UserLogin | undefined = token
+    ? users.value.find(u => u.server === server && u.token === token)
+    : ((guest
+        ? undefined
+        : users.value.find(u => u.server === server && u.token))
+      || users.value.find(u => u.server === server && u.guest))
+
+  const needPush = !user
+  if (!user) {
+    if (token) {
+      user = {
+        server,
+        guest: false,
+        token,
+        vapidKey,
+        pushSubscription,
+        account: undefined as any, // to be assigned later
+      }
+    }
+    else {
+      user = { server, guest: true }
+    }
+  }
+
   const masto = await loginMasto({
-    url: `https://${server}`,
-    accessToken: user?.token,
+    url: `https://${user.server}`,
+    accessToken: user.token,
     disableVersionCheck: true,
     // Suppress warning of `masto/fetch` usage
     disableExperimentalWarning: true,
   })
 
-  if (!user?.token) {
+  if (user.guest) {
     const instance = await masto.instances.fetch()
-
     instances.value[server] = instance
-    if (!users.value.some(u => u.server === server && u.guest))
-      users.value.push({ server, guest: true })
-
-    currentUserId.value = `${GUEST_ID}@${server}`
   }
-
   else {
-    try {
-      const [me, instance, pushSubscription] = await Promise.all([
-        masto.accounts.verifyCredentials(),
-        masto.instances.fetch(),
-        // if PWA is not enabled, don't get push subscription
-        useRuntimeConfig().public.pwaEnabled
-          // we get 404 response instead empty data
-          ? masto.pushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
-          : Promise.resolve(undefined),
-      ])
+    const [me, instance, pushSubscription] = await Promise.all([
+      masto.accounts.verifyCredentials(),
+      masto.instances.fetch(),
+      // if PWA is not enabled, don't get push subscription
+      useRuntimeConfig().public.pwaEnabled
+      // we get 404 response instead empty data
+        ? masto.pushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
+        : Promise.resolve(undefined),
+    ])
 
-      if (!me.acct.includes('@'))
-        me.acct = `${me.acct}@${instance.uri}`
+    if (!me.acct.includes('@'))
+      me.acct = `${me.acct}@${instance.uri}`
 
-      user.account = me
-      user.pushSubscription = pushSubscription
-      currentUserId.value = me.id
-      instances.value[server] = instance
-
-      if (!users.value.some(u => u.server === user.server && u.token === user.token))
-        users.value.push(user)
-    }
-    catch {
-      await signout()
-    }
+    user.account = me
+    user.pushSubscription = pushSubscription
+    instances.value[server] = instance
   }
+
+  if (needPush)
+    users.value.push(user)
+
+  currentUserId.value = getUniqueUserId(user)
 
   // This only cleans up the URL; page content should stay the same
   if (route.path === '/signin/callback') {
     await router.push('/home')
   }
 
-  else if ('server' in route.params && user?.token && !useNuxtApp()._processingMiddleware) {
+  else if ('server' in route.params && user.server !== route.params.server) {
     await router.push({
       ...route,
+      params: {
+        ...route.params,
+        server: user.server,
+      },
       force: true,
     })
   }
 
   return masto
 }
+export type LoginTo = typeof loginTo
 
 export const switchUser = (user: UserLogin, masto: ElkMasto) => {
   const router = useRouter()
-  if (!user.guest && !isGuest.value && user.account.id === currentUser.value!.account!.id)
+  if (!user.guest && !isGuest.value && user.account.id === currentUser.value.account!.id)
     router.push(getAccountRoute(user.account))
   else
     masto.loginTo(user)
@@ -173,7 +199,7 @@ export function getUsersIndexByUserId(userId: string) {
   return users.value.findIndex(u => u.account?.id === userId)
 }
 
-export async function removePushNotificationData(user: UserLogin, fromSWPushManager = true) {
+export async function removePushNotificationData(user: UserLogin<true>, fromSWPushManager = true) {
   // clear push subscription
   user.pushSubscription = undefined
   const { acct } = user.account!
@@ -212,13 +238,18 @@ export async function removePushNotifications(user: UserLogin<true>) {
   }
 }
 
+// do not sign out if there is only one guest user
+export const canSignOut = computed(() =>
+  users.value.length > 1 || !users.value[0].guest,
+)
+
 export async function signout() {
   // TODO: confirm
-  if (!currentUser.value)
+
+  if (!canSignOut.value)
     return
 
   const index = users.value.findIndex(u => isSameUser(u, currentUser.value))
-
   if (index !== -1) {
     // Clear stale data
     clearUserLocalStorage()
@@ -235,11 +266,8 @@ export async function signout() {
     users.value.splice(index, 1)
   }
 
-  // Set currentUserId to next user if available
-  currentUserId.value = users.value[0]?.account?.id
-
-  if (!currentUserId.value)
-    await useRouter().push('/')
+  // Set currentUserId to next user
+  currentUserId.value = getUniqueUserId(users.value[0] ? users.value[0] : defaultUser)
 
   const masto = useMasto()
   await masto.loginTo(currentUser.value)
@@ -306,7 +334,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
   const all = storages.get(key) as Ref<Record<string, T>>
 
   return computed(() => {
-    const id = isGuestId.value
+    const id = currentUser.value.guest
       ? GUEST_ID
       : currentUser.value!.account!.acct
     all.value[id] = Object.assign(initial(), all.value[id] || {})
@@ -343,10 +371,11 @@ export const createMasto = () => {
 
       if (key === 'loginTo') {
         return (...args: any[]): Promise<MastoClient> => {
-          return apiPromise.value = loginTo(...args).then((r) => {
+          return apiPromise.value = (loginTo as any)(...args).then((r: any) => {
             api.value = r
             return masto
-          }).catch(() => {
+          }).catch((err: any) => {
+            console.error(err)
             // Show error page when Mastodon server is down
             throw createError({
               fatal: true,

@@ -32,9 +32,8 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
                       >
                         <AccountInfo :account="currentUser.account" md:break-words />
                       </NuxtLink>
-                      <div v-else>
-                        TODO: guest {{ currentUser.server }} @ default.vue
-                      </div>
+                      <AccountGuest v-else :user="currentUser" />
+
                       <UserDropdown />
                     </div>
                   </div>

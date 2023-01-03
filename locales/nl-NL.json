@@ -277,84 +277,84 @@
     }
   },
   "state": {
-    "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
-    "attachments_limit_error": "Limit per post exceeded",
-    "edited": "(Edited)",
-    "editing": "Editing",
-    "loading": "Loading...",
-    "upload_failed": "Upload failed",
+    "attachments_exceed_server_limit": "De hoeveelheid bijlage is meer als het limiet per post.",
+    "attachments_limit_error": "Limiet per post overschreden",
+    "edited": "(Aangepast)",
+    "editing": "Aanpassen",
+    "loading": "Laden...",
+    "upload_failed": "Upload gefaald",
     "uploading": "Uploading..."
   },
   "status": {
-    "edited": "Edited {0}",
-    "filter_hidden_phrase": "Filtered by",
-    "filter_removed_phrase": "Removed by filter",
-    "filter_show_anyway": "Show anyway",
+    "edited": "Aangepast {0}",
+    "filter_hidden_phrase": "Gefilterd door",
+    "filter_removed_phrase": "Verwijderd door filter",
+    "filter_show_anyway": "Laat toch zien",
     "img_alt": {
-      "desc": "Description",
-      "dismiss": "Dismiss"
+      "desc": "Descriptie",
+      "dismiss": "Afwijzen"
     },
     "poll": {
-      "count": "{0} votes|{0} vote|{0} votes",
-      "ends": "ends {0}",
-      "finished": "finished {0}"
+      "count": "{0} stemmen|{0} stem|{0} stemmen",
+      "ends": "eindigt {0}",
+      "finished": "geëindigd {0}"
     },
-    "reblogged": "{0} reblogged",
-    "someone": "Someone",
-    "spoiler_show_less": "Show less",
-    "spoiler_show_more": "Show more",
-    "try_original_site": "Try original site"
+    "reblogged": "{0} herblogd",
+    "someone": "Iemand",
+    "spoiler_show_less": "Minder zien",
+    "spoiler_show_more": "Meer zien",
+    "try_original_site": "Probeer originele site"
   },
   "status_history": {
-    "created": "created {0}",
-    "edited": "edited {0}"
+    "created": "gecreëerd {0}",
+    "edited": "aangepast {0}"
   },
   "tab": {
-    "for_you": "For you",
+    "for_you": "Voor jou",
     "hashtags": "Hashtags",
     "media": "Media",
-    "news": "News",
-    "notifications_all": "All",
-    "notifications_mention": "Mention",
+    "news": "Nieuws",
+    "notifications_all": "Alles",
+    "notifications_mention": "Vermelding",
     "posts": "Posts",
-    "posts_with_replies": "Posts & Replies"
+    "posts_with_replies": "Posts & Reacties"
   },
   "tag": {
-    "follow": "Follow",
-    "follow_label": "Follow {0} tag",
-    "unfollow": "Unfollow",
-    "unfollow_label": "Unfollow {0} tag"
+    "follow": "Volg",
+    "follow_label": "Volg {0} tag",
+    "unfollow": "Ontvolg",
+    "unfollow_label": "Ontvolg {0} tag"
   },
   "time_ago_options": {
-    "day_future": "in 0 days|tomorrow|in {n} days",
-    "day_past": "0 days ago|yesterday|{n} days ago",
-    "hour_future": "in 0 hours|in 1 hour|in {n} hours",
-    "hour_past": "0 hours ago|1 hour ago|{n} hours ago",
-    "just_now": "just now",
-    "minute_future": "in 0 minutes|in 1 minute|in {n} minutes",
-    "minute_past": "0 minutes ago|1 minute ago|{n} minutes ago",
-    "month_future": "in 0 months|next month|in {n} months",
-    "month_past": "0 months ago|last month|{n} months ago",
-    "second_future": "just now|in {n} second|in {n} seconds",
-    "second_past": "just now|{n} second ago|{n} seconds ago",
+    "day_future": "in 0 dagen|morgen|in {n} dagen",
+    "day_past": "0 dagen geleden|gisteren|{n} dagen geleden",
+    "hour_future": "in 0 uur|in 1 uur|in {n} uur",
+    "hour_past": "0 uur geleden|1 uur geleden|{n} uur geleden",
+    "just_now": "nu net",
+    "minute_future": "in 0 minuten|in 1 minuut|in {n} minuten",
+    "minute_past": "0 minuten geleden|1 minuut geleden|{n} minuten geleden",
+    "month_future": "in 0 maanden|volgende maand|in {n} maanden",
+    "month_past": "0 maanden geleden|laatste maand|{n} maanden geleden",
+    "second_future": "nu net|in {n} seconden|in {n} seconden",
+    "second_past": "nu net|{n} seconden geleden|{n} seconden geleden",
     "short_day_future": "in {n}d",
     "short_day_past": "{n}d",
-    "short_hour_future": "in {n}h",
-    "short_hour_past": "{n}h",
+    "short_hour_future": "in {n}u",
+    "short_hour_past": "{n}u",
     "short_minute_future": "in {n}min",
     "short_minute_past": "{n}min",
-    "short_month_future": "in {n}mo",
-    "short_month_past": "{n}mo",
+    "short_month_future": "in {n}ma",
+    "short_month_past": "{n}ma",
     "short_second_future": "in {n}s",
     "short_second_past": "{n}s",
     "short_week_future": "in {n}w",
     "short_week_past": "{n}w",
-    "short_year_future": "in {n}y",
-    "short_year_past": "{n}y",
-    "week_future": "in 0 weeks|next week|in {n} weeks",
-    "week_past": "0 weeks ago|last week|{n} weeks ago",
-    "year_future": "in 0 years|next year|in {n} years",
-    "year_past": "0 years ago|last year|{n} years ago"
+    "short_year_future": "in {n}j",
+    "short_year_past": "{n}j",
+    "week_future": "in 0 weken|volgende week|in {n} weken",
+    "week_past": "0 weken geleden|vorige week|{n} weken geleden",
+    "year_future": "in 0 jaar|volgend jaar|in {n} jaar",
+    "year_past": "0 jaar geleden|vorig jaar|{n} jaar geleden"
   },
   "timeline": {
     "show_new_items": "Show {v} new items|Show {v} new item|Show {v} new items"

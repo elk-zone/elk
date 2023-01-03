@@ -44,7 +44,7 @@
     "boost": "Boost",
     "boost_count": "{0}",
     "boosted": "Geboost",
-    "clear_upload_failed": "Verwijder bestand upload errors",
+    "clear_upload_failed": "Verwijder bestand upload fouten",
     "close": "Sluit",
     "compose": "Opstellen",
     "confirm": "Confirmeer",
@@ -82,26 +82,26 @@
     "sign_in_desc": "Add an existing account",
     "switch_account": "Wissel naar {0}",
     "switch_account_desc": "Wissel naar ander account",
-    "toggle_dark_mode": "Dark mode wisselen",
-    "toggle_zen_mode": "Zen mode schakelen"
+    "toggle_dark_mode": "Dark modus wisselen",
+    "toggle_zen_mode": "Zen modus schakelen"
   },
   "common": {
-    "end_of_list": "End of the list",
-    "error": "ERROR",
+    "end_of_list": "Einde van de lijst",
+    "error": "FOUT",
     "in": "in",
-    "not_found": "404 Not Found",
-    "offline_desc": "Seems like you are offline. Please check your network connection."
+    "not_found": "404 Niet Gevonden",
+    "offline_desc": "Zo te zien ben je offline. Check je internet verbinding."
   },
   "conversation": {
-    "with": "with"
+    "with": "met"
   },
   "error": {
-    "account_not_found": "Account {0} not found",
-    "explore-list-empty": "Nothing is trending right now. Check back later!",
-    "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
-    "sign_in_error": "Cannot connect to the server.",
-    "status_not_found": "Post not found",
-    "unsupported_file_format": "Unsupported file format"
+    "account_not_found": "Account {0} niet gevonden",
+    "explore-list-empty": "Er is nu niets trending. Kom later terug!",
+    "file_size_cannot_exceed_n_mb": "Bestand grote mag niet groter zijn dan {0}MB",
+    "sign_in_error": "Kan geen connectie maken met de server.",
+    "status_not_found": "Post niet gevonden",
+    "unsupported_file_format": "Bestandstype niet ondersteund"
   },
   "help": {
     "desc_highlight": "Expect some bugs and missing features here and there.",
@@ -114,54 +114,54 @@
     "title": "Elk is in Preview!"
   },
   "language": {
-    "none": "None",
-    "search": "Search"
+    "none": "Niets",
+    "search": "Opzoeken"
   },
   "menu": {
-    "block_account": "Block {0}",
-    "block_domain": "Block domain {0}",
-    "copy_link_to_post": "Copy link to this post",
-    "delete": "Delete",
-    "delete_and_redraft": "Delete & re-draft",
-    "direct_message_account": "Direct message {0}",
-    "edit": "Edit",
-    "mention_account": "Mention {0}",
-    "mute_account": "Mute {0}",
-    "mute_conversation": "Mute this post",
-    "open_in_original_site": "Open in original site",
-    "pin_on_profile": "Pin on profile",
-    "share_post": "Share this post",
-    "show_untranslated": "Show untranslated",
+    "block_account": "Blokkeer {0}",
+    "block_domain": "Blokkeer domein {0}",
+    "copy_link_to_post": "Kopieer link naar deze post",
+    "delete": "Verwijder",
+    "delete_and_redraft": "Verwijder & Opnieuw opstellen",
+    "direct_message_account": "Direct bericht naar {0}",
+    "edit": "Aanpassen",
+    "mention_account": "Noem {0}",
+    "mute_account": "Demp {0}",
+    "mute_conversation": "Demp deze post",
+    "open_in_original_site": "Open in originele site",
+    "pin_on_profile": "Pin op profiel",
+    "share_post": "Deel deze post",
+    "show_untranslated": "Laat onvertaalde zien",
     "toggle_theme": {
-      "dark": "Toggle dark mode",
-      "light": "Toggle light mode"
+      "dark": "Dark modus wisselen",
+      "light": "Light modus wisselen"
     },
-    "translate_post": "Translate post",
-    "unblock_account": "Unblock {0}",
-    "unblock_domain": "Unblock domain {0}",
-    "unmute_account": "Unmute {0}",
-    "unmute_conversation": "Unmute this post",
-    "unpin_on_profile": "Unpin on profile"
+    "translate_post": "Vertaal post",
+    "unblock_account": "Deblokkeer {0}",
+    "unblock_domain": "Deblokkeer domein {0}",
+    "unmute_account": "Ontdemp {0}",
+    "unmute_conversation": "Ontdemp deze post",
+    "unpin_on_profile": "Ontpin op profiel"
   },
   "nav": {
     "bookmarks": "Bookmarks",
-    "built_at": "Built {0}",
-    "conversations": "Conversations",
-    "explore": "Explore",
-    "favourites": "Favorites",
-    "federated": "Federated",
+    "built_at": "Gebouwd {0}",
+    "conversations": "Conversaties",
+    "explore": "Ontdekken",
+    "favourites": "Favorieten",
+    "federated": "Gefedereerd",
     "home": "Home",
-    "local": "Local",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "search": "Search",
-    "select_feature_flags": "Toggle Feature Flags",
-    "select_font_size": "Font Size",
-    "select_language": "Display Language",
-    "settings": "Settings",
-    "show_intro": "Show intro",
-    "toggle_theme": "Toggle Theme",
-    "zen_mode": "Zen Mode"
+    "local": "Lokaal",
+    "notifications": "Notificaties",
+    "profile": "Profiel",
+    "search": "Zoeken",
+    "select_feature_flags": "Schakel Feature Vlaggen",
+    "select_font_size": "Font Grootte",
+    "select_language": "Display Taal",
+    "settings": "Instellingen",
+    "show_intro": "Laat intro zien",
+    "toggle_theme": "Schakel Thema",
+    "zen_mode": "Zen Modus"
   },
   "notification": {
     "favourited_post": "favorited your post",

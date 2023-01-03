@@ -10,7 +10,8 @@ definePageMeta({
 const route = useRoute()
 const id = $(computedEager(() => route.params.status as string))
 const main = ref<ComponentPublicInstance | null>(null)
-
+const entries = ref<HTMLDivElement | null>(null)
+let bottomSpace = $ref(0)
 const publishWidget = ref()
 
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
@@ -28,7 +29,29 @@ function scrollTo() {
   if (!statusElement)
     return
 
+  calcBottomSpace()
+
   statusElement.scrollIntoView(true)
+
+  if (context.value?.ancestors.length) {
+    // If there are entries above statusElement, adjusts scroll position by 4
+    // pixels to match statusElement position before entries were loaded
+    requestAnimationFrame(() => (window.scrollBy(0, 4)))
+  }
+}
+
+function calcBottomSpace() {
+  const entryElements = entries.value?.querySelectorAll('.entryCard')
+  const lastEntry = entryElements?.length ? entryElements[entryElements.length - 1] : undefined
+  const lastEntryHeight = lastEntry?.getBoundingClientRect().height ?? 0
+
+  bottomSpace = (window?.innerHeight ?? 0) - lastEntryHeight
+
+  if (!context.value?.descendants.length) {
+    // Will prevent overscroll if vieing only one entry
+    const publishElement = unrefElement(publishWidget)
+    bottomSpace = bottomSpace - (publishElement?.getBoundingClientRect()?.height ?? 0)
+  }
 }
 
 onMounted(scrollTo)
@@ -52,41 +75,54 @@ onReactivated(() => {
   refreshStatus()
   refreshContext()
 })
+
+const spacerStyle = $computed(() => {
+  if (isMobileScreen.value)
+    return { minHeight: '3.5rem', height: `calc(${bottomSpace + 1}px - 7.5rem + 2px)` }
+
+  return { minHeight: '25vh', height: `calc(${bottomSpace + 1}px - 4rem + 2px)` }
+})
 </script>
 
 <template>
   <MainContent back>
     <template v-if="!pending">
       <div v-if="status" mt--1px>
-        <template v-for="comment of context?.ancestors" :key="comment.id">
-          <StatusCard
-            :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-            :has-older="true" :has-newer="true"
-          />
-        </template>
+        <div ref="entries">
+          <template v-for="comment of context?.ancestors" :key="comment.id">
+            <StatusCard
+              class="entryCard"
+              :status="comment" :actions="comment.visibility !== 'direct'" context="account"
+              :has-older="true" :has-newer="true"
+            />
+          </template>
 
-        <StatusDetails
-          ref="main"
-          :status="status"
-          command
-          style="scroll-margin-top: 60px"
-          :actions="status.visibility !== 'direct'"
-        />
-        <PublishWidget
-          v-if="currentUser"
-          ref="publishWidget"
-          border="y base"
-          :draft-key="replyDraft!.key"
-          :initial="replyDraft!.draft"
-          @published="refreshContext()"
-        />
-
-        <template v-for="(comment, di) of context?.descendants" :key="comment.id">
-          <StatusCard
-            :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-            :older="context?.descendants[di + 1]" :newer="context?.descendants[di - 1]" :has-newer="di === 0" :main="status"
+          <StatusDetails
+            ref="main"
+            class="entryCard"
+            :status="status"
+            command
+            style="scroll-margin-top: 60px"
+            :actions="status.visibility !== 'direct'"
           />
-        </template>
+          <PublishWidget
+            v-if="currentUser"
+            ref="publishWidget"
+            border="y base"
+            :draft-key="replyDraft!.key"
+            :initial="replyDraft!.draft"
+            @published="refreshContext()"
+          />
+
+          <template v-for="(comment, di) of context?.descendants" :key="comment.id">
+            <StatusCard
+              class="entryCard"
+              :status="comment" :actions="comment.visibility !== 'direct'" context="account"
+              :older="context?.descendants[di + 1]" :newer="context?.descendants[di - 1]" :has-newer="di === 0" :main="status"
+            />
+          </template>
+        </div>
+        <div :style="spacerStyle" />
       </div>
 
       <StatusNotFound v-else :account="route.params.account" :status="id" />

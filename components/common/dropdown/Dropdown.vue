@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { dropdownContextKey } from './ctx'
+import { InjectionKeyDropdownContext } from '~/constants/symbols'
+
 defineProps<{
   placement?: string
 }>()
@@ -8,7 +9,7 @@ const dropdown = $ref<any>()
 const colorMode = useColorMode()
 
 const hide = () => dropdown.hide()
-provide(dropdownContextKey, {
+provide(InjectionKeyDropdownContext, {
   hide,
 })
 

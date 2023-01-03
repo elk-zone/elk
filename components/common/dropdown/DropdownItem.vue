@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { dropdownContextKey } from './ctx'
-
 const props = defineProps<{
   text?: string
   description?: string
@@ -10,7 +8,7 @@ const props = defineProps<{
 }>()
 const emit = defineEmits(['click'])
 
-const { hide } = inject(dropdownContextKey, undefined) || {}
+const { hide } = useDropdownContext() || {}
 
 const el = ref<HTMLDivElement>()
 

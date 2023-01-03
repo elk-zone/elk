@@ -44,7 +44,7 @@
     "boost": "Boost",
     "boost_count": "{0}",
     "boosted": "Geboost",
-    "clear_upload_failed": "Verwijder bestand upload fouten",
+    "clear_upload_failed": "Wis bestand upload fouten",
     "close": "Sluit",
     "compose": "Opstellen",
     "confirm": "Confirmeer",
@@ -164,116 +164,116 @@
     "zen_mode": "Zen Modus"
   },
   "notification": {
-    "favourited_post": "favorited your post",
-    "followed_you": "followed you",
-    "followed_you_count": "{followers} people followed you|{followers} person followed you|{followers} people followed you",
-    "missing_type": "MISSING notification.type:",
-    "reblogged_post": "reblogged your post",
-    "request_to_follow": "requested to follow you",
+    "favourited_post": "vindt jou post favoriet",
+    "followed_you": "volgt jou",
+    "followed_you_count": "{followers} mensen hebben je gevolgd|{followers} persoon heeft je gevold|{followers} mensen hebben je gevolgd",
+    "missing_type": "MISSEND notificatie.type:",
+    "reblogged_post": "herblogd je post",
+    "request_to_follow": "vraagt om jou te volgen",
     "settings": {
       "alerts": {
-        "favourite": "Favorites",
-        "follow": "New followers",
-        "mention": "Mentions",
-        "poll": "Polls",
-        "reblog": "Reblog your post",
-        "title": "What notifications to receive?"
+        "favourite": "Favorieten",
+        "follow": "Nieuwe volgers",
+        "mention": " Vermeldingen",
+        "poll": "Peilingen",
+        "reblog": "Herblogd jou post",
+        "title": "Welke notificaties wil je krijgen?"
       },
-      "close_btn": "Close push notifications settings",
+      "close_btn": "Sluit push notificaties instellingen",
       "policy": {
-        "all": "From anyone",
-        "followed": "Of people I follow",
-        "follower": "Of people who follow me",
-        "none": "From no one",
-        "title": "Who can I receive notifications from?"
+        "all": "Van iedereen",
+        "followed": "Van mensen die ik volg",
+        "follower": "Van mensen die mij volgen",
+        "none": "Van niemand",
+        "title": "Van wie kan ik notificaties krijgen?"
       },
-      "save_settings": "Save settings changes",
-      "show_btn": "Show push notifications settings",
+      "save_settings": "Instellingen aanpassingen opslaan",
+      "show_btn": "Laat push notificaties instellingen zien",
       "subscription_error": {
-        "clear_error": "Clear error",
-        "permission_denied": "Permission denied: enable notifications in your browser.",
-        "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
-        "title": "Could not subscribe to push notifications"
+        "clear_error": "Wis error",
+        "permission_denied": "Geen toestemming: zet notificaties aan in je browser.",
+        "request_error": "Er is een error tijdens het ophalen van de subscriptie, probeer opnieuw en als de error blijft, raporteer het probleem naar de Elk repository.",
+        "title": "Kon niet subscriben aan push notificaties"
       },
-      "title": "Push notifications settings",
-      "undo_settings": "Undo settings changes",
-      "unsubscribe": "Disable push notifications",
-      "unsubscribed_with_warning": "Enable notifications to receive notifications from this account by clicking \"@:notification.settings.warning.enable_desktop{'\"'} button.",
-      "unsupported": "Your browser does not support push notifications.",
+      "title": "Push notificaties instellingen",
+      "undo_settings": "Undo veranderden instellingen",
+      "unsubscribe": "Zet push notificaties uit",
+      "unsubscribed_with_warning": "Zet notificaties aan om notificaties te krijgen van dit account, klik deze \"@:notification.settings.warning.enable_desktop{'\"'} knop.",
+      "unsupported": "Je browser ondersteunt geen push notificaties.",
       "warning": {
-        "enable_close": "Close",
-        "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:notification.settings.show_btn{'\"'} button above once enabled.",
-        "enable_description_short": "To change push notifications settings when Elk is not open, you must first enable push notifications.",
-        "enable_desktop": "Enable push notifications",
-        "enable_title": "Never miss anything",
+        "enable_close": "Sluit",
+        "enable_description": "Om notificaties te krijgen terwijl Elk niet open is, zet push notificaties aan. Je kan precies instellen wat voor typen interacties push notificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
+        "enable_description_short": "Om push notificatie instellingen te veranderen terwijl Elk niet open is, moet je eerst push notificaties aan zetten.",
+        "enable_desktop": "Zet push notificaties aan",
+        "enable_title": "Mis niets",
         "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
       }
     },
     "signed_up": "signed up",
-    "update_status": "updated their post"
+    "update_status": "heeft hun post aangepast"
   },
   "placeholder": {
-    "content_warning": "Write your warning here",
-    "default_1": "What is on your mind?",
-    "reply_to_account": "Reply to {0}",
-    "replying": "Replying",
-    "the_thread": "the thread"
+    "content_warning": "Schrijf je warning hier",
+    "default_1": "Waar denk je aan?",
+    "reply_to_account": "Reageer op {0}",
+    "replying": "Reageren",
+    "the_thread": "de thread"
   },
   "pwa": {
-    "dismiss": "Dismiss",
-    "title": "New Elk update available!",
+    "dismiss": "Afwijzen",
+    "title": "Er is een nieuwe Elk update!",
     "update": "Update",
     "update_available_short": "Update Elk"
   },
   "search": {
-    "search_desc": "Search for people & hashtags"
+    "search_desc": "Zoek naar mensen & hashtags"
   },
   "settings": {
     "about": {
-      "label": "About"
+      "label": "Over"
     },
     "feature_flags": {
       "github_cards": "GitHub Cards",
-      "title": "Experimental Features",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
+      "title": "Experimentelen Functies",
+      "user_picker": "Gebruiker Picker",
+      "virtual_scroll": "Virtueel Scrollen"
     },
     "interface": {
-      "color_mode": "Color Mode",
-      "dark_mode": "Dark Mode",
-      "default": " (default)",
-      "font_size": "Font Size",
+      "color_mode": "Kleur Modus",
+      "dark_mode": "Dark Modus",
+      "default": " (standaard)",
+      "font_size": "Font Grootte",
       "label": "Interface",
-      "light_mode": "Light Mode"
+      "light_mode": "Light Modus"
     },
     "language": {
-      "display_language": "Display Language",
-      "label": "Language"
+      "display_language": "Display Taal",
+      "label": "Taal"
     },
     "preferences": {
-      "label": "Preferences"
+      "label": "Voorkeuren"
     },
     "profile": {
       "appearance": {
         "bio": "Bio",
-        "description": "Edit avatar, username, profile, etc.",
-        "display_name": "Display name",
-        "label": "Appearance",
-        "profile_metadata": "Profile metadata",
-        "profile_metadata_desc": "You can have up to 4 items displayed as a table on your profile",
-        "title": "Edit profile"
+        "description": "Aanpassen van avatar, username, profile, etc.",
+        "display_name": "Zichtbare naam",
+        "label": "Uiterlijk",
+        "profile_metadata": "Profiel metadata",
+        "profile_metadata_desc": "Je kan tot en met 4 elementen als table zetten op je profiel zetten",
+        "title": "Aanpassen profiel"
       },
       "featured_tags": {
-        "description": "People can browse your public posts under these hashtags.",
-        "label": "Featured hashtags"
+        "description": "Mensen kunnen je publieke posts vinden onder deze hashtags.",
+        "label": "Uitgelichte hashtags"
       },
-      "label": "Profile"
+      "label": "Profiel"
     },
-    "select_a_settings": "Select a setting",
+    "select_a_settings": "Selecteer een instelling",
     "users": {
-      "export": "Export User Tokens",
-      "import": "Import User Tokens",
-      "label": "Logged in users"
+      "export": "Exporteer Gebruikers Tokens",
+      "import": "Importeer Gebruikers Tokens",
+      "label": "Ingelogde gebruikers"
     }
   },
   "state": {

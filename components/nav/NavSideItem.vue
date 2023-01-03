@@ -60,7 +60,7 @@ const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly &
         flex items-center gap4
         w-fit rounded-full
         px2 py2 mx3 sm:mxa
-        lg="mx0 px5"
+        xl="mx0 px5"
         transition-100
         group-hover:bg-active group-focus-visible:ring="2 current"
       >
@@ -68,7 +68,7 @@ const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly &
           <div :class="icon" text-xl />
         </slot>
         <slot>
-          <span block sm:hidden lg:block>{{ text }}</span>
+          <span block sm:hidden xl:block>{{ text }}</span>
         </slot>
       </div>
     </CommonTooltip>

@@ -8,15 +8,15 @@ const sub = env === 'local' ? 'dev' : env === 'staging' ? 'preview' : 'alpha'
   <NuxtLink
     flex items-end gap-2
     w-fit
-    py2 px-2 lg:px-3
+    py2 px-2 xl:px-3
     text-2xl hover:bg-active
     focus-visible:ring="2 current"
     rounded-full
     to="/"
     external
   >
-    <img :alt="$t('app_logo')" src="/logo.svg" shrink-0 aspect="1/1" sm:h-8 lg:h-10 class="rtl-flip">
-    <div hidden lg:block>
+    <img :alt="$t('app_logo')" src="/logo.svg" shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip">
+    <div hidden xl:block>
       {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ sub }}</sup>
     </div>
   </NuxtLink>

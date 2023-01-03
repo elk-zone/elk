@@ -7,7 +7,7 @@ const disabledVisual = computed(() => isMastoInitialised.value && !currentUser.v
   <button
     flex="~ gap2 center"
     w-9 h-9 py2
-    lg="w-auto h-auto py-4"
+    xl="w-auto h-auto py-4"
     rounded-full
     cursor-pointer disabled:pointer-events-none
     text-primary font-bold
@@ -17,6 +17,6 @@ const disabledVisual = computed(() => isMastoInitialised.value && !currentUser.v
     @click="openPublishDialog()"
   >
     <div i-ri:quill-pen-line />
-    <span hidden lg:block>{{ $t('action.compose') }}</span>
+    <span hidden xl:block>{{ $t('action.compose') }}</span>
   </button>
 </template>

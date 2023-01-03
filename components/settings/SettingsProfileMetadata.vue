@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { UpdateCredentialsParams } from 'masto'
+import { accountFieldIcons, getAccountFieldIcon } from '~/composables/masto/icons'
 
 const { form } = defineModel<{
   form: {

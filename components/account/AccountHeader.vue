@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Account, Field } from 'masto'
+import { getAccountFieldIcon } from '~/composables/masto/icons'
 
 const { account } = defineProps<{
   account: Account

@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import type { Account, Relationship, Status } from 'masto'
 import { withoutProtocol } from 'ufo'
-import type { ElkMasto } from '~/types'
+import type { ElkMasto, UserLogin } from '~/types'
 
 export const useMasto = () => useNuxtApp().$masto as ElkMasto
 
@@ -33,7 +33,11 @@ export function getServerName(account: Account) {
   return currentInstance.value?.uri || ''
 }
 
-export function getFullHandle(account: Account) {
+export function getFullHandle(_account: Account | UserLogin) {
+  if ('guest' in _account && _account.guest)
+    return `[anonymous]@${_account.server}`
+
+  const account = 'server' in _account ? _account.account : _account
   const handle = `@${account.acct}`
   if (!currentUser.value || account.acct.includes('@'))
     return handle

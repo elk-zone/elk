@@ -344,9 +344,9 @@ export const provideGlobalCommands = () => {
     parent: 'account-switch',
     scope: 'Switch account',
 
-    visible: () => user.account.id !== currentUser.value?.account.id,
+    visible: () => !user.guest && user.account.id !== currentUser.value?.account?.id,
 
-    name: () => t('command.switch_account', [getFullHandle(user.account)]),
+    name: () => t('command.switch_account', [getFullHandle(user)]),
     icon: 'i-ri:user-shared-line',
 
     onActivate() {
@@ -357,8 +357,7 @@ export const provideGlobalCommands = () => {
     scope: 'Account',
 
     visible: () => currentUser.value,
-
-    name: () => t('user.sign_out_account', [getFullHandle(currentUser.value!.account)]),
+    name: () => currentUser.value ? t('user.sign_out_account', [getFullHandle(currentUser.value)]) : '',
     icon: 'i-ri:logout-box-line',
 
     onActivate() {

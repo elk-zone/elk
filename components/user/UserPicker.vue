@@ -6,7 +6,7 @@ const all = useUsers()
 const router = useRouter()
 const masto = useMasto()
 const switchUser = (user: UserLogin) => {
-  if (user.account.id === currentUser.value?.account.id)
+  if (!user.guest && !currentUser.value?.guest && user.account.id === currentUser.value?.account.id)
     router.push(getAccountRoute(user.account))
   else
     masto.loginTo(user)
@@ -21,7 +21,7 @@ const switchUser = (user: UserLogin) => {
           flex rounded
           cursor-pointer
           aria-label="Switch user"
-          :class="user.account.id === currentUser?.account.id ? '' : 'op25 grayscale'"
+          :class="user.account?.id === currentUser?.account?.id ? '' : 'op25 grayscale'"
           hover="filter-none op100"
           @click="switchUser(user)"
         >

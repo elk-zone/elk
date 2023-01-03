@@ -45,34 +45,37 @@ const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS,
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 
 export const currentUser = computed<UserLogin | undefined>(() => {
-  if (currentUserId.value) {
-    const user = users.value.find(user => user.account?.id === currentUserId.value)
-    if (user)
-      return user
-  }
-  // Fallback to the first account
-  return users.value[0]
+  if (!currentUserId.value)
+    // Fallback to the first account
+    return users.value[0]
+
+  const user = users.value.find(user => user.account?.id === currentUserId.value)
+  if (user)
+    return user
 })
 
-const publicInstance = ref<Instance | null>(null)
-export const currentInstance = computed<null | Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+export const isGuest = computed(
+  () => currentUserId.value.startsWith('[anonymous]@') || !currentUser.value?.account?.acct,
+)
 
-export const publicServer = ref(DEFAULT_SERVER)
-export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
+export const currentServer = computed<string>(() => currentUser.value?.server || DEFAULT_SERVER)
+export const currentInstance = computed<null | Instance>(() => {
+  return instances.value[currentServer.value] ?? null
+})
 
-export const currentUserHandle = computed(() => currentUser.value?.account.id
-  ? `${currentUser.value.account.acct}@${currentInstance.value?.uri || currentServer.value}`
-  : '[anonymous]',
+export const currentUserHandle = computed(() =>
+  isGuest.value ? '[anonymous]' : currentUser.value!.account!.acct
+  ,
 )
 
 export const useUsers = () => users
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
-async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }) {
+async function loginTo(user?: UserLogin) {
   const route = useRoute()
   const router = useRouter()
-  const server = user?.server || route.params.server as string || publicServer.value
+  const server = user?.server || (route.params.server as string)
   const masto = await loginMasto({
     url: `https://${server}`,
     accessToken: user?.token,
@@ -82,8 +85,11 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
   })
 
   if (!user?.token) {
-    publicServer.value = server
-    publicInstance.value = await masto.instances.fetch()
+    const instance = await masto.instances.fetch()
+
+    currentUserId.value = `[anonymous]@${server}`
+    instances.value[server] = instance
+    users.value.push({ server, guest: true })
   }
 
   else {
@@ -107,7 +113,7 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
       instances.value[server] = instance
 
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
-        users.value.push(user as UserLogin)
+        users.value.push(user)
     }
     catch {
       await signout()
@@ -154,7 +160,7 @@ export function getUsersIndexByUserId(userId: string) {
 export async function removePushNotificationData(user: UserLogin, fromSWPushManager = true) {
   // clear push subscription
   user.pushSubscription = undefined
-  const { acct } = user.account
+  const { acct } = user.account!
   // clear request notification permission
   delete useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {}).value[acct]
   // clear push notification policy
@@ -197,7 +203,7 @@ export async function signout() {
 
   const masto = useMasto()
 
-  const _currentUserId = currentUser.value.account.id
+  const _currentUserId = currentUser.value.account!.id
 
   const index = users.value.findIndex(u => u.account?.id === _currentUserId)
 
@@ -228,7 +234,7 @@ export async function signout() {
 const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})
 
 export const useNotifications = () => {
-  const id = currentUser.value?.account.id
+  const id = currentUser.value?.account!.id
   const masto = useMasto()
 
   const clearNotifications = () => {
@@ -286,9 +292,9 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
   const all = storages.get(key) as Ref<Record<string, T>>
 
   return computed(() => {
-    const id = currentUser.value?.account.id
-      ? currentUser.value.account.acct
-      : '[anonymous]'
+    const id = isGuest.value
+      ? '[anonymous]'
+      : currentUser.value!.account!.acct
     all.value[id] = Object.assign(initial(), all.value[id] || {})
     return all.value[id]
   })

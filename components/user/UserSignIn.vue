@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
 import { $fetch } from 'ofetch'
-import { DEFAULT_SERVER } from '~/constants'
+
+const masto = useMasto()
 
 const input = $ref<HTMLInputElement>()
 let server = $ref<string>('')
@@ -26,7 +27,7 @@ async function oauth() {
     server = server.split('/')[0]
 
   try {
-    location.href = await $fetch<string>(`/api/${server || DEFAULT_SERVER}/login`, {
+    location.href = await $fetch<string>(`/api/${server}/login`, {
       method: 'POST',
       body: {
         origin: location.origin,
@@ -44,6 +45,10 @@ async function oauth() {
       error = false
     }, 512)
   }
+}
+
+function explore() {
+  masto.loginTo({ server, guest: true })
 }
 
 async function handleInput() {
@@ -180,9 +185,19 @@ onClickOutside($$(input), () => {
         </i18n-t>
       </span>
     </div>
-    <button flex="~ row" gap-x-2 items-center btn-solid mt2 :disabled="!server || busy">
-      <span aria-hidden="true" inline-block :class="busy ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:login-circle-line'" class="rtl-flip" />
-      {{ $t('action.sign_in') }}
-    </button>
+    <div flex="~ gap2" mt2 items-center>
+      <button
+        type="button"
+        flex="~ row" gap-x-2 items-center btn-outline text-sm px2 py1 h-fit :disabled="!server || busy"
+        @click="explore"
+      >
+        <span aria-hidden="true" inline-block :class="busy ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:user-4-line'" />
+        {{ $t('action.explore_as_a_guest') }}
+      </button>
+      <button flex="~ row" gap-x-2 items-center btn-solid :disabled="!server || busy">
+        <span aria-hidden="true" inline-block :class="busy ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:login-circle-line'" class="rtl-flip" />
+        {{ $t('action.sign_in') }}
+      </button>
+    </div>
   </form>
 </template>

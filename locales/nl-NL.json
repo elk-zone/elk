@@ -46,7 +46,7 @@
     "boosted": "Geboost",
     "clear_upload_failed": "Wis bestand upload fouten",
     "close": "Sluit",
-    "compose": "Opstellen",
+    "compose": "Composeer",
     "confirm": "Confirmeer",
     "edit": "Aanpassen",
     "enter_app": "Ga naar App",
@@ -378,7 +378,7 @@
     "add_existing": "Voeg een bestaand account toe",
     "server_address_label": "Mastodon Server Address",
     "sign_in_desc": "Sign in om profielen te volgen of hashtags, markeer posts als favoriet, deel en reageer op posts, of interact vanaf je account op een anderen server.",
-    "sign_in_notice_title": "Bekijkt {0} publieke data",
+    "sign_in_notice_title": "Je bekijkt {0} publieke data",
     "sign_out_account": "Sign out {0}",
     "tip_no_account": "Als je nog geen Mastodon account hebt, {0}.",
     "tip_register_account": "kies jou server en registreer een account"

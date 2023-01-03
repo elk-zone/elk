@@ -97,7 +97,6 @@ body {
 }
 
 .content-rich {
-  line-height: calc(4 / 3 * 1em);
   overflow-wrap: break-word;
 
   a {
@@ -134,6 +133,10 @@ body {
       background: transparent !important;
     }
   }
+}
+
+.line-compact {
+  line-height: calc(4 / 3 * 1em);
 }
 
 .content-editor {

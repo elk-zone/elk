@@ -54,6 +54,9 @@ onMastoInit(async () => {
 const isCanSubmit = computed(() => !isError.value && !isEmptyObject(dirtyFields.value))
 
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
+  if (!isCanSubmit.value)
+    return
+
   const res = await useMasto().accounts.updateCredentials(dirtyFields.value as UpdateCredentialsParams)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))

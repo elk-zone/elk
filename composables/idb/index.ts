@@ -1,9 +1,8 @@
-import type { MaybeComputedRef, RemovableRef } from '@vueuse/shared'
-import { resolveUnref } from '@vueuse/shared'
-import type { Ref } from 'vue-demi'
-import { ref, shallowRef, watch } from 'vue-demi'
+import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
+import type { Ref } from 'vue'
 import { del, get, set, update } from 'idb-keyval'
 import type { UseIDBOptions } from '@vueuse/integrations/useIDBKeyval'
+
 export async function useAsyncIDBKeyval<T>(
   key: IDBValidKey,
   initialValue: MaybeComputedRef<T>,

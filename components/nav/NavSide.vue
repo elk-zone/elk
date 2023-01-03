@@ -27,6 +27,7 @@ const { notifications } = useNotifications()
     <NavSideItem :text="$t('nav.federated')" :to="`/${currentServer}/public`" icon="i-ri:earth-line" :command="command" />
     <NavSideItem :text="$t('nav.conversations')" to="/conversations" icon="i-ri:at-line" user-only :command="command" />
     <NavSideItem :text="$t('nav.favourites')" to="/favourites" icon="i-ri:heart-3-line" user-only :command="command" />
-    <NavSideItem :text="$t('nav.bookmarks')" to="/bookmarks" icon="i-ri:bookmark-line " user-only :command="command" />
+    <NavSideItem :text="$t('nav.bookmarks')" to="/bookmarks" icon="i-ri:bookmark-line" user-only :command="command" />
+    <NavSideItem :text="$t('nav.settings')" to="/settings" icon="i-ri:settings-3-line" :command="command" />
   </nav>
 </template>

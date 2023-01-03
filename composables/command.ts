@@ -205,7 +205,7 @@ export const useCommandRegistry = defineStore('command', () => {
   }
 })
 
-export const useCommand = (cmd: CommandProvider) => {
+export function useCommand(cmd: CommandProvider) {
   const registry = useCommandRegistry()
 
   const register = () => registry.register(cmd)
@@ -217,7 +217,7 @@ export const useCommand = (cmd: CommandProvider) => {
   tryOnScopeDispose(cleanup)
 }
 
-export const useCommands = (cmds: () => CommandProvider[]) => {
+export function useCommands(cmds: () => CommandProvider[]) {
   const registry = useCommandRegistry()
 
   const commands = computed(cmds)
@@ -263,7 +263,7 @@ export const provideGlobalCommands = () => {
     scope: 'Navigation',
 
     name: () => t('nav.settings'),
-    icon: 'i-ri:settings-4-line',
+    icon: 'i-ri:settings-3-line',
 
     onActivate() {
       router.push('/settings')

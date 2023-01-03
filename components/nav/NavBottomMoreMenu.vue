@@ -86,17 +86,6 @@ onBeforeUnmount(() => {
               <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl me-4 !align-middle" />
               {{ colorMode.value === 'light' ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
             </button>
-            <NuxtLink
-              flex flex-row items-center
-              block px-5 py-2 focus-blue w-full
-              text-sm text-base capitalize text-left whitespace-nowrap
-              transition-colors duration-200 transform
-              hover="bg-gray-100 dark:(bg-gray-700 text-white)"
-              to="/settings"
-            >
-              <span class="i-ri:settings-2-line flex-shrink-0 text-xl me-4 !align-middle" />
-              {{ $t('nav.settings') }}
-            </NuxtLink>
           </div>
         </div>
       </div>

@@ -39,12 +39,6 @@ const switchUser = (user: UserLogin) => {
       </button>
     </template>
     <div border="t base" pt2>
-      <NuxtLink to="/settings">
-        <CommonDropdownItem
-          :text="$t('nav.settings')"
-          icon="i-ri:settings-4-line"
-        />
-      </NuxtLink>
       <CommonDropdownItem
         :text="$t('user.add_existing')"
         icon="i-ri:user-add-line"

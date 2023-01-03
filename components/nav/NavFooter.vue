@@ -27,15 +27,6 @@ function toggleDark() {
           @click="toggleZenMode()"
         />
       </CommonTooltip>
-      <CommonTooltip :content="$t('nav.settings')">
-        <NuxtLink
-          flex
-          text-lg
-          to="/settings"
-          i-ri:settings-4-line
-          :aria-label="$t('nav.settings')"
-        />
-      </CommonTooltip>
     </div>
     <div>
       <button cursor-pointer hover:underline @click="openPreviewHelp">

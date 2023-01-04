@@ -19,7 +19,11 @@ const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   { watch: [isMastoInitialised], immediate: isMastoInitialised.value },
 )
 const masto = useMasto()
-const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(`context:${id}`, () => masto.statuses.fetchContext(id))
+const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
+  `context:${id}`,
+  async () => masto.statuses.fetchContext(id),
+  { watch: [isMastoInitialised], immediate: isMastoInitialised.value },
+)
 
 const replyDraft = $computed(() => status.value ? getReplyDraft(status.value) : null)
 

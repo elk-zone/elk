@@ -1,5 +1,11 @@
 <script setup lang="ts">
-defineProps<{ hashtag: any }>()
+import type { History, Tag } from 'masto'
+
+const { hashtag } = defineProps<{ hashtag: Tag }>()
+
+const totalTrend = $computed(() =>
+  hashtag.history?.reduce((total: number, item) => total + (Number(item.accounts) || 0), 0),
+)
 </script>
 
 <template>
@@ -11,9 +17,10 @@ defineProps<{ hashtag: any }>()
       <span>
         {{ hashtag.name }}
       </span>
-      <span text-xs text-secondary>
-        {{ hashtag.following ? 'Following' : 'Not Following' }}
-      </span>
+      <CommonTrending :history="hashtag.history" text-xs text-secondary truncate />
+    </div>
+    <div v-if="totalTrend" w-12 h-12 flex place-items-center place-content-center ml-auto>
+      <CommonTrendingCharts :history="hashtag.history" text-xs text-secondary />
     </div>
   </div>
 </template>

@@ -37,5 +37,5 @@ const tabs = $computed(() => [
 </script>
 
 <template>
-  <CommonRouteTabs force :options="tabs" prevent-scroll-top command border="base b" />
+  <CommonRouteTabs force replace :options="tabs" prevent-scroll-top command border="base b" />
 </template>

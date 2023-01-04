@@ -4,6 +4,7 @@ definePageMeta({
 })
 
 const { t } = useI18n()
+const pwaEnabled = useRuntimeConfig().public.pwaEnabled
 
 useHeadFixed({
   title: () => `${t('settings.notifications.notifications.label')} | ${t('nav.settings')}`,
@@ -25,6 +26,7 @@ useHeadFixed({
     />
     <SettingsItem
       command
+      :disabled="!pwaEnabled"
       :text="$t('settings.notifications.push_notifications.label')"
       :description="$t('settings.notifications.push_notifications.description')"
       to="/settings/notifications/push-notifications"

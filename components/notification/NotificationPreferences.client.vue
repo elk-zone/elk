@@ -130,7 +130,7 @@ onActivated(() => (busy = false))
                 <CommonRadio v-model="pushNotificationData.policy" hover value="follower" :label="$t('settings.notifications.push_notifications.policy.follower')" />
                 <CommonRadio v-model="pushNotificationData.policy" hover value="none" :label="$t('settings.notifications.push_notifications.policy.none')" />
               </fieldset>
-              <div flex="~ col" gap-y-4 py-1 sm="~ justify-between flex-row">
+              <div flex="~ col" gap-y-4 gap-x-2 py-1 sm="~ justify-between flex-row">
                 <button
                   btn-solid font-bold py2 full-w sm-wa flex="~ gap2 center"
                   :class="busy || !saveEnabled ? 'border-transparent' : null"

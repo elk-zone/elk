@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import buildInfo from 'virtual:build-info'
+import { buildInfo } from 'virtual:build-info'
 
 const timeAgoOptions = useTimeAgoOptions()
 
@@ -35,10 +35,10 @@ function toggleDark() {
       <span v-else>
         {{ $t('nav.built_at', [$d(buildTimeDate, 'shortDate')]) }}
       </span>
-      <template v-if="buildInfo.version">
-        &middot;
-        v{{ buildInfo.version }}
-      </template>
+      &middot;
+      <!-- TODO click version to show changelog -->
+      <span v-if="buildInfo.env === 'release'">v{{ buildInfo.version }}</span>
+      <span v-else>{{ buildInfo.env }}</span>
       <template v-if="buildInfo.commit && buildInfo.branch !== 'release'">
         &middot;
         <NuxtLink

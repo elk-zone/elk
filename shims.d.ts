@@ -4,6 +4,5 @@
 
 declare module 'virtual:build-info' {
   import type { BuildInfo } from '~/types'
-  const buildInfo: BuildInfo
-  export default buildInfo
+  export const buildInfo: BuildInfo
 }

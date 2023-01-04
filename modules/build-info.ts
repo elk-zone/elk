@@ -1,20 +1,23 @@
 import { addVitePlugin, defineNuxtModule } from '@nuxt/kit'
-import Git from 'simple-git'
-import { version } from '../package.json'
+import { getEnv, version } from '../config/env'
 import type { BuildInfo } from '~/types'
 
 export default defineNuxtModule({
   meta: {
     name: 'elk:build-info',
   },
-  async setup() {
-    const git = Git()
+  async setup(_options, nuxt) {
+    const { env, commit, branch } = await getEnv()
+    nuxt.options.runtimeConfig.public.env = env
+
     const buildInfo: BuildInfo = {
       version,
       time: +Date.now(),
-      commit: await git.revparse(['HEAD']),
-      branch: await git.revparse(['--abbrev-ref', 'HEAD']),
+      commit,
+      branch,
+      env,
     }
+
     addVitePlugin({
       name: 'elk:build-info',
       resolveId(id) {
@@ -23,7 +26,7 @@ export default defineNuxtModule({
       },
       load(id) {
         if (id === 'virtual:build-info')
-          return `export default ${JSON.stringify(buildInfo, null, 2)}`
+          return `export const buildInfo = ${JSON.stringify(buildInfo, null, 2)}`
       },
     })
   },

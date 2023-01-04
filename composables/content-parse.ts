@@ -5,8 +5,11 @@ import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
-const decoder = process.client ? document.createElement('textarea') : null as any as HTMLTextAreaElement
+const decoder = process.client ? document.createElement('textarea') : null
 export function decodeHtml(text: string) {
+  if (!decoder)
+    // not available when SSR
+    return text
   decoder.innerHTML = text
   return decoder.value
 }

@@ -147,6 +147,7 @@ async function publish() {
     ...draft.params,
     status: htmlToText(draft.params.status || ''),
     mediaIds: draft.attachments.map(a => a.id),
+    ...(masto.version.includes('+glitch') ? { 'content-type': 'text/markdown' } : {}),
   } as CreateStatusParams
 
   if (process.dev) {

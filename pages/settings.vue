@@ -42,6 +42,13 @@ const isRootPath = computedEager(() => route.name === 'settings')
             <SettingsItem
               v-if="isHydrated && currentUser"
               command
+              icon="i-ri:notification-badge-line"
+              :text="$t('settings.notifications_settings')"
+              to="/settings/notifications"
+            />
+            <SettingsItem
+              v-if="isHydrated && currentUser"
+              command
               icon="i-ri:settings-line"
               :text="$t('settings.account_settings')"
               :to="`https://${currentUser!.server}/auth/edit`"

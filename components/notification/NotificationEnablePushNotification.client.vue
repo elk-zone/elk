@@ -1,7 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  showReAuthMessage: boolean
-  withHeader?: boolean
+  closeableHeader?: boolean
   busy?: boolean
   animate?: boolean
 }>()
@@ -16,15 +15,22 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
 </script>
 
 <template>
-  <div flex="~ col" gap-y-2 role="alert" aria-labelledby="notifications-warning" :class="withHeader ? 'border-b border-base' : null">
-    <header v-if="withHeader" flex items-center pb-2>
+  <div
+    flex="~ col"
+    gap-y-2
+    role="alert"
+    aria-labelledby="notifications-warning"
+    :class="closeableHeader ? 'border-b border-base' : 'px6 px4'"
+  >
+    <header flex items-center pb-2>
       <h2 id="notifications-warning" text-md font-bold w-full>
-        {{ $t('notification.settings.warning.enable_title') }}
+        {{ $t('settings.notifications.warning.enable_title') }}
       </h2>
       <button
+        v-if="closeableHeader"
         flex rounded-4
         type="button"
-        :title="$t('notification.settings.warning.enable_close')"
+        :title="$t('settings.notifications.warning.enable_close')"
         hover:bg-active cursor-pointer transition-100
         :disabled="busy"
         @click="$emit('hide')"
@@ -33,10 +39,10 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
       </button>
     </header>
     <p>
-      {{ $t(withHeader ? 'notification.settings.warning.enable_description' : 'notification.settings.warning.enable_description_short') }}
+      {{ $t('settings.notifications.warning.enable_description') }}
     </p>
-    <p v-if="isLegacyAccount && showReAuthMessage">
-      {{ $t('notification.settings.warning.re_auth') }}
+    <p v-if="isLegacyAccount">
+      {{ $t('settings.notifications.warning.re_auth') }}
     </p>
     <button
       btn-outline rounded-full font-bold py4 flex="~ gap2 center" m5
@@ -46,8 +52,8 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
       @click="$emit('subscribe')"
     >
       <span aria-hidden="true" :class="busy && animate ? 'i-ri:loader-2-fill animate-spin' : 'i-ri:check-line'" />
-      {{ $t('notification.settings.warning.enable_desktop') }}
+      {{ $t('settings.notifications.warning.enable_desktop') }}
     </button>
-    <slot v-if="showReAuthMessage" name="error" />
+    <slot name="error" />
   </div>
 </template>

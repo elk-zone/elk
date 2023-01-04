@@ -40,7 +40,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
           </slot>
         </div>
       </aside>
-      <div w-full min-h-screen md:shrink-0 :class="wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px'" sm:border-l sm:border-r border-base>
+      <div w-full min-h-screen :class="wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px md:shrink-0'" sm:border-l sm:border-r border-base>
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>

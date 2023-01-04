@@ -60,10 +60,10 @@ const distanceY = computed(() => {
 </script>
 
 <template>
-  <div ref="target" w-full overflow-hidden flex flex-row items-center class="test">
-    <div w-full flex flex-row :style="{ transform: `translateX(${distanceX}%) translateY(${distanceY}%)`, transition: isSwiping ? 'none' : canAnimate ? 'all 0.5s ease' : 'none' }">
-      <div v-for="item in media" :key="item.id" p4 select-none w-full flex-shrink-0 text-center text-7xl flex flex-col place-content-center place-items-center>
-        <img :draggable="false" select-none :src="item.url || item.previewUrl" :alt="item.description || ''">
+  <div ref="target" flex flex-row max-h-full max-w-full overflow-hidden>
+    <div flex :style="{ transform: `translateX(${distanceX}%) translateY(${distanceY}%)`, transition: isSwiping ? 'none' : canAnimate ? 'all 0.5s ease' : 'none' }">
+      <div v-for="item in media" :key="item.id" p4 select-none w-full flex-shrink-0 flex flex-col place-items-center>
+        <img max-h-full max-w-full :draggable="false" select-none :src="item.url || item.previewUrl" :alt="item.description || ''">
       </div>
     </div>
   </div>

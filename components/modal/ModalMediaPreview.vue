@@ -53,7 +53,7 @@ onUnmounted(() => locked.value = false)
       <div i-ri:arrow-left-s-line text-white />
     </button>
 
-    <div flex flex-row items-center>
+    <div flex flex-row items-center mxa>
       <ModalMediaPreviewCarousel v-model="index" :media="mediaPreviewList" @close="emit('close')" />
     </div>
 

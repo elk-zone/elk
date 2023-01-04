@@ -3,7 +3,6 @@ import type { Attachment, CreateStatusParams, Status, StatusVisibility } from 'm
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
-import { statusVisibilities } from '~/composables/masto/icons'
 import type { Draft } from '~/types'
 
 type FileUploadError = [filename: string, message: string]
@@ -52,10 +51,6 @@ const { editor } = useTiptap({
     isExpanded = true
   },
   onPaste: handlePaste,
-})
-
-const currentVisibility = $computed(() => {
-  return statusVisibilities.find(v => v.value === draft.params.visibility) || statusVisibilities[0]
 })
 
 let isUploading = $ref<boolean>(false)
@@ -130,10 +125,6 @@ async function setDescription(att: Attachment, description: string) {
 
 function removeAttachment(index: number) {
   draft.attachments.splice(index, 1)
-}
-
-function chooseVisibility(visibility: StatusVisibility) {
-  draft.params.visibility = visibility
 }
 
 async function publish() {
@@ -291,16 +282,20 @@ defineExpose({
         <PublishEmojiPicker
           @select="insertEmoji"
           @select-custom="insertCustomEmoji"
-        />
+        >
+          <button btn-action-icon :title="$t('tooltip.emoji')">
+            <div i-ri:emotion-line />
+          </button>
+        </PublishEmojiPicker>
 
-        <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">
+        <CommonTooltip placement="top" :content="$t('tooltip.add_media')">
           <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
             <div i-ri:image-add-line />
           </button>
         </CommonTooltip>
 
         <template v-if="editor">
-          <CommonTooltip placement="bottom" :content="$t('tooltip.toggle_code_block')">
+          <CommonTooltip placement="top" :content="$t('tooltip.toggle_code_block')">
             <button
               btn-action-icon
               :aria-label="$t('tooltip.toggle_code_block')"
@@ -318,7 +313,7 @@ defineExpose({
           {{ editor?.storage.characterCount.characters() }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
         </div>
 
-        <CommonTooltip placement="bottom" :content="$t('tooltip.add_content_warning')">
+        <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
           <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
             <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
             <div v-else i-ri:alarm-warning-line />
@@ -338,29 +333,14 @@ defineExpose({
           </CommonDropdown>
         </CommonTooltip>
 
-        <CommonTooltip placement="bottom" :content="draft.editingStatus ? $t(`visibility.${currentVisibility.value}`) : $t('tooltip.change_content_visibility')">
-          <CommonDropdown>
+        <PublishVisibilityPicker v-model="draft.params.visibility" :editing="!!draft.editingStatus">
+          <template #default="{ visibility }">
             <button :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon :class="{ 'w-12': !draft.editingStatus }">
-              <div :class="currentVisibility.icon" />
+              <div :class="visibility.icon" />
               <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
             </button>
-
-            <template #popper>
-              <CommonDropdownItem
-                v-for="visibility in statusVisibilities"
-                :key="visibility.value"
-                :icon="visibility.icon"
-                :checked="visibility.value === draft.params.visibility"
-                @click="chooseVisibility(visibility.value)"
-              >
-                {{ $t(`visibility.${visibility.value}`) }}
-                <template #description>
-                  {{ $t(`visibility.${visibility.value}_desc`) }}
-                </template>
-              </CommonDropdownItem>
-            </template>
-          </CommonDropdown>
-        </CommonTooltip>
+          </template>
+        </PublishVisibilityPicker>
 
         <button
           btn-solid rounded-full text-sm w-full md:w-fit

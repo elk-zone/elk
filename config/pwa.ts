@@ -15,7 +15,7 @@ export const pwa: VitePWANuxtOptions = {
   includeManifestIcons: false,
   manifest: async () => {
     const { env } = await getEnv()
-    const envName = `${env !== 'release' ? '' : ` (${env})`}`
+    const envName = `${env === 'release' ? '' : ` (${env})`}`
     return {
       scope: '/',
       id: '/',

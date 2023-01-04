@@ -12,6 +12,14 @@ export { version } from '../package.json'
 export const isPR = process.env.PULL_REQUEST === 'true'
 
 /**
+ * Environment variable `BRANCH` provided by Netlify.
+ * @see {@link https://docs.netlify.com/configure-builds/environment-variables/#git-metadata}
+ *
+ * Git branch
+ */
+export const gitBranch = process.env.BRANCH
+
+/**
  * Environment variable `CONTEXT` provided by Netlify.
  * @see {@link https://docs.netlify.com/configure-builds/environment-variables/#build-metadata}
  *
@@ -21,7 +29,7 @@ export const isPreview = isPR || process.env.CONTEXT === 'deploy-preview' || pro
 
 const git = Git()
 export const getGitInfo = async () => {
-  const branch = await git.revparse(['--abbrev-ref', 'HEAD'])
+  const branch = gitBranch || await git.revparse(['--abbrev-ref', 'HEAD'])
   const commit = await git.revparse(['HEAD'])
   return { branch, commit }
 }

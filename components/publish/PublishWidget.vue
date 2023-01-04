@@ -181,7 +181,7 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="isMastoInitialised && currentUser && currentUser.account && !isGuest" flex="~ col gap-4" py3 px2 sm:px4>
+  <div v-if="isMastoInitialised && currentUser.account && !isGuest" flex="~ col gap-4" py3 px2 sm:px4>
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div id="state-editing" text-secondary self-center>

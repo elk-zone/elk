@@ -16,7 +16,7 @@ const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirt
 </script>
 
 <template>
-  <CommonPaginator v-bind="{ paginator, stream, preprocess }" :virtual-scroller="virtualScroller">
+  <CommonPaginator v-bind="{ paginator, stream, preprocess }" :virtual-scroller="virtualScroller" :is-account-timeline="context === 'account'">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}

@@ -39,11 +39,12 @@ const isRootPath = computedEager(() => route.name === 'settings')
               :text="$t('settings.interface.label')"
               to="/settings/interface"
             />
-            <SettingsExternalLink
+            <SettingsItem
               command
               icon="i-ri:settings-line"
               :text="$t('settings.account_settings')"
               :to="`https://${currentUser!.server}/auth/edit`"
+              external
             />
             <SettingsItem
               command

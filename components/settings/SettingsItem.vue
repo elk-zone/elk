@@ -6,6 +6,7 @@ const props = defineProps<{
   icon?: string
   to?: string | Record<string, string>
   command?: boolean
+  external?: true
 }>()
 
 const router = useRouter()
@@ -70,7 +71,7 @@ useCommand({
           {{ content }}
         </slot>
       </p>
-      <div v-if="to" i-ri:arrow-right-s-line text-xl text-secondary-light class="rtl-flip" />
+      <div v-if="to" :class="!external ? 'i-ri:arrow-right-s-line' : 'i-ri:external-link-line'" text-xl text-secondary-light class="rtl-flip" />
     </div>
   </NuxtLink>
 </template>

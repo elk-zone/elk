@@ -48,17 +48,13 @@ const chooseIcon = (i: number, text: string) => {
       </CommonDropdown>
       <input
         v-model="form.fieldsAttributes[i - 1].name"
-        type="text"
-        p2 border-rounded w-full bg-transparent
-        outline-none border="~ base"
-        placeholder="Label"
+        type="text" placeholder="Label"
+        input-base
       >
       <input
         v-model="form.fieldsAttributes[i - 1].value"
-        type="text"
-        p2 border-rounded w-full bg-transparent
-        outline-none border="~ base"
-        placeholder="Content"
+        type="text" placeholder="Content"
+        input-base
       >
     </div>
   </div>

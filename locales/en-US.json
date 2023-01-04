@@ -235,6 +235,7 @@
     "about": {
       "label": "About"
     },
+    "account_settings": "Account settings",
     "feature_flags": {
       "github_cards": "GitHub Cards",
       "title": "Experimental Features",

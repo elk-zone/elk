@@ -3,7 +3,7 @@ import { SwipeDirection } from '@vueuse/core'
 import { useReducedMotion } from '@vueuse/motion'
 import type { Attachment } from 'masto'
 
-const props = withDefaults(defineProps<{ media: Attachment[]; threshold: number; modelValue: number }>(), {
+const props = withDefaults(defineProps<{ media: Attachment[]; threshold?: number; modelValue: number }>(), {
   media: [] as any,
   threshold: 20,
   modelValue: 0,
@@ -26,9 +26,19 @@ const { width, height } = useElementSize(target)
 const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
   threshold: 5,
   passive: false,
+  onSwipeEnd(e, direction) {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    if (direction === SwipeDirection.RIGHT && Math.abs(distanceX.value) > props.threshold)
+      index.value = Math.max(0, index.value - 1)
 
-  // @ts-expect-error Ignore no-use-before-define
-  onSwipeEnd, // eslint-disable-line @typescript-eslint/no-use-before-define
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    if (direction === SwipeDirection.LEFT && Math.abs(distanceX.value) > props.threshold)
+      index.value = Math.min(props.media.length - 1, index.value + 1)
+
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    if (direction === SwipeDirection.UP && Math.abs(distanceY.value) > props.threshold)
+      emit('close')
+  },
 })
 
 const distanceX = computed(() => {
@@ -47,17 +57,6 @@ const distanceY = computed(() => {
 
   return (lengthY.value / height.value) * 100 * -1
 })
-
-const onSwipeEnd = (e: TouchEvent, direction: SwipeDirection) => {
-  if (direction === SwipeDirection.RIGHT && Math.abs(distanceX.value) > props.threshold)
-    index.value = Math.max(0, index.value - 1)
-
-  if (direction === SwipeDirection.LEFT && Math.abs(distanceX.value) > props.threshold)
-    index.value = Math.min(props.media.length - 1, index.value + 1)
-
-  if (direction === SwipeDirection.UP && Math.abs(distanceY.value) > props.threshold)
-    emit('close')
-}
 </script>
 
 <template>

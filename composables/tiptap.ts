@@ -12,7 +12,7 @@ import Code from '@tiptap/extension-code'
 import { Plugin } from 'prosemirror-state'
 
 import type { Ref } from 'vue'
-import { HashSuggestion, MentionSuggestion } from './tiptap/suggestion'
+import { HashtagSuggestion, MentionSuggestion } from './tiptap/suggestion'
 import { CodeBlockShiki } from './tiptap/shiki'
 import { CustomEmoji } from './tiptap/custom-emoji'
 import { Emoji } from './tiptap/emoji'
@@ -54,9 +54,9 @@ export function useTiptap(options: UseTiptapOptions) {
         suggestion: MentionSuggestion,
       }),
       Mention
-        .extend({ name: 'hastag' })
+        .extend({ name: 'hashtag' })
         .configure({
-          suggestion: HashSuggestion,
+          suggestion: HashtagSuggestion,
         }),
       Placeholder.configure({
         placeholder: placeholder.value,

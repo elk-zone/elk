@@ -162,45 +162,6 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
-    "settings": {
-      "alerts": {
-        "favourite": "Favourites",
-        "follow": "New followers",
-        "mention": "Mentions",
-        "poll": "Polls",
-        "reblog": "Reblog your post",
-        "title": "What notifications to receive?"
-      },
-      "close_btn": "Close push notifications settings",
-      "policy": {
-        "all": "From anyone",
-        "followed": "Of people I follow",
-        "follower": "Of people who follow me",
-        "none": "From no one",
-        "title": "Who can I receive notifications from?"
-      },
-      "save_settings": "Save settings changes",
-      "show_btn": "Show push notifications settings",
-      "subscription_error": {
-        "clear_error": "Clear error",
-        "permission_denied": "Permission denied: enable notifications in your browser.",
-        "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
-        "title": "Could not subscribe to push notifications"
-      },
-      "title": "Push notifications settings",
-      "undo_settings": "Undo settings changes",
-      "unsubscribe": "Disable push notifications",
-      "unsubscribed_with_warning": "Enable notifications to receive notifications from this account by clicking \"@:notification.settings.warning.enable_desktop{'\"'} button.",
-      "unsupported": "Your browser does not support push notifications.",
-      "warning": {
-        "enable_close": "Close",
-        "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:notification.settings.show_btn{'\"'} button above once enabled.",
-        "enable_description_short": "To change push notifications settings when Elk is not open, you must first enable push notifications.",
-        "enable_desktop": "Enable push notifications",
-        "enable_title": "Never miss anything",
-        "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
-      }
-    },
     "signed_up": "signed up",
     "update_status": "updated their post"
   },
@@ -242,6 +203,52 @@
       "display_language": "Display Language",
       "label": "Language"
     },
+    "notifications": {
+      "label": "Notifications",
+      "notifications": {
+        "label": "Notifications settings"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favorites",
+          "follow": "New followers",
+          "mention": "Mentions",
+          "poll": "Polls",
+          "reblog": "Reblog your post",
+          "title": "What notifications to receive?"
+        },
+        "description": "Receive notifications even when you are not using Elk.",
+        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
+        "label": "Push notifications settings",
+        "policy": {
+          "all": "From anyone",
+          "followed": "Of people I follow",
+          "follower": "Of people who follow me",
+          "none": "From no one",
+          "title": "Who can I receive notifications from?"
+        },
+        "save_settings": "Save settings",
+        "subscription_error": {
+          "clear_error": "Clear error",
+          "permission_denied": "Permission denied: enable notifications in your browser.",
+          "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
+          "title": "Could not subscribe to push notifications"
+        },
+        "undo_settings": "Undo changes",
+        "unsubscribe": "Disable push notifications",
+        "unsupported": "Your browser does not support push notifications.",
+        "warning": {
+          "enable_close": "Close",
+          "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:settings.notifications.show_btn{'\"'} button above once enabled.",
+          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_desktop": "Enable push notifications",
+          "enable_title": "Never miss anything",
+          "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
+        }
+      },
+      "show_btn": "Go to notifications settings"
+    },
+    "notifications_settings": "Notifications",
     "preferences": {
       "label": "Preferences"
     },

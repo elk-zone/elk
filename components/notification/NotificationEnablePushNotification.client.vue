@@ -39,7 +39,7 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
       </button>
     </header>
     <p>
-      {{ $t('settings.notifications.push_notifications.warning.enable_description') }}
+      {{ $t(`settings.notifications.push_notifications.warning.enable_description${closeableHeader ? '' : '_settings'}`) }}
     </p>
     <p v-if="isLegacyAccount">
       {{ $t('settings.notifications.push_notifications.warning.re_auth') }}

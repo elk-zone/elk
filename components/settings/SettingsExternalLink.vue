@@ -63,7 +63,7 @@ useCommand({
           {{ content }}
         </slot>
       </p>
-      <div v-if="to" i-ri:arrow-right-s-line text-xl text-secondary-light class="rtl-flip" />
+      <div v-if="to" i-ri:external-link-line text-lg text-secondary-light />
     </div>
   </a>
 </template>

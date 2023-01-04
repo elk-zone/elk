@@ -170,45 +170,6 @@
     "missing_type": "MISSEND notificatie.type:",
     "reblogged_post": "herblogd je post",
     "request_to_follow": "vraagt om jou te volgen",
-    "settings": {
-      "alerts": {
-        "favourite": "Favorieten",
-        "follow": "Nieuwe volgers",
-        "mention": " Vermeldingen",
-        "poll": "Peilingen",
-        "reblog": "Herblogd jou post",
-        "title": "Welke notificaties wil je krijgen?"
-      },
-      "close_btn": "Sluit push notificaties instellingen",
-      "policy": {
-        "all": "Van iedereen",
-        "followed": "Van mensen die ik volg",
-        "follower": "Van mensen die mij volgen",
-        "none": "Van niemand",
-        "title": "Van wie kan ik notificaties krijgen?"
-      },
-      "save_settings": "Instellingen aanpassingen opslaan",
-      "show_btn": "Laat push notificaties instellingen zien",
-      "subscription_error": {
-        "clear_error": "Wis error",
-        "permission_denied": "Geen toestemming: zet notificaties aan in je browser.",
-        "request_error": "Er is een error tijdens het ophalen van de subscriptie, probeer opnieuw en als de error blijft, raporteer het probleem naar de Elk repository.",
-        "title": "Kon niet subscriben aan push notificaties"
-      },
-      "title": "Push notificaties instellingen",
-      "undo_settings": "Undo veranderden instellingen",
-      "unsubscribe": "Zet push notificaties uit",
-      "unsubscribed_with_warning": "Zet notificaties aan om notificaties te krijgen van dit account, klik deze \"@:notification.settings.warning.enable_desktop{'\"'} knop.",
-      "unsupported": "Je browser ondersteunt geen push notificaties.",
-      "warning": {
-        "enable_close": "Sluit",
-        "enable_description": "Om notificaties te krijgen terwijl Elk niet open is, zet push notificaties aan. Je kan precies instellen wat voor typen interacties push notificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
-        "enable_description_short": "Om push notificatie instellingen te veranderen terwijl Elk niet open is, moet je eerst push notificaties aan zetten.",
-        "enable_desktop": "Zet push notificaties aan",
-        "enable_title": "Mis niets",
-        "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
-      }
-    },
     "signed_up": "signed up",
     "update_status": "heeft hun post aangepast"
   },
@@ -250,6 +211,52 @@
       "display_language": "Display Taal",
       "label": "Taal"
     },
+    "notifications": {
+      "label": "Notifications",
+      "notifications": {
+        "label": "Notifications settings"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favorieten",
+          "follow": "Nieuwe volgers",
+          "mention": " Vermeldingen",
+          "poll": "Peilingen",
+          "reblog": "Herblogd jou post",
+          "title": "Welke notificaties wil je krijgen?"
+        },
+        "description": "Receive notifications even when you are not using Elk.",
+        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
+        "label": "Push notifications settings",
+        "policy": {
+          "all": "Van iedereen",
+          "followed": "Van mensen die ik volg",
+          "follower": "Van mensen die mij volgen",
+          "none": "Van niemand",
+          "title": "Van wie kan ik notificaties krijgen?"
+        },
+        "save_settings": "Instellingen aanpassingen opslaan",
+        "subscription_error": {
+          "clear_error": "Wis error",
+          "permission_denied": "Geen toestemming: zet notificaties aan in je browser.",
+          "request_error": "Er is een error tijdens het ophalen van de subscriptie, probeer opnieuw en als de error blijft, raporteer het probleem naar de Elk repository.",
+          "title": "Kon niet subscriben aan push notificaties"
+        },
+        "undo_settings": "Undo veranderden instellingen",
+        "unsubscribe": "Zet push notificaties uit",
+        "unsupported": "Je browser ondersteunt geen push notificaties.",
+        "warning": {
+          "enable_close": "Sluit",
+          "enable_description": "Om notificaties te krijgen terwijl Elk niet open is, zet push notificaties aan. Je kan precies instellen wat voor typen interacties push notificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
+          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_desktop": "Zet push notificaties aan",
+          "enable_title": "Mis niets",
+          "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
+        }
+      },
+      "show_btn": "Go to notifications settings"
+    },
+    "notifications_settings": "Notifications",
     "preferences": {
       "label": "Voorkeuren"
     },

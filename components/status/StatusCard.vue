@@ -90,7 +90,6 @@ const isDM = $computed(() => status.visibility === 'direct')
     ref="el"
     relative flex flex-col gap-1 pl-3 pr-4 pt-1
     class="pb-1.5"
-    transition-100
     :class="{ 'hover:bg-active': hover, 'border-t border-base': newer && !directReply }"
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"

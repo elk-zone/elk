@@ -13,7 +13,7 @@ useHeadFixed({
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>{{ $t('nav.muted_users') }}</span>
+      <span timeline-title-style>{{ $t('nav.muted_users') }}</span>
     </template>
 
     <TimelineMutes v-if="isMastoInitialised" />

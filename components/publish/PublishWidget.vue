@@ -343,7 +343,7 @@ defineExpose({
         </PublishVisibilityPicker>
 
         <button
-          btn-solid rounded-full text-sm w-full md:w-fit
+          btn-solid rounded-3 text-sm w-full md:w-fit
           :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
           @click="publish"
         >

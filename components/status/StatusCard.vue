@@ -90,13 +90,14 @@ const isDM = $computed(() => status.visibility === 'direct')
     ref="el"
     relative flex flex-col gap-1 pl-3 pr-4 pt-1
     class="pb-1.5"
-    :class="{ 'hover:bg-active': hover, 'border-t border-base': newer && !directReply }"
+    :class="{ 'hover:bg-active': hover }"
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
     :lang="status.language ?? undefined"
     @click="onclick"
     @keydown.enter="onclick"
   >
+    <div v-if="newer && !directReply" w-auto h-1px bg-border />
     <div flex justify-between>
       <slot name="meta">
         <div v-if="rebloggedBy && !collapseRebloggedBy" relative text-secondary ws-nowrap flex="~" items-center pt1 pb0.5 px-1px bg-base>
@@ -125,7 +126,7 @@ const isDM = $computed(() => status.visibility === 'direct')
           </NuxtLink>
         </AccountHoverWrapper>
         <div v-if="connectReply" w-full h-full flex justify-center>
-          <div h-full class="w-2.5px" bg-border />
+          <div class="w-2.5px" bg-primary-light />
         </div>
       </div>
       <div flex="~ col 1" min-w-0>

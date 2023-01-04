@@ -14,7 +14,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
             <div flex="~ col" overflow-y-auto justify-between h-full max-w-full>
               <div flex flex-col>
                 <NavSide command />
-                <PublishButton m="y5 xa" xl:m="r5 l3" xl:rtl-m="l5 r3" />
+                <PublishButton ms5.5 mt4 xl:me8 xl:ms4 />
               </div>
               <div v-if="isMastoInitialised" flex flex-col>
                 <UserSignInEntry v-if="!currentUser" sm:hidden />
@@ -24,7 +24,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
                     <div v-else flex="~" items-center justify-between>
                       <NuxtLink
                         hidden xl:block
-                        rounded-full text-start w-full
+                        rounded-3 text-primary text-start w-full
                         hover:bg-active cursor-pointer transition-100
                         :to="getAccountRoute(currentUser.account)"
                       >
@@ -40,7 +40,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
           </slot>
         </div>
       </aside>
-      <div w-full min-h-screen :class="wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px md:shrink-0'" sm:border-l sm:border-r border-base>
+      <div w-full min-h-screen :class="wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px md:shrink-0'" border-base>
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
@@ -50,7 +50,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
         </div>
       </div>
       <aside v-if="!wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">
-        <div sticky top-0 h-screen flex="~ col" py3>
+        <div sticky top-0 h-screen flex="~ col" gap-2 py3 ms-2>
           <slot name="right">
             <SearchWidget />
             <div flex-auto />

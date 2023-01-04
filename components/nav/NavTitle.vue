@@ -8,11 +8,9 @@ const { env } = buildInfo
   <!-- Use external to force refresh page and jump to top of timeline -->
   <NuxtLink
     flex items-end gap-2
-    w-fit
     py2 px-2 xl:px-3
-    text-2xl hover:bg-active
+    text-2xl
     focus-visible:ring="2 current"
-    rounded-full
     to="/"
     external
   >

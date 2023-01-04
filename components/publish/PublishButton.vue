@@ -7,11 +7,11 @@ const disabledVisual = computed(() => isMastoInitialised.value && !currentUser.v
   <button
     flex="~ gap2 center"
     w-9 h-9 py2
-    xl="w-auto h-auto py-4"
-    rounded-full
+    xl="w-auto h-auto"
+    rounded-3
     cursor-pointer disabled:pointer-events-none
     text-primary font-bold
-    border-1 border-primary
+    border-1 border-primary-light
     :class="disabledVisual ? 'op25' : 'hover:bg-primary hover:text-inverted'"
     :disabled="disabled"
     @click="openPublishDialog()"

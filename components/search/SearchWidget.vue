@@ -53,14 +53,14 @@ const activate = () => {
 
 <template>
   <div ref="el" relative px4 py2 group>
-    <div bg-base border="~ base" h10 rounded-full flex="~ row" items-center relative focus-within:box-shadow-outline>
+    <div bg-base border="~ base" h10 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline>
       <div i-ri:search-2-line mx4 absolute pointer-events-none text-secondary mt="1px" class="rtl-flip" />
       <input
         ref="input"
         v-model="query"
         h-full
         ps-10
-        rounded-full
+        rounded-3
         w-full
         bg-transparent
         outline="focus:none"
@@ -75,7 +75,7 @@ const activate = () => {
     </div>
     <!-- Results -->
     <div p4 left-0 top-10 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
-      <div w-full bg-base border="~ base" rounded max-h-100 overflow-auto py2>
+      <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
         <span v-if="query.length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}
         </span>

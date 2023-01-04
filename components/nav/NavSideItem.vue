@@ -58,11 +58,11 @@ const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly &
     <CommonTooltip :disabled="!isMediumScreen" :content="text" placement="right">
       <div
         flex items-center gap4
-        w-fit rounded-full
+        w-fit rounded-3
         px2 py2 mx3 sm:mxa
-        xl="mx0 px5"
+        xl="ml0 mr5 px5 w-auto"
         transition-100
-        group-hover:bg-active group-focus-visible:ring="2 current"
+        group-hover="bg-active" group-focus-visible:ring="2 current"
       >
         <slot name="icon">
           <div :class="icon" text-xl />

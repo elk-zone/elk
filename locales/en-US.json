@@ -225,7 +225,6 @@
     "notifications": {
       "label": "Notifications",
       "notifications": {
-        "description": "Receive notifications even when you are not using Elk.",
         "label": "Notifications settings"
       },
       "push_notifications": {
@@ -239,7 +238,7 @@
         },
         "description": "Receive notifications even when you are not using Elk.",
         "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
-        "label": "Notifications settings",
+        "label": "Push notifications settings",
         "policy": {
           "all": "From anyone",
           "followed": "Of people I follow",
@@ -248,7 +247,6 @@
           "title": "Who can I receive notifications from?"
         },
         "save_settings": "Save settings",
-        "show_btn": "Go to notifications settings",
         "subscription_error": {
           "clear_error": "Clear error",
           "permission_denied": "Permission denied: enable notifications in your browser.",
@@ -265,7 +263,8 @@
           "enable_title": "Never miss anything",
           "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
         }
-      }
+      },
+      "show_btn": "Go to notifications settings"
     },
     "notifications_settings": "Notifications",
     "preferences": {

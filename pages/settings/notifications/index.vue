@@ -6,7 +6,7 @@ definePageMeta({
 const { t } = useI18n()
 
 useHeadFixed({
-  title: () => `${t('settings.notifications.label')} | ${t('nav.settings')}`,
+  title: () => `${t('settings.notifications.notifications.label')} | ${t('nav.settings')}`,
 })
 </script>
 
@@ -14,19 +14,18 @@ useHeadFixed({
   <MainContent back-on-small-screen>
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.notifications.label') }}</span>
+        <span>{{ $t('settings.notifications.notifications.label') }}</span>
       </div>
     </template>
 
     <SettingsItem
       command
-      :text="$t('settings.notifications.notifications_label')"
-      :description="$t('settings.notifications.notifications.description')"
+      :text="$t('settings.notifications.notifications.label')"
       to="/settings/notifications/notifications"
     />
     <SettingsItem
       command
-      :text="$t('settings.notifications.push_notifications_label')"
+      :text="$t('settings.notifications.push_notifications.label')"
       :description="$t('settings.notifications.push_notifications.description')"
       to="/settings/notifications/push-notifications"
     />

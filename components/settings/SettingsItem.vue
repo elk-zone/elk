@@ -34,6 +34,7 @@ useCommand({
 <template>
   <NuxtLink
     :to="to"
+    :external="external"
     exact-active-class="text-primary"
     block w-full group focus:outline-none
     @click="to ? $scrollToTop() : undefined"

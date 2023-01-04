@@ -45,7 +45,7 @@ const isRootPath = computedEager(() => route.name === 'settings')
               icon="i-ri:settings-line"
               :text="$t('settings.account_settings')"
               :to="`https://${currentUser!.server}/auth/edit`"
-              external
+              external target="_blank"
             />
             <SettingsItem
               command

@@ -40,6 +40,7 @@ const isRootPath = computedEager(() => route.name === 'settings')
               to="/settings/interface"
             />
             <SettingsItem
+              v-if="isHydrated && currentUser"
               command
               icon="i-ri:settings-line"
               :text="$t('settings.account_settings')"

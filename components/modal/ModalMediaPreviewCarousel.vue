@@ -26,7 +26,9 @@ const { width, height } = useElementSize(target)
 const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
   threshold: 5,
   passive: false,
-  onSwipeEnd, // eslint-disable-line @typescript-eslint/no-use-before-define,
+
+  // @ts-expect-error Ignore no-use-before-define
+  onSwipeEnd, // eslint-disable-line @typescript-eslint/no-use-before-define
 })
 
 const distanceX = computed(() => {

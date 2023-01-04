@@ -23,6 +23,6 @@ if (account) {
 <template>
   <div>
     <AccountTabs />
-    <TimelinePaginator :paginator="paginator" :preprocess="timelineWithReorderedReplies" context="account" />
+    <TimelinePaginator :paginator="paginator" :preprocess="reorderedTimeline" context="account" />
   </div>
 </template>

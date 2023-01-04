@@ -8,6 +8,6 @@ onBeforeUnmount(() => stream?.then(s => s.disconnect()))
 <template>
   <div>
     <PublishWidget draft-key="home" border="b base" />
-    <TimelinePaginator v-bind="{ paginator, stream }" :preprocess="timelineWithReorderedReplies" context="home" />
+    <TimelinePaginator v-bind="{ paginator, stream }" :preprocess="reorderedTimeline" context="home" />
   </div>
 </template>

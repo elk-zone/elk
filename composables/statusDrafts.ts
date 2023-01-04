@@ -13,6 +13,7 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
     initialText = '',
     sensitive = false,
     spoilerText = '',
+    language,
   } = options
 
   return {
@@ -22,6 +23,7 @@ export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, '
       visibility,
       sensitive,
       spoilerText,
+      language,
     },
     attachments,
     initialText,
@@ -36,6 +38,7 @@ export async function getDraftFromStatus(status: Status): Promise<Draft> {
     attachments: status.mediaAttachments,
     sensitive: status.sensitive,
     spoilerText: status.spoilerText,
+    language: status.language,
   })
 }
 

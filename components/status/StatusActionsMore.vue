@@ -91,7 +91,7 @@ const deleteAndRedraft = async () => {
   await openPublishDialog('dialog', await getDraftFromStatus(status), true)
 
   // Go to the new status, if the page is the old status
-  if (lastPublishDialogStatus.value && route.matched.some(m => m.path === '/:server?/@:account/:status'))
+  if (lastPublishDialogStatus.value && route.name === 'status')
     router.push(getStatusRoute(lastPublishDialogStatus.value))
 }
 

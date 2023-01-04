@@ -135,6 +135,8 @@
     "unpin_on_profile": "取消置顶"
   },
   "nav": {
+    "blocked_domains": "已拉黑的域名",
+    "blocked_users": "已拉黑的用户",
     "bookmarks": "书签",
     "built_at": "于 {0}构建",
     "conversations": "私信",
@@ -143,6 +145,7 @@
     "federated": "跨站",
     "home": "主页",
     "local": "本地",
+    "muted_users": "已屏蔽的用户",
     "notifications": "通知",
     "profile": "个人资料",
     "search": "搜索",

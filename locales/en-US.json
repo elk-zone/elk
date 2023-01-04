@@ -144,6 +144,8 @@
     "unpin_on_profile": "Unpin on profile"
   },
   "nav": {
+    "blocked_domains": "Blocked domains",
+    "blocked_users": "Blocked users",
     "bookmarks": "Bookmarks",
     "built_at": "Built {0}",
     "conversations": "Conversations",
@@ -152,6 +154,7 @@
     "federated": "Federated",
     "home": "Home",
     "local": "Local",
+    "muted_users": "Muted users",
     "notifications": "Notifications",
     "profile": "Profile",
     "search": "Search",

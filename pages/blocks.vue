@@ -3,15 +3,17 @@ definePageMeta({
   middleware: 'auth',
 })
 
+const { t } = useI18n()
+
 useHeadFixed({
-  title: 'Blocked users',
+  title: () => t('nav.blocked_users'),
 })
 </script>
 
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>{{ $t('account.blocked_users') }}</span>
+      <span text-lg font-bold>{{ $t('nav.blocked_users') }}</span>
     </template>
 
     <TimelineBlocks v-if="isMastoInitialised" />

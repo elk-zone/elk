@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import buildInfo from 'virtual:build-info'
+import { buildInfo } from 'virtual:build-info'
 
-let showCommit = $ref(false)
+let showCommit = $ref(buildInfo.env !== 'release' && buildInfo.env !== 'dev')
 const builtTime = useFormattedDateTime(buildInfo.time)
 
 const handleShowCommit = () => {
@@ -35,8 +35,8 @@ const handleShowCommit = () => {
       >
         <template #content>
           <div font-mono>
-            v{{ buildInfo.version }}
-            <span v-if="showCommit">({{ buildInfo.commit.slice(0, 7) }})</span>
+            <span>{{ buildInfo.env === 'release' ? `v${buildInfo.version}` : buildInfo.env }}</span>
+            <span v-if="showCommit"> ({{ buildInfo.commit.slice(0, 7) }})</span>
           </div>
         </template>
       </SettingsItem>

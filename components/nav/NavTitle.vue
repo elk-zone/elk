@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const env = useRuntimeConfig().public.env
-const sub = env === 'local' ? 'dev' : env === 'staging' ? 'preview' : 'alpha'
+import { buildInfo } from 'virtual:build-info'
+
+const { env } = buildInfo
 </script>
 
 <template>
@@ -17,7 +18,7 @@ const sub = env === 'local' ? 'dev' : env === 'staging' ? 'preview' : 'alpha'
   >
     <img :alt="$t('app_logo')" src="/logo.svg" shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip">
     <div hidden xl:block>
-      {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ sub }}</sup>
+      {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
     </div>
   </NuxtLink>
 </template>

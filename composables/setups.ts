@@ -1,13 +1,11 @@
 import { pwaInfo } from 'virtual:pwa-info'
 import type { Link } from '@unhead/schema'
 import type { Directions } from 'vue-i18n-routing'
+import { buildInfo } from 'virtual:build-info'
 import { APP_NAME } from '~/constants'
 import type { LocaleObject } from '#i18n'
 
 export function setupPageHeader() {
-  const isDev = process.dev
-  const isPreview = useRuntimeConfig().public.env === 'staging'
-
   const i18n = useI18n()
 
   const link: Link[] = []
@@ -42,7 +40,13 @@ export function setupPageHeader() {
       lang: () => i18n.locale.value,
       dir: () => localeMap[i18n.locale.value] ?? 'auto',
     },
-    titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
+    titleTemplate: (title) => {
+      let titleTemplate = title ? `${title} | ` : ''
+      titleTemplate += APP_NAME
+      if (buildInfo.env !== 'release')
+        titleTemplate += ` (${buildInfo.env})`
+      return titleTemplate
+    },
     link,
   })
 }

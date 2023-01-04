@@ -1,5 +1,5 @@
 import { defineNuxtModule } from '@nuxt/kit'
-import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
+import type { VitePWAOptions, VitePluginPWAAPI } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
 import type { Plugin } from 'vite'
 import type { VitePWANuxtOptions } from './types'
@@ -32,14 +32,17 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       if (plugin)
         throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
     })
-    nuxt.hook('vite:extendConfig', (viteInlineConfig, { isClient }) => {
+    nuxt.hook('vite:extendConfig', async (viteInlineConfig, { isClient }) => {
       viteInlineConfig.plugins = viteInlineConfig.plugins || []
       const plugin = viteInlineConfig.plugins.find(p => p && typeof p === 'object' && 'name' in p && p.name === 'vite-plugin-pwa')
       if (plugin)
         throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
-
-      configurePWAOptions(options, nuxt)
-      const plugins = VitePWA(options)
+      const resolvedOptions: Partial<VitePWAOptions> = {
+        ...options,
+        manifest: options.manifest ? await options.manifest() : undefined,
+      }
+      configurePWAOptions(resolvedOptions, nuxt)
+      const plugins = VitePWA(resolvedOptions)
       viteInlineConfig.plugins.push(plugins)
       if (isClient)
         vitePwaClientPlugin = plugins.find(p => p.name === 'vite-plugin-pwa') as Plugin

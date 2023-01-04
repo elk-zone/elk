@@ -69,6 +69,7 @@ export interface BuildInfo {
   commit: string
   time: number
   branch: string
+  env: 'preview' | 'main' | 'dev' | 'release'
 }
 
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'

@@ -18,7 +18,7 @@ import { CustomEmoji } from './tiptap/custom-emoji'
 import { Emoji } from './tiptap/emoji'
 
 export interface UseTiptapOptions {
-  content: Ref<string | undefined>
+  content: Ref<string>
   placeholder: Ref<string | undefined>
   onSubmit: () => void
   onFocus: () => void

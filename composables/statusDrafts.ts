@@ -1,32 +1,35 @@
-import type { Account, Status } from 'masto'
+import type { Account, CreateStatusParams, Status } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
+import type { Mutable } from '~/types/utils'
 
 export const currentUserDrafts = process.server ? computed<DraftMap>(() => ({})) : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 
-export function getDefaultDraft(options: Partial<Draft['params'] & Omit<Draft, 'params'>> = {}): Draft {
+export function getDefaultDraft(options: Partial<Mutable<CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
   const {
-    status = '',
-    inReplyToId,
-    visibility = 'public',
     attachments = [],
     initialText = '',
-    sensitive = false,
-    spoilerText = '',
+
+    status,
+    inReplyToId,
+    visibility,
+    sensitive,
+    spoilerText,
     language,
   } = options
 
   return {
-    params: {
-      status,
-      inReplyToId,
-      visibility,
-      sensitive,
-      spoilerText,
-      language,
-    },
     attachments,
     initialText,
+
+    params: {
+      status: status || '',
+      inReplyToId,
+      visibility: visibility || 'public',
+      sensitive: sensitive ?? false,
+      spoilerText: spoilerText || '',
+      language: language || 'en',
+    },
   }
 }
 

@@ -1,6 +1,6 @@
 import type { Account, AccountCredentials, Attachment, CreateStatusParams, Emoji, Instance, MastoClient, Notification, PushSubscription, Status } from 'masto'
 import type { Ref } from 'vue'
-import type { Mutable } from './utils'
+import type { MarkNonNullable, Mutable } from './utils'
 
 export interface AppInfo {
   id: string
@@ -59,9 +59,7 @@ export type TranslateFn = ReturnType<typeof useI18n>['t']
 export interface Draft {
   editingStatus?: Status
   initialText?: string
-  params: Omit<Mutable<CreateStatusParams>, 'status'> & {
-    status?: Exclude<CreateStatusParams['status'], null>
-  }
+  params: MarkNonNullable<Mutable<CreateStatusParams>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'>
   attachments: Attachment[]
 }
 export type DraftMap = Record<string, Draft>

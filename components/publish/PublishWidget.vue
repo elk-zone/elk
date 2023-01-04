@@ -333,9 +333,7 @@ defineExpose({
             </button>
 
             <template #popper>
-              <div min-w-80 p3>
-                <PublishLanguagePicker v-model="draft.params.language" />
-              </div>
+              <PublishLanguagePicker v-model="draft.params.language" min-w-80 p3 />
             </template>
           </CommonDropdown>
         </CommonTooltip>

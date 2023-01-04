@@ -3,6 +3,12 @@ definePageMeta({
   wideLayout: true,
 })
 
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => t('nav.settings'),
+})
+
 const route = useRoute()
 
 const isRootPath = computedEager(() => route.name === 'settings')

@@ -1,3 +1,11 @@
+<script setup lang="ts">
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => `${t('settings.preferences.label')} | ${t('nav.settings')}`,
+})
+</script>
+
 <template>
   <MainContent back-on-small-screen>
     <template #title>

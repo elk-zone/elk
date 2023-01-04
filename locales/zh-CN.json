@@ -248,7 +248,7 @@
       },
       "featured_tags": {
         "description": "人们可以在这些标签下浏览你的公共嘟文。",
-        "label": "精选的话题标签"
+        "label": "精选话题标签"
       },
       "label": "个人资料"
     },

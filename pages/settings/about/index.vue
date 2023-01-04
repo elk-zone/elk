@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { buildInfo } from 'virtual:build-info'
 
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => `${t('settings.about.label')} | ${t('nav.settings')}`,
+})
+
 let showCommit = $ref(buildInfo.env !== 'release' && buildInfo.env !== 'dev')
 const builtTime = useFormattedDateTime(buildInfo.time)
 

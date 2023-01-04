@@ -2,6 +2,12 @@
 import { fileOpen } from 'browser-fs-access'
 import type { UserLogin } from '~/types'
 
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => `${t('settings.users.label')} | ${t('nav.settings')}`,
+})
+
 const loggedInUsers = useUsers()
 
 async function exportTokens() {

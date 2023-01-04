@@ -9,6 +9,12 @@ definePageMeta({
   keepalive: false,
 })
 
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => `${t('settings.profile.appearance.title')} | ${t('nav.settings')}`,
+})
+
 const account = $computed(() => currentUser.value?.account)
 
 const onlineSrc = $computed(() => ({

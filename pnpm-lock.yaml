@@ -1,5 +1,8 @@
 lockfileVersion: 5.4
 
+overrides:
+  is-reference: ^3.0.1
+
 specifiers:
   '@antfu/eslint-config': ^0.34.0
   '@antfu/ni': ^0.18.8
@@ -25,6 +28,7 @@ specifiers:
   '@tiptap/starter-kit': 2.0.0-beta.204
   '@tiptap/suggestion': 2.0.0-beta.204
   '@tiptap/vue-3': 2.0.0-beta.204
+  '@types/estree': ^1.0.0
   '@types/file-saver': ^2.0.5
   '@types/fnando__sparkline': ^0.3.4
   '@types/fs-extra': ^9.0.13
@@ -39,6 +43,7 @@ specifiers:
   '@vueuse/integrations': ^9.9.0
   '@vueuse/motion': 2.0.0-beta.12
   '@vueuse/nuxt': ^9.9.0
+  astring: ^1.8.4
   blurhash: ^2.0.4
   browser-fs-access: ^0.31.1
   bumpp: ^8.2.1
@@ -59,6 +64,7 @@ specifiers:
   lru-cache: ^7.14.1
   masto: ^4.11.1
   nuxt: ^3.0.0
+  periscopic: ^3.0.4
   pinia: ^2.0.28
   postcss-nested: ^6.0.0
   prettier: ^2.8.1
@@ -68,6 +74,7 @@ specifiers:
   simple-git: ^3.15.1
   simple-git-hooks: ^2.8.1
   slimeform: ^0.8.0
+  source-map-js: ^1.0.2
   std-env: ^3.3.1
   tauri-plugin-log-api: github:tauri-apps/tauri-plugin-log
   tauri-plugin-store-api: github:tauri-apps/tauri-plugin-store
@@ -138,6 +145,7 @@ devDependencies:
   '@iconify-json/twemoji': 1.1.7
   '@nuxtjs/i18n': 8.0.0-beta.7
   '@pinia/nuxt': 0.4.6_typescript@4.9.4
+  '@types/estree': 1.0.0
   '@types/file-saver': 2.0.5
   '@types/fnando__sparkline': 0.3.4
   '@types/fs-extra': 9.0.13
@@ -148,6 +156,7 @@ devDependencies:
   '@vitejs/plugin-vue': 3.2.0
   '@vue-macros/nuxt': 0.2.2_3nbxte3dhogb6b7pemmre2vo4m
   '@vueuse/nuxt': 9.9.0_nuxt@3.0.0
+  astring: 1.8.4
   bumpp: 8.2.1
   emoji-mart: 5.4.0
   eslint: 8.30.0
@@ -157,17 +166,19 @@ devDependencies:
   jsdom: 20.0.3
   lint-staged: 13.1.0
   nuxt: 3.0.0_lzzuuodtsqwxnvqeq4g4likcqa
+  periscopic: 3.0.4
   postcss-nested: 6.0.0
   prettier: 2.8.1
   rollup-plugin-node-polyfills: 0.2.1
   simple-git: 3.15.1
   simple-git-hooks: 2.8.1
+  source-map-js: 1.0.2
   std-env: 3.3.1
   theme-vitesse: 0.6.0
   typescript: 4.9.4
   unplugin-auto-import: 0.12.1_@vueuse+core@9.9.0
   vite-plugin-inspect: 0.7.11
-  vite-plugin-pwa: 0.13.3
+  vite-plugin-pwa: 0.13.3_workbox-window@6.5.4
   vitest: 0.26.2_jsdom@20.0.3
   vue-tsc: 1.0.16_typescript@4.9.4
   workbox-window: 6.5.4
@@ -2021,7 +2032,7 @@ packages:
       defu: 6.1.1
       esbuild: 0.15.16
       escape-string-regexp: 5.0.0
-      estree-walker: 3.0.1
+      estree-walker: 3.0.2
       externality: 1.0.0
       fs-extra: 10.1.0
       get-port-please: 2.6.1
@@ -2081,7 +2092,7 @@ packages:
       '@vue/compiler-sfc': 3.2.45
       cookie-es: 0.5.0
       debug: 4.3.4
-      estree-walker: 3.0.1
+      estree-walker: 3.0.2
       is-https: 4.0.0
       js-cookie: 3.0.1
       knitwork: 1.0.0
@@ -2167,7 +2178,7 @@ packages:
       commondir: 1.0.1
       estree-walker: 2.0.2
       glob: 8.0.3
-      is-reference: 1.2.1
+      is-reference: 3.0.1
       magic-string: 0.26.7
       rollup: 2.79.1
     dev: true
@@ -3904,6 +3915,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /astring/1.8.4:
+    resolution: {integrity: sha512-97a+l2LBU3Op3bBQEff79i/E4jMD2ZLFD8rHx9B6mXyB2uQwhJQYfiDqUwtfjF4QA1F2qs//N6Cw8LetMbQjcw==}
+    hasBin: true
+    dev: true
+
   /async-sema/3.1.1:
     resolution: {integrity: sha512-tLRNUXati5MFePdAk8dw7Qt7DpxPB60ofAgn8WRhW6a2rcimZnYBP9oxHiv0OHy+Wz7kPMG+t4LGdt31+4EmGg==}
     dev: true
@@ -5614,8 +5630,8 @@ packages:
   /estree-walker/2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
 
-  /estree-walker/3.0.1:
-    resolution: {integrity: sha512-woY0RUD87WzMBUiZLx8NsYr23N5BKsOMZHhu2hoNRVh6NXGfoiT1KOL8G3UHlJAnEDGmfa5ubNA/AacfG+Kb0g==}
+  /estree-walker/3.0.2:
+    resolution: {integrity: sha512-C03BvXCQIH/po+PNPONx/zSM9ziPr9weX8xNhYb/IJtdJ9z+L4z9VKPTB+UTHdmhnIopA2kc419ueyVyHVktwA==}
 
   /esutils/2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
@@ -6528,8 +6544,8 @@ packages:
     resolution: {integrity: sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ==}
     dev: true
 
-  /is-reference/1.2.1:
-    resolution: {integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==}
+  /is-reference/3.0.1:
+    resolution: {integrity: sha512-baJJdQLiYaJdvFbJqXrcGv3WU3QCzBlUcI5QhbesIm6/xPsvmO+2CDoi/GMOFBQEQm+PXkwOPrp9KK5ozZsp2w==}
     dependencies:
       '@types/estree': 1.0.0
     dev: true
@@ -7505,7 +7521,7 @@ packages:
       defu: 6.1.1
       destr: 1.2.1
       escape-string-regexp: 5.0.0
-      estree-walker: 3.0.1
+      estree-walker: 3.0.2
       fs-extra: 10.1.0
       globby: 13.1.2
       h3: 1.0.1
@@ -7851,6 +7867,13 @@ packages:
 
   /perfect-debounce/0.1.3:
     resolution: {integrity: sha512-NOT9AcKiDGpnV/HBhI22Str++XWcErO/bALvHCuhv33owZW/CjH8KAFLZDCmu3727sihe0wTxpDhyGc6M8qacQ==}
+    dev: true
+
+  /periscopic/3.0.4:
+    resolution: {integrity: sha512-SFx68DxCv0Iyo6APZuw/AKewkkThGwssmU0QWtTlvov3VAtPX+QJ4CadwSaz8nrT5jPIuxdvJWB4PnD2KNDxQg==}
+    dependencies:
+      estree-walker: 3.0.2
+      is-reference: 3.0.1
     dev: true
 
   /picocolors/1.0.0:
@@ -9464,7 +9487,7 @@ packages:
     resolution: {integrity: sha512-RffJlpvLOtolWsn0fxXsuSDfwiWcR6cyuykw2e0+zAggvGW1SesXt9WxIWlWpJhwVCZD/WlxxLqKLS50Q0CkWA==}
     dependencies:
       acorn: 8.8.1
-      estree-walker: 3.0.1
+      estree-walker: 3.0.2
       magic-string: 0.26.7
       unplugin: 1.0.1
 
@@ -9925,10 +9948,11 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa/0.13.3:
+  /vite-plugin-pwa/0.13.3_workbox-window@6.5.4:
     resolution: {integrity: sha512-cjWXpZ7slAY14OKz7M8XdgTIi9wjf6OD6NkhiMAc+ogxnbUrecUwLdRtfGPCPsN2ftut5gaN1jTghb11p6IQAA==}
     peerDependencies:
       vite: ^3.1.0
+      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.1
       debug: 4.3.4

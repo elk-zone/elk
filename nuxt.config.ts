@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     '~/modules/build-info',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/tauri/index',
+    '~/modules/plugin/index',
   ],
   experimental: {
     payloadExtraction: false,

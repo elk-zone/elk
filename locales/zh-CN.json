@@ -164,39 +164,6 @@
     "missing_type": "未知的通知类型：",
     "reblogged_post": "转发了你的帖文",
     "request_to_follow": "请求关注你",
-    "settings": {
-      "alerts": {
-        "favourite": "喜欢的",
-        "follow": "新的关注者",
-        "mention": "提及",
-        "poll": "投票",
-        "reblog": "转发了你的帖文",
-        "title": "接收了什么通知？"
-      },
-      "close_btn": "关闭桌面通知设置",
-      "policy": {
-        "all": "任何人",
-        "followed": "我关注的人",
-        "follower": "关注我的人",
-        "none": "无人",
-        "title": "我可以从谁那里接收通知？"
-      },
-      "save_settings": "保存设置改动",
-      "show_btn": "打开桌面通知设置",
-      "title": "桌面通知设置",
-      "undo_settings": "撤销设置改动",
-      "unsubscribe": "禁用桌面通知",
-      "unsubscribed_with_warning": "通过点击“@:{'notification.settings.warning.enable_desktop'}”按钮来启用接收此账号的通知。",
-      "unsupported": "你的浏览器不支持桌面通知",
-      "warning": {
-        "enable_close": "关闭",
-        "enable_description": "若想在鹿鸣没有打开时接收通知，请启用桌面通知功能。一旦启动，你可以通过上面的“打开设置”按钮来 精确控制哪种类型的互动可以产生桌面通知。",
-        "enable_description_short": "若想在鹿鸣没有打开时修改桌面通知设置，请启用桌面通知功能。",
-        "enable_desktop": "启用桌面通知功能",
-        "enable_title": "不错过任何事",
-        "re_auth": "您的服务器似乎不支持推送通知。尝试退出用户并重新登录。如果此消息仍然出现，请联系您服务器的管理员。"
-      }
-    },
     "signed_up": "注册了",
     "update_status": "更新了他们的状态"
   },
@@ -237,6 +204,49 @@
     "language": {
       "display_language": "首选语言",
       "label": "语言"
+    },
+    "notification_settings": "通知设置",
+    "notifications": {
+      "label": "通知",
+      "notifications": {
+        "label": "Notifications",
+        "notifications": {
+          "label": "Notifications settings"
+        }
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "喜欢的",
+          "follow": "新的关注者",
+          "mention": "提及",
+          "poll": "投票",
+          "reblog": "转发了你的帖文",
+          "title": "接收了什么通知？"
+        },
+        "description": "Receive notifications even when you are not using Elk.",
+        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
+        "label": "Push notifications settings",
+        "policy": {
+          "all": "任何人",
+          "followed": "我关注的人",
+          "follower": "关注我的人",
+          "none": "无人",
+          "title": "我可以从谁那里接收通知？"
+        },
+        "save_settings": "保存设置改动",
+        "undo_settings": "撤销设置改动",
+        "unsubscribe": "禁用桌面通知",
+        "unsupported": "你的浏览器不支持桌面通知",
+        "warning": {
+          "enable_close": "关闭",
+          "enable_description": "若想在鹿鸣没有打开时接收通知，请启用桌面通知功能。一旦启动，你可以通过上面的“打开设置”按钮来 精确控制哪种类型的互动可以产生桌面通知。",
+          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_desktop": "启用桌面通知功能",
+          "enable_title": "不错过任何事",
+          "re_auth": "您的服务器似乎不支持推送通知。尝试退出用户并重新登录。如果此消息仍然出现，请联系您服务器的管理员。"
+        }
+      },
+      "show_btn": "Go to notifications settings"
     },
     "preferences": {
       "label": "首选项"

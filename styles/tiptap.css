@@ -6,6 +6,7 @@
   opacity: 0.4;
 }
 
-span[data-type='mention'] {
+span[data-type='mention'],
+span[data-type='hashtag'] {
   --at-apply: text-primary;
 }

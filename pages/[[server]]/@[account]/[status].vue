@@ -61,7 +61,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template v-if="!pending">
-      <div v-if="status" mt--1px border="b base" mb="50vh">
+      <div v-if="status" xl:mt-4 border="b base" mb="50vh">
         <template v-for="comment of context?.ancestors" :key="comment.id">
           <StatusCard
             :status="comment" :actions="comment.visibility !== 'direct'" context="account"

@@ -91,7 +91,7 @@ const handleShowCommit = () => {
         external target="_blank"
       >
         <template #icon>
-          <img :src="`https://github.com/${team.github}.png?size=64`" :alt="team.display" rounded-full w-8 h-8 height="32" width="32">
+          <img :src="`https://github.com/${team.github}.png?size=100`" :alt="team.display" rounded-full w-8 h-8 height="32" width="32">
         </template>
       </SettingsItem>
     </template>

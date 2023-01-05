@@ -32,7 +32,7 @@ const emit = defineEmits<{
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of teams" :key="team.github">
         <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
-          <img :src="`https://res.cloudinary.com/dchoja2nb/image/twitter_name/h_120,w_120/f_auto/${team.twitter}.jpg`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
+          <img :src="`https://github.com/${team.github}.png?size=60`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
         </a>
       </template>
     </p>

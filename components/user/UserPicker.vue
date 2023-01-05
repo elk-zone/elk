@@ -25,7 +25,7 @@ const switchUser = (user: UserLogin) => {
           hover="filter-none op100"
           @click="switchUser(user)"
         >
-          <AccountAvatar w-13 h-13 :account="user.account" />
+          <AccountAvatar w-13 h-13 :account="user.account" square />
         </button>
       </template>
     </div>

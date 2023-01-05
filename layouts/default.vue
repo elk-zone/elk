@@ -28,7 +28,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
                         hover:bg-active cursor-pointer transition-100
                         :to="getAccountRoute(currentUser.account)"
                       >
-                        <AccountInfo :account="currentUser.account" md:break-words />
+                        <AccountInfo :account="currentUser.account" md:break-words square />
                       </NuxtLink>
                       <UserDropdown />
                     </div>

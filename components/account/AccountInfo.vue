@@ -5,6 +5,7 @@ const { account, as = 'div' } = defineProps<{
   account: Account
   as?: string
   hoverCard?: boolean
+  square?: boolean
 }>()
 
 defineOptions({
@@ -17,7 +18,7 @@ defineOptions({
 <template>
   <component :is="as" flex gap-3 v-bind="$attrs">
     <AccountHoverWrapper :disabled="!hoverCard" :account="account">
-      <AccountBigAvatar :account="account" shrink-0 />
+      <AccountBigAvatar :account="account" shrink-0 :square="square" />
     </AccountHoverWrapper>
     <div flex="~ col" shrink overflow-hidden justify-center leading-none>
       <div flex="~" gap-2>

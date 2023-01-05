@@ -220,6 +220,7 @@
     "about": {
       "label": "关于"
     },
+    "account_settings": "账号设置",
     "feature_flags": {
       "github_cards": "GitHub 卡片",
       "title": "实验功能",
@@ -232,7 +233,14 @@
       "default": "（默认）",
       "font_size": "字号",
       "label": "外观",
-      "light_mode": "亮色模式"
+      "light_mode": "亮色模式",
+      "size_label": {
+        "lg": "大",
+        "md": "中",
+        "sm": "小",
+        "xl": "特大",
+        "xs": "特小"
+      }
     },
     "language": {
       "display_language": "首选语言",
@@ -336,7 +344,8 @@
     "year_past": "现在|去年|{n} 年前"
   },
   "timeline": {
-    "show_new_items": "展示 {v} 条新帖文"
+    "show_new_items": "展示 {v} 条新帖文",
+    "view_older_posts": "其他站点上更老的嘟文可能不会在这里显示。"
   },
   "title": {
     "federated_timeline": "跨站时间线",

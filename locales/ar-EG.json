@@ -158,39 +158,6 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "اعاد نشر منشورك",
     "request_to_follow": "طلب(ت) متابعتك",
-    "settings": {
-      "alerts": {
-        "favourite": "المفضلة",
-        "follow": "متابعين جدد",
-        "mention": "المنشورات التي تذكرني",
-        "poll": "استطلاعات الرأي",
-        "reblog": "إعادة نشر منشورك",
-        "title": "ما هي التنبيهات التي تريد تلقيها؟"
-      },
-      "close_btn": "أغلق إعدادات التنبيهات",
-      "policy": {
-        "all": "من اي شخص",
-        "followed": "من الناس الذين أتابعهم",
-        "follower": "من الناس الذين يتبعونني",
-        "none": "من لا أحد",
-        "title": "من الذي يمكنني تلقي التنبيهات منه؟"
-      },
-      "save_settings": "حفظ التغييرات الإعدادات",
-      "show_btn": "إظهار إعدادات التنبيهات",
-      "title": "إعدادات التنبيهات",
-      "undo_settings": "تراجع عن تغييرات الإعدادات",
-      "unsubscribe": "تعطيل التنبيهات",
-      "unsubscribed_with_warning": "مكّن الإشعارات لتلقي التنبيهات من هذا الحساب بالنقر فوق الزر \"@:notification.settings.warning.enable_desktop{'\"'}",
-      "unsupported": "متصفحك لا يدعم التنبيهات",
-      "warning": {
-        "enable_close": "أغلق",
-        "enable_description": "لتلقي التنبيهات عندما لا يكون Elk مفتوحًا، قم بتمكين تنبيهات النظام. يمكنك التحكم بدقة في أنواع التفاعلات التي تنشئ تنبيهات النظام عبر الزر \"Show Settings\" أعلاه.",
-        "enable_description_short": "لتغيير إعدادات تنبيهات النظام عندما لا يكون Elk مفتوحًا، يجب أولاً تمكين تنبيهات النظام.",
-        "enable_desktop": "تفعيل تنبيهات النظام",
-        "enable_title": "لا تفوت عليك أي شيء",
-        "re_auth": "يبدو أن الخادم الخاص بك لا يدعم دفع التنبيهات. حاول تسجيل الخروج ثم تسجيل الدخول مرة أخرى ، إذا استمرت هذه الرسالة في الظهور ، فاتصل بمسؤول الخادم."
-      }
-    },
     "signed_up": "تسجل",
     "update_status": "قام(ت) بتحديث حالته(ا)"
   },
@@ -232,6 +199,46 @@
       "display_language": "اللغة المعروضة",
       "label": "اللغة"
     },
+    "notifications": {
+      "label": "Notifications",
+      "notifications": {
+        "label": "Notifications settings"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "المفضلة",
+          "follow": "متابعين جدد",
+          "mention": "المنشورات التي تذكرني",
+          "poll": "استطلاعات الرأي",
+          "reblog": "إعادة نشر منشورك",
+          "title": "ما هي التنبيهات التي تريد تلقيها؟"
+        },
+        "description": "Receive notifications even when you are not using Elk.",
+        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
+        "label": "Push notifications settings",
+        "policy": {
+          "all": "من اي شخص",
+          "followed": "من الناس الذين أتابعهم",
+          "follower": "من الناس الذين يتبعونني",
+          "none": "من لا أحد",
+          "title": "من الذي يمكنني تلقي التنبيهات منه؟"
+        },
+        "save_settings": "حفظ التغييرات الإعدادات",
+        "undo_settings": "تراجع عن تغييرات الإعدادات",
+        "unsubscribe": "تعطيل التنبيهات",
+        "unsupported": "متصفحك لا يدعم التنبيهات",
+        "warning": {
+          "enable_close": "أغلق",
+          "enable_description": "لتلقي التنبيهات عندما لا يكون Elk مفتوحًا، قم بتمكين تنبيهات النظام. يمكنك التحكم بدقة في أنواع التفاعلات التي تنشئ تنبيهات النظام عبر الزر \"Show Settings\" أعلاه.",
+          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_desktop": "تفعيل تنبيهات النظام",
+          "enable_title": "لا تفوت عليك أي شيء",
+          "re_auth": "يبدو أن الخادم الخاص بك لا يدعم دفع التنبيهات. حاول تسجيل الخروج ثم تسجيل الدخول مرة أخرى ، إذا استمرت هذه الرسالة في الظهور ، فاتصل بمسؤول الخادم."
+        }
+      },
+      "show_btn": "Go to notifications settings"
+    },
+    "notifications_settings": "Notifications",
     "preferences": {
       "label": "التفضيلات"
     },

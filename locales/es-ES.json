@@ -158,45 +158,6 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "retooteó tu publicación",
     "request_to_follow": "ha solicitado seguirte",
-    "settings": {
-      "alerts": {
-        "favourite": "Favoritos",
-        "follow": "Nuevos seguidores",
-        "mention": "Menciones",
-        "poll": "Encuestas",
-        "reblog": "Retooteo de tus publicaciones",
-        "title": "¿Qué notificaciones recibir?"
-      },
-      "close_btn": "Cerrar ajustes de las notificaciones push",
-      "policy": {
-        "all": "De cualquier persona",
-        "followed": "De personas que sigo",
-        "follower": "De personas que me siguen",
-        "none": "De nadie",
-        "title": "¿De quién puedo recibir notificaciones?"
-      },
-      "save_settings": "Guardar cambios",
-      "show_btn": "Mostrar ajustes de las notificaciones push",
-      "subscription_error": {
-        "clear_error": "Limpiar error",
-        "permission_denied": "Permiso denegado: habilite las notificaciones en su navegador.",
-        "request_error": "Se produjo un error al solicitar la suscripción, inténtalo de nuevo y si el error persiste, notifique la incidencia en el repositorio de Elk.",
-        "title": "No se pudo suscribir a las notificaciones push"
-      },
-      "title": "Ajustes de notificaciones push",
-      "undo_settings": "Deshacer cambios",
-      "unsubscribe": "Cancelar notificaciones push",
-      "unsubscribed_with_warning": "Habilite las notificaciones push para recibir notificaciones de esta cuenta haciendo clic en el botón \"@:notification.settings.warning.enable_desktop{'\"'}.",
-      "unsupported": "Tu navegador no soporta notificaciones push.",
-      "warning": {
-        "enable_close": "Cerrar",
-        "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones push. Puedes controlar con precisión qué tipos de interacciones generan notificaciones push a través del botón \"@:notification.settings.show_btn{'\"'} de arriba una vez que estén habilitadas.",
-        "enable_description_short": "Para cambiar los ajustes de las notificaciones push cuando Elk no esté abierto, debe habilitar antes las notificaciones push.",
-        "enable_desktop": "Habilitar notificaciones push",
-        "enable_title": "Nunca te pierdas nada",
-        "re_auth": "Parace que su servidor no soporta notificaciones push. Pruebe a cerrar la sesión y volver a iniciarla, si este mensaje sigue apareciendo contacte con el administrador de su servidor."
-      }
-    },
     "update_status": "ha actualizado su estado"
   },
   "placeholder": {
@@ -234,6 +195,53 @@
       "display_language": "Idioma de la pantalla",
       "label": "Idioma"
     },
+    "notifications": {
+      "label": "Notificaciones",
+      "notifications": {
+        "label": "Ajustes de las notificaciones"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favoritos",
+          "follow": "Nuevos seguidores",
+          "mention": "Menciones",
+          "poll": "Encuestas",
+          "reblog": "Retooteo de tus publicaciones",
+          "title": "¿Qué notificaciones recibir?"
+        },
+        "description": "Reciba notificaciones incluso cuando no esté utilizando Elk.",
+        "instructions": "¡No olvide guardar los cambios utilizando el botón @:settings.notifications.push_notifications.save_settings{'!'}",
+        "label": "Ajustes de las notificaciones push",
+        "policy": {
+          "all": "De cualquier persona",
+          "followed": "De personas que sigo",
+          "follower": "De personas que me siguen",
+          "none": "De nadie",
+          "title": "¿De quién puedo recibir notificaciones?"
+        },
+        "save_settings": "Guardar cambios",
+        "subscription_error": {
+          "clear_error": "Limpiar error",
+          "permission_denied": "Permiso denegado: habilite las notificaciones en su navegador.",
+          "request_error": "Se produjo un error al solicitar la suscripción, inténtalo de nuevo y si el error persiste, notifique la incidencia en el repositorio de Elk.",
+          "title": "No se pudo suscribir a las notificaciones push"
+        },
+        "title": "Ajustes de notificaciones push",
+        "undo_settings": "Deshacer cambios",
+        "unsubscribe": "Cancelar notificaciones push",
+        "unsupported": "Tu navegador no soporta notificaciones push.",
+        "warning": {
+          "enable_close": "Cerrar",
+          "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones push. Puedes controlar con precisión qué tipos de interacciones generan notificaciones push a través del botón \"@:settings.notifications.show_btn{'\"'} de arriba una vez que estén habilitadas.",
+          "enable_description_settings": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones push. Podrás controlar con precisión qué tipos de interacciones generan notificaciones push en esta misma pantalla una vez las habilite.",
+          "enable_desktop": "Habilitar notificaciones push",
+          "enable_title": "Nunca te pierdas nada",
+          "re_auth": "Parace que su servidor no soporta notificaciones push. Pruebe a cerrar la sesión y volver a iniciarla, si este mensaje sigue apareciendo contacte con el administrador de su servidor."
+        }
+      },
+      "show_btn": "Ir a ajustes de las notificaciones"
+    },
+    "notifications_settings": "Notificaciones",
     "preferences": {
       "label": "Preferencias"
     },

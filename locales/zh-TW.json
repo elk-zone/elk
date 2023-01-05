@@ -161,39 +161,6 @@
     "missing_type": "未知的通知類型：",
     "reblogged_post": "轉發了你的帖文",
     "request_to_follow": "請求關注你",
-    "settings": {
-      "alerts": {
-        "favourite": "喜歡的",
-        "follow": "新的關注者",
-        "mention": "提及",
-        "poll": "投票",
-        "reblog": "轉發了你的帖文",
-        "title": "接收了什麼通知？"
-      },
-      "close_btn": "關閉桌面通知設置",
-      "policy": {
-        "all": "任何人",
-        "followed": "我關注的人",
-        "follower": "關注我的人",
-        "none": "無人",
-        "title": "我可以從誰那裡接收通知？"
-      },
-      "save_settings": "保存設置改動",
-      "show_btn": "打開桌面通知設置",
-      "title": "桌面通知設置",
-      "undo_settings": "撤銷設置改動",
-      "unsubscribe": "禁用桌面通知",
-      "unsubscribed_with_warning": "通過點擊“@:{'notification.settings.warning.enable_desktop'}”按鈕來啟用接收此賬號的通知。",
-      "unsupported": "你的瀏覽器不支持桌面通知",
-      "warning": {
-        "enable_close": "關閉",
-        "enable_description": "若想在鹿鳴沒有打開時接收通知，請啟用桌面通知功能。一旦啟動，你可以通過上面的“打開設置”按鈕來 精確控制哪種類型的互動可以產生桌面通知。",
-        "enable_description_short": "若想在鹿鳴沒有打開時修改桌面通知設置，請啟用桌面通知功能。",
-        "enable_desktop": "啟用桌面通知功能",
-        "enable_title": "不錯過任何事",
-        "re_auth": "您的服務器似乎不支持推送通知。嘗試退出用戶並重新登錄。如果此消息仍然出現，請聯繫您服務器的管理員。"
-      }
-    },
     "signed_up": "註冊了",
     "update_status": "更新了他們的狀態"
   },
@@ -235,6 +202,46 @@
       "display_language": "首選語言",
       "label": "語言"
     },
+    "notifications": {
+      "label": "Notifications",
+      "notifications": {
+        "label": "Notifications settings"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "喜歡的",
+          "follow": "新的關注者",
+          "mention": "提及",
+          "poll": "投票",
+          "reblog": "轉發了你的帖文",
+          "title": "接收了什麼通知？"
+        },
+        "description": "Receive notifications even when you are not using Elk.",
+        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
+        "label": "Push notifications settings",
+        "policy": {
+          "all": "任何人",
+          "followed": "我關注的人",
+          "follower": "關注我的人",
+          "none": "無人",
+          "title": "我可以從誰那裡接收通知？"
+        },
+        "save_settings": "保存設置改動",
+        "undo_settings": "撤銷設置改動",
+        "unsubscribe": "禁用桌面通知",
+        "unsupported": "你的瀏覽器不支持桌面通知",
+        "warning": {
+          "enable_close": "關閉",
+          "enable_description": "若想在鹿鳴沒有打開時接收通知，請啟用桌面通知功能。一旦啟動，你可以通過上面的“打開設置”按鈕來 精確控制哪種類型的互動可以產生桌面通知。",
+          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_desktop": "啟用桌面通知功能",
+          "enable_title": "不錯過任何事",
+          "re_auth": "您的服務器似乎不支持推送通知。嘗試退出用戶並重新登錄。如果此消息仍然出現，請聯繫您服務器的管理員。"
+        }
+      },
+      "show_btn": "Go to notifications settings"
+    },
+    "notifications_settings": "Notifications",
     "preferences": {
       "label": "首選項"
     },

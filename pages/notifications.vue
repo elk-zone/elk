@@ -4,7 +4,6 @@ definePageMeta({
 })
 
 const { t } = useI18n()
-const showSettings = ref(false)
 const pwaEnabled = useRuntimeConfig().public.pwaEnabled
 
 const tabs = $computed(() => [
@@ -19,10 +18,6 @@ const tabs = $computed(() => [
     display: t('tab.notifications_mention'),
   },
 ] as const)
-
-onActivated(() => {
-  showSettings.value = false
-})
 </script>
 
 <template>
@@ -34,15 +29,15 @@ onActivated(() => {
       </NuxtLink>
     </template>
 
-    <template v-if="pwaEnabled" #actions>
-      <button
+    <template #actions>
+      <NuxtLink
         flex rounded-4 p1
         hover:bg-active cursor-pointer transition-100
-        :title="showSettings ? t('notification.settings.close_btn') : t('notification.settings.show_btn')"
-        @click="showSettings = !showSettings"
+        :title="t('settings.notifications.show_btn')"
+        to="/settings/notifications"
       >
-        <span aria-hidden="true" :class="showSettings ? 'i-ri:close-line' : 'i-ri:settings-line'" />
-      </button>
+        <span aria-hidden="true" i-ri:notification-badge-line />
+      </NuxtLink>
     </template>
 
     <template #header>
@@ -51,7 +46,7 @@ onActivated(() => {
 
     <slot>
       <template v-if="pwaEnabled">
-        <NotificationPreferences :show="showSettings" />
+        <NotificationPreferences />
       </template>
 
       <NuxtPage />

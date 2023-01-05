@@ -2,7 +2,7 @@
 import NotificationSubscribePushNotificationError
   from '~/components/notification/NotificationSubscribePushNotificationError.vue'
 
-defineProps<{ show: boolean }>()
+defineProps<{ show?: boolean }>()
 
 const {
   pushNotificationData,
@@ -71,12 +71,12 @@ const doSubscribe = async () => {
   try {
     const result = await subscribe()
     if (result !== 'subscribed') {
-      subscribeError = t(`notification.settings.subscription_error.${result === 'notification-denied' ? 'permission_denied' : 'request_error'}`)
+      subscribeError = t(`settings.notifications.push_notifications.subscription_error.${result === 'notification-denied' ? 'permission_denied' : 'request_error'}`)
       showSubscribeError = true
     }
   }
   catch {
-    subscribeError = t('notification.settings.subscription_error.request_error')
+    subscribeError = t('settings.notifications.push_notifications.subscription_error.request_error')
     showSubscribeError = true
   }
   finally {
@@ -103,40 +103,41 @@ onActivated(() => (busy = false))
 </script>
 
 <template>
-  <div v-if="pwaEnabled && (showWarning || show)">
+  <section v-if="pwaEnabled && (showWarning || show)" aria-labelledby="pn-s">
     <Transition name="slide-down">
-      <div v-if="show" flex="~ col" border="b base" px5 py4>
-        <header flex items-center pb-2>
-          <h2 id="notifications-title" text-md font-bold w-full>
-            {{ $t('notification.settings.title') }}
-          </h2>
-        </header>
+      <div v-if="show" flex="~ col" border="b base">
+        <h3 id="pn-settings" px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
+          {{ $t('settings.notifications.push_notifications.label') }}
+        </h3>
         <template v-if="isSupported">
           <div v-if="isSubscribed" flex="~ col">
-            <form flex="~ col" gap-y-2 @submit.prevent="saveSettings">
+            <form flex="~ col" gap-y-2 px6 pb4 @submit.prevent="saveSettings">
+              <p id="pn-instructions" text-sm pb2 aria-hidden="true">
+                {{ $t('settings.notifications.push_notifications.instructions') }}
+              </p>
               <fieldset flex="~ col" gap-y-1 py-1>
-                <legend>{{ $t('notification.settings.alerts.title') }}</legend>
-                <CommonCheckbox v-model="pushNotificationData.follow" hover :label="$t('notification.settings.alerts.follow')" />
-                <CommonCheckbox v-model="pushNotificationData.favourite" hover :label="$t('notification.settings.alerts.favourite')" />
-                <CommonCheckbox v-model="pushNotificationData.reblog" hover :label="$t('notification.settings.alerts.reblog')" />
-                <CommonCheckbox v-model="pushNotificationData.mention" hover :label="$t('notification.settings.alerts.mention')" />
-                <CommonCheckbox v-model="pushNotificationData.poll" hover :label="$t('notification.settings.alerts.poll')" />
+                <legend>{{ $t('settings.notifications.push_notifications.alerts.title') }}</legend>
+                <CommonCheckbox v-model="pushNotificationData.follow" hover :label="$t('settings.notifications.push_notifications.alerts.follow')" />
+                <CommonCheckbox v-model="pushNotificationData.favourite" hover :label="$t('settings.notifications.push_notifications.alerts.favourite')" />
+                <CommonCheckbox v-model="pushNotificationData.reblog" hover :label="$t('settings.notifications.push_notifications.alerts.reblog')" />
+                <CommonCheckbox v-model="pushNotificationData.mention" hover :label="$t('settings.notifications.push_notifications.alerts.mention')" />
+                <CommonCheckbox v-model="pushNotificationData.poll" hover :label="$t('settings.notifications.push_notifications.alerts.poll')" />
               </fieldset>
               <fieldset flex="~ col" gap-y-1 py-1>
-                <legend>{{ $t('notification.settings.policy.title') }}</legend>
-                <CommonRadio v-model="pushNotificationData.policy" hover value="all" :label="$t('notification.settings.policy.all')" />
-                <CommonRadio v-model="pushNotificationData.policy" hover value="followed" :label="$t('notification.settings.policy.followed')" />
-                <CommonRadio v-model="pushNotificationData.policy" hover value="follower" :label="$t('notification.settings.policy.follower')" />
-                <CommonRadio v-model="pushNotificationData.policy" hover value="none" :label="$t('notification.settings.policy.none')" />
+                <legend>{{ $t('settings.notifications.push_notifications.policy.title') }}</legend>
+                <CommonRadio v-model="pushNotificationData.policy" hover value="all" :label="$t('settings.notifications.push_notifications.policy.all')" />
+                <CommonRadio v-model="pushNotificationData.policy" hover value="followed" :label="$t('settings.notifications.push_notifications.policy.followed')" />
+                <CommonRadio v-model="pushNotificationData.policy" hover value="follower" :label="$t('settings.notifications.push_notifications.policy.follower')" />
+                <CommonRadio v-model="pushNotificationData.policy" hover value="none" :label="$t('settings.notifications.push_notifications.policy.none')" />
               </fieldset>
-              <div flex="~ col" gap-y-4 py-1 sm="~ justify-between flex-row">
+              <div flex="~ col" gap-y-4 gap-x-2 py-1 sm="~ justify-between flex-row">
                 <button
                   btn-solid font-bold py2 full-w sm-wa flex="~ gap2 center"
                   :class="busy || !saveEnabled ? 'border-transparent' : null"
                   :disabled="busy || !saveEnabled"
                 >
                   <span :class="busy && animateSave ? 'i-ri:loader-2-fill animate-spin' : 'i-ri:save-2-fill'" />
-                  {{ $t('notification.settings.save_settings') }}
+                  {{ $t('settings.notifications.push_notifications.save_settings') }}
                 </button>
                 <button
                   btn-outline font-bold py2 full-w sm-wa flex="~ gap2 center"
@@ -146,7 +147,7 @@ onActivated(() => (busy = false))
                   @click="undoChanges"
                 >
                   <span aria-hidden="true" class="i-material-symbols:undo-rounded" />
-                  {{ $t('notification.settings.undo_settings') }}
+                  {{ $t('settings.notifications.push_notifications.undo_settings') }}
                 </button>
               </div>
             </form>
@@ -158,19 +159,14 @@ onActivated(() => (busy = false))
                 :disabled="busy"
               >
                 <span aria-hidden="true" :class="busy && animateRemoveSubscription ? 'i-ri:loader-2-fill animate-spin' : 'i-material-symbols:cancel-rounded'" />
-                {{ $t('notification.settings.unsubscribe') }}
+                {{ $t('settings.notifications.push_notifications.unsubscribe') }}
               </button>
             </form>
           </div>
           <template v-else>
-            <p v-if="showWarning" role="alert" aria-labelledby="notifications-title">
-              {{ $t('notification.settings.unsubscribed_with_warning') }}
-            </p>
             <NotificationEnablePushNotification
-              v-else
               :animate="animateSubscription"
               :busy="busy"
-              :show-re-auth-message="!showWarning"
               @hide="hideNotification"
               @subscribe="doSubscribe"
             >
@@ -185,15 +181,16 @@ onActivated(() => (busy = false))
             </NotificationEnablePushNotification>
           </template>
         </template>
-        <p v-else role="alert" aria-labelledby="notifications-unsupported">
-          {{ $t('notification.settings.unsupported') }}
-        </p>
+        <div v-else px6 pb4 role="alert" aria-labelledby="n-unsupported">
+          <p id="n-unsupported">
+            {{ $t('settings.notifications.push_notifications.unsupported') }}
+          </p>
+        </div>
       </div>
     </Transition>
     <NotificationEnablePushNotification
-      v-if="showWarning"
-      show-re-auth-message
-      with-header
+      v-if="showWarning && !show"
+      closeable-header
       px5
       py4
       :animate="animateSubscription"
@@ -210,5 +207,5 @@ onActivated(() => (busy = false))
         </Transition>
       </template>
     </NotificationEnablePushNotification>
-  </div>
+  </section>
 </template>

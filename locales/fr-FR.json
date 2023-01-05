@@ -161,45 +161,6 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "a relayé votre message",
     "request_to_follow": "vous demande de le suivre",
-    "settings": {
-      "alerts": {
-        "favourite": "Favoris",
-        "follow": "Nouveaux abonné·e·s",
-        "mention": "Mentions",
-        "poll": "Sondages",
-        "reblog": "A republié votre message",
-        "title": "Quelles notifications recevoir ?"
-      },
-      "close_btn": "Fermer les paramètres des notifications push",
-      "policy": {
-        "all": "De n'importe qui",
-        "followed": "Des personnes que je suis",
-        "follower": "Des personnes qui me suivent",
-        "none": "De personne",
-        "title": "De que je peux recevoir des notifications ?"
-      },
-      "save_settings": "Enregistrer les paramètres",
-      "show_btn": "Montrer les paramètres de notification push",
-      "subscription_error": {
-        "clear_error": "Effacer l'erreur",
-        "permission_denied": "Autorisation refusée : activez les notifications dans votre navigateur.",
-        "request_error": "Une erreur s'est produite lors de la demande d'abonnement, réessayez et si l'erreur persiste, veuillez signaler le problème auprès du dépôt Elk.",
-        "title": "Impossible de s'abonner aux notifications push"
-      },
-      "title": "Paramètres des notifications push",
-      "undo_settings": "Annuler les changements de paramètres",
-      "unsubscribe": "Désactiver les notifications push",
-      "unsubscribed_with_warning": "Activez les notifications pour recevoir des notifications de ce compte en cliquant sur le bouton \"@:notification.settings.warning.enable_desktop{'\"'}.",
-      "unsupported": "Votre navigateur ne prend pas en charge les notifications push.",
-      "warning": {
-        "enable_close": "Fermer",
-        "enable_description": "Pour recevoir des notifications lorsque Elk n'est pas ouvert, activez les notifications push. \nVous pouvez contrôler précisément quels types d'interactions génèrent des notifications push via le bouton \"@:notification.settings.show_btn{'\"'} ci-dessus une fois activé.",
-        "enable_description_short": "Pour modifier les paramètres des notifications push lorsque Elk n'est pas ouvert, vous devez d'abord activer les notifications push.",
-        "enable_desktop": "Activer les notifications push",
-        "enable_title": "Ne manquez jamais rien",
-        "re_auth": "Il semble que votre serveur ne supporte pas les notifications push. \nEssayez de vous déconnecter et de vous reconnecter, si ce message persiste, contactez l'administrateur de votre serveur."
-      }
-    },
     "signed_up": "s'est inscrit·e",
     "update_status": "a posté un nouveau message"
   },
@@ -241,6 +202,52 @@
       "display_language": "Langue d'affichage",
       "label": "Langue"
     },
+    "notifications": {
+      "label": "Notifications",
+      "notifications": {
+        "label": "Notifications settings"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favoris",
+          "follow": "Nouveaux abonné·e·s",
+          "mention": "Mentions",
+          "poll": "Sondages",
+          "reblog": "A republié votre message",
+          "title": "Quelles notifications recevoir ?"
+        },
+        "description": "Receive notifications even when you are not using Elk.",
+        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
+        "label": "Push notifications settings",
+        "policy": {
+          "all": "De n'importe qui",
+          "followed": "Des personnes que je suis",
+          "follower": "Des personnes qui me suivent",
+          "none": "De personne",
+          "title": "De que je peux recevoir des notifications ?"
+        },
+        "save_settings": "Enregistrer les paramètres",
+        "subscription_error": {
+          "clear_error": "Effacer l'erreur",
+          "permission_denied": "Autorisation refusée : activez les notifications dans votre navigateur.",
+          "request_error": "Une erreur s'est produite lors de la demande d'abonnement, réessayez et si l'erreur persiste, veuillez signaler le problème auprès du dépôt Elk.",
+          "title": "Impossible de s'abonner aux notifications push"
+        },
+        "undo_settings": "Annuler les changements de paramètres",
+        "unsubscribe": "Désactiver les notifications push",
+        "unsupported": "Votre navigateur ne prend pas en charge les notifications push.",
+        "warning": {
+          "enable_close": "Fermer",
+          "enable_description": "Pour recevoir des notifications lorsque Elk n'est pas ouvert, activez les notifications push. \nVous pouvez contrôler précisément quels types d'interactions génèrent des notifications push via le bouton \"@:settings.notifications.show_btn{'\"'} ci-dessus une fois activé.",
+          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_desktop": "Activer les notifications push",
+          "enable_title": "Ne manquez jamais rien",
+          "re_auth": "Il semble que votre serveur ne supporte pas les notifications push. \nEssayez de vous déconnecter et de vous reconnecter, si ce message persiste, contactez l'administrateur de votre serveur."
+        }
+      },
+      "show_btn": "Go to notifications settings"
+    },
+    "notifications_settings": "Notifications settings",
     "preferences": {
       "label": "Préférences"
     },

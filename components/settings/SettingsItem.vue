@@ -6,6 +6,7 @@ const props = defineProps<{
   icon?: string
   to?: string | Record<string, string>
   command?: boolean
+  disabled?: boolean
   external?: true
 }>()
 
@@ -33,10 +34,13 @@ useCommand({
 
 <template>
   <NuxtLink
+    :disabled="disabled"
     :to="to"
     :external="external"
     exact-active-class="text-primary"
+    :class="disabled ? 'op25 pointer-events-none ' : ''"
     block w-full group focus:outline-none
+    :tabindex="disabled ? -1 : null"
     @click="to ? $scrollToTop() : undefined"
   >
     <div

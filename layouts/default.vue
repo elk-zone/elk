@@ -17,7 +17,9 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
                 <PublishButton ms5.5 mt4 xl:me8 xl:ms4 />
               </div>
               <div v-if="isMastoInitialised" flex flex-col>
-                <UserSignInEntry v-if="!currentUser" sm:hidden />
+                <div hidden xl:block>
+                  <UserSignInEntry v-if="!currentUser" />
+                </div>
                 <div v-if="currentUser" p6 pb8 w-full>
                   <div hidden xl-block>
                     <UserPicker v-if="showUserPicker" />

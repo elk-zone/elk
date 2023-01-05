@@ -30,7 +30,7 @@
     "mutuals": "@:account.following",
     "pinned": "Épinglés",
     "posts": "Messages",
-    "posts_count": "{0} messages",
+    "posts_count": "{0} Messages",
     "profile_description": "En-tête du profil de {0}",
     "profile_unavailable": "Profil non accessible",
     "unblock": "Unblock",

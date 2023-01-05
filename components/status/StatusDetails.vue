@@ -60,7 +60,7 @@ const isDM = $computed(() => status.visibility === 'direct')
           {{ status.application?.name }}
         </NuxtLink>
       </div>
-      <div v-else="status.application?.name">
+      <div v-else-if="status.application?.name">
         {{ status.application?.name }}
       </div>
     </div>

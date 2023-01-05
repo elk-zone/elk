@@ -186,9 +186,8 @@ async function editStatus() {
           @click="toggleMute()"
         />
 
-        <NuxtLink :to="status.url" external target="_blank">
+        <NuxtLink v-if="status.url" :to="status.url" external target="_blank">
           <CommonDropdownItem
-            v-if="status.url"
             :text="$t('menu.open_in_original_site')"
             icon="i-ri:arrow-right-up-line"
             :command="command"

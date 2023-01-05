@@ -22,10 +22,7 @@ const { edit } = defineProps<{
         {{ edit.spoilerText }}
       </template>
       <StatusBody :status="edit" />
-      <StatusMedia
-        v-if="edit.mediaAttachments.length"
-        :status="edit"
-      />
+      <StatusMedia v-if="edit.mediaAttachments.length" :status="edit" />
     </StatusSpoiler>
   </div>
 </template>

@@ -2,7 +2,7 @@
 import { decode } from 'blurhash'
 
 const { blurhash, src, srcset } = defineProps<{
-  blurhash: string
+  blurhash?: string | null | undefined
   src: string
   srcset?: string
 }>()
@@ -11,8 +11,13 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const placeholderSrc = ref<string>()
 const isLoaded = ref(false)
+const placeholderSrc = $computed(() => {
+  if (!blurhash)
+    return ''
+  const pixels = decode(blurhash, 32, 32)
+  return getDataUrlFromArr(pixels, 32, 32)
+})
 
 onMounted(() => {
   const img = document.createElement('img')
@@ -29,11 +34,6 @@ onMounted(() => {
   setTimeout(() => {
     isLoaded.value = true
   }, 3_000)
-
-  if (blurhash) {
-    const pixels = decode(blurhash, 32, 32)
-    placeholderSrc.value = getDataUrlFromArr(pixels, 32, 32)
-  }
 })
 </script>
 

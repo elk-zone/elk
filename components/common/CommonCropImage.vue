@@ -5,7 +5,7 @@ import 'vue-advanced-cropper/dist/style.css'
 
 export interface Props {
   /** Images to be cropped */
-  modelValue?: File
+  modelValue?: File | null
   /** Crop frame aspect ratio (width/height), default 1/1 */
   stencilAspectRatio?: number
   /** The ratio of the longest edge of the cut box to the length of the cut screen, default 0.9, not more than 1 */

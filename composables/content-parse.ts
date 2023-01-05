@@ -1,7 +1,7 @@
 // @unimport-disable
 import type { Emoji } from 'masto'
 import type { Node } from 'ultrahtml'
-import { TEXT_NODE, parse, render, walkSync } from 'ultrahtml'
+import { ELEMENT_NODE, TEXT_NODE, h, parse, render } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
@@ -19,53 +19,43 @@ export function decodeHtml(text: string) {
  * with interop of custom emojis and inline Markdown syntax
  */
 export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}, markdown = true, forTiptap = false) {
-  // unicode emojis to images, but only if not converting HTML for Tiptap
-  let processed = forTiptap ? html : replaceUnicodeEmoji(html)
-
-  // custom emojis
-  processed = processed.replace(/:([\w-]+?):/g, (_, name) => {
-    const emoji = customEmojis[name]
-    if (emoji)
-      return `<img src="${emoji.url}" alt=":${name}:" class="custom-emoji" data-emoji-id="${name}" />`
-    return `:${name}:`
-  })
-
   if (markdown) {
-    // handle code blocks
-    processed = processed
+    // Handle code blocks
+    html = html
       .replace(/>(```|~~~)(\w*)([\s\S]+?)\1/g, (_1, _2, lang, raw) => {
         const code = htmlToText(raw)
         const classes = lang ? ` class="language-${lang}"` : ''
         return `><pre><code${classes}>${code}</code></pre>`
       })
-
-    walkSync(parse(processed), (node) => {
-      if (node.type !== TEXT_NODE)
-        return
-      const replacements = [
-        [/\*\*\*(.*?)\*\*\*/g, '<b><em>$1</em></b>'],
-        [/\*\*(.*?)\*\*/g, '<b>$1</b>'],
-        [/\*(.*?)\*/g, '<em>$1</em>'],
-        [/~~(.*?)~~/g, '<del>$1</del>'],
-        [/`([^`]+?)`/g, '<code>$1</code>'],
-      ] as any
-
-      for (const [re, replacement] of replacements) {
-        for (const match of node.value.matchAll(re)) {
-          if (node.loc) {
-            const start = match.index! + node.loc[0].start
-            const end = start + match[0].length + node.loc[0].start
-            processed = processed.slice(0, start) + match[0].replace(re, replacement) + processed.slice(end)
-          }
-          else {
-            processed = processed.replace(match[0], match[0].replace(re, replacement))
-          }
-        }
-      }
-    })
   }
 
-  return parse(processed)
+  // Always sanitize the raw HTML data *after* it has been modified
+  const basicClasses = filterClasses(/^(h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible)$/u)
+  return transformSync(parse(html), [
+    sanitize({
+      // Allow basic elements as seen in https://github.com/mastodon/mastodon/blob/17f79082b098e05b68d6f0d38fabb3ac121879a9/lib/sanitize_ext/sanitize_config.rb
+      br: {},
+      p: {},
+      a: {
+        href: filterHref(),
+        class: basicClasses,
+        rel: set('nofollow noopener noreferrer'),
+        target: set('_blank'),
+      },
+      span: {
+        class: basicClasses,
+      },
+      // Allow elements potentially created for Markdown code blocks above
+      pre: {},
+      code: {
+        class: filterClasses(/^language-\w+$/),
+      },
+    }),
+    // Unicode emojis to images, but only if not converting HTML for Tiptap
+    !forTiptap ? replaceUnicodeEmoji() : noopTransform(),
+    markdown ? formatMarkdown() : noopTransform(),
+    replaceCustomEmoji(customEmojis),
+  ])
 }
 
 /**
@@ -133,12 +123,210 @@ export function treeToText(input: Node): string {
   return pre + body + post
 }
 
-/**
- * Replace unicode emojis with locally hosted images
- */
-export function replaceUnicodeEmoji(html: string) {
-  return findAndReplaceEmojisInText(emojiRegEx, html, (match) => {
-    const attrs = getEmojiAttributes(match)
-    return `<img src="${attrs.src}" alt="${attrs.alt}" class="${attrs.class}" />`
-  }) || html
+// A tree transform function takes an ultrahtml Node object and returns
+// new content that will replace the given node in the tree.
+// Returning a null removes the node from the tree.
+// Strings get converted to text nodes.
+// The input node's children have been transformed before the node itself
+// gets transformed.
+type Transform = (node: Node) => (Node | string)[] | Node | string | null
+
+// Helpers for transforming (filtering, modifying, ...) a parsed HTML tree
+// by running the given chain of transform functions one-by-one.
+function transformSync(doc: Node, transforms: Transform[]) {
+  function visit(node: Node, transform: Transform, isRoot = false) {
+    if (Array.isArray(node.children)) {
+      const children = [] as (Node | string)[]
+      for (let i = 0; i < node.children.length; i++) {
+        const result = visit(node.children[i], transform)
+        if (Array.isArray(result))
+          children.push(...result)
+
+        else if (result)
+          children.push(result)
+      }
+
+      node.children = children.map((value) => {
+        if (typeof value === 'string')
+          return { type: TEXT_NODE, value, parent: node }
+        value.parent = node
+        return value
+      })
+    }
+    return isRoot ? node : transform(node)
+  }
+
+  for (const transform of transforms)
+    doc = visit(doc, transform, true) as Node
+
+  return doc
+}
+
+// A transformation that does nothing. Useful for conditional transform chains.
+function noopTransform(): Transform {
+  return node => node
+}
+
+// A tree transform for sanitizing elements & their attributes.
+type AttrSanitizers = Record<string, (value: string | undefined) => string | undefined>
+function sanitize(allowedElements: Record<string, AttrSanitizers>): Transform {
+  return (node) => {
+    if (node.type !== ELEMENT_NODE)
+      return node
+
+    if (!Object.prototype.hasOwnProperty.call(allowedElements, node.name))
+      return null
+
+    const attrSanitizers = allowedElements[node.name]
+    const attrs = {} as Record<string, string>
+    for (const [name, func] of Object.entries(attrSanitizers)) {
+      const value = func(node.attributes[name])
+      if (value !== undefined)
+        attrs[name] = value
+    }
+    node.attributes = attrs
+    return node
+  }
+}
+
+function filterClasses(allowed: RegExp) {
+  return (c: string | undefined) => {
+    if (!c)
+      return undefined
+
+    return c.split(/\s/g).filter(cls => allowed.test(cls)).join(' ')
+  }
+}
+
+function set(value: string) {
+  return () => value
+}
+
+function filterHref() {
+  const LINK_PROTOCOLS = new Set([
+    'http:',
+    'https:',
+    'dat:',
+    'dweb:',
+    'ipfs:',
+    'ipns:',
+    'ssb:',
+    'gopher:',
+    'xmpp:',
+    'magnet:',
+    'gemini:',
+  ])
+
+  return (href: string | undefined) => {
+    if (href === undefined)
+      return undefined
+
+    // Allow relative links
+    if (href.startsWith('/') || href.startsWith('.'))
+      return href
+
+    let url
+    try {
+      url = new URL(href)
+    }
+    catch (err) {
+      if (err instanceof TypeError)
+        return undefined
+      throw err
+    }
+
+    if (LINK_PROTOCOLS.has(url.protocol))
+      return url.toString()
+    return '#'
+  }
+}
+
+function replaceUnicodeEmoji(): Transform {
+  return (node) => {
+    if (node.type !== TEXT_NODE)
+      return node
+
+    let start = 0
+
+    const matches = [] as (string | Node)[]
+    findAndReplaceEmojisInText(emojiRegEx, node.value, (match, result) => {
+      const attrs = getEmojiAttributes(match)
+      matches.push(result.slice(start))
+      matches.push(h('img', { src: attrs.src, alt: attrs.alt, class: attrs.class }))
+      start = result.length + match.match.length
+      return undefined
+    })
+    if (matches.length === 0)
+      return node
+
+    matches.push(node.value.slice(start))
+    return matches.filter(Boolean)
+  }
+}
+
+function replaceCustomEmoji(customEmojis: Record<string, Emoji>): Transform {
+  return (node) => {
+    if (node.type !== TEXT_NODE)
+      return node
+
+    const split = node.value.split(/:([\w-]+?):/g)
+    if (split.length === 1)
+      return node
+
+    return split.map((name, i) => {
+      if (i % 2 === 0)
+        return name
+
+      const emoji = customEmojis[name]
+      if (!emoji)
+        return `:${name}:`
+
+      return h('img', { 'src': emoji.url, 'alt': `:${name}:`, 'class': 'custom-emoji', 'data-emoji-id': name })
+    }).filter(Boolean)
+  }
+}
+
+function formatMarkdown(): Transform {
+  const replacements: [RegExp, (c: (string | Node)[]) => Node][] = [
+    [/\*\*\*(.*?)\*\*\*/g, c => h('b', null, [h('em', null, c)])],
+    [/\*\*(.*?)\*\*/g, c => h('b', null, c)],
+    [/\*(.*?)\*/g, c => h('em', null, c)],
+    [/~~(.*?)~~/g, c => h('del', null, c)],
+    [/`([^`]+?)`/g, c => h('code', null, c)],
+  ]
+
+  function process(value: string) {
+    const results = [] as (string | Node)[]
+
+    let start = 0
+    while (true) {
+      let found: { match: RegExpMatchArray; replacer: (c: (string | Node)[]) => Node } | undefined
+
+      for (const [re, replacer] of replacements) {
+        re.lastIndex = start
+
+        const match = re.exec(value)
+        if (match) {
+          if (!found || match.index < found.match.index!)
+            found = { match, replacer }
+        }
+      }
+
+      if (!found)
+        break
+
+      results.push(value.slice(start, found.match.index))
+      results.push(found.replacer(process(found.match[1])))
+      start = found.match.index! + found.match[0].length
+    }
+
+    results.push(value.slice(start))
+    return results.filter(Boolean)
+  }
+
+  return (node) => {
+    if (node.type !== TEXT_NODE)
+      return node
+    return process(node.value)
+  }
 }

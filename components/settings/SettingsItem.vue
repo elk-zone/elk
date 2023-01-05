@@ -8,6 +8,7 @@ const props = defineProps<{
   command?: boolean
   disabled?: boolean
   external?: true
+  large?: true
 }>()
 
 const router = useRouter()
@@ -55,7 +56,10 @@ useCommand({
           :class="$slots.description ? 'w-12 h-12' : ''"
         >
           <slot name="icon">
-            <div v-if="icon" :class="icon" md:text-size-inherit text-xl />
+            <div
+              v-if="icon"
+              :class="[icon, large ? 'text-xl mr-1' : 'text-xl md:text-size-inherit']"
+            />
           </slot>
         </div>
         <div space-y-1>

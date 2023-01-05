@@ -187,7 +187,9 @@
     "about": {
       "label": "关于"
     },
-    "account_settings": "账号设置",
+    "account_settings": {
+      "label": "账号设置"
+    },
     "feature_flags": {
       "github_cards": "GitHub 卡片",
       "title": "实验功能",

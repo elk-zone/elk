@@ -90,7 +90,7 @@ const activate = () => {
       >
     </div>
     <!-- Results -->
-    <div p4 left-0 top-10 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
+    <div left-0 top-12 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
       <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
         <span v-if="query.length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}

@@ -4,8 +4,12 @@ import sparkline from '@fnando/sparkline'
 
 const {
   history,
+  width = 60,
+  height = 40,
 } = $defineProps<{
   history?: History[]
+  width?: number
+  height?: number
 }>()
 
 const historyNum = $computed(() => {
@@ -24,5 +28,5 @@ watch([$$(historyNum), $$(sparklineEl)], ([historyNum, sparklineEl]) => {
 </script>
 
 <template>
-  <svg ref="sparklineEl" class="sparkline" width="60" height="40" stroke-width="3" />
+  <svg ref="sparklineEl" class="sparkline" :width="width" :height="height" stroke-width="3" />
 </template>

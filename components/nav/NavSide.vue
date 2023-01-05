@@ -7,6 +7,9 @@ const { notifications } = useNotifications()
 
 <template>
   <nav sm:px3 sm:py4 flex="~ col gap2" text-size-base leading-normal md:text-lg>
+    <SearchWidget lg:ms-1 lg:me-5 mb-5 hidden xl:block />
+    <NavSideItem :text="$t('nav.search')" to="/search" icon="i-ri:search-line" xl:hidden :command="command" mb-5 />
+
     <NavSideItem :text="$t('nav.home')" to="/home" icon="i-ri:home-5-line" user-only :command="command" />
     <NavSideItem :text="$t('nav.notifications')" to="/notifications" icon="i-ri:notification-4-line" user-only :command="command">
       <template #icon>
@@ -20,7 +23,7 @@ const { notifications } = useNotifications()
     </NavSideItem>
 
     <!-- Use Search for small screens once the right sidebar is collapsed -->
-    <NavSideItem :text="$t('nav.search')" to="/search" icon="i-ri:search-line" xl:hidden :command="command" />
+    <NavSideItem :text="$t('nav.search')" to="/search" icon="i-ri:search-line" sm:hidden :command="command" />
     <NavSideItem :text="$t('nav.explore')" :to="`/${currentServer}/explore`" icon="i-ri:hashtag" :command="command" />
 
     <NavSideItem :text="$t('nav.local')" :to="`/${currentServer}/public/local`" icon="i-ri:group-2-line " :command="command" />

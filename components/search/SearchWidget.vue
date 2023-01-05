@@ -52,14 +52,13 @@ const activate = () => {
 </script>
 
 <template>
-  <div ref="el" relative px4 py2 group>
-    <div bg-base border="~ base" h10 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline>
-      <div i-ri:search-2-line mx4 absolute pointer-events-none text-secondary mt="1px" class="rtl-flip" />
+  <div ref="el" relative group>
+    <div bg-base border="~ base" h10 px-3 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
+      <div i-ri:search-2-line pointer-events-none text-secondary mt="1px" class="rtl-flip" />
       <input
         ref="input"
         v-model="query"
         h-full
-        ps-10
         rounded-3
         w-full
         bg-transparent

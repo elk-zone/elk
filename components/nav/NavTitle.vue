@@ -7,8 +7,8 @@ const { env } = buildInfo
 <template>
   <!-- Use external to force refresh page and jump to top of timeline -->
   <NuxtLink
-    flex items-end gap-2
-    py2 px-2 xl:px-3
+    flex items-end gap-4
+    py2 px-5
     text-2xl
     focus-visible:ring="2 current"
     to="/"

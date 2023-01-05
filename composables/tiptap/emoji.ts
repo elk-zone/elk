@@ -2,8 +2,38 @@ import {
   Node,
   mergeAttributes,
   nodeInputRule,
+  nodePasteRule,
 } from '@tiptap/core'
 import { emojiRegEx, getEmojiAttributes } from '~/config/emojis'
+
+const createEmojiRule = <NR extends typeof nodeInputRule | typeof nodePasteRule>(
+  nodeRule: NR,
+  type: Parameters<NR>[0]['type'],
+): ReturnType<NR>[] => {
+  const rule = nodeRule({
+    find: emojiRegEx as RegExp,
+    type,
+    getAttributes: (match) => {
+      const [native] = match
+      return getEmojiAttributes(native)
+    },
+  }) as ReturnType<NR>
+
+  // Error catch for unsupported emoji
+  const handler = rule.handler.bind(rule)
+  rule.handler = (...args) => {
+    try {
+      return handler(...args)
+    }
+    catch (e) {
+      return null
+    }
+  }
+
+  return [
+    rule,
+  ]
+}
 
 export const Emoji = Node.create({
   name: 'em-emoji',
@@ -50,26 +80,10 @@ export const Emoji = Node.create({
   },
 
   addInputRules() {
-    const inputRule = nodeInputRule({
-      find: emojiRegEx as RegExp,
-      type: this.type,
-      getAttributes: (match) => {
-        const [native] = match
-        return getEmojiAttributes(native)
-      },
-    })
-    // Error catch for unsupported emoji
-    const handler = inputRule.handler.bind(inputRule)
-    inputRule.handler = (...args) => {
-      try {
-        return handler(...args)
-      }
-      catch (e) {
-        return null
-      }
-    }
-    return [
-      inputRule,
-    ]
+    return createEmojiRule(nodeInputRule, this.type)
+  },
+
+  addPasteRules() {
+    return createEmojiRule(nodePasteRule, this.type)
   },
 })

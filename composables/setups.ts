@@ -24,7 +24,7 @@ export function setupPageHeader() {
     },
     link: process.client && useRuntimeConfig().public.pwaEnabled
       ? () => [{
-          key: `webmanifest-${locale.value}`,
+          key: 'webmanifest',
           rel: 'manifest',
           href: `/manifest-${locale.value}.webmanifest`,
         }]

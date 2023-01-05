@@ -231,6 +231,7 @@
     },
     "interface": {
       "color_mode": "Color Mode",
+      "custom_mode": "Custom Colors",
       "dark_mode": "Dark Mode",
       "default": " (default)",
       "font_size": "Font Size",

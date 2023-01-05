@@ -48,3 +48,7 @@
   --c-bg-btn-disabled: #2a2a2a;
   --c-text-btn-disabled: #919191;
 }
+
+.custom {
+  --c-primary: var(--c-primary-custom);
+}

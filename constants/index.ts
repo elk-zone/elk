@@ -23,5 +23,6 @@ export const COOKIE_MAX_AGE = 10 * 365 * 24 * 60 * 60 * 1000
 export const COOKIE_KEY_FONT_SIZE = 'elk-font-size'
 export const COOKIE_KEY_COLOR_MODE = 'elk-color-mode'
 export const COOKIE_KEY_LOCALE = 'elk-lang'
+export const COOKIE_KEY_CUSTOM_COLORS = 'elk-custom-colors'
 
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\d-]+\.)+\w+\/(@[@\w\d-\.]+)(\/objects)?(\/\d+)?$/

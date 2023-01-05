@@ -24,6 +24,12 @@ useHeadFixed({
         </p>
         <SettingsColorMode />
       </div>
+      <div space-y-2>
+        <p font-medium>
+          Custom colors
+        </p>
+        <SettingsCustomColors />
+      </div>
     </div>
   </MainContent>
 </template>

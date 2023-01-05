@@ -74,4 +74,5 @@ export interface BuildInfo {
 }
 
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-export type ColorMode = 'light' | 'dark'
+export type ColorMode = 'light' | 'dark' | 'custom'
+export interface CustomColors { 'primary': string }

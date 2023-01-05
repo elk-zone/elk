@@ -21,11 +21,11 @@ const { notifications } = useNotifications()
         </div>
       </template>
     </NavSideItem>
+    <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-line" user-only :command="command" />
 
     <!-- Use Search for small screens once the right sidebar is collapsed -->
     <NavSideItem :text="$t('nav.search')" to="/search" icon="i-ri:search-line" sm:hidden :command="command" />
     <NavSideItem :text="$t('nav.explore')" :to="`/${currentServer}/explore`" icon="i-ri:hashtag" :command="command" />
-
     <NavSideItem :text="$t('nav.local')" :to="`/${currentServer}/public/local`" icon="i-ri:group-2-line " :command="command" />
     <NavSideItem :text="$t('nav.federated')" :to="`/${currentServer}/public`" icon="i-ri:earth-line" :command="command" />
     <NavSideItem :text="$t('nav.conversations')" to="/conversations" icon="i-ri:at-line" user-only :command="command" />

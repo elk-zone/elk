@@ -1,4 +1,4 @@
-import { pwaInfo } from 'virtual:pwa-info'
+// import { pwaInfo } from 'virtual:pwa-info'
 import type { Link } from '@unhead/schema'
 import type { Directions } from 'vue-i18n-routing'
 import { buildInfo } from 'virtual:build-info'
@@ -7,6 +7,7 @@ import type { LocaleObject } from '#i18n'
 export function setupPageHeader() {
   const { locale, locales, t } = useI18n()
 
+  /*
   const link: Link[] = []
 
   if (pwaInfo && pwaInfo.webManifest) {
@@ -28,6 +29,17 @@ export function setupPageHeader() {
       }
     }
   }
+  */
+
+  const link = useRuntimeConfig().public.pwaEnabled
+    ? computed<Link[]>(() => {
+      return [{
+        key: `webmanifest-${locale.value}`,
+        rel: 'manifest',
+        href: `/manifest-${locale.value}.webmanifest`,
+      }]
+    })
+    : []
 
   const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
     acc[l.code!] = l.dir ?? 'auto'

@@ -21,6 +21,7 @@
     "test:unit": "vitest",
     "test:typecheck": "vue-tsc --noEmit && vue-tsc --noEmit --project service-worker/tsconfig.json",
     "test": "nr test:unit",
+    "update:team:avatars": "esno scripts/avatars.ts",
     "postinstall": "nuxi prepare && simple-git-hooks",
     "release": "bumpp && esno scripts/release.ts"
   },

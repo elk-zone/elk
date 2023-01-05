@@ -4,7 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import type { Plugin } from 'vite'
 import type { VitePWANuxtOptions } from './types'
 import { configurePWAOptions } from './config'
-import { type LocalizedWebManifest, configureWebManifest, createI18n, pwaLocales } from './i18n'
+import { type LocalizedWebManifest, createI18n, pwaLocales } from './i18n'
 
 export * from './types'
 export default defineNuxtModule<VitePWANuxtOptions>({
@@ -40,61 +40,54 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       if (plugin)
         throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
 
-      const { i18n, ...pwaOptions } = options
-      if (i18n) {
-        pwaOptions.manifest = false
-        webmanifests = await createI18n()
-        const generateManifest = (locale: string) => {
-          const manifest = webmanifests![locale]
-          if (!manifest)
-            throw new Error(`No webmanifest found for locale ${locale}`)
-          return JSON.stringify(manifest)
-        }
-        viteInlineConfig.plugins.push({
-          name: 'elk:pwa:locales:build',
-          apply: 'build',
-          generateBundle(_, bundle) {
-            if (options.disable || !bundle)
-              return
-
-            Object.keys(webmanifests!).map(l => [l, `manifest-${l}.webmanifest`]).forEach(([l, fileName]) => {
-              bundle[fileName] = {
-                isAsset: true,
-                type: 'asset',
-                name: undefined,
-                source: generateManifest(l),
-                fileName,
-              }
-            })
-          },
-        })
-        viteInlineConfig.plugins.push({
-          name: 'elk:pwa:locales:dev',
-          apply: 'serve',
-          configureServer(server) {
-            const localeMatcher = new RegExp(`^${nuxt.options.app.baseURL}manifest-(.*).webmanifest$`)
-            server.middlewares.use((req, res, next) => {
-              const match = req.url?.match(localeMatcher)
-              const entry = match && webmanifests![match[1]]
-              if (entry) {
-                res.statusCode = 200
-                res.setHeader('Content-Type', 'application/manifest+json')
-                res.write(JSON.stringify(entry), 'utf-8')
-                res.end()
-              }
-              else {
-                next()
-              }
-            })
-          },
-        })
+      webmanifests = await createI18n()
+      const generateManifest = (locale: string) => {
+        const manifest = webmanifests![locale]
+        if (!manifest)
+          throw new Error(`No webmanifest found for locale ${locale}`)
+        return JSON.stringify(manifest)
       }
-      else {
-        await configureWebManifest(pwaOptions)
-      }
+      viteInlineConfig.plugins.push({
+        name: 'elk:pwa:locales:build',
+        apply: 'build',
+        generateBundle(_, bundle) {
+          if (options.disable || !bundle)
+            return
 
-      configurePWAOptions(pwaOptions, nuxt)
-      const plugins = VitePWA(pwaOptions)
+          Object.keys(webmanifests!).map(l => [l, `manifest-${l}.webmanifest`]).forEach(([l, fileName]) => {
+            bundle[fileName] = {
+              isAsset: true,
+              type: 'asset',
+              name: undefined,
+              source: generateManifest(l),
+              fileName,
+            }
+          })
+        },
+      })
+      viteInlineConfig.plugins.push({
+        name: 'elk:pwa:locales:dev',
+        apply: 'serve',
+        configureServer(server) {
+          const localeMatcher = new RegExp(`^${nuxt.options.app.baseURL}manifest-(.*).webmanifest$`)
+          server.middlewares.use((req, res, next) => {
+            const match = req.url?.match(localeMatcher)
+            const entry = match && webmanifests![match[1]]
+            if (entry) {
+              res.statusCode = 200
+              res.setHeader('Content-Type', 'application/manifest+json')
+              res.write(JSON.stringify(entry), 'utf-8')
+              res.end()
+            }
+            else {
+              next()
+            }
+          })
+        },
+      })
+
+      configurePWAOptions(options, nuxt)
+      const plugins = VitePWA(options)
       viteInlineConfig.plugins.push(plugins)
       if (isClient)
         vitePwaClientPlugin = plugins.find(p => p.name === 'vite-plugin-pwa') as Plugin

@@ -3,25 +3,12 @@ import { resolve } from 'pathe'
 import type { ManifestOptions } from 'vite-plugin-pwa'
 import { getEnv } from '../../config/env'
 import { i18n } from '../../config/i18n'
-import type { VitePWANuxtOptions } from './types'
 import type { LocaleObject } from '#i18n'
 
 export type LocalizedWebManifest = Record<string, Partial<ManifestOptions>>
 
 export const pwaLocales = i18n.locales as LocaleObject[]
 
-export const configureWebManifest = async (options: VitePWANuxtOptions) => {
-  if (options.manifest === false)
-    return
-
-  const { app_desc_short, app_name } = await readI18nFile('en-US.json')
-
-  const { env } = await getEnv()
-  const envName = `${env === 'release' ? '' : ` (${env})`}`
-  options.manifest!.name = `${options.manifest?.name ?? app_name}${envName}`
-  options.manifest!.short_name = `${options.manifest?.short_name ?? app_name}${envName}`
-  options.manifest!.description = `${options.manifest?.description ?? app_desc_short}${envName}`
-}
 export const createI18n = async (): Promise<LocalizedWebManifest> => {
   const { env } = await getEnv()
   const envName = `${env === 'release' ? '' : ` (${env})`}`

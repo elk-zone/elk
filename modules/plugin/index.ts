@@ -111,6 +111,16 @@ export default defineNuxtModule({
                     b.callExpression(injectIdentifier, [b.literal('$elkPlugin')])),
                 ])
 
+                // rewrite `return __returned__`
+                // to `return $elkPlugin.setupDecl(id, __returned__)`
+                const returnedRet = _sfc_setup.body.body.at(-1)
+                if (returnedRet && n.ReturnStatement.check(returnedRet) && returnedRet.argument) {
+                  returnedRet.argument = b.callExpression(
+                    b.memberExpression(elkPluginIdentifier, b.identifier('setupDecl')),
+                    [b.literal(relativePath), returnedRet.argument],
+                  )
+                }
+
                 // @ts-expect-error incompatible but same types
                 const refs = [...analyze(_sfc_setup.body).globals.keys()]
                   .filter(ref => !scope.parent!.declarations.has(ref))

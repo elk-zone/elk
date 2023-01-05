@@ -22,8 +22,10 @@ export default defineNuxtPlugin(async (nuxt) => {
 
       return refs
     },
-    setupReturn: (id: string, decls: Record<string, any>) => {
+    setupDecl: (id: string, decls: Record<string, any>) => {
       console.log('setupDecl', id, decls)
+
+      return decls
     },
     renderRef: (id: string, args: unknown, refs: Record<string, any>) => {
       console.log('renderRef', id, args, refs)

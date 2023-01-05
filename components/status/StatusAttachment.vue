@@ -35,9 +35,12 @@ const aspectRatio = computed(() => {
 })
 
 const objectPosition = computed(() => {
-  return [attachment.meta?.focus?.x, attachment.meta?.focus?.y]
-    .map(v => v ? `${v * 100}%` : '50%')
-    .join(' ')
+  const focusX = attachment.meta?.focus?.x || 0
+  const focusY = attachment.meta?.focus?.y || 0
+  const x = ((focusX / 2) + 0.5) * 100
+  const y = ((focusY / -2) + 0.5) * 100
+
+  return `${x}% ${y}%`
 })
 
 const typeExtsMap = {

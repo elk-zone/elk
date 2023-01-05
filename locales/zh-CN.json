@@ -345,7 +345,7 @@
   },
   "timeline": {
     "show_new_items": "展示 {v} 条新帖文",
-    "view_older_posts": "其他站点上更老的嘟文可能不会在这里显示。"
+    "view_older_posts": "其他站点上更老的帖文可能不会在这里显示。"
   },
   "title": {
     "federated_timeline": "跨站时间线",

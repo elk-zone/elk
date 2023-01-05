@@ -1,4 +1,3 @@
-// import { pwaInfo } from 'virtual:pwa-info'
 import type { Link } from '@unhead/schema'
 import type { Directions } from 'vue-i18n-routing'
 import { buildInfo } from 'virtual:build-info'
@@ -7,31 +6,7 @@ import type { LocaleObject } from '#i18n'
 export function setupPageHeader() {
   const { locale, locales, t } = useI18n()
 
-  /*
-  const link: Link[] = []
-
-  if (pwaInfo && pwaInfo.webManifest) {
-    const { webManifest } = pwaInfo
-    if (webManifest) {
-      const { href, useCredentials } = webManifest
-      if (useCredentials) {
-        link.push({
-          rel: 'manifest',
-          href,
-          crossorigin: 'use-credentials',
-        })
-      }
-      else {
-        link.push({
-          rel: 'manifest',
-          href,
-        })
-      }
-    }
-  }
-  */
-
-  const link = useRuntimeConfig().public.pwaEnabled
+  const link = process.client && useRuntimeConfig().public.pwaEnabled
     ? computed<Link[]>(() => {
       return [{
         key: `webmanifest-${locale.value}`,

@@ -7,6 +7,10 @@ const { blurhash, src, srcset } = defineProps<{
   srcset?: string
 }>()
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const placeholderSrc = ref<string>()
 const isLoaded = ref(false)
 
@@ -30,10 +34,6 @@ onMounted(() => {
     const pixels = decode(blurhash, 32, 32)
     placeholderSrc.value = getDataUrlFromArr(pixels, 32, 32)
   }
-})
-
-defineOptions({
-  inheritAttrs: false,
 })
 </script>
 

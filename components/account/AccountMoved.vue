@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import { Account } from 'masto'
 
 defineProps<{
   account: Account
@@ -14,8 +14,9 @@ defineProps<{
     </div>
 
     <div flex>
-      <NuxtLink :to="getAccountRoute(account.moved as any)">
-        <AccountInfo :account="account.moved" />
+      <!-- type error of masto.js -->
+      <NuxtLink :to="getAccountRoute(account.moved as unknown as Account)">
+        <AccountInfo :account="account.moved as unknown as Account" />
       </NuxtLink>
       <div flex-auto />
       <div flex items-center>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
 import type { ComponentPublicInstance } from 'vue'
 
 definePageMeta({
@@ -93,7 +92,7 @@ onReactivated(() => {
         </template>
       </div>
 
-      <StatusNotFound v-else :account="route.params.account" :status="id" />
+      <StatusNotFound v-else :account="route.params.account as string" :status="id" />
     </template>
 
     <StatusCardSkeleton v-else border="b base" />

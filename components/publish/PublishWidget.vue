@@ -266,7 +266,7 @@ defineExpose({
           <PublishAttachment
             v-for="(att, idx) in draft.attachments" :key="att.id"
             :attachment="att"
-            :dialog-labelled-by="dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : null)"
+            :dialog-labelled-by="dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : undefined)"
             @remove="removeAttachment(idx)"
             @set-description="setDescription(att, $event)"
           />

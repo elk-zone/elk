@@ -91,7 +91,7 @@ const handleShowCommit = () => {
         external target="_blank"
       >
         <template #icon>
-          <img :src="`https://res.cloudinary.com/dchoja2nb/image/twitter_name/h_32,w_32/f_auto/${team.twitter}.jpg`" :alt="team.display" rounded-full w-8 h-8 height="32" width="32">
+          <img :src="`https://github.com/${team.github}.png?size=64`" :alt="team.display" rounded-full w-8 h-8 height="32" width="32">
         </template>
       </SettingsItem>
     </template>

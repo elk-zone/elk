@@ -139,13 +139,13 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     else {
       nuxt.hook('nitro:config', async (nitroConfig) => {
         nitroConfig.routeRules = nitroConfig.routeRules || {}
-        Object.keys(pwaLocales).forEach((locale) => {
-          nitroConfig.routeRules![`/manifest-${locale}.webmanifest`] = {
+        for (const locale of pwaLocales) {
+          nitroConfig.routeRules![`/manifest-${locale.code}.webmanifest`] = {
             headers: {
               'Content-Type': 'application/manifest+json',
             },
           }
-        })
+        }
       })
       nuxt.hook('nitro:init', (nitro) => {
         nitro.hooks.hook('rollup:before', async () => {

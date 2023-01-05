@@ -14,7 +14,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
               <div flex flex-col gap-2>
                 <NavTitle />
                 <NavSide command />
-                <PublishButton ms5.5 mt4 xl:me8 xl:ms4 />
+                <!-- <PublishButton ms5.5 mt4 xl:me8 xl:ms4 /> -->
               </div>
               <div v-if="isMastoInitialised" flex flex-col>
                 <div hidden xl:block>

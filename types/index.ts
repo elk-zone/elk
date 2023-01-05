@@ -61,6 +61,7 @@ export interface Draft {
   initialText?: string
   params: MarkNonNullable<Mutable<CreateStatusParams>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'>
   attachments: Attachment[]
+  lastUpdated: number
 }
 export type DraftMap = Record<string, Draft>
 

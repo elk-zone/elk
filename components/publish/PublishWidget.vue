@@ -14,7 +14,7 @@ const {
   placeholder,
   dialogLabelledBy,
 } = defineProps<{
-  draftKey: string
+  draftKey?: string
   initial?: () => Draft
   placeholder?: string
   inReplyToId?: string
@@ -38,7 +38,10 @@ const shouldExpanded = $computed(() => _expanded || isExpanded || !isEmpty)
 const { editor } = useTiptap({
   content: computed({
     get: () => draft.params.status,
-    set: newVal => draft.params.status = newVal,
+    set: (newVal) => {
+      draft.params.status = newVal
+      draft.lastUpdated = Date.now()
+    },
   }),
   placeholder: computed(() => placeholder ?? draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
   autofocus: shouldExpanded,

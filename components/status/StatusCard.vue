@@ -113,7 +113,7 @@ const isDM = $computed(() => status.visibility === 'direct')
         </div>
         <div v-else />
       </slot>
-      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" pt1 />
+      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="!!simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" pt1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>

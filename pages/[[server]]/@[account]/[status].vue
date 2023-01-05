@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
 import type { ComponentPublicInstance } from 'vue'
 
 definePageMeta({
@@ -61,7 +60,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template v-if="!pending">
-      <div v-if="status" mt--1px border="b base" mb="50vh">
+      <div v-if="status" xl:mt-4 border="b base" mb="50vh">
         <template v-for="comment of context?.ancestors" :key="comment.id">
           <StatusCard
             :status="comment" :actions="comment.visibility !== 'direct'" context="account"
@@ -93,7 +92,7 @@ onReactivated(() => {
         </template>
       </div>
 
-      <StatusNotFound v-else :account="route.params.account" :status="id" />
+      <StatusNotFound v-else :account="route.params.account as string" :status="id" />
     </template>
 
     <StatusCardSkeleton v-else border="b base" />

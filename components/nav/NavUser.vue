@@ -7,6 +7,7 @@
         h-8
         w-8
         :draggable="false"
+        square
       />
     </div>
 
@@ -14,7 +15,7 @@
       <UserSwitcher ref="switcher" @click="hide()" />
     </template>
   </VDropdown>
-  <button v-else btn-solid text-sm px-2 py-1 text-center lg:hidden @click="openSigninDialog()">
+  <button v-else btn-solid text-sm px-2 py-1 text-center xl:hidden @click="openSigninDialog()">
     {{ $t('action.sign_in') }}
   </button>
 </template>

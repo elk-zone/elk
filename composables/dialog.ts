@@ -57,14 +57,33 @@ if (isPreviewHelpOpen.value) {
   })
 }
 
+function restoreMediaPreviewFromState() {
+  mediaPreviewList.value = JSON.parse(history.state?.mediaPreviewList ?? '[]')
+  mediaPreviewIndex.value = history.state?.mediaPreviewIndex ?? 0
+  isMediaPreviewOpen.value = history.state?.mediaPreview ?? false
+}
+
+if (process.client) {
+  window.addEventListener('popstate', restoreMediaPreviewFromState)
+
+  restoreMediaPreviewFromState()
+}
+
 export function openMediaPreview(attachments: Attachment[], index = 0) {
   mediaPreviewList.value = attachments
   mediaPreviewIndex.value = index
   isMediaPreviewOpen.value = true
+
+  history.pushState({
+    ...history.state,
+    mediaPreview: true,
+    mediaPreviewList: JSON.stringify(attachments),
+    mediaPreviewIndex: index,
+  }, '')
 }
 
 export function closeMediaPreview() {
-  isMediaPreviewOpen.value = false
+  history.back()
 }
 
 export function openEditHistoryDialog(edit: StatusEdit) {

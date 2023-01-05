@@ -3,6 +3,7 @@ import type { Account } from 'masto'
 
 defineProps<{
   account: Account
+  square?: boolean
 }>()
 
 const loaded = $ref(false)
@@ -17,8 +18,7 @@ const error = $ref(false)
     :src="error ? 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' : account.avatar"
     :alt="$t('account.avatar_description', [account.username])"
     loading="lazy"
-    rounded-full
-    :class="loaded ? 'bg-base' : 'bg-gray:10'"
+    :class="(loaded ? 'bg-base' : 'bg-gray:10') + (square ? ' rounded-3' : ' rounded-full')"
     v-bind="$attrs"
     @load="loaded = true"
     @error="error = true"

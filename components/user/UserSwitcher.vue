@@ -33,7 +33,7 @@ const switchUser = (user: UserLogin) => {
         aria-label="Switch user"
         @click="switchUser(user)"
       >
-        <AccountInfo :account="user.account" :hover-card="false" />
+        <AccountInfo :account="user.account" :hover-card="false" square />
         <div flex-auto />
         <div v-if="user.token === currentUser?.token" i-ri:check-line text-primary mya text-2xl />
       </button>

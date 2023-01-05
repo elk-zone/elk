@@ -3,7 +3,7 @@ import { fileOpen } from 'browser-fs-access'
 import type { FileWithHandle } from 'browser-fs-access'
 
 const props = withDefaults(defineProps<{
-  modelValue?: FileWithHandle
+  modelValue?: FileWithHandle | null
   /** The image src before change */
   original?: string
   /** Allowed file types */

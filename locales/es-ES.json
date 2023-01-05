@@ -46,6 +46,7 @@
     "clear_upload_failed": "Limpiar errores de subida de archivos",
     "close": "Cerrar",
     "compose": "Redactar",
+    "confirm": "Confirmar",
     "edit": "Editar",
     "enter_app": "Entrar",
     "favourite": "Favorito",
@@ -55,12 +56,13 @@
     "prev": "Anterior",
     "publish": "¡Publicar!",
     "reply": "Responder",
+    "save": "Guardar",
     "save_changes": "Guardar",
     "sign_in": "Iniciar sesión",
     "switch_account": "Cambiar cuenta",
     "vote": "Votar"
   },
-  "app_desc_short": "Un ágil cliente web de Mastodon",
+  "app_desc_short": "Un cliente web ágil para Mastodon",
   "app_logo": "Logotipo de Elk",
   "app_name": "Elk",
   "attachment": {
@@ -92,15 +94,20 @@
   "error": {
     "account_not_found": "No se encontró la cuenta {0}",
     "explore-list-empty": "Nada es tendencia en este momento. ¡Vuelva más tarde!",
+    "file_size_cannot_exceed_n_mb": "El tamaño del fichero no puede exceder los {0}MB",
     "sign_in_error": "No se ha podido conectar con el servidor.",
-    "status_not_found": "Estado no encontrado"
+    "status_not_found": "Estado no encontrado",
+    "unsupported_file_format": "Tipo de archivo no soportado"
   },
   "help": {
     "desc_highlight": "Es normal encontrar algunos errores y características faltantes aquí y allá.",
     "desc_para1": "¡Gracias por el interés en probar Elk, nuestro cliente genérico en desarrollo para Mastodon!",
     "desc_para2": "Estamos trabajando duro en el desarrollo y mejorándolo constantemente. ¡Y pronto te invitaremos a que te unas una vez que lo hagamos de código abierto!",
-    "desc_para3": "Antes de eso, para ayudar a impulsar el desarrollo, puedes patrocinar a los miembros de nuestro equipo con los enlaces a continuación.",
-    "title": "Elk está en Vista Previa!"
+    "desc_para3": "Para ayudar a impulsar el desarrollo, puedes patrocinar a los miembros de nuestro equipo con los enlaces a continuación.",
+    "desc_para4": "Antes de eso, si te gustaría ayudar probando, dando opinión o contribuyendo,",
+    "desc_para5": "ponte en contacto con nosotros a través de Mastodon",
+    "desc_para6": "para participar.",
+    "title": "¡Elk está en Vista Previa!"
   },
   "language": {
     "none": "Ninguno",
@@ -119,6 +126,7 @@
     "mute_conversation": "Silenciar publicación",
     "open_in_original_site": "Abrir página original",
     "pin_on_profile": "Fijar en tu perfil",
+    "share_post": "Compartir esta publicación",
     "show_untranslated": "Mostrar original",
     "toggle_theme": {
       "dark": "Cambiar a modo oscuro",
@@ -158,6 +166,7 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "retooteó tu publicación",
     "request_to_follow": "ha solicitado seguirte",
+    "signed_up": "registrado",
     "update_status": "ha actualizado su estado"
   },
   "placeholder": {
@@ -169,7 +178,9 @@
   },
   "pwa": {
     "dismiss": "Descartar",
-    "title": "Nueva versión de Elk disponible"
+    "title": "Nueva versión de Elk disponible",
+    "update": "Actualizar",
+    "update_available_short": "Actualiza Elk"
   },
   "search": {
     "search_desc": "Buscar personas y etiquetas"
@@ -177,6 +188,10 @@
   "settings": {
     "about": {
       "label": "Acerca de"
+    },
+    "account_settings": {
+      "description": "Edita tus ajustes de la cuenta en la interfaz de Mastodon",
+      "label": "Ajustes de la cuenta"
     },
     "feature_flags": {
       "github_cards": "Tarjetas GitHub",
@@ -187,9 +202,17 @@
     "interface": {
       "color_mode": "Modos de color",
       "dark_mode": "Modo Oscuro",
+      "default": " (por defecto)",
       "font_size": "Tamaño de Letra",
       "label": "Interfaz",
-      "light_mode": "Modo Claro"
+      "light_mode": "Modo Claro",
+      "size_label": {
+        "lg": "Grande",
+        "md": "Mediana",
+        "sm": "Pequeña",
+        "xl": "Extra grande",
+        "xs": "Extra pequeña"
+      }
     },
     "language": {
       "display_language": "Idioma de la pantalla",
@@ -247,10 +270,12 @@
     },
     "profile": {
       "appearance": {
-        "bio": "Bio",
+        "bio": "Biografía",
         "description": "Editar avatar, nombre de usuario, perfil, etc.",
         "display_name": "Nombre a mostrar",
         "label": "Apariencia",
+        "profile_metadata": "Metadatos del perfil",
+        "profile_metadata_desc": "Puede mostrar hasta 4 elementos en forma de tabla en su perfil",
         "title": "Editar perfil"
       },
       "featured_tags": {
@@ -310,6 +335,12 @@
     "posts": "Publicaciones",
     "posts_with_replies": "Publicaciones y respuestas"
   },
+  "tag": {
+    "follow": "Seguir",
+    "follow_label": "Seguir etiqueta {0}",
+    "unfollow": "Dejar de seguir",
+    "unfollow_label": "Dejar de seguir etiqueta {0}"
+  },
   "time_ago_options": {
     "day_future": "dentro de 0 días|mañana|dentro de {n} días",
     "day_past": "hace 0 días|ayer|hace {n} días",
@@ -342,7 +373,8 @@
     "year_past": "hace 0 años|el año pasado|hace {n} años"
   },
   "timeline": {
-    "show_new_items": "Mostrar {v} nuevas publicaciones|Mostrar {v} nueva publicación|Mostrar {v} nuevas publicaciones"
+    "show_new_items": "Mostrar {v} nuevas publicaciones|Mostrar {v} nueva publicación|Mostrar {v} nuevas publicaciones",
+    "view_older_posts": "Es posible que no se muestren las publicaciones antiguas de otras instancias."
   },
   "title": {
     "federated_timeline": "Línea de tiempo federada",
@@ -363,6 +395,7 @@
     "add_existing": "Agregar una cuenta existente",
     "server_address_label": "Dirección de Servidor de Mastodon",
     "sign_in_desc": "Inicia sesión para seguir perfiles o hashtags, marcar como favorito, compartir and responder a publicaciones, o interactuar desde tu usuario con un servidor diferente.",
+    "sign_in_notice_title": "Viendo información pública de {0}",
     "sign_out_account": "Cerrar sesión {0}",
     "tip_no_account": "Si aún no tienes una cuenta Mastodon, {0}.",
     "tip_register_account": "selecciona tu servidor y registrate"

@@ -10,8 +10,8 @@ const disabledVisual = computed(() => isMastoInitialised.value && !currentUser.v
     xl="w-auto h-auto"
     rounded-3
     cursor-pointer disabled:pointer-events-none
-    text-primary font-bold
-    border-1 border-primary-light
+    text-primary
+    border-1 border-primary
     :class="disabledVisual ? 'op25' : 'hover:bg-primary hover:text-inverted'"
     :disabled="disabled"
     @click="openPublishDialog()"

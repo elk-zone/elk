@@ -1,9 +1,6 @@
 import type { VitePWAOptions } from 'vite-plugin-pwa'
-import type { Overwrite } from '../../types/utils'
 
-export type VitePWANuxtOptions = Overwrite<Partial<VitePWAOptions>, {
-  i18n?: boolean
-}>
+export interface VitePWANuxtOptions extends Partial<VitePWAOptions> {}
 
 declare module '@nuxt/schema' {
   interface NuxtConfig {

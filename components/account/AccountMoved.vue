@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { Account } from 'masto'
+// type used in <template>
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { Account } from 'masto'
 
 defineProps<{
   account: Account

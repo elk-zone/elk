@@ -1,9 +1,12 @@
 import { addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
-import type estree from 'estree'
 import { analyze } from 'periscopic'
-import { generate } from 'astring'
-import { SourceMapGenerator } from 'source-map-js'
+import { parse, print, types } from 'recast'
+import { attachComments } from 'estree-util-attach-comments'
 import { getSafeName, parseQuery } from './utils'
+import N = types.namedTypes
+
+const n = types.namedTypes
+const b = types.builders
 
 export default defineNuxtModule({
   meta: {
@@ -27,98 +30,88 @@ export default defineNuxtModule({
           if (path.endsWith('.vue') && (params.has('vue') ? params.get('type') === 'script' : true)) {
             const relativePath = path.replace(nuxt.options.rootDir, '')
 
-            const ast = this.parse(code, {
-              sourceType: 'module',
-              locations: true,
-            }) as unknown as estree.Program
+            const ast = parse(code, {
+              parser: {
+                parse: (source: string) => {
+                  const comments: never[] = []
+                  const tree = this.parse(source, {
+                    ecmaVersion: 'latest',
+                    sourceType: 'module',
+                    onComment: comments,
+                  })
+                  attachComments(tree, comments)
+                  return tree
+                },
+              },
+            }) as N.File
+            const p = ast.program
 
-            const { map, scope } = analyze(ast)
+            // @ts-expect-error incompatible but same types
+            const { map, scope } = analyze(p)
 
             const usedNames = new Set<string>(scope.references)
 
-            const _sfc_main = ast.body
-              .find((node): node is estree.VariableDeclaration =>
-                node.type === 'VariableDeclaration'
-                  && node.declarations[0]?.id?.type === 'Identifier'
+            const _sfc_main = p.body
+              .find((node): node is N.VariableDeclaration =>
+                n.VariableDeclaration.check(node)
+                  && n.VariableDeclarator.check(node.declarations[0])
+                  && n.Identifier.check(node.declarations[0].id)
                   && node.declarations[0].id.name === '_sfc_main')
             if (_sfc_main) {
-              const _sfc_call = _sfc_main.declarations[0].init as estree.CallExpression | estree.ObjectExpression
-              const _sfc_options = _sfc_call.type === 'ObjectExpression'
+              const _sfc_call = (_sfc_main.declarations[0] as N.VariableDeclarator).init
+              const _sfc_options = n.ObjectExpression.check(_sfc_call)
                 ? _sfc_call
-                : _sfc_call.arguments[0] as estree.ObjectExpression
-              const _sfc_setup = _sfc_options.properties.find((prop): prop is estree.Property =>
-                prop.type === 'Property' && prop.key.type === 'Identifier' && prop.key.name === 'setup')
-                ?.value as estree.FunctionExpression | undefined
+                : n.CallExpression.check(_sfc_call) && n.ObjectExpression.check(_sfc_call.arguments[0])
+                  ? _sfc_call.arguments[0]
+                  : null
+              if (!_sfc_options)
+                return
+
+              const _sfc_setup = _sfc_options.properties
+                .find((prop): prop is N.Property =>
+                  n.Property.check(prop)
+                  && n.Identifier.check(prop.key)
+                  && prop.key.name === 'setup')
+                ?.value as N.FunctionExpression | undefined
 
               if (_sfc_setup) {
+                // @ts-expect-error incompatible but same types
                 const scope = map.get(_sfc_setup.body)!
 
                 // import { inject } from 'vue'
-                const vueImport = ast.body.find((node): node is estree.ImportDeclaration =>
-                  node.type === 'ImportDeclaration' && node.source.value === 'vue')
-                const injectImport = vueImport?.specifiers.find((specifier): specifier is estree.ImportSpecifier =>
-                  specifier.type === 'ImportSpecifier' && specifier.imported.name === 'inject')
-                let injectIdentifier: estree.Identifier
-                if (injectImport) {
-                  injectIdentifier = injectImport.local
+                const vueImport = p.body
+                  .find((node): node is N.ImportDeclaration =>
+                    n.ImportDeclaration.check(node)
+                    && node.source.value === 'vue')
+                const injectImport = vueImport?.specifiers
+                  ?.find((specifier): specifier is N.ImportSpecifier =>
+                    n.ImportSpecifier.check(specifier)
+                    && specifier.imported.name === 'inject')
+                let injectIdentifier: N.Identifier
+                if (n.Identifier.check(injectImport?.local)) {
+                  injectIdentifier = injectImport!.local
                 }
                 else {
-                  injectIdentifier = {
-                    type: 'Identifier',
-                    name: getSafeName('inject', usedNames, null),
-                  }
+                  injectIdentifier = b.identifier(getSafeName('inject', usedNames, null))
                   if (vueImport) {
-                    vueImport.specifiers.push({
-                      type: 'ImportSpecifier',
-                      imported: {
-                        type: 'Identifier',
-                        name: 'inject',
-                      },
-                      local: injectIdentifier,
-                    })
+                    vueImport.specifiers = vueImport.specifiers ?? []
+                    vueImport.specifiers.push(b.importSpecifier(b.identifier('inject'), injectIdentifier))
                   }
                   else {
-                    ast.body.unshift({
-                      type: 'ImportDeclaration',
-                      specifiers: [{
-                        type: 'ImportSpecifier',
-                        imported: {
-                          type: 'Identifier',
-                          name: 'inject',
-                        },
-                        local: injectIdentifier,
-                      }],
-                      source: {
-                        type: 'Literal',
-                        value: 'vue',
-                      },
-                    })
+                    p.body.unshift(b.importDeclaration([
+                      b.importSpecifier(b.identifier('inject'), injectIdentifier),
+                    ], b.literal('vue')))
                   }
                 }
 
                 // const $elkPlugin = inject('$elkPlugin')
-                const elkPluginIdentifier: estree.Identifier = {
-                  type: 'Identifier',
-                  name: getSafeName('$elkPlugin', usedNames, null),
-                }
-                const elkPluginDecl: estree.VariableDeclaration = {
-                  type: 'VariableDeclaration',
-                  kind: 'const',
-                  declarations: [{
-                    type: 'VariableDeclarator',
-                    id: elkPluginIdentifier,
-                    init: {
-                      type: 'CallExpression',
-                      callee: injectIdentifier,
-                      arguments: [{
-                        type: 'Literal',
-                        value: '$elkPlugin',
-                      }],
-                      optional: false,
-                    },
-                  }],
-                }
+                const elkPluginIdentifier = b.identifier(getSafeName('$elkPlugin', usedNames, null))
+                const elkPluginDecl = b.variableDeclaration('const', [
+                  b.variableDeclarator(elkPluginIdentifier,
+                    b.callExpression(injectIdentifier, [b.literal('$elkPlugin')])),
+                ])
 
+                // @ts-expect-error incompatible but same types
                 const refs = [...analyze(_sfc_setup.body).globals.keys()]
                   .filter(ref => !scope.parent!.declarations.has(ref))
 
@@ -127,95 +120,35 @@ export default defineNuxtModule({
                 //   const { _ctx } = _elk_refs
                 //   ...
                 // }
-                const refCall: estree.CallExpression = {
-                  type: 'CallExpression',
-                  callee: {
-                    type: 'MemberExpression',
-                    object: elkPluginIdentifier,
-                    property: {
-                      type: 'Identifier',
-                      name: 'setupRef',
-                    },
-                    computed: false,
-                    optional: false,
-                  },
-                  arguments: [
-                    {
-                      type: 'Literal',
-                      value: relativePath,
-                    },
-                    {
-                      type: 'Identifier',
-                      name: 'arguments',
-                    },
-                    {
-                      type: 'ObjectExpression',
-                      properties: refs.map(name => ({
-                        type: 'Property',
-                        key: {
-                          type: 'Identifier',
-                          name,
-                        },
-                        value: {
-                          type: 'Identifier',
-                          name,
-                        },
-                        kind: 'init',
-                        method: false,
-                        shorthand: true,
-                        computed: false,
-                      })),
-                    },
+                const refCall = b.callExpression(
+                  b.memberExpression(elkPluginIdentifier, b.identifier('setupRef')),
+                  [
+                    b.literal(relativePath),
+                    b.identifier('arguments'),
+                    b.objectExpression(refs.map(name => b.property(
+                      'init',
+                      b.identifier(name),
+                      b.identifier(name),
+                    ))),
                   ],
-                  optional: false,
-                }
-                const refIdentifier: estree.Identifier = {
-                  type: 'Identifier',
-                  name: getSafeName('_elk_refs', usedNames, null),
-                }
-                const refDecl: estree.VariableDeclaration = {
-                  type: 'VariableDeclaration',
-                  kind: 'const',
-                  declarations: [
-                    {
-                      type: 'VariableDeclarator',
-                      id: refIdentifier,
-                      init: refCall,
-                    },
-                  ],
-                }
-                const refBlock: estree.BlockStatement = {
-                  type: 'BlockStatement',
-                  body: [
-                    {
-                      type: 'VariableDeclaration',
-                      kind: 'let',
-                      declarations: [{
-                        type: 'VariableDeclarator',
-                        id: {
-                          type: 'ObjectPattern',
-                          properties: refs.map(name => ({
-                            type: 'Property',
-                            key: {
-                              type: 'Identifier',
-                              name,
-                            },
-                            value: {
-                              type: 'Identifier',
-                              name,
-                            },
-                            kind: 'init',
-                            method: false,
-                            shorthand: true,
-                            computed: false,
-                          })),
-                        },
-                        init: refIdentifier,
-                      }],
-                    },
-                    ..._sfc_setup.body.body,
-                  ],
-                }
+                )
+                const refIdentifier = b.identifier(getSafeName('_elk_refs', usedNames, null))
+                const refDecl = b.variableDeclaration('const', [
+                  b.variableDeclarator(refIdentifier, refCall),
+                ])
+                const refBlock = b.blockStatement([
+                  b.variableDeclaration('let', [
+                    b.variableDeclarator(
+                      b.objectPattern(refs.map(name => b.property(
+                        'init',
+                        b.identifier(name),
+                        b.identifier(name),
+                      ))),
+                      refIdentifier,
+                    ),
+                  ]),
+                  ..._sfc_setup.body.body,
+                ])
                 _sfc_setup.body.body = [
                   elkPluginDecl,
                   refDecl,
@@ -224,142 +157,81 @@ export default defineNuxtModule({
               }
             }
 
-            const _sfc_render = ast.body
-              .find((node): node is estree.FunctionDeclaration =>
-                node.type === 'FunctionDeclaration' && node.id?.name === '_sfc_render')
+            const _sfc_render = p.body
+              .find((node): node is N.FunctionDeclaration =>
+                n.FunctionDeclaration.check(node)
+                  && n.Identifier.check(node.id)
+                  && node.id.name === '_sfc_render')
             if (_sfc_render) {
+              // @ts-expect-error incompatible but same types
               const scope = map.get(_sfc_render.body)!
 
-              const elkPluginHook: estree.Expression = {
-                type: 'MemberExpression',
-                object: {
-                  type: 'MemberExpression',
-                  object: _sfc_render.params[0] as estree.Identifier,
-                  property: {
-                    type: 'Identifier',
-                    name: '$options',
-                  },
-                  computed: false,
-                  optional: false,
-                },
-                property: {
-                  type: 'Identifier',
-                  name: '$elkPlugin',
-                },
-                computed: false,
-                optional: false,
-              }
+              // _ctx.$options.$elkPlugin
+              const elkPluginHook = b.memberExpression(
+                b.memberExpression(
+                  _sfc_render.params[0] as N.Identifier,
+                  b.identifier('$options'),
+                ),
+                b.identifier('$elkPlugin'),
+              )
 
+              // @ts-expect-error incompatible but same types
               const refs = [...analyze(_sfc_render.body).globals.keys()]
                 .filter(ref => !scope.parent!.declarations.has(ref))
 
-              const components: estree.VariableDeclaration[] = []
-              _sfc_render.body.body = _sfc_render.body.body.filter((node) => {
-                if (node.type === 'VariableDeclaration'
-                  && node.declarations.length === 1
-                  && node.declarations[0].id.type === 'Identifier'
-                  && node.declarations[0].id.name.startsWith('_component_')) {
-                  components.push(node)
-                  refs.push(node.declarations[0].id.name)
-                  return false
-                }
-                return true
-              })
+              // pass through auto-imported components
+              const components: N.VariableDeclaration[] = []
+              _sfc_render.body.body = _sfc_render.body.body
+                .filter((node) => {
+                  if (n.VariableDeclaration.check(node)
+                    && node.declarations.length === 1
+                    && n.VariableDeclarator.check(node.declarations[0])
+                    && n.Identifier.check(node.declarations[0].id)
+                    && node.declarations[0].id.name.startsWith('_component_')) {
+                    components.push(node)
+                    refs.push(node.declarations[0].id.name)
+                    return false
+                  }
+                  return true
+                })
 
               // const _elk_refs = _ctx.$options.$elkPlugin.renderRef(id, arguments, { _ctx })
               // {
               //   const { _ctx } = _elk_refs
               //   ...
               // }
-              const refCall: estree.CallExpression = {
-                type: 'CallExpression',
-                callee: {
-                  type: 'MemberExpression',
-                  object: elkPluginHook,
-                  property: {
-                    type: 'Identifier',
-                    name: 'renderRef',
-                  },
-                  computed: false,
-                  optional: false,
-                },
-                arguments: [
-                  {
-                    type: 'Literal',
-                    value: relativePath,
-                  },
-                  {
-                    type: 'Identifier',
-                    name: 'arguments',
-                  },
-                  {
-                    type: 'ObjectExpression',
-                    properties: refs.map(name => ({
-                      type: 'Property',
-                      key: {
-                        type: 'Identifier',
-                        name,
-                      },
-                      value: {
-                        type: 'Identifier',
-                        name,
-                      },
-                      kind: 'init',
-                      method: false,
-                      shorthand: true,
-                      computed: false,
-                    })),
-                  },
+              const refCall = b.callExpression(
+                b.memberExpression(
+                  elkPluginHook,
+                  b.identifier('renderRef'),
+                ),
+                [
+                  b.literal(relativePath),
+                  b.identifier('arguments'),
+                  b.objectExpression(refs.map(name => b.property(
+                    'init',
+                    b.identifier(name),
+                    b.identifier(name),
+                  ))),
                 ],
-                optional: false,
-              }
-              const refIdentifier: estree.Identifier = {
-                type: 'Identifier',
-                name: getSafeName('_elk_refs', usedNames, null),
-              }
-              const refDecl: estree.VariableDeclaration = {
-                type: 'VariableDeclaration',
-                kind: 'const',
-                declarations: [
-                  {
-                    type: 'VariableDeclarator',
-                    id: refIdentifier,
-                    init: refCall,
-                  },
-                ],
-              }
-              const refBlock: estree.BlockStatement = {
-                type: 'BlockStatement',
-                body: [
-                  {
-                    type: 'VariableDeclaration',
-                    kind: 'let',
-                    declarations: [{
-                      type: 'VariableDeclarator',
-                      id: {
-                        type: 'ObjectPattern',
-                        properties: refs.map(name => ({
-                          type: 'Property',
-                          key: {
-                            type: 'Identifier',
-                            name,
-                          },
-                          value: {
-                            type: 'Identifier',
-                            name,
-                          },
-                          kind: 'init',
-                          method: false,
-                          shorthand: true,
-                          computed: false,
-                        })),
-                      },
-                      init: refIdentifier,
-                    }],
-                  },
-                  ..._sfc_render.body.body,
-                ],
-              }
+              )
+              const refIdentifier = b.identifier(getSafeName('_elk_refs', usedNames, null))
+              const refDecl = b.variableDeclaration('const', [
+                b.variableDeclarator(refIdentifier, refCall),
+              ])
+              const refBlock = b.blockStatement([
+                b.variableDeclaration('let', [
+                  b.variableDeclarator(
+                    b.objectPattern(refs.map(name => b.property(
+                      'init',
+                      b.identifier(name),
+                      b.identifier(name),
+                    ))),
+                    refIdentifier,
+                  ),
+                ]),
+                ..._sfc_render.body.body,
+              ])
               _sfc_render.body.body = [
                 ...components,
                 refDecl,
@@ -367,17 +239,11 @@ export default defineNuxtModule({
               ]
             }
 
-            const sourceMap = new SourceMapGenerator({
-              file: id,
-            })
-            const res = generate(ast, {
-              sourceMap,
-              comments: true,
-            })
+            const res = print(ast)
 
             return {
-              code: res,
-              map: sourceMap.toString(),
+              code: res.code,
+              map: res.map,
             }
           }
         },

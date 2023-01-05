@@ -255,7 +255,7 @@ export const provideGlobalCommands = () => {
     description: () => t('command.compose_desc'),
 
     onActivate() {
-      openPublishDialog()
+      router.push('/compose')
     },
   })
 
@@ -285,10 +285,10 @@ export const provideGlobalCommands = () => {
     scope: 'Preferences',
 
     name: () => t('command.toggle_zen_mode'),
-    icon: () => isZenMode.value ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
+    icon: () => userSettings.value.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
 
     onActivate() {
-      toggleZenMode()
+      userSettings.value.zenMode = !userSettings.value.zenMode
     },
   })
 

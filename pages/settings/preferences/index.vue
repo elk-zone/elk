@@ -18,19 +18,19 @@ useHeadFixed({
       {{ $t('settings.feature_flags.title') }}
     </h3>
     <SettingsToggleItem
-      :checked="currentUserFeatureFlags.experimentalVirtualScroll"
+      :checked="getFeatureFlag('experimentalVirtualScroll')"
       @click="toggleFeatureFlag('experimentalVirtualScroll')"
     >
       {{ $t('settings.feature_flags.virtual_scroll') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="currentUserFeatureFlags.experimentalGitHubCards"
+      :checked="getFeatureFlag('experimentalGitHubCards')"
       @click="toggleFeatureFlag('experimentalGitHubCards')"
     >
       {{ $t('settings.feature_flags.github_cards') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="currentUserFeatureFlags.experimentalUserPicker"
+      :checked="getFeatureFlag('experimentalUserPicker')"
       @click="toggleFeatureFlag('experimentalUserPicker')"
     >
       {{ $t('settings.feature_flags.user_picker') }}

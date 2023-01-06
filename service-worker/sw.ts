@@ -25,18 +25,14 @@ precacheAndRoute(entries)
 cleanupOutdatedCaches()
 
 // allow only fallback in dev: we don't want to cache anything
-/*
 let allowlist: undefined | RegExp[]
 if (import.meta.env.DEV)
   allowlist = [/^\/$/]
-*/
 
 // deny api and server page calls
-/*
 let denylist: undefined | RegExp[]
 if (import.meta.env.PROD)
   denylist = [/^\/api\//, /^\/login\//, /^\/oauth\//, /^\/signin\//]
-*/
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {
@@ -76,7 +72,7 @@ if (import.meta.env.PROD) {
 // to allow work offline
 registerRoute(new NavigationRoute(
   createHandlerBoundToURL('/'),
-  { allowlist: [/^\/$/] },
+  { allowlist, denylist },
 ))
 
 self.addEventListener('push', onPush)

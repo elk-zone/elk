@@ -246,20 +246,6 @@ export const provideGlobalCommands = () => {
   const colorMode = useColorMode()
 
   useCommand({
-    scope: 'Actions',
-
-    visible: () => currentUser.value,
-
-    name: () => t('action.compose'),
-    icon: 'i-ri:quill-pen-line',
-    description: () => t('command.compose_desc'),
-
-    onActivate() {
-      openPublishDialog()
-    },
-  })
-
-  useCommand({
     scope: 'Navigation',
 
     name: () => t('nav.settings'),

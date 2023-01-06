@@ -14,7 +14,7 @@ type RequiredWebManifestEntry = Required<WebManifestEntry & Pick<ManifestOptions
 
 export const createI18n = async (): Promise<LocalizedWebManifest> => {
   const { env } = await getEnv()
-  const envName = `${env === 'release' ? '' : `${env}`}`
+  const envName = `${env === 'release' ? '' : `(${env})`}`
   const { pwa } = await readI18nFile('en-US.json')
 
   const defaultManifest: Required<WebManifestEntry> = pwa.webmanifest[env]

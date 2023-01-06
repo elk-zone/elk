@@ -1,14 +1,10 @@
 <script lang="ts" setup>
-const props = withDefaults(defineProps<{
-  modelValue?: boolean
-}>(), {
-  modelValue: true,
-})
 const emit = defineEmits<{
-  (e: 'update:modelValue', v: boolean): void
   (event: 'close'): void
 }>()
-const visible = useVModel(props, 'modelValue', emit, { passive: true })
+const { modelValue: visible } = defineModel<{
+  modelValue?: boolean
+}>()
 
 function close() {
   emit('close')

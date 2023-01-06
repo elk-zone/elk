@@ -86,7 +86,7 @@
     "@types/wicg-file-system-access": "^2020.9.5",
     "@unocss/nuxt": "^0.48.0",
     "@vitejs/plugin-vue": "^3.2.0",
-    "@vue-macros/nuxt": "^0.2.2",
+    "@vue-macros/nuxt": "^0.2.8",
     "@vueuse/nuxt": "^9.9.0",
     "bumpp": "^8.2.1",
     "emoji-mart": "^5.4.0",

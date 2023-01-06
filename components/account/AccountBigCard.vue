@@ -32,13 +32,7 @@ defineOptions({
           </a>
         </div>
         <div sm:mt-2>
-          <div>
-            <ContentRich
-              font-bold text-lg line-clamp-1 ws-pre-wrap break-all
-              :content="getDisplayName(account, { rich: true })"
-              :emojis="account.emojis"
-            />
-          </div>
+          <AccountDisplayName :account="account" font-bold text-lg line-clamp-1 ws-pre-wrap break-all />
           <AccountHandle text-sm :account="account" />
         </div>
       </div>

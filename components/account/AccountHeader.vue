@@ -73,14 +73,9 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           <button w-30 h-30 rounded-full border-4 border-bg-base z-2 @click="previewAvatar">
             <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
           </button>
-          <div flex flex-col>
+          <div flex="~ col gap1">
             <div flex justify-between>
-              <ContentRich
-                font-bold sm:text-2xl text-xl
-                :content="getDisplayName(account, { rich: true })"
-                :emojis="account.emojis"
-                :markdown="false"
-              />
+              <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
               <AccountBotIndicator v-if="account.bot" />
             </div>
             <AccountHandle :account="account" />

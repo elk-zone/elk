@@ -47,13 +47,13 @@ const showUserPicker = logicAnd(
           </slot>
         </div>
       </aside>
-      <div v-if="isHydrated" w-full min-h-screen :class="wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px md:shrink-0'" border-base>
+      <div w-full min-h-screen :class="isHydrated && wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px md:shrink-0'" border-base>
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
         <div sm:hidden sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
-          <CommonOfflineChecker />
-          <NavBottom />
+          <CommonOfflineChecker :small-screen="isHydrated" />
+          <NavBottom v-if="isHydrated" />
         </div>
       </div>
       <aside v-if="!wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">

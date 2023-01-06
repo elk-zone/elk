@@ -2,6 +2,7 @@
 import type { Status } from 'masto'
 import {
   isCommandPanelOpen,
+  isConfirmDialogOpen,
   isEditHistoryDialogOpen,
   isMediaPreviewOpen,
   isPreviewHelpOpen,
@@ -70,6 +71,9 @@ const handlePublishClose = () => {
     </ModalDialog>
     <ModalDialog v-model="isCommandPanelOpen" max-w-fit flex>
       <CommandPanel @close="closeCommandPanel()" />
+    </ModalDialog>
+    <ModalDialog v-model="isConfirmDialogOpen" py-4 px-8 max-w-125>
+      <ModalConfirm />
     </ModalDialog>
   </template>
 </template>

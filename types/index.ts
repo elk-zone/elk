@@ -65,6 +65,13 @@ export interface Draft {
 }
 export type DraftMap = Record<string, Draft>
 
+export interface ConfirmDialogLabels {
+  title: string
+  description?: string
+  yes: string
+  no: string
+}
+
 export interface BuildInfo {
   version: string
   commit: string

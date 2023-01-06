@@ -1,6 +1,9 @@
 import type { Attachment, Status, StatusEdit } from 'masto'
-import type { Draft } from '~/types'
+import type { ConfirmDialogLabels, Draft } from '~/types'
 import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
+
+export const confirmDialogChoice = ref(false)
+export const confirmDialogLabels = ref<ConfirmDialogLabels>()
 
 export const mediaPreviewList = ref<Attachment[]>([])
 export const mediaPreviewIndex = ref(0)
@@ -18,11 +21,22 @@ export const isMediaPreviewOpen = ref(false)
 export const isEditHistoryDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
 export const isCommandPanelOpen = ref(false)
+export const isConfirmDialogOpen = ref(false)
 
 export const lastPublishDialogStatus = ref<Status | null>(null)
 
 export function openSigninDialog() {
   isSigninDialogOpen.value = true
+}
+
+export async function openConfirmDialog(labels: ConfirmDialogLabels): Promise<boolean> {
+  confirmDialogLabels.value = labels
+  confirmDialogChoice.value = false
+  isConfirmDialogOpen.value = true
+
+  await until(isConfirmDialogOpen).toBe(false)
+
+  return confirmDialogChoice.value
 }
 
 export async function openPublishDialog(draftKey = 'dialog', draft?: Draft, overwrite = false): Promise<void> {

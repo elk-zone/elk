@@ -22,6 +22,7 @@ const {
 const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
+const { t } = useI18n()
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
@@ -60,7 +61,13 @@ const shareLink = async (status: Status) => {
 }
 
 const deleteStatus = async () => {
-  // TODO confirm to delete
+  if (!await openConfirmDialog({
+    title: t('menu.delete_confirm.title'),
+    yes: t('menu.delete_confirm.yes'),
+    no: t('menu.delete_confirm.no'),
+  }))
+    return
+
   if (process.dev) {
     // eslint-disable-next-line no-alert
     const result = confirm('[DEV] Are you sure you want to delete this post?')

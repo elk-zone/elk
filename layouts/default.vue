@@ -56,7 +56,7 @@ const showUserPicker = logicAnd(
           <NavBottom v-if="isHydrated" />
         </div>
       </div>
-      <aside v-if="!wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">
+      <aside v-if="isHydrated && !wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col" gap-2 py3 ms-2>
           <slot name="right">
             <div flex-auto />

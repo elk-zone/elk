@@ -24,7 +24,6 @@ export const useImageGesture = (
 
   const { set } = useSpring(motionProperties as Partial<PermissiveMotionProperties>)
 
-  // @ts-expect-error we need to fix types: just suppress it for now
   const handlers: Handlers = {
     onPinch({ offset: [d] }) {
       set({ scale: 1 + d / 200 })

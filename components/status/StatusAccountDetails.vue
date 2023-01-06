@@ -13,11 +13,7 @@ const { account, link = true } = defineProps<{
     flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
     text-link-rounded
   >
-    <ContentRich
-      font-bold line-clamp-1 ws-pre-wrap break-all
-      :content="getDisplayName(account, { rich: true })"
-      :emojis="account.emojis"
-    />
+    <AccountDisplayName :account="account" font-bold line-clamp-1 ws-pre-wrap break-all />
     <AccountHandle :account="account" />
   </NuxtLink>
 </template>

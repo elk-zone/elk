@@ -81,6 +81,37 @@ export const currentUserHandle = computed(() =>
   currentUser.value.guest ? GUEST_ID : currentUser.value.account!.acct,
 )
 
+// when multiple tabs: we need to reload window when sign in, switch account or sign out
+if (process.client) {
+  const windowReload = () => {
+    document.visibilityState === 'visible' && window.location.reload()
+  }
+  watch(currentUserId, async (id, oldId) => {
+    // when sign in or switch account
+    if (id) {
+      if (id === currentUser.value?.account?.id) {
+        // when sign in, the other tab will not have the user, idb is not reactive
+        const newUser = users.value.find(user => user.account?.id === id)
+        // if the user is there, then we are switching account
+        if (newUser) {
+          // check if the change is on current tab: if so, don't reload
+          if (document.hasFocus() || document.visibilityState === 'visible')
+            return
+        }
+      }
+
+      window.addEventListener('visibilitychange', windowReload, { capture: true })
+    }
+    // when sign out
+    else if (oldId) {
+      const oldUser = users.value.find(user => user.account?.id === oldId)
+      // when sign out, the other tab will not have the user, idb is not reactive
+      if (oldUser)
+        window.addEventListener('visibilitychange', windowReload, { capture: true })
+    }
+  }, { immediate: true, flush: 'post' })
+}
+
 export const useUsers = () => users
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)

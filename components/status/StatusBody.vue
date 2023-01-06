@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { Status, StatusEdit } from 'masto'
 
 const { status, withAction = true } = defineProps<{
-  status: Status
+  status: Status | StatusEdit
   withAction?: boolean
 }>()
+
 const { translation } = useTranslation(status)
 </script>
 
@@ -15,7 +16,7 @@ const { translation } = useTranslation(status)
       class="line-compact"
       :content="status.content"
       :emojis="status.emojis"
-      :lang="status.language"
+      :lang="'language' in status && status.language"
     />
     <div v-else />
     <template v-if="translation.visible">

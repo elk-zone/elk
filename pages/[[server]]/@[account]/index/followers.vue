@@ -16,7 +16,7 @@ if (account) {
 </script>
 
 <template>
-  <template v-if="account">
+  <template v-if="paginator">
     <AccountPaginator :paginator="paginator" />
   </template>
 </template>

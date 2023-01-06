@@ -2,9 +2,6 @@
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 
 export interface Props {
-  /** v-model dislog visibility */
-  modelValue: boolean
-
   /**
    * level of depth
    *
@@ -48,11 +45,13 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   /** v-model dialog visibility */
-  (event: 'update:modelValue', value: boolean): void
   (event: 'close',): void
 }>()
 
-const visible = useVModel(props, 'modelValue', emit, { passive: true })
+const { modelValue: visible } = defineModel<{
+  /** v-model dislog visibility */
+  modelValue: boolean
+}>()
 
 const deactivated = useDeactivated()
 const route = useRoute()

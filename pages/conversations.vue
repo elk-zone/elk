@@ -13,7 +13,7 @@ useHeadFixed({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/conversations" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+      <NuxtLink to="/conversations" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:at-line />
         <span>{{ t('nav.conversations') }}</span>
       </NuxtLink>

@@ -13,7 +13,7 @@ useHeadFixed({
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>{{ $t('nav.blocked_users') }}</span>
+      <span timeline-title-style>{{ $t('nav.blocked_users') }}</span>
     </template>
 
     <TimelineBlocks v-if="isMastoInitialised" />

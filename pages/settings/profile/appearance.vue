@@ -87,11 +87,10 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
     </template>
 
     <form space-y-5 @submit.prevent="submit">
-      <div>
+      <div v-if="isHydrated && account">
         <!-- banner -->
         <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
-            v-if="isHydrated"
             v-model="form.header"
             :original="onlineSrc.header"
             w-full h-full
@@ -100,15 +99,21 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <CommonCropImage v-model="form.header" :stencil-aspect-ratio="3 / 1" />
 
         <!-- avatar -->
-        <div px-4>
+        <div px-4 flex="~ gap4">
           <CommonInputImage
-            v-if="isHydrated"
             v-model="form.avatar"
             :original="onlineSrc.avatar"
             mt--10
             rounded-full border="bg-base 4"
             w="sm:30 24" min-w="sm:30 24" h="sm:30 24"
           />
+          <div flex="~ col gap1" self-end>
+            <AccountDisplayName
+              :account="{ ...account, displayName: form.displayName }"
+              font-bold sm:text-2xl text-xl
+            />
+            <AccountHandle :account="account" />
+          </div>
         </div>
         <CommonCropImage v-model="form.avatar" />
       </div>

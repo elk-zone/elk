@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
-import AccountTabs from '~/components/account/AccountTabs.vue'
-
 const params = useRoute().params
 const handle = $(computedEager(() => params.account as string))
 
@@ -23,6 +20,6 @@ if (account) {
 <template>
   <div>
     <AccountTabs />
-    <TimelinePaginator :paginator="paginator" :preprocess="reorderedTimeline" context="account" />
+    <TimelinePaginator :paginator="paginator" :preprocess="reorderedTimeline" context="account" :account="account" />
   </div>
 </template>

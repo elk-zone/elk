@@ -22,9 +22,9 @@ function toggleDark() {
         <button
           flex
           text-lg
-          :class="isZenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
+          :class="userSettings.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
           :aria-label="$t('nav.zen_mode')"
-          @click="toggleZenMode()"
+          @click="userSettings.zenMode = !userSettings.zenMode"
         />
       </CommonTooltip>
     </div>

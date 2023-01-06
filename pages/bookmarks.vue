@@ -13,7 +13,7 @@ useHeadFixed({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/bookmarks" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+      <NuxtLink to="/bookmarks" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:bookmark-line />
         <span>{{ t('nav.bookmarks') }}</span>
       </NuxtLink>

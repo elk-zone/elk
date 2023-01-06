@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { statusVisibilities } from '~/composables/masto/icons'
-
 const { editing } = defineProps<{
   editing?: boolean
 }>()

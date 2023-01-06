@@ -12,4 +12,13 @@ const key = computed(() => getUniqueUserId(currentUser.value))
     <NuxtPage />
   </NuxtLayout>
   <AriaAnnouncer />
+
+  <!-- Avatar Mask -->
+  <svg absolute op0 width="0" height="0">
+    <defs>
+      <clipPath id="avatar-mask" clipPathUnits="objectBoundingBox">
+        <path d="M 0,0.5 C 0,0 0,0 0.5,0 S 1,0 1,0.5 1,1 0.5,1 0,1 0,0.5" />
+      </clipPath>
+    </defs>
+  </svg>
 </template>

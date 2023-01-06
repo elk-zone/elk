@@ -2,7 +2,7 @@
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { Account, Paginator, WsEvents } from 'masto'
+import type { Paginator, WsEvents } from 'masto'
 
 const {
   paginator,
@@ -11,7 +11,6 @@ const {
   virtualScroller = false,
   eventType = 'update',
   preprocess,
-  isAccountTimeline,
 } = defineProps<{
   paginator: Paginator<any, any[]>
   keyProp?: string
@@ -19,7 +18,6 @@ const {
   stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
   preprocess?: (items: any[]) => any[]
-  isAccountTimeline?: boolean
 }>()
 
 defineSlots<{
@@ -34,17 +32,8 @@ defineSlots<{
     update: () => void
   }
   loading: {}
+  done: {}
 }>()
-
-let account: Account | null = null
-
-const { params } = useRoute()
-
-if (isAccountTimeline) {
-  const handle = $(computedEager(() => params.account as string))
-
-  account = await fetchAccountByHandle(handle)
-}
 
 const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream, eventType, preprocess)
 </script>
@@ -84,15 +73,11 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
     <slot v-if="state === 'loading'" name="loading">
       <TimelineSkeleton />
     </slot>
-    <div v-else-if="state === 'done'" p5 text-secondary italic text-center flex flex-col items-center gap1>
-      <template v-if="isAccountTimeline">
-        <span>{{ $t('timeline.view_older_posts') }}</span>
-        <a :href="account!.url" not-italic text-primary hover="underline text-primary-active">{{ $t('menu.open_in_original_site') }}</a>
-      </template>
-      <template v-else>
+    <slot v-else-if="state === 'done'" name="done">
+      <div p5 text-secondary italic text-center>
         {{ $t('common.end_of_list') }}
-      </template>
-    </div>
+      </div>
+    </slot>
     <div v-else-if="state === 'error'" p5 text-secondary>
       {{ $t('common.error') }}: {{ error }}
     </div>

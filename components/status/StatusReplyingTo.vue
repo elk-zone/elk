@@ -30,7 +30,7 @@ const account = isSelf ? computed(() => status.account) : useAccountById(status.
           <AccountInlineInfo v-else :account="account" :link="false" mx-0.5 />
         </template>
       </template>
-      <div i-ph:chats-fill text-primary text-lg />
+      <div i-ri:question-answer-line text-secondary-light text-lg />
     </NuxtLink>
   </div>
 </template>

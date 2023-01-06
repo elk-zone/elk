@@ -5,6 +5,11 @@ import type { Mutable } from '~/types/utils'
 
 export const currentUserDrafts = process.server ? computed<DraftMap>(() => ({})) : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 
+export const builtinDraftKeys = [
+  'dialog',
+  'home',
+]
+
 export function getDefaultDraft(options: Partial<Mutable<CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
   const {
     attachments = [],
@@ -21,7 +26,6 @@ export function getDefaultDraft(options: Partial<Mutable<CreateStatusParams> & O
   return {
     attachments,
     initialText,
-
     params: {
       status: status || '',
       inReplyToId,
@@ -30,6 +34,7 @@ export function getDefaultDraft(options: Partial<Mutable<CreateStatusParams> & O
       spoilerText: spoilerText || '',
       language: language || 'en',
     },
+    lastUpdated: Date.now(),
   }
 }
 
@@ -78,25 +83,27 @@ export const isEmptyDraft = (draft: Draft | null | undefined) => {
 }
 
 export function useDraft(
-  draftKey: string,
+  draftKey?: string,
   initial: () => Draft = () => getDefaultDraft({}),
 ) {
-  const draft = computed({
-    get() {
-      if (!currentUserDrafts.value[draftKey])
-        currentUserDrafts.value[draftKey] = initial()
-      return currentUserDrafts.value[draftKey]
-    },
-    set(val) {
-      currentUserDrafts.value[draftKey] = val
-    },
-  })
+  const draft = draftKey
+    ? computed({
+      get() {
+        if (!currentUserDrafts.value[draftKey])
+          currentUserDrafts.value[draftKey] = initial()
+        return currentUserDrafts.value[draftKey]
+      },
+      set(val) {
+        currentUserDrafts.value[draftKey] = val
+      },
+    })
+    : ref(initial())
 
   const isEmpty = computed(() => isEmptyDraft(draft.value))
 
   onUnmounted(async () => {
     // Remove draft if it's empty
-    if (isEmpty.value) {
+    if (isEmpty.value && draftKey) {
       await nextTick()
       delete currentUserDrafts.value[draftKey]
     }
@@ -116,4 +123,13 @@ export function directMessageUser(account: Account) {
     status: `@${account.acct} `,
     visibility: 'direct',
   }), true)
+}
+
+export function clearEmptyDrafts() {
+  for (const key in currentUserDrafts.value) {
+    if (builtinDraftKeys.includes(key))
+      continue
+    if (!currentUserDrafts.value[key].params || isEmptyDraft(currentUserDrafts.value[key]))
+      delete currentUserDrafts.value[key]
+  }
 }

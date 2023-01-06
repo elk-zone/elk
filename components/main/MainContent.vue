@@ -14,11 +14,12 @@ defineProps<{
       pt="[env(safe-area-inset-top,0)]"
       border="b base" bg="[rgba(var(--c-bg-base-rgb),0.7)]"
     >
-      <div flex justify-between px5 py2>
+      <div xl:hidden flex justify-between px5 py2>
         <div flex gap-3 items-center overflow-hidden py2>
           <NuxtLink
             v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0
             :class="{ 'lg:hidden': backOnSmallScreen }"
+            :aria-label="$t('nav.back')"
             @click="$router.go(-1)"
           >
             <div i-ri:arrow-left-line class="rtl-flip" />
@@ -37,6 +38,7 @@ defineProps<{
       </div>
       <slot name="header" />
     </div>
+    <div hidden xl:block h-6 />
     <slot />
   </div>
 </template>

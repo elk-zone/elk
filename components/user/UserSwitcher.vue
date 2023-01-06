@@ -21,7 +21,7 @@ const masto = useMasto()
         aria-label="Switch user"
         @click="switchUser(user, masto)"
       >
-        <AccountInfo v-if="!user.guest" :account="user.account" :hover-card="false" />
+        <AccountInfo v-if="checkAuth(user)" :account="user.account" :hover-card="false" square />
         <AccountGuest v-else :user="user" />
         <div flex-auto />
         <div v-if="isSameUser(user, currentUser)" i-ri:check-line text-primary mya text-2xl />

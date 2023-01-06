@@ -3,7 +3,6 @@ import { fileOpen } from 'browser-fs-access'
 import type { FileWithHandle } from 'browser-fs-access'
 
 const props = withDefaults(defineProps<{
-  modelValue?: FileWithHandle
   /** The image src before change */
   original?: string
   /** Allowed file types */
@@ -19,12 +18,13 @@ const props = withDefaults(defineProps<{
   allowedFileSize: 1024 * 1024 * 5, // 5 MB
 })
 const emit = defineEmits<{
-  (event: 'update:modelValue', value: FileWithHandle): void
   (event: 'pick', value: FileWithHandle): void
   (event: 'error', code: number, message: string): void
 }>()
 
-const file = useVModel(props, 'modelValue', emit, { passive: true })
+const { modelValue: file } = defineModel<{
+  modelValue: FileWithHandle | null
+}>()
 
 const { t } = useI18n()
 

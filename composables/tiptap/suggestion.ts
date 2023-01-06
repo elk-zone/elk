@@ -3,7 +3,9 @@ import tippy from 'tippy.js'
 import { VueRenderer } from '@tiptap/vue-3'
 import type { SuggestionOptions } from '@tiptap/suggestion'
 import { PluginKey } from 'prosemirror-state'
+import type { Component } from 'vue'
 import TiptapMentionList from '~/components/tiptap/TiptapMentionList.vue'
+import TiptapHashtagList from '~/components/tiptap/TiptapHashtagList.vue'
 
 export const MentionSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('mention'),
@@ -17,29 +19,32 @@ export const MentionSuggestion: Partial<SuggestionOptions> = {
 
     return results.value.accounts
   },
-  render: createSuggestionRenderer(),
+  render: createSuggestionRenderer(TiptapMentionList),
 }
 
-export const HashSuggestion: Partial<SuggestionOptions> = {
+export const HashtagSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('hashtag'),
   char: '#',
-  items({ query }) {
-    // TODO: query
-    return [
-      'TODO HASH QUERY',
-    ].filter(item => item.toLowerCase().startsWith(query.toLowerCase())).slice(0, 5)
+  async items({ query }) {
+    if (query.length === 0)
+      return []
+
+    const paginator = useMasto().search({ q: query, type: 'hashtags', limit: 25, resolve: true })
+    const results = await paginator.next()
+
+    return results.value.hashtags
   },
-  render: createSuggestionRenderer(),
+  render: createSuggestionRenderer(TiptapHashtagList),
 }
 
-function createSuggestionRenderer(): SuggestionOptions['render'] {
+function createSuggestionRenderer(component: Component): SuggestionOptions['render'] {
   return () => {
-    let component: VueRenderer
+    let renderer: VueRenderer
     let popup: Instance
 
     return {
       onStart(props) {
-        component = new VueRenderer(TiptapMentionList, {
+        renderer = new VueRenderer(component, {
           props,
           editor: props.editor,
         })
@@ -50,7 +55,7 @@ function createSuggestionRenderer(): SuggestionOptions['render'] {
         popup = tippy(document.body, {
           getReferenceClientRect: props.clientRect as GetReferenceClientRect,
           appendTo: () => document.body,
-          content: component.element,
+          content: renderer.element,
           showOnCreate: true,
           interactive: true,
           trigger: 'manual',
@@ -60,11 +65,11 @@ function createSuggestionRenderer(): SuggestionOptions['render'] {
 
       // Use arrow function here because Nuxt will transform it incorrectly as Vue hook causing the build to fail
       onBeforeUpdate: (props) => {
-        component.updateProps({ ...props, isPending: true })
+        renderer.updateProps({ ...props, isPending: true })
       },
 
       onUpdate(props) {
-        component.updateProps({ ...props, isPending: false })
+        renderer.updateProps({ ...props, isPending: false })
 
         if (!props.clientRect)
           return
@@ -79,12 +84,12 @@ function createSuggestionRenderer(): SuggestionOptions['render'] {
           popup?.hide()
           return true
         }
-        return component?.ref?.onKeyDown(props.event)
+        return renderer?.ref?.onKeyDown(props.event)
       },
 
       onExit() {
         popup?.destroy()
-        component?.destroy()
+        renderer?.destroy()
       },
     }
   }

@@ -48,7 +48,9 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: [
+      './composables/masto',
       './composables/push-notifications',
+      './composables/settings',
       './composables/tiptap',
     ],
   },
@@ -113,7 +115,7 @@ export default defineNuxtConfig({
     ],
     prerender: {
       crawlLinks: false,
-      routes: ['/', '/200.html'],
+      routes: ['/'],
     },
   },
   app: {

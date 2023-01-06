@@ -6,7 +6,9 @@ const props = defineProps<{
   icon?: string
   to?: string | Record<string, string>
   command?: boolean
+  disabled?: boolean
   external?: true
+  large?: true
 }>()
 
 const router = useRouter()
@@ -33,10 +35,13 @@ useCommand({
 
 <template>
   <NuxtLink
+    :disabled="disabled"
     :to="to"
     :external="external"
     exact-active-class="text-primary"
+    :class="disabled ? 'op25 pointer-events-none ' : ''"
     block w-full group focus:outline-none
+    :tabindex="disabled ? -1 : null"
     @click="to ? $scrollToTop() : undefined"
   >
     <div
@@ -51,7 +56,10 @@ useCommand({
           :class="$slots.description ? 'w-12 h-12' : ''"
         >
           <slot name="icon">
-            <div v-if="icon" :class="icon" md:text-size-inherit text-xl />
+            <div
+              v-if="icon"
+              :class="[icon, large ? 'text-xl mr-1' : 'text-xl md:text-size-inherit']"
+            />
           </slot>
         </div>
         <div space-y-1>

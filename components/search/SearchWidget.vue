@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { AccountResult, HashTagResult, StatusResult } from './types'
+
 const query = ref('')
 const { accounts, hashtags, loading, statuses } = useSearch(query)
 const index = ref(0)
@@ -13,9 +15,24 @@ const results = computed(() => {
     return []
 
   const results = [
-    ...hashtags.value.slice(0, 3).map(hashtag => ({ type: 'hashtag', hashtag, to: getTagRoute(hashtag.name) })),
-    ...accounts.value.map(account => ({ type: 'account', account, to: getAccountRoute(account) })),
-    ...statuses.value.map(status => ({ type: 'status', status, to: getStatusRoute(status) })),
+    ...hashtags.value.slice(0, 3).map<HashTagResult>(hashtag => ({
+      type: 'hashtag',
+      id: hashtag.id,
+      hashtag,
+      to: getTagRoute(hashtag.name),
+    })),
+    ...accounts.value.map<AccountResult>(account => ({
+      type: 'account',
+      id: account.id,
+      account,
+      to: getAccountRoute(account),
+    })),
+    ...statuses.value.map<StatusResult>(status => ({
+      type: 'status',
+      id: status.id,
+      status,
+      to: getStatusRoute(status),
+    })),
 
     // Disable until search page is implemented
     // {
@@ -52,15 +69,14 @@ const activate = () => {
 </script>
 
 <template>
-  <div ref="el" relative px4 py2 group>
-    <div bg-base border="~ base" h10 rounded-full flex="~ row" items-center relative focus-within:box-shadow-outline>
-      <div i-ri:search-2-line mx4 absolute pointer-events-none text-secondary mt="1px" class="rtl-flip" />
+  <div ref="el" relative group>
+    <div bg-base border="~ base" h10 px-4 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
+      <div i-ri:search-2-line pointer-events-none text-secondary mt="1px" class="rtl-flip" />
       <input
         ref="input"
         v-model="query"
         h-full
-        ps-10
-        rounded-full
+        rounded-3
         w-full
         bg-transparent
         outline="focus:none"
@@ -74,13 +90,18 @@ const activate = () => {
       >
     </div>
     <!-- Results -->
-    <div p4 left-0 top-10 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
-      <div w-full bg-base border="~ base" rounded max-h-100 overflow-auto py2>
+    <div left-0 top-12 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
+      <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
         <span v-if="query.length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}
         </span>
         <template v-if="!loading">
-          <SearchResult v-for="(result, i) in results" :key="result.to" :active="index === parseInt(i.toString())" :result="result" :tabindex="focused ? 0 : -1" />
+          <SearchResult
+            v-for="(result, i) in results" :key="result.id"
+            :active="index === parseInt(i.toString())"
+            :result="result"
+            :tabindex="focused ? 0 : -1"
+          />
         </template>
         <div v-else>
           <SearchResultSkeleton />

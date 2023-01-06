@@ -1,9 +1,6 @@
-import type { ManifestOptions, VitePWAOptions } from 'vite-plugin-pwa'
-import type { Overwrite } from '../../types/utils'
+import type { VitePWAOptions } from 'vite-plugin-pwa'
 
-export type VitePWANuxtOptions = Overwrite<Partial<VitePWAOptions>, {
-  manifest?: () => Promise<Partial<ManifestOptions>>
-}>
+export interface VitePWANuxtOptions extends Partial<VitePWAOptions> {}
 
 declare module '@nuxt/schema' {
   interface NuxtConfig {

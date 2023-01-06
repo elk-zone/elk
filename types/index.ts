@@ -71,6 +71,7 @@ export interface Draft {
   initialText?: string
   params: MarkNonNullable<Mutable<CreateStatusParams>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'>
   attachments: Attachment[]
+  lastUpdated: number
 }
 export type DraftMap = Record<string, Draft>
 
@@ -79,7 +80,7 @@ export interface BuildInfo {
   commit: string
   time: number
   branch: string
-  env: 'preview' | 'main' | 'dev' | 'release'
+  env: 'preview' | 'canary' | 'dev' | 'release'
 }
 
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'

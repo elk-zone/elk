@@ -90,13 +90,14 @@ const isDM = $computed(() => status.visibility === 'direct')
     ref="el"
     relative flex flex-col gap-1 pl-3 pr-4 pt-1
     class="pb-1.5"
-    :class="{ 'hover:bg-active': hover, 'border-t border-base': newer && !directReply }"
+    :class="{ 'hover:bg-active': hover }"
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
     :lang="status.language ?? undefined"
     @click="onclick"
     @keydown.enter="onclick"
   >
+    <div v-if="newer && !directReply" w-auto h-1px bg-border />
     <div flex justify-between>
       <slot name="meta">
         <div v-if="rebloggedBy && !collapseRebloggedBy" relative text-secondary ws-nowrap flex="~" items-center pt1 pb0.5 px-1px bg-base>
@@ -112,7 +113,7 @@ const isDM = $computed(() => status.visibility === 'direct')
         </div>
         <div v-else />
       </slot>
-      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" pt1 />
+      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="!!simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" pt1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
@@ -125,7 +126,7 @@ const isDM = $computed(() => status.visibility === 'direct')
           </NuxtLink>
         </AccountHoverWrapper>
         <div v-if="connectReply" w-full h-full flex justify-center>
-          <div h-full class="w-2.5px" bg-border />
+          <div class="w-2.5px" bg-primary-light />
         </div>
       </div>
       <div flex="~ col 1" min-w-0>
@@ -137,7 +138,7 @@ const isDM = $computed(() => status.visibility === 'direct')
             <StatusReplyingTo :collapsed="true" :status="status" :class="faded ? 'text-secondary-light' : ''" />
           </div>
           <div flex-auto />
-          <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
+          <div v-if="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
             <AccountBotIndicator v-if="status.account.bot" me-2 />
             <div flex>
               <CommonTooltip :content="createdAt">
@@ -154,7 +155,7 @@ const isDM = $computed(() => status.visibility === 'direct')
         </div>
         <StatusContent :status="status" :context="context" mb2 :class="{ 'mt-2 mb1': isDM }" />
         <div>
-          <StatusActions v-if="(actions !== false && !isZenMode)" :status="status" />
+          <StatusActions v-if="(actions !== false && !userSettings.zenMode)" :status="status" />
         </div>
       </div>
     </div>

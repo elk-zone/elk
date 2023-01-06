@@ -20,7 +20,7 @@ const isRootPath = computedEager(() => route.name === 'settings')
       <div border="e base" :class="isRootPath ? 'block lg:flex-none flex-1' : 'hidden lg:block'">
         <MainContent>
           <template #title>
-            <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+            <div timeline-title-style flex items-center gap-2 @click="$scrollToTop">
               <div i-ri:settings-3-line />
               <span>{{ $t('nav.settings') }}</span>
             </div>
@@ -42,10 +42,9 @@ const isRootPath = computedEager(() => route.name === 'settings')
             <SettingsItem
               v-if="isHydrated && currentUser"
               command
-              icon="i-ri:settings-line"
-              :text="$t('settings.account_settings')"
-              :to="`https://${currentUser!.server}/auth/edit`"
-              external target="_blank"
+              icon="i-ri:notification-badge-line"
+              :text="$t('settings.notifications_settings')"
+              to="/settings/notifications"
             />
             <SettingsItem
               command

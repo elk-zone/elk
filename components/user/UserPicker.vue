@@ -15,7 +15,7 @@ const masto = useMasto()
           hover="filter-none op100"
           @click="switchUser(user, masto)"
         >
-          <AccountAvatar v-if="!user.guest" w-13 h-13 :account="user.account" />
+          <AccountAvatar v-if="checkAuth(user)" w-13 h-13 :account="user.account" square />
           <div v-else bg="gray/40" rounded-full w-13 h-13 flex shrink-0 items-center justify-center text-5>
             G
           </div>

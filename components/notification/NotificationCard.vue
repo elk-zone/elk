@@ -18,11 +18,7 @@ const { notification } = defineProps<{
           :lang="notification.status?.language ?? undefined"
         >
           <div i-ri:user-follow-fill me-1 color-primary />
-          <ContentRich
-            text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
-            :content="getDisplayName(notification.account, { rich: true })"
-            :emojis="notification.account.emojis"
-          />
+          <AccountDisplayName :account="notification.account" text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all />
           <span ws-nowrap>
             {{ $t('notification.followed_you') }}
           </span>
@@ -36,10 +32,9 @@ const { notification } = defineProps<{
     <template v-else-if="notification.type === 'admin.sign_up'">
       <div flex p3 items-center bg-shaded>
         <div i-ri:admin-fill me-1 color-purple />
-        <ContentRich
+        <AccountDisplayName
+          :account="notification.account"
           text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
-          :content="getDisplayName(notification.account, { rich: true })"
-          :emojis="notification.account.emojis"
         />
         <span>{{ $t("notification.signed_up") }}</span>
       </div>

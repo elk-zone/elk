@@ -14,7 +14,7 @@ const {
   placeholder,
   dialogLabelledBy,
 } = defineProps<{
-  draftKey: string
+  draftKey?: string
   initial?: () => Draft
   placeholder?: string
   inReplyToId?: string
@@ -38,7 +38,10 @@ const shouldExpanded = $computed(() => _expanded || isExpanded || !isEmpty)
 const { editor } = useTiptap({
   content: computed({
     get: () => draft.params.status,
-    set: newVal => draft.params.status = newVal,
+    set: (newVal) => {
+      draft.params.status = newVal
+      draft.lastUpdated = Date.now()
+    },
   }),
   placeholder: computed(() => placeholder ?? draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
   autofocus: shouldExpanded,
@@ -194,7 +197,7 @@ defineExpose({
 
     <div flex gap-3 flex-1>
       <NuxtLink :to="getAccountRoute(currentUser.account)">
-        <AccountBigAvatar :account="currentUser.account" />
+        <AccountBigAvatar :account="currentUser.account" square />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <div
@@ -266,7 +269,7 @@ defineExpose({
           <PublishAttachment
             v-for="(att, idx) in draft.attachments" :key="att.id"
             :attachment="att"
-            :dialog-labelled-by="dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : null)"
+            :dialog-labelled-by="dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : undefined)"
             @remove="removeAttachment(idx)"
             @set-description="setDescription(att, $event)"
           />
@@ -343,7 +346,7 @@ defineExpose({
         </PublishVisibilityPicker>
 
         <button
-          btn-solid rounded-full text-sm w-full md:w-fit
+          btn-solid rounded-3 text-sm w-full md:w-fit
           :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
           @click="publish"
         >

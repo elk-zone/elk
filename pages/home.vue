@@ -21,6 +21,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <TimelineHome v-if="isMastoInitialised" mt-4 />
+    <TimelineHome v-if="isMastoInitialised" />
   </MainContent>
 </template>

@@ -18,11 +18,9 @@ const showUserPicker = logicAnd(
         <div sticky top-0 w-20 xl:w-100 h-screen flex="~ col" lt-xl-items-center>
           <slot name="left">
             <div flex="~ col" overflow-y-auto justify-between h-full max-w-full mt-5>
-              <div flex flex-col gap-2>
-                <NavTitle />
-                <NavSide command />
-                <!-- <PublishButton ms5.5 mt4 xl:me8 xl:ms4 /> -->
-              </div>
+              <NavTitle />
+              <NavSide command />
+              <div flex-auto />
               <div v-if="isMastoInitialised" flex flex-col>
                 <div hidden xl:block>
                   <UserSignInEntry v-if="!currentUser" />

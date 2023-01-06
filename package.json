@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "version": "0.1.18",
+  "version": "0.2.0",
   "private": true,
   "packageManager": "pnpm@7.9.0",
   "license": "MIT",
@@ -86,7 +86,7 @@
     "@types/wicg-file-system-access": "^2020.9.5",
     "@unocss/nuxt": "^0.48.0",
     "@vitejs/plugin-vue": "^3.2.0",
-    "@vue-macros/nuxt": "^0.2.2",
+    "@vue-macros/nuxt": "^0.2.8",
     "@vueuse/math": "^9.10.0",
     "@vueuse/nuxt": "^9.9.0",
     "bumpp": "^8.2.1",

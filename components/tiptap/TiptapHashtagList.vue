@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Tag } from 'masto'
 import CommonScrollIntoView from '../common/CommonScrollIntoView.vue'
-import HashtagInfo from '../search/HashtagInfo.vue'
 
 const { items, command } = defineProps<{
   items: Tag[]
@@ -60,7 +59,7 @@ defineExpose({
         block m0 w-full text-left px2 py1
         @click="selectItem(index)"
       >
-        <HashtagInfo :hashtag="item" />
+        <SearchHashtagInfo :hashtag="item" />
       </CommonScrollIntoView>
     </template>
   </div>

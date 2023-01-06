@@ -3,19 +3,20 @@ import { SwipeDirection } from '@vueuse/core'
 import { useReducedMotion } from '@vueuse/motion'
 import type { Attachment } from 'masto'
 
-const props = withDefaults(defineProps<{ media: Attachment[]; threshold?: number; modelValue: number }>(), {
-  media: [] as any,
-  threshold: 20,
-  modelValue: 0,
-})
+const { media = [], threshold = 20 } = defineProps<{
+  media?: Attachment[]
+  threshold?: number
+}>()
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', v: boolean): void
   (event: 'close'): void
 }>()
 
+const { modelValue } = defineModel<{
+  modelValue: number
+}>()
+
 const target = ref()
-const index = useVModel(props, 'modelValue', emit)
 
 const animateTimeout = useTimeout(10)
 const reduceMotion = useReducedMotion()
@@ -28,15 +29,15 @@ const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
   passive: false,
   onSwipeEnd(e, direction) {
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    if (direction === SwipeDirection.RIGHT && Math.abs(distanceX.value) > props.threshold)
-      index.value = Math.max(0, index.value - 1)
+    if (direction === SwipeDirection.RIGHT && Math.abs(distanceX.value) > threshold)
+      modelValue.value = Math.max(0, modelValue.value - 1)
 
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    if (direction === SwipeDirection.LEFT && Math.abs(distanceX.value) > props.threshold)
-      index.value = Math.min(props.media.length - 1, index.value + 1)
+    if (direction === SwipeDirection.LEFT && Math.abs(distanceX.value) > threshold)
+      modelValue.value = Math.min(media.length - 1, modelValue.value + 1)
 
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    if (direction === SwipeDirection.UP && Math.abs(distanceY.value) > props.threshold)
+    if (direction === SwipeDirection.UP && Math.abs(distanceY.value) > threshold)
       emit('close')
   },
 })
@@ -46,9 +47,9 @@ const distanceX = computed(() => {
     return 0
 
   if (!isSwiping.value || (direction.value !== SwipeDirection.LEFT && direction.value !== SwipeDirection.RIGHT))
-    return index.value * 100 * -1
+    return modelValue.value * 100 * -1
 
-  return (lengthX.value / width.value) * 100 * -1 + (index.value * 100) * -1
+  return (lengthX.value / width.value) * 100 * -1 + (modelValue.value * 100) * -1
 })
 
 const distanceY = computed(() => {

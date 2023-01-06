@@ -70,7 +70,7 @@ const activate = () => {
 
 <template>
   <div ref="el" relative group>
-    <div bg-base border="~ base" h10 px-3 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
+    <div bg-base border="~ base" h10 px-4 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
       <div i-ri:search-2-line pointer-events-none text-secondary mt="1px" class="rtl-flip" />
       <input
         ref="input"
@@ -90,7 +90,7 @@ const activate = () => {
       >
     </div>
     <!-- Results -->
-    <div p4 left-0 top-10 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
+    <div left-0 top-12 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
       <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
         <span v-if="query.length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}

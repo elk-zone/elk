@@ -38,12 +38,12 @@ const moreMenuVisible = ref(false)
         <div i-ri:earth-line />
       </NuxtLink>
     </template>
-    <NavBottomMoreMenu v-slot="{ changeShow, show }" v-model="moreMenuVisible" flex flex-row items-center place-content-center h-full flex-1 cursor-pointer>
+    <NavBottomMoreMenu v-slot="{ toggleVisible, show }" v-model="moreMenuVisible" flex flex-row items-center place-content-center h-full flex-1 cursor-pointer>
       <label
         flex items-center place-content-center h-full flex-1 class="select-none"
         :class="show ? '!text-primary' : ''"
       >
-        <input type="checkbox" z="-1" absolute inset-0 opacity-0 @click="changeShow">
+        <input type="checkbox" z="-1" absolute inset-0 opacity-0 @click="toggleVisible">
         <span v-show="show" i-ri:close-fill />
         <span v-show="!show" i-ri:more-fill />
       </label>

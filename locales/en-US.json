@@ -187,7 +187,29 @@
     "dismiss": "Dismiss",
     "title": "New Elk update available!",
     "update": "Update",
-    "update_available_short": "Update Elk"
+    "update_available_short": "Update Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "A nimble Mastodon web client (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "A nimble Mastodon web client (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "A nimble Mastodon web client (preview)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description": "A nimble Mastodon web client",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
   },
   "search": {
     "search_desc": "Search for people & hashtags"

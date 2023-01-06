@@ -126,7 +126,7 @@ async function editStatus() {
 
     <template #popper>
       <div flex="~ col">
-        <template v-if="isZenMode">
+        <template v-if="userSettings.zenMode">
           <CommonDropdownItem
             :text="$t('action.reply')"
             icon="i-ri:chat-3-line"

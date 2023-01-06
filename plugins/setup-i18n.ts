@@ -1,9 +1,9 @@
-import { COOKIE_MAX_AGE, STORAGE_KEY_LANG } from '~/constants'
+import { COOKIE_KEY_LOCALE, COOKIE_MAX_AGE } from '~/constants'
 
 export default defineNuxtPlugin(async (nuxt) => {
   const i18n = nuxt.vueApp.config.globalProperties.$i18n
   const { setLocale, locales } = nuxt.vueApp.config.globalProperties.$i18n
-  const cookieLocale = useCookie(STORAGE_KEY_LANG, { maxAge: COOKIE_MAX_AGE })
+  const cookieLocale = useCookie(COOKIE_KEY_LOCALE, { maxAge: COOKIE_MAX_AGE })
   const isFirstVisit = cookieLocale.value == null
 
   if (process.client && isFirstVisit) {

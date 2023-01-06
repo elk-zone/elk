@@ -50,6 +50,7 @@ export default defineNuxtConfig({
     dirs: [
       './composables/push-notifications',
       './composables/tiptap',
+      './composables/settings',
     ],
   },
   vite: {

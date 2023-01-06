@@ -10,7 +10,7 @@ const { translation } = useTranslation(status)
 </script>
 
 <template>
-  <div class="status-body mt2" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }">
+  <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }">
     <ContentRich
       v-if="status.content"
       class="line-compact"
@@ -29,6 +29,5 @@ const { translation } = useTranslation(status)
 <style>
 .status-body.with-action p {
   cursor: pointer;
-  min-height: 2rem;
 }
 </style>

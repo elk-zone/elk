@@ -70,7 +70,7 @@ const activate = () => {
 
 <template>
   <div ref="el" relative group>
-    <div bg-base border="~ base" h10 px-3 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
+    <div bg-base border="~ base" h10 px-4 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
       <div i-ri:search-2-line pointer-events-none text-secondary mt="1px" class="rtl-flip" />
       <input
         ref="input"

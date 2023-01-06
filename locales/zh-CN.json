@@ -103,7 +103,7 @@
     "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
     "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Mastodon 客户端。",
     "desc_para2": "我们正在努力开发中，并随着时间的推移不断完善。鹿鸣将很快开源，并邀请您参与进来！",
-    "desc_para3": "为了帮助促进开发，你可以通过以下链接赞助我们的团队成员。希望你喜欢 Elk！",
+    "desc_para3": "为了帮助促进开发，你可以通过以下链接赞助我们的团队成员。希望你喜欢鹿鸣！",
     "desc_para4": "在此之前，如果你愿意帮助测试、提供反馈或作出贡献，",
     "desc_para5": "在 Mastodon 上联系我们",
     "desc_para6": "来参与其中。",
@@ -178,7 +178,29 @@
     "dismiss": "忽略",
     "title": "鹿鸣存在新的更新",
     "update": "更新",
-    "update_available_short": "更新鹿鸣"
+    "update_available_short": "更新鹿鸣",
+    "webmanifest": {
+      "canary": {
+        "description": "用 🧡 制作的 Mastodon 客户端（Canary）",
+        "name": "鹿鸣（Canary）",
+        "short_name": "鹿鸣（Canary）"
+      },
+      "dev": {
+        "description": "用 🧡 制作的 Mastodon 客户端（开发版）",
+        "name": "鹿鸣 开发版",
+        "short_name": "鹿鸣 开发版"
+      },
+      "preview": {
+        "description": "用 🧡 制作的 Mastodon 客户端（预览版）",
+        "name": "鹿鸣（预览版）",
+        "short_name": "鹿鸣（预览版）"
+      },
+      "release": {
+        "description": "用 🧡 制作的 Mastodon 客户端",
+        "name": "鹿鸣",
+        "short_name": "鹿鸣"
+      }
+    }
   },
   "search": {
     "search_desc": "搜索用户或话题标签"

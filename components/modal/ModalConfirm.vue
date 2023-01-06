@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { confirmDialogChoice, isConfirmDialogOpen } from '~/composables/dialog'
+import { confirmDialogChoice, confirmDialogLabels, isConfirmDialogOpen } from '~/composables/dialog'
 
 const choose = (choice: boolean) => {
   confirmDialogChoice.value = choice

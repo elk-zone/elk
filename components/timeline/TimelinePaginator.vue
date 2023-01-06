@@ -16,7 +16,7 @@ const { formatNumber } = useHumanReadableNumber()
 const virtualScroller = $(useFeatureFlag('experimentalVirtualScroll'))
 
 const showOriginSite = $computed(() =>
-  account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
+  account && account.id !== currentUser.value?.account?.id && getServerName(account) !== currentServer.value,
 )
 </script>
 

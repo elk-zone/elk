@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import NotificationSubscribePushNotificationError
-  from '~/components/notification/NotificationSubscribePushNotificationError.vue'
-
 defineProps<{ show?: boolean }>()
 
 const {

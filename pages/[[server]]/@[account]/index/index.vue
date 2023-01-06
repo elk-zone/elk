@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import AccountTabs from '~/components/account/AccountTabs.vue'
-
 const params = useRoute().params
 const handle = $(computedEager(() => params.account as string))
 

@@ -144,6 +144,7 @@
     "unpin_on_profile": "Unpin on profile"
   },
   "nav": {
+    "back": "Go back",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "bookmarks": "Bookmarks",

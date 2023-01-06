@@ -1,5 +1,4 @@
 import type { Paginator, WsEvents } from 'masto'
-import { useDeactivated } from './lifecycle'
 import type { PaginatorState } from '~/types'
 
 export function usePaginator<T>(

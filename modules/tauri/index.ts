@@ -22,7 +22,7 @@ export default defineNuxtModule({
     }
 
     nuxt.hook('vite:extend', ({ config }) => {
-      config.build!.target = ['es2021', 'chrome100', 'safari13']
+      config.build!.target = ['chrome100', 'safari15']
       config.envPrefix = [...config.envPrefix || [], 'VITE_', 'TAURI_']
     })
 

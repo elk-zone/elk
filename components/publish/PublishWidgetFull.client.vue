@@ -2,7 +2,6 @@
 import { formatTimeAgo } from '@vueuse/core'
 
 const route = useRoute()
-const router = useRouter()
 
 let draftKey = $ref('home')
 

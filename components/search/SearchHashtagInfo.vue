@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { History, Tag } from 'masto'
+import type { Tag } from 'masto'
 
 const { hashtag } = defineProps<{ hashtag: Tag }>()
 

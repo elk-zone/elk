@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
 import AccountTabs from '~/components/account/AccountTabs.vue'
 
 const params = useRoute().params

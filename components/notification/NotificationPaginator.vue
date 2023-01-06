@@ -4,9 +4,7 @@
 import type { Notification, Paginator, WsEvents } from 'masto'
 // type used in <template>
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import type { GroupedLikeNotifications } from '~/types'
-
-import type { GroupedAccountLike, NotificationSlot } from '~/types'
+import type { GroupedAccountLike, GroupedLikeNotifications, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
   paginator: Paginator<any, Notification[]>

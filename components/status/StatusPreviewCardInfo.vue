@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Card } from 'masto'
 
-const props = defineProps<{
+defineProps<{
   card: Card
   /** When it is root card in the list, not appear as a child card */
   root?: boolean

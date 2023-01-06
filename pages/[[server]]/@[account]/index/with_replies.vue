@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
-
 definePageMeta({ name: 'account-replies' })
 
 const { t } = useI18n()

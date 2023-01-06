@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { invoke } from '@vueuse/shared'
-
 const { t } = useI18n()
 
 const tabs = $computed(() => [

@@ -187,9 +187,9 @@
     "update_available_short": "Mettre à jour Elk",
     "webmanifest": {
       "canary": {
-        "description": "Un client Web agile Mastodon (canari)",
-        "name": "Elk (canari)",
-        "short_name": "Elk (canari)"
+        "description": "Un client Web Mastodon (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
       },
       "dev": {
         "description": "Un client Web Mastodon (dev)",
@@ -199,7 +199,7 @@
       "preview": {
         "description": "Un client Web Mastodon (aperçu)",
         "name": "Elk (aperçu)",
-        "short_name": "Elk (preview)"
+        "short_name": "Elk (aperçu)"
       },
       "release": {
         "description": "Un client Web Mastodon",

@@ -23,8 +23,8 @@ const providerName = $computed(() => props.card.providerName ? props.card.provid
 
 const gitHubCards = $(useFeatureFlag('experimentalGitHubCards'))
 
-// TODO: regex test the card.title value
-const isMastodonLink = true
+// checks if title contains a username
+const isMastodonLink = props.card.title.match(/@+[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/gi)
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 const cardTypeIconMap: Record<CardType, string> = {

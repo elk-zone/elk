@@ -14,7 +14,7 @@
     "dev:mocked:pwa:ssl": "VITE_DEV_PWA=true nuxi dev --port 5314 --https --ssl-cert ./https-dev-config/localhost.crt --ssl-key ./https-dev-config/localhost.key --dotenv .env.mock",
     "start": "PORT=5314 node .output/server/index.mjs",
     "start:https": "PORT=5314 node ./https-dev-config/local-https-server.mjs",
-    "lint": "eslint .",
+    "lint": "eslint --cache .",
     "typecheck": "nuxi typecheck",
     "prepare": "esno scripts/prepare.ts",
     "generate": "nuxi generate",

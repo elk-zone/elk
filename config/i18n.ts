@@ -9,7 +9,6 @@ interface LocaleObjectData extends LocaleObject {
   pluralRule?: PluralizationRule
 }
 
-// @ts-expect-error dir is there, ts complaining
 const locales: LocaleObjectData[] = [
   {
     code: 'en-US',
@@ -61,7 +60,7 @@ const locales: LocaleObjectData[] = [
     file: 'cs-CZ.json',
     name: 'Česky',
   },
-  {
+  ({
     code: 'ar-EG',
     file: 'ar-EG.json',
     name: 'العربية',
@@ -70,7 +69,7 @@ const locales: LocaleObjectData[] = [
       const name = new Intl.PluralRules('ar-EG').select(choice)
       return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
     },
-  },
+  } satisfies LocaleObjectData),
 ].sort((a, b) => a.code.localeCompare(b.code))
 
 const datetimeFormats = Object.values(locales).reduce((acc, data) => {

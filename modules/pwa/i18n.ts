@@ -14,7 +14,7 @@ type RequiredWebManifestEntry = Required<WebManifestEntry & Pick<ManifestOptions
 
 export const createI18n = async (): Promise<LocalizedWebManifest> => {
   const { env } = await getEnv()
-  const envName = `${env === 'release' ? '' : ` (${env})`}`
+  const envName = `${env === 'release' ? '' : `${env}`}`
   const { pwa } = await readI18nFile('en-US.json')
 
   const defaultManifest: Required<WebManifestEntry> = pwa.webmanifest[env]
@@ -27,10 +27,10 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
         const { pwa, app_name, app_desc_short } = await readI18nFile(file!)
         const entry: WebManifestEntry = pwa?.webmanifest?.[env] ?? {}
         if (!entry.name && app_name)
-          entry.name = dir === 'rtl' ? `${envName}${app_name}` : `${app_name}${envName}`
+          entry.name = dir === 'rtl' ? `${envName} ${app_name}` : `${app_name} ${envName}`
 
         if (!entry.short_name && app_name)
-          entry.short_name = dir === 'rtl' ? `${envName}${app_name}` : `${app_name}${envName}`
+          entry.short_name = dir === 'rtl' ? `${envName} ${app_name}` : `${app_name} ${envName}`
 
         if (!entry.description && app_desc_short)
           entry.description = app_desc_short

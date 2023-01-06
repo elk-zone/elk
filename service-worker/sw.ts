@@ -5,13 +5,10 @@ import { NavigationRoute, registerRoute } from 'workbox-routing'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { StaleWhileRevalidate } from 'workbox-strategies'
 import { ExpirationPlugin } from 'workbox-expiration'
-// import * as navigationPreload from 'workbox-navigation-preload'
+
 import { onNotificationClick, onPush } from './web-push-notifications'
 
 declare const self: ServiceWorkerGlobalScope
-
-// if (import.meta.env.PROD)
-//   navigationPreload.enable()
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING')
@@ -28,14 +25,18 @@ precacheAndRoute(entries)
 cleanupOutdatedCaches()
 
 // allow only fallback in dev: we don't want to cache anything
+/*
 let allowlist: undefined | RegExp[]
 if (import.meta.env.DEV)
   allowlist = [/^\/$/]
+*/
 
 // deny api and server page calls
+/*
 let denylist: undefined | RegExp[]
 if (import.meta.env.PROD)
   denylist = [/^\/api\//, /^\/login\//, /^\/oauth\//, /^\/signin\//]
+*/
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {
@@ -75,7 +76,7 @@ if (import.meta.env.PROD) {
 // to allow work offline
 registerRoute(new NavigationRoute(
   createHandlerBoundToURL('/'),
-  { allowlist, denylist },
+  { allowlist: [/^\/$/] },
 ))
 
 self.addEventListener('push', onPush)

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+defineProps<{
+  smallScreen: boolean
+}>()
 const online = useOnline()
 </script>
 

@@ -56,6 +56,7 @@ const { editor } = useTiptap({
   onPaste: handlePaste,
 })
 
+const characterCount = $computed(() => htmlToText(editor.value?.getHTML() || '').length)
 let isUploading = $ref<boolean>(false)
 let isExceedingAttachmentLimit = $ref<boolean>(false)
 let failed = $ref<FileUploadError[]>([])
@@ -312,8 +313,8 @@ defineExpose({
 
         <div flex-auto />
 
-        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5>
-          {{ editor?.storage.characterCount.characters() }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
+        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5 :class="{ 'text-rose-500': characterCount > characterLimit }">
+          {{ characterCount ?? 0 }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
         </div>
 
         <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
@@ -347,7 +348,7 @@ defineExpose({
 
         <button
           btn-solid rounded-3 text-sm w-full md:w-fit
-          :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
+          :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status) || characterCount > characterLimit"
           @click="publish"
         >
           {{ !draft.editingStatus ? $t('action.publish') : $t('action.save_changes') }}

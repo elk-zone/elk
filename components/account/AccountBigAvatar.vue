@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-  <div :key="account.avatar" v-bind="$attrs" rounded-full bg-base w-54px h-54px flex items-center justify-center>
+  <div :key="account.avatar" v-bind="$attrs" :rounded-full="!square" :bg-base="!square" w-54px h-54px flex items-center justify-center>
     <AccountAvatar :account="account" w-48px h-48px :square="square" />
   </div>
 </template>

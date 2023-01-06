@@ -59,6 +59,7 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
       short_name,
       description,
       dir,
+      background_color: '#ffffff',
       theme_color: '#ffffff',
       icons: [
         {

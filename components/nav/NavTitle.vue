@@ -22,6 +22,7 @@ const { env } = buildInfo
     </NuxtLink>
     <div hidden xl:flex items-center me-8 mt-2>
       <NuxtLink
+        :aria-label="$t('nav.back')"
         @click="$router.go(-1)"
       >
         <div i-ri:arrow-left-line class="rtl-flip" btn-text />

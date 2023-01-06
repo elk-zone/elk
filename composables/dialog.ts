@@ -1,6 +1,6 @@
 import type { Attachment, Status, StatusEdit } from 'masto'
 import type { Draft } from '~/types'
-import { STORAGE_KEY_FIRST_VISIT, STORAGE_KEY_ZEN_MODE } from '~/constants'
+import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 
 export const mediaPreviewList = ref<Attachment[]>([])
 export const mediaPreviewIndex = ref(0)
@@ -11,7 +11,6 @@ export const dialogDraftKey = ref<string>()
 export const commandPanelInput = ref('')
 
 export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, !process.mock)
-export const isZenMode = useLocalStorage(STORAGE_KEY_ZEN_MODE, false)
 
 export const isSigninDialogOpen = ref(false)
 export const isPublishDialogOpen = ref(false)
@@ -21,8 +20,6 @@ export const isPreviewHelpOpen = ref(isFirstVisit.value)
 export const isCommandPanelOpen = ref(false)
 
 export const lastPublishDialogStatus = ref<Status | null>(null)
-
-export const toggleZenMode = useToggle(isZenMode)
 
 export function openSigninDialog() {
   isSigninDialogOpen.value = true

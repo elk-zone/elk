@@ -1,13 +1,18 @@
 <script lang="ts" setup>
-import { isHydrated } from '~/composables/hydration'
+import { useFeatureFlag } from '~~/composables/settings/featureFlags'
 
 const route = useRoute()
 
 const wideLayout = computed(() => route.meta.wideLayout ?? false)
+
+const showUserPicker = logicAnd(
+  useFeatureFlag('experimentalUserPicker'),
+  () => useUsers().value.length > 1,
+)
 </script>
 
 <template>
-  <div h-full :class="{ zen: isZenMode }">
+  <div h-full :class="{ zen: userSettings.zenMode }">
     <main flex w-full mxa lg:max-w-80rem>
       <aside class="hidden sm:flex w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 justify-end xl:me-4 zen-hide" relative>
         <div sticky top-0 w-20 xl:w-100 h-screen flex="~ col" lt-xl-items-center>

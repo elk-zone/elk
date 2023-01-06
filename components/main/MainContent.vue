@@ -19,6 +19,7 @@ defineProps<{
           <NuxtLink
             v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0
             :class="{ 'lg:hidden': backOnSmallScreen }"
+            :aria-label="$t('nav.back')"
             @click="$router.go(-1)"
           >
             <div i-ri:arrow-left-line class="rtl-flip" />

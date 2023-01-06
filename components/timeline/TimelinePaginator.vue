@@ -12,7 +12,7 @@ const { paginator, stream } = defineProps<{
 }>()
 
 const { formatNumber } = useHumanReadableNumber()
-const virtualScroller = $(computedEager(() => useFeatureFlags().experimentalVirtualScroll))
+const virtualScroller = $(useFeatureFlag('experimentalVirtualScroll'))
 </script>
 
 <template>

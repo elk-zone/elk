@@ -37,6 +37,7 @@ specifiers:
   '@vueuse/core': ^9.9.0
   '@vueuse/gesture': 2.0.0-beta.1
   '@vueuse/integrations': ^9.9.0
+  '@vueuse/math': ^9.10.0
   '@vueuse/motion': 2.0.0-beta.12
   '@vueuse/nuxt': ^9.9.0
   blurhash: ^2.0.4
@@ -147,6 +148,7 @@ devDependencies:
   '@unocss/nuxt': 0.48.0
   '@vitejs/plugin-vue': 3.2.0
   '@vue-macros/nuxt': 0.2.8_3nbxte3dhogb6b7pemmre2vo4m
+  '@vueuse/math': 9.10.0
   '@vueuse/nuxt': 9.9.0_nuxt@3.0.0
   bumpp: 8.2.1
   emoji-mart: 5.4.0
@@ -3658,6 +3660,16 @@ packages:
       - vue
     dev: false
 
+  /@vueuse/math/9.10.0:
+    resolution: {integrity: sha512-DvCyQFhXToPgZzSs841TCylIVwuab5gNErjdFCNWX3vs+T3rC8wMnlaBCYTXb5g4ruqm6K/hBnHyalRnCj/VbQ==}
+    dependencies:
+      '@vueuse/shared': 9.10.0
+      vue-demi: 0.13.11
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: true
+
   /@vueuse/metadata/8.9.4:
     resolution: {integrity: sha512-IwSfzH80bnJMzqhaapqJl9JRIiyQU0zsRGEgnxN6jhq7992cPUJIRfV+JHRIZXjYqbwt07E1gTEp0R0zPJ1aqw==}
     dev: false
@@ -3713,6 +3725,15 @@ packages:
     dependencies:
       vue-demi: 0.13.11
     dev: false
+
+  /@vueuse/shared/9.10.0:
+    resolution: {integrity: sha512-vakHJ2ZRklAzqmcVBL38RS7BxdBA4+5poG9NsSyqJxrt9kz0zX3P5CXMy0Hm6LFbZXUgvKdqAS3pUH1zX/5qTQ==}
+    dependencies:
+      vue-demi: 0.13.11
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: true
 
   /@vueuse/shared/9.9.0:
     resolution: {integrity: sha512-+D0XFwHG0T+uaIbCSlROBwm1wzs71B7n3KyDOxnvfEMMHDOzl09rYKwaE2AENmYwYPXfHPbSBRDD2gBVHbvTcg==}

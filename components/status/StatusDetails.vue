@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
-import { statusVisibilities } from '~/composables/masto/icons'
 
 const props = withDefaults(defineProps<{
   status: Status

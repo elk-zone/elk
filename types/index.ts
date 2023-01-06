@@ -68,8 +68,8 @@ export type DraftMap = Record<string, Draft>
 export interface ConfirmDialogLabels {
   title: string
   description?: string
-  yes: string
-  no: string
+  confirm: string
+  cancel: string
 }
 
 export interface BuildInfo {

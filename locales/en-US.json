@@ -87,6 +87,11 @@
   },
   "common": {
     "cancel": "Cancel",
+    "confirm_dialog": {
+      "cancel": "No",
+      "confirm": "Yes",
+      "title": "Are you sure ?"
+    },
     "end_of_list": "End of the list",
     "error": "ERROR",
     "in": "in",

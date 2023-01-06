@@ -113,7 +113,7 @@ export default defineNuxtConfig({
     ],
     prerender: {
       crawlLinks: false,
-      routes: ['/', '/200.html'],
+      routes: ['/'],
     },
   },
   app: {

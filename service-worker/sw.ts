@@ -5,13 +5,10 @@ import { NavigationRoute, registerRoute } from 'workbox-routing'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { StaleWhileRevalidate } from 'workbox-strategies'
 import { ExpirationPlugin } from 'workbox-expiration'
-// import * as navigationPreload from 'workbox-navigation-preload'
+
 import { onNotificationClick, onPush } from './web-push-notifications'
 
 declare const self: ServiceWorkerGlobalScope
-
-// if (import.meta.env.PROD)
-//   navigationPreload.enable()
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING')

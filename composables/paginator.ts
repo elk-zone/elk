@@ -86,7 +86,7 @@ export function usePaginator<T>(
     }, 1000)
 
     if (!isMastoInitialised.value) {
-      watchOnce(isMastoInitialised, () => {
+      onMastoInit(() => {
         state.value = 'idle'
         loadNext()
       })

@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { dropdownContextKey } from './ctx'
+import { InjectionKeyDropdownContext } from '~/constants/symbols'
+
 defineProps<{
   placement?: string
+  autoBoundaryMaxSize?: boolean
 }>()
 
 const dropdown = $ref<any>()
 const colorMode = useColorMode()
 
 const hide = () => dropdown.hide()
-provide(dropdownContextKey, {
+provide(InjectionKeyDropdownContext, {
   hide,
 })
 
@@ -18,7 +20,7 @@ defineExpose({
 </script>
 
 <template>
-  <VDropdown v-bind="$attrs" ref="dropdown" :class="colorMode.value" :placement="placement || 'auto'">
+  <VDropdown v-bind="$attrs" ref="dropdown" :class="colorMode.value" :placement="placement || 'auto'" :auto-boundary-max-size="autoBoundaryMaxSize">
     <slot />
     <template #popper="scope">
       <slot name="popper" v-bind="scope" />

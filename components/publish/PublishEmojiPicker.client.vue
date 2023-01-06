@@ -44,15 +44,17 @@ const hideEmojiPicker = () => {
 </script>
 
 <template>
-  <VDropdown
-    @apply-show="openEmojiPicker()"
-    @apply-hide="hideEmojiPicker()"
-  >
-    <button btn-action-icon :title="$t('tooltip.emoji')">
-      <div i-ri:emotion-line />
-    </button>
-    <template #popper>
-      <div ref="el" min-w-10 min-h-10 />
-    </template>
-  </VDropdown>
+  <CommonTooltip content="Add emojis">
+    <VDropdown
+      auto-boundary-max-size
+      @apply-show="openEmojiPicker()"
+      @apply-hide="hideEmojiPicker()"
+    >
+      <slot />
+
+      <template #popper>
+        <div ref="el" min-w-10 min-h-10 />
+      </template>
+    </VDropdown>
+  </CommonTooltip>
 </template>

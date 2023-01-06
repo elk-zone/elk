@@ -20,6 +20,8 @@ interface Meta {
   }
 }
 
+const specialRoutes = ['orgs', 'sponsors', 'stars']
+
 const meta = $computed(() => {
   const { url } = props.card
   const path = url.split('https://github.com/')[1]
@@ -27,13 +29,15 @@ const meta = $computed(() => {
   // Supported paths
   // /user
   // /user/repo
-  // /user/repo/issues/number.*
-  // /user/repo/pull/number.*
-  // /orgs/user.*
+  // /user/repo/issues/number
+  // /user/repo/pull/number
+  // /orgs/user
+  // /sponsors/user
+  // /stars/user
 
   const firstName = path.match(/([\w-]+)(\/|$)/)?.[1]
   const secondName = path.match(/[\w-]+\/([\w-]+)/)?.[1]
-  const firstIsUser = firstName !== 'orgs' && firstName !== 'sponsors'
+  const firstIsUser = firstName && !specialRoutes.includes(firstName)
   const user = firstIsUser ? firstName : secondName
   const repo = firstIsUser ? secondName : undefined
 

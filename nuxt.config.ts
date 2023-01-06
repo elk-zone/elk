@@ -3,9 +3,9 @@ import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
+import { isPreview } from './config/env'
 
 const { resolve } = createResolver(import.meta.url)
-const isPreview = process.env.PULL_REQUEST === 'true' || process.env.CONTEXT === 'deploy-preview' || process.env.CONTEXT === 'dev'
 
 export default defineNuxtConfig({
   typescript: {
@@ -50,6 +50,7 @@ export default defineNuxtConfig({
     dirs: [
       './composables/push-notifications',
       './composables/tiptap',
+      './composables/settings',
     ],
   },
   vite: {
@@ -90,7 +91,7 @@ export default defineNuxtConfig({
       inviteToken: '',
     },
     public: {
-      env: isCI ? isPreview ? 'staging' : 'production' : 'local',
+      env: '', // set in build-info module
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
       translateApi: '',
     },
@@ -113,7 +114,7 @@ export default defineNuxtConfig({
     ],
     prerender: {
       crawlLinks: false,
-      routes: ['/', '/200.html'],
+      routes: ['/'],
     },
   },
   app: {

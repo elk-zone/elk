@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
+import { statusVisibilities } from '~/composables/masto/icons'
 
 const props = withDefaults(defineProps<{
   status: Status
@@ -17,7 +18,7 @@ const status = $computed(() => {
 
 const createdAt = useFormattedDateTime(status.createdAt)
 
-const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === status.visibility)!)
+const visibility = $computed(() => statusVisibilities.find(v => v.value === status.visibility)!)
 
 const { t } = useI18n()
 
@@ -29,7 +30,7 @@ const isDM = $computed(() => status.visibility === 'direct')
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 px-4 relative :lang="status.language ?? undefined">
+  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative :lang="status.language ?? undefined">
     <StatusActionsMore :status="status" absolute inset-ie-2 top-2 />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pe5 me-a>
       <AccountHoverWrapper :account="status.account">
@@ -54,7 +55,12 @@ const isDM = $computed(() => status.visibility === 'direct')
       <div v-if="status.application?.name">
         &middot;
       </div>
-      <div v-if="status.application?.name">
+      <div v-if="status.application?.website && status.application.name">
+        <NuxtLink :to="status.application.website">
+          {{ status.application.name }}
+        </NuxtLink>
+      </div>
+      <div v-else-if="status.application?.name">
         {{ status.application?.name }}
       </div>
     </div>

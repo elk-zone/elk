@@ -22,6 +22,7 @@ export default defineConfig({
       'bg-base': 'bg-$c-bg-base',
       'bg-border': 'bg-$c-border',
       'bg-active': 'bg-$c-bg-active',
+      'bg-primary-light': 'bg-$c-primary-light',
       'bg-code': 'bg-$c-bg-code',
       'bg-fade': 'bg-$c-bg-fade',
 
@@ -55,6 +56,8 @@ export default defineConfig({
       'flex-v-center': 'items-center',
       'flex-h-center': 'justify-center',
       'bg-hover-overflow': 'relative z-0 transition-colors duration-250 after-content-empty after:(absolute inset--2px bg-transparent rounded-lg z--1 transition-colors duration-250) hover:after:(bg-active)',
+
+      'timeline-title-style': 'text-primary text-lg font-bold',
     },
   ],
   presets: [

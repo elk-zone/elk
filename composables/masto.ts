@@ -7,25 +7,11 @@ export const useMasto = () => useNuxtApp().$masto as ElkMasto
 
 export const isMastoInitialised = computed(() => process.client && useMasto().loggedIn.value)
 
-// @unocss-include
-export const STATUS_VISIBILITIES = [
-  {
-    value: 'public',
-    icon: 'i-ri:global-line',
-  },
-  {
-    value: 'unlisted',
-    icon: 'i-ri:lock-unlock-line',
-  },
-  {
-    value: 'private',
-    icon: 'i-ri:lock-line',
-  },
-  {
-    value: 'direct',
-    icon: 'i-ri:at-line',
-  },
-] as const
+export const onMastoInit = (cb: () => unknown) => {
+  watchOnce(isMastoInitialised, () => {
+    cb()
+  }, { immediate: isMastoInitialised.value })
+}
 
 export function getDisplayName(account?: Account, options?: { rich?: boolean }) {
   const displayName = account?.displayName || account?.username || ''
@@ -171,21 +157,4 @@ async function fetchRelationships() {
   const relationships = await useMasto().accounts.fetchRelationships(requested.map(([id]) => id))
   for (let i = 0; i < requested.length; i++)
     requested[i][1].value = relationships[i]
-}
-
-const maxDistance = 10
-export function timelineWithReorderedReplies(items: Status[]) {
-  const newItems = [...items]
-  // TODO: Basic reordering, we should get something more efficient and robust
-  for (let i = items.length - 1; i > 0; i--) {
-    for (let k = 1; k <= maxDistance && i - k >= 0; k++) {
-      const inReplyToId = newItems[i - k].inReplyToId ?? newItems[i - k].reblog?.inReplyToId
-      if (inReplyToId && (inReplyToId === newItems[i].reblog?.id || inReplyToId === newItems[i].id)) {
-        const item = newItems.splice(i, 1)[0]
-        newItems.splice(i - k, 0, item)
-        k = 1
-      }
-    }
-  }
-  return newItems
 }

@@ -1,23 +1,31 @@
 <script setup lang="ts">
-const env = useRuntimeConfig().public.env
-const sub = env === 'local' ? 'dev' : env === 'staging' ? 'preview' : 'alpha'
+import { buildInfo } from 'virtual:build-info'
+
+const { env } = buildInfo
 </script>
 
 <template>
   <!-- Use external to force refresh page and jump to top of timeline -->
-  <NuxtLink
-    flex items-end gap-2
-    w-fit
-    py2 px-2 lg:px-3
-    text-2xl hover:bg-active
-    focus-visible:ring="2 current"
-    rounded-full
-    to="/"
-    external
-  >
-    <img :alt="$t('app_logo')" src="/logo.svg" shrink-0 aspect="1/1" sm:h-8 lg:h-10 class="rtl-flip">
-    <div hidden lg:block>
-      {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ sub }}</sup>
+  <div flex justify-between>
+    <NuxtLink
+      flex items-end gap-4
+      py2 px-5
+      text-2xl
+      focus-visible:ring="2 current"
+      to="/"
+      external
+    >
+      <img :alt="$t('app_logo')" src="/logo.svg" shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip">
+      <div hidden xl:block>
+        {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
+      </div>
+    </NuxtLink>
+    <div hidden xl:flex items-center me-8 mt-2>
+      <NuxtLink
+        @click="$router.go(-1)"
+      >
+        <div i-ri:arrow-left-line class="rtl-flip" btn-text />
+      </NuxtLink>
     </div>
-  </NuxtLink>
+  </div>
 </template>

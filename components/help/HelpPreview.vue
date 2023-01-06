@@ -22,15 +22,17 @@ const emit = defineEmits<{
       {{ $t('help.desc_para2') }}
     </p>
     <p>
-      Before that, if you'd like to help with testing, giving feedback, or contributing, <a font-bold text-primary href="/m.webtoo.ls/@elk" target="_blank">
-        reach out to us on Mastodon
-      </a> and get involved.
+      {{ $t('help.desc_para4') }}
+      <a font-bold text-primary href="/m.webtoo.ls/@elk" target="_blank">
+        {{ $t('help.desc_para5') }}
+      </a>
+      {{ $t('help.desc_para6') }}
     </p>
     {{ $t('help.desc_para3') }}
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of teams" :key="team.github">
         <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
-          <img :src="`https://res.cloudinary.com/dchoja2nb/image/twitter_name/h_120,w_120/f_auto/${team.twitter}.jpg`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
+          <img :src="`/avatars/${team.github}-100x100.png`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
         </a>
       </template>
     </p>

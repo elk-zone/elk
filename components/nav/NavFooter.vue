@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import buildInfo from 'virtual:build-info'
+import { buildInfo } from 'virtual:build-info'
 
 const timeAgoOptions = useTimeAgoOptions()
 
@@ -22,35 +22,23 @@ function toggleDark() {
         <button
           flex
           text-lg
-          :class="isZenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
+          :class="userSettings.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
           :aria-label="$t('nav.zen_mode')"
-          @click="toggleZenMode()"
-        />
-      </CommonTooltip>
-      <CommonTooltip :content="$t('nav.settings')">
-        <NuxtLink
-          flex
-          text-lg
-          to="/settings"
-          i-ri:settings-4-line
-          :aria-label="$t('nav.settings')"
+          @click="userSettings.zenMode = !userSettings.zenMode"
         />
       </CommonTooltip>
     </div>
     <div>
-      <button cursor-pointer hover:underline @click="openPreviewHelp">
-        {{ $t('nav.show_intro') }}
-      </button>
-    </div>
-    <div>{{ $t('app_desc_short') }}</div>
-    <div>
-      <i18n-t keypath="nav.built_at">
+      <i18n-t v-if="isHydrated" keypath="nav.built_at">
         <time :datetime="String(buildTimeDate)" :title="$d(buildTimeDate, 'long')">{{ buildTimeAgo }}</time>
       </i18n-t>
-      <template v-if="buildInfo.version">
-        &middot;
-        v{{ buildInfo.version }}
-      </template>
+      <span v-else>
+        {{ $t('nav.built_at', [$d(buildTimeDate, 'shortDate')]) }}
+      </span>
+      &middot;
+      <!-- TODO click version to show changelog -->
+      <span v-if="buildInfo.env === 'release'">v{{ buildInfo.version }}</span>
+      <span v-else>{{ buildInfo.env }}</span>
       <template v-if="buildInfo.commit && buildInfo.branch !== 'release'">
         &middot;
         <NuxtLink
@@ -64,7 +52,15 @@ function toggleDark() {
       </template>
     </div>
     <div>
-      <a href="/m.webtoo.ls/@elk" target="_blank">Mastodon</a> &middot; <a href="https://chat.elk.zone" target="_blank">Discord</a> &middot; <a href="https://github.com/elk-zone" target="_blank">GitHub</a>
+      <NuxtLink cursor-pointer hover:underline to="/settings/about">
+        {{ $t('settings.about.label') }}
+      </NuxtLink>
+      &middot;
+      <a href="/m.webtoo.ls/@elk" target="_blank">Mastodon</a>
+      &middot;
+      <a href="https://chat.elk.zone" target="_blank">Discord</a>
+      &middot;
+      <a href="https://github.com/elk-zone" target="_blank">GitHub</a>
     </div>
   </footer>
 </template>

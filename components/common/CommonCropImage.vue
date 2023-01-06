@@ -4,8 +4,6 @@ import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css'
 
 export interface Props {
-  /** Images to be cropped */
-  modelValue?: File
   /** Crop frame aspect ratio (width/height), default 1/1 */
   stencilAspectRatio?: number
   /** The ratio of the longest edge of the cut box to the length of the cut screen, default 0.9, not more than 1 */
@@ -16,11 +14,10 @@ const props = withDefaults(defineProps<Props>(), {
   stencilSizePercentage: 0.9,
 })
 
-const emit = defineEmits<{
-  (event: 'update:modelValue', value: File): void
+const { modelValue: file } = defineModel<{
+  /** Images to be cropped */
+  modelValue: File | null
 }>()
-
-const vmFile = useVModel(props, 'modelValue', emit, { passive: true })
 
 const cropperDialog = ref(false)
 
@@ -40,7 +37,7 @@ const stencilSize = ({ boundaries }: { boundaries: Boundaries }) => {
   }
 }
 
-watch(vmFile, (file, _, onCleanup) => {
+watch(file, (file, _, onCleanup) => {
   let expired = false
   onCleanup(() => expired = true)
 
@@ -59,12 +56,12 @@ watch(vmFile, (file, _, onCleanup) => {
 })
 
 const cropImage = () => {
-  if (cropper.value && vmFile.value) {
+  if (cropper.value && file.value) {
     cropperFlag.value = true
     cropperDialog.value = false
     const { canvas } = cropper.value.getResult()
     canvas?.toBlob((blob) => {
-      vmFile.value = new File([blob as any], `cropped${vmFile.value?.name}` as string, { type: blob?.type })
+      file.value = new File([blob as any], `cropped${file.value?.name}` as string, { type: blob?.type })
     }, cropperImage.type)
   }
 }

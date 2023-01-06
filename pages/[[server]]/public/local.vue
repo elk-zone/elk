@@ -10,7 +10,7 @@ useHeadFixed({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/public/local" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+      <NuxtLink to="/public/local" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:group-2-line />
         <span>{{ t('title.local_timeline') }}</span>
       </NuxtLink>

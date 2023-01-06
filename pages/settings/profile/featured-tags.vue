@@ -2,6 +2,12 @@
 definePageMeta({
   middleware: 'auth',
 })
+
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => `${t('settings.profile.featured_tags.label')} | ${t('nav.settings')}`,
+})
 </script>
 
 <template>

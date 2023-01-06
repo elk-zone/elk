@@ -23,7 +23,11 @@ const isDark = usePreferredDark()
 exports[`html-parse > code frame 2 > html 1`] = `
 "<p>
   <span class=\\"h-card\\"
-    ><a href=\\"https://mas.to/@antfu\\" class=\\"u-url mention\\"
+    ><a
+      href=\\"https://mas.to/@antfu\\"
+      class=\\"u-url mention\\"
+      rel=\\"nofollow noopener noreferrer\\"
+      target=\\"_blank\\"
       >@<span>antfu</span></a
     ></span
   >

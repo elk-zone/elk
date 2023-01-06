@@ -39,12 +39,12 @@ if (import.meta.env.PROD)
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {
-  // include emoji/twemoji icons
+  // include emoji icons
   registerRoute(
     ({ sameOrigin, request, url }) =>
       sameOrigin
         && request.destination === 'image'
-        && url.pathname.startsWith('/emojis/twemoji/'),
+        && url.pathname.startsWith('/emojis/'),
     new StaleWhileRevalidate({
       cacheName: 'elk-emojis',
       plugins: [

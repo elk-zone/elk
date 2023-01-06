@@ -205,7 +205,7 @@ export const useCommandRegistry = defineStore('command', () => {
   }
 })
 
-export const useCommand = (cmd: CommandProvider) => {
+export function useCommand(cmd: CommandProvider) {
   const registry = useCommandRegistry()
 
   const register = () => registry.register(cmd)
@@ -217,7 +217,7 @@ export const useCommand = (cmd: CommandProvider) => {
   tryOnScopeDispose(cleanup)
 }
 
-export const useCommands = (cmds: () => CommandProvider[]) => {
+export function useCommands(cmds: () => CommandProvider[]) {
   const registry = useCommandRegistry()
 
   const commands = computed(cmds)
@@ -246,24 +246,10 @@ export const provideGlobalCommands = () => {
   const colorMode = useColorMode()
 
   useCommand({
-    scope: 'Actions',
-
-    visible: () => currentUser.value,
-
-    name: () => t('action.compose'),
-    icon: 'i-ri:quill-pen-line',
-    description: () => t('command.compose_desc'),
-
-    onActivate() {
-      openPublishDialog()
-    },
-  })
-
-  useCommand({
     scope: 'Navigation',
 
     name: () => t('nav.settings'),
-    icon: 'i-ri:settings-4-line',
+    icon: 'i-ri:settings-3-line',
 
     onActivate() {
       router.push('/settings')
@@ -285,10 +271,10 @@ export const provideGlobalCommands = () => {
     scope: 'Preferences',
 
     name: () => t('command.toggle_zen_mode'),
-    icon: () => isZenMode.value ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
+    icon: () => userSettings.value.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
 
     onActivate() {
-      toggleZenMode()
+      userSettings.value.zenMode = !userSettings.value.zenMode
     },
   })
 

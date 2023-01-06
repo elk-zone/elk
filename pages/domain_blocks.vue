@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import TimelineDomainBlocks from '~~/components/timeline/TimelineDomainBlocks.vue'
-
 definePageMeta({
   middleware: 'auth',
 })
 
+const { t } = useI18n()
+
 useHeadFixed({
-  title: 'Blocked domains',
+  title: () => t('nav.blocked_domains'),
 })
 </script>
 
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>{{ $t('account.blocked_domains') }}</span>
+      <span timeline-title-style>{{ $t('nav.blocked_domains') }}</span>
     </template>
 
     <TimelineDomainBlocks v-if="isMastoInitialised" />

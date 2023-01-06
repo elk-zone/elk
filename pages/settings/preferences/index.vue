@@ -1,3 +1,11 @@
+<script setup lang="ts">
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => `${t('settings.preferences.label')} | ${t('nav.settings')}`,
+})
+</script>
+
 <template>
   <MainContent back-on-small-screen>
     <template #title>
@@ -10,19 +18,19 @@
       {{ $t('settings.feature_flags.title') }}
     </h3>
     <SettingsToggleItem
-      :checked="currentUserFeatureFlags.experimentalVirtualScroll"
+      :checked="getFeatureFlag('experimentalVirtualScroll')"
       @click="toggleFeatureFlag('experimentalVirtualScroll')"
     >
       {{ $t('settings.feature_flags.virtual_scroll') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="currentUserFeatureFlags.experimentalGitHubCards"
+      :checked="getFeatureFlag('experimentalGitHubCards')"
       @click="toggleFeatureFlag('experimentalGitHubCards')"
     >
       {{ $t('settings.feature_flags.github_cards') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="currentUserFeatureFlags.experimentalUserPicker"
+      :checked="getFeatureFlag('experimentalUserPicker')"
       @click="toggleFeatureFlag('experimentalUserPicker')"
     >
       {{ $t('settings.feature_flags.user_picker') }}

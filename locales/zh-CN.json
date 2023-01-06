@@ -103,7 +103,10 @@
     "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
     "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Mastodon 客户端。",
     "desc_para2": "我们正在努力开发中，并随着时间的推移不断完善。鹿鸣将很快开源，并邀请您参与进来！",
-    "desc_para3": "在此之前，为了更好的促进我们的开发工作，你可以通过以下链接赞助团队成员。",
+    "desc_para3": "为了帮助促进开发，你可以通过以下链接赞助我们的团队成员。希望你喜欢鹿鸣！",
+    "desc_para4": "在此之前，如果你愿意帮助测试、提供反馈或作出贡献，",
+    "desc_para5": "在 Mastodon 上联系我们",
+    "desc_para6": "来参与其中。",
     "title": "预览鹿鸣！"
   },
   "menu": {
@@ -132,14 +135,17 @@
     "unpin_on_profile": "取消置顶"
   },
   "nav": {
+    "blocked_domains": "已拉黑的域名",
+    "blocked_users": "已拉黑的用户",
     "bookmarks": "书签",
-    "built_at": "于 {0} 构建",
+    "built_at": "于 {0}构建",
     "conversations": "私信",
     "explore": "探索",
     "favourites": "喜欢",
     "federated": "跨站",
     "home": "主页",
     "local": "本地",
+    "muted_users": "已屏蔽的用户",
     "notifications": "通知",
     "profile": "个人资料",
     "search": "搜索",
@@ -158,39 +164,6 @@
     "missing_type": "未知的通知类型：",
     "reblogged_post": "转发了你的帖文",
     "request_to_follow": "请求关注你",
-    "settings": {
-      "alerts": {
-        "favourite": "喜欢的",
-        "follow": "新的关注者",
-        "mention": "提及",
-        "poll": "投票",
-        "reblog": "转发了你的帖文",
-        "title": "接收了什么通知？"
-      },
-      "close_btn": "关闭桌面通知设置",
-      "policy": {
-        "all": "任何人",
-        "followed": "我关注的人",
-        "follower": "关注我的人",
-        "none": "无人",
-        "title": "我可以从谁那里接收通知？"
-      },
-      "save_settings": "保存设置改动",
-      "show_btn": "打开桌面通知设置",
-      "title": "桌面通知设置",
-      "undo_settings": "撤销设置改动",
-      "unsubscribe": "禁用桌面通知",
-      "unsubscribed_with_warning": "通过点击“@:{'notification.settings.warning.enable_desktop'}”按钮来启用接收此账号的通知。",
-      "unsupported": "你的浏览器不支持桌面通知",
-      "warning": {
-        "enable_close": "关闭",
-        "enable_description": "若想在鹿鸣没有打开时接收通知，请启用桌面通知功能。一旦启动，你可以通过上面的“打开设置”按钮来 精确控制哪种类型的互动可以产生桌面通知。",
-        "enable_description_short": "若想在鹿鸣没有打开时修改桌面通知设置，请启用桌面通知功能。",
-        "enable_desktop": "启用桌面通知功能",
-        "enable_title": "不错过任何事",
-        "re_auth": "您的服务器似乎不支持推送通知。尝试退出用户并重新登录。如果此消息仍然出现，请联系您服务器的管理员。"
-      }
-    },
     "signed_up": "注册了",
     "update_status": "更新了他们的状态"
   },
@@ -205,7 +178,29 @@
     "dismiss": "忽略",
     "title": "鹿鸣存在新的更新",
     "update": "更新",
-    "update_available_short": "更新鹿鸣"
+    "update_available_short": "更新鹿鸣",
+    "webmanifest": {
+      "canary": {
+        "description": "用 🧡 制作的 Mastodon 客户端（Canary）",
+        "name": "鹿鸣（Canary）",
+        "short_name": "鹿鸣（Canary）"
+      },
+      "dev": {
+        "description": "用 🧡 制作的 Mastodon 客户端（开发版）",
+        "name": "鹿鸣 开发版",
+        "short_name": "鹿鸣 开发版"
+      },
+      "preview": {
+        "description": "用 🧡 制作的 Mastodon 客户端（预览版）",
+        "name": "鹿鸣（预览版）",
+        "short_name": "鹿鸣（预览版）"
+      },
+      "release": {
+        "description": "用 🧡 制作的 Mastodon 客户端",
+        "name": "鹿鸣",
+        "short_name": "鹿鸣"
+      }
+    }
   },
   "search": {
     "search_desc": "搜索用户或话题标签"
@@ -213,6 +208,9 @@
   "settings": {
     "about": {
       "label": "关于"
+    },
+    "account_settings": {
+      "label": "账号设置"
     },
     "feature_flags": {
       "github_cards": "GitHub 卡片",
@@ -226,11 +224,61 @@
       "default": "（默认）",
       "font_size": "字号",
       "label": "外观",
-      "light_mode": "亮色模式"
+      "light_mode": "亮色模式",
+      "size_label": {
+        "lg": "大",
+        "md": "中",
+        "sm": "小",
+        "xl": "特大",
+        "xs": "特小"
+      }
     },
     "language": {
       "display_language": "首选语言",
       "label": "语言"
+    },
+    "notification_settings": "通知设置",
+    "notifications": {
+      "label": "通知",
+      "notifications": {
+        "label": "Notifications",
+        "notifications": {
+          "label": "Notifications settings"
+        }
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "喜欢的",
+          "follow": "新的关注者",
+          "mention": "提及",
+          "poll": "投票",
+          "reblog": "转发了你的帖文",
+          "title": "接收了什么通知？"
+        },
+        "description": "Receive notifications even when you are not using Elk.",
+        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
+        "label": "Push notifications settings",
+        "policy": {
+          "all": "任何人",
+          "followed": "我关注的人",
+          "follower": "关注我的人",
+          "none": "无人",
+          "title": "我可以从谁那里接收通知？"
+        },
+        "save_settings": "保存设置改动",
+        "undo_settings": "撤销设置改动",
+        "unsubscribe": "禁用桌面通知",
+        "unsupported": "你的浏览器不支持桌面通知",
+        "warning": {
+          "enable_close": "关闭",
+          "enable_description": "若想在鹿鸣没有打开时接收通知，请启用桌面通知功能。一旦启动，你可以通过上面的“打开设置”按钮来 精确控制哪种类型的互动可以产生桌面通知。",
+          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_desktop": "启用桌面通知功能",
+          "enable_title": "不错过任何事",
+          "re_auth": "您的服务器似乎不支持推送通知。尝试退出用户并重新登录。如果此消息仍然出现，请联系您服务器的管理员。"
+        }
+      },
+      "show_btn": "Go to notifications settings"
     },
     "preferences": {
       "label": "首选项"
@@ -245,7 +293,7 @@
       },
       "featured_tags": {
         "description": "人们可以在这些标签下浏览你的公共嘟文。",
-        "label": "精选的话题标签"
+        "label": "精选话题标签"
       },
       "label": "个人资料"
     },
@@ -299,38 +347,39 @@
     "posts_with_replies": "帖文与留言"
   },
   "time_ago_options": {
-    "day_future": "现在|明天|{n}天后",
-    "day_past": "现在|昨天|{n}天前",
-    "hour_future": "现在|1小时后|{n}小时后",
-    "hour_past": "现在|1小时前|{n}小时前",
+    "day_future": "现在|明天|{n} 天后",
+    "day_past": "现在|昨天|{n} 天前",
+    "hour_future": "现在|1 小时后|{n} 小时后",
+    "hour_past": "现在|1 小时前|{n} 小时前",
     "just_now": "刚刚",
-    "minute_future": "现在|1分钟后|{n}分钟后",
-    "minute_past": "现在|1分钟前|{n}分钟前",
-    "month_future": "现在|下个月|{n}个月后",
-    "month_past": "现在|上个月|{n}个月前",
-    "second_future": "刚刚|{n}秒后|{n}秒后",
-    "second_past": "刚刚|{n}秒前|{n}秒前",
-    "short_day_future": "{n}天",
-    "short_day_past": "{n}天",
-    "short_hour_future": "{n}小时",
-    "short_hour_past": "{n}小时",
-    "short_minute_future": "{n}分",
-    "short_minute_past": "{n}分",
-    "short_month_future": "{n}月",
-    "short_month_past": "{n}月",
-    "short_second_future": "{n}秒",
-    "short_second_past": "{n}秒",
-    "short_week_future": "{n}周",
-    "short_week_past": "{n}周",
-    "short_year_future": "{n}年",
-    "short_year_past": "{n}年",
-    "week_future": "现在|下周|{n}周后",
-    "week_past": "现在|上周|{n}周前",
-    "year_future": "现在|明年|{n}年后",
-    "year_past": "现在|去年|{n}年前"
+    "minute_future": "现在|1 分钟后|{n} 分钟后",
+    "minute_past": "现在|1 分钟前|{n} 分钟前",
+    "month_future": "现在|下个月|{n} 个月后",
+    "month_past": "现在|上个月|{n} 个月前",
+    "second_future": "刚刚|{n} 秒后|{n} 秒后",
+    "second_past": "刚刚|{n} 秒前|{n} 秒前",
+    "short_day_future": "{n} 天",
+    "short_day_past": "{n} 天",
+    "short_hour_future": "{n} 小时",
+    "short_hour_past": "{n} 小时",
+    "short_minute_future": "{n} 分",
+    "short_minute_past": "{n} 分",
+    "short_month_future": "{n} 月",
+    "short_month_past": "{n} 月",
+    "short_second_future": "{n} 秒",
+    "short_second_past": "{n} 秒",
+    "short_week_future": "{n} 周",
+    "short_week_past": "{n} 周",
+    "short_year_future": "{n} 年",
+    "short_year_past": "{n} 年",
+    "week_future": "现在|下周|{n} 周后",
+    "week_past": "现在|上周|{n} 周前",
+    "year_future": "现在|明年|{n} 年后",
+    "year_past": "现在|去年|{n} 年前"
   },
   "timeline": {
-    "show_new_items": "展示 {v} 条新帖文"
+    "show_new_items": "展示 {v} 条新帖文",
+    "view_older_posts": "其他站点上更老的帖文可能不会在这里显示。"
   },
   "title": {
     "federated_timeline": "跨站时间线",

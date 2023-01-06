@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import buildInfo from 'virtual:build-info'
+import { buildInfo } from 'virtual:build-info'
 
-let showCommit = $ref(false)
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => `${t('settings.about.label')} | ${t('nav.settings')}`,
+})
+
+let showCommit = $ref(buildInfo.env !== 'release' && buildInfo.env !== 'dev')
 const builtTime = useFormattedDateTime(buildInfo.time)
 
 const handleShowCommit = () => {
@@ -35,8 +41,8 @@ const handleShowCommit = () => {
       >
         <template #content>
           <div font-mono>
-            v{{ buildInfo.version }}
-            <span v-if="showCommit">({{ buildInfo.commit.slice(0, 7) }})</span>
+            <span>{{ buildInfo.env === 'release' ? `v${buildInfo.version}` : buildInfo.env }}</span>
+            <span v-if="showCommit"> ({{ buildInfo.commit.slice(0, 7) }}@{{ buildInfo.branch }})</span>
           </div>
         </template>
       </SettingsItem>
@@ -85,7 +91,7 @@ const handleShowCommit = () => {
         external target="_blank"
       >
         <template #icon>
-          <img :src="`https://res.cloudinary.com/dchoja2nb/image/twitter_name/h_32,w_32/f_auto/${team.twitter}.jpg`" :alt="team.display" rounded-full w-8 h-8 height="32" width="32">
+          <img :src="`/avatars/${team.github}-60x60.png`" :alt="team.display" rounded-full w-8 h-8 height="32" width="32">
         </template>
       </SettingsItem>
     </template>

@@ -21,7 +21,7 @@ const isSquare = $computed(() => (
 ))
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
 
-const gitHubCards = $(computedEager(() => useFeatureFlags().experimentalGitHubCards))
+const gitHubCards = $(useFeatureFlag('experimentalGitHubCards'))
 
 // TODO: regex test the card.title value
 const isMastodonLink = true

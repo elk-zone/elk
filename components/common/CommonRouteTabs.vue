@@ -40,12 +40,12 @@ useCommands(() => command
         relative flex flex-auto cursor-pointer sm:px6 px2 rounded transition-all
         tabindex="1"
         hover:bg-active transition-100
-        exact-active-class="children:(text-secondary !border-primary !op100)"
+        exact-active-class="children:(text-secondary !border-primary !op100 !text-base)"
         @click="!preventScrollTop && $scrollToTop()"
       >
-        <span ws-nowrap mxa sm:px2 sm:py3 py2 text-center border-b-3 text-secondary-light hover:text-secondary border-transparent>{{ option.display }}</span>
+        <span ws-nowrap mxa sm:px2 sm:py3 xl:pb4 xl:pt5 py2 text-center border-b-3 text-secondary-light hover:text-secondary border-transparent>{{ option.display }}</span>
       </NuxtLink>
-      <div v-else flex flex-auto sm:px6 px2>
+      <div v-else flex flex-auto sm:px6 px2 xl:pb4 xl:pt5>
         <span ws-nowrap mxa sm:px2 sm:py3 py2 text-center text-secondary-light op50>{{ option.display }}</span>
       </div>
     </template>

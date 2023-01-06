@@ -1,5 +1,7 @@
 html {
   font-size: var(--font-size, 15px);
+  width: 100%;
+  width: 100vw;
 }
 
 @font-face {
@@ -96,8 +98,12 @@ body {
   transform: scale(1.2);
 }
 
+em-emoji-picker {
+  --border-radius: 0;
+  width: 352px;
+}
+
 .content-rich {
-  line-height: calc(4 / 3 * 1em);
   overflow-wrap: break-word;
 
   a {
@@ -117,23 +123,33 @@ body {
     --at-apply: font-bold;
   }
   p {
-    --at-apply: my-1;
+    --at-apply: my-2;
+  }
+  p:first-child {
+    --at-apply: mt-1;
+  }
+  p:last-child {
+    --at-apply: mb-1;
   }
   code {
-    --at-apply: bg-code text-code px1 py0.5 rounded text-0.9em leading-0.8em;
+    --at-apply: bg-code text-code px1 py0.5 rounded text-0.875em leading-0.8em;
   }
   pre code {
     --at-apply: bg-transparent px0 py0 rounded-none leading-1.6em;
   }
 
   .code-block {
-    --at-apply: font-mono bg-code text-base p3 mt-2 rounded overflow-auto
+    --at-apply: font-mono bg-code text-0.875em p3 mt-2 rounded overflow-auto
       leading-1.6em;
 
     .shiki {
       background: transparent !important;
     }
   }
+}
+
+.line-compact {
+  line-height: calc(4 / 3 * 1em);
 }
 
 .content-editor {
@@ -198,10 +214,6 @@ body {
 
 html[dir="rtl"] .rtl-flip {
   transform: scale(-1, 1)
-}
-
-em-emoji-picker {
-  --border-radius: 0;
 }
 
 footer {

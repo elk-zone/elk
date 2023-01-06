@@ -1,5 +1,11 @@
 <script setup lang="ts">
+// type used in <template>
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import type { Notification, Paginator, WsEvents } from 'masto'
+// type used in <template>
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import type { GroupedLikeNotifications } from '~/types'
+
 import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
@@ -118,12 +124,12 @@ const { formatNumber } = useHumanReadableNumber()
         />
         <NotificationGroupedLikes
           v-else-if="item.type === 'grouped-reblogs-and-favourites'"
-          :group="item"
+          :group="item as GroupedLikeNotifications"
           border="b base"
         />
         <NotificationCard
           v-else
-          :notification="item"
+          :notification="item as Notification"
           hover:bg-active
           border="b base"
         />

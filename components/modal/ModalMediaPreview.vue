@@ -1,32 +1,14 @@
 <script setup lang="ts">
-import { useImageGesture } from '~/composables/gestures'
-
 const emit = defineEmits(['close'])
 
-const img = ref()
+const locked = useScrollLock(document.body)
+
+// Use to avoid strange error when directlying assigning to v-model on ModelMediaPreviewCarousel
+const index = mediaPreviewIndex
 
 const current = computed(() => mediaPreviewList.value[mediaPreviewIndex.value])
-const hasNext = computed(() => mediaPreviewIndex.value < mediaPreviewList.value.length - 1)
-const hasPrev = computed(() => mediaPreviewIndex.value > 0)
-
-useImageGesture(img, {
-  hasNext,
-  hasPrev,
-  onNext() {
-    if (hasNext.value)
-      mediaPreviewIndex.value++
-  },
-  onPrev() {
-    if (hasPrev.value)
-      mediaPreviewIndex.value--
-  },
-})
-
-// stop global zooming
-useEventListener('wheel', (evt) => {
-  if (evt.ctrlKey && (evt.deltaY < 0 || evt.deltaY > 0))
-    evt.preventDefault()
-}, { passive: false })
+const hasNext = computed(() => index.value < mediaPreviewList.value.length - 1)
+const hasPrev = computed(() => index.value > 0)
 
 const keys = useMagicKeys()
 
@@ -35,12 +17,12 @@ whenever(keys.arrowRight, next)
 
 function next() {
   if (hasNext.value)
-    mediaPreviewIndex.value++
+    index.value++
 }
 
 function prev() {
   if (hasPrev.value)
-    mediaPreviewIndex.value--
+    index.value--
 }
 
 function onClick(e: MouseEvent) {
@@ -49,30 +31,31 @@ function onClick(e: MouseEvent) {
   if (!el)
     emit('close')
 }
+
+onMounted(() => locked.value = true)
+onUnmounted(() => locked.value = false)
 </script>
 
 <template>
-  <div relative h-full w-full flex pt-12 @click="onClick">
+  <div relative h-full w-full flex pt-12 w-100vh @click="onClick">
     <button
       v-if="hasNext" pointer-events-auto btn-action-icon bg="black/20" :aria-label="$t('action.previous')"
-      hover:bg="black/40" dark:bg="white/30" dark:hover:bg="white/20" absolute top="1/2" right-1
+      hover:bg="black/40" dark:bg="white/30" dark:hover:bg="white/20" absolute top="1/2" right-1 z5
       :title="$t('action.next')" @click="next"
     >
       <div i-ri:arrow-right-s-line text-white />
     </button>
     <button
       v-if="hasPrev" pointer-events-auto btn-action-icon bg="black/20" aria-label="action.next"
-      hover:bg="black/40" dark:bg="white/30" dark:hover:bg="white/20" absolute top="1/2" left-1
+      hover:bg="black/40" dark:bg="white/30" dark:hover:bg="white/20" absolute top="1/2" left-1 z5
       :title="$t('action.prev')" @click="prev"
     >
       <div i-ri:arrow-left-s-line text-white />
     </button>
-    <img
-      ref="img"
-      :src="current.url || current.previewUrl"
-      :alt="current.description || ''"
-      max-h-full max-w-full ma
-    >
+
+    <div flex flex-row items-center mxa>
+      <ModalMediaPreviewCarousel v-model="index" :media="mediaPreviewList" @close="emit('close')" />
+    </div>
 
     <div absolute top-0 w-full flex justify-between>
       <button
@@ -83,7 +66,7 @@ function onClick(e: MouseEvent) {
       </button>
       <div bg="black/30" dark:bg="white/10" ms-4 my-auto text-white rounded-full flex="~ center" overflow-hidden>
         <div v-if="mediaPreviewList.length > 1" p="y-1 x-2" rounded-r-0 shrink-0>
-          {{ mediaPreviewIndex + 1 }} / {{ mediaPreviewList.length }}
+          {{ index + 1 }} / {{ mediaPreviewList.length }}
         </div>
         <p
           v-if="current.description" bg="dark/30" dark:bg="white/10" p="y-1 x-2" rounded-ie-full line-clamp-1

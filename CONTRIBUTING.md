@@ -29,7 +29,7 @@ git checkout -b my-new-branch
 
 ### Running PWA on dev server
 
-In order to run Elk with PWA enabled, run `pnpm run dev:pwa` in Elk's root folder to start dev server or `pnpm dev:pwa:mocked` to start dev server with `@elkdev@universeodon.com` user.
+In order to run Elk with PWA enabled, run `pnpm run dev:pwa` in Elk's root folder to start dev server or `pnpm dev:mocked:pwa` to start dev server with `@elkdev@universeodon.com` user.
 
 You should test the Elk PWA application on private browsing mode on any Chromium based browser: will not work on Firefox and Safari.
 

@@ -3,6 +3,12 @@ definePageMeta({
   wideLayout: true,
 })
 
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => t('nav.settings'),
+})
+
 const route = useRoute()
 
 const isRootPath = computedEager(() => route.name === 'settings')
@@ -14,8 +20,8 @@ const isRootPath = computedEager(() => route.name === 'settings')
       <div border="e base" :class="isRootPath ? 'block lg:flex-none flex-1' : 'hidden lg:block'">
         <MainContent>
           <template #title>
-            <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-              <div i-ri:settings-4-line />
+            <div timeline-title-style flex items-center gap-2 @click="$scrollToTop">
+              <div i-ri:settings-3-line />
               <span>{{ $t('nav.settings') }}</span>
             </div>
           </template>
@@ -34,6 +40,13 @@ const isRootPath = computedEager(() => route.name === 'settings')
               to="/settings/interface"
             />
             <SettingsItem
+              v-if="isHydrated && currentUser"
+              command
+              icon="i-ri:notification-badge-line"
+              :text="$t('settings.notifications_settings')"
+              to="/settings/notifications"
+            />
+            <SettingsItem
               command
               icon="i-ri-globe-line"
               :text="$t('settings.language.label')"
@@ -41,7 +54,7 @@ const isRootPath = computedEager(() => route.name === 'settings')
             />
             <SettingsItem
               command
-              icon="i-ri:settings-2-line"
+              icon="i-ri-equalizer-line"
               :text="$t('settings.preferences.label')"
               to="/settings/preferences"
             />

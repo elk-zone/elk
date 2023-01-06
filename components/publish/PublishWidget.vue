@@ -3,8 +3,6 @@ import type { Attachment, CreateStatusParams, Status, StatusVisibility } from 'm
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
-import ISO6391 from 'iso-639-1'
-import Fuse from 'fuse.js'
 import type { Draft } from '~/types'
 
 type FileUploadError = [filename: string, message: string]
@@ -16,7 +14,7 @@ const {
   placeholder,
   dialogLabelledBy,
 } = defineProps<{
-  draftKey: string
+  draftKey?: string
   initial?: () => Draft
   placeholder?: string
   inReplyToId?: string
@@ -40,7 +38,10 @@ const shouldExpanded = $computed(() => _expanded || isExpanded || !isEmpty)
 const { editor } = useTiptap({
   content: computed({
     get: () => draft.params.status,
-    set: newVal => draft.params.status = newVal,
+    set: (newVal) => {
+      draft.params.status = newVal
+      draft.lastUpdated = Date.now()
+    },
   }),
   placeholder: computed(() => placeholder ?? draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
   autofocus: shouldExpanded,
@@ -53,10 +54,6 @@ const { editor } = useTiptap({
     isExpanded = true
   },
   onPaste: handlePaste,
-})
-
-const currentVisibility = $computed(() => {
-  return STATUS_VISIBILITIES.find(v => v.value === draft.params.visibility) || STATUS_VISIBILITIES[0]
 })
 
 let isUploading = $ref<boolean>(false)
@@ -133,19 +130,12 @@ function removeAttachment(index: number) {
   draft.attachments.splice(index, 1)
 }
 
-function chooseVisibility(visibility: StatusVisibility) {
-  draft.params.visibility = visibility
-}
-
-function chooseLanguage(language: string | null) {
-  draft.params.language = language
-}
-
 async function publish() {
   const payload = {
     ...draft.params,
     status: htmlToText(draft.params.status || ''),
     mediaIds: draft.attachments.map(a => a.id),
+    ...(masto.version.includes('+glitch') ? { 'content-type': 'text/markdown' } : {}),
   } as CreateStatusParams
 
   if (process.dev) {
@@ -186,29 +176,6 @@ async function onDrop(files: File[] | null) {
 
 const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
-const languageKeyword = $ref('')
-const languageList: {
-  code: string | null
-  nativeName: string
-  name?: string
-}[] = [{
-  code: null,
-  nativeName: t('language.none'),
-}, ...ISO6391.getAllCodes().map(code => ({
-  code,
-  nativeName: ISO6391.getNativeName(code),
-  name: ISO6391.getName(code),
-}))]
-const fuse = new Fuse(languageList, {
-  keys: ['code', 'nativeName', 'name'],
-  shouldSort: true,
-})
-const languages = $computed(() =>
-  languageKeyword.trim()
-    ? fuse.search(languageKeyword).map(r => r.item)
-    : languageList,
-)
-
 defineExpose({
   focusEditor: () => {
     editor.value?.commands?.focus?.()
@@ -230,7 +197,7 @@ defineExpose({
 
     <div flex gap-3 flex-1>
       <NuxtLink :to="getAccountRoute(currentUser.account)">
-        <AccountBigAvatar :account="currentUser.account" />
+        <AccountBigAvatar :account="currentUser.account" square />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <div
@@ -302,7 +269,7 @@ defineExpose({
           <PublishAttachment
             v-for="(att, idx) in draft.attachments" :key="att.id"
             :attachment="att"
-            :dialog-labelled-by="dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : null)"
+            :dialog-labelled-by="dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : undefined)"
             @remove="removeAttachment(idx)"
             @set-description="setDescription(att, $event)"
           />
@@ -318,16 +285,20 @@ defineExpose({
         <PublishEmojiPicker
           @select="insertEmoji"
           @select-custom="insertCustomEmoji"
-        />
+        >
+          <button btn-action-icon :title="$t('tooltip.emoji')">
+            <div i-ri:emotion-line />
+          </button>
+        </PublishEmojiPicker>
 
-        <CommonTooltip placement="bottom" :content="$t('tooltip.add_media')">
+        <CommonTooltip placement="top" :content="$t('tooltip.add_media')">
           <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
             <div i-ri:image-add-line />
           </button>
         </CommonTooltip>
 
         <template v-if="editor">
-          <CommonTooltip placement="bottom" :content="$t('tooltip.toggle_code_block')">
+          <CommonTooltip placement="top" :content="$t('tooltip.toggle_code_block')">
             <button
               btn-action-icon
               :aria-label="$t('tooltip.toggle_code_block')"
@@ -345,7 +316,7 @@ defineExpose({
           {{ editor?.storage.characterCount.characters() }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
         </div>
 
-        <CommonTooltip placement="bottom" :content="$t('tooltip.add_content_warning')">
+        <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
           <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
             <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
             <div v-else i-ri:alarm-warning-line />
@@ -353,66 +324,29 @@ defineExpose({
         </CommonTooltip>
 
         <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
-          <CommonDropdown placement="bottom">
+          <CommonDropdown placement="bottom" auto-boundary-max-size>
             <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-12 mr--1>
               <div i-ri:translate-2 />
               <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
             </button>
 
             <template #popper>
-              <div min-w-80 p3>
-                <input
-                  v-model="languageKeyword"
-                  :placeholder="t('language.search')"
-                  p2 mb2 border-rounded w-full bg-transparent
-                  outline-none border="~ base"
-                >
-                <div max-h-40vh overflow-auto>
-                  <CommonDropdownItem
-                    v-for="{ code, nativeName, name } in languages"
-                    :key="code"
-                    :checked="code === (draft.params.language || null)"
-                    @click="chooseLanguage(code)"
-                  >
-                    {{ nativeName }}
-                    <template #description>
-                      <template v-if="name">
-                        {{ name }}
-                      </template>
-                    </template>
-                  </CommonDropdownItem>
-                </div>
-              </div>
+              <PublishLanguagePicker v-model="draft.params.language" min-w-80 p3 />
             </template>
           </CommonDropdown>
         </CommonTooltip>
 
-        <CommonTooltip placement="bottom" :content="draft.editingStatus ? $t(`visibility.${currentVisibility.value}`) : $t('tooltip.change_content_visibility')">
-          <CommonDropdown>
+        <PublishVisibilityPicker v-model="draft.params.visibility" :editing="!!draft.editingStatus">
+          <template #default="{ visibility }">
             <button :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon :class="{ 'w-12': !draft.editingStatus }">
-              <div :class="currentVisibility.icon" />
+              <div :class="visibility.icon" />
               <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
             </button>
-
-            <template #popper>
-              <CommonDropdownItem
-                v-for="visibility in STATUS_VISIBILITIES"
-                :key="visibility.value"
-                :icon="visibility.icon"
-                :checked="visibility.value === draft.params.visibility"
-                @click="chooseVisibility(visibility.value)"
-              >
-                {{ $t(`visibility.${visibility.value}`) }}
-                <template #description>
-                  {{ $t(`visibility.${visibility.value}_desc`) }}
-                </template>
-              </CommonDropdownItem>
-            </template>
-          </CommonDropdown>
-        </CommonTooltip>
+          </template>
+        </PublishVisibilityPicker>
 
         <button
-          btn-solid rounded-full text-sm w-full md:w-fit
+          btn-solid rounded-3 text-sm w-full md:w-fit
           :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
           @click="publish"
         >

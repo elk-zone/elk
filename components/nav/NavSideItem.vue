@@ -30,6 +30,8 @@ useCommand({
 
 let activeClass = $ref('text-primary')
 onMastoInit(async () => {
+  // eslint-disable-next-line no-console
+  console.log('TEST')
   // TODO: force NuxtLink to reevaluate, we now we are in this route though, so we should force it to active
   // we don't have currentServer defined until later
   activeClass = ''

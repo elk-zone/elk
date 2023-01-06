@@ -9,31 +9,44 @@ export type LocalizedWebManifest = Record<string, Partial<ManifestOptions>>
 
 export const pwaLocales = i18n.locales as LocaleObject[]
 
+type WebManifestEntry = Pick<ManifestOptions, 'name' | 'short_name' | 'description'>
+type RequiredWebManifestEntry = Required<WebManifestEntry & Pick<ManifestOptions, 'dir' | 'lang'>>
+
 export const createI18n = async (): Promise<LocalizedWebManifest> => {
   const { env } = await getEnv()
   const envName = `${env === 'release' ? '' : ` (${env})`}`
-  const { app_desc_short, app_name } = await readI18nFile('en-US.json')
+  const { pwa } = await readI18nFile('en-US.json')
 
-  const locales = await Promise.all(pwaLocales.filter(l => l.code !== 'en-US').map(async ({ code, dir = 'ltr', file }) => {
-    // read locale file
-    const {
-      app_desc_short: description = app_desc_short,
-      app_name: name = `${app_name}${envName}`,
-    } = await readI18nFile(file!)
-    return {
-      lang: code,
-      name,
-      dir,
-      short_name: name,
-      description,
-    }
-  }))
+  const defaultManifest: Required<WebManifestEntry> = pwa.webmanifest[env]
+
+  const locales: RequiredWebManifestEntry[] = await Promise.all(
+    pwaLocales
+      .filter(l => l.code !== 'en-US')
+      .map(async ({ code, dir = 'ltr', file }) => {
+        // read locale file
+        const { pwa, app_name, app_desc_short } = await readI18nFile(file!)
+        const entry: WebManifestEntry = pwa?.webmanifest?.[env] ?? {}
+        if (!entry.name && app_name)
+          entry.name = dir === 'rtl' ? `${envName}${app_name}` : `${app_name}${envName}`
+
+        if (!entry.short_name && app_name)
+          entry.short_name = dir === 'rtl' ? `${envName}${app_name}` : `${app_name}${envName}`
+
+        if (!entry.description && app_desc_short)
+          entry.description = app_desc_short
+
+        return <RequiredWebManifestEntry>{
+          ...defaultManifest,
+          ...entry,
+          lang: code,
+          dir,
+        }
+      }),
+  )
   locales.push({
+    ...defaultManifest,
     lang: 'en-US',
-    name: `${app_name}${envName}`,
     dir: 'ltr',
-    short_name: `${app_name}${envName}`,
-    description: app_desc_short,
   })
   return locales.reduce((acc, { lang, dir, name, short_name, description }) => {
     acc[lang] = {
@@ -45,7 +58,7 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
       name,
       short_name,
       description,
-      dir: dir === 'auto' ? undefined : dir,
+      dir,
       theme_color: '#ffffff',
       icons: [
         {

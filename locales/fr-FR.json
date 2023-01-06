@@ -10,7 +10,7 @@
     "avatar_description": "Avatar de {0}",
     "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur·ice.",
     "blocked_domains": "Domaines bloqués",
-    "blocked_users": "utilisateur·ice·s bloqués",
+    "blocked_users": "utilisateur·ices bloqués",
     "blocking": "Blocked",
     "bot": "Automatisé",
     "favourites": "Favoris",
@@ -233,11 +233,11 @@
       "label": "Interface",
       "light_mode": "Mode lumineux",
       "size_label": {
-        "lg": "Grand",
+        "lg": "Grande",
         "md": "Moyenne",
-        "sm": "Petit",
-        "xl": "Très grand",
-        "xs": "Très petit"
+        "sm": "Petite",
+        "xl": "Très grande",
+        "xs": "Très petite"
       }
     },
     "language": {
@@ -296,7 +296,7 @@
     "profile": {
       "appearance": {
         "bio": "Bio",
-        "description": "Editer l'avatar, nom d'utilisateur·ice·, profil, etc.",
+        "description": "Editer l'avatar, nom d'utilisateur·ice, profil, etc.",
         "display_name": "Nom d'affichage",
         "label": "Apparence",
         "profile_metadata": "Métadonnées de profil",
@@ -311,9 +311,9 @@
     },
     "select_a_settings": "Sélectionner un paramètre",
     "users": {
-      "export": "Exporter les tokens d'utilisateur·ice·",
-      "import": "Importer des tokens d'utilisateur·ice·",
-      "label": "Utilisateur·ice·s connectés"
+      "export": "Exporter les tokens d'utilisateur·ice",
+      "import": "Importer des tokens d'utilisateur·ice",
+      "label": "Utilisateur·ice·s connecté·e·s"
     }
   },
   "state": {

@@ -68,10 +68,6 @@ if (process.client) {
   watch(currentUserId, async (id, oldId) => {
     // when sign in or switch account
     if (id) {
-      // initial load
-      if (!oldId)
-        return
-
       if (id === currentUser.value?.account?.id) {
         // when sign in, the other tab will not have the user, idb is not reactive
         const newUser = users.value.find(user => user.account?.id === id)

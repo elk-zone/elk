@@ -30,7 +30,7 @@ const reply = () => {
     focusEditor()
   }
   else {
-    nuxtApp.$rememberScrollPosition(status)
+    nuxtApp.$rememberStatusPosition(status)
     navigateTo({ path: getStatusRoute(status).href, state: { focusReply: true } })
   }
 }

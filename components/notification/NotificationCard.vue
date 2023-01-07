@@ -4,12 +4,17 @@ import type { Notification } from 'masto'
 const { notification } = defineProps<{
   notification: Notification
 }>()
+
+const nuxt = useNuxtApp()
+function click() {
+  nuxt.$rememberAccountPosition(getAccountRoute(notification.account).fullPath)
+}
 </script>
 
 <template>
   <article flex flex-col relative>
     <template v-if="notification.type === 'follow'">
-      <NuxtLink :to="getAccountRoute(notification.account)">
+      <NuxtLink :to="getAccountRoute(notification.account)" @click.capture="click">
         <div
           flex items-center absolute
           ps-3 pe-4 inset-is-0

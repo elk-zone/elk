@@ -52,6 +52,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
     window.open(route.href)
   }
   else {
+    useNuxtApp().$rememberStatusPosition(status)
     cacheStatus(status)
     router.push(route)
   }

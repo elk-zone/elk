@@ -183,6 +183,9 @@ export function getUsersIndexByUserId(userId: string) {
 }
 
 export async function removePushNotificationData(user: UserLogin, fromSWPushManager = true) {
+  if (!user.pushSubscription)
+    return
+
   // clear push subscription
   user.pushSubscription = undefined
   const { acct } = user.account

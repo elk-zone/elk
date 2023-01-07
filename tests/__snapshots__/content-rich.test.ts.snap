@@ -1,12 +1,5 @@
 // Vitest Snapshot v1
 
-exports[`content-rich > JavaScript hrefs get removed 1`] = `
-"<p>
-  <a href=\\"#\\" rel=\\"nofollow noopener noreferrer\\" target=\\"_blank\\">click me</a>
-</p>
-"
-`;
-
 exports[`content-rich > code frame 1`] = `
 "<p>Testing code block</p><p><pre lang=\\"ts\\">import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
 // tracks mouse position
@@ -73,10 +66,5 @@ exports[`content-rich > link + mention 1`] = `
     ><span class=\\"invisible\\">ive-library/pull/203</span></a
   >
 </p>
-"
-`;
-
-exports[`content-rich > script tags get removed 1`] = `
-"<p></p>
 "
 `;

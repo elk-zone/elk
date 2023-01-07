@@ -5,6 +5,34 @@ import { ELEMENT_NODE, TEXT_NODE, h, parse, render } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
+export interface ContentParseOptions {
+  emojis?: Record<string, Emoji>
+  markdown?: boolean
+  replaceUnicodeEmoji?: boolean
+  astTransforms?: Transform[]
+}
+
+const sanitizerBasicClasses = filterClasses(/^(h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible)$/u)
+const sanitizer = sanitize({
+  // Allow basic elements as seen in https://github.com/mastodon/mastodon/blob/17f79082b098e05b68d6f0d38fabb3ac121879a9/lib/sanitize_ext/sanitize_config.rb
+  br: {},
+  p: {},
+  a: {
+    href: filterHref(),
+    class: sanitizerBasicClasses,
+    rel: set('nofollow noopener noreferrer'),
+    target: set('_blank'),
+  },
+  span: {
+    class: sanitizerBasicClasses,
+  },
+  // Allow elements potentially created for Markdown code blocks above
+  pre: {},
+  code: {
+    class: filterClasses(/^language-\w+$/),
+  },
+})
+
 const decoder = process.client ? document.createElement('textarea') : null
 export function decodeHtml(text: string) {
   if (!decoder)
@@ -18,11 +46,19 @@ export function decodeHtml(text: string) {
  * Parse raw HTML form Mastodon server to AST,
  * with interop of custom emojis and inline Markdown syntax
  */
-export function parseMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}, markdown = true, forTiptap = false) {
+export function parseMastodonHTML(
+  html: string,
+  options: ContentParseOptions = {},
+) {
+  const {
+    markdown = true,
+    replaceUnicodeEmoji = true,
+  } = options
+
   if (markdown) {
     // Handle code blocks
     html = html
-      .replace(/>(```|~~~)(\w*)([\s\S]+?)\1/g, (_1, _2, lang, raw) => {
+      .replace(/>(```|~~~)(\w*)([\s\S]+?)\1/g, (_1, _2, lang: string, raw: string) => {
         const code = htmlToText(raw)
         const classes = lang ? ` class="language-${lang}"` : ''
         return `><pre><code${classes}>${code}</code></pre>`
@@ -30,39 +66,31 @@ export function parseMastodonHTML(html: string, customEmojis: Record<string, Emo
   }
 
   // Always sanitize the raw HTML data *after* it has been modified
-  const basicClasses = filterClasses(/^(h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible)$/u)
-  return transformSync(parse(html), [
-    sanitize({
-      // Allow basic elements as seen in https://github.com/mastodon/mastodon/blob/17f79082b098e05b68d6f0d38fabb3ac121879a9/lib/sanitize_ext/sanitize_config.rb
-      br: {},
-      p: {},
-      a: {
-        href: filterHref(),
-        class: basicClasses,
-        rel: set('nofollow noopener noreferrer'),
-        target: set('_blank'),
-      },
-      span: {
-        class: basicClasses,
-      },
-      // Allow elements potentially created for Markdown code blocks above
-      pre: {},
-      code: {
-        class: filterClasses(/^language-\w+$/),
-      },
-    }),
-    // Unicode emojis to images, but only if not converting HTML for Tiptap
-    !forTiptap ? replaceUnicodeEmoji() : noopTransform(),
-    markdown ? formatMarkdown() : noopTransform(),
-    replaceCustomEmoji(customEmojis),
-  ])
+  const transforms: Transform[] = [
+    sanitizer,
+    ...options.astTransforms || [],
+  ]
+
+  if (replaceUnicodeEmoji)
+    transforms.push(transformUnicodeEmoji)
+
+  if (markdown)
+    transforms.push(transformMarkdown)
+
+  transforms.push(replaceCustomEmoji(options.emojis || {}))
+
+  return transformSync(parse(html), transforms)
 }
 
 /**
  * Converts raw HTML form Mastodon server to HTML for Tiptap editor
  */
 export function convertMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
-  const tree = parseMastodonHTML(html, customEmojis, true, true)
+  const tree = parseMastodonHTML(html, {
+    emojis: customEmojis,
+    markdown: true,
+    replaceUnicodeEmoji: false,
+  })
   return render(tree)
 }
 
@@ -162,11 +190,6 @@ function transformSync(doc: Node, transforms: Transform[]) {
   return doc
 }
 
-// A transformation that does nothing. Useful for conditional transform chains.
-function noopTransform(): Transform {
-  return node => node
-}
-
 // A tree transform for sanitizing elements & their attributes.
 type AttrSanitizers = Record<string, (value: string | undefined) => string | undefined>
 function sanitize(allowedElements: Record<string, AttrSanitizers>): Transform {
@@ -241,27 +264,25 @@ function filterHref() {
   }
 }
 
-function replaceUnicodeEmoji(): Transform {
-  return (node) => {
-    if (node.type !== TEXT_NODE)
-      return node
+function transformUnicodeEmoji(node: Node) {
+  if (node.type !== TEXT_NODE)
+    return node
 
-    let start = 0
+  let start = 0
 
-    const matches = [] as (string | Node)[]
-    findAndReplaceEmojisInText(emojiRegEx, node.value, (match, result) => {
-      const attrs = getEmojiAttributes(match)
-      matches.push(result.slice(start))
-      matches.push(h('img', { src: attrs.src, alt: attrs.alt, class: attrs.class }))
-      start = result.length + match.match.length
-      return undefined
-    })
-    if (matches.length === 0)
-      return node
+  const matches = [] as (string | Node)[]
+  findAndReplaceEmojisInText(emojiRegEx, node.value, (match, result) => {
+    const attrs = getEmojiAttributes(match)
+    matches.push(result.slice(start))
+    matches.push(h('img', { src: attrs.src, alt: attrs.alt, class: attrs.class }))
+    start = result.length + match.match.length
+    return undefined
+  })
+  if (matches.length === 0)
+    return node
 
-    matches.push(node.value.slice(start))
-    return matches.filter(Boolean)
-  }
+  matches.push(node.value.slice(start))
+  return matches.filter(Boolean)
 }
 
 function replaceCustomEmoji(customEmojis: Record<string, Emoji>): Transform {
@@ -286,47 +307,45 @@ function replaceCustomEmoji(customEmojis: Record<string, Emoji>): Transform {
   }
 }
 
-function formatMarkdown(): Transform {
-  const replacements: [RegExp, (c: (string | Node)[]) => Node][] = [
-    [/\*\*\*(.*?)\*\*\*/g, c => h('b', null, [h('em', null, c)])],
-    [/\*\*(.*?)\*\*/g, c => h('b', null, c)],
-    [/\*(.*?)\*/g, c => h('em', null, c)],
-    [/~~(.*?)~~/g, c => h('del', null, c)],
-    [/`([^`]+?)`/g, c => h('code', null, c)],
-  ]
+const _markdownReplacements: [RegExp, (c: (string | Node)[]) => Node][] = [
+  [/\*\*\*(.*?)\*\*\*/g, c => h('b', null, [h('em', null, c)])],
+  [/\*\*(.*?)\*\*/g, c => h('b', null, c)],
+  [/\*(.*?)\*/g, c => h('em', null, c)],
+  [/~~(.*?)~~/g, c => h('del', null, c)],
+  [/`([^`]+?)`/g, c => h('code', null, c)],
+]
 
-  function process(value: string) {
-    const results = [] as (string | Node)[]
+function _markdownProcess(value: string) {
+  const results = [] as (string | Node)[]
 
-    let start = 0
-    while (true) {
-      let found: { match: RegExpMatchArray; replacer: (c: (string | Node)[]) => Node } | undefined
+  let start = 0
+  while (true) {
+    let found: { match: RegExpMatchArray; replacer: (c: (string | Node)[]) => Node } | undefined
 
-      for (const [re, replacer] of replacements) {
-        re.lastIndex = start
+    for (const [re, replacer] of _markdownReplacements) {
+      re.lastIndex = start
 
-        const match = re.exec(value)
-        if (match) {
-          if (!found || match.index < found.match.index!)
-            found = { match, replacer }
-        }
+      const match = re.exec(value)
+      if (match) {
+        if (!found || match.index < found.match.index!)
+          found = { match, replacer }
       }
-
-      if (!found)
-        break
-
-      results.push(value.slice(start, found.match.index))
-      results.push(found.replacer(process(found.match[1])))
-      start = found.match.index! + found.match[0].length
     }
 
-    results.push(value.slice(start))
-    return results.filter(Boolean)
+    if (!found)
+      break
+
+    results.push(value.slice(start, found.match.index))
+    results.push(found.replacer(_markdownProcess(found.match[1])))
+    start = found.match.index! + found.match[0].length
   }
 
-  return (node) => {
-    if (node.type !== TEXT_NODE)
-      return node
-    return process(node.value)
-  }
+  results.push(value.slice(start))
+  return results.filter(Boolean)
+}
+
+function transformMarkdown(node: Node) {
+  if (node.type !== TEXT_NODE)
+    return node
+  return _markdownProcess(node.value)
 }

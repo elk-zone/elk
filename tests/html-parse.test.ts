@@ -67,7 +67,7 @@ describe('html-parse', () => {
 })
 
 async function render(input: string, emojis?: Record<string, Emoji>) {
-  const tree = parseMastodonHTML(input, emojis)
+  const tree = parseMastodonHTML(input, { emojis })
   const html = await renderTree(tree)
   let formatted = ''
   const serializedText = treeToText(tree).trim()

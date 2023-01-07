@@ -51,3 +51,16 @@ export const customEmojisData = computed(() => currentCustomEmojis.value.emojis.
       emojis: transformEmojiData(currentCustomEmojis.value.emojis),
     }]
   : undefined)
+
+export function useEmojisFallback(emojisGetter: () => Emoji[] | undefined) {
+  return computed(() => {
+    const result: Emoji[] = []
+    const emojis = emojisGetter()
+    if (emojis)
+      result.push(...emojis)
+
+    result.push(...currentCustomEmojis.value.emojis)
+
+    return emojisArrayToObject(result)
+  })
+}

@@ -76,7 +76,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           <div flex="~ col gap1">
             <div flex justify-between>
               <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
-              <AccountBotIndicator v-if="account.bot" />
+              <AccountBotIndicator v-if="account.bot" show-label />
             </div>
             <AccountHandle :account="account" />
           </div>

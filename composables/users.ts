@@ -197,14 +197,23 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
   // we remove the sw push manager if required and there are no more accounts with subscriptions
   if (!registrationError && pwaEnabled && fromSWPushManager && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
     // clear sw push subscription
+    // eslint-disable-next-line no-console
+    console.log('UNREGISTERING SW PUSH MANAGER')
     try {
       const registration = await navigator.serviceWorker.ready
+      // eslint-disable-next-line no-console
+      console.log('registration', registration)
       const subscription = await registration.pushManager.getSubscription()
+      // eslint-disable-next-line no-console
+      console.log('subscription', subscription)
       if (subscription)
         await subscription.unsubscribe()
+      // eslint-disable-next-line no-console
+      console.log('finish', subscription)
     }
-    catch {
+    catch (e) {
       // juts ignore
+      console.error('UNREGISTERING SW PUSH MANAGER error', e)
     }
   }
 }

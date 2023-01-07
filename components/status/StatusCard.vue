@@ -15,6 +15,7 @@ const props = withDefaults(
     // Manual overrides
     hasOlder?: boolean
     hasNewer?: boolean
+
     // When looking into a detailed view of a post, we can simplify the replying badges
     // to the main expanded post
     main?: Status
@@ -32,6 +33,8 @@ const status = $computed(() => {
 const directReply = $computed(() => props.hasNewer || (!!status.inReplyToId && (status.inReplyToId === props.newer?.id || status.inReplyToId === props.newer?.reblog?.id)))
 // Use reblogged status, connect it to further replies
 const connectReply = $computed(() => props.hasOlder || status.id === props.older?.inReplyToId || status.id === props.older?.reblog?.inReplyToId)
+// Open a detailed status, the replies directly to it
+const replyToMain = $computed(() => props.main && props.main.id === status.inReplyToId && !directReply)
 
 const rebloggedBy = $computed(() => props.status.reblog ? props.status.account : null)
 
@@ -97,8 +100,16 @@ const isDM = $computed(() => status.visibility === 'direct')
     @click="onclick"
     @keydown.enter="onclick"
   >
+    <div v-if="replyToMain" flex justify-center absolute top-1.3 left-0 w-20.5 z--1 h-10>
+      <div w-1px border="x base" />
+    </div>
     <div v-if="newer && !directReply" w-auto h-1px bg-border />
-    <div flex justify-between>
+    <div flex="~ col" justify-between>
+      <StatusReplyingTo
+        v-if="!replyToMain && !directReply && !collapseReplyingTo" :status="status" :simplified="!!simplifyReplyingTo"
+        :class="faded ? 'text-secondary-light' : ''"
+        pt1 pl5
+      />
       <slot name="meta">
         <div v-if="rebloggedBy && !collapseRebloggedBy" relative text-secondary ws-nowrap flex="~" items-center pt1 pb0.5 px-1px bg-base>
           <div i-ri:repeat-fill me-46px text-primary w-16px h-16px />
@@ -111,9 +122,7 @@ const isDM = $computed(() => status.visibility === 'direct')
           </div>
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" text-sm />
         </div>
-        <div v-else />
       </slot>
-      <StatusReplyingTo v-if="!directReply && !collapseReplyingTo" :status="status" :simplified="!!simplifyReplyingTo" :class="faded ? 'text-secondary-light' : ''" pt1 />
     </div>
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <div relative>
@@ -125,8 +134,9 @@ const isDM = $computed(() => status.visibility === 'direct')
             <AccountBigAvatar :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-if="connectReply" w-full h-full flex justify-center>
-          <div class="w-2.5px" bg-primary-light />
+
+        <div v-if="connectReply" w-full h-full flex mt--3px justify-center>
+          <div w-1px border="x base" />
         </div>
       </div>
       <div flex="~ col 1" min-w-0>

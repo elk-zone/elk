@@ -12,7 +12,7 @@ const account = isSelf ? computed(() => status.account) : useAccountById(status.
 </script>
 
 <template>
-  <div v-if="status.inReplyToAccountId" flex="~ wrap" gap-1 items-end>
+  <div v-if="status.inReplyToAccountId" flex="~ wrap" gap-1 items-start>
     <NuxtLink
       v-if="status.inReplyToId"
       flex="~" items-center h-auto font-bold text-sm text-secondary gap-1
@@ -26,7 +26,6 @@ const account = isSelf ? computed(() => status.account) : useAccountById(status.
           <AccountInlineInfo v-else :account="account" :link="false" mx-0.5 />
         </template>
       </template>
-      <div i-ri:question-answer-line text-secondary-light text-lg />
     </NuxtLink>
   </div>
 </template>

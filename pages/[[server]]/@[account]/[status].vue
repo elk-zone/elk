@@ -91,8 +91,12 @@ onReactivated(() => {
 
         <template v-for="(comment, di) of context?.descendants" :key="comment.id">
           <StatusCard
-            :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-            :older="context?.descendants[di + 1]" :newer="context?.descendants[di - 1]" :has-newer="di === 0" :main="status"
+            :status="comment"
+            :actions="comment.visibility !== 'direct'" context="account"
+            :older="context?.descendants[di + 1]"
+            :newer="context?.descendants[di - 1]"
+            :has-newer="di === 0"
+            :main="status"
           />
         </template>
       </div>

@@ -6,7 +6,7 @@ export default defineNuxtRouteMiddleware((to) => {
 
   onMastoInit(() => {
     if (!currentUser.value)
-      return navigateTo(`/${currentServer.value}/public`)
+      return navigateTo(`/${currentServer.value}/local`)
     if (to.path === '/')
       return navigateTo('/home')
   })

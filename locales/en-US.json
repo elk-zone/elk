@@ -86,7 +86,6 @@
     "toggle_zen_mode": "Toggle zen mode"
   },
   "common": {
-    "cancel": "Cancel",
     "confirm_dialog": {
       "cancel": "No",
       "confirm": "Yes",
@@ -130,9 +129,9 @@
     "delete": "Delete",
     "delete_and_redraft": "Delete & re-draft",
     "delete_confirm": {
-      "no": "@:common.cancel",
-      "title": "Are you sure you want to delete this post ?",
-      "yes": "@:menu.delete"
+      "cancel": "@:menu.delete",
+      "confirm": "Cancel",
+      "title": "Are you sure you want to delete this post ?"
     },
     "direct_message_account": "Direct message {0}",
     "edit": "Edit",

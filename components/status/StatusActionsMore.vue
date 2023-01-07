@@ -63,8 +63,8 @@ const shareLink = async (status: Status) => {
 const deleteStatus = async () => {
   if (!await openConfirmDialog({
     title: t('menu.delete_confirm.title'),
-    yes: t('menu.delete_confirm.yes'),
-    no: t('menu.delete_confirm.no'),
+    confirm: t('menu.delete_confirm.confirm'),
+    cancel: t('menu.delete_confirm.cancel'),
   }))
     return
 

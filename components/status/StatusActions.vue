@@ -24,13 +24,11 @@ const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumbe
 const reply = () => {
   if (!checkLogin())
     return
-  if (details) {
+  if (details)
     focusEditor()
-  }
-  else {
-    const { key, draft } = getReplyDraft(status)
-    openPublishDialog(key, draft())
-  }
+
+  else
+    navigateTo({ path: getStatusRoute(status).href, state: { focusReply: true } })
 }
 </script>
 

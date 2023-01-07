@@ -2,22 +2,34 @@ import type { Status } from 'masto'
 
 import { STORAGE_KEY_LAST_SCROLL_POSITION } from '~/constants'
 
+interface RestoreScroll {
+  id: string
+  type: 'status' | 'follow'
+}
 export default defineNuxtPlugin(() => {
-  const lastStatus = useSessionStorage<Record<string, string>>(STORAGE_KEY_LAST_SCROLL_POSITION, {})
+  const lastStatus = useSessionStorage<Record<string, RestoreScroll>>(STORAGE_KEY_LAST_SCROLL_POSITION, {})
   return {
     provide: {
+      preventScrollToTop: (path: string) => {
+        return !!lastStatus.value[path]
+      },
       restoreScrollPosition: () => {
-        const statusId = lastStatus.value[useRoute().fullPath]
-        if (statusId) {
-          const el = document.getElementById(`status-${statusId}`)
+        const restore = lastStatus.value[useRoute().fullPath]
+        if (restore) {
+          const el = restore.type === 'status'
+            ? document.getElementById(`status-${restore.id}`)
+            : document.querySelector(`a[href="${restore.id}"]`)
           if (el)
             nextTick().then(() => el?.scrollIntoView())
           else
             delete lastStatus.value[useRoute().fullPath]
         }
       },
-      rememberScrollPosition: (status: Status) => {
-        lastStatus.value[useRoute().fullPath] = status.id
+      rememberAccountPosition: (account: string) => {
+        lastStatus.value[useRoute().fullPath] = { id: account, type: 'follow' }
+      },
+      rememberStatusPosition: (status: Status) => {
+        lastStatus.value[useRoute().fullPath] = { id: status.id, type: 'status' }
       },
     },
   }

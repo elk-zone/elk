@@ -7,6 +7,7 @@ const props = defineProps<{
   command?: boolean
 }>()
 
+const nuxtApp = useNuxtApp()
 const focusEditor = inject<typeof noop>('focus-editor', noop)
 
 const { details, command } = $(props)
@@ -24,11 +25,14 @@ const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumbe
 const reply = () => {
   if (!checkLogin())
     return
-  if (details)
-    focusEditor()
 
-  else
+  if (details) {
+    focusEditor()
+  }
+  else {
+    nuxtApp.$rememberScrollPosition(status)
     navigateTo({ path: getStatusRoute(status).href, state: { focusReply: true } })
+  }
 }
 </script>
 

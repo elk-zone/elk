@@ -1,4 +1,4 @@
-import type { Account, Status } from 'masto'
+import type { Account, Status, Tag } from 'masto'
 import type { RouteLocation } from 'vue-router'
 
 export type BuildResult<K extends keyof any, T> = {
@@ -10,7 +10,7 @@ export type BuildResult<K extends keyof any, T> = {
     href: string
   }
 }
-export type HashTagResult = BuildResult<'hashtag', any>
+export type HashTagResult = BuildResult<'hashtag', Tag>
 export type AccountResult = BuildResult<'account', Account>
 export type StatusResult = BuildResult<'status', Status>
 

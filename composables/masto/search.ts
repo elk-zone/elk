@@ -1,5 +1,5 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { Account, Paginator, Results, SearchParams, Status } from 'masto'
+import type { Account, Paginator, Results, SearchParams, Status, Tag } from 'masto'
 
 export interface UseSearchOptions {
   type?: MaybeRef<'accounts' | 'hashtags' | 'statuses'>
@@ -11,7 +11,7 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
   const loading = ref(false)
   const statuses = ref<Status[]>([])
   const accounts = ref<Account[]>([])
-  const hashtags = ref<any[]>([])
+  const hashtags = ref<Tag[]>([])
 
   let paginator: Paginator<SearchParams, Results> | undefined
 

@@ -17,7 +17,7 @@ const results = computed(() => {
   const results = [
     ...hashtags.value.slice(0, 3).map<HashTagResult>(hashtag => ({
       type: 'hashtag',
-      id: hashtag.id,
+      id: `hashtag-${hashtag.name}`,
       hashtag,
       to: getTagRoute(hashtag.name),
     })),

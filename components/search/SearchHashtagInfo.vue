@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { Tag } from 'masto'
 
-const { hashtag } = defineProps<{ hashtag: Tag }>()
+const { hashtag } = defineProps<{
+  hashtag: Tag
+}>()
 
 const totalTrend = $computed(() =>
   hashtag.history?.reduce((total: number, item) => total + (Number(item.accounts) || 0), 0),

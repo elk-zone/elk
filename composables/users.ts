@@ -5,7 +5,6 @@ import type { RemovableRef } from '@vueuse/core'
 import type { ElkMasto, UserLogin } from '~/types'
 import {
   DEFAULT_POST_CHARS_LIMIT,
-  DEFAULT_SERVER,
   STORAGE_KEY_CURRENT_USER,
   STORAGE_KEY_NOTIFICATION,
   STORAGE_KEY_NOTIFICATION_POLICY,
@@ -57,7 +56,7 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 const publicInstance = ref<Instance | null>(null)
 export const currentInstance = computed<null | Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
 
-export const publicServer = ref(DEFAULT_SERVER)
+export const publicServer = ref('')
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
 
 // when multiple tabs: we need to reload window when sign in, switch account or sign out

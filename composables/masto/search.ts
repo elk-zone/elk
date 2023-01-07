@@ -56,6 +56,12 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
     }))]
   }
 
+  watch(() => unref(query), () => {
+    if (!unref(query) || !isMastoInitialised.value)
+      return
+    loading.value = true
+  })
+
   debouncedWatch(() => unref(query), async () => {
     if (!unref(query) || !isMastoInitialised.value)
       return
@@ -78,7 +84,7 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
       appendResults(nextResults.value, true)
 
     loading.value = false
-  }, { debounce: 500 })
+  }, { debounce: 300 })
 
   const next = async () => {
     if (!unref(query) || !isMastoInitialised.value || !paginator)

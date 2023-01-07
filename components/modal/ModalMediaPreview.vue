@@ -57,12 +57,12 @@ onUnmounted(() => locked.value = false)
       <div flex="~ col center" max-h-full max-w-full>
         <ModalMediaPreviewCarousel v-model="index" :media="mediaPreviewList" @close="emit('close')" />
 
-        <div bg="black/30" dark:bg="white/10" ms-4 mb-6 mt-4 text-white rounded-full flex="~ center" overflow-hidden>
-          <div v-if="mediaPreviewList.length > 1" p="y-1 x-2" rounded-r-0 shrink-0>
+        <div bg="black/30" dark:bg="white/10" ms-4 mb-6 mt-4 text-white rounded-full flex="~ center shrink-0" overflow-hidden>
+          <div v-if="mediaPreviewList.length > 1" p="y-1 x-3" rounded-r-0 shrink-0>
             {{ index + 1 }} / {{ mediaPreviewList.length }}
           </div>
           <p
-            v-if="current.description" bg="dark/30" dark:bg="white/0" p="y-1 x-3" rounded-ie-full line-clamp-1
+            v-if="current.description" bg="dark/30" dark:bg="white/10" p="y-1 x-3" rounded-ie-full line-clamp-1
             ws-pre-wrap break-all :title="current.description" w-full
           >
             {{ current.description }}

@@ -2,11 +2,15 @@ import { useRegisterSW } from 'virtual:pwa-register/vue'
 
 export default defineNuxtPlugin(() => {
   const online = useOnline()
+  const registrationError = ref(false)
 
   const {
     needRefresh, updateServiceWorker,
   } = useRegisterSW({
     immediate: true,
+    onRegisterError() {
+      registrationError.value = true
+    },
     onRegisteredSW(swUrl, r) {
       if (!r || r.installing)
         return
@@ -36,6 +40,7 @@ export default defineNuxtPlugin(() => {
   return {
     provide: {
       pwa: reactive({
+        registrationError,
         needRefresh,
         updateServiceWorker,
         close,

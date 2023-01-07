@@ -30,6 +30,7 @@ specifiers:
   '@types/fs-extra': ^9.0.13
   '@types/js-yaml': ^4.0.5
   '@types/prettier': ^2.7.2
+  '@types/tinycolor2': ^1.4.3
   '@types/wicg-file-system-access': ^2020.9.5
   '@unocss/nuxt': ^0.48.0
   '@vitejs/plugin-vue': ^3.2.0
@@ -73,6 +74,7 @@ specifiers:
   tauri-plugin-log-api: github:tauri-apps/tauri-plugin-log
   tauri-plugin-store-api: github:tauri-apps/tauri-plugin-store
   theme-vitesse: ^0.6.0
+  tinycolor2: ^1.5.2
   tippy.js: ^6.3.7
   typescript: ^4.9.4
   ufo: ^1.0.1
@@ -121,6 +123,7 @@ dependencies:
   slimeform: 0.8.0
   tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/b58475bbc410fa78eb69276c62d0b64c91c07914
   tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/9bd993aa67766596638bbfd91e79a1bf8f632014
+  tinycolor2: 1.5.2
   tippy.js: 6.3.7
   ufo: 1.0.1
   ultrahtml: 1.2.0
@@ -144,6 +147,7 @@ devDependencies:
   '@types/fs-extra': 9.0.13
   '@types/js-yaml': 4.0.5
   '@types/prettier': 2.7.2
+  '@types/tinycolor2': 1.4.3
   '@types/wicg-file-system-access': 2020.9.5
   '@unocss/nuxt': 0.48.0
   '@vitejs/plugin-vue': 3.2.0
@@ -169,7 +173,7 @@ devDependencies:
   typescript: 4.9.4
   unplugin-auto-import: 0.12.1_@vueuse+core@9.9.0
   vite-plugin-inspect: 0.7.11
-  vite-plugin-pwa: 0.14.1_workbox-window@6.5.4
+  vite-plugin-pwa: 0.14.1
   vitest: 0.26.2_jsdom@20.0.3
   vue-tsc: 1.0.16_typescript@4.9.4
   workbox-window: 6.5.4
@@ -2742,6 +2746,10 @@ packages:
 
   /@types/semver/7.3.13:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
+    dev: true
+
+  /@types/tinycolor2/1.4.3:
+    resolution: {integrity: sha512-Kf1w9NE5HEgGxCRyIcRXR/ZYtDv0V8FVPtYHwLxl0O+maGX0erE77pQlD0gpP+/KByMZ87mOA79SjifhSB3PjQ==}
     dev: true
 
   /@types/trusted-types/2.0.2:
@@ -9357,6 +9365,10 @@ packages:
     resolution: {integrity: sha512-hGYWYBMPr7p4g5IarQE7XhlyWveh1EKhy4wUBS1LrHXCKYgvz+4/jCqgmJqZxxldesn05vccrtME2RLLZNW7iA==}
     dev: true
 
+  /tinycolor2/1.5.2:
+    resolution: {integrity: sha512-h80m9GPFGbcLzZByXlNSEhp1gf8Dy+VX/2JCGUZsWLo7lV1mnE/XlxGYgRBoMLJh1lIDXP0EMC4RPTjlRaV+Bg==}
+    dev: false
+
   /tinypool/0.3.0:
     resolution: {integrity: sha512-NX5KeqHOBZU6Bc0xj9Vr5Szbb1j8tUHIeD18s41aDJaPeC5QTdEhK0SpdpUrZlj2nv5cctNcSjaKNanXlfcVEQ==}
     engines: {node: '>=14.0.0'}
@@ -10020,11 +10032,10 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa/0.14.1_workbox-window@6.5.4:
+  /vite-plugin-pwa/0.14.1:
     resolution: {integrity: sha512-5zx7yhQ8RTLwV71+GA9YsQQ63ALKG8XXIMqRJDdZkR8ZYftFcRgnzM7wOWmQZ/DATspyhPih5wCdcZnAIsM+mA==}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
-      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 5.0.1_rollup@3.9.1
       debug: 4.3.4

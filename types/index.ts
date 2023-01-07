@@ -75,4 +75,10 @@ export interface BuildInfo {
 
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type ColorMode = 'light' | 'dark' | 'custom'
-export interface CustomColors { 'primary': string }
+export interface CustomColors {
+  'primary': string
+  'bg-base': string
+  'text-base': string
+  'border': string
+  'border-dark': string
+}

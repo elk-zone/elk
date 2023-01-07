@@ -51,4 +51,11 @@
 
 .custom {
   --c-primary: var(--c-primary-custom);
+
+  --c-bg-base: var(--c-bg-base-custom);
+  --c-bg-base-rgb: var(--c-bg-base-rgb-custom);
+  --c-text-base: var(--c-text-base-custom);
+
+  --c-border: var(--c-border-custom);
+  --c-border-dark: var(--c-border-dark-custom);
 }

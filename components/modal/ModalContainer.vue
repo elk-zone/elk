@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Status } from 'masto'
+import type { ConfirmDialogChoice } from '~/types'
 import {
-  confirmDialogLabels,
   isCommandPanelOpen,
   isConfirmDialogOpen,
   isEditHistoryDialogOpen,
@@ -39,7 +39,7 @@ const handlePublishClose = () => {
   lastPublishDialogStatus.value = null
 }
 
-const handleConfimChoice = (choice: boolean) => {
+const handleConfirmChoice = (choice: ConfirmDialogChoice) => {
   confirmDialogChoice.value = choice
   isConfirmDialogOpen.value = false
 }
@@ -79,7 +79,7 @@ const handleConfimChoice = (choice: boolean) => {
       <CommandPanel @close="closeCommandPanel()" />
     </ModalDialog>
     <ModalDialog v-model="isConfirmDialogOpen" py-4 px-8 max-w-125>
-      <ModalConfirm :labels="confirmDialogLabels!" @choice="handleConfimChoice" />
+      <ModalConfirm v-if="confirmDialogLabel" v-bind="confirmDialogLabel" @choice="handleConfirmChoice" />
     </ModalDialog>
   </template>
 </template>

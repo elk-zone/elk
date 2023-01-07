@@ -61,19 +61,12 @@ const shareLink = async (status: Status) => {
 }
 
 const deleteStatus = async () => {
-  if (!await openConfirmDialog({
+  if (await openConfirmDialog({
     title: t('menu.delete_confirm.title'),
     confirm: t('menu.delete_confirm.confirm'),
     cancel: t('menu.delete_confirm.cancel'),
-  }))
+  }) !== 'confirm')
     return
-
-  if (process.dev) {
-    // eslint-disable-next-line no-alert
-    const result = confirm('[DEV] Are you sure you want to delete this post?')
-    if (!result)
-      return
-  }
 
   removeCachedStatus(status.id)
   await masto.statuses.remove(status.id)

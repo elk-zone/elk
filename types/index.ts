@@ -65,12 +65,13 @@ export interface Draft {
 }
 export type DraftMap = Record<string, Draft>
 
-export interface ConfirmDialogLabels {
+export interface ConfirmDialogLabel {
   title: string
   description?: string
-  confirm: string
-  cancel: string
+  confirm?: string
+  cancel?: string
 }
+export type ConfirmDialogChoice = 'confirm' | 'cancel'
 
 export interface BuildInfo {
   version: string

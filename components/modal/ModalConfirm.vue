@@ -1,29 +1,27 @@
 <script setup lang="ts">
-import type { ConfirmDialogLabels } from '~/types'
+import type { ConfirmDialogChoice, ConfirmDialogLabel } from '~/types'
 
-defineProps<{
-  labels: ConfirmDialogLabels
-}>()
+defineProps<ConfirmDialogLabel>()
 
 const emit = defineEmits<{
-  (e: 'choice', v: boolean): void
+  (evt: 'choice', choice: ConfirmDialogChoice): void
 }>()
 </script>
 
 <template>
   <div flex="~ col" gap-6>
-    <div font-bold text-lg>
-      {{ labels.title }}
+    <div font-bold text-lg text-center>
+      {{ title }}
     </div>
-    <div v-if="labels.description">
-      {{ labels.description }}
+    <div v-if="description">
+      {{ description }}
     </div>
     <div flex justify-end gap-2>
-      <button btn-text @click="emit('choice', false)">
-        {{ labels.cancel }}
+      <button btn-text @click="emit('choice', 'cancel')">
+        {{ cancel || $t('common.confirm_dialog.cancel') }}
       </button>
-      <button btn-solid @click="emit('choice', true)">
-        {{ labels.confirm }}
+      <button btn-solid @click="emit('choice', 'confirm')">
+        {{ confirm || $t('common.confirm_dialog.confirm') }}
       </button>
     </div>
   </div>

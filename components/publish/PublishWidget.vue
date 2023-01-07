@@ -159,6 +159,8 @@ async function publish() {
       status = await masto.statuses.create(payload)
     else
       status = await masto.statuses.update(draft.editingStatus.id, payload)
+    if (draft.params.inReplyToId)
+      navigateToStatus({ status })
 
     draft = initial()
     emit('published', status)

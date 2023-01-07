@@ -26,9 +26,8 @@ const reply = () => {
     return
   if (details)
     focusEditor()
-
   else
-    navigateTo({ path: getStatusRoute(status).href, state: { focusReply: true } })
+    navigateToStatus({ status, focusReply: true })
 }
 </script>
 

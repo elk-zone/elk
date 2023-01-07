@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { Card } from 'masto'
+import type { StatusQuote } from '~~/composables/status-quote'
 
-defineProps<{
+const props = defineProps<{
   card: Card
 }>()
 
@@ -11,6 +12,50 @@ defineProps<{
  * - generate user profile link
  * - quotation icon ?
 */
+
+/*
+
+{
+  "url": "https://hachyderm.io/@hi_mayank/109638087773020859",
+  "title": "Mayank :verified: (@hi_mayank@hachyderm.io)",
+  "description": "this article from @ben@a11y.info is of course excellent https://benmyers.dev/blog/semantic-selectors/\n\nhowever, in practice, i have found myself unable to fully utilize this approach....\n\ntwo examples:\n\n1. an input with a disabled/required attribute can be styled by targeting `:disabled` or `:required` but styling its label probably needs a data attribute or class\n\n2. vertical tabs can be styled by targeting `aria-orientation` but its content or wrapper probably needs a data attribute or class.\n\n(cont...)",
+  "type": "link",
+  "author_name": "",
+  "author_url": "",
+  "provider_name": "Hachyderm.io",
+  "provider_url": "",
+  "html": "",
+  "width": 400,
+  "height": 400,
+  "image": "https://media.mas.to/masto-public/cache/preview_cards/images/017/761/272/original/e8ce83dfa2e4c64d.jpeg",
+  "embed_url": "",
+  "blurhash": "UREyiOM{-=D%_4IURiRjRiWBM{%M%NRjWCWA"
+}
+
+*/
+
+// build the Status from Card
+const card = $computed(() => props.card)
+const usernames = card.title.match(/@+[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/gi)
+const fullUserName = usernames?.length && usernames[0]
+let username, domain
+if (fullUserName) {
+  username = fullUserName.split('@')[1]
+  domain = fullUserName.split('@')[2]
+}
+const isSquare = card.width === card.height
+const avatar = isSquare ? card.image : '' // todo: default avatar
+const status: StatusQuote = {
+  id: '',
+  uri: '',
+  createdAt: '',
+  editedAt: null,
+  account: {
+    username: username || '',
+    displayName: 'FAKE NAME', // todo update
+    avatar: avatar || '',
+  },
+}
 </script>
 
 <template>

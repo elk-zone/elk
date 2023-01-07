@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <button flex gap-2 items-center>
+  <div flex gap-2 items-center>
     <AccountAvatar w-10 h-10 :account="account" shrink-0 />
     <div flex="~ col gap1" shrink h-full overflow-hidden leading-none>
       <div flex="~" gap-2>
@@ -16,5 +16,5 @@ defineProps<{
       </div>
       <AccountHandle text-sm :account="account" text-secondary-light />
     </div>
-  </button>
+  </div>
 </template>

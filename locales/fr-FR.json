@@ -296,7 +296,8 @@
       "finished": "clos {0}"
     },
     "reblogged": "{0} relayé",
-    "someone": "Quelqu'un",
+    "replying_to": "Répondre à {0}",
+    "someone": "quelqu'un",
     "spoiler_show_less": "Voir moins",
     "spoiler_show_more": "Voir plus",
     "try_original_site": "Essayer le site d'origine"

@@ -1,19 +1,60 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { Account, Paginator, Results, SearchParams, Status, Tag } from 'masto'
+import type { Account, Paginator, Results, SearchParams, SearchType, Status, Tag } from 'masto'
+import type { RouteLocation } from 'vue-router'
 
 export interface UseSearchOptions {
-  type?: MaybeRef<'accounts' | 'hashtags' | 'statuses'>
+  type?: MaybeRef<SearchType>
 }
+
+export interface BuildSearchResult<K extends keyof any, T> {
+  id: string
+  type: K
+  data: T
+  to: RouteLocation & {
+    href: string
+  }
+}
+export type AccountSearchResult = BuildSearchResult<'account', Account>
+export type HashTagSearchResult = BuildSearchResult<'hashtag', Tag>
+export type StatusSearchResult = BuildSearchResult<'status', Status>
+
+export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSearchResult
 
 export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
   const done = ref(false)
   const masto = useMasto()
   const loading = ref(false)
-  const statuses = ref<Status[]>([])
-  const accounts = ref<Account[]>([])
-  const hashtags = ref<Tag[]>([])
+  const accounts = ref<AccountSearchResult[]>([])
+  const hashtags = ref<HashTagSearchResult[]>([])
+  const statuses = ref<StatusSearchResult[]>([])
 
   let paginator: Paginator<SearchParams, Results> | undefined
+
+  const appendResults = (results: Results, empty = false) => {
+    if (empty) {
+      accounts.value = []
+      hashtags.value = []
+      statuses.value = []
+    }
+    accounts.value = [...accounts.value, ...results.accounts.map<AccountSearchResult>(account => ({
+      type: 'account',
+      id: account.id,
+      data: account,
+      to: getAccountRoute(account),
+    }))]
+    hashtags.value = [...hashtags.value, ...results.hashtags.map<HashTagSearchResult>(hashtag => ({
+      type: 'hashtag',
+      id: `hashtag-${hashtag.name}`,
+      data: hashtag,
+      to: getTagRoute(hashtag.name),
+    }))]
+    statuses.value = [...statuses.value, ...results.statuses.map<StatusSearchResult>(status => ({
+      type: 'status',
+      id: status.id,
+      data: status,
+      to: getStatusRoute(status),
+    }))]
+  }
 
   debouncedWatch(() => unref(query), async () => {
     if (!unref(query) || !isMastoInitialised.value)
@@ -25,14 +66,16 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
-    paginator = masto.search({ q: unref(query), resolve: !!currentUser.value, type: unref(options?.type) })
+    paginator = masto.search({
+      q: unref(query),
+      resolve: !!currentUser.value,
+      type: unref(options?.type),
+    })
     const nextResults = await paginator.next()
 
-    done.value = nextResults.done || false
-
-    statuses.value = nextResults.value?.statuses || []
-    accounts.value = nextResults.value?.accounts || []
-    hashtags.value = nextResults.value?.hashtags || []
+    done.value = !!nextResults.done
+    if (!nextResults.done)
+      appendResults(nextResults.value, true)
 
     loading.value = false
   }, { debounce: 500 })
@@ -45,19 +88,9 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
     const nextResults = await paginator.next()
     loading.value = false
 
-    done.value = nextResults.done || false
-    statuses.value = [
-      ...statuses.value,
-      ...(nextResults.value.statuses || []),
-    ]
-    accounts.value = [
-      ...statuses.value,
-      ...(nextResults.value.accounts || []),
-    ]
-    hashtags.value = [
-      ...statuses.value,
-      ...(nextResults.value.statuses || []),
-    ]
+    done.value = !!nextResults.done
+    if (!nextResults.done)
+      appendResults(nextResults.value)
   }
 
   return {

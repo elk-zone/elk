@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { AccountResult, HashTagResult, SearchResult as SearchResultType } from '@/components/search/types'
-import type { CommandScope, QueryResult, QueryResultItem } from '@/composables/command'
+import type { SearchResult as SearchResultType } from '~/composables/masto/search'
+import type { CommandScope, QueryResult, QueryResultItem } from '~/composables/command'
 
 const emit = defineEmits<{
   (event: 'close'): void
@@ -39,22 +39,8 @@ const searchResult = $computed<QueryResult>(() => {
 
   // TODO extract this scope
   // duplicate in SearchWidget.vue
-  const hashtagList = hashtags.value.slice(0, 3)
-    .map<HashTagResult>(hashtag => ({
-      type: 'hashtag',
-      id: `hashtag-${hashtag.name}`,
-      hashtag,
-      to: getTagRoute(hashtag.name),
-    }))
-    .map(toSearchQueryResultItem)
-  const accountList = accounts.value
-    .map<AccountResult>(account => ({
-      type: 'account',
-      id: account.id,
-      account,
-      to: getAccountRoute(account),
-    }))
-    .map(toSearchQueryResultItem)
+  const hashtagList = hashtags.value.slice(0, 3).map(toSearchQueryResultItem)
+  const accountList = accounts.value.map(toSearchQueryResultItem)
 
   const grouped: QueryResult['grouped'] = new Map()
   grouped.set('Hashtags', hashtagList)

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { ResolvedCommand } from '@/composables/command'
+import type { ResolvedCommand } from '~/composables/command'
 
 const emit = defineEmits<{
   (event: 'activate'): void

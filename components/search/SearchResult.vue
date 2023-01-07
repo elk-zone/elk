@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SearchResult } from './types'
+import type { SearchResult } from '~/composables/masto/search'
 
 defineProps<{
   result: SearchResult
@@ -21,9 +21,9 @@ const onActivate = () => {
     :class="{ 'bg-active': active }"
     @click="() => onActivate()"
   >
-    <SearchHashtagInfo v-if="result.type === 'hashtag'" :hashtag="result.hashtag" />
-    <SearchAccountInfo v-else-if="result.type === 'account' && result.account" :account="result.account" />
-    <StatusCard v-else-if="result.type === 'status' && result.status" :status="result.status" :actions="false" :show-reply-to="false" />
+    <SearchHashtagInfo v-if="result.type === 'hashtag'" :hashtag="result.data" />
+    <SearchAccountInfo v-else-if="result.type === 'account'" :account="result.data" />
+    <StatusCard v-else-if="result.type === 'status'" :status="result.data" :actions="false" :show-reply-to="false" />
     <!-- <div v-else-if="result.type === 'action'" text-center>
       {{ result.action!.label }}
     </div> -->

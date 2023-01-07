@@ -20,7 +20,7 @@ const account = isSelf ? computed(() => status.account) : useAccountById(status.
       :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
     >
       <template v-if="account">
-        <div i-ri:reply-fill :class="collapsed ? '' : 'scale-x-[-1]'" text-secondary-light />
+        <div i-ri-chat-1-fill text-secondary-light />
         <template v-if="!collapsed">
           <AccountAvatar v-if="isSelf || simplified || status.inReplyToAccountId === currentUser?.account.id" :account="account" :link="false" w-5 h-5 mx-0.5 />
           <AccountInlineInfo v-else :account="account" :link="false" mx-0.5 />

@@ -228,7 +228,7 @@
     "interface": {
       "color_mode": "Couleur de thème",
       "dark_mode": "Mode sombre",
-      "default": "(défaut)",
+      "default": " (par défaut)",
       "font_size": "Taille de police",
       "label": "Interface",
       "light_mode": "Mode lumineux",

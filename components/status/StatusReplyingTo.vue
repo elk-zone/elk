@@ -17,7 +17,7 @@ const account = isSelf ? computed(() => status.account) : useAccountById(status.
       v-if="status.inReplyToId"
       flex="~" items-center h-auto font-bold text-sm text-secondary gap-1
       :to="getStatusInReplyToRoute(status)"
-      :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
+      :title="$t('status.replying_to', [account ? getDisplayName(account) : $t('status.someone')])"
     >
       <template v-if="account">
         <div i-ri:reply-fill :class="collapsed ? '' : 'scale-x-[-1]'" text-secondary-light />

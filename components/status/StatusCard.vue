@@ -19,7 +19,7 @@ const props = withDefaults(
     // to the main expanded post
     main?: Status
   }>(),
-  { actions: true, showReplyTo: true },
+  { actions: true },
 )
 
 const status = $computed(() => {

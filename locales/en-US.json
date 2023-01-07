@@ -129,8 +129,8 @@
     "delete": "Delete",
     "delete_and_redraft": "Delete & re-draft",
     "delete_confirm": {
-      "cancel": "@:menu.delete",
-      "confirm": "Cancel",
+      "cancel": "Cancel",
+      "confirm": "@:menu.delete",
       "title": "Are you sure you want to delete this post ?"
     },
     "direct_message_account": "Direct message {0}",

@@ -138,7 +138,7 @@ const isDM = $computed(() => status.visibility === 'direct')
             <StatusReplyingTo :collapsed="true" :status="status" :class="faded ? 'text-secondary-light' : ''" />
           </div>
           <div flex-auto />
-          <div v-if="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
+          <div v-show="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
             <AccountBotIndicator v-if="status.account.bot" me-2 />
             <div flex>
               <CommonTooltip :content="createdAt">
@@ -154,9 +154,7 @@ const isDM = $computed(() => status.visibility === 'direct')
           <StatusActionsMore v-if="actions !== false" :status="status" me--2 />
         </div>
         <StatusContent :status="status" :context="context" mb2 :class="{ 'mt-2 mb1': isDM }" />
-        <div>
-          <StatusActions v-if="(actions !== false && !userSettings.zenMode)" :status="status" />
-        </div>
+        <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
       </div>
     </div>
   </div>

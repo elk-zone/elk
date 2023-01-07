@@ -34,6 +34,13 @@ const toggleBlockDomain = async () => {
   relationship!.domainBlocking = !relationship!.domainBlocking
   await masto.v1.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
 }
+
+const toggleReblogs = async () => {
+  // TODO: Add confirmation
+
+  Object.assign(relationship!, { ...relationship, showingReblogs: !relationship?.showingReblogs })
+  await masto.accounts.follow(account.id, { reblogs: !relationship?.showingReblogs })
+}
 </script>
 
 <template>
@@ -66,6 +73,21 @@ const toggleBlockDomain = async () => {
             icon="i-ri:message-3-line"
             :command="command"
             @click="directMessageUser(account)"
+          />
+
+          <CommonDropdownItem
+            v-if="!relationship?.showingReblogs"
+            icon="i-ri:repeat-line"
+            :text="$t('menu.show_reblogs', [`@${account.acct}`])"
+            :command="command"
+            @click="toggleReblogs"
+          />
+          <CommonDropdownItem
+            v-else
+            :text="$t('menu.hide_reblogs', [`@${account.acct}`])"
+            icon="i-ri:repeat-line"
+            :command="command"
+            @click="toggleReblogs"
           />
 
           <CommonDropdownItem

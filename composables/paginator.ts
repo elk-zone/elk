@@ -104,6 +104,7 @@ export function usePaginator<T>(
         if (!loaded.value)
           loaded.value = true
 
+        // TODO: apply timeout based in items length: be conservative for long lists on slow devices
         timeout.value = setTimeout(() => nuxtApp.$restoreScrollPosition(), 600)
       }
       else {

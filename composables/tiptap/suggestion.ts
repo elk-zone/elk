@@ -29,7 +29,13 @@ export const HashtagSuggestion: Partial<SuggestionOptions> = {
     if (query.length === 0)
       return []
 
-    const paginator = useMasto().v2.search({ q: query, type: 'hashtags', limit: 25, resolve: true })
+    const paginator = useMasto().v2.search({
+      q: query,
+      type: 'hashtags',
+      limit: 25,
+      resolve: false,
+      excludeUnreviewed: true,
+    })
     const results = await paginator.next()
 
     return results.value.hashtags

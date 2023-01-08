@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Status, StatusEdit } from 'masto'
+import type { mastodon } from 'masto'
 
 const { status } = defineProps<{
-  status: Status | StatusEdit
+  status: mastodon.v1.Status | mastodon.v1.StatusEdit
   fullSize?: boolean
 }>()
 </script>

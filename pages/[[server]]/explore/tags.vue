@@ -5,7 +5,7 @@ const { t } = useI18n()
 
 const masto = useMasto()
 const { data, pending, error } = useLazyAsyncData(
-  () => masto.trends.fetchTags({ limit: 20 }),
+  async () => masto.v1.trends.listTags({ limit: 20 }),
   { immediate: true },
 )
 

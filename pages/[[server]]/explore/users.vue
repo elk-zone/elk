@@ -4,7 +4,7 @@ const { t } = useI18n()
 // limit: 20 is the default configuration of the official client
 const masto = useMasto()
 const { data, pending, error } = useLazyAsyncData(
-  () => masto.suggestions.fetchAll({ limit: 20 }),
+  async () => masto.v2.suggestions.list({ limit: 20 }),
   { immediate: true },
 )
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Account, Field } from 'masto'
+import type { mastodon } from 'masto'
 
 const { account } = defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   command?: boolean
 }>()
 
@@ -14,8 +14,8 @@ const createdAt = $(useFormattedDateTime(() => account.createdAt, {
   year: 'numeric',
 }))
 
-const namedFields = ref<Field[]>([])
-const iconFields = ref<Field[]>([])
+const namedFields = ref<mastodon.v1.AccountField[]>([])
+const iconFields = ref<mastodon.v1.AccountField[]>([])
 
 function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
@@ -40,8 +40,8 @@ function previewAvatar() {
 }
 
 watchEffect(() => {
-  const named: Field[] = []
-  const icons: Field[] = []
+  const named: mastodon.v1.AccountField[] = []
+  const icons: mastodon.v1.AccountField[] = []
 
   account.fields?.forEach((field) => {
     const icon = getAccountFieldIcon(field.name)
@@ -76,7 +76,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           <div flex="~ col gap1">
             <div flex justify-between>
               <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
-              <AccountBotIndicator v-if="account.bot" />
+              <AccountBotIndicator v-if="account.bot" show-label />
             </div>
             <AccountHandle :account="account" />
           </div>

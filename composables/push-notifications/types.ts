@@ -1,4 +1,4 @@
-import type { Emoji, PushSubscription as MastoPushSubscription, PushSubscriptionAlerts, SubscriptionPolicy } from 'masto'
+import type { mastodon } from 'masto'
 
 import type { UserLogin } from '~/types'
 
@@ -9,18 +9,18 @@ export interface PushManagerSubscriptionInfo {
 }
 
 export interface RequiredUserLogin extends Required<Omit<UserLogin, 'account' | 'pushSubscription'>> {
-  pushSubscription?: MastoPushSubscription
+  pushSubscription?: mastodon.v1.WebPushSubscription
 }
 
 export interface CreatePushNotification {
-  alerts?: Partial<PushSubscriptionAlerts> | null
-  policy?: SubscriptionPolicy
+  alerts?: Partial<mastodon.v1.WebPushSubscriptionAlerts> | null
+  policy?: mastodon.v1.SubscriptionPolicy
 }
 
 export type PushNotificationRequest = Record<string, boolean>
-export type PushNotificationPolicy = Record<string, SubscriptionPolicy>
+export type PushNotificationPolicy = Record<string, mastodon.v1.SubscriptionPolicy>
 
 export interface CustomEmojisInfo {
   lastUpdate: number
-  emojis: Emoji[]
+  emojis: mastodon.v1.CustomEmoji[]
 }

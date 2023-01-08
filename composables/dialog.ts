@@ -1,14 +1,14 @@
-import type { Attachment, Status, StatusEdit } from 'masto'
+import type { mastodon } from 'masto'
 import type { ConfirmDialogChoice, ConfirmDialogLabel, Draft } from '~/types'
 import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
 export const confirmDialogLabel = ref<ConfirmDialogLabel>()
 
-export const mediaPreviewList = ref<Attachment[]>([])
+export const mediaPreviewList = ref<mastodon.v1.MediaAttachment[]>([])
 export const mediaPreviewIndex = ref(0)
 
-export const statusEdit = ref<StatusEdit>()
+export const statusEdit = ref<mastodon.v1.StatusEdit>()
 export const dialogDraftKey = ref<string>()
 
 export const commandPanelInput = ref('')
@@ -23,7 +23,7 @@ export const isPreviewHelpOpen = ref(isFirstVisit.value)
 export const isCommandPanelOpen = ref(false)
 export const isConfirmDialogOpen = ref(false)
 
-export const lastPublishDialogStatus = ref<Status | null>(null)
+export const lastPublishDialogStatus = ref<mastodon.v1.Status | null>(null)
 
 export function openSigninDialog() {
   isSigninDialogOpen.value = true
@@ -80,7 +80,7 @@ if (process.client) {
   restoreMediaPreviewFromState()
 }
 
-export function openMediaPreview(attachments: Attachment[], index = 0) {
+export function openMediaPreview(attachments: mastodon.v1.MediaAttachment[], index = 0) {
   mediaPreviewList.value = attachments
   mediaPreviewIndex.value = index
   isMediaPreviewOpen.value = true
@@ -97,7 +97,7 @@ export function closeMediaPreview() {
   history.back()
 }
 
-export function openEditHistoryDialog(edit: StatusEdit) {
+export function openEditHistoryDialog(edit: mastodon.v1.StatusEdit) {
   statusEdit.value = edit
   isEditHistoryDialogOpen.value = true
 }

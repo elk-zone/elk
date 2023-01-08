@@ -1,12 +1,12 @@
 // @unimport-disable
-import type { Emoji } from 'masto'
+import type { mastodon } from 'masto'
 import type { Node } from 'ultrahtml'
-import { ELEMENT_NODE, TEXT_NODE, h, parse, render } from 'ultrahtml'
+import { DOCUMENT_NODE, ELEMENT_NODE, TEXT_NODE, h, parse, render } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 export interface ContentParseOptions {
-  emojis?: Record<string, Emoji>
+  emojis?: Record<string, mastodon.v1.CustomEmoji>
   markdown?: boolean
   replaceUnicodeEmoji?: boolean
   astTransforms?: Transform[]
@@ -79,13 +79,15 @@ export function parseMastodonHTML(
 
   transforms.push(replaceCustomEmoji(options.emojis || {}))
 
+  transforms.push(transformParagraphs)
+
   return transformSync(parse(html), transforms)
 }
 
 /**
  * Converts raw HTML form Mastodon server to HTML for Tiptap editor
  */
-export function convertMastodonHTML(html: string, customEmojis: Record<string, Emoji> = {}) {
+export function convertMastodonHTML(html: string, customEmojis: Record<string, mastodon.v1.CustomEmoji> = {}) {
   const tree = parseMastodonHTML(html, {
     emojis: customEmojis,
     markdown: true,
@@ -285,7 +287,7 @@ function transformUnicodeEmoji(node: Node) {
   return matches.filter(Boolean)
 }
 
-function replaceCustomEmoji(customEmojis: Record<string, Emoji>): Transform {
+function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji>): Transform {
   return (node) => {
     if (node.type !== TEXT_NODE)
       return node
@@ -348,4 +350,11 @@ function transformMarkdown(node: Node) {
   if (node.type !== TEXT_NODE)
     return node
   return _markdownProcess(node.value)
+}
+
+function transformParagraphs(node: Node): Node | Node[] {
+  // For top level paragraphs, inject an empty <p> to preserve status paragraphs in our editor (except for the last one)
+  if (node.parent?.type === DOCUMENT_NODE && node.name === 'p' && node.parent.children.at(-1) !== node)
+    return [node, h('p')]
+  return node
 }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const props = defineProps<{
-  status: Status
+  status: mastodon.v1.Status
   details?: boolean
   command?: boolean
 }>()
@@ -26,9 +26,8 @@ const reply = () => {
     return
   if (details)
     focusEditor()
-
   else
-    navigateTo({ path: getStatusRoute(status).href, state: { focusReply: true } })
+    navigateToStatus({ status, focusReply: true })
 }
 </script>
 

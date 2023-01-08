@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { SwipeDirection } from '@vueuse/core'
 import { useReducedMotion } from '@vueuse/motion'
-import type { Attachment } from 'masto'
+import type { mastodon } from 'masto'
 
 const { media = [], threshold = 20 } = defineProps<{
-  media?: Attachment[]
+  media?: mastodon.v1.MediaAttachment[]
   threshold?: number
 }>()
 

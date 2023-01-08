@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { AccountResult, HashTagResult, StatusResult } from './types'
-
 const query = ref('')
 const { accounts, hashtags, loading, statuses } = useSearch(query)
 const index = ref(0)
@@ -15,24 +13,9 @@ const results = computed(() => {
     return []
 
   const results = [
-    ...hashtags.value.slice(0, 3).map<HashTagResult>(hashtag => ({
-      type: 'hashtag',
-      id: hashtag.id,
-      hashtag,
-      to: getTagRoute(hashtag.name),
-    })),
-    ...accounts.value.map<AccountResult>(account => ({
-      type: 'account',
-      id: account.id,
-      account,
-      to: getAccountRoute(account),
-    })),
-    ...statuses.value.map<StatusResult>(status => ({
-      type: 'status',
-      id: status.id,
-      status,
-      to: getStatusRoute(status),
-    })),
+    ...hashtags.value.slice(0, 3),
+    ...accounts.value,
+    ...statuses.value,
 
     // Disable until search page is implemented
     // {

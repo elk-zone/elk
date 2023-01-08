@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 
 const { account, as = 'div' } = defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   as?: string
   hoverCard?: boolean
   square?: boolean

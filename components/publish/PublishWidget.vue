@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Attachment, CreateStatusParams, Status, StatusVisibility } from 'masto'
+import type { mastodon } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
@@ -18,13 +18,13 @@ const {
   initial?: () => Draft
   placeholder?: string
   inReplyToId?: string
-  inReplyToVisibility?: StatusVisibility
+  inReplyToVisibility?: mastodon.v1.StatusVisibility
   expanded?: boolean
   dialogLabelledBy?: string
 }>()
 
 const emit = defineEmits<{
-  (evt: 'published', status: Status): void
+  (evt: 'published', status: mastodon.v1.Status): void
 }>()
 
 const { t } = useI18n()
@@ -103,7 +103,7 @@ async function uploadAttachments(files: File[]) {
     if (draft.attachments.length < limit) {
       isExceedingAttachmentLimit = false
       try {
-        const attachment = await masto.mediaAttachments.create({
+        const attachment = await masto.v1.mediaAttachments.create({
           file,
         })
         draft.attachments.push(attachment)
@@ -122,9 +122,9 @@ async function uploadAttachments(files: File[]) {
   isUploading = false
 }
 
-async function setDescription(att: Attachment, description: string) {
+async function setDescription(att: mastodon.v1.MediaAttachment, description: string) {
   att.description = description
-  await masto.mediaAttachments.update(att.id, { description: att.description })
+  await masto.v1.mediaAttachments.update(att.id, { description: att.description })
 }
 
 function removeAttachment(index: number) {
@@ -136,8 +136,8 @@ async function publish() {
     ...draft.params,
     status: htmlToText(draft.params.status || ''),
     mediaIds: draft.attachments.map(a => a.id),
-    ...(masto.version.includes('+glitch') ? { 'content-type': 'text/markdown' } : {}),
-  } as CreateStatusParams
+    ...((masto.config as any).props.version.raw.includes('+glitch') ? { 'content-type': 'text/markdown' } : {}),
+  } as mastodon.v1.CreateStatusParams
 
   if (process.dev) {
     // eslint-disable-next-line no-console
@@ -154,11 +154,13 @@ async function publish() {
   try {
     isSending = true
 
-    let status: Status
+    let status: mastodon.v1.Status
     if (!draft.editingStatus)
-      status = await masto.statuses.create(payload)
+      status = await masto.v1.statuses.create(payload)
     else
-      status = await masto.statuses.update(draft.editingStatus.id, payload)
+      status = await masto.v1.statuses.update(draft.editingStatus.id, payload)
+    if (draft.params.inReplyToId)
+      navigateToStatus({ status })
 
     draft = initial()
     emit('published', status)

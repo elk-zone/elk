@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { UpdateCredentialsParams } from 'masto'
+import type { mastodon } from 'masto'
 
 const { form } = defineModel<{
   form: {
-    fieldsAttributes: NonNullable<UpdateCredentialsParams['fieldsAttributes']>
+    fieldsAttributes: NonNullable<mastodon.v1.UpdateCredentialsParams['fieldsAttributes']>
   }
 }>()
 const dropdown = $ref<any>()

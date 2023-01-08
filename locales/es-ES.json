@@ -315,7 +315,8 @@
       "finished": "finalizada {0}"
     },
     "reblogged": "{0} retooteó",
-    "someone": "Alguien",
+    "replying_to": "Respondiendo a {0}",
+    "someone": "alguien",
     "spoiler_show_less": "Mostrar menos",
     "spoiler_show_more": "Mostrar más",
     "thread": "Hilo",

@@ -12,7 +12,7 @@ const {
   eventType = 'update',
   preprocess,
 } = defineProps<{
-  paginator: Paginator<any, any[]>
+  paginator: Paginator<any[], any>
   keyProp?: string
   virtualScroller?: boolean
   stream?: Promise<WsEvents>

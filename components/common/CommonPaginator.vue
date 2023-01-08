@@ -1,8 +1,8 @@
-<script setup lang="ts">
+<script setup lang="ts" generic="T, O">
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { Account, Paginator, WsEvents } from 'masto'
+import type { Paginator, WsEvents } from 'masto'
 
 const {
   paginator,
@@ -10,41 +10,42 @@ const {
   keyProp = 'id',
   virtualScroller = false,
   eventType = 'update',
+  buffer = 10,
   preprocess,
-  isAccountTimeline,
 } = defineProps<{
-  paginator: Paginator<any, any[]>
-  keyProp?: string
+  paginator: Paginator<T[], O>
+  keyProp?: keyof T
   virtualScroller?: boolean
   stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
-  preprocess?: (items: any[]) => any[]
-  isAccountTimeline?: boolean
+  // When preprocess is used, buffer is the number of items that will be hidden
+  // until the next pagination to avoid border effect between pages when reordering
+  // and grouping items
+  buffer?: number
+  preprocess?: (items: T[]) => any[]
 }>()
 
 defineSlots<{
   default: {
-    item: any
+    items: T[]
+    item: T
+    index: number
     active?: boolean
-    older?: any
-    newer?: any // newer is undefined when index === 0
+    older?: T
+    newer?: T // newer is undefined when index === 0
+  }
+  items: {
+    items: T[]
   }
   updater: {
     number: number
     update: () => void
   }
   loading: {}
+  done: {}
 }>()
 
-let account: Account | null = null
-
-const { params } = useRoute()
-
-if (isAccountTimeline) {
-  const handle = $(computedEager(() => params.account as string))
-
-  account = await fetchAccountByHandle(handle)
-}
+const { t } = useI18n()
 
 const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream, eventType, preprocess)
 </script>
@@ -67,16 +68,20 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
             :active="active"
             :older="items[index + 1]"
             :newer="items[index - 1]"
+            :index="index"
+            :items="items"
           />
         </DynamicScroller>
       </template>
       <template v-else>
         <slot
           v-for="item, index of items"
-          :key="item[keyProp]"
+          :key="(item as any)[keyProp]"
           :item="item"
           :older="items[index + 1]"
           :newer="items[index - 1]"
+          :index="index"
+          :items="items"
         />
       </template>
     </slot>
@@ -84,17 +89,13 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
     <slot v-if="state === 'loading'" name="loading">
       <TimelineSkeleton />
     </slot>
-    <div v-else-if="state === 'done'" p5 text-secondary italic text-center flex flex-col items-center gap1>
-      <template v-if="isAccountTimeline">
-        <span>{{ $t('timeline.view_older_posts') }}</span>
-        <a :href="account!.url" not-italic text-primary hover="underline text-primary-active">{{ $t('menu.open_in_original_site') }}</a>
-      </template>
-      <template v-else>
-        {{ $t('common.end_of_list') }}
-      </template>
-    </div>
+    <slot v-else-if="state === 'done'" name="done">
+      <div p5 text-secondary italic text-center>
+        {{ t('common.end_of_list') }}
+      </div>
+    </slot>
     <div v-else-if="state === 'error'" p5 text-secondary>
-      {{ $t('common.error') }}: {{ error }}
+      {{ t('common.error') }}: {{ error }}
     </div>
   </div>
 </template>

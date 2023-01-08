@@ -1,22 +1,19 @@
 <script setup lang="ts">
+import { mastodon } from 'masto'
+import type { Paginator, WsEvents } from 'masto'
 // type used in <template>
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import type { Notification, Paginator, WsEvents } from 'masto'
-// type used in <template>
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import type { GroupedLikeNotifications } from '~/types'
-
-import type { GroupedAccountLike, NotificationSlot } from '~/types'
+import type { GroupedAccountLike, GroupedLikeNotifications, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
-  paginator: Paginator<any, Notification[]>
+  paginator: Paginator<mastodon.v1.Notification[], mastodon.v1.ListNotificationsParams>
   stream?: Promise<WsEvents>
 }>()
 
 const groupCapacity = Number.MAX_VALUE // No limit
 
 // Group by type (and status when applicable)
-const groupId = (item: Notification): string => {
+const groupId = (item: mastodon.v1.Notification): string => {
   // If the update is related to an status, group notifications from the same account (boost + favorite the same status)
   const id = item.status
     ? {
@@ -29,12 +26,12 @@ const groupId = (item: Notification): string => {
   return JSON.stringify(id)
 }
 
-function groupItems(items: Notification[]): NotificationSlot[] {
+function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   const results: NotificationSlot[] = []
 
   let id = 0
   let currentGroupId = ''
-  let currentGroup: Notification[] = []
+  let currentGroup: mastodon.v1.Notification[] = []
   const processGroup = () => {
     if (currentGroup.length === 0)
       return
@@ -129,7 +126,7 @@ const { formatNumber } = useHumanReadableNumber()
         />
         <NotificationCard
           v-else
-          :notification="item as Notification"
+          :notification="item as mastodon.v1.Notification"
           hover:bg-active
           border="b base"
         />

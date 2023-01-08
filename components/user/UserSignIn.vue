@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
 import { $fetch } from 'ofetch'
-import { DEFAULT_SERVER } from '~/constants'
 
 const input = $ref<HTMLInputElement>()
 let server = $ref<string>('')
@@ -26,7 +25,7 @@ async function oauth() {
     server = server.split('/')[0]
 
   try {
-    location.href = await $fetch<string>(`/api/${server || DEFAULT_SERVER}/login`, {
+    location.href = await $fetch<string>(`/api/${server || publicServer.value}/login`, {
       method: 'POST',
       body: {
         origin: location.origin,

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 
 const { link = true, avatar = true } = defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   link?: boolean
   avatar?: boolean
 }>()
@@ -16,11 +16,7 @@ const { link = true, avatar = true } = defineProps<{
       min-w-0 flex gap-2 items-center
     >
       <AccountAvatar v-if="avatar" :account="account" w-5 h-5 />
-      <ContentRich
-        line-clamp-1 ws-pre-wrap break-all
-        :content="getDisplayName(account, { rich: true })"
-        :emojis="account.emojis"
-      />
+      <AccountDisplayName :account="account" line-clamp-1 ws-pre-wrap break-all />
     </NuxtLink>
   </AccountHoverWrapper>
 </template>

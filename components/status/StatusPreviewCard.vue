@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Card, CardType } from 'masto'
+import type { mastodon } from 'masto'
 
 const props = defineProps<{
-  card: Card
+  card: mastodon.v1.PreviewCard
   /** For the preview image, only the small image mode is displayed */
   smallPictureOnly?: boolean
   /** When it is root card in the list, not appear as a child card */
@@ -21,10 +21,10 @@ const isSquare = $computed(() => (
 ))
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
 
-const gitHubCards = $(computedEager(() => useFeatureFlags().experimentalGitHubCards))
+const gitHubCards = $(useFeatureFlag('experimentalGitHubCards'))
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
-const cardTypeIconMap: Record<CardType, string> = {
+const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
   link: 'i-ri:profile-line',
   photo: 'i-ri:image-line',
   video: 'i-ri:play-line',

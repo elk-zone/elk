@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Card } from 'masto'
+import type { mastodon } from 'masto'
 
-const props = defineProps<{
-  card: Card
+defineProps<{
+  card: mastodon.v1.PreviewCard
   /** When it is root card in the list, not appear as a child card */
   root?: boolean
   /** For the preview image, only the small image mode is displayed */

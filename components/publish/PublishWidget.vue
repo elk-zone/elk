@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Attachment, CreateStatusParams, Status, StatusVisibility } from 'masto'
+import type { mastodon } from 'masto'
 import { fileOpen } from 'browser-fs-access'
 import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
@@ -18,13 +18,13 @@ const {
   initial?: () => Draft
   placeholder?: string
   inReplyToId?: string
-  inReplyToVisibility?: StatusVisibility
+  inReplyToVisibility?: mastodon.v1.StatusVisibility
   expanded?: boolean
   dialogLabelledBy?: string
 }>()
 
 const emit = defineEmits<{
-  (evt: 'published', status: Status): void
+  (evt: 'published', status: mastodon.v1.Status): void
 }>()
 
 const { t } = useI18n()
@@ -56,6 +56,7 @@ const { editor } = useTiptap({
   onPaste: handlePaste,
 })
 
+const characterCount = $computed(() => htmlToText(editor.value?.getHTML() || '').length)
 let isUploading = $ref<boolean>(false)
 let isExceedingAttachmentLimit = $ref<boolean>(false)
 let failed = $ref<FileUploadError[]>([])
@@ -102,7 +103,7 @@ async function uploadAttachments(files: File[]) {
     if (draft.attachments.length < limit) {
       isExceedingAttachmentLimit = false
       try {
-        const attachment = await masto.mediaAttachments.create({
+        const attachment = await masto.v1.mediaAttachments.create({
           file,
         })
         draft.attachments.push(attachment)
@@ -121,9 +122,9 @@ async function uploadAttachments(files: File[]) {
   isUploading = false
 }
 
-async function setDescription(att: Attachment, description: string) {
+async function setDescription(att: mastodon.v1.MediaAttachment, description: string) {
   att.description = description
-  await masto.mediaAttachments.update(att.id, { description: att.description })
+  await masto.v1.mediaAttachments.update(att.id, { description: att.description })
 }
 
 function removeAttachment(index: number) {
@@ -135,8 +136,8 @@ async function publish() {
     ...draft.params,
     status: htmlToText(draft.params.status || ''),
     mediaIds: draft.attachments.map(a => a.id),
-    ...(masto.version.includes('+glitch') ? { 'content-type': 'text/markdown' } : {}),
-  } as CreateStatusParams
+    ...((masto.config as any).props.version.raw.includes('+glitch') ? { 'content-type': 'text/markdown' } : {}),
+  } as mastodon.v1.CreateStatusParams
 
   if (process.dev) {
     // eslint-disable-next-line no-console
@@ -153,11 +154,13 @@ async function publish() {
   try {
     isSending = true
 
-    let status: Status
+    let status: mastodon.v1.Status
     if (!draft.editingStatus)
-      status = await masto.statuses.create(payload)
+      status = await masto.v1.statuses.create(payload)
     else
-      status = await masto.statuses.update(draft.editingStatus.id, payload)
+      status = await masto.v1.statuses.update(draft.editingStatus.id, payload)
+    if (draft.params.inReplyToId)
+      navigateToStatus({ status })
 
     draft = initial()
     emit('published', status)
@@ -257,7 +260,7 @@ const isPublishDisabled = computed(() => {
                 :aria-label="$t('action.clear_upload_failed')"
                 @click="failed = []"
               >
-                <span aria-hidden="true" w-1.75em h-1.75em i-ri:close-line />
+                <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
               </button>
             </CommonTooltip>
           </head>
@@ -319,8 +322,8 @@ const isPublishDisabled = computed(() => {
 
         <div flex-auto />
 
-        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5>
-          {{ editor?.storage.characterCount.characters() }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
+        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap="0.5" :class="{ 'text-rose-500': characterCount > characterLimit }">
+          {{ characterCount ?? 0 }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
         </div>
 
         <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">

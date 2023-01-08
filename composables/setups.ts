@@ -1,33 +1,9 @@
-import { pwaInfo } from 'virtual:pwa-info'
-import type { Link } from '@unhead/schema'
 import type { Directions } from 'vue-i18n-routing'
-import { buildInfo } from 'virtual:build-info'
 import type { LocaleObject } from '#i18n'
 
 export function setupPageHeader() {
   const { locale, locales, t } = useI18n()
-
-  const link: Link[] = []
-
-  if (pwaInfo && pwaInfo.webManifest) {
-    const { webManifest } = pwaInfo
-    if (webManifest) {
-      const { href, useCredentials } = webManifest
-      if (useCredentials) {
-        link.push({
-          rel: 'manifest',
-          href,
-          crossorigin: 'use-credentials',
-        })
-      }
-      else {
-        link.push({
-          rel: 'manifest',
-          href,
-        })
-      }
-    }
-  }
+  const buildInfo = useBuildInfo()
 
   const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
     acc[l.code!] = l.dir ?? 'auto'
@@ -46,6 +22,12 @@ export function setupPageHeader() {
         titleTemplate += ` (${buildInfo.env})`
       return titleTemplate
     },
-    link,
+    link: process.client && useRuntimeConfig().public.pwaEnabled
+      ? () => [{
+          key: 'webmanifest',
+          rel: 'manifest',
+          href: `/manifest-${locale.value}.webmanifest`,
+        }]
+      : [],
   })
 }

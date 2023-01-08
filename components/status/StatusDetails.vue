@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
-import { statusVisibilities } from '~/composables/masto/icons'
+import type { mastodon } from 'masto'
 
 const props = withDefaults(defineProps<{
-  status: Status
+  status: mastodon.v1.Status
   command?: boolean
   actions?: boolean
 }>(), {

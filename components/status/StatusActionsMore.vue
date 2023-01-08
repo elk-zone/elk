@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const props = defineProps<{
-  status: Status
+  status: mastodon.v1.Status
   details?: boolean
   command?: boolean
 }>()
@@ -22,6 +22,7 @@ const {
 const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
+const { t } = useI18n()
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
@@ -39,37 +40,36 @@ const toggleTranslation = async () => {
 
 const masto = useMasto()
 
-const getPermalinkUrl = (status: Status) => {
+const getPermalinkUrl = (status: mastodon.v1.Status) => {
   const url = getStatusPermalinkRoute(status)
   if (url)
     return `${location.origin}/${url}`
   return null
 }
 
-const copyLink = async (status: Status) => {
+const copyLink = async (status: mastodon.v1.Status) => {
   const url = getPermalinkUrl(status)
   if (url)
     await clipboard.copy(url)
 }
 
 const { share, isSupported: isShareSupported } = useShare()
-const shareLink = async (status: Status) => {
+const shareLink = async (status: mastodon.v1.Status) => {
   const url = getPermalinkUrl(status)
   if (url)
     await share({ url })
 }
 
 const deleteStatus = async () => {
-  // TODO confirm to delete
-  if (process.dev) {
-    // eslint-disable-next-line no-alert
-    const result = confirm('[DEV] Are you sure you want to delete this post?')
-    if (!result)
-      return
-  }
+  if (await openConfirmDialog({
+    title: t('menu.delete_confirm.title'),
+    confirm: t('menu.delete_confirm.confirm'),
+    cancel: t('menu.delete_confirm.cancel'),
+  }) !== 'confirm')
+    return
 
   removeCachedStatus(status.id)
-  await masto.statuses.remove(status.id)
+  await masto.v1.statuses.remove(status.id)
 
   if (route.name === 'status')
     router.back()
@@ -87,7 +87,7 @@ const deleteAndRedraft = async () => {
   }
 
   removeCachedStatus(status.id)
-  await masto.statuses.remove(status.id)
+  await masto.v1.statuses.remove(status.id)
   await openPublishDialog('dialog', await getDraftFromStatus(status), true)
 
   // Go to the new status, if the page is the old status
@@ -111,6 +111,10 @@ async function editStatus() {
     editingStatus: status,
   }, true)
 }
+
+const showFavoritedAndBoostedBy = () => {
+  openFavoridedBoostedByDialog(status.id)
+}
 </script>
 
 <template>
@@ -126,10 +130,10 @@ async function editStatus() {
 
     <template #popper>
       <div flex="~ col">
-        <template v-if="isZenMode">
+        <template v-if="userSettings.zenMode">
           <CommonDropdownItem
             :text="$t('action.reply')"
-            icon="i-ri:chat-3-line"
+            icon="i-ri:chat-1-line"
             :command="command"
             @click="reply()"
           />
@@ -161,6 +165,13 @@ async function editStatus() {
             @click="toggleBookmark()"
           />
         </template>
+
+        <CommonDropdownItem
+          :text="$t('menu.show_favourited_and_boosted_by')"
+          icon="i-ri:hearts-line"
+          :command="command"
+          @click="showFavoritedAndBoostedBy()"
+        />
 
         <CommonDropdownItem
           :text="$t('menu.copy_link_to_post')"

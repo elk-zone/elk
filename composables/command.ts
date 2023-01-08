@@ -2,7 +2,7 @@ import type { ComputedRef } from 'vue'
 import { defineStore } from 'pinia'
 import Fuse from 'fuse.js'
 import type { LocaleObject } from '#i18n'
-import type { SearchResult } from '@/components/search/types'
+import type { SearchResult } from '~/composables/masto/search'
 
 // @unocss-include
 
@@ -246,20 +246,6 @@ export const provideGlobalCommands = () => {
   const colorMode = useColorMode()
 
   useCommand({
-    scope: 'Actions',
-
-    visible: () => currentUser.value,
-
-    name: () => t('action.compose'),
-    icon: 'i-ri:quill-pen-line',
-    description: () => t('command.compose_desc'),
-
-    onActivate() {
-      openPublishDialog()
-    },
-  })
-
-  useCommand({
     scope: 'Navigation',
 
     name: () => t('nav.settings'),
@@ -285,10 +271,10 @@ export const provideGlobalCommands = () => {
     scope: 'Preferences',
 
     name: () => t('command.toggle_zen_mode'),
-    icon: () => isZenMode.value ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
+    icon: () => userSettings.value.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
 
     onActivate() {
-      toggleZenMode()
+      userSettings.value.zenMode = !userSettings.value.zenMode
     },
   })
 

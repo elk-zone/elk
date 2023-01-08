@@ -1,12 +1,12 @@
 import type { Paginator, WsEvents } from 'masto'
-import { useDeactivated } from './lifecycle'
 import type { PaginatorState } from '~/types'
 
-export function usePaginator<T>(
-  paginator: Paginator<any, T[]>,
+export function usePaginator<T, P>(
+  paginator: Paginator<T[], P>,
   stream?: Promise<WsEvents>,
   eventType: 'notification' | 'update' = 'update',
   preprocess: (items: T[]) => T[] = (items: T[]) => items,
+  buffer = 10,
 ) {
   const state = ref<PaginatorState>(isMastoInitialised.value ? 'idle' : 'loading')
   const items = ref<T[]>([])
@@ -63,11 +63,15 @@ export function usePaginator<T>(
       const result = await paginator.next()
 
       if (result.value?.length) {
-        nextItems.value = preprocess(result.value) as any
-        items.value.push(...nextItems.value)
+        const preprocessedItems = preprocess([...nextItems.value, ...result.value]) as any
+        const itemsToShowCount = preprocessedItems.length - buffer
+        nextItems.value = preprocessedItems.slice(itemsToShowCount)
+        items.value.push(...preprocessedItems.slice(0, itemsToShowCount))
         state.value = 'idle'
       }
       else {
+        items.value.push(...nextItems.value)
+        nextItems.value = []
         state.value = 'done'
       }
     }
@@ -109,7 +113,6 @@ export function usePaginator<T>(
   return {
     items,
     prevItems,
-    nextItems,
     update,
     state,
     error,

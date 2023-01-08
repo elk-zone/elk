@@ -1,24 +1,20 @@
 <script lang="ts" setup>
-const props = defineProps<{
-  modelValue?: boolean
+let { modelValue } = $defineModel<{
+  modelValue: boolean
 }>()
-const emit = defineEmits<{
-  (event: 'update:modelValue', value: boolean): void
-}>()
-const visible = useVModel(props, 'modelValue', emit, { passive: true })
 const colorMode = useColorMode()
 
-function changeShow() {
-  visible.value = !visible.value
+function toggleVisible() {
+  modelValue = !modelValue
 }
 
 const buttonEl = ref<HTMLDivElement>()
 /** Close the drop-down menu if the mouse click is not on the drop-down menu button when the drop-down menu is opened */
 function clickEvent(mouse: MouseEvent) {
   if (mouse.target && !buttonEl.value?.children[0].contains(mouse.target as any)) {
-    if (visible.value) {
+    if (modelValue) {
       document.removeEventListener('click', clickEvent)
-      visible.value = false
+      modelValue = false
     }
   }
 }
@@ -27,7 +23,7 @@ function toggleDark() {
   colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
 }
 
-watch(visible, (val) => {
+watch($$(modelValue), (val) => {
   if (val && typeof document !== 'undefined')
     document.addEventListener('click', clickEvent)
 })
@@ -39,7 +35,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="buttonEl" flex items-center static>
-    <slot :change-show="changeShow" :show="visible" />
+    <slot :toggle-visible="toggleVisible" :show="modelValue" />
 
     <!-- Drawer -->
     <Transition
@@ -51,7 +47,7 @@ onBeforeUnmount(() => {
       leave-to-class="opacity-0 children:(transform translate-y-full)"
     >
       <div
-        v-show="visible"
+        v-show="modelValue"
         absolute inset-x-0 top-auto bottom-full z-20 h-100vh
         flex items-end of-y-scroll of-x-hidden scrollbar-hide overscroll-none
         bg="black/50"

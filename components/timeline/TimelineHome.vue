@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
-const paginator = useMasto().timelines.iterateHome()
-const stream = useMasto().stream.streamUser()
+const paginator = useMasto().v1.timelines.listHome({ limit: 30 })
+const stream = useMasto().v1.stream.streamUser()
 onBeforeUnmount(() => stream?.then(s => s.disconnect()))
 </script>
 

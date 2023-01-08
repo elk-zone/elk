@@ -1,4 +1,4 @@
-import type { Account, AccountCredentials, Attachment, CreateStatusParams, Emoji, Instance, MastoClient, Notification, PushSubscription, Status } from 'masto'
+import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
 import type { MarkNonNullable, Mutable } from './utils'
 
@@ -15,62 +15,64 @@ export interface AppInfo {
 export interface UserLogin {
   server: string
   token?: string
-  account: AccountCredentials
+  account: mastodon.v1.AccountCredentials
   vapidKey?: string
-  pushSubscription?: PushSubscription
+  pushSubscription?: mastodon.v1.WebPushSubscription
 }
 
-export interface ElkMasto extends MastoClient {
-  loginTo (user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }): Promise<MastoClient>
+export interface ElkMasto extends mastodon.Client {
+  loginTo (user?: Omit<UserLogin, 'account'> & { account?: mastodon.v1.AccountCredentials }): Promise<mastodon.Client>
   loggedIn: Ref<boolean>
 }
 
 export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'
 
-export interface ServerInfo extends Instance {
-  server: string
-  timeUpdated: number
-  customEmojis?: Record<string, Emoji>
-}
-
 export interface GroupedNotifications {
   id: string
   type: Exclude<string, 'grouped-reblogs-and-favourites'>
-  items: Notification[]
+  items: mastodon.v1.Notification[]
 }
 
 export interface GroupedAccountLike {
-  account: Account
-  favourite?: Notification
-  reblog?: Notification
+  account: mastodon.v1.Account
+  favourite?: mastodon.v1.Notification
+  reblog?: mastodon.v1.Notification
 }
 
 export interface GroupedLikeNotifications {
   id: string
   type: 'grouped-reblogs-and-favourites'
-  status: Status
+  status: mastodon.v1.Status
   likes: GroupedAccountLike[]
 }
 
-export type NotificationSlot = GroupedNotifications | GroupedLikeNotifications | Notification
+export type NotificationSlot = GroupedNotifications | GroupedLikeNotifications | mastodon.v1.Notification
 
 export type TranslateFn = ReturnType<typeof useI18n>['t']
 
 export interface Draft {
-  editingStatus?: Status
+  editingStatus?: mastodon.v1.Status
   initialText?: string
-  params: MarkNonNullable<Mutable<CreateStatusParams>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'>
-  attachments: Attachment[]
+  params: MarkNonNullable<Mutable<mastodon.v1.CreateStatusParams>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'>
+  attachments: mastodon.v1.MediaAttachment[]
   lastUpdated: number
 }
 export type DraftMap = Record<string, Draft>
+
+export interface ConfirmDialogLabel {
+  title: string
+  description?: string
+  confirm?: string
+  cancel?: string
+}
+export type ConfirmDialogChoice = 'confirm' | 'cancel'
 
 export interface BuildInfo {
   version: string
   commit: string
   time: number
   branch: string
-  env: 'preview' | 'main' | 'dev' | 'release'
+  env: 'preview' | 'canary' | 'dev' | 'release'
 }
 
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'

@@ -17,7 +17,12 @@
 
 It is already quite usable, but it isn't ready for wide adoption yet. We recommend you to use if if you would like to help us building it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
-The client is deployed to [elk.zone](https://elk.zone), you can share screenshots on social media but we prefer you avoid sharing this URL directly until the app is more polished. Feel free to share the URL with your friedns and invite others you think could be interested in helping to improve Elk.
+The client is deployed on:
+
+- 🦌 Production: [elk.zone](https://elk.zone)
+- 🐙 Canary: [main.elk.zone](https://main.elk.zone) (deploys on every commit to `main` branch)
+
+You can share screenshots on social media but we prefer you avoid sharing this URL directly until the app is more polished. Feel free to share the URL with your friends and invite others you think could be interested in helping to improve Elk.
 
 ## Sponsors
 
@@ -40,6 +45,10 @@ And all the companies and individuals sponsoring Elk Team members. If you're enj
 - [Patak](https://github.com/sponsors/patak-dev)
 
 We would also appreciate sponsoring other contributors to the Elk project. If someone helps you solve an issue or implement a feature you wanted, supporting them would help make this project and OS more sustainable.
+
+## Roadmap
+
+[Open board on Volta](https://volta.net/elk-zone/elk)
 
 ## Contributing
 

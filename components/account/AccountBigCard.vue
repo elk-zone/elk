@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
+
 const { account, as = 'div' } = $defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   as?: string
 }>()
 
@@ -32,13 +33,7 @@ defineOptions({
           </a>
         </div>
         <div sm:mt-2>
-          <div>
-            <ContentRich
-              font-bold text-lg line-clamp-1 ws-pre-wrap break-all
-              :content="getDisplayName(account, { rich: true })"
-              :emojis="account.emojis"
-            />
-          </div>
+          <AccountDisplayName :account="account" font-bold text-lg line-clamp-1 ws-pre-wrap break-all />
           <AccountHandle text-sm :account="account" />
         </div>
       </div>

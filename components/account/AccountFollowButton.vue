@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Account, Relationship } from 'masto'
+import type { mastodon } from 'masto'
 
 const { account, command, ...props } = defineProps<{
-  account: Account
-  relationship?: Relationship
+  account: mastodon.v1.Account
+  relationship?: mastodon.v1.Relationship
   command?: boolean
 }>()
 
@@ -15,7 +15,7 @@ const masto = useMasto()
 async function toggleFollow() {
   relationship!.following = !relationship!.following
   try {
-    const newRel = await masto.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+    const newRel = await masto.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -27,7 +27,7 @@ async function toggleFollow() {
 async function unblock() {
   relationship!.blocking = false
   try {
-    const newRel = await masto.accounts.unblock(account.id)
+    const newRel = await masto.v1.accounts.unblock(account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -39,7 +39,7 @@ async function unblock() {
 async function unmute() {
   relationship!.muting = false
   try {
-    const newRel = await masto.accounts.unmute(account.id)
+    const newRel = await masto.v1.accounts.unmute(account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -85,7 +85,7 @@ const buttonStyle = $computed(() => {
     gap-1 items-center group
     :disabled="relationship?.requested"
     border-1
-    rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1
+    rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
     :class="buttonStyle"
     :hover="!relationship?.blocking && !relationship?.muting && relationship?.following ? 'border-red text-red' : 'bg-base border-primary text-primary'"
     @click="relationship?.blocking ? unblock() : relationship?.muting ? unmute() : toggleFollow()"

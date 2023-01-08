@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { Account, Field } from 'masto'
-import { getAccountFieldIcon } from '~/composables/masto/icons'
+import type { mastodon } from 'masto'
 
 const { account } = defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   command?: boolean
 }>()
 
@@ -15,8 +14,8 @@ const createdAt = $(useFormattedDateTime(() => account.createdAt, {
   year: 'numeric',
 }))
 
-const namedFields = ref<Field[]>([])
-const iconFields = ref<Field[]>([])
+const namedFields = ref<mastodon.v1.AccountField[]>([])
+const iconFields = ref<mastodon.v1.AccountField[]>([])
 
 function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
@@ -41,8 +40,8 @@ function previewAvatar() {
 }
 
 watchEffect(() => {
-  const named: Field[] = []
-  const icons: Field[] = []
+  const named: mastodon.v1.AccountField[] = []
+  const icons: mastodon.v1.AccountField[] = []
 
   account.fields?.forEach((field) => {
     const icon = getAccountFieldIcon(field.name)
@@ -74,15 +73,10 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           <button w-30 h-30 rounded-full border-4 border-bg-base z-2 @click="previewAvatar">
             <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
           </button>
-          <div flex flex-col>
+          <div flex="~ col gap1">
             <div flex justify-between>
-              <ContentRich
-                font-bold sm:text-2xl text-xl
-                :content="getDisplayName(account, { rich: true })"
-                :emojis="account.emojis"
-                :markdown="false"
-              />
-              <AccountBotIndicator v-if="account.bot" />
+              <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
+              <AccountBotIndicator v-if="account.bot" show-label />
             </div>
             <AccountHandle :account="account" />
           </div>
@@ -94,7 +88,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           <NuxtLink
             v-if="isSelf"
             to="/settings/profile/appearance"
-            gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1
+            gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
             hover="border-primary text-primary bg-active"
           >
             {{ $t('settings.profile.appearance.title') }}

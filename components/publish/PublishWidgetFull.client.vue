@@ -2,7 +2,8 @@
 import { formatTimeAgo } from '@vueuse/core'
 
 const route = useRoute()
-const router = useRouter()
+const { formatNumber } = useHumanReadableNumber()
+const timeAgoOptions = useTimeAgoOptions()
 
 let draftKey = $ref('home')
 
@@ -26,7 +27,7 @@ onMounted(() => {
     <div text-right h-8>
       <VDropdown v-if="nonEmptyDrafts.length" placement="bottom-end">
         <button btn-text flex="inline center">
-          Drafts ({{ nonEmptyDrafts.length }}) <div i-ri:arrow-down-s-line />
+          {{ $t('compose.drafts', nonEmptyDrafts.length, { named: { v: formatNumber(nonEmptyDrafts.length) } }) }}&#160;<div aria-hidden="true" i-ri:arrow-down-s-line />
         </button>
         <template #popper="{ hide }">
           <div flex="~ col">
@@ -39,9 +40,11 @@ onMounted(() => {
             >
               <div>
                 <div flex="~ gap-1" items-center>
-                  Draft <code>{{ key }}</code>
+                  <i18n-t keypath="compose.draft_title">
+                    <code>{{ key }}</code>
+                  </i18n-t>
                   <span v-if="draft.lastUpdated" text-secondary text-sm>
-                    &middot; {{ formatTimeAgo(new Date(draft.lastUpdated)) }}
+                    &middot; {{ formatTimeAgo(new Date(draft.lastUpdated), timeAgoOptions) }}
                   </span>
                 </div>
                 <div text-secondary>

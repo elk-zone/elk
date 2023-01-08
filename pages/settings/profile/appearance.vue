@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import type { UpdateCredentialsParams } from 'masto'
+import type { mastodon } from 'masto'
+import { satisfies } from 'semver'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
 
 definePageMeta({
   middleware: 'auth',
-  // Keep alive the form page will reduce raw data timeliness and its status timeliness
-  keepalive: false,
 })
 
 const { t } = useI18n()
@@ -43,27 +42,23 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
 
       fieldsAttributes,
 
+      bot: account?.bot ?? false,
+
       // These look more like account and privacy settings than appearance settings
       // discoverable: false,
-      // bot: false,
       // locked: false,
     }
   },
 })
 
-onMastoInit(async () => {
-  // Keep the information to be edited up to date
-  await pullMyAccountInfo()
-  reset()
-})
-
-const isCanSubmit = computed(() => !isError.value && !isEmptyObject(dirtyFields.value))
+const isDirty = $computed(() => !isEmptyObject(dirtyFields.value))
+const isCanSubmit = computed(() => !isError.value && isDirty)
 
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
     return
 
-  const res = await useMasto().accounts.updateCredentials(dirtyFields.value as UpdateCredentialsParams)
+  const res = await useMasto().v1.accounts.updateCredentials(dirtyFields.value as mastodon.v1.UpdateCredentialsParams)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))
 
@@ -76,6 +71,16 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   setAccountInfo(account!.id, res.account)
   reset()
 })
+
+const refreshInfo = async () => {
+  // Keep the information to be edited up to date
+  await pullMyAccountInfo()
+  if (!isDirty)
+    reset()
+}
+
+onMastoInit(refreshInfo)
+onReactivated(refreshInfo)
 </script>
 
 <template>
@@ -87,11 +92,10 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
     </template>
 
     <form space-y-5 @submit.prevent="submit">
-      <div>
+      <div v-if="isHydrated && account">
         <!-- banner -->
         <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
-            v-if="isHydrated"
             v-model="form.header"
             :original="onlineSrc.header"
             w-full h-full
@@ -100,9 +104,8 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
         <CommonCropImage v-model="form.header" :stencil-aspect-ratio="3 / 1" />
 
         <!-- avatar -->
-        <div px-4>
+        <div px-4 flex="~ gap4">
           <CommonInputImage
-            v-if="isHydrated"
             v-model="form.avatar"
             :original="onlineSrc.avatar"
             mt--10
@@ -111,6 +114,23 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
           />
         </div>
         <CommonCropImage v-model="form.avatar" />
+
+        <div px4>
+          <div flex justify-between>
+            <AccountDisplayName
+              :account="{ ...account, displayName: form.displayName }"
+              font-bold sm:text-2xl text-xl
+            />
+            <label>
+              <AccountBotIndicator show-label px2 py1>
+                <template #prepend>
+                  <input v-model="form.bot" type="checkbox">
+                </template>
+              </AccountBotIndicator>
+            </label>
+          </div>
+          <AccountHandle :account="account" />
+        </div>
       </div>
 
       <div px4 py3 space-y-5>

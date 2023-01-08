@@ -1,21 +1,26 @@
 <script lang="ts" setup>
+import { useFeatureFlag } from '~~/composables/settings/featureFlags'
+
 const route = useRoute()
 
 const wideLayout = computed(() => route.meta.wideLayout ?? false)
+
+const showUserPicker = logicAnd(
+  useFeatureFlag('experimentalUserPicker'),
+  () => useUsers().value.length > 1,
+)
 </script>
 
 <template>
-  <div h-full :class="{ zen: isZenMode }">
+  <div h-full :class="{ zen: userSettings.zenMode }">
     <main flex w-full mxa lg:max-w-80rem>
       <aside class="hidden sm:flex w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 justify-end xl:me-4 zen-hide" relative>
         <div sticky top-0 w-20 xl:w-100 h-screen flex="~ col" lt-xl-items-center>
           <slot name="left">
             <div flex="~ col" overflow-y-auto justify-between h-full max-w-full mt-5>
-              <div flex flex-col gap-2>
-                <NavTitle />
-                <NavSide command />
-                <!-- <PublishButton ms5.5 mt4 xl:me8 xl:ms4 /> -->
-              </div>
+              <NavTitle />
+              <NavSide command />
+              <div flex-auto />
               <div v-if="isMastoInitialised" flex flex-col>
                 <div hidden xl:block>
                   <UserSignInEntry v-if="!currentUser" />
@@ -42,7 +47,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
           </slot>
         </div>
       </aside>
-      <div w-full min-h-screen :class="wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px md:shrink-0'" border-base>
+      <div w-full min-h-screen :class="isHydrated && wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px md:shrink-0'" border-base>
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
@@ -51,7 +56,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
           <NavBottom v-if="isHydrated" />
         </div>
       </div>
-      <aside v-if="!wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">
+      <aside v-if="isHydrated && !wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col" gap-2 py3 ms-2>
           <slot name="right">
             <div flex-auto />

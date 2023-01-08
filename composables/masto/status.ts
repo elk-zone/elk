@@ -1,0 +1,96 @@
+import type { mastodon } from 'masto'
+
+type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
+type CountField = 'reblogsCount' | 'favouritesCount'
+
+export interface StatusActionsProps {
+  status: mastodon.v1.Status
+}
+
+export function useStatusActions(props: StatusActionsProps) {
+  let status = $ref<mastodon.v1.Status>({ ...props.status })
+  const masto = useMasto()
+
+  watch(
+    () => props.status,
+    val => status = { ...val },
+    { deep: true, immediate: true },
+  )
+
+  // Use different states to let the user press different actions right after the other
+  const isLoading = $ref({
+    reblogged: false,
+    favourited: false,
+    bookmarked: false,
+    pinned: false,
+    translation: false,
+    muted: false,
+  })
+
+  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<mastodon.v1.Status>, countField?: CountField) {
+    // check login
+    if (!checkLogin())
+      return
+
+    isLoading[action] = true
+    fetchNewStatus().then((newStatus) => {
+      Object.assign(status, newStatus)
+      cacheStatus(newStatus, undefined, true)
+    }).finally(() => {
+      isLoading[action] = false
+    })
+    // Optimistic update
+    status[action] = !status[action]
+    cacheStatus(status, undefined, true)
+    if (countField)
+      status[countField] += status[action] ? 1 : -1
+  }
+
+  const canReblog = $computed(() =>
+    status.visibility !== 'direct'
+    && (status.visibility !== 'private' || status.account.id === currentUser.value?.account.id),
+  )
+
+  const toggleReblog = () => toggleStatusAction(
+    'reblogged',
+    () => masto.v1.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
+      if (status.reblogged)
+      // returns the original status
+        return res.reblog!
+      return res
+    }),
+    'reblogsCount',
+  )
+
+  const toggleFavourite = () => toggleStatusAction(
+    'favourited',
+    () => masto.v1.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+    'favouritesCount',
+  )
+
+  const toggleBookmark = () => toggleStatusAction(
+    'bookmarked',
+    () => masto.v1.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
+  )
+
+  const togglePin = async () => toggleStatusAction(
+    'pinned',
+    () => masto.v1.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+  )
+
+  const toggleMute = async () => toggleStatusAction(
+    'muted',
+    () => masto.v1.statuses[status.muted ? 'unmute' : 'mute'](status.id),
+  )
+
+  return {
+    status: $$(status),
+    isLoading: $$(isLoading),
+    canReblog: $$(canReblog),
+    toggleMute,
+    toggleReblog,
+    toggleFavourite,
+    toggleBookmark,
+    togglePin,
+  }
+}

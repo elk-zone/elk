@@ -1,17 +1,19 @@
-import type { Attachment, Status, StatusEdit } from 'masto'
-import type { Draft } from '~/types'
-import { STORAGE_KEY_FIRST_VISIT, STORAGE_KEY_ZEN_MODE } from '~/constants'
+import type { mastodon } from 'masto'
+import type { ConfirmDialogChoice, ConfirmDialogLabel, Draft } from '~/types'
+import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 
-export const mediaPreviewList = ref<Attachment[]>([])
+export const confirmDialogChoice = ref<ConfirmDialogChoice>()
+export const confirmDialogLabel = ref<ConfirmDialogLabel>()
+
+export const mediaPreviewList = ref<mastodon.v1.MediaAttachment[]>([])
 export const mediaPreviewIndex = ref(0)
 
-export const statusEdit = ref<StatusEdit>()
+export const statusEdit = ref<mastodon.v1.StatusEdit>()
 export const dialogDraftKey = ref<string>()
 
 export const commandPanelInput = ref('')
 
 export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, !process.mock)
-export const isZenMode = useLocalStorage(STORAGE_KEY_ZEN_MODE, false)
 
 export const isSigninDialogOpen = ref(false)
 export const isPublishDialogOpen = ref(false)
@@ -19,13 +21,25 @@ export const isMediaPreviewOpen = ref(false)
 export const isEditHistoryDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
 export const isCommandPanelOpen = ref(false)
+export const isConfirmDialogOpen = ref(false)
+export const isFavouritedBoostedByDialogOpen = ref(false)
 
-export const lastPublishDialogStatus = ref<Status | null>(null)
+export const lastPublishDialogStatus = ref<mastodon.v1.Status | null>(null)
 
-export const toggleZenMode = useToggle(isZenMode)
+export const favouritedBoostedByStatusId = ref<string | null>(null)
 
 export function openSigninDialog() {
   isSigninDialogOpen.value = true
+}
+
+export async function openConfirmDialog(label: ConfirmDialogLabel | string): Promise<ConfirmDialogChoice> {
+  confirmDialogLabel.value = typeof label === 'string' ? { title: label } : label
+  confirmDialogChoice.value = undefined
+  isConfirmDialogOpen.value = true
+
+  await until(isConfirmDialogOpen).toBe(false)
+
+  return confirmDialogChoice.value!
 }
 
 export async function openPublishDialog(draftKey = 'dialog', draft?: Draft, overwrite = false): Promise<void> {
@@ -51,6 +65,11 @@ export async function openPublishDialog(draftKey = 'dialog', draft?: Draft, over
   await until(isPublishDialogOpen).toBe(false)
 }
 
+export async function openFavoridedBoostedByDialog(statusId: string) {
+  isFavouritedBoostedByDialogOpen.value = true
+  favouritedBoostedByStatusId.value = statusId
+}
+
 if (isPreviewHelpOpen.value) {
   watch(isPreviewHelpOpen, () => {
     isFirstVisit.value = false
@@ -69,7 +88,7 @@ if (process.client) {
   restoreMediaPreviewFromState()
 }
 
-export function openMediaPreview(attachments: Attachment[], index = 0) {
+export function openMediaPreview(attachments: mastodon.v1.MediaAttachment[], index = 0) {
   mediaPreviewList.value = attachments
   mediaPreviewIndex.value = index
   isMediaPreviewOpen.value = true
@@ -86,7 +105,7 @@ export function closeMediaPreview() {
   history.back()
 }
 
-export function openEditHistoryDialog(edit: StatusEdit) {
+export function openEditHistoryDialog(edit: mastodon.v1.StatusEdit) {
   statusEdit.value = edit
   isEditHistoryDialogOpen.value = true
 }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 
 const { account } = defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   command?: boolean
 }>()
 let relationship = $(useRelationship(account))
@@ -15,24 +15,31 @@ const toggleMute = async () => {
 
   relationship!.muting = !relationship!.muting
   relationship = relationship!.muting
-    ? await masto.accounts.mute(account.id, {
+    ? await masto.v1.accounts.mute(account.id, {
       // TODO support more options
     })
-    : await masto.accounts.unmute(account.id)
+    : await masto.v1.accounts.unmute(account.id)
 }
 
 const toggleBlockUser = async () => {
   // TODO: Add confirmation
 
   relationship!.blocking = !relationship!.blocking
-  relationship = await masto.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
+  relationship = await masto.v1.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
 }
 
 const toggleBlockDomain = async () => {
   // TODO: Add confirmation
 
   relationship!.domainBlocking = !relationship!.domainBlocking
-  await masto.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
+  await masto.v1.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
+}
+
+const toggleReblogs = async () => {
+  // TODO: Add confirmation
+
+  const showingReblogs = !relationship?.showingReblogs
+  relationship = await masto.v1.accounts.follow(account.id, { reblogs: showingReblogs })
 }
 </script>
 
@@ -66,6 +73,21 @@ const toggleBlockDomain = async () => {
             icon="i-ri:message-3-line"
             :command="command"
             @click="directMessageUser(account)"
+          />
+
+          <CommonDropdownItem
+            v-if="!relationship?.showingReblogs"
+            icon="i-ri:repeat-line"
+            :text="$t('menu.show_reblogs', [`@${account.acct}`])"
+            :command="command"
+            @click="toggleReblogs"
+          />
+          <CommonDropdownItem
+            v-else
+            :text="$t('menu.hide_reblogs', [`@${account.acct}`])"
+            icon="i-ri:repeat-line"
+            :command="command"
+            @click="toggleReblogs"
           />
 
           <CommonDropdownItem

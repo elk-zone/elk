@@ -132,14 +132,14 @@ em-emoji-picker {
     --at-apply: mb-1;
   }
   code {
-    --at-apply: bg-code text-code px1 py0.5 rounded text-0.9em leading-0.8em;
+    --at-apply: bg-code text-code px1 py0.5 rounded text-0.875em leading-0.8em;
   }
   pre code {
     --at-apply: bg-transparent px0 py0 rounded-none leading-1.6em;
   }
 
   .code-block {
-    --at-apply: font-mono bg-code text-base p3 mt-2 rounded overflow-auto
+    --at-apply: font-mono bg-code text-0.875em p3 mt-2 rounded overflow-auto
       leading-1.6em;
 
     .shiki {
@@ -158,6 +158,17 @@ em-emoji-picker {
 
   .custom-emoji {
     margin: 0 0.2em;
+  }
+
+  p {
+    --at-apply: my-0;
+    line-height: calc(4 / 3 * 1em);
+  }
+  p:first-child {
+    --at-apply: mt-1;
+  }
+  p:last-child {
+    --at-apply: mb-1;
   }
 }
 

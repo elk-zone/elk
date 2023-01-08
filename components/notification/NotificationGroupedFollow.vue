@@ -35,10 +35,9 @@ const lang = $computed(() => {
         </span>
       </template>
       <template v-else>
-        <ContentRich
+        <AccountDisplayName
+          :account="items.items[0]?.account"
           text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
-          :content="getDisplayName(items.items[0]?.account, { rich: true })"
-          :emojis="items.items[0]?.account.emojis"
         />
         <span me-1 ws-nowrap>
           {{ $t('notification.followed_you') }}

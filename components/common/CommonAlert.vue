@@ -1,14 +1,10 @@
 <script lang="ts" setup>
-const props = withDefaults(defineProps<{
-  modelValue?: boolean
-}>(), {
-  modelValue: true,
-})
 const emit = defineEmits<{
-  (e: 'update:modelValue', v: boolean): void
   (event: 'close'): void
 }>()
-const visible = useVModel(props, 'modelValue', emit, { passive: true })
+const { modelValue: visible } = defineModel<{
+  modelValue?: boolean
+}>()
 
 function close() {
   emit('close')
@@ -24,7 +20,7 @@ function close() {
     <div>
       <slot />
     </div>
-    <button text-xl hover:text-primary bg-hover-overflow w-1.4em h-1.4em @click="close()">
+    <button text-xl hover:text-primary bg-hover-overflow w="1.4em" h="1.4em" @click="close()">
       <div i-ri:close-line />
     </button>
   </div>

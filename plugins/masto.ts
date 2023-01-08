@@ -1,5 +1,6 @@
 export default defineNuxtPlugin(async (nuxtApp) => {
   const masto = createMasto()
+  publicServer.value = publicServer.value || useRuntimeConfig().public.defaultServer
 
   if (process.client) {
     const { query } = useRoute()

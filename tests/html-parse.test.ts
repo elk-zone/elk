@@ -1,7 +1,7 @@
 /**
  * @vitest-environment jsdom
  */
-import type { Emoji } from 'masto'
+import type { mastodon } from 'masto'
 import { describe, expect, it } from 'vitest'
 import { format } from 'prettier'
 import { render as renderTree } from 'ultrahtml'
@@ -66,8 +66,8 @@ describe('html-parse', () => {
   })
 })
 
-async function render(input: string, emojis?: Record<string, Emoji>) {
-  const tree = parseMastodonHTML(input, emojis)
+async function render(input: string, emojis?: Record<string, mastodon.v1.CustomEmoji>) {
+  const tree = parseMastodonHTML(input, { emojis })
   const html = await renderTree(tree)
   let formatted = ''
   const serializedText = treeToText(tree).trim()

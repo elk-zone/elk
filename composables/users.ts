@@ -256,16 +256,21 @@ export async function signout() {
   await masto.loginTo(currentUser.value)
 }
 
-const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})
+const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, string[]]>>({})
 
 export const useNotifications = () => {
   const id = currentUser.value?.account.id
   const masto = useMasto()
 
-  const clearNotifications = () => {
+  async function clearNotifications() {
     if (!id || !notifications[id])
       return
-    notifications[id]![1] = 0
+    const lastReadId = notifications[id]![1][0]
+    notifications[id]![1] = []
+    // @ts-expect-error https://github.com/neet/masto.js/pull/793
+    await masto.v1.markers.create({
+      notifications: { lastReadId },
+    })
   }
 
   async function connect(): Promise<void> {
@@ -273,11 +278,24 @@ export const useNotifications = () => {
       return
 
     const stream = masto.v1.stream.streamUser()
-    notifications[id] = [stream, 0]
-    ;(await stream).on('notification', () => {
+    notifications[id] = [stream, []]
+    stream.then(s => s.on('notification', (n) => {
       if (notifications[id])
-        notifications[id]![1]++
-    })
+        notifications[id]![1].unshift(n.id)
+    }))
+
+    const position = await masto.v1.markers.fetch({ timeline: ['notifications'] })
+    const paginator = masto.v1.notifications.list({ limit: 30 })
+    do {
+      const result = await paginator.next()
+      if (result.value?.length) {
+        for (const notification of result.value as mastodon.v1.Notification[]) {
+          if (notification.id === position.notifications.lastReadId)
+            return
+          notifications[id]![1].push(notification.id)
+        }
+      }
+    } while (true)
   }
 
   function disconnect(): void {
@@ -288,10 +306,13 @@ export const useNotifications = () => {
   }
 
   watch(currentUser, disconnect)
-  connect()
+  if (isMastoInitialised.value)
+    connect()
+  else
+    watchOnce(isMastoInitialised, connect)
 
   return {
-    notifications: computed(() => id ? notifications[id]?.[1] ?? 0 : 0),
+    notifications: computed(() => id ? notifications[id]?.[1].length ?? 0 : 0),
     disconnect,
     clearNotifications,
   }

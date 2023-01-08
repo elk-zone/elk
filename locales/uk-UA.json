@@ -141,7 +141,7 @@
     "edit": "Редагувати",
     "mention_account": "Згадати {0}",
     "mute_account": "Приховати {0}",
-    "mute_conversation": "Ігнорувати цю публікацію",
+    "mute_conversation": "Ігнорувати цей допис",
     "open_in_original_site": "Відкрити на оригінальному сайті",
     "pin_on_profile": "Закріпити на профілі",
     "share_post": "Поділіться цим дописом",
@@ -181,6 +181,16 @@
     "toggle_theme": "Змінити тему",
     "zen_mode": "Zen-режим"
   },
+  "notification": {
+    "favourited_post": "додали ваший допис до вибраного",
+    "followed_you": "підписались на вас",
+    "followed_you_count": "{followers} людей підписалися на вас|{followers} людина підписалися на вас|{followers} людини підписалися на вас|{followers} людей підписалися на вас",
+    "missing_type": "ВІДСУТНІЙ notification.type:",
+    "reblogged_post": "поширили ваш допис",
+    "request_to_follow": "попросили підписатися на вас",
+    "signed_up": "зареєструвалися",
+    "update_status": "оновили свою публікацію"
+  },
   "placeholder": {
     "content_warning": "Напишіть ваше попередження тут",
     "default_1": "Що у вас на думці?",
@@ -201,11 +211,13 @@
     "about": {
       "label": "Про нас"
     },
+    "account_settings": {
+      "description": "Відредагуйте налаштування облікового запису використовуєчи інтерфейс Mastodon",
+      "label": "Налаштування облікового запису"
+    },
     "feature_flags": {
       "github_cards": "GitHub картки",
-      "title": "Експериментальні налаштування",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
+      "title": "Експериментальні налаштування"
     },
     "interface": {
       "color_mode": "Кольорова тема",
@@ -226,6 +238,51 @@
       "display_language": "Мова інтерфейсу",
       "label": "Мова"
     },
+    "notifications": {
+      "label": "Сповіщення",
+      "notifications": {
+        "label": "Налаштування сповіщень"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Вподобання",
+          "follow": "Нові підписники",
+          "mention": "Згадки",
+          "poll": "Опитування",
+          "reblog": "Поширення вашого допису",
+          "title": "Які сповіщення отримувати?"
+        },
+        "description": "Отримуйте сповіщення, навіть якщо ви не використовуєте Elk.",
+        "instructions": "Не забудьте зберегти зміни за допомогою кнопки \"@:settings.notifications.push_notifications.save_settings{'\"'}!",
+        "label": "Налаштування push-сповіщень",
+        "policy": {
+          "all": "Від будь-кого",
+          "followed": "Людей, за якими я стежу",
+          "follower": "Людей, які слідкують за мною",
+          "none": "Ні від кого",
+          "title": "Від кого отримувати сповіщення?"
+        },
+        "save_settings": "Зберегти налаштування",
+        "subscription_error": {
+          "clear_error": "Очистити помилку",
+          "permission_denied": "У дозволі відмовлено: увімкніть сповіщення у своєму браузері.",
+          "request_error": "Під час запиту на підписку сталася помилка. Повторіть спробу, а якщо помилка не зникне, повідомте про проблему в репозиторій Elk.",
+          "title": "Не вдалося підписатися на push-сповіщення"
+        },
+        "undo_settings": "Скасувати зміни",
+        "unsubscribe": "Вимкнути push-сповіщення",
+        "unsupported": "Ваш браузер не підтримує push-сповіщення.",
+        "warning": {
+          "enable_close": "Закрити",
+          "enable_description": "Щоб отримувати сповіщення, коли Elk не відкрито, увімкніть push-сповіщення. Ви можете контролювати, які саме типи сповіщень генерують push-повідомлення, за допомогою кнопки \"@:settings.notifications.show_btn{'\"'} після ввімкнення.",
+          "enable_desktop": "Увімкнути push-повідомлення",
+          "enable_title": "Ніколи нічого не пропускайте",
+          "re_auth": "Здається, ваш сервер не підтримує push-повідомлення. Спробуйте вийти та увійти знову, якщо це повідомлення все одно з’являється, зверніться до адміністратора свого сервера."
+        }
+      },
+      "show_btn": "Перейти до налаштувань сповіщень"
+    },
+    "notifications_settings": "Сповіщення",
     "preferences": {
       "label": "Налаштування"
     },
@@ -235,6 +292,8 @@
         "description": "Редагувати аватар, ім'я, профіль, тощо.",
         "display_name": "Ім'я",
         "label": "Вигляд",
+        "profile_metadata": "Метадані профілю",
+        "profile_metadata_desc": "У вашому профілі можна відображати до 4 елементів у вигляді таблиці",
         "title": "Редагувати профіль"
       },
       "featured_tags": {
@@ -250,6 +309,37 @@
       "label": "Користувачі"
     }
   },
+  "state": {
+    "attachments_exceed_server_limit": "Кількість вкладених файлів перевищила ліміт на допис.",
+    "attachments_limit_error": "Перевищено максимальну кількість вкладень",
+    "edited": "(Відредаговано)",
+    "editing": "Редагування",
+    "loading": "Завантаження...",
+    "upload_failed": "Помилка завантаження",
+    "uploading": "Завантаження..."
+  },
+  "status": {
+    "edited": "Редаговано {0}",
+    "filter_hidden_phrase": "Відфільтровано",
+    "filter_removed_phrase": "Видалено фільтром",
+    "filter_show_anyway": "Показати все одно",
+    "img_alt": {
+      "desc": "Опис зображення",
+      "dismiss": "Закрити"
+    },
+    "poll": {
+      "count": "{0} голосів|{0} голос|{0} голоси|{0} голосів",
+      "ends": "завершується {0}",
+      "finished": "зевершилось {0}"
+    },
+    "reblogged": "{0} поширив",
+    "replying_to": "Відповідає {0}",
+    "show_full_thread": "Показати потік дописів",
+    "someone": "комусь",
+    "spoiler_show_less": "Показувати менше",
+    "spoiler_show_more": "Показати більше",
+    "try_original_site": "Спробуйте оригінальний сайт"
+  },
   "status_history": {
     "created": "створено {0}",
     "edited": "редаговано {0}"
@@ -263,6 +353,12 @@
     "notifications_mention": "Згадки",
     "posts": "Дописи",
     "posts_with_replies": "Дописи та відповіді"
+  },
+  "tag": {
+    "follow": "Стежити",
+    "follow_label": "Стежити за хештеґом {0}",
+    "unfollow": "Не стежити",
+    "unfollow_label": "Не стежити за хештеґом {0}"
   },
   "time_ago_options": {
     "day_future": "через {n} днів|через {n} день|через {n} дні|через {n} днів",

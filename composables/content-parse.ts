@@ -315,6 +315,8 @@ const _markdownReplacements: [RegExp, (c: (string | Node)[]) => Node][] = [
   [/\*(.*?)\*/g, c => h('em', null, c)],
   [/~~(.*?)~~/g, c => h('del', null, c)],
   [/`([^`]+?)`/g, c => h('code', null, c)],
+  // transform @username@twitter.com as links
+  [/(?:^|\b)@([a-zA-Z0-9_]+)@twitter\.com(?:$|\b)/gi, c => h('a', { href: `https://twitter.com/${c[0]}`, target: '_blank', class: 'mention external' }, `@${c[0]}@twitter.com`)],
 ]
 
 function _markdownProcess(value: string) {

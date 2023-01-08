@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { formatTimeAgo } from '@vueuse/core'
+import { useHumanReadableNumber } from '~/composables/i18n'
 
 const route = useRoute()
+const { formatNumber } = useHumanReadableNumber()
 
 let draftKey = $ref('home')
 
@@ -25,7 +27,7 @@ onMounted(() => {
     <div text-right h-8>
       <VDropdown v-if="nonEmptyDrafts.length" placement="bottom-end">
         <button btn-text flex="inline center">
-          Drafts ({{ nonEmptyDrafts.length }}) <div i-ri:arrow-down-s-line />
+          {{ $t('action.compose_drafts', 1523, { named: { v: formatNumber(1523) } }) }} <div i-ri:arrow-down-s-line />
         </button>
         <template #popper="{ hide }">
           <div flex="~ col">

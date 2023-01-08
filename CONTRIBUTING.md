@@ -141,6 +141,7 @@ This is the full list of entries that will be available for number formatting in
 - `account.followers_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
 - `account.following_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
 - `account.posts_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
+- `action.compose_drafts`: `{v}` for formatted number and `{n}` for raw number - **{v} should be use**
 - `notification.followed_you_count`: `{followers}` for formatted number and `{n}` for raw number - **{followers} should be use**
 - `status.poll.count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
 - `time_ago_options.*`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**: since numbers will be always small, we can also use `{n}`

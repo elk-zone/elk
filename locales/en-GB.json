@@ -46,6 +46,7 @@
     "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
+    "compose_drafts": "Drafts ({v})",
     "confirm": "Confirm",
     "edit": "Edit",
     "enter_app": "Enter App",

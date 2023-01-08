@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { clamp } from '@vueuse/core'
-import type { Attachment } from 'masto'
+import type { mastodon } from 'masto'
 
 const {
   attachment,
   fullSize = false,
 } = defineProps<{
-  attachment: Attachment
-  attachments?: Attachment[]
+  attachment: mastodon.v1.MediaAttachment
+  attachments?: mastodon.v1.MediaAttachment[]
   fullSize?: boolean
 }>()
 

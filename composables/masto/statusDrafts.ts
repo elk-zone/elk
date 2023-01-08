@@ -1,4 +1,4 @@
-import type { Account, CreateStatusParams, Status } from 'masto'
+import type { mastodon } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
@@ -10,7 +10,7 @@ export const builtinDraftKeys = [
   'home',
 ]
 
-export function getDefaultDraft(options: Partial<Mutable<CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
+export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
   const {
     attachments = [],
     initialText = '',
@@ -38,7 +38,7 @@ export function getDefaultDraft(options: Partial<Mutable<CreateStatusParams> & O
   }
 }
 
-export async function getDraftFromStatus(status: Status): Promise<Draft> {
+export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Draft> {
   return getDefaultDraft({
     status: await convertMastodonHTML(status.content),
     mediaIds: status.mediaAttachments.map(att => att.id),
@@ -54,7 +54,7 @@ function mentionHTML(acct: string) {
   return `<span data-type="mention" data-id="${acct}" contenteditable="false">@${acct}</span>`
 }
 
-export function getReplyDraft(status: Status) {
+export function getReplyDraft(status: mastodon.v1.Status) {
   const accountsToMention: string[] = []
   const userId = currentUser.value?.account.id
   if (status.account.id !== userId)
@@ -112,13 +112,13 @@ export function useDraft(
   return { draft, isEmpty }
 }
 
-export function mentionUser(account: Account) {
+export function mentionUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
   }), true)
 }
 
-export function directMessageUser(account: Account) {
+export function directMessageUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
     visibility: 'direct',

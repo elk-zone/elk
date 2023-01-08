@@ -20,7 +20,7 @@ const { data: status, pending, refresh: refreshStatus } = useAsyncData(
 const masto = useMasto()
 const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
   `context:${id}`,
-  async () => masto.statuses.fetchContext(id),
+  async () => masto.v1.statuses.fetchContext(id),
   { watch: [isMastoInitialised], immediate: isMastoInitialised.value },
 )
 

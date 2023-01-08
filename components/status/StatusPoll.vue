@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const { status } = defineProps<{
-  status: Status
+  status: mastodon.v1.Status
 }>()
 const poll = reactive({ ...status.poll! })
 
@@ -30,7 +30,7 @@ async function vote(e: Event) {
   poll.votersCount = (poll.votersCount || 0) + 1
   cacheStatus({ ...status, poll }, undefined, true)
 
-  await masto.poll.vote(poll.id, { choices })
+  await masto.v1.polls.vote(poll.id, { choices })
 }
 
 const votersCount = $computed(() => poll.votersCount ?? 0)

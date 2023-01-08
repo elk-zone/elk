@@ -1,7 +1,7 @@
 import { withoutProtocol } from 'ufo'
-import type { Account, Status } from 'masto'
+import type { mastodon } from 'masto'
 
-export function getAccountRoute(account: Account) {
+export function getAccountRoute(account: mastodon.v1.Account) {
   return useRouter().resolve({
     name: 'account-index',
     params: {
@@ -10,7 +10,7 @@ export function getAccountRoute(account: Account) {
     },
   })
 }
-export function getAccountFollowingRoute(account: Account) {
+export function getAccountFollowingRoute(account: mastodon.v1.Account) {
   return useRouter().resolve({
     name: 'account-following',
     params: {
@@ -19,7 +19,7 @@ export function getAccountFollowingRoute(account: Account) {
     },
   })
 }
-export function getAccountFollowersRoute(account: Account) {
+export function getAccountFollowersRoute(account: mastodon.v1.Account) {
   return useRouter().resolve({
     name: 'account-followers',
     params: {
@@ -29,7 +29,7 @@ export function getAccountFollowersRoute(account: Account) {
   })
 }
 
-export function getStatusRoute(status: Status) {
+export function getStatusRoute(status: mastodon.v1.Status) {
   return useRouter().resolve({
     name: 'status',
     params: {
@@ -50,11 +50,11 @@ export function getTagRoute(tag: string) {
   })
 }
 
-export function getStatusPermalinkRoute(status: Status) {
+export function getStatusPermalinkRoute(status: mastodon.v1.Status) {
   return status.url ? withoutProtocol(status.url) : null
 }
 
-export function getStatusInReplyToRoute(status: Status) {
+export function getStatusInReplyToRoute(status: mastodon.v1.Status) {
   return useRouter().resolve({
     name: 'status-by-id',
     params: {

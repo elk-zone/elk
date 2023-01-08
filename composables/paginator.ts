@@ -1,8 +1,8 @@
 import type { Paginator, WsEvents } from 'masto'
 import type { PaginatorState } from '~/types'
 
-export function usePaginator<T>(
-  paginator: Paginator<any, T[]>,
+export function usePaginator<T, P>(
+  paginator: Paginator<T[], P>,
   stream?: Promise<WsEvents>,
   eventType: 'notification' | 'update' = 'update',
   preprocess: (items: T[]) => T[] = (items: T[]) => items,

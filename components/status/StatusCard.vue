@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import type { FilterContext, Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const props = withDefaults(
   defineProps<{
-    status: Status
+    status: mastodon.v1.Status
     actions?: boolean
-    context?: FilterContext
+    context?: mastodon.v2.FilterContext
     hover?: boolean
     faded?: boolean
 
     // If we know the prev and next status in the timeline, we can simplify the card
-    older?: Status
-    newer?: Status
+    older?: mastodon.v1.Status
+    newer?: mastodon.v1.Status
     // Manual overrides
     hasOlder?: boolean
     hasNewer?: boolean
     // When looking into a detailed view of a post, we can simplify the replying badges
     // to the main expanded post
-    main?: Status
+    main?: mastodon.v1.Status
   }>(),
   { actions: true },
 )
@@ -63,7 +63,7 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
 // Content Filter logic
 const filterResult = $computed(() => status.filtered?.length ? status.filtered[0] : null)
-const filter = $computed(() => filterResult?.filter)
+const filter = $computed(() => filterResult?.filter as mastodon.v2.Filter)
 
 // a bit of a hack due to Filter being different in v1 and v2
 // clean up when masto.js supports explicit versions: https://github.com/neet/masto.js/issues/722

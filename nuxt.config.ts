@@ -41,10 +41,7 @@ export default defineNuxtConfig({
   ],
   alias: {
     'querystring': 'rollup-plugin-node-polyfills/polyfills/qs',
-    'masto/fetch': 'masto/fetch',
-    'masto': 'masto/fetch',
     'change-case': 'scule',
-    'semver': 'unenv/runtime/mock/empty',
   },
   imports: {
     dirs: [

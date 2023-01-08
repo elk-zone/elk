@@ -1,5 +1,5 @@
 import { login as loginMasto } from 'masto'
-import type { Account, AccountCredentials, Instance, MastoClient, WsEvents } from 'masto'
+import type { WsEvents, mastodon } from 'masto'
 import type { Ref } from 'vue'
 import type { RemovableRef } from '@vueuse/core'
 import type { ElkMasto, UserLogin } from '~/types'
@@ -40,7 +40,7 @@ const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLo
 }
 
 const users = await initializeUsers()
-const instances = useLocalStorage<Record<string, Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
+const instances = useLocalStorage<Record<string, mastodon.v2.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 
 export const currentUser = computed<UserLogin | undefined>(() => {
@@ -53,8 +53,8 @@ export const currentUser = computed<UserLogin | undefined>(() => {
   return users.value[0]
 })
 
-const publicInstance = ref<Instance | null>(null)
-export const currentInstance = computed<null | Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+const publicInstance = ref<mastodon.v2.Instance | null>(null)
+export const currentInstance = computed<null | mastodon.v2.Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
 
 export const publicServer = ref('')
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
@@ -91,7 +91,7 @@ if (process.client) {
 }
 
 export const currentUserHandle = computed(() => currentUser.value?.account.id
-  ? `${currentUser.value.account.acct}@${currentInstance.value?.uri || currentServer.value}`
+  ? `${currentUser.value.account.acct}@${currentInstance.value?.domain || currentServer.value}`
   : '[anonymous]',
 )
 
@@ -99,7 +99,7 @@ export const useUsers = () => users
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
-async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }) {
+async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: mastodon.v1.AccountCredentials }) {
   const route = useRoute()
   const router = useRouter()
   const server = user?.server || route.params.server as string || publicServer.value
@@ -107,29 +107,27 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
     url: `https://${server}`,
     accessToken: user?.token,
     disableVersionCheck: true,
-    // Suppress warning of `masto/fetch` usage
-    disableExperimentalWarning: true,
   })
 
   if (!user?.token) {
     publicServer.value = server
-    publicInstance.value = await masto.instances.fetch()
+    publicInstance.value = await masto.v2.instance.fetch()
   }
 
   else {
     try {
       const [me, instance, pushSubscription] = await Promise.all([
-        masto.accounts.verifyCredentials(),
-        masto.instances.fetch(),
+        masto.v1.accounts.verifyCredentials(),
+        masto.v2.instance.fetch(),
         // if PWA is not enabled, don't get push subscription
         useRuntimeConfig().public.pwaEnabled
           // we get 404 response instead empty data
-          ? masto.pushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
+          ? masto.v1.webPushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
           : Promise.resolve(undefined),
       ])
 
       if (!me.acct.includes('@'))
-        me.acct = `${me.acct}@${instance.uri}`
+        me.acct = `${me.acct}@${instance.domain}`
 
       user.account = me
       user.pushSubscription = pushSubscription
@@ -159,7 +157,7 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: AccountCr
   return masto
 }
 
-export function setAccountInfo(userId: string, account: AccountCredentials) {
+export function setAccountInfo(userId: string, account: mastodon.v1.AccountCredentials) {
   const index = getUsersIndexByUserId(userId)
   if (index === -1)
     return false
@@ -169,9 +167,9 @@ export function setAccountInfo(userId: string, account: AccountCredentials) {
 }
 
 export async function pullMyAccountInfo() {
-  const account = await useMasto().accounts.verifyCredentials()
+  const account = await useMasto().v1.accounts.verifyCredentials()
   if (!account.acct.includes('@'))
-    account.acct = `${account.acct}@${currentInstance.value!.uri}`
+    account.acct = `${account.acct}@${currentInstance.value!.domain}`
 
   setAccountInfo(currentUserId.value, account)
   cacheAccount(account, currentServer.value, true)
@@ -216,7 +214,7 @@ export async function removePushNotifications(user: UserLogin) {
 
   // unsubscribe push notifications
   try {
-    await useMasto().pushSubscriptions.remove()
+    await useMasto().v1.webPushSubscriptions.remove()
   }
   catch {
     // ignore
@@ -274,7 +272,7 @@ export const useNotifications = () => {
     if (!isMastoInitialised.value || !id || notifications[id] || !currentUser.value?.token)
       return
 
-    const stream = masto.stream.streamUser()
+    const stream = masto.v1.stream.streamUser()
     notifications[id] = [stream, 0]
     ;(await stream).on('notification', () => {
       if (notifications[id])
@@ -330,13 +328,13 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
 /**
  * Clear all storages for the given account
  */
-export function clearUserLocalStorage(account?: Account) {
+export function clearUserLocalStorage(account?: mastodon.v1.Account) {
   if (!account)
     account = currentUser.value?.account
   if (!account)
     return
 
-  const id = `${account.acct}@${currentInstance.value?.uri || currentServer.value}`
+  const id = `${account.acct}@${currentInstance.value?.domain || currentServer.value}`
   // @ts-expect-error bind value to the function
   ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>>).forEach((storage) => {
     if (storage.value[id])
@@ -345,8 +343,8 @@ export function clearUserLocalStorage(account?: Account) {
 }
 
 export const createMasto = () => {
-  const api = shallowRef<MastoClient | null>(null)
-  const apiPromise = ref<Promise<MastoClient> | null>(null)
+  const api = shallowRef<mastodon.Client | null>(null)
+  const apiPromise = ref<Promise<mastodon.Client> | null>(null)
   const initialised = computed(() => !!api.value)
 
   const masto = new Proxy({} as ElkMasto, {
@@ -355,7 +353,7 @@ export const createMasto = () => {
         return initialised
 
       if (key === 'loginTo') {
-        return (...args: any[]): Promise<MastoClient> => {
+        return (...args: any[]): Promise<mastodon.Client> => {
           return apiPromise.value = loginTo(...args).then((r) => {
             api.value = r
             return masto
@@ -370,7 +368,7 @@ export const createMasto = () => {
       }
 
       if (api.value && key in api.value)
-        return api.value[key as keyof MastoClient]
+        return api.value[key as keyof mastodon.Client]
 
       if (!api.value) {
         return new Proxy({}, {

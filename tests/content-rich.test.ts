@@ -2,7 +2,7 @@
  * @vitest-environment jsdom
  */
 /* eslint-disable vue/one-component-per-file */
-import type { Emoji } from 'masto'
+import type { mastodon } from 'masto'
 import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
@@ -54,7 +54,7 @@ describe('content-rich', () => {
   })
 })
 
-async function render(content: string, emojis?: Record<string, Emoji>) {
+async function render(content: string, emojis?: Record<string, mastodon.v1.CustomEmoji>) {
   const vnode = contentToVNode(content, { emojis })
   const html = (await renderToString(vnode))
     .replace(/<!--[\[\]]-->/g, '')

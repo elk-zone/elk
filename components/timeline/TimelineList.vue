@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 defineProps<{
-  timelines: Status[]
+  timelines: mastodon.v1.Status[]
 }>()
 </script>
 

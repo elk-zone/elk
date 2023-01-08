@@ -14,7 +14,7 @@ function click() {
 <template>
   <article flex flex-col relative>
     <template v-if="notification.type === 'follow'">
-      <NuxtLink :to="getAccountRoute(notification.account)" @click.capture="click">
+      <NuxtLink :to="getAccountRoute(notification.account)" @click="click">
         <div
           flex items-center absolute
           ps-3 pe-4 inset-is-0

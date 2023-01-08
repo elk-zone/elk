@@ -6,6 +6,7 @@ interface RestoreScroll {
   id: string
   type: 'status' | 'follow'
 }
+
 export default defineNuxtPlugin(() => {
   const lastStatus = useSessionStorage<Record<string, RestoreScroll>>(STORAGE_KEY_LAST_SCROLL_POSITION, {})
   return {
@@ -20,7 +21,7 @@ export default defineNuxtPlugin(() => {
             ? document.getElementById(`status-${restore.id}`)
             : document.querySelector(`a[href="${restore.id}"]`)
           if (el)
-            nextTick().then(() => el?.scrollIntoView())
+            el.scrollIntoView()
           else
             delete lastStatus.value[useRoute().fullPath]
         }

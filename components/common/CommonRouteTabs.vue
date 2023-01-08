@@ -15,6 +15,7 @@ const { options, command, replace, preventScrollTop = false } = $defineProps<{
 }>()
 
 const router = useRouter()
+const nuxtApp = useNuxtApp()
 
 useCommands(() => command
   ? options.map(tab => ({
@@ -24,7 +25,15 @@ useCommands(() => command
     icon: tab.icon ?? 'i-ri:file-list-2-line',
     onActivate: () => router.replace(tab.to),
   }))
-  : [])
+  : [],
+)
+
+const handleClick = (to: RouteLocationRaw) => {
+  if (preventScrollTop || nuxtApp.$preventScrollToTop(router.resolve(to).fullPath))
+    return
+
+  nuxtApp.$scrollToTop()
+}
 </script>
 
 <template>
@@ -41,7 +50,7 @@ useCommands(() => command
         tabindex="1"
         hover:bg-active transition-100
         exact-active-class="children:(text-secondary !border-primary !op100 !text-base)"
-        @click="!preventScrollTop && $scrollToTop()"
+        @click="handleClick(option.to)"
       >
         <span ws-nowrap mxa sm:px2 sm:py3 xl:pb4 xl:pt5 py2 text-center border-b-3 text-secondary-light hover:text-secondary border-transparent>{{ option.display }}</span>
       </NuxtLink>

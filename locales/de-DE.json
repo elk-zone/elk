@@ -157,7 +157,8 @@
     "feature_flags": {
       "github_cards": "GitHub-Karten",
       "title": "Experimentelle Funktionen",
-      "user_picker": "Benutzerauswahl"
+      "user_picker": "Benutzerauswahl",
+      "virtual_scroll": "Virtuelles Scrollen"
     },
     "interface": {
       "color_mode": "Farbschema",

@@ -2,12 +2,14 @@ import type { Ref } from 'vue'
 import { userSettings } from '.'
 
 export interface FeatureFlags {
+  experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
 }
 export type FeatureFlagsMap = Record<string, FeatureFlags>
 
 const DEFAULT_FEATURE_FLAGS: FeatureFlags = {
+  experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,
 }

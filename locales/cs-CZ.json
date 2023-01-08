@@ -145,7 +145,8 @@
   "settings": {
     "feature_flags": {
       "github_cards": "GitHub Cards",
-      "user_picker": "User Picker"
+      "user_picker": "User Picker",
+      "virtual_scroll": "Virtual Scrolling"
     }
   },
   "state": {

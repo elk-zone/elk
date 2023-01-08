@@ -243,7 +243,8 @@
     "feature_flags": {
       "github_cards": "GitHub Cards",
       "title": "Experimental Features",
-      "user_picker": "User Picker"
+      "user_picker": "User Picker",
+      "virtual_scroll": "Virtual Scrolling"
     },
     "interface": {
       "color_mode": "Color Mode",

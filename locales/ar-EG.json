@@ -184,7 +184,8 @@
     "feature_flags": {
       "github_cards": "GitHub بطاقات",
       "title": "الميزات التجريبية",
-      "user_picker": "الشريط الجانبي لمبدل المستخدم"
+      "user_picker": "الشريط الجانبي لمبدل المستخدم",
+      "virtual_scroll": "التمرير الافتراضي"
     },
     "interface": {
       "color_mode": "وضع اللون",

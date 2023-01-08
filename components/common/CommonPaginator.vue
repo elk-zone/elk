@@ -8,12 +8,14 @@ const {
   paginator,
   stream,
   keyProp = 'id',
+  virtualScroller = false,
   eventType = 'update',
   buffer = 10,
   preprocess,
 } = defineProps<{
   paginator: Paginator<T[], O>
   keyProp?: keyof T
+  virtualScroller?: boolean
   stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
   // When preprocess is used, buffer is the number of items that will be hidden
@@ -52,23 +54,36 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
   <div>
     <slot v-if="prevItems.length" name="updater" v-bind="{ number: prevItems.length, update }" />
     <slot name="items" :items="items">
-      <DynamicScroller
-        v-slot="{ item, active, index }"
-        :items="items"
-        :min-item-size="200"
-        :key-field="keyProp"
-        page-mode
-      >
+      <template v-if="virtualScroller">
+        <DynamicScroller
+          v-slot="{ item, active, index }"
+          :items="items"
+          :min-item-size="200"
+          :key-field="keyProp"
+          page-mode
+        >
+          <slot
+            :key="item[keyProp]"
+            :item="item"
+            :active="active"
+            :older="items[index + 1]"
+            :newer="items[index - 1]"
+            :index="index"
+            :items="items"
+          />
+        </DynamicScroller>
+      </template>
+      <template v-else>
         <slot
-          :key="item[keyProp]"
+          v-for="item, index of items"
+          :key="(item as any)[keyProp]"
           :item="item"
-          :active="active"
           :older="items[index + 1]"
           :newer="items[index - 1]"
           :index="index"
           :items="items"
         />
-      </DynamicScroller>
+      </template>
     </slot>
     <div ref="endAnchor" />
     <slot v-if="state === 'loading'" name="loading">

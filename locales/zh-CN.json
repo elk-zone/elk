@@ -326,6 +326,7 @@
       "finished": "已在 {0} 结束"
     },
     "reblogged": "{0} 转发了",
+    "replying_to": "回复{0}",
     "someone": "某人",
     "spoiler_show_less": "隐藏",
     "spoiler_show_more": "显示更多",

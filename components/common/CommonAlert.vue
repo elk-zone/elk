@@ -20,7 +20,7 @@ function close() {
     <div>
       <slot />
     </div>
-    <button text-xl hover:text-primary bg-hover-overflow w-1.4em h-1.4em @click="close()">
+    <button text-xl hover:text-primary bg-hover-overflow w="1.4em" h="1.4em" @click="close()">
       <div i-ri:close-line />
     </button>
   </div>

@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '~/modules/purge-comments',
     '~/modules/setup-components',
-    '~/modules/build-info',
+    '~/modules/build-env',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/tauri/index',
   ],

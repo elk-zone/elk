@@ -181,6 +181,13 @@ defineExpose({
     editor.value?.commands?.focus?.()
   },
 })
+
+const isPublishDisabled = computed(() => {
+  if (isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status))
+    return true
+
+  return false
+})
 </script>
 
 <template>
@@ -345,14 +352,31 @@ defineExpose({
           </template>
         </PublishVisibilityPicker>
 
-        <button
-          btn-solid rounded-3 text-sm w-full md:w-fit
-          :disabled="isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status)"
-          @click="publish"
-        >
-          {{ !draft.editingStatus ? $t('action.publish') : $t('action.save_changes') }}
-        </button>
+        <CommonTooltip id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')" :disabled="!isPublishDisabled">
+          <button
+            btn-solid rounded-3 text-sm w-full
+            md:w-fit
+            class="publish-button"
+            :aria-disabled="isPublishDisabled"
+            aria-describedby="publish-tooltip"
+            @click="publish"
+          >
+            {{ !draft.editingStatus ? $t('action.publish') : $t('action.save_changes') }}
+          </button>
+        </CommonTooltip>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+  .publish-button[aria-disabled=true] {
+    cursor: not-allowed;
+    background-color: var(--c-bg-btn-disabled);
+    color: var(--c-text-btn-disabled);
+  }
+  .publish-button[aria-disabled=true]:hover {
+    background-color: var(--c-bg-btn-disabled);
+    color: var(--c-text-btn-disabled);
+  }
+</style>

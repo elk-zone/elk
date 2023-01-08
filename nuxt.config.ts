@@ -11,6 +11,10 @@ export default defineNuxtConfig({
   typescript: {
     tsConfig: {
       exclude: ['../service-worker'],
+      vueCompilerOptions: {
+        jsxTemplates: true,
+        experimentalRfc436: true,
+      },
     },
   },
   modules: [

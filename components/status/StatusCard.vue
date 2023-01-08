@@ -107,7 +107,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
         :is-self-reply="isSelfReply"
         :class="faded ? 'text-secondary-light' : ''"
       />
-      <div flex="~ col gap-1" items-center absolute top-0 left-0 w-20.5 z--1>
+      <div flex="~ col gap-1" items-center pos="absolute top-0 left-0" w-20.5 z--1>
         <template v-if="showReplyTo">
           <div w-1px h-0.5 border="x base" mt-3 />
           <div w-1px h-0.5 border="x base" />
@@ -120,7 +120,12 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
     <!-- Reblog status & Meta -->
     <div flex="~ col" justify-between>
       <slot name="meta">
-        <div v-if="rebloggedBy && !collapseRebloggedBy" relative text-secondary ws-nowrap flex="~" items-center pt1 pb0.5 px-1px>
+        <div
+          v-if="rebloggedBy && !collapseRebloggedBy"
+          flex="~" items-center
+          p="t-1 b-0.5 x-1px"
+          relative text-secondary ws-nowrap
+        >
           <div i-ri:repeat-fill me-46px text-primary w-16px h-16px />
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">

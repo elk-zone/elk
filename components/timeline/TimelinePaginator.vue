@@ -9,7 +9,7 @@ const { paginator, stream, account } = defineProps<{
   stream?: Promise<WsEvents>
   context?: mastodon.v2.FilterContext
   account?: mastodon.v1.Account
-  preprocess?: (items: any[]) => any[]
+  preprocess?: (items: mastodon.v1.Status[]) => mastodon.v1.Status[]
 }>()
 
 const { formatNumber } = useHumanReadableNumber()

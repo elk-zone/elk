@@ -1,11 +1,9 @@
-import { createResolver } from '@nuxt/kit'
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
+import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
-import { isPreview } from './config/env'
-
-const { resolve } = createResolver(import.meta.url)
+import type { BuildInfo } from './types'
 
 export default defineNuxtConfig({
   typescript: {
@@ -26,7 +24,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '~/modules/purge-comments',
     '~/modules/setup-components',
-    '~/modules/build-info',
+    '~/modules/build-env',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/tauri/index',
   ],
@@ -93,7 +91,8 @@ export default defineNuxtConfig({
       inviteToken: '',
     },
     public: {
-      env: '', // set in build-info module
+      env: '', // set in build-env module
+      buildInfo: {} as BuildInfo, // set in build-env module
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
       translateApi: '',
       defaultServer: 'mas.to',
@@ -112,9 +111,6 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
-    publicAssets: [
-      ...(!isCI || isPreview ? [{ dir: resolve('./public-dev') }] : []),
-    ],
     prerender: {
       crawlLinks: false,
       routes: ['/'],

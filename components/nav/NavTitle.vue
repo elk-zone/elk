@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { buildInfo } from 'virtual:build-info'
-
-const { env } = buildInfo
+const { env } = useBuildInfo()
 </script>
 
 <template>

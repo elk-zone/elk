@@ -38,8 +38,9 @@ const toggleBlockDomain = async () => {
 const toggleReblogs = async () => {
   // TODO: Add confirmation
 
-  Object.assign(relationship!, { ...relationship, showingReblogs: !relationship?.showingReblogs })
-  await masto.accounts.follow(account.id, { reblogs: !relationship?.showingReblogs })
+  const shouldShowReblogs = !relationship?.showingReblogs
+  await masto.accounts.follow(account.id, { reblogs: shouldShowReblogs })
+  Object.assign(relationship!, { ...relationship, showingReblogs: shouldShowReblogs })
 }
 </script>
 

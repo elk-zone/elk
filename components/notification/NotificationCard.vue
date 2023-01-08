@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Notification } from 'masto'
+import type { mastodon } from 'masto'
 
 const { notification } = defineProps<{
-  notification: Notification
+  notification: mastodon.v1.Notification
 }>()
 
 const nuxt = useNuxtApp()

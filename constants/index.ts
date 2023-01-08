@@ -1,7 +1,6 @@
 export const APP_NAME = 'Elk'
 
 export const DEFAULT_POST_CHARS_LIMIT = 500
-export const DEFAULT_SERVER = 'mas.to'
 export const DEFAULT_FONT_SIZE = 'md'
 
 export const STORAGE_KEY_DRAFTS = 'elk-drafts'

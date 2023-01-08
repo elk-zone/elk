@@ -1,26 +1,26 @@
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 
-export function getDisplayName(account?: Account, options?: { rich?: boolean }) {
+export function getDisplayName(account?: mastodon.v1.Account, options?: { rich?: boolean }) {
   const displayName = account?.displayName || account?.username || ''
   if (options?.rich)
     return displayName
   return displayName.replace(/:([\w-]+?):/g, '')
 }
 
-export function getShortHandle({ acct }: Account) {
+export function getShortHandle({ acct }: mastodon.v1.Account) {
   if (!acct)
     return ''
   return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
 }
 
-export function getServerName(account: Account) {
+export function getServerName(account: mastodon.v1.Account) {
   if (account.acct?.includes('@'))
     return account.acct.split('@')[1]
   // We should only lack the server name if we're on the same server as the account
-  return currentInstance.value?.uri || ''
+  return currentInstance.value?.domain || ''
 }
 
-export function getFullHandle(account: Account) {
+export function getFullHandle(account: mastodon.v1.Account) {
   const handle = `@${account.acct}`
   if (!currentUser.value || account.acct.includes('@'))
     return handle
@@ -36,16 +36,16 @@ export function toShortHandle(fullHandle: string) {
   return fullHandle
 }
 
-export function extractAccountHandle(account: Account) {
+export function extractAccountHandle(account: mastodon.v1.Account) {
   let handle = getFullHandle(account).slice(1)
-  const uri = currentInstance.value?.uri ?? currentServer.value
+  const uri = currentInstance.value?.domain ?? currentServer.value
   if (currentInstance.value && handle.endsWith(`@${uri}`))
     handle = handle.slice(0, -uri.length - 1)
 
   return handle
 }
 
-export function useAccountHandle(account: Account, fullServer = true) {
+export function useAccountHandle(account: mastodon.v1.Account, fullServer = true) {
   return computed(() => fullServer
     ? getFullHandle(account)
     : getShortHandle(account),

@@ -2,11 +2,11 @@ import type { MaybeComputedRef, MaybeRef, UseTimeAgoOptions } from '@vueuse/core
 
 const formatter = Intl.NumberFormat()
 
-export const formattedNumber = (num: number, useFormatter: Intl.NumberFormat = formatter) => {
+export function formattedNumber(num: number, useFormatter: Intl.NumberFormat = formatter) {
   return useFormatter.format(num)
 }
 
-export const useHumanReadableNumber = () => {
+export function useHumanReadableNumber() {
   const { n, locale } = useI18n()
 
   const fn = (num: number) => {
@@ -29,10 +29,8 @@ export const useHumanReadableNumber = () => {
   }
 }
 
-export const useFormattedDateTime = (
-  value: MaybeComputedRef<string | number | Date | undefined | null>,
-  options: Intl.DateTimeFormatOptions = { dateStyle: 'long', timeStyle: 'medium' },
-) => {
+export function useFormattedDateTime(value: MaybeComputedRef<string | number | Date | undefined | null>,
+  options: Intl.DateTimeFormatOptions = { dateStyle: 'long', timeStyle: 'medium' }) {
   const { locale } = useI18n()
   const formatter = $computed(() => Intl.DateTimeFormat(locale.value, options))
   return computed(() => {
@@ -41,7 +39,7 @@ export const useFormattedDateTime = (
   })
 }
 
-export const useTimeAgoOptions = (short = false): UseTimeAgoOptions<false> => {
+export function useTimeAgoOptions(short = false): UseTimeAgoOptions<false> {
   const { d, t, n: fnf, locale } = useI18n()
   const prefix = short ? 'short_' : ''
 
@@ -56,7 +54,7 @@ export const useTimeAgoOptions = (short = false): UseTimeAgoOptions<false> => {
   return {
     rounding: 'floor',
     showSecond: !short,
-    updateInterval: short ? 60_000 : 1_000,
+    updateInterval: short ? 60000 : 1000,
     messages: {
       justNow: t('time_ago_options.just_now'),
       // just return the value

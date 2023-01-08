@@ -11,6 +11,10 @@ export default defineNuxtConfig({
   typescript: {
     tsConfig: {
       exclude: ['../service-worker'],
+      vueCompilerOptions: {
+        jsxTemplates: true,
+        experimentalRfc436: true,
+      },
     },
   },
   modules: [
@@ -41,10 +45,7 @@ export default defineNuxtConfig({
   ],
   alias: {
     'querystring': 'rollup-plugin-node-polyfills/polyfills/qs',
-    'masto/fetch': 'masto/fetch',
-    'masto': 'masto/fetch',
     'change-case': 'scule',
-    'semver': 'unenv/runtime/mock/empty',
   },
   imports: {
     dirs: [
@@ -95,6 +96,7 @@ export default defineNuxtConfig({
       env: '', // set in build-info module
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
       translateApi: '',
+      defaultServer: 'mas.to',
     },
     storage: {
       driver: isCI ? 'cloudflare' : 'fs',

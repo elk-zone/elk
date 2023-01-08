@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const props = defineProps<{
-  status: Status
+  status: mastodon.v1.Status
   details?: boolean
   command?: boolean
 }>()
@@ -25,14 +25,10 @@ const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumbe
 const reply = () => {
   if (!checkLogin())
     return
-
-  if (details) {
+  if (details)
     focusEditor()
-  }
-  else {
-    nuxtApp.$rememberStatusPosition(status)
-    navigateTo({ path: getStatusRoute(status).href, state: { focusReply: true } })
-  }
+  else
+    navigateToStatus({ status, focusReply: true })
 }
 </script>
 

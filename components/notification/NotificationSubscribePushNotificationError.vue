@@ -31,7 +31,7 @@ const { modelValue } = defineModel<{
           :aria-label="$t('settings.notifications.push_notifications.subscription_error.clear_error')"
           @click="modelValue = false"
         >
-          <span aria-hidden="true" w-1.75em h-1.75em i-ri:close-line />
+          <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
         </button>
       </CommonTooltip>
     </head>

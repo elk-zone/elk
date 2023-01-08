@@ -159,6 +159,17 @@ em-emoji-picker {
   .custom-emoji {
     margin: 0 0.2em;
   }
+
+  p {
+    --at-apply: my-0;
+    line-height: calc(4 / 3 * 1em);
+  }
+  p:first-child {
+    --at-apply: mt-1;
+  }
+  p:last-child {
+    --at-apply: mb-1;
+  }
 }
 
 .skeleton-loading-bg {

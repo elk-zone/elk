@@ -13,12 +13,13 @@ const showHistory = (edit: mastodon.v1.StatusEdit) => {
 }
 const timeAgoOptions = useTimeAgoOptions()
 
+// TODO: rework, this is only reversing the first page of edits
 const reverseHistory = (items: mastodon.v1.StatusEdit[]) =>
   [...items].reverse()
 </script>
 
 <template>
-  <CommonPaginator :paginator="paginator" key-prop="createdAt" :preprocess="reverseHistory">
+  <CommonPaginator :paginator="paginator" key-prop="createdAt" :preprocess="reverseHistory" :buffer="0">
     <template #default="{ items, item, index }">
       <CommonDropdownItem
         px="0.5"

@@ -38,7 +38,7 @@ const reply = () => {
         :content="$t('action.reply')"
         :text="status.repliesCount || ''"
         color="text-blue" hover="text-blue" group-hover="bg-blue/10"
-        icon="i-ri:chat-3-line"
+        icon="i-ri:chat-1-line"
         :command="command"
         @click="reply"
       >

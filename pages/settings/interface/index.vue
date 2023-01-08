@@ -4,6 +4,8 @@ const { t } = useI18n()
 useHeadFixed({
   title: () => `${t('settings.interface.label')} | ${t('nav.settings')}`,
 })
+
+const colorMode = useColorMode()
 </script>
 
 <template>
@@ -24,7 +26,7 @@ useHeadFixed({
         </p>
         <SettingsColorMode />
       </div>
-      <div space-y-2>
+      <div v-if="colorMode.value === 'custom'" space-y-2>
         <p font-medium>
           Custom colors
         </p>

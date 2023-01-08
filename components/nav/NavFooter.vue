@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { buildInfo } from 'virtual:build-info'
-
+const buildInfo = useRuntimeConfig().public.buildInfo
 const timeAgoOptions = useTimeAgoOptions()
 
 const buildTimeDate = new Date(buildInfo.time)

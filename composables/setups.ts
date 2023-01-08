@@ -1,9 +1,9 @@
 import type { Directions } from 'vue-i18n-routing'
-import { buildInfo } from 'virtual:build-info'
 import type { LocaleObject } from '#i18n'
 
 export function setupPageHeader() {
   const { locale, locales, t } = useI18n()
+  const buildInfo = useBuildInfo()
 
   const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
     acc[l.code!] = l.dir ?? 'auto'

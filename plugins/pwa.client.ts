@@ -31,6 +31,7 @@ export default defineNuxtPlugin(() => {
       registrationError.value = true
     },
     onRegisteredSW(swUrl, r) {
+      // should add support in pwa plugin
       if (r?.active?.state === 'activated') {
         swActivated.value = true
         registerPeriodicSync(swUrl, r)
@@ -38,8 +39,6 @@ export default defineNuxtPlugin(() => {
       else if (r?.installing) {
         r.installing.addEventListener('statechange', (e) => {
           const sw = e.target as ServiceWorker
-          // eslint-disable-next-line no-console
-          console.log(sw.state)
           swActivated.value = sw.state === 'activated'
           if (swActivated.value)
             registerPeriodicSync(swUrl, r)

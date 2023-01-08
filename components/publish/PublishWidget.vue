@@ -136,7 +136,7 @@ async function publish() {
     ...draft.params,
     status: htmlToText(draft.params.status || ''),
     mediaIds: draft.attachments.map(a => a.id),
-    ...(masto.version.includes('+glitch') ? { 'content-type': 'text/markdown' } : {}),
+    ...((masto.config as any).props.version.raw.includes('+glitch') ? { 'content-type': 'text/markdown' } : {}),
   } as mastodon.v1.CreateStatusParams
 
   if (process.dev) {

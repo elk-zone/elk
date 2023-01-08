@@ -88,7 +88,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           <NuxtLink
             v-if="isSelf"
             to="/settings/profile/appearance"
-            gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1
+            gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
             hover="border-primary text-primary bg-active"
           >
             {{ $t('settings.profile.appearance.title') }}

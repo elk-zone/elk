@@ -253,7 +253,7 @@ defineExpose({
                 :aria-label="$t('action.clear_upload_failed')"
                 @click="failed = []"
               >
-                <span aria-hidden="true" w-1.75em h-1.75em i-ri:close-line />
+                <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
               </button>
             </CommonTooltip>
           </head>
@@ -315,7 +315,7 @@ defineExpose({
 
         <div flex-auto />
 
-        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap-0.5 :class="{ 'text-rose-500': characterCount > characterLimit }">
+        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap="0.5" :class="{ 'text-rose-500': characterCount > characterLimit }">
           {{ characterCount ?? 0 }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
         </div>
 

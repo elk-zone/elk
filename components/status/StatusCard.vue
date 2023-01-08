@@ -100,7 +100,7 @@ const isDM = $computed(() => status.visibility === 'direct')
     <div v-if="newer && !directReply" w-auto h-1px bg-border />
     <div flex justify-between>
       <slot name="meta">
-        <div v-if="rebloggedBy && !collapseRebloggedBy" relative text-secondary ws-nowrap flex="~" items-center pt1 pb0.5 px-1px bg-base>
+        <div v-if="rebloggedBy && !collapseRebloggedBy" relative text-secondary ws-nowrap flex="~" items-center pt1 pb="0.5" px-1px bg-base>
           <div i-ri:repeat-fill me-46px text-primary w-16px h-16px />
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">

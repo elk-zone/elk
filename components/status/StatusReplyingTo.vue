@@ -21,7 +21,7 @@ const account = isSelf ? computed(() => status.account) : useAccountById(status.
     :title=" $t('status.replying_to', [account ? getDisplayName(account) : $t('status.someone')])"
   >
     <template v-if="isSelfReply">
-      <span btn-text p0 mb-1>Show Full thread</span>
+      <span btn-text p0 mb-1>{{ $t('status.show_full_thread') }}</span>
     </template>
     <template v-else>
       <div i-ri-chat-1-line />

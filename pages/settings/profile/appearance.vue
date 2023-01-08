@@ -5,8 +5,6 @@ import { parse } from 'ultrahtml'
 
 definePageMeta({
   middleware: 'auth',
-  // Keep alive the form page will reduce raw data timeliness and its status timeliness
-  keepalive: false,
 })
 
 const { t } = useI18n()
@@ -51,13 +49,8 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
   },
 })
 
-onMastoInit(async () => {
-  // Keep the information to be edited up to date
-  await pullMyAccountInfo()
-  reset()
-})
-
-const isCanSubmit = computed(() => !isError.value && !isEmptyObject(dirtyFields.value))
+const isDirty = $computed(() => !isEmptyObject(dirtyFields.value))
+const isCanSubmit = computed(() => !isError.value && isDirty)
 
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
@@ -76,6 +69,16 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   setAccountInfo(account!.id, res.account)
   reset()
 })
+
+const refreshInfo = async () => {
+  // Keep the information to be edited up to date
+  await pullMyAccountInfo()
+  if (!isDirty)
+    reset()
+}
+
+onMastoInit(refreshInfo)
+onReactivated(refreshInfo)
 </script>
 
 <template>
@@ -107,15 +110,16 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
             rounded-full border="bg-base 4"
             w="sm:30 24" min-w="sm:30 24" h="sm:30 24"
           />
-          <div flex="~ col gap1" self-end>
-            <AccountDisplayName
-              :account="{ ...account, displayName: form.displayName }"
-              font-bold sm:text-2xl text-xl
-            />
-            <AccountHandle :account="account" />
-          </div>
         </div>
         <CommonCropImage v-model="form.avatar" />
+
+        <div px4>
+          <AccountDisplayName
+            :account="{ ...account, displayName: form.displayName }"
+            font-bold sm:text-2xl text-xl
+          />
+          <AccountHandle :account="account" />
+        </div>
       </div>
 
       <div px4 py3 space-y-5>

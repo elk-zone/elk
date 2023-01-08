@@ -107,13 +107,13 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
         :is-self-reply="isSelfReply"
         :class="faded ? 'text-secondary-light' : ''"
       />
-      <div flex="~ col gap-1" items-center pos="absolute top-0 left-0" w-20.5 z--1>
+      <div flex="~ col gap-1" items-center pos="absolute top-0 left-0" w="20.5" z--1>
         <template v-if="showReplyTo">
-          <div w-1px h-0.5 border="x base" mt-3 />
-          <div w-1px h-0.5 border="x base" />
-          <div w-1px h-0.5 border="x base" />
+          <div w="1px" h="0.5" border="x base" mt-3 />
+          <div w="1px" h="0.5" border="x base" />
+          <div w="1px" h="0.5" border="x base" />
         </template>
-        <div w-1px h-10 border="x base" />
+        <div w="1px" h-10 border="x base" />
       </div>
     </template>
 

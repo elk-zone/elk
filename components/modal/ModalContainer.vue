@@ -5,6 +5,7 @@ import {
   isCommandPanelOpen,
   isConfirmDialogOpen,
   isEditHistoryDialogOpen,
+  isFavouritedBoostedByDialogOpen,
   isMediaPreviewOpen,
   isPreviewHelpOpen,
   isPublishDialogOpen,
@@ -43,6 +44,10 @@ const handleConfirmChoice = (choice: ConfirmDialogChoice) => {
   confirmDialogChoice.value = choice
   isConfirmDialogOpen.value = false
 }
+
+const handleFavouritedBoostedByClose = () => {
+  isFavouritedBoostedByDialogOpen.value = false
+}
 </script>
 
 <template>
@@ -80,6 +85,13 @@ const handleConfirmChoice = (choice: ConfirmDialogChoice) => {
     </ModalDialog>
     <ModalDialog v-model="isConfirmDialogOpen" py-4 px-8 max-w-125>
       <ModalConfirm v-if="confirmDialogLabel" v-bind="confirmDialogLabel" @choice="handleConfirmChoice" />
+    </ModalDialog>
+    <ModalDialog
+      v-model="isFavouritedBoostedByDialogOpen"
+      max-w-180
+      @close="handleFavouritedBoostedByClose"
+    >
+      <StatusFavouritedBoostedBy />
     </ModalDialog>
   </template>
 </template>

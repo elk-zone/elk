@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 
 // Avatar with a background base achieving a 3px border to be used in status cards
 // The border is used for Avatar on Avatar for reblogs and connecting replies
 
 defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   square?: boolean
 }>()
 </script>

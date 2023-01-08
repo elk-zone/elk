@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = useMasto().accounts.iterateStatuses(currentUser.value!.account.id, { pinned: true })
+const paginator = useMasto().v1.accounts.listStatuses(currentUser.value!.account.id, { pinned: true })
 </script>
 
 <template>

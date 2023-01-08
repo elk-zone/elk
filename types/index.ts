@@ -36,13 +36,13 @@ export interface ServerInfo extends mastodon.v1.Instance {
 export interface GroupedNotifications {
   id: string
   type: Exclude<string, 'grouped-reblogs-and-favourites'>
-  items: Notification[]
+  items: mastodon.v1.Notification[]
 }
 
 export interface GroupedAccountLike {
   account: mastodon.v1.Account
-  favourite?: Notification
-  reblog?: Notification
+  favourite?: mastodon.v1.Notification
+  reblog?: mastodon.v1.Notification
 }
 
 export interface GroupedLikeNotifications {
@@ -52,7 +52,7 @@ export interface GroupedLikeNotifications {
   likes: GroupedAccountLike[]
 }
 
-export type NotificationSlot = GroupedNotifications | GroupedLikeNotifications | Notification
+export type NotificationSlot = GroupedNotifications | GroupedLikeNotifications | mastodon.v1.Notification
 
 export type TranslateFn = ReturnType<typeof useI18n>['t']
 

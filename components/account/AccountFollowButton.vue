@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Account, Relationship } from 'masto'
+import type { mastodon } from 'masto'
 
 const { account, command, ...props } = defineProps<{
-  account: Account
-  relationship?: Relationship
+  account: mastodon.v1.Account
+  relationship?: mastodon.v1.Relationship
   command?: boolean
 }>()
 
@@ -15,7 +15,7 @@ const masto = useMasto()
 async function toggleFollow() {
   relationship!.following = !relationship!.following
   try {
-    const newRel = await masto.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+    const newRel = await masto.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -27,7 +27,7 @@ async function toggleFollow() {
 async function unblock() {
   relationship!.blocking = false
   try {
-    const newRel = await masto.accounts.unblock(account.id)
+    const newRel = await masto.v1.accounts.unblock(account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -39,7 +39,7 @@ async function unblock() {
 async function unmute() {
   relationship!.muting = false
   try {
-    const newRel = await masto.accounts.unmute(account.id)
+    const newRel = await masto.v1.accounts.unmute(account.id)
     Object.assign(relationship!, newRel)
   }
   catch {

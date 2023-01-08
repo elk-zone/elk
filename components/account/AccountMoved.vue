@@ -1,10 +1,8 @@
 <script setup lang="ts">
-// type used in <template>
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 
 defineProps<{
-  account: Account
+  account: mastodon.v1.Account
 }>()
 </script>
 
@@ -16,9 +14,8 @@ defineProps<{
     </div>
 
     <div flex>
-      <!-- type error of masto.js -->
-      <NuxtLink :to="getAccountRoute(account.moved as unknown as Account)">
-        <AccountInfo :account="account.moved as unknown as Account" />
+      <NuxtLink :to="getAccountRoute(account.moved!)">
+        <AccountInfo :account="account.moved" />
       </NuxtLink>
       <div flex-auto />
       <div flex items-center>

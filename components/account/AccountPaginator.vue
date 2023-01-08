@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Account, Paginator } from 'masto'
+import type { Paginator, mastodon } from 'masto'
 
 const { paginator } = defineProps<{
-  paginator: Paginator<any, Account[]>
+  paginator: Paginator<mastodon.v1.Account[], any>
 }>()
 </script>
 

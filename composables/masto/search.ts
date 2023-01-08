@@ -1,9 +1,9 @@
 import type { MaybeRef } from '@vueuse/core'
-import type { Account, Paginator, Results, SearchParams, SearchType, Status, Tag } from 'masto'
+import type { Paginator, mastodon } from 'masto'
 import type { RouteLocation } from 'vue-router'
 
 export interface UseSearchOptions {
-  type?: MaybeRef<SearchType>
+  type?: MaybeRef<mastodon.v2.SearchType>
 }
 
 export interface BuildSearchResult<K extends keyof any, T> {
@@ -14,9 +14,9 @@ export interface BuildSearchResult<K extends keyof any, T> {
     href: string
   }
 }
-export type AccountSearchResult = BuildSearchResult<'account', Account>
-export type HashTagSearchResult = BuildSearchResult<'hashtag', Tag>
-export type StatusSearchResult = BuildSearchResult<'status', Status>
+export type AccountSearchResult = BuildSearchResult<'account', mastodon.v1.Account>
+export type HashTagSearchResult = BuildSearchResult<'hashtag', mastodon.v1.Tag>
+export type StatusSearchResult = BuildSearchResult<'status', mastodon.v1.Status>
 
 export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSearchResult
 
@@ -28,9 +28,9 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
   const hashtags = ref<HashTagSearchResult[]>([])
   const statuses = ref<StatusSearchResult[]>([])
 
-  let paginator: Paginator<SearchParams, Results> | undefined
+  let paginator: Paginator<mastodon.v2.Search, mastodon.v2.SearchParams> | undefined
 
-  const appendResults = (results: Results, empty = false) => {
+  const appendResults = (results: mastodon.v2.Search, empty = false) => {
     if (empty) {
       accounts.value = []
       hashtags.value = []
@@ -72,7 +72,7 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
-    paginator = masto.search({
+    paginator = masto.v2.search({
       q: unref(query),
       resolve: !!currentUser.value,
       type: unref(options?.type),

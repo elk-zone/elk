@@ -47,7 +47,6 @@
     "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
-    "compose_drafts": "Drafts ({v})",
     "confirm": "Confirm",
     "edit": "Edit",
     "enter_app": "Enter App",
@@ -97,6 +96,10 @@
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
+  },
+  "compose": {
+    "draft_title": "Draft {0}",
+    "drafts": "Drafts ({v})"
   },
   "conversation": {
     "with": "with"

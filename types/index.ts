@@ -27,12 +27,6 @@ export interface ElkMasto extends mastodon.Client {
 
 export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'
 
-export interface ServerInfo extends mastodon.v2.Instance {
-  server: string
-  timeUpdated: number
-  customEmojis?: Record<string, mastodon.v1.CustomEmoji>
-}
-
 export interface GroupedNotifications {
   id: string
   type: Exclude<string, 'grouped-reblogs-and-favourites'>

@@ -4,12 +4,13 @@ import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { Paginator, WsEvents, mastodon } from 'masto'
 
-const { paginator, stream, account } = defineProps<{
+const { paginator, stream, account, buffer = 10 } = defineProps<{
   paginator: Paginator<mastodon.v1.Status[], mastodon.v1.ListAccountStatusesParams>
   stream?: Promise<WsEvents>
   context?: mastodon.v2.FilterContext
   account?: mastodon.v1.Account
   preprocess?: (items: mastodon.v1.Status[]) => mastodon.v1.Status[]
+  buffer?: number
 }>()
 
 const { formatNumber } = useHumanReadableNumber()
@@ -21,7 +22,7 @@ const showOriginSite = $computed(() =>
 </script>
 
 <template>
-  <CommonPaginator v-bind="{ paginator, stream, preprocess }" :virtual-scroller="virtualScroller">
+  <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer }" :virtual-scroller="virtualScroller">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}

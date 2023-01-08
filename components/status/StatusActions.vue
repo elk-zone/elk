@@ -14,6 +14,7 @@ const { details, command } = $(props)
 const {
   status,
   isLoading,
+  canReblog,
   toggleBookmark,
   toggleFavourite,
   toggleReblog,
@@ -62,7 +63,7 @@ const reply = () => {
         icon="i-ri:repeat-line"
         active-icon="i-ri:repeat-fill"
         :active="!!status.reblogged"
-        :disabled="isLoading.reblogged"
+        :disabled="isLoading.reblogged || !canReblog"
         :command="command"
         @click="toggleReblog()"
       >

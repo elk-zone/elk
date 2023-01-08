@@ -180,9 +180,6 @@ export function getUsersIndexByUserId(userId: string) {
 }
 
 export async function removePushNotificationData(user: UserLogin, fromSWPushManager = true) {
-  if (!user.pushSubscription)
-    return
-
   // clear push subscription
   user.pushSubscription = undefined
   const { acct } = user.account
@@ -192,9 +189,12 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
   delete useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {}).value[acct]
 
   const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+  const pwa = useNuxtApp().$pwa
+  const registrationError = pwa?.registrationError === true
+  const unregister = pwaEnabled && !registrationError && pwa?.registrationError === true && fromSWPushManager
 
   // we remove the sw push manager if required and there are no more accounts with subscriptions
-  if (pwaEnabled && fromSWPushManager && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
+  if (unregister && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
     // clear sw push subscription
     try {
       const registration = await navigator.serviceWorker.ready

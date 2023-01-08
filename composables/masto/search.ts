@@ -1,10 +1,10 @@
-import type { MaybeRef } from '@vueuse/core'
+import type { MaybeComputedRef } from '@vueuse/core'
 import type { Paginator, mastodon } from 'masto'
 import type { RouteLocation } from 'vue-router'
 
-export interface UseSearchOptions {
-  type?: MaybeRef<mastodon.v2.SearchType>
-}
+export type UseSearchOptions = MaybeComputedRef<
+  Partial<Omit<mastodon.v1.SearchParams, keyof mastodon.DefaultPaginationParams | 'q'>>
+>
 
 export interface BuildSearchResult<K extends keyof any, T> {
   id: string
@@ -20,7 +20,7 @@ export type StatusSearchResult = BuildSearchResult<'status', mastodon.v1.Status>
 
 export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSearchResult
 
-export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
+export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOptions = {}) {
   const done = ref(false)
   const masto = useMasto()
   const loading = ref(false)
@@ -71,9 +71,9 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
     paginator = masto.v2.search({
-      q: unref(query),
+      q: resolveUnref(query),
+      ...resolveUnref(options),
       resolve: !!currentUser.value,
-      type: unref(options?.type),
     })
     const nextResults = await paginator.next()
 

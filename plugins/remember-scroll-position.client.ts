@@ -4,7 +4,7 @@ import { STORAGE_KEY_LAST_SCROLL_POSITION } from '~/constants'
 
 interface RestoreScroll {
   id: string
-  type: 'status' | 'follow'
+  type: 'status' | 'account'
   position: number
 }
 
@@ -33,7 +33,7 @@ export default defineNuxtPlugin(() => {
         }
       },
       rememberAccountPosition: (account: string) => {
-        lastStatus.value[useRoute().fullPath] = { id: account, type: 'follow', position: window.scrollY }
+        lastStatus.value[useRoute().fullPath] = { id: account, type: 'account', position: window.scrollY }
       },
       rememberStatusPosition: (status: mastodon.v1.Status) => {
         lastStatus.value[useRoute().fullPath] = { id: status.id, type: 'status', position: window.scrollY }

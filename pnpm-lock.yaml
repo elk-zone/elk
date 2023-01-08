@@ -1,5 +1,10 @@
 lockfileVersion: 5.4
 
+patchedDependencies:
+  mlly@1.0.0:
+    hash: afe7v34zn4lohdq7767l3tlrje
+    path: patches/mlly@1.0.0.patch
+
 specifiers:
   '@antfu/eslint-config': ^0.34.0
   '@antfu/ni': ^0.18.8
@@ -1916,7 +1921,7 @@ packages:
       jiti: 1.16.1
       knitwork: 1.0.0
       lodash.template: 4.5.0
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 1.0.0
       pkg-types: 1.0.1
       scule: 1.0.0
@@ -1942,7 +1947,7 @@ packages:
       jiti: 1.16.1
       knitwork: 1.0.0
       lodash.template: 4.5.0
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 1.0.0
       pkg-types: 1.0.1
       scule: 1.0.0
@@ -2052,7 +2057,7 @@ packages:
       h3: 1.0.1
       knitwork: 1.0.0
       magic-string: 0.26.7
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       ohash: 1.0.0
       pathe: 1.0.0
       perfect-debounce: 0.1.3
@@ -2110,7 +2115,7 @@ packages:
       js-cookie: 3.0.1
       knitwork: 1.0.0
       magic-string: 0.26.7
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 1.0.0
       pkg-types: 1.0.1
       ufo: 1.0.1
@@ -4195,7 +4200,7 @@ packages:
       dotenv: 16.0.3
       gittar: 0.1.1
       jiti: 1.16.1
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 1.0.0
       pkg-types: 1.0.1
       rc9: 2.0.0
@@ -5760,7 +5765,7 @@ packages:
     resolution: {integrity: sha512-MAU9ci3XdpqOX1aoIoyL2DMzW97P8LYeJxIUkfXhOfsrkH4KLHFaYDwKN0B2l6tqedVJWiTIJtWmxmZfa05vOQ==}
     dependencies:
       enhanced-resolve: 5.12.0
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 1.0.0
       ufo: 1.0.1
     dev: true
@@ -7320,13 +7325,14 @@ packages:
     hasBin: true
     dev: true
 
-  /mlly/1.0.0:
+  /mlly/1.0.0_afe7v34zn4lohdq7767l3tlrje:
     resolution: {integrity: sha512-QL108Hwt+u9bXdWgOI0dhzZfACovn5Aen4Xvc8Jasd9ouRH4NjnrXEiyP3nVvJo91zPlYjVRckta0Nt2zfoR6g==}
     dependencies:
       acorn: 8.8.1
       pathe: 1.0.0
       pkg-types: 1.0.1
       ufo: 1.0.1
+    patched: true
 
   /mri/1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -7421,7 +7427,7 @@ packages:
       knitwork: 1.0.0
       listhen: 1.0.1
       mime: 3.0.0
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       mri: 1.2.0
       node-fetch-native: 1.0.1
       ofetch: 1.0.0
@@ -7600,7 +7606,7 @@ packages:
       hookable: 5.4.2
       knitwork: 1.0.0
       magic-string: 0.26.7
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       nitropack: 1.0.0
       nuxi: 3.0.0
       ofetch: 1.0.0
@@ -7978,7 +7984,7 @@ packages:
     resolution: {integrity: sha512-jHv9HB+Ho7dj6ItwppRDDl0iZRYBD0jsakHXtFgoLr+cHSF6xC+QL54sJmWxyGxOLYSHm0afhXhXcQDQqH9z8g==}
     dependencies:
       jsonc-parser: 3.2.0
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 1.0.0
 
   /pluralize/8.0.0:
@@ -9613,7 +9619,7 @@ packages:
       fast-glob: 3.2.12
       local-pkg: 0.4.2
       magic-string: 0.26.7
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 1.0.0
       pkg-types: 1.0.1
       scule: 1.0.0
@@ -9630,7 +9636,7 @@ packages:
       fast-glob: 3.2.12
       local-pkg: 0.4.2
       magic-string: 0.26.7
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 1.0.0
       pkg-types: 1.0.1
       scule: 1.0.0
@@ -9648,7 +9654,7 @@ packages:
       fast-glob: 3.2.12
       local-pkg: 0.4.2
       magic-string: 0.27.0
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 1.0.0
       pkg-types: 1.0.1
       scule: 1.0.0
@@ -9665,7 +9671,7 @@ packages:
       fast-glob: 3.2.12
       local-pkg: 0.4.2
       magic-string: 0.27.0
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 1.0.0
       pkg-types: 1.0.1
       scule: 1.0.0
@@ -9924,7 +9930,7 @@ packages:
     hasBin: true
     dependencies:
       debug: 4.3.4
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 0.2.0
       source-map: 0.6.1
       source-map-support: 0.5.21
@@ -9945,7 +9951,7 @@ packages:
     hasBin: true
     dependencies:
       debug: 4.3.4
-      mlly: 1.0.0
+      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
       pathe: 0.2.0
       source-map: 0.6.1
       source-map-support: 0.5.21

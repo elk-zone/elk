@@ -99,35 +99,35 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
     <!-- Upper border -->
     <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 />
 
-    <!-- Line connecting to previous status -->
-    <template v-if="status.inReplyToAccountId">
-      <StatusReplyingTo
-        v-if="showReplyTo"
-        ml-6 pt-1 pl-5
-        :status="status"
-        :is-self-reply="isSelfReply"
-        :class="faded ? 'text-secondary-light' : ''"
-      />
-      <div flex="~ col gap-1" items-center pos="absolute top-0 left-0" w="20.5" z--1>
-        <template v-if="showReplyTo">
-          <div w="1px" h="0.5" border="x base" mt-3 />
-          <div w="1px" h="0.5" border="x base" />
-          <div w="1px" h="0.5" border="x base" />
-        </template>
-        <div w="1px" h-10 border="x base" />
-      </div>
-    </template>
+    <slot name="meta">
+      <!-- Line connecting to previous status -->
+      <template v-if="status.inReplyToAccountId">
+        <StatusReplyingTo
+          v-if="showReplyTo"
+          ml-6 pt-1 pl-5
+          :status="status"
+          :is-self-reply="isSelfReply"
+          :class="faded ? 'text-secondary-light' : ''"
+        />
+        <div flex="~ col gap-1" items-center pos="absolute top-0 left-0" w="20.5" z--1>
+          <template v-if="showReplyTo">
+            <div w="1px" h="0.5" border="x base" mt-3 />
+            <div w="1px" h="0.5" border="x base" />
+            <div w="1px" h="0.5" border="x base" />
+          </template>
+          <div w="1px" h-10 border="x base" />
+        </div>
+      </template>
 
-    <!-- Reblog status & Meta -->
-    <div flex="~ col" justify-between>
-      <slot name="meta">
+      <!-- Reblog status -->
+      <div flex="~ col" justify-between>
         <div
           v-if="rebloggedBy && !collapseRebloggedBy"
           flex="~" items-center
           p="t-1 b-0.5 x-1px"
           relative text-secondary ws-nowrap
         >
-          <div i-ri:repeat-fill me-46px text-primary w-16px h-16px />
+          <div i-ri:repeat-fill me-46px text-green w-16px h-16px />
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">
               <NuxtLink :to="getAccountRoute(rebloggedBy)">
@@ -137,14 +137,14 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
           </div>
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" text-sm />
         </div>
-      </slot>
-    </div>
+      </div>
+    </slot>
 
     <div flex gap-3 :class="{ 'text-secondary': faded }">
       <!-- Avatar -->
       <div relative>
         <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
-          <div i-ri:repeat-fill text-primary w-16px h-16px />
+          <div i-ri:repeat-fill text-green w-16px h-16px />
         </div>
         <AccountHoverWrapper :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>

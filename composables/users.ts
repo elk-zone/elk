@@ -40,7 +40,7 @@ const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLo
 }
 
 const users = await initializeUsers()
-const instances = useLocalStorage<Record<string, mastodon.v2.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
+const instances = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 
 export const currentUser = computed<UserLogin | undefined>(() => {
@@ -53,8 +53,8 @@ export const currentUser = computed<UserLogin | undefined>(() => {
   return users.value[0]
 })
 
-const publicInstance = ref<mastodon.v2.Instance | null>(null)
-export const currentInstance = computed<null | mastodon.v2.Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+const publicInstance = ref<mastodon.v1.Instance | null>(null)
+export const currentInstance = computed<null | mastodon.v1.Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
 
 export const publicServer = ref('')
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
@@ -91,7 +91,7 @@ if (process.client) {
 }
 
 export const currentUserHandle = computed(() => currentUser.value?.account.id
-  ? `${currentUser.value.account.acct}@${currentInstance.value?.domain || currentServer.value}`
+  ? `${currentUser.value.account.acct}@${currentInstance.value?.uri || currentServer.value}`
   : '[anonymous]',
 )
 
@@ -111,14 +111,14 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: mastodon.
 
   if (!user?.token) {
     publicServer.value = server
-    publicInstance.value = await masto.v2.instance.fetch()
+    publicInstance.value = await masto.v1.instances.fetch()
   }
 
   else {
     try {
       const [me, instance, pushSubscription] = await Promise.all([
         masto.v1.accounts.verifyCredentials(),
-        masto.v2.instance.fetch(),
+        masto.v1.instances.fetch(),
         // if PWA is not enabled, don't get push subscription
         useRuntimeConfig().public.pwaEnabled
           // we get 404 response instead empty data
@@ -127,7 +127,7 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: mastodon.
       ])
 
       if (!me.acct.includes('@'))
-        me.acct = `${me.acct}@${instance.domain}`
+        me.acct = `${me.acct}@${instance.uri}`
 
       user.account = me
       user.pushSubscription = pushSubscription
@@ -169,7 +169,7 @@ export function setAccountInfo(userId: string, account: mastodon.v1.AccountCrede
 export async function pullMyAccountInfo() {
   const account = await useMasto().v1.accounts.verifyCredentials()
   if (!account.acct.includes('@'))
-    account.acct = `${account.acct}@${currentInstance.value!.domain}`
+    account.acct = `${account.acct}@${currentInstance.value!.uri}`
 
   setAccountInfo(currentUserId.value, account)
   cacheAccount(account, currentServer.value, true)
@@ -180,9 +180,6 @@ export function getUsersIndexByUserId(userId: string) {
 }
 
 export async function removePushNotificationData(user: UserLogin, fromSWPushManager = true) {
-  if (!user.pushSubscription)
-    return
-
   // clear push subscription
   user.pushSubscription = undefined
   const { acct } = user.account
@@ -192,9 +189,12 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
   delete useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {}).value[acct]
 
   const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+  const pwa = useNuxtApp().$pwa
+  const registrationError = pwa?.registrationError === true
+  const unregister = pwaEnabled && !registrationError && pwa?.registrationError === true && fromSWPushManager
 
   // we remove the sw push manager if required and there are no more accounts with subscriptions
-  if (pwaEnabled && fromSWPushManager && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
+  if (unregister && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
     // clear sw push subscription
     try {
       const registration = await navigator.serviceWorker.ready
@@ -334,7 +334,7 @@ export function clearUserLocalStorage(account?: mastodon.v1.Account) {
   if (!account)
     return
 
-  const id = `${account.acct}@${currentInstance.value?.domain || currentServer.value}`
+  const id = `${account.acct}@${currentInstance.value?.uri || currentServer.value}`
   // @ts-expect-error bind value to the function
   ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>>).forEach((storage) => {
     if (storage.value[id])

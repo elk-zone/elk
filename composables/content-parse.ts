@@ -10,6 +10,7 @@ export interface ContentParseOptions {
   markdown?: boolean
   replaceUnicodeEmoji?: boolean
   astTransforms?: Transform[]
+  convertMentionLink?: boolean
 }
 
 const sanitizerBasicClasses = filterClasses(/^(h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible)$/u)
@@ -53,6 +54,7 @@ export function parseMastodonHTML(
   const {
     markdown = true,
     replaceUnicodeEmoji = true,
+    convertMentionLink = false,
   } = options
 
   if (markdown) {
@@ -77,6 +79,9 @@ export function parseMastodonHTML(
   if (markdown)
     transforms.push(transformMarkdown)
 
+  if (convertMentionLink)
+    transforms.push(transformMentionLink)
+
   transforms.push(replaceCustomEmoji(options.emojis || {}))
 
   transforms.push(transformParagraphs)
@@ -92,6 +97,7 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
     emojis: customEmojis,
     markdown: true,
     replaceUnicodeEmoji: false,
+    convertMentionLink: true,
   })
   return render(tree)
 }
@@ -316,7 +322,7 @@ const _markdownReplacements: [RegExp, (c: (string | Node)[]) => Node][] = [
   [/~~(.*?)~~/g, c => h('del', null, c)],
   [/`([^`]+?)`/g, c => h('code', null, c)],
   // transform @username@twitter.com as links
-  [/(?:^|\b)@([a-zA-Z0-9_]+)@twitter\.com(?:$|\b)/gi, c => h('a', { href: `https://twitter.com/${c[0]}`, target: '_blank', class: 'mention external' }, `@${c[0]}@twitter.com`)],
+  [/\B@([a-zA-Z0-9_]+)@twitter\.com\b/gi, c => h('a', { href: `https://twitter.com/${c}`, target: '_blank', class: 'mention external' }, `@${c}@twitter.com`)],
 ]
 
 function _markdownProcess(value: string) {
@@ -358,5 +364,21 @@ function transformParagraphs(node: Node): Node | Node[] {
   // For top level paragraphs, inject an empty <p> to preserve status paragraphs in our editor (except for the last one)
   if (node.parent?.type === DOCUMENT_NODE && node.name === 'p' && node.parent.children.at(-1) !== node)
     return [node, h('p')]
+  return node
+}
+
+function transformMentionLink(node: Node): string | Node | (string | Node)[] | null {
+  if (node.name === 'a' && node.attributes.class?.includes('mention')) {
+    const href = node.attributes.href
+    if (href) {
+      const matchUser = href.match(UserLinkRE)
+      if (matchUser) {
+        const [, server, username] = matchUser
+        const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
+        // convert to TipTap mention node
+        return h('span', { 'data-type': 'mention', 'data-id': handle }, handle)
+      }
+    }
+  }
   return node
 }

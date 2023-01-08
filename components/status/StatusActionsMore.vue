@@ -129,7 +129,7 @@ async function editStatus() {
         <template v-if="userSettings.zenMode">
           <CommonDropdownItem
             :text="$t('action.reply')"
-            icon="i-ri:chat-3-line"
+            icon="i-ri:chat-1-line"
             :command="command"
             @click="reply()"
           />

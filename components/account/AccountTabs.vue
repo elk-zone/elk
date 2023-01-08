@@ -22,7 +22,7 @@ const tabs = $computed(() => [
       params: { server, account },
     },
     display: t('tab.posts_with_replies'),
-    icon: 'i-ri:chat-3-line',
+    icon: 'i-ri:chat-1-line',
   },
   {
     name: 'account-media',

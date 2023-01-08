@@ -85,7 +85,7 @@ const buttonStyle = $computed(() => {
     gap-1 items-center group
     :disabled="relationship?.requested"
     border-1
-    rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1
+    rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
     :class="buttonStyle"
     :hover="!relationship?.blocking && !relationship?.muting && relationship?.following ? 'border-red text-red' : 'bg-base border-primary text-primary'"
     @click="relationship?.blocking ? unblock() : relationship?.muting ? unmute() : toggleFollow()"

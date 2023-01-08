@@ -300,11 +300,34 @@ function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji
       if (i % 2 === 0)
         return name
 
-      const emoji = customEmojis[name]
+      const emoji = customEmojis[name] as mastodon.v1.CustomEmoji
       if (!emoji)
         return `:${name}:`
 
-      return h('img', { 'src': emoji.url, 'alt': `:${name}:`, 'class': 'custom-emoji', 'data-emoji-id': name })
+      return h(
+        'picture',
+        {
+          'alt': `:${name}:`,
+          'class': 'custom-emoji',
+          'data-emoji-id': name
+        },
+        [
+          h(
+            'source',
+            {
+              srcset: emoji.staticUrl,
+              media: '(prefers-reduced-motion: reduce)'
+            }
+          ),
+          h(
+            'img',
+            {
+              src: emoji.url,
+              alt: `:${name}:`
+            }
+          )
+        ]
+      )
     }).filter(Boolean)
   }
 }

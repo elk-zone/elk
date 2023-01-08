@@ -8,10 +8,3 @@
   to = "https://discord.gg/vAZSDU9J"
   status = 301
   force = true
-
-# Redirect to the docs
-[[redirects]]
-  from = "/docs"
-  to = "https://docs.elk.zone/"
-  status = 200
-  force = true

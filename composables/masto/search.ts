@@ -57,9 +57,7 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
   }
 
   watch(() => unref(query), () => {
-    if (!unref(query) || !isMastoInitialised.value)
-      return
-    loading.value = true
+    loading.value = !!(unref(query) && isMastoInitialised.value)
   })
 
   debouncedWatch(() => unref(query), async () => {

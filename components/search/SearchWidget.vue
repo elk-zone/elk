@@ -36,16 +36,18 @@ watch([results, focused], () => index.value = -1)
 const shift = (delta: number) => index.value = (index.value + delta % results.value.length + results.value.length) % results.value.length
 
 const activate = () => {
-  (document.activeElement as HTMLElement).blur()
   const currentIndex = index.value
   index.value = -1
 
   if (query.value.length === 0)
     return
 
+  (document.activeElement as HTMLElement).blur()
+
   // Disable until search page is implemented
-  // if (currentIndex === -1)
-  //   router.push(`/search?q=${query.value}`)
+  if (currentIndex === -1)
+    // router.push(`/search?q=${query.value}`)
+    return
 
   router.push(results.value[currentIndex].to)
 }

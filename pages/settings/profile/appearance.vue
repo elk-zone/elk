@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
+import { satisfies } from 'semver'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
 
@@ -41,9 +42,10 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
 
       fieldsAttributes,
 
+      bot: account?.bot ?? false,
+
       // These look more like account and privacy settings than appearance settings
       // discoverable: false,
-      // bot: false,
       // locked: false,
     }
   },
@@ -114,10 +116,19 @@ onReactivated(refreshInfo)
         <CommonCropImage v-model="form.avatar" />
 
         <div px4>
-          <AccountDisplayName
-            :account="{ ...account, displayName: form.displayName }"
-            font-bold sm:text-2xl text-xl
-          />
+          <div flex justify-between>
+            <AccountDisplayName
+              :account="{ ...account, displayName: form.displayName }"
+              font-bold sm:text-2xl text-xl
+            />
+            <label>
+              <AccountBotIndicator show-label px2 py1>
+                <template #prepend>
+                  <input v-model="form.bot" type="checkbox">
+                </template>
+              </AccountBotIndicator>
+            </label>
+          </div>
           <AccountHandle :account="account" />
         </div>
       </div>

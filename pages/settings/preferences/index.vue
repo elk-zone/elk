@@ -18,12 +18,6 @@ useHeadFixed({
       {{ $t('settings.feature_flags.title') }}
     </h3>
     <SettingsToggleItem
-      :checked="getFeatureFlag('experimentalVirtualScroll')"
-      @click="toggleFeatureFlag('experimentalVirtualScroll')"
-    >
-      {{ $t('settings.feature_flags.virtual_scroll') }}
-    </SettingsToggleItem>
-    <SettingsToggleItem
       :checked="getFeatureFlag('experimentalGitHubCards')"
       @click="toggleFeatureFlag('experimentalGitHubCards')"
     >

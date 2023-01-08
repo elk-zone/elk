@@ -200,8 +200,7 @@
     "feature_flags": {
       "github_cards": "Tarjetas GitHub",
       "title": "Características experimentales",
-      "user_picker": "Selector de usuarios",
-      "virtual_scroll": "Desplazamiento virtual"
+      "user_picker": "Selector de usuarios"
     },
     "interface": {
       "color_mode": "Modos de color",

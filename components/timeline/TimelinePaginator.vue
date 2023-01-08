@@ -14,7 +14,6 @@ const { paginator, stream, account, buffer = 10 } = defineProps<{
 }>()
 
 const { formatNumber } = useHumanReadableNumber()
-const virtualScroller = $(useFeatureFlag('experimentalVirtualScroll'))
 
 const showOriginSite = $computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
@@ -22,21 +21,16 @@ const showOriginSite = $computed(() =>
 </script>
 
 <template>
-  <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer }" :virtual-scroller="virtualScroller">
+  <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer }">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
     <template #default="{ item, older, newer, active }">
-      <template v-if="virtualScroller">
-        <DynamicScrollerItem :item="item" :active="active" tag="article">
-          <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
-        </DynamicScrollerItem>
-      </template>
-      <template v-else>
+      <DynamicScrollerItem :item="item" :active="active" tag="article">
         <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
-      </template>
+      </DynamicScrollerItem>
     </template>
     <template v-if="context === 'account' && showOriginSite" #done>
       <div p5 text-secondary text-center flex flex-col items-center gap1>

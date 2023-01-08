@@ -196,8 +196,7 @@
     "feature_flags": {
       "github_cards": "GitHub Cards",
       "title": "Experimentelen Functies",
-      "user_picker": "Gebruiker Picker",
-      "virtual_scroll": "Virtueel Scrollen"
+      "user_picker": "Gebruiker Picker"
     },
     "interface": {
       "color_mode": "Kleur Modus",

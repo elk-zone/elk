@@ -215,8 +215,7 @@
     "feature_flags": {
       "github_cards": "GitHub 卡片",
       "title": "实验功能",
-      "user_picker": "用户选择器",
-      "virtual_scroll": "虚拟滚动"
+      "user_picker": "用户选择器"
     },
     "interface": {
       "color_mode": "颜色",

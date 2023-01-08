@@ -67,7 +67,7 @@ const prefersReducedMotion = usePreferredReducedMotion()
 useIntersectionObserver(video, (entries) => {
   const ready = video.value?.dataset.ready === 'true'
   if (prefersReducedMotion.value === 'reduce') {
-    if (ready)
+    if (ready && !video.value?.paused)
       video.value?.pause()
 
     return

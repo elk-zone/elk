@@ -70,6 +70,8 @@ export function usePaginator<T, P>(
         state.value = 'idle'
       }
       else {
+        items.value.push(...nextItems.value)
+        nextItems.value = []
         state.value = 'done'
       }
     }

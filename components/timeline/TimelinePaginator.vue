@@ -5,9 +5,9 @@ import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { Paginator, WsEvents, mastodon } from 'masto'
 
 const { paginator, stream, account } = defineProps<{
-  paginator: Paginator<mastodon.v1.Status[], any>
+  paginator: Paginator<mastodon.v1.Status[], mastodon.v1.ListAccountStatusesParams>
   stream?: Promise<WsEvents>
-  context?: mastodon.v1.FilterContext
+  context?: mastodon.v2.FilterContext
   account?: mastodon.v1.Account
   preprocess?: (items: any[]) => any[]
 }>()

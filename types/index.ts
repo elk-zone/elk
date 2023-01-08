@@ -27,7 +27,7 @@ export interface ElkMasto extends mastodon.Client {
 
 export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'
 
-export interface ServerInfo extends mastodon.v1.Instance {
+export interface ServerInfo extends mastodon.v2.Instance {
   server: string
   timeUpdated: number
   customEmojis?: Record<string, mastodon.v1.CustomEmoji>

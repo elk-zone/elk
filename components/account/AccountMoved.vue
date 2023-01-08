@@ -15,7 +15,7 @@ defineProps<{
 
     <div flex>
       <NuxtLink :to="getAccountRoute(account.moved!)">
-        <AccountInfo :account="account.moved" />
+        <AccountInfo :account="account.moved!" />
       </NuxtLink>
       <div flex-auto />
       <div flex items-center>

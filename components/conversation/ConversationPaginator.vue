@@ -2,7 +2,7 @@
 import type { Paginator, mastodon } from 'masto'
 
 const { paginator } = defineProps<{
-  paginator: Paginator<mastodon.v1.Conversation[], any>
+  paginator: Paginator<mastodon.v1.Conversation[], mastodon.DefaultPaginationParams>
 }>()
 </script>
 

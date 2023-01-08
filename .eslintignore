@@ -2,5 +2,6 @@
 *.png
 *.ico
 *.toml
+*.patch
 https-dev-config/localhost.crt
 https-dev-config/localhost.key

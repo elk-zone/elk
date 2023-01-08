@@ -113,6 +113,11 @@
     "vue-tsc": "^1.0.22",
     "workbox-window": "^6.5.4"
   },
+  "pnpm": {
+    "patchedDependencies": {
+      "mlly@1.0.0": "patches/mlly@1.0.0.patch"
+    }
+  },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },

@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`html-parse > code frame > html 1`] = `
-"<p>Testing code block</p><p><pre><code class=\\"language-ts\\">import { useMouse, usePreferredDark } from '@vueuse/core'
+"<p>Testing code block</p><p></p><p><pre><code class=\\"language-ts\\">import { useMouse, usePreferredDark } from '@vueuse/core'
 // tracks mouse position
 const { x, y } = useMouse()
 // is the user prefers dark theme
@@ -10,6 +10,7 @@ const isDark = usePreferredDark()</code></pre></p>"
 
 exports[`html-parse > code frame > text 1`] = `
 "Testing code block
+
 
 \`\`\`ts
 import { useMouse, usePreferredDark } from '@vueuse/core'
@@ -94,10 +95,11 @@ exports[`html-parse > html entities > html 1`] = `
 
 exports[`html-parse > html entities > text 1`] = `"Hello <World />."`;
 
-exports[`html-parse > inline markdown > html 1`] = `"<p>text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p><p><pre><code class=\\"language-js\\">code block</code></pre></p>"`;
+exports[`html-parse > inline markdown > html 1`] = `"<p>text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p><p></p><p><pre><code class=\\"language-js\\">code block</code></pre></p>"`;
 
 exports[`html-parse > inline markdown > text 1`] = `
 "text \`code\` **bold** *italic* ~~del~~
+
 
 \`\`\`js
 code block

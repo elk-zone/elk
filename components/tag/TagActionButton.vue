@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import type { Tag } from 'masto'
+import type { mastodon } from 'masto'
 
 const { tag } = defineProps<{
-  tag: Tag
+  tag: mastodon.v1.Tag
 }>()
 
 const emit = defineEmits<{
   (event: 'change'): void
 }>()
 
-const { tags } = useMasto()
+const masto = useMasto()
 
 const toggleFollowTag = async () => {
   if (tag.following)
-    await tags.unfollow(tag.name)
+    await masto.v1.tags.unfollow(tag.name)
   else
-    await tags.follow(tag.name)
+    await masto.v1.tags.follow(tag.name)
 
   emit('change')
 }

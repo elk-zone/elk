@@ -1,4 +1,4 @@
-import type { Emoji } from 'masto'
+import type { mastodon } from 'masto'
 import type { CustomEmojisInfo } from './push-notifications/types'
 import { STORAGE_KEY_CUSTOM_EMOJIS } from '~/constants'
 
@@ -20,14 +20,14 @@ export async function updateCustomEmojis() {
     return
 
   const masto = useMasto()
-  const emojis = await masto.customEmojis.fetchAll()
+  const emojis = await masto.v1.customEmojis.list()
   Object.assign(currentCustomEmojis.value, {
     lastUpdate: Date.now(),
     emojis,
   })
 }
 
-function transformEmojiData(emojis: Emoji[]) {
+function transformEmojiData(emojis: mastodon.v1.CustomEmoji[]) {
   const result = []
 
   for (const emoji of emojis) {
@@ -52,9 +52,9 @@ export const customEmojisData = computed(() => currentCustomEmojis.value.emojis.
     }]
   : undefined)
 
-export function useEmojisFallback(emojisGetter: () => Emoji[] | undefined) {
+export function useEmojisFallback(emojisGetter: () => mastodon.v1.CustomEmoji[] | undefined) {
   return computed(() => {
-    const result: Emoji[] = []
+    const result: mastodon.v1.CustomEmoji[] = []
     const emojis = emojisGetter()
     if (emojis)
       result.push(...emojis)

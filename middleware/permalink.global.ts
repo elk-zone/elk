@@ -53,7 +53,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       await masto.loginTo(currentUser.value)
 
     // If we're logged in, search for the local id the account or status corresponds to
-    const { value } = await masto.search({ q: `https:/${to.fullPath}`, resolve: true, limit: 1 }).next()
+    const { value } = await masto.v2.search({ q: `https:/${to.fullPath}`, resolve: true, limit: 1 }).next()
 
     const { accounts, statuses } = value
     if (statuses[0])

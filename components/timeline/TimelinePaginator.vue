@@ -2,14 +2,14 @@
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { Account, FilterContext, Paginator, Status, WsEvents } from 'masto'
+import type { Paginator, WsEvents, mastodon } from 'masto'
 
 const { paginator, stream, account } = defineProps<{
-  paginator: Paginator<any, Status[]>
+  paginator: Paginator<mastodon.v1.Status[], mastodon.v1.ListAccountStatusesParams>
   stream?: Promise<WsEvents>
-  context?: FilterContext
-  account?: Account
-  preprocess?: (items: any[]) => any[]
+  context?: mastodon.v2.FilterContext
+  account?: mastodon.v1.Account
+  preprocess?: (items: mastodon.v1.Status[]) => mastodon.v1.Status[]
 }>()
 
 const { formatNumber } = useHumanReadableNumber()

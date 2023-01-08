@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { History } from 'masto'
+import type { mastodon } from 'masto'
 import sparkline from '@fnando/sparkline'
 
 const {
@@ -7,7 +7,7 @@ const {
   width = 60,
   height = 40,
 } = $defineProps<{
-  history?: History[]
+  history?: mastodon.v1.TagHistory[]
   width?: number
   height?: number
 }>()

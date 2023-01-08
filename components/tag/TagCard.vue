@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import type { Tag } from 'masto'
+import type { mastodon } from 'masto'
 
 const {
   tag,
 } = $defineProps<{
-  tag: Tag
+  tag: mastodon.v1.Tag
 }>()
 
 const to = $computed(() => new URL(tag.url).pathname)

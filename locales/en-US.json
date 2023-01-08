@@ -97,6 +97,10 @@
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
   },
+  "compose": {
+    "draft_title": "Draft {0}",
+    "drafts": "Drafts ({v})"
+  },
   "conversation": {
     "with": "with"
   },
@@ -135,12 +139,14 @@
     },
     "direct_message_account": "Direct message {0}",
     "edit": "Edit",
+    "hide_reblogs": "Hide boosts from {0}",
     "mention_account": "Mention {0}",
     "mute_account": "Mute {0}",
     "mute_conversation": "Mute this post",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "share_post": "Share this post",
+    "show_reblogs": "Show boosts from {0}",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
       "dark": "Toggle dark mode",
@@ -354,7 +360,9 @@
       "finished": "finished {0}"
     },
     "reblogged": "{0} reblogged",
-    "someone": "Someone",
+    "replying_to": "Replying to {0}",
+    "show_full_thread": "Show Full thread",
+    "someone": "someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
     "try_original_site": "Try original site"

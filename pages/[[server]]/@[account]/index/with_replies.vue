@@ -7,7 +7,7 @@ const handle = $(computedEager(() => params.account as string))
 
 const account = await fetchAccountByHandle(handle)
 
-const paginator = useMasto().accounts.iterateStatuses(account.id, { excludeReplies: false })
+const paginator = useMasto().v1.accounts.listStatuses(account.id, { excludeReplies: false })
 
 if (account) {
   useHeadFixed({

@@ -88,6 +88,10 @@
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
   },
+  "compose": {
+    "draft_title": "Draft {0}",
+    "drafts": "Drafts ({v})"
+  },
   "conversation": {
     "with": "with"
   },
@@ -297,7 +301,8 @@
       "finished": "finished {0}"
     },
     "reblogged": "{0} reblogged",
-    "someone": "Someone",
+    "replying_to": "Replying to {0}",
+    "someone": "someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
     "try_original_site": "Try original site"

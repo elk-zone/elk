@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = useMasto().blocks.iterate()
+const paginator = useMasto().v1.blocks.list()
 </script>
 
 <template>

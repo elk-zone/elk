@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Attachment } from 'masto'
+import type { mastodon } from 'masto'
 
 const props = withDefaults(defineProps<{
-  attachment: Attachment
+  attachment: mastodon.v1.MediaAttachment
   alt?: string
   removable?: boolean
   dialogLabelledBy?: string

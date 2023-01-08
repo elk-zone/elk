@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { FilterContext, Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const { status, context } = defineProps<{
-  status: Status
-  context?: FilterContext | 'details'
+  status: mastodon.v1.Status
+  context?: mastodon.v2.FilterContext | 'details'
 }>()
 
 const isDM = $computed(() => status.visibility === 'direct')

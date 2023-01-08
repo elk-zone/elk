@@ -1,4 +1,4 @@
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 import { STORAGE_KEY_LAST_SCROLL_POSITION } from '~/constants'
 
@@ -28,7 +28,7 @@ export default defineNuxtPlugin(() => {
       rememberAccountPosition: (account: string) => {
         lastStatus.value[useRoute().fullPath] = { id: account, type: 'follow' }
       },
-      rememberStatusPosition: (status: Status) => {
+      rememberStatusPosition: (status: mastodon.v1.Status) => {
         lastStatus.value[useRoute().fullPath] = { id: status.id, type: 'status' }
       },
     },

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { Status, StatusEdit } from 'masto'
+import type { mastodon } from 'masto'
 import { formatTimeAgo } from '@vueuse/core'
 
 const { status } = defineProps<{
-  status: Status
+  status: mastodon.v1.Status
 }>()
 
 const masto = useMasto()
-const { data: statusEdits } = useAsyncData(`status:history:${status.id}`, () => masto.statuses.fetchHistory(status.id).then(res => res.reverse()))
+const { data: statusEdits } = useAsyncData(`status:history:${status.id}`, () => masto.v1.statuses.listHistory(status.id).then(res => res.reverse()))
 
-const showHistory = (edit: StatusEdit) => {
+const showHistory = (edit: mastodon.v1.StatusEdit) => {
   openEditHistoryDialog(edit)
 }
 const timeAgoOptions = useTimeAgoOptions()

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { UpdateCredentialsParams } from 'masto'
+import type { mastodon } from 'masto'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
 
@@ -63,7 +63,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
     return
 
-  const res = await useMasto().accounts.updateCredentials(dirtyFields.value as UpdateCredentialsParams)
+  const res = await useMasto().v1.accounts.updateCredentials(dirtyFields.value as mastodon.v1.UpdateCredentialsParams)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))
 

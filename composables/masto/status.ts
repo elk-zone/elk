@@ -1,14 +1,14 @@
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
 type CountField = 'reblogsCount' | 'favouritesCount'
 
 export interface StatusActionsProps {
-  status: Status
+  status: mastodon.v1.Status
 }
 
 export function useStatusActions(props: StatusActionsProps) {
-  let status = $ref<Status>({ ...props.status })
+  let status = $ref<mastodon.v1.Status>({ ...props.status })
   const masto = useMasto()
 
   watch(
@@ -27,7 +27,7 @@ export function useStatusActions(props: StatusActionsProps) {
     muted: false,
   })
 
-  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<Status>, countField?: CountField) {
+  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<mastodon.v1.Status>, countField?: CountField) {
     // check login
     if (!checkLogin())
       return
@@ -46,7 +46,7 @@ export function useStatusActions(props: StatusActionsProps) {
   }
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
-    () => masto.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
+    () => masto.v1.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
       if (status.reblogged)
       // returns the original status
         return res.reblog!
@@ -57,23 +57,23 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleFavourite = () => toggleStatusAction(
     'favourited',
-    () => masto.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+    () => masto.v1.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
     'favouritesCount',
   )
 
   const toggleBookmark = () => toggleStatusAction(
     'bookmarked',
-    () => masto.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
+    () => masto.v1.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
   )
 
   const togglePin = async () => toggleStatusAction(
     'pinned',
-    () => masto.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+    () => masto.v1.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
   )
 
   const toggleMute = async () => toggleStatusAction(
     'muted',
-    () => masto.statuses[status.muted ? 'unmute' : 'mute'](status.id),
+    () => masto.v1.statuses[status.muted ? 'unmute' : 'mute'](status.id),
   )
 
   return {

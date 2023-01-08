@@ -1,4 +1,4 @@
-import type { Account, AccountCredentials, Attachment, CreateStatusParams, Emoji, Instance, MastoClient, Notification, PushSubscription, Status } from 'masto'
+import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
 import type { MarkNonNullable, Mutable } from './utils'
 
@@ -15,22 +15,22 @@ export interface AppInfo {
 export interface UserLogin {
   server: string
   token?: string
-  account: AccountCredentials
+  account: mastodon.v1.AccountCredentials
   vapidKey?: string
-  pushSubscription?: PushSubscription
+  pushSubscription?: mastodon.v1.WebPushSubscription
 }
 
-export interface ElkMasto extends MastoClient {
-  loginTo (user?: Omit<UserLogin, 'account'> & { account?: AccountCredentials }): Promise<MastoClient>
+export interface ElkMasto extends mastodon.Client {
+  loginTo (user?: Omit<UserLogin, 'account'> & { account?: mastodon.v1.AccountCredentials }): Promise<mastodon.Client>
   loggedIn: Ref<boolean>
 }
 
 export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'
 
-export interface ServerInfo extends Instance {
+export interface ServerInfo extends mastodon.v1.Instance {
   server: string
   timeUpdated: number
-  customEmojis?: Record<string, Emoji>
+  customEmojis?: Record<string, mastodon.v1.CustomEmoji>
 }
 
 export interface GroupedNotifications {
@@ -40,7 +40,7 @@ export interface GroupedNotifications {
 }
 
 export interface GroupedAccountLike {
-  account: Account
+  account: mastodon.v1.Account
   favourite?: Notification
   reblog?: Notification
 }
@@ -48,7 +48,7 @@ export interface GroupedAccountLike {
 export interface GroupedLikeNotifications {
   id: string
   type: 'grouped-reblogs-and-favourites'
-  status: Status
+  status: mastodon.v1.Status
   likes: GroupedAccountLike[]
 }
 
@@ -57,10 +57,10 @@ export type NotificationSlot = GroupedNotifications | GroupedLikeNotifications |
 export type TranslateFn = ReturnType<typeof useI18n>['t']
 
 export interface Draft {
-  editingStatus?: Status
+  editingStatus?: mastodon.v1.Status
   initialText?: string
-  params: MarkNonNullable<Mutable<CreateStatusParams>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'>
-  attachments: Attachment[]
+  params: MarkNonNullable<Mutable<mastodon.v1.CreateStatusParams>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'>
+  attachments: mastodon.v1.MediaAttachment[]
   lastUpdated: number
 }
 export type DraftMap = Record<string, Draft>

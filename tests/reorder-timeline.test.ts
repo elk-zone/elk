@@ -1,18 +1,18 @@
 /**
  * @vitest-environment jsdom
  */
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 import { describe, expect, it } from 'vitest'
 import { reorderedTimeline } from '~/composables/timeline'
 
-function status(id: string): Status {
-  return { id } as Status
+function status(id: string): mastodon.v1.Status {
+  return { id } as mastodon.v1.Status
 }
-function reply(id: string, s: Status) {
-  return { id, inReplyToId: s.id } as Status
+function reply(id: string, s: mastodon.v1.Status) {
+  return { id, inReplyToId: s.id } as mastodon.v1.Status
 }
-function reblog(id: string, s: Status) {
-  return { id, reblog: s } as Status
+function reblog(id: string, s: mastodon.v1.Status) {
+  return { id, reblog: s } as mastodon.v1.Status
 }
 
 const p_a1 = status('p_a1')

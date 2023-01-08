@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 import type { ConfirmDialogChoice } from '~/types'
 import {
   isCommandPanelOpen,
@@ -30,7 +30,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   }
 })
 
-const handlePublished = (status: Status) => {
+const handlePublished = (status: mastodon.v1.Status) => {
   lastPublishDialogStatus.value = status
   isPublishDialogOpen.value = false
 }

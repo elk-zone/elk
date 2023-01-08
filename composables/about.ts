@@ -1,3 +1,5 @@
+import type { BuildInfo } from '~~/types'
+
 export interface Team {
   github: string
   display: string
@@ -31,3 +33,7 @@ export const teams: Team[] = [
     mastodon: 'sxzz@webtoo.ls',
   },
 ].sort(() => Math.random() - 0.5)
+
+export function useBuildInfo() {
+  return useRuntimeConfig().public.buildInfo as BuildInfo
+}

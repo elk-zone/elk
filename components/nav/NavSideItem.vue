@@ -15,6 +15,7 @@ defineSlots<{
 }>()
 
 const router = useRouter()
+const nuxtApp = useNuxtApp()
 
 useCommand({
   scope: 'Navigation',
@@ -41,6 +42,13 @@ onMastoInit(async () => {
 // when we know there is no user.
 const noUserDisable = computed(() => !isMastoInitialised.value || (props.userOnly && !currentUser.value))
 const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly && !currentUser.value)
+
+const handleClick = () => {
+  if (nuxtApp.$preventScrollToTop(router.resolve(props.to).fullPath))
+    return
+
+  nuxtApp.$scrollToTop()
+}
 </script>
 
 <template>
@@ -51,7 +59,7 @@ const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly &
     :active-class="activeClass"
     group focus:outline-none disabled:pointer-events-none
     :tabindex="noUserDisable ? -1 : null"
-    @click="$scrollToTop"
+    @click="handleClick"
   >
     <CommonTooltip :disabled="!isMediumScreen" :content="text" placement="right">
       <div

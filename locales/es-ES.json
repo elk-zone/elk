@@ -88,6 +88,10 @@
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer estás fuera de línea. Por favor, comprueba tu conexión a la red."
   },
+  "compose": {
+    "draft_title": "Borrador {0}",
+    "drafts": "Borradores ({v})"
+  },
   "conversation": {
     "with": "con"
   },

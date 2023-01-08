@@ -54,7 +54,7 @@
     "more": "More",
     "next": "Next",
     "prev": "Prev",
-    "publish": "Publish!",
+    "publish": "Publish",
     "reply": "Reply",
     "save": "Save",
     "save_changes": "Save changes",
@@ -363,7 +363,6 @@
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
     "add_publishable_content": "Add content to publish",
-
     "change_content_visibility": "Change content visibility",
     "change_language": "Change language",
     "emoji": "Emoji",

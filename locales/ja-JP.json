@@ -21,7 +21,7 @@
   "action": {
     "compose": "今なにしてる？",
     "enter_app": "使い始める",
-    "publish": "投稿!",
+    "publish": "投稿",
     "save_changes": "変更を保存",
     "sign_in": "サインイン",
     "vote": "投票"

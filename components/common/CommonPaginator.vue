@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T extends any, O extends any">
+<script setup lang="ts" generic="T, O">
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'

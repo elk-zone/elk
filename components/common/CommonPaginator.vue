@@ -22,7 +22,9 @@ const {
 
 defineSlots<{
   default: {
+    items: T[]
     item: T
+    index: number
     active?: boolean
     older?: T
     newer?: T // newer is undefined when index === 0
@@ -61,6 +63,8 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
             :active="active"
             :older="items[index + 1]"
             :newer="items[index - 1]"
+            :index="index"
+            :items="items"
           />
         </DynamicScroller>
       </template>
@@ -71,6 +75,8 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
           :item="item"
           :older="items[index + 1]"
           :newer="items[index - 1]"
+          :index="index"
+          :items="items"
         />
       </template>
     </slot>

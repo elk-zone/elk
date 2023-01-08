@@ -20,7 +20,7 @@ export function usePaginator<T, P>(
   const deactivated = useDeactivated()
 
   async function update() {
-    items.value.unshift(...prevItems.value)
+    items.value.unshift(...preprocess(prevItems.value as any) as any)
     prevItems.value = []
   }
 

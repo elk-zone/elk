@@ -1,0 +1,13 @@
+diff --git a/dist/shared/nitro.c8278d90.mjs b/dist/shared/nitro.c8278d90.mjs
+index 9ba312fc248da3731720ee7e3b38ba2a85537657..3cd508f0720adb959d94e40c124382ec0110d92c 100644
+--- a/dist/shared/nitro.c8278d90.mjs
++++ b/dist/shared/nitro.c8278d90.mjs
+@@ -1298,7 +1298,7 @@ async function copyPublicAssets(nitro) {
+   }
+   for (const asset of nitro.options.publicAssets) {
+     if (await isDirectory(asset.dir)) {
+-      await fse.copy(asset.dir, join(nitro.options.output.publicDir, asset.baseURL));
++      await fse.copy(asset.dir, join(nitro.options.output.publicDir, asset.baseURL), { override: false });
+     }
+   }
+   if (nitro.options.compressPublicAssets) {

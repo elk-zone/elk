@@ -67,7 +67,7 @@
     "vue-virtual-scroller": "2.0.0-beta.7"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.34.0",
+    "@antfu/eslint-config": "^0.34.1",
     "@antfu/ni": "^0.18.8",
     "@emoji-mart/data": "^1.1.0",
     "@iconify-json/carbon": "^1.1.11",
@@ -115,7 +115,8 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "mlly@1.0.0": "patches/mlly@1.0.0.patch"
+      "mlly@1.0.0": "patches/mlly@1.0.0.patch",
+      "nitropack@1.0.0": "patches/nitropack@1.0.0.patch"
     }
   },
   "simple-git-hooks": {

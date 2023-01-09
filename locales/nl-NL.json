@@ -166,7 +166,7 @@
   "notification": {
     "favourited_post": "vindt jou post favoriet",
     "followed_you": "volgt jou",
-    "followed_you_count": "{followers} mensen hebben je gevolgd|{followers} persoon heeft je gevold|{followers} mensen hebben je gevolgd",
+    "followed_you_count": "{0} mensen hebben je gevolgd|{0} persoon heeft je gevold|{0} mensen hebben je gevolgd",
     "missing_type": "MISSEND notificatie.type:",
     "reblogged_post": "herblogd je post",
     "request_to_follow": "vraagt om jou te volgen",

@@ -1,13 +1,20 @@
-import type { Paginator, WsEvents, mastodon } from 'masto'
+import { Paginator } from 'masto'
+import type { WsEvents, mastodon } from 'masto'
 import type { PaginatorState } from '~/types'
 
 export function usePaginator<T, P, U = T>(
-  paginator: Paginator<T[], P>,
+  _paginator: Paginator<T[], P>,
   stream?: Promise<WsEvents>,
   eventType: 'notification' | 'update' = 'update',
   preprocess: (items: (T | U)[]) => U[] = items => items as unknown as U[],
   buffer = 10,
 ) {
+  // TODO: wait PR https://github.com/neet/masto.js/pull/801
+  // called `next` method will mutate the internal state of the variable, and we need its initial state after HMR
+  // so clone it
+  // @ts-expect-error clone it
+  const paginator: Paginator<T[], P> = new Paginator(_paginator.http, _paginator.nextPath, _paginator.nextParams)
+
   const state = ref<PaginatorState>(isMastoInitialised.value ? 'idle' : 'loading')
   const items = ref<U[]>([])
   const nextItems = ref<U[]>([])

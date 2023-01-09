@@ -66,7 +66,10 @@ export function usePaginator<T, P, U = T>(
 
       if (result.value?.length) {
         const preprocessedItems = preprocess([...nextItems.value, ...result.value]) as any
-        const itemsToShowCount = preprocessedItems.length - buffer
+        const itemsToShowCount
+          = preprocessedItems.length < buffer
+            ? preprocessedItems.length
+            : preprocessedItems.length - buffer
         nextItems.value = preprocessedItems.slice(itemsToShowCount)
         items.value.push(...preprocessedItems.slice(0, itemsToShowCount))
         state.value = 'idle'

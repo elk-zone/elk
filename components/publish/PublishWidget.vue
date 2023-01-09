@@ -364,7 +364,9 @@ const isPublishDisabled = computed(() => {
             aria-describedby="publish-tooltip"
             @click="publish"
           >
-            {{ !draft.editingStatus ? $t('action.publish') : $t('action.save_changes') }}
+            <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
+            <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
+            <span v-else>{{ $t('action.publish') }}</span>
           </button>
         </CommonTooltip>
       </div>

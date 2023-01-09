@@ -175,8 +175,7 @@
     "update_available_short": "تحديث Elk"
   },
   "search": {
-    "search_desc": "ابحث عن الأشخاص والهاشتاج",
-    "search_empty": "تعذر العثور على نتائج تتضمن هذه المصطلحات"
+    "search_desc": "ابحث عن الأشخاص والهاشتاج"
   },
   "settings": {
     "about": {

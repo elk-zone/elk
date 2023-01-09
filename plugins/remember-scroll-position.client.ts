@@ -16,7 +16,8 @@ export default defineNuxtPlugin(() => {
         return !!lastStatus.value[path]
       },
       restoreScrollPosition: () => {
-        const restore = lastStatus.value[useRoute().fullPath]
+        const fullPath = useRoute().fullPath
+        const restore = lastStatus.value[fullPath]
         if (restore) {
           const el = restore.type === 'status'
             ? document.getElementById(`status-${restore.id}`)
@@ -28,7 +29,7 @@ export default defineNuxtPlugin(() => {
               window.scrollTo(0, restore.position)
           }
           else {
-            delete lastStatus.value[useRoute().fullPath]
+            delete lastStatus.value[fullPath]
           }
         }
       },

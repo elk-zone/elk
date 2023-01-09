@@ -33,6 +33,7 @@ export default defineEventHandler(async (event) => {
       code,
       scope: 'read write follow push',
     },
+    retry: 3,
   })
 
   const url = `/signin/callback?${stringifyQuery({ server, token: result.access_token, vapid_key: app.vapid_key })}`

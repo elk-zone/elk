@@ -322,7 +322,7 @@ const _markdownReplacements: [RegExp, (c: (string | Node)[]) => Node][] = [
   [/~~(.*?)~~/g, c => h('del', null, c)],
   [/`([^`]+?)`/g, c => h('code', null, c)],
   // transform @username@twitter.com as links
-  [/\B@([a-zA-Z0-9_]+)@twitter\.com\b/gi, c => h('a', { href: `https://twitter.com/${c}`, target: '_blank', class: 'mention external' }, `@${c}@twitter.com`)],
+  [/\B@([a-zA-Z0-9_]+)@twitter\.com\b/gi, c => h('a', { href: `https://twitter.com/${c}`, target: '_blank', rel: 'nofollow noopener noreferrer', class: 'mention external' }, `@${c}@twitter.com`)],
 ]
 
 function _markdownProcess(value: string) {

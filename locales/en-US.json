@@ -230,7 +230,8 @@
     }
   },
   "search": {
-    "search_desc": "Search for people & hashtags"
+    "search_desc": "Search for people & hashtags",
+    "search_empty": "Could not find anything for these search terms"
   },
   "settings": {
     "about": {
@@ -296,6 +297,7 @@
           "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
           "title": "Could not subscribe to push notifications"
         },
+        "title": "Push notifications settings",
         "undo_settings": "Undo changes",
         "unsubscribe": "Disable push notifications",
         "unsupported": "Your browser does not support push notifications.",
@@ -370,6 +372,7 @@
     "someone": "someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
+    "thread": "Thread",
     "try_original_site": "Try original site"
   },
   "status_history": {

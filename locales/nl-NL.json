@@ -187,7 +187,8 @@
     "update_available_short": "Update Elk"
   },
   "search": {
-    "search_desc": "Zoek naar mensen & hashtags"
+    "search_desc": "Zoek naar mensen & hashtags",
+    "search_empty": "Deze zoektermen leveren geen resultaat op"
   },
   "settings": {
     "about": {

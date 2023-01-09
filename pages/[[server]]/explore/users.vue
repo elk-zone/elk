@@ -2,11 +2,7 @@
 const { t } = useI18n()
 
 // limit: 20 is the default configuration of the official client
-const masto = useMasto()
-const { data, pending, error } = useLazyAsyncData(
-  () => masto.suggestions.fetchAll({ limit: 20 }),
-  { immediate: true },
-)
+const paginator = useMasto().v2.suggestions.list({ limit: 20 })
 
 useHeadFixed({
   title: () => `${t('tab.for_you')} | ${t('nav.explore')}`,
@@ -14,29 +10,19 @@ useHeadFixed({
 </script>
 
 <template>
-  <div v-if="data && data.length">
-    <AccountBigCard
-      v-for="suggestion of data"
-      :key="suggestion.account.id"
-      :account="suggestion.account"
-      as="router-link"
-      :to="getAccountRoute(suggestion.account)"
-      border="b base"
-    />
-
-    <div p5 text-center text-secondary-light italic>
-      {{ $t('common.end_of_list') }}
-    </div>
-  </div>
-  <div v-else-if="pending">
-    <AccountBigCardSkeleton border="b base" />
-    <AccountBigCardSkeleton border="b base" op50 />
-    <AccountBigCardSkeleton border="b base" op25 />
-  </div>
-  <div v-else-if="error" p5 text-center text-red italic>
-    {{ $t('common.error') }}: {{ error }}
-  </div>
-  <div v-else p5 text-center text-secondary italic>
-    {{ $t('common.not_found') }}
-  </div>
+  <CommonPaginator :paginator="paginator" key-prop="account">
+    <template #default="{ item }">
+      <AccountBigCard
+        :account="item.account"
+        as="router-link"
+        :to="getAccountRoute(item.account)"
+        border="b base"
+      />
+    </template>
+    <template #loading>
+      <AccountBigCardSkeleton border="b base" />
+      <AccountBigCardSkeleton border="b base" op50 />
+      <AccountBigCardSkeleton border="b base" op25 />
+    </template>
+  </CommonPaginator>
 </template>

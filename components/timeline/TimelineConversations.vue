@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = useMasto().conversations.iterate()
+const paginator = useMasto().v1.conversations.list()
 </script>
 
 <template>

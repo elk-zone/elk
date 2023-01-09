@@ -56,7 +56,7 @@
     "more": "More",
     "next": "Next",
     "prev": "Prev",
-    "publish": "Publish!",
+    "publish": "Publish",
     "reply": "Reply",
     "reply_count": "{0}",
     "reset": "Reset",
@@ -86,11 +86,20 @@
     "toggle_zen_mode": "Toggle zen mode"
   },
   "common": {
+    "confirm_dialog": {
+      "cancel": "No",
+      "confirm": "Yes",
+      "title": "Are you sure?"
+    },
     "end_of_list": "End of the list",
     "error": "ERROR",
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
+  },
+  "compose": {
+    "draft_title": "Draft {0}",
+    "drafts": "Drafts ({v})"
   },
   "conversation": {
     "with": "with"
@@ -123,14 +132,22 @@
     "copy_link_to_post": "Copy link to this post",
     "delete": "Delete",
     "delete_and_redraft": "Delete & re-draft",
+    "delete_confirm": {
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "title": "Are you sure you want to delete this post?"
+    },
     "direct_message_account": "Direct message {0}",
     "edit": "Edit",
+    "hide_reblogs": "Hide boosts from {0}",
     "mention_account": "Mention {0}",
     "mute_account": "Mute {0}",
     "mute_conversation": "Mute this post",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "share_post": "Share this post",
+    "show_favourited_and_boosted_by": "Show who favourited and boosted",
+    "show_reblogs": "Show boosts from {0}",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
       "dark": "Toggle dark mode",
@@ -331,7 +348,9 @@
     "uploading": "Uploading..."
   },
   "status": {
+    "boosted_by": "Boosted By",
     "edited": "Edited {0}",
+    "favourited_by": "Favorited By",
     "filter_hidden_phrase": "Filtered by",
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
@@ -345,7 +364,9 @@
       "finished": "finished {0}"
     },
     "reblogged": "{0} reblogged",
-    "someone": "Someone",
+    "replying_to": "Replying to {0}",
+    "show_full_thread": "Show Full thread",
+    "someone": "someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
     "try_original_site": "Try original site"
@@ -412,6 +433,7 @@
   "tooltip": {
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
+    "add_publishable_content": "Add content to publish",
     "change_content_visibility": "Change content visibility",
     "change_language": "Change language",
     "emoji": "Emoji",

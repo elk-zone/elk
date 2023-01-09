@@ -54,7 +54,7 @@
     "more": "Más",
     "next": "Siguiente",
     "prev": "Anterior",
-    "publish": "¡Publicar!",
+    "publish": "Publicar",
     "reply": "Responder",
     "save": "Guardar",
     "save_changes": "Guardar",
@@ -87,6 +87,10 @@
     "in": "en",
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer estás fuera de línea. Por favor, comprueba tu conexión a la red."
+  },
+  "compose": {
+    "draft_title": "Borrador {0}",
+    "drafts": "Borradores ({v})"
   },
   "conversation": {
     "with": "con"
@@ -315,7 +319,8 @@
       "finished": "finalizada {0}"
     },
     "reblogged": "{0} retooteó",
-    "someone": "Alguien",
+    "replying_to": "Respondiendo a {0}",
+    "someone": "alguien",
     "spoiler_show_less": "Mostrar menos",
     "spoiler_show_more": "Mostrar más",
     "thread": "Hilo",

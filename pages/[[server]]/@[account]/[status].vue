@@ -20,7 +20,7 @@ const { data: status, pending, refresh: refreshStatus } = useAsyncData(
 const masto = useMasto()
 const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
   `context:${id}`,
-  async () => masto.statuses.fetchContext(id),
+  async () => masto.v1.statuses.fetchContext(id),
   { watch: [isMastoInitialised], immediate: isMastoInitialised.value },
 )
 
@@ -48,6 +48,11 @@ const focusEditor = () => {
 }
 
 provide('focus-editor', focusEditor)
+
+watch(publishWidget, () => {
+  if (window.history.state.focusReply)
+    focusEditor()
+})
 
 onReactivated(() => {
   // Silently update data when reentering the page
@@ -86,8 +91,12 @@ onReactivated(() => {
 
         <template v-for="(comment, di) of context?.descendants" :key="comment.id">
           <StatusCard
-            :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-            :older="context?.descendants[di + 1]" :newer="context?.descendants[di - 1]" :has-newer="di === 0" :main="status"
+            :status="comment"
+            :actions="comment.visibility !== 'direct'" context="account"
+            :older="context?.descendants[di + 1]"
+            :newer="context?.descendants[di - 1]"
+            :has-newer="di === 0"
+            :main="status"
           />
         </template>
       </div>

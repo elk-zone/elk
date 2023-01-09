@@ -3,7 +3,6 @@ import type { CustomColors } from '~/types'
 export const APP_NAME = 'Elk'
 
 export const DEFAULT_POST_CHARS_LIMIT = 500
-export const DEFAULT_SERVER = 'mas.to'
 export const DEFAULT_FONT_SIZE = 'md'
 export const DEFAULT_CUSTOM_COLORS: CustomColors = { 'primary': '#d98018', 'bg-base': '#fafafa', 'bg-active': '#f2f2f2', 'text-base': '#232323', 'border': '#eee', 'border-dark': '#dccfcf' }
 

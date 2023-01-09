@@ -1,4 +1,4 @@
-import type { SubscriptionPolicy } from 'masto'
+import type { mastodon } from 'masto'
 import type {
   CreatePushNotification,
   PushNotificationPolicy,
@@ -62,7 +62,7 @@ export const usePushManager = () => {
 
   const subscribe = async (
     notificationData?: CreatePushNotification,
-    policy?: SubscriptionPolicy,
+    policy?: mastodon.v1.SubscriptionPolicy,
     force?: boolean,
   ): Promise<SubscriptionResult> => {
     if (!isSupported)
@@ -117,7 +117,7 @@ export const usePushManager = () => {
     await removePushNotificationData(currentUser.value)
   }
 
-  const saveSettings = async (policy?: SubscriptionPolicy) => {
+  const saveSettings = async (policy?: mastodon.v1.SubscriptionPolicy) => {
     if (policy)
       pushNotificationData.value.policy = policy
 
@@ -168,7 +168,7 @@ export const usePushManager = () => {
       if (policyChanged)
         await subscribe(data, policy, true)
       else
-        currentUser.value.pushSubscription = await masto.pushSubscriptions.update({ data })
+        currentUser.value.pushSubscription = await masto.v1.webPushSubscriptions.update({ data })
 
       policyChanged && await nextTick()
 

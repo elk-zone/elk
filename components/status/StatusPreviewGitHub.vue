@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Card } from 'masto'
+import type { mastodon } from 'masto'
 
 const props = defineProps<{
-  card: Card
+  card: mastodon.v1.PreviewCard
 }>()
 
 type UrlType = 'user' | 'repo' | 'issue' | 'pull'

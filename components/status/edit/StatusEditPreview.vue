@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { StatusEdit } from 'masto'
+import type { mastodon } from 'masto'
 
 const { edit } = defineProps<{
-  edit: StatusEdit
+  edit: mastodon.v1.StatusEdit
 }>()
 </script>
 

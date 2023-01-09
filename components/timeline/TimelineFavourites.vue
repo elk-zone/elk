@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = useMasto().favourites.iterate()
+const paginator = useMasto().v1.favourites.list()
 </script>
 
 <template>

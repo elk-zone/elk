@@ -1,8 +1,4 @@
-import type {
-  CreatePushSubscriptionParams,
-  PushSubscription as MastoPushSubscription,
-  SubscriptionPolicy,
-} from 'masto'
+import type { mastodon } from 'masto'
 import type {
   CreatePushNotification,
   PushManagerSubscriptionInfo,
@@ -12,14 +8,14 @@ import type {
 export const createPushSubscription = async (
   user: RequiredUserLogin,
   notificationData: CreatePushNotification,
-  policy: SubscriptionPolicy = 'all',
+  policy: mastodon.v1.SubscriptionPolicy = 'all',
   force = false,
-): Promise<MastoPushSubscription | undefined> => {
+): Promise<mastodon.v1.WebPushSubscription | undefined> => {
   const { server: serverEndpoint, vapidKey } = user
 
   return await getRegistration()
     .then(getPushSubscription)
-    .then(({ registration, subscription }): Promise<MastoPushSubscription | undefined> => {
+    .then(({ registration, subscription }): Promise<mastodon.v1.WebPushSubscription | undefined> => {
       if (subscription) {
         const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey!)).toString()
         const subscriptionServerKey = urlBase64ToUint8Array(vapidKey).toString()
@@ -114,10 +110,10 @@ async function removePushNotificationDataOnError(e: Error) {
 async function sendSubscriptionToBackend(
   subscription: PushSubscription,
   data: CreatePushNotification,
-  policy: SubscriptionPolicy,
-): Promise<MastoPushSubscription> {
+  policy: mastodon.v1.SubscriptionPolicy,
+): Promise<mastodon.v1.WebPushSubscription> {
   const { endpoint, keys } = subscription.toJSON()
-  const params: CreatePushSubscriptionParams = {
+  const params: mastodon.v1.CreateWebPushSubscriptionParams = {
     policy,
     subscription: {
       endpoint: endpoint!,
@@ -129,5 +125,5 @@ async function sendSubscriptionToBackend(
     data,
   }
 
-  return await useMasto().pushSubscriptions.create(params)
+  return await useMasto().v1.webPushSubscriptions.create(params)
 }

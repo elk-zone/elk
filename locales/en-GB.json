@@ -54,7 +54,7 @@
     "more": "More",
     "next": "Next",
     "prev": "Prev",
-    "publish": "Publish!",
+    "publish": "Publish",
     "reply": "Reply",
     "save": "Save",
     "save_changes": "Save changes",
@@ -87,6 +87,10 @@
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
+  },
+  "compose": {
+    "draft_title": "Draft {0}",
+    "drafts": "Drafts ({v})"
   },
   "conversation": {
     "with": "with"
@@ -297,7 +301,8 @@
       "finished": "finished {0}"
     },
     "reblogged": "{0} reblogged",
-    "someone": "Someone",
+    "replying_to": "Replying to {0}",
+    "someone": "someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
     "try_original_site": "Try original site"
@@ -357,6 +362,7 @@
   "tooltip": {
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
+    "add_publishable_content": "Add content to publish",
     "change_content_visibility": "Change content visibility",
     "change_language": "Change language",
     "emoji": "Emoji",

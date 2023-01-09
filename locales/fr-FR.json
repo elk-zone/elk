@@ -8,9 +8,9 @@
   },
   "account": {
     "avatar_description": "Avatar de {0}",
-    "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur.",
+    "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur·ice.",
     "blocked_domains": "Domaines bloqués",
-    "blocked_users": "Utilisateurs bloqués",
+    "blocked_users": "utilisateur·ice·s bloqué·e·s",
     "blocking": "Blocked",
     "bot": "Automatisé",
     "favourites": "Favoris",
@@ -25,8 +25,8 @@
     "go_to_profile": "Aller à son profil",
     "joined": "a rejoint",
     "moved_title": "a indiqué que son nouveau compte est désormais :",
-    "muted_users": "Utilisateurs mis en sourdine",
-    "muting": "Muted",
+    "muted_users": "Utilisateur·ice·s masqué·e·s",
+    "muting": "Masqué·e",
     "mutuals": "@:account.following",
     "pinned": "Épinglés",
     "posts": "Messages",
@@ -56,6 +56,7 @@
     "prev": "Précédent",
     "publish": "Publier",
     "reply": "Répondre",
+    "reset": "Réinitialiser",
     "save": "Enregistrer",
     "save_changes": "Enregistrer les changements",
     "sign_in": "Se connecter",
@@ -109,6 +110,9 @@
     "desc_para6": "et rejoingez l'aventure.",
     "title": "Elk est mode Preview !"
   },
+  "language": {
+    "search": "Recherche"
+  },
   "menu": {
     "block_account": "Bloquer {0}",
     "block_domain": "Bloquer le domaine {0}",
@@ -122,6 +126,7 @@
     "mute_conversation": "Message muet",
     "open_in_original_site": "Ouvrir sur le site d'origine",
     "pin_on_profile": "Épingler sur le profil",
+    "share_post": "Partager ce message",
     "show_untranslated": "Montrer le message non-traduit",
     "toggle_theme": {
       "dark": "Passer au thème foncé",
@@ -135,6 +140,9 @@
     "unpin_on_profile": "Désépingler du profil"
   },
   "nav": {
+    "back": "Retourner à la page précédente",
+    "blocked_domains": "Domaines bloqués",
+    "blocked_users": "Utilisateur·ice·s bloqué·e·s",
     "bookmarks": "Marque-pages",
     "built_at": "Dernier build {0}",
     "conversations": "Conversations",
@@ -143,6 +151,7 @@
     "federated": "Fédérés",
     "home": "Accueil",
     "local": "Local",
+    "muted_users": "Utilisateur·ice·s masqué·e·s",
     "notifications": "Notifications",
     "profile": "Profil",
     "search": "Rechercher",
@@ -175,7 +184,29 @@
     "dismiss": "Fermer",
     "title": "Nouvelle mise à jour Elk disponible !",
     "update": "Mettre à jour",
-    "update_available_short": "Mettre à jour Elk"
+    "update_available_short": "Mettre à jour Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "Un client Web Mastodon (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "Un client Web Mastodon (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "Un client Web Mastodon (aperçu)",
+        "name": "Elk (aperçu)",
+        "short_name": "Elk (aperçu)"
+      },
+      "release": {
+        "description": "Un client Web Mastodon",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
   },
   "search": {
     "search_desc": "Recherche de personnes & hashtags"
@@ -183,6 +214,10 @@
   "settings": {
     "about": {
       "label": "À propos"
+    },
+    "account_settings": {
+      "description": "Modifiez les paramètres de votre compte dans l'interface de Mastodon",
+      "label": "Paramètres de compte"
     },
     "feature_flags": {
       "github_cards": "GitHub Cards",
@@ -193,10 +228,17 @@
     "interface": {
       "color_mode": "Couleur de thème",
       "dark_mode": "Mode sombre",
-      "default": "(défaut)",
+      "default": " (par défaut)",
       "font_size": "Taille de police",
       "label": "Interface",
-      "light_mode": "Mode lumineux"
+      "light_mode": "Mode lumineux",
+      "size_label": {
+        "lg": "Grande",
+        "md": "Moyenne",
+        "sm": "Petite",
+        "xl": "Très grande",
+        "xs": "Très petite"
+      }
     },
     "language": {
       "display_language": "Langue d'affichage",
@@ -254,10 +296,12 @@
     "profile": {
       "appearance": {
         "bio": "Bio",
-        "description": "Editer l'avatar, nom d'utilisateur, profile, etc.",
+        "description": "Editer l'avatar, nom d'utilisateur·ice, profil, etc.",
         "display_name": "Nom d'affichage",
         "label": "Apparence",
-        "title": "Editer le profile"
+        "profile_metadata": "Métadonnées de profil",
+        "profile_metadata_desc": "Vous pouvez avoir jusqu'à 4 éléments affichés sous forme de tableau sur votre profil",
+        "title": "Editer le profil"
       },
       "featured_tags": {
         "description": "Les gens peuvent parcourir vos messages publics sous ces hashtags.",
@@ -267,9 +311,9 @@
     },
     "select_a_settings": "Sélectionner un paramètre",
     "users": {
-      "export": "Exporter les tokens d'utilisateur",
-      "import": "Importer des tokens d'utilisateur",
-      "label": "Utilisateurs connectés"
+      "export": "Exporter les tokens d'utilisateur·ice",
+      "import": "Importer des tokens d'utilisateur·ice",
+      "label": "Utilisateur·ice·s connecté·e·s"
     }
   },
   "state": {
@@ -296,7 +340,8 @@
       "finished": "clos {0}"
     },
     "reblogged": "{0} relayé",
-    "someone": "Quelqu'un",
+    "replying_to": "Répondre à {0}",
+    "someone": "quelqu'un",
     "spoiler_show_less": "Voir moins",
     "spoiler_show_more": "Voir plus",
     "try_original_site": "Essayer le site d'origine"
@@ -314,6 +359,12 @@
     "notifications_mention": "Mentions",
     "posts": "Messages",
     "posts_with_replies": "Messages et réponses"
+  },
+  "tag": {
+    "follow": "Suivre",
+    "follow_label": "Suivre la balise {0}",
+    "unfollow": "Ne plus suivre",
+    "unfollow_label": "Ne plus suivre la balise {0}"
   },
   "time_ago_options": {
     "day_future": "dans 0 jour|demain|dans {n} jours",
@@ -347,7 +398,8 @@
     "year_past": "il y a 0 année|l'année dernière|il y a {n} années"
   },
   "timeline": {
-    "show_new_items": "Voir le nouveau message|Voir les {v} nouveaux messages"
+    "show_new_items": "Voir le nouveau message|Voir les {v} nouveaux messages",
+    "view_older_posts": "Les messages plus anciens d'autres instances peuvent ne pas être affichés."
   },
   "title": {
     "federated_timeline": "Fil d'actualité fédéré",

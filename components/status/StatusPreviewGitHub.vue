@@ -99,13 +99,13 @@ const meta = $computed(() => {
     <div p4 sm:px-8 flex flex-col justify-between min-h-50 md:min-h-60 h-full>
       <div flex justify-between items-center gap-2 sm:gap-6 h-full mb-2 min-h-35 md:min-h-45>
         <div flex flex-col gap-2>
-          <NuxtLink flex gap-1 text-xl sm:text-3xl flex-wrap leading-none :href="meta.titleUrl" target="_blank">
+          <NuxtLink flex gap-1 text-xl sm:text-3xl flex-wrap leading-none :href="meta.titleUrl" target="_blank" external>
             <template v-if="meta.repo">
               <span>{{ meta.user }}</span><span text-secondary-light>/</span><span text-primary font-bold>{{ meta.repo }}</span>
             </template>
             <span v-else>{{ meta.user }}</span>
           </NuxtLink>
-          <NuxtLink sm:text-lg :href="card.url" target="_blank">
+          <NuxtLink sm:text-lg :href="card.url" target="_blank" external>
             <span v-if="meta.type === 'issue'" text-secondary-light me-2>
               #{{ meta.number }}
             </span>
@@ -116,7 +116,7 @@ const meta = $computed(() => {
           </NuxtLink>
         </div>
         <div>
-          <NuxtLink :href="meta.titleUrl" target="_blank">
+          <NuxtLink :href="meta.titleUrl" target="_blank" external>
             <img w-30 aspect-square width="20" height="20" rounded-2 :src="meta.avatar">
           </NuxtLink>
         </div>

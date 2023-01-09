@@ -1,8 +1,7 @@
 <script lang="ts" setup>
-import { useCustomColorsRef } from '~/composables/injections'
 import { DEFAULT_CUSTOM_COLORS } from '~/constants'
 
-const customColors = useCustomColorsRef()
+const customColors = useLocalStorage('elk-custom-colors', DEFAULT_CUSTOM_COLORS)
 </script>
 
 <template>
@@ -18,6 +17,10 @@ const customColors = useCustomColorsRef()
     <label font-medium flex="~ gap2 items-center">
       <span text-sm>Base Background</span>
       <input id="custom-color-bg-base" v-model="customColors['bg-base']" type="color">
+    </label>
+    <label font-medium flex="~ gap2 items-center">
+      <span text-sm>Active Background</span>
+      <input id="custom-color-bg-active" v-model="customColors['bg-active']" type="color">
     </label>
     <label font-medium flex="~ gap2 items-center">
       <span text-sm>Border color</span>

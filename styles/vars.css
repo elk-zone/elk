@@ -54,6 +54,8 @@
 
   --c-bg-base: var(--c-bg-base-custom);
   --c-bg-base-rgb: var(--c-bg-base-rgb-custom);
+  --c-bg-active: var(--c-bg-active-custom);
+
   --c-text-base: var(--c-text-base-custom);
 
   --c-border: var(--c-border-custom);

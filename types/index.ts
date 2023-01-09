@@ -78,6 +78,7 @@ export type ColorMode = 'light' | 'dark' | 'custom'
 export interface CustomColors {
   'primary': string
   'bg-base': string
+  'bg-active': string
   'text-base': string
   'border': string
   'border-dark': string

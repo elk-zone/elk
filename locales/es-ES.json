@@ -187,7 +187,7 @@
   "notification": {
     "favourited_post": "marcó tu publicación como favorito",
     "followed_you": "te ha seguido",
-    "followed_you_count": "{followers} personas te siguieron|{followers} persona te siguió|{followers} personas te siguieron",
+    "followed_you_count": "{0} personas te siguieron|{0} persona te siguió|{0} personas te siguieron",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "retooteó tu publicación",
     "request_to_follow": "ha solicitado seguirte",

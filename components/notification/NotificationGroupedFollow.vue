@@ -5,10 +5,7 @@ const { items } = defineProps<{
   items: GroupedNotifications
 }>()
 
-const { formatHumanReadableNumber, forSR } = useHumanReadableNumber()
-
 const count = $computed(() => items.items.length)
-const addSR = $computed(() => forSR(count))
 const isExpanded = ref(false)
 const lang = $computed(() => {
   return count > 1 || count === 0 ? undefined : items.items[0].status?.language
@@ -20,19 +17,10 @@ const lang = $computed(() => {
     <div flex items-center top-0 left-2 pt-2 px-3>
       <div i-ri:user-follow-fill me-3 color-primary aria-hidden="true" />
       <template v-if="count > 1">
-        <template v-if="addSR">
-          <span
-            aria-hidden="true"
-          >
-            {{ $t('notification.followed_you_count', count, { named: { followers: formatHumanReadableNumber(count) } }) }}
-          </span>
-          <span sr-only>
-            {{ $t('notification.followed_you_count', count, { named: { followers: count } }) }}
-          </span>
-        </template>
-        <span v-else>
-          {{ $t('notification.followed_you_count', count, { named: { followers: count } }) }}
-        </span>
+        <CommonLocalizedNumber
+          keypath="notification.followed_you_count"
+          :count="count"
+        />
       </template>
       <template v-else>
         <AccountDisplayName

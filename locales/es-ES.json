@@ -304,6 +304,8 @@
         "warning": {
           "enable_close": "Cerrar",
           "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilita las notificaciones push. Puedes controlar con precisión qué tipos de interacciones generan notificaciones push a través del botón \"@:settings.notifications.show_btn{'\"'} de arriba una vez que estén habilitadas.",
+          "enable_description_desktop": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones push. Puedes controlar con precisión qué tipos de interacciones generan notificaciones push en el menú de navegación en \"Ajustes > Notificaciones > Ajustes de notificaciones push\" una vez que estén habilitadas.",
+          "enable_description_mobile": "También podrá acceder a la configuración utilizando el menú de navegación en \"Ajustes > Notificaciones > Ajutes de notificaciones push\".",
           "enable_description_settings": "Para recibir notificaciones cuando Elk no esté abierto, habilita las notificaciones push. Podrás controlar con precisión qué tipos de interacciones generan notificaciones push en esta misma pantalla una vez las habilites.",
           "enable_desktop": "Habilitar notificaciones push",
           "enable_title": "Nunca te pierdas nada",

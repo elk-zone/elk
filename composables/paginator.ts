@@ -24,7 +24,7 @@ export function usePaginator<T, P>(
   const nuxtApp = useNuxtApp()
 
   async function update() {
-    items.value.unshift(...prevItems.value)
+    items.value.unshift(...preprocess(prevItems.value as any) as any)
     prevItems.value = []
   }
 
@@ -74,6 +74,8 @@ export function usePaginator<T, P>(
         state.value = 'idle'
       }
       else {
+        items.value.push(...nextItems.value)
+        nextItems.value = []
         state.value = 'done'
       }
     }

@@ -3,10 +3,10 @@ import { mastodon } from 'masto'
 import type { Paginator, WsEvents } from 'masto'
 // type used in <template>
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import type { GroupedAccountLike, GroupedLikeNotifications, NotificationSlot } from '~/types'
+import type { GroupedAccountLike, GroupedLikeNotifications, GroupedNotifications, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
-  paginator: Paginator<mastodon.v1.Notification[], mastodon.v1.ListNotificationsParams>
+  paginator: Paginator<NotificationSlot[], mastodon.v1.ListNotificationsParams>
   stream?: Promise<WsEvents>
 }>()
 
@@ -101,19 +101,41 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   return results
 }
 
+function preprocess(items: NotificationSlot[]): NotificationSlot[] {
+  const flattenedNotifications: mastodon.v1.Notification[] = []
+  for (const item of items) {
+    if (item.type === 'grouped-reblogs-and-favourites') {
+      const group = item as GroupedLikeNotifications
+      for (const like of group.likes) {
+        if (like.reblog)
+          flattenedNotifications.push(like.reblog)
+        if (like.favourite)
+          flattenedNotifications.push(like.favourite)
+      }
+    }
+    else if (item.type.startsWith('grouped-')) {
+      flattenedNotifications.push(...(item as GroupedNotifications).items)
+    }
+    else {
+      flattenedNotifications.push(item as mastodon.v1.Notification)
+    }
+  }
+  return groupItems(flattenedNotifications)
+}
+
 const { clearNotifications } = useNotifications()
 const { formatNumber } = useHumanReadableNumber()
 </script>
 
 <template>
-  <CommonPaginator :paginator="paginator" :stream="stream" :eager="3" event-type="notification">
+  <CommonPaginator :paginator="paginator" :preprocess="preprocess" :stream="stream" :eager="3" event-type="notification">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
     <template #items="{ items }">
-      <template v-for="item of groupItems(items)" :key="item.id">
+      <template v-for="item of items" :key="item.id">
         <NotificationGroupedFollow
           v-if="item.type === 'grouped-follow'"
           :items="item"

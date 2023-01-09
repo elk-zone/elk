@@ -25,9 +25,9 @@ export default defineNuxtModule({
     nuxt.hook('nitro:config', (config) => {
       config.publicAssets = config.publicAssets || []
       if (env === 'dev')
-        config.publicAssets.push({ dir: resolve('../public-dev') })
+        config.publicAssets.unshift({ dir: resolve('../public-dev') })
       else if (env === 'canary' || env === 'preview' || !isCI)
-        config.publicAssets.push({ dir: resolve('../public-staging') })
+        config.publicAssets.unshift({ dir: resolve('../public-staging') })
     })
   },
 })

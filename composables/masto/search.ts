@@ -28,6 +28,8 @@ export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOpt
   const hashtags = ref<HashTagSearchResult[]>([])
   const statuses = ref<StatusSearchResult[]>([])
 
+  const q = $computed(() => resolveUnref(query).trim())
+
   let paginator: Paginator<mastodon.v2.Search, mastodon.v2.SearchParams> | undefined
 
   const appendResults = (results: mastodon.v2.Search, empty = false) => {
@@ -56,12 +58,12 @@ export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOpt
     }))]
   }
 
-  watch(() => unref(query), () => {
-    loading.value = !!(unref(query) && isMastoInitialised.value)
+  watch(() => resolveUnref(query), () => {
+    loading.value = !!(q && isMastoInitialised.value)
   })
 
-  debouncedWatch(() => unref(query), async () => {
-    if (!unref(query) || !isMastoInitialised.value)
+  debouncedWatch(() => resolveUnref(query), async () => {
+    if (!q || !isMastoInitialised.value)
       return
 
     loading.value = true
@@ -71,7 +73,7 @@ export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOpt
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
     paginator = masto.v2.search({
-      q: resolveUnref(query),
+      q,
       ...resolveUnref(options),
       resolve: !!currentUser.value,
     })
@@ -85,7 +87,7 @@ export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOpt
   }, { debounce: 300 })
 
   const next = async () => {
-    if (!unref(query) || !isMastoInitialised.value || !paginator)
+    if (!q || !isMastoInitialised.value || !paginator)
       return
 
     loading.value = true

@@ -77,17 +77,19 @@ const activate = () => {
     <!-- Results -->
     <div left-0 top-12 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
       <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
-        <span v-if="query.length === 0" block text-center text-sm text-secondary>
+        <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}
         </span>
-        <template v-if="!loading">
-          <SearchResult
-            v-for="(result, i) in results" :key="result.id"
-            :active="index === parseInt(i.toString())"
-            :result="result"
-            :tabindex="focused ? 0 : -1"
-          />
-          <span v-if="query.length !== 0 && results.length === 0" block text-center text-sm text-secondary>
+        <template v-else-if="!loading">
+          <template v-if="results.length > 0">
+            <SearchResult
+              v-for="(result, i) in results" :key="result.id"
+              :active="index === parseInt(i.toString())"
+              :result="result"
+              :tabindex="focused ? 0 : -1"
+            />
+          </template>
+          <span v-else block text-center text-sm text-secondary>
             {{ t('search.search_empty') }}
           </span>
         </template>

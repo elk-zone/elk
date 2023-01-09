@@ -1,5 +1,7 @@
+import { dirname } from 'node:path'
 import { addPlugin, createResolver, defineNuxtModule, resolvePath } from '@nuxt/kit'
 import { analyze } from 'periscopic'
+import { Type } from 'ast-types'
 import { parse, print, types } from 'recast'
 import { attachComments } from 'estree-util-attach-comments'
 import { getSafeName, parseQuery } from './utils'
@@ -14,6 +16,12 @@ export interface SFCManifest {
   setupDecls: string[]
   renderRefs: string[]
 }
+
+const exportSpecifier = (exported: N.ExportSpecifier['exported'], local: N.ExportSpecifier['local']) =>
+  b.exportSpecifier.from({ exported, local })
+
+const isExpression = (stat: N.Statement): stat is NonNullable<N.VariableDeclarator['init']> =>
+  Object.keys(Type.def('Expression').allSupertypes).includes(stat.type)
 
 export default defineNuxtModule({
   meta: {
@@ -33,12 +41,203 @@ export default defineNuxtModule({
       const index = config.plugins!.findIndex(p => p && 'name' in p && p.name === 'nuxt:imports-transform')
       if (nuxt.options.dev) {
         const devManifestPath = await resolvePath(resolve('./runtime/devManifest'))
+        const hookPath = await resolvePath(resolve('./runtime/hook'))
+
+        const composableDirs = [
+          './composables',
+        ]
+        if (nuxt.options.imports.dirs)
+          composableDirs.push(...nuxt.options.imports.dirs)
+        for (let i = 0; i < composableDirs.length; i++)
+          composableDirs[i] = await resolvePath(composableDirs[i])
+
         config.plugins!.splice(index + 1, 0, {
           name: 'elk:plugin-transform:dev',
           enforce: 'post',
           transform(code, id) {
             const { path, params } = parseQuery(id)
-            if (path.endsWith('.vue') && !params.has('vue')) {
+            if (composableDirs.includes(dirname(path)) && path.endsWith('.ts')) {
+              const relativePath = path.replace(nuxt.options.rootDir, '')
+
+              const ast = parse(code, {
+                parser: {
+                  parse: (source: string) => {
+                    const comments: never[] = []
+                    const tree = this.parse(source, {
+                      ecmaVersion: 'latest',
+                      sourceType: 'module',
+                      onComment: comments,
+                    })
+                    attachComments(tree, comments)
+                    return tree
+                  },
+                },
+              }) as N.File
+              const p = ast.program
+
+              // @ts-expect-error incompatible but same types
+              const { scope } = analyze(p)
+
+              const usedNames = new Set<string>(scope.references)
+
+              const hooks: Map<string, N.Identifier> = new Map()
+              const useHook = (name: string) => {
+                if (hooks.has(name))
+                  return hooks.get(name)!
+
+                const safeName = getSafeName(name, usedNames, null)
+                const id = b.identifier(safeName)
+
+                hooks.set(name, id)
+                return id
+              }
+
+              for (let i = 0; i < p.body.length; i++) {
+                const stat = p.body[i]
+                // /*#__PURE__*/ autoImportDecl(path, 'name', init)
+                const autoImportDecl = (name: string, init: N.VariableDeclarator['init']) => {
+                  const call = b.callExpression(useHook('autoImportDecl'), [
+                    b.literal(relativePath),
+                    b.literal(name),
+                    init ?? b.identifier('undefined'),
+                  ])
+                  call.comments ??= []
+                  call.comments.push(b.commentBlock('#__PURE__', true, false))
+                  return call
+                }
+                if (n.ExportNamedDeclaration.check(stat)) {
+                  // replace `export const foo = bar`
+                  // with
+                  // const foo = bar
+                  // const foo$1 = /*#__PURE__*/ autoImportDecl(path, 'foo', foo)
+                  // export { foo$1 as foo }
+                  if (n.VariableDeclaration.check(stat.declaration)) {
+                    const decls: N.VariableDeclarator[] = []
+                    stat.declaration.declarations = stat.declaration.declarations
+                      .filter((decl) => {
+                        if (n.VariableDeclarator.check(decl) && n.Identifier.check(decl.id)) {
+                          decls.push(decl)
+                          return false
+                        }
+                        return true
+                      })
+                    if (stat.declaration.declarations.length === 0)
+                      p.body.splice(i, 1)
+                    else
+                      i++
+
+                    if (decls.length) {
+                      const origDecl = b.variableDeclaration(stat.declaration.kind, decls)
+                      const declMap: Record<string, N.Identifier> = Object.fromEntries(decls.map(decl => [
+                        (decl.id as N.Identifier).name,
+                        b.identifier(getSafeName((decl.id as N.Identifier).name, usedNames, null)),
+                      ]))
+                      const newDecl = b.variableDeclaration(stat.declaration.kind, decls.map((decl) => {
+                        const id = decl.id as N.Identifier
+                        const newId = declMap[id.name]
+                        return b.variableDeclarator(newId, autoImportDecl(id.name, id))
+                      }))
+                      const exp = b.exportDeclaration(false, null, decls.map(decl =>
+                        exportSpecifier(decl.id as N.Identifier, declMap[(decl.id as N.Identifier).name])))
+                      p.body.splice(i, 0, origDecl, newDecl, exp)
+                      i += 2
+                    }
+                  }
+                  // replace `export function foo() {}`
+                  // with
+                  // function foo() {}
+                  // const foo$1 = /*#__PURE__*/ autoImportDecl(path, 'foo', foo)
+                  // export { foo$1 as foo }
+                  else if (n.FunctionDeclaration.check(stat.declaration)
+                  || n.ClassDeclaration.check(stat.declaration)) {
+                    const func = stat.declaration
+                    const declId = b.identifier(getSafeName(func.id!.name, usedNames, null))
+                    const decl = b.variableDeclaration('const', [
+                      b.variableDeclarator(
+                        declId,
+                        autoImportDecl(func.id!.name, b.identifier(func.id!.name)),
+                      ),
+                    ])
+                    p.body.splice(i, 0, func, decl)
+                    i += 2
+                    stat.declaration = null
+                    stat.specifiers = [exportSpecifier(func.id!, declId)]
+                  }
+                  // replace `export { foo as bar }`
+                  // with
+                  // const bar$1 = /*#__PURE__*/ autoImportDecl(path, 'bar', foo)
+                  // export { bar$1 as bar }
+                  else if (stat.specifiers) {
+                    stat.specifiers = stat.specifiers.map((spec) => {
+                      const declId = b.identifier(getSafeName(spec.exported.name, usedNames, null))
+                      const decl = b.variableDeclaration('const', [
+                        b.variableDeclarator(
+                          declId,
+                          autoImportDecl(spec.exported.name, b.identifier((spec.local ?? spec.exported).name)),
+                        ),
+                      ])
+                      p.body.splice(i, 0, decl)
+                      i++
+                      return exportSpecifier(spec.exported, declId)
+                    })
+                  }
+                }
+                else if (n.ExportDefaultDeclaration.check(stat)) {
+                  // replace `export default foo`
+                  // with
+                  // const default = foo
+                  // export default /*#__PURE__*/ autoImportDecl(path, 'default', default)
+                  if (isExpression(stat.declaration)) {
+                    const declId = b.identifier(getSafeName('default', usedNames, null))
+                    const decl = b.variableDeclaration('const', [
+                      b.variableDeclarator(declId, stat.declaration),
+                    ])
+                    p.body.splice(i, 0, decl)
+                    i++
+                    stat.declaration = autoImportDecl('default', declId)
+                  }
+                  else {
+                    // replace `export default function foo() {}`
+                    // with
+                    // function foo() {}
+                    // const foo$1 = /*#__PURE__*/ autoImportDecl(path, 'default', foo)
+                    // export default foo$1
+                    if (n.FunctionDeclaration.check(stat.declaration)
+                    || n.ClassDeclaration.check(stat.declaration)) {
+                      const func = stat.declaration
+                      func.id = func.id ?? b.identifier(getSafeName('default', usedNames, null))
+                      const declId = b.identifier(getSafeName(func.id.name, usedNames, null))
+                      const decl = b.variableDeclaration('const', [
+                        b.variableDeclarator(declId, autoImportDecl('default', func.id)),
+                      ])
+                      p.body.splice(i, 0, func, decl)
+                      i += 2
+                      stat.declaration = declId
+                    }
+                  }
+                }
+              }
+
+              // import hooks from './runtime/hook'
+              const hookImport = b.importDeclaration(
+                Array.from(hooks)
+                  .map(([name, id]) => b.importSpecifier(
+                    b.identifier(name),
+                    id,
+                  )),
+                b.literal(hookPath),
+              )
+
+              p.body.unshift(hookImport)
+
+              const res = print(ast)
+
+              return {
+                code: res.code,
+                map: res.map,
+              }
+            }
+            else if (path.endsWith('.vue') && !params.has('vue')) {
               const relativePath = path.replace(nuxt.options.rootDir, '')
 
               const ast = parse(code, {
@@ -69,6 +268,18 @@ export default defineNuxtModule({
                 renderRefs: [],
               }
 
+              const hooks: Map<string, N.Identifier> = new Map()
+              const useHook = (name: string) => {
+                if (hooks.has(name))
+                  return hooks.get(name)!
+
+                const safeName = getSafeName(name, usedNames, null)
+                const id = b.identifier(safeName)
+
+                hooks.set(name, id)
+                return id
+              }
+
               const _sfc_main = p.body
                 .find((node): node is N.VariableDeclaration =>
                   n.VariableDeclaration.check(node)
@@ -93,56 +304,23 @@ export default defineNuxtModule({
                   ?.value as N.FunctionExpression | undefined
 
                 if (_sfc_setup) {
-                // @ts-expect-error incompatible but same types
+                  // @ts-expect-error incompatible but same types
                   const scope = map.get(_sfc_setup.body)!
 
-                  // import { inject } from 'vue'
-                  const vueImport = p.body
-                    .find((node): node is N.ImportDeclaration =>
-                      n.ImportDeclaration.check(node)
-                    && node.source.value === 'vue')
-                  const injectImport = vueImport?.specifiers
-                    ?.find((specifier): specifier is N.ImportSpecifier =>
-                      n.ImportSpecifier.check(specifier)
-                    && specifier.imported.name === 'inject')
-                  let injectIdentifier: N.Identifier
-                  if (n.Identifier.check(injectImport?.local)) {
-                    injectIdentifier = injectImport!.local
-                  }
-                  else {
-                    injectIdentifier = b.identifier(getSafeName('inject', usedNames, null))
-                    if (vueImport) {
-                      vueImport.specifiers = vueImport.specifiers ?? []
-                      vueImport.specifiers.push(b.importSpecifier(b.identifier('inject'), injectIdentifier))
-                    }
-                    else {
-                      p.body.unshift(b.importDeclaration([
-                        b.importSpecifier(b.identifier('inject'), injectIdentifier),
-                      ], b.literal('vue')))
-                    }
-                  }
-
-                  // const $elkPlugin = inject('$elkPlugin')
-                  const elkPluginIdentifier = b.identifier(getSafeName('$elkPlugin', usedNames, null))
-                  const elkPluginDecl = b.variableDeclaration('const', [
-                    b.variableDeclarator(elkPluginIdentifier,
-                      b.callExpression(injectIdentifier, [b.literal('$elkPlugin')])),
-                  ])
-
                   // rewrite `const __returned__ = { _ctx, ... }` to
-                  // const _elk_ret = $elkPlugin.setupDecl(id, [ _ctx, ... ])
+                  // const _elk_ret = setupDecl(id, [ _ctx, ... ])
                   // const __returned__ = { _ctx: _elk_ret[0], ... }
                   const returnedRet = _sfc_setup.body.body.at(-1)
                   if (returnedRet
                   && n.ReturnStatement.check(returnedRet)
                   && n.Identifier.check(returnedRet.argument)) {
-                    const returnedIdent = returnedRet.argument
+                    const returnedId = returnedRet.argument
                     const returnedDeclIndex = _sfc_setup.body.body
                       .findIndex(node =>
                         n.VariableDeclaration.check(node)
                         && n.VariableDeclarator.check(node.declarations[0])
                         && n.Identifier.check(node.declarations[0].id)
-                        && node.declarations[0].id.name === returnedIdent.name)!
+                        && node.declarations[0].id.name === returnedId.name)!
                     const returnedInit = (
                       (_sfc_setup.body.body[returnedDeclIndex] as N.VariableDeclaration)
                         .declarations[0] as N.VariableDeclarator
@@ -153,11 +331,11 @@ export default defineNuxtModule({
                         && n.Identifier.check(prop.key))
                       .map(prop => (prop.key as N.Identifier).name)
                     manifest.setupDecls = returnedProps
-                    const returnedRetIdent = b.identifier(getSafeName('_elk_ret', usedNames, null))
+                    const returnedRetId = b.identifier(getSafeName('_elk_ret', usedNames, null))
                     const returnedCallDecl = b.variableDeclaration('const', [
-                      b.variableDeclarator(returnedRetIdent,
+                      b.variableDeclarator(returnedRetId,
                         b.callExpression(
-                          b.memberExpression(elkPluginIdentifier, b.identifier('setupDecl')),
+                          useHook('setupDecl'),
                           [
                             b.literal(relativePath),
                             b.arrayExpression(returnedProps.map(name => b.identifier(name))),
@@ -166,11 +344,11 @@ export default defineNuxtModule({
                       ),
                     ])
                     const returnedDecl = b.variableDeclaration('const', [
-                      b.variableDeclarator(returnedIdent,
+                      b.variableDeclarator(returnedId,
                         b.objectExpression(returnedProps.map((name, i) => b.property(
                           'init',
                           b.identifier(name),
-                          b.memberExpression(returnedRetIdent, b.numericLiteral(i), true),
+                          b.memberExpression(returnedRetId, b.numericLiteral(i), true),
                         ))),
                       ),
                     ])
@@ -182,34 +360,33 @@ export default defineNuxtModule({
                     .filter(ref => !scope.parent!.declarations.has(ref))
                   manifest.setupRefs = refs
 
-                  // const _elk_refs = $elkPlugin.setupRef(id, arguments, [ ... ])
+                  // const _elk_refs = setupRef(id, arguments, [ ... ])
                   // {
                   //   const [ ... ] = _elk_refs
                   //   ...
                   // }
                   const refCall = b.callExpression(
-                    b.memberExpression(elkPluginIdentifier, b.identifier('setupRef')),
+                    useHook('setupRef'),
                     [
                       b.literal(relativePath),
                       b.identifier('arguments'),
                       b.arrayExpression(refs.map(name => b.identifier(name))),
                     ],
                   )
-                  const refIdentifier = b.identifier(getSafeName('_elk_refs', usedNames, null))
+                  const refId = b.identifier(getSafeName('_elk_refs', usedNames, null))
                   const refDecl = b.variableDeclaration('const', [
-                    b.variableDeclarator(refIdentifier, refCall),
+                    b.variableDeclarator(refId, refCall),
                   ])
                   const refBlock = b.blockStatement([
                     b.variableDeclaration('let', [
                       b.variableDeclarator(
                         b.arrayPattern(refs.map(name => b.identifier(name))),
-                        refIdentifier,
+                        refId,
                       ),
                     ]),
                     ..._sfc_setup.body.body,
                   ])
                   _sfc_setup.body.body = [
-                    elkPluginDecl,
                     refDecl,
                     refBlock,
                   ]
@@ -222,21 +399,13 @@ export default defineNuxtModule({
                   && n.Identifier.check(node.id)
                   && node.id.name === '_sfc_render')
               if (_sfc_render) {
-              // @ts-expect-error incompatible but same types
+                // @ts-expect-error incompatible but same types
                 const scope = map.get(_sfc_render.body)!
-
-                // _ctx.$options.$elkPlugin
-                const elkPluginHook = b.memberExpression(
-                  b.memberExpression(
-                    _sfc_render.params[0] as N.Identifier,
-                    b.identifier('$options'),
-                  ),
-                  b.identifier('$elkPlugin'),
-                )
 
                 // @ts-expect-error incompatible but same types
                 const refs = [...analyze(_sfc_render.body).globals.keys()]
                   .filter(ref => !scope.parent!.declarations.has(ref))
+                  .filter(ref => !ref.startsWith('_hoisted_'))
 
                 // pass through auto-imported components
                 const components: N.VariableDeclaration[] = []
@@ -256,31 +425,28 @@ export default defineNuxtModule({
 
                 manifest.renderRefs = refs
 
-                // const _elk_refs = _ctx.$options.$elkPlugin.renderRef(id, arguments, [ ... ])
+                // const _elk_refs = renderRef(id, arguments, [ ... ])
                 // {
                 //   const [ ... ] = _elk_refs
                 //   ...
                 // }
                 const refCall = b.callExpression(
-                  b.memberExpression(
-                    elkPluginHook,
-                    b.identifier('renderRef'),
-                  ),
+                  useHook('renderRef'),
                   [
                     b.literal(relativePath),
                     b.identifier('arguments'),
                     b.arrayExpression(refs.map(name => b.identifier(name))),
                   ],
                 )
-                const refIdentifier = b.identifier(getSafeName('_elk_refs', usedNames, null))
+                const refId = b.identifier(getSafeName('_elk_refs', usedNames, null))
                 const refDecl = b.variableDeclaration('const', [
-                  b.variableDeclarator(refIdentifier, refCall),
+                  b.variableDeclarator(refId, refCall),
                 ])
                 const refBlock = b.blockStatement([
                   b.variableDeclaration('let', [
                     b.variableDeclarator(
                       b.arrayPattern(refs.map(name => b.identifier(name))),
-                      refIdentifier,
+                      refId,
                     ),
                   ]),
                   ..._sfc_render.body.body,
@@ -292,15 +458,25 @@ export default defineNuxtModule({
                 ]
               }
 
+              // import hooks from './runtime/hook'
+              const hookImport = b.importDeclaration(
+                Array.from(hooks)
+                  .map(([name, id]) => b.importSpecifier(
+                    b.identifier(name),
+                    id,
+                  )),
+                b.literal(hookPath),
+              )
+
               // import { provideManifest } from './runtime/devManifest'
               // provideManifest(id, manifest)
-              const provideIdent = b.identifier(getSafeName('provideManifest', usedNames, null))
+              const provideId = b.identifier(getSafeName('provideManifest', usedNames, null))
               const provideDecl = b.importDeclaration(
-                [b.importSpecifier(provideIdent, provideIdent)],
+                [b.importSpecifier(provideId, provideId)],
                 b.literal(devManifestPath),
               )
               const provideCall = b.expressionStatement(
-                b.callExpression(provideIdent, [
+                b.callExpression(provideId, [
                   b.literal(relativePath),
                   b.callExpression(
                     b.memberExpression(b.identifier('JSON'), b.identifier('parse')),
@@ -311,15 +487,17 @@ export default defineNuxtModule({
 
               if (_sfc_main) {
                 const index = p.body.indexOf(_sfc_main)
-                p.body.splice(index, 0, provideDecl, provideCall)
+                p.body.splice(index, 0, provideCall)
               }
               else if (_sfc_render) {
                 const index = p.body.indexOf(_sfc_render)
-                p.body.splice(index, 0, provideDecl, provideCall)
+                p.body.splice(index, 0, provideCall)
               }
               else {
-                p.body.push(provideDecl, provideCall)
+                p.body.push(provideCall)
               }
+
+              p.body.unshift(hookImport, provideDecl)
 
               const res = print(ast)
 

@@ -58,7 +58,7 @@ export function useTiptap(options: UseTiptapOptions) {
           suggestion: HashtagSuggestion,
         }),
       Placeholder.configure({
-        placeholder: placeholder.value,
+        placeholder: () => placeholder.value!,
       }),
       CodeBlockShiki,
       Extension.create({
@@ -105,6 +105,9 @@ export function useTiptap(options: UseTiptapOptions) {
     if (editor.value?.getHTML() === value)
       return
     editor.value?.commands.setContent(value || '', false)
+  })
+  watch(placeholder, () => {
+    editor.value?.view.dispatch(editor.value?.state.tr)
   })
 
   return {

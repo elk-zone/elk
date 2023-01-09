@@ -230,7 +230,8 @@
     }
   },
   "search": {
-    "search_desc": "Search for people & hashtags"
+    "search_desc": "Search for people & hashtags",
+    "search_empty": "Could not find anything for these search terms"
   },
   "settings": {
     "about": {
@@ -296,12 +297,15 @@
           "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
           "title": "Could not subscribe to push notifications"
         },
+        "title": "Push notifications settings",
         "undo_settings": "Undo changes",
         "unsubscribe": "Disable push notifications",
         "unsupported": "Your browser does not support push notifications.",
         "warning": {
           "enable_close": "Close",
           "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:settings.notifications.show_btn{'\"'} button above once enabled.",
+          "enable_description_desktop": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications in \"Settings > Notifications > Push notifications settings\" once enabled.",
+          "enable_description_mobile": "You can also access the settings using the navigation menu \"Settings > Notifications > Push notification settings\".",
           "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
           "enable_desktop": "Enable push notifications",
           "enable_title": "Never miss anything",
@@ -368,6 +372,7 @@
     "someone": "someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
+    "thread": "Thread",
     "try_original_site": "Try original site"
   },
   "status_history": {

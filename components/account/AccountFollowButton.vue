@@ -60,18 +60,14 @@ useCommand({
 })
 
 const buttonStyle = $computed(() => {
-  // Skeleton while loading, avoid primary color flash
-  if (!relationship)
-    return 'text-inverted'
-
-  if (relationship.blocking)
+  if (relationship?.blocking)
     return 'text-inverted bg-red border-red'
 
-  if (relationship.muting)
+  if (relationship?.muting)
     return 'text-base bg-code border-base'
 
   // If following, use a label style with a strong border for Mutuals
-  if (relationship.following)
+  if (relationship?.following)
     return `text-base ${relationship.followedBy ? 'border-strong' : 'border-base'}`
 
   // If not following, use a button style
@@ -99,7 +95,7 @@ const buttonStyle = $computed(() => {
       <span hidden group-hover="inline">{{ $t('account.unmute') }}</span>
     </template>
     <template v-else-if="relationship?.following">
-      <span group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
+      <span group-hover="hidden">{{ relationship.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
       <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
     </template>
     <template v-else-if="relationship?.requested">

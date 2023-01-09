@@ -18,6 +18,7 @@ const followersCountSR = $computed(() => forSR(props.account.followersCount))
   <div flex gap-5>
     <NuxtLink
       :to="getAccountRoute(account)"
+      replace
       text-secondary
       exact-active-class="text-primary"
       :class="statusesCountSR ? 'flex gap-x-1' : null"
@@ -34,6 +35,7 @@ const followersCountSR = $computed(() => forSR(props.account.followersCount))
     </NuxtLink>
     <NuxtLink
       :to="getAccountFollowingRoute(account)"
+      replace
       text-secondary exact-active-class="text-primary"
       :class="followingCountSR ? 'flex gap-x-1' : null"
     >
@@ -49,6 +51,7 @@ const followersCountSR = $computed(() => forSR(props.account.followersCount))
     </NuxtLink>
     <NuxtLink
       :to="getAccountFollowersRoute(account)"
+      replace
       text-secondary exact-active-class="text-primary"
       :class="followersCountSR ? 'flex gap-x-1' : null"
     >

@@ -3,6 +3,7 @@ import type { mastodon } from 'masto'
 import type { Node } from 'ultrahtml'
 import { DOCUMENT_NODE, ELEMENT_NODE, TEXT_NODE, h, parse, render } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
+import { decode } from 'tiny-decode'
 import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 export interface ContentParseOptions {
@@ -33,15 +34,6 @@ const sanitizer = sanitize({
     class: filterClasses(/^language-\w+$/),
   },
 })
-
-const decoder = process.client ? document.createElement('textarea') : null
-export function decodeHtml(text: string) {
-  if (!decoder)
-    // not available when SSR
-    return text
-  decoder.innerHTML = text
-  return decoder.value
-}
 
 /**
  * Parse raw HTML form Mastodon server to AST,
@@ -113,7 +105,7 @@ export function treeToText(input: Node): string {
   let post = ''
 
   if (input.type === TEXT_NODE)
-    return decodeHtml(input.value)
+    return decode(input.value)
 
   if (input.name === 'br')
     return '\n'

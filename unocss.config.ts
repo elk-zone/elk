@@ -25,6 +25,7 @@ export default defineConfig({
       'bg-primary-light': 'bg-$c-primary-light',
       'bg-code': 'bg-$c-bg-code',
       'bg-fade': 'bg-$c-bg-fade',
+      'bg-dm': 'bg-$c-bg-dm',
 
       // text colors
       'text-base': 'text-$c-text-base',

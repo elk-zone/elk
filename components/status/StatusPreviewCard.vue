@@ -46,6 +46,7 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
       'rounded-lg border border-base': !root,
     }"
     target="_blank"
+    external
   >
     <div
       v-if="card.image"

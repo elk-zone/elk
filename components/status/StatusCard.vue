@@ -168,11 +168,11 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
             <AccountBotIndicator v-if="status.account.bot" me-2 />
             <div flex>
               <CommonTooltip :content="createdAt">
-                <a :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
+                <NuxtLink :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
                   <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
                     {{ timeago }}
                   </time>
-                </a>
+                </NuxtLink>
               </CommonTooltip>
               <StatusEditIndicator :status="status" inline />
             </div>

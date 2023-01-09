@@ -230,7 +230,8 @@
     }
   },
   "search": {
-    "search_desc": "Buscar personas y etiquetas"
+    "search_desc": "Buscar personas y etiquetas",
+    "search_empty": "No se pudo encontrar nada para estos términos de búsqueda"
   },
   "settings": {
     "about": {

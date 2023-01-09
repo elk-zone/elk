@@ -203,7 +203,8 @@
     }
   },
   "search": {
-    "search_desc": "搜索用户或话题标签"
+    "search_desc": "搜索用户或话题标签",
+    "search_empty": "无法找到符合这些搜索词的任何内容"
   },
   "settings": {
     "about": {

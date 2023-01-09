@@ -12,10 +12,10 @@ defineProps<{
 
 <template>
   <div
-    px3 max-h-2xl
+    p4 max-h-2xl
     flex flex-col
     :class="[
-      root ? 'flex-gap-1 py1 sm:py3' : 'py1 justify-center sm:justify-start',
+      root ? 'flex-gap-1' : 'justify-center sm:justify-start',
     ]"
     my-auto
   >

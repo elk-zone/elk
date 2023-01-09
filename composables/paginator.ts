@@ -1,11 +1,11 @@
 import type { Paginator, WsEvents } from 'masto'
 import type { PaginatorState } from '~/types'
 
-export function usePaginator<T, P>(
+export function usePaginator<T, P, U = T>(
   paginator: Paginator<T[], P>,
   stream?: Promise<WsEvents>,
   eventType: 'notification' | 'update' = 'update',
-  preprocess: (items: T[]) => T[] = (items: T[]) => items,
+  preprocess: (items: T[]) => U[] = (items: T[]) => items as unknown as U[],
   buffer = 10,
 ) {
   const state = ref<PaginatorState>(isMastoInitialised.value ? 'idle' : 'loading')

@@ -10,7 +10,6 @@ const {
   keyProp = 'id',
   virtualScroller = false,
   eventType = 'update',
-  buffer = 10,
   preprocess,
 } = defineProps<{
   paginator: Paginator<T[], O>
@@ -18,10 +17,6 @@ const {
   virtualScroller?: boolean
   stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
-  // When preprocess is used, buffer is the number of items that will be hidden
-  // until the next pagination to avoid border effect between pages when reordering
-  // and grouping items
-  buffer?: number
   preprocess?: (items: T[]) => U[]
 }>()
 

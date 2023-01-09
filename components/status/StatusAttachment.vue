@@ -123,7 +123,7 @@ useIntersectionObserver(video, (entries) => {
       </video>
     </template>
     <template v-else-if="type === 'audio'">
-      <audio controls border="~ base">
+      <audio controls h-15 w="80%">
         <source :src="attachment.url || attachment.previewUrl" type="audio/mp3">
       </audio>
     </template>
@@ -158,11 +158,16 @@ useIntersectionObserver(video, (entries) => {
         />
       </button>
     </template>
-    <div v-if="attachment.description" absolute left-2 class="bottom-2">
+    <div v-if="attachment.description" :class="attachment.type !== 'image' ? 'w-20/100' : 'absolute left-2 bottom-2'">
       <VDropdown :distance="6" placement="bottom-start">
-        <button font-bold text-sm hover:bg-black class="bg-black/65 px1.2 py0.2" rounded-1 text-white>
+        <button
+          font-bold hover:bg-black px1.2 py0.2
+          :class="attachment.type !== 'image'
+            ? 'rounded-full h-15 w-full bg-black/50 text-secondary'
+            : 'rounded-1 bg-black/65 text-white'"
+        >
           <div hidden>
-            read image description
+            read {{ attachment.type }} description
           </div>
           ALT
         </button>

@@ -34,7 +34,7 @@ In order to run Elk with PWA enabled, run `pnpm run dev:pwa` in Elk's root folde
 You should test the Elk PWA application on private browsing mode on any Chromium based browser: will not work on Firefox and Safari.
 
 If not using private browsing mode, you will need to uninstall the PWA application from your browser once you finish testing:
-- Open `Dev Tools` (`Option + ⌘ + J` on MacOS, `Shift + CTRL + J` on Windows/Linux)
+- Open `Dev Tools` (`Option + ⌘ + J` on macOS, `Shift + CTRL + J` on Windows/Linux)
 - Go to `Application > Storage`, you should check following checkboxes:
     - Application: [x] Unregister service worker
     - Storage: [x] IndexedDB and [x] Local and session storage

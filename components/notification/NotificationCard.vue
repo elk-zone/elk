@@ -4,17 +4,15 @@ import type { mastodon } from 'masto'
 const { notification } = defineProps<{
   notification: mastodon.v1.Notification
 }>()
-
-const nuxt = useNuxtApp()
-function click() {
-  nuxt.$rememberAccountPosition(getAccountRoute(notification.account).fullPath)
-}
 </script>
 
 <template>
   <article flex flex-col relative>
     <template v-if="notification.type === 'follow'">
-      <NuxtLink :to="getAccountRoute(notification.account)" @click="click">
+      <NuxtLink
+        :to="getAccountRoute(notification.account)"
+        @click="$rememberAccountPosition(getAccountRoute(notification.account).fullPath)"
+      >
         <div
           flex items-center absolute
           ps-3 pe-4 inset-is-0

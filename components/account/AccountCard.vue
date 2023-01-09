@@ -17,6 +17,7 @@ cacheAccount(account)
       shrink
       overflow-hidden
       :to="getAccountRoute(account)"
+      @click="$rememberAccountPosition(getAccountRoute(account).fullPath)"
     />
     <div h-full p1 shrink-0>
       <AccountFollowButton :account="account" />

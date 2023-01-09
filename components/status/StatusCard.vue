@@ -42,6 +42,7 @@ const statusRoute = $computed(() => getStatusRoute(status))
 
 const el = ref<HTMLElement>()
 const router = useRouter()
+const nuxtApp = useNuxtApp()
 
 function onclick(evt: MouseEvent | KeyboardEvent) {
   const path = evt.composedPath() as HTMLElement[]
@@ -56,7 +57,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
     window.open(statusRoute.href)
   }
   else {
-    useNuxtApp().$rememberStatusPosition(status)
+    nuxtApp.$rememberStatusPosition(status)
     cacheStatus(status)
     router.push(statusRoute)
   }

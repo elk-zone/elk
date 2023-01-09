@@ -87,6 +87,9 @@ const activate = () => {
             :result="result"
             :tabindex="focused ? 0 : -1"
           />
+          <span v-if="query.length !== 0 && results.length === 0" block text-center text-sm text-secondary>
+            {{ t('search.search_empty') }}
+          </span>
         </template>
         <div v-else>
           <SearchResultSkeleton />

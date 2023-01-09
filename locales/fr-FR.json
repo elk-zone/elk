@@ -209,7 +209,8 @@
     }
   },
   "search": {
-    "search_desc": "Recherche de personnes & hashtags"
+    "search_desc": "Recherche de personnes & hashtags",
+    "search_empty": "Aucun résultat avec ces mots-clefs"
   },
   "settings": {
     "about": {

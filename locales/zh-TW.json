@@ -178,7 +178,8 @@
     "update_available_short": "更新鹿鳴"
   },
   "search": {
-    "search_desc": "搜索用戶或話題標籤"
+    "search_desc": "搜索用戶或話題標籤",
+    "search_empty": "無法找到符合搜尋條件之結果"
   },
   "settings": {
     "about": {

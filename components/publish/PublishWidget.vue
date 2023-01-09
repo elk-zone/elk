@@ -28,7 +28,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-// eslint-disable-next-line prefer-const
+
 let { draft, isEmpty } = $(useDraft(draftKey, initial))
 
 let isSending = $ref(false)

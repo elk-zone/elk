@@ -184,7 +184,7 @@
   "notification": {
     "favourited_post": "додали ваший допис до вибраного",
     "followed_you": "підписались на вас",
-    "followed_you_count": "{followers} людей підписалися на вас|{followers} людина підписалися на вас|{followers} людини підписалися на вас|{followers} людей підписалися на вас",
+    "followed_you_count": "{0} людей підписалися на вас|{0} людина підписалися на вас|{0} людини підписалися на вас|{0} людей підписалися на вас",
     "missing_type": "ВІДСУТНІЙ notification.type:",
     "reblogged_post": "поширили ваш допис",
     "request_to_follow": "попросили підписатися на вас",

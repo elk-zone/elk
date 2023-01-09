@@ -59,6 +59,7 @@
     "slimeform": "^0.8.0",
     "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log",
     "tauri-plugin-store-api": "github:tauri-apps/tauri-plugin-store",
+    "tiny-decode": "^0.1.3",
     "tippy.js": "^6.3.7",
     "ufo": "^1.0.1",
     "ultrahtml": "^1.2.0",

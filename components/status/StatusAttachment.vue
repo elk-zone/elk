@@ -78,7 +78,7 @@ useIntersectionObserver(video, (entries) => {
 </script>
 
 <template>
-  <div relative ma flex :gap="attachment.type !== 'image' ? '2' : ''">
+  <div relative ma flex :gap="attachment.type === 'audio' ? '2' : ''">
     <template v-if="type === 'video'">
       <video
         ref="video"
@@ -158,11 +158,11 @@ useIntersectionObserver(video, (entries) => {
         />
       </button>
     </template>
-    <div v-if="attachment.description" :class="attachment.type !== 'image' ? '' : 'absolute left-2 bottom-2'">
+    <div v-if="attachment.description" :class="attachment.type === 'audio' ? '' : 'absolute left-2 bottom-2'">
       <VDropdown :distance="6" placement="bottom-start">
         <button
           font-bold px1.2 py0.2 text-sm
-          :class="attachment.type !== 'image'
+          :class="attachment.type === 'audio'
             ? 'rounded-full h-15 w-15 px4 py0 btn-outline border-base text-secondary hover-bg-black hover-text-white'
             : 'rounded-1 bg-black/65 text-white hover:bg-black'"
         >

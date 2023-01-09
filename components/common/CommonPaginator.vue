@@ -17,7 +17,7 @@ const {
   virtualScroller?: boolean
   stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
-  preprocess?: (items: T[]) => U[]
+  preprocess?: (items: (U | T)[]) => U[]
 }>()
 
 defineSlots<{

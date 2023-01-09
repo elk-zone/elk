@@ -23,7 +23,7 @@ const groupId = (item: mastodon.v1.Notification): string => {
   return JSON.stringify(id)
 }
 
-function preprocess(items: mastodon.v1.Notification[]): NotificationSlot[] {
+function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   const results: NotificationSlot[] = []
 
   let id = 0
@@ -106,6 +106,28 @@ function preprocess(items: mastodon.v1.Notification[]): NotificationSlot[] {
   processGroup()
 
   return results
+}
+
+function preprocess(items: NotificationSlot[]): NotificationSlot[] {
+  const flattenedNotifications: mastodon.v1.Notification[] = []
+  for (const item of items) {
+    if (item.type === 'grouped-reblogs-and-favourites') {
+      const group = item
+      for (const like of group.likes) {
+        if (like.reblog)
+          flattenedNotifications.push(like.reblog)
+        if (like.favourite)
+          flattenedNotifications.push(like.favourite)
+      }
+    }
+    else if (item.type === 'grouped-follow') {
+      flattenedNotifications.push(...item.items)
+    }
+    else {
+      flattenedNotifications.push(item)
+    }
+  }
+  return groupItems(flattenedNotifications)
 }
 
 const { clearNotifications } = useNotifications()

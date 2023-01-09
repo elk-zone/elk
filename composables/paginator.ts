@@ -5,7 +5,7 @@ export function usePaginator<T, P, U = T>(
   paginator: Paginator<T[], P>,
   stream?: Promise<WsEvents>,
   eventType: 'notification' | 'update' = 'update',
-  preprocess: (items: T[]) => U[] = items => items as unknown as U[],
+  preprocess: (items: (T | U)[]) => U[] = items => items as unknown as U[],
   buffer = 10,
 ) {
   const state = ref<PaginatorState>(isMastoInitialised.value ? 'idle' : 'loading')
@@ -64,14 +64,14 @@ export function usePaginator<T, P, U = T>(
     try {
       const result = await paginator.next()
 
-      if (result.value?.length) {
-        const preprocessedItems = preprocess([...nextItems.value, ...result.value]) as any
+      if (!result.done && result.value.length) {
+        const preprocessedItems = preprocess([...nextItems.value, ...result.value] as (U | T)[])
         const itemsToShowCount
           = preprocessedItems.length < buffer
             ? preprocessedItems.length
             : preprocessedItems.length - buffer
-        nextItems.value = preprocessedItems.slice(itemsToShowCount)
-        items.value.push(...preprocessedItems.slice(0, itemsToShowCount))
+        ;(nextItems.value as U[]) = preprocessedItems.slice(itemsToShowCount)
+        ;(items.value as U[]).push(...preprocessedItems.slice(0, itemsToShowCount))
         state.value = 'idle'
       }
       else {

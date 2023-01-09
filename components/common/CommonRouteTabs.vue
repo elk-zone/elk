@@ -50,7 +50,7 @@ const handleClick = (to: RouteLocationRaw) => {
         tabindex="1"
         hover:bg-active transition-100
         exact-active-class="children:(text-secondary !border-primary !op100 !text-base)"
-        @click.capture="handleClick(option.to)"
+        @click="handleClick(option.to)"
       >
         <span ws-nowrap mxa sm:px2 sm:py3 xl:pb4 xl:pt5 py2 text-center border-b-3 text-secondary-light hover:text-secondary border-transparent>{{ option.display }}</span>
       </NuxtLink>

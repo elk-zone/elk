@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { mastodon } from 'masto'
-import type { Paginator, WsEvents } from 'masto'
-// type used in <template>
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import type { GroupedAccountLike, GroupedLikeNotifications, GroupedNotifications, NotificationSlot } from '~/types'
+import type { Paginator, WsEvents, mastodon } from 'masto'
+import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
-  paginator: Paginator<NotificationSlot[], mastodon.v1.ListNotificationsParams>
+  paginator: Paginator<mastodon.v1.Notification[], mastodon.v1.ListNotificationsParams>
   stream?: Promise<WsEvents>
 }>()
 
@@ -43,21 +40,31 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
     // This normally happens when you transfer an account, if not, show
     // a big profile card for each follow
     if (group[0].type === 'follow') {
-      const toGroup = []
+      let groups: mastodon.v1.Notification[] = []
+
+      function newGroup() {
+        if (groups.length > 0) {
+          results.push({
+            id: `grouped-${id++}`,
+            type: 'grouped-follow',
+            items: groups,
+          })
+          groups = []
+        }
+      }
+
       for (const item of group) {
         const hasHeader = !item.account.header.endsWith('/original/missing.png')
-        if (hasHeader && (item.account.followersCount > 250 || (group.length === 1 && item.account.followersCount > 25)))
+        if (hasHeader && (item.account.followersCount > 250 || (group.length === 1 && item.account.followersCount > 25))) {
+          newGroup()
           results.push(item)
-        else
-          toGroup.push(item)
+        }
+        else {
+          groups.push(item)
+        }
       }
-      if (toGroup.length > 0) {
-        results.push({
-          id: `grouped-${id++}`,
-          type: `grouped-${group[0].type}`,
-          items: toGroup,
-        })
-      }
+
+      newGroup()
       return
     }
 
@@ -105,7 +112,7 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
   const flattenedNotifications: mastodon.v1.Notification[] = []
   for (const item of items) {
     if (item.type === 'grouped-reblogs-and-favourites') {
-      const group = item as GroupedLikeNotifications
+      const group = item
       for (const like of group.likes) {
         if (like.reblog)
           flattenedNotifications.push(like.reblog)
@@ -113,11 +120,11 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
           flattenedNotifications.push(like.favourite)
       }
     }
-    else if (item.type.startsWith('grouped-')) {
-      flattenedNotifications.push(...(item as GroupedNotifications).items)
+    else if (item.type === 'grouped-follow') {
+      flattenedNotifications.push(...item.items)
     }
     else {
-      flattenedNotifications.push(item as mastodon.v1.Notification)
+      flattenedNotifications.push(item)
     }
   }
   return groupItems(flattenedNotifications)
@@ -143,12 +150,12 @@ const { formatNumber } = useHumanReadableNumber()
         />
         <NotificationGroupedLikes
           v-else-if="item.type === 'grouped-reblogs-and-favourites'"
-          :group="item as GroupedLikeNotifications"
+          :group="item"
           border="b base"
         />
         <NotificationCard
           v-else
-          :notification="item as mastodon.v1.Notification"
+          :notification="item"
           hover:bg-active
           border="b base"
         />

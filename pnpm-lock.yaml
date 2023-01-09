@@ -5,7 +5,7 @@ patchedDependencies:
     hash: afe7v34zn4lohdq7767l3tlrje
     path: patches/mlly@1.0.0.patch
   nitropack@1.0.0:
-    hash: 5rbw6wsrpkguwhgdzu2jwggidq
+    hash: k66pyfgyevhmomc3yledfrjhru
     path: patches/nitropack@1.0.0.patch
 
 importers:
@@ -8581,7 +8581,7 @@ packages:
       - utf-8-validate
     dev: true
 
-  /nitropack/1.0.0_5rbw6wsrpkguwhgdzu2jwggidq:
+  /nitropack/1.0.0_k66pyfgyevhmomc3yledfrjhru:
     resolution: {integrity: sha512-788lHgNgC+NKqecwFgMkAQTuTXwuh2hEgOk2sLwV3qPVUogxrl6P3m5eKdt6Mtzx+mlXIw0G/P90B5TNWEqDSQ==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
     hasBin: true
@@ -8911,7 +8911,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.26.7
       mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
-      nitropack: 1.0.0_5rbw6wsrpkguwhgdzu2jwggidq
+      nitropack: 1.0.0_k66pyfgyevhmomc3yledfrjhru
       nuxi: 3.0.0
       ofetch: 1.0.0
       ohash: 1.0.0

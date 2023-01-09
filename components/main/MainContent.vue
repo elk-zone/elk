@@ -18,8 +18,7 @@ defineProps<{
       <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }">
         <div flex gap-3 items-center overflow-hidden py2>
           <NuxtLink
-            v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0
-            :class="{ 'lg:hidden': backOnSmallScreen }"
+            v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0 lg:hidden
             :aria-label="$t('nav.back')"
             @click="$router.go(-1)"
           >

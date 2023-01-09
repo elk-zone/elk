@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { clamp } from '@vueuse/core'
-import type { Attachment } from 'masto'
+import type { mastodon } from 'masto'
 
 const {
   attachment,
   fullSize = false,
 } = defineProps<{
-  attachment: Attachment
-  attachments?: Attachment[]
+  attachment: mastodon.v1.MediaAttachment
+  attachments?: mastodon.v1.MediaAttachment[]
   fullSize?: boolean
 }>()
 
@@ -65,14 +65,23 @@ const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
 
 useIntersectionObserver(video, (entries) => {
-  if (prefersReducedMotion.value === 'reduce')
+  const ready = video.value?.dataset.ready === 'true'
+  if (prefersReducedMotion.value === 'reduce') {
+    if (ready && !video.value?.paused)
+      video.value?.pause()
+
     return
+  }
 
   entries.forEach((entry) => {
-    if (entry.intersectionRatio <= 0.75)
-      !video.value!.paused && video.value!.pause()
-    else
-      video.value!.play()
+    if (entry.intersectionRatio <= 0.75) {
+      ready && !video.value?.paused && video.value?.pause()
+    }
+    else {
+      video.value?.play().then(() => {
+        video.value!.dataset.ready = 'true'
+      }).catch(noop)
+    }
   })
 }, { threshold: 0.75 })
 </script>

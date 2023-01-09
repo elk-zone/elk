@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import type { History } from 'masto'
+import type { mastodon } from 'masto'
 
 const {
   history,
   maxDay = 2,
 } = $defineProps<{
-  history: History[]
+  history: mastodon.v1.TagHistory[]
   maxDay?: number
 }>()
 

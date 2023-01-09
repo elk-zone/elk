@@ -54,7 +54,7 @@
     "more": "المزيد",
     "next": "التالي",
     "prev": "السابق",
-    "publish": "!نشر",
+    "publish": "نشر",
     "reply": "رد",
     "save": "حفظ",
     "save_changes": "حفظ التغييرات",
@@ -154,7 +154,7 @@
   "notification": {
     "favourited_post": "أُعجِب بمنشورك",
     "followed_you": "بدأ في متابعتك",
-    "followed_you_count": "لم يتبعك أحد|تبعك شخص واحد|تبعك شخصان|تبعك {followers} أشخاص|تبعك {followers} شخص| تبعك {followers} شخص",
+    "followed_you_count": "لم يتبعك أحد|تبعك شخص واحد|تبعك شخصان|تبعك {0} أشخاص|تبعك {0} شخص| تبعك {0} شخص",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "اعاد نشر منشورك",
     "request_to_follow": "طلب(ت) متابعتك",

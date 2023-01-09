@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const masto = useMasto()
-const paginator = masto.domainBlocks.iterate()
+const paginator = masto.v1.domainBlocks.list()
 
 const unblock = async (domain: string) => {
-  await masto.domainBlocks.unblock(domain)
+  await masto.v1.domainBlocks.unblock(domain)
 }
 </script>
 

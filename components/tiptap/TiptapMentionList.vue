@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 import CommonScrollIntoView from '../common/CommonScrollIntoView.vue'
 
 const { items, command } = defineProps<{
-  items: Account[]
+  items: mastodon.v1.Account[]
   command: Function
   isPending?: boolean
 }>()

@@ -1,7 +1,7 @@
 // Vitest Snapshot v1
 
 exports[`content-rich > code frame 1`] = `
-"<p>Testing code block</p><p><pre lang=\\"ts\\">import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
+"<p>Testing code block</p><p></p><p><pre lang=\\"ts\\">import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
 // tracks mouse position
 const { x, y } = useMouse()
 // is the user prefers dark theme

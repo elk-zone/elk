@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const props = defineProps<{
-  status: Status
+  status: mastodon.v1.Status
   details?: boolean
   command?: boolean
 }>()
@@ -14,21 +14,19 @@ const { details, command } = $(props)
 const {
   status,
   isLoading,
+  canReblog,
   toggleBookmark,
   toggleFavourite,
   toggleReblog,
 } = $(useStatusActions(props))
-
-const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumber()
 
 const reply = () => {
   if (!checkLogin())
     return
   if (details)
     focusEditor()
-
   else
-    navigateTo({ path: getStatusRoute(status).href, state: { focusReply: true } })
+    navigateToStatus({ status, focusReply: true })
 }
 </script>
 
@@ -39,18 +37,15 @@ const reply = () => {
         :content="$t('action.reply')"
         :text="status.repliesCount || ''"
         color="text-blue" hover="text-blue" group-hover="bg-blue/10"
-        icon="i-ri:chat-3-line"
+        icon="i-ri:chat-1-line"
         :command="command"
         @click="reply"
       >
         <template v-if="status.repliesCount" #text>
-          <i18n-t keypath="action.reply_count" :plural="status.repliesCount">
-            <CommonTooltip v-if="forSR(status.repliesCount)" :content="formatNumber(status.repliesCount)" placement="bottom">
-              <span aria-hidden="true">{{ formatHumanReadableNumber(status.repliesCount) }}</span>
-              <span sr-only>{{ formatNumber(status.repliesCount) }}</span>
-            </CommonTooltip>
-            <span v-else>{{ formatHumanReadableNumber(status.repliesCount) }}</span>
-          </i18n-t>
+          <CommonLocalizedNumber
+            keypath="action.reply_count"
+            :count="status.repliesCount"
+          />
         </template>
       </StatusActionButton>
     </div>
@@ -63,18 +58,15 @@ const reply = () => {
         icon="i-ri:repeat-line"
         active-icon="i-ri:repeat-fill"
         :active="!!status.reblogged"
-        :disabled="isLoading.reblogged"
+        :disabled="isLoading.reblogged || !canReblog"
         :command="command"
         @click="toggleReblog()"
       >
         <template v-if="status.reblogsCount" #text>
-          <i18n-t keypath="action.boost_count" :plural="status.reblogsCount">
-            <CommonTooltip v-if="forSR(status.reblogsCount)" :content="formatNumber(status.reblogsCount)" placement="bottom">
-              <span aria-hidden="true">{{ formatHumanReadableNumber(status.reblogsCount) }}</span>
-              <span sr-only>{{ formatNumber(status.reblogsCount) }}</span>
-            </CommonTooltip>
-            <span v-else>{{ formatHumanReadableNumber(status.reblogsCount) }}</span>
-          </i18n-t>
+          <CommonLocalizedNumber
+            keypath="action.boost_count"
+            :count="status.reblogsCount"
+          />
         </template>
       </StatusActionButton>
     </div>
@@ -92,13 +84,10 @@ const reply = () => {
         @click="toggleFavourite()"
       >
         <template v-if="status.favouritesCount" #text>
-          <i18n-t keypath="action.favourite_count" :plural="status.favouritesCount">
-            <CommonTooltip v-if="forSR(status.favouritesCount)" :content="formatNumber(status.favouritesCount)" placement="bottom">
-              <span aria-hidden="true">{{ formatHumanReadableNumber(status.favouritesCount) }}</span>
-              <span sr-only>{{ formatNumber(status.favouritesCount) }}</span>
-            </CommonTooltip>
-            <span v-else>{{ formatHumanReadableNumber(status.favouritesCount) }}</span>
-          </i18n-t>
+          <CommonLocalizedNumber
+            keypath="action.favourite_count"
+            :count="status.favouritesCount"
+          />
         </template>
       </StatusActionButton>
     </div>

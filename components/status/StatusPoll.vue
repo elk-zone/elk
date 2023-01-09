@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const { status } = defineProps<{
-  status: Status
+  status: mastodon.v1.Status
 }>()
 const poll = reactive({ ...status.poll! })
 
@@ -13,7 +13,7 @@ function toPercentage(num: number) {
 const timeAgoOptions = useTimeAgoOptions()
 const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)
 const expiredTimeFormatted = useFormattedDateTime(poll.expiresAt!)
-const { formatHumanReadableNumber, formatNumber, formatPercentage, forSR } = useHumanReadableNumber()
+const { formatPercentage } = useHumanReadableNumber()
 
 const masto = useMasto()
 async function vote(e: Event) {
@@ -30,13 +30,10 @@ async function vote(e: Event) {
   poll.votersCount = (poll.votersCount || 0) + 1
   cacheStatus({ ...status, poll }, undefined, true)
 
-  await masto.poll.vote(poll.id, { choices })
+  await masto.v1.polls.vote(poll.id, { choices })
 }
 
 const votersCount = $computed(() => poll.votersCount ?? 0)
-const votersCountHR = $computed(() => formatHumanReadableNumber(votersCount))
-const votersCountNumber = $computed(() => formatNumber(votersCount))
-const votersCountSR = $computed(() => forSR(votersCount))
 </script>
 
 <template>
@@ -65,13 +62,10 @@ const votersCountSR = $computed(() => forSR(votersCount))
       </div>
     </template>
     <div text-sm flex="~ inline" gap-x-1>
-      <i18n-t keypath="status.poll.count" :plural="votersCount">
-        <CommonTooltip v-if="votersCountSR" :content="votersCountNumber" placement="bottom">
-          <span aria-hidden="true">{{ votersCountHR }}</span>
-          <span sr-only>{{ votersCountNumber }}</span>
-        </CommonTooltip>
-        <span v-else>{{ votersCountNumber }}</span>
-      </i18n-t>
+      <CommonLocalizedNumber
+        keypath="status.poll.count"
+        :count="poll.votesCount"
+      />
       &middot;
       <CommonTooltip :content="expiredTimeFormatted" class="inline-block" placement="right">
         <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>

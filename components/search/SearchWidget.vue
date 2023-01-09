@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { AccountResult, HashTagResult, StatusResult } from './types'
-
 const query = ref('')
 const { accounts, hashtags, loading, statuses } = useSearch(query)
 const index = ref(0)
@@ -15,24 +13,9 @@ const results = computed(() => {
     return []
 
   const results = [
-    ...hashtags.value.slice(0, 3).map<HashTagResult>(hashtag => ({
-      type: 'hashtag',
-      id: hashtag.id,
-      hashtag,
-      to: getTagRoute(hashtag.name),
-    })),
-    ...accounts.value.map<AccountResult>(account => ({
-      type: 'account',
-      id: account.id,
-      account,
-      to: getAccountRoute(account),
-    })),
-    ...statuses.value.map<StatusResult>(status => ({
-      type: 'status',
-      id: status.id,
-      status,
-      to: getStatusRoute(status),
-    })),
+    ...hashtags.value.slice(0, 3),
+    ...accounts.value,
+    ...statuses.value,
 
     // Disable until search page is implemented
     // {
@@ -53,16 +36,18 @@ watch([results, focused], () => index.value = -1)
 const shift = (delta: number) => index.value = (index.value + delta % results.value.length + results.value.length) % results.value.length
 
 const activate = () => {
-  (document.activeElement as HTMLElement).blur()
   const currentIndex = index.value
   index.value = -1
 
   if (query.value.length === 0)
     return
 
+  (document.activeElement as HTMLElement).blur()
+
   // Disable until search page is implemented
-  // if (currentIndex === -1)
-  //   router.push(`/search?q=${query.value}`)
+  if (currentIndex === -1)
+    // router.push(`/search?q=${query.value}`)
+    return
 
   router.push(results.value[currentIndex].to)
 }
@@ -92,16 +77,21 @@ const activate = () => {
     <!-- Results -->
     <div left-0 top-12 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
       <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
-        <span v-if="query.length === 0" block text-center text-sm text-secondary>
+        <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}
         </span>
-        <template v-if="!loading">
-          <SearchResult
-            v-for="(result, i) in results" :key="result.id"
-            :active="index === parseInt(i.toString())"
-            :result="result"
-            :tabindex="focused ? 0 : -1"
-          />
+        <template v-else-if="!loading">
+          <template v-if="results.length > 0">
+            <SearchResult
+              v-for="(result, i) in results" :key="result.id"
+              :active="index === parseInt(i.toString())"
+              :result="result"
+              :tabindex="focused ? 0 : -1"
+            />
+          </template>
+          <span v-else block text-center text-sm text-secondary>
+            {{ t('search.search_empty') }}
+          </span>
         </template>
         <div v-else>
           <SearchResultSkeleton />

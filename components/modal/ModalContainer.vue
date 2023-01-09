@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 import type { ConfirmDialogChoice } from '~/types'
 import {
   isCommandPanelOpen,
   isConfirmDialogOpen,
   isEditHistoryDialogOpen,
+  isFavouritedBoostedByDialogOpen,
   isMediaPreviewOpen,
   isPreviewHelpOpen,
   isPublishDialogOpen,
@@ -20,17 +21,17 @@ const isMac = useIsMac()
 // listen to ctrl+/ on windows/linux or cmd+/ on mac
 // or shift+ctrl+k on windows/linux or shift+cmd+k on mac
 useEventListener('keydown', (e: KeyboardEvent) => {
-  if (e.key === 'k' && (isMac.value ? e.metaKey : e.ctrlKey)) {
+  if ((e.key === 'k' || e.key === 'л') && (isMac.value ? e.metaKey : e.ctrlKey)) {
     e.preventDefault()
     openCommandPanel(e.shiftKey)
   }
-  if (e.key === '/' && (isMac.value ? e.metaKey : e.ctrlKey)) {
+  if ((e.key === '/' || e.key === ',') && (isMac.value ? e.metaKey : e.ctrlKey)) {
     e.preventDefault()
     openCommandPanel(true)
   }
 })
 
-const handlePublished = (status: Status) => {
+const handlePublished = (status: mastodon.v1.Status) => {
   lastPublishDialogStatus.value = status
   isPublishDialogOpen.value = false
 }
@@ -42,6 +43,10 @@ const handlePublishClose = () => {
 const handleConfirmChoice = (choice: ConfirmDialogChoice) => {
   confirmDialogChoice.value = choice
   isConfirmDialogOpen.value = false
+}
+
+const handleFavouritedBoostedByClose = () => {
+  isFavouritedBoostedByDialogOpen.value = false
 }
 </script>
 
@@ -80,6 +85,13 @@ const handleConfirmChoice = (choice: ConfirmDialogChoice) => {
     </ModalDialog>
     <ModalDialog v-model="isConfirmDialogOpen" py-4 px-8 max-w-125>
       <ModalConfirm v-if="confirmDialogLabel" v-bind="confirmDialogLabel" @choice="handleConfirmChoice" />
+    </ModalDialog>
+    <ModalDialog
+      v-model="isFavouritedBoostedByDialogOpen"
+      max-w-180
+      @close="handleFavouritedBoostedByClose"
+    >
+      <StatusFavouritedBoostedBy />
     </ModalDialog>
   </template>
 </template>

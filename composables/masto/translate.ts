@@ -1,4 +1,4 @@
-import type { Status, StatusEdit } from 'masto'
+import type { mastodon } from 'masto'
 
 export interface TranslationResponse {
   translatedText: string
@@ -24,9 +24,9 @@ export async function translateText(text: string, from?: string | null, to?: str
   return translatedText
 }
 
-const translations = new WeakMap<Status | StatusEdit, { visible: boolean; text: string }>()
+const translations = new WeakMap<mastodon.v1.Status | mastodon.v1.StatusEdit, { visible: boolean; text: string }>()
 
-export function useTranslation(status: Status | StatusEdit) {
+export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEdit) {
   if (!translations.has(status))
     translations.set(status, reactive({ visible: false, text: '' }))
 

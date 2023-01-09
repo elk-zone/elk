@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
+
 const { account, as = 'div' } = $defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   as?: string
 }>()
 
@@ -27,9 +28,9 @@ defineOptions({
           <div w-17 h-17 rounded-full border-4 border-bg-base z-2 mt--2 ms--1>
             <AccountAvatar :account="account" />
           </div>
-          <a block sm:hidden href="javascript:;" @click.stop>
+          <NuxtLink block sm:hidden href="javascript:;" @click.stop>
             <AccountFollowButton :account="account" />
-          </a>
+          </NuxtLink>
         </div>
         <div sm:mt-2>
           <AccountDisplayName :account="account" font-bold text-lg line-clamp-1 ws-pre-wrap break-all />
@@ -45,9 +46,9 @@ defineOptions({
       <!-- Follow info -->
       <div flex justify-between items-center>
         <AccountPostsFollowers text-sm :account="account" />
-        <a sm:block hidden href="javascript:;" @click.stop>
+        <NuxtLink sm:block hidden href="javascript:;" @click.stop>
           <AccountFollowButton :account="account" />
-        </a>
+        </NuxtLink>
       </div>
     </div>
   </component>

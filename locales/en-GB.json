@@ -54,7 +54,7 @@
     "more": "More",
     "next": "Next",
     "prev": "Prev",
-    "publish": "Publish!",
+    "publish": "Publish",
     "reply": "Reply",
     "save": "Save",
     "save_changes": "Save changes",
@@ -87,6 +87,10 @@
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
+  },
+  "compose": {
+    "draft_title": "Draft {0}",
+    "drafts": "Drafts ({v})"
   },
   "conversation": {
     "with": "with"
@@ -158,7 +162,7 @@
   "notification": {
     "favourited_post": "favourited your post",
     "followed_you": "followed you",
-    "followed_you_count": "{followers} people followed you|{followers} person followed you|{followers} people followed you",
+    "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "reblogged your post",
     "request_to_follow": "requested to follow you",
@@ -179,7 +183,8 @@
     "update_available_short": "Update Elk"
   },
   "search": {
-    "search_desc": "Search for people & hashtags"
+    "search_desc": "Search for people & hashtags",
+    "search_empty": "Could not find anything for these search terms"
   },
   "settings": {
     "about": {
@@ -240,6 +245,8 @@
         "warning": {
           "enable_close": "Close",
           "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:settings.notifications.show_btn{'\"'} button above once enabled.",
+          "enable_description_desktop": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications in the navigation menu under \"Settings > Notifications > Push notifications settings\" once enabled.",
+          "enable_description_mobile": "You can also access the settings using the navigation menu under \"Settings > Notifications > Push notification settings\".",
           "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
           "enable_desktop": "Enable push notifications",
           "enable_title": "Never miss anything",
@@ -297,7 +304,8 @@
       "finished": "finished {0}"
     },
     "reblogged": "{0} reblogged",
-    "someone": "Someone",
+    "replying_to": "Replying to {0}",
+    "someone": "someone",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
     "try_original_site": "Try original site"
@@ -357,6 +365,7 @@
   "tooltip": {
     "add_content_warning": "Add content warning",
     "add_media": "Add images, a video or an audio file",
+    "add_publishable_content": "Add content to publish",
     "change_content_visibility": "Change content visibility",
     "change_language": "Change language",
     "emoji": "Emoji",

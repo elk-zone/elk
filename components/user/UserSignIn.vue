@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
 import { $fetch } from 'ofetch'
-import { DEFAULT_SERVER } from '~/constants'
 
 const input = $ref<HTMLInputElement>()
 let server = $ref<string>('')
@@ -26,7 +25,7 @@ async function oauth() {
     server = server.split('/')[0]
 
   try {
-    location.href = await $fetch<string>(`/api/${server || DEFAULT_SERVER}/login`, {
+    location.href = await $fetch<string>(`/api/${server || publicServer.value}/login`, {
       method: 'POST',
       body: {
         origin: location.origin,
@@ -176,7 +175,7 @@ onClickOutside($$(input), () => {
       <div i-ri:lightbulb-line me-1 />
       <span>
         <i18n-t keypath="user.tip_no_account">
-          <a href="https://joinmastodon.org/servers" target="_blank" hover="underline text-primary">{{ $t('user.tip_register_account') }}</a>
+          <NuxtLink href="https://joinmastodon.org/servers" target="_blank" external hover="underline text-primary">{{ $t('user.tip_register_account') }}</NuxtLink>
         </i18n-t>
       </span>
     </div>

@@ -54,7 +54,7 @@
     "more": "更多",
     "next": "下一个",
     "prev": "上一个",
-    "publish": "发布！",
+    "publish": "发布",
     "reply": "回复",
     "save": "保存",
     "save_changes": "保存更改",
@@ -203,7 +203,8 @@
     }
   },
   "search": {
-    "search_desc": "搜索用户或话题标签"
+    "search_desc": "搜索用户或话题标签",
+    "search_empty": "无法找到符合这些搜索词的任何内容"
   },
   "settings": {
     "about": {
@@ -326,6 +327,8 @@
       "finished": "已在 {0} 结束"
     },
     "reblogged": "{0} 转发了",
+    "replying_to": "回复{0}",
+    "show_full_thread": "显示完整贴文串",
     "someone": "某人",
     "spoiler_show_less": "隐藏",
     "spoiler_show_more": "显示更多",

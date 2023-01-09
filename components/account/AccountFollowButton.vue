@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Account, Relationship } from 'masto'
+import type { mastodon } from 'masto'
 
 const { account, command, ...props } = defineProps<{
-  account: Account
-  relationship?: Relationship
+  account: mastodon.v1.Account
+  relationship?: mastodon.v1.Relationship
   command?: boolean
 }>()
 
@@ -15,7 +15,7 @@ const masto = useMasto()
 async function toggleFollow() {
   relationship!.following = !relationship!.following
   try {
-    const newRel = await masto.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+    const newRel = await masto.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -27,7 +27,7 @@ async function toggleFollow() {
 async function unblock() {
   relationship!.blocking = false
   try {
-    const newRel = await masto.accounts.unblock(account.id)
+    const newRel = await masto.v1.accounts.unblock(account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -39,7 +39,7 @@ async function unblock() {
 async function unmute() {
   relationship!.muting = false
   try {
-    const newRel = await masto.accounts.unmute(account.id)
+    const newRel = await masto.v1.accounts.unmute(account.id)
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -60,18 +60,14 @@ useCommand({
 })
 
 const buttonStyle = $computed(() => {
-  // Skeleton while loading, avoid primary color flash
-  if (!relationship)
-    return 'text-inverted'
-
-  if (relationship.blocking)
+  if (relationship?.blocking)
     return 'text-inverted bg-red border-red'
 
-  if (relationship.muting)
+  if (relationship?.muting)
     return 'text-base bg-code border-base'
 
   // If following, use a label style with a strong border for Mutuals
-  if (relationship.following)
+  if (relationship?.following)
     return `text-base ${relationship.followedBy ? 'border-strong' : 'border-base'}`
 
   // If not following, use a button style
@@ -85,7 +81,7 @@ const buttonStyle = $computed(() => {
     gap-1 items-center group
     :disabled="relationship?.requested"
     border-1
-    rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1
+    rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
     :class="buttonStyle"
     :hover="!relationship?.blocking && !relationship?.muting && relationship?.following ? 'border-red text-red' : 'bg-base border-primary text-primary'"
     @click="relationship?.blocking ? unblock() : relationship?.muting ? unmute() : toggleFollow()"
@@ -99,7 +95,7 @@ const buttonStyle = $computed(() => {
       <span hidden group-hover="inline">{{ $t('account.unmute') }}</span>
     </template>
     <template v-else-if="relationship?.following">
-      <span group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
+      <span group-hover="hidden">{{ relationship.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
       <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
     </template>
     <template v-else-if="relationship?.requested">

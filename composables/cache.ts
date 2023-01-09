@@ -1,5 +1,5 @@
 import LRU from 'lru-cache'
-import type { Account, Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const cache = new LRU<string, any>({
   max: 1000,
@@ -17,13 +17,13 @@ function removeCached(key: string) {
   cache.delete(key)
 }
 
-export function fetchStatus(id: string, force = false): Promise<Status> {
+export function fetchStatus(id: string, force = false): Promise<mastodon.v1.Status> {
   const server = currentServer.value
   const key = `${server}:status:${id}`
   const cached = cache.get(key)
   if (cached && !force)
     return cached
-  const promise = useMasto().statuses.fetch(id)
+  const promise = useMasto().v1.statuses.fetch(id)
     .then((status) => {
       cacheStatus(status)
       return status
@@ -32,7 +32,7 @@ export function fetchStatus(id: string, force = false): Promise<Status> {
   return promise
 }
 
-export function fetchAccountById(id?: string | null): Promise<Account | null> {
+export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Account | null> {
   if (!id)
     return Promise.resolve(null)
 
@@ -41,11 +41,11 @@ export function fetchAccountById(id?: string | null): Promise<Account | null> {
   const cached = cache.get(key)
   if (cached)
     return cached
-  const uri = currentInstance.value?.uri
-  const promise = useMasto().accounts.fetch(id)
+  const domain = currentInstance.value?.uri
+  const promise = useMasto().v1.accounts.fetch(id)
     .then((r) => {
-      if (r.acct && !r.acct.includes('@') && uri)
-        r.acct = `${r.acct}@${uri}`
+      if (r.acct && !r.acct.includes('@') && domain)
+        r.acct = `${r.acct}@${domain}`
 
       cacheAccount(r, server, true)
       return r
@@ -54,17 +54,17 @@ export function fetchAccountById(id?: string | null): Promise<Account | null> {
   return promise
 }
 
-export async function fetchAccountByHandle(acct: string): Promise<Account> {
+export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Account> {
   const server = currentServer.value
   const key = `${server}:account:${acct}`
   const cached = cache.get(key)
   if (cached)
     return cached
-  const uri = currentInstance.value?.uri
-  const account = useMasto().accounts.lookup({ acct })
+  const domain = currentInstance.value?.uri
+  const account = useMasto().v1.accounts.lookup({ acct })
     .then((r) => {
-      if (r.acct && !r.acct.includes('@') && uri)
-        r.acct = `${r.acct}@${uri}`
+      if (r.acct && !r.acct.includes('@') && domain)
+        r.acct = `${r.acct}@${domain}`
 
       cacheAccount(r, server, true)
       return r
@@ -81,7 +81,7 @@ export function useAccountById(id?: string | null) {
   return useAsyncState(() => fetchAccountById(id), null).state
 }
 
-export function cacheStatus(status: Status, server = currentServer.value, override?: boolean) {
+export function cacheStatus(status: mastodon.v1.Status, server = currentServer.value, override?: boolean) {
   setCached(`${server}:status:${status.id}`, status, override)
 }
 
@@ -89,7 +89,7 @@ export function removeCachedStatus(id: string, server = currentServer.value) {
   removeCached(`${server}:status:${id}`)
 }
 
-export function cacheAccount(account: Account, server = currentServer.value, override?: boolean) {
+export function cacheAccount(account: mastodon.v1.Account, server = currentServer.value, override?: boolean) {
   setCached(`${server}:account:${account.id}`, account, override)
   setCached(`${server}:account:${account.acct}`, account, override)
 }

@@ -1,15 +1,15 @@
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const maxDistance = 10
 const maxSteps = 1000
 
 // Checks if (b) is a reply to (a)
-function areStatusesConsecutive(a: Status, b: Status) {
+function areStatusesConsecutive(a: mastodon.v1.Status, b: mastodon.v1.Status) {
   const inReplyToId = b.inReplyToId ?? b.reblog?.inReplyToId
   return !!inReplyToId && (inReplyToId === a.reblog?.id || inReplyToId === a.id)
 }
 
-export function reorderedTimeline(items: Status[]) {
+export function reorderedTimeline(items: mastodon.v1.Status[]) {
   let steps = 0
   const newItems = [...items]
   for (let i = items.length - 1; i > 0; i--) {

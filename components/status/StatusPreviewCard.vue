@@ -40,10 +40,12 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
     of-hidden
     hover:bg-active
     :to="card.url"
+    border-base
+    bg-code
     :class="{
       'flex': isSquare,
       'p-4': root,
-      'rounded-lg border border-base': !root,
+      'rounded-lg': !root,
     }"
     target="_blank"
     external
@@ -52,10 +54,9 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
       v-if="card.image"
       flex flex-col
       display-block of-hidden
-      border="base"
       :class="{
-        'sm:(min-w-32 w-32 h-32) min-w-22 w-22 h-22 border-r': isSquare,
-        'w-full aspect-[1.91] border-b': !isSquare,
+        'sm:(min-w-32 w-32 h-32) min-w-22 w-22 h-22': isSquare,
+        'w-full aspect-[1.91]': !isSquare,
         'rounded-lg': root,
       }"
     >

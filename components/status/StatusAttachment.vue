@@ -173,8 +173,8 @@ useIntersectionObserver(video, (entries) => {
         <button
           font-bold text-sm
           :class="isAudio
-            ? 'rounded-full h-15 w-15 px4 py0 btn-outline border-base text-secondary hover:bg-black hover:text-white'
-            : 'rounded-1 bg-black/65 text-white hover:bg-black'"
+            ? 'rounded-full h-15 w-15 btn-outline border-base text-secondary hover:bg-active hover:text-active'
+            : 'rounded-1 bg-black/65 text-white hover:bg-black px1.2 py0.2'"
         >
           <div hidden>
             read {{ attachment.type }} description

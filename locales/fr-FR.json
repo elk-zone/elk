@@ -83,11 +83,20 @@
     "toggle_zen_mode": "Passer en mode zen"
   },
   "common": {
+    "confirm_dialog": {
+      "cancel": "Non",
+      "confirm": "Oui",
+      "title": "Êtes-vous sûr·e ?"
+    },
     "end_of_list": "Fin de liste",
     "error": "ERREUR",
     "in": "sur",
     "not_found": "404 Introuvable",
     "offline_desc": "Il semble que vous soyez hors-ligne. Vérifiez votre connexion internet."
+  },
+  "compose": {
+    "draft_title": "Brouillon {0}",
+    "drafts": "Brouillons ({v})"
   },
   "conversation": {
     "with": "avec"
@@ -119,14 +128,22 @@
     "copy_link_to_post": "Copier le lien du message",
     "delete": "Supprimer",
     "delete_and_redraft": "Supprimer et réécrire",
+    "delete_confirm": {
+      "cancel": "Annuler",
+      "confirm": "Supprimer",
+      "title": "Certain·e de vouloir supprimer ce message ?"
+    },
     "direct_message_account": "Message direct à {0}",
     "edit": "Éditer",
+    "hide_reblogs": "Cacher les boosts de {0}",
     "mention_account": "Mentionner {0}",
     "mute_account": "Mettre en sourdine {0}",
     "mute_conversation": "Message muet",
     "open_in_original_site": "Ouvrir sur le site d'origine",
     "pin_on_profile": "Épingler sur le profil",
     "share_post": "Partager ce message",
+    "show_favourited_and_boosted_by": "Montrer qui a aimé et partagé",
+    "show_reblogs": "Voir les partages de {0}",
     "show_untranslated": "Montrer le message non-traduit",
     "toggle_theme": {
       "dark": "Passer au thème foncé",
@@ -248,20 +265,23 @@
     "notifications": {
       "label": "Notifications",
       "notifications": {
-        "label": "Notifications settings"
+        "label": "Paramètres des notifications",
+        "notifications": {
+          "label": "sqds"
+        }
       },
       "push_notifications": {
         "alerts": {
-          "favourite": "Favoris",
+          "favourite": "Aimer",
           "follow": "Nouveaux abonné·e·s",
           "mention": "Mentions",
           "poll": "Sondages",
           "reblog": "A republié votre message",
           "title": "Quelles notifications recevoir ?"
         },
-        "description": "Receive notifications even when you are not using Elk.",
-        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
-        "label": "Push notifications settings",
+        "description": "Recevez des notifications même lorsque vous n'utilisez pas Elk.",
+        "instructions": "N'oubliez pas de sauvegarder vos modifications en utilisant le bouton @:settings.notifications.push_notifications.save_settings !",
+        "label": "Paramètres des notifications push",
         "policy": {
           "all": "De n'importe qui",
           "followed": "Des personnes que je suis",
@@ -276,21 +296,24 @@
           "request_error": "Une erreur s'est produite lors de la demande d'abonnement, réessayez et si l'erreur persiste, veuillez signaler le problème auprès du dépôt Elk.",
           "title": "Impossible de s'abonner aux notifications push"
         },
+        "title": "Paramètres des notifications push",
         "undo_settings": "Annuler les changements de paramètres",
         "unsubscribe": "Désactiver les notifications push",
         "unsupported": "Votre navigateur ne prend pas en charge les notifications push.",
         "warning": {
           "enable_close": "Fermer",
           "enable_description": "Pour recevoir des notifications lorsque Elk n'est pas ouvert, activez les notifications push. \nVous pouvez contrôler précisément quels types d'interactions génèrent des notifications push via le bouton \"@:settings.notifications.show_btn{'\"'} ci-dessus une fois activé.",
-          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_description_desktop": "Pour recevoir des notifications lorsque Elk n'est pas ouvert, activez les notifications push. \nVous pouvez contrôler précisément quels types d'interactions génèrent des notifications push dans \"Paramètres > Notifications > Paramètres des notifications push\" une fois activé.",
+          "enable_description_mobile": "Vous pouvez également accéder aux paramètres via le menu de navigation \"Paramètres > Notifications > Paramètres des notifications push\".",
+          "enable_description_settings": "Pour recevoir des notifications lorsque Elk n'est pas ouvert, activez les notifications push. Vous pourrez contrôler précisément quels types d'interactions génèrent des notifications push sur ce même écran une fois que vous les aurez activées.",
           "enable_desktop": "Activer les notifications push",
           "enable_title": "Ne manquez jamais rien",
           "re_auth": "Il semble que votre serveur ne supporte pas les notifications push. \nEssayez de vous déconnecter et de vous reconnecter, si ce message persiste, contactez l'administrateur de votre serveur."
         }
       },
-      "show_btn": "Go to notifications settings"
+      "show_btn": "Se rendre aux paramètres des notifications"
     },
-    "notifications_settings": "Notifications settings",
+    "notifications_settings": "Notifications",
     "preferences": {
       "label": "Préférences"
     },
@@ -327,7 +350,9 @@
     "uploading": "Téléversement en cours..."
   },
   "status": {
+    "boosted_by": "Partagé par",
     "edited": "Edité {0}",
+    "favourited_by": "Aimé par",
     "filter_hidden_phrase": "Filtré par",
     "filter_removed_phrase": "Caché par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
@@ -342,9 +367,11 @@
     },
     "reblogged": "{0} relayé",
     "replying_to": "Répondre à {0}",
+    "show_full_thread": "Voir le fil de discussion complet",
     "someone": "quelqu'un",
     "spoiler_show_less": "Voir moins",
     "spoiler_show_more": "Voir plus",
+    "thread": "Fil de discussion",
     "try_original_site": "Essayer le site d'origine"
   },
   "status_history": {
@@ -409,6 +436,7 @@
   "tooltip": {
     "add_content_warning": "Ajouter un avertissement de contenu",
     "add_media": "Ajouter des images, une vidéo ou un fichier audio",
+    "add_publishable_content": "Ajouter du contenu à publier",
     "change_content_visibility": "Ajuster la confidentialité du message",
     "change_language": "Changer la langue",
     "emoji": "Emoji",

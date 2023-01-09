@@ -91,8 +91,7 @@ const meta = $computed(() => {
     display-block of-hidden
     bg-code
     relative
-    border="base"
-    w-full min-h-50 md:min-h-60 border-b
+    w-full min-h-50 md:min-h-60
     justify-center
     rounded-lg
   >

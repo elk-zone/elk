@@ -67,7 +67,7 @@ export function usePaginator<T, P, U = T>(
       if (!result.done && result.value.length) {
         const preprocessedItems = preprocess([...nextItems.value, ...result.value] as (U | T)[])
         const itemsToShowCount
-          = preprocessedItems.length < buffer
+          = preprocessedItems.length <= buffer
             ? preprocessedItems.length
             : preprocessedItems.length - buffer
         ;(nextItems.value as U[]) = preprocessedItems.slice(itemsToShowCount)

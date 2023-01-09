@@ -5,7 +5,7 @@ const { t } = useI18n()
 const paginator = useMasto().v2.suggestions.list({ limit: 20 })
 
 useHeadFixed({
-  title: () => `${t('tab.for_you')} | ${t('nav.explore')}`,
+  title: () => isHydrated.value ? `${t('tab.for_you')} | ${t('nav.explore')}` : '',
 })
 </script>
 

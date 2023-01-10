@@ -23,7 +23,7 @@ router.afterEach(() => {
         {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
       </div>
     </NuxtLink>
-    <div v-if="back && back !== '/'" hidden xl:flex items-center me-8 mt-2>
+    <div v-show="back && back !== '/'" hidden xl:flex items-center me-8 mt-2>
       <NuxtLink
         :aria-label="$t('nav.back')"
         @click="$router.go(-1)"

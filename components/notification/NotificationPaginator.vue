@@ -7,6 +7,8 @@ const { paginator, stream } = defineProps<{
   stream?: Promise<WsEvents>
 }>()
 
+const virtualScroller = $(useFeatureFlag('experimentalVirtualScroller'))
+
 const groupCapacity = Number.MAX_VALUE // No limit
 
 // Group by type (and status when applicable)
@@ -135,7 +137,14 @@ const { formatNumber } = useHumanReadableNumber()
 </script>
 
 <template>
-  <CommonPaginator :paginator="paginator" :preprocess="preprocess" :stream="stream" :eager="3" event-type="notification">
+  <CommonPaginator
+    :paginator="paginator"
+    :preprocess="preprocess"
+    :stream="stream"
+    :eager="3"
+    :virtual-scroller="virtualScroller"
+    event-type="notification"
+  >
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}

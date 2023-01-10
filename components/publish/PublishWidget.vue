@@ -260,16 +260,17 @@ defineExpose({
 
         <CommonTooltip id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')" :disabled="!isPublishDisabled">
           <button
-            btn-solid rounded-3 text-sm w-full
+            btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center
             md:w-fit
             class="publish-button"
             :aria-disabled="isPublishDisabled"
             aria-describedby="publish-tooltip"
             @click="publish"
           >
+            <div v-if="isSending" i-ri:loader-2-fill animate-spin />
             <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
             <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
-            <span v-else>{{ $t('action.publish') }}</span>
+            <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
           </button>
         </CommonTooltip>
       </div>

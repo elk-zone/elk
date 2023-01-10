@@ -399,7 +399,7 @@
     "day_past": "il y a 0 jour|hier|il y a {n} jours",
     "hour_future": "dans 0 heure|dans 1 heure|dans {n} heures",
     "hour_past": "il y a 0 heure|il y a 1 heure|il y a {n} heures",
-    "just_now": "juste maintenant",
+    "just_now": "à l'instant",
     "minute_future": "dans 0 minutes|dans 1 minute|dans {n} minutes",
     "minute_past": "il y a 0 minute|il y a 1 minute|il y a {n} minutes",
     "month_future": "dans 0 mois|le mois prochain|dans {n} mois",

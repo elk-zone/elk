@@ -71,9 +71,10 @@ const handleFavouritedBoostedByClose = () => {
       />
     </ModalDialog>
     <ModalDialog
-      v-model="isMediaPreviewOpen"
+      :model-value="isMediaPreviewOpen"
       w-full max-w-full h-full max-h-full
       bg-transparent border-0 shadow-none
+      @update:model-value="closeMediaPreview"
     >
       <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
     </ModalDialog>

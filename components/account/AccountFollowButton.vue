@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { account, command, ...props } = defineProps<{
+const { account, command, context, ...props } = defineProps<{
   account: mastodon.v1.Account
   relationship?: mastodon.v1.Relationship
+  context?: 'followedBy' | 'following'
   command?: boolean
 }>()
 
@@ -67,8 +68,8 @@ const buttonStyle = $computed(() => {
     return 'text-base bg-code border-base'
 
   // If following, use a label style with a strong border for Mutuals
-  if (relationship?.following)
-    return `text-base ${relationship.followedBy ? 'border-strong' : 'border-base'}`
+  if (relationship ? relationship.following : context === 'following')
+    return `text-base ${relationship?.followedBy ? 'border-strong' : 'border-base'}`
 
   // If not following, use a button style
   return 'text-inverted bg-primary border-primary'
@@ -94,14 +95,14 @@ const buttonStyle = $computed(() => {
       <span group-hover="hidden">{{ $t('account.muting') }}</span>
       <span hidden group-hover="inline">{{ $t('account.unmute') }}</span>
     </template>
-    <template v-else-if="relationship?.following">
-      <span group-hover="hidden">{{ relationship.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
+    <template v-else-if="relationship ? relationship.following : context === 'following'">
+      <span group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
       <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
     </template>
     <template v-else-if="relationship?.requested">
       <span>{{ $t('account.follow_requested') }}</span>
     </template>
-    <template v-else-if="relationship?.followedBy">
+    <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
       <span group-hover="hidden">{{ $t('account.follows_you') }}</span>
       <span hidden group-hover="inline">{{ $t('account.follow_back') }}</span>
     </template>

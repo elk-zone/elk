@@ -1,7 +1,7 @@
 import { login as loginMasto } from 'masto'
 import type { WsEvents, mastodon } from 'masto'
 import type { Ref } from 'vue'
-import type { RemovableRef } from '@vueuse/core'
+import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
 import type { ElkMasto, UserLogin } from '~/types'
 import {
   DEFAULT_POST_CHARS_LIMIT,
@@ -96,6 +96,8 @@ export const currentUserHandle = computed(() => currentUser.value?.account.id
 )
 
 export const useUsers = () => users
+export const useSelfAccount = (user: MaybeComputedRef<mastodon.v1.Account | undefined>) =>
+  computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 

@@ -23,7 +23,7 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
   <div
     space-y-3
     :class="{
-      'pt2 pb0.5 px3.5 bg-fade border-1 border-primary-light rounded-5 me--1': isDM,
+      'pt2 pb0.5 px3.5 bg-dm rounded-4 me--1': isDM,
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',
     }"
   >

@@ -53,7 +53,7 @@ const reply = () => {
     <div flex-1>
       <StatusActionButton
         :content="$t('action.boost')"
-        :text="status.reblogsCount || ''"
+        :text="!getWellnessSetting('hideBoostCount') && status.reblogsCount ? status.reblogsCount : ''"
         color="text-green" hover="text-green" group-hover="bg-green/10"
         icon="i-ri:repeat-line"
         active-icon="i-ri:repeat-fill"
@@ -62,7 +62,7 @@ const reply = () => {
         :command="command"
         @click="toggleReblog()"
       >
-        <template v-if="status.reblogsCount" #text>
+        <template v-if="status.reblogsCount && !getWellnessSetting('hideBoostCount')" #text>
           <CommonLocalizedNumber
             keypath="action.boost_count"
             :count="status.reblogsCount"
@@ -74,7 +74,7 @@ const reply = () => {
     <div flex-1>
       <StatusActionButton
         :content="$t('action.favourite')"
-        :text="status.favouritesCount || ''"
+        :text="!getWellnessSetting('hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
         color="text-rose" hover="text-rose" group-hover="bg-rose/10"
         icon="i-ri:heart-3-line"
         active-icon="i-ri:heart-3-fill"
@@ -83,7 +83,7 @@ const reply = () => {
         :command="command"
         @click="toggleFavourite()"
       >
-        <template v-if="status.favouritesCount" #text>
+        <template v-if="status.favouritesCount && !getWellnessSetting('hideFavoriteCount')" #text>
           <CommonLocalizedNumber
             keypath="action.favourite_count"
             :count="status.favouritesCount"

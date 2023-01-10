@@ -152,44 +152,22 @@ const { formatNumber } = useHumanReadableNumber()
     </template>
     <template #items="{ items }">
       <template v-for="item of items" :key="item.id">
-        <template v-if="virtualScroller">
-          <DynamicScrollerItem :item="item" tag="div">
-            <NotificationGroupedFollow
-              v-if="item.type === 'grouped-follow'"
-              :items="item"
-              border="b base"
-            />
-            <NotificationGroupedLikes
-              v-else-if="item.type === 'grouped-reblogs-and-favourites'"
-              :group="item"
-              border="b base"
-            />
-            <NotificationCard
-              v-else
-              :notification="item"
-              hover:bg-active
-              border="b base"
-            />
-          </DynamicScrollerItem>
-        </template>
-        <template v-else>
-          <NotificationGroupedFollow
-            v-if="item.type === 'grouped-follow'"
-            :items="item"
-            border="b base"
-          />
-          <NotificationGroupedLikes
-            v-else-if="item.type === 'grouped-reblogs-and-favourites'"
-            :group="item"
-            border="b base"
-          />
-          <NotificationCard
-            v-else
-            :notification="item"
-            hover:bg-active
-            border="b base"
-          />
-        </template>
+        <NotificationGroupedFollow
+          v-if="item.type === 'grouped-follow'"
+          :items="item"
+          border="b base"
+        />
+        <NotificationGroupedLikes
+          v-else-if="item.type === 'grouped-reblogs-and-favourites'"
+          :group="item"
+          border="b base"
+        />
+        <NotificationCard
+          v-else
+          :notification="item"
+          hover:bg-active
+          border="b base"
+        />
       </template>
     </template>
   </CommonPaginator>

@@ -56,6 +56,7 @@
     "prev": "上一个",
     "publish": "发布",
     "reply": "回复",
+    "reset": "重置",
     "save": "保存",
     "save_changes": "保存更改",
     "sign_in": "登鹿",
@@ -82,11 +83,20 @@
     "toggle_zen_mode": "切换禅模式"
   },
   "common": {
+    "confirm_dialog": {
+      "cancel": "不是",
+      "confirm": "是的",
+      "title": "你确定吗？"
+    },
     "end_of_list": "列表到底啦",
     "error": "错误",
     "in": "在",
     "not_found": "无法找到相关内容",
     "offline_desc": "您目前已离线，请检查网络连接。"
+  },
+  "compose": {
+    "draft_title": "草稿 {0}",
+    "drafts": "草稿 ({v})"
   },
   "conversation": {
     "with": "与"
@@ -109,19 +119,32 @@
     "desc_para6": "来参与其中。",
     "title": "预览鹿鸣！"
   },
+  "language": {
+    "none": "无",
+    "search": "搜索"
+  },
   "menu": {
     "block_account": "拉黑 {0}",
     "block_domain": "拉黑域名 {0}",
     "copy_link_to_post": "复制这篇帖文的链接",
     "delete": "删除",
     "delete_and_redraft": "删除并重新编辑",
+    "delete_confirm": {
+      "cancel": "取消",
+      "confirm": "删除",
+      "title": "你确定要删除这条帖文吗？"
+    },
     "direct_message_account": "私信 {0}",
     "edit": "编辑",
+    "hide_reblogs": "隐藏来自 {0} 的转发",
     "mention_account": "提及 {0}",
     "mute_account": "屏蔽 {0}",
-    "mute_conversation": "静音帖子",
+    "mute_conversation": "静音这条帖文",
     "open_in_original_site": "从源站打开",
     "pin_on_profile": "置顶在个人资料上",
+    "share_post": "分享这条帖文",
+    "show_favourited_and_boosted_by": "展示谁喜欢和转发了",
+    "show_reblogs": "显示来自 {0} 的转发",
     "show_untranslated": "显示原文",
     "toggle_theme": {
       "dark": "切换深色模式",
@@ -135,6 +158,7 @@
     "unpin_on_profile": "取消置顶"
   },
   "nav": {
+    "back": "回退",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
     "bookmarks": "书签",
@@ -187,8 +211,8 @@
       },
       "dev": {
         "description": "用 🧡 制作的 Mastodon 客户端（开发版）",
-        "name": "鹿鸣 开发版",
-        "short_name": "鹿鸣 开发版"
+        "name": "鹿鸣（开发版）",
+        "short_name": "鹿鸣（开发版）"
       },
       "preview": {
         "description": "用 🧡 制作的 Mastodon 客户端（预览版）",
@@ -211,6 +235,7 @@
       "label": "关于"
     },
     "account_settings": {
+      "description": "在 Mastodon UI 中编辑你的账号设置",
       "label": "账号设置"
     },
     "feature_flags": {
@@ -238,14 +263,10 @@
       "display_language": "首选语言",
       "label": "语言"
     },
-    "notification_settings": "通知设置",
     "notifications": {
       "label": "通知",
       "notifications": {
-        "label": "Notifications",
-        "notifications": {
-          "label": "Notifications settings"
-        }
+        "label": "通知设置"
       },
       "push_notifications": {
         "alerts": {
@@ -256,9 +277,9 @@
           "reblog": "转发了你的帖文",
           "title": "接收了什么通知？"
         },
-        "description": "Receive notifications even when you are not using Elk.",
-        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
-        "label": "Push notifications settings",
+        "description": "当你没有在使用鹿鸣时也接收通知。",
+        "instructions": "不要忘记点击 @:settings.notifications.push_notifications.save_settings 按钮保存改动！",
+        "label": "推送通知设置",
         "policy": {
           "all": "任何人",
           "followed": "我关注的人",
@@ -267,20 +288,30 @@
           "title": "我可以从谁那里接收通知？"
         },
         "save_settings": "保存设置改动",
+        "subscription_error": {
+          "clear_error": "清除错误",
+          "permission_denied": "权限不足：请在你的浏览器中打开通知权限。",
+          "request_error": "请求订阅时发生了一个错误，请再次尝试。如错误仍然存在，请到鹿鸣代码仓库中报告这一问题。",
+          "title": "无法订阅推送通知。"
+        },
+        "title": "推送通知设置",
         "undo_settings": "撤销设置改动",
         "unsubscribe": "禁用桌面通知",
         "unsupported": "你的浏览器不支持桌面通知",
         "warning": {
           "enable_close": "关闭",
-          "enable_description": "若想在鹿鸣没有打开时接收通知，请启用桌面通知功能。一旦启动，你可以通过上面的“打开设置”按钮来 精确控制哪种类型的互动可以产生桌面通知。",
-          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
-          "enable_desktop": "启用桌面通知功能",
+          "enable_description": "若想在鹿鸣没有打开时接收通知，请启用推送通知功能。一旦启动，你可以通过上面的“前往通知设置”按钮来精确控制哪种类型的互动可以产生推送通知。",
+          "enable_description_desktop": "若想在鹿鸣没有打开时接收通知，请启用推送通知功能。一旦启动，你可以通过 “设置” > “通知” > “推送通知设置” 来精确控制哪种类型的互动可以产生桌面通知。",
+          "enable_description_mobile": "你也可以使用导航菜单 “设置” > “通知” > “推送通知设置” 访问设置页面。",
+          "enable_description_settings": "若想在鹿鸣没有打开时接收通知，请启用推送通知功能。一旦启动，你可以精确控制哪种类型的互动会在这个屏幕上产生推送通知。",
+          "enable_desktop": "启用推送通知",
           "enable_title": "不错过任何事",
           "re_auth": "您的服务器似乎不支持推送通知。尝试退出用户并重新登录。如果此消息仍然出现，请联系您服务器的管理员。"
         }
       },
-      "show_btn": "Go to notifications settings"
+      "show_btn": "前往通知设置"
     },
+    "notifications_settings": "通知",
     "preferences": {
       "label": "首选项"
     },
@@ -290,6 +321,8 @@
         "description": "编辑个人资料，例如头像、用户名、个人简介等。",
         "display_name": "昵称",
         "label": "个人资料",
+        "profile_metadata": "个人资料附加信息",
+        "profile_metadata_desc": "这将会在个人资料页上以表格的形式展示，最多 4 个项目",
         "title": "编辑个人资料"
       },
       "featured_tags": {
@@ -306,6 +339,8 @@
     }
   },
   "state": {
+    "attachments_exceed_server_limit": "附件的数量超出了最大限制",
+    "attachments_limit_error": "超出每篇帖文的最大限制",
     "edited": "（已编辑）",
     "editing": "编辑中",
     "loading": "加载中...",
@@ -313,7 +348,9 @@
     "uploading": "上传中..."
   },
   "status": {
+    "boosted_by": "转发自",
     "edited": "在 {0} 编辑了",
+    "favourited_by": "喜欢自",
     "filter_hidden_phrase": "筛选依据",
     "filter_removed_phrase": "从筛选中移除",
     "filter_show_anyway": "仍然展示",
@@ -348,6 +385,12 @@
     "notifications_mention": "提及",
     "posts": "帖文",
     "posts_with_replies": "帖文与留言"
+  },
+  "tag": {
+    "follow": "关注",
+    "follow_label": "关注 {0} 标签",
+    "unfollow": "取消关注",
+    "unfollow_label": "取消关注 {0} 标签"
   },
   "time_ago_options": {
     "day_future": "现在|明天|{n} 天后",
@@ -391,6 +434,7 @@
   "tooltip": {
     "add_content_warning": "添加内容警告标识",
     "add_media": "添加图片、视频或者音频文件",
+    "add_publishable_content": "添加要发布的内容",
     "change_content_visibility": "修改内容是否可见",
     "change_language": "更改语言",
     "emoji": "表情符号",

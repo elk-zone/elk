@@ -1,7 +1,7 @@
 import type { mastodon } from 'masto'
 
 export function getDisplayName(account?: mastodon.v1.Account, options?: { rich?: boolean }) {
-  const displayName = account?.displayName || account?.username || ''
+  const displayName = (account != null ? (account.displayName || account.username || account.acct) : '') || ''
   if (options?.rich)
     return displayName
   return displayName.replace(/:([\w-]+?):/g, '')

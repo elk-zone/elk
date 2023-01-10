@@ -140,7 +140,8 @@
       "@tiptap/extension-ordered-list": "2.0.0-beta.204",
       "@tiptap/extension-paragraph": "2.0.0-beta.204",
       "@tiptap/extension-strike": "2.0.0-beta.204",
-      "@tiptap/extension-text": "2.0.0-beta.204"
+      "@tiptap/extension-text": "2.0.0-beta.204",
+      "vitest>vite": "^3.2.5"
     }
   },
   "simple-git-hooks": {

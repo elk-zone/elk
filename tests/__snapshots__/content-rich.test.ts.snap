@@ -40,6 +40,17 @@ exports[`content-rich > custom emoji 1`] = `
 
 exports[`content-rich > empty 1`] = `""`;
 
+exports[`content-rich > handles html within code blocks 1`] = `
+"<p>
+  HTML block code:<br />
+  <pre lang=\\"html\\">
+&lt;span class=&quot;icon--noto icon--noto--1st-place-medal&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon--noto icon--noto--2nd-place-medal-medal&quot;&gt;&lt;/span&gt;</pre
+  >
+</p>
+"
+`;
+
 exports[`content-rich > inline code with link 1`] = `
 "<p>
   Inline code with link:

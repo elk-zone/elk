@@ -53,7 +53,7 @@ export function parseMastodonHTML(
     // Handle code blocks
     html = html
       .replace(/>(```|~~~)(\w*)([\s\S]+?)\1/g, (_1, _2, lang: string, raw: string) => {
-        const code = htmlToText(raw)
+        const code = htmlToText(raw).replace(/</g, '&lt;').replace(/>/g, '&gt;')
         const classes = lang ? ` class="language-${lang}"` : ''
         return `><pre><code${classes}>${code}</code></pre>`
       })

@@ -25,6 +25,11 @@ describe('content-rich', () => {
     expect(formatted).toMatchSnapshot()
   })
 
+  it('handles html within code blocks', async () => {
+    const { formatted } = await render('<p>HTML block code:<br>```html<br>&lt;span class="icon--noto icon--noto--1st-place-medal"&gt;&lt;/span&gt;<br>&lt;span class="icon--noto icon--noto--2nd-place-medal-medal"&gt;&lt;/span&gt;<br>```</p>')
+    expect(formatted).toMatchSnapshot()
+  })
+
   it('custom emoji', async () => {
     const { formatted } = await render('Daniel Roe :nuxt:', {
       nuxt: {

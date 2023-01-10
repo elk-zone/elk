@@ -277,7 +277,7 @@
           "reblog": "转发了你的帖文",
           "title": "接收了什么通知？"
         },
-        "description": "当你没有在使用鹿鸣时也接收通知。",
+        "description": "当你没有在使用鹿鸣时也能接收通知。",
         "instructions": "不要忘记点击 @:settings.notifications.push_notifications.save_settings 按钮保存改动！",
         "label": "推送通知设置",
         "policy": {

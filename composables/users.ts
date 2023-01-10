@@ -298,6 +298,9 @@ export const useNotifications = () => {
           notifications[id]![1].push(notification.id)
         }
       }
+      else {
+        break
+      }
     } while (true)
   }
 

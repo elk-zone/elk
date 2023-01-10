@@ -4,6 +4,7 @@ import type { mastodon } from 'masto'
 const { account } = defineProps<{
   account: mastodon.v1.Account
   hoverCard?: boolean
+  relationshipContext?: 'followedBy' | 'following'
 }>()
 
 cacheAccount(account)
@@ -19,7 +20,7 @@ cacheAccount(account)
       :to="getAccountRoute(account)"
     />
     <div h-full p1 shrink-0>
-      <AccountFollowButton :account="account" />
+      <AccountFollowButton :account="account" :context="relationshipContext" />
     </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 import { login as loginMasto } from 'masto'
-import type { WsEvents, mastodon } from 'masto'
+import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
-import type { RemovableRef } from '@vueuse/core'
+import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
 import type { ElkMasto, UserLogin } from '~/types'
 import {
   DEFAULT_POST_CHARS_LIMIT,
@@ -55,6 +55,7 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 
 const publicInstance = ref<mastodon.v1.Instance | null>(null)
 export const currentInstance = computed<null | mastodon.v1.Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+export const isGlitchEdition = computed(() => currentInstance.value?.version.includes('+glitch'))
 
 export const publicServer = ref('')
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
@@ -96,6 +97,8 @@ export const currentUserHandle = computed(() => currentUser.value?.account.id
 )
 
 export const useUsers = () => users
+export const useSelfAccount = (user: MaybeComputedRef<mastodon.v1.Account | undefined>) =>
+  computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
@@ -254,68 +257,6 @@ export async function signout() {
     await useRouter().push('/')
 
   await masto.loginTo(currentUser.value)
-}
-
-const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, string[]]>>({})
-
-export const useNotifications = () => {
-  const id = currentUser.value?.account.id
-  const masto = useMasto()
-
-  async function clearNotifications() {
-    if (!id || !notifications[id])
-      return
-    const lastReadId = notifications[id]![1][0]
-    notifications[id]![1] = []
-    // @ts-expect-error https://github.com/neet/masto.js/pull/793
-    await masto.v1.markers.create({
-      notifications: { lastReadId },
-    })
-  }
-
-  async function connect(): Promise<void> {
-    if (!isMastoInitialised.value || !id || notifications[id] || !currentUser.value?.token)
-      return
-
-    const stream = masto.v1.stream.streamUser()
-    notifications[id] = [stream, []]
-    stream.then(s => s.on('notification', (n) => {
-      if (notifications[id])
-        notifications[id]![1].unshift(n.id)
-    }))
-
-    const position = await masto.v1.markers.fetch({ timeline: ['notifications'] })
-    const paginator = masto.v1.notifications.list({ limit: 30 })
-    do {
-      const result = await paginator.next()
-      if (result.value?.length) {
-        for (const notification of result.value as mastodon.v1.Notification[]) {
-          if (notification.id === position.notifications.lastReadId)
-            return
-          notifications[id]![1].push(notification.id)
-        }
-      }
-    } while (true)
-  }
-
-  function disconnect(): void {
-    if (!id || !notifications[id])
-      return
-    notifications[id]![0].then(stream => stream.disconnect())
-    notifications[id] = undefined
-  }
-
-  watch(currentUser, disconnect)
-  if (isMastoInitialised.value)
-    connect()
-  else
-    watchOnce(isMastoInitialised, connect)
-
-  return {
-    notifications: computed(() => id ? notifications[id]?.[1].length ?? 0 : 0),
-    disconnect,
-    clearNotifications,
-  }
 }
 
 export function checkLogin() {

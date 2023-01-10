@@ -1,4 +1,5 @@
 import type { mastodon } from 'masto'
+import type { ComputedRef, Ref } from 'vue'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
@@ -89,10 +90,15 @@ export const isEmptyDraft = (draft: Draft | null | undefined) => {
     && (params.spoilerText || '').length === 0
 }
 
+export interface UseDraft {
+  draft: Ref<Draft>
+  isEmpty: ComputedRef<boolean>
+}
+
 export function useDraft(
   draftKey?: string,
   initial: () => Draft = () => getDefaultDraft({}),
-) {
+): UseDraft {
   const draft = draftKey
     ? computed({
       get() {

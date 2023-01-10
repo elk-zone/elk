@@ -89,7 +89,7 @@ const meta = $computed(() => {
     v-if="card.image"
     flex flex-col
     display-block of-hidden
-    bg-code
+    bg-card
     relative
     w-full min-h-50 md:min-h-60
     justify-center

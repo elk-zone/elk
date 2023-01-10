@@ -98,7 +98,6 @@ useIntersectionObserver(video, (entries) => {
         loop
         playsinline
         controls
-        border="~ base"
         rounded-lg
         object-cover
         :width="attachment.meta?.original?.width"
@@ -119,7 +118,6 @@ useIntersectionObserver(video, (entries) => {
         muted
         loop
         playsinline
-        border="~ base"
         rounded-lg
         object-cover
         :width="attachment.meta?.original?.width"
@@ -160,7 +158,6 @@ useIntersectionObserver(video, (entries) => {
             aspectRatio,
             objectPosition,
           }"
-          border="~ base"
           rounded-lg
           h-full
           w-full

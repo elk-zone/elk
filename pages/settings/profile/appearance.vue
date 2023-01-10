@@ -24,7 +24,7 @@ const onlineSrc = $computed(() => ({
 const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
-    const fieldsAttributes = Array.from({ length: 4 }, (_, i) => {
+    const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
       const field = { ...account?.fields?.[i] || { name: '', value: '' } }
 
       const linkElement = (parse(field.value)?.children?.[0])
@@ -151,16 +151,8 @@ onReactivated(refreshInfo)
         </label>
 
         <!-- metadata -->
-        <div space-y-2>
-          <div font-medium>
-            {{ $t('settings.profile.appearance.profile_metadata') }}
-          </div>
-          <div text-sm text-secondary>
-            {{ $t('settings.profile.appearance.profile_metadata_desc') }}
-          </div>
 
-          <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
-        </div>
+        <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
 
         <!-- actions -->
         <div flex="~ gap2" justify-end>

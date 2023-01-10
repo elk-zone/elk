@@ -325,7 +325,7 @@
         "display_name": "Display name",
         "label": "Appearance",
         "profile_metadata": "Profile metadata",
-        "profile_metadata_desc": "You can have up to 4 items displayed as a table on your profile",
+        "profile_metadata_desc": "You can have up to {0} items displayed as a table on your profile",
         "title": "Edit profile"
       },
       "featured_tags": {
@@ -355,6 +355,7 @@
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
+    "publishing": "Publishing",
     "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },

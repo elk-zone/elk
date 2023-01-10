@@ -60,7 +60,7 @@ const searchResult = $computed<QueryResult>(() => {
 })
 
 const result = $computed<QueryResult>(() => commandMode
-  ? registry.query(scopes.map(s => s.id).join('.'), input.slice(1))
+  ? registry.query(scopes.map(s => s.id).join('.'), input.slice(1).trim())
   : searchResult,
 )
 
@@ -79,13 +79,13 @@ const onCommandActivate = (item: QueryResultItem) => {
   }
   else if (item.onComplete) {
     scopes.push(item.onComplete())
-    input = '>'
+    input = '> '
   }
 }
 const onCommandComplete = (item: QueryResultItem) => {
   if (item.onComplete) {
     scopes.push(item.onComplete())
-    input = '>'
+    input = '> '
   }
   else if (item.onActivate) {
     item.onActivate()

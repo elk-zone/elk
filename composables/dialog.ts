@@ -119,7 +119,7 @@ export function closePreviewHelp() {
 }
 
 export function openCommandPanel(isCommandMode = false) {
-  commandPanelInput.value = isCommandMode ? '>' : ''
+  commandPanelInput.value = isCommandMode ? '> ' : ''
   isCommandPanelOpen.value = true
 }
 

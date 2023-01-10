@@ -32,7 +32,9 @@ async function oauth() {
       },
     })
   }
-  catch {
+  catch (err) {
+    console.error(err)
+
     displayError = true
     error = true
     await nextTick()

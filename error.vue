@@ -24,7 +24,8 @@ const reload = async () => {
       await masto.loginTo(currentUser.value)
     clearError({ redirect: currentUser.value ? '/home' : `/${currentServer.value}/public/local` })
   }
-  catch {
+  catch (err) {
+    console.error(err)
     state.value = 'error'
   }
 }

@@ -62,7 +62,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     if (accounts[0])
       return getAccountRoute(accounts[0])
   }
-  catch {}
+  catch (err) {
+    console.error(err)
+  }
 
   return '/home'
 })

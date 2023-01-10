@@ -31,6 +31,7 @@
     "@iconify/utils": "^2.0.11",
     "@tiptap/extension-character-count": "2.0.0-beta.204",
     "@tiptap/extension-code-block": "2.0.0-beta.204",
+    "@tiptap/extension-history": "2.0.0-beta.204",
     "@tiptap/extension-mention": "2.0.0-beta.204",
     "@tiptap/extension-paragraph": "2.0.0-beta.204",
     "@tiptap/extension-placeholder": "2.0.0-beta.204",

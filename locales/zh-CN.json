@@ -348,9 +348,9 @@
     "uploading": "上传中..."
   },
   "status": {
-    "boosted_by": "转发自",
+    "boosted_by": "被转发",
     "edited": "在 {0} 编辑了",
-    "favourited_by": "喜欢自",
+    "favourited_by": "被喜欢",
     "filter_hidden_phrase": "筛选依据",
     "filter_removed_phrase": "从筛选中移除",
     "filter_show_anyway": "仍然展示",

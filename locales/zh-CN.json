@@ -206,18 +206,18 @@
     "webmanifest": {
       "canary": {
         "description": "用 🧡 制作的 Mastodon 客户端（Canary）",
-        "name": "鹿鸣（Canary）",
-        "short_name": "鹿鸣（Canary）"
+        "name": "鹿鸣 Canary",
+        "short_name": "鹿鸣 Canary"
       },
       "dev": {
         "description": "用 🧡 制作的 Mastodon 客户端（开发版）",
-        "name": "鹿鸣（开发版）",
-        "short_name": "鹿鸣（开发版）"
+        "name": "鹿鸣 开发版",
+        "short_name": "鹿鸣 开发版"
       },
       "preview": {
         "description": "用 🧡 制作的 Mastodon 客户端（预览版）",
-        "name": "鹿鸣（预览版）",
-        "short_name": "鹿鸣（预览版）"
+        "name": "鹿鸣 预览版",
+        "short_name": "鹿鸣 预览版"
       },
       "release": {
         "description": "用 🧡 制作的 Mastodon 客户端",

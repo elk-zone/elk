@@ -13,10 +13,6 @@ useHeadFixed({
         <span>{{ $t('settings.wellness.label') }}</span>
       </div>
     </template>
-    <h3 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
-      <div i-ri-leaf-line />
-      {{ $t('settings.wellness.label') }}
-    </h3>
     <SettingsToggleItem
       :checked="getWellnessSetting('hideBoostCount')"
       @click="toggleWellnessSetting('hideBoostCount')"

@@ -9,9 +9,9 @@ export interface WellnessSettings {
 export type WellnessSettingsMap = Record<string, WellnessSettings>
 
 const DEFAULT_WELLNESS_SETTINGS: WellnessSettings = {
-  hideBoostCount: true,
-  hideFavoriteCount: true,
-  hideFollowerCount: true,
+  hideBoostCount: false,
+  hideFavoriteCount: false,
+  hideFollowerCount: false,
 }
 
 export function useWellnessSetting<T extends keyof WellnessSettings>(name: T): Ref<WellnessSettings[T]> {

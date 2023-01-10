@@ -32,6 +32,7 @@ const { draft } = $(draftState)
 const {
   isExceedingAttachmentLimit, isUploading, failedAttachments, isOverDropZone,
   uploadAttachments, pickAttachments, setDescription, removeAttachment,
+  dropZoneRef,
 } = $(useUploadMediaAttachment($$(draft)))
 
 let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft } = $(usePublish(

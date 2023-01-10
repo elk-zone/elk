@@ -143,6 +143,7 @@ export const useUploadMediaAttachment = (draftRef: Ref<Draft>) => {
     isUploading,
     isExceedingAttachmentLimit,
     failedAttachments,
+    dropZoneRef,
     isOverDropZone,
 
     uploadAttachments,

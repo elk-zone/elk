@@ -55,6 +55,7 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 
 const publicInstance = ref<mastodon.v1.Instance | null>(null)
 export const currentInstance = computed<null | mastodon.v1.Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+export const isGlitchEdition = computed(() => currentInstance.value?.version.includes('+glitch'))
 
 export const publicServer = ref('')
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)

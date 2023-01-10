@@ -268,7 +268,7 @@
         "display_name": "Zichtbare naam",
         "label": "Uiterlijk",
         "profile_metadata": "Profiel metadata",
-        "profile_metadata_desc": "Je kan tot en met 4 elementen als table zetten op je profiel zetten",
+        "profile_metadata_desc": "Je kan tot en met {0} elementen als table zetten op je profiel zetten",
         "title": "Aanpassen profiel"
       },
       "featured_tags": {

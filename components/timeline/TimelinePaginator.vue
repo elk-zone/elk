@@ -22,7 +22,7 @@ const showOriginSite = $computed(() =>
 </script>
 
 <template>
-  <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer }" :virtual-scroller="virtualScroller">
+  <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer }" :virtual-scroller="virtualScroller" :context="context">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}

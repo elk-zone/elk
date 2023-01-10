@@ -40,6 +40,16 @@ exports[`content-rich > custom emoji 1`] = `
 
 exports[`content-rich > empty 1`] = `""`;
 
+exports[`content-rich > inline code with link 1`] = `
+"<p>
+  Inline code with link:
+  <code
+    >https://api.iconify.design/noto.css?icons=1st-place-medal,2nd-place-medal</code
+  >
+</p>
+"
+`;
+
 exports[`content-rich > link + mention 1`] = `
 "<p>
   Happy

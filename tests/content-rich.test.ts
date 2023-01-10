@@ -20,6 +20,11 @@ describe('content-rich', () => {
     expect(formatted).toMatchSnapshot()
   })
 
+  it('inline code with link', async () => {
+    const { formatted } = await render('<p>Inline code with link: `<a href="https://api.iconify.design/noto.css?icons=1st-place-medal,2nd-place-medal" target="_blank" rel="nofollow noopener noreferrer" class="status-link unhandled-link" title="https://api.iconify.design/noto.css?icons=1st-place-medal,2nd-place-medal"><span class="invisible">https://</span><span class="ellipsis">api.iconify.design/noto.css?ic</span><span class="invisible">ons=1st-place-medal,2nd-place-medal</span></a>`</p>')
+    expect(formatted).toMatchSnapshot()
+  })
+
   it('custom emoji', async () => {
     const { formatted } = await render('Daniel Roe :nuxt:', {
       nuxt: {

@@ -57,6 +57,9 @@ export function parseMastodonHTML(
         const classes = lang ? ` class="language-${lang}"` : ''
         return `><pre><code${classes}>${code}</code></pre>`
       })
+      .replace(/`([^`\n]*)`/g, (_1, raw) => {
+        return raw ? `<code>${htmlToText(raw)}</code>` : ''
+      })
   }
 
   // Always sanitize the raw HTML data *after* it has been modified

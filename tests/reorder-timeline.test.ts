@@ -44,10 +44,10 @@ const r_b1 = reblog('r_b1', p_b1)
 const r_a2 = reblog('r_a2', p_a2)
 const r_b2 = reblog('r_b2', p_b2)
 
-const f = status('f', 'public')
-const r_f = reply('r_f', f)
-const rb_f = reblog('rb_f', f)
-const n_f = status('f', 'notifications')
+const f1 = status('f1', 'public')
+const r_f1 = reply('r_f1', f1)
+const rb_f1 = reblog('rb_f1', f1)
+const n_f2 = status('f2', 'notifications')
 
 describe('timeline reordering', () => {
   it('reorder basic', () => {
@@ -74,18 +74,18 @@ describe('timeline reordering', () => {
 
   it('reorder with filtered item', () => {
     // should not show filtered status with 'hide' filterAction
-    expect(reorderedTimeline([p_a3, f, r_a1, r_a2, r_b2, p_b3, r_b1])).toEqual([r_a1, r_a2, p_a3, r_b1, r_b2, p_b3])
+    expect(reorderedTimeline([p_a3, f1, r_a1, r_a2, r_b2, p_b3, r_b1])).toEqual([r_a1, r_a2, p_a3, r_b1, r_b2, p_b3])
 
-    // should not filter status with 'hide' filterAction but does not matches context
-    expect(reorderedTimeline([p_a3, n_f, r_a1, r_a2, r_b2, p_b3, r_b1], 'public')).toEqual([r_a1, r_a2, p_a3, n_f, r_b1, r_b2, p_b3])
+    // should not filter status with 'hide' filterAction but does not match context
+    expect(reorderedTimeline([p_a3, n_f2, r_a1, r_a2, r_b2, p_b3, r_b1], 'public')).toEqual([r_a1, r_a2, p_a3, n_f2, r_b1, r_b2, p_b3])
 
     // should filter status with 'hide' filterAction and matches context
-    expect(reorderedTimeline([p_a3, n_f, r_a1, r_a2, r_b2, p_b3, r_b1], 'notifications')).toEqual([r_a1, r_a2, p_a3, r_b1, r_b2, p_b3])
+    expect(reorderedTimeline([p_a3, n_f2, r_a1, r_a2, r_b2, p_b3, r_b1], 'notifications')).toEqual([r_a1, r_a2, p_a3, r_b1, r_b2, p_b3])
 
     // should show reply to a filtered status
-    expect(reorderedTimeline([p_a3, f, r_a1, r_f, r_a2, r_b2, p_b3, r_b1])).toEqual([r_a1, r_a2, p_a3, r_f, r_b1, r_b2, p_b3])
+    expect(reorderedTimeline([p_a3, f1, r_a1, r_f1, r_a2, r_b2, p_b3, r_b1])).toEqual([r_a1, r_a2, p_a3, r_f1, r_b1, r_b2, p_b3])
 
     // should not show reblogged status that is filtered with 'hide' filterAction
-    expect(reorderedTimeline([p_a3, f, r_a1, rb_f, r_a2, r_b2, p_b3, r_b1])).toEqual([r_a1, r_a2, p_a3, r_b1, r_b2, p_b3])
+    expect(reorderedTimeline([p_a3, f1, r_a1, rb_f1, r_a2, r_b2, p_b3, r_b1])).toEqual([r_a1, r_a2, p_a3, r_b1, r_b2, p_b3])
   })
 })

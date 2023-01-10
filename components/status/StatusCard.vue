@@ -164,15 +164,18 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
           <div flex-auto />
           <div v-show="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
             <AccountBotIndicator v-if="status.account.bot" me-2 />
-            <div flex>
-              <CommonTooltip :content="createdAt">
-                <NuxtLink :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
-                  <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
-                    {{ timeago }}
-                  </time>
-                </NuxtLink>
-              </CommonTooltip>
-              <StatusEditIndicator :status="status" inline />
+            <div flex="~ gap1" items-center>
+              <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
+              <div flex>
+                <CommonTooltip :content="createdAt">
+                  <NuxtLink :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
+                    <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
+                      {{ timeago }}
+                    </time>
+                  </NuxtLink>
+                </CommonTooltip>
+                <StatusEditIndicator :status="status" inline />
+              </div>
             </div>
           </div>
           <StatusActionsMore v-if="actions !== false" :status="status" me--2 />

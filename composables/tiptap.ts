@@ -8,6 +8,7 @@ import HardBreak from '@tiptap/extension-hard-break'
 import Bold from '@tiptap/extension-bold'
 import Italic from '@tiptap/extension-italic'
 import Code from '@tiptap/extension-code'
+import History from '@tiptap/extension-history'
 import { Plugin } from 'prosemirror-state'
 
 import type { Ref } from 'vue'
@@ -61,6 +62,9 @@ export function useTiptap(options: UseTiptapOptions) {
         placeholder: () => placeholder.value!,
       }),
       CodeBlockShiki,
+      History.configure({
+        depth: 10,
+      }),
       Extension.create({
         name: 'api',
         addKeyboardShortcuts() {

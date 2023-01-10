@@ -277,7 +277,6 @@
   "status": {
     "edited": "在 {0} 編輯了",
     "filter_hidden_phrase": "篩選依據",
-    "filter_removed_phrase": "從篩選中移除",
     "filter_show_anyway": "仍然展示",
     "img_alt": {
       "desc": "描述",

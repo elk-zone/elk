@@ -292,7 +292,6 @@
   "status": {
     "edited": "Edited {0}",
     "filter_hidden_phrase": "Filtered by",
-    "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
     "img_alt": {
       "desc": "Description",

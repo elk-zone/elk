@@ -208,7 +208,6 @@
   "status": {
     "edited": "Zuletzt bearbeitet: {0}",
     "filter_hidden_phrase": "Versteckt durch",
-    "filter_removed_phrase": "Entfernt durch Filter",
     "filter_show_anyway": "Trotzdem zeigen",
     "img_alt": {
       "desc": "Beschreibung",

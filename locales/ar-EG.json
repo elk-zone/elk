@@ -273,7 +273,6 @@
   "status": {
     "edited": "عدل {0}",
     "filter_hidden_phrase": "تمت تصفيتها بواسطة",
-    "filter_removed_phrase": "تمت إزالته بواسطة عامل التصفية",
     "filter_show_anyway": "عرض على أي حال",
     "img_alt": {
       "desc": "وصف",

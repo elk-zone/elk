@@ -2,7 +2,7 @@
 const { t } = useI18n()
 
 useHeadFixed({
-  title: () => `${t('settings.preferences.label')} | ${t('nav.settings')}`,
+  title: () => `${t('settings.wellness.label')} | ${t('nav.settings')}`,
 })
 </script>
 

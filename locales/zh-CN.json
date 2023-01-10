@@ -84,8 +84,8 @@
   },
   "common": {
     "confirm_dialog": {
-      "cancel": "不是",
-      "confirm": "是的",
+      "cancel": "否",
+      "confirm": "是",
       "title": "你确定吗？"
     },
     "end_of_list": "列表到底啦",

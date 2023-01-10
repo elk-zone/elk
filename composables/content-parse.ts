@@ -58,7 +58,7 @@ export function parseMastodonHTML(
         return `><pre><code${classes}>${code}</code></pre>`
       })
       .replace(/`([^`\n]*)`/g, (_1, raw) => {
-        return raw ? `<code>${htmlToText(raw)}</code>` : ''
+        return raw ? `<code>${htmlToText(raw).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>` : ''
       })
   }
 

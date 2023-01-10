@@ -67,11 +67,9 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
 // Content Filter logic
 const filterResult = $computed(() => status.filtered?.length ? status.filtered[0] : null)
-const filter = $computed(() => filterResult?.filter as mastodon.v2.Filter)
+const filter = $computed(() => filterResult?.filter)
 
-// a bit of a hack due to Filter being different in v1 and v2
-// clean up when masto.js supports explicit versions: https://github.com/neet/masto.js/issues/722
-const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
+const filterPhrase = $computed(() => filter?.title)
 const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
 
 const isSelfReply = $computed(() => status.inReplyToAccountId === status.account.id)

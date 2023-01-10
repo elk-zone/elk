@@ -267,7 +267,7 @@ export const useNotifications = () => {
       return
     const lastReadId = notifications[id]![1][0]
     notifications[id]![1] = []
-    // @ts-expect-error https://github.com/neet/masto.js/pull/793
+
     await masto.v1.markers.create({
       notifications: { lastReadId },
     })

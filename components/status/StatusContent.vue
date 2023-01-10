@@ -13,9 +13,7 @@ const isDetails = $computed(() => context === 'details')
 const filterResult = $computed(() => status.filtered?.length ? status.filtered[0] : null)
 const filter = $computed(() => filterResult?.filter)
 
-// a bit of a hack due to Filter being different in v1 and v2
-// clean up when masto.js supports explicit versions: https://github.com/neet/masto.js/issues/722
-const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
+const filterPhrase = $computed(() => filter?.title)
 const isFiltered = $computed(() => filterPhrase && (context && context !== 'details' ? filter?.context.includes(context) : false))
 </script>
 

@@ -51,7 +51,7 @@ export function createNotificationOptions(
   const url = notification_type === 'mention' ? 'notifications/mention' : 'notifications'
 
   const notificationOptions: NotificationOptions = {
-    badge: '/apple-touch-icon.png',
+    badge: '/pwa-192x192.png',
     body,
     data: {
       access_token,

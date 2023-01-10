@@ -38,10 +38,9 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
     v-else
     block
     of-hidden
-    hover:bg-active
     :to="card.url"
-    border-base
-    bg-code
+    bg-card
+    hover:bg-active
     :class="{
       'flex': isSquare,
       'p-4': root,

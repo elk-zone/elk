@@ -64,7 +64,7 @@ const buttonStyle = $computed(() => {
     return 'text-inverted bg-red border-red'
 
   if (relationship?.muting)
-    return 'text-base bg-code border-base'
+    return 'text-base bg-card border-base'
 
   // If following, use a label style with a strong border for Mutuals
   if (relationship?.following)

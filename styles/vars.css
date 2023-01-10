@@ -8,6 +8,7 @@
   --c-bg-base: #fafafa;
   --c-bg-base-rgb: 250, 250, 250;
   --c-bg-active: #f2f2f2;
+  --c-bg-card: #00000006;
   --c-bg-code: #00000006;
   --c-bg-selection: #8885;
   --c-bg-fade: #EA9E4411;
@@ -37,6 +38,7 @@
   --c-bg-base: #111;
   --c-bg-base-rgb: 17, 17, 17;
   --c-bg-active: #191919;
+  --c-bg-card: #ffffff06;
   --c-bg-code: #ffffff06;
   --c-bg-fade: #EA9E4411;
 

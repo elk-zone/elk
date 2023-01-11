@@ -20,6 +20,11 @@ describe('content-rich', () => {
     expect(formatted).toMatchSnapshot()
   })
 
+  it ('block with backticks', async () => {
+    const { formatted } = await render('<p>```<br />[(`number string) (`tag string)]<br />```</p>')
+    expect(formatted).toMatchSnapshot()
+  })
+
   it('group mention', async () => {
     const { formatted } = await render('<p><span class="h-card"><a href="https://lemmy.ml/c/pilipinas" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>pilipinas</span></a></span></p>', undefined, [{ id: '', username: 'pilipinas', url: 'https://lemmy.ml/c/pilipinas', acct: 'pilipinas@lemmy.ml' }])
     expect(formatted).toMatchSnapshot('html')

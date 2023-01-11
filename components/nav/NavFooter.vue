@@ -26,6 +26,16 @@ function toggleDark() {
           @click="userSettings.zenMode = !userSettings.zenMode"
         />
       </CommonTooltip>
+      <CommonTooltip :content="$t('settings.about.sponsor_action')">
+        <NuxtLink
+          flex
+          text-lg
+          i-ri-heart-3-line hover="i-ri-heart-3-fill text-rose"
+          :aria-label="$t('settings.about.sponsor_action')"
+          href="https://github.com/sponsors/elk-zone"
+          target="_blank"
+        />
+      </CommonTooltip>
     </div>
     <div>
       <i18n-t v-if="isHydrated" keypath="nav.built_at">

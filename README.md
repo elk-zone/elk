@@ -41,7 +41,7 @@ We are grateful for the generous sponsorship and help of:
 </a>
 <br><br>
 
-And all the companies and individuals sponsoring Elk Team members. If you're enjoying the app, consider sponsoring our team:
+And all the companies and individuals sponsoring Elk Team and the members. If you're enjoying the app, consider sponsoring us:
 
 - [Elk Team's GitHub Sponsors](https://github.com/sponsors/elk-zone)
 

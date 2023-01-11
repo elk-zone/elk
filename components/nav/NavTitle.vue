@@ -26,7 +26,10 @@ router.afterEach(() => {
         {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
       </div>
     </NuxtLink>
-    <div hidden xl:flex items-center me-8 mt-2 :class="{ 'pointer-events-none op40': !back || back === '/' }">
+    <div
+      hidden xl:flex items-center me-8 mt-2
+      :class="{ 'pointer-events-none op40': !back || back === '/', 'xl:flex': $route.name !== 'tag' }"
+    >
       <NuxtLink
         :aria-label="$t('nav.back')"
         @click="$router.go(-1)"

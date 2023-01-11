@@ -1,16 +1,13 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
-import { fileOpen } from 'browser-fs-access'
-import { useDropZone } from '@vueuse/core'
 import { EditorContent } from '@tiptap/vue-3'
+import type { mastodon } from 'masto'
+import type { Ref } from 'vue'
 import type { Draft } from '~/types'
-
-type FileUploadError = [filename: string, message: string]
 
 const {
   draftKey,
   initial = getDefaultDraft() as never /* Bug of vue-core */,
-  expanded: _expanded = false,
+  expanded = false,
   placeholder,
   dialogLabelledBy,
 } = defineProps<{
@@ -29,11 +26,21 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-let { draft, isEmpty } = $(useDraft(draftKey, initial))
+const draftState = useDraft(draftKey, initial)
+const { draft } = $(draftState)
 
-let isSending = $ref(false)
-let isExpanded = $ref(false)
-const shouldExpanded = $computed(() => _expanded || isExpanded || !isEmpty)
+const {
+  isExceedingAttachmentLimit, isUploading, failedAttachments, isOverDropZone,
+  uploadAttachments, pickAttachments, setDescription, removeAttachment,
+  dropZoneRef,
+} = $(useUploadMediaAttachment($$(draft)))
+
+let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft } = $(usePublish(
+  {
+    draftState,
+    ...$$({ expanded, isUploading, initialDraft: initial }),
+  },
+))
 
 const { editor } = useTiptap({
   content: computed({
@@ -55,11 +62,7 @@ const { editor } = useTiptap({
   },
   onPaste: handlePaste,
 })
-
 const characterCount = $computed(() => htmlToText(editor.value?.getHTML() || '').length)
-let isUploading = $ref<boolean>(false)
-let isExceedingAttachmentLimit = $ref<boolean>(false)
-let failed = $ref<FileUploadError[]>([])
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -77,119 +80,20 @@ function insertCustomEmoji(image: any) {
   editor.value?.chain().focus().insertCustomEmoji(image).run()
 }
 
-async function pickAttachments() {
-  const mimeTypes = currentInstance.value!.configuration.mediaAttachments.supportedMimeTypes
-  const files = await fileOpen({
-    description: 'Attachments',
-    multiple: true,
-    mimeTypes,
-  })
-  await uploadAttachments(files)
-}
-
 async function toggleSensitive() {
   draft.params.sensitive = !draft.params.sensitive
 }
 
-const masto = useMasto()
-
-async function uploadAttachments(files: File[]) {
-  isUploading = true
-  failed = []
-  // TODO: display some kind of message if too many media are selected
-  // DONE
-  const limit = currentInstance.value!.configuration.statuses.maxMediaAttachments || 4
-  for (const file of files.slice(0, limit)) {
-    if (draft.attachments.length < limit) {
-      isExceedingAttachmentLimit = false
-      try {
-        const attachment = await masto.v1.mediaAttachments.create({
-          file,
-        })
-        draft.attachments.push(attachment)
-      }
-      catch (e) {
-        // TODO: add some human-readable error message, problem is that masto api will not return response code
-        console.error(e)
-        failed = [...failed, [file.name, (e as Error).message]]
-      }
-    }
-    else {
-      isExceedingAttachmentLimit = true
-      failed = [...failed, [file.name, t('state.attachments_limit_error')]]
-    }
-  }
-  isUploading = false
-}
-
-async function setDescription(att: mastodon.v1.MediaAttachment, description: string) {
-  att.description = description
-  await masto.v1.mediaAttachments.update(att.id, { description: att.description })
-}
-
-function removeAttachment(index: number) {
-  draft.attachments.splice(index, 1)
-}
-
 async function publish() {
-  const payload = {
-    ...draft.params,
-    status: htmlToText(draft.params.status || ''),
-    mediaIds: draft.attachments.map(a => a.id),
-    ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
-  } as mastodon.v1.CreateStatusParams
-
-  if (process.dev) {
-    // eslint-disable-next-line no-console
-    console.info({
-      raw: draft.params.status,
-      ...payload,
-    })
-    // eslint-disable-next-line no-alert
-    const result = confirm('[DEV] Payload logged to console, do you want to publish it?')
-    if (!result)
-      return
-  }
-
-  try {
-    isSending = true
-
-    let status: mastodon.v1.Status
-    if (!draft.editingStatus)
-      status = await masto.v1.statuses.create(payload)
-    else
-      status = await masto.v1.statuses.update(draft.editingStatus.id, payload)
-    if (draft.params.inReplyToId)
-      navigateToStatus({ status })
-
-    draft = initial()
+  const status = await publishDraft()
+  if (status)
     emit('published', status)
-  }
-  finally {
-    isSending = false
-  }
 }
-
-const dropZoneRef = ref<HTMLDivElement>()
-
-async function onDrop(files: File[] | null) {
-  if (files)
-    await uploadAttachments(files)
-}
-
-const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
 defineExpose({
   focusEditor: () => {
     editor.value?.commands?.focus?.()
   },
-})
-
-const isPublishDisabled = computed(() => {
-  if (isEmpty || isUploading || (draft.attachments.length === 0 && !draft.params.status))
-    return true
-
-  return false
 })
 </script>
 
@@ -239,7 +143,7 @@ const isPublishDisabled = computed(() => {
           {{ $t('state.uploading') }}
         </div>
         <div
-          v-else-if="failed.length > 0"
+          v-else-if="failedAttachments.length > 0"
           role="alert"
           :aria-describedby="isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'"
           flex="~ col"
@@ -258,7 +162,7 @@ const isPublishDisabled = computed(() => {
                 flex rounded-4 p1
                 hover:bg-active cursor-pointer transition-100
                 :aria-label="$t('action.clear_upload_failed')"
-                @click="failed = []"
+                @click="failedAttachments = []"
               >
                 <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
               </button>
@@ -268,7 +172,7 @@ const isPublishDisabled = computed(() => {
             {{ $t('state.attachments_exceed_server_limit') }}
           </div>
           <ol ps-2 sm:ps-1>
-            <li v-for="error in failed" :key="error[0]" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+            <li v-for="error in failedAttachments" :key="error[0]" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
               <strong>{{ error[1] }}:</strong>
               <span>{{ error[0] }}</span>
             </li>
@@ -357,16 +261,17 @@ const isPublishDisabled = computed(() => {
 
         <CommonTooltip id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')" :disabled="!isPublishDisabled">
           <button
-            btn-solid rounded-3 text-sm w-full
+            btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center
             md:w-fit
             class="publish-button"
             :aria-disabled="isPublishDisabled"
             aria-describedby="publish-tooltip"
             @click="publish"
           >
+            <div v-if="isSending" i-ri:loader-2-fill animate-spin />
             <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
             <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
-            <span v-else>{{ $t('action.publish') }}</span>
+            <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
           </button>
         </CommonTooltip>
       </div>

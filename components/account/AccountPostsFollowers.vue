@@ -38,9 +38,10 @@ defineProps<{
       </template>
     </NuxtLink>
     <NuxtLink
+      v-if="!getWellnessSetting('hideFollowerCount')"
       :to="getAccountFollowersRoute(account)"
-      replace
-      text-secondary exact-active-class="text-primary"
+      replace text-secondary
+      exact-active-class="text-primary"
     >
       <template #default="{ isExactActive }">
         <CommonLocalizedNumber

@@ -235,7 +235,8 @@
   },
   "settings": {
     "about": {
-      "label": "About"
+      "label": "About",
+      "meet_the_team": "Meet the team"
     },
     "account_settings": {
       "description": "Edit your account settings in Mastodon UI",
@@ -339,6 +340,14 @@
       "export": "Export User Tokens",
       "import": "Import User Tokens",
       "label": "Logged in users"
+    },
+    "wellness": {
+      "feature": {
+        "hide_boost_count": "Hide boost count",
+        "hide_favorite_count": "Hide favorite count",
+        "hide_follower_count": "Hide follower count"
+      },
+      "label": "Wellness"
     }
   },
   "state": {
@@ -347,6 +356,7 @@
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
+    "publishing": "Publishing",
     "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },

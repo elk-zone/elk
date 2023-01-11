@@ -44,7 +44,11 @@ If not using private browsing mode, you will need to uninstall the PWA applicati
 
 ## CI errors
 
-Sometimes when you push your changes, the CI can fail, but we cannot check the logs to see what went wrong, run the following commands on your local environment:
+Sometimes when you push your changes to create a new pull request (PR), the CI can fail, but we cannot check the logs to see what went wrong.
+
+If you are getting **Semantic Pull Request** error, please check the [Semantic Pull Request](https://www.conventionalcommits.org/en/v1.0.0/#summary) documentation.
+
+You can run the following commands on your local environment to fix CI errors:
 - `pnpm test:unit` to run unit tests, maybe you also need to update snapshots
 - `pnpm test:typecheck` to run TypeScript checks run on CI
 

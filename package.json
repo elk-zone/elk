@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "packageManager": "pnpm@7.9.0",
   "license": "MIT",
@@ -31,6 +31,7 @@
     "@iconify/utils": "^2.0.11",
     "@tiptap/extension-character-count": "2.0.0-beta.204",
     "@tiptap/extension-code-block": "2.0.0-beta.204",
+    "@tiptap/extension-history": "2.0.0-beta.204",
     "@tiptap/extension-mention": "2.0.0-beta.204",
     "@tiptap/extension-paragraph": "2.0.0-beta.204",
     "@tiptap/extension-placeholder": "2.0.0-beta.204",
@@ -112,6 +113,7 @@
     "vite-plugin-pwa": "^0.14.1",
     "vitest": "^0.27.0",
     "vue-tsc": "^1.0.24",
+    "workbox-build": "^6.5.4",
     "workbox-window": "^6.5.4"
   },
   "pnpm": {

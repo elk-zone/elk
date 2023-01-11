@@ -41,10 +41,10 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
 
       webmanifests = await createI18n()
-      const generateManifest = (locale: string) => {
-        const manifest = webmanifests![locale]
+      const generateManifest = (entry: string) => {
+        const manifest = webmanifests![entry]
         if (!manifest)
-          throw new Error(`No webmanifest found for locale ${locale}`)
+          throw new Error(`No webmanifest found for locale/theme ${entry}`)
         return JSON.stringify(manifest)
       }
       viteInlineConfig.plugins.push({
@@ -54,12 +54,12 @@ export default defineNuxtModule<VitePWANuxtOptions>({
           if (options.disable || !bundle)
             return
 
-          Object.keys(webmanifests!).map(l => [l, `manifest-${l}.webmanifest`]).forEach(([l, fileName]) => {
+          Object.keys(webmanifests!).map(wm => [wm, `manifest-${wm}.webmanifest`]).forEach(([wm, fileName]) => {
             bundle[fileName] = {
               isAsset: true,
               type: 'asset',
               name: undefined,
-              source: generateManifest(l),
+              source: generateManifest(wm),
               fileName,
             }
           })
@@ -107,9 +107,9 @@ export default defineNuxtModule<VitePWANuxtOptions>({
 
         viteServer.middlewares.stack.push({ route: webManifest, handle: emptyHandle })
         if (webmanifests) {
-          Object.keys(webmanifests).forEach((locale) => {
+          Object.keys(webmanifests).forEach((wm) => {
             viteServer.middlewares.stack.push({
-              route: `${nuxt.options.app.baseURL}manifest-${locale}.webmanifest`,
+              route: `${nuxt.options.app.baseURL}manifest-${wm}.webmanifest`,
               handle: emptyHandle,
             })
           })
@@ -134,6 +134,11 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         nitroConfig.routeRules = nitroConfig.routeRules || {}
         for (const locale of pwaLocales) {
           nitroConfig.routeRules![`/manifest-${locale.code}.webmanifest`] = {
+            headers: {
+              'Content-Type': 'application/manifest+json',
+            },
+          }
+          nitroConfig.routeRules![`/manifest-${locale.code}-dark.webmanifest`] = {
             headers: {
               'Content-Type': 'application/manifest+json',
             },

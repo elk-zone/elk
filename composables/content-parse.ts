@@ -307,24 +307,24 @@ function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji
         {
           'alt': `:${name}:`,
           'class': 'custom-emoji',
-          'data-emoji-id': name
+          'data-emoji-id': name,
         },
         [
           h(
             'source',
             {
               srcset: emoji.staticUrl,
-              media: '(prefers-reduced-motion: reduce)'
-            }
+              media: '(prefers-reduced-motion: reduce)',
+            },
           ),
           h(
             'img',
             {
               src: emoji.url,
-              alt: `:${name}:`
-            }
-          )
-        ]
+              alt: `:${name}:`,
+            },
+          ),
+        ],
       )
     }).filter(Boolean)
   }

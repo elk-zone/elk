@@ -154,7 +154,7 @@ const { formatNumber } = useHumanReadableNumber()
     </template>
     <template #default="{ item, active }">
       <template v-if="virtualScroller">
-        <DynamicScrollerItem :item="item" :active="active" tag="article">
+        <DynamicScrollerItem :item="item" :active="active" tag="div">
           <NotificationGroupedFollow
             v-if="item.type === 'grouped-follow'"
             :items="item"

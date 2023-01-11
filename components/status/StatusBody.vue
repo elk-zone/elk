@@ -24,8 +24,8 @@ const vnode = $computed(() => {
 
 // remove link at the end of content if matches preview card URL
 const previewCardURL = (status as mastodon.v1.Status).card?.url
-if (vnode?.children !== null) {
-  const contentChildren = vnode?.children[0].children
+if (vnode?.children) {
+  const contentChildren = vnode?.children[vnode?.children.length - 1].children
   const contentLastChild = contentChildren[contentChildren.length - 1]
   const matchesPreviewURL = contentLastChild.type === 'a' && contentLastChild.props?.href === previewCardURL
   if (matchesPreviewURL)

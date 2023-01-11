@@ -40,6 +40,19 @@ exports[`content-rich > custom emoji 1`] = `
 
 exports[`content-rich > empty 1`] = `""`;
 
+exports[`content-rich > group mention > html 1`] = `
+"<p>
+  <span class=\\"h-card\\"
+    ><a
+      class=\\"u-url mention\\"
+      rel=\\"nofollow noopener noreferrer\\"
+      to=\\"//@pilipinas@lemmy.ml\\"
+    ></a
+  ></span>
+</p>
+"
+`;
+
 exports[`content-rich > handles html within code blocks 1`] = `
 "<p>
   HTML block code:<br />

@@ -85,7 +85,6 @@ onBeforeUnmount(() => {
 
             <!-- Zen Mode -->
             <button
-
               flex flex-row items-center
               block px-5 py-2 focus-blue w-full
               text-sm text-base capitalize text-left whitespace-nowrap

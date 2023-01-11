@@ -2,6 +2,15 @@
 setupPageHeader()
 provideGlobalCommands()
 
+const route = useRoute()
+if (process.server && !route.path.startsWith('/settings')) {
+  useHead({
+    meta: [
+      { property: 'og:url', content: `https://elk.zone${route.path}` },
+    ],
+  })
+}
+
 // We want to trigger rerendering the page when account changes
 const key = computed(() => `${currentUser.value?.server ?? currentServer.value}:${currentUser.value?.account.id || ''}`)
 </script>

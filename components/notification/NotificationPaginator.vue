@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// @ts-expect-error missing types
+import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import type { Paginator, WsEvents, mastodon } from 'masto'
 import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
@@ -150,8 +152,28 @@ const { formatNumber } = useHumanReadableNumber()
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
-    <template #items="{ items }">
-      <template v-for="item of items" :key="item.id">
+    <template #default="{ item, active }">
+      <template v-if="virtualScroller">
+        <DynamicScrollerItem :item="item" :active="active" tag="article">
+          <NotificationGroupedFollow
+            v-if="item.type === 'grouped-follow'"
+            :items="item"
+            border="b base"
+          />
+          <NotificationGroupedLikes
+            v-else-if="item.type === 'grouped-reblogs-and-favourites'"
+            :group="item"
+            border="b base"
+          />
+          <NotificationCard
+            v-else
+            :notification="item"
+            hover:bg-active
+            border="b base"
+          />
+        </DynamicScrollerItem>
+      </template>
+      <template v-else>
         <NotificationGroupedFollow
           v-if="item.type === 'grouped-follow'"
           :items="item"

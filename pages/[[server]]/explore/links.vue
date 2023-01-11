@@ -8,7 +8,7 @@ const paginator = useMasto().v1.trends.listLinks()
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS, false)
 
 useHeadFixed({
-  title: () => isHydrated.value ? `${t('tab.news')} | ${t('nav.explore')}` : '',
+  title: () => `${t('tab.news')} | ${t('nav.explore')}`,
 })
 </script>
 

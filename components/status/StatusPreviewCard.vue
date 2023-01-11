@@ -54,7 +54,7 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
       flex flex-col
       display-block of-hidden
       :class="{
-        'sm:(min-w-32 w-32 h-32) min-w-22 w-22 h-22': isSquare,
+        'sm:(min-w-32 w-32 h-32) min-w-24 w-24 h-24': isSquare,
         'w-full aspect-[1.91]': !isSquare,
         'rounded-lg': root,
       }"
@@ -70,13 +70,13 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
     </div>
     <div
       v-else
-      min-w-22 w-22 h-22 sm="min-w-32 w-32 h-32" bg="slate-500/10" flex justify-center items-center
+      min-w-24 w-24 h-24 sm="min-w-32 w-32 h-32" bg="slate-500/10" flex justify-center items-center
       :class="[
         root ? 'rounded-lg' : '',
       ]"
     >
       <div :class="cardTypeIconMap[card.type]" w="30%" h="30%" text-secondary />
     </div>
-    <StatusPreviewCardInfo :root="root" :card="card" :provider="providerName" />
+    <StatusPreviewCardInfo :p="isSquare ? 'x-4' : '4'" :root="root" :card="card" :provider="providerName" />
   </NuxtLink>
 </template>

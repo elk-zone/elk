@@ -12,7 +12,7 @@ defineProps<{
 
 <template>
   <div
-    px-4 max-h-2xl
+    max-h-2xl
     flex flex-col
     my-auto
     :class="[

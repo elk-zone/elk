@@ -127,6 +127,7 @@ export default defineNuxtConfig({
         { property: 'og:image:height', content: '1900' },
         { property: 'og:site_name', content: 'Elk' },
         { property: 'twitter:site', content: '@elk_zone' },
+        { property: 'twitter:card', content: 'summary_large_image' },
       ],
     },
   },

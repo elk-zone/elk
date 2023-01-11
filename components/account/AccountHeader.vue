@@ -70,8 +70,8 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
         <div flex="~ col gap-2 1">
-          <button w-30 h-30 rounded-full border-4 border-bg-base z-2 @click="previewAvatar">
-            <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
+          <button :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" w-30 h-30 p1 bg-base border-bg-base z-2 @click="previewAvatar">
+            <AccountAvatar :square="isSelf" :account="account" hover:opacity-90 transition-opacity />
           </button>
           <div flex="~ col gap1">
             <div flex justify-between>

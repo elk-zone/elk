@@ -8,6 +8,7 @@ import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 export interface ContentParseOptions {
   emojis?: Record<string, mastodon.v1.CustomEmoji>
+  mentions?: mastodon.v1.StatusMention[]
   markdown?: boolean
   replaceUnicodeEmoji?: boolean
   astTransforms?: Transform[]
@@ -47,6 +48,7 @@ export function parseMastodonHTML(
     markdown = true,
     replaceUnicodeEmoji = true,
     convertMentionLink = false,
+    mentions,
   } = options
 
   if (markdown) {
@@ -73,6 +75,9 @@ export function parseMastodonHTML(
 
   if (markdown)
     transforms.push(transformMarkdown)
+
+  if (mentions?.length)
+    transforms.push(createTransformNamedMentions(mentions))
 
   if (convertMentionLink)
     transforms.push(transformMentionLink)
@@ -376,4 +381,19 @@ function transformMentionLink(node: Node): string | Node | (string | Node)[] | n
     }
   }
   return node
+}
+
+function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[]) {
+  return (node: Node): string | Node | (string | Node)[] | null => {
+    if (node.name === 'a' && node.attributes.class?.includes('mention')) {
+      const href = node.attributes.href
+      const mention = href && mentions.find(m => m.url === href)
+      if (mention) {
+        node.attributes.href = `/${currentServer.value}/@${mention.acct}`
+        node.children = [h('span', { 'data-type': 'mention', 'data-id': mention.acct }, `@${mention.username}`)]
+        return node
+      }
+    }
+    return node
+  }
 }

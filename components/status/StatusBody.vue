@@ -17,6 +17,7 @@ const vnode = $computed(() => {
     return null
   const vnode = contentToVNode(status.content, {
     emojis: emojisObject.value,
+    mentions: 'mentions' in status ? status.mentions : undefined,
     markdown: true,
   })
   return vnode

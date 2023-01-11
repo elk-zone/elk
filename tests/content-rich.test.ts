@@ -20,6 +20,11 @@ describe('content-rich', () => {
     expect(formatted).toMatchSnapshot()
   })
 
+  it('group mention', async () => {
+    const { formatted } = await render('<p><span class="h-card"><a href="https://lemmy.ml/c/pilipinas" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>pilipinas</span></a></span></p>', undefined, [{ id: '', username: 'pilipinas', url: 'https://lemmy.ml/c/pilipinas', acct: 'pilipinas@lemmy.ml' }])
+    expect(formatted).toMatchSnapshot('html')
+  })
+
   it('inline code with link', async () => {
     const { formatted } = await render('<p>Inline code with link: `<a href="https://api.iconify.design/noto.css?icons=1st-place-medal,2nd-place-medal" target="_blank" rel="nofollow noopener noreferrer" class="status-link unhandled-link" title="https://api.iconify.design/noto.css?icons=1st-place-medal,2nd-place-medal"><span class="invisible">https://</span><span class="ellipsis">api.iconify.design/noto.css?ic</span><span class="invisible">ons=1st-place-medal,2nd-place-medal</span></a>`</p>')
     expect(formatted).toMatchSnapshot()
@@ -64,8 +69,8 @@ describe('content-rich', () => {
   })
 })
 
-async function render(content: string, emojis?: Record<string, mastodon.v1.CustomEmoji>) {
-  const vnode = contentToVNode(content, { emojis })
+async function render(content: string, emojis?: Record<string, mastodon.v1.CustomEmoji>, mentions?: mastodon.v1.StatusMention[]) {
+  const vnode = contentToVNode(content, { emojis, mentions })
   const html = (await renderToString(vnode))
     .replace(/<!--[\[\]]-->/g, '')
   let formatted = ''

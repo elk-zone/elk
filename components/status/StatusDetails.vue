@@ -20,7 +20,7 @@ const createdAt = useFormattedDateTime(status.createdAt)
 const { t } = useI18n()
 
 useHeadFixed({
-  title: () => `${status.account.displayName || status.account.acct} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
+  title: () => `${getDisplayName(status.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
 })
 
 const isDM = $computed(() => status.visibility === 'direct')

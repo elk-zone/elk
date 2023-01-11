@@ -17,8 +17,6 @@ const status = $computed(() => {
 
 const createdAt = useFormattedDateTime(status.createdAt)
 
-const visibility = $computed(() => statusVisibilities.find(v => v.value === status.visibility)!)
-
 const { t } = useI18n()
 
 useHeadFixed({
@@ -48,9 +46,7 @@ const isDM = $computed(() => status.visibility === 'direct')
         </StatusEditIndicator>
       </div>
       <div>&middot;</div>
-      <CommonTooltip :content="$t(`visibility.${visibility.value}`)" placement="bottom">
-        <div :class="visibility.icon" />
-      </CommonTooltip>
+      <StatusVisibilityIndicator :status="status" />
       <div v-if="status.application?.name">
         &middot;
       </div>

@@ -34,7 +34,7 @@ In order to run Elk with PWA enabled, run `pnpm run dev:pwa` in Elk's root folde
 You should test the Elk PWA application on private browsing mode on any Chromium based browser: will not work on Firefox and Safari.
 
 If not using private browsing mode, you will need to uninstall the PWA application from your browser once you finish testing:
-- Open `Dev Tools` (`Option + ⌘ + J` on MacOS, `Shift + CTRL + J` on Windows/Linux)
+- Open `Dev Tools` (`Option + ⌘ + J` on macOS, `Shift + CTRL + J` on Windows/Linux)
 - Go to `Application > Storage`, you should check following checkboxes:
     - Application: [x] Unregister service worker
     - Storage: [x] IndexedDB and [x] Local and session storage
@@ -44,7 +44,11 @@ If not using private browsing mode, you will need to uninstall the PWA applicati
 
 ## CI errors
 
-Sometimes when you push your changes, the CI can fail, but we cannot check the logs to see what went wrong, run the following commands on your local environment:
+Sometimes when you push your changes to create a new pull request (PR), the CI can fail, but we cannot check the logs to see what went wrong.
+
+If you are getting **Semantic Pull Request** error, please check the [Semantic Pull Request](https://www.conventionalcommits.org/en/v1.0.0/#summary) documentation.
+
+You can run the following commands on your local environment to fix CI errors:
 - `pnpm test:unit` to run unit tests, maybe you also need to update snapshots
 - `pnpm test:typecheck` to run TypeScript checks run on CI
 
@@ -132,7 +136,7 @@ You can run this code in your browser console to see how it works:
 #### Custom Plural Number Formatting Entries
 
 **Warning**:
-Either **{0}**, **{v}** or **{followers}** should be used with the exception being custom plurals entries using the `{n}` placeholder.
+Either **{0}** or **{v}** should be used with the exception being custom plurals entries using the `{n}` placeholder.
 
 This is the full list of entries that will be available for number formatting in Elk:
 - `action.boost_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
@@ -141,7 +145,8 @@ This is the full list of entries that will be available for number formatting in
 - `account.followers_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
 - `account.following_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
 - `account.posts_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `notification.followed_you_count`: `{followers}` for formatted number and `{n}` for raw number - **{followers} should be use**
+- `compose.drafts`: `{v}` for formatted number and `{n}` for raw number - **{v} should be use**
+- `notification.followed_you_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
 - `status.poll.count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
 - `time_ago_options.*`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**: since numbers will be always small, we can also use `{n}`
 - `timeline.show_new_items`: `{v}` for formatted number and `{n}` for raw number - **{v} should be use**

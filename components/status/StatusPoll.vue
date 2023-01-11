@@ -13,7 +13,7 @@ function toPercentage(num: number) {
 const timeAgoOptions = useTimeAgoOptions()
 const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)
 const expiredTimeFormatted = useFormattedDateTime(poll.expiresAt!)
-const { formatHumanReadableNumber, formatNumber, formatPercentage, forSR } = useHumanReadableNumber()
+const { formatPercentage } = useHumanReadableNumber()
 
 const masto = useMasto()
 async function vote(e: Event) {
@@ -34,9 +34,6 @@ async function vote(e: Event) {
 }
 
 const votersCount = $computed(() => poll.votersCount ?? 0)
-const votersCountHR = $computed(() => formatHumanReadableNumber(votersCount))
-const votersCountNumber = $computed(() => formatNumber(votersCount))
-const votersCountSR = $computed(() => forSR(votersCount))
 </script>
 
 <template>
@@ -65,13 +62,10 @@ const votersCountSR = $computed(() => forSR(votersCount))
       </div>
     </template>
     <div text-sm flex="~ inline" gap-x-1>
-      <i18n-t keypath="status.poll.count" :plural="votersCount">
-        <CommonTooltip v-if="votersCountSR" :content="votersCountNumber" placement="bottom">
-          <span aria-hidden="true">{{ votersCountHR }}</span>
-          <span sr-only>{{ votersCountNumber }}</span>
-        </CommonTooltip>
-        <span v-else>{{ votersCountNumber }}</span>
-      </i18n-t>
+      <CommonLocalizedNumber
+        keypath="status.poll.count"
+        :count="poll.votesCount"
+      />
       &middot;
       <CommonTooltip :content="expiredTimeFormatted" class="inline-block" placement="right">
         <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>

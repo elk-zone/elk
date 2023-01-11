@@ -1,0 +1,10 @@
+[build]
+  publish = "dist"
+  command = "pnpm generate"
+
+# Allow previewing docs
+[[redirects]]
+  from = "/docs/*"
+  to = "/:splat"
+  status = 200
+  force = true

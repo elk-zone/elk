@@ -1,4 +1,4 @@
-<script setup lang="ts" generic="T, O">
+<script setup lang="ts" generic="T, O, U = T">
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
@@ -17,20 +17,20 @@ const {
   virtualScroller?: boolean
   stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
-  preprocess?: (items: T[]) => any[]
+  preprocess?: (items: (U | T)[]) => U[]
 }>()
 
 defineSlots<{
   default: {
-    items: T[]
-    item: T
+    items: U[]
+    item: U
     index: number
     active?: boolean
-    older?: T
-    newer?: T // newer is undefined when index === 0
+    older?: U
+    newer?: U // newer is undefined when index === 0
   }
   items: {
-    items: T[]
+    items: U[]
   }
   updater: {
     number: number

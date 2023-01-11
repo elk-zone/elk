@@ -63,22 +63,32 @@ const type = $computed(() => {
 
 const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
+const isAudio = $computed(() => attachment.type === 'audio')
 
 useIntersectionObserver(video, (entries) => {
-  if (prefersReducedMotion.value === 'reduce')
+  const ready = video.value?.dataset.ready === 'true'
+  if (prefersReducedMotion.value === 'reduce') {
+    if (ready && !video.value?.paused)
+      video.value?.pause()
+
     return
+  }
 
   entries.forEach((entry) => {
-    if (entry.intersectionRatio <= 0.75)
-      !video.value!.paused && video.value!.pause()
-    else
-      video.value!.play()
+    if (entry.intersectionRatio <= 0.75) {
+      ready && !video.value?.paused && video.value?.pause()
+    }
+    else {
+      video.value?.play().then(() => {
+        video.value!.dataset.ready = 'true'
+      }).catch(noop)
+    }
   })
 }, { threshold: 0.75 })
 </script>
 
 <template>
-  <div relative ma flex>
+  <div relative ma flex :gap="isAudio ? '2' : ''">
     <template v-if="type === 'video'">
       <video
         ref="video"
@@ -88,7 +98,6 @@ useIntersectionObserver(video, (entries) => {
         loop
         playsinline
         controls
-        border="~ base"
         rounded-lg
         object-cover
         :width="attachment.meta?.original?.width"
@@ -109,7 +118,6 @@ useIntersectionObserver(video, (entries) => {
         muted
         loop
         playsinline
-        border="~ base"
         rounded-lg
         object-cover
         :width="attachment.meta?.original?.width"
@@ -123,7 +131,7 @@ useIntersectionObserver(video, (entries) => {
       </video>
     </template>
     <template v-else-if="type === 'audio'">
-      <audio controls border="~ base">
+      <audio controls h-15>
         <source :src="attachment.url || attachment.previewUrl" type="audio/mp3">
       </audio>
     </template>
@@ -150,7 +158,6 @@ useIntersectionObserver(video, (entries) => {
             aspectRatio,
             objectPosition,
           }"
-          border="~ base"
           rounded-lg
           h-full
           w-full
@@ -158,11 +165,16 @@ useIntersectionObserver(video, (entries) => {
         />
       </button>
     </template>
-    <div v-if="attachment.description" absolute left-2 class="bottom-2">
+    <div v-if="attachment.description" :class="isAudio ? '' : 'absolute left-2 bottom-2'">
       <VDropdown :distance="6" placement="bottom-start">
-        <button font-bold text-sm hover:bg-black class="bg-black/65 px1.2 py0.2" rounded-1 text-white>
+        <button
+          font-bold text-sm
+          :class="isAudio
+            ? 'rounded-full h-15 w-15 btn-outline border-base text-secondary hover:bg-active hover:text-active'
+            : 'rounded-1 bg-black/65 text-white hover:bg-black px1.2 py0.2'"
+        >
           <div hidden>
-            read image description
+            read {{ attachment.type }} description
           </div>
           ALT
         </button>

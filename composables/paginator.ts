@@ -1,15 +1,21 @@
-import type { Paginator, WsEvents } from 'masto'
+import type { Paginator, WsEvents, mastodon } from 'masto'
 import type { PaginatorState } from '~/types'
 
-export function usePaginator<T, P>(
-  paginator: Paginator<T[], P>,
+export function usePaginator<T, P, U = T>(
+  _paginator: Paginator<T[], P>,
   stream?: Promise<WsEvents>,
   eventType: 'notification' | 'update' = 'update',
-  preprocess: (items: T[]) => T[] = (items: T[]) => items,
+  preprocess: (items: (T | U)[]) => U[] = items => items as unknown as U[],
+  buffer = 10,
 ) {
+  // called `next` method will mutate the internal state of the variable,
+  // and we need its initial state after HMR
+  // so clone it
+  const paginator = _paginator.clone()
+
   const state = ref<PaginatorState>(isMastoInitialised.value ? 'idle' : 'loading')
-  const items = ref<T[]>([])
-  const nextItems = ref<T[]>([])
+  const items = ref<U[]>([])
+  const nextItems = ref<U[]>([])
   const prevItems = ref<T[]>([])
 
   const endAnchor = ref<HTMLDivElement>()
@@ -19,7 +25,7 @@ export function usePaginator<T, P>(
   const deactivated = useDeactivated()
 
   async function update() {
-    items.value.unshift(...prevItems.value)
+    (items.value as U[]).unshift(...preprocess(prevItems.value as T[]))
     prevItems.value = []
   }
 
@@ -39,17 +45,19 @@ export function usePaginator<T, P>(
     s.on('status.update', (status) => {
       cacheStatus(status, undefined, true)
 
-      const index = items.value.findIndex((s: any) => s.id === status.id)
+      const data = items.value as mastodon.v1.Status[]
+      const index = data.findIndex(s => s.id === status.id)
       if (index >= 0)
-        items.value[index] = status as any
+        data[index] = status
     })
 
     s.on('delete', (id) => {
       removeCachedStatus(id)
 
-      const index = items.value.findIndex((s: any) => s.id === id)
+      const data = items.value as mastodon.v1.Status[]
+      const index = data.findIndex(s => s.id === id)
       if (index >= 0)
-        items.value.splice(index, 1)
+        data.splice(index, 1)
     })
   })
 
@@ -61,12 +69,19 @@ export function usePaginator<T, P>(
     try {
       const result = await paginator.next()
 
-      if (result.value?.length) {
-        nextItems.value = preprocess(result.value) as any
-        items.value.push(...nextItems.value)
+      if (!result.done && result.value.length) {
+        const preprocessedItems = preprocess([...nextItems.value, ...result.value] as (U | T)[])
+        const itemsToShowCount
+          = preprocessedItems.length <= buffer
+            ? preprocessedItems.length
+            : preprocessedItems.length - buffer
+        ;(nextItems.value as U[]) = preprocessedItems.slice(itemsToShowCount)
+        ;(items.value as U[]).push(...preprocessedItems.slice(0, itemsToShowCount))
         state.value = 'idle'
       }
       else {
+        items.value.push(...nextItems.value)
+        nextItems.value = []
         state.value = 'done'
       }
     }
@@ -108,7 +123,6 @@ export function usePaginator<T, P>(
   return {
     items,
     prevItems,
-    nextItems,
     update,
     state,
     error,

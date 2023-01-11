@@ -31,6 +31,7 @@ export function useStatusActions(props: StatusActionsProps) {
     // check login
     if (!checkLogin())
       return
+
     isLoading[action] = true
     fetchNewStatus().then((newStatus) => {
       Object.assign(status, newStatus)
@@ -44,6 +45,12 @@ export function useStatusActions(props: StatusActionsProps) {
     if (countField)
       status[countField] += status[action] ? 1 : -1
   }
+
+  const canReblog = $computed(() =>
+    status.visibility !== 'direct'
+    && (status.visibility !== 'private' || status.account.id === currentUser.value?.account.id),
+  )
+
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
     () => masto.v1.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
@@ -79,6 +86,7 @@ export function useStatusActions(props: StatusActionsProps) {
   return {
     status: $$(status),
     isLoading: $$(isLoading),
+    canReblog: $$(canReblog),
     toggleMute,
     toggleReblog,
     toggleFavourite,

@@ -1,4 +1,5 @@
 import { createResolver, defineNuxtModule } from '@nuxt/kit'
+import { isCI } from 'std-env'
 import { getEnv, version } from '../config/env'
 import type { BuildInfo } from '~/types'
 
@@ -21,10 +22,10 @@ export default defineNuxtModule({
     nuxt.options.runtimeConfig.public.env = env
     nuxt.options.runtimeConfig.public.buildInfo = buildInfo
 
-    nuxt.options.nitro.publicAssets ||= nuxt.options.nitro.publicAssets || []
-    if (env === 'canary' || env === 'preview')
-      nuxt.options.nitro.publicAssets.push({ dir: resolve('../public-staging') })
-    else if (env === 'dev')
-      nuxt.options.nitro.publicAssets.push({ dir: resolve('../public-dev') })
+    nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
+    if (env === 'dev')
+      nuxt.options.nitro.publicAssets.unshift({ dir: resolve('../public-dev') })
+    else if (env === 'canary' || env === 'preview' || !isCI)
+      nuxt.options.nitro.publicAssets.unshift({ dir: resolve('../public-staging') })
   },
 })

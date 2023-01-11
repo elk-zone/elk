@@ -15,7 +15,7 @@
 
 # Elk is in early alpha ⚠️ 
 
-It is already quite usable, but it isn't ready for wide adoption yet. We recommend you to use if if you would like to help us building it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
+It is already quite usable, but it isn't ready for wide adoption yet. We recommend you to use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
 The client is deployed on:
 
@@ -56,7 +56,7 @@ We're really excited that you're interested in contributing to Elk! Before submi
 
 ### Online
 
-You can use [StackBlitz CodeFlow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a CodeFlow button on PRs to review them without a local setup. Once the elk repo has been cloned in CodeFlow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [CodeFlow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 
+You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 
 
 [![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
 

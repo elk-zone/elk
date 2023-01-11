@@ -22,8 +22,11 @@ export const isEditHistoryDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
 export const isCommandPanelOpen = ref(false)
 export const isConfirmDialogOpen = ref(false)
+export const isFavouritedBoostedByDialogOpen = ref(false)
 
 export const lastPublishDialogStatus = ref<mastodon.v1.Status | null>(null)
+
+export const favouritedBoostedByStatusId = ref<string | null>(null)
 
 export function openSigninDialog() {
   isSigninDialogOpen.value = true
@@ -60,6 +63,11 @@ export async function openPublishDialog(draftKey = 'dialog', draft?: Draft, over
   isPublishDialogOpen.value = true
 
   await until(isPublishDialogOpen).toBe(false)
+}
+
+export async function openFavoridedBoostedByDialog(statusId: string) {
+  isFavouritedBoostedByDialogOpen.value = true
+  favouritedBoostedByStatusId.value = statusId
 }
 
 if (isPreviewHelpOpen.value) {
@@ -111,7 +119,7 @@ export function closePreviewHelp() {
 }
 
 export function openCommandPanel(isCommandMode = false) {
-  commandPanelInput.value = isCommandMode ? '>' : ''
+  commandPanelInput.value = isCommandMode ? '> ' : ''
   isCommandPanelOpen.value = true
 }
 

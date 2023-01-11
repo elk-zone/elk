@@ -70,8 +70,8 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
         <div flex="~ col gap-2 1">
-          <button w-30 h-30 rounded-full border-4 border-bg-base z-2 @click="previewAvatar">
-            <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
+          <button :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" w-30 h-30 p1 bg-base border-bg-base z-2 @click="previewAvatar">
+            <AccountAvatar :square="isSelf" :account="account" hover:opacity-90 transition-opacity />
           </button>
           <div flex="~ col gap1">
             <div flex justify-between>
@@ -88,7 +88,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           <NuxtLink
             v-if="isSelf"
             to="/settings/profile/appearance"
-            gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 w-30 h-fit py1
+            gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
             hover="border-primary text-primary bg-active"
           >
             {{ $t('settings.profile.appearance.title') }}

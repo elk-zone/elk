@@ -46,7 +46,7 @@ const handleShowCommit = () => {
         </template>
       </SettingsItem>
 
-      <SettingsItem text="Built time" :content="builtTime" />
+      <SettingsItem :text="$t('nav.built_at')" :content="builtTime" />
     </template>
 
     <div h-1px bg-border my2 />
@@ -81,7 +81,7 @@ const handleShowCommit = () => {
 
     <template v-if="isHydrated">
       <p px5 py3 font-bold text-lg>
-        Meet the team
+        {{ $t('settings.about.meet_the_team') }}
       </p>
       <SettingsItem
         v-for="team in teams" :key="team.github"

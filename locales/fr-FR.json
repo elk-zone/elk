@@ -231,7 +231,8 @@
   },
   "settings": {
     "about": {
-      "label": "À propos"
+      "label": "À propos",
+      "meet_the_team": "Rencontrez l'équipe"
     },
     "account_settings": {
       "description": "Modifiez les paramètres de votre compte dans l'interface de Mastodon",

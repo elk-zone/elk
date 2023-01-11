@@ -235,7 +235,8 @@
   },
   "settings": {
     "about": {
-      "label": "About"
+      "label": "About",
+      "meet_the_team": "Meet the team"
     },
     "account_settings": {
       "description": "Edit your account settings in Mastodon UI",

@@ -82,6 +82,20 @@ onBeforeUnmount(() => {
               <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl me-4 !align-middle" />
               {{ colorMode.value === 'light' ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
             </button>
+
+            <!-- Zen Mode -->
+            <button
+              flex flex-row items-center
+              block px-5 py-2 focus-blue w-full
+              text-sm text-base capitalize text-left whitespace-nowrap
+              transition-colors duration-200 transform
+              hover="bg-gray-100 dark:(bg-gray-700 text-white)"
+              :aria-label="$t('nav.zen_mode')"
+              @click="userSettings.zenMode = !userSettings.zenMode"
+            >
+              <span :class="userSettings.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'" class="flex-shrink-0 text-xl me-4 !align-middle" />
+              {{ $t('nav.zen_mode') }}
+            </button>
           </div>
         </div>
       </div>

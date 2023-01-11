@@ -5,7 +5,6 @@ defineProps<{
   /** Show the back button on both small and big screens */
   back?: boolean
 }>()
-// check if it is a tag page
 </script>
 
 <template>
@@ -39,7 +38,6 @@ defineProps<{
       <slot name="header" />
     </div>
     <div :class="{ 'xl:block': $route.name !== 'tag' }" hidden h-6 />
-
     <slot />
   </div>
 </template>

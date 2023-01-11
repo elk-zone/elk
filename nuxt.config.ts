@@ -70,6 +70,14 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
+  build: {
+    transpile: ['@fnando/sparkline'],
+  },
+  hooks: {
+    'nitro:config': function (config) {
+      config.alias['isomorphic-ws'] = 'unenv/runtime/mock/proxy'
+    },
+  },
   runtimeConfig: {
     cloudflare: {
       accountId: '',
@@ -97,6 +105,7 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
+    preset: 'netlify-edge',
     prerender: {
       crawlLinks: true,
       routes: ['/'],

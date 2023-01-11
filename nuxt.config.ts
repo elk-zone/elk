@@ -71,24 +71,10 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    deployUrl: !isCI
-      ? 'http://localhost:5314'
-      : isPreview
-        ? process.env.DEPLOY_PRIME_URL
-        : 'https://elk.zone',
     cloudflare: {
       accountId: '',
       namespaceId: '',
       apiToken: '',
-    },
-    discord: {
-      inviteUrl: 'https://chat.elk.zone',
-    },
-    github: {
-      // oauth flow
-      clientId: '',
-      clientSecret: '',
-      inviteToken: '',
     },
     public: {
       env: '', // set in build-env module

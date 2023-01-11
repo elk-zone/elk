@@ -42,6 +42,7 @@
     "bookmark": "إضافة إلى العلامات المرجعية",
     "bookmarked": "مضاف إلى العلامات المرجعية",
     "boost": "إعادة نشر",
+    "boost_count": "{0}",
     "boosted": "أعيد نشرها",
     "clear_upload_failed": "مسح أخطاء تحميل الملف",
     "close": "أغلق",
@@ -50,12 +51,15 @@
     "edit": "تعديل",
     "enter_app": "أدخل التطبيق",
     "favourite": "إضافة إلى المفضلين",
+    "favourite_count": "{0}",
     "favourited": "مضاف إلى المفضلين",
     "more": "المزيد",
     "next": "التالي",
     "prev": "السابق",
-    "publish": "!نشر",
+    "publish": "نشر",
     "reply": "رد",
+    "reply_count": "{0}",
+    "reset": "إعادة الضبط",
     "save": "حفظ",
     "save_changes": "حفظ التغييرات",
     "sign_in": "تسجيل الدخول",
@@ -82,11 +86,20 @@
     "toggle_zen_mode": "تبديل وضع الهدوء"
   },
   "common": {
+    "confirm_dialog": {
+      "cancel": "كلا",
+      "confirm": "نعم",
+      "title": "هل أنت متأكد؟"
+    },
     "end_of_list": "نهاية القائمة",
     "error": "حدث خطأ",
     "in": "في",
     "not_found": "404 غير معثور عليه",
     "offline_desc": "يبدو أنك غير متصل بالإنترنت. يرجى التحقق من اتصالك."
+  },
+  "compose": {
+    "draft_title": "مسودة {0}",
+    "drafts": "المسودات ({v})"
   },
   "conversation": {
     "with": "مع"
@@ -104,7 +117,14 @@
     "desc_para1": "نشكرك على اهتمامك بتجربة Elk ، عميل ماستدون العام!",
     "desc_para2": "نحن نعمل بجد على التطوير وتحسينه بمرور الوقت. وسندعوك قريبًا للانضمام إلى القوة بمجرد أن نجعلها مفتوحة المصدر قريبًا!",
     "desc_para3": "قبل ذلك ، للمساعدة في تعزيز التنمية ، يمكنك رعاية أعضاء فريقنا من خلال الروابط أدناه.",
+    "desc_para4": "قبل ذلك ، إذا كنت ترغب في المساعدة في الاختبار أو تقديم التعليقات أو المساهمة ،",
+    "desc_para5": "تواصل معنا على Mastodon",
+    "desc_para6": "و شارك معنا",
     "title": "Elk في عرض مسبق"
+  },
+  "language": {
+    "none": "لا شيء",
+    "search": "بحث"
   },
   "menu": {
     "block_account": "حظر {0}",
@@ -112,13 +132,22 @@
     "copy_link_to_post": "انسخ الرابط إلى هذا المنشور",
     "delete": "حذف",
     "delete_and_redraft": "حذف وإعادة صياغة",
+    "delete_confirm": {
+      "cancel": "إلغاء",
+      "confirm": "حذف",
+      "title": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
+    },
     "direct_message_account": "إرسال رسالة مباشرة إلى {0}",
     "edit": "تعديل",
+    "hide_reblogs": "إخفاء المشاركات من {0}",
     "mention_account": "أذكر {0}",
     "mute_account": "كتم {0}",
     "mute_conversation": "تجاهل هذا المنصب",
     "open_in_original_site": "فتح في الموقع الأصلي",
     "pin_on_profile": "تثبيت على حسابك الشخصي",
+    "share_post": "شارك هذا المنشور",
+    "show_favourited_and_boosted_by": "أظهر من فضل وشارك",
+    "show_reblogs": "عرض المشاركات من {0}",
     "show_untranslated": "عرض بدون ترجمة",
     "toggle_theme": {
       "dark": "تبديل المظهر الداكن",
@@ -132,6 +161,9 @@
     "unpin_on_profile": "إلغاء التثبيت من الملف الشخصي"
   },
   "nav": {
+    "back": "العودة",
+    "blocked_domains": "المجالات المحظورة",
+    "blocked_users": "المستخدمين المحظورين",
     "bookmarks": "العلامات المرجعية",
     "built_at": "Built {0}",
     "conversations": "المحادثات",
@@ -140,6 +172,7 @@
     "federated": "الفديرالية",
     "home": "الرئيسيّة",
     "local": "المحلي",
+    "muted_users": "المستخدمون المكتموصين",
     "notifications": "التنبيهات",
     "profile": "الصفحة التعريفية",
     "search": "البحث",
@@ -154,7 +187,7 @@
   "notification": {
     "favourited_post": "أُعجِب بمنشورك",
     "followed_you": "بدأ في متابعتك",
-    "followed_you_count": "لم يتبعك أحد|تبعك شخص واحد|تبعك شخصان|تبعك {followers} أشخاص|تبعك {followers} شخص| تبعك {followers} شخص",
+    "followed_you_count": "لم يتبعك أحد|تبعك شخص واحد|تبعك شخصان|تبعك {0} أشخاص|تبعك {0} شخص| تبعك {0} شخص",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "اعاد نشر منشورك",
     "request_to_follow": "طلب(ت) متابعتك",
@@ -172,14 +205,41 @@
     "dismiss": "تجاهل",
     "title": "يتوفر تحديث Elk الجديد",
     "update": "تحديث",
-    "update_available_short": "تحديث Elk"
+    "update_available_short": "تحديث Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "A nimble Mastodon web client (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "A nimble Mastodon web client (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "A nimble Mastodon web client (preview)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description": "A nimble Mastodon web client",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
   },
   "search": {
-    "search_desc": "ابحث عن الأشخاص والهاشتاج"
+    "search_desc": "ابحث عن الأشخاص والهاشتاج",
+    "search_empty": "لا يمكن العثور على أي شيء لشروط البحث هذه"
   },
   "settings": {
     "about": {
       "label": "بشأن Elk"
+    },
+    "account_settings": {
+      "description": "قم بتحرير إعدادات حسابك في موقع Mastodon الأصلي",
+      "label": "إعدادت الحساب"
     },
     "feature_flags": {
       "github_cards": "GitHub بطاقات",
@@ -193,16 +253,23 @@
       "default": "(إفتراضي)",
       "font_size": "حجم الخط",
       "label": "واجهه المستخدم",
-      "light_mode": "وضع الضوء"
+      "light_mode": "وضع الضوء",
+      "size_label": {
+        "lg": "كبير",
+        "md": "متوسط",
+        "sm": "صغير",
+        "xl": "ضخم",
+        "xs": "صغير جدا"
+      }
     },
     "language": {
       "display_language": "اللغة المعروضة",
       "label": "اللغة"
     },
     "notifications": {
-      "label": "Notifications",
+      "label": "التنبيهات",
       "notifications": {
-        "label": "Notifications settings"
+        "label": "إعدادات التنبيهات"
       },
       "push_notifications": {
         "alerts": {
@@ -213,9 +280,9 @@
           "reblog": "إعادة نشر منشورك",
           "title": "ما هي التنبيهات التي تريد تلقيها؟"
         },
-        "description": "Receive notifications even when you are not using Elk.",
-        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
-        "label": "Push notifications settings",
+        "description": "تلقي التنبيهات حتى عندما لا تستخدم Elk.",
+        "instructions": " لا تنس حفظ التغييرات باستخدام الزر @:settings.notifications.push_notifications.save_settings",
+        "label": "إعدادات التنبيهات",
         "policy": {
           "all": "من اي شخص",
           "followed": "من الناس الذين أتابعهم",
@@ -224,21 +291,30 @@
           "title": "من الذي يمكنني تلقي التنبيهات منه؟"
         },
         "save_settings": "حفظ التغييرات الإعدادات",
+        "subscription_error": {
+          "clear_error": "خطأ في المسح",
+          "permission_denied": "تم رفض الإذن: قم بتمكين التنبيهات في متصفحك.",
+          "request_error": "حدث خطأ أثناء طلب الاشتراك ، حاول مرة أخرى وإذا استمر الخطأ ، يرجى إبلاغ Elk بالمشكلة.",
+          "title": "الاشتراك في التنبيهات غير ناجح"
+        },
+        "title": "إعدادات التنبيهات",
         "undo_settings": "تراجع عن تغييرات الإعدادات",
         "unsubscribe": "تعطيل التنبيهات",
         "unsupported": "متصفحك لا يدعم التنبيهات",
         "warning": {
           "enable_close": "أغلق",
           "enable_description": "لتلقي التنبيهات عندما لا يكون Elk مفتوحًا، قم بتمكين تنبيهات النظام. يمكنك التحكم بدقة في أنواع التفاعلات التي تنشئ تنبيهات النظام عبر الزر \"Show Settings\" أعلاه.",
-          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_description_desktop": "لتلقي إشعارات عندما لا يكون Elk مفتوحًا ، قم بتمكين دفع الإخطارات. يمكنك التحكم بدقة في أنواع التفاعلات التي تولد إشعارات الدفع \"Settings > Notifications > Push notifications settings\"",
+          "enable_description_mobile": "يمكنك أيضًا الوصول إلى الإعدادات باستخدام قائمة التنقل \"Settings > Notifications > Push notification settings\".",
+          "enable_description_settings": "لتلقي إشعارات عندما لا يكون Elk مفتوحًا ، قم بتمكين دفع الإخطارات. ستتمكن من التحكم بدقة في أنواع التفاعلات التي تولد إشعارات فورية على نفس الشاشة بمجرد تمكينها.",
           "enable_desktop": "تفعيل تنبيهات النظام",
           "enable_title": "لا تفوت عليك أي شيء",
           "re_auth": "يبدو أن الخادم الخاص بك لا يدعم دفع التنبيهات. حاول تسجيل الخروج ثم تسجيل الدخول مرة أخرى ، إذا استمرت هذه الرسالة في الظهور ، فاتصل بمسؤول الخادم."
         }
       },
-      "show_btn": "Go to notifications settings"
+      "show_btn": "انتقل إلى إعدادات التنبيهات"
     },
-    "notifications_settings": "Notifications",
+    "notifications_settings": "التنبيهات",
     "preferences": {
       "label": "التفضيلات"
     },
@@ -248,6 +324,8 @@
         "description": "تعديل الصورة الرمزية واسم المستخدم والملف الشخصي...",
         "display_name": "الاسم المعروض",
         "label": "المظهر",
+        "profile_metadata": "البيانات الوصفية للملف الشخصي",
+        "profile_metadata_desc": "يمكن أن يكون لديك ما يصل إلى {0} من العناصر المعروضة كجدول في ملفك الشخصي",
         "title": "تعديل الملف الشخصي"
       },
       "featured_tags": {
@@ -261,17 +339,30 @@
       "export": "Export User Tokens",
       "import": "Import User Tokens",
       "label": "المستخدمون المسجلون"
+    },
+    "wellness": {
+      "feature": {
+        "hide_boost_count": "إخفاء عدد المشاركات",
+        "hide_favorite_count": "إخفاء عدد المفضلة",
+        "hide_follower_count": "إخفاء عدد المتابعين"
+      },
+      "label": "صحة النفس"
     }
   },
   "state": {
+    "attachments_exceed_server_limit": "تجاوز عدد المرفقات الحد الأقصى لكل منشور.",
+    "attachments_limit_error": "تجاوز الحد لل منشور",
     "edited": "(معدل)",
     "editing": "تعديل",
     "loading": "جاري التحميل ...",
+    "publishing": "قيد النشر",
     "upload_failed": "التحميل فشل",
     "uploading": "جاري التحميل ..."
   },
   "status": {
+    "boosted_by": "تم النشر من",
     "edited": "عدل {0}",
+    "favourited_by": "مُفضل من",
     "filter_hidden_phrase": "تمت تصفيتها بواسطة",
     "filter_removed_phrase": "تمت إزالته بواسطة عامل التصفية",
     "filter_show_anyway": "عرض على أي حال",
@@ -285,9 +376,12 @@
       "finished": "انتهى في {0}"
     },
     "reblogged": "{0} اعاد نشر",
+    "replying_to": "الرد على {0}",
+    "show_full_thread": "إظهار المحادثة كاملاً",
     "someone": "شخص ما",
     "spoiler_show_less": "عرض أقل",
     "spoiler_show_more": "عرض المزيد",
+    "thread": "المحادثة",
     "try_original_site": "جرب الموقع الأصلي"
   },
   "status_history": {
@@ -303,6 +397,12 @@
     "notifications_mention": "موجهة إلي",
     "posts": "المنشورات",
     "posts_with_replies": "المنشورات والردود"
+  },
+  "tag": {
+    "follow": "تابع",
+    "follow_label": "اتبع الموضوع {0}",
+    "unfollow": "الغاء المتابعة",
+    "unfollow_label": "الغاء متابعة الموضوع {0}"
   },
   "time_ago_options": {
     "day_future": "في 0 أيام|غدا|في يومين|في {v} أيام|في {v} يوم|في {v} يوم",
@@ -336,7 +436,8 @@
     "year_past": "هذا العام|العام الماضي|منذ عامين|منذ {v} عاما|منذ {v} عام|منذ {v} عام"
   },
   "timeline": {
-    "show_new_items": "لا توجد عناصر جديدة|إظهار {v} عنصر جديد|إظهار {v} عنصرين جديدين|إظهار {v} عناصر جديدة|إظهار {v} عنصر جديد|إظهار {v} عنصر جديد"
+    "show_new_items": "لا توجد عناصر جديدة|إظهار {v} عنصر جديد|إظهار {v} عنصرين جديدين|إظهار {v} عناصر جديدة|إظهار {v} عنصر جديد|إظهار {v} عنصر جديد",
+    "view_older_posts": "قد لا يتم عرض المنشورات الأقدم من مواقع الأخرى."
   },
   "title": {
     "federated_timeline": "الجدول الزمني الموحد",
@@ -345,7 +446,9 @@
   "tooltip": {
     "add_content_warning": "إضافة تحذير المحتوى",
     "add_media": "أضف صورًا أو مقطع فيديو أو ملفًا صوتيًا",
+    "add_publishable_content": "أضف محتوى للنشر",
     "change_content_visibility": "تغيير خصوصية المحتوى",
+    "change_language": "تغيير اللغة",
     "emoji": "رمز تعبيري",
     "explore_links_intro": "يتم التحدث عن هذه القصص الإخبارية من قبل الأشخاص الموجودين على هذه الشبكة وغيرها من الشبكات اللامركزية في الوقت الحالي",
     "explore_posts_intro": "تكتسب هذه المنشورات الكثير من النشاط على الشبكة وغيرها من الشبكات اللامركزية في الوقت الحالي",

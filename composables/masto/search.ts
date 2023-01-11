@@ -1,10 +1,10 @@
-import type { MaybeRef } from '@vueuse/core'
+import type { MaybeComputedRef } from '@vueuse/core'
 import type { Paginator, mastodon } from 'masto'
 import type { RouteLocation } from 'vue-router'
 
-export interface UseSearchOptions {
-  type?: MaybeRef<mastodon.v2.SearchType>
-}
+export type UseSearchOptions = MaybeComputedRef<
+  Partial<Omit<mastodon.v1.SearchParams, keyof mastodon.DefaultPaginationParams | 'q'>>
+>
 
 export interface BuildSearchResult<K extends keyof any, T> {
   id: string
@@ -20,13 +20,15 @@ export type StatusSearchResult = BuildSearchResult<'status', mastodon.v1.Status>
 
 export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSearchResult
 
-export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
+export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOptions = {}) {
   const done = ref(false)
   const masto = useMasto()
   const loading = ref(false)
   const accounts = ref<AccountSearchResult[]>([])
   const hashtags = ref<HashTagSearchResult[]>([])
   const statuses = ref<StatusSearchResult[]>([])
+
+  const q = $computed(() => resolveUnref(query).trim())
 
   let paginator: Paginator<mastodon.v2.Search, mastodon.v2.SearchParams> | undefined
 
@@ -56,12 +58,12 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
     }))]
   }
 
-  watch(() => unref(query), () => {
-    loading.value = !!(unref(query) && isMastoInitialised.value)
+  watch(() => resolveUnref(query), () => {
+    loading.value = !!(q && isMastoInitialised.value)
   })
 
-  debouncedWatch(() => unref(query), async () => {
-    if (!unref(query) || !isMastoInitialised.value)
+  debouncedWatch(() => resolveUnref(query), async () => {
+    if (!q || !isMastoInitialised.value)
       return
 
     loading.value = true
@@ -71,9 +73,9 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
     paginator = masto.v2.search({
-      q: unref(query),
+      q,
+      ...resolveUnref(options),
       resolve: !!currentUser.value,
-      type: unref(options?.type),
     })
     const nextResults = await paginator.next()
 
@@ -85,7 +87,7 @@ export function useSearch(query: MaybeRef<string>, options?: UseSearchOptions) {
   }, { debounce: 300 })
 
   const next = async () => {
-    if (!unref(query) || !isMastoInitialised.value || !paginator)
+    if (!q || !isMastoInitialised.value || !paginator)
       return
 
     loading.value = true

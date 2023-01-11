@@ -56,7 +56,7 @@
     "more": "Meer",
     "next": "Volgende",
     "prev": "Vorige",
-    "publish": "Publiceer!",
+    "publish": "Publiceer",
     "reply": "Beantwoord",
     "reply_count": "{0}",
     "reset": "Resetten",
@@ -166,7 +166,7 @@
   "notification": {
     "favourited_post": "vindt jou post favoriet",
     "followed_you": "volgt jou",
-    "followed_you_count": "{followers} mensen hebben je gevolgd|{followers} persoon heeft je gevold|{followers} mensen hebben je gevolgd",
+    "followed_you_count": "{0} mensen hebben je gevolgd|{0} persoon heeft je gevold|{0} mensen hebben je gevolgd",
     "missing_type": "MISSEND notificatie.type:",
     "reblogged_post": "herblogd je post",
     "request_to_follow": "vraagt om jou te volgen",
@@ -187,7 +187,8 @@
     "update_available_short": "Update Elk"
   },
   "search": {
-    "search_desc": "Zoek naar mensen & hashtags"
+    "search_desc": "Zoek naar mensen & hashtags",
+    "search_empty": "Deze zoektermen leveren geen resultaat op"
   },
   "settings": {
     "about": {
@@ -267,7 +268,7 @@
         "display_name": "Zichtbare naam",
         "label": "Uiterlijk",
         "profile_metadata": "Profiel metadata",
-        "profile_metadata_desc": "Je kan tot en met 4 elementen als table zetten op je profiel zetten",
+        "profile_metadata_desc": "Je kan tot en met {0} elementen als table zetten op je profiel zetten",
         "title": "Aanpassen profiel"
       },
       "featured_tags": {

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { buildInfo } from 'virtual:build-info'
-
+const buildInfo = useBuildInfo()
 const { t } = useI18n()
 
 useHeadFixed({

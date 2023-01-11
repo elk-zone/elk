@@ -12,7 +12,7 @@ defineProps<{
     <div flex="~ col gap1" shrink h-full overflow-hidden leading-none>
       <div flex="~" gap-2>
         <AccountDisplayName :account="account" line-clamp-1 ws-pre-wrap break-all text-base />
-        <AccountBotIndicator v-if="account.bot" />
+        <AccountBotIndicator v-if="account.bot" text-xs />
       </div>
       <AccountHandle text-sm :account="account" text-secondary-light />
     </div>

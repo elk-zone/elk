@@ -29,7 +29,7 @@ export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'
 
 export interface GroupedNotifications {
   id: string
-  type: Exclude<string, 'grouped-reblogs-and-favourites'>
+  type: 'grouped-follow'
   items: mastodon.v1.Notification[]
 }
 

@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import { buildInfo } from 'virtual:build-info'
-
-const { env } = buildInfo
+const { env } = useBuildInfo()
+const router = useRouter()
+const back = ref<any>('')
+onMounted(() => {
+  back.value = router.options.history.state.back
+})
+router.afterEach(() => {
+  back.value = router.options.history.state.back
+})
 </script>
 
 <template>
@@ -20,7 +26,7 @@ const { env } = buildInfo
         {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
       </div>
     </NuxtLink>
-    <div hidden xl:flex items-center me-8 mt-2>
+    <div hidden xl:flex items-center me-8 mt-2 :class="{ 'pointer-events-none op40': !back || back === '/' }">
       <NuxtLink
         :aria-label="$t('nav.back')"
         @click="$router.go(-1)"

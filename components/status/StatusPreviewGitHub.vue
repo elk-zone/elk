@@ -89,23 +89,22 @@ const meta = $computed(() => {
     v-if="card.image"
     flex flex-col
     display-block of-hidden
-    bg-code
+    bg-card
     relative
-    border="base"
-    w-full min-h-50 md:min-h-60 border-b
+    w-full min-h-50 md:min-h-60
     justify-center
     rounded-lg
   >
     <div p4 sm:px-8 flex flex-col justify-between min-h-50 md:min-h-60 h-full>
       <div flex justify-between items-center gap-2 sm:gap-6 h-full mb-2 min-h-35 md:min-h-45>
         <div flex flex-col gap-2>
-          <a flex gap-1 text-xl sm:text-3xl flex-wrap leading-none :href="meta.titleUrl" target="_blank">
+          <NuxtLink flex gap-1 text-xl sm:text-3xl flex-wrap leading-none :href="meta.titleUrl" target="_blank" external>
             <template v-if="meta.repo">
               <span>{{ meta.user }}</span><span text-secondary-light>/</span><span text-primary font-bold>{{ meta.repo }}</span>
             </template>
             <span v-else>{{ meta.user }}</span>
-          </a>
-          <a sm:text-lg :href="card.url" target="_blank">
+          </NuxtLink>
+          <NuxtLink sm:text-lg :href="card.url" target="_blank" external>
             <span v-if="meta.type === 'issue'" text-secondary-light me-2>
               #{{ meta.number }}
             </span>
@@ -113,12 +112,12 @@ const meta = $computed(() => {
               PR #{{ meta.number }}
             </span>
             <span text-secondary leading-tight>{{ meta.details }}</span>
-          </a>
+          </NuxtLink>
         </div>
         <div>
-          <a :href="meta.titleUrl" target="_blank">
+          <NuxtLink :href="meta.titleUrl" target="_blank" external>
             <img w-30 aspect-square width="20" height="20" rounded-2 :src="meta.avatar">
-          </a>
+          </NuxtLink>
         </div>
       </div>
       <div flex justify-between>

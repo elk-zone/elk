@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { buildInfo } from 'virtual:build-info'
-
+const buildInfo = useRuntimeConfig().public.buildInfo
 const timeAgoOptions = useTimeAgoOptions()
 
 const buildTimeDate = new Date(buildInfo.time)
@@ -56,11 +55,17 @@ function toggleDark() {
         {{ $t('settings.about.label') }}
       </NuxtLink>
       &middot;
-      <a href="/m.webtoo.ls/@elk" target="_blank">Mastodon</a>
+      <NuxtLink href="/m.webtoo.ls/@elk" target="_blank">
+        Mastodon
+      </NuxtLink>
       &middot;
-      <a href="https://chat.elk.zone" target="_blank">Discord</a>
+      <NuxtLink href="https://chat.elk.zone" target="_blank" external>
+        Discord
+      </NuxtLink>
       &middot;
-      <a href="https://github.com/elk-zone" target="_blank">GitHub</a>
+      <NuxtLink href="https://github.com/elk-zone" target="_blank" external>
+        GitHub
+      </NuxtLink>
     </div>
   </footer>
 </template>

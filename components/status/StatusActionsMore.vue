@@ -111,6 +111,10 @@ async function editStatus() {
     editingStatus: status,
   }, true)
 }
+
+const showFavoritedAndBoostedBy = () => {
+  openFavoridedBoostedByDialog(status.id)
+}
 </script>
 
 <template>
@@ -161,6 +165,13 @@ async function editStatus() {
             @click="toggleBookmark()"
           />
         </template>
+
+        <CommonDropdownItem
+          :text="$t('menu.show_favourited_and_boosted_by')"
+          icon="i-ri:hearts-line"
+          :command="command"
+          @click="showFavoritedAndBoostedBy()"
+        />
 
         <CommonDropdownItem
           :text="$t('menu.copy_link_to_post')"

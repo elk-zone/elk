@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
+import { satisfies } from 'semver'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
 
@@ -23,7 +24,7 @@ const onlineSrc = $computed(() => ({
 const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
-    const fieldsAttributes = Array.from({ length: 4 }, (_, i) => {
+    const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
       const field = { ...account?.fields?.[i] || { name: '', value: '' } }
 
       const linkElement = (parse(field.value)?.children?.[0])
@@ -41,9 +42,10 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
 
       fieldsAttributes,
 
+      bot: account?.bot ?? false,
+
       // These look more like account and privacy settings than appearance settings
       // discoverable: false,
-      // bot: false,
       // locked: false,
     }
   },
@@ -114,10 +116,19 @@ onReactivated(refreshInfo)
         <CommonCropImage v-model="form.avatar" />
 
         <div px4>
-          <AccountDisplayName
-            :account="{ ...account, displayName: form.displayName }"
-            font-bold sm:text-2xl text-xl
-          />
+          <div flex justify-between>
+            <AccountDisplayName
+              :account="{ ...account, displayName: form.displayName }"
+              font-bold sm:text-2xl text-xl
+            />
+            <label>
+              <AccountBotIndicator show-label px2 py1>
+                <template #prepend>
+                  <input v-model="form.bot" type="checkbox">
+                </template>
+              </AccountBotIndicator>
+            </label>
+          </div>
           <AccountHandle :account="account" />
         </div>
       </div>
@@ -140,16 +151,8 @@ onReactivated(refreshInfo)
         </label>
 
         <!-- metadata -->
-        <div space-y-2>
-          <div font-medium>
-            {{ $t('settings.profile.appearance.profile_metadata') }}
-          </div>
-          <div text-sm text-secondary>
-            {{ $t('settings.profile.appearance.profile_metadata_desc') }}
-          </div>
 
-          <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
-        </div>
+        <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
 
         <!-- actions -->
         <div flex="~ gap2" justify-end>

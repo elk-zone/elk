@@ -7,7 +7,7 @@ const { t } = useI18n()
 const pwaEnabled = useRuntimeConfig().public.pwaEnabled
 
 useHeadFixed({
-  title: () => `${t('settings.notifications.notifications.label')} | ${t('nav.settings')}`,
+  title: () => `${t('settings.notifications.label')} | ${t('nav.settings')}`,
 })
 </script>
 
@@ -15,7 +15,7 @@ useHeadFixed({
   <MainContent back-on-small-screen>
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.notifications.notifications.label') }}</span>
+        <span>{{ $t('settings.notifications.label') }}</span>
       </div>
     </template>
 

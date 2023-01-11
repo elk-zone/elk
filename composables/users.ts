@@ -1,7 +1,7 @@
 import { login as loginMasto } from 'masto'
-import type { WsEvents, mastodon } from 'masto'
+import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
-import type { RemovableRef } from '@vueuse/core'
+import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
 import type { ElkMasto, UserLogin } from '~/types'
 import {
   DEFAULT_POST_CHARS_LIMIT,
@@ -55,6 +55,7 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 
 const publicInstance = ref<mastodon.v1.Instance | null>(null)
 export const currentInstance = computed<null | mastodon.v1.Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+export const isGlitchEdition = computed(() => currentInstance.value?.version.includes('+glitch'))
 
 export const publicServer = ref('')
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
@@ -96,6 +97,8 @@ export const currentUserHandle = computed(() => currentUser.value?.account.id
 )
 
 export const useUsers = () => users
+export const useSelfAccount = (user: MaybeComputedRef<mastodon.v1.Account | undefined>) =>
+  computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
@@ -180,9 +183,6 @@ export function getUsersIndexByUserId(userId: string) {
 }
 
 export async function removePushNotificationData(user: UserLogin, fromSWPushManager = true) {
-  if (!user.pushSubscription)
-    return
-
   // clear push subscription
   user.pushSubscription = undefined
   const { acct } = user.account
@@ -192,9 +192,12 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
   delete useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {}).value[acct]
 
   const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+  const pwa = useNuxtApp().$pwa
+  const registrationError = pwa?.registrationError === true
+  const unregister = pwaEnabled && !registrationError && pwa?.registrationError === true && fromSWPushManager
 
   // we remove the sw push manager if required and there are no more accounts with subscriptions
-  if (pwaEnabled && fromSWPushManager && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
+  if (unregister && (users.value.length === 0 || users.value.every(u => !u.pushSubscription))) {
     // clear sw push subscription
     try {
       const registration = await navigator.serviceWorker.ready
@@ -254,47 +257,6 @@ export async function signout() {
     await useRouter().push('/')
 
   await masto.loginTo(currentUser.value)
-}
-
-const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})
-
-export const useNotifications = () => {
-  const id = currentUser.value?.account.id
-  const masto = useMasto()
-
-  const clearNotifications = () => {
-    if (!id || !notifications[id])
-      return
-    notifications[id]![1] = 0
-  }
-
-  async function connect(): Promise<void> {
-    if (!isMastoInitialised.value || !id || notifications[id] || !currentUser.value?.token)
-      return
-
-    const stream = masto.v1.stream.streamUser()
-    notifications[id] = [stream, 0]
-    ;(await stream).on('notification', () => {
-      if (notifications[id])
-        notifications[id]![1]++
-    })
-  }
-
-  function disconnect(): void {
-    if (!id || !notifications[id])
-      return
-    notifications[id]![0].then(stream => stream.disconnect())
-    notifications[id] = undefined
-  }
-
-  watch(currentUser, disconnect)
-  connect()
-
-  return {
-    notifications: computed(() => id ? notifications[id]?.[1] ?? 0 : 0),
-    disconnect,
-    clearNotifications,
-  }
 }
 
 export function checkLogin() {

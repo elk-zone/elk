@@ -1,11 +1,15 @@
-# Elk
-*A nimble Mastodon web client*
-
 <p align="center">
   <a href="https://elk.zone" target="_blank" rel="noopener noreferrer">
-    <img width="180" height="180" src="./elk.svg" alt="Elk logo">
+    <img width="160" height="160" src="./public/logo.svg" alt="Elk logo">
   </a>
 </p>
+
+<h1 align="center"/>Elk <sup><em>alpha</em></sup></h1>
+
+<p align="center">
+A nimble Mastodon web client
+</p>
+
 <br/>
 <p align="center">
   <a href="https://chat.elk.zone"><img src="https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord" alt="discord chat"></a>
@@ -13,7 +17,7 @@
 </p>
 <br/>
 
-# Elk is in early alpha ⚠️ 
+## ⚗️ Elk is in Early Alpha ⚠️ 
 
 It is already quite usable, but it isn't ready for wide adoption yet. We recommend you to use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
@@ -24,7 +28,7 @@ The client is deployed on:
 
 You can share screenshots on social media but we prefer you avoid sharing this URL directly until the app is more polished. Feel free to share the URL with your friends and invite others you think could be interested in helping to improve Elk.
 
-## Sponsors
+## 💖 Sponsors
 
 We want to thanks the generous sponsoring and help of:
 
@@ -39,6 +43,10 @@ We want to thanks the generous sponsoring and help of:
 
 And all the companies and individuals sponsoring Elk Team members. If you're enjoying the app, consider sponsoring our team:
 
+- [Elk Team's GitHub Sponsors](https://github.com/sponsors/elk-zone)
+
+Or you can sponsors our core team members individually:
+
 - [Anthony Fu](https://github.com/sponsors/antfu)
 - [Daniel Roe](https://github.com/sponsors/danielroe)
 - [三咲智子 Kevin Deng](https://github.com/sponsors/sxzz)
@@ -46,11 +54,11 @@ And all the companies and individuals sponsoring Elk Team members. If you're enj
 
 We would also appreciate sponsoring other contributors to the Elk project. If someone helps you solve an issue or implement a feature you wanted, supporting them would help make this project and OS more sustainable.
 
-## Roadmap
+## 📍 Roadmap
 
 [Open board on Volta](https://volta.net/elk-zone/elk)
 
-## Contributing
+## 🧑‍💻 Contributing
 
 We're really excited that you're interested in contributing to Elk! Before submitting your contribution, please read through the following guide.
 
@@ -86,7 +94,7 @@ Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 nr test
 ```
 
-## Stack
+## 🦄 Stack
 
 - [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
 - [Nuxt](https://nuxt.com/) - The Intuitive Web Framework
@@ -100,6 +108,6 @@ nr test
 - [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
 - [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update and push notifications
 
-## License
+## 📄 License
 
 [MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors

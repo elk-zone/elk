@@ -83,7 +83,7 @@ export const isEmptyDraft = (draft: Draft | null | undefined) => {
     return true
   const { params, attachments } = draft
   const status = params.status || ''
-  const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').trim()
+  const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
 
   return (text.length === 0)
     && attachments.length === 0

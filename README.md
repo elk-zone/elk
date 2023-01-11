@@ -19,7 +19,7 @@ A nimble Mastodon web client
 
 ## ⚗️ Elk is in Early Alpha ⚠️ 
 
-It is already quite usable, but it isn't ready for wide adoption yet. We recommend you to use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
+It is already quite usable, but it isn't ready for wide adoption yet. We recommend you use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
 The client is deployed on:
 
@@ -30,7 +30,7 @@ You can share screenshots on social media but we prefer you avoid sharing this U
 
 ## 💖 Sponsors
 
-We want to thanks the generous sponsoring and help of:
+We are grateful for the generous sponsorship and help of:
 
 <a href="https://nuxtlabs.com/" target="_blank" rel="noopener noreferrer" >
   <img src="./images/nuxtlabs.svg" alt="NuxtLabs" height="85">
@@ -45,7 +45,7 @@ And all the companies and individuals sponsoring Elk Team members. If you're enj
 
 - [Elk Team's GitHub Sponsors](https://github.com/sponsors/elk-zone)
 
-Or you can sponsors our core team members individually:
+Or you can sponsor our core team members individually:
 
 - [Anthony Fu](https://github.com/sponsors/antfu)
 - [Daniel Roe](https://github.com/sponsors/danielroe)

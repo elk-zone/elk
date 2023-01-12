@@ -47,12 +47,26 @@ async function oauth() {
   }
 }
 
+function isValidUrl(str: string) {
+  try {
+    // eslint-disable-next-line no-new
+    new URL(str)
+    return true
+  }
+  catch (err) {
+    return false
+  }
+}
+
 async function handleInput() {
   if (server.startsWith('https://'))
     server = server.replace('https://', '')
 
   if (server?.length)
     displayError = false
+
+  if (isValidUrl(`https://${server.trim()}`))
+    autocompleteShow = false
 }
 
 let fuse = $shallowRef(new Fuse([] as string[]))

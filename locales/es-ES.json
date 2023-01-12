@@ -13,7 +13,7 @@
     "blocked_users": "Usuarios bloqueados",
     "blocking": "Bloqueado",
     "bot": "BOT",
-    "favourites": "Favoritos",
+    "favourites": "Favoritas",
     "follow": "Seguir",
     "follow_back": "Seguir de vuelta",
     "follow_requested": "Solicitado",
@@ -50,9 +50,9 @@
     "confirm": "Confirmar",
     "edit": "Editar",
     "enter_app": "Entrar",
-    "favourite": "Favorito",
+    "favourite": "Favorita",
     "favourite_count": "{0}",
-    "favourited": "Marcado como favorito",
+    "favourited": "Marcado como favorita",
     "more": "Más",
     "next": "Siguiente",
     "prev": "Anterior",
@@ -146,7 +146,7 @@
     "open_in_original_site": "Abrir página original",
     "pin_on_profile": "Fijar en tu perfil",
     "share_post": "Compartir esta publicación",
-    "show_favourited_and_boosted_by": "Mostrar quien marcó como favorito y quien retooteó",
+    "show_favourited_and_boosted_by": "Mostrar quien marcó como favorita y quien retooteó",
     "show_reblogs": "Mostrar retoots de {0}",
     "show_untranslated": "Mostrar original",
     "toggle_theme": {
@@ -168,7 +168,7 @@
     "built_at": "Compilado {0}",
     "conversations": "Conversaciones",
     "explore": "Explorar",
-    "favourites": "Favoritos",
+    "favourites": "Favoritas",
     "federated": "Federados",
     "home": "Inicio",
     "local": "Local",
@@ -185,7 +185,7 @@
     "zen_mode": "Modo Zen"
   },
   "notification": {
-    "favourited_post": "marcó tu publicación como favorito",
+    "favourited_post": "marcó como favorita tu publicación",
     "followed_you": "te ha seguido",
     "followed_you_count": "{0} personas te siguieron|{0} persona te siguió|{0} personas te siguieron",
     "missing_type": "MISSING notification.type:",
@@ -280,7 +280,7 @@
       },
       "push_notifications": {
         "alerts": {
-          "favourite": "Favoritos",
+          "favourite": "Favoritas",
           "follow": "Nuevos seguidores",
           "mention": "Menciones",
           "poll": "Encuestas",
@@ -350,7 +350,7 @@
     "wellness": {
       "feature": {
         "hide_boost_count": "Ocultar contador de retoots",
-        "hide_favorite_count": "Ocultar contador de favoritos",
+        "hide_favorite_count": "Ocultar contador de favoritas",
         "hide_follower_count": "Ocultar contador de seguidores"
       },
       "label": "Bienestar"
@@ -369,7 +369,7 @@
   "status": {
     "boosted_by": "Retooteado por",
     "edited": "Editado {0}",
-    "favourited_by": "Marcado como favorito por",
+    "favourited_by": "Marcado como favorita por",
     "filter_hidden_phrase": "Filtrado por",
     "filter_removed_phrase": "Eliminado por filtrado",
     "filter_show_anyway": "Mostrar de todas formas",
@@ -466,7 +466,7 @@
   "user": {
     "add_existing": "Agregar una cuenta existente",
     "server_address_label": "Dirección de Servidor de Mastodon",
-    "sign_in_desc": "Inicia sesión para seguir perfiles o hashtags, marcar como favorito, compartir y responder a publicaciones, o interactuar desde tu usuario con un servidor diferente.",
+    "sign_in_desc": "Inicia sesión para seguir perfiles o hashtags, marcar cómo favorita, compartir y responder a publicaciones, o interactuar con un servidor diferente con tu usuario.",
     "sign_in_notice_title": "Viendo información pública de {0}",
     "sign_out_account": "Cerrar sesión {0}",
     "tip_no_account": "Si aún no tienes una cuenta Mastodon, {0}.",

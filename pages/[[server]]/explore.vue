@@ -4,20 +4,20 @@ const { t } = useI18n()
 const tabs = $computed(() => [
   {
     to: isHydrated.value ? `/${currentServer.value}/explore` : '/explore',
-    display: t('tab.posts'),
+    display: isHydrated.value ? t('tab.posts') : '',
   },
   {
     to: isHydrated.value ? `/${currentServer.value}/explore/tags` : '/explore/tags',
-    display: t('tab.hashtags'),
+    display: isHydrated.value ? t('tab.hashtags') : '',
   },
   {
     to: isHydrated.value ? `/${currentServer.value}/explore/links` : '/explore/links',
-    display: t('tab.news'),
+    display: isHydrated.value ? t('tab.news') : '',
   },
   // This section can only be accessed after logging in
   {
     to: isHydrated.value ? `/${currentServer.value}/explore/users` : '/explore/users',
-    display: t('tab.for_you'),
+    display: isHydrated.value ? t('tab.for_you') : '',
     disabled: !isMastoInitialised.value || !currentUser.value,
   },
 ] as const)

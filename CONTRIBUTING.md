@@ -4,9 +4,13 @@ Hi! We are really excited that you are interested in contributing to Elk. Before
 
 Refer also to https://github.com/antfu/contribute.
 
-## Set up your local development environment
+### Online
 
-The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/) (Note: on Linux in a standard Node 16+ environment, you should follow the instructions to install via Node's `corepack` rather than using the `curl` command).
+You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 
+
+[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
+
+### Local Setup
 
 To develop and test the Elk package:
 
@@ -14,18 +18,33 @@ To develop and test the Elk package:
 
 2. Ensure using the latest Node.js (16.x)
 
-3. Elk uses pnpm v7, you must enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`.
+3. The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/) v7. To use it you must first enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`. (Note: on Linux in a standard Node 16+ environment, you should follow the instructions to install via Node's `corepack` rather than using the `curl` command)
 
 4. Check out a branch where you can work and commit your changes:
 ```shell
 git checkout -b my-new-branch
 ```
 
-5. Run `pnpm i` in Elk's root folder
+1. Run `pnpm i` in Elk's root folder
 
-6. Run `pnpm nuxi prepare` in Elk's root folder
+2. Run `pnpm nuxi prepare` in Elk's root folder
 
-7. Run `pnpm dev` in Elk's root folder to start dev server or `pnpm dev:mocked` to start dev server with `@elkdev@universeodon.com` user.
+3. Run `pnpm dev` in Elk's root folder to start dev server or `pnpm dev:mocked` to start dev server with `@elkdev@universeodon.com` user.
+
+We recommend installing [ni](https://github.com/antfu/ni#ni), that will use the right package manager in each of your projects. If `ni` is installed, you can instead run:
+
+```
+ni
+nr dev
+```
+
+### Testing
+
+Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
+
+```
+nr test
+```
 
 ### Running PWA on dev server
 

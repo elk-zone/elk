@@ -5,9 +5,9 @@ import type { FontSize } from '~/types'
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as FontSize[]
 const fontSize = useFontSizeRef()
 
-const setFontSize = (e: any) => {
-  if ('valueAsNumber' in e.target)
-    fontSize.value = sizes[e.target.valueAsNumber]
+const setFontSize = (e: Event) => {
+  if (e.target && 'valueAsNumber' in e.target)
+    fontSize.value = sizes[e.target.valueAsNumber as number]
 }
 </script>
 

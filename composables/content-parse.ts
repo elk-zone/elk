@@ -106,8 +106,14 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
 }
 
 export function htmlToText(html: string) {
-  const tree = parse(html)
-  return (tree.children as Node[]).map(n => treeToText(n)).join('').trim()
+  try {
+    const tree = parse(html)
+    return (tree.children as Node[]).map(n => treeToText(n)).join('').trim()
+  }
+  catch (err) {
+    console.error(err)
+    return ''
+  }
 }
 
 export function treeToText(input: Node): string {

@@ -47,14 +47,6 @@ async function oauth() {
   }
 }
 
-async function handleInput() {
-  if (server.startsWith('https://'))
-    server = server.replace('https://', '')
-
-  if (server?.length)
-    displayError = false
-}
-
 let fuse = $shallowRef(new Fuse([] as string[]))
 
 const filteredServers = $computed(() => {
@@ -67,6 +59,35 @@ const filteredServers = $computed(() => {
 
   return results
 })
+
+function isValidUrl(str: string) {
+  try {
+    // eslint-disable-next-line no-new
+    new URL(str)
+    return true
+  }
+  catch (err) {
+    return false
+  }
+}
+
+async function handleInput() {
+  if (server.startsWith('https://'))
+    server = server.replace('https://', '')
+
+  if (server?.length)
+    displayError = false
+
+  if (
+    isValidUrl(`https://${server.trim()}`)
+    && server.trim().match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:[0-9]+)?$/i)
+    // Do not hide the autocomplete if a result has an exact substring match on the input
+    && !filteredServers.some(s => s.includes(server.trim()))
+  )
+    autocompleteShow = false
+  else
+    autocompleteShow = true
+}
 
 function toSelector(server: string) {
   return server.replace(/[^\w-]/g, '-')

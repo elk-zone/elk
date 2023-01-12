@@ -62,7 +62,7 @@ const handleShowCommit = () => {
       text="Mastodon"
       icon="i-ri:mastodon-line"
       to="/m.webtoo.ls/@elk"
-      external large target="_blank"
+      large target="_blank"
     />
     <SettingsItem
       text="Discord"

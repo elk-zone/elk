@@ -5,43 +5,37 @@ import { COOKIE_KEY_LOCALE, COOKIE_MAX_AGE, DEFAULT_LANGUAGE } from '~/constants
 export default defineNuxtPlugin(async (nuxt) => {
   const i18n = nuxt.vueApp.config.globalProperties.$i18n as VueI18n
   const { setLocale, locales } = i18n
-  const supportLocales = locales as LocaleObject[]
+  const supportLanguages = (locales as LocaleObject[]).map(locale => locale.code)
   const cookieLocale = useCookie(COOKIE_KEY_LOCALE, { maxAge: COOKIE_MAX_AGE })
   const userSettings = useUserSettings()
 
   if (process.server) {
-    if (cookieLocale.value && cookieLocale.value !== i18n.locale) {
-      userSettings.value.language = cookieLocale.value
-      await setLocale(cookieLocale.value)
+    const headers = useRequestHeaders()
+
+    let lang = cookieLocale.value
+    if (!lang || !supportLanguages.includes(lang)) {
+      // first visit
+      if (headers['accept-language']) {
+        // detect language from header
+        const userLanguages = headers['accept-language'].split(',').map(lang => lang.split(';')[0].toLowerCase())
+        lang = matchLanguages(supportLanguages, userLanguages) || DEFAULT_LANGUAGE
+      }
+      else {
+        lang = DEFAULT_LANGUAGE
+      }
     }
+    userSettings.value.language = cookieLocale.value = lang
+
+    if (lang !== i18n.locale)
+      await setLocale(cookieLocale.value)
+
     return
   }
 
-  if (cookieLocale.value == null) {
-    const settingLanguage = userSettings.value.language
-
-    // if cookie not set, fallback to default language to match hydration
-    userSettings.value.language = DEFAULT_LANGUAGE
-
-    watchOnce(isHydrated, () => {
-      // if not default language, use user's setting
-      if (settingLanguage !== DEFAULT_LANGUAGE) {
-        userSettings.value.language = settingLanguage
-        return
-      }
-
-      // detect language from browser
-      const userLang = (navigator.language || 'en-US').toLowerCase()
-      // cause vue-i18n not explicit export LocaleObject type
-      const lang = supportLocales.find(locale => userLang.startsWith(locale.code.toLowerCase()))?.code
-          || supportLocales.find(locale => userLang.startsWith(locale.code.split('-')[0]))?.code
-          || DEFAULT_LANGUAGE
-      userSettings.value.language = lang
-    })
-  }
-  else {
-    userSettings.value.language = cookieLocale.value
-  }
+  // could be null if browser don't accept cookie
+  if (!cookieLocale.value || !supportLanguages.includes(cookieLocale.value))
+    cookieLocale.value = DEFAULT_LANGUAGE
+  userSettings.value.language = cookieLocale.value
 
   watch(() => userSettings.value.language, (lang) => {
     if (lang !== cookieLocale.value)

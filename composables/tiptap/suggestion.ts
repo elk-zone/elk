@@ -14,10 +14,8 @@ export const MentionSuggestion: Partial<SuggestionOptions> = {
     if (query.length === 0)
       return []
 
-    const mentionPaginator = useMasto().v2.search({ q: query, type: 'accounts', limit: 25, resolve: true })
-    const results = await mentionPaginator.next()
-
-    return results.value.accounts
+    const results = await useMasto().v2.search({ q: query, type: 'accounts', limit: 25, resolve: true })
+    return results.accounts
   },
   render: createSuggestionRenderer(TiptapMentionList),
 }
@@ -29,16 +27,14 @@ export const HashtagSuggestion: Partial<SuggestionOptions> = {
     if (query.length === 0)
       return []
 
-    const paginator = useMasto().v2.search({
+    const results = await useMasto().v2.search({
       q: query,
       type: 'hashtags',
       limit: 25,
       resolve: false,
       excludeUnreviewed: true,
     })
-    const results = await paginator.next()
-
-    return results.value.hashtags
+    return results.hashtags
   },
   render: createSuggestionRenderer(TiptapHashtagList),
 }

@@ -66,7 +66,7 @@ const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly &
           <div :class="icon" text-xl />
         </slot>
         <slot>
-          <span block sm:hidden xl:block>{{ isHydrated ? text : '&nbsp;' }}</span>
+          <span block sm:hidden xl:block>{{ text }}</span>
         </slot>
       </div>
     </CommonTooltip>

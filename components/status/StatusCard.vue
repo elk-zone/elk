@@ -22,6 +22,7 @@ const props = withDefaults(
   }>(),
   { actions: true },
 )
+const userSettings = useUserSettings()
 
 const status = $computed(() => {
   if (props.status.reblog && !props.status.content)

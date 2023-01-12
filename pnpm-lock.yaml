@@ -94,7 +94,7 @@ importers:
       jsdom: ^21.0.0
       lint-staged: ^13.1.0
       lru-cache: ^7.14.1
-      masto: ^5.2.0
+      masto: ^5.3.0
       nuxt: ^3.0.0
       pinia: ^2.0.28
       postcss-nested: ^6.0.0
@@ -152,7 +152,7 @@ importers:
       iso-639-1: 2.1.15
       js-yaml: 4.1.0
       lru-cache: 7.14.1
-      masto: 5.2.0
+      masto: 5.3.0
       pinia: 2.0.28_typescript@4.9.4
       shiki: 0.12.1
       shiki-es: 0.1.2
@@ -8049,8 +8049,8 @@ packages:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
     dev: true
 
-  /masto/5.2.0:
-    resolution: {integrity: sha512-71pKUdPZDuQSPJqRJSwsZ/QqvO/arOkdRyXEyOdeU9QukQ30OEW1M9BCGBp/b9Lbf6R7d9oCCdefmxXCSAzlFg==}
+  /masto/5.3.0:
+    resolution: {integrity: sha512-gArycufHuEEQ6WCvWNmiIQq+AIAo2grWQwO7mpenNKb0wFKYSaYTeMthx0t+Ircso+vBtsXdbjGMfzZeIttlow==}
     dependencies:
       '@mastojs/ponyfills': 1.0.4
       change-case: 4.1.2

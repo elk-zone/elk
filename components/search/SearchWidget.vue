@@ -3,7 +3,6 @@ const query = ref('')
 const { accounts, hashtags, loading, statuses } = useSearch(query)
 const index = ref(0)
 
-const { t } = useI18n()
 const el = ref<HTMLElement>()
 const router = useRouter()
 const { focused } = useFocusWithin(el)
@@ -66,7 +65,7 @@ const activate = () => {
         bg-transparent
         outline="focus:none"
         pe-4
-        :placeholder="isHydrated ? t('nav.search') : ''"
+        :placeholder="$t('nav.search')"
         pb="1px"
         placeholder-text-secondary
         @keydown.down.prevent="shift(1)"
@@ -78,7 +77,7 @@ const activate = () => {
     <div left-0 top-12 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
       <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
         <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
-          {{ t('search.search_desc') }}
+          {{ $t('search.search_desc') }}
         </span>
         <template v-else-if="!loading">
           <template v-if="results.length > 0">
@@ -90,7 +89,7 @@ const activate = () => {
             />
           </template>
           <span v-else block text-center text-sm text-secondary>
-            {{ t('search.search_empty') }}
+            {{ $t('search.search_empty') }}
           </span>
         </template>
         <div v-else>

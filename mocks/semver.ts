@@ -1,5 +1,7 @@
-export const lt = null
-export const gt = null
-export const gte = null
-export const satisfies = null
-export const SemVer = null
+import proxy from 'unenv/runtime/mock/proxy'
+
+export const lt = proxy
+export const gt = proxy
+export const gte = proxy
+export const satisfies = proxy
+export const SemVer = proxy

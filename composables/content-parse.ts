@@ -391,7 +391,7 @@ function transformCollapseMentions() {
   return (node: Node, root: Node): Node | Node[] => {
     if (processed || node.parent !== root)
       return node
-    const metions: Node[] = []
+    const metions: (Node | undefined)[] = []
     const children = node.children as Node[]
     for (const child of children) {
       // metion
@@ -406,6 +406,9 @@ function transformCollapseMentions() {
       else {
         if (child.type === TEXT_NODE)
           child.value = child.value.trimStart()
+        // remove <br> after mention
+        if (child.name === 'br')
+          metions.push(undefined)
         break
       }
     }
@@ -415,7 +418,7 @@ function transformCollapseMentions() {
 
     return {
       ...node,
-      children: [h('mention-group', null, ...metions), ...children.slice(metions.length)],
+      children: [h('mention-group', null, ...metions.filter(Boolean)), ...children.slice(metions.length)],
     }
   }
 }

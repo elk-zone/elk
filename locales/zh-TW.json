@@ -125,7 +125,7 @@
     "show_untranslated": "顯示原文",
     "toggle_theme": {
       "dark": "切換深色模式",
-      "light": "切換亮色模式"
+      "light": "切換淺色模式"
     },
     "translate_post": "翻譯帖文",
     "unblock_account": "解除拉黑 {0}",
@@ -193,11 +193,11 @@
     },
     "interface": {
       "color_mode": "顏色",
-      "dark_mode": "暗色模式",
+      "dark_mode": "深色模式",
       "default": "（默認）",
       "font_size": "字號",
       "label": "外觀",
-      "light_mode": "亮色模式"
+      "light_mode": "淺色模式"
     },
     "language": {
       "display_language": "首選語言",

@@ -1,4 +1,4 @@
-import type { FontSize } from '~/types'
+import type { FontSize } from '~/composables/settings'
 import { COOKIE_KEY_FONT_SIZE, COOKIE_MAX_AGE, DEFAULT_FONT_SIZE } from '~/constants'
 import { fontSizeMap } from '~/constants/options'
 

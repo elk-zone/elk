@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { DEFAULT_FONT_SIZE } from '~/constants'
-import type { FontSize } from '~/types'
+import type { FontSize } from '~/composables/settings'
 
 const userSettings = useUserSettings()
 

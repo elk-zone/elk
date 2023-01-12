@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useFeatureFlag } from '~~/composables/settings/featureFlags'
+import { useFeatureFlag } from '~/composables/settings'
 
 const route = useRoute()
 const userSettings = useUserSettings()

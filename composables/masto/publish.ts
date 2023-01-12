@@ -57,6 +57,9 @@ export const usePublish = (options: {
 
       return status
     }
+    catch (err) {
+      console.error(err)
+    }
     finally {
       isSending = false
     }

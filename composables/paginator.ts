@@ -86,6 +86,8 @@ export function usePaginator<T, P, U = T>(
       }
     }
     catch (e) {
+      console.error(e)
+
       error.value = e
       state.value = 'error'
     }

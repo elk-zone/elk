@@ -140,7 +140,8 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: mastodon.
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)
     }
-    catch {
+    catch (err) {
+      console.error(err)
       await signout()
     }
   }
@@ -206,7 +207,7 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
         await subscription.unsubscribe()
     }
     catch {
-      // juts ignore
+      // just ignore
     }
   }
 }
@@ -216,12 +217,7 @@ export async function removePushNotifications(user: UserLogin) {
     return
 
   // unsubscribe push notifications
-  try {
-    await useMasto().v1.webPushSubscriptions.remove()
-  }
-  catch {
-    // ignore
-  }
+  await useMasto().v1.webPushSubscriptions.remove().catch(() => Promise.resolve())
 }
 
 export async function signout() {

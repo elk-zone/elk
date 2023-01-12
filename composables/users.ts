@@ -110,7 +110,7 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: mastodon.
   const instance = await fetchV1Instance({
     url,
   })
-  const masto = await createClient({
+  const masto = createClient({
     url,
     streamingApiUrl: instance.urls.streamingApi,
     accessToken: user?.token,

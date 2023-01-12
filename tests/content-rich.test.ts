@@ -96,9 +96,8 @@ describe('content-rich', () => {
               class=\\"u-url mention\\"
               rel=\\"nofollow noopener noreferrer\\"
               to=\\"/m.webtoo.ls/@elk\\"
-            ></a></span
-        ></mention-group>
-        content
+            ></a></span></mention-group
+        >content
         <span class=\\"h-card\\"
           ><a
             class=\\"u-url mention\\"

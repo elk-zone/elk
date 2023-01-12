@@ -63,7 +63,7 @@ const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly &
         group-hover="bg-active" group-focus-visible:ring="2 current"
       >
         <slot name="icon">
-          <div :class="icon" text-xl />
+          <NavSideItemIcon :icon="icon" />
         </slot>
         <slot>
           <span block sm:hidden xl:block>{{ isHydrated ? text : '&nbsp;' }}</span>

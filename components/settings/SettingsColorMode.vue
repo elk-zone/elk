@@ -34,6 +34,7 @@ function setColorMode(mode: ColorMode) {
       :class="colorMode.preference === 'system' ? 'pointer-events-none' : 'filter-saturate-0'"
       @click="setColorMode('system')"
     >
+      <div i-ri:computer-line />
       {{ $t('settings.interface.system_mode') }}
     </button>
   </div>

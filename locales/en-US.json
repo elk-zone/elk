@@ -236,7 +236,13 @@
   "settings": {
     "about": {
       "label": "About",
-      "meet_the_team": "Meet the team"
+      "meet_the_team": "Meet the team",
+      "sponsor_action": "Sponsor us",
+      "sponsor_action_desc": "To support the team developing Elk",
+      "sponsors": "Sponsors",
+      "sponsors_body_1": "Elk is made possible thanks the generous sponsoring and help of:",
+      "sponsors_body_2": "And all the companies and individuals sponsoring Elk Team and the members.",
+      "sponsors_body_3": "If you're enjoying the app, consider sponsoring us:"
     },
     "account_settings": {
       "description": "Edit your account settings in Mastodon UI",

@@ -1,5 +1,7 @@
 // Vitest Snapshot v1
 
+exports[`content-rich > block with backticks 1`] = `"<p><pre>[(\`number string) (\`tag string)]</pre></p>"`;
+
 exports[`content-rich > code frame 1`] = `
 "<p>Testing code block</p><p></p><p><pre lang=\\"ts\\">import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
 // tracks mouse position

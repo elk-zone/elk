@@ -71,24 +71,10 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
-    deployUrl: !isCI
-      ? 'http://localhost:5314'
-      : isPreview
-        ? process.env.DEPLOY_PRIME_URL
-        : 'https://elk.zone',
     cloudflare: {
       accountId: '',
       namespaceId: '',
       apiToken: '',
-    },
-    discord: {
-      inviteUrl: 'https://chat.elk.zone',
-    },
-    github: {
-      // oauth flow
-      clientId: '',
-      clientSecret: '',
-      inviteToken: '',
     },
     public: {
       env: '', // set in build-env module
@@ -132,6 +118,16 @@ export default defineNuxtConfig({
       ],
       meta: [
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
+        // open graph social image
+        { property: 'og:title', content: 'Elk' },
+        { property: 'og:description', content: 'A nimble Mastodon web client' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:image', content: 'https://main.elk.zone/elk-og.png' },
+        { property: 'og:image:width', content: '3800' },
+        { property: 'og:image:height', content: '1900' },
+        { property: 'og:site_name', content: 'Elk' },
+        { property: 'twitter:site', content: '@elk_zone' },
+        { property: 'twitter:card', content: 'summary_large_image' },
       ],
     },
   },

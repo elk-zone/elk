@@ -1,7 +1,7 @@
 import { DEFAULT_FONT_SIZE, DEFAULT_LANGUAGE } from '~/constants'
 
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-export type ColorMode = 'light' | 'dark'
+export type ColorMode = 'light' | 'dark' | 'system'
 
 export interface FeatureFlags {
   experimentalVirtualScroller: boolean

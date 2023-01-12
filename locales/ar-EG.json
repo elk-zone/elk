@@ -150,8 +150,8 @@
     "show_reblogs": "عرض المشاركات من {0}",
     "show_untranslated": "عرض بدون ترجمة",
     "toggle_theme": {
-      "dark": "تبديل المظهر الداكن",
-      "light": "تبديل المظهر الفاتح"
+      "dark": "التغيير إلى الوضع الداكن",
+      "light": "التغيير إلى الوضع الفاتح"
     },
     "translate_post": "ترجم المنشور",
     "unblock_account": "رفع الحظر عن {0}",
@@ -181,7 +181,7 @@
     "select_language": "اختار اللغة",
     "settings": "الإعدادات",
     "show_intro": "عرض المقدمة",
-    "toggle_theme": "تبديل المظهر",
+    "toggle_theme": "تغيير الوضع",
     "zen_mode": "الوضع الهادئ"
   },
   "notification": {
@@ -208,22 +208,22 @@
     "update_available_short": "تحديث Elk",
     "webmanifest": {
       "canary": {
-        "description": "A nimble Mastodon web client (canary)",
-        "name": "Elk (canary)",
-        "short_name": "Elk (canary)"
+        "description": "نسخة ويب رشيقة ل Mastodon (النسخة الإنشائية)",
+        "name": "Elk (النسخة الإنشائية)",
+        "short_name": "Elk (النسخة الإنشائية)"
       },
       "dev": {
-        "description": "A nimble Mastodon web client (dev)",
-        "name": "Elk (dev)",
-        "short_name": "Elk (dev)"
+        "description": "نسخة ويب رشيقة ل Mastodon (النسخة التطويرية)",
+        "name": "Elk (النسخة التطويرية)",
+        "short_name": "Elk (النسخة التطويرية)"
       },
       "preview": {
-        "description": "A nimble Mastodon web client (preview)",
-        "name": "Elk (preview)",
-        "short_name": "Elk (preview)"
+        "description": "نسخة ويب رشيقة ل Mastodon (معاينة)",
+        "name": "Elk (معاينة)",
+        "short_name": "Elk (معاينة)"
       },
       "release": {
-        "description": "A nimble Mastodon web client",
+        "description": "نسخة ويب رشيقة ل Mastodon",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -231,18 +231,25 @@
   },
   "search": {
     "search_desc": "ابحث عن الأشخاص والهاشتاج",
-    "search_empty": "لا يمكن العثور على أي شيء لشروط البحث هذه"
+    "search_empty": "لم يتم العثور على أي نتائج لشروط البحث الخاصة بك"
   },
   "settings": {
     "about": {
-      "label": "بشأن Elk"
+      "label": "حول Elk",
+      "meet_the_team": "تعرف على فريقنا",
+      "sponsor_action": "تمويل Elk",
+      "sponsor_action_desc": "لتمويل تطوير Elk والمساعدة في تحسينه",
+      "sponsors": "الرعاة",
+      "sponsors_body_1": "تم تمويل Elk من قبل الشركات والأفراد التاليين:" ,
+      "sponsors_body_2": "وكذا من قبل الشركات التالية:",
+      "sponsors_body_3": "إذا كنت تستمتع بإستخدام Elk، فنحن نشجعك على التبرع لدعم المشروع."
     },
     "account_settings": {
       "description": "قم بتحرير إعدادات حسابك في موقع Mastodon الأصلي",
       "label": "إعدادت الحساب"
     },
     "feature_flags": {
-      "github_cards": "GitHub بطاقات",
+      "github_cards": "بطاقات GitHub",
       "title": "الميزات التجريبية",
       "user_picker": "الشريط الجانبي لمبدل المستخدم",
       "virtual_scroll": "التمرير الافتراضي"
@@ -250,7 +257,7 @@
     "interface": {
       "color_mode": "وضع اللون",
       "dark_mode": "الوضع الداكن",
-      "default": "(إفتراضي)",
+      "default": " (إفتراضي)",
       "font_size": "حجم الخط",
       "label": "واجهه المستخدم",
       "light_mode": "وضع الضوء",
@@ -336,8 +343,8 @@
     },
     "select_a_settings": "اختر الإعداد",
     "users": {
-      "export": "Export User Tokens",
-      "import": "Import User Tokens",
+      "export": "تصدير معلومات المستخدم",
+      "import": "استيراد معلومات المستخدم",
       "label": "المستخدمون المسجلون"
     },
     "wellness": {
@@ -346,7 +353,7 @@
         "hide_favorite_count": "إخفاء عدد المفضلة",
         "hide_follower_count": "إخفاء عدد المتابعين"
       },
-      "label": "صحة النفس"
+      "label": "الصحة العامة"
     }
   },
   "state": {

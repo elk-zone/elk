@@ -47,6 +47,19 @@ async function oauth() {
   }
 }
 
+let fuse = $shallowRef(new Fuse([] as string[]))
+
+const filteredServers = $computed(() => {
+  if (!server)
+    return []
+
+  const results = fuse.search(server, { limit: 6 }).map(result => result.item)
+  if (results[0] === server)
+    return []
+
+  return results
+})
+
 function isValidUrl(str: string) {
   try {
     // eslint-disable-next-line no-new
@@ -65,24 +78,16 @@ async function handleInput() {
   if (server?.length)
     displayError = false
 
-  if (isValidUrl(`https://${server.trim()}`) && server.trim().match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:[0-9]+)?$/i))
+  if (
+    isValidUrl(`https://${server.trim()}`)
+    && server.trim().match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:[0-9]+)?$/i)
+    // Do not hide the autocomplete if a result has an exact substring match on the input
+    && !filteredServers.some(s => s.includes(server.trim()))
+  )
     autocompleteShow = false
   else
     autocompleteShow = true
 }
-
-let fuse = $shallowRef(new Fuse([] as string[]))
-
-const filteredServers = $computed(() => {
-  if (!server)
-    return []
-
-  const results = fuse.search(server, { limit: 6 }).map(result => result.item)
-  if (results[0] === server)
-    return []
-
-  return results
-})
 
 function toSelector(server: string) {
   return server.replace(/[^\w-]/g, '-')

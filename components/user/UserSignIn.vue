@@ -65,8 +65,10 @@ async function handleInput() {
   if (server?.length)
     displayError = false
 
-  if (isValidUrl(`https://${server.trim()}`))
+  if (isValidUrl(`https://${server.trim()}`) && server.trim().match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:[0-9]+)?$/i))
     autocompleteShow = false
+  else
+    autocompleteShow = true
 }
 
 let fuse = $shallowRef(new Fuse([] as string[]))

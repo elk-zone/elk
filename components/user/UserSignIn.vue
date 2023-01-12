@@ -177,7 +177,7 @@ onClickOutside($$(input), () => {
       <div i-ri:lightbulb-line me-1 />
       <span>
         <i18n-t keypath="user.tip_no_account">
-          <NuxtLink href="https://joinmastodon.org/servers" target="_blank" external hover="underline text-primary">{{ $t('user.tip_register_account') }}</NuxtLink>
+          <NuxtLink href="https://joinmastodon.org/servers" target="_blank" external class="text-primary" hover="underline">{{ $t('user.tip_register_account') }}</NuxtLink>
         </i18n-t>
       </span>
     </div>

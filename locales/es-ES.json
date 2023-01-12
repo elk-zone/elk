@@ -349,9 +349,9 @@
     },
     "wellness": {
       "feature": {
-        "hide_boost_count": "Ocultar conteo de retoots",
-        "hide_favorite_count": "Ocultar conteo de favoritos",
-        "hide_follower_count": "Ocultar conteo de seguidores"
+        "hide_boost_count": "Ocultar contador de retoots",
+        "hide_favorite_count": "Ocultar contador de favoritos",
+        "hide_follower_count": "Ocultar contador de seguidores"
       },
       "label": "Bienestar"
     }

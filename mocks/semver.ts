@@ -4,4 +4,4 @@ export const lt = proxy
 export const gt = proxy
 export const gte = proxy
 export const satisfies = proxy
-export const SemVer = proxy
+export class SemVer {}

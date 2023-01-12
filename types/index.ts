@@ -74,6 +74,3 @@ export interface BuildInfo {
   branch: string
   env: 'preview' | 'canary' | 'dev' | 'release'
 }
-
-export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-export type ColorMode = 'light' | 'dark'

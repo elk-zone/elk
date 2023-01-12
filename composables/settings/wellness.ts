@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import { userSettings } from '.'
+import type { UserSettings } from '.'
 
 export interface WellnessSettings {
   hideBoostCount: boolean
@@ -15,19 +15,19 @@ const DEFAULT_WELLNESS_SETTINGS: WellnessSettings = {
 }
 
 export function useWellnessSetting<T extends keyof WellnessSettings>(name: T): Ref<WellnessSettings[T]> {
+  const userSettings = useUserSettings()
   return computed({
     get() {
-      return getWellnessSetting(name)
+      return getWellnessSetting(userSettings.value, name)
     },
     set(value) {
-      if (userSettings.value)
-        userSettings.value.wellnessSettings[name] = value
+      userSettings.value.wellnessSettings[name] = value
     },
   })
 }
 
-export function getWellnessSetting<T extends keyof WellnessSettings>(name: T): WellnessSettings[T] {
-  return userSettings.value?.wellnessSettings?.[name] ?? DEFAULT_WELLNESS_SETTINGS[name]
+export function getWellnessSetting<T extends keyof WellnessSettings>(userSettings: UserSettings, name: T): WellnessSettings[T] {
+  return userSettings?.wellnessSettings?.[name] ?? DEFAULT_WELLNESS_SETTINGS[name]
 }
 
 export function toggleWellnessSetting(key: keyof WellnessSettings) {

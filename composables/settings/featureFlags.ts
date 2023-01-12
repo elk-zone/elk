@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import { userSettings } from '.'
+import type { UserSettings } from '.'
 
 export interface FeatureFlags {
   experimentalVirtualScroller: boolean
@@ -15,9 +15,10 @@ const DEFAULT_FEATURE_FLAGS: FeatureFlags = {
 }
 
 export function useFeatureFlag<T extends keyof FeatureFlags>(name: T): Ref<FeatureFlags[T]> {
+  const userSettings = useUserSettings()
   return computed({
     get() {
-      return getFeatureFlag(name)
+      return getFeatureFlag(userSettings.value, name)
     },
     set(value) {
       if (userSettings.value)
@@ -26,8 +27,8 @@ export function useFeatureFlag<T extends keyof FeatureFlags>(name: T): Ref<Featu
   })
 }
 
-export function getFeatureFlag<T extends keyof FeatureFlags>(name: T): FeatureFlags[T] {
-  return userSettings.value?.featureFlags?.[name] ?? DEFAULT_FEATURE_FLAGS[name]
+export function getFeatureFlag<T extends keyof FeatureFlags>(userSettings: UserSettings, name: T): FeatureFlags[T] {
+  return userSettings?.featureFlags?.[name] ?? DEFAULT_FEATURE_FLAGS[name]
 }
 
 export function toggleFeatureFlag(key: keyof FeatureFlags) {

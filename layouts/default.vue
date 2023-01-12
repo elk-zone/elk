@@ -2,6 +2,7 @@
 import { useFeatureFlag } from '~~/composables/settings/featureFlags'
 
 const route = useRoute()
+const userSettings = useUserSettings()
 
 const wideLayout = computed(() => route.meta.wideLayout ?? false)
 

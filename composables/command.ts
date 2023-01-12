@@ -244,6 +244,7 @@ export const provideGlobalCommands = () => {
   const users = useUsers()
   const masto = useMasto()
   const colorMode = useColorMode()
+  const userSettings = useUserSettings()
 
   useCommand({
     scope: 'Navigation',

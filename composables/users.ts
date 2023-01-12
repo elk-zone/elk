@@ -271,13 +271,7 @@ export function checkLogin() {
  * Create reactive storage for the current user
  */
 export function useUserLocalStorage<T extends object>(key: string, initial: () => T) {
-  // @ts-expect-error bind value to the function
-  const storages = useUserLocalStorage._ = useUserLocalStorage._ || new Map<string, Ref<Record<string, any>>>()
-
-  if (!storages.has(key))
-    storages.set(key, useLocalStorage(key, {}, { deep: true }))
-  const all = storages.get(key) as Ref<Record<string, T>>
-
+  const all = useLocalStorage<Record<string, T>>(key, {}, { deep: true })
   return computed(() => {
     const id = currentUser.value?.account.id
       ? currentUser.value.account.acct

@@ -73,7 +73,7 @@ function toggleDark() {
         Discord
       </NuxtLink>
       &middot;
-      <NuxtLink href="https://github.com/elk-zone" target="_blank" external>
+      <NuxtLink href="https://github.com/elk-zone/elk" target="_blank" external>
         GitHub
       </NuxtLink>
     </div>

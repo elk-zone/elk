@@ -73,7 +73,7 @@ const handleShowCommit = () => {
     <SettingsItem
       text="GitHub"
       icon="i-ri:github-fill"
-      to="https://github.com/elk-zone"
+      to="https://github.com/elk-zone/elk"
       external large target="_blank"
     />
 

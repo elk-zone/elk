@@ -72,17 +72,18 @@ function isValidUrl(str: string) {
 }
 
 async function handleInput() {
-  if (server.startsWith('https://'))
-    server = server.replace('https://', '')
+  const input = server.trim()
+  if (input.startsWith('https://'))
+    server = input.replace('https://', '')
 
-  if (server?.length)
+  if (input.length)
     displayError = false
 
   if (
-    isValidUrl(`https://${server.trim()}`)
-    && server.trim().match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:[0-9]+)?$/i)
+    isValidUrl(`https://${input}`)
+    && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:[0-9]+)?$/i)
     // Do not hide the autocomplete if a result has an exact substring match on the input
-    && !filteredServers.some(s => s.includes(server.trim()))
+    && !filteredServers.some(s => s.includes(input))
   )
     autocompleteShow = false
   else

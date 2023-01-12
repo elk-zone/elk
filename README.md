@@ -33,8 +33,6 @@ The client is deployed on:
 - 🦌 Production: [elk.zone](https://elk.zone)
 - 🐙 Canary: [main.elk.zone](https://main.elk.zone) (deploys on every commit to `main` branch)
 
-You can share screenshots on social media but we prefer you avoid sharing this URL directly until the app is more polished. Feel free to share the URL with your friends and invite others you think could be interested in helping to improve Elk.
-
 ## 💖 Sponsors
 
 We are grateful for the generous sponsorship and help of:

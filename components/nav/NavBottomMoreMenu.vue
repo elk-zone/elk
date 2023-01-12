@@ -4,6 +4,8 @@ let { modelValue } = $defineModel<{
 }>()
 const colorMode = useColorMode()
 
+const userSettings = useUserSettings()
+
 function toggleVisible() {
   modelValue = !modelValue
 }

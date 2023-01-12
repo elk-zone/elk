@@ -1,4 +1,4 @@
-import { login as loginMasto } from 'masto'
+import { createClient, fetchV1Instance } from 'masto'
 import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
 import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
@@ -106,22 +106,26 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: mastodon.
   const route = useRoute()
   const router = useRouter()
   const server = user?.server || route.params.server as string || publicServer.value
-  const masto = await loginMasto({
-    url: `https://${server}`,
+  const url = `https://${server}`
+  const instance = await fetchV1Instance({
+    url,
+  })
+  const masto = createClient({
+    url,
+    streamingApiUrl: instance.urls.streamingApi,
     accessToken: user?.token,
     disableVersionCheck: true,
   })
 
   if (!user?.token) {
     publicServer.value = server
-    publicInstance.value = await masto.v1.instances.fetch()
+    publicInstance.value = instance
   }
 
   else {
     try {
-      const [me, instance, pushSubscription] = await Promise.all([
+      const [me, pushSubscription] = await Promise.all([
         masto.v1.accounts.verifyCredentials(),
-        masto.v1.instances.fetch(),
         // if PWA is not enabled, don't get push subscription
         useRuntimeConfig().public.pwaEnabled
           // we get 404 response instead empty data
@@ -267,13 +271,7 @@ export function checkLogin() {
  * Create reactive storage for the current user
  */
 export function useUserLocalStorage<T extends object>(key: string, initial: () => T) {
-  // @ts-expect-error bind value to the function
-  const storages = useUserLocalStorage._ = useUserLocalStorage._ || new Map<string, Ref<Record<string, any>>>()
-
-  if (!storages.has(key))
-    storages.set(key, useLocalStorage(key, {}, { deep: true }))
-  const all = storages.get(key) as Ref<Record<string, T>>
-
+  const all = useLocalStorage<Record<string, T>>(key, {}, { deep: true })
   return computed(() => {
     const id = currentUser.value?.account.id
       ? currentUser.value.account.acct

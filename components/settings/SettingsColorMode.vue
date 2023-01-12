@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ColorMode } from '~/types'
+import type { ColorMode } from '~/composables/settings'
 
 const colorMode = useColorMode()
 

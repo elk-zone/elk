@@ -4,6 +4,8 @@ const { t } = useI18n()
 useHeadFixed({
   title: () => `${t('settings.wellness.label')} | ${t('nav.settings')}`,
 })
+
+const userSettings = useUserSettings()
 </script>
 
 <template>
@@ -14,19 +16,19 @@ useHeadFixed({
       </div>
     </template>
     <SettingsToggleItem
-      :checked="getWellnessSetting('hideBoostCount')"
+      :checked="getWellnessSetting(userSettings, 'hideBoostCount')"
       @click="toggleWellnessSetting('hideBoostCount')"
     >
       {{ $t('settings.wellness.feature.hide_boost_count') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="getWellnessSetting('hideFavoriteCount')"
+      :checked="getWellnessSetting(userSettings, 'hideFavoriteCount')"
       @click="toggleWellnessSetting('hideFavoriteCount')"
     >
       {{ $t('settings.wellness.feature.hide_favorite_count') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="getWellnessSetting('hideFollowerCount')"
+      :checked="getWellnessSetting(userSettings, 'hideFollowerCount')"
       @click="toggleWellnessSetting('hideFollowerCount')"
     >
       {{ $t('settings.wellness.feature.hide_follower_count') }}

@@ -10,12 +10,12 @@ const tabs = $computed(() => [
   {
     name: 'all',
     to: '/notifications',
-    display: isHydrated.value ? t('tab.notifications_all') : '',
+    display: t('tab.notifications_all'),
   },
   {
     name: 'mention',
     to: '/notifications/mention',
-    display: isHydrated.value ? t('tab.notifications_mention') : '',
+    display: t('tab.notifications_mention'),
   },
 ] as const)
 </script>

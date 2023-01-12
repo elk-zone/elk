@@ -47,14 +47,6 @@ async function oauth() {
   }
 }
 
-async function handleInput() {
-  if (server.startsWith('https://'))
-    server = server.replace('https://', '')
-
-  if (server?.length)
-    displayError = false
-}
-
 let fuse = $shallowRef(new Fuse([] as string[]))
 
 const filteredServers = $computed(() => {
@@ -67,6 +59,36 @@ const filteredServers = $computed(() => {
 
   return results
 })
+
+function isValidUrl(str: string) {
+  try {
+    // eslint-disable-next-line no-new
+    new URL(str)
+    return true
+  }
+  catch (err) {
+    return false
+  }
+}
+
+async function handleInput() {
+  const input = server.trim()
+  if (input.startsWith('https://'))
+    server = input.replace('https://', '')
+
+  if (input.length)
+    displayError = false
+
+  if (
+    isValidUrl(`https://${input}`)
+    && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:[0-9]+)?$/i)
+    // Do not hide the autocomplete if a result has an exact substring match on the input
+    && !filteredServers.some(s => s.includes(input))
+  )
+    autocompleteShow = false
+  else
+    autocompleteShow = true
+}
 
 function toSelector(server: string) {
   return server.replace(/[^\w-]/g, '-')
@@ -177,7 +199,7 @@ onClickOutside($$(input), () => {
       <div i-ri:lightbulb-line me-1 />
       <span>
         <i18n-t keypath="user.tip_no_account">
-          <NuxtLink href="https://joinmastodon.org/servers" target="_blank" external hover="underline text-primary">{{ $t('user.tip_register_account') }}</NuxtLink>
+          <NuxtLink href="https://joinmastodon.org/servers" target="_blank" external class="text-primary" hover="underline">{{ $t('user.tip_register_account') }}</NuxtLink>
         </i18n-t>
       </span>
     </div>

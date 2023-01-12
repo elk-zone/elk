@@ -1,9 +1,12 @@
+import { createResolver } from '@nuxt/kit'
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
 import type { BuildInfo } from './types'
+
+const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
   typescript: {
@@ -44,6 +47,7 @@ export default defineNuxtConfig({
   alias: {
     'querystring': 'rollup-plugin-node-polyfills/polyfills/qs',
     'change-case': 'scule',
+    'semver': resolve('./mocks/semver'),
   },
   imports: {
     dirs: [
@@ -122,7 +126,7 @@ export default defineNuxtConfig({
         { property: 'og:title', content: 'Elk' },
         { property: 'og:description', content: 'A nimble Mastodon web client' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:image', content: 'https://main.elk.zone/elk-og.png' },
+        { property: 'og:image', content: 'https://elk.zone/elk-og.png' },
         { property: 'og:image:width', content: '3800' },
         { property: 'og:image:height', content: '1900' },
         { property: 'og:site_name', content: 'Elk' },

@@ -6,6 +6,8 @@ const emit = defineEmits<{
   (e: 'selectCustom', image: any): void
 }>()
 
+const { t } = useI18n()
+
 const el = $ref<HTMLElement>()
 let picker = $ref<Picker>()
 const colorMode = useColorMode()
@@ -44,7 +46,7 @@ const hideEmojiPicker = () => {
 </script>
 
 <template>
-  <CommonTooltip content="Add emojis">
+  <CommonTooltip :content="t('tooltip.add_emojis')">
     <VDropdown
       auto-boundary-max-size
       @apply-show="openEmojiPicker()"

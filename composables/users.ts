@@ -1,4 +1,4 @@
-import { login as loginMasto } from 'masto'
+import { createClient, fetchV1Instance } from 'masto'
 import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
 import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
@@ -106,22 +106,26 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: mastodon.
   const route = useRoute()
   const router = useRouter()
   const server = user?.server || route.params.server as string || publicServer.value
-  const masto = await loginMasto({
-    url: `https://${server}`,
+  const url = `https://${server}`
+  const instance = await fetchV1Instance({
+    url,
+  })
+  const masto = await createClient({
+    url,
+    streamingApiUrl: instance.urls.streamingApi,
     accessToken: user?.token,
     disableVersionCheck: true,
   })
 
   if (!user?.token) {
     publicServer.value = server
-    publicInstance.value = await masto.v1.instances.fetch()
+    publicInstance.value = instance
   }
 
   else {
     try {
-      const [me, instance, pushSubscription] = await Promise.all([
+      const [me, pushSubscription] = await Promise.all([
         masto.v1.accounts.verifyCredentials(),
-        masto.v1.instances.fetch(),
         // if PWA is not enabled, don't get push subscription
         useRuntimeConfig().public.pwaEnabled
           // we get 404 response instead empty data

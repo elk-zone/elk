@@ -20,7 +20,7 @@ A nimble Mastodon web client
 
 <p align="center">
   <a href="https://elk.zone/" target="_blank" rel="noopener noreferrer" >
-    <img src="./public/elk-og.png" alt="Elk screenshots" height="300">
+    <img src="./public/elk-og.png" alt="Elk screenshots" width="600" height="auto">
   </a>
 </p>
 

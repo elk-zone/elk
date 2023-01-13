@@ -19,11 +19,12 @@ const historyNum = $computed(() => {
 })
 
 const sparklineEl = $ref<SVGSVGElement>()
+const sparklineFn = typeof sparkline !== 'function' ? (sparkline as any).default : sparkline
 
 watch([$$(historyNum), $$(sparklineEl)], ([historyNum, sparklineEl]) => {
   if (!sparklineEl)
     return
-  sparkline(sparklineEl, historyNum)
+  sparklineFn(sparklineEl, historyNum)
 })
 </script>
 

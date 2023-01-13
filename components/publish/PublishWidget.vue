@@ -90,6 +90,28 @@ async function publish() {
     emit('published', status)
 }
 
+onMounted(() => {
+  navigator.serviceWorker.addEventListener('message', handleSWMessage)
+  navigator.serviceWorker.getRegistration()
+    .then((registration) => {
+      if (registration && registration.active) {
+        // we need to signal the service worker that we are ready to receive shared files
+        registration.active.postMessage({ action: 'ready-to-receive' })
+      }
+    })
+    .catch(err => console.error('Could not get registration', err))
+})
+
+async function handleSWMessage({ data }: any) {
+  if (data.action === 'compose-with-media') {
+    editor.value?.chain().focus().run()
+    await uploadAttachments(data.files)
+  }
+  else if (data.action === 'compose-with-text') {
+    editor.value?.chain().focus().insertContent(data.text).run()
+  }
+}
+
 defineExpose({
   focusEditor: () => {
     editor.value?.commands?.focus?.()

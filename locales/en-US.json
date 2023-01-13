@@ -143,8 +143,6 @@
     "mention_account": "Mention {0}",
     "mute_account": "Mute {0}",
     "mute_conversation": "Mute this post",
-    "notifying_account_off": "Disable notifications for {0}",
-    "notifying_account_on": "Enable notifications for {0}",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "share_post": "Share this post",

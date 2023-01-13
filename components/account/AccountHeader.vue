@@ -6,6 +6,8 @@ const { account } = defineProps<{
   command?: boolean
 }>()
 
+const masto = useMasto()
+
 const { t } = useI18n()
 
 const createdAt = $(useFormattedDateTime(() => account.createdAt, {
@@ -13,6 +15,8 @@ const createdAt = $(useFormattedDateTime(() => account.createdAt, {
   day: 'numeric',
   year: 'numeric',
 }))
+
+let relationship = $(useRelationship(account))
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
@@ -37,6 +41,18 @@ function previewAvatar() {
     previewUrl: account.avatar,
     description: t('account.avatar_description', [account.username]),
   }])
+}
+
+async function toggleNotify() {
+  relationship!.notifying = !relationship!.notifying
+  try {
+    const newRel = await masto.v1.accounts.follow(account.id, { notify: relationship!.notifying })
+    Object.assign(relationship!, newRel)
+  }
+  catch {
+    // TODO error handling
+    relationship!.notifying = !relationship!.notifying
+  }
 }
 
 watchEffect(() => {
@@ -93,11 +109,12 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           >
             {{ $t('settings.profile.appearance.title') }}
           </NuxtLink>
-          <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
+          <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group @click="toggleNotify()">
             <div rounded p2 group-hover="bg-rose/10">
-              <div i-ri:bell-line />
+              <div v-if="relationship?.notifying" i-ri:bell-fill />
+              <div v-else i-ri-bell-line />
             </div>
-          </button> -->
+          </button>
         </div>
       </div>
       <div v-if="account.note" max-h-100 overflow-y-auto>

@@ -3,16 +3,16 @@ FROM node:lts-alpine AS base
 # Prepare work directory
 WORKDIR /elk
 
-# Prepare deps
-RUN apk update
-RUN apk add git --no-cache
-
 # Prepare pnpm ( refer to https://pnpm.io/installation#on-alpine-linux )
 RUN wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" && chmod +x /bin/pnpm
 
 FROM base AS builder
 
 COPY . ./
+
+# Prepare deps
+RUN apk update
+RUN apk add git --no-cache
 
 # Build
 RUN pnpm i

@@ -12,7 +12,7 @@ const { link = true, avatar = true } = defineProps<{
   <AccountHoverWrapper :account="account">
     <NuxtLink
       :to="link ? getAccountRoute(account) : undefined"
-      :class="link ? 'text-link-rounded ms-0 ps-0' : ''"
+      :class="link ? 'text-link-rounded -ml-1.8rem pl-1.8rem rtl-(ml0 pl-0.5rem -mr-1.8rem pr-1.8rem)' : ''"
       min-w-0 flex gap-2 items-center
     >
       <AccountAvatar v-if="avatar" :account="account" w-5 h-5 />

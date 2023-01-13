@@ -66,10 +66,10 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
       :disabled="busy || isLegacyAccount"
       @click="$emit('subscribe')"
     >
-      <div v-if="busy && animate" aria-hidden="true" animate-spin preserve-3d>
-        <div block i-ri:loader-2-fill aria-hidden="true" />
-      </div>
-      <div v-else aria-hidden="true" i-ri:check-line />
+      <span v-if="busy && animate" aria-hidden="true" block animate-spin preserve-3d>
+        <span block i-ri:loader-2-fill aria-hidden="true" />
+      </span>
+      <span v-else aria-hidden="true" block i-ri:check-line />
       <span>{{ $t('settings.notifications.push_notifications.warning.enable_desktop') }}</span>
     </button>
     <slot name="error" />

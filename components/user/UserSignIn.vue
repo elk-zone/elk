@@ -25,7 +25,7 @@ async function oauth() {
     server = server.split('/')[0]
 
   try {
-    location.href = await $fetch<string>(`/api/${server || publicServer.value}/login`, {
+    location.href = await (globalThis.$fetch as any)(`/api/${server || publicServer.value}/login`, {
       method: 'POST',
       body: {
         origin: location.origin,
@@ -94,6 +94,10 @@ function toSelector(server: string) {
   return server.replace(/[^\w-]/g, '-')
 }
 function move(delta: number) {
+  if (filteredServers.length === 0) {
+    autocompleteIndex = 0
+    return
+  }
   autocompleteIndex = ((autocompleteIndex + delta) + filteredServers.length) % filteredServers.length
   document.querySelector(`#${toSelector(filteredServers[autocompleteIndex])}`)?.scrollIntoView(false)
 }
@@ -119,7 +123,7 @@ function select(index: number) {
 
 onMounted(async () => {
   input?.focus()
-  knownServers = await $fetch('/api/list-servers')
+  knownServers = await (globalThis.$fetch as any)('/api/list-servers')
   fuse = new Fuse(knownServers, { shouldSort: true })
 })
 

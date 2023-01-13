@@ -276,9 +276,9 @@ defineExpose({
             aria-describedby="publish-tooltip"
             @click="publish"
           >
-            <span v-if="isSending" block animate-spin preserve-3d>
-              <div block i-ri:loader-2-fill />
-            </span>
+            <div v-if="isSending" animate-spin preserve-3d>
+              <div i-ri:loader-2-fill />
+            </div>
             <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
             <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
             <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>

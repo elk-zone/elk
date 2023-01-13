@@ -19,7 +19,8 @@ async function toggleFollow() {
     const newRel = await masto.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
     Object.assign(relationship!, newRel)
   }
-  catch {
+  catch (err) {
+    console.error(err)
     // TODO error handling
     relationship!.following = !relationship!.following
   }
@@ -31,7 +32,8 @@ async function unblock() {
     const newRel = await masto.v1.accounts.unblock(account.id)
     Object.assign(relationship!, newRel)
   }
-  catch {
+  catch (err) {
+    console.error(err)
     // TODO error handling
     relationship!.blocking = true
   }
@@ -43,7 +45,8 @@ async function unmute() {
     const newRel = await masto.v1.accounts.unmute(account.id)
     Object.assign(relationship!, newRel)
   }
-  catch {
+  catch (err) {
+    console.error(err)
     // TODO error handling
     relationship!.muting = true
   }

@@ -49,7 +49,10 @@ const saveSettings = async () => {
 
   try {
     const subscription = await updateSubscription()
+  }
+  catch (err) {
     // todo: handle error
+    console.error(err)
   }
   finally {
     busy = false
@@ -72,7 +75,8 @@ const doSubscribe = async () => {
       showSubscribeError = true
     }
   }
-  catch {
+  catch (err) {
+    console.error(err)
     subscribeError = t('settings.notifications.push_notifications.subscription_error.request_error')
     showSubscribeError = true
   }
@@ -90,6 +94,9 @@ const removeSubscription = async () => {
   animateRemoveSubscription = true
   try {
     await unsubscribe()
+  }
+  catch (err) {
+    console.error(err)
   }
   finally {
     busy = false

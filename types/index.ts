@@ -56,7 +56,9 @@ export interface Draft {
   params: MarkNonNullable<Mutable<mastodon.v1.CreateStatusParams>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'>
   attachments: mastodon.v1.MediaAttachment[]
   lastUpdated: number
+  mentions?: string[]
 }
+
 export type DraftMap = Record<string, Draft>
 
 export interface ConfirmDialogLabel {
@@ -74,6 +76,3 @@ export interface BuildInfo {
   branch: string
   env: 'preview' | 'canary' | 'dev' | 'release'
 }
-
-export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-export type ColorMode = 'light' | 'dark'

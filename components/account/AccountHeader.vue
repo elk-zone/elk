@@ -16,7 +16,7 @@ const createdAt = $(useFormattedDateTime(() => account.createdAt, {
   year: 'numeric',
 }))
 
-let relationship = $(useRelationship(account))
+const relationship = $(useRelationship(account))
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
@@ -44,16 +44,16 @@ function previewAvatar() {
 }
 
 async function toggleNotify() {
-// @ts-expect-error
+  // @ts-expect-error: Masto.js only recently added this field. Can be removed when Elk updates Masto.js to 5.4.0 or higher.
   relationship!.notifying = !relationship?.notifying
   try {
-  // @ts-expect-error
+    // @ts-expect-error: Masto.js only recently added this field. Can be removed when Elk updates Masto.js to 5.4.0 or higher.
     const newRel = await masto.v1.accounts.follow(account.id, { notify: relationship?.notifying })
     Object.assign(relationship!, newRel)
   }
   catch {
     // TODO error handling
-    // @ts-expect-error
+    // @ts-expect-error: Masto.js only recently added this field. Can be removed when Elk updates Masto.js to 5.4.0 or higher.
     relationship!.notifying = !relationship?.notifying
   }
 }
@@ -79,7 +79,7 @@ watchEffect(() => {
 })
 
 const isSelf = $computed(() => currentUser.value?.account.id === account.id)
-// @ts-expect-error
+// @ts-expect-error: Masto.js only recently added this field. Can be removed when Elk updates Masto.js to 5.4.0 or higher.
 const isAlertedOnPost = $computed(() => relationship?.notifying)
 </script>
 

@@ -67,7 +67,7 @@ const isLegacyAccount = computed(() => !currentUser.value?.vapidKey)
       @click="$emit('subscribe')"
     >
       <div v-if="busy && animate" aria-hidden="true" animate-spin preserve-3d>
-        <div i-ri:loader-2-fill aria-hidden="true" />
+        <div block i-ri:loader-2-fill aria-hidden="true" />
       </div>
       <div v-else aria-hidden="true" i-ri:check-line />
       <span>{{ $t('settings.notifications.push_notifications.warning.enable_desktop') }}</span>

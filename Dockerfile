@@ -29,4 +29,10 @@ EXPOSE 5314/tcp
 
 ENV PORT=5314
 
+# Specify container only environment variables ( can be overwritten by runtime env )
+ENV NUXT_STORAGE_FS_BASE='/elk/data'
+
+# Persistent storage data
+VOLUME [ "/elk/data" ]
+
 CMD ["node", ".output/server/index.mjs"]

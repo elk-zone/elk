@@ -102,9 +102,9 @@
   "help": {
     "desc_highlight": "可能會在某些地方出現一些 bug 或缺失的功能。",
     "desc_para1": "感謝你有興趣嘗試鹿鳴，一個我們正在積極開發的通用 Mastodon 客戶端。",
-    "desc_para2": "我們正在努力開發中，並隨著時間的推移不斷完善。鹿鳴將很快開源，並邀請您參與進來！",
-    "desc_para3": "為了幫助促進開發，你可以通過以下鏈接贊助我們的團隊成員。希望你喜歡 Elk！",
-    "desc_para4": "在此之前，如果你願意幫助測試、提供反饋或作出貢獻，",
+    "desc_para2": "我們正在努力開發中，並隨著時間的推移不斷完善。",
+    "desc_para3": "為了幫助促進開發，你可以通過以下鏈接贊助我們的團隊成員。希望你喜歡鹿鳴！",
+    "desc_para4": "鹿鳴是開源的，如果你願意幫助測試、提供反饋或作出貢獻，",
     "desc_para5": "在 GitHub 上聯繫我們",
     "desc_para6": "來參與其中。",
     "title": "預覽鹿鳴！"
@@ -125,7 +125,7 @@
     "show_untranslated": "顯示原文",
     "toggle_theme": {
       "dark": "切換深色模式",
-      "light": "切換亮色模式"
+      "light": "切換淺色模式"
     },
     "translate_post": "翻譯帖文",
     "unblock_account": "解除拉黑 {0}",
@@ -193,11 +193,11 @@
     },
     "interface": {
       "color_mode": "顏色",
-      "dark_mode": "暗色模式",
+      "dark_mode": "深色模式",
       "default": "（默認）",
       "font_size": "字號",
       "label": "外觀",
-      "light_mode": "亮色模式"
+      "light_mode": "淺色模式"
     },
     "language": {
       "display_language": "首選語言",

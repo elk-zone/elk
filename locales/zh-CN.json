@@ -74,7 +74,7 @@
     "activate": "执行",
     "complete": "完成",
     "compose_desc": "写一条新帖文",
-    "n-people-in-the-past-n-days": "{0} 人在过去 {1} 天",
+    "n-people-in-the-past-n-days": "过去 {1} 天中 {0} 人访问",
     "select_lang": "选择语言",
     "sign_in_desc": "添加现有帐户",
     "switch_account": "切换到 {0}",
@@ -112,9 +112,9 @@
   "help": {
     "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
     "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Mastodon 客户端。",
-    "desc_para2": "我们正在努力开发中，并随着时间的推移不断完善。鹿鸣将很快开源，并邀请您参与进来！",
+    "desc_para2": "我们正在努力开发中，并随着时间的推移不断完善。",
     "desc_para3": "为了帮助促进开发，你可以通过以下链接赞助我们的团队成员。希望你喜欢鹿鸣！",
-    "desc_para4": "在此之前，如果你愿意帮助测试、提供反馈或作出贡献，",
+    "desc_para4": "鹿鸣是开源的，如果你愿意帮助测试、提供反馈或作出贡献，",
     "desc_para5": "在 GitHub 上联系我们",
     "desc_para6": "来参与其中。",
     "title": "预览鹿鸣！"
@@ -148,7 +148,7 @@
     "show_untranslated": "显示原文",
     "toggle_theme": {
       "dark": "切换深色模式",
-      "light": "切换亮色模式"
+      "light": "切换浅色模式"
     },
     "translate_post": "翻译帖文",
     "unblock_account": "解除拉黑 {0}",
@@ -246,11 +246,11 @@
     },
     "interface": {
       "color_mode": "颜色",
-      "dark_mode": "暗色模式",
+      "dark_mode": "深色模式",
       "default": "（默认）",
       "font_size": "字号",
       "label": "外观",
-      "light_mode": "亮色模式",
+      "light_mode": "浅色模式",
       "size_label": {
         "lg": "大",
         "md": "中",

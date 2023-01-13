@@ -267,7 +267,8 @@
         "sm": "Small",
         "xl": "Extra large",
         "xs": "Extra small"
-      }
+      },
+      "system_mode": "System"
     },
     "language": {
       "display_language": "Display Language",

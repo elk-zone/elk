@@ -9,7 +9,7 @@ const { paginator, stream } = defineProps<{
   stream?: Promise<WsEvents>
 }>()
 
-const virtualScroller = $(useFeatureFlag('experimentalVirtualScroller'))
+const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 
 const groupCapacity = Number.MAX_VALUE // No limit
 

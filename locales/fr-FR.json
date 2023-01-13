@@ -47,7 +47,7 @@
     "close": "Fermer",
     "compose": "Composer",
     "confirm": "Confirmer",
-    "edit": "Editer",
+    "edit": "Éditer",
     "enter_app": "Entrer dans l'application",
     "favourite": "Ajouter aux messages appréciés",
     "favourited": "Ajouté aux messages appréciés",
@@ -103,7 +103,7 @@
   },
   "error": {
     "account_not_found": "Compte {0} non trouvé",
-    "explore-list-empty": "Pas de tendence en ce moment. Revenez plus tard!",
+    "explore-list-empty": "Pas de tendance en ce moment. Revenez plus tard!",
     "file_size_cannot_exceed_n_mb": "La taille du fichier dépasse les {0}MB",
     "sign_in_error": "Impossible de se connecter au serveur.",
     "status_not_found": "Message non trouvé",
@@ -116,8 +116,8 @@
     "desc_para3": "Pour supporter son développement, vous pouvez parrainer les membres de l'équipe avec les liens ci-dessous. Nous espérons que vous apprécierez Elk!",
     "desc_para4": "Avant cela, si vous voulez aider à tester, donner des retours ou contribuer",
     "desc_para5": "contactez nous sur GitHub",
-    "desc_para6": "et rejoingez l'aventure.",
-    "title": "Elk est mode Aperçu !"
+    "desc_para6": "et rejoignez l'aventure.",
+    "title": "Elk est en mode Aperçu !"
   },
   "language": {
     "search": "Recherche"
@@ -174,14 +174,14 @@
     "search": "Rechercher",
     "select_feature_flags": "Activer/Désactiver Feature Flags",
     "select_font_size": "Taille de la police",
-    "select_language": "Selectionner langue",
+    "select_language": "Sélectionner langue",
     "settings": "Paramètres",
     "show_intro": "Ré-afficher l'introduction",
     "toggle_theme": "Changer de thème",
     "zen_mode": "Mode Zen"
   },
   "notification": {
-    "favourited_post": "aprécie votre message",
+    "favourited_post": "apprécie votre message",
     "followed_you": "vous suit",
     "followed_you_count": "{0} personnes vous suivent|{0} personne vous suit|{0} personnes vous suivent",
     "missing_type": "MISSING notification.type:",
@@ -321,12 +321,12 @@
     "profile": {
       "appearance": {
         "bio": "Bio",
-        "description": "Editer l'avatar, nom d'utilisateur·ice, profil, etc.",
+        "description": "Éditer l'avatar, nom d'utilisateur·ice, profil, etc.",
         "display_name": "Nom d'affichage",
         "label": "Apparence",
         "profile_metadata": "Métadonnées de profil",
         "profile_metadata_desc": "Vous pouvez avoir jusqu'à 4 éléments affichés sous forme de tableau sur votre profil",
-        "title": "Editer le profil"
+        "title": "Éditer le profil"
       },
       "featured_tags": {
         "description": "Les gens peuvent parcourir vos messages publics sous ces hashtags.",
@@ -466,7 +466,7 @@
   },
   "visibility": {
     "direct": "Personnes mentionnées uniquement",
-    "direct_desc": "Visibles uniquemnt par les comptes mentionnés",
+    "direct_desc": "Visibles uniquement par les comptes mentionnés",
     "private": "Abonnés uniquement",
     "private_desc": "Visible uniquement par vos abonnés",
     "public": "Public",

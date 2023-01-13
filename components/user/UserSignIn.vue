@@ -94,6 +94,10 @@ function toSelector(server: string) {
   return server.replace(/[^\w-]/g, '-')
 }
 function move(delta: number) {
+  if (filteredServers.length === 0) {
+    autocompleteIndex = 0
+    return
+  }
   autocompleteIndex = ((autocompleteIndex + delta) + filteredServers.length) % filteredServers.length
   document.querySelector(`#${toSelector(filteredServers[autocompleteIndex])}`)?.scrollIntoView(false)
 }

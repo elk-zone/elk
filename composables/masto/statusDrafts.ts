@@ -15,7 +15,6 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
   const {
     attachments = [],
     initialText = '',
-
     status,
     inReplyToId,
     visibility,
@@ -51,17 +50,20 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
   })
 }
 
-function mentionHTML(acct: string) {
-  return `<span data-type="mention" data-id="${acct}" contenteditable="false">@${acct}</span>`
+function toMentionsHTML(accounts: string[]) {
+  return accounts.map(acct => `<span data-type="mention" data-id="${acct}" contenteditable="false">@${acct}</span>`).join(' ')
 }
 
 function getAccountsToMention(status: mastodon.v1.Status) {
   const userId = currentUser.value?.account.id
-  const accountsToMention: string[] = []
+  const accountsToMention = new Set<string>()
   if (status.account.id !== userId)
-    accountsToMention.push(status.account.acct)
-  accountsToMention.push(...(status.mentions.filter(mention => mention.id !== userId).map(mention => mention.acct)))
-  return accountsToMention
+    accountsToMention.add(status.account.acct)
+  status.mentions
+    .filter(mention => mention.id !== userId)
+    .map(mention => mention.acct)
+    .forEach(i => accountsToMention.add(i))
+  return Array.from(accountsToMention)
 }
 
 export function getReplyDraft(status: mastodon.v1.Status) {
@@ -70,7 +72,7 @@ export function getReplyDraft(status: mastodon.v1.Status) {
     key: `reply-${status.id}`,
     draft: () => {
       return getDefaultDraft({
-        initialText: accountsToMention.map(acct => mentionHTML(acct)).join(' '),
+        initialText: toMentionsHTML(accountsToMention),
         inReplyToId: status!.id,
         visibility: status.visibility,
       })

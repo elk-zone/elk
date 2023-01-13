@@ -88,17 +88,19 @@ watch(file, (image, _, onCleanup) => {
       w-full
       h-full
     >
-    <div absolute bg="black/50" text-white rounded-full text-xl w12 h12 flex justify-center items-center hover="bg-black/40 text-primary">
-      <div i-ri:upload-line />
-    </div>
+    <span absolute bg="black/50" text-white rounded-full text-xl w12 h12 flex justify-center items-center hover="bg-black/40 text-primary">
+      <span block i-ri:upload-line />
+    </span>
 
-    <div
+    <span
       v-if="loading"
       absolute inset-0
       bg="black/30" text-white
       flex justify-center items-center
     >
-      <div class="i-ri:loader-4-line animate-spin animate-duration-[2.5s]" text-4xl />
-    </div>
+      <span class="animate-spin animate-duration-[2.5s] preserve-3d">
+        <span block i-ri:loader-4-line text-4xl />
+      </span>
+    </span>
   </label>
 </template>

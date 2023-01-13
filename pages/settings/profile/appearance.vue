@@ -172,10 +172,10 @@ onReactivated(refreshInfo)
             flex gap-x-2 items-center
             :disabled="submitting || !isCanSubmit"
           >
-            <div
-              aria-hidden="true"
-              :class="submitting ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:save-line'"
-            />
+            <span v-if="submitting" aria-hidden="true" block animate-spin preserve-3d>
+              <span block i-ri:loader-2-fill aria-hidden="true" />
+            </span>
+            <span v-else aria-hidden="true" block i-ri:save-line />
             {{ $t('action.save') }}
           </button>
         </div>

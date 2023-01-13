@@ -38,6 +38,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <img v-if="isLoaded || !placeholderSrc" v-bind="$attrs" :src="src" :srcset="srcset">
-  <img v-else v-bind="$attrs" :src="placeholderSrc">
+  <Transition>
+    <img v-if="isLoaded || !placeholderSrc" v-bind="$attrs" :src="src" :srcset="srcset" absolute>
+    <img v-else v-bind="$attrs" :src="placeholderSrc" absolute>
+  </Transition>
+  <img v-bind="$attrs" :src="placeholderSrc" z-0 aria-hidden>
 </template>
+
+<style>
+.v-enter-active {
+  transition: opacity 0.3s ease;
+}
+
+.v-enter-from {
+  opacity: 0;
+}
+</style>

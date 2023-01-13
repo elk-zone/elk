@@ -292,7 +292,7 @@ export function clearUserLocalStorage(account?: mastodon.v1.Account) {
 
   const id = `${account.acct}@${currentInstance.value?.uri || currentServer.value}`
   // @ts-expect-error bind value to the function
-  ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>>).forEach((storage) => {
+  ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>> | undefined)?.forEach((storage) => {
     if (storage.value[id])
       delete storage.value[id]
   })

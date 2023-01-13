@@ -98,7 +98,9 @@ watch(file, (image, _, onCleanup) => {
       bg="black/30" text-white
       flex justify-center items-center
     >
-      <div class="i-ri:loader-4-line animate-spin animate-duration-[2.5s]" text-4xl />
+      <div class="animate-spin animate-duration-[2.5s] preserve-3d">
+        <div i-ri:loader-4-line text-4xl />
+      </div>
     </div>
   </label>
 </template>

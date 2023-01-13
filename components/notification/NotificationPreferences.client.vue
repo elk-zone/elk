@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PushSubscriptionError } from '~/composables/push-notifications/types'
+
 defineProps<{ show?: boolean }>()
 
 const {
@@ -76,8 +78,13 @@ const doSubscribe = async () => {
     }
   }
   catch (err) {
-    console.error(err)
-    subscribeError = t('settings.notifications.push_notifications.subscription_error.request_error')
+    if (err instanceof PushSubscriptionError) {
+      subscribeError = t(`settings.notifications.push_notifications.subscription_error.${err.code}`)
+    }
+    else {
+      console.error(err)
+      subscribeError = t('settings.notifications.push_notifications.subscription_error.request_error')
+    }
     showSubscribeError = true
   }
   finally {
@@ -140,7 +147,10 @@ onActivated(() => (busy = false))
                   :class="busy || !saveEnabled ? 'border-transparent' : null"
                   :disabled="busy || !saveEnabled"
                 >
-                  <span :class="busy && animateSave ? 'i-ri:loader-2-fill animate-spin' : 'i-ri:save-2-fill'" />
+                  <span v-if="busy && animateSave" aria-hidden="true" block animate-spin preserve-3d>
+                    <span block i-ri:loader-2-fill aria-hidden="true" />
+                  </span>
+                  <span v-else block aria-hidden="true" i-ri:save-2-fill />
                   {{ $t('settings.notifications.push_notifications.save_settings') }}
                 </button>
                 <button
@@ -150,7 +160,7 @@ onActivated(() => (busy = false))
                   :disabled="busy || !saveEnabled"
                   @click="undoChanges"
                 >
-                  <span aria-hidden="true" class="i-material-symbols:undo-rounded" />
+                  <span aria-hidden="true" class="block i-material-symbols:undo-rounded" />
                   {{ $t('settings.notifications.push_notifications.undo_settings') }}
                 </button>
               </div>
@@ -162,7 +172,10 @@ onActivated(() => (busy = false))
                 :class="busy ? 'border-transparent' : null"
                 :disabled="busy"
               >
-                <span aria-hidden="true" :class="busy && animateRemoveSubscription ? 'i-ri:loader-2-fill animate-spin' : 'i-material-symbols:cancel-rounded'" />
+                <span v-if="busy && animateRemoveSubscription" aria-hidden="true" block animate-spin preserve-3d>
+                  <span block i-ri:loader-2-fill aria-hidden="true" />
+                </span>
+                <span v-else block aria-hidden="true" i-material-symbols:cancel-rounded />
                 {{ $t('settings.notifications.push_notifications.unsubscribe') }}
               </button>
             </form>

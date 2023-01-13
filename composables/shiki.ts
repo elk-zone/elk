@@ -32,10 +32,11 @@ export function useHightlighter(lang: Lang) {
       .then(() => {
         registeredLang.value.set(lang, true)
       })
-      .catch((e) => {
-        console.error(`[shiki] Failed to load language ${lang}`)
-        console.error(e)
-        registeredLang.value.set(lang, false)
+      .catch(() => {
+        const fallbackLang = 'md'
+        shiki.value?.loadLanguage(fallbackLang).then(() => {
+          registeredLang.value.set(fallbackLang, true)
+        })
       })
     return undefined
   }

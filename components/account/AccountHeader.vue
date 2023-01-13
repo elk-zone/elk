@@ -44,14 +44,17 @@ function previewAvatar() {
 }
 
 async function toggleNotify() {
-  relationship!.notifying = !relationship!.notifying
+// @ts-expect-error
+  relationship!.notifying = !relationship?.notifying
   try {
-    const newRel = await masto.v1.accounts.follow(account.id, { notify: relationship!.notifying })
+  // @ts-expect-error
+    const newRel = await masto.v1.accounts.follow(account.id, { notify: relationship?.notifying })
     Object.assign(relationship!, newRel)
   }
   catch {
     // TODO error handling
-    relationship!.notifying = !relationship!.notifying
+    // @ts-expect-error
+    relationship!.notifying = !relationship?.notifying
   }
 }
 
@@ -76,6 +79,8 @@ watchEffect(() => {
 })
 
 const isSelf = $computed(() => currentUser.value?.account.id === account.id)
+// @ts-expect-error
+const isAlertedOnPost = $computed(() => relationship?.notifying)
 </script>
 
 <template>
@@ -111,7 +116,7 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           </NuxtLink>
           <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group @click="toggleNotify()">
             <div rounded p2 group-hover="bg-rose/10">
-              <div v-if="relationship?.notifying" i-ri:bell-fill />
+              <div v-if="isAlertedOnPost" i-ri:bell-fill />
               <div v-else i-ri-bell-line />
             </div>
           </button>

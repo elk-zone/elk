@@ -19,7 +19,9 @@ defineOptions({
 
 defineSlots<{
   text: {}
-  icon: {}
+  icon: {
+    active: boolean
+  }
 }>()
 
 const el = ref<HTMLDivElement>()
@@ -48,28 +50,21 @@ useCommand({
 
 <template>
   <component
-    :is="as"
-    v-bind="$attrs" ref="el"
-    w-fit flex gap-1 items-center
-    rounded group
-    :hover=" !disabled ? hover : undefined"
-    focus:outline-none
-    :focus-visible="hover"
-    :class="active ? color : 'text-secondary'"
-    :aria-label="content"
-    :disabled="disabled"
+    :is="as" v-bind="$attrs" ref="el" w-fit flex gap-1 items-center rounded group
+    :hover="!disabled ? hover : undefined" focus:outline-none :focus-visible="hover"
+    :class="active ? color : 'text-secondary'" :aria-label="content" :disabled="disabled"
   >
     <CommonTooltip placement="bottom" :content="content">
       <div
-        rounded-full p2
-        v-bind="disabled ? {} : {
+        rounded-full p2 v-bind="disabled ? {} : {
           'group-hover': groupHover,
           'group-focus-visible': groupHover,
           'group-focus-visible:ring': '2 current',
         }"
+        box-content w="1.2em" h="1.2em" of-hidden
       >
         <template v-if="$slots.icon">
-          <slot name="icon" />
+          <slot name="icon" :active="active" />
         </template>
 
         <div v-else :class="active && activeIcon ? activeIcon : icon" />

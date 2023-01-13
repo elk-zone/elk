@@ -7,20 +7,14 @@ defineProps({
   width: {
     type: String,
   },
-
 })
-
-const $checked = ref(false)
-const handleClick = () => {
-  $checked.value = !$checked.value
-}
 </script>
 
 <template>
-  <div :class="$checked ? 'checked' : ''" class="like-button" @click="handleClick">
+  <div :class="checked ? 'checked' : ''" class="like-button">
     <label for="checkbox">
-      <svg class="svg" :style="{ width, height: width }" view-box="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
-        <g fill="none" fill-rule="evenodd">
+      <svg class="svg" :style="{ height: width, width }" v-bind="$attrs" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" fill-rule="evenodd" transform="translate(467 392)">
           <path
             class="heart"
             d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
@@ -95,7 +89,8 @@ const handleClick = () => {
     fill: #e2264d;
 
     animation: animateHeart 0.3s linear forwards 0.25s;
-
+    height: 60px;
+    width: 60px;
   }
 
   .main-circ {

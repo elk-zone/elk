@@ -37,18 +37,11 @@ const reply = () => {
   <div flex justify-between>
     <div flex-1>
       <StatusActionButton
-        :content="$t('action.reply')"
-        :text="status.repliesCount || ''"
-        color="text-blue" hover="text-blue" group-hover="bg-blue/10"
-        icon="i-ri:chat-1-line"
-        :command="command"
-        @click="reply"
+        :content="$t('action.reply')" :text="status.repliesCount || ''" color="text-blue"
+        hover="text-blue" group-hover="bg-blue/10" icon="i-ri:chat-1-line" :command="command" @click="reply"
       >
         <template v-if="status.repliesCount" #text>
-          <CommonLocalizedNumber
-            keypath="action.reply_count"
-            :count="status.repliesCount"
-          />
+          <CommonLocalizedNumber keypath="action.reply_count" :count="status.repliesCount" />
         </template>
       </StatusActionButton>
     </div>
@@ -57,19 +50,12 @@ const reply = () => {
       <StatusActionButton
         :content="$t('action.boost')"
         :text="!getWellnessSetting(userSettings, 'hideBoostCount') && status.reblogsCount ? status.reblogsCount : ''"
-        color="text-green" hover="text-green" group-hover="bg-green/10"
-        icon="i-ri:repeat-line"
-        active-icon="i-ri:repeat-fill"
-        :active="!!status.reblogged"
-        :disabled="isLoading.reblogged || !canReblog"
-        :command="command"
-        @click="toggleReblog()"
+        color="text-green" hover="text-green" group-hover="bg-green/10" icon="i-ri:repeat-line"
+        active-icon="i-ri:repeat-fill" :active="!!status.reblogged" :disabled="isLoading.reblogged || !canReblog"
+        :command="command" @click="toggleReblog()"
       >
         <template v-if="status.reblogsCount && !getWellnessSetting(userSettings, 'hideBoostCount')" #text>
-          <CommonLocalizedNumber
-            keypath="action.boost_count"
-            :count="status.reblogsCount"
-          />
+          <CommonLocalizedNumber keypath="action.boost_count" :count="status.reblogsCount" />
         </template>
       </StatusActionButton>
     </div>
@@ -78,37 +64,31 @@ const reply = () => {
       <StatusActionButton
         :content="$t('action.favourite')"
         :text="!getWellnessSetting(userSettings, 'hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
-        color="text-rose" hover="text-rose" group-hover="bg-rose/10"
-        icon="i-ri:heart-3-line"
-        active-icon="i-ri:heart-3-fill"
-        :active="!!status.favourited"
-        :disabled="isLoading.favourited"
-        :command="command"
-        @click="toggleFavourite()"
+        color="text-rose" hover="text-rose" group-hover="bg-rose/10" icon="i-ri:heart-3-line"
+        active-icon="i-ri:heart-3-fill" :active="!!status.favourited" :disabled="isLoading.favourited"
+        :command="command" @click="toggleFavourite()"
       >
-        <template #icon>
-          <LikeIcon width="1.2em" />
+        <template #icon="slotProps">
+          <LikeIcon width="1.2em" class="like-icon" :checked="slotProps.active" />
         </template>
         <template v-if="status.favouritesCount && !getWellnessSetting(userSettings, 'hideFavoriteCount')" #text>
-          <CommonLocalizedNumber
-            keypath="action.favourite_count"
-            :count="status.favouritesCount"
-          />
+          <CommonLocalizedNumber keypath="action.favourite_count" :count="status.favouritesCount" />
         </template>
       </StatusActionButton>
     </div>
 
     <div flex-none>
       <StatusActionButton
-        :content="$t('action.bookmark')"
-        color="text-yellow" hover="text-yellow" group-hover="bg-yellow/10"
-        icon="i-ri:bookmark-line"
-        active-icon="i-ri:bookmark-fill"
-        :active="!!status.bookmarked"
-        :disabled="isLoading.bookmarked"
-        :command="command"
-        @click="toggleBookmark()"
+        :content="$t('action.bookmark')" color="text-yellow" hover="text-yellow"
+        group-hover="bg-yellow/10" icon="i-ri:bookmark-line" active-icon="i-ri:bookmark-fill"
+        :active="!!status.bookmarked" :disabled="isLoading.bookmarked" :command="command" @click="toggleBookmark()"
       />
     </div>
   </div>
 </template>
+
+<style scoped>
+.like-icon {
+  transform: scale(1.8);
+}
+</style>

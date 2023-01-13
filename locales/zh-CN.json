@@ -120,7 +120,6 @@
     "title": "预览鹿鸣！"
   },
   "language": {
-    "none": "无",
     "search": "搜索"
   },
   "menu": {
@@ -162,7 +161,7 @@
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
     "bookmarks": "书签",
-    "built_at": "于 {0}构建",
+    "built_at": "构建于 {0}",
     "conversations": "私信",
     "explore": "探索",
     "favourites": "喜欢",

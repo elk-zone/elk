@@ -47,7 +47,6 @@ export default defineNuxtModule({
       await rm('.output/public/apple-touch-icon.png')
       await rm('.output/public/elk-og.png')
       await rm('.output/public/favicon.ico')
-      await rm('.output/public/logo.svg')
       await rm('.output/public/pwa-192x192.png')
       await rm('.output/public/pwa-512x512.png')
       await rm('.output/public/robots.txt')

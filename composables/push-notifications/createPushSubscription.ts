@@ -4,6 +4,7 @@ import type {
   PushManagerSubscriptionInfo,
   RequiredUserLogin,
 } from '~/composables/push-notifications/types'
+import { PushSubscriptionError } from '~/composables/push-notifications/types'
 
 export const createPushSubscription = async (
   user: RequiredUserLogin,
@@ -41,8 +42,11 @@ export const createPushSubscription = async (
       )
     })
     .catch((error) => {
-      if (error.code === 20 && error.name === 'AbortError')
-        console.warn('Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.')
+      let useError: PushSubscriptionError | Error = error
+      if (error.code === 11 && error.name === 'InvalidStateError')
+        useError = new PushSubscriptionError('too_many_registrations', 'Too many registrations')
+      else if (error.code === 20 && error.name === 'AbortError')
+        console.error('Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.')
       else if (error.code === 5 && error.name === 'InvalidCharacterError')
         console.error('The VAPID public key seems to be invalid:', vapidKey)
 
@@ -53,6 +57,9 @@ export const createPushSubscription = async (
         .catch((e) => {
           console.error(e)
           return Promise.resolve(undefined)
+        })
+        .finally(() => {
+          return Promise.reject(useError)
         })
     })
 }

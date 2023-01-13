@@ -21,6 +21,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
     sensitive,
     spoilerText,
     language,
+    mentions,
   } = options
 
   return {
@@ -34,6 +35,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
       spoilerText: spoilerText || '',
       language: language || 'en',
     },
+    mentions,
     lastUpdated: Date.now(),
   }
 }
@@ -48,10 +50,6 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
     spoilerText: status.spoilerText,
     language: status.language,
   })
-}
-
-function toMentionsHTML(accounts: string[]) {
-  return accounts.map(acct => `<span data-type="mention" data-id="${acct}" contenteditable="false">@${acct}</span>`).join(' ')
 }
 
 function getAccountsToMention(status: mastodon.v1.Status) {
@@ -72,9 +70,10 @@ export function getReplyDraft(status: mastodon.v1.Status) {
     key: `reply-${status.id}`,
     draft: () => {
       return getDefaultDraft({
-        initialText: toMentionsHTML(accountsToMention),
+        initialText: '',
         inReplyToId: status!.id,
         visibility: status.visibility,
+        mentions: accountsToMention,
       })
     },
   }

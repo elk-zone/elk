@@ -11,7 +11,7 @@
     "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur·ice.",
     "blocked_domains": "Domaines bloqués",
     "blocked_users": "Utilisateur·ice·s bloqué·e·s",
-    "blocking": "Blocked",
+    "blocking": "Bloqué·e",
     "bot": "Automatisé",
     "favourites": "Appréciés",
     "follow": "Suivre",
@@ -33,9 +33,9 @@
     "posts_count": "{0} Messages",
     "profile_description": "En-tête du profil de {0}",
     "profile_unavailable": "Profil non accessible",
-    "unblock": "Unblock",
+    "unblock": "Débloquer",
     "unfollow": "Ne plus suivre",
-    "unmute": "Unmute"
+    "unmute": "Démasquer"
   },
   "action": {
     "apply": "Appliquer",

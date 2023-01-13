@@ -9,9 +9,9 @@ function setColorMode(mode: ColorMode) {
 </script>
 
 <template>
-  <div flex="~ gap4" w-full>
+  <div flex="~ gap4 wrap" w-full>
     <button
-      btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base
+      btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base ws-nowrap
       :tabindex="colorMode.preference === 'dark' ? 0 : -1"
       :class="colorMode.preference === 'dark' ? 'pointer-events-none' : 'filter-saturate-0'"
       @click="setColorMode('dark')"
@@ -20,7 +20,7 @@ function setColorMode(mode: ColorMode) {
       {{ $t('settings.interface.dark_mode') }}
     </button>
     <button
-      btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base
+      btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base ws-nowrap
       :tabindex="colorMode.preference === 'light' ? 0 : -1"
       :class="colorMode.preference === 'light' ? 'pointer-events-none' : 'filter-saturate-0'"
       @click="setColorMode('light')"
@@ -29,7 +29,7 @@ function setColorMode(mode: ColorMode) {
       {{ $t('settings.interface.light_mode') }}
     </button>
     <button
-      btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base
+      btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base ws-nowrap
       :tabindex="colorMode.preference === 'system' ? 0 : -1"
       :class="colorMode.preference === 'system' ? 'pointer-events-none' : 'filter-saturate-0'"
       @click="setColorMode('system')"

@@ -18,17 +18,13 @@ RUN apk add git --no-cache
 RUN pnpm i
 RUN pnpm build
 
-# Remove dev deps ( skip postinstall script after removing dev deps or it will fail )
-RUN pnpm i -P --ignore-scripts
-
 FROM base AS runner
 
 ENV NODE_ENV=production
 
-COPY ./package.json ./
-COPY --from=builder /elk/node_modules ./node_modules
 COPY --from=builder /elk/.output ./.output
 
 EXPOSE 5314/tcp
 
-CMD ["pnpm", "start"]
+ENV PORT=5314
+CMD ["node", ".output/server/index.mjs"]

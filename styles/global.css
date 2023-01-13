@@ -141,7 +141,24 @@ em-emoji-picker {
   pre code {
     --at-apply: bg-transparent px0 py0 rounded-none leading-1.6em;
   }
-
+  ol {
+    --at-apply: list-decimal my-3 pl-6 ml-2;
+  }
+  ul {
+    --at-apply: list-disc my-3 pl-6 ml-2;
+  }
+  li {
+    --at-apply: mt-1 mb-1;
+    &:empty {
+      --at-apply: hidden;
+    }
+  }
+  'ol > li' {
+    --at-apply: pl-2;
+  }
+  'ul > li' {
+    --at-apply: pl-2;
+  }
   .code-block {
     --at-apply: font-mono bg-code text-0.875em p3 mt-2 rounded overflow-auto
       leading-1.6em;

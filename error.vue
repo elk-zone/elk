@@ -48,7 +48,7 @@ const reload = async () => {
           </div>
           <button flex items-center gap-2 justify-center btn-solid text-center :disabled="state === 'reloading'">
             <div v-if="state === 'reloading'" animate-spin preserve-3d>
-              <div block i-ri:loader-2-fill />
+              <div i-ri:loader-2-fill />
             </div>
             {{ state === 'reloading' ? 'Reloading' : 'Reload' }}
           </button>

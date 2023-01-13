@@ -120,6 +120,12 @@ defineExpose({
         border="2 dashed transparent"
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
+        <ContentMentionGroup v-if="draft.mentions?.length && shouldExpanded">
+          <div v-for="m of draft.mentions" :key="m" text-primary>
+            @{{ m }}
+          </div>
+        </ContentMentionGroup>
+
         <div v-if="draft.params.sensitive">
           <input
             v-model="draft.params.spoilerText"

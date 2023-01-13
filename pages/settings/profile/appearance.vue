@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
-import { satisfies } from 'semver'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
 

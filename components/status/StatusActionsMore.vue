@@ -23,6 +23,7 @@ const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
+const userSettings = useUserSettings()
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 

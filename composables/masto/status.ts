@@ -32,8 +32,16 @@ export function useStatusActions(props: StatusActionsProps) {
     if (!checkLogin())
       return
 
+    const prevCount = countField ? status[countField] : undefined
+
     isLoading[action] = true
+    const isCancel = status[action]
     fetchNewStatus().then((newStatus) => {
+      // when the action is cancelled, the count is not updated highly likely (if they're the same)
+      // issue of Mastodon API
+      if (isCancel && countField && prevCount === newStatus[countField])
+        newStatus[countField] -= 1
+
       Object.assign(status, newStatus)
       cacheStatus(newStatus, undefined, true)
     }).finally(() => {

@@ -23,9 +23,13 @@ export const usePublish = (options: {
   })
 
   async function publishDraft() {
+    let content = htmlToText(draft.params.status || '')
+    if (draft.mentions?.length)
+      content = `${draft.mentions.map(i => `@${i}`).join(' ')} ${content}`
+
     const payload = {
       ...draft.params,
-      status: htmlToText(draft.params.status || ''),
+      status: content,
       mediaIds: draft.attachments.map(a => a.id),
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.v1.CreateStatusParams

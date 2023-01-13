@@ -2,6 +2,8 @@
 const buildInfo = useRuntimeConfig().public.buildInfo
 const timeAgoOptions = useTimeAgoOptions()
 
+const userSettings = useUserSettings()
+
 const buildTimeDate = new Date(buildInfo.time)
 const buildTimeAgo = useTimeAgo(buildTimeDate, timeAgoOptions)
 

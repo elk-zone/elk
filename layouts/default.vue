@@ -53,7 +53,7 @@ const showUserPicker = logicAnd(
           <slot />
         </div>
         <div sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
-          <CommonOfflineChecker />
+          <CommonOfflineChecker v-if="isHydrated" />
           <NavBottom v-if="isHydrated" sm:hidden />
         </div>
       </div>

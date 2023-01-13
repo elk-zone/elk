@@ -4,7 +4,7 @@ const online = useOnline()
 
 <template>
   <div
-    v-if="!online && isHydrated"
+    v-if="!online"
     w-full min-h-30px px4 py3 text-primary bg-base
     border="t base" flex="~ gap-2 center"
   >

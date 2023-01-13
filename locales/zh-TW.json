@@ -82,11 +82,21 @@
     "toggle_zen_mode": "切換禪模式"
   },
   "common": {
+    "confirm_dialog": {
+      "cancel": "否",
+      "confirm": "是",
+      "title": "你確定嗎？"
+    },
     "end_of_list": "列表到底啦",
     "error": "錯誤",
     "in": "在",
     "not_found": "無法找到相關內容",
-    "offline_desc": "您目前已離線，請檢查網絡連接。"
+    "offline_desc": "您目前已離線，請檢查網路連接。"
+
+  },
+  "compose": {
+    "draft_title": "草稿 {0}",
+    "drafts": "草稿 ({v})"
   },
   "conversation": {
     "with": "與"
@@ -109,19 +119,31 @@
     "desc_para6": "來參與其中。",
     "title": "預覽鹿鳴！"
   },
+  "language": {
+    "none": "無",
+    "search": "搜索"
+  },
   "menu": {
     "block_account": "拉黑 {0}",
     "block_domain": "拉黑域名 {0}",
     "copy_link_to_post": "複製這篇帖文的鏈接",
     "delete": "刪除",
     "delete_and_redraft": "刪除並重新編輯",
+    "delete_confirm": {
+      "cancel": "取消",
+      "confirm": "刪除",
+      "title": "你確定要刪除這條貼文嗎？"
+    },
     "direct_message_account": "私信 {0}",
     "edit": "編輯",
     "mention_account": "提及 {0}",
     "mute_account": "屏蔽 {0}",
-    "mute_conversation": "靜音帖子",
+    "mute_conversation": "靜音帖文",
     "open_in_original_site": "從源站打開",
     "pin_on_profile": "置頂在個人資料上",
+    "share_post": "分享這條帖文",
+    "show_favourited_and_boosted_by": "展示誰喜歡和轉發了",
+    "show_reblogs": "顯示來自 {0} 的轉發",
     "show_untranslated": "顯示原文",
     "toggle_theme": {
       "dark": "切換深色模式",
@@ -135,6 +157,9 @@
     "unpin_on_profile": "取消置頂"
   },
   "nav": {
+    "back": "回退",
+    "blocked_domains": "已拉黑的域名",
+    "blocked_users": "已拉黑的用戶",
     "bookmarks": "書籤",
     "built_at": "於 {0}構建",
     "conversations": "私信",
@@ -149,7 +174,7 @@
     "select_feature_flags": "功能開關",
     "select_font_size": "字體大小",
     "select_language": "選擇語言",
-    "settings": "設置",
+    "settings": "設定",
     "show_intro": "應用介紹",
     "toggle_theme": "切換主題",
     "zen_mode": "禪模式"
@@ -175,7 +200,29 @@
     "dismiss": "忽略",
     "title": "鹿鳴存在新的更新",
     "update": "更新",
-    "update_available_short": "更新鹿鳴"
+    "update_available_short": "更新鹿鳴",
+    "webmanifest": {
+      "canary": {
+        "description": "用 🧡 製作的 Mastodon 客戶端（Canary）",
+        "name": "鹿鳴 Canary",
+        "short_name": "鹿鳴 Canary"
+      },
+      "dev": {
+        "description": "用 🧡 製作的 Mastodon 客戶端（開發版）",
+        "name": "鹿鳴 開發版",
+        "short_name": "鹿鳴 開發版"
+      },
+      "preview": {
+        "description": "用 🧡 製作的 Mastodon 客戶端（預覽版）",
+        "name": "鹿鳴 预览版",
+        "short_name": "鹿鳴 预览版"
+      },
+      "release": {
+        "description": "用 🧡 制作的 Mastodon 客户端",
+        "name": "鹿鳴",
+        "short_name": "鹿鳴"
+      }
+    }
   },
   "search": {
     "search_desc": "搜索用戶或話題標籤",
@@ -184,6 +231,10 @@
   "settings": {
     "about": {
       "label": "關於"
+    },
+    "account_settings": {
+      "description": "在 Mastodon UI 中編輯你的賬號設定",
+      "label": "賬號設定"
     },
     "feature_flags": {
       "github_cards": "GitHub 卡片",
@@ -197,16 +248,24 @@
       "default": "（默認）",
       "font_size": "字號",
       "label": "外觀",
-      "light_mode": "淺色模式"
+      "light_mode": "淺色模式",
+      "size_label": {
+        "lg": "大",
+        "md": "中",
+        "sm": "小",
+        "xl": "特大",
+        "xs": "特小"
+      },
+      "system_mode": "跟隨系統"
     },
     "language": {
       "display_language": "首選語言",
       "label": "語言"
     },
     "notifications": {
-      "label": "Notifications",
+      "label": "通知",
       "notifications": {
-        "label": "Notifications settings"
+        "label": "通知設定"
       },
       "push_notifications": {
         "alerts": {
@@ -217,9 +276,9 @@
           "reblog": "轉發了你的帖文",
           "title": "接收了什麼通知？"
         },
-        "description": "Receive notifications even when you are not using Elk.",
-        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
-        "label": "Push notifications settings",
+        "description": "當你沒有在使用鹿鳴時也能接收通知。",
+        "instructions": "不要忘記點擊 @:settings.notifications.push_notifications.save_settings 按鈕保存改動！",
+        "label": "推送通知設定",
         "policy": {
           "all": "任何人",
           "followed": "我關注的人",
@@ -227,22 +286,29 @@
           "none": "無人",
           "title": "我可以從誰那裡接收通知？"
         },
-        "save_settings": "保存設置改動",
-        "undo_settings": "撤銷設置改動",
+        "save_settings": "保存設定改動",
+        "subscription_error": {
+          "clear_error": "清除錯誤",
+          "permission_denied": "權限不足：請在你的瀏覽器中打開通知權限。",
+          "request_error": "請求訂閱時發生了一個錯誤，請再次嘗試。如錯誤仍然存在，請到鹿鳴代碼倉庫中報告這一問題。",
+          "title": "無法訂閱推送通知。"
+        },
+        "title": "推送通知设置",
+        "undo_settings": "撤銷設定改動",
         "unsubscribe": "禁用桌面通知",
         "unsupported": "你的瀏覽器不支持桌面通知",
         "warning": {
           "enable_close": "關閉",
-          "enable_description": "若想在鹿鳴沒有打開時接收通知，請啟用桌面通知功能。一旦啟動，你可以通過上面的“打開設置”按鈕來 精確控制哪種類型的互動可以產生桌面通知。",
+          "enable_description": "若想在鹿鳴沒有打開時接收通知，請啟用桌面通知功能。一旦啟動，你可以通過上面的“打開設定”按鈕來 精確控制哪種類型的互動可以產生桌面通知。",
           "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
           "enable_desktop": "啟用桌面通知功能",
           "enable_title": "不錯過任何事",
           "re_auth": "您的服務器似乎不支持推送通知。嘗試退出用戶並重新登錄。如果此消息仍然出現，請聯繫您服務器的管理員。"
         }
       },
-      "show_btn": "Go to notifications settings"
+      "show_btn": "前往通知設置"
     },
-    "notifications_settings": "Notifications",
+    "notifications_settings": "通知",
     "preferences": {
       "label": "首選項"
     },
@@ -252,6 +318,8 @@
         "description": "編輯個人資料，例如頭像、用戶名、個人簡介等。",
         "display_name": "暱稱",
         "label": "個人資料",
+        "profile_metadata": "個人資料附加信息",
+        "profile_metadata_desc": "這將會在個人資料頁上以表格的形式展示，最多 {0} 個項目",
         "title": "編輯個人資料"
       },
       "featured_tags": {
@@ -260,7 +328,7 @@
       },
       "label": "個人資料"
     },
-    "select_a_settings": "在左側選擇一個設置",
+    "select_a_settings": "在左側選擇一個設定",
     "users": {
       "export": "導出用戶令牌",
       "import": "導入用戶令牌",
@@ -268,6 +336,8 @@
     }
   },
   "state": {
+    "attachments_exceed_server_limit": "附件的數量超出了最大限制",
+    "attachments_limit_error": "超出每篇帖文的最大限制",
     "edited": "（已編輯）",
     "editing": "編輯中",
     "loading": "加載中...",
@@ -289,6 +359,8 @@
       "finished": "已在 {0} 結束"
     },
     "reblogged": "{0} 轉發了",
+    "replying_to": "回复{0}",
+    "show_full_thread": "顯示完整貼文串",
     "someone": "某人",
     "spoiler_show_less": "隱藏",
     "spoiler_show_more": "顯示更多",
@@ -308,6 +380,12 @@
     "notifications_mention": "提及",
     "posts": "帖文",
     "posts_with_replies": "帖文與留言"
+  },
+  "tag": {
+    "follow": "關注",
+    "follow_label": "關注 {0} 標籤",
+    "unfollow": "取消關注",
+    "unfollow_label": "取消關注 {0} 標籤"
   },
   "time_ago_options": {
     "day_future": "現在|明天|{n} 天后",
@@ -341,7 +419,8 @@
     "year_past": "現在|去年|{n} 年前"
   },
   "timeline": {
-    "show_new_items": "展示 {v} 條新帖文"
+    "show_new_items": "展示 {v} 條新帖文",
+    "view_older_posts": "其他站點上更老的帖文可能不會在這裡顯示。"
   },
   "title": {
     "federated_timeline": "跨站時間線",
@@ -350,12 +429,13 @@
   "tooltip": {
     "add_content_warning": "添加內容警告標識",
     "add_media": "添加圖片、視頻或者音頻文件",
+    "add_publishable_content": "添加要發布的內容",
     "change_content_visibility": "修改內容是否可見",
     "change_language": "改變語言",
     "emoji": "表情符號",
-    "explore_links_intro": "這些新聞故事正被本站和分佈式網絡上其他站點的用戶談論。",
-    "explore_posts_intro": "來自本站和分佈式網絡上其他站點的這些嘟文正在本站引起關注。",
-    "explore_tags_intro": "這些標籤正在本站和分佈式網絡上其他站點的用戶中引起關注。",
+    "explore_links_intro": "這些新聞故事正被本站和分佈式網路上其他站點的用戶談論。",
+    "explore_posts_intro": "來自本站和分佈式網路上其他站點的這些嘟文正在本站引起關注。",
+    "explore_tags_intro": "這些標籤正在本站和分佈式網路上其他站點的用戶中引起關注。",
     "toggle_code_block": "切換代碼塊"
   },
   "user": {

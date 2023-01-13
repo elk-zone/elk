@@ -11,6 +11,9 @@ let knownServers = $ref<string[]>([])
 let autocompleteIndex = $ref(0)
 let autocompleteShow = $ref(false)
 
+const users = useUsers()
+const userSettings = useUserSettings()
+
 async function oauth() {
   if (busy)
     return
@@ -25,10 +28,12 @@ async function oauth() {
     server = server.split('/')[0]
 
   try {
-    location.href = await $fetch<string>(`/api/${server || publicServer.value}/login`, {
+    location.href = await (globalThis.$fetch as any)(`/api/${server || publicServer.value}/login`, {
       method: 'POST',
       body: {
+        force_login: users.value.some(u => u.server === server),
         origin: location.origin,
+        lang: userSettings.value.language,
       },
     })
   }
@@ -94,6 +99,10 @@ function toSelector(server: string) {
   return server.replace(/[^\w-]/g, '-')
 }
 function move(delta: number) {
+  if (filteredServers.length === 0) {
+    autocompleteIndex = 0
+    return
+  }
   autocompleteIndex = ((autocompleteIndex + delta) + filteredServers.length) % filteredServers.length
   document.querySelector(`#${toSelector(filteredServers[autocompleteIndex])}`)?.scrollIntoView(false)
 }
@@ -119,7 +128,7 @@ function select(index: number) {
 
 onMounted(async () => {
   input?.focus()
-  knownServers = await $fetch('/api/list-servers')
+  knownServers = await (globalThis.$fetch as any)('/api/list-servers')
   fuse = new Fuse(knownServers, { shouldSort: true })
 })
 
@@ -204,7 +213,10 @@ onClickOutside($$(input), () => {
       </span>
     </div>
     <button flex="~ row" gap-x-2 items-center btn-solid mt2 :disabled="!server || busy">
-      <span aria-hidden="true" inline-block :class="busy ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:login-circle-line'" class="rtl-flip" />
+      <span v-if="busy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+        <span block i-ri:loader-2-fill aria-hidden="true" />
+      </span>
+      <span v-else aria-hidden="true" block i-ri:login-circle-line class="rtl-flip" />
       {{ $t('action.sign_in') }}
     </button>
   </form>

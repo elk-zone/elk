@@ -120,6 +120,12 @@ defineExpose({
         border="2 dashed transparent"
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
+        <ContentMentionGroup v-if="draft.mentions?.length && shouldExpanded">
+          <div v-for="m of draft.mentions" :key="m" text-primary>
+            @{{ m }}
+          </div>
+        </ContentMentionGroup>
+
         <div v-if="draft.params.sensitive">
           <input
             v-model="draft.params.spoilerText"
@@ -139,7 +145,9 @@ defineExpose({
         </div>
 
         <div v-if="isUploading" flex gap-1 items-center text-sm p1 text-primary>
-          <div i-ri:loader-2-fill animate-spin />
+          <div animate-spin preserve-3d>
+            <div i-ri:loader-2-fill />
+          </div>
           {{ $t('state.uploading') }}
         </div>
         <div
@@ -268,7 +276,9 @@ defineExpose({
             aria-describedby="publish-tooltip"
             @click="publish"
           >
-            <div v-if="isSending" i-ri:loader-2-fill animate-spin />
+            <span v-if="isSending" block animate-spin preserve-3d>
+              <div block i-ri:loader-2-fill />
+            </span>
             <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
             <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
             <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>

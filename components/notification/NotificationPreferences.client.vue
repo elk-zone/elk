@@ -160,7 +160,7 @@ onActivated(() => (busy = false))
                   :disabled="busy || !saveEnabled"
                   @click="undoChanges"
                 >
-                  <div aria-hidden="true" class="i-material-symbols:undo-rounded" />
+                  <span aria-hidden="true" class="block i-material-symbols:undo-rounded" />
                   {{ $t('settings.notifications.push_notifications.undo_settings') }}
                 </button>
               </div>

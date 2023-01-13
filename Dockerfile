@@ -16,7 +16,7 @@ RUN apk add git --no-cache
 COPY . ./
 
 # Build
-RUN pnpm i
+RUN pnpm i --frozen-lockfile
 RUN pnpm build
 
 FROM base AS runner

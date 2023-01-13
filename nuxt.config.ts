@@ -28,8 +28,8 @@ export default defineNuxtConfig({
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
-    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/tauri/index',
+    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
   ],
   experimental: {
     payloadExtraction: false,

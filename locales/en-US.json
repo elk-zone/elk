@@ -453,6 +453,7 @@
   },
   "tooltip": {
     "add_content_warning": "Add content warning",
+    "add_emojis": "Add emojis",
     "add_media": "Add images, a video or an audio file",
     "add_publishable_content": "Add content to publish",
     "change_content_visibility": "Change content visibility",

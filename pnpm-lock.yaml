@@ -94,7 +94,7 @@ importers:
       jsdom: ^21.0.0
       lint-staged: ^13.1.0
       lru-cache: ^7.14.1
-      masto: ^5.3.0
+      masto: ^5.4.0
       nuxt: ^3.0.0
       pinia: ^2.0.28
       postcss-nested: ^6.0.0
@@ -152,13 +152,13 @@ importers:
       iso-639-1: 2.1.15
       js-yaml: 4.1.0
       lru-cache: 7.14.1
-      masto: 5.3.0
+      masto: 5.4.0
       pinia: 2.0.28_typescript@4.9.4
       shiki: 0.12.1
       shiki-es: 0.1.2
       slimeform: 0.8.0
-      tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/c19b5d1d58275329882dd931ea66960e00febdb2
-      tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/2404bc57014d323361ac6bc4505fb9e3db2d0aab
+      tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/9d2a19ad05fafeb80991006e14f0f95fe1109aba
+      tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/c71665bf5dcf48ae70a88d622eb38b2548b60a5d
       tiny-decode: 0.1.3
       tippy.js: 6.3.7
       ufo: 1.0.1
@@ -1990,7 +1990,7 @@ packages:
       '@types/node-fetch': 2.6.2
       abort-controller: 3.0.0
       form-data: 4.0.0
-      node-fetch: 2.6.7
+      node-fetch: 2.6.8
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -8049,8 +8049,8 @@ packages:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
     dev: true
 
-  /masto/5.3.0:
-    resolution: {integrity: sha512-gArycufHuEEQ6WCvWNmiIQq+AIAo2grWQwO7mpenNKb0wFKYSaYTeMthx0t+Ircso+vBtsXdbjGMfzZeIttlow==}
+  /masto/5.4.0:
+    resolution: {integrity: sha512-Th/EOyVIPMPJQ1GldBx9vcaDagWUUsco+R4D7AfDR0mmyXFpdwRyVp0NRe+/PMPCNFG1UnAEX0jxLzDSxIEZ5w==}
     dependencies:
       '@mastojs/ponyfills': 1.0.4
       change-case: 4.1.2
@@ -8821,6 +8821,19 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
+    dev: true
+
+  /node-fetch/2.6.8:
+    resolution: {integrity: sha512-RZ6dBYuj8dRSfxpUSu+NsdF1dpPpluJxwOp+6IoDp/sH2QNDSvurYsAa+F1WxY2RjA1iP93xhcsUoYbF2XBqVg==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
+    dev: false
 
   /node-fetch/3.3.0:
     resolution: {integrity: sha512-BKwRP/O0UvoMKp7GNdwPlObhYGB5DQqwhEDQlNKuoqwVYSxkSZCSbHjnFFmUEtwSKRPU4kNK8PbDYYitwaE3QA==}
@@ -12784,16 +12797,16 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
 
-  github.com/tauri-apps/tauri-plugin-log/c19b5d1d58275329882dd931ea66960e00febdb2:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/c19b5d1d58275329882dd931ea66960e00febdb2}
+  github.com/tauri-apps/tauri-plugin-log/9d2a19ad05fafeb80991006e14f0f95fe1109aba:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/9d2a19ad05fafeb80991006e14f0f95fe1109aba}
     name: tauri-plugin-log-api
     version: 0.0.0
     dependencies:
       '@tauri-apps/api': 1.2.0
     dev: false
 
-  github.com/tauri-apps/tauri-plugin-store/2404bc57014d323361ac6bc4505fb9e3db2d0aab:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/2404bc57014d323361ac6bc4505fb9e3db2d0aab}
+  github.com/tauri-apps/tauri-plugin-store/c71665bf5dcf48ae70a88d622eb38b2548b60a5d:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/c71665bf5dcf48ae70a88d622eb38b2548b60a5d}
     name: tauri-plugin-store-api
     version: 0.0.0
     dependencies:

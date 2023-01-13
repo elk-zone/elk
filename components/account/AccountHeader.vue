@@ -44,17 +44,14 @@ function previewAvatar() {
 }
 
 async function toggleNotify() {
-  // @ts-expect-error: Masto.js only recently added this field. Can be removed when Elk updates Masto.js to 5.4.0 or higher.
-  relationship!.notifying = !relationship?.notifying
+  relationship!.notifying = !relationship!.notifying
   try {
-    // @ts-expect-error: Masto.js only recently added this field. Can be removed when Elk updates Masto.js to 5.4.0 or higher.
-    const newRel = await masto.v1.accounts.follow(account.id, { notify: relationship?.notifying })
+    const newRel = await masto.v1.accounts.follow(account.id, { notify: relationship!.notifying })
     Object.assign(relationship!, newRel)
   }
   catch {
     // TODO error handling
-    // @ts-expect-error: Masto.js only recently added this field. Can be removed when Elk updates Masto.js to 5.4.0 or higher.
-    relationship!.notifying = !relationship?.notifying
+    relationship!.notifying = !relationship!.notifying
   }
 }
 
@@ -79,8 +76,6 @@ watchEffect(() => {
 })
 
 const isSelf = $computed(() => currentUser.value?.account.id === account.id)
-// @ts-expect-error: Masto.js only recently added this field. Can be removed when Elk updates Masto.js to 5.4.0 or higher.
-const isAlertedOnPost = $computed(() => relationship?.notifying)
 </script>
 
 <template>
@@ -104,6 +99,14 @@ const isAlertedOnPost = $computed(() => relationship?.notifying)
         </div>
         <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
+
+          <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100 text-pink" group @click="toggleNotify()">
+            <div rounded-full p2 group-hover="bg-pink/10">
+              <div v-if="relationship?.notifying" i-ri:bell-fill />
+              <div v-else i-ri-bell-line />
+            </div>
+          </button>
+
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->
           <NuxtLink
@@ -114,12 +117,6 @@ const isAlertedOnPost = $computed(() => relationship?.notifying)
           >
             {{ $t('settings.profile.appearance.title') }}
           </NuxtLink>
-          <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group @click="toggleNotify()">
-            <div rounded p2 group-hover="bg-rose/10">
-              <div v-if="isAlertedOnPost" i-ri:bell-fill />
-              <div v-else i-ri-bell-line />
-            </div>
-          </button>
         </div>
       </div>
       <div v-if="account.note" max-h-100 overflow-y-auto>

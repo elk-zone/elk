@@ -14,6 +14,6 @@ const { account, link = true } = defineProps<{
     text-link-rounded
   >
     <AccountDisplayName :account="account" font-bold line-clamp-1 ws-pre-wrap break-all />
-    <AccountHandle :account="account" />
+    <AccountHandle :account="account" class="zen-none" />
   </NuxtLink>
 </template>

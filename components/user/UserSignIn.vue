@@ -25,7 +25,7 @@ async function oauth() {
     server = server.split('/')[0]
 
   try {
-    location.href = await $fetch<string>(`/api/${server || publicServer.value}/login`, {
+    location.href = await (globalThis.$fetch as any)(`/api/${server || publicServer.value}/login`, {
       method: 'POST',
       body: {
         origin: location.origin,
@@ -119,7 +119,7 @@ function select(index: number) {
 
 onMounted(async () => {
   input?.focus()
-  knownServers = await $fetch('/api/list-servers')
+  knownServers = await (globalThis.$fetch as any)('/api/list-servers')
   fuse = new Fuse(knownServers, { shouldSort: true })
 })
 

@@ -197,7 +197,15 @@
       "default": "（默認）",
       "font_size": "字號",
       "label": "外觀",
-      "light_mode": "淺色模式"
+      "light_mode": "淺色模式",
+      "size_label": {
+        "lg": "大",
+        "md": "中",
+        "sm": "小",
+        "xl": "特大",
+        "xs": "特小"
+      },
+      "system_mode": "跟隨系統"
     },
     "language": {
       "display_language": "首選語言",

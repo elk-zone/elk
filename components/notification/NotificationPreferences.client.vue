@@ -147,7 +147,7 @@ onActivated(() => (busy = false))
                   :class="busy || !saveEnabled ? 'border-transparent' : null"
                   :disabled="busy || !saveEnabled"
                 >
-                  <span v-if="true" aria-hidden="true" block animate-spin preserve-3d>
+                  <span v-if="busy && animateSave" aria-hidden="true" block animate-spin preserve-3d>
                     <span block i-ri:loader-2-fill aria-hidden="true" />
                   </span>
                   <span v-else block aria-hidden="true" i-ri:save-2-fill />

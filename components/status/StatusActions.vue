@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
+import LikeIcon from './StatusLikeIcon.vue'
 const props = defineProps<{
   status: mastodon.v1.Status
   details?: boolean
@@ -85,6 +86,9 @@ const reply = () => {
         :command="command"
         @click="toggleFavourite()"
       >
+        <template #icon>
+          <LikeIcon width="1.2em" />
+        </template>
         <template v-if="status.favouritesCount && !getWellnessSetting(userSettings, 'hideFavoriteCount')" #text>
           <CommonLocalizedNumber
             keypath="action.favourite_count"

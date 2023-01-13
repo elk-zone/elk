@@ -19,6 +19,7 @@ defineOptions({
 
 defineSlots<{
   text: {}
+  icon: {}
 }>()
 
 const el = ref<HTMLDivElement>()
@@ -67,7 +68,11 @@ useCommand({
           'group-focus-visible:ring': '2 current',
         }"
       >
-        <div :class="active && activeIcon ? activeIcon : icon" />
+        <template v-if="$slots.icon">
+          <slot name="icon" />
+        </template>
+
+        <div v-else :class="active && activeIcon ? activeIcon : icon" />
       </div>
     </CommonTooltip>
 

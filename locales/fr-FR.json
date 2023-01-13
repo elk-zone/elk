@@ -13,7 +13,7 @@
     "blocked_users": "Utilisateur·ice·s bloqué·e·s",
     "blocking": "Bloqué·e",
     "bot": "Automatisé",
-    "favourites": "Appréciés",
+    "favourites": "Favoris",
     "follow": "Suivre",
     "follow_back": "Suivre en retour",
     "follow_requested": "Abonnement demandé",
@@ -49,8 +49,8 @@
     "confirm": "Confirmer",
     "edit": "Éditer",
     "enter_app": "Entrer dans l'application",
-    "favourite": "Ajouter aux messages appréciés",
-    "favourited": "Ajouté aux messages appréciés",
+    "favourite": "Ajouter aux messages aimés",
+    "favourited": "Ajouté aux messages aimés",
     "more": "Plus",
     "next": "Suivant",
     "prev": "Précédent",
@@ -142,7 +142,7 @@
     "open_in_original_site": "Ouvrir sur le site d'origine",
     "pin_on_profile": "Épingler sur le profil",
     "share_post": "Partager ce message",
-    "show_favourited_and_boosted_by": "Montrer qui a apprécié et partagé",
+    "show_favourited_and_boosted_by": "Montrer qui a aimé et partagé",
     "show_reblogs": "Voir les partages de {0}",
     "show_untranslated": "Montrer le message non-traduit",
     "toggle_theme": {
@@ -164,7 +164,7 @@
     "built_at": "Dernière compilation {0}",
     "conversations": "Conversations",
     "explore": "Explorer",
-    "favourites": "Appréciés",
+    "favourites": "Favoris",
     "federated": "Fédérés",
     "home": "Accueil",
     "local": "Local",
@@ -181,7 +181,7 @@
     "zen_mode": "Mode Zen"
   },
   "notification": {
-    "favourited_post": "apprécie votre message",
+    "favourited_post": "a aimé votre message",
     "followed_you": "vous suit",
     "followed_you_count": "{0} personnes vous suivent|{0} personne vous suit|{0} personnes vous suivent",
     "missing_type": "MISSING notification.type:",
@@ -277,11 +277,11 @@
       },
       "push_notifications": {
         "alerts": {
-          "favourite": "Apprécier",
+          "favourite": "Messages aimés",
           "follow": "Nouveaux abonné·e·s",
           "mention": "Mentions",
           "poll": "Sondages",
-          "reblog": "A republié votre message",
+          "reblog": "Messages partagés",
           "title": "Quelles notifications recevoir ?"
         },
         "description": "Recevez des notifications même lorsque vous n'utilisez pas Elk.",
@@ -347,7 +347,7 @@
     "wellness": {
       "feature": {
         "hide_boost_count": "Cacher les compteurs de partages",
-        "hide_favorite_count": "Cacher les compteurs d'appréciations",
+        "hide_favorite_count": "Cacher les compteurs de favoris",
         "hide_follower_count": "Cacher les compteurs d'abonné·e·s"
       },
       "label": "Bien-être"
@@ -366,7 +366,7 @@
   "status": {
     "boosted_by": "Partagé par",
     "edited": "Edité {0}",
-    "favourited_by": "Apprécié par",
+    "favourited_by": "Aimé par",
     "filter_hidden_phrase": "Filtré par",
     "filter_removed_phrase": "Caché par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
@@ -462,7 +462,7 @@
   "user": {
     "add_existing": "Ajouter un compte existant",
     "server_address_label": "Adresse du serveur mastodon",
-    "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, dire que vous appréciez, partager et répondre à des messages, ou interagir à partir de votre compte sur un autre serveur...",
+    "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, aimer, partagez et répondre à des messages, ou interagir à partir de votre compte d'autre serveur.",
     "sign_in_notice_title": "Affichage de {0} données publiques",
     "sign_out_account": "Se déconnecter de {0}",
     "tip_no_account": "Si vous n'avez pas encore de compte Mastodon, {0}.",

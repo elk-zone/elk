@@ -161,7 +161,7 @@
     "blocked_domains": "Domaines bloqués",
     "blocked_users": "Utilisateur·ice·s bloqué·e·s",
     "bookmarks": "Marque-pages",
-    "built_at": "Dernier build {0}",
+    "built_at": "Dernière compilation {0}",
     "conversations": "Conversations",
     "explore": "Explorer",
     "favourites": "Appréciés",
@@ -232,7 +232,13 @@
   "settings": {
     "about": {
       "label": "À propos",
-      "meet_the_team": "Rencontrez l'équipe"
+      "meet_the_team": "Rencontrez l'équipe",
+      "sponsor_action": "Soutenez-nous",
+      "sponsor_action_desc": "Pour financer l'équipe développant Elk",
+      "sponsors": "Donateur·ice·s",
+      "sponsors_body_1": "Elk existe grâce au généreux soutien de :",
+      "sponsors_body_2": "Et toutes les personnes et sociétés soutenant l'équipe Elk et ses membres.",
+      "sponsors_body_3": "Si vous appréciez l'application, envisagez de nous soutenir :"
     },
     "account_settings": {
       "description": "Modifiez les paramètres de votre compte dans l'interface de Mastodon",
@@ -257,7 +263,8 @@
         "sm": "Petite",
         "xl": "Très grande",
         "xs": "Très petite"
-      }
+      },
+      "system_mode": "Système"
     },
     "language": {
       "display_language": "Langue d'affichage",
@@ -266,10 +273,7 @@
     "notifications": {
       "label": "Notifications",
       "notifications": {
-        "label": "Paramètres des notifications",
-        "notifications": {
-          "label": "sqds"
-        }
+        "label": "Paramètres des notifications"
       },
       "push_notifications": {
         "alerts": {

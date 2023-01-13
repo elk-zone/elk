@@ -123,7 +123,6 @@
     "title": "Elk is in Preview!"
   },
   "language": {
-    "none": "None",
     "search": "Search"
   },
   "menu": {
@@ -303,7 +302,8 @@
           "clear_error": "Clear error",
           "permission_denied": "Permission denied: enable notifications in your browser.",
           "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
-          "title": "Could not subscribe to push notifications"
+          "title": "Could not subscribe to push notifications",
+          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another accounts and try again."
         },
         "title": "Push notifications settings",
         "undo_settings": "Undo changes",

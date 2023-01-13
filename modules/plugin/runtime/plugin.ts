@@ -1,19 +1,12 @@
-import type { SFCManifest } from '..'
-import { setHookContext } from './hook'
-import type { NuxtApp } from '#app'
+import { createHookTarget } from '../utils'
+import testPlugin from '../example/test'
+import { SetupContext } from '../kit/setupCtx'
+import { setHookTarget } from './hook'
 
 export default defineNuxtPlugin(async (nuxt) => {
-  let getManifest: (id: string) => SFCManifest | undefined
-  if (import.meta.env.DEV) {
-    const { getManifest: _getManifest } = await import('./devManifest')
-    getManifest = _getManifest
-  }
-  else {
-    return
-  }
+  const hookTarget = createHookTarget()
+  setHookTarget(hookTarget)
 
-  setHookContext({
-    nuxt: nuxt as NuxtApp,
-    getManifest,
-  })
+  const ctx = new SetupContext(hookTarget)
+  testPlugin.setup?.(ctx)
 })

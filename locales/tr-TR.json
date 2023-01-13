@@ -164,8 +164,8 @@
     "blocked_domains": "Engellenen alan adları",
     "blocked_users": "Engellenen kullanıcılar",
     "bookmarks": "Yer imleri",
-    "built_at": "{0} tarihinde derlendi",
-    "conversations": "Konuşmaları",
+    "built_at": "{0} derlendi",
+    "conversations": "Konuşmalar",
     "explore": "Keşfet",
     "favourites": "Favoriler",
     "federated": "Federe",
@@ -230,7 +230,7 @@
   },
   "search": {
     "search_desc": "İnsanları & etiketleri ara",
-    "search_empty": "Bu arama terimleri için sonuç bulunamadı"
+    "search_empty": "Bu arama için sonuç bulunamadı"
   },
   "settings": {
     "about": {
@@ -300,7 +300,7 @@
         "save_settings": "Ayarları kaydet",
         "subscription_error": {
           "clear_error": "Hatayı temizle",
-          "permission_denied": "Erişim engellendi: tarayıcınızda bildirimleri etkinleştirin.", 
+          "permission_denied": "Erişim engellendi: tarayıcınızda bildirimleri etkinleştirin.",
           "request_error": "Abonelik talep edilirken bir hata oluştu, tekrar deneyin ve hata devam ederse lütfen sorunu Elk deposuna bildirin.",
           "title": "Anlık bildirimlere abone olunamadı",
           "too_many_registrations": "Tarayıcı kısıtlamaları nedeniyle Elk, farklı sunuculardaki birden çok hesap için anlık bildirimler hizmetini kullanamaz. Başka bir hesaptaki anlık bildirim aboneliğinden çıkmalı ve tekrar denemelisiniz."
@@ -460,8 +460,8 @@
     "change_language": "Dil değiştir",
     "emoji": "Emoji",
     "explore_links_intro": "Bu haberler, şu anda merkezi olmayan ağın bu ve diğer sunucularındaki insanlar tarafından konuşuluyor.",
-    "explore_posts_intro": "Merkezi olmayan ağdaki bu ve diğer sunuculardan gelen bu gönderiler şu anda bu sunucuda ilgi görüyor.",
-    "explore_tags_intro": "Merkezi olmayan ağdaki bu ve diğer sunuculardan gelen bu etiketler şu anda bu sunucuda ilgi görüyor.",
+    "explore_posts_intro": "Bu gönderiler, şu anda merkezi olmayan ağın bu ve diğer sunucularındaki insanlar tarafından ilgi görüyor.",
+    "explore_tags_intro": "Bu etiketler, şu anda merkezi olmayan ağın bu ve diğer sunucularındaki insanlar tarafından ilgi görüyor.",
     "toggle_code_block": "Kod bloğu durumunu değiştir"
   },
   "user": {

@@ -4,6 +4,7 @@ import type { MarkNonNullable, Mutable } from './utils'
 export interface AppInfo {
   id: string
   name: string
+  server: string
   website: string | null
   redirect_uri: string
   client_id: string

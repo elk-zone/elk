@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { PushSubscriptionError } from '~/composables/push-notifications/types'
+
 defineProps<{ show?: boolean }>()
 
 const {
@@ -76,8 +78,13 @@ const doSubscribe = async () => {
     }
   }
   catch (err) {
-    console.error(err)
-    subscribeError = t('settings.notifications.push_notifications.subscription_error.request_error')
+    if (err instanceof PushSubscriptionError) {
+      subscribeError = t(`settings.notifications.push_notifications.subscription_error.${err.code}`)
+    }
+    else {
+      console.error(err)
+      subscribeError = t('settings.notifications.push_notifications.subscription_error.request_error')
+    }
     showSubscribeError = true
   }
   finally {

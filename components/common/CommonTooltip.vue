@@ -4,11 +4,20 @@ import type { Popper as VTooltipType } from 'floating-vue/dist'
 defineProps<{
   content?: string
 } & Partial<typeof VTooltipType>>()
+
+const tooltip = $ref<any>()
+
+onMounted(() => {
+  onClickOutside(tooltip?.$el, () => {
+    tooltip.hide()
+  })
+})
 </script>
 
 <template>
   <VTooltip
     v-bind="$attrs"
+    ref="tooltip"
   >
     <slot />
     <template #popper>

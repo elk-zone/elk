@@ -56,10 +56,10 @@ export const useNotifications = () => {
   }
 
   watch(currentUser, disconnect)
-  if (isHydrated.value)
+
+  onHydrated(() => {
     connect()
-  else
-    watchOnce(isHydrated, connect)
+  })
 
   return {
     notifications: computed(() => id ? notifications[id]?.[1].length ?? 0 : 0),

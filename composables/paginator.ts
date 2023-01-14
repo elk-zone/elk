@@ -62,7 +62,7 @@ export function usePaginator<T, P, U = T>(
           data.splice(index, 1)
       })
     })
-  })
+  }, { immediate: true })
 
   async function loadNext() {
     if (state.value !== 'idle')

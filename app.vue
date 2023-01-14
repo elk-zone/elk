@@ -7,6 +7,9 @@ const route = useRoute()
 if (process.server && !route.path.startsWith('/settings')) {
   useHead({
     meta: [
+      { property: 'og:title', content: 'Elk' },
+      { property: 'og:description', content: 'A nimble Mastodon web client' },
+      { property: 'og:image', content: 'https://elk.zone/elk-og.png' },
       { property: 'og:url', content: `https://elk.zone${route.path}` },
     ],
   })

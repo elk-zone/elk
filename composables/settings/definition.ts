@@ -21,13 +21,14 @@ export interface UserSettings {
   colorMode?: ColorMode
   fontSize: FontSize
   language: string
-  zenMode?: boolean
+  zenMode: boolean
 }
 
 export function getDefaultUserSettings(): UserSettings {
   return {
     language: DEFAULT_LANGUAGE,
     fontSize: DEFAULT_FONT_SIZE,
+    zenMode: false,
     featureFlags: {},
     wellnessSettings: {},
   }

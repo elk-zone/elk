@@ -2,6 +2,7 @@
 import { EditorContent } from '@tiptap/vue-3'
 import type { mastodon } from 'masto'
 import type { Draft } from '~/types'
+import { useWebShareTarget } from '~/composables/web-share-target'
 
 const {
   draftKey,
@@ -89,22 +90,18 @@ async function publish() {
     emit('published', status)
 }
 
-if (process.client) {
-  import('~~/composables/web-share-target').then(({ useWebShareTarget }) => {
-    useWebShareTarget(async ({ data: { data, action } }: any) => {
-      if (action !== 'compose-with-shared-data')
-        return
+useWebShareTarget(async ({ data: { data, action } }: any) => {
+  if (action !== 'compose-with-shared-data')
+    return
 
-      editor.value?.commands.focus('end')
+  editor.value?.commands.focus('end')
 
-      if (data.text !== undefined)
-        editor.value?.commands.insertContent(data.text)
+  if (data.text !== undefined)
+    editor.value?.commands.insertContent(data.text)
 
-      if (data.files !== undefined)
-        await uploadAttachments(data.files)
-    })
-  })
-}
+  if (data.files !== undefined)
+    await uploadAttachments(data.files)
+})
 
 defineExpose({
   focusEditor: () => {

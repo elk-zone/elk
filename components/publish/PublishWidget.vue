@@ -2,7 +2,6 @@
 import { EditorContent } from '@tiptap/vue-3'
 import type { mastodon } from 'masto'
 import type { Draft } from '~/types'
-import { useWebShareTarget } from '~/composables/web-share-target'
 
 const {
   draftKey,

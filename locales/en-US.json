@@ -361,7 +361,7 @@
   },
   "share-target": {
     "description": "Elk can be configured so that you can share content from other applications, simply install Elk on your device or computer and sign in.",
-    "hint": "In order to share content with Elk, Elk must be installed and you must be logged.",
+    "hint": "In order to share content with Elk, Elk must be installed and you must be signed in.",
     "title": "Share with Elk"
   },
   "state": {

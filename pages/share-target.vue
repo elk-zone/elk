@@ -1,6 +1,4 @@
 <script setup>
-import { useWebShareTarget } from '~/composables/web-share-target'
-
 definePageMeta({
   middleware: () => {
     if (!useRuntimeConfig().public.pwaEnabled)

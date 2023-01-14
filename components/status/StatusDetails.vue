@@ -9,6 +9,8 @@ const props = withDefaults(defineProps<{
   actions: true,
 })
 
+const userSettings = useUserSettings()
+
 const status = $computed(() => {
   if (props.status.reblog && props.status.reblog)
     return props.status.reblog
@@ -60,7 +62,7 @@ const isDM = $computed(() => status.visibility === 'direct')
       </div>
     </div>
     <div border="t base" pt-2>
-      <StatusActions v-if="actions" :status="status" details :command="command" />
+      <StatusActions v-if="actions" v-show="!userSettings.zenMode" :status="status" details :command="command" />
     </div>
   </div>
 </template>

@@ -2,10 +2,8 @@ import type { Ref } from 'vue'
 import type { FeatureFlags, UserSettings, WellnessSettings } from './definition'
 import { STORAGE_KEY_SETTINGS } from '~/constants'
 
-export const useUserSettings = () => {
-  if (process.server)
-    return useState('user-settings', getDefaultUserSettings)
-  return useUserLocalStorage(STORAGE_KEY_SETTINGS, getDefaultUserSettings)
+export function useUserSettings() {
+  return useUserLocalStorage<UserSettings>(STORAGE_KEY_SETTINGS, getDefaultUserSettings)
 }
 
 // TODO: refactor & simplify this

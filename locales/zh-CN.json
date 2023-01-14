@@ -35,7 +35,9 @@
     "profile_unavailable": "个人资料不可见",
     "unblock": "取消拉黑",
     "unfollow": "取消关注",
-    "unmute": "取消屏蔽"
+    "unmute": "取消屏蔽",
+    "view_other_followers": "其他站点上的关注者可能不会在这里显示。",
+    "view_other_following": "其他站点上正在关注的人可能不会在这里显示。"
   },
   "action": {
     "apply": "应用",
@@ -256,7 +258,8 @@
         "sm": "小",
         "xl": "特大",
         "xs": "特小"
-      }
+      },
+      "system_mode": "跟随系统"
     },
     "language": {
       "display_language": "首选语言",

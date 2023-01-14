@@ -123,7 +123,7 @@ onReactivated(refreshInfo)
             <label>
               <AccountBotIndicator show-label px2 py1>
                 <template #prepend>
-                  <input v-model="form.bot" type="checkbox">
+                  <input v-model="form.bot" type="checkbox" cursor-pointer>
                 </template>
               </AccountBotIndicator>
             </label>

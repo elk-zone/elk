@@ -105,7 +105,7 @@ importers:
       simple-git: ^3.15.1
       simple-git-hooks: ^2.8.1
       slimeform: ^0.8.0
-      stale-dep: ^0.2.1
+      stale-dep: ^0.3.1
       std-env: ^3.3.1
       tauri-plugin-log-api: github:tauri-apps/tauri-plugin-log
       tauri-plugin-store-api: github:tauri-apps/tauri-plugin-store
@@ -203,7 +203,7 @@ importers:
       rollup-plugin-node-polyfills: 0.2.1
       simple-git: 3.15.1
       simple-git-hooks: 2.8.1
-      stale-dep: 0.2.1
+      stale-dep: 0.3.1
       std-env: 3.3.1
       theme-vitesse: 0.6.0
       typescript: 4.9.4
@@ -1759,8 +1759,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.3.0-beta.14
-      '@intlify/shared': 9.3.0-beta.14
+      '@intlify/message-compiler': 9.3.0-beta.15
+      '@intlify/shared': 9.3.0-beta.15
       jsonc-eslint-parser: 1.4.1
       source-map: 0.6.1
       vue-i18n: 9.3.0-beta.13-972e836
@@ -1792,11 +1792,11 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /@intlify/message-compiler/9.3.0-beta.14:
-    resolution: {integrity: sha512-PlZ3pl+YYuql54Nq+26wv6ohIa8Ig6ALrvQI+f2zZKUtkupb49M4wyVN3bDQbFlgYVE7/u3n19BJSY8lEuX5Eg==}
+  /@intlify/message-compiler/9.3.0-beta.15:
+    resolution: {integrity: sha512-kxx+pXsyoWhyFLEaJgnMk4AFiW3fvaCqpiql1alOHtkvQwzDKlrcKJ784GO4v/8SLt6JUHWfPpQH65GoYahdLA==}
     engines: {node: '>= 14'}
     dependencies:
-      '@intlify/shared': 9.3.0-beta.14
+      '@intlify/shared': 9.3.0-beta.15
       source-map: 0.6.1
     dev: true
 
@@ -1810,8 +1810,8 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  /@intlify/shared/9.3.0-beta.14:
-    resolution: {integrity: sha512-mJ/rFan+4uVsBAQSCAJnpQaPvSjQ49mJMNmGelTUbTDAmgf0oexYxwqtKOlFFyY3hmQ8lUDYaGQKuYrFgRuHnA==}
+  /@intlify/shared/9.3.0-beta.15:
+    resolution: {integrity: sha512-thDJ+TGK8GGmOrgh/Vul24pPvRtRGvCyuGXcw/uh2t3lyJsCPfhzY5ZihJFkGvKEl4/J4M0F/SAeWKoZNm7hlw==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -1831,7 +1831,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 3.4.0_qjugkpmxfnp3l7d6jb7y3o5rvi
-      '@intlify/shared': 9.3.0-beta.14
+      '@intlify/shared': 9.3.0-beta.15
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.2.45
       debug: 4.3.4
@@ -10829,8 +10829,8 @@ packages:
     deprecated: 'Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility'
     dev: true
 
-  /stale-dep/0.2.1:
-    resolution: {integrity: sha512-hZpAD9MmVlrPxCUoi/trN6WDc4TFDHwnFOKz4itfc1C+EKpg5dlYIf93RFDHlattRB1xyWCSJpyexGJdhSOyYw==}
+  /stale-dep/0.3.1:
+    resolution: {integrity: sha512-mBoA6pZRWXA5jL1Yg6cd1gVQ7OPsZD7wkgSZUxjBxohepLolq8s/w0PKEmI35TIk2ggXKhW3JR35JQyS9J8B+g==}
     engines: {node: '>=14.19.0'}
     hasBin: true
     dependencies:
@@ -12283,7 +12283,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.14
+      '@intlify/shared': 9.3.0-beta.15
       '@intlify/vue-i18n-bridge': 0.8.0_qjugkpmxfnp3l7d6jb7y3o5rvi
       '@intlify/vue-router-bridge': 0.8.0
       ufo: 1.0.1

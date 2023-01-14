@@ -41,6 +41,12 @@ const toggleReblogs = async () => {
   const showingReblogs = !relationship?.showingReblogs
   relationship = await masto.v1.accounts.follow(account.id, { reblogs: showingReblogs })
 }
+
+const toggleNotifications = async () => {
+  const subscribedToNotifications = !relationship?.notifying
+
+  relationship = await masto.v1.accounts.follow(account.id, { notify: subscribedToNotifications })
+}
 </script>
 
 <template>
@@ -62,6 +68,22 @@ const toggleReblogs = async () => {
 
       <template v-if="currentUser">
         <template v-if="!isSelf">
+          <template v-if="relationship!.following">
+            <CommonDropdownItem
+              v-if="!relationship?.notifying"
+              :text="$t('menu.enable_notifications', [`@${account.acct}`])"
+              icon="i-ri:bell-line"
+              :command="command"
+              @click="toggleNotifications"
+            />
+            <CommonDropdownItem
+              v-else
+              :text="$t('menu.disable_notifications', [`@${account.acct}`])"
+              icon="i-ri:bell-fill"
+              :command="command"
+              @click="toggleNotifications"
+            />
+          </template>
           <CommonDropdownItem
             :text="$t('menu.mention_account', [`@${account.acct}`])"
             icon="i-ri:at-line"

@@ -1,3 +1,4 @@
+/// <reference lib="WebWorker" />
 declare const self: ServiceWorkerGlobalScope
 
 // let waitForClientResolve: Function | null = null
@@ -7,8 +8,10 @@ self.addEventListener('message', (event) => {
   if (event.data.action !== 'ready-to-receive')
     return
 
-  if (clientResolves[event.source.id] !== undefined)
-    clientResolves[event.source.id]()
+  const id: string | undefined = (event.source as any)?.id ?? undefined
+
+  if (id && clientResolves[id] !== undefined)
+    clientResolves[id]()
 })
 
 export const onShareTarget = (event: FetchEvent) => {

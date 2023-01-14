@@ -1,7 +1,15 @@
-import { get } from 'idb-keyval'
-import type { UserLogin } from './types'
-
 declare const self: ServiceWorkerGlobalScope
+
+// let waitForClientResolve: Function | null = null
+const clientResolves: { [key: string]: Function } = {}
+
+self.addEventListener('message', (event) => {
+  if (event.data.action !== 'ready-to-receive')
+    return
+
+  if (clientResolves[event.source.id] !== undefined)
+    clientResolves[event.source.id]()
+})
 
 export const onShareTarget = (event: FetchEvent) => {
   if (!event.request.url.endsWith('/web-share-target') || event.request.method !== 'POST')
@@ -11,17 +19,8 @@ export const onShareTarget = (event: FetchEvent) => {
 }
 
 async function handleSharedTarget(event: FetchEvent) {
-  const signedIn = await checkUserSignedIn()
-  // TODO: handle
-  if (!signedIn) {
-    event.respondWith(Response.redirect('/share-target'))
-    await waitForClientToGetReady()
-
-    return
-  }
-
-  event.respondWith(Response.redirect('/home'))
-  await waitForClientToGetReady()
+  event.respondWith(Response.redirect('/home?share-target=true'))
+  await waitForClientToGetReady(event.resultingClientId)
 
   const [client, formData] = await getClientAndFormData(event)
   if (client === undefined)
@@ -49,18 +48,10 @@ async function sendShareTargetMessage(client: Client, data: FormData) {
   client.postMessage({ data: sharedData, action: 'compose-with-shared-data' })
 }
 
-function waitForClientToGetReady() {
+function waitForClientToGetReady(clientId: string) {
   return new Promise<void>((resolve) => {
-    self.addEventListener('message', (event) => {
-      if (event.data.action === 'ready-to-receive')
-        resolve()
-    })
+    clientResolves[clientId] = resolve
   })
-}
-
-async function checkUserSignedIn() {
-  const users = await get<UserLogin[]>('elk-users')
-  return users !== undefined && users.length !== 0
 }
 
 function getClientAndFormData(event: FetchEvent): Promise<[client: Client | undefined, formData: FormData]> {

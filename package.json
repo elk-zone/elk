@@ -99,7 +99,7 @@
     "fs-extra": "^11.1.0",
     "jsdom": "^21.0.0",
     "lint-staged": "^13.1.0",
-    "nuxt": "^3.0.0",
+    "nuxt": "npm:nuxt3@latest",
     "postcss-nested": "^6.0.0",
     "prettier": "^2.8.2",
     "rollup-plugin-node-polyfills": "^0.2.1",

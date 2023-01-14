@@ -95,11 +95,14 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/api/list-servers': { swr: true },
+    '/api/**': { swr: false, cache: false },
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',
       },
     },
+    // By default we cache all responses by 60 seconds and serve the stale response
+    '/**': { swr: true },
   },
   nitro: {
     prerender: {
@@ -124,10 +127,7 @@ export default defineNuxtConfig({
       meta: [
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
         // open graph social image
-        { property: 'og:title', content: 'Elk' },
-        { property: 'og:description', content: 'A nimble Mastodon web client' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:image', content: 'https://elk.zone/elk-og.png' },
         { property: 'og:image:width', content: '3800' },
         { property: 'og:image:height', content: '1900' },
         { property: 'og:site_name', content: 'Elk' },

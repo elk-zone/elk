@@ -10,7 +10,7 @@
     "avatar_description": "صورة حساب {0}",
     "blocked_by": "تم حظرك من قبل هذا المستخدم",
     "blocked_domains": "النطاقات المحظورة",
-    "blocked_users": "المستخدمين المحظورين",
+    "blocked_users": "المستخدمون المحظورون",
     "blocking": "محظور",
     "bot": "حساب آلي",
     "favourites": "المفضلة",
@@ -25,9 +25,9 @@
     "go_to_profile": "اعرض الصفحة التعريفية",
     "joined": "انضم",
     "moved_title": "أشار إلى أن حسابهم الجديد أصبح على",
-    "muted_users": "المستخدمين المكتومين",
-    "muting": "قُمتَ(ي) بكتم",
-    "mutuals": "المتبادلين",
+    "muted_users": "المستخدمون المكتومون",
+    "muting": "قُمت بكتم",
+    "mutuals": "المتبادلون",
     "pinned": "المثبتة",
     "posts": "المنشورات",
     "posts_count": "{0} منشورات|{0} منشور|{0} منشورين|{0} منشورات|{0} منشور|{0} منشور",
@@ -47,12 +47,12 @@
     "clear_upload_failed": "مسح أخطاء تحميل الملف",
     "close": "أغلق",
     "compose": "منشور جديد",
-    "confirm": "أكد",
+    "confirm": "تأكد",
     "edit": "تعديل",
     "enter_app": "أدخل التطبيق",
-    "favourite": "إضافة إلى المفضلين",
+    "favourite": "إضافة إلى المفضلة",
     "favourite_count": "{0}",
-    "favourited": "مضاف إلى المفضلين",
+    "favourited": "مضاف إلى المفضلة",
     "more": "المزيد",
     "next": "التالي",
     "prev": "السابق",
@@ -64,9 +64,9 @@
     "save_changes": "حفظ التغييرات",
     "sign_in": "تسجيل الدخول",
     "switch_account": "تغيير الحساب",
-    "vote": "قم بالتصويت"
+    "vote": "تصويت"
   },
-  "app_desc_short": "موقع الكتروني ماستدون رشيق",
+  "app_desc_short": "منصة تواصل Mastodon رشيقة",
   "app_logo": "Elk شعار",
   "app_name": "Elk",
   "attachment": {
@@ -74,27 +74,27 @@
     "remove_label": "قم بإزالة المرفق"
   },
   "command": {
-    "activate": "تفعيل",
+    "activate": "فعل",
     "complete": "أكمل",
-    "compose_desc": "اكتب منشور جديد",
+    "compose_desc": "اكتب منشورا جديدا",
     "n-people-in-the-past-n-days": "{0} أشخاص في الأيام ال {1} الماضية",
-    "select_lang": "اختار اللغة",
+    "select_lang": "اختر اللغة",
     "sign_in_desc": "إضافة حساب قائم",
     "switch_account": "التبديل إلى {0}",
     "switch_account_desc": "قم بالتبديل إلى حساب آخر",
-    "toggle_dark_mode": "تبديل المظهر الداكن",
-    "toggle_zen_mode": "تبديل وضع الهدوء"
+    "toggle_dark_mode": "تبديل الوضع الليلي",
+    "toggle_zen_mode": "تبديل الوضع الهادئ"
   },
   "common": {
     "confirm_dialog": {
-      "cancel": "كلا",
+      "cancel": "لا",
       "confirm": "نعم",
       "title": "هل أنت متأكد؟"
     },
     "end_of_list": "نهاية القائمة",
     "error": "حدث خطأ",
     "in": "في",
-    "not_found": "404 غير معثور عليه",
+    "not_found": "404 غير موجود",
     "offline_desc": "يبدو أنك غير متصل بالإنترنت. يرجى التحقق من اتصالك."
   },
   "compose": {

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 const { env } = useBuildInfo()
 const router = useRouter()
-// const stream = useMasto().v1.stream.streamUser()
 const back = ref<any>('')
 
 const nuxtApp = useNuxtApp()

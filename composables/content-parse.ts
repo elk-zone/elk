@@ -35,6 +35,12 @@ const sanitizer = sanitize({
   code: {
     class: filterClasses(/^language-\w+$/),
   },
+  // other elements supported in glitch
+  h1: {},
+  ol: {},
+  ul: {},
+  li: {},
+  em: {},
 })
 
 /**

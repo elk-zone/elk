@@ -3,6 +3,7 @@ setupPageHeader()
 provideGlobalCommands()
 
 const route = useRoute()
+
 if (process.server && !route.path.startsWith('/settings')) {
   useHead({
     meta: [

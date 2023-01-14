@@ -92,7 +92,7 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
         },
       ],
       share_target: {
-        action: '/share-target',
+        action: '/web-share-target',
         method: 'POST',
         enctype: 'multipart/form-data',
         params: {
@@ -132,7 +132,7 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
         },
       ],
       share_target: {
-        action: '/share-target',
+        action: '/web-share-target',
         method: 'POST',
         enctype: 'multipart/form-data',
         params: {

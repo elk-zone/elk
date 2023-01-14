@@ -110,14 +110,17 @@ onBeforeUnmount(() => {
     navigator.serviceWorker.removeEventListener('message', handleSWMessage)
 })
 
-async function handleSWMessage({ data }: any) {
-  if (data.action === 'compose-with-media') {
-    editor.value?.chain().focus('end').run()
+async function handleSWMessage({ data: { data, action } }: any) {
+  if (action !== 'compose-with-shared-data')
+    return
+
+  editor.value?.commands.focus('end')
+
+  if (data.text !== undefined)
+    editor.value?.commands.insertContent(data.text)
+
+  if (data.files !== undefined)
     await uploadAttachments(data.files)
-  }
-  else if (data.action === 'compose-with-text') {
-    editor.value?.chain().focus('end').insertContent(data.text).run()
-  }
 }
 
 defineExpose({

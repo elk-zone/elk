@@ -1,39 +1,52 @@
+import { get } from 'idb-keyval'
+import type { UserLogin } from './types'
+
 declare const self: ServiceWorkerGlobalScope
 
 export const onShareTarget = (event: FetchEvent) => {
-  if (!event.request.url.endsWith('/share-target') || event.request.method !== 'POST')
+  if (!event.request.url.endsWith('/web-share-target') || event.request.method !== 'POST')
     return
 
+  event.waitUntil(handleSharedTarget(event))
+}
+
+async function handleSharedTarget(event: FetchEvent) {
+  const signedIn = await checkUserSignedIn()
+  // TODO: handle
+  if (!signedIn) {
+    event.respondWith(Response.redirect('/share-target'))
+    await waitForClientToGetReady()
+
+    return
+  }
+
   event.respondWith(Response.redirect('/home'))
-  event.waitUntil(
-    waitForClientToGetReady()
-      .then(() => getClientAndFormData(event))
-      .then(([client, data]) => sendShareTargetMessage(client, data)),
-  )
+  await waitForClientToGetReady()
+
+  const [client, formData] = await getClientAndFormData(event)
+  if (client === undefined)
+    return
+
+  await sendShareTargetMessage(client, formData)
 }
 
 async function sendShareTargetMessage(client: Client, data: FormData) {
+  const sharedData: { text?: string; files?: File[] } = {}
+
   const text = data.get('text')
-  if (text !== null) {
-    client.postMessage({ text, action: 'compose-with-text' })
+  if (text !== null)
+    sharedData.text = text.toString()
+
+  const files: File[] = []
+  for (const [name, file] of data.entries()) {
+    if (name === 'files' && file instanceof File)
+      files.push(file)
   }
-  else {
-    const files: File[] = []
 
-    for (const [name, file] of data.entries()) {
-      if (name === 'files' && file instanceof File)
-        files.push(file)
-    }
+  if (files.length !== 0)
+    sharedData.files = files
 
-    if (files.length !== 0)
-      client.postMessage({ files, action: 'compose-with-media' })
-  }
-}
-
-async function getClientAndFormData(event: FetchEvent): Promise<[client: Client, formData: FormData]> {
-  const client = await self.clients.get(event.resultingClientId)
-  const data = await event.request.formData()
-  return [client!, data]
+  client.postMessage({ data: sharedData, action: 'compose-with-shared-data' })
 }
 
 function waitForClientToGetReady() {
@@ -43,4 +56,16 @@ function waitForClientToGetReady() {
         resolve()
     })
   })
+}
+
+async function checkUserSignedIn() {
+  const users = await get<UserLogin[]>('elk-users')
+  return users !== undefined && users.length !== 0
+}
+
+function getClientAndFormData(event: FetchEvent): Promise<[client: Client | undefined, formData: FormData]> {
+  return Promise.all([
+    self.clients.get(event.resultingClientId),
+    event.request.formData(),
+  ])
 }

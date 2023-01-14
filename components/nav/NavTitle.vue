@@ -6,6 +6,7 @@ const back = ref<any>('')
 const nuxtApp = useNuxtApp()
 
 const onClickLogo = () => {
+  // @ts-expect-error missing types
   nuxtApp.hooks.callHook('refresh:home')
 }
 

@@ -19,7 +19,8 @@ function removeCached(key: string) {
 
 export function fetchStatus(id: string, force = false): Promise<mastodon.v1.Status> {
   const server = currentServer.value
-  const key = `${server}:status:${id}`
+  const userId = currentUser.value?.account.id
+  const key = `${server}:${userId}:status:${id}`
   const cached = cache.get(key)
   if (cached && !force)
     return cached
@@ -37,7 +38,8 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
     return Promise.resolve(null)
 
   const server = currentServer.value
-  const key = `${server}:account:${id}`
+  const userId = currentUser.value?.account.id
+  const key = `${server}:${userId}:account:${id}`
   const cached = cache.get(key)
   if (cached)
     return cached
@@ -56,7 +58,8 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
 
 export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Account> {
   const server = currentServer.value
-  const key = `${server}:account:${acct}`
+  const userId = currentUser.value?.account.id
+  const key = `${server}:${userId}:account:${acct}`
   const cached = cache.get(key)
   if (cached)
     return cached
@@ -82,14 +85,17 @@ export function useAccountById(id?: string | null) {
 }
 
 export function cacheStatus(status: mastodon.v1.Status, server = currentServer.value, override?: boolean) {
-  setCached(`${server}:status:${status.id}`, status, override)
+  const userId = currentUser.value?.account.id
+  setCached(`${server}:${userId}:status:${status.id}`, status, override)
 }
 
 export function removeCachedStatus(id: string, server = currentServer.value) {
-  removeCached(`${server}:status:${id}`)
+  const userId = currentUser.value?.account.id
+  removeCached(`${server}:${userId}:status:${id}`)
 }
 
 export function cacheAccount(account: mastodon.v1.Account, server = currentServer.value, override?: boolean) {
-  setCached(`${server}:account:${account.id}`, account, override)
-  setCached(`${server}:account:${account.acct}`, account, override)
+  const userId = currentUser.value?.account.id
+  setCached(`${server}:${userId}:account:${account.id}`, account, override)
+  setCached(`${server}:${userId}:account:${account.acct}`, account, override)
 }

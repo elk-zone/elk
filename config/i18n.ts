@@ -82,6 +82,11 @@ const locales: LocaleObjectData[] = [
       return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
     },
   } satisfies LocaleObjectData),
+  {
+    code: 'pt-PT',
+    file: 'pt-PT.json',
+    name: 'Português',
+  },
 ].sort((a, b) => a.code.localeCompare(b.code))
 
 const datetimeFormats = Object.values(locales).reduce((acc, data) => {

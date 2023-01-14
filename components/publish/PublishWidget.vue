@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { EditorContent } from '@tiptap/vue-3'
 import type { mastodon } from 'masto'
-import type { Ref } from 'vue'
 import type { Draft } from '~/types'
 
 const {
@@ -90,37 +89,21 @@ async function publish() {
     emit('published', status)
 }
 
-onMounted(() => {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.addEventListener('message', handleSWMessage)
+if (process.client) {
+  import('~~/composables/web-share-target').then(({ useWebShareTarget }) => {
+    useWebShareTarget(async ({ data: { data, action } }: any) => {
+      if (action !== 'compose-with-shared-data')
+        return
 
-    navigator.serviceWorker.getRegistration()
-      .then((registration) => {
-        if (registration && registration.active) {
-          // we need to signal the service worker that we are ready to receive shared files
-          registration.active.postMessage({ action: 'ready-to-receive' })
-        }
-      })
-      .catch(err => console.error('Could not get registration', err))
-  }
-})
+      editor.value?.commands.focus('end')
 
-onBeforeUnmount(() => {
-  if ('serviceWorker' in navigator)
-    navigator.serviceWorker.removeEventListener('message', handleSWMessage)
-})
+      if (data.text !== undefined)
+        editor.value?.commands.insertContent(data.text)
 
-async function handleSWMessage({ data: { data, action } }: any) {
-  if (action !== 'compose-with-shared-data')
-    return
-
-  editor.value?.commands.focus('end')
-
-  if (data.text !== undefined)
-    editor.value?.commands.insertContent(data.text)
-
-  if (data.files !== undefined)
-    await uploadAttachments(data.files)
+      if (data.files !== undefined)
+        await uploadAttachments(data.files)
+    })
+  })
 }
 
 defineExpose({

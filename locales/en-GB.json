@@ -282,6 +282,11 @@
       "label": "Logged in users"
     }
   },
+  "share-target": {
+    "description": "Elk can be configured so that you can share content from other applications, simply install Elk on your device or computer and sign in.",
+    "hint": "In order to share content with Elk, Elk must be installed and you must be logged.",
+    "title": "Share with Elk"
+  },
   "state": {
     "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
     "attachments_limit_error": "Limit per post exceeded",

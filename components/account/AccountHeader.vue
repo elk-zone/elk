@@ -25,6 +25,10 @@ function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
 }
 
+function getNotificationIconTitle() {
+  return relationship?.notifying ? t('account.disable_notifications', [account.username]) : t('account.enable_notifications', [account.username])
+}
+
 function previewHeader() {
   openMediaPreview([{
     id: `${account.acct}:header`,
@@ -100,10 +104,10 @@ const isNotifiedOnPost = $computed(() => relationship?.notifying)
         </div>
         <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
-          <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group @click="toggleNotifications">
-            <CommonTooltip :content="$t('account.notifications')">
-              <div rounded p2 group-hover="bg-rose/10">
-                <div v-if="isNotifiedOnPost" i-ri:bell-fill />
+          <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100" group :aria-pressed="!!relationship?.notifying" :aria-label="getNotificationIconTitle()" @click="toggleNotifications">
+            <CommonTooltip :content="getNotificationIconTitle()">
+              <div rounded-full p2 border-1 :class="relationship?.notifying ? 'text-primary border-primary' : 'border-base'" :group-hover="relationship?.notifying ? 'text-red bg-red/10 border-red' : 'text-primary'">
+                <div v-if="relationship?.notifying" i-ri:bell-fill />
                 <div v-else i-ri-bell-line />
               </div>
             </CommonTooltip>

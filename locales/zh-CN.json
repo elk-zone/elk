@@ -35,7 +35,9 @@
     "profile_unavailable": "个人资料不可见",
     "unblock": "取消拉黑",
     "unfollow": "取消关注",
-    "unmute": "取消屏蔽"
+    "unmute": "取消屏蔽",
+    "view_other_followers": "其他站点上的关注者可能不会在这里显示。",
+    "view_other_following": "其他站点上正在关注的人可能不会在这里显示。"
   },
   "action": {
     "apply": "应用",
@@ -63,7 +65,7 @@
     "switch_account": "切换帐号",
     "vote": "投票"
   },
-  "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
+  "app_desc_short": "一个灵巧的 Mastodon 客户端",
   "app_logo": "应用图标",
   "app_name": "鹿鸣",
   "attachment": {
@@ -204,22 +206,22 @@
     "update_available_short": "更新鹿鸣",
     "webmanifest": {
       "canary": {
-        "description": "用 🧡 制作的 Mastodon 客户端（Canary）",
+        "description": "一个灵巧的 Mastodon 客户端（Canary）",
         "name": "鹿鸣 Canary",
         "short_name": "鹿鸣 Canary"
       },
       "dev": {
-        "description": "用 🧡 制作的 Mastodon 客户端（开发版）",
+        "description": "一个灵巧的 Mastodon 客户端（开发版）",
         "name": "鹿鸣 开发版",
         "short_name": "鹿鸣 开发版"
       },
       "preview": {
-        "description": "用 🧡 制作的 Mastodon 客户端（预览版）",
+        "description": "一个灵巧的 Mastodon 客户端（预览版）",
         "name": "鹿鸣 预览版",
         "short_name": "鹿鸣 预览版"
       },
       "release": {
-        "description": "用 🧡 制作的 Mastodon 客户端",
+        "description": "一个灵巧的 Mastodon 客户端",
         "name": "鹿鸣",
         "short_name": "鹿鸣"
       }

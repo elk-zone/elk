@@ -1,11 +1,12 @@
 import { createClient, fetchV1Instance } from 'masto'
 import type { mastodon } from 'masto'
-import type { Ref } from 'vue'
+import type { EffectScope, Ref } from 'vue'
 import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
 import type { ElkMasto, UserLogin } from '~/types'
 import {
   DEFAULT_POST_CHARS_LIMIT,
   STORAGE_KEY_CURRENT_USER,
+  STORAGE_KEY_CURRENT_USER_HANDLE,
   STORAGE_KEY_NOTIFICATION,
   STORAGE_KEY_NOTIFICATION_POLICY,
   STORAGE_KEY_SERVERS,
@@ -89,12 +90,13 @@ if (process.client) {
         window.addEventListener('visibilitychange', windowReload, { capture: true })
     }
   }, { immediate: true, flush: 'post' })
-}
 
-export const currentUserHandle = computed(() => currentUser.value?.account.id
-  ? `${currentUser.value.account.acct}@${currentInstance.value?.uri || currentServer.value}`
-  : '[anonymous]',
-)
+  // for injected script to read
+  const currentUserHandle = computed(() => currentUser.value?.account.acct || '')
+  watchEffect(() => {
+    localStorage.setItem(STORAGE_KEY_CURRENT_USER_HANDLE, currentUserHandle.value)
+  })
+}
 
 export const useUsers = () => users
 export const useSelfAccount = (user: MaybeComputedRef<mastodon.v1.Account | undefined>) =>
@@ -267,18 +269,37 @@ export function checkLogin() {
   return true
 }
 
+interface UseUserLocalStorageCache {
+  scope: EffectScope
+  value: Ref<Record<string, any>>
+}
+
 /**
  * Create reactive storage for the current user
  */
-export function useUserLocalStorage<T extends object>(key: string, initial: () => T) {
-  const all = useLocalStorage<Record<string, T>>(key, {}, { deep: true })
-  return computed(() => {
-    const id = currentUser.value?.account.id
-      ? currentUser.value.account.acct
-      : '[anonymous]'
-    all.value[id] = Object.assign(initial(), all.value[id] || {})
-    return all.value[id]
-  })
+export function useUserLocalStorage<T extends object>(key: string, initial: () => T): Ref<T> {
+  if (process.server)
+    return shallowRef(initial())
+
+  // @ts-expect-error bind value to the function
+  const map: Map<string, UseUserLocalStorageCache> = useUserLocalStorage._ = useUserLocalStorage._ || new Map()
+
+  if (!map.has(key)) {
+    const scope = effectScope(true)
+    const value = scope.run(() => {
+      const all = useLocalStorage<Record<string, T>>(key, {}, { deep: true })
+      return computed(() => {
+        const id = currentUser.value?.account.id
+          ? currentUser.value.account.acct
+          : '[anonymous]'
+        all.value[id] = Object.assign(initial(), all.value[id] || {})
+        return all.value[id]
+      })
+    })
+    map.set(key, { scope, value: value! })
+  }
+
+  return map.get(key)!.value as Ref<T>
 }
 
 /**
@@ -291,10 +312,12 @@ export function clearUserLocalStorage(account?: mastodon.v1.Account) {
     return
 
   const id = `${account.acct}@${currentInstance.value?.uri || currentServer.value}`
+
   // @ts-expect-error bind value to the function
-  ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>> | undefined)?.forEach((storage) => {
-    if (storage.value[id])
-      delete storage.value[id]
+  const cacheMap = useUserLocalStorage._ as Map<string, UseUserLocalStorageCache> | undefined
+  cacheMap?.forEach(({ value }) => {
+    if (value.value[id])
+      delete value.value[id]
   })
 }
 

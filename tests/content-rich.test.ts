@@ -42,6 +42,11 @@ describe('content-rich', () => {
     expect(formatted).toMatchSnapshot()
   })
 
+  it('handles formatting from servers', async () => {
+    const { formatted } = await render('<h1>Fedi HTML Support Survey</h1><p>Does the following formatting come through accurately for you?</p><ul><li>This is an indented bulleted list (not just asterisks).</li><li><strong>This line is bold.</strong></li><li><em>This line is italic.</em></li></ul><ol><li>This list...</li><li>...is numbered and indented</li></ol><h1>This line is larger.</h1>')
+    expect(formatted).toMatchSnapshot()
+  })
+
   it('custom emoji', async () => {
     const { formatted } = await render('Daniel Roe :nuxt:', {
       emojis: {

@@ -93,9 +93,9 @@ We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i
 
 1. Add a new file in [locales](./locales) folder with the language code as the filename.
 2. Copy [en-US](./locales/en-US.json) and translate the strings.
-3. Add the language to the `locales` array in [config/i18n.ts](./config/i18n.ts#L13)
-4. If the language is `right-to-left`, add `dir` option with `rtl` value, for example, for [ar-EG](./config/i18n.ts#L79)
-5. If the language requires special pluralization rules, add `pluralRule` callback option, for example, for [ar-EG](./config/i18n.ts#L80)
+3. Add the language to the `locales` array in [config/i18n.ts](./config/i18n.ts#L12), below `en` variants and `ar-EG`.
+4. If the language is `right-to-left`, add `dir` option with `rtl` value, for example, for [ar-EG](./config/i18n.ts#L27)
+5. If the language requires special pluralization rules, add `pluralRule` callback option, for example, for [ar-EG](./config/i18n.ts#L27)
 
 Check [Pluralization rule callback](https://vue-i18n.intlify.dev/guide/essentials/pluralization.html#custom-pluralization) for more info.
 

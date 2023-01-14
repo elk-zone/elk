@@ -11,6 +11,9 @@ const errorCodes: Record<number, string> = {
   404: 'Page not found',
 }
 
+if (process.dev)
+  console.error(error)
+
 const defaultMessage = 'Something went wrong'
 
 const message = error.message ?? errorCodes[error.statusCode!] ?? defaultMessage

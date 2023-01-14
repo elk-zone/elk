@@ -213,7 +213,7 @@ defineExpose({
     <div flex gap-4>
       <div w-12 h-full sm:block hidden />
       <div
-        v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="between" max-w-full
+        v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full
         border="t base"
       >
         <PublishEmojiPicker

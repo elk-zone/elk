@@ -76,7 +76,6 @@ watchEffect(() => {
 })
 
 const isSelf = $(useSelfAccount(() => account))
-const isNotifying = !!relationship?.notifying
 </script>
 
 <template>
@@ -101,9 +100,9 @@ const isNotifying = !!relationship?.notifying
         <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
 
-          <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100" group :aria-label="`${isNotifying ? 'Stop notifying' : 'Notify'} me when @${account.username} posts`" @click="toggleNotify()">
-            <div rounded-full p2 border-1 :class="isNotifying ? 'text-primary border-primary' : 'border-base'" :group-hover="isNotifying ? 'text-red bg-red/10 border-red' : 'text-primary'">
-              <div v-if="isNotifying" i-ri:bell-fill />
+          <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100" group :aria-label="`${relationship?.notifying ? 'Stop notifying' : 'Notify'} me when @${account.username} posts`" @click="toggleNotify()">
+            <div rounded-full p2 border-1 :class="relationship?.notifying ? 'text-primary border-primary' : 'border-base'" :group-hover="relationship?.notifying ? 'text-red bg-red/10 border-red' : 'text-primary'">
+              <div v-if="relationship?.notifying" i-ri:bell-fill />
               <div v-else i-ri-bell-line />
             </div>
           </button>

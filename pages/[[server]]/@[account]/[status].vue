@@ -34,7 +34,7 @@ if (process.server) {
   useHead({
     title: `${status.account.displayName || status.account.acct} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
     meta: [
-      { property: 'og:title', content: status.account.displayName || status.account.acct },
+      { property: 'og:title', content: `${status.account.displayName} (${status.account.acct})` },
       { property: 'og:description', content: removeHTMLTags(status.content) || '' },
       { property: 'og:image', content: status.mediaAttachments[0]?.url || `https://main.elk.zone/og${route.path}` },
     ],

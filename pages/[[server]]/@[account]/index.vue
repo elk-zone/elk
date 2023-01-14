@@ -23,7 +23,7 @@ if (process.server) {
     useHead({
       title: `${account.displayName || account.acct} ${t('common.in')} ${t('app_name')}`,
       meta: [
-        { property: 'og:title', content: `${account.displayName}(${account.acct})` },
+        { property: 'og:title', content: `${account.displayName} (${account.acct})` },
         { property: 'og:description', content: removeHTMLTags(account.note) || '' },
         { property: 'og:image', content: account.avatar },
       ],

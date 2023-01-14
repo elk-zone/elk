@@ -35,7 +35,9 @@
     "profile_unavailable": "Profile unavailable",
     "unblock": "Unblock",
     "unfollow": "Unfollow",
-    "unmute": "Unmute"
+    "unmute": "Unmute",
+    "view_other_followers": "Followers from other instances may not be displayed.",
+    "view_other_following": "Following from other instances may not be displayed."
   },
   "action": {
     "apply": "Apply",

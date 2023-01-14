@@ -11,15 +11,13 @@ export default defineNuxtPlugin(() => {
         innerHTML: `
 ;(function() {
   const handle = localStorage.getItem('${STORAGE_KEY_CURRENT_USER_HANDLE}')
-  if (!handle)
-    return
+  if (!handle) { return }
   const allSettings = JSON.parse(localStorage.getItem('${STORAGE_KEY_SETTINGS}') || '{}')
   const settings = allSettings[handle]
-  if (!settings)
-    return
+  if (!settings) { return }
 
   const html = document.querySelector('html')
-  ${process.dev ? 'console.log(\'settings\', settings)' : ''}
+  ${process.dev ? 'console.log({ settings })' : ''}
 
   const { fontSize, language } = settings || {}
 

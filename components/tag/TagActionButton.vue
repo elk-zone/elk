@@ -9,7 +9,7 @@ const emit = defineEmits<{
   (event: 'change'): void
 }>()
 
-const masto = useMasto()
+const { client: masto } = $(useMasto())
 
 const toggleFollowTag = async () => {
   if (tag.following)

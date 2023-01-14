@@ -15,13 +15,13 @@ const publishWidget = ref()
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   `status:${id}`,
   () => fetchStatus(id),
-  { watch: [isMastoInitialised], immediate: isMastoInitialised.value },
+  { watch: [isHydrated], immediate: isHydrated.value },
 )
-const masto = useMasto()
+const { client: masto } = $(useMasto())
 const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
   `context:${id}`,
   async () => masto.v1.statuses.fetchContext(id),
-  { watch: [isMastoInitialised], immediate: isMastoInitialised.value },
+  { watch: [isHydrated], immediate: isHydrated.value },
 )
 
 const replyDraft = $computed(() => status.value ? getReplyDraft(status.value) : null)

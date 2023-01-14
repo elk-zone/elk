@@ -12,7 +12,7 @@ export const usePublish = (options: {
 }) => {
   const { expanded, isUploading, initialDraft } = $(options)
   let { draft, isEmpty } = $(options.draftState)
-  const masto = useMasto()
+  const { client: masto } = $(useMasto())
 
   let isSending = $ref(false)
   const isExpanded = $ref(false)
@@ -83,7 +83,7 @@ export type MediaAttachmentUploadError = [filename: string, message: string]
 
 export const useUploadMediaAttachment = (draftRef: Ref<Draft>) => {
   const draft = $(draftRef)
-  const masto = useMasto()
+  const { client: masto } = $(useMasto())
   const { t } = useI18n()
 
   let isUploading = $ref<boolean>(false)
@@ -96,7 +96,7 @@ export const useUploadMediaAttachment = (draftRef: Ref<Draft>) => {
     failedAttachments = []
     // TODO: display some kind of message if too many media are selected
     // DONE
-    const limit = currentInstance.value!.configuration.statuses.maxMediaAttachments || 4
+    const limit = currentInstance.value!.configuration?.statuses.maxMediaAttachments || 4
     for (const file of files.slice(0, limit)) {
       if (draft.attachments.length < limit) {
         isExceedingAttachmentLimit = false
@@ -121,7 +121,7 @@ export const useUploadMediaAttachment = (draftRef: Ref<Draft>) => {
   }
 
   async function pickAttachments() {
-    const mimeTypes = currentInstance.value!.configuration.mediaAttachments.supportedMimeTypes
+    const mimeTypes = currentInstance.value!.configuration?.mediaAttachments.supportedMimeTypes
     const files = await fileOpen({
       description: 'Attachments',
       multiple: true,

@@ -9,7 +9,7 @@ export interface StatusActionsProps {
 
 export function useStatusActions(props: StatusActionsProps) {
   let status = $ref<mastodon.v1.Status>({ ...props.status })
-  const masto = useMasto()
+  const { client: masto } = $(useMasto())
 
   watch(
     () => props.status,

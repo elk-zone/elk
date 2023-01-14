@@ -22,7 +22,7 @@ export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSea
 
 export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOptions = {}) {
   const done = ref(false)
-  const masto = useMasto()
+  const { client: masto } = $(useMasto())
   const loading = ref(false)
   const accounts = ref<AccountSearchResult[]>([])
   const hashtags = ref<HashTagSearchResult[]>([])
@@ -59,11 +59,11 @@ export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOpt
   }
 
   watch(() => resolveUnref(query), () => {
-    loading.value = !!(q && isMastoInitialised.value)
+    loading.value = !!(q && isHydrated.value)
   })
 
   debouncedWatch(() => resolveUnref(query), async () => {
-    if (!q || !isMastoInitialised.value)
+    if (!q || !isHydrated.value)
       return
 
     loading.value = true
@@ -87,7 +87,7 @@ export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOpt
   }, { debounce: 300 })
 
   const next = async () => {
-    if (!q || !isMastoInitialised.value || !paginator)
+    if (!q || !isHydrated.value || !paginator)
       return
 
     loading.value = true

@@ -6,5 +6,5 @@ useHeadFixed({
 </script>
 
 <template>
-  <TimelineMentions v-if="isMastoInitialised" />
+  <TimelineMentions v-if="isHydrated" />
 </template>

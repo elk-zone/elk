@@ -19,7 +19,7 @@ export async function updateCustomEmojis() {
   if (Date.now() - currentCustomEmojis.value.lastUpdate < TTL)
     return
 
-  const masto = useMasto()
+  const { client: masto } = $(useMasto())
   const emojis = await masto.v1.customEmojis.list()
   Object.assign(currentCustomEmojis.value, {
     lastUpdate: Date.now(),

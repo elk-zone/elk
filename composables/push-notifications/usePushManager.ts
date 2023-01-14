@@ -13,7 +13,7 @@ const supportsPushNotifications = typeof window !== 'undefined'
   && 'getKey' in PushSubscription.prototype
 
 export const usePushManager = () => {
-  const masto = useMasto()
+  const { client: masto } = $(useMasto())
   const isSubscribed = ref(false)
   const notificationPermission = ref<PermissionState | undefined>(
     Notification.permission === 'denied'

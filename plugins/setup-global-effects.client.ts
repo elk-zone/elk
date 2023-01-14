@@ -7,4 +7,7 @@ export default defineNuxtPlugin(() => {
   watchEffect(() => {
     html.style.setProperty('--font-size', fontSizeMap[userSettings.value.fontSize || DEFAULT_FONT_SIZE])
   })
+  watchEffect(() => {
+    html.classList.toggle('zen', userSettings.value.zenMode)
+  })
 })

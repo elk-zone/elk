@@ -19,15 +19,15 @@ export default defineNuxtPlugin(() => {
   const html = document.querySelector('html')
   ${process.dev ? 'console.log({ settings })' : ''}
 
-  const { fontSize, language } = settings || {}
-
-  if (fontSize) {
+  if (settings.fontSize) {
     const fontSizeMap = ${JSON.stringify(fontSizeMap)}
-    html.style.setProperty('--font-size', fontSizeMap[fontSize])
+    html.style.setProperty('--font-size', fontSizeMap[settings.fontSize])
   }
-
-  if (language) {
-    html.setAttribute('lang', language)
+  if (settings.language) {
+    html.setAttribute('lang', settings.language)
+  }
+  if (settings.zenMode) {
+    html.classList.add('zen')
   }
 })()`.trim().replace(/\s*\n+\s*/g, ';'),
       },

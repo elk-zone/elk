@@ -277,7 +277,10 @@ interface UseUserLocalStorageCache {
 /**
  * Create reactive storage for the current user
  */
-export function useUserLocalStorage<T extends object>(key: string, initial: () => T) {
+export function useUserLocalStorage<T extends object>(key: string, initial: () => T): Ref<T> {
+  if (process.server)
+    return shallowRef(initial())
+
   // @ts-expect-error bind value to the function
   const map: Map<string, UseUserLocalStorageCache> = useUserLocalStorage._ = useUserLocalStorage._ || new Map()
 
@@ -296,7 +299,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
     map.set(key, { scope, value: value! })
   }
 
-  return map.get(key)!.value
+  return map.get(key)!.value as Ref<T>
 }
 
 /**

@@ -16,6 +16,8 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <SearchWidget v-if="isMastoInitialised" mt3 />
+    <div px2 mt3>
+      <SearchWidget v-if="isMastoInitialised" />
+    </div>
   </MainContent>
 </template>

@@ -116,6 +116,7 @@ importers:
       ufo: ^1.0.1
       ultrahtml: ^1.2.0
       unplugin-auto-import: ^0.12.1
+      unplugin-vue-inspector: ^0.0.2
       vite-plugin-inspect: ^0.7.14
       vite-plugin-pwa: ^0.14.1
       vitest: ^0.27.0
@@ -208,6 +209,7 @@ importers:
       theme-vitesse: 0.6.0
       typescript: 4.9.4
       unplugin-auto-import: 0.12.1_@vueuse+core@9.10.0
+      unplugin-vue-inspector: 0.0.2
       vite-plugin-inspect: 0.7.14
       vite-plugin-pwa: 0.14.1_tz3vz2xt4jvid2diblkpydcyn4
       vitest: 0.27.0_jsdom@21.0.0
@@ -949,6 +951,15 @@ packages:
       '@babel/helper-plugin-utils': 7.20.2
     dev: true
 
+  /@babel/plugin-syntax-import-meta/7.10.4_@babel+core@7.20.12:
+    resolution: {integrity: sha512-Yqfm+XDx0+Prh3VSeEQCPU81yC+JWZ2pDPFSS4ZdpfZhp4MkFMaDC1UqseovEKwSUpnIL7+vK+Clp7bfh0iD7g==}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.20.12
+      '@babel/helper-plugin-utils': 7.20.2
+    dev: true
+
   /@babel/plugin-syntax-json-strings/7.8.3_@babel+core@7.20.12:
     resolution: {integrity: sha512-lY6kdGpWHvjoe2vk4WrAapEuBR69EMxZl+RoGRhrFGNYVK8mOPAW8VfbT/ZgrFbXlDNiiaxQnAtgVCZ6jv30EA==}
     peerDependencies:
@@ -1400,6 +1411,20 @@ packages:
     dependencies:
       '@babel/core': 7.20.12
       '@babel/helper-create-class-features-plugin': 7.20.5_@babel+core@7.20.12
+      '@babel/helper-plugin-utils': 7.20.2
+      '@babel/plugin-syntax-typescript': 7.20.0_@babel+core@7.20.12
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@babel/plugin-transform-typescript/7.20.7_@babel+core@7.20.12:
+    resolution: {integrity: sha512-m3wVKEvf6SoszD8pu4NZz3PvfKRCMgk6D6d0Qi9hNnlM5M6CFS92EgF4EiHVLKbU0r/r7ty1hg7NPZwE7WRbYw==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.20.12
+      '@babel/helper-create-class-features-plugin': 7.20.12_@babel+core@7.20.12
       '@babel/helper-plugin-utils': 7.20.2
       '@babel/plugin-syntax-typescript': 7.20.0_@babel+core@7.20.12
     transitivePeerDependencies:
@@ -10636,6 +10661,10 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
+  /shell-quote/1.7.4:
+    resolution: {integrity: sha512-8o/QEhSSRb1a5i7TFR0iM4G16Z0vYB2OQVs4G3aAFXjn3T6yEx8AZxy1PgDF7I00LZHYA3WxaSYIf5e5sAX8Rw==}
+    dev: true
+
   /shiki-es/0.1.2:
     resolution: {integrity: sha512-eqtfk8idlYlSLAn0gp0Ly2+FbKc2d78IddigHSS4iHAnpXoY2kdRzyFGZOdi6TvemYMnRhZBi1HsSqZc5eNKqg==}
 
@@ -11711,6 +11740,17 @@ packages:
       - vue
     dev: true
 
+  /unplugin-vue-inspector/0.0.2:
+    resolution: {integrity: sha512-nfeiIH2OtWW2OIjLYxniGetpQcXU5MWzDZnVEZVfJJYHdI69gBvP7zdzEWQqS39/4r6AX8XDm+KnDabwNsXztQ==}
+    dependencies:
+      kolorist: 1.6.0
+      unplugin: 1.0.1
+      vite-plugin-vue-inspector: 3.1.2
+    transitivePeerDependencies:
+      - supports-color
+      - vite
+    dev: true
+
   /unplugin-vue-macros/1.3.2_@vueuse+core@9.10.0:
     resolution: {integrity: sha512-TcAVr81LiRlaeNtzu8tOZhEKHIpdbETFolP+l0eY7HlxQj0ee6feO//+NMLoKsypfJ/HmRuYIBClr1Ji3fAZ3A==}
     engines: {node: '>=14.19.0'}
@@ -12032,6 +12072,24 @@ packages:
       rollup: 3.9.1
       workbox-build: 6.5.4
       workbox-window: 6.5.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /vite-plugin-vue-inspector/3.1.2:
+    resolution: {integrity: sha512-DLvwyyCScgCufOU7K7UMk8UMREKGVpJbF6A6VDCavQzNcpbG9xovSstwiAr4ykMskWTzZ5GhVwHtIaNeQx3MzA==}
+    peerDependencies:
+      vite: ^3.0.0-0 || ^4.0.0-0
+    dependencies:
+      '@babel/core': 7.20.12
+      '@babel/plugin-syntax-import-meta': 7.10.4_@babel+core@7.20.12
+      '@babel/plugin-transform-typescript': 7.20.7_@babel+core@7.20.12
+      '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.20.12
+      '@vue/compiler-dom': 3.2.45
+      esno: 0.16.3
+      kolorist: 1.6.0
+      magic-string: 0.27.0
+      shell-quote: 1.7.4
     transitivePeerDependencies:
       - supports-color
     dev: true

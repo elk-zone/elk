@@ -1,7 +1,6 @@
 /// <reference lib="WebWorker" />
 declare const self: ServiceWorkerGlobalScope
 
-// let waitForClientResolve: Function | null = null
 const clientResolves: { [key: string]: Function } = {}
 
 self.addEventListener('message', (event) => {

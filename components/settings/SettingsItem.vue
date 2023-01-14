@@ -62,7 +62,7 @@ useCommand({
             />
           </slot>
         </div>
-        <div space-y-1>
+        <div flex="~ col gap-0.5">
           <p>
             <slot>
               <span>{{ text }}</span>

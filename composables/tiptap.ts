@@ -8,6 +8,7 @@ import HardBreak from '@tiptap/extension-hard-break'
 import Bold from '@tiptap/extension-bold'
 import Italic from '@tiptap/extension-italic'
 import Code from '@tiptap/extension-code'
+import History from '@tiptap/extension-history'
 import { Plugin } from 'prosemirror-state'
 
 import type { Ref } from 'vue'
@@ -58,9 +59,12 @@ export function useTiptap(options: UseTiptapOptions) {
           suggestion: HashtagSuggestion,
         }),
       Placeholder.configure({
-        placeholder: placeholder.value,
+        placeholder: () => placeholder.value!,
       }),
       CodeBlockShiki,
+      History.configure({
+        depth: 10,
+      }),
       Extension.create({
         name: 'api',
         addKeyboardShortcuts() {
@@ -105,6 +109,9 @@ export function useTiptap(options: UseTiptapOptions) {
     if (editor.value?.getHTML() === value)
       return
     editor.value?.commands.setContent(value || '', false)
+  })
+  watch(placeholder, () => {
+    editor.value?.view.dispatch(editor.value?.state.tr)
   })
 
   return {

@@ -36,6 +36,19 @@ if (import.meta.env.PROD)
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {
+  // include shiki cache
+  registerRoute(
+    ({ sameOrigin, url }) =>
+      sameOrigin && url.pathname.startsWith('/shiki/'),
+    new StaleWhileRevalidate({
+      cacheName: 'elk-shiki',
+      plugins: [
+        new CacheableResponsePlugin({ statuses: [200] }),
+        // 365 days max
+        new ExpirationPlugin({ maxAgeSeconds: 60 * 60 * 24 * 365 }),
+      ],
+    }),
+  )
   // include emoji icons
   registerRoute(
     ({ sameOrigin, request, url }) =>

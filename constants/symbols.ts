@@ -1,7 +1,4 @@
-import type { InjectionKey, Ref } from 'vue'
-import type { FontSize } from '~/types'
-
-export const InjectionKeyFontSize: InjectionKey<Ref<FontSize>> = Symbol('font-size')
+import type { InjectionKey } from 'vue'
 
 export const InjectionKeyDropdownContext: InjectionKey<{
   hide: () => void

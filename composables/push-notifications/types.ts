@@ -24,3 +24,12 @@ export interface CustomEmojisInfo {
   lastUpdate: number
   emojis: mastodon.v1.CustomEmoji[]
 }
+
+export type PushSubscriptionErrorCode = 'too_many_registrations'
+export class PushSubscriptionError extends Error {
+  code: PushSubscriptionErrorCode
+  constructor(code: PushSubscriptionErrorCode, message?: string) {
+    super(message)
+    this.code = code
+  }
+}

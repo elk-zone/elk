@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { account, command, ...props } = defineProps<{
+const { account, command, context, ...props } = defineProps<{
   account: mastodon.v1.Account
   relationship?: mastodon.v1.Relationship
+  context?: 'followedBy' | 'following'
   command?: boolean
 }>()
 
@@ -18,7 +19,8 @@ async function toggleFollow() {
     const newRel = await masto.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
     Object.assign(relationship!, newRel)
   }
-  catch {
+  catch (err) {
+    console.error(err)
     // TODO error handling
     relationship!.following = !relationship!.following
   }
@@ -30,7 +32,8 @@ async function unblock() {
     const newRel = await masto.v1.accounts.unblock(account.id)
     Object.assign(relationship!, newRel)
   }
-  catch {
+  catch (err) {
+    console.error(err)
     // TODO error handling
     relationship!.blocking = true
   }
@@ -42,7 +45,8 @@ async function unmute() {
     const newRel = await masto.v1.accounts.unmute(account.id)
     Object.assign(relationship!, newRel)
   }
-  catch {
+  catch (err) {
+    console.error(err)
     // TODO error handling
     relationship!.muting = true
   }
@@ -60,19 +64,15 @@ useCommand({
 })
 
 const buttonStyle = $computed(() => {
-  // Skeleton while loading, avoid primary color flash
-  if (!relationship)
-    return 'text-inverted'
-
-  if (relationship.blocking)
+  if (relationship?.blocking)
     return 'text-inverted bg-red border-red'
 
-  if (relationship.muting)
-    return 'text-base bg-code border-base'
+  if (relationship?.muting)
+    return 'text-base bg-card border-base'
 
   // If following, use a label style with a strong border for Mutuals
-  if (relationship.following)
-    return `text-base ${relationship.followedBy ? 'border-strong' : 'border-base'}`
+  if (relationship ? relationship.following : context === 'following')
+    return `text-base ${relationship?.followedBy ? 'border-strong' : 'border-base'}`
 
   // If not following, use a button style
   return 'text-inverted bg-primary border-primary'
@@ -98,14 +98,14 @@ const buttonStyle = $computed(() => {
       <span group-hover="hidden">{{ $t('account.muting') }}</span>
       <span hidden group-hover="inline">{{ $t('account.unmute') }}</span>
     </template>
-    <template v-else-if="relationship?.following">
+    <template v-else-if="relationship ? relationship.following : context === 'following'">
       <span group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
       <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
     </template>
     <template v-else-if="relationship?.requested">
       <span>{{ $t('account.follow_requested') }}</span>
     </template>
-    <template v-else-if="relationship?.followedBy">
+    <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
       <span group-hover="hidden">{{ $t('account.follows_you') }}</span>
       <span hidden group-hover="inline">{{ $t('account.follow_back') }}</span>
     </template>

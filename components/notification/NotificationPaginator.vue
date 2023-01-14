@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { mastodon } from 'masto'
-import type { Paginator, WsEvents } from 'masto'
-// type used in <template>
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
-import type { GroupedAccountLike, GroupedLikeNotifications, GroupedNotifications, NotificationSlot } from '~/types'
+// @ts-expect-error missing types
+import { DynamicScrollerItem } from 'vue-virtual-scroller'
+import type { Paginator, WsEvents, mastodon } from 'masto'
+import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
-  paginator: Paginator<NotificationSlot[], mastodon.v1.ListNotificationsParams>
+  paginator: Paginator<mastodon.v1.Notification[], mastodon.v1.ListNotificationsParams>
   stream?: Promise<WsEvents>
 }>()
+
+const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 
 const groupCapacity = Number.MAX_VALUE // No limit
 
@@ -43,21 +44,31 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
     // This normally happens when you transfer an account, if not, show
     // a big profile card for each follow
     if (group[0].type === 'follow') {
-      const toGroup = []
+      let groups: mastodon.v1.Notification[] = []
+
+      function newGroup() {
+        if (groups.length > 0) {
+          results.push({
+            id: `grouped-${id++}`,
+            type: 'grouped-follow',
+            items: groups,
+          })
+          groups = []
+        }
+      }
+
       for (const item of group) {
         const hasHeader = !item.account.header.endsWith('/original/missing.png')
-        if (hasHeader && (item.account.followersCount > 250 || (group.length === 1 && item.account.followersCount > 25)))
+        if (hasHeader && (item.account.followersCount > 250 || (group.length === 1 && item.account.followersCount > 25))) {
+          newGroup()
           results.push(item)
-        else
-          toGroup.push(item)
+        }
+        else {
+          groups.push(item)
+        }
       }
-      if (toGroup.length > 0) {
-        results.push({
-          id: `grouped-${id++}`,
-          type: `grouped-${group[0].type}`,
-          items: toGroup,
-        })
-      }
+
+      newGroup()
       return
     }
 
@@ -105,7 +116,7 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
   const flattenedNotifications: mastodon.v1.Notification[] = []
   for (const item of items) {
     if (item.type === 'grouped-reblogs-and-favourites') {
-      const group = item as GroupedLikeNotifications
+      const group = item
       for (const like of group.likes) {
         if (like.reblog)
           flattenedNotifications.push(like.reblog)
@@ -113,11 +124,11 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
           flattenedNotifications.push(like.favourite)
       }
     }
-    else if (item.type.startsWith('grouped-')) {
-      flattenedNotifications.push(...(item as GroupedNotifications).items)
+    else if (item.type === 'grouped-follow') {
+      flattenedNotifications.push(...item.items)
     }
     else {
-      flattenedNotifications.push(item as mastodon.v1.Notification)
+      flattenedNotifications.push(item)
     }
   }
   return groupItems(flattenedNotifications)
@@ -128,14 +139,41 @@ const { formatNumber } = useHumanReadableNumber()
 </script>
 
 <template>
-  <CommonPaginator :paginator="paginator" :preprocess="preprocess" :stream="stream" :eager="3" event-type="notification">
+  <CommonPaginator
+    :paginator="paginator"
+    :preprocess="preprocess"
+    :stream="stream"
+    :eager="3"
+    :virtual-scroller="virtualScroller"
+    event-type="notification"
+  >
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
-    <template #items="{ items }">
-      <template v-for="item of items" :key="item.id">
+    <template #default="{ item, active }">
+      <template v-if="virtualScroller">
+        <DynamicScrollerItem :item="item" :active="active" tag="div">
+          <NotificationGroupedFollow
+            v-if="item.type === 'grouped-follow'"
+            :items="item"
+            border="b base"
+          />
+          <NotificationGroupedLikes
+            v-else-if="item.type === 'grouped-reblogs-and-favourites'"
+            :group="item"
+            border="b base"
+          />
+          <NotificationCard
+            v-else
+            :notification="item"
+            hover:bg-active
+            border="b base"
+          />
+        </DynamicScrollerItem>
+      </template>
+      <template v-else>
         <NotificationGroupedFollow
           v-if="item.type === 'grouped-follow'"
           :items="item"
@@ -143,12 +181,12 @@ const { formatNumber } = useHumanReadableNumber()
         />
         <NotificationGroupedLikes
           v-else-if="item.type === 'grouped-reblogs-and-favourites'"
-          :group="item as GroupedLikeNotifications"
+          :group="item"
           border="b base"
         />
         <NotificationCard
           v-else
-          :notification="item as mastodon.v1.Notification"
+          :notification="item"
           hover:bg-active
           border="b base"
         />

@@ -38,23 +38,24 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
     v-else
     block
     of-hidden
-    hover:bg-active
     :to="card.url"
+    bg-card
+    hover:bg-active
     :class="{
       'flex': isSquare,
       'p-4': root,
-      'rounded-lg border border-base': !root,
+      'rounded-lg': !root,
     }"
     target="_blank"
+    external
   >
     <div
       v-if="card.image"
       flex flex-col
       display-block of-hidden
-      border="base"
       :class="{
-        'sm:(min-w-32 w-32 h-32) min-w-22 w-22 h-22 border-r': isSquare,
-        'w-full aspect-[1.91] border-b': !isSquare,
+        'sm:(min-w-32 w-32 h-32) min-w-24 w-24 h-24': isSquare,
+        'w-full aspect-[1.91]': !isSquare,
         'rounded-lg': root,
       }"
     >
@@ -69,13 +70,13 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
     </div>
     <div
       v-else
-      min-w-22 w-22 h-22 sm="min-w-32 w-32 h-32" bg="slate-500/10" flex justify-center items-center
+      min-w-24 w-24 h-24 sm="min-w-32 w-32 h-32" bg="slate-500/10" flex justify-center items-center
       :class="[
         root ? 'rounded-lg' : '',
       ]"
     >
       <div :class="cardTypeIconMap[card.type]" w="30%" h="30%" text-secondary />
     </div>
-    <StatusPreviewCardInfo :root="root" :card="card" :provider="providerName" />
+    <StatusPreviewCardInfo :p="isSquare ? 'x-4' : '4'" :root="root" :card="card" :provider="providerName" />
   </NuxtLink>
 </template>

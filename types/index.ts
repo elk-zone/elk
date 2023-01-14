@@ -29,7 +29,7 @@ export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'
 
 export interface GroupedNotifications {
   id: string
-  type: Exclude<string, 'grouped-reblogs-and-favourites'>
+  type: 'grouped-follow'
   items: mastodon.v1.Notification[]
 }
 
@@ -56,7 +56,9 @@ export interface Draft {
   params: MarkNonNullable<Mutable<mastodon.v1.CreateStatusParams>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'>
   attachments: mastodon.v1.MediaAttachment[]
   lastUpdated: number
+  mentions?: string[]
 }
+
 export type DraftMap = Record<string, Draft>
 
 export interface ConfirmDialogLabel {

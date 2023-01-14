@@ -1,5 +1,7 @@
 // Vitest Snapshot v1
 
+exports[`content-rich > block with backticks 1`] = `"<p><pre>[(\`number string) (\`tag string)]</pre></p>"`;
+
 exports[`content-rich > code frame 1`] = `
 "<p>Testing code block</p><p></p><p><pre lang=\\"ts\\">import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
 // tracks mouse position
@@ -39,6 +41,40 @@ exports[`content-rich > custom emoji 1`] = `
 `;
 
 exports[`content-rich > empty 1`] = `""`;
+
+exports[`content-rich > group mention > html 1`] = `
+"<p>
+  <span class=\\"h-card\\"
+    ><a
+      class=\\"u-url mention\\"
+      rel=\\"nofollow noopener noreferrer\\"
+      to=\\"//@pilipinas@lemmy.ml\\"
+    ></a
+  ></span>
+</p>
+"
+`;
+
+exports[`content-rich > handles html within code blocks 1`] = `
+"<p>
+  HTML block code:<br />
+  <pre lang=\\"html\\">
+&lt;span class=&quot;icon--noto icon--noto--1st-place-medal&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon--noto icon--noto--2nd-place-medal-medal&quot;&gt;&lt;/span&gt;</pre
+  >
+</p>
+"
+`;
+
+exports[`content-rich > inline code with link 1`] = `
+"<p>
+  Inline code with link:
+  <code
+    >https://api.iconify.design/noto.css?icons=1st-place-medal,2nd-place-medal</code
+  >
+</p>
+"
+`;
 
 exports[`content-rich > link + mention 1`] = `
 "<p>

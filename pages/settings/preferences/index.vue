@@ -4,6 +4,8 @@ const { t } = useI18n()
 useHeadFixed({
   title: () => `${t('settings.preferences.label')} | ${t('nav.settings')}`,
 })
+
+const userSettings = useUserSettings()
 </script>
 
 <template>
@@ -18,19 +20,19 @@ useHeadFixed({
       {{ $t('settings.feature_flags.title') }}
     </h3>
     <SettingsToggleItem
-      :checked="getFeatureFlag('experimentalVirtualScroll')"
-      @click="toggleFeatureFlag('experimentalVirtualScroll')"
+      :checked="getFeatureFlag(userSettings, 'experimentalVirtualScroller')"
+      @click="toggleFeatureFlag('experimentalVirtualScroller')"
     >
       {{ $t('settings.feature_flags.virtual_scroll') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="getFeatureFlag('experimentalGitHubCards')"
+      :checked="getFeatureFlag(userSettings, 'experimentalGitHubCards')"
       @click="toggleFeatureFlag('experimentalGitHubCards')"
     >
       {{ $t('settings.feature_flags.github_cards') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="getFeatureFlag('experimentalUserPicker')"
+      :checked="getFeatureFlag(userSettings, 'experimentalUserPicker')"
       @click="toggleFeatureFlag('experimentalUserPicker')"
     >
       {{ $t('settings.feature_flags.user_picker') }}

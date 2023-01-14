@@ -8,6 +8,8 @@ definePageMeta({ name: 'account-followers' })
 const account = await fetchAccountByHandle(handle)
 const paginator = account ? useMasto().v1.accounts.listFollowers(account.id, {}) : null
 
+const isSelf = useSelfAccount(account)
+
 if (account) {
   useHeadFixed({
     title: () => `${t('account.followers')} | ${getDisplayName(account)} (@${account})`,
@@ -17,6 +19,6 @@ if (account) {
 
 <template>
   <template v-if="paginator">
-    <AccountPaginator :paginator="paginator" />
+    <AccountPaginator :paginator="paginator" :relationship-context="isSelf ? 'followedBy' : undefined" />
   </template>
 </template>

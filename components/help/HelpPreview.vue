@@ -23,21 +23,23 @@ const emit = defineEmits<{
     </p>
     <p>
       {{ $t('help.desc_para4') }}
-      <a font-bold text-primary href="/m.webtoo.ls/@elk" target="_blank">
+      <NuxtLink font-bold text-primary href="https://github.com/elk-zone/elk" target="_blank">
         {{ $t('help.desc_para5') }}
-      </a>
+      </NuxtLink>
       {{ $t('help.desc_para6') }}
     </p>
     {{ $t('help.desc_para3') }}
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of teams" :key="team.github">
-        <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
+        <NuxtLink :href="`https://github.com/sponsors/${team.github}`" target="_blank" external rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
           <img :src="`/avatars/${team.github}-100x100.png`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
-        </a>
+        </NuxtLink>
       </template>
     </p>
     <p italic flex justify-center w-full>
-      <span text-xl font-script>The Elk Team</span>
+      <NuxtLink href="https://github.com/sponsors/elk-zone" target="_blank">
+        <span text-xl font-script hover:text-primary transition duration-300>The Elk Team</span>
+      </NuxtLink>
     </p>
 
     <button btn-solid mxa tabindex="2" @click="emit('close')">

@@ -22,12 +22,10 @@ export default defineNuxtModule({
     nuxt.options.runtimeConfig.public.env = env
     nuxt.options.runtimeConfig.public.buildInfo = buildInfo
 
-    nuxt.hook('nitro:config', (config) => {
-      config.publicAssets = config.publicAssets || []
-      if (env === 'dev')
-        config.publicAssets.unshift({ dir: resolve('../public-dev') })
-      else if (env === 'canary' || env === 'preview' || !isCI)
-        config.publicAssets.unshift({ dir: resolve('../public-staging') })
-    })
+    nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
+    if (env === 'dev')
+      nuxt.options.nitro.publicAssets.unshift({ dir: resolve('../public-dev') })
+    else if (env === 'canary' || env === 'preview' || !isCI)
+      nuxt.options.nitro.publicAssets.unshift({ dir: resolve('../public-staging') })
   },
 })

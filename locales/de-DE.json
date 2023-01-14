@@ -84,7 +84,6 @@
     "title": "Elk ist in der Alpha!"
   },
   "language": {
-    "none": "Keine",
     "search": "Suche"
   },
   "menu": {
@@ -148,7 +147,8 @@
     "replying": "Antworten"
   },
   "search": {
-    "search_desc": "Suche nach Accounts & Hashtags"
+    "search_desc": "Suche nach Accounts & Hashtags",
+    "search_empty": "Nichts für diese Suchbegriffe gefunden"
   },
   "settings": {
     "about": {

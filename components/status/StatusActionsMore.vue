@@ -23,6 +23,7 @@ const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
+const userSettings = useUserSettings()
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
@@ -121,9 +122,9 @@ const showFavoritedAndBoostedBy = () => {
   <CommonDropdown flex-none ms3 placement="bottom" :eager-mount="command">
     <StatusActionButton
       :content="$t('action.more')"
-      color="text-purple"
-      hover="text-purple"
-      group-hover="bg-purple/10"
+      color="text-primary"
+      hover="text-primary"
+      group-hover="bg-primary-light"
       icon="i-ri:more-line"
       my--2
     />

@@ -4,9 +4,13 @@ Hi! We are really excited that you are interested in contributing to Elk. Before
 
 Refer also to https://github.com/antfu/contribute.
 
-## Set up your local development environment
+### Online
 
-The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/) (Note: on Linux in a standard Node 16+ environment, you should follow the instructions to install via Node's `corepack` rather than using the `curl` command).
+You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 
+
+[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
+
+### Local Setup
 
 To develop and test the Elk package:
 
@@ -14,27 +18,42 @@ To develop and test the Elk package:
 
 2. Ensure using the latest Node.js (16.x)
 
-3. Elk uses pnpm v7, you must enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`.
+3. The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/) v7. To use it you must first enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`. (Note: on Linux in a standard Node 16+ environment, you should follow the instructions to install via Node's `corepack` rather than using the `curl` command)
 
 4. Check out a branch where you can work and commit your changes:
 ```shell
 git checkout -b my-new-branch
 ```
 
-5. Run `pnpm i` in Elk's root folder
+1. Run `pnpm i` in Elk's root folder
 
-6. Run `pnpm nuxi prepare` in Elk's root folder
+2. Run `pnpm nuxi prepare` in Elk's root folder
 
-7. Run `pnpm dev` in Elk's root folder to start dev server or `pnpm dev:mocked` to start dev server with `@elkdev@universeodon.com` user.
+3. Run `pnpm dev` in Elk's root folder to start dev server or `pnpm dev:mocked` to start dev server with `@elkdev@universeodon.com` user.
+
+We recommend installing [ni](https://github.com/antfu/ni#ni), that will use the right package manager in each of your projects. If `ni` is installed, you can instead run:
+
+```
+ni
+nr dev
+```
+
+### Testing
+
+Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
+
+```
+nr test
+```
 
 ### Running PWA on dev server
 
-In order to run Elk with PWA enabled, run `pnpm run dev:pwa` in Elk's root folder to start dev server or `pnpm dev:mocked:pwa` to start dev server with `@elkdev@universeodon.com` user.
+In order to run Elk with PWA enabled, run `pnpm dev:pwa` in Elk's root folder to start dev server or `pnpm dev:mocked:pwa` to start dev server with `@elkdev@universeodon.com` user.
 
 You should test the Elk PWA application on private browsing mode on any Chromium based browser: will not work on Firefox and Safari.
 
 If not using private browsing mode, you will need to uninstall the PWA application from your browser once you finish testing:
-- Open `Dev Tools` (`Option + ⌘ + J` on MacOS, `Shift + CTRL + J` on Windows/Linux)
+- Open `Dev Tools` (`Option + ⌘ + J` on macOS, `Shift + CTRL + J` on Windows/Linux)
 - Go to `Application > Storage`, you should check following checkboxes:
     - Application: [x] Unregister service worker
     - Storage: [x] IndexedDB and [x] Local and session storage
@@ -44,7 +63,11 @@ If not using private browsing mode, you will need to uninstall the PWA applicati
 
 ## CI errors
 
-Sometimes when you push your changes, the CI can fail, but we cannot check the logs to see what went wrong, run the following commands on your local environment:
+Sometimes when you push your changes to create a new pull request (PR), the CI can fail, but we cannot check the logs to see what went wrong.
+
+If you are getting **Semantic Pull Request** error, please check the [Semantic Pull Request](https://www.conventionalcommits.org/en/v1.0.0/#summary) documentation.
+
+You can run the following commands on your local environment to fix CI errors:
 - `pnpm test:unit` to run unit tests, maybe you also need to update snapshots
 - `pnpm test:typecheck` to run TypeScript checks run on CI
 
@@ -68,11 +91,11 @@ We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i
 
 ### Adding a new language
 
-1. Add a new file in [locales](../locales) folder with the language code as the filename.
-2. Copy [en-US](../locales/en-US.json) and translate the strings.
-3. Add the language to the `locales` array in [config/i18n.ts](../config/i18n.ts#L13)
-4. If the language is `right-to-left`, add `dir` option with `rtl` value, for example, for [ar-EG](../config/i18n.ts#L63)
-5. If the language requires special pluralization rules, add `pluralRule` callback option, for example, for [ar-EG](../config/i18n.ts#L64)
+1. Add a new file in [locales](./locales) folder with the language code as the filename.
+2. Copy [en-US](./locales/en-US.json) and translate the strings.
+3. Add the language to the `locales` array in [config/i18n.ts](./config/i18n.ts#L13)
+4. If the language is `right-to-left`, add `dir` option with `rtl` value, for example, for [ar-EG](./config/i18n.ts#L79)
+5. If the language requires special pluralization rules, add `pluralRule` callback option, for example, for [ar-EG](./config/i18n.ts#L80)
 
 Check [Pluralization rule callback](https://vue-i18n.intlify.dev/guide/essentials/pluralization.html#custom-pluralization) for more info.
 
@@ -132,17 +155,17 @@ You can run this code in your browser console to see how it works:
 #### Custom Plural Number Formatting Entries
 
 **Warning**:
-Either **{0}**, **{v}** or **{followers}** should be used with the exception being custom plurals entries using the `{n}` placeholder.
+Either **{0}** or **{v}** should be used with the exception being custom plurals entries using the `{n}` placeholder.
 
 This is the full list of entries that will be available for number formatting in Elk:
-- `action.boost_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `action.favourite_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `action.reply_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `account.followers_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `account.following_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `account.posts_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `compose.drafts`: `{v}` for formatted number and `{n}` for raw number - **{v} should be use**
-- `notification.followed_you_count`: `{followers}` for formatted number and `{n}` for raw number - **{followers} should be use**
-- `status.poll.count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `time_ago_options.*`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**: since numbers will be always small, we can also use `{n}`
-- `timeline.show_new_items`: `{v}` for formatted number and `{n}` for raw number - **{v} should be use**
+- `action.boost_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `action.favourite_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `action.reply_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `account.followers_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `account.following_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `account.posts_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `compose.drafts`: `{v}` for formatted number and `{n}` for raw number - **{v} should be used**
+- `notification.followed_you_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `status.poll.count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `time_ago_options.*`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**: since numbers will be always small, we can also use `{n}`
+- `timeline.show_new_items`: `{v}` for formatted number and `{n}` for raw number - **{v} should be used**

@@ -77,6 +77,10 @@ body {
   --at-apply: 'op0 hover:op100 transition duration-600';
 }
 
+.zen .zen-none {
+  display: none;
+}
+
 .custom-emoji {
   display: inline-block;
   overflow: hidden;
@@ -231,4 +235,8 @@ footer {
   a {
     --at-apply: 'hover:underline';
   }
+}
+
+.squircle {
+  clip-path: url(#avatar-mask);
 }

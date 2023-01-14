@@ -74,6 +74,31 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
         },
       ],
     }
+    acc[`${lang}-dark`] = {
+      scope: '/',
+      id: '/',
+      start_url: '/',
+      display: 'standalone',
+      lang,
+      name,
+      short_name,
+      description,
+      dir,
+      background_color: '#111111',
+      theme_color: '#111111',
+      icons: [
+        {
+          src: 'pwa-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+      ],
+    }
 
     return acc
   }, {} as LocalizedWebManifest)

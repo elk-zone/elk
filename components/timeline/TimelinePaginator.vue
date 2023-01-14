@@ -14,7 +14,7 @@ const { paginator, stream, account, buffer = 10 } = defineProps<{
 }>()
 
 const { formatNumber } = useHumanReadableNumber()
-const virtualScroller = $(useFeatureFlag('experimentalVirtualScroll'))
+const virtualScroller = $(useFeatureFlag('experimentalVirtualScroller'))
 
 const showOriginSite = $computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
@@ -41,14 +41,14 @@ const showOriginSite = $computed(() =>
     <template v-if="context === 'account' && showOriginSite" #done>
       <div p5 text-secondary text-center flex flex-col items-center gap1>
         <span italic>{{ $t('timeline.view_older_posts') }}</span>
-        <a
-          :href="account!.url" target="_blank"
+        <NuxtLink
+          :href="account!.url" target="_blank" external
           flex="~ gap-1" items-center text-primary
           hover="underline text-primary-active"
         >
           <div i-ri:external-link-fill />
           {{ $t('menu.open_in_original_site') }}
-        </a>
+        </NuxtLink>
       </div>
     </template>
   </CommonPaginator>

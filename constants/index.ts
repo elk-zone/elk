@@ -5,6 +5,7 @@ export const APP_NAME = 'Elk'
 export const DEFAULT_POST_CHARS_LIMIT = 500
 export const DEFAULT_FONT_SIZE = 'md'
 export const DEFAULT_CUSTOM_COLORS: CustomColors = { 'primary': '#d98018', 'bg-base': '#fafafa', 'bg-active': '#f2f2f2', 'text-base': '#232323', 'border': '#eee', 'border-dark': '#dccfcf' }
+export const DEFAULT_LANGUAGE = 'en-US'
 
 export const STORAGE_KEY_DRAFTS = 'elk-drafts'
 export const STORAGE_KEY_USERS = 'elk-users'
@@ -23,7 +24,6 @@ export const STORAGE_KEY_NOTIFICATION_POLICY = 'elk-notification-policy'
 export const COOKIE_MAX_AGE = 10 * 365 * 24 * 60 * 60 * 1000
 
 export const COOKIE_KEY_FONT_SIZE = 'elk-font-size'
-export const COOKIE_KEY_COLOR_MODE = 'elk-color-mode'
 export const COOKIE_KEY_LOCALE = 'elk-lang'
 export const COOKIE_KEY_CUSTOM_COLORS = 'elk-custom-colors'
 

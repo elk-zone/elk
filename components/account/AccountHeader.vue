@@ -6,6 +6,8 @@ const { account } = defineProps<{
   command?: boolean
 }>()
 
+const masto = useMasto()
+
 const { t } = useI18n()
 
 const createdAt = $(useFormattedDateTime(() => account.createdAt, {
@@ -13,6 +15,8 @@ const createdAt = $(useFormattedDateTime(() => account.createdAt, {
   day: 'numeric',
   year: 'numeric',
 }))
+
+const relationship = $(useRelationship(account))
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
@@ -37,6 +41,18 @@ function previewAvatar() {
     previewUrl: account.avatar,
     description: t('account.avatar_description', [account.username]),
   }])
+}
+
+async function toggleNotify() {
+  relationship!.notifying = !relationship!.notifying
+  try {
+    const newRel = await masto.v1.accounts.follow(account.id, { notify: relationship!.notifying })
+    Object.assign(relationship!, newRel)
+  }
+  catch {
+    // TODO error handling
+    relationship!.notifying = !relationship!.notifying
+  }
 }
 
 watchEffect(() => {
@@ -70,8 +86,8 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
         <div flex="~ col gap-2 1">
-          <button w-30 h-30 rounded-full border-4 border-bg-base z-2 @click="previewAvatar">
-            <AccountAvatar :account="account" hover:opacity-90 transition-opacity />
+          <button :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" w-30 h-30 p1 bg-base border-bg-base z-2 @click="previewAvatar">
+            <AccountAvatar :square="isSelf" :account="account" hover:opacity-90 transition-opacity />
           </button>
           <div flex="~ col gap1">
             <div flex justify-between>
@@ -83,6 +99,14 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
         </div>
         <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
+
+          <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100 text-pink" group @click="toggleNotify()">
+            <div rounded-full p2 group-hover="bg-pink/10">
+              <div v-if="relationship?.notifying" i-ri:bell-fill />
+              <div v-else i-ri-bell-line />
+            </div>
+          </button>
+
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->
           <NuxtLink
@@ -93,11 +117,6 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           >
             {{ $t('settings.profile.appearance.title') }}
           </NuxtLink>
-          <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
-            <div rounded p2 group-hover="bg-rose/10">
-              <div i-ri:bell-line />
-            </div>
-          </button> -->
         </div>
       </div>
       <div v-if="account.note" max-h-100 overflow-y-auto>

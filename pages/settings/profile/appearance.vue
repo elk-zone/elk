@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
-import { satisfies } from 'semver'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
 
@@ -24,7 +23,7 @@ const onlineSrc = $computed(() => ({
 const { form, reset, submitter, dirtyFields, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
-    const fieldsAttributes = Array.from({ length: 4 }, (_, i) => {
+    const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
       const field = { ...account?.fields?.[i] || { name: '', value: '' } }
 
       const linkElement = (parse(field.value)?.children?.[0])
@@ -151,16 +150,8 @@ onReactivated(refreshInfo)
         </label>
 
         <!-- metadata -->
-        <div space-y-2>
-          <div font-medium>
-            {{ $t('settings.profile.appearance.profile_metadata') }}
-          </div>
-          <div text-sm text-secondary>
-            {{ $t('settings.profile.appearance.profile_metadata_desc') }}
-          </div>
 
-          <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
-        </div>
+        <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
 
         <!-- actions -->
         <div flex="~ gap2" justify-end>
@@ -181,10 +172,10 @@ onReactivated(refreshInfo)
             flex gap-x-2 items-center
             :disabled="submitting || !isCanSubmit"
           >
-            <div
-              aria-hidden="true"
-              :class="submitting ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:save-line'"
-            />
+            <span v-if="submitting" aria-hidden="true" block animate-spin preserve-3d>
+              <span block i-ri:loader-2-fill aria-hidden="true" />
+            </span>
+            <span v-else aria-hidden="true" block i-ri:save-line />
             {{ $t('action.save') }}
           </button>
         </div>

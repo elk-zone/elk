@@ -46,7 +46,7 @@ const handleShowCommit = () => {
         </template>
       </SettingsItem>
 
-      <SettingsItem text="Built time" :content="builtTime" />
+      <SettingsItem :text="$t('nav.built_at')" :content="builtTime" />
     </template>
 
     <div h-1px bg-border my2 />
@@ -54,7 +54,7 @@ const handleShowCommit = () => {
     <SettingsItem
       :text="$t('nav.show_intro')"
       icon="i-ri:article-line"
-      cursor-pointer
+      cursor-pointer large
       @click="openPreviewHelp"
     />
 
@@ -62,27 +62,58 @@ const handleShowCommit = () => {
       text="Mastodon"
       icon="i-ri:mastodon-line"
       to="/m.webtoo.ls/@elk"
-      external target="_blank"
+      large target="_blank"
     />
     <SettingsItem
       text="Discord"
       icon="i-ri:discord-fill"
       to="https://chat.elk.zone"
-      external target="_blank"
+      external large target="_blank"
     />
     <SettingsItem
       text="GitHub"
       icon="i-ri:github-fill"
-      to="https://github.com/elk-zone"
-      external target="_blank"
+      to="https://github.com/elk-zone/elk"
+      external large target="_blank"
     />
+
+    <div h-1px bg-border my2 />
+
+    <p px5 py3 font-bold text-lg>
+      {{ $t('settings.about.sponsors') }}
+    </p>
+
+    <p px5 text-secondary>
+      {{ $t('settings.about.sponsors_body_1') }}
+    </p>
+
+    <LazySettingsSponsorsList />
+
+    <p px5 mb1 text-secondary>
+      {{ $t('settings.about.sponsors_body_2') }}
+    </p>
+    <p px5 mb2 text-secondary>
+      {{ $t('settings.about.sponsors_body_3') }}
+    </p>
+
+    <SettingsItem
+      :text="$t('settings.about.sponsor_action')"
+      to="https://github.com/sponsors/elk-zone"
+      :description="$t('settings.about.sponsor_action_desc')"
+      external large target="_blank"
+    >
+      <template #icon>
+        <div i-ri-heart-3-fill text-rose rounded-full w-8 h-8 height="32" width="32" />
+      </template>
+    </SettingsItem>
 
     <div h-1px bg-border my2 />
 
     <template v-if="isHydrated">
       <p px5 py3 font-bold text-lg>
-        Meet the team
+        {{ $t('settings.about.meet_the_team') }}
       </p>
+
       <SettingsItem
         v-for="team in teams" :key="team.github"
         :text="team.display"

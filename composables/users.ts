@@ -1,7 +1,7 @@
-import { login as loginMasto } from 'masto'
-import type { WsEvents, mastodon } from 'masto'
+import { createClient, fetchV1Instance } from 'masto'
+import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
-import type { RemovableRef } from '@vueuse/core'
+import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
 import type { ElkMasto, UserLogin } from '~/types'
 import {
   DEFAULT_POST_CHARS_LIMIT,
@@ -55,6 +55,7 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 
 const publicInstance = ref<mastodon.v1.Instance | null>(null)
 export const currentInstance = computed<null | mastodon.v1.Instance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+export const isGlitchEdition = computed(() => currentInstance.value?.version.includes('+glitch'))
 
 export const publicServer = ref('')
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
@@ -96,6 +97,8 @@ export const currentUserHandle = computed(() => currentUser.value?.account.id
 )
 
 export const useUsers = () => users
+export const useSelfAccount = (user: MaybeComputedRef<mastodon.v1.Account | undefined>) =>
+  computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
 
 export const characterLimit = computed(() => currentInstance.value?.configuration.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
@@ -103,22 +106,26 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: mastodon.
   const route = useRoute()
   const router = useRouter()
   const server = user?.server || route.params.server as string || publicServer.value
-  const masto = await loginMasto({
-    url: `https://${server}`,
+  const url = `https://${server}`
+  const instance = await fetchV1Instance({
+    url,
+  })
+  const masto = createClient({
+    url,
+    streamingApiUrl: instance.urls.streamingApi,
     accessToken: user?.token,
     disableVersionCheck: true,
   })
 
   if (!user?.token) {
     publicServer.value = server
-    publicInstance.value = await masto.v1.instances.fetch()
+    publicInstance.value = instance
   }
 
   else {
     try {
-      const [me, instance, pushSubscription] = await Promise.all([
+      const [me, pushSubscription] = await Promise.all([
         masto.v1.accounts.verifyCredentials(),
-        masto.v1.instances.fetch(),
         // if PWA is not enabled, don't get push subscription
         useRuntimeConfig().public.pwaEnabled
           // we get 404 response instead empty data
@@ -137,7 +144,8 @@ async function loginTo(user?: Omit<UserLogin, 'account'> & { account?: mastodon.
       if (!users.value.some(u => u.server === user.server && u.token === user.token))
         users.value.push(user as UserLogin)
     }
-    catch {
+    catch (err) {
+      console.error(err)
       await signout()
     }
   }
@@ -203,7 +211,7 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
         await subscription.unsubscribe()
     }
     catch {
-      // juts ignore
+      // just ignore
     }
   }
 }
@@ -213,12 +221,7 @@ export async function removePushNotifications(user: UserLogin) {
     return
 
   // unsubscribe push notifications
-  try {
-    await useMasto().v1.webPushSubscriptions.remove()
-  }
-  catch {
-    // ignore
-  }
+  await useMasto().v1.webPushSubscriptions.remove().catch(() => Promise.resolve())
 }
 
 export async function signout() {
@@ -256,47 +259,6 @@ export async function signout() {
   await masto.loginTo(currentUser.value)
 }
 
-const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, number]>>({})
-
-export const useNotifications = () => {
-  const id = currentUser.value?.account.id
-  const masto = useMasto()
-
-  const clearNotifications = () => {
-    if (!id || !notifications[id])
-      return
-    notifications[id]![1] = 0
-  }
-
-  async function connect(): Promise<void> {
-    if (!isMastoInitialised.value || !id || notifications[id] || !currentUser.value?.token)
-      return
-
-    const stream = masto.v1.stream.streamUser()
-    notifications[id] = [stream, 0]
-    ;(await stream).on('notification', () => {
-      if (notifications[id])
-        notifications[id]![1]++
-    })
-  }
-
-  function disconnect(): void {
-    if (!id || !notifications[id])
-      return
-    notifications[id]![0].then(stream => stream.disconnect())
-    notifications[id] = undefined
-  }
-
-  watch(currentUser, disconnect)
-  connect()
-
-  return {
-    notifications: computed(() => id ? notifications[id]?.[1] ?? 0 : 0),
-    disconnect,
-    clearNotifications,
-  }
-}
-
 export function checkLogin() {
   if (!currentUser.value) {
     openSigninDialog()
@@ -309,13 +271,7 @@ export function checkLogin() {
  * Create reactive storage for the current user
  */
 export function useUserLocalStorage<T extends object>(key: string, initial: () => T) {
-  // @ts-expect-error bind value to the function
-  const storages = useUserLocalStorage._ = useUserLocalStorage._ || new Map<string, Ref<Record<string, any>>>()
-
-  if (!storages.has(key))
-    storages.set(key, useLocalStorage(key, {}, { deep: true }))
-  const all = storages.get(key) as Ref<Record<string, T>>
-
+  const all = useLocalStorage<Record<string, T>>(key, {}, { deep: true })
   return computed(() => {
     const id = currentUser.value?.account.id
       ? currentUser.value.account.acct
@@ -336,7 +292,7 @@ export function clearUserLocalStorage(account?: mastodon.v1.Account) {
 
   const id = `${account.acct}@${currentInstance.value?.uri || currentServer.value}`
   // @ts-expect-error bind value to the function
-  ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>>).forEach((storage) => {
+  ;(useUserLocalStorage._ as Map<string, Ref<Record<string, any>>> | undefined)?.forEach((storage) => {
     if (storage.value[id])
       delete storage.value[id]
   })

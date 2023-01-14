@@ -8,7 +8,7 @@ const { account, command, context, ...props } = defineProps<{
   command?: boolean
 }>()
 
-const isSelf = $computed(() => currentUser.value?.account.id === account.id)
+const isSelf = $(useSelfAccount(() => account))
 const enable = $computed(() => !isSelf && currentUser.value)
 const relationship = $computed(() => props.relationship || useRelationship(account).value)
 

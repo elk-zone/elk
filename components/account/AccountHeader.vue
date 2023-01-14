@@ -75,7 +75,7 @@ watchEffect(() => {
   iconFields.value = icons
 })
 
-const isSelf = $computed(() => currentUser.value?.account.id === account.id)
+const isSelf = $(useSelfAccount(() => account))
 </script>
 
 <template>

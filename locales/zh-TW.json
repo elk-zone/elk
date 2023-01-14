@@ -209,22 +209,22 @@
     "update_available_short": "更新鹿鳴",
     "webmanifest": {
       "canary": {
-        "description": "用 🧡 製作的 Mastodon 用戶端（Canary）",
+        "description": "一個靈巧的 Mastodon 用戶端（Canary）",
         "name": "鹿鳴 Canary",
         "short_name": "鹿鳴 Canary"
       },
       "dev": {
-        "description": "用 🧡 製作的 Mastodon 用戶端（開發版）",
+        "description": "一個靈巧的 Mastodon 用戶端（開發版）",
         "name": "鹿鳴 開發版",
         "short_name": "鹿鳴 開發版"
       },
       "preview": {
-        "description": "用 🧡 製作的 Mastodon 用戶端（預覽版）",
+        "description": "一個靈巧的 Mastodon 用戶端（預覽版）",
         "name": "鹿鳴 預覽版",
         "short_name": "鹿鳴 預覽版"
       },
       "release": {
-        "description": "用 🧡 製作的 Mastodon 用戶端",
+        "description": "一個靈巧的 Mastodon 用戶端",
         "name": "鹿鳴",
         "short_name": "鹿鳴"
       }

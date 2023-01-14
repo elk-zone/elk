@@ -49,7 +49,7 @@ useCommand({
   <component
     :is="as"
     v-bind="$attrs" ref="el"
-    w-fit flex gap-1 items-center
+    w-fit flex gap-1 items-center transition-all
     rounded group
     :hover=" !disabled ? hover : undefined"
     focus:outline-none

@@ -92,7 +92,10 @@ if (process.client) {
   }, { immediate: true, flush: 'post' })
 
   // for injected script to read
-  useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, computed(() => currentUser.value?.account.acct || ''))
+  const currentUserHandle = computed(() => currentUser.value?.account.acct || '')
+  watchEffect(() => {
+    localStorage.setItem(STORAGE_KEY_CURRENT_USER_HANDLE, currentUserHandle.value)
+  })
 }
 
 export const useUsers = () => users

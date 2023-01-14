@@ -33,7 +33,7 @@ if (import.meta.env.DEV)
 // deny api and server page calls
 let denylist: undefined | RegExp[]
 if (import.meta.env.PROD)
-  denylist = [/^\/api\//, /^\/login\//, /^\/oauth\//, /^\/signin\//]
+  denylist = [/^\/api\//, /^\/login\//, /^\/oauth\//, /^\/signin\//, /^\/share-target\//]
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {

@@ -7,7 +7,7 @@ const nuxtApp = useNuxtApp()
 
 const onClickLogo = () => {
   // @ts-expect-error missing types
-  nuxtApp.hooks.callHook('refresh:home')
+  nuxtApp.hooks.callHook('elk-logo:click')
 }
 
 onMounted(() => {

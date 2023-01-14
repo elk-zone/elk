@@ -46,7 +46,7 @@ const nuxtApp = useNuxtApp()
 const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream, eventType, preprocess)
 
 // @ts-expect-error missing types
-nuxtApp.hook('refresh:home', () => {
+nuxtApp.hook('elk-logo:click', () => {
   update()
   nuxtApp.$scrollToTop()
 })

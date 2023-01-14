@@ -41,8 +41,14 @@ defineSlots<{
 }>()
 
 const { t } = useI18n()
+const nuxtApp = useNuxtApp()
 
 const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, stream, eventType, preprocess)
+
+nuxtApp.hook('refresh:home', () => {
+  update()
+  nuxtApp.$scrollToTop()
+})
 </script>
 
 <template>

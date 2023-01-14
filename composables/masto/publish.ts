@@ -12,7 +12,7 @@ export const usePublish = (options: {
 }) => {
   const { expanded, isUploading, initialDraft } = $(options)
   let { draft, isEmpty } = $(options.draftState)
-  const { client: masto } = $(useMasto())
+  const { client } = $(useMasto())
 
   let isSending = $ref(false)
   const isExpanded = $ref(false)
@@ -51,9 +51,9 @@ export const usePublish = (options: {
 
       let status: mastodon.v1.Status
       if (!draft.editingStatus)
-        status = await masto.v1.statuses.create(payload)
+        status = await client.v1.statuses.create(payload)
       else
-        status = await masto.v1.statuses.update(draft.editingStatus.id, payload)
+        status = await client.v1.statuses.update(draft.editingStatus.id, payload)
       if (draft.params.inReplyToId)
         navigateToStatus({ status })
 
@@ -83,7 +83,7 @@ export type MediaAttachmentUploadError = [filename: string, message: string]
 
 export const useUploadMediaAttachment = (draftRef: Ref<Draft>) => {
   const draft = $(draftRef)
-  const { client: masto } = $(useMasto())
+  const { client } = $(useMasto())
   const { t } = useI18n()
 
   let isUploading = $ref<boolean>(false)
@@ -101,7 +101,7 @@ export const useUploadMediaAttachment = (draftRef: Ref<Draft>) => {
       if (draft.attachments.length < limit) {
         isExceedingAttachmentLimit = false
         try {
-          const attachment = await masto.v1.mediaAttachments.create({
+          const attachment = await client.v1.mediaAttachments.create({
             file,
           })
           draft.attachments.push(attachment)
@@ -132,7 +132,7 @@ export const useUploadMediaAttachment = (draftRef: Ref<Draft>) => {
 
   async function setDescription(att: mastodon.v1.MediaAttachment, description: string) {
     att.description = description
-    await masto.v1.mediaAttachments.update(att.id, { description: att.description })
+    await client.v1.mediaAttachments.update(att.id, { description: att.description })
   }
 
   function removeAttachment(index: number) {

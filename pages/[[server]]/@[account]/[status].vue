@@ -17,10 +17,10 @@ const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   () => fetchStatus(id),
   { watch: [isHydrated], immediate: isHydrated.value },
 )
-const { client: masto } = $(useMasto())
+const { client } = $(useMasto())
 const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
   `context:${id}`,
-  async () => masto.v1.statuses.fetchContext(id),
+  async () => client.v1.statuses.fetchContext(id),
   { watch: [isHydrated], immediate: isHydrated.value },
 )
 

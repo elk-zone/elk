@@ -11,6 +11,9 @@ let knownServers = $ref<string[]>([])
 let autocompleteIndex = $ref(0)
 let autocompleteShow = $ref(false)
 
+const users = useUsers()
+const userSettings = useUserSettings()
+
 async function oauth() {
   if (busy)
     return
@@ -28,7 +31,9 @@ async function oauth() {
     location.href = await (globalThis.$fetch as any)(`/api/${server || publicServer.value}/login`, {
       method: 'POST',
       body: {
+        force_login: users.value.some(u => u.server === server),
         origin: location.origin,
+        lang: userSettings.value.language,
       },
     })
   }

@@ -256,7 +256,8 @@
         "sm": "小",
         "xl": "特大",
         "xs": "特小"
-      }
+      },
+      "system_mode": "跟随系统"
     },
     "language": {
       "display_language": "首选语言",

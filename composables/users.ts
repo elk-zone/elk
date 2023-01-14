@@ -6,6 +6,7 @@ import type { ElkMasto, UserLogin } from '~/types'
 import {
   DEFAULT_POST_CHARS_LIMIT,
   STORAGE_KEY_CURRENT_USER,
+  STORAGE_KEY_CURRENT_USER_HANDLE,
   STORAGE_KEY_NOTIFICATION,
   STORAGE_KEY_NOTIFICATION_POLICY,
   STORAGE_KEY_SERVERS,
@@ -89,12 +90,10 @@ if (process.client) {
         window.addEventListener('visibilitychange', windowReload, { capture: true })
     }
   }, { immediate: true, flush: 'post' })
-}
 
-export const currentUserHandle = computed(() => currentUser.value?.account.id
-  ? `${currentUser.value.account.acct}@${currentInstance.value?.uri || currentServer.value}`
-  : '[anonymous]',
-)
+  // for injected script to read
+  useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, computed(() => currentUser.value?.account.acct || ''))
+}
 
 export const useUsers = () => users
 export const useSelfAccount = (user: MaybeComputedRef<mastodon.v1.Account | undefined>) =>

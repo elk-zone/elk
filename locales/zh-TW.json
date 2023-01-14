@@ -169,7 +169,7 @@
     "explore": "搜尋",
     "favourites": "喜歡",
     "federated": "跨站",
-    "home": "主頁",
+    "home": "首頁",
     "local": "本地",
     "muted_users": "已靜音的使用者",
     "notifications": "通知",
@@ -444,7 +444,7 @@
     "year_past": "現在|去年|{n} 年前"
   },
   "timeline": {
-    "show_new_items": "載入 {v} 條新貼文",
+    "show_new_items": "顯示 {v} 則新貼文",
     "view_older_posts": "其他站點上更舊的貼文可能不會在這裡顯示。"
   },
   "title": {

@@ -35,7 +35,9 @@
     "profile_unavailable": "個人資料不可見",
     "unblock": "取消拉黑",
     "unfollow": "取消關注",
-    "unmute": "取消屏蔽"
+    "unmute": "取消屏蔽",
+    "view_other_followers": "其他站點上的關注者可能不會在這裡顯示。",
+    "view_other_following": "其他站點上正在關注的人可能不會在這裡顯示。"
   },
   "action": {
     "apply": "應用",

@@ -113,9 +113,9 @@
     "unsupported_file_format": "Formato de ficheiro não suportado"
   },
   "help": {
-    "desc_highlight": "Espere alguns problemas e funcionalidades em falta aqui e ali.",
+    "desc_highlight": "Espere alguns problemas e funcionalidades em falta.",
     "desc_para1": "Obrigado pelo seu interesse em experimentar o Elk, o nosso aplicativo web para o Mastodon, ainda em construção!",
-    "desc_para2": "estamos a trabalhar arduamente no seu desenvolvimento e melhoria ao longo do tempo.",
+    "desc_para2": "Estamos a trabalhar arduamente no seu desenvolvimento e melhoria ao longo do tempo.",
     "desc_para3": "Para ajudar a impulsionar o desenvolvimento, pode patrocionar a Equipa através do GitHub Sponsors. Esperamos que aprecie o Elk!",
     "desc_para4": "Elk é um software de código aberto. Se quiser ajudar a testar a aplicação, dando o seu feedback ou contributo,",
     "desc_para5": "pode encontrar-nos no GitHub",
@@ -178,7 +178,7 @@
     "select_feature_flags": "Alternar Funcionalidades",
     "select_font_size": "Tamanho da Fonte",
     "select_language": "Idioma de Apresentação",
-    "settings": "Preferências",
+    "settings": "Definições",
     "show_intro": "Mostrar introdução",
     "toggle_theme": "Alternar Tema",
     "zen_mode": "Modo Zen"
@@ -466,7 +466,7 @@
   },
   "user": {
     "add_existing": "Adicionar uma conta existente",
-    "server_address_label": "Endereço do Servidor do Mastodon",
+    "server_address_label": "Endereço do Servidor Mastodon",
     "sign_in_desc": "Entre, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações, ou interagir a partir da sua conta de outro servidor.",
     "sign_in_notice_title": "A visualizar os dados públicos de {0}",
     "sign_out_account": "Desconectar {0}",

@@ -11,6 +11,26 @@ const { t } = useI18n()
 const { data: account, pending, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null), { watch: [isMastoInitialised], immediate: isMastoInitialised.value }))
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
 
+if (process.server) {
+  const masto = useMasto()
+  const route = useRoute()
+  // render OG tags for crawlers
+  const client = await masto.loginTo({
+    server: route.params.server as string,
+  })
+  const account = await client.v1.accounts.lookup({ acct: accountName })
+  if (account) {
+    useHead({
+      title: `${account.displayName || account.acct} ${t('common.in')} ${t('app_name')}`,
+      meta: [
+        { property: 'og:title', content: `${account.displayName}(${account.acct})` },
+        { property: 'og:description', content: removeHTMLTags(account.note) || '' },
+        { property: 'og:image', content: account.avatar },
+      ],
+    })
+  }
+}
+
 onReactivated(() => {
   // Silently update data when reentering the page
   // The user will see the previous content first, and any changes will be updated to the UI when the request is completed

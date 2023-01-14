@@ -24,6 +24,23 @@ const { data: context, pending: pendingContext, refresh: refreshContext } = useA
   { watch: [isMastoInitialised], immediate: isMastoInitialised.value },
 )
 
+if (process.server) {
+  // render OG tags for crawlers
+  const client = await masto.loginTo({
+    server: route.params.server as string,
+  })
+  const status = await client.v1.statuses.fetch(id)
+  const { t } = useI18n()
+  useHead({
+    title: `${status.account.displayName || status.account.acct} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
+    meta: [
+      { property: 'og:title', content: status.account.displayName || status.account.acct },
+      { property: 'og:description', content: removeHTMLTags(status.content) || '' },
+      { property: 'og:image', content: status.mediaAttachments[0]?.url || `https://main.elk.zone/og${route.path}` },
+    ],
+  })
+}
+
 const replyDraft = $computed(() => status.value ? getReplyDraft(status.value) : null)
 
 function scrollTo() {

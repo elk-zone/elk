@@ -9,6 +9,9 @@ const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS, false)
 
 useHeadFixed({
   title: () => `${t('tab.news')} | ${t('nav.explore')}`,
+  meta: [
+    { property: 'og:title', content: `${t('tab.news')} | ${t('nav.explore')}` },
+  ],
 })
 </script>
 

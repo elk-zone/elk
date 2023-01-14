@@ -19,6 +19,25 @@ if (tag) {
   })
 }
 
+if (process.server) {
+  const masto = useMasto()
+  const route = useRoute()
+  // render OG tags for crawlers
+  const client = await masto.loginTo({
+    server: route.params.server as string,
+  })
+  const tag = await client.v1.tags.fetch((tagName))
+  if (tag) {
+    useHead({
+      title: `#${tag.name}`,
+      meta: [
+        { property: 'og:title', content: `#${tag.name}` },
+        { property: 'og:description', content: '' },
+      ],
+    })
+  }
+}
+
 onReactivated(() => {
   // Silently update data when reentering the page
   // The user will see the previous content first, and any changes will be updated to the UI when the request is completed

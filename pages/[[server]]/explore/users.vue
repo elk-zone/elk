@@ -6,6 +6,9 @@ const paginator = useMasto().v2.suggestions.list({ limit: 20 })
 
 useHeadFixed({
   title: () => `${t('tab.for_you')} | ${t('nav.explore')}`,
+  meta: [
+    { property: 'og:title', content: `${t('tab.for_you')} | ${t('nav.explore')}` },
+  ],
 })
 </script>
 

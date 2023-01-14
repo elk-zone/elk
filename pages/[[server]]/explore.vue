@@ -21,6 +21,25 @@ const tabs = $computed(() => [
     disabled: !isMastoInitialised.value || !currentUser.value,
   },
 ] as const)
+
+if (process.server) {
+  const masto = useMasto()
+  const route = useRoute()
+  // render OG tags for crawlers
+  const client = await masto.loginTo({
+    server: route.params.server as string,
+  })
+  const server = await client.v1.instances.fetch()
+  if (server) {
+    useHead({
+      titleTemplate: `%s | ${server.title}`,
+      meta: [
+        { property: 'og:description', content: removeHTMLTags(server.description) },
+        ...server.thumbnail ? [{ property: 'og:image', content: server.thumbnail || '' }] : [],
+      ],
+    })
+  }
+}
 </script>
 
 <template>

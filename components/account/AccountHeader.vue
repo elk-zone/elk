@@ -105,12 +105,12 @@ const isNotifiedOnPost = $computed(() => relationship?.notifying)
         <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
           <CommonTooltip :content="getNotificationIconTitle()">
-            <button 
-              v-if="!isSelf && relationship?.following" 
-              :aria-pressed="isNotifiedOnPost" 
-              :aria-label="getNotificationIconTitle()" 
-              rounded-full p2 border-1 transition-colors 
-              :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'" 
+            <button
+              v-if="!isSelf && relationship?.following"
+              :aria-pressed="isNotifiedOnPost"
+              :aria-label="getNotificationIconTitle()"
+              rounded-full p2 border-1 transition-colors
+              :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
               @click="toggleNotifications"
             >
               <span v-if="isNotifiedOnPost" i-ri:bell-fill block text-current />

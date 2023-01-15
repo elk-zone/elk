@@ -11,7 +11,7 @@
     "blocked_by": "Du wurdest von diesem Account geblockt",
     "blocked_domains": "Gesperrte Domänen",
     "blocked_users": "Gesperrte Accounts",
-    "blocking": "blockierend",
+    "blocking": "Blockiert",
     "bot": "BOT",
     "favourites": "Favoriten",
     "follow": "Folgen",
@@ -47,7 +47,7 @@
     "boost": "Teilen",
     "boost_count": "{0}",
     "boosted": "Geteilt",
-    "clear_upload_failed": "Fehler beim Hochladen von Dateien löschen",
+    "clear_upload_failed": "Fehler beim Hochladen von Dateien aufräumen",
     "close": "Schliessen",
     "compose": "Verfassen",
     "confirm": "Bestätigen",
@@ -168,7 +168,7 @@
     "blocked_users": "Blockierte Benutzer",
     "bookmarks": "Lesezeichen",
     "built_at": "Letzter Build: {0}",
-    "compose": "Komponieren",
+    "compose": "Verfassen",
     "conversations": "Direktnachrichten",
     "explore": "Entdecken",
     "favourites": "Favoriten",
@@ -202,7 +202,7 @@
     "default_1": "Was geht dir gerade durch den Kopf?",
     "reply_to_account": "Antwort an {0}",
     "replying": "Antworten",
-    "the_thread": "der Faden"
+    "the_thread": "der Thread"
   },
   "pwa": {
     "dismiss": "Zurückweisen",
@@ -303,7 +303,7 @@
         },
         "save_settings": "Einstellungen speichern",
         "subscription_error": {
-          "clear_error": "Fehler löschen",
+          "clear_error": "Fehler aufräumen",
           "permission_denied": "Berechtigung verweigert: Aktivieren Sie Benachrichtigungen in Ihrem Browser.",
           "request_error": "Beim Anfordern des Abonnements ist ein Fehler aufgetreten. Versuchen Sie es erneut. Wenn der Fehler weiterhin besteht, melden Sie das Problem bitte dem Elk-Repository.",
           "title": "Push-Benachrichtigungen konnten nicht abonniert werden",
@@ -314,7 +314,7 @@
         "unsubscribe": "Push-Benachrichtigungen deaktivieren",
         "unsupported": "Ihr Browser unterstützt keine Push-Benachrichtigungen.",
         "warning": {
-          "enable_close": "Nah dran",
+          "enable_close": "Schließen",
           "enable_description": "Um Benachrichtigungen zu erhalten, wenn Elk nicht geöffnet ist, aktivieren Sie Push-Benachrichtigungen. \nSie können genau steuern, welche Arten von Interaktionen Push-Benachrichtigungen generieren, indem Sie die Schaltfläche \"@:settings.notifications.show_btn{'\"'} oben aktivieren, sobald sie aktiviert ist.",
           "enable_description_desktop": "Um Benachrichtigungen zu erhalten, wenn Elk nicht geöffnet ist, aktivieren Sie Push-Benachrichtigungen. \nSie können unter „Einstellungen > Benachrichtigungen > Einstellungen für Push-Benachrichtigungen“ genau steuern, welche Arten von Interaktionen Push-Benachrichtigungen generieren, sobald diese aktiviert sind.",
           "enable_description_mobile": "Sie erreichen die Einstellungen auch über das Navigationsmenü „Einstellungen > Benachrichtigungen > Push-Benachrichtigungseinstellungen“.",
@@ -358,20 +358,12 @@
       "export": "Benutzer-Token exportieren",
       "import": "Benutzer-Token importieren",
       "label": "Eingeloggte Benutzer"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "",
-        "hide_favorite_count": "",
-        "hide_follower_count": ""
-      },
-      "label": ""
     }
   },
   "share-target": {
     "description": "Elk kann so konfiguriert werden, dass Sie Inhalte aus anderen Anwendungen teilen können, installieren Sie einfach Elk auf Ihrem Gerät oder Computer und melden Sie sich an.",
     "hint": "Um Inhalte mit Elk zu teilen, muss Elk installiert und Sie müssen angemeldet sein.",
-    "title": "Teilen Sie mit Elk"
+    "title": "Teile via Elk"
   },
   "state": {
     "attachments_exceed_server_limit": "Die Anzahl der Anhänge hat das Limit pro Beitrag überschritten.",

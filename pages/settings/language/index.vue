@@ -4,6 +4,8 @@ const { t } = useI18n()
 useHeadFixed({
   title: () => `${t('settings.language.label')} | ${t('nav.settings')}`,
 })
+
+const userSettings = useUserSettings()
 </script>
 
 <template>
@@ -16,7 +18,11 @@ useHeadFixed({
     <div p6>
       <label space-y-2>
         <p font-medium>{{ $t('settings.language.display_language') }}</p>
-        <SettingsLanguage select-settings />
+        <SettingsLanguage v-model:language="userSettings.language" select-settings />
+      </label>
+      <label space-y-2>
+        <p font-medium>{{ $t('settings.language.writing_language') }}</p>
+        <SettingsLanguage v-model:language="userSettings.writingLanguage" select-settings />
       </label>
     </div>
   </MainContent>

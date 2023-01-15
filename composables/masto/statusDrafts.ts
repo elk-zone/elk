@@ -1,5 +1,5 @@
-import type { mastodon } from 'masto'
 import type { ComputedRef, Ref } from 'vue'
+import type { mastodon } from 'masto'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
@@ -11,6 +11,10 @@ export const builtinDraftKeys = [
   'home',
 ]
 
+function getLanguageCodeFromLocale(localeCode: string) {
+  return localeCode.substring(0, 2)
+}
+
 export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
   const {
     attachments = [],
@@ -20,9 +24,10 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
     visibility,
     sensitive,
     spoilerText,
-    language,
     mentions,
   } = options
+  const userSettings = $(useUserSettings())
+  const postLanguage = getLanguageCodeFromLocale(userSettings.writingLanguage)
 
   return {
     attachments,
@@ -33,7 +38,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
       visibility: visibility || 'public',
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
-      language: language || 'en',
+      language: postLanguage ?? 'en',
     },
     mentions,
     lastUpdated: Date.now(),
@@ -66,6 +71,7 @@ function getAccountsToMention(status: mastodon.v1.Status) {
 
 export function getReplyDraft(status: mastodon.v1.Status) {
   const accountsToMention = getAccountsToMention(status)
+  const { writingLanguage } = $(useUserSettings())
   return {
     key: `reply-${status.id}`,
     draft: () => {
@@ -74,6 +80,7 @@ export function getReplyDraft(status: mastodon.v1.Status) {
         inReplyToId: status!.id,
         visibility: status.visibility,
         mentions: accountsToMention,
+        language: getLanguageCodeFromLocale(writingLanguage),
       })
     },
   }
@@ -85,7 +92,6 @@ export const isEmptyDraft = (draft: Draft | null | undefined) => {
   const { params, attachments } = draft
   const status = params.status || ''
   const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
-
   return (text.length === 0)
     && attachments.length === 0
     && (params.spoilerText || '').length === 0

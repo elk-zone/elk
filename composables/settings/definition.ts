@@ -17,6 +17,7 @@ export interface UserSettings {
   colorMode?: ColorMode
   fontSize: FontSize
   language: string
+  writingLanguage: string
   zenMode: boolean
 }
 
@@ -29,6 +30,7 @@ export function getDefaultLanguage(languages: string[]) {
 export function getDefaultUserSettings(locales: string[]): UserSettings {
   return {
     language: getDefaultLanguage(locales),
+    writingLanguage: getDefaultLanguage(locales),
     fontSize: DEFAULT_FONT_SIZE,
     zenMode: false,
     preferences: {},

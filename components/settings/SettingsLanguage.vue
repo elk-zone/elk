@@ -2,14 +2,17 @@
 import type { ComputedRef } from 'vue'
 import type { LocaleObject } from '#i18n'
 
-const userSettings = useUserSettings()
+const props = defineProps<{
+  language?: string
+}>()
+const model = useVModel(props, 'language')
 
 const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
 </script>
 
 <template>
-  <select v-model="userSettings.language">
-    <option v-for="item in locales" :key="item.code" :value="item.code" :selected="userSettings.language === item.code">
+  <select v-model="model">
+    <option v-for="item in locales" :key="item.code" :value="item.code" :selected="props.language === item.code">
       {{ item.name }}
     </option>
   </select>

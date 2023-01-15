@@ -43,7 +43,7 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
   const cached = cache.get(key)
   if (cached)
     return cached
-  const domain = currentInstance.value?.uri
+  const domain = currentInstance.value ? getInstanceDomain(currentInstance.value) : null
   const promise = useMastoClient().v1.accounts.fetch(id)
     .then((r) => {
       if (r.acct && !r.acct.includes('@') && domain)
@@ -63,7 +63,7 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   const cached = cache.get(key)
   if (cached)
     return cached
-  const domain = currentInstance.value?.uri
+  const domain = currentInstance.value ? getInstanceDomain(currentInstance.value) : undefined
 
   async function lookupAccount() {
     const client = useMastoClient()

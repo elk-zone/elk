@@ -34,7 +34,7 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
 
   const server = user.server
   const url = `https://${server}`
-  const instance: ElkInstance = reactive(getInstanceCache(server) || { uri: server })
+  const instance: ElkInstance = reactive(getInstanceCache(server) || { uri: server, accountDomain: server })
   setParams({
     url,
     accessToken: user?.token,

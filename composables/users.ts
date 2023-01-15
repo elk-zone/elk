@@ -47,7 +47,11 @@ export const instances = useLocalStorage<Record<string, mastodon.v1.Instance>>(S
 export const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 
-export type ElkInstance = Partial<mastodon.v1.Instance> & { uri: string }
+export type ElkInstance = Partial<mastodon.v1.Instance> & {
+  uri: string
+  /** support GoToSocial */
+  accountDomain?: string | null
+}
 export const getInstanceCache = (server: string): mastodon.v1.Instance | undefined => instances.value[server]
 
 export const currentUser = computed<UserLogin | undefined>(() => {
@@ -62,6 +66,10 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 
 const publicInstance = ref<ElkInstance | null>(null)
 export const currentInstance = computed<null | ElkInstance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+
+export function getInstanceDomain(instance: ElkInstance) {
+  return instance.accountDomain || instance.uri
+}
 
 export const publicServer = ref('')
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)

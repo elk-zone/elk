@@ -4,6 +4,8 @@ import type { ComponentPublicInstance } from 'vue'
 definePageMeta({
   name: 'status',
   key: route => route.path,
+  // GoToSocial
+  alias: ['/:server/@:account/statuses/:status'],
 })
 
 const route = useRoute()

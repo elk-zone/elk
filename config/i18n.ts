@@ -65,6 +65,11 @@ const locales: LocaleObjectData[] = [
     file: 'fr-FR.json',
     name: 'Français',
   },
+    {
+    code: 'rf-RU',
+    file: 'rf-RU.json',
+    name: 'Русский (Российская Федерация)',
+  },
   {
     code: 'uk-UA',
     file: 'uk-UA.json',

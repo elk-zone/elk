@@ -23,6 +23,8 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@vue-macros/nuxt',
+    // DON'T MOVE ~/modules/setup-i18n-variants: should be before i18n
+    '~/modules/setup-i18n-variants',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
     '~/modules/purge-comments',

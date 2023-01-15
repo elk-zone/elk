@@ -28,6 +28,12 @@ const userSettings = useUserSettings()
     >
       {{ $t('settings.preferences.hide_follower_count') }}
     </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'grayscaleMode')"
+      @click="togglePreferences('grayscaleMode')"
+    >
+      {{ $t('settings.preferences.grayscale_mode') }}
+    </SettingsToggleItem>
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <span>{{ $t('settings.preferences.label') }}</span>

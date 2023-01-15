@@ -10,10 +10,12 @@ const showUserPicker = logicAnd(
   usePreferences('experimentalUserPicker'),
   () => useUsers().value.length > 1,
 )
+
+const isGrayscale = computed(() => getPreferences(userSettings.value, 'grayscaleMode'))
 </script>
 
 <template>
-  <div h-full>
+  <div h-full :class="{ 'filter-grayscale': isGrayscale, 'filter-none': !isHydrated }">
     <main flex w-full mxa lg:max-w-80rem>
       <aside class="hidden sm:flex w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 justify-end xl:me-4 zen-hide" relative>
         <div sticky top-0 w-20 xl:w-100 h-screen flex="~ col" lt-xl-items-center>

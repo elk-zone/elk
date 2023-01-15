@@ -7,6 +7,7 @@ export interface PreferencesSettings {
   hideBoostCount: boolean
   hideFavoriteCount: boolean
   hideFollowerCount: boolean
+  grayscaleMode: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
@@ -56,6 +57,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideBoostCount: false,
   hideFavoriteCount: false,
   hideFollowerCount: false,
+  grayscaleMode: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,

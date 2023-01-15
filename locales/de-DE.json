@@ -11,7 +11,7 @@
     "blocked_by": "Du wurdest von diesem Account geblockt",
     "blocked_domains": "Gesperrte Domänen",
     "blocked_users": "Gesperrte Accounts",
-    "blocking": "verstopft",
+    "blocking": "blockierend",
     "bot": "BOT",
     "favourites": "Favoriten",
     "follow": "Folgen",
@@ -90,8 +90,8 @@
   },
   "common": {
     "confirm_dialog": {
-      "cancel": "Nein",
-      "confirm": "Ja",
+      "cancel": "Abbrechen",
+      "confirm": "OK",
       "title": "Sind Sie sicher, {0}?"
     },
     "end_of_list": "Ende der Liste",
@@ -120,7 +120,7 @@
     "desc_para1": "Danke für dein Interesse in Elk, unser noch in der Bearbeitung befindliche, generische Mastodon Client!",
     "desc_para2": "Wir arbeiten hart an der Entwicklung und verbessern ihn mit der Zeit. Und wir laden dich schon sehr bald ein uns zu helfen, sobald wir ihn Quelloffen machen!",
     "desc_para3": "Doch in der Zwischenzeit kannst du der Entwicklung aushelfen, indem du unsere Teammitglieder durch die unten stehenden Links unterstützt.",
-    "desc_para4": "Elch ist Open Source. \nWenn Sie beim Testen helfen, Feedback geben oder einen Beitrag leisten möchten,",
+    "desc_para4": "Elk ist Open Source. \nWenn Sie beim Testen helfen, Feedback geben oder einen Beitrag leisten möchten,",
     "desc_para5": "Kontaktieren Sie uns auf GitHub",
     "desc_para6": "und mitmachen.",
     "title": "Elk ist in der Alpha!"
@@ -135,7 +135,7 @@
     "delete": "Löschen",
     "delete_and_redraft": "Löschen und neu erstellen",
     "delete_confirm": {
-      "cancel": "Absagen",
+      "cancel": "Abbrechen",
       "confirm": "Löschen",
       "title": "Möchten Sie diesen Beitrag wirklich löschen?"
     },
@@ -211,24 +211,24 @@
     "update_available_short": "Elk aktualisieren",
     "webmanifest": {
       "canary": {
-        "description": "Ein flinker Mastodon-Webclient (Kanarienvogel)",
-        "name": "Elch (Kanarienvogel)",
-        "short_name": "Elch (Kanarienvogel)"
+        "description": "Ein flinker Mastodon-Webclient (Canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
       },
       "dev": {
         "description": "Ein flinker Mastodon-Webclient (dev)",
-        "name": "Elch (Entwickler)",
-        "short_name": "Elch (Entwickler)"
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
       },
       "preview": {
         "description": "Ein flinker Mastodon-Webclient (Vorschau)",
-        "name": "Elch (Vorschau)",
-        "short_name": "Elch (Vorschau)"
+        "name": "Elk (Vorschau)",
+        "short_name": "Elk (Vorschau)"
       },
       "release": {
         "description": "Ein flinker Mastodon-Webclient",
-        "name": "Elch",
-        "short_name": "Elch"
+        "name": "Elk",
+        "short_name": "Elk"
       }
     }
   },
@@ -320,7 +320,7 @@
           "enable_description_mobile": "Sie erreichen die Einstellungen auch über das Navigationsmenü „Einstellungen > Benachrichtigungen > Push-Benachrichtigungseinstellungen“.",
           "enable_description_settings": "Um Benachrichtigungen zu erhalten, wenn Elk nicht geöffnet ist, aktivieren Sie Push-Benachrichtigungen. \nSie können genau steuern, welche Arten von Interaktionen Push-Benachrichtigungen auf demselben Bildschirm generieren, sobald Sie sie aktivieren.",
           "enable_desktop": "Aktivieren Sie Push-Benachrichtigungen",
-          "enable_title": "Verpassen Sie nie etwas",
+          "enable_title": "Verpassen Sie nie wieder Benachrichtigungen",
           "re_auth": "Offenbar unterstützt Ihr Server keine Push-Benachrichtigungen. \nVersuchen Sie, sich abzumelden und erneut anzumelden. Wenn diese Meldung weiterhin angezeigt wird, wenden Sie sich an Ihren Serveradministrator."
         }
       },
@@ -328,7 +328,7 @@
     },
     "notifications_settings": "Benachrichtigungen",
     "preferences": {
-      "github_cards": "GitHub-Karten",
+      "github_cards": "GitHub-Cards",
       "hide_boost_count": "Boost-Zähler ausblenden",
       "hide_favorite_count": "Favoritenzahl ausblenden",
       "hide_follower_count": "Anzahl der Follower ausblenden",
@@ -384,9 +384,9 @@
     "uploading": "Hochladen..."
   },
   "status": {
-    "boosted_by": "Boosted By",
+    "boosted_by": "Boosted von",
     "edited": "Zuletzt bearbeitet: {0}",
-    "favourited_by": "Favorit von",
+    "favourited_by": "Favorisiert von",
     "filter_hidden_phrase": "Versteckt durch",
     "filter_removed_phrase": "Entfernt durch Filter",
     "filter_show_anyway": "Trotzdem zeigen",
@@ -405,7 +405,7 @@
     "someone": "Jemand",
     "spoiler_show_less": "Zeige weniger",
     "spoiler_show_more": "Zeige mehr",
-    "thread": "Gewinde",
+    "thread": "Thread",
     "try_original_site": "Versuche die original Seite"
   },
   "status_history": {

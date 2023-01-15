@@ -15,6 +15,7 @@
 - [ ] Bug fix
 - [ ] New Feature
 - [ ] Documentation update
+- [ ] Translations update
 - [ ] Other
 
 ### Before submitting the PR, please make sure you do the following

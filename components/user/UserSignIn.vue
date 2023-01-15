@@ -28,7 +28,7 @@ async function oauth() {
     server = server.split('/')[0]
 
   try {
-    location.href = await (globalThis.$fetch as any)(`/api/${server || publicServer.value}/login`, {
+    const url = await (globalThis.$fetch as any)(`/api/${server || publicServer.value}/login`, {
       method: 'POST',
       body: {
         force_login: users.value.some(u => u.server === server),
@@ -36,6 +36,7 @@ async function oauth() {
         lang: userSettings.value.language,
       },
     })
+    location.href = url
   }
   catch (err) {
     console.error(err)

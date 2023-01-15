@@ -6,7 +6,7 @@ const { account } = defineProps<{
   command?: boolean
 }>()
 
-const masto = useMasto()
+const { client } = $(useMasto())
 
 const { t } = useI18n()
 
@@ -50,7 +50,7 @@ function previewAvatar() {
 async function toggleNotifications() {
   relationship!.notifying = !relationship?.notifying
   try {
-    const newRel = await masto.v1.accounts.follow(account.id, { notify: relationship?.notifying })
+    const newRel = await client.v1.accounts.follow(account.id, { notify: relationship?.notifying })
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -80,7 +80,7 @@ watchEffect(() => {
 })
 
 const isSelf = $(useSelfAccount(() => account))
-const isNotifiedOnPost = $computed(() => relationship?.notifying)
+const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
 </script>
 
 <template>

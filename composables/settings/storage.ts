@@ -1,9 +1,14 @@
 import type { Ref } from 'vue'
+import type { VueI18n } from 'vue-i18n'
+import type { LocaleObject } from 'vue-i18n-routing'
 import type { FeatureFlags, UserSettings, WellnessSettings } from './definition'
 import { STORAGE_KEY_SETTINGS } from '~/constants'
 
 export function useUserSettings() {
-  return useUserLocalStorage<UserSettings>(STORAGE_KEY_SETTINGS, getDefaultUserSettings)
+  const i18n = useNuxtApp().vueApp.config.globalProperties.$i18n as VueI18n
+  const { locales } = i18n
+  const supportLanguages = (locales as LocaleObject[]).map(locale => locale.code)
+  return useUserLocalStorage<UserSettings>(STORAGE_KEY_SETTINGS, () => getDefaultUserSettings(supportLanguages))
 }
 
 // TODO: refactor & simplify this

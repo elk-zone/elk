@@ -91,7 +91,7 @@
     "confirm_dialog": {
       "cancel": "否",
       "confirm": "是",
-      "title": "你確定嗎？"
+      "title": "你確定 {0} 嗎？"
     },
     "end_of_list": "清單到底啦",
     "error": "錯誤",
@@ -167,6 +167,7 @@
     "blocked_users": "已黑名單的使用者",
     "bookmarks": "書籤",
     "built_at": "於 {0}更新",
+    "compose": "撰寫",
     "conversations": "私訊",
     "explore": "探索",
     "favourites": "喜歡",
@@ -352,7 +353,7 @@
     },
     "wellness": {
       "feature": {
-        "hide_boost_count": "隱藏提升數",
+        "hide_boost_count": "隱藏轉發數",
         "hide_favorite_count": "隱藏收藏數",
         "hide_follower_count": "隱藏關注者數"
       },

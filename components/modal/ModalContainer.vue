@@ -51,7 +51,7 @@ const handleFavouritedBoostedByClose = () => {
 </script>
 
 <template>
-  <template v-if="isMastoInitialised">
+  <template v-if="isHydrated">
     <ModalDialog v-model="isSigninDialogOpen" py-4 px-8 max-w-125>
       <UserSignIn />
     </ModalDialog>

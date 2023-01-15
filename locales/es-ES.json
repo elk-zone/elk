@@ -356,6 +356,11 @@
       "label": "Bienestar"
     }
   },
+  "share-target": {
+    "description": "Elk puede ser configurado para que pueda compartir contenido desde otras aplicaciones, simplemente tiene que instalar Elk en su dispositivo u ordenador e iniciar sesión.",
+    "hint": "Para poder compartir contenido con Elk, debes instalar Elk e iniciar sesión.",
+    "title": "Compartir con Elk"
+  },
   "state": {
     "attachments_exceed_server_limit": "Número máximo de archivos adjuntos por publicación excedido.",
     "attachments_limit_error": "Límite por publicación excedido",

@@ -66,6 +66,7 @@ export default defineNuxtConfig({
     define: {
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
       'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
+      'process.test': 'false',
     },
     build: {
       target: 'esnext',

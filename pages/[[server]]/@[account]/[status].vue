@@ -78,7 +78,6 @@ onReactivated(() => {
           :status="status"
           command
           style="scroll-margin-top: 60px"
-          :actions="status.visibility !== 'direct'"
         />
         <PublishWidget
           v-if="currentUser"

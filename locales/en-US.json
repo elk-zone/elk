@@ -269,7 +269,8 @@
     },
     "language": {
       "display_language": "Display Language",
-      "label": "Language"
+      "label": "Language",
+      "writing_language": "Writing Language"
     },
     "notifications": {
       "label": "Notifications",

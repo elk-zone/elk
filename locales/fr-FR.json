@@ -262,7 +262,8 @@
     },
     "language": {
       "display_language": "Langue d'affichage",
-      "label": "Langue"
+      "label": "Langue",
+      "writing_language": "Langue d'écriture"
     },
     "notifications": {
       "label": "Notifications",

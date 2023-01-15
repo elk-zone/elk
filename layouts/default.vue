@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useFeatureFlag } from '~/composables/settings'
+import { usePreferences } from '~/composables/settings'
 
 const route = useRoute()
 const userSettings = useUserSettings()
@@ -7,7 +7,7 @@ const userSettings = useUserSettings()
 const wideLayout = computed(() => route.meta.wideLayout ?? false)
 
 const showUserPicker = logicAnd(
-  useFeatureFlag('experimentalUserPicker'),
+  usePreferences('experimentalUserPicker'),
   () => useUsers().value.length > 1,
 )
 </script>

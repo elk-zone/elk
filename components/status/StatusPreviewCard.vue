@@ -21,7 +21,7 @@ const isSquare = $computed(() => (
 ))
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
 
-const gitHubCards = $(useFeatureFlag('experimentalGitHubCards'))
+const gitHubCards = $(usePreferences('experimentalGitHubCards'))
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {

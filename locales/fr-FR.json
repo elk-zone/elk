@@ -244,12 +244,6 @@
       "description": "Modifiez les paramètres de votre compte dans l'interface de Mastodon",
       "label": "Paramètres de compte"
     },
-    "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "title": "Fonctionnalités expérimentales",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Défilement virtuel"
-    },
     "interface": {
       "color_mode": "Couleur de thème",
       "dark_mode": "Mode sombre",
@@ -320,7 +314,14 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
-      "label": "Préférences"
+      "github_cards": "GitHub Cards",
+      "hide_boost_count": "Cacher les compteurs de partages",
+      "hide_favorite_count": "Cacher les compteurs de favoris",
+      "hide_follower_count": "Cacher les compteurs d'abonné·e·s",
+      "label": "Préférences",
+      "title": "Fonctionnalités expérimentales",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Défilement virtuel"
     },
     "profile": {
       "appearance": {
@@ -343,14 +344,6 @@
       "export": "Exporter les tokens d'utilisateur·ice",
       "import": "Importer des tokens d'utilisateur·ice",
       "label": "Utilisateur·ice·s connecté·e·s"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "Cacher les compteurs de partages",
-        "hide_favorite_count": "Cacher les compteurs de favoris",
-        "hide_follower_count": "Cacher les compteurs d'abonné·e·s"
-      },
-      "label": "Bien-être"
     }
   },
   "state": {

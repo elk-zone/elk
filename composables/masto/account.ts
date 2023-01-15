@@ -14,7 +14,7 @@ export function acctToShortHandle(acct: string) {
 export function getShortHandle({ acct }: mastodon.v1.Account) {
   if (!acct)
     return ''
-  return toShortHandle(acct)
+  return acctToShortHandle(acct)
 }
 
 export function getServerName(account: mastodon.v1.Account) {

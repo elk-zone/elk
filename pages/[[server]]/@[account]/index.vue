@@ -8,7 +8,7 @@ const accountName = $(computedEager(() => toShortHandle(params.account as string
 
 const { t } = useI18n()
 
-const { data: account, pending, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null), { watch: [isMastoInitialised], immediate: isMastoInitialised.value }))
+const { data: account, pending, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null), { immediate: process.client }))
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
 
 onReactivated(() => {

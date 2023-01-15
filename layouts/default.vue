@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useFeatureFlag } from '~/composables/settings'
+import { usePreferences } from '~/composables/settings'
 
 const route = useRoute()
 const userSettings = useUserSettings()
@@ -7,7 +7,7 @@ const userSettings = useUserSettings()
 const wideLayout = computed(() => route.meta.wideLayout ?? false)
 
 const showUserPicker = logicAnd(
-  useFeatureFlag('experimentalUserPicker'),
+  usePreferences('experimentalUserPicker'),
   () => useUsers().value.length > 1,
 )
 </script>
@@ -22,7 +22,7 @@ const showUserPicker = logicAnd(
               <NavTitle />
               <NavSide command />
               <div flex-auto />
-              <div v-if="isMastoInitialised" flex flex-col>
+              <div v-if="isHydrated" flex flex-col>
                 <div hidden xl:block>
                   <UserSignInEntry v-if="!currentUser" />
                 </div>

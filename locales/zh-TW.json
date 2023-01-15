@@ -91,7 +91,7 @@
     "confirm_dialog": {
       "cancel": "否",
       "confirm": "是",
-      "title": "你確定嗎？"
+      "title": "你確定 {0} 嗎？"
     },
     "end_of_list": "清單到底啦",
     "error": "錯誤",
@@ -167,6 +167,7 @@
     "blocked_users": "已黑名單的使用者",
     "bookmarks": "書籤",
     "built_at": "於 {0}更新",
+    "compose": "撰寫",
     "conversations": "私訊",
     "explore": "探索",
     "favourites": "喜歡",
@@ -249,12 +250,6 @@
       "description": "在 Mastodon UI 中編輯你的帳號設定",
       "label": "帳號設定"
     },
-    "feature_flags": {
-      "github_cards": "GitHub 卡片",
-      "title": "實驗功能",
-      "user_picker": "使用者選擇器",
-      "virtual_scroll": "虛擬滾動"
-    },
     "interface": {
       "color_mode": "顏色",
       "dark_mode": "深色模式",
@@ -326,7 +321,14 @@
     },
     "notifications_settings": "通知",
     "preferences": {
-      "label": "喜好設定"
+      "github_cards": "GitHub 卡片",
+      "hide_boost_count": "隱藏轉發數",
+      "hide_favorite_count": "隱藏收藏數",
+      "hide_follower_count": "隱藏關注者數",
+      "label": "喜好設定",
+      "title": "實驗功能",
+      "user_picker": "使用者選擇器",
+      "virtual_scroll": "虛擬滾動"
     },
     "profile": {
       "appearance": {
@@ -349,14 +351,6 @@
       "export": "導出使用者令牌",
       "import": "導入使用者令牌",
       "label": "當前使用者"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "隱藏提升數",
-        "hide_favorite_count": "隱藏收藏數",
-        "hide_follower_count": "隱藏關注者數"
-      },
-      "label": "健康設定"
     }
   },
   "state": {

@@ -10,8 +10,7 @@ export default defineNuxtPlugin(() => {
       {
         innerHTML: `
 ;(function() {
-  const handle = localStorage.getItem('${STORAGE_KEY_CURRENT_USER_HANDLE}')
-  if (!handle) { return }
+  const handle = localStorage.getItem('${STORAGE_KEY_CURRENT_USER_HANDLE}') || '[anonymous]'
   const allSettings = JSON.parse(localStorage.getItem('${STORAGE_KEY_SETTINGS}') || '{}')
   const settings = allSettings[handle]
   if (!settings) { return }

@@ -1,6 +1,6 @@
 {
   "type": "module",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "private": true,
   "packageManager": "pnpm@7.9.0",
   "license": "MIT",
@@ -119,10 +119,10 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "mlly@1.0.0": "patches/mlly@1.0.0.patch",
       "nitropack@1.0.0": "patches/nitropack@1.0.0.patch"
     },
     "overrides": {
+      "mlly": "1.1.0",
       "@tiptap/extension-bubble-menu": "2.0.0-beta.204",
       "@tiptap/extension-floating-menu": "2.0.0-beta.204",
       "@tiptap/core": "2.0.0-beta.204",

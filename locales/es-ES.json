@@ -247,12 +247,6 @@
       "description": "Edita los ajustes de tu cuenta en la interfaz de Mastodon",
       "label": "Ajustes de cuenta"
     },
-    "feature_flags": {
-      "github_cards": "Tarjetas GitHub",
-      "title": "Funcionalidades experimentales",
-      "user_picker": "Selector de usuarios",
-      "virtual_scroll": "Desplazamiento virtual"
-    },
     "interface": {
       "color_mode": "Modos de color",
       "dark_mode": "Modo oscuro",
@@ -323,7 +317,14 @@
     },
     "notifications_settings": "Notificaciones",
     "preferences": {
-      "label": "Preferencias"
+      "github_cards": "Tarjetas GitHub",
+      "hide_boost_count": "Ocultar contador de retoots",
+      "hide_favorite_count": "Ocultar contador de favoritas",
+      "hide_follower_count": "Ocultar contador de seguidores",
+      "label": "Preferencias",
+      "title": "Funcionalidades experimentales",
+      "user_picker": "Selector de usuarios",
+      "virtual_scroll": "Desplazamiento virtual"
     },
     "profile": {
       "appearance": {
@@ -346,14 +347,6 @@
       "export": "Exportar tokens de usuario",
       "import": "Importar tokens de usuario",
       "label": "Usuarios conectados"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "Ocultar contador de retoots",
-        "hide_favorite_count": "Ocultar contador de favoritas",
-        "hide_follower_count": "Ocultar contador de seguidores"
-      },
-      "label": "Bienestar"
     }
   },
   "share-target": {

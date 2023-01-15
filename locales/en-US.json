@@ -28,6 +28,7 @@
     "muted_users": "Muted users",
     "muting": "Muted",
     "mutuals": "Mutuals",
+    "notify_on_post": "Notify me when {username} posts",
     "pinned": "Pinned",
     "posts": "Posts",
     "posts_count": "{0} Posts|{0} Post|{0} Posts",
@@ -91,7 +92,7 @@
     "confirm_dialog": {
       "cancel": "No",
       "confirm": "Yes",
-      "title": "Are you sure?"
+      "title": "Are you sure {0}?"
     },
     "end_of_list": "End of the list",
     "error": "ERROR",
@@ -167,6 +168,7 @@
     "blocked_users": "Blocked users",
     "bookmarks": "Bookmarks",
     "built_at": "Built {0}",
+    "compose": "Compose",
     "conversations": "Conversations",
     "explore": "Explore",
     "favourites": "Favorites",
@@ -249,12 +251,6 @@
       "description": "Edit your account settings in Mastodon UI",
       "label": "Account settings"
     },
-    "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "title": "Experimental Features",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
-    },
     "interface": {
       "color_mode": "Color Mode",
       "dark_mode": "Dark Mode",
@@ -326,7 +322,14 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
-      "label": "Preferences"
+      "github_cards": "GitHub Cards",
+      "hide_boost_count": "Hide boost count",
+      "hide_favorite_count": "Hide favorite count",
+      "hide_follower_count": "Hide follower count",
+      "label": "Preferences",
+      "title": "Experimental Features",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Virtual Scrolling"
     },
     "profile": {
       "appearance": {
@@ -349,14 +352,6 @@
       "export": "Export User Tokens",
       "import": "Import User Tokens",
       "label": "Logged in users"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "Hide boost count",
-        "hide_favorite_count": "Hide favorite count",
-        "hide_follower_count": "Hide follower count"
-      },
-      "label": "Wellness"
     }
   },
   "share-target": {

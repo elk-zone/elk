@@ -63,6 +63,12 @@ export async function getApp(origin: string, server: string) {
   }
 }
 
+export async function deleteApp(server: string) {
+  const keys = (await storage.getKeys('servers:')).filter(k => k.endsWith(`${server}.json`))
+  for (const key of keys)
+    await storage.removeItem(key)
+}
+
 export async function listServers() {
   const keys = await storage.getKeys('servers:')
   const servers = new Set<string>()

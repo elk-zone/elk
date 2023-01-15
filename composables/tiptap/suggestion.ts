@@ -14,7 +14,7 @@ export const MentionSuggestion: Partial<SuggestionOptions> = {
     if (query.length === 0)
       return []
 
-    const results = await useMasto().v2.search({ q: query, type: 'accounts', limit: 25, resolve: true })
+    const results = await useMastoClient().v2.search({ q: query, type: 'accounts', limit: 25, resolve: true })
     return results.accounts
   },
   render: createSuggestionRenderer(TiptapMentionList),
@@ -27,7 +27,7 @@ export const HashtagSuggestion: Partial<SuggestionOptions> = {
     if (query.length === 0)
       return []
 
-    const results = await useMasto().v2.search({
+    const results = await useMastoClient().v2.search({
       q: query,
       type: 'hashtags',
       limit: 25,

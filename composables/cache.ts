@@ -24,7 +24,7 @@ export function fetchStatus(id: string, force = false): Promise<mastodon.v1.Stat
   const cached = cache.get(key)
   if (cached && !force)
     return cached
-  const promise = useMasto().v1.statuses.fetch(id)
+  const promise = useMastoClient().v1.statuses.fetch(id)
     .then((status) => {
       cacheStatus(status)
       return status
@@ -43,8 +43,8 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
   const cached = cache.get(key)
   if (cached)
     return cached
-  const domain = currentInstance.value?.uri
-  const promise = useMasto().v1.accounts.fetch(id)
+  const domain = currentInstance.value ? getInstanceDomain(currentInstance.value) : null
+  const promise = useMastoClient().v1.accounts.fetch(id)
     .then((r) => {
       if (r.acct && !r.acct.includes('@') && domain)
         r.acct = `${r.acct}@${domain}`
@@ -63,12 +63,23 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   const cached = cache.get(key)
   if (cached)
     return cached
-  const domain = currentInstance.value?.uri
-  const account = useMasto().v1.accounts.lookup({ acct })
-    .then((r) => {
-      if (r.acct && !r.acct.includes('@') && domain)
-        r.acct = `${r.acct}@${domain}`
+  const domain = currentInstance.value ? getInstanceDomain(currentInstance.value) : undefined
 
+  async function lookupAccount() {
+    const client = useMastoClient()
+    let account: mastodon.v1.Account
+    if (!isGotoSocial.value)
+      account = await client.v1.accounts.lookup({ acct })
+    else
+      account = (await client.v1.search({ q: `@${acct}`, type: 'accounts' })).accounts[0]
+
+    if (account.acct && !account.acct.includes('@') && domain)
+      account.acct = `${account.acct}@${domain}`
+    return account
+  }
+
+  const account = lookupAccount()
+    .then((r) => {
       cacheAccount(r, server, true)
       return r
     })

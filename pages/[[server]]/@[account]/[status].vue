@@ -23,7 +23,7 @@ const { client } = $(useMasto())
 const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
   `context:${id}`,
   async () => client.v1.statuses.fetchContext(id),
-  { watch: [isHydrated], immediate: isHydrated.value },
+  { watch: [isHydrated], immediate: isHydrated.value, lazy: true },
 )
 
 const replyDraft = $computed(() => status.value ? getReplyDraft(status.value) : null)
@@ -90,6 +90,7 @@ onReactivated(() => {
           @published="refreshContext()"
         />
 
+        <TimelineSkeleton v-if="pendingContext" />
         <template v-for="(comment, di) of context?.descendants" :key="comment.id">
           <StatusCard
             :status="comment"

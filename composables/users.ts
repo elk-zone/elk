@@ -289,7 +289,7 @@ interface UseUserLocalStorageCache {
  * Create reactive storage for the current user
  */
 export function useUserLocalStorage<T extends object>(key: string, initial: () => T): Ref<T> {
-  if (process.server)
+  if (process.server || process.test)
     return shallowRef(initial())
 
   // @ts-expect-error bind value to the function

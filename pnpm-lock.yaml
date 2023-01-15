@@ -117,6 +117,7 @@ importers:
       vite-plugin-inspect: ^0.7.14
       vite-plugin-pwa: ^0.14.1
       vitest: ^0.27.0
+      vitest-environment-nuxt: 0.4.0
       vue-advanced-cropper: ^2.8.6
       vue-tsc: ^1.0.24
       vue-virtual-scroller: 2.0.0-beta.7
@@ -207,8 +208,9 @@ importers:
       typescript: 4.9.4
       unplugin-auto-import: 0.12.1_@vueuse+core@9.10.0
       vite-plugin-inspect: 0.7.14
-      vite-plugin-pwa: 0.14.1_tz3vz2xt4jvid2diblkpydcyn4
+      vite-plugin-pwa: 0.14.1
       vitest: 0.27.0_jsdom@21.0.0
+      vitest-environment-nuxt: 0.4.0_vitest@0.27.0
       vue-tsc: 1.0.24_typescript@4.9.4
       workbox-build: 6.5.4
       workbox-window: 6.5.4
@@ -4023,6 +4025,12 @@ packages:
     resolution: {integrity: sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==}
     dev: true
 
+  /@vue/test-utils/2.2.7:
+    resolution: {integrity: sha512-BMuoruUFTEqhLoOgsMcgNVMiByYbfHCKGr2C4CPdGtz/affUtDVX5zr1RnPuq0tYSiaqq+Enw5voUpG6JY8Q7g==}
+    peerDependencies:
+      vue: ^3.0.1
+    dev: true
+
   /@vueuse/core/8.9.4:
     resolution: {integrity: sha512-B/Mdj9TK1peFyWaPof+Zf/mP9XuGAngaJZBwPaXBvU3aCTZlx3ltlrFFFyMV4iGBwsjSCeUCgZrtkEj9dS2Y3Q==}
     peerDependencies:
@@ -5137,6 +5145,10 @@ packages:
   /css-what/6.1.0:
     resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
     engines: {node: '>= 6'}
+    dev: true
+
+  /css.escape/1.5.1:
+    resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
     dev: true
 
   /cssesc/3.0.0:
@@ -6886,6 +6898,19 @@ packages:
       destr: 1.2.2
       radix3: 1.0.0
       ufo: 1.0.1
+    dev: true
+
+  /happy-dom/8.1.4:
+    resolution: {integrity: sha512-mUCzXHhSO6fOQlZwKW6z2f/+rYavKNxNrgY4nJ4dp+r8gTGbTENgMZGfM6eJD0DJPRFF8DFyngXdBF93wF96UA==}
+    dependencies:
+      css.escape: 1.5.1
+      he: 1.2.0
+      node-fetch: 2.6.8
+      webidl-conversions: 7.0.0
+      whatwg-encoding: 2.0.0
+      whatwg-mimetype: 3.0.0
+    transitivePeerDependencies:
+      - encoding
     dev: true
 
   /has-bigints/1.0.2:
@@ -8821,7 +8846,6 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
-    dev: false
 
   /node-fetch/3.3.0:
     resolution: {integrity: sha512-BKwRP/O0UvoMKp7GNdwPlObhYGB5DQqwhEDQlNKuoqwVYSxkSZCSbHjnFFmUEtwSKRPU4kNK8PbDYYitwaE3QA==}
@@ -12006,12 +12030,10 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa/0.14.1_tz3vz2xt4jvid2diblkpydcyn4:
+  /vite-plugin-pwa/0.14.1:
     resolution: {integrity: sha512-5zx7yhQ8RTLwV71+GA9YsQQ63ALKG8XXIMqRJDdZkR8ZYftFcRgnzM7wOWmQZ/DATspyhPih5wCdcZnAIsM+mA==}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
-      workbox-build: ^6.5.4
-      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 5.0.2_rollup@3.9.1
       debug: 4.3.4
@@ -12021,6 +12043,7 @@ packages:
       workbox-build: 6.5.4
       workbox-window: 6.5.4
     transitivePeerDependencies:
+      - '@types/babel__core'
       - supports-color
     dev: true
 
@@ -12089,6 +12112,27 @@ packages:
       rollup: 2.79.1
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /vitest-environment-nuxt/0.4.0_vitest@0.27.0:
+    resolution: {integrity: sha512-uRg/jvgHjzUGhkWTWtFEUlImfA3VScZG2EGlRvQk9ODspUw0a9hTz9Yz9tXQTsChoE2n7yi44TJdCVmK7iHxUA==}
+    peerDependencies:
+      vitest: ^0.24.5 || ^0.26.0 || ^0.27.0
+      vue: ^3.2.45
+    dependencies:
+      '@nuxt/kit': 3.0.0
+      '@vue/test-utils': 2.2.7
+      estree-walker: 3.0.2
+      h3: 1.0.2
+      happy-dom: 8.1.4
+      magic-string: 0.27.0
+      ofetch: 1.0.0
+      unenv: 1.0.1
+      vitest: 0.27.0_jsdom@21.0.0
+    transitivePeerDependencies:
+      - encoding
+      - rollup
+      - supports-color
     dev: true
 
   /vitest/0.27.0_jsdom@21.0.0:

@@ -132,5 +132,5 @@ async function sendSubscriptionToBackend(
     data,
   }
 
-  return await useMasto().v1.webPushSubscriptions.create(params)
+  return await useMastoClient().v1.webPushSubscriptions.create(params)
 }

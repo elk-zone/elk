@@ -13,7 +13,7 @@ const supportsPushNotifications = typeof window !== 'undefined'
   && 'getKey' in PushSubscription.prototype
 
 export const usePushManager = () => {
-  const masto = useMasto()
+  const { client } = $(useMasto())
   const isSubscribed = ref(false)
   const notificationPermission = ref<PermissionState | undefined>(
     Notification.permission === 'denied'
@@ -168,7 +168,7 @@ export const usePushManager = () => {
       if (policyChanged)
         await subscribe(data, policy, true)
       else
-        currentUser.value.pushSubscription = await masto.v1.webPushSubscriptions.update({ data })
+        currentUser.value.pushSubscription = await client.v1.webPushSubscriptions.update({ data })
 
       policyChanged && await nextTick()
 

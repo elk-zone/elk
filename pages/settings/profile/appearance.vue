@@ -13,6 +13,8 @@ useHeadFixed({
   title: () => `${t('settings.profile.appearance.title')} | ${t('nav.settings')}`,
 })
 
+const { client } = $(useMasto())
+
 const account = $computed(() => currentUser.value?.account)
 
 const onlineSrc = $computed(() => ({
@@ -57,7 +59,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
     return
 
-  const res = await useMasto().v1.accounts.updateCredentials(dirtyFields.value as mastodon.v1.UpdateCredentialsParams)
+  const res = await client.v1.accounts.updateCredentials(dirtyFields.value as mastodon.v1.UpdateCredentialsParams)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))
 
@@ -67,18 +69,20 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
     return
   }
 
-  setAccountInfo(account!.id, res.account)
+  currentUser.value!.account = res.account
   reset()
 })
 
 const refreshInfo = async () => {
+  if (!currentUser.value)
+    return
   // Keep the information to be edited up to date
-  await pullMyAccountInfo()
+  await refreshAccountInfo()
   if (!isDirty)
     reset()
 }
 
-onMastoInit(refreshInfo)
+onHydrated(refreshInfo)
 onReactivated(refreshInfo)
 </script>
 

@@ -28,6 +28,7 @@
     "muted_users": "Muted users",
     "muting": "Muted",
     "mutuals": "Mutuals",
+    "notify_on_post": "Notify me when {username} posts",
     "pinned": "Pinned",
     "posts": "Posts",
     "posts_count": "{0} Posts|{0} Post|{0} Posts",

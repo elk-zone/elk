@@ -377,7 +377,7 @@
   "status": {
     "boosted_by": "Бустил(а)",
     "edited": "Oтредактировано {0}",
-    "favourited_by": "Добавл(а) в избранное",
+    "favourited_by": "Добавил(а) в избранное",
     "filter_hidden_phrase": "Отфильтровано по",
     "filter_removed_phrase": "Удалено фильтром",
     "filter_show_anyway": "Показывать в любом случае",

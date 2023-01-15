@@ -21,4 +21,5 @@
 
 - [ ] Read the [Contributing Guidelines](https://github.com/elk-zone/elk/blob/main/CONTRIBUTING.md).
 - [ ] Check that there isn't already a PR that solves the problem the same way to avoid creating a duplicate.
+- [ ] Provide related snapshots or videos.
 - [ ] Provide a description in this PR that addresses **what** the PR is solving, or reference the issue that it solves (e.g. `fixes #123`).

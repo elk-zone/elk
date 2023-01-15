@@ -142,7 +142,7 @@
     "direct_message_account": "Pesan langsung {0}",
     "edit": "Sunting",
     "hide_reblogs": "Sembunyikan dukungan dari {0}",
-    "mention_account": "Mention {0}",
+    "mention_account": "Penyebutan {0}",
     "mute_account": "Bisukan {0}",
     "mute_conversation": "Nonaktifkan postingan ini",
     "open_in_original_site": "Buka di situs asli",
@@ -280,7 +280,7 @@
         "alerts": {
           "favourite": "Favorit",
           "follow": "Pengikut baru",
-          "mention": "Sebutan",
+          "mention": "Penyebutan",
           "poll": "Polling",
           "reblog": "Reblog posting Anda",
           "title": "Pemberitahuan apa yang harus diterima?"
@@ -458,8 +458,8 @@
     "add_emojis": "Tambahkan emoji",
     "add_media": "Tambahkan gambar, video atau file audio",
     "add_publishable_content": "Tambahkan konten untuk dipublikasikan",
-    "ubah_konten_visibilitas": "Ubah visibilitas konten",
-    "ubah_bahasa": "Ubah bahasa",
+    "change_content_visibility": "Ubah visibilitas konten",
+    "change_language": "Ubah bahasa",
     "emoji": "Emoji",
     "explore_links_intro": "Berita-berita ini sedang dibicarakan oleh orang-orang di server ini dan server-server lain dari jaringan terdesentralisasi saat ini.",
     "explore_posts_intro": "Postingan-postingan ini dari server ini dan server lain di jaringan terdesentralisasi sedang mendapatkan daya tarik di server ini sekarang.",

@@ -79,9 +79,9 @@ export default defineConfig({
     presetWebFonts({
       provider: 'none',
       fonts: {
-        sans: ['FiraGO', 'Fira Sans', 'DM Sans'],
+        sans: ['Noto Sans', 'DM Sans'],
         serif: 'DM Serif Display',
-        mono: ['Fira Code', 'DM Mono'],
+        mono: ['Noto Sans Mono', 'DM Mono'],
         script: 'Homemade Apple',
       },
     }),

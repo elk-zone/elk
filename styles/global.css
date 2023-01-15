@@ -2,7 +2,7 @@ html {
   font-size: var(--font-size, 15px);
   width: 100%;
   width: 100vw;
-  font-family: var(--font-family, 'FiraGO');
+  font-family: var(--font-family, 'Noto Sans');
 }
 
 @font-face {
@@ -35,17 +35,17 @@ html {
 }
 @font-face {
   font-display: swap;
-  font-family: 'Fira Code';
+  font-family: 'Noto Sans Mono';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/Fira-Code-Regular-400.ttf) format('truetype');
+  src: url(/fonts/NotoSansMono-Regular.ttf) format('truetype');
 }
 @font-face {
   font-display: swap;
-  font-family: 'FiraGO';
+  font-family: 'Noto Sans';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/FiraGO-Regular.ttf) format('truetype');
+  src: url(/fonts/NotoSans-Regular.ttf) format('truetype');
 }
 
 * {

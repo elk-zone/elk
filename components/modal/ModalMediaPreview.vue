@@ -74,7 +74,7 @@ onUnmounted(() => locked.value = false)
           v-if="current.description" bg="dark/30" dark:bg="white/10" p="y-1 x-2" rounded-ie-full rounded-full :line-clamp-1="!isDescriptionExpanded"
           ws-pre-wrap break-all :title="current.description" w-full
         >
-          <button text-sm btn-outline py0 px2 text-secondary border-base @click="isDescriptionExpanded = !isDescriptionExpanded">{{ isDescriptionExpanded ? 'Collapse':'Expand' }} {{isDescriptionExpanded}}</button>
+          <button text-sm btn-outline py0 px2 text-secondary border-base @click="isDescriptionExpanded = !isDescriptionExpanded">{{ isDescriptionExpanded ? 'Collapse' : 'Expand' }}</button>
           {{ current.description }}
         </p>
       </div>

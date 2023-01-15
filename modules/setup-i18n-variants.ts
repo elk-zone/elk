@@ -3,6 +3,7 @@ import { defineNuxtModule } from '@nuxt/kit'
 import { readFile } from 'fs-extra'
 import { resolve } from 'pathe'
 import type { DefineLocaleMessage, LocaleMessages } from 'vue-i18n'
+import { isObject } from '@intlify/shared'
 import { countryLocaleVariants } from '../config/i18n'
 import type { LocaleObject } from '#i18n'
 
@@ -12,30 +13,49 @@ export default defineNuxtModule({
   },
   async setup(_, nuxt) {
     nuxt.hook('i18n:extend-messages', async (additionalMessages) => {
-      const filteredLocales = await Promise.all(Object.entries(countryLocaleVariants).map(async ([code, variants]) => {
-        return await buildLocaleCountryVariants(code, variants)
+      const messages: LocaleMessages<DefineLocaleMessage> = {}
+      const defaultLocaleEntries: Record<string, unknown> = await readI18nFile('en-US.json')
+      await Promise.all(Object.entries(countryLocaleVariants).map(async ([code, variants]) => {
+        await buildLocaleCountryVariants(messages, defaultLocaleEntries, code, variants)
       }))
-      additionalMessages.push(...filteredLocales)
+      additionalMessages.push(messages)
     })
   },
 })
-
-async function buildLocaleCountryVariants(code: string, variants: (LocaleObject & { overrideFile?: boolean })[]) {
-  const name = `${code}.json`
-  const defaultEntries = await readI18nFile(name)
-  const fullVariants: LocaleMessages<DefineLocaleMessage> = {}
-  await Promise.all(variants.map(async ({ code, overrideFile }) => {
-    if (overrideFile)
-      fullVariants[code] = { ...defaultEntries, ...(await readI18nFile(`${code}.json`)) }
-    else
-      fullVariants[code] = { ...defaultEntries }
-  }))
-
-  return fullVariants
-}
 
 async function readI18nFile(file: string) {
   return JSON.parse(Buffer.from(
     await readFile(resolve(`./locales/${file}`), 'utf-8'),
   ).toString())
+}
+function deepCopy(src: Record<string, any>, des: Record<string, any>) {
+  for (const key in src) {
+    if (isObject(src[key])) {
+      if (!isObject(des[key]))
+        des[key] = {}
+
+      deepCopy(src[key], des[key])
+    }
+    else {
+      des[key] = src[key]
+    }
+  }
+}
+
+async function buildLocaleCountryVariants(
+  messages: LocaleMessages<DefineLocaleMessage>,
+  defaultLocaleEntries: Record<string, unknown>,
+  currentCode: string,
+  variants: (LocaleObject & { overrideFile?: boolean })[],
+) {
+  const defaultVariantEntries = await readI18nFile(`${currentCode}.json`)
+  await Promise.all(variants.map(async ({ code, overrideFile }) => {
+    const entry: Record<string, any> = {}
+    deepCopy(defaultLocaleEntries, entry)
+    deepCopy(defaultVariantEntries, entry)
+    if (overrideFile)
+      deepCopy(await readI18nFile(`${code}.json`), entry)
+
+    messages[code] = entry
+  }))
 }

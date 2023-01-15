@@ -10,30 +10,6 @@ interface LocaleObjectData extends LocaleObject {
   pluralRule?: PluralizationRule
 }
 
-export const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
-  es: [
-    { code: 'es-AR', name: 'Español (Argentina)' },
-    { code: 'es-BO', name: 'Español (Bolivia)' },
-    { code: 'es-CL', name: 'Español (Chile)' },
-    { code: 'es-CO', name: 'Español (Colombia)' },
-    { code: 'es-CR', name: 'Español (Costa Rica)' },
-    { code: 'es-DO', name: 'Español (República Dominicana)' },
-    { code: 'es-EC', name: 'Español (Ecuador)' },
-    { code: 'es-ES', name: 'Español (España)' },
-    { code: 'es-GT', name: 'Español (Guatemala)' },
-    { code: 'es-HN', name: 'Español (Honduras)' },
-    { code: 'es-MX', name: 'Español (México)' },
-    { code: 'es-NI', name: 'Español (Nicaragua)' },
-    { code: 'es-PA', name: 'Español (Panamá)' },
-    { code: 'es-PE', name: 'Español (Perú)' },
-    { code: 'es-PR', name: 'Español (Puerto Rico)' },
-    { code: 'es-SV', name: 'Español (El Salvador)' },
-    { code: 'es-US', name: 'Español (Estados Unidos)' },
-    { code: 'es-UY', name: 'Español (Uruguay)' },
-    { code: 'es-VE', name: 'Español (Venezuela)' },
-  ],
-}
-
 const locales: LocaleObjectData[] = [
   {
     code: 'en-US',
@@ -113,6 +89,30 @@ const locales: LocaleObjectData[] = [
     name: 'Türkçe',
   },
 ]
+
+export const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
+  es: [
+    { code: 'es-AR', name: 'Español (Argentina)' },
+    { code: 'es-BO', name: 'Español (Bolivia)' },
+    { code: 'es-CL', name: 'Español (Chile)' },
+    { code: 'es-CO', name: 'Español (Colombia)' },
+    { code: 'es-CR', name: 'Español (Costa Rica)' },
+    { code: 'es-DO', name: 'Español (República Dominicana)' },
+    { code: 'es-EC', name: 'Español (Ecuador)' },
+    { code: 'es-ES', name: 'Español (España)' },
+    { code: 'es-GT', name: 'Español (Guatemala)' },
+    { code: 'es-HN', name: 'Español (Honduras)' },
+    { code: 'es-MX', name: 'Español (México)' },
+    { code: 'es-NI', name: 'Español (Nicaragua)' },
+    { code: 'es-PA', name: 'Español (Panamá)' },
+    { code: 'es-PE', name: 'Español (Perú)' },
+    { code: 'es-PR', name: 'Español (Puerto Rico)' },
+    { code: 'es-SV', name: 'Español (El Salvador)' },
+    { code: 'es-US', name: 'Español (Estados Unidos)' },
+    { code: 'es-UY', name: 'Español (Uruguay)' },
+    { code: 'es-VE', name: 'Español (Venezuela)' },
+  ],
+}
 
 const buildLocales = () => {
   const useLocales = Object.values(locales).reduce((acc, data) => {

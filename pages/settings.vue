@@ -80,7 +80,9 @@ const isRootPath = computedEager(() => route.name === 'settings')
         </MainContent>
       </div>
       <div flex-1 :class="isRootPath ? 'hidden lg:block' : 'block'">
-        <NuxtPage />
+        <ClientOnly>
+          <NuxtPage />
+        </ClientOnly>
       </div>
     </div>
   </div>

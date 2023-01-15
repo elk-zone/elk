@@ -19,6 +19,6 @@ if (account) {
 
 <template>
   <template v-if="paginator">
-    <AccountPaginator :paginator="paginator" :relationship-context="isSelf ? 'following' : undefined" />
+    <AccountPaginator :paginator="paginator" :relationship-context="isSelf ? 'following' : undefined" context="following" :account="account" />
   </template>
 </template>

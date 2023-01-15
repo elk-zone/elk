@@ -12,13 +12,13 @@ const isSelf = useSelfAccount(account)
 
 if (account) {
   useHeadFixed({
-    title: () => `${t('account.followers')} | ${getDisplayName(account)} (@${account})`,
+    title: () => `${t('account.followers')} | ${getDisplayName(account)} (@${account.acct})`,
   })
 }
 </script>
 
 <template>
   <template v-if="paginator">
-    <AccountPaginator :paginator="paginator" :relationship-context="isSelf ? 'followedBy' : undefined" />
+    <AccountPaginator :paginator="paginator" :relationship-context="isSelf ? 'followedBy' : undefined" context="followers" :account="account" />
   </template>
 </template>

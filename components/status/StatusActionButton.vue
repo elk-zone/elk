@@ -50,9 +50,16 @@ useCommand({
 
 <template>
   <component
-    :is="as" v-bind="$attrs" ref="el" w-fit flex gap-1 items-center rounded group
-    :hover="!disabled ? hover : undefined" focus:outline-none :focus-visible="hover"
-    :class="active ? color : 'text-secondary'" :aria-label="content" :disabled="disabled"
+    :is="as"
+    v-bind="$attrs" ref="el"
+    w-fit flex gap-1 items-center transition-all
+    rounded group
+    :hover=" !disabled ? hover : undefined"
+    focus:outline-none
+    :focus-visible="hover"
+    :class="active ? color : 'text-secondary'"
+    :aria-label="content"
+    :disabled="disabled"
   >
     <CommonTooltip placement="bottom" :content="content">
       <div

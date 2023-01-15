@@ -2,8 +2,8 @@
   "a11y": {
     "loading_page": "Seite wird geladen, bitte warten",
     "loading_titled_page": "Seite {0} wird geladen, bitte warten",
-    "locale_changed": "Sprache geändert zu {0}",
-    "locale_changing": "Sprache ändern, bitte warten",
+    "locale_changed": "Sprache wurde zu {0} geändert",
+    "locale_changing": "Sprache wird geändert, bitte warten",
     "route_loaded": "Seite {0} geladen"
   },
   "account": {
@@ -34,7 +34,7 @@
     "posts_count": "{0} Beiträge",
     "profile_description": "{0}'s Profil",
     "profile_unavailable": "Profil nicht verfügbar",
-    "unblock": "Entsperren",
+    "unblock": "Entblocken",
     "unfollow": "Entfolgen",
     "unmute": "Stummschaltung aufheben",
     "view_other_followers": "Follower aus anderen Instanzen werden möglicherweise nicht angezeigt.",
@@ -47,7 +47,7 @@
     "boost": "Teilen",
     "boost_count": "{0}",
     "boosted": "Geteilt",
-    "clear_upload_failed": "Fehler beim Hochladen von Dateien aufräumen",
+    "clear_upload_failed": "Fehler beim Hochladen von Dateien entfernen",
     "close": "Schliessen",
     "compose": "Verfassen",
     "confirm": "Bestätigen",
@@ -163,7 +163,7 @@
     "unpin_on_profile": "Von Profil lösen"
   },
   "nav": {
-    "back": "Geh zurück",
+    "back": "Zurück",
     "blocked_domains": "Gesperrte Domänen",
     "blocked_users": "Blockierte Benutzer",
     "bookmarks": "Lesezeichen",
@@ -205,7 +205,7 @@
     "the_thread": "der Thread"
   },
   "pwa": {
-    "dismiss": "Zurückweisen",
+    "dismiss": "Ignorieren",
     "title": "Neues Elk-Update verfügbar!",
     "update": "Aktualisieren",
     "update_available_short": "Elk aktualisieren",
@@ -296,7 +296,7 @@
         "label": "Einstellungen für Push-Benachrichtigungen",
         "policy": {
           "all": "Von irgendjemandem",
-          "followed": "Von Menschen, denen ich folge",
+          "followed": "Von Accounts, denen ich folge",
           "follower": "Von Menschen, die mir folgen",
           "none": "Von niemandem",
           "title": "Von wem kann ich Benachrichtigungen erhalten?"
@@ -466,7 +466,7 @@
     "add_publishable_content": "Füge Inhalte zum Veröffentlichen hinzu",
     "change_content_visibility": "Sichtbarkeit von Inhalten ändern",
     "change_language": "Sprache ändern",
-    "emoji": "Emoticons",
+    "emoji": "Emoji",
     "explore_links_intro": "Diese Nachrichten werden gerade von Leuten auf diesem und anderen Servern des dezentralen Netzwerks besprochen.",
     "explore_posts_intro": "Diese Beiträge von diesem Server gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzweks an Reichweite.",
     "explore_tags_intro": "Diese Hashtags gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzweks an Reichweite.",

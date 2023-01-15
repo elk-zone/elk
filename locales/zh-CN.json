@@ -338,6 +338,14 @@
       "export": "导出用户令牌",
       "import": "导入用户令牌",
       "label": "当前用户"
+    },
+    "wellness": {
+      "feature": {
+        "hide_boost_count": "隐藏转发数",
+        "hide_favorite_count": "隐藏收藏数",
+        "hide_follower_count": "隐藏关注者数"
+      },
+      "label": "健康设置"
     }
   },
   "state": {

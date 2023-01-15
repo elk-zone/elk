@@ -8,6 +8,7 @@ import {
   DEFAULT_POST_CHARS_LIMIT,
   STORAGE_KEY_CURRENT_USER,
   STORAGE_KEY_CURRENT_USER_HANDLE,
+  STORAGE_KEY_NODES,
   STORAGE_KEY_NOTIFICATION,
   STORAGE_KEY_NOTIFICATION_POLICY,
   STORAGE_KEY_SERVERS,
@@ -43,6 +44,7 @@ const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLo
 
 const users = await initializeUsers()
 export const instances = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
+export const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
 const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
 
 export type ElkInstance = Partial<mastodon.v1.Instance> & { uri: string }
@@ -60,10 +62,13 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 
 const publicInstance = ref<ElkInstance | null>(null)
 export const currentInstance = computed<null | ElkInstance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
-export const isGlitchEdition = computed(() => currentInstance.value?.version?.includes('+glitch'))
 
 export const publicServer = ref('')
 export const currentServer = computed<string>(() => currentUser.value?.server || publicServer.value)
+
+export const currentNodeInfo = computed<null | Record<string, any>>(() => nodes.value[currentServer.value] || null)
+export const isGotoSocial = computed(() => currentNodeInfo.value?.software?.name === 'gotosocial')
+export const isGlitchEdition = computed(() => currentInstance.value?.version?.includes('+glitch'))
 
 // when multiple tabs: we need to reload window when sign in, switch account or sign out
 if (process.client) {
@@ -111,6 +116,12 @@ export const characterLimit = computed(() => currentInstance.value?.configuratio
 export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { account?: mastodon.v1.AccountCredentials }>) {
   const { client } = $(masto)
   const instance = mastoLogin(masto, user)
+
+  // GoToSocial only API
+  const url = `https://${user.server}`
+  fetch(`${url}/nodeinfo/2.0`).then(r => r.json()).then((info) => {
+    nodes.value[user.server] = info
+  })
 
   if (!user?.token) {
     publicServer.value = user.server

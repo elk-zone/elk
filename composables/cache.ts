@@ -64,11 +64,22 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   if (cached)
     return cached
   const domain = currentInstance.value?.uri
-  const account = useMastoClient().v1.accounts.lookup({ acct })
-    .then((r) => {
-      if (r.acct && !r.acct.includes('@') && domain)
-        r.acct = `${r.acct}@${domain}`
 
+  async function lookupAccount() {
+    const client = useMastoClient()
+    let account: mastodon.v1.Account
+    if (!isGotoSocial.value)
+      account = await client.v1.accounts.lookup({ acct })
+    else
+      account = (await client.v1.search({ q: `@${acct}`, type: 'accounts' })).accounts[0]
+
+    if (account.acct && !account.acct.includes('@') && domain)
+      account.acct = `${account.acct}@${domain}`
+    return account
+  }
+
+  const account = lookupAccount()
+    .then((r) => {
       cacheAccount(r, server, true)
       return r
     })

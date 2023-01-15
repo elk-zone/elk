@@ -7,8 +7,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   if (!route.params.server)
     return
 
-  const req = nuxtApp.ssrContext!.event.node.req
-  const userAgent = req.headers['user-agent']!
+  const userAgent = useRequestHeaders()['user-agent']
   if (!userAgent)
     return
 

@@ -17,6 +17,7 @@ router.afterEach(() => {
       flex items-end gap-4
       py2 px-5
       text-2xl
+      select-none
       focus-visible:ring="2 current"
       to="/"
       external

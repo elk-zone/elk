@@ -1,5 +1,4 @@
 import type { mastodon } from 'masto'
-import type { Ref } from 'vue'
 import type { MarkNonNullable, Mutable } from './utils'
 
 export interface AppInfo {
@@ -18,11 +17,6 @@ export interface UserLogin {
   account: mastodon.v1.AccountCredentials
   vapidKey?: string
   pushSubscription?: mastodon.v1.WebPushSubscription
-}
-
-export interface ElkMasto extends mastodon.Client {
-  loginTo (user?: Omit<UserLogin, 'account'> & { account?: mastodon.v1.AccountCredentials }): Promise<mastodon.Client>
-  loggedIn: Ref<boolean>
 }
 
 export type PaginatorState = 'idle' | 'loading' | 'done' | 'error'

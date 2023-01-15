@@ -1,23 +1,17 @@
-export default defineNuxtPlugin(async (nuxtApp) => {
+export default defineNuxtPlugin(() => {
+  const { params, query } = useRoute()
+  publicServer.value = params.server as string || useRuntimeConfig().public.defaultServer
+
   const masto = createMasto()
-  publicServer.value = publicServer.value || useRuntimeConfig().public.defaultServer
+  const user = typeof query.server === 'string' && typeof query.token === 'string'
+    ? {
+        server: query.server,
+        token: query.token,
+        vapidKey: typeof query.vapid_key === 'string' ? query.vapid_key : undefined,
+      }
+    : currentUser.value || { server: publicServer.value }
 
-  if (process.client) {
-    const { query } = useRoute()
-    const user = typeof query.server === 'string' && typeof query.token === 'string'
-      ? {
-          server: query.server,
-          token: query.token,
-          vapidKey: typeof query.vapid_key === 'string' ? query.vapid_key : undefined,
-        }
-      : currentUser.value
-
-    nuxtApp.hook('app:suspense:resolve', () => {
-      // TODO: improve upstream to make this synchronous (delayed auth)
-      if (!masto.loggedIn.value)
-        masto.loginTo(user)
-    })
-  }
+  loginTo(masto, user)
 
   return {
     provide: {

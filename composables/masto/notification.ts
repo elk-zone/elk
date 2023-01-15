@@ -4,7 +4,8 @@ const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, st
 
 export const useNotifications = () => {
   const id = currentUser.value?.account.id
-  const masto = useMasto()
+
+  const { client, canStreaming } = $(useMasto())
 
   async function clearNotifications() {
     if (!id || !notifications[id])
@@ -12,24 +13,26 @@ export const useNotifications = () => {
     const lastReadId = notifications[id]![1][0]
     notifications[id]![1] = []
 
-    await masto.v1.markers.create({
+    await client.v1.markers.create({
       notifications: { lastReadId },
     })
   }
 
   async function connect(): Promise<void> {
-    if (!isMastoInitialised.value || !id || notifications[id] || !currentUser.value?.token)
+    if (!isHydrated.value || !id || notifications[id] || !currentUser.value?.token)
       return
 
-    const stream = masto.v1.stream.streamUser()
+    await until($$(canStreaming)).toBe(true)
+
+    const stream = client.v1.stream.streamUser()
     notifications[id] = [stream, []]
     stream.then(s => s.on('notification', (n) => {
       if (notifications[id])
         notifications[id]![1].unshift(n.id)
     }))
 
-    const position = await masto.v1.markers.fetch({ timeline: ['notifications'] })
-    const paginator = masto.v1.notifications.list({ limit: 30 })
+    const position = await client.v1.markers.fetch({ timeline: ['notifications'] })
+    const paginator = client.v1.notifications.list({ limit: 30 })
     do {
       const result = await paginator.next()
       if (!result.done && result.value.length) {
@@ -53,10 +56,10 @@ export const useNotifications = () => {
   }
 
   watch(currentUser, disconnect)
-  if (isMastoInitialised.value)
+
+  onHydrated(() => {
     connect()
-  else
-    watchOnce(isMastoInitialised, connect)
+  })
 
   return {
     notifications: computed(() => id ? notifications[id]?.[1].length ?? 0 : 0),

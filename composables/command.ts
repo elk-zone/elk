@@ -337,7 +337,7 @@ export const provideGlobalCommands = () => {
     icon: 'i-ri:user-shared-line',
 
     onActivate() {
-      masto.loginTo(user)
+      loginTo(masto, user)
     },
   })))
   useCommand({

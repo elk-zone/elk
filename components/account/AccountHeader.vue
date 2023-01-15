@@ -6,7 +6,7 @@ const { account } = defineProps<{
   command?: boolean
 }>()
 
-const masto = useMasto()
+const { client } = $(useMasto())
 
 const { t } = useI18n()
 
@@ -43,15 +43,15 @@ function previewAvatar() {
   }])
 }
 
-async function toggleNotify() {
-  relationship!.notifying = !relationship!.notifying
+async function toggleNotifications() {
+  relationship!.notifying = !relationship?.notifying
   try {
-    const newRel = await masto.v1.accounts.follow(account.id, { notify: relationship!.notifying })
+    const newRel = await client.v1.accounts.follow(account.id, { notify: relationship?.notifying })
     Object.assign(relationship!, newRel)
   }
   catch {
     // TODO error handling
-    relationship!.notifying = !relationship!.notifying
+    relationship!.notifying = !relationship?.notifying
   }
 }
 
@@ -76,6 +76,7 @@ watchEffect(() => {
 })
 
 const isSelf = $(useSelfAccount(() => account))
+const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
 </script>
 
 <template>
@@ -99,14 +100,17 @@ const isSelf = $(useSelfAccount(() => account))
         </div>
         <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
-
-          <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100 text-pink" group @click="toggleNotify()">
-            <div rounded-full p2 group-hover="bg-pink/10">
-              <div v-if="relationship?.notifying" i-ri:bell-fill />
-              <div v-else i-ri-bell-line />
-            </div>
+          <button
+            v-if="!isSelf && relationship?.following"
+            :aria-pressed="isNotifiedOnPost"
+            :aria-label="t('account.notify_on_post', { username: `@${account.username}` })"
+            rounded-full p2 border-1 transition-colors
+            :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
+            @click="toggleNotifications"
+          >
+            <span v-if="isNotifiedOnPost" i-ri:bell-fill block text-current />
+            <span v-else i-ri-bell-line block text-current />
           </button>
-
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->
           <NuxtLink

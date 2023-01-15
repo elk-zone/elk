@@ -17,7 +17,7 @@ useHeadFixed({
     </template>
 
     <div px2 mt3>
-      <SearchWidget v-if="isMastoInitialised" />
+      <SearchWidget v-if="isHydrated" />
     </div>
   </MainContent>
 </template>

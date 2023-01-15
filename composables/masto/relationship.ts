@@ -27,7 +27,7 @@ export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.R
 
 async function fetchRelationships() {
   const requested = Array.from(requestedRelationships.entries()).filter(([, r]) => !r.value)
-  const relationships = await useMasto().v1.accounts.fetchRelationships(requested.map(([id]) => id))
+  const relationships = await useMastoClient().v1.accounts.fetchRelationships(requested.map(([id]) => id))
   for (let i = 0; i < requested.length; i++)
     requested[i][1].value = relationships[i]
 }

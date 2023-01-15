@@ -15,12 +15,11 @@ const sorted = computed(() => {
 })
 
 const router = useRouter()
-const masto = useMasto()
-const switchUser = (user: UserLogin) => {
+const clickUser = (user: UserLogin) => {
   if (user.account.id === currentUser.value?.account.id)
     router.push(getAccountRoute(user.account))
   else
-    masto.loginTo(user)
+    switchUser(user)
 }
 </script>
 
@@ -31,7 +30,7 @@ const switchUser = (user: UserLogin) => {
         flex rounded px4 py3 text-left
         hover:bg-active cursor-pointer transition-100
         aria-label="Switch user"
-        @click="switchUser(user)"
+        @click="clickUser(user)"
       >
         <AccountInfo :account="user.account" :hover-card="false" square />
         <div flex-auto />
@@ -45,7 +44,7 @@ const switchUser = (user: UserLogin) => {
         @click="openSigninDialog"
       />
       <CommonDropdownItem
-        v-if="isMastoInitialised && currentUser"
+        v-if="isHydrated && currentUser"
         :text="$t('user.sign_out_account', [getFullHandle(currentUser.account)])"
         icon="i-ri:logout-box-line rtl-flip"
         @click="signout"

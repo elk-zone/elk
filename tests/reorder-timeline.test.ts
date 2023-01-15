@@ -1,9 +1,5 @@
-/**
- * @vitest-environment jsdom
- */
 import type { mastodon } from 'masto'
 import { describe, expect, it } from 'vitest'
-import { reorderedTimeline } from '~/composables/timeline'
 
 function status(id: string): mastodon.v1.Status {
   return { id } as mastodon.v1.Status

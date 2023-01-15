@@ -5,7 +5,7 @@ definePageMeta({
   name: 'status',
   key: route => route.path,
   // GoToSocial
-  alias: ['/:server/@:account/statuses/:status'],
+  alias: ['/:server?/@:account/statuses/:status'],
 })
 
 const route = useRoute()

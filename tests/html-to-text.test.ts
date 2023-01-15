@@ -1,8 +1,4 @@
-/**
- * @vitest-environment jsdom
- */
 import { describe, expect, it } from 'vitest'
-import { htmlToText } from '~/composables/content-parse'
 
 describe('html-to-text', () => {
   it('inline code', () => {
@@ -13,11 +9,11 @@ describe('html-to-text', () => {
   it('code block', () => {
     expect(htmlToText('<p>text </p><pre><code class="language-js">code</code></pre>'))
       .toMatchInlineSnapshot(`
-        "text 
-        \`\`\`js
-        code
-        \`\`\`"
-      `)
+      "text 
+      \`\`\`js
+      code
+      \`\`\`"
+    `)
   })
 
   it('bold & italic', () => {

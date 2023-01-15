@@ -1,6 +1,3 @@
-/**
- * @vitest-environment jsdom
- */
 /* eslint-disable vue/one-component-per-file */
 import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
@@ -200,10 +197,6 @@ vi.mock('vue-router', () => {
       return () => h('a', attrs)
     }),
   }
-})
-
-vi.mock('~/composables/dialog.ts', () => {
-  return {}
 })
 
 vi.mock('shiki-es', async (importOriginal) => {

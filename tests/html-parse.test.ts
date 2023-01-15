@@ -1,11 +1,7 @@
-/**
- * @vitest-environment jsdom
- */
 import type { mastodon } from 'masto'
 import { describe, expect, it } from 'vitest'
 import { format } from 'prettier'
 import { render as renderTree } from 'ultrahtml'
-import { parseMastodonHTML, treeToText } from '~/composables/content-parse'
 
 describe('html-parse', () => {
   it('empty', async () => {

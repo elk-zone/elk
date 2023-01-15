@@ -10,7 +10,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   if (!userAgent)
     return
 
-  const isOpenGraphCrawler = /twitterbot|discordbot|facebookexternalhit|googlebot|msnbot|baidu|ahrefsbot|duckduckgo/i.test(userAgent)
-  if (isOpenGraphCrawler)
+  const isOpenGraphCrawler = /twitterbot|discordbot|facebookexternalhit|googlebot|msnbot|baidu|ahrefsbot/i.test(userAgent)
+  if (isOpenGraphCrawler) {
+    // Redirect bots to the original instance to respect their social sharing settings
     await sendRedirect(nuxtApp.ssrContext!.event, `https:/${route.path}`, 301)
+  }
 })

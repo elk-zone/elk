@@ -12,7 +12,7 @@ const isSelf = useSelfAccount(account)
 
 if (account) {
   useHeadFixed({
-    title: () => `${t('account.followers')} | ${getDisplayName(account)} (@${account})`,
+    title: () => `${t('account.followers')} | ${getDisplayName(account)} (@${account.acct})`,
   })
 }
 </script>

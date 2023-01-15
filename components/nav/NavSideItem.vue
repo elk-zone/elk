@@ -66,7 +66,7 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
           <div :class="icon" text-xl />
         </slot>
         <slot>
-          <span block sm:hidden xl:block>{{ isHydrated ? text : '&nbsp;' }}</span>
+          <span block sm:hidden xl:block select-none>{{ isHydrated ? text : '&nbsp;' }}</span>
         </slot>
       </div>
     </CommonTooltip>

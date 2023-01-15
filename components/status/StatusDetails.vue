@@ -61,8 +61,8 @@ const isDM = $computed(() => status.visibility === 'direct')
         {{ status.application?.name }}
       </div>
     </div>
-    <div border="t base" pt-2>
-      <StatusActions v-if="actions" v-show="!userSettings.zenMode" :status="status" details :command="command" />
+    <div border="t base" py-2>
+      <StatusActions v-if="actions" :status="status" details :command="command" />
     </div>
   </div>
 </template>

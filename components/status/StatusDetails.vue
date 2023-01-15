@@ -35,10 +35,9 @@ const isSelf = $(useSelfAccount(() => actionsStatus?.account))
 
 <template>
   <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative :lang="status.language ?? undefined">
-    <div v-if="isDM && !isSelf" inset-ie-2 top-2 absolute inline-flex flex-center>
+    <div v-if="isDM && !isSelf && !userSettings.zenMode" inset-ie-2 top-2 absolute inline-flex flex-center>
       <div inline-flex>
         <StatusActionButton
-          v-if="!isSelf"
           :content="$t('action.favourite')"
           color="text-rose" hover="text-rose" group-hover="bg-rose/10"
           icon="i-ri:heart-3-line"

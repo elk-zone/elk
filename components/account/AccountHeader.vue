@@ -26,7 +26,7 @@ function getFieldIconTitle(fieldName: string) {
 }
 
 function getNotificationIconTitle() {
-  return relationship?.notifying ? t('account.notifications_on_post_disable', [`@${account.username}`]) : t('account.notifications_on_post_enable', [`@${account.username}`])
+  return relationship?.notifying ? t('account.notifications_on_post_disable', { username: `@${account.username}` }) : t('account.notifications_on_post_enable', { username: `@${account.username}` })
 }
 
 function previewHeader() {
@@ -107,7 +107,7 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
             <button
               :aria-pressed="isNotifiedOnPost"
-              :aria-label="t('account.notifications_on_post_enable', [`@${account.username}`])"
+              :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
               rounded-full p2 border-1 transition-colors
               :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
               @click="toggleNotifications"

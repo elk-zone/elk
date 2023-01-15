@@ -91,7 +91,7 @@
     "confirm_dialog": {
       "cancel": "否",
       "confirm": "是",
-      "title": "你確定嗎？"
+      "title": "你確定 {0} 嗎？"
     },
     "end_of_list": "清單到底啦",
     "error": "錯誤",

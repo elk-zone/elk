@@ -91,7 +91,7 @@
     "confirm_dialog": {
       "cancel": "No",
       "confirm": "Yes",
-      "title": "Are you sure?"
+      "title": "Are you sure {0}?"
     },
     "end_of_list": "End of the list",
     "error": "ERROR",

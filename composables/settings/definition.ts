@@ -3,21 +3,17 @@ import { DEFAULT_FONT_SIZE } from '~/constants'
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type ColorMode = 'light' | 'dark' | 'system'
 
-export interface FeatureFlags {
+export interface PreferencesSettings {
+  hideBoostCount: boolean
+  hideFavoriteCount: boolean
+  hideFollowerCount: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
 }
 
-export interface WellnessSettings {
-  hideBoostCount: boolean
-  hideFavoriteCount: boolean
-  hideFollowerCount: boolean
-}
-
 export interface UserSettings {
-  featureFlags: Partial<FeatureFlags>
-  wellnessSettings: Partial<WellnessSettings>
+  preferences: Partial<PreferencesSettings>
   colorMode?: ColorMode
   fontSize: FontSize
   language: string
@@ -35,18 +31,14 @@ export function getDefaultUserSettings(locales: string[]): UserSettings {
     language: getDefaultLanguage(locales),
     fontSize: DEFAULT_FONT_SIZE,
     zenMode: false,
-    featureFlags: {},
-    wellnessSettings: {},
+    preferences: {},
   }
 }
 
-export const DEFAULT_WELLNESS_SETTINGS: WellnessSettings = {
+export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideBoostCount: false,
   hideFavoriteCount: false,
   hideFollowerCount: false,
-}
-
-export const DEFAULT_FEATURE_FLAGS: FeatureFlags = {
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,

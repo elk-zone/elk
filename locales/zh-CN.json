@@ -240,12 +240,6 @@
       "description": "在 Mastodon UI 中编辑你的账号设置",
       "label": "账号设置"
     },
-    "feature_flags": {
-      "github_cards": "GitHub 卡片",
-      "title": "实验功能",
-      "user_picker": "用户选择器",
-      "virtual_scroll": "虚拟滚动"
-    },
     "interface": {
       "color_mode": "颜色",
       "dark_mode": "深色模式",
@@ -316,7 +310,14 @@
     },
     "notifications_settings": "通知",
     "preferences": {
-      "label": "首选项"
+      "github_cards": "GitHub 卡片",
+      "hide_boost_count": "隐藏转发数",
+      "hide_favorite_count": "隐藏收藏数",
+      "hide_follower_count": "隐藏关注者数",
+      "label": "首选项",
+      "title": "实验功能",
+      "user_picker": "用户选择器",
+      "virtual_scroll": "虚拟滚动"
     },
     "profile": {
       "appearance": {

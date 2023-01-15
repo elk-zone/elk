@@ -19,6 +19,9 @@ defineOptions({
 
 defineSlots<{
   text: {}
+  icon: {
+    active: boolean
+  }
 }>()
 
 const el = ref<HTMLDivElement>()
@@ -60,14 +63,18 @@ useCommand({
   >
     <CommonTooltip placement="bottom" :content="content">
       <div
-        rounded-full p2
-        v-bind="disabled ? {} : {
+        rounded-full p2 v-bind="disabled ? {} : {
           'group-hover': groupHover,
           'group-focus-visible': groupHover,
           'group-focus-visible:ring': '2 current',
         }"
+        box-content w="1.2em" h="1.2em" of-hidden
       >
-        <div :class="active && activeIcon ? activeIcon : icon" />
+        <template v-if="$slots.icon">
+          <slot name="icon" :active="active" />
+        </template>
+
+        <div v-else :class="active && activeIcon ? activeIcon : icon" />
       </div>
     </CommonTooltip>
 

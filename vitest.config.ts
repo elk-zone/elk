@@ -14,7 +14,9 @@ export default defineConfig({
     'process.client': 'true',
   },
   plugins: [
-    Vue(),
+    Vue({
+      reactivityTransform: true,
+    }),
     AutoImport({
       dts: false,
       imports: [

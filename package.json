@@ -119,7 +119,6 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "mlly@1.0.0": "patches/mlly@1.0.0.patch",
       "nitropack@1.0.0": "patches/nitropack@1.0.0.patch"
     },
     "overrides": {

@@ -43,6 +43,15 @@ const statusRoute = $computed(() => getStatusRoute(status))
 
 const el = ref<HTMLElement>()
 const router = useRouter()
+const route = useRoute()
+
+const {
+  status: actionsStatus,
+  toggleFavourite,
+} = $(useStatusActions(props))
+const isDM = $computed(() => status.visibility === 'direct')
+const isSelf = $(useSelfAccount(() => status?.account))
+const statusActionsVisible = $computed(() => (isDM && !isSelf && ['status', 'conversations'].includes(route.name as string)))
 
 function onclick(evt: MouseEvent | KeyboardEvent) {
   const path = evt.composedPath() as HTMLElement[]
@@ -75,7 +84,6 @@ const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.cont
 
 const isSelfReply = $computed(() => status.inReplyToAccountId === status.account.id)
 const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
-const isDM = $computed(() => status.visibility === 'direct')
 
 const showUpperBorder = $computed(() => props.newer && !directReply)
 const showReplyTo = $computed(() => !replyToMain && !directReply)
@@ -164,6 +172,22 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
           </AccountHoverWrapper>
           <div flex-auto />
           <div v-show="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
+            <template v-if="statusActionsVisible">
+              <StatusActionButton
+                :content="$t('action.reply')"
+                color="text-blue" hover="text-blue" group-hover="bg-blue/10"
+                icon="i-ri:chat-1-line"
+                @click="go"
+              />
+              <StatusActionButton
+                :content="$t('action.favourite')"
+                color="text-rose" hover="text-rose" group-hover="bg-rose/10"
+                icon="i-ri:heart-3-line"
+                active-icon="i-ri:heart-3-fill"
+                :active="!!status.favourited"
+                @click="toggleFavourite()"
+              />
+            </template>
             <AccountBotIndicator v-if="status.account.bot" me-2 />
             <div flex="~ gap1" items-center>
               <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />

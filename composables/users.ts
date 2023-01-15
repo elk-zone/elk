@@ -129,7 +129,7 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
   const url = `https://${user.server}`
   fetch(`${url}/nodeinfo/2.0`).then(r => r.json()).then((info) => {
     nodes.value[user.server] = info
-  })
+  }).catch(() => undefined)
 
   if (!user?.token) {
     publicServer.value = user.server

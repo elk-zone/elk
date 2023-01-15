@@ -48,10 +48,22 @@ export function useShikiTheme() {
   return useColorMode().value === 'dark' ? 'vitesse-dark' : 'vitesse-light'
 }
 
+const HTML_ENTITIES = {
+  '<': '&lt;',
+  '>': '&gt;',
+  '&': '&amp;',
+  '\'': '&apos;',
+  '"': '&quot;',
+} as Record<string, string>
+
+function escapeHtml(text: string) {
+  return text.replace(/[<>&'"]/g, ch => HTML_ENTITIES[ch])
+}
+
 export function highlightCode(code: string, lang: Lang) {
   const shiki = useHightlighter(lang)
   if (!shiki)
-    return code
+    return escapeHtml(code)
 
   return shiki.codeToHtml(code, {
     lang,

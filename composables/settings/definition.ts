@@ -1,4 +1,4 @@
-import { DEFAULT_FONT_SIZE, DEFAULT_LANGUAGE } from '~/constants'
+import { DEFAULT_FONT_SIZE } from '~/constants'
 
 export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type ColorMode = 'light' | 'dark' | 'system'
@@ -24,9 +24,15 @@ export interface UserSettings {
   zenMode: boolean
 }
 
-export function getDefaultUserSettings(): UserSettings {
+export function getDefaultLanguage(languages: string[]) {
+  if (process.server)
+    return 'en-US'
+  return matchLanguages(languages, navigator.languages) || 'en-US'
+}
+
+export function getDefaultUserSettings(locales: string[]): UserSettings {
   return {
-    language: DEFAULT_LANGUAGE,
+    language: getDefaultLanguage(locales),
     fontSize: DEFAULT_FONT_SIZE,
     zenMode: false,
     featureFlags: {},

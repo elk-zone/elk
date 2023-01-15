@@ -436,6 +436,7 @@
   },
   "tooltip": {
     "add_content_warning": "添加内容警告标识",
+    "add_emojis": "添加表情符号",
     "add_media": "添加图片、视频或者音频文件",
     "add_publishable_content": "添加要发布的内容",
     "change_content_visibility": "修改内容是否可见",

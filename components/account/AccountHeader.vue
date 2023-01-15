@@ -112,8 +112,8 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
               :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
               @click="toggleNotifications"
             >
-              <span v-if="isNotifiedOnPost" i-ri:bell-fill block text-current />
-              <span v-else i-ri-bell-line block text-current />
+              <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
+              <span v-else i-ri-notification-4-line block text-current />
             </button>
           </CommonTooltip>
           <AccountFollowButton :account="account" :command="command" />

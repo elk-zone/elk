@@ -8,7 +8,7 @@
     <p text-sm text-secondary>
       {{ $t('user.sign_in_desc') }}
     </p>
-    <button btn-solid rounded-3 text-center mt-2 @click="openSigninDialog()">
+    <button btn-solid rounded-3 text-center mt-2 select-none @click="openSigninDialog()">
       {{ $t('action.sign_in') }}
     </button>
   </div>

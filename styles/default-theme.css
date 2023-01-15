@@ -1,0 +1,10 @@
+:root {
+  --c-primary: #cc7d24;
+  --c-primary-active: #b16605;
+  --c-primary-light: #cc7d2480;
+  --c-primary-fade: #c7781f1a;
+  --c-dark-primary: #d18229;
+  --c-dark-primary-active: #b66b0d;
+  --c-dark-primary-light: #d1822980;
+  --c-dark-primary-fade: #cc7d241a;
+}

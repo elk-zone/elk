@@ -247,12 +247,6 @@
       "description": "Mastodon UI'da hesap ayarlarını değiştir",
       "label": "Hesap ayarları"
     },
-    "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "title": "Deneysel Özellikler",
-      "user_picker": "Kullanıcı Seçici",
-      "virtual_scroll": "Görsel Kaydırma"
-    },
     "interface": {
       "color_mode": "Renk Modu",
       "dark_mode": "Karanlık Mod",
@@ -324,7 +318,14 @@
     },
     "notifications_settings": "Bildirimler",
     "preferences": {
-      "label": "Ayarlar"
+      "github_cards": "GitHub Cards",
+      "hide_boost_count": "Boost sayısını gizle",
+      "hide_favorite_count": "Favori sayısını gizle",
+      "hide_follower_count": "Takipçi sayısını gizle",
+      "label": "Ayarlar",
+      "title": "Deneysel Özellikler",
+      "user_picker": "Kullanıcı Seçici",
+      "virtual_scroll": "Görsel Kaydırma"
     },
     "profile": {
       "appearance": {
@@ -347,14 +348,6 @@
       "export": "Kullanıcı Tokenlerini Dışa Aktar",
       "import": "Kullanıcı Tokenlerini İçe Aktar",
       "label": "Giriş yapılan kullanıcılar"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "Boost sayısını gizle",
-        "hide_favorite_count": "Favori sayısını gizle",
-        "hide_follower_count": "Takipçi sayısını gizle"
-      },
-      "label": "Sağlık"
     }
   },
   "state": {

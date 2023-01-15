@@ -251,12 +251,6 @@
       "description": "Edit your account settings in Mastodon UI",
       "label": "Account settings"
     },
-    "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "title": "Experimental Features",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
-    },
     "interface": {
       "color_mode": "Color Mode",
       "dark_mode": "Dark Mode",
@@ -328,7 +322,14 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
-      "label": "Preferences"
+      "github_cards": "GitHub Cards",
+      "hide_boost_count": "Hide boost count",
+      "hide_favorite_count": "Hide favorite count",
+      "hide_follower_count": "Hide follower count",
+      "label": "Preferences",
+      "title": "Experimental Features",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Virtual Scrolling"
     },
     "profile": {
       "appearance": {
@@ -351,14 +352,6 @@
       "export": "Export User Tokens",
       "import": "Import User Tokens",
       "label": "Logged in users"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "Hide boost count",
-        "hide_favorite_count": "Hide favorite count",
-        "hide_follower_count": "Hide follower count"
-      },
-      "label": "Wellness"
     }
   },
   "share-target": {

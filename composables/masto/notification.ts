@@ -12,20 +12,24 @@ export const useNotifications = () => {
       return
     const lastReadId = notifications[id]![1][0]
     notifications[id]![1] = []
-
-    await client.v1.markers.create({
-      notifications: { lastReadId },
-    })
+    if (lastReadId) {
+      await client.v1.markers.create({
+        notifications: { lastReadId },
+      })
+    }
   }
 
   async function connect(): Promise<void> {
     if (!isHydrated.value || !id || notifications[id] || !currentUser.value?.token)
       return
 
+    let resolveStream
+    const stream = new Promise<WsEvents>(resolve => resolveStream = resolve)
+    notifications[id] = [stream, []]
+
     await until($$(canStreaming)).toBe(true)
 
-    const stream = client.v1.stream.streamUser()
-    notifications[id] = [stream, []]
+    client.v1.stream.streamUser().then(resolveStream)
     stream.then(s => s.on('notification', (n) => {
       if (notifications[id])
         notifications[id]![1].unshift(n.id)

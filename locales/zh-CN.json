@@ -242,11 +242,11 @@
     },
     "interface": {
       "color_mode": "颜色",
-      "dark_mode": "深色模式",
+      "dark_mode": "深色",
       "default": "（默认）",
       "font_size": "字号",
       "label": "外观",
-      "light_mode": "浅色模式",
+      "light_mode": "浅色",
       "size_label": {
         "lg": "大",
         "md": "中",

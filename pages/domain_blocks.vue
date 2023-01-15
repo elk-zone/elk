@@ -16,6 +16,6 @@ useHeadFixed({
       <span timeline-title-style>{{ $t('nav.blocked_domains') }}</span>
     </template>
 
-    <TimelineDomainBlocks v-if="isMastoInitialised" />
+    <TimelineDomainBlocks v-if="isHydrated" />
   </MainContent>
 </template>

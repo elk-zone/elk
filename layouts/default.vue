@@ -22,7 +22,7 @@ const showUserPicker = logicAnd(
               <NavTitle />
               <NavSide command />
               <div flex-auto />
-              <div v-if="isMastoInitialised" flex flex-col>
+              <div v-if="isHydrated" flex flex-col>
                 <div hidden xl:block>
                   <UserSignInEntry v-if="!currentUser" />
                 </div>

@@ -15,7 +15,8 @@ const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)
 const expiredTimeFormatted = useFormattedDateTime(poll.expiresAt!)
 const { formatPercentage } = useHumanReadableNumber()
 
-const masto = useMasto()
+const { client } = $(useMasto())
+
 async function vote(e: Event) {
   const formData = new FormData(e.target as HTMLFormElement)
   const choices = formData.getAll('choices') as string[]
@@ -30,7 +31,7 @@ async function vote(e: Event) {
   poll.votersCount = (poll.votersCount || 0) + 1
   cacheStatus({ ...status, poll }, undefined, true)
 
-  await masto.v1.polls.vote(poll.id, { choices })
+  await client.v1.polls.vote(poll.id, { choices })
 }
 
 const votersCount = $computed(() => poll.votersCount ?? 0)

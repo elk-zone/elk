@@ -29,7 +29,7 @@ useCommand({
 })
 
 let activeClass = $ref('text-primary')
-onMastoInit(async () => {
+onHydrated(async () => {
   // TODO: force NuxtLink to reevaluate, we now we are in this route though, so we should force it to active
   // we don't have currentServer defined until later
   activeClass = ''
@@ -39,8 +39,8 @@ onMastoInit(async () => {
 
 // Optimize rendering for the common case of being logged in, only show visual feedback for disabled user-only items
 // when we know there is no user.
-const noUserDisable = computed(() => !isMastoInitialised.value || (props.userOnly && !currentUser.value))
-const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly && !currentUser.value)
+const noUserDisable = computed(() => !isHydrated.value || (props.userOnly && !currentUser.value))
+const noUserVisual = computed(() => isHydrated.value && props.userOnly && !currentUser.value)
 </script>
 
 <template>

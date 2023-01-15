@@ -19,12 +19,9 @@ const defaultMessage = 'Something went wrong'
 const message = error.message ?? errorCodes[error.statusCode!] ?? defaultMessage
 
 const state = ref<'error' | 'reloading'>('error')
-const masto = useMasto()
 const reload = async () => {
   state.value = 'reloading'
   try {
-    if (!masto.loggedIn.value)
-      await masto.loginTo(currentUser.value)
     clearError({ redirect: currentUser.value ? '/home' : `/${currentServer.value}/public/local` })
   }
   catch (err) {

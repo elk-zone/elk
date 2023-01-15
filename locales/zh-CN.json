@@ -88,7 +88,7 @@
     "confirm_dialog": {
       "cancel": "否",
       "confirm": "是",
-      "title": "你确定吗？"
+      "title": "你确定 {0} 吗？"
     },
     "end_of_list": "列表到底啦",
     "error": "错误",
@@ -164,6 +164,7 @@
     "blocked_users": "已拉黑的用户",
     "bookmarks": "书签",
     "built_at": "构建于 {0}",
+    "compose": "撰写",
     "conversations": "私信",
     "explore": "探索",
     "favourites": "喜欢",
@@ -435,6 +436,7 @@
   },
   "tooltip": {
     "add_content_warning": "添加内容警告标识",
+    "add_emojis": "添加表情符号",
     "add_media": "添加图片、视频或者音频文件",
     "add_publishable_content": "添加要发布的内容",
     "change_content_visibility": "修改内容是否可见",

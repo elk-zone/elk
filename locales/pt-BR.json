@@ -28,6 +28,7 @@
     "muted_users": "Usuários silenciados",
     "muting": "Silenciados",
     "mutuals": "Mútuos",
+    "notify_on_post": "Notifique-me quando {username} publicar",
     "pinned": "Fixado",
     "posts": "Publicações",
     "posts_count": "{0} Publicações|{0} Publicação|{0} Publicações",
@@ -35,7 +36,9 @@
     "profile_unavailable": "Perfil indisponível",
     "unblock": "Desbloquear",
     "unfollow": "Deixar de seguir",
-    "unmute": "Deixar de silenciar"
+    "unmute": "Deixar de silenciar",
+    "view_other_followers": "Os seguidores de outras instâncias podem não ser exibidos.",
+    "view_other_following": "As pessoas que segue de outras instâncias podem não ser exibidas."
   },
   "action": {
     "apply": "Aplicar",
@@ -165,6 +168,7 @@
     "blocked_users": "Usuários bloqueados",
     "bookmarks": "Itens Salvos",
     "built_at": "Produzido {0}",
+    "compose": "Escrever",
     "conversations": "Conversas",
     "explore": "Explorar",
     "favourites": "Favoritos",
@@ -356,6 +360,11 @@
       },
       "label": "Bem-estar"
     }
+  },
+  "share-target": {
+    "description": "Elk pode ser configurado para que possa compartilhar conteúdos de outras aplicações, basta instalar Elk no seu dispositivo ou computador e logar.",
+    "hint": "Para poder compartilhar conteúdo com o Elk, ele precisa estar instalado e você precisa estar logado.",
+    "title": "Compartilhar com o Elk"
   },
   "state": {
     "attachments_exceed_server_limit": "O número de anexos excedeu o limite permitido por publicação.",

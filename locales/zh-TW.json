@@ -353,7 +353,7 @@
     },
     "wellness": {
       "feature": {
-        "hide_boost_count": "隱藏提升數",
+        "hide_boost_count": "隱藏轉發數",
         "hide_favorite_count": "隱藏收藏數",
         "hide_follower_count": "隱藏關注者數"
       },

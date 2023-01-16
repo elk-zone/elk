@@ -61,7 +61,7 @@ export default defineNuxtConfig({
       './composables/masto',
       './composables/push-notifications',
       './composables/settings',
-      './composables/tiptap',
+      './composables/tiptap/index.ts',
     ],
   },
   vite: {

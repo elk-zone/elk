@@ -61,7 +61,19 @@ const { editor } = useTiptap({
   },
   onPaste: handlePaste,
 })
-const characterCount = $computed(() => htmlToText(editor.value?.getHTML() || '').length)
+const characterCount = $computed(() => {
+  let length = htmlToText(editor.value?.getHTML() || '').length
+
+  if (draft.mentions) {
+    // + 1 is needed as mentions always need a space seperator at the end
+    length += draft.mentions.map((mention) => {
+      const [handle] = mention.split('@')
+      return `@${handle}`
+    }).join(' ').length + 1
+  }
+
+  return length
+})
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files

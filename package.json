@@ -110,7 +110,6 @@
     "stale-dep": "^0.3.1",
     "std-env": "^3.3.1",
     "theme-vitesse": "^0.6.0",
-    "tinycolor2": "^1.5.2",
     "typescript": "^4.9.4",
     "unplugin-auto-import": "^0.12.1",
     "unplugin-vue-inspector": "^0.0.2",

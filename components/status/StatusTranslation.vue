@@ -27,7 +27,7 @@ const toggleTranslation = async () => {
   <div>
     <button
       v-if="isTranslationEnabled && status.language !== languageCode" pl-0 flex="~ center" gap-2
-      :disabled="translating" disabled-bg-transparent btn-text @click="toggleTranslation"
+      :disabled="translating" disabled-bg-transparent btn-text class="disabled-text-$c-text-btn-disabled-deeper" @click="toggleTranslation"
     >
       <span v-if="translating" block animate-spin preserve-3d>
         <span block i-ri:loader-2-fill />

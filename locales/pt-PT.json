@@ -89,11 +89,6 @@
     "toggle_zen_mode": "Alternar modo zen"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Não",
-      "confirm": "Sim",
-      "title": "Tem a certeza?"
-    },
     "end_of_list": "Fim da lista",
     "error": "ERRO",
     "in": "em",
@@ -103,6 +98,18 @@
   "compose": {
     "draft_title": "Rascunho {0}",
     "drafts": "Rascunhos ({v})"
+  },
+  "confirm": {
+    "common": {
+      "cancel": "Não",
+      "confirm": "Sim",
+      "title": "Tem a certeza?"
+    },
+    "delete_posts": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "Tem a certeza que pretende eliminar esta publicação?"
+    }
   },
   "conversation": {
     "with": "com"
@@ -134,11 +141,6 @@
     "copy_link_to_post": "Copiar ligação para esta publicação",
     "delete": "Eliminar",
     "delete_and_redraft": "Eliminar & re-editar",
-    "delete_confirm": {
-      "cancel": "Cancelar",
-      "confirm": "Eliminar",
-      "title": "Tem a certeza que pretende eliminar esta publicação?"
-    },
     "direct_message_account": "Mensagem direta a {0}",
     "edit": "Editar",
     "hide_reblogs": "Esconder partilhas de {0}",

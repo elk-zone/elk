@@ -30,7 +30,7 @@ const aspectRatio = computed(() => {
   if (fullSize)
     return rawAspectRatio.value
   if (rawAspectRatio.value)
-    return clamp(rawAspectRatio.value, 0.8, 2.5)
+    return clamp(rawAspectRatio.value, 0.8, 6)
   return undefined
 })
 
@@ -188,7 +188,7 @@ useIntersectionObserver(video, (entries) => {
                 {{ $t('status.img_alt.dismiss') }}
               </button>
             </div>
-            <p whitespace-pre>
+            <p whitespace-pre-wrap>
               {{ attachment.description }}
             </p>
           </div>

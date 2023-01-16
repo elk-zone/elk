@@ -18,10 +18,10 @@ const emit = defineEmits<{
     </div>
     <div flex justify-end gap-2>
       <button btn-text @click="emit('choice', 'cancel')">
-        {{ cancel || $t('common.confirm_dialog.cancel') }}
+        {{ cancel || $t('confirm.common.cancel') }}
       </button>
       <button btn-solid @click="emit('choice', 'confirm')">
-        {{ confirm || $t('common.confirm_dialog.confirm') }}
+        {{ confirm || $t('confirm.common.confirm') }}
       </button>
     </div>
   </div>

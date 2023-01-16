@@ -10,13 +10,12 @@ export default defineNuxtPlugin(() => {
       {
         innerHTML: `
 ;(function() {
-  const handle = localStorage.getItem('${STORAGE_KEY_CURRENT_USER_HANDLE}')
-  if (!handle) { return }
+  const handle = localStorage.getItem('${STORAGE_KEY_CURRENT_USER_HANDLE}') || '[anonymous]'
   const allSettings = JSON.parse(localStorage.getItem('${STORAGE_KEY_SETTINGS}') || '{}')
   const settings = allSettings[handle]
   if (!settings) { return }
 
-  const html = document.querySelector('html')
+  const html = document.documentElement
   ${process.dev ? 'console.log({ settings })' : ''}
 
   if (settings.fontSize) {
@@ -28,6 +27,9 @@ export default defineNuxtPlugin(() => {
   }
   if (settings.zenMode) {
     html.classList.add('zen')
+  }
+  if (settings.themeColors) {
+    Object.entries(settings.themeColors).map(i => html.style.setProperty(i[0], i[1]))
   }
 })()`.trim().replace(/\s*\n+\s*/g, ';'),
       },

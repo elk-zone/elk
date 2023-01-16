@@ -1,4 +1,4 @@
-export function matchLanguages(languages: string[], acceptLanguages: string[]): string | null {
+export function matchLanguages(languages: string[], acceptLanguages: readonly string[]): string | null {
   {
     const lang = acceptLanguages.map(userLang => languages.find(lang => lang.startsWith(userLang))).filter(v => !!v)[0]
     if (lang)

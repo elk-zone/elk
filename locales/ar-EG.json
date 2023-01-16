@@ -86,11 +86,6 @@
     "toggle_zen_mode": "تبديل وضع الهدوء"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "كلا",
-      "confirm": "نعم",
-      "title": "هل أنت متأكد؟"
-    },
     "end_of_list": "نهاية القائمة",
     "error": "حدث خطأ",
     "in": "في",
@@ -100,6 +95,17 @@
   "compose": {
     "draft_title": "مسودة {0}",
     "drafts": "المسودات ({v})"
+  },
+  "confirm": {
+    "common": {
+      "cancel": "كلا",
+      "confirm": "نعم"
+    },
+    "delete_posts": {
+      "cancel": "إلغاء",
+      "confirm": "حذف",
+      "title": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
+    }
   },
   "conversation": {
     "with": "مع"
@@ -131,11 +137,6 @@
     "copy_link_to_post": "انسخ الرابط إلى هذا المنشور",
     "delete": "حذف",
     "delete_and_redraft": "حذف وإعادة صياغة",
-    "delete_confirm": {
-      "cancel": "إلغاء",
-      "confirm": "حذف",
-      "title": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
-    },
     "direct_message_account": "إرسال رسالة مباشرة إلى {0}",
     "edit": "تعديل",
     "hide_reblogs": "إخفاء المشاركات من {0}",
@@ -240,12 +241,6 @@
       "description": "قم بتحرير إعدادات حسابك في موقع Mastodon الأصلي",
       "label": "إعدادت الحساب"
     },
-    "feature_flags": {
-      "github_cards": "GitHub بطاقات",
-      "title": "الميزات التجريبية",
-      "user_picker": "الشريط الجانبي لمبدل المستخدم",
-      "virtual_scroll": "التمرير الافتراضي"
-    },
     "interface": {
       "color_mode": "وضع اللون",
       "dark_mode": "الوضع الداكن",
@@ -315,7 +310,14 @@
     },
     "notifications_settings": "التنبيهات",
     "preferences": {
-      "label": "التفضيلات"
+      "github_cards": "GitHub بطاقات",
+      "hide_boost_count": "إخفاء عدد المشاركات",
+      "hide_favorite_count": "إخفاء عدد المفضلة",
+      "hide_follower_count": "إخفاء عدد المتابعين",
+      "label": "التفضيلات",
+      "title": "الميزات التجريبية",
+      "user_picker": "الشريط الجانبي لمبدل المستخدم",
+      "virtual_scroll": "التمرير الافتراضي"
     },
     "profile": {
       "appearance": {
@@ -338,14 +340,6 @@
       "export": "Export User Tokens",
       "import": "Import User Tokens",
       "label": "المستخدمون المسجلون"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "إخفاء عدد المشاركات",
-        "hide_favorite_count": "إخفاء عدد المفضلة",
-        "hide_follower_count": "إخفاء عدد المتابعين"
-      },
-      "label": "صحة النفس"
     }
   },
   "state": {

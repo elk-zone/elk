@@ -83,6 +83,11 @@ const locales: LocaleObjectData[] = [
     name: 'Česky',
   },
   {
+    code: 'pt-PT',
+    file: 'pt-PT.json',
+    name: 'Português',
+  },
+  {
     code: 'tr-TR',
     file: 'tr-TR.json',
     name: 'Türkçe',
@@ -96,6 +101,11 @@ const locales: LocaleObjectData[] = [
     code: 'pt-BR',
     file: 'pt-BR.json',
     name: 'Português (BR)',
+  },
+  {
+    code: 'id-ID',
+    file: 'id-ID.json',
+    name: 'Indonesia',
   },
 ].sort((a, b) => a.code.localeCompare(b.code))
 

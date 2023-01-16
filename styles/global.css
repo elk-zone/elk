@@ -13,13 +13,6 @@ html {
 }
 @font-face {
   font-display: swap;
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/DM-sans-v11.ttf) format('truetype');
-}
-@font-face {
-  font-display: swap;
   font-family: 'DM Serif Display';
   font-style: normal;
   font-weight: 400;
@@ -153,10 +146,10 @@ em-emoji-picker {
       --at-apply: hidden;
     }
   }
-  'ol > li' {
+  ol > li {
     --at-apply: pl-2;
   }
-  'ul > li' {
+  ul > li {
     --at-apply: pl-2;
   }
   .code-block {

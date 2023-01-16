@@ -12,7 +12,7 @@ defineProps<{
     <div
       sticky top-0 z10 backdrop-blur
       pt="[env(safe-area-inset-top,0)]"
-      border="b base" bg="[rgba(var(--c-bg-base-rgb),0.7)]"
+      border="b base" bg="[rgba(var(--rbg-bg-base),0.7)]"
     >
       <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }">
         <div flex gap-3 items-center overflow-hidden py2>
@@ -31,7 +31,7 @@ defineProps<{
         <div flex items-center flex-shrink-0 gap-x-2>
           <slot name="actions" />
           <PwaBadge lg:hidden />
-          <NavUser v-if="isMastoInitialised" />
+          <NavUser v-if="isHydrated" />
           <NavUserSkeleton v-else />
         </div>
       </div>

@@ -40,12 +40,6 @@ const isRootPath = computedEager(() => route.name === 'settings')
               to="/settings/interface"
             />
             <SettingsItem
-              command
-              icon="i-ri-leaf-line"
-              :text="$t('settings.wellness.label')"
-              to="/settings/wellness"
-            />
-            <SettingsItem
               v-if="isHydrated && currentUser"
               command
               icon="i-ri:notification-badge-line"

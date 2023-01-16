@@ -10,6 +10,11 @@ const userSettings = useUserSettings()
 
 <template>
   <MainContent back-on-small-screen>
+    <template #title>
+      <h1 text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        {{ $t('settings.preferences.label') }}
+      </h1>
+    </template>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'hideBoostCount')"
       @click="togglePreferences('hideBoostCount')"
@@ -34,15 +39,10 @@ const userSettings = useUserSettings()
     >
       {{ $t('settings.preferences.grayscale_mode') }}
     </SettingsToggleItem>
-    <template #title>
-      <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.preferences.label') }}</span>
-      </div>
-    </template>
-    <h3 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
+    <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-flask-line />
       {{ $t('settings.preferences.title') }}
-    </h3>
+    </h2>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalVirtualScroller')"
       @click="togglePreferences('experimentalVirtualScroller')"

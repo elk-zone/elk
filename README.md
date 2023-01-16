@@ -31,6 +31,7 @@ It is already quite usable, but it isn't ready for wide adoption yet. We recomme
 The client is deployed on:
 
 - 🦌 Production: [elk.zone](https://elk.zone)
+- 🦌 Production: [universeodon.com](https://elk.universeodon.com)
 - 🐙 Canary: [main.elk.zone](https://main.elk.zone) (deploys on every commit to `main` branch)
 
 ## 💖 Sponsors

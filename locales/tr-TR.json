@@ -86,11 +86,6 @@
     "toggle_zen_mode": "Zen mod durumunu değiştir"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Hayır",
-      "confirm": "Evet",
-      "title": "Emin misiniz?"
-    },
     "end_of_list": "Listenin sonu",
     "error": "HATA",
     "in": "içinde",
@@ -102,6 +97,11 @@
     "drafts": "Taslaklar ({v})"
   },
   "confirm": {
+    "common": {
+      "cancel": "Hayır",
+      "confirm": "Evet",
+      "title": "Emin misiniz?"
+    },
     "delete_posts": {
       "cancel": "İptal et",
       "confirm": "Sil",

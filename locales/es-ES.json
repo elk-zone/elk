@@ -86,11 +86,6 @@
     "toggle_zen_mode": "Cambiar a modo zen"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "No",
-      "confirm": "Si",
-      "title": "¿Estás seguro?"
-    },
     "end_of_list": "Fin",
     "error": "ERROR",
     "in": "en",
@@ -102,6 +97,11 @@
     "drafts": "Borradores ({v})"
   },
   "confirm": {
+    "common": {
+      "cancel": "No",
+      "confirm": "Si",
+      "title": "¿Estás seguro?"
+    },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",

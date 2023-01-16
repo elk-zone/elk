@@ -86,11 +86,6 @@
     "toggle_zen_mode": "Перемкнути режим Zen"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Відмінити",
-      "confirm": "Так",
-      "title": "Ви впевнені?"
-    },
     "end_of_list": "Кінець списку",
     "error": "ПОМИЛКА",
     "in": "в",
@@ -102,6 +97,10 @@
     "drafts": "Чернетки ({v})"
   },
   "confirm": {
+    "common": {
+      "cancel": "Відмінити",
+      "confirm": "Так"
+    },
     "delete_posts": {
       "cancel": "Скасувати",
       "confirm": "Видалити",

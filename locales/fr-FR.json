@@ -83,11 +83,6 @@
     "toggle_zen_mode": "Passer en mode zen"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Non",
-      "confirm": "Oui",
-      "title": "Êtes-vous sûr·e ?"
-    },
     "end_of_list": "Fin de liste",
     "error": "ERREUR",
     "in": "sur",
@@ -99,6 +94,11 @@
     "drafts": "Brouillons ({v})"
   },
   "confirm": {
+    "common": {
+      "cancel": "Non",
+      "confirm": "Oui",
+      "title": "Êtes-vous sûr·e ?"
+    },
     "delete_posts": {
       "cancel": "Annuler",
       "confirm": "Supprimer",

@@ -89,11 +89,6 @@
     "toggle_zen_mode": "Alternar modo zen"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Não",
-      "confirm": "Sim",
-      "title": "Tem a certeza?"
-    },
     "end_of_list": "Fim da lista",
     "error": "ERRO",
     "in": "em",
@@ -105,6 +100,11 @@
     "drafts": "Rascunhos ({v})"
   },
   "confirm": {
+    "common": {
+      "cancel": "Não",
+      "confirm": "Sim",
+      "title": "Tem a certeza?"
+    },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",

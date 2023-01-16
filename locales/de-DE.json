@@ -89,11 +89,6 @@
     "toggle_zen_mode": "Zen-Modus ändern"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Abbrechen",
-      "confirm": "OK",
-      "title": "Bist du sicher, {0}?"
-    },
     "end_of_list": "Ende der Liste",
     "error": "FEHLER",
     "in": "in",
@@ -105,6 +100,11 @@
     "drafts": "Entwürfe ({v})"
   },
   "confirm": {
+    "common": {
+      "cancel": "Abbrechen",
+      "confirm": "OK",
+      "title": "Bist du sicher, {0}?"
+    },
     "delete_posts": {
       "cancel": "Abbrechen",
       "confirm": "Löschen",

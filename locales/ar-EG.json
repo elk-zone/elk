@@ -86,11 +86,6 @@
     "toggle_zen_mode": "تبديل وضع الهدوء"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "كلا",
-      "confirm": "نعم",
-      "title": "هل أنت متأكد؟"
-    },
     "end_of_list": "نهاية القائمة",
     "error": "حدث خطأ",
     "in": "في",
@@ -102,6 +97,10 @@
     "drafts": "المسودات ({v})"
   },
   "confirm": {
+    "common": {
+      "cancel": "كلا",
+      "confirm": "نعم"
+    },
     "delete_posts": {
       "cancel": "إلغاء",
       "confirm": "حذف",

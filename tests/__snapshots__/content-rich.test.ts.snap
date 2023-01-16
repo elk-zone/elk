@@ -152,3 +152,8 @@ exports[`content-rich > link + mention 1`] = `
 </p>
 "
 `;
+
+exports[`editor > transform mentions 1`] = `
+"
+@elk Hello"
+`;

@@ -168,6 +168,14 @@ describe('content-rich', () => {
   })
 })
 
+describe('editor', () => {
+  it('transform mentions', () => {
+    const ast = parseMastodonHTML('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention">@<span>elk</span></a></span> Hello</p>')
+    const transformed = treeToText(ast)
+    expect(transformed).toMatchSnapshot()
+  })
+})
+
 async function render(content: string, options?: ContentParseOptions) {
   const vnode = contentToVNode(content, options)
   const html = (await renderToString(vnode))

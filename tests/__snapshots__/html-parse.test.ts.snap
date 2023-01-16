@@ -25,7 +25,7 @@ exports[`html-parse > code frame 2 > html 1`] = `
 "<p>
   <span class=\\"h-card\\"
     ><a
-      href=\\"https://mas.to/@antfu\\"
+      href=\\"https://webtoo.ls/@antfu\\"
       class=\\"u-url mention\\"
       rel=\\"nofollow noopener noreferrer\\"
       target=\\"_blank\\"
@@ -51,11 +51,11 @@ exports[`html-parse > custom emoji > html 1`] = `
 <picture alt=\\":nuxt:\\" class=\\"custom-emoji\\" data-emoji-id=\\"nuxt\\"
   ><source
     srcset=\\"
-      https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/static/c96ba3cb0e0e1eac.png
+      https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png
     \\"
     media=\\"(prefers-reduced-motion: reduce)\\" />
   <img
-    src=\\"https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/original/c96ba3cb0e0e1eac.png\\"
+    src=\\"https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png\\"
     alt=\\":nuxt:\\"
 /></picture>
 "
@@ -121,7 +121,7 @@ exports[`html-parse > link + mention > html 1`] = `
   we’re now using
   <span class=\\"h-card\\"
     ><a
-      href=\\"https://mas.to/@vitest\\"
+      href=\\"https://webtoo.ls/@vitest\\"
       class=\\"u-url mention\\"
       rel=\\"nofollow noopener noreferrer\\"
       target=\\"_blank\\"

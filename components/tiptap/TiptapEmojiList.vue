@@ -3,7 +3,7 @@ import { getEmojiMatchesInText } from '@iconify/utils/lib/emoji/replace/find'
 import CommonScrollIntoView from '../common/CommonScrollIntoView.vue'
 import type { CustomEmoji, Emoji } from '~~/composables/tiptap/suggestion'
 import { isCustomEmoji } from '~~/composables/tiptap/suggestion'
-import { emojiFilename, emojiPrefix, emojiRegEx, getEmojiAttributes } from '~~/config/emojis'
+import { emojiFilename, emojiPrefix, emojiRegEx } from '~~/config/emojis'
 
 const { items, command } = defineProps<{
   items: (CustomEmoji | Emoji)[]
@@ -68,7 +68,12 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="isPending || items.length" relative bg-base text-base shadow border="~ base rounded" text-sm py-2 overflow-x-hidden overflow-y-auto max-h-100>
+  <div
+    v-if="isPending || items.length"
+    relative bg-base text-base shadow border="~ base rounded"
+    text-sm py-2 overflow-x-hidden overflow-y-auto max-h-100
+    min-w-40 max-w-50
+  >
     <template v-if="isPending">
       <div flex gap-1 items-center p2 animate-pulse>
         <div i-ri:loader-2-line animate-spin />

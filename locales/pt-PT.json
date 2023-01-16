@@ -100,15 +100,39 @@
     "drafts": "Rascunhos ({v})"
   },
   "confirm": {
+    "block_account": {
+      "cancel": "Cancelar",
+      "confirm": "Bloquear",
+      "title": "Tem a certeza que pretende bloquear {0}？"
+    },
+    "block_domain": {
+      "cancel": "Cancelar",
+      "confirm": "Bloquear",
+      "title": "Tem a certeza que pretende bloquear {0}？"
+    },
     "common": {
       "cancel": "Não",
-      "confirm": "Sim",
-      "title": "Tem a certeza?"
+      "confirm": "Sim"
     },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
       "title": "Tem a certeza que pretende eliminar esta publicação?"
+    },
+    "mute_account": {
+      "cancel": "Cancelar",
+      "confirm": "Silenciar",
+      "title": "Tem a certeza que pretende silenciar {0}？"
+    },
+    "show_reblogs": {
+      "cancel": "Cancelar",
+      "confirm": "Mostrar",
+      "title": "Tem a certeza que prentende mostrar partilhas de {0}？"
+    },
+    "unfollow": {
+      "cancel": "Cancelar",
+      "confirm": "Deixar de seguir",
+      "title": "Tem a certeza que pretende deixar de seguir?"
     }
   },
   "conversation": {
@@ -253,12 +277,6 @@
       "description": "Editar as configurações da sua conta na aplicação web do Mastodon",
       "label": "Configurações da conta"
     },
-    "feature_flags": {
-      "github_cards": "Cartões do GitHub",
-      "title": "Funcionalidades Experimentais",
-      "user_picker": "Selecionador de Utilizador",
-      "virtual_scroll": "Deslocamento Virtual"
-    },
     "interface": {
       "color_mode": "Modo de cores",
       "dark_mode": "Modo Escuro",
@@ -273,7 +291,8 @@
         "xl": "Extra grande",
         "xs": "Extra pequeno"
       },
-      "system_mode": "Sistema"
+      "system_mode": "Sistema",
+      "theme_color": "Cor to Tema"
     },
     "language": {
       "display_language": "Idioma de Apresentação",
@@ -330,7 +349,14 @@
     },
     "notifications_settings": "Notificações",
     "preferences": {
-      "label": "Preferências"
+      "github_cards": "Cartões do GitHub",
+      "hide_boost_count": "Esconder contagem de partilhas",
+      "hide_favorite_count": "Esconder contagem de favoritos",
+      "hide_follower_count": "Esconder contagem de seguidores",
+      "label": "Preferências",
+      "title": "Funcionalidades Experimentais",
+      "user_picker": "Selecionador de Utilizador",
+      "virtual_scroll": "Deslocamento Virtual"
     },
     "profile": {
       "appearance": {
@@ -354,14 +380,6 @@
       "import": "Importar Tokens de Acesso",
       "label": "Utilizadores conectados"
     },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "Esconder contagem de partilhas",
-        "hide_favorite_count": "Esconder contagem de favoritos",
-        "hide_follower_count": "Esconder contagem de seguidores"
-      },
-      "label": "Bem-estar"
-    }
   },
   "share-target": {
     "description": "Elk pode ser configurado para que possa partilhar conteúdos de outras aplicações, basta instalar Elk no seu dispositivo ou computador e iniciar sessão.",
@@ -395,7 +413,7 @@
       "finished": "terminou {0}"
     },
     "reblogged": "{0} partilhou",
-    "replying_to": "Respondendo a {0}",
+    "replying_to": "Em resposta a {0}",
     "show_full_thread": "Mostrar toda a conversa",
     "someone": "alguém",
     "spoiler_show_less": "Mostrar menos",
@@ -445,9 +463,9 @@
     "short_month_past": "{n}M",
     "short_second_future": "em {n}s",
     "short_second_past": "{n}s",
-    "short_week_future": "in {n}S",
+    "short_week_future": "em{n}S",
     "short_week_past": "{n}S",
-    "short_year_future": "in {n}A",
+    "short_year_future": "em {n}A",
     "short_year_past": "{n}A",
     "week_future": "em 0 semanas|próxima semana|em {n} semanas",
     "week_past": "0 semanas atrás|semana passada|{n} semanas atrás",

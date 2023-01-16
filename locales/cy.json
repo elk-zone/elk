@@ -1,0 +1,481 @@
+{
+  "a11y": {
+    "loading_page": "Wrthi'n llwytho'r dudalen...",
+    "loading_titled_page": "Wrthi'n llwytho {0}",
+    "locale_changed": "Iaith wedi'i newid i {0}",
+    "locale_changing": "Wrthi'n newid yr iaith...",
+    "route_loaded": "Wedi llwytho {0}"
+  },
+  "account": {
+    "avatar_description": "Rhithffurf {0}",
+    "blocked_by": "Mae'r defnyddiwr yma'n eich blocio.",
+    "blocked_domains": "Blociau parth",
+    "blocked_users": "Defnyddwyr wedi'u blocio",
+    "blocking": "Wedi'i blocio",
+    "bot": "BOT",
+    "favourites": "Ffefrynnau",
+    "follow": "Dilyn",
+    "follow_back": "Dilyn yn ôl",
+    "follow_requested": "Wedi gofyn i ddilyn",
+    "followers": "Dilynwyr",
+    "followers_count": "{0} Dilynwr",
+    "following": "Yn dilyn",
+    "following_count": "Yn dilyn {0}",
+    "follows_you": "Yn eich dilyn",
+    "go_to_profile": "I'r proffil",
+    "joined": "Wedi ymuno",
+    "moved_title": "has indicated that their new account is now:",
+    "muted_users": "Defnyddwyr wedi'i tawelu",
+    "muting": "Wedi tawelu",
+    "mutuals": "Cyd-ddilynwyr",
+    "pinned": "Wedi'i pinio",
+    "posts": "Tŵtiau",
+    "posts_count": "{0} tŵt",
+    "profile_description": "Pennyn proffil {0}",
+    "profile_unavailable": "Nid yw'r proffil ar gael",
+    "unblock": "Dad-flocio",
+    "unfollow": "Dad-ddilyn",
+    "unmute": "Dad-daweli",
+    "view_other_followers": "Mae'n bosibl na fydd dilynwyr o weinyddion eraill yn cael eu harddangos.",
+    "view_other_following": "Mae'n bosibl na fydd cyfrifon o weinyddion eraill â dilynwyd yn cael eu harddangos."
+  },
+  "action": {
+    "apply": "Cadw",
+    "bookmark": "Nodi",
+    "bookmarked": "Wedi nodi",
+    "boost": "Bŵst",
+    "boost_count": "{0}",
+    "boosted": "Bŵstiodd",
+    "clear_upload_failed": "Clirio gwallau uwchlwytho",
+    "close": "Cau",
+    "compose": "Ysgrifennu",
+    "confirm": "Cadarnhau",
+    "edit": "Golygu",
+    "enter_app": "I'r ap",
+    "favourite": "Hoffi",
+    "favourite_count": "{0}",
+    "favourited": "Hoffodd",
+    "more": "Mwy",
+    "next": "Nesaf",
+    "prev": "Yn ôl",
+    "publish": "Tŵt",
+    "reply": "Ymateb",
+    "reply_count": "{0}",
+    "reset": "Ailosod",
+    "save": "Cadw",
+    "save_changes": "Cadw newidiadau",
+    "sign_in": "Mewngofnodi",
+    "switch_account": "Newid cyfrif",
+    "vote": "Pleidleisio"
+  },
+  "app_desc_short": "Cleient gwe ystwyth ar gyfer Mastodon",
+  "app_logo": "Logo Elk",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Disgrifiad",
+    "remove_label": "Tunnu atodiad"
+  },
+  "command": {
+    "activate": "Actifadu",
+    "complete": "Cwblhau",
+    "compose_desc": "Ysgrifennu tŵt",
+    "n-people-in-the-past-n-days": "{0} person yn y {1} diwrnod diwethaf",
+    "select_lang": "Dewis iaith",
+    "sign_in_desc": "Ychwanegu cyfrif",
+    "switch_account": "Newid i {0}",
+    "switch_account_desc": "Newid cyfrif",
+    "toggle_dark_mode": "Toglo modd tywyll",
+    "toggle_zen_mode": "Toglo modd zen"
+  },
+  "common": {
+    "confirm_dialog": {
+      "cancel": "Ie",
+      "confirm": "Na",
+      "title": "Ydych chi'n siŵr?"
+    },
+    "end_of_list": "Diwedd y rhestr",
+    "error": "GWALL",
+    "in": "mewn",
+    "not_found": "404 Ni chafwyd",
+    "offline_desc": "Rydych yn ymddangos i fod all-lein. Gwiriwch eich cysylltiad os gwelwch yn dda."
+  },
+  "compose": {
+    "draft_title": "Drafft {0}",
+    "drafts": "Drafftiau ({v})"
+  },
+  "conversation": {
+    "with": "gyda"
+  },
+  "error": {
+    "account_not_found": "Ni chafwyd cyfrif {0}",
+    "explore-list-empty": "Nid oes unrhywbeth yn boblogaidd ar hyn o bryd. Dewch yn ôl yn hwyrach!",
+    "file_size_cannot_exceed_n_mb": "Ni all maint ffeil fod yn fwy na {0}MB",
+    "sign_in_error": "Ni allwn gysylltu i'r gweinydd.",
+    "status_not_found": "Ni chafwyd y tŵt",
+    "unsupported_file_format": "Math ffeil anghynaledig"
+  },
+  "help": {
+    "desc_highlight": "Expect some bugs and missing features here and there.",
+    "desc_para1": "Diolch am eich diddordeb mewn rhoi cynnig ar Elk, ein cleient gwe Mastodon yr ydym yn gweithio ar!",
+    "desc_para2": "Rydym yn gweithio'n galed arno ac yn ei wellau dros amser.",
+    "desc_para3": "I hybu datblygiad, gallwch noddi'r tîm trwy Noddwyr GitHub. Gobeithio y gwnewch chi fwynhau Elk!",
+    "desc_para4": "Mae Elk yn gôd agored. Os hoffech helpu gyda phrofi, rhoi adborth, neu gyfrannu,",
+    "desc_para5": "siaradwch a ni ar GitHub",
+    "desc_para6": "a chymrwch rhan.",
+    "title": "Mae Elk yn feddalwedd rhagoledig!"
+  },
+  "language": {
+    "search": "Chwilio"
+  },
+  "menu": {
+    "block_account": "Blocio {0}",
+    "block_domain": "Blocio parth {0}",
+    "copy_link_to_post": "Copïo cyswllt i'r tŵt hwn",
+    "delete": "Dileu",
+    "delete_and_redraft": "Dileu ac ail-drafftio",
+    "delete_confirm": {
+      "cancel": "Canslo",
+      "confirm": "Dileu",
+      "title": "Ydych yn siŵr eich fod eisiau dileu'r tŵt?"
+    },
+    "direct_message_account": "Direct message {0}",
+    "edit": "Golygu",
+    "hide_reblogs": "Cuddio bŵstiau gan {0}",
+    "mention_account": "Sôn am {0}",
+    "mute_account": "Taweli {0}",
+    "mute_conversation": "Taweli'r sgwrs",
+    "open_in_original_site": "Agor ar y wefan gwreiddiol",
+    "pin_on_profile": "Pinio i fy mhroffil",
+    "share_post": "Rhannu'r tŵt",
+    "show_favourited_and_boosted_by": "Dango pwy hoffodd a bŵstiodd",
+    "show_reblogs": "Dangos bŵstiau gan {0}",
+    "show_untranslated": "Dangos heb ei gyfieithu",
+    "toggle_theme": {
+      "dark": "Toglo modd tywyll",
+      "light": "Toglo modd golau"
+    },
+    "translate_post": "Cyfieuthu tŵt",
+    "unblock_account": "Dad-flocio {0}",
+    "unblock_domain": "Dad-flocio parth {0}",
+    "unmute_account": "Dad-daweli {0}",
+    "unmute_conversation": "Dad-daweli'r sgwrs",
+    "unpin_on_profile": "Dad-binio o fy mhroffil"
+  },
+  "nav": {
+    "back": "Yn ôl",
+    "blocked_domains": "Parthau wedi'u blocio",
+    "blocked_users": "Defnyddwyr wedi'u blocio",
+    "bookmarks": "Llyfrnodau",
+    "built_at": "Wedi'i adeiladu {0}",
+    "conversations": "Sgwrsiau",
+    "explore": "Archwilio",
+    "favourites": "Ffefrynnau",
+    "federated": "O'r ffedysawd",
+    "home": "Cartref",
+    "local": "Lleol",
+    "muted_users": "Defnyddwyr wedi'u tawelu",
+    "notifications": "Hysbysiadau",
+    "profile": "Proffil",
+    "search": "Chwilio",
+    "select_feature_flags": "Toglo nodweddion",
+    "select_font_size": "Maint ffont",
+    "select_language": "Iaith rhyngwyneb",
+    "settings": "Gosodiadau",
+    "show_intro": "Dangos cyflwyniad",
+    "toggle_theme": "Toglo thema",
+    "zen_mode": "Modd zen"
+  },
+  "notification": {
+    "favourited_post": "hofodd eich tŵt",
+    "followed_you": "yn eich dilyn",
+    "followed_you_count": "Gwnaeth {0} person eich dilyn",
+    "missing_type": "HEB notification.type:",
+    "reblogged_post": "bŵstiodd eich tŵt",
+    "request_to_follow": "gofynwyd i eich dilyn",
+    "signed_up": "wedi ymuno",
+    "update_status": "wedi golygu ei tŵt"
+  },
+  "placeholder": {
+    "content_warning": "Ysgrifennwch eich rhybudd yma",
+    "default_1": "Beth sydd ar eich meddwl?",
+    "reply_to_account": "Yn ymateb i {0}",
+    "replying": "Yn ymateb",
+    "the_thread": "y sgwrs"
+  },
+  "pwa": {
+    "dismiss": "Diystyru",
+    "title": "Mae diweddariad newydd o Elk ar gael!",
+    "update": "Diweddaru",
+    "update_available_short": "Diweddaru Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "Cleient gwe ystwyth ar gyfer Mastodon (caneri)",
+        "name": "Elk (caneri)",
+        "short_name": "Elk (caneri)"
+      },
+      "dev": {
+        "description": "Cleient gwe ystwyth ar gyfer Mastodon (datblygu)",
+        "name": "Elk (datblygu)",
+        "short_name": "Elk (datblygu)"
+      },
+      "preview": {
+        "description": "Cleient gwe ystwyth ar gyfer Mastodon (rhagolwg)",
+        "name": "Elk (rhagolwg)",
+        "short_name": "Elk (rhadolwg)"
+      },
+      "release": {
+        "description": "Cleient gwe ystwyth ar gyfer Mastodon",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "Chwilio am bobl a hashnodau",
+    "search_empty": "Ni chafwyd unrhyw beth am y termau chwilio yma"
+  },
+  "settings": {
+    "about": {
+      "label": "Ynglŷn",
+      "meet_the_team": "Cwrdd a'r tîm",
+      "sponsor_action": "Noddi ni",
+      "sponsor_action_desc": "I helpu'r tîm sy'n creu Elk",
+      "sponsors": "Noddwyr",
+      "sponsors_body_1": "Mae Elk wedi'i wneud yn bosibl gan noddiant hael:",
+      "sponsors_body_2": "A phob cwmni a pherson sy'n noddi tîm Elk a'i aelodau.",
+      "sponsors_body_3": "Os ydych yn mwynhau'r ap, efallai hoffwch ein noddi:"
+    },
+    "account_settings": {
+      "description": "Newid gosodiadau eich cyfrif yn rhyngwyneb Mastodon",
+      "label": "Gosodiadau cyfrif"
+    },
+    "interface": {
+      "color_mode": "Modd lliw",
+      "dark_mode": "Modd tywyll",
+      "default": " (rhagosodedig)",
+      "font_size": "Maint ffont",
+      "label": "Rhyngwyneb",
+      "light_mode": "Modd golau",
+      "size_label": {
+        "lg": "Mawr",
+        "md": "Canolig",
+        "sm": "Bach",
+        "xl": "Mawr iawn",
+        "xs": "Bach iawn"
+      },
+      "system_mode": "System",
+      "theme_color": "Lliw thema"
+    },
+    "language": {
+      "display_language": "Iaith rhyngwyneb",
+      "label": "Iaith"
+    },
+    "notifications": {
+      "label": "Hysbysiadau",
+      "notifications": {
+        "label": "Gosodiadau hysbysu"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Ffefrynnu",
+          "follow": "Dilynwyr newydd",
+          "mention": "Sôn amdanoch",
+          "poll": "Pleidleisiadau",
+          "reblog": "Bŵstio",
+          "title": "Pa hysbysiadau i'w dderbyn?"
+        },
+        "description": "Derbyn hysbysiadau hyd yn oed pan nad ydych yn defnyddio Elk.",
+        "instructions": "Peidiwch anghofio cadw eich newidiadau gyda'r botwm @:settings.notifications.push_notifications.save_settings!",
+        "label": "Dewisiadau hysbysiadau gwthiadwy",
+        "policy": {
+          "all": "Gan bawb",
+          "followed": "Gan bobl dwi'n dilyn",
+          "follower": "Gan bobl sy'n fy nilyn",
+          "none": "Gan neb",
+          "title": "Gan bwy allaf dderbyn hysbysiadau?"
+        },
+        "save_settings": "Cadw gosodiadau",
+        "subscription_error": {
+          "clear_error": "Cau",
+          "permission_denied": "Gwrthodwyd caniatâd: trowch hysbysiadau ymlaen yn eich porwr.",
+          "request_error": "Roedd gwall wrth ofyn am y tanysgrifiad, ceisiwch eto ac os yw'r gwall yn parhau, rhowch wybod i Elk am y mater.",
+          "title": "Ni allwyd tanysgrifio i hysbysiadau gwthiadwy",
+          "too_many_registrations": "Oherwydd cyfyngiadau eich porwr, ni all Elk ddefnyddio'r gwasanaeth hysbysiadau gwthiadwy ar gyfer sawl cyfrif ar wahanol weinyddion. Dylech ddad-danysgrifio o hysbysiadau gwthiadwy ar gyfrifon eraill a cheisio eto."
+        },
+        "title": "Gosodiadau hysbysiadau gwthiadwy",
+        "undo_settings": "Dad-wneud newidiadau",
+        "unsubscribe": "Troi hyssbysiadau gwthiadwy i ffwrdd",
+        "unsupported": "Nid yw'ch porwr yn gallu gerbyn hysbysiadau gwthiadwy.",
+        "warning": {
+          "enable_close": "Cau",
+          "enable_description": "I dderbyn hysbysiadau pam nad yw Elk ar agor, trowch hysbysiadau gwthiadwy ymlaen. Gallwch reoli pa rhyngweithradiadau sy'n creu hysbysiadau gwthiadwy trwy'r botwn \"@:settings.notifications.show_btn{'\"'} pan y maent ymlaen.",
+          "enable_description_desktop": "I dderbyn hysbysiadau pam nad yw Elk ar agor, trowch hysbysiadau gwthiadwy ymlaen. Gallwch reoli pa rhyngweithradiadau sy'n creu hysbysiadau gwthiadwy yn \"Gosodiadau > Hysbysiadau > Dewisiadau hysbysiadau gwthadwy\" pan y maent ymlaen.",
+          "enable_description_mobile": "Gallwch hefyd gael mynediad i'r gosodiadau yn \"Gosodiadau > Hysbysiadau > Dewisiadau hysbysiadau gwthadwy\".",
+          "enable_description_settings": "I dderbyn hysbysiadau pam nad yw Elk ar agor, trowch hysbysiadau gwthiadwy ymlaen. Gallwch reoli pa rhyngweithradiadau sy'n creu hysbysiadau gwthiadwy pan y maent ymlaen.",
+          "enable_desktop": "Troi hysbysiadau gwthiadwy ymlaen",
+          "enable_title": "Byddwch byth yn colli unrhywbeth",
+          "re_auth": "Ni'd yw'ch gweinydd yn gallu danfon hysbysiadau gwthiadwy. Ymgesiwch allgofnodi a mewngofnodi eto, os mae'r neges yma'n parhau siaradwch a'ch rheolwr gweinydd."
+        }
+      },
+      "show_btn": "Mynd i osodiadau hysbysiadau"
+    },
+    "notifications_settings": "Hysbysiadau",
+    "preferences": {
+      "github_cards": "Cerdiau GitHub",
+      "hide_boost_count": "Cuddio cyfrif bŵstiadau",
+      "hide_favorite_count": "Cuddio cyfrif ffefrynniadau",
+      "hide_follower_count": "Cuddio cyfrif dilynwyr",
+      "label": "Gosodiadau",
+      "user_picker": "Dewisiwr defnyddwyr",
+      "virtual_scroll": "Rhith sgrolio"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bywgraffiad",
+        "description": "Newid rhithffurf, enw defnyddiwr, proffil, a.y.y.b.",
+        "display_name": "Enw dangos",
+        "label": "Rhithffurf",
+        "profile_metadata": "Metadata proffil",
+        "profile_metadata_desc": "Gallwch ddangos hyd at {0} eitem ar eich proffil",
+        "title": "Golygu proffil"
+      },
+      "featured_tags": {
+        "description": "Gall pobl arychwilio eich tŵtiau cyhoeddus o dan y hashnodion yma.",
+        "label": "Hashnodion wedi'i nohweddi"
+      },
+      "label": "Proffil"
+    },
+    "select_a_settings": "Dewis gosodiad",
+    "users": {
+      "export": "Allforio tocynnau defnyddiwr",
+      "import": "Mewnforio tocynnau defnyddiwr",
+      "label": "Defnyddwyr wedi'i mewngodnoi"
+    }
+  },
+  "state": {
+    "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
+    "attachments_limit_error": "Limit per post exceeded",
+    "edited": "(Wedi'i olygu)",
+    "editing": "Wrthi'n golygu",
+    "loading": "Wrthi'n llwytho...",
+    "publishing": "Wrthi'n cyhoeddi",
+    "upload_failed": "Uwchlwytho wedi methu",
+    "uploading": "Wrthi'n uwchlywtho..."
+  },
+  "status": {
+    "boosted_by": "Wedi'i bŵstio gan",
+    "edited": "Wedi'i olygu {0}",
+    "favourited_by": "Wedi'i ffefrynnu gan",
+    "filter_hidden_phrase": "Wedi'i hidlo gan",
+    "filter_removed_phrase": "Wedi'i hidlo",
+    "filter_show_anyway": "Dangos bethbynnag",
+    "img_alt": {
+      "desc": "Disgrifiad",
+      "dismiss": "Cau"
+    },
+    "poll": {
+      "count": "{0} pleidlais",
+      "ends": "Yn gorffen {0}",
+      "finished": "Wedi gorffen {0}"
+    },
+    "reblogged": "Bŵstiodd {0}",
+    "replying_to": "Yn ateb i {0}",
+    "show_full_thread": "Dangos y sgwrs cyfan",
+    "someone": "rhywun",
+    "spoiler_show_less": "Dangos llai",
+    "spoiler_show_more": "Dangos mwy",
+    "thread": "Sgwrs",
+    "try_original_site": "Ymgesio ar y wefan gwreiddiol"
+  },
+  "status_history": {
+    "created": "crëwyd {0}",
+    "edited": "golygwyd {0}"
+  },
+  "tab": {
+    "for_you": "I chi",
+    "hashtags": "Hashnodion",
+    "media": "Cyfryngau",
+    "news": "Newyddion",
+    "notifications_all": "Popeth",
+    "notifications_mention": "Yn sôn amdanoch",
+    "posts": "Tŵtiau",
+    "posts_with_replies": "Tŵtiau ac ymatebion"
+  },
+  "tag": {
+    "follow": "Dilyn",
+    "follow_label": "Dilyn hashnod {0}",
+    "unfollow": "Dad-dilyn",
+    "unfollow_label": "Dad-dilyn hashnod {0}"
+  },
+  "time_ago_options": {
+    "day_future": "heddiw|trannoeth|trenydd|tradwy|mewn {n} diwrnod",
+    "day_past": "heddiw|ddoe|echddoe|{n} diwrnod yn ôl",
+    "hour_future": "mewn {n} awr",
+    "hour_past": "{n} awr yn ôl",
+    "just_now": "nawr",
+    "minute_future": "mewn {n} munud",
+    "minute_past": "{n} munud yn ôl",
+    "month_future": "mewn {n} mis",
+    "month_past": "{n} mis yn ôl",
+    "second_future": "nawr|mewn {n} eiliad",
+    "second_past": "nawr|{n} eiliad yn ôl",
+    "short_day_future": "mewn {n}d",
+    "short_day_past": "{n}d",
+    "short_hour_future": "mewn {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "mewn {n}mun",
+    "short_minute_past": "{n}mun",
+    "short_month_future": "mewn {n}mi",
+    "short_month_past": "{n}mi",
+    "short_second_future": "mewn {n}e",
+    "short_second_past": "{n}e",
+    "short_week_future": "mewn {n}w",
+    "short_week_past": "{n}w",
+    "short_year_future": "mewn {n}b",
+    "short_year_past": "{n}b",
+    "week_future": "wythnos yma|wythnos nesaf|mewn {n} wythnos",
+    "week_past": "wythnos yma|wythnos diwethaf|{n} wythnos yn ôl",
+    "year_future": "flywddyn yma|flywddyn nesaf|mewn {n} blynedd",
+    "year_past": "flywddyn yma|flywddyn diwethaf|{n} blynedd yn ôl"
+  },
+  "timeline": {
+    "show_new_items": "Dangos {v} eiem newydd",
+    "view_older_posts": "Mae'n bosibl na fydd tŵtiau hen o weinyddion eraill yn cael eu ddangos."
+  },
+  "title": {
+    "federated_timeline": "Amserlin y ffedysawd",
+    "local_timeline": "Amserlin lleol"
+  },
+  "tooltip": {
+    "add_content_warning": "Ychwanegu rhybydd cynnwys",
+    "add_emojis": "Ychwanegu emoji",
+    "add_media": "Ychwanegu lluniau, fideos, neu sain",
+    "add_publishable_content": "Ychwaneu cynnwys i gyhoeddu",
+    "change_content_visibility": "Newid gweladwyedd cynnwys",
+    "change_language": "Newid iaith",
+    "emoji": "Emoji",
+    "explore_links_intro": "Mae'r storion newyddion yma'n cael eu sôn amdano yn awr gan bobl ar y gweinydd yma ac eraill.",
+    "explore_posts_intro": "Mae'r tŵtiau yma'n boblogaidd yn awr ar y gweinydd yma ac eraill.",
+    "explore_tags_intro": "Mae'r hashnodion yam'n boblogaidd yn awr ar y gweinydd yma ac eraill.",
+    "toggle_code_block": "Toglo bloc côd"
+  },
+  "user": {
+    "add_existing": "Ychwanegu defnyddiwr",
+    "server_address_label": "Cyfeiriad gweinydd Mastodon",
+    "sign_in_desc": "Mewngofnodwch i ddilyn defnyddwyr neu hashnodion; hoffi, rhannu, ac ymateb i dŵtiau, neu rhyngweithio o'ch cyfrif ar weinydd gwahanol.",
+    "sign_in_notice_title": "Yn gweld data cyhoeddus {0}",
+    "sign_out_account": "Allgofnodi o {0}",
+    "tip_no_account": "Os nas oes genych gyfrif Mastodon eto, {0}.",
+    "tip_register_account": "dewiswch eich gweinydd a chofrestrwch"
+  },
+  "visibility": {
+    "direct": "Uniongyrchol",
+    "direct_desc": "Yn weladwy i ddefnyddwyr a sônwyd am yn unig",
+    "private": "Dilynwyr yn unig",
+    "private_desc": "Yn weladwy i dilynwyr yn unig",
+    "public": "Cyhoeddus",
+    "public_desc": "Yn weladwy i bawb",
+    "unlisted": "Anrhestredig",
+    "unlisted_desc": "Yn weladwy i bawb, ond heb ei ddangos mewn nodweddion darganfod"
+  }
+}

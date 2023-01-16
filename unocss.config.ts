@@ -23,9 +23,9 @@ export default defineConfig({
       'bg-border': 'bg-$c-border',
       'bg-active': 'bg-$c-bg-active',
       'bg-primary-light': 'bg-$c-primary-light',
+      'bg-primary-fade': 'bg-$c-primary-fade',
       'bg-card': 'bg-$c-bg-card',
       'bg-code': 'bg-$c-bg-code',
-      'bg-fade': 'bg-$c-bg-fade',
       'bg-dm': 'bg-$c-bg-dm',
 
       // text colors

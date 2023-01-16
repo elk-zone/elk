@@ -61,7 +61,19 @@ const { editor } = useTiptap({
   },
   onPaste: handlePaste,
 })
-const characterCount = $computed(() => htmlToText(editor.value?.getHTML() || '').length)
+const characterCount = $computed(() => {
+  let length = htmlToText(editor.value?.getHTML() || '').length
+
+  if (draft.mentions) {
+    // + 1 is needed as mentions always need a space seperator at the end
+    length += draft.mentions.map((mention) => {
+      const [handle] = mention.split('@')
+      return `@${handle}`
+    }).join(' ').length + 1
+  }
+
+  return length
+})
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -133,9 +145,9 @@ defineExpose({
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
         <ContentMentionGroup v-if="draft.mentions?.length && shouldExpanded">
-          <div v-for="m of draft.mentions" :key="m" text-primary>
-            @{{ m }}
-          </div>
+          <button v-for="m, i of draft.mentions" :key="m" text-primary hover:color-red @click="draft.mentions?.splice(i, 1)">
+            {{ acctToShortHandle(m) }}
+          </button>
         </ContentMentionGroup>
 
         <div v-if="draft.params.sensitive">

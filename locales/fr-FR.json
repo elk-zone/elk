@@ -83,11 +83,6 @@
     "toggle_zen_mode": "Passer en mode zen"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Non",
-      "confirm": "Oui",
-      "title": "Êtes-vous sûr·e ?"
-    },
     "end_of_list": "Fin de liste",
     "error": "ERREUR",
     "in": "sur",
@@ -97,6 +92,18 @@
   "compose": {
     "draft_title": "Brouillon {0}",
     "drafts": "Brouillons ({v})"
+  },
+  "confirm": {
+    "common": {
+      "cancel": "Non",
+      "confirm": "Oui",
+      "title": "Êtes-vous sûr·e ?"
+    },
+    "delete_posts": {
+      "cancel": "Annuler",
+      "confirm": "Supprimer",
+      "title": "Certain·e de vouloir supprimer ce message ?"
+    }
   },
   "conversation": {
     "with": "avec"
@@ -128,11 +135,6 @@
     "copy_link_to_post": "Copier le lien du message",
     "delete": "Supprimer",
     "delete_and_redraft": "Supprimer et réécrire",
-    "delete_confirm": {
-      "cancel": "Annuler",
-      "confirm": "Supprimer",
-      "title": "Certain·e de vouloir supprimer ce message ?"
-    },
     "direct_message_account": "Message direct à {0}",
     "edit": "Éditer",
     "hide_reblogs": "Cacher les boosts de {0}",

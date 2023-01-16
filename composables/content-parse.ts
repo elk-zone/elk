@@ -141,6 +141,12 @@ export function treeToText(input: Node): string {
   if (['p', 'pre'].includes(input.name))
     pre = '\n'
 
+  if (input.attributes?.['data-type'] === 'mention') {
+    const acct = input.attributes['data-id']
+    if (acct)
+      return acct.startsWith('@') ? acct : `@${acct}`
+  }
+
   if (input.name === 'code') {
     if (input.parent?.name === 'pre') {
       const lang = input.attributes.class?.replace('language-', '')
@@ -460,7 +466,7 @@ function transformMentionLink(node: Node): string | Node | (string | Node)[] | n
       if (matchUser) {
         const [, server, username] = matchUser
         const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
-        // convert to TipTap mention node
+        // convert to Tiptap mention node
         return h('span', { 'data-type': 'mention', 'data-id': handle }, handle)
       }
     }

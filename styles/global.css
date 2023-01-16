@@ -146,10 +146,10 @@ em-emoji-picker {
       --at-apply: hidden;
     }
   }
-  'ol > li' {
+  ol > li {
     --at-apply: pl-2;
   }
-  'ul > li' {
+  ul > li {
     --at-apply: pl-2;
   }
   .code-block {

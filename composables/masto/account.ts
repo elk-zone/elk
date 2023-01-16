@@ -7,10 +7,14 @@ export function getDisplayName(account: mastodon.v1.Account, options?: { rich?: 
   return displayName.replace(/:([\w-]+?):/g, '')
 }
 
+export function acctToShortHandle(acct: string) {
+  return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
+}
+
 export function getShortHandle({ acct }: mastodon.v1.Account) {
   if (!acct)
     return ''
-  return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
+  return acctToShortHandle(acct)
 }
 
 export function getServerName(account: mastodon.v1.Account) {

@@ -89,11 +89,6 @@
     "toggle_zen_mode": "Zen-Modus ändern"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Abbrechen",
-      "confirm": "OK",
-      "title": "Bist du sicher, {0}?"
-    },
     "end_of_list": "Ende der Liste",
     "error": "FEHLER",
     "in": "in",
@@ -103,6 +98,18 @@
   "compose": {
     "draft_title": "Entwurf {0}",
     "drafts": "Entwürfe ({v})"
+  },
+  "confirm": {
+    "common": {
+      "cancel": "Abbrechen",
+      "confirm": "OK",
+      "title": "Bist du sicher, {0}?"
+    },
+    "delete_posts": {
+      "cancel": "Abbrechen",
+      "confirm": "Löschen",
+      "title": "Möchtest du diesen Beitrag wirklich löschen?"
+    }
   },
   "conversation": {
     "with": "mit"
@@ -134,11 +141,6 @@
     "copy_link_to_post": "Link zu diesem Beitrag kopieren",
     "delete": "Löschen",
     "delete_and_redraft": "Löschen und neu erstellen",
-    "delete_confirm": {
-      "cancel": "Abbrechen",
-      "confirm": "Löschen",
-      "title": "Möchtest du diesen Beitrag wirklich löschen?"
-    },
     "direct_message_account": "Direktnachricht an {0}",
     "edit": "Bearbeiten",
     "hide_reblogs": "Boosts von {0} ausblenden",

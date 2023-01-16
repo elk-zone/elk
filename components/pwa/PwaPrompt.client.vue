@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="$pwa?.needRefresh"
-    m-2 p5 bg="fade" relative
+    m-2 p5 bg="primary-fade" relative
     rounded-lg of-hidden
     flex="~ col gap-3"
   >

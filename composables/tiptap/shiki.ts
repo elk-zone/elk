@@ -12,7 +12,7 @@ export interface CodeBlockShikiOptions extends CodeBlockOptions {
   defaultLanguage: string | null | undefined
 }
 
-export const CodeBlockShiki = CodeBlock.extend<CodeBlockShikiOptions>({
+export const TiptapPluginCodeBlockShiki = CodeBlock.extend<CodeBlockShikiOptions>({
   addOptions() {
     return {
       ...this.parent?.(),

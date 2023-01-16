@@ -141,6 +141,12 @@ export function treeToText(input: Node): string {
   if (['p', 'pre'].includes(input.name))
     pre = '\n'
 
+  if (input.attributes?.['data-type'] === 'mention') {
+    const acct = input.attributes['data-id']
+    if (acct)
+      return acct.startsWith('@') ? acct : `@${acct}`
+  }
+
   if (input.name === 'code') {
     if (input.parent?.name === 'pre') {
       const lang = input.attributes.class?.replace('language-', '')
@@ -475,7 +481,7 @@ function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[]) {
       const mention = href && mentions.find(m => m.url === href)
       if (mention) {
         node.attributes.href = `/${currentServer.value}/@${mention.acct}`
-        node.children = [h('span', { 'data-type': 'mention', 'data-id': mention.acct }, `@${mention.username}`)]
+        node.children = [h('span', { 'data-type': 'mention', 'data-id': `@${mention.acct}` }, `@${mention.username}`)]
         return node
       }
     }

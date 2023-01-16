@@ -19,6 +19,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <TimelineBookmarks v-if="isMastoInitialised" />
+    <TimelineBookmarks v-if="isHydrated" />
   </MainContent>
 </template>

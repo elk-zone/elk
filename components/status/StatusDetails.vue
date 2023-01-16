@@ -9,6 +9,8 @@ const props = withDefaults(defineProps<{
   actions: true,
 })
 
+const userSettings = useUserSettings()
+
 const status = $computed(() => {
   if (props.status.reblog && props.status.reblog)
     return props.status.reblog
@@ -59,7 +61,7 @@ const isDM = $computed(() => status.visibility === 'direct')
         {{ status.application?.name }}
       </div>
     </div>
-    <div border="t base" pt-2>
+    <div border="t base" py-2>
       <StatusActions v-if="actions" :status="status" details :command="command" />
     </div>
   </div>

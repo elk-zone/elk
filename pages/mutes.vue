@@ -16,6 +16,6 @@ useHeadFixed({
       <span timeline-title-style>{{ $t('nav.muted_users') }}</span>
     </template>
 
-    <TimelineMutes v-if="isMastoInitialised" />
+    <TimelineMutes v-if="isHydrated" />
   </MainContent>
 </template>

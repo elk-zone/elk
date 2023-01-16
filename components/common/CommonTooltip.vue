@@ -9,6 +9,7 @@ defineProps<{
 <template>
   <VTooltip
     v-bind="$attrs"
+    auto-hide
   >
     <slot />
     <template #popper>

@@ -153,6 +153,11 @@ exports[`content-rich > link + mention 1`] = `
 "
 `;
 
+exports[`content-rich > plain text 1`] = `
+"hello there
+"
+`;
+
 exports[`editor > transform mentions 1`] = `
 "
 @elk Hello"

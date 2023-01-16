@@ -11,6 +11,11 @@ describe('content-rich', () => {
     expect(formatted).toMatchSnapshot()
   })
 
+  it('plain text', async () => {
+    const { formatted } = await render('hello there', { collapseMentionLink: true })
+    expect(formatted).toMatchSnapshot()
+  })
+
   it('link + mention', async () => {
     // https://fosstodon.org/@ayo/109383002937620723
     const { formatted } = await render('<p>Happy 🤗 we’re now using <span class="h-card"><a href="https://webtoo.ls/@vitest" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>vitest</span></a></span> (migrated from chai+mocha) <a href="https://github.com/ayoayco/astro-reactive-library/pull/203" rel="nofollow noopener noreferrer" target="_blank"><span class="invisible">https://</span><span class="ellipsis">github.com/ayoayco/astro-react</span><span class="invisible">ive-library/pull/203</span></a></p>')

@@ -451,7 +451,7 @@ function transformCollapseMentions() {
   }
 
   return (node: Node, root: Node): Node | Node[] => {
-    if (processed || node.parent !== root)
+    if (processed || node.parent !== root || !node.children)
       return node
     const metions: (Node | undefined)[] = []
     const children = node.children as Node[]

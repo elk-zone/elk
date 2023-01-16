@@ -20,7 +20,7 @@ defineOptions({
     <AccountHoverWrapper :disabled="!hoverCard" :account="account">
       <AccountBigAvatar :account="account" shrink-0 :square="square" />
     </AccountHoverWrapper>
-    <div flex="~ col" shrink pt-1 h-full overflow-hidden justify-center leading-none>
+    <div flex="~ col" shrink pt-1 h-full overflow-hidden justify-center leading-none select-none>
       <div flex="~" gap-2>
         <AccountDisplayName :account="account" font-bold line-clamp-1 ws-pre-wrap break-all text-lg />
         <AccountBotIndicator v-if="account.bot" text-xs />

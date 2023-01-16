@@ -29,9 +29,9 @@ const { notifications } = useNotifications()
     <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-line" user-only :command="command" />
 
     <div shrink hidden sm:block mt-4 />
-    <NavSideItem :text="$t('nav.explore')" :to="isMastoInitialised ? `/${currentServer}/explore` : '/explore'" icon="i-ri:hashtag" :command="command" />
-    <NavSideItem :text="$t('nav.local')" :to="isMastoInitialised ? `/${currentServer}/public/local` : '/public/local'" icon="i-ri:group-2-line " :command="command" />
-    <NavSideItem :text="$t('nav.federated')" :to="isMastoInitialised ? `/${currentServer}/public` : '/public'" icon="i-ri:earth-line" :command="command" />
+    <NavSideItem :text="$t('nav.explore')" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:hashtag" :command="command" />
+    <NavSideItem :text="$t('nav.local')" :to="isHydrated ? `/${currentServer}/public/local` : '/public/local'" icon="i-ri:group-2-line " :command="command" />
+    <NavSideItem :text="$t('nav.federated')" :to="isHydrated ? `/${currentServer}/public` : '/public'" icon="i-ri:earth-line" :command="command" />
 
     <div shrink hidden sm:block mt-4 />
     <NavSideItem :text="$t('nav.settings')" to="/settings" icon="i-ri:settings-3-line" :command="command" />

@@ -7,6 +7,7 @@ import { StaleWhileRevalidate } from 'workbox-strategies'
 import { ExpirationPlugin } from 'workbox-expiration'
 
 import { onNotificationClick, onPush } from './web-push-notifications'
+import { onShareTarget } from './share-target'
 
 declare const self: ServiceWorkerGlobalScope
 
@@ -32,7 +33,7 @@ if (import.meta.env.DEV)
 // deny api and server page calls
 let denylist: undefined | RegExp[]
 if (import.meta.env.PROD)
-  denylist = [/^\/api\//, /^\/login\//, /^\/oauth\//, /^\/signin\//]
+  denylist = [/^\/api\//, /^\/login\//, /^\/oauth\//, /^\/signin\//, /^\/web-share-target\//]
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {
@@ -90,3 +91,4 @@ registerRoute(new NavigationRoute(
 
 self.addEventListener('push', onPush)
 self.addEventListener('notificationclick', onNotificationClick)
+self.addEventListener('fetch', onShareTarget)

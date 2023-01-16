@@ -6,6 +6,8 @@ const { account } = defineProps<{
   command?: boolean
 }>()
 
+const { client } = $(useMasto())
+
 const { t } = useI18n()
 
 const createdAt = $(useFormattedDateTime(() => account.createdAt, {
@@ -13,6 +15,8 @@ const createdAt = $(useFormattedDateTime(() => account.createdAt, {
   day: 'numeric',
   year: 'numeric',
 }))
+
+const relationship = $(useRelationship(account))
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
@@ -39,6 +43,18 @@ function previewAvatar() {
   }])
 }
 
+async function toggleNotifications() {
+  relationship!.notifying = !relationship?.notifying
+  try {
+    const newRel = await client.v1.accounts.follow(account.id, { notify: relationship?.notifying })
+    Object.assign(relationship!, newRel)
+  }
+  catch {
+    // TODO error handling
+    relationship!.notifying = !relationship?.notifying
+  }
+}
+
 watchEffect(() => {
   const named: mastodon.v1.AccountField[] = []
   const icons: mastodon.v1.AccountField[] = []
@@ -59,7 +75,8 @@ watchEffect(() => {
   iconFields.value = icons
 })
 
-const isSelf = $computed(() => currentUser.value?.account.id === account.id)
+const isSelf = $(useSelfAccount(() => account))
+const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
 </script>
 
 <template>
@@ -83,6 +100,17 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
         </div>
         <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
+          <button
+            v-if="!isSelf && relationship?.following"
+            :aria-pressed="isNotifiedOnPost"
+            :aria-label="t('account.notify_on_post', { username: `@${account.username}` })"
+            rounded-full p2 border-1 transition-colors
+            :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
+            @click="toggleNotifications"
+          >
+            <span v-if="isNotifiedOnPost" i-ri:bell-fill block text-current />
+            <span v-else i-ri-bell-line block text-current />
+          </button>
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->
           <NuxtLink
@@ -93,11 +121,6 @@ const isSelf = $computed(() => currentUser.value?.account.id === account.id)
           >
             {{ $t('settings.profile.appearance.title') }}
           </NuxtLink>
-          <!-- <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group>
-            <div rounded p2 group-hover="bg-rose/10">
-              <div i-ri:bell-line />
-            </div>
-          </button> -->
         </div>
       </div>
       <div v-if="account.note" max-h-100 overflow-y-auto>

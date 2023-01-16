@@ -29,8 +29,13 @@ export default defineNuxtConfig({
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
-    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/tauri/index',
+    '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
+    '~/modules/stale-dep',
+    ['unplugin-vue-inspector/nuxt', {
+      enabled: false,
+      toggleButtonVisibility: 'never',
+    }],
   ],
   experimental: {
     payloadExtraction: false,
@@ -62,6 +67,7 @@ export default defineNuxtConfig({
     define: {
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
       'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
+      'process.test': 'false',
     },
     build: {
       target: 'esnext',
@@ -76,6 +82,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    adminKey: '',
     cloudflare: {
       accountId: '',
       namespaceId: '',

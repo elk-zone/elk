@@ -379,7 +379,7 @@
       "export": "Exportar Tokens de Acesso",
       "import": "Importar Tokens de Acesso",
       "label": "Utilizadores conectados"
-    },
+    }
   },
   "share-target": {
     "description": "Elk pode ser configurado para que possa partilhar conteúdos de outras aplicações, basta instalar Elk no seu dispositivo ou computador e iniciar sessão.",

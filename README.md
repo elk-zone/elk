@@ -122,6 +122,12 @@ nr test
 - [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
 - [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update and push notifications
 
+## 👨‍💻 Contributors
+
+<a href="https://github.com/elk-zone/elk/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=elk-zone/elk" />   
+</a>    
+
 ## 📄 License
 
 [MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors

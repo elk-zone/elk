@@ -86,11 +86,6 @@
     "toggle_zen_mode": "تبديل وضع الهدوء"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "كلا",
-      "confirm": "نعم",
-      "title": "هل أنت متأكد؟"
-    },
     "end_of_list": "نهاية القائمة",
     "error": "حدث خطأ",
     "in": "في",
@@ -100,6 +95,17 @@
   "compose": {
     "draft_title": "مسودة {0}",
     "drafts": "المسودات ({v})"
+  },
+  "confirm": {
+    "common": {
+      "cancel": "كلا",
+      "confirm": "نعم"
+    },
+    "delete_posts": {
+      "cancel": "إلغاء",
+      "confirm": "حذف",
+      "title": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
+    }
   },
   "conversation": {
     "with": "مع"
@@ -131,11 +137,6 @@
     "copy_link_to_post": "انسخ الرابط إلى هذا المنشور",
     "delete": "حذف",
     "delete_and_redraft": "حذف وإعادة صياغة",
-    "delete_confirm": {
-      "cancel": "إلغاء",
-      "confirm": "حذف",
-      "title": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
-    },
     "direct_message_account": "إرسال رسالة مباشرة إلى {0}",
     "edit": "تعديل",
     "hide_reblogs": "إخفاء المشاركات من {0}",

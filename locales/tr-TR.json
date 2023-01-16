@@ -86,11 +86,6 @@
     "toggle_zen_mode": "Zen mod durumunu değiştir"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Hayır",
-      "confirm": "Evet",
-      "title": "Emin misiniz?"
-    },
     "end_of_list": "Listenin sonu",
     "error": "HATA",
     "in": "içinde",
@@ -100,6 +95,18 @@
   "compose": {
     "draft_title": "Taslak {0}",
     "drafts": "Taslaklar ({v})"
+  },
+  "confirm": {
+    "common": {
+      "cancel": "Hayır",
+      "confirm": "Evet",
+      "title": "Emin misiniz?"
+    },
+    "delete_posts": {
+      "cancel": "İptal et",
+      "confirm": "Sil",
+      "title": "Bu gönderiyi silmek istediğinizden emin misiniz?"
+    }
   },
   "conversation": {
     "with": "ile"
@@ -131,11 +138,6 @@
     "copy_link_to_post": "Bu gönderinin linkini kopyala",
     "delete": "Sil",
     "delete_and_redraft": "Sil & yeniden taslak yap",
-    "delete_confirm": {
-      "cancel": "İptal et",
-      "confirm": "Sil",
-      "title": "Bu gönderiyi silmek istediğinizden emin misiniz?"
-    },
     "direct_message_account": "{0} özel mesaj gönder",
     "edit": "Düzenle",
     "hide_reblogs": "{0} boostlarını gizle",

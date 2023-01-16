@@ -206,14 +206,6 @@ const showFavoritedAndBoostedBy = () => {
           />
         </NuxtLink>
 
-        <CommonDropdownItem
-          v-if="isTranslationEnabled && status.language !== languageCode"
-          :text="translation.visible ? $t('menu.show_untranslated') : $t('menu.translate_post')"
-          icon="i-ri:translate"
-          :command="command"
-          @click="toggleTranslation"
-        />
-
         <template v-if="isHydrated && currentUser">
           <template v-if="isAuthor">
             <CommonDropdownItem

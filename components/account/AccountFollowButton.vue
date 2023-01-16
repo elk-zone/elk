@@ -8,12 +8,21 @@ const { account, command, context, ...props } = defineProps<{
   command?: boolean
 }>()
 
+const { t } = useI18n()
 const isSelf = $(useSelfAccount(() => account))
 const enable = $computed(() => !isSelf && currentUser.value)
 const relationship = $computed(() => props.relationship || useRelationship(account).value)
 
 const { client } = $(useMasto())
 async function toggleFollow() {
+  if (relationship!.following) {
+    if (await openConfirmDialog({
+      title: t('confirm.unfollow.title'),
+      confirm: t('confirm.unfollow.confirm'),
+      cancel: t('confirm.unfollow.cancel'),
+    }) !== 'confirm')
+      return
+  }
   relationship!.following = !relationship!.following
   try {
     const newRel = await client.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
@@ -51,8 +60,6 @@ async function unmute() {
     relationship!.muting = true
   }
 }
-
-const { t } = useI18n()
 
 useCommand({
   scope: 'Actions',

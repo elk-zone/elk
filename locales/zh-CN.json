@@ -100,6 +100,13 @@
     "draft_title": "草稿 {0}",
     "drafts": "草稿 ({v})"
   },
+  "confirm": {
+    "unfollow": {
+      "cancel": "取消",
+      "confirm": "取消关注",
+      "title": "你确定要取消关注吗？"
+    }
+  },
   "conversation": {
     "with": "与"
   },

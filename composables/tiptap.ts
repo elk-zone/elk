@@ -58,6 +58,11 @@ export function useTiptap(options: UseTiptapOptions) {
         .configure({
           suggestion: HashtagSuggestion,
         }),
+      Mention
+        .extend({ name: 'emoji' })
+        .configure({
+          suggestion: EmojiSuggestion,
+        }),
       Placeholder.configure({
         placeholder: () => placeholder.value!,
       }),

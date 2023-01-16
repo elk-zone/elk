@@ -2,7 +2,6 @@ export const APP_NAME = 'Elk'
 
 export const DEFAULT_POST_CHARS_LIMIT = 500
 export const DEFAULT_FONT_SIZE = 'md'
-export const DEFAULT_LANGUAGE = 'en-US'
 
 export const STORAGE_KEY_DRAFTS = 'elk-drafts'
 export const STORAGE_KEY_USERS = 'elk-users'

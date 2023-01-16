@@ -86,11 +86,6 @@
     "toggle_zen_mode": "Cambiar a modo zen"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "No",
-      "confirm": "Si",
-      "title": "¿Estás seguro?"
-    },
     "end_of_list": "Fin",
     "error": "ERROR",
     "in": "en",
@@ -100,6 +95,18 @@
   "compose": {
     "draft_title": "Borrador {0}",
     "drafts": "Borradores ({v})"
+  },
+  "confirm": {
+    "common": {
+      "cancel": "No",
+      "confirm": "Si",
+      "title": "¿Estás seguro?"
+    },
+    "delete_posts": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "¿Estás seguro que deseas eliminar esta publicación?"
+    }
   },
   "conversation": {
     "with": "con"
@@ -131,11 +138,6 @@
     "copy_link_to_post": "Copiar enlace",
     "delete": "Borrar",
     "delete_and_redraft": "Borrar y volver a borrador",
-    "delete_confirm": {
-      "cancel": "Cancelar",
-      "confirm": "Eliminar",
-      "title": "¿Estás seguro que deseas eliminar esta publicación?"
-    },
     "direct_message_account": "Mensaje directo a {0}",
     "edit": "Editar",
     "hide_reblogs": "Ocultar retoots de {0}",
@@ -247,12 +249,6 @@
       "description": "Edita los ajustes de tu cuenta en la interfaz de Mastodon",
       "label": "Ajustes de cuenta"
     },
-    "feature_flags": {
-      "github_cards": "Tarjetas GitHub",
-      "title": "Funcionalidades experimentales",
-      "user_picker": "Selector de usuarios",
-      "virtual_scroll": "Desplazamiento virtual"
-    },
     "interface": {
       "color_mode": "Modos de color",
       "dark_mode": "Modo oscuro",
@@ -323,7 +319,14 @@
     },
     "notifications_settings": "Notificaciones",
     "preferences": {
-      "label": "Preferencias"
+      "github_cards": "Tarjetas GitHub",
+      "hide_boost_count": "Ocultar contador de retoots",
+      "hide_favorite_count": "Ocultar contador de favoritas",
+      "hide_follower_count": "Ocultar contador de seguidores",
+      "label": "Preferencias",
+      "title": "Funcionalidades experimentales",
+      "user_picker": "Selector de usuarios",
+      "virtual_scroll": "Desplazamiento virtual"
     },
     "profile": {
       "appearance": {
@@ -346,14 +349,6 @@
       "export": "Exportar tokens de usuario",
       "import": "Importar tokens de usuario",
       "label": "Usuarios conectados"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "Ocultar contador de retoots",
-        "hide_favorite_count": "Ocultar contador de favoritas",
-        "hide_follower_count": "Ocultar contador de seguidores"
-      },
-      "label": "Bienestar"
     }
   },
   "share-target": {

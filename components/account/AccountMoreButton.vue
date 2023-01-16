@@ -12,12 +12,12 @@ const isSelf = $(useSelfAccount(() => account))
 const { t } = useI18n()
 const { client } = $(useMasto())
 
-const isConfirmed = async (title: string) => {
-  return await openConfirmDialog(t('common.confirm_dialog.title', [title])) === 'confirm'
-}
-
-const toggleMute = async (title: string) => {
-  if (!await isConfirmed(title))
+const toggleMute = async () => {
+  if (!relationship!.muting && await openConfirmDialog({
+    title: t('confirm.mute_account.title', [account.acct]),
+    confirm: t('confirm.mute_account.confirm'),
+    cancel: t('confirm.mute_account.cancel'),
+  }) !== 'confirm')
     return
 
   relationship!.muting = !relationship!.muting
@@ -28,24 +28,36 @@ const toggleMute = async (title: string) => {
     : await client.v1.accounts.unmute(account.id)
 }
 
-const toggleBlockUser = async (title: string) => {
-  if (!await isConfirmed(title))
+const toggleBlockUser = async () => {
+  if (!relationship!.blocking && await openConfirmDialog({
+    title: t('confirm.block_account.title', [account.acct]),
+    confirm: t('confirm.block_account.confirm'),
+    cancel: t('confirm.block_account.cancel'),
+  }) !== 'confirm')
     return
 
   relationship!.blocking = !relationship!.blocking
   relationship = await client.v1.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
 }
 
-const toggleBlockDomain = async (title: string) => {
-  if (!await isConfirmed(title))
+const toggleBlockDomain = async () => {
+  if (!relationship!.domainBlocking && await openConfirmDialog({
+    title: t('confirm.block_domain.title', [getServerName(account)]),
+    confirm: t('confirm.block_domain.confirm'),
+    cancel: t('confirm.block_domain.cancel'),
+  }) !== 'confirm')
     return
 
   relationship!.domainBlocking = !relationship!.domainBlocking
   await client.v1.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
 }
 
-const toggleReblogs = async (title: string) => {
-  if (!await isConfirmed(title))
+const toggleReblogs = async () => {
+  if (!relationship!.showingReblogs && await openConfirmDialog({
+    title: t('confirm.show_reblogs.title', [account.acct]),
+    confirm: t('confirm.show_reblogs.confirm'),
+    cancel: t('confirm.show_reblogs.cancel'),
+  }) !== 'confirm')
     return
 
   const showingReblogs = !relationship?.showingReblogs
@@ -90,14 +102,14 @@ const toggleReblogs = async (title: string) => {
             icon="i-ri:repeat-line"
             :text="$t('menu.show_reblogs', [`@${account.acct}`])"
             :command="command"
-            @click="toggleReblogs($t('menu.show_reblogs', [`@${account.acct}`]))"
+            @click="toggleReblogs()"
           />
           <CommonDropdownItem
             v-else
             :text="$t('menu.hide_reblogs', [`@${account.acct}`])"
             icon="i-ri:repeat-line"
             :command="command"
-            @click="toggleReblogs($t('menu.hide_reblogs', [`@${account.acct}`]))"
+            @click="toggleReblogs()"
           />
 
           <CommonDropdownItem
@@ -105,14 +117,14 @@ const toggleReblogs = async (title: string) => {
             :text="$t('menu.mute_account', [`@${account.acct}`])"
             icon="i-ri:volume-up-fill"
             :command="command"
-            @click="toggleMute($t('menu.mute_account', [`@${account.acct}`]))"
+            @click="toggleMute()"
           />
           <CommonDropdownItem
             v-else
             :text="$t('menu.unmute_account', [`@${account.acct}`])"
             icon="i-ri:volume-mute-line"
             :command="command"
-            @click="toggleMute($t('menu.unmute_account', [`@${account.acct}`]))"
+            @click="toggleMute()"
           />
 
           <CommonDropdownItem
@@ -120,14 +132,14 @@ const toggleReblogs = async (title: string) => {
             :text="$t('menu.block_account', [`@${account.acct}`])"
             icon="i-ri:forbid-2-line"
             :command="command"
-            @click="toggleBlockUser($t('menu.block_account', [`@${account.acct}`]))"
+            @click="toggleBlockUser()"
           />
           <CommonDropdownItem
             v-else
             :text="$t('menu.unblock_account', [`@${account.acct}`])"
             icon="i-ri:checkbox-circle-line"
             :command="command"
-            @click="toggleBlockUser($t('menu.unblock_account', [`@${account.acct}`]))"
+            @click="toggleBlockUser()"
           />
 
           <template v-if="getServerName(account) !== currentServer">
@@ -136,14 +148,14 @@ const toggleReblogs = async (title: string) => {
               :text="$t('menu.block_domain', [getServerName(account)])"
               icon="i-ri:shut-down-line"
               :command="command"
-              @click="toggleBlockDomain($t('menu.block_domain', [getServerName(account)]))"
+              @click="toggleBlockDomain()"
             />
             <CommonDropdownItem
               v-else
               :text="$t('menu.unblock_domain', [getServerName(account)])"
               icon="i-ri:restart-line"
               :command="command"
-              @click="toggleBlockDomain($t('menu.unblock_domain', [getServerName(account)]))"
+              @click="toggleBlockDomain()"
             />
           </template>
         </template>

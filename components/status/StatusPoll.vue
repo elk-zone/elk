@@ -28,28 +28,37 @@ async function vote(e: Event) {
   }
   poll.voted = true
   poll.votesCount++
-  poll.votersCount = (poll.votersCount || 0) + 1
+
+  if (!poll.votersCount && poll.votesCount)
+    poll.votesCount = poll.votesCount + 1
+  else
+    poll.votersCount = (poll.votersCount || 0) + 1
+
   cacheStatus({ ...status, poll }, undefined, true)
 
   await client.v1.polls.vote(poll.id, { choices })
 }
 
-const votersCount = $computed(() => poll.votersCount ?? 0)
+const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
 </script>
 
 <template>
-  <div flex flex-col w-full items-stretch gap-3 dir="auto">
-    <form v-if="!poll.voted && !poll.expired" flex flex-col gap-4 accent-primary @click.stop="noop" @submit.prevent="vote">
-      <label v-for="(option, index) of poll.options" :key="index" flex items-center gap-2 px-2>
+  <div flex flex-col w-full items-stretch gap-2 py3 dir="auto">
+    <form v-if="!poll.voted && !poll.expired" flex="~ col gap3" accent-primary @click.stop="noop" @submit.prevent="vote">
+      <label v-for="(option, index) of poll.options" :key="index" flex="~ gap2" items-center>
         <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'">
         {{ option.title }}
       </label>
-      <button btn-solid>
+      <button btn-solid mt-1>
         {{ $t('action.vote') }}
       </button>
     </form>
     <template v-else>
-      <div v-for="(option, index) of poll.options" :key="index" py-1 relative :style="{ '--bar-width': toPercentage((option.votesCount || 0) / poll.votesCount) }">
+      <div
+        v-for="(option, index) of poll.options"
+        :key="index" py-1 relative
+        :style="{ '--bar-width': toPercentage((option.votesCount || 0) / poll.votesCount) }"
+      >
         <div flex justify-between pb-2 w-full>
           <span inline-flex align-items>
             {{ option.title }}
@@ -62,7 +71,7 @@ const votersCount = $computed(() => poll.votersCount ?? 0)
         </div>
       </div>
     </template>
-    <div text-sm flex="~ inline" gap-x-1>
+    <div text-sm flex="~ inline" gap-x-1 text-secondary>
       <CommonLocalizedNumber
         keypath="status.poll.count"
         :count="poll.votesCount"

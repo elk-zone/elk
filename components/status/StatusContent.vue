@@ -34,6 +34,7 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
         <p>{{ status.spoilerText }}</p>
       </template>
       <StatusBody v-if="!status.sensitive || status.spoilerText" :status="status" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+      <StatusTranslation :status="status" />
       <StatusPoll v-if="status.poll" :status="status" />
       <StatusMedia
         v-if="status.mediaAttachments?.length"

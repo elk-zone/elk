@@ -88,6 +88,11 @@ const locales: LocaleObjectData[] = [
     name: 'Česky',
   },
   {
+    code: 'pt-PT',
+    file: 'pt-PT.json',
+    name: 'Português',
+  },
+  {
     code: 'tr-TR',
     file: 'tr-TR.json',
     name: 'Türkçe',

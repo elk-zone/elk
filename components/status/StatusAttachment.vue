@@ -188,7 +188,7 @@ useIntersectionObserver(video, (entries) => {
                 {{ $t('status.img_alt.dismiss') }}
               </button>
             </div>
-            <p whitespace-pre>
+            <p whitespace-pre-wrap>
               {{ attachment.description }}
             </p>
           </div>

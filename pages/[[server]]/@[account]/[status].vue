@@ -1,11 +1,13 @@
 <script setup lang="ts">
+// @ts-expect-error missing types
+import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller'
 import type { ComponentPublicInstance } from 'vue'
 
 definePageMeta({
   name: 'status',
   key: route => route.path,
   // GoToSocial
-  alias: ['/:server/@:account/statuses/:status'],
+  alias: ['/:server?/@:account/statuses/:status'],
 })
 
 const route = useRoute()
@@ -17,13 +19,13 @@ const publishWidget = ref()
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   `status:${id}`,
   () => fetchStatus(id),
-  { watch: [isHydrated], immediate: isHydrated.value },
+  { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef() },
 )
 const { client } = $(useMasto())
 const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
   `context:${id}`,
   async () => client.v1.statuses.fetchContext(id),
-  { watch: [isHydrated], immediate: isHydrated.value },
+  { watch: [isHydrated], immediate: isHydrated.value, lazy: true, default: () => shallowRef() },
 )
 
 const replyDraft = $computed(() => status.value ? getReplyDraft(status.value) : null)
@@ -80,7 +82,6 @@ onReactivated(() => {
           :status="status"
           command
           style="scroll-margin-top: 60px"
-          :actions="status.visibility !== 'direct'"
         />
         <PublishWidget
           v-if="currentUser"
@@ -91,16 +92,25 @@ onReactivated(() => {
           @published="refreshContext()"
         />
 
-        <template v-for="(comment, di) of context?.descendants" :key="comment.id">
-          <StatusCard
-            :status="comment"
-            :actions="comment.visibility !== 'direct'" context="account"
-            :older="context?.descendants[di + 1]"
-            :newer="context?.descendants[di - 1]"
-            :has-newer="di === 0"
-            :main="status"
-          />
-        </template>
+        <TimelineSkeleton v-if="pendingContext" />
+        <DynamicScroller
+          v-slot="{ item, index, active }"
+          :items="context?.descendants || []"
+          :min-item-size="200"
+          key-field="id"
+          page-mode
+        >
+          <DynamicScrollerItem :item="item" :active="active">
+            <StatusCard
+              :status="item"
+              context="account"
+              :older="context?.descendants[index + 1]"
+              :newer="context?.descendants[index - 1]"
+              :has-newer="index === 0"
+              :main="status"
+            />
+          </DynamicScrollerItem>
+        </DynamicScroller>
       </div>
 
       <StatusNotFound v-else :account="route.params.account as string" :status="id" />

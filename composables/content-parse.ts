@@ -169,7 +169,7 @@ export function treeToText(input: Node): string {
   if ('children' in input)
     body = (input.children as Node[]).map(n => treeToText(n)).join('')
 
-  if (input.name === 'img') {
+  if (input.name === 'img' || input.name === 'picture') {
     if (input.attributes.class?.includes('custom-emoji'))
       return `:${input.attributes['data-emoji-id']}:`
     if (input.attributes.class?.includes('iconify-emoji'))
@@ -326,11 +326,34 @@ function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji
       if (i % 2 === 0)
         return name
 
-      const emoji = customEmojis[name]
+      const emoji = customEmojis[name] as mastodon.v1.CustomEmoji
       if (!emoji)
         return `:${name}:`
 
-      return h('img', { 'src': emoji.url, 'alt': `:${name}:`, 'class': 'custom-emoji', 'data-emoji-id': name })
+      return h(
+        'picture',
+        {
+          'alt': `:${name}:`,
+          'class': 'custom-emoji',
+          'data-emoji-id': name,
+        },
+        [
+          h(
+            'source',
+            {
+              srcset: emoji.staticUrl,
+              media: '(prefers-reduced-motion: reduce)',
+            },
+          ),
+          h(
+            'img',
+            {
+              src: emoji.url,
+              alt: `:${name}:`,
+            },
+          ),
+        ],
+      )
     }).filter(Boolean)
   }
 }

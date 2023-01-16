@@ -100,6 +100,7 @@
     "jsdom": "^21.0.0",
     "lint-staged": "^13.1.0",
     "nuxt": "^3.0.0",
+    "nuxt-security": "^0.10.0",
     "postcss-nested": "^6.0.0",
     "prettier": "^2.8.2",
     "rollup-plugin-node-polyfills": "^0.2.1",

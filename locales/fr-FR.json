@@ -98,6 +98,13 @@
     "draft_title": "Brouillon {0}",
     "drafts": "Brouillons ({v})"
   },
+  "confirm": {
+    "delete_posts": {
+      "cancel": "Annuler",
+      "confirm": "Supprimer",
+      "title": "Certain·e de vouloir supprimer ce message ?"
+    }
+  },
   "conversation": {
     "with": "avec"
   },
@@ -128,11 +135,6 @@
     "copy_link_to_post": "Copier le lien du message",
     "delete": "Supprimer",
     "delete_and_redraft": "Supprimer et réécrire",
-    "delete_confirm": {
-      "cancel": "Annuler",
-      "confirm": "Supprimer",
-      "title": "Certain·e de vouloir supprimer ce message ?"
-    },
     "direct_message_account": "Message direct à {0}",
     "edit": "Éditer",
     "hide_reblogs": "Cacher les boosts de {0}",

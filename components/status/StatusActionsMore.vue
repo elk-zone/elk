@@ -63,9 +63,9 @@ const shareLink = async (status: mastodon.v1.Status) => {
 
 const deleteStatus = async () => {
   if (await openConfirmDialog({
-    title: t('menu.delete_confirm.title'),
-    confirm: t('menu.delete_confirm.confirm'),
-    cancel: t('menu.delete_confirm.cancel'),
+    title: t('confirm.delete_posts.title'),
+    confirm: t('confirm.delete_posts.confirm'),
+    cancel: t('confirm.delete_posts.cancel'),
   }) !== 'confirm')
     return
 

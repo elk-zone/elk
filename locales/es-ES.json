@@ -101,6 +101,13 @@
     "draft_title": "Borrador {0}",
     "drafts": "Borradores ({v})"
   },
+  "confirm": {
+    "delete_posts": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "¿Estás seguro que deseas eliminar esta publicación?"
+    }
+  },
   "conversation": {
     "with": "con"
   },
@@ -131,11 +138,6 @@
     "copy_link_to_post": "Copiar enlace",
     "delete": "Borrar",
     "delete_and_redraft": "Borrar y volver a borrador",
-    "delete_confirm": {
-      "cancel": "Cancelar",
-      "confirm": "Eliminar",
-      "title": "¿Estás seguro que deseas eliminar esta publicación?"
-    },
     "direct_message_account": "Mensaje directo a {0}",
     "edit": "Editar",
     "hide_reblogs": "Ocultar retoots de {0}",

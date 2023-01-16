@@ -104,6 +104,13 @@
     "draft_title": "Rascunho {0}",
     "drafts": "Rascunhos ({v})"
   },
+  "confirm": {
+    "delete_posts": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "Tem a certeza que pretende eliminar esta publicação?"
+    }
+  },
   "conversation": {
     "with": "com"
   },
@@ -134,11 +141,6 @@
     "copy_link_to_post": "Copiar ligação para esta publicação",
     "delete": "Eliminar",
     "delete_and_redraft": "Eliminar & re-editar",
-    "delete_confirm": {
-      "cancel": "Cancelar",
-      "confirm": "Eliminar",
-      "title": "Tem a certeza que pretende eliminar esta publicação?"
-    },
     "direct_message_account": "Mensagem direta a {0}",
     "edit": "Editar",
     "hide_reblogs": "Esconder partilhas de {0}",

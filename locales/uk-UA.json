@@ -101,6 +101,13 @@
     "draft_title": "Чернетка {0}",
     "drafts": "Чернетки ({v})"
   },
+  "confirm": {
+    "delete_posts": {
+      "cancel": "Скасувати",
+      "confirm": "Видалити",
+      "title": "Ви впевнені, що хочете видалити цей допис?"
+    }
+  },
   "conversation": {
     "with": "з"
   },
@@ -131,11 +138,6 @@
     "copy_link_to_post": "Скопіювати посилання на цей допис",
     "delete": "Видалити",
     "delete_and_redraft": "Видалити і переписати",
-    "delete_confirm": {
-      "cancel": "Скасувати",
-      "confirm": "Видалити",
-      "title": "Ви впевнені, що хочете видалити цей допис?"
-    },
     "direct_message_account": "Пряме повідомлення {0}",
     "edit": "Редагувати",
     "mention_account": "Згадати {0}",

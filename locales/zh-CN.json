@@ -101,6 +101,11 @@
     "drafts": "草稿 ({v})"
   },
   "confirm": {
+    "delete_posts": {
+      "cancel": "取消",
+      "confirm": "删除",
+      "title": "你确定要删除这条帖文吗？"
+    },
     "unfollow": {
       "cancel": "取消",
       "confirm": "取消关注",
@@ -137,11 +142,6 @@
     "copy_link_to_post": "复制这篇帖文的链接",
     "delete": "删除",
     "delete_and_redraft": "删除并重新编辑",
-    "delete_confirm": {
-      "cancel": "取消",
-      "confirm": "删除",
-      "title": "你确定要删除这条帖文吗？"
-    },
     "direct_message_account": "私信 {0}",
     "edit": "编辑",
     "hide_reblogs": "隐藏来自 {0} 的转发",

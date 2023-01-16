@@ -101,6 +101,13 @@
     "draft_title": "مسودة {0}",
     "drafts": "المسودات ({v})"
   },
+  "confirm": {
+    "delete_posts": {
+      "cancel": "إلغاء",
+      "confirm": "حذف",
+      "title": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
+    }
+  },
   "conversation": {
     "with": "مع"
   },
@@ -131,11 +138,6 @@
     "copy_link_to_post": "انسخ الرابط إلى هذا المنشور",
     "delete": "حذف",
     "delete_and_redraft": "حذف وإعادة صياغة",
-    "delete_confirm": {
-      "cancel": "إلغاء",
-      "confirm": "حذف",
-      "title": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
-    },
     "direct_message_account": "إرسال رسالة مباشرة إلى {0}",
     "edit": "تعديل",
     "hide_reblogs": "إخفاء المشاركات من {0}",

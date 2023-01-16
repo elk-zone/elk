@@ -105,6 +105,11 @@
     "drafts": "Drafts ({v})"
   },
   "confirm": {
+    "delete_posts": {
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "title": "Are you sure you want to delete this post?"
+    },
     "unfollow": {
       "cancel": "Cancel",
       "confirm": "Unfollow",
@@ -141,11 +146,6 @@
     "copy_link_to_post": "Copy link to this post",
     "delete": "Delete",
     "delete_and_redraft": "Delete & re-draft",
-    "delete_confirm": {
-      "cancel": "Cancel",
-      "confirm": "Delete",
-      "title": "Are you sure you want to delete this post?"
-    },
     "direct_message_account": "Direct message {0}",
     "edit": "Edit",
     "hide_reblogs": "Hide boosts from {0}",

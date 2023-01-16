@@ -31,7 +31,7 @@ defineProps<{
         <div flex items-center flex-shrink-0 gap-x-2>
           <slot name="actions" />
           <PwaBadge lg:hidden />
-          <NavUser v-if="isMastoInitialised" />
+          <NavUser v-if="isHydrated" />
           <NavUserSkeleton v-else />
         </div>
       </div>

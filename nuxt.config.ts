@@ -25,12 +25,17 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
+    'nuxt-security',
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/stale-dep',
+    ['unplugin-vue-inspector/nuxt', {
+      enabled: false,
+      toggleButtonVisibility: 'never',
+    }],
   ],
   experimental: {
     payloadExtraction: false,
@@ -62,6 +67,7 @@ export default defineNuxtConfig({
     define: {
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
       'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
+      'process.test': 'false',
     },
     build: {
       target: 'esnext',
@@ -76,6 +82,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    adminKey: '',
     cloudflare: {
       accountId: '',
       namespaceId: '',
@@ -135,6 +142,30 @@ export default defineNuxtConfig({
         { property: 'twitter:card', content: 'summary_large_image' },
       ],
     },
+  },
+  security: {
+    headers: {
+      crossOriginEmbedderPolicy: false,
+      contentSecurityPolicy: {
+        value: {
+          'default-src': ['\'self\''],
+          'base-uri': ['\'self\''],
+          'connect-src': ['\'self\'', 'https:', 'http:', 'wss:', 'ws:'],
+          'font-src': ['\'self\''],
+          'form-action': ['\'none\''],
+          'frame-ancestors': ['\'none\''],
+          'img-src': ['\'self\'', 'https:', 'http:', 'data:'],
+          'media-src': ['\'self\'', 'https:', 'http:'],
+          'object-src': ['\'none\''],
+          'script-src': ['\'self\'', '\'unsafe-inline\''],
+          'script-src-attr': ['\'none\''],
+          'style-src': ['\'self\'', '\'unsafe-inline\''],
+          'upgrade-insecure-requests': true,
+        },
+        route: '/**',
+      },
+    },
+    rateLimiter: false,
   },
   colorMode: { classSuffix: '' },
   i18n,

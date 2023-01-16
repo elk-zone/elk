@@ -9,13 +9,13 @@ const emit = defineEmits<{
   (event: 'change'): void
 }>()
 
-const masto = useMasto()
+const { client } = $(useMasto())
 
 const toggleFollowTag = async () => {
   if (tag.following)
-    await masto.v1.tags.unfollow(tag.name)
+    await client.v1.tags.unfollow(tag.name)
   else
-    await masto.v1.tags.follow(tag.name)
+    await client.v1.tags.follow(tag.name)
 
   emit('change')
 }

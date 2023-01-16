@@ -86,11 +86,6 @@
     "toggle_zen_mode": "Перемкнути режим Zen"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Відмінити",
-      "confirm": "Так",
-      "title": "Ви впевнені?"
-    },
     "end_of_list": "Кінець списку",
     "error": "ПОМИЛКА",
     "in": "в",
@@ -100,6 +95,17 @@
   "compose": {
     "draft_title": "Чернетка {0}",
     "drafts": "Чернетки ({v})"
+  },
+  "confirm": {
+    "common": {
+      "cancel": "Відмінити",
+      "confirm": "Так"
+    },
+    "delete_posts": {
+      "cancel": "Скасувати",
+      "confirm": "Видалити",
+      "title": "Ви впевнені, що хочете видалити цей допис?"
+    }
   },
   "conversation": {
     "with": "з"
@@ -131,11 +137,6 @@
     "copy_link_to_post": "Скопіювати посилання на цей допис",
     "delete": "Видалити",
     "delete_and_redraft": "Видалити і переписати",
-    "delete_confirm": {
-      "cancel": "Скасувати",
-      "confirm": "Видалити",
-      "title": "Ви впевнені, що хочете видалити цей допис?"
-    },
     "direct_message_account": "Пряме повідомлення {0}",
     "edit": "Редагувати",
     "mention_account": "Згадати {0}",

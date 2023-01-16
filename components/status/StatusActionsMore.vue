@@ -39,7 +39,7 @@ const toggleTranslation = async () => {
   isLoading.translation = false
 }
 
-const masto = useMasto()
+const { client } = $(useMasto())
 
 const getPermalinkUrl = (status: mastodon.v1.Status) => {
   const url = getStatusPermalinkRoute(status)
@@ -63,14 +63,14 @@ const shareLink = async (status: mastodon.v1.Status) => {
 
 const deleteStatus = async () => {
   if (await openConfirmDialog({
-    title: t('menu.delete_confirm.title'),
-    confirm: t('menu.delete_confirm.confirm'),
-    cancel: t('menu.delete_confirm.cancel'),
+    title: t('confirm.delete_posts.title'),
+    confirm: t('confirm.delete_posts.confirm'),
+    cancel: t('confirm.delete_posts.cancel'),
   }) !== 'confirm')
     return
 
   removeCachedStatus(status.id)
-  await masto.v1.statuses.remove(status.id)
+  await client.v1.statuses.remove(status.id)
 
   if (route.name === 'status')
     router.back()
@@ -88,7 +88,7 @@ const deleteAndRedraft = async () => {
   }
 
   removeCachedStatus(status.id)
-  await masto.v1.statuses.remove(status.id)
+  await client.v1.statuses.remove(status.id)
   await openPublishDialog('dialog', await getDraftFromStatus(status), true)
 
   // Go to the new status, if the page is the old status
@@ -214,7 +214,7 @@ const showFavoritedAndBoostedBy = () => {
           @click="toggleTranslation"
         />
 
-        <template v-if="isMastoInitialised && currentUser">
+        <template v-if="isHydrated && currentUser">
           <template v-if="isAuthor">
             <CommonDropdownItem
               :text="status.pinned ? $t('menu.unpin_on_profile') : $t('menu.pin_on_profile')"

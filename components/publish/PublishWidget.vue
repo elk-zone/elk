@@ -110,7 +110,7 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="isMastoInitialised && currentUser" flex="~ col gap-4" py3 px2 sm:px4>
+  <div v-if="isHydrated && currentUser" flex="~ col gap-4" py3 px2 sm:px4>
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div id="state-editing" text-secondary self-center>
@@ -133,9 +133,9 @@ defineExpose({
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
         <ContentMentionGroup v-if="draft.mentions?.length && shouldExpanded">
-          <div v-for="m of draft.mentions" :key="m" text-primary>
-            @{{ m }}
-          </div>
+          <button v-for="m, i of draft.mentions" :key="m" text-primary hover:color-red @click="draft.mentions?.splice(i, 1)">
+            {{ acctToShortHandle(m) }}
+          </button>
         </ContentMentionGroup>
 
         <div v-if="draft.params.sensitive">
@@ -213,7 +213,7 @@ defineExpose({
     <div flex gap-4>
       <div w-12 h-full sm:block hidden />
       <div
-        v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="between" max-w-full
+        v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full
         border="t base"
       >
         <PublishEmojiPicker

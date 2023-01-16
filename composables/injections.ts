@@ -1,8 +1,4 @@
-import { InjectionKeyDropdownContext, InjectionKeyFontSize } from '~/constants/symbols'
-
-export function useFontSizeRef() {
-  return inject(InjectionKeyFontSize)!
-}
+import { InjectionKeyDropdownContext } from '~/constants/symbols'
 
 export function useDropdownContext() {
   return inject(InjectionKeyDropdownContext, undefined)

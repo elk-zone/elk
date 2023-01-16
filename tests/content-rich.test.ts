@@ -1,12 +1,9 @@
-/**
- * @vitest-environment jsdom
- */
 /* eslint-disable vue/one-component-per-file */
-import type { mastodon } from 'masto'
 import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import { contentToVNode } from '~/composables/content-render'
+import type { ContentParseOptions } from '~~/composables/content-parse'
 
 describe('content-rich', () => {
   it('empty', async () => {
@@ -26,7 +23,9 @@ describe('content-rich', () => {
   })
 
   it('group mention', async () => {
-    const { formatted } = await render('<p><span class="h-card"><a href="https://lemmy.ml/c/pilipinas" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>pilipinas</span></a></span></p>', undefined, [{ id: '', username: 'pilipinas', url: 'https://lemmy.ml/c/pilipinas', acct: 'pilipinas@lemmy.ml' }])
+    const { formatted } = await render('<p><span class="h-card"><a href="https://lemmy.ml/c/pilipinas" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>pilipinas</span></a></span></p>', {
+      mentions: [{ id: '', username: 'pilipinas', url: 'https://lemmy.ml/c/pilipinas', acct: 'pilipinas@lemmy.ml' }],
+    })
     expect(formatted).toMatchSnapshot('html')
   })
 
@@ -40,13 +39,20 @@ describe('content-rich', () => {
     expect(formatted).toMatchSnapshot()
   })
 
+  it('handles formatting from servers', async () => {
+    const { formatted } = await render('<h1>Fedi HTML Support Survey</h1><p>Does the following formatting come through accurately for you?</p><ul><li>This is an indented bulleted list (not just asterisks).</li><li><strong>This line is bold.</strong></li><li><em>This line is italic.</em></li></ul><ol><li>This list...</li><li>...is numbered and indented</li></ol><h1>This line is larger.</h1>')
+    expect(formatted).toMatchSnapshot()
+  })
+
   it('custom emoji', async () => {
     const { formatted } = await render('Daniel Roe :nuxt:', {
-      nuxt: {
-        shortcode: 'nuxt',
-        url: 'https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/original/c96ba3cb0e0e1eac.png',
-        staticUrl: 'https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/static/c96ba3cb0e0e1eac.png',
-        visibleInPicker: true,
+      emojis: {
+        nuxt: {
+          shortcode: 'nuxt',
+          url: 'https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/original/c96ba3cb0e0e1eac.png',
+          staticUrl: 'https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/static/c96ba3cb0e0e1eac.png',
+          visibleInPicker: true,
+        },
       },
     })
     expect(formatted).toMatchSnapshot()
@@ -72,10 +78,98 @@ describe('content-rich', () => {
     const { formatted } = await render('<p>```<br /><br />```<br /></p>')
     expect(formatted).toMatchSnapshot()
   })
+
+  it('collapse metions', async () => {
+    const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> content <span class="h-card"><a href="https://m.webtoo.ls/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> <span class="h-card"><a href="https://mastodon.roe.dev/@daniel" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>daniel</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@sxzz" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>sxzz</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@patak" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>patak</span></a></span> content</p>', {
+      collapseMentionLink: true,
+    })
+    expect(formatted).toMatchInlineSnapshot(`
+      "<p>
+        <mention-group
+          ><span class=\\"h-card\\"
+            ><a
+              class=\\"u-url mention\\"
+              rel=\\"nofollow noopener noreferrer\\"
+              to=\\"/m.webtoo.ls/@elk\\"
+            ></a
+          ></span>
+          <span class=\\"h-card\\"
+            ><a
+              class=\\"u-url mention\\"
+              rel=\\"nofollow noopener noreferrer\\"
+              to=\\"/m.webtoo.ls/@elk\\"
+            ></a></span></mention-group
+        >content
+        <span class=\\"h-card\\"
+          ><a
+            class=\\"u-url mention\\"
+            rel=\\"nofollow noopener noreferrer\\"
+            to=\\"/m.webtoo.ls/@antfu\\"
+          ></a
+        ></span>
+        <span class=\\"h-card\\"
+          ><a
+            class=\\"u-url mention\\"
+            rel=\\"nofollow noopener noreferrer\\"
+            to=\\"/mastodon.roe.dev/@daniel\\"
+          ></a
+        ></span>
+        <span class=\\"h-card\\"
+          ><a
+            class=\\"u-url mention\\"
+            rel=\\"nofollow noopener noreferrer\\"
+            to=\\"/m.webtoo.ls/@sxzz\\"
+          ></a
+        ></span>
+        <span class=\\"h-card\\"
+          ><a
+            class=\\"u-url mention\\"
+            rel=\\"nofollow noopener noreferrer\\"
+            to=\\"/m.webtoo.ls/@patak\\"
+          ></a
+        ></span>
+        content
+      </p>
+      "
+    `)
+  })
+
+  it ('block with injected html, without language', async () => {
+    const { formatted } = await render(`
+      <pre>
+        <code>
+          &lt;a href="javascript:alert(1)">click me&lt;/a>
+        </code>
+      </pre>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
+
+  it ('block with injected html, with an unknown language', async () => {
+    const { formatted } = await render(`
+      <pre>
+        <code class="language-xyzzy">
+          &lt;a href="javascript:alert(1)">click me&lt;/a>
+        </code>
+      </pre>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
+
+  it ('block with injected html, with a known language', async () => {
+    const { formatted } = await render(`
+      <pre>
+        <code class="language-js">
+          &lt;a href="javascript:alert(1)">click me&lt;/a>
+        </code>
+      </pre>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
 })
 
-async function render(content: string, emojis?: Record<string, mastodon.v1.CustomEmoji>, mentions?: mastodon.v1.StatusMention[]) {
-  const vnode = contentToVNode(content, { emojis, mentions })
+async function render(content: string, options?: ContentParseOptions) {
+  const vnode = contentToVNode(content, options)
   const html = (await renderToString(vnode))
     .replace(/<!--[\[\]]-->/g, '')
   let formatted = ''
@@ -105,25 +199,19 @@ vi.mock('vue-router', () => {
   }
 })
 
-vi.mock('~/composables/dialog.ts', () => {
-  return {}
+vi.mock('shiki-es', async (importOriginal) => {
+  const mod = await importOriginal()
+  return {
+    ...(mod as any),
+    setCDN() {},
+  }
 })
 
-vi.mock('~/components/content/ContentCode.vue', () => {
+vi.mock('~/components/content/ContentMentionGroup.vue', () => {
   return {
     default: defineComponent({
-      props: {
-        code: {
-          type: String,
-          required: true,
-        },
-        lang: {
-          type: String,
-        },
-      },
-      setup(props) {
-        const raw = computed(() => decodeURIComponent(props.code).replace(/&#39;/g, '\''))
-        return () => h('pre', { lang: props.lang }, raw.value)
+      setup(props, { slots }) {
+        return () => h('mention-group', null, { default: () => slots?.default?.() })
       },
     }),
   }

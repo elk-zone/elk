@@ -5,6 +5,12 @@ export default defineNuxtPlugin(() => {
   const registrationError = ref(false)
   const swActivated = ref(false)
 
+  // https://thomashunter.name/posts/2021-12-11-detecting-if-pwa-twa-is-installed
+  const ua = navigator.userAgent
+  const ios = ua.match(/iPhone|iPad|iPod/)
+  const standalone = window.matchMedia('(display-mode: standalone)').matches
+  const isInstalled = !!(standalone || (ios && !ua.match(/Safari/)))
+
   const registerPeriodicSync = (swUrl: string, r: ServiceWorkerRegistration) => {
     setInterval(async () => {
       if (!online.value)
@@ -54,6 +60,7 @@ export default defineNuxtPlugin(() => {
   return {
     provide: {
       pwa: reactive({
+        isInstalled,
         swActivated,
         registrationError,
         needRefresh,

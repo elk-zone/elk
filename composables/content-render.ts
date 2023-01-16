@@ -7,6 +7,7 @@ import { decode } from 'tiny-decode'
 import type { ContentParseOptions } from './content-parse'
 import { parseMastodonHTML } from './content-parse'
 import ContentCode from '~/components/content/ContentCode.vue'
+import ContentMentionGroup from '~/components/content/ContentMentionGroup.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 
 /**
@@ -17,12 +18,15 @@ export function contentToVNode(
   options?: ContentParseOptions,
 ): VNode {
   const tree = parseMastodonHTML(content, options)
-  return h(Fragment, (tree.children as Node[]).map(n => treeToVNode(n)))
+  return h(Fragment, (tree.children as Node[] || []).map(n => treeToVNode(n)))
 }
 
 export function nodeToVNode(node: Node): VNode | string | null {
   if (node.type === TEXT_NODE)
     return node.value
+
+  if (node.name === 'mention-group')
+    return h(ContentMentionGroup, node.attributes, () => node.children.map(treeToVNode))
 
   if ('children' in node) {
     if (node.name === 'a' && (node.attributes.href?.startsWith('/') || node.attributes.href?.startsWith('.'))) {

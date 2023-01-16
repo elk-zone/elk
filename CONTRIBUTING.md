@@ -48,7 +48,7 @@ nr test
 
 ### Running PWA on dev server
 
-In order to run Elk with PWA enabled, run `pnpm run dev:pwa` in Elk's root folder to start dev server or `pnpm dev:mocked:pwa` to start dev server with `@elkdev@universeodon.com` user.
+In order to run Elk with PWA enabled, run `pnpm dev:pwa` in Elk's root folder to start dev server or `pnpm dev:mocked:pwa` to start dev server with `@elkdev@universeodon.com` user.
 
 You should test the Elk PWA application on private browsing mode on any Chromium based browser: will not work on Firefox and Safari.
 
@@ -91,11 +91,11 @@ We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i
 
 ### Adding a new language
 
-1. Add a new file in [locales](../locales) folder with the language code as the filename.
-2. Copy [en-US](../locales/en-US.json) and translate the strings.
-3. Add the language to the `locales` array in [config/i18n.ts](../config/i18n.ts#L13)
-4. If the language is `right-to-left`, add `dir` option with `rtl` value, for example, for [ar-EG](../config/i18n.ts#L63)
-5. If the language requires special pluralization rules, add `pluralRule` callback option, for example, for [ar-EG](../config/i18n.ts#L64)
+1. Add a new file in [locales](./locales) folder with the language code as the filename.
+2. Copy [en-US](./locales/en-US.json) and translate the strings.
+3. Add the language to the `locales` array in [config/i18n.ts](./config/i18n.ts#L12), below `en` variants and `ar-EG`.
+4. If the language is `right-to-left`, add `dir` option with `rtl` value, for example, for [ar-EG](./config/i18n.ts#L27)
+5. If the language requires special pluralization rules, add `pluralRule` callback option, for example, for [ar-EG](./config/i18n.ts#L27)
 
 Check [Pluralization rule callback](https://vue-i18n.intlify.dev/guide/essentials/pluralization.html#custom-pluralization) for more info.
 
@@ -158,14 +158,14 @@ You can run this code in your browser console to see how it works:
 Either **{0}** or **{v}** should be used with the exception being custom plurals entries using the `{n}` placeholder.
 
 This is the full list of entries that will be available for number formatting in Elk:
-- `action.boost_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `action.favourite_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `action.reply_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `account.followers_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `account.following_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `account.posts_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `compose.drafts`: `{v}` for formatted number and `{n}` for raw number - **{v} should be use**
-- `notification.followed_you_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `status.poll.count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**
-- `time_ago_options.*`: `{0}` for formatted number and `{n}` for raw number - **{0} should be use**: since numbers will be always small, we can also use `{n}`
-- `timeline.show_new_items`: `{v}` for formatted number and `{n}` for raw number - **{v} should be use**
+- `action.boost_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `action.favourite_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `action.reply_count` (no need to be included, we should use always `en-US` entry): `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `account.followers_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `account.following_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `account.posts_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `compose.drafts`: `{v}` for formatted number and `{n}` for raw number - **{v} should be used**
+- `notification.followed_you_count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `status.poll.count`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**
+- `time_ago_options.*`: `{0}` for formatted number and `{n}` for raw number - **{0} should be used**: since numbers will be always small, we can also use `{n}`
+- `timeline.show_new_items`: `{v}` for formatted number and `{n}` for raw number - **{v} should be used**

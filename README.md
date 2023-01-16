@@ -20,7 +20,7 @@ A nimble Mastodon web client
 
 <p align="center">
   <a href="https://elk.zone/" target="_blank" rel="noopener noreferrer" >
-    <img src="./public/elk-og.png" alt="Elk screenshots" height="300">
+    <img src="./public/elk-og.png" alt="Elk screenshots" width="600" height="auto">
   </a>
 </p>
 
@@ -28,12 +28,19 @@ A nimble Mastodon web client
 
 It is already quite usable, but it isn't ready for wide adoption yet. We recommend you use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
-The client is deployed on:
+## Official Deployment
+
+The Elk team maintains a deployment at:
 
 - 🦌 Production: [elk.zone](https://elk.zone)
 - 🐙 Canary: [main.elk.zone](https://main.elk.zone) (deploys on every commit to `main` branch)
 
-You can share screenshots on social media but we prefer you avoid sharing this URL directly until the app is more polished. Feel free to share the URL with your friends and invite others you think could be interested in helping to improve Elk.
+## Ecosystem
+
+These are known deployments using Elk as an alternative Web client for Mastodon servers or as a base for other projects in the fediverse:
+
+- [elk.h4.io](https://elk.h4.io) - Use Elk for the `h4.io` Server
+- [elk.universeodon.com](https://elk.universeodon.com) - Use Elk for the Universeodon Server
 
 ## 💖 Sponsors
 

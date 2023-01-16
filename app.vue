@@ -3,10 +3,11 @@ setupPageHeader()
 provideGlobalCommands()
 
 const route = useRoute()
+
 if (process.server && !route.path.startsWith('/settings')) {
   useHead({
     meta: [
-      { property: 'og:url', content: `https://main.elk.zone${route.path}` },
+      { property: 'og:url', content: `https://elk.zone${route.path}` },
     ],
   })
 }

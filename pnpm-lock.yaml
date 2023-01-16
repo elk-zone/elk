@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 overrides:
+  mlly: 1.1.0
   '@tiptap/extension-bubble-menu': 2.0.0-beta.204
   '@tiptap/extension-floating-menu': 2.0.0-beta.204
   '@tiptap/core': 2.0.0-beta.204
@@ -25,9 +26,6 @@ overrides:
   vitest>vite: ^3.2.5
 
 patchedDependencies:
-  mlly@1.0.0:
-    hash: afe7v34zn4lohdq7767l3tlrje
-    path: patches/mlly@1.0.0.patch
   nitropack@1.0.0:
     hash: k66pyfgyevhmomc3yledfrjhru
     path: patches/nitropack@1.0.0.patch
@@ -94,7 +92,7 @@ importers:
       jsdom: ^21.0.0
       lint-staged: ^13.1.0
       lru-cache: ^7.14.1
-      masto: ^5.2.0
+      masto: ^5.4.0
       nuxt: ^3.0.0
       pinia: ^2.0.28
       postcss-nested: ^6.0.0
@@ -105,7 +103,7 @@ importers:
       simple-git: ^3.15.1
       simple-git-hooks: ^2.8.1
       slimeform: ^0.8.0
-      stale-dep: ^0.2.1
+      stale-dep: ^0.3.1
       std-env: ^3.3.1
       tauri-plugin-log-api: github:tauri-apps/tauri-plugin-log
       tauri-plugin-store-api: github:tauri-apps/tauri-plugin-store
@@ -116,9 +114,11 @@ importers:
       ufo: ^1.0.1
       ultrahtml: ^1.2.0
       unplugin-auto-import: ^0.12.1
+      unplugin-vue-inspector: ^0.0.2
       vite-plugin-inspect: ^0.7.14
       vite-plugin-pwa: ^0.14.1
       vitest: ^0.27.0
+      vitest-environment-nuxt: 0.4.0
       vue-advanced-cropper: ^2.8.6
       vue-tsc: ^1.0.24
       vue-virtual-scroller: 2.0.0-beta.7
@@ -152,13 +152,13 @@ importers:
       iso-639-1: 2.1.15
       js-yaml: 4.1.0
       lru-cache: 7.14.1
-      masto: 5.2.0
+      masto: 5.4.0
       pinia: 2.0.28_typescript@4.9.4
       shiki: 0.12.1
       shiki-es: 0.1.2
       slimeform: 0.8.0
-      tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/c19b5d1d58275329882dd931ea66960e00febdb2
-      tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/2404bc57014d323361ac6bc4505fb9e3db2d0aab
+      tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/9d2a19ad05fafeb80991006e14f0f95fe1109aba
+      tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/c71665bf5dcf48ae70a88d622eb38b2548b60a5d
       tiny-decode: 0.1.3
       tippy.js: 6.3.7
       ufo: 1.0.1
@@ -203,14 +203,16 @@ importers:
       rollup-plugin-node-polyfills: 0.2.1
       simple-git: 3.15.1
       simple-git-hooks: 2.8.1
-      stale-dep: 0.2.1
+      stale-dep: 0.3.1
       std-env: 3.3.1
       theme-vitesse: 0.6.0
       typescript: 4.9.4
       unplugin-auto-import: 0.12.1_@vueuse+core@9.10.0
+      unplugin-vue-inspector: 0.0.2
       vite-plugin-inspect: 0.7.14
-      vite-plugin-pwa: 0.14.1_tz3vz2xt4jvid2diblkpydcyn4
+      vite-plugin-pwa: 0.14.1
       vitest: 0.27.0_jsdom@21.0.0
+      vitest-environment-nuxt: 0.4.0_vitest@0.27.0
       vue-tsc: 1.0.24_typescript@4.9.4
       workbox-build: 6.5.4
       workbox-window: 6.5.4
@@ -949,6 +951,15 @@ packages:
       '@babel/helper-plugin-utils': 7.20.2
     dev: true
 
+  /@babel/plugin-syntax-import-meta/7.10.4_@babel+core@7.20.12:
+    resolution: {integrity: sha512-Yqfm+XDx0+Prh3VSeEQCPU81yC+JWZ2pDPFSS4ZdpfZhp4MkFMaDC1UqseovEKwSUpnIL7+vK+Clp7bfh0iD7g==}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.20.12
+      '@babel/helper-plugin-utils': 7.20.2
+    dev: true
+
   /@babel/plugin-syntax-json-strings/7.8.3_@babel+core@7.20.12:
     resolution: {integrity: sha512-lY6kdGpWHvjoe2vk4WrAapEuBR69EMxZl+RoGRhrFGNYVK8mOPAW8VfbT/ZgrFbXlDNiiaxQnAtgVCZ6jv30EA==}
     peerDependencies:
@@ -1406,6 +1417,20 @@ packages:
       - supports-color
     dev: true
 
+  /@babel/plugin-transform-typescript/7.20.7_@babel+core@7.20.12:
+    resolution: {integrity: sha512-m3wVKEvf6SoszD8pu4NZz3PvfKRCMgk6D6d0Qi9hNnlM5M6CFS92EgF4EiHVLKbU0r/r7ty1hg7NPZwE7WRbYw==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.20.12
+      '@babel/helper-create-class-features-plugin': 7.20.12_@babel+core@7.20.12
+      '@babel/helper-plugin-utils': 7.20.2
+      '@babel/plugin-syntax-typescript': 7.20.0_@babel+core@7.20.12
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@babel/plugin-transform-unicode-escapes/7.18.10_@babel+core@7.20.12:
     resolution: {integrity: sha512-kKAdAI+YzPgGY/ftStBFXTI1LZFju38rYThnfMykS+IXy8BVx+res7s2fxf1l8I35DV2T97ezo6+SGrXz6B3iQ==}
     engines: {node: '>=6.9.0'}
@@ -1759,8 +1784,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.3.0-beta.14
-      '@intlify/shared': 9.3.0-beta.14
+      '@intlify/message-compiler': 9.3.0-beta.16
+      '@intlify/shared': 9.3.0-beta.16
       jsonc-eslint-parser: 1.4.1
       source-map: 0.6.1
       vue-i18n: 9.3.0-beta.13-972e836
@@ -1792,11 +1817,11 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /@intlify/message-compiler/9.3.0-beta.14:
-    resolution: {integrity: sha512-PlZ3pl+YYuql54Nq+26wv6ohIa8Ig6ALrvQI+f2zZKUtkupb49M4wyVN3bDQbFlgYVE7/u3n19BJSY8lEuX5Eg==}
+  /@intlify/message-compiler/9.3.0-beta.16:
+    resolution: {integrity: sha512-CGQI3xRcs1ET75eDQ0DUy3MRYOqTauRIIgaMoISKiF83gqRWg93FqN8lGMKcpBqaF4tI0JhsfosCaGiBL9+dnw==}
     engines: {node: '>= 14'}
     dependencies:
-      '@intlify/shared': 9.3.0-beta.14
+      '@intlify/shared': 9.3.0-beta.16
       source-map: 0.6.1
     dev: true
 
@@ -1810,8 +1835,8 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  /@intlify/shared/9.3.0-beta.14:
-    resolution: {integrity: sha512-mJ/rFan+4uVsBAQSCAJnpQaPvSjQ49mJMNmGelTUbTDAmgf0oexYxwqtKOlFFyY3hmQ8lUDYaGQKuYrFgRuHnA==}
+  /@intlify/shared/9.3.0-beta.16:
+    resolution: {integrity: sha512-kXbm4svALe3lX+EjdJxfnabOphqS4yQ1Ge/iIlR8tvUiYRCoNz3hig1M4336iY++Dfx5ytEQJPNjIcknNIuvig==}
     engines: {node: '>= 14'}
     dev: true
 
@@ -1831,7 +1856,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 3.4.0_qjugkpmxfnp3l7d6jb7y3o5rvi
-      '@intlify/shared': 9.3.0-beta.14
+      '@intlify/shared': 9.3.0-beta.16
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.2.45
       debug: 4.3.4
@@ -1990,7 +2015,7 @@ packages:
       '@types/node-fetch': 2.6.2
       abort-controller: 3.0.0
       form-data: 4.0.0
-      node-fetch: 2.6.7
+      node-fetch: 2.6.8
     transitivePeerDependencies:
       - encoding
     dev: false
@@ -2291,7 +2316,7 @@ packages:
       h3: 1.0.1
       knitwork: 1.0.0
       magic-string: 0.26.7
-      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
+      mlly: 1.1.0
       ohash: 1.0.0
       pathe: 1.0.0
       perfect-debounce: 0.1.3
@@ -2345,7 +2370,7 @@ packages:
       h3: 1.0.1
       knitwork: 1.0.0
       magic-string: 0.26.7
-      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
+      mlly: 1.1.0
       ohash: 1.0.0
       pathe: 1.0.0
       perfect-debounce: 0.1.3
@@ -4025,6 +4050,12 @@ packages:
     resolution: {integrity: sha512-Ewzq5Yhimg7pSztDV+RH1UDKBzmtqieXQlpTVm2AwraoRL/Rks96mvd8Vgi7Lj+h+TH8dv7mXD3FRZR3TUvbSg==}
     dev: true
 
+  /@vue/test-utils/2.2.7:
+    resolution: {integrity: sha512-BMuoruUFTEqhLoOgsMcgNVMiByYbfHCKGr2C4CPdGtz/affUtDVX5zr1RnPuq0tYSiaqq+Enw5voUpG6JY8Q7g==}
+    peerDependencies:
+      vue: ^3.0.1
+    dev: true
+
   /@vueuse/core/8.9.4:
     resolution: {integrity: sha512-B/Mdj9TK1peFyWaPof+Zf/mP9XuGAngaJZBwPaXBvU3aCTZlx3ltlrFFFyMV4iGBwsjSCeUCgZrtkEj9dS2Y3Q==}
     peerDependencies:
@@ -5139,6 +5170,10 @@ packages:
   /css-what/6.1.0:
     resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
     engines: {node: '>= 6'}
+    dev: true
+
+  /css.escape/1.5.1:
+    resolution: {integrity: sha512-YUifsXXuknHlUsmlgyY0PKzgPOr7/FjCePfHNt0jxm83wHZi44VDMQ7/fGNkjY3/jV1MC+1CmZbaHzugyeRtpg==}
     dev: true
 
   /cssesc/3.0.0:
@@ -6890,6 +6925,19 @@ packages:
       ufo: 1.0.1
     dev: true
 
+  /happy-dom/8.1.4:
+    resolution: {integrity: sha512-mUCzXHhSO6fOQlZwKW6z2f/+rYavKNxNrgY4nJ4dp+r8gTGbTENgMZGfM6eJD0DJPRFF8DFyngXdBF93wF96UA==}
+    dependencies:
+      css.escape: 1.5.1
+      he: 1.2.0
+      node-fetch: 2.6.8
+      webidl-conversions: 7.0.0
+      whatwg-encoding: 2.0.0
+      whatwg-mimetype: 3.0.0
+    transitivePeerDependencies:
+      - encoding
+    dev: true
+
   /has-bigints/1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
     dev: true
@@ -8049,8 +8097,8 @@ packages:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
     dev: true
 
-  /masto/5.2.0:
-    resolution: {integrity: sha512-71pKUdPZDuQSPJqRJSwsZ/QqvO/arOkdRyXEyOdeU9QukQ30OEW1M9BCGBp/b9Lbf6R7d9oCCdefmxXCSAzlFg==}
+  /masto/5.4.0:
+    resolution: {integrity: sha512-Th/EOyVIPMPJQ1GldBx9vcaDagWUUsco+R4D7AfDR0mmyXFpdwRyVp0NRe+/PMPCNFG1UnAEX0jxLzDSxIEZ5w==}
     dependencies:
       '@mastojs/ponyfills': 1.0.4
       change-case: 4.1.2
@@ -8642,16 +8690,6 @@ packages:
       typescript: 4.9.4
     dev: true
 
-  /mlly/1.0.0_afe7v34zn4lohdq7767l3tlrje:
-    resolution: {integrity: sha512-QL108Hwt+u9bXdWgOI0dhzZfACovn5Aen4Xvc8Jasd9ouRH4NjnrXEiyP3nVvJo91zPlYjVRckta0Nt2zfoR6g==}
-    dependencies:
-      acorn: 8.8.1
-      pathe: 1.0.0
-      pkg-types: 1.0.1
-      ufo: 1.0.1
-    dev: true
-    patched: true
-
   /mlly/1.1.0:
     resolution: {integrity: sha512-cwzBrBfwGC1gYJyfcy8TcZU1f+dbH/T+TuOhtYP2wLv/Fb51/uV7HJQfBPtEupZ2ORLRU1EKFS/QfS3eo9+kBQ==}
     dependencies:
@@ -8821,6 +8859,18 @@ packages:
         optional: true
     dependencies:
       whatwg-url: 5.0.0
+    dev: true
+
+  /node-fetch/2.6.8:
+    resolution: {integrity: sha512-RZ6dBYuj8dRSfxpUSu+NsdF1dpPpluJxwOp+6IoDp/sH2QNDSvurYsAa+F1WxY2RjA1iP93xhcsUoYbF2XBqVg==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
 
   /node-fetch/3.3.0:
     resolution: {integrity: sha512-BKwRP/O0UvoMKp7GNdwPlObhYGB5DQqwhEDQlNKuoqwVYSxkSZCSbHjnFFmUEtwSKRPU4kNK8PbDYYitwaE3QA==}
@@ -8976,7 +9026,7 @@ packages:
       hookable: 5.4.2
       knitwork: 1.0.0
       magic-string: 0.26.7
-      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
+      mlly: 1.1.0
       nitropack: 1.0.0_k66pyfgyevhmomc3yledfrjhru
       nuxi: 3.0.0
       ofetch: 1.0.0
@@ -9044,7 +9094,7 @@ packages:
       hookable: 5.4.2
       knitwork: 1.0.0
       magic-string: 0.26.7
-      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
+      mlly: 1.1.0
       nitropack: 1.0.0_k66pyfgyevhmomc3yledfrjhru
       nuxi: 3.0.0
       ofetch: 1.0.0
@@ -10623,6 +10673,10 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
+  /shell-quote/1.7.4:
+    resolution: {integrity: sha512-8o/QEhSSRb1a5i7TFR0iM4G16Z0vYB2OQVs4G3aAFXjn3T6yEx8AZxy1PgDF7I00LZHYA3WxaSYIf5e5sAX8Rw==}
+    dev: true
+
   /shiki-es/0.1.2:
     resolution: {integrity: sha512-eqtfk8idlYlSLAn0gp0Ly2+FbKc2d78IddigHSS4iHAnpXoY2kdRzyFGZOdi6TvemYMnRhZBi1HsSqZc5eNKqg==}
 
@@ -10816,8 +10870,8 @@ packages:
     deprecated: 'Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility'
     dev: true
 
-  /stale-dep/0.2.1:
-    resolution: {integrity: sha512-hZpAD9MmVlrPxCUoi/trN6WDc4TFDHwnFOKz4itfc1C+EKpg5dlYIf93RFDHlattRB1xyWCSJpyexGJdhSOyYw==}
+  /stale-dep/0.3.1:
+    resolution: {integrity: sha512-mBoA6pZRWXA5jL1Yg6cd1gVQ7OPsZD7wkgSZUxjBxohepLolq8s/w0PKEmI35TIk2ggXKhW3JR35JQyS9J8B+g==}
     engines: {node: '>=14.19.0'}
     hasBin: true
     dependencies:
@@ -11383,7 +11437,7 @@ packages:
       magic-string: 0.27.0
       mkdirp: 1.0.4
       mkdist: 1.0.0_typescript@4.9.4
-      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
+      mlly: 1.1.0
       mri: 1.2.0
       pathe: 1.0.0
       pkg-types: 1.0.1
@@ -11492,7 +11546,7 @@ packages:
       fast-glob: 3.2.12
       local-pkg: 0.4.2
       magic-string: 0.27.0
-      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
+      mlly: 1.1.0
       pathe: 1.0.0
       pkg-types: 1.0.1
       scule: 1.0.0
@@ -11698,6 +11752,17 @@ packages:
       - vue
     dev: true
 
+  /unplugin-vue-inspector/0.0.2:
+    resolution: {integrity: sha512-nfeiIH2OtWW2OIjLYxniGetpQcXU5MWzDZnVEZVfJJYHdI69gBvP7zdzEWQqS39/4r6AX8XDm+KnDabwNsXztQ==}
+    dependencies:
+      kolorist: 1.6.0
+      unplugin: 1.0.1
+      vite-plugin-vue-inspector: 3.1.2
+    transitivePeerDependencies:
+      - supports-color
+      - vite
+    dev: true
+
   /unplugin-vue-macros/1.3.2_@vueuse+core@9.10.0:
     resolution: {integrity: sha512-TcAVr81LiRlaeNtzu8tOZhEKHIpdbETFolP+l0eY7HlxQj0ee6feO//+NMLoKsypfJ/HmRuYIBClr1Ji3fAZ3A==}
     engines: {node: '>=14.19.0'}
@@ -11873,7 +11938,7 @@ packages:
     hasBin: true
     dependencies:
       debug: 4.3.4
-      mlly: 1.0.0_afe7v34zn4lohdq7767l3tlrje
+      mlly: 1.1.0
       pathe: 0.2.0
       source-map: 0.6.1
       source-map-support: 0.5.21
@@ -12005,12 +12070,10 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa/0.14.1_tz3vz2xt4jvid2diblkpydcyn4:
+  /vite-plugin-pwa/0.14.1:
     resolution: {integrity: sha512-5zx7yhQ8RTLwV71+GA9YsQQ63ALKG8XXIMqRJDdZkR8ZYftFcRgnzM7wOWmQZ/DATspyhPih5wCdcZnAIsM+mA==}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
-      workbox-build: ^6.5.4
-      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 5.0.2_rollup@3.9.1
       debug: 4.3.4
@@ -12019,6 +12082,25 @@ packages:
       rollup: 3.9.1
       workbox-build: 6.5.4
       workbox-window: 6.5.4
+    transitivePeerDependencies:
+      - '@types/babel__core'
+      - supports-color
+    dev: true
+
+  /vite-plugin-vue-inspector/3.1.2:
+    resolution: {integrity: sha512-DLvwyyCScgCufOU7K7UMk8UMREKGVpJbF6A6VDCavQzNcpbG9xovSstwiAr4ykMskWTzZ5GhVwHtIaNeQx3MzA==}
+    peerDependencies:
+      vite: ^3.0.0-0 || ^4.0.0-0
+    dependencies:
+      '@babel/core': 7.20.12
+      '@babel/plugin-syntax-import-meta': 7.10.4_@babel+core@7.20.12
+      '@babel/plugin-transform-typescript': 7.20.7_@babel+core@7.20.12
+      '@vue/babel-plugin-jsx': 1.1.1_@babel+core@7.20.12
+      '@vue/compiler-dom': 3.2.45
+      esno: 0.16.3
+      kolorist: 1.6.0
+      magic-string: 0.27.0
+      shell-quote: 1.7.4
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -12088,6 +12170,27 @@ packages:
       rollup: 2.79.1
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /vitest-environment-nuxt/0.4.0_vitest@0.27.0:
+    resolution: {integrity: sha512-uRg/jvgHjzUGhkWTWtFEUlImfA3VScZG2EGlRvQk9ODspUw0a9hTz9Yz9tXQTsChoE2n7yi44TJdCVmK7iHxUA==}
+    peerDependencies:
+      vitest: ^0.24.5 || ^0.26.0 || ^0.27.0
+      vue: ^3.2.45
+    dependencies:
+      '@nuxt/kit': 3.0.0
+      '@vue/test-utils': 2.2.7
+      estree-walker: 3.0.2
+      h3: 1.0.2
+      happy-dom: 8.1.4
+      magic-string: 0.27.0
+      ofetch: 1.0.0
+      unenv: 1.0.1
+      vitest: 0.27.0_jsdom@21.0.0
+    transitivePeerDependencies:
+      - encoding
+      - rollup
+      - supports-color
     dev: true
 
   /vitest/0.27.0_jsdom@21.0.0:
@@ -12270,7 +12373,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.14
+      '@intlify/shared': 9.3.0-beta.16
       '@intlify/vue-i18n-bridge': 0.8.0_qjugkpmxfnp3l7d6jb7y3o5rvi
       '@intlify/vue-router-bridge': 0.8.0
       ufo: 1.0.1
@@ -12784,16 +12887,16 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
 
-  github.com/tauri-apps/tauri-plugin-log/c19b5d1d58275329882dd931ea66960e00febdb2:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/c19b5d1d58275329882dd931ea66960e00febdb2}
+  github.com/tauri-apps/tauri-plugin-log/9d2a19ad05fafeb80991006e14f0f95fe1109aba:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/9d2a19ad05fafeb80991006e14f0f95fe1109aba}
     name: tauri-plugin-log-api
     version: 0.0.0
     dependencies:
       '@tauri-apps/api': 1.2.0
     dev: false
 
-  github.com/tauri-apps/tauri-plugin-store/2404bc57014d323361ac6bc4505fb9e3db2d0aab:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/2404bc57014d323361ac6bc4505fb9e3db2d0aab}
+  github.com/tauri-apps/tauri-plugin-store/c71665bf5dcf48ae70a88d622eb38b2548b60a5d:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/c71665bf5dcf48ae70a88d622eb38b2548b60a5d}
     name: tauri-plugin-store-api
     version: 0.0.0
     dependencies:

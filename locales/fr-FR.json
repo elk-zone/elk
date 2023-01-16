@@ -11,9 +11,9 @@
     "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur·ice.",
     "blocked_domains": "Domaines bloqués",
     "blocked_users": "Utilisateur·ice·s bloqué·e·s",
-    "blocking": "Blocked",
+    "blocking": "Bloqué·e",
     "bot": "Automatisé",
-    "favourites": "Appréciés",
+    "favourites": "Aimés",
     "follow": "Suivre",
     "follow_back": "Suivre en retour",
     "follow_requested": "Abonnement demandé",
@@ -27,15 +27,15 @@
     "moved_title": "a indiqué que son nouveau compte est désormais :",
     "muted_users": "Utilisateur·ice·s masqué·e·s",
     "muting": "Masqué·e",
-    "mutuals": "@:account.following",
+    "mutuals": "Abonné·e·s",
     "pinned": "Épinglés",
     "posts": "Messages",
     "posts_count": "{0} Messages",
     "profile_description": "En-tête du profil de {0}",
     "profile_unavailable": "Profil non accessible",
-    "unblock": "Unblock",
+    "unblock": "Débloquer",
     "unfollow": "Ne plus suivre",
-    "unmute": "Unmute"
+    "unmute": "Réafficher"
   },
   "action": {
     "apply": "Appliquer",
@@ -47,10 +47,10 @@
     "close": "Fermer",
     "compose": "Composer",
     "confirm": "Confirmer",
-    "edit": "Editer",
+    "edit": "Éditer",
     "enter_app": "Entrer dans l'application",
-    "favourite": "Ajouter aux messages appréciés",
-    "favourited": "Ajouté aux messages appréciés",
+    "favourite": "J'aime",
+    "favourited": "Aimé",
     "more": "Plus",
     "next": "Suivant",
     "prev": "Précédent",
@@ -103,7 +103,7 @@
   },
   "error": {
     "account_not_found": "Compte {0} non trouvé",
-    "explore-list-empty": "Pas de tendence en ce moment. Revenez plus tard!",
+    "explore-list-empty": "Pas de tendance en ce moment. Revenez plus tard!",
     "file_size_cannot_exceed_n_mb": "La taille du fichier dépasse les {0}MB",
     "sign_in_error": "Impossible de se connecter au serveur.",
     "status_not_found": "Message non trouvé",
@@ -116,8 +116,8 @@
     "desc_para3": "Pour supporter son développement, vous pouvez parrainer les membres de l'équipe avec les liens ci-dessous. Nous espérons que vous apprécierez Elk!",
     "desc_para4": "Avant cela, si vous voulez aider à tester, donner des retours ou contribuer",
     "desc_para5": "contactez nous sur GitHub",
-    "desc_para6": "et rejoingez l'aventure.",
-    "title": "Elk est mode Aperçu !"
+    "desc_para6": "et rejoignez l'aventure.",
+    "title": "Elk est en mode Aperçu !"
   },
   "language": {
     "search": "Recherche"
@@ -142,7 +142,7 @@
     "open_in_original_site": "Ouvrir sur le site d'origine",
     "pin_on_profile": "Épingler sur le profil",
     "share_post": "Partager ce message",
-    "show_favourited_and_boosted_by": "Montrer qui a apprécié et partagé",
+    "show_favourited_and_boosted_by": "Montrer qui a aimé et partagé",
     "show_reblogs": "Voir les partages de {0}",
     "show_untranslated": "Montrer le message non-traduit",
     "toggle_theme": {
@@ -161,10 +161,10 @@
     "blocked_domains": "Domaines bloqués",
     "blocked_users": "Utilisateur·ice·s bloqué·e·s",
     "bookmarks": "Marque-pages",
-    "built_at": "Dernier build {0}",
+    "built_at": "Dernière compilation {0}",
     "conversations": "Conversations",
     "explore": "Explorer",
-    "favourites": "Appréciés",
+    "favourites": "Favoris",
     "federated": "Fédérés",
     "home": "Accueil",
     "local": "Local",
@@ -174,14 +174,14 @@
     "search": "Rechercher",
     "select_feature_flags": "Activer/Désactiver Feature Flags",
     "select_font_size": "Taille de la police",
-    "select_language": "Selectionner langue",
+    "select_language": "Sélectionner langue",
     "settings": "Paramètres",
     "show_intro": "Ré-afficher l'introduction",
     "toggle_theme": "Changer de thème",
     "zen_mode": "Mode Zen"
   },
   "notification": {
-    "favourited_post": "aprécie votre message",
+    "favourited_post": "a aimé votre message",
     "followed_you": "vous suit",
     "followed_you_count": "{0} personnes vous suivent|{0} personne vous suit|{0} personnes vous suivent",
     "missing_type": "MISSING notification.type:",
@@ -232,17 +232,17 @@
   "settings": {
     "about": {
       "label": "À propos",
-      "meet_the_team": "Rencontrez l'équipe"
+      "meet_the_team": "Rencontrez l'équipe",
+      "sponsor_action": "Soutenez-nous",
+      "sponsor_action_desc": "Pour financer l'équipe développant Elk",
+      "sponsors": "Donateur·ice·s",
+      "sponsors_body_1": "Elk existe grâce au généreux soutien de :",
+      "sponsors_body_2": "Et toutes les personnes et sociétés soutenant l'équipe Elk et ses membres.",
+      "sponsors_body_3": "Si vous appréciez l'application, envisagez de nous soutenir :"
     },
     "account_settings": {
       "description": "Modifiez les paramètres de votre compte dans l'interface de Mastodon",
       "label": "Paramètres de compte"
-    },
-    "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "title": "Fonctionnalités expérimentales",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Défilement virtuel"
     },
     "interface": {
       "color_mode": "Couleur de thème",
@@ -257,7 +257,8 @@
         "sm": "Petite",
         "xl": "Très grande",
         "xs": "Très petite"
-      }
+      },
+      "system_mode": "Système"
     },
     "language": {
       "display_language": "Langue d'affichage",
@@ -266,18 +267,15 @@
     "notifications": {
       "label": "Notifications",
       "notifications": {
-        "label": "Paramètres des notifications",
-        "notifications": {
-          "label": "sqds"
-        }
+        "label": "Paramètres des notifications"
       },
       "push_notifications": {
         "alerts": {
-          "favourite": "Apprécier",
+          "favourite": "Messages aimés",
           "follow": "Nouveaux abonné·e·s",
           "mention": "Mentions",
           "poll": "Sondages",
-          "reblog": "A republié votre message",
+          "reblog": "Messages partagés",
           "title": "Quelles notifications recevoir ?"
         },
         "description": "Recevez des notifications même lorsque vous n'utilisez pas Elk.",
@@ -316,17 +314,24 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
-      "label": "Préférences"
+      "github_cards": "GitHub Cards",
+      "hide_boost_count": "Cacher les compteurs de partages",
+      "hide_favorite_count": "Cacher les compteurs de favoris",
+      "hide_follower_count": "Cacher les compteurs d'abonné·e·s",
+      "label": "Préférences",
+      "title": "Fonctionnalités expérimentales",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Défilement virtuel"
     },
     "profile": {
       "appearance": {
         "bio": "Bio",
-        "description": "Editer l'avatar, nom d'utilisateur·ice, profil, etc.",
+        "description": "Éditer l'avatar, nom d'utilisateur·ice, profil, etc.",
         "display_name": "Nom d'affichage",
         "label": "Apparence",
         "profile_metadata": "Métadonnées de profil",
         "profile_metadata_desc": "Vous pouvez avoir jusqu'à 4 éléments affichés sous forme de tableau sur votre profil",
-        "title": "Editer le profil"
+        "title": "Éditer le profil"
       },
       "featured_tags": {
         "description": "Les gens peuvent parcourir vos messages publics sous ces hashtags.",
@@ -339,14 +344,6 @@
       "export": "Exporter les tokens d'utilisateur·ice",
       "import": "Importer des tokens d'utilisateur·ice",
       "label": "Utilisateur·ice·s connecté·e·s"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "Cacher les compteurs de partages",
-        "hide_favorite_count": "Cacher les compteurs d'appréciations",
-        "hide_follower_count": "Cacher les compteurs d'abonné·e·s"
-      },
-      "label": "Bien-être"
     }
   },
   "state": {
@@ -362,7 +359,7 @@
   "status": {
     "boosted_by": "Partagé par",
     "edited": "Edité {0}",
-    "favourited_by": "Apprécié par",
+    "favourited_by": "Aimé par",
     "filter_hidden_phrase": "Filtré par",
     "filter_removed_phrase": "Caché par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
@@ -458,7 +455,7 @@
   "user": {
     "add_existing": "Ajouter un compte existant",
     "server_address_label": "Adresse du serveur mastodon",
-    "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, dire que vous appréciez, partager et répondre à des messages, ou interagir à partir de votre compte sur un autre serveur...",
+    "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, aimer, partagez et répondre à des messages, ou interagir à partir de votre compte d'autre serveur.",
     "sign_in_notice_title": "Affichage de {0} données publiques",
     "sign_out_account": "Se déconnecter de {0}",
     "tip_no_account": "Si vous n'avez pas encore de compte Mastodon, {0}.",
@@ -466,7 +463,7 @@
   },
   "visibility": {
     "direct": "Personnes mentionnées uniquement",
-    "direct_desc": "Visibles uniquemnt par les comptes mentionnés",
+    "direct_desc": "Visibles uniquement par les comptes mentionnés",
     "private": "Abonnés uniquement",
     "private_desc": "Visible uniquement par vos abonnés",
     "public": "Public",

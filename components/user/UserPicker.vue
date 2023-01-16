@@ -2,14 +2,13 @@
 import type { UserLogin } from '~/types'
 
 const all = useUsers()
-
 const router = useRouter()
-const masto = useMasto()
-const switchUser = (user: UserLogin) => {
+
+const clickUser = (user: UserLogin) => {
   if (user.account.id === currentUser.value?.account.id)
     router.push(getAccountRoute(user.account))
   else
-    masto.loginTo(user)
+    switchUser(user)
 }
 </script>
 
@@ -24,7 +23,7 @@ const switchUser = (user: UserLogin) => {
             aria-label="Switch user"
             :class="user.account.id === currentUser?.account.id ? '' : 'op25 grayscale'"
             hover="filter-none op100"
-            @click="switchUser(user)"
+            @click="clickUser(user)"
           >
             <AccountAvatar w-13 h-13 :account="user.account" square />
           </button>

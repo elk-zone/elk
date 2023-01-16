@@ -2,6 +2,8 @@
 const buildInfo = useRuntimeConfig().public.buildInfo
 const timeAgoOptions = useTimeAgoOptions()
 
+const userSettings = useUserSettings()
+
 const buildTimeDate = new Date(buildInfo.time)
 const buildTimeAgo = useTimeAgo(buildTimeDate, timeAgoOptions)
 
@@ -45,8 +47,15 @@ function toggleDark() {
         {{ $t('nav.built_at', [$d(buildTimeDate, 'shortDate')]) }}
       </span>
       &middot;
-      <!-- TODO click version to show changelog -->
-      <span v-if="buildInfo.env === 'release'">v{{ buildInfo.version }}</span>
+      <NuxtLink
+        v-if="buildInfo.env === 'release'"
+        external
+        :href="`https://github.com/elk-zone/elk/releases/tag/v${buildInfo.version}`"
+        target="_blank"
+        font-mono
+      >
+        v{{ buildInfo.version }}
+      </NuxtLink>
       <span v-else>{{ buildInfo.env }}</span>
       <template v-if="buildInfo.commit && buildInfo.branch !== 'release'">
         &middot;

@@ -65,6 +65,7 @@ const characterCount = $computed(() => {
   let length = htmlToText(editor.value?.getHTML() || '').length
 
   if (draft.mentions)
+    // + 1 is needed as mentions always need a space seperator at the end
     length += draft.mentions.map(mention => {
       const [handle] = mention.split('@')
       return '@' + handle

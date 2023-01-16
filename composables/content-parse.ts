@@ -460,7 +460,7 @@ function transformMentionLink(node: Node): string | Node | (string | Node)[] | n
       if (matchUser) {
         const [, server, username] = matchUser
         const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
-        // convert to TipTap mention node
+        // convert to Tiptap mention node
         return h('span', { 'data-type': 'mention', 'data-id': handle }, handle)
       }
     }

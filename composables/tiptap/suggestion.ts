@@ -16,7 +16,7 @@ export { Emoji }
 export type CustomEmoji = (mastodon.v1.CustomEmoji & { custom: true })
 export const isCustomEmoji = (emoji: CustomEmoji | Emoji): emoji is CustomEmoji => !!(emoji as CustomEmoji).custom
 
-export const MentionSuggestion: Partial<SuggestionOptions> = {
+export const TiptapMentionSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('mention'),
   char: '@',
   async items({ query }) {
@@ -29,7 +29,7 @@ export const MentionSuggestion: Partial<SuggestionOptions> = {
   render: createSuggestionRenderer(TiptapMentionList),
 }
 
-export const HashtagSuggestion: Partial<SuggestionOptions> = {
+export const TiptapHashtagSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('hashtag'),
   char: '#',
   async items({ query }) {
@@ -48,7 +48,7 @@ export const HashtagSuggestion: Partial<SuggestionOptions> = {
   render: createSuggestionRenderer(TiptapHashtagList),
 }
 
-export const EmojiSuggestion: Partial<SuggestionOptions> = {
+export const TiptapEmojiSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('emoji'),
   char: ':',
   async items({ query }): Promise<(CustomEmoji | Emoji)[]> {

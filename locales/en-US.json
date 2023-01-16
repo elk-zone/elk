@@ -89,11 +89,6 @@
     "toggle_zen_mode": "Toggle zen mode"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "No",
-      "confirm": "Yes",
-      "title": "Are you sure {0}?"
-    },
     "end_of_list": "End of the list",
     "error": "ERROR",
     "in": "in",
@@ -103,6 +98,42 @@
   "compose": {
     "draft_title": "Draft {0}",
     "drafts": "Drafts ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "Cancel",
+      "confirm": "Block",
+      "title": "Are you sure you want to block {0}？"
+    },
+    "block_domain": {
+      "cancel": "Cancel",
+      "confirm": "Block",
+      "title": "Are you sure you want to block {0}？"
+    },
+    "common": {
+      "cancel": "No",
+      "confirm": "Yes"
+    },
+    "delete_posts": {
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "title": "Are you sure you want to delete this post?"
+    },
+    "mute_account": {
+      "cancel": "Cancel",
+      "confirm": "Mute",
+      "title": "Are you sure you want to mute {0}？"
+    },
+    "show_reblogs": {
+      "cancel": "Cancel",
+      "confirm": "Show",
+      "title": "Are you sure you want to show boosts from {0}？"
+    },
+    "unfollow": {
+      "cancel": "Cancel",
+      "confirm": "Unfollow",
+      "title": "Are you sure you want to unfollow?"
+    }
   },
   "conversation": {
     "with": "with"
@@ -134,11 +165,6 @@
     "copy_link_to_post": "Copy link to this post",
     "delete": "Delete",
     "delete_and_redraft": "Delete & re-draft",
-    "delete_confirm": {
-      "cancel": "Cancel",
-      "confirm": "Delete",
-      "title": "Are you sure you want to delete this post?"
-    },
     "direct_message_account": "Direct message {0}",
     "edit": "Edit",
     "hide_reblogs": "Hide boosts from {0}",

@@ -12,7 +12,7 @@ function updateTheme(theme: ThemeColors) {
 </script>
 
 <template>
-  <div flex="~ gap4" p2>
+  <div flex="~ gap4 wrap" p2>
     <button
       v-for="[key, theme] in themes" :key="key"
       :style="{

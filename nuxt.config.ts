@@ -95,7 +95,7 @@ export default defineNuxtConfig({
       // We use LibreTranslate(https://github.com/LibreTranslate/LibreTranslate) as our default translation server #76
       translateApi: '',
       // Use the instance where Elk has its Mastodon account as the default
-      defaultServer: 'webtoo.ls',
+      defaultServer: 'm.webtoo.ls',
     },
     storage: {
       driver: isCI ? 'cloudflare' : 'fs',

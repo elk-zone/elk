@@ -8,10 +8,12 @@ import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 export interface ContentParseOptions {
   emojis?: Record<string, mastodon.v1.CustomEmoji>
+  mentions?: mastodon.v1.StatusMention[]
   markdown?: boolean
   replaceUnicodeEmoji?: boolean
   astTransforms?: Transform[]
   convertMentionLink?: boolean
+  collapseMentionLink?: boolean
 }
 
 const sanitizerBasicClasses = filterClasses(/^(h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible)$/u)
@@ -33,6 +35,12 @@ const sanitizer = sanitize({
   code: {
     class: filterClasses(/^language-\w+$/),
   },
+  // other elements supported in glitch
+  h1: {},
+  ol: {},
+  ul: {},
+  li: {},
+  em: {},
 })
 
 /**
@@ -47,6 +55,8 @@ export function parseMastodonHTML(
     markdown = true,
     replaceUnicodeEmoji = true,
     convertMentionLink = false,
+    collapseMentionLink = false,
+    mentions,
   } = options
 
   if (markdown) {
@@ -54,8 +64,14 @@ export function parseMastodonHTML(
     html = html
       .replace(/>(```|~~~)(\w*)([\s\S]+?)\1/g, (_1, _2, lang: string, raw: string) => {
         const code = htmlToText(raw)
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/`/, '&#96;')
         const classes = lang ? ` class="language-${lang}"` : ''
         return `><pre><code${classes}>${code}</code></pre>`
+      })
+      .replace(/`([^`\n]*)`/g, (_1, raw) => {
+        return raw ? `<code>${htmlToText(raw).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>` : ''
       })
   }
 
@@ -71,12 +87,18 @@ export function parseMastodonHTML(
   if (markdown)
     transforms.push(transformMarkdown)
 
+  if (mentions?.length)
+    transforms.push(createTransformNamedMentions(mentions))
+
   if (convertMentionLink)
     transforms.push(transformMentionLink)
 
   transforms.push(replaceCustomEmoji(options.emojis || {}))
 
   transforms.push(transformParagraphs)
+
+  if (collapseMentionLink)
+    transforms.push(transformCollapseMentions())
 
   return transformSync(parse(html), transforms)
 }
@@ -95,8 +117,14 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
 }
 
 export function htmlToText(html: string) {
-  const tree = parse(html)
-  return (tree.children as Node[]).map(n => treeToText(n)).join('').trim()
+  try {
+    const tree = parse(html)
+    return (tree.children as Node[]).map(n => treeToText(n)).join('').trim()
+  }
+  catch (err) {
+    console.error(err)
+    return ''
+  }
 }
 
 export function treeToText(input: Node): string {
@@ -157,16 +185,16 @@ export function treeToText(input: Node): string {
 // Strings get converted to text nodes.
 // The input node's children have been transformed before the node itself
 // gets transformed.
-type Transform = (node: Node) => (Node | string)[] | Node | string | null
+type Transform = (node: Node, root: Node) => (Node | string)[] | Node | string | null
 
 // Helpers for transforming (filtering, modifying, ...) a parsed HTML tree
 // by running the given chain of transform functions one-by-one.
 function transformSync(doc: Node, transforms: Transform[]) {
-  function visit(node: Node, transform: Transform, isRoot = false) {
+  function visit(node: Node, transform: Transform, root: Node) {
     if (Array.isArray(node.children)) {
       const children = [] as (Node | string)[]
       for (let i = 0; i < node.children.length; i++) {
-        const result = visit(node.children[i], transform)
+        const result = visit(node.children[i], transform, root)
         if (Array.isArray(result))
           children.push(...result)
 
@@ -181,11 +209,11 @@ function transformSync(doc: Node, transforms: Transform[]) {
         return value
       })
     }
-    return isRoot ? node : transform(node)
+    return transform(node, root)
   }
 
   for (const transform of transforms)
-    doc = visit(doc, transform, true) as Node
+    doc = visit(doc, transform, doc) as Node
 
   return doc
 }
@@ -382,6 +410,48 @@ function transformParagraphs(node: Node): Node | Node[] {
   return node
 }
 
+function transformCollapseMentions() {
+  let processed = false
+  function isMention(node: Node) {
+    const child = node.children?.length === 1 ? node.children[0] : null
+    return Boolean(child?.name === 'a' && child.attributes.class?.includes('mention'))
+  }
+
+  return (node: Node, root: Node): Node | Node[] => {
+    if (processed || node.parent !== root)
+      return node
+    const metions: (Node | undefined)[] = []
+    const children = node.children as Node[]
+    for (const child of children) {
+      // metion
+      if (isMention(child)) {
+        metions.push(child)
+      }
+      // spaces in between
+      else if (child.type === TEXT_NODE && !child.value.trim()) {
+        metions.push(child)
+      }
+      // other content, stop collapsing
+      else {
+        if (child.type === TEXT_NODE)
+          child.value = child.value.trimStart()
+        // remove <br> after mention
+        if (child.name === 'br')
+          metions.push(undefined)
+        break
+      }
+    }
+    processed = true
+    if (metions.length === 0)
+      return node
+
+    return {
+      ...node,
+      children: [h('mention-group', null, ...metions.filter(Boolean)), ...children.slice(metions.length)],
+    }
+  }
+}
+
 function transformMentionLink(node: Node): string | Node | (string | Node)[] | null {
   if (node.name === 'a' && node.attributes.class?.includes('mention')) {
     const href = node.attributes.href
@@ -396,4 +466,19 @@ function transformMentionLink(node: Node): string | Node | (string | Node)[] | n
     }
   }
   return node
+}
+
+function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[]) {
+  return (node: Node): string | Node | (string | Node)[] | null => {
+    if (node.name === 'a' && node.attributes.class?.includes('mention')) {
+      const href = node.attributes.href
+      const mention = href && mentions.find(m => m.url === href)
+      if (mention) {
+        node.attributes.href = `/${currentServer.value}/@${mention.acct}`
+        node.children = [h('span', { 'data-type': 'mention', 'data-id': mention.acct }, `@${mention.username}`)]
+        return node
+      }
+    }
+    return node
+  }
 }

@@ -8,7 +8,7 @@ const { t } = useI18n()
 
 const account = await fetchAccountByHandle(handle)
 
-const paginator = useMasto().v1.accounts.listStatuses(account.id, { limit: 30, excludeReplies: true })
+const paginator = useMastoClient().v1.accounts.listStatuses(account.id, { limit: 30, excludeReplies: true })
 
 if (account) {
   useHeadFixed({

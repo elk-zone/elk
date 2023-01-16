@@ -66,7 +66,8 @@ const activate = () => {
         bg-transparent
         outline="focus:none"
         pe-4
-        :placeholder="t('nav.search')"
+        select-none
+        :placeholder="isHydrated ? t('nav.search') : ''"
         pb="1px"
         placeholder-text-secondary
         @keydown.down.prevent="shift(1)"

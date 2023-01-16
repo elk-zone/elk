@@ -46,7 +46,9 @@ defineExpose({
   <div v-if="isPending || items.length" relative bg-base text-base shadow border="~ base rounded" text-sm py-2 overflow-x-hidden overflow-y-auto max-h-100>
     <template v-if="isPending">
       <div flex gap-1 items-center p2 animate-pulse>
-        <div i-ri:loader-2-line animate-spin />
+        <div animate-spin preserve-3d>
+          <div i-ri:loader-2-line />
+        </div>
         <span>Fetching...</span>
       </div>
     </template>

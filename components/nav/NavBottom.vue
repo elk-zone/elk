@@ -10,7 +10,7 @@ const moreMenuVisible = ref(false)
     class="after-content-empty after:(h-[calc(100%+0.5px)] w-0.1px pointer-events-none)"
   >
     <!-- These weird styles above are used for scroll locking, don't change it unless you know exactly what you're doing. -->
-    <template v-if="isMastoInitialised && currentUser">
+    <template v-if="currentUser">
       <NuxtLink to="/home" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:home-5-line />
       </NuxtLink>
@@ -24,7 +24,7 @@ const moreMenuVisible = ref(false)
         <div i-ri:at-line />
       </NuxtLink>
     </template>
-    <template v-if="isMastoInitialised && !currentUser">
+    <template v-else>
       <NuxtLink :to="`/${currentServer}/explore`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:hashtag />
       </NuxtLink>

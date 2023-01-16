@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// @ts-expect-error missing types
+import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import type { Paginator, WsEvents, mastodon } from 'masto'
 import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
@@ -6,6 +8,8 @@ const { paginator, stream } = defineProps<{
   paginator: Paginator<mastodon.v1.Notification[], mastodon.v1.ListNotificationsParams>
   stream?: Promise<WsEvents>
 }>()
+
+const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 
 const groupCapacity = Number.MAX_VALUE // No limit
 
@@ -135,14 +139,41 @@ const { formatNumber } = useHumanReadableNumber()
 </script>
 
 <template>
-  <CommonPaginator :paginator="paginator" :preprocess="preprocess" :stream="stream" :eager="3" event-type="notification">
+  <CommonPaginator
+    :paginator="paginator"
+    :preprocess="preprocess"
+    :stream="stream"
+    :eager="3"
+    :virtual-scroller="virtualScroller"
+    event-type="notification"
+  >
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
-    <template #items="{ items }">
-      <template v-for="item of items" :key="item.id">
+    <template #default="{ item, active }">
+      <template v-if="virtualScroller">
+        <DynamicScrollerItem :item="item" :active="active" tag="div">
+          <NotificationGroupedFollow
+            v-if="item.type === 'grouped-follow'"
+            :items="item"
+            border="b base"
+          />
+          <NotificationGroupedLikes
+            v-else-if="item.type === 'grouped-reblogs-and-favourites'"
+            :group="item"
+            border="b base"
+          />
+          <NotificationCard
+            v-else
+            :notification="item"
+            hover:bg-active
+            border="b base"
+          />
+        </DynamicScrollerItem>
+      </template>
+      <template v-else>
         <NotificationGroupedFollow
           v-if="item.type === 'grouped-follow'"
           :items="item"

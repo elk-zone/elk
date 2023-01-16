@@ -118,12 +118,11 @@
     "desc_para2": "نحن نعمل بجد على التطوير وتحسينه بمرور الوقت. وسندعوك قريبًا للانضمام إلى القوة بمجرد أن نجعلها مفتوحة المصدر قريبًا!",
     "desc_para3": "قبل ذلك ، للمساعدة في تعزيز التنمية ، يمكنك رعاية أعضاء فريقنا من خلال الروابط أدناه.",
     "desc_para4": "قبل ذلك ، إذا كنت ترغب في المساعدة في الاختبار أو تقديم التعليقات أو المساهمة ،",
-    "desc_para5": "تواصل معنا على Mastodon",
+    "desc_para5": "تواصل معنا على GitHub",
     "desc_para6": "و شارك معنا",
     "title": "Elk في عرض مسبق"
   },
   "language": {
-    "none": "لا شيء",
     "search": "بحث"
   },
   "menu": {
@@ -241,12 +240,6 @@
       "description": "قم بتحرير إعدادات حسابك في موقع Mastodon الأصلي",
       "label": "إعدادت الحساب"
     },
-    "feature_flags": {
-      "github_cards": "GitHub بطاقات",
-      "title": "الميزات التجريبية",
-      "user_picker": "الشريط الجانبي لمبدل المستخدم",
-      "virtual_scroll": "التمرير الافتراضي"
-    },
     "interface": {
       "color_mode": "وضع اللون",
       "dark_mode": "الوضع الداكن",
@@ -316,7 +309,14 @@
     },
     "notifications_settings": "التنبيهات",
     "preferences": {
-      "label": "التفضيلات"
+      "github_cards": "GitHub بطاقات",
+      "hide_boost_count": "إخفاء عدد المشاركات",
+      "hide_favorite_count": "إخفاء عدد المفضلة",
+      "hide_follower_count": "إخفاء عدد المتابعين",
+      "label": "التفضيلات",
+      "title": "الميزات التجريبية",
+      "user_picker": "الشريط الجانبي لمبدل المستخدم",
+      "virtual_scroll": "التمرير الافتراضي"
     },
     "profile": {
       "appearance": {
@@ -339,14 +339,6 @@
       "export": "Export User Tokens",
       "import": "Import User Tokens",
       "label": "المستخدمون المسجلون"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "إخفاء عدد المشاركات",
-        "hide_favorite_count": "إخفاء عدد المفضلة",
-        "hide_follower_count": "إخفاء عدد المتابعين"
-      },
-      "label": "صحة النفس"
     }
   },
   "state": {

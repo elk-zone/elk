@@ -5,7 +5,6 @@ import {
   toNodeListener,
 } from 'h3'
 import { createFetch } from 'ofetch'
-import { parseURL } from 'ufo'
 import {
   createCall,
   createFetch as createLocalFetch,
@@ -26,13 +25,10 @@ const handlers = [
   },
 ]
 
-const { protocol, host } = parseURL(window.location.href)
-
 // @ts-expect-error undeclared global window property
 window.__NUXT__.config = {
   // @ts-expect-error undeclared global window property
   ...window.__NUXT__.config,
-  deployUrl: `${protocol}//${host}`,
   storage: {},
 }
 

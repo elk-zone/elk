@@ -1,6 +1,6 @@
 <script setup>
-const disabled = computed(() => !isMastoInitialised.value || !currentUser.value)
-const disabledVisual = computed(() => isMastoInitialised.value && !currentUser.value)
+const disabled = computed(() => !isHydrated.value || !currentUser.value)
+const disabledVisual = computed(() => isHydrated.value && !currentUser.value)
 </script>
 
 <template>

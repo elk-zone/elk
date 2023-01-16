@@ -4,7 +4,7 @@ import type { ThemeColors } from '~/composables/settings'
 const themes = await import('~/constants/themes.json').then(r => r.default) as [string, ThemeColors][]
 const settings = $(useUserSettings())
 
-const currentTheme = $computed(() => settings.themeColors?.['--c-primary'] || themes[0][0])
+const currentTheme = $computed(() => settings.themeColors?.['--theme-color-name'] || themes[0][0])
 
 function updateTheme(theme: ThemeColors) {
   settings.themeColors = theme

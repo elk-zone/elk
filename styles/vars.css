@@ -2,8 +2,10 @@
   --c-border: #eee;
   --c-border-dark: #dccfcf;
 
-  --c-bg-base: #fafafa;
-  --c-bg-base-rgb: 250, 250, 250;
+  --rgb-bg-base: 250, 250, 250;
+
+  --c-bg-base: rgb(var(--rgb-bg-base));
+
   --c-bg-active: #f2f2f2;
   --c-bg-card: #00000006;
   --c-bg-code: #00000006;
@@ -33,8 +35,8 @@
   --c-border: #222;
   --c-border-dark: #545251;
 
-  --c-bg-base: #111;
-  --c-bg-base-rgb: 17, 17, 17;
+  --rgb-bg-base: 17, 17, 17;
+
   --c-bg-active: #191919;
   --c-bg-card: #ffffff06;
   --c-bg-code: #ffffff06;

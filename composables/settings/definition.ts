@@ -22,6 +22,8 @@ export interface UserSettings {
 }
 
 export interface ThemeColors {
+  '--theme-color-name': string
+
   '--c-primary': string
   '--c-primary-active': string
   '--c-primary-light': string
@@ -30,6 +32,9 @@ export interface ThemeColors {
   '--c-dark-primary-active': string
   '--c-dark-primary-light': string
   '--c-dark-primary-fade': string
+
+  '--rgb-primary': string
+  '--rgb-dark-primary': string
 }
 
 export function getDefaultLanguage(languages: string[]) {

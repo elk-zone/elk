@@ -61,7 +61,7 @@ exports[`html-parse > custom emoji > html 1`] = `
 "
 `;
 
-exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe"`;
+exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe :nuxt:"`;
 
 exports[`html-parse > emojis > html 1`] = `
 "<img

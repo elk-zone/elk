@@ -1,6 +1,6 @@
 import { createResolver } from '@nuxt/kit'
 import Inspect from 'vite-plugin-inspect'
-import { isCI, isDevelopment } from 'std-env'
+import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
-    'nuxt-security',
+    ...!isDevelopment || !isWindows ? ['nuxt-security'] : [],
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',

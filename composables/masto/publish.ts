@@ -20,8 +20,13 @@ export const usePublish = (options: {
 
   const shouldExpanded = $computed(() => expanded || isExpanded || !isEmpty)
   const isPublishDisabled = $computed(() => {
-    return isEmpty || isUploading || isSending || (draft.attachments.length === 0 && !draft.params.status)
+    return isEmpty || isUploading || isSending || (draft.attachments.length === 0 && !draft.params.status) || failedMessages.length > 0
   })
+
+  watch(() => draft, () => {
+    if (failedMessages.length > 0)
+      failedMessages.length = 0
+  }, { deep: true })
 
   async function publishDraft() {
     let content = htmlToText(draft.params.status || '')

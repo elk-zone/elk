@@ -100,17 +100,25 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
         </div>
         <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
-          <button
+
+          <CommonTooltip
             v-if="!isSelf && relationship?.following"
-            :aria-pressed="isNotifiedOnPost"
-            :aria-label="t('account.notify_on_post', { username: `@${account.username}` })"
-            rounded-full p2 border-1 transition-colors
-            :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
-            @click="toggleNotifications"
+            placement="bottom"
+            :content="$t(relationship?.notifying ? 'account.notifications_on' : 'account.notifications_off')"
           >
-            <span v-if="isNotifiedOnPost" i-ri:bell-fill block text-current />
-            <span v-else i-ri-bell-line block text-current />
-          </button>
+            <button
+              v-if="!isSelf && relationship?.following"
+              :aria-pressed="isNotifiedOnPost"
+              :aria-label="t('account.notify_on_post', { username: `@${account.username}` })"
+              rounded-full p2 border-1 transition-colors
+              :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
+              @click="toggleNotifications"
+            >
+              <span v-if="isNotifiedOnPost" i-ri:bell-fill block text-current />
+              <span v-else i-ri-bell-line block text-current />
+            </button>
+          </CommonTooltip>
+
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->
           <NuxtLink

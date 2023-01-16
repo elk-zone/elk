@@ -133,9 +133,9 @@ defineExpose({
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
         <ContentMentionGroup v-if="draft.mentions?.length && shouldExpanded">
-          <div v-for="m of draft.mentions" :key="m" text-primary>
-            @{{ m }}
-          </div>
+          <button v-for="m, i of draft.mentions" :key="m" text-primary hover:color-red @click="draft.mentions?.splice(i, 1)">
+            {{ acctToShortHandle(m) }}
+          </button>
         </ContentMentionGroup>
 
         <div v-if="draft.params.sensitive">

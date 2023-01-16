@@ -58,12 +58,16 @@ exports[`content-rich > code frame no lang 1`] = `"<p><pre class=\\"code-block\\
 
 exports[`content-rich > custom emoji 1`] = `
 "Daniel Roe
-<img
-  src=\\"https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/original/c96ba3cb0e0e1eac.png\\"
-  alt=\\":nuxt:\\"
-  class=\\"custom-emoji\\"
-  data-emoji-id=\\"nuxt\\"
-/>
+<picture alt=\\":nuxt:\\" class=\\"custom-emoji\\" data-emoji-id=\\"nuxt\\"
+  ><source
+    srcset=\\"
+      https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/static/c96ba3cb0e0e1eac.png
+    \\"
+    media=\\"(prefers-reduced-motion: reduce)\\" />
+  <img
+    src=\\"https://media.mas.to/masto-public/cache/custom_emojis/images/000/288/667/original/c96ba3cb0e0e1eac.png\\"
+    alt=\\":nuxt:\\"
+/></picture>
 "
 `;
 

@@ -104,6 +104,13 @@
     "draft_title": "Draft {0}",
     "drafts": "Drafts ({v})"
   },
+  "confirm": {
+    "unfollow": {
+      "cancel": "Cancel",
+      "confirm": "Unfollow",
+      "title": "Are you sure you want to unfollow?"
+    }
+  },
   "conversation": {
     "with": "with"
   },

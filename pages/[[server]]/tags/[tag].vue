@@ -7,7 +7,7 @@ const params = useRoute().params
 const tagName = $(computedEager(() => params.tag as string))
 
 const { client } = $(useMasto())
-const { data: tag, refresh } = $(await useAsyncData(() => client.v1.tags.fetch(tagName)))
+const { data: tag, refresh } = $(await useAsyncData(() => client.v1.tags.fetch(tagName), { default: () => shallowRef() }))
 
 const paginator = client.v1.timelines.listHashtag(tagName)
 const stream = useStreaming(client => client.v1.stream.streamTagTimeline(tagName))

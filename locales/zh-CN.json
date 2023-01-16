@@ -45,7 +45,8 @@
     "bookmarked": "已收藏",
     "boost": "转发",
     "boosted": "已转发",
-    "clear_upload_failed": "清除上传失败",
+    "clear_publish_failed": "清除发布失败信息",
+    "clear_upload_failed": "清除上传失败信息",
     "close": "关闭",
     "compose": "撰写",
     "confirm": "确认",
@@ -348,6 +349,8 @@
     "edited": "（已编辑）",
     "editing": "编辑中",
     "loading": "加载中...",
+    "publish_failed": "发布失败",
+    "publishing": "发布中...",
     "upload_failed": "上传失败",
     "uploading": "上传中..."
   },
@@ -446,6 +449,7 @@
     "explore_links_intro": "这些新闻故事正被本站和分布式网络上其他站点的用户谈论。",
     "explore_posts_intro": "来自本站和分布式网络上其他站点的这些嘟文正在本站引起关注。",
     "explore_tags_intro": "这些标签正在本站和分布式网络上其他站点的用户中引起关注。",
+    "publish_failed": "关闭编辑器上方的错误信息以重新发布帖文。",
     "toggle_code_block": "切换代码块"
   },
   "user": {

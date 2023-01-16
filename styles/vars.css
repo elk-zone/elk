@@ -4,6 +4,8 @@
   --c-primary-light: #d980181A;
   --c-border: #eee;
   --c-border-dark: #dccfcf;
+  --c-danger: #FF3C1B;
+  --c-danger-active: #B50900;
 
   --c-bg-base: #fafafa;
   --c-bg-base-rgb: 250, 250, 250;
@@ -32,6 +34,8 @@
   --c-primary: #EA9E44;
   --c-primary-active: #C16929;
   --c-primary-light: #EA9E441A;
+  --c-danger: #FF2810;
+  --c-danger-active: #E02F00;
   
   --c-border: #222;
   --c-border-dark: #545251;

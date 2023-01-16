@@ -92,6 +92,7 @@ export default defineNuxtConfig({
       env: '', // set in build-env module
       buildInfo: {} as BuildInfo, // set in build-env module
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
+      // We use LibreTranslate(https://github.com/LibreTranslate/LibreTranslate) as our default translation server #76
       translateApi: '',
       defaultServer: 'mas.to',
     },

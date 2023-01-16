@@ -25,7 +25,7 @@ router.afterEach(() => {
       py2 px-5
       text-2xl
       focus-visible:ring="2 current"
-      to="/home"
+      to="/"
       @click="onClickLogo"
     >
       <img :alt="$t('app_logo')" src="/logo.svg" shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip">

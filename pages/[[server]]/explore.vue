@@ -24,7 +24,7 @@ const tabs = $computed(() => [
 </script>
 
 <template>
-  <MainContent no-overflow-hidden>
+  <MainContent no-overflow-hidden :back-on-small-screen="isExtraLargeScreen">
     <template #title>
       <SearchWidget ref="search" class="m-1" />
     </template>

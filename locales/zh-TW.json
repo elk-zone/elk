@@ -435,7 +435,7 @@
     "unfollow_label": "取消關注 {0} 標籤"
   },
   "time_ago_options": {
-    "day_future": "現在|明天|{n} 天后",
+    "day_future": "現在|明天|{n} 天後",
     "day_past": "現在|昨天|{n} 天前",
     "hour_future": "現在|1 小時後|{n} 小時後",
     "hour_past": "現在|1 小時前|{n} 小時前",

@@ -45,7 +45,7 @@ function getDecorations({
       let from = block.pos + 1
       const language = block.node.attrs.language
 
-      const shiki = useHightlighter(language)
+      const shiki = useHighlighter(language)
 
       if (!shiki)
         return

@@ -5,7 +5,7 @@ const shiki = ref<Highlighter>()
 const registeredLang = ref(new Map<string, boolean>())
 let shikiImport: Promise<void> | undefined
 
-function useHighlighter(lang: Lang) {
+export function useHighlighter(lang: Lang) {
   if (!shikiImport) {
     shikiImport = import('shiki-es')
       .then(async (r) => {

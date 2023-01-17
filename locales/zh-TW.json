@@ -382,9 +382,9 @@
     }
   },
   "share-target": {
-    "description": "如果你想分享其他應用程式上的內容到 Elk。請在你的行動裝置裝置或電腦上安裝 Elk 並登入。",
-    "hint": "為了將內容分享到 Elk，你需要安裝 Elk 並且登入。",
-    "title": "分享到 Elk"
+    "description": "如果你想分享其他應用程式上的內容到鹿鳴。請在你的行動裝置裝置或電腦上安裝路名鹿鳴並登入。",
+    "hint": "為了將內容分享到路名鹿鳴，你需要安裝鹿鳴並且登入。",
+    "title": "分享到鹿鳴"
   },
   "state": {
     "attachments_exceed_server_limit": "附件的數量超出了最大限制",

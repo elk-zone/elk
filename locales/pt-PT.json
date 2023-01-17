@@ -28,7 +28,8 @@
     "muted_users": "Utilizadores silenciados",
     "muting": "Silenciados",
     "mutuals": "Mútuos",
-    "notify_on_post": "Notifique-me quando {username} publicar",
+    "notifications_on_post_disable": "Deixe de me nofiticar quando {username} publicar",
+    "notifications_on_post_enable": "Notifique-me quando {username} publicar",
     "pinned": "Fixado",
     "posts": "Publicações",
     "posts_count": "{0} Publicações|{0} Publicação|{0} Publicações",
@@ -47,7 +48,8 @@
     "boost": "Partilhar",
     "boost_count": "{0}",
     "boosted": "Partilhado",
-    "clear_upload_failed": "Limpar erro de carregamento de ficheiro",
+    "clear_publish_failed": "Limpar erros de publicação",
+    "clear_upload_failed": "Limpar erros de carregamento de ficheiro",
     "close": "Fechar",
     "compose": "Compor",
     "confirm": "Confirmar",
@@ -137,6 +139,13 @@
   },
   "conversation": {
     "with": "com"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Linhas {0}",
+      "open": "Abrir",
+      "snippet_from": "Trecho de {0}"
+    }
   },
   "error": {
     "account_not_found": "Conta {0} não encontrada",
@@ -350,6 +359,7 @@
     "notifications_settings": "Notificações",
     "preferences": {
       "github_cards": "Cartões do GitHub",
+      "grayscale_mode": "Modo tons de cinza",
       "hide_boost_count": "Esconder contagem de partilhas",
       "hide_favorite_count": "Esconder contagem de favoritos",
       "hide_follower_count": "Esconder contagem de seguidores",
@@ -392,8 +402,9 @@
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Carregando...",
+    "publish_failed": "Publicação falhou",
     "publishing": "Publicando",
-    "upload_failed": "Falhou carregamento",
+    "upload_failed": "Carregamento falhou",
     "uploading": "A carregar..."
   },
   "status": {
@@ -491,6 +502,7 @@
     "explore_links_intro": "Estas notícias estão, neste momento, a ser faladas por pessoas neste e noutros servidores da rede descentralizada.",
     "explore_posts_intro": "Estas publicações deste e de outros servidores na rede descentralizada estão, neste momento, a ganhar popularidade neste servidor.",
     "explore_tags_intro": "Estes hashtags estão, neste momento, a ganhar popularidade entre as pessoas neste e noutros servidores da rede descentralizada.",
+    "publish_failed": "Fechar mensagens de falha no topo do editor para republicar publicações",
     "toggle_code_block": "Alternar bloco de código"
   },
   "user": {

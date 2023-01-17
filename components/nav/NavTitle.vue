@@ -14,7 +14,7 @@ router.afterEach(() => {
   <!-- Use external to force refresh page and jump to top of timeline -->
   <div flex justify-between>
     <NuxtLink
-      flex items-end gap-4
+      flex items-end gap-3
       py2 px-5
       text-2xl
       select-none

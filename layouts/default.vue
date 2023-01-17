@@ -10,11 +10,13 @@ const showUserPicker = logicAnd(
   usePreferences('experimentalUserPicker'),
   () => useUsers().value.length > 1,
 )
+
+const isGrayscale = usePreferences('grayscaleMode')
 </script>
 
 <template>
-  <div h-full>
-    <main v-show="!isHydrated" w-full h-100vh flex="~ center" aria-label="elk is initializing">
+  <div h-full :data-mode="isHydrated && isGrayscale ? 'grayscale' : ''">
+    <main v-if="!isHydrated" w-full h-100vh flex="~ center" aria-label="elk is initializing">
       <img src="/logo.svg" shrink-0 aspect="1/1" sm:h-16 xl:h-32 class="rtl-flip" animate-pulse :alt="$t('app_logo')">
     </main>
     <main v-show="isHydrated" flex w-full mxa lg:max-w-80rem>

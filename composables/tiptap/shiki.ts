@@ -12,7 +12,7 @@ export interface CodeBlockShikiOptions extends CodeBlockOptions {
   defaultLanguage: string | null | undefined
 }
 
-export const CodeBlockShiki = CodeBlock.extend<CodeBlockShikiOptions>({
+export const TiptapPluginCodeBlockShiki = CodeBlock.extend<CodeBlockShikiOptions>({
   addOptions() {
     return {
       ...this.parent?.(),
@@ -45,7 +45,7 @@ function getDecorations({
       let from = block.pos + 1
       const language = block.node.attrs.language
 
-      const shiki = useHightlighter(language)
+      const shiki = useHighlighter(language)
 
       if (!shiki)
         return

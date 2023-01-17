@@ -1,6 +1,6 @@
 import { createResolver } from '@nuxt/kit'
 import Inspect from 'vite-plugin-inspect'
-import { isCI, isDevelopment } from 'std-env'
+import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
-    'nuxt-security',
+    ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
@@ -45,6 +45,7 @@ export default defineNuxtConfig({
   css: [
     '@unocss/reset/tailwind.css',
     'floating-vue/dist/style.css',
+    '~/styles/default-theme.css',
     '~/styles/vars.css',
     '~/styles/global.css',
     '~/styles/tiptap.css',
@@ -60,7 +61,7 @@ export default defineNuxtConfig({
       './composables/masto',
       './composables/push-notifications',
       './composables/settings',
-      './composables/tiptap',
+      './composables/tiptap/index.ts',
     ],
   },
   vite: {
@@ -92,8 +93,10 @@ export default defineNuxtConfig({
       env: '', // set in build-env module
       buildInfo: {} as BuildInfo, // set in build-env module
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
+      // We use LibreTranslate(https://github.com/LibreTranslate/LibreTranslate) as our default translation server #76
       translateApi: '',
-      defaultServer: 'mas.to',
+      // Use the instance where Elk has its Mastodon account as the default
+      defaultServer: 'm.webtoo.ls',
     },
     storage: {
       driver: isCI ? 'cloudflare' : 'fs',
@@ -143,6 +146,8 @@ export default defineNuxtConfig({
       ],
     },
   },
+  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
+  // @ts-ignore nuxt-security is conditional
   security: {
     headers: {
       crossOriginEmbedderPolicy: false,

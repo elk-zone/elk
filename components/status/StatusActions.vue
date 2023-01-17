@@ -33,7 +33,7 @@ const reply = () => {
 </script>
 
 <template>
-  <div flex justify-between>
+  <div flex justify-between items-center class="status-actions">
     <div flex-1>
       <StatusActionButton
         :content="$t('action.reply')"

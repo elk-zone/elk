@@ -5,12 +5,12 @@ const validPermalinks = [
   'https://m1as-social34.to.social/@elk',
   'https://m1as-social34.to.social/@elk22/123',
   'https://m1as-social34.to.social/@elk22/objects/123',
-  'mas.to/@elk',
+  'webtoo.ls/@elk',
 ]
 
 const invalidPermalinks = [
-  'https://mas.to',
-  'https://mas.to/elk/123',
+  'https://webtoo.ls',
+  'https://webtoo.ls/elk/123',
 ]
 
 describe('permalinks', () => {

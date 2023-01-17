@@ -15,7 +15,7 @@ export default defineNuxtPlugin(() => {
   const settings = allSettings[handle]
   if (!settings) { return }
 
-  const html = document.querySelector('html')
+  const html = document.documentElement
   ${process.dev ? 'console.log({ settings })' : ''}
 
   if (settings.fontSize) {
@@ -27,6 +27,9 @@ export default defineNuxtPlugin(() => {
   }
   if (settings.zenMode) {
     html.classList.add('zen')
+  }
+  if (settings.themeColors) {
+    Object.entries(settings.themeColors).map(i => html.style.setProperty(i[0], i[1]))
   }
 })()`.trim().replace(/\s*\n+\s*/g, ';'),
       },

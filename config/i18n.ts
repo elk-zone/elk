@@ -43,7 +43,7 @@ const locales: LocaleObjectData[] = [
   {
     code: 'zh-TW',
     file: 'zh-TW.json',
-    name: '繁体中文',
+    name: '繁體中文',
   },
   {
     code: 'ja-JP',
@@ -91,6 +91,11 @@ const locales: LocaleObjectData[] = [
     code: 'tr-TR',
     file: 'tr-TR.json',
     name: 'Türkçe',
+  },
+  {
+    code: 'id-ID',
+    file: 'id-ID.json',
+    name: 'Indonesia',
   },
 ].sort((a, b) => a.code.localeCompare(b.code))
 

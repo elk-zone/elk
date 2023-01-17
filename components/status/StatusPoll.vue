@@ -28,20 +28,25 @@ async function vote(e: Event) {
   }
   poll.voted = true
   poll.votesCount++
-  poll.votersCount = (poll.votersCount || 0) + 1
+
+  if (!poll.votersCount && poll.votesCount)
+    poll.votesCount = poll.votesCount + 1
+  else
+    poll.votersCount = (poll.votersCount || 0) + 1
+
   cacheStatus({ ...status, poll }, undefined, true)
 
   await client.v1.polls.vote(poll.id, { choices })
 }
 
-const votersCount = $computed(() => poll.votersCount ?? 0)
+const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
 </script>
 
 <template>
-  <div flex flex-col w-full items-stretch gap-2 py3 dir="auto">
+  <div flex flex-col w-full items-stretch gap-2 py3 dir="auto" class="poll-wrapper">
     <form v-if="!poll.voted && !poll.expired" flex="~ col gap3" accent-primary @click.stop="noop" @submit.prevent="vote">
       <label v-for="(option, index) of poll.options" :key="index" flex="~ gap2" items-center>
-        <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'">
+        <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'" cursor-pointer>
         {{ option.title }}
       </label>
       <button btn-solid mt-1>

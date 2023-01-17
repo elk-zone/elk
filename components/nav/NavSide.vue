@@ -37,7 +37,7 @@ const { notifications } = useNotifications()
 
     <div shrink hidden sm:block mt-4 />
     <NavSideItem v-if="!isExploreRoute()" :text="`${$t('nav.search')} ${$t('common.and')} ${$t('nav.explore')}`" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:search-line" hidden xl:block :command="command" />
-    <SearchWidget v-else ref="search" lg:ms-1 lg:me-5 lg:mb-1 hidden xl:block />
+    <SearchWidget v-else-if="!isSmallScreen" ref="search" lg:ms-1 lg:me-5 lg:mb-1 hidden xl:block />
     <NavSideItem :text="`${$t('nav.search')} ${$t('common.and')} ${$t('nav.explore')}`" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:search-line" xl:hidden :command="command" />
 
     <NavSideItem :text="$t('nav.local')" :to="isHydrated ? `/${currentServer}/public/local` : '/public/local'" icon="i-ri:group-2-line " :command="command" />

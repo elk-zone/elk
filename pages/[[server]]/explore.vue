@@ -24,11 +24,9 @@ const tabs = $computed(() => [
 </script>
 
 <template>
-  <MainContent>
+  <MainContent no-overflow-hidden>
     <template #title>
-      <span timeline-title-style flex @click="$scrollToTop">
-        <SearchWidget ref="search" />
-      </span>
+      <SearchWidget ref="search" flex-grow class="m-1" />
     </template>
 
     <template #header>

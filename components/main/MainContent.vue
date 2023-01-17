@@ -4,6 +4,7 @@ defineProps<{
   backOnSmallScreen?: boolean
   /** Show the back button on both small and big screens */
   back?: boolean
+  noOverflowHidden?: boolean
 }>()
 </script>
 
@@ -15,7 +16,7 @@ defineProps<{
       border="b base" bg="[rgba(var(--rbg-bg-base),0.7)]"
     >
       <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }">
-        <div flex gap-3 items-center overflow-hidden py2>
+        <div flex gap-3 items-center :overflow-hidden="!noOverflowHidden" py2>
           <NuxtLink
             v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0 xl:hidden
             :aria-label="$t('nav.back')"
@@ -23,7 +24,7 @@ defineProps<{
           >
             <div i-ri:arrow-left-line class="rtl-flip" />
           </NuxtLink>
-          <div truncate>
+          <div :truncate="!noOverflowHidden">
             <slot name="title" />
           </div>
           <div h-7 w-1px />

@@ -46,7 +46,7 @@ const objectPosition = computed(() => {
 
 const urlsInDescription = computed(() => {
   if (!attachment.description)
-    return new Set()
+    return new Set<string>()
 
   return getUrls(attachment.description)
 })

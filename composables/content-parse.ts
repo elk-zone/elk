@@ -35,12 +35,35 @@ const sanitizer = sanitize({
   code: {
     class: filterClasses(/^language-\w+$/),
   },
-  // other elements supported in glitch
-  h1: {},
-  ol: {},
-  ul: {},
-  li: {},
+  // Other elements supported in glitch, as seen in
+  // https://github.com/glitch-soc/mastodon/blob/13227e1dafd308dfe1a3effc3379b766274809b3/lib/sanitize_ext/sanitize_config.rb#L75
+  abbr: {
+    title: keep,
+  },
+  del: {},
+  blockquote: {
+    cite: filterHref(),
+  },
+  b: {},
+  strong: {},
+  u: {},
+  sub: {},
+  sup: {},
+  i: {},
   em: {},
+  h1: {},
+  h2: {},
+  h3: {},
+  h4: {},
+  h5: {},
+  ul: {},
+  ol: {
+    start: keep,
+    reversed: keep,
+  },
+  li: {
+    value: keep,
+  },
 })
 
 /**
@@ -140,6 +163,12 @@ export function treeToText(input: Node): string {
 
   if (['p', 'pre'].includes(input.name))
     pre = '\n'
+
+  if (input.attributes?.['data-type'] === 'mention') {
+    const acct = input.attributes['data-id']
+    if (acct)
+      return acct.startsWith('@') ? acct : `@${acct}`
+  }
 
   if (input.name === 'code') {
     if (input.parent?.name === 'pre') {
@@ -247,6 +276,10 @@ function filterClasses(allowed: RegExp) {
 
     return c.split(/\s/g).filter(cls => allowed.test(cls)).join(' ')
   }
+}
+
+function keep(value: string | undefined) {
+  return value
 }
 
 function set(value: string) {
@@ -418,7 +451,7 @@ function transformCollapseMentions() {
   }
 
   return (node: Node, root: Node): Node | Node[] => {
-    if (processed || node.parent !== root)
+    if (processed || node.parent !== root || !node.children)
       return node
     const metions: (Node | undefined)[] = []
     const children = node.children as Node[]
@@ -460,7 +493,7 @@ function transformMentionLink(node: Node): string | Node | (string | Node)[] | n
       if (matchUser) {
         const [, server, username] = matchUser
         const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
-        // convert to TipTap mention node
+        // convert to Tiptap mention node
         return h('span', { 'data-type': 'mention', 'data-id': handle }, handle)
       }
     }

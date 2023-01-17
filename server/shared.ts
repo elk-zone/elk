@@ -2,6 +2,8 @@
 import _fs from 'unstorage/drivers/fs'
 // @ts-expect-error unstorage needs to provide backwards-compatible subpath types
 import _kv from 'unstorage/drivers/cloudflare-kv-http'
+// @ts-expect-error unstorage needs to provide backwards-compatible subpath types
+import _memory from 'unstorage/drivers/memory'
 
 import { stringifyQuery } from 'ufo'
 
@@ -17,6 +19,7 @@ const config = useRuntimeConfig()
 
 const fs = _fs as typeof import('unstorage/dist/drivers/fs')['default']
 const kv = _kv as typeof import('unstorage/dist/drivers/cloudflare-kv-http')['default']
+const memory = _memory as typeof import('unstorage/dist/drivers/memory')['default']
 
 const storage = useStorage() as Storage
 
@@ -29,6 +32,9 @@ else if (config.storage.driver === 'cloudflare') {
     namespaceId: config.cloudflare.namespaceId,
     apiToken: config.cloudflare.apiToken,
   })))
+}
+else if (config.storage.driver === 'memory') {
+  storage.mount('servers', memory())
 }
 
 export function getRedirectURI(origin: string, server: string) {

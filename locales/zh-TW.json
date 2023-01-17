@@ -88,11 +88,6 @@
     "toggle_zen_mode": "切換禪模式"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "否",
-      "confirm": "是",
-      "title": "你確定 {0} 嗎？"
-    },
     "end_of_list": "清單到底啦",
     "error": "錯誤",
     "in": "在",
@@ -102,6 +97,42 @@
   "compose": {
     "draft_title": "草稿 {0}",
     "drafts": "草稿 ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "取消",
+      "confirm": "拉黑",
+      "title": "你确定將 {0} 加入黑名單吗？"
+    },
+    "block_domain": {
+      "cancel": "取消",
+      "confirm": "拉黑",
+      "title": "你确定將 {0} 加入域名黑名單吗？"
+    },
+    "common": {
+      "cancel": "否",
+      "confirm": "是"
+    },
+    "delete_posts": {
+      "cancel": "取消",
+      "confirm": "刪除",
+      "title": "你確定要刪除這則貼文嗎？"
+    },
+    "mute_account": {
+      "cancel": "取消",
+      "confirm": "靜音",
+      "title": "你确定要靜音 {0}吗？"
+    },
+    "show_reblogs": {
+      "cancel": "取消",
+      "confirm": "顯示",
+      "title": "你确定要顯示來自 {0} 的轉發吗？"
+    },
+    "unfollow": {
+      "cancel": "取消",
+      "confirm": "取消關注",
+      "title": "你確定要取消關注嗎？"
+    }
   },
   "conversation": {
     "with": "與"
@@ -133,11 +164,6 @@
     "copy_link_to_post": "複製這篇貼文的連結",
     "delete": "刪除",
     "delete_and_redraft": "刪除並重新編輯",
-    "delete_confirm": {
-      "cancel": "取消",
-      "confirm": "刪除",
-      "title": "你確定要刪除這則貼文嗎？"
-    },
     "direct_message_account": "私訊 {0}",
     "edit": "編輯",
     "hide_reblogs": "隱藏來自 {0} 的轉發",

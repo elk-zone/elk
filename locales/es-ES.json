@@ -86,11 +86,6 @@
     "toggle_zen_mode": "Cambiar a modo zen"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "No",
-      "confirm": "Si",
-      "title": "¿Estás seguro?"
-    },
     "end_of_list": "Fin",
     "error": "ERROR",
     "in": "en",
@@ -100,6 +95,18 @@
   "compose": {
     "draft_title": "Borrador {0}",
     "drafts": "Borradores ({v})"
+  },
+  "confirm": {
+    "common": {
+      "cancel": "No",
+      "confirm": "Si",
+      "title": "¿Estás seguro?"
+    },
+    "delete_posts": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "¿Estás seguro que deseas eliminar esta publicación?"
+    }
   },
   "conversation": {
     "with": "con"
@@ -131,11 +138,6 @@
     "copy_link_to_post": "Copiar enlace",
     "delete": "Borrar",
     "delete_and_redraft": "Borrar y volver a borrador",
-    "delete_confirm": {
-      "cancel": "Cancelar",
-      "confirm": "Eliminar",
-      "title": "¿Estás seguro que deseas eliminar esta publicación?"
-    },
     "direct_message_account": "Mensaje directo a {0}",
     "edit": "Editar",
     "hide_reblogs": "Ocultar retoots de {0}",

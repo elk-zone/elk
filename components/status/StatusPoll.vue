@@ -28,13 +28,18 @@ async function vote(e: Event) {
   }
   poll.voted = true
   poll.votesCount++
-  poll.votersCount = (poll.votersCount || 0) + 1
+
+  if (!poll.votersCount && poll.votesCount)
+    poll.votesCount = poll.votesCount + 1
+  else
+    poll.votersCount = (poll.votersCount || 0) + 1
+
   cacheStatus({ ...status, poll }, undefined, true)
 
   await client.v1.polls.vote(poll.id, { choices })
 }
 
-const votersCount = $computed(() => poll.votersCount ?? 0)
+const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
 </script>
 
 <template>

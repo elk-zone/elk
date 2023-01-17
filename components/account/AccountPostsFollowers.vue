@@ -9,7 +9,7 @@ const userSettings = useUserSettings()
 </script>
 
 <template>
-  <div flex gap-5>
+  <div flex gap-5 flex-wrap>
     <NuxtLink
       :to="getAccountRoute(account)"
       replace
@@ -52,6 +52,16 @@ const userSettings = useUserSettings()
           font-bold
           :class="isExactActive ? 'text-primary' : 'text-base'"
         />
+      </template>
+    </NuxtLink>
+    <NuxtLink
+      v-if="account.id === currentUser?.account.id" :to="getAccountFollowingTagsRoute(account)"
+      replace text-secondary exact-active-class="text-primary"
+    >
+      <template #default="{ isExactActive }">
+        <div :class="{ 'text-primary': isExactActive }">
+          {{ $t('account.following_tag') }}
+        </div>
       </template>
     </NuxtLink>
   </div>

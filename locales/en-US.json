@@ -21,6 +21,7 @@
     "followers_count": "{0} Followers|{0} Follower|{0} Followers",
     "following": "Following",
     "following_count": "{0} Following",
+    "following_tag": "Following hashtag(s)",
     "follows_you": "Follows you",
     "go_to_profile": "Go to profile",
     "joined": "Joined",

@@ -342,7 +342,7 @@
           "enable_description_settings": "若想在鹿鳴未開啟時接收通知，請啟用推播通知功能。 啟用後，你將能夠精確控制哪些類型的互動會在螢幕上推播通知。",
           "enable_desktop": "啟用推播功能",
           "enable_title": "不錯過任何事",
-          "re_auth": "您的伺服器似乎不支援推播通知。嘗試退出使用者並重新登錄。如果此消息仍然出現，請聯繫您伺服器的管理員。"
+          "re_auth": "您的伺服器似乎不支援推播通知。嘗試退出使用者並重新登入。如果此消息仍然出現，請聯繫您伺服器的管理員。"
         }
       },
       "show_btn": "前往通知設定"
@@ -380,6 +380,11 @@
       "import": "匯出使用者憑證",
       "label": "當前使用者"
     }
+  },
+  "share-target": {
+    "description": "設定後，你可以分享其他應用程式上的內容到 Elk。請在你的行動裝置裝置或電腦上安裝 Elk 並登入。",
+    "hint": "為了將內容分享到 Elk，你需要安裝 Elk 並且登入。",
+    "title": "分享到 Elk"
   },
   "state": {
     "attachments_exceed_server_limit": "附件的數量超出了最大限制",
@@ -491,7 +496,7 @@
   "user": {
     "add_existing": "加入現有帳戶",
     "server_address_label": "Mastodon 伺服器位置",
-    "sign_in_desc": "登錄後可關注其他人或標籤、點讚、分享和回覆貼文，或與不同伺服器上的帳號互動。",
+    "sign_in_desc": "登入後可關注其他人或標籤、點讚、分享和回覆貼文，或與不同伺服器上的帳號互動。",
     "sign_in_notice_title": "正在查看 {0} 的公共數據",
     "sign_out_account": "登出 {0}",
     "tip_no_account": "如果您還沒有 Mastodon 賬戶，{0}。",

@@ -26,7 +26,7 @@ const tabs = $computed(() => [
 <template>
   <MainContent no-overflow-hidden>
     <template #title>
-      <SearchWidget ref="search" flex-grow class="m-1" />
+      <SearchWidget ref="search" class="m-1" />
     </template>
 
     <template #header>

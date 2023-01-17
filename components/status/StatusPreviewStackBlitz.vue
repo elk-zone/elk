@@ -1,0 +1,93 @@
+<script setup lang="ts">
+import type { mastodon } from 'masto'
+
+const props = defineProps<{
+  card: mastodon.v1.PreviewCard
+  /** For the preview image, only the small image mode is displayed */
+  smallPictureOnly?: boolean
+  /** When it is root card in the list, not appear as a child card */
+  root?: boolean
+}>()
+
+interface Meta {
+  code?: string
+  file?: string
+  lines?: string
+  project?: string
+}
+
+const meta = $computed(() => {
+  const { description } = props.card
+  const meta = description.match(/.+\n\nCode Snippet from (.+), lines ([\w-]+)\n\n(.+)/s)
+  const file = meta?.[1]
+  const lines = meta?.[2].replaceAll('N', '')
+  const code = meta?.[3]
+  const project = props.card.title?.replace(' - StackBlitz', '')
+  const info = $ref<Meta>({
+    file,
+    lines,
+    code,
+    project,
+  })
+  return info
+})
+
+const vnodeCode = $computed(() => {
+  if (!meta.code)
+    return null
+  const vnode = contentToVNode(`<p>\`\`\`${meta.file?.split('.')?.[1] ?? ''}\n${meta.code}\n\`\`\`\</p>`, {
+    markdown: true,
+  })
+  return vnode
+})
+</script>
+
+<template>
+  <div
+    v-if="meta.code"
+    flex flex-col gap-1
+    display-block of-hidden
+    w-full
+    rounded-lg
+    overflow-hidden
+    pb-2
+  >
+    <div whitespace-pre-wrap break-words>
+      <span v-if="vnodeCode" class="content-rich line-compact" dir="auto">
+        <component :is="vnodeCode" />
+      </span>
+    </div>
+    <div
+      flex flex-col
+      display-block of-hidden
+      bg-card
+      w-full
+      justify-center
+      p-3
+      pb-4
+    >
+      <div flex justify-between>
+        <p flex gap-1>
+          <span>Code Snippet from</span><span>{{ meta.file }}</span><span text-secondary>{{ `- Lines ${meta.lines}` }}</span>
+        </p>
+        <NuxtLink external target="_blank" btn-solid py-0 px-2 :to="card.url">
+          Open
+        </NuxtLink>
+      </div>
+      <div flex font-bold gap-2>
+        <span text-primary>{{ meta.project }}</span><span flex text-secondary><span flex items-center><svg h-5 width="22.27" height="32" viewBox="0 0 256 368"><path fill="currentColor" d="M109.586 217.013H0L200.34 0l-53.926 150.233H256L55.645 367.246l53.927-150.233z" /></svg></span><span>StackBlitz</span></span>
+      </div>
+    </div>
+  </div>
+  <StatusPreviewCardNormal v-else :card="card" :small-picture-only="smallPictureOnly" :root="root" />
+</template>
+
+<style scoped>
+.content-rich p {
+  margin-top: 0;
+}
+.code-block {
+  margin-top: 0;
+  border-radius: 0;
+}
+</style>

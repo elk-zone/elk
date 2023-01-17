@@ -25,6 +25,10 @@ function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
 }
 
+function getNotificationIconTitle() {
+  return relationship?.notifying ? t('account.notifications_on_post_disable', { username: `@${account.username}` }) : t('account.notifications_on_post_enable', { username: `@${account.username}` })
+}
+
 function previewHeader() {
   openMediaPreview([{
     id: `${account.acct}:header`,
@@ -100,17 +104,18 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
         </div>
         <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
-          <button
-            v-if="!isSelf && relationship?.following"
-            :aria-pressed="isNotifiedOnPost"
-            :aria-label="t('account.notify_on_post', { username: `@${account.username}` })"
-            rounded-full p2 border-1 transition-colors
-            :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
-            @click="toggleNotifications"
-          >
-            <span v-if="isNotifiedOnPost" i-ri:bell-fill block text-current />
-            <span v-else i-ri-bell-line block text-current />
-          </button>
+          <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
+            <button
+              :aria-pressed="isNotifiedOnPost"
+              :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
+              rounded-full p2 border-1 transition-colors
+              :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
+              @click="toggleNotifications"
+            >
+              <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
+              <span v-else i-ri-notification-4-line block text-current />
+            </button>
+          </CommonTooltip>
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->
           <NuxtLink

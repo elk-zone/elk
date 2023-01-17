@@ -5,8 +5,8 @@ WORKDIR /elk
 
 FROM base AS builder
 
-# Prepare pnpm ( refer to https://pnpm.io/installation#on-alpine-linux )
-RUN wget -qO /bin/pnpm "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" && chmod +x /bin/pnpm
+# Prepare pnpm https://pnpm.io/installation#using-corepack
+RUN corepack enable
 
 # Prepare deps
 RUN apk update

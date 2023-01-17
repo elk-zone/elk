@@ -43,10 +43,10 @@ const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
 </script>
 
 <template>
-  <div flex flex-col w-full items-stretch gap-2 py3 dir="auto">
+  <div flex flex-col w-full items-stretch gap-2 py3 dir="auto" class="poll-wrapper">
     <form v-if="!poll.voted && !poll.expired" flex="~ col gap3" accent-primary @click.stop="noop" @submit.prevent="vote">
       <label v-for="(option, index) of poll.options" :key="index" flex="~ gap2" items-center>
-        <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'">
+        <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'" cursor-pointer>
         {{ option.title }}
       </label>
       <button btn-solid mt-1>

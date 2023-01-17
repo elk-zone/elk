@@ -28,7 +28,8 @@
     "muted_users": "Muted users",
     "muting": "Muted",
     "mutuals": "Mutuals",
-    "notify_on_post": "Notify me when {username} posts",
+    "notifications_on_post_disable": "Stop notifying me when {username} posts",
+    "notifications_on_post_enable": "Notify me when {username} posts",
     "pinned": "Pinned",
     "posts": "Posts",
     "posts_count": "{0} Posts|{0} Post|{0} Posts",
@@ -47,6 +48,7 @@
     "boost": "Boost",
     "boost_count": "{0}",
     "boosted": "Boosted",
+    "clear_publish_failed": "Clear publish errors",
     "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
@@ -357,6 +359,7 @@
     "notifications_settings": "Notifications",
     "preferences": {
       "github_cards": "GitHub Cards",
+      "grayscale_mode": "Grayscale mode",
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",
       "hide_follower_count": "Hide follower count",
@@ -399,6 +402,7 @@
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
+    "publish_failed": "Publish failed",
     "publishing": "Publishing",
     "upload_failed": "Upload failed",
     "uploading": "Uploading..."
@@ -498,6 +502,7 @@
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
+    "publish_failed": "Close failed messages at the top of editor to republish posts",
     "toggle_code_block": "Toggle code block"
   },
   "user": {

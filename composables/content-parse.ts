@@ -89,7 +89,7 @@ export function parseMastodonHTML(
         const code = htmlToText(raw)
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
-          .replace(/`/, '&#96;')
+          .replace(/`/g, '&#96;')
         const classes = lang ? ` class="language-${lang}"` : ''
         return `><pre><code${classes}>${code}</code></pre>`
       })

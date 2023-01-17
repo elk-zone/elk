@@ -47,6 +47,7 @@
     "boost": "Boost",
     "boost_count": "{0}",
     "boosted": "Boosted",
+    "clear_publish_failed": "Clear publish errors",
     "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
@@ -400,6 +401,7 @@
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
+    "publish_failed": "Publish failed",
     "publishing": "Publishing",
     "upload_failed": "Upload failed",
     "uploading": "Uploading..."
@@ -499,6 +501,7 @@
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
+    "publish_failed": "Close failed messages at the top of editor to republish posts",
     "toggle_code_block": "Toggle code block"
   },
   "user": {

@@ -1,6 +1,8 @@
 :root {
   --c-border: #eee;
   --c-border-dark: #dccfcf;
+  --c-danger: #FF3C1B;
+  --c-danger-active: #B50900;
 
   --rgb-bg-base: 250, 250, 250;
 
@@ -32,6 +34,8 @@
   --c-primary-active: var(--c-dark-primary-active);
   --c-primary-light: var(--c-dark-primary-light);
   --c-primary-fade: var(--c-dark-primary-fade); 
+  --c-danger: #FF2810;
+  --c-danger-active: #E02F00;
   
   --c-border: #222;
   --c-border-dark: #545251;

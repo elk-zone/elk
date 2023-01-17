@@ -54,15 +54,5 @@ const userSettings = useUserSettings()
         />
       </template>
     </NuxtLink>
-    <NuxtLink
-      v-if="account.id === currentUser?.account.id" :to="getAccountFollowingTagsRoute(account)"
-      replace text-secondary exact-active-class="text-primary"
-    >
-      <template #default="{ isExactActive }">
-        <div :class="{ 'text-primary': isExactActive }">
-          {{ $t('account.following_tag') }}
-        </div>
-      </template>
-    </NuxtLink>
   </div>
 </template>

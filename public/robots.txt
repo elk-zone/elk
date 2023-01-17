@@ -18,6 +18,7 @@ Disallow /pinned
 Disallow /search
 Disallow /settings
 Disallow /share-target
+Disallow /following_tags
 
 # Wait 1 second between successive requests.
 Crawl-delay: 1

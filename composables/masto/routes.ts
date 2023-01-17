@@ -29,16 +29,6 @@ export function getAccountFollowersRoute(account: mastodon.v1.Account) {
   })
 }
 
-export function getAccountFollowingTagsRoute(account: mastodon.v1.Account) {
-  return useRouter().resolve({
-    name: 'account-following-hashtags',
-    params: {
-      server: currentServer.value,
-      account: extractAccountHandle(account),
-    },
-  })
-}
-
 export function getStatusRoute(status: mastodon.v1.Status) {
   return useRouter().resolve({
     name: 'status',

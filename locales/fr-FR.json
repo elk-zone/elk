@@ -83,6 +83,7 @@
     "toggle_zen_mode": "Passer en mode zen"
   },
   "common": {
+    "and": "et",
     "end_of_list": "Fin de liste",
     "error": "ERREUR",
     "in": "sur",
@@ -173,7 +174,7 @@
     "muted_users": "Utilisateur·ice·s masqué·e·s",
     "notifications": "Notifications",
     "profile": "Profil",
-    "search": "Rechercher",
+    "search": "Recherche",
     "select_feature_flags": "Activer/Désactiver Feature Flags",
     "select_font_size": "Taille de la police",
     "select_language": "Sélectionner langue",

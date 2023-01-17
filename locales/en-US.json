@@ -91,6 +91,7 @@
     "toggle_zen_mode": "Toggle zen mode"
   },
   "common": {
+    "and": "and",
     "end_of_list": "End of the list",
     "error": "ERROR",
     "in": "in",

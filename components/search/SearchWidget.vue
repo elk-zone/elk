@@ -5,8 +5,17 @@ const index = ref(0)
 
 const { t } = useI18n()
 const el = ref<HTMLElement>()
+const input = ref<HTMLInputElement>()
 const router = useRouter()
 const { focused } = useFocusWithin(el)
+
+const focus = () => {
+  input.value?.focus()
+}
+
+defineExpose({
+  focus,
+})
 
 const results = computed(() => {
   if (query.value.length === 0)

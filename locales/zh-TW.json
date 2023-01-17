@@ -28,6 +28,7 @@
     "muted_users": "已靜音的使用者",
     "muting": "已靜音",
     "mutuals": "互相關注",
+    "notify_on_post": "{username} 發文時通知我",
     "pinned": "置頂的貼文",
     "posts": "貼文",
     "posts_count": "{0} 則貼文",
@@ -88,7 +89,7 @@
     "toggle_zen_mode": "切換禪模式"
   },
   "common": {
-    "end_of_list": "清單到底啦",
+    "end_of_list": "清單到底了",
     "error": "錯誤",
     "in": "在",
     "not_found": "無法找到相關內容",
@@ -277,10 +278,10 @@
       "label": "帳號設定"
     },
     "interface": {
-      "color_mode": "顏色",
+      "color_mode": "色彩模式",
       "dark_mode": "深色",
       "default": "（預設）",
-      "font_size": "字號",
+      "font_size": "字體大小",
       "label": "外觀",
       "light_mode": "淺色",
       "size_label": {
@@ -290,7 +291,8 @@
         "xl": "特大",
         "xs": "特小"
       },
-      "system_mode": "跟隨系統"
+      "system_mode": "系統預設",
+      "theme_color": "主題色"
     },
     "language": {
       "display_language": "顯示語言",
@@ -374,8 +376,8 @@
     },
     "select_a_settings": "在左側選擇一個設定",
     "users": {
-      "export": "導出使用者令牌",
-      "import": "導入使用者令牌",
+      "export": "匯入使用者憑證",
+      "import": "匯出使用者憑證",
       "label": "當前使用者"
     }
   },
@@ -479,7 +481,7 @@
     "add_media": "加入圖片、影片或音訊",
     "add_publishable_content": "加入要發布的內容",
     "change_content_visibility": "修改內容是否可見",
-    "change_language": "改變語言",
+    "change_language": "切換語言",
     "emoji": "表情符號",
     "explore_links_intro": "這些新聞故事正被本站和分佈式網路上其他站點的使用者談論。",
     "explore_posts_intro": "來自本站和分佈式網路上其他站點的這些嘟文正在本站引起關注。",

@@ -58,25 +58,25 @@ const vnodeCode = $computed(() => {
       </span>
     </div>
     <div
-      flex flex-col
+      flex
+      justify-between
       display-block of-hidden
       bg-card
       w-full
-      justify-center
       p-3
       pb-4
     >
-      <div flex justify-between>
+      <div flex flex-col>
         <p flex gap-1>
-          <span>Code Snippet from</span><span>{{ meta.file }}</span><span text-secondary>{{ `- Lines ${meta.lines}` }}</span>
+          <span>{{ $t('custom_cards.stackblitz.snippet_from', [meta.file]) }}</span><span text-secondary>{{ `- ${$t('custom_cards.stackblitz.lines', [meta.lines])}` }}</span>
         </p>
-        <NuxtLink external target="_blank" btn-solid py-0 px-2 :to="card.url">
-          Open
-        </NuxtLink>
+        <div flex font-bold gap-2>
+          <span text-primary>{{ meta.project }}</span><span flex text-secondary><span flex items-center><svg h-5 width="22.27" height="32" viewBox="0 0 256 368"><path fill="currentColor" d="M109.586 217.013H0L200.34 0l-53.926 150.233H256L55.645 367.246l53.927-150.233z" /></svg></span><span>StackBlitz</span></span>
+        </div>
       </div>
-      <div flex font-bold gap-2>
-        <span text-primary>{{ meta.project }}</span><span flex text-secondary><span flex items-center><svg h-5 width="22.27" height="32" viewBox="0 0 256 368"><path fill="currentColor" d="M109.586 217.013H0L200.34 0l-53.926 150.233H256L55.645 367.246l53.927-150.233z" /></svg></span><span>StackBlitz</span></span>
-      </div>
+      <NuxtLink external target="_blank" btn-solid pt-0 pb-1 px-2 h-fit :to="card.url">
+        {{ $t('custom_cards.stackblitz.open') }}
+      </NuxtLink>
     </div>
   </div>
   <StatusPreviewCardNormal v-else :card="card" :small-picture-only="smallPictureOnly" :root="root" />

@@ -138,6 +138,13 @@
   "conversation": {
     "with": "with"
   },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Lines {0}",
+      "open": "Open",
+      "snippet_from": "Snippet from {0}"
+    }
+  },
   "error": {
     "account_not_found": "Account {0} not found",
     "explore-list-empty": "Nothing is trending right now. Check back later!",

@@ -56,7 +56,7 @@ async function fetchAppInfo(origin: string, server: string) {
 
 export async function getApp(origin: string, server: string) {
   const host = origin.replace(/^https?:\/\//, '').replace(/[^\w\d]/g, '-')
-  const key = `servers:v2:${server}:${host}.json`
+  const key = `servers:v2:${server}:${host}.json`.toLowerCase()
 
   try {
     if (await storage.hasItem(key))

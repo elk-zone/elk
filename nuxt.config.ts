@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
-    ...!isDevelopment || !isWindows ? ['nuxt-security'] : [],
+    ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
@@ -146,6 +146,8 @@ export default defineNuxtConfig({
       ],
     },
   },
+  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
+  // @ts-ignore nuxt-security is conditional
   security: {
     headers: {
       crossOriginEmbedderPolicy: false,

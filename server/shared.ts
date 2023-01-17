@@ -55,7 +55,8 @@ async function fetchAppInfo(origin: string, server: string) {
 }
 
 export async function getApp(origin: string, server: string) {
-  const key = `servers:${origin.replace(/[^\w\d]/g, '-')}:${server}.json`
+  const host = origin.replace(/^https?:\/\//, '').replace(/[^\w\d]/g, '-')
+  const key = `servers:v2:${server}:${host}.json`
 
   try {
     if (await storage.hasItem(key))
@@ -70,16 +71,16 @@ export async function getApp(origin: string, server: string) {
 }
 
 export async function deleteApp(server: string) {
-  const keys = (await storage.getKeys('servers:')).filter(k => k.endsWith(`${server}.json`))
+  const keys = (await storage.getKeys(`servers:v2:${server}:`))
   for (const key of keys)
     await storage.removeItem(key)
 }
 
 export async function listServers() {
-  const keys = await storage.getKeys('servers:')
+  const keys = await storage.getKeys('servers:v2:')
   const servers = new Set<string>()
   for await (const key of keys) {
-    const id = key.split(':').pop()!.replace(/\.json$/, '')
+    const id = key.split(':')[2]
     if (id)
       servers.add(id.toLocaleLowerCase())
   }

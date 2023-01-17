@@ -357,6 +357,7 @@
     "notifications_settings": "Notifications",
     "preferences": {
       "github_cards": "GitHub Cards",
+      "grayscale_mode": "Grayscale mode",
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",
       "hide_follower_count": "Hide follower count",

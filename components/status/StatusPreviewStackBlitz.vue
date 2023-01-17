@@ -16,12 +16,15 @@ interface Meta {
   project?: string
 }
 
+// Protect against long code snippets
+const maxLines = 20
+
 const meta = $computed(() => {
   const { description } = props.card
   const meta = description.match(/.+\n\nCode Snippet from (.+), lines ([\w-]+)\n\n(.+)/s)
   const file = meta?.[1]
   const lines = meta?.[2].replaceAll('N', '')
-  const code = meta?.[3]
+  const code = meta?.[3].split('\n').slice(0, maxLines).join('\n')
   const project = props.card.title?.replace(' - StackBlitz', '')
   const info = $ref<Meta>({
     file,

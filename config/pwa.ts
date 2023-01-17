@@ -13,8 +13,8 @@ export const pwa: VitePWANuxtOptions = {
   includeManifestIcons: false,
   manifest: false,
   injectManifest: {
-    globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm,webmanifest}'],
-    globIgnores: ['emojis/**', 'shiki/**'],
+    globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
+    globIgnores: ['emojis/**', 'shiki/**', 'manifest**.webmanifest'],
   },
   devOptions: {
     enabled: process.env.VITE_DEV_PWA === 'true',

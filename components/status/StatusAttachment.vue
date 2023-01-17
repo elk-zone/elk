@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { clamp } from '@vueuse/core'
 import type { mastodon } from 'masto'
+import getUrls from 'get-urls'
 
 const {
   attachment,
@@ -41,6 +42,13 @@ const objectPosition = computed(() => {
   const y = ((focusY / -2) + 0.5) * 100
 
   return `${x}% ${y}%`
+})
+
+const urlsInDescription = computed(() => {
+  if (!attachment.description)
+    return new Set()
+
+  return getUrls(attachment.description)
 })
 
 const typeExtsMap = {
@@ -191,6 +199,18 @@ useIntersectionObserver(video, (entries) => {
             <p whitespace-pre-wrap>
               {{ attachment.description }}
             </p>
+            <div v-if="urlsInDescription.size > 0" whitespace-pre-wrap break-words>
+              <h3 font-bold text-xl text-secondary>
+                {{ $t('status.img_alt.desc_urls') }}
+              </h3>
+              <span class="content-rich line-compact" dir="auto">
+                <ul>
+                  <li v-for="url in urlsInDescription" :key="url">
+                    <NuxtLink :to="url" rel="nofollow noopener noreferrer" target="_blank">{{ url }}</NuxtLink>
+                  </li>
+                </ul>
+              </span>
+            </div>
           </div>
         </template>
       </VDropdown>

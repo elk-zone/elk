@@ -416,6 +416,7 @@
     "filter_show_anyway": "Show anyway",
     "img_alt": {
       "desc": "Description",
+      "desc_urls": "Links in Description",
       "dismiss": "Dismiss"
     },
     "poll": {

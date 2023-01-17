@@ -23,8 +23,7 @@ const isGrayscale = usePreferences('grayscaleMode')
             <div flex="~ col" overflow-y-auto justify-between h-full max-w-full mt-5>
               <NavTitle />
               <NavSide command />
-              <div flex-auto />
-              <div v-if="isHydrated" flex flex-col>
+              <div v-if="isHydrated" flex flex-col sticky bottom-0 bg-base>
                 <div hidden xl:block>
                   <UserSignInEntry v-if="!currentUser" />
                 </div>

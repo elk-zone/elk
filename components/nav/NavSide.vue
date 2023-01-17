@@ -17,7 +17,7 @@ const { notifications } = useNotifications()
 </script>
 
 <template>
-  <nav sm:px3 flex="~ col gap2" shrink text-size-base leading-normal md:text-lg>
+  <nav sm:px3 flex="~ col gap2" shrink text-size-base leading-normal md:text-lg h-full>
     <div shrink hidden sm:block mt-4 />
     <NavSideItem :text="$t('nav.home')" to="/home" icon="i-ri:home-5-line" user-only :command="command" />
     <NavSideItem :text="$t('nav.notifications')" to="/notifications" icon="i-ri:notification-4-line" user-only :command="command">

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  describedby: string
+  describedBy: string
 }>()
 
 defineOptions({
@@ -11,7 +11,7 @@ defineOptions({
 <template>
   <div
     role="alert"
-    :aria-describedby="describedby"
+    :aria-describedby="describedBy"
     flex="~ col"
     gap-1 text-sm
     pt-1 ps-2 pe-1 pb-2

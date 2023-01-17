@@ -148,7 +148,7 @@ defineExpose({
           >
         </div>
 
-        <PublishErrMessage v-if="failedMessages.length > 0" describedby="publish-failed">
+        <PublishErrMessage v-if="failedMessages.length > 0" described-by="publish-failed">
           <head id="publish-failed" flex justify-between>
             <div flex items-center gap-x-2 font-bold>
               <div aria-hidden="true" i-ri:error-warning-fill />
@@ -187,7 +187,7 @@ defineExpose({
         </div>
         <PublishErrMessage
           v-else-if="failedAttachments.length > 0"
-          :describedby="isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'"
+          :described-by="isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'"
         >
           <head id="upload-failed" flex justify-between>
             <div flex items-center gap-x-2 font-bold>

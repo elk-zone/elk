@@ -6,7 +6,7 @@ const { status, context } = defineProps<{
   context?: mastodon.v2.FilterContext | 'details'
 }>()
 
-const isDM = $computed(() => status.visibility === 'direct')
+const isDM = $computed(() => false) // status.visibility === 'direct')
 const isDetails = $computed(() => context === 'details')
 
 // Content Filter logic

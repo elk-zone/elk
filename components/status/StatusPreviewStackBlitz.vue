@@ -13,18 +13,21 @@ interface Meta {
   code?: string
   file?: string
   lines?: string
+  project?: string
 }
 
 const meta = $computed(() => {
   const { description } = props.card
   const meta = description.match(/.+\n\nCode Snippet from (.+), lines ([\w-]+)\n\n(.+)/s)
   const file = meta?.[1]
-  const lines = meta?.[2]
+  const lines = meta?.[2].replaceAll('N', '')
   const code = meta?.[3]
+  const project = props.card.title?.replace(' - StackBlitz', '')
   const info = $ref<Meta>({
     file,
     lines,
     code,
+    project,
   })
   return info
 })
@@ -42,40 +45,51 @@ const vnodeCode = $computed(() => {
 <template>
   <div
     v-if="meta.code"
-    flex flex-col
+    flex flex-col gap-1
     display-block of-hidden
     w-full
-    justify-center
+    rounded-lg
+    overflow-hidden
   >
+    <div whitespace-pre-wrap break-words>
+      <span v-if="vnodeCode" class="content-rich line-compact" dir="auto">
+        <component :is="vnodeCode" />
+      </span>
+    </div>
     <div
       flex flex-col
       display-block of-hidden
       bg-card
       w-full
       justify-center
-      rounded-lg
+      rounded="bl-lg br-lg"
       p-3
+      pb-4
     >
       <div flex justify-between>
-        <p font-bold>
-          {{ card.title }}
+        <p flex gap-1>
+          <span>Code Snippet from</span><span>{{ meta.file }}</span><span text-secondary>{{ `- Lines ${meta.lines}` }}</span>
         </p>
         <NuxtLink external target="_blank" btn-solid py-0 px-2 :to="card.url">
           Open
         </NuxtLink>
       </div>
-
       <div flex justify-between>
-        <p flex gap-1>
-          <span>Code Snippet from</span><span>{{ meta.file }}</span><span text-secondary>{{ `(Lines ${meta.lines})` }}</span>
+        <p font-bold flex gap-1>
+          <span text-primary>{{ meta.project }}</span><span> - StackBlitz</span>
         </p>
       </div>
-    </div>
-    <div whitespace-pre-wrap break-words rounded-lg>
-      <span v-if="vnodeCode" class="content-rich line-compact" dir="auto">
-        <component :is="vnodeCode" />
-      </span>
     </div>
   </div>
   <StatusPreviewCardNormal v-else :card="card" :small-picture-only="smallPictureOnly" :root="root" />
 </template>
+
+<style scoped>
+.content-rich p {
+  margin-top: 0;
+}
+.code-block {
+  margin-top: 0;
+  border-radius: 0;
+}
+</style>

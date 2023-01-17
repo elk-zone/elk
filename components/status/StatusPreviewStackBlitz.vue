@@ -50,6 +50,7 @@ const vnodeCode = $computed(() => {
     w-full
     rounded-lg
     overflow-hidden
+    pb-2
   >
     <div whitespace-pre-wrap break-words>
       <span v-if="vnodeCode" class="content-rich line-compact" dir="auto">
@@ -62,7 +63,6 @@ const vnodeCode = $computed(() => {
       bg-card
       w-full
       justify-center
-      rounded="bl-lg br-lg"
       p-3
       pb-4
     >
@@ -74,10 +74,8 @@ const vnodeCode = $computed(() => {
           Open
         </NuxtLink>
       </div>
-      <div flex justify-between>
-        <p font-bold flex gap-1>
-          <span text-primary>{{ meta.project }}</span><span> - StackBlitz</span>
-        </p>
+      <div flex font-bold gap-2>
+        <span text-primary>{{ meta.project }}</span><span flex text-secondary><span flex items-center><svg h-5 width="22.27" height="32" viewBox="0 0 256 368"><path fill="currentColor" d="M109.586 217.013H0L200.34 0l-53.926 150.233H256L55.645 367.246l53.927-150.233z" /></svg></span><span>StackBlitz</span></span>
       </div>
     </div>
   </div>

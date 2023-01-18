@@ -272,9 +272,10 @@ export async function signout() {
   loginTo(masto, currentUser.value)
 }
 
-export function checkLogin() {
+export function checkLogin(dry = false) {
   if (!currentUser.value) {
-    openSigninDialog()
+    if (!dry)
+      openSigninDialog()
     return false
   }
   return true

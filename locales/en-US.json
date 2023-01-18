@@ -28,6 +28,7 @@
     "muted_users": "Muted users",
     "muting": "Muted",
     "mutuals": "Mutuals",
+    "not_sign_in": "Sign in first",
     "notifications_on_post_disable": "Stop notifying me when {username} posts",
     "notifications_on_post_enable": "Notify me when {username} posts",
     "pinned": "Pinned",

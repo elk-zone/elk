@@ -25,7 +25,7 @@ defineProps<{
           >
             <div i-ri:arrow-left-line class="rtl-flip" />
           </NuxtLink>
-          <div :truncate="!noOverflowHidden" w-full>
+          <div :truncate="!noOverflowHidden ? '' : false" w-full>
             <slot name="title" />
           </div>
           <div sm:hidden h-7 w-1px />

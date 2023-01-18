@@ -71,6 +71,7 @@ const activate = () => {
         bg-transparent
         outline="focus:none"
         pe-4
+        ml-1
         select-none
         :placeholder="isHydrated ? t('nav.search') : ''"
         pb="1px"

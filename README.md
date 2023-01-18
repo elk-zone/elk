@@ -43,6 +43,7 @@ These are known deployments using Elk as an alternative Web client for Mastodon 
 
 - [elk.h4.io](https://elk.h4.io) - Use Elk for the `h4.io` Server
 - [elk.universeodon.com](https://elk.universeodon.com) - Use Elk for the Universeodon Server
+- [elk.vmst.io](https://elk.vmst.io) - Use Elk for the `vmst.io` Server
 
 > **Note**: Community deployments are **NOT** maintained by the Elk team. It may not be synced with Elk's source code. Please do your own research about the host servers before using them.
 

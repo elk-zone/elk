@@ -9,7 +9,7 @@ const {
   withAction?: boolean
 }>()
 
-const { translation } = useTranslation(status)
+const { translation } = useTranslation(status, getLanguageCode())
 
 const emojisObject = useEmojisFallback(() => status.emojis)
 const vnode = $computed(() => {

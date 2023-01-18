@@ -28,6 +28,7 @@
     "muted_users": "已靜音的使用者",
     "muting": "已靜音",
     "mutuals": "互相關注",
+    "notify_on_post": "{username} 發文時通知我",
     "pinned": "置頂的貼文",
     "posts": "貼文",
     "posts_count": "{0} 則貼文",
@@ -88,7 +89,7 @@
     "toggle_zen_mode": "切換禪模式"
   },
   "common": {
-    "end_of_list": "清單到底啦",
+    "end_of_list": "清單到底了",
     "error": "錯誤",
     "in": "在",
     "not_found": "無法找到相關內容",
@@ -197,7 +198,7 @@
     "conversations": "私訊",
     "explore": "探索",
     "favourites": "喜歡",
-    "federated": "跨站",
+    "federated": "聯邦",
     "home": "首頁",
     "local": "本地",
     "muted_users": "已靜音的使用者",
@@ -277,10 +278,10 @@
       "label": "帳號設定"
     },
     "interface": {
-      "color_mode": "顏色",
+      "color_mode": "色彩模式",
       "dark_mode": "深色",
       "default": "（預設）",
-      "font_size": "字號",
+      "font_size": "字體大小",
       "label": "外觀",
       "light_mode": "淺色",
       "size_label": {
@@ -290,7 +291,8 @@
         "xl": "特大",
         "xs": "特小"
       },
-      "system_mode": "跟隨系統"
+      "system_mode": "系統預設",
+      "theme_color": "主題色"
     },
     "language": {
       "display_language": "顯示語言",
@@ -340,7 +342,7 @@
           "enable_description_settings": "若想在鹿鳴未開啟時接收通知，請啟用推播通知功能。 啟用後，你將能夠精確控制哪些類型的互動會在螢幕上推播通知。",
           "enable_desktop": "啟用推播功能",
           "enable_title": "不錯過任何事",
-          "re_auth": "您的伺服器似乎不支援推播通知。嘗試退出使用者並重新登錄。如果此消息仍然出現，請聯繫您伺服器的管理員。"
+          "re_auth": "您的伺服器似乎不支援推播通知。嘗試退出使用者並重新登入。如果此消息仍然出現，請聯繫您伺服器的管理員。"
         }
       },
       "show_btn": "前往通知設定"
@@ -374,10 +376,15 @@
     },
     "select_a_settings": "在左側選擇一個設定",
     "users": {
-      "export": "導出使用者令牌",
-      "import": "導入使用者令牌",
+      "export": "匯入使用者憑證",
+      "import": "匯出使用者憑證",
       "label": "當前使用者"
     }
+  },
+  "share-target": {
+    "description": "如果你想分享其他應用程式上的內容到鹿鳴。請在你的行動裝置裝置或電腦上安裝鹿鳴並登入。",
+    "hint": "為了將內容分享到鹿鳴，你需要安裝鹿鳴並且登入。",
+    "title": "分享到鹿鳴"
   },
   "state": {
     "attachments_exceed_server_limit": "附件的數量超出了最大限制",
@@ -435,7 +442,7 @@
     "unfollow_label": "取消關注 {0} 標籤"
   },
   "time_ago_options": {
-    "day_future": "現在|明天|{n} 天后",
+    "day_future": "現在|明天|{n} 天後",
     "day_past": "現在|昨天|{n} 天前",
     "hour_future": "現在|1 小時後|{n} 小時後",
     "hour_past": "現在|1 小時前|{n} 小時前",
@@ -479,7 +486,7 @@
     "add_media": "加入圖片、影片或音訊",
     "add_publishable_content": "加入要發布的內容",
     "change_content_visibility": "修改內容是否可見",
-    "change_language": "改變語言",
+    "change_language": "切換語言",
     "emoji": "表情符號",
     "explore_links_intro": "這些新聞故事正被本站和分佈式網路上其他站點的使用者談論。",
     "explore_posts_intro": "來自本站和分佈式網路上其他站點的這些嘟文正在本站引起關注。",
@@ -489,7 +496,7 @@
   "user": {
     "add_existing": "加入現有帳戶",
     "server_address_label": "Mastodon 伺服器位置",
-    "sign_in_desc": "登錄後可關注其他人或標籤、點讚、分享和回覆貼文，或與不同伺服器上的帳號互動。",
+    "sign_in_desc": "登入後可關注其他人或標籤、點讚、分享和回覆貼文，或與不同伺服器上的帳號互動。",
     "sign_in_notice_title": "正在查看 {0} 的公共數據",
     "sign_out_account": "登出 {0}",
     "tip_no_account": "如果您還沒有 Mastodon 賬戶，{0}。",

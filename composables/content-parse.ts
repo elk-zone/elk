@@ -35,12 +35,35 @@ const sanitizer = sanitize({
   code: {
     class: filterClasses(/^language-\w+$/),
   },
-  // other elements supported in glitch
-  h1: {},
-  ol: {},
-  ul: {},
-  li: {},
+  // Other elements supported in glitch, as seen in
+  // https://github.com/glitch-soc/mastodon/blob/13227e1dafd308dfe1a3effc3379b766274809b3/lib/sanitize_ext/sanitize_config.rb#L75
+  abbr: {
+    title: keep,
+  },
+  del: {},
+  blockquote: {
+    cite: filterHref(),
+  },
+  b: {},
+  strong: {},
+  u: {},
+  sub: {},
+  sup: {},
+  i: {},
   em: {},
+  h1: {},
+  h2: {},
+  h3: {},
+  h4: {},
+  h5: {},
+  ul: {},
+  ol: {
+    start: keep,
+    reversed: keep,
+  },
+  li: {
+    value: keep,
+  },
 })
 
 /**
@@ -66,7 +89,7 @@ export function parseMastodonHTML(
         const code = htmlToText(raw)
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
-          .replace(/`/, '&#96;')
+          .replace(/`/g, '&#96;')
         const classes = lang ? ` class="language-${lang}"` : ''
         return `><pre><code${classes}>${code}</code></pre>`
       })
@@ -255,6 +278,10 @@ function filterClasses(allowed: RegExp) {
   }
 }
 
+function keep(value: string | undefined) {
+  return value
+}
+
 function set(value: string) {
   return () => value
 }
@@ -424,18 +451,18 @@ function transformCollapseMentions() {
   }
 
   return (node: Node, root: Node): Node | Node[] => {
-    if (processed || node.parent !== root)
+    if (processed || node.parent !== root || !node.children)
       return node
-    const metions: (Node | undefined)[] = []
+    const mentions: (Node | undefined)[] = []
     const children = node.children as Node[]
     for (const child of children) {
       // metion
       if (isMention(child)) {
-        metions.push(child)
+        mentions.push(child)
       }
       // spaces in between
       else if (child.type === TEXT_NODE && !child.value.trim()) {
-        metions.push(child)
+        mentions.push(child)
       }
       // other content, stop collapsing
       else {
@@ -443,17 +470,17 @@ function transformCollapseMentions() {
           child.value = child.value.trimStart()
         // remove <br> after mention
         if (child.name === 'br')
-          metions.push(undefined)
+          mentions.push(undefined)
         break
       }
     }
     processed = true
-    if (metions.length === 0)
+    if (mentions.length === 0)
       return node
 
     return {
       ...node,
-      children: [h('mention-group', null, ...metions.filter(Boolean)), ...children.slice(metions.length)],
+      children: [h('mention-group', null, ...mentions.filter(Boolean)), ...children.slice(mentions.length)],
     }
   }
 }

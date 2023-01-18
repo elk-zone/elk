@@ -3,16 +3,6 @@ const { command } = defineProps<{
   command?: boolean
 }>()
 
-const search = ref<HTMLInputElement>()
-const route = useRoute()
-
-const isExploreRoute = () => route.path.includes('explore')
-
-watchEffect(() => {
-  if (isExploreRoute() && search.value)
-    search.value.focus()
-})
-
 const { notifications } = useNotifications()
 </script>
 
@@ -36,10 +26,7 @@ const { notifications } = useNotifications()
     <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-line" user-only :command="command" />
 
     <div shrink hidden sm:block mt-4 />
-    <NavSideItem v-if="!isExploreRoute()" :text="`${$t('nav.search')} ${$t('common.and')} ${$t('nav.explore')}`" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:search-line" hidden xl:block :command="command" />
-    <SearchWidget v-else-if="!isExtraLargeScreen" ref="search" lg:ms-1 lg:me-5 lg:mb-1 hidden xl:block />
-    <NavSideItem :text="`${$t('nav.search')} ${$t('common.and')} ${$t('nav.explore')}`" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:search-line" xl:hidden :command="command" />
-
+    <NavSideItem :text="$t('nav.explore')" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:hashtag" :command="command" />
     <NavSideItem :text="$t('nav.local')" :to="isHydrated ? `/${currentServer}/public/local` : '/public/local'" icon="i-ri:group-2-line " :command="command" />
     <NavSideItem :text="$t('nav.federated')" :to="isHydrated ? `/${currentServer}/public` : '/public'" icon="i-ri:earth-line" :command="command" />
 

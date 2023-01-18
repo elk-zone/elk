@@ -1,4 +1,8 @@
 <script setup lang="ts">
+const { position } = defineProps<{
+  position?: 'top' | 'bottom'
+}>()
+
 const query = ref('')
 const { accounts, hashtags, loading, statuses } = useSearch(query)
 const index = ref(0)
@@ -8,14 +12,6 @@ const el = ref<HTMLElement>()
 const input = ref<HTMLInputElement>()
 const router = useRouter()
 const { focused } = useFocusWithin(el)
-
-const focus = () => {
-  input.value?.focus()
-}
-
-defineExpose({
-  focus,
-})
 
 const results = computed(() => {
   if (query.value.length === 0)
@@ -84,7 +80,7 @@ const activate = () => {
       >
     </div>
     <!-- Results -->
-    <div left-0 top-12 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
+    <div top-12 left-0 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
       <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
         <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}

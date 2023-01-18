@@ -76,6 +76,12 @@ export default defineNuxtPlugin(() => {
     showInstallPrompt.value = false
   })
 
+  const cancelInstall = () => {
+    deferredPrompt = undefined
+    showInstallPrompt.value = false
+    window.removeEventListener('beforeinstallprompt', beforeInstallPrompt)
+  }
+
   const install = async () => {
     if (!showInstallPrompt.value || !deferredPrompt) {
       showInstallPrompt.value = false
@@ -87,11 +93,7 @@ export default defineNuxtPlugin(() => {
     deferredPrompt.prompt()
     const { outcome } = await deferredPrompt.userChoice
     if (outcome === 'dismissed')
-      window.removeEventListener('beforeinstallprompt', beforeInstallPrompt)
-  }
-
-  const cancelInstall = () => {
-    showInstallPrompt.value = false
+      cancelInstall()
   }
 
   return {

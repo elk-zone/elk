@@ -61,6 +61,65 @@ const type = $computed(() => {
   return 'unknown'
 })
 
+const vnode = $computed(() => {
+  // Vnode for creating clickable links in Image Alt description (see #1267)
+
+  if (!attachment.description)
+    return null
+
+  let description = String(attachment.description)
+
+  // Transform Markdown links into anchor tags
+  // https://stackoverflow.com/a/37462442
+  // https://stephencharlesweiss.com/regex-markdown-link
+  const regexMarkdownFind = /(?:__|[*#])|\[(.*?)\]\(.*?\)/g
+  const regexMarkdownExtract = /!?\[([^\]]*)?\]\(((https?:\/\/)?[A-Za-z0-9\:\/\. ]+)(\"(.+)\")?\)/gm
+
+  let matches = [...description.matchAll(regexMarkdownFind)]
+
+  matches.forEach((match) => {
+    const extracted = [...match[0].matchAll(regexMarkdownExtract)][0]
+
+    // regexMarkdownFind has false positives sometimes. If the match can't
+    // be extracted, let's skip it.
+    if (!extracted)
+      return
+
+    const anchor = `<a href="${extracted[2]}">${extracted[1]}</a>`
+
+    description = description.replaceAll(extracted[0], anchor)
+  })
+
+  // Transform URLs into anchor tags
+  // https://stackoverflow.com/a/3809435
+  const regexUrlFind = /\shttps?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/g
+
+  matches = [...description.matchAll(regexUrlFind)]
+
+  for (const match in matches) {
+    let url = matches[match][0].trim()
+
+    if (url.slice(-1) === '.')
+      url = url.slice(0, -1)
+
+    const anchor = `<a href="${url}">${url}</a>`
+
+    description = description.replaceAll(url, anchor)
+  }
+
+  const vnode = contentToVNode(description, {
+    emojis: undefined,
+    replaceUnicodeEmoji: false,
+
+    mentions: undefined,
+    collapseMentionLink: false,
+    convertMentionLink: false,
+
+    markdown: true,
+  })
+  return vnode
+})
+
 const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
 const isAudio = $computed(() => attachment.type === 'audio')
@@ -188,8 +247,8 @@ useIntersectionObserver(video, (entries) => {
                 {{ $t('status.img_alt.dismiss') }}
               </button>
             </div>
-            <p whitespace-pre-wrap>
-              {{ attachment.description }}
+            <p class="content-rich line-compact" whitespace-pre-wrap>
+              <component :is="vnode" />
             </p>
           </div>
         </template>

@@ -7,7 +7,7 @@
     "route_loaded": "Страница {0} загружена"
   },
   "account": {
-    "avatar_description": "Aватар {0}(а/я)",
+    "avatar_description": "Aватар {0}(а/я/и)",
     "blocked_by": "Вы заблокированы этим пользователем.",
     "blocked_domains": "Заблокированные домены",
     "blocked_users": "Заблокированные пользователи",

@@ -17,7 +17,7 @@ const isGrayscale = usePreferences('grayscaleMode')
 <template>
   <div h-full :data-mode="isHydrated && isGrayscale ? 'grayscale' : ''">
     <main flex w-full mxa lg:max-w-80rem>
-      <aside class="hidden sm:flex w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 justify-end xl:me-4 zen-hide" relative>
+      <aside class="justify-end hidden sm:flex w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 xl:me-4 zen-hide" relative>
         <div sticky top-0 w-20 xl:w-100 h-screen flex="~ col" lt-xl-items-center>
           <slot name="left">
             <div flex="~ col" overflow-y-auto justify-between h-full max-w-full mt-5>
@@ -59,7 +59,7 @@ const isGrayscale = usePreferences('grayscaleMode')
           <NavBottom v-if="isHydrated" sm:hidden />
         </div>
       </div>
-      <aside v-if="isHydrated && !wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">
+      <aside v-if="isHydrated && !wideLayout" class="hidden w-1/4 sm:none lg:block zen-hide">
         <div sticky top-0 h-screen flex="~ col" gap-2 py3 ms-2>
           <slot name="right">
             <div flex-auto />

@@ -162,7 +162,7 @@ export default defineNuxtConfig({
           'img-src': ['\'self\'', 'https:', 'http:', 'data:'],
           'media-src': ['\'self\'', 'https:', 'http:'],
           'object-src': ['\'none\''],
-          'script-src': ['\'self\'', '\'unsafe-inline\''],
+          'script-src': ['\'self\'', '\'unsafe-inline\'', '\'wasm-unsafe-eval\''],
           'script-src-attr': ['\'none\''],
           'style-src': ['\'self\'', '\'unsafe-inline\''],
           'upgrade-insecure-requests': true,

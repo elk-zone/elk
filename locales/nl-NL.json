@@ -100,7 +100,6 @@
     "explore-list-empty": "Er is nu niets trending. Kom later terug!",
     "file_size_cannot_exceed_n_mb": "Bestandsgrootte mag niet groter zijn dan {0}MB",
     "sign_in_error": "Kan geen verbinding maken met de server.",
-    "sign_in_error": "Kan geen connectie maken met de server.",
     "status_not_found": "Post niet gevonden",
     "unsupported_file_format": "Bestandstype niet ondersteund"
   },

@@ -24,6 +24,12 @@ useHeadFixed({
         </p>
         <SettingsColorMode />
       </div>
+      <div space-y-2>
+        <p font-medium>
+          {{ $t('settings.interface.theme_color') }}
+        </p>
+        <SettingsThemeColors />
+      </div>
     </div>
   </MainContent>
 </template>

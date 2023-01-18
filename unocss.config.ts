@@ -23,9 +23,9 @@ export default defineConfig({
       'bg-border': 'bg-$c-border',
       'bg-active': 'bg-$c-bg-active',
       'bg-primary-light': 'bg-$c-primary-light',
+      'bg-primary-fade': 'bg-$c-primary-fade',
       'bg-card': 'bg-$c-bg-card',
       'bg-code': 'bg-$c-bg-code',
-      'bg-fade': 'bg-$c-bg-fade',
       'bg-dm': 'bg-$c-bg-dm',
 
       // text colors
@@ -41,6 +41,7 @@ export default defineConfig({
       'btn-outline': 'btn-base px-4 py-2 rounded text-$c-primary border border-$c-primary hover:bg-$c-primary hover:text-inverted',
       'btn-text': 'btn-base px-4 py-2 text-$c-primary hover:text-$c-primary-active',
       'btn-action-icon': 'btn-base hover:bg-active rounded-full h9 w9 flex items-center justify-center disabled:bg-transparent disabled:text-$c-text-secondary',
+      'btn-danger': 'btn-base px-4 py-2 rounded text-white bg-$c-danger hover:bg-$c-danger-active',
 
       // input
       'input-base-focus': 'focus:outline-none focus:border-$c-primary',
@@ -94,6 +95,10 @@ export default defineConfig({
       primary: {
         DEFAULT: 'var(--c-primary)',
         active: 'var(--c-primary-active)',
+      },
+      danger: {
+        DEFAULT: 'var(--c-danger)',
+        active: 'var(--c-danger-active)',
       },
     },
   },

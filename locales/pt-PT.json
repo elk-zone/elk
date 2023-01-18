@@ -28,7 +28,8 @@
     "muted_users": "Utilizadores silenciados",
     "muting": "Silenciados",
     "mutuals": "Mútuos",
-    "notify_on_post": "Notifique-me quando {username} publicar",
+    "notifications_on_post_disable": "Deixe de me nofiticar quando {username} publicar",
+    "notifications_on_post_enable": "Notifique-me quando {username} publicar",
     "pinned": "Fixado",
     "posts": "Publicações",
     "posts_count": "{0} Publicações|{0} Publicação|{0} Publicações",
@@ -47,7 +48,8 @@
     "boost": "Partilhar",
     "boost_count": "{0}",
     "boosted": "Partilhado",
-    "clear_upload_failed": "Limpar erro de carregamento de ficheiro",
+    "clear_publish_failed": "Limpar erros de publicação",
+    "clear_upload_failed": "Limpar erros de carregamento de ficheiro",
     "close": "Fechar",
     "compose": "Compor",
     "confirm": "Confirmar",
@@ -100,19 +102,50 @@
     "drafts": "Rascunhos ({v})"
   },
   "confirm": {
+    "block_account": {
+      "cancel": "Cancelar",
+      "confirm": "Bloquear",
+      "title": "Tem a certeza que pretende bloquear {0}？"
+    },
+    "block_domain": {
+      "cancel": "Cancelar",
+      "confirm": "Bloquear",
+      "title": "Tem a certeza que pretende bloquear {0}？"
+    },
     "common": {
       "cancel": "Não",
-      "confirm": "Sim",
-      "title": "Tem a certeza?"
+      "confirm": "Sim"
     },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
       "title": "Tem a certeza que pretende eliminar esta publicação?"
+    },
+    "mute_account": {
+      "cancel": "Cancelar",
+      "confirm": "Silenciar",
+      "title": "Tem a certeza que pretende silenciar {0}？"
+    },
+    "show_reblogs": {
+      "cancel": "Cancelar",
+      "confirm": "Mostrar",
+      "title": "Tem a certeza que prentende mostrar partilhas de {0}？"
+    },
+    "unfollow": {
+      "cancel": "Cancelar",
+      "confirm": "Deixar de seguir",
+      "title": "Tem a certeza que pretende deixar de seguir?"
     }
   },
   "conversation": {
     "with": "com"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Linhas {0}",
+      "open": "Abrir",
+      "snippet_from": "Trecho de {0}"
+    }
   },
   "error": {
     "account_not_found": "Conta {0} não encontrada",
@@ -253,12 +286,6 @@
       "description": "Editar as configurações da sua conta na aplicação web do Mastodon",
       "label": "Configurações da conta"
     },
-    "feature_flags": {
-      "github_cards": "Cartões do GitHub",
-      "title": "Funcionalidades Experimentais",
-      "user_picker": "Selecionador de Utilizador",
-      "virtual_scroll": "Deslocamento Virtual"
-    },
     "interface": {
       "color_mode": "Modo de cores",
       "dark_mode": "Modo Escuro",
@@ -273,7 +300,8 @@
         "xl": "Extra grande",
         "xs": "Extra pequeno"
       },
-      "system_mode": "Sistema"
+      "system_mode": "Sistema",
+      "theme_color": "Cor to Tema"
     },
     "language": {
       "display_language": "Idioma de Apresentação",
@@ -330,7 +358,15 @@
     },
     "notifications_settings": "Notificações",
     "preferences": {
-      "label": "Preferências"
+      "github_cards": "Cartões do GitHub",
+      "grayscale_mode": "Modo tons de cinza",
+      "hide_boost_count": "Esconder contagem de partilhas",
+      "hide_favorite_count": "Esconder contagem de favoritos",
+      "hide_follower_count": "Esconder contagem de seguidores",
+      "label": "Preferências",
+      "title": "Funcionalidades Experimentais",
+      "user_picker": "Selecionador de Utilizador",
+      "virtual_scroll": "Deslocamento Virtual"
     },
     "profile": {
       "appearance": {
@@ -353,14 +389,6 @@
       "export": "Exportar Tokens de Acesso",
       "import": "Importar Tokens de Acesso",
       "label": "Utilizadores conectados"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "Esconder contagem de partilhas",
-        "hide_favorite_count": "Esconder contagem de favoritos",
-        "hide_follower_count": "Esconder contagem de seguidores"
-      },
-      "label": "Bem-estar"
     }
   },
   "share-target": {
@@ -374,8 +402,9 @@
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Carregando...",
+    "publish_failed": "Publicação falhou",
     "publishing": "Publicando",
-    "upload_failed": "Falhou carregamento",
+    "upload_failed": "Carregamento falhou",
     "uploading": "A carregar..."
   },
   "status": {
@@ -395,7 +424,7 @@
       "finished": "terminou {0}"
     },
     "reblogged": "{0} partilhou",
-    "replying_to": "Respondendo a {0}",
+    "replying_to": "Em resposta a {0}",
     "show_full_thread": "Mostrar toda a conversa",
     "someone": "alguém",
     "spoiler_show_less": "Mostrar menos",
@@ -445,9 +474,9 @@
     "short_month_past": "{n}M",
     "short_second_future": "em {n}s",
     "short_second_past": "{n}s",
-    "short_week_future": "in {n}S",
+    "short_week_future": "em{n}S",
     "short_week_past": "{n}S",
-    "short_year_future": "in {n}A",
+    "short_year_future": "em {n}A",
     "short_year_past": "{n}A",
     "week_future": "em 0 semanas|próxima semana|em {n} semanas",
     "week_past": "0 semanas atrás|semana passada|{n} semanas atrás",
@@ -473,6 +502,7 @@
     "explore_links_intro": "Estas notícias estão, neste momento, a ser faladas por pessoas neste e noutros servidores da rede descentralizada.",
     "explore_posts_intro": "Estas publicações deste e de outros servidores na rede descentralizada estão, neste momento, a ganhar popularidade neste servidor.",
     "explore_tags_intro": "Estes hashtags estão, neste momento, a ganhar popularidade entre as pessoas neste e noutros servidores da rede descentralizada.",
+    "publish_failed": "Fechar mensagens de falha no topo do editor para republicar publicações",
     "toggle_code_block": "Alternar bloco de código"
   },
   "user": {
@@ -492,6 +522,6 @@
     "public": "Publico",
     "public_desc": "Visível por todos",
     "unlisted": "Não listada",
-    "unlisted_desc": "Visível por todos, mas não incluida nas funcionalidades de divulgação"
+    "unlisted_desc": "Visível por todos, mas não incluída nas funcionalidades de divulgação"
   }
 }

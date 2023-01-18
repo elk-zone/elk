@@ -27,18 +27,6 @@ const userSettings = useUserSettings()
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
-const {
-  toggle: _toggleTranslation,
-  translation,
-  enabled: isTranslationEnabled,
-} = useTranslation(props.status)
-
-const toggleTranslation = async () => {
-  isLoading.translation = true
-  await _toggleTranslation()
-  isLoading.translation = false
-}
-
 const { client } = $(useMasto())
 
 const getPermalinkUrl = (status: mastodon.v1.Status) => {

@@ -80,8 +80,6 @@ export default defineConfig({
     presetWebFonts({
       provider: 'none',
       fonts: {
-        serif: 'DM Serif Display',
-        mono: 'DM Mono',
         script: 'Homemade Apple',
       },
     }),

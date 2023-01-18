@@ -156,6 +156,12 @@
     "unsupported_file_format": "Unsupported file format"
   },
   "help": {
+    "build_preview": {
+      "desc1": "You are currently viewing a preview version of Elk from the community - {0}.",
+      "desc2": "It may contains unreviewed or even malicious changes.",
+      "desc3": "Don't log in with your real account.",
+      "title": "Preview deploy"
+    },
     "desc_highlight": "Expect some bugs and missing features here and there.",
     "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress Mastodon web client!",
     "desc_para2": "we are working hard on the development and improving it over time.",

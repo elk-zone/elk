@@ -1,30 +1,25 @@
-import { createVNode, defineComponent, h, render } from 'vue'
+import { h, render } from 'vue'
 import CommonMask from '~/components/common/CommonMask.vue'
 
 export interface UseMaskOptions {
   getContainer?: () => HTMLElement
   background?: string
+  zIndex?: number
 }
 
 export function useMask(options: UseMaskOptions = {}) {
   const {
     background = 'transparent',
     getContainer = () => document.body,
+    zIndex = 100,
   } = options
   const wrapperEl = (process.server ? null : document.createElement('div')) as HTMLDivElement
-  const MaskComp = defineComponent({
-    setup() {
-      return () => {
-        return h(CommonMask, { background })
-      }
-    },
-  })
 
   function show() {
     const container = getContainer()
     container?.appendChild(wrapperEl)
-    const vm = createVNode(MaskComp)
-    render(vm, wrapperEl)
+    const MaskComp = h(CommonMask, { background, zIndex })
+    render(MaskComp, wrapperEl)
   }
 
   function hide() {

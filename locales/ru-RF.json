@@ -7,7 +7,7 @@
     "route_loaded": "Страница {0} загружена"
   },
   "account": {
-    "avatar_description": "Aватар {0}(а/я/и)",
+    "avatar_description": "Aватар {0}",
     "blocked_by": "Вы заблокированы этим пользователем.",
     "blocked_domains": "Заблокированные домены",
     "blocked_users": "Заблокированные пользователи",
@@ -19,16 +19,16 @@
     "follow_requested": "Запрошенный",
     "followers": "Подписчиков",
     "followers_count": "{0} Подписчиков|{0} Подписчик|{0} Подписчиков",
-    "following": "Подписан(а)",
+    "following": "Подписаны",
     "following_count": "{0} Подписок",
     "follows_you": "Подписано на вас",
     "go_to_profile": "Перейти к профилю",
-    "joined": "Зарегистрировал(ся/ась)",
-    "moved_title": "указал(а), что их новая учетная запись теперь:",
+    "joined": "Зарегистрировались",
+    "moved_title": "Указали, что их новая учетная запись теперь:",
     "muted_users": "Скрытые пользователи",
     "muting": "Скрыт(ый/ая)",
     "mutuals": "Взаимные",
-    "pinned": "Закреплен(ный/ные)",
+    "pinned": "Закреплен(о/ный/ные)",
     "posts": "Постов",
     "posts_count": "{0} Постов|{0} Пост|{0} Постов",
     "profile_description": "{0}'s profile header",
@@ -138,7 +138,7 @@
       "confirm": "Удалить",
       "title": "Вы уверены, что хотите удалить этот пост?"
     },
-    "direct_message_account": "Отправьте прямое сообщение {0}(у/е/и)",
+    "direct_message_account": "Отправьте прямое сообщение {0}",
     "edit": "Редактировать",
     "hide_reblogs": "Скрыть реблогы от {0}",
     "mention_account": "Упомянуть {0}",
@@ -155,7 +155,7 @@
       "light": "Переключить светлый режим"
     },
     "translate_post": "Перевести пост",
-    "unblock_account": "Разблокировать {0}(а/у)",
+    "unblock_account": "Разблокировать {0}",
     "unblock_domain": "Разблокировать домен {0}",
     "unmute_account": "Раскрыть {0}",
     "unmute_conversation": "Раскрыть этот пост",
@@ -187,18 +187,18 @@
   },
   "notification": {
     "favourited_post": "добавили ваш пост в избранное",
-    "followed_you": "подписал(ся/ась) на вас",
+    "followed_you": "подписались на вас",
     "followed_you_count": "{0} людей, подписанные на вас|{0} человек, подписанный на вас|{0} людей, подписанные на вас",
     "missing_type": "ОТСУТСТВУЕТ notification.type:",
-    "reblogged_post": "сделал(a) реблог вашего поста",
+    "reblogged_post": "сделали реблог вашего поста",
     "request_to_follow": "просили подписаться на вас",
-    "signed_up": "зарегистрировал(ся/ась)",
+    "signed_up": "зарегистрировались",
     "update_status": "обновили свой пост"
   },
   "placeholder": {
     "content_warning": "Напишите свое предупреждение здесь",
     "default_1": "Что у вас на уме?",
-    "reply_to_account": "Ответить на {0}(у/а)",
+    "reply_to_account": "Ответить на {0}",
     "replying": "Отвечая",
     "the_thread": "лента"
   },
@@ -375,9 +375,9 @@
     "uploading": "Загрузка..."
   },
   "status": {
-    "boosted_by": "Бустил(а)",
+    "boosted_by": "Бустили",
     "edited": "Oтредактировано {0}",
-    "favourited_by": "Добавил(а) в избранное",
+    "favourited_by": "Добавили в избранное",
     "filter_hidden_phrase": "Отфильтровано по",
     "filter_removed_phrase": "Удалено фильтром",
     "filter_show_anyway": "Показывать в любом случае",

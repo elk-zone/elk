@@ -458,7 +458,7 @@ function isSpacing(node: Node) {
 
 // Extract the username from a known mention node
 function getMentionHandle(node: Node): string | undefined {
-  return node.children?.[0]?.children?.[0]?.attributes['data-id']
+  return hrefToHandle(node.children?.[0].attributes.href) // node.children?.[0]?.children?.[0]?.attributes?.['data-id']
 }
 
 function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?: mastodon.v1.Status): Transform {
@@ -527,14 +527,20 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
   }
 }
 
+function hrefToHandle(href: string): string | undefined {
+  const matchUser = href.match(UserLinkRE)
+  if (matchUser) {
+    const [, server, username] = matchUser
+    return `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
+  }
+}
+
 function transformMentionLink(node: Node): string | Node | (string | Node)[] | null {
   if (node.name === 'a' && node.attributes.class?.includes('mention')) {
     const href = node.attributes.href
     if (href) {
-      const matchUser = href.match(UserLinkRE)
-      if (matchUser) {
-        const [, server, username] = matchUser
-        const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
+      const handle = hrefToHandle(href)
+      if (handle) {
         // convert to Tiptap mention node
         return h('span', { 'data-type': 'mention', 'data-id': handle }, handle)
       }

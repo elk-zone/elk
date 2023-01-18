@@ -92,6 +92,25 @@ exports[`html-parse > empty > html 1`] = `""`;
 
 exports[`html-parse > empty > text 1`] = `""`;
 
+exports[`html-parse > hide mentions in context > html 1`] = `
+"<p>
+  <mention-group
+    ><span class=\\"h-card\\"
+      ><a
+        href=\\"/@haoqun@webtoo.ls\\"
+        class=\\"u-url mention\\"
+        rel=\\"nofollow noopener noreferrer\\"
+        target=\\"_blank\\"
+        >@<span>haoqun</span></a
+      ></span
+    ></mention-group
+  >Great to see this happening
+</p>
+"
+`;
+
+exports[`html-parse > hide mentions in context > text 1`] = `"@haoqunGreat to see this happening"`;
+
 exports[`html-parse > html entities > html 1`] = `
 "<p>Hello &lt;World /&gt;.</p>
 "
@@ -142,3 +161,50 @@ exports[`html-parse > link + mention > html 1`] = `
 `;
 
 exports[`html-parse > link + mention > text 1`] = `"Happy 🤗 we’re now using @vitest (migrated from chai+mocha) https://github.com/ayoayco/astro-reactive-library/pull/203"`;
+
+exports[`html-parse > mentions without context > html 1`] = `
+"<p>
+  <mention-group
+    ><span class=\\"h-card\\"
+      ><a
+        href=\\"/@haoqun@webtoo.ls\\"
+        class=\\"u-url mention\\"
+        rel=\\"nofollow noopener noreferrer\\"
+        target=\\"_blank\\"
+        >@<span>haoqun</span></a
+      ></span
+    ></mention-group
+  >Great to see this happening
+</p>
+"
+`;
+
+exports[`html-parse > mentions without context > text 1`] = `"@haoqunGreat to see this happening"`;
+
+exports[`html-parse > show mentions in context > html 1`] = `
+"<p>
+  <mention-group
+    ><span class=\\"h-card\\"
+      ><a
+        href=\\"/@haoqun@webtoo.ls\\"
+        class=\\"u-url mention\\"
+        rel=\\"nofollow noopener noreferrer\\"
+        target=\\"_blank\\"
+        >@<span>haoqun</span></a
+      ></span
+    >
+    <span class=\\"h-card\\"
+      ><a
+        href=\\"/@antfu@webtoo.ls\\"
+        class=\\"u-url mention\\"
+        rel=\\"nofollow noopener noreferrer\\"
+        target=\\"_blank\\"
+        >@<span>antfu</span></a
+      ></span
+    ></mention-group
+  >Great to see this happening
+</p>
+"
+`;
+
+exports[`html-parse > show mentions in context > text 1`] = `"@haoqun @antfuGreat to see this happening"`;

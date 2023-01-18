@@ -2,6 +2,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
+import type { mastodon } from 'masto'
 import { contentToVNode } from '~/composables/content-render'
 import type { ContentParseOptions } from '~~/composables/content-parse'
 
@@ -134,6 +135,37 @@ describe('content-rich', () => {
           ></a
         ></span>
         content
+      </p>
+      "
+    `)
+  })
+
+  it('hides collapsed mentions', async () => {
+    const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> content</p>', {
+      collapseMentionLink: true,
+      inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
+    })
+    expect(formatted).toMatchInlineSnapshot(`
+      "<p>content</p>
+      "
+    `)
+  })
+
+  it('shows some collapsed mentions', async () => {
+    const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> content</p>', {
+      collapseMentionLink: true,
+      inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
+    })
+    expect(formatted).toMatchInlineSnapshot(`
+      "<p>
+        <mention-group>
+          <span class=\\"h-card\\"
+            ><a
+              class=\\"u-url mention\\"
+              rel=\\"nofollow noopener noreferrer\\"
+              to=\\"/m.webtoo.ls/@antfu\\"
+            ></a></span></mention-group
+        >content
       </p>
       "
     `)

@@ -22,6 +22,7 @@ const props = withDefaults(
   }>(),
   { actions: true },
 )
+
 const userSettings = useUserSettings()
 
 const status = $computed(() => {
@@ -183,7 +184,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
         </div>
 
         <!-- Content -->
-        <StatusContent :status="status" :context="context" mb2 :class="{ 'mt-2 mb1': isDM }" />
+        <StatusContent :status="status" :newer="newer" :context="context" mb2 :class="{ 'mt-2 mb1': isDM }" />
         <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
       </div>
     </div>

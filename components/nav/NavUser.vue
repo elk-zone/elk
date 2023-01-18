@@ -1,5 +1,9 @@
+<script setup lang="ts">
+const mask = useMask()
+</script>
+
 <template>
-  <VDropdown v-if="isHydrated && currentUser" sm:hidden>
+  <VDropdown v-if="isHydrated && currentUser" sm:hidden @apply-show="mask.show()" @apply-hide="mask.hide()">
     <div style="-webkit-touch-callout: none;">
       <AccountAvatar
         ref="avatar"

@@ -2,6 +2,7 @@
 import { formatTimeAgo } from '@vueuse/core'
 
 const route = useRoute()
+const mask = useMask()
 const { formatNumber } = useHumanReadableNumber()
 const timeAgoOptions = useTimeAgoOptions()
 
@@ -25,7 +26,7 @@ onMounted(() => {
 <template>
   <div flex="~ col" pt-6 h-screen>
     <div text-right h-8>
-      <VDropdown v-if="nonEmptyDrafts.length" placement="bottom-end">
+      <VDropdown v-if="nonEmptyDrafts.length" placement="bottom-end" @apply-show="mask.show()" @apply-hide="mask.hide()">
         <button btn-text flex="inline center">
           {{ $t('compose.drafts', nonEmptyDrafts.length, { named: { v: formatNumber(nonEmptyDrafts.length) } }) }}&#160;<div aria-hidden="true" i-ri:arrow-down-s-line />
         </button>

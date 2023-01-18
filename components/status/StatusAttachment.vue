@@ -10,6 +10,7 @@ const {
   attachments?: mastodon.v1.MediaAttachment[]
   fullSize?: boolean
 }>()
+const mask = useMask()
 
 const src = $computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
 const srcset = $computed(() => [
@@ -166,7 +167,7 @@ useIntersectionObserver(video, (entries) => {
       </button>
     </template>
     <div v-if="attachment.description" :class="isAudio ? '' : 'absolute left-2 bottom-2'">
-      <VDropdown :distance="6" placement="bottom-start">
+      <VDropdown :distance="6" placement="bottom-start" @apply-show="mask.show()" @apply-hide="mask.hide()">
         <button
           font-bold text-sm
           :class="isAudio

@@ -9,8 +9,10 @@ const emit = defineEmits<{
 const el = $ref<HTMLElement>()
 let picker = $ref<Picker>()
 const colorMode = useColorMode()
+const mask = useMask()
 
 async function openEmojiPicker() {
+  mask.show()
   await updateCustomEmojis()
   if (picker) {
     picker.update({
@@ -34,12 +36,14 @@ async function openEmojiPicker() {
   }
   await nextTick()
   // TODO: custom picker
-  el?.appendChild(picker as any as HTMLElement)
+  el?.appendChild(picker as unknown as HTMLElement)
 }
 
 const hideEmojiPicker = () => {
   if (picker)
-    el?.removeChild(picker as any as HTMLElement)
+    el?.removeChild(picker as unknown as HTMLElement)
+
+  mask.hide()
 }
 </script>
 

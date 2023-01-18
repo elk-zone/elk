@@ -8,6 +8,7 @@ defineProps<{
 
 const dropdown = $ref<any>()
 const colorMode = useColorMode()
+const mask = useMask()
 
 const hide = () => dropdown.hide()
 provide(InjectionKeyDropdownContext, {
@@ -20,7 +21,7 @@ defineExpose({
 </script>
 
 <template>
-  <VDropdown v-bind="$attrs" ref="dropdown" :class="colorMode.value" :placement="placement || 'auto'" :auto-boundary-max-size="autoBoundaryMaxSize">
+  <VDropdown v-bind="$attrs" ref="dropdown" :class="colorMode.value" :placement="placement || 'auto'" :auto-boundary-max-size="autoBoundaryMaxSize" @apply-show="mask.show()" @apply-hide="mask.hide()">
     <slot />
     <template #popper="scope">
       <slot name="popper" v-bind="scope" />

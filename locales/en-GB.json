@@ -178,6 +178,8 @@
   },
   "pwa": {
     "dismiss": "Dismiss",
+    "install": "Install",
+    "install_title": "Install Elk",
     "title": "New Elk update available!",
     "update": "Update",
     "update_available_short": "Update Elk"

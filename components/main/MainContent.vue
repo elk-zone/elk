@@ -38,6 +38,7 @@ defineProps<{
       <slot name="header" />
     </div>
     <div :class="{ 'xl:block': $route.name !== 'tag' }" hidden h-6 />
+    <PwaInstallPrompt lg:hidden />
     <slot />
   </div>
 </template>

@@ -64,6 +64,7 @@ const isGrayscale = usePreferences('grayscaleMode')
           <slot name="right">
             <div flex-auto />
             <PwaPrompt />
+            <PwaInstallPrompt />
             <NavFooter />
           </slot>
         </div>

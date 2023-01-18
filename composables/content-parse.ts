@@ -458,7 +458,7 @@ function isSpacing(node: Node) {
 
 // Extract the username from a known mention node
 function getMentionHandle(node: Node): string | undefined {
-  return hrefToHandle(node.children?.[0].attributes.href) // node.children?.[0]?.children?.[0]?.attributes?.['data-id']
+  return hrefToHandle(node.children?.[0].attributes.href) ?? node.children?.[0]?.children?.[0]?.attributes?.['data-id']
 }
 
 function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?: mastodon.v1.Status): Transform {
@@ -492,6 +492,8 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
     if (mentions.length === 0)
       return node
 
+    let mentionsCount = 0
+    let contextualMentionsCount = 0
     let removeNextSpacing = false
     const contextualMentions = mentions.filter((mention) => {
       if (!mention)
@@ -502,22 +504,23 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
         return false
       }
 
-      if (isMention(mention) && inReplyToStatus) {
-        const mentionHandle = getMentionHandle(mention)
-        if (inReplyToStatus.account.acct === mentionHandle || inReplyToStatus.mentions.some(m => m.acct === mentionHandle))
-          return false
+      if (isMention(mention)) {
+        mentionsCount++
+        if (inReplyToStatus) {
+          const mentionHandle = getMentionHandle(mention)
+          if (inReplyToStatus.account.acct === mentionHandle || inReplyToStatus.mentions.some(m => m.acct === mentionHandle))
+            return false
+        }
+        contextualMentionsCount++
       }
-
       return true
     })
-
-    const mentionsCount = contextualMentions.filter(m => m && isMention(m)).length
 
     // We have a special case for single mentions that are part of a reply.
     // We already have the replying to badge in this case or the status is connected to the previous one.
     // This is needed because the status doesn't included the in Reply to handle, only the account id.
     // But this covers the majority of cases.
-    const showMentions = !(mentionsCount === 0 || (mentionsCount === 1 && status?.inReplyToAccountId))
+    const showMentions = !(contextualMentionsCount === 0 || (mentionsCount === 1 && status?.inReplyToAccountId))
 
     const contextualChildren = children.slice(mentions.length)
     return {

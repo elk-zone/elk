@@ -91,21 +91,21 @@ describe('content-rich', () => {
     })
     expect(formatted).toMatchInlineSnapshot(`
       "<p>
-        <mention-group
-          ><span class=\\"h-card\\"
-            ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@elk\\"
-            ></a
-          ></span>
-          <span class=\\"h-card\\"
-            ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@elk\\"
-            ></a></span></mention-group
-        >content
+        <span class=\\"h-card\\"
+          ><a
+            class=\\"u-url mention\\"
+            rel=\\"nofollow noopener noreferrer\\"
+            to=\\"/m.webtoo.ls/@elk\\"
+          ></a
+        ></span>
+        <span class=\\"h-card\\"
+          ><a
+            class=\\"u-url mention\\"
+            rel=\\"nofollow noopener noreferrer\\"
+            to=\\"/m.webtoo.ls/@elk\\"
+          ></a
+        ></span>
+        content
         <span class=\\"h-card\\"
           ><a
             class=\\"u-url mention\\"
@@ -151,19 +151,53 @@ describe('content-rich', () => {
     `)
   })
 
-  it('shows some collapsed mentions', async () => {
+  it('shows some collapsed mentions inline', async () => {
     const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> content</p>', {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })
     expect(formatted).toMatchInlineSnapshot(`
       "<p>
-        <mention-group>
-          <span class=\\"h-card\\"
+        <span class=\\"h-card\\"
+          ><a
+            class=\\"u-url mention\\"
+            rel=\\"nofollow noopener noreferrer\\"
+            to=\\"/m.webtoo.ls/@antfu\\"
+          ></a
+        ></span>
+        content
+      </p>
+      "
+    `)
+  })
+
+  it('shows some collapsed mentions grouped', async () => {
+    const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@patak" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>patak</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@sxzz" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>sxzz</span></a></span>content</p>', {
+      collapseMentionLink: true,
+      inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
+    })
+    expect(formatted).toMatchInlineSnapshot(`
+      "<p>
+        <mention-group
+          ><span class=\\"h-card\\"
             ><a
               class=\\"u-url mention\\"
               rel=\\"nofollow noopener noreferrer\\"
               to=\\"/m.webtoo.ls/@antfu\\"
+            ></a
+          ></span>
+          <span class=\\"h-card\\"
+            ><a
+              class=\\"u-url mention\\"
+              rel=\\"nofollow noopener noreferrer\\"
+              to=\\"/m.webtoo.ls/@patak\\"
+            ></a
+          ></span>
+          <span class=\\"h-card\\"
+            ><a
+              class=\\"u-url mention\\"
+              rel=\\"nofollow noopener noreferrer\\"
+              to=\\"/m.webtoo.ls/@sxzz\\"
             ></a></span></mention-group
         >content
       </p>

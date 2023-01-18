@@ -358,6 +358,7 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "enable_autoplay": "Enable Autoplay",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
       "hide_boost_count": "Hide boost count",

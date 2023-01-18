@@ -39,6 +39,12 @@ const userSettings = useUserSettings()
     >
       {{ $t('settings.preferences.grayscale_mode') }}
     </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enableAutoplay')"
+      @click="togglePreferences('enableAutoplay')"
+    >
+      {{ $t('settings.preferences.enable_autoplay') }}
+    </SettingsToggleItem>
     <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-flask-line />
       {{ $t('settings.preferences.title') }}

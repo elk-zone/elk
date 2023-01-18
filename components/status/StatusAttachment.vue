@@ -73,7 +73,7 @@ const vnode = $computed(() => {
   // https://stackoverflow.com/a/37462442
   // https://stephencharlesweiss.com/regex-markdown-link
   const regexMarkdownFind = /(?:__|[*#])|\[(.*?)\]\(.*?\)/g
-  const regexMarkdownExtract = /!?\[([^\]]*)?\]\(((https?:\/\/)?[A-Za-z0-9\:\/\. ]+)(\"(.+)\")?\)/gm
+  const regexMarkdownExtract = /!?\[([^\]]*)?\]\(((https?:\/\/)?[-a-zA-Z0-9()@:%_\+.~#?&//=\/]+)(\"(.+)\")?\)/gm
 
   let matches = [...description.matchAll(regexMarkdownFind)]
 

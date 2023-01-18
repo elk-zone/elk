@@ -68,18 +68,19 @@ onReactivated(() => {
 
 <template>
   <MainContent back>
-    <template v-if="!pending">
+    <template v-if="!pending && !pendingContext">
       <div v-if="status" xl:mt-4 border="b base" mb="50vh">
-        <template v-for="comment of context?.ancestors" :key="comment.id">
+        <template v-for="comment, i of context?.ancestors" :key="comment.id">
           <StatusCard
             :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-            :has-older="true" :has-newer="true"
+            :has-older="true" :newer="context?.ancestors[i - 1]"
           />
         </template>
 
         <StatusDetails
           ref="main"
           :status="status"
+          :newer="context?.ancestors.at(-1)"
           command
           style="scroll-margin-top: 60px"
         />
@@ -105,7 +106,7 @@ onReactivated(() => {
               :status="item"
               context="account"
               :older="context?.descendants[index + 1]"
-              :newer="context?.descendants[index - 1]"
+              :newer="index > 0 ? context?.descendants[index - 1] : status"
               :has-newer="index === 0"
               :main="status"
             />

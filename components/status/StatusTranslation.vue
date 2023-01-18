@@ -9,7 +9,7 @@ const {
   toggle: _toggleTranslation,
   translation,
   enabled: isTranslationEnabled,
-} = useTranslation(status)
+} = useTranslation(status, getLanguageCode())
 
 let translating = $ref(false)
 const toggleTranslation = async () => {
@@ -26,7 +26,7 @@ const toggleTranslation = async () => {
 <template>
   <div>
     <button
-      v-if="isTranslationEnabled && status.language !== languageCode" p-0 flex="~ center" gap-2 text-sm
+      v-if="isTranslationEnabled && status.language !== getLanguageCode()" p-0 flex="~ center" gap-2 text-sm
       :disabled="translating" disabled-bg-transparent btn-text class="disabled-text-$c-text-btn-disabled-deeper" @click="toggleTranslation"
     >
       <span v-if="translating" block animate-spin preserve-3d>

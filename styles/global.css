@@ -6,20 +6,6 @@ html {
 
 @font-face {
   font-display: swap;
-  font-family: 'DM Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/DM-mono-v10.ttf) format('truetype');
-}
-@font-face {
-  font-display: swap;
-  font-family: 'DM Serif Display';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/DM-serif-display-v10.ttf) format('truetype');
-}
-@font-face {
-  font-display: swap;
   font-family: 'Homemade Apple';
   font-style: normal;
   font-weight: 400;
@@ -153,7 +139,7 @@ em-emoji-picker {
     --at-apply: pl-2;
   }
   .code-block {
-    --at-apply: font-mono bg-code text-0.875em p3 mt-2 rounded overflow-auto
+    --at-apply: bg-code text-0.875em p3 mt-2 rounded overflow-auto
       leading-1.6em;
 
     .shiki {

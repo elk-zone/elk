@@ -16,7 +16,7 @@ defineProps<{
       pt="[env(safe-area-inset-top,0)]"
       border="b base" bg="[rgba(var(--rbg-bg-base),0.7)]"
     >
-      <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }">
+      <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }" data-tauri-drag-region>
         <div flex gap-3 items-center :overflow-hidden="!noOverflowHidden" py2 w-full>
           <NuxtLink
             v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0 xl:hidden

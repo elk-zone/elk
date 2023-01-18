@@ -84,7 +84,7 @@ describe('content-rich', () => {
     expect(formatted).toMatchSnapshot()
   })
 
-  it('collapse metions', async () => {
+  it('collapse mentions', async () => {
     const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> content <span class="h-card"><a href="https://m.webtoo.ls/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> <span class="h-card"><a href="https://mastodon.roe.dev/@daniel" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>daniel</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@sxzz" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>sxzz</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@patak" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>patak</span></a></span> content</p>', {
       collapseMentionLink: true,
     })

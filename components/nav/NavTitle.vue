@@ -8,7 +8,6 @@ onMounted(() => {
 router.afterEach(() => {
   back.value = router.options.history.state.back
 })
-const capitalized = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 </script>
 
 <template>

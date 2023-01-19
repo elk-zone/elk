@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { EditorContent } from '@tiptap/vue-3'
+import stringLength from 'string-length'
 import type { mastodon } from 'masto'
 import type { Draft } from '~/types'
 
@@ -62,7 +63,7 @@ const { editor } = useTiptap({
   onPaste: handlePaste,
 })
 const characterCount = $computed(() => {
-  let length = htmlToText(editor.value?.getHTML() || '').length
+  let length = stringLength(htmlToText(editor.value?.getHTML() || ''))
 
   if (draft.mentions) {
     // + 1 is needed as mentions always need a space seperator at the end

@@ -58,6 +58,7 @@
     "shiki": "^0.12.1",
     "shiki-es": "^0.1.2",
     "slimeform": "^0.8.0",
+    "string-length": "^5.0.1",
     "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log",
     "tauri-plugin-store-api": "github:tauri-apps/tauri-plugin-store",
     "tiny-decode": "^0.1.3",

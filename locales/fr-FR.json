@@ -160,7 +160,7 @@
   "help": {
     "build_preview": {
       "desc1": "Vous consultez actuellement une version d'aperçu d'Elk de la communauté - {0}.",
-      "desc2": "Il peut contenir des modifications non révisées ou même malveillantes.",
+      "desc2": "Elle peut contenir des modifications non révisées voire même malveillantes.",
       "desc3": "Ne vous connectez pas avec votre compte réel.",
       "title": "Aperçu du déploiement"
     },

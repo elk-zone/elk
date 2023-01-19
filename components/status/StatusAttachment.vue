@@ -96,6 +96,7 @@ useIntersectionObserver(video, (entries) => {
         ref="video"
         preload="none"
         :poster="attachment.previewUrl"
+        :autoplay="enableAutoplay"
         muted
         loop
         playsinline

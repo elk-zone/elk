@@ -20,7 +20,7 @@ const relationship = $(useRelationship(account))
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
-const hasHeader = !account.header.endsWith('/original/missing.png')
+const hasHeader = $computed(() => !account.header.endsWith('/original/missing.png'))
 
 function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName

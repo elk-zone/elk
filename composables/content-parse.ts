@@ -529,7 +529,7 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
     // But this covers the majority of cases.
     const showMentions = !(contextualMentionsCount === 0 || (mentionsCount === 1 && status?.inReplyToAccountId))
     const grouped = contextualMentionsCount > 2
-    if (grouped)
+    if (!showMentions || grouped)
       trimContentStart?.()
 
     const contextualChildren = children.slice(mentions.length)

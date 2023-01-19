@@ -64,6 +64,7 @@ importers:
       '@types/fnando__sparkline': ^0.3.4
       '@types/fs-extra': ^11.0.0
       '@types/js-yaml': ^4.0.5
+      '@types/lodash.toarray': ^4.4.7
       '@types/prettier': ^2.7.2
       '@types/wicg-file-system-access': ^2020.9.5
       '@unocss/nuxt': ^0.48.3
@@ -93,6 +94,7 @@ importers:
       js-yaml: ^4.1.0
       jsdom: ^21.0.0
       lint-staged: ^13.1.0
+      lodash.toarray: ^4.4.0
       lru-cache: ^7.14.1
       masto: ^5.5.0
       nuxt: ^3.0.0
@@ -154,6 +156,7 @@ importers:
       idb-keyval: 6.2.0
       iso-639-1: 2.1.15
       js-yaml: 4.1.0
+      lodash.toarray: 4.4.0
       lru-cache: 7.14.1
       masto: 5.5.0
       pinia: 2.0.28_typescript@4.9.4
@@ -186,6 +189,7 @@ importers:
       '@types/fnando__sparkline': 0.3.4
       '@types/fs-extra': 11.0.0
       '@types/js-yaml': 4.0.5
+      '@types/lodash.toarray': 4.4.7
       '@types/prettier': 2.7.2
       '@types/wicg-file-system-access': 2020.9.5
       '@unocss/nuxt': 0.48.3
@@ -3175,6 +3179,16 @@ packages:
     resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
     dependencies:
       '@types/node': 18.11.18
+    dev: true
+
+  /@types/lodash.toarray/4.4.7:
+    resolution: {integrity: sha512-8cMZKAuMyngqE0ffoPXRg0pEVn660Mklzb13iVYoyfexWKTzDnscsTmivMF+Y5l0EzpQZsNt0yK/S1kg4sxdTw==}
+    dependencies:
+      '@types/lodash': 4.14.191
+    dev: true
+
+  /@types/lodash/4.14.191:
+    resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
     dev: true
 
   /@types/mdast/3.0.10:
@@ -8038,6 +8052,10 @@ packages:
     dependencies:
       lodash._reinterpolate: 3.0.0
     dev: true
+
+  /lodash.toarray/4.4.0:
+    resolution: {integrity: sha512-QyffEA3i5dma5q2490+SgCvDN0pXLmRGSyAANuVi0HQ01Pkfr9fuoKQW8wm1wGBnJITs/mS7wQvS6VshUEBFCw==}
+    dev: false
 
   /lodash.union/4.6.0:
     resolution: {integrity: sha512-c4pB2CdGrGdjMKYLA+XiRDO7Y0PRQbm/Gzg8qMj+QH+pFVAoTp5sBpO0odL3FjoPCGjK96p6qsP+yQoiLoOBcw==}

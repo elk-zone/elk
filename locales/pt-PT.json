@@ -156,6 +156,12 @@
     "unsupported_file_format": "Formato de ficheiro não suportado"
   },
   "help": {
+    "build_preview": {
+      "desc1": "Está atualmente a visualizar uma versão prévia do Elk produzida pela comunidade - {0}.",
+      "desc2": "Pode conter alterações não revistas ou mesmo maliciosas.",
+      "desc3": "Não inicie sessão com a sua conta real.",
+      "title": "Produção de pré-visualização"
+    },
     "desc_highlight": "Espere alguns problemas e funcionalidades em falta.",
     "desc_para1": "Obrigado pelo seu interesse em experimentar o Elk, o nosso aplicativo web para o Mastodon, ainda em construção!",
     "desc_para2": "Estamos a trabalhar arduamente no seu desenvolvimento e melhoria ao longo do tempo.",
@@ -172,6 +178,7 @@
     "block_account": "Bloquear {0}",
     "block_domain": "Bloquear domínio {0}",
     "copy_link_to_post": "Copiar ligação para esta publicação",
+    "copy_original_link_to_post": "Copiar ligação original para esta publicação",
     "delete": "Eliminar",
     "delete_and_redraft": "Eliminar & re-editar",
     "direct_message_account": "Mensagem direta a {0}",
@@ -280,7 +287,8 @@
       "sponsors": "Patrocinadores",
       "sponsors_body_1": "O Elk é possível graças ao genoroso patrocinio e ajuda de:",
       "sponsors_body_2": "E todas as empresas e pessoas que apoiam a Equipa do Elk e os seus membros.",
-      "sponsors_body_3": "Se está a gostar de utilizar esta aplicação, considere apoiar-nos:"
+      "sponsors_body_3": "Se está a gostar de utilizar esta aplicação, considere apoiar-nos:",
+      "version": "Versão"
     },
     "account_settings": {
       "description": "Editar as configurações da sua conta na aplicação web do Mastodon",
@@ -358,6 +366,7 @@
     },
     "notifications_settings": "Notificações",
     "preferences": {
+      "enable_autoplay": "Habilitar Repodrução Automática",
       "github_cards": "Cartões do GitHub",
       "grayscale_mode": "Modo tons de cinza",
       "hide_boost_count": "Esconder contagem de partilhas",

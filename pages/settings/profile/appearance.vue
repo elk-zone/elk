@@ -22,7 +22,7 @@ const onlineSrc = $computed(() => ({
   header: account?.header || '',
 }))
 
-const { form, reset, submitter, dirtyFields, isError } = useForm({
+const { form, reset, submitter, isDirty, dirtyFields, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
@@ -52,8 +52,7 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
   },
 })
 
-const isDirty = $computed(() => !isEmptyObject(dirtyFields.value))
-const isCanSubmit = computed(() => !isError.value && isDirty)
+const isCanSubmit = computed(() => !isError.value && isDirty.value)
 
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)

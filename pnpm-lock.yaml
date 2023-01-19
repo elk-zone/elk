@@ -105,7 +105,7 @@ importers:
       shiki-es: ^0.1.2
       simple-git: ^3.15.1
       simple-git-hooks: ^2.8.1
-      slimeform: ^0.8.0
+      slimeform: ^0.9.0
       stale-dep: ^0.3.1
       std-env: ^3.3.1
       string-length: ^5.0.1
@@ -160,7 +160,7 @@ importers:
       pinia: 2.0.28_typescript@4.9.4
       shiki: 0.12.1
       shiki-es: 0.1.2
-      slimeform: 0.8.0
+      slimeform: 0.9.0
       string-length: 5.0.1
       tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/9d2a19ad05fafeb80991006e14f0f95fe1109aba
       tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/c71665bf5dcf48ae70a88d622eb38b2548b60a5d
@@ -10815,8 +10815,8 @@ packages:
       is-fullwidth-code-point: 4.0.0
     dev: true
 
-  /slimeform/0.8.0:
-    resolution: {integrity: sha512-oh0GY3qPkN1ouH3TQex/+SbVsgGmJhZvgz8NqfECuMuSy7k0NOQNUudH/bebcAY7fIk5nVunMS2GPfo4UWwmDw==}
+  /slimeform/0.9.0:
+    resolution: {integrity: sha512-HTerdfrMNAx3JQQIuyJnjH5Ci/ntWUmahzcfUd7GUWtDD7C8Q/wZ7vg+v96C3o2bQ+G1/VXvy3m672KTtTRJNA==}
     peerDependencies:
       vue: '>=3'
     dev: false

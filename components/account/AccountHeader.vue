@@ -31,8 +31,6 @@ function getNotificationIconTitle() {
 }
 
 function previewHeader() {
-  if (!hasHeader)
-    return
   openMediaPreview([{
     id: `${account.acct}:header`,
     type: 'image',

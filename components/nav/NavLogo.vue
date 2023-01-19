@@ -29,7 +29,7 @@
 
 <style scoped>
 svg path.wood {
-    fill: var(--c-text-secondary-light);
+    fill: var(--c-primary);
 }
 svg path.body {
     fill: var(--c-text-secondary);

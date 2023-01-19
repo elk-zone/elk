@@ -25,7 +25,7 @@ const capitalized = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
     >
       <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
       <div hidden xl:block>
-        {{ env === 'release' ? $t('app_name') : capitalized(env) }}
+        {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
       </div>
     </NuxtLink>
     <div

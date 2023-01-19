@@ -130,7 +130,7 @@
     },
     "show_reblogs": {
       "cancel": "Annuler",
-      "confirm": "Montrer",
+      "confirm": "Afficher",
       "title": "Voulez-vous vraiment afficher les partages de {0} ?"
     },
     "unfollow": {
@@ -188,7 +188,7 @@
     },
     "direct_message_account": "Message direct à {0}",
     "edit": "Éditer",
-    "hide_reblogs": "Cacher les boosts de {0}",
+    "hide_reblogs": "Cacher les partages de {0}",
     "mention_account": "Mentionner {0}",
     "mute_account": "Mettre en sourdine {0}",
     "mute_conversation": "Message muet",

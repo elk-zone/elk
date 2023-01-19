@@ -29,7 +29,7 @@ router.afterEach(() => {
     </NuxtLink>
     <div
       hidden xl:flex items-center me-8 mt-2
-      :class="{ 'pointer-events-none op40': !back || back === '/', 'xl:flex': $route.name !== 'tag' }"
+      :class="{ 'pointer-events-none op0': !back || back === '/', 'xl:flex': $route.name !== 'tag' }"
     >
       <NuxtLink
         :aria-label="$t('nav.back')"

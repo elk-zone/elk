@@ -11,6 +11,8 @@ const focusEditor = inject<typeof noop>('focus-editor', noop)
 
 const { details, command } = $(props)
 
+const userSettings = useUserSettings()
+
 const {
   status,
   isLoading,
@@ -31,7 +33,7 @@ const reply = () => {
 </script>
 
 <template>
-  <div flex justify-between>
+  <div flex justify-between items-center class="status-actions">
     <div flex-1>
       <StatusActionButton
         :content="$t('action.reply')"
@@ -53,7 +55,7 @@ const reply = () => {
     <div flex-1>
       <StatusActionButton
         :content="$t('action.boost')"
-        :text="!getWellnessSetting('hideBoostCount') && status.reblogsCount ? status.reblogsCount : ''"
+        :text="!getPreferences(userSettings, 'hideBoostCount') && status.reblogsCount ? status.reblogsCount : ''"
         color="text-green" hover="text-green" group-hover="bg-green/10"
         icon="i-ri:repeat-line"
         active-icon="i-ri:repeat-fill"
@@ -62,7 +64,7 @@ const reply = () => {
         :command="command"
         @click="toggleReblog()"
       >
-        <template v-if="status.reblogsCount && !getWellnessSetting('hideBoostCount')" #text>
+        <template v-if="status.reblogsCount && !getPreferences(userSettings, 'hideBoostCount')" #text>
           <CommonLocalizedNumber
             keypath="action.boost_count"
             :count="status.reblogsCount"
@@ -74,7 +76,7 @@ const reply = () => {
     <div flex-1>
       <StatusActionButton
         :content="$t('action.favourite')"
-        :text="!getWellnessSetting('hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
+        :text="!getPreferences(userSettings, 'hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
         color="text-rose" hover="text-rose" group-hover="bg-rose/10"
         icon="i-ri:heart-3-line"
         active-icon="i-ri:heart-3-fill"
@@ -83,7 +85,7 @@ const reply = () => {
         :command="command"
         @click="toggleFavourite()"
       >
-        <template v-if="status.favouritesCount && !getWellnessSetting('hideFavoriteCount')" #text>
+        <template v-if="status.favouritesCount && !getPreferences(userSettings, 'hideFavoriteCount')" #text>
           <CommonLocalizedNumber
             keypath="action.favourite_count"
             :count="status.favouritesCount"

@@ -23,22 +23,11 @@ const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
+const userSettings = useUserSettings()
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
-const {
-  toggle: _toggleTranslation,
-  translation,
-  enabled: isTranslationEnabled,
-} = useTranslation(props.status)
-
-const toggleTranslation = async () => {
-  isLoading.translation = true
-  await _toggleTranslation()
-  isLoading.translation = false
-}
-
-const masto = useMasto()
+const { client } = $(useMasto())
 
 const getPermalinkUrl = (status: mastodon.v1.Status) => {
   const url = getStatusPermalinkRoute(status)
@@ -53,6 +42,12 @@ const copyLink = async (status: mastodon.v1.Status) => {
     await clipboard.copy(url)
 }
 
+const copyOriginalLink = async (status: mastodon.v1.Status) => {
+  const url = status.url
+  if (url)
+    await clipboard.copy(url)
+}
+
 const { share, isSupported: isShareSupported } = useShare()
 const shareLink = async (status: mastodon.v1.Status) => {
   const url = getPermalinkUrl(status)
@@ -62,14 +57,14 @@ const shareLink = async (status: mastodon.v1.Status) => {
 
 const deleteStatus = async () => {
   if (await openConfirmDialog({
-    title: t('menu.delete_confirm.title'),
-    confirm: t('menu.delete_confirm.confirm'),
-    cancel: t('menu.delete_confirm.cancel'),
+    title: t('confirm.delete_posts.title'),
+    confirm: t('confirm.delete_posts.confirm'),
+    cancel: t('confirm.delete_posts.cancel'),
   }) !== 'confirm')
     return
 
   removeCachedStatus(status.id)
-  await masto.v1.statuses.remove(status.id)
+  await client.v1.statuses.remove(status.id)
 
   if (route.name === 'status')
     router.back()
@@ -87,7 +82,7 @@ const deleteAndRedraft = async () => {
   }
 
   removeCachedStatus(status.id)
-  await masto.v1.statuses.remove(status.id)
+  await client.v1.statuses.remove(status.id)
   await openPublishDialog('dialog', await getDraftFromStatus(status), true)
 
   // Go to the new status, if the page is the old status
@@ -121,9 +116,9 @@ const showFavoritedAndBoostedBy = () => {
   <CommonDropdown flex-none ms3 placement="bottom" :eager-mount="command">
     <StatusActionButton
       :content="$t('action.more')"
-      color="text-purple"
-      hover="text-purple"
-      group-hover="bg-purple/10"
+      color="text-primary"
+      hover="text-primary"
+      group-hover="bg-primary-light"
       icon="i-ri:more-line"
       my--2
     />
@@ -181,6 +176,13 @@ const showFavoritedAndBoostedBy = () => {
         />
 
         <CommonDropdownItem
+          :text="$t('menu.copy_original_link_to_post')"
+          icon="i-ri:links-fill"
+          :command="command"
+          @click="copyOriginalLink(status)"
+        />
+
+        <CommonDropdownItem
           v-if="isShareSupported"
           :text="$t('menu.share_post')"
           icon="i-ri:share-line"
@@ -205,15 +207,7 @@ const showFavoritedAndBoostedBy = () => {
           />
         </NuxtLink>
 
-        <CommonDropdownItem
-          v-if="isTranslationEnabled && status.language !== languageCode"
-          :text="translation.visible ? $t('menu.show_untranslated') : $t('menu.translate_post')"
-          icon="i-ri:translate"
-          :command="command"
-          @click="toggleTranslation"
-        />
-
-        <template v-if="isMastoInitialised && currentUser">
+        <template v-if="isHydrated && currentUser">
           <template v-if="isAuthor">
             <CommonDropdownItem
               :text="status.pinned ? $t('menu.unpin_on_profile') : $t('menu.pin_on_profile')"

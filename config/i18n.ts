@@ -20,6 +20,16 @@ const locales: LocaleObjectData[] = [
     file: 'en-GB.json',
     name: 'English (UK)',
   },
+  ({
+    code: 'ar-EG',
+    file: 'ar-EG.json',
+    name: 'العربية',
+    dir: 'rtl',
+    pluralRule: (choice: number) => {
+      const name = new Intl.PluralRules('ar-EG').select(choice)
+      return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
+    },
+  } satisfies LocaleObjectData),
   {
     code: 'de-DE',
     file: 'de-DE.json',
@@ -33,7 +43,7 @@ const locales: LocaleObjectData[] = [
   {
     code: 'zh-TW',
     file: 'zh-TW.json',
-    name: '繁体中文',
+    name: '繁體中文',
   },
   {
     code: 'ja-JP',
@@ -72,16 +82,21 @@ const locales: LocaleObjectData[] = [
     file: 'cs-CZ.json',
     name: 'Česky',
   },
-  ({
-    code: 'ar-EG',
-    file: 'ar-EG.json',
-    name: 'العربية',
-    dir: 'rtl',
-    pluralRule: (choice: number) => {
-      const name = new Intl.PluralRules('ar-EG').select(choice)
-      return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
-    },
-  } satisfies LocaleObjectData),
+  {
+    code: 'pt-PT',
+    file: 'pt-PT.json',
+    name: 'Português',
+  },
+  {
+    code: 'tr-TR',
+    file: 'tr-TR.json',
+    name: 'Türkçe',
+  },
+  {
+    code: 'id-ID',
+    file: 'id-ID.json',
+    name: 'Indonesia',
+  },
 ].sort((a, b) => a.code.localeCompare(b.code))
 
 const datetimeFormats = Object.values(locales).reduce((acc, data) => {

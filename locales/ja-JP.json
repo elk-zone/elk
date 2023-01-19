@@ -1,92 +1,460 @@
 {
+  "a11y": {
+    "loading_page": "ページの読み込み中。しばらくお待ちください",
+    "loading_titled_page": "{0}ページを読み込み中。しばらくお待ちください",
+    "locale_changed": "言語を{0}に変更しました",
+    "locale_changing": "言語の変更中。しばらくお待ちください",
+    "route_loaded": "ページ{0}を読み込みました"
+  },
   "account": {
+    "avatar_description": "{0}さんのアバター",
+    "blocked_by": "あなたはこのユーザーからブロックされています。",
     "blocked_domains": "ブロックしたドメイン",
     "blocked_users": "ブロックしたユーザー",
-    "blocking": "Blocked",
+    "blocking": "ブロック中",
+    "bot": "BOT",
     "favourites": "お気に入り",
     "follow": "フォローする",
     "follow_back": "フォローバックする",
     "follow_requested": "リクエスト済み",
+    "followers": "フォロワー",
     "followers_count": "{0} フォロワー",
-    "following_count": "{0} フォロー中",
+    "following": "フォロー中",
+    "following_count": "{0} フォロー",
     "follows_you": "フォローされています",
-    "muted_users": "ミュート済み",
-    "muting": "Muted",
-    "pinned": "固定された投稿",
+    "go_to_profile": "プロフィールに移動",
+    "joined": "登録日",
+    "moved_title": "さんの新しいアカウントは現在のこちらです",
+    "muted_users": "ミュートしたユーザー",
+    "muting": "ミュート済み",
+    "mutuals": "相互フォロー",
+    "pinned": "固定した投稿",
+    "posts": "投稿",
     "posts_count": "{0} 投稿",
-    "unblock": "Unblock",
+    "profile_description": "{0}さんのプロフィールヘッダー",
+    "profile_unavailable": "プロフィールが利用できません",
+    "unblock": "ブロック解除",
     "unfollow": "フォロー解除",
-    "unmute": "Unmute"
+    "unmute": "ミュート解除",
+    "view_other_followers": "他のインスタンスからのフォロワーは表示されないことがあります。",
+    "view_other_following": "他のインスタンスからのフォローは表示されないことがあります。"
   },
   "action": {
-    "compose": "今なにしてる？",
+    "apply": "適用する",
+    "bookmark": "ブックマーク",
+    "bookmarked": "ブックマーク済み",
+    "boost": "ブースト",
+    "boost_count": "{0}",
+    "boosted": "ブースト済み",
+    "clear_upload_failed": "ファイルアップロードエラーをクリア",
+    "close": "閉じる",
+    "compose": "投稿",
+    "confirm": "確認",
+    "edit": "編集する",
     "enter_app": "使い始める",
+    "favourite": "お気に入り",
+    "favourite_count": "{0}",
+    "favourited": "お気に入り済み",
+    "more": "さらに表示",
+    "next": "次へ",
+    "prev": "前へ",
     "publish": "投稿",
+    "reply": "返信",
+    "reply_count": "{0}",
+    "reset": "リセット",
+    "save": "保存する",
     "save_changes": "変更を保存",
     "sign_in": "サインイン",
+    "switch_account": "アカウントの切り替え",
     "vote": "投票"
   },
+  "app_desc_short": "軽快なMastodonウェブクライアント",
+  "app_logo": "Elkのロゴ",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "説明文",
+    "remove_label": "添付を削除"
+  },
+  "command": {
+    "activate": "有効化",
+    "complete": "完了する",
+    "compose_desc": "新しい投稿を書く",
+    "n-people-in-the-past-n-days": "過去{1}日のユーザー数: {0}",
+    "select_lang": "言語を選択する",
+    "sign_in_desc": "既存のアカウントを追加する",
+    "switch_account": "{0} に切り替える",
+    "switch_account_desc": "他のアカウントに切り替える",
+    "toggle_dark_mode": "ダークモードに切り替える",
+    "toggle_zen_mode": "禅モードを切り替える"
+  },
   "common": {
-    "end_of_list": "他にはありません",
+    "confirm_dialog": {
+      "cancel": "いいえ",
+      "confirm": "はい",
+      "title": "本当にいいですか？"
+    },
+    "end_of_list": "リストの最後です",
     "error": "ERROR",
-    "not_found": "404 Not Found"
+    "in": "in",
+    "not_found": "404 Not Found",
+    "offline_desc": "現在オフラインのようです。ネットワーク接続を確認してください。"
+  },
+  "compose": {
+    "draft_title": "下書き {0}",
+    "drafts": "下書き ({v})"
+  },
+  "conversation": {
+    "with": "with"
+  },
+  "error": {
+    "account_not_found": "アカウント {0} が見つかりません",
+    "explore-list-empty": "現在トレンドには何もありません。あとで確認してください！",
+    "file_size_cannot_exceed_n_mb": "ファイルサイズは{0}MBを超えてはいけません",
+    "sign_in_error": "サーバーに接続できません。",
+    "status_not_found": "投稿が見つかりません",
+    "unsupported_file_format": "対応していないファイル形式です"
+  },
+  "help": {
+    "desc_highlight": "いくつかのバグや足りない機能がいろいろなところにあることが期待されています。",
+    "desc_para1": "開発中のMastodonウェブクライアントのElkに興味を持って試してくれてありがとうございます！",
+    "desc_para2": "私たちは時間をかけて開発と改善に努めています。",
+    "desc_para3": "開発を進めるために、GitHubスポンサーでチームをサポートできます。Elkを楽しんでくれることを願っています！",
+    "desc_para4": "Elkはオープンソースです。テスト、フィードバックの提供、コントリビューションで開発を助けたい場合は",
+    "desc_para5": "GitHubで連絡をとり",
+    "desc_para6": "参加してください。",
+    "title": "Elkはプレビュー版です！"
+  },
+  "language": {
+    "search": "検索"
   },
   "menu": {
-    "block_account": "{0}さんをブロックする",
+    "block_account": "{0}さんをブロック",
     "block_domain": "{0}をドメインブロック",
+    "copy_link_to_post": "この投稿へのリンクをコピー",
+    "delete": "削除",
+    "delete_and_redraft": "削除して下書きに戻す",
+    "delete_confirm": {
+      "cancel": "キャンセル",
+      "confirm": "削除",
+      "title": "この投稿を本当に削除したいですか？"
+    },
     "direct_message_account": "{0}さんにダイレクトメッセージ",
+    "edit": "編集",
+    "hide_reblogs": "{0} からのブーストを隠す",
     "mention_account": "{0}さんにメンション",
     "mute_account": "{0}さんをミュート",
-    "mute_conversation": "ミュートポスト",
+    "mute_conversation": "投稿をミュート",
     "open_in_original_site": "元のサイトで開く",
+    "pin_on_profile": "プロフィールに固定",
+    "share_post": "この投稿を共有",
+    "show_favourited_and_boosted_by": "お気に入り・ブーストしたユーザーを表示",
+    "show_reblogs": "{0} からのブーストを表示",
+    "show_untranslated": "翻訳前の文章を表示",
+    "toggle_theme": {
+      "dark": "ダークモードに切り替え",
+      "light": "ライトモードに切り替え"
+    },
+    "translate_post": "投稿を翻訳",
     "unblock_account": "{0}さんのブロックを解除",
     "unblock_domain": "{0}のドメインブロックを解除",
     "unmute_account": "{0}さんのミュートを解除",
-    "unmute_conversation": "投稿のミュートを解除"
+    "unmute_conversation": "投稿のミュートを解除",
+    "unpin_on_profile": "プロフィールへの固定を解除"
   },
   "nav": {
+    "back": "戻る",
+    "blocked_domains": "ブロックしたドメイン",
+    "blocked_users": "ブロックしたユーザー",
     "bookmarks": "ブックマーク",
+    "built_at": "{0}にビルド",
+    "compose": "投稿",
     "conversations": "会話",
     "explore": "話題の投稿",
     "favourites": "お気に入り",
     "federated": "連合",
     "home": "ホーム",
     "local": "ローカル",
+    "muted_users": "ミュートしたユーザー",
     "notifications": "通知",
     "profile": "プロフィール",
     "search": "検索",
     "select_feature_flags": "実験的機能を切り替え",
+    "select_font_size": "フォントサイズ",
     "select_language": "言語を選択",
+    "settings": "設定",
+    "show_intro": "イントロを表示",
     "toggle_theme": "テーマを切り替え",
     "zen_mode": "禅モード"
   },
   "notification": {
     "favourited_post": "さんがあなたの投稿お気に入り登録しました",
     "followed_you": "さんがあなたをフォローしました",
+    "followed_you_count": "{0}人のユーザーがあなたをフォローしました",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "さんがあなたの投稿をブーストしました",
     "request_to_follow": "さんがあなたへフォローをリクエストしました",
+    "signed_up": "サインアップ",
     "update_status": "さんが投稿を更新しました"
   },
-  "settings": {
-    "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "user_picker": "User Picker",
-      "virtual_scroll": "仮想スクロール"
+  "placeholder": {
+    "content_warning": "ここに警告を記入",
+    "default_1": "今なにしてる？",
+    "reply_to_account": "{0}さんに返信",
+    "replying": "返信する",
+    "the_thread": "スレッド"
+  },
+  "pwa": {
+    "dismiss": "閉じる",
+    "title": "新しいElkのアップデートが利用できます！",
+    "update": "アップデート",
+    "update_available_short": "Elkをアップデート",
+    "webmanifest": {
+      "canary": {
+        "description": "軽快なMastodonウェブクライアント (カナリー版)",
+        "name": "Elk (カナリー版)",
+        "short_name": "Elk (カナリー版)"
+      },
+      "dev": {
+        "description": "軽快なMastodonウェブクライアント (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "軽快なMastodonウェブクライアント (プレビュー版)",
+        "name": "Elk (プレビュー版)",
+        "short_name": "Elk (プレビュー版)"
+      },
+      "release": {
+        "description": "軽快なMastodonウェブクライアント",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
     }
   },
+  "search": {
+    "search_desc": "ユーザーやハッシュタグを検索します",
+    "search_empty": "この検索キーワードでは何も見つかりませんでした"
+  },
+  "settings": {
+    "about": {
+      "label": "Elkについて",
+      "meet_the_team": "チーム紹介",
+      "sponsor_action": "サポートしてください",
+      "sponsor_action_desc": "Elkを開発しているチームを支援する",
+      "sponsors": "スポンサー",
+      "sponsors_body_1": "Elkは以下の寛大なスポンサー",
+      "sponsors_body_2": "そして、Elkのチームとメンバーを支援してくれているすべての企業と個人のおかげで実現しました。",
+      "sponsors_body_3": "もしアプリを楽しんでくれているなら、サポートすることを考えてみてください。",
+      "version": "バージョン"
+    },
+    "account_settings": {
+      "description": "Mastodon UIでアカウントの設定を編集します",
+      "label": "アカウント設定"
+    },
+    "feature_flags": {
+      "github_cards": "GitHubカード",
+      "title": "実験的機能",
+      "user_picker": "ユーザーピッカー",
+      "virtual_scroll": "仮想スクロール"
+    },
+    "interface": {
+      "color_mode": "カラーモード",
+      "dark_mode": "ダークモード",
+      "default": " (デフォルト)",
+      "font_size": "フォントサイズ",
+      "label": "インターフェイス",
+      "light_mode": "ライトモード",
+      "size_label": {
+        "lg": "大",
+        "md": "中",
+        "sm": "小",
+        "xl": "極大",
+        "xs": "極小"
+      },
+      "system_mode": "システム"
+    },
+    "language": {
+      "display_language": "表示言語",
+      "label": "言語"
+    },
+    "notifications": {
+      "label": "通知",
+      "notifications": {
+        "label": "通知の設定"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "お気に入り",
+          "follow": "新しいフォロワー",
+          "mention": "メンション",
+          "poll": "投票",
+          "reblog": "投稿のリブログ",
+          "title": "どの通知を受け取りますか？"
+        },
+        "description": "Elkを使用していないときでも通知を受け取ります。",
+        "instructions": "@:settings.notifications.push_notifications.save_settings ボタンで設定を保存するのを忘れないよう気をつけてください！",
+        "label": "プッシュ通知の設定",
+        "policy": {
+          "all": "誰からでも受け取る",
+          "followed": "フォローしているユーザーから受け取る",
+          "follower": "フォロワーから受け取る",
+          "none": "誰からも受け取らない",
+          "title": "通知を受け取るユーザー"
+        },
+        "save_settings": "設定を保存",
+        "subscription_error": {
+          "clear_error": "エラーのクリア",
+          "permission_denied": "パーミッション拒否: ブラウザで通知を有効にしてください。",
+          "request_error": "購読のリクエスト中にエラーが発生しました。再試行してエラーが続くかどうか確認してください。もしエラーが解消しない場合、Elkリポジトリにissueを報告してください。",
+          "title": "プッシュ通知を購読できませんでした",
+          "too_many_registrations": "ブラウザーの制限により、Elkは異なるサーバー上の複数アカウントに対してプッシュ通知サービスを使用できません。他のアカウントのプッシュ通知の購読を解除して、再購読する必要があります。"
+        },
+        "title": "プッシュ通知の設定",
+        "undo_settings": "変更を元に戻す",
+        "unsubscribe": "プッシュ通知を無効化する",
+        "unsupported": "あなたのブラウザはプッシュ通知をサポートしていません。",
+        "warning": {
+          "enable_close": "閉じる",
+          "enable_description": "Elkを開いていないときにも通知を受け取るには、プッシュ通知を有効にしてください。一度有効化すると、上の\"@:settings.notifications.show_btn{'\"'}ボタンで、プッシュ通知を行う種類のインタラクションを細かくコントロールできます。",
+          "enable_description_desktop": "Elkを開いていないときにも通知を受け取るには、プッシュ通知を有効にしてください。一度有効化すると、\"設定 > 通知 > プッシュ通知の設定\"から、プッシュ通知を行う種類のインタラクションを細かくコントロールできます。",
+          "enable_description_mobile": "また、ナビゲーションメニュー\"設定 > 通知 > プッシュ通知の設定\"を使用して設定をアクセスすることもできます。",
+          "enable_description_settings": "Elkを開いていないときにも通知を受け取るには、プッシュ通知を有効にしてください。一度有効化すると、同じこの画面上でプッシュ通知を行う種類のインタラクションを細かくコントロールできます。",
+          "enable_desktop": "プッシュ通知を有効にする",
+          "enable_title": "Never miss anything",
+          "re_auth": "あなたのサーバーはプッシュ通知をサポートしていないようです。もしサインアウトとサインインをやり直してもこのメッセージがまだ表示される場合は、サーバー管理者に連絡してください。"
+        }
+      },
+      "show_btn": "通知設定に移動"
+    },
+    "notifications_settings": "通知",
+    "preferences": {
+      "label": "環境設定"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "プロフィール",
+        "description": "アバター、ユーザー名、プロフィールなどを編集します",
+        "display_name": "表示名",
+        "label": "外観",
+        "profile_metadata": "プロフィールのメタデータ",
+        "profile_metadata_desc": "プロフィールのテーブルには最大{0}項目まで表示できます",
+        "title": "プロフィールを編集"
+      },
+      "featured_tags": {
+        "description": "他のユーザーはこれらのハッシュタグであなたの公開投稿を閲覧できます。",
+        "label": "注目のハッシュタグ"
+      },
+      "label": "プロフィール"
+    },
+    "select_a_settings": "設定を選んでください",
+    "users": {
+      "export": "ユーザートークンのエクスポート",
+      "import": "ユーザートークンのインポート",
+      "label": "ログインユーザー"
+    },
+    "wellness": {
+      "feature": {
+        "hide_boost_count": "ブーストの数を隠す",
+        "hide_favorite_count": "お気に入りの数を隠す",
+        "hide_follower_count": "フォロワーの数を隠す"
+      },
+      "label": "ウェルネス"
+    }
+  },
+  "share-target": {
+    "description": "Elkは他のアプリケーションからコンテンツを共有できるように設定されています。共有するには、Elkをデバイスやコンピューターにインストールしてサインインします。",
+    "hint": "Elkでコンテンツを共有するには、Elkをインストールし、サインインする必要があります。",
+    "title": "Elkで共有する"
+  },
   "state": {
+    "attachments_exceed_server_limit": "添付の数が投稿ごとの上限を超えています。",
+    "attachments_limit_error": "投稿ごとの上限を超えています",
+    "edited": "(編集済み)",
     "editing": "編集中",
+    "loading": "読込中...",
+    "publishing": "投稿中",
+    "upload_failed": "アップロードに失敗しました",
     "uploading": "更新中..."
   },
+  "status": {
+    "boosted_by": "ブーストしたユーザー",
+    "edited": "編集済み {0}",
+    "favourited_by": "お気に入りしたユーザー",
+    "filter_hidden_phrase": "フィルター",
+    "filter_removed_phrase": "フィルターにより削除",
+    "filter_show_anyway": "とにかく表示",
+    "img_alt": {
+      "desc": "説明文",
+      "dismiss": "閉じる"
+    },
+    "poll": {
+      "count": "{0} 票",
+      "ends": "{0}に終了",
+      "finished": "{0}に完了"
+    },
+    "reblogged": "{0}さんがリブログしました",
+    "replying_to": "{0}さんへの返信",
+    "show_full_thread": "スレッド全体を表示",
+    "someone": "誰か",
+    "spoiler_show_less": "隠す",
+    "spoiler_show_more": "表示する",
+    "thread": "スレッド",
+    "try_original_site": "元ののサイトを試す"
+  },
+  "status_history": {
+    "created": "{0}に投稿",
+    "edited": "{0}に編集"
+  },
   "tab": {
+    "for_you": "For you",
     "hashtags": "ハッシュタグ",
     "media": "メディア",
+    "news": "ニュース",
+    "notifications_all": "すべて",
+    "notifications_mention": "メンション",
     "posts": "投稿",
     "posts_with_replies": "投稿と返信"
   },
+  "tag": {
+    "follow": "フォロー",
+    "follow_label": "{0} タグのフォロー",
+    "unfollow": "フォロー解除",
+    "unfollow_label": "{0} タグのフォロー解除"
+  },
+  "time_ago_options": {
+    "day_future": "0日後|明日|{n}日後",
+    "day_past": "0日前|昨日|{n}日前",
+    "hour_future": "0時間後|1時間後|{n}時間後",
+    "hour_past": "0時間前|1時間前|{n}時間前",
+    "just_now": "たった今",
+    "minute_future": "0分後|1分後|{n}分後",
+    "minute_past": "0分前|1分前|{n}分前",
+    "month_future": "0ヶ月後|来月|{n}ヶ月後",
+    "month_past": "0ヶ月前|先月|{n}ヶ月前",
+    "second_future": "たった今|{n}秒後|{n}秒後",
+    "second_past": "たった今|{n}秒前|{n}秒前",
+    "short_day_future": "{n}日後",
+    "short_day_past": "{n}日",
+    "short_hour_future": "{n}時間後",
+    "short_hour_past": "{n}時間",
+    "short_minute_future": "{n}分後",
+    "short_minute_past": "{n}分",
+    "short_month_future": "in {n}ヶ月後",
+    "short_month_past": "{n}ヶ月",
+    "short_second_future": "{n}秒後",
+    "short_second_past": "{n}秒",
+    "short_week_future": "{n}週間後",
+    "short_week_past": "{n}週間",
+    "short_year_future": "{n}年後",
+    "short_year_past": "{n}年",
+    "week_future": "0週間後|来週|{n}週間後",
+    "week_past": "0週間前|先週|{n}週間前",
+    "year_future": "0年後|来年|{n}年後",
+    "year_past": "0年前|去年|{n}年前"
+  },
   "timeline": {
-    "show_new_items": "{v}件の新しい投稿"
+    "show_new_items": "{v}件の新しい投稿",
+    "view_older_posts": "他のインスタンスの古い投稿は表示されないことがあります。"
   },
   "title": {
     "federated_timeline": "連合タイムライン",
@@ -94,11 +462,34 @@
   },
   "tooltip": {
     "add_content_warning": "警告を追加",
+    "add_emojis": "絵文字を追加",
     "add_media": "画像、動画、音声ファイルを追加",
+    "add_publishable_content": "公開するコンテンツを追加",
     "change_content_visibility": "公開範囲を変更",
+    "change_language": "言語を変更",
+    "emoji": "絵文字",
+    "explore_links_intro": "これらのニュース記事は、分散型ネットワーク上のこのサーバーや他のサーバー上で現在話題になっています。",
+    "explore_posts_intro": "これらの投稿は、分散型ネットワーク上のこのサーバーや他のサーバー上にあり、現在このサーバー上で注目を集めています。",
+    "explore_tags_intro": "これらのハッシュタグは、分散型ネットワーク上のこのサーバーや他のサーバーにいるユーザーの間で現在注目を集めています。",
     "toggle_code_block": "コードブロックを切り替え"
   },
   "user": {
-    "sign_in_desc": "サインインすると、アカウントやハッシュタグをフォローしたり、お気に入りしたり、投稿を共有したり返信するほか、異なるサーバー上のあなたのアカウントから交流できます。"
+    "add_existing": "既存のアカウントを追加する",
+    "server_address_label": "Mastodonサーバーのアドレス",
+    "sign_in_desc": "サインインすると、アカウントやハッシュタグのフォロー、お気に入りの追加、投稿の共有、投稿への返信のほか、異なるサーバー上のあなたのアカウントから交流できるようになります。",
+    "sign_in_notice_title": "{0}の公開データを表示しています",
+    "sign_out_account": "{0}からサインアウト",
+    "tip_no_account": "まだMastodonアカウントを持っていない場合は、{0}しましょう。",
+    "tip_register_account": "サーバーを選んでアカウントを登録"
+  },
+  "visibility": {
+    "direct": "ダイレクト",
+    "direct_desc": "メンションされたユーザーのみ閲覧可能",
+    "private": "フォロワーのみ",
+    "private_desc": "フォロワーのみ閲覧可能",
+    "public": "公開",
+    "public_desc": "誰でも閲覧可能",
+    "unlisted": "非掲載",
+    "unlisted_desc": "誰でも閲覧可能、検索機能からはオプトアウトする"
   }
 }

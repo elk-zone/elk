@@ -42,6 +42,7 @@ useCommand({
   <div
     v-bind="$attrs" ref="el"
     flex gap-3 items-center cursor-pointer px4 py3
+    select-none
     hover-bg-active
     :aria-label="text"
     @click="handleClick"

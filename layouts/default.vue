@@ -1,18 +1,21 @@
 <script lang="ts" setup>
-import { useFeatureFlag } from '~~/composables/settings/featureFlags'
+import { usePreferences } from '~/composables/settings'
 
 const route = useRoute()
+const userSettings = useUserSettings()
 
 const wideLayout = computed(() => route.meta.wideLayout ?? false)
 
 const showUserPicker = logicAnd(
-  useFeatureFlag('experimentalUserPicker'),
+  usePreferences('experimentalUserPicker'),
   () => useUsers().value.length > 1,
 )
+
+const isGrayscale = usePreferences('grayscaleMode')
 </script>
 
 <template>
-  <div h-full :class="{ zen: userSettings.zenMode }">
+  <div h-full :data-mode="isHydrated && isGrayscale ? 'grayscale' : ''">
     <main flex w-full mxa lg:max-w-80rem>
       <aside class="hidden sm:flex w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 justify-end xl:me-4 zen-hide" relative>
         <div sticky top-0 w-20 xl:w-100 h-screen flex="~ col" lt-xl-items-center>
@@ -21,7 +24,7 @@ const showUserPicker = logicAnd(
               <NavTitle />
               <NavSide command />
               <div flex-auto />
-              <div v-if="isMastoInitialised" flex flex-col>
+              <div v-if="isHydrated" flex flex-col>
                 <div hidden xl:block>
                   <UserSignInEntry v-if="!currentUser" />
                 </div>
@@ -51,9 +54,9 @@ const showUserPicker = logicAnd(
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
-        <div sm:hidden sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
-          <CommonOfflineChecker :small-screen="isHydrated" />
-          <NavBottom v-if="isHydrated" />
+        <div sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
+          <CommonOfflineChecker v-if="isHydrated" />
+          <NavBottom v-if="isHydrated" sm:hidden />
         </div>
       </div>
       <aside v-if="isHydrated && !wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">

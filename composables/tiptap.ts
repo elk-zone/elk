@@ -8,13 +8,14 @@ import HardBreak from '@tiptap/extension-hard-break'
 import Bold from '@tiptap/extension-bold'
 import Italic from '@tiptap/extension-italic'
 import Code from '@tiptap/extension-code'
+import History from '@tiptap/extension-history'
 import { Plugin } from 'prosemirror-state'
 
 import type { Ref } from 'vue'
-import { HashtagSuggestion, MentionSuggestion } from './tiptap/suggestion'
-import { CodeBlockShiki } from './tiptap/shiki'
-import { CustomEmoji } from './tiptap/custom-emoji'
-import { Emoji } from './tiptap/emoji'
+import { TiptapEmojiSuggestion, TiptapHashtagSuggestion, TiptapMentionSuggestion } from './tiptap/suggestion'
+import { TiptapPluginCodeBlockShiki } from './tiptap/shiki'
+import { TiptapPluginCustomEmoji } from './tiptap/custom-emoji'
+import { TiptapPluginEmoji } from './tiptap/emoji'
 
 export interface UseTiptapOptions {
   content: Ref<string>
@@ -42,25 +43,33 @@ export function useTiptap(options: UseTiptapOptions) {
       Italic,
       Code,
       Text,
-      Emoji,
-      CustomEmoji.configure({
+      TiptapPluginEmoji,
+      TiptapPluginCustomEmoji.configure({
         inline: true,
         HTMLAttributes: {
           class: 'custom-emoji',
         },
       }),
       Mention.configure({
-        suggestion: MentionSuggestion,
+        suggestion: TiptapMentionSuggestion,
       }),
       Mention
         .extend({ name: 'hashtag' })
         .configure({
-          suggestion: HashtagSuggestion,
+          suggestion: TiptapHashtagSuggestion,
+        }),
+      Mention
+        .extend({ name: 'emoji' })
+        .configure({
+          suggestion: TiptapEmojiSuggestion,
         }),
       Placeholder.configure({
         placeholder: () => placeholder.value!,
       }),
-      CodeBlockShiki,
+      TiptapPluginCodeBlockShiki,
+      History.configure({
+        depth: 10,
+      }),
       Extension.create({
         name: 'api',
         addKeyboardShortcuts() {

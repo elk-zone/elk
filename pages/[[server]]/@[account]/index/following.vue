@@ -6,7 +6,7 @@ const handle = $(computedEager(() => params.account as string))
 definePageMeta({ name: 'account-following' })
 
 const account = await fetchAccountByHandle(handle)
-const paginator = account ? useMasto().v1.accounts.listFollowing(account.id, {}) : null
+const paginator = account ? useMastoClient().v1.accounts.listFollowing(account.id, {}) : null
 
 const isSelf = useSelfAccount(account)
 
@@ -19,6 +19,6 @@ if (account) {
 
 <template>
   <template v-if="paginator">
-    <AccountPaginator :paginator="paginator" :relationship-context="isSelf ? 'following' : undefined" />
+    <AccountPaginator :paginator="paginator" :relationship-context="isSelf ? 'following' : undefined" context="following" :account="account" />
   </template>
 </template>

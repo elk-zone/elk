@@ -12,12 +12,12 @@ defineProps<{
 
 <template>
   <div
-    p4 max-h-2xl
+    max-h-2xl
     flex flex-col
+    my-auto
     :class="[
       root ? 'flex-gap-1' : 'justify-center sm:justify-start',
     ]"
-    my-auto
   >
     <p text-secondary ws-pre-wrap break-all line-clamp-1>
       {{ provider }}

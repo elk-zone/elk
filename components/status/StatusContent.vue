@@ -3,6 +3,7 @@ import type { mastodon } from 'masto'
 
 const { status, context } = defineProps<{
   status: mastodon.v1.Status
+  newer?: mastodon.v1.Status
   context?: mastodon.v2.FilterContext | 'details'
 }>()
 
@@ -25,7 +26,7 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',
     }"
   >
-    <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+    <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
     <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
       <template v-if="filterPhrase" #spoiler>
         <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
@@ -33,7 +34,8 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
       <template v-else-if="status.spoilerText" #spoiler>
         <p>{{ status.spoilerText }}</p>
       </template>
-      <StatusBody v-if="!status.sensitive || status.spoilerText" :status="status" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+      <StatusBody v-if="!status.sensitive || status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+      <StatusTranslation :status="status" />
       <StatusPoll v-if="status.poll" :status="status" />
       <StatusMedia
         v-if="status.mediaAttachments?.length"

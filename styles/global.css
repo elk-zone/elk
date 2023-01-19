@@ -6,27 +6,6 @@ html {
 
 @font-face {
   font-display: swap;
-  font-family: 'DM Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/DM-mono-v10.ttf) format('truetype');
-}
-@font-face {
-  font-display: swap;
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/DM-sans-v11.ttf) format('truetype');
-}
-@font-face {
-  font-display: swap;
-  font-family: 'DM Serif Display';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/DM-serif-display-v10.ttf) format('truetype');
-}
-@font-face {
-  font-display: swap;
   font-family: 'Homemade Apple';
   font-style: normal;
   font-weight: 400;
@@ -75,6 +54,10 @@ body {
 
 .zen .zen-hide {
   --at-apply: 'op0 hover:op100 transition duration-600';
+}
+
+.zen .zen-none {
+  display: none;
 }
 
 .custom-emoji {
@@ -137,9 +120,26 @@ em-emoji-picker {
   pre code {
     --at-apply: bg-transparent px0 py0 rounded-none leading-1.6em;
   }
-
+  ol {
+    --at-apply: list-decimal my-3 pl-6 ml-2;
+  }
+  ul {
+    --at-apply: list-disc my-3 pl-6 ml-2;
+  }
+  li {
+    --at-apply: mt-1 mb-1;
+    &:empty {
+      --at-apply: hidden;
+    }
+  }
+  ol > li {
+    --at-apply: pl-2;
+  }
+  ul > li {
+    --at-apply: pl-2;
+  }
   .code-block {
-    --at-apply: font-mono bg-code text-0.875em p3 mt-2 rounded overflow-auto
+    --at-apply: bg-code text-0.875em p3 mt-2 rounded overflow-auto
       leading-1.6em;
 
     .shiki {
@@ -231,4 +231,34 @@ footer {
   a {
     --at-apply: 'hover:underline';
   }
+}
+
+.squircle {
+  clip-path: url(#avatar-mask);
+}
+
+/* 
+Grayscale mode 
+Setting each element filter to a different var
+allows controlling them individually
+*/
+[data-mode="grayscale"] img,
+[data-mode="grayscale"] video {
+  filter: grayscale(var(--media-grayscale, 1));
+  transition: filter .23s ease-in-out .2s;
+}
+[data-mode="grayscale"] pre {
+  filter: grayscale(var(--code-grayscale, 1));
+}
+[data-mode="grayscale"] .poll-wrapper {
+  filter: grayscale(var(--poll-grayscale, 1));
+}
+[data-mode="grayscale"] .status-actions, 
+[data-mode="grayscale"] .status-boosted {
+  filter: grayscale(var(--status-grayscale, 1));
+}
+
+[data-mode="grayscale"] img:hover,
+[data-mode="grayscale"] video:hover {
+  filter: grayscale(0);
 }

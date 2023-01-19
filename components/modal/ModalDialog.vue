@@ -53,6 +53,10 @@ const { modelValue: visible } = defineModel<{
   modelValue: boolean
 }>()
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const deactivated = useDeactivated()
 const route = useRoute()
 
@@ -130,12 +134,6 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     e.preventDefault()
   }
 })
-</script>
-
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
 </script>
 
 <template>

@@ -11,6 +11,9 @@ let knownServers = $ref<string[]>([])
 let autocompleteIndex = $ref(0)
 let autocompleteShow = $ref(false)
 
+const users = useUsers()
+const userSettings = useUserSettings()
+
 async function oauth() {
   if (busy)
     return
@@ -25,14 +28,19 @@ async function oauth() {
     server = server.split('/')[0]
 
   try {
-    location.href = await $fetch<string>(`/api/${server || publicServer.value}/login`, {
+    const url = await (globalThis.$fetch as any)(`/api/${server || publicServer.value}/login`, {
       method: 'POST',
       body: {
+        force_login: users.value.some(u => u.server === server),
         origin: location.origin,
+        lang: userSettings.value.language,
       },
     })
+    location.href = url
   }
-  catch {
+  catch (err) {
+    console.error(err)
+
     displayError = true
     error = true
     await nextTick()
@@ -43,14 +51,6 @@ async function oauth() {
       error = false
     }, 512)
   }
-}
-
-async function handleInput() {
-  if (server.startsWith('https://'))
-    server = server.replace('https://', '')
-
-  if (server?.length)
-    displayError = false
 }
 
 let fuse = $shallowRef(new Fuse([] as string[]))
@@ -66,10 +66,44 @@ const filteredServers = $computed(() => {
   return results
 })
 
+function isValidUrl(str: string) {
+  try {
+    // eslint-disable-next-line no-new
+    new URL(str)
+    return true
+  }
+  catch (err) {
+    return false
+  }
+}
+
+async function handleInput() {
+  const input = server.trim()
+  if (input.startsWith('https://'))
+    server = input.replace('https://', '')
+
+  if (input.length)
+    displayError = false
+
+  if (
+    isValidUrl(`https://${input}`)
+    && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:[0-9]+)?$/i)
+    // Do not hide the autocomplete if a result has an exact substring match on the input
+    && !filteredServers.some(s => s.includes(input))
+  )
+    autocompleteShow = false
+  else
+    autocompleteShow = true
+}
+
 function toSelector(server: string) {
   return server.replace(/[^\w-]/g, '-')
 }
 function move(delta: number) {
+  if (filteredServers.length === 0) {
+    autocompleteIndex = 0
+    return
+  }
   autocompleteIndex = ((autocompleteIndex + delta) + filteredServers.length) % filteredServers.length
   document.querySelector(`#${toSelector(filteredServers[autocompleteIndex])}`)?.scrollIntoView(false)
 }
@@ -95,7 +129,7 @@ function select(index: number) {
 
 onMounted(async () => {
   input?.focus()
-  knownServers = await $fetch('/api/list-servers')
+  knownServers = await (globalThis.$fetch as any)('/api/list-servers')
   fuse = new Fuse(knownServers, { shouldSort: true })
 })
 
@@ -175,12 +209,15 @@ onClickOutside($$(input), () => {
       <div i-ri:lightbulb-line me-1 />
       <span>
         <i18n-t keypath="user.tip_no_account">
-          <NuxtLink href="https://joinmastodon.org/servers" target="_blank" external hover="underline text-primary">{{ $t('user.tip_register_account') }}</NuxtLink>
+          <NuxtLink href="https://joinmastodon.org/servers" target="_blank" external class="text-primary" hover="underline">{{ $t('user.tip_register_account') }}</NuxtLink>
         </i18n-t>
       </span>
     </div>
     <button flex="~ row" gap-x-2 items-center btn-solid mt2 :disabled="!server || busy">
-      <span aria-hidden="true" inline-block :class="busy ? 'i-ri:loader-2-fill animate animate-spin' : 'i-ri:login-circle-line'" class="rtl-flip" />
+      <span v-if="busy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+        <span block i-ri:loader-2-fill aria-hidden="true" />
+      </span>
+      <span v-else aria-hidden="true" block i-ri:login-circle-line class="rtl-flip" />
       {{ $t('action.sign_in') }}
     </button>
   </form>

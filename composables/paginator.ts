@@ -1,9 +1,10 @@
 import type { Paginator, WsEvents, mastodon } from 'masto'
+import type { Ref } from 'vue'
 import type { PaginatorState } from '~/types'
 
 export function usePaginator<T, P, U = T>(
   _paginator: Paginator<T[], P>,
-  stream?: Promise<WsEvents>,
+  stream: Ref<Promise<WsEvents> | undefined>,
   eventType: 'notification' | 'update' = 'update',
   preprocess: (items: (T | U)[], context?: mastodon.v2.FilterContext) => U[] = items => items as unknown as U[],
   context?: mastodon.v2.FilterContext,
@@ -14,7 +15,7 @@ export function usePaginator<T, P, U = T>(
   // so clone it
   const paginator = _paginator.clone()
 
-  const state = ref<PaginatorState>(isMastoInitialised.value ? 'idle' : 'loading')
+  const state = ref<PaginatorState>(isHydrated.value ? 'idle' : 'loading')
   const items = ref<U[]>([])
   const nextItems = ref<U[]>([])
   const prevItems = ref<T[]>([])
@@ -30,37 +31,39 @@ export function usePaginator<T, P, U = T>(
     prevItems.value = []
   }
 
-  stream?.then((s) => {
-    s.on(eventType, (status) => {
-      if ('uri' in status)
+  watch(stream, (stream) => {
+    stream?.then((s) => {
+      s.on(eventType, (status) => {
+        if ('uri' in status)
+          cacheStatus(status, undefined, true)
+
+        const index = prevItems.value.findIndex((i: any) => i.id === status.id)
+        if (index >= 0)
+          prevItems.value.splice(index, 1)
+
+        prevItems.value.unshift(status as any)
+      })
+
+      // TODO: update statuses
+      s.on('status.update', (status) => {
         cacheStatus(status, undefined, true)
 
-      const index = prevItems.value.findIndex((i: any) => i.id === status.id)
-      if (index >= 0)
-        prevItems.value.splice(index, 1)
+        const data = items.value as mastodon.v1.Status[]
+        const index = data.findIndex(s => s.id === status.id)
+        if (index >= 0)
+          data[index] = status
+      })
 
-      prevItems.value.unshift(status as any)
+      s.on('delete', (id) => {
+        removeCachedStatus(id)
+
+        const data = items.value as mastodon.v1.Status[]
+        const index = data.findIndex(s => s.id === id)
+        if (index >= 0)
+          data.splice(index, 1)
+      })
     })
-
-    // TODO: update statuses
-    s.on('status.update', (status) => {
-      cacheStatus(status, undefined, true)
-
-      const data = items.value as mastodon.v1.Status[]
-      const index = data.findIndex(s => s.id === status.id)
-      if (index >= 0)
-        data[index] = status
-    })
-
-    s.on('delete', (id) => {
-      removeCachedStatus(id)
-
-      const data = items.value as mastodon.v1.Status[]
-      const index = data.findIndex(s => s.id === id)
-      if (index >= 0)
-        data.splice(index, 1)
-    })
-  })
+  }, { immediate: true })
 
   async function loadNext() {
     if (state.value !== 'idle')
@@ -87,6 +90,8 @@ export function usePaginator<T, P, U = T>(
       }
     }
     catch (e) {
+      console.error(e)
+
       error.value = e
       state.value = 'error'
     }
@@ -100,8 +105,8 @@ export function usePaginator<T, P, U = T>(
       bound.update()
     }, 1000)
 
-    if (!isMastoInitialised.value) {
-      onMastoInit(() => {
+    if (!isHydrated.value) {
+      onHydrated(() => {
         state.value = 'idle'
         loadNext()
       })

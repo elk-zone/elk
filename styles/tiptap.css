@@ -1,12 +1,13 @@
-.ProseMirror p.is-editor-empty:first-child::before {
-  content: attr(data-placeholder);
-  float: left;
-  pointer-events: none;
-  height: 0;
-  opacity: 0.4;
-}
-
-span[data-type='mention'],
-span[data-type='hashtag'] {
-  --at-apply: text-primary;
+.ProseMirror {
+  p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    pointer-events: none;
+    height: 0;
+    opacity: 0.4;
+  }
+  span[data-type='mention'],
+  span[data-type='hashtag'] {
+    --at-apply: text-primary;
+  }
 }

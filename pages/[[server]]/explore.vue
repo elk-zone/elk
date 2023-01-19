@@ -3,22 +3,22 @@ const { t } = useI18n()
 
 const tabs = $computed(() => [
   {
-    to: `/${currentServer.value}/explore`,
-    display: t('tab.posts'),
+    to: isHydrated.value ? `/${currentServer.value}/explore` : '/explore',
+    display: isHydrated.value ? t('tab.posts') : '',
   },
   {
-    to: `/${currentServer.value}/explore/tags`,
-    display: t('tab.hashtags'),
+    to: isHydrated.value ? `/${currentServer.value}/explore/tags` : '/explore/tags',
+    display: isHydrated.value ? t('tab.hashtags') : '',
   },
   {
-    to: `/${currentServer.value}/explore/links`,
-    display: t('tab.news'),
+    to: isHydrated.value ? `/${currentServer.value}/explore/links` : '/explore/links',
+    display: isHydrated.value ? t('tab.news') : '',
   },
   // This section can only be accessed after logging in
   {
-    to: `/${currentServer.value}/explore/users`,
-    display: t('tab.for_you'),
-    disabled: !isMastoInitialised.value || !currentUser.value,
+    to: isHydrated.value ? `/${currentServer.value}/explore/users` : '/explore/users',
+    display: isHydrated.value ? t('tab.for_you') : '',
+    disabled: !isHydrated.value || !currentUser.value,
   },
 ] as const)
 </script>
@@ -35,6 +35,6 @@ const tabs = $computed(() => [
     <template #header>
       <CommonRouteTabs replace :options="tabs" />
     </template>
-    <NuxtPage v-if="isMastoInitialised" />
+    <NuxtPage v-if="isHydrated" />
   </MainContent>
 </template>

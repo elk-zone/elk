@@ -23,6 +23,8 @@ const props = withDefaults(
   { actions: true },
 )
 
+const userSettings = useUserSettings()
+
 const status = $computed(() => {
   if (props.status.reblog && !props.status.content)
     return props.status.reblog
@@ -124,7 +126,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
           p="t-1 b-0.5 x-1px"
           relative text-secondary ws-nowrap
         >
-          <div i-ri:repeat-fill me-46px text-green w-16px h-16px />
+          <div i-ri:repeat-fill me-46px text-green w-16px h-16px class="status-boosted" />
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">
               <NuxtLink :to="getAccountRoute(rebloggedBy)">
@@ -182,7 +184,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
         </div>
 
         <!-- Content -->
-        <StatusContent :status="status" :context="context" mb2 :class="{ 'mt-2 mb1': isDM }" />
+        <StatusContent :status="status" :newer="newer" :context="context" mb2 :class="{ 'mt-2 mb1': isDM }" />
         <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
       </div>
     </div>

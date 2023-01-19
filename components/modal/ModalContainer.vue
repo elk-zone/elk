@@ -51,7 +51,7 @@ const handleFavouritedBoostedByClose = () => {
 </script>
 
 <template>
-  <template v-if="isMastoInitialised">
+  <template v-if="isHydrated">
     <ModalDialog v-model="isSigninDialogOpen" py-4 px-8 max-w-125>
       <UserSignIn />
     </ModalDialog>
@@ -71,9 +71,10 @@ const handleFavouritedBoostedByClose = () => {
       />
     </ModalDialog>
     <ModalDialog
-      v-model="isMediaPreviewOpen"
+      :model-value="isMediaPreviewOpen"
       w-full max-w-full h-full max-h-full
       bg-transparent border-0 shadow-none
+      @update:model-value="closeMediaPreview"
     >
       <ModalMediaPreview v-if="isMediaPreviewOpen" @close="closeMediaPreview()" />
     </ModalDialog>

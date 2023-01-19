@@ -5,12 +5,30 @@ import { getEnv } from '../../config/env'
 import { i18n } from '../../config/i18n'
 import type { LocaleObject } from '#i18n'
 
-export type LocalizedWebManifest = Record<string, Partial<ManifestOptions>>
+// We have to extend the ManifestOptions interface from 'vite-plugin-pwa'
+// as that interface doesn't define the share_target field of Web App Manifests.
+interface ExtendedManifestOptions extends ManifestOptions {
+  share_target: {
+    action: string
+    method: string
+    enctype: string
+    params: {
+      text: string
+      url: string
+      files: [{
+        name: string
+        accept: string[]
+      }]
+    }
+  }
+}
+
+export type LocalizedWebManifest = Record<string, Partial<ExtendedManifestOptions>>
 
 export const pwaLocales = i18n.locales as LocaleObject[]
 
-type WebManifestEntry = Pick<ManifestOptions, 'name' | 'short_name' | 'description'>
-type RequiredWebManifestEntry = Required<WebManifestEntry & Pick<ManifestOptions, 'dir' | 'lang'>>
+type WebManifestEntry = Pick<ExtendedManifestOptions, 'name' | 'short_name' | 'description'>
+type RequiredWebManifestEntry = Required<WebManifestEntry & Pick<ExtendedManifestOptions, 'dir' | 'lang'>>
 
 export const createI18n = async (): Promise<LocalizedWebManifest> => {
   const { env } = await getEnv()
@@ -73,6 +91,61 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
           type: 'image/png',
         },
       ],
+      share_target: {
+        action: '/web-share-target',
+        method: 'POST',
+        enctype: 'multipart/form-data',
+        params: {
+          text: 'text',
+          url: 'text',
+          files: [
+            {
+              name: 'files',
+              accept: ['image/*', 'video/*'],
+            },
+          ],
+        },
+      },
+    }
+    acc[`${lang}-dark`] = {
+      scope: '/',
+      id: '/',
+      start_url: '/',
+      display: 'standalone',
+      lang,
+      name,
+      short_name,
+      description,
+      dir,
+      background_color: '#111111',
+      theme_color: '#111111',
+      icons: [
+        {
+          src: 'pwa-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+      ],
+      share_target: {
+        action: '/web-share-target',
+        method: 'POST',
+        enctype: 'multipart/form-data',
+        params: {
+          text: 'text',
+          url: 'text',
+          files: [
+            {
+              name: 'files',
+              accept: ['image/*', 'video/*'],
+            },
+          ],
+        },
+      },
     }
 
     return acc

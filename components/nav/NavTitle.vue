@@ -8,6 +8,7 @@ onMounted(() => {
 router.afterEach(() => {
   back.value = router.options.history.state.back
 })
+const capitalized = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 </script>
 
 <template>
@@ -24,7 +25,7 @@ router.afterEach(() => {
     >
       <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
       <div hidden xl:block>
-        {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
+        {{ env === 'release' ? $t('app_name') : capitalized(env) }}
       </div>
     </NuxtLink>
     <div

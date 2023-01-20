@@ -62,10 +62,13 @@ body {
 
 .custom-emoji {
   display: inline-block;
-  overflow: hidden;
+  vertical-align: text-bottom;
+}
+
+.custom-emoji img {
   max-height: 1.3em;
   max-width: 1.3em;
-  vertical-align: text-bottom;
+  object-fit: contain;
 }
 
 .iconify-emoji {

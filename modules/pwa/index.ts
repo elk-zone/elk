@@ -112,11 +112,11 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         next()
       }
       nuxt.hook('vite:serverCreated', (viteServer, { isServer }) => {
-        if (isServer || !tauriPlatform)
+        if (isServer)
           return
 
         viteServer.middlewares.stack.push({ route: webManifest, handle: emptyHandle })
-        if (webmanifests) {
+        if (webmanifests && !tauriPlatform) {
           Object.keys(webmanifests).forEach((wm) => {
             viteServer.middlewares.stack.push({
               route: `${nuxt.options.app.baseURL}manifest-${wm}.webmanifest`,
@@ -141,6 +141,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     }
     else {
       nuxt.hook('nitro:config', async (nitroConfig) => {
+        // /manifest.webmanifest added on nuxt config file
         if (!tauriPlatform)
           return
 

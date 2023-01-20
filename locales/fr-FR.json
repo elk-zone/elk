@@ -28,6 +28,9 @@
     "muted_users": "Utilisateur·ice·s masqué·e·s",
     "muting": "Masqué·e",
     "mutuals": "Abonné·e·s",
+    "notifications_on_post_disable": "Arrêtez de me notifier lorsque {username} publie",
+    "notifications_on_post_enable": "M'avertir lorsque {username} publie",
+    "notify_on_post": "",
     "pinned": "Épinglés",
     "posts": "Messages",
     "posts_count": "{0} Messages",
@@ -35,14 +38,18 @@
     "profile_unavailable": "Profil non accessible",
     "unblock": "Débloquer",
     "unfollow": "Ne plus suivre",
-    "unmute": "Réafficher"
+    "unmute": "Réafficher",
+    "view_other_followers": "Les abonné·e·s d'autres instances peuvent ne pas être affiché·e·s.",
+    "view_other_following": "Les suivis d'autres instances peuvent ne pas être affichés."
   },
   "action": {
     "apply": "Appliquer",
     "bookmark": "Ajouter aux marque-pages",
     "bookmarked": "Ajouté aux marque-pages",
     "boost": "Partager",
+    "boost_count": "{0}",
     "boosted": "Partagé",
+    "clear_publish_failed": "Effacer les erreurs de publication",
     "clear_upload_failed": "Effacer les erreurs de téléversement de fichier",
     "close": "Fermer",
     "compose": "Composer",
@@ -50,12 +57,14 @@
     "edit": "Éditer",
     "enter_app": "Entrer dans l'application",
     "favourite": "J'aime",
+    "favourite_count": "{0}",
     "favourited": "Aimé",
     "more": "Plus",
     "next": "Suivant",
     "prev": "Précédent",
     "publish": "Publier",
     "reply": "Répondre",
+    "reply_count": "{0}",
     "reset": "Réinitialiser",
     "save": "Enregistrer",
     "save_changes": "Enregistrer les changements",
@@ -94,6 +103,16 @@
     "drafts": "Brouillons ({v})"
   },
   "confirm": {
+    "block_account": {
+      "cancel": "Annuler",
+      "confirm": "Bloquer",
+      "title": "Voulez-vous vraiment bloquer {0} ?"
+    },
+    "block_domain": {
+      "cancel": "Annuler",
+      "confirm": "Bloquer",
+      "title": "Voulez-vous vraiment bloquer {0} ?"
+    },
     "common": {
       "cancel": "Non",
       "confirm": "Oui",
@@ -103,10 +122,32 @@
       "cancel": "Annuler",
       "confirm": "Supprimer",
       "title": "Certain·e de vouloir supprimer ce message ?"
+    },
+    "mute_account": {
+      "cancel": "Annuler",
+      "confirm": "Mettre en sourdine",
+      "title": "Voulez-vous vraiment mettre en sourdine {0} ?"
+    },
+    "show_reblogs": {
+      "cancel": "Annuler",
+      "confirm": "Afficher",
+      "title": "Voulez-vous vraiment afficher les partages de {0} ?"
+    },
+    "unfollow": {
+      "cancel": "Annuler",
+      "confirm": "Se désabonner",
+      "title": "Voulez-vous vraiment vous désabonner ?"
     }
   },
   "conversation": {
     "with": "avec"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Lignes {0}",
+      "open": "Ouvrir",
+      "snippet_from": "Extrait de {0}"
+    }
   },
   "error": {
     "account_not_found": "Compte {0} non trouvé",
@@ -117,6 +158,12 @@
     "unsupported_file_format": "Format de fichier non supporté"
   },
   "help": {
+    "build_preview": {
+      "desc1": "Vous consultez actuellement une version d'aperçu d'Elk de la communauté - {0}.",
+      "desc2": "Elle peut contenir des modifications non révisées voire même malveillantes.",
+      "desc3": "Ne vous connectez pas avec votre compte réel.",
+      "title": "Aperçu du déploiement"
+    },
     "desc_highlight": "Il est possible de rencontrer, par-ci par-là, quelques bugs et fonctionnalités manquantes.",
     "desc_para1": "Merci de l'intérêt pour Elk, notre client Mastodon en cours de développement !",
     "desc_para2": "Nous travaillons dur sur le développement et l'améliorons au fur et à mesure. Nous allons open-sourcer l'application une fois qu'elle sera prête pour un usage public.",
@@ -133,11 +180,15 @@
     "block_account": "Bloquer {0}",
     "block_domain": "Bloquer le domaine {0}",
     "copy_link_to_post": "Copier le lien du message",
+    "copy_original_link_to_post": "Copiez le lien d'origine vers ce message",
     "delete": "Supprimer",
     "delete_and_redraft": "Supprimer et réécrire",
+    "delete_confirm": {
+      "cancel": ""
+    },
     "direct_message_account": "Message direct à {0}",
     "edit": "Éditer",
-    "hide_reblogs": "Cacher les boosts de {0}",
+    "hide_reblogs": "Cacher les partages de {0}",
     "mention_account": "Mentionner {0}",
     "mute_account": "Mettre en sourdine {0}",
     "mute_conversation": "Message muet",
@@ -164,6 +215,7 @@
     "blocked_users": "Utilisateur·ice·s bloqué·e·s",
     "bookmarks": "Marque-pages",
     "built_at": "Dernière compilation {0}",
+    "compose": "Composer",
     "conversations": "Conversations",
     "explore": "Explorer",
     "favourites": "Favoris",
@@ -238,9 +290,10 @@
       "sponsor_action": "Soutenez-nous",
       "sponsor_action_desc": "Pour financer l'équipe développant Elk",
       "sponsors": "Donateur·ice·s",
-      "sponsors_body_1": "Elk existe grâce au généreux soutien de :",
+      "sponsors_body_1": "Elk existe grâce aux généreux soutien de :",
       "sponsors_body_2": "Et toutes les personnes et sociétés soutenant l'équipe Elk et ses membres.",
-      "sponsors_body_3": "Si vous appréciez l'application, envisagez de nous soutenir :"
+      "sponsors_body_3": "Si vous appréciez l'application, envisagez de nous soutenir :",
+      "version": "Version"
     },
     "account_settings": {
       "description": "Modifiez les paramètres de votre compte dans l'interface de Mastodon",
@@ -260,7 +313,8 @@
         "xl": "Très grande",
         "xs": "Très petite"
       },
-      "system_mode": "Système"
+      "system_mode": "Système",
+      "theme_color": "Couleur du thème"
     },
     "language": {
       "display_language": "Langue d'affichage",
@@ -295,7 +349,8 @@
           "clear_error": "Effacer l'erreur",
           "permission_denied": "Autorisation refusée : activez les notifications dans votre navigateur.",
           "request_error": "Une erreur s'est produite lors de la demande d'abonnement, réessayez et si l'erreur persiste, veuillez signaler le problème auprès du dépôt Elk.",
-          "title": "Impossible de s'abonner aux notifications push"
+          "title": "Impossible de s'abonner aux notifications push",
+          "too_many_registrations": "En raison des limitations du navigateur, Elk ne peut pas utiliser le service de notifications push pour plusieurs comptes sur différents serveurs. \nVous devez vous désabonner des notifications push sur un autre compte et réessayer."
         },
         "title": "Paramètres des notifications push",
         "undo_settings": "Annuler les changements de paramètres",
@@ -316,7 +371,9 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "enable_autoplay": "Activer la lecture automatique",
       "github_cards": "GitHub Cards",
+      "grayscale_mode": "Mode niveaux de gris",
       "hide_boost_count": "Cacher les compteurs de partages",
       "hide_favorite_count": "Cacher les compteurs de favoris",
       "hide_follower_count": "Cacher les compteurs d'abonné·e·s",
@@ -348,12 +405,18 @@
       "label": "Utilisateur·ice·s connecté·e·s"
     }
   },
+  "share-target": {
+    "description": "Elk peut être configuré pour que vous puissiez partager du contenu à partir d'autres applications, installez simplement Elk sur votre appareil ou ordinateur et connectez-vous.",
+    "hint": "Pour partager du contenu avec Elk, Elk doit être installé et vous devez être connecté.",
+    "title": "Partager avec Elk"
+  },
   "state": {
     "attachments_exceed_server_limit": "Le nombre de pièces jointes a dépassé la limite par message.",
     "attachments_limit_error": "Limite par publication dépassée",
     "edited": "(Édité)",
     "editing": "Édition",
     "loading": "Chargement...",
+    "publish_failed": "La publication a échoué",
     "publishing": "Envoi",
     "upload_failed": "Le téléversement a échoué",
     "uploading": "Téléversement en cours..."
@@ -444,6 +507,7 @@
   },
   "tooltip": {
     "add_content_warning": "Ajouter un avertissement de contenu",
+    "add_emojis": "Ajouter des émoticônes",
     "add_media": "Ajouter des images, une vidéo ou un fichier audio",
     "add_publishable_content": "Ajouter du contenu à publier",
     "change_content_visibility": "Ajuster la confidentialité du message",
@@ -452,6 +516,7 @@
     "explore_links_intro": "Ces actualités sont sujets à discussions sur ce serveur et sur d'autres serveurs du réseau décentralisé.",
     "explore_posts_intro": "Ces publications de ce serveur et d'autres serveurs du réseau décentralisé gagnent du terrain sur ce serveur en ce moment.",
     "explore_tags_intro": "Ces hashtags gagnent du terrain sur ce serveur et sur d'autres serveurs du réseau décentralisé.",
+    "publish_failed": "Fermez les messages ayant échoué en haut de l'éditeur pour republier les messages",
     "toggle_code_block": "Ajouter un bloc de code"
   },
   "user": {

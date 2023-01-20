@@ -156,6 +156,12 @@
     "unsupported_file_format": "Unsupported file format"
   },
   "help": {
+    "build_preview": {
+      "desc1": "You are currently viewing a preview version of Elk from the community - {0}.",
+      "desc2": "It may contains unreviewed or even malicious changes.",
+      "desc3": "Don't log in with your real account.",
+      "title": "Preview deploy"
+    },
     "desc_highlight": "Expect some bugs and missing features here and there.",
     "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress Mastodon web client!",
     "desc_para2": "we are working hard on the development and improving it over time.",
@@ -172,6 +178,7 @@
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
     "copy_link_to_post": "Copy link to this post",
+    "copy_original_link_to_post": "Copy original link to this post",
     "delete": "Delete",
     "delete_and_redraft": "Delete & re-draft",
     "direct_message_account": "Direct message {0}",
@@ -282,7 +289,8 @@
       "sponsors": "Sponsors",
       "sponsors_body_1": "Elk is made possible thanks the generous sponsoring and help of:",
       "sponsors_body_2": "And all the companies and individuals sponsoring Elk Team and the members.",
-      "sponsors_body_3": "If you're enjoying the app, consider sponsoring us:"
+      "sponsors_body_3": "If you're enjoying the app, consider sponsoring us:",
+      "version": "Version"
     },
     "account_settings": {
       "description": "Edit your account settings in Mastodon UI",
@@ -360,6 +368,7 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "enable_autoplay": "Enable Autoplay",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
       "hide_boost_count": "Hide boost count",

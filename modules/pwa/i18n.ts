@@ -37,6 +37,34 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
 
   const defaultManifest: Required<WebManifestEntry> = pwa.webmanifest[env]
 
+  if (process.env.TAURI_PLATFORM) {
+    return {
+      'en-US': {
+        ...defaultManifest,
+        lang: 'en-US',
+        dir: 'ltr',
+        scope: '/',
+        id: '/',
+        start_url: '/',
+        display: 'standalone',
+        background_color: '#ffffff',
+        theme_color: '#ffffff',
+        icons: [
+          {
+            src: 'pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
+      },
+    }
+  }
+
   const locales: RequiredWebManifestEntry[] = await Promise.all(
     pwaLocales
       .filter(l => l.code !== 'en-US')

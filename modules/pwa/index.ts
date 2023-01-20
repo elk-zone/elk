@@ -22,6 +22,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       return vitePwaClientPlugin?.api
     }
     let webmanifests: LocalizedWebManifest | undefined
+    const tauriPlatform = !!process.env.TAURI_PLATFORM
 
     // TODO: combine with configurePWAOptions?
     nuxt.hook('nitro:init', (nitro) => {
@@ -41,50 +42,59 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
 
       webmanifests = await createI18n()
-      const generateManifest = (entry: string) => {
-        const manifest = webmanifests![entry]
-        if (!manifest)
-          throw new Error(`No webmanifest found for locale/theme ${entry}`)
-        return JSON.stringify(manifest)
-      }
-      viteInlineConfig.plugins.push({
-        name: 'elk:pwa:locales:build',
-        apply: 'build',
-        generateBundle(_, bundle) {
-          if (options.disable || !bundle)
-            return
 
-          Object.keys(webmanifests!).map(wm => [wm, `manifest-${wm}.webmanifest`]).forEach(([wm, fileName]) => {
-            bundle[fileName] = {
-              isAsset: true,
-              type: 'asset',
-              name: undefined,
-              source: generateManifest(wm),
-              fileName,
-            }
-          })
-        },
-      })
-      viteInlineConfig.plugins.push({
-        name: 'elk:pwa:locales:dev',
-        apply: 'serve',
-        configureServer(server) {
-          const localeMatcher = new RegExp(`^${nuxt.options.app.baseURL}manifest-(.*).webmanifest$`)
-          server.middlewares.use((req, res, next) => {
-            const match = req.url?.match(localeMatcher)
-            const entry = match && webmanifests![match[1]]
-            if (entry) {
-              res.statusCode = 200
-              res.setHeader('Content-Type', 'application/manifest+json')
-              res.write(JSON.stringify(entry), 'utf-8')
-              res.end()
-            }
-            else {
-              next()
-            }
-          })
-        },
-      })
+      if (tauriPlatform) {
+        options.filename = 'tauri-sw.ts'
+        options.manifest = webmanifests['en-US']!
+        options.injectManifest = options.injectManifest || {}
+        options.injectManifest.injectionPoint = undefined
+      }
+      else {
+        const generateManifest = (entry: string) => {
+          const manifest = webmanifests![entry]
+          if (!manifest)
+            throw new Error(`No webmanifest found for locale/theme ${entry}`)
+          return JSON.stringify(manifest)
+        }
+        viteInlineConfig.plugins.push({
+          name: 'elk:pwa:locales:build',
+          apply: 'build',
+          generateBundle(_, bundle) {
+            if (options.disable || !bundle)
+              return
+
+            Object.keys(webmanifests!).map(wm => [wm, `manifest-${wm}.webmanifest`]).forEach(([wm, fileName]) => {
+              bundle[fileName] = {
+                isAsset: true,
+                type: 'asset',
+                name: undefined,
+                source: generateManifest(wm),
+                fileName,
+              }
+            })
+          },
+        })
+        viteInlineConfig.plugins.push({
+          name: 'elk:pwa:locales:dev',
+          apply: 'serve',
+          configureServer(server) {
+            const localeMatcher = new RegExp(`^${nuxt.options.app.baseURL}manifest-(.*).webmanifest$`)
+            server.middlewares.use((req, res, next) => {
+              const match = req.url?.match(localeMatcher)
+              const entry = match && webmanifests![match[1]]
+              if (entry) {
+                res.statusCode = 200
+                res.setHeader('Content-Type', 'application/manifest+json')
+                res.write(JSON.stringify(entry), 'utf-8')
+                res.end()
+              }
+              else {
+                next()
+              }
+            })
+          },
+        })
+      }
 
       configurePWAOptions(options, nuxt)
       const plugins = VitePWA(options)
@@ -102,7 +112,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         next()
       }
       nuxt.hook('vite:serverCreated', (viteServer, { isServer }) => {
-        if (isServer)
+        if (isServer || !tauriPlatform)
           return
 
         viteServer.middlewares.stack.push({ route: webManifest, handle: emptyHandle })
@@ -131,6 +141,9 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     }
     else {
       nuxt.hook('nitro:config', async (nitroConfig) => {
+        if (!tauriPlatform)
+          return
+
         nitroConfig.routeRules = nitroConfig.routeRules || {}
         for (const locale of pwaLocales) {
           nitroConfig.routeRules![`/manifest-${locale.code}.webmanifest`] = {

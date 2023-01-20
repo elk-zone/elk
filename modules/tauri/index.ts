@@ -15,7 +15,6 @@ export default defineNuxtModule({
     if (nuxt.options.dev)
       nuxt.options.ssr = false
 
-    nuxt.options.pwa.disable = true
     nuxt.options.sourcemap.client = false
 
     nuxt.options.alias = {
@@ -44,12 +43,6 @@ export default defineNuxtModule({
     // cleanup files copied from the public folder that we don't need
     nuxt.hook('close', async () => {
       await rm('.output/public/_redirects')
-      await rm('.output/public/apple-touch-icon.png')
-      await rm('.output/public/elk-og.png')
-      await rm('.output/public/favicon.ico')
-      await rm('.output/public/pwa-192x192.png')
-      await rm('.output/public/pwa-512x512.png')
-      await rm('.output/public/robots.txt')
     })
   },
 })

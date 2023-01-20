@@ -39,21 +39,31 @@ const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     if (direction === SwipeDirection.UP && Math.abs(distanceY.value) > threshold)
       emit('close')
+
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    lockedDirection.value = null
   },
+})
+
+// direction change cause img jumping, it should be locked
+const lockedDirection = ref<SwipeDirection | null>(null)
+watch(direction, () => {
+  if (!lockedDirection.value && direction.value !== SwipeDirection.NONE)
+    lockedDirection.value = direction.value
 })
 
 const distanceX = computed(() => {
   if (width.value === 0)
     return 0
 
-  if (!isSwiping.value || (direction.value !== SwipeDirection.LEFT && direction.value !== SwipeDirection.RIGHT))
+  if (!isSwiping.value || (lockedDirection.value !== SwipeDirection.LEFT && lockedDirection.value !== SwipeDirection.RIGHT))
     return modelValue.value * 100 * -1
 
   return (lengthX.value / width.value) * 100 * -1 + (modelValue.value * 100) * -1
 })
 
 const distanceY = computed(() => {
-  if (height.value === 0 || !isSwiping.value || direction.value !== SwipeDirection.UP)
+  if (height.value === 0 || !isSwiping.value || lockedDirection.value !== SwipeDirection.UP)
     return 0
 
   return (lengthY.value / height.value) * 100 * -1

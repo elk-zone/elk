@@ -16,7 +16,10 @@ const isGrayscale = usePreferences('grayscaleMode')
 
 <template>
   <div h-full :data-mode="isHydrated && isGrayscale ? 'grayscale' : ''">
-    <main flex w-full mxa lg:max-w-80rem>
+    <main v-if="!isHydrated" w-full h-100vh flex="~ center" aria-label="elk is initializing">
+      <img src="/logo.svg" shrink-0 aspect="1/1" sm:h-16 xl:h-32 class="rtl-flip" animate-pulse :alt="$t('app_logo')">
+    </main>
+    <main v-show="isHydrated" flex w-full mxa lg:max-w-80rem>
       <aside class="hidden sm:flex w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 justify-end xl:me-4 zen-hide" relative>
         <div sticky top-0 w-20 xl:w-100 h-screen flex="~ col" lt-xl-items-center>
           <slot name="left">

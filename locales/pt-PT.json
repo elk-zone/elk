@@ -243,7 +243,7 @@
     "content_warning": "Escreva aqui o seu aviso",
     "default_1": "Em que está a pensar?",
     "reply_to_account": "Responder a {0}",
-    "replying": "Respondedo",
+    "replying": "Respondendo",
     "the_thread": "a conversa"
   },
   "pwa": {
@@ -285,7 +285,7 @@
       "sponsor_action": "Patrocine-nos",
       "sponsor_action_desc": "Para ajudar a equipa que desenvolve o Elk",
       "sponsors": "Patrocinadores",
-      "sponsors_body_1": "O Elk é possível graças ao genoroso patrocinio e ajuda de:",
+      "sponsors_body_1": "O Elk é possível graças ao generoso patrocínio e ajuda de:",
       "sponsors_body_2": "E todas as empresas e pessoas que apoiam a Equipa do Elk e os seus membros.",
       "sponsors_body_3": "Se está a gostar de utilizar esta aplicação, considere apoiar-nos:",
       "version": "Versão"
@@ -344,7 +344,7 @@
           "clear_error": "Limpar erro",
           "permission_denied": "Permissão negada: habilite as notificações no seu browser.",
           "request_error": "Um erro ocorreu durante o pedido de subscrição, tente novamente e se o erro persistir, por favor reporte o problema no repositório do Elk.",
-          "title": "Náo é possível subscrever as notificações push",
+          "title": "Não é possível subscrever as notificações push",
           "too_many_registrations": "Devido a limitações do browser, o Elk não consegue utilizar o serviço de notificações push para múltiplas contas em diferentes servidores. Deve cancelar a subscrição de notificações push nas outras contas e tentar novamente."
         },
         "title": "Configuração de notificações push",
@@ -462,7 +462,7 @@
     "unfollow_label": "Deixar de seguir hashtag {0}"
   },
   "time_ago_options": {
-    "day_future": "em 0 dias|amanhã|em {n} diass",
+    "day_future": "em 0 dias|amanhã|em {n} dias",
     "day_past": "0 dias atrás|ontem|{n} dias atrás",
     "hour_future": "em 0 horas|em 1 hora|em {n} horas",
     "hour_past": "0 horas atrás|1 hora atrás|{n} horas atrás",

@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
+import { ofetch } from 'ofetch'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
+import type { Component } from 'vue'
 
 definePageMeta({
   middleware: 'auth',
@@ -14,6 +16,9 @@ useHeadFixed({
 })
 
 const { client } = $(useMasto())
+
+const avatarInput = ref<any>()
+const headerInput = ref<any>()
 
 const account = $computed(() => currentUser.value?.account)
 
@@ -81,6 +86,15 @@ const refreshInfo = async () => {
     reset()
 }
 
+useDropZone(avatarInput, (files) => {
+  if (files?.[0])
+    form.avatar = files[0]
+})
+useDropZone(headerInput, (files) => {
+  if (files?.[0])
+    form.header = files[0]
+})
+
 onHydrated(refreshInfo)
 onReactivated(refreshInfo)
 </script>
@@ -98,6 +112,7 @@ onReactivated(refreshInfo)
         <!-- banner -->
         <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
+            ref="headerInput"
             v-model="form.header"
             :original="onlineSrc.header"
             w-full h-full
@@ -108,6 +123,7 @@ onReactivated(refreshInfo)
         <!-- avatar -->
         <div px-4 flex="~ gap4">
           <CommonInputImage
+            ref="avatarInput"
             v-model="form.avatar"
             :original="onlineSrc.avatar"
             mt--10

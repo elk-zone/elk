@@ -244,7 +244,8 @@
       "sponsors": "スポンサー",
       "sponsors_body_1": "Elkは以下の寛大なスポンサー",
       "sponsors_body_2": "そして、Elkのチームとメンバーを支援してくれているすべての企業と個人のおかげで実現しました。",
-      "sponsors_body_3": "もしアプリを楽しんでくれているなら、サポートすることを考えてみてください。"
+      "sponsors_body_3": "もしアプリを楽しんでくれているなら、サポートすることを考えてみてください。",
+      "version": "バージョン"
     },
     "account_settings": {
       "description": "Mastodon UIでアカウントの設定を編集します",

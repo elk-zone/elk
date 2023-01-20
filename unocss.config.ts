@@ -100,6 +100,18 @@ export default defineConfig({
       },
     },
   },
+  ...process.env.TAURI_PLATFORM && {
+    variants: [
+      (matcher) => {
+        if (!matcher.startsWith('native:'))
+          return matcher
+        return {
+          matcher: matcher.slice(7),
+          layer: 'native',
+        }
+      },
+    ],
+  },
   rules: [
     // scrollbar-hide
     [/^scrollbar-hide$/, (_, { constructCSS }) => {

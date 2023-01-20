@@ -16,8 +16,8 @@ const isGrayscale = usePreferences('grayscaleMode')
 
 <template>
   <div h-full :data-mode="isHydrated && isGrayscale ? 'grayscale' : ''">
-    <main flex w-full mxa lg:max-w-80rem>
-      <aside class="hidden sm:flex w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 justify-end xl:me-4 zen-hide" relative>
+    <main flex w-full mxa lg:max-w-80rem class="native:grid native:grid-cols-[auto_1fr]">
+      <aside class="hidden native:w-auto sm:flex w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 justify-end xl:me-4 zen-hide" relative>
         <div sticky top-0 w-20 xl:w-100 h-screen flex="~ col" lt-xl-items-center>
           <slot name="left">
             <div flex="~ col" overflow-y-auto justify-between h-full max-w-full mt-5>

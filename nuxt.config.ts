@@ -47,9 +47,10 @@ export default defineNuxtConfig({
     'floating-vue/dist/style.css',
     '~/styles/default-theme.css',
     '~/styles/vars.css',
+    '~/styles/global.css',
     ...process.env.TAURI_PLATFORM === 'macos'
-      ? ['~/styles/global.css']
-      : ['~/styles/global.css', '~/styles/scrollbars.css'],
+      ? []
+      : ['~/styles/scrollbars.css'],
     '~/styles/tiptap.css',
     '~/styles/dropdown.css',
   ],

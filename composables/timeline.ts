@@ -17,7 +17,7 @@ function removeFilteredItems(items: mastodon.v1.Status[], context: mastodon.v1.F
   return [...items].filter(isFiltered).filter(isReblogFiltered)
 }
 
-export function reorderedTimeline(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext) {
+export function reorderedTimeline(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext = 'public') {
   let steps = 0
 
   const newItems = removeFilteredItems(items, context)

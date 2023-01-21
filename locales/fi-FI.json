@@ -1,0 +1,527 @@
+{
+  "a11y": {
+    "loading_page": "Ladataan sivu, odottakaa",
+    "loading_titled_page": "Ladataan sivu {0}, odottakaa",
+    "locale_changed": "Kieli vaihtoi kieleksi {0}",
+    "locale_changing": "Kielen vaihto, odottakaa",
+    "route_loaded": "Sivu {0} ladattu"
+  },
+  "account": {
+    "avatar_description": "{0}:n avatar",
+    "blocked_by": "Olet estetty tämän käyttäjän toimesta.",
+    "blocked_domains": "Estetyt domeenit",
+    "blocked_users": "Estetyt käyttäjät",
+    "blocking": "Estetty",
+    "bot": "BOT",
+    "favourites": "Favorites",
+    "follow": "Seuraa",
+    "follow_back": "Seuraa takaisin",
+    "follow_requested": "Pyydetty",
+    "followers": "Seuraajat",
+    "followers_count": "{0} Seuraajaa|{0} Seuraaja|{0} Seuraajaa",
+    "following": "Seuraamassa",
+    "following_count": "{0} Seuraamassa",
+    "follows_you": "Seuraa sinua",
+    "go_to_profile": "Mene profiiliin",
+    "joined": "Liittyi",
+    "moved_title": "on kertonut, että uusi tilinsä on nyt:",
+    "muted_users": "Hiljennetyt käyttäjät",
+    "muting": "Hiljennetty",
+    "mutuals": "Molemminsuuntaiset",
+    "notifications_on_post_disable": "Älä enää ilmoita, kun {username} julkaisee",
+    "notifications_on_post_enable": "Ilmoita, kun {username} julkaisee",
+    "pinned": "Kiinnitetty",
+    "posts": "Julkaisut",
+    "posts_count": "{0} Julkaisua|{0} Julkaisu|{0} Julkaisua",
+    "profile_description": "{0}:n profiilin otsikko",
+    "profile_unavailable": "Profiilia ei ole",
+    "unblock": "Poista esto",
+    "unfollow": "Lopeta seuraamista",
+    "unmute": "Poista hiljennys",
+    "view_other_followers": "Muiden ilmentymien seuraajat eivät välttämättä näy.",
+    "view_other_following": "Muiden ilmentymien seurattavat eivät välttämättä näy."
+  },
+  "action": {
+    "apply": "Sovella",
+    "bookmark": "Kirjanmerkki",
+    "bookmarked": "Kirjanmerkitty",
+    "boost": "Jaa",
+    "boost_count": "{0}",
+    "boosted": "Jaettu",
+    "clear_publish_failed": "Siivoa julkaisuvirheet",
+    "clear_upload_failed": "Siivoa tiedoston latausvirheet",
+    "close": "Sulje",
+    "compose": "Muodosta",
+    "confirm": "Vahvista",
+    "edit": "Muokkaa",
+    "enter_app": "Avaa App",
+    "favourite": "Tykkää",
+    "favourite_count": "{0}",
+    "favourited": "Tykätty",
+    "more": "Lisää",
+    "next": "Seuraava",
+    "prev": "Edellinen",
+    "publish": "Julkaise",
+    "reply": "Vastaa",
+    "reply_count": "{0}",
+    "reset": "Resetoi",
+    "save": "Tallenna",
+    "save_changes": "Tallenna muutokset",
+    "sign_in": "Kirjoittaudu sisään",
+    "switch_account": "Vaihda tili",
+    "vote": "Äänestä"
+  },
+  "app_desc_short": "Ketterä Mastodonin web-klientti",
+  "app_logo": "Elk Logo",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Kuvaus",
+    "remove_label": "Poista liite"
+  },
+  "command": {
+    "activate": "Aktivoi",
+    "complete": "Täydellinen",
+    "compose_desc": "Kirjoita uusi julkaisu",
+    "n-people-in-the-past-n-days": "{0} ihmistä viime {1} päivän aikana",
+    "select_lang": "Valitse kieli",
+    "sign_in_desc": "Lisää olemassa oleva tili",
+    "switch_account": "Vaihda tiliin {0}",
+    "switch_account_desc": "Vaihda toiseen tiliin",
+    "toggle_dark_mode": "Vaihda väriskeema",
+    "toggle_zen_mode": "Vaihda zen-tila"
+  },
+  "common": {
+    "end_of_list": "Listan loppu",
+    "error": "VIRHE",
+    "in": "in",
+    "not_found": "404 Ei löydy",
+    "offline_desc": "Näyttää siltä, että olet offline-tilassa. Tarkista verkkoyhteytesi."
+  },
+  "compose": {
+    "draft_title": "Luonnos {0}",
+    "drafts": "Luonnokset ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "Peruuta",
+      "confirm": "Estä",
+      "title": "Oletko varma, että haluat estää {0}？"
+    },
+    "block_domain": {
+      "cancel": "Peruuta",
+      "confirm": "Estä",
+      "title": "Oletko varma, että haluat estää {0}？"
+    },
+    "common": {
+      "cancel": "Peruuta",
+      "confirm": "OK"
+    },
+    "delete_posts": {
+      "cancel": "Peruuta",
+      "confirm": "Poista",
+      "title": "Oletko varma, että haluat poistaa tämä julkaisu?"
+    },
+    "mute_account": {
+      "cancel": "Peruuta",
+      "confirm": "Hiljennä",
+      "title": "Oletko varma, että hasluat hiljentää {0}？"
+    },
+    "show_reblogs": {
+      "cancel": "Peruuta",
+      "confirm": "Näytä",
+      "title": "Oletko varma, että haluat jakaa {0}:n julkaisuja？"
+    },
+    "unfollow": {
+      "cancel": "Peruuta",
+      "confirm": "Lopeta seuraamista",
+      "title": "Oletko varma, että haluat lopettaa seuraamista?"
+    }
+  },
+  "conversation": {
+    "with": "with"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Rivit {0}",
+      "open": "Open",
+      "snippet_from": "Palanen {0}:sta"
+    }
+  },
+  "error": {
+    "account_not_found": "Tili {0} ei löydy",
+    "explore-list-empty": "Mitään ei trendaa juuri nyt. Katso uudelleen myöhemmin!",
+    "file_size_cannot_exceed_n_mb": "Tiedosto ei saa olla suurempi kuin {0}MB",
+    "sign_in_error": "Yhteyden muodostus palvelimeen ei onnistu.",
+    "status_not_found": "Julkaisu ei löydy",
+    "unsupported_file_format": "Ei-tuettu tiedostoformaatti"
+  },
+  "help": {
+    "desc_highlight": "Odota paikoitellen joitakin bugeja ja puuttuvia ominaisuuksia.",
+    "desc_para1": "Kiitos, että haluat kokeilla Elkiä, vielä keskeneräinen Mastodonin web-klientti!",
+    "desc_para2": "teemme kovasti työtä sen jatkuvaksi kehittämiseksi ja parantamiseksi.",
+    "desc_para3": "Kehitystyön auttamiseksi voit tukea Tiimiä GitHub Sponsorsin kautta. Toivomme, että nautit Elkin käytöstä!",
+    "desc_para4": "Elk on avoimen lähdekoodin ohjelmisto. Jos haluat auttaa sen testauksella, palautteen antamisella tai antamalla koodia,",
+    "desc_para5": "ota meihin yhteyttä GitHubilla",
+    "desc_para6": "ja aktivoidu.",
+    "title": "Elk on esikokeiluvaiheessä!"
+  },
+  "language": {
+    "search": "Haku"
+  },
+  "menu": {
+    "block_account": "Estä {0}",
+    "block_domain": "Estä domeeni {0}",
+    "copy_link_to_post": "Kopioi linkki tähän julkaisuun",
+    "delete": "Poista",
+    "delete_and_redraft": "Poista & kirjoita uudelleen",
+    "direct_message_account": "Suora viesti {0}",
+    "edit": "Muokkaa",
+    "hide_reblogs": "Piilota jaot {0}:lta",
+    "mention_account": "Mainitse {0}",
+    "mute_account": "Hiljennä {0}",
+    "mute_conversation": "Hiljennä tämä julkaisu",
+    "open_in_original_site": "Avaa alkuperäispalvelimella",
+    "pin_on_profile": "Kiinnitä profiiliin",
+    "share_post": "Jaa tämä julkaisu",
+    "show_favourited_and_boosted_by": "Näytä, kuka tykkäsi ja jakoi",
+    "show_reblogs": "Näytä {0}:n jaot",
+    "show_untranslated": "Näytä ilman käännöstä",
+    "toggle_theme": {
+      "dark": "Vaihda tummaan väriskeemaan",
+      "light": "Vaihda vaaleaan väriskeemaan"
+    },
+    "translate_post": "Käännä julkaisu",
+    "unblock_account": "Poista tilin {0} esto",
+    "unblock_domain": "Poista domeenin {0} esto",
+    "unmute_account": "Poista tilin {0} hiljennys",
+    "unmute_conversation": "Poista tämän julkaisun hiljennys",
+    "unpin_on_profile": "Irroita profiilista"
+  },
+  "nav": {
+    "back": "Go back",
+    "blocked_domains": "Estetyt domeenit",
+    "blocked_users": "Estetyt käyttäjät",
+    "bookmarks": "Kirjanmerkit",
+    "built_at": "Viime build: {0}",
+    "compose": "Muodosta",
+    "conversations": "Keskustelut",
+    "explore": "Tutki",
+    "favourites": "Tykkäykset",
+    "federated": "Federoitu",
+    "home": "Koti",
+    "local": "Paikallinen",
+    "muted_users": "Hiljennetyt käyttäjät",
+    "notifications": "Ilmoitukset",
+    "profile": "Profiili",
+    "search": "Haku",
+    "select_feature_flags": "Aktivoi Ominaisuusliput",
+    "select_font_size": "Fonttikoko",
+    "select_language": "Näytön kieli",
+    "settings": "Asetukset",
+    "show_intro": "Näytä intro",
+    "toggle_theme": "Vaihda väriskeema",
+    "zen_mode": "Zen-moodi"
+  },
+  "notification": {
+    "favourited_post": "tykkäsi julkaisustasi",
+    "followed_you": "seurasi sinua",
+    "followed_you_count": "{0} ihmistä seurasi sinua|{0} henkilö seurasi sinua|{0} ihmistä seurasi sinua",
+    "missing_type": "MISSING notification.type:",
+    "reblogged_post": "jakoi julkaisusi",
+    "request_to_follow": "pyysi saada seurata sinua",
+    "signed_up": "on kirjautunut",
+    "update_status": "päivitti julkaisunsa"
+  },
+  "placeholder": {
+    "content_warning": "Kirjoita varoituksesi tähän",
+    "default_1": "Mitä tuumaat?",
+    "reply_to_account": "Vastaus {0}:lle",
+    "replying": "Vastaaminen",
+    "the_thread": "ketju"
+  },
+  "pwa": {
+    "dismiss": "Dismiss",
+    "title": "New Elk update available!",
+    "update": "Update",
+    "update_available_short": "Update Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "Ketterä Mastodonin web-klientti (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "Ketterä Mastodonin web-klientti (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "Ketterä Mastodonin web-klientti (preview)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description": "Ketterä Mastodonin web-klientti",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "Etsi ihmisiä & hashtags",
+    "search_empty": "Nämä hakutermit eivät tuota tulosta"
+  },
+  "settings": {
+    "about": {
+      "label": "Elk:stä",
+      "meet_the_team": "Tapaa tiimi",
+      "sponsor_action": "Tue meitä rahallisesti",
+      "sponsor_action_desc": "Elkin kehitystiimin tukemiseksi",
+      "sponsors": "Tukijat",
+      "sponsors_body_1": "Elk on mahdollista kiitos seuraavien avokätistä tukea ja apua:",
+      "sponsors_body_2": "Ja kaikki yritykset ja yksilöt, jotka tukevat Elk-tiimiä ja sen jäseniä.",
+      "sponsors_body_3": "Jos pidät appista, harkitse tukemista:"
+    },
+    "account_settings": {
+      "description": "Muokkaa tiliasetuksesi Mastodonin käyttöliittymässä",
+      "label": "Tiliasetukset"
+    },
+    "interface": {
+      "color_mode": "Väriskeema",
+      "dark_mode": "Tumma",
+      "default": " (oletus)",
+      "font_size": "Fonttikoko",
+      "label": "Liitäntä",
+      "light_mode": "Vaalea",
+      "size_label": {
+        "lg": "Suuri",
+        "md": "Keski",
+        "sm": "Pieni",
+        "xl": "Ekstra-suuri",
+        "xs": "Ekstra-pieni"
+      },
+      "system_mode": "System",
+      "theme_color": "Theme Color"
+    },
+    "language": {
+      "display_language": "Näytön kieli",
+      "label": "Kieli"
+    },
+    "notifications": {
+      "label": "Ilmoitukset",
+      "notifications": {
+        "label": "Ilmoitusasetukset"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Tykkäykset",
+          "follow": "Uudet seuraajat",
+          "mention": "Maininnat",
+          "poll": "Äänestykset",
+          "reblog": "Jaa julkaisusi",
+          "title": "Mitkä ilmoitukset vastaanotettava?"
+        },
+        "description": "Ota vastaan ilmoitukset, myös kun et ole käyttämässä Elkiä.",
+        "instructions": "Muista tallentaa muutokset @:settings.notifications.push_notifications.save_settings -painikkeella!",
+        "label": "Push-ilmoitusten asetukset",
+        "policy": {
+          "all": "Kaikilta",
+          "followed": "Ihmisiltä, joita seuraan",
+          "follower": "Ihmisiltä, jotka seuraavat minua",
+          "none": "Ei keneltäkään",
+          "title": "Keneltä voin saada ilmoituksia?"
+        },
+        "save_settings": "Tallenna asetukset",
+        "subscription_error": {
+          "clear_error": "Siivoa virhe",
+          "permission_denied": "Lupa evätty: aktivoi ilmoitukset selaimessasi.",
+          "request_error": "Virhe tapahtui, kun haettiin tilaus, yritä uudestaan ja jos virhe toistuu, ole hyvä ja raportoi asiasta Elkin koodivarannolle.",
+          "title": "Ei voitu tilata push-ilmoituksia",
+          "too_many_registrations": "Selaimen rajoitusten seurauksena Elk ei pysty käyttämään push-ilmoituspalvelua useilla tileilla eri palvelimilla. Deaktivoi toisen tilin push-ilmoitukset ja yritä uudelleen."
+        },
+        "title": "Push-ilmoitusten asetukset",
+        "undo_settings": "Peruuta muutokset",
+        "unsubscribe": "Poista push-imoitukset käytöstä",
+        "unsupported": "Selaimesi ei tue push-ilmoituksia.",
+        "warning": {
+          "enable_close": "Sulje",
+          "enable_description": "Saadaksesi ilmoituksia, kun Elk ei ole auki, aktivoi push-ilmoituksia. Voit hallita tarkasti, millaiset vuorovaikutukset tuottavat push-ilmoituksia käyttämällä \"@:settings.notifications.show_btn{'\"'} -painiketta ylhäällä, kun se on aktivoitu.",
+          "enable_description_desktop": "Saadaksesi ilmoituksia, kun Elk ei ole auki, aktivoi push-ilmoitukset. Voit hallita tarkasti, millaiset vuorovaikutukset tuottavat push-ilmoituksia käyttämällä \"Asetukset > Ilmoitukset > Push-ilmoitusten asetukset\", kun se on aktivoitu.",
+          "enable_description_mobile": "Voit myös päästä asetuksiin käyttämällä navigointivalikkoa \"Asetukset > Ilmoitukset > Push-ilmoitusten asetukset\".",
+          "enable_description_settings": "Ilmoitusten vastaanottamiseksi kun Elk ei ole auki, aktivoi push-ilmoitukset. Voit hallita tarkasti, millaiset vuorovaikutukset tuottavat push-ilmoituksia tähän samaan näyttöön, kunhan aktivoit ne.",
+          "enable_desktop": "Kytke push-ilmoitukset päälle",
+          "enable_title": "Älä anna ilmoitukset livahtaa ohitse",
+          "re_auth": "Ilmeisesti palvelimesi ei tue push-ilmoituksia. Yritä kirjautua ulos ja kirjautua uudelleen sisään, jos sämä viesti tulee uudelleen, ota yhteys palvelimen admin:iin."
+        }
+      },
+      "show_btn": "Ilmoitusasetuksiin"
+    },
+    "notifications_settings": "Ilmoitukset",
+    "preferences": {
+      "github_cards": "GitHub Cards",
+      "grayscale_mode": "Grayscale mode",
+      "hide_boost_count": "Piilota jakojen lukumäärä",
+      "hide_favorite_count": "Piilota tykkäysten lukumäärä",
+      "hide_follower_count": "Piilota seuraajien lukumäärä",
+      "label": "Valinnat",
+      "title": "Kokeellisia ominaisuuksia",
+      "user_picker": "Käyttäjävalitsin",
+      "virtual_scroll": "Virtuaalivieritys"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bio",
+        "description": "Muokkaa avatar, käyttäjänimi, profiili, jne.",
+        "display_name": "Kuvaruutunimi",
+        "label": "Visuaalinen ilme",
+        "profile_metadata": "Profiilin metatiedot",
+        "profile_metadata_desc": "Saa olla korkeintaan {0} kohdetta taulukkona profiilissa",
+        "title": "Muokkaa profiili"
+      },
+      "featured_tags": {
+        "description": "Ihmiset voivat katsella julkiset kirjoituksesi näillä hashtageillä.",
+        "label": "Esillä olevat hashtagit"
+      },
+      "label": "Profiili"
+    },
+    "select_a_settings": "Valitse asetus",
+    "users": {
+      "export": "Käyttäjätokenien vienti",
+      "import": "Käyttäjätokenien tuonti",
+      "label": "Kirjoittautujia käyttäjiä"
+    }
+  },
+  "share-target": {
+    "description": "Elk voidaan konfiguroida niin, että voit jakaa sisältöä muilta sovelluksilta, yksinkertaisesti installoi Elk laitteeseesi tai tietokoneesi ja ilmoittaudu.",
+    "hint": "Jos kaluat jakaa sisältöä Elkin kanssa, Elk on oltava installoituna ja sinun on oltava kirjoittautuna sisään.",
+    "title": "Share with Elk"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "Liitteiden lukumäärä per julkaisu enemmän kuin sallittu.",
+    "attachments_limit_error": "Enemmän kuin sallittu per julkaisu",
+    "edited": "(Muokattu)",
+    "editing": "Muokkaa",
+    "loading": "Lataa...",
+    "publish_failed": "Julkaiseminen epäonnistui",
+    "publishing": "Julkaisee",
+    "upload_failed": "Lataaminen epäonnistui",
+    "uploading": "Lataa..."
+  },
+  "status": {
+    "boosted_by": "Jakaminen teki",
+    "edited": "Viimein muokattu {0}",
+    "favourited_by": "Tykkääminen teki",
+    "filter_hidden_phrase": "Piilotus suotimella teki",
+    "filter_removed_phrase": "Poisto suotimella teki",
+    "filter_show_anyway": "Näytä kuitenkin",
+    "img_alt": {
+      "desc": "Kuvaus",
+      "dismiss": "Sulje"
+    },
+    "poll": {
+      "count": "{0} ääntä|{0} ääni|{0} ääntä",
+      "ends": "loppuu {0}",
+      "finished": "loppunut {0}"
+    },
+    "reblogged": "{0} jakoi",
+    "replying_to": "Vastaa {0}:lle",
+    "show_full_thread": "Näytä koko ketju",
+    "someone": "joku",
+    "spoiler_show_less": "Näytä vähemmän",
+    "spoiler_show_more": "Näytä enemmän",
+    "thread": "Ketju",
+    "try_original_site": "Kokeile alkuperäisserveri"
+  },
+  "status_history": {
+    "created": "luotu {0}",
+    "edited": "muokattu {0}"
+  },
+  "tab": {
+    "for_you": "Sinulle",
+    "hashtags": "Hashtagit",
+    "media": "Media",
+    "news": "Uutiset",
+    "notifications_all": "Kaikki",
+    "notifications_mention": "Maininnat",
+    "posts": "Julkaisut",
+    "posts_with_replies": "Julkaisut & Vastaukset"
+  },
+  "tag": {
+    "follow": "Seuraa",
+    "follow_label": "Seuraa {0}-tägi",
+    "unfollow": "Lopeta seuraamista",
+    "unfollow_label": "Lopeta {0}-tägin seuraamista"
+  },
+  "time_ago_options": {
+    "day_future": "0 päivässä|huomenna|{n} päivässä",
+    "day_past": "0 päivää sitten|eilen|{n} päivää sitten",
+    "hour_future": "in 0 hours|in 1 hour|in {n} hours",
+    "hour_past": "0 hours ago|1 hour ago|{n} hours ago",
+    "just_now": "juuri nyt",
+    "minute_future": "0 minuutissa|1 minuutissa|in {n} minuutissa",
+    "minute_past": "0 minuuttia sitten|1 minuutti sitten|{n} minuuttia sitten",
+    "month_future": "0 kuukaudessa|ensi kuussa|{n} kuukaudessa",
+    "month_past": "0 kuukautta sitten|viime kuussa|{n} kuukautta sitten",
+    "second_future": "juuri nyt|{n} sekunnissa|{n} sekunnissa",
+    "second_past": "juuri nyt|{n} sekunti sitten|{n} sekuntia sitten",
+    "short_day_future": "{n}pv:ssä",
+    "short_day_past": "{n}pv",
+    "short_hour_future": "{n}t:ssä",
+    "short_hour_past": "{n}t",
+    "short_minute_future": "{n}min:ssa",
+    "short_minute_past": "{n}min",
+    "short_month_future": "{n}kk:ssa",
+    "short_month_past": "{n}kk",
+    "short_second_future": "{n}sek:ssa",
+    "short_second_past": "{n}s",
+    "short_week_future": "{n}vk:ssa",
+    "short_week_past": "{n}vk",
+    "short_year_future": "{n} v:ssa",
+    "short_year_past": "{n}v",
+    "week_future": "0 viikossa|ensi viikkona|{n} viikossa",
+    "week_past": "0 viikkoa sitten|viime viikkona|{n} viikkoa sitten",
+    "year_future": "0 vuodessa|ensi vuonna|{n} vuodessa",
+    "year_past": "0 vuotta sitten|viime vuonna|{n} vuotta sitten"
+  },
+  "timeline": {
+    "show_new_items": "Näytä {v} uutta kohtaa|Näytä {v} uusi kohta|Näytä {v} uutta kohtaa",
+    "view_older_posts": "Muiden ilmentymien vanhemmat julkaisut eivät välttämättä näy."
+  },
+  "title": {
+    "federated_timeline": "Federoitu aikajana",
+    "local_timeline": "Paikallinen akajana"
+  },
+  "tooltip": {
+    "add_content_warning": "Lisää sisältövaroitus",
+    "add_emojis": "Lisää emojit",
+    "add_media": "Lisää kuvia, video- tai äänitiedosto",
+    "add_publishable_content": "Lisää sisältöä julkaistavaksi",
+    "change_content_visibility": "Muuta sisällön näkyvyys",
+    "change_language": "Vaihda kieli",
+    "emoji": "Emoji",
+    "explore_links_intro": "Näistä uutistarinoista puhutaan tässä ja muissa hajoitetun verkon palvelimissa juuri nyt.",
+    "explore_posts_intro": "Nämä julkaisut tässä ja muissa hajoitetun verkon palvelimissa saavat lisää huomiota tämän palvelimen ihmisten kesken juuri nyt.",
+    "explore_tags_intro": "Nämä hashtagit saavat enemmän huomiota tämän ja muiden hajautetun verkon palvelimien ihmisten kesken juuri nyt.",
+    "publish_failed": "Sulje epäonnistunut viestit editorin ylälaidalla ennen julkaisujen uudelleenjlkaisemista",
+    "toggle_code_block": "Vaihda koodilohko"
+  },
+  "user": {
+    "add_existing": "Lisää olemassa oleva tili",
+    "server_address_label": "Mastodonin palvelinosoite",
+    "sign_in_desc": "Kirjaudu sisään seurataakseen profiilit tai hashtagit, tykätäkseen, jakaakseen ja vastatakseen julkaisuihin, tai olla vuorovaikutuksessa tililtäsi toisella palvelimella.",
+    "sign_in_notice_title": "{0}:n julkisten tietojen katselu",
+    "sign_out_account": "Kirjaudu ulos {0}",
+    "tip_no_account": "Jos sinulla ei ole vielä Mastodon-tili, {0}.",
+    "tip_register_account": "valitse palvelimesi ja ilmoittaudu eli luo tili"
+  },
+  "visibility": {
+    "direct": "Vain mainitut tilit",
+    "direct_desc": "Nähtävissä vain mainituille tilille",
+    "private": "Vain seuraajat",
+    "private_desc": "Nähtävissä vain seuraajille",
+    "public": "Julkinen",
+    "public_desc": "Nähtävissä kaikille",
+    "unlisted": "Ei-luetteloitu",
+    "unlisted_desc": "Kaikille nähtävissä, mutta ilman tunnustusominaisuuksia"
+  }
+}

@@ -132,20 +132,7 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
     }
   }
 
-  // extract indices of notifications with filtered statuses
-  const isStrict = (filter: mastodon.v1.FilterResult) => filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications')
-  const filteredIndices = flattenedNotifications
-    .map((item, index) => ({
-      status: item.status,
-      index,
-    }))
-    .filter(item => !item.status?.filtered?.find(isStrict))
-    .map(item => item.index)
-
-  // group the filtered elements given the indices
-  return groupItems(
-    flattenedNotifications.filter((item, index) => !filteredIndices.includes(index)),
-  )
+  return groupItems(flattenedNotifications)
 }
 
 const { clearNotifications } = useNotifications()

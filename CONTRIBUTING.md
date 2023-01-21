@@ -99,7 +99,7 @@ We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i
       - Add all country variants files with empty `messages` object: `{}`
       - Translate the strings in the generic language file
       - Later, when anyone wants to add the corresponding translations for the country variant, just can override all entries in the corresponding file: check `en` (english variants), and override the entries in all country files, if you omit them, `i18n` module will use the language entry.
-  - If the generic language already exists:
+   - If the generic language already exists:
       - If the translation doesn't differ from the generic language, then add the corresponding translations in the corresponding file
       - If the translation differs from the generic language, then add the corresponding translations in the corresponding file and remove it from the country variants entry
 4. If the language is `right-to-left`, add `dir` option with `rtl` value, for example, for [ar](./config/i18n.ts#L22)

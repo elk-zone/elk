@@ -6,8 +6,7 @@ export function usePaginator<T, P, U = T>(
   _paginator: Paginator<T[], P>,
   stream: Ref<Promise<WsEvents> | undefined>,
   eventType: 'notification' | 'update' = 'update',
-  preprocess: (items: (T | U)[], context?: mastodon.v2.FilterContext) => U[] = items => items as unknown as U[],
-  context?: mastodon.v2.FilterContext,
+  preprocess: (items: (T | U)[]) => U[] = items => items as unknown as U[],
   buffer = 10,
 ) {
   // called `next` method will mutate the internal state of the variable,
@@ -27,7 +26,7 @@ export function usePaginator<T, P, U = T>(
   const deactivated = useDeactivated()
 
   async function update() {
-    (items.value as U[]).unshift(...preprocess(prevItems.value as T[], context))
+    (items.value as U[]).unshift(...preprocess(prevItems.value as T[]))
     prevItems.value = []
   }
 
@@ -74,7 +73,7 @@ export function usePaginator<T, P, U = T>(
       const result = await paginator.next()
 
       if (!result.done && result.value.length) {
-        const preprocessedItems = preprocess([...nextItems.value, ...result.value] as (U | T)[], context)
+        const preprocessedItems = preprocess([...nextItems.value, ...result.value] as (U | T)[])
         const itemsToShowCount
           = preprocessedItems.length <= buffer
             ? preprocessedItems.length

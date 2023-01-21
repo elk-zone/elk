@@ -11,15 +11,13 @@ const {
   virtualScroller = false,
   eventType = 'update',
   preprocess,
-  context = 'public',
 } = defineProps<{
   paginator: Paginator<T[], O>
   keyProp?: keyof T
   virtualScroller?: boolean
   stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
-  preprocess?: (items: (U | T)[], context?: mastodon.v2.FilterContext) => U[]
-  context?: mastodon.v2.FilterContext
+  preprocess?: (items: (U | T)[]) => U[]
 }>()
 
 defineSlots<{
@@ -44,7 +42,7 @@ defineSlots<{
 
 const { t } = useI18n()
 
-const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), eventType, preprocess, context)
+const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), eventType, preprocess)
 </script>
 
 <template>

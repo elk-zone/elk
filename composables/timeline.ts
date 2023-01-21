@@ -9,7 +9,7 @@ function areStatusesConsecutive(a: mastodon.v1.Status, b: mastodon.v1.Status) {
   return !!inReplyToId && (inReplyToId === a.reblog?.id || inReplyToId === a.id)
 }
 
-export function reorderedTimeline(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext = 'public') {
+export function reorderedTimeline(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext) {
   let steps = 0
 
   const isStrict = (filter: mastodon.v1.FilterResult) => filter.filter.filterAction === 'hide' && filter.filter.context.includes(context)

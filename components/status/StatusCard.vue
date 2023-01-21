@@ -67,10 +67,6 @@ const createdAt = useFormattedDateTime(status.createdAt)
 const timeAgoOptions = useTimeAgoOptions(true)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
-// Content Filter logic
-const filterResult = $computed(() => status.filtered?.length ? status.filtered[0] : null)
-const filter = $computed(() => filterResult?.filter)
-
 const isSelfReply = $computed(() => status.inReplyToAccountId === status.account.id)
 const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
 const isDM = $computed(() => status.visibility === 'direct')
@@ -81,7 +77,6 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
 
 <template>
   <div
-    v-if="filter?.filterAction !== 'hide'"
     :id="`status-${status.id}`"
     ref="el"
     relative flex="~ col gap1" p="l-3 r-4 b-2"

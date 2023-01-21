@@ -100,6 +100,24 @@ export default defineConfig({
       },
     },
   },
+  variants: [
+    (matcher) => {
+      if (!process.env.TAURI_PLATFORM || !matcher.startsWith('native:'))
+        return matcher
+      return {
+        matcher: matcher.slice(7),
+        layer: 'native',
+      }
+    },
+    (matcher) => {
+      if (process.env.TAURI_PLATFORM !== 'macos' || !matcher.startsWith('native-mac:'))
+        return matcher
+      return {
+        matcher: matcher.slice(11),
+        layer: 'native-mac',
+      }
+    },
+  ],
   rules: [
     // scrollbar-hide
     [/^scrollbar-hide$/, (_, { constructCSS }) => {

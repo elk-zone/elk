@@ -64,8 +64,11 @@ export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEd
 
   const translation = translations.get(status)!
 
+  const shouldTranslate = 'language' in status && status.language && status.language !== to
+  const enabled = !!useRuntimeConfig().public.translateApi && shouldTranslate
+
   async function toggle() {
-    if (!('language' in status))
+    if (!shouldTranslate)
       return
 
     if (!translation.text) {
@@ -79,7 +82,7 @@ export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEd
   }
 
   return {
-    enabled: !!useRuntimeConfig().public.translateApi,
+    enabled,
     toggle,
     translation,
   }

@@ -20,7 +20,7 @@ export interface UserSettings {
   colorMode?: ColorMode
   fontSize: FontSize
   language: string
-  disabledTranslationLanguages: (keyof typeof supportedTranslationLanguages)[]
+  disabledTranslationLanguages: string[]
   zenMode: boolean
   themeColors?: ThemeColors
 }

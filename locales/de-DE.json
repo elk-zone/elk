@@ -278,7 +278,13 @@
     "language": {
       "display_language": "Anzeigesprache",
       "label": "Sprache",
-      "translations": "Übersetzungen"
+      "translations": {
+        "add": "Hinzufügen",
+        "choose_language": "Sprache wählen",
+        "heading": "Übersetzungen",
+        "hide_specific": "Bestimmte Übersetzungen ausblenden",
+        "remove": "Entfernen"
+      }
     },
     "notifications": {
       "label": "Benachrichtigungen",

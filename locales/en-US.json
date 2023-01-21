@@ -314,7 +314,13 @@
     "language": {
       "display_language": "Display Language",
       "label": "Language",
-      "translations": "Translations"
+      "translations": {
+        "add": "Add",
+        "choose_language": "Choose language",
+        "heading": "Translations",
+        "hide_specific": "Hide specific translations",
+        "remove": "Remove"
+      }
     },
     "notifications": {
       "label": "Notifications",

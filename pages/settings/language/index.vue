@@ -19,7 +19,7 @@ useHeadFixed({
         <SettingsLanguage select-settings />
       </label>
       <h2 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
-        {{ $t('settings.language.translations') }}
+        {{ $t('settings.language.translations.heading') }}
       </h2>
       <SettingsTranslations />
     </div>

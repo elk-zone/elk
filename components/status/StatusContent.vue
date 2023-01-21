@@ -51,6 +51,7 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
         :status="status.reblog" border="~ rounded"
         :actions="false"
       />
+      <div v-if="isDM" />
     </StatusSpoiler>
   </div>
 </template>

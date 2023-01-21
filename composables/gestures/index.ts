@@ -4,16 +4,8 @@ import { useMotionProperties, useSpring } from '@vueuse/motion'
 import { useGesture } from '@vueuse/gesture'
 import type { MaybeRef } from '@vueuse/core'
 
-export interface CarouselOptions {
-  hasNext: MaybeRef<boolean>
-  hasPrev: MaybeRef<boolean>
-  onPrev: () => void
-  onNext: () => void
-}
-
 export const useImageGesture = (
   domTarget: MaybeRef<HTMLElement>,
-  carouselOptions?: CarouselOptions,
 ) => {
   const { motionProperties } = useMotionProperties(domTarget, {
     cursor: 'grab',
@@ -26,35 +18,7 @@ export const useImageGesture = (
 
   const handlers: Handlers = {
     onPinch({ offset: [d] }) {
-      set({ scale: 1 + d / 200 })
-    },
-    onDragStart() {
-      set({ cursor: 'grabbing' })
-    },
-    onDrag({ movement: [x, y], pinching }) {
-      if (!pinching)
-        set({ x, y, cursor: 'grabbing' })
-    },
-    onDragEnd({ vxvy: [vx], pinching }) {
-      if (pinching)
-        return
-
-      set({ cursor: 'grab' })
-      if (carouselOptions) {
-        const isSwipe = Math.abs(vx) > 0.25
-        if (isSwipe) {
-          if (vx > 0 && unref(carouselOptions.hasPrev))
-            carouselOptions.onPrev()
-
-          else if (vx < 0 && unref(carouselOptions.hasNext))
-            carouselOptions.onNext()
-        }
-      }
-      set({ x: 0, y: 0 })
-    },
-    onMove({ movement: [x, y], dragging, pinching }) {
-      if (dragging && !pinching)
-        set({ x, y })
+      set({ scale: 1 + Math.max(-0.9, d / 200) })
     },
     onWheel({ event, dragging, pinching }) {
       if (!dragging && !pinching && event.altKey) {
@@ -72,5 +36,8 @@ export const useImageGesture = (
     },
   }
 
-  useGesture(handlers, { domTarget })
+  useGesture(handlers, {
+    domTarget,
+    eventOptions: { passive: false },
+  })
 }

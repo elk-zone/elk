@@ -2,6 +2,7 @@
 import { SwipeDirection } from '@vueuse/core'
 import { useReducedMotion } from '@vueuse/motion'
 import type { mastodon } from 'masto'
+import { useImageGesture } from '~/composables/gestures'
 
 const { media = [], threshold = 20 } = defineProps<{
   media?: mastodon.v1.MediaAttachment[]
@@ -41,6 +42,8 @@ const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
       emit('close')
   },
 })
+
+useImageGesture(target)
 
 const distanceX = computed(() => {
   if (width.value === 0)

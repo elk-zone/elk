@@ -113,16 +113,9 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
 }
 
 function removeFiltered(items: mastodon.v1.Notification[]): mastodon.v1.Notification[] {
-  const filteredIndices = items.map(
-    (items, index) => (
-      {
-        status: items.status,
-        index,
-      }))
-    .filter(item => !!item.status?.filtered?.find(filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications')))
-    .map(item => item.index)
-
-  return items.filter((_, index) => !filteredIndices.includes(index))
+  return items.filter(item => !item.status?.filtered?.find(
+    filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications'),
+  ))
 }
 
 function preprocess(items: NotificationSlot[]): NotificationSlot[] {

@@ -6,16 +6,9 @@ const { paginator } = defineProps<{
 }>()
 
 function preprocess(items: mastodon.v1.Conversation[]) {
-  const filteredIndices = items.map(
-    (items, index) => (
-      {
-        status: items.lastStatus,
-        index,
-      }))
-    .filter(item => !!item.status?.filtered?.find(filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('thread')))
-    .map(item => item.index)
-
-  return items.filter((_, index) => !filteredIndices.includes(index))
+  return items.filter(items => !items.lastStatus?.filtered?.find(
+    filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('thread'),
+  ))
 }
 </script>
 

@@ -94,13 +94,14 @@ We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i
 1. Add a new file in [locales](./locales) folder with the language code as the filename.
 2. Copy [en-US](./locales/en-US.json) and translate the strings.
 3. Add the language to the `locales` array in [config/i18n.ts](./config/i18n.ts#L12), below `en` and `ar`:
-  3.1. If your language have multiple country variants, add the generic one for language only (only if there are a lot of common entries, you can always add it as a new one)
-    3.1.1. Add all country variants in [country variants object](./config/i18n.ts#L97)
-    3.1.2. Add all country variants files with empty `messages` object: `{}`
-    3.1.3. Translate the strings in the generic language file
-    3.1.4. Later, when anyone wants to add the corresponding translations for the country variant, just can override all entries in the corresponding file: check `en` (english variants), and override the entries in all country files, if you omit them, `i18n` module will use the language entry.
-  3.2. If the generic language already exists, then add the corresponding translations in the corresponding file 
-    3.2.1. If the generic language already exists, and the translation differs from the generic language, then add the corresponding translations in the corresponding file and remove it from the country variants entry
+  - If your language have multiple country variants, add the generic one for language only (only if there are a lot of common entries, you can always add it as a new one)
+    - Add all country variants in [country variants object](./config/i18n.ts#L97)
+    - Add all country variants files with empty `messages` object: `{}`
+    - Translate the strings in the generic language file
+    - Later, when anyone wants to add the corresponding translations for the country variant, just can override all entries in the corresponding file: check `en` (english variants), and override the entries in all country files, if you omit them, `i18n` module will use the language entry.
+  - If the generic language already exists:
+    - If the translation doesn't differ from the generic language, then add the corresponding translations in the corresponding file
+    - If the translation differs from the generic language, then add the corresponding translations in the corresponding file and remove it from the country variants entry
 4. If the language is `right-to-left`, add `dir` option with `rtl` value, for example, for [ar](./config/i18n.ts#L22)
 5. If the language requires special pluralization rules, add `pluralRule` callback option, for example, for [ar](./config/i18n.ts#L23)
 

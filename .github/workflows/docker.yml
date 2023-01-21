@@ -1,4 +1,4 @@
-name: Build & Push docker container
+name: build & push docker container
 on:
   push:
     branches:
@@ -11,6 +11,9 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3

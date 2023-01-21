@@ -71,9 +71,6 @@ const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 const filterResult = $computed(() => status.filtered?.length ? status.filtered[0] : null)
 const filter = $computed(() => filterResult?.filter)
 
-const filterPhrase = $computed(() => filter?.title)
-const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
-
 const isSelfReply = $computed(() => status.inReplyToAccountId === status.account.id)
 const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
 const isDM = $computed(() => status.visibility === 'direct')

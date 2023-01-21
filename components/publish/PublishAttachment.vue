@@ -30,7 +30,8 @@ const toggleApply = () => {
       <div
         v-if="removable"
         :aria-label="$t('attachment.remove_label')"
-        class="bg-black/75 text-white px2 py2 rounded-5 cursor-pointer"
+        class="bg-black/75 hover:bg-red/75"
+        text-white px2 py2 rounded-5 cursor-pointer
         @click="$emit('remove')"
       >
         <div i-ri:close-line text-3 :class="[isHydrated && isSmallScreen ? 'text-6' : 'text-3']" />

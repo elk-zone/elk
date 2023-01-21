@@ -174,9 +174,9 @@ interface JsonEntry {
   app_desc_short?: string
 }
 
-async function findBestWebManifestData(locales: string[], env: string) {
-  const entries: JsonEntry[] = await Promise.all(locales.map(async (locale) => {
-    const { pwa, app_name, app_desc_short } = await readI18nFile(`${locale}.json`)
+async function findBestWebManifestData(files: string[], env: string) {
+  const entries: JsonEntry[] = await Promise.all(files.map(async (file) => {
+    const { pwa, app_name, app_desc_short } = await readI18nFile(file)
     return { pwa, app_name, app_desc_short }
   }))
 

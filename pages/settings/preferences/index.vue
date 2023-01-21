@@ -34,6 +34,12 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_follower_count') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideTranslation')"
+      @click="togglePreferences('hideTranslation')"
+    >
+      {{ $t('settings.preferences.hide_translation') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'grayscaleMode')"
       @click="togglePreferences('grayscaleMode')"
     >

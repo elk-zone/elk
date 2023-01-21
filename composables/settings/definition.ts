@@ -7,6 +7,7 @@ export interface PreferencesSettings {
   hideBoostCount: boolean
   hideFavoriteCount: boolean
   hideFollowerCount: boolean
+  hideTranslation: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
   experimentalVirtualScroller: boolean
@@ -58,6 +59,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideBoostCount: false,
   hideFavoriteCount: false,
   hideFollowerCount: false,
+  hideTranslation: false,
   grayscaleMode: false,
   enableAutoplay: true,
   experimentalVirtualScroller: true,

@@ -145,11 +145,13 @@ const buildLocales = () => {
     const locales = countryLocaleVariants[data.code]
     if (locales) {
       locales.forEach((l) => {
-        const files = [`${data.code}.json`]
-        files.push(`${l.code}.json`)
-        const entry: LocaleObjectData = { ...data, code: l.code, name: l.name, files }
+        const entry: LocaleObjectData = {
+          ...data,
+          code: l.code,
+          name: l.name,
+          files: [data.file!, `${l.code}.json`],
+        }
         delete entry.file
-        delete entry.customFile
         acc.push(entry)
       })
     }

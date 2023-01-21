@@ -131,7 +131,6 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
       flattenedNotifications.push(item)
     }
   }
-
   return groupItems(flattenedNotifications)
 }
 

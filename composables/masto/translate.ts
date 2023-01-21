@@ -16,6 +16,7 @@ export const supportedTranslationCodes = [
   'da',
   'de',
   'el',
+  'en',
   'eo',
   'es',
   'fa',
@@ -96,8 +97,10 @@ export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEd
     translations.set(status, reactive({ visible: false, text: '', success: false, error: '' }))
 
   const translation = translations.get(status)!
+  const userSettings = useUserSettings()
 
   const shouldTranslate = 'language' in status && status.language && status.language !== to
+    && !userSettings.value.disabledTranslationLanguages.includes(status.language)
   const enabled = !!useRuntimeConfig().public.translateApi && shouldTranslate
 
   async function toggle() {

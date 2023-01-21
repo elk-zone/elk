@@ -8,6 +8,39 @@ export interface TranslationResponse {
   }
 }
 
+// @see https://github.com/LibreTranslate/LibreTranslate/tree/main/libretranslate/locales
+export const supportedTranslationLanguages = {
+  ar: 'Arabic',
+  az: 'Azerbaijani',
+  cs: 'Czech',
+  da: 'Danish',
+  de: 'German',
+  el: 'Greek',
+  eo: 'Esperanto',
+  es: 'Spanish',
+  fa: 'Persian',
+  fi: 'Finnish',
+  fr: 'French',
+  ga: 'Irish',
+  he: 'Hebrew',
+  hi: 'Hindi',
+  hu: 'Hungarian',
+  id: 'Indonesian',
+  it: 'Italian',
+  ja: 'Japanese',
+  ko: 'Korean',
+  nl: 'Dutch',
+  pl: 'Polish',
+  pt: 'Portuguese',
+  ru: 'Russian',
+  sk: 'Slovak',
+  sv: 'Swedish',
+  tr: 'Turkish',
+  uk: 'Ukrainian',
+  vi: 'Vietnamese',
+  zh: 'Chinese (Simplified)',
+} as const
+
 export const getLanguageCode = () => {
   let code = 'en'
   const getCode = (code: string) => code.replace(/-.*$/, '')

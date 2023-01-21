@@ -20,6 +20,7 @@ export interface UserSettings {
   colorMode?: ColorMode
   fontSize: FontSize
   language: string
+  disabledTranslationLanguages: (keyof typeof supportedTranslationLanguages)[]
   zenMode: boolean
   themeColors?: ThemeColors
 }
@@ -50,6 +51,7 @@ export function getDefaultUserSettings(locales: string[]): UserSettings {
   return {
     language: getDefaultLanguage(locales),
     fontSize: DEFAULT_FONT_SIZE,
+    disabledTranslationLanguages: [],
     zenMode: false,
     preferences: {},
   }

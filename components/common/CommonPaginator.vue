@@ -2,7 +2,7 @@
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { Paginator, WsEvents, mastodon } from 'masto'
+import type { Paginator, WsEvents } from 'masto'
 
 const {
   paginator,

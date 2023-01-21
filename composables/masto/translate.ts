@@ -100,8 +100,10 @@ export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEd
   const userSettings = useUserSettings()
 
   const shouldTranslate = 'language' in status && status.language && status.language !== to
+    && supportedTranslationCodes.includes(to as any)
+    && supportedTranslationCodes.includes(status.language as any)
     && !userSettings.value.disabledTranslationLanguages.includes(status.language)
-  const enabled = !!useRuntimeConfig().public.translateApi && shouldTranslate
+  const enabled = /*! !useRuntimeConfig().public.translateApi && */ shouldTranslate
 
   async function toggle() {
     if (!shouldTranslate)

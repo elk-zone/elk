@@ -16,7 +16,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
       sticky top-0 z10 backdrop-blur
       pt="[env(safe-area-inset-top,0)]"
       border="b base" bg="[rgba(var(--rbg-bg-base),0.7)]"
-      class="native:lg:w-[calc(100vw-5rem)] native:xl:w-[calc(100%+(100vw-1200px)/2))]"
+      class="native:lg:w-[calc(100vw-5rem)] native:xl:w-[calc(135%+(100vw-1200px)/2)]"
     >
       <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }" data-tauri-drag-region native:xl:flex>
         <div flex gap-3 items-center overflow-hidden py2 class="native-mac:pl-14 native-mac:sm:pl-0">

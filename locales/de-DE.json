@@ -330,6 +330,7 @@
     },
     "notifications_settings": "Benachrichtigungen",
     "preferences": {
+      "enable_autoplay": "Autoplay aktivieren",
       "github_cards": "GitHub Cards",
       "hide_boost_count": "Boost-Zähler ausblenden",
       "hide_favorite_count": "Favoritenzahl ausblenden",

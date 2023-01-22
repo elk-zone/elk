@@ -103,7 +103,7 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
             <AccountHandle :account="account" />
           </div>
         </div>
-        <div absolute top-18 inset-ie-0 flex gap-2 items-center>
+        <div absolute top-18 inset-ie-0 flex gap-2 justify-center>
           <AccountMoreButton :account="account" :command="command" />
           <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
             <button

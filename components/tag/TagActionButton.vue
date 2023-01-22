@@ -14,13 +14,13 @@ const { client } = $(useMasto())
 const toggleFollowTag = async () => {
   if (tag.following) {
     await client.v1.tags.unfollow(tag.name)
-      // eslint-disable-next-line vue/no-mutating-props
-      tag.following = false
+    // eslint-disable-next-line vue/no-mutating-props
+    tag.following = false
   }
   else {
     await client.v1.tags.follow(tag.name)
-      // eslint-disable-next-line vue/no-mutating-props
-      tag.following = true
+    // eslint-disable-next-line vue/no-mutating-props
+    tag.following = true
   }
 
   emit('change')

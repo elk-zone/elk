@@ -54,6 +54,6 @@ const setFontSize = (e: Event) => {
     --at-apply: outline-2 outline-red;
   }
   input[type=range]::-moz-range-thumb {
-    --at-apply: w4 h4 bg-primary -mt-1.5 outline outline-3 outline-primary rounded-full cursor-pointer appearance-none;
+    --at-apply: w4 h4 bg-primary -mt-1.5 outline outline-3 outline-primary rounded-full cursor-pointer appearance-none border-none;
   }
 </style>

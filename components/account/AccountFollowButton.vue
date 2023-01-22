@@ -87,37 +87,48 @@ const buttonStyle = $computed(() => {
 </script>
 
 <template>
-  <button
-    v-if="enable"
-    gap-1 items-center group
-    :disabled="relationship?.requested"
-    border-1
-    rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
-    :class="buttonStyle"
-    :hover="!relationship?.blocking && !relationship?.muting && relationship?.following ? 'border-red text-red' : 'bg-base border-primary text-primary'"
-    @click="relationship?.blocking ? unblock() : relationship?.muting ? unmute() : toggleFollow()"
-  >
-    <template v-if="relationship?.blocking">
-      <span group-hover="hidden">{{ $t('account.blocking') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.unblock') }}</span>
-    </template>
-    <template v-if="relationship?.muting">
-      <span group-hover="hidden">{{ $t('account.muting') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.unmute') }}</span>
-    </template>
-    <template v-else-if="relationship ? relationship.following : context === 'following'">
-      <span group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
-    </template>
-    <template v-else-if="relationship?.requested">
-      <span>{{ $t('account.follow_requested') }}</span>
-    </template>
-    <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
-      <span group-hover="hidden">{{ $t('account.follows_you') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.follow_back') }}</span>
-    </template>
-    <template v-else>
-      <span>{{ $t('account.follow') }}</span>
-    </template>
-  </button>
+  <div>
+    <button
+      v-if="enable"
+      gap-1 items-center group
+      :disabled="relationship?.requested"
+      border-1
+      rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
+      :class="buttonStyle"
+      :hover="!relationship?.blocking && !relationship?.muting && relationship?.following ? 'border-red text-red' : 'bg-base border-primary text-primary'"
+      @click="relationship?.blocking ? unblock() : relationship?.muting ? unmute() : toggleFollow()"
+    >
+      <template v-if="relationship?.blocking">
+        <span group-hover="hidden">{{ $t('account.blocking') }}</span>
+        <span hidden group-hover="inline">{{ $t('account.unblock') }}</span>
+      </template>
+      <template v-if="relationship?.muting">
+        <span group-hover="hidden">{{ $t('account.muting') }}</span>
+        <span hidden group-hover="inline">{{ $t('account.unmute') }}</span>
+      </template>
+      <template v-else-if="relationship ? relationship.following : context === 'following'">
+        <span group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
+        <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
+      </template>
+      <template v-else-if="relationship?.requested">
+        <span>{{ $t('account.follow_requested') }}</span>
+      </template>
+      <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
+        <span group-hover="hidden">{{ $t('account.follows_you') }}</span>
+        <span hidden group-hover="inline">{{ $t('account.follow_back') }}</span>
+      </template>
+      <template v-else>
+        <span>{{ $t('account.follow') }}</span>
+      </template>
+    </button>
+    <button
+      v-else-if="!enable && !checkLogin(true)"
+      :disabled="relationship?.requested"
+      rounded-full font-500 min-w-30 h-fit px3 py1 items-center
+      text-inverted bg-primary hover="bg-base border-primary text-primary border-1"
+      @click="openSigninDialog"
+    >
+      <span>{{ $t('account.not_sign_in') }}</span>
+    </button>
+  </div>
 </template>

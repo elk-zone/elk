@@ -281,7 +281,8 @@
         "xl": "特大",
         "xs": "特小"
       },
-      "system_mode": "跟随系统"
+      "system_mode": "跟随系统",
+      "theme_color": "主题颜色"
     },
     "language": {
       "display_language": "首选语言",

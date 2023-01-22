@@ -26,12 +26,30 @@ useHeadFixed({
   title: () => `${getDisplayName(status.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
 })
 
+const {
+  status: actionsStatus,
+  toggleFavourite,
+} = $(useStatusActions(props))
 const isDM = $computed(() => status.visibility === 'direct')
+const isSelf = $(useSelfAccount(() => actionsStatus?.account))
 </script>
 
 <template>
   <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative :lang="status.language ?? undefined">
-    <StatusActionsMore :status="status" absolute inset-ie-2 top-2 />
+    <div v-if="isDM && !isSelf && !userSettings.zenMode" inset-ie-2 top-2 absolute inline-flex flex-center>
+      <div inline-flex>
+        <StatusActionButton
+          :content="$t('action.favourite')"
+          color="text-rose" hover="text-rose" group-hover="bg-rose/10"
+          icon="i-ri:heart-3-line"
+          active-icon="i-ri:heart-3-fill"
+          :active="!!actionsStatus.favourited"
+          @click="toggleFavourite()"
+        />
+      </div>
+      <StatusActionsMore :status="status" class="!ms0" />
+    </div>
+    <StatusActionsMore v-else :status="status" inset-ie-2 top-2 absolute />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pe5 me-a>
       <AccountHoverWrapper :account="status.account">
         <AccountInfo :account="status.account" />

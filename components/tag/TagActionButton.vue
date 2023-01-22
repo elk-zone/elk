@@ -12,10 +12,20 @@ const emit = defineEmits<{
 const { client } = $(useMasto())
 
 const toggleFollowTag = async () => {
-  if (tag.following)
+  if (tag.following) {
     await client.v1.tags.unfollow(tag.name)
-  else
+      .then(() => {
+        // eslint-disable-next-line vue/no-mutating-props
+        tag.following = false
+      })
+  }
+  else {
     await client.v1.tags.follow(tag.name)
+      .then(() => {
+        // eslint-disable-next-line vue/no-mutating-props
+        tag.following = true
+      })
+  }
 
   emit('change')
 }

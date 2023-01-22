@@ -8,12 +8,34 @@ const {
 }>()
 
 const to = $computed(() => new URL(tag.url).pathname)
+
+const router = useRouter()
+
+function onclick(evt: MouseEvent | KeyboardEvent) {
+  const path = evt.composedPath() as HTMLElement[]
+  const el = path.find(el => ['A', 'BUTTON'].includes(el.tagName?.toUpperCase()))
+  const text = window.getSelection()?.toString()
+  if (!el && !text)
+    go(evt)
+}
+
+function go(evt: MouseEvent | KeyboardEvent) {
+  if (evt.metaKey || evt.ctrlKey)
+    window.open(to)
+  else
+    router.push(to)
+}
 </script>
 
 <template>
-  <NuxtLink :to="to" block p4 hover:bg-active flex justify-between>
+  <div
+    block p4 hover:bg-active flex justify-between
+    @click="onclick"
+    @keydown.enter="onclick"
+  >
     <div>
-      <h4 text-size-base leading-normal font-medium line-clamp-1 break-all ws-pre-wrap>
+      <h4 flex items-center text-size-base leading-normal font-medium line-clamp-1 break-all ws-pre-wrap>
+        <TagActionButton :tag="tag" />
         <span>#</span>
         <span hover:underline>{{ tag.name }}</span>
       </h4>
@@ -22,5 +44,5 @@ const to = $computed(() => new URL(tag.url).pathname)
     <div flex items-center>
       <CommonTrendingCharts :history="tag.history" />
     </div>
-  </NuxtLink>
+  </div>
 </template>

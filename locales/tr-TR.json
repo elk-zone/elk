@@ -256,13 +256,6 @@
       "font_size": "Font Boyutu",
       "label": "Arayüz",
       "light_mode": "Aydınlık Mod",
-      "size_label": {
-        "lg": "Büyük",
-        "md": "Orta",
-        "sm": "Küçük",
-        "xl": "Çok büyük",
-        "xs": "Çok küçük"
-      },
       "system_mode": "Sistem"
     },
     "language": {

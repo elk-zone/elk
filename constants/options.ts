@@ -1,7 +1,7 @@
-export const fontSizeMap = {
-  xs: '11px',
-  sm: '13px',
+export const oldFontSizeMap = {
+  xs: '13px',
+  sm: '14px',
   md: '15px',
-  lg: '17px',
-  xl: '19px',
+  lg: '16px',
+  xl: '17px',
 }

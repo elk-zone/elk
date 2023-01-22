@@ -104,6 +104,11 @@ const locales: LocaleObjectData[] = [
     file: 'id-ID.json',
     name: 'Indonesia',
   },
+  {
+    code: 'fi-FI',
+    file: 'fi-FI.json',
+    name: 'Suomea',
+  },
 ]
 
 const countryLocaleVariants: Record<string, LocaleObjectData[]> = {

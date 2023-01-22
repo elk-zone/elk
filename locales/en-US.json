@@ -301,13 +301,6 @@
       "font_size": "Font Size",
       "label": "Interface",
       "light_mode": "Light",
-      "size_label": {
-        "lg": "Large",
-        "md": "Medium",
-        "sm": "Small",
-        "xl": "Extra large",
-        "xs": "Extra small"
-      },
       "system_mode": "System",
       "theme_color": "Theme Color"
     },

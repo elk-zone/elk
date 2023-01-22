@@ -22,6 +22,11 @@ export function setupPageHeader() {
       if (buildInfo.env !== 'release')
         titleTemplate += ` (${buildInfo.env})`
       return titleTemplate
+        .replaceAll('&#34;', '"').replaceAll('&quot;', '"')
+        .replaceAll('&#38;', '&').replaceAll('&amp;', '&')
+        .replaceAll('&#39;', '\'').replaceAll('&apos;', '\'')
+        .replaceAll('&#60;', '\u003C').replaceAll('&lt;', '\u003C')
+        .replaceAll('&#62;', '\u003E').replaceAll('&gt;', '\u003E')
     },
     link: process.client && useRuntimeConfig().public.pwaEnabled
       ? () => [{

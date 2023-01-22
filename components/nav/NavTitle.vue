@@ -23,8 +23,8 @@ router.afterEach(() => {
       external
     >
       <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
-      <div hidden xl:block>
-        {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
+      <div hidden xl:block text-secondary>
+        {{ $t('app_name') }} <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
       </div>
     </NuxtLink>
     <div

@@ -78,6 +78,18 @@ const locales: LocaleObjectData[] = [
     name: 'Česky',
   },
   {
+    code: 'pl-PL',
+    file: 'pl-PL.json',
+    name: 'Polski',
+    pluralRule: (choice: number) => {
+      if (choice === 0)
+        return 0
+
+      const name = new Intl.PluralRules('pl-PL').select(choice)
+      return { zero: 0, one: 1, two: 0 /* not used */, few: 2, many: 3, other: 4 }[name]
+    },
+  },
+  {
     code: 'pt-PT',
     file: 'pt-PT.json',
     name: 'Português',

@@ -28,9 +28,19 @@ const setFontSize = (e: Event) => {
         w-full cursor-pointer
         @change="setFontSize"
       >
-      <div absolute h1 rounded-full bg-primary pointer-events-none :style="{ width: `${(sizes.indexOf(userSettings.fontSize)) / (sizes.length - 1) * 100}%` }" />
-      <div flex justify-between absolute w-full pointer-events-none>
-        <div v-for="i in sizes.length" :key="i" h-3 w-3 rounded-full bg-primary />
+      <div flex items-center justify-between absolute w-full pointer-events-none>
+        <div
+          v-for="i in sizes.length" :key="i"
+          h-3 w-3
+          rounded-full bg-secondary-light
+          relative
+        >
+          <div
+            v-if="(sizes.indexOf(userSettings.fontSize)) === i - 1"
+            absolute rounded-full class="-top-1 -left-1"
+            bg-primary h-5 w-5
+          />
+        </div>
       </div>
     </div>
     <span text-xl text-secondary>Aa</span>
@@ -39,21 +49,21 @@ const setFontSize = (e: Event) => {
 
 <style>
   input[type=range]::-webkit-slider-runnable-track {
-    --at-apply: bg-primary-light rounded-full h1;
+    --at-apply: bg-secondary-light rounded-full h1 op60;
   }
   input[type=range]:focus:-webkit-slider-runnable-track {
     --at-apply: outline-2 outline-red;
   }
   input[type=range]::-webkit-slider-thumb {
-    --at-apply: w4 h4 bg-primary -mt-1.5 outline outline-3 outline-primary rounded-full cursor-pointer appearance-none;
+    --at-apply: w3 h3 bg-primary -mt-1 outline outline-3 outline-primary rounded-full cursor-pointer appearance-none;
   }
   input[type=range]::-moz-range-track {
-    --at-apply: bg-primary-light rounded-full h1;
+    --at-apply: bg-secondary-light rounded-full h1 op60;
   }
   input[type=range]:focus::-moz-range-track {
     --at-apply: outline-2 outline-red;
   }
   input[type=range]::-moz-range-thumb {
-    --at-apply: w4 h4 bg-primary -mt-1.5 outline outline-3 outline-primary rounded-full cursor-pointer appearance-none border-none;
+    --at-apply: w3 h3 bg-primary -mt-1 outline outline-3 outline-primary rounded-full cursor-pointer appearance-none border-none;
   }
 </style>

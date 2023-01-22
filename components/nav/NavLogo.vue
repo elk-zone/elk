@@ -29,9 +29,9 @@
 
 <style scoped>
 svg path.wood {
-    fill: var(--c-text-secondary);
+    fill: var(--c-primary);
 }
 svg path.body {
-    fill: var(--c-text-base);
+    fill: var(--c-text-secondary);
 }
 </style>

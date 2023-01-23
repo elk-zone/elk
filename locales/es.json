@@ -255,14 +255,7 @@
       "default": " (por defecto)",
       "font_size": "Tamaño de Letra",
       "label": "Interfaz",
-      "light_mode": "Modo claro",
-      "size_label": {
-        "lg": "Grande",
-        "md": "Mediana",
-        "sm": "Pequeña",
-        "xl": "Extra grande",
-        "xs": "Extra pequeña"
-      }
+      "light_mode": "Modo claro"
     },
     "language": {
       "display_language": "Idioma de pantalla",

@@ -24,11 +24,11 @@
     "follows_you": "Segue-o",
     "go_to_profile": "Ir para o perfil",
     "joined": "Juntou-se a",
-    "moved_title": "indicou que a sua novo conta é agora:",
+    "moved_title": "Indicou que a sua nova conta é agora:",
     "muted_users": "Utilizadores silenciados",
     "muting": "Silenciados",
     "mutuals": "Mútuos",
-    "notifications_on_post_disable": "Deixe de me nofiticar quando {username} publicar",
+    "notifications_on_post_disable": "Não me notifique quando {username} publicar",
     "notifications_on_post_enable": "Notifique-me quando {username} publicar",
     "pinned": "Fixado",
     "posts": "Publicações",
@@ -68,7 +68,7 @@
     "save": "Guardar",
     "save_changes": "Guardar alterações",
     "sign_in": "Entrar",
-    "switch_account": "Mudar contar",
+    "switch_account": "Mudar de conta",
     "vote": "Votar"
   },
   "app_desc_short": "Uma ágil aplicação web para o Mastodon",
@@ -129,7 +129,7 @@
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "Tem a certeza que prentende mostrar partilhas de {0}？"
+      "title": "Tem a certeza que pretende mostrar partilhas de {0}？"
     },
     "unfollow": {
       "cancel": "Cancelar",
@@ -163,9 +163,9 @@
       "title": "Produção de pré-visualização"
     },
     "desc_highlight": "Espere alguns problemas e funcionalidades em falta.",
-    "desc_para1": "Obrigado pelo seu interesse em experimentar o Elk, o nosso aplicativo web para o Mastodon, ainda em construção!",
+    "desc_para1": "Obrigado pelo seu interesse em experimentar o Elk, a nossa aplicação web para o Mastodon, ainda em construção!",
     "desc_para2": "Estamos a trabalhar arduamente no seu desenvolvimento e melhoria ao longo do tempo.",
-    "desc_para3": "Para ajudar a impulsionar o desenvolvimento, pode patrocionar a Equipa através do GitHub Sponsors. Esperamos que aprecie o Elk!",
+    "desc_para3": "Para ajudar a impulsionar o desenvolvimento, pode patrocinar a Equipa através do GitHub Sponsors. Esperamos que aprecie o Elk!",
     "desc_para4": "Elk é um software de código aberto. Se quiser ajudar a testar a aplicação, dando o seu feedback ou contributo,",
     "desc_para5": "pode encontrar-nos no GitHub",
     "desc_para6": "e participar.",
@@ -243,7 +243,7 @@
     "content_warning": "Escreva aqui o seu aviso",
     "default_1": "Em que está a pensar?",
     "reply_to_account": "Responder a {0}",
-    "replying": "Respondedo",
+    "replying": "Respondendo",
     "the_thread": "a conversa"
   },
   "pwa": {
@@ -285,7 +285,7 @@
       "sponsor_action": "Patrocine-nos",
       "sponsor_action_desc": "Para ajudar a equipa que desenvolve o Elk",
       "sponsors": "Patrocinadores",
-      "sponsors_body_1": "O Elk é possível graças ao genoroso patrocinio e ajuda de:",
+      "sponsors_body_1": "O Elk é possível graças ao generoso patrocínio e ajuda de:",
       "sponsors_body_2": "E todas as empresas e pessoas que apoiam a Equipa do Elk e os seus membros.",
       "sponsors_body_3": "Se está a gostar de utilizar esta aplicação, considere apoiar-nos:",
       "version": "Versão"
@@ -336,9 +336,9 @@
         "subscription_error": {
           "clear_error": "Limpar erro",
           "permission_denied": "Permissão negada: habilite as notificações no seu browser.",
-          "request_error": "Um erro ocorreu durante o pedido de subcrição, tente novamente e se o erro persistir, por favor reporte o problema no repositório do Elk.",
-          "title": "Náo é possível subscrever as notificações push",
-          "too_many_registrations": "Devido a limitações do browser, o Elk não consegue utilizar o serviço de notificações push para multiplas contas em diferentes servidores. Deve cancelar a subcrição de notificações push nas outras contas e tentar novamente."
+          "request_error": "Um erro ocorreu durante o pedido de subscrição, tente novamente e se o erro persistir, por favor reporte o problema no repositório do Elk.",
+          "title": "Não é possível subscrever as notificações push",
+          "too_many_registrations": "Devido a limitações do browser, o Elk não consegue utilizar o serviço de notificações push para múltiplas contas em diferentes servidores. Deve cancelar a subscrição de notificações push nas outras contas e tentar novamente."
         },
         "title": "Configuração de notificações push",
         "undo_settings": "Reverter alterações",
@@ -346,20 +346,20 @@
         "unsupported": "O seu browser não suporta notificações push.",
         "warning": {
           "enable_close": "Fechar",
-          "enable_description": "Para receber notificações quanto o Elk não está aberto, habilite as notificações push. Poderá controlar com precisão que tipos de interações geram notificações push através do \"@:settings.notifications.show_btn{'\"'} botão acima, uma vez habilitadas.",
-          "enable_description_desktop": "Para receber notificações quanto o Elk não está aberto, habilite as notificações push. Poderá controlar com precisão que tipos de interações geram notificações push em \"Preferências > Notificaçõess > Configuração de notificações push\", uma vez habilitadas.",
+          "enable_description": "Para receber notificações quanto o Elk não está aberto, ative as notificações push. Poderá controlar com precisão que tipos de interações geram notificações push através do \"@:settings.notifications.show_btn{'\"'} botão acima, uma vez habilitadas.",
+          "enable_description_desktop": "Para receber notificações quanto o Elk não está aberto, ative as notificações push. Poderá controlar com precisão que tipos de interações geram notificações push em \"Preferências > Notificações > Configuração de notificações push\", uma vez habilitadas.",
           "enable_description_mobile": "Pode também aceder às configurações através do menu de navegação \"Preferências > Notificações > Configuração de notificações push\".",
-          "enable_description_settings": "Para receber notificações quanto o Elk não está aberto, habilite as notificações push. Poderá controlar com precisão que tipos de interações geram notificações neste mesmo ecrã, uma vez habilitadas.",
+          "enable_description_settings": "Para receber notificações quanto o Elk não está aberto, ative as notificações push. Poderá controlar com precisão que tipos de interações geram notificações neste mesmo ecrã, uma vez habilitadas.",
           "enable_desktop": "Habilitar notificações push",
           "enable_title": "Nunca perca nada",
           "re_auth": "Parece que o seu servidor não suporta notificações push. Tenta desconectar e voltar a entrar, se esta mensagem permanecer contacte o administrador do seu servidor."
         }
       },
-      "show_btn": "Ir para a configuração de nofiticações"
+      "show_btn": "Ir para a configuração de notificações"
     },
     "notifications_settings": "Notificações",
     "preferences": {
-      "enable_autoplay": "Habilitar Repodrução Automática",
+      "enable_autoplay": "Habilitar Reprodução Automática",
       "github_cards": "Cartões do GitHub",
       "grayscale_mode": "Modo tons de cinza",
       "hide_boost_count": "Esconder contagem de partilhas",
@@ -439,7 +439,7 @@
     "edited": "editada {0}"
   },
   "tab": {
-    "for_you": "Para sí",
+    "for_you": "Para si",
     "hashtags": "Hashtags",
     "media": "Media",
     "news": "Notícias",
@@ -455,10 +455,10 @@
     "unfollow_label": "Deixar de seguir hashtag {0}"
   },
   "time_ago_options": {
-    "day_future": "em 0 dias|amanhã|em {n} diass",
+    "day_future": "em 0 dias|amanhã|em {n} dias",
     "day_past": "0 dias atrás|ontem|{n} dias atrás",
     "hour_future": "em 0 horas|em 1 hora|em {n} horas",
-    "hour_past": "0 horas atrás|1 hora atrás|{n} horas aatás",
+    "hour_past": "0 horas atrás|1 hora atrás|{n} horas atrás",
     "just_now": "agora mesmo",
     "minute_future": "em 0 minutos|em 1 minuto|em {n} minutos",
     "minute_past": "0 minutos atrás|1 minuto atrás|{n} minutos atrás",
@@ -521,7 +521,7 @@
     "direct_desc": "Visível apenas pelos utilizadores mencionados",
     "private": "Apenas seguidores",
     "private_desc": "Visível apenas pelos seus seguidores",
-    "public": "Publico",
+    "public": "Público",
     "public_desc": "Visível por todos",
     "unlisted": "Não listada",
     "unlisted_desc": "Visível por todos, mas não incluída nas funcionalidades de divulgação"

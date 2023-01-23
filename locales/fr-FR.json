@@ -306,13 +306,6 @@
       "font_size": "Taille de police",
       "label": "Interface",
       "light_mode": "Mode lumineux",
-      "size_label": {
-        "lg": "Grande",
-        "md": "Moyenne",
-        "sm": "Petite",
-        "xl": "Très grande",
-        "xs": "Très petite"
-      },
       "system_mode": "Système",
       "theme_color": "Couleur du thème"
     },

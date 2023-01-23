@@ -266,13 +266,6 @@
       "font_size": "Schriftgröße",
       "label": "Oberfläche",
       "light_mode": "Helles Farbschema",
-      "size_label": {
-        "lg": "Groß",
-        "md": "Mittel",
-        "sm": "Klein",
-        "xl": "Extra groß",
-        "xs": "Extra klein"
-      },
       "system_mode": "System"
     },
     "language": {

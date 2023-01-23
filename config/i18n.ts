@@ -9,6 +9,54 @@ interface LocaleObjectData extends LocaleObject {
   pluralRule?: PluralizationRule
 }
 
+const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
+  ar: [
+    // { code: 'ar-DZ', name: 'Arabic (Algeria)' },
+    // { code: 'ar-BH', name: 'Arabic (Bahrain)' },
+    { code: 'ar-EG', name: 'العربية' },
+    // { code: 'ar-EG', name: 'Arabic (Egypt)' },
+    // { code: 'ar-IQ', name: 'Arabic (Iraq)' },
+    // { code: 'ar-JO', name: 'Arabic (Jordan)' },
+    // { code: 'ar-KW', name: 'Arabic (Kuwait)' },
+    // { code: 'ar-LB', name: 'Arabic (Lebanon)' },
+    // { code: 'ar-LY', name: 'Arabic (Libya)' },
+    // { code: 'ar-MA', name: 'Arabic (Morocco)' },
+    // { code: 'ar-OM', name: 'Arabic (Oman)' },
+    // { code: 'ar-QA', name: 'Arabic (Qatar)' },
+    // { code: 'ar-SA', name: 'Arabic (Saudi Arabia)' },
+    // { code: 'ar-SY', name: 'Arabic (Syria)' },
+    // { code: 'ar-TN', name: 'Arabic (Tunisia)' },
+    // { code: 'ar-AE', name: 'Arabic (U.A.E.)' },
+    // { code: 'ar-YE', name: 'Arabic (Yemen)' },
+  ],
+  en: [
+    { code: 'en-US', name: 'English (US)' },
+    { code: 'en-GB', name: 'English (UK)' },
+  ],
+  es: [
+    // { code: 'es-AR', name: 'Español (Argentina)' },
+    // { code: 'es-BO', name: 'Español (Bolivia)' },
+    // { code: 'es-CL', name: 'Español (Chile)' },
+    // { code: 'es-CO', name: 'Español (Colombia)' },
+    // { code: 'es-CR', name: 'Español (Costa Rica)' },
+    // { code: 'es-DO', name: 'Español (República Dominicana)' },
+    // { code: 'es-EC', name: 'Español (Ecuador)' },
+    { code: 'es-ES', name: 'Español (España)' },
+    { code: 'es-419', name: 'Español (Latinoamérica)' },
+    // { code: 'es-GT', name: 'Español (Guatemala)' },
+    // { code: 'es-HN', name: 'Español (Honduras)' },
+    // { code: 'es-MX', name: 'Español (México)' },
+    // { code: 'es-NI', name: 'Español (Nicaragua)' },
+    // { code: 'es-PA', name: 'Español (Panamá)' },
+    // { code: 'es-PE', name: 'Español (Perú)' },
+    // { code: 'es-PR', name: 'Español (Puerto Rico)' },
+    // { code: 'es-SV', name: 'Español (El Salvador)' },
+    // { code: 'es-US', name: 'Español (Estados Unidos)' },
+    // { code: 'es-UY', name: 'Español (Uruguay)' },
+    // { code: 'es-VE', name: 'Español (Venezuela)' },
+  ],
+}
+
 const locales: LocaleObjectData[] = [
   {
     code: 'en',
@@ -110,54 +158,6 @@ const locales: LocaleObjectData[] = [
     name: 'Suomea',
   },
 ]
-
-const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
-  ar: [
-    // { code: 'ar-DZ', name: 'Arabic (Algeria)' },
-    // { code: 'ar-BH', name: 'Arabic (Bahrain)' },
-    { code: 'ar-EG', name: 'العربية' },
-    // { code: 'ar-EG', name: 'Arabic (Egypt)' },
-    // { code: 'ar-IQ', name: 'Arabic (Iraq)' },
-    // { code: 'ar-JO', name: 'Arabic (Jordan)' },
-    // { code: 'ar-KW', name: 'Arabic (Kuwait)' },
-    // { code: 'ar-LB', name: 'Arabic (Lebanon)' },
-    // { code: 'ar-LY', name: 'Arabic (Libya)' },
-    // { code: 'ar-MA', name: 'Arabic (Morocco)' },
-    // { code: 'ar-OM', name: 'Arabic (Oman)' },
-    // { code: 'ar-QA', name: 'Arabic (Qatar)' },
-    // { code: 'ar-SA', name: 'Arabic (Saudi Arabia)' },
-    // { code: 'ar-SY', name: 'Arabic (Syria)' },
-    // { code: 'ar-TN', name: 'Arabic (Tunisia)' },
-    // { code: 'ar-AE', name: 'Arabic (U.A.E.)' },
-    // { code: 'ar-YE', name: 'Arabic (Yemen)' },
-  ],
-  en: [
-    { code: 'en-US', name: 'English (US)' },
-    { code: 'en-GB', name: 'English (UK)' },
-  ],
-  es: [
-    // { code: 'es-AR', name: 'Español (Argentina)' },
-    // { code: 'es-BO', name: 'Español (Bolivia)' },
-    // { code: 'es-CL', name: 'Español (Chile)' },
-    // { code: 'es-CO', name: 'Español (Colombia)' },
-    // { code: 'es-CR', name: 'Español (Costa Rica)' },
-    // { code: 'es-DO', name: 'Español (República Dominicana)' },
-    // { code: 'es-EC', name: 'Español (Ecuador)' },
-    { code: 'es-ES', name: 'Español (España)' },
-    { code: 'es-419', name: 'Español (Latinoamérica)' },
-    // { code: 'es-GT', name: 'Español (Guatemala)' },
-    // { code: 'es-HN', name: 'Español (Honduras)' },
-    // { code: 'es-MX', name: 'Español (México)' },
-    // { code: 'es-NI', name: 'Español (Nicaragua)' },
-    // { code: 'es-PA', name: 'Español (Panamá)' },
-    // { code: 'es-PE', name: 'Español (Perú)' },
-    // { code: 'es-PR', name: 'Español (Puerto Rico)' },
-    // { code: 'es-SV', name: 'Español (El Salvador)' },
-    // { code: 'es-US', name: 'Español (Estados Unidos)' },
-    // { code: 'es-UY', name: 'Español (Uruguay)' },
-    // { code: 'es-VE', name: 'Español (Venezuela)' },
-  ],
-}
 
 const buildLocales = () => {
   const useLocales = Object.values(locales).reduce((acc, data) => {

@@ -284,13 +284,6 @@
       "font_size": "字體大小",
       "label": "外觀",
       "light_mode": "淺色",
-      "size_label": {
-        "lg": "大",
-        "md": "中",
-        "sm": "小",
-        "xl": "特大",
-        "xs": "特小"
-      },
       "system_mode": "系統預設",
       "theme_color": "主題色"
     },

@@ -274,13 +274,6 @@
       "font_size": "字号",
       "label": "外观",
       "light_mode": "浅色",
-      "size_label": {
-        "lg": "大",
-        "md": "中",
-        "sm": "小",
-        "xl": "特大",
-        "xs": "特小"
-      },
       "system_mode": "跟随系统"
     },
     "language": {

@@ -7,7 +7,10 @@ const {
   tag: mastodon.v1.Tag
 }>()
 
-const to = $computed(() => new URL(tag.url).pathname)
+const to = $computed(() => {
+  const { hostname, pathname } = new URL(tag.url)
+  return `/${hostname}${pathname}`
+})
 </script>
 
 <template>

@@ -301,13 +301,6 @@
       "font_size": "フォントサイズ",
       "label": "インターフェイス",
       "light_mode": "ライトモード",
-      "size_label": {
-        "lg": "大",
-        "md": "中",
-        "sm": "小",
-        "xl": "極大",
-        "xs": "極小"
-      },
       "system_mode": "システム",
       "theme_color": "テーマカラー"
     },

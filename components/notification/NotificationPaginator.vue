@@ -112,6 +112,12 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   return results
 }
 
+function removeFiltered(items: mastodon.v1.Notification[]): mastodon.v1.Notification[] {
+  return items.filter(item => !item.status?.filtered?.find(
+    filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications'),
+  ))
+}
+
 function preprocess(items: NotificationSlot[]): NotificationSlot[] {
   const flattenedNotifications: mastodon.v1.Notification[] = []
   for (const item of items) {
@@ -131,7 +137,7 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
       flattenedNotifications.push(item)
     }
   }
-  return groupItems(flattenedNotifications)
+  return groupItems(removeFiltered(flattenedNotifications))
 }
 
 const { clearNotifications } = useNotifications()

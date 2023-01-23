@@ -103,13 +103,13 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
             <AccountHandle :account="account" />
           </div>
         </div>
-        <div absolute top-18 inset-ie-0 flex gap-2 justify-center>
+        <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
           <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
             <button
               :aria-pressed="isNotifiedOnPost"
               :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
-              rounded-full p2 border-1 transition-colors
+              rounded-full p1.6 border-1 transition-colors
               :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
               @click="toggleNotifications"
             >

@@ -1,11 +1,13 @@
-import { fontSizeMap } from '~/constants/options'
+import type { OldFontSize } from '~/composables/settings'
+import { oldFontSizeMap } from '~/constants/options'
 import { DEFAULT_FONT_SIZE } from '~/constants'
 
 export default defineNuxtPlugin(() => {
   const userSettings = useUserSettings()
   const html = document.documentElement
   watchEffect(() => {
-    html.style.setProperty('--font-size', fontSizeMap[userSettings.value.fontSize || DEFAULT_FONT_SIZE])
+    const { fontSize } = userSettings.value
+    html.style.setProperty('--font-size', fontSize ? (oldFontSizeMap[fontSize as OldFontSize] ?? fontSize) : DEFAULT_FONT_SIZE)
   })
   watchEffect(() => {
     html.classList.toggle('zen', userSettings.value.zenMode)

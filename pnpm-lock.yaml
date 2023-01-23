@@ -39,7 +39,7 @@ importers:
       '@emoji-mart/data': ^1.1.1
       '@fnando/sparkline': ^0.3.10
       '@iconify-emoji/twemoji': ^1.0.2
-      '@iconify-json/carbon': ^1.1.13
+      '@iconify-json/carbon': ^1.1.14
       '@iconify-json/logos': ^1.1.22
       '@iconify-json/material-symbols': ^1.1.26
       '@iconify-json/ph': ^1.1.3
@@ -174,7 +174,7 @@ importers:
       '@antfu/eslint-config': 0.34.1_iukboom6ndih5an6iafl45j2fe
       '@antfu/ni': 0.18.8
       '@emoji-mart/data': 1.1.1
-      '@iconify-json/carbon': 1.1.13
+      '@iconify-json/carbon': 1.1.14
       '@iconify-json/logos': 1.1.22
       '@iconify-json/material-symbols': 1.1.26
       '@iconify-json/ph': 1.1.3
@@ -1721,8 +1721,8 @@ packages:
     resolution: {integrity: sha512-C4W6ov4BkDXiVU3GzyqyVo8SBbU21KivXnZERgAnrYZEKjuiI3JwPDnu9oVJPsUkNI/Q4SM8iVnXjGW6kxt9DQ==}
     dev: false
 
-  /@iconify-json/carbon/1.1.13:
-    resolution: {integrity: sha512-qPR7n3JkCqIrvjxnyUPIejhn0wrZJsLmija59U/zwFm5SMOITCfLx+Jp6VecnL0Sm76zRE5Kv54VzolQljB97A==}
+  /@iconify-json/carbon/1.1.14:
+    resolution: {integrity: sha512-Md5Vh3x2ALI5shFHlqZQBpEBk0coZf8bcFqzZBqf3bZuUTDg78y9vkwhQ+0PF1Q3wmZIfwkSJU9Pf6V228pXxw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

@@ -72,7 +72,7 @@
     "@antfu/eslint-config": "^0.34.1",
     "@antfu/ni": "^0.18.8",
     "@emoji-mart/data": "^1.1.1",
-    "@iconify-json/carbon": "^1.1.13",
+    "@iconify-json/carbon": "^1.1.14",
     "@iconify-json/logos": "^1.1.22",
     "@iconify-json/material-symbols": "^1.1.26",
     "@iconify-json/ph": "^1.1.3",

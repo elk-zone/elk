@@ -32,7 +32,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
 
 <template>
   <div
-    block p4 hover:bg-active flex justify-between
+    block p4 hover:bg-active flex justify-between cursor-pointer
     @click="onclick"
     @keydown.enter="onclick"
   >

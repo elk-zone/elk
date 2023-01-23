@@ -1,4 +1,5 @@
 import type { Directions } from 'vue-i18n-routing'
+import { decode } from 'tiny-decode'
 import type { LocaleObject } from '#i18n'
 
 export function setupPageHeader() {
@@ -21,12 +22,16 @@ export function setupPageHeader() {
       titleTemplate += t('app_name')
       if (buildInfo.env !== 'release')
         titleTemplate += ` (${buildInfo.env})`
+
+      if (titleTemplate.match(/&[a-z0-9#]+;/gi)) {
+        titleTemplate = decode(titleTemplate)
+          .replaceAll('&#60;', '\u003C').replaceAll('&lt;', '\u003C')
+          .replaceAll('&#62;', '\u003E').replaceAll('&gt;', '\u003E')
+        if (!titleTemplate.includes('"'))
+          titleTemplate = `"${titleTemplate}"`
+      }
+
       return titleTemplate
-        .replaceAll('&#34;', '"').replaceAll('&quot;', '"')
-        .replaceAll('&#38;', '&').replaceAll('&amp;', '&')
-        .replaceAll('&#39;', '\'').replaceAll('&apos;', '\'')
-        .replaceAll('&#60;', '\u003C').replaceAll('&lt;', '\u003C')
-        .replaceAll('&#62;', '\u003E').replaceAll('&gt;', '\u003E')
     },
     link: process.client && useRuntimeConfig().public.pwaEnabled
       ? () => [{

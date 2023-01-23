@@ -24,9 +24,10 @@ export function setupPageHeader() {
         titleTemplate += ` (${buildInfo.env})`
 
       if (titleTemplate.match(/&[a-z0-9#]+;/gi)) {
-        titleTemplate = decode(titleTemplate)
+        titleTemplate = decode(titleTemplate
           .replaceAll('&#60;', '\u003C').replaceAll('&lt;', '\u003C')
-          .replaceAll('&#62;', '\u003E').replaceAll('&gt;', '\u003E')
+          .replaceAll('&#62;', '\u003E').replaceAll('&gt;', '\u003E'))
+
         if (!titleTemplate.includes('"'))
           titleTemplate = `"${titleTemplate}"`
       }

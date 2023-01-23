@@ -12,6 +12,8 @@ useHeadFixed({
 const route = useRoute()
 
 const isRootPath = computedEager(() => route.name === 'settings')
+// TODO: implement isTauriApp
+const isTauriApp = true
 </script>
 
 <template>
@@ -62,6 +64,14 @@ const isRootPath = computedEager(() => route.name === 'settings')
               :text="$t('settings.preferences.label')"
               to="/settings/preferences"
               :match="$route.path.startsWith('/settings/preferences/')"
+            />
+            <SettingsItem
+              v-if="isTauriApp"
+              command
+              icon="i-ri-apps-2-line"
+              :text="$t('settings.native.label')"
+              to="/settings/native"
+              :match="$route.path.startsWith('/settings/native/')"
             />
             <SettingsItem
               command

@@ -1,0 +1,24 @@
+<script setup lang="ts">
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => `${t('settings.native.label')} | ${t('nav.settings')}`,
+})
+</script>
+
+<template>
+  <MainContent back-on-small-screen>
+    <template #title>
+      <h1 text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        {{ $t('settings.native.label') }}
+      </h1>
+    </template>
+    <SettingsToggleItem
+      :checked="true"
+      @click.prevent
+    >
+      <!-- TODO: Toggle native settings -->
+      {{ $t('settings.native.minimize_to_tray') }}
+    </SettingsToggleItem>
+  </MainContent>
+</template>

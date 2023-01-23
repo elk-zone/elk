@@ -308,6 +308,10 @@
       "display_language": "Display Language",
       "label": "Language"
     },
+    "native": {
+      "label": "Native",
+      "minimize_to_tray": "Minimize to tray"
+    },
     "notifications": {
       "label": "Notifications",
       "notifications": {

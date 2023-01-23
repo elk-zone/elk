@@ -9,7 +9,7 @@ const userSettings = useUserSettings()
 </script>
 
 <template>
-  <div flex gap-5>
+  <div flex gap-5 flex-wrap>
     <NuxtLink
       :to="getAccountRoute(account)"
       replace

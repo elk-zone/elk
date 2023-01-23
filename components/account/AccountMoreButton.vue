@@ -176,6 +176,9 @@ const toggleReblogs = async () => {
           <NuxtLink to="/domain_blocks">
             <CommonDropdownItem :text="$t('account.blocked_domains')" icon="i-ri:shut-down-line" :command="command" />
           </NuxtLink>
+          <NuxtLink to="/following_tags">
+            <CommonDropdownItem :text="$t('account.following_tag')" icon="i-carbon-hashtag" :command="command" />
+          </NuxtLink>
         </template>
       </template>
     </template>

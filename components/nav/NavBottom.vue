@@ -28,9 +28,6 @@ const moreMenuVisible = ref(false)
       <NuxtLink :to="`/${currentServer}/explore`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:hashtag />
       </NuxtLink>
-      <NuxtLink to="/search" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-        <div i-ri:search-line />
-      </NuxtLink>
       <NuxtLink group :to="`/${currentServer}/public/local`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:group-2-line />
       </NuxtLink>

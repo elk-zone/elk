@@ -9,7 +9,7 @@ const { notifications } = useNotifications()
   <nav sm:px3 flex="~ col gap2" shrink text-size-base leading-normal md:text-lg h-full>
     <div shrink hidden sm:block mt-4 />
     <SearchWidget lg:ms-1 lg:me-5 hidden xl:block />
-    <NavSideItem :text="$t('nav.search')" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:search-line" xl:hidden :command="command" />
+    <NavSideItem :text="$t('nav.search')" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:search-line" hidden sm:block xl:hidden :command="command" />
 
     <div shrink hidden sm:block mt-2 />
     <NavSideItem :text="$t('nav.home')" to="/home" icon="i-ri:home-5-line" user-only :command="command" />

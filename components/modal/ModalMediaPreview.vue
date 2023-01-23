@@ -71,7 +71,7 @@ onUnmounted(() => locked.value = false)
       </div>
     </div>
 
-    <div absolute top-0 w-full flex justify-between>
+    <div absolute top-0 w-full flex justify-end>
       <button
         btn-action-icon bg="black/30" aria-label="action.close" hover:bg="black/40" dark:bg="white/30"
         dark:hover-bg="white/20" pointer-events-auto shrink-0 @click="emit('close')"

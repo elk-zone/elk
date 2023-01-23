@@ -33,7 +33,7 @@ const handleShowCommit = () => {
 
     <template v-if="isHydrated">
       <SettingsItem
-        text="Version"
+        :text="$t('settings.about.version')"
         :to="showCommit ? `https://github.com/elk-zone/elk/commit/${buildInfo.commit}` : undefined"
         external target="_blank"
         @click="handleShowCommit"

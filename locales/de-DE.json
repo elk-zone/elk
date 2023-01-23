@@ -266,13 +266,6 @@
       "font_size": "Schriftgröße",
       "label": "Oberfläche",
       "light_mode": "Helles Farbschema",
-      "size_label": {
-        "lg": "Groß",
-        "md": "Mittel",
-        "sm": "Klein",
-        "xl": "Extra groß",
-        "xs": "Extra klein"
-      },
       "system_mode": "System"
     },
     "language": {
@@ -330,10 +323,12 @@
     },
     "notifications_settings": "Benachrichtigungen",
     "preferences": {
+      "enable_autoplay": "Autoplay aktivieren",
       "github_cards": "GitHub Cards",
       "hide_boost_count": "Boost-Zähler ausblenden",
       "hide_favorite_count": "Favoritenzahl ausblenden",
       "hide_follower_count": "Anzahl der Follower ausblenden",
+      "hide_translation": "Übersetzungen ausblenden",
       "label": "Einstellungen",
       "title": "Experimentelle Funktionen",
       "user_picker": "Benutzerauswahl",
@@ -470,7 +465,7 @@
     "change_language": "Sprache ändern",
     "emoji": "Emoji",
     "explore_links_intro": "Diese Nachrichten werden gerade von Leuten auf diesem und anderen Servern des dezentralen Netzwerks besprochen.",
-    "explore_posts_intro": "Diese Beiträge von diesem Server gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzweks an Reichweite.",
+    "explore_posts_intro": "Diese Beiträge von diesem Server gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzwerks an Reichweite.",
     "explore_tags_intro": "Diese Hashtags gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzweks an Reichweite.",
     "toggle_code_block": "Codeblock umschalten"
   },

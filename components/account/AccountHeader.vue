@@ -20,6 +20,7 @@ const relationship = $(useRelationship(account))
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
+const hasHeader = $computed(() => !account.header.endsWith('/original/missing.png'))
 
 function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
@@ -85,9 +86,9 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
 
 <template>
   <div flex flex-col>
-    <button border="b base" z-1>
-      <img h-50 height="200" w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])" @click="previewHeader">
-    </button>
+    <component :is="hasHeader ? 'button' : 'div'" border="b base" z-1 @click="hasHeader ? previewHeader() : undefined">
+      <img h-50 height="200" w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])">
+    </component>
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
         <div flex="~ col gap-2 1">
@@ -108,7 +109,7 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
             <button
               :aria-pressed="isNotifiedOnPost"
               :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
-              rounded-full p2 border-1 transition-colors
+              rounded-full text-sm p2 border-1 transition-colors
               :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
               @click="toggleNotifications"
             >

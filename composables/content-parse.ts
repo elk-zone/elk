@@ -469,6 +469,7 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
       return node
     const mentions: (Node | undefined)[] = []
     const children = node.children as Node[]
+    let trimContentStart: (() => void) | undefined
     for (const child of children) {
       // mention
       if (isMention(child)) {
@@ -480,8 +481,11 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
       }
       // other content, stop collapsing
       else {
-        if (child.type === TEXT_NODE)
-          child.value = child.value.trimStart()
+        if (child.type === TEXT_NODE) {
+          trimContentStart = () => {
+            child.value = child.value.trimStart()
+          }
+        }
         // remove <br> after mention
         if (child.name === 'br')
           mentions.push(undefined)
@@ -495,6 +499,7 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
     let mentionsCount = 0
     let contextualMentionsCount = 0
     let removeNextSpacing = false
+
     const contextualMentions = mentions.filter((mention) => {
       if (!mention)
         return false
@@ -508,24 +513,30 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
         mentionsCount++
         if (inReplyToStatus) {
           const mentionHandle = getMentionHandle(mention)
-          if (inReplyToStatus.account.acct === mentionHandle || inReplyToStatus.mentions.some(m => m.acct === mentionHandle))
+          if (inReplyToStatus.account.acct === mentionHandle || inReplyToStatus.mentions.some(m => m.acct === mentionHandle)) {
+            removeNextSpacing = true
             return false
+          }
         }
         contextualMentionsCount++
       }
       return true
-    })
+    }) as Node[]
 
     // We have a special case for single mentions that are part of a reply.
     // We already have the replying to badge in this case or the status is connected to the previous one.
     // This is needed because the status doesn't included the in Reply to handle, only the account id.
     // But this covers the majority of cases.
     const showMentions = !(contextualMentionsCount === 0 || (mentionsCount === 1 && status?.inReplyToAccountId))
+    const grouped = contextualMentionsCount > 2
+    if (!showMentions || grouped)
+      trimContentStart?.()
 
     const contextualChildren = children.slice(mentions.length)
+    const mentionNodes = showMentions ? (grouped ? [h('mention-group', null, ...contextualMentions)] : contextualMentions) : []
     return {
       ...node,
-      children: showMentions ? [h('mention-group', null, ...contextualMentions), ...contextualChildren] : contextualChildren,
+      children: [...mentionNodes, ...contextualChildren],
     }
   }
 }

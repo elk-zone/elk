@@ -42,6 +42,12 @@ const copyLink = async (status: mastodon.v1.Status) => {
     await clipboard.copy(url)
 }
 
+const copyOriginalLink = async (status: mastodon.v1.Status) => {
+  const url = status.url
+  if (url)
+    await clipboard.copy(url)
+}
+
 const { share, isSupported: isShareSupported } = useShare()
 const shareLink = async (status: mastodon.v1.Status) => {
   const url = getPermalinkUrl(status)
@@ -167,6 +173,13 @@ const showFavoritedAndBoostedBy = () => {
           icon="i-ri:link"
           :command="command"
           @click="copyLink(status)"
+        />
+
+        <CommonDropdownItem
+          :text="$t('menu.copy_original_link_to_post')"
+          icon="i-ri:links-fill"
+          :command="command"
+          @click="copyOriginalLink(status)"
         />
 
         <CommonDropdownItem

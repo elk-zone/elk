@@ -301,13 +301,6 @@
       "font_size": "Font Size",
       "label": "Interface",
       "light_mode": "Light",
-      "size_label": {
-        "lg": "Large",
-        "md": "Medium",
-        "sm": "Small",
-        "xl": "Extra large",
-        "xs": "Extra small"
-      },
       "system_mode": "System",
       "theme_color": "Theme Color"
     },
@@ -372,6 +365,7 @@
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",
       "hide_follower_count": "Hide follower count",
+      "hide_translation": "Hide translation",
       "label": "Preferences",
       "title": "Experimental Features",
       "user_picker": "User Picker",

@@ -29,6 +29,16 @@ RUN pnpm build
 
 FROM base AS runner
 
+ARG UID=911
+ARG GID=911
+
+# Create a dedicated user and group
+RUN set -eux; \
+    addgroup -g $UID elk; \
+    adduser -u $GID -D -G elk elk;
+
+USER elk
+
 ENV NODE_ENV=production
 
 COPY --from=builder /elk/.output ./.output

@@ -22,6 +22,8 @@ export default defineConfig({
       'bg-base': 'bg-$c-bg-base',
       'bg-border': 'bg-$c-border',
       'bg-active': 'bg-$c-bg-active',
+      'bg-secondary': 'bg-$c-text-secondary',
+      'bg-secondary-light': 'bg-$c-text-secondary-light',
       'bg-primary-light': 'bg-$c-primary-light',
       'bg-primary-fade': 'bg-$c-primary-fade',
       'bg-card': 'bg-$c-bg-card',
@@ -100,6 +102,24 @@ export default defineConfig({
       },
     },
   },
+  variants: [
+    (matcher) => {
+      if (!process.env.TAURI_PLATFORM || !matcher.startsWith('native:'))
+        return matcher
+      return {
+        matcher: matcher.slice(7),
+        layer: 'native',
+      }
+    },
+    (matcher) => {
+      if (process.env.TAURI_PLATFORM !== 'macos' || !matcher.startsWith('native-mac:'))
+        return matcher
+      return {
+        matcher: matcher.slice(11),
+        layer: 'native-mac',
+      }
+    },
+  ],
   rules: [
     // scrollbar-hide
     [/^scrollbar-hide$/, (_, { constructCSS }) => {

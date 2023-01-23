@@ -1,5 +1,5 @@
 import { STORAGE_KEY_CURRENT_USER_HANDLE, STORAGE_KEY_SETTINGS } from '~/constants'
-import { fontSizeMap } from '~/constants/options'
+import { oldFontSizeMap } from '~/constants/options'
 
 /**
  * Injecting scripts before renders
@@ -19,8 +19,8 @@ export default defineNuxtPlugin(() => {
   ${process.dev ? 'console.log({ settings })' : ''}
 
   if (settings.fontSize) {
-    const fontSizeMap = ${JSON.stringify(fontSizeMap)}
-    html.style.setProperty('--font-size', fontSizeMap[settings.fontSize])
+    const oldFontSizeMap = ${JSON.stringify(oldFontSizeMap)}
+    html.style.setProperty('--font-size', oldFontSizeMap[settings.fontSize] || settings.fontSize)
   }
   if (settings.language) {
     html.setAttribute('lang', settings.language)

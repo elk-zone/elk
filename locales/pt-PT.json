@@ -301,13 +301,6 @@
       "font_size": "Tamanho da fonte",
       "label": "Apresentação",
       "light_mode": "Modo Claro",
-      "size_label": {
-        "lg": "Grande",
-        "md": "Médio",
-        "sm": "Pequeno",
-        "xl": "Extra grande",
-        "xs": "Extra pequeno"
-      },
       "system_mode": "Sistema",
       "theme_color": "Cor to Tema"
     },

@@ -9,8 +9,10 @@ export default defineNuxtModule({
     const nuxt = useNuxt()
     const { resolve } = createResolver(import.meta.url)
 
-    if (!process.env.TAURI_PLATFORM)
+    if (!process.env.TAURI_PLATFORM) {
+      addImports({ name: 'useNativeSettings', from: resolve('./runtime/native-settings-undefined') })
       return
+    }
 
     if (nuxt.options.dev)
       nuxt.options.ssr = false

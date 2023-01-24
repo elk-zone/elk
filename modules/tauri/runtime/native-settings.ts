@@ -2,4 +2,4 @@ import { Store } from 'tauri-plugin-store-api'
 
 const store = new Store('settings.json')
 
-export const useNativeSettings = () => store
+export const useNativeSettings = () => store as Store | undefined

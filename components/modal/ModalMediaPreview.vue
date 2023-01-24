@@ -37,7 +37,7 @@ onUnmounted(() => locked.value = false)
 </script>
 
 <template>
-  <div relative h-full w-full flex pt-12 w-100vh @click="onClick">
+  <div relative flex pt-12 w-100vh @click="onClick">
     <button
       v-if="hasNext" pointer-events-auto btn-action-icon bg="black/20" :aria-label="$t('action.previous')"
       hover:bg="black/40" dark:bg="white/30" dark-hover:bg="white/20" absolute top="1/2" right-1 z5
@@ -54,7 +54,7 @@ onUnmounted(() => locked.value = false)
     </button>
 
     <div flex flex-row items-center mxa>
-      <div flex="~ col center" max-h-full max-w-full>
+      <div flex="~ col center">
         <ModalMediaPreviewCarousel v-model="index" :media="mediaPreviewList" @close="emit('close')" />
 
         <div bg="black/30" dark:bg="white/10" ms-4 mb-6 mt-4 text-white rounded-full flex="~ center shrink-0" overflow-hidden>

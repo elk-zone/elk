@@ -44,18 +44,13 @@ export function setupPageHeader() {
         }]
       : [],
   })
+}
 
-  function unescapeTitleTemplate(titleTemplate: string, replacements: [string, string | string[]][]) {
-    let result = titleTemplate
-    for (const [replacement, entities] of replacements) {
-      if (Array.isArray(entities)) {
-        for (const e of entities)
-          result = result.replaceAll(e, replacement)
-      }
-      else {
-        result = result.replaceAll(entities, replacement)
-      }
-    }
-    return result
+function unescapeTitleTemplate(titleTemplate: string, replacements: [string, string[]][]) {
+  let result = titleTemplate
+  for (const [replacement, entities] of replacements) {
+    for (const e of entities)
+      result = result.replaceAll(e, replacement)
   }
+  return result
 }

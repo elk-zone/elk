@@ -26,7 +26,8 @@ router.afterEach(() => {
       select-none
       focus-visible:ring="2 current"
       to="/"
-      @click="onClickLogo"
+      :external="router.currentRoute.value.name === 'home'"
+      @click.prevent="onClickLogo"
     >
       <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
       <div hidden xl:block text-secondary>

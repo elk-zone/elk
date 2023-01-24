@@ -56,7 +56,6 @@ export default defineNuxtModule<VitePWANuxtOptions>({
 
           Object.keys(webmanifests!).map(wm => [wm, `manifest-${wm}.webmanifest`]).forEach(([wm, fileName]) => {
             bundle[fileName] = {
-              isAsset: true,
               type: 'asset',
               name: undefined,
               source: generateManifest(wm),

@@ -315,7 +315,6 @@
   "status": {
     "edited": "Редаговано {0}",
     "filter_hidden_phrase": "Відфільтровано",
-    "filter_removed_phrase": "Видалено фільтром",
     "filter_show_anyway": "Показати все одно",
     "img_alt": {
       "desc": "Опис зображення",

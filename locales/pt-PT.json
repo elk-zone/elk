@@ -365,6 +365,7 @@
       "hide_boost_count": "Esconder contagem de partilhas",
       "hide_favorite_count": "Esconder contagem de favoritos",
       "hide_follower_count": "Esconder contagem de seguidores",
+      "hide_translation": "Esconder botão de tradução",
       "label": "Preferências",
       "title": "Funcionalidades Experimentais",
       "user_picker": "Selecionador de Utilizador",
@@ -375,7 +376,7 @@
         "bio": "Bio",
         "description": "Editar imagem de perfil, nome, perfil, etc.",
         "display_name": "Nome de apresentação",
-        "label": "Aspecto",
+        "label": "Aspeto",
         "profile_metadata": "Metadados de perfil",
         "profile_metadata_desc": "Pode ter até {0} itens expostos, em forma de tabela, no seu perfil",
         "title": "Editar perfil"

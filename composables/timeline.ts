@@ -9,10 +9,20 @@ function areStatusesConsecutive(a: mastodon.v1.Status, b: mastodon.v1.Status) {
   return !!inReplyToId && (inReplyToId === a.reblog?.id || inReplyToId === a.id)
 }
 
-export function reorderedTimeline(items: mastodon.v1.Status[]) {
+function removeFilteredItems(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext): mastodon.v1.Status[] {
+  const isStrict = (filter: mastodon.v1.FilterResult) => filter.filter.filterAction === 'hide' && filter.filter.context.includes(context)
+  const isFiltered = (item: mastodon.v1.Status) => !item.filtered?.find(isStrict)
+  const isReblogFiltered = (item: mastodon.v1.Status) => !item.reblog?.filtered?.find(isStrict)
+
+  return [...items].filter(isFiltered).filter(isReblogFiltered)
+}
+
+export function reorderedTimeline(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext = 'public') {
   let steps = 0
-  const newItems = [...items]
-  for (let i = items.length - 1; i > 0; i--) {
+
+  const newItems = removeFilteredItems(items, context)
+
+  for (let i = newItems.length - 1; i > 0; i--) {
     for (let k = 1; k <= maxDistance && i - k >= 0; k++) {
       // Prevent infinite loops
       steps++

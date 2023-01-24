@@ -25,7 +25,7 @@ const setFontSize = (e: Event) => {
         type="range"
         focus:outline-none
         appearance-none bg-transparent
-        w-full cursor-pointer
+        w-full h-3 cursor-pointer
         @change="setFontSize"
       >
       <div flex items-center justify-between absolute w-full pointer-events-none>

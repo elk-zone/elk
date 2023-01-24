@@ -288,7 +288,7 @@
       "label": "Ustawienia konta"
     },
     "interface": {
-      "color_mode": "Tryb koloru",
+      "color_mode": "Motyw",
       "dark_mode": "Ciemny",
       "default": " (domyślna)",
       "font_size": "Rozmiar czcionki",
@@ -305,7 +305,7 @@
       "theme_color": "Kolor motywu"
     },
     "language": {
-      "display_language": "Wyświetl język",
+      "display_language": "Język aplikacji",
       "label": "Język"
     },
     "notifications": {
@@ -316,21 +316,21 @@
       "push_notifications": {
         "alerts": {
           "favourite": "Ulubione",
-          "follow": "Nowi obserwujący",
+          "follow": "Nowy obserwujący",
           "mention": "Wzmianki",
           "poll": "Ankiety",
-          "reblog": "Udostępnione moje wpisy",
-          "title": "Jakie powiadomienia otrzymywać?"
+          "reblog": "Udostępniono Twój wpis",
+          "title": "Jakie powiadomienia chcesz otrzymywać?"
         },
         "description": "Otrzymuj powiadomienia nawet wtedy, gdy nie korzystasz z Elk.",
-        "instructions": "Nie zapomnij zapisać zmian za pomocą przycisku @:settings.notifications.push_notifications.save_settings!",
+        "instructions": "Nie zapomnij zapisać zmian za pomocą przycisku \"Zapisz ustawienia\"",
         "label": "Ustawienia powiadomień push",
         "policy": {
           "all": "Od kogokolwiek",
           "followed": "Od tych, których obserwuję",
           "follower": "Od tych, którzy mnie obserwują",
           "none": "Od nikogo",
-          "title": "Od kogo mogę otrzymywać powiadomienia?"
+          "title": "Od kogo możesz otrzymywać powiadomienia?"
         },
         "save_settings": "Zapisz ustawienia",
         "subscription_error": {
@@ -365,6 +365,7 @@
       "hide_boost_count": "Ukryj liczbę podbić",
       "hide_favorite_count": "Ukryj liczbę polubień",
       "hide_follower_count": "Ukryj liczbę obserwujących",
+      "hide_translation": "Ukryj funkcję tłumaczenia",
       "label": "Preferencje",
       "title": "Funkcje eksperymentalne",
       "user_picker": "User Picker",
@@ -377,11 +378,11 @@
         "display_name": "Wyświetlana nazwa",
         "label": "Wygląd",
         "profile_metadata": "Metadane profilu",
-        "profile_metadata_desc": "Możesz mieć maksymalnie {0} elementów wyświetlanych jako tabela w swoim profilu",
+        "profile_metadata_desc": "Możesz mieć maksymalnie {0} elementy wyświetlane jako tabela w swoim profilu",
         "title": "Edytuj profil"
       },
       "featured_tags": {
-        "description": "Ludzie mogą przeglądać Twoje publiczne posty pod tymi hasztagami.",
+        "description": "Ludzie mogą przeglądać Twoje publiczne wpisy pod tymi hasztagami.",
         "label": "Polecane hasztagi"
       },
       "label": "Profil"

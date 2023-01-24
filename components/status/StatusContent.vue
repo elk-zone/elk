@@ -27,7 +27,7 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
     }"
   >
     <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
-    <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
+    <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered" :is-d-m="isDM">
       <template v-if="filterPhrase" #spoiler>
         <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
       </template>

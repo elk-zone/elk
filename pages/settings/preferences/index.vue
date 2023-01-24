@@ -40,6 +40,12 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_translation') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideAccountHoverCard')"
+      @click="togglePreferences('hideAccountHoverCard')"
+    >
+      {{ $t('settings.preferences.hide_account_hover_card') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'grayscaleMode')"
       @click="togglePreferences('grayscaleMode')"
     >

@@ -186,8 +186,7 @@ html {
 }
 
 body {
-  /* Prevent arbitrary zooming on mobile devices */
-  touch-action: pan-x pan-y;
+  touch-action: pan-x pan-y pinch-zoom;
 }
 
 .sparkline--fill {

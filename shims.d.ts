@@ -10,4 +10,10 @@ declare global {
   }
 }
 
+declare module 'nuxt/dist/app/nuxt.d.ts' {
+  interface RuntimeNuxtHooks {
+    'elk-logo:click': () => void
+  }
+}
+
 export {}

@@ -1,3 +1,3 @@
-import type { Store } from 'tauri-plugin-store-api'
+import type { NativeSettings } from './native-settings'
 
-export const useNativeSettings = () => undefined as Store | undefined
+export const useNativeSettings = () => undefined as NativeSettings | undefined

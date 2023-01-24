@@ -3,22 +3,6 @@ const { t } = useI18n()
 
 const nativeSettings = useNativeSettings()!
 
-let dontMinimiseToTray = $ref(false)
-let mounted = false
-async function update() {
-  if (!mounted)
-    return
-  await nativeSettings.set('dont_minimize_to_tray', dontMinimiseToTray)
-  await nativeSettings.save()
-  dontMinimiseToTray = !dontMinimiseToTray
-}
-
-onMounted(async () => {
-  dontMinimiseToTray = !!await nativeSettings.get('dont_minimize_to_tray')
-
-  mounted = true
-})
-
 useHeadFixed({
   title: () => `${t('settings.native.label')} | ${t('nav.settings')}`,
 })
@@ -38,10 +22,9 @@ definePageMeta({
       </h1>
     </template>
     <SettingsToggleItem
-      :checked="dontMinimiseToTray"
-      @click="update"
+      :checked="nativeSettings.minimizeToTray.value"
+      @click="nativeSettings.minimizeToTray.value = !nativeSettings.minimizeToTray.value"
     >
-      <!-- TODO: Toggle native settings -->
       {{ $t('settings.native.minimize_to_tray') }}
     </SettingsToggleItem>
   </MainContent>

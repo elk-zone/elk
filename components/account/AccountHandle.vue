@@ -13,5 +13,6 @@ const serverName = $computed(() => getServerName(account))
     <!-- fix: #274 only line-clamp-1 can be used here, using text-ellipsis is not valid -->
     <span text-secondary>{{ getShortHandle(account) }}</span>
     <span v-if="serverName" text-secondary-light>@{{ serverName }}</span>
+    <span v-if="account.locked" i-ri:lock-line text-secondary inline-block ms-1 vertical-end />
   </p>
 </template>

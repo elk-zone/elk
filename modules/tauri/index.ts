@@ -37,6 +37,7 @@ export default defineNuxtModule({
     })
 
     addImports({ name: 'useStorage', from: resolve('./runtime/storage') })
+    addImports({ name: 'useNativeSettings', from: resolve('./runtime/native-settings') })
 
     addPlugin(resolve('./runtime/logging.client'))
     addPlugin(resolve('./runtime/nitro.client'))

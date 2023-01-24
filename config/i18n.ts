@@ -42,6 +42,7 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     // { code: 'es-DO', name: 'Español (República Dominicana)' },
     // { code: 'es-EC', name: 'Español (Ecuador)' },
     { code: 'es-ES', name: 'Español (España)' },
+    // TODO: Support es-419, if we include spanish country variants remove also fix on utils/language.ts module
     { code: 'es-419', name: 'Español (Latinoamérica)' },
     // { code: 'es-GT', name: 'Español (Guatemala)' },
     // { code: 'es-HN', name: 'Español (Honduras)' },

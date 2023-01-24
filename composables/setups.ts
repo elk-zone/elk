@@ -23,6 +23,7 @@ export function setupPageHeader() {
         titleTemplate += ` (${buildInfo.env})`
 
       if (titleTemplate.match(/&[a-z0-9#]+;/gi)) {
+        const includesDoubleQuote = titleTemplate.includes('"')
         titleTemplate = unescapeTitleTemplate(titleTemplate, [
           ['"', ['&#34;', '&quot;']],
           ['&', ['&#38;', '&amp;']],
@@ -30,7 +31,7 @@ export function setupPageHeader() {
           ['\u003C', ['&#60;', '&lt;']],
           ['\u003E', ['&#62;', '&gt;']],
         ])
-        if (!titleTemplate.includes('"'))
+        if (!includesDoubleQuote)
           titleTemplate = `"${titleTemplate}"`
       }
 

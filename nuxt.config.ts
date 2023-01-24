@@ -127,7 +127,7 @@ export default defineNuxtConfig({
       // For information on viewport, see https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag#viewport_basics
       //  > `maximum-scale`: ...Any value less than 3 fails accessibility...
       //  > `user-scalable`: ...Setting the value to 0, which is the same as no, is against Web Content Accessibility Guidelines (WCAG)...
-      viewport: 'width=device-width,initial-scale=1,maximum-scale=10,user-scalable=1,viewport-fit=cover',
+      viewport: 'width=device-width,initial-scale=1',
       bodyAttrs: {
         class: 'overflow-x-hidden',
       },

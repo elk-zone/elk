@@ -8,20 +8,20 @@
   },
   "account": {
     "avatar_description": "{0} 的大頭貼",
-    "blocked_by": "您已被此使用者列入黑名單",
-    "blocked_domains": "已列入黑名單的域名",
-    "blocked_users": "已列入黑名單的使用者",
-    "blocking": "已列入黑名單",
+    "blocked_by": "您已被該使用者封鎖",
+    "blocked_domains": "已封鎖的域名",
+    "blocked_users": "已封鎖的使用者",
+    "blocking": "已封鎖",
     "bot": "機器人",
     "favourites": "喜歡的貼文",
-    "follow": "關注",
-    "follow_back": "回關",
-    "follow_requested": "已申請關注",
-    "followers": "關注者",
-    "followers_count": "被 {0} 人關注",
-    "following": "正在關注",
-    "following_count": "正在關注 {0} 人",
-    "follows_you": "已關注你",
+    "follow": "追蹤",
+    "follow_back": "回追",
+    "follow_requested": "已要求追蹤",
+    "followers": "粉絲",
+    "followers_count": " {0} 位粉絲",
+    "following": "正在追蹤",
+    "following_count": "正在追蹤 {0} 人",
+    "follows_you": "已追蹤你",
     "go_to_profile": "轉到個人資料",
     "joined": "已加入",
     "moved_title": "的新帳號是：",
@@ -34,11 +34,11 @@
     "posts_count": "{0} 則貼文",
     "profile_description": "{0} 的個人資料封面",
     "profile_unavailable": "個人資料不可見",
-    "unblock": "取消黑名單",
-    "unfollow": "取消關注",
+    "unblock": "取消封鎖",
+    "unfollow": "取消追蹤",
     "unmute": "取消靜音",
-    "view_other_followers": "其他站點上的關注者可能不會在這裡顯示。",
-    "view_other_following": "其他站點上正在關注的人可能不會在這裡顯示。"
+    "view_other_followers": "其他站點上的粉絲可能不會在這裡顯示。",
+    "view_other_following": "其他站點上正在追蹤的人可能不會在這裡顯示。"
   },
   "action": {
     "apply": "套用",
@@ -52,7 +52,7 @@
     "compose": "撰寫",
     "confirm": "確認",
     "edit": "編輯",
-    "enter_app": "進入應用",
+    "enter_app": "進入應用程式",
     "favourite": "喜歡",
     "favourite_count": "{0}",
     "favourited": "已喜歡",
@@ -82,9 +82,9 @@
     "compose_desc": "寫一條新貼文",
     "n-people-in-the-past-n-days": "{0} 人在過去 {1} 天",
     "select_lang": "選擇語言",
-    "sign_in_desc": "加入現有帳戶",
+    "sign_in_desc": "加入現有帳號",
     "switch_account": "切換到 {0}",
-    "switch_account_desc": "切換到另一個帳戶",
+    "switch_account_desc": "切換到另一個帳號",
     "toggle_dark_mode": "切換深色模式",
     "toggle_zen_mode": "切換禪模式"
   },
@@ -102,13 +102,13 @@
   "confirm": {
     "block_account": {
       "cancel": "取消",
-      "confirm": "拉黑",
-      "title": "你确定將 {0} 加入黑名單吗？"
+      "confirm": "封鎖",
+      "title": "你確定要封鎖 {0} 嗎？"
     },
     "block_domain": {
       "cancel": "取消",
-      "confirm": "拉黑",
-      "title": "你确定將 {0} 加入域名黑名單吗？"
+      "confirm": "封鎖",
+      "title": "你確定要封鎖 {0} 域名嗎？"
     },
     "common": {
       "cancel": "否",
@@ -122,17 +122,17 @@
     "mute_account": {
       "cancel": "取消",
       "confirm": "靜音",
-      "title": "你确定要靜音 {0}吗？"
+      "title": "你確定要靜音 {0}嗎？"
     },
     "show_reblogs": {
       "cancel": "取消",
       "confirm": "顯示",
-      "title": "你确定要顯示來自 {0} 的轉發吗？"
+      "title": "你確定要顯示來自 {0} 的轉發嗎？"
     },
     "unfollow": {
       "cancel": "取消",
-      "confirm": "取消關注",
-      "title": "你確定要取消關注嗎？"
+      "confirm": "取消追蹤",
+      "title": "你確定要取消追蹤嗎？"
     }
   },
   "conversation": {
@@ -160,8 +160,8 @@
     "search": "搜尋"
   },
   "menu": {
-    "block_account": "黑名單 {0}",
-    "block_domain": "黑名單域名 {0}",
+    "block_account": "封鎖 {0}",
+    "block_domain": "封鎖的域名 {0}",
     "copy_link_to_post": "複製這篇貼文的連結",
     "delete": "刪除",
     "delete_and_redraft": "刪除並重新編輯",
@@ -171,7 +171,7 @@
     "mention_account": "提及 {0}",
     "mute_account": "靜音 {0}",
     "mute_conversation": "靜音貼文",
-    "open_in_original_site": "從源站打開",
+    "open_in_original_site": "在原本的網站上打開這篇貼文",
     "pin_on_profile": "置頂在個人資料上",
     "share_post": "分享這則貼文",
     "show_favourited_and_boosted_by": "顯示誰喜歡和轉發了",
@@ -182,16 +182,16 @@
       "light": "切換淺色模式"
     },
     "translate_post": "翻譯貼文",
-    "unblock_account": "解除黑名單 {0}",
-    "unblock_domain": "解除黑名單域名 {0}",
+    "unblock_account": "解除封鎖 {0}",
+    "unblock_domain": "解除封鎖域名 {0}",
     "unmute_account": "解除靜音 {0}",
     "unmute_conversation": "取消靜音貼文",
     "unpin_on_profile": "取消置頂"
   },
   "nav": {
     "back": "回上一頁",
-    "blocked_domains": "已黑名單的域名",
-    "blocked_users": "已黑名單的使用者",
+    "blocked_domains": "已封鎖的域名",
+    "blocked_users": "已封鎖的使用者",
     "bookmarks": "書籤",
     "built_at": "於 {0}更新",
     "compose": "撰寫",
@@ -215,11 +215,11 @@
   },
   "notification": {
     "favourited_post": "點讚了你的貼文",
-    "followed_you": "關注了你",
-    "followed_you_count": "{n} 人關注了你",
+    "followed_you": "追蹤了你",
+    "followed_you_count": "{n} 人追蹤了你",
     "missing_type": "未知的通知類型：",
     "reblogged_post": "轉發了你的貼文",
-    "request_to_follow": "請求關注你",
+    "request_to_follow": "請求追蹤你",
     "signed_up": "註冊了",
     "update_status": "更新了他們的狀態"
   },
@@ -299,7 +299,7 @@
       "push_notifications": {
         "alerts": {
           "favourite": "喜歡的",
-          "follow": "新的關注者",
+          "follow": "新的粉絲",
           "mention": "提及",
           "poll": "投票",
           "reblog": "轉發了你的貼文",
@@ -310,8 +310,8 @@
         "label": "推播通知設定",
         "policy": {
           "all": "任何人",
-          "followed": "我關注的人",
-          "follower": "關注我的人",
+          "followed": "我追蹤的人",
+          "follower": "粉絲",
           "none": "無人",
           "title": "我可以從誰那裡接收通知？"
         },
@@ -319,9 +319,9 @@
         "subscription_error": {
           "clear_error": "清除錯誤",
           "permission_denied": "權限不足：請在你的瀏覽器中打開通知權限。",
-          "request_error": "請求訂閱時發生了一個錯誤，請再次嘗試。如錯誤仍然存在，請到鹿鳴代碼倉庫中報告這一問題。",
+          "request_error": "請求訂閱時發生了一個錯誤，請再次嘗試。如錯誤仍然存在，請到鹿鳴儲存庫中報告這一問題。",
           "title": "無法訂閱推播通知。",
-          "too_many_registrations": "由於瀏覽器限制，鹿鳴無法為不同伺服器上的多個帳戶使用推播通知服務。 你應該取消訂閱其他帳戶的推送通知，然後重試。"
+          "too_many_registrations": "由於瀏覽器限制，鹿鳴無法為不同伺服器上的多個帳號使用推播通知服務。 你應該取消訂閱其他帳號的推送通知，然後重試。"
         },
         "title": "推播通知設定",
         "undo_settings": "撤銷設定變更",
@@ -345,7 +345,7 @@
       "github_cards": "GitHub 卡片",
       "hide_boost_count": "隱藏轉發數",
       "hide_favorite_count": "隱藏收藏數",
-      "hide_follower_count": "隱藏關注者數",
+      "hide_follower_count": "隱藏粉絲數",
       "label": "喜好設定",
       "title": "實驗功能",
       "user_picker": "使用者選擇器",
@@ -418,7 +418,7 @@
     "edited": "在 {0} 編輯了"
   },
   "tab": {
-    "for_you": "推薦關注",
+    "for_you": "推薦追蹤",
     "hashtags": "話題標籤",
     "media": "媒體",
     "news": "最新消息",
@@ -428,10 +428,10 @@
     "posts_with_replies": "貼文與留言"
   },
   "tag": {
-    "follow": "關注",
-    "follow_label": "關注 {0} 標籤",
-    "unfollow": "取消關注",
-    "unfollow_label": "取消關注 {0} 標籤"
+    "follow": "追蹤",
+    "follow_label": "追蹤 {0} 標籤",
+    "unfollow": "取消追蹤",
+    "unfollow_label": "取消追蹤 {0} 標籤"
   },
   "time_ago_options": {
     "day_future": "現在|明天|{n} 天後",
@@ -486,9 +486,9 @@
     "toggle_code_block": "切換程式碼區塊"
   },
   "user": {
-    "add_existing": "加入現有帳戶",
+    "add_existing": "加入現有帳號",
     "server_address_label": "Mastodon 伺服器位置",
-    "sign_in_desc": "登入後可關注其他人或標籤、點讚、分享和回覆貼文，或與不同伺服器上的帳號互動。",
+    "sign_in_desc": "登入後可追蹤其他人或標籤、點讚、分享和回覆貼文，或與不同伺服器上的帳號互動。",
     "sign_in_notice_title": "正在查看 {0} 的公共數據",
     "sign_out_account": "登出 {0}",
     "tip_no_account": "如果您還沒有 Mastodon 賬戶，{0}。",
@@ -497,8 +497,8 @@
   "visibility": {
     "direct": "私訊",
     "direct_desc": "僅對提及的使用者可見",
-    "private": "僅限關注者",
-    "private_desc": "僅關注者可見",
+    "private": "僅限粉絲",
+    "private_desc": "僅粉絲可見",
     "public": "公開",
     "public_desc": "所有人可見",
     "unlisted": "不列出",

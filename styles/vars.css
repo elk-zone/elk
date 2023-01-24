@@ -1,17 +1,17 @@
 :root {
-  --c-primary: #d98018;
-  --c-primary-active: #9a5420;
-  --c-primary-light: #d980181A;
   --c-border: #eee;
   --c-border-dark: #dccfcf;
+  --c-danger: #FF3C1B;
+  --c-danger-active: #B50900;
 
-  --c-bg-base: #fafafa;
-  --c-bg-base-rgb: 250, 250, 250;
+  --rgb-bg-base: 250, 250, 250;
+
+  --c-bg-base: rgb(var(--rgb-bg-base));
+
   --c-bg-active: #f2f2f2;
   --c-bg-card: #00000006;
   --c-bg-code: #00000006;
   --c-bg-selection: #8885;
-  --c-bg-fade: #EA9E4411;
   --c-bg-dm: #f1e8e6;
 
   --c-text-base: #232323;
@@ -21,6 +21,7 @@
 
   --c-bg-btn-disabled: #a1a1a1;
   --c-text-btn-disabled: #fff;
+  --c-text-btn-disabled-deeper: #a1a1a1;
   --c-text-btn: #232323;
 
   --c-success: #67C23A;
@@ -29,19 +30,21 @@
 }
 
 .dark {
-  --c-primary: #EA9E44;
-  --c-primary-active: #C16929;
-  --c-primary-light: #EA9E441A;
+  --c-primary: var(--c-dark-primary);
+  --c-primary-active: var(--c-dark-primary-active);
+  --c-primary-light: var(--c-dark-primary-light);
+  --c-primary-fade: var(--c-dark-primary-fade); 
+  --c-danger: #FF2810;
+  --c-danger-active: #E02F00;
   
   --c-border: #222;
   --c-border-dark: #545251;
 
-  --c-bg-base: #111;
-  --c-bg-base-rgb: 17, 17, 17;
+  --rgb-bg-base: 17, 17, 17;
+
   --c-bg-active: #191919;
   --c-bg-card: #ffffff06;
   --c-bg-code: #ffffff06;
-  --c-bg-fade: #EA9E4411;
   --c-bg-dm: #0a2f35;
 
   --c-text-base: #f3f3f3;

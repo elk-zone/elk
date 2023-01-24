@@ -37,17 +37,19 @@ const shift = (delta: number) => index.value = (index.value + delta % results.va
 
 const activate = () => {
   const currentIndex = index.value
-  index.value = -1
 
   if (query.value.length === 0)
     return
 
-  (document.activeElement as HTMLElement).blur()
-
-  // Disable until search page is implemented
-  if (currentIndex === -1)
+  // Disable redirection until search page is implemented
+  if (currentIndex === -1) {
+    index.value = 0
     // router.push(`/search?q=${query.value}`)
     return
+  }
+
+  (document.activeElement as HTMLElement).blur()
+  index.value = -1
 
   router.push(results.value[currentIndex].to)
 }

@@ -30,7 +30,7 @@ const aspectRatio = computed(() => {
   if (fullSize)
     return rawAspectRatio.value
   if (rawAspectRatio.value)
-    return clamp(rawAspectRatio.value, 0.8, 2.5)
+    return clamp(rawAspectRatio.value, 0.8, 6)
   return undefined
 })
 
@@ -65,9 +65,11 @@ const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
 const isAudio = $computed(() => attachment.type === 'audio')
 
+const enableAutoplay = usePreferences('enableAutoplay')
+
 useIntersectionObserver(video, (entries) => {
   const ready = video.value?.dataset.ready === 'true'
-  if (prefersReducedMotion.value === 'reduce') {
+  if (prefersReducedMotion.value === 'reduce' || !enableAutoplay.value) {
     if (ready && !video.value?.paused)
       video.value?.pause()
 
@@ -188,7 +190,7 @@ useIntersectionObserver(video, (entries) => {
                 {{ $t('status.img_alt.dismiss') }}
               </button>
             </div>
-            <p whitespace-pre>
+            <p whitespace-pre-wrap>
               {{ attachment.description }}
             </p>
           </div>

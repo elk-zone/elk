@@ -1,6 +1,6 @@
 import { createResolver } from '@nuxt/kit'
 import Inspect from 'vite-plugin-inspect'
-import { isCI, isDevelopment } from 'std-env'
+import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
@@ -25,12 +25,17 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
+    ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/stale-dep',
+    ['unplugin-vue-inspector/nuxt', {
+      enabled: false,
+      toggleButtonVisibility: 'never',
+    }],
   ],
   experimental: {
     payloadExtraction: false,
@@ -40,8 +45,12 @@ export default defineNuxtConfig({
   css: [
     '@unocss/reset/tailwind.css',
     'floating-vue/dist/style.css',
+    '~/styles/default-theme.css',
     '~/styles/vars.css',
     '~/styles/global.css',
+    ...process.env.TAURI_PLATFORM === 'macos'
+      ? []
+      : ['~/styles/scrollbars.css'],
     '~/styles/tiptap.css',
     '~/styles/dropdown.css',
   ],
@@ -55,13 +64,14 @@ export default defineNuxtConfig({
       './composables/masto',
       './composables/push-notifications',
       './composables/settings',
-      './composables/tiptap',
+      './composables/tiptap/index.ts',
     ],
   },
   vite: {
     define: {
       'process.env.VSCODE_TEXTMATE_DEBUG': 'false',
       'process.mock': ((!isCI || isPreview) && process.env.MOCK_USER) || 'false',
+      'process.test': 'false',
     },
     build: {
       target: 'esnext',
@@ -76,6 +86,7 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    adminKey: '',
     cloudflare: {
       accountId: '',
       namespaceId: '',
@@ -85,8 +96,10 @@ export default defineNuxtConfig({
       env: '', // set in build-env module
       buildInfo: {} as BuildInfo, // set in build-env module
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
+      // We use LibreTranslate(https://github.com/LibreTranslate/LibreTranslate) as our default translation server #76
       translateApi: '',
-      defaultServer: 'mas.to',
+      // Use the instance where Elk has its Mastodon account as the default
+      defaultServer: 'm.webtoo.ls',
     },
     storage: {
       driver: isCI ? 'cloudflare' : 'fs',
@@ -135,6 +148,32 @@ export default defineNuxtConfig({
         { property: 'twitter:card', content: 'summary_large_image' },
       ],
     },
+  },
+  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
+  // @ts-ignore nuxt-security is conditional
+  security: {
+    headers: {
+      crossOriginEmbedderPolicy: false,
+      contentSecurityPolicy: {
+        value: {
+          'default-src': ['\'self\''],
+          'base-uri': ['\'self\''],
+          'connect-src': ['\'self\'', 'https:', 'http:', 'wss:', 'ws:'],
+          'font-src': ['\'self\''],
+          'form-action': ['\'none\''],
+          'frame-ancestors': ['\'none\''],
+          'img-src': ['\'self\'', 'https:', 'http:', 'data:'],
+          'media-src': ['\'self\'', 'https:', 'http:'],
+          'object-src': ['\'none\''],
+          'script-src': ['\'self\'', '\'unsafe-inline\'', '\'wasm-unsafe-eval\''],
+          'script-src-attr': ['\'none\''],
+          'style-src': ['\'self\'', '\'unsafe-inline\''],
+          'upgrade-insecure-requests': true,
+        },
+        route: '/**',
+      },
+    },
+    rateLimiter: false,
   },
   colorMode: { classSuffix: '' },
   i18n,

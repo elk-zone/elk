@@ -1,0 +1,7 @@
+services:
+  elk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5314:5314

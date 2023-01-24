@@ -9,7 +9,7 @@ export interface StatusActionsProps {
 
 export function useStatusActions(props: StatusActionsProps) {
   let status = $ref<mastodon.v1.Status>({ ...props.status })
-  const masto = useMasto()
+  const { client } = $(useMasto())
 
   watch(
     () => props.status,
@@ -61,7 +61,7 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
-    () => masto.v1.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
+    () => client.v1.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
       if (status.reblogged)
       // returns the original status
         return res.reblog!
@@ -72,23 +72,23 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleFavourite = () => toggleStatusAction(
     'favourited',
-    () => masto.v1.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+    () => client.v1.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
     'favouritesCount',
   )
 
   const toggleBookmark = () => toggleStatusAction(
     'bookmarked',
-    () => masto.v1.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
+    () => client.v1.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
   )
 
   const togglePin = async () => toggleStatusAction(
     'pinned',
-    () => masto.v1.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+    () => client.v1.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
   )
 
   const toggleMute = async () => toggleStatusAction(
     'muted',
-    () => masto.v1.statuses[status.muted ? 'unmute' : 'mute'](status.id),
+    () => client.v1.statuses[status.muted ? 'unmute' : 'mute'](status.id),
   )
 
   return {

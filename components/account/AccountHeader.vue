@@ -6,7 +6,7 @@ const { account } = defineProps<{
   command?: boolean
 }>()
 
-const masto = useMasto()
+const { client } = $(useMasto())
 
 const { t } = useI18n()
 
@@ -20,9 +20,14 @@ const relationship = $(useRelationship(account))
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
+const hasHeader = $computed(() => !account.header.endsWith('/original/missing.png'))
 
 function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
+}
+
+function getNotificationIconTitle() {
+  return relationship?.notifying ? t('account.notifications_on_post_disable', { username: `@${account.username}` }) : t('account.notifications_on_post_enable', { username: `@${account.username}` })
 }
 
 function previewHeader() {
@@ -43,15 +48,15 @@ function previewAvatar() {
   }])
 }
 
-async function toggleNotify() {
-  relationship!.notifying = !relationship!.notifying
+async function toggleNotifications() {
+  relationship!.notifying = !relationship?.notifying
   try {
-    const newRel = await masto.v1.accounts.follow(account.id, { notify: relationship!.notifying })
+    const newRel = await client.v1.accounts.follow(account.id, { notify: relationship?.notifying })
     Object.assign(relationship!, newRel)
   }
   catch {
     // TODO error handling
-    relationship!.notifying = !relationship!.notifying
+    relationship!.notifying = !relationship?.notifying
   }
 }
 
@@ -76,13 +81,14 @@ watchEffect(() => {
 })
 
 const isSelf = $(useSelfAccount(() => account))
+const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
 </script>
 
 <template>
   <div flex flex-col>
-    <button border="b base" z-1>
-      <img h-50 height="200" w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])" @click="previewHeader">
-    </button>
+    <component :is="hasHeader ? 'button' : 'div'" border="b base" z-1 @click="hasHeader ? previewHeader() : undefined">
+      <img h-50 height="200" w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])">
+    </component>
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
         <div flex="~ col gap-2 1">
@@ -99,14 +105,18 @@ const isSelf = $(useSelfAccount(() => account))
         </div>
         <div absolute top-18 inset-ie-0 flex gap-2 items-center>
           <AccountMoreButton :account="account" :command="command" />
-
-          <button v-if="!isSelf && relationship?.following" flex gap-1 items-center w-full rounded op75 hover="op100 text-pink" group @click="toggleNotify()">
-            <div rounded-full p2 group-hover="bg-pink/10">
-              <div v-if="relationship?.notifying" i-ri:bell-fill />
-              <div v-else i-ri-bell-line />
-            </div>
-          </button>
-
+          <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
+            <button
+              :aria-pressed="isNotifiedOnPost"
+              :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
+              rounded-full text-sm p2 border-1 transition-colors
+              :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
+              @click="toggleNotifications"
+            >
+              <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
+              <span v-else i-ri-notification-4-line block text-current />
+            </button>
+          </CommonTooltip>
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->
           <NuxtLink

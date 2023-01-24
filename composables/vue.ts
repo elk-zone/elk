@@ -6,6 +6,10 @@ import { useHead } from '#head'
 
 export const isHydrated = ref(false)
 
+export const onHydrated = (cb: () => unknown) => {
+  watchOnce(isHydrated, () => cb(), { immediate: isHydrated.value })
+}
+
 /**
  * ### Whether the current component is running in the background
  *

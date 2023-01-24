@@ -1,11 +1,14 @@
 <script setup lang="ts">
-const props = defineProps<{
+const props = withDefaults(defineProps<{
+  is?: string
   text?: string
   description?: string
   icon?: string
   checked?: boolean
   command?: boolean
-}>()
+}>(), {
+  is: 'div',
+})
 const emit = defineEmits(['click'])
 
 const { hide } = useDropdownContext() || {}
@@ -39,9 +42,12 @@ useCommand({
 </script>
 
 <template>
-  <div
-    v-bind="$attrs" ref="el"
+  <component
+    v-bind="$attrs"
+    :is="is"
+    ref="el"
     flex gap-3 items-center cursor-pointer px4 py3
+    select-none
     hover-bg-active
     :aria-label="text"
     @click="handleClick"
@@ -66,5 +72,5 @@ useCommand({
 
     <div v-if="checked" i-ri:check-line />
     <slot name="actions" />
-  </div>
+  </component>
 </template>

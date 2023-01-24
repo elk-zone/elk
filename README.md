@@ -28,10 +28,24 @@ A nimble Mastodon web client
 
 It is already quite usable, but it isn't ready for wide adoption yet. We recommend you use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
-The client is deployed on:
+## Deployment
+
+### Official Deployment
+
+The Elk team maintains a deployment at:
 
 - 🦌 Production: [elk.zone](https://elk.zone)
 - 🐙 Canary: [main.elk.zone](https://main.elk.zone) (deploys on every commit to `main` branch)
+
+### Ecosystem
+
+These are known deployments using Elk as an alternative Web client for Mastodon servers or as a base for other projects in the fediverse:
+
+- [elk.h4.io](https://elk.h4.io) - Use Elk for the `h4.io` Server
+- [elk.universeodon.com](https://elk.universeodon.com) - Use Elk for the Universeodon Server
+- [elk.vmst.io](https://elk.vmst.io) - Use Elk for the `vmst.io` Server
+
+> **Note**: Community deployments are **NOT** maintained by the Elk team. It may not be synced with Elk's source code. Please do your own research about the host servers before using them.
 
 ## 💖 Sponsors
 
@@ -112,6 +126,12 @@ nr test
 - [Masto.js](https://neet.github.io/masto.js) - Mastodon API client in TypeScript
 - [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
 - [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update and push notifications
+
+## 👨‍💻 Contributors
+
+<a href="https://github.com/elk-zone/elk/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=elk-zone/elk" />   
+</a>    
 
 ## 📄 License
 

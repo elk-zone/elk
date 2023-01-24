@@ -1,5 +1,4 @@
 import type { Directions } from 'vue-i18n-routing'
-import { decode } from 'tiny-decode'
 import type { LocaleObject } from '#i18n'
 
 export function setupPageHeader() {
@@ -24,10 +23,13 @@ export function setupPageHeader() {
         titleTemplate += ` (${buildInfo.env})`
 
       if (titleTemplate.match(/&[a-z0-9#]+;/gi)) {
-        titleTemplate = decode(titleTemplate
-          .replaceAll('&#60;', '\u003C').replaceAll('&lt;', '\u003C')
-          .replaceAll('&#62;', '\u003E').replaceAll('&gt;', '\u003E'))
-
+        titleTemplate = unescapeTitleTemplate(titleTemplate, [
+          ['"', ['&#34;', '&quot;']],
+          ['&', ['&#38;', '&amp;']],
+          ['\'', ['&#39;', '&apos;']],
+          ['\u003C', ['&#60;', '&lt;']],
+          ['\u003E', ['&#62;', '&gt;']],
+        ])
         if (!titleTemplate.includes('"'))
           titleTemplate = `"${titleTemplate}"`
       }
@@ -42,4 +44,18 @@ export function setupPageHeader() {
         }]
       : [],
   })
+
+  function unescapeTitleTemplate(titleTemplate: string, replacements: [string, string | string[]][]) {
+    let result = titleTemplate
+    for (const [replacement, entities] of replacements) {
+      if (Array.isArray(entities)) {
+        for (const e of entities)
+          result = result.replaceAll(e, replacement)
+      }
+      else {
+        result = result.replaceAll(entities, replacement)
+      }
+    }
+    return result
+  }
 }

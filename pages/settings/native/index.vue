@@ -4,6 +4,12 @@ const { t } = useI18n()
 useHeadFixed({
   title: () => `${t('settings.native.label')} | ${t('nav.settings')}`,
 })
+
+definePageMeta({
+  validate() {
+    return !!import.meta.env.TAURI_PLATFORM
+  },
+})
 </script>
 
 <template>

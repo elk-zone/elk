@@ -100,6 +100,7 @@ export default defineNuxtConfig({
       translateApi: '',
       // Use the instance where Elk has its Mastodon account as the default
       defaultServer: 'm.webtoo.ls',
+      isTauriApp: !!process.env.TAURI_PLATFORM,
     },
     storage: {
       driver: isCI ? 'cloudflare' : 'fs',

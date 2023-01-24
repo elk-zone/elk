@@ -12,8 +12,7 @@ useHeadFixed({
 const route = useRoute()
 
 const isRootPath = computedEager(() => route.name === 'settings')
-// TODO: implement isTauriApp
-const isTauriApp = true
+const isTauriApp = !!import.meta.env.TAURI_PLATFORM
 </script>
 
 <template>

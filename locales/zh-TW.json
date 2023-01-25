@@ -346,7 +346,7 @@
       "hide_boost_count": "隱藏轉發數",
       "hide_favorite_count": "隱藏收藏數",
       "hide_follower_count": "隱藏粉絲數",
-      "label": "喜好設定",
+      "label": "偏好設定",
       "title": "實驗功能",
       "user_picker": "使用者選擇器",
       "virtual_scroll": "虛擬滾動"
@@ -491,7 +491,7 @@
     "sign_in_desc": "登入後可追蹤其他人或標籤、點讚、分享和回覆貼文，或與不同伺服器上的帳號互動。",
     "sign_in_notice_title": "正在查看 {0} 的公共數據",
     "sign_out_account": "登出 {0}",
-    "tip_no_account": "如果您還沒有 Mastodon 賬戶，{0}。",
+    "tip_no_account": "如果您還沒有 Mastodon 帳號，{0}。",
     "tip_register_account": "選擇您的伺服器並註冊一個"
   },
   "visibility": {

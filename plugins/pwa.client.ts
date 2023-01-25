@@ -1,10 +1,12 @@
 import { useRegisterSW } from 'virtual:pwa-register/vue'
+import { STORAGE_KEY_PWA_HIDE_INSTALL } from '~/constants'
 
 export default defineNuxtPlugin(() => {
   const online = useOnline()
   const registrationError = ref(false)
   const swActivated = ref(false)
   const showInstallPrompt = ref(false)
+  const hideInstall = useLocalStorage(STORAGE_KEY_PWA_HIDE_INSTALL, false)
 
   // https://thomashunter.name/posts/2021-12-11-detecting-if-pwa-twa-is-installed
   const ua = navigator.userAgent
@@ -58,42 +60,46 @@ export default defineNuxtPlugin(() => {
     needRefresh.value = false
   }
 
-  type InstallPromptEvent = Event & {
-    prompt: () => void
-    userChoice: Promise<{ outcome: 'dismissed' | 'accepted' }>
-  }
+  let install: () => Promise<void> = () => Promise.resolve()
+  let cancelInstall: () => void = noop
 
-  let deferredPrompt: InstallPromptEvent | undefined
-
-  const beforeInstallPrompt = (e: Event) => {
-    e.preventDefault()
-    deferredPrompt = e as InstallPromptEvent
-    showInstallPrompt.value = true
-  }
-  window.addEventListener('beforeinstallprompt', beforeInstallPrompt)
-  window.addEventListener('appinstalled', () => {
-    deferredPrompt = undefined
-    showInstallPrompt.value = false
-  })
-
-  const cancelInstall = () => {
-    deferredPrompt = undefined
-    showInstallPrompt.value = false
-    window.removeEventListener('beforeinstallprompt', beforeInstallPrompt)
-  }
-
-  const install = async () => {
-    if (!showInstallPrompt.value || !deferredPrompt) {
-      showInstallPrompt.value = false
-      return
+  if (!hideInstall.value) {
+    type InstallPromptEvent = Event & {
+      prompt: () => void
+      userChoice: Promise<{ outcome: 'dismissed' | 'accepted' }>
     }
 
-    showInstallPrompt.value = false
-    await nextTick()
-    deferredPrompt.prompt()
-    const { outcome } = await deferredPrompt.userChoice
-    if (outcome === 'dismissed')
-      cancelInstall()
+    let deferredPrompt: InstallPromptEvent | undefined
+
+    const beforeInstallPrompt = (e: Event) => {
+      e.preventDefault()
+      deferredPrompt = e as InstallPromptEvent
+      showInstallPrompt.value = true
+    }
+    window.addEventListener('beforeinstallprompt', beforeInstallPrompt)
+    window.addEventListener('appinstalled', () => {
+      deferredPrompt = undefined
+      showInstallPrompt.value = false
+    })
+
+    cancelInstall = () => {
+      deferredPrompt = undefined
+      showInstallPrompt.value = false
+      window.removeEventListener('beforeinstallprompt', beforeInstallPrompt)
+      hideInstall.value = true
+    }
+
+    install = async () => {
+      if (!showInstallPrompt.value || !deferredPrompt) {
+        showInstallPrompt.value = false
+        return
+      }
+
+      showInstallPrompt.value = false
+      await nextTick()
+      deferredPrompt.prompt()
+      await deferredPrompt.userChoice
+    }
   }
 
   return {

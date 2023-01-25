@@ -125,7 +125,6 @@
   },
   "pnpm": {
     "overrides": {
-      "mlly": "1.1.0",
       "@tiptap/extension-bubble-menu": "2.0.0-beta.204",
       "@tiptap/extension-floating-menu": "2.0.0-beta.204",
       "@tiptap/core": "2.0.0-beta.204",
@@ -146,8 +145,7 @@
       "@tiptap/extension-ordered-list": "2.0.0-beta.204",
       "@tiptap/extension-paragraph": "2.0.0-beta.204",
       "@tiptap/extension-strike": "2.0.0-beta.204",
-      "@tiptap/extension-text": "2.0.0-beta.204",
-      "vitest>vite": "^3.2.5"
+      "@tiptap/extension-text": "2.0.0-beta.204"
     }
   },
   "simple-git-hooks": {

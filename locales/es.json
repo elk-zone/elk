@@ -312,7 +312,10 @@
     },
     "notifications_settings": "Notificaciones",
     "preferences": {
+      "enable_autoplay": "Activar Autoplay",
       "github_cards": "Tarjetas GitHub",
+      "grayscale_mode": "Modo escala de grisis",
+      "hide_account_hover_card": "Ocultar tarjeta flotante de cuenta",
       "hide_boost_count": "Ocultar contador de retoots",
       "hide_favorite_count": "Ocultar contador de favoritas",
       "hide_follower_count": "Ocultar contador de seguidores",

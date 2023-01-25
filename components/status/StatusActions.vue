@@ -37,13 +37,13 @@ const reply = () => {
     <div flex-1>
       <StatusActionButton
         :content="$t('action.reply')"
-        :text="status.repliesCount || ''"
+        :text="!getPreferences(userSettings, 'hideReplyCount') && status.repliesCount || ''"
         color="text-blue" hover="text-blue" group-hover="bg-blue/10"
         icon="i-ri:chat-1-line"
         :command="command"
         @click="reply"
       >
-        <template v-if="status.repliesCount" #text>
+        <template v-if="status.repliesCount && !getPreferences(userSettings, 'hideReplyCount')" #text>
           <CommonLocalizedNumber
             keypath="action.reply_count"
             :count="status.repliesCount"

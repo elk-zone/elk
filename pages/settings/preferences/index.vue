@@ -28,6 +28,12 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_favorite_count') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideReplyCount')"
+      @click="togglePreferences('hideReplyCount')"
+    >
+      {{ $t('settings.preferences.hide_reply_count') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'hideFollowerCount')"
       @click="togglePreferences('hideFollowerCount')"
     >

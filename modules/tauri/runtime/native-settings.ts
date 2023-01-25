@@ -25,8 +25,7 @@ async function tauriStoreRef<T>(store: Store, key: string, defaultValue: T): Pro
         trigger()
       },
     }
-  },
-  )
+  })
 
   const result = await store.get(key)
   if (result !== undefined && result !== null)
@@ -35,11 +34,12 @@ async function tauriStoreRef<T>(store: Store, key: string, defaultValue: T): Pro
   return ref
 }
 
-const nativeSettings = {
+const nativeSettings = async () => ({
   minimizeToTray: await tauriStoreRef(store, 'minimize_to_tray', true),
+})
+
+interface NativeSettings {
+  minimizeToTray: TauriStoreRef<boolean>
 }
-
-type NativeSettings = typeof nativeSettings
-
 export type { NativeSettings }
-export const useNativeSettings = () => nativeSettings as undefined | NativeSettings
+export const useNativeSettings = async () => await nativeSettings() as NativeSettings | undefined

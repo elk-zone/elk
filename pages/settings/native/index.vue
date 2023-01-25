@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-const nativeSettings = useNativeSettings()!
+const nativeSettings = (await useNativeSettings())!
 
 useHeadFixed({
   title: () => `${t('settings.native.label')} | ${t('nav.settings')}`,

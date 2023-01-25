@@ -84,8 +84,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
     cursor-pointer
-    hover="bg-black/3"
-    dark:hover="bg-white/3"
+    hover:bg-active transition-100
     :lang="status.language ?? undefined"
     @click="onclick"
     @keydown.enter="onclick"

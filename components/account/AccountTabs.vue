@@ -1,11 +1,13 @@
 <script setup lang="ts">
+import type { CommonRouteTabOption } from '../common/CommonRouteTabs.vue'
+
 const { t } = useI18n()
 const route = useRoute()
 
 const server = $(computedEager(() => route.params.server as string))
 const account = $(computedEager(() => route.params.account as string))
 
-const tabs = $computed(() => [
+const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
     name: 'account-index',
     to: {
@@ -33,7 +35,7 @@ const tabs = $computed(() => [
     display: t('tab.media'),
     icon: 'i-ri:camera-2-line',
   },
-] as const)
+])
 </script>
 
 <template>

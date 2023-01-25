@@ -67,13 +67,6 @@ const createdAt = useFormattedDateTime(status.createdAt)
 const timeAgoOptions = useTimeAgoOptions(true)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
-// Content Filter logic
-const filterResult = $computed(() => status.filtered?.length ? status.filtered[0] : null)
-const filter = $computed(() => filterResult?.filter)
-
-const filterPhrase = $computed(() => filter?.title)
-const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
-
 const isSelfReply = $computed(() => status.inReplyToAccountId === status.account.id)
 const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
 const isDM = $computed(() => status.visibility === 'direct')
@@ -84,7 +77,6 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
 
 <template>
   <div
-    v-if="filter?.filterAction !== 'hide'"
     :id="`status-${status.id}`"
     ref="el"
     relative flex="~ col gap1" p="l-3 r-4 b-2"
@@ -188,10 +180,5 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
         <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
       </div>
     </div>
-  </div>
-  <div v-else-if="isFiltered" gap-2 p-4 :class="{ 'border-t border-base': newer }">
-    <p text-center text-secondary text-sm>
-      {{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}
-    </p>
   </div>
 </template>

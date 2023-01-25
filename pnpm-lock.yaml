@@ -91,7 +91,7 @@ importers:
       masto: ^5.6.1
       nuxt: 3.1.0
       nuxt-security: ^0.10.1
-      nuxt-vitest: 0.5.0
+      nuxt-vitest: 0.6.0
       pinia: ^2.0.29
       postcss-nested: ^6.0.0
       prettier: ^2.8.3
@@ -200,7 +200,7 @@ importers:
       lint-staged: 13.1.0
       nuxt: 3.1.0_no2el4fe4ggitllzolcgczmlgq
       nuxt-security: 0.10.1
-      nuxt-vitest: 0.5.0_jsdom@21.1.0
+      nuxt-vitest: 0.6.0_jsdom@21.1.0
       postcss-nested: 6.0.0
       prettier: 2.8.3
       rollup-plugin-node-polyfills: 0.2.1
@@ -9427,8 +9427,8 @@ packages:
       - supports-color
     dev: true
 
-  /nuxt-vitest/0.5.0_jsdom@21.1.0:
-    resolution: {integrity: sha512-2l5mGLvZ6AZOCByFLV9Fmg5a22qtJmyZJLDWjlblricT4yX7UpRreEDOttbARRcuYXEBKp3sO6ceP+xm0VHVUw==}
+  /nuxt-vitest/0.6.0_jsdom@21.1.0:
+    resolution: {integrity: sha512-3W1MtUaf57NxvCJX5fLMBG9b3tAeZeDwCWpE3TPUwEAEyIXz9VkQG/Y8PmYxzRgRWX5EfkXc+HgOh8c50/jXKA==}
     peerDependencies:
       vite: '*'
     dependencies:
@@ -9436,7 +9436,7 @@ packages:
       '@vitest/ui': 0.28.2
       get-port-please: 3.0.1
       vitest: 0.28.2_z2bihwucn76eg5pxg26sw3xfim
-      vitest-environment-nuxt: 0.5.0_vitest@0.28.2
+      vitest-environment-nuxt: 0.6.0_vitest@0.28.2
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@vitest/browser'
@@ -12743,6 +12743,27 @@ packages:
       ofetch: 1.0.0
       unenv: 1.0.1
       vitest: 0.28.2_jsdom@21.1.0
+    transitivePeerDependencies:
+      - encoding
+      - rollup
+      - supports-color
+    dev: true
+
+  /vitest-environment-nuxt/0.6.0_vitest@0.28.2:
+    resolution: {integrity: sha512-bnEtgeX8uaZWCPn/AtT4UsuHF2hyHDAHYXenC1SwtsFSAPneOUSqhZBaVpppdci3NDM8iUjEdOXiLr1mL7MzoQ==}
+    peerDependencies:
+      vitest: ^0.24.5 || ^0.26.0 || ^0.27.0 || ^0.28.0
+      vue: ^3.2.45
+    dependencies:
+      '@nuxt/kit': 3.1.0
+      '@vue/test-utils': 2.2.7
+      estree-walker: 3.0.3
+      h3: 1.0.2
+      happy-dom: 8.1.5
+      magic-string: 0.27.0
+      ofetch: 1.0.0
+      unenv: 1.0.1
+      vitest: 0.28.2_z2bihwucn76eg5pxg26sw3xfim
     transitivePeerDependencies:
       - encoding
       - rollup

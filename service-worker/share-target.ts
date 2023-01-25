@@ -21,7 +21,7 @@ export const onShareTarget = (event: FetchEvent) => {
 }
 
 async function handleSharedTarget(event: FetchEvent) {
-  event.respondWith(Response.redirect('/home?share-target=true'))
+  event.respondWith(Response.redirect('/home?share-target=true', 303))
   await waitForClientToGetReady(event.resultingClientId)
 
   const [client, formData] = await getClientAndFormData(event)

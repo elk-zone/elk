@@ -17,6 +17,6 @@
         {{ $t('pwa.dismiss') }}
       </button>
     </div>
-    <div i-material-symbols:install-desktop-rounded absolute text-6em bottom--2 inset-ie--2 text-primary dark:text-white op10 dark:op45 class="-z-1 rtl-flip" />
+    <div i-material-symbols:install-desktop-rounded absolute text-6em bottom--2 inset-ie--2 text-primary dark:text-white op10 class="-z-1 rtl-flip" />
   </div>
 </template>

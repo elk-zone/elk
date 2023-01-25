@@ -99,7 +99,6 @@
     "esno": "^0.16.3",
     "file-saver": "^2.0.5",
     "fs-extra": "^11.1.0",
-    "jsdom": "^21.1.0",
     "lint-staged": "^13.1.0",
     "nuxt": "3.1.0",
     "nuxt-security": "^0.10.1",

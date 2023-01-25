@@ -94,7 +94,7 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
         },
         {
           src: 'maskable-icon.png',
-          sizes: '180x180',
+          sizes: '512x512',
           type: 'image/png',
           purpose: 'any maskable',
         },
@@ -140,7 +140,7 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
         },
         {
           src: 'maskable-icon.png',
-          sizes: '180x180',
+          sizes: '512x512',
           type: 'image/png',
           purpose: 'any maskable',
         },

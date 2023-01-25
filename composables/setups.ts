@@ -17,10 +17,7 @@ export function setupPageHeader() {
       dir: () => localeMap[locale.value] ?? 'auto',
     },
     titleTemplate: (title) => {
-      let titleTemplate = title ? `${title} | ` : ''
-      titleTemplate += t('app_name')
-      if (buildInfo.env !== 'release')
-        titleTemplate += ` (${buildInfo.env})`
+      let titleTemplate = title ?? ''
 
       if (titleTemplate.match(/&[a-z0-9#]+;/gi)) {
         titleTemplate = unescapeTitleTemplate(titleTemplate, [
@@ -31,14 +28,18 @@ export function setupPageHeader() {
           ['\u003E', ['&#62;', '&gt;']],
         ])
         if (titleTemplate.length > 60)
-          titleTemplate = `${titleTemplate.slice(0, 60)}...`
+          titleTemplate = `${titleTemplate.slice(0, 60)}...${titleTemplate.endsWith('"') ? '"' : ''}`
 
         if (!titleTemplate.includes('"'))
           titleTemplate = `"${titleTemplate}"`
       }
       else if (titleTemplate.length > 60) {
-        titleTemplate = `${titleTemplate.slice(0, 60)}...`
+        titleTemplate = `${titleTemplate.slice(0, 60)}...${titleTemplate.endsWith('"') ? '"' : ''}`
       }
+
+      titleTemplate += ` | ${t('app_name')}`
+      if (buildInfo.env !== 'release')
+        titleTemplate += ` (${buildInfo.env})`
 
       return titleTemplate
     },
@@ -58,5 +59,5 @@ function unescapeTitleTemplate(titleTemplate: string, replacements: [string, str
     for (const e of entities)
       result = result.replaceAll(e, replacement)
   }
-  return result
+  return result.trim()
 }

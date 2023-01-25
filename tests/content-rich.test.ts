@@ -4,7 +4,7 @@ import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import type { mastodon } from 'masto'
 import { contentToVNode } from '~/composables/content-render'
-import type { ContentParseOptions } from '~~/composables/content-parse'
+import type { ContentParseOptions } from '~/composables/content-parse'
 
 describe('content-rich', () => {
   it('empty', async () => {

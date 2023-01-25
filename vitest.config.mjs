@@ -1,6 +1,6 @@
-import { defineConfigWithNuxtEnv } from 'vitest-environment-nuxt/config'
+import { defineConfigWithNuxt } from 'nuxt-vitest/config'
 
-export default defineConfigWithNuxtEnv({
+export default defineConfigWithNuxt({
   define: {
     'process.test': 'true',
   },

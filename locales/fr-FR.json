@@ -253,6 +253,8 @@
   },
   "pwa": {
     "dismiss": "Fermer",
+    "install": "Installer",
+    "install_title": "Installer Elk",
     "title": "Nouvelle mise à jour Elk disponible !",
     "update": "Mettre à jour",
     "update_available_short": "Mettre à jour Elk",

@@ -48,9 +48,3 @@ const vnode = $computed(() => {
     </template>
   </div>
 </template>
-
-<style>
-.status-body.with-action p {
-  cursor: pointer;
-}
-</style>

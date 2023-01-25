@@ -65,6 +65,7 @@ const isGrayscale = usePreferences('grayscaleMode')
             <div flex-auto />
 
             <PwaPrompt />
+            <PwaInstallPrompt />
             <LazyCommonPreviewPrompt v-if="info.env === 'preview'" />
             <NavFooter />
           </slot>

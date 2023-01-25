@@ -89,7 +89,7 @@
     "@types/prettier": "^2.7.2",
     "@types/wicg-file-system-access": "^2020.9.5",
     "@unocss/nuxt": "^0.48.5",
-    "@vue-macros/nuxt": "^0.2.16",
+    "@vue-macros/nuxt": "^0.3.3",
     "@vueuse/math": "^9.11.1",
     "@vueuse/nuxt": "^9.11.1",
     "bumpp": "^8.2.1",

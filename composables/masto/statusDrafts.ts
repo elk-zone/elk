@@ -56,7 +56,10 @@ function getDefaultLanguage() {
   const userSettings = useUserSettings()
   const defaultLanguage = userSettings.value.language
 
-  return defaultLanguage.split('-')[0] || 'en'
+  if (defaultLanguage)
+    return defaultLanguage.split('-')[0]
+
+  return 'en'
 }
 
 function getAccountsToMention(status: mastodon.v1.Status) {

@@ -1,11 +1,15 @@
 <script setup lang="ts">
 const paginator = useMastoClient().v1.lists.list()
+const items = $(usePaginator(paginator, $$(undefined)).items)
+
+const tabs = $computed(() => items.map((item) => {
+  return {
+    to: isHydrated.value ? `/${currentServer.value}/${item.id}` : '',
+    display: isHydrated.value ? item.title : '',
+  }
+}))
 </script>
 
 <template>
-  <CommonPaginator :paginator="paginator">
-    <template #default="{ item }">
-      {{ item.id }} {{ item.title }}
-    </template>
-  </CommonPaginator>
+  <CommonRouteTabs force replace :options="tabs" />
 </template>

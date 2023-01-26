@@ -7,31 +7,6 @@
     "favourited": "Favorited"
   },
   "nav": {
-    "back": "Go back",
-    "blocked_domains": "Blocked domains",
-    "blocked_users": "Blocked users",
-    "bookmarks": "Bookmarks",
-    "built_at": "Built {0}",
-    "compose": "Compose",
-    "conversations": "Conversations",
-    "explore": "Explore",
-    "favourites": "Favorites",
-    "federated": "Federated",
-    "home": "Home",
-    "list": "List",
-    "lists": "Lists",
-    "local": "Local",
-    "muted_users": "Muted users",
-    "notifications": "Notifications",
-    "profile": "Profile",
-    "search": "Search",
-    "select_feature_flags": "Toggle Feature Flags",
-    "select_font_size": "Font Size",
-    "select_language": "Display Language",
-    "settings": "Settings",
-    "show_intro": "Show intro",
-    "toggle_theme": "Toggle Theme",
-    "zen_mode": "Zen Mode"
     "favourites": "Favorites"
   },
   "notification": {

@@ -226,14 +226,7 @@
       "default": " (за замовчуванням)",
       "font_size": "Розмір шрифта",
       "label": "Інтерфейс",
-      "light_mode": "Світла",
-      "size_label": {
-        "lg": "Великий",
-        "md": "Середній",
-        "sm": "Малий",
-        "xl": "Дуже великий",
-        "xs": "Дуже малий"
-      }
+      "light_mode": "Світла"
     },
     "language": {
       "display_language": "Мова інтерфейсу",
@@ -322,7 +315,6 @@
   "status": {
     "edited": "Редаговано {0}",
     "filter_hidden_phrase": "Відфільтровано",
-    "filter_removed_phrase": "Видалено фільтром",
     "filter_show_anyway": "Показати все одно",
     "img_alt": {
       "desc": "Опис зображення",

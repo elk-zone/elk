@@ -304,13 +304,6 @@
       "font_size": "Ukuran huruf",
       "label": "Antarmuka",
       "light_mode": "Terang",
-      "size_label": {
-        "lg": "Besar",
-        "md": "Medium",
-        "sm": "Kecil",
-        "xl": "Ekstra besar",
-        "xs": "Ekstra kecil"
-      },
       "system_mode": "Sistem",
       "theme_color": "Warna Tema"
     },

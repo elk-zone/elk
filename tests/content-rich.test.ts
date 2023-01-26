@@ -270,7 +270,8 @@ async function render(content: string, options?: ContentParseOptions) {
 }
 
 // mocks
-vi.mock('vue-router', () => {
+vi.mock('vue-router', async () => {
+  const { defineComponent, h } = await import('vue')
   return {
     RouterLink: defineComponent((attrs) => {
       return () => h('a', attrs)
@@ -286,7 +287,8 @@ vi.mock('shiki-es', async (importOriginal) => {
   }
 })
 
-vi.mock('~/components/content/ContentMentionGroup.vue', () => {
+vi.mock('~/components/content/ContentMentionGroup.vue', async () => {
+  const { defineComponent, h } = await import('vue')
   return {
     default: defineComponent({
       setup(props, { slots }) {
@@ -296,7 +298,8 @@ vi.mock('~/components/content/ContentMentionGroup.vue', () => {
   }
 })
 
-vi.mock('~/components/account/AccountHoverWrapper.vue', () => {
+vi.mock('~/components/account/AccountHoverWrapper.vue', async () => {
+  const { defineComponent } = await import('vue')
   return {
     default: defineComponent({
       props: ['handle', 'class'],

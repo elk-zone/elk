@@ -12,12 +12,24 @@ const emit = defineEmits<{
 const { client } = $(useMasto())
 
 const toggleFollowTag = async () => {
-  if (tag.following)
-    await client.v1.tags.unfollow(tag.name)
-  else
-    await client.v1.tags.follow(tag.name)
+  // We save the state so be can do an optimistic UI update, but fallback to the previous state if the API call fails
+  const previousFollowingState = tag.following
 
-  emit('change')
+  // eslint-disable-next-line vue/no-mutating-props
+  tag.following = !tag.following
+
+  try {
+    if (previousFollowingState)
+      await client.v1.tags.unfollow(tag.name)
+    else
+      await client.v1.tags.follow(tag.name)
+
+    emit('change')
+  }
+  catch (error) {
+    // eslint-disable-next-line vue/no-mutating-props
+    tag.following = previousFollowingState
+  }
 }
 </script>
 

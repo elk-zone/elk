@@ -12,32 +12,6 @@ html {
   src: url(/fonts/homemade-apple-v18.ttf) format('truetype');
 }
 
-* {
-  scrollbar-color: #8885 var(--c-border);
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar:horizontal {
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--c-border);
-  border-radius: 1px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #8885;
-  border-radius: 1px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #8886;
-}
-
 ::-moz-selection {
   background: var(--c-bg-selection);
 }
@@ -62,10 +36,13 @@ body {
 
 .custom-emoji {
   display: inline-block;
-  overflow: hidden;
+  vertical-align: text-bottom;
+}
+
+.custom-emoji img {
   max-height: 1.3em;
   max-width: 1.3em;
-  vertical-align: text-bottom;
+  object-fit: contain;
 }
 
 .iconify-emoji {

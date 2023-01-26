@@ -28,10 +28,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <NuxtLink timeline-title-style flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:list-check />
-        <span>{{ listInfo ? listInfo.title : $t('nav.list') }}</span>
-      </NuxtLink>
+      <span text-lg font-bold>{{ listInfo ? listInfo.title : $t('nav.list') }}</span>
     </template>
     <TimelineList />
     <TimelinePaginator v-bind="{ paginator, stream }" :preprocess="reorderedTimeline" context="home" />

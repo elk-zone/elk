@@ -10,9 +10,12 @@ useHeadFixed({
 </script>
 
 <template>
-  <MainContent back>
+  <MainContent>
     <template #title>
-      <span text-lg font-bold>{{ t('nav.lists') }}</span>
+      <NuxtLink to="/lists" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:list-check />
+        <span text-lg font-bold>{{ t('nav.lists') }}</span>
+      </NuxtLink>
     </template>
     <slot>
       <CommonPaginator :paginator="paginator">

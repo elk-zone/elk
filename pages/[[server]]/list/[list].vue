@@ -7,14 +7,14 @@ const params = useRoute().params
 const listId = $(computedEager(() => params.list as string))
 
 const { client } = $(useMasto())
-const { data: tag, refresh } = $(await useAsyncData(() => client.v1.timelines.listList(listId, { limit: 30 }), { default: () => shallowRef() }))
+const { data: listInfo, refresh } = $(await useAsyncData(() => client.v1.lists.fetch(listId), { default: () => shallowRef() }))
 
 const paginator = client.v1.timelines.listList(listId)
 const stream = useStreaming(client => client.v1.stream.streamListTimeline(listId))
 
-if (tag) {
+if (listInfo) {
   useHeadFixed({
-    title: () => `#${tag.name}`,
+    title: () => `${listInfo.title}`,
   })
 }
 
@@ -28,13 +28,12 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <NuxtLink to="/home" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:home-5-line />
-        <span>{{ $t('nav.home') }}</span>
+      <NuxtLink timeline-title-style flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:list-check />
+        <span>{{ listInfo ? listInfo.title : $t('nav.list') }}</span>
       </NuxtLink>
     </template>
     <TimelineList />
-    <PublishWidget draft-key="home" border="b base" />
     <TimelinePaginator v-bind="{ paginator, stream }" :preprocess="reorderedTimeline" context="home" />
   </MainContent>
 </template>

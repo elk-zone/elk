@@ -510,7 +510,9 @@
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
-    "toggle_code_block": "Toggle code block"
+    "toggle_bold": "Toggle bold",
+    "toggle_code_block": "Toggle code block",
+    "toggle_italic": "Toggle italic"
   },
   "user": {
     "add_existing": "Add an existing account",

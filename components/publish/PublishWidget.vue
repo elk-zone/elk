@@ -272,6 +272,32 @@ defineExpose({
           </CommonTooltip>
         </template>
 
+        <template v-if="editor">
+          <CommonTooltip placement="top" :content="$t('tooltip.toggle_bold')">
+            <button
+              btn-action-icon
+              :aria-label="$t('tooltip.toggle_bold')"
+              :class="editor.isActive('bold') ? 'text-primary' : ''"
+              @click="editor?.chain().focus().toggleBold().run()"
+            >
+              <div i-ri:bold />
+            </button>
+          </CommonTooltip>
+        </template>
+
+        <template v-if="editor">
+          <CommonTooltip placement="top" :content="$t('tooltip.toggle_italic')">
+            <button
+              btn-action-icon
+              :aria-label="$t('tooltip.toggle_italic')"
+              :class="editor.isActive('italic') ? 'text-primary' : ''"
+              @click="editor?.chain().focus().toggleItalic().run()"
+            >
+              <div i-ri:italic />
+            </button>
+          </CommonTooltip>
+        </template>
+
         <div flex-auto />
 
         <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap="0.5" :class="{ 'text-rose-500': characterCount > characterLimit }">

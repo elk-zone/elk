@@ -446,8 +446,10 @@
     "edited": "edited {0}"
   },
   "tab": {
+    "accounts": "Accounts",
     "for_you": "For you",
     "hashtags": "Hashtags",
+    "list": "List",
     "media": "Media",
     "news": "News",
     "notifications_all": "All",

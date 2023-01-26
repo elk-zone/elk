@@ -248,6 +248,8 @@
   },
   "pwa": {
     "dismiss": "Dispensar",
+    "install": "Instalar",
+    "install_title": "Instalar Elk",
     "title": "Nova atualização do Elk disponível!",
     "update": "Atualizar",
     "update_available_short": "Atualizar Elk",
@@ -362,6 +364,7 @@
       "enable_autoplay": "Habilitar Reprodução Automática",
       "github_cards": "Cartões do GitHub",
       "grayscale_mode": "Modo tons de cinza",
+      "hide_account_hover_card": "Esconder cartão flutuante de conta",
       "hide_boost_count": "Esconder contagem de partilhas",
       "hide_favorite_count": "Esconder contagem de favoritos",
       "hide_follower_count": "Esconder contagem de seguidores",

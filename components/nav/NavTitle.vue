@@ -25,7 +25,7 @@ router.afterEach(() => {
       text-2xl
       select-none
       focus-visible:ring="2 current"
-      to="/"
+      to="/home"
       :external="router.currentRoute.value.name === 'home'"
       @click.prevent="onClickLogo"
     >

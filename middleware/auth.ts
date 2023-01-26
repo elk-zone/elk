@@ -4,11 +4,6 @@ export default defineNuxtRouteMiddleware((to) => {
   if (to.path === '/signin/callback')
     return
 
-  if (isHydrated.value) {
-    if (to.path === '/')
-      return navigateTo('/home')
-  }
-
   onHydrated(() => {
     if (!currentUser.value) {
       if (to.path === '/home' && to.query['share-target'] !== undefined)

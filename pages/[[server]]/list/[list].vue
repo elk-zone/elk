@@ -30,7 +30,6 @@ onReactivated(() => {
     <template #title>
       <span text-lg font-bold>{{ listInfo ? listInfo.title : $t('nav.list') }}</span>
     </template>
-    <TimelineList />
     <TimelinePaginator v-bind="{ paginator, stream }" :preprocess="reorderedTimeline" context="home" />
   </MainContent>
 </template>

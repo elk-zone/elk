@@ -270,9 +270,6 @@ defineExpose({
               <div i-ri:code-s-slash-line />
             </button>
           </CommonTooltip>
-        </template>
-
-        <template v-if="editor">
           <CommonTooltip placement="top" :content="$t('tooltip.toggle_bold')">
             <button
               btn-action-icon
@@ -283,9 +280,6 @@ defineExpose({
               <div i-ri:bold />
             </button>
           </CommonTooltip>
-        </template>
-
-        <template v-if="editor">
           <CommonTooltip placement="top" :content="$t('tooltip.toggle_italic')">
             <button
               btn-action-icon

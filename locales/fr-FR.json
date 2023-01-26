@@ -130,7 +130,7 @@
     },
     "show_reblogs": {
       "cancel": "Annuler",
-      "confirm": "Montrer",
+      "confirm": "Afficher",
       "title": "Voulez-vous vraiment afficher les partages de {0} ?"
     },
     "unfollow": {
@@ -158,6 +158,12 @@
     "unsupported_file_format": "Format de fichier non supporté"
   },
   "help": {
+    "build_preview": {
+      "desc1": "Vous consultez actuellement une version d'aperçu d'Elk de la communauté - {0}.",
+      "desc2": "Elle peut contenir des modifications non révisées voire même malveillantes.",
+      "desc3": "Ne vous connectez pas avec votre compte réel.",
+      "title": "Aperçu du déploiement"
+    },
     "desc_highlight": "Il est possible de rencontrer, par-ci par-là, quelques bugs et fonctionnalités manquantes.",
     "desc_para1": "Merci de l'intérêt pour Elk, notre client Mastodon en cours de développement !",
     "desc_para2": "Nous travaillons dur sur le développement et l'améliorons au fur et à mesure. Nous allons open-sourcer l'application une fois qu'elle sera prête pour un usage public.",
@@ -174,11 +180,15 @@
     "block_account": "Bloquer {0}",
     "block_domain": "Bloquer le domaine {0}",
     "copy_link_to_post": "Copier le lien du message",
+    "copy_original_link_to_post": "Copiez le lien d'origine vers ce message",
     "delete": "Supprimer",
     "delete_and_redraft": "Supprimer et réécrire",
+    "delete_confirm": {
+      "cancel": ""
+    },
     "direct_message_account": "Message direct à {0}",
     "edit": "Éditer",
-    "hide_reblogs": "Cacher les boosts de {0}",
+    "hide_reblogs": "Cacher les partages de {0}",
     "mention_account": "Mentionner {0}",
     "mute_account": "Mettre en sourdine {0}",
     "mute_conversation": "Message muet",
@@ -243,6 +253,8 @@
   },
   "pwa": {
     "dismiss": "Fermer",
+    "install": "Installer",
+    "install_title": "Installer Elk",
     "title": "Nouvelle mise à jour Elk disponible !",
     "update": "Mettre à jour",
     "update_available_short": "Mettre à jour Elk",
@@ -282,7 +294,8 @@
       "sponsors": "Donateur·ice·s",
       "sponsors_body_1": "Elk existe grâce aux généreux soutien de :",
       "sponsors_body_2": "Et toutes les personnes et sociétés soutenant l'équipe Elk et ses membres.",
-      "sponsors_body_3": "Si vous appréciez l'application, envisagez de nous soutenir :"
+      "sponsors_body_3": "Si vous appréciez l'application, envisagez de nous soutenir :",
+      "version": "Version"
     },
     "account_settings": {
       "description": "Modifiez les paramètres de votre compte dans l'interface de Mastodon",
@@ -295,13 +308,6 @@
       "font_size": "Taille de police",
       "label": "Interface",
       "light_mode": "Mode lumineux",
-      "size_label": {
-        "lg": "Grande",
-        "md": "Moyenne",
-        "sm": "Petite",
-        "xl": "Très grande",
-        "xs": "Très petite"
-      },
       "system_mode": "Système",
       "theme_color": "Couleur du thème"
     },
@@ -360,6 +366,7 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "enable_autoplay": "Activer la lecture automatique",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Mode niveaux de gris",
       "hide_boost_count": "Cacher les compteurs de partages",
@@ -414,7 +421,6 @@
     "edited": "Edité {0}",
     "favourited_by": "Aimé par",
     "filter_hidden_phrase": "Filtré par",
-    "filter_removed_phrase": "Caché par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
     "img_alt": {
       "desc": "Description",

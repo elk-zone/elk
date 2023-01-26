@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
 
+export interface CommonRouteTabOption {
+  to: RouteLocationRaw
+  display: string
+  disabled?: boolean
+  name?: string
+  icon?: string
+}
 const { options, command, replace, preventScrollTop = false } = $defineProps<{
-  options: {
-    to: RouteLocationRaw
-    display: string
-    disabled?: boolean
-    name?: string
-    icon?: string
-  }[]
+  options: CommonRouteTabOption[]
   command?: boolean
   replace?: boolean
   preventScrollTop?: boolean

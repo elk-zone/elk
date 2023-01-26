@@ -39,14 +39,18 @@ const clickUser = (user: UserLogin) => {
     </template>
     <div border="t base" pt2>
       <CommonDropdownItem
+        is="button"
         :text="$t('user.add_existing')"
         icon="i-ri:user-add-line"
+        w-full
         @click="openSigninDialog"
       />
       <CommonDropdownItem
+        is="button"
         v-if="isHydrated && currentUser"
         :text="$t('user.sign_out_account', [getFullHandle(currentUser.account)])"
         icon="i-ri:logout-box-line rtl-flip"
+        w-full
         @click="signout"
       />
     </div>

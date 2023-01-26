@@ -19,7 +19,7 @@ async function openEmojiPicker() {
     })
   }
   else {
-    const promise = import('@emoji-mart/data').then(r => r.default)
+    const promise = import('@emoji-mart/data/sets/14/twitter.json').then(r => r.default)
     const { Picker } = await import('emoji-mart')
     picker = new Picker({
       data: () => promise,
@@ -28,6 +28,7 @@ async function openEmojiPicker() {
           ? emit('select', native)
           : emit('selectCustom', { src, alt, 'data-emoji-id': name })
       },
+      set: 'twitter',
       theme: colorMode.value,
       custom: customEmojisData.value,
     })

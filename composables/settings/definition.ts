@@ -1,12 +1,19 @@
 import { DEFAULT_FONT_SIZE } from '~/constants'
 
-export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type FontSize = `${number}px`
+
+// Temporary type for backward compatibility
+export type OldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
 export type ColorMode = 'light' | 'dark' | 'system'
 
 export interface PreferencesSettings {
   hideBoostCount: boolean
+  hideReplyCount: boolean
   hideFavoriteCount: boolean
   hideFollowerCount: boolean
+  hideTranslation: boolean
+  hideAccountHoverCard: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
   experimentalVirtualScroller: boolean
@@ -56,8 +63,11 @@ export function getDefaultUserSettings(locales: string[]): UserSettings {
 
 export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideBoostCount: false,
+  hideReplyCount: false,
   hideFavoriteCount: false,
   hideFollowerCount: false,
+  hideTranslation: false,
+  hideAccountHoverCard: false,
   grayscaleMode: false,
   enableAutoplay: true,
   experimentalVirtualScroller: true,

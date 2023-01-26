@@ -1,7 +1,7 @@
 export const APP_NAME = 'Elk'
 
 export const DEFAULT_POST_CHARS_LIMIT = 500
-export const DEFAULT_FONT_SIZE = 'md'
+export const DEFAULT_FONT_SIZE = '15px'
 
 export const STORAGE_KEY_DRAFTS = 'elk-drafts'
 export const STORAGE_KEY_USERS = 'elk-users'
@@ -18,6 +18,7 @@ export const STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS = 'elk-hide-explore-news-tips'
 export const STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS = 'elk-hide-explore-tags-tips'
 export const STORAGE_KEY_NOTIFICATION = 'elk-notification'
 export const STORAGE_KEY_NOTIFICATION_POLICY = 'elk-notification-policy'
+export const STORAGE_KEY_PWA_HIDE_INSTALL = 'elk-pwa-hide-install'
 
 export const COOKIE_MAX_AGE = 10 * 365 * 24 * 60 * 60 * 1000
 

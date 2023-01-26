@@ -1,4 +1,3 @@
-/* eslint-disable vue/one-component-per-file */
 import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
@@ -286,23 +285,37 @@ vi.mock('shiki-es', async (importOriginal) => {
   }
 })
 
+vi.mock('~/components/content/ContentCode.vue', () => {
+  return {
+    default: {
+      props: {
+        code: String,
+        lang: String,
+      },
+      setup(props: any) {
+        return () => h('pre', { class: 'code-block' }, { default: () => decodeURIComponent(props.code || '').replace(/&#39;/g, '\'') })
+      },
+    },
+  }
+})
+
 vi.mock('~/components/content/ContentMentionGroup.vue', () => {
   return {
-    default: defineComponent({
-      setup(props, { slots }) {
+    default: {
+      setup(props: any, { slots }: any) {
         return () => h('mention-group', null, { default: () => slots?.default?.() })
       },
-    }),
+    },
   }
 })
 
 vi.mock('~/components/account/AccountHoverWrapper.vue', () => {
   return {
-    default: defineComponent({
+    default: {
       props: ['handle', 'class'],
-      setup(_, { slots }) {
+      setup(_: any, { slots }: any) {
         return () => slots?.default?.()
       },
-    }),
+    },
   }
 })

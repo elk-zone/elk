@@ -176,6 +176,7 @@
   },
   "list": {
     "add_account": "Add account to list",
+    "modify_account": "Modify lists with account",
     "remove_account": "Remove account from list"
   },
   "menu": {

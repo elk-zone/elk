@@ -1,24 +1,33 @@
 <script setup lang="ts">
 import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
 
-const params = useRoute().params
-const listId = $(computedEager(() => params.list as string))
+const list = $computed(() => useRoute().params.list as string)
+const server = $computed(() => useRoute().params.server as string)
 
 const { t } = useI18n()
 
 const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
-    to: `/${currentServer.value}/list/${listId}`,
+    to: {
+      name: 'list',
+      params: { server, list },
+    },
     display: t('tab.list'),
+    icon: 'i-ri:list-unordered',
   },
   {
-    to: `/${currentServer.value}/list/${listId}/accounts`,
+    to: {
+      name: 'list-accounts',
+      params: { server, list },
+    },
     display: t('tab.accounts'),
+    icon: 'i-ri:user-line',
   },
-])
+],
+)
 
 const { client } = $(useMasto())
-const { data: listInfo, refresh } = $(await useAsyncData(() => client.v1.lists.fetch(listId), { default: () => shallowRef() }))
+const { data: listInfo, refresh } = $(await useAsyncData(() => client.v1.lists.fetch(list), { default: () => shallowRef() }))
 
 if (listInfo) {
   useHeadFixed({
@@ -36,7 +45,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>{{ listInfo ? listInfo.title : $t('nav.list') }}</span>
+      <span text-lg font-bold>{{ listInfo ? listInfo.title : t('nav.list') }}</span>
     </template>
     <template #header>
       <CommonRouteTabs replace :options="tabs" />

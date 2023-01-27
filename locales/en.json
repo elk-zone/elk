@@ -174,6 +174,11 @@
   "language": {
     "search": "Search"
   },
+  "list": {
+    "add_account": "Add account to list",
+    "modify_account": "Modify lists with account",
+    "remove_account": "Remove account from list"
+  },
   "menu": {
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
@@ -447,8 +452,10 @@
     "edited": "edited {0}"
   },
   "tab": {
+    "accounts": "Accounts",
     "for_you": "For you",
     "hashtags": "Hashtags",
+    "list": "List",
     "media": "Media",
     "news": "News",
     "notifications_all": "All",

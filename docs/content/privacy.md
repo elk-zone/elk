@@ -34,5 +34,5 @@ When we update this privacy notice, the updated version will be indicated by a n
 
 ## Contact
 
-If you have questions or comments about this notice, you may email us at daniel@roe.dev.
+If you have questions or comments about this notice, you may raise an issue at https://github.com/elk-zone/elk.
 

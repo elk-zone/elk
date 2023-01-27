@@ -33,7 +33,7 @@ async function edit(listId: string) {
   <CommonPaginator no-end-message :paginator="paginator">
     <template #default="{ item }">
       <button
-        p4 hover:bg-active flex justify-between
+        p4 hover:bg-active block w="100%"
         :class="indexOfUserInList(item.id) === -1 ? 'text-green' : 'text-red'"
         :aria-label="indexOfUserInList(item.id) === -1 ? $t('list.add_account') : $t('list.remove_account')"
         @click="() => edit(item.id)"

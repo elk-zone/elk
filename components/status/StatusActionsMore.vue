@@ -31,8 +31,9 @@ const { client } = $(useMasto())
 
 const getPermalinkUrl = (status: mastodon.v1.Status) => {
   const url = getStatusPermalinkRoute(status)
+
   if (url)
-    return `${location.origin}/${url}`
+    return !import.meta.env.TAURI_PLATFORM ? `${location.origin}/${url}` : `https://elk.zone/${url}`
   return null
 }
 

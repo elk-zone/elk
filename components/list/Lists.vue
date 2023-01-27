@@ -39,7 +39,7 @@ async function edit(listId: string) {
           :hover="indexOfUserInList(item.id) === -1 ? 'text-green' : 'text-red'"
         >
           <button
-            :class="indexOfUserInList(item.id) === -1 ? 'i-ri:user-follow-line' : 'i-ri:user-unfollow-line'"
+            :class="indexOfUserInList(item.id) === -1 ? 'i-ri:user-add-line' : 'i-ri:user-unfollow-line'"
             text-xl @click="() => edit(item.id)"
           />
         </CommonTooltip>

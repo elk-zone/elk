@@ -9,6 +9,7 @@ export type ColorMode = 'light' | 'dark' | 'system'
 
 export interface PreferencesSettings {
   hideBoostCount: boolean
+  hideReplyCount: boolean
   hideFavoriteCount: boolean
   hideFollowerCount: boolean
   hideTranslation: boolean
@@ -62,6 +63,7 @@ export function getDefaultUserSettings(locales: string[]): UserSettings {
 
 export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideBoostCount: false,
+  hideReplyCount: false,
   hideFavoriteCount: false,
   hideFollowerCount: false,
   hideTranslation: false,

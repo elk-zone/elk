@@ -12,8 +12,9 @@ const paginator = useMastoClient().v1.lists.listAccounts(listId)
 <template>
   <CommonPaginator :paginator="paginator">
     <template #default="{ item }">
-      <AccountCard
+      <ListAccount
         :account="item"
+        :list="listId"
         hover-card
         border="b base" py2 px4
       />

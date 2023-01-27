@@ -50,7 +50,7 @@ const isGrayscale = usePreferences('grayscaleMode')
           </slot>
         </div>
       </aside>
-      <div w-full min-h-screen border-base>
+      <div w-full min-h-screen :class="isHydrated && wideLayout ? 'xl:w-full sm:w-600px' : 'sm:w-600px md:shrink-0'" border-base>
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
@@ -59,12 +59,13 @@ const isGrayscale = usePreferences('grayscaleMode')
           <NavBottom v-if="isHydrated" sm:hidden />
         </div>
       </div>
-      <aside v-if="isHydrated && !wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide native:lg:w-full">
+      <aside v-if="isHydrated && !wideLayout" class="hidden sm:none lg:block w-1/4 zen-hide">
         <div sticky top-0 h-screen flex="~ col" gap-2 py3 ms-2>
           <slot name="right">
             <div flex-auto />
 
             <PwaPrompt />
+            <PwaInstallPrompt />
             <LazyCommonPreviewPrompt v-if="info.env === 'preview'" />
             <NavFooter />
           </slot>

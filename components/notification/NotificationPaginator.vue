@@ -27,6 +27,10 @@ const groupId = (item: mastodon.v1.Notification): string => {
   return JSON.stringify(id)
 }
 
+function hasHeader(account: mastodon.v1.Account) {
+  return !account.header.endsWith('/original/missing.png')
+}
+
 function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   const results: NotificationSlot[] = []
 
@@ -44,31 +48,31 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
     // This normally happens when you transfer an account, if not, show
     // a big profile card for each follow
     if (group[0].type === 'follow') {
-      let groups: mastodon.v1.Notification[] = []
+      // Order group by followers count
+      const processedGroup = [...group]
+      processedGroup.sort((a, b) => {
+        const aHasHeader = hasHeader(a.account)
+        const bHasHeader = hasHeader(b.account)
+        if (bHasHeader && !aHasHeader)
+          return 1
+        if (aHasHeader && !bHasHeader)
+          return -1
+        return b.account.followersCount - a.account.followersCount
+      })
 
-      function newGroup() {
-        if (groups.length > 0) {
-          results.push({
-            id: `grouped-${id++}`,
-            type: 'grouped-follow',
-            items: groups,
-          })
-          groups = []
-        }
+      if (processedGroup.length > 0 && hasHeader(processedGroup[0].account))
+        results.push(processedGroup.shift()!)
+
+      if (processedGroup.length === 1 && hasHeader(processedGroup[0].account))
+        results.push(processedGroup.shift()!)
+
+      if (processedGroup.length > 0) {
+        results.push({
+          id: `grouped-${id++}`,
+          type: 'grouped-follow',
+          items: processedGroup,
+        })
       }
-
-      for (const item of group) {
-        const hasHeader = !item.account.header.endsWith('/original/missing.png')
-        if (hasHeader && (item.account.followersCount > 250 || (group.length === 1 && item.account.followersCount > 25))) {
-          newGroup()
-          results.push(item)
-        }
-        else {
-          groups.push(item)
-        }
-      }
-
-      newGroup()
       return
     }
 
@@ -112,6 +116,12 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   return results
 }
 
+function removeFiltered(items: mastodon.v1.Notification[]): mastodon.v1.Notification[] {
+  return items.filter(item => !item.status?.filtered?.find(
+    filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications'),
+  ))
+}
+
 function preprocess(items: NotificationSlot[]): NotificationSlot[] {
   const flattenedNotifications: mastodon.v1.Notification[] = []
   for (const item of items) {
@@ -131,7 +141,7 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
       flattenedNotifications.push(item)
     }
   }
-  return groupItems(flattenedNotifications)
+  return groupItems(removeFiltered(flattenedNotifications))
 }
 
 const { clearNotifications } = useNotifications()

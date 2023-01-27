@@ -114,9 +114,9 @@ const meta = $computed(() => {
             <span text-secondary leading-tight>{{ meta.details }}</span>
           </NuxtLink>
         </div>
-        <div>
+        <div shrink-0 w-18 sm:w-30>
           <NuxtLink :href="meta.titleUrl" target="_blank" external>
-            <img w-30 aspect-square width="20" height="20" rounded-2 :src="meta.avatar">
+            <img w-full aspect-square width="112" height="112" rounded-2 :src="meta.avatar">
           </NuxtLink>
         </div>
       </div>

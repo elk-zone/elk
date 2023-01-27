@@ -266,13 +266,6 @@
       "font_size": "Schriftgröße",
       "label": "Oberfläche",
       "light_mode": "Helles Farbschema",
-      "size_label": {
-        "lg": "Groß",
-        "md": "Mittel",
-        "sm": "Klein",
-        "xl": "Extra groß",
-        "xs": "Extra klein"
-      },
       "system_mode": "System"
     },
     "language": {
@@ -384,7 +377,6 @@
     "edited": "Zuletzt bearbeitet: {0}",
     "favourited_by": "Favorisiert von",
     "filter_hidden_phrase": "Versteckt durch",
-    "filter_removed_phrase": "Entfernt durch Filter",
     "filter_show_anyway": "Trotzdem zeigen",
     "img_alt": {
       "desc": "Beschreibung",

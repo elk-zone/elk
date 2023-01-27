@@ -253,6 +253,8 @@
   },
   "pwa": {
     "dismiss": "Fermer",
+    "install": "Installer",
+    "install_title": "Installer Elk",
     "title": "Nouvelle mise à jour Elk disponible !",
     "update": "Mettre à jour",
     "update_available_short": "Mettre à jour Elk",
@@ -306,13 +308,6 @@
       "font_size": "Taille de police",
       "label": "Interface",
       "light_mode": "Mode lumineux",
-      "size_label": {
-        "lg": "Grande",
-        "md": "Moyenne",
-        "sm": "Petite",
-        "xl": "Très grande",
-        "xs": "Très petite"
-      },
       "system_mode": "Système",
       "theme_color": "Couleur du thème"
     },
@@ -426,7 +421,6 @@
     "edited": "Edité {0}",
     "favourited_by": "Aimé par",
     "filter_hidden_phrase": "Filtré par",
-    "filter_removed_phrase": "Caché par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
     "img_alt": {
       "desc": "Description",

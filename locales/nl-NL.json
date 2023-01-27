@@ -295,7 +295,6 @@
   "status": {
     "edited": "Aangepast {0}",
     "filter_hidden_phrase": "Gefilterd door",
-    "filter_removed_phrase": "Verwijderd door filter",
     "filter_show_anyway": "Laat toch zien",
     "img_alt": {
       "desc": "Omschrijving",

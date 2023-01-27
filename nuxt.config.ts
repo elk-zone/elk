@@ -93,6 +93,7 @@ export default defineNuxtConfig({
       apiToken: '',
     },
     public: {
+      privacyPolicyUrl: '',
       env: '', // set in build-env module
       buildInfo: {} as BuildInfo, // set in build-env module
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',

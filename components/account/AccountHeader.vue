@@ -117,14 +117,19 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
               <span v-else i-ri-notification-4-line block text-current />
             </button>
           </CommonTooltip>
-          <CommonTooltip v-if="!isSelf && relationship?.following" :content="$t('list.add_account')">
-            <button
-              :aria-label="$t('list.add_account')"
-              rounded-full text-sm p2 border-1 transition-colors
-              border-base hover:text-primary
-            >
-              <span i-ri:play-list-add-fill block text-current />
-            </button>
+          <CommonTooltip :content="$t('list.add_account')">
+            <VDropdown v-if="!isSelf && relationship?.following">
+              <button
+                :aria-label="$t('list.add_account')"
+                rounded-full text-sm p2 border-1 transition-colors
+                border-base hover:text-primary
+              >
+                <span i-ri:play-list-add-fill block text-current />
+              </button>
+              <template #popper>
+                <ListLists :user-id="account.id" />
+              </template>
+            </VDropdown>
           </CommonTooltip>
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->

@@ -158,7 +158,7 @@
   "help": {
     "desc_highlight": "Saatat löytää bugeja ja puuttuvia ominaisuuksia.",
     "desc_para1": "Kiitos, että kokeilet Elkiä, työn alla olevaa web-sovellustamme Mastodonille!",
-    "desc_para2": "teemme kovasti työtä sen sitä kehittäessämme ja parantaessamme.",
+    "desc_para2": "teemme kovasti työtä sitä kehittäessämme ja parantaessamme.",
     "desc_para3": "Voit auttaa kehitystyötä tukemalla tiimiä GitHub Sponsorina. Toivomme, että nautit Elkin käytöstä!",
     "desc_para4": "Elk on avointa lähdekoodia. Jos haluat auttaa testaamalla, palautteella tai koodia lahjoittaen,",
     "desc_para5": "ota meihin yhteyttä GitHubissa",
@@ -348,7 +348,7 @@
         "warning": {
           "enable_close": "Sulje",
           "enable_description": "Saadaksesi ilmoituksia, kun Elk ei ole auki, tilaa push-ilmoituksia. Tilattuasi ilmoitukset voit valita tarkemmin, millaiset vuorovaikutukset tuottavat ilmoituksia \"@:settings.notifications.show_btn{'\"'} -painikeella.",
-          "enable_description_desktop": "Saadaksesi ilmoituksia, kun Elk ei ole auki, tilaa push-ilmoituksia. Tilattuasi ilmoitukset voit valita tarkammin, millaiset vuorovaikutukset tuottavat ilmoituksia käyttämällä \"Asetukset > Ilmoitukset > Push-ilmoitusten asetukset\".",
+          "enable_description_desktop": "Saadaksesi ilmoituksia, kun Elk ei ole auki, tilaa push-ilmoituksia. Tilattuasi ilmoitukset voit valita tarkemmin, millaiset vuorovaikutukset tuottavat ilmoituksia käyttämällä \"Asetukset > Ilmoitukset > Push-ilmoitusten asetukset\".",
           "enable_description_mobile": "Voit säätää asetuksia myös valikosta \"Asetukset > Ilmoitukset > Push-ilmoitusten asetukset\".",
           "enable_description_settings": "Saadaksesi ilmoituksia, kun Elk ei ole auki, tilaa push-ilmoituksia. Tilattuasi ilmoitukset voit valita tarkemmin, millaiset vuorovaikutukset tuottavat ilmoituksia.",
           "enable_desktop": "Tilaa push-ilmoituksia",
@@ -399,7 +399,7 @@
   },
   "share-target": {
     "description": "Voit jakaa sisältöä muilta sovelluksilta asentamalla Elkin laitteeseesi tai tietokoneellesi ja kirjaantumalla sisään.",
-    "hint": "Jos kaluat jakaa sisältöä Elkillä, sovelluksen on oltava asennettu ja sisään kirjautunut.",
+    "hint": "Jos haluat jakaa sisältöä Elkillä, sovelluksen on oltava asennettu ja sisään kirjautunut.",
     "title": "Jaa Elkillä"
   },
   "state": {
@@ -461,8 +461,8 @@
   "time_ago_options": {
     "day_future": "tänään|huomenna|{n} päivässä",
     "day_past": "tänään|eilen|{n} päivää sitten",
-    "hour_future": "tällä tunnilla|in 1 hour|in {n} hours",
-    "hour_past": "tällä tunnilla|1 hour ago|{n} hours ago",
+    "hour_future": "tällä tunnilla|tunnin kuluttua|{n} tunnin kuluttua",
+    "hour_past": "tällä tunnilla|tunti sitten|{n} tuntia sitten",
     "just_now": "juuri nyt",
     "minute_future": "tällä minuutilla|1 minuutissa|in {n} minuutissa",
     "minute_past": "tällä minuutilla|1 minuutti sitten|{n} minuuttia sitten",

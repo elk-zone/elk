@@ -32,14 +32,18 @@ async function edit(listId: string) {
 <template>
   <CommonPaginator no-end-message :paginator="paginator">
     <template #default="{ item }">
-      <button
-        p4 hover:bg-active block w="100%"
-        :class="indexOfUserInList(item.id) === -1 ? 'text-green' : 'text-red'"
-        :aria-label="indexOfUserInList(item.id) === -1 ? $t('list.add_account') : $t('list.remove_account')"
-        @click="() => edit(item.id)"
-      >
-        {{ item.title }}
-      </button>
+      <div p4 hover:bg-active block w="100%" flex justify-between items-center gap-4>
+        <p>{{ item.title }}</p>
+        <CommonTooltip
+          :content="indexOfUserInList(item.id) === -1 ? $t('list.add_account') : $t('list.remove_account')"
+          :hover="indexOfUserInList(item.id) === -1 ? 'text-green' : 'text-red'"
+        >
+          <button
+            :class="indexOfUserInList(item.id) === -1 ? 'i-ri:user-follow-line' : 'i-ri:user-unfollow-line'"
+            text-xl @click="() => edit(item.id)"
+          />
+        </CommonTooltip>
+      </div>
     </template>
   </CommonPaginator>
 </template>

@@ -20,6 +20,4 @@ export const STORAGE_KEY_NOTIFICATION = 'elk-notification'
 export const STORAGE_KEY_NOTIFICATION_POLICY = 'elk-notification-policy'
 export const STORAGE_KEY_PWA_HIDE_INSTALL = 'elk-pwa-hide-install'
 
-export const COOKIE_MAX_AGE = 10 * 365 * 24 * 60 * 60 * 1000
-
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\d-]+\.)+\w+\/(@[@\w\d-\.]+)(\/objects)?(\/\d+)?$/

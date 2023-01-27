@@ -79,7 +79,7 @@
     "@iconify-json/ri": "^1.1.4",
     "@iconify-json/twemoji": "^1.1.10",
     "@nuxtjs/color-mode": "^3.2.0",
-    "@nuxtjs/i18n": "8.0.0-beta.8",
+    "@nuxtjs/i18n": "8.0.0-beta.9",
     "@pinia/nuxt": "^0.4.6",
     "@types/chroma-js": "^2.1.4",
     "@types/file-saver": "^2.0.5",

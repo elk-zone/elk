@@ -8,7 +8,7 @@ const props = defineProps<{
   /** When it is root card in the list, not appear as a child card */
   root?: boolean
   /** Defined when the preview card URL matches the last shared link href attribute */
-  cleanSharedLink?: string
+  cleanSharedLink?: string | false
 }>()
 
 // mastodon's default max og image width

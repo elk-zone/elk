@@ -80,7 +80,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
     :id="`status-${status.id}`"
     ref="el"
     relative flex="~ col gap1"
-    p="l-3 r-4 b-2" rtl-p="l-4 r-3"
+    p="b-2 is-3 ie-4"
     :class="{ 'hover:bg-active': hover }"
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
@@ -96,12 +96,12 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
       <template v-if="status.inReplyToAccountId">
         <StatusReplyingTo
           v-if="showReplyTo"
-          m-is-5 pt-1 p-is-5
+          m="is-5" p="t-1 is-5"
           :status="status"
           :is-self-reply="isSelfReply"
           :class="faded ? 'text-secondary-light' : ''"
         />
-        <div flex="~ col gap-1" items-center pos="absolute top-0" inset-is-0 w="77px" z--1>
+        <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
           <template v-if="showReplyTo">
             <div w="1px" h="0.5" border="x base" mt-3 />
             <div w="1px" h="0.5" border="x base" />

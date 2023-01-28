@@ -23,6 +23,9 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     }
     let webmanifests: LocalizedWebManifest | undefined
 
+    nuxt.options.appConfig = nuxt.options.appConfig || {}
+    nuxt.options.appConfig.pwaEnabled = !nuxt.options.dev || process.env.VITE_DEV_PWA === 'true'
+
     // TODO: combine with configurePWAOptions?
     nuxt.hook('nitro:init', (nitro) => {
       options.outDir = nitro.options.output.publicDir

@@ -7,6 +7,8 @@ const props = defineProps<{
   smallPictureOnly?: boolean
   /** When it is root card in the list, not appear as a child card */
   root?: boolean
+  /** Defined when the preview card URL matches the last shared link href attribute */
+  cleanSharedLink?: string
 }>()
 
 // mastodon's default max og image width
@@ -19,7 +21,7 @@ const isSquare = $computed(() => (
   || Number(props.card.width || 0) < ogImageWidth
   || Number(props.card.height || 0) < ogImageWidth / 2
 ))
-const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
+const providerName = $computed(() => props.card.providerName ? `${props.card.providerName} · ${props.cleanSharedLink}` : new URL(props.card.url).hostname)
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {

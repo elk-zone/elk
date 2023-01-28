@@ -16,6 +16,10 @@ const filter = $computed(() => filterResult?.filter)
 
 const filterPhrase = $computed(() => filter?.title)
 const isFiltered = $computed(() => filterPhrase && (context && context !== 'details' ? filter?.context.includes(context) : false))
+
+const cleanSharedLink = !status.poll
+  && !status.mediaAttachments.length
+  && status.card?.url
 </script>
 
 <template>
@@ -34,7 +38,7 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
       <template v-else-if="status.spoilerText" #spoiler>
         <p>{{ status.spoilerText }}</p>
       </template>
-      <StatusBody v-if="!status.sensitive || status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+      <StatusBody v-if="!status.sensitive || status.spoilerText" :clean-shared-link="cleanSharedLink" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
       <StatusTranslation :status="status" />
       <StatusPoll v-if="status.poll" :status="status" />
       <StatusMedia
@@ -45,6 +49,7 @@ const isFiltered = $computed(() => filterPhrase && (context && context !== 'deta
         v-if="status.card"
         :card="status.card"
         :small-picture-only="status.mediaAttachments?.length > 0"
+        :clean-shared-link="cleanSharedLink"
       />
       <StatusCard
         v-if="status.reblog"

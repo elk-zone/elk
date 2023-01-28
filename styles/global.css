@@ -39,6 +39,7 @@ body {
   vertical-align: text-bottom;
 }
 
+.content-editor .custom-emoji img,
 .custom-emoji img {
   max-height: 1.3em;
   max-width: 1.3em;

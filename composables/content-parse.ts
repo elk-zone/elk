@@ -132,7 +132,7 @@ export function parseMastodonHTML(
   const node = parse(html) as Node
 
   if (cleanSharedLink) {
-    const filteredNode = node.children.filter(child => !!child.children) // remove invisible spans
+    const filteredNode = node.children.filter((child: Node) => !!child.children) // remove invisible spans
     const filteredLength = filteredNode.length
     const length = filteredNode[filteredLength - 1].children.length
     const lastChild = filteredNode[filteredLength - 1].children[length - 1]

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useIsMac } from '~/composables/misc'
 import type { SearchResult as SearchResultType } from '~/composables/masto/search'
 import type { CommandScope, QueryResult, QueryResultItem } from '~/composables/command'
 
@@ -64,7 +65,7 @@ const result = $computed<QueryResult>(() => commandMode
   : searchResult,
 )
 
-const modifierKeyName = $computed(() => navigator.userAgentData?.platform === 'macOS' ? 'Command' : 'Ctrl')
+const modifierKeyName = $computed(() => useIsMac() ? 'Command' : 'Ctrl')
 
 let active = $ref(0)
 watch($$(result), (n, o) => {

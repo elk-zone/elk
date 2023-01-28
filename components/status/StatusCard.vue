@@ -96,13 +96,12 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
       <template v-if="status.inReplyToAccountId">
         <StatusReplyingTo
           v-if="showReplyTo"
-          m="l-5" rtl-m="l-0 r-5"
-          p="t-1 l-5" rtl-p="l-0 r-5"
+          m-is-5 pt-1 p-is-5
           :status="status"
           :is-self-reply="isSelfReply"
           :class="faded ? 'text-secondary-light' : ''"
         />
-        <div flex="~ col gap-1" items-center pos="absolute top-0 left-0" rtl="pos-left-auto right-0" w="77px" z--1>
+        <div flex="~ col gap-1" items-center pos="absolute top-0" inset-is-0 w="77px" z--1>
           <template v-if="showReplyTo">
             <div w="1px" h="0.5" border="x base" mt-3 />
             <div w="1px" h="0.5" border="x base" />

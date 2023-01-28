@@ -1,0 +1,7 @@
+{
+  "bot": {
+    "issues": {
+      "trigger": "all-issues"
+    }
+  }
+}

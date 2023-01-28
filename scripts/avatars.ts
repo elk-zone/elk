@@ -16,7 +16,9 @@ async function download(url: string, fileName: string) {
     const image = await $fetch(url, { responseType: 'arrayBuffer' })
     await fs.writeFile(fileName, Buffer.from(image))
   }
-  catch {}
+  catch (err) {
+    console.error(err)
+  }
 }
 
 async function fetchAvatars() {

@@ -8,10 +8,14 @@ import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 export interface ContentParseOptions {
   emojis?: Record<string, mastodon.v1.CustomEmoji>
+  mentions?: mastodon.v1.StatusMention[]
   markdown?: boolean
   replaceUnicodeEmoji?: boolean
   astTransforms?: Transform[]
   convertMentionLink?: boolean
+  collapseMentionLink?: boolean
+  status?: mastodon.v1.Status
+  inReplyToStatus?: mastodon.v1.Status
 }
 
 const sanitizerBasicClasses = filterClasses(/^(h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible)$/u)
@@ -33,6 +37,35 @@ const sanitizer = sanitize({
   code: {
     class: filterClasses(/^language-\w+$/),
   },
+  // Other elements supported in glitch, as seen in
+  // https://github.com/glitch-soc/mastodon/blob/13227e1dafd308dfe1a3effc3379b766274809b3/lib/sanitize_ext/sanitize_config.rb#L75
+  abbr: {
+    title: keep,
+  },
+  del: {},
+  blockquote: {
+    cite: filterHref(),
+  },
+  b: {},
+  strong: {},
+  u: {},
+  sub: {},
+  sup: {},
+  i: {},
+  em: {},
+  h1: {},
+  h2: {},
+  h3: {},
+  h4: {},
+  h5: {},
+  ul: {},
+  ol: {
+    start: keep,
+    reversed: keep,
+  },
+  li: {
+    value: keep,
+  },
 })
 
 /**
@@ -47,13 +80,20 @@ export function parseMastodonHTML(
     markdown = true,
     replaceUnicodeEmoji = true,
     convertMentionLink = false,
+    collapseMentionLink = false,
+    mentions,
+    status,
+    inReplyToStatus,
   } = options
 
   if (markdown) {
     // Handle code blocks
     html = html
       .replace(/>(```|~~~)(\w*)([\s\S]+?)\1/g, (_1, _2, lang: string, raw: string) => {
-        const code = htmlToText(raw).replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        const code = htmlToText(raw)
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/`/g, '&#96;')
         const classes = lang ? ` class="language-${lang}"` : ''
         return `><pre><code${classes}>${code}</code></pre>`
       })
@@ -74,12 +114,18 @@ export function parseMastodonHTML(
   if (markdown)
     transforms.push(transformMarkdown)
 
+  if (mentions?.length)
+    transforms.push(createTransformNamedMentions(mentions))
+
   if (convertMentionLink)
     transforms.push(transformMentionLink)
 
   transforms.push(replaceCustomEmoji(options.emojis || {}))
 
   transforms.push(transformParagraphs)
+
+  if (collapseMentionLink)
+    transforms.push(transformCollapseMentions(status, inReplyToStatus))
 
   return transformSync(parse(html), transforms)
 }
@@ -98,8 +144,14 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
 }
 
 export function htmlToText(html: string) {
-  const tree = parse(html)
-  return (tree.children as Node[]).map(n => treeToText(n)).join('').trim()
+  try {
+    const tree = parse(html)
+    return (tree.children as Node[]).map(n => treeToText(n)).join('').trim()
+  }
+  catch (err) {
+    console.error(err)
+    return ''
+  }
 }
 
 export function treeToText(input: Node): string {
@@ -115,6 +167,12 @@ export function treeToText(input: Node): string {
 
   if (['p', 'pre'].includes(input.name))
     pre = '\n'
+
+  if (input.attributes?.['data-type'] === 'mention') {
+    const acct = input.attributes['data-id']
+    if (acct)
+      return acct.startsWith('@') ? acct : `@${acct}`
+  }
 
   if (input.name === 'code') {
     if (input.parent?.name === 'pre') {
@@ -144,7 +202,7 @@ export function treeToText(input: Node): string {
   if ('children' in input)
     body = (input.children as Node[]).map(n => treeToText(n)).join('')
 
-  if (input.name === 'img') {
+  if (input.name === 'img' || input.name === 'picture') {
     if (input.attributes.class?.includes('custom-emoji'))
       return `:${input.attributes['data-emoji-id']}:`
     if (input.attributes.class?.includes('iconify-emoji'))
@@ -160,16 +218,16 @@ export function treeToText(input: Node): string {
 // Strings get converted to text nodes.
 // The input node's children have been transformed before the node itself
 // gets transformed.
-type Transform = (node: Node) => (Node | string)[] | Node | string | null
+type Transform = (node: Node, root: Node) => (Node | string)[] | Node | string | null
 
 // Helpers for transforming (filtering, modifying, ...) a parsed HTML tree
 // by running the given chain of transform functions one-by-one.
 function transformSync(doc: Node, transforms: Transform[]) {
-  function visit(node: Node, transform: Transform, isRoot = false) {
+  function visit(node: Node, transform: Transform, root: Node) {
     if (Array.isArray(node.children)) {
       const children = [] as (Node | string)[]
       for (let i = 0; i < node.children.length; i++) {
-        const result = visit(node.children[i], transform)
+        const result = visit(node.children[i], transform, root)
         if (Array.isArray(result))
           children.push(...result)
 
@@ -184,11 +242,11 @@ function transformSync(doc: Node, transforms: Transform[]) {
         return value
       })
     }
-    return isRoot ? node : transform(node)
+    return transform(node, root)
   }
 
   for (const transform of transforms)
-    doc = visit(doc, transform, true) as Node
+    doc = visit(doc, transform, doc) as Node
 
   return doc
 }
@@ -222,6 +280,10 @@ function filterClasses(allowed: RegExp) {
 
     return c.split(/\s/g).filter(cls => allowed.test(cls)).join(' ')
   }
+}
+
+function keep(value: string | undefined) {
+  return value
 }
 
 function set(value: string) {
@@ -301,11 +363,34 @@ function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji
       if (i % 2 === 0)
         return name
 
-      const emoji = customEmojis[name]
+      const emoji = customEmojis[name] as mastodon.v1.CustomEmoji
       if (!emoji)
         return `:${name}:`
 
-      return h('img', { 'src': emoji.url, 'alt': `:${name}:`, 'class': 'custom-emoji', 'data-emoji-id': name })
+      return h(
+        'picture',
+        {
+          'alt': `:${name}:`,
+          'class': 'custom-emoji',
+          'data-emoji-id': name,
+        },
+        [
+          h(
+            'source',
+            {
+              srcset: emoji.staticUrl,
+              media: '(prefers-reduced-motion: reduce)',
+            },
+          ),
+          h(
+            'img',
+            {
+              src: emoji.url,
+              alt: `:${name}:`,
+            },
+          ),
+        ],
+      )
     }).filter(Boolean)
   }
 }
@@ -362,18 +447,133 @@ function transformParagraphs(node: Node): Node | Node[] {
   return node
 }
 
+function isMention(node: Node) {
+  const child = node.children?.length === 1 ? node.children[0] : null
+  return Boolean(child?.name === 'a' && child.attributes.class?.includes('mention'))
+}
+
+function isSpacing(node: Node) {
+  return node.type === TEXT_NODE && !node.value.trim()
+}
+
+// Extract the username from a known mention node
+function getMentionHandle(node: Node): string | undefined {
+  return hrefToHandle(node.children?.[0].attributes.href) ?? node.children?.[0]?.children?.[0]?.attributes?.['data-id']
+}
+
+function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?: mastodon.v1.Status): Transform {
+  let processed = false
+
+  return (node: Node, root: Node): Node | Node[] => {
+    if (processed || node.parent !== root || !node.children)
+      return node
+    const mentions: (Node | undefined)[] = []
+    const children = node.children as Node[]
+    let trimContentStart: (() => void) | undefined
+    for (const child of children) {
+      // mention
+      if (isMention(child)) {
+        mentions.push(child)
+      }
+      // spaces in between
+      else if (isSpacing(child)) {
+        mentions.push(child)
+      }
+      // other content, stop collapsing
+      else {
+        if (child.type === TEXT_NODE) {
+          trimContentStart = () => {
+            child.value = child.value.trimStart()
+          }
+        }
+        // remove <br> after mention
+        if (child.name === 'br')
+          mentions.push(undefined)
+        break
+      }
+    }
+    processed = true
+    if (mentions.length === 0)
+      return node
+
+    let mentionsCount = 0
+    let contextualMentionsCount = 0
+    let removeNextSpacing = false
+
+    const contextualMentions = mentions.filter((mention) => {
+      if (!mention)
+        return false
+
+      if (removeNextSpacing && isSpacing(mention)) {
+        removeNextSpacing = false
+        return false
+      }
+
+      if (isMention(mention)) {
+        mentionsCount++
+        if (inReplyToStatus) {
+          const mentionHandle = getMentionHandle(mention)
+          if (inReplyToStatus.account.acct === mentionHandle || inReplyToStatus.mentions.some(m => m.acct === mentionHandle)) {
+            removeNextSpacing = true
+            return false
+          }
+        }
+        contextualMentionsCount++
+      }
+      return true
+    }) as Node[]
+
+    // We have a special case for single mentions that are part of a reply.
+    // We already have the replying to badge in this case or the status is connected to the previous one.
+    // This is needed because the status doesn't included the in Reply to handle, only the account id.
+    // But this covers the majority of cases.
+    const showMentions = !(contextualMentionsCount === 0 || (mentionsCount === 1 && status?.inReplyToAccountId))
+    const grouped = contextualMentionsCount > 2
+    if (!showMentions || grouped)
+      trimContentStart?.()
+
+    const contextualChildren = children.slice(mentions.length)
+    const mentionNodes = showMentions ? (grouped ? [h('mention-group', null, ...contextualMentions)] : contextualMentions) : []
+    return {
+      ...node,
+      children: [...mentionNodes, ...contextualChildren],
+    }
+  }
+}
+
+function hrefToHandle(href: string): string | undefined {
+  const matchUser = href.match(UserLinkRE)
+  if (matchUser) {
+    const [, server, username] = matchUser
+    return `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
+  }
+}
+
 function transformMentionLink(node: Node): string | Node | (string | Node)[] | null {
   if (node.name === 'a' && node.attributes.class?.includes('mention')) {
     const href = node.attributes.href
     if (href) {
-      const matchUser = href.match(UserLinkRE)
-      if (matchUser) {
-        const [, server, username] = matchUser
-        const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
-        // convert to TipTap mention node
+      const handle = hrefToHandle(href)
+      if (handle) {
+        // convert to Tiptap mention node
         return h('span', { 'data-type': 'mention', 'data-id': handle }, handle)
       }
     }
   }
   return node
+}
+
+function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[]) {
+  return (node: Node): string | Node | (string | Node)[] | null => {
+    if (node.name === 'a' && node.attributes.class?.includes('mention')) {
+      const href = node.attributes.href
+      const mention = href && mentions.find(m => m.url === href)
+      if (mention) {
+        node.attributes.href = `/${currentServer.value}/@${mention.acct}`
+        node.children = [h('span', { 'data-type': 'mention', 'data-id': mention.acct }, `@${mention.username}`)]
+        return node
+      }
+    }
+    return node
+  }
 }

@@ -35,7 +35,7 @@ const createEmojiRule = <NR extends typeof nodeInputRule | typeof nodePasteRule>
   ]
 }
 
-export const Emoji = Node.create({
+export const TiptapPluginEmoji = Node.create({
   name: 'em-emoji',
 
   inline: () => true,

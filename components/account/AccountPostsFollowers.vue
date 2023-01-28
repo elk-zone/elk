@@ -4,6 +4,8 @@ import type { mastodon } from 'masto'
 defineProps<{
   account: mastodon.v1.Account
 }>()
+
+const userSettings = useUserSettings()
 </script>
 
 <template>
@@ -38,7 +40,7 @@ defineProps<{
       </template>
     </NuxtLink>
     <NuxtLink
-      v-if="!getWellnessSetting('hideFollowerCount')"
+      v-if="!getPreferences(userSettings, 'hideFollowerCount')"
       :to="getAccountFollowersRoute(account)"
       replace text-secondary
       exact-active-class="text-primary"

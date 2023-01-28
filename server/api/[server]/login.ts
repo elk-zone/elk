@@ -1,10 +1,10 @@
 import { stringifyQuery } from 'ufo'
-import { createError, defineEventHandler, getRouterParams } from 'h3'
+import { createError, defineEventHandler, getRouterParams, readBody } from 'h3'
 import { getApp, getRedirectURI } from '~/server/shared'
 
 export default defineEventHandler(async (event) => {
   let { server } = getRouterParams(event)
-  const { origin } = await readBody(event)
+  const { origin, force_login, lang } = await readBody(event)
   server = server.toLocaleLowerCase().trim()
   const app = await getApp(origin, server)
 
@@ -17,9 +17,11 @@ export default defineEventHandler(async (event) => {
 
   const query = stringifyQuery({
     client_id: app.client_id,
+    force_login: force_login === true ? 'true' : 'false',
     scope: 'read write follow push',
     redirect_uri: getRedirectURI(origin, server),
     response_type: 'code',
+    lang,
   })
 
   return `https://${server}/oauth/authorize?${query}`

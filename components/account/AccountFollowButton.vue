@@ -8,18 +8,28 @@ const { account, command, context, ...props } = defineProps<{
   command?: boolean
 }>()
 
-const isSelf = $computed(() => currentUser.value?.account.id === account.id)
+const { t } = useI18n()
+const isSelf = $(useSelfAccount(() => account))
 const enable = $computed(() => !isSelf && currentUser.value)
 const relationship = $computed(() => props.relationship || useRelationship(account).value)
 
-const masto = useMasto()
+const { client } = $(useMasto())
 async function toggleFollow() {
+  if (relationship!.following) {
+    if (await openConfirmDialog({
+      title: t('confirm.unfollow.title'),
+      confirm: t('confirm.unfollow.confirm'),
+      cancel: t('confirm.unfollow.cancel'),
+    }) !== 'confirm')
+      return
+  }
   relationship!.following = !relationship!.following
   try {
-    const newRel = await masto.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+    const newRel = await client.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
     Object.assign(relationship!, newRel)
   }
-  catch {
+  catch (err) {
+    console.error(err)
     // TODO error handling
     relationship!.following = !relationship!.following
   }
@@ -28,10 +38,11 @@ async function toggleFollow() {
 async function unblock() {
   relationship!.blocking = false
   try {
-    const newRel = await masto.v1.accounts.unblock(account.id)
+    const newRel = await client.v1.accounts.unblock(account.id)
     Object.assign(relationship!, newRel)
   }
-  catch {
+  catch (err) {
+    console.error(err)
     // TODO error handling
     relationship!.blocking = true
   }
@@ -40,16 +51,15 @@ async function unblock() {
 async function unmute() {
   relationship!.muting = false
   try {
-    const newRel = await masto.v1.accounts.unmute(account.id)
+    const newRel = await client.v1.accounts.unmute(account.id)
     Object.assign(relationship!, newRel)
   }
-  catch {
+  catch (err) {
+    console.error(err)
     // TODO error handling
     relationship!.muting = true
   }
 }
-
-const { t } = useI18n()
 
 useCommand({
   scope: 'Actions',

@@ -9,6 +9,7 @@ const props = defineProps<{
   disabled?: boolean
   external?: true
   large?: true
+  match?: boolean
 }>()
 
 const router = useRouter()
@@ -39,7 +40,7 @@ useCommand({
     :to="to"
     :external="external"
     exact-active-class="text-primary"
-    :class="disabled ? 'op25 pointer-events-none ' : ''"
+    :class="disabled ? 'op25 pointer-events-none ' : match ? 'text-primary' : ''"
     block w-full group focus:outline-none
     :tabindex="disabled ? -1 : null"
     @click="to ? $scrollToTop() : undefined"
@@ -62,7 +63,7 @@ useCommand({
             />
           </slot>
         </div>
-        <div space-y-1>
+        <div flex="~ col gap-0.5">
           <p>
             <slot>
               <span>{{ text }}</span>

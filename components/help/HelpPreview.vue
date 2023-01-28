@@ -23,7 +23,7 @@ const emit = defineEmits<{
     </p>
     <p>
       {{ $t('help.desc_para4') }}
-      <NuxtLink font-bold text-primary href="/m.webtoo.ls/@elk" target="_blank">
+      <NuxtLink font-bold text-primary href="https://github.com/elk-zone/elk" target="_blank">
         {{ $t('help.desc_para5') }}
       </NuxtLink>
       {{ $t('help.desc_para6') }}
@@ -37,7 +37,9 @@ const emit = defineEmits<{
       </template>
     </p>
     <p italic flex justify-center w-full>
-      <span text-xl font-script>The Elk Team</span>
+      <NuxtLink href="https://github.com/sponsors/elk-zone" target="_blank">
+        <span text-xl font-script hover:text-primary transition duration-300>The Elk Team</span>
+      </NuxtLink>
     </p>
 
     <button btn-solid mxa tabindex="2" @click="emit('close')">

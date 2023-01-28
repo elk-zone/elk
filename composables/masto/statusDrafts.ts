@@ -4,7 +4,7 @@ import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
 
-export const currentUserDrafts = process.server ? computed<DraftMap>(() => ({})) : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
+export const currentUserDrafts = process.server || process.test ? computed<DraftMap>(() => ({})) : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 
 export const builtinDraftKeys = [
   'dialog',
@@ -15,13 +15,13 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
   const {
     attachments = [],
     initialText = '',
-
     status,
     inReplyToId,
     visibility,
     sensitive,
     spoilerText,
     language,
+    mentions,
   } = options
 
   return {
@@ -33,8 +33,9 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
       visibility: visibility || 'public',
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
-      language: language || 'en',
+      language: language || getDefaultLanguage(),
     },
+    mentions,
     lastUpdated: Date.now(),
   }
 }
@@ -51,17 +52,26 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
   })
 }
 
-function mentionHTML(acct: string) {
-  return `<span data-type="mention" data-id="${acct}" contenteditable="false">@${acct}</span>`
+function getDefaultLanguage() {
+  const userSettings = useUserSettings()
+  const defaultLanguage = userSettings.value.language
+
+  if (defaultLanguage)
+    return defaultLanguage.split('-')[0]
+
+  return 'en'
 }
 
 function getAccountsToMention(status: mastodon.v1.Status) {
   const userId = currentUser.value?.account.id
-  const accountsToMention: string[] = []
+  const accountsToMention = new Set<string>()
   if (status.account.id !== userId)
-    accountsToMention.push(status.account.acct)
-  accountsToMention.push(...(status.mentions.filter(mention => mention.id !== userId).map(mention => mention.acct)))
-  return accountsToMention
+    accountsToMention.add(status.account.acct)
+  status.mentions
+    .filter(mention => mention.id !== userId)
+    .map(mention => mention.acct)
+    .forEach(i => accountsToMention.add(i))
+  return Array.from(accountsToMention)
 }
 
 export function getReplyDraft(status: mastodon.v1.Status) {
@@ -70,9 +80,10 @@ export function getReplyDraft(status: mastodon.v1.Status) {
     key: `reply-${status.id}`,
     draft: () => {
       return getDefaultDraft({
-        initialText: accountsToMention.map(acct => mentionHTML(acct)).join(' '),
+        initialText: '',
         inReplyToId: status!.id,
         visibility: status.visibility,
+        mentions: accountsToMention,
       })
     },
   }
@@ -83,7 +94,7 @@ export const isEmptyDraft = (draft: Draft | null | undefined) => {
     return true
   const { params, attachments } = draft
   const status = params.status || ''
-  const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').trim()
+  const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
 
   return (text.length === 0)
     && attachments.length === 0

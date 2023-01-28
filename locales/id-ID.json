@@ -1,0 +1,531 @@
+{
+  "a11y": {
+    "loading_page": "Memuat halaman, harap tunggu",
+    "loading_titled_page": "Memuat {0} halaman, harap tunggu",
+    "locale_changed": "Bahasa diubah ke {0}",
+    "locale_changing": "Mengubah bahasa, harap tunggu",
+    "route_loaded": "{0} halaman dimuat"
+  },
+  "account": {
+    "avatar_description": "avatar {0}",
+    "blocked_by": "Anda diblokir oleh pengguna ini.",
+    "blocked_domains": "Domain yang diblokir",
+    "blocked_users": "Pengguna diblokir",
+    "blocking": "Diblokir",
+    "bot": "BOT",
+    "favourites": "Favorit",
+    "follow": "Ikuti",
+    "follow_back": "Ikuti kembali",
+    "follow_requested": "Diminta",
+    "followers": "Pengikut",
+    "followers_count": "{0} Pengikut|{0} Pengikut|{0} Pengikut",
+    "following": "Mengikuti",
+    "following_count": "{0} Mengikuti",
+    "follows_you": "Mengikutimu",
+    "go_to_profile": "Buka profil",
+    "joined": "Bergabung",
+    "moved_title": "telah mengindikasikan bahwa akun baru mereka sekarang:",
+    "muted_users": "Pengguna dibisukan",
+    "muting": "Bisukan",
+    "mutuals": "Terkait",
+    "notifications_on_post_disable": "Berhenti memberi tahu saya saat {username} memposting",
+    "notifications_on_post_enable": "Beri tahu saya jika {username} memposting",
+    "notify_on_post": "Beri tahu saya jika {username} memposting",
+    "pinned": "Dilekatkan",
+    "posts": "Posting",
+    "posts_count": "{0} Pos|{0} Pos|{0} Pos",
+    "profile_description": "tajuk profil {0}",
+    "profile_unavailable": "Profil tidak tersedia",
+    "unblock": "Buka blokir",
+    "unfollow": "Berhenti mengikuti",
+    "unmute": "Bunyikan",
+    "view_other_followers": "Pengikut dari contoh lain mungkin tidak ditampilkan.",
+    "view_other_following": "Mengikuti dari contoh lain mungkin tidak ditampilkan."
+  },
+  "action": {
+    "apply": "Terapkan",
+    "bookmark": "Markah",
+    "bookmarked": "Ditandai",
+    "boost": "Dukung",
+    "boost_count": "{0}",
+    "boosted": "Didukung",
+    "clear_publish_failed": "Hapus error publikasi",
+    "clear_upload_failed": "Hapus kesalahan pengunggahan file",
+    "close": "Tutup",
+    "compose": "Menulis",
+    "confirm": "Konfirmasi",
+    "edit": "Sunting",
+    "enter_app": "Masuk Aplikasi",
+    "favourite": "Favorit",
+    "favourite_count": "{0}",
+    "favourited": "Difavoritkan",
+    "more": "Selengkapnya",
+    "next": "Selanjutnya",
+    "prev": "Sebelumnya",
+    "publish": "Terbitkan",
+    "reply": "Balas",
+    "reply_count": "{0}",
+    "reset": "Atur ulang",
+    "save": "Simpan",
+    "save_changes": "Simpan perubahan",
+    "sign_in": "Masuk",
+    "switch_account": "Ganti akun",
+    "vote": "Pilih"
+  },
+  "app_desc_short": "Klien web Mastodon yang gesit",
+  "app_logo": "Logo Elk",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Deskripsi",
+    "remove_label": "Hapus lampiran"
+  },
+  "command": {
+    "activate": "Aktifkan",
+    "complete": "Selesai",
+    "compose_desc": "Tulis postingan baru",
+    "n-people-in-the-past-n-days": "{0} orang dalam {1} hari terakhir",
+    "select_lang": "Pilih bahasa",
+    "sign_in_desc": "Tambahkan akun yang ada",
+    "switch_account": "Beralih ke {0}",
+    "switch_account_desc": "Beralih ke akun lain",
+    "toggle_dark_mode": "Beralih ke modus gelap",
+    "toggle_zen_mode": "Beralih ke modus zen"
+  },
+  "common": {
+    "confirm_dialog": {
+      "cancel": "Tidak",
+      "confirm": "Ya",
+      "title": "Apakah Anda yakin {0}?"
+    },
+    "end_of_list": "Akhir dari daftar",
+    "error": "KESALAHAN",
+    "in": "di dalam",
+    "not_found": "404 tidak ditemukan",
+    "offline_desc": "Sepertinya Anda sedang offline. \nSilakan periksa koneksi jaringan Anda."
+  },
+  "compose": {
+    "draft_title": "Draf {0}",
+    "drafts": "Draf ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "Batalkan",
+      "confirm": "Blokir",
+      "title": "Yakin ingin memblokir {0}？"
+    },
+    "block_domain": {
+      "cancel": "Batalkan",
+      "confirm": "Blokir",
+      "title": "Yakin ingin memblokir {0}？"
+    },
+    "common": {
+      "cancel": "Tidak",
+      "confirm": "Ya"
+    },
+    "delete_posts": {
+      "cancel": "Batalkan",
+      "confirm": "Hapus",
+      "title": "Yakin ingin menghapus postingan ini?"
+    },
+    "mute_account": {
+      "cancel": "Batalkan",
+      "confirm": "Bisukan",
+      "title": "Yakin ingin membisukan {0}？"
+    },
+    "show_reblogs": {
+      "cancel": "Batalkan",
+      "confirm": "Tampilkan",
+      "title": "Yakin ingin menampilkan dukungan dari {0}？"
+    },
+    "unfollow": {
+      "cancel": "Batalkan",
+      "confirm": "Berhenti mengikuti",
+      "title": "Anda yakin ingin berhenti mengikuti?"
+    }
+  },
+  "conversation": {
+    "with": "dengan"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Garis {0}",
+      "open": "Buka",
+      "snippet_from": "Cuplikan dari {0}"
+    }
+  },
+  "error": {
+    "account_not_found": "Akun {0} tidak ditemukan",
+    "explore-list-empty": "Tidak ada yang sedang tren saat ini. \nPeriksa kembali nanti!",
+    "file_size_cannot_exceed_n_mb": "Ukuran file tidak boleh melebihi {0}MB",
+    "sign_in_error": "Tidak dapat terhubung ke server.",
+    "status_not_found": "Pos tidak ditemukan",
+    "unsupported_file_format": "Format berkas tidak didukung"
+  },
+  "help": {
+    "desc_highlight": "Masih terdapat beberapa bug dan fitur yang hilang di sana-sini.",
+    "desc_para1": "Terima kasih atas minat Anda untuk mencoba Elk, klien web Mastodon kami yang sedang dalam proses penyempurnaan!",
+    "desc_para2": "kami bekerja keras untuk mengembangkan dan memperbaikinya dari waktu ke waktu.",
+    "desc_para3": "Untuk meningkatkan pengembangan, Anda dapat mensponsori Tim melalui Sponsor GitHub. \nKami harap Anda menikmati Elk!",
+    "desc_para4": "Elk adalah Software Sumber Terbuka. \nJika Anda ingin membantu dalam pengujian, memberikan umpan balik, atau berkontribusi,",
+    "desc_para5": "hubungi kami di GitHub",
+    "desc_para6": "dan terlibat.",
+    "title": "Elk sedang dalam Uji Pratinjau!"
+  },
+  "language": {
+    "search": "Cari"
+  },
+  "menu": {
+    "block_account": "Blokir {0}",
+    "block_domain": "Blokir domain {0}",
+    "copy_link_to_post": "Salin tautan pos ini",
+    "delete": "Hapus",
+    "delete_and_redraft": "Hapus dan buat ulang draf",
+    "delete_confirm": {
+      "cancel": "Batalkan",
+      "confirm": "Hapus",
+      "title": "Yakin ingin menghapus postingan ini?"
+    },
+    "direct_message_account": "Pesan langsung {0}",
+    "edit": "Sunting",
+    "hide_reblogs": "Sembunyikan dukungan dari {0}",
+    "mention_account": "Sebut {0}",
+    "mute_account": "Bisukan {0}",
+    "mute_conversation": "Nonaktifkan postingan ini",
+    "open_in_original_site": "Buka di situs asli",
+    "pin_on_profile": "Sematkan di profil",
+    "share_post": "Bagikan postingan ini",
+    "show_favourited_and_boosted_by": "Tampilkan siapa yang memfavoritkan dan mendukung",
+    "show_reblogs": "Tampilkan dukungan dari {0}",
+    "show_untranslated": "Tampilkan versi non-terjemahan",
+    "toggle_theme": {
+      "dark": "Beralih ke modus gelap",
+      "light": "Beralih ke modus terang"
+    },
+    "translate_post": "Terjemahkan pos",
+    "unblock_account": "Buka blokir {0}",
+    "unblock_domain": "Buka blokir domain {0}",
+    "unmute_account": "Aktifkan {0}",
+    "unmute_conversation": "Aktifkan postingan ini",
+    "unpin_on_profile": "Lepas sematan di profil"
+  },
+  "nav": {
+    "back": "Kembali",
+    "blocked_domains": "Domain yang diblokir",
+    "blocked_users": "Pengguna diblokir",
+    "bookmarks": "Markah",
+    "built_at": "Diperbarui {0}",
+    "compose": "Menyusun",
+    "conversations": "Percakapan",
+    "explore": "Jelajahi",
+    "favourites": "Favorit",
+    "federated": "Federasi",
+    "home": "Beranda",
+    "local": "Lokal",
+    "muted_users": "Pengguna dibisukan",
+    "notifications": "Notifikasi",
+    "profile": "Profil",
+    "search": "Cari",
+    "select_feature_flags": "Alihkan Bendera Fitur",
+    "select_font_size": "Ukuran huruf",
+    "select_language": "Bahasa tampilan",
+    "settings": "Pengaturan",
+    "show_intro": "Tampilkan pengantar",
+    "toggle_theme": "Beralih Tema",
+    "zen_mode": "Modus Zen"
+  },
+  "notification": {
+    "favourited_post": "memfavoritkan kiriman Anda",
+    "followed_you": "mengikutimu",
+    "followed_you_count": "{0} orang mengikuti Anda|{0} orang mengikuti Anda|{0} orang mengikuti Anda",
+    "missing_type": "NOTIFIKASI HILANG.jenis:",
+    "reblogged_post": "mendukung posting Anda",
+    "request_to_follow": "meminta untuk mengikuti Anda",
+    "signed_up": "mendaftar",
+    "update_status": "memperbarui postingannya"
+  },
+  "placeholder": {
+    "content_warning": "Tulis peringatan Anda di sini",
+    "default_1": "Apa yang Anda pikirkan?",
+    "reply_to_account": "Balas ke {0}",
+    "replying": "Membalas",
+    "the_thread": "utas"
+  },
+  "pwa": {
+    "dismiss": "Batalkan",
+    "title": "Pembaruan Elk tersedia!",
+    "update": "Perbarui",
+    "update_available_short": "Perbarui Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "Klien web Mastodon yang gesit (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "Klien web Mastodon yang gesit (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "Klien web Mastodon yang gesit (pratinjau)",
+        "name": "Elk (pratinjau)",
+        "short_name": "Elk (pratinjau)"
+      },
+      "release": {
+        "description": "Klien web Mastodon yang gesit",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "Cari orang & tagar",
+    "search_empty": "Tidak dapat menemukan apa pun untuk istilah pencarian ini"
+  },
+  "settings": {
+    "about": {
+      "label": "Tentang",
+      "meet_the_team": "Tim Pengembang",
+      "sponsor_action": "Dukung kami",
+      "sponsor_action_desc": "Untuk mendukung tim mengembangkan Elk",
+      "sponsors": "Sponsorship",
+      "sponsors_body_1": "Elk dimungkinkan berkat pendukung yang murah hati dan bantuan dari:",
+      "sponsors_body_2": "Dan semua perusahaan dan individu yang mendukung Tim Elk dan para anggotanya.",
+      "sponsors_body_3": "Jika Anda menikmati aplikasi ini, pertimbangkan untuk mendukung kami:"
+    },
+    "account_settings": {
+      "description": "Sunting pengaturan akun Anda di Mastodon UI",
+      "label": "Pengaturan akun"
+    },
+    "interface": {
+      "color_mode": "Berwarna",
+      "dark_mode": "Gelap",
+      "default": "(bawaan)",
+      "font_size": "Ukuran huruf",
+      "label": "Antarmuka",
+      "light_mode": "Terang",
+      "system_mode": "Sistem",
+      "theme_color": "Warna Tema"
+    },
+    "language": {
+      "display_language": "Bahasa tampilan",
+      "label": "Bahasa"
+    },
+    "notifications": {
+      "label": "Notifikasi",
+      "notifications": {
+        "label": "Pengaturan notifikasi"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favorit",
+          "follow": "Pengikut baru",
+          "mention": "Sebutan",
+          "poll": "Polling",
+          "reblog": "Reblog posting Anda",
+          "title": "Pemberitahuan apa yang harus diterima?"
+        },
+        "description": "Terima notifikasi bahkan saat Anda tidak menggunakan Elk.",
+        "instructions": "Jangan lupa untuk menyimpan perubahan Anda menggunakan tombol @:settings.notifications.push_notifications.save_settings!",
+        "label": "Pengaturan pemberitahuan push",
+        "policy": {
+          "all": "Dari siapapun",
+          "followed": "Dari orang yang saya ikuti",
+          "follower": "Dari orang-orang yang mengikuti saya",
+          "none": "Dari siapa pun",
+          "title": "Dari siapa saya dapat menerima notifikasi?"
+        },
+        "save_settings": "Simpan Pengaturan",
+        "subscription_error": {
+          "clear_error": "Hapus kesalahan",
+          "permission_denied": "Izin ditolak: aktifkan notifikasi di browser Anda.",
+          "request_error": "Terjadi kesalahan saat meminta langganan, coba lagi dan jika kesalahan berlanjut, harap laporkan masalah tersebut ke repositori Elk.",
+          "title": "Tidak dapat berlangganan notifikasi push",
+          "too_many_registrations": "Karena keterbatasan browser, Elk tidak dapat menggunakan layanan pemberitahuan push untuk banyak akun di server yang berbeda. \nAnda harus berhenti berlangganan notifikasi push di akun lain dan coba lagi."
+        },
+        "title": "Pengaturan pemberitahuan push",
+        "undo_settings": "Membatalkan perubahan",
+        "unsubscribe": "Nonaktifkan pemberitahuan push",
+        "unsupported": "Browser Anda tidak mendukung pemberitahuan push.",
+        "warning": {
+          "enable_close": "Menutup",
+          "enable_description": "Untuk menerima notifikasi saat Elk tidak terbuka, aktifkan notifikasi push. \nAnda dapat mengontrol dengan tepat jenis interaksi apa yang menghasilkan pemberitahuan push melalui tombol \"@:settings.notifications.show_btn{'\"'} di atas setelah diaktifkan.",
+          "enable_description_desktop": "Untuk menerima notifikasi saat Elk tidak terbuka, aktifkan notifikasi push. \nAnda dapat mengontrol dengan tepat jenis interaksi apa yang menghasilkan notifikasi push di \"Pengaturan > Notifikasi > Setelan notifikasi push\" setelah diaktifkan.",
+          "enable_description_mobile": "Anda juga dapat mengakses pengaturan menggunakan menu navigasi \"Pengaturan > Pemberitahuan > Pengaturan pemberitahuan push\".",
+          "enable_description_settings": "Untuk menerima notifikasi saat Elk tidak terbuka, aktifkan notifikasi push. \nAnda akan dapat mengontrol dengan tepat jenis interaksi apa yang menghasilkan pemberitahuan push pada layar yang sama ini setelah Anda mengaktifkannya.",
+          "enable_desktop": "Aktifkan pemberitahuan push",
+          "enable_title": "Jangan pernah melewatkan apa pun",
+          "re_auth": "Tampaknya server Anda tidak mendukung pemberitahuan push. \nCoba keluar dan masuk lagi, jika pesan ini masih muncul hubungi administrator server Anda."
+        }
+      },
+      "show_btn": "Buka pengaturan notifikasi"
+    },
+    "notifications_settings": "Notifikasi",
+    "preferences": {
+      "github_cards": "Kartu GitHub",
+      "grayscale_mode": "Modus Hitam Putih",
+      "hide_boost_count": "Sembunyikan jumlah dukungan",
+      "hide_favorite_count": "Sembunyikan jumlah favorit",
+      "hide_follower_count": "Sembunyikan jumlah pengikut",
+      "label": "Preferensi",
+      "title": "Fitur Eksperimental",
+      "user_picker": "Pemilih Pengguna",
+      "virtual_scroll": "Pengguliran Virtual"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bio",
+        "description": "Sunting avatar, nama pengguna, profil, dll.",
+        "display_name": "Nama tampilan",
+        "label": "Penampilan",
+        "profile_metadata": "Metadata profil",
+        "profile_metadata_desc": "Anda dapat menampilkan hingga {0} item sebagai tabel di profil Anda",
+        "title": "Sunting profil"
+      },
+      "featured_tags": {
+        "description": "Orang-orang dapat menelusuri kiriman publik Anda di bawah tagar ini.",
+        "label": "Tagar unggulan"
+      },
+      "label": "Profil"
+    },
+    "select_a_settings": "Pilih pengaturan",
+    "users": {
+      "export": "Ekspor Token Pengguna",
+      "import": "Impor Token Pengguna",
+      "label": "Pengguna yang masuk"
+    }
+  },
+  "share-target": {
+    "description": "Elk dapat dikonfigurasi sehingga Anda dapat berbagi konten dari aplikasi lain, cukup instal Elk di perangkat atau komputer Anda dan masuk.",
+    "hint": "Untuk berbagi konten dengan Elk, Elk harus diinstal dan Anda harus masuk.",
+    "title": "Bagikan dengan Elk"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "Jumlah lampiran melebihi batas per posting.",
+    "attachments_limit_error": "Batas per posting terlampaui",
+    "edited": "(Disunting)",
+    "editing": "Menyunting",
+    "loading": "Memuat...",
+    "publish_failed": "Publikasi gagal",
+    "publishing": "Penerbitan",
+    "upload_failed": "Gagal mengunggah",
+    "uploading": "Mengunggah..."
+  },
+  "status": {
+    "boosted_by": "Didukung Oleh",
+    "edited": "Disunting {0}",
+    "favourited_by": "Difavoritkan Oleh",
+    "filter_hidden_phrase": "Difilter oleh",
+    "filter_removed_phrase": "Dihapus oleh filter",
+    "filter_show_anyway": "Tetap tampilkan",
+    "img_alt": {
+      "desc": "Keterangan",
+      "dismiss": "Batalkan"
+    },
+    "poll": {
+      "count": "{0} suara|{0} suara|{0} suara",
+      "ends": "berakhir {0}",
+      "finished": "selesai {0}"
+    },
+    "reblogged": "{0} di-reblog",
+    "replying_to": "Membalas ke {0}",
+    "show_full_thread": "Tampilkan utas Penuh",
+    "someone": "seseorang",
+    "spoiler_show_less": "Tampilkan lebih sedikit",
+    "spoiler_show_more": "Menampilkan lebih banyak",
+    "thread": "Utas",
+    "try_original_site": "Coba situs asli"
+  },
+  "status_history": {
+    "created": "dibuat {0}",
+    "edited": "disunting {0}"
+  },
+  "tab": {
+    "for_you": "Untuk kamu",
+    "hashtags": "Tagar",
+    "media": "Media",
+    "news": "Berita",
+    "notifications_all": "Semua",
+    "notifications_mention": "Penyebutan",
+    "posts": "Postingan",
+    "posts_with_replies": "Postingan dan Balasan"
+  },
+  "tag": {
+    "follow": "Ikuti",
+    "follow_label": "Ikuti tagar {0}",
+    "unfollow": "Berhenti mengikuti",
+    "unfollow_label": "Berhenti mengikuti tagar {0}"
+  },
+  "time_ago_options": {
+    "day_future": "dalam 0 hari|besok|dalam {n} hari",
+    "day_past": "0 hari lalu|kemarin|{n} hari lalu",
+    "hour_future": "dalam 0 jam|dalam 1 jam|dalam {n} jam",
+    "hour_past": "0 jam yang lalu|1 jam yang lalu|{n} jam yang lalu",
+    "just_now": "baru saja",
+    "minute_future": "dalam 0 menit|dalam 1 menit|dalam {n} menit",
+    "minute_past": "0 menit lalu|1 menit lalu|{n} menit lalu",
+    "month_future": "dalam 0 bulan|bulan depan|dalam {n} bulan",
+    "month_past": "0 bulan lalu|bulan lalu|{n} bulan lalu",
+    "second_future": "baru saja|dalam {n} detik|dalam {n} detik",
+    "second_past": "barusan|{n} detik yang lalu|{n} detik yang lalu",
+    "short_day_future": "di {n}h",
+    "short_day_past": "{n}h",
+    "short_hour_future": "dalam {n}j",
+    "short_hour_past": "{n}j",
+    "short_minute_future": "dalam {n}mnt",
+    "short_minute_past": "{n}mnt",
+    "short_month_future": "dalam {n}bulan",
+    "short_month_past": "{n}bln",
+    "short_second_future": "dalam {n}dtk",
+    "short_second_past": "{n}dtk",
+    "short_week_future": "di {n}mng",
+    "short_week_past": "{n}mng",
+    "short_year_future": "di {n}th",
+    "short_year_past": "{n}th",
+    "week_future": "dalam 0 minggu|minggu depan|dalam {n} minggu",
+    "week_past": "0 minggu lalu|minggu lalu|{n} minggu lalu",
+    "year_future": "dalam 0 tahun|tahun depan|dalam {n} tahun",
+    "year_past": "0 tahun lalu|tahun lalu|{n} tahun lalu"
+  },
+  "timeline": {
+    "show_new_items": "Tampilkan {v} item baru|Tampilkan {v} item baru|Tampilkan {v} item baru",
+    "view_older_posts": "Posting lama dari contoh lain mungkin tidak ditampilkan."
+  },
+  "title": {
+    "federated_timeline": "Linimasa Federasi",
+    "local_timeline": "Linimasa Lokal"
+  },
+  "tooltip": {
+    "add_content_warning": "Tambahkan peringatan konten",
+    "add_emojis": "Tambahkan emoji",
+    "add_media": "Tambahkan gambar, video atau file audio",
+    "add_publishable_content": "Tambahkan konten untuk dipublikasikan",
+    "change_content_visibility": "Ubah visibilitas konten",
+    "change_language": "Ubah bahasa",
+    "emoji": "Emoji",
+    "explore_links_intro": "Berita-berita ini sedang dibicarakan oleh orang-orang di server ini dan server-server lain dari jaringan terdesentralisasi saat ini.",
+    "explore_posts_intro": "Postingan-postingan ini dari server ini dan server lain di jaringan terdesentralisasi sedang mendapatkan daya tarik di server ini sekarang.",
+    "explore_tags_intro": "Tagar-tagar ini mendapatkan daya tarik di antara orang-orang di server ini dan server lain dari jaringan terdesentralisasi saat ini.",
+    "publish_failed": "Tutup pesan yang gagal di bagian atas editor untuk mempublikasikan ulang postingan",
+    "toggle_code_block": "Tulis sebagai blok kode"
+  },
+  "user": {
+    "add_existing": "Tambahkan akun yang ada",
+    "server_address_label": "Alamat Server Mastodon",
+    "sign_in_desc": "Masuk untuk mengikuti profil atau hashtag, favorit, berbagi dan membalas posting, atau berinteraksi dari akun Anda di server lain.",
+    "sign_in_notice_title": "Menampilkan data publik {0}",
+    "sign_out_account": "Keluar {0}",
+    "tip_no_account": "Jika Anda belum memiliki akun Mastodon, {0}.",
+    "tip_register_account": "pilih server Anda dan daftarkan"
+  },
+  "visibility": {
+    "direct": "Langsung",
+    "direct_desc": "Terlihat hanya untuk pengguna yang disebutkan",
+    "private": "Pengikut saja",
+    "private_desc": "Terlihat hanya untuk pengikut",
+    "public": "Publik",
+    "public_desc": "Terlihat untuk semua",
+    "unlisted": "Tidak terdaftar",
+    "unlisted_desc": "Dapat dilihat oleh semua orang, tetapi tidak muncul dalam daftar rekomendasi"
+  }
+}

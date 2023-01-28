@@ -4,8 +4,8 @@ import {
   defineLazyEventHandler,
   toNodeListener,
 } from 'h3'
+import type { FetchResponse } from 'ofetch'
 import { createFetch } from 'ofetch'
-import { parseURL } from 'ufo'
 import {
   createCall,
   createFetch as createLocalFetch,
@@ -26,13 +26,10 @@ const handlers = [
   },
 ]
 
-const { protocol, host } = parseURL(window.location.href)
-
 // @ts-expect-error undeclared global window property
 window.__NUXT__.config = {
   // @ts-expect-error undeclared global window property
   ...window.__NUXT__.config,
-  deployUrl: `${protocol}//${host}`,
   storage: {},
 }
 
@@ -68,7 +65,7 @@ export default defineNuxtPlugin(async () => {
 
   const route = useRoute()
   if (route.path.startsWith('/api')) {
-    const result = await $fetch.raw(route.fullPath)
+    const result = (await ($fetch.raw as any)(route.fullPath)) as FetchResponse<unknown>
     if (result.headers.get('location'))
       location.href = result.headers.get('location')!
   }

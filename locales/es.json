@@ -371,7 +371,7 @@
     "preferences": {
       "enable_autoplay": "Habilitar auto-reproducción",
       "github_cards": "Tarjetas GitHub",
-      "grayscale_mode": "Modo de escala de grises",
+      "grayscale_mode": "Modo escala de grises",
       "hide_account_hover_card": "Ocultar tarjeta flotante de cuenta",
       "hide_boost_count": "Ocultar contador de retoots",
       "hide_favorite_count": "Ocultar contador de favoritas",

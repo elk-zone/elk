@@ -73,6 +73,12 @@ function toggleDark() {
       <NuxtLink cursor-pointer hover:underline to="/settings/about">
         {{ $t('settings.about.label') }}
       </NuxtLink>
+      <template v-if="$config.public.privacyPolicyUrl">
+        &middot;
+        <NuxtLink cursor-pointer hover:underline :to="$config.public.privacyPolicyUrl">
+          {{ $t('nav.privacy') }}
+        </NuxtLink>
+      </template>
       &middot;
       <NuxtLink href="/m.webtoo.ls/@elk" target="_blank">
         Mastodon

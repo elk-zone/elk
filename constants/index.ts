@@ -18,7 +18,6 @@ export const STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS = 'elk-hide-explore-news-tips'
 export const STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS = 'elk-hide-explore-tags-tips'
 export const STORAGE_KEY_NOTIFICATION = 'elk-notification'
 export const STORAGE_KEY_NOTIFICATION_POLICY = 'elk-notification-policy'
-
-export const COOKIE_MAX_AGE = 10 * 365 * 24 * 60 * 60 * 1000
+export const STORAGE_KEY_PWA_HIDE_INSTALL = 'elk-pwa-hide-install'
 
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\d-]+\.)+\w+\/(@[@\w\d-\.]+)(\/objects)?(\/\d+)?$/

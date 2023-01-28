@@ -1,1 +1,113 @@
-{}
+{
+  "a11y": {
+    "locale_changed": "Idioma configurado en {0}",
+    "locale_changing": "Actualizando idioma, espera..."
+  },
+  "account": {
+    "avatar_description": "Foto de perfil de",
+    "favourites": "Publicaciones Favoritas",
+    "go_to_profile": "Ver perfil",
+    "moved_title": "indicó que su nueva cuenta es ",
+    "mutuals": "Mutuales",
+    "notifications_on_post_disable": "No notificar cuando {username} publique",
+    "notifications_on_post_enable": "Avisarme cuando {username} publique",
+    "pinned": "Publicaciones ancladas",
+    "unmute": "Quitar silencio"
+  },
+  "action": {
+    "bookmark": "Marcar",
+    "confirm": "Cortar",
+    "edit": "Actualizar",
+    "enter_app": "Ingresar",
+    "favourite": "Marcar como favorita",
+    "favourited": "Marcada como favorita"
+  },
+  "app_logo": "Logo de Elk",
+  "common": {
+    "end_of_list": "Fin de la lista",
+    "offline_desc": "No tienes acceso a internet. Por favor, comprueba que tienes una conexión a la red."
+  },
+  "confirm": {
+    "block_account": {
+      "title": "¿De verdad quieres bloquear a {0}?"
+    },
+    "block_domain": {
+      "title": "¿De verdad quieres bloquear a {0}?"
+    },
+    "delete_posts": {
+      "title": "¿De verdad quieres eliminar esta publicación?"
+    },
+    "mute_account": {
+      "title": "¿De verdad quieres silenciar a {0}?"
+    },
+    "show_reblogs": {
+      "title": "¿De verdad quieres ver los retoots de {0}"
+    },
+    "unfollow": {
+      "title": "¿Quieres dejar de seguir?"
+    }
+  },
+  "menu": {
+    "delete_and_redraft": "Eliminar y volver a borrador",
+    "edit": "Actualizar",
+    "pin_on_profile": "Anclar en tu perfil",
+    "show_favourited_and_boosted_by": "Ver quien marcó como favorita y quien retooteó",
+    "show_reblogs": "Ver retoots de {0}",
+    "unmute_account": "Quitar silencio a {0}",
+    "unmute_conversation": "Quitar silencio de la publicación",
+    "unpin_on_profile": "Desanclar del perfil"
+  },
+  "nav": {
+    "back": "Volver",
+    "built_at": "Generado {0}",
+    "favourites": "Publicaciones favoritas",
+    "settings": "Configuraciones",
+    "zen_mode": "Modo sin distracciones"
+  },
+  "settings": {
+    "about": {
+      "label": "Sobre",
+      "sponsor_action": "Patrocina"
+    },
+    "account_settings": {
+      "label": "Configuración de cuenta"
+    },
+    "interface": {
+      "default": " (predeterminado)",
+      "font_size": "Tamaño de fuente",
+      "system_mode": "Color del sistema"
+    },
+    "notifications": {
+      "notifications": {
+        "label": "Configuración de notificaciones"
+      },
+      "push_notifications": {
+        "label": "Configuración de notificaciones push"
+      }
+    },
+    "preferences": {
+      "enable_autoplay": "Activar reproducción automática",
+      "hide_favorite_count": "Ocultar número de publicaciones favoritas",
+      "hide_follower_count": "Ocultar número de seguidores",
+      "hide_reply_count": "Ocultar número de respuestas"
+    },
+    "profile": {
+      "appearance": {
+        "profile_metadata_desc": "Puedes ver en tu perfil hasta 4 elementos en forma de tabla",
+        "title": "Actualizar perfil"
+      },
+      "featured_tags": {
+        "label": "Etiquetas destacadas"
+      }
+    },
+    "users": {
+      "label": "Usuarios en línea"
+    }
+  },
+  "tab": {
+    "hashtags": "Etiquetas"
+  },
+  "tooltip": {
+    "change_content_visibility": "Cambiar visibilidad"
+  }
+}

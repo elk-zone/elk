@@ -332,7 +332,7 @@
           "reblog": "Retooteo de tus publicaciones",
           "title": "¿Qué notificaciones recibir?"
         },
-        "description": "Reciba notificaciones incluso cuando no estés utilizando Elk.",
+        "description": "Recibe notificaciones incluso cuando no estés utilizando Elk.",
         "instructions": "¡No olvides guardar los cambios utilizando el botón @:settings.notifications.push_notifications.save_settings{'!'}",
         "label": "Ajustes de notificaciones push",
         "policy": {

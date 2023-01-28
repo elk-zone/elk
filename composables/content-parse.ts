@@ -16,6 +16,7 @@ export interface ContentParseOptions {
   collapseMentionLink?: boolean
   status?: mastodon.v1.Status
   inReplyToStatus?: mastodon.v1.Status
+  cleanSharedLink?: string | false // this is defined when conditions for cleaning the link are met
 }
 
 const sanitizerBasicClasses = filterClasses(/^(h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible)$/u)
@@ -84,6 +85,7 @@ export function parseMastodonHTML(
     mentions,
     status,
     inReplyToStatus,
+    cleanSharedLink,
   } = options
 
   if (markdown) {
@@ -127,7 +129,23 @@ export function parseMastodonHTML(
   if (collapseMentionLink)
     transforms.push(transformCollapseMentions(status, inReplyToStatus))
 
-  return transformSync(parse(html), transforms)
+  const node = parse(html) as Node
+
+  if (cleanSharedLink) {
+    const filteredNode = node.children.filter(child => !!child.children) // remove invisible spans
+    const filteredLength = filteredNode.length
+    const length = filteredNode[filteredLength - 1].children.length
+    const lastChild = filteredNode[filteredLength - 1].children[length - 1]
+    const sharedHref = lastChild.attributes?.href
+    const match = sharedHref === cleanSharedLink
+
+    if (match) {
+      const index = length - 1
+      filteredNode[filteredLength - 1].children.splice(index, 1)
+    }
+  }
+
+  return transformSync(node, transforms)
 }
 
 /**

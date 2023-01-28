@@ -7,15 +7,16 @@ const props = defineProps<{
   smallPictureOnly?: boolean
   /** When it is root card in the list, not appear as a child card */
   root?: boolean
+  /** Defined when the preview card URL matches the last shared link href attribute */
+  cleanSharedLink?: string
 }>()
 
 const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
-
 const gitHubCards = $(usePreferences('experimentalGitHubCards'))
 </script>
 
 <template>
   <LazyStatusPreviewGitHub v-if="gitHubCards && providerName === 'GitHub'" :card="card" />
   <LazyStatusPreviewStackBlitz v-else-if="gitHubCards && providerName === 'stackblitz.com'" :card="card" :small-picture-only="smallPictureOnly" :root="root" />
-  <StatusPreviewCardNormal v-else :card="card" :small-picture-only="smallPictureOnly" :root="root" />
+  <StatusPreviewCardNormal v-else :card="card" :clean-shared-link="cleanSharedLink" :small-picture-only="smallPictureOnly" :root="root" />
 </template>

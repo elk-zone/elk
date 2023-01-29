@@ -185,11 +185,6 @@ html {
   --at-apply: bg-base text-base;
 }
 
-body {
-  /* Prevent arbitrary zooming on mobile devices */
-  touch-action: pan-x pan-y;
-}
-
 .sparkline--fill {
   fill: var(--c-primary-active);
   opacity: 0.2;
@@ -214,8 +209,8 @@ footer {
   clip-path: url(#avatar-mask);
 }
 
-/* 
-Grayscale mode 
+/*
+Grayscale mode
 Setting each element filter to a different var
 allows controlling them individually
 */
@@ -230,7 +225,7 @@ allows controlling them individually
 [data-mode="grayscale"] .poll-wrapper {
   filter: grayscale(var(--poll-grayscale, 1));
 }
-[data-mode="grayscale"] .status-actions, 
+[data-mode="grayscale"] .status-actions,
 [data-mode="grayscale"] .status-boosted {
   filter: grayscale(var(--status-grayscale, 1));
 }

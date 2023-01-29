@@ -134,10 +134,7 @@ export default defineNuxtConfig({
     'nitro:config': function (config) {
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}
-      config.virtual['#storage-config'] = `
-        export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}
-        export const fsBase = ${JSON.stringify(nuxt.options.appConfig.storage.fsBase)}
-      `
+      config.virtual['#storage-config'] = `export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}`
     },
   },
   app: {

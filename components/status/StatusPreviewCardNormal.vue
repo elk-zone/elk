@@ -27,7 +27,7 @@ const providerName = $computed(() => {
   if (props.card.providerName) {
     finalProviderName = props.card.providerName
     if (props.cleanSharedLink && finalProviderName !== props.cleanSharedLink)
-      finalProviderName = `${props.card.providerName} · ${props.cleanSharedLink}`
+      finalProviderName = `${props.card.providerName} · ${props.cleanSharedLink.replace('https://', '')}`
   }
 
   return finalProviderName

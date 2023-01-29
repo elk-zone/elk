@@ -17,7 +17,7 @@ const {
 } = usePushManager()
 const { t } = useI18n()
 
-const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+const pwaEnabled = useAppConfig().pwaEnabled
 
 let busy = $ref<boolean>(false)
 let animateSave = $ref<boolean>(false)

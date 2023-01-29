@@ -17,17 +17,6 @@ const { translation } = useTranslation(status, getLanguageCode())
 
 const emojisObject = useEmojisFallback(() => status.emojis)
 
-/**
- * example status raw content
- *
- * <p>🔴 trying to code live - come let&#39;s talk <span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention">@<span>elk</span></a></span> and <a href="https://social.ayco.io/tags/opensource" class="mention hashtag" rel="tag">#<span>opensource</span></a> <a href="https://www.twitch.tv/ayoayco" target="_blank" rel="nofollow noopener noreferrer"><span class="invisible">https://www.</span><span class="">twitch.tv/ayoayco</span><span class="invisible"></span></a></p>
- *
- *
- * "<p>I say something about the link first</p><p><a href=\"https://ayco.io\" target=\"_blank\" rel=\"nofollow noopener noreferrer\"><span class=\"invisible\">https://</span><span class=\"\">ayco.io</span><span class=\"invisible\"></span></a></p>"
-
- *
- */
-
 const vnode = $computed(() => {
   if (!status.content)
     return null

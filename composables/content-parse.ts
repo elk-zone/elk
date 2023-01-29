@@ -132,20 +132,26 @@ export function parseMastodonHTML(
   const node = parse(html) as Node
 
   if (cleanSharedLink) {
-    const filteredNode = node.children.filter((child: Node) => !!child.children) // remove invisible spans
-    const filteredLength = filteredNode.length
-    const length = filteredNode[filteredLength - 1].children.length
-    const lastChild = filteredNode[filteredLength - 1].children[length - 1]
-    const sharedHref = lastChild.attributes?.href
-    const match = sharedHref === cleanSharedLink
+    // filter out invisible spans
+    const filteredNode = node.children.filter((child: Node) => !!child.children)
+    const matchedIndex = lastChildLinkMatchesPreviewUrl(filteredNode, cleanSharedLink)
 
-    if (match) {
-      const index = length - 1
-      filteredNode[filteredLength - 1].children.splice(index, 1)
-    }
+    if (matchedIndex)
+      filteredNode[filteredNode.length - 1].children.splice(matchedIndex, 1)
   }
 
   return transformSync(node, transforms)
+}
+
+/**
+ * Returns the index of the last link node if it matches the previewUrl
+ */
+export function lastChildLinkMatchesPreviewUrl(filteredNode: Node, previewUrl: string) {
+  const filteredLength = filteredNode.length
+  const length = filteredNode[filteredLength - 1].children.length
+  const lastChild = filteredNode[filteredLength - 1].children[length - 1]
+  const sharedHref = lastChild.attributes?.href
+  return sharedHref === previewUrl ? length - 1 : null
 }
 
 /**

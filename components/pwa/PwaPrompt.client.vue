@@ -16,6 +16,6 @@
         {{ $t('pwa.dismiss') }}
       </button>
     </div>
-    <div i-ri-arrow-down-circle-line absolute text-8em bottom--10 inset-ie--10 text-primary op10 class="-z-1" />
+    <div i-ri-arrow-down-circle-line absolute text-8em bottom--10 inset-ie--10 text-primary dark:text-white op10 class="-z-1" />
   </div>
 </template>

@@ -4,6 +4,8 @@
 *.toml
 *.patch
 *.txt
+Dockerfile
 public/
 https-dev-config/localhost.crt
 https-dev-config/localhost.key
+Dockerfile

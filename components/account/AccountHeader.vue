@@ -109,13 +109,27 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
             <button
               :aria-pressed="isNotifiedOnPost"
               :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
-              rounded-full p2 border-1 transition-colors
+              rounded-full text-sm p2 border-1 transition-colors
               :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
               @click="toggleNotifications"
             >
               <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
               <span v-else i-ri-notification-4-line block text-current />
             </button>
+          </CommonTooltip>
+          <CommonTooltip :content="$t('list.modify_account')">
+            <VDropdown v-if="!isSelf && relationship?.following">
+              <button
+                :aria-label="$t('list.modify_account')"
+                rounded-full text-sm p2 border-1 transition-colors
+                border-base hover:text-primary
+              >
+                <span i-ri:play-list-add-fill block text-current />
+              </button>
+              <template #popper>
+                <ListLists :user-id="account.id" />
+              </template>
+            </VDropdown>
           </CommonTooltip>
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->

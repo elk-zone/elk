@@ -8,13 +8,15 @@ const props = defineProps<{
 }>()
 
 const account = props.account || (props.handle ? useAccountByHandle(props.handle!) : undefined)
+const userSettings = useUserSettings()
+
 defineOptions({
   inheritAttrs: false,
 })
 </script>
 
 <template>
-  <VMenu v-if="!disabled && account" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
+  <VMenu v-if="!disabled && account && !getPreferences(userSettings, 'hideAccountHoverCard')" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
     <slot />
     <template #popper>
       <AccountHoverCard v-if="account" :account="account" />

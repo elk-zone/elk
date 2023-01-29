@@ -1,0 +1,164 @@
+// Vitest Snapshot v1
+
+exports[`content-rich > block with backticks 1`] = `"<p><pre class=\\"code-block\\">[(\`number string) (\`tag string)]</pre></p>"`;
+
+exports[`content-rich > block with injected html, with a known language 1`] = `
+"<pre>
+        <code class=\\"language-js\\">
+          &lt;a href=&quot;javascript:alert(1)&quot;&gt;click me&lt;/a&gt;
+        </code>
+      </pre>
+"
+`;
+
+exports[`content-rich > block with injected html, with an unknown language 1`] = `
+"<pre>
+        <code class=\\"language-xyzzy\\">
+          &lt;a href=&quot;javascript:alert(1)&quot;&gt;click me&lt;/a&gt;
+        </code>
+      </pre>
+"
+`;
+
+exports[`content-rich > block with injected html, without language 1`] = `
+"<pre>
+        <code>
+          &lt;a href=&quot;javascript:alert(1)&quot;&gt;click me&lt;/a&gt;
+        </code>
+      </pre>
+"
+`;
+
+exports[`content-rich > code frame 1`] = `
+"<p>Testing code block</p><p></p><p><pre class=\\"code-block\\">import { useMouse, usePreferredDark } from &apos;@vueuse/core&apos;
+// tracks mouse position
+const { x, y } = useMouse()
+// is the user prefers dark theme
+const isDark = usePreferredDark()</pre></p>"
+`;
+
+exports[`content-rich > code frame 2 1`] = `
+"<p>
+  <span class=\\"h-card\\"
+    ><a
+      class=\\"u-url mention\\"
+      rel=\\"nofollow noopener noreferrer\\"
+      to=\\"/webtoo.ls/@antfu\\"
+    ></a
+  ></span>
+  Testing<br />
+  <pre class=\\"code-block\\">const a = hello</pre>
+</p>
+"
+`;
+
+exports[`content-rich > code frame empty 1`] = `"<p><pre class=\\"code-block\\"></pre><br></p>"`;
+
+exports[`content-rich > code frame no lang 1`] = `"<p><pre class=\\"code-block\\">hello world</pre><br>no lang</p>"`;
+
+exports[`content-rich > custom emoji 1`] = `
+"Daniel Roe
+<picture alt=\\":nuxt:\\" class=\\"custom-emoji\\" data-emoji-id=\\"nuxt\\"
+  ><source
+    srcset=\\"
+      https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png
+    \\"
+    media=\\"(prefers-reduced-motion: reduce)\\" />
+  <img
+    src=\\"https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png\\"
+    alt=\\":nuxt:\\"
+/></picture>
+"
+`;
+
+exports[`content-rich > empty 1`] = `""`;
+
+exports[`content-rich > group mention > html 1`] = `
+"<p>
+  <span class=\\"h-card\\"
+    ><a
+      class=\\"u-url mention\\"
+      rel=\\"nofollow noopener noreferrer\\"
+      to=\\"//@pilipinas@lemmy.ml\\"
+    ></a
+  ></span>
+</p>
+"
+`;
+
+exports[`content-rich > handles formatting from servers 1`] = `
+"<h1>Fedi HTML Support Survey</h1>
+<p>Does the following formatting come through accurately for you?</p>
+<p></p>
+<ul>
+  <li>This is an indented bulleted list (not just asterisks).</li>
+  <li><strong>This line is bold.</strong></li>
+  <li><em>This line is italic.</em></li>
+</ul>
+<ol>
+  <li>This list...</li>
+  <li>...is numbered and indented</li>
+</ol>
+<h1>This line is larger.</h1>
+"
+`;
+
+exports[`content-rich > handles html within code blocks 1`] = `
+"<p>
+  HTML block code:<br />
+  <pre class=\\"code-block\\">
+&lt;span class=&quot;icon--noto icon--noto--1st-place-medal&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;icon--noto icon--noto--2nd-place-medal-medal&quot;&gt;&lt;/span&gt;</pre
+  >
+</p>
+"
+`;
+
+exports[`content-rich > inline code with link 1`] = `
+"<p>
+  Inline code with link:
+  <code
+    >https://api.iconify.design/noto.css?icons=1st-place-medal,2nd-place-medal</code
+  >
+</p>
+"
+`;
+
+exports[`content-rich > link + mention 1`] = `
+"<p>
+  Happy
+  <img
+    src=\\"/emojis/twemoji/1f917.svg\\"
+    alt=\\"🤗\\"
+    class=\\"iconify-emoji iconify-emoji--twemoji\\"
+  />
+  we’re now using
+  <span class=\\"h-card\\"
+    ><a
+      class=\\"u-url mention\\"
+      rel=\\"nofollow noopener noreferrer\\"
+      to=\\"/webtoo.ls/@vitest\\"
+    ></a
+  ></span>
+  (migrated from chai+mocha)
+  <a
+    href=\\"https://github.com/ayoayco/astro-reactive-library/pull/203\\"
+    rel=\\"nofollow noopener noreferrer\\"
+    target=\\"_blank\\"
+    ><span class=\\"invisible\\">https://</span
+    ><span class=\\"ellipsis\\">github.com/ayoayco/astro-react</span
+    ><span class=\\"invisible\\">ive-library/pull/203</span></a
+  >
+</p>
+"
+`;
+
+exports[`content-rich > plain text 1`] = `
+"hello there
+"
+`;
+
+exports[`editor > transform mentions 1`] = `
+"
+@elk Hello"
+`;

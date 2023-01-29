@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
+    'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/purge-comments',
     '~/modules/setup-components',
@@ -66,6 +67,7 @@ export default defineNuxtConfig({
       './composables/settings',
       './composables/tiptap/index.ts',
     ],
+    injectAtEnd: true,
   },
   vite: {
     define: {

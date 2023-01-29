@@ -65,7 +65,7 @@ const result = $computed<QueryResult>(() => commandMode
 )
 
 const isMac = useIsMac()
-const modifierKeyName = $computed(() => isMac.value ? 'Command' : 'Ctrl')
+const modifierKeyName = $computed(() => isMac.value ? '⌘' : 'Ctrl')
 
 let active = $ref(0)
 watch($$(result), (n, o) => {

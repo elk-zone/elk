@@ -316,7 +316,14 @@
     },
     "language": {
       "display_language": "Idioma de Apresentação",
-      "label": "Idioma"
+      "label": "Idioma",
+      "translations": {
+        "add": "Adicionar",
+        "choose_language": "Selecionar idioma",
+        "heading": "Traduções",
+        "hide_specific": "Esconder traduções específicas",
+        "remove": "Remover"
+      }
     },
     "notifications": {
       "label": "Notificações",

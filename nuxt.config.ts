@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
+    'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/purge-comments',
     '~/modules/setup-components',
@@ -65,6 +66,7 @@ export default defineNuxtConfig({
       './composables/settings',
       './composables/tiptap/index.ts',
     ],
+    injectAtEnd: true,
   },
   vite: {
     define: {
@@ -127,8 +129,7 @@ export default defineNuxtConfig({
   app: {
     keepalive: true,
     head: {
-      // Prevent arbitrary zooming on mobile devices
-      viewport: 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover',
+      viewport: 'width=device-width,initial-scale=1',
       bodyAttrs: {
         class: 'overflow-x-hidden',
       },

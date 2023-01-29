@@ -4,7 +4,6 @@ import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
-import type { BuildInfo } from './types'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -96,10 +95,8 @@ export default defineNuxtConfig({
     },
     public: {
       privacyPolicyUrl: '',
-      env: '', // set in build-env module
-      buildInfo: {} as BuildInfo, // set in build-env module
-      pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
-      // We use LibreTranslate(https://github.com/LibreTranslate/LibreTranslate) as our default translation server #76
+      // We use LibreTranslate (https://github.com/LibreTranslate/LibreTranslate) as
+      // our default translation server #76
       translateApi: '',
       // Use the instance where Elk has its Mastodon account as the default
       defaultServer: 'm.webtoo.ls',

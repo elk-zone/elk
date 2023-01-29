@@ -12,6 +12,9 @@ import type { Storage } from 'unstorage'
 
 import cached from './cache-driver'
 
+// @ts-expect-error virtual import
+import { env } from '#build-info'
+
 import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
 
@@ -45,7 +48,7 @@ async function fetchAppInfo(origin: string, server: string) {
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
     body: {
-      client_name: APP_NAME + (config.public.env !== 'release' ? ` (${config.public.env})` : ''),
+      client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
       website: 'https://elk.zone',
       redirect_uris: getRedirectURI(origin, server),
       scopes: 'read write follow push',

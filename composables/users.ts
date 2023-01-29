@@ -149,7 +149,7 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
   const [me, pushSubscription] = await Promise.all([
     fetchAccountInfo(client, user.server),
     // if PWA is not enabled, don't get push subscription
-    useRuntimeConfig().public.pwaEnabled
+    useAppConfig().pwaEnabled
     // we get 404 response instead empty data
       ? client.v1.webPushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
       : Promise.resolve(undefined),
@@ -194,7 +194,7 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
   // clear push notification policy
   delete useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {}).value[acct]
 
-  const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+  const pwaEnabled = useAppConfig().pwaEnabled
   const pwa = useNuxtApp().$pwa
   const registrationError = pwa?.registrationError === true
   const unregister = pwaEnabled && !registrationError && pwa?.registrationError === true && fromSWPushManager

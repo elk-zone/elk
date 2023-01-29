@@ -62,8 +62,8 @@ useCommand({
       <div
         rounded-full p2
         v-bind="disabled ? {} : {
-          'elk-group-hover': groupHover,
-          'group-focus-visible': groupHover,
+          'elk-group-hover': elkGroupHover,
+          'group-focus-visible': elkGroupHover,
           'group-focus-visible:ring': '2 current',
         }"
       >

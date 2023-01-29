@@ -15,7 +15,7 @@ import cached from './cache-driver'
 // @ts-expect-error virtual import
 import { env } from '#build-info'
 // @ts-expect-error virtual import
-import { driver, fsBase } from '#storage-config'
+import { driver } from '#storage-config'
 
 import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
@@ -27,7 +27,8 @@ const memory = _memory as typeof import('unstorage/dist/drivers/memory')['defaul
 const storage = useStorage() as Storage
 
 if (driver === 'fs') {
-  storage.mount('servers', fs({ base: fsBase }))
+  const config = useRuntimeConfig()
+  storage.mount('servers', fs({ base: config.storage.fsBase }))
 }
 else if (driver === 'cloudflare') {
   const config = useRuntimeConfig()

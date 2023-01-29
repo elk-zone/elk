@@ -16,6 +16,7 @@ export interface PreferencesSettings {
   hideAccountHoverCard: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
+  disablePinchToZoom: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
@@ -72,6 +73,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAccountHoverCard: false,
   grayscaleMode: false,
   enableAutoplay: true,
+  disablePinchToZoom: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,

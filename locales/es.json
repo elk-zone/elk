@@ -369,6 +369,7 @@
     },
     "notifications_settings": "Notificaciones",
     "preferences": {
+      "disable_pinch_to_zoom": "Deshabilitar pellizcar para hacer zoom",
       "enable_autoplay": "Habilitar auto-reproducción",
       "github_cards": "Tarjetas GitHub",
       "grayscale_mode": "Modo escala de grises",

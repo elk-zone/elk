@@ -330,6 +330,7 @@
     },
     "notifications_settings": "Benachrichtigungen",
     "preferences": {
+      "disable_pinch_to_zoom": "Deaktiviere das Zoomen mit zwei Fingern",
       "enable_autoplay": "Autoplay aktivieren",
       "github_cards": "GitHub Cards",
       "hide_boost_count": "Boost-Zähler ausblenden",

@@ -376,6 +376,7 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "disable_pinch_to_zoom": "Disable pinch to zoom",
       "enable_autoplay": "Enable Autoplay",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",

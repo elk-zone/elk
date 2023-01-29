@@ -5,6 +5,7 @@ export function setupPageHeader() {
   const { locale, locales, t } = useI18n()
   const colorMode = useColorMode()
   const buildInfo = useBuildInfo()
+  const disablePinchToZoom = usePreferences('disablePinchToZoom')
 
   const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
     acc[l.code!] = l.dir ?? 'auto'
@@ -15,6 +16,7 @@ export function setupPageHeader() {
     htmlAttrs: {
       lang: () => locale.value,
       dir: () => localeMap[locale.value] ?? 'auto',
+      class: () => disablePinchToZoom.value ? ['disable-pinch-to-zoom'] : [],
     },
     titleTemplate: (title) => {
       let titleTemplate = title ?? ''

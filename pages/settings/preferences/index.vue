@@ -28,10 +28,22 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_favorite_count') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideReplyCount')"
+      @click="togglePreferences('hideReplyCount')"
+    >
+      {{ $t('settings.preferences.hide_reply_count') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'hideFollowerCount')"
       @click="togglePreferences('hideFollowerCount')"
     >
       {{ $t('settings.preferences.hide_follower_count') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideAccountHoverCard')"
+      @click="togglePreferences('hideAccountHoverCard')"
+    >
+      {{ $t('settings.preferences.hide_account_hover_card') }}
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'grayscaleMode')"

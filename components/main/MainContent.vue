@@ -15,7 +15,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
     <div
       sticky top-0 z10 backdrop-blur
       pt="[env(safe-area-inset-top,0)]"
-      border="b base" bg="[rgba(var(--rbg-bg-base),0.7)]"
+      border="b base" bg="[rgba(var(--rgb-bg-base),0.7)]"
       class="native:lg:w-[calc(100vw-5rem)] native:xl:w-[calc(135%+(100vw-1200px)/2)]"
     >
       <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }" data-tauri-drag-region class="native:xl:flex">
@@ -42,6 +42,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
       <slot name="header" />
     </div>
     <div :class="{ 'xl:block': $route.name !== 'tag' }" hidden h-6 />
+    <PwaInstallPrompt lg:hidden />
     <div :class="isHydrated && wideLayout ? 'xl:w-full sm:max-w-600px' : 'sm:max-w-600px md:shrink-0'" m-auto>
       <slot />
     </div>

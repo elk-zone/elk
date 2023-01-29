@@ -23,6 +23,9 @@ export default defineNuxtModule({
     nuxt.options.appConfig.env = env
     nuxt.options.appConfig.buildInfo = buildInfo
 
+    nuxt.options.nitro.virtual = nuxt.options.nitro.virtual || {}
+    nuxt.options.nitro.virtual['#build-info'] = `export const env = ${JSON.stringify(env)}`
+
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
     if (env === 'dev')
       nuxt.options.nitro.publicAssets.unshift({ dir: resolve('../public-dev') })

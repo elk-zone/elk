@@ -68,7 +68,7 @@ const toggleReblogs = async () => {
 <template>
   <CommonDropdown :eager-mount="command">
     <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group aria-label="More actions">
-      <div rounded-5 p2 group-hover="bg-purple/10">
+      <div rounded-5 p2 elk-group-hover="bg-purple/10">
         <div i-ri:more-2-fill />
       </div>
     </button>

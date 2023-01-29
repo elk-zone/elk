@@ -118,7 +118,7 @@ const showFavoritedAndBoostedBy = () => {
       :content="$t('action.more')"
       color="text-primary"
       hover="text-primary"
-      group-hover="bg-primary-light"
+      elk-group-hover="bg-primary-light"
       icon="i-ri:more-line"
       my--2
     />

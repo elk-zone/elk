@@ -93,6 +93,7 @@ export default defineNuxtConfig({
       apiToken: '',
     },
     public: {
+      privacyPolicyUrl: '',
       env: '', // set in build-env module
       buildInfo: {} as BuildInfo, // set in build-env module
       pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
@@ -115,6 +116,11 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
+      },
+    },
     prerender: {
       crawlLinks: true,
       routes: ['/'],
@@ -124,8 +130,7 @@ export default defineNuxtConfig({
   app: {
     keepalive: true,
     head: {
-      // Prevent arbitrary zooming on mobile devices
-      viewport: 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover',
+      viewport: 'width=device-width,initial-scale=1',
       bodyAttrs: {
         class: 'overflow-x-hidden',
       },

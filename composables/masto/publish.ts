@@ -29,6 +29,8 @@ export const usePublish = (options: {
   }, { deep: true })
 
   async function publishDraft() {
+    if (isPublishDisabled)
+      return
     let content = htmlToText(draft.params.status || '')
     if (draft.mentions?.length)
       content = `${draft.mentions.map(i => `@${i}`).join(' ')} ${content}`

@@ -117,6 +117,20 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
               <span v-else i-ri-notification-4-line block text-current />
             </button>
           </CommonTooltip>
+          <CommonTooltip :content="$t('list.modify_account')">
+            <VDropdown v-if="!isSelf && relationship?.following">
+              <button
+                :aria-label="$t('list.modify_account')"
+                rounded-full text-sm p2 border-1 transition-colors
+                border-base hover:text-primary
+              >
+                <span i-ri:play-list-add-fill block text-current />
+              </button>
+              <template #popper>
+                <ListLists :user-id="account.id" />
+              </template>
+            </VDropdown>
+          </CommonTooltip>
           <AccountFollowButton :account="account" :command="command" />
           <!-- Edit profile -->
           <NuxtLink

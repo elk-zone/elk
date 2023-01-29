@@ -1,4 +1,4 @@
-import { createResolver } from '@nuxt/kit'
+import { createResolver, useNuxt } from '@nuxt/kit'
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
@@ -86,6 +86,12 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
+  appConfig: {
+    storage: {
+      driver: process.env.NUXT_STORAGE_DRIVER ?? (isCI ? 'cloudflare' : 'fs'),
+      fsBase: process.env.NUXT_STORAGE_FS_BASE ?? 'node_modules/.cache/app',
+    },
+  },
   runtimeConfig: {
     adminKey: '',
     cloudflare: {
@@ -100,10 +106,6 @@ export default defineNuxtConfig({
       translateApi: '',
       // Use the instance where Elk has its Mastodon account as the default
       defaultServer: 'm.webtoo.ls',
-    },
-    storage: {
-      driver: isCI ? 'cloudflare' : 'fs',
-      fsBase: 'node_modules/.cache/servers',
     },
   },
   routeRules: {
@@ -124,6 +126,16 @@ export default defineNuxtConfig({
       crawlLinks: true,
       routes: ['/'],
       ignore: ['/settings'],
+    },
+  },
+  hooks: {
+    'nitro:config': function (config) {
+      const nuxt = useNuxt()
+      config.virtual = config.virtual || {}
+      config.virtual['#storage-config'] = `
+        export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}
+        export const fsBase = ${JSON.stringify(nuxt.options.appConfig.storage.fsBase)}
+      `
     },
   },
   app: {

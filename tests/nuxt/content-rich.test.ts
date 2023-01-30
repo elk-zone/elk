@@ -287,15 +287,10 @@ vi.mock('shiki-es', async (importOriginal) => {
   }
 })
 
-vi.mock('~/components/content/ContentMentionGroup.vue', async () => {
-  const { defineComponent, h } = await import('vue')
-  return {
-    default: defineComponent({
-      setup(props, { slots }) {
-        return () => h('mention-group', null, { default: () => slots?.default?.() })
-      },
-    }),
-  }
+mockComponent('ContentMentionGroup', {
+  setup(props, { slots }) {
+    return () => h('mention-group', null, { default: () => slots?.default?.() })
+  },
 })
 
 mockComponent('AccountHoverWrapper', {

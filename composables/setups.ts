@@ -43,7 +43,7 @@ export function setupPageHeader() {
 
       return titleTemplate
     },
-    link: process.client && useRuntimeConfig().public.pwaEnabled
+    link: process.client && useAppConfig().pwaEnabled
       ? () => [{
           key: 'webmanifest',
           rel: 'manifest',

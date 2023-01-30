@@ -1,4 +1,4 @@
-import { defineVitestConfig } from 'nuxt-vitest/config'
+import { defineVitestConfig } from 'nuxt-vitest'
 
 export default defineVitestConfig({
   define: {

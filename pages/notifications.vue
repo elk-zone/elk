@@ -6,7 +6,7 @@ definePageMeta({
 })
 
 const { t } = useI18n()
-const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+const pwaEnabled = useAppConfig().pwaEnabled
 
 const tabs = $computed<CommonRouteTabOption[]>(() => [
   {

@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import type { mastodon } from 'masto'
+import { mockComponent } from 'nuxt-vitest/utils'
 import { contentToVNode } from '~/composables/content-render'
 import type { ContentParseOptions } from '~/composables/content-parse'
 
@@ -269,7 +270,8 @@ async function render(content: string, options?: ContentParseOptions) {
 }
 
 // mocks
-vi.mock('vue-router', () => {
+vi.mock('vue-router', async () => {
+  const { defineComponent, h } = await import('vue')
   return {
     RouterLink: defineComponent((attrs) => {
       return () => h('a', attrs)
@@ -285,37 +287,15 @@ vi.mock('shiki-es', async (importOriginal) => {
   }
 })
 
-vi.mock('~/components/content/ContentCode.vue', () => {
-  return {
-    default: {
-      props: {
-        code: String,
-        lang: String,
-      },
-      setup(props: any) {
-        return () => h('pre', { class: 'code-block' }, { default: () => decodeURIComponent(props.code || '').replace(/&#39;/g, '\'') })
-      },
-    },
-  }
+mockComponent('ContentMentionGroup', {
+  setup(props: any, { slots }: any) {
+    return () => h('mention-group', null, { default: () => slots?.default?.() })
+  },
 })
 
-vi.mock('~/components/content/ContentMentionGroup.vue', () => {
-  return {
-    default: {
-      setup(props: any, { slots }: any) {
-        return () => h('mention-group', null, { default: () => slots?.default?.() })
-      },
-    },
-  }
-})
-
-vi.mock('~/components/account/AccountHoverWrapper.vue', () => {
-  return {
-    default: {
-      props: ['handle', 'class'],
-      setup(_: any, { slots }: any) {
-        return () => slots?.default?.()
-      },
-    },
-  }
+mockComponent('AccountHoverWrapper', {
+  props: ['handle', 'class'],
+  setup(_, { slots }) {
+    return () => slots?.default?.()
+  },
 })

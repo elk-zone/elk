@@ -174,6 +174,11 @@
   "language": {
     "search": "Procurar"
   },
+  "list": {
+    "add_account": "Adicionar conta à lista",
+    "modify_account": "Modificar listas com a conta",
+    "remove_account": "Remover conta da lista"
+  },
   "menu": {
     "block_account": "Bloquear {0}",
     "block_domain": "Bloquear domínio {0}",
@@ -216,9 +221,12 @@
     "favourites": "Favoritos",
     "federated": "Federada",
     "home": "Início",
+    "list": "Lista",
+    "lists": "Listas",
     "local": "Local",
     "muted_users": "Utilizadores silenciados",
     "notifications": "Notificações",
+    "privacy": "Privacidade",
     "profile": "Perfil",
     "search": "Procurar",
     "select_feature_flags": "Alternar Funcionalidades",
@@ -368,6 +376,7 @@
       "hide_boost_count": "Esconder contagem de partilhas",
       "hide_favorite_count": "Esconder contagem de favoritos",
       "hide_follower_count": "Esconder contagem de seguidores",
+      "hide_reply_count": "Esconder contagem de respostas",
       "hide_translation": "Esconder botão de tradução",
       "label": "Preferências",
       "title": "Funcionalidades Experimentais",
@@ -443,8 +452,10 @@
     "edited": "editada {0}"
   },
   "tab": {
+    "accounts": "Contas",
     "for_you": "Para si",
     "hashtags": "Hashtags",
+    "list": "Lista",
     "media": "Media",
     "news": "Notícias",
     "notifications_all": "Todas",

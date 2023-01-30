@@ -98,7 +98,7 @@ We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i
       - Add all country variants in [country variants object](./config/i18n.ts#L12)
       - Add all country variants files with empty `messages` object: `{}`
       - Translate the strings in the generic language file
-      - Later, when anyone wants to add the corresponding translations for the country variant, you can override all entries in the corresponding file: check `en` (english variants), and override the entries in all country files, if you omit them, `i18n` module will use the language entry. You will need also copy from base file to the rest of country variants those messages not being shared (the Elk team is working on resolving this, assuming it can be resolved).
+      - Later, when anyone wants to add the corresponding translations for the country variant, just override any entry in the corresponding file: you can see an example with `en` variants.
    - If the generic language already exists:
       - If the translation doesn't differ from the generic language, then add the corresponding translations in the corresponding file
       - If the translation differs from the generic language, then add the corresponding translations in the corresponding file and remove it from the country variants entry

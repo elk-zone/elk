@@ -30,7 +30,7 @@ exports[`content-rich > block with injected html, without language 1`] = `
 `;
 
 exports[`content-rich > code frame 1`] = `
-"<p>Testing code block</p><p></p><p><pre class=\\"code-block\\">import { useMouse, usePreferredDark } from &#39;@vueuse/core&#39;
+"<p>Testing code block</p><p></p><p><pre class=\\"code-block\\">import { useMouse, usePreferredDark } from &apos;@vueuse/core&apos;
 // tracks mouse position
 const { x, y } = useMouse()
 // is the user prefers dark theme

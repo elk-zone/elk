@@ -14,11 +14,11 @@ import cached from './cache-driver'
 
 // @ts-expect-error virtual import
 import { env } from '#build-info'
+// @ts-expect-error virtual import
+import { driver } from '#storage-config'
 
 import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
-
-const config = useRuntimeConfig()
 
 const fs = _fs as typeof import('unstorage/dist/drivers/fs')['default']
 const kv = _kv as typeof import('unstorage/dist/drivers/cloudflare-kv-http')['default']
@@ -26,17 +26,19 @@ const memory = _memory as typeof import('unstorage/dist/drivers/memory')['defaul
 
 const storage = useStorage() as Storage
 
-if (config.storage.driver === 'fs') {
+if (driver === 'fs') {
+  const config = useRuntimeConfig()
   storage.mount('servers', fs({ base: config.storage.fsBase }))
 }
-else if (config.storage.driver === 'cloudflare') {
+else if (driver === 'cloudflare') {
+  const config = useRuntimeConfig()
   storage.mount('servers', cached(kv({
     accountId: config.cloudflare.accountId,
     namespaceId: config.cloudflare.namespaceId,
     apiToken: config.cloudflare.apiToken,
   })))
 }
-else if (config.storage.driver === 'memory') {
+else if (driver === 'memory') {
   storage.mount('servers', memory())
 }
 

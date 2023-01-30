@@ -118,7 +118,7 @@
     "unplugin-vue-inspector": "^0.0.2",
     "vite-plugin-inspect": "^0.7.14",
     "vite-plugin-pwa": "^0.14.1",
-    "vitest": "^0.28.1",
+    "vitest": "^0.28.3",
     "vue-tsc": "^1.0.24",
     "workbox-build": "^6.5.4",
     "workbox-window": "^6.5.4"

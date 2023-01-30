@@ -165,7 +165,7 @@ const locales: LocaleObjectData[] = [
   {
     code: 'fi-FI',
     file: 'fi-FI.json',
-    name: 'Suomea',
+    name: 'suomeksi',
   },
   {
     code: 'gl-ES',

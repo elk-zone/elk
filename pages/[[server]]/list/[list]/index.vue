@@ -6,7 +6,7 @@ definePageMeta({
 const params = useRoute().params
 const listId = $(computedEager(() => params.list as string))
 
-const { client } = $(useMasto())
+const client = useMastoClient()
 
 const paginator = client.v1.timelines.listList(listId)
 const stream = useStreaming(client => client.v1.stream.streamListTimeline(listId))

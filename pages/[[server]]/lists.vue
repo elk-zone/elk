@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 
-const { client } = $(useMasto())
-const paginator = client.v1.lists.list()
+const paginator = useMastoClient().v1.lists.list()
 
 useHeadFixed({
   title: () => t('nav.lists'),

@@ -51,7 +51,7 @@ const clickUser = (user: UserLogin) => {
         :text="$t('user.sign_out_account', [getFullHandle(currentUser.account)])"
         icon="i-ri:logout-box-line rtl-flip"
         w-full
-        @click="signout"
+        @click="signOut"
       />
     </div>
   </div>

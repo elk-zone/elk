@@ -349,7 +349,7 @@ export const provideGlobalCommands = () => {
     icon: 'i-ri:logout-box-line',
 
     onActivate() {
-      signout()
+      signOut()
     },
   })
 }

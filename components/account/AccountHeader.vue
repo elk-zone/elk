@@ -95,17 +95,20 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           <button shrink-0 :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" w-30 h-30 p1 bg-base border-bg-base z-2 @click="previewAvatar">
             <AccountAvatar :square="isSelf" :account="account" hover:opacity-90 transition-opacity />
           </button>
-          <div inset-ie-0 flex="~ wrap row-reverse" gap-2 items-center pt18>
-            <!-- Edit profile -->
-            <NuxtLink
-              v-if="isSelf"
-              to="/settings/profile/appearance"
-              gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
-              hover="border-primary text-primary bg-active"
-            >
-              {{ $t('settings.profile.appearance.title') }}
-            </NuxtLink>
-            <AccountFollowButton :account="account" :command="command" />
+          <div inset-ie-0 flex="~ wrap" gap-2 items-center pt18 justify-end>
+            <AccountMoreButton :account="account" :command="command" />
+            <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
+              <button
+                :aria-pressed="isNotifiedOnPost"
+                :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
+                rounded-full text-sm p2 border-1 transition-colors
+                :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
+                @click="toggleNotifications"
+              >
+                <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
+                <span v-else i-ri-notification-4-line block text-current />
+              </button>
+            </CommonTooltip>
             <CommonTooltip :content="$t('list.modify_account')">
               <VDropdown v-if="!isSelf && relationship?.following">
                 <button
@@ -120,19 +123,16 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
                 </template>
               </VDropdown>
             </CommonTooltip>
-            <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
-              <button
-                :aria-pressed="isNotifiedOnPost"
-                :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
-                rounded-full text-sm p2 border-1 transition-colors
-                :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
-                @click="toggleNotifications"
-              >
-                <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
-                <span v-else i-ri-notification-4-line block text-current />
-              </button>
-            </CommonTooltip>
-            <AccountMoreButton :account="account" :command="command" />
+            <AccountFollowButton :account="account" :command="command" />
+            <!-- Edit profile -->
+            <NuxtLink
+              v-if="isSelf"
+              to="/settings/profile/appearance"
+              gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
+              hover="border-primary text-primary bg-active"
+            >
+              {{ $t('settings.profile.appearance.title') }}
+            </NuxtLink>
           </div>
         </div>
         <div flex="~ col gap1" pt2>

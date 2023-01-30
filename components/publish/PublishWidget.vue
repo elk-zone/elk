@@ -35,7 +35,7 @@ const {
   dropZoneRef,
 } = $(useUploadMediaAttachment($$(draft)))
 
-let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages } = $(usePublish(
+let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage } = $(usePublish(
   {
     draftState,
     ...$$({ expanded, isUploading, initialDraft: initial }),
@@ -77,7 +77,7 @@ const characterCount = $computed(() => {
   return length
 })
 
-const postLanguageDisplay = $computed(() => languagesNameList.find(i => i.code === draft.params.language)?.nativeName)
+const postLanguageDisplay = $computed(() => languagesNameList.find(i => i.code === (draft.params.language || preferredLanguage))?.nativeName)
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -290,7 +290,7 @@ defineExpose({
             </button>
 
             <template #popper>
-              <PublishLanguagePicker v-model="draft.params.language" min-w-80 p3 />
+              <PublishLanguagePicker v-model="draft.params.language" min-w-80 />
             </template>
           </CommonDropdown>
         </CommonTooltip>

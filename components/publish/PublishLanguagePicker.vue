@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ISO6391 from 'iso-639-1'
 import Fuse from 'fuse.js'
 
 let { modelValue } = $defineModel<{
@@ -29,13 +28,15 @@ function chooseLanguage(language: string) {
 </script>
 
 <template>
-  <div>
-    <input
-      v-model="languageKeyword"
-      :placeholder="t('language.search')"
-      p2 mb2 border-rounded w-full bg-transparent
-      outline-none border="~ base"
-    >
+  <div relative of-x-hidden>
+    <div p2>
+      <input
+        v-model="languageKeyword"
+        :placeholder="t('language.search')"
+        p2 border-rounded w-full bg-transparent
+        outline-none border="~ base"
+      >
+    </div>
     <div max-h-40vh overflow-auto>
       <CommonDropdownItem
         v-for="{ code, nativeName, name } in languages"

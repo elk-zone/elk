@@ -6,7 +6,7 @@ import type { Draft } from '~/types'
 
 const {
   draftKey,
-  initial = getDefaultDraft() as never /* Bug of vue-core */,
+  initial = getDefaultDraft,
   expanded = false,
   placeholder,
   dialogLabelledBy,

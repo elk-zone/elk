@@ -47,7 +47,7 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
     setParams({
       streamingApiUrl: newInstance.urls.streamingApi,
     })
-    instances.value[server] = newInstance
+    instanceStorage.value[server] = newInstance
   })
 
   return instance

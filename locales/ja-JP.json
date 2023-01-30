@@ -174,6 +174,11 @@
   "language": {
     "search": "検索"
   },
+  "list": {
+    "add_account": "アカウントをリストに追加",
+    "modify_account": "このアカウントでリストを編集",
+    "remove_account": "アカウントをリストから削除"
+  },
   "menu": {
     "block_account": "{0}さんをブロック",
     "block_domain": "{0}をドメインブロック",
@@ -216,9 +221,12 @@
     "favourites": "お気に入り",
     "federated": "連合",
     "home": "ホーム",
+    "list": "リスト",
+    "lists": "リスト",
     "local": "ローカル",
     "muted_users": "ミュートしたユーザー",
     "notifications": "通知",
+    "privacy": "プライバシー",
     "profile": "プロフィール",
     "search": "検索",
     "select_feature_flags": "実験的機能を切り替え",
@@ -248,6 +256,8 @@
   },
   "pwa": {
     "dismiss": "閉じる",
+    "install": "インストール",
+    "install_title": "Elkをインストール",
     "title": "新しいElkのアップデートが利用できます！",
     "update": "アップデート",
     "update_available_short": "Elkをアップデート",
@@ -362,9 +372,12 @@
       "enable_autoplay": "自動再生を有効化",
       "github_cards": "GitHubカード",
       "grayscale_mode": "グレースケールモード",
+      "hide_account_hover_card": "アカウントのホバーカードを隠す",
       "hide_boost_count": "ブーストの数を隠す",
       "hide_favorite_count": "お気に入りの数を隠す",
       "hide_follower_count": "フォロワーの数を隠す",
+      "hide_reply_count": "リプライの数を隠す",
+      "hide_translation": "翻訳を隠す",
       "label": "環境設定",
       "title": "実験的機能",
       "user_picker": "ユーザーピッカー",
@@ -432,15 +445,17 @@
     "spoiler_show_less": "隠す",
     "spoiler_show_more": "表示する",
     "thread": "スレッド",
-    "try_original_site": "元ののサイトを試す"
+    "try_original_site": "元のサイトを試す"
   },
   "status_history": {
     "created": "{0}に投稿",
     "edited": "{0}に編集"
   },
   "tab": {
+    "accounts": "アカウント",
     "for_you": "For you",
     "hashtags": "ハッシュタグ",
+    "list": "リスト",
     "media": "メディア",
     "news": "ニュース",
     "notifications_all": "すべて",

@@ -437,8 +437,8 @@
     "try_original_site": "Ver no sitio orixinal"
   },
   "status_history": {
-    "created": "created {0}",
-    "edited": "edited {0}"
+    "created": "escrita o {0}",
+    "edited": "editada o {0}"
   },
   "tab": {
     "for_you": "Para ti",

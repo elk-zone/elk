@@ -115,7 +115,7 @@ const handleShowCommit = () => {
       </p>
 
       <SettingsItem
-        v-for="team in teams" :key="team.github"
+        v-for="team in elkTeamMembers" :key="team.github"
         :text="team.display"
         :to="`https://github.com/sponsors/${team.github}`"
         external target="_blank"

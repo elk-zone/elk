@@ -62,6 +62,7 @@ const { editor } = useTiptap({
   },
   onPaste: handlePaste,
 })
+
 const characterCount = $computed(() => {
   let length = stringLength(htmlToText(editor.value?.getHTML() || ''))
 
@@ -75,6 +76,8 @@ const characterCount = $computed(() => {
 
   return length
 })
+
+const postLanguageDisplay = $computed(() => languagesNameList.find(i => i.code === draft.params.language)?.nativeName)
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -278,17 +281,11 @@ defineExpose({
           {{ characterCount ?? 0 }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
         </div>
 
-        <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
-          <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
-            <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
-            <div v-else i-ri:alarm-warning-line />
-          </button>
-        </CommonTooltip>
-
         <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
           <CommonDropdown placement="bottom" auto-boundary-max-size>
-            <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-12 mr--1>
-              <div i-ri:translate-2 />
+            <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-max mr1>
+              <span v-if="postLanguageDisplay" text-secondary text-sm ml1>{{ postLanguageDisplay }}</span>
+              <div v-else i-ri:translate-2 />
               <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
             </button>
 
@@ -296,6 +293,13 @@ defineExpose({
               <PublishLanguagePicker v-model="draft.params.language" min-w-80 p3 />
             </template>
           </CommonDropdown>
+        </CommonTooltip>
+
+        <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
+          <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
+            <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
+            <div v-else i-ri:alarm-warning-line />
+          </button>
         </CommonTooltip>
 
         <PublishVisibilityPicker v-model="draft.params.visibility" :editing="!!draft.editingStatus">

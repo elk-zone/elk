@@ -76,6 +76,14 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            if (id.includes('.svg') || id.includes('entry'))
+              return 'entry'
+          },
+        },
+      },
     },
     plugins: [
       Inspect(),

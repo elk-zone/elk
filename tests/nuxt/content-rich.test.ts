@@ -288,7 +288,7 @@ vi.mock('shiki-es', async (importOriginal) => {
 })
 
 mockComponent('ContentMentionGroup', {
-  setup(props: any, { slots }: any) {
+  setup(props, { slots }) {
     return () => h('mention-group', null, { default: () => slots?.default?.() })
   },
 })

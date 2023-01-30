@@ -252,7 +252,7 @@
     "install": "Zainstaluj",
     "install_title": "Instalacja Elk",
     "title": "Dostępna nowa aktualizacja Elk!",
-    "update": "Aktualizacja",
+    "update": "Aktualizuj",
     "update_available_short": "Zaktualizuj Elk",
     "webmanifest": {
       "canary": {
@@ -309,7 +309,14 @@
     },
     "language": {
       "display_language": "Język aplikacji",
-      "label": "Język"
+      "label": "Język",
+      "translations": {
+        "add": "Dodaj",
+        "choose_language": "Wybierz język",
+        "heading": "Tłumaczenia",
+        "hide_specific": "Ukryj określone tłumaczenia",
+        "remove": "Usuń"
+      }
     },
     "notifications": {
       "label": "Powiadomienia",
@@ -380,7 +387,7 @@
       "appearance": {
         "bio": "Biogram",
         "description": "Edytuj awatar, nazwę użytkownika, profil itp.",
-        "display_name": "Wyświetlana nazwa",
+        "display_name": "Widoczna nazwa",
         "label": "Wygląd",
         "profile_metadata": "Metadane profilu",
         "profile_metadata_desc": "Możesz mieć maksymalnie {0} elementy wyświetlane jako tabela w swoim profilu",
@@ -424,7 +431,7 @@
     "filter_show_anyway": "Pokaż mimo wszystko",
     "img_alt": {
       "desc": "Opis",
-      "dismiss": "Odrzuć"
+      "dismiss": "Zamknij"
     },
     "poll": {
       "count": "{0} głosów|{0} głos|{0} głosy|{0} głosów",

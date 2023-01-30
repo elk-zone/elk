@@ -43,16 +43,16 @@ const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLo
 }
 
 const users = await initializeUsers()
-export const instances = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
-export const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
+const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
 const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
+export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 
 export type ElkInstance = Partial<mastodon.v1.Instance> & {
   uri: string
   /** support GoToSocial */
   accountDomain?: string | null
 }
-export const getInstanceCache = (server: string): mastodon.v1.Instance | undefined => instances.value[server]
+export const getInstanceCache = (server: string): mastodon.v1.Instance | undefined => instanceStorage.value[server]
 
 export const currentUser = computed<UserLogin | undefined>(() => {
   if (currentUserHandle.value) {
@@ -65,7 +65,7 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 })
 
 const publicInstance = ref<ElkInstance | null>(null)
-export const currentInstance = computed<null | ElkInstance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+export const currentInstance = computed<null | ElkInstance>(() => currentUser.value ? instanceStorage.value[currentUser.value.server] ?? null : publicInstance.value)
 
 export function getInstanceDomain(instance: ElkInstance) {
   return instance.accountDomain || withoutProtocol(instance.uri)
@@ -231,7 +231,7 @@ export async function switchUser(user: UserLogin) {
   }
 }
 
-export async function signout() {
+export async function signOut() {
   // TODO: confirm
   if (!currentUser.value)
     return
@@ -246,7 +246,7 @@ export async function signout() {
     // Clear stale data
     clearUserLocalStorage()
     if (!users.value.some((u, i) => u.server === currentUser.value!.server && i !== index))
-      delete instances.value[currentUser.value.server]
+      delete instanceStorage.value[currentUser.value.server]
 
     await removePushNotifications(currentUser.value)
 

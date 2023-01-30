@@ -7,7 +7,7 @@ export interface Team {
   mastodon: string
 }
 
-export const teams: Team[] = [
+export const elkTeamMembers: Team[] = [
   {
     github: 'antfu',
     display: 'Anthony Fu',

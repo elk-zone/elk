@@ -79,6 +79,7 @@ export default defineNuxtConfig({
       rollupOptions: {
         output: {
           manualChunks: (id) => {
+            // TODO: find and resolve issue in nuxt/vite/pwa
             if (id.includes('.svg') || id.includes('entry'))
               return 'entry'
           },

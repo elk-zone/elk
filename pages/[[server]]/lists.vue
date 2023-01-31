@@ -16,7 +16,9 @@ async function removeList(listId: string) {
     confirm: t('confirm.delete_list.confirm'),
     cancel: t('confirm.delete_list.cancel'),
   }) === 'confirm')
-    client.v1.lists.remove(listId)
+    await client.v1.lists.remove(listId)
+  // TODO: Make this not suck
+  useRouter().go(0)
 }
 
 const isEditing = ref('')
@@ -34,8 +36,6 @@ async function finishEditing(list: mastodon.v1.List) {
     title: list.title,
   })
   isEditing.value = ''
-  // TODO: Make this not suck
-  useRouter().go(0)
 }
 
 const createText = ref('')
@@ -79,20 +79,24 @@ async function createList() {
               {{ item.title }}
             </NuxtLink>
             <div mr4 flex gap2>
-              <button
-                rounded-full text-sm p2 border-1 transition-colors
-                border-base hover:text-primary
-                @click="() => toggleEditing(item)"
-              >
-                <span i-ri:edit-2-line block text-current />
-              </button>
-              <button
-                rounded-full text-sm p2 border-1 transition-colors
-                border-base hover:text-primary
-                @click="() => removeList(item.id)"
-              >
-                <span i-ri:delete-bin-2-line block text-current />
-              </button>
+              <CommonTooltip :content="t('list.edit')">
+                <button
+                  rounded-full text-sm p2 border-1 transition-colors
+                  border-base hover:text-primary
+                  @click="() => toggleEditing(item)"
+                >
+                  <span i-ri:edit-2-line block text-current />
+                </button>
+              </CommonTooltip>
+              <CommonTooltip :content="t('list.delete')">
+                <button
+                  rounded-full text-sm p2 border-1 transition-colors
+                  border-base hover:text-primary
+                  @click="() => removeList(item.id)"
+                >
+                  <span i-ri:delete-bin-2-line block text-current />
+                </button>
+              </CommonTooltip>
             </div>
           </div>
         </template>

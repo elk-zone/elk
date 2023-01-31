@@ -43,8 +43,14 @@ defineSlots<{
 }>()
 
 const { t } = useI18n()
+const nuxtApp = useNuxtApp()
 
 const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), eventType, preprocess)
+
+nuxtApp.hook('elk-logo:click', () => {
+  update()
+  nuxtApp.$scrollToTop()
+})
 </script>
 
 <template>

@@ -95,35 +95,7 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           <button shrink-0 :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" w-30 h-30 p1 bg-base border-bg-base z-2 @click="previewAvatar">
             <AccountAvatar :square="isSelf" :account="account" hover:opacity-90 transition-opacity />
           </button>
-          <div inset-ie-0 flex="~ wrap" gap-2 items-center pt18 justify-end>
-            <AccountMoreButton :account="account" :command="command" />
-            <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
-              <button
-                :aria-pressed="isNotifiedOnPost"
-                :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
-                rounded-full text-sm p2 border-1 transition-colors
-                :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
-                @click="toggleNotifications"
-              >
-                <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
-                <span v-else i-ri-notification-4-line block text-current />
-              </button>
-            </CommonTooltip>
-            <CommonTooltip :content="$t('list.modify_account')">
-              <VDropdown v-if="!isSelf && relationship?.following">
-                <button
-                  :aria-label="$t('list.modify_account')"
-                  rounded-full text-sm p2 border-1 transition-colors
-                  border-base hover:text-primary
-                >
-                  <span i-ri:play-list-add-fill block text-current />
-                </button>
-                <template #popper>
-                  <ListLists :user-id="account.id" />
-                </template>
-              </VDropdown>
-            </CommonTooltip>
-            <AccountFollowButton :account="account" :command="command" />
+          <div inset-ie-0 flex="~ wrap row-reverse" gap-2 items-center pt18 justify-start>
             <!-- Edit profile -->
             <NuxtLink
               v-if="isSelf"
@@ -133,6 +105,36 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
             >
               {{ $t('settings.profile.appearance.title') }}
             </NuxtLink>
+            <AccountFollowButton :account="account" :command="command" />
+            <span inset-ie-0 flex gap-2 items-center>
+              <AccountMoreButton :account="account" :command="command" />
+              <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
+                <button
+                  :aria-pressed="isNotifiedOnPost"
+                  :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
+                  rounded-full text-sm p2 border-1 transition-colors
+                  :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
+                  @click="toggleNotifications"
+                >
+                  <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
+                  <span v-else i-ri-notification-4-line block text-current />
+                </button>
+              </CommonTooltip>
+              <CommonTooltip :content="$t('list.modify_account')">
+                <VDropdown v-if="!isSelf && relationship?.following">
+                  <button
+                    :aria-label="$t('list.modify_account')"
+                    rounded-full text-sm p2 border-1 transition-colors
+                    border-base hover:text-primary
+                  >
+                    <span i-ri:play-list-add-fill block text-current />
+                  </button>
+                  <template #popper>
+                    <ListLists :user-id="account.id" />
+                  </template>
+                </VDropdown>
+              </CommonTooltip>
+            </span>
           </div>
         </div>
         <div flex="~ col gap1" pt2>

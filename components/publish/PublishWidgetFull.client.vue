@@ -19,6 +19,13 @@ watchEffect(() => {
 
 onMounted(() => {
   clearEmptyDrafts()
+
+  if (typeof route.query.text === 'string') {
+    const now = new Date()
+    const shareDraftKey = `share-${now.getFullYear()}-${now.getMonth()}-${now.getDate()}-${now.getHours()}-${now.getMinutes()}-${now.getSeconds()}`
+    currentUserDrafts.value[shareDraftKey] = getDefaultDraft({ initialText: route.query.text as string })
+    draftKey = shareDraftKey
+  }
 })
 </script>
 

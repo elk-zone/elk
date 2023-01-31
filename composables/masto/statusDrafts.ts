@@ -88,7 +88,6 @@ export const isEmptyDraft = (draft: Draft | null | undefined) => {
 
   return (text.length === 0)
     && attachments.length === 0
-    && (params.spoilerText || '').length === 0
 }
 
 export interface UseDraft {

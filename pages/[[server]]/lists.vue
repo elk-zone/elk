@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import type { mastodon } from 'masto'
 const { t } = useI18n()
 
 const client = useMastoClient()
@@ -19,6 +20,26 @@ async function removeList(listId: string) {
     client.v1.lists.remove(listId)
   }
 }
+
+const isEditing = ref('')
+const editingText = ref('')
+
+async function toggleEditing(list: mastodon.v1.List) {
+  if (isEditing.value === list.id) {
+    isEditing.value = ''
+  }
+  else {
+    isEditing.value = list.id
+    editingText.value = list.title
+  }
+}
+
+async function finishEditing(list: mastodon.v1.List) {
+  await client.v1.lists.update(list.id, {
+    title: editingText.value,
+  })
+  isEditing.value = ''
+}
 </script>
 
 <template>
@@ -33,14 +54,28 @@ async function removeList(listId: string) {
       <CommonPaginator :paginator="paginator" no-end-message>
         <template #default="{ item }">
           <div hover:bg-active flex justify-between items-center>
-            <NuxtLink :to="`list/${item.id}`" block grow p4>
+            <div v-if="isEditing === item.id" bg-base border="~ base" h10 m2 px-4 rounded-3 w-full flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
+              <input
+                ref="input"
+                v-model="editingText"
+                rounded-3
+                w-full
+                bg-transparent
+                outline="focus:none"
+                pe-4
+                pb="1px"
+                placeholder-text-secondary
+                @keypress.enter="() => finishEditing(item)"
+              >
+            </div>
+            <NuxtLink v-else :to="`list/${item.id}`" block grow p4>
               {{ item.title }}
             </NuxtLink>
             <div mr4 flex gap2>
               <button
                 rounded-full text-sm p2 border-1 transition-colors
                 border-base hover:text-primary
-                @click="() => removeList(item.id)"
+                @click="() => toggleEditing(item)"
               >
                 <span i-ri:edit-2-line block text-current />
               </button>

@@ -76,6 +76,15 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            // TODO: find and resolve issue in nuxt/vite/pwa
+            if (id.includes('.svg') || id.includes('entry'))
+              return 'entry'
+          },
+        },
+      },
     },
     plugins: [
       Inspect(),

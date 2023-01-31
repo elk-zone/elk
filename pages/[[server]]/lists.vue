@@ -1,11 +1,24 @@
 <script lang="ts" setup>
 const { t } = useI18n()
 
-const paginator = useMastoClient().v1.lists.list()
+const client = useMastoClient()
+
+let paginator = client.v1.lists.list()
 
 useHeadFixed({
   title: () => t('nav.lists'),
 })
+
+async function removeList(listId: string) {
+  if (await openConfirmDialog({
+    title: t('confirm.delete_list.title'),
+    confirm: t('confirm.delete_list.confirm'),
+    cancel: t('confirm.delete_list.cancel'),
+  }) === 'confirm') {
+    client.v1.lists.remove(listId)
+    paginator = (await paginator).filter(item => item.id !== listId)
+  }
+}
 </script>
 
 <template>
@@ -19,9 +32,18 @@ useHeadFixed({
     <slot>
       <CommonPaginator :paginator="paginator">
         <template #default="{ item }">
-          <NuxtLink :to="`list/${item.id}`" block p4 hover:bg-active flex justify-between>
-            {{ item.title }}
-          </NuxtLink>
+          <div hover:bg-active flex justify-between items-center>
+            <NuxtLink :to="`list/${item.id}`" block grow p4>
+              {{ item.title }}
+            </NuxtLink>
+            <button
+              rounded-full text-sm p2 border-1 transition-colors
+              border-base hover:text-primary mr4
+              @click="() => removeList(item.id)"
+            >
+              <span i-ri:delete-bin-2-line block text-current />
+            </button>
+          </div>
         </template>
       </CommonPaginator>
     </slot>

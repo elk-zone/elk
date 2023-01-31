@@ -116,6 +116,11 @@
       "cancel": "No",
       "confirm": "Yes"
     },
+    "delete_list": {
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "title": "Are you sure you want to delete this list?"
+    },
     "delete_posts": {
       "cancel": "Cancel",
       "confirm": "Delete",

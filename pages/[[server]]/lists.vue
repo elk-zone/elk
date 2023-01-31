@@ -4,7 +4,7 @@ const { t } = useI18n()
 
 const client = useMastoClient()
 
-let paginator = client.v1.lists.list()
+const paginator = client.v1.lists.list()
 
 useHeadFixed({
   title: () => t('nav.lists'),
@@ -15,31 +15,27 @@ async function removeList(listId: string) {
     title: t('confirm.delete_list.title'),
     confirm: t('confirm.delete_list.confirm'),
     cancel: t('confirm.delete_list.cancel'),
-  }) === 'confirm') {
+  }) === 'confirm')
     client.v1.lists.remove(listId)
-    paginator = client.v1.lists.list()
-  }
 }
 
 const isEditing = ref('')
-const editingText = ref('')
 
 function toggleEditing(list: mastodon.v1.List) {
-  if (isEditing.value === list.id) {
+  if (isEditing.value === list.id)
     isEditing.value = ''
-  }
-  else {
+
+  else
     isEditing.value = list.id
-    editingText.value = list.title
-  }
 }
 
 async function finishEditing(list: mastodon.v1.List) {
   await client.v1.lists.update(list.id, {
-    title: editingText.value,
+    title: list.title,
   })
   isEditing.value = ''
-  paginator = client.v1.lists.list()
+  // TODO: Make this not suck
+  useRouter().go(0)
 }
 
 const createText = ref('')
@@ -49,6 +45,8 @@ async function createList() {
     title: createText.value,
   })
   createText.value = ''
+  // TODO: Make this also not suck
+  useRouter().go(0)
 }
 </script>
 
@@ -66,8 +64,7 @@ async function createList() {
           <div hover:bg-active flex justify-between items-center>
             <div v-if="isEditing === item.id" bg-base border="~ base" h10 m2 px-4 rounded-3 w-full flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
               <input
-                ref="input"
-                v-model="editingText"
+                v-model="item.title"
                 rounded-3
                 w-full
                 bg-transparent
@@ -102,7 +99,6 @@ async function createList() {
         <template #done>
           <div bg-base border="~ base" h10 m2 px-4 rounded-3 w-full flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
             <input
-              ref="input"
               v-model="createText"
               rounded-3
               w-full

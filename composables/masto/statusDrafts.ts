@@ -33,7 +33,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
       visibility: visibility || 'public',
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
-      language: language || getDefaultLanguage(),
+      language: language || '', // auto inferred from current language on posting
     },
     mentions,
     lastUpdated: Date.now(),
@@ -50,16 +50,6 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
     spoilerText: status.spoilerText,
     language: status.language,
   })
-}
-
-function getDefaultLanguage() {
-  const userSettings = useUserSettings()
-  const defaultLanguage = userSettings.value.language
-
-  if (defaultLanguage)
-    return defaultLanguage.split('-')[0]
-
-  return 'en'
 }
 
 function getAccountsToMention(status: mastodon.v1.Status) {

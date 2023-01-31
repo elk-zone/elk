@@ -181,6 +181,7 @@
   },
   "list": {
     "add_account": "Add account to list",
+    "create": "Create a list",
     "modify_account": "Modify lists with account",
     "remove_account": "Remove account from list"
   },

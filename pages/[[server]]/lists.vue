@@ -4,7 +4,7 @@ const { t } = useI18n()
 
 const client = useMastoClient()
 
-const paginator = client.v1.lists.list()
+let paginator = client.v1.lists.list()
 
 useHeadFixed({
   title: () => t('nav.lists'),
@@ -15,16 +15,16 @@ async function removeList(listId: string) {
     title: t('confirm.delete_list.title'),
     confirm: t('confirm.delete_list.confirm'),
     cancel: t('confirm.delete_list.cancel'),
-  // eslint-disable-next-line curly
   }) === 'confirm') {
     client.v1.lists.remove(listId)
+    paginator = client.v1.lists.list()
   }
 }
 
 const isEditing = ref('')
 const editingText = ref('')
 
-async function toggleEditing(list: mastodon.v1.List) {
+function toggleEditing(list: mastodon.v1.List) {
   if (isEditing.value === list.id) {
     isEditing.value = ''
   }
@@ -39,6 +39,16 @@ async function finishEditing(list: mastodon.v1.List) {
     title: editingText.value,
   })
   isEditing.value = ''
+  paginator = client.v1.lists.list()
+}
+
+const createText = ref('')
+
+async function createList() {
+  await client.v1.lists.create({
+    title: createText.value,
+  })
+  createText.value = ''
 }
 </script>
 
@@ -51,7 +61,7 @@ async function finishEditing(list: mastodon.v1.List) {
       </NuxtLink>
     </template>
     <slot>
-      <CommonPaginator :paginator="paginator" no-end-message>
+      <CommonPaginator :paginator="paginator">
         <template #default="{ item }">
           <div hover:bg-active flex justify-between items-center>
             <div v-if="isEditing === item.id" bg-base border="~ base" h10 m2 px-4 rounded-3 w-full flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
@@ -87,6 +97,23 @@ async function finishEditing(list: mastodon.v1.List) {
                 <span i-ri:delete-bin-2-line block text-current />
               </button>
             </div>
+          </div>
+        </template>
+        <template #done>
+          <div bg-base border="~ base" h10 m2 px-4 rounded-3 w-full flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
+            <input
+              ref="input"
+              v-model="createText"
+              rounded-3
+              w-full
+              bg-transparent
+              outline="focus:none"
+              pe-4
+              pb="1px"
+              placeholder-text-secondary
+              :placeholder="t('list.create')"
+              @keypress.enter="createList"
+            >
           </div>
         </template>
       </CommonPaginator>

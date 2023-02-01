@@ -47,6 +47,7 @@ These are known deployments using Elk as an alternative Web client for Mastodon 
 - [elk.hostux.social](https://elk.hostux.social) - Use Elk for the `hostux.social` Server
 - [elk.freelancers.online](https://elk.freelancers.online) - Use Elk for the `freelancers.online` Server
 - [elk.cupoftea.social](https://elk.cupoftea.social) - Use Elk for the `cupoftea.social` Server
+- [elk.aus.social](https://elk.aus.social) - Use Elk for the `aus.social` Server
 
 > **Note**: Community deployments are **NOT** maintained by the Elk team. It may not be synced with Elk's source code. Please do your own research about the host servers before using them.
 

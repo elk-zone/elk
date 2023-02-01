@@ -4,6 +4,7 @@ import {
   defineLazyEventHandler,
   toNodeListener,
 } from 'h3'
+import type { FetchResponse } from 'ofetch'
 import { createFetch } from 'ofetch'
 import {
   createCall,
@@ -54,7 +55,6 @@ export default defineNuxtPlugin(async () => {
   const localCall = createCall(toNodeListener(h3App) as any)
   const localFetch = createLocalFetch(localCall, globalThis.fetch)
 
-  // @ts-expect-error slight differences in api
   globalThis.$fetch = createFetch({
     // @ts-expect-error slight differences in api
     fetch: localFetch,
@@ -64,7 +64,7 @@ export default defineNuxtPlugin(async () => {
 
   const route = useRoute()
   if (route.path.startsWith('/api')) {
-    const result = await $fetch.raw(route.fullPath)
+    const result = (await ($fetch.raw as any)(route.fullPath)) as FetchResponse<unknown>
     if (result.headers.get('location'))
       location.href = result.headers.get('location')!
   }

@@ -270,7 +270,14 @@
     },
     "language": {
       "display_language": "Anzeigesprache",
-      "label": "Sprache"
+      "label": "Sprache",
+      "translations": {
+        "add": "Hinzufügen",
+        "choose_language": "Sprache wählen",
+        "heading": "Übersetzungen",
+        "hide_specific": "Bestimmte Übersetzungen ausblenden",
+        "remove": "Entfernen"
+      }
     },
     "notifications": {
       "label": "Benachrichtigungen",
@@ -328,7 +335,7 @@
       "hide_boost_count": "Boost-Zähler ausblenden",
       "hide_favorite_count": "Favoritenzahl ausblenden",
       "hide_follower_count": "Anzahl der Follower ausblenden",
-      "hide_translation": "Übersetzungen ausblenden",
+      "hide_translation": "Übersetzungen komplett ausblenden",
       "label": "Einstellungen",
       "title": "Experimentelle Funktionen",
       "user_picker": "Benutzerauswahl",

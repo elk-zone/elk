@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
+
 const { t } = useI18n()
 
 const search = $ref<{ input?: HTMLInputElement }>()
@@ -12,7 +14,7 @@ onActivated(() =>
 )
 onDeactivated(() => search?.input?.blur())
 
-const tabs = $computed(() => [
+const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
     to: isHydrated.value ? `/${currentServer.value}/explore` : '/explore',
     display: isHydrated.value ? t('tab.posts') : '',
@@ -31,7 +33,7 @@ const tabs = $computed(() => [
     display: isHydrated.value ? t('tab.for_you') : '',
     disabled: !isHydrated.value || !currentUser.value,
   },
-] as const)
+])
 </script>
 
 <template>

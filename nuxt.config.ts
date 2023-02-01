@@ -1,10 +1,9 @@
-import { createResolver } from '@nuxt/kit'
+import { createResolver, useNuxt } from '@nuxt/kit'
 import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
-import type { BuildInfo } from './types'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -25,6 +24,7 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
+    'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/purge-comments',
     '~/modules/setup-components',
@@ -66,6 +66,7 @@ export default defineNuxtConfig({
       './composables/settings',
       './composables/tiptap/index.ts',
     ],
+    injectAtEnd: true,
   },
   vite: {
     define: {
@@ -75,6 +76,15 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            // TODO: find and resolve issue in nuxt/vite/pwa
+            if (id.includes('.svg') || id.includes('entry'))
+              return 'entry'
+          },
+        },
+      },
     },
     plugins: [
       Inspect(),
@@ -85,6 +95,11 @@ export default defineNuxtConfig({
       'postcss-nested': {},
     },
   },
+  appConfig: {
+    storage: {
+      driver: process.env.NUXT_STORAGE_DRIVER ?? (isCI ? 'cloudflare' : 'fs'),
+    },
+  },
   runtimeConfig: {
     adminKey: '',
     cloudflare: {
@@ -93,17 +108,15 @@ export default defineNuxtConfig({
       apiToken: '',
     },
     public: {
-      env: '', // set in build-env module
-      buildInfo: {} as BuildInfo, // set in build-env module
-      pwaEnabled: !isDevelopment || process.env.VITE_DEV_PWA === 'true',
-      // We use LibreTranslate(https://github.com/LibreTranslate/LibreTranslate) as our default translation server #76
+      privacyPolicyUrl: '',
+      // We use LibreTranslate (https://github.com/LibreTranslate/LibreTranslate) as
+      // our default translation server #76
       translateApi: '',
       // Use the instance where Elk has its Mastodon account as the default
       defaultServer: 'm.webtoo.ls',
     },
     storage: {
-      driver: isCI ? 'cloudflare' : 'fs',
-      fsBase: 'node_modules/.cache/servers',
+      fsBase: 'node_modules/.cache/app',
     },
   },
   routeRules: {
@@ -115,17 +128,28 @@ export default defineNuxtConfig({
     },
   },
   nitro: {
+    esbuild: {
+      options: {
+        target: 'esnext',
+      },
+    },
     prerender: {
       crawlLinks: true,
       routes: ['/'],
       ignore: ['/settings'],
     },
   },
+  hooks: {
+    'nitro:config': function (config) {
+      const nuxt = useNuxt()
+      config.virtual = config.virtual || {}
+      config.virtual['#storage-config'] = `export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}`
+    },
+  },
   app: {
     keepalive: true,
     head: {
-      // Prevent arbitrary zooming on mobile devices
-      viewport: 'width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover',
+      viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
       bodyAttrs: {
         class: 'overflow-x-hidden',
       },
@@ -185,5 +209,11 @@ declare global {
     interface Process {
       mock?: Record<string, any>
     }
+  }
+}
+
+declare module 'nuxt/dist/app' {
+  interface RuntimeNuxtHooks {
+    'elk-logo:click': () => void
   }
 }

@@ -1,18 +1,1 @@
-{
-  "account": {
-    "favourites": "Favorites"
-  },
-  "action": {
-    "favourite": "Favorite",
-    "favourited": "Favorited"
-  },
-  "nav": {
-    "favourites": "Favorites"
-  },
-  "notification": {
-    "favourited_post": "favorited your post"
-  },
-  "user": {
-    "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server."
-  }
-}
+{}

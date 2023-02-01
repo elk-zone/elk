@@ -44,6 +44,7 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
       <slot name="header" />
     </div>
     <div :class="{ 'xl:block': $route.name !== 'tag' }" hidden h-6 />
+    <PwaInstallPrompt lg:hidden />
     <div :class="isHydrated && wideLayout ? 'xl:w-full sm:max-w-600px' : 'sm:max-w-600px md:shrink-0'" m-auto>
       <slot />
     </div>

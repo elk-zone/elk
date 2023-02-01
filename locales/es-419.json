@@ -150,11 +150,7 @@
       "under_construction": "En desarrollo"
     },
     "preferences": {
-      "enable_autoplay": "Habilitar reproducción automática",
-      "grayscale_mode": "Tema en escala de grises",
-      "hide_favorite_count": "Ocultar número de publicaciones favoritas",
-      "hide_follower_count": "Ocultar número de seguidores",
-      "hide_reply_count": "Ocultar número de respuestas"
+      "grayscale_mode": "Tema en escala de grises"
     },
     "profile": {
       "appearance": {

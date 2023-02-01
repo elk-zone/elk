@@ -6,7 +6,7 @@ const { t } = useI18n()
 const search = $ref<{ input?: HTMLInputElement }>()
 const route = useRoute()
 watchEffect(() => {
-  if (isMediumScreen && route.name === 'explore' && search?.input)
+  if (isMediumOrLargeScreen && route.name === 'explore' && search?.input)
     search?.input?.focus()
 })
 onActivated(() =>

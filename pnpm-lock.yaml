@@ -83,6 +83,7 @@ importers:
       form-data: ^4.0.0
       fs-extra: ^11.1.0
       fuse.js: ^6.6.2
+      github-reserved-names: ^2.0.4
       idb-keyval: ^6.2.0
       iso-639-1: ^2.1.15
       js-yaml: ^4.1.0
@@ -147,6 +148,7 @@ importers:
       focus-trap: 7.2.0
       form-data: 4.0.0
       fuse.js: 6.6.2
+      github-reserved-names: 2.0.4
       idb-keyval: 6.2.0
       iso-639-1: 2.1.15
       js-yaml: 4.1.0
@@ -157,7 +159,7 @@ importers:
       shiki-es: 0.2.0
       slimeform: 0.9.0
       string-length: 5.0.1
-      tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/9d2a19ad05fafeb80991006e14f0f95fe1109aba
+      tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/33d9b712e9058ed82c110cb186345215f82b88e2
       tauri-plugin-store-api: github.com/tauri-apps/tauri-plugin-store/c71665bf5dcf48ae70a88d622eb38b2548b60a5d
       tiny-decode: 0.1.3
       tippy.js: 6.3.7
@@ -7149,6 +7151,10 @@ packages:
       git-up: 7.0.0
     dev: true
 
+  /github-reserved-names/2.0.4:
+    resolution: {integrity: sha512-T2azXbRJTJGQc28G6x89LpzQmuVjzl0hzJXPRD2t9yMh7URYUW8Opqr5ptHvjAVDJ+hwhBtoYmVx3VyFawRoFg==}
+    dev: false
+
   /github-slugger/2.0.0:
     resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
     dev: true
@@ -13269,8 +13275,8 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
 
-  github.com/tauri-apps/tauri-plugin-log/9d2a19ad05fafeb80991006e14f0f95fe1109aba:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/9d2a19ad05fafeb80991006e14f0f95fe1109aba}
+  github.com/tauri-apps/tauri-plugin-log/33d9b712e9058ed82c110cb186345215f82b88e2:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/33d9b712e9058ed82c110cb186345215f82b88e2}
     name: tauri-plugin-log-api
     version: 0.0.0
     dependencies:

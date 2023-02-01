@@ -377,6 +377,7 @@
     "notifications_settings": "Notifications",
     "preferences": {
       "enable_autoplay": "Enable Autoplay",
+      "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
       "hide_account_hover_card": "Hide account hover card",

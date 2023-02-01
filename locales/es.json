@@ -370,6 +370,7 @@
     "notifications_settings": "Notificaciones",
     "preferences": {
       "enable_autoplay": "Habilitar auto-reproducción",
+      "enable_pinch_to_zoom": "Habilitar pellizcar para hacer zoom",
       "github_cards": "Tarjetas GitHub",
       "grayscale_mode": "Modo escala de grises",
       "hide_account_hover_card": "Ocultar tarjeta flotante de cuenta",

@@ -169,6 +169,7 @@
     "desc_para4": "Elk é um software de código aberto. Se quiser ajudar a testar a aplicação, dando o seu feedback ou contributo,",
     "desc_para5": "pode encontrar-nos no GitHub",
     "desc_para6": "e participar.",
+    "footer_team": "A Equipa do Elk",
     "title": "Elk está em Antevisão!"
   },
   "language": {
@@ -290,6 +291,7 @@
   },
   "settings": {
     "about": {
+      "built_at": "Produzido",
       "label": "Sobre",
       "meet_the_team": "Conheça a equipa",
       "sponsor_action": "Patrocine-nos",
@@ -372,11 +374,13 @@
           "re_auth": "Parece que o seu servidor não suporta notificações push. Tenta desconectar e voltar a entrar, se esta mensagem permanecer contacte o administrador do seu servidor."
         }
       },
-      "show_btn": "Ir para a configuração de notificações"
+      "show_btn": "Ir para a configuração de notificações",
+      "under_construction": "Em construção"
     },
     "notifications_settings": "Notificações",
     "preferences": {
       "enable_autoplay": "Habilitar Reprodução Automática",
+      "enable_pinch_to_zoom": "Habilitar afastar/aproximar dedos para fazer zoom",
       "github_cards": "Cartões do GitHub",
       "grayscale_mode": "Modo tons de cinza",
       "hide_account_hover_card": "Esconder cartão flutuante de conta",

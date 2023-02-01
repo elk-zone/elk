@@ -19,7 +19,7 @@ const toggleFollowTag = async () => {
   tag.following = !tag.following
 
   try {
-    if (tag.following)
+    if (previousFollowingState)
       await client.v1.tags.unfollow(tag.name)
     else
       await client.v1.tags.follow(tag.name)

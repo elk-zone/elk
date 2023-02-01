@@ -167,6 +167,11 @@
   "language": {
     "search": "Szukaj"
   },
+  "list": {
+    "add_account": "Dodaj konto do listy",
+    "modify_account": "Modyfikacja listy",
+    "remove_account": "Usuń konto z listy"
+  },
   "menu": {
     "block_account": "Zablokuj {0}",
     "block_domain": "Zablokuj domenę {0}",
@@ -208,10 +213,13 @@
     "explore": "Odkrywaj",
     "favourites": "Ulubione",
     "federated": "Globalna",
-    "home": "Strona główna",
+    "home": "Główny widok",
+    "list": "Lista",
+    "lists": "Listy",
     "local": "Lokalna",
     "muted_users": "Wyciszeni użytkownicy",
     "notifications": "Powiadomienia",
+    "privacy": "Prywatność",
     "profile": "Profil",
     "search": "Szukaj",
     "select_feature_flags": "Włączanie funkcji",
@@ -241,6 +249,8 @@
   },
   "pwa": {
     "dismiss": "Odrzuć",
+    "install": "Zainstaluj",
+    "install_title": "Instalacja Elk",
     "title": "Dostępna nowa aktualizacja Elk!",
     "update": "Aktualizacja",
     "update_available_short": "Zaktualizuj Elk",
@@ -294,13 +304,6 @@
       "font_size": "Rozmiar czcionki",
       "label": "Wygląd",
       "light_mode": "Jasny",
-      "size_label": {
-        "lg": "Duża",
-        "md": "Średnia",
-        "sm": "Mała",
-        "xl": "Bardzo duża",
-        "xs": "Bardzo mała"
-      },
       "system_mode": "Systemowy",
       "theme_color": "Kolor motywu"
     },
@@ -362,9 +365,11 @@
       "enable_autoplay": "Włącz autoodtwarzanie",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Tryb skali szarości",
+      "hide_account_hover_card": "Ukryj wizytówkę konta",
       "hide_boost_count": "Ukryj liczbę podbić",
       "hide_favorite_count": "Ukryj liczbę polubień",
       "hide_follower_count": "Ukryj liczbę obserwujących",
+      "hide_reply_count": "Ukryj liczbę odpowiedzi",
       "hide_translation": "Ukryj funkcję tłumaczenia",
       "label": "Preferencje",
       "title": "Funkcje eksperymentalne",
@@ -440,8 +445,10 @@
     "edited": "edytowano {0}"
   },
   "tab": {
+    "accounts": "Konta",
     "for_you": "Dla Ciebie",
     "hashtags": "Hasztagi",
+    "list": "Lista",
     "media": "Media",
     "news": "Aktualności",
     "notifications_all": "Wszystko",
@@ -460,7 +467,7 @@
     "day_past": "0 dni temu|wczoraj|{n} dni temu",
     "hour_future": "za 0 godzin|za 1 godzinę|za {n} godziny|za {n} godzin",
     "hour_past": "0 godzin temu|1 godzinę temu|{n} godziny temu|{n} godzin temu",
-    "just_now": "właśnie teraz",
+    "just_now": "teraz",
     "minute_future": "za 0 minut|za 1 minutę|za {n} minuty|za {n} minut",
     "minute_past": "0 minut temu|1 minutę temu|{n} minuty temu|{n} minut temu",
     "month_future": "za 0 miesięcy|za miesiąc|za {n} miesiące|za {n} miesięcy",

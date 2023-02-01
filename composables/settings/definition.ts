@@ -9,9 +9,11 @@ export type ColorMode = 'light' | 'dark' | 'system'
 
 export interface PreferencesSettings {
   hideBoostCount: boolean
+  hideReplyCount: boolean
   hideFavoriteCount: boolean
   hideFollowerCount: boolean
   hideTranslation: boolean
+  hideAccountHoverCard: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
   experimentalVirtualScroller: boolean
@@ -24,6 +26,7 @@ export interface UserSettings {
   colorMode?: ColorMode
   fontSize: FontSize
   language: string
+  disabledTranslationLanguages: string[]
   zenMode: boolean
   themeColors?: ThemeColors
 }
@@ -54,6 +57,7 @@ export function getDefaultUserSettings(locales: string[]): UserSettings {
   return {
     language: getDefaultLanguage(locales),
     fontSize: DEFAULT_FONT_SIZE,
+    disabledTranslationLanguages: [],
     zenMode: false,
     preferences: {},
   }
@@ -61,9 +65,11 @@ export function getDefaultUserSettings(locales: string[]): UserSettings {
 
 export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideBoostCount: false,
+  hideReplyCount: false,
   hideFavoriteCount: false,
   hideFollowerCount: false,
   hideTranslation: false,
+  hideAccountHoverCard: false,
   grayscaleMode: false,
   enableAutoplay: true,
   experimentalVirtualScroller: true,

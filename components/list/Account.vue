@@ -37,7 +37,14 @@ async function edit() {
     />
     <div>
       <CommonTooltip :content="isRemoved ? $t('list.add_account') : $t('list.remove_account')" :hover="isRemoved ? 'text-green' : 'text-red'">
-        <button :class="isRemoved ? 'i-ri:user-add-line' : 'i-ri:user-unfollow-line'" text-xl @click="edit" />
+        <button
+          text-sm p2 border-1 transition-colors
+          border-dark
+          btn-action-icon
+          @click="edit"
+        >
+          <span :class="isRemoved ? 'i-ri:user-add-line' : 'i-ri:user-unfollow-line'" />
+        </button>
       </CommonTooltip>
     </div>
   </div>

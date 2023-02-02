@@ -452,8 +452,10 @@
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Description",
-      "dismiss": "Dismiss"
+      "dismiss": "Dismiss",
+      "read": "Read {0} description"
     },
     "poll": {
       "count": "{0} votes|{0} vote|{0} votes",

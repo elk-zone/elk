@@ -62,11 +62,11 @@ function removeEntry(id: string) {
           <form
             border="t base"
             p-4 w-full
-            flex relative gap-3
+            flex="~ wrap" relative gap-3
             @submit.prevent="createList"
           >
             <div
-              bg-base border="~ base" h10 ps-1 pe-4 rounded-2 w-full flex="~ row"
+              bg-base border="~ base" flex-1 h10 ps-1 pe-4 rounded-2 w-full flex="~ row"
               items-center relative focus-within:box-shadow-outline gap-3
             >
               <input

@@ -114,6 +114,7 @@ onBeforeUnmount(() => cancelEdit(false))
         pb="1px"
         flex-1
         placeholder-text-secondary
+        @keydown.esc="isEditing && cancelEdit(true)"
       >
     </div>
     <NuxtLink v-else :to="`list/${list.id}`" block grow p4>

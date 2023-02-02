@@ -21,7 +21,7 @@
     "followers_count": "{0} seguidors|{0} seguidor|{0} seguidors",
     "following": "Seguint",
     "following_count": "{0} seguint",
-    "follows_you": "Et segueix",
+    "follows_you": "Us segueix",
     "go_to_profile": "Ves al perfil",
     "joined": "Data d'unió",
     "moved_title": "ha indicat que el seu compte és ara:",
@@ -240,17 +240,17 @@
   },
   "notification": {
     "favourited_post": "ha marcat com a preferit",
-    "followed_you": "t'ha seguit",
-    "followed_you_count": "{0} persones t'han seguit|{0} persona t'ha seguit|{0} persones t'han seguit",
+    "followed_you": "us ha seguit",
+    "followed_you_count": "{0} persones us han seguit|{0} persona us ha seguit|{0} persones us han seguit",
     "missing_type": "MISSING notification.type:",
-    "reblogged_post": "t'ha impulsat",
-    "request_to_follow": "ha demanat seguir-te",
+    "reblogged_post": "us ha impulsat",
+    "request_to_follow": "ha demanat seguir-vos",
     "signed_up": "signed up",
     "update_status": "ha actualitzat la publicació"
   },
   "placeholder": {
     "content_warning": "Write your warning here",
-    "default_1": "Què et passa pel cap?",
+    "default_1": "Què us passa pel cap?",
     "reply_to_account": "Respon a {0}",
     "replying": "Responent",
     "the_thread": "el fil"

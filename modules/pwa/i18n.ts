@@ -13,6 +13,7 @@ interface ExtendedManifestOptions extends ManifestOptions {
     method: string
     enctype: string
     params: {
+      title: string
       text: string
       url: string
       files: [{
@@ -96,8 +97,9 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
         method: 'POST',
         enctype: 'multipart/form-data',
         params: {
+          title: 'title',
           text: 'text',
-          url: 'text',
+          url: 'url',
           files: [
             {
               name: 'files',
@@ -136,8 +138,9 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
         method: 'POST',
         enctype: 'multipart/form-data',
         params: {
+          title: 'title',
           text: 'text',
-          url: 'text',
+          url: 'url',
           files: [
             {
               name: 'files',

@@ -34,10 +34,25 @@ async function handleSharedTarget(event: FetchEvent) {
 async function sendShareTargetMessage(client: Client, data: FormData) {
   const sharedData: { text?: string; files?: File[] } = {}
 
+  // We collect the text data shared with us
+  const textParts: string[] = []
+
+  const title = data.get('title')
+  if (title !== null)
+    textParts.push(title.toString())
+
   const text = data.get('text')
   if (text !== null)
-    sharedData.text = text.toString()
+    textParts.push(text.toString())
 
+  const link = data.get('link')
+  if (link !== null)
+    textParts.push(link.toString())
+
+  if (textParts.length !== 0)
+    sharedData.text = textParts.join('\n')
+
+  // We collect the files shared with us
   const files: File[] = []
   for (const [name, file] of data.entries()) {
     if (name === 'files' && file instanceof File)

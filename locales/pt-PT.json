@@ -116,6 +116,11 @@
       "cancel": "Não",
       "confirm": "Sim"
     },
+    "delete_list": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "Tem a certeza que pretende elimnar a lista \"{0}\"?"
+    },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
@@ -177,8 +182,14 @@
   },
   "list": {
     "add_account": "Adicionar conta à lista",
+    "cancel_edit": "Cancelar edição",
+    "create": "Criar",
+    "delete": "Eliminar esta lista",
+    "edit": "Editar esta lista",
+    "list_title_placeholder": "Título da lista",
     "modify_account": "Modificar listas com a conta",
-    "remove_account": "Remover conta da lista"
+    "remove_account": "Remover conta da lista",
+    "save": "Salvar alterações"
   },
   "menu": {
     "block_account": "Bloquear {0}",
@@ -441,8 +452,10 @@
     "filter_removed_phrase": "Removida pelo filtro",
     "filter_show_anyway": "Mostrar mesmo assim",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Descrição",
-      "dismiss": "Dispensar"
+      "dismiss": "Dispensar",
+      "read": "Ler descrição de {0}"
     },
     "poll": {
       "count": "{0} votos|{0} voto|{0} votos",

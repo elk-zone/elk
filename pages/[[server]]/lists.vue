@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
 
+definePageMeta({
+  middleware: 'auth',
+})
+
 const { t } = useI18n()
 
 const client = useMastoClient()

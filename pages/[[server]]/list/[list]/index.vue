@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
 
+definePageMeta({
+  middleware: 'auth',
+})
+
 const list = $computed(() => useRoute().params.list as string)
 const server = $computed(() => useRoute().params.server as string)
 

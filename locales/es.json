@@ -116,6 +116,11 @@
       "cancel": "No",
       "confirm": "Si"
     },
+    "delete_list": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "¿Está seguro de querer eliminar la lista \"{0}\"?"
+    },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
@@ -177,8 +182,14 @@
   },
   "list": {
     "add_account": "Agregar cuenta a la lista",
+    "cancel_edit": "Cancelar edición",
+    "create": "Crear",
+    "delete": "Eliminar esta lista",
+    "edit": "Ediar esta lista",
+    "list_title_placeholder": "Título de la lista",
     "modify_account": "Modificar listas con cuenta",
-    "remove_account": "Eliminar cuenta de la lista"
+    "remove_account": "Eliminar cuenta de la lista",
+    "save": "Guardar"
   },
   "menu": {
     "block_account": "Bloquear a {0}",

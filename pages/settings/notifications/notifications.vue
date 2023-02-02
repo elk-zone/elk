@@ -21,7 +21,7 @@ useHeadFixed({
       {{ $t('settings.notifications.notifications.label') }}
     </h3>
     <p text-4xl text-center>
-      <span sr-only>Under construction</span> 🚧
+      <span sr-only>{{ $t('settings.notifications.under_construction') }}</span> 🚧
     </p>
   </MainContent>
 </template>

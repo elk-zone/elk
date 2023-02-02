@@ -174,6 +174,7 @@
     "desc_para4": "Elk is Open Source. If you'd like to help with testing, giving feedback, or contributing,",
     "desc_para5": "reach out to us on GitHub",
     "desc_para6": "and get involved.",
+    "footer_team": "The Elk Team",
     "title": "Elk is in Preview!"
   },
   "language": {
@@ -298,6 +299,7 @@
   },
   "settings": {
     "about": {
+      "built_at": "Built",
       "label": "About",
       "meet_the_team": "Meet the team",
       "sponsor_action": "Sponsor us",
@@ -380,11 +382,13 @@
           "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
         }
       },
-      "show_btn": "Go to notifications settings"
+      "show_btn": "Go to notifications settings",
+      "under_construction": "Under construction"
     },
     "notifications_settings": "Notifications",
     "preferences": {
       "enable_autoplay": "Enable Autoplay",
+      "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
       "hide_account_hover_card": "Hide account hover card",

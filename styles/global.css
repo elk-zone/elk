@@ -39,6 +39,7 @@ body {
   vertical-align: text-bottom;
 }
 
+.content-editor .custom-emoji img,
 .custom-emoji img {
   max-height: 1.3em;
   max-width: 1.3em;
@@ -183,6 +184,11 @@ html.dark {
 
 html {
   --at-apply: bg-base text-base;
+}
+
+html:not(.enable-pinch-to-zoom) body {
+  /* Prevent arbitrary zooming on mobile devices */
+  touch-action: pan-x pan-y;
 }
 
 .sparkline--fill {

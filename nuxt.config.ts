@@ -76,6 +76,15 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            // TODO: find and resolve issue in nuxt/vite/pwa
+            if (id.includes('.svg') || id.includes('entry'))
+              return 'entry'
+          },
+        },
+      },
     },
     plugins: [
       Inspect(),
@@ -140,7 +149,7 @@ export default defineNuxtConfig({
   app: {
     keepalive: true,
     head: {
-      viewport: 'width=device-width,initial-scale=1',
+      viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',
       bodyAttrs: {
         class: 'overflow-x-hidden',
       },
@@ -200,5 +209,11 @@ declare global {
     interface Process {
       mock?: Record<string, any>
     }
+  }
+}
+
+declare module 'nuxt/dist/app' {
+  interface RuntimeNuxtHooks {
+    'elk-logo:click': () => void
   }
 }

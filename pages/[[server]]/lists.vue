@@ -60,24 +60,29 @@ function removeEntry(id: string) {
         </template>
         <template #done>
           <form
-            bg-base border="t base"
+            border="t base"
             p-4 w-full
-            flex="~ col" relative gap-3
+            flex relative gap-3
             @submit.prevent="createList"
           >
-            <input
-              v-model="createText"
-              outline-none bg-transparent w-full max-w-50
-              placeholder-text-secondary
-              rounded-3
-              outline="focus:none"
-              pe-4
-              pb="1px"
-              :placeholder="$t('list.create')"
-              @keypress.enter="createList"
+            <div
+              bg-base border="~ base" h10 ps-1 pe-4 rounded-2 w-full flex="~ row"
+              items-center relative focus-within:box-shadow-outline gap-3
             >
-            <div flex="~ col" gap-y-4 gap-x-2 py-1 sm="~ justify-between flex-row">
-              <button flex="~ row" gap-x-2 items-center btn-solid mt2 :disabled="!enableSubmit || busy">
+              <input
+                v-model="createText"
+                bg-transparent
+                outline="focus:none"
+                px-4
+                pb="1px"
+                flex-1
+                placeholder-text-secondary
+                :placeholder="$t('list.list_title_placeholder')"
+                @keypress.enter="createList"
+              >
+            </div>
+            <div flex="~ col" gap-y-4 gap-x-2 sm="~ justify-between flex-row">
+              <button flex="~ row" gap-x-2 items-center btn-solid :disabled="!enableSubmit || busy">
                 <span v-if="busy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
                   <span block i-ri:loader-2-fill aria-hidden="true" />
                 </span>

@@ -123,11 +123,10 @@ onBeforeUnmount(() => cancelEdit(false))
       <CommonTooltip v-if="isEditing" :content="$t('list.save')">
         <button
           type="submit"
-          btn-solid
-          rounded-full text-sm p2 border-1 transition-colors
-          border-base hover:text-primary
-          disable:text-disabled
-          :disabled="!enableSaveButton || busy"
+          text-sm p2 border-1 transition-colors
+          border-dark hover:text-primary
+          btn-action-icon
+          :disabled="deleteBusy || !enableSaveButton || busy"
         >
           <template v-if="isEditing">
             <span v-if="busy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
@@ -141,9 +140,9 @@ onBeforeUnmount(() => cancelEdit(false))
         <button
           ref="edit"
           type="button"
-          btn-solid
-          rounded-full text-sm p2 border-1 transition-colors
-          border-base hover:text-primary
+          text-sm p2 border-1 transition-colors
+          border-dark hover:text-primary
+          btn-action-icon
           @click.prevent="prepareEdit"
         >
           <span block text-current i-ri:edit-2-line class="rtl-flip" />
@@ -152,9 +151,9 @@ onBeforeUnmount(() => cancelEdit(false))
       <CommonTooltip :content="$t('list.delete')">
         <button
           type="button"
-          btn-outline
-          rounded-full text-sm p2 border-1 transition-colors
-          border-base hover:text-primary
+          text-sm p2 border-1 transition-colors
+          border-dark hover:text-primary
+          btn-action-icon
           :disabled="isEditing"
           @click.prevent="removeList"
         >

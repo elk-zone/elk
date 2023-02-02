@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
+
 const { t } = useI18n()
 
 const client = useMastoClient()
@@ -10,43 +11,33 @@ useHeadFixed({
   title: () => t('nav.lists'),
 })
 
-async function removeList(listId: string) {
-  if (await openConfirmDialog({
-    title: t('confirm.delete_list.title'),
-    confirm: t('confirm.delete_list.confirm'),
-    cancel: t('confirm.delete_list.cancel'),
-  }) === 'confirm')
-    await client.v1.lists.remove(listId)
-  // TODO: Make this not suck
-  useRouter().go(0)
-}
-
-const isEditing = ref('')
-
-function toggleEditing(list: mastodon.v1.List) {
-  if (isEditing.value === list.id)
-    isEditing.value = ''
-
-  else
-    isEditing.value = list.id
-}
-
-async function finishEditing(list: mastodon.v1.List) {
-  await client.v1.lists.update(list.id, {
-    title: list.title,
-  })
-  isEditing.value = ''
-}
-
+const paginatorRef = ref()
+let busy = $ref<boolean>(false)
 const createText = ref('')
+const enableSubmit = computed(() => createText.value.length > 0)
 
 async function createList() {
-  await client.v1.lists.create({
-    title: createText.value,
-  })
-  createText.value = ''
-  // TODO: Make this also not suck
-  useRouter().go(0)
+  if (busy || !enableSubmit.value)
+    return
+
+  busy = true
+  await nextTick()
+  try {
+    const newEntry = await client.v1.lists.create({
+      title: createText.value,
+    })
+    paginatorRef.value.createEntry(newEntry)
+    createText.value = ''
+  }
+  finally {
+    busy = false
+  }
+}
+function updateEntry(list: mastodon.v1.List) {
+  paginatorRef.value.updateEntry(list)
+}
+function removeEntry(id: string) {
+  paginatorRef.value.removeEntry(id)
 }
 </script>
 
@@ -59,62 +50,42 @@ async function createList() {
       </NuxtLink>
     </template>
     <slot>
-      <CommonPaginator :paginator="paginator">
+      <CommonPaginator ref="paginatorRef" :paginator="paginator">
         <template #default="{ item }">
-          <div hover:bg-active flex justify-between items-center>
-            <div v-if="isEditing === item.id" bg-base border="~ base" h10 m2 px-4 rounded-3 w-full flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
-              <input
-                v-model="item.title"
-                rounded-3
-                w-full
-                bg-transparent
-                outline="focus:none"
-                pe-4
-                pb="1px"
-                placeholder-text-secondary
-                @keypress.enter="() => finishEditing(item)"
-              >
-            </div>
-            <NuxtLink v-else :to="`list/${item.id}`" block grow p4>
-              {{ item.title }}
-            </NuxtLink>
-            <div mr4 flex gap2>
-              <CommonTooltip :content="t('list.edit')">
-                <button
-                  rounded-full text-sm p2 border-1 transition-colors
-                  border-base hover:text-primary
-                  @click="() => toggleEditing(item)"
-                >
-                  <span i-ri:edit-2-line block text-current />
-                </button>
-              </CommonTooltip>
-              <CommonTooltip :content="t('list.delete')">
-                <button
-                  rounded-full text-sm p2 border-1 transition-colors
-                  border-base hover:text-primary
-                  @click="() => removeList(item.id)"
-                >
-                  <span i-ri:delete-bin-2-line block text-current />
-                </button>
-              </CommonTooltip>
-            </div>
-          </div>
+          <ListEntry
+            :list="item"
+            @list-updated="updateEntry"
+            @list-removed="removeEntry"
+          />
         </template>
         <template #done>
-          <div bg-base border="~ base" h10 m2 px-4 rounded-3 w-full flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
+          <form
+            bg-base border="t base"
+            p-4 w-full
+            flex="~ col" relative gap-3
+            @submit.prevent="createList"
+          >
             <input
               v-model="createText"
+              outline-none bg-transparent w-full max-w-50
+              placeholder-text-secondary
               rounded-3
-              w-full
-              bg-transparent
               outline="focus:none"
               pe-4
               pb="1px"
-              placeholder-text-secondary
-              :placeholder="t('list.create')"
+              :placeholder="$t('list.create')"
               @keypress.enter="createList"
             >
-          </div>
+            <div flex="~ col" gap-y-4 gap-x-2 py-1 sm="~ justify-between flex-row">
+              <button flex="~ row" gap-x-2 items-center btn-solid mt2 :disabled="!enableSubmit || busy">
+                <span v-if="busy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+                  <span block i-ri:loader-2-fill aria-hidden="true" />
+                </span>
+                <span v-else aria-hidden="true" block i-material-symbols:playlist-add-rounded class="rtl-flip" />
+                {{ $t('list.create') }}
+              </button>
+            </div>
+          </form>
         </template>
       </CommonPaginator>
     </slot>

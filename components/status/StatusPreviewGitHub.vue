@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import reservedNames from 'github-reserved-names'
 
 const props = defineProps<{
   card: mastodon.v1.PreviewCard
@@ -20,24 +21,22 @@ interface Meta {
   }
 }
 
-const specialRoutes = ['orgs', 'sponsors', 'stars']
+// Supported paths
+// /user
+// /user/repo
+// /user/repo/issues/number
+// /user/repo/pull/number
+// /sponsors/user
+const supportedReservedRoutes = ['sponsors']
 
 const meta = $computed(() => {
   const { url } = props.card
   const path = url.split('https://github.com/')[1]
+  const [firstName, secondName] = path?.split('/') || []
+  if (!firstName || (reservedNames.check(firstName) && !supportedReservedRoutes.includes(firstName)))
+    return undefined
 
-  // Supported paths
-  // /user
-  // /user/repo
-  // /user/repo/issues/number
-  // /user/repo/pull/number
-  // /orgs/user
-  // /sponsors/user
-  // /stars/user
-
-  const firstName = path.match(/([\w-]+)(\/|$)/)?.[1]
-  const secondName = path.match(/[\w-]+\/([\w-]+)/)?.[1]
-  const firstIsUser = firstName && !specialRoutes.includes(firstName)
+  const firstIsUser = firstName && !supportedReservedRoutes.includes(firstName)
   const user = firstIsUser ? firstName : secondName
   const repo = firstIsUser ? secondName : undefined
 
@@ -86,7 +85,7 @@ const meta = $computed(() => {
 
 <template>
   <div
-    v-if="card.image"
+    v-if="card.image && meta"
     flex flex-col
     display-block of-hidden
     bg-card
@@ -132,4 +131,5 @@ const meta = $computed(() => {
       </div>
     </div>
   </div>
+  <StatusPreviewCardNormal v-else :card="card" />
 </template>

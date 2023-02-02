@@ -8,9 +8,9 @@
   },
   "account": {
     "avatar_description": "Avatar de {0}",
-    "blocked_by": "Vous êtes bloqué·e par cet·te utilisateur·ice.",
+    "blocked_by": "Ce compte vous a bloqué",
     "blocked_domains": "Domaines bloqués",
-    "blocked_users": "Utilisateur·ice·s bloqué·e·s",
+    "blocked_users": "Comptes bloqués",
     "blocking": "Bloqué·e",
     "bot": "Automatisé",
     "favourites": "Aimés",
@@ -25,7 +25,7 @@
     "go_to_profile": "Aller à son profil",
     "joined": "a rejoint",
     "moved_title": "a indiqué que son nouveau compte est désormais :",
-    "muted_users": "Utilisateur·ice·s masqué·e·s",
+    "muted_users": "Comptes masqués",
     "muting": "Masqué·e",
     "mutuals": "Abonné·e·s",
     "notifications_on_post_disable": "Arrêtez de me notifier lorsque {username} publie",
@@ -39,8 +39,8 @@
     "unblock": "Débloquer",
     "unfollow": "Ne plus suivre",
     "unmute": "Réafficher",
-    "view_other_followers": "Les abonné·e·s d'autres instances peuvent ne pas être affiché·e·s.",
-    "view_other_following": "Les suivis d'autres instances peuvent ne pas être affichés."
+    "view_other_followers": "Les comptes abonnés d'autres instances peuvent ne pas être affichés.",
+    "view_other_following": "Les comptes suivis d'autres instances peuvent ne pas être affichés."
   },
   "action": {
     "apply": "Appliquer",
@@ -121,7 +121,7 @@
     "delete_posts": {
       "cancel": "Annuler",
       "confirm": "Supprimer",
-      "title": "Certain·e de vouloir supprimer ce message ?"
+      "title": "Voulez-vous vraiment supprimer ce message ?"
     },
     "mute_account": {
       "cancel": "Annuler",
@@ -212,7 +212,7 @@
   "nav": {
     "back": "Retourner à la page précédente",
     "blocked_domains": "Domaines bloqués",
-    "blocked_users": "Utilisateur·ice·s bloqué·e·s",
+    "blocked_users": "Comptes bloqués",
     "bookmarks": "Marque-pages",
     "built_at": "Dernière compilation {0}",
     "compose": "Composer",
@@ -222,7 +222,7 @@
     "federated": "Fédérés",
     "home": "Accueil",
     "local": "Local",
-    "muted_users": "Utilisateur·ice·s masqué·e·s",
+    "muted_users": "Comptes masqués",
     "notifications": "Notifications",
     "profile": "Profil",
     "search": "Rechercher",
@@ -291,7 +291,7 @@
       "meet_the_team": "Rencontrez l'équipe",
       "sponsor_action": "Soutenez-nous",
       "sponsor_action_desc": "Pour financer l'équipe développant Elk",
-      "sponsors": "Donateur·ice·s",
+      "sponsors": "Soutiens financiers",
       "sponsors_body_1": "Elk existe grâce aux généreux soutien de :",
       "sponsors_body_2": "Et toutes les personnes et sociétés soutenant l'équipe Elk et ses membres.",
       "sponsors_body_3": "Si vous appréciez l'application, envisagez de nous soutenir :",
@@ -323,7 +323,7 @@
       "push_notifications": {
         "alerts": {
           "favourite": "Messages aimés",
-          "follow": "Nouveaux abonné·e·s",
+          "follow": "Nouveaux abonnés",
           "mention": "Mentions",
           "poll": "Sondages",
           "reblog": "Messages partagés",
@@ -380,7 +380,7 @@
     "profile": {
       "appearance": {
         "bio": "Bio",
-        "description": "Éditer l'avatar, nom d'utilisateur·ice, profil, etc.",
+        "description": "Éditer l'avatar, nom du compte, profil, etc.",
         "display_name": "Nom d'affichage",
         "label": "Apparence",
         "profile_metadata": "Métadonnées de profil",
@@ -395,9 +395,9 @@
     },
     "select_a_settings": "Sélectionner un paramètre",
     "users": {
-      "export": "Exporter les tokens d'utilisateur·ice",
-      "import": "Importer des tokens d'utilisateur·ice",
-      "label": "Utilisateur·ice·s connecté·e·s"
+      "export": "Exporter les tokens de compte",
+      "import": "Importer des tokens de compte",
+      "label": "Comptes connectés"
     }
   },
   "share-target": {

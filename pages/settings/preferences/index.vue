@@ -57,6 +57,12 @@ const userSettings = useUserSettings()
     >
       {{ $t('settings.preferences.enable_autoplay') }}
     </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enablePinchToZoom')"
+      @click="togglePreferences('enablePinchToZoom')"
+    >
+      {{ $t('settings.preferences.enable_pinch_to_zoom') }}
+    </SettingsToggleItem>
     <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-flask-line />
       {{ $t('settings.preferences.title') }}

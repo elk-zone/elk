@@ -239,21 +239,21 @@
     "zen_mode": "Mode zen"
   },
   "notification": {
-    "favourited_post": "favorited your post",
-    "followed_you": "followed you",
-    "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
+    "favourited_post": "ha marcat com a preferit",
+    "followed_you": "t'ha seguit",
+    "followed_you_count": "{0} persones t'han seguit|{0} persona t'ha seguit|{0} persones t'han seguit",
     "missing_type": "MISSING notification.type:",
-    "reblogged_post": "reblogged your post",
-    "request_to_follow": "requested to follow you",
+    "reblogged_post": "t'ha impulsat",
+    "request_to_follow": "ha demanat seguir-te",
     "signed_up": "signed up",
-    "update_status": "updated their post"
+    "update_status": "ha actualitzat la publicació"
   },
   "placeholder": {
     "content_warning": "Write your warning here",
-    "default_1": "What is on your mind?",
-    "reply_to_account": "Reply to {0}",
-    "replying": "Replying",
-    "the_thread": "the thread"
+    "default_1": "Què et passa pel cap?",
+    "reply_to_account": "Respon a {0}",
+    "replying": "Responent",
+    "the_thread": "el fil"
   },
   "pwa": {
     "dismiss": "Omet",
@@ -317,27 +317,27 @@
       "theme_color": "Color de tema"
     },
     "language": {
-      "display_language": "Display Language",
+      "display_language": "Llengua a mostrar",
       "label": "Llengua",
       "translations": {
-        "add": "Add",
-        "choose_language": "Choose language",
+        "add": "Afig",
+        "choose_language": "Tria una llengua",
         "heading": "Traduccions",
         "hide_specific": "Hide specific translations",
         "remove": "Remove"
       }
     },
     "notifications": {
-      "label": "Notifications",
+      "label": "Notificacions",
       "notifications": {
         "label": "Notifications settings"
       },
       "push_notifications": {
         "alerts": {
-          "favourite": "Favorites",
-          "follow": "New followers",
-          "mention": "Mentions",
-          "poll": "Polls",
+          "favourite": "Preferits",
+          "follow": "Seguidprs nous",
+          "mention": "Mencions",
+          "poll": "Enquestes",
           "reblog": "Reblog your post",
           "title": "What notifications to receive?"
         },
@@ -364,7 +364,7 @@
         "unsubscribe": "Disable push notifications",
         "unsupported": "Your browser does not support push notifications.",
         "warning": {
-          "enable_close": "Close",
+          "enable_close": "Tanca",
           "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:settings.notifications.show_btn{'\"'} button above once enabled.",
           "enable_description_desktop": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications in \"Settings > Notifications > Push notifications settings\" once enabled.",
           "enable_description_mobile": "You can also access the settings using the navigation menu \"Settings > Notifications > Push notification settings\".",
@@ -375,40 +375,40 @@
         }
       },
       "show_btn": "Go to notifications settings",
-      "under_construction": "Under construction"
+      "under_construction": "En construcció"
     },
-    "notifications_settings": "Notifications",
+    "notifications_settings": "Notificacions",
     "preferences": {
       "enable_autoplay": "Enable Autoplay",
       "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
-      "grayscale_mode": "Grayscale mode",
+      "grayscale_mode": "Mode en escala de grisos",
       "hide_account_hover_card": "Hide account hover card",
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",
       "hide_follower_count": "Hide follower count",
       "hide_reply_count": "Hide reply count",
       "hide_translation": "Hide translation",
-      "label": "Preferences",
+      "label": "Configuració",
       "title": "Experimental Features",
       "user_picker": "User Picker",
       "virtual_scroll": "Virtual Scrolling"
     },
     "profile": {
       "appearance": {
-        "bio": "Bio",
-        "description": "Edit avatar, username, profile, etc.",
-        "display_name": "Display name",
-        "label": "Appearance",
-        "profile_metadata": "Profile metadata",
+        "bio": "Biografia",
+        "description": "Edita la foto de perfil, nom d'usuari, perfil, etc.",
+        "display_name": "Nom",
+        "label": "Aparença",
+        "profile_metadata": "Metadades del perfil",
         "profile_metadata_desc": "You can have up to {0} items displayed as a table on your profile",
-        "title": "Edit profile"
+        "title": "Edita el perfil"
       },
       "featured_tags": {
         "description": "People can browse your public posts under these hashtags.",
         "label": "Featured hashtags"
       },
-      "label": "Profile"
+      "label": "Perfil"
     },
     "select_a_settings": "Select a setting",
     "users": {
@@ -434,14 +434,14 @@
     "uploading": "Uploading..."
   },
   "status": {
-    "boosted_by": "Boosted By",
+    "boosted_by": "Impulsat per",
     "edited": "Edited {0}",
-    "favourited_by": "Favorited By",
+    "favourited_by": "Marcat com a preferit per",
     "filter_hidden_phrase": "Filtered by",
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
     "img_alt": {
-      "desc": "Description",
+      "desc": "Descripció",
       "dismiss": "Dismiss"
     },
     "poll": {
@@ -463,29 +463,29 @@
     "edited": "edited {0}"
   },
   "tab": {
-    "accounts": "Accounts",
-    "for_you": "For you",
-    "hashtags": "Hashtags",
-    "list": "List",
-    "media": "Media",
-    "news": "News",
-    "notifications_all": "All",
-    "notifications_mention": "Mention",
-    "posts": "Posts",
-    "posts_with_replies": "Posts & Replies"
+    "accounts": "Comptes",
+    "for_you": "Per a tu",
+    "hashtags": "Etiquetes",
+    "list": "Llista",
+    "media": "Multimèdia",
+    "news": "Notícies",
+    "notifications_all": "Totes",
+    "notifications_mention": "Mencions",
+    "posts": "Publicacions",
+    "posts_with_replies": "Amb respostes"
   },
   "tag": {
-    "follow": "Follow",
+    "follow": "Segueix",
     "follow_label": "Follow {0} tag",
-    "unfollow": "Unfollow",
+    "unfollow": "Deixa de seguir",
     "unfollow_label": "Unfollow {0} tag"
   },
   "time_ago_options": {
-    "day_future": "in 0 days|tomorrow|in {n} days",
-    "day_past": "0 days ago|yesterday|{n} days ago",
-    "hour_future": "in 0 hours|in 1 hour|in {n} hours",
-    "hour_past": "0 hours ago|1 hour ago|{n} hours ago",
-    "just_now": "just now",
+    "day_future": "en 0 dies|demà|en {n} dia",
+    "day_past": "fa 0 dies|ahir|fa {n} dies",
+    "hour_future": "en 0 hores|en 1 hora|en {n} hores",
+    "hour_past": "fa 0 hores|fa 1 hora|fa {n} hores",
+    "just_now": "ara",
     "minute_future": "in 0 minutes|in 1 minute|in {n} minutes",
     "minute_past": "0 minutes ago|1 minute ago|{n} minutes ago",
     "month_future": "in 0 months|next month|in {n} months",
@@ -516,17 +516,17 @@
     "view_older_posts": "Older posts from other instances may not be displayed."
   },
   "title": {
-    "federated_timeline": "Federated Timeline",
-    "local_timeline": "Local Timeline"
+    "federated_timeline": "Línia de temps federada",
+    "local_timeline": "Línia de temps local"
   },
   "tooltip": {
-    "add_content_warning": "Add content warning",
-    "add_emojis": "Add emojis",
+    "add_content_warning": "Afig un avís de contingut",
+    "add_emojis": "Afig emojis",
     "add_media": "Add images, a video or an audio file",
     "add_publishable_content": "Add content to publish",
     "change_content_visibility": "Change content visibility",
-    "change_language": "Change language",
-    "emoji": "Emoji",
+    "change_language": "Canvia la llengua",
+    "emoji": "Emojis",
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
@@ -534,22 +534,22 @@
     "toggle_code_block": "Toggle code block"
   },
   "user": {
-    "add_existing": "Add an existing account",
-    "server_address_label": "Mastodon Server Address",
+    "add_existing": "Afig un compte existent",
+    "server_address_label": "Adreça del servidor de Mastodon",
     "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
     "sign_in_notice_title": "Viewing {0} public data",
-    "sign_out_account": "Sign out {0}",
-    "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
-    "tip_register_account": "pick your server and register one"
+    "sign_out_account": "Tanca {0}",
+    "tip_no_account": "Si encara no tens un compte de Mastodon, {0}.",
+    "tip_register_account": "tria un servidor i registra't"
   },
   "visibility": {
-    "direct": "Direct",
-    "direct_desc": "Visible for mentioned users only",
-    "private": "Followers only",
-    "private_desc": "Visible for followers only",
-    "public": "Public",
-    "public_desc": "Visible for all",
-    "unlisted": "Unlisted",
-    "unlisted_desc": "Visible for all, but opted-out of discovery features"
+    "direct": "Directe",
+    "direct_desc": "Visible només per als usuaris mencionats",
+    "private": "Només a seguidors",
+    "private_desc": "Visible només per als seguidors",
+    "public": "Públic",
+    "public_desc": "Visible per a tots",
+    "unlisted": "No llistat",
+    "unlisted_desc": "Visible per a tots, però sense mostrar-ho en les funcions de descobriment"
   }
 }

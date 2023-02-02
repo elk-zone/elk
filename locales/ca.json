@@ -8,10 +8,10 @@
   },
   "account": {
     "avatar_description": "Foto de perfil de: {0}",
-    "blocked_by": "Este usuari t'ha bloquejat",
-    "blocked_domains": "Domini bloquejat",
-    "blocked_users": "Usuaris bloquejats",
-    "blocking": "Bloquejat",
+    "blocked_by": "Aquest usuari us ha blocat",
+    "blocked_domains": "Domini blocat",
+    "blocked_users": "Usuaris blocat",
+    "blocking": "Blocat",
     "bot": "BOT",
     "favourites": "Preferit",
     "follow": "Segueix",
@@ -28,8 +28,8 @@
     "muted_users": "Usuaris silenciats",
     "muting": "Silenciat",
     "mutuals": "Mutu",
-    "notifications_on_post_disable": "No em notifiques quan {username} publique",
-    "notifications_on_post_enable": "Notifica'm quan {username} publique",
+    "notifications_on_post_disable": "No em notifiquis quan {username} publiqui",
+    "notifications_on_post_enable": "Notifica'm quan {username} publiqui",
     "pinned": "Fixat",
     "posts": "Publicacions",
     "posts_count": "{0} publicacions|{0} publicació|{0} publicacions",
@@ -43,7 +43,7 @@
   },
   "action": {
     "apply": "Aplica",
-    "bookmark": "Afig als marcadors",
+    "bookmark": "Afegeix als marcadors",
     "bookmarked": "Als marcadors",
     "boost": "Impulsa",
     "boost_count": "{0}",
@@ -84,7 +84,7 @@
     "compose_desc": "Escriu una publicació nova",
     "n-people-in-the-past-n-days": "{0} people in the past {1} days",
     "select_lang": "Selecciona una llengua",
-    "sign_in_desc": "Afig un compte existent",
+    "sign_in_desc": "Afegeic un compte existent",
     "switch_account": "Canvia a {0}",
     "switch_account_desc": "Canvia a un altre compte",
     "toggle_dark_mode": "Activa el mode fosc",
@@ -104,13 +104,13 @@
   "confirm": {
     "block_account": {
       "cancel": "Cancel·la",
-      "confirm": "Bloqueja",
-      "title": "Segur que vols bloquejar {0}?"
+      "confirm": "Bloca",
+      "title": "Segur que voleu blocar {0}?"
     },
     "block_domain": {
       "cancel": "Cancel·la",
-      "confirm": "Bloqueja",
-      "title": "Segur que vols bloquejar {0}？"
+      "confirm": "Bloca",
+      "title": "Segur que voleu blocar {0}？"
     },
     "common": {
       "cancel": "No",
@@ -119,22 +119,22 @@
     "delete_posts": {
       "cancel": "Cancel·la",
       "confirm": "Elimina",
-      "title": "Segur que vols eliminar la publicació?"
+      "title": "Segur que voleu eliminar la publicació?"
     },
     "mute_account": {
       "cancel": "Cancel·la",
       "confirm": "Silencia",
-      "title": "Segur que vols silenciar {0}？"
+      "title": "Segur que voleu silenciar {0}？"
     },
     "show_reblogs": {
       "cancel": "Cancel·la",
       "confirm": "Mostra",
-      "title": "Segur que vols mostrar els impulsos de: {0}？"
+      "title": "Segur que voleu mostrar els impulsos de: {0}？"
     },
     "unfollow": {
       "cancel": "Cancel·la",
       "confirm": "Deixa de seguir",
-      "title": "Segur que vols deixar de seguir-lo?"
+      "title": "Segur que voleu deixar de seguir-lo?"
     }
   },
   "conversation": {
@@ -320,7 +320,7 @@
       "display_language": "Llengua a mostrar",
       "label": "Llengua",
       "translations": {
-        "add": "Afig",
+        "add": "Afegeix",
         "choose_language": "Tria una llengua",
         "heading": "Traduccions",
         "hide_specific": "Hide specific translations",
@@ -520,8 +520,8 @@
     "local_timeline": "Línia de temps local"
   },
   "tooltip": {
-    "add_content_warning": "Afig un avís de contingut",
-    "add_emojis": "Afig emojis",
+    "add_content_warning": "Afegeix un avís de contingut",
+    "add_emojis": "Afegeix emojis",
     "add_media": "Add images, a video or an audio file",
     "add_publishable_content": "Add content to publish",
     "change_content_visibility": "Change content visibility",
@@ -534,7 +534,7 @@
     "toggle_code_block": "Toggle code block"
   },
   "user": {
-    "add_existing": "Afig un compte existent",
+    "add_existing": "Afegeix un compte existent",
     "server_address_label": "Adreça del servidor de Mastodon",
     "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
     "sign_in_notice_title": "Viewing {0} public data",

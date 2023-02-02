@@ -13,7 +13,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
       name: 'list',
       params: { server, list },
     },
-    display: t('tab.list'),
+    display: t('tab.posts'),
     icon: 'i-ri:list-unordered',
   },
   {
@@ -32,7 +32,7 @@ const { data: listInfo, refresh } = $(await useAsyncData(() => client.v1.lists.f
 
 if (listInfo) {
   useHeadFixed({
-    title: () => `${listInfo.title} | ${route.fullPath.endsWith('/accounts') ? t('tab.accounts') : t('tab.list')}`,
+    title: () => `${listInfo.title} | ${route.fullPath.endsWith('/accounts') ? t('tab.accounts') : t('tab.posts')} | ${t('nav.lists')}`,
   })
 }
 

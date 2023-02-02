@@ -116,7 +116,7 @@ onBeforeUnmount(() => cancelEdit(false))
         placeholder-text-secondary
       >
     </div>
-    <NuxtLink v-else :to="`/list/${list.id}`" block grow p4>
+    <NuxtLink v-else :to="`list/${list.id}`" block grow p4>
       {{ list.title }}
     </NuxtLink>
     <div mr4 flex gap2>

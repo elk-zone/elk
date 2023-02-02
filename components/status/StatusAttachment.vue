@@ -65,9 +65,11 @@ const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
 const isAudio = $computed(() => attachment.type === 'audio')
 
+const enableAutoplay = usePreferences('enableAutoplay')
+
 useIntersectionObserver(video, (entries) => {
   const ready = video.value?.dataset.ready === 'true'
-  if (prefersReducedMotion.value === 'reduce') {
+  if (prefersReducedMotion.value === 'reduce' || !enableAutoplay.value) {
     if (ready && !video.value?.paused)
       video.value?.pause()
 

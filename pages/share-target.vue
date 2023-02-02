@@ -1,7 +1,7 @@
 <script setup>
 definePageMeta({
   middleware: () => {
-    if (!useRuntimeConfig().public.pwaEnabled)
+    if (!useAppConfig().pwaEnabled)
       return navigateTo('/')
   },
 })

@@ -3,6 +3,7 @@ import type { mastodon } from 'masto'
 
 const props = withDefaults(defineProps<{
   status: mastodon.v1.Status
+  newer?: mastodon.v1.Status
   command?: boolean
   actions?: boolean
 }>(), {
@@ -36,7 +37,7 @@ const isDM = $computed(() => status.visibility === 'direct')
         <AccountInfo :account="status.account" />
       </AccountHoverWrapper>
     </NuxtLink>
-    <StatusContent :status="status" context="details" />
+    <StatusContent :status="status" :newer="newer" context="details" />
     <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>

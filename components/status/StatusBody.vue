@@ -3,9 +3,11 @@ import type { mastodon } from 'masto'
 
 const {
   status,
+  newer,
   withAction = true,
 } = defineProps<{
   status: mastodon.v1.Status | mastodon.v1.StatusEdit
+  newer?: mastodon.v1.Status
   withAction?: boolean
 }>()
 
@@ -20,13 +22,15 @@ const vnode = $computed(() => {
     mentions: 'mentions' in status ? status.mentions : undefined,
     markdown: true,
     collapseMentionLink: !!('inReplyToId' in status && status.inReplyToId),
+    status: 'id' in status ? status : undefined,
+    inReplyToStatus: newer,
   })
   return vnode
 })
 </script>
 
 <template>
-  <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }">
+  <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }" relative>
     <span
       v-if="status.content"
       class="content-rich line-compact" dir="auto"

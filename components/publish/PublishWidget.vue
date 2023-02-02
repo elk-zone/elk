@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { EditorContent } from '@tiptap/vue-3'
+import stringLength from 'string-length'
 import type { mastodon } from 'masto'
 import type { Draft } from '~/types'
 
 const {
   draftKey,
-  initial = getDefaultDraft() as never /* Bug of vue-core */,
+  initial = getDefaultDraft,
   expanded = false,
   placeholder,
   dialogLabelledBy,
@@ -34,7 +35,7 @@ const {
   dropZoneRef,
 } = $(useUploadMediaAttachment($$(draft)))
 
-let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages } = $(usePublish(
+let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage } = $(usePublish(
   {
     draftState,
     ...$$({ expanded, isUploading, initialDraft: initial }),
@@ -61,8 +62,9 @@ const { editor } = useTiptap({
   },
   onPaste: handlePaste,
 })
+
 const characterCount = $computed(() => {
-  let length = htmlToText(editor.value?.getHTML() || '').length
+  let length = stringLength(htmlToText(editor.value?.getHTML() || ''))
 
   if (draft.mentions) {
     // + 1 is needed as mentions always need a space seperator at the end
@@ -74,6 +76,8 @@ const characterCount = $computed(() => {
 
   return length
 })
+
+const postLanguageDisplay = $computed(() => languagesNameList.find(i => i.code === (draft.params.language || preferredLanguage))?.nativeName)
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -146,7 +150,7 @@ defineExpose({
       >
         <ContentMentionGroup v-if="draft.mentions?.length && shouldExpanded" replying>
           <button v-for="m, i of draft.mentions" :key="m" text-primary hover:color-red @click="draft.mentions?.splice(i, 1)">
-            {{ acctToShortHandle(m) }}
+            {{ accountToShortHandle(m) }}
           </button>
         </ContentMentionGroup>
 
@@ -277,24 +281,25 @@ defineExpose({
           {{ characterCount ?? 0 }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
         </div>
 
+        <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
+          <CommonDropdown placement="bottom" auto-boundary-max-size>
+            <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-max mr1>
+              <span v-if="postLanguageDisplay" text-secondary text-sm ml1>{{ postLanguageDisplay }}</span>
+              <div v-else i-ri:translate-2 />
+              <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+            </button>
+
+            <template #popper>
+              <PublishLanguagePicker v-model="draft.params.language" min-w-80 />
+            </template>
+          </CommonDropdown>
+        </CommonTooltip>
+
         <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
           <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
             <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
             <div v-else i-ri:alarm-warning-line />
           </button>
-        </CommonTooltip>
-
-        <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
-          <CommonDropdown placement="bottom" auto-boundary-max-size>
-            <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-12 mr--1>
-              <div i-ri:translate-2 />
-              <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
-            </button>
-
-            <template #popper>
-              <PublishLanguagePicker v-model="draft.params.language" min-w-80 p3 />
-            </template>
-          </CommonDropdown>
         </CommonTooltip>
 
         <PublishVisibilityPicker v-model="draft.params.visibility" :editing="!!draft.editingStatus">

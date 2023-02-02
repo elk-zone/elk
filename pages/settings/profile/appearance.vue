@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
+import { ofetch } from 'ofetch'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
+import type { Component } from 'vue'
 
 definePageMeta({
   middleware: 'auth',
@@ -15,6 +17,9 @@ useHeadFixed({
 
 const { client } = $(useMasto())
 
+const avatarInput = ref<any>()
+const headerInput = ref<any>()
+
 const account = $computed(() => currentUser.value?.account)
 
 const onlineSrc = $computed(() => ({
@@ -22,7 +27,7 @@ const onlineSrc = $computed(() => ({
   header: account?.header || '',
 }))
 
-const { form, reset, submitter, dirtyFields, isError } = useForm({
+const { form, reset, submitter, isDirty, dirtyFields, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
@@ -52,8 +57,7 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
   },
 })
 
-const isDirty = $computed(() => !isEmptyObject(dirtyFields.value))
-const isCanSubmit = computed(() => !isError.value && isDirty)
+const isCanSubmit = computed(() => !isError.value && isDirty.value)
 
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
@@ -82,6 +86,15 @@ const refreshInfo = async () => {
     reset()
 }
 
+useDropZone(avatarInput, (files) => {
+  if (files?.[0])
+    form.avatar = files[0]
+})
+useDropZone(headerInput, (files) => {
+  if (files?.[0])
+    form.header = files[0]
+})
+
 onHydrated(refreshInfo)
 onReactivated(refreshInfo)
 </script>
@@ -99,6 +112,7 @@ onReactivated(refreshInfo)
         <!-- banner -->
         <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
+            ref="headerInput"
             v-model="form.header"
             :original="onlineSrc.header"
             w-full h-full
@@ -109,6 +123,7 @@ onReactivated(refreshInfo)
         <!-- avatar -->
         <div px-4 flex="~ gap4">
           <CommonInputImage
+            ref="avatarInput"
             v-model="form.avatar"
             :original="onlineSrc.avatar"
             mt--10

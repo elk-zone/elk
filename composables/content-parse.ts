@@ -14,6 +14,8 @@ export interface ContentParseOptions {
   astTransforms?: Transform[]
   convertMentionLink?: boolean
   collapseMentionLink?: boolean
+  status?: mastodon.v1.Status
+  inReplyToStatus?: mastodon.v1.Status
 }
 
 const sanitizerBasicClasses = filterClasses(/^(h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible)$/u)
@@ -80,6 +82,8 @@ export function parseMastodonHTML(
     convertMentionLink = false,
     collapseMentionLink = false,
     mentions,
+    status,
+    inReplyToStatus,
   } = options
 
   if (markdown) {
@@ -121,7 +125,7 @@ export function parseMastodonHTML(
   transforms.push(transformParagraphs)
 
   if (collapseMentionLink)
-    transforms.push(transformCollapseMentions())
+    transforms.push(transformCollapseMentions(status, inReplyToStatus))
 
   return transformSync(parse(html), transforms)
 }
@@ -443,31 +447,45 @@ function transformParagraphs(node: Node): Node | Node[] {
   return node
 }
 
-function transformCollapseMentions() {
+function isMention(node: Node) {
+  const child = node.children?.length === 1 ? node.children[0] : null
+  return Boolean(child?.name === 'a' && child.attributes.class?.includes('mention'))
+}
+
+function isSpacing(node: Node) {
+  return node.type === TEXT_NODE && !node.value.trim()
+}
+
+// Extract the username from a known mention node
+function getMentionHandle(node: Node): string | undefined {
+  return hrefToHandle(node.children?.[0].attributes.href) ?? node.children?.[0]?.children?.[0]?.attributes?.['data-id']
+}
+
+function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?: mastodon.v1.Status): Transform {
   let processed = false
-  function isMention(node: Node) {
-    const child = node.children?.length === 1 ? node.children[0] : null
-    return Boolean(child?.name === 'a' && child.attributes.class?.includes('mention'))
-  }
 
   return (node: Node, root: Node): Node | Node[] => {
     if (processed || node.parent !== root || !node.children)
       return node
     const mentions: (Node | undefined)[] = []
     const children = node.children as Node[]
+    let trimContentStart: (() => void) | undefined
     for (const child of children) {
-      // metion
+      // mention
       if (isMention(child)) {
         mentions.push(child)
       }
       // spaces in between
-      else if (child.type === TEXT_NODE && !child.value.trim()) {
+      else if (isSpacing(child)) {
         mentions.push(child)
       }
       // other content, stop collapsing
       else {
-        if (child.type === TEXT_NODE)
-          child.value = child.value.trimStart()
+        if (child.type === TEXT_NODE) {
+          trimContentStart = () => {
+            child.value = child.value.trimStart()
+          }
+        }
         // remove <br> after mention
         if (child.name === 'br')
           mentions.push(undefined)
@@ -478,10 +496,56 @@ function transformCollapseMentions() {
     if (mentions.length === 0)
       return node
 
+    let mentionsCount = 0
+    let contextualMentionsCount = 0
+    let removeNextSpacing = false
+
+    const contextualMentions = mentions.filter((mention) => {
+      if (!mention)
+        return false
+
+      if (removeNextSpacing && isSpacing(mention)) {
+        removeNextSpacing = false
+        return false
+      }
+
+      if (isMention(mention)) {
+        mentionsCount++
+        if (inReplyToStatus) {
+          const mentionHandle = getMentionHandle(mention)
+          if (inReplyToStatus.account.acct === mentionHandle || inReplyToStatus.mentions.some(m => m.acct === mentionHandle)) {
+            removeNextSpacing = true
+            return false
+          }
+        }
+        contextualMentionsCount++
+      }
+      return true
+    }) as Node[]
+
+    // We have a special case for single mentions that are part of a reply.
+    // We already have the replying to badge in this case or the status is connected to the previous one.
+    // This is needed because the status doesn't included the in Reply to handle, only the account id.
+    // But this covers the majority of cases.
+    const showMentions = !(contextualMentionsCount === 0 || (mentionsCount === 1 && status?.inReplyToAccountId))
+    const grouped = contextualMentionsCount > 2
+    if (!showMentions || grouped)
+      trimContentStart?.()
+
+    const contextualChildren = children.slice(mentions.length)
+    const mentionNodes = showMentions ? (grouped ? [h('mention-group', null, ...contextualMentions)] : contextualMentions) : []
     return {
       ...node,
-      children: [h('mention-group', null, ...mentions.filter(Boolean)), ...children.slice(mentions.length)],
+      children: [...mentionNodes, ...contextualChildren],
     }
+  }
+}
+
+function hrefToHandle(href: string): string | undefined {
+  const matchUser = href.match(UserLinkRE)
+  if (matchUser) {
+    const [, server, username] = matchUser
+    return `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
   }
 }
 
@@ -489,10 +553,8 @@ function transformMentionLink(node: Node): string | Node | (string | Node)[] | n
   if (node.name === 'a' && node.attributes.class?.includes('mention')) {
     const href = node.attributes.href
     if (href) {
-      const matchUser = href.match(UserLinkRE)
-      if (matchUser) {
-        const [, server, username] = matchUser
-        const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
+      const handle = hrefToHandle(href)
+      if (handle) {
         // convert to Tiptap mention node
         return h('span', { 'data-type': 'mention', 'data-id': handle }, handle)
       }

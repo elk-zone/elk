@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
+
 definePageMeta({
   middleware: 'auth',
 })
 
 const { t } = useI18n()
-const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+const pwaEnabled = useAppConfig().pwaEnabled
 
-const tabs = $computed(() => [
+const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
     name: 'all',
     to: '/notifications',
@@ -17,7 +19,7 @@ const tabs = $computed(() => [
     to: '/notifications/mention',
     display: isHydrated.value ? t('tab.notifications_mention') : '',
   },
-] as const)
+])
 </script>
 
 <template>

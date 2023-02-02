@@ -1,7 +1,7 @@
-import type { mastodon } from 'masto'
 import { describe, expect, it } from 'vitest'
 import { format } from 'prettier'
 import { render as renderTree } from 'ultrahtml'
+import type { ContentParseOptions } from '~/composables/content-parse'
 
 describe('html-parse', () => {
   it('empty', async () => {
@@ -19,11 +19,13 @@ describe('html-parse', () => {
 
   it('custom emoji', async () => {
     const { formatted, serializedText } = await render('Daniel Roe :nuxt:', {
-      nuxt: {
-        shortcode: 'nuxt',
-        url: 'https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png',
-        staticUrl: 'https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png',
-        visibleInPicker: true,
+      emojis: {
+        nuxt: {
+          shortcode: 'nuxt',
+          url: 'https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png',
+          staticUrl: 'https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png',
+          visibleInPicker: true,
+        },
       },
     })
     expect(formatted).toMatchSnapshot('html')
@@ -62,8 +64,8 @@ describe('html-parse', () => {
   })
 })
 
-async function render(input: string, emojis?: Record<string, mastodon.v1.CustomEmoji>) {
-  const tree = parseMastodonHTML(input, { emojis })
+async function render(input: string, options?: ContentParseOptions) {
+  const tree = parseMastodonHTML(input, options)
   const html = await renderTree(tree)
   let formatted = ''
   const serializedText = treeToText(tree).trim()

@@ -9,7 +9,7 @@ export default defineNuxtPlugin(async (nuxt) => {
 
   const supportLanguages = (locales as LocaleObject[]).map(locale => locale.code)
   if (!supportLanguages.includes(lang))
-    userSettings.value.language = getDefaultLanguage(locales as string[])
+    userSettings.value.language = getDefaultLanguage(supportLanguages)
 
   watch([$$(lang), isHydrated], () => {
     if (isHydrated.value && lang !== i18n.locale)

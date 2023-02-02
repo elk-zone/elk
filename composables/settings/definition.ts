@@ -16,6 +16,7 @@ export interface PreferencesSettings {
   hideAccountHoverCard: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
+  enablePinchToZoom: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
@@ -26,6 +27,7 @@ export interface UserSettings {
   colorMode?: ColorMode
   fontSize: FontSize
   language: string
+  disabledTranslationLanguages: string[]
   zenMode: boolean
   themeColors?: ThemeColors
 }
@@ -56,6 +58,7 @@ export function getDefaultUserSettings(locales: string[]): UserSettings {
   return {
     language: getDefaultLanguage(locales),
     fontSize: DEFAULT_FONT_SIZE,
+    disabledTranslationLanguages: [],
     zenMode: false,
     preferences: {},
   }
@@ -70,6 +73,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAccountHoverCard: false,
   grayscaleMode: false,
   enableAutoplay: true,
+  enablePinchToZoom: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,

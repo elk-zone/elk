@@ -5,6 +5,7 @@ export function setupPageHeader() {
   const { locale, locales, t } = useI18n()
   const colorMode = useColorMode()
   const buildInfo = useBuildInfo()
+  const enablePinchToZoom = usePreferences('enablePinchToZoom')
 
   const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
     acc[l.code!] = l.dir ?? 'auto'
@@ -15,6 +16,7 @@ export function setupPageHeader() {
     htmlAttrs: {
       lang: () => locale.value,
       dir: () => localeMap[locale.value] ?? 'auto',
+      class: () => enablePinchToZoom.value ? ['enable-pinch-to-zoom'] : [],
     },
     titleTemplate: (title) => {
       let titleTemplate = title ?? ''
@@ -43,7 +45,7 @@ export function setupPageHeader() {
 
       return titleTemplate
     },
-    link: process.client && useRuntimeConfig().public.pwaEnabled
+    link: process.client && useAppConfig().pwaEnabled
       ? () => [{
           key: 'webmanifest',
           rel: 'manifest',

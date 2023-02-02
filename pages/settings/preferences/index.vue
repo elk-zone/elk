@@ -40,12 +40,6 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_follower_count') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="getPreferences(userSettings, 'hideTranslation')"
-      @click="togglePreferences('hideTranslation')"
-    >
-      {{ $t('settings.preferences.hide_translation') }}
-    </SettingsToggleItem>
-    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'hideAccountHoverCard')"
       @click="togglePreferences('hideAccountHoverCard')"
     >
@@ -62,6 +56,12 @@ const userSettings = useUserSettings()
       @click="togglePreferences('enableAutoplay')"
     >
       {{ $t('settings.preferences.enable_autoplay') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enablePinchToZoom')"
+      @click="togglePreferences('enablePinchToZoom')"
+    >
+      {{ $t('settings.preferences.enable_pinch_to_zoom') }}
     </SettingsToggleItem>
     <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-flask-line />

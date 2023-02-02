@@ -7,7 +7,6 @@ import type { UserLogin } from '~/types'
 import type { Overwrite } from '~/types/utils'
 import {
   DEFAULT_POST_CHARS_LIMIT,
-  STORAGE_KEY_CURRENT_USER,
   STORAGE_KEY_CURRENT_USER_HANDLE,
   STORAGE_KEY_NODES,
   STORAGE_KEY_NOTIFICATION,
@@ -44,20 +43,20 @@ const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLo
 }
 
 const users = await initializeUsers()
-export const instances = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
-export const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
-const currentUserId = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER, mock ? mock.user.account.id : '')
+const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
+const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
+export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 
 export type ElkInstance = Partial<mastodon.v1.Instance> & {
   uri: string
   /** support GoToSocial */
   accountDomain?: string | null
 }
-export const getInstanceCache = (server: string): mastodon.v1.Instance | undefined => instances.value[server]
+export const getInstanceCache = (server: string): mastodon.v1.Instance | undefined => instanceStorage.value[server]
 
 export const currentUser = computed<UserLogin | undefined>(() => {
-  if (currentUserId.value) {
-    const user = users.value.find(user => user.account?.id === currentUserId.value)
+  if (currentUserHandle.value) {
+    const user = users.value.find(user => user.account?.acct === currentUserHandle.value)
     if (user)
       return user
   }
@@ -66,7 +65,7 @@ export const currentUser = computed<UserLogin | undefined>(() => {
 })
 
 const publicInstance = ref<ElkInstance | null>(null)
-export const currentInstance = computed<null | ElkInstance>(() => currentUser.value ? instances.value[currentUser.value.server] ?? null : publicInstance.value)
+export const currentInstance = computed<null | ElkInstance>(() => currentUser.value ? instanceStorage.value[currentUser.value.server] ?? null : publicInstance.value)
 
 export function getInstanceDomain(instance: ElkInstance) {
   return instance.accountDomain || withoutProtocol(instance.uri)
@@ -84,12 +83,12 @@ if (process.client) {
   const windowReload = () => {
     document.visibilityState === 'visible' && window.location.reload()
   }
-  watch(currentUserId, async (id, oldId) => {
+  watch(currentUserHandle, async (handle, oldHandle) => {
     // when sign in or switch account
-    if (id) {
-      if (id === currentUser.value?.account?.id) {
+    if (handle) {
+      if (handle === currentUser.value?.account?.acct) {
         // when sign in, the other tab will not have the user, idb is not reactive
-        const newUser = users.value.find(user => user.account?.id === id)
+        const newUser = users.value.find(user => user.account?.acct === handle)
         // if the user is there, then we are switching account
         if (newUser) {
           // check if the change is on current tab: if so, don't reload
@@ -101,19 +100,13 @@ if (process.client) {
       window.addEventListener('visibilitychange', windowReload, { capture: true })
     }
     // when sign out
-    else if (oldId) {
-      const oldUser = users.value.find(user => user.account?.id === oldId)
+    else if (oldHandle) {
+      const oldUser = users.value.find(user => user.account?.acct === oldHandle)
       // when sign out, the other tab will not have the user, idb is not reactive
       if (oldUser)
         window.addEventListener('visibilitychange', windowReload, { capture: true })
     }
   }, { immediate: true, flush: 'post' })
-
-  // for injected script to read
-  const currentUserHandle = computed(() => currentUser.value?.account.acct || '')
-  watchEffect(() => {
-    localStorage.setItem(STORAGE_KEY_CURRENT_USER_HANDLE, currentUserHandle.value)
-  })
 }
 
 export const useUsers = () => users
@@ -144,12 +137,12 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
 
   const account = getUser()?.account
   if (account)
-    currentUserId.value = account.id
+    currentUserHandle.value = account.acct
 
   const [me, pushSubscription] = await Promise.all([
     fetchAccountInfo(client, user.server),
     // if PWA is not enabled, don't get push subscription
-    useRuntimeConfig().public.pwaEnabled
+    useAppConfig().pwaEnabled
     // we get 404 response instead empty data
       ? client.v1.webPushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
       : Promise.resolve(undefined),
@@ -168,7 +161,7 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
     })
   }
 
-  currentUserId.value = me.id
+  currentUserHandle.value = me.acct
 }
 
 export async function fetchAccountInfo(client: mastodon.Client, server: string) {
@@ -194,7 +187,7 @@ export async function removePushNotificationData(user: UserLogin, fromSWPushMana
   // clear push notification policy
   delete useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {}).value[acct]
 
-  const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+  const pwaEnabled = useAppConfig().pwaEnabled
   const pwa = useNuxtApp().$pwa
   const registrationError = pwa?.registrationError === true
   const unregister = pwaEnabled && !registrationError && pwa?.registrationError === true && fromSWPushManager
@@ -238,7 +231,7 @@ export async function switchUser(user: UserLogin) {
   }
 }
 
-export async function signout() {
+export async function signOut() {
   // TODO: confirm
   if (!currentUser.value)
     return
@@ -253,21 +246,21 @@ export async function signout() {
     // Clear stale data
     clearUserLocalStorage()
     if (!users.value.some((u, i) => u.server === currentUser.value!.server && i !== index))
-      delete instances.value[currentUser.value.server]
+      delete instanceStorage.value[currentUser.value.server]
 
     await removePushNotifications(currentUser.value)
 
     await removePushNotificationData(currentUser.value)
 
-    currentUserId.value = ''
+    currentUserHandle.value = ''
     // Remove the current user from the users
     users.value.splice(index, 1)
   }
 
   // Set currentUserId to next user if available
-  currentUserId.value = users.value[0]?.account?.id
+  currentUserHandle.value = users.value[0]?.account?.acct
 
-  if (!currentUserId.value)
+  if (!currentUserHandle.value)
     await useRouter().push('/')
 
   loginTo(masto, currentUser.value)

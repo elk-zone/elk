@@ -1,10 +1,10 @@
-/* eslint-disable vue/one-component-per-file */
 import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import type { mastodon } from 'masto'
+import { mockComponent } from 'nuxt-vitest/utils'
 import { contentToVNode } from '~/composables/content-render'
-import type { ContentParseOptions } from '~~/composables/content-parse'
+import type { ContentParseOptions } from '~/composables/content-parse'
 
 describe('content-rich', () => {
   it('empty', async () => {
@@ -287,25 +287,15 @@ vi.mock('shiki-es', async (importOriginal) => {
   }
 })
 
-vi.mock('~/components/content/ContentMentionGroup.vue', async () => {
-  const { defineComponent, h } = await import('vue')
-  return {
-    default: defineComponent({
-      setup(props, { slots }) {
-        return () => h('mention-group', null, { default: () => slots?.default?.() })
-      },
-    }),
-  }
+mockComponent('ContentMentionGroup', {
+  setup(props, { slots }) {
+    return () => h('mention-group', null, { default: () => slots?.default?.() })
+  },
 })
 
-vi.mock('~/components/account/AccountHoverWrapper.vue', async () => {
-  const { defineComponent } = await import('vue')
-  return {
-    default: defineComponent({
-      props: ['handle', 'class'],
-      setup(_, { slots }) {
-        return () => slots?.default?.()
-      },
-    }),
-  }
+mockComponent('AccountHoverWrapper', {
+  props: ['handle', 'class'],
+  setup(_, { slots }) {
+    return () => slots?.default?.()
+  },
 })

@@ -4,15 +4,18 @@ import type { mastodon } from 'masto'
 import type { UseDraft } from './statusDrafts'
 import type { Draft } from '~~/types'
 
-export const usePublish = (options: {
+export function usePublish(options: {
   draftState: UseDraft
   expanded: Ref<boolean>
   isUploading: Ref<boolean>
   initialDraft: Ref<() => Draft>
-}) => {
+}) {
   const { expanded, isUploading, initialDraft } = $(options)
   let { draft, isEmpty } = $(options.draftState)
   const { client } = $(useMasto())
+  const settings = useUserSettings()
+
+  const preferredLanguage = $computed(() => (settings.value?.language || 'en').split('-')[0])
 
   let isSending = $ref(false)
   const isExpanded = $ref(false)
@@ -31,6 +34,7 @@ export const usePublish = (options: {
   async function publishDraft() {
     if (isPublishDisabled)
       return
+
     let content = htmlToText(draft.params.status || '')
     if (draft.mentions?.length)
       content = `${draft.mentions.map(i => `@${i}`).join(' ')} ${content}`
@@ -39,11 +43,12 @@ export const usePublish = (options: {
       ...draft.params,
       status: content,
       mediaIds: draft.attachments.map(a => a.id),
+      language: draft.params.language || preferredLanguage,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.v1.CreateStatusParams
 
     if (process.dev) {
-    // eslint-disable-next-line no-console
+      // eslint-disable-next-line no-console
       console.info({
         raw: draft.params.status,
         ...payload,
@@ -60,6 +65,7 @@ export const usePublish = (options: {
       let status: mastodon.v1.Status
       if (!draft.editingStatus)
         status = await client.v1.statuses.create(payload)
+
       else
         status = await client.v1.statuses.update(draft.editingStatus.id, payload)
       if (draft.params.inReplyToId)
@@ -84,14 +90,14 @@ export const usePublish = (options: {
     shouldExpanded,
     isPublishDisabled,
     failedMessages,
-
+    preferredLanguage,
     publishDraft,
   })
 }
 
 export type MediaAttachmentUploadError = [filename: string, message: string]
 
-export const useUploadMediaAttachment = (draftRef: Ref<Draft>) => {
+export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
   const draft = $(draftRef)
   const { client } = $(useMasto())
   const { t } = useI18n()
@@ -117,7 +123,7 @@ export const useUploadMediaAttachment = (draftRef: Ref<Draft>) => {
           draft.attachments.push(attachment)
         }
         catch (e) {
-        // TODO: add some human-readable error message, problem is that masto api will not return response code
+          // TODO: add some human-readable error message, problem is that masto api will not return response code
           console.error(e)
           failedAttachments = [...failedAttachments, [file.name, (e as Error).message]]
         }
@@ -159,9 +165,10 @@ export const useUploadMediaAttachment = (draftRef: Ref<Draft>) => {
   return $$({
     isUploading,
     isExceedingAttachmentLimit,
+    isOverDropZone,
+
     failedAttachments,
     dropZoneRef,
-    isOverDropZone,
 
     uploadAttachments,
     pickAttachments,

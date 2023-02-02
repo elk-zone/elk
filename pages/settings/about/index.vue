@@ -46,7 +46,7 @@ const handleShowCommit = () => {
         </template>
       </SettingsItem>
 
-      <SettingsItem :text="$t('nav.built_at')" :content="builtTime" />
+      <SettingsItem :text="$t('settings.about.built_at')" :content="builtTime" />
     </template>
 
     <div h-1px bg-border my2 />
@@ -115,7 +115,7 @@ const handleShowCommit = () => {
       </p>
 
       <SettingsItem
-        v-for="team in teams" :key="team.github"
+        v-for="team in elkTeamMembers" :key="team.github"
         :text="team.display"
         :to="`https://github.com/sponsors/${team.github}`"
         external target="_blank"

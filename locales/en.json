@@ -182,11 +182,14 @@
   },
   "list": {
     "add_account": "Add account to list",
-    "create": "Create a list",
+    "cancel_edit": "Cancel editing",
+    "create": "Create",
     "delete": "Delete this list",
     "edit": "Edit this list",
+    "list_title_placeholder": "List title",
     "modify_account": "Modify lists with account",
-    "remove_account": "Remove account from list"
+    "remove_account": "Remove account from list",
+    "save": "Save changes"
   },
   "menu": {
     "block_account": "Block {0}",

@@ -73,7 +73,7 @@ function removeEntry(id: string) {
               outline="focus:none"
               pe-4
               pb="1px"
-              :placeholder="$t('list.create')"
+              :placeholder="$t('list.list_title_placeholder')"
               @keypress.enter="createList"
             >
             <div flex="~ col" gap-y-4 gap-x-2 py-1 sm="~ justify-between flex-row">

@@ -380,7 +380,7 @@
     "notifications_settings": "通知",
     "preferences": {
       "enable_autoplay": "开启自动播放",
-      "enable_pinch_to_zoom": "启用捏合缩放功能",
+      "enable_pinch_to_zoom": "启用双指缩放功能",
       "github_cards": "GitHub 卡片",
       "grayscale_mode": "灰色模式",
       "hide_account_hover_card": "隐藏用户悬浮卡",

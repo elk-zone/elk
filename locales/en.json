@@ -119,7 +119,7 @@
     "delete_list": {
       "cancel": "Cancel",
       "confirm": "Delete",
-      "title": "Are you sure you want to delete \"{0}\" list?"
+      "title": "Are you sure you want to delete the \"{0}\" list?"
     },
     "delete_posts": {
       "cancel": "Cancel",

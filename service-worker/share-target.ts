@@ -49,8 +49,10 @@ async function sendShareTargetMessage(client: Client, data: FormData) {
   if (link !== null)
     textParts.push(link.toString())
 
-  if (textParts.length !== 0)
-    sharedData.text = textParts.join('\n')
+  if (textParts.length === 1)
+    sharedData.text = textParts[0]
+  else if (textParts.length > 1)
+    sharedData.text = textParts.map(t => `<p>${t}</p>`).join('')
 
   // We collect the files shared with us
   const files: File[] = []

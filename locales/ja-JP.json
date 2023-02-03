@@ -116,6 +116,11 @@
       "cancel": "いいえ",
       "confirm": "はい"
     },
+    "delete_list": {
+      "cancel": "キャンセル",
+      "confirm": "削除",
+      "title": "リスト \"{0}\" を本当に削除したいですか？"
+    },
     "delete_posts": {
       "cancel": "キャンセル",
       "confirm": "削除",
@@ -169,6 +174,7 @@
     "desc_para4": "Elkはオープンソースです。テスト、フィードバックの提供、コントリビューションで開発を助けたい場合は",
     "desc_para5": "GitHubで連絡をとり",
     "desc_para6": "参加してください。",
+    "footer_team": "Elk チーム",
     "title": "Elkはプレビュー版です！"
   },
   "language": {
@@ -176,8 +182,14 @@
   },
   "list": {
     "add_account": "アカウントをリストに追加",
+    "cancel_edit": "編集をキャンセル",
+    "create": "作成",
+    "delete": "リストを削除",
+    "edit": "リストを編集",
+    "list_title_placeholder": "リストのタイトル",
     "modify_account": "このアカウントでリストを編集",
-    "remove_account": "アカウントをリストから削除"
+    "remove_account": "アカウントをリストから削除",
+    "save": "変更を保存"
   },
   "menu": {
     "block_account": "{0}さんをブロック",
@@ -290,6 +302,7 @@
   },
   "settings": {
     "about": {
+      "built_at": "ビルド",
       "label": "Elkについて",
       "meet_the_team": "チーム紹介",
       "sponsor_action": "サポートしてください",
@@ -316,7 +329,14 @@
     },
     "language": {
       "display_language": "表示言語",
-      "label": "言語"
+      "label": "言語",
+      "translations": {
+        "add": "追加",
+        "choose_language": "言語を選択",
+        "heading": "翻訳",
+        "hide_specific": "特定の翻訳を隠す",
+        "remove": "削除"
+      }
     },
     "notifications": {
       "label": "通知",
@@ -365,11 +385,13 @@
           "re_auth": "あなたのサーバーはプッシュ通知をサポートしていないようです。もしサインアウトとサインインをやり直してもこのメッセージがまだ表示される場合は、サーバー管理者に連絡してください。"
         }
       },
-      "show_btn": "通知設定に移動"
+      "show_btn": "通知設定に移動",
+      "under_construction": "工事中"
     },
     "notifications_settings": "通知",
     "preferences": {
       "enable_autoplay": "自動再生を有効化",
+      "enable_pinch_to_zoom": "ピンチによるズームを有効にする",
       "github_cards": "GitHubカード",
       "grayscale_mode": "グレースケールモード",
       "hide_account_hover_card": "アカウントのホバーカードを隠す",
@@ -430,8 +452,10 @@
     "filter_removed_phrase": "フィルターにより削除",
     "filter_show_anyway": "とにかく表示",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "説明文",
-      "dismiss": "閉じる"
+      "dismiss": "閉じる",
+      "read": "{0} の説明文を読む"
     },
     "poll": {
       "count": "{0} 票",

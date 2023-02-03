@@ -18,6 +18,10 @@ export function setupPageHeader() {
       dir: () => localeMap[locale.value] ?? 'auto',
       class: () => enablePinchToZoom.value ? ['enable-pinch-to-zoom'] : [],
     },
+    meta: [{
+      name: 'viewport',
+      content: () => `width=device-width,initial-scale=1${enablePinchToZoom.value ? '' : ',maximum-scale=1,user-scalable=0'},viewport-fit=cover`,
+    }],
     titleTemplate: (title) => {
       let titleTemplate = title ?? ''
 

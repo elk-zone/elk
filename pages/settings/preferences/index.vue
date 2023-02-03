@@ -19,7 +19,7 @@ const userSettings = useUserSettings()
       :checked="getPreferences(userSettings, 'hideAltIndicatorOnPosts')"
       @click="togglePreferences('hideAltIndicatorOnPosts')"
     >
-      {{ $t('settings.preferences.hide_alt_indi_on_posts') }}
+      {{ $t('settings.preferences.hide_alt_indicator_on_posts') }}
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'hideAccountHoverCard')"
@@ -77,6 +77,12 @@ const userSettings = useUserSettings()
       <div i-ri-flask-line />
       {{ $t('settings.preferences.title') }}
     </h2>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'experimentalContinuousThreads')"
+      @click="togglePreferences('experimentalContinuousThreads')"
+    >
+      {{ $t('settings.preferences.continuous_threads') }}
+    </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalVirtualScroller')"
       @click="togglePreferences('experimentalVirtualScroller')"

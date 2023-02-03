@@ -10,6 +10,8 @@ const { client } = $(useMasto())
 
 const { t } = useI18n()
 
+const userSettings = useUserSettings()
+
 const createdAt = $(useFormattedDateTime(() => account.createdAt, {
   month: 'long',
   day: 'numeric',

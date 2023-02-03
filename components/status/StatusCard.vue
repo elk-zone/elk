@@ -73,6 +73,8 @@ const isDM = $computed(() => status.visibility === 'direct')
 
 const showUpperBorder = $computed(() => props.newer && !directReply)
 const showReplyTo = $computed(() => !replyToMain && !directReply)
+
+const shouldHideProfile = $computed(() => isSelfReply && getPreferences(userSettings.value, 'experimentalContinuousThreads'))
 </script>
 
 <template>
@@ -80,7 +82,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
     :id="`status-${status.id}`"
     ref="el"
     relative flex="~ col gap1"
-    p="b-2 is-3 ie-4"
+    :p="`${shouldHideProfile ? '' : 'b-2'} is-3 ie-4`"
     :class="{ 'hover:bg-active': hover }"
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
@@ -138,13 +140,14 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
         <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
           <div i-ri:repeat-fill text-green w-16px h-16px />
         </div>
-        <AccountHoverWrapper :account="status.account">
+        <AccountHoverWrapper v-if="!shouldHideProfile" :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
             <AccountBigAvatar :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
+        <div v-else w-54px />
 
-        <div v-if="connectReply" w-full h-full flex mt--3px justify-center>
+        <div v-if="connectReply || shouldHideProfile" w-full h-full flex :class="shouldHideProfile ? '' : 'mt--3px'" justify-center>
           <div w-1px border="x base" />
         </div>
       </div>
@@ -152,7 +155,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
       <!-- Main -->
       <div flex="~ col 1" min-w-0>
         <!-- Account Info -->
-        <div flex items-center space-x-1>
+        <div v-if="!shouldHideProfile" flex items-center space-x-1>
           <AccountHoverWrapper :account="status.account">
             <StatusAccountDetails :account="status.account" />
           </AccountHoverWrapper>

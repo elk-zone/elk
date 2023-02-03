@@ -156,12 +156,12 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           <ContentRich :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
-      <div v-if="iconFields.length" flex="~ wrap gap-4">
-        <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" items-center>
+      <div v-if="iconFields.length" flex="~ wrap gap-2">
+        <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" px1 items-center :class="`${field.verifiedAt ? 'border-1 rounded-full border-dark' : ''}`">
           <CommonTooltip :content="getFieldIconTitle(field.name)">
             <div text-secondary :class="getAccountFieldIcon(field.name)" :title="getFieldIconTitle(field.name)" />
           </CommonTooltip>
-          <ContentRich text-sm filter-saturate-0 :content="field.value" :emojis="account.emojis" />
+          <ContentRich text-sm :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
       <AccountPostsFollowers :account="account" />

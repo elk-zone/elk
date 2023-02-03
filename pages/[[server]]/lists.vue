@@ -86,6 +86,7 @@ function removeEntry(id: string) {
             p-4 w-full
             flex="~ wrap" relative gap-3
             :aria-describedby="actionError ? 'create-list-error' : null"
+            :class="actionError ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active' : null"
             @submit.prevent="createList"
           >
             <div
@@ -115,7 +116,12 @@ function removeEntry(id: string) {
               </button>
             </div>
           </form>
-          <CommonErrorMessage v-if="actionError" id="create-list-error" described-by="create-list-failed">
+          <CommonErrorMessage
+            v-if="actionError"
+            id="create-list-error"
+            described-by="create-list-failed"
+            class="rounded-bs-is-0 rounded-bs-ie-0 border-t-dashed m-b-2"
+          >
             <header id="create-list-failed" flex justify-between>
               <div flex items-center gap-x-2 font-bold>
                 <div aria-hidden="true" i-ri:error-warning-fill />

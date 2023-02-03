@@ -46,7 +46,7 @@ const handleShowCommit = () => {
         </template>
       </SettingsItem>
 
-      <SettingsItem :text="$t('nav.built_at')" :content="builtTime" />
+      <SettingsItem :text="$t('settings.about.built_at')" :content="builtTime" />
     </template>
 
     <div h-1px bg-border my2 />

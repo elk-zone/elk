@@ -116,6 +116,11 @@
       "cancel": "No",
       "confirm": "Yes"
     },
+    "delete_list": {
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "title": "Are you sure you want to delete the \"{0}\" list?"
+    },
     "delete_posts": {
       "cancel": "Cancel",
       "confirm": "Delete",
@@ -169,6 +174,7 @@
     "desc_para4": "Elk is Open Source. If you'd like to help with testing, giving feedback, or contributing,",
     "desc_para5": "reach out to us on GitHub",
     "desc_para6": "and get involved.",
+    "footer_team": "The Elk Team",
     "title": "Elk is in Preview!"
   },
   "language": {
@@ -176,8 +182,14 @@
   },
   "list": {
     "add_account": "Add account to list",
+    "cancel_edit": "Cancel editing",
+    "create": "Create",
+    "delete": "Delete this list",
+    "edit": "Edit this list",
+    "list_title_placeholder": "List title",
     "modify_account": "Modify lists with account",
-    "remove_account": "Remove account from list"
+    "remove_account": "Remove account from list",
+    "save": "Save changes"
   },
   "menu": {
     "block_account": "Block {0}",
@@ -290,6 +302,7 @@
   },
   "settings": {
     "about": {
+      "built_at": "Built",
       "label": "About",
       "meet_the_team": "Meet the team",
       "sponsor_action": "Sponsor us",
@@ -372,11 +385,13 @@
           "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
         }
       },
-      "show_btn": "Go to notifications settings"
+      "show_btn": "Go to notifications settings",
+      "under_construction": "Under construction"
     },
     "notifications_settings": "Notifications",
     "preferences": {
       "enable_autoplay": "Enable Autoplay",
+      "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
       "hide_account_hover_card": "Hide account hover card",
@@ -437,8 +452,10 @@
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Description",
-      "dismiss": "Dismiss"
+      "dismiss": "Dismiss",
+      "read": "Read {0} description"
     },
     "poll": {
       "count": "{0} votes|{0} vote|{0} votes",

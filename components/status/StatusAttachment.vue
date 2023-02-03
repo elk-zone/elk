@@ -176,9 +176,9 @@ useIntersectionObserver(video, (entries) => {
             : 'rounded-1 bg-black/65 text-white hover:bg-black px1.2 py0.2'"
         >
           <div hidden>
-            read {{ attachment.type }} description
+            {{ $t('status.img_alt.read', [attachment.type]) }}
           </div>
-          ALT
+          {{ $t('status.img_alt.ALT') }}
         </button>
         <template #popper>
           <div p4 flex flex-col gap-2 max-w-130>

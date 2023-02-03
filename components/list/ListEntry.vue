@@ -19,24 +19,29 @@ const client = useMastoClient()
 let isEditing = $ref<boolean>(false)
 let busy = $ref<boolean>(false)
 let deleteBusy = $ref<boolean>(false)
+let actionError = $ref<string | undefined>(undefined)
 
 const enableSaveButton = computed(() => list.title !== modelValue.value)
 
 const edit = ref()
+const deleteBtn = ref()
 const input = ref()
 
 const prepareEdit = () => {
   isEditing = true
+  actionError = undefined
   nextTick(() => {
-    input.value.focus()
+    input.value?.focus()
   })
 }
 const cancelEdit = (updateTitle = true) => {
   isEditing = false
+  actionError = undefined
   if (updateTitle)
     modelValue.value = list.title
+
   nextTick(() => {
-    edit.value.focus()
+    edit.value?.focus()
   })
 }
 async function finishEditing() {
@@ -44,6 +49,7 @@ async function finishEditing() {
     return
 
   busy = true
+  actionError = undefined
   await nextTick()
   try {
     const updateList = await client.v1.lists.update(list.id, {
@@ -51,6 +57,13 @@ async function finishEditing() {
     })
     cancelEdit(false)
     emit('listUpdated', updateList)
+  }
+  catch (err) {
+    console.error(err)
+    actionError = (err as Error).message
+    nextTick(() => {
+      input.value?.focus()
+    })
   }
   finally {
     busy = false
@@ -61,6 +74,7 @@ async function removeList() {
     return
 
   deleteBusy = true
+  actionError = undefined
   await nextTick()
 
   const confirmDelete = await openConfirmDialog({
@@ -75,6 +89,13 @@ async function removeList() {
       await client.v1.lists.remove(list.id)
       emit('listRemoved', list.id)
     }
+    catch (err) {
+      console.error(err)
+      actionError = (err as Error).message
+      nextTick(() => {
+        deleteBtn.value?.focus()
+      })
+    }
     finally {
       deleteBusy = false
     }
@@ -83,11 +104,27 @@ async function removeList() {
     deleteBusy = false
   }
 }
+
+function clearError() {
+  actionError = undefined
+  nextTick(() => {
+    if (isEditing)
+      input.value?.focus()
+    else
+      deleteBtn.value?.focus()
+  })
+}
+
 onBeforeUnmount(() => cancelEdit(false))
 </script>
 
 <template>
-  <form hover:bg-active flex justify-between items-center @submit.prevent="finishEditing">
+  <form
+    hover:bg-active flex justify-between items-center
+    :aria-describedby="actionError ? `action-list-error-${list.id}` : null"
+    :class="actionError ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active' : null"
+    @submit.prevent="finishEditing"
+  >
     <div
       v-if="isEditing"
       bg-base border="~ base" h10 m2 ps-1 pe-4 rounded-3 w-full flex="~ row"
@@ -151,6 +188,7 @@ onBeforeUnmount(() => cancelEdit(false))
       </CommonTooltip>
       <CommonTooltip :content="$t('list.delete')">
         <button
+          ref="delete"
           type="button"
           text-sm p2 border-1 transition-colors
           border-dark hover:text-primary
@@ -166,4 +204,31 @@ onBeforeUnmount(() => cancelEdit(false))
       </CommonTooltip>
     </div>
   </form>
+  <CommonErrorMessage
+    v-if="actionError"
+    :id="`action-list-error-${list.id}`"
+    :described-by="`action-list-failed-${list.id}`"
+    class="rounded-bs-is-0 rounded-bs-ie-0 border-t-dashed m-b-2"
+  >
+    <header :id="`action-list-failed-${list.id}`" flex justify-between>
+      <div flex items-center gap-x-2 font-bold>
+        <div aria-hidden="true" i-ri:error-warning-fill />
+        <p>{{ $t(`list.${isEditing ? 'edit_error' : 'delete_error'}`) }}</p>
+      </div>
+      <CommonTooltip placement="bottom" :content="$t('list.clear_error')" no-auto-focus>
+        <button
+          flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('list.clear_error')"
+          @click="clearError"
+        >
+          <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
+        </button>
+      </CommonTooltip>
+    </header>
+    <ol ps-2 sm:ps-1>
+      <li flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+        <strong sr-only>{{ $t('list.error_prefix') }}</strong>
+        <span>{{ actionError }}</span>
+      </li>
+    </ol>
+  </CommonErrorMessage>
 </template>

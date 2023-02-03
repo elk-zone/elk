@@ -16,6 +16,8 @@ useHeadFixed({
 })
 
 const paginatorRef = ref()
+const inputRef = ref()
+let actionError = $ref<string | undefined>(undefined)
 let busy = $ref<boolean>(false)
 const createText = ref('')
 const enableSubmit = computed(() => createText.value.length > 0)
@@ -25,23 +27,39 @@ async function createList() {
     return
 
   busy = true
+  actionError = undefined
   await nextTick()
   try {
     const newEntry = await client.v1.lists.create({
       title: createText.value,
     })
-    paginatorRef.value.createEntry(newEntry)
+    paginatorRef.value?.createEntry(newEntry)
     createText.value = ''
+  }
+  catch (err) {
+    console.error(err)
+    actionError = (err as Error).message
+    nextTick(() => {
+      inputRef.value?.focus()
+    })
   }
   finally {
     busy = false
   }
 }
+
+function clearError() {
+  actionError = undefined
+  nextTick(() => {
+    inputRef.value?.focus()
+  })
+}
+
 function updateEntry(list: mastodon.v1.List) {
-  paginatorRef.value.updateEntry(list)
+  paginatorRef.value?.updateEntry(list)
 }
 function removeEntry(id: string) {
-  paginatorRef.value.removeEntry(id)
+  paginatorRef.value?.removeEntry(id)
 }
 </script>
 
@@ -67,6 +85,7 @@ function removeEntry(id: string) {
             border="t base"
             p-4 w-full
             flex="~ wrap" relative gap-3
+            :aria-describedby="actionError ? 'create-list-error' : null"
             @submit.prevent="createList"
           >
             <div
@@ -74,6 +93,7 @@ function removeEntry(id: string) {
               items-center relative focus-within:box-shadow-outline gap-3
             >
               <input
+                ref="inputRef"
                 v-model="createText"
                 bg-transparent
                 outline="focus:none"
@@ -94,31 +114,29 @@ function removeEntry(id: string) {
                 {{ $t('list.create') }}
               </button>
             </div>
-            <!--
-            <CommonErrorMessage v-if="failedMessages.length > 0" described-by="publish-failed">
-              <header id="publish-failed" flex justify-between>
-                <div flex items-center gap-x-2 font-bold>
-                  <div aria-hidden="true" i-ri:error-warning-fill />
-                  <p>{{ $t('state.publish_failed') }}</p>
-                </div>
-                <CommonTooltip placement="bottom" :content="$t('action.clear_publish_failed')">
-                  <button
-                    flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('action.clear_publish_failed')"
-                    @click="failedMessages = []"
-                  >
-                    <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
-                  </button>
-                </CommonTooltip>
-              </header>
-              <ol ps-2 sm:ps-1>
-                <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
-                  <strong>{{ i + 1 }}.</strong>
-                  <span>{{ error }}</span>
-                </li>
-              </ol>
-            </CommonErrorMessage>
--->
           </form>
+          <CommonErrorMessage v-if="actionError" id="create-list-error" described-by="create-list-failed">
+            <header id="create-list-failed" flex justify-between>
+              <div flex items-center gap-x-2 font-bold>
+                <div aria-hidden="true" i-ri:error-warning-fill />
+                <p>{{ $t('list.error') }}</p>
+              </div>
+              <CommonTooltip placement="bottom" :content="$t('list.clear_error')" no-auto-focus>
+                <button
+                  flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('list.clear_error')"
+                  @click="clearError"
+                >
+                  <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
+                </button>
+              </CommonTooltip>
+            </header>
+            <ol ps-2 sm:ps-1>
+              <li flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+                <strong sr-only>{{ $t('list.error_prefix') }}</strong>
+                <span>{{ actionError }}</span>
+              </li>
+            </ol>
+          </CommonErrorMessage>
         </template>
       </CommonPaginator>
     </slot>

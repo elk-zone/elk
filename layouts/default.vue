@@ -20,7 +20,7 @@ const isGrayscale = usePreferences('grayscaleMode')
       <aside class="native:w-auto w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4" hidden sm:flex justify-end xl:me-4 zen-hide relative>
         <div sticky top-0 w-20 xl:w-100 h-screen flex="~ col" lt-xl-items-center>
           <slot name="left">
-            <div flex="~ col" overflow-y-auto justify-between h-full max-w-full pt-5 native:pt-7 overflow-x-hidden>
+            <div flex="~ col" overflow-y-auto justify-between h-full max-w-full overflow-x-hidden>
               <NavTitle />
               <NavSide command />
               <div flex-auto />

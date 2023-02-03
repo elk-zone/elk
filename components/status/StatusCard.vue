@@ -103,7 +103,7 @@ const shouldHideProfile = $computed(() => isSelfReply && getPreferences(userSett
           :is-self-reply="isSelfReply"
           :class="faded ? 'text-secondary-light' : ''"
         />
-        <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
+        <div v-if="!shouldHideProfile" flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
           <template v-if="showReplyTo">
             <div w="1px" h="0.5" border="x base" mt-3 />
             <div w="1px" h="0.5" border="x base" />
@@ -145,7 +145,9 @@ const shouldHideProfile = $computed(() => isSelfReply && getPreferences(userSett
             <AccountBigAvatar :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div v-else w-54px />
+        <div v-else w-54px h-54px flex justify-center>
+          <div w-1px border="x base" />
+        </div>
 
         <div v-if="connectReply || shouldHideProfile" w-full h-full flex :class="shouldHideProfile ? '' : 'mt--3px'" justify-center>
           <div w-1px border="x base" />

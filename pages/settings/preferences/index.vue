@@ -16,6 +16,12 @@ const userSettings = useUserSettings()
       </h1>
     </template>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideAltIndicatorOnPosts')"
+      @click="togglePreferences('hideAltIndicatorOnPosts')"
+    >
+      {{ $t('settings.preferences.hide_alt_indi_on_posts') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'hideBoostCount')"
       @click="togglePreferences('hideBoostCount')"
     >

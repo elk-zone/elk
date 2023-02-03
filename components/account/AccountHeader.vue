@@ -161,7 +161,7 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           <CommonTooltip :content="getFieldIconTitle(field.name)">
             <div text-secondary :class="getAccountFieldIcon(field.name)" :title="getFieldIconTitle(field.name)" />
           </CommonTooltip>
-          <ContentRich text-sm filter-saturate-0 :content="field.value" :emojis="account.emojis" />
+          <ContentRich text-sm :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
       <AccountPostsFollowers :account="account" />

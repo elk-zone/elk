@@ -89,7 +89,7 @@ const handleFavouritedBoostedByClose = () => {
       <ModalConfirm v-if="confirmDialogLabel" v-bind="confirmDialogLabel" @choice="handleConfirmChoice" />
     </ModalDialog>
     <ModalDialog v-model="isErrorDialogOpen" py-4 px-8 max-w-125>
-      <ModalError v-bind="errorDialogData" />
+      <ModalError v-if="errorDialogData" v-bind="errorDialogData" />
     </ModalDialog>
     <ModalDialog
       v-model="isFavouritedBoostedByDialogOpen"

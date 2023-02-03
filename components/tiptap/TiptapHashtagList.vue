@@ -15,6 +15,9 @@ watch(items, () => {
 })
 
 function onKeyDown(event: KeyboardEvent) {
+  if (items.length === 0)
+    return false
+
   if (event.key === 'ArrowUp') {
     selectedIndex = ((selectedIndex + items.length) - 1) % items.length
     return true

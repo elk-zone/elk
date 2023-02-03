@@ -85,7 +85,7 @@ function removeEntry(id: string) {
             border="t base"
             p-4 w-full
             flex="~ wrap" relative gap-3
-            :aria-describedby="actionError ? 'create-list-error' : null"
+            :aria-describedby="actionError ? 'create-list-error' : undefined"
             :class="actionError ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active' : null"
             @submit.prevent="createList"
           >

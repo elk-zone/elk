@@ -121,7 +121,7 @@ onBeforeUnmount(() => cancelEdit(false))
 <template>
   <form
     hover:bg-active flex justify-between items-center gap-x-2
-    :aria-describedby="actionError ? `action-list-error-${list.id}` : null"
+    :aria-describedby="actionError ? `action-list-error-${list.id}` : undefined"
     :class="actionError ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active' : null"
     @submit.prevent="finishEditing"
   >

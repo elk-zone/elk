@@ -69,8 +69,6 @@ const doSubscribe = async () => {
   animateSubscription = true
 
   try {
-    if (true)
-      throw new PushSubscriptionError('vapid_not_supported', 'Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.')
     const result = await subscribe()
     if (result !== 'subscribed') {
       subscribeError = t(`settings.notifications.push_notifications.subscription_error.${result === 'notification-denied' ? 'permission_denied' : 'request_error'}`)

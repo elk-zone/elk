@@ -1,39 +1,39 @@
 export const useSingleSignIn = () => {
+  const singleInstanceServer = useAppConfig().singleInstanceServer
   const userSettings = useUserSettings()
-  const singleInstanceServer = useAppConfig().buildInfo.singleInstanceServer
+  const users = useUsers()
   const { t } = useI18n()
 
-  let busy = $ref<boolean>(false)
+  const busy = ref(false)
 
   async function signIn() {
-    if (busy)
+    if (busy.value)
       return
 
-    busy = true
+    busy.value = true
 
     await nextTick()
 
     try {
-      location.href = await (globalThis.$fetch as any)(`/api/${publicServer.value}/login`, {
+      const href = await (globalThis.$fetch as any)(`/api/${publicServer.value}/login`, {
         method: 'POST',
         body: {
-          force_login: true,
+          force_login: users.value.length > 0,
           origin: location.origin,
           lang: userSettings.value.language,
         },
       })
+      busy.value = false
+      location.href = href
     }
     catch (err) {
       console.error(err)
-      busy = false
+      busy.value = false
       await openErrorDialog({
         title: t('common.error'),
         messages: [t('error.sign_in_error')],
         close: t('action.close'),
       })
-    }
-    finally {
-      busy = false
     }
   }
 

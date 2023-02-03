@@ -34,11 +34,10 @@ const prepareEdit = () => {
     input.value?.focus()
   })
 }
-const cancelEdit = (updateTitle = true) => {
+const cancelEdit = () => {
   isEditing = false
   actionError = undefined
-  if (updateTitle)
-    modelValue.value = list.title
+  modelValue.value = list.title
 
   nextTick(() => {
     edit.value?.focus()
@@ -55,7 +54,7 @@ async function finishEditing() {
     const updateList = await client.v1.lists.update(list.id, {
       title: modelValue.value,
     })
-    cancelEdit(false)
+    cancelEdit()
     emit('listUpdated', updateList)
   }
   catch (err) {
@@ -115,7 +114,7 @@ function clearError() {
   })
 }
 
-onBeforeUnmount(() => cancelEdit(false))
+onDeactivated(cancelEdit)
 </script>
 
 <template>
@@ -135,7 +134,7 @@ onBeforeUnmount(() => cancelEdit(false))
           type="button"
           rounded-full text-sm p2 transition-colors
           hover:text-primary
-          @click="cancelEdit(true)"
+          @click="cancelEdit()"
         >
           <span block text-current i-ri:close-fill />
         </button>
@@ -151,7 +150,7 @@ onBeforeUnmount(() => cancelEdit(false))
         pb="1px"
         flex-1
         placeholder-text-secondary
-        @keydown.esc="cancelEdit(true)"
+        @keydown.esc="cancelEdit()"
       >
     </div>
     <NuxtLink v-else :to="`list/${list.id}`" block grow p4>

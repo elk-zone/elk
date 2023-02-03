@@ -48,9 +48,9 @@ async function createList() {
   }
 }
 
-function clearError() {
+function clearError(focusBtn: boolean) {
   actionError = undefined
-  nextTick(() => {
+  focusBtn && nextTick(() => {
     inputRef.value?.focus()
   })
 }
@@ -61,6 +61,8 @@ function updateEntry(list: mastodon.v1.List) {
 function removeEntry(id: string) {
   paginatorRef.value?.removeEntry(id)
 }
+
+onDeactivated(() => clearError(false))
 </script>
 
 <template>
@@ -130,7 +132,7 @@ function removeEntry(id: string) {
               <CommonTooltip placement="bottom" :content="$t('list.clear_error')" no-auto-focus>
                 <button
                   flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('list.clear_error')"
-                  @click="clearError"
+                  @click="clearError(true)"
                 >
                   <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
                 </button>

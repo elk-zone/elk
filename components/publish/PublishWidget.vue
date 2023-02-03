@@ -164,8 +164,8 @@ defineExpose({
           >
         </div>
 
-        <PublishErrMessage v-if="failedMessages.length > 0" described-by="publish-failed">
-          <head id="publish-failed" flex justify-between>
+        <CommonErrorMessage v-if="failedMessages.length > 0" described-by="publish-failed">
+          <header id="publish-failed" flex justify-between>
             <div flex items-center gap-x-2 font-bold>
               <div aria-hidden="true" i-ri:error-warning-fill />
               <p>{{ $t('state.publish_failed') }}</p>
@@ -178,14 +178,14 @@ defineExpose({
                 <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
               </button>
             </CommonTooltip>
-          </head>
+          </header>
           <ol ps-2 sm:ps-1>
             <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
               <strong>{{ i + 1 }}.</strong>
               <span>{{ error }}</span>
             </li>
           </ol>
-        </PublishErrMessage>
+        </CommonErrorMessage>
 
         <div relative flex-1 flex flex-col>
           <EditorContent
@@ -201,11 +201,11 @@ defineExpose({
           </div>
           {{ $t('state.uploading') }}
         </div>
-        <PublishErrMessage
+        <CommonErrorMessage
           v-else-if="failedAttachments.length > 0"
           :described-by="isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'"
         >
-          <head id="upload-failed" flex justify-between>
+          <header id="upload-failed" flex justify-between>
             <div flex items-center gap-x-2 font-bold>
               <div aria-hidden="true" i-ri:error-warning-fill />
               <p>{{ $t('state.upload_failed') }}</p>
@@ -218,7 +218,7 @@ defineExpose({
                 <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
               </button>
             </CommonTooltip>
-          </head>
+          </header>
           <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-small>
             {{ $t('state.attachments_exceed_server_limit') }}
           </div>
@@ -228,7 +228,7 @@ defineExpose({
               <span>{{ error[0] }}</span>
             </li>
           </ol>
-        </PublishErrMessage>
+        </CommonErrorMessage>
 
         <div v-if="draft.attachments.length" flex="~ col gap-2" overflow-auto>
           <PublishAttachment

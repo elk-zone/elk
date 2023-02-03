@@ -111,10 +111,16 @@ useWebShareTarget(async ({ data: { data, action } }: any) => {
 
   editor.value?.commands.focus('end')
 
-  if (data.text !== undefined)
-    editor.value?.commands.insertContent(data.text)
+  for (const text of data.textParts) {
+    for (const line of text.split('\n')) {
+      editor.value?.commands.insertContent({
+        type: 'paragraph',
+        content: [{ type: 'text', text: line }],
+      })
+    }
+  }
 
-  if (data.files !== undefined)
+  if (data.files.length !== 0)
     await uploadAttachments(data.files)
 })
 

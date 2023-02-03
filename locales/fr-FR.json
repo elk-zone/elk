@@ -21,7 +21,7 @@
     "followers_count": "{0} abonné·e|{0} abonné·e|{0} abonné·e·s",
     "following": "Suivi·e",
     "following_count": "{0} abonnements",
-    "follows_you": "Vous suit",
+    "follows_you": "@:account.follow_back",
     "go_to_profile": "Aller à son profil",
     "joined": "a rejoint",
     "moved_title": "a indiqué que son nouveau compte est désormais :",

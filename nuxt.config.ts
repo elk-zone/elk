@@ -96,6 +96,7 @@ export default defineNuxtConfig({
     },
   },
   appConfig: {
+    singleInstanceServer: process.env.SINGLE_INSTANCE_SERVER === 'true',
     storage: {
       driver: process.env.NUXT_STORAGE_DRIVER ?? (isCI ? 'cloudflare' : 'fs'),
     },

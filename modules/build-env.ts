@@ -17,7 +17,6 @@ export default defineNuxtModule({
       commit,
       branch,
       env,
-      singleInstanceServer: !!process.env.SINGLE_INSTANCE_SERVER,
     }
 
     nuxt.options.appConfig = nuxt.options.appConfig || {}

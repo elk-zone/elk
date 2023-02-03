@@ -20,7 +20,7 @@ router.afterEach(() => {
 <template>
   <div flex justify-between>
     <NuxtLink
-      flex items-end gap-4
+      flex items-end gap-3
       py2 px-5
       text-2xl
       select-none

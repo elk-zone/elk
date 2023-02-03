@@ -103,7 +103,7 @@ const userSettings = useUserSettings()
         playsinline
         controls
         rounded-lg
-        object-cover
+        object-contain
         :width="attachment.meta?.original?.width"
         :height="attachment.meta?.original?.height"
         :style="{

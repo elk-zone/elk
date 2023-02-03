@@ -94,6 +94,30 @@ function removeEntry(id: string) {
                 {{ $t('list.create') }}
               </button>
             </div>
+            <!--
+            <CommonErrorMessage v-if="failedMessages.length > 0" described-by="publish-failed">
+              <header id="publish-failed" flex justify-between>
+                <div flex items-center gap-x-2 font-bold>
+                  <div aria-hidden="true" i-ri:error-warning-fill />
+                  <p>{{ $t('state.publish_failed') }}</p>
+                </div>
+                <CommonTooltip placement="bottom" :content="$t('action.clear_publish_failed')">
+                  <button
+                    flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('action.clear_publish_failed')"
+                    @click="failedMessages = []"
+                  >
+                    <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
+                  </button>
+                </CommonTooltip>
+              </header>
+              <ol ps-2 sm:ps-1>
+                <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+                  <strong>{{ i + 1 }}.</strong>
+                  <span>{{ error }}</span>
+                </li>
+              </ol>
+            </CommonErrorMessage>
+-->
           </form>
         </template>
       </CommonPaginator>

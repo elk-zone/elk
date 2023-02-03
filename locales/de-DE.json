@@ -9,7 +9,7 @@
   "account": {
     "avatar_description": "{0}s Avatar",
     "blocked_by": "Du wurdest von diesem Account geblockt",
-    "blocked_domains": "Gesperrte Domains",
+    "blocked_domains": "Gesperrte Mastodon-Instanzen",
     "blocked_users": "Gesperrte Accounts",
     "blocking": "Blockiert",
     "bot": "BOT",

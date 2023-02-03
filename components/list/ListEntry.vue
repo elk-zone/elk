@@ -120,7 +120,7 @@ onBeforeUnmount(() => cancelEdit(false))
 
 <template>
   <form
-    hover:bg-active flex justify-between items-center
+    hover:bg-active flex justify-between items-center gap-x-2
     :aria-describedby="actionError ? `action-list-error-${list.id}` : null"
     :class="actionError ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active' : null"
     @submit.prevent="finishEditing"
@@ -130,7 +130,7 @@ onBeforeUnmount(() => cancelEdit(false))
       bg-base border="~ base" h10 m2 ps-1 pe-4 rounded-3 w-full flex="~ row"
       items-center relative focus-within:box-shadow-outline gap-3
     >
-      <CommonTooltip v-if="isEditing" :content="$t('list.cancel_edit')">
+      <CommonTooltip v-if="isEditing" :content="$t('list.cancel_edit')" no-auto-focus>
         <button
           type="button"
           rounded-full text-sm p2 transition-colors
@@ -158,7 +158,7 @@ onBeforeUnmount(() => cancelEdit(false))
       {{ list.title }}
     </NuxtLink>
     <div mr4 flex gap2>
-      <CommonTooltip v-if="isEditing" :content="$t('list.save')">
+      <CommonTooltip v-if="isEditing" :content="$t('list.save')" no-auto-focus>
         <button
           type="submit"
           text-sm p2 border-1 transition-colors
@@ -174,7 +174,7 @@ onBeforeUnmount(() => cancelEdit(false))
           </template>
         </button>
       </CommonTooltip>
-      <CommonTooltip v-else :content="$t('list.edit')">
+      <CommonTooltip v-else :content="$t('list.edit')" no-auto-focus>
         <button
           ref="edit"
           type="button"
@@ -186,7 +186,7 @@ onBeforeUnmount(() => cancelEdit(false))
           <span block text-current i-ri:edit-2-line class="rtl-flip" />
         </button>
       </CommonTooltip>
-      <CommonTooltip :content="$t('list.delete')">
+      <CommonTooltip :content="$t('list.delete')" no-auto-focus>
         <button
           ref="delete"
           type="button"

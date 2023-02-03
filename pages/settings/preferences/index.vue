@@ -46,6 +46,12 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_account_hover_card') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideUsernameEmojis')"
+      @click="togglePreferences('hideUsernameEmojis')"
+    >
+      {{ $t("settings.preferences.hide_username_emojis") }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'grayscaleMode')"
       @click="togglePreferences('grayscaleMode')"
     >

@@ -118,6 +118,11 @@
       "confirm": "Oui",
       "title": "Êtes-vous sûr·e ?"
     },
+    "delete_list": {
+      "cancel": "Annuler",
+      "confirm": "Supprimer",
+      "title": "Voulez-vous vraiment supprimer la liste \"{0}\" ?"
+    },
     "delete_posts": {
       "cancel": "Annuler",
       "confirm": "Supprimer",
@@ -179,8 +184,14 @@
   },
   "list": {
     "add_account": "Ajouter le compte à la liste",
+    "cancel_edit": "Annuler l'édition",
+    "create": "Créer",
+    "delete": "Supprimer cette liste",
+    "edit": "Editer cette liste",
+    "list_title_placeholder": "Nom de la liste",
     "modify_account": "Modifier les listes de ce compte",
-    "remove_account": "Supprimer ce compte de listes"
+    "remove_account": "Supprimer ce compte de listes",
+    "save": "Enregistrer les changements"
   },
   "menu": {
     "block_account": "Bloquer {0}",
@@ -443,10 +454,13 @@
     "edited": "Edité {0}",
     "favourited_by": "Aimé par",
     "filter_hidden_phrase": "Filtré par",
+    "filter_removed_phrase": "Supprimé par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Description",
-      "dismiss": "Fermer"
+      "dismiss": "Fermer",
+      "read": "Lire la description de {0}"
     },
     "poll": {
       "count": "{0} votes",

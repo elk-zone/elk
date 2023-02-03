@@ -409,7 +409,8 @@
       "label": "Preferences",
       "title": "Experimental Features",
       "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
+      "virtual_scroll": "Virtual Scrolling",
+      "wellbeing": "Wellbeing"
     },
     "profile": {
       "appearance": {

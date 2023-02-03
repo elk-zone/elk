@@ -245,6 +245,7 @@ export const provideGlobalCommands = () => {
   const masto = useMasto()
   const colorMode = useColorMode()
   const userSettings = useUserSettings()
+  const { singleInstanceServer, signIn } = useSingleSignIn()
 
   useCommand({
     scope: 'Navigation',
@@ -310,7 +311,10 @@ export const provideGlobalCommands = () => {
     icon: 'i-ri:user-add-line',
 
     onActivate() {
-      openSigninDialog()
+      if (singleInstanceServer)
+        signIn()
+      else
+        openSigninDialog()
     },
   })
   useCommand({

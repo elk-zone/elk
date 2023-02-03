@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
-import { $fetch } from 'ofetch'
 
 const input = $ref<HTMLInputElement>()
 let server = $ref<string>('')

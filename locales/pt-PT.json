@@ -370,10 +370,13 @@
         "save_settings": "Salvar configurações",
         "subscription_error": {
           "clear_error": "Limpar erro",
+          "invalid_vapid_key": "A chave pública VAPID parece ser inválida.",
           "permission_denied": "Permissão negada: habilite as notificações no seu browser.",
+          "repo_link": "Repositório do Elk no GitHub",
           "request_error": "Um erro ocorreu durante o pedido de subscrição, tente novamente e se o erro persistir, por favor reporte o problema no repositório do Elk.",
           "title": "Não é possível subscrever as notificações push",
-          "too_many_registrations": "Devido a limitações do browser, o Elk não consegue utilizar o serviço de notificações push para múltiplas contas em diferentes servidores. Deve cancelar a subscrição de notificações push nas outras contas e tentar novamente."
+          "too_many_registrations": "Devido a limitações do browser, o Elk não consegue utilizar o serviço de notificações push para múltiplas contas em diferentes servidores. Deve cancelar a subscrição de notificações push nas outras contas e tentar novamente.",
+          "vapid_not_supported": "O seu browser suporta Notificações Web Push, mas não parece ter implementado o protocolo VAPID."
         },
         "title": "Configuração de notificações push",
         "undo_settings": "Reverter alterações",

@@ -240,9 +240,3 @@ allows controlling them individually
 [data-mode="grayscale"] video:hover {
   filter: grayscale(0);
 }
-
-@media all and (display-mode: fullscreen) {
-  video[object-cover] {
-    object-fit: contain;
-  }
-}

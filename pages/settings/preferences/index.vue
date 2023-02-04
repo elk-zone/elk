@@ -44,12 +44,6 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.wellbeing') }}
     </h2>
     <SettingsToggleItem
-      :checked="getPreferences(userSettings, 'hideUsernameEmojis')"
-      @click="togglePreferences('hideUsernameEmojis')"
-    >
-      {{ $t("settings.preferences.hide_username_emojis") }}
-    </SettingsToggleItem>
-    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'grayscaleMode')"
       @click="togglePreferences('grayscaleMode')"
     >
@@ -78,6 +72,12 @@ const userSettings = useUserSettings()
       @click="togglePreferences('hideFollowerCount')"
     >
       {{ $t('settings.preferences.hide_follower_count') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideUsernameEmojis')"
+      @click="togglePreferences('hideUsernameEmojis')"
+    >
+      {{ $t("settings.preferences.hide_username_emojis") }}
     </SettingsToggleItem>
     <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-flask-line />

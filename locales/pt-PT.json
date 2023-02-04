@@ -183,9 +183,14 @@
   "list": {
     "add_account": "Adicionar conta à lista",
     "cancel_edit": "Cancelar edição",
+    "clear_error": "Limpar erro",
     "create": "Criar",
     "delete": "Eliminar esta lista",
+    "delete_error": "Ocorreu um erro ao eliminar a lista",
     "edit": "Editar esta lista",
+    "edit_error": "Ocorreu um erro ao atualizar a lista",
+    "error": "Ocorreu um erro ao criar a lista",
+    "error_prefix": "Erro: ",
     "list_title_placeholder": "Título da lista",
     "modify_account": "Modificar listas com a conta",
     "remove_account": "Remover conta da lista",
@@ -395,15 +400,18 @@
       "github_cards": "Cartões do GitHub",
       "grayscale_mode": "Modo tons de cinza",
       "hide_account_hover_card": "Esconder cartão flutuante de conta",
+      "hide_alt_indi_on_posts": "Esconder indicador alt nas publicações",
       "hide_boost_count": "Esconder contagem de partilhas",
       "hide_favorite_count": "Esconder contagem de favoritos",
       "hide_follower_count": "Esconder contagem de seguidores",
       "hide_reply_count": "Esconder contagem de respostas",
       "hide_translation": "Esconder botão de tradução",
+      "hide_username_emojis": "Esconder emojis no nome de utilizador",
       "label": "Preferências",
       "title": "Funcionalidades Experimentais",
       "user_picker": "Selecionador de Utilizador",
-      "virtual_scroll": "Deslocamento Virtual"
+      "virtual_scroll": "Deslocamento Virtual",
+      "wellbeing": "Bem-estar"
     },
     "profile": {
       "appearance": {

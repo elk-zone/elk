@@ -22,7 +22,8 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
   <template v-else>
     <button
       v-if="singleInstanceServer"
-      flex="~ row" gap-x-1 items-center justify-center btn-solid text-center text-sm px-2 py-1 xl:hidden
+      flex="~ row"
+      gap-x-1 items-center justify-center btn-solid text-sm px-2 py-1 xl:hidden
       :disabled="busy"
       @click="oauth()"
     >
@@ -30,7 +31,9 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
         <span block i-ri:loader-2-fill aria-hidden="true" />
       </span>
       <span v-else aria-hidden="true" block i-ri:login-circle-line class="rtl-flip" />
-      {{ $t('action.sign_in') }}
+      <i18n-t keypath="action.sign_in_to">
+        <strong>{{ currentServer }}</strong>
+      </i18n-t>
     </button>
     <button v-else btn-solid text-sm px-2 py-1 text-center xl:hidden @click="openSigninDialog()">
       {{ $t('action.sign_in') }}

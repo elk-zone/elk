@@ -33,11 +33,11 @@ const { motionProperties } = useMotionProperties(target, {
 })
 const { set } = useSpring(motionProperties as Partial<PermissiveMotionProperties>)
 
-function resetZoomAndRotation() {
-  set({ scale: 1, rotateZ: 0 })
+function resetZoom() {
+  set({ scale: 1 })
 }
 
-watch(modelValue, resetZoomAndRotation)
+watch(modelValue, resetZoom)
 
 const { width, height } = useElementSize(target)
 const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
@@ -47,13 +47,13 @@ const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     if (direction === SwipeDirection.RIGHT && Math.abs(distanceX.value) > threshold) {
       modelValue.value = Math.max(0, modelValue.value - 1)
-      resetZoomAndRotation()
+      resetZoom()
     }
 
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     if (direction === SwipeDirection.LEFT && Math.abs(distanceX.value) > threshold) {
       modelValue.value = Math.min(media.length - 1, modelValue.value + 1)
-      resetZoomAndRotation()
+      resetZoom()
     }
 
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -64,9 +64,8 @@ const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
 
 useGesture({
   onPinch({ offset: [distance, angle] }) {
-    set({ scale: 1 + distance / 200, rotateZ: angle })
+    set({ scale: 1 + distance / 200 })
   },
-  onPinchEnd() { set({ rotateZ: 0 }) },
   onMove({ movement: [x, y], dragging, pinching }) {
     if (dragging && !pinching)
       set({ x, y })

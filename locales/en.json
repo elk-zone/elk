@@ -371,10 +371,13 @@
         "save_settings": "Save settings",
         "subscription_error": {
           "clear_error": "Clear error",
+          "invalid_vapid_key": "The VAPID public key seems to be invalid.",
           "permission_denied": "Permission denied: enable notifications in your browser.",
+          "repo_link": "Elk's repository in Github",
           "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
           "title": "Could not subscribe to push notifications",
-          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again."
+          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again.",
+          "vapid_not_supported": "Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol."
         },
         "title": "Push notifications settings",
         "undo_settings": "Undo changes",
@@ -407,6 +410,7 @@
       "hide_follower_count": "Hide follower count",
       "hide_reply_count": "Hide reply count",
       "hide_translation": "Hide translation",
+      "hide_username_emojis": "Hide username emojis",
       "label": "Preferences",
       "title": "Experimental Features",
       "user_picker": "User Picker",

@@ -11,6 +11,8 @@ const { t } = useI18n()
 const { data: account, pending, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null), { immediate: process.client, default: () => shallowRef() }))
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
 
+const userSettings = useUserSettings()
+
 onReactivated(() => {
   // Silently update data when reentering the page
   // The user will see the previous content first, and any changes will be updated to the UI when the request is completed
@@ -21,7 +23,11 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <ContentRich timeline-title-style :content="account ? getDisplayName(account) : t('nav.profile')" />
+      <ContentRich
+        timeline-title-style
+        :content="account ? getDisplayName(account) : t('nav.profile')"
+        :show-emojis="!getPreferences(userSettings, 'hideUsernameEmojis')"
+      />
     </template>
 
     <template v-if="pending" />

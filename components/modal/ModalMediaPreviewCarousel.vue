@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { SwipeDirection } from '@vueuse/core'
+import { useGesture } from '@vueuse/gesture'
+import type { PermissiveMotionProperties } from '@vueuse/motion'
 import { useReducedMotion } from '@vueuse/motion'
 import type { mastodon } from 'masto'
 
@@ -23,22 +25,56 @@ const reduceMotion = useReducedMotion()
 
 const canAnimate = computed(() => !reduceMotion.value && animateTimeout.value)
 
+const { motionProperties } = useMotionProperties(target, {
+  cursor: 'grab',
+  scale: 1,
+  x: 0,
+  y: 0,
+})
+const { set } = useSpring(motionProperties as Partial<PermissiveMotionProperties>)
+
+function resetZoomAndRotation() {
+  set({ scale: 1, rotateZ: 0 })
+}
+
+watch(modelValue, resetZoomAndRotation)
+
 const { width, height } = useElementSize(target)
 const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
   threshold: 5,
   passive: false,
   onSwipeEnd(e, direction) {
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    if (direction === SwipeDirection.RIGHT && Math.abs(distanceX.value) > threshold)
+    if (direction === SwipeDirection.RIGHT && Math.abs(distanceX.value) > threshold) {
       modelValue.value = Math.max(0, modelValue.value - 1)
+      resetZoomAndRotation()
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    if (direction === SwipeDirection.LEFT && Math.abs(distanceX.value) > threshold)
+    if (direction === SwipeDirection.LEFT && Math.abs(distanceX.value) > threshold) {
       modelValue.value = Math.min(media.length - 1, modelValue.value + 1)
+      resetZoomAndRotation()
+    }
 
     // eslint-disable-next-line @typescript-eslint/no-use-before-define
     if (direction === SwipeDirection.UP && Math.abs(distanceY.value) > threshold)
       emit('close')
+  },
+})
+
+useGesture({
+  onPinch({ offset: [distance, angle] }) {
+    set({ scale: 1 + distance / 200, rotateZ: angle })
+  },
+  onPinchEnd() { set({ rotateZ: 0 }) },
+  onMove({ movement: [x, y], dragging, pinching }) {
+    if (dragging && !pinching)
+      set({ x, y })
+  },
+}, {
+  domTarget: target,
+  eventOptions: {
+    passive: true,
   },
 })
 

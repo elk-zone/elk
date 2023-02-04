@@ -345,7 +345,7 @@ function removeUnicodeEmoji(node: Node) {
 
   const matches = [] as (string | Node)[]
   findAndReplaceEmojisInText(emojiRegEx, node.value, (match, result) => {
-    matches.push(result.slice(start).trim())
+    matches.push(result.slice(start).trimEnd())
     start = result.length + match.match.length
     return undefined
   })

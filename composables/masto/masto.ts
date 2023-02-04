@@ -29,10 +29,10 @@ export type ElkMasto = ReturnType<typeof createMasto>
 export const useMasto = () => useNuxtApp().$masto as ElkMasto
 export const useMastoClient = () => useMasto().client.value
 
-export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'token'>) {
+export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'token'>, defaultServer: string) {
   const { setParams } = $(masto)
 
-  const server = user.server
+  const server = user?.server ?? defaultServer
   const url = `https://${server}`
   const instance: ElkInstance = reactive(getInstanceCache(server) || { uri: server, accountDomain: server })
   setParams({

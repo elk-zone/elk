@@ -117,16 +117,16 @@ export const characterLimit = computed(() => currentInstance.value?.configuratio
 
 export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { account?: mastodon.v1.AccountCredentials }>) {
   const { client } = $(masto)
-  const instance = mastoLogin(masto, user)
+  const instance = mastoLogin(masto, user, currentServer.value)
 
   // GoToSocial only API
-  const url = `https://${user.server}`
+  const url = `https://${user?.server ?? currentServer.value}`
   fetch(`${url}/nodeinfo/2.0`).then(r => r.json()).then((info) => {
-    nodes.value[user.server] = info
+    nodes.value[user?.server ?? currentServer.value] = info
   }).catch(() => undefined)
 
   if (!user?.token) {
-    publicServer.value = user.server
+    publicServer.value = user?.server ?? currentServer.value
     publicInstance.value = instance
     return
   }

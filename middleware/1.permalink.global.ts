@@ -2,19 +2,22 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (process.server)
     return
 
-  if (!('server' in to.params))
+  const singleInstanceServer = useAppConfig().singleInstanceServer
+
+  if (!('server' in to.params) && !singleInstanceServer)
     return
 
+  const server = singleInstanceServer ? currentServer.value : to.params.server as string
   const user = currentUser.value
   const masto = useMasto()
   if (!user) {
-    if (from.params.server !== to.params.server)
-      loginTo(masto, { server: to.params.server as string })
+    if (singleInstanceServer || from.params.server !== server)
+      loginTo(masto, { server })
     return
   }
 
   // No need to additionally resolve an id if we're already logged in
-  if (user.server === to.params.server)
+  if (user.server === server)
     return
 
   // Tags don't need to be redirected to a local id
@@ -22,7 +25,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     return
 
   // Handle redirecting to new permalink structure for users with old links
-  if (!to.params.server) {
+  if (!server) {
     return {
       ...to,
       params: {

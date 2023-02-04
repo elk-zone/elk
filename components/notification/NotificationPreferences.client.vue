@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { PushSubscriptionError } from '~/composables/push-notifications/types'
-
 defineProps<{ show?: boolean }>()
 
 const {

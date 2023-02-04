@@ -1,5 +1,6 @@
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin(async () => {
   const { params, query } = useRoute()
+
   publicServer.value = params.server as string || useRuntimeConfig().public.defaultServer
 
   const masto = createMasto()
@@ -11,7 +12,7 @@ export default defineNuxtPlugin(() => {
       }
     : currentUser.value || { server: publicServer.value }
 
-  loginTo(masto, user)
+  await loginTo(masto, user)
 
   return {
     provide: {

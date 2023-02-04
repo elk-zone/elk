@@ -2,16 +2,15 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   if (process.server)
     return
 
-  const singleInstanceServer = useAppConfig().singleInstanceServer
-
-  if (!('server' in to.params) && !singleInstanceServer)
+  if (!('server' in to.params))
     return
 
-  const server = singleInstanceServer ? currentServer.value : to.params.server as string
+  const server = to.params.server as string || currentServer.value
   const user = currentUser.value
   const masto = useMasto()
   if (!user) {
-    if (singleInstanceServer || from.params.server !== server)
+    const fromServer = from.params.server || currentServer.value
+    if (fromServer !== server)
       loginTo(masto, { server })
     return
   }
@@ -25,7 +24,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     return
 
   // Handle redirecting to new permalink structure for users with old links
-  if (!server) {
+  if (!useAppConfig().singleInstanceServer && !to.params.server) {
     return {
       ...to,
       params: {

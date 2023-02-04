@@ -22,7 +22,7 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
   <template v-else>
     <button
       v-if="singleInstanceServer"
-      flex="~ row" gap-x-2 items-center justify-center btn-solid text-center text-sm px-2 py-1 xl:hidden
+      flex="~ row" gap-x-1 items-center justify-center btn-solid text-center text-sm px-2 py-1 xl:hidden
       :disabled="busy"
       @click="oauth()"
     >

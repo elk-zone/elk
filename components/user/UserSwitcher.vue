@@ -6,7 +6,7 @@ const emit = defineEmits<{
 }>()
 
 const all = useUsers()
-const { busy, singleInstanceServer, signIn } = useSingleSignIn()
+const { busy, singleInstanceServer, oauth } = useSignIn()
 
 const sorted = computed(() => {
   return [
@@ -24,7 +24,7 @@ const clickUser = (user: UserLogin) => {
 }
 const processSignIn = () => {
   if (singleInstanceServer)
-    signIn()
+    oauth()
   else
     openSigninDialog()
 }

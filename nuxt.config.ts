@@ -128,10 +128,10 @@ export default defineNuxtConfig({
       },
     },
   },
-  build: {
-    transpile: ['masto'],
-  },
   nitro: {
+    alias: {
+      'isomorphic-ws': 'unenv/runtime/mock/proxy',
+    },
     esbuild: {
       options: {
         target: 'esnext',
@@ -148,6 +148,15 @@ export default defineNuxtConfig({
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}
       config.virtual['#storage-config'] = `export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}`
+    },
+    'vite:extendConfig': function (config, { isServer }) {
+      if (isServer) {
+        const alias = config.resolve!.alias as Record<string, string>
+        alias.eventemitter = resolve('./mocks/eventemitter')
+        alias['shiki-es'] = 'unenv/runtime/mock/proxy'
+
+        config.ssr!.noExternal!.push('masto', '@fnando/sparkline')
+      }
     },
   },
   app: {

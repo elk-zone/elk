@@ -116,7 +116,7 @@
     },
     "common": {
       "cancel": "No",
-      "confirm": "Sí"
+      "confirm": "Sí",
       "title": "Segur que vols {0}?"
     },
     "delete_list": {

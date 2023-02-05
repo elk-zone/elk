@@ -305,7 +305,7 @@
     }
   },
   "search": {
-    "search_desc": "Cercqueu persones i etiquetes",
+    "search_desc": "Cerqueu persones i etiquetes",
     "search_empty": "No s'ha pogut trobar res per a aquests termes de cerca"
   },
   "settings": {

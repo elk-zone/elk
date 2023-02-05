@@ -140,7 +140,7 @@ You can run this code in your browser console to see how it works:
 [1, 12, 123, 1234, 12345, 123456, 1234567].forEach((n) => {
   const acc = {}
 
-  Array.from(['en-US', 'en-GB', 'de-DE', 'zh-CN', 'ja-JP', 'es-ES', 'fr-FR', 'cs-CZ', 'ar-EG']).forEach((l) => {
+  Array.from(['en-US', 'en-GB', 'de-DE', 'zh-CN', 'ja-JP', 'ko-KR', 'es-ES', 'fr-FR', 'cs-CZ', 'ar-EG']).forEach((l) => {
     const nf = new Intl.NumberFormat(l, {
       style: 'decimal',
       maximumFractionDigits: 0,

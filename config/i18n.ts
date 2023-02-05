@@ -95,6 +95,11 @@ const locales: LocaleObjectData[] = [
     name: '日本語',
   },
   {
+    code: 'ko-KR',
+    file: 'ko-KR.json',
+    name: '한국어',
+  },
+  {
     code: 'nl-NL',
     file: 'nl-NL.json',
     name: 'Nederlands',

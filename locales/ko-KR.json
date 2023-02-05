@@ -1,0 +1,580 @@
+{
+  "a11y": {
+    "loading_page": "페이지를 불러오고 있으니 기다려 주세요",
+    "loading_titled_page": "{0} 페이지를 불러오고 있으니 기다려 주세요",
+    "locale_changed": "{0}로 언어 변경됨",
+    "locale_changing": "언어를 변경하고 있으니 기다려 주세요",
+    "route_loaded": "{0} 페이지 불러옴"
+  },
+  "account": {
+    "avatar_description": "{0} 님의 프로필 사진",
+    "blocked_by": "이 계정한테 차단 당했습니다.",
+    "blocked_domains": "차단한 도메인",
+    "blocked_users": "차단한 사람들",
+    "blocking": "차단됨",
+    "bot": "봇",
+    "favourites": "좋아한 게시물",
+    "follow": "팔로하기",
+    "follow_back": "맞팔로하기",
+    "follow_requested": "팔로 요청 보냄",
+    "followers": "팔로워",
+    "followers_count": "팔로워 {0}명",
+    "following": "팔로 중",
+    "following_count": "{0}명을 팔로 중",
+    "follows_you": "날 팔로함",
+    "go_to_profile": "새 계정 보기",
+    "joined": "가입일",
+    "moved_title": "님이 새 계정을 만들었습니다",
+    "muted_users": "뮤트한 사람들",
+    "muting": "뮤트됨",
+    "mutuals": "맞팔로",
+    "notifications_on_post_disable": "{username} 님 게시물 알림 끄기",
+    "notifications_on_post_enable": "{username} 님 게시물이 올라오면 알림 받기",
+    "pinned": "고정된 게시물",
+    "posts": "게시물",
+    "posts_count": "게시물 {0}건",
+    "profile_description": "{0} 님의 프로필 헤더",
+    "profile_unavailable": "볼 수 없는 프로필",
+    "request_follow": "팔로 요청",
+    "unblock": "차단 풀기",
+    "unfollow": "팔로 끊기",
+    "unmute": "뮤트 풀기",
+    "view_other_followers": "다른 인스턴스에 있는 팔로워는 안 보일 수 있습니다.",
+    "view_other_following": "다른 인스턴스에 있는 사람은 안 보일 수 있습니다."
+  },
+  "action": {
+    "apply": "적용",
+    "bookmark": "책갈피",
+    "bookmarked": "책갈피에 들어감",
+    "boost": "부스트",
+    "boost_count": "{0}",
+    "boosted": "부스트함",
+    "clear_publish_failed": "게시 실패 오류 닫기",
+    "clear_upload_failed": "파일 업로드 실패 오류 닫기 ",
+    "close": "닫기",
+    "compose": "쓰기",
+    "confirm": "확인",
+    "edit": "편집",
+    "enter_app": "앱 시작하기",
+    "favourite": "좋아요",
+    "favourite_count": "{0}",
+    "favourited": "좋아함",
+    "more": "더 보기",
+    "next": "다음",
+    "prev": "이전",
+    "publish": "올리기",
+    "reply": "댓글",
+    "reply_count": "{0}",
+    "reset": "초기화",
+    "save": "저장",
+    "save_changes": "변경 저장",
+    "sign_in": "로그인",
+    "switch_account": "계정 전환",
+    "vote": "투표"
+  },
+  "app_desc_short": "재빠른 마스토돈 웹 클라이언트",
+  "app_logo": "엘크 로고",
+  "app_name": "엘크",
+  "attachment": {
+    "edit_title": "설명",
+    "remove_label": "첨부 지우기"
+  },
+  "command": {
+    "activate": "켜기",
+    "complete": "완료",
+    "compose_desc": "새 게시물 작성",
+    "n-people-in-the-past-n-days": "지난 {1}일간 {0}명이 참여",
+    "select_lang": "언어 선택",
+    "sign_in_desc": "이미 있는 계정 추가",
+    "switch_account": "{0}로 전환",
+    "switch_account_desc": "다른 계정으로 전환",
+    "toggle_dark_mode": "어두운 모드 전환",
+    "toggle_zen_mode": "젠 모드 전환"
+  },
+  "common": {
+    "end_of_list": "리스트 끝",
+    "error": "오류",
+    "in": "in",
+    "not_found": "404 찾을 수 없음",
+    "offline_desc": "오프라인인 것 같습니다. 인터넷 연결을 확인해주세요."
+  },
+  "compose": {
+    "draft_title": "초고 {0}",
+    "drafts": "초고 ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "취소",
+      "confirm": "차단",
+      "title": "{0} 님을 정말 차단하시겠습니까?"
+    },
+    "block_domain": {
+      "cancel": "취소",
+      "confirm": "도메인 차단",
+      "title": "정말 {0} 도메인을 모두 차단하시겠습니까?"
+    },
+    "common": {
+      "cancel": "아니오",
+      "confirm": "예"
+    },
+    "delete_list": {
+      "cancel": "취소",
+      "confirm": "없애기",
+      "title": "정말 \"{0}\" 리스트를 없애시겠습니까?"
+    },
+    "delete_posts": {
+      "cancel": "취소",
+      "confirm": "지우기",
+      "title": "정말 이 게시물을 지우시겠습니까?"
+    },
+    "mute_account": {
+      "cancel": "취소",
+      "confirm": "뮤트",
+      "title": "{0} 님을 정말 뮤트하시겠습니까?"
+    },
+    "show_reblogs": {
+      "cancel": "취소",
+      "confirm": "보기",
+      "title": "정말 {0} 님이 부스트한 게시물도 홈에서 보겠습니까?"
+    },
+    "unfollow": {
+      "cancel": "취소",
+      "confirm": "끊기",
+      "title": "정말 팔로를 끊으시겠습니까?"
+    }
+  },
+  "conversation": {
+    "with": "대화 상대"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "{0}째 줄",
+      "open": "열기",
+      "snippet_from": "{0} 코드 중 일부"
+    }
+  },
+  "error": {
+    "account_not_found": "{0} 계정을 못 찾음",
+    "explore-list-empty": "현재는 딱히 화제가 없습니다. 나중에 다시 오세요.",
+    "file_size_cannot_exceed_n_mb": "파일 크기는 {0} MB를 넘을 수 없습니다",
+    "sign_in_error": "서버에 접속할 수 없습니다.",
+    "status_not_found": "게시물을 못 찾음",
+    "unsupported_file_format": "지원하지 않는 파일 형식"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "현재 커뮤니티에서 만든 엘크의 한 미리보기 버전을 보고 계십니다 ({0}).",
+      "desc2": "검수가 안 됐거나 악의적인 변경이 있을 수 있습니다.",
+      "desc3": "실제로 쓰는 계정으로 로그인하지 마세요.",
+      "title": "미리보기 배포"
+    },
+    "desc_highlight": "여기저기 버그나 빠진 기능이 있을 것입니다.",
+    "desc_para1": "아직 개발중인 저희의 마스토돈 웹 클라이언트인 엘크에 관심을 갖고 써 주셔서 감사합니다.",
+    "desc_para2": "저희는 오랜 시간 개발 및 개선에 공을 들이고 있습니다.",
+    "desc_para3": "더 빠른 개발을 위해 깃허브 스폰서 기능을 통해 저희 팀에 금전적 지원을 해 주실 수도 있습니다. 아무쪼록 엘크를 즐겨 주세요!",
+    "desc_para4": "엘크는 오픈 소스입니다. 테스트를 도와주시거나 피드백을 주시거나 기여해 주실 의향이 있다면",
+    "desc_para5": "저희 깃허브에 오셔서",
+    "desc_para6": "참여해 보세요.",
+    "footer_team": "The Elk Team",
+    "title": "엘크는 아직 개발중입니다!"
+  },
+  "language": {
+    "search": "검색"
+  },
+  "list": {
+    "add_account": "이 계정을 리스트에 넣기",
+    "cancel_edit": "변경 취소",
+    "clear_error": "오류 닫기",
+    "create": "만들기",
+    "delete": "이 리스트 없애기",
+    "delete_error": "리스트를 없애던 도중 오류가 발생했습니다.",
+    "edit": "이 리스트 제목 변경",
+    "edit_error": "리스트를 업데이트하는 도중 오류가 발생했습니다.",
+    "error": "리스트를 만들던 도중 오류가 발생했습니다.",
+    "error_prefix": "오류: ",
+    "list_title_placeholder": "리스트 제목",
+    "modify_account": "이 계정을 리스트에 넣거나 빼기",
+    "remove_account": "리스트에서 이 계정 빼기",
+    "save": "변경 저장"
+  },
+  "menu": {
+    "block_account": "{0} 님 차단",
+    "block_domain": "{0} 도메인 차단",
+    "copy_link_to_post": "이 게시물 링크 복사",
+    "copy_original_link_to_post": "이 게시물의 원본 링크 복사",
+    "delete": "지우기",
+    "delete_and_redraft": "지우고 다시 쓰기",
+    "direct_message_account": "{0} 님에게 개인 메시지",
+    "edit": "수정",
+    "hide_reblogs": "{0} 님의 부스트는 홈에서 빼고 보기",
+    "mention_account": "{0} 언급하여 게시물 쓰기",
+    "mute_account": "{0} 님 뮤트",
+    "mute_conversation": "이 게시물 뮤트",
+    "open_in_original_site": "원본 사이트에서 열기",
+    "pin_on_profile": "이 게시물을 프로필에 고정",
+    "share_post": "이 게시물 공유",
+    "show_favourited_and_boosted_by": "좋아한 사람과 부스트한 사람 보기",
+    "show_reblogs": "{0} 님의 부스트도 홈에서 보기",
+    "show_untranslated": "원문 보기",
+    "toggle_theme": {
+      "dark": "어두운 테마로 전환",
+      "light": "밝은 테마로 전환"
+    },
+    "translate_post": "게시물 번역",
+    "unblock_account": "{0} 님 차단 풀기",
+    "unblock_domain": "{0} 도메인 차단 풀기",
+    "unmute_account": "{0} 님 뮤트 풀기",
+    "unmute_conversation": "이 게시물 뮤트 풀기",
+    "unpin_on_profile": "이 게시물 프로필에서 고정 해제"
+  },
+  "nav": {
+    "back": "뒤로 가기",
+    "blocked_domains": "차단한 도메인",
+    "blocked_users": "차단한 사람들",
+    "bookmarks": "책갈피",
+    "built_at": "{0}에 빌드됨",
+    "compose": "작성",
+    "conversations": "대화",
+    "explore": "탐색",
+    "favourites": "좋아요",
+    "federated": "연합",
+    "home": "홈",
+    "list": "리스트",
+    "lists": "리스트",
+    "local": "로컬",
+    "muted_users": "뮤트한 사람들",
+    "notifications": "알림",
+    "privacy": "개인정보",
+    "profile": "프로필",
+    "search": "검색",
+    "select_feature_flags": "기능 플래그 켜거나 끄기",
+    "select_font_size": "글씨 크기",
+    "select_language": "표시 언어",
+    "settings": "설정",
+    "show_intro": "소개 보기",
+    "toggle_theme": "테마 전환",
+    "zen_mode": "젠 모드 전환"
+  },
+  "notification": {
+    "favourited_post": "님이 좋아합니다",
+    "followed_you": "님에게 팔로 받았습니다",
+    "followed_you_count": "{0}명에게 팔로 받고 있음",
+    "missing_type": "누락된 notification.type:",
+    "reblogged_post": "님이 부스트했습니다",
+    "request_to_follow": "님에게 팔로 요청을 받았습니다",
+    "signed_up": "님이 가입했습니다",
+    "update_status": "님이 새 게시물을 올렸습니다"
+  },
+  "placeholder": {
+    "content_warning": "여기에 경고문을 써 주세요",
+    "default_1": "어떤 생각을 하고 있나요?",
+    "reply_to_account": "{0}에게 대답",
+    "replying": "댓글 쓰는 중",
+    "the_thread": "이어진 게시물"
+  },
+  "pwa": {
+    "dismiss": "닫기",
+    "install": "설치",
+    "install_title": "엘크 설치",
+    "title": "새로운 엘크 업데이트가 떴습니다!",
+    "update": "업데이트",
+    "update_available_short": "엘크 업데이트",
+    "webmanifest": {
+      "canary": {
+        "description": "재빠른 마스토돈 웹 클라이언트 (카나리아)",
+        "name": "엘크 (카나리아)",
+        "short_name": "엘크 (카나리아)"
+      },
+      "dev": {
+        "description": "재빠른 마스토돈 웹 클라이언트 (개발)",
+        "name": "엘크 (개발)",
+        "short_name": "엘크 (개발)"
+      },
+      "preview": {
+        "description": "재빠른 마스토돈 웹 클라이언트 (미리보기)",
+        "name": "엘크 (미리보기)",
+        "short_name": "엘크 (미리보기)"
+      },
+      "release": {
+        "description": "재빠른 마스토돈 웹 클라이언트",
+        "name": "엘크",
+        "short_name": "엘크"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "사람이나 해시태그 검색",
+    "search_empty": "해당 검색어에 관한 검색 결과가 없습니다"
+  },
+  "settings": {
+    "about": {
+      "built_at": "빌드 시각",
+      "label": "정보",
+      "meet_the_team": "팀 면면",
+      "sponsor_action": "스폰서가 되어주세요",
+      "sponsor_action_desc": "엘크 팀의 개발을 지원할 수 있습니다",
+      "sponsors": "금전적 지원",
+      "sponsors_body_1": "엘크는 아래와 같은 스폰서의 도움 덕분에 만들어질 수 있었습니다.",
+      "sponsors_body_2": "그 밖에도 많은 기업과 개인 기여자들이 엘크 팀의 스폰서이기도 합니다.",
+      "sponsors_body_3": "엘크를 잘 쓰고 계시다면, 스폰서가 되어 보시는 건 어떨까요?",
+      "version": "버전"
+    },
+    "account_settings": {
+      "description": "마스토돈 UI에서 계정 설정을 변경할 수 있습니다.",
+      "label": "계정 설정"
+    },
+    "interface": {
+      "color_mode": "색 모드",
+      "dark_mode": "어둡게",
+      "default": " (기본 설정)",
+      "font_size": "글자 크기",
+      "label": "인터페이스",
+      "light_mode": "밝게",
+      "system_mode": "시스템 설정 따름",
+      "theme_color": "테마 색"
+    },
+    "language": {
+      "display_language": "표시 언어",
+      "label": "언어",
+      "translations": {
+        "add": "넣기",
+        "choose_language": "언어를 고르세요",
+        "heading": "번역",
+        "hide_specific": "기계 번역을 보지 않을 않을 언어:",
+        "remove": "빼기"
+      }
+    },
+    "notifications": {
+      "label": "알림",
+      "notifications": {
+        "label": "알림 설정"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "좋아요",
+          "follow": "새 팔로워",
+          "mention": "언급",
+          "poll": "설문조사",
+          "reblog": "부스트",
+          "title": "어떤 알림을 받으시겠습니까?"
+        },
+        "description": "엘크를 쓰고 있지 않을 때도 알림을 받아보세요.",
+        "instructions": "@:settings.notifications.push_notifications.save_settings 버튼을 눌러 변경을 적용하는 것을 빠뜨리지 마세요!",
+        "label": "푸시 알림 설정",
+        "policy": {
+          "all": "모두한테",
+          "followed": "내가 팔로하는 사람들한테",
+          "follower": "날 팔로하는 사람들한테",
+          "none": "아무에게도 안 받기",
+          "title": "어떤 사람들한테 알림을 받으시겠습니까?"
+        },
+        "save_settings": "설정 저장",
+        "subscription_error": {
+          "clear_error": "오류 닫기",
+          "invalid_vapid_key": "VAPID 공개 키가 유효하지 않습니다.",
+          "permission_denied": "권한 없음: 웹 브라우저에서 알림을 켜주세요.",
+          "repo_link": "엘크 깃허브 저장소",
+          "request_error": "구독 요청 중 오류가 발생했습니다. 다시 시도하고 오류가 계속되면, 엘크 깃허브 저장소에 문제를 보고해주세요.",
+          "title": "푸시 알림 구독 실패",
+          "too_many_registrations": "웹 브라우저의 제약으로 인해 엘크로는 서로 다른 서버의 여러 계정에서 푸시 알림을 쓸 수 없습니다. 푸시 알림이 켜진 다른 계정에서 푸시 알림을 끄고 나서 다시 해보세요.",
+          "vapid_not_supported": "쓰고 있는 웹 브라우저가 웹 푸시 알림을 지원하긴 하지만, VAPID 프로토콜은 지원하지 않는 것으로 보입니다."
+        },
+        "title": "푸시 알림 설정",
+        "undo_settings": "변경 되돌리기",
+        "unsubscribe": "푸시 알림 끄기",
+        "unsupported": "쓰고 있는 웹 브라우저는 푸시 알림을 지원하지 않습니다.",
+        "warning": {
+          "enable_close": "닫기",
+          "enable_description": "엘크를 쓰고 있지 않을 때도 알림을 받아보려면, 푸시 알림을 켜세요. 위 “@:settings.notifications.show_btn” 버튼으로 푸시 알림을 한 번 켜고 나면, 어떤 종류의 반응을 푸시 알림으로 받을 것인지 세밀하게 조절할 수 있습니다.",
+          "enable_description_desktop": "엘크를 쓰고 있지 않을 때도 알림을 받아보려면, 푸시 알림을 켜세요. “설정 → 알림 → 푸시 알림 설정”에서 푸시 알림을 한 번 켜고 나면, 어떤 종류의 반응을 푸시 알림으로 받을 것인지 세밀하게 조절할 수 있습니다.",
+          "enable_description_mobile": "“설정 → 알림 → 푸시 알림 설정”을 통해서도 설정할 수 있습니다.",
+          "enable_description_settings": "엘크를 쓰고 있지 않을 때도 알림을 받아보려면, 푸시 알림을 켜세요. 푸시 알림을 한 번 켜고 나면, 어떤 종류의 반응을 푸시 알림으로 받을 것인지 세밀하게 조절할 수 있습니다.",
+          "enable_desktop": "푸시 알림 켜기",
+          "enable_title": "아무 소식도 놓치지 마세요",
+          "re_auth": "쓰고 있는 마스토돈 서버는 푸시 알림을 지원하지 않는 것으로 보입니다. 마스토돈 서버 관리자에게 문의한 뒤에도 이 메시지가 여전히 보인다면, 로그아웃k한 뒤 다시 로그인 해 보세요."
+        }
+      },
+      "show_btn": "알림 설정으로 가기",
+      "under_construction": "공사중"
+    },
+    "notifications_settings": "알림",
+    "preferences": {
+      "enable_autoplay": "비디오 자동 재생",
+      "enable_pinch_to_zoom": "손가락을 펴서 확대하기",
+      "github_cards": "깃허브 카드",
+      "grayscale_mode": "무채색 모드",
+      "hide_account_hover_card": "계정에 마우스 커서를 올리면 나오는 창 안 보기",
+      "hide_alt_indi_on_posts": "게시물 이미지에 대체 텍스트가 있다는 표지 안 보기",
+      "hide_boost_count": "부스트 수 안 보기",
+      "hide_favorite_count": "좋아요 수 안 보기",
+      "hide_follower_count": "팔로워 수 안 보기",
+      "hide_reply_count": "댓글 수 안 보기",
+      "hide_translation": "기계 번역 가리기",
+      "hide_username_emojis": "이용자 이름에 그림 문자가 있어도 안 보기",
+      "label": "개인 설정",
+      "title": "실험중인 기능",
+      "user_picker": "계정 선택 버튼",
+      "virtual_scroll": "가상 스크롤",
+      "wellbeing": "심신 안정"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "소개문",
+        "description": "프로필 사진, 이름, 프로필 등을 고칩니다.",
+        "display_name": "표시 이름",
+        "label": "겉보기",
+        "profile_metadata": "프로필 메타데이터",
+        "profile_metadata_desc": "프로필에 표로 표시될 항목을 최다 {0}개까지 적을 수 있습니다.",
+        "title": "프로필 고치기"
+      },
+      "featured_tags": {
+        "description": "다른 사람들이 공개 게시물 중에 해당 해시 태그가 달린 것을 모아서 볼 수 있게 됩니다.",
+        "label": "해시태그 진열하기"
+      },
+      "label": "프로필"
+    },
+    "select_a_settings": "왼쪽 메뉴에서 설정 항목을 고르세요",
+    "users": {
+      "export": "이용자 인증 토큰 내보내기",
+      "import": "이용자 인증 토큰 불러오기",
+      "label": "로그인된 계정"
+    }
+  },
+  "share-target": {
+    "description": "다른 앱의 내용을 공유할 수 있도록 엘크를 설정할 수 있습니다. 엘크를 기기나 컴퓨터에 설치한 뒤 로그인만 하면 됩니다.",
+    "hint": "엘크를 설치하고 로그인이 되어 있어야만 다른 앱에서 엘크로 공유할 수 있습니다.",
+    "title": "엘크로 공유하기"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "게시물 하나에 첨부할 수 있는 미디어 수를 초과했습니다.",
+    "attachments_limit_error": "첨부한 미디어가 너무 많습니다",
+    "edited": "(수정됨)",
+    "editing": "수정하기",
+    "loading": "불러오는 중…",
+    "publish_failed": "게시 실패",
+    "publishing": "게시중…",
+    "upload_failed": "업로드 실패",
+    "uploading": "올리는 중…"
+  },
+  "status": {
+    "boosted_by": "부스트한 사람",
+    "edited": "{0}에 수정됨",
+    "favourited_by": "좋아한 사람",
+    "filter_hidden_phrase": "다음 필터로 가려짐",
+    "filter_removed_phrase": "다음 필터로 삭제됨",
+    "filter_show_anyway": "그래도 보기",
+    "img_alt": {
+      "ALT": "代",
+      "desc": "설명",
+      "dismiss": "닫기",
+      "read": "{0} 설명 읽기"
+    },
+    "poll": {
+      "count": "{0}명이 투표함",
+      "ends": "{0} 마감",
+      "finished": "{0} 마감됨"
+    },
+    "reblogged": "{0}명이 부스트함",
+    "replying_to": "{0}님에게 남긴 댓글",
+    "show_full_thread": "이어진 게시물과 댓글 모두 보기",
+    "someone": "someone",
+    "spoiler_show_less": "다시 가리기",
+    "spoiler_show_more": "그래도 보기",
+    "thread": "Thread",
+    "try_original_site": "원본 사이트로 열어보기"
+  },
+  "status_history": {
+    "created": "님이 {0} 게시",
+    "edited": "님이 {0} 수정"
+  },
+  "tab": {
+    "accounts": "계정",
+    "for_you": "맞춤 추천",
+    "hashtags": "해시태그",
+    "list": "List",
+    "media": "미디어",
+    "news": "뉴스",
+    "notifications_all": "모두",
+    "notifications_mention": "언급",
+    "posts": "게시물",
+    "posts_with_replies": "게시물 및 댓글"
+  },
+  "tag": {
+    "follow": "팔로하기",
+    "follow_label": "해시태그 {0} 팔로하기",
+    "unfollow": "팔로 끊기",
+    "unfollow_label": "해시태그 {0} 그만 팔로하기"
+  },
+  "time_ago_options": {
+    "day_future": "하루 안|내일|{n}일 뒤",
+    "day_past": "오늘|어제|{n}일 전",
+    "hour_future": "1시간 안|1시간 뒤|{n}시간 뒤",
+    "hour_past": "0시간 전|1시간 전|{n}시간 전",
+    "just_now": "방금",
+    "minute_future": "0분 뒤|1분 뒤|{n}분 뒤",
+    "minute_past": "0분 전|1분 전|{n}분 전",
+    "month_future": "이번달 안|다음달|{n}개월 뒤",
+    "month_past": "이번달|지난달|{n}개월 전",
+    "second_future": "금방|{n}초 뒤|{n}초 뒤",
+    "second_past": "방금|{n}초 전|{n}초 전",
+    "short_day_future": "{n}일 뒤",
+    "short_day_past": "{n}일 전",
+    "short_hour_future": "{n}시간 뒤",
+    "short_hour_past": "{n}시간 전",
+    "short_minute_future": "{n}분 뒤",
+    "short_minute_past": "{n}분 전",
+    "short_month_future": "{n}개월 뒤",
+    "short_month_past": "{n}개월 전",
+    "short_second_future": "{n}초 뒤",
+    "short_second_past": "{n}초 전",
+    "short_week_future": "{n}주 뒤",
+    "short_week_past": "{n}주 전",
+    "short_year_future": "{n}년 뒤",
+    "short_year_past": "{n}년 전",
+    "week_future": "이번주 안|다음주|{n}주 뒤",
+    "week_past": "이번주|지난주|{n}주 전",
+    "year_future": "올해 안|내년|{n}년 뒤",
+    "year_past": "올해|지난해|{n}년 전"
+  },
+  "timeline": {
+    "show_new_items": "새 게시물 {v}건 보기|새 게시물 {v}건 보기|새 게시물 {v}건 보기",
+    "view_older_posts": "다른 인스턴스의 오래된 게시물은 안 보일 수 있습니다."
+  },
+  "title": {
+    "federated_timeline": "연합 타임라인",
+    "local_timeline": "로컬 타임라인"
+  },
+  "tooltip": {
+    "add_content_warning": "게시물 내용 경고 넣기",
+    "add_emojis": "그림 글자 넣기",
+    "add_media": "이미지·비디오·오디오 넣기",
+    "add_publishable_content": "올릴 내용 넣기",
+    "change_content_visibility": "게시물 공개 범위 바꾸기",
+    "change_language": "게시물 언어 변경",
+    "emoji": "그림 글자",
+    "explore_links_intro": "아래 뉴스 기사는 이 서버 및 분산 네트워크의 다른 서버에서 사람들 입에 오르내리고 있습니다.",
+    "explore_posts_intro": "아래 게시물은 이 서버 및 분산 네트워크의 다른 서버에서 올라온 것으로, 현재 이 서버에서 주목을 받고 있습니다.",
+    "explore_tags_intro": "아래 해시태그는 이 서버 및 분산 네트워크의 다른 서버에서  현재 주목을 받고 있습니다.",
+    "publish_failed": "편집기 위에 뜬 실패 메시지를 닫고 게시물을 다시 올리세요",
+    "toggle_code_block": "코드 블록 전환"
+  },
+  "user": {
+    "add_existing": "이미 있는 계정 추가",
+    "server_address_label": "마스토돈 서버 주소",
+    "sign_in_desc": "프로필이나 해시태그 팔로하기, 좋아요 누르기, 게시물 공유, 댓글 달기 등을 하려면 로그인하세요. 다른 서버에 만든 계정으로도 로그인하여 소통할 수 있습니다.",
+    "sign_in_notice_title": "{0} 서버의 공개 정보를 보고 있음",
+    "sign_out_account": "{0}에서 로그아웃",
+    "tip_no_account": "아직 마스토돈 계정이 없으시면, {0}.",
+    "tip_register_account": "마음에 드는 서버를 골라 계정을 만들어 보세요"
+  },
+  "visibility": {
+    "direct": "개인 메시지",
+    "direct_desc": "언급한 사람만 볼 수 있음",
+    "private": "팔로워에게만",
+    "private_desc": "팔로워들만 볼 수 있음",
+    "public": "공개",
+    "public_desc": "누구든지 볼 수 있음",
+    "unlisted": "비공개",
+    "unlisted_desc": "누구나 볼 수 있지만, 검색·해시태그·탐색 등에 노출되지 않음"
+  }
+}

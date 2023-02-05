@@ -82,7 +82,7 @@ const locales: LocaleObjectData[] = [
     },
   } satisfies LocaleObjectData),
   {
-    code: 'ca-ES',
+    code: 'ca',
     file: 'ca.json',
     name: 'Català',
   },

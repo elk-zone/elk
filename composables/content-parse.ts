@@ -8,7 +8,7 @@ import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 export interface ContentParseOptions {
   emojis?: Record<string, mastodon.v1.CustomEmoji>
-  showEmojis?: boolean
+  hideEmojis?: boolean
   mentions?: mastodon.v1.StatusMention[]
   markdown?: boolean
   replaceUnicodeEmoji?: boolean
@@ -82,7 +82,7 @@ export function parseMastodonHTML(
     replaceUnicodeEmoji = true,
     convertMentionLink = false,
     collapseMentionLink = false,
-    showEmojis = true,
+    hideEmojis = false,
     mentions,
     status,
     inReplyToStatus,
@@ -110,15 +110,15 @@ export function parseMastodonHTML(
     ...options.astTransforms || [],
   ]
 
-  if (showEmojis) {
+  if (hideEmojis) {
+    transforms.push(removeUnicodeEmoji)
+    transforms.push(removeCustomEmoji(options.emojis ?? {}))
+  }
+  else {
     if (replaceUnicodeEmoji)
       transforms.push(transformUnicodeEmoji)
 
     transforms.push(replaceCustomEmoji(options.emojis ?? {}))
-  }
-  else {
-    transforms.push(removeUnicodeEmoji)
-    transforms.push(removeCustomEmoji(options.emojis ?? {}))
   }
 
   if (markdown)

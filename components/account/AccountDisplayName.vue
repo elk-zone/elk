@@ -1,19 +1,17 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-defineProps<{
+const { account, hideEmojis = false } = defineProps<{
   account: mastodon.v1.Account
-  useShowEmojisPreference?: boolean
+  hideEmojis?: boolean
 }>()
-
-const userSettings = useUserSettings()
 </script>
 
 <template>
   <ContentRich
     :content="getDisplayName(account, { rich: true })"
     :emojis="account.emojis"
-    :show-emojis="!useShowEmojisPreference || !getPreferences(userSettings, 'hideUsernameEmojis')"
+    :hide-emojis="hideEmojis"
     :markdown="false"
   />
 </template>

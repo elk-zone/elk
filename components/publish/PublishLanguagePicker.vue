@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
-import { ComputedRef } from 'vue'
 
 let { modelValue } = $defineModel<{
   modelValue: string

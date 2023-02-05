@@ -35,6 +35,7 @@
     "posts_count": "{0} Posts|{0} Post|{0} Posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
+    "request_follow": "Request to follow",
     "unblock": "Unblock",
     "unfollow": "Unfollow",
     "unmute": "Unmute",

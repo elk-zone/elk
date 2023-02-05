@@ -16,6 +16,10 @@ const filter = $computed(() => filterResult?.filter)
 
 const filterPhrase = $computed(() => filter?.title)
 const isFiltered = $computed(() => status.account.id !== currentUser.value?.account.id && filterPhrase && context && context !== 'details' && !!filter?.context.includes(context))
+
+// check spoiler text or media attachment
+// needed to handle accounts that mark all their posts as sensitive
+const hasSensitiveSpoilerOrMedia = $computed(() => status.sensitive && (!!status.spoilerText || !!status.mediaAttachments.length))
 </script>
 
 <template>
@@ -27,7 +31,7 @@ const isFiltered = $computed(() => status.account.id !== currentUser.value?.acco
     }"
   >
     <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
-    <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered" :is-d-m="isDM">
+    <StatusSpoiler :enabled="hasSensitiveSpoilerOrMedia || isFiltered" :filter="isFiltered" :is-d-m="isDM">
       <template v-if="status.spoilerText" #spoiler>
         <p>{{ status.spoilerText }}</p>
       </template>

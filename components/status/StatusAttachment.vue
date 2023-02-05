@@ -89,6 +89,12 @@ useIntersectionObserver(video, (entries) => {
 }, { threshold: 0.75 })
 
 const userSettings = useUserSettings()
+
+const shouldLoadAttachment = ref(!getPreferences(userSettings.value, 'enableDataSaving'))
+
+function loadAttachment() {
+  shouldLoadAttachment.value = true
+}
 </script>
 
 <template>
@@ -148,7 +154,8 @@ const userSettings = useUserSettings()
         h-full
         w-full
         aria-label="Open image preview dialog"
-        @click="openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
+        relative
+        @click="!shouldLoadAttachment ? loadAttachment() : openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
       >
         <CommonBlurhash
           :blurhash="attachment.blurhash"
@@ -162,10 +169,22 @@ const userSettings = useUserSettings()
             aspectRatio,
             objectPosition,
           }"
+          :should-load-image="shouldLoadAttachment"
           rounded-lg
           h-full
           w-full
           object-cover
+          :class="!shouldLoadAttachment ? 'brightness-60 hover:brightness-70 transition-filter' : ''"
+        />
+        <span
+          v-if="!shouldLoadAttachment"
+          class="status-attachment-load"
+          absolute
+          text-sm
+          text-base
+          flex flex-col justify-center items-center
+          gap-3 w-6 h-6
+          i-ri:file-download-line
         />
       </button>
     </template>
@@ -201,3 +220,11 @@ const userSettings = useUserSettings()
     </div>
   </div>
 </template>
+
+<style lang="postcss">
+.status-attachment-load {
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+</style>

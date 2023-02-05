@@ -34,6 +34,15 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.enable_autoplay') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enableDataSaving')"
+      @click="togglePreferences('enableDataSaving')"
+    >
+      {{ $t("settings.preferences.enable_data_saving") }}
+      <template #description>
+        {{ $t("settings.preferences.enable_data_saving_description") }}
+      </template>
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enablePinchToZoom')"
       @click="togglePreferences('enablePinchToZoom')"
     >

@@ -53,22 +53,22 @@
     "clear_publish_failed": "Esborra els errors de publicació",
     "clear_upload_failed": "Esborra els errors de càrrega de fitxers",
     "close": "Tanca",
-    "compose": "Composar",
-    "confirm": "Confirmeu",
+    "compose": "Redacta",
+    "confirm": "Confirma",
     "edit": "Edita",
     "enter_app": "Entra a l'aplicació",
     "favourite": "Favorit",
     "favourite_count": "{0}",
     "favourited": "Favorit",
     "more": "Més",
-    "next": "Pròxim",
+    "next": "Següent",
     "prev": "Anterior",
-    "publish": "Publicar",
+    "publish": "Publica",
     "reply": "Respon",
     "reply_count": "{0}",
     "reset": "Restableix",
     "save": "Desa",
-    "save_changes": "Guardar canvis",
+    "save_changes": "Desa els canvis",
     "sign_in": "Inicia sessió",
     "switch_account": "Canvia de compte",
     "vote": "Vota"
@@ -93,11 +93,11 @@
     "toggle_zen_mode": "Canvia el mode zen"
   },
   "common": {
-    "end_of_list": "Final de la llista",
+    "end_of_list": "Fi de la llista",
     "error": "ERROR",
     "in": "en",
-    "not_found": "404 No trobat",
-    "offline_desc": "Sembla que estàs fora de línia. Comproveu la vostra connexió de xarxa."
+    "not_found": "404 No s'ha trobat",
+    "offline_desc": "Sembla que esteu fora de línia. Comproveu la vostra connexió de xarxa."
   },
   "compose": {
     "draft_title": "Esborrany {0}",
@@ -105,44 +105,44 @@
   },
   "confirm": {
     "block_account": {
-      "cancel": "Cancel·lar",
-      "confirm": "Bloc",
-      "title": "Confirmes que vols bloquejar {0}?"
+      "cancel": "Cancel·la",
+      "confirm": "Bloca",
+      "title": "Segur que voleu blocar {0}?"
     },
     "block_domain": {
-      "cancel": "Cancel·lar",
-      "confirm": "Bloc",
-      "title": "Confirmes que vols bloquejar {0}?"
+      "cancel": "Cancel·la",
+      "confirm": "Bloca",
+      "title": "Segur que voleu blocar {0}?"
     },
     "common": {
       "cancel": "No",
       "confirm": "Sí",
-      "title": "Esteu segur que {0}?"
+      "title": "Segur que voleu {0}?"
     },
     "delete_list": {
-      "cancel": "Cancel·lar",
-      "confirm": "Suprimeix",
-      "title": "Esteu segur que voleu suprimir la llista \"{0}\"?"
+      "cancel": "Cancel·la",
+      "confirm": "Elimina",
+      "title": "Segur que voleu eliminar la llista \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Cancel·lar",
-      "confirm": "Suprimeix",
-      "title": "Esteu segur que voleu suprimir aquesta publicació?"
+      "confirm": "Ekimina",
+      "title": "Segur que voleu suprimir aquesta publicació?"
     },
     "mute_account": {
-      "cancel": "Cancel·lar",
-      "confirm": "Silenciar",
-      "title": "Confirmes que vols silenciar {0}?"
+      "cancel": "Cancel·la,
+      "confirm": "Silencia",
+      "title": "Segur que voleu silenciar {0}?"
     },
     "show_reblogs": {
-      "cancel": "Cancel·lar",
+      "cancel": "Cancel·la",
       "confirm": "Confirma",
-      "title": "Confirmes que vols mostrar els augments de {0}?"
+      "title": "Segur que voleu mostrar els impulsos de: {0}?"
     },
     "unfollow": {
-      "cancel": "Cancel·lar",
+      "cancel": "Cancel·la",
       "confirm": "Deixa de seguir",
-      "title": "Estàs segur que vols deixar de seguir?"
+      "title": "Segur que voleu deixar de seguir-lo?"
     }
   },
   "conversation": {
@@ -150,14 +150,14 @@
   },
   "custom_cards": {
     "stackblitz": {
-      "lines": "Línies {0}",
-      "open": "Obert",
-      "snippet_from": "Fragment de {0}"
+      "lines": "{0} línies",
+      "open": "Obre",
+      "snippet_from": "Fragment de: {0}"
     }
   },
   "error": {
     "account_not_found": "No s'ha trobat el compte {0}",
-    "explore-list-empty": "No hi ha res de tendència ara mateix. Torna més tard!",
+    "explore-list-empty": "No hi ha res en tendència ara mateix. Torneu més tard!",
     "file_size_cannot_exceed_n_mb": "La mida del fitxer no pot superar els {0}MB",
     "sign_in_error": "No es pot connectar al servidor.",
     "status_not_found": "No s'ha trobat la publicació",
@@ -178,7 +178,7 @@
     "desc_para5": "posa't en contacte amb nosaltres a GitHub",
     "desc_para6": "i participa.",
     "footer_team": "L'equip Elk",
-    "title": "Elk esta en Vista Previa!"
+    "title": "Elk esta en proves!"
   },
   "language": {
     "search": "Cerca"
@@ -187,29 +187,29 @@
     "add_account": "Afegeix un compte a la llista",
     "cancel_edit": "Cancel·la l'edició",
     "clear_error": "Esborra l'error",
-    "create": "Crear",
-    "delete": "Suprimeix aquesta llista",
+    "create": "Crea",
+    "delete": "Elimina la llista",
     "delete_error": "S'ha produït un error en suprimir la llista",
     "edit": "Editeu aquesta llista",
     "edit_error": "S'ha produït un error en actualitzar la llista",
     "error": "S'ha produït un error en crear la llista",
     "error_prefix": "Error:",
     "list_title_placeholder": "Títol de la llista",
-    "modify_account": "Modificar llistes amb compte",
-    "remove_account": "Elimina el compte de la llista",
-    "save": "Guardar canvis"
+    "modify_account": "Edita les llistes amb aquest compte",
+    "remove_account": "Elimina el compte de les llistes",
+    "save": "Desa els canvis"
   },
   "menu": {
     "block_account": "Bloca {0}",
     "block_domain": "Bloca el domini {0}",
     "copy_link_to_post": "Copia l'enllaç a aquesta publicació",
     "copy_original_link_to_post": "Copia l'enllaç original a aquesta publicació",
-    "delete": "Suprimeix",
+    "delete": "Elimina",
     "delete_and_redraft": "Esborra i torna a redactar",
     "direct_message_account": "Missatge directe {0}",
     "edit": "Edita",
     "hide_reblogs": "Amaga els augments de {0}",
-    "mention_account": "Esmenta {0}",
+    "mention_account": "Menciona {0}",
     "mute_account": "Silencia {0}",
     "mute_conversation": "Silencia aquesta publicació",
     "open_in_original_site": "Obre al lloc original",

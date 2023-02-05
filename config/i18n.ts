@@ -29,6 +29,12 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     // { code: 'ar-AE', name: 'Arabic (U.A.E.)' },
     // { code: 'ar-YE', name: 'Arabic (Yemen)' },
   ],
+  ca: [
+    // { code: 'ca-AD', name: 'Català (Andorra)' },
+    { code: 'ca-ES', name: 'Català (Espanya)' },
+    // { code: 'ca-FR', name: 'Català (França)' },
+    // { code: 'ca-IT', name: 'Català (Itàlia)' },
+  ],
   en: [
     { code: 'en-US', name: 'English (US)' },
     { code: 'en-GB', name: 'English (UK)' },
@@ -74,6 +80,11 @@ const locales: LocaleObjectData[] = [
       return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
     },
   } satisfies LocaleObjectData),
+  {
+    code: 'ca-ES',
+    file: 'ca.json',
+    name: 'Català',
+  },
   {
     code: 'de-DE',
     file: 'de-DE.json',

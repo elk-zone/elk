@@ -354,10 +354,10 @@
         "save_settings": "Desa la configuració",
         "subscription_error": {
           "clear_error": "Esborra l'error",
-          "permission_denied": "Permission denied: enable notifications in your browser.",
-          "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
-          "title": "Could not subscribe to push notifications",
-          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again."
+          "permission_denied": "Permís denegat: activa les notificacions al navegador.",
+          "request_error": "S'ha produït un error en sol·licitar la subscripció, torna-ho a provar i si l'error persisteix, informa del problema al repositori d'Elk.»,
+          "title": "Podries no rebre notificacions emergents",
+          "too_many_registrations": "A causa de les limitacions del navegador, Elk no pot utilitzar el servei de notificacions emergents per a diversos comptes en diferents servidors. Hauries de desactivar les notificacions emergents de l'altre compte i tornar-ho a provar."
         },
         "title": "Configuració de les notificacions emergents",
         "undo_settings": "Desfés els canvis",
@@ -418,20 +418,20 @@
     }
   },
   "share-target": {
-    "description": "Elk can be configured so that you can share content from other applications, simply install Elk on your device or computer and sign in.",
-    "hint": "In order to share content with Elk, Elk must be installed and you must be signed in.",
-    "title": "Share with Elk"
+    "description": "Elk es pot configurar perquè pugues compartir contingut d'altres aplicacions, simplement instal·la Elk al teu dispositiu o ordinador i inicia la sessió.",
+    "hint": "Per a compartir contingut amb Elk, Elk ha d'estar instal·lat i has d'iniciar la sessió.",
+    "title": "Comparteix amb Elk"
   },
   "state": {
-    "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
-    "attachments_limit_error": "Limit per post exceeded",
+    "attachments_exceed_server_limit": "El nombre d'adjunts supera el límit per publicació.",
+    "attachments_limit_error": "S'ha superat el límit per publicació",
     "edited": "(editat)",
-    "editing": "Editant",
+    "editing": "S'està editant",
     "loading": "S'està carregant...",
-    "publish_failed": "Publish failed",
-    "publishing": "Publishing",
-    "upload_failed": "Upload failed",
-    "uploading": "Uploading..."
+    "publish_failed": "La publicació ha fallat",
+    "publishing": "S'està publicant",
+    "upload_failed": "La pujada ha fallat",
+    "uploading": "S'està pujant..."
   },
   "status": {
     "boosted_by": "Impulsat per",
@@ -445,7 +445,7 @@
       "dismiss": "Descarta"
     },
     "poll": {
-      "count": "{0} vots|{0} vot|{0} votss",
+      "count": "{0} vots|{0} vot|{0} vots",
       "ends": "acaba en {0}",
       "finished": "finalitzada {0}"
     },
@@ -459,8 +459,8 @@
     "try_original_site": "Prova al lloc original"
   },
   "status_history": {
-    "created": "creat {0}",
-    "edited": "editat {0}"
+    "created": "creat el {0}",
+    "edited": "editat el {0}"
   },
   "tab": {
     "accounts": "Comptes",
@@ -531,7 +531,7 @@
     "explore_posts_intro": "Publicacions d'este i d'altres servidors de la xarxa descentralitzada que estan guanyant popularitat en este servidor ara mateix.",
     "explore_tags_intro": "Etiquetes que estan guanyant popularitat entre la gent d'este i altres servidors de la xarxa descentralitzada ara mateix.",
     "publish_failed": "Tanca els missatges fallits a la part superior de l'editor per a tornar a publicar",
-    "toggle_code_block": "Toggle code block"
+    "toggle_code_block": "Activa el bloc de codi"
   },
   "user": {
     "add_existing": "Afig un compte existent",

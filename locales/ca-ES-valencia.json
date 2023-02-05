@@ -329,7 +329,7 @@
       "github_cards": "Targetes de GitHub",
       "title": "Funcions experimentals",
       "user_picker": "Selector d'usuari",
-      "virtual_scroll": "Desplaçament virtual"
+      "virtual_scroll": "Desplaçament virtual",
       "wellbeing": "Benestar"
     },
     "interface": {
@@ -474,7 +474,7 @@
     "img_alt": {
       "ALT": "ALT",
       "desc": "Descripció",
-      "dismiss": "Descarta"
+      "dismiss": "Descarta",
       "read": "Llig la descripció de: {0}"
     },
     "poll": {

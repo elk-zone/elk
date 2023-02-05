@@ -263,7 +263,7 @@ export async function signOut() {
   if (!currentUserHandle.value)
     await useRouter().push('/')
 
-  loginTo(masto, currentUser.value)
+  loginTo(masto, currentUser.value || { server: publicServer.value })
 }
 
 export function checkLogin() {

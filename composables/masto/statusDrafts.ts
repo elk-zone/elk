@@ -74,6 +74,7 @@ export function getReplyDraft(status: mastodon.v1.Status) {
         inReplyToId: status!.id,
         visibility: status.visibility,
         mentions: accountsToMention,
+        language: status.language,
       })
     },
   }

@@ -28,11 +28,11 @@ const isFiltered = $computed(() => status.account.id !== currentUser.value?.acco
   >
     <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
     <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered" :is-d-m="isDM">
-      <template v-if="filterPhrase" #spoiler>
-        <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
-      </template>
-      <template v-else-if="status.spoilerText" #spoiler>
+      <template v-if="status.spoilerText" #spoiler>
         <p>{{ status.spoilerText }}</p>
+      </template>
+      <template v-else-if="filterPhrase" #spoiler>
+        <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
       </template>
       <StatusBody v-if="!status.sensitive || status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
       <StatusTranslation :status="status" />

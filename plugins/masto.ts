@@ -1,5 +1,6 @@
 export default defineNuxtPlugin(() => {
   const { params, query } = useRoute()
+
   publicServer.value = params.server as string || useRuntimeConfig().public.defaultServer
 
   const masto = createMasto()

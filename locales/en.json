@@ -35,6 +35,7 @@
     "posts_count": "{0} Posts|{0} Post|{0} Posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
+    "request_follow": "Request to follow",
     "unblock": "Unblock",
     "unfollow": "Unfollow",
     "unmute": "Unmute",
@@ -68,6 +69,7 @@
     "save": "Save",
     "save_changes": "Save changes",
     "sign_in": "Sign in",
+    "sign_in_to": "Sign in to {0}",
     "switch_account": "Switch account",
     "vote": "Vote"
   },
@@ -115,6 +117,11 @@
     "common": {
       "cancel": "No",
       "confirm": "Yes"
+    },
+    "delete_list": {
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "title": "Are you sure you want to delete the \"{0}\" list?"
     },
     "delete_posts": {
       "cancel": "Cancel",
@@ -169,10 +176,27 @@
     "desc_para4": "Elk is Open Source. If you'd like to help with testing, giving feedback, or contributing,",
     "desc_para5": "reach out to us on GitHub",
     "desc_para6": "and get involved.",
+    "footer_team": "The Elk Team",
     "title": "Elk is in Preview!"
   },
   "language": {
     "search": "Search"
+  },
+  "list": {
+    "add_account": "Add account to list",
+    "cancel_edit": "Cancel editing",
+    "clear_error": "Clear error",
+    "create": "Create",
+    "delete": "Delete this list",
+    "delete_error": "There was an error while deleting the list",
+    "edit": "Edit this list",
+    "edit_error": "There was an error while updating the list",
+    "error": "There was an error while creating the list",
+    "error_prefix": "Error: ",
+    "list_title_placeholder": "List title",
+    "modify_account": "Modify lists with account",
+    "remove_account": "Remove account from list",
+    "save": "Save changes"
   },
   "menu": {
     "block_account": "Block {0}",
@@ -285,6 +309,7 @@
   },
   "settings": {
     "about": {
+      "built_at": "Built",
       "label": "About",
       "meet_the_team": "Meet the team",
       "sponsor_action": "Sponsor us",
@@ -311,7 +336,14 @@
     },
     "language": {
       "display_language": "Display Language",
-      "label": "Language"
+      "label": "Language",
+      "translations": {
+        "add": "Add",
+        "choose_language": "Choose language",
+        "heading": "Translations",
+        "hide_specific": "Hide specific translations",
+        "remove": "Remove"
+      }
     },
     "notifications": {
       "label": "Notifications",
@@ -340,10 +372,13 @@
         "save_settings": "Save settings",
         "subscription_error": {
           "clear_error": "Clear error",
+          "invalid_vapid_key": "The VAPID public key seems to be invalid.",
           "permission_denied": "Permission denied: enable notifications in your browser.",
+          "repo_link": "Elk's repository in Github",
           "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
           "title": "Could not subscribe to push notifications",
-          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again."
+          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again.",
+          "vapid_not_supported": "Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol."
         },
         "title": "Push notifications settings",
         "undo_settings": "Undo changes",
@@ -360,23 +395,29 @@
           "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
         }
       },
-      "show_btn": "Go to notifications settings"
+      "show_btn": "Go to notifications settings",
+      "under_construction": "Under construction"
     },
     "notifications_settings": "Notifications",
     "preferences": {
       "enable_autoplay": "Enable Autoplay",
+      "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
       "hide_account_hover_card": "Hide account hover card",
+      "hide_alt_indi_on_posts": "Hide alt indicator on posts",
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",
       "hide_follower_count": "Hide follower count",
       "hide_reply_count": "Hide reply count",
       "hide_translation": "Hide translation",
+      "hide_username_emojis": "Hide username emojis",
+      "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",
       "label": "Preferences",
       "title": "Experimental Features",
       "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
+      "virtual_scroll": "Virtual Scrolling",
+      "wellbeing": "Wellbeing"
     },
     "profile": {
       "appearance": {
@@ -425,8 +466,10 @@
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Description",
-      "dismiss": "Dismiss"
+      "dismiss": "Dismiss",
+      "read": "Read {0} description"
     },
     "poll": {
       "count": "{0} votes|{0} vote|{0} votes",
@@ -447,8 +490,10 @@
     "edited": "edited {0}"
   },
   "tab": {
+    "accounts": "Accounts",
     "for_you": "For you",
     "hashtags": "Hashtags",
+    "list": "List",
     "media": "Media",
     "news": "News",
     "notifications_all": "All",

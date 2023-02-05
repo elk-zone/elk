@@ -11,6 +11,7 @@ const {
   virtualScroller = false,
   eventType = 'update',
   preprocess,
+  noEndMessage = false,
 } = defineProps<{
   paginator: Paginator<T[], O>
   keyProp?: keyof T
@@ -18,6 +19,7 @@ const {
   stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
   preprocess?: (items: (U | T)[]) => U[]
+  noEndMessage?: boolean
 }>()
 
 defineSlots<{
@@ -41,8 +43,31 @@ defineSlots<{
 }>()
 
 const { t } = useI18n()
+const nuxtApp = useNuxtApp()
 
 const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), eventType, preprocess)
+
+nuxtApp.hook('elk-logo:click', () => {
+  update()
+  nuxtApp.$scrollToTop()
+})
+
+function createEntry(item: any) {
+  items.value = [...items.value, preprocess?.([item]) ?? item]
+}
+
+function updateEntry(item: any) {
+  const id = item[keyProp]
+  const index = items.value.findIndex(i => (i as any)[keyProp] === id)
+  if (index > -1)
+    items.value = [...items.value.slice(0, index), preprocess?.([item]) ?? item, ...items.value.slice(index + 1)]
+}
+
+function removeEntry(entryId: any) {
+  items.value = items.value.filter(i => (i as any)[keyProp] !== entryId)
+}
+
+defineExpose({ createEntry, removeEntry, updateEntry })
 </script>
 
 <template>
@@ -84,7 +109,7 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
     <slot v-if="state === 'loading'" name="loading">
       <TimelineSkeleton />
     </slot>
-    <slot v-else-if="state === 'done'" name="done">
+    <slot v-else-if="state === 'done' && !noEndMessage" name="done">
       <div p5 text-secondary italic text-center>
         {{ t('common.end_of_list') }}
       </div>

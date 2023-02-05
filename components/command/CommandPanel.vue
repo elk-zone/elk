@@ -64,6 +64,9 @@ const result = $computed<QueryResult>(() => commandMode
   : searchResult,
 )
 
+const isMac = useIsMac()
+const modifierKeyName = $computed(() => isMac.value ? '⌘' : 'Ctrl')
+
 let active = $ref(0)
 watch($$(result), (n, o) => {
   if (n.length !== o.length || !n.items.every((i, idx) => i === o.items[idx]))
@@ -233,8 +236,8 @@ const onKeyDown = (e: KeyboardEvent) => {
     <!-- Footer -->
     <div class="flex items-center px-3 py-1 text-xs">
       <div i-ri:lightbulb-flash-line /> Tip: Use
-      <CommandKey name="Ctrl+K" /> to search,
-      <CommandKey name="Ctrl+/" /> to activate command mode.
+      <CommandKey :name="`${modifierKeyName}+K`" /> to search,
+      <CommandKey :name="`${modifierKeyName}+/`" /> to activate command mode.
     </div>
   </div>
 </template>

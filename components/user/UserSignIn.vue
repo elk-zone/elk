@@ -1,66 +1,21 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
-import { $fetch } from 'ofetch'
 
-const input = $ref<HTMLInputElement>()
-let server = $ref<string>('')
-let busy = $ref<boolean>(false)
-let error = $ref<boolean>(false)
-let displayError = $ref<boolean>(false)
+const input = ref<HTMLInputElement | undefined>()
 let knownServers = $ref<string[]>([])
 let autocompleteIndex = $ref(0)
 let autocompleteShow = $ref(false)
 
-const users = useUsers()
-const userSettings = useUserSettings()
-
-async function oauth() {
-  if (busy)
-    return
-
-  busy = true
-  error = false
-  displayError = false
-
-  await nextTick()
-
-  if (server)
-    server = server.split('/')[0]
-
-  try {
-    const url = await (globalThis.$fetch as any)(`/api/${server || publicServer.value}/login`, {
-      method: 'POST',
-      body: {
-        force_login: users.value.some(u => u.server === server),
-        origin: location.origin,
-        lang: userSettings.value.language,
-      },
-    })
-    location.href = url
-  }
-  catch (err) {
-    console.error(err)
-
-    displayError = true
-    error = true
-    await nextTick()
-    input?.focus()
-    await nextTick()
-    setTimeout(() => {
-      busy = false
-      error = false
-    }, 512)
-  }
-}
+const { busy, error, displayError, server, oauth } = useSignIn(input)
 
 let fuse = $shallowRef(new Fuse([] as string[]))
 
 const filteredServers = $computed(() => {
-  if (!server)
+  if (!server.value)
     return []
 
-  const results = fuse.search(server, { limit: 6 }).map(result => result.item)
-  if (results[0] === server)
+  const results = fuse.search(server.value, { limit: 6 }).map(result => result.item)
+  if (results[0] === server.value)
     return []
 
   return results
@@ -78,12 +33,12 @@ function isValidUrl(str: string) {
 }
 
 async function handleInput() {
-  const input = server.trim()
+  const input = server.value.trim()
   if (input.startsWith('https://'))
-    server = input.replace('https://', '')
+    server.value = input.replace('https://', '')
 
   if (input.length)
-    displayError = false
+    displayError.value = false
 
   if (
     isValidUrl(`https://${input}`)
@@ -110,7 +65,7 @@ function move(delta: number) {
 
 function onEnter(e: KeyboardEvent) {
   if (autocompleteShow === true && filteredServers[autocompleteIndex]) {
-    server = filteredServers[autocompleteIndex]
+    server.value = filteredServers[autocompleteIndex]
     e.preventDefault()
     autocompleteShow = false
   }
@@ -124,16 +79,16 @@ function escapeAutocomplete(evt: KeyboardEvent) {
 }
 
 function select(index: number) {
-  server = filteredServers[index]
+  server.value = filteredServers[index]
 }
 
 onMounted(async () => {
-  input?.focus()
+  input?.value?.focus()
   knownServers = await (globalThis.$fetch as any)('/api/list-servers')
   fuse = new Fuse(knownServers, { shouldSort: true })
 })
 
-onClickOutside($$(input), () => {
+onClickOutside(input, () => {
   autocompleteShow = false
 })
 </script>

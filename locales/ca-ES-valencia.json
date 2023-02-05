@@ -563,8 +563,11 @@
     "explore_links_intro": "Notícies que gent d'este i d'altres servidors de la xarxa descentralitzada comenta ara mateix.",
     "explore_posts_intro": "Publicacions d'este i d'altres servidors de la xarxa descentralitzada que estan guanyant popularitat en este servidor ara mateix.",
     "explore_tags_intro": "Etiquetes que estan guanyant popularitat entre la gent d'este i altres servidors de la xarxa descentralitzada ara mateix.",
+    "open_editor_tools": "Ferramentes d'edició",
     "publish_failed": "Tanca els missatges fallits a la part superior de l'editor per a tornar a publicar",
-    "toggle_code_block": "Activa el bloc de codi"
+    "toggle_bold": "Negreta",
+    "toggle_code_block": "Bloc de codi",
+    "toggle_italic":"Cursiva",
   },
   "user": {
     "add_existing": "Afig un compte existent",

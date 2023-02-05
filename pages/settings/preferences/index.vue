@@ -78,6 +78,9 @@ const userSettings = useUserSettings()
       @click="togglePreferences('hideUsernameEmojis')"
     >
       {{ $t("settings.preferences.hide_username_emojis") }}
+      <template #description>
+        {{ $t('settings.preferences.hide_username_emojis_description') }}
+      </template>
     </SettingsToggleItem>
     <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-flask-line />

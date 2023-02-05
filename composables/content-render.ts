@@ -30,8 +30,8 @@ export function contentToVNode(
   const textContents = getTexualAstComponents(tree.children)
 
   // if the username only contains emojis, we should probably show the emojis anyway to avoid a blank name
-  if (!options?.showEmojis && textContents.length === 0)
-    tree = parseMastodonHTML(content, { ...options, showEmojis: true })
+  if (options?.hideEmojis && textContents.length === 0)
+    tree = parseMastodonHTML(content, { ...options, hideEmojis: false })
 
   return h(Fragment, (tree.children as Node[] || []).map(n => treeToVNode(n)))
 }

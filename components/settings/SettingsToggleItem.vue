@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <button
     exact-active-class="text-primary"
-    block w-full group focus:outline-none
+    block w-full group focus:outline-none text-start
   >
     <div
       w-full flex w-fit px5 py3 md:gap2 gap4 items-center
@@ -18,7 +18,8 @@ defineProps<{
     >
       <div flex-1 flex items-center md:gap2 gap4>
         <div
-          flex items-center justify-center flex-shrink-0
+          v-if="icon" flex items-center justify-center
+          flex-shrink-0
           :class="$slots.description ? 'w-12 h-12' : ''"
         >
           <slot name="icon">

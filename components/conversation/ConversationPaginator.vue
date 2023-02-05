@@ -6,7 +6,8 @@ const { paginator } = defineProps<{
 }>()
 
 function preprocess(items: mastodon.v1.Conversation[]): mastodon.v1.Conversation[] {
-  return items.filter(items => !items.lastStatus?.filtered?.find(
+  const isAuthored = (conversation: mastodon.v1.Conversation) => conversation.lastStatus ? conversation.lastStatus.account.id === currentUser.value?.account.id : false
+  return items.filter(item => isAuthored(item) || !item.lastStatus?.filtered?.find(
     filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('thread'),
   ))
 }

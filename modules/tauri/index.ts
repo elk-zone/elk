@@ -22,7 +22,9 @@ export default defineNuxtModule({
       ...nuxt.options.alias,
       'unstorage/drivers/fs': 'unenv/runtime/mock/proxy',
       'unstorage/drivers/cloudflare-kv-http': 'unenv/runtime/mock/proxy',
+      '#storage-config': resolve('./runtime/storage-config'),
       'node:events': 'unenv/runtime/node/events/index',
+      '#build-info': resolve('./runtime/build-info'),
     }
 
     nuxt.hook('vite:extend', ({ config }) => {

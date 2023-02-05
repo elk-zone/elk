@@ -8,6 +8,7 @@ import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 export interface ContentParseOptions {
   emojis?: Record<string, mastodon.v1.CustomEmoji>
+  hideEmojis?: boolean
   mentions?: mastodon.v1.StatusMention[]
   markdown?: boolean
   replaceUnicodeEmoji?: boolean
@@ -82,6 +83,7 @@ export function parseMastodonHTML(
     replaceUnicodeEmoji = true,
     convertMentionLink = false,
     collapseMentionLink = false,
+    hideEmojis = false,
     mentions,
     status,
     inReplyToStatus,
@@ -110,8 +112,16 @@ export function parseMastodonHTML(
     ...options.astTransforms || [],
   ]
 
-  if (replaceUnicodeEmoji)
-    transforms.push(transformUnicodeEmoji)
+  if (hideEmojis) {
+    transforms.push(removeUnicodeEmoji)
+    transforms.push(removeCustomEmoji(options.emojis ?? {}))
+  }
+  else {
+    if (replaceUnicodeEmoji)
+      transforms.push(transformUnicodeEmoji)
+
+    transforms.push(replaceCustomEmoji(options.emojis ?? {}))
+  }
 
   if (markdown)
     transforms.push(transformMarkdown)
@@ -121,8 +131,6 @@ export function parseMastodonHTML(
 
   if (convertMentionLink)
     transforms.push(transformMentionLink)
-
-  transforms.push(replaceCustomEmoji(options.emojis || {}))
 
   transforms.push(transformParagraphs)
 
@@ -353,6 +361,25 @@ function filterHref() {
   }
 }
 
+function removeUnicodeEmoji(node: Node) {
+  if (node.type !== TEXT_NODE)
+    return node
+
+  let start = 0
+
+  const matches = [] as (string | Node)[]
+  findAndReplaceEmojisInText(emojiRegEx, node.value, (match, result) => {
+    matches.push(result.slice(start).trimEnd())
+    start = result.length + match.match.length
+    return undefined
+  })
+  if (matches.length === 0)
+    return node
+
+  matches.push(node.value.slice(start))
+  return matches.filter(Boolean)
+}
+
 function transformUnicodeEmoji(node: Node) {
   if (node.type !== TEXT_NODE)
     return node
@@ -372,6 +399,28 @@ function transformUnicodeEmoji(node: Node) {
 
   matches.push(node.value.slice(start))
   return matches.filter(Boolean)
+}
+
+function removeCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji>): Transform {
+  return (node) => {
+    if (node.type !== TEXT_NODE)
+      return node
+
+    const split = node.value.split(/\s?:([\w-]+?):/g)
+    if (split.length === 1)
+      return node
+
+    return split.map((name, i) => {
+      if (i % 2 === 0)
+        return name
+
+      const emoji = customEmojis[name] as mastodon.v1.CustomEmoji
+      if (!emoji)
+        return `:${name}:`
+
+      return ''
+    }).filter(Boolean)
+  }
 }
 
 function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji>): Transform {

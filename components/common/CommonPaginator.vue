@@ -43,8 +43,31 @@ defineSlots<{
 }>()
 
 const { t } = useI18n()
+const nuxtApp = useNuxtApp()
 
 const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), eventType, preprocess)
+
+nuxtApp.hook('elk-logo:click', () => {
+  update()
+  nuxtApp.$scrollToTop()
+})
+
+function createEntry(item: any) {
+  items.value = [...items.value, preprocess?.([item]) ?? item]
+}
+
+function updateEntry(item: any) {
+  const id = item[keyProp]
+  const index = items.value.findIndex(i => (i as any)[keyProp] === id)
+  if (index > -1)
+    items.value = [...items.value.slice(0, index), preprocess?.([item]) ?? item, ...items.value.slice(index + 1)]
+}
+
+function removeEntry(entryId: any) {
+  items.value = items.value.filter(i => (i as any)[keyProp] !== entryId)
+}
+
+defineExpose({ createEntry, removeEntry, updateEntry })
 </script>
 
 <template>

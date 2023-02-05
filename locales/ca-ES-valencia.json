@@ -95,8 +95,7 @@
     "error": "ERROR",
     "in": "in",
     "not_found": "404 No s'ha trobat",
-    "offline_desc": "Sembla que estàs fora de línia. Comprova la connexió de xarxa.
-"
+    "offline_desc": "Sembla que estàs fora de línia. Comprova la connexió de xarxa."
   },
   "compose": {
     "draft_title": "Esborrany {0}",

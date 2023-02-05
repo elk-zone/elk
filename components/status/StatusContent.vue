@@ -15,7 +15,7 @@ const filterResult = $computed(() => status.filtered?.length ? status.filtered[0
 const filter = $computed(() => filterResult?.filter)
 
 const filterPhrase = $computed(() => filter?.title)
-const isFiltered = $computed(() => filterPhrase && (context && context !== 'details' ? filter?.context.includes(context) : false))
+const isFiltered = $computed(() => status.account.id !== currentUser.value?.account.id && filterPhrase && (context && context !== 'details' ? filter?.context.includes(context) : false))
 </script>
 
 <template>

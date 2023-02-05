@@ -2,25 +2,28 @@ import type { mastodon } from 'masto'
 import { describe, expect, it } from 'vitest'
 
 function status(id: string, filtered?: mastodon.v1.FilterContext): mastodon.v1.Status {
+  const fakeStatus = {
+    id,
+    account: {
+      id: 'FAKE ID',
+    } as mastodon.v1.Account,
+  } as mastodon.v1.Status
+
   if (filtered) {
-    return {
-      id,
-      account: {
-        id: 'FAKE ID',
-      } as mastodon.v1.Account,
-      filtered: [
+    fakeStatus.filtered
+       = [
         {
           filter: {
             filterAction: 'hide',
             context: [filtered],
           },
         } as mastodon.v1.FilterResult,
-      ],
-    } as mastodon.v1.Status
+      ]
   }
 
-  return { id } as mastodon.v1.Status
+  return fakeStatus
 }
+
 function reply(id: string, s: mastodon.v1.Status) {
   return { id, inReplyToId: s.id } as mastodon.v1.Status
 }

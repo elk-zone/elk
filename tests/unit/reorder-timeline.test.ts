@@ -27,10 +27,23 @@ function status(id: string, filtered?: mastodon.v1.FilterContext): mastodon.v1.S
 }
 
 function reply(id: string, s: mastodon.v1.Status) {
-  return { id, inReplyToId: s.id } as mastodon.v1.Status
+  return {
+    id,
+    account: {
+      id: 'FAKE ID',
+    } as mastodon.v1.Account,
+    inReplyToId: s.id,
+  } as mastodon.v1.Status
 }
+
 function reblog(id: string, s: mastodon.v1.Status) {
-  return { id, reblog: s } as mastodon.v1.Status
+  return {
+    id,
+    account: {
+      id: 'FAKE ID',
+    } as mastodon.v1.Account,
+    reblog: s,
+  } as mastodon.v1.Status
 }
 
 const p_a1 = status('p_a1')

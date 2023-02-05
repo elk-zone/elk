@@ -42,7 +42,7 @@ const initializeUsers = (): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>
   return users
 }
 
-const users = process.server ? initializeUsers() : await initializeUsers()
+const users = process.server ? initializeUsers() as Ref<UserLogin[]> | RemovableRef<UserLogin[]> : await initializeUsers()
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
 const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
 export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })

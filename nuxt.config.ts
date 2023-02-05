@@ -143,6 +143,7 @@ export default defineNuxtConfig({
       ignore: ['/settings'],
     },
   },
+  sourcemap: !isDevelopment,
   hooks: {
     'nitro:config': function (config) {
       const nuxt = useNuxt()
@@ -152,10 +153,25 @@ export default defineNuxtConfig({
     'vite:extendConfig': function (config, { isServer }) {
       if (isServer) {
         const alias = config.resolve!.alias as Record<string, string>
-        alias.eventemitter = resolve('./mocks/eventemitter')
-        alias['shiki-es'] = 'unenv/runtime/mock/proxy'
+        for (const dep of ['eventemitter3', 'isomorphic-ws'])
+          alias[dep] = resolve('./mocks/class')
+        for (const dep of ['shiki-es', 'fuse.js'])
+          alias[dep] = 'unenv/runtime/mock/proxy'
+        const resolver = createResolver(import.meta.url)
 
-        config.ssr!.noExternal!.push('masto', '@fnando/sparkline')
+        config.plugins!.unshift({
+          name: 'mock',
+          enforce: 'pre',
+          resolveId(id) {
+            if (id.match(/(^|\/)(@tiptap)\//))
+              return resolver.resolve('./mocks/tiptap.ts')
+            if (id.match(/(^|\/)(prosemirror)/))
+              return resolver.resolve('./mocks/prosemirror.ts')
+          },
+        })
+
+        const noExternal = config.ssr!.noExternal as string[]
+        noExternal.push('masto', '@fnando/sparkline', 'vue-i18n', '@mastojs/ponyfills')
       }
     },
   },

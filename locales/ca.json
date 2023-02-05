@@ -130,7 +130,7 @@
       "title": "Segur que voleu suprimir aquesta publicació?"
     },
     "mute_account": {
-      "cancel": "Cancel·la,
+      "cancel": "Cancel·la",
       "confirm": "Silencia",
       "title": "Segur que voleu silenciar {0}?"
     },
@@ -263,7 +263,7 @@
     "followed_you_count": "{0} persones us han seguit|{0} persones us han seguit|{0} persones us han seguit",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "ha impulsat la publicació",
-    "request_to_follow": "ha sol·licitat seguir-vos,
+    "request_to_follow": "ha sol·licitat seguir-vos",
     "signed_up": "registrat",
     "update_status": "ha actualitzat la publicació"
   },

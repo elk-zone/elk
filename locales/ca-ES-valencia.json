@@ -184,8 +184,19 @@
   },
   "list": {
     "add_account": "Afig el compte a una llista",
+    "cancel_edit": "Cancel·la l'edició",
+    "clear_error": "Esborra l'error",
+    "create": "Crea",
+    "delete": "Elimina la llista",
+    "delete_error": "S'ha produït un error en eliminar la llista",
+    "edit": "Edita la llista",
+    "edit_error": "S'ha produït un error en actualitzar la llista",
+    "error": "S'ha produït un error en crear la llista",
+    "error_prefix": "Error:",
+    "list_title_placeholder": "Títol de la llista",
     "modify_account": "Edita les llistes amb este compte",
     "remove_account": "Elimina el compte d'una llista"
+    "save": "Desa els canvis"
   },
   "menu": {
     "block_account": "Bloqueja {0}",
@@ -312,6 +323,12 @@
     "account_settings": {
       "description": "Edita la configuració del teu compte a la interfície de Mastodon",
       "label": "Configuració del compte"
+    },
+     "feature_flags": {
+      "github_cards": "Targetes de GitHub",
+      "title": "Funcions experimentals",
+      "user_picker": "Selector d'usuari",
+      "virtual_scroll": "Desplaçament virtual"
     },
     "interface": {
       "color_mode": "Mode de color",

@@ -3,6 +3,7 @@ import type { mastodon } from 'masto'
 
 defineProps<{
   account: mastodon.v1.Account
+  useShowEmojisPreference?: boolean
 }>()
 
 const userSettings = useUserSettings()
@@ -12,7 +13,7 @@ const userSettings = useUserSettings()
   <ContentRich
     :content="getDisplayName(account, { rich: true })"
     :emojis="account.emojis"
-    :show-emojis="!getPreferences(userSettings, 'hideUsernameEmojis')"
+    :show-emojis="!useShowEmojisPreference || !getPreferences(userSettings, 'hideUsernameEmojis')"
     :markdown="false"
   />
 </template>

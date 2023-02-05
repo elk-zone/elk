@@ -16,7 +16,7 @@ const { link = true, avatar = true } = defineProps<{
       min-w-0 flex gap-2 items-center
     >
       <AccountAvatar v-if="avatar" :account="account" w-5 h-5 />
-      <AccountDisplayName :account="account" line-clamp-1 ws-pre-wrap break-all />
+      <AccountDisplayName :account="account" :use-show-emojis-preference="true" line-clamp-1 ws-pre-wrap break-all />
     </NuxtLink>
   </AccountHoverWrapper>
 </template>

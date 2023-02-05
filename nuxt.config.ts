@@ -55,9 +55,9 @@ export default defineNuxtConfig({
     '~/styles/dropdown.css',
   ],
   alias: {
-    'querystring': 'rollup-plugin-node-polyfills/polyfills/qs',
-    'change-case': 'scule',
-    'semver': resolve('./mocks/semver'),
+    querystring: 'rollup-plugin-node-polyfills/polyfills/qs',
+    // 'change-case': 'scule',
+    semver: resolve('./mocks/semver'),
   },
   imports: {
     dirs: [

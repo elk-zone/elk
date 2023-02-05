@@ -70,6 +70,7 @@
     "save": "Desa",
     "save_changes": "Guardar canvis",
     "sign_in": "Inicia sessió",
+    "sign_in_to": "Inicieu la sessió a {0}",
     "switch_account": "Canvia de compte",
     "vote": "Vota"
   },
@@ -419,6 +420,7 @@
       "hide_reply_count": "Amaga el recompte de respostes",
       "hide_translation": "Amaga la traducció",
       "hide_username_emojis": "Amaga els emojis del nom d'usuari",
+      "hide_username_emojis_description": "Amaga els emojis dels noms d'usuari a les línies de temps. Els emojis encara seran visibles als seus perfils.",
       "label": "Preferències",
       "title": "Característiques experimentals",
       "user_picker": "Selector d'usuaris",
@@ -563,8 +565,11 @@
     "explore_links_intro": "Les persones d'aquest i d'altres servidors de la xarxa descentralitzada estan parlant d'aquestes notícies en aquests moments.",
     "explore_posts_intro": "Aquestes publicacions d'aquest i d'altres servidors de la xarxa descentralitzada estan guanyant força en aquest servidor ara mateix.",
     "explore_tags_intro": "Aquests hashtags estan guanyant força entre les persones d'aquest i d'altres servidors de la xarxa descentralitzada ara mateix.",
+    "open_editor_tools": "Eines de l'editor",
     "publish_failed": "Tanca els missatges fallits a la part superior de l'editor per tornar a publicar publicacions",
-    "toggle_code_block": "Commuta el bloc de codi"
+    "toggle_bold": "Commuta la negreta",
+    "toggle_code_block": "Commuta el bloc de codi",
+    "toggle_italic": "Canvia la cursiva"
   },
   "user": {
     "add_existing": "Afegeix un compte existent",

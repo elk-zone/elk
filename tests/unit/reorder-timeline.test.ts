@@ -5,6 +5,9 @@ function status(id: string, filtered?: mastodon.v1.FilterContext): mastodon.v1.S
   if (filtered) {
     return {
       id,
+      account: {
+        id: 'FAKE ID',
+      } as mastodon.v1.Account,
       filtered: [
         {
           filter: {

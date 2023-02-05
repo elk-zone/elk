@@ -1,7 +1,7 @@
 {
   "a11y": {
     "loading_page": "S'està carregant",
-    "loading_titled_page": "S'està carregant pàgina {0}",
+    "loading_titled_page": "S'està carregant la pàgina {0}",
     "locale_changed": "S'ha canviat la llengua a {0}",
     "locale_changing": "S'està canviant la llengua",
     "route_loaded": "S'ha carregat la pàgina {0}"
@@ -157,10 +157,10 @@
   },
   "help": {
     "build_preview": {
-      "desc1": "You are currently viewing a preview version of Elk from the community - {0}.",
-      "desc2": "It may contains unreviewed or even malicious changes.",
-      "desc3": "Don't log in with your real account.",
-      "title": "Preview deploy"
+      "desc1": "Estàs veient una versió prèvia d'Elk de la comunitat - {0}.",
+      "desc2": "Pot contindre canvis no revisats o fins i tot maliciosos.",
+      "desc3": "No inicies sessió amb el teu compte real.",
+      "title": "Vista prèvia del desplegament"
     },
     "desc_highlight": "Expect some bugs and missing features here and there.",
     "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress Mastodon web client!",
@@ -168,8 +168,8 @@
     "desc_para3": "To boost development, you can sponsor the Team through GitHub Sponsors. We hope you enjoy Elk!",
     "desc_para4": "Elk is Open Source. If you'd like to help with testing, giving feedback, or contributing,",
     "desc_para5": "reach out to us on GitHub",
-    "desc_para6": "and get involved.",
-    "footer_team": "The Elk Team",
+    "desc_para6": "i col·laboreu.",
+    "footer_team": "L'equip d'Elk",
     "title": "Elk is in Preview!"
   },
   "language": {
@@ -341,37 +341,37 @@
           "reblog": "Impulsos en publicacions teues",
           "title": "Quines notificacions rebré?"
         },
-        "description": "Receive notifications even when you are not using Elk.",
-        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
-        "label": "Push notifications settings",
+        "description": "Rep notificacions fins i tot quan no estigues utilitzant Elk.",
+        "instructions": "No oblides desar els canvis utilitzant el botó de @:settings.notifications.push_notifications.save_settings!",
+        "label": "Configuració de les notificacions emergents",
         "policy": {
-          "all": "From anyone",
-          "followed": "Of people I follow",
-          "follower": "Of people who follow me",
-          "none": "From no one",
-          "title": "Who can I receive notifications from?"
+          "all": "De tots",
+          "followed": "De persones que seguisc",
+          "follower": "De persones que em segueixen",
+          "none": "De ningú",
+          "title": "De qui puc rebre notificacions?"
         },
-        "save_settings": "Save settings",
+        "save_settings": "Desa la configuració",
         "subscription_error": {
-          "clear_error": "Clear error",
+          "clear_error": "Esborra l'error",
           "permission_denied": "Permission denied: enable notifications in your browser.",
           "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
           "title": "Could not subscribe to push notifications",
           "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again."
         },
-        "title": "Push notifications settings",
-        "undo_settings": "Undo changes",
-        "unsubscribe": "Disable push notifications",
-        "unsupported": "Your browser does not support push notifications.",
+        "title": "Configuració de les notificacions emergents",
+        "undo_settings": "Desfés els canvis",
+        "unsubscribe": "Desactiva les notificacions emergents",
+        "unsupported": "Les notificacions emergents no són compatibles amb el teu navegador.",
         "warning": {
           "enable_close": "Tanca",
           "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:settings.notifications.show_btn{'\"'} button above once enabled.",
           "enable_description_desktop": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications in \"Settings > Notifications > Push notifications settings\" once enabled.",
           "enable_description_mobile": "You can also access the settings using the navigation menu \"Settings > Notifications > Push notification settings\".",
           "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
-          "enable_desktop": "Enable push notifications",
-          "enable_title": "Never miss anything",
-          "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
+          "enable_desktop": "Activa les notificacions emergents",
+          "enable_title": "No et perdes res",
+          "re_auth": "Sembla que les notificacions emergents no són compatibles amb el teu servidor. Prova tancant la sessió i tornant a entrar. Si este missatge encara apreix, posa't en contacte amb l'administració del teu servidor."
         }
       },
       "show_btn": "Ves a la configuració de les notificacions",
@@ -380,19 +380,19 @@
     "notifications_settings": "Notificacions",
     "preferences": {
       "enable_autoplay": "Activa la reproducció automàtica",
-      "enable_pinch_to_zoom": "Enable pinch to zoom",
+      "enable_pinch_to_zoom": "Activa el pessic per a fer zoom",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Mode en escala de grisos",
-      "hide_account_hover_card": "Hide account hover card",
-      "hide_boost_count": "Hide boost count",
-      "hide_favorite_count": "Hide favorite count",
-      "hide_follower_count": "Hide follower count",
+      "hide_account_hover_card": "Amaga la targeta de perfil flotant",
+      "hide_boost_count": "Amaga el nombre d'impulsos",
+      "hide_favorite_count": "Amaga el nombre de preferits",
+      "hide_follower_count": "Amaga el nombre seguidors",
       "hide_reply_count": "Amaga el nombre de respostes",
       "hide_translation": "Amaba la traducció",
       "label": "Configuració",
       "title": "Funcions experimentals",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
+      "user_picker": "Selector d'usuari",
+      "virtual_scroll": "Desplaçament virtual"
     },
     "profile": {
       "appearance": {
@@ -405,16 +405,16 @@
         "title": "Edita el perfil"
       },
       "featured_tags": {
-        "description": "People can browse your public posts under these hashtags.",
+        "description": "La gent pot trobar les publicacions visibles amb estes etiquetes.",
         "label": "Etiquetes destacades"
       },
       "label": "Perfil"
     },
-    "select_a_settings": "Select a setting",
+    "select_a_settings": "Selecciona una opció",
     "users": {
-      "export": "Export User Tokens",
-      "import": "Import User Tokens",
-      "label": "Logged in users"
+      "export": "Exporta els tokens de l'usuari",
+      "import": "Importa els tokens de l'usuari",
+      "label": "Usuaris iniciats"
     }
   },
   "share-target": {

@@ -118,6 +118,11 @@
       "cancel": "No",
       "confirm": "Sí"
     },
+    "delete_list": {
+      "cancel": "Cancel·la",
+      "confirm": "Elimina",
+      "title": "Segur que vols eliminar la llista «{0}»?"
+    },
     "delete_posts": {
       "cancel": "Cancel·la",
       "confirm": "Elimina",

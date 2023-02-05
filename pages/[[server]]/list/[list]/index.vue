@@ -5,11 +5,11 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const list = $computed(() => useRoute().params.list as string)
-const server = $computed(() => useRoute().params.server as string)
-
-const { t } = useI18n()
 const route = useRoute()
+const { t } = useI18n()
+
+const list = $computed(() => route.params.list as string)
+const server = $computed(() => (route.params.server ?? currentServer.value) as string)
 
 const tabs = $computed<CommonRouteTabOption[]>(() => [
   {

@@ -1,6 +1,7 @@
 export default defineNuxtRouteMiddleware((to) => {
   if (process.server)
     return
+
   if (to.path === '/signin/callback')
     return
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  key: route => `${route.params.server}:${route.params.account}`,
+  key: route => `${route.params.server ?? currentServer.value}:${route.params.account}`,
 })
 
 const params = useRoute().params

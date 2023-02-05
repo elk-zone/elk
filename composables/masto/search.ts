@@ -19,6 +19,7 @@ export type HashTagSearchResult = BuildSearchResult<'hashtag', mastodon.v1.Tag>
 export type StatusSearchResult = BuildSearchResult<'status', mastodon.v1.Status>
 
 export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSearchResult
+export type SavedSearchResult = Omit<SearchResult, 'data'> & { displayName: string; lastQueryTime: Date }
 
 export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOptions = {}) {
   const done = ref(false)

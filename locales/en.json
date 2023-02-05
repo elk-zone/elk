@@ -304,8 +304,10 @@
     }
   },
   "search": {
+    "search_clear_all": "Clear all",
     "search_desc": "Search for people & hashtags",
-    "search_empty": "Could not find anything for these search terms"
+    "search_empty": "Could not find anything for these search terms",
+    "search_history_title": "Recent"
   },
   "settings": {
     "about": {
@@ -553,6 +555,7 @@
     "add_publishable_content": "Add content to publish",
     "change_content_visibility": "Change content visibility",
     "change_language": "Change language",
+    "delete_search_history": "Delete this query from search history",
     "emoji": "Emoji",
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",

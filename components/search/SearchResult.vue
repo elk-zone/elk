@@ -6,7 +6,12 @@ defineProps<{
   active: boolean
 }>()
 
+const emit = defineEmits<{
+  (event: 'activate'): void
+}>()
+
 const onActivate = () => {
+  emit('activate');
   (document.activeElement as HTMLElement).blur()
 }
 </script>

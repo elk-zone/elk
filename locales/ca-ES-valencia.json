@@ -4,7 +4,7 @@
     "loading_titled_page": "S'està carregant {0} pàgina",
     "locale_changed": "S'ha canviat la llengua a {0}",
     "locale_changing": "S'està canviant la llengua",
-    "route_loaded": "Page {0} loaded"
+    "route_loaded": "S'ha carregat la pàgina {0}"
   },
   "account": {
     "avatar_description": "Foto de perfil de: {0}",
@@ -38,8 +38,8 @@
     "unblock": "Desbloqueja",
     "unfollow": "Deixa de seguir",
     "unmute": "Deixa de silenciar",
-    "view_other_followers": "Followers from other instances may not be displayed.",
-    "view_other_following": "Following from other instances may not be displayed."
+    "view_other_followers": "És possible que no es mostren els seguidors d'altres instàncies.",
+    "view_other_following": "És possible que no es mostren els seguits d'altres instàncies."
   },
   "action": {
     "apply": "Aplica",
@@ -48,13 +48,13 @@
     "boost": "Impulsa",
     "boost_count": "{0}",
     "boosted": "Impulsat",
-    "clear_publish_failed": "Clear publish errors",
-    "clear_upload_failed": "Clear file upload errors",
+    "clear_publish_failed": "Esborra els errors de publicació",
+    "clear_upload_failed": "Esborra els errors de la pujada de fitxers",
     "close": "Tanca",
-    "compose": "Compose",
+    "compose": "Redacta",
     "confirm": "Confirma",
     "edit": "Edita",
-    "enter_app": "Enter App",
+    "enter_app": "Entra a l'aplicació",
     "favourite": "Marca com a preferit",
     "favourite_count": "{0}",
     "favourited": "Preferit",
@@ -64,14 +64,14 @@
     "publish": "Publica",
     "reply": "Respon",
     "reply_count": "{0}",
-    "reset": "Reset",
+    "reset": "Restableix",
     "save": "Desa",
     "save_changes": "Desa els canvis",
     "sign_in": "Inicia sessió",
     "switch_account": "Canvia de compte",
     "vote": "Vota"
   },
-  "app_desc_short": "A nimble Mastodon web client",
+  "app_desc_short": "Un client web Mastodon àgil",
   "app_logo": "Logo d'Elk",
   "app_name": "Elk",
   "attachment": {
@@ -82,7 +82,7 @@
     "activate": "Activa",
     "complete": "Completa",
     "compose_desc": "Escriu una publicació nova",
-    "n-people-in-the-past-n-days": "{0} people in the past {1} days",
+    "n-people-in-the-past-n-days": "{0} persones en els últims {1} dies",
     "select_lang": "Selecciona una llengua",
     "sign_in_desc": "Afig un compte existent",
     "switch_account": "Canvia a {0}",
@@ -91,15 +91,16 @@
     "toggle_zen_mode": "Activa el mode zen"
   },
   "common": {
-    "end_of_list": "End of the list",
+    "end_of_list": "Fi de la llista",
     "error": "ERROR",
     "in": "in",
-    "not_found": "404 Not Found",
-    "offline_desc": "Seems like you are offline. Please check your network connection."
+    "not_found": "404 No s'ha trobat",
+    "offline_desc": "Sembla que estàs fora de línia. Comprova la connexió de xarxa.
+"
   },
   "compose": {
-    "draft_title": "Draft {0}",
-    "drafts": "Drafts ({v})"
+    "draft_title": "Esborrany {0}",
+    "drafts": "Esborranys ({v})"
   },
   "confirm": {
     "block_account": {
@@ -142,18 +143,18 @@
   },
   "custom_cards": {
     "stackblitz": {
-      "lines": "Lines {0}",
+      "lines": "Línies {0}",
       "open": "Obri",
-      "snippet_from": "Snippet from {0}"
+      "snippet_from": "Fragment de: {0}"
     }
   },
   "error": {
-    "account_not_found": "Account {0} not found",
-    "explore-list-empty": "Nothing is trending right now. Check back later!",
-    "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
-    "sign_in_error": "Cannot connect to the server.",
-    "status_not_found": "Post not found",
-    "unsupported_file_format": "Unsupported file format"
+    "account_not_found": "No s'ha trobat el compte {0}",
+    "explore-list-empty": "No hi ha res en tendències. Comprova-ho més tard!",
+    "file_size_cannot_exceed_n_mb": "El fitxer no pot superar els {0} MB",
+    "sign_in_error": "No es pot connectar al servidor.",
+    "status_not_found": "No s'ha trobat la publicació",
+    "unsupported_file_format": "Format del fitxer no compatible"
   },
   "help": {
     "build_preview": {
@@ -173,50 +174,50 @@
     "title": "Elk is in Preview!"
   },
   "language": {
-    "search": "Search"
+    "search": "Cerca"
   },
   "list": {
-    "add_account": "Add account to list",
-    "modify_account": "Modify lists with account",
-    "remove_account": "Remove account from list"
+    "add_account": "Afig el compte a una llista",
+    "modify_account": "Edita les llistes amb este compte",
+    "remove_account": "Elimina el compte d'una llista"
   },
   "menu": {
     "block_account": "Bloqueja {0}",
     "block_domain": "Bloqueja el domini {0}",
-    "copy_link_to_post": "Copy link to this post",
-    "copy_original_link_to_post": "Copy original link to this post",
-    "delete": "Delete",
+    "copy_link_to_post": "Copia l'enllaç a la publicació",
+    "copy_original_link_to_post": "Copia l'enllaç original a la publicació",
+    "delete": "Elimina",
     "delete_and_redraft": "Elimina i fes un esborrany",
-    "direct_message_account": "Direct message {0}",
+    "direct_message_account": "Envia un missatge directe a {0}",
     "edit": "Edita",
-    "hide_reblogs": "Hide boosts from {0}",
+    "hide_reblogs": "Amaga els impulsos de: {0}",
     "mention_account": "Menciona {0}",
     "mute_account": "Silencia {0}",
-    "mute_conversation": "Mute this post",
-    "open_in_original_site": "Open in original site",
-    "pin_on_profile": "Pin on profile",
-    "share_post": "Share this post",
-    "show_favourited_and_boosted_by": "Show who favourited and boosted",
-    "show_reblogs": "Show boosts from {0}",
-    "show_untranslated": "Show untranslated",
+    "mute_conversation": "Silencia esta publicació",
+    "open_in_original_site": "Obri en el lloc original",
+    "pin_on_profile": "Fixa al perfil",
+    "share_post": "Comparteix la publicació",
+    "show_favourited_and_boosted_by": "Mostra qui ho ha marcat com a preferit i impulsat",
+    "show_reblogs": "Mostra els impulsos de: {0}",
+    "show_untranslated": "Mostra sense traduir",
     "toggle_theme": {
-      "dark": "Toggle dark mode",
-      "light": "Toggle light mode"
+      "dark": "Activa el mode fosc",
+      "light": "Activa el mode clar"
     },
     "translate_post": "Tradueix",
-    "unblock_account": "Unblock {0}",
-    "unblock_domain": "Unblock domain {0}",
-    "unmute_account": "Unmute {0}",
-    "unmute_conversation": "Unmute this post",
-    "unpin_on_profile": "Unpin on profile"
+    "unblock_account": "Desbloqueja {0}",
+    "unblock_domain": "Desbloqueja el domini {0}",
+    "unmute_account": "Deixa de silenciar {0}",
+    "unmute_conversation": "Deixa de silenciar la publicació",
+    "unpin_on_profile": "Deixa de fixar-ho al perfil"
   },
   "nav": {
-    "back": "Go back",
-    "blocked_domains": "Blocked domains",
-    "blocked_users": "Blocked users",
-    "bookmarks": "Bookmarks",
+    "back": "Torna",
+    "blocked_domains": "Dominis bloquejats",
+    "blocked_users": "Usuarid bloquejats",
+    "bookmarks": "Marcadors",
     "built_at": "Built {0}",
-    "compose": "Compose",
+    "compose": "Redacta",
     "conversations": "Converses",
     "explore": "Explora",
     "favourites": "Preferits",
@@ -229,12 +230,12 @@
     "notifications": "Notificacions",
     "privacy": "Privacitat",
     "profile": "Perfil",
-    "search": "Search",
+    "search": "Cerca",
     "select_feature_flags": "Toggle Feature Flags",
-    "select_font_size": "Font Size",
-    "select_language": "Display Language",
+    "select_font_size": "Grandària de la lletra",
+    "select_language": "Llengua a mostrar",
     "settings": "Configuració",
-    "show_intro": "Show intro",
+    "show_intro": "Mostra la introducció",
     "toggle_theme": "Canvia el tema",
     "zen_mode": "Mode zen"
   },
@@ -245,11 +246,11 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "t'ha impulsat",
     "request_to_follow": "ha demanat seguir-te",
-    "signed_up": "signed up",
+    "signed_up": "s'ha registratp",
     "update_status": "ha actualitzat la publicació"
   },
   "placeholder": {
-    "content_warning": "Write your warning here",
+    "content_warning": "Escriu ací l'avís",
     "default_1": "Què et passa pel cap?",
     "reply_to_account": "Respon a {0}",
     "replying": "Responent",
@@ -264,22 +265,22 @@
     "update_available_short": "Actualitza Elk",
     "webmanifest": {
       "canary": {
-        "description": "A nimble Mastodon web client (canary)",
+        "description": "Un client web àgil de Mastodon (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "A nimble Mastodon web client (dev)",
-        "name": "Elk (dev)",
+        "description": "Un client web àgil de Mastodon (desenvolupament)",
+        "name": "Elk (desenvolupament)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "A nimble Mastodon web client (preview)",
-        "name": "Elk (preview)",
-        "short_name": "Elk (preview)"
+        "description": "Un client web àgil de Mastodon (vista prèvia)",
+        "name": "Elk (vista prèvia)",
+        "short_name": "Elk (vista prèvia)"
       },
       "release": {
-        "description": "A nimble Mastodon web client",
+        "description": "Un client web àgil de Mastodon",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -292,22 +293,22 @@
   "settings": {
     "about": {
       "built_at": "Built",
-      "label": "About",
+      "label": "Quant",
       "meet_the_team": "Coneix l'equip",
-      "sponsor_action": "Sponsor us",
-      "sponsor_action_desc": "To support the team developing Elk",
-      "sponsors": "Sponsors",
+      "sponsor_action": "Patrocina'ns",
+      "sponsor_action_desc": "Per a ajudar l'equip a desenvolupar Elk",
+      "sponsors": "Patrocinis",
       "sponsors_body_1": "Elk is made possible thanks the generous sponsoring and help of:",
       "sponsors_body_2": "And all the companies and individuals sponsoring Elk Team and the members.",
       "sponsors_body_3": "If you're enjoying the app, consider sponsoring us:",
       "version": "Versió"
     },
     "account_settings": {
-      "description": "Edit your account settings in Mastodon UI",
+      "description": "Edita la configuració del teu compte a la interfície de Mastodon",
       "label": "Configuració del compte"
     },
     "interface": {
-      "color_mode": "Color Mode",
+      "color_mode": "Mode de color",
       "dark_mode": "Fosc",
       "default": " (per defecte)",
       "font_size": "Grandària de la lletra",
@@ -323,23 +324,23 @@
         "add": "Afig",
         "choose_language": "Tria una llengua",
         "heading": "Traduccions",
-        "hide_specific": "Hide specific translations",
-        "remove": "Remove"
+        "hide_specific": "Amaga traduccions específiques",
+        "remove": "Elimina"
       }
     },
     "notifications": {
       "label": "Notificacions",
       "notifications": {
-        "label": "Notifications settings"
+        "label": "Configuració de les notificacions"
       },
       "push_notifications": {
         "alerts": {
           "favourite": "Preferits",
-          "follow": "Seguidprs nous",
+          "follow": "Seguidors nous",
           "mention": "Mencions",
           "poll": "Enquestes",
-          "reblog": "Reblog your post",
-          "title": "What notifications to receive?"
+          "reblog": "Impulsos en publicacions teues",
+          "title": "Quines notificacions rebré?"
         },
         "description": "Receive notifications even when you are not using Elk.",
         "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
@@ -445,9 +446,9 @@
       "dismiss": "Dismiss"
     },
     "poll": {
-      "count": "{0} votes|{0} vote|{0} votes",
-      "ends": "ends {0}",
-      "finished": "finished {0}"
+      "count": "{0} vots|{0} vot|{0} votss",
+      "ends": "acaba en {0}",
+      "finished": "finalitzada {0}"
     },
     "reblogged": "{0} reblogged",
     "replying_to": "Replying to {0}",
@@ -476,9 +477,9 @@
   },
   "tag": {
     "follow": "Segueix",
-    "follow_label": "Follow {0} tag",
+    "follow_label": "Segueix l'etiqueta {0}",
     "unfollow": "Deixa de seguir",
-    "unfollow_label": "Unfollow {0} tag"
+    "unfollow_label": "Deixa de seguir l'etiqueta {0}"
   },
   "time_ago_options": {
     "day_future": "en 0 dies|demà|en {n} dia",

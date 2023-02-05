@@ -472,8 +472,10 @@
     "filter_removed_phrase": "Eliminat pel filtre",
     "filter_show_anyway": "Mostra-ho igualment",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Descripció",
       "dismiss": "Descarta"
+      "read": "Llig la descripció de: {0}"
     },
     "poll": {
       "count": "{0} vots|{0} vot|{0} vots",

@@ -325,7 +325,7 @@
       "description": "Edita la configuració del teu compte a la interfície de Mastodon",
       "label": "Configuració del compte"
     },
-     "feature_flags": {
+    "feature_flags": {
       "github_cards": "Targetes de GitHub",
       "title": "Funcions experimentals",
       "user_picker": "Selector d'usuari",
@@ -567,7 +567,7 @@
     "publish_failed": "Tanca els missatges fallits a la part superior de l'editor per a tornar a publicar",
     "toggle_bold": "Negreta",
     "toggle_code_block": "Bloc de codi",
-    "toggle_italic":"Cursiva"
+    "toggle_italic": "Cursiva"
   },
   "user": {
     "add_existing": "Afig un compte existent",

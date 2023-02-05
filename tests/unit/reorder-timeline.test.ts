@@ -1,3 +1,5 @@
+/** @vitest-environment happy-dom */
+
 import type { mastodon } from 'masto'
 import { describe, expect, it } from 'vitest'
 

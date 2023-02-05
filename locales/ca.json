@@ -81,16 +81,16 @@
     "remove_label": "Elimina el fitxer adjunt"
   },
   "command": {
-    "activate": "Activar",
+    "activate": "Activa",
     "complete": "Completa",
     "compose_desc": "Escriu una publicació nova",
     "n-people-in-the-past-n-days": "{0} persones en els darrers {1} dies",
-    "select_lang": "Escolliu l'idioma",
+    "select_lang": "Trieu la llengua",
     "sign_in_desc": "Afegeix un compte existent",
     "switch_account": "Canvia a {0}",
     "switch_account_desc": "Canvia a un altre compte",
-    "toggle_dark_mode": "Canvia el mode fosc",
-    "toggle_zen_mode": "Canvia el mode zen"
+    "toggle_dark_mode": "Canvia al mode fosc",
+    "toggle_zen_mode": "Canvia al mode zen"
   },
   "common": {
     "end_of_list": "Fi de la llista",

@@ -1,7 +1,7 @@
 {
   "a11y": {
     "loading_page": "S'està carregant",
-    "loading_titled_page": "S'està carregant {0} pàgina",
+    "loading_titled_page": "S'està carregant pàgina {0}",
     "locale_changed": "S'ha canviat la llengua a {0}",
     "locale_changing": "S'està canviant la llengua",
     "route_loaded": "S'ha carregat la pàgina {0}"
@@ -286,20 +286,20 @@
     }
   },
   "search": {
-    "search_desc": "Search for people & hashtags",
-    "search_empty": "Could not find anything for these search terms"
+    "search_desc": "Cerca persones i etiquetes",
+    "search_empty": "No s'ha trobat res per al termes de la cerca"
   },
   "settings": {
     "about": {
-      "built_at": "Built",
-      "label": "Quant",
+      "built_at": "Compilació",
+      "label": "Quant a",
       "meet_the_team": "Coneix l'equip",
       "sponsor_action": "Patrocina'ns",
       "sponsor_action_desc": "Per a ajudar l'equip a desenvolupar Elk",
       "sponsors": "Patrocinis",
-      "sponsors_body_1": "Elk is made possible thanks the generous sponsoring and help of:",
-      "sponsors_body_2": "And all the companies and individuals sponsoring Elk Team and the members.",
-      "sponsors_body_3": "If you're enjoying the app, consider sponsoring us:",
+      "sponsors_body_1": "Elk és possible gràcies al generós patrocini i ajuda de:",
+      "sponsors_body_2": "I totes les empreses i individus que patrocinen l'equip d'Elk i els membres.",
+      "sponsors_body_3": "Si t'agrada l'aplicació, considera patrocinar-nos:",
       "version": "Versió"
     },
     "account_settings": {
@@ -374,12 +374,12 @@
           "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
         }
       },
-      "show_btn": "Go to notifications settings",
+      "show_btn": "Ves a la configuració de les notificacions",
       "under_construction": "En construcció"
     },
     "notifications_settings": "Notificacions",
     "preferences": {
-      "enable_autoplay": "Enable Autoplay",
+      "enable_autoplay": "Activa la reproducció automàtica",
       "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Mode en escala de grisos",
@@ -387,10 +387,10 @@
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",
       "hide_follower_count": "Hide follower count",
-      "hide_reply_count": "Hide reply count",
-      "hide_translation": "Hide translation",
+      "hide_reply_count": "Amaga el nombre de respostes",
+      "hide_translation": "Amaba la traducció",
       "label": "Configuració",
-      "title": "Experimental Features",
+      "title": "Funcions experimentals",
       "user_picker": "User Picker",
       "virtual_scroll": "Virtual Scrolling"
     },
@@ -401,12 +401,12 @@
         "display_name": "Nom",
         "label": "Aparença",
         "profile_metadata": "Metadades del perfil",
-        "profile_metadata_desc": "You can have up to {0} items displayed as a table on your profile",
+        "profile_metadata_desc": "Pots mostrar fins a {0} elements com a taula al teu perfil",
         "title": "Edita el perfil"
       },
       "featured_tags": {
         "description": "People can browse your public posts under these hashtags.",
-        "label": "Featured hashtags"
+        "label": "Etiquetes destacades"
       },
       "label": "Perfil"
     },
@@ -425,9 +425,9 @@
   "state": {
     "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
     "attachments_limit_error": "Limit per post exceeded",
-    "edited": "(Edited)",
-    "editing": "Editing",
-    "loading": "Loading...",
+    "edited": "(editat)",
+    "editing": "Editant",
+    "loading": "S'està carregant...",
     "publish_failed": "Publish failed",
     "publishing": "Publishing",
     "upload_failed": "Upload failed",
@@ -435,32 +435,32 @@
   },
   "status": {
     "boosted_by": "Impulsat per",
-    "edited": "Edited {0}",
+    "edited": "Editat {0}",
     "favourited_by": "Marcat com a preferit per",
-    "filter_hidden_phrase": "Filtered by",
-    "filter_removed_phrase": "Removed by filter",
-    "filter_show_anyway": "Show anyway",
+    "filter_hidden_phrase": "Filtrat per",
+    "filter_removed_phrase": "Eliminat pel filtre",
+    "filter_show_anyway": "Mostra-ho igualment",
     "img_alt": {
       "desc": "Descripció",
-      "dismiss": "Dismiss"
+      "dismiss": "Descarta"
     },
     "poll": {
       "count": "{0} vots|{0} vot|{0} votss",
       "ends": "acaba en {0}",
       "finished": "finalitzada {0}"
     },
-    "reblogged": "{0} reblogged",
-    "replying_to": "Replying to {0}",
-    "show_full_thread": "Show Full thread",
-    "someone": "someone",
-    "spoiler_show_less": "Show less",
-    "spoiler_show_more": "Show more",
-    "thread": "Thread",
-    "try_original_site": "Try original site"
+    "reblogged": "{0} ha impulsat",
+    "replying_to": "En resposta a {0}",
+    "show_full_thread": "Mostra el fil complet",
+    "someone": "algú",
+    "spoiler_show_less": "Mostra'm menys",
+    "spoiler_show_more": "Mostra'm més",
+    "thread": "Fil",
+    "try_original_site": "Prova al lloc original"
   },
   "status_history": {
-    "created": "created {0}",
-    "edited": "edited {0}"
+    "created": "creat {0}",
+    "edited": "editat {0}"
   },
   "tab": {
     "accounts": "Comptes",

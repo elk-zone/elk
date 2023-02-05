@@ -28,12 +28,15 @@
     "muted_users": "已靜音的使用者",
     "muting": "已靜音",
     "mutuals": "互相關注",
+    "notifications_on_post_disable": "當 {username} 發鹿鳴時，停止通知我",
+    "notifications_on_post_enable": "當 {username} 發鹿鳴時，通知我",
     "notify_on_post": "{username} 發文時通知我",
     "pinned": "置頂的貼文",
     "posts": "貼文",
     "posts_count": "{0} 則貼文",
     "profile_description": "{0} 的個人資料封面",
     "profile_unavailable": "個人資料不可見",
+    "request_follow": "要求追縱",
     "unblock": "取消封鎖",
     "unfollow": "取消追蹤",
     "unmute": "取消靜音",
@@ -47,6 +50,7 @@
     "boost": "轉發",
     "boost_count": "{0}",
     "boosted": "已轉發",
+    "clear_publish_failed": "清除發鹿鳴失敗的訊息",
     "clear_upload_failed": "清除上傳失敗",
     "close": "關閉",
     "compose": "撰寫",
@@ -59,6 +63,7 @@
     "more": "更多",
     "next": "下一個",
     "prev": "上一個",
+    "previous": "之前的",
     "publish": "發布",
     "reply": "回覆",
     "reply_count": "{0}",
@@ -89,6 +94,10 @@
     "toggle_zen_mode": "切換禪模式"
   },
   "common": {
+    "confirm_dialog": {
+      "cancel": "取消",
+      "confirm": "確認"
+    },
     "end_of_list": "清單到底了",
     "error": "錯誤",
     "in": "在",
@@ -113,6 +122,10 @@
     "common": {
       "cancel": "否",
       "confirm": "是"
+    },
+    "delete_list": {
+      "cancel": "取消",
+      "confirm": "確認"
     },
     "delete_posts": {
       "cancel": "取消",

@@ -15,12 +15,12 @@ const isGrayscale = usePreferences('grayscaleMode')
 </script>
 
 <template>
-  <div h-full :data-mode="isHydrated && isGrayscale ? 'grayscale' : ''">
+  <div h-full :data-mode="isHydrated && isGrayscale ? 'grayscale' : ''" data-tauri-drag-region>
     <main flex w-full mxa lg:max-w-80rem class="native:grid native:sm:grid-cols-[auto_1fr] native:lg:grid-cols-[auto_minmax(600px,2fr)_1fr]">
-      <aside class="native:w-auto w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 zen-hide" hidden sm:flex justify-end xl:me-4 relative>
+      <aside class="native:w-auto w-1/8 md:w-1/6 lg:w-1/5 xl:w-1/4 zen-hide" hidden sm:flex justify-end xl:me-4 native:me-0 relative>
         <div sticky top-0 w-20 xl:w-100 h-screen flex="~ col" lt-xl-items-center>
           <slot name="left">
-            <div flex="~ col" overflow-y-auto justify-between h-full max-w-full pt-5 native:pt-7 overflow-x-hidden>
+            <div flex="~ col" overflow-y-auto justify-between h-full max-w-full overflow-x-hidden>
               <NavTitle />
               <NavSide command />
               <div flex-auto />
@@ -59,7 +59,7 @@ const isGrayscale = usePreferences('grayscaleMode')
           <NavBottom v-if="isHydrated" sm:hidden />
         </div>
       </div>
-      <aside v-if="isHydrated && !wideLayout" class="hidden w-1/4 sm:none lg:block zen-hide">
+      <aside v-if="isHydrated && !wideLayout" class="hidden lg:w-1/5 xl:w-1/4 sm:none xl:block native:w-full zen-hide">
         <div sticky top-0 h-screen flex="~ col" gap-2 py3 ms-2>
           <slot name="right">
             <div flex-auto />

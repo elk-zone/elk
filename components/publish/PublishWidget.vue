@@ -268,18 +268,7 @@ defineExpose({
           </button>
         </CommonTooltip>
 
-        <template v-if="editor">
-          <CommonTooltip placement="top" :content="$t('tooltip.toggle_code_block')">
-            <button
-              btn-action-icon
-              :aria-label="$t('tooltip.toggle_code_block')"
-              :class="editor.isActive('codeBlock') ? 'text-primary' : ''"
-              @click="editor?.chain().focus().toggleCodeBlock().run()"
-            >
-              <div i-ri:code-s-slash-line />
-            </button>
-          </CommonTooltip>
-        </template>
+        <PublishEditorTools v-if="editor" :editor="editor" />
 
         <div flex-auto />
 

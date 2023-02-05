@@ -127,7 +127,7 @@
     "delete_posts": {
       "cancel": "Cancel·lar",
       "confirm": "Ekimina",
-      "title": "Segur que voleu suprimir aquesta publicació?"
+      "title": "Segur que voleu eliminar aquesta publicació?"
     },
     "mute_account": {
       "cancel": "Cancel·la",
@@ -189,7 +189,7 @@
     "clear_error": "Esborra l'error",
     "create": "Crea",
     "delete": "Elimina la llista",
-    "delete_error": "S'ha produït un error en suprimir la llista",
+    "delete_error": "S'ha produït un error en eliminar la llista",
     "edit": "Editeu aquesta llista",
     "edit_error": "S'ha produït un error en actualitzar la llista",
     "error": "S'ha produït un error en crear la llista",
@@ -346,7 +346,7 @@
       "label": "Llengua",
       "translations": {
         "add": "Afegeix",
-        "choose_language": "Tria una llengua",
+        "choose_language": "Trieu una llengua",
         "heading": "Traduccions",
         "hide_specific": "Amaga traduccions específiques",
         "remove": "Elimina"

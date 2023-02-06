@@ -21,7 +21,7 @@ const { modelValue } = defineModel<{
 const target = ref()
 
 const animateTimeout = useTimeout(10)
-const reduceMotion = useReducedMotion()
+const reduceMotion = process.server ? ref(false) : useReducedMotion()
 
 const canAnimate = computed(() => !reduceMotion.value && animateTimeout.value)
 

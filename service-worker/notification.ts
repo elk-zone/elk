@@ -1,4 +1,4 @@
-import { get } from 'idb-keyval'
+import { closeDatabases, get } from '../utils/elk-idb'
 import type { MastoNotification, NotificationInfo, PushPayload, UserLogin } from './types'
 
 export const findNotification = async (
@@ -106,5 +106,5 @@ function htmlToPlainText(html: string) {
 */
 
 export function closeDatabaseConnections() {
-  // TODO: close database connections
+  closeDatabases()
 }

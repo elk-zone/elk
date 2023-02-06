@@ -159,24 +159,41 @@ watch(shouldLoadAttachment, () => {
       </button>
     </template>
     <template v-else-if="type === 'gifv'">
-      <video
-        ref="video"
-        preload="none"
-        :poster="attachment.previewUrl"
-        muted
-        loop
-        playsinline
-        rounded-lg
-        object-cover
-        :width="attachment.meta?.original?.width"
-        :height="attachment.meta?.original?.height"
-        :style="{
-          aspectRatio,
-          objectPosition,
-        }"
+      <button
+        type="button"
+        relative
+        @click="!shouldLoadAttachment ? loadAttachment() : null"
       >
-        <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
-      </video>
+        <video
+          ref="video"
+          preload="none"
+          :poster="videoThumbnail"
+          muted
+          loop
+          playsinline
+          rounded-lg
+          object-cover
+          :width="attachment.meta?.original?.width"
+          :height="attachment.meta?.original?.height"
+          :style="{
+            aspectRatio,
+            objectPosition,
+          }"
+        >
+          <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
+        </video>
+        <span
+          v-if="!shouldLoadAttachment"
+          class="status-attachment-load"
+          absolute
+          text-sm
+          text-base
+          flex flex-col justify-center items-center
+          gap-3 w-6 h-6
+          pointer-events-none
+          i-ri:video-download-line
+        />
+      </button>
     </template>
     <template v-else-if="type === 'audio'">
       <audio controls h-15>

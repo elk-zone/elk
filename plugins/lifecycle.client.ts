@@ -19,7 +19,7 @@ export default defineNuxtPlugin(() => {
   if (useAppConfig().pwaEnabled) {
     addFrozenListener(() => {
       if (navigator.serviceWorker.controller)
-        navigator.serviceWorker.controller.postMessage({ type: ELK_FROZEN })
+        navigator.serviceWorker.controller.postMessage(ELK_FROZEN)
     })
   }
 

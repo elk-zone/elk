@@ -11,7 +11,7 @@ import type { PushPayload } from '~/service-worker/types'
 declare const self: ServiceWorkerGlobalScope
 
 self.addEventListener('message', (event) => {
-  if (event.data.action === ELK_FROZEN)
+  if (event.data === ELK_FROZEN)
     closeDatabaseConnections()
 })
 

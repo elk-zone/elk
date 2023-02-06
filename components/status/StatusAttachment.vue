@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { clamp } from '@vueuse/core'
 import type { mastodon } from 'masto'
+import { decode } from 'blurhash'
 
 const {
   attachment,
@@ -97,30 +98,65 @@ const shouldLoadAttachment = ref(isPreview || !getPreferences(userSettings.value
 function loadAttachment() {
   shouldLoadAttachment.value = true
 }
+
+const blurHashSrc = $computed(() => {
+  if (!attachment.blurhash)
+    return ''
+  const pixels = decode(attachment.blurhash, 32, 32)
+  return getDataUrlFromArr(pixels, 32, 32)
+})
+
+let videoThumbnail = shouldLoadAttachment.value
+  ? attachment.previewUrl
+  : blurHashSrc
+
+watch(shouldLoadAttachment, () => {
+  videoThumbnail = shouldLoadAttachment
+    ? attachment.previewUrl
+    : blurHashSrc
+})
 </script>
 
 <template>
   <div relative ma flex :gap="isAudio ? '2' : ''">
     <template v-if="type === 'video'">
-      <video
-        ref="video"
-        preload="none"
-        :poster="attachment.previewUrl"
-        muted
-        loop
-        playsinline
-        controls
-        rounded-lg
-        object-cover
-        :width="attachment.meta?.original?.width"
-        :height="attachment.meta?.original?.height"
-        :style="{
-          aspectRatio,
-          objectPosition,
-        }"
+      <button
+        type="button"
+        relative
+        @click="!shouldLoadAttachment ? loadAttachment() : null"
       >
-        <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
-      </video>
+        <video
+          ref="video"
+          preload="none"
+          :poster="videoThumbnail"
+          muted
+          loop
+          playsinline
+          :controls="shouldLoadAttachment"
+          rounded-lg
+          object-cover
+          :width="attachment.meta?.original?.width"
+          :height="attachment.meta?.original?.height"
+          :style="{
+            aspectRatio,
+            objectPosition,
+          }"
+          :class="!shouldLoadAttachment ? 'brightness-60 hover:brightness-70 transition-filter' : ''"
+        >
+          <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
+        </video>
+        <span
+          v-if="!shouldLoadAttachment"
+          class="status-attachment-load"
+          absolute
+          text-sm
+          text-base
+          flex flex-col justify-center items-center
+          gap-3 w-6 h-6
+          pointer-events-none
+          i-ri:video-download-line
+        />
+      </button>
     </template>
     <template v-else-if="type === 'gifv'">
       <video
@@ -176,6 +212,7 @@ function loadAttachment() {
           h-full
           w-full
           object-cover
+          :draggable="shouldLoadAttachment"
           :class="!shouldLoadAttachment ? 'brightness-60 hover:brightness-70 transition-filter' : ''"
         />
         <span
@@ -186,6 +223,7 @@ function loadAttachment() {
           text-base
           flex flex-col justify-center items-center
           gap-3 w-6 h-6
+          pointer-events-none
           i-ri:file-download-line
         />
       </button>

@@ -1,5 +1,6 @@
 import lifecycle from 'page-lifecycle/dist/lifecycle.mjs'
 import { ELK_PAGE_LIFECYCLE_FROZEN } from '~/constants'
+import { closeDatabases } from '~/utils/elk-idb'
 
 export default defineNuxtPlugin(() => {
   const state = ref(lifecycle.state)
@@ -20,6 +21,8 @@ export default defineNuxtPlugin(() => {
     addFrozenListener(() => {
       if (navigator.serviceWorker.controller)
         navigator.serviceWorker.controller.postMessage(ELK_PAGE_LIFECYCLE_FROZEN)
+
+      closeDatabases()
     })
   }
 

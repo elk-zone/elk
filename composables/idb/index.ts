@@ -1,7 +1,7 @@
 import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
 import type { Ref } from 'vue'
 import type { UseIDBOptions } from '@vueuse/integrations/useIDBKeyval'
-import { closeDatabases, del, get, set, update } from '~/utils/elk-idb'
+import { del, get, set, update } from '~/utils/elk-idb'
 
 const isIDBSupported = !process.test && typeof indexedDB !== 'undefined'
 
@@ -66,9 +66,6 @@ export async function useAsyncIDBKeyval<T>(
   }
 
   watch(data, () => write(), { flush, deep })
-
-  if (process.client && !process.test)
-    useNuxtApp().$pageLifecycle.addFrozenListener(closeDatabases)
 
   return data as RemovableRef<T>
 }

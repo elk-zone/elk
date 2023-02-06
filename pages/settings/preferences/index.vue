@@ -29,6 +29,7 @@ const userSettings = useUserSettings()
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enableAutoplay')"
+      :disabled="getPreferences(userSettings, 'enableDataSaving')"
       @click="togglePreferences('enableAutoplay')"
     >
       {{ $t('settings.preferences.enable_autoplay') }}

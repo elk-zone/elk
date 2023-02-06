@@ -5,10 +5,12 @@ import type { mastodon } from 'masto'
 const {
   attachment,
   fullSize = false,
+  isPreview = false,
 } = defineProps<{
   attachment: mastodon.v1.MediaAttachment
   attachments?: mastodon.v1.MediaAttachment[]
   fullSize?: boolean
+  isPreview?: boolean
 }>()
 
 const src = $computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
@@ -90,7 +92,7 @@ useIntersectionObserver(video, (entries) => {
 
 const userSettings = useUserSettings()
 
-const shouldLoadAttachment = ref(!getPreferences(userSettings.value, 'enableDataSaving'))
+const shouldLoadAttachment = ref(isPreview || !getPreferences(userSettings.value, 'enableDataSaving'))
 
 function loadAttachment() {
   shouldLoadAttachment.value = true

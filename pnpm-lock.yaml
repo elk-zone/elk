@@ -94,6 +94,7 @@ importers:
       nuxt: 3.1.1
       nuxt-security: ^0.10.1
       nuxt-vitest: ^0.6.4
+      page-lifecycle: ^0.1.2
       pinia: ^2.0.29
       postcss-nested: ^6.0.0
       prettier: ^2.8.3
@@ -155,6 +156,7 @@ importers:
       js-yaml: 4.1.0
       lru-cache: 7.14.1
       masto: 5.6.1
+      page-lifecycle: 0.1.2
       pinia: 2.0.29_typescript@4.9.5
       shiki: 0.12.1
       shiki-es: 0.2.0
@@ -9666,6 +9668,10 @@ packages:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
     dev: true
+
+  /page-lifecycle/0.1.2:
+    resolution: {integrity: sha512-+3uccYgL0CXG0KSXRxZi4uc2E6mqFWV5HqiJJgcnaJCiS0LqiuJ4vB420N21NFuLvuvLB4Jr5drgQ2NXAXF9Iw==}
+    dev: false
 
   /param-case/3.0.4:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}

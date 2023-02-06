@@ -106,6 +106,9 @@ export function useStreaming(
       stream.value = cb(client.value)
   })
 
+  if (process.client && !process.test)
+    useNuxtApp().$pageLifecycle.addFrozenListener(cleanup)
+
   tryOnBeforeUnmount(() => isActive.value = false)
 
   if (controls)

@@ -12,6 +12,9 @@ const { items, command } = defineProps<{
 }>()
 
 const emojis = computed(() => {
+  if (process.server)
+    return []
+
   return items.map((item: CustomEmoji | Emoji) => {
     if (isCustomEmoji(item)) {
       return {

@@ -104,3 +104,7 @@ function htmlToPlainText(html: string) {
   return decodeURIComponent(html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n').replace(/<[^>]*>/g, ''))
 }
 */
+
+export function closeDatabaseConnections() {
+
+}

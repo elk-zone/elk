@@ -55,6 +55,7 @@
     "js-yaml": "^4.1.0",
     "lru-cache": "^7.14.1",
     "masto": "^5.6.1",
+    "page-lifecycle": "^0.1.2",
     "pinia": "^2.0.29",
     "shiki": "^0.12.1",
     "shiki-es": "^0.2.0",

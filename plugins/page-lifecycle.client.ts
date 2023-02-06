@@ -17,14 +17,12 @@ export default defineNuxtPlugin(() => {
     frozenListeners.push(listener)
   }
 
-  if (useAppConfig().pwaEnabled) {
-    addFrozenListener(() => {
-      if (navigator.serviceWorker.controller)
-        navigator.serviceWorker.controller.postMessage(ELK_PAGE_LIFECYCLE_FROZEN)
+  addFrozenListener(() => {
+    if (useAppConfig().pwaEnabled && navigator.serviceWorker.controller)
+      navigator.serviceWorker.controller.postMessage(ELK_PAGE_LIFECYCLE_FROZEN)
 
-      closeDatabases()
-    })
-  }
+    closeDatabases()
+  })
 
   return {
     provide: {

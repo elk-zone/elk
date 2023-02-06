@@ -31,6 +31,7 @@ async function openEmojiPicker() {
       set: 'twitter',
       theme: colorMode.value,
       custom: customEmojisData.value,
+      autoFocus: true,
     })
   }
   await nextTick()

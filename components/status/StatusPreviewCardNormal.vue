@@ -87,7 +87,7 @@ function loadAttachment() {
       >
         <span
           text-sm
-          text-base
+          text-white
           flex flex-col justify-center items-center
           gap-3 w-6 h-6
           i-ri:file-download-line

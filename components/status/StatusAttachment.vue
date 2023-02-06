@@ -150,7 +150,7 @@ watch(shouldLoadAttachment, () => {
           class="status-attachment-load"
           absolute
           text-sm
-          text-base
+          text-white
           flex flex-col justify-center items-center
           gap-3 w-6 h-6
           pointer-events-none
@@ -187,7 +187,7 @@ watch(shouldLoadAttachment, () => {
           class="status-attachment-load"
           absolute
           text-sm
-          text-base
+          text-white
           flex flex-col justify-center items-center
           gap-3 w-6 h-6
           pointer-events-none
@@ -237,7 +237,7 @@ watch(shouldLoadAttachment, () => {
           class="status-attachment-load"
           absolute
           text-sm
-          text-base
+          text-white
           flex flex-col justify-center items-center
           gap-3 w-6 h-6
           pointer-events-none

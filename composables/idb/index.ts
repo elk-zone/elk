@@ -67,7 +67,8 @@ export async function useAsyncIDBKeyval<T>(
 
   watch(data, () => write(), { flush, deep })
 
-  useNuxtApp().$pageLifecycle.addFrozenListener(closeDatabases)
+  if (!process.test)
+    useNuxtApp().$pageLifecycle.addFrozenListener(closeDatabases)
 
   return data as RemovableRef<T>
 }

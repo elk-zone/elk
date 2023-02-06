@@ -1,5 +1,11 @@
-import { del as delIdb, get as getIdb, promisifyRequest, set as setIdb, update as updateIdb } from 'idb-keyval'
-import type { UseStore } from 'idb-keyval'
+import {
+  type UseStore,
+  del as delIdb,
+  get as getIdb,
+  promisifyRequest,
+  set as setIdb,
+  update as updateIdb,
+} from 'idb-keyval'
 
 const databases: IDBOpenDBRequest[] = []
 

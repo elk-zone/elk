@@ -35,7 +35,7 @@ const {
   dropZoneRef,
 } = $(useUploadMediaAttachment($$(draft)))
 
-let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage } = $(usePublish(
+let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage, publishSpoilerText } = $(usePublish(
   {
     draftState,
     ...$$({ expanded, isUploading, initialDraft: initial }),
@@ -73,6 +73,8 @@ const characterCount = $computed(() => {
       return `@${handle}`
     }).join(' ').length + 1
   }
+
+  length += stringLength(publishSpoilerText)
 
   return length
 })
@@ -162,7 +164,7 @@ defineExpose({
 
         <div v-if="draft.params.sensitive">
           <input
-            v-model="draft.params.spoilerText"
+            v-model="publishSpoilerText"
             type="text"
             :placeholder="$t('placeholder.content_warning')"
             p2 border-rounded w-full bg-transparent
@@ -268,18 +270,7 @@ defineExpose({
           </button>
         </CommonTooltip>
 
-        <template v-if="editor">
-          <CommonTooltip placement="top" :content="$t('tooltip.toggle_code_block')">
-            <button
-              btn-action-icon
-              :aria-label="$t('tooltip.toggle_code_block')"
-              :class="editor.isActive('codeBlock') ? 'text-primary' : ''"
-              @click="editor?.chain().focus().toggleCodeBlock().run()"
-            >
-              <div i-ri:code-s-slash-line />
-            </button>
-          </CommonTooltip>
-        </template>
+        <PublishEditorTools v-if="editor" :editor="editor" />
 
         <div flex-auto />
 

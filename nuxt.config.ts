@@ -173,11 +173,6 @@ export default defineNuxtConfig({
         const noExternal = config.ssr!.noExternal as string[]
         noExternal.push('masto', '@fnando/sparkline', 'vue-i18n', '@mastojs/ponyfills')
       }
-      else {
-        // config.optimizeDeps = config.optimizeDeps || {}
-        // config.optimizeDeps.include = config.optimizeDeps.include || []
-        // config.optimizeDeps.include.push('page-lifecycle')
-      }
     },
   },
   app: {

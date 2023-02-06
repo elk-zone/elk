@@ -1,5 +1,5 @@
 import lifecycle from 'page-lifecycle/dist/lifecycle.mjs'
-import { ELK_FROZEN } from '~/constants'
+import { ELK_PAGE_LIFECYCLE_FROZEN } from '~/constants'
 
 export default defineNuxtPlugin(() => {
   const state = ref(lifecycle.state)
@@ -19,7 +19,7 @@ export default defineNuxtPlugin(() => {
   if (useAppConfig().pwaEnabled) {
     addFrozenListener(() => {
       if (navigator.serviceWorker.controller)
-        navigator.serviceWorker.controller.postMessage(ELK_FROZEN)
+        navigator.serviceWorker.controller.postMessage(ELK_PAGE_LIFECYCLE_FROZEN)
     })
   }
 

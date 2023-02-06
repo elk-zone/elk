@@ -1,6 +1,6 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
-import { ELK_FROZEN } from '../constants'
+import { ELK_PAGE_LIFECYCLE_FROZEN } from '../constants'
 import {
   closeDatabaseConnections,
   createNotificationOptions,
@@ -11,7 +11,7 @@ import type { PushPayload } from '~/service-worker/types'
 declare const self: ServiceWorkerGlobalScope
 
 self.addEventListener('message', (event) => {
-  if (event.data === ELK_FROZEN)
+  if (event.data === ELK_PAGE_LIFECYCLE_FROZEN)
     closeDatabaseConnections()
 })
 

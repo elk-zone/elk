@@ -399,7 +399,7 @@
           "clear_error": "清除錯誤",
           "invalid_vapid_key": "VAPID 公鑰似乎無效。",
           "permission_denied": "權限不足：請在你的瀏覽器中打開通知權限。",
-          "repo_link": "鹿鳴的 GitHub 倉庫",
+          "repo_link": "鹿鳴的 GitHub 儲存庫",
           "request_error": "請求訂閱時發生了一個錯誤，請再次嘗試。如錯誤仍然存在，請到鹿鳴儲存庫中報告這一問題。",
           "title": "無法訂閱推播通知。",
           "too_many_registrations": "由於瀏覽器限制，鹿鳴無法為不同伺服器上的多個帳號使用推播通知服務。 你應該取消訂閱其他帳號的推送通知，然後重試。",

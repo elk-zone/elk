@@ -8,12 +8,12 @@ export default defineNuxtRouteMiddleware((to) => {
     return
 
   if (isHydrated.value)
-    return handleCallback(to)
+    return handleAuth(to)
 
-  onHydrated(() => handleCallback(to))
+  onHydrated(() => handleAuth(to))
 })
 
-function handleCallback(to: RouteLocationNormalized) {
+function handleAuth(to: RouteLocationNormalized) {
   if (!currentUser.value) {
     if (to.path === '/home' && to.query['share-target'] !== undefined)
       return navigateTo('/share-target')

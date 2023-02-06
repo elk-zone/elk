@@ -32,7 +32,7 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
   ca: [
     // { code: 'ca-AD', name: 'Català (Andorra)' },
     { code: 'ca-ES', name: 'Català (Espanya)' },
-    { code: 'ca-ES-valencia', name: 'Valencià (Espanya)' },
+    { code: 'ca-ES-valencia', name: 'Valencià (Català)' },
     // { code: 'ca-FR', name: 'Català (França)' },
     // { code: 'ca-IT', name: 'Català (Itàlia)' },
   ],

@@ -12,7 +12,7 @@ function createStore(): UseStore {
   return (txMode, callback) => dbp.then(db => callback(db.transaction(storeName, txMode).objectStore(storeName)))
 }
 
-let defaultGetStoreFunc: UseStore
+let defaultGetStoreFunc: UseStore | undefined
 function defaultGetStore() {
   if (!defaultGetStoreFunc)
     defaultGetStoreFunc = createStore()
@@ -41,5 +41,5 @@ export function closeDatabases() {
     if (db.result)
       db.result.close()
   })
-  defaultGetStoreFunc = undefined!
+  defaultGetStoreFunc = undefined
 }

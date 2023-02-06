@@ -75,7 +75,8 @@ const characterCount = $computed(() => {
   // https://github.com/elk-zone/elk/issues/1651
   const maxLength = 23
 
-  length += [...text.matchAll(linkRegex)].reduce((sum, match) => sum - match[0].length + Math.min(maxLength, match[0].length), 0)
+  for (const [fullMatch] of text.matchAll(linkRegex))
+    length -= fullMatch.length - Math.min(maxLength, fullMatch.length)
 
   if (draft.mentions) {
     // + 1 is needed as mentions always need a space seperator at the end

@@ -8,6 +8,12 @@ export default defineNuxtPlugin(() => {
   const showInstallPrompt = ref(false)
   const hideInstall = useLocalStorage(STORAGE_KEY_PWA_HIDE_INSTALL, false)
 
+  // https://thomashunter.name/posts/2021-12-11-detecting-if-pwa-twa-is-installed
+  const ua = navigator.userAgent
+  const ios = ua.match(/iPhone|iPad|iPod/)
+  const standalone = window.matchMedia('(display-mode: standalone)').matches
+  const isInstalled = !!(standalone || (ios && !ua.match(/Safari/)))
+
   const registerPeriodicSync = (swUrl: string, r: ServiceWorkerRegistration) => {
     setInterval(async () => {
       if (!online.value)
@@ -99,7 +105,7 @@ export default defineNuxtPlugin(() => {
   return {
     provide: {
       pwa: reactive({
-        isInstalled: isPWAInstalled,
+        isInstalled,
         showInstallPrompt,
         cancelInstall,
         install,

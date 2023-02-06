@@ -128,6 +128,9 @@ export default defineNuxtConfig({
       },
     },
   },
+  build: {
+    transpile: ['masto'],
+  },
   nitro: {
     esbuild: {
       options: {

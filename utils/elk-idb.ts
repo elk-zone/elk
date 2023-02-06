@@ -41,4 +41,5 @@ export function closeDatabases() {
     if (db.result)
       db.result.close()
   })
+  defaultGetStoreFunc = undefined!
 }

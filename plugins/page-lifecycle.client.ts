@@ -7,6 +7,7 @@ export default defineNuxtPlugin(() => {
   const frozenListeners: (() => void)[] = []
 
   lifecycle.addEventListener('statechange', (evt) => {
+    // TODO: remove isPWAInstalled before merge
     if (evt.newState === 'freeze')
       /* isPWAInstalled && */frozenListeners.forEach(listener => listener())
     else

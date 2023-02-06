@@ -5,8 +5,8 @@ export default defineNuxtPlugin(() => {
   const state = ref(lifecycle.state)
   const frozenListeners: (() => void)[] = []
 
-  lifecycle.addEventListener('statechange', (evt: any) => {
-    if (evt.newState === 'frozen')
+  lifecycle.addEventListener('statechange', (evt) => {
+    if (evt.newState === 'freeze')
       /* isPWAInstalled && */frozenListeners.forEach(listener => listener())
     else
       state.value = evt.newState

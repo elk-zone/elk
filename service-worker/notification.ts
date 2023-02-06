@@ -106,5 +106,5 @@ function htmlToPlainText(html: string) {
 */
 
 export function closeDatabaseConnections() {
-
+  // TODO: close database connections
 }

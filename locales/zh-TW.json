@@ -120,11 +120,6 @@
       "confirm": "封鎖",
       "title": "你確定要封鎖 {0} 域名嗎？"
     },
-    "common": {
-      "cancel": "否",
-      "confirm": "是",
-      "title": "你確定嗎？"
-    },
     "delete_list": {
       "cancel": "取消",
       "confirm": "確認",
@@ -212,11 +207,6 @@
     "copy_original_link_to_post": "複製貼文的原網址",
     "delete": "刪除",
     "delete_and_redraft": "刪除並重新編輯",
-    "delete_confirm": {
-      "cancel": "取消",
-      "confirm": "確認",
-      "title": "你確定要刪除這篇貼文嗎？"
-    },
     "direct_message_account": "私訊 {0}",
     "edit": "編輯",
     "hide_reblogs": "隱藏來自 {0} 的轉發",
@@ -336,12 +326,6 @@
       "description": "在 Mastodon UI 中編輯你的帳號設定",
       "label": "帳號設定"
     },
-    "feature_flags": {
-      "github_cards": "GitHub 卡片",
-      "title": "實驗性功能",
-      "user_picker": "使用者設置",
-      "virtual_scroll": "虛擬滾動"
-    },
     "interface": {
       "color_mode": "色彩模式",
       "dark_mode": "深色",
@@ -349,13 +333,6 @@
       "font_size": "字體大小",
       "label": "外觀",
       "light_mode": "淺色",
-      "size_label": {
-        "lg": "大",
-        "md": "中",
-        "sm": "小",
-        "xl": "特大",
-        "xs": "特小"
-      },
       "system_mode": "系統預設",
       "theme_color": "主題色"
     },

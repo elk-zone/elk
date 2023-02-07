@@ -23,7 +23,7 @@
     "test:typecheck": "stale-dep && vue-tsc --noEmit && vue-tsc --noEmit --project service-worker/tsconfig.json",
     "test": "nr test:unit",
     "update:team:avatars": "esno scripts/avatars.ts",
-    "postinstall": "stale-dep -u && simple-git-hooks && nuxi prepare",
+    "postinstall": "ignore-dependency-scripts \"stale-dep -u && simple-git-hooks && nuxi prepare\"",
     "release": "stale-dep && bumpp && esno scripts/release.ts"
   },
   "dependencies": {
@@ -70,6 +70,7 @@
     "fuse.js": "^6.6.2",
     "github-reserved-names": "^2.0.4",
     "idb-keyval": "^6.2.0",
+    "ignore-dependency-scripts": "^1.0.1",
     "iso-639-1": "^2.1.15",
     "js-yaml": "^4.1.0",
     "lru-cache": "^7.14.1",

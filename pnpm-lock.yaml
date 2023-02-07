@@ -86,6 +86,7 @@ importers:
       fuse.js: ^6.6.2
       github-reserved-names: ^2.0.4
       idb-keyval: ^6.2.0
+      ignore-dependency-scripts: ^1.0.1
       iso-639-1: ^2.1.15
       js-yaml: ^4.1.0
       lint-staged: ^13.1.0
@@ -170,6 +171,7 @@ importers:
       fuse.js: 6.6.2
       github-reserved-names: 2.0.4
       idb-keyval: 6.2.0
+      ignore-dependency-scripts: 1.0.1
       iso-639-1: 2.1.15
       js-yaml: 4.1.0
       lru-cache: 7.14.1
@@ -7142,6 +7144,11 @@ packages:
 
   /ieee754/1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
+
+  /ignore-dependency-scripts/1.0.1:
+    resolution: {integrity: sha512-WqyrHQb35hinQkdzsNTpFqlmnksHk0mHxmSX/03i91U4WdeiTOYTYf89dB15E8q0oP3lcY+1GP95sqSgjWGUdA==}
+    hasBin: true
+    dev: false
 
   /ignore/5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}

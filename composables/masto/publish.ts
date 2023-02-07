@@ -150,6 +150,8 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
   }
 
   async function pickAttachments() {
+    if (process.server)
+      return
     const mimeTypes = currentInstance.value!.configuration?.mediaAttachments.supportedMimeTypes
     const files = await fileOpen({
       description: 'Attachments',

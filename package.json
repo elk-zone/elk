@@ -17,7 +17,7 @@
     "start:https": "PORT=5314 node ./https-dev-config/local-https-server.mjs",
     "lint": "eslint --cache .",
     "typecheck": "stale-dep && nuxi typecheck",
-    "prepare": "esno scripts/prepare.ts",
+    "prepare": "ignore-dependency-scripts \"esno scripts/prepare.ts\"",
     "generate": "nuxi generate",
     "test:unit": "stale-dep && vitest",
     "test:typecheck": "stale-dep && vue-tsc --noEmit && vue-tsc --noEmit --project service-worker/tsconfig.json",

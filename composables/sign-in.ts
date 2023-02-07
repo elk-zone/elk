@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 
 export const useSignIn = (input?: Ref<HTMLInputElement | undefined>) => {
-  const singleInstanceServer = useAppConfig().singleInstanceServer
+  const singleInstanceServer = useRuntimeConfig().public.singleInstance
   const userSettings = useUserSettings()
   const users = useUsers()
   const { t } = useI18n()

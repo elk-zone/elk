@@ -96,7 +96,6 @@ export default defineNuxtConfig({
     },
   },
   appConfig: {
-    singleInstanceServer: process.env.SINGLE_INSTANCE_SERVER === 'true',
     storage: {
       driver: process.env.NUXT_STORAGE_DRIVER ?? (isCI ? 'cloudflare' : 'fs'),
     },
@@ -115,6 +114,7 @@ export default defineNuxtConfig({
       translateApi: '',
       // Use the instance where Elk has its Mastodon account as the default
       defaultServer: 'm.webtoo.ls',
+      singleInstance: false,
     },
     storage: {
       fsBase: 'node_modules/.cache/app',

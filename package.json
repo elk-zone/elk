@@ -52,7 +52,7 @@
     "@tiptap/suggestion": "2.0.0-beta.204",
     "@tiptap/vue-3": "2.0.0-beta.204",
     "@unocss/nuxt": "^0.49.0",
-    "@vue-macros/nuxt": "^0.3.7",
+    "@vue-macros/nuxt": "^1.0.3",
     "@vueuse/core": "^9.11.1",
     "@vueuse/gesture": "2.0.0-beta.1",
     "@vueuse/integrations": "^9.11.1",

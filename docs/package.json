@@ -10,6 +10,8 @@
   },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.6.1",
-    "nuxt": "^3.1.1"
+    "iso-639-1": "^2.1.15",
+    "nuxt": "^3.1.1",
+    "vite-plugin-virtual": "^0.1.1"
   }
 }

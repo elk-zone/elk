@@ -230,10 +230,14 @@ importers:
   docs:
     specifiers:
       '@nuxt-themes/docus': ^1.6.1
+      iso-639-1: ^2.1.15
       nuxt: ^3.1.1
+      vite-plugin-virtual: ^0.1.1
     devDependencies:
       '@nuxt-themes/docus': 1.6.3_nuxt@3.1.1
+      iso-639-1: 2.1.15
       nuxt: 3.1.1
+      vite-plugin-virtual: 0.1.1
 
 packages:
 
@@ -4497,7 +4501,7 @@ packages:
       '@vueuse/core': 9.11.1
       '@vueuse/metadata': 9.11.1
       local-pkg: 0.4.3
-      nuxt: 3.1.1_7rz7g5sqfnn6wuv5lem37retty
+      nuxt: 3.1.1
       vue-demi: 0.13.11
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -7632,7 +7636,6 @@ packages:
   /iso-639-1/2.1.15:
     resolution: {integrity: sha512-7c7mBznZu2ktfvyT582E2msM+Udc1EjOyhVRE/0ZsjD9LBtWSm23h3PtiRh2a35XoUsTQQjJXaJzuLjXsOdFDg==}
     engines: {node: '>=6.0'}
-    dev: false
 
   /isomorphic-ws/5.0.0_ws@8.12.0:
     resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
@@ -11854,6 +11857,12 @@ packages:
       - '@types/babel__core'
       - supports-color
     dev: false
+
+  /vite-plugin-virtual/0.1.1:
+    resolution: {integrity: sha512-JnEbO2AOIfpMfL/uSz7snJ4HzTxCbJFtw7xX413UrYY0IiZjAnY78Ie/Kd7k03iBlyQsFpdzdKQu+ULxu0UXMg==}
+    peerDependencies:
+      vite: ^2.0.0
+    dev: true
 
   /vite-plugin-vue-inspector/3.1.2:
     resolution: {integrity: sha512-DLvwyyCScgCufOU7K7UMk8UMREKGVpJbF6A6VDCavQzNcpbG9xovSstwiAr4ykMskWTzZ5GhVwHtIaNeQx3MzA==}

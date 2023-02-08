@@ -420,6 +420,8 @@
         "label": "Wygląd",
         "profile_metadata": "Metadane profilu",
         "profile_metadata_desc": "Możesz mieć maksymalnie {0} elementy wyświetlane jako tabela w swoim profilu",
+        "profile_metadata_label": "Nazwa",
+        "profile_metadata_value": "Zawartość",
         "title": "Edytuj profil"
       },
       "featured_tags": {

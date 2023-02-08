@@ -428,6 +428,8 @@
         "label": "Appearance",
         "profile_metadata": "Profile metadata",
         "profile_metadata_desc": "You can have up to {0} items displayed as a table on your profile",
+        "profile_metadata_label": "Label",
+        "profile_metadata_value": "Content",
         "title": "Edit profile"
       },
       "featured_tags": {

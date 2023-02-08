@@ -66,12 +66,14 @@ const chooseIcon = (i: number, text: string) => {
         </CommonDropdown>
         <input
           v-model="form.fieldsAttributes[i - 1].name"
-          type="text" placeholder="Label"
+          type="text" placeholder-text-secondary
+          :placeholder="$t('settings.profile.appearance.profile_metadata_label')"
           input-base
         >
         <input
           v-model="form.fieldsAttributes[i - 1].value"
-          type="text" placeholder="Content"
+          type="text" placeholder-text-secondary
+          :placeholder="$t('settings.profile.appearance.profile_metadata_value')"
           input-base
         >
       </div>

@@ -180,9 +180,9 @@
     "cancel_edit": "Anuluj edycję",
     "clear_error": "Usuń błąd",
     "create": "Utwórz",
-    "delete": "Usuń tę listę",
+    "delete": "Usuń listę",
     "delete_error": "Podczas usuwania listy wystąpił błąd",
-    "edit": "Edytuj tę listę",
+    "edit": "Edytuj listę",
     "edit_error": "Podczas aktualizowania listy wystąpił błąd",
     "error": "Podczas tworzenia listy wystąpił błąd",
     "error_prefix": "Błąd:",
@@ -394,11 +394,11 @@
     "notifications_settings": "Powiadomienia",
     "preferences": {
       "enable_autoplay": "Włącz autoodtwarzanie",
-      "enable_pinch_to_zoom": "Włączenie funkcji zoomu dwoma palcami",
+      "enable_pinch_to_zoom": "Włącz powiększanie za pomocą gestów",
       "github_cards": "GitHub Cards",
-      "grayscale_mode": "Tryb skali szarości",
+      "grayscale_mode": "Wpisy w odcieniach szarości",
       "hide_account_hover_card": "Ukryj wizytówkę konta",
-      "hide_alt_indi_on_posts": "Ukryj wskaźnik alt we wpisach",
+      "hide_alt_indi_on_posts": "Ukryj wskaźnik ALT przy wpisach",
       "hide_boost_count": "Ukryj liczbę podbić",
       "hide_favorite_count": "Ukryj liczbę polubień",
       "hide_follower_count": "Ukryj liczbę obserwujących",
@@ -410,7 +410,7 @@
       "title": "Funkcje eksperymentalne",
       "user_picker": "User Picker",
       "virtual_scroll": "Virtual Scrolling",
-      "wellbeing": "Dobre samopoczucie"
+      "wellbeing": "Dla dobrego samopoczucia"
     },
     "profile": {
       "appearance": {

@@ -1,13 +1,6 @@
 <script setup lang="ts">
-import ISO639 from 'iso-639-1'
+// replace this with import.meta.glob('/locales.json')
 import localesStatuses from 'virtual:elk-locales'
-
-const getLocaleName = (locale: string) => {
-  const [localeCode, variant] = locale.split('-')
-  const localeName = ISO639.getName(localeCode)
-
-  return `${localeName} ${variant ? `(${variant})` : ''}`
-}
 </script>
 
 <template>
@@ -21,8 +14,8 @@ const getLocaleName = (locale: string) => {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="({ translated, missing, total }, key) in localesStatuses" :key="key">
-        <td>{{ getLocaleName(key) }}</td>
+      <tr v-for="({ title, translated, missing, total }, key) in localesStatuses" :key="key">
+        <td>{{ title }}</td>
         <td>{{ `${translated?.length ?? 0} (${(100 * (translated?.length ?? 0) / total).toFixed(1)}%)` }}</td>
         <td>{{ `${missing?.length ?? 0} (${(100 * (missing?.length ?? 0) / total).toFixed(1)}%)` }}</td>
         <td><button>Raise a PR</button></td>

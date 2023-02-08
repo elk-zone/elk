@@ -4,8 +4,13 @@ import { check } from 'stale-dep'
 export default defineNuxtModule({
   meta: {
     name: 'stale-dep',
+    configKey: 'staleDep',
   },
-  setup() {
-    return check('pnpm')
+  defaults: {
+    enabled: true,
+  },
+  setup(opts) {
+    if (opts.enabled)
+      return check('pnpm')
   },
 })

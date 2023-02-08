@@ -104,6 +104,7 @@ const userSettings = useUserSettings()
         controls
         rounded-lg
         object-cover
+        fullscreen:object-contain
         :width="attachment.meta?.original?.width"
         :height="attachment.meta?.original?.height"
         :style="{

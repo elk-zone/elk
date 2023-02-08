@@ -27,7 +27,7 @@
     "moved_title": "ha indicat que el seu nou compte és ara:",
     "muted_users": "Usuaris silenciats",
     "muting": "Silenciat",
-    "mutuals": "Mútues",
+    "mutuals": "Mutu",
     "notifications_on_post_disable": "Deixa de notificar-me quan {username} publique",
     "notifications_on_post_enable": "Aviseu-me quan {username} publique",
     "notify_on_post": "Aviseu-me quan {username} publique",
@@ -41,19 +41,19 @@
     "unfollow": "Deixa de seguir",
     "unmute": "Activa el so",
     "view_other_followers": "És possible que no es mostrin els seguidors d'altres instàncies.",
-    "view_other_following": "És possible que no es mostri el seguiment d'altres casos."
+    "view_other_following": "És possible que no es mostrin els seguits d'altres instàncies."
   },
   "action": {
     "apply": "Aplicar",
-    "bookmark": "Marcador",
-    "bookmarked": "Marcat com a favorits",
+    "bookmark": "Afegir marcador",
+    "bookmarked": "Afegit a marcadors",
     "boost": "Estímul",
     "boost_count": "{0}",
     "boosted": "Potenciat",
     "clear_publish_failed": "Esborra els errors de publicació",
     "clear_upload_failed": "Esborra els errors de càrrega de fitxers",
     "close": "Tanca",
-    "compose": "Composar",
+    "compose": "Redactar",
     "confirm": "Confirmeu",
     "edit": "Edita",
     "enter_app": "Entra a l'aplicació",
@@ -61,7 +61,7 @@
     "favourite_count": "{0}",
     "favourited": "Favorit",
     "more": "Més",
-    "next": "Pròxim",
+    "next": "Següent",
     "prev": "Anterior",
     "publish": "Publicar",
     "reply": "Respon",
@@ -70,7 +70,7 @@
     "save": "Desa",
     "save_changes": "Guardar canvis",
     "sign_in": "Inicia sessió",
-    "sign_in_to": "Inicieu la sessió a {0}",
+    "sign_in_to": "Inicia sessió a {0}",
     "switch_account": "Canvia de compte",
     "vote": "Vota"
   },
@@ -234,9 +234,9 @@
     "back": "Torna",
     "blocked_domains": "Dominis bloquejats",
     "blocked_users": "Usuaris bloquejats",
-    "bookmarks": "Adreces d'interès",
+    "bookmarks": "Marcadors",
     "built_at": "Construït {0}",
-    "compose": "Composar",
+    "compose": "Redactar",
     "conversations": "Converses",
     "explore": "Explora",
     "favourites": "Preferits",
@@ -270,7 +270,7 @@
   },
   "placeholder": {
     "content_warning": "Escriu el teu avís aquí",
-    "default_1": "Què tens en ment?",
+    "default_1": "Què et passa pel cap?",
     "reply_to_account": "Respon a {0}",
     "replying": "Responent",
     "the_thread": "el fil"
@@ -377,7 +377,7 @@
           "none": "De ningú",
           "title": "De qui puc rebre notificacions?"
         },
-        "save_settings": "Desa la configuració",
+        "save_settings": "Desa els canvis",
         "subscription_error": {
           "clear_error": "Esborra l'error",
           "invalid_vapid_key": "La clau pública VAPID sembla que no és vàlida.",
@@ -451,8 +451,8 @@
     }
   },
   "share-target": {
-    "description": "Elk es pot configurar perquè pugueu compartir contingut d'altres aplicacions, només cal que instal·leu Elk al vostre dispositiu o ordinador i inicieu la sessió.",
-    "hint": "Per compartir contingut amb Elk, cal que l'Elk estigui instal·lat i inicieu la sessió.",
+    "description": "Elk es pot configurar perquè pugueu compartir contingut d'altres aplicacions, només cal que instal·leu Elk al vostre dispositiu o ordinador i inicieu sessió.",
+    "hint": "Per compartir contingut amb Elk, cal que l'Elk estigui instal·lat i inicieu sessió.",
     "title": "Comparteix amb Elk"
   },
   "state": {
@@ -525,8 +525,8 @@
     "minute_past": "fa 0 minuts|fa 1 minut|fa {n} minuts",
     "month_future": "d'aquí a 0 mesos|mes que ve|d'aquí a {n} mesos",
     "month_past": "fa 0 mesos|el mes passat|fa {n} mesos",
-    "second_future": "ara mateix|en {n} segons|en {n} segons",
-    "second_past": "ara mateix|fa {n} segons|fa {n} segons",
+    "second_future": "ara mateix|en {n} segon|en {n} segons",
+    "second_past": "ara mateix|fa {n} segon|fa {n} segons",
     "short_day_future": "en {n}d",
     "short_day_past": "{n}d",
     "short_hour_future": "en {n}h",
@@ -574,7 +574,7 @@
   "user": {
     "add_existing": "Afegeix un compte existent",
     "server_address_label": "Adreça del servidor Mastodon",
-    "sign_in_desc": "Inicieu la sessió per seguir perfils o hashtags, preferir, compartir i respondre publicacions o interactuar des del vostre compte en un servidor diferent.",
+    "sign_in_desc": "Inicia sessió per seguir perfils o hashtags, preferir, compartir i respondre publicacions o interactuar des del vostre compte en un servidor diferent.",
     "sign_in_notice_title": "S'estan visualitzant {0} dades públiques",
     "sign_out_account": "Tanca la sessió {0}",
     "tip_no_account": "Si encara no teniu cap compte de Mastodon, {0}.",

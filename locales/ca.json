@@ -14,8 +14,8 @@
     "blocking": "Bloquejat",
     "bot": "BOT",
     "favourites": "Preferits",
-    "follow": "Seguiu",
-    "follow_back": "Seguir",
+    "follow": "Segueix",
+    "follow_back": "Segueix de tornada",
     "follow_requested": "Demanat",
     "followers": "Seguidors",
     "followers_count": "{0} Seguidors|{0} Seguidor|{0} Seguidors",
@@ -68,7 +68,7 @@
     "reply_count": "{0}",
     "reset": "Restableix",
     "save": "Desa",
-    "save_changes": "Guardar canvis",
+    "save_changes": "Desa els canvis",
     "sign_in": "Inicia sessió",
     "sign_in_to": "Inicia sessió a {0}",
     "switch_account": "Canvia de compte",
@@ -198,7 +198,7 @@
     "list_title_placeholder": "Títol de la llista",
     "modify_account": "Modificar llistes amb compte",
     "remove_account": "Elimina el compte de la llista",
-    "save": "Guardar canvis"
+    "save": "Desa els canvis"
   },
   "menu": {
     "block_account": "Bloqueja {0}",
@@ -223,12 +223,12 @@
       "dark": "Canvia a mode fosc",
       "light": "Canvia a mode clar"
     },
-    "translate_post": "Tradueix la publicació",
+    "translate_post": "Tradueix",
     "unblock_account": "Desbloqueja {0}",
     "unblock_domain": "Desbloqueja el domini {0}",
-    "unmute_account": "Activa el so de {0}",
-    "unmute_conversation": "Deixeu de silenciar aquesta publicació",
-    "unpin_on_profile": "Deixa de fixar el perfil"
+    "unmute_account": "Deixa de silenciar {0}",
+    "unmute_conversation": "Deixa de silenciar aquesta publicació",
+    "unpin_on_profile": "No fixis al perfil"
   },
   "nav": {
     "back": "Torna",

@@ -121,7 +121,12 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
+    // Static generation
+    '/': { prerender: true },
+    '/settings/**': { prerender: false },
+    // incremental regeneration
     '/api/list-servers': { swr: true },
+    // CDN cache rules
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',
@@ -139,8 +144,6 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: ['/'],
-      ignore: ['/settings'],
     },
   },
   sourcemap: !isDevelopment,

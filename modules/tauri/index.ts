@@ -1,5 +1,5 @@
 import { rm } from 'fs/promises'
-import { addImports, addPlugin, createResolver, defineNuxtModule, useNuxt } from '@nuxt/kit'
+import { addImports, addImportsSources, addPlugin, createResolver, defineNuxtModule, useNuxt } from '@nuxt/kit'
 
 export default defineNuxtModule({
   meta: {
@@ -37,6 +37,14 @@ export default defineNuxtModule({
       config.srcDir = './_nonexistent'
       config.scanDirs = []
     })
+
+    addImportsSources({
+      from: 'h3',
+      imports: ['defineEventHandler', 'getQuery', 'getRouterParams', 'readBody', 'sendRedirect'] as Array<keyof typeof import('h3')>,
+    })
+
+    nuxt.options.imports.dirs = nuxt.options.imports.dirs || []
+    nuxt.options.imports.dirs.push(resolve('../../server/utils'))
 
     addImports({ name: 'useStorage', from: resolve('./runtime/storage') })
 

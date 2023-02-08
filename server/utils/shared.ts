@@ -8,8 +8,8 @@ import { stringifyQuery } from 'ufo'
 import { $fetch } from 'ofetch'
 import type { Storage } from 'unstorage'
 
-import cached from './cache-driver'
-import kv from './cloudflare-driver'
+import cached from '../cache-driver'
+import kv from '../cloudflare-driver'
 
 // @ts-expect-error virtual import
 import { env } from '#build-info'

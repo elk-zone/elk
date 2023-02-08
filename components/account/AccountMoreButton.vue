@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import { toggleBlockAccount, toggleBlockDomain, toggleMuteAccount } from '~~/composables/masto/relationship'
 
 const { account } = defineProps<{
   account: mastodon.v1.Account
@@ -17,46 +18,6 @@ const isSelf = $(useSelfAccount(() => account))
 const { t } = useI18n()
 const { client } = $(useMasto())
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
-
-async function toggleMute() {
-  if (!relationship!.muting && await openConfirmDialog({
-    title: t('confirm.mute_account.title', [account.acct]),
-    confirm: t('confirm.mute_account.confirm'),
-    cancel: t('confirm.mute_account.cancel'),
-  }) !== 'confirm')
-    return
-
-  relationship!.muting = !relationship!.muting
-  relationship = relationship!.muting
-    ? await client.v1.accounts.mute(account.id, {
-      // TODO support more options
-    })
-    : await client.v1.accounts.unmute(account.id)
-}
-
-async function toggleBlockUser() {
-  if (!relationship!.blocking && await openConfirmDialog({
-    title: t('confirm.block_account.title', [account.acct]),
-    confirm: t('confirm.block_account.confirm'),
-    cancel: t('confirm.block_account.cancel'),
-  }) !== 'confirm')
-    return
-
-  relationship!.blocking = !relationship!.blocking
-  relationship = await client.v1.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
-}
-
-async function toggleBlockDomain() {
-  if (!relationship!.domainBlocking && await openConfirmDialog({
-    title: t('confirm.block_domain.title', [getServerName(account)]),
-    confirm: t('confirm.block_domain.confirm'),
-    cancel: t('confirm.block_domain.cancel'),
-  }) !== 'confirm')
-    return
-
-  relationship!.domainBlocking = !relationship!.domainBlocking
-  await client.v1.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
-}
 
 async function toggleReblogs() {
   if (!relationship!.showingReblogs && await openConfirmDialog({
@@ -149,16 +110,16 @@ async function removeUserNote() {
           <CommonDropdownItem
             v-if="!relationship?.muting"
             :text="$t('menu.mute_account', [`@${account.acct}`])"
-            icon="i-ri:volume-up-fill"
+            icon="i-ri:volume-mute-line"
             :command="command"
-            @click="toggleMute()"
+            @click="toggleMuteAccount (relationship!, account)"
           />
           <CommonDropdownItem
             v-else
             :text="$t('menu.unmute_account', [`@${account.acct}`])"
-            icon="i-ri:volume-mute-line"
+            icon="i-ri:volume-up-fill"
             :command="command"
-            @click="toggleMute()"
+            @click="toggleMuteAccount (relationship!, account)"
           />
 
           <CommonDropdownItem
@@ -166,14 +127,14 @@ async function removeUserNote() {
             :text="$t('menu.block_account', [`@${account.acct}`])"
             icon="i-ri:forbid-2-line"
             :command="command"
-            @click="toggleBlockUser()"
+            @click="toggleBlockAccount (relationship!, account)"
           />
           <CommonDropdownItem
             v-else
             :text="$t('menu.unblock_account', [`@${account.acct}`])"
             icon="i-ri:checkbox-circle-line"
             :command="command"
-            @click="toggleBlockUser()"
+            @click="toggleBlockAccount (relationship!, account)"
           />
 
           <template v-if="getServerName(account) !== currentServer">
@@ -182,14 +143,14 @@ async function removeUserNote() {
               :text="$t('menu.block_domain', [getServerName(account)])"
               icon="i-ri:shut-down-line"
               :command="command"
-              @click="toggleBlockDomain()"
+              @click="toggleBlockDomain(relationship!, account)"
             />
             <CommonDropdownItem
               v-else
               :text="$t('menu.unblock_domain', [getServerName(account)])"
               icon="i-ri:restart-line"
               :command="command"
-              @click="toggleBlockDomain()"
+              @click="toggleBlockDomain(relationship!, account)"
             />
           </template>
         </template>

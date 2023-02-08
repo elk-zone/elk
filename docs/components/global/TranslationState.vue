@@ -1,19 +1,6 @@
-<script lang="ts">
+<script setup lang="ts">
 import ISO639 from 'iso-639-1'
-import flatteredLocales from 'virtual:elk-locales'
-
-type LocaleCode = string
-
-interface LocaleStatus {
-  // Translated keys
-  translated?: string[]
-  // Translated keys
-  missing?: string[]
-  outdated?: string[]
-  total: number
-}
-
-const flatteredLocalesTyped: Record<LocaleCode, LocaleStatus> = flatteredLocales
+import localesStatuses from 'virtual:elk-locales'
 
 const getLocaleName = (locale: string) => {
   const [localeCode, variant] = locale.split('-')
@@ -21,10 +8,6 @@ const getLocaleName = (locale: string) => {
 
   return `${localeName} ${variant ? `(${variant})` : ''}`
 }
-</script>
-
-<script setup lang="ts">
-const localesStatuses = flatteredLocalesTyped
 </script>
 
 <template>

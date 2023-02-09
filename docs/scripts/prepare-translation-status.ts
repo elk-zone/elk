@@ -96,9 +96,17 @@ async function prepareTranslationStatus() {
     await compare(flatEntries, file, data[code])
   }))
 
+  const sorted: Record<string, any> = { en: { ...data.en } }
+
+  Object.keys(data).filter(k => k !== 'en').sort((a, b) => {
+    return data[a].translated.length - data[b].translated.length
+  }).forEach((k) => {
+    sorted[k] = { ...data[k] }
+  })
+
   await writeFile(
     createResolver(import.meta.url).resolve('../translation-status.json'),
-    JSON.stringify(data, null, 2),
+    JSON.stringify(sorted, null, 2),
     { encoding: 'utf-8' },
   )
 }

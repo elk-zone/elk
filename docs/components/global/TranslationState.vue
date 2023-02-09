@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const localesStatuses = await import('~/translation-status.json').then(m => m.default)
+import type { TranslationStatus } from '../../types'
+
+const localesStatuses: TranslationStatus = await import('../../translation-status.json').then(m => m.default)
 
 const totalReference = localesStatuses.en.total
 
@@ -26,14 +28,14 @@ const localeTitle = computed(() => {
     : `Outdated keys in ${locale.value.file}`
 })
 
-const missing = computed<string[]>(() => {
+const missingEntries = computed<string[]>(() => {
   if (hidden.value || !currentLocale.value || localeTab.value === 'outdated')
     return []
 
   return (localesStatuses as Record<string, any>)[locale.value].missing
 })
 
-const outdated = computed<string[]>(() => {
+const outdatedEntries = computed<string[]>(() => {
   if (hidden.value || !currentLocale.value || localeTab.value === 'missing')
     return []
 
@@ -58,7 +60,7 @@ const copyToClipboard = async () => {
   try {
     await navigator.clipboard.writeText([
       `# ${localeTitle.value}`,
-      (localeTab.value === 'missing' ? missing.value : outdated.value).join('\n')].join('\n'),
+      (localeTab.value === 'missing' ? missingEntries.value : outdatedEntries.value).join('\n')].join('\n'),
     )
     copied.value = true
     setTimeout(() => copied.value = false, 750)
@@ -166,12 +168,12 @@ const copyToClipboard = async () => {
                     </h2>
                   </header>
                   <ul v-if="localeTab === 'missing'">
-                    <li v-for="entry in missing" :key="entry">
+                    <li v-for="entry in missingEntries" :key="entry">
                       <pre>{{ entry }}</pre>
                     </li>
                   </ul>
                   <ul v-else>
-                    <li v-for="entry in outdated" :key="entry">
+                    <li v-for="entry in outdatedEntries" :key="entry">
                       <pre>{{ entry }}</pre>
                     </li>
                   </ul>

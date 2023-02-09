@@ -3,19 +3,10 @@ import { createResolver } from '@nuxt/kit'
 import { readFile, writeFile } from 'fs-extra'
 import { currentLocales } from '../../config/i18n'
 import vsCodeConfig from '../../.vscode/settings.json'
+import type { LocaleEntry } from '../types'
 
 export const localeData: [code: string, file: string[], title: string][]
     = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
-
-interface LocaleEntry {
-  title: string
-  file: string
-  translated: string[]
-  missing: string[]
-  outdated: string[]
-  total: number
-  isSource?: boolean
-}
 
 function merge(src: Record<string, any>, dst: Record<string, any>) {
   for (const key in src) {
@@ -68,18 +59,18 @@ async function compare(
 
 async function prepareTranslationStatus() {
   const sourceLanguageLocale = localeData.find(l => l[0] === vsCodeConfig['i18n-ally.sourceLanguage'])!
-  const data: Record<string, LocaleEntry> = {}
   const entries: Record<string, any> = await readI18nFile(sourceLanguageLocale[1])
   const flatEntries = flatten<typeof entries, Record<string, string>>(entries)
-
-  data.en = {
-    translated: [],
-    file: 'en.json',
-    missing: [],
-    outdated: [],
-    title: 'English (source)',
-    total: Object.keys(flatEntries).length,
-    isSource: true,
+  const data: Record<string, LocaleEntry> = {
+    en: {
+      translated: [],
+      file: 'en.json',
+      missing: [],
+      outdated: [],
+      title: 'English (source)',
+      total: Object.keys(flatEntries).length,
+      isSource: true,
+    },
   }
 
   await Promise.all(localeData.filter(l => l[0] !== 'en-US').map(async ([code, file, title]) => {

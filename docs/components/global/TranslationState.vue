@@ -9,7 +9,7 @@ type Tab = 'missing' | 'outdated'
 
 const hidden = ref(true)
 const locale = ref()
-const localeTab = ref<Tab>()
+const localeTab = ref<Tab>('missing')
 const copied = ref(false)
 
 const currentLocale = computed(() => {
@@ -29,14 +29,14 @@ const localeTitle = computed(() => {
 })
 
 const missingEntries = computed<string[]>(() => {
-  if (hidden.value || !currentLocale.value || localeTab.value === 'outdated')
+  if (hidden.value || !currentLocale.value || localeTab.value !== 'missing')
     return []
 
   return (localesStatuses as Record<string, any>)[locale.value].missing
 })
 
 const outdatedEntries = computed<string[]>(() => {
-  if (hidden.value || !currentLocale.value || localeTab.value === 'missing')
+  if (hidden.value || !currentLocale.value || localeTab.value !== 'outdated')
     return []
 
   return (localesStatuses as Record<string, any>)[locale.value]!.outdated

@@ -23,7 +23,8 @@
     "test:typecheck": "stale-dep && vue-tsc --noEmit && vue-tsc --noEmit --project service-worker/tsconfig.json",
     "test": "nr test:unit",
     "update:team:avatars": "esno scripts/avatars.ts",
-    "postinstall": "ignore-dependency-scripts \"stale-dep -u && simple-git-hooks && nuxi prepare\"",
+    "prepare-translation-status": "pnpm -C docs run prepare-translation-status",
+    "postinstall": "ignore-dependency-scripts \"stale-dep -u && simple-git-hooks && nuxi prepare && nr prepare-translation-status\"",
     "release": "stale-dep && bumpp && esno scripts/release.ts"
   },
   "dependencies": {

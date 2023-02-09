@@ -9,3 +9,4 @@ public/
 https-dev-config/localhost.crt
 https-dev-config/localhost.key
 Dockerfile
+docs/translation-state.json

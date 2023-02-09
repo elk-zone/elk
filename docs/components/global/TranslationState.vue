@@ -32,14 +32,14 @@ const missingEntries = computed<string[]>(() => {
   if (hidden.value || !currentLocale.value || localeTab.value !== 'missing')
     return []
 
-  return (localesStatuses as Record<string, any>)[locale.value].missing
+  return localesStatuses[locale.value].missing
 })
 
 const outdatedEntries = computed<string[]>(() => {
   if (hidden.value || !currentLocale.value || localeTab.value !== 'outdated')
     return []
 
-  return (localesStatuses as Record<string, any>)[locale.value]!.outdated
+  return localesStatuses[locale.value]!.outdated
 })
 
 const showDetail = (key: string, tab: Tab = 'missing', fromTab = false) => {
@@ -51,6 +51,7 @@ const showDetail = (key: string, tab: Tab = 'missing', fromTab = false) => {
 
     return
   }
+
   locale.value = key
   localeTab.value = tab
   nextTick().then(() => hidden.value = false)
@@ -106,7 +107,7 @@ const copyToClipboard = async () => {
             v-if="totalReference > 0"
             :class="[{ expandable: !isSource }]"
             :title="!isSource ? 'Click to show detail' : undefined"
-            @click="!isSource && showDetail(key.toString(), 'missing')"
+            @click="!isSource && showDetail(key, 'missing')"
           >
             <td :class="[{ expandable: !isSource }]">
               <div>
@@ -155,13 +156,13 @@ const copyToClipboard = async () => {
                     <h2 class="tabs">
                       <button
                         :class="localeTab === 'missing' ? 'current' : null"
-                        @click="showDetail(key.toString(), 'missing', true)"
+                        @click="showDetail(key, 'missing', true)"
                       >
                         Missing keys
                       </button>
                       <button
                         :class="localeTab === 'outdated' ? 'current' : null"
-                        @click="showDetail(key.toString(), 'outdated', true)"
+                        @click="showDetail(key, 'outdated', true)"
                       >
                         Outdated keys
                       </button>

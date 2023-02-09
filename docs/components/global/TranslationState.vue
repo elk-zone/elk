@@ -234,15 +234,7 @@ td.expandable div {
   flex-direction: row;
   column-gap: 4px;
 }
-/*td.expandable {
-  position: relative;
-}*/
 td.expandable > svg {
-  /*
-  position: absolute;
-  top: -2px;
-  right: 0;
-  */
   color: currentColor;
 }
 

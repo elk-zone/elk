@@ -10,10 +10,10 @@
     "prepare-translation-status": "nuxi prepare && esno scripts/prepare-translation-status.ts"
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "^1.8.1",
+    "@nuxt-themes/docus": "^1.6.1",
     "@types/flat": "^5.0.2",
     "flat": "^5.0.2",
     "flatten": "^1.0.3",
-    "nuxt": "^3.2.0"
+    "nuxt": "^3.1.1"
   }
 }

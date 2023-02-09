@@ -197,7 +197,7 @@ importers:
       ultrahtml: 1.2.0
       unimport: 2.1.0
       unplugin-auto-import: 0.13.0_@vueuse+core@9.11.1
-      vite-plugin-pwa: 0.14.1_tz3vz2xt4jvid2diblkpydcyn4
+      vite-plugin-pwa: 0.14.1
       vue-advanced-cropper: 2.8.8
       vue-virtual-scroller: 2.0.0-beta.7
       workbox-build: 6.5.4
@@ -228,9 +228,15 @@ importers:
   docs:
     specifiers:
       '@nuxt-themes/docus': ^1.6.1
+      '@types/flat': ^5.0.2
+      flat: ^5.0.2
+      flatten: ^1.0.3
       nuxt: ^3.1.1
     devDependencies:
       '@nuxt-themes/docus': 1.6.3_nuxt@3.1.1
+      '@types/flat': 5.0.2
+      flat: 5.0.2
+      flatten: 1.0.3
       nuxt: 3.1.1
 
 packages:
@@ -3326,6 +3332,10 @@ packages:
 
   /@types/file-saver/2.0.5:
     resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
+    dev: true
+
+  /@types/flat/5.0.2:
+    resolution: {integrity: sha512-3zsplnP2djeps5P9OyarTxwRpMLoe5Ash8aL9iprw0JxB+FAHjY+ifn4yZUuW4/9hqtnmor6uvjSRzJhiVbrEQ==}
     dev: true
 
   /@types/fnando__sparkline/0.3.4:
@@ -6670,6 +6680,11 @@ packages:
 
   /flatted/3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
+
+  /flatten/1.0.3:
+    resolution: {integrity: sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==}
+    deprecated: flatten is deprecated in favor of utility frameworks such as lodash.
+    dev: true
 
   /floating-vue/2.0.0-beta.20:
     resolution: {integrity: sha512-N68otcpp6WwcYC7zP8GeJqNZVdfvS7tEY88lwmuAHeqRgnfWx1Un8enzLxROyVnBDZ3TwUoUdj5IFg+bUT7JeA==}
@@ -11789,12 +11804,10 @@ packages:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa/0.14.1_tz3vz2xt4jvid2diblkpydcyn4:
+  /vite-plugin-pwa/0.14.1:
     resolution: {integrity: sha512-5zx7yhQ8RTLwV71+GA9YsQQ63ALKG8XXIMqRJDdZkR8ZYftFcRgnzM7wOWmQZ/DATspyhPih5wCdcZnAIsM+mA==}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
-      workbox-build: ^6.5.4
-      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 5.0.2_rollup@3.10.1
       debug: 4.3.4
@@ -11804,6 +11817,7 @@ packages:
       workbox-build: 6.5.4
       workbox-window: 6.5.4
     transitivePeerDependencies:
+      - '@types/babel__core'
       - supports-color
     dev: false
 

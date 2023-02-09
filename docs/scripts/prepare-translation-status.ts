@@ -9,6 +9,7 @@ export const localeData: [code: string, file: string[], title: string][]
 
 interface LocaleEntry {
   title: string
+  file: string
   translated: string[]
   missing: string[]
   outdated: string[]
@@ -73,6 +74,7 @@ async function prepareTranslationStatus() {
 
   data.en = {
     translated: [],
+    file: 'en.json',
     missing: [],
     outdated: [],
     title: 'English (source)',
@@ -85,6 +87,7 @@ async function prepareTranslationStatus() {
     console.info(`Comparing ${code}...`, title)
     data[code] = {
       title,
+      file: Array.isArray(file) ? file[file.length - 1] : file,
       translated: [],
       missing: [],
       outdated: [],

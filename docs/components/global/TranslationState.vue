@@ -19,7 +19,7 @@ const totalRerence = localesStatuses.en.total
       </tr>
     </thead>
     <tbody>
-      <template v-for="({ title, translated, missing, outdated, total, isSource }, key) in localesStatuses" :key="key">
+      <template v-for="({ title, file, translated, missing, outdated, total, isSource }, key) in localesStatuses" :key="key">
         <tr v-if="totalRerence > 0">
           <td>{{ title }}</td>
           <template v-if="isSource">
@@ -34,7 +34,14 @@ const totalRerence = localesStatuses.en.total
             <td><strong>{{ `${missing?.length ?? 0}` }}</strong> {{ `(${(100 * (missing?.length ?? 0) / totalRerence).toFixed(1)}%)` }}</td>
             <td><strong>{{ `${outdated?.length ?? 0}` }}</strong> {{ `(${(100 * (outdated?.length ?? 0) / totalRerence).toFixed(1)}%)` }}</td>
             <td><strong>{{ `${total}` }}</strong></td>
-            <td><button>Raise a PR</button></td>
+            <td>
+              <NuxtLink target="_blank" :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${file}`">
+                <img
+                  alt="Raise a PR"
+                  src="https://developer.stackblitz.com/img/open_in_codeflow.svg"
+                >
+              </NuxtLink>
+            </td>
           </template>
         </tr>
       </template>

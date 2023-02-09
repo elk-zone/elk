@@ -1,7 +1,5 @@
-// @ts-expect-error unstorage needs to provide backwards-compatible subpath types
-import _fs from 'unstorage/drivers/fs'
-// @ts-expect-error unstorage needs to provide backwards-compatible subpath types
-import _memory from 'unstorage/drivers/memory'
+import fs from 'unstorage/drivers/fs'
+import memory from 'unstorage/drivers/memory'
 
 import { stringifyQuery } from 'ufo'
 
@@ -18,9 +16,6 @@ import { driver } from '#storage-config'
 
 import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
-
-const fs = _fs as typeof import('unstorage/dist/drivers/fs')['default']
-const memory = _memory as typeof import('unstorage/dist/drivers/memory')['default']
 
 const storage = useStorage() as Storage
 

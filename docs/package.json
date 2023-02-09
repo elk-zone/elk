@@ -7,7 +7,7 @@
     "build": "nuxi build",
     "generate": "nuxi generate",
     "preview": "nuxi preview",
-    "prepare-translation-status": "esno scripts/prepare-translation-status.ts"
+    "prepare-translation-status": "nuxi prepare && esno scripts/prepare-translation-status.ts"
   },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.6.1",

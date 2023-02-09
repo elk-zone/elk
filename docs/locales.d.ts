@@ -5,6 +5,7 @@ declare module 'virtual:elk-locales' {
         missing: string[]
         outdated: string[]
         total: number
+        isSource?: boolean
     }>
     export default locales
 }

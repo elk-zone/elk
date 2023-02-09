@@ -1,6 +1,8 @@
 <script setup lang="ts">
 // replace this with import.meta.glob('/locales.json')
 import localesStatuses from 'virtual:elk-locales'
+
+const totalRerence = localesStatuses.en.total
 </script>
 
 <template>
@@ -8,18 +10,35 @@ import localesStatuses from 'virtual:elk-locales'
     <thead>
       <tr>
         <th>Language</th>
-        <th>Translated</th>
+        <th title="Keys correctly translated">
+          Translated
+        </th>
         <th>Missing</th>
+        <th>Outdated</th>
+        <th>Total</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="({ title, translated, missing, total }, key) in localesStatuses" :key="key">
-        <td>{{ title }}</td>
-        <td>{{ `${translated?.length ?? 0} (${(100 * (translated?.length ?? 0) / total).toFixed(1)}%)` }}</td>
-        <td>{{ `${missing?.length ?? 0} (${(100 * (missing?.length ?? 0) / total).toFixed(1)}%)` }}</td>
-        <td><button>Raise a PR</button></td>
-      </tr>
+      <template v-for="({ title, translated, missing, outdated, total, isSource }, key) in localesStatuses" :key="key">
+        <tr v-if="totalRerence > 0">
+          <td>{{ title }}</td>
+          <template v-if="isSource">
+            <td colspan="5" class="source-text">
+              <div>
+                {{ total }} keys as source
+              </div>
+            </td>
+          </template>
+          <template v-else>
+            <td><strong>{{ `${translated?.length ?? 0}` }}</strong> {{ `(${(100 * (translated?.length ?? 0) / totalRerence).toFixed(1)}%)` }}</td>
+            <td><strong>{{ `${missing?.length ?? 0}` }}</strong> {{ `(${(100 * (missing?.length ?? 0) / totalRerence).toFixed(1)}%)` }}</td>
+            <td><strong>{{ `${outdated?.length ?? 0}` }}</strong> {{ `(${(100 * (outdated?.length ?? 0) / totalRerence).toFixed(1)}%)` }}</td>
+            <td><strong>{{ `${total}` }}</strong></td>
+            <td><button>Raise a PR</button></td>
+          </template>
+        </tr>
+      </template>
     </tbody>
   </table>
 </template>
@@ -33,7 +52,14 @@ th {
   text-align: left;
 }
 
-button {
+th[title] {
+  text-decoration: underline dotted white;
+}
 
+.source-text {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 0;
+  text-transform: uppercase;
 }
 </style>

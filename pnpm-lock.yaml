@@ -230,11 +230,17 @@ importers:
   docs:
     specifiers:
       '@nuxt-themes/docus': ^1.6.1
+      '@types/flat': ^5.0.2
+      flat: ^5.0.2
+      flatten: ^1.0.3
       iso-639-1: ^2.1.15
       nuxt: ^3.1.1
       vite-plugin-virtual: ^0.1.1
     devDependencies:
       '@nuxt-themes/docus': 1.6.3_nuxt@3.1.1
+      '@types/flat': 5.0.2
+      flat: 5.0.2
+      flatten: 1.0.3
       iso-639-1: 2.1.15
       nuxt: 3.1.1
       vite-plugin-virtual: 0.1.1
@@ -2747,7 +2753,6 @@ packages:
       - vls
       - vti
       - vue-tsc
-    dev: true
 
   /@nuxthq/studio/0.6.5:
     resolution: {integrity: sha512-kGb8abgTRJi0gcvTQcawEol5CR6uXS4bpCwEEk0+b3LSvyiM6k22Opb29KkSatprTkFrAPHDKSaUve8PiX22sw==}
@@ -3362,6 +3367,10 @@ packages:
 
   /@types/file-saver/2.0.5:
     resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
+    dev: true
+
+  /@types/flat/5.0.2:
+    resolution: {integrity: sha512-3zsplnP2djeps5P9OyarTxwRpMLoe5Ash8aL9iprw0JxB+FAHjY+ifn4yZUuW4/9hqtnmor6uvjSRzJhiVbrEQ==}
     dev: true
 
   /@types/fnando__sparkline/0.3.4:
@@ -6708,6 +6717,11 @@ packages:
   /flatted/3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
 
+  /flatten/1.0.3:
+    resolution: {integrity: sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==}
+    deprecated: flatten is deprecated in favor of utility frameworks such as lodash.
+    dev: true
+
   /floating-vue/2.0.0-beta.20:
     resolution: {integrity: sha512-N68otcpp6WwcYC7zP8GeJqNZVdfvS7tEY88lwmuAHeqRgnfWx1Un8enzLxROyVnBDZ3TwUoUdj5IFg+bUT7JeA==}
     peerDependencies:
@@ -9033,7 +9047,6 @@ packages:
       - vls
       - vti
       - vue-tsc
-    dev: true
 
   /nuxt/3.1.1_7rz7g5sqfnn6wuv5lem37retty:
     resolution: {integrity: sha512-GVdmV88lR01OX0slxTPyTzwQkge7fxNREkx2QW0Lo66fb6aHcJlRXzFMBCOTjas+Ncng6AalIyIiPREEteGKSg==}
@@ -11821,7 +11834,6 @@ packages:
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.8
       vscode-uri: 3.0.7
-    dev: true
 
   /vite-plugin-inspect/0.7.14:
     resolution: {integrity: sha512-C9V93Yy2yUf941oVxIq93K6T1o0SZxoG8MdmyJsnoNDijOAGHT1rVSVjzF/uKFYvgnvLvaXioaoy6ica6aOS0g==}

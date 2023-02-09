@@ -200,7 +200,7 @@ const buildLocales = () => {
 
 const currentLocales = buildLocales()
 
-export const localeData = currentLocales.map(l => [l.code, l.file || l.files, l.name])
+export const localeData: [string, string[], string][] = currentLocales.map(l => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
 
 const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
   const dateTimeFormats = data.dateTimeFormats

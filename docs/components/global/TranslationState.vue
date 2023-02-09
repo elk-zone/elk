@@ -1,6 +1,5 @@
 <script setup lang="ts">
-// replace this with import.meta.glob('/locales.json')
-import localesStatuses from 'virtual:elk-locales'
+const localesStatuses = await import('~/translation-status.json').then(m => m.default)
 
 const totalRerence = localesStatuses.en.total
 </script>

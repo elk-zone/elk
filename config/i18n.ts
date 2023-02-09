@@ -198,9 +198,9 @@ const buildLocales = () => {
   return useLocales.sort((a, b) => a.code.localeCompare(b.code))
 }
 
-const currentLocales = buildLocales()
+export const currentLocales = buildLocales()
 
-export const localeData: [string, string[], string][] = currentLocales.map(l => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
+// export const localeData: [string, string[], string][] = currentLocales.map(l => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
 
 const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
   const dateTimeFormats = data.dateTimeFormats

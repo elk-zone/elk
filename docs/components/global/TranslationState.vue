@@ -1,89 +1,200 @@
 <script setup lang="ts">
 const localesStatuses = await import('~/translation-status.json').then(m => m.default)
 
-const totalRerence = localesStatuses.en.total
+const totalReference = localesStatuses.en.total
 
-const copyToClipboard = async (text: string, lines: string[]) => {
+type Tab = 'missing' | 'outdated'
+
+const hidden = ref(true)
+const locale = ref()
+const localeTab = ref<Tab>()
+const copied = ref(false)
+
+const currentLocale = computed(() => {
+  if (hidden.value || !locale.value)
+    return undefined
+
+  return localesStatuses as Record<string, any>
+})
+
+const localeTitle = computed(() => {
+  if (hidden.value || !locale.value)
+    return undefined
+
+  return localeTab.value === 'missing'
+    ? `Missing keys in ${locale.value.file}`
+    : `Outdated keys in ${locale.value.file}`
+})
+
+const missing = computed<string[]>(() => {
+  if (hidden.value || !currentLocale.value || localeTab.value === 'outdated')
+    return []
+
+  return (localesStatuses as Record<string, any>)[locale.value].missing
+})
+
+const outdated = computed<string[]>(() => {
+  if (hidden.value || !currentLocale.value || localeTab.value === 'missing')
+    return []
+
+  return (localesStatuses as Record<string, any>)[locale.value]!.outdated
+})
+
+const showDetail = (key: string, tab: Tab = 'missing', fromTab = false) => {
+  if (key === locale.value && tab === localeTab.value) {
+    if (fromTab)
+      return
+
+    nextTick().then(() => hidden.value = !hidden.value)
+
+    return
+  }
+  locale.value = key
+  localeTab.value = tab
+  nextTick().then(() => hidden.value = false)
+}
+
+const copyToClipboard = async () => {
   try {
-    await navigator.clipboard.writeText([text, lines.join('\n')].join('\n'))
+    await navigator.clipboard.writeText([
+      `# ${localeTitle.value}`,
+      (localeTab.value === 'missing' ? missing.value : outdated.value).join('\n')].join('\n'),
+    )
+    copied.value = true
+    setTimeout(() => copied.value = false, 750)
   }
-  catch (_) {
-    // todo: show error
-  }
+  catch {}
 }
 </script>
 
 <template>
-  <table class="w-full">
-    <caption>
-      <div>You can copy flat keys clicking on corresponding cell.</div>
-      <div>
-        If you want to send a PR click on <strong>Open in Codeflow</strong> on the corresponding translation file:
-        <NuxtLink href="https://developer.stackblitz.com/codeflow/working-in-codeflow-ide#making-a-pr-with-codeflow-ide">
-          read the following guide
-        </NuxtLink>
-      </div>
-    </caption>
-    <thead>
-      <tr>
-        <th>Language</th>
-        <th title="Keys correctly translated">
-          Translated
-        </th>
-        <th title="Keys missing from source which need translation for the language">
-          Missing
-        </th>
-        <th title="Keys which could be safely removed">
-          Outdated
-        </th>
-        <th>Total</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <template v-for="({ title, file, translated, missing, outdated, total, isSource }, key) in localesStatuses" :key="key">
-        <tr v-if="totalRerence > 0">
-          <td>{{ title }}</td>
-          <template v-if="isSource">
-            <td colspan="5" class="source-text">
-              <div>
-                {{ total }} keys as source
-              </div>
-            </td>
-          </template>
-          <template v-else>
-            <td
-              copy title="Copy to clipboard"
-              @click="copyToClipboard(`# Translated flat keys in ${file}`, translated)"
-            >
-              <strong>{{ `${translated?.length ?? 0}` }}</strong> {{ `(${(100 * (translated?.length ?? 0) / totalRerence).toFixed(1)}%)` }}
-            </td>
-            <td
-              copy title="Copy to clipboard"
-              @click="copyToClipboard(`# Missing flat keys in ${file}`, missing)"
-            >
-              <strong>{{ `${missing?.length ?? 0}` }}</strong> {{ `(${(100 * (missing?.length ?? 0) / totalRerence).toFixed(1)}%)` }}
-            </td>
-            <td
-              copy title="Copy to clipboard"
-              @click="copyToClipboard(`# Outdated flat keys in ${file}`, outdated)"
-            >
-              <strong>{{ `${outdated?.length ?? 0}` }}</strong> {{ `(${(100 * (outdated?.length ?? 0) / totalRerence).toFixed(1)}%)` }}
-            </td>
-            <td><strong>{{ `${total}` }}</strong></td>
-            <td>
-              <NuxtLink :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${file}`" title="Raise a PR">
-                <img
-                  alt="Open in Codeflow"
-                  src="https://developer.stackblitz.com/img/open_in_codeflow_small.svg"
-                >
-              </NuxtLink>
-            </td>
-          </template>
+  <div>
+    <table class="w-full">
+      <caption>
+        <div>You can see the detail (missing and outdated keys) by clicking on the corresponding row.</div>
+        <div>
+          If you want to send a PR click on <strong>Open in Codeflow</strong> on the corresponding translation file:
+          <NuxtLink
+            target="_blank"
+            href="https://developer.stackblitz.com/codeflow/working-in-codeflow-ide#making-a-pr-with-codeflow-ide"
+          >
+            read the following guide
+          </NuxtLink>
+        </div>
+      </caption>
+      <thead>
+        <tr>
+          <th>Language</th>
+          <th title="Keys correctly translated">
+            Translated
+          </th>
+          <th title="Keys missing from source which need translation for the language">
+            Missing
+          </th>
+          <th title="Keys which could be safely removed">
+            Outdated
+          </th>
+          <th>Total</th>
+          <th>Actions</th>
         </tr>
-      </template>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <template v-for="({ title, file, translated, missing, outdated, total, isSource }, key) in localesStatuses" :key="key">
+          <tr
+            v-if="totalReference > 0"
+            :class="[{ expandable: !isSource }]"
+            :title="!isSource ? 'Click to show detail' : null"
+            @click="!isSource && showDetail(key, 'missing')"
+          >
+            <td :class="[{ expandable: !isSource }]">
+              {{ title }}
+              <ToogleIcon v-if="!isSource" :up="hidden || key !== locale" />
+            </td>
+            <template v-if="isSource">
+              <td colspan="5" class="source-text">
+                <div>
+                  {{ total }} keys as source
+                </div>
+              </td>
+            </template>
+            <template v-else>
+              <td>
+                <strong>{{ `${translated?.length ?? 0}` }}</strong> {{ `(${(100 * (translated?.length ?? 0) / totalReference).toFixed(1)}%)` }}
+              </td>
+              <td>
+                <strong>{{ `${missing?.length ?? 0}` }}</strong> {{ `(${(100 * (missing?.length ?? 0) / totalReference).toFixed(1)}%)` }}
+              </td>
+              <td>
+                <strong>{{ `${outdated?.length ?? 0}` }}</strong> {{ `(${(100 * (outdated?.length ?? 0) / totalReference).toFixed(1)}%)` }}
+              </td>
+              <td><strong>{{ `${total}` }}</strong></td>
+              <td>
+                <NuxtLink
+                  :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${file}`"
+                  target="_blank"
+                  title="Raise a PR"
+                  @click.stop
+                >
+                  <img
+                    alt="Open in Codeflow"
+                    src="https://developer.stackblitz.com/img/open_in_codeflow_small.svg"
+                  >
+                </NuxtLink>
+              </td>
+            </template>
+          </tr>
+          <template v-if="key === locale && !hidden">
+            <tr>
+              <td colspan="6">
+                <div class="detail">
+                  <header>
+                    <h2 class="tabs">
+                      <button
+                        :class="localeTab === 'missing' ? 'current' : null"
+                        @click="showDetail(key, 'missing', true)"
+                      >
+                        Missing keys
+                      </button>
+                      <button
+                        :class="localeTab === 'outdated' ? 'current' : null"
+                        @click="showDetail(key, 'outdated', true)"
+                      >
+                        Outdated keys
+                      </button>
+                    </h2>
+                    <div class="heading-buttons">
+                      <button title="Copy to clipboard" @click="copyToClipboard()">
+                        <ClipboardIcon :copy="!copied" />
+                      </button>
+                      <button title="Close" @click="hidden = true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                          <path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </header>
+                  <ul v-if="localeTab === 'missing'">
+                    <li v-for="entry in missing" :key="entry">
+                      <pre>{{ entry }}</pre>
+                    </li>
+                  </ul>
+                  <ul v-else>
+                    <li v-for="entry in outdated" :key="entry">
+                      <pre>{{ entry }}</pre>
+                    </li>
+                  </ul>
+                  <button @click="copyToClipboard()">
+                    <ClipboardIcon :copy="!copied" />
+                    Copy to clipboard
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </template>
+        </template>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <style scoped>
@@ -106,13 +217,6 @@ caption a {
   text-decoration: underline;
 }
 
-@media (prefers-color-scheme: dark) {
-  table caption {
-    background: #333;
-    color: #fff;
-  }
-}
-
 th {
   text-align: left;
   border-bottom: 1px solid #ccc;
@@ -125,8 +229,18 @@ td:not(:first-of-type) {
 td {
   padding: 0.5rem;
 }
-td[copy] {
+tr.expandable, tr.expandable td {
   cursor: pointer;
+}
+
+td.expandable {
+  position: relative;
+}
+td.expandable > svg {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  color: currentColor;
 }
 
 tbody tr td {
@@ -143,15 +257,76 @@ th[title] {
   padding: 10px 0;
   text-transform: uppercase;
 }
-textarea {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+
+.detail {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.detail header {
+  padding: 0 0.3rem;
+  display: flex;
+  background: #eee;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail header h2 button {
+  font-weight: bold;
+  padding: 0.5rem;
+  background-color: #eee;
+}
+
+.detail header .tabs button.current {
+  background-color: white;
+}
+
+.detail header .tabs + .heading-buttons {
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.4rem;
+  align-items: center;
+}
+
+.detail ul {
+  padding: 0.3rem 0.5rem;
+  max-height: 250px;
+  min-height: 250px;
+  overflow-y: auto;
+  border-bottom: 1px solid #eee;
+}
+
+.detail > button {
+  display: flex;
+  /*justify-content: space-between;*/
+  align-items: center;
+  column-gap: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  background: transparent;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .detail header {
+    background: #333;
+    color: #fff;
+  }
+
+  .detail header h2 button {
+    background-color: #333;
+    color: #fff;
+  }
+
+  .detail header .tabs button.current {
+    background-color: white;
+    color: #333;
+  }
+
+  table caption {
+    background: #333;
+    color: #fff;
+  }
 }
 </style>

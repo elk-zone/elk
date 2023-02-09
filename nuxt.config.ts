@@ -1,5 +1,4 @@
 import { createResolver, useNuxt } from '@nuxt/kit'
-import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
@@ -32,10 +31,7 @@ export default defineNuxtConfig({
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/stale-dep',
-    ['unplugin-vue-inspector/nuxt', {
-      enabled: false,
-      toggleButtonVisibility: 'never',
-    }],
+    '@nuxt/devtools',
   ],
   experimental: {
     payloadExtraction: false,
@@ -86,9 +82,6 @@ export default defineNuxtConfig({
         },
       },
     },
-    plugins: [
-      Inspect(),
-    ],
   },
   postcss: {
     plugins: {

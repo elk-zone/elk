@@ -97,8 +97,6 @@
     "ultrahtml": "^1.2.0",
     "unimport": "^2.1.0",
     "unplugin-auto-import": "^0.13.0",
-    "unplugin-vue-inspector": "^0.0.2",
-    "vite-plugin-inspect": "^0.7.14",
     "vite-plugin-pwa": "^0.14.1",
     "vue-advanced-cropper": "^2.8.8",
     "vue-virtual-scroller": "2.0.0-beta.7",
@@ -108,6 +106,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.34.1",
     "@antfu/ni": "^0.19.0",
+    "@nuxt/devtools": "^0.1.0",
     "@types/chroma-js": "^2.1.4",
     "@types/file-saver": "^2.0.5",
     "@types/fnando__sparkline": "^0.3.4",

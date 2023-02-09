@@ -233,17 +233,13 @@ importers:
       '@types/flat': ^5.0.2
       flat: ^5.0.2
       flatten: ^1.0.3
-      iso-639-1: ^2.1.15
       nuxt: ^3.1.1
-      vite-plugin-virtual: ^0.1.1
     devDependencies:
       '@nuxt-themes/docus': 1.6.3_nuxt@3.1.1
       '@types/flat': 5.0.2
       flat: 5.0.2
       flatten: 1.0.3
-      iso-639-1: 2.1.15
       nuxt: 3.1.1
-      vite-plugin-virtual: 0.1.1
 
 packages:
 
@@ -2753,6 +2749,7 @@ packages:
       - vls
       - vti
       - vue-tsc
+    dev: true
 
   /@nuxthq/studio/0.6.5:
     resolution: {integrity: sha512-kGb8abgTRJi0gcvTQcawEol5CR6uXS4bpCwEEk0+b3LSvyiM6k22Opb29KkSatprTkFrAPHDKSaUve8PiX22sw==}
@@ -4510,7 +4507,7 @@ packages:
       '@vueuse/core': 9.11.1
       '@vueuse/metadata': 9.11.1
       local-pkg: 0.4.3
-      nuxt: 3.1.1
+      nuxt: 3.1.1_7rz7g5sqfnn6wuv5lem37retty
       vue-demi: 0.13.11
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -7650,6 +7647,7 @@ packages:
   /iso-639-1/2.1.15:
     resolution: {integrity: sha512-7c7mBznZu2ktfvyT582E2msM+Udc1EjOyhVRE/0ZsjD9LBtWSm23h3PtiRh2a35XoUsTQQjJXaJzuLjXsOdFDg==}
     engines: {node: '>=6.0'}
+    dev: false
 
   /isomorphic-ws/5.0.0_ws@8.12.0:
     resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
@@ -9047,6 +9045,7 @@ packages:
       - vls
       - vti
       - vue-tsc
+    dev: true
 
   /nuxt/3.1.1_7rz7g5sqfnn6wuv5lem37retty:
     resolution: {integrity: sha512-GVdmV88lR01OX0slxTPyTzwQkge7fxNREkx2QW0Lo66fb6aHcJlRXzFMBCOTjas+Ncng6AalIyIiPREEteGKSg==}
@@ -11834,6 +11833,7 @@ packages:
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.8
       vscode-uri: 3.0.7
+    dev: true
 
   /vite-plugin-inspect/0.7.14:
     resolution: {integrity: sha512-C9V93Yy2yUf941oVxIq93K6T1o0SZxoG8MdmyJsnoNDijOAGHT1rVSVjzF/uKFYvgnvLvaXioaoy6ica6aOS0g==}
@@ -11869,12 +11869,6 @@ packages:
       - '@types/babel__core'
       - supports-color
     dev: false
-
-  /vite-plugin-virtual/0.1.1:
-    resolution: {integrity: sha512-JnEbO2AOIfpMfL/uSz7snJ4HzTxCbJFtw7xX413UrYY0IiZjAnY78Ie/Kd7k03iBlyQsFpdzdKQu+ULxu0UXMg==}
-    peerDependencies:
-      vite: ^2.0.0
-    dev: true
 
   /vite-plugin-vue-inspector/3.1.2:
     resolution: {integrity: sha512-DLvwyyCScgCufOU7K7UMk8UMREKGVpJbF6A6VDCavQzNcpbG9xovSstwiAr4ykMskWTzZ5GhVwHtIaNeQx3MzA==}

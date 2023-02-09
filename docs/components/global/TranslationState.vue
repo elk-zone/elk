@@ -12,8 +12,12 @@ const totalRerence = localesStatuses.en.total
         <th title="Keys correctly translated">
           Translated
         </th>
-        <th>Missing</th>
-        <th>Outdated</th>
+        <th title="Keys missing from source which need translation for the language">
+          Missing
+        </th>
+        <th title="Keys which could be safely removed">
+          Outdated
+        </th>
         <th>Total</th>
         <th>Actions</th>
       </tr>

@@ -1,6 +1,4 @@
-import { stringifyQuery } from 'vue-router'
-import { createError, defineEventHandler, getQuery, getRouterParams, sendRedirect } from 'h3'
-import { getApp, getRedirectURI } from '~/server/shared'
+import { stringifyQuery } from 'ufo'
 
 export default defineEventHandler(async (event) => {
   const { origin } = getQuery(event) as { origin: string }

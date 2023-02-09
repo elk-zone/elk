@@ -107,8 +107,10 @@ const copyToClipboard = async () => {
             @click="!isSource && showDetail(key, 'missing')"
           >
             <td :class="[{ expandable: !isSource }]">
-              {{ title }}
-              <ToogleIcon v-if="!isSource" :up="hidden || key !== locale" />
+              <div>
+                <ToogleIcon v-if="!isSource" :up="hidden || key !== locale" />
+                {{ title }}
+              </div>
             </td>
             <template v-if="isSource">
               <td colspan="5" class="source-text">
@@ -162,16 +164,6 @@ const copyToClipboard = async () => {
                         Outdated keys
                       </button>
                     </h2>
-                    <div class="heading-buttons">
-                      <button title="Copy to clipboard" @click="copyToClipboard()">
-                        <ClipboardIcon :copy="!copied" />
-                      </button>
-                      <button title="Close" @click="hidden = true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                          <path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" />
-                        </svg>
-                      </button>
-                    </div>
                   </header>
                   <ul v-if="localeTab === 'missing'">
                     <li v-for="entry in missing" :key="entry">
@@ -229,17 +221,28 @@ td:not(:first-of-type) {
 td {
   padding: 0.5rem;
 }
+tr.expandable td:first-of-type {
+  padding-left: 4px;
+}
 tr.expandable, tr.expandable td {
   cursor: pointer;
 }
 
-td.expandable {
-  position: relative;
+td.expandable div {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  column-gap: 4px;
 }
+/*td.expandable {
+  position: relative;
+}*/
 td.expandable > svg {
+  /*
   position: absolute;
   top: -2px;
   right: 0;
+  */
   color: currentColor;
 }
 

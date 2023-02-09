@@ -6,6 +6,7 @@ const totalRerence = localesStatuses.en.total
 
 <template>
   <table class="w-full">
+    <caption>If you want to send a PR click on <strong>Open in Codeflow</strong> on the corresponding translation file</caption>
     <thead>
       <tr>
         <th>Language</th>
@@ -27,10 +28,18 @@ const totalRerence = localesStatuses.en.total
         <tr v-if="totalRerence > 0">
           <td>{{ title }}</td>
           <template v-if="isSource">
-            <td colspan="5" class="source-text">
+            <td colspan="4" class="source-text">
               <div>
                 {{ total }} keys as source
               </div>
+            </td>
+            <td>
+              <NuxtLink :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${file}`" title="Raise a PR">
+                <img
+                  alt="Open in Codeflow"
+                  src="https://developer.stackblitz.com/img/open_in_codeflow_small.svg"
+                >
+              </NuxtLink>
             </td>
           </template>
           <template v-else>
@@ -39,10 +48,10 @@ const totalRerence = localesStatuses.en.total
             <td><strong>{{ `${outdated?.length ?? 0}` }}</strong> {{ `(${(100 * (outdated?.length ?? 0) / totalRerence).toFixed(1)}%)` }}</td>
             <td><strong>{{ `${total}` }}</strong></td>
             <td>
-              <NuxtLink target="_blank" :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${file}`">
+              <NuxtLink :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${file}`" title="Raise a PR">
                 <img
-                  alt="Raise a PR"
-                  src="https://developer.stackblitz.com/img/open_in_codeflow.svg"
+                  alt="Open in Codeflow"
+                  src="https://developer.stackblitz.com/img/open_in_codeflow_small.svg"
                 >
               </NuxtLink>
             </td>
@@ -55,11 +64,36 @@ const totalRerence = localesStatuses.en.total
 
 <style scoped>
 table {
-  width: 100%
+  font-size: 0.9rem;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+caption {
+  padding: 0.3rem;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom: none;
 }
 
 th {
   text-align: left;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem;
+}
+th:not(:first-of-type),
+td:not(:first-of-type) {
+  border-left: 1px solid #eee;
+}
+td {
+  padding: 0.5rem;
+}
+
+tbody tr td {
+  border-bottom: 1px solid #eee;
 }
 
 th[title] {

@@ -197,6 +197,10 @@ table {
   border: 1px solid #ccc;
 }
 
+pre {
+  font-size: 0.75rem;
+}
+
 caption {
   padding: 0.3rem;
   background: #eee;

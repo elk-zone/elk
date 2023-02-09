@@ -1,6 +1,9 @@
 import type { Driver } from 'unstorage'
-import memory from 'unstorage/drivers/memory'
+// @ts-expect-error unstorage needs to provide backwards-compatible subpath types
+import _memory from 'unstorage/drivers/memory'
 import { defineDriver } from 'unstorage'
+
+const memory = _memory as typeof import('unstorage/dist/drivers/memory')['default']
 
 export interface CacheDriverOptions {
   driver: Driver

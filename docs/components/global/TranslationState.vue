@@ -3,8 +3,6 @@ const localesStatuses = await import('~/translation-status.json').then(m => m.de
 
 const totalRerence = localesStatuses.en.total
 
-const vm = getCurrentInstance()
-
 const copyToClipboard = async (text: string, lines: string[]) => {
   try {
     await navigator.clipboard.writeText([text, lines.join('\n')].join('\n'))
@@ -18,8 +16,13 @@ const copyToClipboard = async (text: string, lines: string[]) => {
 <template>
   <table class="w-full">
     <caption>
-      <div>If you want to send a PR click on <strong>Open in Codeflow</strong> on the corresponding translation file.</div>
-      <div>You can also copy flat keys clicking on corresponding cell.</div>
+      <div>You can copy flat keys clicking on corresponding cell.</div>
+      <div>
+        If you want to send a PR click on <strong>Open in Codeflow</strong> on the corresponding translation file:
+        <NuxtLink href="https://developer.stackblitz.com/codeflow/working-in-codeflow-ide#making-a-pr-with-codeflow-ide">
+          read the following guide
+        </NuxtLink>
+      </div>
     </caption>
     <thead>
       <tr>
@@ -42,18 +45,10 @@ const copyToClipboard = async (text: string, lines: string[]) => {
         <tr v-if="totalRerence > 0">
           <td>{{ title }}</td>
           <template v-if="isSource">
-            <td colspan="4" class="source-text">
+            <td colspan="5" class="source-text">
               <div>
                 {{ total }} keys as source
               </div>
-            </td>
-            <td>
-              <NuxtLink :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${file}`" title="Raise a PR">
-                <img
-                  alt="Open in Codeflow"
-                  src="https://developer.stackblitz.com/img/open_in_codeflow_small.svg"
-                >
-              </NuxtLink>
             </td>
           </template>
           <template v-else>
@@ -106,6 +101,16 @@ caption {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   border-bottom: none;
+}
+caption a {
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  table caption {
+    background: #333;
+    color: #fff;
+  }
 }
 
 th {

@@ -2,11 +2,25 @@
 const localesStatuses = await import('~/translation-status.json').then(m => m.default)
 
 const totalRerence = localesStatuses.en.total
+
+const vm = getCurrentInstance()
+
+const copyToClipboard = async (text: string, lines: string[]) => {
+  try {
+    await navigator.clipboard.writeText([text, lines.join('\n')].join('\n'))
+  }
+  catch (_) {
+    // todo: show error
+  }
+}
 </script>
 
 <template>
   <table class="w-full">
-    <caption>If you want to send a PR click on <strong>Open in Codeflow</strong> on the corresponding translation file</caption>
+    <caption>
+      <div>If you want to send a PR click on <strong>Open in Codeflow</strong> on the corresponding translation file.</div>
+      <div>You can also copy flat keys clicking on corresponding cell.</div>
+    </caption>
     <thead>
       <tr>
         <th>Language</th>
@@ -43,9 +57,24 @@ const totalRerence = localesStatuses.en.total
             </td>
           </template>
           <template v-else>
-            <td><strong>{{ `${translated?.length ?? 0}` }}</strong> {{ `(${(100 * (translated?.length ?? 0) / totalRerence).toFixed(1)}%)` }}</td>
-            <td><strong>{{ `${missing?.length ?? 0}` }}</strong> {{ `(${(100 * (missing?.length ?? 0) / totalRerence).toFixed(1)}%)` }}</td>
-            <td><strong>{{ `${outdated?.length ?? 0}` }}</strong> {{ `(${(100 * (outdated?.length ?? 0) / totalRerence).toFixed(1)}%)` }}</td>
+            <td
+              copy title="Copy to clipboard"
+              @click="copyToClipboard(`# Translated flat keys in ${file}`, translated)"
+            >
+              <strong>{{ `${translated?.length ?? 0}` }}</strong> {{ `(${(100 * (translated?.length ?? 0) / totalRerence).toFixed(1)}%)` }}
+            </td>
+            <td
+              copy title="Copy to clipboard"
+              @click="copyToClipboard(`# Missing flat keys in ${file}`, missing)"
+            >
+              <strong>{{ `${missing?.length ?? 0}` }}</strong> {{ `(${(100 * (missing?.length ?? 0) / totalRerence).toFixed(1)}%)` }}
+            </td>
+            <td
+              copy title="Copy to clipboard"
+              @click="copyToClipboard(`# Outdated flat keys in ${file}`, outdated)"
+            >
+              <strong>{{ `${outdated?.length ?? 0}` }}</strong> {{ `(${(100 * (outdated?.length ?? 0) / totalRerence).toFixed(1)}%)` }}
+            </td>
             <td><strong>{{ `${total}` }}</strong></td>
             <td>
               <NuxtLink :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${file}`" title="Raise a PR">
@@ -91,6 +120,9 @@ td:not(:first-of-type) {
 td {
   padding: 0.5rem;
 }
+td[copy] {
+  cursor: pointer;
+}
 
 tbody tr td {
   border-bottom: 1px solid #eee;
@@ -105,5 +137,16 @@ th[title] {
   font-weight: bold;
   padding: 10px 0;
   text-transform: uppercase;
+}
+textarea {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 </style>

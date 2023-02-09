@@ -3,4 +3,9 @@ export default defineNuxtConfig({
     baseURL: '/docs',
   },
   extends: '@nuxt-themes/docus',
+  typescript: {
+    tsConfig: {
+      resolveJsonModule: true,
+    },
+  },
 })

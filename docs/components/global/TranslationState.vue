@@ -103,8 +103,8 @@ const copyToClipboard = async () => {
           <tr
             v-if="totalReference > 0"
             :class="[{ expandable: !isSource }]"
-            :title="!isSource ? 'Click to show detail' : null"
-            @click="!isSource && showDetail(key, 'missing')"
+            :title="!isSource ? 'Click to show detail' : undefined"
+            @click="!isSource && showDetail(key.toString(), 'missing')"
           >
             <td :class="[{ expandable: !isSource }]">
               <div>
@@ -153,13 +153,13 @@ const copyToClipboard = async () => {
                     <h2 class="tabs">
                       <button
                         :class="localeTab === 'missing' ? 'current' : null"
-                        @click="showDetail(key, 'missing', true)"
+                        @click="showDetail(key.toString(), 'missing', true)"
                       >
                         Missing keys
                       </button>
                       <button
                         :class="localeTab === 'outdated' ? 'current' : null"
-                        @click="showDetail(key, 'outdated', true)"
+                        @click="showDetail(key.toString(), 'outdated', true)"
                       >
                         Outdated keys
                       </button>

@@ -7,7 +7,7 @@ export default defineNuxtModule({
     configKey: 'staleDep',
   },
   defaults: {
-    enabled: true,
+    enabled: process.env.NODE_ENV !== 'test',
   },
   setup(opts) {
     if (opts.enabled)

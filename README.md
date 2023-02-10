@@ -37,6 +37,21 @@ The Elk team maintains a deployment at:
 - 🦌 Production: [elk.zone](https://elk.zone)
 - 🐙 Canary: [main.elk.zone](https://main.elk.zone) (deploys on every commit to `main` branch)
 
+### Self-Host Docker Deployment
+
+In order to host Elk yourself you can use the provided Dockerfile to build a container with elk. Be aware, that Elk only loads properly of the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself. 
+One could put Elk behind popular reverse proxies with SSL Handling like Traefik, NGINX etc. 
+
+1. checkout source ```git clone https://github.com/elk-zone/elk.git```
+1. got into new source dir: ```cd elk```
+1. build Docker image: ```docker build .```
+1. create local storage directory for settings: ```mkdir elk-storage```
+1. adjust permissions of storage dir: ```sudo chown 911:911 ./elk-storage```
+1. start container: ```docker-compose up -d```
+
+Note: The provided Dockerfile creates a container which will eventually run Elk as non-root user and create a persistent named Docker volume upon first start (if that volume does not yet exist). This volume is always created with root permission. Failing to change the permissions of ```/elk/data``` inside this volume to UID:GID 911 (as specified for Elk in the Dockerfile) will prevent Elk from storing it's config for user accounts. You either have to fix the permission in the created named volume, or mount a directory with the correct permission to ```/elk/data``` into the container.
+
+
 ### Ecosystem
 
 These are known deployments using Elk as an alternative Web client for Mastodon servers or as a base for other projects in the fediverse:

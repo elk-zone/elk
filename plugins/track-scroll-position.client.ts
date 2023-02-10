@@ -33,20 +33,15 @@ export default defineNuxtPlugin((nuxtApp) => {
             return
           }
 
-          if (!route.meta || !route.meta?.noScrollTrack) {
-            const r = ignoreCustomRoutes ? undefined : customRoutes.has(route.fullPath)
-            if (r) {
-              reject(new Error('custom routed detected'))
-              return
-            }
+          const r = ignoreCustomRoutes ? undefined : customRoutes.has(route.fullPath)
+          if (r) {
+            reject(new Error('custom routed detected'))
+            return
+          }
 
-            const scrollPosition = storage.value[route.fullPath]
-            if (scrollPosition)
-              window.scrollTo(0, scrollPosition)
-          }
-          else {
-            forceScroll()
-          }
+          const scrollPosition = storage.value[route.fullPath]
+          if (scrollPosition)
+            window.scrollTo(0, scrollPosition)
 
           resolve()
         }, 600)

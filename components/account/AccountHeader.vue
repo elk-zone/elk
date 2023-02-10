@@ -22,8 +22,17 @@ const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
 const hasHeader = $computed(() => !account.header.endsWith('/original/missing.png'))
 
-function getFieldIconTitle(fieldName: string) {
+function getIconFieldTitle(fieldName: string): string {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
+}
+
+/**
+ * Get the link href of a link field, if any.
+ * @param fieldValue - The field's full value given by the Mastodon API, either an HTML string or plain text
+ */
+function getIconFieldHref(fieldValue: string): string {
+  const valueHTML = document.createRange().createContextualFragment(fieldValue)
+  return valueHTML.firstChild.href || undefined
 }
 
 function getNotificationIconTitle() {
@@ -66,7 +75,9 @@ watchEffect(() => {
 
   account.fields?.forEach((field) => {
     const icon = getAccountFieldIcon(field.name)
-    if (icon)
+    const isLink = !!field.value.match('^<a href=')
+
+    if (icon || isLink)
       icons.push(field)
     else
       named.push(field)
@@ -156,13 +167,22 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           <ContentRich :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
-      <div v-if="iconFields.length" flex="~ wrap gap-2">
-        <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" px1 items-center :class="`${field.verifiedAt ? 'border-1 rounded-full border-dark' : ''}`">
-          <CommonTooltip :content="getFieldIconTitle(field.name)">
-            <div text-secondary :class="getAccountFieldIcon(field.name)" :title="getFieldIconTitle(field.name)" />
-          </CommonTooltip>
-          <ContentRich text-sm :content="field.value" :emojis="account.emojis" />
-        </div>
+      <div v-if="iconFields.length" flex="~ wrap gap-1" style="margin-inline: -0.25rem;">
+        <NuxtLink
+          v-for="field in iconFields" :key="field.name"
+          flex="~ gap-1" items-center rounded-full :hover="getIconFieldHref(field.value) ? 'bg-active' : ''"
+          style="padding-inline-start: 0.5rem; padding-inline-end: 0.75rem;"
+          :class="field.verifiedAt ? 'border-1 border-dark' : ''"
+          :to="getIconFieldHref(field.value)" rel="me nofollow noopener noreferrer" target="_blank"
+        >
+          <div text-secondary :class="field.verifiedAt ? accountVerifiedFieldIcon : (getAccountFieldIcon(field.name) || getAccountFieldIcon('Website'))" />
+          <div flex="~ col">
+            <div text-secondary uppercase font-medium style="font-size: 0.6rem; margin-bottom: -0.5em;">
+              {{ field.name }}
+            </div>
+            <ContentRich text-sm :content="field.value" :emojis="account.emojis" />
+          </div>
+        </NuxtLink>
       </div>
       <AccountPostsFollowers :account="account" />
     </div>

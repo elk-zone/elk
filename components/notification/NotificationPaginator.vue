@@ -4,10 +4,13 @@ import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import type { Paginator, WsEvents, mastodon } from 'masto'
 import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
-const { paginator, stream } = defineProps<{
+const { path, paginator, stream } = defineProps<{
+  path: string
   paginator: Paginator<mastodon.v1.Notification[], mastodon.v1.ListNotificationsParams>
   stream?: Promise<WsEvents>
 }>()
+
+const nuxtApp = useNuxtApp()
 
 const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 
@@ -113,6 +116,10 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   // Finalize remaining groups
   processGroup()
 
+  nextTick().then(() => {
+    nuxtApp.$trackScroll.restoreCustomPageScroll()
+  })
+
   return results
 }
 
@@ -146,6 +153,10 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
 
 const { clearNotifications } = useNotifications()
 const { formatNumber } = useHumanReadableNumber()
+
+onMounted(() => {
+  nuxtApp.$trackScroll.registerCustomRoute(path)
+})
 </script>
 
 <template>

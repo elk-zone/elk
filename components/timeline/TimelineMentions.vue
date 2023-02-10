@@ -8,5 +8,5 @@ onActivated(clearNotifications)
 </script>
 
 <template>
-  <NotificationPaginator v-bind="{ paginator, stream }" />
+  <NotificationPaginator v-bind="{ path: '/notification/mention', paginator, stream }" />
 </template>

@@ -4,6 +4,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const track = ref(false)
   const { y } = useWindowScroll()
   const storage = useLocalStorage<Record<string, number>>('elk-track-scroll', {})
+  const customRoutes = new Set<string>()
 
   router.beforeEach(async () => {
     track.value = false
@@ -17,7 +18,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
 
-  const restoreScroll = () => {
+  const restoreScrollCallback = (ignoreHook: boolean) => {
     const path = route.fullPath
     return nextTick().then(() => {
       if (route.meta && route.meta?.noScrollTrack) {
@@ -33,6 +34,12 @@ export default defineNuxtPlugin((nuxtApp) => {
           }
 
           if (!route.meta || !route.meta?.noScrollTrack) {
+            const hook = ignoreHook ? undefined : customRoutes.has(route.fullPath)
+            if (hook) {
+              reject(new Error('hook detected'))
+              return
+            }
+
             const scrollPosition = storage.value[route.fullPath]
             if (scrollPosition)
               window.scrollTo(0, scrollPosition)
@@ -47,26 +54,29 @@ export default defineNuxtPlugin((nuxtApp) => {
     })
   }
 
-  nuxtApp.hooks.hook('app:suspense:resolve', () => {
-    if (isHydrated.value) {
-      restoreScroll().then(() => {
-        track.value = true
-      }).catch(noop)
-    }
-  })
+  const restoreScroll = () => restoreScrollCallback(false)
 
-  nuxtApp.hooks.hook('page:finish', () => {
+  const restoreScrollHook = () => {
     if (isHydrated.value) {
       restoreScroll().then(() => {
         track.value = true
       }).catch(noop)
     }
-  })
+  }
+
+  const restoreCustomPageScroll = () => restoreScrollCallback(true)
+
+  nuxtApp.hooks.hook('app:suspense:resolve', restoreScrollHook)
+  nuxtApp.hooks.hook('page:finish', restoreScrollHook)
 
   watch([track, y, () => route], ([trackEnabled, scrollPosition, r]) => {
     if (trackEnabled && (!r.meta || !r.meta?.noScrollTrack))
       storage.value[r.fullPath] = Math.floor(scrollPosition)
   }, { immediate: true, flush: 'pre' })
+
+  const registerCustomRoute = (path: string) => {
+    customRoutes.add(path)
+  }
 
   return {
     provide: {
@@ -74,6 +84,8 @@ export default defineNuxtPlugin((nuxtApp) => {
         forceScroll,
         restoreScroll,
         track,
+        registerCustomRoute,
+        restoreCustomPageScroll,
       }),
     },
   }

@@ -374,7 +374,7 @@
           "clear_error": "Limpiar error",
           "invalid_vapid_key": "La clave pública VAPID parece no ser válida.",
           "permission_denied": "Permiso denegado: habilita las notificaciones en tu navegador.",
-          "repo_link": "Repositorio de Elk en Github",
+          "repo_link": "Repositorio de Elk en GitHub",
           "request_error": "Se produjo un error al solicitar la suscripción, inténtalo de nuevo y si el error persiste, notifica la incidencia en el repositorio de Elk.",
           "title": "No se pudo suscribir a las notificaciones push",
           "too_many_registrations": "Debido a las limitaciones del navegador, Elk no puede habilitar las notificaciones push para múltiples cuentas en diferentes servidores. Deberá cancelar las subscripciones a notificaciones push en las otras cuentas e intentarlo de nuevo.",

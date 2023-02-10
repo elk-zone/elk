@@ -20,6 +20,11 @@ export default defineNuxtPlugin((nuxtApp) => {
   const restoreScroll = () => {
     const path = route.fullPath
     return nextTick().then(() => {
+      if (route.meta && route.meta?.noScrollTrack) {
+        forceScroll()
+        return Promise.resolve()
+      }
+
       return new Promise<void>((resolve, reject) => {
         setTimeout(() => {
           if (path !== route.fullPath) {

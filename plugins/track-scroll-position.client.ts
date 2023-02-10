@@ -58,7 +58,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
   })
 
-  watch(() => [track.value, y.value, route], ([trackEnabled, scrollPosition, r]) => {
+  watch([track, y, () => route], ([trackEnabled, scrollPosition, r]) => {
     if (trackEnabled && (!r.meta || !r.meta?.noScrollTrack))
       storage.value[r.fullPath] = Math.floor(scrollPosition)
   }, { immediate: true, flush: 'pre' })

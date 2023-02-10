@@ -135,6 +135,7 @@ const copyToClipboard = async () => {
               <td><strong>{{ `${total}` }}</strong></td>
               <td>
                 <NuxtLink
+                  v-if="outdated.length > 0 || missing.length > 0"
                   :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${file}`"
                   target="_blank"
                   title="Raise a PR"

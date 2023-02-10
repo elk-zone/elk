@@ -1,12 +1,11 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
-import { ofetch } from 'ofetch'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
-import type { Component } from 'vue'
 
 definePageMeta({
   middleware: 'auth',
+  noScrollTrack: true,
 })
 
 const { t } = useI18n()

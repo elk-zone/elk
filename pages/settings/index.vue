@@ -1,3 +1,9 @@
+<script setup lang="ts">
+definePageMeta({
+  noScrollTrack: true,
+})
+</script>
+
 <template>
   <div min-h-screen flex justify-center items-center>
     <div text-center flex="~ col gap-2" items-center>

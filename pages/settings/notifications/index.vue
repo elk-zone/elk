@@ -1,6 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: 'auth',
+  noScrollTrack: true,
 })
 
 const { t } = useI18n()

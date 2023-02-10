@@ -1,8 +1,11 @@
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((/* nuxtApp */) => {
   return {
     provide: {
       scrollToTop: () => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+        // if (typeof force === 'boolean' && force)
+        //   nuxtApp.$trackScroll.forceScroll()
+
+        // window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
       },
     },
   }

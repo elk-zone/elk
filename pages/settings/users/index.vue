@@ -3,6 +3,10 @@
 import { fileOpen } from 'browser-fs-access'
 import type { UserLogin } from '~/types'
 
+definePageMeta({
+  noScrollTrack: true,
+})
+
 const { t } = useI18n()
 
 useHeadFixed({

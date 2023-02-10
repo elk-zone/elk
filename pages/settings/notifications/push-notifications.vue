@@ -4,6 +4,7 @@ definePageMeta({
     if (!useAppConfig().pwaEnabled)
       return navigateTo('/settings/notifications')
   }],
+  noScrollTrack: true,
 })
 
 const { t } = useI18n()

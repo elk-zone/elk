@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  noScrollTrack: true,
+})
+
 const buildInfo = useBuildInfo()
 const { t } = useI18n()
 

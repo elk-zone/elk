@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  noScrollTrack: true,
+})
+
 const { t } = useI18n()
 
 useHeadFixed({

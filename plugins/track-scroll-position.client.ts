@@ -18,10 +18,10 @@ export default defineNuxtPlugin((nuxtApp) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
 
-  const restoreScrollCallback = (ignoreHook: boolean) => {
+  const restoreScrollCallback = (ignoreCustomRoutes: boolean) => {
     const path = route.fullPath
     return nextTick().then(() => {
-      if (route.meta && route.meta?.noScrollTrack) {
+      if (route.meta?.noScrollTrack) {
         forceScroll()
         return Promise.resolve()
       }
@@ -34,9 +34,9 @@ export default defineNuxtPlugin((nuxtApp) => {
           }
 
           if (!route.meta || !route.meta?.noScrollTrack) {
-            const hook = ignoreHook ? undefined : customRoutes.has(route.fullPath)
-            if (hook) {
-              reject(new Error('hook detected'))
+            const r = ignoreCustomRoutes ? undefined : customRoutes.has(route.fullPath)
+            if (r) {
+              reject(new Error('custom routed detected'))
               return
             }
 

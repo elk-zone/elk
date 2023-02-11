@@ -109,13 +109,18 @@ async function prepareTranslationStatus() {
     locales: {},
   }
 
-  Object.keys(data).filter(k => k !== 'en').reduce((acc, e) => {
-    acc[e] = {
+  Object.keys(data).filter(k => k !== 'en').forEach((e) => {
+    const percentage = total <= 0.0 || data[e].total === 0.0
+      ? '0'
+      : data[e].total === total
+        ? '100'
+        : ((data[e].translated.length / total) * 100).toFixed(1)
+
+    translationStatus.locales[e] = {
       total: data[e].total,
-      percentage: total > 0 ? Math.round((data[e].translated.length / total) * 100) : 0,
+      percentage,
     }
-    return acc
-  }, translationStatus.locales)
+  })
 
   await fs.writeFile(
     resolver.resolve('../elk-translation-status.json'),

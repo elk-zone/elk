@@ -1,7 +1,7 @@
 export interface ElkTranslationStatus {
   total: number
   locales: Record<string, {
-    percentage: number
+    percentage: string
     total: number
   }>
 }

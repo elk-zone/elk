@@ -43,7 +43,8 @@ export default defineNuxtPlugin((nuxtApp) => {
           if (scrollPosition)
             window.scrollTo(0, scrollPosition)
 
-          // required for custom routes: first call will reject
+          // required for custom routes: first call will be rejected
+          // we need to enable scroll tracking again, it is disabled
           if (!track.value) {
             nextTick().then(() => {
               track.value = true
@@ -82,12 +83,11 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   return {
     provide: {
-      trackScroll: reactive({
+      trackScroll: {
         forceScrollToTop,
-        restoreScroll,
         registerCustomRoute,
         restoreCustomPageScroll,
-      }),
+      },
     },
   }
 })

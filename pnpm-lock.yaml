@@ -26,6 +26,7 @@ overrides:
   '@nuxt/kit': ^3.1.2
   '@nuxt/schema': ^3.1.2
   '@nuxt/devtools>nuxt': 3.1.1
+  '@nuxt/devtools>nuxi': 3.1.1
 
 importers:
 

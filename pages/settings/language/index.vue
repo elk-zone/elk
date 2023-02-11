@@ -1,8 +1,20 @@
 <script setup lang="ts">
-const { t } = useI18n()
+import type { ElkTranslationStatus } from '~/types/translation-status'
+
+const { t, locale } = useI18n()
+
+const translationStatus: ElkTranslationStatus = await import('~/elk-translation-status.json').then(m => m.default)
 
 useHeadFixed({
   title: () => `${t('settings.language.label')} | ${t('nav.settings')}`,
+})
+const status = computed(() => {
+  if (locale.value !== 'en-US' && locale.value !== 'en-GB') {
+    const entry = translationStatus.locales[locale.value]
+    return t('settings.language.status', [translationStatus.total, entry.total, entry.percentage])
+  }
+
+  return undefined
 })
 </script>
 
@@ -15,8 +27,11 @@ useHeadFixed({
     </template>
     <div p6>
       <label space-y-2>
-        <p font-medium>{{ $t('settings.language.display_language') }}</p>
+        <span block font-medium>{{ $t('settings.language.display_language') }}</span>
         <SettingsLanguage select-settings />
+        <span v-if="status" block>
+          {{ status }}
+        </span>
       </label>
       <h2 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
         {{ $t('settings.language.translations.heading') }}

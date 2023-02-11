@@ -35,7 +35,6 @@ export default defineNuxtConfig({
   ],
   experimental: {
     payloadExtraction: false,
-    reactivityTransform: true,
     inlineSSRStyles: false,
   },
   css: [

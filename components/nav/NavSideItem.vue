@@ -51,7 +51,7 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
     :active-class="activeClass"
     group focus:outline-none disabled:pointer-events-none
     :tabindex="noUserDisable ? -1 : null"
-    @click="$scrollToTop"
+    @click="$trackScroll.forceScrollToTop()"
   >
     <CommonTooltip :disabled="!isMediumOrLargeScreen" :content="text" placement="right">
       <div

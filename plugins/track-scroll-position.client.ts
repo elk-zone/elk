@@ -28,18 +28,19 @@ export default defineNuxtPlugin((nuxtApp) => {
 
       return new Promise<void>((resolve, reject) => {
         setTimeout(() => {
-          if (path !== route.fullPath) {
+          const fullPath = route.fullPath
+          if (path !== fullPath) {
             reject(new Error('navigation canceled'))
             return
           }
 
-          const r = ignoreCustomRoutes ? undefined : customRoutes.has(route.fullPath)
+          const r = ignoreCustomRoutes ? undefined : customRoutes.has(fullPath)
           if (r) {
             reject(new Error('custom routed detected'))
             return
           }
 
-          const scrollPosition = storage.value[route.fullPath]
+          const scrollPosition = storage.value[fullPath]
           if (scrollPosition)
             window.scrollTo(0, scrollPosition)
 

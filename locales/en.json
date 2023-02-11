@@ -337,7 +337,7 @@
     "language": {
       "display_language": "Display Language",
       "label": "Language",
-      "status": "Translation status: {1}/{0} ({2}%)",
+      "status": "Translation status: {0}/{1} ({2}%)",
       "translations": {
         "add": "Add",
         "choose_language": "Choose language",

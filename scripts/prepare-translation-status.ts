@@ -106,7 +106,12 @@ async function prepareTranslationStatus() {
 
   const translationStatus: ElkTranslationStatus = {
     total,
-    locales: {},
+    locales: {
+      'en-US': {
+        total,
+        percentage: '100',
+      },
+    },
   }
 
   Object.keys(data).filter(k => k !== 'en').forEach((e) => {

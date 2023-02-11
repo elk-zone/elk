@@ -337,7 +337,7 @@
     "language": {
       "display_language": "Idioma de pantalla",
       "label": "Idioma",
-      "status": "Estado traducción: {1}/{0} ({2}%)",
+      "status": "Estado traducción: {0}/{1} ({2}%)",
       "translations": {
         "add": "Agregar",
         "choose_language": "Seleccionar idioma",

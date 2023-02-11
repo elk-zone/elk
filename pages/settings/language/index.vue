@@ -9,13 +9,8 @@ useHeadFixed({
   title: () => `${t('settings.language.label')} | ${t('nav.settings')}`,
 })
 const status = computed(() => {
-  if (locale.value !== 'en-US') {
-    const entry = translationStatus.locales[locale.value]
-    return t('settings.language.status', [translationStatus.total, entry.total, entry.percentage])
-  }
-  else {
-    return t('settings.language.status', [translationStatus.total, translationStatus.total, 100])
-  }
+  const entry = translationStatus.locales[locale.value]
+  return t('settings.language.status', [entry.total, translationStatus.total, entry.percentage])
 })
 </script>
 

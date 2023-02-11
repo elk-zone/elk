@@ -14,7 +14,26 @@ defineSlots<{
   default: {}
 }>()
 
+const nuxtApp = useNuxtApp()
 const router = useRouter()
+
+const allowScrollTop = ref(false)
+
+const restoreClickHook = () => {
+  if (isHydrated.value) {
+    if (typeof props.to === 'string')
+      allowScrollTop.value = router.currentRoute.value.fullPath === props.to
+    else
+      allowScrollTop.value = router.currentRoute.value.name === props.to.name
+  }
+}
+
+router.afterEach(() => {
+  allowScrollTop.value = false
+})
+
+nuxtApp.hooks.hook('app:suspense:resolve', restoreClickHook)
+nuxtApp.hooks.hook('page:finish', restoreClickHook)
 
 useCommand({
   scope: 'Navigation',
@@ -51,7 +70,7 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
     :active-class="activeClass"
     group focus:outline-none disabled:pointer-events-none
     :tabindex="noUserDisable ? -1 : null"
-    @click="$trackScroll.forceScrollToTop()"
+    @click="allowScrollTop && $trackScroll.forceScrollToTop()"
   >
     <CommonTooltip :disabled="!isMediumOrLargeScreen" :content="text" placement="right">
       <div

@@ -14,26 +14,24 @@ defineSlots<{
   default: {}
 }>()
 
-const nuxtApp = useNuxtApp()
 const router = useRouter()
 
 const allowScrollTop = ref(false)
 
-const restoreClickHook = () => {
-  if (isHydrated.value) {
+usePageTransition({
+  beforeEach: () => {
+    allowScrollTop.value = false
+  },
+  afterHydrated: () => {
     if (typeof props.to === 'string')
       allowScrollTop.value = router.currentRoute.value.fullPath === props.to
     else
       allowScrollTop.value = router.currentRoute.value.name === props.to.name
-  }
-}
-
-router.afterEach(() => {
-  allowScrollTop.value = false
+  },
+  onTransitionError: () => {
+    allowScrollTop.value = false
+  },
 })
-
-nuxtApp.hooks.hook('app:suspense:resolve', restoreClickHook)
-nuxtApp.hooks.hook('page:finish', restoreClickHook)
 
 useCommand({
   scope: 'Navigation',

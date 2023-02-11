@@ -1,17 +1,9 @@
-export default defineNuxtPlugin((nuxtApp) => {
-  const router = useRouter()
+export default defineNuxtPlugin(() => {
   const route = useRoute()
   const track = ref(false)
   const { y } = useWindowScroll()
   const storage = useLocalStorage<Record<string, number>>('elk-track-scroll', {})
   const customRoutes = new Set<string>()
-
-  router.beforeEach(async () => {
-    track.value = false
-  })
-  router.onError(async () => {
-    track.value = true
-  })
 
   const forceScrollToTop = () => {
     storage.value[route.fullPath] = 0
@@ -60,18 +52,21 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const restoreScroll = () => restoreScrollCallback(false)
 
-  const restoreScrollHook = () => {
-    if (isHydrated.value) {
+  const restoreCustomPageScroll = () => restoreScrollCallback(true)
+
+  usePageTransition({
+    beforeEach: () => {
+      track.value = false
+    },
+    afterHydrated: () => {
       restoreScroll().then(() => {
         track.value = true
       }).catch(noop)
-    }
-  }
-
-  const restoreCustomPageScroll = () => restoreScrollCallback(true)
-
-  nuxtApp.hooks.hook('app:suspense:resolve', restoreScrollHook)
-  nuxtApp.hooks.hook('page:finish', restoreScrollHook)
+    },
+    onTransitionError: () => {
+      track.value = true
+    },
+  })
 
   watch([track, y, () => route], ([trackEnabled, scrollPosition, r]) => {
     if (trackEnabled && (!r.meta || !r.meta?.noScrollTrack))

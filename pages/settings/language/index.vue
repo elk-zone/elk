@@ -9,12 +9,13 @@ useHeadFixed({
   title: () => `${t('settings.language.label')} | ${t('nav.settings')}`,
 })
 const status = computed(() => {
-  if (locale.value !== 'en-US' && locale.value !== 'en-GB') {
+  if (locale.value !== 'en-US') {
     const entry = translationStatus.locales[locale.value]
     return t('settings.language.status', [translationStatus.total, entry.total, entry.percentage])
   }
-
-  return undefined
+  else {
+    return t('settings.language.status', [translationStatus.total, translationStatus.total, 100])
+  }
 })
 </script>
 
@@ -28,10 +29,10 @@ const status = computed(() => {
     <div p6>
       <label space-y-2>
         <span block font-medium>{{ $t('settings.language.display_language') }}</span>
-        <SettingsLanguage select-settings />
-        <span v-if="status" block>
+        <span block>
           {{ status }}
         </span>
+        <SettingsLanguage select-settings />
       </label>
       <h2 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
         {{ $t('settings.language.translations.heading') }}

@@ -25,8 +25,8 @@ overrides:
   vitest>vite: ^3.2.5
   '@nuxt/kit': ^3.1.2
   '@nuxt/schema': ^3.1.2
-
-packageExtensionsChecksum: c9ee76d1e46732029887eab322bb9c0c
+  '@nuxt/devtools>nuxt': 3.1.1
+  '@nuxt/devtools>@nuxt/kit': 3.1.2
 
 importers:
 

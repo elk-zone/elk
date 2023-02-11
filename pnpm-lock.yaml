@@ -228,9 +228,13 @@ importers:
   docs:
     specifiers:
       '@nuxt-themes/docus': ^1.6.1
+      '@types/flat': ^5.0.2
+      flat: ^5.0.2
       nuxt: ^3.1.1
     devDependencies:
       '@nuxt-themes/docus': 1.6.3_nuxt@3.1.1
+      '@types/flat': 5.0.2
+      flat: 5.0.2
       nuxt: 3.1.1
 
 packages:
@@ -3326,6 +3330,10 @@ packages:
 
   /@types/file-saver/2.0.5:
     resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
+    dev: true
+
+  /@types/flat/5.0.2:
+    resolution: {integrity: sha512-3zsplnP2djeps5P9OyarTxwRpMLoe5Ash8aL9iprw0JxB+FAHjY+ifn4yZUuW4/9hqtnmor6uvjSRzJhiVbrEQ==}
     dev: true
 
   /@types/fnando__sparkline/0.3.4:

@@ -19,7 +19,7 @@
     "follow_requested": "Solicitado",
     "followers": "Seguidoras",
     "followers_count": "{0} Seguidoras|{0} Seguidora|{0} Seguidoras",
-    "following": "Seguimentos",
+    "following": "Seguindo",
     "following_count": "Seguindo a {0}",
     "follows_you": "Séguete",
     "go_to_profile": "Ir ao perfil",
@@ -243,7 +243,7 @@
     "content_warning": "Escribe aquí o aviso",
     "default_1": "En que estás a pensar?",
     "reply_to_account": "Responder a {0}",
-    "replying": "Respondendo",
+    "replying": "Responde aquí",
     "the_thread": "a conversa"
   },
   "pwa": {

@@ -60,7 +60,7 @@ useCommand({
   >
     <CommonTooltip placement="bottom" :content="content">
       <div
-        rounded-full p2
+        rounded-full p4 sm:p-2
         v-bind="disabled ? {} : {
           'group-hover': groupHover,
           'group-focus-visible': groupHover,

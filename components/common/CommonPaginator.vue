@@ -49,7 +49,7 @@ const { items, prevItems, update, state, endAnchor, error } = usePaginator(pagin
 
 nuxtApp.hook('elk-logo:click', () => {
   update()
-  nuxtApp.$scrollToTop()
+  nuxtApp.$trackScroll.forceScrollToTop()
 })
 
 function createEntry(item: any) {

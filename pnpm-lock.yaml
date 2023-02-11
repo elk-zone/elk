@@ -25,10 +25,8 @@ overrides:
   vitest>vite: ^3.2.5
   '@nuxt/kit': ^3.1.2
   '@nuxt/schema': ^3.1.2
-  '@nuxt/devtools>nuxt': 3.1.1
-  '@nuxt/devtools>nuxi': 3.1.1
-  nuxt: 3.1.1
-  nuxi: 3.1.1
+
+packageExtensionsChecksum: bd206ca200091a6af995b8ebbcda3449
 
 importers:
 
@@ -234,7 +232,7 @@ importers:
       '@nuxt-themes/docus': ^1.6.1
       '@types/flat': ^5.0.2
       flat: ^5.0.2
-      nuxt: 3.1.1
+      nuxt: ^3.1.1
     devDependencies:
       '@nuxt-themes/docus': 1.6.3_nuxt@3.1.1
       '@types/flat': 5.0.2

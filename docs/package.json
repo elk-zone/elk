@@ -6,13 +6,10 @@
     "dev": "nuxi dev",
     "build": "nuxi build",
     "generate": "nuxi generate",
-    "preview": "nuxi preview",
-    "prepare-translation-status": "nuxi prepare && esno scripts/prepare-translation-status.ts"
+    "preview": "nuxi preview"
   },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.6.1",
-    "@types/flat": "^5.0.2",
-    "flat": "^5.0.2",
     "nuxt": "^3.1.1"
   }
 }

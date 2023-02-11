@@ -27,6 +27,7 @@ const orderedHistoryItems = computed(() => {
         rounded-full flex="~ gap2 center" font-400 px3 py1
         bg-base border-primary text-primary
         hover="text-inverted bg-primary border-primary"
+        :aria-label="$t('search.search_clear_all')"
         @click="emit('clear-all')"
       >
         <span>{{ $t('search.search_clear_all') }}</span>
@@ -41,9 +42,11 @@ const orderedHistoryItems = computed(() => {
             {{ searcHistoryItem.displayName }}
           </div>
         </NuxtLink>
-        <button btn-action-icon :aria-label="$t('tooltip.delete_search_history')" @click="emit('clear-history-item', searcHistoryItem.id)">
-          <div i-ri:delete-bin-line />
-        </button>
+        <CommonTooltip no-auto-focus :content="$t('tooltip.delete_search_history')">
+          <button btn-action-icon :aria-label="$t('tooltip.delete_search_history')" @click="emit('clear-history-item', searcHistoryItem.id)">
+            <div i-ri:delete-bin-line />
+          </button>
+        </CommonTooltip>
       </div>
     </div>
   </div>

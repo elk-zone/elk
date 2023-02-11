@@ -13,7 +13,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     track.value = true
   })
 
-  const forceScroll = () => {
+  const forceScrollToTop = () => {
     storage.value[route.fullPath] = 0
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
@@ -22,7 +22,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     const path = route.fullPath
     return nextTick().then(() => {
       if (route.meta?.noScrollTrack) {
-        forceScroll()
+        forceScrollToTop()
         return Promise.resolve()
       }
 
@@ -42,6 +42,13 @@ export default defineNuxtPlugin((nuxtApp) => {
           const scrollPosition = storage.value[route.fullPath]
           if (scrollPosition)
             window.scrollTo(0, scrollPosition)
+
+          // required for custom routes: first call will reject
+          if (!track.value) {
+            nextTick().then(() => {
+              track.value = true
+            })
+          }
 
           resolve()
         }, 600)
@@ -76,9 +83,8 @@ export default defineNuxtPlugin((nuxtApp) => {
   return {
     provide: {
       trackScroll: reactive({
-        forceScroll,
+        forceScrollToTop,
         restoreScroll,
-        track,
         registerCustomRoute,
         restoreCustomPageScroll,
       }),

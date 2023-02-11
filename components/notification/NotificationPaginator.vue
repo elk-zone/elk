@@ -116,9 +116,7 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   // Finalize remaining groups
   processGroup()
 
-  nextTick().then(() => {
-    nuxtApp.$trackScroll.restoreCustomPageScroll()
-  })
+  nuxtApp.$trackScroll.restoreCustomPageScroll()
 
   return results
 }
@@ -153,10 +151,6 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
 
 const { clearNotifications } = useNotifications()
 const { formatNumber } = useHumanReadableNumber()
-
-onMounted(() => {
-  nuxtApp.$trackScroll.registerCustomRoute(path)
-})
 </script>
 
 <template>

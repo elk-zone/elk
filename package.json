@@ -157,10 +157,10 @@
     "packageExtensions": {
       "@nuxt/devtools": {
         "dependencies": {
-          "@nuxt/kit": "^3.1.2"
+          "@nuxt/kit": "3.1.2"
         },
         "devDependencies": {
-          "nuxt": "^3.1.1"
+          "nuxt": "3.1.1"
         }
       }
     }

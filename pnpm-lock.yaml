@@ -26,7 +26,7 @@ overrides:
   '@nuxt/kit': ^3.1.2
   '@nuxt/schema': ^3.1.2
 
-packageExtensionsChecksum: bd206ca200091a6af995b8ebbcda3449
+packageExtensionsChecksum: c9ee76d1e46732029887eab322bb9c0c
 
 importers:
 

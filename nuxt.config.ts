@@ -138,7 +138,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
     },
   },
-  sourcemap: !isDevelopment,
+  sourcemap: isDevelopment,
   hooks: {
     'nitro:config': function (config) {
       const nuxt = useNuxt()

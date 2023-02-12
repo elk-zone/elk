@@ -35,6 +35,7 @@
     "posts_count": "{0} Publicações|{0} Publicação|{0} Publicações",
     "profile_description": "Descrição de perfil de {0}",
     "profile_unavailable": "Perfil indisponível",
+    "request_follow": "Pedir para seguir",
     "unblock": "Desbloquear",
     "unfollow": "Deixar de seguir",
     "unmute": "Deixar de silenciar",
@@ -68,6 +69,7 @@
     "save": "Guardar",
     "save_changes": "Guardar alterações",
     "sign_in": "Entrar",
+    "sign_in_to": "Entrar em {0}",
     "switch_account": "Mudar de conta",
     "vote": "Votar"
   },
@@ -335,6 +337,7 @@
     "language": {
       "display_language": "Idioma de Apresentação",
       "label": "Idioma",
+      "status": "Estado da tradução: {0}/{1} ({2}%)",
       "translations": {
         "add": "Adicionar",
         "choose_language": "Selecionar idioma",
@@ -409,7 +412,8 @@
       "hide_follower_count": "Esconder contagem de seguidores",
       "hide_reply_count": "Esconder contagem de respostas",
       "hide_translation": "Esconder botão de tradução",
-      "hide_username_emojis": "Esconder emojis no nome de utilizador",
+      "hide_username_emojis": "Esconder emojis do nome de utilizador",
+      "hide_username_emojis_description": "Esconde os emojis do nome de utilizador nas cronologias. Os Emojis continuarão a ser visíveis nos seus perfis.",
       "label": "Preferências",
       "title": "Funcionalidades Experimentais",
       "user_picker": "Selecionador de Utilizador",
@@ -554,15 +558,19 @@
     "explore_links_intro": "Estas notícias estão, neste momento, a ser faladas por pessoas neste e noutros servidores da rede descentralizada.",
     "explore_posts_intro": "Estas publicações deste e de outros servidores na rede descentralizada estão, neste momento, a ganhar popularidade neste servidor.",
     "explore_tags_intro": "Estes hashtags estão, neste momento, a ganhar popularidade entre as pessoas neste e noutros servidores da rede descentralizada.",
+    "open_editor_tools": "Ferramentas de edição",
     "publish_failed": "Fechar mensagens de falha no topo do editor para republicar publicações",
-    "toggle_code_block": "Alternar bloco de código"
+    "toggle_bold": "Alternar negrito",
+    "toggle_code_block": "Alternar bloco de código",
+    "toggle_italic": "Alternar itálico"
   },
   "user": {
     "add_existing": "Adicionar uma conta existente",
     "server_address_label": "Endereço do Servidor Mastodon",
-    "sign_in_desc": "Entre, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações, ou interagir a partir da sua conta de outro servidor.",
+    "sign_in_desc": "Inicie sessão, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações, ou interagir a partir da sua conta de outro servidor.",
     "sign_in_notice_title": "A visualizar os dados públicos de {0}",
     "sign_out_account": "Desconectar {0}",
+    "single_instance_sign_in_desc": "Inicie sessão, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações.",
     "tip_no_account": "Se ainda não tem uma conta Mastodon, {0}.",
     "tip_register_account": "escolha um servidor e inscreva-se"
   },

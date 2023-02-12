@@ -1,9 +1,10 @@
-import { flatten } from 'flat'
+import flatten from 'flat'
 import { createResolver } from '@nuxt/kit'
-import { readFile, writeFile } from 'fs-extra'
-import { currentLocales } from '../../config/i18n'
-import vsCodeConfig from '../../.vscode/settings.json'
-import type { LocaleEntry } from '../types'
+import fs from 'fs-extra'
+import { currentLocales } from '../config/i18n'
+import vsCodeConfig from '../.vscode/settings.json'
+import type { LocaleEntry } from '../docs/types'
+import type { ElkTranslationStatus } from '~/types/translation-status'
 
 export const localeData: [code: string, file: string[], title: string][]
     = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
@@ -27,7 +28,7 @@ async function readI18nFile(file: string | string[]) {
   if (Array.isArray(file)) {
     const files = await Promise.all(file.map(f => async () => {
       return JSON.parse(Buffer.from(
-        await readFile(resolver.resolve(`../../locales/${f}`), 'utf-8'),
+        await fs.readFile(resolver.resolve(`../locales/${f}`), 'utf-8'),
       ).toString())
     })).then(f => f.map(f => f()))
     const data: Record<string, any> = files[0]
@@ -37,7 +38,7 @@ async function readI18nFile(file: string | string[]) {
   }
   else {
     return JSON.parse(Buffer.from(
-      await readFile(resolver.resolve(`../../locales/${file}`), 'utf-8'),
+      await fs.readFile(resolver.resolve(`../locales/${file}`), 'utf-8'),
     ).toString())
   }
 }
@@ -61,6 +62,7 @@ async function prepareTranslationStatus() {
   const sourceLanguageLocale = localeData.find(l => l[0] === vsCodeConfig['i18n-ally.sourceLanguage'])!
   const entries: Record<string, any> = await readI18nFile(sourceLanguageLocale[1])
   const flatEntries = flatten<typeof entries, Record<string, string>>(entries)
+  const total = Object.keys(flatEntries).length
   const data: Record<string, LocaleEntry> = {
     en: {
       translated: [],
@@ -68,13 +70,12 @@ async function prepareTranslationStatus() {
       missing: [],
       outdated: [],
       title: 'English (source)',
-      total: Object.keys(flatEntries).length,
+      total,
       isSource: true,
     },
   }
 
   await Promise.all(localeData.filter(l => l[0] !== 'en-US').map(async ([code, file, title]) => {
-    // eslint-disable-next-line no-console
     console.info(`Comparing ${code}...`, title)
     data[code] = {
       title,
@@ -95,9 +96,40 @@ async function prepareTranslationStatus() {
     sorted[k] = { ...data[k] }
   })
 
-  await writeFile(
-    createResolver(import.meta.url).resolve('../translation-status.json'),
+  const resolver = createResolver(import.meta.url)
+
+  await fs.writeFile(
+    resolver.resolve('../docs/translation-status.json'),
     JSON.stringify(sorted, null, 2),
+    { encoding: 'utf-8' },
+  )
+
+  const translationStatus: ElkTranslationStatus = {
+    total,
+    locales: {
+      'en-US': {
+        total,
+        percentage: '100',
+      },
+    },
+  }
+
+  Object.keys(data).filter(k => k !== 'en').forEach((e) => {
+    const percentage = total <= 0.0 || data[e].total === 0.0
+      ? '0'
+      : data[e].total === total
+        ? '100'
+        : ((data[e].translated.length / total) * 100).toFixed(1)
+
+    translationStatus.locales[e] = {
+      total: data[e].total,
+      percentage,
+    }
+  })
+
+  await fs.writeFile(
+    resolver.resolve('../elk-translation-status.json'),
+    JSON.stringify(translationStatus, null, 2),
     { encoding: 'utf-8' },
   )
 }

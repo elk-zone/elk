@@ -1,5 +1,6 @@
 import fs from 'unstorage/drivers/fs'
 import memory from 'unstorage/drivers/memory'
+import kv from 'unstorage/drivers/cloudflare-kv-http'
 
 import { stringifyQuery } from 'ufo'
 
@@ -7,7 +8,6 @@ import { $fetch } from 'ofetch'
 import type { Storage } from 'unstorage'
 
 import cached from '../cache-driver'
-import kv from '../cloudflare-driver'
 
 // @ts-expect-error virtual import
 import { env } from '#build-info'

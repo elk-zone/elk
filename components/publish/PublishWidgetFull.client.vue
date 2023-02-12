@@ -17,7 +17,7 @@ watchEffect(() => {
   draftKey = route.query.draft?.toString() || 'home'
 })
 
-onMounted(() => {
+onDeactivated(() => {
   clearEmptyDrafts()
 })
 </script>

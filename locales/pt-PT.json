@@ -428,6 +428,8 @@
         "label": "Aspeto",
         "profile_metadata": "Metadados de perfil",
         "profile_metadata_desc": "Pode ter até {0} itens expostos, em forma de tabela, no seu perfil",
+        "profile_metadata_label": "Rótulo",
+        "profile_metadata_value": "Conteúdo",
         "title": "Editar perfil"
       },
       "featured_tags": {

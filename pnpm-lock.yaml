@@ -57,6 +57,7 @@ importers:
       '@tiptap/vue-3': 2.0.0-beta.204
       '@types/chroma-js': ^2.1.4
       '@types/file-saver': ^2.0.5
+      '@types/flat': ^5.0.2
       '@types/fnando__sparkline': ^0.3.4
       '@types/fs-extra': ^11.0.1
       '@types/js-yaml': ^4.0.5
@@ -78,6 +79,7 @@ importers:
       eslint: ^8.32.0
       esno: ^0.16.3
       file-saver: ^2.0.5
+      flat: ^5.0.2
       floating-vue: 2.0.0-beta.20
       focus-trap: ^7.2.0
       form-data: ^4.0.0
@@ -206,6 +208,7 @@ importers:
       '@antfu/ni': 0.19.0
       '@types/chroma-js': 2.1.4
       '@types/file-saver': 2.0.5
+      '@types/flat': 5.0.2
       '@types/fnando__sparkline': 0.3.4
       '@types/fs-extra': 11.0.1
       '@types/js-yaml': 4.0.5
@@ -214,6 +217,7 @@ importers:
       bumpp: 8.2.1
       eslint: 8.32.0
       esno: 0.16.3
+      flat: 5.0.2
       fs-extra: 11.1.0
       lint-staged: 13.1.0
       nuxt: 3.2.0_7rz7g5sqfnn6wuv5lem37retty
@@ -3408,6 +3412,10 @@ packages:
 
   /@types/file-saver/2.0.5:
     resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
+    dev: true
+
+  /@types/flat/5.0.2:
+    resolution: {integrity: sha512-3zsplnP2djeps5P9OyarTxwRpMLoe5Ash8aL9iprw0JxB+FAHjY+ifn4yZUuW4/9hqtnmor6uvjSRzJhiVbrEQ==}
     dev: true
 
   /@types/fnando__sparkline/0.3.4:

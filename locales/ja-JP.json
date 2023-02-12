@@ -35,6 +35,7 @@
     "posts_count": "{0} 投稿",
     "profile_description": "{0}さんのプロフィールヘッダー",
     "profile_unavailable": "プロフィールが利用できません",
+    "request_follow": "フォローをリクエスト",
     "unblock": "ブロック解除",
     "unfollow": "フォロー解除",
     "unmute": "ミュート解除",
@@ -68,6 +69,7 @@
     "save": "保存する",
     "save_changes": "変更を保存",
     "sign_in": "サインイン",
+    "sign_in_to": "{0}にサインイン",
     "switch_account": "アカウントの切り替え",
     "vote": "投票"
   },
@@ -183,9 +185,14 @@
   "list": {
     "add_account": "アカウントをリストに追加",
     "cancel_edit": "編集をキャンセル",
+    "clear_error": "エラーをクリア",
     "create": "作成",
     "delete": "リストを削除",
+    "delete_error": "リストの削除中にエラーが発生しました",
     "edit": "リストを編集",
+    "edit_error": "リストの更新中にエラーが発生しました",
+    "error": "リストの作成中にエラーが発生しました",
+    "error_prefix": "エラー: ",
     "list_title_placeholder": "リストのタイトル",
     "modify_account": "このアカウントでリストを編集",
     "remove_account": "アカウントをリストから削除",
@@ -365,10 +372,13 @@
         "save_settings": "設定を保存",
         "subscription_error": {
           "clear_error": "エラーのクリア",
+          "invalid_vapid_key": "VAPID公開鍵が無効なようです。",
           "permission_denied": "パーミッション拒否: ブラウザで通知を有効にしてください。",
+          "repo_link": "ElkのGitHubリポジトリ",
           "request_error": "購読のリクエスト中にエラーが発生しました。再試行してエラーが続くかどうか確認してください。もしエラーが解消しない場合、Elkリポジトリにissueを報告してください。",
           "title": "プッシュ通知を購読できませんでした",
-          "too_many_registrations": "ブラウザーの制限により、Elkは異なるサーバー上の複数アカウントに対してプッシュ通知サービスを使用できません。他のアカウントのプッシュ通知の購読を解除して、再購読する必要があります。"
+          "too_many_registrations": "ブラウザーの制限により、Elkは異なるサーバー上の複数アカウントに対してプッシュ通知サービスを使用できません。他のアカウントのプッシュ通知の購読を解除して、再購読する必要があります。",
+          "vapid_not_supported": "このブラウザはWeb Push通知をサポートしていませんが、VAPIDプロトコルをサポートしているようです。"
         },
         "title": "プッシュ通知の設定",
         "undo_settings": "変更を元に戻す",
@@ -395,15 +405,19 @@
       "github_cards": "GitHubカード",
       "grayscale_mode": "グレースケールモード",
       "hide_account_hover_card": "アカウントのホバーカードを隠す",
+      "hide_alt_indi_on_posts": "投稿上のalt表示を隠す",
       "hide_boost_count": "ブーストの数を隠す",
       "hide_favorite_count": "お気に入りの数を隠す",
       "hide_follower_count": "フォロワーの数を隠す",
       "hide_reply_count": "リプライの数を隠す",
       "hide_translation": "翻訳を隠す",
+      "hide_username_emojis": "ユーザー名の絵文字を隠す",
+      "hide_username_emojis_description": "タイムライン上でユーザー名に含まれる絵文字を隠します。プロフィールでは絵文字は引き続き表示されます。",
       "label": "環境設定",
       "title": "実験的機能",
       "user_picker": "ユーザーピッカー",
-      "virtual_scroll": "仮想スクロール"
+      "virtual_scroll": "仮想スクロール",
+      "wellbeing": "ウェルビーイング"
     },
     "profile": {
       "appearance": {
@@ -543,7 +557,11 @@
     "explore_links_intro": "これらのニュース記事は、分散型ネットワーク上のこのサーバーや他のサーバー上で現在話題になっています。",
     "explore_posts_intro": "これらの投稿は、分散型ネットワーク上のこのサーバーや他のサーバー上にあり、現在このサーバー上で注目を集めています。",
     "explore_tags_intro": "これらのハッシュタグは、分散型ネットワーク上のこのサーバーや他のサーバーにいるユーザーの間で現在注目を集めています。",
-    "toggle_code_block": "コードブロックを切り替え"
+    "open_editor_tools": "エディタツール",
+    "publish_failed": "投稿の再公開時にエディタ上部のエラーメッセージを閉じる",
+    "toggle_bold": "太字を切り替える",
+    "toggle_code_block": "コードブロックを切り替える",
+    "toggle_italic": "イタリックを切り替える"
   },
   "user": {
     "add_existing": "既存のアカウントを追加する",

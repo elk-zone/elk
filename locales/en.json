@@ -95,6 +95,7 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
+    "fetching": "Fetching...",
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."

@@ -1,17 +1,29 @@
 <script setup lang="ts">
 import type { Picker } from 'emoji-mart'
+import type { ComputedRef } from 'vue'
+import type { LocaleObject } from '#i18n'
 
 const emit = defineEmits<{
   (e: 'select', code: string): void
   (e: 'selectCustom', image: any): void
 }>()
 
+const { locale } = useI18n()
+const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
+
 const el = $ref<HTMLElement>()
 let picker = $ref<Picker>()
 const colorMode = useColorMode()
+const emojiMartLocale = ref<string>('en.json')
+
+watchEffect(() => {
+  const emojiPickerLocale = locales.value.find(l => l.code === locale.value) as LocaleObject
+  emojiMartLocale.value = emojiPickerLocale?.files[0] || 'en.json'
+})
 
 async function openEmojiPicker() {
   await updateCustomEmojis()
+
   if (picker) {
     picker.update({
       theme: colorMode.value,
@@ -20,7 +32,9 @@ async function openEmojiPicker() {
   }
   else {
     const promise = import('@emoji-mart/data/sets/14/twitter.json').then(r => r.default)
+    const i18n = import(`@emoji-mart/data/i18n/${emojiMartLocale.value}`).then(r => r.default)
     const { Picker } = await import('emoji-mart')
+
     picker = new Picker({
       data: () => promise,
       onEmojiSelect({ native, src, alt, name }: any) {
@@ -31,6 +45,7 @@ async function openEmojiPicker() {
       set: 'twitter',
       theme: colorMode.value,
       custom: customEmojisData.value,
+      i18n,
     })
   }
   await nextTick()

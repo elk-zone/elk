@@ -95,6 +95,7 @@
   "common": {
     "end_of_list": "Fin",
     "error": "ERROR",
+    "fetching": "Cargando...",
     "in": "en",
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer no tienes conexión a internet. Por favor, comprueba tu conexión a la red."
@@ -413,7 +414,7 @@
       "hide_reply_count": "Ocultar número de respuestas",
       "hide_translation": "Ocultar traducción",
       "hide_username_emojis": "Ocultar emojis en el nombre de usuario",
-      "hide_username_emojis_description": "Se ocultan los emojis en el nombre de usuario en las líneas de tiempo. Los emojis seguirán siendo visibles en sus perfiles.",
+      "hide_username_emojis_description": "Oculta los emojis de los nombres de usuarios en la línea de tiempo. Los emojis permanecerán visibles en sus perfiles.",
       "label": "Preferencias",
       "title": "Funcionalidades experimentales",
       "user_picker": "Selector de usuarios",

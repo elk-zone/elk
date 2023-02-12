@@ -30,7 +30,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
     params: {
       status: status || '',
       inReplyToId,
-      visibility: currentUser.value?.account.source.privacy || visibility || 'public',
+      visibility: visibility || 'public',
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
       language: language || '', // auto inferred from current language on posting
@@ -141,7 +141,7 @@ export function directMessageUser(account: mastodon.v1.Account) {
 
 export function clearEmptyDrafts() {
   for (const key in currentUserDrafts.value) {
-    if (builtinDraftKeys.includes(key) && !isEmptyDraft(currentUserDrafts.value[key]))
+    if (builtinDraftKeys.includes(key))
       continue
     if (!currentUserDrafts.value[key].params || isEmptyDraft(currentUserDrafts.value[key]))
       delete currentUserDrafts.value[key]

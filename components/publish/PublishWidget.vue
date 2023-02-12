@@ -27,7 +27,7 @@ const emit = defineEmits<{
 const { t } = useI18n()
 
 const draftState = useDraft(draftKey, initial)
-const { draft, isEmpty } = $(draftState)
+const { draft } = $(draftState)
 
 const {
   isExceedingAttachmentLimit, isUploading, failedAttachments, isOverDropZone,
@@ -48,8 +48,6 @@ const { editor } = useTiptap({
     set: (newVal) => {
       draft.params.status = newVal
       draft.lastUpdated = Date.now()
-      if (isEmpty)
-        clearEmptyDrafts()
     },
   }),
   placeholder: computed(() => placeholder ?? draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),

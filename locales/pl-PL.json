@@ -16,7 +16,7 @@
     "favourites": "Ulubione",
     "follow": "Obserwuj",
     "follow_back": "Przestań obserwować",
-    "follow_requested": "Wniosek",
+    "follow_requested": "Prośba",
     "followers": "Obserwujący",
     "followers_count": "{0} Obserwujących|{0} Obserwujący|{0} Obserwujących|{0} Obserwujących",
     "following": "Obserwujesz",
@@ -146,6 +146,13 @@
   },
   "conversation": {
     "with": " "
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Lines {0}",
+      "open": "Otwórz",
+      "snippet_from": "Snippet from {0}"
+    }
   },
   "error": {
     "account_not_found": "Nie znaleziono konta {0}",
@@ -330,6 +337,7 @@
     "language": {
       "display_language": "Język aplikacji",
       "label": "Język",
+      "status": "Stan tłumaczenia: {0}/{1} ({2}%)",
       "translations": {
         "add": "Dodaj",
         "choose_language": "Wybierz język",
@@ -564,6 +572,7 @@
     "sign_in_desc": "Zaloguj się, aby obserwować profile lub hasztagi, dodawać do ulubionych, udostępniać i odpowiadać na wpisy lub wchodzić w interakcje ze swojego konta na innym serwerze.",
     "sign_in_notice_title": "Dane publiczne  {0}",
     "sign_out_account": "Wyloguj {0}",
+    "single_instance_sign_in_desc": "Zaloguj się, aby obserwować profile lub hashtagi, dodawać do ulubionych, udostępniać i odpowiadać na posty.",
     "tip_no_account": "Jeśli nie masz jeszcze konta Mastodon, {0}.",
     "tip_register_account": "wybierz swój serwer i zarejestruj się"
   },

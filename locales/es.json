@@ -429,6 +429,8 @@
         "label": "Apariencia",
         "profile_metadata": "Metadatos de perfil",
         "profile_metadata_desc": "Puede mostrar hasta 4 elementos en forma de tabla en tu perfil",
+        "profile_metadata_label": "Etiqueta",
+        "profile_metadata_value": "Contenido",
         "title": "Editar perfil"
       },
       "featured_tags": {

@@ -35,7 +35,6 @@ export default defineNuxtConfig({
   ],
   experimental: {
     payloadExtraction: false,
-    reactivityTransform: true,
     inlineSSRStyles: false,
   },
   css: [
@@ -114,6 +113,7 @@ export default defineNuxtConfig({
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',
+        'Cache-Control': 'public, max-age=0, must-revalidate',
       },
     },
   },
@@ -130,7 +130,7 @@ export default defineNuxtConfig({
       crawlLinks: true,
     },
   },
-  sourcemap: !isDevelopment,
+  sourcemap: isDevelopment,
   hooks: {
     'nitro:config': function (config) {
       const nuxt = useNuxt()

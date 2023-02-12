@@ -18,7 +18,7 @@ export default defineNuxtModule({
         name: 'vite-emoji-mark-translation',
         enforce: 'pre',
         resolveId(id) {
-          if (id.startsWith(virtual))
+          if (id === virtual)
             return resolvedVirtual
         },
         async load(id) {

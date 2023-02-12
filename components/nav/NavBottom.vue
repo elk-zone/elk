@@ -1,6 +1,8 @@
 <script setup lang="ts">
 // only one icon can be lit up at the same time
 const moreMenuVisible = ref(false)
+
+const { notifications } = useNotifications()
 </script>
 
 <template>
@@ -18,7 +20,12 @@ const moreMenuVisible = ref(false)
         <div i-ri:search-line />
       </NuxtLink>
       <NuxtLink to="/notifications" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-        <div i-ri:notification-4-line />
+        <div flex relative>
+          <div class="i-ri:notification-4-line" text-xl />
+          <div v-if="notifications" class="top-[-0.3rem] right-[-0.3rem]" absolute font-bold rounded-full h-4 w-4 text-xs bg-primary text-inverted flex items-center justify-center>
+            {{ notifications < 10 ? notifications : '•' }}
+          </div>
+        </div>
       </NuxtLink>
       <NuxtLink to="/conversations" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:at-line />

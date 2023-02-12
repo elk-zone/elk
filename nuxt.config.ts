@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
+    '~/modules/emoji-mark-translation',
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',

@@ -1,7 +1,6 @@
 <script setup lang="ts">
+import importEmojiLang from 'virtual:emoji-mart-lang-importer'
 import type { Picker } from 'emoji-mart'
-import type { ComputedRef } from 'vue'
-import type { LocaleObject } from '#i18n'
 
 const emit = defineEmits<{
   (e: 'select', code: string): void
@@ -9,17 +8,10 @@ const emit = defineEmits<{
 }>()
 
 const { locale } = useI18n()
-const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
 
 const el = $ref<HTMLElement>()
 let picker = $ref<Picker>()
 const colorMode = useColorMode()
-const emojiMartLocale = ref<string>('en.json')
-
-watchEffect(() => {
-  const emojiPickerLocale = locales.value.find(l => l.code === locale.value) as LocaleObject
-  emojiMartLocale.value = emojiPickerLocale?.files[0] || 'en.json'
-})
 
 async function openEmojiPicker() {
   await updateCustomEmojis()
@@ -31,12 +23,16 @@ async function openEmojiPicker() {
     })
   }
   else {
-    const promise = import('@emoji-mart/data/sets/14/twitter.json').then(r => r.default)
-    const i18n = import(`@emoji-mart/data/i18n/${emojiMartLocale.value}`).then(r => r.default)
+    const emojiMartLocale = locale.value.split('-')[0]
+    const [dataPromise, i18n] = await Promise.all([
+      import('@emoji-mart/data/sets/14/twitter.json').then(r => r.default),
+      importEmojiLang(emojiMartLocale),
+    ])
+
     const { Picker } = await import('emoji-mart')
 
     picker = new Picker({
-      data: () => promise,
+      data: () => dataPromise,
       onEmojiSelect({ native, src, alt, name }: any) {
         native
           ? emit('select', native)

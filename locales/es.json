@@ -429,7 +429,7 @@
         "label": "Apariencia",
         "profile_metadata": "Metadatos de perfil",
         "profile_metadata_desc": "Puede mostrar hasta 4 elementos en forma de tabla en tu perfil",
-        "profile_metadata_label": "Etiqueta",
+        "profile_metadata_label": "Texto",
         "profile_metadata_value": "Contenido",
         "title": "Editar perfil"
       },
@@ -562,6 +562,7 @@
     "explore_posts_intro": "Estos mensajes de este y otros servidores de la red descentralizada están siendo tendencia ahora mismo en este servidor.",
     "explore_tags_intro": "Estas etiquetas están siendo tendencia ahora mismo entre los usuarios de este y otros servidores de la red descentralizada.",
     "open_editor_tools": "Herramientas de edición",
+    "pick_an_icon": "Selecciona un icono",
     "publish_failed": "Cierra los mensajes fallidos en la parte superior del editor para volver a publicar",
     "toggle_bold": "Cambiar a negrita",
     "toggle_code_block": "Cambiar a bloque de código",

@@ -570,6 +570,7 @@
     "sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones, o interactuar con un servidor diferente con tu usuario.",
     "sign_in_notice_title": "Viendo información pública de {0}",
     "sign_out_account": "Cerrar sesión {0}",
+    "single_instance_sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones.",
     "tip_no_account": "Si aún no tienes una cuenta Mastodon, {0}.",
     "tip_register_account": "selecciona tu servidor y registrate"
   },

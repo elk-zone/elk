@@ -23,16 +23,10 @@ async function openEmojiPicker() {
     })
   }
   else {
-    const emojiMartLocale = locale.value.split('-')[0]
-    const [dataPromise, i18n] = await Promise.all([
-      import('@emoji-mart/data/sets/14/twitter.json').then(r => r.default),
-      importEmojiLang(emojiMartLocale),
-    ])
-
     const { Picker } = await import('emoji-mart')
 
     picker = new Picker({
-      data: () => dataPromise,
+      data: () => import('@emoji-mart/data/sets/14/twitter.json').then((r: any) => r.default).catch(() => {}),
       onEmojiSelect({ native, src, alt, name }: any) {
         native
           ? emit('select', native)
@@ -41,7 +35,7 @@ async function openEmojiPicker() {
       set: 'twitter',
       theme: colorMode.value,
       custom: customEmojisData.value,
-      i18n,
+      i18n: () => importEmojiLang(locale.value.split('-')[0]),
     })
   }
   await nextTick()

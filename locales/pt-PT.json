@@ -337,6 +337,7 @@
     "language": {
       "display_language": "Idioma de Apresentação",
       "label": "Idioma",
+      "status": "Estado da tradução: {0}/{1} ({2}%)",
       "translations": {
         "add": "Adicionar",
         "choose_language": "Selecionar idioma",
@@ -566,9 +567,10 @@
   "user": {
     "add_existing": "Adicionar uma conta existente",
     "server_address_label": "Endereço do Servidor Mastodon",
-    "sign_in_desc": "Entre, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações, ou interagir a partir da sua conta de outro servidor.",
+    "sign_in_desc": "Inicie sessão, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações, ou interagir a partir da sua conta de outro servidor.",
     "sign_in_notice_title": "A visualizar os dados públicos de {0}",
     "sign_out_account": "Desconectar {0}",
+    "single_instance_sign_in_desc": "Inicie sessão, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações.",
     "tip_no_account": "Se ainda não tem uma conta Mastodon, {0}.",
     "tip_register_account": "escolha um servidor e inscreva-se"
   },

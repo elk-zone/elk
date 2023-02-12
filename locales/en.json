@@ -337,6 +337,7 @@
     "language": {
       "display_language": "Display Language",
       "label": "Language",
+      "status": "Translation status: {0}/{1} ({2}%)",
       "translations": {
         "add": "Add",
         "choose_language": "Choose language",
@@ -569,6 +570,7 @@
     "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
     "sign_in_notice_title": "Viewing {0} public data",
     "sign_out_account": "Sign out {0}",
+    "single_instance_sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts.",
     "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
     "tip_register_account": "pick your server and register one"
   },

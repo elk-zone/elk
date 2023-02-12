@@ -10,7 +10,7 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
       </i18n-t>
     </p>
     <p text-sm text-secondary>
-      {{ $t('user.sign_in_desc') }}
+      {{ $t(singleInstanceServer ? 'user.single_instance_sign_in_desc' : 'user.sign_in_desc') }}
     </p>
     <button
       v-if="singleInstanceServer"

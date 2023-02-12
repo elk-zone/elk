@@ -59,7 +59,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
 
           Object.keys(webmanifests!).map(wm => [wm, `manifest-${wm}.webmanifest`]).forEach(([wm, fileName]) => {
             bundle[fileName] = {
-              isAsset: true,
+              needsCodeReference: false,
               type: 'asset',
               name: undefined,
               source: generateManifest(wm),
@@ -79,6 +79,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
             if (entry) {
               res.statusCode = 200
               res.setHeader('Content-Type', 'application/manifest+json')
+              res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate')
               res.write(JSON.stringify(entry), 'utf-8')
               res.end()
             }
@@ -135,15 +136,22 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     else {
       nuxt.hook('nitro:config', async (nitroConfig) => {
         nitroConfig.routeRules = nitroConfig.routeRules || {}
+        nitroConfig.routeRules!['/sw.js'] = {
+          headers: {
+            'Cache-Control': 'public, max-age=0, must-revalidate',
+          },
+        }
         for (const locale of pwaLocales) {
           nitroConfig.routeRules![`/manifest-${locale.code}.webmanifest`] = {
             headers: {
               'Content-Type': 'application/manifest+json',
+              'Cache-Control': 'public, max-age=0, must-revalidate',
             },
           }
           nitroConfig.routeRules![`/manifest-${locale.code}-dark.webmanifest`] = {
             headers: {
               'Content-Type': 'application/manifest+json',
+              'Cache-Control': 'public, max-age=0, must-revalidate',
             },
           }
         }

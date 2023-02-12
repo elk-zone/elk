@@ -17,9 +17,9 @@ export default defineEventHandler(async (event) => {
     client_id: app.client_id,
     force_login: force_login === true ? 'true' : 'false',
     scope: 'read write follow push',
-    redirect_uri: getRedirectURI(origin, server),
     response_type: 'code',
     lang,
+    redirect_uri: getRedirectURI(origin, server),
   })
 
   return `https://${server}/oauth/authorize?${query}`

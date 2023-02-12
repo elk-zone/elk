@@ -570,6 +570,7 @@
     "sign_in_desc": "Inicia sesión para seguir perfís e cancelos, favorecer, compartir ou responder a mensaxes, ou interactuar coa túa conta noutro servidor.",
     "sign_in_notice_title": "Vendo {0} datos públicos",
     "sign_out_account": "Pechar sesión {0}",
+    "single_instance_sign_in_desc": "Inicia sesión para seguir perfís e cancelos, favorecer, compartir ou responder a mensaxes.",
     "tip_no_account": "Se aínda non tes unha conta Mastodon, {0}.",
     "tip_register_account": "elixe un servidor para crear unha"
   },

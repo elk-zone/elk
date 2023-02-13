@@ -169,10 +169,16 @@
     "desc_para4": "鹿鸣是开源的，如果你愿意帮助测试、提供反馈或作出贡献，",
     "desc_para5": "在 GitHub 上联系我们",
     "desc_para6": "来参与其中。",
+    "footer_team": "鹿鸣开发团队",
     "title": "预览鹿鸣！"
   },
   "language": {
     "search": "搜索"
+  },
+  "list": {
+    "add_account": "向列表中添加用户",
+    "modify_account": "修改列表中的用户",
+    "remove_account": "移除列表中的用户"
   },
   "menu": {
     "block_account": "拉黑 {0}",
@@ -216,9 +222,12 @@
     "favourites": "喜欢",
     "federated": "跨站",
     "home": "主页",
+    "list": "列表",
+    "lists": "列表",
     "local": "本地",
     "muted_users": "已屏蔽的用户",
     "notifications": "通知",
+    "privacy": "隐私协议",
     "profile": "个人资料",
     "search": "搜索",
     "select_feature_flags": "功能开关",
@@ -248,6 +257,8 @@
   },
   "pwa": {
     "dismiss": "忽略",
+    "install": "安装",
+    "install_title": "安装鹿鸣",
     "title": "鹿鸣存在新的更新",
     "update": "更新",
     "update_available_short": "更新鹿鸣",
@@ -280,7 +291,16 @@
   },
   "settings": {
     "about": {
-      "label": "关于"
+      "built_at": "构建于",
+      "label": "关于",
+      "meet_the_team": "认识开发团队",
+      "sponsor_action": "赞助我们",
+      "sponsor_action_desc": "支持团队开发鹿鸣",
+      "sponsors": "赞助者",
+      "sponsors_body_1": "鹿鸣能够出现要感谢以下赞助者的慷慨赞助和帮助：",
+      "sponsors_body_2": "以及赞助鹿鸣开发团队和成员的所有公司和个人。",
+      "sponsors_body_3": "如果你喜欢这个应用程序，请考虑赞助我们：",
+      "version": "版本"
     },
     "account_settings": {
       "description": "在 Mastodon UI 中编辑你的账号设置",
@@ -293,19 +313,19 @@
       "font_size": "字号",
       "label": "外观",
       "light_mode": "浅色",
-      "size_label": {
-        "lg": "大",
-        "md": "中",
-        "sm": "小",
-        "xl": "特大",
-        "xs": "特小"
-      },
       "system_mode": "跟随系统",
       "theme_color": "主题颜色"
     },
     "language": {
       "display_language": "首选语言",
-      "label": "语言"
+      "label": "语言",
+      "translations": {
+        "add": "添加",
+        "choose_language": "选择语言",
+        "heading": "翻译",
+        "hide_specific": "隐藏指定的翻译",
+        "remove": "删除"
+      }
     },
     "notifications": {
       "label": "通知",
@@ -354,11 +374,13 @@
           "re_auth": "您的服务器似乎不支持推送通知。尝试退出用户并重新登录。如果此消息仍然出现，请联系您服务器的管理员。"
         }
       },
-      "show_btn": "前往通知设置"
+      "show_btn": "前往通知设置",
+      "under_construction": "建设中"
     },
     "notifications_settings": "通知",
     "preferences": {
       "enable_autoplay": "开启自动播放",
+      "enable_pinch_to_zoom": "启用双指缩放功能",
       "github_cards": "GitHub 卡片",
       "grayscale_mode": "灰色模式",
       "hide_account_hover_card": "隐藏用户悬浮卡",
@@ -395,6 +417,11 @@
       "label": "当前用户"
     }
   },
+  "share-target": {
+    "description": "只需要在你的设备或电脑上安装并登录鹿鸣，通过简单的配置，你就可以从其他应用中分享内容至鹿鸣。",
+    "hint": "为了分享内容至鹿鸣，你必须安装并登录鹿鸣。",
+    "title": "分享至鹿鸣"
+  },
   "state": {
     "attachments_exceed_server_limit": "附件的数量超出了最大限制",
     "attachments_limit_error": "超出每篇帖文的最大限制",
@@ -411,6 +438,7 @@
     "edited": "在 {0} 编辑了",
     "favourited_by": "被喜欢",
     "filter_hidden_phrase": "筛选依据",
+    "filter_removed_phrase": "从筛选中移除",
     "filter_show_anyway": "仍然展示",
     "img_alt": {
       "desc": "描述",
@@ -435,8 +463,10 @@
     "edited": "在 {0} 编辑了"
   },
   "tab": {
+    "accounts": "用户",
     "for_you": "推荐关注",
     "hashtags": "话题标签",
+    "list": "列表",
     "media": "媒体",
     "news": "最新消息",
     "notifications_all": "全部",

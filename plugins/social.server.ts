@@ -4,7 +4,7 @@ const BOT_RE = /bot\b|index|spider|facebookexternalhit|crawl|wget|slurp|mediapar
 
 export default defineNuxtPlugin(async (nuxtApp) => {
   const route = useRoute()
-  if (!route.params.server)
+  if (!('server' in route.params))
     return
 
   const userAgent = useRequestHeaders()['user-agent']

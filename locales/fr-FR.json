@@ -21,7 +21,7 @@
     "followers_count": "{0} abonné·e|{0} abonné·e|{0} abonné·e·s",
     "following": "Suivi·e",
     "following_count": "{0} abonnements",
-    "follows_you": "Vous suit",
+    "follows_you": "@:account.follow_back",
     "go_to_profile": "Aller à son profil",
     "joined": "a rejoint",
     "moved_title": "a indiqué que son nouveau compte est désormais :",
@@ -118,6 +118,11 @@
       "confirm": "Oui",
       "title": "Êtes-vous sûr·e ?"
     },
+    "delete_list": {
+      "cancel": "Annuler",
+      "confirm": "Supprimer",
+      "title": "Voulez-vous vraiment supprimer la liste \"{0}\" ?"
+    },
     "delete_posts": {
       "cancel": "Annuler",
       "confirm": "Supprimer",
@@ -171,10 +176,27 @@
     "desc_para4": "Avant cela, si vous voulez aider à tester, donner des retours ou contribuer",
     "desc_para5": "contactez nous sur GitHub",
     "desc_para6": "et rejoignez l'aventure.",
+    "footer_team": "L'équipe Elk",
     "title": "Elk est en mode Aperçu !"
   },
   "language": {
     "search": "Recherche"
+  },
+  "list": {
+    "add_account": "Ajouter le compte à la liste",
+    "cancel_edit": "Annuler l'édition",
+    "clear_error": "Effacer l'erreur",
+    "create": "Créer",
+    "delete": "Supprimer cette liste",
+    "delete_error": "Il y a eu une erreur lors de la suppression de la liste",
+    "edit": "Editer cette liste",
+    "edit_error": "Il y a eu une erreur lors de la mise à jour de la liste",
+    "error": "Il y a eu une erreur lors de la création de la liste",
+    "error_prefix": "Erreur :",
+    "list_title_placeholder": "Nom de la liste",
+    "modify_account": "Modifier les listes de ce compte",
+    "remove_account": "Supprimer ce compte de listes",
+    "save": "Enregistrer les changements"
   },
   "menu": {
     "block_account": "Bloquer {0}",
@@ -221,9 +243,12 @@
     "favourites": "Favoris",
     "federated": "Fédérés",
     "home": "Accueil",
+    "list": "Liste",
+    "lists": "Listes",
     "local": "Local",
     "muted_users": "Comptes masqués",
     "notifications": "Notifications",
+    "privacy": "Données privées",
     "profile": "Profil",
     "search": "Rechercher",
     "select_feature_flags": "Activer/Désactiver Feature Flags",
@@ -287,6 +312,7 @@
   },
   "settings": {
     "about": {
+      "built_at": "Dernière compilation",
       "label": "À propos",
       "meet_the_team": "Rencontrez l'équipe",
       "sponsor_action": "Soutenez-nous",
@@ -313,7 +339,14 @@
     },
     "language": {
       "display_language": "Langue d'affichage",
-      "label": "Langue"
+      "label": "Langue",
+      "translations": {
+        "add": "Ajouter",
+        "choose_language": "Choisir une langue",
+        "heading": "Traductions",
+        "hide_specific": "Cacher certaines traductions",
+        "remove": "Retirer"
+      }
     },
     "notifications": {
       "label": "Notifications",
@@ -362,16 +395,21 @@
           "re_auth": "Il semble que votre serveur ne supporte pas les notifications push. \nEssayez de vous déconnecter et de vous reconnecter, si ce message persiste, contactez l'administrateur de votre serveur."
         }
       },
-      "show_btn": "Se rendre aux paramètres des notifications"
+      "show_btn": "Se rendre aux paramètres des notifications",
+      "under_construction": "En construction"
     },
     "notifications_settings": "Notifications",
     "preferences": {
       "enable_autoplay": "Activer la lecture automatique",
-      "github_cards": "GitHub Cards",
+      "enable_pinch_to_zoom": "Activer le zoom par pincement",
+      "github_cards": "Cartes GitHub",
       "grayscale_mode": "Mode niveaux de gris",
+      "hide_account_hover_card": "Masquer la carte de survol du compte",
       "hide_boost_count": "Cacher les compteurs de partages",
       "hide_favorite_count": "Cacher les compteurs de favoris",
       "hide_follower_count": "Cacher les compteurs d'abonné·e·s",
+      "hide_reply_count": "Cacher les compteurs de réponses",
+      "hide_translation": "Cacher traduction",
       "label": "Préférences",
       "title": "Fonctionnalités expérimentales",
       "user_picker": "User Picker",
@@ -421,10 +459,13 @@
     "edited": "Edité {0}",
     "favourited_by": "Aimé par",
     "filter_hidden_phrase": "Filtré par",
+    "filter_removed_phrase": "Supprimé par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Description",
-      "dismiss": "Fermer"
+      "dismiss": "Fermer",
+      "read": "Lire la description de {0}"
     },
     "poll": {
       "count": "{0} votes",
@@ -445,8 +486,10 @@
     "edited": "a édité {0}"
   },
   "tab": {
+    "accounts": "Comptes",
     "for_you": "Pour vous",
     "hashtags": "Hashtags",
+    "list": "Liste",
     "media": "Média",
     "news": "Actualités",
     "notifications_all": "Tout",

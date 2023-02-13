@@ -4,6 +4,8 @@ defineProps<{
   backOnSmallScreen?: boolean
   /** Show the back button on both small and big screens */
   back?: boolean
+  /** Do not applying overflow hidden to let use floatable components in title */
+  noOverflowHidden?: boolean
 }>()
 
 const route = useRoute()
@@ -18,8 +20,8 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
       border="b base" bg="[rgba(var(--rgb-bg-base),0.7)]"
       class="native:lg:w-[calc(100vw-5rem)] native:xl:w-[calc(135%+(100vw-1200px)/2)]"
     >
-      <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }" data-tauri-drag-region class="native:xl:flex">
-        <div flex gap-3 items-center overflow-hidden py2 class="native-mac:pl-14 native-mac:sm:pl-0">
+      <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex">
+        <div flex gap-3 items-center :overflow-hidden="!noOverflowHidden ? '' : false" py2 w-full>
           <NuxtLink
             v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0 xl:hidden
             :aria-label="$t('nav.back')"
@@ -27,10 +29,10 @@ const wideLayout = computed(() => route.meta.wideLayout ?? false)
           >
             <div i-ri:arrow-left-line class="rtl-flip" />
           </NuxtLink>
-          <div truncate>
+          <div :truncate="!noOverflowHidden ? '' : false" flex w-full data-tauri-drag-region class="native-mac:justify-center native-mac:text-center native-mac:sm:justify-start">
             <slot name="title" />
           </div>
-          <div h-7 w-1px />
+          <div sm:hidden h-7 w-1px />
         </div>
         <div flex items-center flex-shrink-0 gap-x-2>
           <slot name="actions" />

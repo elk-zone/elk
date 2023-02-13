@@ -8,16 +8,20 @@ export function setupPageHeader() {
   const enablePinchToZoom = usePreferences('enablePinchToZoom')
 
   const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
-    acc[l.code!] = l.dir ?? 'auto'
+    acc[l.code!] = l.dir ?? 'ltr'
     return acc
   }, {} as Record<string, Directions>)
 
   useHeadFixed({
     htmlAttrs: {
       lang: () => locale.value,
-      dir: () => localeMap[locale.value] ?? 'auto',
+      dir: () => localeMap[locale.value] ?? 'ltr',
       class: () => enablePinchToZoom.value ? ['enable-pinch-to-zoom'] : [],
     },
+    meta: [{
+      name: 'viewport',
+      content: () => `width=device-width,initial-scale=1${enablePinchToZoom.value ? '' : ',maximum-scale=1,user-scalable=0'},viewport-fit=cover`,
+    }],
     titleTemplate: (title) => {
       let titleTemplate = title ?? ''
 

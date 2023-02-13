@@ -16,6 +16,40 @@ const userSettings = useUserSettings()
       </h1>
     </template>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideAltIndicatorOnPosts')"
+      @click="togglePreferences('hideAltIndicatorOnPosts')"
+    >
+      {{ $t('settings.preferences.hide_alt_indi_on_posts') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideAccountHoverCard')"
+      @click="togglePreferences('hideAccountHoverCard')"
+    >
+      {{ $t('settings.preferences.hide_account_hover_card') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enableAutoplay')"
+      @click="togglePreferences('enableAutoplay')"
+    >
+      {{ $t('settings.preferences.enable_autoplay') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enablePinchToZoom')"
+      @click="togglePreferences('enablePinchToZoom')"
+    >
+      {{ $t('settings.preferences.enable_pinch_to_zoom') }}
+    </SettingsToggleItem>
+    <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
+      <div i-ri-hearts-line />
+      {{ $t('settings.preferences.wellbeing') }}
+    </h2>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'grayscaleMode')"
+      @click="togglePreferences('grayscaleMode')"
+    >
+      {{ $t('settings.preferences.grayscale_mode') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'hideBoostCount')"
       @click="togglePreferences('hideBoostCount')"
     >
@@ -40,28 +74,13 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_follower_count') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="getPreferences(userSettings, 'hideAccountHoverCard')"
-      @click="togglePreferences('hideAccountHoverCard')"
+      :checked="getPreferences(userSettings, 'hideUsernameEmojis')"
+      @click="togglePreferences('hideUsernameEmojis')"
     >
-      {{ $t('settings.preferences.hide_account_hover_card') }}
-    </SettingsToggleItem>
-    <SettingsToggleItem
-      :checked="getPreferences(userSettings, 'grayscaleMode')"
-      @click="togglePreferences('grayscaleMode')"
-    >
-      {{ $t('settings.preferences.grayscale_mode') }}
-    </SettingsToggleItem>
-    <SettingsToggleItem
-      :checked="getPreferences(userSettings, 'enableAutoplay')"
-      @click="togglePreferences('enableAutoplay')"
-    >
-      {{ $t('settings.preferences.enable_autoplay') }}
-    </SettingsToggleItem>
-    <SettingsToggleItem
-      :checked="getPreferences(userSettings, 'enablePinchToZoom')"
-      @click="togglePreferences('enablePinchToZoom')"
-    >
-      {{ $t('settings.preferences.enable_pinch_to_zoom') }}
+      {{ $t("settings.preferences.hide_username_emojis") }}
+      <template #description>
+        {{ $t('settings.preferences.hide_username_emojis_description') }}
+      </template>
     </SettingsToggleItem>
     <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-flask-line />

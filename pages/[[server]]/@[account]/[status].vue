@@ -42,7 +42,7 @@ async function scrollTo() {
   statusElement.scrollIntoView(true)
 }
 
-const publishWidget = ref()
+const publishWidget = ref(null)
 const focusEditor = () => publishWidget.value?.focusEditor?.()
 
 provide('focus-editor', focusEditor)

@@ -16,7 +16,7 @@
     "favourites": "Ulubione",
     "follow": "Obserwuj",
     "follow_back": "Przestań obserwować",
-    "follow_requested": "Wniosek",
+    "follow_requested": "Prośba",
     "followers": "Obserwujący",
     "followers_count": "{0} Obserwujących|{0} Obserwujący|{0} Obserwujących|{0} Obserwujących",
     "following": "Obserwujesz",
@@ -35,6 +35,7 @@
     "posts_count": "{0} Wpisów|{0} Wpis|{0} Wpisy|{0} Wpisów",
     "profile_description": "nagłówek profilu {0}",
     "profile_unavailable": "Profil niedostępny",
+    "request_follow": "Prośba o śledzenie",
     "unblock": "Odblokuj",
     "unfollow": "Przestań obserwować",
     "unmute": "Wyłącz wyciszenie",
@@ -68,6 +69,7 @@
     "save": "Zapisz",
     "save_changes": "Zapisz zmiany",
     "sign_in": "Zaloguj się",
+    "sign_in_to": "Zaloguj się do {0}",
     "switch_account": "Przełącz konto",
     "vote": "Zagłosuj"
   },
@@ -116,6 +118,11 @@
       "cancel": "Nie",
       "confirm": "Tak"
     },
+    "delete_list": {
+      "cancel": "Anuluj",
+      "confirm": "Usuń",
+      "title": "Czy na pewno chcesz usunąć listę „{0}”?"
+    },
     "delete_posts": {
       "cancel": "Anuluj",
       "confirm": "Usuń",
@@ -140,6 +147,13 @@
   "conversation": {
     "with": " "
   },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Lines {0}",
+      "open": "Otwórz",
+      "snippet_from": "Snippet from {0}"
+    }
+  },
   "error": {
     "account_not_found": "Nie znaleziono konta {0}",
     "explore-list-empty": "Nic nie jest w tej chwili popularne. Sprawdź później!",
@@ -162,6 +176,7 @@
     "desc_para4": "Elk jest Open Source. Jeśli chcesz pomóc w testowaniu, przekazać opinię lub wnieść swój wkład,",
     "desc_para5": "skontaktuj się z nami na GitHub",
     "desc_para6": "i zaangażuj się.",
+    "footer_team": "Zespół Elk",
     "title": "Elk w wersji Preview!"
   },
   "language": {
@@ -169,8 +184,19 @@
   },
   "list": {
     "add_account": "Dodaj konto do listy",
+    "cancel_edit": "Anuluj edycję",
+    "clear_error": "Usuń błąd",
+    "create": "Utwórz",
+    "delete": "Usuń listę",
+    "delete_error": "Podczas usuwania listy wystąpił błąd",
+    "edit": "Edytuj listę",
+    "edit_error": "Podczas aktualizowania listy wystąpił błąd",
+    "error": "Podczas tworzenia listy wystąpił błąd",
+    "error_prefix": "Błąd:",
+    "list_title_placeholder": "Tytuł listy",
     "modify_account": "Modyfikacja listy",
-    "remove_account": "Usuń konto z listy"
+    "remove_account": "Usuń konto z listy",
+    "save": "Zapisz zmiany"
   },
   "menu": {
     "block_account": "Zablokuj {0}",
@@ -283,6 +309,7 @@
   },
   "settings": {
     "about": {
+      "built_at": "Kompilacja",
       "label": "Informacje",
       "meet_the_team": "Poznaj zespół",
       "sponsor_action": "Wspomóż nas",
@@ -310,6 +337,7 @@
     "language": {
       "display_language": "Język aplikacji",
       "label": "Język",
+      "status": "Stan tłumaczenia: {0}/{1} ({2}%)",
       "translations": {
         "add": "Dodaj",
         "choose_language": "Wybierz język",
@@ -345,10 +373,13 @@
         "save_settings": "Zapisz ustawienia",
         "subscription_error": {
           "clear_error": "Usuń błąd",
+          "invalid_vapid_key": "Wydaje się, że klucz publiczny VAPID jest nieprawidłowy.",
           "permission_denied": "Brak uprawnień: włącz powiadomienia w przeglądarce.",
+          "repo_link": "Repozytorium Elk w Github",
           "request_error": "Wystąpił błąd podczas żądania subskrypcji, spróbuj ponownie, a jeśli błąd będzie się powtarzał, zgłoś problem do repozytorium Elk.",
           "title": "Nie można zasubskrybować powiadomień push",
-          "too_many_registrations": "Ze względu na ograniczenia przeglądarki Elk nie może korzystać z usługi powiadomień push dla wielu kont na różnych serwerach. Powinieneś anulować subskrypcję powiadomień push na innym koncie i spróbować ponownie."
+          "too_many_registrations": "Ze względu na ograniczenia przeglądarki Elk nie może korzystać z usługi powiadomień push dla wielu kont na różnych serwerach. Powinieneś anulować subskrypcję powiadomień push na innym koncie i spróbować ponownie.",
+          "vapid_not_supported": "Twoja przeglądarka obsługuje powiadomienia Web Push, ale wydaje się, że nie implementuje protokołu VAPID."
         },
         "title": "Ustawienia powiadomień push",
         "undo_settings": "Cofnij zmiany",
@@ -365,23 +396,29 @@
           "re_auth": "Wygląda na to, że Twój serwer nie obsługuje powiadomień push. Spróbuj wylogować się i zalogować ponownie, jeśli ten komunikat nadal się pojawia, skontaktuj się z administratorem serwera."
         }
       },
-      "show_btn": "Przejdź do ustawień powiadomień"
+      "show_btn": "Przejdź do ustawień powiadomień",
+      "under_construction": "W budowie"
     },
     "notifications_settings": "Powiadomienia",
     "preferences": {
       "enable_autoplay": "Włącz autoodtwarzanie",
+      "enable_pinch_to_zoom": "Włącz powiększanie za pomocą gestów",
       "github_cards": "GitHub Cards",
-      "grayscale_mode": "Tryb skali szarości",
+      "grayscale_mode": "Wpisy w odcieniach szarości",
       "hide_account_hover_card": "Ukryj wizytówkę konta",
+      "hide_alt_indi_on_posts": "Ukryj wskaźnik ALT przy wpisach",
       "hide_boost_count": "Ukryj liczbę podbić",
       "hide_favorite_count": "Ukryj liczbę polubień",
       "hide_follower_count": "Ukryj liczbę obserwujących",
       "hide_reply_count": "Ukryj liczbę odpowiedzi",
       "hide_translation": "Ukryj funkcję tłumaczenia",
+      "hide_username_emojis": "Ukryj emotikony w nazwie użytkownika",
+      "hide_username_emojis_description": "Ukrywa emotikony przed nazwami użytkowników na osi czasu. Emotikony będą nadal widoczne w ich profilach.",
       "label": "Preferencje",
       "title": "Funkcje eksperymentalne",
       "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
+      "virtual_scroll": "Virtual Scrolling",
+      "wellbeing": "Dla dobrego samopoczucia"
     },
     "profile": {
       "appearance": {
@@ -391,6 +428,8 @@
         "label": "Wygląd",
         "profile_metadata": "Metadane profilu",
         "profile_metadata_desc": "Możesz mieć maksymalnie {0} elementy wyświetlane jako tabela w swoim profilu",
+        "profile_metadata_label": "Nazwa",
+        "profile_metadata_value": "Zawartość",
         "title": "Edytuj profil"
       },
       "featured_tags": {
@@ -430,8 +469,10 @@
     "filter_removed_phrase": "Usunięto przez filtr",
     "filter_show_anyway": "Pokaż mimo wszystko",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Opis",
-      "dismiss": "Zamknij"
+      "dismiss": "Zamknij",
+      "read": "Przeczytaj opis {0}"
     },
     "poll": {
       "count": "{0} głosów|{0} głos|{0} głosy|{0} głosów",
@@ -519,8 +560,11 @@
     "explore_links_intro": "Te wiadomości obecnie są komentowane przez osoby z tego serwera i pozostałych w zdecentralizowanej sieci.",
     "explore_posts_intro": "Te wpisy z tego i innych serwerów w zdecentralizowanej sieci zyskują teraz popularność na tym serwerze.",
     "explore_tags_intro": "Te hasztagi zyskują obecnie na popularności wśród osób na tym i innych serwerach zdecentralizowanej sieci.",
+    "open_editor_tools": "Narzędzia edycji",
     "publish_failed": "Zamknij komunikaty o błędzie u góry edytora, aby ponownie opublikować wpisy",
-    "toggle_code_block": "Przełączenie do trybu kodowania"
+    "toggle_bold": "Zmień na pogrubienie",
+    "toggle_code_block": "Przełączenie do trybu kodowania",
+    "toggle_italic": "Zmień na kursywę"
   },
   "user": {
     "add_existing": "Dodaj istniejące konto",
@@ -528,6 +572,7 @@
     "sign_in_desc": "Zaloguj się, aby obserwować profile lub hasztagi, dodawać do ulubionych, udostępniać i odpowiadać na wpisy lub wchodzić w interakcje ze swojego konta na innym serwerze.",
     "sign_in_notice_title": "Dane publiczne  {0}",
     "sign_out_account": "Wyloguj {0}",
+    "single_instance_sign_in_desc": "Zaloguj się, aby obserwować profile lub hashtagi, dodawać do ulubionych, udostępniać i odpowiadać na posty.",
     "tip_no_account": "Jeśli nie masz jeszcze konta Mastodon, {0}.",
     "tip_register_account": "wybierz swój serwer i zarejestruj się"
   },

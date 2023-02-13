@@ -1,7 +1,9 @@
+import { mkdir, writeFile } from 'node:fs/promises'
 import { defineNuxtModule } from '@nuxt/kit'
 import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
 import type { Plugin } from 'vite'
+import { join } from 'pathe'
 import type { VitePWANuxtOptions } from './types'
 import { configurePWAOptions } from './config'
 import { type LocalizedWebManifest, createI18n, pwaLocales } from './i18n'
@@ -26,6 +28,13 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     nuxt.options.appConfig = nuxt.options.appConfig || {}
     nuxt.options.appConfig.pwaEnabled = !options.disable
 
+    nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
+    const manifestDir = join(nuxt.options.buildDir, 'manifests')
+    nuxt.options.nitro.publicAssets.push({
+      dir: manifestDir,
+      baseURL: '/',
+      maxAge: 0,
+    })
     // TODO: combine with configurePWAOptions?
     nuxt.hook('nitro:init', (nitro) => {
       options.outDir = nitro.options.output.publicDir
@@ -50,24 +59,19 @@ export default defineNuxtModule<VitePWANuxtOptions>({
           throw new Error(`No webmanifest found for locale/theme ${entry}`)
         return JSON.stringify(manifest)
       }
-      viteInlineConfig.plugins.push({
-        name: 'elk:pwa:locales:build',
-        apply: 'build',
-        generateBundle(_, bundle) {
-          if (options.disable || !bundle)
-            return
-
-          Object.keys(webmanifests!).map(wm => [wm, `manifest-${wm}.webmanifest`]).forEach(([wm, fileName]) => {
-            bundle[fileName] = {
-              isAsset: true,
-              type: 'asset',
-              name: undefined,
-              source: generateManifest(wm),
-              fileName,
-            }
-          })
-        },
-      })
+      if (isClient) {
+        viteInlineConfig.plugins.push({
+          name: 'elk:pwa:locales:build',
+          apply: 'build',
+          async writeBundle(_options, bundle) {
+            if (options.disable || !bundle)
+              return
+            await mkdir(manifestDir, { recursive: true })
+            for (const wm in webmanifests)
+              await writeFile(join(manifestDir, `manifest-${wm}.webmanifest`), generateManifest(wm))
+          },
+        })
+      }
       viteInlineConfig.plugins.push({
         name: 'elk:pwa:locales:dev',
         apply: 'serve',
@@ -79,6 +83,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
             if (entry) {
               res.statusCode = 200
               res.setHeader('Content-Type', 'application/manifest+json')
+              res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate')
               res.write(JSON.stringify(entry), 'utf-8')
               res.end()
             }
@@ -135,15 +140,22 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     else {
       nuxt.hook('nitro:config', async (nitroConfig) => {
         nitroConfig.routeRules = nitroConfig.routeRules || {}
+        nitroConfig.routeRules!['/sw.js'] = {
+          headers: {
+            'Cache-Control': 'public, max-age=0, must-revalidate',
+          },
+        }
         for (const locale of pwaLocales) {
           nitroConfig.routeRules![`/manifest-${locale.code}.webmanifest`] = {
             headers: {
               'Content-Type': 'application/manifest+json',
+              'Cache-Control': 'public, max-age=0, must-revalidate',
             },
           }
           nitroConfig.routeRules![`/manifest-${locale.code}-dark.webmanifest`] = {
             headers: {
               'Content-Type': 'application/manifest+json',
+              'Cache-Control': 'public, max-age=0, must-revalidate',
             },
           }
         }

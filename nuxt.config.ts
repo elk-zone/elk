@@ -1,5 +1,4 @@
 import { createResolver, useNuxt } from '@nuxt/kit'
-import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
@@ -32,14 +31,10 @@ export default defineNuxtConfig({
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     '~/modules/stale-dep',
-    ['unplugin-vue-inspector/nuxt', {
-      enabled: false,
-      toggleButtonVisibility: 'never',
-    }],
+    '@nuxt/devtools',
   ],
   experimental: {
     payloadExtraction: false,
-    reactivityTransform: true,
     inlineSSRStyles: false,
   },
   css: [
@@ -76,19 +71,7 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
-      rollupOptions: {
-        output: {
-          manualChunks: (id) => {
-            // TODO: find and resolve issue in nuxt/vite/pwa
-            if (id.includes('.svg') || id.includes('entry'))
-              return 'entry'
-          },
-        },
-      },
     },
-    plugins: [
-      Inspect(),
-    ],
   },
   postcss: {
     plugins: {
@@ -121,10 +104,16 @@ export default defineNuxtConfig({
     },
   },
   routeRules: {
+    // Static generation
+    '/': { prerender: true },
+    '/settings/**': { prerender: false },
+    // incremental regeneration
     '/api/list-servers': { swr: true },
+    // CDN cache rules
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',
+        'Cache-Control': 'public, max-age=0, must-revalidate',
       },
     },
   },
@@ -139,11 +128,9 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: ['/'],
-      ignore: ['/settings'],
     },
   },
-  sourcemap: !isDevelopment,
+  sourcemap: isDevelopment,
   hooks: {
     'nitro:config': function (config) {
       const nuxt = useNuxt()

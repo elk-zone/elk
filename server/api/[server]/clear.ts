@@ -1,5 +1,3 @@
-import { deleteApp } from '~~/server/shared'
-
 export default defineEventHandler(async (event) => {
   const { server } = getRouterParams(event)
   const { key } = getQuery(event)

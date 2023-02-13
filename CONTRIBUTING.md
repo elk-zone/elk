@@ -95,7 +95,7 @@ You can check current [translation status](https://docs.elk.zone/docs/guide/cont
 
 If you are updating a translation in your local environment, you can run the following commands to check the status:
 - from root folder: `nr prepare-translation-status`
-- change to `docs` folder and run docs dev server `cd docs && nr dev`
+- change to `docs` folder and run docs dev server `nr dev`
 - open `http://localhost:3000/docs/guide/contributing#translation-status` in your browser
 
 ### Adding a new language

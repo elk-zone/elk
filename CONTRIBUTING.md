@@ -91,6 +91,13 @@ We've added some `UnoCSS` utilities styles to help you with that:
 
 We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i18n.nuxtjs.org/) to handle internationalization.
 
+You can check current [translation status](https://elk-docs.netlify.app/docs/guide/contributing#translation-status): more instructions on table caption.
+
+If you are updating a translation in your local environment, you can run the following commands to check the status:
+- from root folder: `nr prepare-translation-status`
+- change to `docs` folder and run docs dev server `cd docs && nr dev`
+- open `http://localhost:3000/docs/guide/contributing#translation-status` in your browser
+
 ### Adding a new language
 
 1. Add a new file in [locales](./locales) folder with the language code as the filename.

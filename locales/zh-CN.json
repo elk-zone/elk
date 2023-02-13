@@ -412,7 +412,7 @@
       "hide_follower_count": "隐藏关注者数",
       "hide_reply_count": "隐藏回复数",
       "hide_translation": "隐藏翻译",
-      "hide_username_emojis": "隐藏用户的表情符号",
+      "hide_username_emojis": "隐藏用户昵称的表情符号",
       "hide_username_emojis_description": "隐藏时间线上用户的表情符号。表情符号仍然会在用户个人资料中展示。",
       "label": "首选项",
       "title": "实验功能",

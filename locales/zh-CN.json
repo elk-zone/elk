@@ -373,7 +373,7 @@
         "save_settings": "保存设置改动",
         "subscription_error": {
           "clear_error": "清除错误",
-          "invalid_vapid_key": "VAPID 密钥可能是无效的。",
+          "invalid_vapid_key": "VAPID 密钥无效。",
           "permission_denied": "权限不足：请在你的浏览器中打开通知权限。",
           "repo_link": "鹿鸣在 Github 上的仓库",
           "request_error": "请求订阅时发生了一个错误，请再次尝试。如错误仍然存在，请到鹿鸣代码仓库中报告这一问题。",

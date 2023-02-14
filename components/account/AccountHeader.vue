@@ -175,7 +175,13 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           :class="field.verifiedAt ? 'border-1 border-dark' : ''"
           :to="getIconFieldHref(field.value)" rel="me nofollow noopener noreferrer" target="_blank"
         >
-          <div text-secondary :class="field.verifiedAt ? accountVerifiedFieldIcon : (getAccountFieldIcon(field.name) || getAccountFieldIcon('Website'))" />
+          <div
+            text-secondary :class="field.verifiedAt
+              ? accountVerifiedFieldIcon
+              : (getAccountFieldIcon(field.name) || getAccountFieldIcon('Website'))"
+            :title="field.verifiedAt ? 'Verified' : undefined"
+            :aria-label="field.verifiedAt ? 'Verified.' : undefined"
+          />
           <div flex="~ col">
             <div text-secondary uppercase font-medium style="font-size: 0.6rem; margin-bottom: -0.5em;">
               {{ field.name }}

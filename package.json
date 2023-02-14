@@ -21,10 +21,10 @@
     "generate": "nuxi generate",
     "test:unit": "stale-dep && vitest",
     "test:typecheck": "stale-dep && vue-tsc --noEmit && vue-tsc --noEmit --project service-worker/tsconfig.json",
-    "test": "nr test:unit",
+    "test": "pnpm run test:unit",
     "update:team:avatars": "esno scripts/avatars.ts",
     "prepare-translation-status": "esno scripts/prepare-translation-status.ts",
-    "postinstall": "ignore-dependency-scripts \"stale-dep -u && simple-git-hooks && nuxi prepare && nr prepare-translation-status\"",
+    "postinstall": "ignore-dependency-scripts \"stale-dep -u && simple-git-hooks && nuxi prepare && pnpm run prepare-translation-status\"",
     "release": "stale-dep && bumpp && esno scripts/release.ts"
   },
   "dependencies": {

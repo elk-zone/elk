@@ -32,7 +32,7 @@ function getIconFieldTitle(fieldName: string): string {
  */
 function getIconFieldHref(fieldValue: string): string {
   const valueHTML = document.createRange().createContextualFragment(fieldValue)
-  return valueHTML.firstChild.href || undefined
+  return valueHTML.firstChild?.href || undefined
 }
 
 function getNotificationIconTitle() {

@@ -66,11 +66,13 @@ Elk will provide a set of UI components to allow you to customize the PWA instal
 
 You can find the PWA installation prompt in the [PwaInstallPrompt](./components/pwa/PwaInstallPrompt.client.vue) component: will be shown on the right aside on wide screens, or at top on small screens.
 
-Elk is using prompt for update strategy, so the PWA installation prompt will be shown only if there is a new version of Elk available.
+Elk is using prompt for update strategy, so the PWA prompt for update will be shown only if there is a new version of Elk available.
 
 On small screens, the PWA prompt for update will be shown as a button on the head, you can find it in [PwaBadge](./components/pwa/PwaBadge.client.vue) component.
 
 On wide screens, the PWA prompt for update will be shown as a prompt on the right aside, you can find it in [PwaPrompt](./components/pwa/PwaPrompt.client.vue) component.
+
+PWA prompt for update will take preference over PWA installation prompt, so if there is a new version of Elk available, the PWA prompt for update will be shown instead of the PWA installation prompt.
 
 All previous UI components don't have any logic, all them will use the logic provided by the [PWA plugin](./plugins/pwa.client.ts).
 

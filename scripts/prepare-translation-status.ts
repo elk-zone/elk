@@ -2,9 +2,15 @@ import flatten from 'flat'
 import { createResolver } from '@nuxt/kit'
 import fs from 'fs-extra'
 import { currentLocales } from '../config/i18n'
-import vsCodeConfig from '../.vscode/settings.json'
 import type { LocaleEntry } from '../docs/types'
 import type { ElkTranslationStatus } from '~/types/translation-status'
+
+const vsCodeConfig = JSON.parse(
+  await fs.readFile(
+    new URL('../.vscode/settings.json', import.meta.url),
+    'utf-8',
+  ),
+)
 
 export const localeData: [code: string, file: string[], title: string][]
     = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])

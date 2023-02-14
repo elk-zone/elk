@@ -345,6 +345,7 @@
     "language": {
       "display_language": "Idioma de visualització",
       "label": "Idioma",
+      "status": "Estat de la traducció: {0}/{1} ({2}%)",
       "translations": {
         "add": "Afegeix",
         "choose_language": "Trieu l'idioma",
@@ -435,6 +436,8 @@
         "label": "Aparença",
         "profile_metadata": "Metadades del perfil",
         "profile_metadata_desc": "Pots mostrar fins a {0} elements com a taula al teu perfil",
+        "profile_metadata_label": "Etiqueta",
+        "profile_metadata_value": "Contingut",
         "title": "Edita el perfil"
       },
       "featured_tags": {
@@ -577,6 +580,7 @@
     "sign_in_desc": "Inicia sessió per seguir perfils o hashtags, preferir, compartir i respondre publicacions o interactuar des del vostre compte en un servidor diferent.",
     "sign_in_notice_title": "S'estan visualitzant {0} dades públiques",
     "sign_out_account": "Tanca la sessió {0}",
+    "single_instance_sign_in_desc": "Inicieu la sessió per seguir perfils o hashtags, preferir, compartir i respondre publicacions.",
     "tip_no_account": "Si encara no teniu cap compte de Mastodon, {0}.",
     "tip_register_account": "trieu el vostre servidor i registreu-ne un"
   },

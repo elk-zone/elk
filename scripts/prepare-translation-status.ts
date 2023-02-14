@@ -9,7 +9,7 @@ const vsCodeConfig = JSON.parse(
   await fs.readFile(
     new URL('../.vscode/settings.json', import.meta.url),
     'utf-8',
-  )
+  ),
 )
 
 export const localeData: [code: string, file: string[], title: string][]

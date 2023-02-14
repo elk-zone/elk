@@ -15,7 +15,7 @@ export default defineNuxtModule({
     nuxt.hook('vite:extendConfig', async (viteInlineConfig) => {
       viteInlineConfig.plugins = viteInlineConfig.plugins || []
       viteInlineConfig.plugins.push({
-        name: 'vite-emoji-mark-translation',
+        name: 'vite-emoji-mart-translation',
         enforce: 'pre',
         resolveId(id) {
           if (id === virtual)

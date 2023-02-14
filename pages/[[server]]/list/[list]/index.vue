@@ -1,17 +1,60 @@
 <script setup lang="ts">
+import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
+
 definePageMeta({
-  name: 'list',
+  middleware: 'auth',
 })
 
-const params = useRoute().params
-const listId = $(computedEager(() => params.list as string))
+const route = useRoute()
+const { t } = useI18n()
+
+const list = $computed(() => route.params.list as string)
+const server = $computed(() => (route.params.server ?? currentServer.value) as string)
+
+const tabs = $computed<CommonRouteTabOption[]>(() => [
+  {
+    to: {
+      name: 'list',
+      params: { server, list },
+    },
+    display: t('tab.posts'),
+    icon: 'i-ri:list-unordered',
+  },
+  {
+    to: {
+      name: 'list-accounts',
+      params: { server, list },
+    },
+    display: t('tab.accounts'),
+    icon: 'i-ri:user-line',
+  },
+],
+)
 
 const { client } = $(useMasto())
+const { data: listInfo, refresh } = $(await useAsyncData(() => client.v1.lists.fetch(list), { default: () => shallowRef() }))
 
-const paginator = client.v1.timelines.listList(listId)
-const stream = useStreaming(client => client.v1.stream.streamListTimeline(listId))
+if (listInfo) {
+  useHeadFixed({
+    title: () => `${listInfo.title} | ${route.fullPath.endsWith('/accounts') ? t('tab.accounts') : t('tab.posts')} | ${t('nav.lists')}`,
+  })
+}
+
+onReactivated(() => {
+  // Silently update data when reentering the page
+  // The user will see the previous content first, and any changes will be updated to the UI when the request is completed
+  refresh()
+})
 </script>
 
 <template>
-  <TimelinePaginator v-bind="{ paginator, stream }" :preprocess="reorderedTimeline" context="home" />
+  <MainContent back>
+    <template #title>
+      <span text-lg font-bold>{{ listInfo ? listInfo.title : t('nav.list') }}</span>
+    </template>
+    <template #header>
+      <CommonRouteTabs replace :options="tabs" />
+    </template>
+    <NuxtPage v-if="isHydrated" />
+  </MainContent>
 </template>

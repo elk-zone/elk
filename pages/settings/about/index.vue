@@ -25,7 +25,7 @@ const handleShowCommit = () => {
     </template>
 
     <div flex="~ col gap4" w-full items-center justify-center my5>
-      <img :alt="$t('app_logo')" src="/logo.svg" w-24 h-24 class="rtl-flip">
+      <img :alt="$t('app_logo')" :src="`${''}/logo.svg`" w-24 h-24 class="rtl-flip">
       <p text-lg>
         {{ $t('app_desc_short') }}
       </p>
@@ -46,7 +46,7 @@ const handleShowCommit = () => {
         </template>
       </SettingsItem>
 
-      <SettingsItem :text="$t('nav.built_at')" :content="builtTime" />
+      <SettingsItem :text="$t('settings.about.built_at')" :content="builtTime" />
     </template>
 
     <div h-1px bg-border my2 />

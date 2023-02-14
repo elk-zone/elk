@@ -8,14 +8,17 @@ export type OldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 export type ColorMode = 'light' | 'dark' | 'system'
 
 export interface PreferencesSettings {
+  hideAltIndicatorOnPosts: boolean
   hideBoostCount: boolean
   hideReplyCount: boolean
   hideFavoriteCount: boolean
   hideFollowerCount: boolean
   hideTranslation: boolean
+  hideUsernameEmojis: boolean
   hideAccountHoverCard: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
+  enablePinchToZoom: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
@@ -64,14 +67,17 @@ export function getDefaultUserSettings(locales: string[]): UserSettings {
 }
 
 export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
+  hideAltIndicatorOnPosts: false,
   hideBoostCount: false,
   hideReplyCount: false,
   hideFavoriteCount: false,
   hideFollowerCount: false,
   hideTranslation: false,
+  hideUsernameEmojis: false,
   hideAccountHoverCard: false,
   grayscaleMode: false,
   enableAutoplay: true,
+  enablePinchToZoom: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,

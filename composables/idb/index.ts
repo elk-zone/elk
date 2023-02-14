@@ -1,7 +1,7 @@
 import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
 import type { Ref } from 'vue'
-import { del, get, set, update } from 'idb-keyval'
 import type { UseIDBOptions } from '@vueuse/integrations/useIDBKeyval'
+import { del, get, set, update } from '~/utils/elk-idb'
 
 const isIDBSupported = !process.test && typeof indexedDB !== 'undefined'
 

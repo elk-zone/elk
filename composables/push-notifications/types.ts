@@ -25,7 +25,8 @@ export interface CustomEmojisInfo {
   emojis: mastodon.v1.CustomEmoji[]
 }
 
-export type PushSubscriptionErrorCode = 'too_many_registrations'
+export type PushSubscriptionErrorCode = 'too_many_registrations' | 'vapid_not_supported' | 'invalid_vapid_key'
+
 export class PushSubscriptionError extends Error {
   code: PushSubscriptionErrorCode
   constructor(code: PushSubscriptionErrorCode, message?: string) {

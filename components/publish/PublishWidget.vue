@@ -35,7 +35,7 @@ const {
   dropZoneRef,
 } = $(useUploadMediaAttachment($$(draft)))
 
-let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage } = $(usePublish(
+let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage, publishSpoilerText } = $(usePublish(
   {
     draftState,
     ...$$({ expanded, isUploading, initialDraft: initial }),
@@ -64,7 +64,19 @@ const { editor } = useTiptap({
 })
 
 const characterCount = $computed(() => {
-  let length = stringLength(htmlToText(editor.value?.getHTML() || ''))
+  const text = htmlToText(editor.value?.getHTML() || '')
+
+  let length = stringLength(text)
+
+  // taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
+  const linkRegex = /(https?:\/\/(www\.)?|xmpp:)\S+/g
+
+  // maximum of 23 chars per link
+  // https://github.com/elk-zone/elk/issues/1651
+  const maxLength = 23
+
+  for (const [fullMatch] of text.matchAll(linkRegex))
+    length -= fullMatch.length - Math.min(maxLength, fullMatch.length)
 
   if (draft.mentions) {
     // + 1 is needed as mentions always need a space seperator at the end
@@ -73,6 +85,8 @@ const characterCount = $computed(() => {
       return `@${handle}`
     }).join(' ').length + 1
   }
+
+  length += stringLength(publishSpoilerText)
 
   return length
 })
@@ -111,10 +125,16 @@ useWebShareTarget(async ({ data: { data, action } }: any) => {
 
   editor.value?.commands.focus('end')
 
-  if (data.text !== undefined)
-    editor.value?.commands.insertContent(data.text)
+  for (const text of data.textParts) {
+    for (const line of text.split('\n')) {
+      editor.value?.commands.insertContent({
+        type: 'paragraph',
+        content: [{ type: 'text', text: line }],
+      })
+    }
+  }
 
-  if (data.files !== undefined)
+  if (data.files.length !== 0)
     await uploadAttachments(data.files)
 })
 
@@ -156,7 +176,7 @@ defineExpose({
 
         <div v-if="draft.params.sensitive">
           <input
-            v-model="draft.params.spoilerText"
+            v-model="publishSpoilerText"
             type="text"
             :placeholder="$t('placeholder.content_warning')"
             p2 border-rounded w-full bg-transparent
@@ -164,8 +184,8 @@ defineExpose({
           >
         </div>
 
-        <PublishErrMessage v-if="failedMessages.length > 0" described-by="publish-failed">
-          <head id="publish-failed" flex justify-between>
+        <CommonErrorMessage v-if="failedMessages.length > 0" described-by="publish-failed">
+          <header id="publish-failed" flex justify-between>
             <div flex items-center gap-x-2 font-bold>
               <div aria-hidden="true" i-ri:error-warning-fill />
               <p>{{ $t('state.publish_failed') }}</p>
@@ -178,14 +198,14 @@ defineExpose({
                 <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
               </button>
             </CommonTooltip>
-          </head>
+          </header>
           <ol ps-2 sm:ps-1>
             <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
               <strong>{{ i + 1 }}.</strong>
               <span>{{ error }}</span>
             </li>
           </ol>
-        </PublishErrMessage>
+        </CommonErrorMessage>
 
         <div relative flex-1 flex flex-col>
           <EditorContent
@@ -201,11 +221,11 @@ defineExpose({
           </div>
           {{ $t('state.uploading') }}
         </div>
-        <PublishErrMessage
+        <CommonErrorMessage
           v-else-if="failedAttachments.length > 0"
           :described-by="isExceedingAttachmentLimit ? 'upload-failed uploads-per-post' : 'upload-failed'"
         >
-          <head id="upload-failed" flex justify-between>
+          <header id="upload-failed" flex justify-between>
             <div flex items-center gap-x-2 font-bold>
               <div aria-hidden="true" i-ri:error-warning-fill />
               <p>{{ $t('state.upload_failed') }}</p>
@@ -218,7 +238,7 @@ defineExpose({
                 <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
               </button>
             </CommonTooltip>
-          </head>
+          </header>
           <div v-if="isExceedingAttachmentLimit" id="uploads-per-post" ps-2 sm:ps-1 text-small>
             {{ $t('state.attachments_exceed_server_limit') }}
           </div>
@@ -228,7 +248,7 @@ defineExpose({
               <span>{{ error[0] }}</span>
             </li>
           </ol>
-        </PublishErrMessage>
+        </CommonErrorMessage>
 
         <div v-if="draft.attachments.length" flex="~ col gap-2" overflow-auto>
           <PublishAttachment
@@ -262,18 +282,7 @@ defineExpose({
           </button>
         </CommonTooltip>
 
-        <template v-if="editor">
-          <CommonTooltip placement="top" :content="$t('tooltip.toggle_code_block')">
-            <button
-              btn-action-icon
-              :aria-label="$t('tooltip.toggle_code_block')"
-              :class="editor.isActive('codeBlock') ? 'text-primary' : ''"
-              @click="editor?.chain().focus().toggleCodeBlock().run()"
-            >
-              <div i-ri:code-s-slash-line />
-            </button>
-          </CommonTooltip>
-        </template>
+        <PublishEditorTools v-if="editor" :editor="editor" />
 
         <div flex-auto />
 

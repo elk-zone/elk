@@ -10,7 +10,7 @@ const emit = defineEmits<{
       <div i-ri:close-line />
     </button>
 
-    <img :alt="$t('app_logo')" src="/logo.svg" w-20 h-20 height="80" width="80" mxa class="rtl-flip">
+    <img :alt="$t('app_logo')" :src="`/${''}logo.svg`" w-20 h-20 height="80" width="80" mxa class="rtl-flip">
     <h1 mxa text-4xl mb4>
       {{ $t('help.title') }}
     </h1>
@@ -38,7 +38,7 @@ const emit = defineEmits<{
     </p>
     <p italic flex justify-center w-full>
       <NuxtLink href="https://github.com/sponsors/elk-zone" target="_blank">
-        <span text-xl font-script hover:text-primary transition duration-300>The Elk Team</span>
+        <span text-xl font-script hover:text-primary transition duration-300>{{ $t('help.footer_team') }}</span>
       </NuxtLink>
     </p>
 

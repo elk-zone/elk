@@ -9,13 +9,13 @@ const props = defineProps<{
   root?: boolean
 }>()
 
-const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
+const providerName = props.card.providerName
 
 const gitHubCards = $(usePreferences('experimentalGitHubCards'))
 </script>
 
 <template>
   <LazyStatusPreviewGitHub v-if="gitHubCards && providerName === 'GitHub'" :card="card" />
-  <LazyStatusPreviewStackBlitz v-else-if="gitHubCards && providerName === 'stackblitz.com'" :card="card" :small-picture-only="smallPictureOnly" :root="root" />
+  <LazyStatusPreviewStackBlitz v-else-if="gitHubCards && providerName === 'StackBlitz'" :card="card" :small-picture-only="smallPictureOnly" :root="root" />
   <StatusPreviewCardNormal v-else :card="card" :small-picture-only="smallPictureOnly" :root="root" />
 </template>

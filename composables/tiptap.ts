@@ -1,3 +1,4 @@
+import type { Editor } from '@tiptap/vue-3'
 import { Extension, useEditor } from '@tiptap/vue-3'
 import Placeholder from '@tiptap/extension-placeholder'
 import Document from '@tiptap/extension-document'
@@ -27,6 +28,9 @@ export interface UseTiptapOptions {
 }
 
 export function useTiptap(options: UseTiptapOptions) {
+  if (process.server)
+    return { editor: ref<Editor | undefined>() }
+
   const {
     autofocus,
     content,

@@ -87,6 +87,8 @@ useIntersectionObserver(video, (entries) => {
     }
   })
 }, { threshold: 0.75 })
+
+const userSettings = useUserSettings()
 </script>
 
 <template>
@@ -102,6 +104,7 @@ useIntersectionObserver(video, (entries) => {
         controls
         rounded-lg
         object-cover
+        fullscreen:object-contain
         :width="attachment.meta?.original?.width"
         :height="attachment.meta?.original?.height"
         :style="{
@@ -167,7 +170,7 @@ useIntersectionObserver(video, (entries) => {
         />
       </button>
     </template>
-    <div v-if="attachment.description" :class="isAudio ? '' : 'absolute left-2 bottom-2'">
+    <div v-if="attachment.description && !getPreferences(userSettings, 'hideAltIndicatorOnPosts')" :class="isAudio ? '' : 'absolute left-2 bottom-2'">
       <VDropdown :distance="6" placement="bottom-start">
         <button
           font-bold text-sm
@@ -176,9 +179,9 @@ useIntersectionObserver(video, (entries) => {
             : 'rounded-1 bg-black/65 text-white hover:bg-black px1.2 py0.2'"
         >
           <div hidden>
-            read {{ attachment.type }} description
+            {{ $t('status.img_alt.read', [attachment.type]) }}
           </div>
-          ALT
+          {{ $t('status.img_alt.ALT') }}
         </button>
         <template #popper>
           <div p4 flex flex-col gap-2 max-w-130>

@@ -1,9 +1,10 @@
 import type { mastodon } from 'masto'
-import type { ConfirmDialogChoice, ConfirmDialogLabel, Draft } from '~/types'
+import type { ConfirmDialogChoice, ConfirmDialogLabel, Draft, ErrorDialogData } from '~/types'
 import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
 export const confirmDialogLabel = ref<ConfirmDialogLabel>()
+export const errorDialogData = ref<ErrorDialogData>()
 
 export const mediaPreviewList = ref<mastodon.v1.MediaAttachment[]>([])
 export const mediaPreviewIndex = ref(0)
@@ -22,6 +23,7 @@ export const isEditHistoryDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
 export const isCommandPanelOpen = ref(false)
 export const isConfirmDialogOpen = ref(false)
+export const isErrorDialogOpen = ref(false)
 export const isFavouritedBoostedByDialogOpen = ref(false)
 
 export const lastPublishDialogStatus = ref<mastodon.v1.Status | null>(null)
@@ -99,6 +101,17 @@ export function openMediaPreview(attachments: mastodon.v1.MediaAttachment[], ind
     mediaPreviewList: JSON.stringify(attachments),
     mediaPreviewIndex: index,
   }, '')
+}
+
+export async function openErrorDialog(data: ErrorDialogData) {
+  errorDialogData.value = data
+  isErrorDialogOpen.value = true
+
+  await until(isErrorDialogOpen).toBe(false)
+}
+
+export function closeErrorDialog() {
+  isErrorDialogOpen.value = false
 }
 
 export function closeMediaPreview() {

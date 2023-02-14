@@ -33,10 +33,9 @@ To install a Progressive Web App (PWA) on Safari, follow these steps:
 ### Firefox
 
 To install a Progressive Web App (PWA) on Firefox, follow these steps:
-- Tap the menu button (three horizontal lines) at the bottom of the screen.
-- Tap "Page options" and then "Install website as app".
-- Customize the name of the app (if desired) and tap "Add".
-- The PWA should now appear in your app drawer.
+- Look for the install button or icon, usually located in the address bar or in a prompt that appears on the screen.
+- Click on the install button or icon and follow the prompts to complete the installation.
+- If you don't see an install button or icon, you can look for the PWA in the Firefox menu. Click on the three horizontal lines in the top/bottom right corner of the browser window to open the menu, then click on "Install" option.
 
 ### Chromium based browsers
 

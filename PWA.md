@@ -22,7 +22,7 @@ Right now, you cannot use Web Push Notifications on Safari mobile browsers, sinc
 
 You can check the status of the Push API on Safari mobile browsers on [this page](https://caniuse.com/notifications).
 
-Visit also [this site](https://firt.dev/notes/pwa-ios/) to check the status PWA Capabilities on Safari mobile browsers.
+Visit also [this site](https://firt.dev/notes/pwa-ios/) to check the status of PWA Capabilities on Safari mobile browsers.
 
 To install a Progressive Web App (PWA) on Safari, follow these steps:
 - Tap the "Share" icon at the bottom of the screen.
@@ -50,7 +50,7 @@ To install a Progressive Web App (PWA) on Chromium based browsers, such as Googl
 
 By default, Elk will enable the PWA integration, but can be disabled by setting `VITE_DEV_PWA` to `false` in your `.env` file.
 
-You can find the configuration options for the PWA in the `config/pwa.ts` module.
+You can find the configuration options for the PWA in the [config/pwa.ts](./config/pwa.ts) module.
 
 ### PWA Web Manifest
 
@@ -58,13 +58,23 @@ Right now, there is no support for web manifest internationalization and theme c
 
 Elk will generate 2 web manifests per locale, one for light theme and one for dark theme.
 
-You can check web manifest generation on `modules/pwa/i18n.ts` module.
+You can check web manifest generation on [modules/pwa/i18n.ts](./modules/pwa/i18n.ts) module.
 
-## PWA UI Components
+### PWA UI Components
 
+Elk will provide a set of UI components to allow you to customize the PWA installation prompt on browsers with `beforeinstallprompt` support.
 
+You can find the PWA installation prompt in the [PwaInstallPrompt](./components/pwa/PwaInstallPrompt.client.vue) component: will be shown on the right aside on wide screens, or at top on small screens.
 
-## Debugging PWA in development
+Elk is using prompt for update strategy, so the PWA installation prompt will be shown only if there is a new version of Elk available.
+
+On small screens, the PWA prompt for update will be shown as a button on the head, you can find it in [PwaBadge](./components/pwa/PwaBadge.client.vue) component.
+
+On wide screens, the PWA prompt for update will be shown as a prompt on the right aside, you can find it in [PwaPrompt](./components/pwa/PwaPrompt.client.vue) component.
+
+All previous UI components don't have any logic, all them will use the logic provided by the [PWA plugin](./plugins/pwa.client.ts).
+
+### Debugging PWA in development
 
 To debug the PWA in development, you will need to run `dev:pwa` or `dev:mocked:pwa` script.
 

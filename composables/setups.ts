@@ -46,7 +46,7 @@ export function setupPageHeader() {
       if (titleTemplate.length)
         titleTemplate += ' | '
 
-      titleTemplate += `${t('app_name')}`
+      titleTemplate += t('app_name')
       if (buildInfo.env !== 'release')
         titleTemplate += ` (${buildInfo.env})`
 

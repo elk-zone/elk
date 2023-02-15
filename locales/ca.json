@@ -410,6 +410,8 @@
     "notifications_settings": "Notificacions",
     "preferences": {
       "enable_autoplay": "Activa la reproducció automàtica",
+      "enable_data_saving": "Activa l'emmagatzematge de dades",
+      "enable_data_saving_description": "Deseu les dades evitant que els fitxers adjunts es carreguin automàticament.",
       "enable_pinch_to_zoom": "Activa el pessic per fer zoom",
       "github_cards": "Targetes GitHub",
       "grayscale_mode": "Mode d'escala de grisos",

@@ -95,6 +95,7 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
+    "fetching": "Fetching...",
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
@@ -563,6 +564,7 @@
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
     "open_editor_tools": "Editor tools",
+    "pick_an_icon": "Pick an icon",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",

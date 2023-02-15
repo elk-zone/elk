@@ -27,15 +27,16 @@ const account = isSelf ? computed(() => status.account) : useAccountById(status.
     </template>
     <template v-else>
       <div i-ri-chat-1-line text-blue />
-      <div ws-nowrap>
-        <i18n-t keypath="status.replying_to" />
+      <div ws-nowrap flex>
+        <i18n-t keypath="status.replying_to">
+          <template v-if="account">
+            <AccountInlineInfo :account="account" :link="false" m-inline-1 />
+          </template>
+          <template v-else>
+            {{ $t('status.someone') }}
+          </template>
+        </i18n-t>
       </div>
-      <template v-if="account">
-        <AccountInlineInfo :account="account" :link="false" />
-      </template>
-      <template v-else>
-        {{ $t('status.someone') }}
-      </template>
     </template>
   </NuxtLink>
 </template>

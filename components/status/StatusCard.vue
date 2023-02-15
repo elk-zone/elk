@@ -79,36 +79,34 @@ const shouldHideProfile = $computed(() => isSelfReply && getPreferences(userSett
 
 <template>
   <div
-    :id="`status-${status.id}`" ref="el" p="is-3 ie-4" relative flex="~ col gap1" :class="{ 'hover:bg-active': hover }"
-    tabindex="0" focus:outline-none focus-visible:ring="2 primary" :lang="status.language ?? undefined" @click="onclick"
-    @keydown.enter="onclick"
+    :id="`status-${status.id}`" ref="el" p="is-3 ie-4" relative flex="~ col"
+    :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary"
+    :lang="status.language ?? undefined" @click="onclick" @keydown.enter="onclick"
   >
     <!-- Upper border -->
-    <div v-if="showUpperBorder" h-1px w-auto bg-border mb-1 />
+    <div v-if="showUpperBorder" h-1px w-auto bg-border />
 
     <slot name="meta">
       <!-- Line connecting to previous status -->
       <template v-if="status.inReplyToAccountId">
         <StatusReplyingTo
-          v-if="showReplyTo" m="is-5" p="t-1 is-5" :status="status" :is-self-reply="isSelfReply"
+          v-if="showReplyTo" m="is-5 t2" p="is-5" :status="status" :is-self-reply="isSelfReply"
           :class="faded ? 'text-secondary-light' : ''"
         />
-        <div v-if="showReplyTo" flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
-          <div w="1px" h="0.5" border="x base" mt-3 />
-          <div w="1px" h="0.5" border="x base" />
-          <div w="1px" h="0.5" border="x base" />
+        <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
+          <template v-if="showReplyTo">
+            <div w="1px" h="0.5" border="x base" mt-3 />
+            <div w="1px" h="0.5" border="x base" />
+            <div w="1px" h="0.5" border="x base" />
+            <div w="1px" h="10px" border="x base" />
+          </template>
+          <div v-else w="1px" h="10px" border="x base" />
         </div>
-      </template>
-      <template v-else>
-        <div w="1px" h="3px" />
       </template>
 
       <!-- Reblog status -->
-      <div v-if="rebloggedBy && !collapseRebloggedBy" flex="~ col" justify-between>
-        <div
-          flex="~" items-center p="t-1 b-0.5 x-1px" relative
-          text-secondary ws-nowrap
-        >
+      <div v-if="rebloggedBy && !collapseRebloggedBy" mt2 flex="~ col" justify-between>
+        <div flex="~" items-center p="t-1 b-0.5 x-1px" relative text-secondary ws-nowrap>
           <div i-ri:repeat-fill me-46px text-green w-16px h-16px class="status-boosted" />
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">
@@ -122,9 +120,9 @@ const shouldHideProfile = $computed(() => isSelfReply && getPreferences(userSett
       </div>
     </slot>
 
-    <div flex gap-3 :class="{ 'text-secondary': faded }">
+    <div flex mt2 gap-3 :class="{ 'text-secondary': faded }">
       <!-- Avatar -->
-      <div flex="~ col" items-center w-54px :class="shouldHideProfile ? '' : 'mb-3px'">
+      <div flex="~ col" items-center w-54px relative>
         <div
           v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full
           bg-base

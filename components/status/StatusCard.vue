@@ -73,52 +73,40 @@ const isDM = $computed(() => status.visibility === 'direct')
 
 const showUpperBorder = $computed(() => props.newer && !directReply)
 const showReplyTo = $computed(() => !replyToMain && !directReply)
+
+const shouldHideProfile = $computed(() => isSelfReply && getPreferences(userSettings.value, 'experimentalContinuousThreads'))
 </script>
 
 <template>
   <div
-    :id="`status-${status.id}`"
-    ref="el"
-    relative flex="~ col gap1"
-    p="b-2 is-3 ie-4"
-    :class="{ 'hover:bg-active': hover }"
-    tabindex="0"
-    focus:outline-none focus-visible:ring="2 primary"
-    :lang="status.language ?? undefined"
-    @click="onclick"
-    @keydown.enter="onclick"
+    :id="`status-${status.id}`" ref="el" p="is-3 ie-4" relative flex="~ col"
+    :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary"
+    :lang="status.language ?? undefined" @click="onclick" @keydown.enter="onclick"
   >
     <!-- Upper border -->
-    <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 />
+    <div v-if="showUpperBorder" h-1px w-auto bg-border />
 
     <slot name="meta">
       <!-- Line connecting to previous status -->
       <template v-if="status.inReplyToAccountId">
         <StatusReplyingTo
-          v-if="showReplyTo"
-          m="is-5" p="t-1 is-5"
-          :status="status"
-          :is-self-reply="isSelfReply"
+          v-if="showReplyTo" m="is-5 t2" p="is-5" :status="status" :is-self-reply="isSelfReply"
           :class="faded ? 'text-secondary-light' : ''"
         />
-        <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
+        <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" pr="0.5" z--1>
           <template v-if="showReplyTo">
             <div w="1px" h="0.5" border="x base" mt-3 />
             <div w="1px" h="0.5" border="x base" />
             <div w="1px" h="0.5" border="x base" />
+            <div w="1px" h="10px" border="x base" />
           </template>
-          <div w="1px" h-10 border="x base" />
+          <div v-else w="1px" h="10px" border="x base" />
         </div>
       </template>
 
       <!-- Reblog status -->
-      <div flex="~ col" justify-between>
-        <div
-          v-if="rebloggedBy && !collapseRebloggedBy"
-          flex="~" items-center
-          p="t-1 b-0.5 x-1px"
-          relative text-secondary ws-nowrap
-        >
+      <div v-if="rebloggedBy && !collapseRebloggedBy" mt2 flex="~ col" justify-between>
+        <div flex="~" items-center p="t-1 b-0.5 x-1px" relative text-secondary ws-nowrap>
           <div i-ri:repeat-fill me-46px text-green w-16px h-16px class="status-boosted" />
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">
@@ -132,32 +120,37 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
       </div>
     </slot>
 
-    <div flex gap-3 :class="{ 'text-secondary': faded }">
+    <div flex mt2 gap-3 :class="{ 'text-secondary': faded }">
       <!-- Avatar -->
-      <div relative>
-        <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
+      <div flex="~ col" items-center w-54px relative>
+        <div
+          v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full
+          bg-base
+        >
           <div i-ri:repeat-fill text-green w-16px h-16px />
         </div>
-        <AccountHoverWrapper :account="status.account">
+        <AccountHoverWrapper v-if="!shouldHideProfile" :account="status.account">
           <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
             <AccountBigAvatar :account="status.account" />
           </NuxtLink>
         </AccountHoverWrapper>
 
-        <div v-if="connectReply" w-full h-full flex mt--3px justify-center>
-          <div w-1px border="x base" />
-        </div>
+        <!-- the mb15px is the 33px the icon container takes, minus the 18px of the icon -->
+        <div v-if="connectReply || shouldHideProfile" w-1px grow border="x base" :class="`${(!connectReply && shouldHideProfile) ? 'mb15px' : ''}`" />
       </div>
 
       <!-- Main -->
-      <div flex="~ col 1" min-w-0>
+      <div flex="~ col 1 gap2" min-w-0>
         <!-- Account Info -->
-        <div flex items-center space-x-1>
+        <div v-if="!shouldHideProfile" flex items-center space-x-1>
           <AccountHoverWrapper :account="status.account">
             <StatusAccountDetails :account="status.account" />
           </AccountHoverWrapper>
           <div flex-auto />
-          <div v-show="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
+          <div
+            v-show="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline
+            whitespace-nowrap
+          >
             <AccountBotIndicator v-if="status.account.bot" me-2 />
             <div flex="~ gap1" items-center>
               <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
@@ -177,8 +170,8 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
         </div>
 
         <!-- Content -->
-        <StatusContent :status="status" :newer="newer" :context="context" mb2 :class="{ 'mt-2 mb1': isDM }" />
-        <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
+        <StatusContent :status="status" :newer="newer" :context="context" :class="{ 'mt-2 mb1': isDM }" />
+        <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" mb2 />
       </div>
     </div>
   </div>

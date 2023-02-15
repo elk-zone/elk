@@ -19,6 +19,7 @@ export interface PreferencesSettings {
   grayscaleMode: boolean
   enableAutoplay: boolean
   enablePinchToZoom: boolean
+  experimentalContinuousThreads: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
@@ -78,6 +79,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   grayscaleMode: false,
   enableAutoplay: true,
   enablePinchToZoom: false,
+  experimentalContinuousThreads: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,

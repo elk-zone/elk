@@ -35,6 +35,7 @@
     "posts_count": "{0} Posts|{0} Post|{0} Posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
+    "request_follow": "Request to follow",
     "unblock": "Unblock",
     "unfollow": "Unfollow",
     "unmute": "Unmute",
@@ -68,6 +69,7 @@
     "save": "Save",
     "save_changes": "Save changes",
     "sign_in": "Sign in",
+    "sign_in_to": "Sign in to {0}",
     "switch_account": "Switch account",
     "vote": "Vote"
   },
@@ -335,6 +337,7 @@
     "language": {
       "display_language": "Display Language",
       "label": "Language",
+      "status": "Translation status: {0}/{1} ({2}%)",
       "translations": {
         "add": "Add",
         "choose_language": "Choose language",
@@ -370,10 +373,13 @@
         "save_settings": "Save settings",
         "subscription_error": {
           "clear_error": "Clear error",
+          "invalid_vapid_key": "The VAPID public key seems to be invalid.",
           "permission_denied": "Permission denied: enable notifications in your browser.",
+          "repo_link": "Elk's repository in GitHub",
           "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
           "title": "Could not subscribe to push notifications",
-          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again."
+          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again.",
+          "vapid_not_supported": "Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol."
         },
         "title": "Push notifications settings",
         "undo_settings": "Undo changes",
@@ -407,6 +413,8 @@
       "hide_follower_count": "Hide follower count",
       "hide_reply_count": "Hide reply count",
       "hide_translation": "Hide translation",
+      "hide_username_emojis": "Hide username emojis",
+      "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",
       "label": "Preferences",
       "title": "Experimental Features",
       "user_picker": "User Picker",
@@ -421,6 +429,8 @@
         "label": "Appearance",
         "profile_metadata": "Profile metadata",
         "profile_metadata_desc": "You can have up to {0} items displayed as a table on your profile",
+        "profile_metadata_label": "Label",
+        "profile_metadata_value": "Content",
         "title": "Edit profile"
       },
       "featured_tags": {
@@ -551,8 +561,11 @@
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
+    "open_editor_tools": "Editor tools",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
-    "toggle_code_block": "Toggle code block"
+    "toggle_bold": "Toggle bold",
+    "toggle_code_block": "Toggle code block",
+    "toggle_italic": "Toggle italic"
   },
   "user": {
     "add_existing": "Add an existing account",
@@ -560,6 +573,7 @@
     "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
     "sign_in_notice_title": "Viewing {0} public data",
     "sign_out_account": "Sign out {0}",
+    "single_instance_sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts.",
     "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
     "tip_register_account": "pick your server and register one"
   },

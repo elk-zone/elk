@@ -46,9 +46,9 @@ export const createPushSubscription = async (
       if (error.code === 11 && error.name === 'InvalidStateError')
         useError = new PushSubscriptionError('too_many_registrations', 'Too many registrations')
       else if (error.code === 20 && error.name === 'AbortError')
-        console.error('Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.')
+        useError = new PushSubscriptionError('vapid_not_supported', 'Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.')
       else if (error.code === 5 && error.name === 'InvalidCharacterError')
-        console.error('The VAPID public key seems to be invalid:', vapidKey)
+        useError = new PushSubscriptionError('invalid_vapid_key', `The VAPID public key seems to be invalid: ${vapidKey}`)
 
       return getRegistration()
         .then(getPushSubscription)

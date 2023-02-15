@@ -26,7 +26,7 @@ const props = withDefaults(
 const userSettings = useUserSettings()
 
 const status = $computed(() => {
-  if (props.status.reblog && !props.status.content)
+  if (props.status.reblog && (!props.status.content || props.status.content === props.status.reblog.content))
     return props.status.reblog
   return props.status
 })

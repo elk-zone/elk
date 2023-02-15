@@ -19,7 +19,7 @@ import { useAsyncIDBKeyval } from '~/composables/idb'
 
 const mock = process.mock
 
-const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>> => {
+const initializeUsers = (): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>> | Ref<UserLogin[]> | RemovableRef<UserLogin[]> => {
   let defaultUsers = mock ? [mock.user] : []
 
   // Backward compatibility with localStorage
@@ -34,7 +34,7 @@ const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLo
 
   const users = process.server
     ? ref<UserLogin[]>(defaultUsers)
-    : await useAsyncIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, { deep: true })
+    : useAsyncIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, { deep: true })
 
   if (removeUsersOnLocalStorage)
     globalThis.localStorage.removeItem(STORAGE_KEY_USERS)
@@ -42,7 +42,7 @@ const initializeUsers = async (): Promise<Ref<UserLogin[]> | RemovableRef<UserLo
   return users
 }
 
-const users = await initializeUsers()
+const users = process.server ? initializeUsers() as Ref<UserLogin[]> | RemovableRef<UserLogin[]> : await initializeUsers()
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
 const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
 export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
@@ -263,7 +263,7 @@ export async function signOut() {
   if (!currentUserHandle.value)
     await useRouter().push('/')
 
-  loginTo(masto, currentUser.value)
+  loginTo(masto, currentUser.value || { server: publicServer.value })
 }
 
 export function checkLogin() {

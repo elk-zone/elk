@@ -83,7 +83,7 @@ defineExpose({
     <template v-if="isPending">
       <div flex gap-1 items-center p2 animate-pulse>
         <div i-ri:loader-2-line animate-spin />
-        <span>Fetching...</span>
+        <span>{{ $t('common.fetching') }}</span>
       </div>
     </template>
     <template v-if="items.length">

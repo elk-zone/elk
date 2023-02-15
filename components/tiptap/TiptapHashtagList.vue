@@ -52,7 +52,7 @@ defineExpose({
         <div animate-spin preserve-3d>
           <div i-ri:loader-2-line />
         </div>
-        <span>Fetching...</span>
+        <span>{{ $t('common.fetching') }}</span>
       </div>
     </template>
     <template v-if="items.length">

@@ -57,11 +57,11 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     // { code: 'es-VE', name: 'Español (Venezuela)' },
   ],
   ca: [
+    // { code: 'ca-AD', name: 'Català (Andorra)' },
     { code: 'ca-ES', name: 'Català (Espanya)' },
     { code: 'ca-ES-valencia', name: 'Català (valencià)' },
-    // { code: 'es-AD', name: 'Català (Andorra)' },
-    // { code: 'es-FR', name: 'Català (França)' },
-    // { code: 'es-IT', name: 'Català (Itàlia)' },
+    // { code: 'ca-FR', name: 'Català (França)' },
+    // { code: 'ca-IT', name: 'Català (Itàlia)' },
   ],
 }
 

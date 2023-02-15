@@ -337,6 +337,7 @@
     "language": {
       "display_language": "Display Language",
       "label": "Language",
+      "status": "Translation status: {0}/{1} ({2}%)",
       "translations": {
         "add": "Add",
         "choose_language": "Choose language",
@@ -374,7 +375,7 @@
           "clear_error": "Clear error",
           "invalid_vapid_key": "The VAPID public key seems to be invalid.",
           "permission_denied": "Permission denied: enable notifications in your browser.",
-          "repo_link": "Elk's repository in Github",
+          "repo_link": "Elk's repository in GitHub",
           "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
           "title": "Could not subscribe to push notifications",
           "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again.",
@@ -429,6 +430,8 @@
         "label": "Appearance",
         "profile_metadata": "Profile metadata",
         "profile_metadata_desc": "You can have up to {0} items displayed as a table on your profile",
+        "profile_metadata_label": "Label",
+        "profile_metadata_value": "Content",
         "title": "Edit profile"
       },
       "featured_tags": {
@@ -571,6 +574,7 @@
     "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
     "sign_in_notice_title": "Viewing {0} public data",
     "sign_out_account": "Sign out {0}",
+    "single_instance_sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts.",
     "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
     "tip_register_account": "pick your server and register one"
   },

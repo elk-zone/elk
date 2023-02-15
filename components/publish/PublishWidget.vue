@@ -64,7 +64,19 @@ const { editor } = useTiptap({
 })
 
 const characterCount = $computed(() => {
-  let length = stringLength(htmlToText(editor.value?.getHTML() || ''))
+  const text = htmlToText(editor.value?.getHTML() || '')
+
+  let length = stringLength(text)
+
+  // taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
+  const linkRegex = /(https?:\/\/(www\.)?|xmpp:)\S+/g
+
+  // maximum of 23 chars per link
+  // https://github.com/elk-zone/elk/issues/1651
+  const maxLength = 23
+
+  for (const [fullMatch] of text.matchAll(linkRegex))
+    length -= fullMatch.length - Math.min(maxLength, fullMatch.length)
 
   if (draft.mentions) {
     // + 1 is needed as mentions always need a space seperator at the end

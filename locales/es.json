@@ -337,6 +337,7 @@
     "language": {
       "display_language": "Idioma de pantalla",
       "label": "Idioma",
+      "status": "Estado traducción: {0}/{1} ({2}%)",
       "translations": {
         "add": "Agregar",
         "choose_language": "Seleccionar idioma",
@@ -374,7 +375,7 @@
           "clear_error": "Limpiar error",
           "invalid_vapid_key": "La clave pública VAPID parece no ser válida.",
           "permission_denied": "Permiso denegado: habilita las notificaciones en tu navegador.",
-          "repo_link": "Repositorio de Elk en Github",
+          "repo_link": "Repositorio de Elk en GitHub",
           "request_error": "Se produjo un error al solicitar la suscripción, inténtalo de nuevo y si el error persiste, notifica la incidencia en el repositorio de Elk.",
           "title": "No se pudo suscribir a las notificaciones push",
           "too_many_registrations": "Debido a las limitaciones del navegador, Elk no puede habilitar las notificaciones push para múltiples cuentas en diferentes servidores. Deberá cancelar las subscripciones a notificaciones push en las otras cuentas e intentarlo de nuevo.",
@@ -405,16 +406,19 @@
       "github_cards": "Tarjetas GitHub",
       "grayscale_mode": "Modo escala de grises",
       "hide_account_hover_card": "Ocultar tarjeta flotante de cuenta",
+      "hide_alt_indi_on_posts": "Ocultar indicador ALT en publicaciones",
       "hide_boost_count": "Ocultar contador de retoots",
       "hide_favorite_count": "Ocultar número de publicaciones favoritas",
       "hide_follower_count": "Ocultar número de seguidores",
       "hide_reply_count": "Ocultar número de respuestas",
       "hide_translation": "Ocultar traducción",
       "hide_username_emojis": "Ocultar emojis en el nombre de usuario",
+      "hide_username_emojis_description": "Se ocultan los emojis en el nombre de usuario en las líneas de tiempo. Los emojis seguirán siendo visibles en sus perfiles.",
       "label": "Preferencias",
       "title": "Funcionalidades experimentales",
       "user_picker": "Selector de usuarios",
-      "virtual_scroll": "Desplazamiento virtual"
+      "virtual_scroll": "Desplazamiento virtual",
+      "wellbeing": "Bienestar"
     },
     "profile": {
       "appearance": {
@@ -463,8 +467,10 @@
     "filter_removed_phrase": "Eliminado por filtrado",
     "filter_show_anyway": "Mostrar de todas formas",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Descripción",
-      "dismiss": "Descartar"
+      "dismiss": "Descartar",
+      "read": "Leer la descripción de la imagen {0}"
     },
     "poll": {
       "count": "{0} votos|{0} voto|{0} votos",
@@ -564,6 +570,7 @@
     "sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones, o interactuar con un servidor diferente con tu usuario.",
     "sign_in_notice_title": "Viendo información pública de {0}",
     "sign_out_account": "Cerrar sesión {0}",
+    "single_instance_sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones.",
     "tip_no_account": "Si aún no tienes una cuenta Mastodon, {0}.",
     "tip_register_account": "selecciona tu servidor y registrate"
   },

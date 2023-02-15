@@ -93,7 +93,7 @@ const shouldHideProfile = $computed(() => isSelfReply && getPreferences(userSett
           v-if="showReplyTo" m="is-5 t2" p="is-5" :status="status" :is-self-reply="isSelfReply"
           :class="faded ? 'text-secondary-light' : ''"
         />
-        <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
+        <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" pr="0.5" z--1>
           <template v-if="showReplyTo">
             <div w="1px" h="0.5" border="x base" mt-3 />
             <div w="1px" h="0.5" border="x base" />

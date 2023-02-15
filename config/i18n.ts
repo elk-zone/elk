@@ -56,6 +56,13 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     // { code: 'es-UY', name: 'Español (Uruguay)' },
     // { code: 'es-VE', name: 'Español (Venezuela)' },
   ],
+  ca: [
+    { code: 'ca-ES', name: 'Català (Espanya)' },
+    { code: 'ca-ES-valencia', name: 'Català (valencià)' },
+    // { code: 'es-AD', name: 'Català (Andorra)' },
+    // { code: 'es-FR', name: 'Català (França)' },
+    // { code: 'es-IT', name: 'Català (Itàlia)' },
+  ],
 }
 
 const locales: LocaleObjectData[] = [
@@ -171,6 +178,11 @@ const locales: LocaleObjectData[] = [
     code: 'gl-ES',
     file: 'gl-ES.json',
     name: 'Galego',
+  },
+  {
+    code: 'ca',
+    file: 'ca.json',
+    name: 'Català',
   },
 ]
 

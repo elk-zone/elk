@@ -132,6 +132,9 @@ export default defineNuxtConfig({
   },
   sourcemap: isDevelopment,
   hooks: {
+    'prepare:types': function ({ references }) {
+      references.push({ types: '@types/wicg-file-system-access' })
+    },
     'nitro:config': function (config) {
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}

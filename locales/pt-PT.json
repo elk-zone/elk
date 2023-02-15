@@ -402,6 +402,8 @@
     "notifications_settings": "Notificações",
     "preferences": {
       "enable_autoplay": "Habilitar Reprodução Automática",
+      "enable_data_saving": "Habilitar poupança de dados",
+      "enable_data_saving_description": "Poupar dados, impedindo que os anexos sejam carregados automaticamente.",
       "enable_pinch_to_zoom": "Habilitar afastar/aproximar dedos para fazer zoom",
       "github_cards": "Cartões do GitHub",
       "grayscale_mode": "Modo tons de cinza",

@@ -87,10 +87,10 @@ em-emoji-picker {
     --at-apply: my-2;
   }
   p:first-child {
-    --at-apply: mt-1;
+    --at-apply: mt-0;
   }
   p:last-child {
-    --at-apply: mb-1;
+    --at-apply: mb-0;
   }
   code {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.875em leading-0.8em;

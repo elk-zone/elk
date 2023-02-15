@@ -120,7 +120,7 @@ const shouldHideProfile = $computed(() => isSelfReply && getPreferences(userSett
       </div>
     </slot>
 
-    <div flex mt2 gap-3 :class="{ 'text-secondary': faded }">
+    <div flex gap-3 :class="{ 'text-secondary': faded, 'mt2': !(rebloggedBy && !collapseRebloggedBy) || !showReplyTo }">
       <!-- Avatar -->
       <div flex="~ col" items-center w-54px relative>
         <div

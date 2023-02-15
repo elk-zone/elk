@@ -21,6 +21,17 @@ export function usePublish(options: {
   const isExpanded = $ref(false)
   const failedMessages = $ref<string[]>([])
 
+  const publishSpoilerText = $computed({
+    get() {
+      return draft.params.sensitive ? draft.params.spoilerText : ''
+    },
+    set(val) {
+      if (!draft.params.sensitive)
+        return
+      draft.params.spoilerText = val
+    },
+  })
+
   const shouldExpanded = $computed(() => expanded || isExpanded || !isEmpty)
   const isPublishDisabled = $computed(() => {
     return isEmpty || isUploading || isSending || (draft.attachments.length === 0 && !draft.params.status) || failedMessages.length > 0
@@ -41,6 +52,7 @@ export function usePublish(options: {
 
     const payload = {
       ...draft.params,
+      spoilerText: publishSpoilerText,
       status: content,
       mediaIds: draft.attachments.map(a => a.id),
       language: draft.params.language || preferredLanguage,
@@ -91,6 +103,7 @@ export function usePublish(options: {
     isPublishDisabled,
     failedMessages,
     preferredLanguage,
+    publishSpoilerText,
     publishDraft,
   })
 }
@@ -137,6 +150,8 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
   }
 
   async function pickAttachments() {
+    if (process.server)
+      return
     const mimeTypes = currentInstance.value!.configuration?.mediaAttachments.supportedMimeTypes
     const files = await fileOpen({
       description: 'Attachments',

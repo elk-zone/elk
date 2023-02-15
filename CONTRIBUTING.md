@@ -16,7 +16,9 @@ To develop and test the Elk package:
 
 1. Fork the Elk repository to your own GitHub account and then clone it to your local device.
 
-2. Ensure using the latest Node.js (16.x)
+2. Ensure using the latest Node.js (16.x).
+If you have [nvm](https://github.com/nvm-sh/nvm), you can run `nvm i` to install the required version.
+
 
 3. The package manager used to install and link dependencies must be [pnpm](https://pnpm.io/) v7. To use it you must first enable [Corepack](https://github.com/nodejs/corepack) by running `corepack enable`. (Note: on Linux in a standard Node 16+ environment, you should follow the instructions to install via Node's `corepack` rather than using the `curl` command)
 

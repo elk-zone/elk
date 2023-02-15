@@ -1,5 +1,5 @@
 import { readFile } from 'fs-extra'
-import { resolve } from 'pathe'
+import { createResolver } from '@nuxt/kit'
 import type { ManifestOptions } from 'vite-plugin-pwa'
 import { getEnv } from '../../config/env'
 import { i18n } from '../../config/i18n'
@@ -170,8 +170,9 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
 }
 
 async function readI18nFile(file: string) {
+  const { resolve } = createResolver(import.meta.url)
   return JSON.parse(Buffer.from(
-    await readFile(resolve(`./locales/${file}`), 'utf-8'),
+    await readFile(resolve(`../../locales/${file}`), 'utf-8'),
   ).toString())
 }
 

@@ -35,7 +35,7 @@ const {
   dropZoneRef,
 } = $(useUploadMediaAttachment($$(draft)))
 
-let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage } = $(usePublish(
+let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage, publishSpoilerText } = $(usePublish(
   {
     draftState,
     ...$$({ expanded, isUploading, initialDraft: initial }),
@@ -64,7 +64,19 @@ const { editor } = useTiptap({
 })
 
 const characterCount = $computed(() => {
-  let length = stringLength(htmlToText(editor.value?.getHTML() || ''))
+  const text = htmlToText(editor.value?.getHTML() || '')
+
+  let length = stringLength(text)
+
+  // taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
+  const linkRegex = /(https?:\/\/(www\.)?|xmpp:)\S+/g
+
+  // maximum of 23 chars per link
+  // https://github.com/elk-zone/elk/issues/1651
+  const maxLength = 23
+
+  for (const [fullMatch] of text.matchAll(linkRegex))
+    length -= fullMatch.length - Math.min(maxLength, fullMatch.length)
 
   if (draft.mentions) {
     // + 1 is needed as mentions always need a space seperator at the end
@@ -73,6 +85,8 @@ const characterCount = $computed(() => {
       return `@${handle}`
     }).join(' ').length + 1
   }
+
+  length += stringLength(publishSpoilerText)
 
   return length
 })
@@ -162,7 +176,7 @@ defineExpose({
 
         <div v-if="draft.params.sensitive">
           <input
-            v-model="draft.params.spoilerText"
+            v-model="publishSpoilerText"
             type="text"
             :placeholder="$t('placeholder.content_warning')"
             p2 border-rounded w-full bg-transparent
@@ -268,18 +282,7 @@ defineExpose({
           </button>
         </CommonTooltip>
 
-        <template v-if="editor">
-          <CommonTooltip placement="top" :content="$t('tooltip.toggle_code_block')">
-            <button
-              btn-action-icon
-              :aria-label="$t('tooltip.toggle_code_block')"
-              :class="editor.isActive('codeBlock') ? 'text-primary' : ''"
-              @click="editor?.chain().focus().toggleCodeBlock().run()"
-            >
-              <div i-ri:code-s-slash-line />
-            </button>
-          </CommonTooltip>
-        </template>
+        <PublishEditorTools v-if="editor" :editor="editor" />
 
         <div flex-auto />
 

@@ -74,6 +74,7 @@ export function getReplyDraft(status: mastodon.v1.Status) {
         inReplyToId: status!.id,
         visibility: status.visibility,
         mentions: accountsToMention,
+        language: status.language,
       })
     },
   }
@@ -88,7 +89,6 @@ export const isEmptyDraft = (draft: Draft | null | undefined) => {
 
   return (text.length === 0)
     && attachments.length === 0
-    && (params.spoilerText || '').length === 0
 }
 
 export interface UseDraft {

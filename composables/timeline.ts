@@ -11,7 +11,7 @@ function areStatusesConsecutive(a: mastodon.v1.Status, b: mastodon.v1.Status) {
 
 function removeFilteredItems(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext): mastodon.v1.Status[] {
   const isStrict = (filter: mastodon.v1.FilterResult) => filter.filter.filterAction === 'hide' && filter.filter.context.includes(context)
-  const isFiltered = (item: mastodon.v1.Status) => !item.filtered?.find(isStrict)
+  const isFiltered = (item: mastodon.v1.Status) => (item.account.id === currentUser.value?.account.id) || !item.filtered?.find(isStrict)
   const isReblogFiltered = (item: mastodon.v1.Status) => !item.reblog?.filtered?.find(isStrict)
 
   return [...items].filter(isFiltered).filter(isReblogFiltered)

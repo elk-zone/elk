@@ -8,6 +8,7 @@ const props = withDefaults(
     context?: mastodon.v2.FilterContext
     hover?: boolean
     faded?: boolean
+    isPreview?: boolean
 
     // If we know the prev and next status in the timeline, we can simplify the card
     older?: mastodon.v1.Status
@@ -177,7 +178,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
         </div>
 
         <!-- Content -->
-        <StatusContent :status="status" :newer="newer" :context="context" mb2 :class="{ 'mt-2 mb1': isDM }" />
+        <StatusContent :status="status" :newer="newer" :context="context" :is-preview="isPreview" mb2 :class="{ 'mt-2 mb1': isDM }" />
         <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
       </div>
     </div>

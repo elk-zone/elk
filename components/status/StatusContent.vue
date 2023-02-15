@@ -5,6 +5,7 @@ const { status, context } = defineProps<{
   status: mastodon.v1.Status
   newer?: mastodon.v1.Status
   context?: mastodon.v2.FilterContext | 'details'
+  isPreview?: boolean
 }>()
 
 const isDM = $computed(() => status.visibility === 'direct')
@@ -44,6 +45,7 @@ const hasSensitiveSpoilerOrMedia = $computed(() => status.sensitive && (!!status
       <StatusMedia
         v-if="status.mediaAttachments?.length"
         :status="status"
+        :is-preview="isPreview"
       />
       <StatusPreviewCard
         v-if="status.card"

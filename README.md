@@ -117,6 +117,10 @@ Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 nr test
 ```
 
+## 📲 PWA
+
+You can consult the [PWA documentation](https://docs.elk.zone/docs/pwa) to learn more about the PWA capabilities on Elk, how to install Elk PWA in your desktop or mobile device and some hints about PWA stuff on Elk.
+
 ## 🦄 Stack
 
 - [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
@@ -129,7 +133,7 @@ nr test
 - [Iconify](https://github.com/iconify/icon-sets#iconify-icon-sets-in-json-format) - Iconify icon sets in JSON format
 - [Masto.js](https://neet.github.io/masto.js) - Mastodon API client in TypeScript
 - [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
-- [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update and push notifications
+- [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update, Web Push Notifications and Web Share Target API
 
 ## 👨‍💻 Contributors
 

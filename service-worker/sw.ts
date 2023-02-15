@@ -3,7 +3,7 @@
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
-import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
+import { CacheFirst, NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
 import { ExpirationPlugin } from 'workbox-expiration'
 
 import { onNotificationClick, onPush } from './web-push-notifications'
@@ -78,22 +78,21 @@ if (import.meta.env.PROD) {
       ],
     }),
   )
-  // external assets: rn avatars from mas.to
-  // requires <img crossorigin="anonymous".../> and http header: Allow-Control-Allow-Origin: *
-/*
+  // include avatars as they reappear frequently in the timeline
   registerRoute(
-    ({ sameOrigin, request }) => !sameOrigin && request.destination === 'image',
-    new NetworkFirst({
-      cacheName: 'elk-external-media',
+    ({ sameOrigin, request, url }) =>
+      !sameOrigin
+        && request.destination === 'image'
+        && url.pathname.includes('/accounts/avatars/'),
+    new CacheFirst({
+      cacheName: 'elk-external-media-avatars',
       plugins: [
-        // add opaque responses?
-        new CacheableResponsePlugin({ statuses: [/!* 0, *!/200] }),
-        // 15 days max
-        new ExpirationPlugin({ maxAgeSeconds: 60 * 60 * 24 * 15 }),
+        new CacheableResponsePlugin({ statuses: [200] }),
+        // 1 days max to get new avatars if changed on next day
+        new ExpirationPlugin({ maxAgeSeconds: 60 * 60 * 24 }),
       ],
     }),
   )
-*/
 }
 
 // to allow work offline

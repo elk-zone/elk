@@ -135,7 +135,8 @@ const shouldHideProfile = $computed(() => isSelfReply && getPreferences(userSett
           </NuxtLink>
         </AccountHoverWrapper>
 
-        <div v-if="connectReply" w-1px grow border="x base" />
+        <!-- the mb15px is the 33px the icon container takes, minus the 18px of the icon -->
+        <div v-if="connectReply || shouldHideProfile" w-1px grow border="x base" :class="`${(!connectReply && shouldHideProfile) ? 'mb15px' : ''}`" />
       </div>
 
       <!-- Main -->

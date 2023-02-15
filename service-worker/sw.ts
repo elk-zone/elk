@@ -87,7 +87,7 @@ if (import.meta.env.PROD) {
     new CacheFirst({
       cacheName: 'elk-external-media-avatars',
       plugins: [
-        new CacheableResponsePlugin({ statuses: [200] }),
+        new CacheableResponsePlugin({ statuses: [0, 200] }),
         // 1 days max to get new avatars if changed on next day
         new ExpirationPlugin({ maxAgeSeconds: 60 * 60 * 24 }),
       ],

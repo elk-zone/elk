@@ -190,7 +190,6 @@ onActivated(() => (busy = false))
                   <NotificationSubscribePushNotificationError
                     v-model="showSubscribeError"
                     :message="subscribeError"
-                    :hint="subscribeErrorHint"
                   />
                 </transition>
               </template>
@@ -219,7 +218,6 @@ onActivated(() => (busy = false))
           <NotificationSubscribePushNotificationError
             v-model="showSubscribeError"
             :message="subscribeError"
-            :hint="subscribeErrorHint"
           />
         </Transition>
       </template>

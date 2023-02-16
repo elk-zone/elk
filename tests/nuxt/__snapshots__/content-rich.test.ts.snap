@@ -77,15 +77,11 @@ exports[`content-rich > group mention > html 1`] = `
 "<p>
   <span class=\\"h-card\\"
     ><a
-      href=\\"https:///@pilipinas@lemmy.ml\\"
       class=\\"u-url mention\\"
       rel=\\"nofollow noopener noreferrer\\"
-      target=\\"_blank\\"
-      ><span data-type=\\"mention\\" data-id=\\"pilipinas@lemmy.ml\\"
-        >@pilipinas</span
-      ></a
-    ></span
-  >
+      to=\\"//@pilipinas@lemmy.ml\\"
+    ></a
+  ></span>
 </p>
 "
 `;

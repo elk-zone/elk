@@ -618,7 +618,7 @@ function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[]) {
       const href = node.attributes.href
       const mention = href && mentions.find(m => m.url === href)
       if (mention) {
-        node.attributes.href = `https:\/\/${currentServer.value}/@${mention.acct}`
+        node.attributes.href = `/${currentServer.value}/@${mention.acct}`
         node.children = [h('span', { 'data-type': 'mention', 'data-id': mention.acct }, `@${mention.username}`)]
         return node
       }

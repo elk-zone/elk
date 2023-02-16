@@ -27,6 +27,7 @@ onReactivated(() => {
         timeline-title-style
         :content="account ? getDisplayName(account) : t('nav.profile')"
         :show-emojis="!getPreferences(userSettings, 'hideUsernameEmojis')"
+        :markdown="false"
       />
     </template>
 

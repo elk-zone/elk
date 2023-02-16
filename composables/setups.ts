@@ -43,7 +43,10 @@ export function setupPageHeader() {
         titleTemplate = `${titleTemplate.slice(0, 60)}...${titleTemplate.endsWith('"') ? '"' : ''}`
       }
 
-      titleTemplate += ` | ${t('app_name')}`
+      if (titleTemplate.length)
+        titleTemplate += ' | '
+
+      titleTemplate += t('app_name')
       if (buildInfo.env !== 'release')
         titleTemplate += ` (${buildInfo.env})`
 

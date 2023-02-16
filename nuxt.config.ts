@@ -25,6 +25,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
+    '~/modules/emoji-mart-translation',
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
@@ -132,6 +133,9 @@ export default defineNuxtConfig({
   },
   sourcemap: isDevelopment,
   hooks: {
+    'prepare:types': function ({ references }) {
+      references.push({ types: '@types/wicg-file-system-access' })
+    },
     'nitro:config': function (config) {
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}

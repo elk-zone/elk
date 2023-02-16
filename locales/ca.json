@@ -173,10 +173,10 @@
       "title": "Vista prèvia del desplegament"
     },
     "desc_highlight": "Espereu alguns errors i característiques que falten aquí i allà.",
-    "desc_para1": "Gràcies pel vostre interès a provar Elk, el nostre client web de Mastodon en procés!",
+    "desc_para1": "Gràcies pel vostre interès a provar Elk, el nostre client web en desenvolupament per a Mastodon!",
     "desc_para2": "Estem treballant intensament en el desenvolupament i millorant-lo amb el temps.",
     "desc_para3": "Per impulsar el desenvolupament, podeu patrocinar l'equip a través dels patrocinadors de GitHub. Esperem que gaudiu d'Elk!",
-    "desc_para4": "Elk és de codi obert. Si voleu ajudar amb les proves, donar comentaris o contribuir,",
+    "desc_para4": "Elk és de codi obert. Si voleu ajudar amb les proves, fer comentaris o contribuir-hi,",
     "desc_para5": "posa't en contacte amb nosaltres a GitHub",
     "desc_para6": "i participa.",
     "footer_team": "L'equip Elk",
@@ -319,7 +319,7 @@
       "sponsor_action_desc": "Donar suport a l'equip que desenvolupa Elk",
       "sponsors": "Patrocinadors",
       "sponsors_body_1": "Elk és possible gràcies al generós patrocini i ajuda de:",
-      "sponsors_body_2": "I totes les empreses i particulars patrocinadors d'Elk Team i els membres.",
+      "sponsors_body_2": "I totes les empreses i particulars patrocinadors d'Elk Team i els seus membres.",
       "sponsors_body_3": "Si us agrada l'aplicació, penseu a patrocinar-nos:",
       "version": "Versió"
     },

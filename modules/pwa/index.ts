@@ -1,5 +1,5 @@
 import { mkdir, writeFile } from 'node:fs/promises'
-import { defineNuxtModule } from '@nuxt/kit'
+import { addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
 import type { Plugin } from 'vite'
@@ -19,6 +19,8 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     scope: nuxt.options.app.baseURL,
   }),
   async setup(options, nuxt) {
+    const resolver = createResolver(import.meta.url)
+
     let vitePwaClientPlugin: Plugin | undefined
     const resolveVitePluginPWAAPI = (): VitePluginPWAAPI | undefined => {
       return vitePwaClientPlugin?.api
@@ -35,6 +37,19 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       baseURL: '/',
       maxAge: 0,
     })
+    if (options.disable) {
+      addPlugin({ src: resolver.resolve('./runtime/pwa-plugin-stub.client') })
+    }
+    else {
+      // Register PWA types
+      nuxt.hook('prepare:types', ({ references }) => {
+        references.push({ types: 'vite-plugin-pwa/info' })
+        references.push({ types: 'vite-plugin-pwa/client' })
+      })
+      // Inject $pwa helper throughout app
+      addPlugin({ src: resolver.resolve('./runtime/pwa-plugin.client') })
+    }
+
     // TODO: combine with configurePWAOptions?
     nuxt.hook('nitro:init', (nitro) => {
       options.outDir = nitro.options.output.publicDir

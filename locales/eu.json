@@ -10,12 +10,12 @@
     "avatar_description": "{0}(r)en avatarea",
     "blocked_by": "Erabiltzaile honek blokeatu zaitu.",
     "blocked_domains": "Blokeatutako domeinuak",
-    "blocked_users": "Blokeatutako domeinuak",
+    "blocked_users": "Blokeatutako erabiltzaileak",
     "blocking": "Blokeatuta",
     "bot": "ERROBOTA",
     "favourites": "Gogokoak",
     "follow": "Jarraitu",
-    "follow_back": "Jarraitu",
+    "follow_back": "Jarraitu bera ere",
     "follow_requested": "Eskaera bidalita",
     "followers": "Jarraitzaileak",
     "followers_count": "{0} Jarraitzaile|Jarraitzaile {0}|{0} Jarraitzaile",
@@ -23,27 +23,27 @@
     "following_count": "{0} Jarraitzen",
     "follows_you": "Jarraitzen dizu",
     "go_to_profile": "Joan profilera",
-    "joined": "Batze-data",
--    "moved_title": "has indicated that their new account is now:",
+    "joined": "Batze-data:",
+    "moved_title": "adierazi du bere kontua aurrerantzean honakoa izango dela:",
     "muted_users": "Mutututako erabiltzaileak",
     "muting": "Mutututa",
 -    "mutuals": "Mutuals",
-    "notifications_on_post_disable": "Stop notifying me when {username} posts",
-    "notifications_on_post_enable": "Notify me when {username} posts",
+    "notifications_on_post_disable": "Utzi jakinarazpenak bidaltzeari {username}(r)ek argitaratzen duenean",
+    "notifications_on_post_enable": "Jakinarazi {username}(r)ek argitaratzen duenean",
     "pinned": "Finkatuta",
     "posts": "Bidalketak",
     "posts_count": "{0} Bidalketa|Bidalketa {0}|{0} Bidalketa",
-    "profile_description": "{0}'s profile header",
-    "profile_unavailable": "Profile unavailable",
+    "profile_description": "{0}(r)en profilaren goiburua",
+    "profile_unavailable": "Profila ez dago eskuragai",
     "request_follow": "Bidali jarraipen-eskaera",
     "unblock": "Utzi blokeatzeari",
     "unfollow": "Utzi jarraitzeari",
     "unmute": "Utzi mututzeari",
-    "view_other_followers": "Followers from other instances may not be displayed.",
-    "view_other_following": "Following from other instances may not be displayed."
+    "view_other_followers": "Litekeena da beste instantziatako jarraitzaileak erakusgai ez egotea.",
+    "view_other_following": "Litekeena da beste instantziatan jarraitzen direnak erakusgai ez egotea."
   },
   "action": {
-    "apply": "Apply",
+    "apply": "Ezarri",
     "bookmark": "Jarri laster-marka",
     "bookmarked": "Laster-marka jarrita",
     "boost": "Bultzatu",
@@ -157,11 +157,11 @@
   },
   "error": {
     "account_not_found": "{0} kontua ez da aurkitu",
-    "explore-list-empty": "Nothing is trending right now. Check back later!",
+    "explore-list-empty": "Ez dago joerarik une honetan. Zatoz geroago!",
     "file_size_cannot_exceed_n_mb": "Fitxategien tamaina ezin da {0}MB baino handiagoa izan",
     "sign_in_error": "Ezin izan da zerbitzarira konektatu.",
     "status_not_found": "Ez da bidalketa aurkitu",
-    "unsupported_file_format": "Unsupported file format"
+    "unsupported_file_format": "Fitxategia ez da bateragarria"
   },
   "help": {
     "build_preview": {
@@ -314,11 +314,11 @@
       "label": "Honi buruz",
       "meet_the_team": "Ezagutu taldea",
       "sponsor_action": "Babes gaitzazu",
-      "sponsor_action_desc": "To support the team developing Elk",
+      "sponsor_action_desc": "Elk garatzen duen taldeari babesa emateko",
       "sponsors": "Babesleak",
       "sponsors_body_1": "Elk is made possible thanks the generous sponsoring and help of:",
       "sponsors_body_2": "And all the companies and individuals sponsoring Elk Team and the members.",
-      "sponsors_body_3": "If you're enjoying the app, consider sponsoring us:",
+      "sponsors_body_3": "Aplikazioa gogoko baduzu, agian babesa eman zeniguke:",
       "version": "Bertsioa"
     },
     "account_settings": {
@@ -441,28 +441,28 @@
       },
       "label": "Profila"
     },
-    "select_a_settings": "Select a setting",
+    "select_a_settings": "Hautatu ezarpena",
     "users": {
-      "export": "Export User Tokens",
-      "import": "Import User Tokens",
-      "label": "Logged in users"
+      "export": "Esportatu erabiltzaile-tokenak",
+      "import": "Inportatu erabiltzaile-tokenak",
+      "label": "Saioa hasitako erabiltzaileak"
     }
   },
   "share-target": {
     "description": "Elk can be configured so that you can share content from other applications, simply install Elk on your device or computer and sign in.",
     "hint": "In order to share content with Elk, Elk must be installed and you must be signed in.",
-    "title": "Share with Elk"
+    "title": "Partekatu Elk-ekin"
   },
   "state": {
     "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
     "attachments_limit_error": "Limit per post exceeded",
-    "edited": "(Edited)",
-    "editing": "Editing",
-    "loading": "Loading...",
-    "publish_failed": "Publish failed",
-    "publishing": "Publishing",
-    "upload_failed": "Upload failed",
-    "uploading": "Uploading..."
+    "edited": "(Editatua)",
+    "editing": "Editatzen",
+    "loading": "Kargatzen…",
+    "publish_failed": "Argitaratzeak huts egin du",
+    "publishing": "Argitaratzen",
+    "upload_failed": "Igotzeak huts egin du",
+    "uploading": "Igotzen…"
   },
   "status": {
     "boosted_by": "Boosted By",
@@ -470,11 +470,11 @@
     "favourited_by": "Favorited By",
     "filter_hidden_phrase": "Filtered by",
     "filter_removed_phrase": "Removed by filter",
-    "filter_show_anyway": "Show anyway",
+    "filter_show_anyway": "Erakutsi edonola ere",
     "img_alt": {
       "ALT": "ALT",
-      "desc": "Description",
-      "dismiss": "Dismiss",
+      "desc": "Deskribapena",
+      "dismiss": "Baztertu",
       "read": "Read {0} description"
     },
     "poll": {
@@ -484,11 +484,11 @@
     },
     "reblogged": "{0} reblogged",
     "replying_to": "Replying to {0}",
-    "show_full_thread": "Show Full thread",
+    "show_full_thread": "Erakutsi hari osoa",
     "someone": "someone",
-    "spoiler_show_less": "Show less",
-    "spoiler_show_more": "Show more",
-    "thread": "Thread",
+    "spoiler_show_less": "Erakutsi gutxiago",
+    "spoiler_show_more": "Erakutsi gehiago",
+    "thread": "Haria",
     "try_original_site": "Try original site"
   },
   "status_history": {
@@ -496,22 +496,22 @@
     "edited": "edited {0}"
   },
   "tab": {
-    "accounts": "Accounts",
-    "for_you": "For you",
-    "hashtags": "Hashtags",
-    "list": "List",
-    "media": "Media",
-    "news": "News",
-    "notifications_all": "All",
-    "notifications_mention": "Mention",
-    "posts": "Posts",
-    "posts_with_replies": "Posts & Replies"
+    "accounts": "Kontuak",
+    "for_you": "Zuretzat",
+    "hashtags": "Traolak",
+    "list": "Zerrendak",
+    "media": "Multimedia",
+    "news": "Albisteak",
+    "notifications_all": "Guztiak",
+    "notifications_mention": "Aipamenak",
+    "posts": "Bidalketak",
+    "posts_with_replies": "Bidalketak eta erantzunak"
   },
   "tag": {
-    "follow": "Follow",
-    "follow_label": "Follow {0} tag",
-    "unfollow": "Unfollow",
-    "unfollow_label": "Unfollow {0} tag"
+    "follow": "Jarraitu",
+    "follow_label": "Jarraitu {0} traola",
+    "unfollow": "Utzi jarraitzeari",
+    "unfollow_label": "Utzi {0} traola jarraitzeari"
   },
   "time_ago_options": {
     "day_future": "in 0 days|tomorrow|in {n} days",
@@ -549,22 +549,22 @@
     "view_older_posts": "Older posts from other instances may not be displayed."
   },
   "title": {
-    "federated_timeline": "Federated Timeline",
-    "local_timeline": "Local Timeline"
+    "federated_timeline": "Federatutako denbora-lerroa",
+    "local_timeline": "Denbora-lerro lokala"
   },
   "tooltip": {
-    "add_content_warning": "Add content warning",
-    "add_emojis": "Add emojis",
-    "add_media": "Add images, a video or an audio file",
-    "add_publishable_content": "Add content to publish",
+    "add_content_warning": "Gehitu edukiari buruzko oharra",
+    "add_emojis": "Gehitu emojiak",
+    "add_media": "Gehitu irudiak, bideoak edo audio fitxategi bat",
+    "add_publishable_content": "Gehitu argitaratzeko edukia",
     "change_content_visibility": "Change content visibility",
-    "change_language": "Change language",
+    "change_language": "Aldatu hizkuntza",
     "emoji": "Emoji",
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
     "open_editor_tools": "Editor tools",
-    "pick_an_icon": "Pick an icon",
+    "pick_an_icon": "Hautatu ikonoa",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",
@@ -572,22 +572,22 @@
   },
   "user": {
     "add_existing": "Add an existing account",
-    "server_address_label": "Mastodon Server Address",
+    "server_address_label": "Mastodon zerbitzariaren helbidea",
     "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
     "sign_in_notice_title": "Viewing {0} public data",
-    "sign_out_account": "Sign out {0}",
+    "sign_out_account": "Itxi {0}(r)en saioa",
     "single_instance_sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts.",
     "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
     "tip_register_account": "pick your server and register one"
   },
   "visibility": {
-    "direct": "Direct",
-    "direct_desc": "Visible for mentioned users only",
-    "private": "Followers only",
-    "private_desc": "Visible for followers only",
-    "public": "Public",
-    "public_desc": "Visible for all",
-    "unlisted": "Unlisted",
-    "unlisted_desc": "Visible for all, but opted-out of discovery features"
+    "direct": "Zuzena",
+    "direct_desc": "Aipatutako erabiltzaileek bakarrik ikusiko dute",
+    "private": "Jarraitzaileak bakarrik",
+    "private_desc": "Jarraitzen dizutenek bakarrik ikusiko dute",
+    "public": "Publikoa",
+    "public_desc": "Edonork ikusiko du",
+    "unlisted": "Zerrendatu gabea",
+    "unlisted_desc": "Edonork ikusiko du, baina ez da bilaketetan agertuko"
   }
 }

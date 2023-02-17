@@ -374,6 +374,7 @@
         "save_settings": "Save settings",
         "subscription_error": {
           "clear_error": "Clear error",
+          "error_hint": "You can consult a list of frequently asked questions to try to solve the problem: {0}.",
           "invalid_vapid_key": "The VAPID public key seems to be invalid.",
           "permission_denied": "Permission denied: enable notifications in your browser.",
           "repo_link": "Elk's repository in GitHub",

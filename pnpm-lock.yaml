@@ -106,7 +106,7 @@ importers:
       simple-git: ^3.16.0
       simple-git-hooks: ^2.8.1
       slimeform: ^0.9.0
-      stale-dep: ^0.5.0
+      stale-dep: ^0.6.0
       std-env: ^3.3.1
       string-length: ^5.0.1
       tauri-plugin-log-api: github:tauri-apps/tauri-plugin-log
@@ -186,7 +186,7 @@ importers:
       shiki-es: 0.2.0
       simple-git: 3.16.0
       slimeform: 0.9.0
-      stale-dep: 0.5.0
+      stale-dep: 0.6.0
       std-env: 3.3.2
       string-length: 5.0.1
       tauri-plugin-log-api: github.com/tauri-apps/tauri-plugin-log/921afb3366b14ac43e3d8041a7def4b85d4d7192
@@ -10794,8 +10794,8 @@ packages:
   /stackback/0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
 
-  /stale-dep/0.5.0:
-    resolution: {integrity: sha512-PkR0/js9oPvG2VP9NoQvryVbU+8gTzR7vzB93+wZJafQTi1T/8Rv6c9IZj9YV2vRVDjyTAp5J2S6mHqPtv1/Uw==}
+  /stale-dep/0.6.0:
+    resolution: {integrity: sha512-Wnk9aQHafwI1611kIfSoWQAe4a75DY0jDFvKs0kYfRCIJM2n4Cq20n6ETap7steNGgfJ5BEqsLMBoo7NUqkABQ==}
     engines: {node: '>=14.19.0'}
     hasBin: true
     peerDependencies:

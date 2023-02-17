@@ -222,6 +222,9 @@ export default defineNuxtConfig({
   colorMode: { classSuffix: '' },
   i18n,
   pwa,
+  staleDep: {
+    packageManager: 'pnpm',
+  },
 })
 
 declare global {

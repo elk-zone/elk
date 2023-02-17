@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     '~/modules/build-env',
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
-    '~/modules/stale-dep',
+    'stale-dep/nuxt',
     '@nuxt/devtools',
   ],
   experimental: {

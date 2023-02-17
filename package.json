@@ -107,7 +107,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.34.1",
-    "@antfu/ni": "^0.19.0",
+    "@antfu/ni": "^0.20.0",
     "@types/chroma-js": "^2.1.4",
     "@types/file-saver": "^2.0.5",
     "@types/flat": "^5.0.2",
@@ -122,7 +122,7 @@
     "flat": "^5.0.2",
     "fs-extra": "^11.1.0",
     "lint-staged": "^13.1.0",
-    "nuxt": "3.2.0",
+    "nuxt": "3.2.2",
     "prettier": "^2.8.3",
     "simple-git-hooks": "^2.8.1",
     "typescript": "^4.9.5",

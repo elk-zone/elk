@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
 definePageMeta({
   middleware: 'auth',
   alias: ['/signin/callback'],
@@ -12,7 +10,7 @@ if (process.client && route.path === '/signin/callback')
   router.push('/home')
 
 const { t } = useI18n()
-useHeadFixed({
+useHead({
   title: () => t('nav.home'),
 })
 </script>

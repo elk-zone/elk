@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n()
-useHeadFixed({
+useHead({
   title: () => t('nav.compose'),
 })
 </script>

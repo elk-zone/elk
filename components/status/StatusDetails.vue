@@ -22,7 +22,7 @@ const createdAt = useFormattedDateTime(status.createdAt)
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHead({
   title: () => `${getDisplayName(status.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
 })
 

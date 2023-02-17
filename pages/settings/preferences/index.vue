@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-useHeadFixed({
+useHead({
   title: () => `${t('settings.preferences.label')} | ${t('nav.settings')}`,
 })
 

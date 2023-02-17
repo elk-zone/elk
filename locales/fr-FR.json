@@ -30,12 +30,12 @@
     "mutuals": "Abonné·e·s",
     "notifications_on_post_disable": "Arrêtez de me notifier lorsque {username} publie",
     "notifications_on_post_enable": "M'avertir lorsque {username} publie",
-    "notify_on_post": "",
     "pinned": "Épinglés",
     "posts": "Messages",
     "posts_count": "{0} Messages",
     "profile_description": "En-tête du profil de {0}",
     "profile_unavailable": "Profil non accessible",
+    "request_follow": "Demander à suivre",
     "unblock": "Débloquer",
     "unfollow": "Ne plus suivre",
     "unmute": "Réafficher",
@@ -69,6 +69,7 @@
     "save": "Enregistrer",
     "save_changes": "Enregistrer les changements",
     "sign_in": "Se connecter",
+    "sign_in_to": "Se connecter à {0}",
     "switch_account": "Changer de compte",
     "vote": "Voter"
   },
@@ -94,6 +95,7 @@
   "common": {
     "end_of_list": "Fin de liste",
     "error": "ERREUR",
+    "fetching": "Récupération...",
     "in": "sur",
     "not_found": "404 Introuvable",
     "offline_desc": "Il semble que vous soyez hors-ligne. Vérifiez votre connexion internet."
@@ -115,8 +117,7 @@
     },
     "common": {
       "cancel": "Non",
-      "confirm": "Oui",
-      "title": "Êtes-vous sûr·e ?"
+      "confirm": "Oui"
     },
     "delete_list": {
       "cancel": "Annuler",
@@ -205,9 +206,6 @@
     "copy_original_link_to_post": "Copiez le lien d'origine vers ce message",
     "delete": "Supprimer",
     "delete_and_redraft": "Supprimer et réécrire",
-    "delete_confirm": {
-      "cancel": ""
-    },
     "direct_message_account": "Message direct à {0}",
     "edit": "Éditer",
     "hide_reblogs": "Cacher les partages de {0}",
@@ -340,6 +338,7 @@
     "language": {
       "display_language": "Langue d'affichage",
       "label": "Langue",
+      "status": "État de la traduction : {0}/{1} ({2} %)",
       "translations": {
         "add": "Ajouter",
         "choose_language": "Choisir une langue",
@@ -375,10 +374,13 @@
         "save_settings": "Enregistrer les paramètres",
         "subscription_error": {
           "clear_error": "Effacer l'erreur",
+          "invalid_vapid_key": "La clé publique VAPID ne semble pas être valide",
           "permission_denied": "Autorisation refusée : activez les notifications dans votre navigateur.",
+          "repo_link": "Dépôt Elk sur GitHub",
           "request_error": "Une erreur s'est produite lors de la demande d'abonnement, réessayez et si l'erreur persiste, veuillez signaler le problème auprès du dépôt Elk.",
           "title": "Impossible de s'abonner aux notifications push",
-          "too_many_registrations": "En raison des limitations du navigateur, Elk ne peut pas utiliser le service de notifications push pour plusieurs comptes sur différents serveurs. \nVous devez vous désabonner des notifications push sur un autre compte et réessayer."
+          "too_many_registrations": "En raison des limitations du navigateur, Elk ne peut pas utiliser le service de notifications push pour plusieurs comptes sur différents serveurs. \nVous devez vous désabonner des notifications push sur un autre compte et réessayer.",
+          "vapid_not_supported": "Votre navigateur prend en charge les Notifications Push Web, mais ne semble pas implémenter le protocole VAPID."
         },
         "title": "Paramètres des notifications push",
         "undo_settings": "Annuler les changements de paramètres",
@@ -401,19 +403,25 @@
     "notifications_settings": "Notifications",
     "preferences": {
       "enable_autoplay": "Activer la lecture automatique",
+      "enable_data_saving": "Activer l'économie de données",
+      "enable_data_saving_description": "Economise les données en évitant le chargement automatique des médias.",
       "enable_pinch_to_zoom": "Activer le zoom par pincement",
       "github_cards": "Cartes GitHub",
       "grayscale_mode": "Mode niveaux de gris",
       "hide_account_hover_card": "Masquer la carte de survol du compte",
-      "hide_boost_count": "Cacher les compteurs de partages",
-      "hide_favorite_count": "Cacher les compteurs de favoris",
-      "hide_follower_count": "Cacher les compteurs d'abonné·e·s",
-      "hide_reply_count": "Cacher les compteurs de réponses",
-      "hide_translation": "Cacher traduction",
+      "hide_alt_indi_on_posts": "Masquer l'indicateur alt sur les messsages",
+      "hide_boost_count": "Masquer les compteurs de partages",
+      "hide_favorite_count": "Masquer les compteurs de favoris",
+      "hide_follower_count": "Masquer les compteurs d'abonné·e·s",
+      "hide_reply_count": "Masquer les compteurs de réponses",
+      "hide_translation": "Masquer traduction",
+      "hide_username_emojis": "Masquer les emojis sur le nom d'utilisateur",
+      "hide_username_emojis_description": "Masque les emojis des noms d'utilisateur dans la timeline. \nLes emojis seront toujours visibles sur leurs profils.",
       "label": "Préférences",
       "title": "Fonctionnalités expérimentales",
       "user_picker": "User Picker",
-      "virtual_scroll": "Défilement virtuel"
+      "virtual_scroll": "Défilement virtuel",
+      "wellbeing": "Bien-être"
     },
     "profile": {
       "appearance": {
@@ -423,6 +431,8 @@
         "label": "Apparence",
         "profile_metadata": "Métadonnées de profil",
         "profile_metadata_desc": "Vous pouvez avoir jusqu'à 4 éléments affichés sous forme de tableau sur votre profil",
+        "profile_metadata_label": "Label",
+        "profile_metadata_value": "Contenu",
         "title": "Éditer le profil"
       },
       "featured_tags": {
@@ -553,8 +563,12 @@
     "explore_links_intro": "Ces actualités sont sujets à discussions sur ce serveur et sur d'autres serveurs du réseau décentralisé.",
     "explore_posts_intro": "Ces publications de ce serveur et d'autres serveurs du réseau décentralisé gagnent du terrain sur ce serveur en ce moment.",
     "explore_tags_intro": "Ces hashtags gagnent du terrain sur ce serveur et sur d'autres serveurs du réseau décentralisé.",
+    "open_editor_tools": "Outils d'édition",
+    "pick_an_icon": "Choisir une icône",
     "publish_failed": "Fermez les messages ayant échoué en haut de l'éditeur pour republier les messages",
-    "toggle_code_block": "Ajouter un bloc de code"
+    "toggle_bold": "Appliquer/retirer le gras",
+    "toggle_code_block": "Ajouter un bloc de code",
+    "toggle_italic": "Appliquer/retirer l'italique"
   },
   "user": {
     "add_existing": "Ajouter un compte existant",
@@ -562,6 +576,7 @@
     "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, aimer, partagez et répondre à des messages, ou interagir à partir de votre compte d'autre serveur.",
     "sign_in_notice_title": "Affichage de {0} données publiques",
     "sign_out_account": "Se déconnecter de {0}",
+    "single_instance_sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, aimer, partager et répondre aux messages.",
     "tip_no_account": "Si vous n'avez pas encore de compte Mastodon, {0}.",
     "tip_register_account": "choisissez votre serveur et enregistrez-en un"
   },

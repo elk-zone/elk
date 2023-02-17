@@ -338,6 +338,7 @@
     "language": {
       "display_language": "表示言語",
       "label": "言語",
+      "status": "翻訳状況: {0}/{1} ({2}%)",
       "translations": {
         "add": "追加",
         "choose_language": "言語を選択",

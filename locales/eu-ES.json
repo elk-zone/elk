@@ -108,12 +108,12 @@
     "block_account": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "title": "Ziur {0} blokeatu nahi duzula？"
+      "title": "Ziur {0} blokeatu nahi duzula?"
     },
     "block_domain": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "title": "Ziur {0} blokeatu nahi duzula？"
+      "title": "Ziur {0} blokeatu nahi duzula?"
     },
     "common": {
       "cancel": "Ez",
@@ -122,17 +122,17 @@
     "delete_list": {
       "cancel": "Utzi",
       "confirm": "Ezabatu",
-      "title": "Ziur \"{0}\" zerrenda ezabatu nahi duzula？"
+      "title": "Ziur \"{0}\" zerrenda ezabatu nahi duzula?"
     },
     "delete_posts": {
       "cancel": "Utzi",
       "confirm": "Ezabatu",
-      "title": "Ziur bidalketa hau ezabatu nahi duzula？"
+      "title": "Ziur bidalketa hau ezabatu nahi duzula?"
     },
     "mute_account": {
       "cancel": "Utzi",
       "confirm": "Mututu",
-      "title": "Ziur {0} mututu nahi duzula？"
+      "title": "Ziur {0} mututu nahi duzula?"
     },
     "show_reblogs": {
       "cancel": "Utzi",

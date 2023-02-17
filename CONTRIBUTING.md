@@ -4,7 +4,7 @@ Hi! We are really excited that you are interested in contributing to Elk. Before
 
 Refer also to https://github.com/antfu/contribute.
 
-For guidelines on contributing to the documentation, refer to the README at https://github.com/elk-zone/elk/tree/main/docs.
+For guidelines on contributing to the documentation, refer to the [docs README](./docs/README.md).
 
 ### Online
 

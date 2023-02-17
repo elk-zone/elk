@@ -8,6 +8,9 @@
     "generate": "nuxi generate",
     "preview": "nuxi preview"
   },
+  "dependencies": {
+    "pnpm": "^7.27.0"
+  },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.8.1",
     "nuxt": "^3.2.0"

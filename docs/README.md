@@ -74,9 +74,15 @@ To create paragraphs, use a blank line.
 There are no house style rules currently.
 When we add any, they will be found in this document.
 
-[**Google's Developer Style Guide**](https://developers.google.com/style) is our reference guide.
-Use the third-party references  in order of preference as defined there.
-(Google, then [Microsoft's Style Guide](https://docs.microsoft.com/style-guide/welcome/), then [Chicago Manual of Style, 17th Edition](https://www.chicagomanualofstyle.org/home.html); [Merriam-Webster](https://www.merriam-webster.com/) is our standard dictionary.)
+#### Style Guides
+
+Use the first guide that mentions a usable standard from the order below:
+
+1. Refer to the U.S. Government's [Federal Plain Language Guidelines](https://www.plainlanguage.gov/guidelines/) as a base standard.
+2. For user interface, device, and other technical guidance, refer to [**Google's Developer Style Guide**](https://developers.google.com/style).
+3. As a secondary reference to the Google guide, refer to [Microsoft's Style Guide](https://docs.microsoft.com/style-guide/welcome/), then the [Chicago Manual of Style, 17th Edition](https://www.chicagomanualofstyle.org/home.html).
+
+We use [Merriam-Webster](https://www.merriam-webster.com/) as the standard dictionary for spelling.
 
 ### Images
 

@@ -4,6 +4,8 @@ Hi! We are really excited that you are interested in contributing to Elk. Before
 
 Refer also to https://github.com/antfu/contribute.
 
+For guidelines on contributing to the documentation, refer to the README at https://github.com/elk-zone/elk/tree/main/docs.
+
 ### Online
 
 You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 

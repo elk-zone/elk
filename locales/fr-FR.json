@@ -30,7 +30,6 @@
     "mutuals": "Abonné·e·s",
     "notifications_on_post_disable": "Arrêtez de me notifier lorsque {username} publie",
     "notifications_on_post_enable": "M'avertir lorsque {username} publie",
-    "notify_on_post": "",
     "pinned": "Épinglés",
     "posts": "Messages",
     "posts_count": "{0} Messages",
@@ -118,8 +117,7 @@
     },
     "common": {
       "cancel": "Non",
-      "confirm": "Oui",
-      "title": "Êtes-vous sûr·e ?"
+      "confirm": "Oui"
     },
     "delete_list": {
       "cancel": "Annuler",
@@ -208,9 +206,6 @@
     "copy_original_link_to_post": "Copiez le lien d'origine vers ce message",
     "delete": "Supprimer",
     "delete_and_redraft": "Supprimer et réécrire",
-    "delete_confirm": {
-      "cancel": ""
-    },
     "direct_message_account": "Message direct à {0}",
     "edit": "Éditer",
     "hide_reblogs": "Cacher les partages de {0}",

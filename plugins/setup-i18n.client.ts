@@ -11,11 +11,8 @@ export default defineNuxtPlugin(async (nuxt) => {
   if (!supportLanguages.includes(lang))
     userSettings.value.language = getDefaultLanguage(supportLanguages)
 
-  if (lang !== i18n.locale) {
-    setLocale(userSettings.value.language)
-    // without this line, the locale not being refreshed on F5 and so the watch will change the locale twice
-    i18n.locale = userSettings.value.language
-  }
+  if (lang !== i18n.locale)
+    await setLocale(userSettings.value.language)
 
   watch([$$(lang), isHydrated], () => {
     if (isHydrated.value && lang !== i18n.locale)

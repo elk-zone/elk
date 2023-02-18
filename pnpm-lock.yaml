@@ -92,7 +92,7 @@ importers:
       js-yaml: ^4.1.0
       lint-staged: ^13.1.0
       lru-cache: ^7.14.1
-      masto: ^5.6.1
+      masto: ^5.9.2
       nuxt: 3.2.0
       nuxt-security: ^0.10.1
       nuxt-vitest: ^0.6.4
@@ -175,7 +175,7 @@ importers:
       iso-639-1: 2.1.15
       js-yaml: 4.1.0
       lru-cache: 7.14.1
-      masto: 5.6.1
+      masto: 5.9.2
       nuxt-security: 0.10.1
       nuxt-vitest: 0.6.4
       page-lifecycle: 0.1.2
@@ -198,7 +198,7 @@ importers:
       ultrahtml: 1.2.0
       unimport: 2.2.4
       unplugin-auto-import: 0.13.0_@vueuse+core@9.12.0
-      vite-plugin-pwa: 0.14.1_tz3vz2xt4jvid2diblkpydcyn4
+      vite-plugin-pwa: 0.14.1
       vue-advanced-cropper: 2.8.8
       vue-virtual-scroller: 2.0.0-beta.7
       workbox-build: 6.5.4
@@ -8122,8 +8122,8 @@ packages:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
     dev: true
 
-  /masto/5.6.1:
-    resolution: {integrity: sha512-mQxuOLCWP0TSswZEmmrbHbV2+Olt2N+lr1V2C3FO0QCrPGAhx3KLAXRLArajeGtcVtu66/k8gtTWKksYfkQu5Q==}
+  /masto/5.9.2:
+    resolution: {integrity: sha512-PDJ6xXXcGnzHZiBqL+0+fCX+/sw5N9eEEDDwyycR0NLA3KDkqAtha/7+GDfWTHzM8fqjgqUBXqxZ8rdylwDq/Q==}
     dependencies:
       '@mastojs/ponyfills': 1.0.4
       change-case: 4.1.2
@@ -11906,12 +11906,10 @@ packages:
       - supports-color
     dev: false
 
-  /vite-plugin-pwa/0.14.1_tz3vz2xt4jvid2diblkpydcyn4:
+  /vite-plugin-pwa/0.14.1:
     resolution: {integrity: sha512-5zx7yhQ8RTLwV71+GA9YsQQ63ALKG8XXIMqRJDdZkR8ZYftFcRgnzM7wOWmQZ/DATspyhPih5wCdcZnAIsM+mA==}
     peerDependencies:
       vite: ^3.1.0 || ^4.0.0
-      workbox-build: ^6.5.4
-      workbox-window: ^6.5.4
     dependencies:
       '@rollup/plugin-replace': 5.0.2_rollup@3.14.0
       debug: 4.3.4
@@ -11921,6 +11919,7 @@ packages:
       workbox-build: 6.5.4
       workbox-window: 6.5.4
     transitivePeerDependencies:
+      - '@types/babel__core'
       - supports-color
     dev: false
 

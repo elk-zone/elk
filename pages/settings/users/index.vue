@@ -5,7 +5,7 @@ import type { UserLogin } from '~/types'
 
 const { t } = useI18n()
 
-useHead({
+useHydratedHead({
   title: () => `${t('settings.users.label')} | ${t('nav.settings')}`,
 })
 

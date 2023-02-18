@@ -5,7 +5,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHead({
+useHydratedHead({
   title: () => t('account.pinned'),
 })
 </script>

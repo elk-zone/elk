@@ -11,7 +11,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHead({
+useHydratedHead({
   title: () => `${t('settings.profile.appearance.title')} | ${t('nav.settings')}`,
 })
 

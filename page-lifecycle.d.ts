@@ -1,5 +1,5 @@
 declare module 'page-lifecycle/dist/lifecycle.mjs' {
-    type PageLifecycleState = 'pageshow' | 'resume' | 'focus' | 'blur' | 'pagehide' | 'unload' | 'visibilitychange' | 'freeze'
+    type PageLifecycleState = 'active' | 'passive' | 'hidden' | 'frozen' | 'terminated'
 
     interface PageLifecycleEvent extends Event {
         newState: PageLifecycleState

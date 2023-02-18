@@ -5,13 +5,6 @@ import { currentLocales } from '../config/i18n'
 import type { LocaleEntry } from '../docs/types'
 import type { ElkTranslationStatus } from '~/types/translation-status'
 
-const vsCodeConfig = JSON.parse(
-  await fs.readFile(
-    new URL('../.vscode/settings.json', import.meta.url),
-    'utf-8',
-  ),
-)
-
 export const localeData: [code: string, file: string[], title: string][]
     = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
 
@@ -65,7 +58,7 @@ async function compare(
 }
 
 async function prepareTranslationStatus() {
-  const sourceLanguageLocale = localeData.find(l => l[0] === vsCodeConfig['i18n-ally.sourceLanguage'])!
+  const sourceLanguageLocale = localeData.find(l => l[0] === 'en-US')!
   const entries: Record<string, any> = await readI18nFile(sourceLanguageLocale[1])
   const flatEntries = flatten<typeof entries, Record<string, string>>(entries)
   const total = Object.keys(flatEntries).length

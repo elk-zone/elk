@@ -23,9 +23,6 @@ export function setupPageHeader() {
       content: () => `width=device-width,initial-scale=1${enablePinchToZoom.value ? '' : ',maximum-scale=1,user-scalable=0'},viewport-fit=cover`,
     }],
     titleTemplate: (title) => {
-      if (!isHydrated)
-        return ''
-
       let titleTemplate = title ?? ''
 
       if (titleTemplate.match(/&[a-z0-9#]+;/gi)) {

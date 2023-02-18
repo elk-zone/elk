@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t, setLocale } = useI18n()
+const { t } = useI18n()
 useHydratedHead({
   title: () => `${t('tab.notifications_mention')} | ${t('nav.notifications')}`,
 })

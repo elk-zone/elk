@@ -6,7 +6,8 @@
     "dev": "nuxi dev",
     "build": "nuxi build",
     "generate": "nuxi generate",
-    "preview": "nuxi preview"
+    "preview": "nuxi preview",
+    "prepare-and-generate": "esno ../scripts/prepare-translation-status.ts && pnpm generate"
   },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.8.1",

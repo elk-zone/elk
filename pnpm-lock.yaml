@@ -230,7 +230,7 @@ importers:
   docs:
     specifiers:
       '@nuxt-themes/docus': ^1.8.1
-      nuxt: ^3.2.0
+      nuxt: ^3.2.2
     devDependencies:
       '@nuxt-themes/docus': 1.8.1_nuxt@3.2.2
       nuxt: 3.2.2

@@ -6,7 +6,7 @@ definePageMeta({
 const { t } = useI18n()
 const pwaEnabled = useAppConfig().pwaEnabled
 
-useHeadFixed({
+useHead({
   title: () => `${t('settings.notifications.label')} | ${t('nav.settings')}`,
 })
 </script>

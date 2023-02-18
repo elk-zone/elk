@@ -2,7 +2,7 @@
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHead({
   title: () => t('title.local_timeline'),
 })
 </script>

@@ -15,7 +15,7 @@ const reorderAndFilter = (items: mastodon.v1.Status[]) => reorderedTimeline(item
 const paginator = useMastoClient().v1.accounts.listStatuses(account.id, { limit: 30, excludeReplies: true })
 
 if (account) {
-  useHeadFixed({
+  useHead({
     title: () => `${t('account.posts')} | ${getDisplayName(account)} (@${account.acct})`,
   })
 }

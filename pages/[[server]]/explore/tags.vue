@@ -10,7 +10,7 @@ const paginator = client.v1.trends.listTags({
 
 const hideTagsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS, false)
 
-useHeadFixed({
+useHead({
   title: () => `${t('tab.hashtags')} | ${t('nav.explore')}`,
 })
 </script>

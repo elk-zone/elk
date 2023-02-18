@@ -404,6 +404,8 @@
     "notifications_settings": "Notificaciones",
     "preferences": {
       "enable_autoplay": "Habilitar reproducción automática",
+      "enable_data_saving": "Habilitar el ahorro de datos",
+      "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
       "enable_pinch_to_zoom": "Habilitar pellizcar para hacer zoom",
       "github_cards": "Tarjetas GitHub",
       "grayscale_mode": "Modo escala de grises",

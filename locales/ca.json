@@ -382,6 +382,7 @@
         "save_settings": "Desa els canvis",
         "subscription_error": {
           "clear_error": "Esborra l'error",
+          "error_hint": "Podeu consultar una llista de preguntes freqüents per intentar resoldre el problema: {0}.",
           "invalid_vapid_key": "La clau pública VAPID sembla que no és vàlida.",
           "permission_denied": "Permís denegat: activeu les notificacions al vostre navegador.",
           "repo_link": "El dipòsit d'Elk a Github",

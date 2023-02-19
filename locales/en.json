@@ -199,6 +199,13 @@
     "remove_account": "Remove account from list",
     "save": "Save changes"
   },
+  "list_create": {
+    "create": "Create",
+    "errors": {
+      "clear": "Clear error",
+      "screen_reader_prefix": "Error:"
+    }
+  },
   "menu": {
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
@@ -407,6 +414,29 @@
       "enable_data_saving": "Enable data saving",
       "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
       "enable_pinch_to_zoom": "Enable pinch to zoom",
+      "filters": {
+        "cancel_delete": "Cancel",
+        "confirm_delete": "Confirm",
+        "context": {
+          "account": "profiles",
+          "filters_in": "Filters in {0}",
+          "home": "home",
+          "notifications": "notifications",
+          "public": "public timelines",
+          "thread": "conversations"
+        },
+        "create": "Create",
+        "delete": "Delete",
+        "description": "Words words words, blah blah schmooby dooby doo.",
+        "edit": "Edit",
+        "errors": {
+          "clear": "Clear error",
+          "create": "There was an error while creating the filter.",
+          "prefix": "Error"
+        },
+        "filter_title": "Filter title",
+        "title": "Filters"
+      },
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
       "hide_account_hover_card": "Hide account hover card",

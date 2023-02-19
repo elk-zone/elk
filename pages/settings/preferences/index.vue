@@ -53,6 +53,13 @@ const userSettings = useUserSettings()
       <div i-ri-hearts-line />
       {{ $t('settings.preferences.wellbeing') }}
     </h2>
+    <SettingsItem
+      command large
+      icon="i-ri-filter-line"
+      :text="$t('settings.preferences.filters.title')"
+      :description="$t('settings.preferences.filters.description')"
+      to="/settings/preferences/filters"
+    />
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'grayscaleMode')"
       @click="togglePreferences('grayscaleMode')"

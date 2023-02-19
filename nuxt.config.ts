@@ -102,6 +102,7 @@ export default defineNuxtConfig({
     },
     storage: {
       fsBase: 'node_modules/.cache/app',
+      kvBinding: 'STORAGE',
     },
   },
   routeRules: {

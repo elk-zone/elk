@@ -1,0 +1,5 @@
+{
+  "version": 1,
+  "include": ["/api/*"],
+  "exclude": ["/_nuxt/*", "/avatars/*", "/bookmarks/*", "/compose/*", "/conversations/*", "/emojis/*", "/explore/*", "/favourites/*", "/fonts/*", "/home/*", "/lists/*", "/notifications/*", "/public/*", "/shiki/*", "/apple-touch-icon.png", "/elk-og.png", "/favicon.ico", "/logo.svg", "/manifest*", "/maskable-icon.png", "/pwa*", "/robots.txt", "/sw.*"]
+}

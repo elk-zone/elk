@@ -30,6 +30,7 @@ importers:
     specifiers:
       '@antfu/eslint-config': ^0.34.1
       '@antfu/ni': ^0.19.0
+      '@cloudflare/workers-types': ^4.20230214.0
       '@emoji-mart/data': ^1.1.2
       '@fnando/sparkline': ^0.3.10
       '@iconify-emoji/twemoji': ^1.0.2
@@ -206,6 +207,7 @@ importers:
     devDependencies:
       '@antfu/eslint-config': 0.34.1_et5x32uxl7z5ldub3ye5rhlyqm
       '@antfu/ni': 0.19.0
+      '@cloudflare/workers-types': 4.20230214.0
       '@types/chroma-js': 2.1.4
       '@types/file-saver': 2.0.5
       '@types/flat': 5.0.2
@@ -1530,6 +1532,10 @@ packages:
     resolution: {integrity: sha512-9CB/MKf/wdvbfkUdfrj+OkEwZ5b7rws0eogJ4293h+7b6KX5toPwym+VQKmILafNB9YiehqY0DlNrDcDhdWHSQ==}
     dependencies:
       mime: 3.0.0
+
+  /@cloudflare/workers-types/4.20230214.0:
+    resolution: {integrity: sha512-PfpzIKjMA1P0HLtzZVKp/V4/rAiSkgIVwGKbQleTmj7y5O62NbWP9gAxzOeQ4LpUc8UL17KRF2rXTgNKP2HNFw==}
+    dev: true
 
   /@csstools/cascade-layer-name-parser/1.0.0_jhntdqzgrqlkpxki6fy253alji:
     resolution: {integrity: sha512-JxdLxJMDximX1vxCFJdwC7MD4aXNSFbOxBZuYKg2FEz4MLR0UFVmamPtzthzqzxAcU0K6ShvEFfMBrEEb16U+A==}

@@ -1,0 +1,19 @@
+name = "elk-staging"
+main = ".output/server/index.mjs"
+compatibility_date = "2023-01-15"
+node_compat = true
+send_metrics = false 
+keep_vars = true
+
+# Replace <CLOUDFLARE_NAMESPACE_ID> and <CLOUDFLARE_PREVIEW_NAMESPACE_ID> with actual values from the cloudflare dashboard
+kv_namespaces = [
+  { binding = "STORAGE", id = "<CLOUDFLARE_NAMESPACE_ID>", preview_id = "<CLOUDFLARE_PREVIEW_NAMESPACE_ID>" }
+]
+
+[site]
+bucket = ".output"
+include = ["public"]
+exclude = ["server"]
+
+# To preview your deployment locally, run the following command (after replacing the <CLOUDFLARE_PREVIEW_NAMESPACE_ID> with the value above)
+# wrangler pages dev .output/public --local --persist --kv STORAGE=<CLOUDFLARE_PREVIEW_NAMESPACE_ID> --binding NODE_ENV=development

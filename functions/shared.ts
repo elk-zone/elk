@@ -37,14 +37,17 @@ export const createApplication = async (origin: string, server: string, KV: KVNa
 
   const req = new Request(`https://${server}/api/v1/apps`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     body: reqBody,
     redirect: 'follow',
   })
+  req.headers.set('Content-Type', 'application/json')
+  req.headers.set('User-Agent', `${APP_NAME}/0.7.4 (Serverless; +${origin})`)
+  req.headers.set('Accept', 'application/json')
 
   return fetch(req).then(async (res: Response) => {
     if (res.status !== 200) {
       console.error(`Error during registration: ${res.status} ${res.statusText}`)
+      console.error(`req: ${JSON.stringify(req, null, 2)}`)
       return undefined
     }
 
@@ -114,14 +117,17 @@ export const createToken = async (origin: string, server: string, KV: KVNamespac
 
     const req = new Request(`https://${server}/oauth/token`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: reqBody,
       redirect: 'follow',
     })
+    req.headers.set('Content-Type', 'application/json')
+    req.headers.set('User-Agent', `${APP_NAME}/0.7.4 (Serverless; +${origin})`)
+    req.headers.set('Accept', 'application/json')
 
     return fetch(req).then(async (res: Response) => {
       if (res.status !== 200) {
         console.error(`Error during registration: ${res.status} ${res.statusText}`)
+        console.error(`req: ${JSON.stringify(req, null, 2)}`)
         return undefined
       }
       const token: Token = await res.json()

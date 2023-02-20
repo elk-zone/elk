@@ -15,7 +15,7 @@ const filterPaginator = client.v2.filters.list()
 const paginatorRef = ref()
 
 async function createFilter(title: string) {
-  const newEntry = client.v2.filters.create({
+  const newEntry = await client.v2.filters.create({
     title,
     context: ['home', 'public', 'thread'],
   })
@@ -32,9 +32,13 @@ function removeEntry(id: string) {
 
 <template>
   <MainContent back-on-small-screen>
-    <CommonPaginator :ref="paginatorRef" :paginator="filterPaginator">
+    <CommonPaginator ref="paginatorRef" :paginator="filterPaginator">
       <template #default="{ item }">
-        <SettingsFilter :filter="item" :paginator="filterPaginator" />
+        <SettingsFilter
+          :filter="item"
+          :paginator="filterPaginator"
+          @filter-removed="removeEntry"
+        />
       </template>
       <template #done>
         <CommonListCreate

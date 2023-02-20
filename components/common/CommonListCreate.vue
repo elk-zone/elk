@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Paginator } from 'masto'
-
 const { createCallback } = defineProps<{
   createButtonIcon: string
   placeholder: string

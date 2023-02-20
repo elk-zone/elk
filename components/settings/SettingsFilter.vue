@@ -11,8 +11,9 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
+const client = useMastoClient()
 
-const deleteBusy = $ref<boolean>(false)
+let deleteBusy = $ref<boolean>(false)
 let hasStartedDelete = $ref<boolean>(false)
 
 const context = $computed(() => {
@@ -36,8 +37,19 @@ function editFilter() {
   router.push(editPath)
 }
 
-function deleteFilter() {
-  emit('filterRemoved', filter.id)
+async function deleteFilter() {
+  deleteBusy = true
+
+  try {
+    await client.v2.filters.remove(filter.id)
+    emit('filterRemoved', filter.id)
+  }
+  catch (error) {
+    console.error(error)
+  }
+  finally {
+    deleteBusy = false
+  }
 }
 </script>
 
@@ -58,7 +70,11 @@ function deleteFilter() {
             <span>{{ filter.title }}</span>
           </p>
           <p text-sm text-secondary>
-            {{ filter.keywords.map(({ keyword }) => keyword).join(', ') }}
+            {{
+              filter.keywords.length
+                ? filter.keywords.map(({ keyword }) => keyword).join(', ')
+                : $t('settings.preferences.filters.no_keywords')
+            }}
           </p>
         </div>
       </div>
@@ -77,11 +93,12 @@ function deleteFilter() {
               class="bg-red/30 hover:bg-red/50"
               btn-action-icon
               :disabled="deleteBusy"
+              @click.prevent="deleteFilter"
             >
               <span v-if="deleteBusy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
                 <span block i-ri:loader-2-fill aria-hidden="true" />
               </span>
-              <span v-else block text-current i-ri:save-2-fill class="rtl-flip" />
+              <span v-else block text-current i-ri-check-line class="rtl-flip" />
             </button>
           </CommonTooltip>
           <CommonTooltip :content="$t('settings.preferences.filters.cancel_delete')" no-auto-focus>
@@ -95,10 +112,7 @@ function deleteFilter() {
               :disabled="deleteBusy"
               @click.prevent="cancelDelete"
             >
-              <span v-if="deleteBusy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
-                <span block i-ri:loader-2-fill aria-hidden="true" />
-              </span>
-              <span v-else block text-current i-ri:close-fill class="rtl-flip" />
+              <span block text-current i-ri:close-fill class="rtl-flip" />
             </button>
           </CommonTooltip>
         </template>

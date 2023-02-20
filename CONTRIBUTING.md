@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Hi! We are really excited that you are interested in contributing to Elk. Before submitting your contribution, please make sure to take a moment and read through the following guide.
+Hi! We are excited that you are interested in contributing to Elk. Before submitting your contribution, please make sure to take a moment and read through the following guide.
 
 Refer also to https://github.com/antfu/contribute.
 
@@ -54,16 +54,16 @@ nr test
 
 In order to run Elk with PWA enabled, run `pnpm dev:pwa` in Elk's root folder to start dev server or `pnpm dev:mocked:pwa` to start dev server with `@elkdev@universeodon.com` user.
 
-You should test the Elk PWA application on private browsing mode on any Chromium based browser: will not work on Firefox and Safari.
+You should test the Elk PWA application on private browsing mode on any Chromium-based browser: will not work on Firefox and Safari.
 
 If not using private browsing mode, you will need to uninstall the PWA application from your browser once you finish testing:
 - Open `Dev Tools` (`Option + ⌘ + J` on macOS, `Shift + CTRL + J` on Windows/Linux)
-- Go to `Application > Storage`, you should check following checkboxes:
+- Go to `Application > Storage`, you should check the following checkboxes:
     - Application: [x] Unregister service worker
     - Storage: [x] IndexedDB and [x] Local and session storage
     - Cache: [x] Cache storage and [x] Application cache
 - Click on `Clear site data` button
-- Go to `Application > Service Workers` and check the current `service worker` is missing or has the state `deleted` or `redundant`
+- Go to `Application > Service Workers` and check if the current `service worker` is missing or has the state `deleted` or `redundant`
 
 ## CI errors
 
@@ -82,18 +82,18 @@ Elk supports `right-to-left` languages, we need to make sure that the UI is work
 Simple approach used by most websites of relying on direction set in HTML element does not work because direction for various items, such as timeline, does not always match direction set in HTML.
 
 We've added some `UnoCSS` utilities styles to help you with that:
-- Do not use `left/right` padding and margin: for example `pl-1`. Use `padding-inline-start/end` instead. So `pl-1` should be `ps-1`, `pr-1` should be `pe-1`. Same rules applies for margin.
+- Do not use `left/right` padding and margin: for example `pl-1`. Use `padding-inline-start/end` instead. So `pl-1` should be `ps-1`, `pr-1` should be `pe-1`. The same rules apply to margin.
 - Do not use `rtl-` classes, such as `rtl-left-0`.
-- For icons that should be rotated for RTL, add `class="rtl-flip"`. This can only be used for icons outside of elements with `dir="auto"`, such as timeline, and is the only exception from rule above. For icons inside timeline it might not work as expected.
+- For icons that should be rotated for RTL, add `class="rtl-flip"`. This can only be used for icons outside of elements with `dir="auto"`, such as timeline, and is the only exception from the rule above. For icons inside the timeline, it might not work as expected.
 - For absolute positioned elements, don't use `left/right`: for example `left-0`. Use `inset-inline-start/end` instead. `UnoCSS` shortcuts are `inset-is` for `inset-inline-start` and `inset-ie` for `inset-inline-end`. Example: `left-0` should be replaced with `inset-is-0`.
-- If you need to change border radius for an entire left or right side, use `border-inline-start/end`. `UnoCSS` shortcuts are `rounded-is` for left side, `rounded-ie` for right side. Example: `rounded-l-5` should be replaced with `rounded-ie-5`.
-- If you need to change border radius for one corner, use `border-start-end-radius` and similar rules. `UnoCSS` shortcuts are `rounded` + top/bottom as either `-bs` (top) or `-be` (bottom) + left/right as either `-is` (left) or `-ie` (right). Example: `rounded-tl-0` should be replaced with `rounded-bs-is-0`.
+- If you need to change the border radius for an entire left or right side, use `border-inline-start/end`. `UnoCSS` shortcuts are `rounded-is` for left side, `rounded-ie` for right side. Example: `rounded-l-5` should be replaced with `rounded-ie-5`.
+- If you need to change the border radius for one corner, use `border-start-end-radius` and similar rules. `UnoCSS` shortcuts are `rounded` + top/bottom as either `-bs` (top) or `-be` (bottom) + left/right as either `-is` (left) or `-ie` (right). Example: `rounded-tl-0` should be replaced with `rounded-bs-is-0`.
 
 ## Internationalization
 
 We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://v8.i18n.nuxtjs.org/) to handle internationalization.
 
-You can check current [translation status](https://docs.elk.zone/docs/guide/contributing#translation-status): more instructions on table caption.
+You can check the current [translation status](https://docs.elk.zone/docs/guide/contributing#translation-status): more instructions on the table caption.
 
 If you are updating a translation in your local environment, you can run the following commands to check the status:
 - from root folder: `nr prepare-translation-status`
@@ -105,7 +105,7 @@ If you are updating a translation in your local environment, you can run the fol
 1. Add a new file in [locales](./locales) folder with the language code as the filename.
 2. Copy [en-US](./locales/en-US.json) and translate the strings.
 3. Add the language to the `locales` array in [config/i18n.ts](./config/i18n.ts#L61), below `en` and `ar`:
-   - If your language have multiple country variants, add the generic one for language only (only if there are a lot of common entries, you can always add it as a new one)
+   - If your language has multiple country variants, add the generic one for language only (only if there are a lot of common entries, you can always add it as a new one)
       - Add all country variants in [country variants object](./config/i18n.ts#L12)
       - Add all country variants files with empty `messages` object: `{}`
       - Translate the strings in the generic language file
@@ -120,7 +120,7 @@ Check [Pluralization rule callback](https://vue-i18n.intlify.dev/guide/essential
 
 ### Messages interpolation
 
-Most of the messages used in Elk do not require any interpolation, however, there are some messages that require interpolation: check [Message Format Syntax](https://vue-i18n.intlify.dev/guide/essentials/syntax.html) for more info.
+Most of the messages used in Elk do not require any interpolation, however, some messages require interpolation: check [Message Format Syntax](https://vue-i18n.intlify.dev/guide/essentials/syntax.html) for more info.
 
 We're using these types of interpolation:
 - [List interpolation](https://vue-i18n.intlify.dev/guide/essentials/syntax.html#list-interpolation)
@@ -142,7 +142,7 @@ Check [Custom Plural Number Formatting Entries](#custom-plural-number-formatting
 
 When using plural number formatting, we'll have always `{n}` available in the message, for example, `You have {n} new notifications|You have {n} new notification|You have {n} new notifications` or `You have no new notifications|You have 1 new notification|You have {n} new notifications`.
 
-We've included `v` named parameter, it will be used to pass the formatted number using [Intl.NumberFormat::format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format): will be the number with separators symbols. The exception to previous rule is when we're using `plural` **with** `i18n-t` component, in this case, we'll need to use `{0}` instead `{v}` to access the number.
+We've included `v` named parameter, it will be used to pass the formatted number using [Intl.NumberFormat::format](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/format): will be the number with separators symbols. The exception to the previous rule is when we're using `plural` **with** `i18n-t` component, in this case, we'll need to use `{0}` instead `{v}` to access the number.
 
 Additionally, Elk will use [compact notation for numbers](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#parameters) for some entries, check `notation` and `compactDisplay` options: for example, `1K` for `1000`, `1M` for `1000000`, `1B` for `1000000000` and so on. That entry will be available in the message using `{v}` named parameter (or `{0}` if using the message **with** `i18n-t` component).
 

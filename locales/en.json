@@ -430,7 +430,12 @@
         "description": "Words words words, blah blah schmooby dooby doo.",
         "edit": "Edit",
         "editing": {
-          "contexts": "Contexts",
+          "add": "Add",
+          "delete_keyword": "Delete this keyword",
+          "edit_keyword": "Edit this keyword",
+          "field_contexts": "Contexts",
+          "field_expire_at": "Expire at",
+          "field_keywords": "Keywords",
           "field_title": "Title"
         },
         "errors": {

@@ -374,6 +374,7 @@
         "save_settings": "Salvar configurações",
         "subscription_error": {
           "clear_error": "Limpar erro",
+          "error_hint": "Pode consultar uma lista de perguntas frequentes para tentar solucionar o problema: {0}.",
           "invalid_vapid_key": "A chave pública VAPID parece ser inválida.",
           "permission_denied": "Permissão negada: habilite as notificações no seu browser.",
           "repo_link": "Repositório do Elk no GitHub",

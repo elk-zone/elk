@@ -17,3 +17,6 @@ public/emojis
 *~
 *swp
 *swo
+wrangler.toml
+.wrangler
+.node-version

@@ -234,7 +234,7 @@
     "blocked_domains": "Blokeatutako domeinuak",
     "blocked_users": "Blokeatutako erabiltzaileak",
     "bookmarks": "Laster-markak",
-    "built_at": "Built {0}",
+    "built_at": "Biltze-data: {0}",
     "compose": "Idatzi",
     "conversations": "Elkarrizketak",
     "explore": "Esploratu",
@@ -310,10 +310,10 @@
   },
   "settings": {
     "about": {
-      "built_at": "Built",
+      "built_at": "Biltze-data",
       "label": "Honi buruz",
       "meet_the_team": "Ezagutu taldea",
-      "sponsor_action": "Babes gaitzazu",
+      "sponsor_action": "Eman babesa",
       "sponsor_action_desc": "Elk garatzen duen taldeari babesa emateko",
       "sponsors": "Babesleak",
       "sponsors_body_1": "Elk ondorengoen babes eskuzabalari eta laguntzari esker izan da posible egitea:",

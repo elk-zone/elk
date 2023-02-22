@@ -25,12 +25,13 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
+    '~/modules/emoji-mart-translation',
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
-    '~/modules/stale-dep',
+    'stale-dep/nuxt',
     '@nuxt/devtools',
   ],
   experimental: {
@@ -71,15 +72,6 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
-      rollupOptions: {
-        output: {
-          manualChunks: (id) => {
-            // TODO: find and resolve issue in nuxt/vite/pwa
-            if (id.includes('.svg') || id.includes('entry'))
-              return 'entry'
-          },
-        },
-      },
     },
   },
   postcss: {
@@ -122,6 +114,7 @@ export default defineNuxtConfig({
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',
+        'Cache-Control': 'public, max-age=0, must-revalidate',
       },
     },
   },
@@ -138,8 +131,11 @@ export default defineNuxtConfig({
       crawlLinks: true,
     },
   },
-  sourcemap: !isDevelopment,
+  sourcemap: isDevelopment,
   hooks: {
+    'prepare:types': function ({ references }) {
+      references.push({ types: '@types/wicg-file-system-access' })
+    },
     'nitro:config': function (config) {
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}
@@ -226,6 +222,9 @@ export default defineNuxtConfig({
   colorMode: { classSuffix: '' },
   i18n,
   pwa,
+  staleDep: {
+    packageManager: 'pnpm',
+  },
 })
 
 declare global {

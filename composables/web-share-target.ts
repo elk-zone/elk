@@ -4,7 +4,7 @@ export function useWebShareTarget(listener?: (message: MessageEvent) => void) {
 
   onBeforeMount(() => {
     // PWA must be installed to use share target
-    if (useNuxtApp().$pwa.isInstalled && 'serviceWorker' in navigator) {
+    if (useNuxtApp().$pwa?.isInstalled && 'serviceWorker' in navigator) {
       if (listener)
         navigator.serviceWorker.addEventListener('message', listener)
 

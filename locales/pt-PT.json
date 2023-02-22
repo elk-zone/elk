@@ -35,6 +35,7 @@
     "posts_count": "{0} Publicações|{0} Publicação|{0} Publicações",
     "profile_description": "Descrição de perfil de {0}",
     "profile_unavailable": "Perfil indisponível",
+    "request_follow": "Pedir para seguir",
     "unblock": "Desbloquear",
     "unfollow": "Deixar de seguir",
     "unmute": "Deixar de silenciar",
@@ -68,6 +69,7 @@
     "save": "Guardar",
     "save_changes": "Guardar alterações",
     "sign_in": "Entrar",
+    "sign_in_to": "Entrar em {0}",
     "switch_account": "Mudar de conta",
     "vote": "Votar"
   },
@@ -93,6 +95,7 @@
   "common": {
     "end_of_list": "Fim da lista",
     "error": "ERRO",
+    "fetching": "A carregar...",
     "in": "em",
     "not_found": "404 Não Encontrado",
     "offline_desc": "Parece que está offline. Por favor, confirme a sua conexão à internet."
@@ -335,6 +338,7 @@
     "language": {
       "display_language": "Idioma de Apresentação",
       "label": "Idioma",
+      "status": "Estado da tradução: {0}/{1} ({2}%)",
       "translations": {
         "add": "Adicionar",
         "choose_language": "Selecionar idioma",
@@ -370,6 +374,7 @@
         "save_settings": "Salvar configurações",
         "subscription_error": {
           "clear_error": "Limpar erro",
+          "error_hint": "Pode consultar uma lista de perguntas frequentes para tentar solucionar o problema: {0}.",
           "invalid_vapid_key": "A chave pública VAPID parece ser inválida.",
           "permission_denied": "Permissão negada: habilite as notificações no seu browser.",
           "repo_link": "Repositório do Elk no GitHub",
@@ -399,6 +404,8 @@
     "notifications_settings": "Notificações",
     "preferences": {
       "enable_autoplay": "Habilitar Reprodução Automática",
+      "enable_data_saving": "Habilitar poupança de dados",
+      "enable_data_saving_description": "Poupar dados, impedindo que os anexos sejam carregados automaticamente.",
       "enable_pinch_to_zoom": "Habilitar afastar/aproximar dedos para fazer zoom",
       "github_cards": "Cartões do GitHub",
       "grayscale_mode": "Modo tons de cinza",
@@ -409,7 +416,8 @@
       "hide_follower_count": "Esconder contagem de seguidores",
       "hide_reply_count": "Esconder contagem de respostas",
       "hide_translation": "Esconder botão de tradução",
-      "hide_username_emojis": "Esconder emojis no nome de utilizador",
+      "hide_username_emojis": "Esconder emojis do nome de utilizador",
+      "hide_username_emojis_description": "Esconde os emojis do nome de utilizador nas cronologias. Os Emojis continuarão a ser visíveis nos seus perfis.",
       "label": "Preferências",
       "title": "Funcionalidades Experimentais",
       "user_picker": "Selecionador de Utilizador",
@@ -424,6 +432,8 @@
         "label": "Aspeto",
         "profile_metadata": "Metadados de perfil",
         "profile_metadata_desc": "Pode ter até {0} itens expostos, em forma de tabela, no seu perfil",
+        "profile_metadata_label": "Rótulo",
+        "profile_metadata_value": "Conteúdo",
         "title": "Editar perfil"
       },
       "featured_tags": {
@@ -554,15 +564,20 @@
     "explore_links_intro": "Estas notícias estão, neste momento, a ser faladas por pessoas neste e noutros servidores da rede descentralizada.",
     "explore_posts_intro": "Estas publicações deste e de outros servidores na rede descentralizada estão, neste momento, a ganhar popularidade neste servidor.",
     "explore_tags_intro": "Estes hashtags estão, neste momento, a ganhar popularidade entre as pessoas neste e noutros servidores da rede descentralizada.",
+    "open_editor_tools": "Ferramentas de edição",
+    "pick_an_icon": "Escolher um ícone",
     "publish_failed": "Fechar mensagens de falha no topo do editor para republicar publicações",
-    "toggle_code_block": "Alternar bloco de código"
+    "toggle_bold": "Alternar negrito",
+    "toggle_code_block": "Alternar bloco de código",
+    "toggle_italic": "Alternar itálico"
   },
   "user": {
     "add_existing": "Adicionar uma conta existente",
     "server_address_label": "Endereço do Servidor Mastodon",
-    "sign_in_desc": "Entre, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações, ou interagir a partir da sua conta de outro servidor.",
+    "sign_in_desc": "Inicie sessão, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações, ou interagir a partir da sua conta de outro servidor.",
     "sign_in_notice_title": "A visualizar os dados públicos de {0}",
     "sign_out_account": "Desconectar {0}",
+    "single_instance_sign_in_desc": "Inicie sessão, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações.",
     "tip_no_account": "Se ainda não tem uma conta Mastodon, {0}.",
     "tip_register_account": "escolha um servidor e inscreva-se"
   },

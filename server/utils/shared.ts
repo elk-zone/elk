@@ -1,15 +1,11 @@
-// @ts-expect-error unstorage needs to provide backwards-compatible subpath types
-import _fs from 'unstorage/drivers/fs'
-// @ts-expect-error unstorage needs to provide backwards-compatible subpath types
-import _memory from 'unstorage/drivers/memory'
-
-import { stringifyQuery } from 'ufo'
+import fs from 'unstorage/drivers/fs'
+import memory from 'unstorage/drivers/memory'
+import kv from 'unstorage/drivers/cloudflare-kv-http'
 
 import { $fetch } from 'ofetch'
 import type { Storage } from 'unstorage'
 
 import cached from '../cache-driver'
-import kv from '../cloudflare-driver'
 
 // @ts-expect-error virtual import
 import { env } from '#build-info'
@@ -18,9 +14,6 @@ import { driver } from '#storage-config'
 
 import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
-
-const fs = _fs as typeof import('unstorage/dist/drivers/fs')['default']
-const memory = _memory as typeof import('unstorage/dist/drivers/memory')['default']
 
 const storage = useStorage() as Storage
 
@@ -41,7 +34,8 @@ else if (driver === 'memory') {
 }
 
 export function getRedirectURI(origin: string, server: string) {
-  return `${origin}/api/${server}/oauth?${stringifyQuery({ origin })}`
+  origin = origin.replace(/\?.*$/, '')
+  return `${origin}/api/${server}/oauth/${encodeURIComponent(origin)}`
 }
 
 async function fetchAppInfo(origin: string, server: string) {
@@ -58,8 +52,8 @@ async function fetchAppInfo(origin: string, server: string) {
 }
 
 export async function getApp(origin: string, server: string) {
-  const host = origin.replace(/^https?:\/\//, '').replace(/[^\w\d]/g, '-')
-  const key = `servers:v2:${server}:${host}.json`.toLowerCase()
+  const host = origin.replace(/^https?:\/\//, '').replace(/[^\w\d]/g, '-').replace(/\?.*$/, '')
+  const key = `servers:v3:${server}:${host}.json`.toLowerCase()
 
   try {
     if (await storage.hasItem(key))
@@ -74,13 +68,13 @@ export async function getApp(origin: string, server: string) {
 }
 
 export async function deleteApp(server: string) {
-  const keys = (await storage.getKeys(`servers:v2:${server}:`))
+  const keys = (await storage.getKeys(`servers:v3:${server}:`))
   for (const key of keys)
     await storage.removeItem(key)
 }
 
 export async function listServers() {
-  const keys = await storage.getKeys('servers:v2:')
+  const keys = await storage.getKeys('servers:v3:')
   const servers = new Set<string>()
   for await (const key of keys) {
     const id = key.split(':')[2]

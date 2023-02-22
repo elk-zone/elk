@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { clamp } from '@vueuse/core'
 import type { mastodon } from 'masto'
+import { decode } from 'blurhash'
 
 const {
   attachment,
   fullSize = false,
+  isPreview = false,
 } = defineProps<{
   attachment: mastodon.v1.MediaAttachment
   attachments?: mastodon.v1.MediaAttachment[]
   fullSize?: boolean
+  isPreview?: boolean
 }>()
 
 const src = $computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
@@ -89,51 +92,109 @@ useIntersectionObserver(video, (entries) => {
 }, { threshold: 0.75 })
 
 const userSettings = useUserSettings()
+
+const shouldLoadAttachment = ref(isPreview || !getPreferences(userSettings.value, 'enableDataSaving'))
+
+function loadAttachment() {
+  shouldLoadAttachment.value = true
+}
+
+const blurHashSrc = $computed(() => {
+  if (!attachment.blurhash)
+    return ''
+  const pixels = decode(attachment.blurhash, 32, 32)
+  return getDataUrlFromArr(pixels, 32, 32)
+})
+
+let videoThumbnail = shouldLoadAttachment.value
+  ? attachment.previewUrl
+  : blurHashSrc
+
+watch(shouldLoadAttachment, () => {
+  videoThumbnail = shouldLoadAttachment
+    ? attachment.previewUrl
+    : blurHashSrc
+})
 </script>
 
 <template>
   <div relative ma flex :gap="isAudio ? '2' : ''">
     <template v-if="type === 'video'">
-      <video
-        ref="video"
-        preload="none"
-        :poster="attachment.previewUrl"
-        muted
-        loop
-        playsinline
-        controls
-        rounded-lg
-        object-cover
-        fullscreen:object-contain
-        :width="attachment.meta?.original?.width"
-        :height="attachment.meta?.original?.height"
-        :style="{
-          aspectRatio,
-          objectPosition,
-        }"
+      <button
+        type="button"
+        relative
+        @click="!shouldLoadAttachment ? loadAttachment() : null"
       >
-        <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
-      </video>
+        <video
+          ref="video"
+          preload="none"
+          :poster="videoThumbnail"
+          muted
+          loop
+          playsinline
+          :controls="shouldLoadAttachment"
+          rounded-lg
+          object-cover
+          fullscreen:object-contain
+          :width="attachment.meta?.original?.width"
+          :height="attachment.meta?.original?.height"
+          :style="{
+            aspectRatio,
+            objectPosition,
+          }"
+          :class="!shouldLoadAttachment ? 'brightness-60 hover:brightness-70 transition-filter' : ''"
+        >
+          <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
+        </video>
+        <span
+          v-if="!shouldLoadAttachment"
+          class="status-attachment-load"
+          absolute
+          text-sm
+          text-white
+          flex flex-col justify-center items-center
+          gap-3 w-6 h-6
+          pointer-events-none
+          i-ri:video-download-line
+        />
+      </button>
     </template>
     <template v-else-if="type === 'gifv'">
-      <video
-        ref="video"
-        preload="none"
-        :poster="attachment.previewUrl"
-        muted
-        loop
-        playsinline
-        rounded-lg
-        object-cover
-        :width="attachment.meta?.original?.width"
-        :height="attachment.meta?.original?.height"
-        :style="{
-          aspectRatio,
-          objectPosition,
-        }"
+      <button
+        type="button"
+        relative
+        @click="!shouldLoadAttachment ? loadAttachment() : null"
       >
-        <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
-      </video>
+        <video
+          ref="video"
+          preload="none"
+          :poster="videoThumbnail"
+          muted
+          loop
+          playsinline
+          rounded-lg
+          object-cover
+          :width="attachment.meta?.original?.width"
+          :height="attachment.meta?.original?.height"
+          :style="{
+            aspectRatio,
+            objectPosition,
+          }"
+        >
+          <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
+        </video>
+        <span
+          v-if="!shouldLoadAttachment"
+          class="status-attachment-load"
+          absolute
+          text-sm
+          text-white
+          flex flex-col justify-center items-center
+          gap-3 w-6 h-6
+          pointer-events-none
+          i-ri:video-download-line
+        />
+      </button>
     </template>
     <template v-else-if="type === 'audio'">
       <audio controls h-15>
@@ -149,7 +210,8 @@ const userSettings = useUserSettings()
         h-full
         w-full
         aria-label="Open image preview dialog"
-        @click="openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
+        relative
+        @click="!shouldLoadAttachment ? loadAttachment() : openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
       >
         <CommonBlurhash
           :blurhash="attachment.blurhash"
@@ -163,10 +225,24 @@ const userSettings = useUserSettings()
             aspectRatio,
             objectPosition,
           }"
+          :should-load-image="shouldLoadAttachment"
           rounded-lg
           h-full
           w-full
           object-cover
+          :draggable="shouldLoadAttachment"
+          :class="!shouldLoadAttachment ? 'brightness-60 hover:brightness-70 transition-filter' : ''"
+        />
+        <span
+          v-if="!shouldLoadAttachment"
+          class="status-attachment-load"
+          absolute
+          text-sm
+          text-white
+          flex flex-col justify-center items-center
+          gap-3 w-6 h-6
+          pointer-events-none
+          i-ri:file-download-line
         />
       </button>
     </template>
@@ -202,3 +278,11 @@ const userSettings = useUserSettings()
     </div>
   </div>
 </template>
+
+<style lang="postcss">
+.status-attachment-load {
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+</style>

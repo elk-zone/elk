@@ -34,8 +34,8 @@ ARG GID=911
 
 # Create a dedicated user and group
 RUN set -eux; \
-    addgroup -g $UID elk; \
-    adduser -u $GID -D -G elk elk;
+    addgroup -g $GID elk; \
+    adduser -u $UID -D -G elk elk;
 
 USER elk
 

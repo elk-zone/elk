@@ -12,6 +12,7 @@ const { form, reset, submitter, isError, isDirty } = useForm({
     return {
       title: filter.title,
       context: filter.context,
+      filterAction: filter.filterAction,
       keywords: [
         ...filter.keywords.map(keyword => ({
           ...keyword,
@@ -57,24 +58,24 @@ const submitterResult = submitter(async ({ form, dirtyFields, reset }) => {
 
   const modifiedKeywords = keywords
     .filter(({ modified }) => modified)
-    .map(({ id, keyword, wholeWord }) => ({ id, keyword, wholeWord }))
+    .map(({ id, keyword, wholeWord: whole_word }) => ({ id, keyword, whole_word }))
 
   const deletedKeywords = keywords
     .filter(({ removed }) => removed)
     .map(({ id }) => ({ id, _destroy: true }))
 
   const body = {
-    ...dirtyFields.value,
-    keywordsAttributes: [
+    filter_action: dirtyFields.value.filterAction,
+    title: dirtyFields.value.title,
+    keywords_attributes: [
       ...deletedKeywords,
       ...modifiedKeywords,
     ],
-    expiresIn: dirtyFields.value.expiresAt
+    context: dirtyFields.value.context,
+    expires_in: dirtyFields.value.expiresAt
       ? Math.floor((new Date(dirtyFields.value.expiresAt).getTime() - new Date().getTime()) / 1000)
       : undefined,
   }
-
-  delete body.expiresAt
 
   const res = await client.v2.filters.update(params.id as string, body)
     .then(filter => ({ filter }))
@@ -111,6 +112,13 @@ const submitterResult = submitter(async ({ form, dirtyFields, reset }) => {
         <CommonCheckbox v-model="form.context" value="thread" :label="$t('settings.preferences.filters.context.thread')" hover />
         <CommonCheckbox v-model="form.context" value="public" :label="$t('settings.preferences.filters.context.public')" hover />
       </div>
+      <fieldset flex="~ col" gap-y-1 py-1>
+        <legend font-medium>
+          {{ $t('settings.preferences.filters.editing.field_filter_action') }}
+        </legend>
+        <CommonRadio v-model="form.filterAction" ms--2 px-4 py-2 hover:bg-active value="warn" :label="$t('settings.preferences.filters.filter_action.warn')" />
+        <CommonRadio v-model="form.filterAction" ms--2 px-4 py-2 hover:bg-active value="hide" :label="$t('settings.preferences.filters.filter_action.hide')" />
+      </fieldset>
       <label space-y-2 block>
         <p font-medium>
           {{ $t('settings.preferences.filters.editing.field_expire_at') }}

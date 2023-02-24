@@ -105,6 +105,7 @@ onDeactivated(cancelEdit)
             border-dark hover:text-primary
             btn-action-icon
             :class="wholeWorld ? 'bg-primary' : ''"
+            @click="() => emit('onUpdate')"
           >
             <span
               i-material-symbols:match-word

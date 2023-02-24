@@ -435,6 +435,7 @@
           "edit_keyword": "Edit this keyword",
           "field_contexts": "Contexts",
           "field_expire_at": "Expire at",
+          "field_filter_action": "Filter action",
           "field_keywords": "Keywords",
           "field_title": "Title",
           "match_whole_world": "Match whole word",
@@ -444,6 +445,10 @@
           "clear": "Clear error",
           "create": "There was an error while creating the filter.",
           "prefix": "Error"
+        },
+        "filter_action": {
+          "hide": "Hide",
+          "warn": "Warn"
         },
         "filter_title": "Filter title",
         "no_keywords": "No keywords filtered at this time.",

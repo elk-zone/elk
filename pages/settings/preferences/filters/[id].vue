@@ -132,7 +132,8 @@ const submitterResult = submitter(async ({ form, dirtyFields, reset }) => {
         >
           <Keyword
             v-if="!keyword.removed"
-            v-model="keyword.keyword"
+            v-model:text="keyword.keyword"
+            v-model:whole-world="keyword.wholeWord"
             :class="keyword.modified ? 'keyword-modified bg-active' : 'keyword'"
             @on-update="updateKeyword(keyword.id)"
             @on-remove="removeKeyword(keyword.id)"

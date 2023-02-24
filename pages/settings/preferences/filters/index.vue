@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
 const { t } = useI18n()
 
 definePageMeta({
@@ -22,9 +21,6 @@ async function createFilter(title: string) {
   paginatorRef.value?.createEntry(newEntry)
 }
 
-function updateEntry(list: mastodon.v2.Filter) {
-  paginatorRef.value?.updateEntry(list)
-}
 function removeEntry(id: string) {
   paginatorRef.value?.removeEntry(id)
 }

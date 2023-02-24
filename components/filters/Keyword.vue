@@ -8,11 +8,12 @@ let keyword = $ref<string>('')
 const edit = ref()
 const input = ref()
 
-const { modelValue } = defineModel<{
-  modelValue: string
+const { text, wholeWorld } = defineModel<{
+  text: string
+  wholeWorld: boolean
 }>()
 
-keyword = modelValue.value
+keyword = text.value
 
 function prepareEdit() {
   isEditing = true
@@ -24,7 +25,7 @@ function prepareEdit() {
 
 function saveEdit() {
   isEditing = false
-  modelValue.value = keyword
+  text.value = keyword
   emit('onUpdate')
 
   nextTick(() => {
@@ -34,7 +35,7 @@ function saveEdit() {
 
 function cancelEdit() {
   isEditing = false
-  keyword = modelValue.value
+  keyword = text.value
 
   nextTick(() => {
     edit.value?.focus()
@@ -45,7 +46,7 @@ function deleteKeyword() {
   emit('onRemove')
 }
 
-const enableSaveButton = computed(() => keyword !== modelValue.value)
+const enableSaveButton = computed(() => keyword !== text.value)
 
 onDeactivated(cancelEdit)
 </script>
@@ -85,7 +86,7 @@ onDeactivated(cancelEdit)
       {{ keyword }}
     </div>
     <div mr4 flex gap2>
-      <CommonTooltip v-if="isEditing" :content="$t('list.save')" no-auto-focus>
+      <CommonTooltip v-if="isEditing" :content="$t('settings.preferences.filters.editing.save_keyword_changes')" no-auto-focus>
         <button
           type="submit"
           text-sm p2 border-1 transition-colors
@@ -94,23 +95,44 @@ onDeactivated(cancelEdit)
           :disabled="!enableSaveButton"
           @click.prevent="saveEdit"
         >
-          <template v-if="isEditing">
-            <span block text-current i-ri:save-2-fill class="rtl-flip" />
-          </template>
+          <span block text-current i-ri:save-2-fill class="rtl-flip" />
         </button>
       </CommonTooltip>
-      <CommonTooltip v-else :content="$t('settings.preferences.filters.editing.edit_keyword')" no-auto-focus>
-        <button
-          ref="edit"
-          type="button"
-          text-sm p2 border-1 transition-colors
-          border-dark hover:text-primary
-          btn-action-icon
-          @click.prevent="prepareEdit"
-        >
-          <span block text-current i-ri:edit-2-line class="rtl-flip" />
-        </button>
-      </CommonTooltip>
+      <template v-else>
+        <CommonTooltip :content="$t('settings.preferences.filters.editing.match_whole_world')" no-auto-focus>
+          <label
+            text-sm p2 border-1 transition-colors
+            border-dark hover:text-primary
+            btn-action-icon
+            :class="wholeWorld ? 'bg-primary' : ''"
+          >
+            <span
+              i-material-symbols:match-word
+              text-lg
+              aria-hidden="true"
+            />
+            <input
+              ref="inputRef"
+              v-model="wholeWorld"
+              :value="wholeWorld"
+              type="checkbox"
+              sr-only
+            >
+          </label>
+        </CommonTooltip>
+        <CommonTooltip :content="$t('settings.preferences.filters.editing.edit_keyword')" no-auto-focus>
+          <button
+            ref="edit"
+            type="button"
+            text-sm p2 border-1 transition-colors
+            border-dark hover:text-primary
+            btn-action-icon
+            @click.prevent="prepareEdit"
+          >
+            <span block text-current i-ri:edit-2-line class="rtl-flip" />
+          </button>
+        </CommonTooltip>
+      </template>
       <CommonTooltip :content="$t('settings.preferences.filters.editing.delete_keyword')" no-auto-focus>
         <button
           ref="delete"

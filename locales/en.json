@@ -436,7 +436,9 @@
           "field_contexts": "Contexts",
           "field_expire_at": "Expire at",
           "field_keywords": "Keywords",
-          "field_title": "Title"
+          "field_title": "Title",
+          "match_whole_world": "Match whole word",
+          "save_keyword_changes": "Save changes"
         },
         "errors": {
           "clear": "Clear error",

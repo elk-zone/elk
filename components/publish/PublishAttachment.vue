@@ -25,7 +25,7 @@ const toggleApply = () => {
 
 <template>
   <div relative group>
-    <StatusAttachment :attachment="attachment" w-full />
+    <StatusAttachment :attachment="attachment" w-full is-preview />
     <div absolute right-2 top-2>
       <div
         v-if="removable"
@@ -34,7 +34,7 @@ const toggleApply = () => {
         text-white px2 py2 rounded-full cursor-pointer
         @click="$emit('remove')"
       >
-        <div i-ri:close-line text-3 :class="[isHydrated && isSmallScreen ? 'text-6' : 'text-3']" />
+        <div i-ri:close-line text-3 text-6 md:text-3 />
       </div>
     </div>
     <div absolute right-2 bottom-2>
@@ -63,7 +63,7 @@ const toggleApply = () => {
             {{ $t('action.close') }}
           </button>
         </div>
-        <StatusAttachment :attachment="attachment" w-full />
+        <StatusAttachment :attachment="attachment" w-full is-preview />
       </div>
     </ModalDialog>
   </div>

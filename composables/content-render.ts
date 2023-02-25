@@ -10,6 +10,14 @@ import ContentCode from '~/components/content/ContentCode.vue'
 import ContentMentionGroup from '~/components/content/ContentMentionGroup.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 
+function getTexualAstComponents(astChildren: Node[]): string {
+  return astChildren
+    .filter(({ type }) => type === TEXT_NODE)
+    .map(({ value }) => value)
+    .reduce((accumulator, current) => accumulator + current, '')
+    .trim()
+}
+
 /**
 * Raw HTML to VNodes
 */
@@ -17,11 +25,18 @@ export function contentToVNode(
   content: string,
   options?: ContentParseOptions,
 ): VNode {
-  const tree = parseMastodonHTML(content, options)
+  let tree = parseMastodonHTML(content, options)
+
+  const textContents = getTexualAstComponents(tree.children)
+
+  // if the username only contains emojis, we should probably show the emojis anyway to avoid a blank name
+  if (options?.hideEmojis && textContents.length === 0)
+    tree = parseMastodonHTML(content, { ...options, hideEmojis: false })
+
   return h(Fragment, (tree.children as Node[] || []).map(n => treeToVNode(n)))
 }
 
-export function nodeToVNode(node: Node): VNode | string | null {
+function nodeToVNode(node: Node): VNode | string | null {
   if (node.type === TEXT_NODE)
     return node.value
 

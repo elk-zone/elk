@@ -43,7 +43,7 @@ const chooseIcon = (i: number, text: string) => {
     <div flex="~ col gap4">
       <div v-for="i in fieldCount" :key="i" flex="~ gap3" items-center>
         <CommonDropdown ref="dropdown" placement="left">
-          <CommonTooltip content="Pick a icon">
+          <CommonTooltip :content="$t('tooltip.pick_an_icon')">
             <button type="button" btn-action-icon>
               <div :class="fieldIcons[i - 1] || 'i-ri:question-mark'" />
             </button>
@@ -66,12 +66,14 @@ const chooseIcon = (i: number, text: string) => {
         </CommonDropdown>
         <input
           v-model="form.fieldsAttributes[i - 1].name"
-          type="text" placeholder="Label"
+          type="text" placeholder-text-secondary
+          :placeholder="$t('settings.profile.appearance.profile_metadata_label')"
           input-base
         >
         <input
           v-model="form.fieldsAttributes[i - 1].value"
-          type="text" placeholder="Content"
+          type="text" placeholder-text-secondary
+          :placeholder="$t('settings.profile.appearance.profile_metadata_value')"
           input-base
         >
       </div>

@@ -12,6 +12,9 @@ const { items, command } = defineProps<{
 }>()
 
 const emojis = computed(() => {
+  if (process.server)
+    return []
+
   return items.map((item: CustomEmoji | Emoji) => {
     if (isCustomEmoji(item)) {
       return {
@@ -40,6 +43,9 @@ watch(items, () => {
 })
 
 function onKeyDown(event: KeyboardEvent) {
+  if (items.length === 0)
+    return false
+
   if (event.key === 'ArrowUp') {
     selectedIndex = ((selectedIndex + items.length) - 1) % items.length
     return true
@@ -77,7 +83,7 @@ defineExpose({
     <template v-if="isPending">
       <div flex gap-1 items-center p2 animate-pulse>
         <div i-ri:loader-2-line animate-spin />
-        <span>Fetching...</span>
+        <span>{{ $t('common.fetching') }}</span>
       </div>
     </template>
     <template v-if="items.length">

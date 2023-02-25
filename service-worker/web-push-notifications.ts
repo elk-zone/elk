@@ -1,9 +1,19 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
-import { createNotificationOptions, findNotification } from './notification'
+import { ELK_PAGE_LIFECYCLE_FROZEN } from '../constants'
+import {
+  closeDatabaseConnections,
+  createNotificationOptions,
+  findNotification,
+} from './notification'
 import type { PushPayload } from '~/service-worker/types'
 
 declare const self: ServiceWorkerGlobalScope
+
+self.addEventListener('message', (event) => {
+  if (event.data === ELK_PAGE_LIFECYCLE_FROZEN)
+    closeDatabaseConnections()
+})
 
 export const onPush = (event: PushEvent) => {
   const promise = isClientFocused().then((isFocused) => {

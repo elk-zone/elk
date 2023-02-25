@@ -1,5 +1,5 @@
 import { readFile } from 'fs-extra'
-import { resolve } from 'pathe'
+import { createResolver } from '@nuxt/kit'
 import type { ManifestOptions } from 'vite-plugin-pwa'
 import { getEnv } from '../../config/env'
 import { i18n } from '../../config/i18n'
@@ -13,6 +13,7 @@ interface ExtendedManifestOptions extends ManifestOptions {
     method: string
     enctype: string
     params: {
+      title: string
       text: string
       url: string
       files: [{
@@ -92,14 +93,21 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
           sizes: '512x512',
           type: 'image/png',
         },
+        {
+          src: 'maskable-icon.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
       ],
       share_target: {
         action: '/web-share-target',
         method: 'POST',
         enctype: 'multipart/form-data',
         params: {
+          title: 'title',
           text: 'text',
-          url: 'text',
+          url: 'url',
           files: [
             {
               name: 'files',
@@ -132,14 +140,21 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
           sizes: '512x512',
           type: 'image/png',
         },
+        {
+          src: 'maskable-icon.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
       ],
       share_target: {
         action: '/web-share-target',
         method: 'POST',
         enctype: 'multipart/form-data',
         params: {
+          title: 'title',
           text: 'text',
-          url: 'text',
+          url: 'url',
           files: [
             {
               name: 'files',
@@ -155,8 +170,9 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
 }
 
 async function readI18nFile(file: string) {
+  const { resolve } = createResolver(import.meta.url)
   return JSON.parse(Buffer.from(
-    await readFile(resolve(`./locales/${file}`), 'utf-8'),
+    await readFile(resolve(`../../locales/${file}`), 'utf-8'),
   ).toString())
 }
 

@@ -15,6 +15,9 @@ watch(items, () => {
 })
 
 function onKeyDown(event: KeyboardEvent) {
+  if (items.length === 0)
+    return false
+
   if (event.key === 'ArrowUp') {
     selectedIndex = ((selectedIndex + items.length) - 1) % items.length
     return true
@@ -49,7 +52,7 @@ defineExpose({
         <div animate-spin preserve-3d>
           <div i-ri:loader-2-line />
         </div>
-        <span>Fetching...</span>
+        <span>{{ $t('common.fetching') }}</span>
       </div>
     </template>
     <template v-if="items.length">

@@ -44,6 +44,10 @@ These are known deployments using Elk as an alternative Web client for Mastodon 
 - [elk.h4.io](https://elk.h4.io) - Use Elk for the `h4.io` Server
 - [elk.universeodon.com](https://elk.universeodon.com) - Use Elk for the Universeodon Server
 - [elk.vmst.io](https://elk.vmst.io) - Use Elk for the `vmst.io` Server
+- [elk.hostux.social](https://elk.hostux.social) - Use Elk for the `hostux.social` Server
+- [elk.freelancers.online](https://elk.freelancers.online) - Use Elk for the `freelancers.online` Server
+- [elk.cupoftea.social](https://elk.cupoftea.social) - Use Elk for the `cupoftea.social` Server
+- [elk.aus.social](https://elk.aus.social) - Use Elk for the `aus.social` Server
 
 > **Note**: Community deployments are **NOT** maintained by the Elk team. It may not be synced with Elk's source code. Please do your own research about the host servers before using them.
 
@@ -113,6 +117,10 @@ Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 nr test
 ```
 
+## 📲 PWA
+
+You can consult the [PWA documentation](https://docs.elk.zone/docs/pwa) to learn more about the PWA capabilities on Elk, how to install Elk PWA in your desktop or mobile device and some hints about PWA stuff on Elk.
+
 ## 🦄 Stack
 
 - [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
@@ -125,7 +133,7 @@ nr test
 - [Iconify](https://github.com/iconify/icon-sets#iconify-icon-sets-in-json-format) - Iconify icon sets in JSON format
 - [Masto.js](https://neet.github.io/masto.js) - Mastodon API client in TypeScript
 - [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
-- [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update and push notifications
+- [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update, Web Push Notifications and Web Share Target API
 
 ## 👨‍💻 Contributors
 

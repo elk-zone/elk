@@ -14,7 +14,7 @@ import {
 const handlers = [
   {
     route: '/api/:server/oauth',
-    handler: defineLazyEventHandler(() => import('~/server/api/[server]/oauth').then(r => r.default || r)),
+    handler: defineLazyEventHandler(() => import('~/server/api/[server]/oauth/[origin]').then(r => r.default || r)),
   },
   {
     route: '/api/:server/login',
@@ -55,7 +55,6 @@ export default defineNuxtPlugin(async () => {
   const localCall = createCall(toNodeListener(h3App) as any)
   const localFetch = createLocalFetch(localCall, globalThis.fetch)
 
-  // @ts-expect-error slight differences in api
   globalThis.$fetch = createFetch({
     // @ts-expect-error slight differences in api
     fetch: localFetch,

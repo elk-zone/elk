@@ -1,51 +1,48 @@
-// @ts-expect-error unstorage needs to provide backwards-compatible subpath types
-import _fs from 'unstorage/drivers/fs'
-// @ts-expect-error unstorage needs to provide backwards-compatible subpath types
-import _kv from 'unstorage/drivers/cloudflare-kv-http'
-// @ts-expect-error unstorage needs to provide backwards-compatible subpath types
-import _memory from 'unstorage/drivers/memory'
-
-import { stringifyQuery } from 'ufo'
+import fs from 'unstorage/drivers/fs'
+import memory from 'unstorage/drivers/memory'
+import kv from 'unstorage/drivers/cloudflare-kv-http'
 
 import { $fetch } from 'ofetch'
 import type { Storage } from 'unstorage'
 
-import cached from './cache-driver'
+import cached from '../cache-driver'
+
+// @ts-expect-error virtual import
+import { env } from '#build-info'
+// @ts-expect-error virtual import
+import { driver } from '#storage-config'
 
 import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
 
-const config = useRuntimeConfig()
-
-const fs = _fs as typeof import('unstorage/dist/drivers/fs')['default']
-const kv = _kv as typeof import('unstorage/dist/drivers/cloudflare-kv-http')['default']
-const memory = _memory as typeof import('unstorage/dist/drivers/memory')['default']
-
 const storage = useStorage() as Storage
 
-if (config.storage.driver === 'fs') {
+if (driver === 'fs') {
+  const config = useRuntimeConfig()
   storage.mount('servers', fs({ base: config.storage.fsBase }))
 }
-else if (config.storage.driver === 'cloudflare') {
+else if (driver === 'cloudflare') {
+  const config = useRuntimeConfig()
   storage.mount('servers', cached(kv({
     accountId: config.cloudflare.accountId,
     namespaceId: config.cloudflare.namespaceId,
     apiToken: config.cloudflare.apiToken,
   })))
 }
-else if (config.storage.driver === 'memory') {
+else if (driver === 'memory') {
   storage.mount('servers', memory())
 }
 
 export function getRedirectURI(origin: string, server: string) {
-  return `${origin}/api/${server}/oauth?${stringifyQuery({ origin })}`
+  origin = origin.replace(/\?.*$/, '')
+  return `${origin}/api/${server}/oauth/${encodeURIComponent(origin)}`
 }
 
 async function fetchAppInfo(origin: string, server: string) {
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
     body: {
-      client_name: APP_NAME + (config.public.env !== 'release' ? ` (${config.public.env})` : ''),
+      client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
       website: 'https://elk.zone',
       redirect_uris: getRedirectURI(origin, server),
       scopes: 'read write follow push',
@@ -55,8 +52,8 @@ async function fetchAppInfo(origin: string, server: string) {
 }
 
 export async function getApp(origin: string, server: string) {
-  const host = origin.replace(/^https?:\/\//, '').replace(/[^\w\d]/g, '-')
-  const key = `servers:v2:${server}:${host}.json`.toLowerCase()
+  const host = origin.replace(/^https?:\/\//, '').replace(/[^\w\d]/g, '-').replace(/\?.*$/, '')
+  const key = `servers:v3:${server}:${host}.json`.toLowerCase()
 
   try {
     if (await storage.hasItem(key))
@@ -71,13 +68,13 @@ export async function getApp(origin: string, server: string) {
 }
 
 export async function deleteApp(server: string) {
-  const keys = (await storage.getKeys(`servers:v2:${server}:`))
+  const keys = (await storage.getKeys(`servers:v3:${server}:`))
   for (const key of keys)
     await storage.removeItem(key)
 }
 
 export async function listServers() {
-  const keys = await storage.getKeys('servers:v2:')
+  const keys = await storage.getKeys('servers:v3:')
   const servers = new Set<string>()
   for await (const key of keys) {
     const id = key.split(':')[2]

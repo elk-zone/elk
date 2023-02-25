@@ -2,6 +2,13 @@
 const { env } = useBuildInfo()
 const router = useRouter()
 const back = ref<any>('')
+
+const nuxtApp = useNuxtApp()
+
+const onClickLogo = () => {
+  nuxtApp.hooks.callHook('elk-logo:click')
+}
+
 onMounted(() => {
   back.value = router.options.history.state.back
 })
@@ -11,16 +18,15 @@ router.afterEach(() => {
 </script>
 
 <template>
-  <!-- Use external to force refresh page and jump to top of timeline -->
-  <div flex justify-between>
+  <div flex justify-between sticky top-0 bg-base z-1 py-4 native:py-7 data-tauri-drag-region>
     <NuxtLink
-      flex items-end gap-4
+      flex items-end gap-3
       py2 px-5
       text-2xl
       select-none
       focus-visible:ring="2 current"
-      to="/"
-      external
+      to="/home"
+      @click.prevent="onClickLogo"
     >
       <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
       <div hidden xl:block text-secondary>

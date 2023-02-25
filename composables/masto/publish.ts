@@ -154,12 +154,19 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
   }
 
   async function processImageFile(file: File) {
-    const image = await loadImage(file) as HTMLImageElement
+    try {
+      const image = await loadImage(file) as HTMLImageElement
 
-    if (image.width * image.height > maxPixels)
-      file = await resizeImage(image, file.type) as File
+      if (image.width * image.height > maxPixels)
+        file = await resizeImage(image, file.type) as File
 
-    return file
+      return file
+    }
+    catch (e) {
+      // Resize failed, just use the original file
+      console.error(e)
+      return file
+    }
   }
 
   async function processFile(file: File) {

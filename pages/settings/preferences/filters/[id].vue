@@ -58,7 +58,8 @@ function addKeyword() {
   form.keywords.push({
     id: 'new',
     keyword: newKeyword.value,
-    wholeWord: 'true',
+    // @ts-expect-error 2322 Masto's documentation saying wholeWord is a string is wrong, it is in fact a boolean
+    wholeWord: true,
     modified: true,
     removed: false,
   })

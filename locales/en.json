@@ -446,6 +446,8 @@
           "create": "There was an error while creating the filter.",
           "prefix": "Error"
         },
+        "expires_at_custom_date": "Custom date",
+        "expires_at_never": "Never",
         "filter_action": {
           "hide": "Hide",
           "warn": "Warn"

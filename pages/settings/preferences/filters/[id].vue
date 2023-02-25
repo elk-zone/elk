@@ -7,10 +7,16 @@ const client = useMastoClient()
 
 let filter = await client.v2.filters.fetch(params.id as string)
 
-const { form, reset, submitter, isError, isDirty } = useForm({
+function makeISOStringUsable(iso: string) {
+  return iso.slice(0, -8)
+}
+
+const expiresAtSet = ref(filter.expiresAt !== null)
+
+const { form, reset: resetForm, submitter, isError, isDirty } = useForm({
   form() {
     const expiresAt = filter.expiresAt
-      ? new Date(filter.expiresAt).toISOString().slice(0, -8)
+      ? makeISOStringUsable(new Date(filter.expiresAt).toISOString())
       : null
 
     return {
@@ -24,10 +30,15 @@ const { form, reset, submitter, isError, isDirty } = useForm({
           removed: false,
         })),
       ],
-      expiresAt,
+      expiresAt: expiresAtSet.value ? expiresAt : null,
     }
   },
 })
+
+function reset() {
+  expiresAtSet.value = filter.expiresAt !== null
+  resetForm()
+}
 
 const newKeyword = ref('')
 const isCanSubmit = computed(() => !isError.value && isDirty.value)
@@ -95,6 +106,11 @@ const submitterResult = submitter(async ({ form, dirtyFields, reset }) => {
 
   reset()
 })
+
+function expiresAtSetChange() {
+  if (form.expiresAt === null)
+    form.expiresAt = makeISOStringUsable(new Date().toISOString())
+}
 </script>
 
 <template>
@@ -127,11 +143,20 @@ const submitterResult = submitter(async ({ form, dirtyFields, reset }) => {
         <p font-medium>
           {{ $t('settings.preferences.filters.editing.field_expire_at') }}
         </p>
+        <select v-model="expiresAtSet" class="select-settings" @change="expiresAtSetChange">
+          <option :value="false" :selected="!expiresAtSet">
+            {{ $t('settings.preferences.filters.expires_at_never') }}
+          </option>
+          <option :value="true" :selected="expiresAtSet">
+            {{ $t('settings.preferences.filters.expires_at_custom_date') }}
+          </option>
+        </select>
         <input
+          v-if="expiresAtSet"
           v-model="form.expiresAt"
           type="datetime-local"
           input-base
-          :min="new Date().toISOString().slice(0, -8)"
+          :min="makeISOStringUsable(new Date().toISOString())"
         >
       </label>
       <div space-y-2 block>

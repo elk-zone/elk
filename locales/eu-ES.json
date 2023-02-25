@@ -7,20 +7,20 @@
     "route_loaded": "{0} orrialdea kargatu da"
   },
   "account": {
-    "avatar_description": "{0}(r)en avatarea",
+    "avatar_description": "{0}(r)en abatarra",
     "blocked_by": "Erabiltzaile honek blokeatu zaitu.",
     "blocked_domains": "Blokeatutako domeinuak",
     "blocked_users": "Blokeatutako erabiltzaileak",
     "blocking": "Blokeatuta",
-    "bot": "ERROBOTA",
+    "bot": "BOTa",
     "favourites": "Gogokoak",
     "follow": "Jarraitu",
     "follow_back": "Jarraitu bera ere",
     "follow_requested": "Eskaera bidalita",
     "followers": "Jarraitzaileak",
-    "followers_count": "{0} Jarraitzaile|Jarraitzaile {0}|{0} Jarraitzaile",
+    "followers_count": "{0} jarraitzaile|Jarraitzaile {0}|{0} jarraitzaile",
     "following": "Jarraitzen",
-    "following_count": "{0} Jarraitzen",
+    "following_count": "{0} jarraitzen",
     "follows_you": "Jarraitzen dizu",
     "go_to_profile": "Joan profilera",
     "joined": "Batze-data:",
@@ -32,7 +32,7 @@
     "notifications_on_post_enable": "Jakinarazi {username}(r)ek argitaratzen duenean",
     "pinned": "Finkatuta",
     "posts": "Bidalketak",
-    "posts_count": "{0} Bidalketa|Bidalketa {0}|{0} Bidalketa",
+    "posts_count": "{0} bidalketa|Bidalketa {0}|{0} bidalketa",
     "profile_description": "{0}(r)en profilaren goiburua",
     "profile_unavailable": "Profila ez dago eskuragai",
     "request_follow": "Bidali jarraipen-eskaera",
@@ -49,8 +49,8 @@
     "boost": "Bultzatu",
     "boost_count": "{0}",
     "boosted": "Bultzatuta",
-    "clear_publish_failed": "Clear publish errors",
-    "clear_upload_failed": "Garbitu fitxategi-igoeraren erroreak",
+    "clear_publish_failed": "Garbitu argitalpen erroreak",
+    "clear_upload_failed": "Garbitu fitxategi-igoeren erroreak",
     "close": "Itxi",
     "compose": "Idatzi",
     "confirm": "Baieztatu",
@@ -113,7 +113,7 @@
     "block_domain": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "title": "Ziur {0} blokeatu nahi duzula?"
+      "title": "Ziur {0} domeinua blokeatu nahi duzula?"
     },
     "common": {
       "cancel": "Ez",
@@ -146,7 +146,7 @@
     }
   },
   "conversation": {
-    "with": "·"
+    "with": "parte-hartzailea:"
   },
   "custom_cards": {
     "stackblitz": {
@@ -165,20 +165,20 @@
   },
   "help": {
     "build_preview": {
-      "desc1": "You are currently viewing a preview version of Elk from the community - {0}.",
-      "desc2": "It may contains unreviewed or even malicious changes.",
+      "desc1": "Komunitateak sortutako Elk-en aurreikuspen bat duzu aurrean - {0}.",
+      "desc2": "Litekeena da berrikusi ez diren aldaketak izatea, baita maltzurrak izan litezkeenak ere.",
       "desc3": "Ez hasi saioa zure benetako kontuarekin.",
       "title": "Preview deploy"
     },
     "desc_highlight": "Oso litekeena da erroreak eta ezaugarriak faltan egotea aplikazioan zehar.",
-    "desc_para1": "Eskerrik asko interesagatik eta Elk probatzeagatik, Thanks for your interest in trying out Elk, amaitu gabe dagoen Mastodonerako web-bezero arin bat!",
-    "desc_para2": "gogor ari gara garapen- eta hobetze-lanetan.",
+    "desc_para1": "Eskerrik asko interesagatik eta Elk probatzeagatik, amaitu gabe dagoen Mastodonerako web-bezero arin bat!",
+    "desc_para2": "Gogor ari gara garapen- eta hobetze-lanetan.",
     "desc_para3": "Garapenari bultzada emateko, GitHub Sponsors aukerari esker eman diezaiokezu babesa taldeari. Espero dugu Elk gogoko izatea!",
     "desc_para4": "Elk kode irekikoa da. Laguntza eman nahi badiguzu probatzen, iritzia ematen edo kodea idazten,",
     "desc_para5": "jarri harremanetan GitHub bidez",
     "desc_para6": "eta hartu parte.",
     "footer_team": "Elk taldea",
-    "title": "Elk is in Preview!"
+    "title": "Elk-en aurreikuspena da hau!"
   },
   "language": {
     "search": "Bilatu"
@@ -217,12 +217,12 @@
     "share_post": "Partekatu bidalketa",
     "show_favourited_and_boosted_by": "Erakutsi nork egin duen gogoko eta nork bultzatu duen",
     "show_reblogs": "Erakutsi {0}(r)en bultzadak",
-    "show_untranslated": "Erakutsi itzuli gabe",
+    "show_untranslated": "Erakutsi jatorrizko hizkuntzan",
     "toggle_theme": {
       "dark": "Modu iluna",
       "light": "Modu argia"
     },
-    "translate_post": "Itzuli bidalketa",
+    "translate_post": "Egin itzulpena",
     "unblock_account": "Utzi {0} blokeatzeari",
     "unblock_domain": "Utzi {0} domeinua blokeatzeari",
     "unmute_account": "Utzi {0} mututzeari",
@@ -234,7 +234,7 @@
     "blocked_domains": "Blokeatutako domeinuak",
     "blocked_users": "Blokeatutako erabiltzaileak",
     "bookmarks": "Laster-markak",
-    "built_at": "Built {0}",
+    "built_at": "Biltze-data: {0}",
     "compose": "Idatzi",
     "conversations": "Elkarrizketak",
     "explore": "Esploratu",
@@ -254,18 +254,18 @@
     "select_language": "Hizkuntza",
     "settings": "Ezarpenak",
     "show_intro": "Erakutsi aurkezpena",
-    "toggle_theme": "Toggle Theme",
+    "toggle_theme": "Gai argia/iluna",
     "zen_mode": "ZEN modua"
   },
   "notification": {
     "favourited_post": "zure bidalketa gogoko egin du",
     "followed_you": "jarraitu dizu",
-    "followed_you_count": "{0} pertsonak jarraitu dizute|pertsona {0}ek jarraitu dizu|{0} pertsonek jarraitu dizute",
+    "followed_you_count": "{0} pertsonak jarraitu dizute|pertsona {0}ek jarraitu dizu|{0} pertsonak jarraitu dizute",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "zure bidalketari bultzada eman dio",
     "request_to_follow": "jarraipen-eskaera bidali dizu",
     "signed_up": "izena eman du",
-    "update_status": "bere bidalketa eguneratu du"
+    "update_status": "bidalketa eguneratu du"
   },
   "placeholder": {
     "content_warning": "Idatzi oharra hemen",
@@ -310,14 +310,14 @@
   },
   "settings": {
     "about": {
-      "built_at": "Built",
+      "built_at": "Biltze-data",
       "label": "Honi buruz",
       "meet_the_team": "Ezagutu taldea",
-      "sponsor_action": "Babes gaitzazu",
+      "sponsor_action": "Eman babesa",
       "sponsor_action_desc": "Elk garatzen duen taldeari babesa emateko",
       "sponsors": "Babesleak",
-      "sponsors_body_1": "Elk ondorengoen babes eskuzabal eta laguntzari esker izan da posible egitea:",
-      "sponsors_body_2": "Eta Elk taldea eta bere kideak babesten dituzten enpresa eta norbanakoak.",
+      "sponsors_body_1": "Elk ondorengoen babes eskuzabalari eta laguntzari esker izan da posible egitea:",
+      "sponsors_body_2": "Baita Elk taldea eta bere kideak babesten dituzten enpresa eta norbanakoei esker.",
       "sponsors_body_3": "Aplikazioa gogoko baduzu, agian babesa eman diezagukezu:",
       "version": "Bertsioa"
     },
@@ -326,14 +326,14 @@
       "label": "Kontuaren ezarpenak"
     },
     "interface": {
-      "color_mode": "Color Mode",
+      "color_mode": "Kolorea",
       "dark_mode": "Iluna",
       "default": " (defektuzkoa)",
       "font_size": "Letra-tipoaren tamaina",
       "label": "Interfazea",
       "light_mode": "Argia",
       "system_mode": "Sistemak darabilena",
-      "theme_color": "Theme Color"
+      "theme_color": "Gaiaren kolorea"
     },
     "language": {
       "display_language": "Hizkuntza",
@@ -359,7 +359,7 @@
           "mention": "Aipamenak",
           "poll": "Bozketak",
           "reblog": "Zure bidalketen bultzadak",
-          "title": "Zer jakinarazpen jaso nahi dituzu?"
+          "title": "Zer jakinarazpen jaso nahi duzu?"
         },
         "description": "Jaso jakinarazpenak Elk erabiltzen ari ez bazara ere.",
         "instructions": "Ez ahaztu aldaketak gordetzeaz @:settings.notifications.push_notifications.save_settings botoia erabiliz!",
@@ -375,12 +375,12 @@
         "subscription_error": {
           "clear_error": "Garbitu errorea",
           "invalid_vapid_key": "Ez dirudi VAPID gako publikoa baliozkoa denik.",
-          "permission_denied": "Permission denied: gaitu jakinarazpenak zure nabigatzailean.",
+          "permission_denied": "Baimena ukatu da: gaitu jakinarazpenak zure nabigatzailean.",
           "repo_link": "Elk-en biltegia GitHub-en",
           "request_error": "Errorea gertatu da harpidetza eskatzerakoan, saiatu berriro eta errorea gertatuko balitz, jakinarazi Elk-en biltegian.",
           "title": "Ezin izan da push jakinarazpenei harpidetu",
-          "too_many_registrations": "Nabigatzailearen mugak direla-eta, Elk-ek ezin ditu push jakinarazpenak zerbitzari desberdinetan dauden kontuetarako erabili. You should unsubscribe from push notifications on another account and try again.",
-          "vapid_not_supported": "Zure nabigatzailea Web Push Jakinarazpenekin bateragarria da, baina ez dirudi VAPID protokoloa gauzatu duenik."
+          "too_many_registrations": "Nabigatzailearen mugak direla-eta, Elk-ek ezin ditu push jakinarazpenak zerbitzari desberdinetan dauden kontuetarako erabili. Beste kontu bateko push harpidetza utzi eta saiatu berriro.",
+          "vapid_not_supported": "Zure nabigatzailea webeko push jakinarazpenekin bateragarria da, baina ez dirudi VAPID protokoloa gauzatu duenik."
         },
         "title": "Push jakinarazpenen ezarpenak",
         "undo_settings": "Desegin aldaketak",
@@ -388,28 +388,28 @@
         "unsupported": "Zure nabigatzailea ez da push jakinarazpenekin bateragarria.",
         "warning": {
           "enable_close": "Itxi",
-          "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:settings.notifications.show_btn{'\"'} button above once enabled.",
-          "enable_description_desktop": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications in \"Settings > Notifications > Push notifications settings\" once enabled.",
-          "enable_description_mobile": "You can also access the settings using the navigation menu \"Settings > Notifications > Push notification settings\".",
-          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_description": "Elk irekita ez dagoenean jakinarazpenak jasotzeko, gaitu push jakinarazpenak. Zehatz mehatz kontrola dezakezu zer jakinarazpen mota jaso nahi duzun \"@:settings.notifications.show_btn{'\"'} botoiari esker aukera gaitu eta gero.",
+          "enable_description_desktop": "Elk irekita ez dagoenean jakinarazpenak jasotzeko, gaitu push jakinarazpenak. Zehatz mehatz kontrola dezakezu zer jakinarazpen mota jaso nahi duzun \"Settings > Notifications > Push notifications settings\" eremuan aukera gaitu eta gero.",
+          "enable_description_mobile": "Menuko nabigazioa ere erabil dezakezu ezarpenetara jotzeko: \"Settings > Notifications > Push notification settings\".",
+          "enable_description_settings": "Elk irekita ez dagoenean jakinarazpenak jasotzeko, gaitu push jakinarazpenak. Zehatz mehatz kontrola dezakezu zer jakinarazpen mota jaso nahi duzun pantaila honetan bertan aukera gaitu eta gero.",
           "enable_desktop": "Gaitu push jakinarazpenak",
           "enable_title": "Ez galdu ezer inoiz",
           "re_auth": "Ez dirudi zure zerbitzaria push jakinarazpenekin bateragarria denik. Saiatu saioa amaitzen eta berriro hasten; mezu honek badirau, jarri harremanetan zure zerbitzariko administratzailearekin."
         }
       },
       "show_btn": "Joan jakinarazpenen ezarpenetara",
-      "under_construction": "Under construction"
+      "under_construction": "Amaitzeke"
     },
     "notifications_settings": "Jakinarazpenak",
     "preferences": {
-      "enable_autoplay": "Gaitu Autoplay",
+      "enable_autoplay": "Gaitu erreproduzitze automatikoa",
       "enable_data_saving": "Gaitu datu aurrezlea",
       "enable_data_saving_description": "Aurreztu datuak eranskinen kargatze-automatikoa galarazten.",
-      "enable_pinch_to_zoom": "Enable pinch to zoom",
+      "enable_pinch_to_zoom": "Gaitu atximur keinua zoom egiteko",
       "github_cards": "GitHub Cards",
-      "grayscale_mode": "Grayscale mode",
-      "hide_account_hover_card": "Hide account hover card",
-      "hide_alt_indi_on_posts": "Ezkutatu alt adierazlea bidalketetan",
+      "grayscale_mode": "Gris modua",
+      "hide_account_hover_card": "Ezkutatu kontuaren geruza (Hide account hover card)",
+      "hide_alt_indi_on_posts": "Ezkutatu ALT adierazlea bidalketetan",
       "hide_boost_count": "Ezkutatu bultzaden kopurua",
       "hide_favorite_count": "Ezkutatu gogokoen kopurua",
       "hide_follower_count": "Ezkutatu jarraitzaileen kopurua",
@@ -420,17 +420,17 @@
       "label": "Hobespenak",
       "title": "Ezaugarri esperimentalak",
       "user_picker": "Erabiltzaile hautatzailea",
-      "virtual_scroll": "Virtual Scrolling",
+      "virtual_scroll": "Korritze birtuala",
       "wellbeing": "Ongizatea"
     },
     "profile": {
       "appearance": {
         "bio": "Bio",
-        "description": "Editatu avatarea, erabiltzaile izena, profila, etab.",
+        "description": "Editatu abatarra, erabiltzaile izena, profila, etab.",
         "display_name": "Pantaila izena",
         "label": "Itxura",
         "profile_metadata": "Profileko metadatuak",
-        "profile_metadata_desc": "{0} item arte erakuts ditzakezu taula moduan zure profilean",
+        "profile_metadata_desc": "Gehienez {0} item erakuts ditzakezu taula moduan profilean",
         "profile_metadata_label": "Etiketa",
         "profile_metadata_value": "Edukia",
         "title": "Editatu profila"
@@ -449,7 +449,7 @@
     }
   },
   "share-target": {
-    "description": "Elk beste aplikazioetako edukia partekatu ahal izateko konfiguratu daiteke; ez duzu Elk zure gailuan instalatu eta saioa hasi baino ez.",
+    "description": "Elk beste aplikazioetako edukia partekatu ahal izateko konfiguratu daiteke; Elk zure gailuan instalatu eta saioa hasi behar duzu, besterik ez.",
     "hint": "Elk-ekin edukia partekatu nahi izatekotan, Elk instalatuta egon behar da eta saioa hasita.",
     "title": "Partekatu Elk-ekin"
   },
@@ -466,9 +466,9 @@
   },
   "status": {
     "boosted_by": "Bultzatu dute:",
-    "edited": "Edited {0}",
+    "edited": "Azken edizioa: {0}",
     "favourited_by": "Gogoko egin dute:",
-    "filter_hidden_phrase": "Filtered by",
+    "filter_hidden_phrase": "Iragazia:",
     "filter_removed_phrase": "Iragazki honek kendu du:",
     "filter_show_anyway": "Erakutsi edonola ere",
     "img_alt": {
@@ -525,20 +525,20 @@
     "month_past": "duela 0 hilabete|aurreko hilabetean|duela {n} hilabete",
     "second_future": "oraintxe bertan|datorren segunduan|datozen {n} segundutan",
     "second_past": "oraintxe bertan| duela segundu {n}|duela {n} segundu",
-    "short_day_future": "in {n}d",
-    "short_day_past": "{n}d",
-    "short_hour_future": "in {n}h",
-    "short_hour_past": "{n}h",
-    "short_minute_future": "in {n}min",
+    "short_day_future": "{n}e barru",
+    "short_day_past": "{n}e",
+    "short_hour_future": "{n}o barru",
+    "short_hour_past": "{n}o",
+    "short_minute_future": "{n}min barru",
     "short_minute_past": "{n}min",
-    "short_month_future": "in {n}mo",
-    "short_month_past": "{n}mo",
-    "short_second_future": "in {n}s",
+    "short_month_future": "{n}h barru",
+    "short_month_past": "{n}h",
+    "short_second_future": "{n}s barru",
     "short_second_past": "{n}s",
-    "short_week_future": "in {n}w",
-    "short_week_past": "{n}w",
-    "short_year_future": "in {n}y",
-    "short_year_past": "{n}y",
+    "short_week_future": "{n}a barru",
+    "short_week_past": "{n}a",
+    "short_year_future": "{n}u barru",
+    "short_year_past": "{n}u",
     "week_future": "0 astetan|datorren astean|datozen {n} asteetan",
     "week_past": "duela 0 aste|aurreko astean|duela {n} aste",
     "year_future": "0 urtetan|datorren urtean|datozen {n} urteetan",
@@ -549,7 +549,7 @@
     "view_older_posts": "Oso litekeena da beste instantziatako bidalketa zaharragoak ikusgai ez egotea."
   },
   "title": {
-    "federated_timeline": "Federatutako denbora-lerroa",
+    "federated_timeline": "Denbora-lerro federatua",
     "local_timeline": "Denbora-lerro lokala"
   },
   "tooltip": {
@@ -563,9 +563,9 @@
     "explore_links_intro": "Albiste hauei buruz ari dira hitz egiten sare deszentralizatutako zerbitzari honetan eta beste batzuetan.",
     "explore_posts_intro": "Bidalketa hauek bogan daude deszentralizatutako zerbitzari honetan eta beste batzuetan.",
     "explore_tags_intro": "Traola hauek joera dira deszentralizatutako zerbitzari honetan eta beste batzuetan.",
-    "open_editor_tools": "Editatzeko erramintak",
+    "open_editor_tools": "Editatzeko tresnak",
     "pick_an_icon": "Hautatu ikonoa",
-    "publish_failed": "Close failed messages at the top of editor to republish posts",
+    "publish_failed": "Itxi editorearen goikaldeko huts-egiteen mezuak bidalketa berrargitaratzeko",
     "toggle_bold": "Lodia",
     "toggle_code_block": "Kodea",
     "toggle_italic": "Etzana"
@@ -574,8 +574,8 @@
     "add_existing": "Gehitu dagoeneko existitzen den kontu bat",
     "server_address_label": "Mastodon zerbitzariaren helbidea",
     "sign_in_desc": "Hasi saioa profil edo traolak jarraitzeko, eta bidalketak gogoko egiteko, partekatzeko, eta erantzuteko edo beste zerbitzari bateko kontuarekin elkarreragiteko.",
-    "sign_in_notice_title": "Viewing {0} public data",
-    "sign_out_account": "Itxi {0}(r)en saioa",
+    "sign_in_notice_title": "{0}(e)ko datu publikoak ikusten",
+    "sign_out_account": "Amaitu {0}(r)en saioa",
     "single_instance_sign_in_desc": "Hasi saioa profil edo traolak jarraitzeko, eta bidalketak gogoko egiteko, partekatzeko, eta erantzuteko.",
     "tip_no_account": "Oraindik Mastodon kontua ez badaukazu, {0}.",
     "tip_register_account": "hautatu zerbitzaria eta eman izena"

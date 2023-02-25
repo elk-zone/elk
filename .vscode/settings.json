@@ -22,7 +22,7 @@
   ],
   "i18n-ally.preferredDelimiter": "_",
   "i18n-ally.sortKeys": true,
-  "i18n-ally.sourceLanguage": "en-US",
+  "i18n-ally.sourceLanguage": "en",
   "prettier.enable": false,
   "volar.completion.preferredTagNameCase": "pascal",
   "volar.completion.preferredAttrNameCase": "kebab"

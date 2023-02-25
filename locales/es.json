@@ -35,6 +35,7 @@
     "posts_count": "{0} Publicaciones|{0} Publicación|{0} Publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
     "profile_unavailable": "Perfil no disponible",
+    "request_follow": "Solicitar seguirle",
     "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
     "unmute": "Dejar de silenciar",
@@ -68,6 +69,7 @@
     "save": "Guardar",
     "save_changes": "Guardar cambios",
     "sign_in": "Iniciar sesión",
+    "sign_in_to": "Iniciar sesión en {0}",
     "switch_account": "Cambiar cuenta",
     "vote": "Votar"
   },
@@ -93,6 +95,7 @@
   "common": {
     "end_of_list": "Fin",
     "error": "ERROR",
+    "fetching": "Cargando...",
     "in": "en",
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer no tienes conexión a internet. Por favor, comprueba tu conexión a la red."
@@ -115,6 +118,11 @@
     "common": {
       "cancel": "No",
       "confirm": "Si"
+    },
+    "delete_list": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "¿Está seguro de querer eliminar la lista \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Cancelar",
@@ -177,8 +185,19 @@
   },
   "list": {
     "add_account": "Agregar cuenta a la lista",
+    "cancel_edit": "Cancelar edición",
+    "clear_error": "Limpiar error",
+    "create": "Crear",
+    "delete": "Eliminar esta lista",
+    "delete_error": "Se produjo un error eliminando la lista",
+    "edit": "Ediar esta lista",
+    "edit_error": "Se produjo un error modificando la lista",
+    "error": "Se produjo un error creando la lista",
+    "error_prefix": "Error: ",
+    "list_title_placeholder": "Título de la lista",
     "modify_account": "Modificar listas con cuenta",
-    "remove_account": "Eliminar cuenta de la lista"
+    "remove_account": "Eliminar cuenta de la lista",
+    "save": "Guardar"
   },
   "menu": {
     "block_account": "Bloquear a {0}",
@@ -319,6 +338,7 @@
     "language": {
       "display_language": "Idioma de pantalla",
       "label": "Idioma",
+      "status": "Estado traducción: {0}/{1} ({2}%)",
       "translations": {
         "add": "Agregar",
         "choose_language": "Seleccionar idioma",
@@ -354,10 +374,14 @@
         "save_settings": "Guardar cambios",
         "subscription_error": {
           "clear_error": "Limpiar error",
+          "error_hint": "Puede consultar una lista de preguntas más frecuentes para tratar de solucionar el problema: {0}.",
+          "invalid_vapid_key": "La clave pública VAPID parece no ser válida.",
           "permission_denied": "Permiso denegado: habilita las notificaciones en tu navegador.",
+          "repo_link": "Repositorio de Elk en GitHub",
           "request_error": "Se produjo un error al solicitar la suscripción, inténtalo de nuevo y si el error persiste, notifica la incidencia en el repositorio de Elk.",
           "title": "No se pudo suscribir a las notificaciones push",
-          "too_many_registrations": "Debido a las limitaciones del navegador, Elk no puede habilitar las notificaciones push para múltiples cuentas en diferentes servidores. Deberá cancelar las subscripciones a notificaciones push en las otras cuentas e intentarlo de nuevo."
+          "too_many_registrations": "Debido a las limitaciones del navegador, Elk no puede habilitar las notificaciones push para múltiples cuentas en diferentes servidores. Deberá cancelar las subscripciones a notificaciones push en las otras cuentas e intentarlo de nuevo.",
+          "vapid_not_supported": "Su navegador es compatible con las notificaciones web push, pero no parece implementar el protocolo VAPID."
         },
         "title": "Ajustes de notificaciones push",
         "undo_settings": "Deshacer cambios",
@@ -380,19 +404,25 @@
     "notifications_settings": "Notificaciones",
     "preferences": {
       "enable_autoplay": "Habilitar reproducción automática",
+      "enable_data_saving": "Habilitar el ahorro de datos",
+      "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
       "enable_pinch_to_zoom": "Habilitar pellizcar para hacer zoom",
       "github_cards": "Tarjetas GitHub",
       "grayscale_mode": "Modo escala de grises",
       "hide_account_hover_card": "Ocultar tarjeta flotante de cuenta",
+      "hide_alt_indi_on_posts": "Ocultar indicador ALT en publicaciones",
       "hide_boost_count": "Ocultar contador de retoots",
       "hide_favorite_count": "Ocultar número de publicaciones favoritas",
       "hide_follower_count": "Ocultar número de seguidores",
       "hide_reply_count": "Ocultar número de respuestas",
       "hide_translation": "Ocultar traducción",
+      "hide_username_emojis": "Ocultar emojis en el nombre de usuario",
+      "hide_username_emojis_description": "Oculta los emojis de los nombres de usuarios en la línea de tiempo. Los emojis permanecerán visibles en sus perfiles.",
       "label": "Preferencias",
       "title": "Funcionalidades experimentales",
       "user_picker": "Selector de usuarios",
-      "virtual_scroll": "Desplazamiento virtual"
+      "virtual_scroll": "Desplazamiento virtual",
+      "wellbeing": "Bienestar"
     },
     "profile": {
       "appearance": {
@@ -402,6 +432,8 @@
         "label": "Apariencia",
         "profile_metadata": "Metadatos de perfil",
         "profile_metadata_desc": "Puede mostrar hasta 4 elementos en forma de tabla en tu perfil",
+        "profile_metadata_label": "Texto",
+        "profile_metadata_value": "Contenido",
         "title": "Editar perfil"
       },
       "featured_tags": {
@@ -441,8 +473,10 @@
     "filter_removed_phrase": "Eliminado por filtrado",
     "filter_show_anyway": "Mostrar de todas formas",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Descripción",
-      "dismiss": "Descartar"
+      "dismiss": "Descartar",
+      "read": "Leer la descripción de la imagen {0}"
     },
     "poll": {
       "count": "{0} votos|{0} voto|{0} votos",
@@ -530,8 +564,12 @@
     "explore_links_intro": "Estas noticias están siendo comentadas ahora mismo por los usuarios de este y otros servidores de la red descentralizada.",
     "explore_posts_intro": "Estos mensajes de este y otros servidores de la red descentralizada están siendo tendencia ahora mismo en este servidor.",
     "explore_tags_intro": "Estas etiquetas están siendo tendencia ahora mismo entre los usuarios de este y otros servidores de la red descentralizada.",
+    "open_editor_tools": "Herramientas de edición",
+    "pick_an_icon": "Selecciona un icono",
     "publish_failed": "Cierra los mensajes fallidos en la parte superior del editor para volver a publicar",
-    "toggle_code_block": "Cambiar a bloque de código"
+    "toggle_bold": "Cambiar a negrita",
+    "toggle_code_block": "Cambiar a bloque de código",
+    "toggle_italic": "Cambiar a cursiva"
   },
   "user": {
     "add_existing": "Agregar una cuenta existente",
@@ -539,6 +577,7 @@
     "sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones, o interactuar con un servidor diferente con tu usuario.",
     "sign_in_notice_title": "Viendo información pública de {0}",
     "sign_out_account": "Cerrar sesión {0}",
+    "single_instance_sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones.",
     "tip_no_account": "Si aún no tienes una cuenta Mastodon, {0}.",
     "tip_register_account": "selecciona tu servidor y registrate"
   },

@@ -18,9 +18,9 @@ router.afterEach(() => {
 </script>
 
 <template>
-  <div flex justify-between>
+  <div flex justify-between sticky top-0 bg-base z-1 py-4 native:py-7 data-tauri-drag-region>
     <NuxtLink
-      flex items-end gap-4
+      flex items-end gap-3
       py2 px-5
       text-2xl
       select-none

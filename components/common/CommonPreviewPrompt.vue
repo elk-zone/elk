@@ -14,7 +14,7 @@ const build = useBuildInfo()
     <p>
       <i18n-t keypath="help.build_preview.desc1">
         <NuxtLink :href="`https://github.com/elk-zone/elk/commit/${build.commit}`" target="_blank" text-rose hover:underline>
-          <code>{{ build.commit.slice(0, 7) }}</code>
+          <code>{{ build.shortCommit }}</code>
         </NuxtLink>
       </i18n-t>
     </p>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 // only one icon can be lit up at the same time
 const moreMenuVisible = ref(false)
+
+const { notifications } = useNotifications()
 </script>
 
 <template>
@@ -14,11 +16,16 @@ const moreMenuVisible = ref(false)
       <NuxtLink to="/home" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:home-5-line />
       </NuxtLink>
-      <NuxtLink to="/search" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+      <NuxtLink :to="isHydrated ? `/${currentServer}/explore` : '/explore'" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:search-line />
       </NuxtLink>
       <NuxtLink to="/notifications" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-        <div i-ri:notification-4-line />
+        <div flex relative>
+          <div class="i-ri:notification-4-line" text-xl />
+          <div v-if="notifications" class="top-[-0.3rem] right-[-0.3rem]" absolute font-bold rounded-full h-4 w-4 text-xs bg-primary text-inverted flex items-center justify-center>
+            {{ notifications < 10 ? notifications : '•' }}
+          </div>
+        </div>
       </NuxtLink>
       <NuxtLink to="/conversations" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:at-line />
@@ -27,9 +34,6 @@ const moreMenuVisible = ref(false)
     <template v-else>
       <NuxtLink :to="`/${currentServer}/explore`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:hashtag />
-      </NuxtLink>
-      <NuxtLink to="/search" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-        <div i-ri:search-line />
       </NuxtLink>
       <NuxtLink group :to="`/${currentServer}/public/local`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
         <div i-ri:group-2-line />

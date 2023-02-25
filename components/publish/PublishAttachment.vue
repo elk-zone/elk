@@ -25,7 +25,7 @@ const toggleApply = () => {
 
 <template>
   <div relative group>
-    <StatusAttachment :attachment="attachment" w-full />
+    <StatusAttachment :attachment="attachment" w-full is-preview />
     <div absolute right-2 top-2>
       <div
         v-if="removable"
@@ -63,7 +63,7 @@ const toggleApply = () => {
             {{ $t('action.close') }}
           </button>
         </div>
-        <StatusAttachment :attachment="attachment" w-full />
+        <StatusAttachment :attachment="attachment" w-full is-preview />
       </div>
     </ModalDialog>
   </div>

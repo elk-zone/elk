@@ -105,6 +105,11 @@ const locales: LocaleObjectData[] = [
     name: 'Español',
   },
   {
+    code: 'eu-ES',
+    file: 'eu-ES.json',
+    name: 'Euskara',
+  },
+  {
     code: 'fr-FR',
     file: 'fr-FR.json',
     name: 'Français',
@@ -198,7 +203,7 @@ const buildLocales = () => {
   return useLocales.sort((a, b) => a.code.localeCompare(b.code))
 }
 
-const currentLocales = buildLocales()
+export const currentLocales = buildLocales()
 
 const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
   const dateTimeFormats = data.dateTimeFormats

@@ -1,24 +1,29 @@
 <script setup lang="ts">
-defineProps<{
+const { disabled = false } = defineProps<{
   icon?: string
   text?: string
   checked: boolean
+  disabled?: boolean
 }>()
 </script>
 
 <template>
   <button
     exact-active-class="text-primary"
-    block w-full group focus:outline-none
+    block w-full group focus:outline-none text-start
+    :disabled="disabled"
+    :class="disabled ? 'opacity-50 cursor-not-allowed' : ''"
   >
     <div
       w-full flex w-fit px5 py3 md:gap2 gap4 items-center
-      transition-250 group-hover:bg-active
+      transition-250
+      :class="disabled ? '' : 'group-hover:bg-active'"
       group-focus-visible:ring="2 current"
     >
       <div flex-1 flex items-center md:gap2 gap4>
         <div
-          flex items-center justify-center flex-shrink-0
+          v-if="icon" flex items-center justify-center
+          flex-shrink-0
           :class="$slots.description ? 'w-12 h-12' : ''"
         >
           <slot name="icon">

@@ -215,7 +215,7 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "share_post": "Share this post",
-    "show_favourited_and_boosted_by": "Show who favourited and boosted",
+    "show_favourited_and_boosted_by": "Show who favorited and boosted",
     "show_reblogs": "Show boosts from {0}",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
@@ -374,6 +374,7 @@
         "save_settings": "Save settings",
         "subscription_error": {
           "clear_error": "Clear error",
+          "error_hint": "You can consult a list of frequently asked questions to try to solve the problem: {0}.",
           "invalid_vapid_key": "The VAPID public key seems to be invalid.",
           "permission_denied": "Permission denied: enable notifications in your browser.",
           "repo_link": "Elk's repository in GitHub",

@@ -95,6 +95,7 @@
   "common": {
     "end_of_list": "Fim da lista",
     "error": "ERRO",
+    "fetching": "A carregar...",
     "in": "em",
     "not_found": "404 Não Encontrado",
     "offline_desc": "Parece que está offline. Por favor, confirme a sua conexão à internet."
@@ -373,6 +374,7 @@
         "save_settings": "Salvar configurações",
         "subscription_error": {
           "clear_error": "Limpar erro",
+          "error_hint": "Pode consultar uma lista de perguntas frequentes para tentar solucionar o problema: {0}.",
           "invalid_vapid_key": "A chave pública VAPID parece ser inválida.",
           "permission_denied": "Permissão negada: habilite as notificações no seu browser.",
           "repo_link": "Repositório do Elk no GitHub",
@@ -563,6 +565,7 @@
     "explore_posts_intro": "Estas publicações deste e de outros servidores na rede descentralizada estão, neste momento, a ganhar popularidade neste servidor.",
     "explore_tags_intro": "Estes hashtags estão, neste momento, a ganhar popularidade entre as pessoas neste e noutros servidores da rede descentralizada.",
     "open_editor_tools": "Ferramentas de edição",
+    "pick_an_icon": "Escolher um ícone",
     "publish_failed": "Fechar mensagens de falha no topo do editor para republicar publicações",
     "toggle_bold": "Alternar negrito",
     "toggle_code_block": "Alternar bloco de código",

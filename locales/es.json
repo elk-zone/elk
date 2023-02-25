@@ -35,7 +35,7 @@
     "posts_count": "{0} Publicaciones|{0} Publicación|{0} Publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
     "profile_unavailable": "Perfil no disponible",
-    "request_follow": "Solicitud para seguirte",
+    "request_follow": "Solicitar seguirle",
     "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
     "unmute": "Dejar de silenciar",
@@ -374,6 +374,7 @@
         "save_settings": "Guardar cambios",
         "subscription_error": {
           "clear_error": "Limpiar error",
+          "error_hint": "Puede consultar una lista de preguntas más frecuentes para tratar de solucionar el problema: {0}.",
           "invalid_vapid_key": "La clave pública VAPID parece no ser válida.",
           "permission_denied": "Permiso denegado: habilita las notificaciones en tu navegador.",
           "repo_link": "Repositorio de Elk en GitHub",
@@ -403,6 +404,8 @@
     "notifications_settings": "Notificaciones",
     "preferences": {
       "enable_autoplay": "Habilitar reproducción automática",
+      "enable_data_saving": "Habilitar el ahorro de datos",
+      "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
       "enable_pinch_to_zoom": "Habilitar pellizcar para hacer zoom",
       "github_cards": "Tarjetas GitHub",
       "grayscale_mode": "Modo escala de grises",

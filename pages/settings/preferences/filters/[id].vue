@@ -9,6 +9,10 @@ let filter = await client.v2.filters.fetch(params.id as string)
 
 const { form, reset, submitter, isError, isDirty } = useForm({
   form() {
+    const expiresAt = filter.expiresAt
+      ? new Date(filter.expiresAt).toISOString().slice(0, -8)
+      : null
+
     return {
       title: filter.title,
       context: filter.context,
@@ -20,7 +24,7 @@ const { form, reset, submitter, isError, isDirty } = useForm({
           removed: false,
         })),
       ],
-      expiresAt: filter.expiresAt ? new Date(filter.expiresAt).toISOString().slice(0, 16) : undefined,
+      expiresAt,
     }
   },
 })
@@ -73,8 +77,8 @@ const submitterResult = submitter(async ({ form, dirtyFields, reset }) => {
     ],
     context: dirtyFields.value.context,
     expires_in: dirtyFields.value.expiresAt
-      ? Math.floor((new Date(dirtyFields.value.expiresAt).getTime() - new Date().getTime()) / 1000)
-      : undefined,
+      ? Math.floor((new Date(`${dirtyFields.value.expiresAt}Z`).getTime() - new Date().getTime()) / 1000)
+      : null,
   }
 
   const res = await client.v2.filters.update(params.id as string, body)
@@ -127,7 +131,7 @@ const submitterResult = submitter(async ({ form, dirtyFields, reset }) => {
           v-model="form.expiresAt"
           type="datetime-local"
           input-base
-          :min="new Date().toISOString().split('T')[0]"
+          :min="new Date().toISOString().slice(0, -8)"
         >
       </label>
       <div space-y-2 block>

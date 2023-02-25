@@ -5,8 +5,13 @@ const index = ref(0)
 
 const { t } = useI18n()
 const el = ref<HTMLElement>()
+const input = ref<HTMLInputElement>()
 const router = useRouter()
 const { focused } = useFocusWithin(el)
+
+defineExpose({
+  input,
+})
 
 const results = computed(() => {
   if (query.value.length === 0)
@@ -37,17 +42,19 @@ const shift = (delta: number) => index.value = (index.value + delta % results.va
 
 const activate = () => {
   const currentIndex = index.value
-  index.value = -1
 
   if (query.value.length === 0)
     return
 
-  (document.activeElement as HTMLElement).blur()
-
-  // Disable until search page is implemented
-  if (currentIndex === -1)
+  // Disable redirection until search page is implemented
+  if (currentIndex === -1) {
+    index.value = 0
     // router.push(`/search?q=${query.value}`)
     return
+  }
+
+  (document.activeElement as HTMLElement).blur()
+  index.value = -1
 
   router.push(results.value[currentIndex].to)
 }
@@ -66,6 +73,7 @@ const activate = () => {
         bg-transparent
         outline="focus:none"
         pe-4
+        ml-1
         :placeholder="isHydrated ? t('nav.search') : ''"
         pb="1px"
         placeholder-text-secondary
@@ -75,7 +83,7 @@ const activate = () => {
       >
     </div>
     <!-- Results -->
-    <div left-0 top-12 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
+    <div left-0 top-11 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
       <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
         <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}

@@ -4,6 +4,10 @@
 *.toml
 *.patch
 *.txt
+Dockerfile
 public/
 https-dev-config/localhost.crt
 https-dev-config/localhost.key
+Dockerfile
+elk-translation-status.json
+docs/translation-status.json

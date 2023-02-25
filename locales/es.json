@@ -1,0 +1,594 @@
+{
+  "a11y": {
+    "loading_page": "Cargando página, espera por favor",
+    "loading_titled_page": "Cargando página {0}, espera por favor",
+    "locale_changed": "Idioma cambiado a {0}",
+    "locale_changing": "Cambiando idioma, espera por favor",
+    "route_loaded": "Página {0} cargada"
+  },
+  "account": {
+    "avatar_description": "avatar de {0}",
+    "blocked_by": "Has sido bloqueado por este usuario.",
+    "blocked_domains": "Dominios bloqueados",
+    "blocked_users": "Usuarios bloqueados",
+    "blocking": "Bloqueado",
+    "bot": "BOT",
+    "favourites": "Favoritas",
+    "follow": "Seguir",
+    "follow_back": "Seguir de vuelta",
+    "follow_requested": "Solicitado",
+    "followers": "Seguidores",
+    "followers_count": "{0} Seguidores|{0} Seguidor|{0} Seguidores",
+    "following": "Siguiendo",
+    "following_count": "{0} Siguiendo",
+    "follows_you": "Te sigue",
+    "go_to_profile": "Ir al perfil",
+    "joined": "Se unió",
+    "moved_title": "ha indicado que su nueva cuenta ahora es:",
+    "muted_users": "Usuarios silenciados",
+    "muting": "Silenciado",
+    "mutuals": "Mutuo",
+    "notifications_on_post_disable": "Parar notificaciones cuando {username} publique",
+    "notifications_on_post_enable": "Notificarme cuando {username} publique",
+    "pinned": "Publicaciones fijadas",
+    "posts": "Publicaciones",
+    "posts_count": "{0} Publicaciones|{0} Publicación|{0} Publicaciones",
+    "profile_description": "Encabezado del perfil de {0}",
+    "profile_unavailable": "Perfil no disponible",
+    "request_follow": "Solicitar seguirle",
+    "unblock": "Desbloquear",
+    "unfollow": "Dejar de seguir",
+    "unmute": "Dejar de silenciar",
+    "view_other_followers": "Puede que no se muestren los seguidores de otras instancias.",
+    "view_other_following": "Puede que no se muestren los seguidos de otras instancias."
+  },
+  "action": {
+    "apply": "Aplicar",
+    "bookmark": "Añadir marcador",
+    "bookmarked": "Guardado como marcador",
+    "boost": "Retootear",
+    "boost_count": "{0}",
+    "boosted": "Retooteado",
+    "clear_publish_failed": "Limpiar errores de publicación",
+    "clear_upload_failed": "Limpiar errores de subida de archivos",
+    "close": "Cerrar",
+    "compose": "Redactar",
+    "confirm": "Confirmar",
+    "edit": "Editar",
+    "enter_app": "Entrar",
+    "favourite": "Favorita",
+    "favourite_count": "{0}",
+    "favourited": "Marcado como favorita",
+    "more": "Más",
+    "next": "Siguiente",
+    "prev": "Anterior",
+    "publish": "Publicar",
+    "reply": "Responder",
+    "reply_count": "{0}",
+    "reset": "Reiniciar",
+    "save": "Guardar",
+    "save_changes": "Guardar cambios",
+    "sign_in": "Iniciar sesión",
+    "sign_in_to": "Iniciar sesión en {0}",
+    "switch_account": "Cambiar cuenta",
+    "vote": "Votar"
+  },
+  "app_desc_short": "Un cliente web ágil para Mastodon",
+  "app_logo": "Logotipo de Elk",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Descripción",
+    "remove_label": "Eliminar fichero adjunto"
+  },
+  "command": {
+    "activate": "Activar",
+    "complete": "Completar",
+    "compose_desc": "Escribir una nueva publicación",
+    "n-people-in-the-past-n-days": "{0} personas en los últimos {1} días",
+    "select_lang": "Seleccionar idioma",
+    "sign_in_desc": "Agregar una cuenta existente",
+    "switch_account": "Cambiar a {0}",
+    "switch_account_desc": "Cambiar a otra cuenta",
+    "toggle_dark_mode": "Cambiar a modo oscuro",
+    "toggle_zen_mode": "Cambiar a modo zen"
+  },
+  "common": {
+    "end_of_list": "Fin",
+    "error": "ERROR",
+    "fetching": "Cargando...",
+    "in": "en",
+    "not_found": "404 No Encontrado",
+    "offline_desc": "Al parecer no tienes conexión a internet. Por favor, comprueba tu conexión a la red."
+  },
+  "compose": {
+    "draft_title": "Borrador {0}",
+    "drafts": "Borradores ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "Cancelar",
+      "confirm": "Bloquear",
+      "title": "¿Estás seguro que quieres bloquear a {0}？"
+    },
+    "block_domain": {
+      "cancel": "Cancelar",
+      "confirm": "Bloquear",
+      "title": "¿Estás seguro que quieres bloquear a {0}？"
+    },
+    "common": {
+      "cancel": "No",
+      "confirm": "Si"
+    },
+    "delete_list": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "¿Está seguro de querer eliminar la lista \"{0}\"?"
+    },
+    "delete_posts": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "¿Estás seguro que quieres eliminar esta publicación?"
+    },
+    "mute_account": {
+      "cancel": "Cancelar",
+      "confirm": "Silenciar",
+      "title": "¿Estás seguro que quieres silenciar a {0}？"
+    },
+    "show_reblogs": {
+      "cancel": "Cancelar",
+      "confirm": "Mostrar",
+      "title": "¿Estás seguro que quieres mostrar los retoots de {0}？"
+    },
+    "unfollow": {
+      "cancel": "Cancelar",
+      "confirm": "Dejar de seguir",
+      "title": "¿Estás seguro que quieres dejar de seguir?"
+    }
+  },
+  "conversation": {
+    "with": "con"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Lineas {0}",
+      "open": "Abrir",
+      "snippet_from": "Porción de código de {0}"
+    }
+  },
+  "error": {
+    "account_not_found": "No se encontró la cuenta {0}",
+    "explore-list-empty": "No hay tendencias en este momento. ¡Vuelve más tarde!",
+    "file_size_cannot_exceed_n_mb": "El tamaño del fichero no puede exceder los {0}MB",
+    "sign_in_error": "No se pudo conectar con el servidor.",
+    "status_not_found": "Publicación no encontrada",
+    "unsupported_file_format": "Tipo de fichero no soportado"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "Estás viendo actualmente una versión preliminar de Elk de la comunidad - {0}.",
+      "desc2": "Puede contener cambios no revisados o incluso maliciosos.",
+      "desc3": "No inicies sesión con tu cuenta real.",
+      "title": "Implementación de vista previa"
+    },
+    "desc_highlight": "Es normal encontrar algunos errores y características faltantes aquí y allá.",
+    "desc_para1": "¡Gracias por el interés en probar Elk, nuestro cliente genérico en desarrollo para Mastodon!",
+    "desc_para2": "Estamos trabajando duro en el desarrollo y mejorándolo constantemente.",
+    "desc_para3": "Para ayudar a impulsar el desarrollo, puedes patrocinar a los miembros de nuestro equipo con los enlaces a continuación. ¡Esperamos que estés disfrutando Elk!",
+    "desc_para4": "Elk es de código abierto, si te gustaría ayudar probando, dando opinión o contribuyendo,",
+    "desc_para5": "ponte en contacto con nosotros a través de GitHub",
+    "desc_para6": "para participar.",
+    "footer_team": "El equipo de desarrollo de Elk",
+    "title": "¡Elk está en Vista Previa!"
+  },
+  "language": {
+    "search": "Buscar"
+  },
+  "list": {
+    "add_account": "Agregar cuenta a la lista",
+    "cancel_edit": "Cancelar edición",
+    "clear_error": "Limpiar error",
+    "create": "Crear",
+    "delete": "Eliminar esta lista",
+    "delete_error": "Se produjo un error eliminando la lista",
+    "edit": "Ediar esta lista",
+    "edit_error": "Se produjo un error modificando la lista",
+    "error": "Se produjo un error creando la lista",
+    "error_prefix": "Error: ",
+    "list_title_placeholder": "Título de la lista",
+    "modify_account": "Modificar listas con cuenta",
+    "remove_account": "Eliminar cuenta de la lista",
+    "save": "Guardar"
+  },
+  "menu": {
+    "block_account": "Bloquear a {0}",
+    "block_domain": "Bloquear dominio {0}",
+    "copy_link_to_post": "Copiar enlace",
+    "copy_original_link_to_post": "Copiar enlace original a esta publicación",
+    "delete": "Borrar",
+    "delete_and_redraft": "Borrar y volver a borrador",
+    "direct_message_account": "Mensaje directo a {0}",
+    "edit": "Editar",
+    "hide_reblogs": "Ocultar retoots de {0}",
+    "mention_account": "Mencionar a {0}",
+    "mute_account": "Silenciar a {0}",
+    "mute_conversation": "Silenciar publicación",
+    "open_in_original_site": "Abrir página original",
+    "pin_on_profile": "Fijar en tu perfil",
+    "share_post": "Compartir esta publicación",
+    "show_favourited_and_boosted_by": "Mostrar quien marcó como favorita y quien retooteó",
+    "show_reblogs": "Mostrar retoots de {0}",
+    "show_untranslated": "Mostrar original",
+    "toggle_theme": {
+      "dark": "Cambiar a modo oscuro",
+      "light": "Cambiar a modo claro"
+    },
+    "translate_post": "Traducir",
+    "unblock_account": "Desbloquear a {0}",
+    "unblock_domain": "Desbloquear dominio {0}",
+    "unmute_account": "Dejar de silenciar a {0}",
+    "unmute_conversation": "Dejar de silenciar la publicación",
+    "unpin_on_profile": "Desfijar del perfil"
+  },
+  "nav": {
+    "back": "Regresar",
+    "blocked_domains": "Dominios bloqueados",
+    "blocked_users": "Usuarios bloqueados",
+    "bookmarks": "Marcadores",
+    "built_at": "Compilado {0}",
+    "compose": "Redactar",
+    "conversations": "Conversaciones",
+    "explore": "Explorar",
+    "favourites": "Favoritas",
+    "federated": "Federados",
+    "home": "Inicio",
+    "list": "Lista",
+    "lists": "Listas",
+    "local": "Local",
+    "muted_users": "Usuarios silenciados",
+    "notifications": "Notificaciones",
+    "privacy": "Privacidad",
+    "profile": "Perfil",
+    "search": "Buscar",
+    "select_feature_flags": "Cambiar marcadores de funcionalidades",
+    "select_font_size": "Cambiar tamaño de letra",
+    "select_language": "Cambiar idioma",
+    "settings": "Ajustes",
+    "show_intro": "Mostrar introducción",
+    "toggle_theme": "Cambiar modo de color",
+    "zen_mode": "Modo Zen"
+  },
+  "notification": {
+    "favourited_post": "marcó como favorita tu publicación",
+    "followed_you": "te ha seguido",
+    "followed_you_count": "{0} personas te siguieron|{0} persona te siguió|{0} personas te siguieron",
+    "missing_type": "MISSING notification.type:",
+    "reblogged_post": "retooteó tu publicación",
+    "request_to_follow": "ha solicitado seguirte",
+    "signed_up": "registrado",
+    "update_status": "ha actualizado su publicación"
+  },
+  "placeholder": {
+    "content_warning": "Escribe tu advertencia aquí",
+    "default_1": "¿En qué estás pensando?",
+    "reply_to_account": "Responder a {0}",
+    "replying": "Respondiendo",
+    "the_thread": "el hilo"
+  },
+  "pwa": {
+    "dismiss": "Descartar",
+    "install": "Instalar",
+    "install_title": "Instalar Elk",
+    "title": "Nueva versión de Elk disponible",
+    "update": "Actualizar",
+    "update_available_short": "Actualiza Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "Un cliente web ágil para Mastodon (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "Un cliente web ágil para Mastodon (desarrollo)",
+        "name": "Elk (desarrollo)",
+        "short_name": "Elk (desarrollo)"
+      },
+      "preview": {
+        "description": "Un cliente web ágil para Mastodon (vista previa)",
+        "name": "Elk (vista previa)",
+        "short_name": "Elk (vista previa)"
+      },
+      "release": {
+        "description": "Un cliente web ágil para Mastodon",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "Buscar personas y etiquetas",
+    "search_empty": "No hubo resultados para estos términos de búsqueda"
+  },
+  "settings": {
+    "about": {
+      "built_at": "Fecha de compilación",
+      "label": "Acerca de",
+      "meet_the_team": "Conoce al equipo",
+      "sponsor_action": "Patrocinar",
+      "sponsor_action_desc": "Apoya al equipo detrás de Elk",
+      "sponsors": "Patrocinadores",
+      "sponsors_body_1": "Elk es posible gracias al generoso patrocinio y apoyo de:",
+      "sponsors_body_2": "Y todas las empresas y personas que patrocinan al equipo de Elk y sus miembros.",
+      "sponsors_body_3": "Si estás disfrutando de la aplicación, considera patrocinarnos:",
+      "version": "Versión"
+    },
+    "account_settings": {
+      "description": "Edita los ajustes de tu cuenta en la interfaz de Mastodon.",
+      "label": "Ajustes de cuenta"
+    },
+    "interface": {
+      "color_mode": "Modos de color",
+      "dark_mode": "Modo oscuro",
+      "default": " (por defecto)",
+      "font_size": "Tamaño de letra",
+      "label": "Interfaz",
+      "light_mode": "Modo claro",
+      "system_mode": "Sistema",
+      "theme_color": "Color de tema"
+    },
+    "language": {
+      "display_language": "Idioma de pantalla",
+      "label": "Idioma",
+      "status": "Estado traducción: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Agregar",
+        "choose_language": "Seleccionar idioma",
+        "heading": "Traducciones",
+        "hide_specific": "Ocultar una traducción en específico",
+        "remove": "Eliminar"
+      }
+    },
+    "notifications": {
+      "label": "Notificaciones",
+      "notifications": {
+        "label": "Ajustes de notificaciones"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favoritas",
+          "follow": "Nuevos seguidores",
+          "mention": "Menciones",
+          "poll": "Encuestas",
+          "reblog": "Retooteo de tus publicaciones",
+          "title": "¿Qué notificaciones recibir?"
+        },
+        "description": "Recibe notificaciones incluso cuando no estés utilizando Elk.",
+        "instructions": "¡No olvides guardar los cambios utilizando el botón @:settings.notifications.push_notifications.save_settings{'!'}",
+        "label": "Ajustes de notificaciones push",
+        "policy": {
+          "all": "De cualquier persona",
+          "followed": "De personas que sigo",
+          "follower": "De personas que me siguen",
+          "none": "De nadie",
+          "title": "¿De quién puedo recibir notificaciones?"
+        },
+        "save_settings": "Guardar cambios",
+        "subscription_error": {
+          "clear_error": "Limpiar error",
+          "error_hint": "Puede consultar una lista de preguntas más frecuentes para tratar de solucionar el problema: {0}.",
+          "invalid_vapid_key": "La clave pública VAPID parece no ser válida.",
+          "permission_denied": "Permiso denegado: habilita las notificaciones en tu navegador.",
+          "repo_link": "Repositorio de Elk en GitHub",
+          "request_error": "Se produjo un error al solicitar la suscripción, inténtalo de nuevo y si el error persiste, notifica la incidencia en el repositorio de Elk.",
+          "title": "No se pudo suscribir a las notificaciones push",
+          "too_many_registrations": "Debido a las limitaciones del navegador, Elk no puede habilitar las notificaciones push para múltiples cuentas en diferentes servidores. Deberá cancelar las subscripciones a notificaciones push en las otras cuentas e intentarlo de nuevo.",
+          "vapid_not_supported": "Su navegador es compatible con las notificaciones web push, pero no parece implementar el protocolo VAPID."
+        },
+        "title": "Ajustes de notificaciones push",
+        "undo_settings": "Deshacer cambios",
+        "unsubscribe": "Cancelar notificaciones push",
+        "unsupported": "Tu navegador no soporta notificaciones push.",
+        "warning": {
+          "enable_close": "Cerrar",
+          "enable_description": "Para recibir notificaciones cuando Elk no esté abierto, habilita las notificaciones push. Puedes controlar con precisión qué tipos de interacciones generan notificaciones push a través del botón \"@:settings.notifications.show_btn{'\"'} de arriba una vez que estén habilitadas.",
+          "enable_description_desktop": "Para recibir notificaciones cuando Elk no esté abierto, habilite las notificaciones push. Puedes controlar con precisión qué tipos de interacciones generan notificaciones push en el menú de navegación en \"Ajustes > Notificaciones > Ajustes de notificaciones push\" una vez que estén habilitadas.",
+          "enable_description_mobile": "También podrá acceder a la configuración utilizando el menú de navegación en \"Ajustes > Notificaciones > Ajutes de notificaciones push\".",
+          "enable_description_settings": "Para recibir notificaciones cuando Elk no esté abierto, habilita las notificaciones push. Podrás controlar con precisión qué tipos de interacciones generan notificaciones push en esta misma pantalla una vez las habilites.",
+          "enable_desktop": "Habilitar notificaciones push",
+          "enable_title": "Nunca te pierdas nada",
+          "re_auth": "Parece que tu servidor no soporta notificaciones push. Prueba a cerrar la sesión y volver a iniciarla, si este mensaje sigue apareciendo contacta con el administrador de tu servidor."
+        }
+      },
+      "show_btn": "Ir a ajustes de notificaciones",
+      "under_construction": "En construcción"
+    },
+    "notifications_settings": "Notificaciones",
+    "preferences": {
+      "enable_autoplay": "Habilitar reproducción automática",
+      "enable_data_saving": "Habilitar el ahorro de datos",
+      "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
+      "enable_pinch_to_zoom": "Habilitar pellizcar para hacer zoom",
+      "github_cards": "Tarjetas GitHub",
+      "grayscale_mode": "Modo escala de grises",
+      "hide_account_hover_card": "Ocultar tarjeta flotante de cuenta",
+      "hide_alt_indi_on_posts": "Ocultar indicador ALT en publicaciones",
+      "hide_boost_count": "Ocultar contador de retoots",
+      "hide_favorite_count": "Ocultar número de publicaciones favoritas",
+      "hide_follower_count": "Ocultar número de seguidores",
+      "hide_reply_count": "Ocultar número de respuestas",
+      "hide_translation": "Ocultar traducción",
+      "hide_username_emojis": "Ocultar emojis en el nombre de usuario",
+      "hide_username_emojis_description": "Oculta los emojis de los nombres de usuarios en la línea de tiempo. Los emojis permanecerán visibles en sus perfiles.",
+      "label": "Preferencias",
+      "title": "Funcionalidades experimentales",
+      "user_picker": "Selector de usuarios",
+      "virtual_scroll": "Desplazamiento virtual",
+      "wellbeing": "Bienestar"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Biografía",
+        "description": "Modificar avatar, nombre de usuario, perfil, etc.",
+        "display_name": "Nombre a mostrar",
+        "label": "Apariencia",
+        "profile_metadata": "Metadatos de perfil",
+        "profile_metadata_desc": "Puede mostrar hasta 4 elementos en forma de tabla en tu perfil",
+        "profile_metadata_label": "Texto",
+        "profile_metadata_value": "Contenido",
+        "title": "Editar perfil"
+      },
+      "featured_tags": {
+        "description": "Las personas pueden navegar por tus publicaciones públicas con estas etiquetas.",
+        "label": "Etiquetas destacadas"
+      },
+      "label": "Perfil"
+    },
+    "select_a_settings": "Seleccionar una configuración",
+    "users": {
+      "export": "Exportar tokens de usuario",
+      "import": "Importar tokens de usuario",
+      "label": "Usuarios conectados"
+    }
+  },
+  "share-target": {
+    "description": "Elk puede ser configurado para que pueda compartir contenido desde otras aplicaciones, simplemente tiene que instalar Elk en su dispositivo u ordenador e iniciar sesión.",
+    "hint": "Para poder compartir contenido con Elk, debes instalar Elk e iniciar sesión.",
+    "title": "Compartir con Elk"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "Número máximo de archivos adjuntos por publicación excedido.",
+    "attachments_limit_error": "Límite por publicación excedido",
+    "edited": "(Editado)",
+    "editing": "Editando",
+    "loading": "Cargando...",
+    "publish_failed": "Fallo en la publicación",
+    "publishing": "Publicando",
+    "upload_failed": "Subida fallida",
+    "uploading": "Subiendo..."
+  },
+  "status": {
+    "boosted_by": "Retooteado por",
+    "edited": "Editado {0}",
+    "favourited_by": "Marcado como favorita por",
+    "filter_hidden_phrase": "Filtrado por",
+    "filter_removed_phrase": "Eliminado por filtrado",
+    "filter_show_anyway": "Mostrar de todas formas",
+    "img_alt": {
+      "ALT": "ALT",
+      "desc": "Descripción",
+      "dismiss": "Descartar",
+      "read": "Leer la descripción de la imagen {0}"
+    },
+    "poll": {
+      "count": "{0} votos|{0} voto|{0} votos",
+      "ends": "finaliza {0}",
+      "finished": "finalizada {0}"
+    },
+    "reblogged": "{0} retooteó",
+    "replying_to": "Respondiendo a {0}",
+    "show_full_thread": "Mostrar hilo completo",
+    "someone": "alguien",
+    "spoiler_show_less": "Mostrar menos",
+    "spoiler_show_more": "Mostrar más",
+    "thread": "Hilo",
+    "try_original_site": "Ver en la página original"
+  },
+  "status_history": {
+    "created": "creado el {0}",
+    "edited": "editado el {0}"
+  },
+  "tab": {
+    "accounts": "Cuentas",
+    "for_you": "Para ti",
+    "hashtags": "Etiquetas",
+    "list": "Lista",
+    "media": "Multimedia",
+    "news": "Noticias",
+    "notifications_all": "Todas",
+    "notifications_mention": "Menciones",
+    "posts": "Publicaciones",
+    "posts_with_replies": "Publicaciones y respuestas"
+  },
+  "tag": {
+    "follow": "Seguir",
+    "follow_label": "Seguir etiqueta {0}",
+    "unfollow": "Dejar de seguir",
+    "unfollow_label": "Dejar de seguir etiqueta {0}"
+  },
+  "time_ago_options": {
+    "day_future": "dentro de 0 días|mañana|dentro de {n} días",
+    "day_past": "hace 0 días|ayer|hace {n} días",
+    "hour_future": "dentro de 0 horas|dentro de 1 hora|dentro de {n} horas",
+    "hour_past": "hace 0 horas|hace 1 hora|hace {n} horas",
+    "just_now": "ahora mismo",
+    "minute_future": "dentro de 0 minutos|dentro de 1 minuto|dentro de {n} minutos",
+    "minute_past": "hace 0 minutos|hace 1 minuto|hace {n} minutos",
+    "month_future": "dentro de 0 meses|el próximo mes|dentro de {n} meses",
+    "month_past": "hace 0 meses|el mes pasado|hace {n} meses",
+    "second_future": "dentro de 0 segundos|dentro de {n} segundo|dentro de {n} segundos",
+    "second_past": "hace 0 segundos|hace {n} segundo|hace {n} segundos",
+    "short_day_future": "en {n}d",
+    "short_day_past": "{n}d",
+    "short_hour_future": "en {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "en {n}min",
+    "short_minute_past": "{n}min",
+    "short_month_future": "en 0 meses|en 1 mes|en {n} meses",
+    "short_month_past": "0 meses|1 mes|{n} meses",
+    "short_second_future": "en {n} seg",
+    "short_second_past": "{n} seg",
+    "short_week_future": "en {n} sem",
+    "short_week_past": "{n} sem",
+    "short_year_future": "en 0 años|en 1 año|en {n} años",
+    "short_year_past": "0 años|1 año|{n} años",
+    "week_future": "dentro de 0 semanas|la próxima semana|dentro de {n} semanas",
+    "week_past": "hace 0 semanas|la semana pasada|hace {n} semanas",
+    "year_future": "dentro de 0 años|el próximo año|dentro de {n} años",
+    "year_past": "hace 0 años|el año pasado|hace {n} años"
+  },
+  "timeline": {
+    "show_new_items": "Mostrar {v} nuevas publicaciones|Mostrar {v} nueva publicación|Mostrar {v} nuevas publicaciones",
+    "view_older_posts": "Es posible que no se muestren las publicaciones antiguas de otras instancias."
+  },
+  "title": {
+    "federated_timeline": "Línea de tiempo federada",
+    "local_timeline": "Línea de tiempo local"
+  },
+  "tooltip": {
+    "add_content_warning": "Añadir advertencia de contenido",
+    "add_emojis": "Agregar emojis",
+    "add_media": "Añadir imágenes, video o audio",
+    "add_publishable_content": "Publicar contenido",
+    "change_content_visibility": "Cambiar visibilidad de contenido",
+    "change_language": "Cambiar idioma",
+    "emoji": "Emoji",
+    "explore_links_intro": "Estas noticias están siendo comentadas ahora mismo por los usuarios de este y otros servidores de la red descentralizada.",
+    "explore_posts_intro": "Estos mensajes de este y otros servidores de la red descentralizada están siendo tendencia ahora mismo en este servidor.",
+    "explore_tags_intro": "Estas etiquetas están siendo tendencia ahora mismo entre los usuarios de este y otros servidores de la red descentralizada.",
+    "open_editor_tools": "Herramientas de edición",
+    "pick_an_icon": "Selecciona un icono",
+    "publish_failed": "Cierra los mensajes fallidos en la parte superior del editor para volver a publicar",
+    "toggle_bold": "Cambiar a negrita",
+    "toggle_code_block": "Cambiar a bloque de código",
+    "toggle_italic": "Cambiar a cursiva"
+  },
+  "user": {
+    "add_existing": "Agregar una cuenta existente",
+    "server_address_label": "Dirección de servidor de Mastodon",
+    "sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones, o interactuar con un servidor diferente con tu usuario.",
+    "sign_in_notice_title": "Viendo información pública de {0}",
+    "sign_out_account": "Cerrar sesión {0}",
+    "single_instance_sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones.",
+    "tip_no_account": "Si aún no tienes una cuenta Mastodon, {0}.",
+    "tip_register_account": "selecciona tu servidor y registrate"
+  },
+  "visibility": {
+    "direct": "Directo",
+    "direct_desc": "Sólo las personas mencionadas",
+    "private": "Sólo seguidores",
+    "private_desc": "Sólo las personas que te siguen",
+    "public": "Público",
+    "public_desc": "Todos",
+    "unlisted": "Sin listar",
+    "unlisted_desc": "Todos, pero sin descubrir"
+  }
+}

@@ -117,7 +117,7 @@ const buttonStyle = $computed(() => {
       <span hidden group-hover="inline">{{ $t('account.follow_back') }}</span>
     </template>
     <template v-else>
-      <span>{{ $t('account.follow') }}</span>
+      <span>{{ account.locked ? $t('account.request_follow') : $t('account.follow') }}</span>
     </template>
   </button>
 </template>

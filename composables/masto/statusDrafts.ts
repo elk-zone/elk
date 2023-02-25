@@ -33,7 +33,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
       visibility: visibility || 'public',
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
-      language: language || 'en',
+      language: language || '', // auto inferred from current language on posting
     },
     mentions,
     lastUpdated: Date.now(),
@@ -74,6 +74,7 @@ export function getReplyDraft(status: mastodon.v1.Status) {
         inReplyToId: status!.id,
         visibility: status.visibility,
         mentions: accountsToMention,
+        language: status.language,
       })
     },
   }
@@ -88,7 +89,6 @@ export const isEmptyDraft = (draft: Draft | null | undefined) => {
 
   return (text.length === 0)
     && attachments.length === 0
-    && (params.spoilerText || '').length === 0
 }
 
 export interface UseDraft {
@@ -129,14 +129,14 @@ export function useDraft(
 export function mentionUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
-  }), true)
+  }))
 }
 
 export function directMessageUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
     visibility: 'direct',
-  }), true)
+  }))
 }
 
 export function clearEmptyDrafts() {

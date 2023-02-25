@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const buildInfo = useRuntimeConfig().public.buildInfo
+const buildInfo = useBuildInfo()
 const timeAgoOptions = useTimeAgoOptions()
 
 const userSettings = useUserSettings()
@@ -65,7 +65,7 @@ function toggleDark() {
           target="_blank"
           font-mono
         >
-          {{ buildInfo.commit.slice(0, 7) }}
+          {{ buildInfo.shortCommit }}
         </NuxtLink>
       </template>
     </div>
@@ -73,6 +73,12 @@ function toggleDark() {
       <NuxtLink cursor-pointer hover:underline to="/settings/about">
         {{ $t('settings.about.label') }}
       </NuxtLink>
+      <template v-if="$config.public.privacyPolicyUrl">
+        &middot;
+        <NuxtLink cursor-pointer hover:underline :to="$config.public.privacyPolicyUrl">
+          {{ $t('nav.privacy') }}
+        </NuxtLink>
+      </template>
       &middot;
       <NuxtLink href="/m.webtoo.ls/@elk" target="_blank">
         Mastodon

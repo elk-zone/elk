@@ -63,9 +63,16 @@ export interface ConfirmDialogLabel {
 }
 export type ConfirmDialogChoice = 'confirm' | 'cancel'
 
+export interface ErrorDialogData {
+  title: string
+  messages: string[]
+  close: string
+}
+
 export interface BuildInfo {
   version: string
   commit: string
+  shortCommit: string
   time: number
   branch: string
   env: 'preview' | 'canary' | 'dev' | 'release'

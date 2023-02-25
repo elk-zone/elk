@@ -35,6 +35,8 @@ const previewImage = ref('')
 const imageSrc = computed<string>(() => previewImage.value || defaultImage.value)
 
 const pickImage = async () => {
+  if (process.server)
+    return
   const image = await fileOpen({
     description: 'Image',
     mimeTypes: props.allowedFileTypes,

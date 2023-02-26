@@ -30,7 +30,6 @@
     "mutuals": "Mutu",
     "notifications_on_post_disable": "Deixa de notificar-me quan {username} publique",
     "notifications_on_post_enable": "Aviseu-me quan {username} publique",
-    "notify_on_post": "Aviseu-me quan {username} publique",
     "pinned": "Fixat",
     "posts": "Publicacions",
     "posts_count": "{0} Publicacions|{0} Publicació|{0} Publicacions",
@@ -118,8 +117,7 @@
     },
     "common": {
       "cancel": "No",
-      "confirm": "Sí",
-      "title": "Esteu segur que {0}?"
+      "confirm": "Sí"
     },
     "delete_list": {
       "cancel": "Cancel·lar",
@@ -326,12 +324,6 @@
     "account_settings": {
       "description": "Editeu la configuració del vostre compte a la interfície d'usuari de Mastodon",
       "label": "Configuració del compte"
-    },
-    "feature_flags": {
-      "github_cards": "Targetes GitHub",
-      "title": "Funcions experimentals",
-      "user_picker": "selecció d'usuari",
-      "virtual_scroll": "Desplaçament virtual"
     },
     "interface": {
       "color_mode": "Mode de color",

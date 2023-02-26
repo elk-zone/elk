@@ -57,7 +57,7 @@ const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
       <div
         v-for="(option, index) of poll.options"
         :key="index" py-1 relative
-        :style="{ '--bar-width': toPercentage((option.votesCount ?? 0) === 0 ? 0 : option.votesCount! / votersCount) }"
+        :style="{ '--bar-width': toPercentage(votersCount === 0 ? 0 : (option.votesCount ?? 0) / votersCount) }"
       >
         <div flex justify-between pb-2 w-full>
           <span inline-flex align-items>

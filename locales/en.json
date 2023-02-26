@@ -453,6 +453,7 @@
           "warn": "Warn"
         },
         "filter_title": "Filter title",
+        "keywords_list_prefix": "{n} keywords:|{n} keyword:|{n} keywords:",
         "no_keywords": "No keywords filtered at this time.",
         "title": "Filters"
       },

@@ -16,12 +16,6 @@ const client = useMastoClient()
 let deleteBusy = $ref<boolean>(false)
 let hasStartedDelete = $ref<boolean>(false)
 
-const context = $computed(() => {
-  const list = filter.context.map(context => t(`settings.preferences.filters.context.${context}`)).join(', ')
-
-  return t('settings.preferences.filters.context.filters_in', [list])
-})
-
 const router = useRouter()
 const editPath = `/settings/preferences/filters/${filter.id}`
 
@@ -65,25 +59,29 @@ async function deleteFilter() {
       group-focus-visible:ring="2 current"
     >
       <div flex-1 flex items-center md:gap2 gap4>
-        <div flex="~ col gap-0.5">
-          <p>
+        <div flex="~ col">
+          <p mb-2>
             <span>{{ filter.title }}</span>
           </p>
-          <p text-sm text-secondary>
+          <p text-sm text-secondary pr-4>
+            <b>{{ $t('settings.preferences.filters.keywords_list_prefix', filter.keywords.length) }}</b>
             {{
               filter.keywords.length
                 ? filter.keywords.map(({ keyword }) => keyword).join(', ')
                 : $t('settings.preferences.filters.no_keywords')
             }}
           </p>
+          <span flex flex-wrap gap-2 mt-5>
+            <span
+              v-for="ctx in filter.context" :key="ctx"
+              bg-tag px-2 py-1 rounded text-sm text-secondary whitespace-nowrap
+            >
+              {{ $t(`settings.preferences.filters.context.${ctx}`) }}
+            </span>
+          </span>
         </div>
       </div>
       <div flex="~ row gap-2" items-center>
-        <CommonTooltip :content="context">
-          <div text-secondary-light hover:text-blue class="hover:bg-blue/10" rounded-full p-2 transition-all>
-            <div class="i-ri-information-line rtl-flip" text-xl />
-          </div>
-        </CommonTooltip>
         <template v-if="hasStartedDelete">
           <CommonTooltip :content="$t('settings.preferences.filters.confirm_delete')" no-auto-focus>
             <button

@@ -31,6 +31,7 @@ export default defineConfig({
       'bg-card': 'bg-$c-bg-card',
       'bg-code': 'bg-$c-bg-code',
       'bg-dm': 'bg-$c-bg-dm',
+      'bg-tag': 'bg-$c-bg-tag',
 
       // text colors
       'text-base': 'text-$c-text-base',

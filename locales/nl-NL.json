@@ -3,7 +3,7 @@
     "loading_page": "Pagina laden, even wachten",
     "loading_titled_page": "Pagina {0} laden, even wachten",
     "locale_changed": "Taal veranderd naar {0}",
-    "locale_changing": "Taal veranderen, even wachten",
+    "locale_changing": "Taal veranderen, even geduld",
     "route_loaded": "Pagina {0} geladen"
   },
   "account": {
@@ -99,7 +99,7 @@
     "account_not_found": "Account {0} niet gevonden",
     "explore-list-empty": "Er is nu niets trending. Kom later terug!",
     "file_size_cannot_exceed_n_mb": "Bestandsgrootte mag niet groter zijn dan {0}MB",
-    "sign_in_error": "Kan geen connectie maken met de server.",
+    "sign_in_error": "Kan geen verbinding maken met de server.",
     "status_not_found": "Post niet gevonden",
     "unsupported_file_format": "Bestandstype niet ondersteund"
   },
@@ -130,7 +130,7 @@
     "open_in_original_site": "Open in originele site",
     "pin_on_profile": "Pin op profiel",
     "share_post": "Deel deze post",
-    "show_untranslated": "Laat onvertaalde zien",
+    "show_untranslated": "Laat onvertaalde versie zien",
     "toggle_theme": {
       "dark": "Donkere modus wisselen",
       "light": "Lichte modus wisselen"
@@ -163,7 +163,7 @@
     "zen_mode": "Zen Modus"
   },
   "notification": {
-    "favourited_post": "vindt jou post favoriet",
+    "favourited_post": "vindt jouw post favoriet",
     "followed_you": "volgt jou",
     "followed_you_count": "{0} mensen hebben je gevolgd|{0} persoon heeft je gevold|{0} mensen hebben je gevolgd",
     "missing_type": "MISSEND notificatie.type:",
@@ -196,14 +196,14 @@
     "feature_flags": {
       "github_cards": "GitHub Cards",
       "title": "Experimentele Functies",
-      "user_picker": "Gebruiker Picker",
+      "user_picker": "Gebruiker Kiezer",
       "virtual_scroll": "Virtueel Scrollen"
     },
     "interface": {
       "color_mode": "Kleur Modus",
       "dark_mode": "Donkere Modus",
       "default": " (standaard)",
-      "font_size": "Font Grootte",
+      "font_size": "Letter Grootte",
       "label": "Interface",
       "light_mode": "Lichte Modus"
     },
@@ -225,9 +225,9 @@
           "reblog": "Herblogt jou post",
           "title": "Welke notificaties wil je krijgen?"
         },
-        "description": "Ontvang notificaties zelfs wanneer je elk niet gebruikt.",
-        "instructions": "Vergeet niet om je wijzigingen op te slaatn met de @:settings.notifications.push_notifications.save_settings knop!",
-        "label": "Push notificaties instellingen",
+        "description": "Ontvang meldingen zelfs wanneer je Elk niet gebruikt.",
+        "instructions": "Vergeet niet om je wijzigingen op te slaan d.m.v. de @:settings.notifications.push_notifications.save_settings knop!",
+        "label": "Pushnotificatie instellingen",
         "policy": {
           "all": "Van iedereen",
           "followed": "Van mensen die ik volg",
@@ -238,23 +238,23 @@
         "save_settings": "Instellingen aanpassingen opslaan",
         "subscription_error": {
           "clear_error": "Wis error",
-          "permission_denied": "Geen toestemming: schakel notificaties in in je browser.",
-          "request_error": "Er is een error tijdens het ophalen van de subscriptie, probeer opnieuw en als de error blijft, raporteer het probleem naar de Elk repository.",
-          "title": "Kon niet subscriben aan push notificaties"
+          "permission_denied": "Geen toestemming: zet notificaties aan in je browser.",
+          "request_error": "Er is een error tijdens het ophalen van het abonnement, probeer opnieuw en als de error blijft, raporteer het probleem naar de Elk repository.",
+          "title": "Kon niet abonneren op de pushnotificaties"
         },
         "undo_settings": "Veranderde instellingen ongedaan maken",
-        "unsubscribe": "Zet push notificaties uit",
-        "unsupported": "Je browser ondersteunt geen push notificaties.",
+        "unsubscribe": "Zet pushnotificaties uit",
+        "unsupported": "Je browser ondersteunt geen pushnotificaties.",
         "warning": {
           "enable_close": "Sluit",
-          "enable_description": "Om notificaties te krijgen terwijl Elk niet actief is, zet push notificaties aan. Je kan precies instellen wat voor typen interacties push notificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
-          "enable_description_settings": "Om notificaties te ontvangen wanneer Elk niet actief is, schakel push notificaties in. Je kunt precies instellen welke typen interacties een push notificatie activeren in dit venster, wanneer je ze hebt ingeschakeld.",
-          "enable_desktop": "Zet push notificaties aan",
+          "enable_description": "Om notificaties te krijgen terwijl Elk niet actief is, zet pushnotificaties aan. Je kan precies instellen wat voor type interacties pushnotificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
+          "enable_description_settings": "Om notificaties te ontvangen wanneer Elk niet actief is, schakel pushnotificaties in. Je kunt precies instellen welke soorten interacties pushnotificaties genereren in dit venster zodra je ze hebt inschakelt.",
+          "enable_desktop": "Zet pushnotificaties aan",
           "enable_title": "Mis niets",
-          "re_auth": "Het lijkt er op dat je server geen push notificaties ondersteunt. Probeer uitloggen en opnieuw inloggen. Als deze boodschap nog steeds verschijnt, neem dan contact op met je server administrator."
+          "re_auth": "Het lijkt erop dat je server geen pushnotificaties ondersteunt. Probeer uitloggen en opnieuw inloggen. Neem contact op met de serverbeheerder als dit bericht nog steeds verschijnt."
         }
       },
-      "show_btn": "Ga naar notificaties instellingen"
+      "show_btn": "Ga naar notificatie instellingen"
     },
     "notifications_settings": "Notificaties",
     "preferences": {
@@ -267,7 +267,7 @@
         "display_name": "Zichtbare naam",
         "label": "Uiterlijk",
         "profile_metadata": "Profiel metadata",
-        "profile_metadata_desc": "Je kan tot en met {0} elementen als table zetten op je profiel zetten",
+        "profile_metadata_desc": "Je kan tot en met {0} elementen als tabel op je profiel zetten",
         "title": "Aanpassen profiel"
       },
       "featured_tags": {
@@ -284,6 +284,7 @@
     }
   },
   "state": {
+
     "attachments_exceed_server_limit": "De hoeveelheid bijlagen is meer dan het limiet per post.",
     "attachments_limit_error": "Limiet per post overschreden",
     "edited": "(Aangepast)",
@@ -383,7 +384,7 @@
   "user": {
     "add_existing": "Voeg een bestaand account toe",
     "server_address_label": "Mastodon Server Address",
-    "sign_in_desc": "Inloggen om profielen of hashtags te volgen, markeer posts als favoriet, deel en reageer op posts, of communiceer vanaf je account op een andere server.",
+    "sign_in_desc": "Log in om profielen te volgen of hashtags, markeer posts als favoriet, deel en reageer op posts, of reageer vanaf je account op een andere server.",
     "sign_in_notice_title": "Je bekijkt {0} publieke data",
     "sign_out_account": "Uitloggen {0}",
     "tip_no_account": "Als je nog geen Mastodon account hebt, {0}.",
@@ -391,7 +392,7 @@
   },
   "visibility": {
     "direct": "Direct",
-    "direct_desc": "Alleen zichtbaar voor vermeldde gebruikers",
+    "direct_desc": "Alleen zichtbaar voor vermelde gebruikers",
     "private": "Alleen volgers",
     "private_desc": "Alleen zichtbaar voor volgers",
     "public": "Publiek",

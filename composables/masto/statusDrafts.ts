@@ -129,14 +129,14 @@ export function useDraft(
 export function mentionUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
-  }), true)
+  }))
 }
 
 export function directMessageUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
     visibility: 'direct',
-  }), true)
+  }))
 }
 
 export function clearEmptyDrafts() {

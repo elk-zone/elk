@@ -95,6 +95,7 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
+    "fetching": "Fetching...",
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
@@ -214,7 +215,7 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "share_post": "Share this post",
-    "show_favourited_and_boosted_by": "Show who favourited and boosted",
+    "show_favourited_and_boosted_by": "Show who favorited and boosted",
     "show_reblogs": "Show boosts from {0}",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
@@ -373,6 +374,7 @@
         "save_settings": "Save settings",
         "subscription_error": {
           "clear_error": "Clear error",
+          "error_hint": "You can consult a list of frequently asked questions to try to solve the problem: {0}.",
           "invalid_vapid_key": "The VAPID public key seems to be invalid.",
           "permission_denied": "Permission denied: enable notifications in your browser.",
           "repo_link": "Elk's repository in GitHub",
@@ -402,6 +404,8 @@
     "notifications_settings": "Notifications",
     "preferences": {
       "enable_autoplay": "Enable Autoplay",
+      "enable_data_saving": "Enable data saving",
+      "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
       "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
@@ -561,6 +565,7 @@
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
     "open_editor_tools": "Editor tools",
+    "pick_an_icon": "Pick an icon",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",

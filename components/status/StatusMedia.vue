@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { status } = defineProps<{
+const { status, isPreview = false } = defineProps<{
   status: mastodon.v1.Status | mastodon.v1.StatusEdit
   fullSize?: boolean
+  isPreview?: boolean
 }>()
 </script>
 
@@ -16,6 +17,7 @@ const { status } = defineProps<{
         :full-size="fullSize"
         w-full
         h-full
+        :is-preview="isPreview"
       />
     </template>
   </div>

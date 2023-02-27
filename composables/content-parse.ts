@@ -445,7 +445,7 @@ function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji
 }
 
 const _markdownReplacements: [RegExp, (c: (string | Node)[]) => Node][] = [
-  [/\*\*\*(.*?)\*\*\*/g, c => h('b', null, [h('em', null, c)])],
+  [/\*\*\*(.*?)\*\*\*/g, ([c]) => h('b', null, [h('em', null, c)])],
   [/\*\*(.*?)\*\*/g, c => h('b', null, c)],
   [/\*(.*?)\*/g, c => h('em', null, c)],
   [/~~(.*?)~~/g, c => h('del', null, c)],

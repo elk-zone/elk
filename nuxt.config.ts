@@ -25,12 +25,13 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
+    '~/modules/emoji-mart-translation',
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
-    '~/modules/stale-dep',
+    'stale-dep/nuxt',
     '@nuxt/devtools',
   ],
   experimental: {
@@ -132,6 +133,9 @@ export default defineNuxtConfig({
   },
   sourcemap: isDevelopment,
   hooks: {
+    'prepare:types': function ({ references }) {
+      references.push({ types: '@types/wicg-file-system-access' })
+    },
     'nitro:config': function (config) {
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}
@@ -218,6 +222,9 @@ export default defineNuxtConfig({
   colorMode: { classSuffix: '' },
   i18n,
   pwa,
+  staleDep: {
+    packageManager: 'pnpm',
+  },
 })
 
 declare global {

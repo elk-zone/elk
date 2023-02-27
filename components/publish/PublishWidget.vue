@@ -152,7 +152,7 @@ defineExpose({
         <div id="state-editing" text-secondary self-center>
           {{ $t('state.editing') }}
         </div>
-        <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" px-0 />
+        <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" is-preview px-0 />
       </div>
       <div border="b dashed gray/40" />
     </template>

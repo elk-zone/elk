@@ -28,6 +28,13 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
   video: 'i-ri:play-line',
   rich: 'i-ri:profile-line',
 }
+
+const userSettings = useUserSettings()
+const shouldLoadAttachment = ref(!getPreferences(userSettings.value, 'enableDataSaving'))
+
+function loadAttachment() {
+  shouldLoadAttachment.value = true
+}
 </script>
 
 <template>
@@ -54,6 +61,7 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
         'w-full aspect-[1.91]': !isSquare,
         'rounded-lg': root,
       }"
+      relative
     >
       <CommonBlurhash
         :blurhash="card.blurhash"
@@ -61,8 +69,30 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
         :width="card.width"
         :height="card.height"
         :alt="alt"
+        :should-load-image="shouldLoadAttachment"
         w-full h-full object-cover
+        :class="!shouldLoadAttachment ? 'brightness-60' : ''"
       />
+      <button
+        v-if="!shouldLoadAttachment"
+        type="button"
+        absolute
+        class="status-preview-card-load bg-black/64"
+        p-2
+        transition
+        rounded
+        hover:bg-black
+        cursor-pointer
+        @click.stop.prevent="!shouldLoadAttachment ? loadAttachment() : null"
+      >
+        <span
+          text-sm
+          text-white
+          flex flex-col justify-center items-center
+          gap-3 w-6 h-6
+          i-ri:file-download-line
+        />
+      </button>
     </div>
     <div
       v-else
@@ -76,3 +106,11 @@ const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
     <StatusPreviewCardInfo :p="isSquare ? 'x-4' : '4'" :root="root" :card="card" :provider="providerName" />
   </NuxtLink>
 </template>
+
+<style lang="postcss">
+.status-preview-card-load {
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+</style>

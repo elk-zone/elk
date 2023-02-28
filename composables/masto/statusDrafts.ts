@@ -72,6 +72,8 @@ export function getReplyDraft(status: mastodon.v1.Status) {
       return getDefaultDraft({
         initialText: '',
         inReplyToId: status!.id,
+        sensitive: status.sensitive,
+        spoilerText: status.spoilerText,
         visibility: status.visibility,
         mentions: accountsToMention,
         language: status.language,

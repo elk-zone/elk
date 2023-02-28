@@ -120,6 +120,62 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
   let failedAttachments = $ref<MediaAttachmentUploadError[]>([])
   const dropZoneRef = ref<HTMLDivElement>()
 
+  const maxPixels
+    = currentInstance.value!.configuration?.mediaAttachments?.imageMatrixLimit
+      ?? 4096 ** 2
+
+  const loadImage = (inputFile: Blob) => new Promise<HTMLImageElement>((resolve, reject) => {
+    const url = URL.createObjectURL(inputFile)
+    const img = new Image()
+
+    img.onerror = err => reject(err)
+    img.onload = () => resolve(img)
+
+    img.src = url
+  })
+
+  function resizeImage(img: CanvasImageSource, type = 'image/png'): Promise<Blob | null> {
+    const { width, height } = img
+
+    const aspectRatio = (width as number) / (height as number)
+
+    const canvas = document.createElement('canvas')
+
+    const resizedWidth = canvas.width = Math.round(Math.sqrt(maxPixels * aspectRatio))
+    const resizedHeight = canvas.height = Math.round(Math.sqrt(maxPixels / aspectRatio))
+
+    const context = canvas.getContext('2d')
+
+    context?.drawImage(img, 0, 0, resizedWidth, resizedHeight)
+
+    return new Promise((resolve) => {
+      canvas.toBlob(resolve, type)
+    })
+  }
+
+  async function processImageFile(file: File) {
+    try {
+      const image = await loadImage(file) as HTMLImageElement
+
+      if (image.width * image.height > maxPixels)
+        file = await resizeImage(image, file.type) as File
+
+      return file
+    }
+    catch (e) {
+      // Resize failed, just use the original file
+      console.error(e)
+      return file
+    }
+  }
+
+  async function processFile(file: File) {
+    if (file.type.startsWith('image/'))
+      return await processImageFile(file)
+
+    return file
+  }
+
   async function uploadAttachments(files: File[]) {
     isUploading = true
     failedAttachments = []
@@ -131,7 +187,7 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
         isExceedingAttachmentLimit = false
         try {
           const attachment = await client.v1.mediaAttachments.create({
-            file,
+            file: await processFile(file),
           })
           draft.attachments.push(attachment)
         }

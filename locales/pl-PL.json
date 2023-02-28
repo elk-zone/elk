@@ -95,6 +95,7 @@
   "common": {
     "end_of_list": "Koniec listy",
     "error": "BŁĄD",
+    "fetching": "Pobieranie...",
     "in": "w",
     "not_found": "404 Nie Znaleziono",
     "offline_desc": "Wygląda na to, że jesteś offline. Sprawdź połączenie sieciowe."
@@ -373,6 +374,7 @@
         "save_settings": "Zapisz ustawienia",
         "subscription_error": {
           "clear_error": "Usuń błąd",
+          "error_hint": "Możesz zapoznać się z listą najczęściej zadawanych pytań, aby spróbować rozwiązać problem: {0}.",
           "invalid_vapid_key": "Wydaje się, że klucz publiczny VAPID jest nieprawidłowy.",
           "permission_denied": "Brak uprawnień: włącz powiadomienia w przeglądarce.",
           "repo_link": "Repozytorium Elk w Github",
@@ -402,6 +404,8 @@
     "notifications_settings": "Powiadomienia",
     "preferences": {
       "enable_autoplay": "Włącz autoodtwarzanie",
+      "enable_data_saving": "Włącz oszczędzanie danych",
+      "enable_data_saving_description": "Oszczędzaj dane, zapobiegając automatycznemu ładowaniu załączników.",
       "enable_pinch_to_zoom": "Włącz powiększanie za pomocą gestów",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Wpisy w odcieniach szarości",
@@ -561,6 +565,7 @@
     "explore_posts_intro": "Te wpisy z tego i innych serwerów w zdecentralizowanej sieci zyskują teraz popularność na tym serwerze.",
     "explore_tags_intro": "Te hasztagi zyskują obecnie na popularności wśród osób na tym i innych serwerach zdecentralizowanej sieci.",
     "open_editor_tools": "Narzędzia edycji",
+    "pick_an_icon": "Wybierz ikonę",
     "publish_failed": "Zamknij komunikaty o błędzie u góry edytora, aby ponownie opublikować wpisy",
     "toggle_bold": "Zmień na pogrubienie",
     "toggle_code_block": "Przełączenie do trybu kodowania",

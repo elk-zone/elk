@@ -122,7 +122,7 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
 
   const maxPixels
     = currentInstance.value!.configuration?.mediaAttachments?.imageMatrixLimit
-      ?? 16777216 // 4096x4096
+      ?? 4096**2
 
   const loadImage = (inputFile: Blob) => new Promise<HTMLImageElement>((resolve, reject) => {
     const url = URL.createObjectURL(inputFile)

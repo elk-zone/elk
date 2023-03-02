@@ -162,6 +162,13 @@ export function htmlToText(html: string) {
   }
 }
 
+export function recursiveTreeToText(input: Node): string {
+  if (input && input.children && input.children.length > 0)
+    return input.children.map((n: Node) => recursiveTreeToText(n)).join('')
+  else
+    return treeToText(input)
+}
+
 export function treeToText(input: Node): string {
   let pre = ''
   let body = ''

@@ -4,8 +4,24 @@ import { NodeViewContent, NodeViewWrapper, nodeViewProps } from '@tiptap/vue-3'
 const props = defineProps(nodeViewProps)
 
 const languages = [
-  'js',
-  'ts',
+  'c',
+  'cpp',
+  'csharp',
+  'css',
+  'dart',
+  'go',
+  'html',
+  'java',
+  'javascript',
+  'jsx',
+  'kotlin',
+  'python',
+  'rust',
+  'svelte',
+  'swift',
+  'tsx',
+  'typescript',
+  'vue',
 ]
 
 const selectedLanguage = computed({
@@ -20,8 +36,13 @@ const selectedLanguage = computed({
 
 <template>
   <NodeViewWrapper>
-    <div relative my2 class="code-block">
-      <select v-model="selectedLanguage" contenteditable="false" absolute top-1 right-1 rounded px2 op0 hover:op100 focus:op100 transition>
+    <div relative my2>
+      <select
+        v-model="selectedLanguage"
+        contenteditable="false"
+        absolute top-1 right-1 rounded px2 op0 hover:op100 focus:op100 transition
+        outline-none border="~ base"
+      >
         <option :value="null">
           plain
         </option>
@@ -29,7 +50,7 @@ const selectedLanguage = computed({
           {{ language }}
         </option>
       </select>
-      <pre><code><NodeViewContent /></code></pre>
+      <pre class="code-block"><code><NodeViewContent /></code></pre>
     </div>
   </NodeViewWrapper>
 </template>

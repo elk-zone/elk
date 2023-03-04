@@ -1,14 +1,48 @@
 <script setup lang="ts">
-const env = useRuntimeConfig().public.env
-const sub = env === 'local' ? 'dev' : env === 'staging' ? 'preview' : 'alpha'
+const { env } = useBuildInfo()
+const router = useRouter()
+const back = ref<any>('')
+
+const nuxtApp = useNuxtApp()
+
+const onClickLogo = () => {
+  nuxtApp.hooks.callHook('elk-logo:click')
+}
+
+onMounted(() => {
+  back.value = router.options.history.state.back
+})
+router.afterEach(() => {
+  back.value = router.options.history.state.back
+})
 </script>
 
 <template>
-  <!-- Use external to force refresh page and jump to top of timeline -->
-  <NuxtLink flex px3 py2 items-center text-2xl gap-2 hover:bg-active focus-visible:ring="2 current" rounded-full to="/" external>
-    <img :alt="$t('app_logo')" src="/logo.svg" w-10 h-10 height="40" width="40">
-    <div>
-      {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ sub }}</sup>
+  <div flex justify-between sticky top-0 bg-base z-1 py-4 native:py-7 data-tauri-drag-region>
+    <NuxtLink
+      flex items-end gap-3
+      py2 px-5
+      text-2xl
+      select-none
+      focus-visible:ring="2 current"
+      to="/home"
+      @click.prevent="onClickLogo"
+    >
+      <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
+      <div hidden xl:block text-secondary>
+        {{ $t('app_name') }} <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
+      </div>
+    </NuxtLink>
+    <div
+      hidden xl:flex items-center me-8 mt-2
+      :class="{ 'pointer-events-none op0': !back || back === '/', 'xl:flex': $route.name !== 'tag' }"
+    >
+      <NuxtLink
+        :aria-label="$t('nav.back')"
+        @click="$router.go(-1)"
+      >
+        <div i-ri:arrow-left-line class="rtl-flip" btn-text />
+      </NuxtLink>
     </div>
-  </NuxtLink>
+  </div>
 </template>

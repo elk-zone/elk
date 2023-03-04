@@ -1,53 +1,36 @@
-import type { MaybeRef } from '@vueuse/shared'
-import type { MaybeComputedRef, UseTimeAgoOptions } from '@vueuse/core'
+import type { MaybeComputedRef, MaybeRef, UseTimeAgoOptions } from '@vueuse/core'
 
 const formatter = Intl.NumberFormat()
 
-const humanReadableNumber = (
-  num: number,
-  { k, m }: { k: string; m: string } = { k: 'K', m: 'M' },
-  useFormatter: Intl.NumberFormat = formatter,
-) => {
-  if (num < 10000)
-    return useFormatter.format(num)
-
-  if (num < 1000000)
-    return `${Math.floor(num / 1000)}${k}`
-
-  return `${Math.floor(num / 1000000)}${m}`
-}
-
-export const formattedNumber = (num: number, useFormatter: Intl.NumberFormat = formatter) => {
+export function formattedNumber(num: number, useFormatter: Intl.NumberFormat = formatter) {
   return useFormatter.format(num)
 }
 
-export const useHumanReadableNumber = () => {
-  const i18n = useI18n()
-  const numberFormatter = $computed(() => Intl.NumberFormat(i18n.locale.value))
+export function useHumanReadableNumber() {
+  const { n, locale } = useI18n()
+
+  const fn = (num: number) => {
+    return n(
+      num,
+      num < 10000
+        ? 'smallCounting'
+        : num < 1000000
+          ? 'kiloCounting'
+          : 'millionCounting',
+      locale.value,
+    )
+  }
+
   return {
-    formatHumanReadableNumber: (num: MaybeRef<number>) => {
-      return humanReadableNumber(
-        unref(num),
-        { k: i18n.t('common.kiloSuffix'), m: i18n.t('common.megaSuffix') },
-        numberFormatter,
-      )
-    },
-    formatNumber: (num: MaybeRef<number>) => {
-      return formattedNumber(
-        unref(num),
-        numberFormatter,
-      )
-    },
-    forSR: (num: MaybeRef<number>) => {
-      return unref(num) > 10000
-    },
+    formatHumanReadableNumber: (num: MaybeRef<number>) => fn(unref(num)),
+    formatNumber: (num: MaybeRef<number>) => n(unref(num), 'smallCounting', locale.value),
+    formatPercentage: (num: MaybeRef<number>) => n(unref(num), 'percentage', locale.value),
+    forSR: (num: MaybeRef<number>) => unref(num) > 10000,
   }
 }
 
-export const useFormattedDateTime = (
-  value: MaybeComputedRef<string | Date | undefined | null>,
-  options: Intl.DateTimeFormatOptions = { dateStyle: 'long', timeStyle: 'medium' },
-) => {
+export function useFormattedDateTime(value: MaybeComputedRef<string | number | Date | undefined | null>,
+  options: Intl.DateTimeFormatOptions = { dateStyle: 'long', timeStyle: 'medium' }) {
   const { locale } = useI18n()
   const formatter = $computed(() => Intl.DateTimeFormat(locale.value, options))
   return computed(() => {
@@ -56,30 +39,39 @@ export const useFormattedDateTime = (
   })
 }
 
-export const useTimeAgoOptions = (short = false): UseTimeAgoOptions<false> => {
-  const { d, t } = useI18n()
+export function useTimeAgoOptions(short = false): UseTimeAgoOptions<false> {
+  const { d, t, n: fnf, locale } = useI18n()
   const prefix = short ? 'short_' : ''
 
+  const fn = (n: number, past: boolean, key: string) => {
+    return t(`time_ago_options.${prefix}${key}_${past ? 'past' : 'future'}`, n, {
+      named: {
+        v: fnf(n, 'smallCounting', locale.value),
+      },
+    })
+  }
+
   return {
+    rounding: 'floor',
     showSecond: !short,
-    updateInterval: short ? 60_000 : 1_000,
+    updateInterval: short ? 60000 : 1000,
     messages: {
       justNow: t('time_ago_options.just_now'),
       // just return the value
       past: n => n,
       // just return the value
       future: n => n,
-      second: (n, p) => t(`time_ago_options.${prefix}second_${p ? 'past' : 'future'}`, n),
-      minute: (n, p) => t(`time_ago_options.${prefix}minute_${p ? 'past' : 'future'}`, n),
-      hour: (n, p) => t(`time_ago_options.${prefix}hour_${p ? 'past' : 'future'}`, n),
-      day: (n, p) => t(`time_ago_options.${prefix}day_${p ? 'past' : 'future'}`, n),
-      week: (n, p) => t(`time_ago_options.${prefix}week_${p ? 'past' : 'future'}`, n),
-      month: (n, p) => t(`time_ago_options.${prefix}month_${p ? 'past' : 'future'}`, n),
-      year: (n, p) => t(`time_ago_options.${prefix}year_${p ? 'past' : 'future'}`, n),
+      second: (n, p) => fn(n, p, 'second'),
+      minute: (n, p) => fn(n, p, 'minute'),
+      hour: (n, p) => fn(n, p, 'hour'),
+      day: (n, p) => fn(n, p, 'day'),
+      week: (n, p) => fn(n, p, 'week'),
+      month: (n, p) => fn(n, p, 'month'),
+      year: (n, p) => fn(n, p, 'year'),
+      invalid: '',
     },
     fullDateFormatter(date) {
       return d(date, short ? 'short' : 'long')
     },
   }
 }
-

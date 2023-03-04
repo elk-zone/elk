@@ -1,25 +1,47 @@
 <script setup lang="ts">
-import type { FilterContext, Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const props = withDefaults(
   defineProps<{
-    status: Status
+    status: mastodon.v1.Status
     actions?: boolean
-    context?: FilterContext
+    context?: mastodon.v2.FilterContext
     hover?: boolean
-    decorated?: boolean
-    showReplyTo?: boolean
+    faded?: boolean
+    isPreview?: boolean
+
+    // If we know the prev and next status in the timeline, we can simplify the card
+    older?: mastodon.v1.Status
+    newer?: mastodon.v1.Status
+    // Manual overrides
+    hasOlder?: boolean
+    hasNewer?: boolean
+
+    // When looking into a detailed view of a post, we can simplify the replying badges
+    // to the main expanded post
+    main?: mastodon.v1.Status
   }>(),
-  { actions: true, showReplyTo: true },
+  { actions: true },
 )
 
+const userSettings = useUserSettings()
+
 const status = $computed(() => {
-  if (props.status.reblog && !props.status.content)
+  if (props.status.reblog && (!props.status.content || props.status.content === props.status.reblog.content))
     return props.status.reblog
   return props.status
 })
 
+// Use original status, avoid connecting a reblog
+const directReply = $computed(() => props.hasNewer || (!!status.inReplyToId && (status.inReplyToId === props.newer?.id || status.inReplyToId === props.newer?.reblog?.id)))
+// Use reblogged status, connect it to further replies
+const connectReply = $computed(() => props.hasOlder || status.id === props.older?.inReplyToId || status.id === props.older?.reblog?.inReplyToId)
+// Open a detailed status, the replies directly to it
+const replyToMain = $computed(() => props.main && props.main.id === status.inReplyToId)
+
 const rebloggedBy = $computed(() => props.status.reblog ? props.status.account : null)
+
+const statusRoute = $computed(() => getStatusRoute(status))
 
 const el = ref<HTMLElement>()
 const router = useRouter()
@@ -33,13 +55,12 @@ function onclick(evt: MouseEvent | KeyboardEvent) {
 }
 
 function go(evt: MouseEvent | KeyboardEvent) {
-  const route = getStatusRoute(status)
   if (evt.metaKey || evt.ctrlKey) {
-    window.open(route.href)
+    window.open(statusRoute.href)
   }
   else {
     cacheStatus(status)
-    router.push(route)
+    router.push(statusRoute)
   }
 }
 
@@ -47,88 +68,120 @@ const createdAt = useFormattedDateTime(status.createdAt)
 const timeAgoOptions = useTimeAgoOptions(true)
 const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
 
-// Content Filter logic
-const filterResult = $computed(() => status.filtered?.length ? status.filtered[0] : null)
-const filter = $computed(() => filterResult?.filter)
+const isSelfReply = $computed(() => status.inReplyToAccountId === status.account.id)
+const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
+const isDM = $computed(() => status.visibility === 'direct')
 
-// a bit of a hack due to Filter being different in v1 and v2
-// clean up when masto.js supports explicit versions: https://github.com/neet/masto.js/issues/722
-const filterPhrase = $computed(() => filter?.phrase || (filter as any)?.title)
-const isFiltered = $computed(() => filterPhrase && (props.context ? filter?.context.includes(props.context) : false))
-
-const avatarOnAvatar = $(computedEager(() => useFeatureFlags().experimentalAvatarOnAvatar))
+const showUpperBorder = $computed(() => props.newer && !directReply)
+const showReplyTo = $computed(() => !replyToMain && !directReply)
 </script>
 
 <template>
-  <div v-if="filter?.filterAction !== 'hide'" :id="`status-${status.id}`" ref="el" relative flex flex-col gap-2 px-4 pt-3 pb-4 transition-100 :class="{ 'hover:bg-active': hover }" tabindex="0" focus:outline-none focus-visible:ring="2 primary" aria-roledescription="status-card" @click="onclick" @keydown.enter="onclick">
-    <StatusReplyingTo v-if="showReplyTo" :status="status" />
-    <CommonMetaWrapper v-if="rebloggedBy" text-secondary text-sm ws-nowrap>
-      <div i-ri:repeat-fill mr-1 text-primary />
-      <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="!avatarOnAvatar" />
-    </CommonMetaWrapper>
-    <div v-if="decorated || rebloggedBy || (showReplyTo && status.inReplyToAccountId)" h-6 />
-    <div flex gap-4>
-      <div relative>
-        <AccountHoverWrapper :account="status.account" :class="rebloggedBy && avatarOnAvatar ? 'mt-4' : 'mt-1'">
-          <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
-            <AccountAvatar w-12 h-12 :account="status.account" />
-          </NuxtLink>
-        </AccountHoverWrapper>
-        <div v-if="(rebloggedBy && avatarOnAvatar && rebloggedBy.id !== status.account.id)" absolute class="-top-2 -left-2" w-9 h-9 border-bg-base border-3 rounded-full>
-          <AccountAvatar :account="rebloggedBy" />
+  <div
+    :id="`status-${status.id}`"
+    ref="el"
+    relative flex="~ col gap1"
+    p="b-2 is-3 ie-4"
+    :class="{ 'hover:bg-active': hover }"
+    tabindex="0"
+    focus:outline-none focus-visible:ring="2 primary"
+    aria-roledescription="status-card"
+    :lang="status.language ?? undefined"
+    @click="onclick"
+    @keydown.enter="onclick"
+  >
+    <!-- Upper border -->
+    <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 />
+
+    <slot name="meta">
+      <!-- Line connecting to previous status -->
+      <template v-if="status.inReplyToAccountId">
+        <StatusReplyingTo
+          v-if="showReplyTo"
+          m="is-5" p="t-1 is-5"
+          :status="status"
+          :is-self-reply="isSelfReply"
+          :class="faded ? 'text-secondary-light' : ''"
+        />
+        <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
+          <template v-if="showReplyTo">
+            <div w="1px" h="0.5" border="x base" mt-3 />
+            <div w="1px" h="0.5" border="x base" />
+            <div w="1px" h="0.5" border="x base" />
+          </template>
+          <div w="1px" h-10 border="x base" />
+        </div>
+      </template>
+
+      <!-- Reblog status -->
+      <div flex="~ col" justify-between>
+        <div
+          v-if="rebloggedBy && !collapseRebloggedBy"
+          flex="~" items-center
+          p="t-1 b-0.5 x-1px"
+          relative text-secondary ws-nowrap
+        >
+          <div i-ri:repeat-fill me-46px text-green w-16px h-16px class="status-boosted" />
+          <div absolute top-1 ms-24px w-32px h-32px rounded-full>
+            <AccountHoverWrapper :account="rebloggedBy">
+              <NuxtLink :to="getAccountRoute(rebloggedBy)">
+                <AccountAvatar :account="rebloggedBy" />
+              </NuxtLink>
+            </AccountHoverWrapper>
+          </div>
+          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" text-sm />
         </div>
       </div>
+    </slot>
+
+    <div flex gap-3 :class="{ 'text-secondary': faded }">
+      <!-- Avatar -->
+      <div relative>
+        <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
+          <div i-ri:repeat-fill text-green w-16px h-16px />
+        </div>
+        <AccountHoverWrapper :account="status.account">
+          <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
+            <AccountBigAvatar :account="status.account" />
+          </NuxtLink>
+        </AccountHoverWrapper>
+
+        <div v-if="connectReply" w-full h-full flex mt--3px justify-center>
+          <div w-1px border="x base" />
+        </div>
+      </div>
+
+      <!-- Main -->
       <div flex="~ col 1" min-w-0>
+        <!-- Account Info -->
         <div flex items-center space-x-1>
           <AccountHoverWrapper :account="status.account">
             <StatusAccountDetails :account="status.account" />
           </AccountHoverWrapper>
           <div flex-auto />
-          <div v-if="!isZenMode" text-sm text-secondary flex="~ row nowrap" hover:underline>
-            <AccountBotIndicator v-if="status.account.bot" mr-2 />
-            <CommonTooltip :content="createdAt">
-              <a :title="status.createdAt" :href="getStatusRoute(status).href" @click.prevent="go($event)">
-                <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
-                  {{ timeago }}
-                </time>
-              </a>
-            </CommonTooltip>
-            <StatusEditIndicator :status="status" inline />
+          <div v-show="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
+            <AccountBotIndicator v-if="status.account.bot" me-2 />
+            <div flex="~ gap1" items-center>
+              <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
+              <div flex>
+                <CommonTooltip :content="createdAt">
+                  <NuxtLink :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
+                    <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
+                      {{ timeago }}
+                    </time>
+                  </NuxtLink>
+                </CommonTooltip>
+                <StatusEditIndicator :status="status" inline />
+              </div>
+            </div>
           </div>
-          <StatusActionsMore :status="status" mr--2 />
+          <StatusActionsMore v-if="actions !== false" :status="status" me--2 />
         </div>
-        <div
-          space-y-2
-          :class="{
-            'my3 p1 px4 br2 bg-fade border-primary border-1 rounded-3 rounded-tl-none': status.visibility === 'direct',
-          }"
-        >
-          <StatusSpoiler :enabled="status.sensitive || isFiltered" :filter="isFiltered">
-            <template v-if="status.spoilerText || filterPhrase" #spoiler>
-              <p>{{ status.spoilerText || `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
-            </template>
-            <StatusBody :status="status" />
-            <StatusPoll v-if="status.poll" :poll="status.poll" />
-            <StatusMedia
-              v-if="status.mediaAttachments?.length"
-              :status="status"
-              minimized
-            />
-            <StatusPreviewCard v-if="status.card" :card="status.card" />
-          </StatusSpoiler>
-          <StatusCard
-            v-if="status.reblog"
-            :status="status.reblog" border="~ rounded"
-            :actions="false"
-          />
-        </div>
-        <StatusActions v-if="(actions !== false && !isZenMode)" pt2 :status="status" />
+
+        <!-- Content -->
+        <StatusContent :status="status" :newer="newer" :context="context" :is-preview="isPreview" mb2 :class="{ 'mt-2 mb1': isDM }" />
+        <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
       </div>
     </div>
-  </div>
-  <div v-else-if="isFiltered" gap-2 p-4>
-    <p text-center text-secondary text-sm>
-      {{ filterPhrase && `${$t('status.filter_removed_phrase')}: ${filterPhrase}` }}
-    </p>
   </div>
 </template>

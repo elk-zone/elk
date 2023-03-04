@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const paginator = useMasto().timelines.iteratePublic()
-const stream = await useMasto().stream.streamPublicTimeline()
-onBeforeUnmount(() => stream.disconnect())
+
 
 const { t } = useI18n()
 
@@ -13,14 +11,12 @@ useHeadFixed({
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/public" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:group-2-line />
+      <NuxtLink to="/public" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
+        <div i-ri:earth-line />
         <span>{{ t('title.federated_timeline') }}</span>
       </NuxtLink>
     </template>
 
-    <slot>
-      <TimelinePaginator v-bind="{ paginator, stream }" context="public" />
-    </slot>
+    <TimelinePublic v-if="isHydrated" />
   </MainContent>
 </template>

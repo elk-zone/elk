@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 
 const { account, link = true } = defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   link?: boolean
 }>()
+
+const userSettings = useUserSettings()
 </script>
 
 <template>
@@ -13,11 +15,7 @@ const { account, link = true } = defineProps<{
     flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
     text-link-rounded
   >
-    <ContentRich
-      font-bold line-clamp-1 ws-pre-wrap break-all
-      :content="getDisplayName(account, { rich: true })"
-      :emojis="account.emojis"
-    />
-    <AccountHandle :account="account" />
+    <AccountDisplayName :account="account" :hide-emojis="getPreferences(userSettings, 'hideUsernameEmojis')" font-bold line-clamp-1 ws-pre-wrap break-all />
+    <AccountHandle :account="account" class="zen-none" />
   </NuxtLink>
 </template>

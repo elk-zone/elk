@@ -1,0 +1,403 @@
+{
+  "a11y": {
+    "loading_page": "Pagina laden, even wachten",
+    "loading_titled_page": "Pagina {0} laden, even wachten",
+    "locale_changed": "Taal veranderd naar {0}",
+    "locale_changing": "Taal veranderen, even geduld",
+    "route_loaded": "Pagina {0} geladen"
+  },
+  "account": {
+    "avatar_description": "{0}'s avatar",
+    "blocked_by": "Je bent geblokkeerd door deze gebruiker.",
+    "blocked_domains": "Geblokkeerde domeinen",
+    "blocked_users": "Geblokkeerde gebruikers",
+    "blocking": "Geblokkeerd",
+    "bot": "BOT",
+    "favourites": "Favorieten",
+    "follow": "Volg",
+    "follow_back": "Volg terug",
+    "follow_requested": "Aangevraagd",
+    "followers": "Volgers",
+    "followers_count": "{0} Volgers|{0} Volger|{0} Volgers",
+    "following": "Volgend",
+    "following_count": "{0} Volgend",
+    "follows_you": "Volgt jou",
+    "go_to_profile": "Ga naar profiel",
+    "joined": "Lid geworden",
+    "moved_title": "heeft het account verplaatst naar:",
+    "muted_users": "Gedempte gebruikers",
+    "muting": "Gedempt",
+    "mutuals": "Gedeeld",
+    "pinned": "Gepind",
+    "posts": "Posts",
+    "posts_count": "{0} Posts|{0} Post|{0} Posts",
+    "profile_description": "{0}'s profiel koptekst",
+    "profile_unavailable": "Profiel niet beschikbaar",
+    "unblock": " Deblokkeren",
+    "unfollow": "Ontvolgen",
+    "unmute": "Ontdempen"
+  },
+  "action": {
+    "apply": "Toepassen",
+    "bookmark": "Bookmark",
+    "bookmarked": "Gebookmarkt",
+    "boost": "Boost",
+    "boost_count": "{0}",
+    "boosted": "Geboost",
+    "clear_upload_failed": "Wis bestand upload fouten",
+    "close": "Sluit",
+    "compose": "Schrijven",
+    "confirm": "Bevestigen",
+    "edit": "Aanpassen",
+    "enter_app": "Ga naar App",
+    "favourite": "Favoriet",
+    "favourite_count": "{0}",
+    "favourited": "Favoriet",
+    "more": "Meer",
+    "next": "Volgende",
+    "prev": "Vorige",
+    "publish": "Publiceer",
+    "reply": "Beantwoord",
+    "reply_count": "{0}",
+    "reset": "Herstellen",
+    "save": "Opslaan",
+    "save_changes": "Aanpassingen opslaan",
+    "sign_in": "Inloggen",
+    "switch_account": "Wissel van account",
+    "vote": "Stem"
+  },
+  "app_desc_short": "Een vlotte Mastodon web client",
+  "app_logo": "Elk Logo",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Omschrijving",
+    "remove_label": "Verwijder bijlage"
+  },
+  "command": {
+    "activate": "Activeren",
+    "complete": "Compleet",
+    "compose_desc": "Schrijf een nieuwe post",
+    "n-people-in-the-past-n-days": "{0} mensen in de laatste {1} dagen",
+    "select_lang": "Selecteer een taal",
+    "sign_in_desc": "Voeg bestaande account toe",
+    "switch_account": "Wissel naar {0}",
+    "switch_account_desc": "Wissel naar ander account",
+    "toggle_dark_mode": "Donkere modus wisselen",
+    "toggle_zen_mode": "Zen modus wisselen"
+  },
+  "common": {
+    "end_of_list": "Einde van de lijst",
+    "error": "FOUT",
+    "in": "in",
+    "not_found": "404 Niet Gevonden",
+    "offline_desc": "Zo te zien ben je offline. Controleer je internet verbinding."
+  },
+  "conversation": {
+    "with": "met"
+  },
+  "error": {
+    "account_not_found": "Account {0} niet gevonden",
+    "explore-list-empty": "Er is nu niets trending. Kom later terug!",
+    "file_size_cannot_exceed_n_mb": "Bestandsgrootte mag niet groter zijn dan {0}MB",
+    "sign_in_error": "Kan geen verbinding maken met de server.",
+    "status_not_found": "Post niet gevonden",
+    "unsupported_file_format": "Bestandstype niet ondersteund"
+  },
+  "help": {
+    "desc_highlight": "Je kunt hier en daar wat bugs of ontbrekende features verwachten.",
+    "desc_para1": "Bedankt voor je interesse in het uitproberen van Elk, onze Mastodon web client in-wording!",
+    "desc_para2": "we werken hard aan nieuwe ontwikkelingen en verbeteringen in de loop van de tijd.",
+    "desc_para3": "Om de ontwikkelingen te versnellen, kun je het Team sponsoren via GitHub Sponsors. We hopen dat Elk je bevalt!",
+    "desc_para4": "Elk is Open Source. Wil je meehelpen met testen, feedback of bijdragen,",
+    "desc_para5": "zoek ons op via GitHub",
+    "desc_para6": "en doe met ons mee.",
+    "title": "Elk is in Preview!"
+  },
+  "language": {
+    "search": "Opzoeken"
+  },
+  "menu": {
+    "block_account": "Blokkeer {0}",
+    "block_domain": "Blokkeer domein {0}",
+    "copy_link_to_post": "Kopieer link naar deze post",
+    "delete": "Verwijder",
+    "delete_and_redraft": "Verwijder & Opnieuw opstellen",
+    "direct_message_account": "Direct bericht naar {0}",
+    "edit": "Aanpassen",
+    "mention_account": "Noem {0}",
+    "mute_account": "Demp {0}",
+    "mute_conversation": "Demp deze post",
+    "open_in_original_site": "Open in originele site",
+    "pin_on_profile": "Pin op profiel",
+    "share_post": "Deel deze post",
+    "show_untranslated": "Laat onvertaalde versie zien",
+    "toggle_theme": {
+      "dark": "Donkere modus wisselen",
+      "light": "Lichte modus wisselen"
+    },
+    "translate_post": "Vertaal post",
+    "unblock_account": "Deblokkeer {0}",
+    "unblock_domain": "Deblokkeer domein {0}",
+    "unmute_account": "Ontdemp {0}",
+    "unmute_conversation": "Ontdemp deze post",
+    "unpin_on_profile": "Ontpin op profiel"
+  },
+  "nav": {
+    "bookmarks": "Bookmarks",
+    "built_at": "Gebouwd {0}",
+    "conversations": "Conversaties",
+    "explore": "Ontdekken",
+    "favourites": "Favorieten",
+    "federated": "Gefedereerd",
+    "home": "Home",
+    "local": "Lokaal",
+    "notifications": "Notificaties",
+    "profile": "Profiel",
+    "search": "Zoeken",
+    "select_feature_flags": "Selecteer Feature Vlaggen",
+    "select_font_size": "Font Grootte",
+    "select_language": "Display Taal",
+    "settings": "Instellingen",
+    "show_intro": "Laat intro zien",
+    "toggle_theme": "Wissel Thema",
+    "zen_mode": "Zen Modus"
+  },
+  "notification": {
+    "favourited_post": "vindt jouw post favoriet",
+    "followed_you": "volgt jou",
+    "followed_you_count": "{0} mensen hebben je gevolgd|{0} persoon heeft je gevold|{0} mensen hebben je gevolgd",
+    "missing_type": "MISSEND notificatie.type:",
+    "reblogged_post": "herblogt je post",
+    "request_to_follow": "vraagt om jou te volgen",
+    "signed_up": "signed up",
+    "update_status": "heeft hun post aangepast"
+  },
+  "placeholder": {
+    "content_warning": "Schrijf je waarschuwing hier",
+    "default_1": "Waar denk je aan?",
+    "reply_to_account": "Reageer op {0}",
+    "replying": "Reageren",
+    "the_thread": "de thread"
+  },
+  "pwa": {
+    "dismiss": "Afwijzen",
+    "title": "Er is een nieuwe Elk update!",
+    "update": "Update",
+    "update_available_short": "Update Elk"
+  },
+  "search": {
+    "search_desc": "Zoek naar mensen & hashtags",
+    "search_empty": "Deze zoektermen leveren geen resultaat op"
+  },
+  "settings": {
+    "about": {
+      "label": "Over"
+    },
+    "feature_flags": {
+      "github_cards": "GitHub Cards",
+      "title": "Experimentele Functies",
+      "user_picker": "Gebruiker Kiezer",
+      "virtual_scroll": "Virtueel Scrollen"
+    },
+    "interface": {
+      "color_mode": "Kleur Modus",
+      "dark_mode": "Donkere Modus",
+      "default": " (standaard)",
+      "font_size": "Letter Grootte",
+      "label": "Interface",
+      "light_mode": "Lichte Modus"
+    },
+    "language": {
+      "display_language": "Weergave taal",
+      "label": "Taal"
+    },
+    "notifications": {
+      "label": "Notificaties",
+      "notifications": {
+        "label": "Notificaties instellingen"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favorieten",
+          "follow": "Nieuwe volgers",
+          "mention": " Vermeldingen",
+          "poll": "Peilingen",
+          "reblog": "Herblogt jou post",
+          "title": "Welke notificaties wil je krijgen?"
+        },
+        "description": "Ontvang meldingen zelfs wanneer je Elk niet gebruikt.",
+        "instructions": "Vergeet niet om je wijzigingen op te slaan d.m.v. de @:settings.notifications.push_notifications.save_settings knop!",
+        "label": "Pushnotificatie instellingen",
+        "policy": {
+          "all": "Van iedereen",
+          "followed": "Van mensen die ik volg",
+          "follower": "Van mensen die mij volgen",
+          "none": "Van niemand",
+          "title": "Van wie kan ik notificaties krijgen?"
+        },
+        "save_settings": "Instellingen aanpassingen opslaan",
+        "subscription_error": {
+          "clear_error": "Wis error",
+          "permission_denied": "Geen toestemming: zet notificaties aan in je browser.",
+          "request_error": "Er is een error tijdens het ophalen van het abonnement, probeer opnieuw en als de error blijft, raporteer het probleem naar de Elk repository.",
+          "title": "Kon niet abonneren op de pushnotificaties"
+        },
+        "undo_settings": "Veranderde instellingen ongedaan maken",
+        "unsubscribe": "Zet pushnotificaties uit",
+        "unsupported": "Je browser ondersteunt geen pushnotificaties.",
+        "warning": {
+          "enable_close": "Sluit",
+          "enable_description": "Om notificaties te krijgen terwijl Elk niet actief is, zet pushnotificaties aan. Je kan precies instellen wat voor type interacties pushnotificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
+          "enable_description_settings": "Om notificaties te ontvangen wanneer Elk niet actief is, schakel pushnotificaties in. Je kunt precies instellen welke soorten interacties pushnotificaties genereren in dit venster zodra je ze hebt inschakelt.",
+          "enable_desktop": "Zet pushnotificaties aan",
+          "enable_title": "Mis niets",
+          "re_auth": "Het lijkt erop dat je server geen pushnotificaties ondersteunt. Probeer uitloggen en opnieuw inloggen. Neem contact op met de serverbeheerder als dit bericht nog steeds verschijnt."
+        }
+      },
+      "show_btn": "Ga naar notificatie instellingen"
+    },
+    "notifications_settings": "Notificaties",
+    "preferences": {
+      "label": "Voorkeuren"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bio",
+        "description": "Aanpassen van avatar, gebruikersnaam, profiel, etc.",
+        "display_name": "Zichtbare naam",
+        "label": "Uiterlijk",
+        "profile_metadata": "Profiel metadata",
+        "profile_metadata_desc": "Je kan tot en met {0} elementen als tabel op je profiel zetten",
+        "title": "Aanpassen profiel"
+      },
+      "featured_tags": {
+        "description": "Mensen kunnen je publieke posts vinden onder deze hashtags.",
+        "label": "Uitgelichte hashtags"
+      },
+      "label": "Profiel"
+    },
+    "select_a_settings": "Selecteer een instelling",
+    "users": {
+      "export": "Exporteer Gebruikers Tokens",
+      "import": "Importeer Gebruikers Tokens",
+      "label": "Ingelogde gebruikers"
+    }
+  },
+  "state": {
+
+    "attachments_exceed_server_limit": "De hoeveelheid bijlagen is meer dan het limiet per post.",
+    "attachments_limit_error": "Limiet per post overschreden",
+    "edited": "(Aangepast)",
+    "editing": "Aanpassen",
+    "loading": "Laden...",
+    "upload_failed": "Upload mislukt",
+    "uploading": "Uploading..."
+  },
+  "status": {
+    "edited": "Aangepast {0}",
+    "filter_hidden_phrase": "Gefilterd door",
+    "filter_show_anyway": "Laat toch zien",
+    "img_alt": {
+      "desc": "Omschrijving",
+      "dismiss": "Afwijzen"
+    },
+    "poll": {
+      "count": "{0} stemmen|{0} stem|{0} stemmen",
+      "ends": "eindigt {0}",
+      "finished": "geëindigd {0}"
+    },
+    "reblogged": "{0} herblogd",
+    "someone": "Iemand",
+    "spoiler_show_less": "Minder zien",
+    "spoiler_show_more": "Meer zien",
+    "try_original_site": "Probeer originele site"
+  },
+  "status_history": {
+    "created": "gecreëerd {0}",
+    "edited": "aangepast {0}"
+  },
+  "tab": {
+    "for_you": "Voor jou",
+    "hashtags": "Hashtags",
+    "media": "Media",
+    "news": "Nieuws",
+    "notifications_all": "Alles",
+    "notifications_mention": "Vermelding",
+    "posts": "Posts",
+    "posts_with_replies": "Posts & Reacties"
+  },
+  "tag": {
+    "follow": "Volg",
+    "follow_label": "Volg {0} tag",
+    "unfollow": "Ontvolg",
+    "unfollow_label": "Ontvolg {0} tag"
+  },
+  "time_ago_options": {
+    "day_future": "in 0 dagen|morgen|in {n} dagen",
+    "day_past": "0 dagen geleden|gisteren|{n} dagen geleden",
+    "hour_future": "in 0 uur|in 1 uur|in {n} uur",
+    "hour_past": "0 uur geleden|1 uur geleden|{n} uur geleden",
+    "just_now": "nu net",
+    "minute_future": "in 0 minuten|in 1 minuut|in {n} minuten",
+    "minute_past": "0 minuten geleden|1 minuut geleden|{n} minuten geleden",
+    "month_future": "in 0 maanden|volgende maand|in {n} maanden",
+    "month_past": "0 maanden geleden|laatste maand|{n} maanden geleden",
+    "second_future": "nu net|in {n} seconden|in {n} seconden",
+    "second_past": "nu net|{n} seconden geleden|{n} seconden geleden",
+    "short_day_future": "in {n}d",
+    "short_day_past": "{n}d",
+    "short_hour_future": "in {n}u",
+    "short_hour_past": "{n}u",
+    "short_minute_future": "in {n}min",
+    "short_minute_past": "{n}min",
+    "short_month_future": "in {n}ma",
+    "short_month_past": "{n}ma",
+    "short_second_future": "in {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "in {n}w",
+    "short_week_past": "{n}w",
+    "short_year_future": "in {n}j",
+    "short_year_past": "{n}j",
+    "week_future": "in 0 weken|volgende week|in {n} weken",
+    "week_past": "0 weken geleden|vorige week|{n} weken geleden",
+    "year_future": "in 0 jaar|volgend jaar|in {n} jaar",
+    "year_past": "0 jaar geleden|vorig jaar|{n} jaar geleden"
+  },
+  "timeline": {
+    "show_new_items": "Laat {v} nieuwe artikelen zien|Laat {v} nieuw artikel zien|Laat {v} nieuwe artikelen zien"
+  },
+  "title": {
+    "federated_timeline": "Gefedereerde Tijdlijn",
+    "local_timeline": "Lokale Tijdlijn"
+  },
+  "tooltip": {
+    "add_content_warning": "Voeg inhoud waarschuwing toe",
+    "add_media": "Voeg fotos, een video of een audio bestand toe",
+    "change_content_visibility": "Verander inhoud zichtbaarheid",
+    "change_language": "Verander taal",
+    "emoji": "Emoji",
+    "explore_links_intro": "Over deze nieuws artikelen wordt veel gepraat op deze en anderen servers op het decentralized network op dit moment.",
+    "explore_posts_intro": "Deze posts van deze en andere servers op het decentralized network krijgen veel aandacht op deze server op dit moment.",
+    "explore_tags_intro": "Deze hashtags krijgen veel aandacht op dit moment op deze en andere servers op het decentralized network.",
+    "toggle_code_block": "Zet code blok aan/uit"
+  },
+  "user": {
+    "add_existing": "Voeg een bestaand account toe",
+    "server_address_label": "Mastodon Server Address",
+    "sign_in_desc": "Log in om profielen te volgen of hashtags, markeer posts als favoriet, deel en reageer op posts, of reageer vanaf je account op een andere server.",
+    "sign_in_notice_title": "Je bekijkt {0} publieke data",
+    "sign_out_account": "Uitloggen {0}",
+    "tip_no_account": "Als je nog geen Mastodon account hebt, {0}.",
+    "tip_register_account": "kies jouw server en registreer een account"
+  },
+  "visibility": {
+    "direct": "Direct",
+    "direct_desc": "Alleen zichtbaar voor vermelde gebruikers",
+    "private": "Alleen volgers",
+    "private_desc": "Alleen zichtbaar voor volgers",
+    "public": "Publiek",
+    "public_desc": "Zichtbaar voor iedereen",
+    "unlisted": "Niet vermeld",
+    "unlisted_desc": "Zichtbaar voor iedereen, maar kan niet gevonden worden via discovery functies"
+  }
+}

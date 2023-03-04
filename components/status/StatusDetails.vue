@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
-const props = defineProps<{
-  status: Status
+const props = withDefaults(defineProps<{
+  status: mastodon.v1.Status
+  newer?: mastodon.v1.Status
   command?: boolean
-}>()
+  actions?: boolean
+}>(), {
+  actions: true,
+})
+
+const userSettings = useUserSettings()
 
 const status = $computed(() => {
   if (props.status.reblog && props.status.reblog)
@@ -14,35 +20,24 @@ const status = $computed(() => {
 
 const createdAt = useFormattedDateTime(status.createdAt)
 
-const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === status.visibility)!)
+const { t } = useI18n()
+
+useHeadFixed({
+  title: () => `${getDisplayName(status.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
+})
+
+const isDM = $computed(() => status.visibility === 'direct')
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" flex flex-col gap-2 py3 px-4 relative tabindex="0" focus:outline-none focus:z-10 focus-visible:ring="2 primary" aria-roledescription="status-details">
-    <StatusActionsMore :status="status" absolute right-2 top-2 />
-    <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pr5 mr-a>
+  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative focus:outline-none focus:z-10 focus-visible:ring="2 primary" :lang="status.language ?? undefined" tabindex="0" aria-roledescription="status-details">
+    <StatusActionsMore :status="status" absolute inset-ie-2 top-2 />
+    <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pe5 me-a>
       <AccountHoverWrapper :account="status.account">
         <AccountInfo :account="status.account" />
       </AccountHoverWrapper>
     </NuxtLink>
-    <div
-      :class="status.visibility === 'direct' ? 'my2 p1 px4 br2 bg-fade border-primary border-1 rounded-3 rounded-tl-none' : ''"
-    >
-      <StatusSpoiler :enabled="status.sensitive">
-        <template #spoiler>
-          <p text-2xl>
-            {{ status.spoilerText }}
-          </p>
-        </template>
-        <StatusBody :status="status" :with-action="false" text-2xl />
-        <StatusPoll v-if="status.poll" :poll="status.poll" />
-        <StatusMedia
-          v-if="status.mediaAttachments?.length"
-          :status="status"
-        />
-        <StatusPreviewCard v-if="status.card" :card="status.card" />
-      </StatusSpoiler>
-    </div>
+    <StatusContent :status="status" :newer="newer" context="details" />
     <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>
@@ -50,17 +45,25 @@ const visibility = $computed(() => STATUS_VISIBILITIES.find(v => v.value === sta
           :status="status"
           :inline="false"
         >
-          <span ml1 font-bold cursor-pointer>{{ $t('state.edited') }}</span>
+          <span ms1 font-bold cursor-pointer>{{ $t('state.edited') }}</span>
         </StatusEditIndicator>
       </div>
       <div>&middot;</div>
-      <CommonTooltip :content="$t(`visibility.${visibility.value}`)" placement="bottom">
-        <div :class="visibility.icon" />
-      </CommonTooltip>
+      <StatusVisibilityIndicator :status="status" />
       <div v-if="status.application?.name">
-        &middot; {{ status.application?.name }}
+        &middot;
+      </div>
+      <div v-if="status.application?.website && status.application.name">
+        <NuxtLink :to="status.application.website">
+          {{ status.application.name }}
+        </NuxtLink>
+      </div>
+      <div v-else-if="status.application?.name">
+        {{ status.application?.name }}
       </div>
     </div>
-    <StatusActions :status="status" details :command="command" border="t base" pt-2 />
+    <div border="t base" py-2>
+      <StatusActions v-if="actions" :status="status" details :command="command" />
+    </div>
   </div>
 </template>

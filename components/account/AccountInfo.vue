@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 
 const { account, as = 'div' } = defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   as?: string
   hoverCard?: boolean
+  square?: boolean
 }>()
 
 defineOptions({
@@ -16,19 +17,15 @@ defineOptions({
 <!-- This is sometimes (like in the sidebar) used directly as a button, and sometimes, like in follow notifications, as a link. I think this component may need a second refactor that either lets an implementation pass in a link or an action and adapt to what's passed in, or the implementations need to be updated to wrap in the action they want to take and this be just the layout for these items -->
 <template>
   <component :is="as" flex gap-3 v-bind="$attrs">
-    <AccountHoverWrapper :disabled="!hoverCard" :account="account" shrink-0>
-      <AccountAvatar :account="account" w-12 h-12 />
+    <AccountHoverWrapper :disabled="!hoverCard" :account="account">
+      <AccountBigAvatar :account="account" shrink-0 :square="square" />
     </AccountHoverWrapper>
-    <div flex="~ col" shrink overflow-hidden>
+    <div flex="~ col" shrink pt-1 h-full overflow-hidden justify-center leading-none select-none>
       <div flex="~" gap-2>
-        <ContentRich
-          font-bold line-clamp-1 ws-pre-wrap break-all
-          :content="getDisplayName(account, { rich: true })"
-          :emojis="account.emojis"
-        />
-        <AccountBotIndicator v-if="account.bot" />
+        <AccountDisplayName :account="account" font-bold line-clamp-1 ws-pre-wrap break-all text-lg />
+        <AccountBotIndicator v-if="account.bot" text-xs />
       </div>
-      <AccountHandle :account="account" text-sm text-secondary-light />
+      <AccountHandle :account="account" text-secondary-light />
     </div>
   </component>
 </template>

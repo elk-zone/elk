@@ -1,17 +1,29 @@
-import type { Emoji } from 'masto'
-import { emojisArrayToObject } from '~/composables/utils'
+import type { mastodon } from 'masto'
 
 defineOptions({
   name: 'ContentRich',
 })
 
-const props = defineProps<{
+const {
+  content,
+  emojis,
+  hideEmojis = false,
+  markdown = true,
+} = defineProps<{
   content: string
-  emojis?: Emoji[]
+  emojis?: mastodon.v1.CustomEmoji[]
+  hideEmojis?: boolean
+  markdown?: boolean
 }>()
+
+const emojisObject = useEmojisFallback(() => emojis)
 
 export default () => h(
   'span',
-  { class: 'content-rich' },
-  contentToVNode(props.content, emojisArrayToObject(props.emojis || [])),
+  { class: 'content-rich', dir: 'auto' },
+  contentToVNode(content, {
+    emojis: emojisObject.value,
+    hideEmojis,
+    markdown,
+  }),
 )

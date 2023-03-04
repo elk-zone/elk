@@ -1,0 +1,587 @@
+{
+  "a11y": {
+    "loading_page": "Cargando páxina, agarda",
+    "loading_titled_page": "Cargando páxina {0}, agarda",
+    "locale_changed": "Idioma mudado a {0}",
+    "locale_changing": "Cambiando o idioma, agarda",
+    "route_loaded": "Cargouse a páxina {0}"
+  },
+  "account": {
+    "avatar_description": "Avatar de {0}",
+    "blocked_by": "Esta usuaria bloqueoute.",
+    "blocked_domains": "Dominios bloqueados",
+    "blocked_users": "Usuarias bloqueadas",
+    "blocking": "Bloqueada",
+    "bot": "BOT",
+    "favourites": "Favoritas",
+    "follow": "Seguir",
+    "follow_back": "Seguir tamén",
+    "follow_requested": "Solicitado",
+    "followers": "Seguidoras",
+    "followers_count": "{0} Seguidoras|{0} Seguidora|{0} Seguidoras",
+    "following": "Seguindo",
+    "following_count": "Seguindo a {0}",
+    "follows_you": "Séguete",
+    "go_to_profile": "Ir ao perfil",
+    "joined": "Uníuse",
+    "moved_title": "informou de que agora a súa conta é:",
+    "muted_users": "Usuarias acaladas",
+    "muting": "Acalada",
+    "mutuals": "Seguimento recíproco",
+    "notifications_on_post_disable": "Deixar de notificarme as publicacións de {username}",
+    "notifications_on_post_enable": "Recibir notificación cando {username} publique",
+    "pinned": "Fixada",
+    "posts": "Publicacións",
+    "posts_count": "{0} Publicacións|{0} Publicación|{0} Publicacións",
+    "profile_description": "Cabeceira do perfil de {0}",
+    "profile_unavailable": "Perfil non dispoñible",
+    "request_follow": "Solicitar seguimento",
+    "unblock": "Desbloquear",
+    "unfollow": "Retirar seguimento",
+    "unmute": "Reactivar",
+    "view_other_followers": "É posible que non se mostren as seguidoras desde outras instancias.",
+    "view_other_following": "É posible que non se mostren os seguimentos noutras instancias."
+  },
+  "action": {
+    "apply": "Aplicar",
+    "bookmark": "Marcar",
+    "bookmarked": "Marcada",
+    "boost": "Promover",
+    "boost_count": "{0}",
+    "boosted": "Promovida",
+    "clear_publish_failed": "Limpar erros de publicación",
+    "clear_upload_failed": "Limpar o ficheiro de erros de subida",
+    "close": "Pechar",
+    "compose": "Escribir",
+    "confirm": "Confirmar",
+    "edit": "Editar",
+    "enter_app": "Entrar na App",
+    "favourite": "Favorita",
+    "favourite_count": "{0}",
+    "favourited": "Favorecida",
+    "more": "Máis",
+    "next": "Seg",
+    "prev": "Ant",
+    "publish": "Publicar",
+    "reply": "Responder",
+    "reply_count": "{0}",
+    "reset": "Restablecer",
+    "save": "Gardar",
+    "save_changes": "Gardar cambios",
+    "sign_in": "Acceder",
+    "sign_in_to": "Iniciar sesión en {0}",
+    "switch_account": "Cambiar de conta",
+    "vote": "Votar"
+  },
+  "app_desc_short": "Un cliente web áxil para Mastodon",
+  "app_logo": "Logo de Elk",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Descrición",
+    "remove_label": "Quitar o anexo"
+  },
+  "command": {
+    "activate": "Activar",
+    "complete": "Completar",
+    "compose_desc": "Escribir nova publicación",
+    "n-people-in-the-past-n-days": "{0} persoas nos últimos {1} días",
+    "select_lang": "Elixe idioma",
+    "sign_in_desc": "Engadir unha conta existente",
+    "switch_account": "Cambiar a {0}",
+    "switch_account_desc": "Utilizar outra conta",
+    "toggle_dark_mode": "Activar modo escuro",
+    "toggle_zen_mode": "Activar modo cen"
+  },
+  "common": {
+    "end_of_list": "Fin da lista",
+    "error": "ERRO",
+    "in": "en",
+    "not_found": "404 Non Atopado",
+    "offline_desc": "Semella que non tes conexión. Comproba a conexión á rede."
+  },
+  "compose": {
+    "draft_title": "Borrador {0}",
+    "drafts": "Borradores ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "Cancelar",
+      "confirm": "Bloquear",
+      "title": "Tes certeza de querer bloquear a {0}？"
+    },
+    "block_domain": {
+      "cancel": "Cancelar",
+      "confirm": "Bloquear",
+      "title": "Tes certeza de querer bloquear {0}？"
+    },
+    "common": {
+      "cancel": "Non",
+      "confirm": "Si"
+    },
+    "delete_list": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "Tes a certeza de querer eliminar a lista \"{0}\"?"
+    },
+    "delete_posts": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "Tes certeza de querer eliminar esta publicación?"
+    },
+    "mute_account": {
+      "cancel": "Cancelar",
+      "confirm": "Acalar",
+      "title": "Tes certeza de querer acalar a {0}？"
+    },
+    "show_reblogs": {
+      "cancel": "Cancelar",
+      "confirm": "Mostrar",
+      "title": "Tes certeza de querer mostrar as promocións de {0}？"
+    },
+    "unfollow": {
+      "cancel": "Cancelar",
+      "confirm": "Retirar",
+      "title": "Tes certeza de querer retirar o seguimento?"
+    }
+  },
+  "conversation": {
+    "with": "con"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Liñas {0}",
+      "open": "Abrir",
+      "snippet_from": "Fragmento de {0}"
+    }
+  },
+  "error": {
+    "account_not_found": "Non se atopa a conta {0}",
+    "explore-list-empty": "Non hai tendencias agora. Mira máis tarde!",
+    "file_size_cannot_exceed_n_mb": "O ficheiro non pode superar os {0}MB",
+    "sign_in_error": "Non se conectou co servidor.",
+    "status_not_found": "Non se atopa a publicación",
+    "unsupported_file_format": "Non se admite este tipo de ficheiro"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "Estás vendo unha versión non oficial de Elk creada pola comunidade - {0}.",
+      "desc2": "Podería conter cambios non revisados e incluso malintencionados.",
+      "desc3": "Non accedas usando unha conta real.",
+      "title": "Instalar versión"
+    },
+    "desc_highlight": "É de agardar que haxa fallos e falten cousas por aquí e por alá.",
+    "desc_para1": "Grazas polo teu interese en probar Elk, o cliente web para Mastodon que estamos creando!",
+    "desc_para2": "traballamos arreo para desenvolvelo e melloralo.",
+    "desc_para3": "Podes acelerar o desenvolvemento patrocinando ao Equipo en GitHub Sponsors. Agardamos que desfrutes de Elk!",
+    "desc_para4": "Elk é Código Aberto. Se queres axudar probándoo, aportando a túa opinión, ou colaborando,",
+    "desc_para5": "contacta con nós en GitHub",
+    "desc_para6": "e involúcrate.",
+    "footer_team": "O Equipo Elk",
+    "title": "Elk está de pre-estrea!"
+  },
+  "language": {
+    "search": "Buscar"
+  },
+  "list": {
+    "add_account": "Engadir conta á lista",
+    "cancel_edit": "Cancelar a edición",
+    "clear_error": "Limpar erro",
+    "create": "Crear",
+    "delete": "Elimina esta lista",
+    "delete_error": "Algo fallou ao querer eliminar a lista",
+    "edit": "Edita esta lista",
+    "edit_error": "Algo fallou ao querer actualizar a lista",
+    "error": "Houbo un fallo ao crear a lista",
+    "error_prefix": "Erro: ",
+    "list_title_placeholder": "Título da lista",
+    "modify_account": "Modificar listas coa conta",
+    "remove_account": "Retirar conta da lista",
+    "save": "Gardar cambios"
+  },
+  "menu": {
+    "block_account": "Bloquear {0}",
+    "block_domain": "Bloquear o dominio {0}",
+    "copy_link_to_post": "Copiar ligazón á publicación",
+    "copy_original_link_to_post": "Copiar ligazón orixinal á publicación",
+    "delete": "Eliminar",
+    "delete_and_redraft": "Eliminar e volver a escribir",
+    "direct_message_account": "Mensaxe directa {0}",
+    "edit": "Editar",
+    "hide_reblogs": "Agochar promocións de {0}",
+    "mention_account": "Mencionar a {0}",
+    "mute_account": "Acalar a {0}",
+    "mute_conversation": "Acalar esta publicación",
+    "open_in_original_site": "Abrir no sitio web orixinal",
+    "pin_on_profile": "Fixar no perfil",
+    "share_post": "Compartir esta publicación",
+    "show_favourited_and_boosted_by": "Mostrar quen favoreceu e promoveu",
+    "show_reblogs": "Mostrar promocións desde {0}",
+    "show_untranslated": "Mostrar sen traducir",
+    "toggle_theme": {
+      "dark": "Activar modo escuro",
+      "light": "Activar modo claro"
+    },
+    "translate_post": "Traducir publicación",
+    "unblock_account": "Desbloquear a {0}",
+    "unblock_domain": "Desbloquear o dominio {0}",
+    "unmute_account": "Reactivar {0}",
+    "unmute_conversation": "Reactivar esta publicación",
+    "unpin_on_profile": "Desafixar do perfil"
+  },
+  "nav": {
+    "back": "Atrás",
+    "blocked_domains": "Dominios bloqueados",
+    "blocked_users": "Usuarias bloqueadas",
+    "bookmarks": "Marcadores",
+    "built_at": "Publicada en {0}",
+    "compose": "Redactar",
+    "conversations": "Conversas",
+    "explore": "Explorar",
+    "favourites": "Favoritas",
+    "federated": "Federada",
+    "home": "Inicio",
+    "list": "Lista",
+    "lists": "Listas",
+    "local": "Local",
+    "muted_users": "Usuarias acaladas",
+    "notifications": "Notificacións",
+    "privacy": "Privacidade",
+    "profile": "Perfil",
+    "search": "Buscar",
+    "select_feature_flags": "Toggle Feature Flags",
+    "select_font_size": "Tamaño do texto",
+    "select_language": "Idioma da interface",
+    "settings": "Axustes",
+    "show_intro": "Mostrar intro",
+    "toggle_theme": "Mudar decorado",
+    "zen_mode": "Modo Cen"
+  },
+  "notification": {
+    "favourited_post": "favoreceu a túa publicación",
+    "followed_you": "seguiute",
+    "followed_you_count": "{0} persoas seguíronte|{0} persoa seguiute|{0} persoas seguíronte",
+    "missing_type": "FALTA o notification.type:",
+    "reblogged_post": "promoveu a túa publicación",
+    "request_to_follow": "solicitou seguirte",
+    "signed_up": "creou a conta",
+    "update_status": "actualizou a publicación"
+  },
+  "placeholder": {
+    "content_warning": "Escribe aquí o aviso",
+    "default_1": "En que estás a pensar?",
+    "reply_to_account": "Responder a {0}",
+    "replying": "Responde aquí",
+    "the_thread": "a conversa"
+  },
+  "pwa": {
+    "dismiss": "Desbotar",
+    "install": "Instalar",
+    "install_title": "Instalar Elk",
+    "title": "Dispoñible nova versión de Elk!",
+    "update": "Actualizar",
+    "update_available_short": "Actualizar Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "Un cliente áxil para Mastodon (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "Un cliente áxil para Mastodon (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "Un cliente áxil para Mastodon (preview)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description": "Un cliente áxil para Mastodon",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "Buscar persoas e cancelos",
+    "search_empty": "Non atopamos nada con eses termos de busca"
+  },
+  "settings": {
+    "about": {
+      "built_at": "Data versión",
+      "label": "Acerca de",
+      "meet_the_team": "Coñece ao equipo",
+      "sponsor_action": "Patrocínanos",
+      "sponsor_action_desc": "Para axudar ao equipo que desenvolve Elk",
+      "sponsors": "Patrocinios",
+      "sponsors_body_1": "Elk é posible grazas ao xeneroso patrocinio e axuda de:",
+      "sponsors_body_2": "Todas as empresas e persoas que patrocinan a Team Elk e colaboradoras.",
+      "sponsors_body_3": "Se estás desfrutando da app, considera patrocinarnos:",
+      "version": "Versión"
+    },
+    "account_settings": {
+      "description": "Edita a configuración da túa conta na interface de Mastodon",
+      "label": "Axustes da conta"
+    },
+    "interface": {
+      "color_mode": "Modo de cor",
+      "dark_mode": "Escuro",
+      "default": " (por defecto)",
+      "font_size": "Tamaño da letra",
+      "label": "Interface",
+      "light_mode": "Claro",
+      "system_mode": "Escuro",
+      "theme_color": "Cor do decorado"
+    },
+    "language": {
+      "display_language": "Idioma da interface",
+      "label": "Idioma",
+      "status": "Estado da tradución: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Engadir",
+        "choose_language": "Elixe idioma",
+        "heading": "Traducións",
+        "hide_specific": "Agochar determinadas traducións",
+        "remove": "Retirar"
+      }
+    },
+    "notifications": {
+      "label": "Notificacións",
+      "notifications": {
+        "label": "Axuste da notificacións"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favoritas",
+          "follow": "Novas seguidoras",
+          "mention": "Mencións",
+          "poll": "Enquisas",
+          "reblog": "Promoción recibida",
+          "title": "Que notificacións queres recibir?"
+        },
+        "description": "Recibe notificacións incluso cando non usas Elk.",
+        "instructions": "Non esquezas gardar os cambios usando o botón @:settings.notifications.push_notifications.save_settings",
+        "label": "Axustes de notificacións Push",
+        "policy": {
+          "all": "De calquera",
+          "followed": "De persoas que sigo",
+          "follower": "De persoas que me siguen",
+          "none": "De ninguén",
+          "title": "De quen podo recibir notificacións?"
+        },
+        "save_settings": "Gardar axustes",
+        "subscription_error": {
+          "clear_error": "Limpar erro",
+          "invalid_vapid_key": "A chave pública VAPID non semella válida.",
+          "permission_denied": "Permiso non concedido: activa as notificacións no navegador.",
+          "repo_link": "Repositorio de Elk en GitHub",
+          "request_error": "Algo fallou ao solicitar a subscrición, inténtao outra vez e se o erro continúa, informa do problema no repositorio de Elk.",
+          "title": "Non se puido activar a subscrición a notificacións push",
+          "too_many_registrations": "Debido a limitacións do navegador, Elk non pode usar o servizo de notificacións push para múltiples contas en diferentes servidores. Podes subscribirte ás notificacións push con outra conta e intentalo outra vez.",
+          "vapid_not_supported": "O teu navegador ten soporte para Notificacións Web Push, pero non semella ter incluído o protocolo VAPID."
+        },
+        "title": "Axustes das Notificacións Push",
+        "undo_settings": "Desfacer cambios",
+        "unsubscribe": "Desactivar notificacións Push",
+        "unsupported": "O teu navegador non ten soporte para notificacións Push.",
+        "warning": {
+          "enable_close": "Pechar",
+          "enable_description": "Para recibir notificacións cando Elk non está aberta, activa as notificacións Push. Podes controlar de xeito preciso o tipo de interaccións que crearán notificacións push a través do botón \"@:settings.notifications.show_btn{'\"'} unha vez activadas.",
+          "enable_description_desktop": "Para recibir notificacións cando Elk non está aberta, activa as notificacións Push. Cando as actives poderás controlar de xeito preciso o tipo de interaccións que crearán notificación Push en \"Axustes > Notificacións > Axustes Notificacións Push\".",
+          "enable_description_mobile": "Tamén podes acceder aos axustes usando o menú de navegación \"Axustes > Notificacións > Axustes notificación Push\".",
+          "enable_description_settings": "Para recibir notificacións cando Elk non está aberta, activa as notificacións Push. Cando as actives, e nesta mesma panalla, poderás controlar de xeito preciso o tipo de interacción que creará unha notificación Push.",
+          "enable_desktop": "Activar notificacións Push",
+          "enable_title": "Non perdas nada",
+          "re_auth": "Semella que o teu servidor non ten soporte para notificacións Push. Inténtao pechando a sesión e volvendo a acceder, se esta mensaxe continúa aparecendo contacta coa administración do teu servidor."
+        }
+      },
+      "show_btn": "Ir aos axustes de notificacións",
+      "under_construction": "En desenvolvemento"
+    },
+    "notifications_settings": "Notificacións",
+    "preferences": {
+      "enable_autoplay": "Activar reprodución auto.",
+      "enable_pinch_to_zoom": "Activar belisco para aumentar",
+      "github_cards": "GitHub Cards",
+      "grayscale_mode": "Modo en escala de grises",
+      "hide_account_hover_card": "Non mostrar tarxetas emerxentes",
+      "hide_alt_indi_on_posts": "Agochar indicador ALT nas publicacións",
+      "hide_boost_count": "Agochar conta de promocións",
+      "hide_favorite_count": "Agochar conta de favoritos",
+      "hide_follower_count": "Agochar conta de seguimentos",
+      "hide_reply_count": "Agochar conta de respostas",
+      "hide_translation": "Agochar tradución",
+      "hide_username_emojis": "Agochar emojis nos nomes",
+      "hide_username_emojis_description": "Agocha nas cronoloxías os emojis nos nomes de usuaria. Emojis seguirán visibles na páxina de perfil da usuaria.",
+      "label": "Preferencias",
+      "title": "Características experimentais",
+      "user_picker": "Selector de conta",
+      "virtual_scroll": "Desprazamento virtual",
+      "wellbeing": "Benestar"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bio",
+        "description": "Editar avatar, nome de usuaria, perfil, etc.",
+        "display_name": "Nome público",
+        "label": "Aspecto",
+        "profile_metadata": "Metadatos do perfil",
+        "profile_metadata_desc": "Podes mostrar {0} elementos nunha táboa no teu perfil",
+        "title": "Editar perfil"
+      },
+      "featured_tags": {
+        "description": "Será posible buscar as túas publicacións públicas con estos cancelos.",
+        "label": "Cancelos destacados"
+      },
+      "label": "Perfil"
+    },
+    "select_a_settings": "Elixe un axuste",
+    "users": {
+      "export": "Exportar User Tokens",
+      "import": "Importar User Tokens",
+      "label": "Contas conectadas"
+    }
+  },
+  "share-target": {
+    "description": "Podes configurar Elk para compartir contido desde outras aplicacións, simplemente instala Elk no teu dispositivo ou computadora e inicia sesión.",
+    "hint": "Para poder compartir usando Elk, debes instalar Elk e iniciar sesión.",
+    "title": "Compartir con Elk"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "O número de anexo excede o límite por publicación.",
+    "attachments_limit_error": "Límite por publicación superado",
+    "edited": "(Editado)",
+    "editing": "Editando",
+    "loading": "Cargando...",
+    "publish_failed": "Fallou a publicación",
+    "publishing": "Publicando",
+    "upload_failed": "Fallou a subida",
+    "uploading": "Subindo..."
+  },
+  "status": {
+    "boosted_by": "Promovida por",
+    "edited": "Editada por {0}",
+    "favourited_by": "Favorecida por",
+    "filter_hidden_phrase": "Filtrada por",
+    "filter_removed_phrase": "Eliminada polo filtro",
+    "filter_show_anyway": "Mostrar igualmente",
+    "img_alt": {
+      "ALT": "Texto Alt",
+      "desc": "Descrición",
+      "dismiss": "Desbotar",
+      "read": "Ler a descrición de {0}"
+    },
+    "poll": {
+      "count": "{0} votos|{0} voto|{0} votos",
+      "ends": "remata en {0}",
+      "finished": "rematou o {0}"
+    },
+    "reblogged": "Promovida por {0}",
+    "replying_to": "En resposta a {0}",
+    "show_full_thread": "Mostrar conversa completa",
+    "someone": "alguén",
+    "spoiler_show_less": "Mostrar menos",
+    "spoiler_show_more": "Mostrar máis",
+    "thread": "Fío",
+    "try_original_site": "Ver no sitio orixinal"
+  },
+  "status_history": {
+    "created": "escrita o {0}",
+    "edited": "editada o {0}"
+  },
+  "tab": {
+    "accounts": "Contas",
+    "for_you": "Para ti",
+    "hashtags": "Cancelos",
+    "list": "Lista",
+    "media": "Multimedia",
+    "news": "Novas",
+    "notifications_all": "Todo",
+    "notifications_mention": "Mención",
+    "posts": "Publicacións",
+    "posts_with_replies": "Publicacións & Respostas"
+  },
+  "tag": {
+    "follow": "Seguir",
+    "follow_label": "Seguir etiqueta {0}",
+    "unfollow": "Deixar de seguir",
+    "unfollow_label": "Retirar seguimento de {0}"
+  },
+  "time_ago_options": {
+    "day_future": "en 0 días|mañán|en {n} días",
+    "day_past": "fai 0 días|onte|fai {n} días",
+    "hour_future": "en 0 horas|nunha hora|en {n} horas",
+    "hour_past": "fai 0 horas|fai 1 hora|fai {n} horas",
+    "just_now": "agora",
+    "minute_future": "en 0 minutos|nun minuto|en {n} minutos",
+    "minute_past": "fai 0 minutos|fai un minuto|fai{n} minutos",
+    "month_future": "en 0 meses|o próximo mes|en {n} meses",
+    "month_past": "fai 0 meses|o último mes|fai {n} meses",
+    "second_future": "agora|en {n} segundo|en {n} segundos",
+    "second_past": "agora|fai {n} segundo|fai {n} segundos",
+    "short_day_future": "en {n}d",
+    "short_day_past": "{n}d",
+    "short_hour_future": "en {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "en {n}min",
+    "short_minute_past": "{n}min",
+    "short_month_future": "en {n}m",
+    "short_month_past": "{n}m",
+    "short_second_future": "en {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "en {n}se",
+    "short_week_past": "{n}se",
+    "short_year_future": "in {n}a",
+    "short_year_past": "{n}a",
+    "week_future": "en 0 semanas|próxima semana|en {n} semanas",
+    "week_past": "fai 0 semanas|última semana|fai {n} semanas",
+    "year_future": "en 0 anos|próximo ano|en {n} anos",
+    "year_past": "fai 0 anos|último ano|fai {n} anos"
+  },
+  "timeline": {
+    "show_new_items": "Mostrar {v} novos elementos|Mostrar {v} novo elemento|Mostrar {v} novos elementos",
+    "view_older_posts": "Non se mostrarán publicacións antigas desde outras instancias."
+  },
+  "title": {
+    "federated_timeline": "Cronoloxía Federada",
+    "local_timeline": "Cronoloxía Local"
+  },
+  "tooltip": {
+    "add_content_warning": "Engadir aviso sobre o contido",
+    "add_emojis": "Engadir emojis",
+    "add_media": "Engade unha imaxe, vídeo ou ficheiro de audio",
+    "add_publishable_content": "Engade contido a publicar",
+    "change_content_visibility": "Cambia a visibilidade do contido",
+    "change_language": "Cambia o idioma",
+    "emoji": "Emoji",
+    "explore_links_intro": "Estes son os temas sobre os que están a conversar agora mesmo as persoas deste servidor e as dos outros servidores da rede descentralizada.",
+    "explore_posts_intro": "Estas publicacións deste e outros servidores da rede descentralizada están aumentando a súa popularidade.",
+    "explore_tags_intro": "Está aumentando a popularidade destes cancelos entre as persoas deste e outros servidores da rede descentralizada.",
+    "open_editor_tools": "Ferramentas de edición",
+    "publish_failed": "Close failed messages at the top of editor to republish posts",
+    "toggle_bold": "Activar grosa",
+    "toggle_code_block": "Activar bloque de código",
+    "toggle_italic": "Activar cursiva"
+  },
+  "user": {
+    "add_existing": "Engadir unha conta existente.",
+    "server_address_label": "Enderezo do Servidor Mastodon",
+    "sign_in_desc": "Inicia sesión para seguir perfís e cancelos, favorecer, compartir ou responder a mensaxes, ou interactuar coa túa conta noutro servidor.",
+    "sign_in_notice_title": "Vendo {0} datos públicos",
+    "sign_out_account": "Pechar sesión {0}",
+    "single_instance_sign_in_desc": "Inicia sesión para seguir perfís e cancelos, favorecer, compartir ou responder a mensaxes.",
+    "tip_no_account": "Se aínda non tes unha conta Mastodon, {0}.",
+    "tip_register_account": "elixe un servidor para crear unha"
+  },
+  "visibility": {
+    "direct": "Directa",
+    "direct_desc": "Visible só polas usuarias mencionadas",
+    "private": "Só seguidoras",
+    "private_desc": "Visible só polas seguidoras",
+    "public": "Pública",
+    "public_desc": "Visible por todas",
+    "unlisted": "Non listada",
+    "unlisted_desc": "Visible por todas, pero non aparece en seccións Descubrir"
+  }
+}

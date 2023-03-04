@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+const { as = 'button', command, disabled, content, icon } = defineProps<{
   text?: string | number
   content: string
   color: string
@@ -17,16 +17,20 @@ defineOptions({
   inheritAttrs: false,
 })
 
+defineSlots<{
+  text: {}
+}>()
+
 const el = ref<HTMLDivElement>()
 
 useCommand({
   scope: 'Actions',
 
   order: -2,
-  visible: () => props.command && !props.disabled,
+  visible: () => command && !disabled,
 
-  name: () => props.content,
-  icon: () => props.icon,
+  name: () => content,
+  icon: () => icon,
 
   onActivate() {
     if (!checkLogin())
@@ -43,25 +47,38 @@ useCommand({
 
 <template>
   <component
-    :is="as || 'button'"
+    :is="as"
     v-bind="$attrs" ref="el"
-    w-fit flex gap-1 items-center
-    rounded group :hover="hover"
-    focus:outline-none cursor-pointer
+    w-fit flex gap-1 items-center transition-all select-none
+    rounded group
+    :hover=" !disabled ? hover : undefined"
+    focus:outline-none
     :focus-visible="hover"
-    :class="active ? [color] : 'text-secondary'"
+    :class="active ? color : 'text-secondary'"
     :aria-label="content"
+    :disabled="disabled"
   >
     <CommonTooltip placement="bottom" :content="content">
-      <div rounded-full p2 :group-hover="groupHover" :group-focus-visible="groupHover" group-focus-visible:ring="2 current">
-        <div :class="[active && activeIcon ? activeIcon : icon, { 'pointer-events-none': disabled }]" />
+      <div
+        rounded-full p2
+        v-bind="disabled ? {} : {
+          'group-hover': groupHover,
+          'group-focus-visible': groupHover,
+          'group-focus-visible:ring': '2 current',
+        }"
+      >
+        <div :class="active && activeIcon ? activeIcon : icon" />
       </div>
     </CommonTooltip>
 
-    <CommonAnimateNumber v-if="text !== undefined" :increased="active" text-sm>
-      <span text-secondary-light>{{ text }}</span>
+    <CommonAnimateNumber v-if="text !== undefined || $slots.text" :increased="active" text-sm>
+      <span text-secondary-light>
+        <slot name="text">{{ text }}</slot>
+      </span>
       <template #next>
-        <span :class="[color]">{{ text }}</span>
+        <span :class="[color]">
+          <slot name="text">{{ text }}</slot>
+        </span>
       </template>
     </CommonAnimateNumber>
   </component>

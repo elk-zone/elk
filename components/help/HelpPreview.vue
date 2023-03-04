@@ -1,50 +1,16 @@
 <script setup lang="ts">
-interface Team {
-  github: string
-  display: string
-  twitter: string
-  mastodon: string
-}
-
 const emit = defineEmits<{
   (event: 'close'): void
 }>()
-
-const teams: Team[] = [
-  {
-    github: 'antfu',
-    display: 'Anthony Fu',
-    twitter: 'antfu7',
-    mastodon: 'antfu@mas.to',
-  },
-  {
-    github: 'patak-dev',
-    display: 'Patak',
-    twitter: 'patak_dev',
-    mastodon: 'patak@webtoo.ls',
-  },
-  {
-    github: 'danielroe',
-    display: 'Daniel Roe',
-    twitter: 'danielcroe',
-    mastodon: 'daniel@roe.dev',
-  },
-  {
-    github: 'sxzz',
-    display: 'sxzz',
-    twitter: 'sanxiaozhizi',
-    mastodon: 'sxzz@mas.to',
-  },
-].sort(() => Math.random() - 0.5)
 </script>
 
 <template>
   <div my-8 px-3 sm:px-8 md:max-w-200 flex="~ col gap-4" relative>
     <button btn-action-icon absolute top--8 right-0 m1 aria-label="Close" @click="emit('close')">
-      <div i-ri:close-fill />
+      <div i-ri:close-line />
     </button>
 
-    <img src="/logo.svg" w-20 h-20 height="80" width="80" mxa alt="logo">
+    <img :alt="$t('app_logo')" :src="`/${''}logo.svg`" w-20 h-20 height="80" width="80" mxa class="rtl-flip">
     <h1 mxa text-4xl mb4>
       {{ $t('help.title') }}
     </h1>
@@ -55,19 +21,28 @@ const teams: Team[] = [
       <b text-primary>{{ $t('help.desc_highlight') }}</b>
       {{ $t('help.desc_para2') }}
     </p>
+    <p>
+      {{ $t('help.desc_para4') }}
+      <NuxtLink font-bold text-primary href="https://github.com/elk-zone/elk" target="_blank">
+        {{ $t('help.desc_para5') }}
+      </NuxtLink>
+      {{ $t('help.desc_para6') }}
+    </p>
     {{ $t('help.desc_para3') }}
     <p flex="~ gap-2 wrap" mxa>
-      <template v-for="team of teams" :key="team.github">
-        <a :href="`https://github.com/sponsors/${team.github}`" target="_blank" rounded-full>
-          <img :src="`https://res.cloudinary.com/dchoja2nb/image/twitter_name/h_120,w_120/f_auto/${team.twitter}.jpg`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
-        </a>
+      <template v-for="team of elkTeamMembers" :key="team.github">
+        <NuxtLink :href="`https://github.com/sponsors/${team.github}`" target="_blank" external rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
+          <img :src="`/avatars/${team.github}-100x100.png`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
+        </NuxtLink>
       </template>
     </p>
-    <p italic text-2xl>
-      <span text-lg font-script>The Elk Team</span>
+    <p italic flex justify-center w-full>
+      <NuxtLink href="https://github.com/sponsors/elk-zone" target="_blank">
+        <span text-xl font-script hover:text-primary transition duration-300>{{ $t('help.footer_team') }}</span>
+      </NuxtLink>
     </p>
 
-    <button btn-solid mxa @click="emit('close')">
+    <button btn-solid mxa tabindex="2" @click="emit('close')">
       {{ $t('action.enter_app') }}
     </button>
   </div>

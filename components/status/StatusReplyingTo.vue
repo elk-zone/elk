@@ -1,28 +1,42 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
-const { status } = defineProps<{
-  status: Status
+const {
+  status,
+  isSelfReply = false,
+} = defineProps<{
+  status: mastodon.v1.Status
+  isSelfReply: boolean
 }>()
 
-const account = useAccountById(status.inReplyToAccountId)
+const isSelf = $computed(() => status.inReplyToAccountId === status.account.id)
+const account = isSelf ? computed(() => status.account) : useAccountById(status.inReplyToAccountId)
 </script>
 
 <template>
-  <div v-if="status.inReplyToAccountId" absolute top-0 right-0 px-4 py-3 flex="~ wrap" gap-1>
-    <NuxtLink
-      v-if="status.inReplyToId"
-      flex="~" items-center font-bold text-sm text-secondary gap-1
-      :to="getStatusInReplyToRoute(status)"
-      :title="account ? `Replying to ${getDisplayName(account)}` : 'Replying to someone'"
-    >
-      <div i-ri:reply-fill class="scale-x-[-1]" text-secondary-light />
-      <template v-if="account?.id !== status.account.id">
-        <AccountInlineInfo v-if="account" :account="account" :link="false" />
-        <span v-else ws-nowrap>{{ $t('status.someone') }}</span>
-      </template>
-      <span v-else ws-nowrap>{{ $t('status.thread') }}</span>
-      <div i-ph:chats-fill text-primary text-lg />
-    </NuxtLink>
-  </div>
+  <NuxtLink
+    v-if="status.inReplyToId"
+    flex="~ gap2" items-center h-auto text-sm text-secondary
+    :to="getStatusInReplyToRoute(status)"
+    :title="$t('status.replying_to', [account ? getDisplayName(account) : $t('status.someone')])"
+    text-blue saturate-50 hover:saturate-100
+  >
+    <template v-if="isSelfReply">
+      <div i-ri-discuss-line text-blue />
+      <span>{{ $t('status.show_full_thread') }}</span>
+    </template>
+    <template v-else>
+      <div i-ri-chat-1-line text-blue />
+      <div ws-nowrap flex>
+        <i18n-t keypath="status.replying_to">
+          <template v-if="account">
+            <AccountInlineInfo :account="account" :link="false" m-inline-1 />
+          </template>
+          <template v-else>
+            {{ $t('status.someone') }}
+          </template>
+        </i18n-t>
+      </div>
+    </template>
+  </NuxtLink>
 </template>

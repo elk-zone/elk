@@ -1,40 +1,72 @@
-import { APP_NAME, STORAGE_KEY_LANG } from '~/constants'
+import type { Directions } from 'vue-i18n-routing'
+import type { LocaleObject } from '#i18n'
 
 export function setupPageHeader() {
-  const isDev = process.dev
-  const isPreview = useRuntimeConfig().public.env === 'staging'
+  const { locale, locales, t } = useI18n()
+  const colorMode = useColorMode()
+  const buildInfo = useBuildInfo()
+  const enablePinchToZoom = usePreferences('enablePinchToZoom')
 
-  const i18n = useI18n()
+  const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
+    acc[l.code!] = l.dir ?? 'ltr'
+    return acc
+  }, {} as Record<string, Directions>)
 
   useHeadFixed({
     htmlAttrs: {
-      lang: () => i18n.locale.value,
+      lang: () => locale.value,
+      dir: () => localeMap[locale.value] ?? 'ltr',
+      class: () => enablePinchToZoom.value ? ['enable-pinch-to-zoom'] : [],
     },
-    titleTemplate: title => `${title ? `${title} | ` : ''}${APP_NAME}${isDev ? ' (dev)' : isPreview ? ' (preview)' : ''}`,
-  })
+    meta: [{
+      name: 'viewport',
+      content: () => `width=device-width,initial-scale=1${enablePinchToZoom.value ? '' : ',maximum-scale=1,user-scalable=0'},viewport-fit=cover`,
+    }],
+    titleTemplate: (title) => {
+      let titleTemplate = title ?? ''
 
-  // eslint-disable-next-line no-unused-expressions
-  isDark.value
+      if (titleTemplate.match(/&[a-z0-9#]+;/gi)) {
+        titleTemplate = unescapeTitleTemplate(titleTemplate, [
+          ['"', ['&#34;', '&quot;']],
+          ['&', ['&#38;', '&amp;']],
+          ['\'', ['&#39;', '&apos;']],
+          ['\u003C', ['&#60;', '&lt;']],
+          ['\u003E', ['&#62;', '&gt;']],
+        ])
+        if (titleTemplate.length > 60)
+          titleTemplate = `${titleTemplate.slice(0, 60)}...${titleTemplate.endsWith('"') ? '"' : ''}`
+
+        if (!titleTemplate.includes('"'))
+          titleTemplate = `"${titleTemplate}"`
+      }
+      else if (titleTemplate.length > 60) {
+        titleTemplate = `${titleTemplate.slice(0, 60)}...${titleTemplate.endsWith('"') ? '"' : ''}`
+      }
+
+      if (titleTemplate.length)
+        titleTemplate += ' | '
+
+      titleTemplate += t('app_name')
+      if (buildInfo.env !== 'release')
+        titleTemplate += ` (${buildInfo.env})`
+
+      return titleTemplate
+    },
+    link: process.client && useAppConfig().pwaEnabled
+      ? () => [{
+          key: 'webmanifest',
+          rel: 'manifest',
+          href: `/manifest-${locale.value}${colorMode.value === 'dark' ? '-dark' : ''}.webmanifest`,
+        }]
+      : [],
+  })
 }
 
-export async function setupI18n() {
-  const { locale, setLocale, locales } = useI18n()
-  const isFirstVisit = !window.localStorage.getItem(STORAGE_KEY_LANG)
-  const localeStorage = useLocalStorage(STORAGE_KEY_LANG, locale.value)
-
-  if (isFirstVisit) {
-    const userLang = (navigator.language || 'en-US').toLowerCase()
-    // cause vue-i18n not explicit export LocaleObject type
-    const supportLocales = unref(locales) as { code: string }[]
-    const lang = supportLocales.find(locale => userLang.startsWith(locale.code.toLowerCase()))?.code
-      || supportLocales.find(locale => userLang.startsWith(locale.code.split('-')[0]))?.code
-    localeStorage.value = lang || 'en-US'
+function unescapeTitleTemplate(titleTemplate: string, replacements: [string, string[]][]) {
+  let result = titleTemplate
+  for (const [replacement, entities] of replacements) {
+    for (const e of entities)
+      result = result.replaceAll(e, replacement)
   }
-
-  if (localeStorage.value !== locale.value)
-    await setLocale(localeStorage.value)
-
-  watchEffect(() => {
-    localeStorage.value = locale.value
-  })
+  return result.trim()
 }

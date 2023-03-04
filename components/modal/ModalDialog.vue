@@ -1,10 +1,7 @@
 <script lang="ts" setup>
-import { useDeactivated } from '~/composables/lifecycle'
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 
 export interface Props {
-  /** v-model dislog visibility */
-  modelValue: boolean
-
   /**
    * level of depth
    *
@@ -32,6 +29,11 @@ export interface Props {
    * @default false
    */
   keepAlive?: boolean
+
+  /**
+   * The aria-labelledby id for the dialog.
+   */
+  dialogLabelledBy?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -41,12 +43,19 @@ const props = withDefaults(defineProps<Props>(), {
   keepAlive: false,
 })
 
-const emits = defineEmits<{
-  /** v-model dislog visibility */
-  (event: 'update:modelValue', value: boolean): void
+const emit = defineEmits<{
+  /** v-model dialog visibility */
+  (event: 'close',): void
 }>()
 
-const visible = useVModel(props, 'modelValue', emits, { passive: true })
+const { modelValue: visible } = defineModel<{
+  /** v-model dislog visibility */
+  modelValue: boolean
+}>()
+
+defineOptions({
+  inheritAttrs: false,
+})
 
 const deactivated = useDeactivated()
 const route = useRoute()
@@ -54,6 +63,15 @@ const route = useRoute()
 /** scrollable HTML element */
 const elDialogMain = ref<HTMLDivElement>()
 const elDialogRoot = ref<HTMLDivElement>()
+
+const { activate } = useFocusTrap(elDialogRoot, {
+  immediate: false,
+  allowOutsideClick: true,
+  clickOutsideDeactivates: true,
+  escapeDeactivates: true,
+  preventScroll: true,
+  returnFocusOnDeactivate: true,
+})
 
 defineExpose({
   elDialogRoot,
@@ -63,6 +81,7 @@ defineExpose({
 /** close the dialog */
 function close() {
   visible.value = false
+  emit('close')
 }
 
 function clickMask() {
@@ -102,6 +121,11 @@ const isVShow = computed(() => {
 
 const bindTypeToAny = ($attrs: any) => $attrs as any
 
+const trapFocusDialog = () => {
+  if (isVShow.value)
+    nextTick().then(() => activate())
+}
+
 useEventListener('keydown', (e: KeyboardEvent) => {
   if (!visible.value)
     return
@@ -112,20 +136,16 @@ useEventListener('keydown', (e: KeyboardEvent) => {
 })
 </script>
 
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
-</script>
-
 <template>
-  <SafeTeleport to="#teleport-end">
+  <Teleport to="body">
     <!-- Dialog component -->
-    <Transition name="dialog-visible">
+    <Transition name="dialog-visible" @transitionend="trapFocusDialog">
       <div
         v-if="isVIf"
         v-show="isVShow"
         ref="elDialogRoot"
+        aria-modal="true"
+        :aria-labelledby="dialogLabelledBy"
         :style="{
           'z-index': zIndex,
         }"
@@ -144,7 +164,7 @@ export default {
             <!-- We use `class` here to make v-bind being able to be override them -->
             <div
               ref="elDialogMain"
-              class="dialog-main w-full rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-w-125 max-h-full of-y-auto overscroll-contain touch-pan-y touch-pan-x"
+              class="dialog-main rounded shadow-lg pointer-events-auto isolate bg-base border-base border-1px border-solid w-full max-h-full of-y-auto overscroll-contain touch-pan-y touch-pan-x"
               v-bind="bindTypeToAny($attrs)"
             >
               <slot />
@@ -153,7 +173,7 @@ export default {
         </div>
       </div>
     </Transition>
-  </SafeTeleport>
+  </Teleport>
 </template>
 
 <style lang="postcss" scoped>

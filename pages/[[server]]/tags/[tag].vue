@@ -1,12 +1,16 @@
 <script setup lang="ts">
+definePageMeta({
+  name: 'tag',
+})
+
 const params = useRoute().params
 const tagName = $(computedEager(() => params.tag as string))
 
-const { data: tag, refresh } = $(await useAsyncData(() => useMasto().tags.fetch(tagName)))
+const { client } = $(useMasto())
+const { data: tag, refresh } = $(await useAsyncData(() => client.v1.tags.fetch(tagName), { default: () => shallowRef() }))
 
-const paginator = useMasto().timelines.iterateHashtag(tagName)
-const stream = await useMasto().stream.streamTagTimeline(tagName)
-onBeforeUnmount(() => stream.disconnect())
+const paginator = client.v1.timelines.listHashtag(tagName)
+const stream = useStreaming(client => client.v1.stream.streamTagTimeline(tagName))
 
 if (tag) {
   useHeadFixed({
@@ -27,8 +31,10 @@ onReactivated(() => {
       <span text-lg font-bold>#{{ tagName }}</span>
     </template>
 
-    <template v-if="typeof tag?.following === 'boolean'" #actions>
-      <TagActionButton :tag="tag" @change="refresh()" />
+    <template #actions>
+      <template v-if="typeof tag?.following === 'boolean'">
+        <TagActionButton :tag="tag" @change="refresh()" />
+      </template>
     </template>
 
     <slot>

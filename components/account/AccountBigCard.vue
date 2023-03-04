@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
+
 const { account, as = 'div' } = $defineProps<{
-  account: Account
+  account: mastodon.v1.Account
   as?: string
 }>()
 
@@ -24,37 +25,30 @@ defineOptions({
       <!-- User info -->
       <div flex sm:flex-row flex-col flex-gap-2>
         <div flex items-center justify-between>
-          <div w-17 h-17 rounded-full border-4 border-bg-base z-2 mt--2 ml--1>
+          <div w-17 h-17 rounded-full border-4 border-bg-base z-2 mt--2 ms--1>
             <AccountAvatar :account="account" />
           </div>
-          <a block sm:hidden href="javascript:;" @click.stop>
+          <NuxtLink block sm:hidden href="javascript:;" @click.stop>
             <AccountFollowButton :account="account" />
-          </a>
+          </NuxtLink>
         </div>
         <div sm:mt-2>
-          <div>
-            <ContentRich
-              font-bold text-lg line-clamp-1 ws-pre-wrap break-all
-              :content="getDisplayName(account, { rich: true })"
-              :emojis="account.emojis"
-            />
-          </div>
+          <AccountDisplayName :account="account" font-bold text-lg line-clamp-1 ws-pre-wrap break-all />
           <AccountHandle text-sm :account="account" />
         </div>
       </div>
       <!-- Note -->
-      <div v-if="account.note">
+      <div v-if="account.note" max-h-100 overflow-y-auto>
         <ContentRich
           :content="account.note" :emojis="account.emojis"
-          line-clamp-2
         />
       </div>
       <!-- Follow info -->
       <div flex justify-between items-center>
         <AccountPostsFollowers text-sm :account="account" />
-        <a sm:block hidden href="javascript:;" @click.stop>
+        <NuxtLink sm:block hidden href="javascript:;" @click.stop>
           <AccountFollowButton :account="account" />
-        </a>
+        </NuxtLink>
       </div>
     </div>
   </component>

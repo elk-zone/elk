@@ -3,18 +3,19 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().blocks.iterate()
+const { t } = useI18n()
 
 useHeadFixed({
-  title: 'Blocked users',
+  title: () => t('nav.blocked_users'),
 })
 </script>
 
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>{{ $t('account.blocked_users') }}</span>
+      <span timeline-title-style>{{ $t('nav.blocked_users') }}</span>
     </template>
-    <AccountPaginator :paginator="paginator" />
+
+    <TimelineBlocks v-if="isHydrated" />
   </MainContent>
 </template>

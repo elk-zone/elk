@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { StatusEdit } from 'masto'
+import type { mastodon } from 'masto'
 
 const { edit } = defineProps<{
-  edit: StatusEdit
+  edit: mastodon.v1.StatusEdit
 }>()
 </script>
 
@@ -22,10 +22,7 @@ const { edit } = defineProps<{
         {{ edit.spoilerText }}
       </template>
       <StatusBody :status="edit" />
-      <StatusMedia
-        v-if="edit.mediaAttachments.length"
-        :status="edit"
-      />
+      <StatusMedia v-if="edit.mediaAttachments.length" :status="edit" />
     </StatusSpoiler>
   </div>
 </template>

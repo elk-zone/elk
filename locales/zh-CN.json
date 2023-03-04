@@ -1,58 +1,93 @@
 {
+  "a11y": {
+    "loading_page": "加载页面中，请稍后",
+    "loading_titled_page": "加载{0}页面中，请稍后",
+    "locale_changed": "语言已更改为{0}",
+    "locale_changing": "更改语言中，请稍后",
+    "route_loaded": "页面{0}已加载"
+  },
   "account": {
-    "avatar_description": "{0}的头像",
+    "avatar_description": "{0} 的头像",
     "blocked_by": "您已被此用户拉黑",
     "blocked_domains": "已拉黑的域名",
     "blocked_users": "已拉黑的用户",
+    "blocking": "已拉黑",
+    "bot": "机器人",
     "favourites": "喜欢的帖文",
     "follow": "关注",
     "follow_back": "回关",
     "follow_requested": "已申请关注",
+    "followers": "关注者",
     "followers_count": "被 {0} 人关注",
-    "following": "关注中",
+    "following": "正在关注",
     "following_count": "正在关注 {0} 人",
     "follows_you": "已关注你",
     "go_to_profile": "转到个人资料",
     "joined": "已加入",
     "moved_title": "的新账号是：",
     "muted_users": "已屏蔽的用户",
+    "muting": "已屏蔽",
     "mutuals": "互相关注",
+    "notifications_on_post_disable": "当 {username} 发布时停止通知我",
+    "notifications_on_post_enable": "当 {username} 发布时通知我",
     "pinned": "置顶的帖文",
+    "posts": "帖文",
     "posts_count": "{0} 条帖文",
-    "profile_description": "{0}的个人资料头图",
+    "profile_description": "{0} 的个人资料头图",
     "profile_unavailable": "个人资料不可见",
-    "unfollow": "取消关注"
+    "request_follow": "请求关注",
+    "unblock": "取消拉黑",
+    "unfollow": "取消关注",
+    "unmute": "取消屏蔽",
+    "view_other_followers": "其他站点上的关注者可能不会在这里显示。",
+    "view_other_following": "其他站点上正在关注的人可能不会在这里显示。"
   },
   "action": {
+    "apply": "应用",
     "bookmark": "收藏",
     "bookmarked": "已收藏",
     "boost": "转发",
+    "boost_count": "{0}",
     "boosted": "已转发",
+    "clear_publish_failed": "清除发布失败信息",
+    "clear_upload_failed": "清除上传失败信息",
+    "close": "关闭",
     "compose": "撰写",
+    "confirm": "确认",
+    "edit": "编辑",
     "enter_app": "进入应用",
     "favourite": "喜欢",
+    "favourite_count": "{0}",
     "favourited": "已喜欢",
     "more": "更多",
     "next": "下一个",
     "prev": "上一个",
-    "publish": "发布！",
+    "publish": "发布",
     "reply": "回复",
+    "reply_count": "{0}",
+    "reset": "重置",
+    "save": "保存",
     "save_changes": "保存更改",
     "sign_in": "登鹿",
+    "sign_in_to": "登鹿 {0}",
     "switch_account": "切换帐号",
     "vote": "投票"
   },
-  "app_desc_short": "用 🧡 制作的 Mastodon 客户端",
+  "app_desc_short": "一个灵巧的 Mastodon 客户端",
+  "app_logo": "应用图标",
   "app_name": "鹿鸣",
+  "attachment": {
+    "edit_title": "描述",
+    "remove_label": "移除附件"
+  },
   "command": {
     "activate": "执行",
     "complete": "完成",
     "compose_desc": "写一条新帖文",
-    "lang": "语言",
-    "n-people-in-the-past-n-days": "{0} 人在过去 {1} 天",
+    "n-people-in-the-past-n-days": "过去 {1} 天中 {0} 人访问",
     "select_lang": "选择语言",
     "sign_in_desc": "添加现有帐户",
-    "switch_account": "切换到{0}",
+    "switch_account": "切换到 {0}",
     "switch_account_desc": "切换到另一个帐户",
     "toggle_dark_mode": "切换深色模式",
     "toggle_zen_mode": "切换禅模式"
@@ -60,73 +95,166 @@
   "common": {
     "end_of_list": "列表到底啦",
     "error": "错误",
-    "kiloSuffix": "K",
-    "megaSuffix": "M",
+    "in": "在",
     "not_found": "无法找到相关内容",
     "offline_desc": "您目前已离线，请检查网络连接。"
+  },
+  "compose": {
+    "draft_title": "草稿 {0}",
+    "drafts": "草稿 ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "取消",
+      "confirm": "拉黑",
+      "title": "你确定拉黑 {0} 吗？"
+    },
+    "block_domain": {
+      "cancel": "取消",
+      "confirm": "拉黑",
+      "title": "你确定拉黑域名 {0} 吗？"
+    },
+    "common": {
+      "cancel": "否",
+      "confirm": "是"
+    },
+    "delete_list": {
+      "cancel": "取消",
+      "confirm": "删除",
+      "title": "你确定要删除 \"{0}\" 列表吗？"
+    },
+    "delete_posts": {
+      "cancel": "取消",
+      "confirm": "删除",
+      "title": "你确定要删除这条帖文吗？"
+    },
+    "mute_account": {
+      "cancel": "取消",
+      "confirm": "屏蔽",
+      "title": "你确定屏蔽 {0} 吗？"
+    },
+    "show_reblogs": {
+      "cancel": "取消",
+      "confirm": "显示",
+      "title": "你确定要显示来自 {0} 的转发吗？"
+    },
+    "unfollow": {
+      "cancel": "取消",
+      "confirm": "取消关注",
+      "title": "你确定要取消关注吗？"
+    }
   },
   "conversation": {
     "with": "与"
   },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "行 {0}",
+      "open": "打开",
+      "snippet_from": "来自 {0} 的片段"
+    }
+  },
   "error": {
     "account_not_found": "未找到用户 {0}",
     "explore-list-empty": "目前没有热门话题，稍后再来看看吧！",
-    "status_not_found": "未找到帖文"
-  },
-  "feature_flag": {
-    "virtual_scroll": "虚拟滚动"
+    "file_size_cannot_exceed_n_mb": "文件大小不能超过 {0}MB",
+    "sign_in_error": "无法连接服务器",
+    "status_not_found": "未找到帖文",
+    "unsupported_file_format": "不支持的文件格式"
   },
   "help": {
+    "build_preview": {
+      "desc1": "您当前正在查看来自社区的鹿鸣预览版 - {0}。",
+      "desc2": "可能包含未经审查甚至恶意的更改。",
+      "desc3": "请不要使用真实账号登录",
+      "title": "预览部署"
+    },
     "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
     "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Mastodon 客户端。",
-    "desc_para2": "我们正在努力开发中，并随着时间的推移不断完善。鹿鸣将很快开源，并邀请您参与进来！",
-    "desc_para3": "在此之前，为了更好的促进我们的开发工作，你可以通过以下链接赞助团队成员。",
+    "desc_para2": "我们正在努力开发中，并随着时间的推移不断完善。",
+    "desc_para3": "为了帮助促进开发，你可以通过以下链接赞助我们的团队成员。希望你喜欢鹿鸣！",
+    "desc_para4": "鹿鸣是开源的，如果你愿意帮助测试、提供反馈或作出贡献，",
+    "desc_para5": "在 GitHub 上联系我们",
+    "desc_para6": "来参与其中。",
+    "footer_team": "鹿鸣开发团队",
     "title": "预览鹿鸣！"
+  },
+  "language": {
+    "search": "搜索"
+  },
+  "list": {
+    "add_account": "向列表中添加用户",
+    "cancel_edit": "取消编辑",
+    "clear_error": "清空错误",
+    "create": "创建",
+    "delete": "删除列表",
+    "delete_error": "删除列表时出现了一个错误",
+    "edit": "编辑列表",
+    "edit_error": "更新列表时出现了一个错误",
+    "error": "创建列表时出现了一个错误",
+    "error_prefix": "错误：",
+    "list_title_placeholder": "列表标题",
+    "modify_account": "修改列表中的用户",
+    "remove_account": "移除列表中的用户",
+    "save": "保存更改"
   },
   "menu": {
     "block_account": "拉黑 {0}",
     "block_domain": "拉黑域名 {0}",
     "copy_link_to_post": "复制这篇帖文的链接",
+    "copy_original_link_to_post": "复制这篇贴文的原始链接",
     "delete": "删除",
     "delete_and_redraft": "删除并重新编辑",
     "direct_message_account": "私信 {0}",
     "edit": "编辑",
+    "hide_reblogs": "隐藏来自 {0} 的转发",
     "mention_account": "提及 {0}",
     "mute_account": "屏蔽 {0}",
+    "mute_conversation": "静音这条帖文",
     "open_in_original_site": "从源站打开",
     "pin_on_profile": "置顶在个人资料上",
+    "share_post": "分享这条帖文",
+    "show_favourited_and_boosted_by": "展示谁喜欢和转发了",
+    "show_reblogs": "显示来自 {0} 的转发",
     "show_untranslated": "显示原文",
     "toggle_theme": {
       "dark": "切换深色模式",
-      "light": "切换亮色模式"
+      "light": "切换浅色模式"
     },
     "translate_post": "翻译帖文",
     "unblock_account": "解除拉黑 {0}",
     "unblock_domain": "解除拉黑域名 {0}",
     "unmute_account": "解除屏蔽 {0}",
+    "unmute_conversation": "取消静音帖子",
     "unpin_on_profile": "取消置顶"
   },
-  "nav_footer": {
-    "built_at": "于 {0} 构建",
-    "select_feature_flags": "功能开关",
-    "select_language": "选择语言",
-    "show_intro": "应用介绍",
-    "toggle_theme": "切换主题",
-    "zen_mode": "禅模式"
-  },
-  "nav_side": {
+  "nav": {
+    "back": "回退",
+    "blocked_domains": "已拉黑的域名",
+    "blocked_users": "已拉黑的用户",
     "bookmarks": "书签",
+    "built_at": "构建于 {0}",
+    "compose": "撰写",
     "conversations": "私信",
     "explore": "探索",
     "favourites": "喜欢",
     "federated": "跨站",
     "home": "主页",
+    "list": "列表",
+    "lists": "列表",
     "local": "本地",
+    "muted_users": "已屏蔽的用户",
     "notifications": "通知",
-    "profile": "个人资料"
-  },
-  "nav_user": {
-    "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。"
+    "privacy": "隐私协议",
+    "profile": "个人资料",
+    "search": "搜索",
+    "select_feature_flags": "功能开关",
+    "select_font_size": "字体大小",
+    "select_language": "选择语言",
+    "settings": "设置",
+    "show_intro": "应用介绍",
+    "toggle_theme": "切换主题",
+    "zen_mode": "禅模式"
   },
   "notification": {
     "favourited_post": "点赞了你的帖文",
@@ -135,6 +263,7 @@
     "missing_type": "未知的通知类型：",
     "reblogged_post": "转发了你的帖文",
     "request_to_follow": "请求关注你",
+    "signed_up": "注册了",
     "update_status": "更新了他们的状态"
   },
   "placeholder": {
@@ -144,25 +273,219 @@
     "replying": "回复",
     "the_thread": "这个帖文"
   },
+  "pwa": {
+    "dismiss": "忽略",
+    "install": "安装",
+    "install_title": "安装鹿鸣",
+    "title": "鹿鸣存在新的更新",
+    "update": "更新",
+    "update_available_short": "更新鹿鸣",
+    "webmanifest": {
+      "canary": {
+        "description": "一个灵巧的 Mastodon 客户端（Canary）",
+        "name": "鹿鸣 Canary",
+        "short_name": "鹿鸣 Canary"
+      },
+      "dev": {
+        "description": "一个灵巧的 Mastodon 客户端（开发版）",
+        "name": "鹿鸣 开发版",
+        "short_name": "鹿鸣 开发版"
+      },
+      "preview": {
+        "description": "一个灵巧的 Mastodon 客户端（预览版）",
+        "name": "鹿鸣 预览版",
+        "short_name": "鹿鸣 预览版"
+      },
+      "release": {
+        "description": "一个灵巧的 Mastodon 客户端",
+        "name": "鹿鸣",
+        "short_name": "鹿鸣"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "搜索用户或话题标签",
+    "search_empty": "无法找到符合这些搜索词的任何内容"
+  },
+  "settings": {
+    "about": {
+      "built_at": "构建于",
+      "label": "关于",
+      "meet_the_team": "认识开发团队",
+      "sponsor_action": "赞助我们",
+      "sponsor_action_desc": "支持团队开发鹿鸣",
+      "sponsors": "赞助者",
+      "sponsors_body_1": "鹿鸣能够出现要感谢以下赞助者的慷慨赞助和帮助：",
+      "sponsors_body_2": "以及赞助鹿鸣开发团队和成员的所有公司和个人。",
+      "sponsors_body_3": "如果你喜欢这个应用程序，请考虑赞助我们：",
+      "version": "版本"
+    },
+    "account_settings": {
+      "description": "在 Mastodon UI 中编辑你的账号设置",
+      "label": "账号设置"
+    },
+    "interface": {
+      "color_mode": "颜色",
+      "dark_mode": "深色",
+      "default": "（默认）",
+      "font_size": "字号",
+      "label": "外观",
+      "light_mode": "浅色",
+      "system_mode": "跟随系统",
+      "theme_color": "主题颜色"
+    },
+    "language": {
+      "display_language": "首选语言",
+      "label": "语言",
+      "status": "翻译进度： {0}/{1} ({2}%)",
+      "translations": {
+        "add": "添加",
+        "choose_language": "选择语言",
+        "heading": "翻译",
+        "hide_specific": "隐藏指定的翻译",
+        "remove": "删除"
+      }
+    },
+    "notifications": {
+      "label": "通知",
+      "notifications": {
+        "label": "通知设置"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "喜欢的",
+          "follow": "新的关注者",
+          "mention": "提及",
+          "poll": "投票",
+          "reblog": "转发了你的帖文",
+          "title": "接收了什么通知？"
+        },
+        "description": "当你没有在使用鹿鸣时也能接收通知。",
+        "instructions": "不要忘记点击 @:settings.notifications.push_notifications.save_settings 按钮保存改动！",
+        "label": "推送通知设置",
+        "policy": {
+          "all": "任何人",
+          "followed": "我关注的人",
+          "follower": "关注我的人",
+          "none": "无人",
+          "title": "我可以从谁那里接收通知？"
+        },
+        "save_settings": "保存设置改动",
+        "subscription_error": {
+          "clear_error": "清除错误",
+          "invalid_vapid_key": "VAPID 密钥无效。",
+          "permission_denied": "权限不足：请在你的浏览器中打开通知权限。",
+          "repo_link": "鹿鸣在 Github 上的仓库",
+          "request_error": "请求订阅时发生了一个错误，请再次尝试。如错误仍然存在，请到鹿鸣代码仓库中报告这一问题。",
+          "title": "无法订阅推送通知。",
+          "too_many_registrations": "由于浏览器限制，鹿鸣无法为不同服务器上的多个帐户使用推送通知服务。请取消订阅另一个帐户的推送通知，然后重试。",
+          "vapid_not_supported": "你的浏览器支持推送通知功能，但似乎没有实现 VAPID 协议。"
+        },
+        "title": "推送通知设置",
+        "undo_settings": "撤销设置改动",
+        "unsubscribe": "禁用桌面通知",
+        "unsupported": "你的浏览器不支持桌面通知",
+        "warning": {
+          "enable_close": "关闭",
+          "enable_description": "若想在鹿鸣没有打开时接收通知，请启用推送通知功能。一旦启动，你可以通过上面的“前往通知设置”按钮来精确控制哪种类型的互动可以产生推送通知。",
+          "enable_description_desktop": "若想在鹿鸣没有打开时接收通知，请启用推送通知功能。一旦启动，你可以通过 “设置” > “通知” > “推送通知设置” 来精确控制哪种类型的互动可以产生桌面通知。",
+          "enable_description_mobile": "你也可以使用导航菜单 “设置” > “通知” > “推送通知设置” 访问设置页面。",
+          "enable_description_settings": "若想在鹿鸣没有打开时接收通知，请启用推送通知功能。一旦启动，你可以精确控制哪种类型的互动会在这个屏幕上产生推送通知。",
+          "enable_desktop": "启用推送通知",
+          "enable_title": "不错过任何事",
+          "re_auth": "您的服务器似乎不支持推送通知。尝试退出用户并重新登录。如果此消息仍然出现，请联系您服务器的管理员。"
+        }
+      },
+      "show_btn": "前往通知设置",
+      "under_construction": "建设中"
+    },
+    "notifications_settings": "通知",
+    "preferences": {
+      "enable_autoplay": "开启自动播放",
+      "enable_pinch_to_zoom": "启用双指缩放功能",
+      "github_cards": "GitHub 卡片",
+      "grayscale_mode": "灰色模式",
+      "hide_account_hover_card": "隐藏用户悬浮卡",
+      "hide_alt_indi_on_posts": "隐藏帖文上的描述按钮",
+      "hide_boost_count": "隐藏转发数",
+      "hide_favorite_count": "隐藏收藏数",
+      "hide_follower_count": "隐藏关注者数",
+      "hide_reply_count": "隐藏回复数",
+      "hide_translation": "隐藏翻译",
+      "hide_username_emojis": "隐藏用户昵称的表情符号",
+      "hide_username_emojis_description": "隐藏时间线上用户的表情符号。表情符号仍然会在用户个人资料中展示。",
+      "label": "首选项",
+      "title": "实验功能",
+      "user_picker": "用户选择器",
+      "virtual_scroll": "虚拟滚动",
+      "wellbeing": "社交偏好"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "简介",
+        "description": "编辑个人资料，例如头像、用户名、个人简介等。",
+        "display_name": "昵称",
+        "label": "个人资料",
+        "profile_metadata": "个人资料附加信息",
+        "profile_metadata_desc": "这将会在个人资料页上以表格的形式展示，最多 {0} 个项目",
+        "profile_metadata_label": "描述",
+        "profile_metadata_value": "内容",
+        "title": "编辑个人资料"
+      },
+      "featured_tags": {
+        "description": "人们可以在这些标签下浏览你的公共嘟文。",
+        "label": "精选话题标签"
+      },
+      "label": "个人资料"
+    },
+    "select_a_settings": "在左侧选择一个设置",
+    "users": {
+      "export": "导出用户令牌",
+      "import": "导入用户令牌",
+      "label": "当前用户"
+    }
+  },
+  "share-target": {
+    "description": "只需要在你的设备或电脑上安装并登录鹿鸣，通过简单的配置，你就可以从其他应用中分享内容至鹿鸣。",
+    "hint": "为了分享内容至鹿鸣，你必须安装并登录鹿鸣。",
+    "title": "分享至鹿鸣"
+  },
   "state": {
+    "attachments_exceed_server_limit": "附件的数量超出了最大限制",
+    "attachments_limit_error": "超出每篇帖文的最大限制",
     "edited": "（已编辑）",
     "editing": "编辑中",
     "loading": "加载中...",
+    "publish_failed": "发布失败",
+    "publishing": "发布中...",
+    "upload_failed": "上传失败",
     "uploading": "上传中..."
   },
   "status": {
+    "boosted_by": "被转发",
     "edited": "在 {0} 编辑了",
+    "favourited_by": "被喜欢",
     "filter_hidden_phrase": "筛选依据",
     "filter_removed_phrase": "从筛选中移除",
     "filter_show_anyway": "仍然展示",
+    "img_alt": {
+      "ALT": "ALT",
+      "desc": "描述",
+      "dismiss": "关闭",
+      "read": "查看 {0} 的描述"
+    },
     "poll": {
-      "count": "{n} 次投票",
+      "count": "{0} 次投票",
       "ends": "将在 {0} 结束",
       "finished": "已在 {0} 结束"
     },
     "reblogged": "{0} 转发了",
+    "replying_to": "回复{0}",
+    "show_full_thread": "显示完整贴文串",
+    "someone": "某人",
     "spoiler_show_less": "隐藏",
     "spoiler_show_more": "显示更多",
+    "thread": "帖文串",
     "try_original_site": "尝试从源站打开"
   },
   "status_history": {
@@ -170,8 +493,10 @@
     "edited": "在 {0} 编辑了"
   },
   "tab": {
+    "accounts": "用户",
     "for_you": "推荐关注",
     "hashtags": "话题标签",
+    "list": "列表",
     "media": "媒体",
     "news": "最新消息",
     "notifications_all": "全部",
@@ -179,39 +504,46 @@
     "posts": "帖文",
     "posts_with_replies": "帖文与留言"
   },
+  "tag": {
+    "follow": "关注",
+    "follow_label": "关注 {0} 标签",
+    "unfollow": "取消关注",
+    "unfollow_label": "取消关注 {0} 标签"
+  },
   "time_ago_options": {
-    "day_future": "现在|明天|{n}天后",
-    "day_past": "现在|昨天|{n}天前",
-    "hour_future": "现在|1小时后|{n}小时后",
-    "hour_past": "现在|1小时前|{n}小时前",
+    "day_future": "现在|明天|{n} 天后",
+    "day_past": "现在|昨天|{n} 天前",
+    "hour_future": "现在|1 小时后|{n} 小时后",
+    "hour_past": "现在|1 小时前|{n} 小时前",
     "just_now": "刚刚",
-    "minute_future": "现在|1分钟后|{n}分钟后",
-    "minute_past": "现在|1分钟前|{n}分钟前",
-    "month_future": "现在|下个月|{n}个月后",
-    "month_past": "现在|上个月|{n}个月前",
-    "second_future": "刚刚|{n}秒后|{n}秒后",
-    "second_past": "刚刚|{n}秒前|{n}秒前",
-    "short_day_future": "{n}天",
-    "short_day_past": "{n}天",
-    "short_hour_future": "{n}小时",
-    "short_hour_past": "{n}小时",
-    "short_minute_future": "{n}分",
-    "short_minute_past": "{n}分",
-    "short_month_future": "{n}月",
-    "short_month_past": "{n}月",
-    "short_second_future": "{n}秒",
-    "short_second_past": "{n}秒",
-    "short_week_future": "{n}周",
-    "short_week_past": "{n}周",
-    "short_year_future": "{n}年",
-    "short_year_past": "{n}年",
-    "week_future": "现在|下周|{n}周后",
-    "week_past": "现在|上周|{n}周前",
-    "year_future": "现在|明年|{n}年后",
-    "year_past": "现在|去年|{n}年前"
+    "minute_future": "现在|1 分钟后|{n} 分钟后",
+    "minute_past": "现在|1 分钟前|{n} 分钟前",
+    "month_future": "现在|下个月|{n} 个月后",
+    "month_past": "现在|上个月|{n} 个月前",
+    "second_future": "刚刚|{n} 秒后|{n} 秒后",
+    "second_past": "刚刚|{n} 秒前|{n} 秒前",
+    "short_day_future": "{n} 天",
+    "short_day_past": "{n} 天",
+    "short_hour_future": "{n} 小时",
+    "short_hour_past": "{n} 小时",
+    "short_minute_future": "{n} 分",
+    "short_minute_past": "{n} 分",
+    "short_month_future": "{n} 月",
+    "short_month_past": "{n} 月",
+    "short_second_future": "{n} 秒",
+    "short_second_past": "{n} 秒",
+    "short_week_future": "{n} 周",
+    "short_week_past": "{n} 周",
+    "short_year_future": "{n} 年",
+    "short_year_past": "{n} 年",
+    "week_future": "现在|下周|{n} 周后",
+    "week_past": "现在|上周|{n} 周前",
+    "year_future": "现在|明年|{n} 年后",
+    "year_past": "现在|去年|{n} 年前"
   },
   "timeline": {
-    "show_new_items": "展示 {n} 条新帖文"
+    "show_new_items": "展示 {v} 条新帖文",
+    "view_older_posts": "其他站点上更老的帖文可能不会在这里显示。"
   },
   "title": {
     "federated_timeline": "跨站时间线",
@@ -219,17 +551,28 @@
   },
   "tooltip": {
     "add_content_warning": "添加内容警告标识",
+    "add_emojis": "添加表情符号",
     "add_media": "添加图片、视频或者音频文件",
+    "add_publishable_content": "添加要发布的内容",
     "change_content_visibility": "修改内容是否可见",
+    "change_language": "更改语言",
+    "emoji": "表情符号",
     "explore_links_intro": "这些新闻故事正被本站和分布式网络上其他站点的用户谈论。",
     "explore_posts_intro": "来自本站和分布式网络上其他站点的这些嘟文正在本站引起关注。",
     "explore_tags_intro": "这些标签正在本站和分布式网络上其他站点的用户中引起关注。",
-    "toggle_code_block": "切换代码块"
+    "open_editor_tools": "编辑器工具",
+    "publish_failed": "关闭编辑器上方的错误信息以重新发布帖文。",
+    "toggle_bold": "切换加粗",
+    "toggle_code_block": "切换代码块",
+    "toggle_italic": "切换斜体"
   },
   "user": {
     "add_existing": "添加现有帐户",
     "server_address_label": "Mastodon 服务器地址",
+    "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。",
+    "sign_in_notice_title": "正在查看 {0} 的公共数据",
     "sign_out_account": "登出 {0}",
+    "single_instance_sign_in_desc": "登录后可关注其他人或标签、收藏、分享和回复帖文。",
     "tip_no_account": "如果您还没有 Mastodon 账户，{0}。",
     "tip_register_account": "选择您的服务器并注册一个"
   },

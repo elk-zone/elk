@@ -1,14 +1,19 @@
 <script lang="ts" setup>
-// @ts-expect-error missing types
-import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import { STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS } from '~~/constants'
-const paginator = useMasto().trends.links
+
+const { t } = useI18n()
+
+const paginator = useMastoClient().v1.trends.listLinks()
 
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS, false)
+
+useHeadFixed({
+  title: () => `${t('tab.news')} | ${t('nav.explore')}`,
+})
 </script>
 
 <template>
-  <CommonAlert v-if="!hideNewsTips" @close="hideNewsTips = true">
+  <CommonAlert v-if="isHydrated && !hideNewsTips" @close="hideNewsTips = true">
     <p>{{ $t('tooltip.explore_links_intro') }}</p>
   </CommonAlert>
 

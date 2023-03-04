@@ -1,11 +1,11 @@
 import type { Highlighter, Lang } from 'shiki-es'
 
-export const shiki = ref<Highlighter>()
+const shiki = ref<Highlighter>()
 
 const registeredLang = ref(new Map<string, boolean>())
 let shikiImport: Promise<void> | undefined
 
-export function highlightCode(code: string, lang: Lang) {
+export function useHighlighter(lang: Lang) {
   if (!shikiImport) {
     shikiImport = import('shiki-es')
       .then(async (r) => {
@@ -25,23 +25,52 @@ export function highlightCode(code: string, lang: Lang) {
   }
 
   if (!shiki.value)
-    return code
+    return undefined
 
   if (!registeredLang.value.get(lang)) {
     shiki.value.loadLanguage(lang)
       .then(() => {
         registeredLang.value.set(lang, true)
       })
-      .catch((e) => {
-        console.error(`[shiki] Failed to load language ${lang}`)
-        console.error(e)
-        registeredLang.value.set(lang, false)
+      .catch(() => {
+        const fallbackLang = 'md'
+        shiki.value?.loadLanguage(fallbackLang).then(() => {
+          registeredLang.value.set(fallbackLang, true)
+        })
       })
-    return code
+    return undefined
   }
 
-  return shiki.value.codeToHtml(code, {
+  return shiki.value
+}
+
+export function useShikiTheme() {
+  return useColorMode().value === 'dark' ? 'vitesse-dark' : 'vitesse-light'
+}
+
+const HTML_ENTITIES = {
+  '<': '&lt;',
+  '>': '&gt;',
+  '&': '&amp;',
+  '\'': '&apos;',
+  '"': '&quot;',
+} as Record<string, string>
+
+function escapeHtml(text: string) {
+  return text.replace(/[<>&'"]/g, ch => HTML_ENTITIES[ch])
+}
+
+export function highlightCode(code: string, lang: Lang) {
+  const shiki = useHighlighter(lang)
+  if (!shiki)
+    return escapeHtml(code)
+
+  return shiki.codeToHtml(code, {
     lang,
-    theme: isDark.value ? 'vitesse-dark' : 'vitesse-light',
+    theme: useShikiTheme(),
   })
+}
+
+export function useShiki() {
+  return shiki
 }

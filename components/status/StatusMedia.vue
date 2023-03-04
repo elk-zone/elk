@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
-const { status } = defineProps<{
-  status: Status
-  minimized?: boolean
+const { status, isPreview = false } = defineProps<{
+  status: mastodon.v1.Status | mastodon.v1.StatusEdit
+  fullSize?: boolean
+  isPreview?: boolean
 }>()
 </script>
 
@@ -13,9 +14,10 @@ const { status } = defineProps<{
       <StatusAttachment
         :attachment="attachment"
         :attachments="status.mediaAttachments"
-        :class="{ 'max-h-72': minimized }"
+        :full-size="fullSize"
         w-full
         h-full
+        :is-preview="isPreview"
       />
     </template>
   </div>
@@ -23,7 +25,7 @@ const { status } = defineProps<{
 
 <style lang="postcss">
 .status-media-container {
-  --at-apply: gap-0.5;
+  --at-apply: gap-2;
   position: relative;
   width: 100%;
   overflow: hidden;

@@ -1,0 +1,474 @@
+{
+  "a11y": {
+    "loading_page": "Sayfa yükleniyor, lütfen bekleyin",
+    "loading_titled_page": "Sayfa {0} yükleniyor, lütfen bekleyin",
+    "locale_changed": "Dil değiştirildi, yeni dil: {0}",
+    "locale_changing": "Dil değiştiriliyor, lütfen bekleyin",
+    "route_loaded": "Sayfa {0} yüklendi"
+  },
+  "account": {
+    "avatar_description": "{0} avatarı",
+    "blocked_by": "Bu kullanıcı sizi engellemiş",
+    "blocked_domains": "Engellenen alan adları",
+    "blocked_users": "Engellenen kullanıcılar",
+    "blocking": "Engelli",
+    "bot": "BOT",
+    "favourites": "Favoriles",
+    "follow": "Takip et",
+    "follow_back": "Geri takip et",
+    "follow_requested": "İstek gönderildi",
+    "followers": "Takipçiler",
+    "followers_count": "{0} Takipçi",
+    "following": "Takip edilenler",
+    "following_count": "{0} takip edilen",
+    "follows_you": "Seni takip ediyor",
+    "go_to_profile": "Profile git",
+    "joined": "Katıldı",
+    "moved_title": "belirttiği yeni hesabı:",
+    "muted_users": "Susturulmuş kullanıcılar",
+    "muting": "Susturulmuş",
+    "mutuals": "Karşılıklı takip",
+    "pinned": "Sabitlendi",
+    "posts": "Gönderiler",
+    "posts_count": "{0} Gönderi",
+    "profile_description": "{0} profil başlığı",
+    "profile_unavailable": "Profil mevcut değil",
+    "unblock": "Engeli kaldır",
+    "unfollow": "Takibi bırak",
+    "unmute": "Susturulmayı kaldır"
+  },
+  "action": {
+    "apply": "Uygula",
+    "bookmark": "Yer imlerine ekle",
+    "bookmarked": "Yer imlerine eklendi",
+    "boost": "Boost",
+    "boost_count": "{0}",
+    "boosted": "Boost edildi",
+    "clear_upload_failed": "Dosya yükleme hatalarını temizle",
+    "close": "Kapat",
+    "compose": "Oluştur",
+    "confirm": "Onayla",
+    "edit": "Düzenle",
+    "enter_app": "Uygulamaya gir",
+    "favourite": "Favorilere ekle",
+    "favourite_count": "{0}",
+    "favourited": "Favorilere eklendi",
+    "more": "Daha fazla",
+    "next": "Sonraki",
+    "prev": "Önceki",
+    "publish": "Yayımla",
+    "reply": "Cevap ver",
+    "reply_count": "{0}",
+    "reset": "Sıfırla",
+    "save": "Kaydet",
+    "save_changes": "Değişikleri kaydet",
+    "sign_in": "Giriş yap",
+    "switch_account": "Hesap değiştir",
+    "vote": "Oy ver"
+  },
+  "app_desc_short": "Hızlı bir Mastodon web istemcisi",
+  "app_logo": "Elk Logosu",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Açıklama",
+    "remove_label": "Eki kaldır"
+  },
+  "command": {
+    "activate": "Etkinleştir",
+    "complete": "Tamamla",
+    "compose_desc": "Yeni bir gönderi yaz",
+    "n-people-in-the-past-n-days": "geçen {1} gündeki {0} kişi",
+    "select_lang": "Dil seç",
+    "sign_in_desc": "Var olan bir hesap ekle",
+    "switch_account": "{0} hesabına geç",
+    "switch_account_desc": "Başka bir hesaba geç",
+    "toggle_dark_mode": "Karanlık mod durumunu değiştir",
+    "toggle_zen_mode": "Zen mod durumunu değiştir"
+  },
+  "common": {
+    "end_of_list": "Listenin sonu",
+    "error": "HATA",
+    "in": "içinde",
+    "not_found": "404 Bulunamadı",
+    "offline_desc": "Çevrimdışısınız gibi görünüyor. Lütfen internet bağlantınızı kontrol edin."
+  },
+  "compose": {
+    "draft_title": "Taslak {0}",
+    "drafts": "Taslaklar ({v})"
+  },
+  "confirm": {
+    "common": {
+      "cancel": "Hayır",
+      "confirm": "Evet",
+      "title": "Emin misiniz?"
+    },
+    "delete_posts": {
+      "cancel": "İptal et",
+      "confirm": "Sil",
+      "title": "Bu gönderiyi silmek istediğinizden emin misiniz?"
+    }
+  },
+  "conversation": {
+    "with": "ile"
+  },
+  "error": {
+    "account_not_found": "Hesap {0} bulunamadı",
+    "explore-list-empty": "Şu anda hiçbir şey trend değil. Daha sonra tekrar kontrol edin!",
+    "file_size_cannot_exceed_n_mb": "Dosya boyutu {0}MB'ı geçemez",
+    "sign_in_error": "Sunucuya bağlanılamadı.",
+    "status_not_found": "Gönderi bulunamadı",
+    "unsupported_file_format": "Desteklenmeyen dosya biçimi"
+  },
+  "help": {
+    "desc_highlight": "Orada burada bir kaç hata ve eksik özellik bekleyin.",
+    "desc_para1": "Elk'i, bizim çalışması devam eden Mastodon web istemcimizi, denemedeki ilginiz için teşekkürler!",
+    "desc_para2": "Zaman içinde geliştirmek ve iyileştirmek için çok çalışıyoruz.",
+    "desc_para3": "Geliştirmemizi hızlandırmak için takıma GitHub Sponsors üzerinden sponsor olabilirsinizi. Umarız Elk'i beğenirsiniz!",
+    "desc_para4": "Elk açık kaynaklıdır. Test etmek, geri dönüş vermek veya katkıda bulunmak isterseniz,",
+    "desc_para5": "GitHub'da bize ulaşın",
+    "desc_para6": "ve dahil olun.",
+    "title": "Elk ön izlemede!"
+  },
+  "language": {
+    "search": "Ara"
+  },
+  "menu": {
+    "block_account": "Engele {0}",
+    "block_domain": "Alan adı {0} engelle",
+    "copy_link_to_post": "Bu gönderinin linkini kopyala",
+    "delete": "Sil",
+    "delete_and_redraft": "Sil & yeniden taslak yap",
+    "direct_message_account": "{0} özel mesaj gönder",
+    "edit": "Düzenle",
+    "hide_reblogs": "{0} boostlarını gizle",
+    "mention_account": "{0} etiketle",
+    "mute_account": "{0} sustur",
+    "mute_conversation": "Bu gönderiyi sustur",
+    "open_in_original_site": "Orijinal sitede aç",
+    "pin_on_profile": "Profilde sabitle",
+    "share_post": "Bu gönderiyi paylaş",
+    "show_favourited_and_boosted_by": "Favoriye ekleyenleri ve boost edenleri göster",
+    "show_reblogs": "{0} boostlarını göster",
+    "show_untranslated": "Çevrilmemiş halini göster",
+    "toggle_theme": {
+      "dark": "Karanlık mod durumunu değiştir",
+      "light": "Aydınlık mod durumunu değiştir"
+    },
+    "translate_post": "Gönderiyi çevir",
+    "unblock_account": "{0} engelini kaldır",
+    "unblock_domain": "Alan adı {0} engelini kaldır",
+    "unmute_account": "{0} sesini aç",
+    "unmute_conversation": "Gönderinin sesini aç",
+    "unpin_on_profile": "Profildeki sabiti kaldır"
+  },
+  "nav": {
+    "back": "Geri git",
+    "blocked_domains": "Engellenen alan adları",
+    "blocked_users": "Engellenen kullanıcılar",
+    "bookmarks": "Yer imleri",
+    "built_at": "{0} derlendi",
+    "conversations": "Konuşmalar",
+    "explore": "Keşfet",
+    "favourites": "Favoriler",
+    "federated": "Federe",
+    "home": "Ev",
+    "local": "Yerel",
+    "muted_users": "Susturulmuş kullanıcılar",
+    "notifications": "Bildirimler",
+    "profile": "Profil",
+    "search": "Ara",
+    "select_feature_flags": "Özelliklerin Durumunu Değiştir",
+    "select_font_size": "Font Boyutu",
+    "select_language": "Görünüm Dili",
+    "settings": "Ayarlar",
+    "show_intro": "Girişi göster",
+    "toggle_theme": "Temayı Değiştir",
+    "zen_mode": "Zen Modu"
+  },
+  "notification": {
+    "favourited_post": "gönderini favoriledi",
+    "followed_you": "Seni takip etti",
+    "followed_you_count": "{0} kişi seni takip etti",
+    "missing_type": "EKSİK notification.type:",
+    "reblogged_post": "gönderini yeniden blogladı",
+    "request_to_follow": "Takip isteği attı",
+    "signed_up": "Kaydoldu",
+    "update_status": "Gönderisini güncelledi"
+  },
+  "placeholder": {
+    "content_warning": "Uyarını buraya yaz",
+    "default_1": "Aklında ne var?",
+    "reply_to_account": "{0} cevap ver",
+    "replying": "Cevap veriliyor",
+    "the_thread": "konu"
+  },
+  "pwa": {
+    "dismiss": "Görmezden gel",
+    "title": "Yeni Elk güncellemesi mevcut!",
+    "update": "Güncelle",
+    "update_available_short": "Elk'i güncelle",
+    "webmanifest": {
+      "canary": {
+        "description": "Hızlı bir Mastodon web istemcisi (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "Hızlı bir Mastodon web istemcisi (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "Hızlı bir Mastodon web istemcisi (preview)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description": "Hızlı bir Mastodon web istemcisi",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "İnsanları & etiketleri ara",
+    "search_empty": "Bu arama için sonuç bulunamadı"
+  },
+  "settings": {
+    "about": {
+      "label": "Hakkında",
+      "meet_the_team": "Takım ile buluş",
+      "sponsor_action": "Bize spponsor ol",
+      "sponsor_action_desc": "Elk'i geliştiren takıma destek olmak için",
+      "sponsors": "Sponsorlar",
+      "sponsors_body_1": "Elk cömert sponsorluk ve şunların yardımı sayesinde mümkün oldu:",
+      "sponsors_body_2": "Ve Elk takımına ve üyelerine sponsor olan tüm şirketler ve şahıslar.",
+      "sponsors_body_3": "Eğer uygulamadan hoşlandıysanız bize sponsor olmayı düşünün:"
+    },
+    "account_settings": {
+      "description": "Mastodon UI'da hesap ayarlarını değiştir",
+      "label": "Hesap ayarları"
+    },
+    "interface": {
+      "color_mode": "Renk Modu",
+      "dark_mode": "Karanlık Mod",
+      "default": " (varsayılan)",
+      "font_size": "Font Boyutu",
+      "label": "Arayüz",
+      "light_mode": "Aydınlık Mod",
+      "system_mode": "Sistem"
+    },
+    "language": {
+      "display_language": "Görünüm Dili",
+      "label": "Dil"
+    },
+    "notifications": {
+      "label": "Bildirimler",
+      "notifications": {
+        "label": "Bildirim ayarları"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favoriler",
+          "follow": "Yeni takipçiler",
+          "mention": "Bahsetmeler",
+          "poll": "Anketler",
+          "reblog": "Gönderinizi yeniden bloglamalar",
+          "title": "Hangi bildirimleri alacaksınız??"
+        },
+        "description": "Elk'i kullanmıyorken bile bildirimleri alın.",
+        "instructions": "@:settings.notifications.push_notifications.save_settings butonunu kullanarak değişikleri kaydetmeyi unutmayın!",
+        "label": "Anlık bildirim ayarları",
+        "policy": {
+          "all": "Herkesden",
+          "followed": "Takip ettiğim kişilerden",
+          "follower": "Takipçilerden",
+          "none": "Kimseden",
+          "title": "Kimden bildirim alabilirim??"
+        },
+        "save_settings": "Ayarları kaydet",
+        "subscription_error": {
+          "clear_error": "Hatayı temizle",
+          "permission_denied": "Erişim engellendi: tarayıcınızda bildirimleri etkinleştirin.",
+          "request_error": "Abonelik talep edilirken bir hata oluştu, tekrar deneyin ve hata devam ederse lütfen sorunu Elk deposuna bildirin.",
+          "title": "Anlık bildirimlere abone olunamadı",
+          "too_many_registrations": "Tarayıcı kısıtlamaları nedeniyle Elk, farklı sunuculardaki birden çok hesap için anlık bildirimler hizmetini kullanamaz. Başka bir hesaptaki anlık bildirim aboneliğinden çıkmalı ve tekrar denemelisiniz."
+        },
+        "title": "Anlık bildirim ayarları",
+        "undo_settings": "Değişiklikleri geri al",
+        "unsubscribe": "Anlık bildirimleri devre dışı bırak",
+        "unsupported": "Tarayıcınız anlık bildirimleri desteklemiyor.",
+        "warning": {
+          "enable_close": "Kapat",
+          "enable_description": "Elk açık değilken bildirim almak için anlık bildirimleri etkinleştirin. Etkinleştirildikten sonra yukarıdaki \"@:settings.notifications.show_btn{'\"'} düğmesini kullanarak tam olarak ne tür etkileşimlerin anlık bildirimler oluşturduğunu kontrol edebilirsiniz.",
+          "enable_description_desktop": "Elk açık değilken bildirim almak için anlık bildirimleri etkinleştirin. Etkinleştirildikten sonra \"Ayarlar > Bildirimler > Anlık bildirim ayarları\"nda hangi tür etkileşimlerin anlık bildirimler oluşturduğunu tam olarak kontrol edebilirsiniz.",
+          "enable_description_mobile": "Ayarlara \"Ayarlar > Bildirimler > Anlık bildirim ayarları\" gezinme menüsünü kullanarak da erişebilirsiniz.",
+          "enable_description_settings": "Elk açık değilken bildirim almak için anlık bildirimleri etkinleştirin. Etkinleştirdikten sonra, aynı ekranda hangi tür etkileşimlerin anlık bildirimleri oluşturduğunu tam olarak kontrol edebileceksiniz.",
+          "enable_desktop": "Anlık bildirimleri etkinleştir",
+          "enable_title": "Hiçbirşeyi kaçırma",
+          "re_auth": "Görünüşe göre sunucunuz anlık bildirimleri desteklemiyor. Çıkış yapmayı deneyin ve tekrar giriş yapın, bu mesaj hala görünüyorsa sunucu yöneticinizle iletişime geçin."
+        }
+      },
+      "show_btn": "Bildirim ayarlarına git"
+    },
+    "notifications_settings": "Bildirimler",
+    "preferences": {
+      "github_cards": "GitHub Cards",
+      "hide_boost_count": "Boost sayısını gizle",
+      "hide_favorite_count": "Favori sayısını gizle",
+      "hide_follower_count": "Takipçi sayısını gizle",
+      "label": "Ayarlar",
+      "title": "Deneysel Özellikler",
+      "user_picker": "Kullanıcı Seçici",
+      "virtual_scroll": "Görsel Kaydırma"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Açıklama",
+        "description": "avatar, kullanıcı adı, profil vb. düzenle",
+        "display_name": "Görünen ad",
+        "label": "Görünüm",
+        "profile_metadata": "Profil üstverisi",
+        "profile_metadata_desc": "Profilinizde bir tablo olarak görüntülenen en fazla {0} öğeye sahip olabilirsiniz.",
+        "title": "Profili düzenle"
+      },
+      "featured_tags": {
+        "description": "İnsanlar bu etiketlerler altında herkese açık gönderilerinize göz atabilir.",
+        "label": "Öne çıkan etiketler"
+      },
+      "label": "Profil"
+    },
+    "select_a_settings": "Bir ayar seç",
+    "users": {
+      "export": "Kullanıcı Tokenlerini Dışa Aktar",
+      "import": "Kullanıcı Tokenlerini İçe Aktar",
+      "label": "Giriş yapılan kullanıcılar"
+    }
+  },
+  "state": {
+    "attachments_exceed_server_limit": "Ek sayısı gönderi başına sınırı aştı.",
+    "attachments_limit_error": "Gönderi başına sınır aşıldı",
+    "edited": "(Düzenlendi)",
+    "editing": "Düzenleniyor",
+    "loading": "Yükleniyor...",
+    "publishing": "Yayımlanıyor",
+    "upload_failed": "Yükleme başarısız",
+    "uploading": "Yükleniyor..."
+  },
+  "status": {
+    "boosted_by": "Tarafından boostlandı:",
+    "edited": "Düzenlendi {0}",
+    "favourited_by": "Tarafından favorilendi:",
+    "filter_hidden_phrase": "Tarafından filtrelendi:",
+    "filter_removed_phrase": "Filtre tarafından silindi",
+    "filter_show_anyway": "Yine de göster",
+    "img_alt": {
+      "desc": "Açıklama",
+      "dismiss": "Görmezden gel"
+    },
+    "poll": {
+      "count": "{0} oy",
+      "ends": "{0} biter",
+      "finished": "{0} bitti"
+    },
+    "reblogged": "{0} yeniden blogladı",
+    "replying_to": "{0} cevap veriliyor",
+    "show_full_thread": "Tüm konuyu göster",
+    "someone": "biri",
+    "spoiler_show_less": "Daha az göster",
+    "spoiler_show_more": "Daha çok göster",
+    "thread": "Konu",
+    "try_original_site": "Orijinal siteyi dene"
+  },
+  "status_history": {
+    "created": "{0} oluşturuldu",
+    "edited": "{0} düzenlendi"
+  },
+  "tab": {
+    "for_you": "Senin için",
+    "hashtags": "Etiketler",
+    "media": "Medya",
+    "news": "Haberler",
+    "notifications_all": "Hepsi",
+    "notifications_mention": "Bahsetmeler",
+    "posts": "Gönderiler",
+    "posts_with_replies": "Gönderiler & Yanıtlar"
+  },
+  "tag": {
+    "follow": "Takip et",
+    "follow_label": "{0} etiketini takip et",
+    "unfollow": "Takibi bırak",
+    "unfollow_label": "{0} etiketini takibi bırak"
+  },
+  "time_ago_options": {
+    "day_future": "{n} gün içinde",
+    "day_past": "{n} gün önce",
+    "hour_future": "{n} saat içinde",
+    "hour_past": "{n} saat önce",
+    "just_now": "şimdi",
+    "minute_future": "{n} dakika içinde",
+    "minute_past": "{n} dakika önce",
+    "month_future": "{n} ay içinde",
+    "month_past": "{n} ay önce",
+    "second_future": "şimdi|{n} saniye içinde",
+    "second_past": "şimdi|{n} saniye önce",
+    "short_day_future": "{n} günde",
+    "short_day_past": "{n}d",
+    "short_hour_future": "{n} saatte",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "{n} dakikada",
+    "short_minute_past": "{n}min",
+    "short_month_future": "{n} ayda",
+    "short_month_past": "{n}mo",
+    "short_second_future": "{n} saniyede",
+    "short_second_past": "{n}s",
+    "short_week_future": "{n} haftada",
+    "short_week_past": "{n}w",
+    "short_year_future": "{n} yılda",
+    "short_year_past": "{n}y",
+    "week_future": "{n} hafta içinde",
+    "week_past": "{n} hafta önce",
+    "year_future": "{n} yıl içinde",
+    "year_past": "{n} yıl önce"
+  },
+  "timeline": {
+    "show_new_items": "{v} yeni öğe göster",
+    "view_older_posts": "Diğer sunuculardan eski gönderiler görüntülenmeyebilir."
+  },
+  "title": {
+    "federated_timeline": "Federe Edilmiş Zaman Akışı",
+    "local_timeline": "Yerel Zaman Akışı"
+  },
+  "tooltip": {
+    "add_content_warning": "İçerik uyarısı ekle",
+    "add_emojis": "Emoji ekle",
+    "add_media": "resim, video yada ses dosyası ekle",
+    "add_publishable_content": "Yayımlanacak içerik ekle",
+    "change_content_visibility": "İçerik görünürlüğünü değiştir",
+    "change_language": "Dil değiştir",
+    "emoji": "Emoji",
+    "explore_links_intro": "Bu haberler, şu anda merkezi olmayan ağın bu ve diğer sunucularındaki insanlar tarafından konuşuluyor.",
+    "explore_posts_intro": "Bu gönderiler, şu anda merkezi olmayan ağın bu ve diğer sunucularındaki insanlar tarafından ilgi görüyor.",
+    "explore_tags_intro": "Bu etiketler, şu anda merkezi olmayan ağın bu ve diğer sunucularındaki insanlar tarafından ilgi görüyor.",
+    "toggle_code_block": "Kod bloğu durumunu değiştir"
+  },
+  "user": {
+    "add_existing": "Var olan bir hesap ekle",
+    "server_address_label": "Mastodon Sunucu Adresi",
+    "sign_in_desc": "Profilleri veya hashtag'leri takip etmek, favorilere eklemek, gönderileri paylaşmak ve yanıtlamak veya farklı bir sunucudaki hesabınızdan etkileşim kurmak için oturum açın.",
+    "sign_in_notice_title": "{0} herkese açık veri görüntüleniyor",
+    "sign_out_account": "{0} çıkış yap",
+    "tip_no_account": "Eğer bir Mastodon hesabınız yoksa, {0}.",
+    "tip_register_account": "sunucunuzu seçin ve kaydolun"
+  },
+  "visibility": {
+    "direct": "Direkt",
+    "direct_desc": "Sadece bahsedilen kullanıcılara görünür",
+    "private": "Sadece takipçiler",
+    "private_desc": "Sadece takipçilere görünür",
+    "public": "Herkese açık",
+    "public_desc": "Herkese görünür",
+    "unlisted": "Liste dışı",
+    "unlisted_desc": "Herkes tarafından görülebilir, ancak keşif özellikleri devre dışı bırakılmıştır"
+  }
+}

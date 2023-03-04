@@ -1,1 +1,9 @@
-/// <reference types="@types/wicg-file-system-access" />
+declare global {
+  namespace NodeJS {
+    interface Process {
+      test?: boolean
+    }
+  }
+}
+
+export {}

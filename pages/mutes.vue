@@ -3,18 +3,19 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const paginator = useMasto().mutes.iterate()
+const { t } = useI18n()
 
 useHeadFixed({
-  title: 'Muted users',
+  title: () => t('nav.muted_users'),
 })
 </script>
 
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>{{ $t('account.muted_users') }}</span>
+      <span timeline-title-style>{{ $t('nav.muted_users') }}</span>
     </template>
-    <AccountPaginator :paginator="paginator" />
+
+    <TimelineMutes v-if="isHydrated" />
   </MainContent>
 </template>

@@ -1,11 +1,15 @@
 <script lang="ts" setup>
-import type { History } from 'masto'
+import type { mastodon } from 'masto'
 import sparkline from '@fnando/sparkline'
 
 const {
   history,
+  width = 60,
+  height = 40,
 } = $defineProps<{
-  history?: History[]
+  history?: mastodon.v1.TagHistory[]
+  width?: number
+  height?: number
 }>()
 
 const historyNum = $computed(() => {
@@ -15,14 +19,15 @@ const historyNum = $computed(() => {
 })
 
 const sparklineEl = $ref<SVGSVGElement>()
+const sparklineFn = typeof sparkline !== 'function' ? (sparkline as any).default : sparkline
 
 watch([$$(historyNum), $$(sparklineEl)], ([historyNum, sparklineEl]) => {
   if (!sparklineEl)
     return
-  sparkline(sparklineEl, historyNum)
+  sparklineFn(sparklineEl, historyNum)
 })
 </script>
 
 <template>
-  <svg ref="sparklineEl" class="sparkline" width="60" height="40" stroke-width="3" />
+  <svg ref="sparklineEl" class="sparkline" :width="width" :height="height" stroke-width="3" />
 </template>

@@ -1,0 +1,583 @@
+{
+  "a11y": {
+    "loading_page": "頁面載入中，請稍後",
+    "loading_titled_page": "載入{0}頁面中，請稍後",
+    "locale_changed": "語言已更改為{0}",
+    "locale_changing": "更改語言中，請稍後",
+    "route_loaded": "頁面{0}已載入"
+  },
+  "account": {
+    "avatar_description": "{0} 的大頭貼",
+    "blocked_by": "您已被該使用者封鎖",
+    "blocked_domains": "已封鎖的域名",
+    "blocked_users": "已封鎖的使用者",
+    "blocking": "已封鎖",
+    "bot": "機器人",
+    "favourites": "喜歡的貼文",
+    "follow": "追蹤",
+    "follow_back": "回追",
+    "follow_requested": "已要求追蹤",
+    "followers": "粉絲",
+    "followers_count": " {0} 位粉絲",
+    "following": "正在追蹤",
+    "following_count": "正在追蹤 {0} 人",
+    "follows_you": "已追蹤你",
+    "go_to_profile": "轉到個人資料",
+    "joined": "已加入",
+    "moved_title": "的新帳號是：",
+    "muted_users": "已靜音的使用者",
+    "muting": "已靜音",
+    "mutuals": "互相關注",
+    "notifications_on_post_disable": "當 {username} 發布時，停止通知我",
+    "notifications_on_post_enable": "當 {username} 發布時，通知我",
+    "notify_on_post": "{username} 發文時通知我",
+    "pinned": "置頂的貼文",
+    "posts": "貼文",
+    "posts_count": "{0} 則貼文",
+    "profile_description": "{0} 的個人資料封面",
+    "profile_unavailable": "個人資料不可見",
+    "request_follow": "要求追縱",
+    "unblock": "取消封鎖",
+    "unfollow": "取消追蹤",
+    "unmute": "取消靜音",
+    "view_other_followers": "其他站點上的粉絲可能不會在這裡顯示。",
+    "view_other_following": "其他站點上正在追蹤的人可能不會在這裡顯示。"
+  },
+  "action": {
+    "apply": "套用",
+    "bookmark": "收藏",
+    "bookmarked": "已收藏",
+    "boost": "轉發",
+    "boost_count": "{0}",
+    "boosted": "已轉發",
+    "clear_publish_failed": "清除發布失敗的訊息",
+    "clear_upload_failed": "清除上傳失敗",
+    "close": "關閉",
+    "compose": "撰寫",
+    "confirm": "確認",
+    "edit": "編輯",
+    "enter_app": "進入應用程式",
+    "favourite": "喜歡",
+    "favourite_count": "{0}",
+    "favourited": "已喜歡",
+    "more": "更多",
+    "next": "下一個",
+    "prev": "上一個",
+    "previous": "之前的",
+    "publish": "發布",
+    "reply": "回覆",
+    "reply_count": "{0}",
+    "reset": "重設",
+    "save": "儲存",
+    "save_changes": "儲存更改",
+    "sign_in": "登鹿",
+    "switch_account": "切換帳號",
+    "vote": "投票"
+  },
+  "app_desc_short": "一個靈巧的 Mastodon 用戶端",
+  "app_logo": "鹿鳴 Logo",
+  "app_name": "鹿鳴",
+  "attachment": {
+    "edit_title": "描述",
+    "remove_label": "刪除附件"
+  },
+  "command": {
+    "activate": "執行",
+    "complete": "完成",
+    "compose_desc": "寫一條新貼文",
+    "n-people-in-the-past-n-days": "{0} 人在過去 {1} 天",
+    "select_lang": "選擇語言",
+    "sign_in_desc": "加入現有帳號",
+    "switch_account": "切換到 {0}",
+    "switch_account_desc": "切換到另一個帳號",
+    "toggle_dark_mode": "切換深色模式",
+    "toggle_zen_mode": "切換禪模式"
+  },
+  "common": {
+    "confirm_dialog": {
+      "cancel": "取消",
+      "confirm": "確認",
+      "title": "你確定嗎？"
+    },
+    "end_of_list": "清單到底了",
+    "error": "錯誤",
+    "in": "在",
+    "not_found": "無法找到相關內容",
+    "offline_desc": "您目前已離線，請檢查網路連接。"
+  },
+  "compose": {
+    "draft_title": "草稿 {0}",
+    "drafts": "草稿 ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "取消",
+      "confirm": "封鎖",
+      "title": "你確定要封鎖 {0} 嗎？"
+    },
+    "block_domain": {
+      "cancel": "取消",
+      "confirm": "封鎖",
+      "title": "你確定要封鎖 {0} 域名嗎？"
+    },
+    "delete_list": {
+      "cancel": "取消",
+      "confirm": "確認",
+      "title": "你確定要刪除 \"{0}\" 列表嗎？"
+    },
+    "delete_posts": {
+      "cancel": "取消",
+      "confirm": "刪除",
+      "title": "你確定要刪除這則貼文嗎？"
+    },
+    "mute_account": {
+      "cancel": "取消",
+      "confirm": "靜音",
+      "title": "你確定要靜音 {0} 嗎？"
+    },
+    "show_reblogs": {
+      "cancel": "取消",
+      "confirm": "顯示",
+      "title": "你確定要顯示來自 {0} 的轉發嗎？"
+    },
+    "unfollow": {
+      "cancel": "取消",
+      "confirm": "取消追蹤",
+      "title": "你確定要取消追蹤嗎？"
+    }
+  },
+  "conversation": {
+    "with": "與"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "第 {0} 行",
+      "open": "開啟",
+      "snippet_from": "取自 {0} 的片段"
+    }
+  },
+  "error": {
+    "account_not_found": "未找到使用者 {0}",
+    "explore-list-empty": "目前沒有熱門話題，稍後再來看看吧！",
+    "file_size_cannot_exceed_n_mb": "檔案大小不能超過 {0} MB",
+    "sign_in_error": "無法連接伺服器",
+    "status_not_found": "未找到貼文",
+    "unsupported_file_format": "不支援的檔案格式"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "您當前正在查看來自開源社區、預覽版的鹿鳴 - {0}。",
+      "desc2": "可能包含末經審查或是惡意修改的內容。",
+      "desc3": "請不要使用真實的帳號登入。",
+      "title": "預覽部署"
+    },
+    "desc_highlight": "可能會在某些地方出現一些 bug 或缺少的功能。",
+    "desc_para1": "感謝你有興趣嘗試鹿鳴，一個我們正在積極開發的通用 Mastodon 用戶端。",
+    "desc_para2": "我們正在努力開發中，並隨著時間的推移不斷完善。",
+    "desc_para3": "為了幫助促進開發，你可以通過以下連結贊助我們的團隊成員。希望你喜歡鹿鳴！",
+    "desc_para4": "鹿鳴是開源的，如果你願意幫助測試、提供回饋或作出貢獻，",
+    "desc_para5": "在 GitHub 上聯繫我們",
+    "desc_para6": "來參與其中。",
+    "footer_team": "鹿鳴開發團隊",
+    "title": "預覽鹿鳴！"
+  },
+  "language": {
+    "search": "搜尋"
+  },
+  "list": {
+    "add_account": "在列表中添加帳號",
+    "cancel_edit": "取消編輯",
+    "clear_error": "清除錯誤",
+    "create": "建立",
+    "delete": "刪除這個列表",
+    "delete_error": "刪除列表時發生錯誤",
+    "edit": "編輯這個列表",
+    "edit_error": "更新列表時發生錯誤",
+    "error": "建立列表時發生錯誤",
+    "error_prefix": "錯誤：",
+    "list_title_placeholder": "列表標題",
+    "modify_account": "修改列表中的帳號",
+    "remove_account": "移除列表中的帳號",
+    "save": "保存變更"
+  },
+  "menu": {
+    "block_account": "封鎖 {0}",
+    "block_domain": "封鎖的域名 {0}",
+    "copy_link_to_post": "複製這篇貼文的連結",
+    "copy_original_link_to_post": "複製貼文的原網址",
+    "delete": "刪除",
+    "delete_and_redraft": "刪除並重新編輯",
+    "direct_message_account": "私訊 {0}",
+    "edit": "編輯",
+    "hide_reblogs": "隱藏來自 {0} 的轉發",
+    "mention_account": "提及 {0}",
+    "mute_account": "靜音 {0}",
+    "mute_conversation": "靜音貼文",
+    "open_in_original_site": "在原網站上開啟",
+    "pin_on_profile": "置頂在個人資料上",
+    "share_post": "分享這則貼文",
+    "show_favourited_and_boosted_by": "顯示誰喜歡和轉發了",
+    "show_reblogs": "顯示來自 {0} 的轉發",
+    "show_untranslated": "顯示原文",
+    "toggle_theme": {
+      "dark": "切換深色模式",
+      "light": "切換淺色模式"
+    },
+    "translate_post": "翻譯貼文",
+    "unblock_account": "解除封鎖 {0}",
+    "unblock_domain": "解除封鎖域名 {0}",
+    "unmute_account": "解除靜音 {0}",
+    "unmute_conversation": "取消靜音貼文",
+    "unpin_on_profile": "取消置頂"
+  },
+  "nav": {
+    "back": "回上一頁",
+    "blocked_domains": "已封鎖的域名",
+    "blocked_users": "已封鎖的使用者",
+    "bookmarks": "書籤",
+    "built_at": "於 {0} 更新",
+    "compose": "撰寫",
+    "conversations": "私訊",
+    "explore": "探索",
+    "favourites": "喜歡",
+    "federated": "聯邦",
+    "home": "首頁",
+    "list": "列表",
+    "lists": "列表",
+    "local": "本站",
+    "muted_users": "已靜音的使用者",
+    "notifications": "通知",
+    "privacy": "隱私權政策",
+    "profile": "個人資料",
+    "search": "搜尋",
+    "select_feature_flags": "功能開關",
+    "select_font_size": "字體大小",
+    "select_language": "選擇語言",
+    "settings": "設定",
+    "show_intro": "鹿鳴介紹",
+    "toggle_theme": "切換主題",
+    "zen_mode": "禪模式"
+  },
+  "notification": {
+    "favourited_post": "點讚了你的貼文",
+    "followed_you": "追蹤了你",
+    "followed_you_count": "{n} 人追蹤了你",
+    "missing_type": "未知的通知類型：",
+    "reblogged_post": "轉發了你的貼文",
+    "request_to_follow": "請求追蹤你",
+    "signed_up": "註冊了",
+    "update_status": "更新了他們的狀態"
+  },
+  "placeholder": {
+    "content_warning": "寫下你的警告",
+    "default_1": "在想些什麼？",
+    "reply_to_account": "回覆 {0}",
+    "replying": "回覆",
+    "the_thread": "這個貼文"
+  },
+  "pwa": {
+    "dismiss": "忽略",
+    "install": "安裝",
+    "install_title": "安裝鹿鳴",
+    "title": "鹿鳴存在新的更新",
+    "update": "更新",
+    "update_available_short": "更新鹿鳴",
+    "webmanifest": {
+      "canary": {
+        "description": "一個靈巧的 Mastodon 用戶端（Canary）",
+        "name": "鹿鳴 Canary",
+        "short_name": "鹿鳴 Canary"
+      },
+      "dev": {
+        "description": "一個靈巧的 Mastodon 用戶端（開發版）",
+        "name": "鹿鳴 開發版",
+        "short_name": "鹿鳴 開發版"
+      },
+      "preview": {
+        "description": "一個靈巧的 Mastodon 用戶端（預覽版）",
+        "name": "鹿鳴 預覽版",
+        "short_name": "鹿鳴 預覽版"
+      },
+      "release": {
+        "description": "一個靈巧的 Mastodon 用戶端",
+        "name": "鹿鳴",
+        "short_name": "鹿鳴"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "搜尋使用者或話題標籤",
+    "search_empty": "無法找到符合搜尋條件之結果"
+  },
+  "settings": {
+    "about": {
+      "built_at": "構建於",
+      "label": "關於",
+      "meet_the_team": "認識我們",
+      "sponsor_action": "贊助我們",
+      "sponsor_action_desc": "贊助鹿鳴的開發團隊",
+      "sponsors": "贊助",
+      "sponsors_body_1": "鹿鳴的誕生得感謝以下的慷慨贊助與幫助：",
+      "sponsors_body_2": "以及所有贊助鹿鳴成員的公司和個人，以及隊員們。",
+      "sponsors_body_3": "如果你喜歡鹿鳴，可以考慮贊助我們：",
+      "version": "版本"
+    },
+    "account_settings": {
+      "description": "在 Mastodon UI 中編輯你的帳號設定",
+      "label": "帳號設定"
+    },
+    "interface": {
+      "color_mode": "色彩模式",
+      "dark_mode": "深色",
+      "default": "（預設）",
+      "font_size": "字體大小",
+      "label": "外觀",
+      "light_mode": "淺色",
+      "system_mode": "系統預設",
+      "theme_color": "主題色"
+    },
+    "language": {
+      "display_language": "顯示語言",
+      "label": "語言",
+      "translations": {
+        "add": "添加",
+        "choose_language": "選擇語言",
+        "heading": "翻譯",
+        "hide_specific": "隱藏特定的翻譯",
+        "remove": "刪除"
+      }
+    },
+    "notifications": {
+      "label": "通知",
+      "notifications": {
+        "label": "通知設定"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "喜歡的",
+          "follow": "新的粉絲",
+          "mention": "提及",
+          "poll": "投票",
+          "reblog": "轉發了你的貼文",
+          "title": "接收了什麼通知？"
+        },
+        "description": "當你沒有在使用鹿鳴時也能接收通知。",
+        "instructions": "不要忘記點擊 @:settings.notifications.push_notifications.save_settings 按鈕儲存變更！",
+        "label": "推播通知設定",
+        "policy": {
+          "all": "任何人",
+          "followed": "我追蹤的人",
+          "follower": "粉絲",
+          "none": "無人",
+          "title": "我可以從誰那裡接收通知？"
+        },
+        "save_settings": "儲存設定變更",
+        "subscription_error": {
+          "clear_error": "清除錯誤",
+          "invalid_vapid_key": "VAPID 公鑰似乎無效。",
+          "permission_denied": "權限不足：請在你的瀏覽器中打開通知權限。",
+          "repo_link": "鹿鳴的 GitHub 儲存庫",
+          "request_error": "請求訂閱時發生了一個錯誤，請再次嘗試。如錯誤仍然存在，請到鹿鳴儲存庫中報告這一問題。",
+          "title": "無法訂閱推播通知。",
+          "too_many_registrations": "由於瀏覽器限制，鹿鳴無法為不同伺服器上的多個帳號使用推播通知服務。 你應該取消訂閱其他帳號的推送通知，然後重試。",
+          "vapid_not_supported": "您的瀏覽器支持 Web Push Notifications，但似乎沒有實現 VAPIO 的協議。"
+        },
+        "title": "推播通知設定",
+        "undo_settings": "撤銷設定變更",
+        "unsubscribe": "停用推播功能",
+        "unsupported": "你的瀏覽器不支援推播功能",
+        "warning": {
+          "enable_close": "關閉",
+          "enable_description": "若想在鹿鳴未開啟時接收通知，請啟用推播通知功能。啟用後，你可以通過上面的 「前往通知設定」 按鈕來 精確控制哪種類型的互動可以產生桌面通知。",
+          "enable_description_desktop": "若想在鹿鳴未開啟時接收通知，請啟用推播通知功能。啟用後，你可以在 「設定」 > 「通知」 > 「推播通知設定」 裡面選擇哪些互動你會接收到通知。",
+          "enable_description_mobile": "你也可以使用導覽列 「設定」 > 「通知」 > 「推播通知設定」 進入設定頁面。",
+          "enable_description_settings": "若想在鹿鳴未開啟時接收通知，請啟用推播通知功能。 啟用後，你將能夠選擇哪些互動你會接收到通知。",
+          "enable_desktop": "啟用推播功能",
+          "enable_title": "不錯過任何事",
+          "re_auth": "您的伺服器似乎不支援推播通知。嘗試退出使用者並重新登入。如果此消息仍然出現，請聯繫您伺服器的管理員。"
+        }
+      },
+      "show_btn": "前往通知設定",
+      "under_construction": "建立中"
+    },
+    "notifications_settings": "通知",
+    "preferences": {
+      "enable_autoplay": "啟用自動播放功能",
+      "enable_pinch_to_zoom": "啟用雙指縮放功能",
+      "github_cards": "GitHub 卡片",
+      "grayscale_mode": "深色模式",
+      "hide_account_hover_card": "隱藏帳號浮動卡片",
+      "hide_alt_indi_on_posts": "隱藏貼文上的 alt 指示",
+      "hide_boost_count": "隱藏轉發數",
+      "hide_favorite_count": "隱藏收藏數",
+      "hide_follower_count": "隱藏粉絲數",
+      "hide_reply_count": "隱藏回覆數",
+      "hide_translation": "隱藏翻譯",
+      "hide_username_emojis": "隱藏使用者名稱上的表情符號",
+      "label": "偏好設定",
+      "title": "實驗功能",
+      "user_picker": "使用者選擇器",
+      "virtual_scroll": "虛擬滾動",
+      "wellbeing": "福利"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "簡介",
+        "description": "編輯個人資料，例如大頭貼、使用者名、個人簡介等。",
+        "display_name": "暱稱",
+        "label": "個人資料",
+        "profile_metadata": "個人資料附加訊息",
+        "profile_metadata_desc": "這將會在個人資料頁上以表格的形式呈現，最多 {0} 個項目",
+        "title": "編輯個人資料"
+      },
+      "featured_tags": {
+        "description": "人們可以在這些標籤下瀏覽你的公開嘟文。",
+        "label": "精選的話題標籤"
+      },
+      "label": "個人資料"
+    },
+    "select_a_settings": "在左側選擇一個設定",
+    "users": {
+      "export": "匯入使用者憑證",
+      "import": "匯出使用者憑證",
+      "label": "當前使用者"
+    }
+  },
+  "share-target": {
+    "description": "如果你想分享其他應用程式上的內容到鹿鳴。請在你的行動裝置裝置或電腦上安裝鹿鳴並登入。",
+    "hint": "為了將內容分享到鹿鳴，你需要安裝鹿鳴並且登入。",
+    "title": "分享到鹿鳴"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "附件的數量超出了最大限制",
+    "attachments_limit_error": "超出每篇貼文的最大限制",
+    "edited": "（已編輯）",
+    "editing": "編輯中",
+    "loading": "載入中...",
+    "publish_failed": "發布失敗",
+    "publishing": "發布中",
+    "upload_failed": "上傳失敗",
+    "uploading": "上傳中..."
+  },
+  "status": {
+    "boosted_by": "被轉發",
+    "edited": "在 {0} 編輯了",
+    "favourited_by": "被喜歡",
+    "filter_hidden_phrase": "篩選依據",
+    "filter_removed_phrase": "從篩選中移除",
+    "filter_show_anyway": "仍然顯示",
+    "img_alt": {
+      "ALT": "ALT",
+      "desc": "描述",
+      "dismiss": "關閉",
+      "read": "閱讀 {0} 的說明"
+    },
+    "poll": {
+      "count": "{0} 次投票",
+      "ends": "將在 {0} 結束",
+      "finished": "已在 {0} 結束"
+    },
+    "reblogged": "{0} 轉發了",
+    "replying_to": "回覆{0}",
+    "show_full_thread": "顯示完整貼文串",
+    "someone": "某人",
+    "spoiler_show_less": "隱藏",
+    "spoiler_show_more": "顯示更多",
+    "thread": "貼文串",
+    "try_original_site": "嘗試從來源打開"
+  },
+  "status_history": {
+    "created": "在 {0} 發布了",
+    "edited": "在 {0} 編輯了"
+  },
+  "tab": {
+    "accounts": "帳號",
+    "for_you": "推薦追蹤",
+    "hashtags": "話題標籤",
+    "list": "列表",
+    "media": "媒體",
+    "news": "最新消息",
+    "notifications_all": "全部",
+    "notifications_mention": "提及",
+    "posts": "貼文",
+    "posts_with_replies": "貼文與留言"
+  },
+  "tag": {
+    "follow": "追蹤",
+    "follow_label": "追蹤 {0} 標籤",
+    "unfollow": "取消追蹤",
+    "unfollow_label": "取消追蹤 {0} 標籤"
+  },
+  "time_ago_options": {
+    "day_future": "現在|明天|{n} 天後",
+    "day_past": "現在|昨天|{n} 天前",
+    "hour_future": "現在|1 小時後|{n} 小時後",
+    "hour_past": "現在|1 小時前|{n} 小時前",
+    "just_now": "剛剛",
+    "minute_future": "現在|1 分鐘後|{n} 分鐘後",
+    "minute_past": "現在|1 分鐘前|{n} 分鐘前",
+    "month_future": "現在|下個月|{n} 個月後",
+    "month_past": "現在|上個月|{n} 個月前",
+    "second_future": "剛剛|{n} 秒後|{n} 秒後",
+    "second_past": "剛剛|{n} 秒前|{n} 秒前",
+    "short_day_future": "{n} 天",
+    "short_day_past": "{n} 天",
+    "short_hour_future": "{n} 小時",
+    "short_hour_past": "{n} 小時",
+    "short_minute_future": "{n} 分",
+    "short_minute_past": "{n} 分",
+    "short_month_future": "{n} 月",
+    "short_month_past": "{n} 月",
+    "short_second_future": "{n} 秒",
+    "short_second_past": "{n} 秒",
+    "short_week_future": "{n} 週",
+    "short_week_past": "{n} 週",
+    "short_year_future": "{n} 年",
+    "short_year_past": "{n} 年",
+    "week_future": "現在|下週|{n} 週後",
+    "week_past": "現在|上週|{n} 週前",
+    "year_future": "現在|明年|{n} 年後",
+    "year_past": "現在|去年|{n} 年前"
+  },
+  "timeline": {
+    "show_new_items": "顯示 {v} 則新貼文",
+    "view_older_posts": "其他站點上更舊的貼文可能不會在這裡顯示。"
+  },
+  "title": {
+    "federated_timeline": "跨站時間軸",
+    "local_timeline": "本站時間軸"
+  },
+  "tooltip": {
+    "add_content_warning": "加入貼文警告標識",
+    "add_emojis": "加入表情符號",
+    "add_media": "加入圖片、影片或音訊",
+    "add_publishable_content": "加入要發布的貼文",
+    "change_content_visibility": "修改貼文隱私狀態",
+    "change_language": "切換語言",
+    "emoji": "表情符號",
+    "explore_links_intro": "這些新聞故事正被本站和分散式網路上其他站點的使用者談論。",
+    "explore_posts_intro": "來自本站和分散式網路上其他站點的這些嘟文正在本站引起關注。",
+    "explore_tags_intro": "這些標籤正在本站和分散式網路上其他站點的使用者中引起關注。",
+    "publish_failed": "請關閉編輯器上方的失敗訊息以重新發布貼文。",
+    "toggle_code_block": "切換程式碼區塊"
+  },
+  "user": {
+    "add_existing": "加入現有帳號",
+    "server_address_label": "Mastodon 伺服器位置",
+    "sign_in_desc": "登入後可追蹤其他人或標籤、點讚、分享和回覆貼文，或與不同伺服器上的帳號互動。",
+    "sign_in_notice_title": "正在查看 {0} 的公共數據",
+    "sign_out_account": "登出 {0}",
+    "tip_no_account": "如果您還沒有 Mastodon 帳號，{0}。",
+    "tip_register_account": "選擇您的伺服器並註冊一個"
+  },
+  "visibility": {
+    "direct": "私訊",
+    "direct_desc": "僅對提及的使用者可見",
+    "private": "僅限粉絲",
+    "private_desc": "僅粉絲可見",
+    "public": "公開",
+    "public_desc": "對所有人可見",
+    "unlisted": "不公開",
+    "unlisted_desc": "對所有人可見，但不出現在探索頁面裡面"
+  }
+}

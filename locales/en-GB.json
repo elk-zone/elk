@@ -1,0 +1,21 @@
+{
+  "account": {
+    "favourites": "Favourites"
+  },
+  "action": {
+    "favourite": "Favourite",
+    "favourited": "Favourited"
+  },
+  "menu": {
+    "show_favourited_and_boosted_by": "Show who favourited and boosted"
+  },
+  "nav": {
+    "favourites": "Favourites"
+  },
+  "notification": {
+    "favourited_post": "favourited your post"
+  },
+  "user": {
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
+  }
+}

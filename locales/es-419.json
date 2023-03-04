@@ -1,0 +1,194 @@
+{
+  "a11y": {
+    "locale_changed": "Idioma configurado en {0}",
+    "locale_changing": "Actualizando idioma, espera..."
+  },
+  "account": {
+    "avatar_description": "Foto de perfil de",
+    "blocked_by": "Estás bloqueado por este usuario.",
+    "blocked_domains": "Dominios ocultos",
+    "favourites": "Publicaciones Favoritas",
+    "go_to_profile": "Ver perfil",
+    "moved_title": "indicó que su nueva cuenta es ",
+    "mutuals": "Mutuales",
+    "notifications_on_post_disable": "No notificar cuando {username} publique",
+    "notifications_on_post_enable": "Notificarme cuando {username} publique",
+    "pinned": "Publicaciones ancladas",
+    "profile_description": "Imagen de portada de {0}",
+    "unmute": "Quitar silencio"
+  },
+  "action": {
+    "apply": "Guardar cambios",
+    "bookmark": "Marcar",
+    "confirm": "Cortar",
+    "edit": "Actualizar",
+    "enter_app": "Ingresar",
+    "favourite": "Marcar como favorita",
+    "favourited": "Marcada como favorita",
+    "reset": "Resetear",
+    "switch_account": "Cambiar de cuenta"
+  },
+  "app_logo": "Logo de Elk",
+  "attachment": {
+    "remove_label": "Eliminar archivo adjunto"
+  },
+  "command": {
+    "n-people-in-the-past-n-days": "{0} usuarios en los últimos {1} días"
+  },
+  "common": {
+    "end_of_list": "Fin de la lista",
+    "fetching": "Listando...",
+    "offline_desc": "No tienes acceso a internet. Por favor, comprueba que tienes una conexión a la red."
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "No",
+      "confirm": "Sí, bloquear",
+      "title": "¿De verdad quieres bloquear a {0}?"
+    },
+    "block_domain": {
+      "cancel": "No",
+      "confirm": "Sí ocultar",
+      "title": "¿De verdad quieres ocultar a {0}?"
+    },
+    "delete_posts": {
+      "title": "¿De verdad quieres eliminar esta publicación?"
+    },
+    "mute_account": {
+      "title": "¿De verdad quieres silenciar a {0}?"
+    },
+    "show_reblogs": {
+      "cancel": "No",
+      "confirm": "Sí, ver",
+      "title": "¿De verdad quieres ver los retoots de {0}"
+    },
+    "unfollow": {
+      "title": "¿De verdad quieres dejar de seguir?"
+    }
+  },
+  "error": {
+    "file_size_cannot_exceed_n_mb": "El tamaño del archivo no puede ser de más de {0}MB",
+    "unsupported_file_format": "Formato de archivo no soportado"
+  },
+  "help": {
+    "desc_highlight": "Es normal que aparezcan algunos errores y funcionalidades que aún estén en desarrollo.",
+    "desc_para1": "¡Gracias por tu interés en probar Elk, nuestro cliente genérico en desarrollo para Mastodon!",
+    "desc_para2": "Estamos haciendo lo posible para ir mejorando constantemente.",
+    "desc_para4": "Elk es de código abierto. Si quieres probar para ayudar, opinar o contribuir,",
+    "desc_para5": "contáctanos a través de GitHub"
+  },
+  "list": {
+    "add_account": "Añadir cuenta a la lista",
+    "remove_account": "Quitar cuenta de la lista"
+  },
+  "menu": {
+    "block_domain": "Ocultar dominio {0}",
+    "delete_and_redraft": "Eliminar y volver a borrador",
+    "edit": "Actualizar",
+    "pin_on_profile": "Anclar en tu perfil",
+    "show_favourited_and_boosted_by": "Ver quien marcó como favorita y quien retooteó",
+    "show_reblogs": "Ver retoots de {0}",
+    "unblock_domain": "Ver dominio {0}",
+    "unmute_account": "Quitar silencio a {0}",
+    "unmute_conversation": "Quitar silencio de la publicación",
+    "unpin_on_profile": "Desanclar del perfil"
+  },
+  "nav": {
+    "back": "Atrás",
+    "blocked_domains": "Dominios ocultos",
+    "built_at": "Generado {0}",
+    "conversations": "Mensajes directos",
+    "favourites": "Favoritas",
+    "federated": "Historia federada",
+    "local": "Historia local",
+    "settings": "Preferencias",
+    "toggle_theme": "Cambiar tema de color",
+    "zen_mode": "Modo sin distracciones"
+  },
+  "notification": {
+    "followed_you": "te siguió",
+    "update_status": "actualizó su publicación"
+  },
+  "placeholder": {
+    "default_1": "¿En qué piensas?"
+  },
+  "search": {
+    "search_empty": "No se encontraron resultados para la búsqueda"
+  },
+  "settings": {
+    "about": {
+      "built_at": "Compilado el",
+      "sponsor_action": "Patrocina"
+    },
+    "account_settings": {
+      "description": "Actualiza los ajustes de tu cuenta en la interfaz de Mastodon.",
+      "label": "Configuración de cuenta"
+    },
+    "interface": {
+      "color_mode": "Temas de color",
+      "dark_mode": "Tema oscuro",
+      "default": " (predeterminado)",
+      "font_size": "Tamaño de fuente",
+      "light_mode": "Tema claro",
+      "system_mode": "Color del sistema"
+    },
+    "language": {
+      "display_language": "Idioma en pantalla",
+      "translations": {
+        "add": "Añadir",
+        "hide_specific": "Ocultar una traducción específica",
+        "remove": "Quitar"
+      }
+    },
+    "notifications": {
+      "notifications": {
+        "label": "Preferencias de notificaciones"
+      },
+      "push_notifications": {
+        "label": "Preferencias de notificaciones push"
+      },
+      "show_btn": "Ir a preferencias de notificaciones",
+      "under_construction": "En desarrollo"
+    },
+    "preferences": {
+      "grayscale_mode": "Tema en escala de grises",
+      "hide_username_emojis_description": "Oculta, de la historia, los emojis en los nombres de usuario. Los emojis seguirán visibles en los perfiles."
+    },
+    "profile": {
+      "appearance": {
+        "description": "Actualizar foto, nombre de usuario, perfil, etc.",
+        "display_name": "Nombre visible",
+        "profile_metadata_desc": "Puedes ver en tu perfil hasta 4 elementos en forma de tabla",
+        "title": "Actualizar perfil"
+      },
+      "featured_tags": {
+        "description": "Los usuarios navegan por tus publicaciones públicas con estas etiquetas.",
+        "label": "Etiquetas destacadas"
+      }
+    },
+    "users": {
+      "label": "Usuarios en línea"
+    }
+  },
+  "status": {
+    "spoiler_show_less": "Menos"
+  },
+  "tab": {
+    "hashtags": "Etiquetas"
+  },
+  "timeline": {
+    "show_new_items": "Ver {v} nuevas publicaciones|Ver {v} nueva publicación|Ver {v} nuevas publicaciones"
+  },
+  "title": {
+    "federated_timeline": "Historia federada",
+    "local_timeline": "Historia local"
+  },
+  "tooltip": {
+    "add_emojis": "Insertar emoji",
+    "add_media": "Insertar imágenes, un video o archivos de audio",
+    "change_content_visibility": "Cambiar visibilidad"
+  },
+  "user": {
+    "add_existing": "Añadir una cuenta existente"
+  }
+}

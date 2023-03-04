@@ -1,56 +1,15 @@
+html {
+  font-size: var(--font-size, 15px);
+  width: 100%;
+  width: 100vw;
+}
+
 @font-face {
   font-display: swap;
-  font-family: "DM Mono";
+  font-family: 'Homemade Apple';
   font-style: normal;
   font-weight: 400;
-  src: url(/fonts/DM-mono-v10.ttf) format("truetype");
-}
-@font-face {
-  font-display: swap;
-  font-family: "DM Sans";
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/DM-sans-v11.ttf) format("truetype");
-}
-@font-face {
-  font-display: swap;
-  font-family: "DM Serif Display";
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/DM-serif-display-v10.ttf) format("truetype");
-}
-@font-face {
-  font-display: swap;
-  font-family: "Homemade Apple";
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/homemade-apple-v18.ttf) format("truetype");
-}
-
-* {
-  scrollbar-color: #8885 var(--c-border);
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar:horizontal {
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--c-border);
-  border-radius: 1px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #8885;
-  border-radius: 1px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #8886;
+  src: url(/fonts/homemade-apple-v18.ttf) format('truetype');
 }
 
 ::-moz-selection {
@@ -71,12 +30,38 @@ body {
   --at-apply: 'op0 hover:op100 transition duration-600';
 }
 
+.zen .zen-none {
+  display: none;
+}
+
 .custom-emoji {
   display: inline-block;
-  overflow: hidden;
+  vertical-align: text-bottom;
+}
+
+.content-editor img.custom-emoji,
+.custom-emoji img {
   max-height: 1.3em;
   max-width: 1.3em;
+  object-fit: contain;
+}
+
+.iconify-emoji {
+  display: inline-block;
+  overflow: hidden;
+  max-height: 1.2em;
+  max-width: 1.2em;
   vertical-align: text-bottom;
+  margin: 0 0.1em;
+}
+
+.iconify-emoji-padded {
+  transform: scale(1.2);
+}
+
+em-emoji-picker {
+  --border-radius: 0;
+  width: 352px;
 }
 
 .content-rich {
@@ -88,27 +73,52 @@ body {
       --at-apply: 'hidden';
     }
     .ellipsis {
-      --at-apply: 'line-clamp-1 ws-pre-wrap break-all';
+      --at-apply: 'line-clamp-1 ws-pre-wrap break-all inline';
       &::after {
         content: '…';
       }
     }
   }
-  b, strong {
+  b,
+  strong {
     --at-apply: font-bold;
   }
   p {
     --at-apply: my-2;
   }
+  p:first-child {
+    --at-apply: mt-1;
+  }
+  p:last-child {
+    --at-apply: mb-1;
+  }
   code {
-    --at-apply: bg-code text-code px1 py0.5 rounded text-0.9em leading-0.8em;
+    --at-apply: bg-code text-code px1 py0.5 rounded text-0.875em leading-0.8em;
   }
   pre code {
-    --at-apply: bg-transparent px0 py0 rounded-none;
+    --at-apply: bg-transparent px0 py0 rounded-none leading-1.6em;
   }
-
+  ol {
+    --at-apply: list-decimal my-3 pl-6 ml-2;
+  }
+  ul {
+    --at-apply: list-disc my-3 pl-6 ml-2;
+  }
+  li {
+    --at-apply: mt-1 mb-1;
+    &:empty {
+      --at-apply: hidden;
+    }
+  }
+  ol > li {
+    --at-apply: pl-2;
+  }
+  ul > li {
+    --at-apply: pl-2;
+  }
   .code-block {
-    --at-apply: font-mono bg-code text-base p3 mt-2 rounded overflow-auto leading-1.6em;
+    --at-apply: bg-code text-0.875em p3 mt-2 rounded overflow-auto
+      leading-1.6em;
 
     .shiki {
       background: transparent !important;
@@ -116,14 +126,27 @@ body {
   }
 }
 
+.line-compact {
+  line-height: calc(4 / 3 * 1em);
+}
+
 .content-editor {
   --at-apply: outline-none flex-1;
   max-width: 100%;
-}
 
-.content-editor.content-rich {
+  .custom-emoji {
+    margin: 0 0.2em;
+  }
+
   p {
     --at-apply: my-0;
+    line-height: calc(4 / 3 * 1em);
+  }
+  p:first-child {
+    --at-apply: mt-1;
+  }
+  p:last-child {
+    --at-apply: mb-1;
   }
 }
 
@@ -147,7 +170,9 @@ body {
   }
 }
 
-html, body, #__nuxt {
+html,
+body,
+#__nuxt {
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -161,7 +186,7 @@ html {
   --at-apply: bg-base text-base;
 }
 
-body {
+html:not(.enable-pinch-to-zoom) body {
   /* Prevent arbitrary zooming on mobile devices */
   touch-action: pan-x pan-y;
 }
@@ -174,4 +199,44 @@ body {
 .sparkline--line {
   stroke: var(--c-primary);
   stroke-width: 2;
+}
+
+html[dir="rtl"] .rtl-flip {
+  transform: scale(-1, 1)
+}
+
+footer {
+  a {
+    --at-apply: 'hover:underline';
+  }
+}
+
+.squircle {
+  clip-path: url(#avatar-mask);
+}
+
+/*
+Grayscale mode
+Setting each element filter to a different var
+allows controlling them individually
+*/
+[data-mode="grayscale"] img,
+[data-mode="grayscale"] video {
+  filter: grayscale(var(--media-grayscale, 1));
+  transition: filter .23s ease-in-out .2s;
+}
+[data-mode="grayscale"] pre {
+  filter: grayscale(var(--code-grayscale, 1));
+}
+[data-mode="grayscale"] .poll-wrapper {
+  filter: grayscale(var(--poll-grayscale, 1));
+}
+[data-mode="grayscale"] .status-actions,
+[data-mode="grayscale"] .status-boosted {
+  filter: grayscale(var(--status-grayscale, 1));
+}
+
+[data-mode="grayscale"] img:hover,
+[data-mode="grayscale"] video:hover {
+  filter: grayscale(0);
 }

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
+import CommonScrollIntoView from '../common/CommonScrollIntoView.vue'
 
 const { items, command } = defineProps<{
-  items: Account[]
+  items: mastodon.v1.Account[]
   command: Function
   isPending?: boolean
 }>()
@@ -14,6 +15,9 @@ watch(items, () => {
 })
 
 function onKeyDown(event: KeyboardEvent) {
+  if (items.length === 0)
+    return false
+
   if (event.key === 'ArrowUp') {
     selectedIndex = ((selectedIndex + items.length) - 1) % items.length
     return true
@@ -45,20 +49,23 @@ defineExpose({
   <div v-if="isPending || items.length" relative bg-base text-base shadow border="~ base rounded" text-sm py-2 overflow-x-hidden overflow-y-auto max-h-100>
     <template v-if="isPending">
       <div flex gap-1 items-center p2 animate-pulse>
-        <div i-ri:loader-2-line animate-spin />
-        <span>Fetching...</span>
+        <div animate-spin preserve-3d>
+          <div i-ri:loader-2-line />
+        </div>
+        <span>{{ $t('common.fetching') }}</span>
       </div>
     </template>
     <template v-if="items.length">
-      <button
-        v-for="(item, index) in items"
-        :key="index"
+      <CommonScrollIntoView
+        v-for="(item, index) in items" :key="index"
+        :active="index === selectedIndex"
+        as="button"
         :class="index === selectedIndex ? 'bg-active' : 'text-secondary'"
         block m0 w-full text-left px2 py1
         @click="selectItem(index)"
       >
         <AccountInfo :account="item" />
-      </button>
+      </CommonScrollIntoView>
     </template>
   </div>
   <div v-else />

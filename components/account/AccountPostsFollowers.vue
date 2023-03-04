@@ -1,47 +1,57 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 
-const props = defineProps<{
-  account: Account
+defineProps<{
+  account: mastodon.v1.Account
 }>()
-const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumber()
 
-const statusesCount = $computed(() => formatNumber(props.account.statusesCount))
-const followingCount = $computed(() => formatHumanReadableNumber(props.account.followingCount))
-const followingCountSR = $computed(() => forSR(props.account.followingCount))
-const followersCount = $computed(() => formatHumanReadableNumber(props.account.followersCount))
-const followersCountSR = $computed(() => forSR(props.account.followersCount))
+const userSettings = useUserSettings()
 </script>
 
 <template>
   <div flex gap-5>
-    <NuxtLink :to="getAccountRoute(account)" text-secondary exact-active-class="text-primary">
+    <NuxtLink
+      :to="getAccountRoute(account)"
+      replace
+      text-secondary
+      exact-active-class="text-primary"
+    >
       <template #default="{ isExactActive }">
-        <i18n-t keypath="account.posts_count" :plural="account.statusesCount">
-          <span font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ statusesCount }}</span>
-        </i18n-t>
+        <CommonLocalizedNumber
+          keypath="account.posts_count"
+          :count="account.statusesCount"
+          font-bold
+          :class="isExactActive ? 'text-primary' : 'text-base'"
+        />
       </template>
     </NuxtLink>
-    <NuxtLink :to="getAccountFollowingRoute(account)" text-secondary exact-active-class="text-primary">
+    <NuxtLink
+      :to="getAccountFollowingRoute(account)"
+      replace
+      text-secondary exact-active-class="text-primary"
+    >
       <template #default="{ isExactActive }">
-        <i18n-t keypath="account.following_count">
-          <span v-if="followingCountSR">
-            <span aria-hidden="true" font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followingCount }}</span>
-            <span sr-only font-bold>{{ account.followingCount }}</span>
-          </span>
-          <span v-else font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followingCount }}</span>
-        </i18n-t>
+        <CommonLocalizedNumber
+          keypath="account.following_count"
+          :count="account.followingCount"
+          font-bold
+          :class="isExactActive ? 'text-primary' : 'text-base'"
+        />
       </template>
     </NuxtLink>
-    <NuxtLink :to="getAccountFollowersRoute(account)" text-secondary exact-active-class="text-primary">
+    <NuxtLink
+      v-if="!getPreferences(userSettings, 'hideFollowerCount')"
+      :to="getAccountFollowersRoute(account)"
+      replace text-secondary
+      exact-active-class="text-primary"
+    >
       <template #default="{ isExactActive }">
-        <i18n-t keypath="account.followers_count" :plural="account.followersCount">
-          <span v-if="followersCountSR">
-            <span aria-hidden="true" font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followersCount }}</span>
-            <span sr-only font-bold>{{ account.followersCount }}</span>
-          </span>
-          <span v-else font-bold :class="isExactActive ? 'text-primary' : 'text-base'">{{ followersCount }}</span>
-        </i18n-t>
+        <CommonLocalizedNumber
+          keypath="account.followers_count"
+          :count="account.followersCount"
+          font-bold
+          :class="isExactActive ? 'text-primary' : 'text-base'"
+        />
       </template>
     </NuxtLink>
   </div>

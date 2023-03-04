@@ -1,28 +1,31 @@
 <script lang="ts" setup>
-const props = defineProps<{
-  modelValue?: boolean
+let { modelValue } = $defineModel<{
+  modelValue: boolean
 }>()
-const emits = defineEmits<{
-  (event: 'update:modelValue', value: boolean): void
-}>()
-const visible = useVModel(props, 'modelValue', emits, { passive: true })
+const colorMode = useColorMode()
 
-function changeShow() {
-  visible.value = !visible.value
+const userSettings = useUserSettings()
+
+function toggleVisible() {
+  modelValue = !modelValue
 }
 
 const buttonEl = ref<HTMLDivElement>()
 /** Close the drop-down menu if the mouse click is not on the drop-down menu button when the drop-down menu is opened */
 function clickEvent(mouse: MouseEvent) {
   if (mouse.target && !buttonEl.value?.children[0].contains(mouse.target as any)) {
-    if (visible.value) {
+    if (modelValue) {
       document.removeEventListener('click', clickEvent)
-      visible.value = false
+      modelValue = false
     }
   }
 }
 
-watch(visible, (val) => {
+function toggleDark() {
+  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+}
+
+watch($$(modelValue), (val) => {
   if (val && typeof document !== 'undefined')
     document.addEventListener('click', clickEvent)
 })
@@ -34,7 +37,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="buttonEl" flex items-center static>
-    <slot :change-show="changeShow" :show="visible" />
+    <slot :toggle-visible="toggleVisible" :show="modelValue" />
 
     <!-- Drawer -->
     <Transition
@@ -46,7 +49,7 @@ onBeforeUnmount(() => {
       leave-to-class="opacity-0 children:(transform translate-y-full)"
     >
       <div
-        v-show="visible"
+        v-show="modelValue"
         absolute inset-x-0 top-auto bottom-full z-20 h-100vh
         flex items-end of-y-scroll of-x-hidden scrollbar-hide overscroll-none
         bg="black/50"
@@ -78,37 +81,23 @@ onBeforeUnmount(() => {
               hover="bg-gray-100 dark:(bg-gray-700 text-white)"
               @click="toggleDark()"
             >
-              <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl mr-4 !align-middle" />
-              {{ !isDark ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
+              <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl me-4 !align-middle" />
+              {{ colorMode.value === 'light' ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
             </button>
-            <!-- Switch languages -->
-            <NavSelectLanguage>
-              <button
-                flex flex-row items-center
-                block px-5 py-2 focus-blue w-full
-                text-sm text-base capitalize text-left whitespace-nowrap
-                transition-colors duration-200 transform
-                hover="bg-gray-100 dark:(bg-gray-700 text-white)"
-                @click.stop
-              >
-                <span class="i-ri:earth-line flex-shrink-0 text-xl mr-4 !align-middle" />
-                {{ $t('nav_footer.select_language') }}
-              </button>
-            </NavSelectLanguage>
-            <!-- Toggle Feature Flags -->
-            <NavSelectFeatureFlags v-if="currentUser">
-              <button
-                flex flex-row items-center
-                block px-5 py-2 focus-blue w-full
-                text-sm text-base capitalize text-left whitespace-nowrap
-                transition-colors duration-200 transform
-                hover="bg-gray-100 dark:(bg-gray-700 text-white)"
-                @click.stop
-              >
-                <span class="i-ri:flag-line flex-shrink-0 text-xl mr-4 !align-middle" />
-                {{ $t('nav_footer.select_feature_flags') }}
-              </button>
-            </NavSelectFeatureFlags>
+
+            <!-- Zen Mode -->
+            <button
+              flex flex-row items-center
+              block px-5 py-2 focus-blue w-full
+              text-sm text-base capitalize text-left whitespace-nowrap
+              transition-colors duration-200 transform
+              hover="bg-gray-100 dark:(bg-gray-700 text-white)"
+              :aria-label="$t('nav.zen_mode')"
+              @click="userSettings.zenMode = !userSettings.zenMode"
+            >
+              <span :class="userSettings.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'" class="flex-shrink-0 text-xl me-4 !align-middle" />
+              {{ $t('nav.zen_mode') }}
+            </button>
           </div>
         </div>
       </div>

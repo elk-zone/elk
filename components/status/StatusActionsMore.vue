@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Status } from 'masto'
+import type { mastodon } from 'masto'
 
 const props = defineProps<{
-  status: Status
+  status: mastodon.v1.Status
   details?: boolean
   command?: boolean
 }>()
@@ -16,43 +16,57 @@ const {
   toggleFavourite,
   togglePin,
   toggleReblog,
+  toggleMute,
 } = $(useStatusActions(props))
 
 const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
+const { t } = useI18n()
+const userSettings = useUserSettings()
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
-const {
-  toggle: _toggleTranslation,
-  translation,
-  enabled: isTranslationEnabled,
-} = useTranslation(props.status)
+const { client } = $(useMasto())
 
-const toggleTranslation = async () => {
-  isLoading.translation = true
-  await _toggleTranslation()
-  isLoading.translation = false
-}
-
-const copyLink = async (status: Status) => {
+const getPermalinkUrl = (status: mastodon.v1.Status) => {
   const url = getStatusPermalinkRoute(status)
   if (url)
-    await clipboard.copy(`${location.origin}/${url}`)
+    return `${location.origin}/${url}`
+  return null
 }
+
+const copyLink = async (status: mastodon.v1.Status) => {
+  const url = getPermalinkUrl(status)
+  if (url)
+    await clipboard.copy(url)
+}
+
+const copyOriginalLink = async (status: mastodon.v1.Status) => {
+  const url = status.url
+  if (url)
+    await clipboard.copy(url)
+}
+
+const { share, isSupported: isShareSupported } = useShare()
+const shareLink = async (status: mastodon.v1.Status) => {
+  const url = getPermalinkUrl(status)
+  if (url)
+    await share({ url })
+}
+
 const deleteStatus = async () => {
-  // TODO confirm to delete
-  if (process.dev) {
-    // eslint-disable-next-line no-alert
-    const result = confirm('[DEV] Are you sure you want to delete this post?')
-    if (!result)
-      return
-  }
+  if (await openConfirmDialog({
+    title: t('confirm.delete_posts.title'),
+    confirm: t('confirm.delete_posts.confirm'),
+    cancel: t('confirm.delete_posts.cancel'),
+  }) !== 'confirm')
+    return
 
-  await useMasto().statuses.remove(status.id)
+  removeCachedStatus(status.id)
+  await client.v1.statuses.remove(status.id)
 
-  if (route.name === '@account-status')
+  if (route.name === 'status')
     router.back()
 
   // TODO when timeline, remove this item
@@ -67,8 +81,13 @@ const deleteAndRedraft = async () => {
       return
   }
 
-  const { text } = await useMasto().statuses.remove(status.id)
-  openPublishDialog('dialog', await getDraftFromStatus(status, text), true)
+  removeCachedStatus(status.id)
+  await client.v1.statuses.remove(status.id)
+  await openPublishDialog('dialog', await getDraftFromStatus(status), true)
+
+  // Go to the new status, if the page is the old status
+  if (lastPublishDialogStatus.value && route.name === 'status')
+    router.push(getStatusRoute(lastPublishDialogStatus.value))
 }
 
 const reply = () => {
@@ -85,27 +104,31 @@ async function editStatus() {
   openPublishDialog(`edit-${status.id}`, {
     ...await getDraftFromStatus(status),
     editingStatus: status,
-  })
+  }, true)
+}
+
+const showFavoritedAndBoostedBy = () => {
+  openFavoridedBoostedByDialog(status.id)
 }
 </script>
 
 <template>
-  <CommonDropdown flex-none ml3 placement="bottom" :eager-mount="command">
+  <CommonDropdown flex-none ms3 placement="bottom" :eager-mount="command">
     <StatusActionButton
       :content="$t('action.more')"
-      color="text-purple"
-      hover="text-purple"
-      group-hover="bg-purple/10"
+      color="text-primary"
+      hover="text-primary"
+      group-hover="bg-primary-light"
       icon="i-ri:more-line"
       my--2
     />
 
     <template #popper>
       <div flex="~ col">
-        <template v-if="isZenMode">
+        <template v-if="userSettings.zenMode">
           <CommonDropdownItem
             :text="$t('action.reply')"
-            icon="i-ri:chat-3-line"
+            icon="i-ri:chat-1-line"
             :command="command"
             @click="reply()"
           />
@@ -139,30 +162,52 @@ async function editStatus() {
         </template>
 
         <CommonDropdownItem
+          :text="$t('menu.show_favourited_and_boosted_by')"
+          icon="i-ri:hearts-line"
+          :command="command"
+          @click="showFavoritedAndBoostedBy()"
+        />
+
+        <CommonDropdownItem
           :text="$t('menu.copy_link_to_post')"
           icon="i-ri:link"
           :command="command"
           @click="copyLink(status)"
         />
 
-        <NuxtLink :to="status.url" external target="_blank">
+        <CommonDropdownItem
+          :text="$t('menu.copy_original_link_to_post')"
+          icon="i-ri:links-fill"
+          :command="command"
+          @click="copyOriginalLink(status)"
+        />
+
+        <CommonDropdownItem
+          v-if="isShareSupported"
+          :text="$t('menu.share_post')"
+          icon="i-ri:share-line"
+          :command="command"
+          @click="shareLink(status)"
+        />
+
+        <CommonDropdownItem
+          v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some(m => m.id === currentUser!.account.id))"
+          :text="status.muted ? $t('menu.unmute_conversation') : $t('menu.mute_conversation')"
+          :icon="status.muted ? 'i-ri:eye-line' : 'i-ri:eye-off-line'"
+          :command="command"
+          :disabled="isLoading.muted"
+          @click="toggleMute()"
+        />
+
+        <NuxtLink v-if="status.url" :to="status.url" external target="_blank">
           <CommonDropdownItem
-            v-if="status.url"
             :text="$t('menu.open_in_original_site')"
             icon="i-ri:arrow-right-up-line"
             :command="command"
           />
         </NuxtLink>
 
-        <CommonDropdownItem
-          v-if="isTranslationEnabled && status.language !== languageCode"
-          :text="translation.visible ? $t('menu.show_untranslated') : $t('menu.translate_post')"
-          icon="i-ri:translate"
-          :command="command"
-          @click="toggleTranslation"
-        />
-
-        <template v-if="currentUser">
+        <template v-if="isHydrated && currentUser">
           <template v-if="isAuthor">
             <CommonDropdownItem
               :text="status.pinned ? $t('menu.unpin_on_profile') : $t('menu.pin_on_profile')"

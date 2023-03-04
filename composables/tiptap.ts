@@ -1,23 +1,25 @@
-import { Extension, VueNodeViewRenderer, useEditor } from '@tiptap/vue-3'
+import type { Editor } from '@tiptap/vue-3'
+import { Extension, useEditor } from '@tiptap/vue-3'
 import Placeholder from '@tiptap/extension-placeholder'
 import Document from '@tiptap/extension-document'
 import Paragraph from '@tiptap/extension-paragraph'
 import Text from '@tiptap/extension-text'
 import Mention from '@tiptap/extension-mention'
-import CharacterCount from '@tiptap/extension-character-count'
 import HardBreak from '@tiptap/extension-hard-break'
 import Bold from '@tiptap/extension-bold'
 import Italic from '@tiptap/extension-italic'
 import Code from '@tiptap/extension-code'
+import History from '@tiptap/extension-history'
 import { Plugin } from 'prosemirror-state'
-import CodeBlock from '@tiptap/extension-code-block'
 
 import type { Ref } from 'vue'
-import { HashSuggestion, MentionSuggestion } from './tiptap/suggestion'
-import TiptapCodeBlock from '~/components/tiptap/TiptapCodeBlock.vue'
+import { TiptapEmojiSuggestion, TiptapHashtagSuggestion, TiptapMentionSuggestion } from './tiptap/suggestion'
+import { TiptapPluginCodeBlockShiki } from './tiptap/shiki'
+import { TiptapPluginCustomEmoji } from './tiptap/custom-emoji'
+import { TiptapPluginEmoji } from './tiptap/emoji'
 
 export interface UseTiptapOptions {
-  content: Ref<string | undefined>
+  content: Ref<string>
   placeholder: Ref<string | undefined>
   onSubmit: () => void
   onFocus: () => void
@@ -26,6 +28,9 @@ export interface UseTiptapOptions {
 }
 
 export function useTiptap(options: UseTiptapOptions) {
+  if (process.server)
+    return { editor: ref<Editor | undefined>() }
+
   const {
     autofocus,
     content,
@@ -42,26 +47,33 @@ export function useTiptap(options: UseTiptapOptions) {
       Italic,
       Code,
       Text,
+      TiptapPluginEmoji,
+      TiptapPluginCustomEmoji.configure({
+        inline: true,
+        HTMLAttributes: {
+          class: 'custom-emoji',
+        },
+      }),
       Mention.configure({
-        suggestion: MentionSuggestion,
+        suggestion: TiptapMentionSuggestion,
       }),
       Mention
-        .extend({ name: 'hastag' })
+        .extend({ name: 'hashtag' })
         .configure({
-          suggestion: HashSuggestion,
+          suggestion: TiptapHashtagSuggestion,
+        }),
+      Mention
+        .extend({ name: 'emoji' })
+        .configure({
+          suggestion: TiptapEmojiSuggestion,
         }),
       Placeholder.configure({
-        placeholder: placeholder.value,
+        placeholder: () => placeholder.value!,
       }),
-      CharacterCount.configure({
-        limit: characterLimit.value,
+      TiptapPluginCodeBlockShiki,
+      History.configure({
+        depth: 10,
       }),
-      CodeBlock
-        .extend({
-          addNodeView() {
-            return VueNodeViewRenderer(TiptapCodeBlock)
-          },
-        }),
       Extension.create({
         name: 'api',
         addKeyboardShortcuts() {
@@ -106,6 +118,9 @@ export function useTiptap(options: UseTiptapOptions) {
     if (editor.value?.getHTML() === value)
       return
     editor.value?.commands.setContent(value || '', false)
+  })
+  watch(placeholder, () => {
+    editor.value?.view.dispatch(editor.value?.state.tr)
   })
 
   return {

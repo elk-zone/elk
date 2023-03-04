@@ -1,55 +1,57 @@
 <script setup lang="ts">
+import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
+
 definePageMeta({
   middleware: 'auth',
 })
 
 const { t } = useI18n()
+const pwaEnabled = useAppConfig().pwaEnabled
 
-// Default limit is 20 notifications, and servers are normally caped to 30
-const paginatorAll = useMasto().notifications.iterate({ limit: 30 })
-const paginatorMention = useMasto().notifications.iterate({ limit: 30, types: ['mention'] })
-
-const { clearNotifications } = useNotifications()
-onActivated(clearNotifications)
-
-const stream = await useMasto().stream.streamUser()
-
-const tabs = $computed(() => [
+const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
     name: 'all',
-    display: t('tab.notifications_all'),
-    paginator: paginatorAll,
+    to: '/notifications',
+    display: isHydrated.value ? t('tab.notifications_all') : '',
   },
   {
     name: 'mention',
-    display: t('tab.notifications_mention'),
-    paginator: paginatorMention,
+    to: '/notifications/mention',
+    display: isHydrated.value ? t('tab.notifications_mention') : '',
   },
-] as const)
-
-// Don't use local storage because it is better to default to Posts every time you visit a user's profile.
-const tab = $ref(tabs[0].name)
-const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
-
-useHeadFixed({
-  title: () => t('nav_side.notifications'),
-})
+])
 </script>
 
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/notifications" text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+      <NuxtLink to="/notifications" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:notification-4-line />
-        <span>{{ t('nav_side.notifications') }}</span>
+        <span>{{ t('nav.notifications') }}</span>
+      </NuxtLink>
+    </template>
+
+    <template #actions>
+      <NuxtLink
+        flex rounded-4 p1
+        hover:bg-active cursor-pointer transition-100
+        :title="t('settings.notifications.show_btn')"
+        to="/settings/notifications"
+      >
+        <span aria-hidden="true" i-ri:notification-badge-line />
       </NuxtLink>
     </template>
 
     <template #header>
-      <CommonTabs v-model="tab" :options="tabs" />
+      <CommonRouteTabs replace :options="tabs" />
     </template>
+
     <slot>
-      <NotificationPaginator :key="tab" v-bind="{ paginator, stream }" />
+      <template v-if="pwaEnabled">
+        <NotificationPreferences />
+      </template>
+
+      <NuxtPage />
     </slot>
   </MainContent>
 </template>

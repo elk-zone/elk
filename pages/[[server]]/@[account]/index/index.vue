@@ -1,52 +1,29 @@
 <script setup lang="ts">
-import type { Account } from 'masto'
+import type { mastodon } from 'masto'
 
 const params = useRoute().params
 const handle = $(computedEager(() => params.account as string))
 
 definePageMeta({ name: 'account-index' })
 
-const { data: account } = await useAsyncData(`account:${handle}`, async () => (
-  window.history.state?.account as Account | undefined)
-  ?? await fetchAccountByHandle(handle),
-)
 const { t } = useI18n()
 
-const paginatorPosts = useMasto().accounts.iterateStatuses(account.value!.id, { excludeReplies: true })
-const paginatorPostsWithReply = useMasto().accounts.iterateStatuses(account.value!.id, { excludeReplies: false })
-const paginatorMedia = useMasto().accounts.iterateStatuses(account.value!.id, { onlyMedia: true, excludeReplies: false })
+const account = await fetchAccountByHandle(handle)
 
-const tabs = $computed(() => [
-  {
-    name: 'posts',
-    display: t('tab.posts'),
-    icon: 'i-ri:file-list-2-line',
-    paginator: paginatorPosts,
-  },
-  {
-    name: 'relies',
-    display: t('tab.posts_with_replies'),
-    icon: 'i-ri:chat-3-line',
-    paginator: paginatorPostsWithReply,
-  },
-  {
-    name: 'media',
-    display: t('tab.media'),
-    icon: 'i-ri:camera-2-line',
-    paginator: paginatorMedia,
-  },
-] as const)
+const reorderAndFilter = (items: mastodon.v1.Status[]) => reorderedTimeline(items, 'account')
 
-// Don't use local storage because it is better to default to Posts every time you visit a user's profile.
-const tab = $ref(tabs[0].name)
-const paginator = $computed(() => tabs.find(t => t.name === tab)!.paginator)
+const paginator = useMastoClient().v1.accounts.listStatuses(account.id, { limit: 30, excludeReplies: true })
+
+if (account) {
+  useHeadFixed({
+    title: () => `${t('account.posts')} | ${getDisplayName(account)} (@${account.acct})`,
+  })
+}
 </script>
 
 <template>
   <div>
-    <CommonTabs v-model="tab" :options="tabs" command />
-    <KeepAlive>
-      <TimelinePaginator :key="tab" :paginator="paginator" context="account" />
-    </KeepAlive>
+    <AccountTabs />
+    <TimelinePaginator :paginator="paginator" :preprocess="reorderAndFilter" context="account" :account="account" />
   </div>
 </template>

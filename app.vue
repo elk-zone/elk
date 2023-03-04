@@ -1,10 +1,19 @@
 <script setup lang="ts">
 setupPageHeader()
-await setupI18n()
 provideGlobalCommands()
 
+const route = useRoute()
+
+if (process.server && !route.path.startsWith('/settings')) {
+  useHead({
+    meta: [
+      { property: 'og:url', content: `https://elk.zone${route.path}` },
+    ],
+  })
+}
+
 // We want to trigger rerendering the page when account changes
-const key = computed(() => `${currentServer.value}:${currentUser.value?.account.id || ''}`)
+const key = computed(() => `${currentUser.value?.server ?? currentServer.value}:${currentUser.value?.account.id || ''}`)
 </script>
 
 <template>
@@ -12,5 +21,14 @@ const key = computed(() => `${currentServer.value}:${currentUser.value?.account.
   <NuxtLayout :key="key">
     <NuxtPage />
   </NuxtLayout>
-  <TeleportTarget id="teleport-end" />
+  <AriaAnnouncer />
+
+  <!-- Avatar Mask -->
+  <svg absolute op0 width="0" height="0">
+    <defs>
+      <clipPath id="avatar-mask" clipPathUnits="objectBoundingBox">
+        <path d="M 0,0.5 C 0,0 0,0 0.5,0 S 1,0 1,0.5 1,1 0.5,1 0,1 0,0.5" />
+      </clipPath>
+    </defs>
+  </svg>
 </template>

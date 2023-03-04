@@ -1,15 +1,24 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const params = useRoute().params
 const handle = $(computedEager(() => params.account as string))
 
 definePageMeta({ name: 'account-followers' })
 
 const account = await fetchAccountByHandle(handle)
-const paginator = account ? useMasto().accounts.iterateFollowers(account.id, {}) : null
+const paginator = account ? useMastoClient().v1.accounts.listFollowers(account.id, {}) : null
+
+const isSelf = useSelfAccount(account)
+
+if (account) {
+  useHeadFixed({
+    title: () => `${t('account.followers')} | ${getDisplayName(account)} (@${account.acct})`,
+  })
+}
 </script>
 
 <template>
-  <template v-if="account">
-    <AccountPaginator :paginator="paginator" />
+  <template v-if="paginator">
+    <AccountPaginator :paginator="paginator" :relationship-context="isSelf ? 'followedBy' : undefined" context="followers" :account="account" />
   </template>
 </template>

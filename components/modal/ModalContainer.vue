@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 import type { RouteLocationRaw } from 'vue-router'
-import type { ConfirmDialogChoice } from '~/types'
 import {
   isCommandPanelOpen,
   isConfirmDialogOpen,
@@ -15,9 +14,11 @@ import {
   isSigninDialogOpen,
 } from '~/composables/dialog'
 import { useMagicSequence } from '~/composables/magickeys'
+import type { ConfirmDialogChoice } from '~/types'
 
 // TODO: move all global keyboard bindings elsewhere?!? plugin? composable?
 
+const userSettings = useUserSettings()
 const keys = useMagicKeys()
 const router = useRouter()
 const { $scrollToTop } = useNuxtApp()
@@ -39,6 +40,7 @@ const navigateTo = (to: string | RouteLocationRaw) => {
 }
 
 whenever(logicAnd(notUsingInput, keys['?']), toggleKeyboardShortcuts)
+whenever(logicAnd(notUsingInput, keys.z), () => userSettings.value.zenMode = !userSettings.value.zenMode)
 
 const defaultPublishDialog = () => {
   const current = keys.current

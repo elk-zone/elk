@@ -207,7 +207,8 @@
         "command_mode": "Command mode",
         "compose": "Compose",
         "favourite": "Favourite",
-        "title": "Actions"
+        "title": "Actions",
+        "zen_mode": "Zen mode"
       },
       "media": {
         "title": "Media"

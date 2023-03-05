@@ -39,44 +39,44 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   whenever(logicAnd(notUsingInput, useMagicSequence(['g', 'h'])), () => navigateTo('/home'))
   whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'n'])), () => navigateTo('/notifications'))
 
-  let activeStatus: HTMLElement | null = $ref(null)
+  const activeStatus: HTMLElement | null = $ref(null)
 
-  const initActiveStatus = () => {
-    activeStatus = document.querySelector<HTMLElement>('[aria-roledescription=status-details]')
-      || document.querySelector<HTMLElement>('[aria-roledescription=status-card]')
-    activeStatus?.focus()
-  }
+  // const initActiveStatus = () => {
+  //   activeStatus = document.querySelector<HTMLElement>('[aria-roledescription=status-details]')
+  //     || document.querySelector<HTMLElement>('[aria-roledescription=status-card]')
+  //   activeStatus?.focus()
+  // }
+  //
+  // const validAriaRoledescriptionsToNavigatePrevNextInTimeline = ['status-details', 'status-card']
 
-  const validAriaRoledescriptionsToNavigatePrevNextInTimeline = ['status-details', 'status-card']
+  // // work with or without vue-virtual-scroller wrapped StatusCards
+  // // TODO: find a solution that is less coupled, complex and better maintainable...
+  // const virtualScrollerWrap = (el: HTMLElement | null) => el?.closest('.vue-recycle-scroller__item-view') as HTMLElement | null || el
+  // const virtualScrollerUnwrap = (el: HTMLElement | null) => validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(el?.getAttribute('aria-roledescription') || '') ? el : el?.querySelector<HTMLElement>('[aria-roledescription=status-card]') || el
+  //
+  // const previousElementSiblingFn = (el: HTMLElement | null) => el?.previousElementSibling as HTMLElement | null
+  // const nextElementSiblingFn = (el: HTMLElement | null) => el?.nextElementSibling as HTMLElement | null
 
-  // work with or without vue-virtual-scroller wrapped StatusCards
-  // TODO: find a solution that is less coupled, complex and better maintainable...
-  const virtualScrollerWrap = (el: HTMLElement | null) => el?.closest('.vue-recycle-scroller__item-view') as HTMLElement | null || el
-  const virtualScrollerUnwrap = (el: HTMLElement | null) => validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(el?.getAttribute('aria-roledescription') || '') ? el : el?.querySelector<HTMLElement>('[aria-roledescription=status-card]') || el
+  // const timelineMoveFocus = (xElementSiblingFn: (el: HTMLElement | null) => (HTMLElement | null)) => {
+  //   if (!activeStatus || !activeStatus.isConnected) {
+  //     initActiveStatus()
+  //   }
+  //   else {
+  //     let prevEl = virtualScrollerUnwrap(xElementSiblingFn(virtualScrollerWrap(activeStatus)))
+  //     // in detail view, 'jump over' (reply) publish widget
+  //     while (prevEl) {
+  //       if (prevEl && prevEl.hasAttribute('aria-roledescription') && validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(`${prevEl.getAttribute('aria-roledescription')}`)) {
+  //         activeStatus = prevEl
+  //         activeStatus.focus()
+  //         break
+  //       }
+  //       prevEl = virtualScrollerUnwrap(xElementSiblingFn(virtualScrollerWrap(prevEl)))
+  //     }
+  //   }
+  // }
 
-  const previousElementSiblingFn = (el: HTMLElement | null) => el?.previousElementSibling as HTMLElement | null
-  const nextElementSiblingFn = (el: HTMLElement | null) => el?.nextElementSibling as HTMLElement | null
-
-  const timelineMoveFocus = (xElementSiblingFn: (el: HTMLElement | null) => (HTMLElement | null)) => {
-    if (!activeStatus || !activeStatus.isConnected) {
-      initActiveStatus()
-    }
-    else {
-      let prevEl = virtualScrollerUnwrap(xElementSiblingFn(virtualScrollerWrap(activeStatus)))
-      // in detail view, 'jump over' (reply) publish widget
-      while (prevEl) {
-        if (prevEl && prevEl.hasAttribute('aria-roledescription') && validAriaRoledescriptionsToNavigatePrevNextInTimeline.includes(`${prevEl.getAttribute('aria-roledescription')}`)) {
-          activeStatus = prevEl
-          activeStatus.focus()
-          break
-        }
-        prevEl = virtualScrollerUnwrap(xElementSiblingFn(virtualScrollerWrap(prevEl)))
-      }
-    }
-  }
-
-  whenever(logicAnd(notUsingInput, keys.j), () => timelineMoveFocus(nextElementSiblingFn))
-  whenever(logicAnd(notUsingInput, keys.k), () => timelineMoveFocus(previousElementSiblingFn))
+  // whenever(logicAnd(notUsingInput, keys.j), () => timelineMoveFocus(nextElementSiblingFn))
+  // whenever(logicAnd(notUsingInput, keys.k), () => timelineMoveFocus(previousElementSiblingFn))
 
   const toggleFavouriteActiveStatus = () => {
     let el: HTMLElement | null

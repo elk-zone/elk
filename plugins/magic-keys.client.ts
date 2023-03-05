@@ -87,6 +87,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
       // status detail page 'default' (if no other reply status is onfocus/active)
       el = document.querySelector<HTMLElement>('[aria-roledescription=status-details]')
     }
+    // TODO: find a better solution than clicking buttons...
     const button = el?.querySelector<HTMLElement>('button[aria-label=Favourite]')
     button?.click()
   }
@@ -101,6 +102,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
       // status detail page 'default' (if no other reply status is onfocus/active)
       el = document.querySelector<HTMLElement>('[aria-roledescription=status-details]')
     }
+    // TODO: find a better solution than clicking buttons...
     const button = el?.querySelector<HTMLElement>('button[aria-label=Boost]')
     button?.click()
   }

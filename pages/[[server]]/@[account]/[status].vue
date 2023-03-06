@@ -96,6 +96,7 @@ onReactivated(() => {
               v-slot="{ item, index, active }"
               :items="context?.descendants || []"
               :min-item-size="200"
+              :buffer="800"
               key-field="id"
               page-mode
             >

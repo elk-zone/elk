@@ -42,12 +42,6 @@ async function scrollTo() {
   statusElement.scrollIntoView(true)
 }
 
-const clientHeight = ref(0)
-
-onMounted(() => {
-  clientHeight.value = document.documentElement.clientHeight
-})
-
 const publishWidget = ref()
 const focusEditor = () => publishWidget.value?.focusEditor?.()
 
@@ -102,7 +96,7 @@ onReactivated(() => {
               v-slot="{ item, index, active }"
               :items="context?.descendants || []"
               :min-item-size="200"
-              :buffer="clientHeight"
+              :buffer="800"
               key-field="id"
               page-mode
             >

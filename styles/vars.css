@@ -1,6 +1,7 @@
 :root {
   --c-border: #eee;
   --c-border-dark: #dccfcf;
+  --c-border-code: #ddd;
   --c-danger: #FF3C1B;
   --c-danger-active: #B50900;
 
@@ -33,11 +34,12 @@
   --c-primary: var(--c-dark-primary);
   --c-primary-active: var(--c-dark-primary-active);
   --c-primary-light: var(--c-dark-primary-light);
-  --c-primary-fade: var(--c-dark-primary-fade); 
+  --c-primary-fade: var(--c-dark-primary-fade);
   --c-danger: #FF2810;
   --c-danger-active: #E02F00;
-  
+
   --c-border: #222;
+  --c-border-code: #333;
   --c-border-dark: #545251;
 
   --rgb-bg-base: 17, 17, 17;

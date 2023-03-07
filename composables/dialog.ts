@@ -18,6 +18,7 @@ export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, !process.mo
 
 export const isSigninDialogOpen = ref(false)
 export const isPublishDialogOpen = ref(false)
+export const isKeyboardShortcutsDialogOpen = ref(false)
 export const isMediaPreviewOpen = ref(false)
 export const isEditHistoryDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
@@ -138,4 +139,12 @@ export function openCommandPanel(isCommandMode = false) {
 
 export function closeCommandPanel() {
   isCommandPanelOpen.value = false
+}
+
+export function toggleKeyboardShortcuts() {
+  isKeyboardShortcutsDialogOpen.value = !isKeyboardShortcutsDialogOpen.value
+}
+
+export function closeKeyboardShortcuts() {
+  isKeyboardShortcutsDialogOpen.value = false
 }

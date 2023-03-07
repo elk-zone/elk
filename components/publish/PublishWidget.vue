@@ -156,7 +156,7 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="isHydrated && currentUser" flex="~ col gap-4" py3 px2 sm:px4>
+  <div v-if="isHydrated && currentUser" flex="~ col gap-4" py3 px2 sm:px4 aria-roledescription="publish-widget">
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div id="state-editing" text-secondary self-center>

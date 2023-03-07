@@ -199,6 +199,31 @@
     "remove_account": "Remove account from list",
     "save": "Save changes"
   },
+  "magic_keys": {
+    "dialog_header": "Keyboard shortcuts",
+    "groups": {
+      "actions": {
+        "boost": "Boost",
+        "command_mode": "Command mode",
+        "compose": "Compose",
+        "favourite": "Favourite",
+        "title": "Actions",
+        "zen_mode": "Zen mode"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Home",
+        "go_to_notifications": "Notifications",
+        "next_status": "Next status",
+        "previous_status": "Previous status",
+        "shortcut_help": "Shortcut help",
+        "title": "Navigation"
+      }
+    },
+    "sequence_then": "then"
+  },
   "menu": {
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
@@ -228,6 +253,9 @@
     "unmute_account": "Unmute {0}",
     "unmute_conversation": "Unmute this post",
     "unpin_on_profile": "Unpin on profile"
+  },
+  "modals": {
+    "aria_label_close": "Close"
   },
   "nav": {
     "back": "Go back",

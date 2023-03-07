@@ -30,7 +30,7 @@ const isDM = $computed(() => status.visibility === 'direct')
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative :lang="status.language ?? undefined">
+  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative :lang="status.language ?? undefined" aria-roledescription="status-details">
     <StatusActionsMore :status="status" absolute inset-ie-2 top-2 />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pe5 me-a>
       <AccountHoverWrapper :account="status.account">

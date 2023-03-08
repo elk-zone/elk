@@ -219,7 +219,7 @@ export function treeToText(input: Node): string {
 
   if (input.name === 'img' || input.name === 'picture') {
     if (input.attributes.class?.includes('custom-emoji'))
-      return `:${input.attributes['data-emoji-id']}:`
+      return `:${input.attributes['data-emoji-id'] || input.attributes.title}:`
     if (input.attributes.class?.includes('iconify-emoji'))
       return input.attributes.alt
   }

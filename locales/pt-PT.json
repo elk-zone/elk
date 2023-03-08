@@ -199,6 +199,31 @@
     "remove_account": "Remover conta da lista",
     "save": "Salvar alterações"
   },
+  "magic_keys": {
+    "dialog_header": "Atalhos de teclado",
+    "groups": {
+      "actions": {
+        "boost": "Partilhar",
+        "command_mode": "Menu de comandos",
+        "compose": "Compor",
+        "favourite": "Adcionar aos favoritos",
+        "title": "Ações",
+        "zen_mode": "Modo Zen"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Início",
+        "go_to_notifications": "Notificações",
+        "next_status": "Publicação seguinte",
+        "previous_status": "Publicação anterior",
+        "shortcut_help": "Lista de atalhos",
+        "title": "Navegação"
+      }
+    },
+    "sequence_then": "seguido de"
+  },
   "menu": {
     "block_account": "Bloquear {0}",
     "block_domain": "Bloquear domínio {0}",
@@ -228,6 +253,9 @@
     "unmute_account": "Deixar de silenciar {0}",
     "unmute_conversation": "Deixar de silenciar esta publicação",
     "unpin_on_profile": "Desafixar do perfil"
+  },
+  "modals": {
+    "aria_label_close": "Fechar"
   },
   "nav": {
     "back": "Voltar",

@@ -1,7 +1,7 @@
 {
   "name": "@elk-zone/elk",
   "type": "module",
-  "version": "0.7.4",
+  "version": "0.7.5",
   "packageManager": "pnpm@7.9.0",
   "license": "MIT",
   "homepage": "https://elk.zone/",

@@ -255,8 +255,8 @@
     "unpin_on_profile": "Desafixar do perfil"
   },
   "modals": {
-      "aria_label_close": "Fechar"
-    },
+    "aria_label_close": "Fechar"
+  },
   "nav": {
     "back": "Voltar",
     "blocked_domains": "Domínios bloqueados",

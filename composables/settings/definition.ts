@@ -33,6 +33,7 @@ export interface UserSettings {
   disabledTranslationLanguages: string[]
   zenMode: boolean
   themeColors?: ThemeColors
+  editorMode?: 'tiptap' | 'markdown'
 }
 
 export interface ThemeColors {

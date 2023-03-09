@@ -488,6 +488,7 @@
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
+    "markdown_editor": "Markdown Editor",
     "publish_failed": "Publish failed",
     "publishing": "Publishing",
     "upload_failed": "Upload failed",
@@ -597,6 +598,7 @@
     "publish_failed": "Close failed messages at the top of editor to republish posts",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",
+    "toggle_editor": "Toggle between WYSIWYG editor and markdown editor",
     "toggle_italic": "Toggle italic"
   },
   "user": {

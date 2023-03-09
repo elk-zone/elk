@@ -29,6 +29,9 @@ const { t } = useI18n()
 const draftState = useDraft(draftKey, initial)
 const { draft } = $(draftState)
 
+const settings = useUserSettings()
+const textareaEl = ref<HTMLTextAreaElement>()
+
 const {
   isExceedingAttachmentLimit, isUploading, failedAttachments, isOverDropZone,
   uploadAttachments, pickAttachments, setDescription, removeAttachment,
@@ -48,11 +51,17 @@ const { editor } = useTiptap({
     set: (newVal) => {
       draft.params.status = newVal
       draft.lastUpdated = Date.now()
+      if (settings.value.editorMode === 'markdown')
+        onTipTapChanged()
     },
   }),
   placeholder: computed(() => placeholder ?? draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
   autofocus: shouldExpanded,
-  onSubmit: publish,
+  onSubmit: () => {
+    if (settings.value.editorMode === 'markdown')
+      onMarkdownChanged()
+    publish()
+  },
   onFocus() {
     if (!isExpanded && draft.initialText) {
       editor.value?.chain().insertContent(`${draft.initialText} `).focus('end').run()
@@ -113,10 +122,16 @@ async function handlePaste(evt: ClipboardEvent) {
 }
 
 function insertEmoji(name: string) {
-  editor.value?.chain().focus().insertEmoji(name).run()
+  if (settings.value.editorMode === 'markdown')
+    insertMarkdownAtCursor(name)
+  else
+    editor.value?.chain().focus().insertEmoji(name).run()
 }
 function insertCustomEmoji(image: any) {
-  editor.value?.chain().focus().insertCustomEmoji(image).run()
+  if (settings.value.editorMode === 'markdown')
+    insertMarkdownAtCursor(`:${image['data-emoji-id']}:`)
+  else
+    editor.value?.chain().focus().insertCustomEmoji(image).run()
 }
 
 async function toggleSensitive() {
@@ -128,6 +143,55 @@ async function publish() {
   if (status)
     emit('published', status)
 }
+
+let markdown = $ref(htmlToText(draft.params.status || ''))
+
+function insertMarkdownAtCursor(text: string) {
+  if (!textareaEl.value)
+    return
+  textareaEl.value.focus()
+  const start = textareaEl.value.selectionStart || 0
+  const end = textareaEl.value.selectionEnd || 0
+  const before = markdown.substring(0, start)
+  const after = markdown.substring(end)
+  markdown = before + text + after
+  textareaEl.value.setSelectionRange(end + text.length, end + text.length)
+}
+
+async function onMarkdownChanged() {
+  draft.params.status = await convertMastodonHTML(markdown)
+}
+
+function onTipTapChanged() {
+  markdown = htmlToText(draft.params.status || '')
+}
+
+function toggleEditor() {
+  if (settings.value.editorMode === 'markdown') {
+    onMarkdownChanged()
+    settings.value.editorMode = 'tiptap'
+  }
+  else {
+    onTipTapChanged()
+    settings.value.editorMode = 'markdown'
+  }
+}
+
+watch(markdown, () => {
+  if (settings.value.editorMode === 'markdown')
+    onMarkdownChanged()
+})
+
+useTextareaAutosize({
+  input: markdown,
+  element: textareaEl,
+})
+
+const editorClass = $computed(() =>
+  shouldExpanded
+    ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain'
+    : '',
+)
 
 useWebShareTarget(async ({ data: { data, action } }: any) => {
   if (action !== 'compose-with-shared-data')
@@ -218,10 +282,24 @@ defineExpose({
         </CommonErrorMessage>
 
         <div relative flex-1 flex flex-col>
+          <template v-if="settings.editorMode === 'markdown'">
+            <textarea
+
+              ref="textareaEl"
+              v-model="markdown"
+              bg-base font-mono outline-none border-none resize-none
+              :class="editorClass"
+            />
+            <div text-sm flex="~ gap-1" items-center op50 mb--3 mt-2>
+              <div i-ri:markdown-line />
+              {{ $t('state.markdown_editor') }}
+            </div>
+          </template>
           <EditorContent
+            v-else
             :editor="editor"
             flex max-w-full
-            :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
+            :class="editorClass"
           />
         </div>
 
@@ -292,7 +370,14 @@ defineExpose({
           </button>
         </CommonTooltip>
 
-        <PublishEditorTools v-if="editor" :editor="editor" />
+        <CommonTooltip placement="top" :content="$t('tooltip.toggle_editor')">
+          <button btn-action-icon :aria-label="$t('tooltip.toggle_editor')" @click="toggleEditor()">
+            <div v-if="settings.editorMode === 'markdown'" i-ri:markdown-line />
+            <div v-else i-ri:file-text-line />
+          </button>
+        </CommonTooltip>
+
+        <PublishEditorTools v-if="editor && settings.editorMode !== 'markdown'" :editor="editor" />
 
         <div flex-auto />
 

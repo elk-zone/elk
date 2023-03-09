@@ -218,8 +218,10 @@ export function treeToText(input: Node): string {
     body = (input.children as Node[]).map(n => treeToText(n)).join('')
 
   if (input.name === 'img' || input.name === 'picture') {
-    if (input.attributes.class?.includes('custom-emoji'))
-      return `:${input.attributes['data-emoji-id'] || input.attributes.title}:`
+    if (input.attributes.class?.includes('custom-emoji')) {
+      const id = input.attributes['data-emoji-id'] ?? input.attributes.title ?? input.attributes.alt ?? 'unknown'
+      return id[0] !== ':' ? `:${id}:` : id
+    }
     if (input.attributes.class?.includes('iconify-emoji'))
       return input.attributes.alt
   }

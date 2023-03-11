@@ -13,7 +13,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: Production
     permissions:
       contents: read
       deployments: write
@@ -43,7 +42,7 @@ jobs:
           NUXT_PUBLIC_DEFAULT_SERVER: ${{ vars.NUXT_PUBLIC_DEFAULT_SERVER }}
           NUXT_STORAGE_DRIVER: kv-binding
           VITE_DEV_PWA: true
-          NITRO_PRESET: cloudflare_pages
+          NITRO_PRESET: ${{ vars.NITRO_PRESET }}
 
       - name: Publish
         uses: cloudflare/pages-action@1

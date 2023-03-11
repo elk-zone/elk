@@ -162,6 +162,13 @@ export function htmlToText(html: string) {
   }
 }
 
+export function recursiveTreeToText(input: Node): string {
+  if (input && input.children && input.children.length > 0)
+    return input.children.map((n: Node) => recursiveTreeToText(n)).join('')
+  else
+    return treeToText(input)
+}
+
 export function treeToText(input: Node): string {
   let pre = ''
   let body = ''
@@ -211,8 +218,10 @@ export function treeToText(input: Node): string {
     body = (input.children as Node[]).map(n => treeToText(n)).join('')
 
   if (input.name === 'img' || input.name === 'picture') {
-    if (input.attributes.class?.includes('custom-emoji'))
-      return `:${input.attributes['data-emoji-id']}:`
+    if (input.attributes.class?.includes('custom-emoji')) {
+      const id = input.attributes['data-emoji-id'] ?? input.attributes.title ?? input.attributes.alt ?? 'unknown'
+      return id[0] !== ':' ? `:${id}:` : id
+    }
     if (input.attributes.class?.includes('iconify-emoji'))
       return input.attributes.alt
   }

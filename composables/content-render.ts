@@ -107,7 +107,7 @@ function handleCodeBlock(el: Node) {
     const codeEl = el.children[0] as Node
     const classes = codeEl.attributes.class as string
     const lang = classes?.split(/\s/g).find(i => i.startsWith('language-'))?.replace('language-', '')
-    const code = codeEl.children[0] ? treeToText(codeEl.children[0]) : ''
+    const code = codeEl.children && codeEl.children.length > 0 ? recursiveTreeToText(codeEl) : ''
     return h(ContentCode, { lang, code: encodeURIComponent(code) })
   }
 }

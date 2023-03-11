@@ -85,6 +85,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
     :class="{ 'hover:bg-active': hover }"
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
+    aria-roledescription="status-card"
     :lang="status.language ?? undefined"
     @click="onclick"
     @keydown.enter="onclick"

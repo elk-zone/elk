@@ -374,6 +374,7 @@
         "save_settings": "設定を保存",
         "subscription_error": {
           "clear_error": "エラーのクリア",
+          "error_hint": "問題を解決するために、よくある質問の一覧を参照できます: {0}",
           "invalid_vapid_key": "VAPID公開鍵が無効なようです。",
           "permission_denied": "パーミッション拒否: ブラウザで通知を有効にしてください。",
           "repo_link": "ElkのGitHubリポジトリ",

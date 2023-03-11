@@ -207,7 +207,7 @@ export default defineNuxtConfig({
           'font-src': ['\'self\''],
           'form-action': ['\'none\''],
           'frame-ancestors': ['\'none\''],
-          'img-src': ['\'self\'', 'https:', 'http:', 'data:'],
+          'img-src': ['\'self\'', 'https:', 'http:', 'data:', 'blob:'],
           'media-src': ['\'self\'', 'https:', 'http:'],
           'object-src': ['\'none\''],
           'script-src': ['\'self\'', '\'unsafe-inline\'', '\'wasm-unsafe-eval\''],

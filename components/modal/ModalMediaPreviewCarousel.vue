@@ -21,7 +21,7 @@ const { modelValue } = defineModel<{
 const target = ref()
 
 const animateTimeout = useTimeout(10)
-const reduceMotion = useReducedMotion()
+const reduceMotion = process.server ? ref(false) : useReducedMotion()
 
 const canAnimate = computed(() => !reduceMotion.value && animateTimeout.value)
 
@@ -64,7 +64,7 @@ const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
 
 useGesture({
   onPinch({ offset: [distance, angle] }) {
-    set({ scale: 1 + distance / 200 })
+    set({ scale: Math.max(0.5, 1 + distance / 200) })
   },
   onMove({ movement: [x, y], dragging, pinching }) {
     if (dragging && !pinching)

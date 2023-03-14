@@ -1,5 +1,4 @@
 import { createResolver, useNuxt } from '@nuxt/kit'
-import Inspect from 'vite-plugin-inspect'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
@@ -26,20 +25,17 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
+    '~/modules/emoji-mart-translation',
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
-    '~/modules/stale-dep',
-    ['unplugin-vue-inspector/nuxt', {
-      enabled: false,
-      toggleButtonVisibility: 'never',
-    }],
+    'stale-dep/nuxt',
+    '@nuxt/devtools',
   ],
   experimental: {
     payloadExtraction: false,
-    reactivityTransform: true,
     inlineSSRStyles: false,
   },
   css: [
@@ -76,19 +72,7 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
-      rollupOptions: {
-        output: {
-          manualChunks: (id) => {
-            // TODO: find and resolve issue in nuxt/vite/pwa
-            if (id.includes('.svg') || id.includes('entry'))
-              return 'entry'
-          },
-        },
-      },
     },
-    plugins: [
-      Inspect(),
-    ],
   },
   postcss: {
     plugins: {
@@ -96,7 +80,6 @@ export default defineNuxtConfig({
     },
   },
   appConfig: {
-    singleInstanceServer: process.env.SINGLE_INSTANCE_SERVER === 'true',
     storage: {
       driver: process.env.NUXT_STORAGE_DRIVER ?? (isCI ? 'cloudflare' : 'fs'),
     },
@@ -115,23 +98,30 @@ export default defineNuxtConfig({
       translateApi: '',
       // Use the instance where Elk has its Mastodon account as the default
       defaultServer: 'm.webtoo.ls',
+      singleInstance: false,
     },
     storage: {
       fsBase: 'node_modules/.cache/app',
     },
   },
   routeRules: {
+    // Static generation
+    '/': { prerender: true },
+    '/settings/**': { prerender: false },
+    // incremental regeneration
     '/api/list-servers': { swr: true },
+    // CDN cache rules
     '/manifest.webmanifest': {
       headers: {
         'Content-Type': 'application/manifest+json',
+        'Cache-Control': 'public, max-age=0, must-revalidate',
       },
     },
   },
-  build: {
-    transpile: ['masto'],
-  },
   nitro: {
+    alias: {
+      'isomorphic-ws': 'unenv/runtime/mock/proxy',
+    },
     esbuild: {
       options: {
         target: 'esnext',
@@ -139,15 +129,41 @@ export default defineNuxtConfig({
     },
     prerender: {
       crawlLinks: true,
-      routes: ['/'],
-      ignore: ['/settings'],
     },
   },
+  sourcemap: isDevelopment,
   hooks: {
+    'prepare:types': function ({ references }) {
+      references.push({ types: '@types/wicg-file-system-access' })
+    },
     'nitro:config': function (config) {
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}
       config.virtual['#storage-config'] = `export const driver = ${JSON.stringify(nuxt.options.appConfig.storage.driver)}`
+    },
+    'vite:extendConfig': function (config, { isServer }) {
+      if (isServer) {
+        const alias = config.resolve!.alias as Record<string, string>
+        for (const dep of ['eventemitter3', 'isomorphic-ws'])
+          alias[dep] = resolve('./mocks/class')
+        for (const dep of ['shiki-es', 'fuse.js'])
+          alias[dep] = 'unenv/runtime/mock/proxy'
+        const resolver = createResolver(import.meta.url)
+
+        config.plugins!.unshift({
+          name: 'mock',
+          enforce: 'pre',
+          resolveId(id) {
+            if (id.match(/(^|\/)(@tiptap)\//))
+              return resolver.resolve('./mocks/tiptap.ts')
+            if (id.match(/(^|\/)(prosemirror)/))
+              return resolver.resolve('./mocks/prosemirror.ts')
+          },
+        })
+
+        const noExternal = config.ssr!.noExternal as string[]
+        noExternal.push('masto', '@fnando/sparkline', 'vue-i18n', '@mastojs/ponyfills')
+      }
     },
   },
   app: {
@@ -190,7 +206,7 @@ export default defineNuxtConfig({
           'font-src': ['\'self\''],
           'form-action': ['\'none\''],
           'frame-ancestors': ['\'none\''],
-          'img-src': ['\'self\'', 'https:', 'http:', 'data:'],
+          'img-src': ['\'self\'', 'https:', 'http:', 'data:', 'blob:'],
           'media-src': ['\'self\'', 'https:', 'http:'],
           'object-src': ['\'none\''],
           'script-src': ['\'self\'', '\'unsafe-inline\'', '\'wasm-unsafe-eval\''],
@@ -206,6 +222,9 @@ export default defineNuxtConfig({
   colorMode: { classSuffix: '' },
   i18n,
   pwa,
+  staleDep: {
+    packageManager: 'pnpm',
+  },
 })
 
 declare global {

@@ -5,6 +5,7 @@ const { status, context } = defineProps<{
   status: mastodon.v1.Status
   newer?: mastodon.v1.Status
   context?: mastodon.v2.FilterContext | 'details'
+  isPreview?: boolean
 }>()
 
 const isDM = $computed(() => status.visibility === 'direct')
@@ -19,7 +20,7 @@ const isFiltered = $computed(() => status.account.id !== currentUser.value?.acco
 
 // check spoiler text or media attachment
 // needed to handle accounts that mark all their posts as sensitive
-const hasSensitiveSpoilerOrMedia = $computed(() => status.sensitive && (!!status.spoilerText || !!status.mediaAttachments.length))
+const hasSpoilerOrSensitiveMedia = $computed(() => !!status.spoilerText || (status.sensitive && !!status.mediaAttachments.length))
 
 const cleanSharedLink = !status.poll
   && !status.mediaAttachments.length
@@ -35,7 +36,7 @@ const cleanSharedLink = !status.poll
     }"
   >
     <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
-    <StatusSpoiler :enabled="hasSensitiveSpoilerOrMedia || isFiltered" :filter="isFiltered" :is-d-m="isDM">
+    <StatusSpoiler :enabled="hasSpoilerOrSensitiveMedia || isFiltered" :filter="isFiltered" :is-d-m="isDM">
       <template v-if="status.spoilerText" #spoiler>
         <p>{{ status.spoilerText }}</p>
       </template>
@@ -48,6 +49,7 @@ const cleanSharedLink = !status.poll
       <StatusMedia
         v-if="status.mediaAttachments?.length"
         :status="status"
+        :is-preview="isPreview"
       />
       <StatusPreviewCard
         v-if="status.card"

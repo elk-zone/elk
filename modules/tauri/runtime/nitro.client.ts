@@ -14,7 +14,7 @@ import {
 const handlers = [
   {
     route: '/api/:server/oauth',
-    handler: defineLazyEventHandler(() => import('~/server/api/[server]/oauth').then(r => r.default || r)),
+    handler: defineLazyEventHandler(() => import('~/server/api/[server]/oauth/[origin]').then(r => r.default || r)),
   },
   {
     route: '/api/:server/login',

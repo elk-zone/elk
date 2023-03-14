@@ -1,5 +1,5 @@
 export default defineNuxtRouteMiddleware(async (to) => {
-  if (process.server || !useAppConfig().singleInstanceServer)
+  if (process.server || !useRuntimeConfig().public.singleInstance)
     return
 
   if (to.params.server) {

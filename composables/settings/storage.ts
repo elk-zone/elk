@@ -33,7 +33,12 @@ export function usePreferences<T extends keyof PreferencesSettings>(name: T): Re
 }
 
 export function getPreferences<T extends keyof PreferencesSettings>(userSettings: UserSettings, name: T): PreferencesSettings[T] {
-  return userSettings?.preferences?.[name] ?? DEFAULT__PREFERENCES_SETTINGS[name]
+  const preference = userSettings?.preferences?.[name] ?? DEFAULT__PREFERENCES_SETTINGS[name]
+
+  if (name === 'enableAutoplay')
+    return getPreferences(userSettings, 'enableDataSaving') ? false : preference
+
+  return preference
 }
 
 export function togglePreferences(key: keyof PreferencesSettings) {

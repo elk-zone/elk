@@ -95,6 +95,7 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
+    "fetching": "Fetching...",
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
@@ -198,6 +199,31 @@
     "remove_account": "Remove account from list",
     "save": "Save changes"
   },
+  "magic_keys": {
+    "dialog_header": "Keyboard shortcuts",
+    "groups": {
+      "actions": {
+        "boost": "Boost",
+        "command_mode": "Command mode",
+        "compose": "Compose",
+        "favourite": "Favourite",
+        "title": "Actions",
+        "zen_mode": "Zen mode"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Home",
+        "go_to_notifications": "Notifications",
+        "next_status": "Next status",
+        "previous_status": "Previous status",
+        "shortcut_help": "Shortcut help",
+        "title": "Navigation"
+      }
+    },
+    "sequence_then": "then"
+  },
   "menu": {
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
@@ -214,7 +240,7 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "share_post": "Share this post",
-    "show_favourited_and_boosted_by": "Show who favourited and boosted",
+    "show_favourited_and_boosted_by": "Show who favorited and boosted",
     "show_reblogs": "Show boosts from {0}",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
@@ -227,6 +253,9 @@
     "unmute_account": "Unmute {0}",
     "unmute_conversation": "Unmute this post",
     "unpin_on_profile": "Unpin on profile"
+  },
+  "modals": {
+    "aria_label_close": "Close"
   },
   "nav": {
     "back": "Go back",
@@ -337,6 +366,7 @@
     "language": {
       "display_language": "Display Language",
       "label": "Language",
+      "status": "Translation status: {0}/{1} ({2}%)",
       "translations": {
         "add": "Add",
         "choose_language": "Choose language",
@@ -372,9 +402,10 @@
         "save_settings": "Save settings",
         "subscription_error": {
           "clear_error": "Clear error",
+          "error_hint": "You can consult a list of frequently asked questions to try to solve the problem: {0}.",
           "invalid_vapid_key": "The VAPID public key seems to be invalid.",
           "permission_denied": "Permission denied: enable notifications in your browser.",
-          "repo_link": "Elk's repository in Github",
+          "repo_link": "Elk's repository in GitHub",
           "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
           "title": "Could not subscribe to push notifications",
           "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again.",
@@ -401,6 +432,8 @@
     "notifications_settings": "Notifications",
     "preferences": {
       "enable_autoplay": "Enable Autoplay",
+      "enable_data_saving": "Enable data saving",
+      "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
       "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
@@ -427,6 +460,8 @@
         "label": "Appearance",
         "profile_metadata": "Profile metadata",
         "profile_metadata_desc": "You can have up to {0} items displayed as a table on your profile",
+        "profile_metadata_label": "Label",
+        "profile_metadata_value": "Content",
         "title": "Edit profile"
       },
       "featured_tags": {
@@ -558,6 +593,7 @@
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
     "open_editor_tools": "Editor tools",
+    "pick_an_icon": "Pick an icon",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",
@@ -569,6 +605,7 @@
     "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
     "sign_in_notice_title": "Viewing {0} public data",
     "sign_out_account": "Sign out {0}",
+    "single_instance_sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts.",
     "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
     "tip_register_account": "pick your server and register one"
   },

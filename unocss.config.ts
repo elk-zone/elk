@@ -9,6 +9,8 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 
+import { variantParentMatcher } from '@unocss/preset-mini/utils'
+
 export default defineConfig({
   shortcuts: [
     {
@@ -119,6 +121,8 @@ export default defineConfig({
         layer: 'native-mac',
       }
     },
+    variantParentMatcher('fullscreen', '@media (display-mode: fullscreen)'),
+    variantParentMatcher('coarse-pointer', '@media (pointer: coarse)'),
   ],
   rules: [
     // scrollbar-hide

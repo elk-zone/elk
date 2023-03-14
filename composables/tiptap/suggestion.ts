@@ -16,18 +16,20 @@ export { Emoji }
 export type CustomEmoji = (mastodon.v1.CustomEmoji & { custom: true })
 export const isCustomEmoji = (emoji: CustomEmoji | Emoji): emoji is CustomEmoji => !!(emoji as CustomEmoji).custom
 
-export const TiptapMentionSuggestion: Partial<SuggestionOptions> = {
-  pluginKey: new PluginKey('mention'),
-  char: '@',
-  async items({ query }) {
-    if (query.length === 0)
-      return []
+export const TiptapMentionSuggestion: Partial<SuggestionOptions> = process.server
+  ? {}
+  : {
+      pluginKey: new PluginKey('mention'),
+      char: '@',
+      async items({ query }) {
+        if (query.length === 0)
+          return []
 
-    const results = await useMastoClient().v2.search({ q: query, type: 'accounts', limit: 25, resolve: true })
-    return results.accounts
-  },
-  render: createSuggestionRenderer(TiptapMentionList),
-}
+        const results = await useMastoClient().v2.search({ q: query, type: 'accounts', limit: 25, resolve: true })
+        return results.accounts
+      },
+      render: createSuggestionRenderer(TiptapMentionList),
+    }
 
 export const TiptapHashtagSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('hashtag'),
@@ -52,7 +54,7 @@ export const TiptapEmojiSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('emoji'),
   char: ':',
   async items({ query }): Promise<(CustomEmoji | Emoji)[]> {
-    if (query.length === 0)
+    if (process.server || query.length === 0)
       return []
 
     if (currentCustomEmojis.value.emojis.length === 0)

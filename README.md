@@ -37,10 +37,26 @@ The Elk team maintains a deployment at:
 - 🦌 Production: [elk.zone](https://elk.zone)
 - 🐙 Canary: [main.elk.zone](https://main.elk.zone) (deploys on every commit to `main` branch)
 
+### Self-Host Docker Deployment
+
+In order to host Elk yourself you can use the provided Dockerfile to build a container with elk. Be aware, that Elk only loads properly of the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself. 
+One could put Elk behind popular reverse proxies with SSL Handling like Traefik, NGINX etc. 
+
+1. checkout source ```git clone https://github.com/elk-zone/elk.git```
+1. got into new source dir: ```cd elk```
+1. build Docker image: ```docker build .```
+1. create local storage directory for settings: ```mkdir elk-storage```
+1. adjust permissions of storage dir: ```sudo chown 911:911 ./elk-storage```
+1. start container: ```docker-compose up -d```
+
+Note: The provided Dockerfile creates a container which will eventually run Elk as non-root user and create a persistent named Docker volume upon first start (if that volume does not yet exist). This volume is always created with root permission. Failing to change the permissions of ```/elk/data``` inside this volume to UID:GID 911 (as specified for Elk in the Dockerfile) will prevent Elk from storing it's config for user accounts. You either have to fix the permission in the created named volume, or mount a directory with the correct permission to ```/elk/data``` into the container.
+
+
 ### Ecosystem
 
 These are known deployments using Elk as an alternative Web client for Mastodon servers or as a base for other projects in the fediverse:
 
+- [elk.fedified.com](https://elk.fedified.com) - Use Elk to log into any compatible instance
 - [elk.h4.io](https://elk.h4.io) - Use Elk for the `h4.io` Server
 - [elk.universeodon.com](https://elk.universeodon.com) - Use Elk for the Universeodon Server
 - [elk.vmst.io](https://elk.vmst.io) - Use Elk for the `vmst.io` Server
@@ -117,6 +133,10 @@ Elk uses [Vitest](https://vitest.dev). You can run the test suite with:
 nr test
 ```
 
+## 📲 PWA
+
+You can consult the [PWA documentation](https://docs.elk.zone/docs/pwa) to learn more about the PWA capabilities on Elk, how to install Elk PWA in your desktop or mobile device and some hints about PWA stuff on Elk.
+
 ## 🦄 Stack
 
 - [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling
@@ -129,7 +149,7 @@ nr test
 - [Iconify](https://github.com/iconify/icon-sets#iconify-icon-sets-in-json-format) - Iconify icon sets in JSON format
 - [Masto.js](https://neet.github.io/masto.js) - Mastodon API client in TypeScript
 - [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
-- [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update and push notifications
+- [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update, Web Push Notifications and Web Share Target API
 
 ## 👨‍💻 Contributors
 

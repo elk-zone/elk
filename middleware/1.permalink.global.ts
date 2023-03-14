@@ -24,7 +24,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     return
 
   // Handle redirecting to new permalink structure for users with old links
-  if (!useAppConfig().singleInstanceServer && !to.params.server) {
+  if (!useRuntimeConfig().public.singleInstance && !to.params.server) {
     return {
       ...to,
       params: {

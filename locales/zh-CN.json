@@ -35,6 +35,7 @@
     "posts_count": "{0} 条帖文",
     "profile_description": "{0} 的个人资料头图",
     "profile_unavailable": "个人资料不可见",
+    "request_follow": "请求关注",
     "unblock": "取消拉黑",
     "unfollow": "取消关注",
     "unmute": "取消屏蔽",
@@ -68,6 +69,7 @@
     "save": "保存",
     "save_changes": "保存更改",
     "sign_in": "登鹿",
+    "sign_in_to": "登鹿 {0}",
     "switch_account": "切换帐号",
     "vote": "投票"
   },
@@ -115,6 +117,11 @@
     "common": {
       "cancel": "否",
       "confirm": "是"
+    },
+    "delete_list": {
+      "cancel": "取消",
+      "confirm": "删除",
+      "title": "你确定要删除 \"{0}\" 列表吗？"
     },
     "delete_posts": {
       "cancel": "取消",
@@ -177,8 +184,19 @@
   },
   "list": {
     "add_account": "向列表中添加用户",
+    "cancel_edit": "取消编辑",
+    "clear_error": "清空错误",
+    "create": "创建",
+    "delete": "删除列表",
+    "delete_error": "删除列表时出现了一个错误",
+    "edit": "编辑列表",
+    "edit_error": "更新列表时出现了一个错误",
+    "error": "创建列表时出现了一个错误",
+    "error_prefix": "错误：",
+    "list_title_placeholder": "列表标题",
     "modify_account": "修改列表中的用户",
-    "remove_account": "移除列表中的用户"
+    "remove_account": "移除列表中的用户",
+    "save": "保存更改"
   },
   "menu": {
     "block_account": "拉黑 {0}",
@@ -319,6 +337,7 @@
     "language": {
       "display_language": "首选语言",
       "label": "语言",
+      "status": "翻译进度： {0}/{1} ({2}%)",
       "translations": {
         "add": "添加",
         "choose_language": "选择语言",
@@ -354,10 +373,13 @@
         "save_settings": "保存设置改动",
         "subscription_error": {
           "clear_error": "清除错误",
+          "invalid_vapid_key": "VAPID 密钥无效。",
           "permission_denied": "权限不足：请在你的浏览器中打开通知权限。",
+          "repo_link": "鹿鸣在 Github 上的仓库",
           "request_error": "请求订阅时发生了一个错误，请再次尝试。如错误仍然存在，请到鹿鸣代码仓库中报告这一问题。",
           "title": "无法订阅推送通知。",
-          "too_many_registrations": "由于浏览器限制，鹿鸣无法为不同服务器上的多个帐户使用推送通知服务。请取消订阅另一个帐户的推送通知，然后重试。"
+          "too_many_registrations": "由于浏览器限制，鹿鸣无法为不同服务器上的多个帐户使用推送通知服务。请取消订阅另一个帐户的推送通知，然后重试。",
+          "vapid_not_supported": "你的浏览器支持推送通知功能，但似乎没有实现 VAPID 协议。"
         },
         "title": "推送通知设置",
         "undo_settings": "撤销设置改动",
@@ -384,15 +406,19 @@
       "github_cards": "GitHub 卡片",
       "grayscale_mode": "灰色模式",
       "hide_account_hover_card": "隐藏用户悬浮卡",
+      "hide_alt_indi_on_posts": "隐藏帖文上的描述按钮",
       "hide_boost_count": "隐藏转发数",
       "hide_favorite_count": "隐藏收藏数",
       "hide_follower_count": "隐藏关注者数",
       "hide_reply_count": "隐藏回复数",
       "hide_translation": "隐藏翻译",
+      "hide_username_emojis": "隐藏用户昵称的表情符号",
+      "hide_username_emojis_description": "隐藏时间线上用户的表情符号。表情符号仍然会在用户个人资料中展示。",
       "label": "首选项",
       "title": "实验功能",
       "user_picker": "用户选择器",
-      "virtual_scroll": "虚拟滚动"
+      "virtual_scroll": "虚拟滚动",
+      "wellbeing": "社交偏好"
     },
     "profile": {
       "appearance": {
@@ -402,6 +428,8 @@
         "label": "个人资料",
         "profile_metadata": "个人资料附加信息",
         "profile_metadata_desc": "这将会在个人资料页上以表格的形式展示，最多 {0} 个项目",
+        "profile_metadata_label": "描述",
+        "profile_metadata_value": "内容",
         "title": "编辑个人资料"
       },
       "featured_tags": {
@@ -441,8 +469,10 @@
     "filter_removed_phrase": "从筛选中移除",
     "filter_show_anyway": "仍然展示",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "描述",
-      "dismiss": "关闭"
+      "dismiss": "关闭",
+      "read": "查看 {0} 的描述"
     },
     "poll": {
       "count": "{0} 次投票",
@@ -530,8 +560,11 @@
     "explore_links_intro": "这些新闻故事正被本站和分布式网络上其他站点的用户谈论。",
     "explore_posts_intro": "来自本站和分布式网络上其他站点的这些嘟文正在本站引起关注。",
     "explore_tags_intro": "这些标签正在本站和分布式网络上其他站点的用户中引起关注。",
+    "open_editor_tools": "编辑器工具",
     "publish_failed": "关闭编辑器上方的错误信息以重新发布帖文。",
-    "toggle_code_block": "切换代码块"
+    "toggle_bold": "切换加粗",
+    "toggle_code_block": "切换代码块",
+    "toggle_italic": "切换斜体"
   },
   "user": {
     "add_existing": "添加现有帐户",
@@ -539,6 +572,7 @@
     "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。",
     "sign_in_notice_title": "正在查看 {0} 的公共数据",
     "sign_out_account": "登出 {0}",
+    "single_instance_sign_in_desc": "登录后可关注其他人或标签、收藏、分享和回复帖文。",
     "tip_no_account": "如果您还没有 Mastodon 账户，{0}。",
     "tip_register_account": "选择您的服务器并注册一个"
   },

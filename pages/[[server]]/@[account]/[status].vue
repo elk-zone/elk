@@ -14,8 +14,6 @@ const route = useRoute()
 const id = $(computedEager(() => route.params.status as string))
 const main = ref<ComponentPublicInstance | null>(null)
 
-const publishWidget = ref()
-
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   `status:${id}`,
   () => fetchStatus(id),
@@ -28,9 +26,15 @@ const { data: context, pending: pendingContext, refresh: refreshContext } = useA
   { watch: [isHydrated], immediate: isHydrated.value, lazy: true, default: () => shallowRef() },
 )
 
-const replyDraft = $computed(() => status.value ? getReplyDraft(status.value) : null)
+if (pendingContext)
+  watchOnce(pendingContext, scrollTo)
 
-function scrollTo() {
+if (pending)
+  watchOnce(pending, scrollTo)
+
+async function scrollTo() {
+  await nextTick()
+
   const statusElement = unrefElement(main)
   if (!statusElement)
     return
@@ -38,18 +42,8 @@ function scrollTo() {
   statusElement.scrollIntoView(true)
 }
 
-onMounted(scrollTo)
-
-if (pendingContext) {
-  watchOnce(pendingContext, async () => {
-    await nextTick()
-    scrollTo()
-  })
-}
-
-const focusEditor = () => {
-  publishWidget.value?.focusEditor?.()
-}
+const publishWidget = ref()
+const focusEditor = () => publishWidget.value?.focusEditor?.()
 
 provide('focus-editor', focusEditor)
 
@@ -57,6 +51,8 @@ watch(publishWidget, () => {
   if (window.history.state.focusReply)
     focusEditor()
 })
+
+const replyDraft = $computed(() => status.value ? getReplyDraft(status.value) : null)
 
 onReactivated(() => {
   // Silently update data when reentering the page
@@ -68,55 +64,61 @@ onReactivated(() => {
 
 <template>
   <MainContent back>
-    <template v-if="!pending && !pendingContext">
-      <div v-if="status" xl:mt-4 border="b base" mb="50vh">
-        <template v-for="comment, i of context?.ancestors" :key="comment.id">
-          <StatusCard
-            :status="comment" :actions="comment.visibility !== 'direct'" context="account"
-            :has-older="true" :newer="context?.ancestors[i - 1]"
-          />
-        </template>
-
-        <StatusDetails
-          ref="main"
-          :status="status"
-          :newer="context?.ancestors.at(-1)"
-          command
-          style="scroll-margin-top: 60px"
-        />
-        <PublishWidget
-          v-if="currentUser"
-          ref="publishWidget"
-          border="y base"
-          :draft-key="replyDraft!.key"
-          :initial="replyDraft!.draft"
-          @published="refreshContext()"
-        />
-
-        <TimelineSkeleton v-if="pendingContext" />
-        <DynamicScroller
-          v-slot="{ item, index, active }"
-          :items="context?.descendants || []"
-          :min-item-size="200"
-          key-field="id"
-          page-mode
-        >
-          <DynamicScrollerItem :item="item" :active="active">
+    <template v-if="!pending">
+      <template v-if="status">
+        <div xl:mt-4 mb="50vh" border="b base">
+          <template v-if="!pendingContext">
             <StatusCard
-              :status="item"
-              context="account"
-              :older="context?.descendants[index + 1]"
-              :newer="index > 0 ? context?.descendants[index - 1] : status"
-              :has-newer="index === 0"
-              :main="status"
+              v-for="comment, i of context?.ancestors" :key="comment.id"
+              :status="comment" :actions="comment.visibility !== 'direct'" context="account"
+              :has-older="true" :newer="context?.ancestors[i - 1]"
             />
-          </DynamicScrollerItem>
-        </DynamicScroller>
-      </div>
+          </template>
+
+          <StatusDetails
+            ref="main"
+            :status="status"
+            :newer="context?.ancestors.at(-1)"
+            command
+            style="scroll-margin-top: 60px"
+          />
+          <PublishWidget
+            v-if="currentUser"
+            ref="publishWidget"
+            border="y base"
+            :draft-key="replyDraft!.key"
+            :initial="replyDraft!.draft"
+            @published="refreshContext()"
+          />
+
+          <template v-if="!pendingContext">
+            <DynamicScroller
+              v-slot="{ item, index, active }"
+              :items="context?.descendants || []"
+              :min-item-size="200"
+              :buffer="800"
+              key-field="id"
+              page-mode
+            >
+              <DynamicScrollerItem :item="item" :active="active">
+                <StatusCard
+                  :status="item"
+                  context="account"
+                  :older="context?.descendants[index + 1]"
+                  :newer="index > 0 ? context?.descendants[index - 1] : status"
+                  :has-newer="index === 0"
+                  :main="status"
+                />
+              </DynamicScrollerItem>
+            </DynamicScroller>
+          </template>
+        </div>
+      </template>
 
       <StatusNotFound v-else :account="route.params.account as string" :status="id" />
     </template>
 
     <StatusCardSkeleton v-else border="b base" />
+    <TimelineSkeleton v-if="pending || pendingContext" />
   </MainContent>
 </template>

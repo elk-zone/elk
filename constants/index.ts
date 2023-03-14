@@ -3,6 +3,8 @@ export const APP_NAME = 'Elk'
 export const DEFAULT_POST_CHARS_LIMIT = 500
 export const DEFAULT_FONT_SIZE = '15px'
 
+export const ELK_PAGE_LIFECYCLE_FROZEN = 'elk-frozen'
+
 export const STORAGE_KEY_DRAFTS = 'elk-drafts'
 export const STORAGE_KEY_USERS = 'elk-users'
 export const STORAGE_KEY_SERVERS = 'elk-servers'

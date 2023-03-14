@@ -25,7 +25,7 @@ const handleShowCommit = () => {
     </template>
 
     <div flex="~ col gap4" w-full items-center justify-center my5>
-      <img :alt="$t('app_logo')" src="/logo.svg" w-24 h-24 class="rtl-flip">
+      <img :alt="$t('app_logo')" :src="`${''}/logo.svg`" w-24 h-24 class="rtl-flip">
       <p text-lg>
         {{ $t('app_desc_short') }}
       </p>
@@ -41,7 +41,7 @@ const handleShowCommit = () => {
         <template #content>
           <div font-mono>
             <span>{{ buildInfo.env === 'release' ? `v${buildInfo.version}` : buildInfo.env }}</span>
-            <span v-if="showCommit"> ({{ buildInfo.commit.slice(0, 7) }}@{{ buildInfo.branch }})</span>
+            <span v-if="showCommit"> ({{ buildInfo.shortCommit }}@{{ buildInfo.branch }})</span>
           </div>
         </template>
       </SettingsItem>

@@ -284,16 +284,11 @@ defineExpose({
         <div relative flex-1 flex flex-col>
           <template v-if="settings.editorMode === 'markdown'">
             <textarea
-
               ref="textareaEl"
               v-model="markdown"
               bg-base font-mono outline-none border-none resize-none
               :class="editorClass"
             />
-            <div text-sm flex="~ gap-1" items-center op50 mb--3 mt-2>
-              <div i-ri:markdown-line />
-              {{ $t('state.markdown_editor') }}
-            </div>
           </template>
           <EditorContent
             v-else

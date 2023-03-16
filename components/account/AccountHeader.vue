@@ -36,6 +36,16 @@ function getIconFieldHref(fieldValue: string): string {
   return valueHTML.firstChild?.href || undefined
 }
 
+/**
+ * Get the localized verified field message and locale formatted timestamp.
+ * @param verifiedAt - The metadata verification time string from the Mastodon API
+ * @returns The localized text
+ */
+function formatVerificationTime(verifiedAt: string): string {
+  return t('account.link_verified_on',
+    [useFormattedDateTime(verifiedAt, { dateStyle: 'medium', timeStyle: 'short' }).value])
+}
+
 function getNotificationIconTitle() {
   return relationship?.notifying ? t('account.notifications_on_post_disable', { username: `@${account.username}` }) : t('account.notifications_on_post_enable', { username: `@${account.username}` })
 }
@@ -180,8 +190,9 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           <div
             v-if="field.verifiedAt"
             absolute z-1 rounded-full text-primary bg-base text="0.6rem" ms="0.6rem" mt="1.3em" group-hover="bg-active"
-            :aria-label="field.verifiedAt ? 'Verified.' : undefined"
-            :title="field.verifiedAt ? `Verified ${new Date(field.verifiedAt).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}` : undefined"
+            :aria-label="field.verifiedAt ? '✓' : undefined"
+            :aria-description="field.verifiedAt ? formatVerificationTime(field.verifiedAt) : undefined"
+            :title="field.verifiedAt ? formatVerificationTime(field.verifiedAt) : undefined"
           >
             <div
               :class="accountVerifiedFieldIcon"

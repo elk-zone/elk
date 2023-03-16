@@ -24,6 +24,7 @@
     "follows_you": "已追蹤你",
     "go_to_profile": "轉到個人資料",
     "joined": "已加入",
+    "link_verified_on": "此連結的所有權已在 {0} 檢查",
     "moved_title": "的新帳號是：",
     "muted_users": "已靜音的使用者",
     "muting": "已靜音",
@@ -42,6 +43,7 @@
     "unmute": "取消靜音",
     "view_other_followers": "其他站點上的粉絲可能不會在這裡顯示。",
     "view_other_following": "其他站點上正在追蹤的人可能不會在這裡顯示。"
+
   },
   "action": {
     "apply": "套用",

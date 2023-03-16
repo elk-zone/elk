@@ -59,7 +59,7 @@ function toggleDark() {
         </NuxtLink>
       </template>
     </div>
-    <div flex gap-2>
+    <div flex="~ gap2">
       <NuxtLink to="/settings/about" cursor-pointer underline>
         {{ $t('settings.about.label') }}
       </NuxtLink>
@@ -68,6 +68,11 @@ function toggleDark() {
           {{ $t('nav.privacy') }}
         </NuxtLink>
       </template>
+      <NuxtLink href="https://github.com/sponsors/elk-zone" target="_blank" external whitespace-nowrap>
+        <span underline>{{ $t('settings.about.sponsor_action') }}</span> &#x2665;
+      </NuxtLink>
+    </div>
+    <div flex="~ gap2">
       <NuxtLink href="/m.webtoo.ls/@elk" target="_blank" underline>
         Mastodon
       </NuxtLink>
@@ -76,9 +81,6 @@ function toggleDark() {
       </NuxtLink>
       <NuxtLink href="https://github.com/elk-zone/elk" target="_blank" external underline>
         GitHub
-      </NuxtLink>
-      <NuxtLink href="https://github.com/sponsors/elk-zone" target="_blank" external whitespace-nowrap>
-        <span underline>{{ $t('settings.about.sponsor_action') }}</span> &#x2665;
       </NuxtLink>
     </div>
   </footer>

@@ -29,6 +29,7 @@ function getIconFieldTitle(fieldName: string): string {
 /**
  * Get the link href of a link field, if any.
  * @param fieldValue - The field's full value given by the Mastodon API, either an HTML string or plain text
+ * @returns The href of the first link found, or `undefined` if none was found
  */
 function getIconFieldHref(fieldValue: string): string {
   const valueHTML = document.createRange().createContextualFragment(fieldValue)
@@ -170,20 +171,27 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
       <div v-if="iconFields.length" flex="~ wrap gap-1" style="margin-inline: -0.25rem;">
         <NuxtLink
           v-for="field in iconFields" :key="field.name"
-          flex="~ gap-1" items-center rounded-full :hover="getIconFieldHref(field.value) ? 'bg-active' : ''"
-          style="padding-inline-start: 0.5rem; padding-inline-end: 0.75rem;"
-          :class="field.verifiedAt ? 'border-1 border-dark' : ''"
-          :to="getIconFieldHref(field.value)" rel="me nofollow noopener noreferrer" target="_blank"
+          group relative flex="~ gap-1" items-center rounded-full text-secondary ps="0.5rem" pe="0.7rem"
+          :hover="getIconFieldHref(field.value) ? 'bg-active' : ''"
+          :to="getIconFieldHref(field.value)"
+          rel="me nofollow noopener noreferrer"
+          target="_blank"
         >
           <div
-            text-secondary :class="field.verifiedAt
-              ? accountVerifiedFieldIcon
-              : (getAccountFieldIcon(field.name) || getAccountFieldIcon('Website'))"
-            :title="field.verifiedAt ? 'Verified' : undefined"
+            v-if="field.verifiedAt"
+            absolute z-1 rounded-full text-primary bg-base text="0.6rem" ms="0.6rem" mt="1.3em" group-hover="bg-active"
             :aria-label="field.verifiedAt ? 'Verified.' : undefined"
-          />
+            :title="field.verifiedAt ? `Verified ${new Date(field.verifiedAt).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })}` : undefined"
+          >
+            <div
+              :class="accountVerifiedFieldIcon"
+              style="transform: translate(-0.3px, -0.6px);
+              /* Shift the checkmark in the circle so the circle can overlap the icon less. */"
+            />
+          </div>
+          <div :class="getAccountFieldIcon(field.name) || getAccountFieldIcon('Website')" />
           <div flex="~ col">
-            <div text-secondary uppercase font-medium style="font-size: 0.6rem; margin-bottom: -0.5em;">
+            <div uppercase font-medium text="0.6rem" mb="-0.5em">
               {{ field.name }}
             </div>
             <ContentRich text-sm :content="field.value" :emojis="account.emojis" />

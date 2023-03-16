@@ -1,0 +1,412 @@
+{
+  "a11y": {
+    "loading_page": "S'està carregant",
+    "loading_titled_page": "S'està carregant la pàgina {0}",
+    "locale_changed": "S'ha canviat la llengua a {0}",
+    "locale_changing": "S'està canviant la llengua"
+  },
+  "account": {
+    "avatar_description": "Foto de perfil de: {0}",
+    "blocked_by": "Este usuari t'ha bloquejat",
+    "blocked_domains": "Domini bloquejat",
+    "favourites": "Preferit",
+    "follow_back": "Segueix també",
+    "follow_requested": "Sol·licitat",
+    "go_to_profile": "Ves al perfil",
+    "joined": "Data d'unió",
+    "moved_title": "ha indicat que el seu compte és ara:",
+    "notifications_on_post_disable": "No em notifiques quan {username} publique",
+    "notifications_on_post_enable": "Notifica'm quan {username} publique",
+    "profile_description": "Capçalera de: {0}",
+    "unmute": "Deixa de silenciar",
+    "view_other_followers": "És possible que no es mostren els seguidors d'altres instàncies.",
+    "view_other_following": "És possible que no es mostren els seguits d'altres instàncies."
+  },
+  "action": {
+    "apply": "Aplica",
+    "bookmark": "Afig als marcadors",
+    "bookmarked": "Als marcadors",
+    "boost": "Impulsa",
+    "boosted": "Impulsat",
+    "clear_upload_failed": "Esborra els errors de la pujada de fitxers",
+    "compose": "Redacta",
+    "confirm": "Confirma",
+    "favourite": "Marca com a preferit",
+    "favourited": "Preferit",
+    "publish": "Publica"
+  },
+  "app_desc_short": "Un client web Mastodon àgil",
+  "app_logo": "Logo d'Elk",
+  "attachment": {
+    "remove_label": "Elimina l'adjunt"
+  },
+  "command": {
+    "activate": "Activa",
+    "n-people-in-the-past-n-days": "{0} persones en els últims {1} dies",
+    "select_lang": "Selecciona una llengua",
+    "sign_in_desc": "Afig un compte existent",
+    "toggle_dark_mode": "Activa el mode fosc",
+    "toggle_zen_mode": "Activa el mode zen"
+  },
+  "common": {
+    "end_of_list": "Fi de la llista",
+    "in": "in",
+    "not_found": "404 No s'ha trobat",
+    "offline_desc": "Sembla que estàs fora de línia. Comprova la connexió de xarxa."
+  },
+  "compose": {},
+  "confirm": {
+    "block_account": {
+      "cancel": "Cancel·la",
+      "confirm": "Bloqueja",
+      "title": "Segur que vols bloquejar {0}?"
+    },
+    "block_domain": {
+      "cancel": "Cancel·la",
+      "confirm": "Bloqueja",
+      "title": "Segur que vols bloquejar {0}?"
+    },
+    "delete_list": {
+      "cancel": "Cancel·la",
+      "confirm": "Elimina",
+      "title": "Segur que vols eliminar la llista «{0}»?"
+    },
+    "delete_posts": {
+      "cancel": "Cancel·la",
+      "confirm": "Elimina",
+      "title": "Segur que vols eliminar la publicació?"
+    },
+    "mute_account": {
+      "cancel": "Cancel·la",
+      "confirm": "Silencia",
+      "title": "Segur que vols silenciar {0}?"
+    },
+    "show_reblogs": {
+      "cancel": "Cancel·la",
+      "confirm": "Mostra",
+      "title": "Segur que vols mostrar els impulsos de: {0}?"
+    },
+    "unfollow": {
+      "cancel": "Cancel·la",
+      "title": "Segur que vols deixar de seguir-lo?"
+    }
+  },
+  "conversation": {},
+  "custom_cards": {
+    "stackblitz": {
+      "open": "Obri",
+      "snippet_from": "Fragment de: {0}"
+    }
+  },
+  "error": {
+    "explore-list-empty": "No hi ha res en tendències. Comprova-ho més tard!",
+    "file_size_cannot_exceed_n_mb": "El fitxer no pot superar els {0} MB",
+    "unsupported_file_format": "Format del fitxer no compatible"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "Estàs veient una versió prèvia d'Elk de la comunitat - {0}.",
+      "desc2": "Pot contindre canvis no revisats o fins i tot maliciosos.",
+      "desc3": "No inicies sessió amb el teu compte real."
+    },
+    "desc_highlight": "Espereu trobar alguns errors i que falten funcions ací i allà.",
+    "desc_para1": "Gràcies pel teu interès en provar Elk, el nostre client web Mastodon en procés",
+    "desc_para2": "estem treballant de valent en el desenvolupament i en millorar-lo.",
+    "desc_para3": "Per a impulsar el desenvolupament, pots patrocinar l'equip a través dels patrocis de GitHub. Esperem que gaudisques d'Elk!",
+    "desc_para4": "Elk és de codi obert. Si vols ajudar amb proves, comentaris o contribucions,",
+    "desc_para5": "troba'ns a GitHub",
+    "desc_para6": "i col·labora.",
+    "footer_team": "L'equip d'Elk",
+    "title": "Elk està en proves!"
+  },
+  "language": {},
+  "list": {
+    "add_account": "Afig el compte a una llista",
+    "create": "Crea",
+    "delete": "Elimina la llista",
+    "delete_error": "S'ha produït un error en eliminar la llista",
+    "edit": "Edita la llista",
+    "modify_account": "Edita les llistes amb este compte",
+    "remove_account": "Elimina el compte d'una llista"
+  },
+  "menu": {
+    "copy_link_to_post": "Copia l'enllaç a la publicació",
+    "copy_original_link_to_post": "Copia l'enllaç original a la publicació",
+    "delete": "Elimina",
+    "delete_and_redraft": "Elimina i fes un esborrany",
+    "direct_message_account": "Envia un missatge directe a {0}",
+    "hide_reblogs": "Amaga els impulsos de: {0}",
+    "mention_account": "Menciona {0}",
+    "mute_conversation": "Silencia esta publicació",
+    "open_in_original_site": "Obri en el lloc original",
+    "share_post": "Comparteix la publicació",
+    "show_favourited_and_boosted_by": "Mostra qui ho ha marcat com a preferit i impulsat",
+    "show_reblogs": "Mostra els impulsos de: {0}",
+    "toggle_theme": {
+      "dark": "Activa el mode fosc",
+      "light": "Activa el mode clar"
+    },
+    "unmute_conversation": "Deixa de silenciar la publicació",
+    "unpin_on_profile": "Deixa de fixar-ho al perfil"
+  },
+  "nav": {
+    "blocked_users": "Usuarid bloquejats",
+    "built_at": "Compilat {0}",
+    "compose": "Redacta",
+    "federated": "Federada",
+    "privacy": "Privacitat",
+    "select_feature_flags": "Toggle Feature Flags",
+    "select_font_size": "Grandària de la lletra",
+    "select_language": "Llengua a mostrar"
+  },
+  "notification": {
+    "favourited_post": "ha marcat com a preferit",
+    "followed_you_count": "{0} persones t'han seguit|{0} persona t'ha seguit|{0} persones t'han seguit",
+    "missing_type": "MISSING notification.type:",
+    "reblogged_post": "t'ha impulsat",
+    "request_to_follow": "ha demanat seguir-te",
+    "signed_up": "s'ha registrat",
+    "update_status": "ha actualitzat la publicació"
+  },
+  "placeholder": {
+    "content_warning": "Escriu ací l'avís"
+  },
+  "pwa": {
+    "dismiss": "Omet",
+    "install": "Instal·la",
+    "install_title": "Instal·la Elk",
+    "title": "Hi ha una actualització d'Elk disponible!",
+    "update": "Actualitza",
+    "webmanifest": {
+      "canary": {
+        "description": "Un client web àgil de Mastodon (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "Un client web àgil de Mastodon (desenvolupament)",
+        "name": "Elk (desenvolupament)"
+      },
+      "preview": {
+        "description": "Un client web àgil de Mastodon (vista prèvia)"
+      },
+      "release": {
+        "description": "Un client web àgil de Mastodon"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "Cerca persones i etiquetes",
+    "search_empty": "No s'ha trobat res per al termes de la cerca"
+  },
+  "settings": {
+    "about": {
+      "built_at": "Compilació",
+      "label": "Quant a",
+      "sponsor_action_desc": "Per a ajudar l'equip a desenvolupar Elk",
+      "sponsors": "Patrocinis",
+      "sponsors_body_2": "I totes les empreses i individus que patrocinen l'equip d'Elk i els membres.",
+      "sponsors_body_3": "Si t'agrada l'aplicació, considera patrocinar-nos:"
+    },
+    "account_settings": {
+      "description": "Edita la configuració del teu compte a la interfície de Mastodon"
+    },
+    "interface": {
+      "default": " (per defecte)",
+      "font_size": "Grandària de la lletra",
+      "theme_color": "Color de tema"
+    },
+    "language": {
+      "display_language": "Llengua a mostrar",
+      "label": "Llengua",
+      "translations": {
+        "add": "Afig",
+        "choose_language": "Tria una llengua",
+        "remove": "Elimina"
+      }
+    },
+    "notifications": {
+      "notifications": {
+        "label": "Configuració de les notificacions"
+      },
+      "push_notifications": {
+        "alerts": {
+          "follow": "Seguidors nous",
+          "reblog": "Impulsos en publicacions teues",
+          "title": "Quines notificacions rebré?"
+        },
+        "description": "Rep notificacions fins i tot quan no estigues utilitzant Elk.",
+        "instructions": "No oblides desar els canvis utilitzant el botó de @:settings.notifications.push_notifications.save_settings!",
+        "label": "Configuració de les notificacions emergents",
+        "policy": {
+          "all": "De tots",
+          "followed": "De persones que seguisc",
+          "follower": "De persones que em segueixen",
+          "title": "De qui rebré notificacions?"
+        },
+        "save_settings": "Desa la configuració",
+        "subscription_error": {
+          "invalid_vapid_key": "Sembla que la clau pública VAPID no és vàlida.",
+          "permission_denied": "Permís denegat: activa les notificacions al navegador.",
+          "repo_link": "Repositori d'Elk a Github",
+          "request_error": "S'ha produït un error en sol·licitar la subscripció, torna-ho a provar i si l'error persisteix, informa del problema al repositori d'Elk.",
+          "title": "No s'han pogut activar les notificacions emergents",
+          "too_many_registrations": "A causa de les limitacions del navegador, Elk no pot utilitzar el servei de notificacions emergents per a diversos comptes en diferents servidors. Hauries de desactivar les notificacions emergents de l'altre compte i tornar-ho a provar.",
+          "vapid_not_supported": "El navegador admet les notificacions emergents web, però sembla que no ha implementat el protocol VAPID."
+        },
+        "title": "Configuració de les notificacions emergents",
+        "undo_settings": "Desfés els canvis",
+        "unsubscribe": "Desactiva les notificacions emergents",
+        "unsupported": "Les notificacions emergents no són compatibles amb el teu navegador.",
+        "warning": {
+          "enable_description": "Per a rebre notificacions quan Elk no estiga obert, activa les notificacions emergents. Pots definir de quin tipus d'interaccions vols rebre notificacions emergents des del botó \"@:settings.notifications.show_btn{'\"'} quan les hages activat.",
+          "enable_description_desktop": "Per a rebre notificacions quan Elk no estiga obert, activa les notificacions emergents. Pots definir de quin tipus d'interaccions vols rebre notificacions emergents des de \"Configuració > Notificacions > Configuració de les notificacions emergents\" quan les hages activat.",
+          "enable_description_mobile": "També pots accedir a la configuració de del menú \"Configuració > Notificacions > Configuració de les notificacions emergents\".",
+          "enable_description_settings": "Per a rebre notificacions quan Elk no estiga obert, activa les notificacions emergents. Pots definir de quin tipus d'interaccions vols rebre notificacions emergents d'esta pantalla quan les hages activat.",
+          "enable_desktop": "Activa les notificacions emergents",
+          "enable_title": "No et perdes res",
+          "re_auth": "Sembla que les notificacions emergents no són compatibles amb el teu servidor. Prova tancant la sessió i tornant a entrar. Si este missatge encara apreix, posa't en contacte amb l'administració del teu servidor."
+        }
+      },
+      "show_btn": "Ves a la configuració de les notificacions"
+    },
+    "preferences": {
+      "enable_pinch_to_zoom": "Activa el pessic per a fer zoom",
+      "github_cards": "GitHub Cards",
+      "grayscale_mode": "Mode en escala de grisos",
+      "hide_account_hover_card": "Amaga la targeta de perfil flotant",
+      "hide_alt_indi_on_posts": "Amaga l'indicador «alt» a les publicacions",
+      "hide_boost_count": "Amaga el nombre d'impulsos",
+      "hide_favorite_count": "Amaga el nombre de preferits",
+      "hide_follower_count": "Amaga el nombre seguidors",
+      "hide_reply_count": "Amaga el nombre de respostes",
+      "hide_username_emojis": "Amaga els emojis dels noms d'usuari",
+      "label": "Configuració",
+      "title": "Funcions experimentals",
+      "user_picker": "Selector d'usuari"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Biografia",
+        "description": "Edita la foto de perfil, nom d'usuari, perfil, etc.",
+        "display_name": "Nom"
+      },
+      "featured_tags": {
+        "description": "La gent pot trobar les publicacions visibles amb estes etiquetes.",
+        "label": "Etiquetes destacades"
+      }
+    },
+    "select_a_settings": "Selecciona una opció",
+    "users": {
+      "export": "Exporta els tokens de l'usuari",
+      "import": "Importa els tokens de l'usuari",
+      "label": "Usuaris iniciats"
+    }
+  },
+  "share-target": {
+    "description": "Elk es pot configurar perquè pugues compartir contingut d'altres aplicacions, simplement instal·la Elk al teu dispositiu o ordinador i inicia la sessió.",
+    "hint": "Per a compartir contingut amb Elk, Elk ha d'estar instal·lat i has d'iniciar la sessió."
+  },
+  "state": {
+    "attachments_exceed_server_limit": "El nombre d'adjunts supera el límit per publicació.",
+    "edited": "(editat)",
+    "editing": "S'està editant",
+    "loading": "S'està carregant...",
+    "publish_failed": "La publicació ha fallat",
+    "publishing": "S'està publicant",
+    "upload_failed": "La pujada ha fallat",
+    "uploading": "S'està pujant..."
+  },
+  "status": {
+    "favourited_by": "Marcat com a preferit per",
+    "filter_removed_phrase": "Eliminat pel filtre",
+    "filter_show_anyway": "Mostra-ho igualment",
+    "img_alt": {
+      "dismiss": "Descarta",
+      "read": "Llig la descripció de: {0}"
+    },
+    "poll": {
+      "ends": "acaba en {0}",
+      "finished": "finalitzada {0}"
+    },
+    "reblogged": "{0} ha impulsat",
+    "replying_to": "En resposta a {0}",
+    "spoiler_show_less": "Mostra'm menys",
+    "spoiler_show_more": "Mostra'm més",
+    "try_original_site": "Prova al lloc original"
+  },
+  "status_history": {
+    "created": "creat el {0}",
+    "edited": "editat el {0}"
+  },
+  "tab": {
+    "hashtags": "Etiquetes",
+    "media": "Multimèdia",
+    "notifications_all": "Totes",
+    "notifications_mention": "Mencions",
+    "posts_with_replies": "Amb respostes"
+  },
+  "tag": {
+    "follow": "Segueix",
+    "follow_label": "Segueix l'etiqueta {0}"
+  },
+  "time_ago_options": {
+    "day_future": "en 0 dies|demà|en {n} dia",
+    "just_now": "ara",
+    "month_future": "en 0 mesos|el mes que ve|en {n} mesos",
+    "second_future": "ara|en {n} segon|en {n} segons",
+    "second_past": "ara|fa {n} segon|fa {n} segons",
+    "short_day_future": "en {n} d",
+    "short_day_past": "{n} d",
+    "short_hour_future": "en {n} h",
+    "short_hour_past": "{n} h",
+    "short_minute_future": "en {n} min",
+    "short_minute_past": "{n} min",
+    "short_month_future": "en {n} mes",
+    "short_month_past": "{n} mes",
+    "short_week_past": "{n}w",
+    "short_year_future": "en {n} a",
+    "short_year_past": "{n} a",
+    "week_future": "en 0 setmanes|la setmana que ve|en {n} setmanes",
+    "year_future": "en 0 anys|l'any que ve|en {n} anys"
+  },
+  "timeline": {
+    "show_new_items": "Mostra {v} element nou|Mostra {v} element nou|Mostra {v} element nous",
+    "view_older_posts": "És possible que no es mostren missatges antics d'altres instàncies."
+  },
+  "title": {
+    "federated_timeline": "Línia de temps federada",
+    "local_timeline": "Línia de temps local"
+  },
+  "tooltip": {
+    "add_content_warning": "Afig un avís de contingut",
+    "add_emojis": "Afig emojis",
+    "add_media": "Afig imatges, un vídeo o un àudio",
+    "add_publishable_content": "Afig contingut per a publicar",
+    "change_language": "Canvia la llengua",
+    "emoji": "Emojis",
+    "explore_links_intro": "Notícies que gent d'este i d'altres servidors de la xarxa descentralitzada comenta ara mateix.",
+    "explore_posts_intro": "Publicacions d'este i d'altres servidors de la xarxa descentralitzada que estan guanyant popularitat en este servidor ara mateix.",
+    "explore_tags_intro": "Etiquetes que estan guanyant popularitat entre la gent d'este i altres servidors de la xarxa descentralitzada ara mateix.",
+    "open_editor_tools": "Ferramentes d'edició",
+    "publish_failed": "Tanca els missatges fallits a la part superior de l'editor per a tornar a publicar",
+    "toggle_bold": "Negreta",
+    "toggle_code_block": "Bloc de codi",
+    "toggle_italic": "Cursiva"
+  },
+  "user": {
+    "add_existing": "Afig un compte existent",
+    "server_address_label": "Adreça del servidor de Mastodon",
+    "sign_in_desc": "Inicia la sessió per a seguir perfils o etiquetes, marcar com a preferides, compartir i respondre a les publicacions, o interactuar des d'un compte en un servidor diferent.",
+    "sign_in_notice_title": "Veient les dades públiques de: {0}",
+    "sign_out_account": "Tanca {0}",
+    "tip_no_account": "Si encara no tens un compte de Mastodon, {0}.",
+    "tip_register_account": "tria un servidor i registra't"
+  },
+  "visibility": {
+    "direct_desc": "Visible només per als usuaris mencionats",
+    "private": "Només a seguidors",
+    "public_desc": "Visible per a tots",
+    "unlisted_desc": "Visible per a tots, però sense mostrar-ho en les funcions de descobriment"
+  }
+}

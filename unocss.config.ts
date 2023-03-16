@@ -122,6 +122,7 @@ export default defineConfig({
       }
     },
     variantParentMatcher('fullscreen', '@media (display-mode: fullscreen)'),
+    variantParentMatcher('coarse-pointer', '@media (pointer: coarse)'),
   ],
   rules: [
     // scrollbar-hide

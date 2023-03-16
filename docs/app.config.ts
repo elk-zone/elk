@@ -6,6 +6,11 @@ export default defineAppConfig({
     socials: {
       twitter: 'elk_zone',
       github: 'elk-zone/elk',
+      mastodon: {
+        label: 'Mastodon',
+        icon: 'IconMastodon',
+        href: 'https://elk.zone/@elk@webtoo.ls',
+      },
     },
     aside: {
       level: 0,

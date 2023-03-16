@@ -9,7 +9,7 @@
   "account": {
     "avatar_description": "{0}'s Avatar",
     "blocked_by": "Du wurdest von diesem Account geblockt",
-    "blocked_domains": "Gesperrte Domänen",
+    "blocked_domains": "Geblockte Mastodon-Instanzen",
     "blocked_users": "Gesperrte Accounts",
     "blocking": "Blockiert",
     "bot": "BOT",
@@ -48,7 +48,7 @@
     "boost_count": "{0}",
     "boosted": "Geteilt",
     "clear_upload_failed": "Fehler beim Hochladen von Dateien entfernen",
-    "close": "Schliessen",
+    "close": "Schließen",
     "compose": "Verfassen",
     "confirm": "Bestätigen",
     "edit": "Bearbeiten",
@@ -92,7 +92,7 @@
     "end_of_list": "Ende der Liste",
     "error": "FEHLER",
     "in": "in",
-    "not_found": "404 Nicht Gefunden",
+    "not_found": "404 - Nicht gefunden",
     "offline_desc": "Anscheinend bist du offline. Bitte überprüfe deine Netzwerkverbindung."
   },
   "compose": {
@@ -116,16 +116,16 @@
   },
   "error": {
     "account_not_found": "Account {0} nicht gefunden",
-    "explore-list-empty": "Momentan ist nichts im Trend. Schau später nochmal vorbei!",
+    "explore-list-empty": "Momentan ist nichts in den Trends. Schau einfach später nochmal vorbei!",
     "file_size_cannot_exceed_n_mb": "Die Dateigröße darf {0} MB nicht überschreiten",
-    "sign_in_error": "Kann nicht zu Server verbinden",
+    "sign_in_error": "Kann nicht mit Server verbinden",
     "status_not_found": "Beitrag nicht gefunden",
     "unsupported_file_format": "Nicht unterstütztes Dateiformat"
   },
   "help": {
     "desc_highlight": "Erwarte hier und da einige Bugs und fehlende Funktionen.",
-    "desc_para1": "Danke für dein Interesse in Elk, unser noch in der Bearbeitung befindliche, generische Mastodon Client!",
-    "desc_para2": "Wir arbeiten hart an der Entwicklung und verbessern ihn mit der Zeit. Und wir laden dich schon sehr bald ein uns zu helfen, sobald wir ihn Quelloffen machen!",
+    "desc_para1": "Danke für dein Interesse an Elk, unser noch in der Bearbeitung befindlicher, generischer Mastodon-Client!",
+    "desc_para2": "Wir arbeiten stetig an der Entwicklung und verbessern ihn mit der Zeit. Und wir laden dich schon sehr bald ein uns zu helfen, sobald wir ihn Quelloffen machen!",
     "desc_para3": "Doch in der Zwischenzeit kannst du der Entwicklung aushelfen, indem du unsere Teammitglieder durch die unten stehenden Links unterstützt.",
     "desc_para4": "Elk ist Open Source. \nWenn du beim Testen helfen, Feedback geben oder einen Beitrag leisten möchtest,",
     "desc_para5": "Kontaktiere uns auf GitHub",
@@ -149,7 +149,7 @@
     "mute_conversation": "Diesem Beitrag stummschalten",
     "open_in_original_site": "Auf Originalseite öffnen",
     "pin_on_profile": "An Profil anpinnen",
-    "share_post": "Teile diesen Beitrag",
+    "share_post": "Booste diesen Beitrag",
     "show_favourited_and_boosted_by": "Zeige mir, wer favorisiert und geboostet hat",
     "show_reblogs": "Boosts von {0} anzeigen",
     "show_untranslated": "Übersetzung schliessen",
@@ -193,7 +193,7 @@
     "favourited_post": "hat deinen Beitrag favorisiert",
     "followed_you": "folgt dir",
     "followed_you_count": "{n} Account folgt dir|{n} Accounts folgen dir",
-    "missing_type": "MISSING notification.type:",
+    "missing_type": "Fehlender notification.type:",
     "reblogged_post": "hat deinen Beitrag geteilt",
     "request_to_follow": "möchte dir folgen",
     "signed_up": "hat sich registriert",
@@ -242,7 +242,7 @@
     "about": {
       "label": "Info",
       "meet_the_team": "Triff das Team",
-      "sponsor_action": "Sponser uns",
+      "sponsor_action": "Sponsere uns",
       "sponsor_action_desc": "Um das Team bei der Entwicklung von Elk zu unterstützen",
       "sponsors": "Sponsoren",
       "sponsors_body_1": "Elk wird ermöglicht durch das großzügige Sponsoring und die Hilfe von:",
@@ -294,10 +294,10 @@
           "title": "Welche Benachrichtigungen erhalten?"
         },
         "description": "Erhalte Benachrichtigungen, auch wenn du Elk nicht verwendest.",
-        "instructions": "Vergesse nicht, Änderungen mit der Schaltfläche @:settings.notifications.push_notifications.save_settings zu speichern!",
+        "instructions": "Vergesse nicht, die Änderungen mit der Schaltfläche @:settings.notifications.push_notifications.save_settings zu speichern!",
         "label": "Einstellungen für Push-Benachrichtigungen",
         "policy": {
-          "all": "Von irgendjemandem",
+          "all": "Von allen",
           "followed": "Von Accounts, denen ich folge",
           "follower": "Von Menschen, die mir folgen",
           "none": "Von niemandem",
@@ -307,7 +307,7 @@
         "subscription_error": {
           "clear_error": "Fehler aufräumen",
           "permission_denied": "Berechtigung verweigert: Aktiviere Benachrichtigungen im  Browser.",
-          "request_error": "Beim Anfordern des Abonnements ist ein Fehler aufgetreten. Versuche es erneut. Wenn der Fehler weiterhin besteht, melde das Problem bitte dem Elk-Repository.",
+          "request_error": "Beim Anfordern des Abonnements ist ein Fehler aufgetreten. Versuche es bitte erneut. Wenn der Fehler weiterhin besteht, melde das Problem bitte dem Elk-Repository.",
           "title": "Push-Benachrichtigungen konnten nicht abonniert werden",
           "too_many_registrations": "Aufgrund von Browserbeschränkungen kann Elk den Push-Benachrichtigungsdienst nicht für mehrere Konten auf verschiedenen Servern verwenden. \nDu solltest Push-Benachrichtigungen für andere Konten abbestellen und es erneut versuchen."
         },
@@ -344,7 +344,7 @@
     "profile": {
       "appearance": {
         "bio": "Bio",
-        "description": "Avatar, Benutzername, Profil, etc. bearbeiten",
+        "description": "Avatar, Benutzername, Profil etc. bearbeiten",
         "display_name": "Anzeigename",
         "label": "Erscheinungsbild",
         "profile_metadata": "Profil-Metadaten",
@@ -367,7 +367,7 @@
   "share-target": {
     "description": "Elk kann so konfiguriert werden, dass du Inhalte aus anderen Anwendungen teilen kannst, installiere einfach Elk auf deinem Gerät oder Computer und melden dich an.",
     "hint": "Um Inhalte mit Elk zu teilen, muss Elk installiert sein und du musst angemeldet sein.",
-    "title": "Teile via Elk"
+    "title": "Teile über Elk"
   },
   "state": {
     "attachments_exceed_server_limit": "Die Anzahl der Anhänge hat das Limit pro Beitrag überschritten.",
@@ -387,7 +387,7 @@
     "filter_show_anyway": "Trotzdem zeigen",
     "img_alt": {
       "desc": "Beschreibung",
-      "dismiss": "Schliessen"
+      "dismiss": "Schließen"
     },
     "poll": {
       "count": "{0} Stimmen|{0} Stimme|{0} Stimmen",
@@ -401,7 +401,7 @@
     "spoiler_show_less": "Zeige weniger",
     "spoiler_show_more": "Zeige mehr",
     "thread": "Thread",
-    "try_original_site": "Versuche die original Seite"
+    "try_original_site": "Versuche die ursprüngliche Seite"
   },
   "status_history": {
     "created": "Erstellt: {0}",
@@ -482,7 +482,7 @@
     "sign_in_notice_title": "Anzeigen von {0} öffentlichen Daten",
     "sign_out_account": "{0} abmelden",
     "tip_no_account": "Wenn du noch kein Mastodon-Konto hast, {0}.",
-    "tip_register_account": "wähle einen Server aus und registriere eines"
+    "tip_register_account": "wähle einen Server aus und registriere einen"
   },
   "visibility": {
     "direct": "Nur erwähnte Accounts",

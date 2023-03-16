@@ -49,7 +49,7 @@ const chooseIcon = (i: number, text: string) => {
             </button>
           </CommonTooltip>
           <template #popper>
-            <div flex="~ wrap gap-1" max-w-50 m2>
+            <div flex="~ wrap gap-1" max-w-60 m2 me1>
               <CommonTooltip
                 v-for="(icon, text) in accountFieldIcons"
                 :key="icon"

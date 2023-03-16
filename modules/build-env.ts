@@ -10,11 +10,12 @@ export default defineNuxtModule({
     name: 'elk:build-env',
   },
   async setup(_options, nuxt) {
-    const { env, commit, branch } = await getEnv()
+    const { env, commit, shortCommit, branch } = await getEnv()
     const buildInfo: BuildInfo = {
       version,
       time: +Date.now(),
       commit,
+      shortCommit,
       branch,
       env,
     }

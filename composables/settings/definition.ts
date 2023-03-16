@@ -12,7 +12,7 @@ export interface PreferencesSettings {
   hideBoostCount: boolean
   hideReplyCount: boolean
   hideFavoriteCount: boolean
-  hideFollowerCount: boolean
+  hideFollowingFollowerCount: boolean
   hideTranslation: boolean
   hideUsernameEmojis: boolean
   hideAccountHoverCard: boolean
@@ -72,7 +72,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideBoostCount: false,
   hideReplyCount: false,
   hideFavoriteCount: false,
-  hideFollowerCount: false,
+  hideFollowingFollowerCount: false,
   hideTranslation: false,
   hideUsernameEmojis: false,
   hideAccountHoverCard: false,

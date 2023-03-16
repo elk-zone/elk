@@ -78,10 +78,10 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_reply_count') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="getPreferences(userSettings, 'hideFollowerCount')"
-      @click="togglePreferences('hideFollowerCount')"
+      :checked="getPreferences(userSettings, 'hideFollowingFollowerCount')"
+      @click="togglePreferences('hideFollowingFollowerCount')"
     >
-      {{ $t('settings.preferences.hide_follower_count') }}
+      {{ $t('settings.preferences.hide_following_follower_count') }}
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'hideUsernameEmojis')"

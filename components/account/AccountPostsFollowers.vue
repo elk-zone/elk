@@ -26,6 +26,7 @@ const userSettings = useUserSettings()
       </template>
     </NuxtLink>
     <NuxtLink
+      v-if="!getPreferences(userSettings, 'hideFollowingFollowerCount')"
       :to="getAccountFollowingRoute(account)"
       replace
       text-secondary exact-active-class="text-primary"
@@ -40,7 +41,7 @@ const userSettings = useUserSettings()
       </template>
     </NuxtLink>
     <NuxtLink
-      v-if="!getPreferences(userSettings, 'hideFollowerCount')"
+      v-if="!getPreferences(userSettings, 'hideFollowingFollowerCount')"
       :to="getAccountFollowersRoute(account)"
       replace text-secondary
       exact-active-class="text-primary"

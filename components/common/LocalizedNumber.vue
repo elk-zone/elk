@@ -14,8 +14,6 @@ const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumbe
 const useSR = $computed(() => forSR(props.count))
 const rawNumber = $computed(() => formatNumber(props.count))
 const humanReadableNumber = $computed(() => formatHumanReadableNumber(props.count))
-
-const hideNumber = $computed(() => props.hideNumber)
 </script>
 
 <template>

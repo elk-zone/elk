@@ -26,7 +26,6 @@ const userSettings = useUserSettings()
       </template>
     </NuxtLink>
     <NuxtLink
-      v-if="!getPreferences(userSettings, 'hideFollowerCount')"
       :to="getAccountFollowingRoute(account)"
       replace
       text-secondary exact-active-class="text-primary"
@@ -35,13 +34,13 @@ const userSettings = useUserSettings()
         <CommonLocalizedNumber
           keypath="account.following_count"
           :count="account.followingCount"
+          :hide-number="getPreferences(userSettings, 'hideFollowerCount')"
           font-bold
           :class="isExactActive ? 'text-primary' : 'text-base'"
         />
       </template>
     </NuxtLink>
     <NuxtLink
-      v-if="!getPreferences(userSettings, 'hideFollowerCount')"
       :to="getAccountFollowersRoute(account)"
       replace text-secondary
       exact-active-class="text-primary"
@@ -50,6 +49,7 @@ const userSettings = useUserSettings()
         <CommonLocalizedNumber
           keypath="account.followers_count"
           :count="account.followersCount"
+          :hide-number="getPreferences(userSettings, 'hideFollowerCount')"
           font-bold
           :class="isExactActive ? 'text-primary' : 'text-base'"
         />

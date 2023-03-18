@@ -17,7 +17,7 @@ const humanReadableNumber = $computed(() => formatHumanReadableNumber(props.coun
 </script>
 
 <template>
-  <i18n-t :keypath="keypath" :plural="count" tag="span" class="flex gap-x-1">
+  <i18n-t :keypath="keypath" :plural="hideNumber ? 2 : count" tag="span" class="flex gap-x-1">
     <span v-if="hideNumber" />
     <CommonTooltip v-else-if="useSR" :content="rawNumber" placement="bottom">
       <span aria-hidden="true" v-bind="$attrs">{{ humanReadableNumber }}</span>

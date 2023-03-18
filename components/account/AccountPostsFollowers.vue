@@ -3,6 +3,7 @@ import type { mastodon } from 'masto'
 
 defineProps<{
   account: mastodon.v1.Account
+  isHoverCard?: boolean
 }>()
 
 const userSettings = useUserSettings()
@@ -26,6 +27,7 @@ const userSettings = useUserSettings()
       </template>
     </NuxtLink>
     <NuxtLink
+      v-if="!(isHoverCard && getPreferences(userSettings, 'hideFollowerCount'))"
       :to="getAccountFollowingRoute(account)"
       replace
       text-secondary exact-active-class="text-primary"
@@ -41,6 +43,7 @@ const userSettings = useUserSettings()
       </template>
     </NuxtLink>
     <NuxtLink
+      v-if="!(isHoverCard && getPreferences(userSettings, 'hideFollowerCount'))"
       :to="getAccountFollowersRoute(account)"
       replace text-secondary
       exact-active-class="text-primary"

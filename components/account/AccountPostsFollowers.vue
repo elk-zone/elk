@@ -34,12 +34,13 @@ const userSettings = useUserSettings()
     >
       <template #default="{ isExactActive }">
         <CommonLocalizedNumber
+          v-if="!getPreferences(userSettings, 'hideFollowerCount')"
           keypath="account.following_count"
           :count="account.followingCount"
-          :hide-number="getPreferences(userSettings, 'hideFollowerCount')"
           font-bold
           :class="isExactActive ? 'text-primary' : 'text-base'"
         />
+        <span v-else>{{ $t('account.following') }}</span>
       </template>
     </NuxtLink>
     <NuxtLink
@@ -50,12 +51,13 @@ const userSettings = useUserSettings()
     >
       <template #default="{ isExactActive }">
         <CommonLocalizedNumber
+          v-if="!getPreferences(userSettings, 'hideFollowerCount')"
           keypath="account.followers_count"
           :count="account.followersCount"
-          :hide-number="getPreferences(userSettings, 'hideFollowerCount')"
           font-bold
           :class="isExactActive ? 'text-primary' : 'text-base'"
         />
+        <span v-else>{{ $t('account.followers') }}</span>
       </template>
     </NuxtLink>
   </div>

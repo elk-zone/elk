@@ -199,6 +199,31 @@
     "remove_account": "Kendu kontua zerrendatik",
     "save": "Gorde aldaketak"
   },
+  "magic_keys": {
+    "dialog_header": "Teklatuaren lasterbideak",
+    "groups": {
+      "actions": {
+        "boost": "Bultzatu",
+        "command_mode": "Komando modua",
+        "compose": "Idatzi",
+        "favourite": "Egin gogoko",
+        "title": "Ekintzak",
+        "zen_mode": "Zen modua"
+      },
+      "media": {
+        "title": "Multimedia"
+      },
+      "navigation": {
+        "go_to_home": "Hasiera",
+        "go_to_notifications": "Jakinarazpenak",
+        "next_status": "Hurrengo egoera",
+        "previous_status": "Aurreko egoera",
+        "shortcut_help": "Laster-teklak",
+        "title": "Nabigazioa"
+      }
+    },
+    "sequence_then": "orduan"
+  },
   "menu": {
     "block_account": "Blokeatu {0}",
     "block_domain": "Blokeatu {0} domeinua",
@@ -228,6 +253,9 @@
     "unmute_account": "Utzi {0} mututzeari",
     "unmute_conversation": "Utzi bidalketa mututzeari",
     "unpin_on_profile": "Utzi finkatzeari"
+  },
+  "modals": {
+    "aria_label_close": "Itxi"
   },
   "nav": {
     "back": "Joan atzera",
@@ -374,6 +402,7 @@
         "save_settings": "Gorde ezarpenak",
         "subscription_error": {
           "clear_error": "Garbitu errorea",
+          "error_hint": "Ohiko galderen zerrenda kontsulta dezakezu arazoa konpontzen saiatzeko: {0}.",
           "invalid_vapid_key": "Ez dirudi VAPID gako publikoa baliozkoa denik.",
           "permission_denied": "Baimena ukatu da: gaitu jakinarazpenak zure nabigatzailean.",
           "repo_link": "Elk-en biltegia GitHub-en",

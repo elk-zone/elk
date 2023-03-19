@@ -48,27 +48,33 @@ const { notification } = defineProps<{
       <AccountCard :account="notification.account" />
     </template>
     <template v-else-if="notification.type === 'favourite'">
-      <StatusCard :status="notification.status!" :faded="true">
-        <template #meta>
-          <div flex="~" gap-1 items-center mt1>
-            <div i-ri:heart-fill text-xl me-1 color-red />
-            <AccountInlineInfo text-primary font-bold :account="notification.account" me1 />
-          </div>
-        </template>
-      </StatusCard>
+      <NotificationGroupedLikes
+        :group="{
+          id: notification.id,
+          type: 'grouped-reblogs-and-favourites',
+          status: notification.status!,
+          likes: [{
+            ...notification,
+            favourite: true as any,
+          }],
+        }"
+      />
     </template>
     <template v-else-if="notification.type === 'reblog'">
-      <StatusCard :status="notification.status!" :faded="true">
-        <template #meta>
-          <div flex="~" gap-1 items-center mt1>
-            <div i-ri:repeat-fill text-xl me-1 color-green />
-            <AccountInlineInfo text-primary font-bold :account="notification.account" me1 />
-          </div>
-        </template>
-      </StatusCard>
+      <NotificationGroupedLikes
+        :group="{
+          id: notification.id,
+          type: 'grouped-reblogs-and-favourites',
+          status: notification.status!,
+          likes: [{
+            ...notification,
+            reblog: true as any,
+          }],
+        }"
+      />
     </template>
     <template v-else-if="notification.type === 'update'">
-      <StatusCard :status="notification.status!" :faded="true">
+      <StatusCard :status="notification.status!" :in-notification="true" :actions="false">
         <template #meta>
           <div flex="~" gap-1 items-center mt1>
             <div i-ri:edit-2-fill text-xl me-1 text-secondary />

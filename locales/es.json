@@ -204,7 +204,7 @@
     "groups": {
       "actions": {
         "boost": "Retootear",
-        "command_mode": "Modo comandos",
+        "command_mode": "Modo comando",
         "compose": "Redactar",
         "favourite": "Favorito",
         "title": "Acciones",
@@ -219,7 +219,7 @@
         "next_status": "Siguiente estado",
         "previous_status": "Anterior estado",
         "shortcut_help": "Atajo de ayuda",
-        "title": "Navigación"
+        "title": "Navegación"
       }
     },
     "sequence_then": "luego"

@@ -40,7 +40,22 @@ const likes = $computed(() => group.likes.filter(i => i.favourite && !i.reblog))
           </div>
         </div>
       </div>
-      <StatusBody :status="group.status!" text-secondary pl8 mt1 />
+      <div pl8 mt-1>
+        <StatusBody :status="group.status!" text-secondary />
+        <!-- When no text content is presented, we show media instead -->
+        <template v-if="!group.status!.content">
+          <StatusMedia
+            v-if="group.status!.mediaAttachments?.length"
+            :status="group.status!"
+            :is-preview="false"
+            pointer-events-none
+          />
+          <StatusPoll
+            v-else-if="group.status!.poll"
+            :status="group.status!"
+          />
+        </template>
+      </div>
     </StatusLink>
   </article>
 </template>

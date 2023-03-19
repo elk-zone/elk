@@ -47,32 +47,6 @@ const { notification } = defineProps<{
       <!-- TODO: accept request -->
       <AccountCard :account="notification.account" />
     </template>
-    <template v-else-if="notification.type === 'favourite'">
-      <NotificationGroupedLikes
-        :group="{
-          id: notification.id,
-          type: 'grouped-reblogs-and-favourites',
-          status: notification.status!,
-          likes: [{
-            ...notification,
-            favourite: true as any,
-          }],
-        }"
-      />
-    </template>
-    <template v-else-if="notification.type === 'reblog'">
-      <NotificationGroupedLikes
-        :group="{
-          id: notification.id,
-          type: 'grouped-reblogs-and-favourites',
-          status: notification.status!,
-          likes: [{
-            ...notification,
-            reblog: true as any,
-          }],
-        }"
-      />
-    </template>
     <template v-else-if="notification.type === 'update'">
       <StatusCard :status="notification.status!" :in-notification="true" :actions="false">
         <template #meta>
@@ -90,6 +64,7 @@ const { notification } = defineProps<{
       <StatusCard :status="notification.status!" />
     </template>
     <template v-else>
+      <!-- type 'favourite' and 'reblog' should always rendered by NotificationGroupedLikes -->
       <div text-red font-bold>
         [DEV] {{ $t('notification.missing_type') }} '{{ notification.type }}'
       </div>

@@ -75,9 +75,7 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
       }
       return
     }
-
-    const { status } = group[0]
-    if (status && group.length > 1 && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
+    else if (group.length && group[0].status && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
       // All notifications in these group are reblogs or favourites of the same status
       const likes: GroupedAccountLike[] = []
       for (const notification of group) {
@@ -96,7 +94,7 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
       results.push({
         id: `grouped-${id++}`,
         type: 'grouped-reblogs-and-favourites',
-        status,
+        status: group[0].status,
         likes,
       })
       return

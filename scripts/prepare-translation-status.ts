@@ -114,7 +114,7 @@ async function prepareTranslationStatus() {
   }
 
   Object.keys(data).filter(k => k !== 'en').forEach((e) => {
-    const percentage = total <= 0.0 || data[e].total === 0.0
+    const percentage = (total <= 0.0 || data[e].total === 0.0)
       ? '0'
       : data[e].total === total
         ? '100'

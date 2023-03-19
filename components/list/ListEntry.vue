@@ -187,7 +187,6 @@ onDeactivated(cancelEdit)
       </CommonTooltip>
       <CommonTooltip :content="$t('list.delete')" no-auto-focus>
         <button
-          ref="delete"
           type="button"
           text-sm p2 border-1 transition-colors
           border-dark hover:text-primary

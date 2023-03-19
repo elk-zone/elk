@@ -5,8 +5,8 @@ const { group } = defineProps<{
   group: GroupedLikeNotifications
 }>()
 
-const likes = $computed(() => group.likes.filter(i => i.favourite))
 const reblogs = $computed(() => group.likes.filter(i => i.reblog))
+const likes = $computed(() => group.likes.filter(i => i.favourite && !i.reblog))
 </script>
 
 <template>

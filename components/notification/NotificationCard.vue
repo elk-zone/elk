@@ -47,28 +47,8 @@ const { notification } = defineProps<{
       <!-- TODO: accept request -->
       <AccountCard :account="notification.account" />
     </template>
-    <template v-else-if="notification.type === 'favourite'">
-      <StatusCard :status="notification.status!" :faded="true">
-        <template #meta>
-          <div flex="~" gap-1 items-center mt1>
-            <div i-ri:heart-fill text-xl me-1 color-red />
-            <AccountInlineInfo text-primary font-bold :account="notification.account" me1 />
-          </div>
-        </template>
-      </StatusCard>
-    </template>
-    <template v-else-if="notification.type === 'reblog'">
-      <StatusCard :status="notification.status!" :faded="true">
-        <template #meta>
-          <div flex="~" gap-1 items-center mt1>
-            <div i-ri:repeat-fill text-xl me-1 color-green />
-            <AccountInlineInfo text-primary font-bold :account="notification.account" me1 />
-          </div>
-        </template>
-      </StatusCard>
-    </template>
     <template v-else-if="notification.type === 'update'">
-      <StatusCard :status="notification.status!" :faded="true">
+      <StatusCard :status="notification.status!" :in-notification="true" :actions="false">
         <template #meta>
           <div flex="~" gap-1 items-center mt1>
             <div i-ri:edit-2-fill text-xl me-1 text-secondary />
@@ -84,6 +64,7 @@ const { notification } = defineProps<{
       <StatusCard :status="notification.status!" />
     </template>
     <template v-else>
+      <!-- type 'favourite' and 'reblog' should always rendered by NotificationGroupedLikes -->
       <div text-red font-bold>
         [DEV] {{ $t('notification.missing_type') }} '{{ notification.type }}'
       </div>

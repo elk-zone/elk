@@ -115,7 +115,7 @@ export const useCommandRegistry = defineStore('command', () => {
         .filter(cmd => (cmd.parent ?? '') === scope)
 
       if (query) {
-        const fuse = lastScope === scope && lastFuse
+        const fuse = (lastScope === scope && lastFuse)
           ? lastFuse
           : new Fuse(cmds, {
             keys: ['scope', 'name', 'description'],

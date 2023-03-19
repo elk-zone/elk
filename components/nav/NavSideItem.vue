@@ -60,7 +60,7 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
         px2 py2 mx3 sm:mxa
         xl="ml0 mr5 px5 w-auto"
         transition-100
-        group-hover="bg-active" group-focus-visible:ring="2 current"
+        elk-group-hover="bg-active" group-focus-visible:ring="2 current"
       >
         <slot name="icon">
           <div :class="icon" text-xl />

@@ -10,8 +10,6 @@ const props = withDefaults(defineProps<{
   actions: true,
 })
 
-const userSettings = useUserSettings()
-
 const status = $computed(() => {
   if (props.status.reblog && props.status.reblog)
     return props.status.reblog
@@ -25,8 +23,6 @@ const { t } = useI18n()
 useHeadFixed({
   title: () => `${getDisplayName(status.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
 })
-
-const isDM = $computed(() => status.visibility === 'direct')
 </script>
 
 <template>

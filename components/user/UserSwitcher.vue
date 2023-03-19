@@ -6,7 +6,7 @@ const emit = defineEmits<{
 }>()
 
 const all = useUsers()
-const { busy, singleInstanceServer, oauth } = useSignIn()
+const { singleInstanceServer, oauth } = useSignIn()
 
 const sorted = computed(() => {
   return [

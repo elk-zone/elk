@@ -81,7 +81,7 @@ const characterCount = $computed(() => {
   for (const [fullMatch] of text.matchAll(linkRegex))
     length -= fullMatch.length - Math.min(maxLength, fullMatch.length)
 
-  for (const [fullMatch, before, handle, username] of text.matchAll(countableMentionRegex))
+  for (const [fullMatch, before, _handle, username] of text.matchAll(countableMentionRegex))
     length -= fullMatch.length - (before + username).length - 1 // - 1 for the @
 
   if (draft.mentions) {

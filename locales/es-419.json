@@ -81,9 +81,6 @@
     "add_account": "Añadir cuenta a la lista",
     "remove_account": "Quitar cuenta de la lista"
   },
-  "magic_keys": {
-    "sequence_then": "seguido de"
-  },
   "menu": {
     "block_domain": "Ocultar dominio {0}",
     "delete_and_redraft": "Eliminar y volver a borrador",

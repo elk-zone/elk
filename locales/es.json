@@ -222,7 +222,7 @@
         "title": "Navegación"
       }
     },
-    "sequence_then": "y luego"
+    "sequence_then": "seguido de"
   },
   "menu": {
     "block_account": "Bloquear a {0}",

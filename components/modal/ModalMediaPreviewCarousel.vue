@@ -63,7 +63,7 @@ const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
 })
 
 useGesture({
-  onPinch({ offset: [distance, angle] }) {
+  onPinch({ offset: [distance, _angle] }) {
     set({ scale: Math.max(0.5, 1 + distance / 200) })
   },
   onMove({ movement: [x, y], dragging, pinching }) {

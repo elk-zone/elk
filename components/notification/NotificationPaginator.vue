@@ -88,7 +88,11 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
         }
         like[notification.type === 'reblog' ? 'reblog' : 'favourite'] = notification
       }
-      likes.sort((a, b) => a.reblog ? !b.reblog || (a.favourite && !b.favourite) ? -1 : 0 : 0)
+      likes.sort((a, b) => a.reblog
+        ? (!b.reblog || (a.favourite && !b.favourite))
+            ? -1
+            : 0
+        : 0)
       results.push({
         id: `grouped-${id++}`,
         type: 'grouped-reblogs-and-favourites',

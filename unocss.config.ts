@@ -66,6 +66,7 @@ export default defineConfig({
 
       'timeline-title-style': 'text-primary text-lg font-bold',
     },
+    [/^elk-group-hover[:-](\S+)$/, ([,r]) => `media-mouse-group-hover-${r} group-active-${r}`],
   ],
   presets: [
     presetUno({

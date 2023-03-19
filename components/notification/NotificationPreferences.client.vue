@@ -48,7 +48,7 @@ const saveSettings = async () => {
   animateSave = true
 
   try {
-    const subscription = await updateSubscription()
+    await updateSubscription()
   }
   catch (err) {
     // todo: handle error

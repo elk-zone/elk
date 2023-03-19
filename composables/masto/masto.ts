@@ -47,7 +47,7 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
     setParams({
       streamingApiUrl: newInstance.urls.streamingApi,
     })
-    instances.value[server] = newInstance
+    instanceStorage.value[server] = newInstance
   })
 
   return instance
@@ -105,6 +105,9 @@ export function useStreaming(
     if (canStreaming.value && isActive.value)
       stream.value = cb(client.value)
   })
+
+  if (process.client && !process.test)
+    useNuxtApp().$pageLifecycle.addFrozenListener(cleanup)
 
   tryOnBeforeUnmount(() => isActive.value = false)
 

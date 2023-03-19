@@ -10,8 +10,6 @@ const props = withDefaults(defineProps<{
   actions: true,
 })
 
-const userSettings = useUserSettings()
-
 const status = $computed(() => {
   if (props.status.reblog && props.status.reblog)
     return props.status.reblog
@@ -25,12 +23,10 @@ const { t } = useI18n()
 useHeadFixed({
   title: () => `${getDisplayName(status.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
 })
-
-const isDM = $computed(() => status.visibility === 'direct')
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative :lang="status.language ?? undefined">
+  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative :lang="status.language ?? undefined" aria-roledescription="status-details">
     <StatusActionsMore :status="status" absolute inset-ie-2 top-2 />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pe5 me-a>
       <AccountHoverWrapper :account="status.account">

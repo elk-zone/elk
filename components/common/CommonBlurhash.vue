@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { decode } from 'blurhash'
 
-const { blurhash, src, srcset } = defineProps<{
+const { blurhash, src, srcset, shouldLoadImage = true } = defineProps<{
   blurhash?: string | null | undefined
   src: string
   srcset?: string
+  shouldLoadImage?: boolean
 }>()
 
 defineOptions({
@@ -19,7 +20,7 @@ const placeholderSrc = $computed(() => {
   return getDataUrlFromArr(pixels, 32, 32)
 })
 
-onMounted(() => {
+function loadImage() {
   const img = document.createElement('img')
 
   img.onload = () => {
@@ -34,6 +35,16 @@ onMounted(() => {
   setTimeout(() => {
     isLoaded.value = true
   }, 3_000)
+}
+
+onMounted(() => {
+  if (shouldLoadImage)
+    loadImage()
+})
+
+watch(() => shouldLoadImage, () => {
+  if (shouldLoadImage)
+    loadImage()
 })
 </script>
 

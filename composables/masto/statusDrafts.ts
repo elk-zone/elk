@@ -4,7 +4,9 @@ import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
 
-export const currentUserDrafts = process.server || process.test ? computed<DraftMap>(() => ({})) : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
+export const currentUserDrafts = (process.server || process.test)
+  ? computed<DraftMap>(() => ({}))
+  : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 
 export const builtinDraftKeys = [
   'dialog',
@@ -33,7 +35,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
       visibility: visibility || 'public',
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
-      language: language || getDefaultLanguage(),
+      language: language || '', // auto inferred from current language on posting
     },
     mentions,
     lastUpdated: Date.now(),
@@ -50,16 +52,6 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
     spoilerText: status.spoilerText,
     language: status.language,
   })
-}
-
-function getDefaultLanguage() {
-  const userSettings = useUserSettings()
-  const defaultLanguage = userSettings.value.language
-
-  if (defaultLanguage)
-    return defaultLanguage.split('-')[0]
-
-  return 'en'
 }
 
 function getAccountsToMention(status: mastodon.v1.Status) {
@@ -82,8 +74,11 @@ export function getReplyDraft(status: mastodon.v1.Status) {
       return getDefaultDraft({
         initialText: '',
         inReplyToId: status!.id,
+        sensitive: status.sensitive,
+        spoilerText: status.spoilerText,
         visibility: status.visibility,
         mentions: accountsToMention,
+        language: status.language,
       })
     },
   }
@@ -98,7 +93,6 @@ export const isEmptyDraft = (draft: Draft | null | undefined) => {
 
   return (text.length === 0)
     && attachments.length === 0
-    && (params.spoilerText || '').length === 0
 }
 
 export interface UseDraft {
@@ -139,14 +133,14 @@ export function useDraft(
 export function mentionUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
-  }), true)
+  }))
 }
 
 export function directMessageUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
     visibility: 'direct',
-  }), true)
+  }))
 }
 
 export function clearEmptyDrafts() {

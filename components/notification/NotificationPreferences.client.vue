@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { PushSubscriptionError } from '~/composables/push-notifications/types'
-
 defineProps<{ show?: boolean }>()
 
 const {
@@ -17,7 +15,7 @@ const {
 } = usePushManager()
 const { t } = useI18n()
 
-const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+const pwaEnabled = useAppConfig().pwaEnabled
 
 let busy = $ref<boolean>(false)
 let animateSave = $ref<boolean>(false)
@@ -50,7 +48,7 @@ const saveSettings = async () => {
   animateSave = true
 
   try {
-    const subscription = await updateSubscription()
+    await updateSubscription()
   }
   catch (err) {
     // todo: handle error

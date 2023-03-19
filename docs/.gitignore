@@ -10,3 +10,4 @@ dist
 sw.*
 .env
 .output
+translation-status.json

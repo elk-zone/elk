@@ -35,6 +35,7 @@
     "posts_count": "{0} Posts|{0} Post|{0} Posts",
     "profile_description": "{0}'s profile header",
     "profile_unavailable": "Profile unavailable",
+    "request_follow": "Request to follow",
     "unblock": "Unblock",
     "unfollow": "Unfollow",
     "unmute": "Unmute",
@@ -68,6 +69,7 @@
     "save": "Save",
     "save_changes": "Save changes",
     "sign_in": "Sign in",
+    "sign_in_to": "Sign in to {0}",
     "switch_account": "Switch account",
     "vote": "Vote"
   },
@@ -93,6 +95,7 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
+    "fetching": "Fetching...",
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
@@ -115,6 +118,11 @@
     "common": {
       "cancel": "No",
       "confirm": "Yes"
+    },
+    "delete_list": {
+      "cancel": "Cancel",
+      "confirm": "Delete",
+      "title": "Are you sure you want to delete the \"{0}\" list?"
     },
     "delete_posts": {
       "cancel": "Cancel",
@@ -169,6 +177,7 @@
     "desc_para4": "Elk is Open Source. If you'd like to help with testing, giving feedback, or contributing,",
     "desc_para5": "reach out to us on GitHub",
     "desc_para6": "and get involved.",
+    "footer_team": "The Elk Team",
     "title": "Elk is in Preview!"
   },
   "language": {
@@ -176,8 +185,44 @@
   },
   "list": {
     "add_account": "Add account to list",
+    "cancel_edit": "Cancel editing",
+    "clear_error": "Clear error",
+    "create": "Create",
+    "delete": "Delete this list",
+    "delete_error": "There was an error while deleting the list",
+    "edit": "Edit this list",
+    "edit_error": "There was an error while updating the list",
+    "error": "There was an error while creating the list",
+    "error_prefix": "Error: ",
+    "list_title_placeholder": "List title",
     "modify_account": "Modify lists with account",
-    "remove_account": "Remove account from list"
+    "remove_account": "Remove account from list",
+    "save": "Save changes"
+  },
+  "magic_keys": {
+    "dialog_header": "Keyboard shortcuts",
+    "groups": {
+      "actions": {
+        "boost": "Boost",
+        "command_mode": "Command mode",
+        "compose": "Compose",
+        "favourite": "Favourite",
+        "title": "Actions",
+        "zen_mode": "Zen mode"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Home",
+        "go_to_notifications": "Notifications",
+        "next_status": "Next status",
+        "previous_status": "Previous status",
+        "shortcut_help": "Shortcut help",
+        "title": "Navigation"
+      }
+    },
+    "sequence_then": "then"
   },
   "menu": {
     "block_account": "Block {0}",
@@ -195,7 +240,7 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "share_post": "Share this post",
-    "show_favourited_and_boosted_by": "Show who favourited and boosted",
+    "show_favourited_and_boosted_by": "Show who favorited and boosted",
     "show_reblogs": "Show boosts from {0}",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
@@ -208,6 +253,9 @@
     "unmute_account": "Unmute {0}",
     "unmute_conversation": "Unmute this post",
     "unpin_on_profile": "Unpin on profile"
+  },
+  "modals": {
+    "aria_label_close": "Close"
   },
   "nav": {
     "back": "Go back",
@@ -290,6 +338,7 @@
   },
   "settings": {
     "about": {
+      "built_at": "Built",
       "label": "About",
       "meet_the_team": "Meet the team",
       "sponsor_action": "Sponsor us",
@@ -316,7 +365,15 @@
     },
     "language": {
       "display_language": "Display Language",
-      "label": "Language"
+      "label": "Language",
+      "status": "Translation status: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Add",
+        "choose_language": "Choose language",
+        "heading": "Translations",
+        "hide_specific": "Hide specific translations",
+        "remove": "Remove"
+      }
     },
     "notifications": {
       "label": "Notifications",
@@ -345,10 +402,14 @@
         "save_settings": "Save settings",
         "subscription_error": {
           "clear_error": "Clear error",
+          "error_hint": "You can consult a list of frequently asked questions to try to solve the problem: {0}.",
+          "invalid_vapid_key": "The VAPID public key seems to be invalid.",
           "permission_denied": "Permission denied: enable notifications in your browser.",
+          "repo_link": "Elk's repository in GitHub",
           "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
           "title": "Could not subscribe to push notifications",
-          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again."
+          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again.",
+          "vapid_not_supported": "Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol."
         },
         "title": "Push notifications settings",
         "undo_settings": "Undo changes",
@@ -365,23 +426,31 @@
           "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
         }
       },
-      "show_btn": "Go to notifications settings"
+      "show_btn": "Go to notifications settings",
+      "under_construction": "Under construction"
     },
     "notifications_settings": "Notifications",
     "preferences": {
       "enable_autoplay": "Enable Autoplay",
+      "enable_data_saving": "Enable data saving",
+      "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
+      "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
       "hide_account_hover_card": "Hide account hover card",
+      "hide_alt_indi_on_posts": "Hide alt indicator on posts",
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",
-      "hide_follower_count": "Hide follower count",
+      "hide_follower_count": "Hide following/follower count",
       "hide_reply_count": "Hide reply count",
       "hide_translation": "Hide translation",
+      "hide_username_emojis": "Hide username emojis",
+      "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",
       "label": "Preferences",
       "title": "Experimental Features",
       "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
+      "virtual_scroll": "Virtual Scrolling",
+      "wellbeing": "Wellbeing"
     },
     "profile": {
       "appearance": {
@@ -391,6 +460,8 @@
         "label": "Appearance",
         "profile_metadata": "Profile metadata",
         "profile_metadata_desc": "You can have up to {0} items displayed as a table on your profile",
+        "profile_metadata_label": "Label",
+        "profile_metadata_value": "Content",
         "title": "Edit profile"
       },
       "featured_tags": {
@@ -430,8 +501,10 @@
     "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Description",
-      "dismiss": "Dismiss"
+      "dismiss": "Dismiss",
+      "read": "Read {0} description"
     },
     "poll": {
       "count": "{0} votes|{0} vote|{0} votes",
@@ -519,8 +592,12 @@
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
+    "open_editor_tools": "Editor tools",
+    "pick_an_icon": "Pick an icon",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
-    "toggle_code_block": "Toggle code block"
+    "toggle_bold": "Toggle bold",
+    "toggle_code_block": "Toggle code block",
+    "toggle_italic": "Toggle italic"
   },
   "user": {
     "add_existing": "Add an existing account",
@@ -528,6 +605,7 @@
     "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
     "sign_in_notice_title": "Viewing {0} public data",
     "sign_out_account": "Sign out {0}",
+    "single_instance_sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts.",
     "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
     "tip_register_account": "pick your server and register one"
   },

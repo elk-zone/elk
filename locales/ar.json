@@ -28,6 +28,8 @@
     "muted_users": "المستخدمون المكتومون",
     "muting": "قُمت بكتم",
     "mutuals": "المتبادلون",
+    "notifications_on_post_disable": "التوقف عن إشعاري عندما ينشر {username}",
+    "notifications_on_post_enable": "إشعاري عندما ينشر {username}",
     "pinned": "المثبتة",
     "posts": "المنشورات",
     "posts_count": "{0} منشورات|{0} منشور|{0} منشورين|{0} منشورات|{0} منشور|{0} منشور",
@@ -35,7 +37,9 @@
     "profile_unavailable": "حساب غير متوفر",
     "unblock": "إلغاء حظر",
     "unfollow": "إلغاء متابعة",
-    "unmute": "إلغاء كتم"
+    "unmute": "إلغاء كتم",
+    "view_other_followers": "قد لا يتم عرض المتابعين من خوادم مختلفين عن الخاص بك.",
+    "view_other_following": "قد لا يتم عرض من تتابع من خوادم مختلفين عن الخاص بك."
   },
   "action": {
     "apply": "تطبيق",
@@ -44,6 +48,7 @@
     "boost": "إعادة نشر",
     "boost_count": "{0}",
     "boosted": "أعيد نشرها",
+    "clear_publish_failed": "مسح أخطاء النشر",
     "clear_upload_failed": "مسح أخطاء تحميل الملف",
     "close": "أغلق",
     "compose": "منشور جديد",
@@ -66,7 +71,7 @@
     "switch_account": "تغيير الحساب",
     "vote": "تصويت"
   },
-  "app_desc_short": "منصة تواصل Mastodon رشيقة",
+  "app_desc_short": "منصة تواصل ماستودون رشيقة",
   "app_logo": "Elk شعار",
   "app_name": "Elk",
   "attachment": {
@@ -101,8 +106,51 @@
     "draft_title": "مسودة {0}",
     "drafts": "المسودات ({v})"
   },
+  "confirm": {
+    "block_account": {
+      "cancel": "إلغاء",
+      "confirm": "حظر",
+      "title": "هل أنت متأكد أنك تريد حظر {0}؟"
+    },
+    "block_domain": {
+      "cancel": "إلغاء",
+      "confirm": "حظر",
+      "title": "هل أنت متأكد أنك تريد حظر {0}؟"
+    },
+    "common": {
+      "cancel": "لا",
+      "confirm": "نعم"
+    },
+    "delete_posts": {
+      "cancel": "إلغاء",
+      "confirm": "حذف",
+      "title": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
+    },
+    "mute_account": {
+      "cancel": "إلغاء",
+      "confirm": "كتم",
+      "title": "هل أنت متأكد أنك تريد كتم {0}؟"
+    },
+    "show_reblogs": {
+      "cancel": "إلغاء",
+      "confirm": "اعرض",
+      "title": "هل أنت متأكد أنك تريد إظهار تعزيزات من {0}؟"
+    },
+    "unfollow": {
+      "cancel": "إلغاء",
+      "confirm": "إلغاء المتابعة",
+      "title": "هل أنت متأكد أنك تريد إلغاء المتابعة؟"
+    }
+  },
   "conversation": {
     "with": "مع"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "الخطوط {0}",
+      "open": "افتح",
+      "snippet_from": "مقتطف من {0}"
+    }
   },
   "error": {
     "account_not_found": "حساب {0} غير موجود",
@@ -113,6 +161,12 @@
     "unsupported_file_format": "لا يمكن تحميل هذا النوع من الملفات"
   },
   "help": {
+    "build_preview": {
+      "desc1": "أنت تشاهد حاليًا إصدار معاينة من Elk عامة - {0}.",
+      "desc2": "قد يحتوي على تغييرات لم تتم مراجعتها أو حتى ضارة.",
+      "desc3": "لا تسجل الدخول بحسابك الحقيقي.",
+      "title": "معاينة النشر"
+    },
     "desc_highlight": "توقع بعض الأخطاء والميزات المفقودة هنا وهناك.",
     "desc_para1": "نشكرك على اهتمامك بتجربة Elk ، عميل ماستدون العام!",
     "desc_para2": "نحن نعمل بجد على التطوير وتحسينه بمرور الوقت. وسندعوك قريبًا للانضمام إلى القوة بمجرد أن نجعلها مفتوحة المصدر قريبًا!",
@@ -125,10 +179,16 @@
   "language": {
     "search": "بحث"
   },
+  "list": {
+    "add_account": "إضافة حساب إلى القائمة",
+    "modify_account": "تعديل القوائم مع الحساب",
+    "remove_account": "إزالة الحساب من القائمة"
+  },
   "menu": {
     "block_account": "حظر {0}",
     "block_domain": "حظر المجال {0}",
     "copy_link_to_post": "انسخ الرابط إلى هذا المنشور",
+    "copy_original_link_to_post": "انسخ الرابط الأصلي لهذا المنشور",
     "delete": "حذف",
     "delete_and_redraft": "حذف وإعادة صياغة",
     "delete_confirm": {
@@ -165,14 +225,18 @@
     "blocked_users": "المستخدمين المحظورين",
     "bookmarks": "العلامات المرجعية",
     "built_at": "Built {0}",
+    "compose": "تأليف",
     "conversations": "المحادثات",
     "explore": "استكشف",
     "favourites": "المفضلة",
     "federated": "الفديرالية",
     "home": "الرئيسيّة",
+    "list": "قائمة",
+    "lists": "القوائم",
     "local": "المحلي",
     "muted_users": "المستخدمون المكتموصين",
     "notifications": "التنبيهات",
+    "privacy": "خصوصية",
     "profile": "الصفحة التعريفية",
     "search": "البحث",
     "select_feature_flags": "تبديل علامات الميزات",
@@ -202,27 +266,29 @@
   },
   "pwa": {
     "dismiss": "تجاهل",
-    "title": "يتوفر تحديث Elk الجديد",
+    "install": "تحميل",
+    "install_title": "تحميل Elk",
+    "title": "يتوفر تحديث Elk جديد",
     "update": "تحديث",
     "update_available_short": "تحديث Elk",
     "webmanifest": {
       "canary": {
-        "description": "نسخة ويب رشيقة ل Mastodon (النسخة الإنشائية)",
+        "description": "نسخة ويب رشيقة لماستودون (النسخة الإنشائية)",
         "name": "Elk (النسخة الإنشائية)",
         "short_name": "Elk (النسخة الإنشائية)"
       },
       "dev": {
-        "description": "نسخة ويب رشيقة ل Mastodon (النسخة التطويرية)",
+        "description": "نسخة ويب رشيقة لماستودون (النسخة التطويرية)",
         "name": "Elk (النسخة التطويرية)",
         "short_name": "Elk (النسخة التطويرية)"
       },
       "preview": {
-        "description": "نسخة ويب رشيقة ل Mastodon (معاينة)",
+        "description": "نسخة ويب رشيقة لماستودون (معاينة)",
         "name": "Elk (معاينة)",
         "short_name": "Elk (معاينة)"
       },
       "release": {
-        "description": "نسخة ويب رشيقة ل Mastodon",
+        "description": "نسخة ويب رشيقة لماستودون",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -241,10 +307,11 @@
       "sponsors": "الرعاة",
       "sponsors_body_1": "تم تمويل Elk من قبل الشركات والأفراد التاليين:",
       "sponsors_body_2": "وكذا من قبل الشركات التالية:",
-      "sponsors_body_3": "إذا كنت تستمتع بإستخدام Elk، فنحن نشجعك على التبرع لدعم المشروع."
+      "sponsors_body_3": "إذا كنت تستمتع بإستخدام Elk، فنحن نشجعك على التبرع لدعم المشروع.",
+      "version": "الإصدار"
     },
     "account_settings": {
-      "description": "قم بتحرير إعدادات حسابك في موقع Mastodon الأصلي",
+      "description": "قم بتحرير إعدادات حسابك في موقع ماستودون الأصل",
       "label": "إعدادت الحساب"
     },
     "feature_flags": {
@@ -260,7 +327,8 @@
       "font_size": "حجم الخط",
       "label": "واجهه المستخدم",
       "light_mode": "وضع الضوء",
-      "system_mode": "النظام"
+      "system_mode": "النظام",
+      "theme_color": "وضع المظهر"
     },
     "language": {
       "display_language": "اللغة المعروضة",
@@ -317,7 +385,19 @@
     },
     "notifications_settings": "التنبيهات",
     "preferences": {
-      "label": "التفضيلات"
+      "enable_autoplay": "تفعيل التشغيل التلقائي",
+      "github_cards": "بطاقات GitHub",
+      "grayscale_mode": "مظهر رمادي",
+      "hide_account_hover_card": "إخفاء بطاقة الحساب عند المرور فوقها",
+      "hide_boost_count": "إخفاء عدد التعزيز",
+      "hide_favorite_count": "إخفاء التعداد المفضل",
+      "hide_follower_count": "إخفاء عدد المتابعين",
+      "hide_reply_count": "إخفاء عدد الردود",
+      "hide_translation": "إخفاء الترجمة",
+      "label": "التفضيلات",
+      "title": "الميزات التجريبية",
+      "user_picker": "منتقي الحسابات",
+      "virtual_scroll": "التمرير الافتراضي"
     },
     "profile": {
       "appearance": {
@@ -340,15 +420,12 @@
       "export": "تصدير معلومات المستخدم",
       "import": "استيراد معلومات المستخدم",
       "label": "المستخدمون المسجلون"
-    },
-    "wellness": {
-      "feature": {
-        "hide_boost_count": "إخفاء عدد المشاركات",
-        "hide_favorite_count": "إخفاء عدد المفضلة",
-        "hide_follower_count": "إخفاء عدد المتابعين"
-      },
-      "label": "الصحة العامة"
     }
+  },
+  "share-target": {
+    "description": "يمكن تحديث Elk بحيث يمكنك مشاركة المحتوى من التطبيقات الأخرى ، ما عليك سوى تثبيت Elk على جهازك أو الكمبيوتر وتسجيل الدخول.",
+    "hint": "لمشاركة المحتوى مع Elk ، يجب تثبيت Elk ويجب تسجيل الدخول.",
+    "title": "شارك مع Elk"
   },
   "state": {
     "attachments_exceed_server_limit": "تجاوز عدد المرفقات الحد الأقصى لكل منشور.",
@@ -356,6 +433,7 @@
     "edited": "(معدل)",
     "editing": "تعديل",
     "loading": "جاري التحميل ...",
+    "publish_failed": "فشل النشر",
     "publishing": "قيد النشر",
     "upload_failed": "التحميل فشل",
     "uploading": "جاري التحميل ..."
@@ -390,6 +468,7 @@
     "edited": "تم تعديله في {0}"
   },
   "tab": {
+    "accounts": "الحسابات",
     "for_you": "مصممة لك",
     "hashtags": "هاشتاغ",
     "media": "الصور/الفيديو",
@@ -455,6 +534,7 @@
     "explore_links_intro": "يتم التحدث عن هذه القصص الإخبارية من قبل الأشخاص الموجودين على هذه الشبكة وغيرها من الشبكات اللامركزية في الوقت الحالي",
     "explore_posts_intro": "تكتسب هذه المنشورات الكثير من النشاط على الشبكة وغيرها من الشبكات اللامركزية في الوقت الحالي",
     "explore_tags_intro": "تكتسب هذه الهاشتاغ الكثير من النشاط بين الأشخاص على هذه الشبكة وغيرها من الشبكات اللامركزية في الوقت الحالي",
+    "publish_failed": "أغلق الرسائل الفاشلة أعلى المحرر لإعادة نشر المنشورات",
     "toggle_code_block": "تبديل كتلة التعليمات البرمجية"
   },
   "user": {

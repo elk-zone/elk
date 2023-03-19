@@ -59,7 +59,8 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
 export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Account> {
   const server = currentServer.value
   const userId = currentUser.value?.account.id
-  const key = `${server}:${userId}:account:${acct}`
+  const userAcct = acct.endsWith(`@${server}`) ? acct.slice(0, -server.length - 1) : acct
+  const key = `${server}:${userId}:account:${userAcct}`
   const cached = cache.get(key)
   if (cached)
     return cached
@@ -69,9 +70,9 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
     const client = useMastoClient()
     let account: mastodon.v1.Account
     if (!isGotoSocial.value)
-      account = await client.v1.accounts.lookup({ acct })
+      account = await client.v1.accounts.lookup({ acct: userAcct })
     else
-      account = (await client.v1.search({ q: `@${acct}`, type: 'accounts' })).accounts[0]
+      account = (await client.v1.search({ q: `@${userAcct}`, type: 'accounts' })).accounts[0]
 
     if (account.acct && !account.acct.includes('@') && domain)
       account.acct = `${account.acct}@${domain}`
@@ -107,6 +108,7 @@ export function removeCachedStatus(id: string, server = currentServer.value) {
 
 export function cacheAccount(account: mastodon.v1.Account, server = currentServer.value, override?: boolean) {
   const userId = currentUser.value?.account.id
+  const userAcct = account.acct.endsWith(`@${server}`) ? account.acct.slice(0, -server.length - 1) : account.acct
   setCached(`${server}:${userId}:account:${account.id}`, account, override)
-  setCached(`${server}:${userId}:account:${account.acct}`, account, override)
+  setCached(`${server}:${userId}:account:${userAcct}`, account, override)
 }

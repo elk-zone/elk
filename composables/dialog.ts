@@ -1,9 +1,10 @@
 import type { mastodon } from 'masto'
-import type { ConfirmDialogChoice, ConfirmDialogLabel, Draft } from '~/types'
+import type { ConfirmDialogChoice, ConfirmDialogLabel, Draft, ErrorDialogData } from '~/types'
 import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
 export const confirmDialogLabel = ref<ConfirmDialogLabel>()
+export const errorDialogData = ref<ErrorDialogData>()
 
 export const mediaPreviewList = ref<mastodon.v1.MediaAttachment[]>([])
 export const mediaPreviewIndex = ref(0)
@@ -17,11 +18,13 @@ export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, !process.mo
 
 export const isSigninDialogOpen = ref(false)
 export const isPublishDialogOpen = ref(false)
+export const isKeyboardShortcutsDialogOpen = ref(false)
 export const isMediaPreviewOpen = ref(false)
 export const isEditHistoryDialogOpen = ref(false)
 export const isPreviewHelpOpen = ref(isFirstVisit.value)
 export const isCommandPanelOpen = ref(false)
 export const isConfirmDialogOpen = ref(false)
+export const isErrorDialogOpen = ref(false)
 export const isFavouritedBoostedByDialogOpen = ref(false)
 
 export const lastPublishDialogStatus = ref<mastodon.v1.Status | null>(null)
@@ -101,6 +104,17 @@ export function openMediaPreview(attachments: mastodon.v1.MediaAttachment[], ind
   }, '')
 }
 
+export async function openErrorDialog(data: ErrorDialogData) {
+  errorDialogData.value = data
+  isErrorDialogOpen.value = true
+
+  await until(isErrorDialogOpen).toBe(false)
+}
+
+export function closeErrorDialog() {
+  isErrorDialogOpen.value = false
+}
+
 export function closeMediaPreview() {
   history.back()
 }
@@ -125,4 +139,12 @@ export function openCommandPanel(isCommandMode = false) {
 
 export function closeCommandPanel() {
   isCommandPanelOpen.value = false
+}
+
+export function toggleKeyboardShortcuts() {
+  isKeyboardShortcutsDialogOpen.value = !isKeyboardShortcutsDialogOpen.value
+}
+
+export function closeKeyboardShortcuts() {
+  isKeyboardShortcutsDialogOpen.value = false
 }

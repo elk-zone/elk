@@ -8,6 +8,7 @@ const props = withDefaults(
     context?: mastodon.v2.FilterContext
     hover?: boolean
     faded?: boolean
+    isPreview?: boolean
 
     // If we know the prev and next status in the timeline, we can simplify the card
     older?: mastodon.v1.Status
@@ -26,7 +27,7 @@ const props = withDefaults(
 const userSettings = useUserSettings()
 
 const status = $computed(() => {
-  if (props.status.reblog && !props.status.content)
+  if (props.status.reblog && (!props.status.content || props.status.content === props.status.reblog.content))
     return props.status.reblog
   return props.status
 })
@@ -79,10 +80,12 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
   <div
     :id="`status-${status.id}`"
     ref="el"
-    relative flex="~ col gap1" p="l-3 r-4 b-2"
+    relative flex="~ col gap1"
+    p="b-2 is-3 ie-4"
     :class="{ 'hover:bg-active': hover }"
     tabindex="0"
     focus:outline-none focus-visible:ring="2 primary"
+    aria-roledescription="status-card"
     :lang="status.language ?? undefined"
     @click="onclick"
     @keydown.enter="onclick"
@@ -95,12 +98,12 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
       <template v-if="status.inReplyToAccountId">
         <StatusReplyingTo
           v-if="showReplyTo"
-          ml-20px pt-1 pl-5
+          m="is-5" p="t-1 is-5"
           :status="status"
           :is-self-reply="isSelfReply"
           :class="faded ? 'text-secondary-light' : ''"
         />
-        <div flex="~ col gap-1" items-center pos="absolute top-0 left-0" w="77px" z--1>
+        <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
           <template v-if="showReplyTo">
             <div w="1px" h="0.5" border="x base" mt-3 />
             <div w="1px" h="0.5" border="x base" />
@@ -176,7 +179,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
         </div>
 
         <!-- Content -->
-        <StatusContent :status="status" :newer="newer" :context="context" mb2 :class="{ 'mt-2 mb1': isDM }" />
+        <StatusContent :status="status" :newer="newer" :context="context" :is-preview="isPreview" mb2 :class="{ 'mt-2 mb1': isDM }" />
         <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
       </div>
     </div>

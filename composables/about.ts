@@ -7,7 +7,7 @@ export interface Team {
   mastodon: string
 }
 
-export const teams: Team[] = [
+export const elkTeamMembers: Team[] = [
   {
     github: 'antfu',
     display: 'Anthony Fu',
@@ -35,5 +35,5 @@ export const teams: Team[] = [
 ].sort(() => Math.random() - 0.5)
 
 export function useBuildInfo() {
-  return useRuntimeConfig().public.buildInfo as BuildInfo
+  return useAppConfig().buildInfo as BuildInfo
 }

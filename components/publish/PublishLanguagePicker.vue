@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ISO6391 from 'iso-639-1'
 import Fuse from 'fuse.js'
 
 let { modelValue } = $defineModel<{
@@ -7,20 +6,11 @@ let { modelValue } = $defineModel<{
 }>()
 
 const { t } = useI18n()
+const userSettings = useUserSettings()
 
 const languageKeyword = $ref('')
 
-const languageList: {
-  code: string
-  nativeName: string
-  name: string
-}[] = ISO6391.getAllCodes().map(code => ({
-  code,
-  nativeName: ISO6391.getNativeName(code),
-  name: ISO6391.getName(code),
-}))
-
-const fuse = new Fuse(languageList, {
+const fuse = new Fuse(languagesNameList, {
   keys: ['code', 'nativeName', 'name'],
   shouldSort: true,
 })
@@ -28,9 +18,22 @@ const fuse = new Fuse(languageList, {
 const languages = $computed(() =>
   languageKeyword.trim()
     ? fuse.search(languageKeyword).map(r => r.item)
-    : [...languageList].sort(({ code: a }, { code: b }) => {
-        return a === modelValue ? -1 : b === modelValue ? 1 : a.localeCompare(b)
-      }),
+    : [...languagesNameList].filter(entry => !userSettings.value.disabledTranslationLanguages.includes(entry.code))
+        .sort(({ code: a }, { code: b }) => {
+          return a === modelValue ? -1 : b === modelValue ? 1 : a.localeCompare(b)
+        }),
+)
+
+const preferredLanguages = computed(() => {
+  const result = []
+  for (const langCode of userSettings.value.disabledTranslationLanguages) {
+    const completeLang = languagesNameList.find(listEntry => listEntry.code === langCode)
+    if (completeLang)
+      result.push(completeLang)
+  }
+  return result
+},
+
 )
 
 function chooseLanguage(language: string) {
@@ -39,14 +42,28 @@ function chooseLanguage(language: string) {
 </script>
 
 <template>
-  <div>
-    <input
-      v-model="languageKeyword"
-      :placeholder="t('language.search')"
-      p2 mb2 border-rounded w-full bg-transparent
-      outline-none border="~ base"
-    >
+  <div relative of-x-hidden>
+    <div p2>
+      <input
+        v-model="languageKeyword"
+        :placeholder="t('language.search')"
+        p2 border-rounded w-full bg-transparent
+        outline-none border="~ base"
+      >
+    </div>
     <div max-h-40vh overflow-auto>
+      <template v-if="!languageKeyword.trim()">
+        <CommonDropdownItem
+          v-for="{ code, nativeName, name } in preferredLanguages"
+          :key="code"
+          :text="nativeName"
+          :description="name"
+          :checked="code === modelValue"
+          @click="chooseLanguage(code)"
+        />
+        <hr class="border-base ">
+      </template>
+
       <CommonDropdownItem
         v-for="{ code, nativeName, name } in languages"
         :key="code"

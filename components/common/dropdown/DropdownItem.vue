@@ -46,6 +46,7 @@ useCommand({
     v-bind="$attrs"
     :is="is"
     ref="el"
+    w-full
     flex gap-3 items-center cursor-pointer px4 py3
     select-none
     hover-bg-active

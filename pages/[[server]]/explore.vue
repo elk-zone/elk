@@ -3,6 +3,17 @@ import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.v
 
 const { t } = useI18n()
 
+const search = $ref<{ input?: HTMLInputElement }>()
+const route = useRoute()
+watchEffect(() => {
+  if (isMediumOrLargeScreen && route.name === 'explore' && search?.input)
+    search?.input?.focus()
+})
+onActivated(() =>
+  search?.input?.focus(),
+)
+onDeactivated(() => search?.input?.blur())
+
 const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
     to: isHydrated.value ? `/${currentServer.value}/explore` : '/explore',
@@ -26,12 +37,15 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
 </script>
 
 <template>
-  <MainContent>
-    <template #title>
+  <MainContent :no-overflow-hidden="isExtraLargeScreen" :back-on-small-screen="isExtraLargeScreen">
+    <template v-if="!isExtraLargeScreen" #title>
       <span timeline-title-style flex items-center gap-2 cursor-pointer @click="$scrollToTop">
         <div i-ri:hashtag />
         <span>{{ t('nav.explore') }}</span>
       </span>
+    </template>
+    <template v-else #title>
+      <SearchWidget v-if="isHydrated" ref="search" class="m-1" />
     </template>
 
     <template #header>

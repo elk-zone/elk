@@ -8,6 +8,40 @@ export interface TranslationResponse {
   }
 }
 
+// @see https://github.com/LibreTranslate/LibreTranslate/tree/main/libretranslate/locales
+export const supportedTranslationCodes = [
+  'ar',
+  'az',
+  'cs',
+  'da',
+  'de',
+  'el',
+  'en',
+  'eo',
+  'es',
+  'fa',
+  'fi',
+  'fr',
+  'ga',
+  'he',
+  'hi',
+  'hu',
+  'id',
+  'it',
+  'ja',
+  'ko',
+  'nl',
+  'pl',
+  'pt',
+  'ru',
+  'sk',
+  'sv',
+  'tr',
+  'uk',
+  'vi',
+  'zh',
+] as const
+
 export const getLanguageCode = () => {
   let code = 'en'
   const getCode = (code: string) => code.replace(/-.*$/, '')
@@ -63,9 +97,16 @@ export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEd
     translations.set(status, reactive({ visible: false, text: '', success: false, error: '' }))
 
   const translation = translations.get(status)!
+  const userSettings = useUserSettings()
+
+  const shouldTranslate = 'language' in status && status.language && status.language !== to
+    && supportedTranslationCodes.includes(to as any)
+    && supportedTranslationCodes.includes(status.language as any)
+    && !userSettings.value.disabledTranslationLanguages.includes(status.language)
+  const enabled = /*! !useRuntimeConfig().public.translateApi && */ shouldTranslate
 
   async function toggle() {
-    if (!('language' in status))
+    if (!shouldTranslate)
       return
 
     if (!translation.text) {
@@ -79,7 +120,7 @@ export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEd
   }
 
   return {
-    enabled: !!useRuntimeConfig().public.translateApi,
+    enabled,
     toggle,
     translation,
   }

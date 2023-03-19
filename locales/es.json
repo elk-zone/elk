@@ -8,7 +8,7 @@
   },
   "account": {
     "avatar_description": "avatar de {0}",
-    "blocked_by": "Estás bloqueado por este usuario.",
+    "blocked_by": "Has sido bloqueado por este usuario.",
     "blocked_domains": "Dominios bloqueados",
     "blocked_users": "Usuarios bloqueados",
     "blocking": "Bloqueado",
@@ -35,6 +35,7 @@
     "posts_count": "{0} Publicaciones|{0} Publicación|{0} Publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
     "profile_unavailable": "Perfil no disponible",
+    "request_follow": "Solicitar seguirle",
     "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
     "unmute": "Dejar de silenciar",
@@ -68,6 +69,7 @@
     "save": "Guardar",
     "save_changes": "Guardar cambios",
     "sign_in": "Iniciar sesión",
+    "sign_in_to": "Iniciar sesión en {0}",
     "switch_account": "Cambiar cuenta",
     "vote": "Votar"
   },
@@ -76,7 +78,7 @@
   "app_name": "Elk",
   "attachment": {
     "edit_title": "Descripción",
-    "remove_label": "Eliminar archivo adjunto"
+    "remove_label": "Eliminar fichero adjunto"
   },
   "command": {
     "activate": "Activar",
@@ -93,6 +95,7 @@
   "common": {
     "end_of_list": "Fin",
     "error": "ERROR",
+    "fetching": "Cargando...",
     "in": "en",
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer no tienes conexión a internet. Por favor, comprueba tu conexión a la red."
@@ -115,6 +118,11 @@
     "common": {
       "cancel": "No",
       "confirm": "Si"
+    },
+    "delete_list": {
+      "cancel": "Cancelar",
+      "confirm": "Eliminar",
+      "title": "¿Está seguro de querer eliminar la lista \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Cancelar",
@@ -150,10 +158,10 @@
   "error": {
     "account_not_found": "No se encontró la cuenta {0}",
     "explore-list-empty": "No hay tendencias en este momento. ¡Vuelve más tarde!",
-    "file_size_cannot_exceed_n_mb": "El tamaño del archivo no puede exceder los {0}MB",
+    "file_size_cannot_exceed_n_mb": "El tamaño del fichero no puede exceder los {0}MB",
     "sign_in_error": "No se pudo conectar con el servidor.",
-    "status_not_found": "Estado no encontrado",
-    "unsupported_file_format": "Tipo de archivo no soportado"
+    "status_not_found": "Publicación no encontrada",
+    "unsupported_file_format": "Tipo de fichero no soportado"
   },
   "help": {
     "build_preview": {
@@ -164,11 +172,12 @@
     },
     "desc_highlight": "Es normal encontrar algunos errores y características faltantes aquí y allá.",
     "desc_para1": "¡Gracias por el interés en probar Elk, nuestro cliente genérico en desarrollo para Mastodon!",
-    "desc_para2": "Estamos trabajando duro en el desarrollo y mejorándolo constantemente. ¡Y pronto te invitaremos a que te unas una vez que lo hagamos de código abierto!",
-    "desc_para3": "Para ayudar a impulsar el desarrollo, puedes patrocinar a los miembros de nuestro equipo con los enlaces a continuación.",
-    "desc_para4": "Antes de eso, si te gustaría ayudar probando, dando opinión o contribuyendo,",
+    "desc_para2": "Estamos trabajando duro en el desarrollo y mejorándolo constantemente.",
+    "desc_para3": "Para ayudar a impulsar el desarrollo, puedes patrocinar a los miembros de nuestro equipo con los enlaces a continuación. ¡Esperamos que estés disfrutando Elk!",
+    "desc_para4": "Elk es de código abierto, si te gustaría ayudar probando, dando opinión o contribuyendo,",
     "desc_para5": "ponte en contacto con nosotros a través de GitHub",
     "desc_para6": "para participar.",
+    "footer_team": "El equipo de desarrollo de Elk",
     "title": "¡Elk está en Vista Previa!"
   },
   "language": {
@@ -176,8 +185,19 @@
   },
   "list": {
     "add_account": "Agregar cuenta a la lista",
+    "cancel_edit": "Cancelar edición",
+    "clear_error": "Limpiar error",
+    "create": "Crear",
+    "delete": "Eliminar esta lista",
+    "delete_error": "Se produjo un error eliminando la lista",
+    "edit": "Ediar esta lista",
+    "edit_error": "Se produjo un error modificando la lista",
+    "error": "Se produjo un error creando la lista",
+    "error_prefix": "Error: ",
+    "list_title_placeholder": "Título de la lista",
     "modify_account": "Modificar listas con cuenta",
-    "remove_account": "Eliminar cuenta de la lista"
+    "remove_account": "Eliminar cuenta de la lista",
+    "save": "Guardar"
   },
   "menu": {
     "block_account": "Bloquear a {0}",
@@ -245,7 +265,7 @@
     "reblogged_post": "retooteó tu publicación",
     "request_to_follow": "ha solicitado seguirte",
     "signed_up": "registrado",
-    "update_status": "ha actualizado su estado"
+    "update_status": "ha actualizado su publicación"
   },
   "placeholder": {
     "content_warning": "Escribe tu advertencia aquí",
@@ -290,6 +310,7 @@
   },
   "settings": {
     "about": {
+      "built_at": "Fecha de compilación",
       "label": "Acerca de",
       "meet_the_team": "Conoce al equipo",
       "sponsor_action": "Patrocinar",
@@ -301,14 +322,14 @@
       "version": "Versión"
     },
     "account_settings": {
-      "description": "Edita los ajustes de tu cuenta en la interfaz de Mastodon",
+      "description": "Edita los ajustes de tu cuenta en la interfaz de Mastodon.",
       "label": "Ajustes de cuenta"
     },
     "interface": {
       "color_mode": "Modos de color",
       "dark_mode": "Modo oscuro",
       "default": " (por defecto)",
-      "font_size": "Tamaño de Letra",
+      "font_size": "Tamaño de letra",
       "label": "Interfaz",
       "light_mode": "Modo claro",
       "system_mode": "Sistema",
@@ -316,7 +337,15 @@
     },
     "language": {
       "display_language": "Idioma de pantalla",
-      "label": "Idioma"
+      "label": "Idioma",
+      "status": "Estado traducción: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Agregar",
+        "choose_language": "Seleccionar idioma",
+        "heading": "Traducciones",
+        "hide_specific": "Ocultar una traducción en específico",
+        "remove": "Eliminar"
+      }
     },
     "notifications": {
       "label": "Notificaciones",
@@ -332,7 +361,7 @@
           "reblog": "Retooteo de tus publicaciones",
           "title": "¿Qué notificaciones recibir?"
         },
-        "description": "Reciba notificaciones incluso cuando no estés utilizando Elk.",
+        "description": "Recibe notificaciones incluso cuando no estés utilizando Elk.",
         "instructions": "¡No olvides guardar los cambios utilizando el botón @:settings.notifications.push_notifications.save_settings{'!'}",
         "label": "Ajustes de notificaciones push",
         "policy": {
@@ -345,10 +374,14 @@
         "save_settings": "Guardar cambios",
         "subscription_error": {
           "clear_error": "Limpiar error",
+          "error_hint": "Puede consultar una lista de preguntas más frecuentes para tratar de solucionar el problema: {0}.",
+          "invalid_vapid_key": "La clave pública VAPID parece no ser válida.",
           "permission_denied": "Permiso denegado: habilita las notificaciones en tu navegador.",
+          "repo_link": "Repositorio de Elk en GitHub",
           "request_error": "Se produjo un error al solicitar la suscripción, inténtalo de nuevo y si el error persiste, notifica la incidencia en el repositorio de Elk.",
           "title": "No se pudo suscribir a las notificaciones push",
-          "too_many_registrations": "Debido a las limitaciones del navegador, Elk no puede habilitar las notificaciones push para múltiples cuentas en diferentes servidores. Deberá cancelar las subscripciones a notificaciones push en las otras cuentas e intentarlo de nuevo."
+          "too_many_registrations": "Debido a las limitaciones del navegador, Elk no puede habilitar las notificaciones push para múltiples cuentas en diferentes servidores. Deberá cancelar las subscripciones a notificaciones push en las otras cuentas e intentarlo de nuevo.",
+          "vapid_not_supported": "Su navegador es compatible con las notificaciones web push, pero no parece implementar el protocolo VAPID."
         },
         "title": "Ajustes de notificaciones push",
         "undo_settings": "Deshacer cambios",
@@ -365,23 +398,31 @@
           "re_auth": "Parece que tu servidor no soporta notificaciones push. Prueba a cerrar la sesión y volver a iniciarla, si este mensaje sigue apareciendo contacta con el administrador de tu servidor."
         }
       },
-      "show_btn": "Ir a ajustes de notificaciones"
+      "show_btn": "Ir a ajustes de notificaciones",
+      "under_construction": "En construcción"
     },
     "notifications_settings": "Notificaciones",
     "preferences": {
-      "enable_autoplay": "Habilitar auto-reproducción",
+      "enable_autoplay": "Habilitar reproducción automática",
+      "enable_data_saving": "Habilitar el ahorro de datos",
+      "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
+      "enable_pinch_to_zoom": "Habilitar pellizcar para hacer zoom",
       "github_cards": "Tarjetas GitHub",
       "grayscale_mode": "Modo escala de grises",
       "hide_account_hover_card": "Ocultar tarjeta flotante de cuenta",
+      "hide_alt_indi_on_posts": "Ocultar indicador ALT en publicaciones",
       "hide_boost_count": "Ocultar contador de retoots",
-      "hide_favorite_count": "Ocultar contador de favoritas",
-      "hide_follower_count": "Ocultar contador de seguidores",
-      "hide_reply_count": "Ocultar contador de respuestas",
+      "hide_favorite_count": "Ocultar número de publicaciones favoritas",
+      "hide_follower_count": "Ocultar número de seguidores",
+      "hide_reply_count": "Ocultar número de respuestas",
       "hide_translation": "Ocultar traducción",
+      "hide_username_emojis": "Ocultar emojis en el nombre de usuario",
+      "hide_username_emojis_description": "Oculta los emojis de los nombres de usuarios en la línea de tiempo. Los emojis permanecerán visibles en sus perfiles.",
       "label": "Preferencias",
       "title": "Funcionalidades experimentales",
       "user_picker": "Selector de usuarios",
-      "virtual_scroll": "Desplazamiento virtual"
+      "virtual_scroll": "Desplazamiento virtual",
+      "wellbeing": "Bienestar"
     },
     "profile": {
       "appearance": {
@@ -391,11 +432,13 @@
         "label": "Apariencia",
         "profile_metadata": "Metadatos de perfil",
         "profile_metadata_desc": "Puede mostrar hasta 4 elementos en forma de tabla en tu perfil",
+        "profile_metadata_label": "Texto",
+        "profile_metadata_value": "Contenido",
         "title": "Editar perfil"
       },
       "featured_tags": {
         "description": "Las personas pueden navegar por tus publicaciones públicas con estas etiquetas.",
-        "label": "Etiquetas destacados"
+        "label": "Etiquetas destacadas"
       },
       "label": "Perfil"
     },
@@ -430,8 +473,10 @@
     "filter_removed_phrase": "Eliminado por filtrado",
     "filter_show_anyway": "Mostrar de todas formas",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Descripción",
-      "dismiss": "Descartar"
+      "dismiss": "Descartar",
+      "read": "Leer la descripción de la imagen {0}"
     },
     "poll": {
       "count": "{0} votos|{0} voto|{0} votos",
@@ -510,7 +555,7 @@
   },
   "tooltip": {
     "add_content_warning": "Añadir advertencia de contenido",
-    "add_emojis": "Añadir emojis",
+    "add_emojis": "Agregar emojis",
     "add_media": "Añadir imágenes, video o audio",
     "add_publishable_content": "Publicar contenido",
     "change_content_visibility": "Cambiar visibilidad de contenido",
@@ -519,15 +564,20 @@
     "explore_links_intro": "Estas noticias están siendo comentadas ahora mismo por los usuarios de este y otros servidores de la red descentralizada.",
     "explore_posts_intro": "Estos mensajes de este y otros servidores de la red descentralizada están siendo tendencia ahora mismo en este servidor.",
     "explore_tags_intro": "Estas etiquetas están siendo tendencia ahora mismo entre los usuarios de este y otros servidores de la red descentralizada.",
+    "open_editor_tools": "Herramientas de edición",
+    "pick_an_icon": "Selecciona un icono",
     "publish_failed": "Cierra los mensajes fallidos en la parte superior del editor para volver a publicar",
-    "toggle_code_block": "Cambiar a bloque de código"
+    "toggle_bold": "Cambiar a negrita",
+    "toggle_code_block": "Cambiar a bloque de código",
+    "toggle_italic": "Cambiar a cursiva"
   },
   "user": {
     "add_existing": "Agregar una cuenta existente",
-    "server_address_label": "Dirección de Servidor de Mastodon",
+    "server_address_label": "Dirección de servidor de Mastodon",
     "sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones, o interactuar con un servidor diferente con tu usuario.",
     "sign_in_notice_title": "Viendo información pública de {0}",
     "sign_out_account": "Cerrar sesión {0}",
+    "single_instance_sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones.",
     "tip_no_account": "Si aún no tienes una cuenta Mastodon, {0}.",
     "tip_register_account": "selecciona tu servidor y registrate"
   },

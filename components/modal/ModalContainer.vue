@@ -5,7 +5,9 @@ import {
   isCommandPanelOpen,
   isConfirmDialogOpen,
   isEditHistoryDialogOpen,
+  isErrorDialogOpen,
   isFavouritedBoostedByDialogOpen,
+  isKeyboardShortcutsDialogOpen,
   isMediaPreviewOpen,
   isPreviewHelpOpen,
   isPublishDialogOpen,
@@ -87,12 +89,18 @@ const handleFavouritedBoostedByClose = () => {
     <ModalDialog v-model="isConfirmDialogOpen" py-4 px-8 max-w-125>
       <ModalConfirm v-if="confirmDialogLabel" v-bind="confirmDialogLabel" @choice="handleConfirmChoice" />
     </ModalDialog>
+    <ModalDialog v-model="isErrorDialogOpen" py-4 px-8 max-w-125>
+      <ModalError v-if="errorDialogData" v-bind="errorDialogData" />
+    </ModalDialog>
     <ModalDialog
       v-model="isFavouritedBoostedByDialogOpen"
       max-w-180
       @close="handleFavouritedBoostedByClose"
     >
       <StatusFavouritedBoostedBy />
+    </ModalDialog>
+    <ModalDialog v-model="isKeyboardShortcutsDialogOpen" max-w-full sm:max-w-140 md:max-w-170 lg:max-w-220 md:min-w-160>
+      <MagickeysKeyboardShortcuts @close="closeKeyboardShortcuts()" />
     </ModalDialog>
   </template>
 </template>

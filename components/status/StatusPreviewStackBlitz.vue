@@ -21,9 +21,9 @@ const maxLines = 20
 
 const meta = $computed(() => {
   const { description } = props.card
-  const meta = description.match(/.+\n\nCode Snippet from (.+), lines ([\w-]+)\n\n(.+)/s)
+  const meta = description.match(/.*Code Snippet from (.+), lines (\S+)\n\n(.+)/s)
   const file = meta?.[1]
-  const lines = meta?.[2].replaceAll('N', '')
+  const lines = meta?.[2]
   const code = meta?.[3].split('\n').slice(0, maxLines).join('\n')
   const project = props.card.title?.replace(' - StackBlitz', '')
   const info = $ref<Meta>({
@@ -38,7 +38,12 @@ const meta = $computed(() => {
 const vnodeCode = $computed(() => {
   if (!meta.code)
     return null
-  const vnode = contentToVNode(`<p>\`\`\`${meta.file?.split('.')?.[1] ?? ''}\n${meta.code}\n\`\`\`\</p>`, {
+  const code = meta.code
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/`/g, '&#96;')
+
+  const vnode = contentToVNode(`<p>\`\`\`${meta.file?.split('.')?.[1] ?? ''}\n${code}\n\`\`\`\</p>`, {
     markdown: true,
   })
   return vnode

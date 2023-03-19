@@ -1,7 +1,7 @@
 import { join, resolve } from 'pathe'
 import fs from 'fs-extra'
 import { $fetch } from 'ohmyfetch'
-import { teams } from '../composables/about'
+import { elkTeamMembers } from '../composables/about'
 
 const avatarsDir = resolve('./public/avatars/')
 
@@ -24,7 +24,7 @@ async function download(url: string, fileName: string) {
 async function fetchAvatars() {
   await fs.ensureDir(avatarsDir)
 
-  await Promise.all(teams.reduce((acc, { github }) => {
+  await Promise.all(elkTeamMembers.reduce((acc, { github }) => {
     acc.push(...sizes.map(s => download(`https://github.com/${github}.png?size=${s}`, join(avatarsDir, `${github}-${s}x${s}.png`))))
     return acc
   }, [] as Promise<void>[]))

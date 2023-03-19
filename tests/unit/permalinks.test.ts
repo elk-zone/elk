@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { HANDLED_MASTO_URLS } from '../constants'
+import { HANDLED_MASTO_URLS } from '~/constants'
 
 const validPermalinks = [
   'https://m1as-social34.to.social/@elk',

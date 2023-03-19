@@ -11,8 +11,8 @@ defineProps<{
     text-secondary-light
   >
     <slot name="prepend" />
-    <CommonTooltip :content="$t('account.bot')" :disabled="showLabel">
-      <div i-ri:robot-line />
+    <CommonTooltip no-auto-focus :content="$t('account.bot')" :disabled="showLabel">
+      <div i-mdi:robot-outline />
     </CommonTooltip>
     <div v-if="showLabel">
       {{ $t('account.bot') }}

@@ -91,56 +91,58 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
     </component>
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
-        <div flex="~ col gap-2 1">
-          <button :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" w-30 h-30 p1 bg-base border-bg-base z-2 @click="previewAvatar">
+        <div flex justify-between>
+          <button shrink-0 :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" w-30 h-30 p1 bg-base border-bg-base z-2 @click="previewAvatar">
             <AccountAvatar :square="isSelf" :account="account" hover:opacity-90 transition-opacity />
           </button>
-          <div flex="~ col gap1">
-            <div flex justify-between>
-              <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
-              <AccountBotIndicator v-if="account.bot" show-label />
-            </div>
-            <AccountHandle :account="account" />
+          <div inset-ie-0 flex="~ wrap row-reverse" gap-2 items-center pt18 justify-start>
+            <!-- Edit profile -->
+            <NuxtLink
+              v-if="isSelf"
+              to="/settings/profile/appearance"
+              gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
+              hover="border-primary text-primary bg-active"
+            >
+              {{ $t('settings.profile.appearance.title') }}
+            </NuxtLink>
+            <AccountFollowButton :account="account" :command="command" />
+            <span inset-ie-0 flex gap-2 items-center>
+              <AccountMoreButton :account="account" :command="command" />
+              <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
+                <button
+                  :aria-pressed="isNotifiedOnPost"
+                  :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
+                  rounded-full text-sm p2 border-1 transition-colors
+                  :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
+                  @click="toggleNotifications"
+                >
+                  <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
+                  <span v-else i-ri-notification-4-line block text-current />
+                </button>
+              </CommonTooltip>
+              <CommonTooltip :content="$t('list.modify_account')">
+                <VDropdown v-if="!isSelf && relationship?.following">
+                  <button
+                    :aria-label="$t('list.modify_account')"
+                    rounded-full text-sm p2 border-1 transition-colors
+                    border-base hover:text-primary
+                  >
+                    <span i-ri:play-list-add-fill block text-current />
+                  </button>
+                  <template #popper>
+                    <ListLists :user-id="account.id" />
+                  </template>
+                </VDropdown>
+              </CommonTooltip>
+            </span>
           </div>
         </div>
-        <div absolute top-18 inset-ie-0 flex gap-2 items-center>
-          <AccountMoreButton :account="account" :command="command" />
-          <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
-            <button
-              :aria-pressed="isNotifiedOnPost"
-              :aria-label="t('account.notifications_on_post_enable', { username: `@${account.username}` })"
-              rounded-full text-sm p2 border-1 transition-colors
-              :class="isNotifiedOnPost ? 'text-primary border-primary hover:bg-red/20 hover:text-red hover:border-red' : 'border-base hover:text-primary'"
-              @click="toggleNotifications"
-            >
-              <span v-if="isNotifiedOnPost" i-ri:notification-4-fill block text-current />
-              <span v-else i-ri-notification-4-line block text-current />
-            </button>
-          </CommonTooltip>
-          <CommonTooltip :content="$t('list.modify_account')">
-            <VDropdown v-if="!isSelf && relationship?.following">
-              <button
-                :aria-label="$t('list.modify_account')"
-                rounded-full text-sm p2 border-1 transition-colors
-                border-base hover:text-primary
-              >
-                <span i-ri:play-list-add-fill block text-current />
-              </button>
-              <template #popper>
-                <ListLists :user-id="account.id" />
-              </template>
-            </VDropdown>
-          </CommonTooltip>
-          <AccountFollowButton :account="account" :command="command" />
-          <!-- Edit profile -->
-          <NuxtLink
-            v-if="isSelf"
-            to="/settings/profile/appearance"
-            gap-1 items-center border="1" rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
-            hover="border-primary text-primary bg-active"
-          >
-            {{ $t('settings.profile.appearance.title') }}
-          </NuxtLink>
+        <div flex="~ col gap1" pt2>
+          <div flex justify-between>
+            <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
+            <AccountBotIndicator v-if="account.bot" show-label />
+          </div>
+          <AccountHandle :account="account" />
         </div>
       </div>
       <div v-if="account.note" max-h-100 overflow-y-auto>
@@ -154,12 +156,12 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           <ContentRich :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
-      <div v-if="iconFields.length" flex="~ wrap gap-4">
-        <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" items-center>
+      <div v-if="iconFields.length" flex="~ wrap gap-2">
+        <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" px1 items-center :class="`${field.verifiedAt ? 'border-1 rounded-full border-dark' : ''}`">
           <CommonTooltip :content="getFieldIconTitle(field.name)">
             <div text-secondary :class="getAccountFieldIcon(field.name)" :title="getFieldIconTitle(field.name)" />
           </CommonTooltip>
-          <ContentRich text-sm filter-saturate-0 :content="field.value" :emojis="account.emojis" />
+          <ContentRich text-sm :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
       <AccountPostsFollowers :account="account" />

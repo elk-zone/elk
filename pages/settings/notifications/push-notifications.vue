@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: ['auth', () => {
-    if (!useRuntimeConfig().public.pwaEnabled)
+    if (!useAppConfig().pwaEnabled)
       return navigateTo('/settings/notifications')
   }],
 })

@@ -117,7 +117,7 @@
     "@types/js-yaml": "^4.0.5",
     "@types/prettier": "^2.7.2",
     "@types/wicg-file-system-access": "^2020.9.5",
-    "bumpp": "^8.2.1",
+    "bumpp": "^9.0.0",
     "eslint": "^8.36.0",
     "esno": "^0.16.3",
     "flat": "^5.0.2",

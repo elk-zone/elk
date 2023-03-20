@@ -28,16 +28,7 @@ function toggleDark() {
           @click="userSettings.zenMode = !userSettings.zenMode"
         />
       </CommonTooltip>
-      <CommonTooltip :content="$t('settings.about.sponsor_action')">
-        <NuxtLink
-          flex
-          text-lg
-          i-ri-heart-3-line hover="i-ri-heart-3-fill text-rose"
-          :aria-label="$t('settings.about.sponsor_action')"
-          href="https://github.com/sponsors/elk-zone"
-          target="_blank"
-        />
-      </CommonTooltip>
+      <CommonTooltip :content="$t('settings.about.sponsor_action')" />
     </div>
     <div>
       <i18n-t v-if="isHydrated" keypath="nav.built_at">
@@ -58,7 +49,6 @@ function toggleDark() {
       </NuxtLink>
       <span v-else>{{ buildInfo.env }}</span>
       <template v-if="buildInfo.commit && buildInfo.branch !== 'release'">
-        &middot;
         <NuxtLink
           external
           :href="`https://github.com/elk-zone/elk/commit/${buildInfo.commit}`"
@@ -69,26 +59,27 @@ function toggleDark() {
         </NuxtLink>
       </template>
     </div>
-    <div>
-      <NuxtLink cursor-pointer hover:underline to="/settings/about">
+    <div flex="~ gap2">
+      <NuxtLink to="/settings/about" cursor-pointer underline>
         {{ $t('settings.about.label') }}
       </NuxtLink>
       <template v-if="$config.public.privacyPolicyUrl">
-        &middot;
-        <NuxtLink cursor-pointer hover:underline :to="$config.public.privacyPolicyUrl">
+        <NuxtLink :to="$config.public.privacyPolicyUrl" cursor-pointer underline>
           {{ $t('nav.privacy') }}
         </NuxtLink>
       </template>
-      &middot;
-      <NuxtLink href="/m.webtoo.ls/@elk" target="_blank">
+      <NuxtLink href="https://github.com/sponsors/elk-zone" target="_blank" external whitespace-nowrap>
+        <span underline>{{ $t('settings.about.sponsor_action') }}</span> &#x2665;
+      </NuxtLink>
+    </div>
+    <div flex="~ gap2">
+      <NuxtLink href="/m.webtoo.ls/@elk" target="_blank" underline>
         Mastodon
       </NuxtLink>
-      &middot;
-      <NuxtLink href="https://chat.elk.zone" target="_blank" external>
+      <NuxtLink href="https://chat.elk.zone" target="_blank" external underline>
         Discord
       </NuxtLink>
-      &middot;
-      <NuxtLink href="https://github.com/elk-zone/elk" target="_blank" external>
+      <NuxtLink href="https://github.com/elk-zone/elk" target="_blank" external underline>
         GitHub
       </NuxtLink>
     </div>

@@ -16,7 +16,7 @@ useHeadFixed({
 })
 
 const paginatorRef = ref()
-const inputRef = ref()
+const inputRef = ref<HTMLInputElement>()
 let actionError = $ref<string | undefined>(undefined)
 let busy = $ref<boolean>(false)
 const createText = ref('')
@@ -78,7 +78,7 @@ onDeactivated(() => clearError(false))
         <template #default="{ item }">
           <ListEntry
             :list="item"
-            @list-updated="updateEntry"
+            @update:list="updateEntry"
             @list-removed="removeEntry"
           />
         </template>

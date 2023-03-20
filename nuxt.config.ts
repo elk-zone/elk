@@ -130,6 +130,28 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
     },
+    publicAssets: [
+      {
+        dir: '~/public/avatars',
+        maxAge: 24 * 60 * 60 * 30, // 30 days
+        baseURL: '/avatars',
+      },
+      {
+        dir: '~/public/emojis',
+        maxAge: 24 * 60 * 60 * 15, // 15 days, matching service worker
+        baseURL: '/emojis',
+      },
+      {
+        dir: '~/public/fonts',
+        maxAge: 24 * 60 * 60 * 365, // 1 year (versioned)
+        baseURL: '/fonts',
+      },
+      {
+        dir: '~/public/shiki',
+        maxAge: 24 * 60 * 60 * 365, // 1 year, matching service worker
+        baseURL: '/shiki',
+      },
+    ],
   },
   sourcemap: isDevelopment,
   hooks: {

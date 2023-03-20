@@ -74,7 +74,7 @@ importers:
       '@vueuse/nuxt': ^9.11.1
       blurhash: ^2.0.4
       browser-fs-access: ^0.31.2
-      bumpp: ^8.2.1
+      bumpp: ^9.0.0
       chroma-js: ^2.4.2
       emoji-mart: ^5.5.2
       eslint: ^8.36.0
@@ -216,7 +216,7 @@ importers:
       '@types/js-yaml': 4.0.5
       '@types/prettier': 2.7.2
       '@types/wicg-file-system-access': 2020.9.5
-      bumpp: 8.2.1
+      bumpp: 9.0.0
       eslint: 8.36.0
       esno: 0.16.3
       flat: 5.0.2
@@ -5163,15 +5163,14 @@ packages:
     dependencies:
       semver: 7.3.8
 
-  /bumpp/8.2.1:
-    resolution: {integrity: sha512-4tHKsWC2mqHQvdjZ4AXgVhS2xMsz8qQ4zYt87vGRXW5tqAjrYa/UJqy7s/dGYI2OIe9ghBdiFhKpyKEX9SXffg==}
+  /bumpp/9.0.0:
+    resolution: {integrity: sha512-I2+JLFQin46NioHg6wi23hYQMVExiJyGblARp5fIHUzLv3rRz9me38eUe2xlQCAl7Ys9X+SlhTaIkttTxiL6cQ==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
       '@jsdevtools/ez-spawn': 3.0.4
       cac: 6.7.14
       fast-glob: 3.2.12
-      kleur: 4.1.5
       prompts: 2.4.2
       semver: 7.3.8
     dev: true

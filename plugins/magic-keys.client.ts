@@ -18,7 +18,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
 
   const navigateTo = (to: string | RouteLocationRaw) => {
     closeKeyboardShortcuts()
-    $scrollToTop() // is this really required?
+    ;($scrollToTop as () => void)() // is this really required?
     router.push(to)
   }
 

@@ -219,6 +219,9 @@ importers:
     specifiers:
       '@nuxt-themes/docus': ^1.8.1
       nuxt: ^3.3.1
+      theme-colors: ^0.0.5
+    dependencies:
+      theme-colors: 0.0.5
     devDependencies:
       '@nuxt-themes/docus': 1.8.1_nuxt@3.3.1
       nuxt: 3.3.1
@@ -12278,6 +12281,10 @@ packages:
 
   /text-table/0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
+
+  /theme-colors/0.0.5:
+    resolution: {integrity: sha512-EAxGOASXbsrhcaFxEWsCRZb29sHhII/cs8a+Cn3a3AI/FT9uCqNM8rMQBf10jtgqIdl8kxg2rQXz5I2JLHuplA==}
+    dev: false
 
   /theme-vitesse/0.6.0:
     resolution: {integrity: sha512-/XEZFGXLTK/AlWSe9t+NIXB1tP3yqdzugcSJJ2Fg0KYM1PcoL/zWs5AuaEcCFt1pfi/9Og++tzOdiU2aKf/+Xw==}

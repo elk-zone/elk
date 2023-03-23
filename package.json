@@ -117,7 +117,7 @@
     "fs-extra": "^11.1.0",
     "lint-staged": "^13.1.0",
     "nuxt": "3.3.1",
-    "prettier": "^2.8.4",
+    "prettier": "^2.8.6",
     "simple-git-hooks": "^2.8.1",
     "typescript": "^4.9.5",
     "vitest": "^0.29.5",

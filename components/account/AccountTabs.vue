@@ -27,6 +27,15 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
     icon: 'i-ri:chat-1-line',
   },
   {
+    name: 'account-pinned',
+    to: {
+      name: 'account-pinned',
+      params: { server, account },
+    },
+    display: t('account.pinned'),
+    icon: 'i-ri:pushpin-2-line',
+  },
+  {
     name: 'account-media',
     to: {
       name: 'account-media',

@@ -24,6 +24,11 @@ overrides:
   '@tiptap/extension-text': 2.0.0-beta.204
   vue: 3.2.45
 
+patchedDependencies:
+  nuxt-security@0.13.0:
+    hash: 4zi7vnypkav7i5l74w6qfcndqy
+    path: patches/nuxt-security@0.13.0.patch
+
 importers:
 
   .:
@@ -164,7 +169,7 @@ importers:
       js-yaml: 4.1.0
       lru-cache: 7.14.1
       masto: 5.9.2
-      nuxt-security: 0.13.0
+      nuxt-security: 0.13.0_4zi7vnypkav7i5l74w6qfcndqy
       nuxt-vitest: 0.6.4
       page-lifecycle: 0.1.2
       pinia: 2.0.33_typescript@4.9.5
@@ -9918,7 +9923,7 @@ packages:
       - vue
     dev: true
 
-  /nuxt-security/0.13.0:
+  /nuxt-security/0.13.0_4zi7vnypkav7i5l74w6qfcndqy:
     resolution: {integrity: sha512-D2u6ggMA2PVRQIVT/y8jXJ0D+7pxi0f627DlzVTFb6MOhZdazQYZGE54zI2g8fAvZciLHqZ8r+bbt3QlRLzIVg==}
     dependencies:
       '@nuxt/kit': 3.3.1
@@ -9933,6 +9938,7 @@ packages:
       - rollup
       - supports-color
     dev: false
+    patched: true
 
   /nuxt-vitest/0.6.4:
     resolution: {integrity: sha512-38hQlqs1Fx6PjBnxnAk2la+z7KFaU4aTNTas0GcvSJ2GoPdVXienPTkLeiYeNWr0/2cQ1LGfR8ZVXFlldvJIFA==}

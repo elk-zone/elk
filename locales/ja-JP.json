@@ -199,6 +199,31 @@
     "remove_account": "アカウントをリストから削除",
     "save": "変更を保存"
   },
+  "magic_keys": {
+    "dialog_header": "キーボードショートカット",
+    "groups": {
+      "actions": {
+        "boost": "ブースト",
+        "command_mode": "コマンドモード",
+        "compose": "投稿",
+        "favourite": "お気に入り",
+        "title": "アクション",
+        "zen_mode": "禅モード"
+      },
+      "media": {
+        "title": "メディア"
+      },
+      "navigation": {
+        "go_to_home": "ホーム",
+        "go_to_notifications": "通知",
+        "next_status": "次のステータス",
+        "previous_status": "前のステータス",
+        "shortcut_help": "ショートカットのヘルプ",
+        "title": "ナビゲーション"
+      }
+    },
+    "sequence_then": "の後に"
+  },
   "menu": {
     "block_account": "{0}さんをブロック",
     "block_domain": "{0}をドメインブロック",
@@ -228,6 +253,9 @@
     "unmute_account": "{0}さんのミュートを解除",
     "unmute_conversation": "投稿のミュートを解除",
     "unpin_on_profile": "プロフィールへの固定を解除"
+  },
+  "modals": {
+    "aria_label_close": "閉じる"
   },
   "nav": {
     "back": "戻る",

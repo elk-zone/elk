@@ -15,7 +15,7 @@ const { hide } = useDropdownContext() || {}
 
 const el = ref<HTMLDivElement>()
 
-const handleClick = (evt: MouseEvent) => {
+function handleClick(evt: MouseEvent) {
   hide?.()
   emit('click', evt)
 }

@@ -26,12 +26,14 @@ const query = $computed(() => commandMode ? '' : input.trim())
 
 const { accounts, hashtags, loading } = useSearch($$(query))
 
-const toSearchQueryResultItem = (search: SearchResultType): QueryResultItem => ({
-  index: 0,
-  type: 'search',
-  search,
-  onActivate: () => router.push(search.to),
-})
+function toSearchQueryResultItem(search: SearchResultType): QueryResultItem {
+  return {
+    index: 0,
+    type: 'search',
+    search,
+    onActivate: () => router.push(search.to),
+  }
+}
 
 const searchResult = $computed<QueryResult>(() => {
   if (query.length === 0 || loading.value)
@@ -73,9 +75,10 @@ watch($$(result), (n, o) => {
     active = 0
 })
 
-const findItemEl = (index: number) =>
-  resultEl?.querySelector(`[data-index="${index}"]`) as HTMLDivElement | null
-const onCommandActivate = (item: QueryResultItem) => {
+function findItemEl(index: number) {
+  return resultEl?.querySelector(`[data-index="${index}"]`) as HTMLDivElement | null
+}
+function onCommandActivate(item: QueryResultItem) {
   if (item.onActivate) {
     item.onActivate()
     emit('close')
@@ -85,7 +88,7 @@ const onCommandActivate = (item: QueryResultItem) => {
     input = '> '
   }
 }
-const onCommandComplete = (item: QueryResultItem) => {
+function onCommandComplete(item: QueryResultItem) {
   if (item.onComplete) {
     scopes.push(item.onComplete())
     input = '> '
@@ -95,7 +98,7 @@ const onCommandComplete = (item: QueryResultItem) => {
     emit('close')
   }
 }
-const intoView = (index: number) => {
+function intoView(index: number) {
   const el = findItemEl(index)
   if (el)
     el.scrollIntoView({ block: 'nearest' })
@@ -107,7 +110,7 @@ function setActive(index: number) {
   intoView(active)
 }
 
-const onKeyDown = (e: KeyboardEvent) => {
+function onKeyDown(e: KeyboardEvent) {
   switch (e.key) {
     case 'p':
     case 'ArrowUp': {

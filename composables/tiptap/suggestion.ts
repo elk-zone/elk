@@ -14,7 +14,9 @@ import TiptapEmojiList from '~/components/tiptap/TiptapEmojiList.vue'
 export { Emoji }
 
 export type CustomEmoji = (mastodon.v1.CustomEmoji & { custom: true })
-export const isCustomEmoji = (emoji: CustomEmoji | Emoji): emoji is CustomEmoji => !!(emoji as CustomEmoji).custom
+export function isCustomEmoji(emoji: CustomEmoji | Emoji): emoji is CustomEmoji {
+  return !!(emoji as CustomEmoji).custom
+}
 
 export const TiptapMentionSuggestion: Partial<SuggestionOptions> = process.server
   ? {}

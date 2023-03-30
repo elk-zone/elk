@@ -84,7 +84,7 @@ export function getReplyDraft(status: mastodon.v1.Status) {
   }
 }
 
-export const isEmptyDraft = (draft: Draft | null | undefined) => {
+export function isEmptyDraft(draft: Draft | null | undefined) {
   if (!draft)
     return true
   const { params, attachments } = draft

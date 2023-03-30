@@ -5,7 +5,7 @@ const back = ref<any>('')
 
 const nuxtApp = useNuxtApp()
 
-const onClickLogo = () => {
+function onClickLogo() {
   nuxtApp.hooks.callHook('elk-logo:click')
 }
 

@@ -25,13 +25,13 @@ const input = ref<HTMLInputElement>()
 const editBtn = ref<HTMLButtonElement>()
 const deleteBtn = ref<HTMLButtonElement>()
 
-const prepareEdit = async () => {
+async function prepareEdit() {
   isEditing = true
   actionError = undefined
   await nextTick()
   input.value?.focus()
 }
-const cancelEdit = async () => {
+async function cancelEdit() {
   isEditing = false
   actionError = undefined
   reset()

@@ -43,7 +43,9 @@ async function scrollTo() {
 }
 
 const publishWidget = ref()
-const focusEditor = () => publishWidget.value?.focusEditor?.()
+function focusEditor() {
+  return publishWidget.value?.focusEditor?.()
+}
 
 provide('focus-editor', focusEditor)
 

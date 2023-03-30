@@ -11,7 +11,7 @@ const emit = defineEmits<{
 
 const { client } = $(useMasto())
 
-const toggleFollowTag = async () => {
+async function toggleFollowTag() {
   // We save the state so be can do an optimistic UI update, but fallback to the previous state if the API call fails
   const previousFollowingState = tag.following
 

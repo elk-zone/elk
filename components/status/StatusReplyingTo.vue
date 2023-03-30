@@ -30,7 +30,7 @@ const account = isSelf ? computed(() => status.account) : useAccountById(status.
       <div ws-nowrap flex>
         <i18n-t keypath="status.replying_to">
           <template v-if="account">
-            <AccountInlineInfo :account="account" :link="false" m-inline-1 />
+            <AccountInlineInfo :account="account" :link="false" m-inline-2 />
           </template>
           <template v-else>
             {{ $t('status.someone') }}

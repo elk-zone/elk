@@ -4,7 +4,9 @@ import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
 
-export const currentUserDrafts = process.server || process.test ? computed<DraftMap>(() => ({})) : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
+export const currentUserDrafts = (process.server || process.test)
+  ? computed<DraftMap>(() => ({}))
+  : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 
 export const builtinDraftKeys = [
   'dialog',
@@ -72,6 +74,8 @@ export function getReplyDraft(status: mastodon.v1.Status) {
       return getDefaultDraft({
         initialText: '',
         inReplyToId: status!.id,
+        sensitive: status.sensitive,
+        spoilerText: status.spoilerText,
         visibility: status.visibility,
         mentions: accountsToMention,
         language: status.language,
@@ -80,7 +84,7 @@ export function getReplyDraft(status: mastodon.v1.Status) {
   }
 }
 
-export const isEmptyDraft = (draft: Draft | null | undefined) => {
+export function isEmptyDraft(draft: Draft | null | undefined) {
   if (!draft)
     return true
   const { params, attachments } = draft
@@ -129,14 +133,14 @@ export function useDraft(
 export function mentionUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
-  }), true)
+  }))
 }
 
 export function directMessageUser(account: mastodon.v1.Account) {
   openPublishDialog('dialog', getDefaultDraft({
     status: `@${account.acct} `,
     visibility: 'direct',
-  }), true)
+  }))
 }
 
 export function clearEmptyDrafts() {

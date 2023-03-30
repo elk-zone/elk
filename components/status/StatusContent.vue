@@ -6,6 +6,7 @@ const { status, context } = defineProps<{
   newer?: mastodon.v1.Status
   context?: mastodon.v2.FilterContext | 'details'
   isPreview?: boolean
+  inNotification?: boolean
 }>()
 
 const isDM = $computed(() => status.visibility === 'direct')
@@ -20,7 +21,7 @@ const isFiltered = $computed(() => status.account.id !== currentUser.value?.acco
 
 // check spoiler text or media attachment
 // needed to handle accounts that mark all their posts as sensitive
-const hasSensitiveSpoilerOrMedia = $computed(() => status.sensitive && (!!status.spoilerText || !!status.mediaAttachments.length))
+const hasSpoilerOrSensitiveMedia = $computed(() => !!status.spoilerText || (status.sensitive && !!status.mediaAttachments.length))
 </script>
 
 <template>
@@ -32,7 +33,7 @@ const hasSensitiveSpoilerOrMedia = $computed(() => status.sensitive && (!!status
     }"
   >
     <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
-    <StatusSpoiler :enabled="hasSensitiveSpoilerOrMedia || isFiltered" :filter="isFiltered" :is-d-m="isDM">
+    <StatusSpoiler :enabled="hasSpoilerOrSensitiveMedia || isFiltered" :filter="isFiltered" :is-d-m="isDM">
       <template v-if="status.spoilerText" #spoiler>
         <p>{{ status.spoilerText }}</p>
       </template>

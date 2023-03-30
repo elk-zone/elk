@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
-import { ofetch } from 'ofetch'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
-import type { Component } from 'vue'
 
 definePageMeta({
   middleware: 'auth',
@@ -27,7 +25,7 @@ const onlineSrc = $computed(() => ({
   header: account?.header || '',
 }))
 
-const { form, reset, submitter, isDirty, dirtyFields, isError } = useForm({
+const { form, reset, submitter, isDirty, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
@@ -77,7 +75,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   reset()
 })
 
-const refreshInfo = async () => {
+async function refreshInfo() {
   if (!currentUser.value)
     return
   // Keep the information to be edited up to date

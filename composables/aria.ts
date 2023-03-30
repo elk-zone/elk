@@ -3,7 +3,7 @@ export type AriaAnnounceType = 'announce' | 'mute' | 'unmute'
 
 const ariaAnnouncer = useEventBus<AriaAnnounceType, string | undefined>(Symbol('aria-announcer'))
 
-export const useAriaAnnouncer = () => {
+export function useAriaAnnouncer() {
   const announce = (message: string) => {
     ariaAnnouncer.emit('announce', message)
   }
@@ -19,7 +19,7 @@ export const useAriaAnnouncer = () => {
   return { announce, ariaAnnouncer, mute, unmute }
 }
 
-export const useAriaLog = () => {
+export function useAriaLog() {
   let logs = $ref<any[]>([])
 
   const announceLogs = (messages: any[]) => {
@@ -42,7 +42,7 @@ export const useAriaLog = () => {
   }
 }
 
-export const useAriaStatus = () => {
+export function useAriaStatus() {
   let status = $ref<any>('')
 
   const announceStatus = (message: any) => {

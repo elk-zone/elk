@@ -11,7 +11,7 @@ const currentVisibility = $computed(() =>
   statusVisibilities.find(v => v.value === modelValue) || statusVisibilities[0],
 )
 
-const chooseVisibility = (visibility: string) => {
+function chooseVisibility(visibility: string) {
   modelValue = visibility
 }
 </script>

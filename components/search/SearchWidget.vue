@@ -38,9 +38,11 @@ const results = computed(() => {
 // Reset index when results change
 watch([results, focused], () => index.value = -1)
 
-const shift = (delta: number) => index.value = (index.value + delta % results.value.length + results.value.length) % results.value.length
+function shift(delta: number) {
+  return index.value = (index.value + delta % results.value.length + results.value.length) % results.value.length
+}
 
-const activate = () => {
+function activate() {
   const currentIndex = index.value
 
   if (query.value.length === 0)

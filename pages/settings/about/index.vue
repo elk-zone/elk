@@ -9,7 +9,7 @@ useHeadFixed({
 let showCommit = $ref(buildInfo.env !== 'release' && buildInfo.env !== 'dev')
 const builtTime = useFormattedDateTime(buildInfo.time)
 
-const handleShowCommit = () => {
+function handleShowCommit() {
   setTimeout(() => {
     showCommit = true
   }, 50)
@@ -41,7 +41,7 @@ const handleShowCommit = () => {
         <template #content>
           <div font-mono>
             <span>{{ buildInfo.env === 'release' ? `v${buildInfo.version}` : buildInfo.env }}</span>
-            <span v-if="showCommit"> ({{ buildInfo.commit.slice(0, 7) }}@{{ buildInfo.branch }})</span>
+            <span v-if="showCommit"> ({{ buildInfo.shortCommit }}@{{ buildInfo.branch }})</span>
           </div>
         </template>
       </SettingsItem>

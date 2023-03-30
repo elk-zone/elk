@@ -51,15 +51,13 @@ const chooseIcon = (i: number, text: string) => {
           <template #popper>
             <div flex="~ wrap gap-1" max-w-60 m2 me1>
               <CommonTooltip
-                v-for="(icon, text) in accountFieldIcons"
-                :key="icon"
-                :content="text"
+                v-for="label in suggestedAccountFields"
+                :key="accountFieldIcons[label]"
+                :content="label"
               >
-                <template v-if="text !== 'Joined'">
-                  <button type="button" btn-action-icon @click="chooseIcon(i - 1, text)">
-                    <div text-xl :class="icon" />
-                  </button>
-                </template>
+                <button type="button" btn-action-icon @click="chooseIcon(i - 1, label)">
+                  <div text-xl :class="accountFieldIcons[label]" />
+                </button>
               </CommonTooltip>
             </div>
           </template>

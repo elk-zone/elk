@@ -14,7 +14,7 @@ const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 const groupCapacity = Number.MAX_VALUE // No limit
 
 // Group by type (and status when applicable)
-const groupId = (item: mastodon.v1.Notification): string => {
+function groupId(item: mastodon.v1.Notification): string {
   // If the update is related to an status, group notifications from the same account (boost + favorite the same status)
   const id = item.status
     ? {

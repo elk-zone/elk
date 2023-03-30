@@ -75,7 +75,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   reset()
 })
 
-const refreshInfo = async () => {
+async function refreshInfo() {
   if (!currentUser.value)
     return
   // Keep the information to be edited up to date

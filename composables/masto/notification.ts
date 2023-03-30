@@ -2,7 +2,7 @@ import type { WsEvents } from 'masto'
 
 const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, string[]]>>({})
 
-export const useNotifications = () => {
+export function useNotifications() {
   const id = currentUser.value?.account.id
 
   const { client, canStreaming } = $(useMasto())

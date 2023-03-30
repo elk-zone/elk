@@ -10,7 +10,9 @@ const { t } = useI18n()
 
 const account = await fetchAccountByHandle(handle)
 
-const reorderAndFilter = (items: mastodon.v1.Status[]) => reorderedTimeline(items, 'account')
+function reorderAndFilter(items: mastodon.v1.Status[]) {
+  return reorderedTimeline(items, 'account')
+}
 
 const paginator = useMastoClient().v1.accounts.listStatuses(account.id, { limit: 30, excludeReplies: true })
 

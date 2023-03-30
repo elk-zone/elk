@@ -9,7 +9,7 @@ useHeadFixed({
 let showCommit = $ref(buildInfo.env !== 'release' && buildInfo.env !== 'dev')
 const builtTime = useFormattedDateTime(buildInfo.time)
 
-const handleShowCommit = () => {
+function handleShowCommit() {
   setTimeout(() => {
     showCommit = true
   }, 50)

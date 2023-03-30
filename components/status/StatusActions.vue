@@ -22,7 +22,7 @@ const {
   toggleReblog,
 } = $(useStatusActions(props))
 
-const reply = () => {
+function reply() {
   if (!checkLogin())
     return
   if (details)

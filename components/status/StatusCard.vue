@@ -43,16 +43,7 @@ const rebloggedBy = $computed(() => props.status.reblog ? props.status.account :
 
 const statusRoute = $computed(() => getStatusRoute(status))
 
-const el = ref<HTMLElement>()
 const router = useRouter()
-
-function onclick(evt: MouseEvent | KeyboardEvent) {
-  const path = evt.composedPath() as HTMLElement[]
-  const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
-  const text = window.getSelection()?.toString()
-  if (!el && !text)
-    go(evt)
-}
 
 function go(evt: MouseEvent | KeyboardEvent) {
   if (evt.metaKey || evt.ctrlKey) {

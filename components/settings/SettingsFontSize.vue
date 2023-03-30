@@ -1,14 +1,19 @@
 <script lang="ts" setup>
+import { isNumber } from '@vueuse/core'
 import { DEFAULT_FONT_SIZE } from '~/constants'
 import type { FontSize } from '~/composables/settings'
 
 const userSettings = useUserSettings()
 
 const sizes = (new Array(11)).fill(0).map((x, i) => `${10 + i}px`) as FontSize[]
+const selectedIndex = $computed(() => sizes.indexOf(userSettings.value.fontSize))
 
-const setFontSize = (e: Event) => {
-  if (e.target && 'valueAsNumber' in e.target)
-    userSettings.value.fontSize = sizes[e.target.valueAsNumber as number]
+const setFontSize = (eventOrNumber: Event | number) => {
+  if (isNumber(eventOrNumber))
+    userSettings.value.fontSize = sizes[eventOrNumber]
+
+  else if (eventOrNumber.target && 'valueAsNumber' in eventOrNumber.target)
+    userSettings.value.fontSize = sizes[eventOrNumber.target.valueAsNumber as number]
 }
 </script>
 
@@ -25,22 +30,33 @@ const setFontSize = (e: Event) => {
         type="range"
         focus:outline-none
         appearance-none bg-transparent
-        w-full cursor-pointer
+        w-full h-3 cursor-pointer
         @change="setFontSize"
       >
       <div flex items-center justify-between absolute w-full pointer-events-none>
-        <div
-          v-for="i in sizes.length" :key="i"
-          h-3 w-3
-          rounded-full bg-secondary-light
+        <CommonTooltip
+          v-for="(size, index) in sizes" :key="size"
           relative
+          cursor-pointer
+          pointer-events-auto
+          :content="`${size}${size === DEFAULT_FONT_SIZE ? `${$t('settings.interface.default')}` : ''}`"
+          :distance="selectedIndex === index ? 10 : 6"
         >
           <div
-            v-if="(sizes.indexOf(userSettings.fontSize)) === i - 1"
-            absolute rounded-full class="-top-1 -left-1"
-            bg-primary h-5 w-5
-          />
-        </div>
+            block
+            relative
+            h-3 w-3
+            rounded-full bg-secondary-light
+            role="button"
+            @click="setFontSize(index)"
+          >
+            <div
+              v-if="selectedIndex === index"
+              absolute rounded-full class="-top-1 -left-1"
+              bg-primary h-5 w-5
+            />
+          </div>
+        </CommonTooltip>
       </div>
     </div>
     <span text-xl text-secondary>Aa</span>

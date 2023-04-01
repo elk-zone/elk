@@ -11,6 +11,9 @@ export default defineNuxtPlugin(async (nuxt) => {
   if (!supportLanguages.includes(lang))
     userSettings.value.language = getDefaultLanguage(supportLanguages)
 
+  if (lang !== i18n.locale)
+    await setLocale(userSettings.value.language)
+
   watch([$$(lang), isHydrated], () => {
     if (isHydrated.value && lang !== i18n.locale)
       setLocale(lang)

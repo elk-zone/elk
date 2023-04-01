@@ -12,7 +12,7 @@ export function setupPageHeader() {
     return acc
   }, {} as Record<string, Directions>)
 
-  useHeadFixed({
+  useHead({
     htmlAttrs: {
       lang: () => locale.value,
       dir: () => localeMap[locale.value] ?? 'ltr',

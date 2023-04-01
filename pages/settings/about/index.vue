@@ -2,7 +2,7 @@
 const buildInfo = useBuildInfo()
 const { t } = useI18n()
 
-useHeadFixed({
+useHead({
   title: () => `${t('settings.about.label')} | ${t('nav.settings')}`,
 })
 

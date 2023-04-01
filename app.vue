@@ -5,7 +5,7 @@ provideGlobalCommands()
 const route = useRoute()
 
 if (process.server && !route.path.startsWith('/settings')) {
-  useHydratedHead({
+  useHead({
     meta: [
       { property: 'og:url', content: `https://elk.zone${route.path}` },
     ],

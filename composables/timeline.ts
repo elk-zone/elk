@@ -15,17 +15,26 @@ function removeFilteredItems(items: mastodon.v1.Status[], context: mastodon.v1.F
   const isReblogFiltered = (item: mastodon.v1.Status) => !item.reblog?.filtered?.find(isStrict)
 
   const homeFilter = useHomeFilter()
-  const { bot, mutual, repost, sensitive, tag } = homeFilter.value
+  const { bot, sensitive, repost, mutual, tag } = homeFilter.value
 
   const isClientSideHomeFiltered = (item: mastodon.v1.Status) => {
-    if (bot && mutual && repost && sensitive && tag)
+    if (bot && sensitive && repost && mutual && tag)
       return true
 
-    if (item.account.bot && !bot)
+    if (!bot && item.account.bot)
       return false
 
-    if (item.sensitive && !sensitive)
+    if (!sensitive && item.sensitive)
       return false
+
+    // if (!repost && ??)
+    //   return false
+
+    // if (!mutual && ??)
+    //   return false
+
+    // if (!tag && ??)
+    //   return false
 
     return true
   }

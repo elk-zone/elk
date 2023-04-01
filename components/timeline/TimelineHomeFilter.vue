@@ -1,11 +1,20 @@
 <script setup lang="ts">
 const homeFilter = useHomeFilter()
+
+const isActive = $computed(() => {
+  return !homeFilter.value.bot
+      || !homeFilter.value.sensitive
+      || !homeFilter.value.repost
+      || !homeFilter.value.mutual
+      || !homeFilter.value.tag
+})
 </script>
 
 <template>
   <VDropdown>
     <button btn-text>
-      <div i-ri:filter-2-line />
+      <div v-if="!isActive" i-ri:filter-2-line />
+      <div v-else i-ri:filter-2-fill />
     </button>
 
     <template #popper>

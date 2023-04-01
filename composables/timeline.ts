@@ -31,9 +31,11 @@ function removeFilteredItems(items: mastodon.v1.Status[], context: mastodon.v1.F
       return false
 
     // if (!mutual && ??)
+    //   This would require a lookup of the user's followers
     //   return false
 
     // if (!tag && ??)
+    //   This would require a lookup of the user's tags
     //   return false
 
     return true

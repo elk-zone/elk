@@ -26,6 +26,10 @@ useHead({
       </NuxtLink>
     </template>
 
+    <template #actions>
+      <TimelineHomeFilter />
+    </template>
+
     <TimelineHome v-if="isHydrated" />
   </MainContent>
 </template>

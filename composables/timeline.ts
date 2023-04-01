@@ -24,6 +24,9 @@ function removeFilteredItems(items: mastodon.v1.Status[], context: mastodon.v1.F
     if (item.account.bot && !bot)
       return false
 
+    if (item.sensitive && !sensitive)
+      return false
+
     return true
   }
 

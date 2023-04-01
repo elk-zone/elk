@@ -11,7 +11,7 @@ const client = useMastoClient()
 
 const paginator = client.v1.lists.list()
 
-useHeadFixed({
+useHead({
   title: () => t('nav.lists'),
 })
 

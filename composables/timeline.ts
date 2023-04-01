@@ -27,8 +27,8 @@ function removeFilteredItems(items: mastodon.v1.Status[], context: mastodon.v1.F
     if (!sensitive && item.sensitive)
       return false
 
-    // if (!repost && ??)
-    //   return false
+    if (!repost && item.reblog != null)
+      return false
 
     // if (!mutual && ??)
     //   return false

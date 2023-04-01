@@ -1,8 +1,8 @@
 import type { Ref } from 'vue'
 import type { VueI18n } from 'vue-i18n'
 import type { LocaleObject } from 'vue-i18n-routing'
-import type { FontSize, OldFontSize, PreferencesSettings, UserSettings } from './definition'
-import { STORAGE_KEY_SETTINGS } from '~/constants'
+import type { FontSize, OldFontSize, PreferencesSettings, UserHomeFilter, UserSettings } from './definition'
+import { STORAGE_KEY_HOME_FILTER, STORAGE_KEY_SETTINGS } from '~/constants'
 import { oldFontSizeMap } from '~~/constants/options'
 
 export function useUserSettings() {
@@ -44,4 +44,14 @@ export function getPreferences<T extends keyof PreferencesSettings>(userSettings
 export function togglePreferences(key: keyof PreferencesSettings) {
   const flag = usePreferences(key)
   flag.value = !flag.value
+}
+
+export function useHomeFilter() {
+  return useUserSessionStorage<UserHomeFilter>(STORAGE_KEY_HOME_FILTER, () => ({
+    bot: true,
+    sensitive: true,
+    repost: true,
+    mutual: true,
+    tag: true,
+  }))
 }

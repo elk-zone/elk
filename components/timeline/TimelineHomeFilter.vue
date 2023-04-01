@@ -1,11 +1,5 @@
 <script setup lang="ts">
-const filter = ref({
-  bot: true,
-  sensitive: true,
-  repost: true,
-  mutual: true,
-  tag: true,
-})
+const homeFilter = useHomeFilter()
 </script>
 
 <template>
@@ -15,11 +9,11 @@ const filter = ref({
     </button>
 
     <template #popper>
-      <CommonCheckbox v-model="filter.bot" label="post by bot" />
-      <CommonCheckbox v-model="filter.sensitive" label="post contains sensitive" />
-      <CommonCheckbox v-model="filter.repost" label="post is a repost" />
-      <CommonCheckbox v-model="filter.mutual" label="post is from a mutual" />
-      <CommonCheckbox v-model="filter.tag" label="post is from a tag I follow" />
+      <CommonCheckbox v-model="homeFilter.bot" label="post by bot" />
+      <CommonCheckbox v-model="homeFilter.sensitive" label="post contains sensitive" />
+      <CommonCheckbox v-model="homeFilter.repost" label="post is a repost" />
+      <CommonCheckbox v-model="homeFilter.mutual" label="post is from a mutual" />
+      <CommonCheckbox v-model="homeFilter.tag" label="post is from a tag I follow" />
     </template>
   </VDropdown>
 </template>

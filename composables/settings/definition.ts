@@ -35,6 +35,14 @@ export interface UserSettings {
   themeColors?: ThemeColors
 }
 
+export interface UserHomeFilter {
+  bot: boolean
+  sensitive: boolean
+  repost: boolean
+  mutual: boolean
+  tag: boolean
+}
+
 export interface ThemeColors {
   '--theme-color-name': string
 

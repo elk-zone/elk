@@ -330,3 +330,17 @@ export function clearUserLocalStorage(account?: mastodon.v1.Account) {
       delete value.value[id]
   })
 }
+
+export function useUserSessionStorage<T extends object>(key: string, initial: () => T): Ref<T> {
+  if (process.server || process.test)
+    return shallowRef(initial())
+
+  const all = useSessionStorage<Record<string, T>>(key, {}, { deep: true })
+  return computed(() => {
+    const id = currentUser.value?.account.id
+      ? currentUser.value.account.acct
+      : '[anonymous]'
+    all.value[id] = Object.assign(initial(), all.value[id] || {})
+    return all.value[id]
+  })
+}

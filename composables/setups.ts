@@ -12,7 +12,7 @@ export function setupPageHeader() {
     return acc
   }, {} as Record<string, Directions>)
 
-  useHeadFixed({
+  useHead({
     htmlAttrs: {
       lang: () => locale.value,
       dir: () => localeMap[locale.value] ?? 'ltr',
@@ -52,7 +52,7 @@ export function setupPageHeader() {
 
       return titleTemplate
     },
-    link: process.client && useAppConfig().pwaEnabled
+    link: (process.client && useAppConfig().pwaEnabled)
       ? () => [{
           key: 'webmanifest',
           rel: 'manifest',

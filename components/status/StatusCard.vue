@@ -7,7 +7,7 @@ const props = withDefaults(
     actions?: boolean
     context?: mastodon.v2.FilterContext
     hover?: boolean
-    faded?: boolean
+    inNotification?: boolean
     isPreview?: boolean
 
     // If we know the prev and next status in the timeline, we can simplify the card
@@ -43,16 +43,7 @@ const rebloggedBy = $computed(() => props.status.reblog ? props.status.account :
 
 const statusRoute = $computed(() => getStatusRoute(status))
 
-const el = ref<HTMLElement>()
 const router = useRouter()
-
-function onclick(evt: MouseEvent | KeyboardEvent) {
-  const path = evt.composedPath() as HTMLElement[]
-  const el = path.find(el => ['A', 'BUTTON', 'IMG', 'VIDEO'].includes(el.tagName?.toUpperCase()))
-  const text = window.getSelection()?.toString()
-  if (!el && !text)
-    go(evt)
-}
 
 function go(evt: MouseEvent | KeyboardEvent) {
   if (evt.metaKey || evt.ctrlKey) {
@@ -77,19 +68,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
 </script>
 
 <template>
-  <div
-    :id="`status-${status.id}`"
-    ref="el"
-    relative flex="~ col gap1"
-    p="b-2 is-3 ie-4"
-    :class="{ 'hover:bg-active': hover }"
-    tabindex="0"
-    focus:outline-none focus-visible:ring="2 primary"
-    aria-roledescription="status-card"
-    :lang="status.language ?? undefined"
-    @click="onclick"
-    @keydown.enter="onclick"
-  >
+  <StatusLink :status="status" :hover="hover">
     <!-- Upper border -->
     <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 />
 
@@ -101,7 +80,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
           m="is-5" p="t-1 is-5"
           :status="status"
           :is-self-reply="isSelfReply"
-          :class="faded ? 'text-secondary-light' : ''"
+          :class="inNotification ? 'text-secondary-light' : ''"
         />
         <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
           <template v-if="showReplyTo">
@@ -134,7 +113,7 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
       </div>
     </slot>
 
-    <div flex gap-3 :class="{ 'text-secondary': faded }">
+    <div flex gap-3 :class="{ 'text-secondary': inNotification }">
       <!-- Avatar -->
       <div relative>
         <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
@@ -179,9 +158,16 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
         </div>
 
         <!-- Content -->
-        <StatusContent :status="status" :newer="newer" :context="context" :is-preview="isPreview" mb2 :class="{ 'mt-2 mb1': isDM }" />
+        <StatusContent
+          :status="status"
+          :newer="newer"
+          :context="context"
+          :is-preview="isPreview"
+          :in-notification="inNotification"
+          mb2 :class="{ 'mt-2 mb1': isDM }"
+        />
         <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
       </div>
     </div>
-  </div>
+  </StatusLink>
 </template>

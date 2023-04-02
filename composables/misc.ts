@@ -27,13 +27,15 @@ export function emojisArrayToObject(emojis: mastodon.v1.CustomEmoji[]) {
 
 export function noop() {}
 
-export const useIsMac = () => {
+export function useIsMac() {
   const headers = useRequestHeaders(['user-agent'])
   return computed(() => headers['user-agent']?.includes('Macintosh')
     ?? navigator?.platform?.includes('Mac') ?? false)
 }
 
-export const isEmptyObject = (object: Object) => Object.keys(object).length === 0
+export function isEmptyObject(object: Object) {
+  return Object.keys(object).length === 0
+}
 
 export function removeHTMLTags(str: string) {
   return str.replaceAll(HTMLTagRE, '')

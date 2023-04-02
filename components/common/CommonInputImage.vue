@@ -34,7 +34,7 @@ const previewImage = ref('')
 /** The current images on display */
 const imageSrc = computed<string>(() => previewImage.value || defaultImage.value)
 
-const pickImage = async () => {
+async function pickImage() {
   if (process.server)
     return
   const image = await fileOpen({

@@ -3,7 +3,7 @@
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHead({
   title: () => t('title.federated_timeline'),
 })
 </script>

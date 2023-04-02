@@ -6,6 +6,7 @@ const { status, context } = defineProps<{
   newer?: mastodon.v1.Status
   context?: mastodon.v2.FilterContext | 'details'
   isPreview?: boolean
+  inNotification?: boolean
 }>()
 
 const isDM = $computed(() => status.visibility === 'direct')

@@ -33,21 +33,21 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   }
 })
 
-const handlePublished = (status: mastodon.v1.Status) => {
+function handlePublished(status: mastodon.v1.Status) {
   lastPublishDialogStatus.value = status
   isPublishDialogOpen.value = false
 }
 
-const handlePublishClose = () => {
+function handlePublishClose() {
   lastPublishDialogStatus.value = null
 }
 
-const handleConfirmChoice = (choice: ConfirmDialogChoice) => {
+function handleConfirmChoice(choice: ConfirmDialogChoice) {
   confirmDialogChoice.value = choice
   isConfirmDialogOpen.value = false
 }
 
-const handleFavouritedBoostedByClose = () => {
+function handleFavouritedBoostedByClose() {
   isFavouritedBoostedByDialogOpen.value = false
 }
 </script>

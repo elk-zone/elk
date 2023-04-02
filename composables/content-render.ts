@@ -10,7 +10,7 @@ import ContentCode from '~/components/content/ContentCode.vue'
 import ContentMentionGroup from '~/components/content/ContentMentionGroup.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 
-function getTexualAstComponents(astChildren: Node[]): string {
+function getTextualAstComponents(astChildren: Node[]): string {
   return astChildren
     .filter(({ type }) => type === TEXT_NODE)
     .map(({ value }) => value)
@@ -27,7 +27,7 @@ export function contentToVNode(
 ): VNode {
   let tree = parseMastodonHTML(content, options)
 
-  const textContents = getTexualAstComponents(tree.children)
+  const textContents = getTextualAstComponents(tree.children)
 
   // if the username only contains emojis, we should probably show the emojis anyway to avoid a blank name
   if (options?.hideEmojis && textContents.length === 0)
@@ -46,8 +46,8 @@ function nodeToVNode(node: Node): VNode | string | null {
   if ('children' in node) {
     if (node.name === 'a' && (node.attributes.href?.startsWith('/') || node.attributes.href?.startsWith('.'))) {
       node.attributes.to = node.attributes.href
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { href, target, ...attrs } = node.attributes
+
+      const { href: _href, target: _target, ...attrs } = node.attributes
       return h(
         RouterLink as any,
         attrs,
@@ -107,7 +107,9 @@ function handleCodeBlock(el: Node) {
     const codeEl = el.children[0] as Node
     const classes = codeEl.attributes.class as string
     const lang = classes?.split(/\s/g).find(i => i.startsWith('language-'))?.replace('language-', '')
-    const code = codeEl.children && codeEl.children.length > 0 ? recursiveTreeToText(codeEl) : ''
+    const code = (codeEl.children && codeEl.children.length > 0)
+      ? recursiveTreeToText(codeEl)
+      : ''
     return h(ContentCode, { lang, code: encodeURIComponent(code) })
   }
 }

@@ -8,8 +8,11 @@
     "generate": "nuxi generate",
     "preview": "nuxi preview"
   },
+  "dependencies": {
+    "theme-colors": "^0.0.5"
+  },
   "devDependencies": {
-    "@nuxt-themes/docus": "^1.8.1",
-    "nuxt": "^3.2.0"
+    "@nuxt-themes/docus": "^1.10.1",
+    "nuxt": "^3.3.2"
   }
 }

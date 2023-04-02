@@ -4,7 +4,7 @@ defineProps<{
   hover?: boolean
 }>()
 const { modelValue } = defineModel<{
-  modelValue: boolean
+  modelValue?: boolean
 }>()
 </script>
 

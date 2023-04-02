@@ -2,14 +2,14 @@
 const buildInfo = useBuildInfo()
 const { t } = useI18n()
 
-useHeadFixed({
+useHead({
   title: () => `${t('settings.about.label')} | ${t('nav.settings')}`,
 })
 
 let showCommit = $ref(buildInfo.env !== 'release' && buildInfo.env !== 'dev')
 const builtTime = useFormattedDateTime(buildInfo.time)
 
-const handleShowCommit = () => {
+function handleShowCommit() {
   setTimeout(() => {
     showCommit = true
   }, 50)

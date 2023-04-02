@@ -25,7 +25,7 @@ const fieldCount = $computed(() => {
   )
 })
 
-const chooseIcon = (i: number, text: string) => {
+function chooseIcon(i: number, text: string) {
   form.value.fieldsAttributes[i].name = text
   dropdown[i]?.hide()
 }

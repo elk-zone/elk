@@ -1,6 +1,6 @@
 import { join, resolve } from 'pathe'
 import fs from 'fs-extra'
-import { $fetch } from 'ohmyfetch'
+import { ofetch } from 'ofetch'
 import { elkTeamMembers } from '../composables/about'
 
 const avatarsDir = resolve('./public/avatars/')
@@ -13,7 +13,7 @@ async function download(url: string, fileName: string) {
 
   console.log('downloading', fileName)
   try {
-    const image = await $fetch(url, { responseType: 'arrayBuffer' })
+    const image = await ofetch(url, { responseType: 'arrayBuffer' })
     await fs.writeFile(fileName, Buffer.from(image))
   }
   catch (err) {

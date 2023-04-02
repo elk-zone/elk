@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const buildInfo = useBuildInfo()
 const timeAgoOptions = useTimeAgoOptions()
-
+const config = useRuntimeConfig()
 const userSettings = useUserSettings()
 
 const buildTimeDate = new Date(buildInfo.time)
@@ -73,9 +73,9 @@ function toggleDark() {
       <NuxtLink cursor-pointer hover:underline to="/settings/about">
         {{ $t('settings.about.label') }}
       </NuxtLink>
-      <template v-if="$config.public.privacyPolicyUrl">
+      <template v-if="config.public.privacyPolicyUrl">
         &middot;
-        <NuxtLink cursor-pointer hover:underline :to="$config.public.privacyPolicyUrl">
+        <NuxtLink cursor-pointer hover:underline :to="config.public.privacyPolicyUrl">
           {{ $t('nav.privacy') }}
         </NuxtLink>
       </template>

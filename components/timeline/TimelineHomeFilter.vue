@@ -13,8 +13,7 @@ const isActive = $computed(() => {
 <template>
   <VDropdown>
     <button btn-text>
-      <div v-if="!isActive" i-ri:filter-2-line />
-      <div v-else i-ri:filter-2-fill />
+      <div :class="isActive ? 'i-ri:filter-2-fill' : 'i-ri:filter-2-line'" />
     </button>
 
     <template #popper>

@@ -11,6 +11,7 @@ const {
   virtualScroller = false,
   eventType = 'update',
   preprocess,
+  postprocess = items => items,
   noEndMessage = false,
 } = defineProps<{
   paginator: Paginator<T[], O>
@@ -19,6 +20,7 @@ const {
   stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
   preprocess?: (items: (U | T)[]) => U[]
+  postprocess?: (items: U[]) => U[]
   noEndMessage?: boolean
 }>()
 
@@ -47,8 +49,15 @@ const nuxtApp = useNuxtApp()
 
 const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), eventType, preprocess)
 
+const postProcessedItems = computedWithControl(() => postprocess(items.value as U[]), () => items.value)
+
 nuxtApp.hook('elk-logo:click', () => {
   update()
+  nuxtApp.$scrollToTop()
+})
+
+nuxtApp.hook('elk-timeline-home-filter:change', () => {
+  postProcessedItems.trigger()
   nuxtApp.$scrollToTop()
 })
 
@@ -73,11 +82,11 @@ defineExpose({ createEntry, removeEntry, updateEntry })
 <template>
   <div>
     <slot v-if="prevItems.length" name="updater" v-bind="{ number: prevItems.length, update }" />
-    <slot name="items" :items="items">
+    <slot name="items" :items="postProcessedItems">
       <template v-if="virtualScroller">
         <DynamicScroller
           v-slot="{ item, active, index }"
-          :items="items"
+          :items="postProcessedItems"
           :min-item-size="200"
           :key-field="keyProp"
           page-mode
@@ -86,22 +95,22 @@ defineExpose({ createEntry, removeEntry, updateEntry })
             :key="item[keyProp]"
             :item="item"
             :active="active"
-            :older="items[index + 1]"
-            :newer="items[index - 1]"
+            :older="postProcessedItems[index + 1]"
+            :newer="postProcessedItems[index - 1]"
             :index="index"
-            :items="items"
+            :items="postProcessedItems"
           />
         </DynamicScroller>
       </template>
       <template v-else>
         <slot
-          v-for="item, index of items"
+          v-for="item, index of postProcessedItems"
           :key="(item as any)[keyProp]"
           :item="item"
-          :older="items[index + 1]"
-          :newer="items[index - 1]"
+          :older="postProcessedItems[index + 1]"
+          :newer="postProcessedItems[index - 1]"
           :index="index"
-          :items="items"
+          :items="postProcessedItems"
         />
       </template>
     </slot>

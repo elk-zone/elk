@@ -10,6 +10,7 @@ const { paginator, stream, account, buffer = 10 } = defineProps<{
   context?: mastodon.v2.FilterContext
   account?: mastodon.v1.Account
   preprocess?: (items: mastodon.v1.Status[]) => mastodon.v1.Status[]
+  postprocess?: (items: mastodon.v1.Status[]) => mastodon.v1.Status[]
   buffer?: number
 }>()
 
@@ -22,7 +23,7 @@ const showOriginSite = $computed(() =>
 </script>
 
 <template>
-  <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer }" :virtual-scroller="virtualScroller">
+  <CommonPaginator v-bind="{ paginator, stream, preprocess, postprocess, buffer }" :virtual-scroller="virtualScroller">
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}

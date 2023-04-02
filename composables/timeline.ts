@@ -14,34 +14,7 @@ function removeFilteredItems(items: mastodon.v1.Status[], context: mastodon.v1.F
   const isFiltered = (item: mastodon.v1.Status) => (item.account.id === currentUser.value?.account.id) || !item.filtered?.find(isStrict)
   const isReblogFiltered = (item: mastodon.v1.Status) => !item.reblog?.filtered?.find(isStrict)
 
-  const homeFilter = useHomeFilter()
-  const { bot, sensitive, repost, mutual, tag } = homeFilter.value
-
-  const isClientSideHomeFiltered = (item: mastodon.v1.Status) => {
-    if (bot && sensitive && repost && mutual && tag)
-      return true
-
-    if (!bot && item.account.bot)
-      return false
-
-    if (!sensitive && item.sensitive)
-      return false
-
-    if (!repost && item.reblog != null)
-      return false
-
-    // if (!mutual && ??)
-    //   This would require a lookup of the user's followers
-    //   return false
-
-    // if (!tag && ??)
-    //   This would require a lookup of the user's tags
-    //   return false
-
-    return true
-  }
-
-  return [...items].filter(isFiltered).filter(isReblogFiltered).filter(isClientSideHomeFiltered)
+  return [...items].filter(isFiltered).filter(isReblogFiltered)
 }
 
 export function reorderedTimeline(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext = 'public') {

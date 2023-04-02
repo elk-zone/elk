@@ -17,11 +17,11 @@ const isActive = $computed(() => {
     </button>
 
     <template #popper>
-      <CommonCheckbox v-model="homeFilter.bot" label="post by bot" />
-      <CommonCheckbox v-model="homeFilter.sensitive" label="post contains sensitive" />
-      <CommonCheckbox v-model="homeFilter.repost" label="post is a repost" />
-      <CommonCheckbox v-model="homeFilter.mutual" label="post is from a mutual" />
-      <CommonCheckbox v-model="homeFilter.tag" label="post is from a tag I follow" />
+      <CommonCheckbox v-model="homeFilter.bot" :label="$t('timeline.filter.include_bot')" />
+      <CommonCheckbox v-model="homeFilter.sensitive" :label="$t('timeline.filter.include_sensitive')" />
+      <CommonCheckbox v-model="homeFilter.repost" :label="$t('timeline.filter.include_repost')" />
+      <CommonCheckbox v-model="homeFilter.mutual" :label="$t('timeline.filter.include_mutual')" />
+      <CommonCheckbox v-model="homeFilter.tag" :label="$t('timeline.filter.include_tag')" />
     </template>
   </VDropdown>
 </template>

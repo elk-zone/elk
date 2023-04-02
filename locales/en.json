@@ -574,6 +574,13 @@
     "year_past": "0 years ago|last year|{n} years ago"
   },
   "timeline": {
+    "filter": {
+      "include_bot": "post by bot",
+      "include_mutual": "post is from a mutual",
+      "include_repost": "post is a repost",
+      "include_sensitive": "post contains sensitive",
+      "include_tag": "post is from a tag I follow"
+    },
     "show_new_items": "Show {v} new items|Show {v} new item|Show {v} new items",
     "view_older_posts": "Older posts from other instances may not be displayed."
   },

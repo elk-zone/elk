@@ -49,7 +49,10 @@ const nuxtApp = useNuxtApp()
 
 const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), eventType, preprocess)
 
-const postProcessedItems = computedWithControl(() => postprocess(items.value as U[]), () => items.value)
+const postProcessedItems = computedWithControl(
+  () => items.value,
+  () => postprocess(items.value as U[]),
+)
 
 nuxtApp.hook('elk-logo:click', () => {
   update()

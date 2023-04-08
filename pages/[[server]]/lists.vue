@@ -16,11 +16,6 @@ useHead({
 })
 
 const paginatorRef = ref()
-const inputRef = ref<HTMLInputElement>()
-let actionError = $ref<string | undefined>(undefined)
-let busy = $ref<boolean>(false)
-const createText = ref('')
-const enableSubmit = computed(() => createText.value.length > 0)
 
 async function createList(title: string) {
   const newEntry = await client.v1.lists.create({

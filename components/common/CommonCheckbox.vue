@@ -29,7 +29,6 @@ const checked = $computed(() => {
       aria-hidden="true"
     />
     <input
-      ref="inputRef"
       v-model="modelValue"
       :value="value"
       type="checkbox"

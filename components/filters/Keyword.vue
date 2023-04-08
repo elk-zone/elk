@@ -113,7 +113,6 @@ onDeactivated(cancelEdit)
               aria-hidden="true"
             />
             <input
-              ref="inputRef"
               v-model="wholeWorld"
               :value="wholeWorld"
               type="checkbox"
@@ -136,7 +135,6 @@ onDeactivated(cancelEdit)
       </template>
       <CommonTooltip :content="$t('settings.preferences.filters.editing.delete_keyword')" no-auto-focus>
         <button
-          ref="delete"
           type="button"
           text-sm p2 border-1 transition-colors
           border-dark hover:text-primary

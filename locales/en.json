@@ -419,15 +419,17 @@
         "confirm_delete": "Confirm",
         "context": {
           "account": "Profiles",
+          "everywhere": "Everywhere",
           "filters_in": "Filters in {0}",
           "home": "Home",
           "notifications": "Notifications",
           "public": "Public timelines",
           "thread": "Conversations"
         },
-        "create": "Create",
+        "create_title": "Create new filter",
         "delete": "Delete",
         "description": "Words words words, blah blah schmooby dooby doo.",
+        "description_page": "This menu allows you to set up and configure filters for Elk.",
         "edit": "Edit",
         "editing": {
           "add": "Add",
@@ -452,8 +454,9 @@
           "hide": "Hide",
           "warn": "Warn"
         },
+        "filter_applies_to": "Filter applies to:",
         "filter_title": "Filter title",
-        "keywords_list_prefix": "{n} keywords:|{n} keyword:|{n} keywords:",
+        "keywords_list_prefix": "{n} keywords|{n} keyword|{n} keywords",
         "no_keywords": "No keywords filtered at this time.",
         "title": "Filters"
       },

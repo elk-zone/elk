@@ -28,7 +28,15 @@ function removeEntry(id: string) {
 
 <template>
   <MainContent back-on-small-screen>
-    <CommonPaginator ref="paginatorRef" :paginator="filterPaginator">
+    <h2 px6 pt4 my-2 font-bold text-xl flex items-center>
+      {{ $t('settings.preferences.filters.title') }}
+    </h2>
+
+    <p px6 text-secondary mb-4>
+      {{ $t("settings.preferences.filters.description_page") }}
+    </p>
+
+    <CommonPaginator ref="paginatorRef" :paginator="filterPaginator" px-6 flex="~ col gap-3">
       <template #default="{ item }">
         <SettingsFilter
           :filter="item"
@@ -37,16 +45,21 @@ function removeEntry(id: string) {
         />
       </template>
       <template #done>
-        <CommonListCreate
-          id="filter"
-          create-button-icon="i-ri-filter-line"
-          :placeholder="$t('settings.preferences.filters.filter_title')"
-          :create-callback="createFilter"
-        >
-          <template #error-text>
-            {{ $t('settings.preferences.filters.errors.create') }}
-          </template>
-        </CommonListCreate>
+        <div mt-3>
+          <h3 text-md font-bold>
+            {{ $t('settings.preferences.filters.create_title') }}
+          </h3>
+          <CommonListCreate
+            id="filter"
+            create-button-icon="i-ri-filter-line"
+            :placeholder="$t('settings.preferences.filters.filter_title')"
+            :create-callback="createFilter"
+          >
+            <template #error-text>
+              {{ $t('settings.preferences.filters.errors.create') }}
+            </template>
+          </CommonListCreate>
+        </div>
       </template>
     </CommonPaginator>
   </MainContent>

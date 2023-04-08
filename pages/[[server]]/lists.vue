@@ -50,16 +50,19 @@ function removeEntry(id: string) {
           />
         </template>
         <template #done>
-          <CommonListCreate
-            id="list"
-            create-button-icon="i-material-symbols:playlist-add-rounded"
-            placeholder="List title"
-            :create-callback="createList"
-          >
-            <template #error-text>
-              {{ $t('list.error') }}
-            </template>
-          </CommonListCreate>
+          <div px-4>
+            <CommonListCreate
+              id="list"
+              border="t base"
+              create-button-icon="i-material-symbols:playlist-add-rounded"
+              placeholder="List title"
+              :create-callback="createList"
+            >
+              <template #error-text>
+                {{ $t('list.error') }}
+              </template>
+            </CommonListCreate>
+          </div>
         </template>
       </CommonPaginator>
     </slot>

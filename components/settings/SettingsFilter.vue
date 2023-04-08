@@ -55,96 +55,45 @@ async function deleteFilter() {
   >
     <div
       w-full flex w-fit px5 py3 md:gap2 gap4 items-center
-      transition-250 group-hover:bg-active
+      transition-250 bg-card group-hover:bg-active rounded-3
       group-focus-visible:ring="2 current"
     >
       <div flex-1 flex items-center md:gap2 gap4>
         <div flex="~ col">
-          <p mb-2>
-            <span>{{ filter.title }}</span>
+          <p mb-2 text-lg>
+            {{ filter.title }}
           </p>
           <p text-sm text-secondary pr-4>
-            <b>{{ $t('settings.preferences.filters.keywords_list_prefix', filter.keywords.length) }}</b>
+            <span text-primary mr-1>{{ $t('settings.preferences.filters.keywords_list_prefix', filter.keywords.length) }}</span>
             {{
               filter.keywords.length
                 ? filter.keywords.map(({ keyword }) => keyword).join(', ')
                 : $t('settings.preferences.filters.no_keywords')
             }}
           </p>
-          <span flex flex-wrap gap-2 mt-5>
+          <span flex flex-wrap gap-1 mt-3 items-center>
+            <span text-sm mr-2>{{ $t(`settings.preferences.filters.filter_applies_to`) }}</span>
+            <template
+              v-if="filter.context.length !== 5"
+            >
+              <span
+                v-for="ctx in filter.context" :key="ctx"
+                bg-tag px-2 py-1 rounded text-sm text-secondary whitespace-nowrap
+              >
+                {{ $t(`settings.preferences.filters.context.${ctx}`).toLocaleLowerCase() }}
+              </span>
+            </template>
             <span
-              v-for="ctx in filter.context" :key="ctx"
+              v-else
               bg-tag px-2 py-1 rounded text-sm text-secondary whitespace-nowrap
             >
-              {{ $t(`settings.preferences.filters.context.${ctx}`) }}
+              {{ $t('settings.preferences.filters.context.everywhere').toLocaleLowerCase() }}
             </span>
           </span>
         </div>
       </div>
-      <div flex="~ row gap-2" items-center>
-        <template v-if="hasStartedDelete">
-          <CommonTooltip :content="$t('settings.preferences.filters.confirm_delete')" no-auto-focus>
-            <button
-              type="submit"
-              text-sm p2 border-1 transition-colors
-              border-red
-              class="bg-red/30 hover:bg-red/50"
-              btn-action-icon
-              :disabled="deleteBusy"
-              @click.prevent="deleteFilter"
-            >
-              <span v-if="deleteBusy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
-                <span block i-ri:loader-2-fill aria-hidden="true" />
-              </span>
-              <span v-else block text-current i-ri-check-line class="rtl-flip" />
-            </button>
-          </CommonTooltip>
-          <CommonTooltip :content="$t('settings.preferences.filters.cancel_delete')" no-auto-focus>
-            <button
-              ref="delete"
-              type="button"
-              text-sm p2 border-1 transition-colors
-              border-dark hover:text-primary
-              btn-action-icon
-              :aria-label="$t('settings.preferences.filters.cancel_delete')"
-              :disabled="deleteBusy"
-              @click.prevent="cancelDelete"
-            >
-              <span block text-current i-ri:close-fill class="rtl-flip" />
-            </button>
-          </CommonTooltip>
-        </template>
-        <template v-else>
-          <CommonTooltip :content="$t('settings.preferences.filters.edit')" no-auto-focus>
-            <button
-              ref="delete"
-              type="button"
-              text-sm p2 border-1 transition-colors
-              border-dark hover:text-primary
-              btn-action-icon
-              :aria-label="$t('settings.preferences.filters.edit')"
-              @click.prevent="editFilter"
-            >
-              <span block text-current i-ri-edit-2-line class="rtl-flip" />
-            </button>
-          </CommonTooltip>
-          <CommonTooltip :content="$t('settings.preferences.filters.delete')" no-auto-focus>
-            <button
-              ref="delete"
-              type="button"
-              text-sm p2 border-1 transition-colors
-              border-dark hover:text-primary
-              btn-action-icon
-              :aria-label="$t('settings.preferences.filters.delete')"
-              @click.prevent="startDelete"
-            >
-              <span v-if="deleteBusy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
-                <span block i-ri:loader-2-fill aria-hidden="true" />
-              </span>
-              <span v-else block text-current i-ri:delete-bin-2-line class="rtl-flip" />
-            </button>
-          </CommonTooltip>
-        </template>
+      <div flex="~ row" items-center>
+        <div i-ri:arrow-right-s-line text-base />
       </div>
     </div>
   </NuxtLink>

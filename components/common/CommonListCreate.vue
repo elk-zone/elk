@@ -50,8 +50,7 @@ onDeactivated(() => clearError(false))
 
 <template>
   <form
-    border="t base"
-    p-4 w-full
+    py-4 w-full
     flex="~ wrap" relative gap-3
     :aria-describedby="actionError ? `create-${id}-failed` : undefined"
     :class="actionError ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active' : null"

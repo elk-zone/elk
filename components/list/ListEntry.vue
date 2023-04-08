@@ -1,117 +1,102 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import { useForm } from 'slimeform'
 
 const emit = defineEmits<{
   (e: 'listUpdated', list: mastodon.v1.List): void
   (e: 'listRemoved', id: string): void
 }>()
-const { list } = $defineProps<{
+const { list } = defineModel<{
   list: mastodon.v1.List
 }>()
-const { modelValue } = defineModel<{
-  modelValue: string
-}>()
-modelValue.value = list.title
 
 const { t } = useI18n()
 const client = useMastoClient()
 
+const { form, isDirty, submitter, reset } = useForm({
+  form: () => ({ ...list.value }),
+})
+
 let isEditing = $ref<boolean>(false)
-let busy = $ref<boolean>(false)
-let deleteBusy = $ref<boolean>(false)
+let deleting = $ref<boolean>(false)
 let actionError = $ref<string | undefined>(undefined)
 
-const enableSaveButton = computed(() => list.title !== modelValue.value)
+const input = ref<HTMLInputElement>()
+const editBtn = ref<HTMLButtonElement>()
+const deleteBtn = ref<HTMLButtonElement>()
 
-const edit = ref()
-const deleteBtn = ref()
-const input = ref()
-
-const prepareEdit = () => {
+async function prepareEdit() {
   isEditing = true
   actionError = undefined
-  nextTick(() => {
-    input.value?.focus()
-  })
+  await nextTick()
+  input.value?.focus()
 }
-const cancelEdit = () => {
+async function cancelEdit() {
   isEditing = false
   actionError = undefined
-  modelValue.value = list.title
+  reset()
 
-  nextTick(() => {
-    edit.value?.focus()
-  })
-}
-async function finishEditing() {
-  if (busy || !isEditing || !enableSaveButton.value)
-    return
-
-  busy = true
-  actionError = undefined
   await nextTick()
+  editBtn.value?.focus()
+}
+
+const { submit, submitting } = submitter(async () => {
   try {
-    const updateList = await client.v1.lists.update(list.id, {
-      title: modelValue.value,
+    list.value = await client.v1.lists.update(form.id, {
+      title: form.title,
     })
     cancelEdit()
-    emit('listUpdated', updateList)
   }
   catch (err) {
     console.error(err)
     actionError = (err as Error).message
-    nextTick(() => {
-      input.value?.focus()
-    })
+    await nextTick()
+    input.value?.focus()
   }
-  finally {
-    busy = false
-  }
-}
+})
+
 async function removeList() {
-  if (deleteBusy)
+  if (deleting)
     return
 
-  deleteBusy = true
-  actionError = undefined
-  await nextTick()
-
   const confirmDelete = await openConfirmDialog({
-    title: t('confirm.delete_list.title', [list.title]),
+    title: t('confirm.delete_list.title', [list.value.title]),
     confirm: t('confirm.delete_list.confirm'),
     cancel: t('confirm.delete_list.cancel'),
   })
 
+  deleting = true
+  actionError = undefined
+  await nextTick()
+
   if (confirmDelete === 'confirm') {
     await nextTick()
     try {
-      await client.v1.lists.remove(list.id)
-      emit('listRemoved', list.id)
+      await client.v1.lists.remove(list.value.id)
+      emit('listRemoved', list.value.id)
     }
     catch (err) {
       console.error(err)
       actionError = (err as Error).message
-      nextTick(() => {
-        deleteBtn.value?.focus()
-      })
+      await nextTick()
+      deleteBtn.value?.focus()
     }
     finally {
-      deleteBusy = false
+      deleting = false
     }
   }
   else {
-    deleteBusy = false
+    deleting = false
   }
 }
 
-function clearError() {
+async function clearError() {
   actionError = undefined
-  nextTick(() => {
-    if (isEditing)
-      input.value?.focus()
-    else
-      deleteBtn.value?.focus()
-  })
+  await nextTick()
+  if (isEditing)
+    input.value?.focus()
+  else
+    deleteBtn.value?.focus()
 }
 
 onDeactivated(cancelEdit)
@@ -122,7 +107,7 @@ onDeactivated(cancelEdit)
     hover:bg-active flex justify-between items-center gap-x-2
     :aria-describedby="actionError ? `action-list-error-${list.id}` : undefined"
     :class="actionError ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active' : null"
-    @submit.prevent="finishEditing"
+    @submit.prevent="submit"
   >
     <div
       v-if="isEditing"
@@ -141,20 +126,15 @@ onDeactivated(cancelEdit)
       </CommonTooltip>
       <input
         ref="input"
-        v-model="modelValue"
-        rounded-3
-        w-full
-        bg-transparent
-        outline="focus:none"
-        pe-4
-        pb="1px"
-        flex-1
-        placeholder-text-secondary
+        v-model="form.title"
+        rounded-3 w-full bg-transparent
+        outline="focus:none" pe-4 pb="1px"
+        flex-1 placeholder-text-secondary
         @keydown.esc="cancelEdit()"
       >
     </div>
     <NuxtLink v-else :to="`list/${list.id}`" block grow p4>
-      {{ list.title }}
+      {{ form.title }}
     </NuxtLink>
     <div mr4 flex gap2>
       <CommonTooltip v-if="isEditing" :content="$t('list.save')" no-auto-focus>
@@ -163,10 +143,10 @@ onDeactivated(cancelEdit)
           text-sm p2 border-1 transition-colors
           border-dark hover:text-primary
           btn-action-icon
-          :disabled="deleteBusy || !enableSaveButton || busy"
+          :disabled="deleting || !isDirty || submitting"
         >
           <template v-if="isEditing">
-            <span v-if="busy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+            <span v-if="submitting" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
               <span block i-ri:loader-2-fill aria-hidden="true" />
             </span>
             <span v-else block text-current i-ri:save-2-fill class="rtl-flip" />
@@ -175,7 +155,7 @@ onDeactivated(cancelEdit)
       </CommonTooltip>
       <CommonTooltip v-else :content="$t('list.edit')" no-auto-focus>
         <button
-          ref="edit"
+          ref="editBtn"
           type="button"
           text-sm p2 border-1 transition-colors
           border-dark hover:text-primary
@@ -187,7 +167,6 @@ onDeactivated(cancelEdit)
       </CommonTooltip>
       <CommonTooltip :content="$t('list.delete')" no-auto-focus>
         <button
-          ref="delete"
           type="button"
           text-sm p2 border-1 transition-colors
           border-dark hover:text-primary
@@ -195,7 +174,7 @@ onDeactivated(cancelEdit)
           :disabled="isEditing"
           @click.prevent="removeList"
         >
-          <span v-if="deleteBusy" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
+          <span v-if="deleting" aria-hidden="true" block animate animate-spin preserve-3d class="rtl-flip">
             <span block i-ri:loader-2-fill aria-hidden="true" />
           </span>
           <span v-else block text-current i-ri:delete-bin-2-line class="rtl-flip" />

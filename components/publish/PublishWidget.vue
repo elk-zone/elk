@@ -71,12 +71,18 @@ const characterCount = $computed(() => {
   // taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
   const linkRegex = /(https?:\/\/(www\.)?|xmpp:)\S+/g
 
+  // taken from https://github.com/mastodon/mastodon/blob/af578e/app/javascript/mastodon/features/compose/util/counter.js
+  const countableMentionRegex = /(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig
+
   // maximum of 23 chars per link
   // https://github.com/elk-zone/elk/issues/1651
   const maxLength = 23
 
   for (const [fullMatch] of text.matchAll(linkRegex))
     length -= fullMatch.length - Math.min(maxLength, fullMatch.length)
+
+  for (const [fullMatch, before, _handle, username] of text.matchAll(countableMentionRegex))
+    length -= fullMatch.length - (before + username).length - 1 // - 1 for the @
 
   if (draft.mentions) {
     // + 1 is needed as mentions always need a space seperator at the end
@@ -89,6 +95,10 @@ const characterCount = $computed(() => {
   length += stringLength(publishSpoilerText)
 
   return length
+})
+
+const isExceedingCharacterLimit = $computed(() => {
+  return characterCount > characterLimit.value
 })
 
 const postLanguageDisplay = $computed(() => languagesNameList.find(i => i.code === (draft.params.language || preferredLanguage))?.nativeName)
@@ -146,7 +156,7 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="isHydrated && currentUser" flex="~ col gap-4" py3 px2 sm:px4>
+  <div v-if="isHydrated && currentUser" flex="~ col gap-4" py3 px2 sm:px4 aria-roledescription="publish-widget">
     <template v-if="draft.editingStatus">
       <div flex="~ col gap-1">
         <div id="state-editing" text-secondary self-center>
@@ -286,9 +296,7 @@ defineExpose({
 
         <div flex-auto />
 
-        <div dir="ltr" pointer-events-none pe-1 pt-2 text-sm tabular-nums text-secondary flex gap="0.5" :class="{ 'text-rose-500': characterCount > characterLimit }">
-          {{ characterCount ?? 0 }}<span text-secondary-light>/</span><span text-secondary-light>{{ characterLimit }}</span>
-        </div>
+        <PublishCharacterCounter :max="characterLimit" :length="characterCount" />
 
         <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
           <CommonDropdown placement="bottom" auto-boundary-max-size>
@@ -331,12 +339,12 @@ defineExpose({
           </button>
         </CommonTooltip>
 
-        <CommonTooltip v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')" :disabled="!isPublishDisabled">
+        <CommonTooltip v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')" :disabled="!(isPublishDisabled || isExceedingCharacterLimit)">
           <button
             btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center
             md:w-fit
             class="publish-button"
-            :aria-disabled="isPublishDisabled"
+            :aria-disabled="isPublishDisabled || isExceedingCharacterLimit"
             aria-describedby="publish-tooltip"
             @click="publish"
           >

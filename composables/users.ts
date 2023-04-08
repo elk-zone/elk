@@ -19,7 +19,7 @@ import { useAsyncIDBKeyval } from '~/composables/idb'
 
 const mock = process.mock
 
-const initializeUsers = (): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>> | Ref<UserLogin[]> | RemovableRef<UserLogin[]> => {
+function initializeUsers(): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>> | Ref<UserLogin[]> | RemovableRef<UserLogin[]> {
   let defaultUsers = mock ? [mock.user] : []
 
   // Backward compatibility with localStorage
@@ -52,7 +52,9 @@ export type ElkInstance = Partial<mastodon.v1.Instance> & {
   /** support GoToSocial */
   accountDomain?: string | null
 }
-export const getInstanceCache = (server: string): mastodon.v1.Instance | undefined => instanceStorage.value[server]
+export function getInstanceCache(server: string): mastodon.v1.Instance | undefined {
+  return instanceStorage.value[server]
+}
 
 export const currentUser = computed<UserLogin | undefined>(() => {
   if (currentUserHandle.value) {
@@ -109,9 +111,12 @@ if (process.client) {
   }, { immediate: true, flush: 'post' })
 }
 
-export const useUsers = () => users
-export const useSelfAccount = (user: MaybeComputedRef<mastodon.v1.Account | undefined>) =>
-  computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
+export function useUsers() {
+  return users
+}
+export function useSelfAccount(user: MaybeComputedRef<mastodon.v1.Account | undefined>) {
+  return computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
+}
 
 export const characterLimit = computed(() => currentInstance.value?.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 

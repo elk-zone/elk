@@ -6,7 +6,6 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
   <VDropdown v-if="isHydrated && currentUser" sm:hidden>
     <div style="-webkit-touch-callout: none;">
       <AccountAvatar
-        ref="avatar"
         :account="currentUser.account"
         h-8
         w-8
@@ -16,7 +15,7 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
     </div>
 
     <template #popper="{ hide }">
-      <UserSwitcher ref="switcher" @click="hide()" />
+      <UserSwitcher @click="hide()" />
     </template>
   </VDropdown>
   <template v-else>

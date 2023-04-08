@@ -43,7 +43,9 @@ async function scrollTo() {
 }
 
 const publishWidget = ref()
-const focusEditor = () => publishWidget.value?.focusEditor?.()
+function focusEditor() {
+  return publishWidget.value?.focusEditor?.()
+}
 
 provide('focus-editor', focusEditor)
 
@@ -96,6 +98,7 @@ onReactivated(() => {
               v-slot="{ item, index, active }"
               :items="context?.descendants || []"
               :min-item-size="200"
+              :buffer="800"
               key-field="id"
               page-mode
             >

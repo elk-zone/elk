@@ -11,11 +11,16 @@ const client = useMastoClient()
 
 const paginator = client.v1.lists.list()
 
-useHeadFixed({
+useHead({
   title: () => t('nav.lists'),
 })
 
 const paginatorRef = ref()
+const inputRef = ref<HTMLInputElement>()
+let actionError = $ref<string | undefined>(undefined)
+let busy = $ref<boolean>(false)
+const createText = ref('')
+const enableSubmit = computed(() => createText.value.length > 0)
 
 async function createList(title: string) {
   const newEntry = await client.v1.lists.create({
@@ -45,7 +50,7 @@ function removeEntry(id: string) {
         <template #default="{ item }">
           <ListEntry
             :list="item"
-            @list-updated="updateEntry"
+            @update:list="updateEntry"
             @list-removed="removeEntry"
           />
         </template>

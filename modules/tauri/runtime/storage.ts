@@ -24,4 +24,6 @@ storage.mount('servers', {
   },
 })
 
-export const useStorage = () => storage
+export function useStorage() {
+  return storage
+}

@@ -6,7 +6,7 @@ defineProps<{
   active: boolean
 }>()
 
-const onActivate = () => {
+function onActivate() {
   (document.activeElement as HTMLElement).blur()
 }
 </script>

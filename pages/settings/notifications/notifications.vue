@@ -5,7 +5,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHead({
   title: () => `${t('settings.notifications.notifications.label')} | ${t('settings.notifications.label')} | ${t('nav.settings')}`,
 })
 </script>

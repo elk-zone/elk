@@ -17,7 +17,6 @@
     "moved_title": "ha indicat que el seu compte és ara:",
     "notifications_on_post_disable": "No em notifiques quan {username} publique",
     "notifications_on_post_enable": "Notifica'm quan {username} publique",
-    "notify_on_post": "Notifica'm quan {username} publique",
     "profile_description": "Capçalera de: {0}",
     "unmute": "Deixa de silenciar",
     "view_other_followers": "És possible que no es mostren els seguidors d'altres instàncies.",
@@ -65,10 +64,7 @@
     "block_domain": {
       "cancel": "Cancel·la",
       "confirm": "Bloqueja",
-      "title": "Segur que vols bloquejar {0}？"
-    },
-    "common": {
-      "title": "Segur que vols {0}?"
+      "title": "Segur que vols bloquejar {0}?"
     },
     "delete_list": {
       "cancel": "Cancel·la",
@@ -83,12 +79,12 @@
     "mute_account": {
       "cancel": "Cancel·la",
       "confirm": "Silencia",
-      "title": "Segur que vols silenciar {0}？"
+      "title": "Segur que vols silenciar {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancel·la",
       "confirm": "Mostra",
-      "title": "Segur que vols mostrar els impulsos de: {0}？"
+      "title": "Segur que vols mostrar els impulsos de: {0}?"
     },
     "unfollow": {
       "cancel": "Cancel·la",
@@ -214,10 +210,6 @@
     },
     "account_settings": {
       "description": "Edita la configuració del teu compte a la interfície de Mastodon"
-    },
-    "feature_flags": {
-      "github_cards": "Targetes de GitHub",
-      "user_picker": "Selector d'usuari"
     },
     "interface": {
       "default": " (per defecte)",

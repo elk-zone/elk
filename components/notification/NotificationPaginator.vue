@@ -14,7 +14,7 @@ const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 const groupCapacity = Number.MAX_VALUE // No limit
 
 // Group by type (and status when applicable)
-const groupId = (item: mastodon.v1.Notification): string => {
+function groupId(item: mastodon.v1.Notification): string {
   // If the update is related to an status, group notifications from the same account (boost + favorite the same status)
   const id = item.status
     ? {
@@ -75,9 +75,7 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
       }
       return
     }
-
-    const { status } = group[0]
-    if (status && group.length > 1 && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
+    else if (group.length && group[0].status && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
       // All notifications in these group are reblogs or favourites of the same status
       const likes: GroupedAccountLike[] = []
       for (const notification of group) {
@@ -88,11 +86,15 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
         }
         like[notification.type === 'reblog' ? 'reblog' : 'favourite'] = notification
       }
-      likes.sort((a, b) => a.reblog ? !b.reblog || (a.favourite && !b.favourite) ? -1 : 0 : 0)
+      likes.sort((a, b) => a.reblog
+        ? (!b.reblog || (a.favourite && !b.favourite))
+            ? -1
+            : 0
+        : 0)
       results.push({
         id: `grouped-${id++}`,
         type: 'grouped-reblogs-and-favourites',
-        status,
+        status: group[0].status,
         likes,
       })
       return

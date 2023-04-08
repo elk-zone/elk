@@ -13,7 +13,7 @@ self.addEventListener('message', (event) => {
     clientResolves[id]()
 })
 
-export const onShareTarget = (event: FetchEvent) => {
+export function onShareTarget(event: FetchEvent) {
   if (!event.request.url.endsWith('/web-share-target') || event.request.method !== 'POST')
     return
 

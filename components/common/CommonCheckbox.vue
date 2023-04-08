@@ -6,7 +6,7 @@ const { value } = defineProps<{
 }>()
 
 const { modelValue } = defineModel<{
-  modelValue: T
+  modelValue?: T
 }>()
 
 const checked = $computed(() => {

@@ -42,7 +42,7 @@ const outdatedEntries = computed<string[]>(() => {
   return localesStatuses[locale.value]!.outdated
 })
 
-const showDetail = (key: string, tab: Tab = 'missing', fromTab = false) => {
+function showDetail(key: string, tab: Tab = 'missing', fromTab = false) {
   if (key === locale.value && tab === localeTab.value) {
     if (fromTab)
       return
@@ -57,7 +57,7 @@ const showDetail = (key: string, tab: Tab = 'missing', fromTab = false) => {
   nextTick().then(() => hidden.value = false)
 }
 
-const copyToClipboard = async () => {
+async function copyToClipboard() {
   try {
     await navigator.clipboard.writeText([
       `# ${localeTitle.value}`,

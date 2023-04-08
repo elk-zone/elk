@@ -15,7 +15,7 @@ const preferenceHideTranslation = usePreferences('hideTranslation')
 const showButton = computed(() => !preferenceHideTranslation.value && isTranslationEnabled)
 
 let translating = $ref(false)
-const toggleTranslation = async () => {
+async function toggleTranslation() {
   translating = true
   try {
     await _toggleTranslation()

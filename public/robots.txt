@@ -3,21 +3,21 @@ Allow: /
 
 # Disallow authenticated pages
 
-Disallow /intent
-Disallow /settings
-Disallow /blocks
-Disallow /bookmarks
-Disallow /compose
-Disallow /conversations
-Disallow /domain_blocks
-Disallow /favourites
-Disallow /home
-Disallow /mutes
-Disallow /notifications
-Disallow /pinned
-Disallow /search
-Disallow /settings
-Disallow /share-target
+Disallow: /intent
+Disallow: /settings
+Disallow: /blocks
+Disallow: /bookmarks
+Disallow: /compose
+Disallow: /conversations
+Disallow: /domain_blocks
+Disallow: /favourites
+Disallow: /home
+Disallow: /mutes
+Disallow: /notifications
+Disallow: /pinned
+Disallow: /search
+Disallow: /settings
+Disallow: /share-target
 
 # Wait 1 second between successive requests.
 Crawl-delay: 1

@@ -11,7 +11,7 @@ import { type LocalizedWebManifest, createI18n, pwaLocales } from './i18n'
 export * from './types'
 export default defineNuxtModule<VitePWANuxtOptions>({
   meta: {
-    name: 'pwa',
+    name: 'elk-pwa',
     configKey: 'pwa',
   },
   defaults: nuxt => ({

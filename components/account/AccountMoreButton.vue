@@ -12,7 +12,7 @@ const isSelf = $(useSelfAccount(() => account))
 const { t } = useI18n()
 const { client } = $(useMasto())
 
-const toggleMute = async () => {
+async function toggleMute() {
   if (!relationship!.muting && await openConfirmDialog({
     title: t('confirm.mute_account.title', [account.acct]),
     confirm: t('confirm.mute_account.confirm'),
@@ -28,7 +28,7 @@ const toggleMute = async () => {
     : await client.v1.accounts.unmute(account.id)
 }
 
-const toggleBlockUser = async () => {
+async function toggleBlockUser() {
   if (!relationship!.blocking && await openConfirmDialog({
     title: t('confirm.block_account.title', [account.acct]),
     confirm: t('confirm.block_account.confirm'),
@@ -40,7 +40,7 @@ const toggleBlockUser = async () => {
   relationship = await client.v1.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
 }
 
-const toggleBlockDomain = async () => {
+async function toggleBlockDomain() {
   if (!relationship!.domainBlocking && await openConfirmDialog({
     title: t('confirm.block_domain.title', [getServerName(account)]),
     confirm: t('confirm.block_domain.confirm'),
@@ -52,7 +52,7 @@ const toggleBlockDomain = async () => {
   await client.v1.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
 }
 
-const toggleReblogs = async () => {
+async function toggleReblogs() {
   if (!relationship!.showingReblogs && await openConfirmDialog({
     title: t('confirm.show_reblogs.title', [account.acct]),
     confirm: t('confirm.show_reblogs.confirm'),
@@ -68,7 +68,7 @@ const toggleReblogs = async () => {
 <template>
   <CommonDropdown :eager-mount="command">
     <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group aria-label="More actions">
-      <div rounded-5 p2 group-hover="bg-purple/10">
+      <div rounded-5 p2 elk-group-hover="bg-purple/10">
         <div i-ri:more-2-fill />
       </div>
     </button>

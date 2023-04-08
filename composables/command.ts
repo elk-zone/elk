@@ -78,8 +78,9 @@ export interface QueryResult {
   grouped: Map<CommandScopeNames, QueryResultItem[]>
 }
 
-const r = <T extends Object | undefined>(i: T | (() => T)): T =>
-  typeof i === 'function' ? i() : i
+function r<T extends Object | undefined>(i: T | (() => T)): T {
+  return typeof i === 'function' ? i() : i
+}
 
 export const useCommandRegistry = defineStore('command', () => {
   const providers = reactive(new Set<CommandProvider>())
@@ -115,7 +116,7 @@ export const useCommandRegistry = defineStore('command', () => {
         .filter(cmd => (cmd.parent ?? '') === scope)
 
       if (query) {
-        const fuse = lastScope === scope && lastFuse
+        const fuse = (lastScope === scope && lastFuse)
           ? lastFuse
           : new Fuse(cmds, {
             keys: ['scope', 'name', 'description'],
@@ -237,7 +238,7 @@ export function useCommands(cmds: () => CommandProvider[]) {
   tryOnScopeDispose(cleanup)
 }
 
-export const provideGlobalCommands = () => {
+export function provideGlobalCommands() {
   const { locale, t } = useI18n()
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
   const router = useRouter()

@@ -30,7 +30,7 @@ const cropperImage = reactive({
   type: 'image/jpg',
 })
 
-const stencilSize = ({ boundaries }: { boundaries: Boundaries }) => {
+function stencilSize({ boundaries }: { boundaries: Boundaries }) {
   return {
     width: boundaries.width * props.stencilSizePercentage,
     height: boundaries.height * props.stencilSizePercentage,
@@ -55,7 +55,7 @@ watch(file, (file, _, onCleanup) => {
   cropperFlag.value = false
 })
 
-const cropImage = () => {
+function cropImage() {
   if (cropper.value && file.value) {
     cropperFlag.value = true
     cropperDialog.value = false

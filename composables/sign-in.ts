@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
 
-export const useSignIn = (input?: Ref<HTMLInputElement | undefined>) => {
+export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
   const singleInstanceServer = useRuntimeConfig().public.singleInstance
   const userSettings = useUserSettings()
   const users = useUsers()

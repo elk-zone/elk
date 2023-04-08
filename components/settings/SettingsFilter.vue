@@ -5,46 +5,7 @@ const { filter } = defineProps<{
   filter: mastodon.v2.Filter
 }>()
 
-const emit = defineEmits<{
-  (e: 'filterUpdated', filter: mastodon.v2.Filter): void
-  (e: 'filterRemoved', id: string): void
-}>()
-
-const { t } = useI18n()
-const client = useMastoClient()
-
-let deleteBusy = $ref<boolean>(false)
-let hasStartedDelete = $ref<boolean>(false)
-
-const router = useRouter()
 const editPath = `/settings/preferences/filters/${filter.id}`
-
-function startDelete() {
-  hasStartedDelete = true
-}
-
-function cancelDelete() {
-  hasStartedDelete = false
-}
-
-function editFilter() {
-  router.push(editPath)
-}
-
-async function deleteFilter() {
-  deleteBusy = true
-
-  try {
-    await client.v2.filters.remove(filter.id)
-    emit('filterRemoved', filter.id)
-  }
-  catch (error) {
-    console.error(error)
-  }
-  finally {
-    deleteBusy = false
-  }
-}
 </script>
 
 <template>

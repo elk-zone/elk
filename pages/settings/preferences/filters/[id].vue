@@ -112,10 +112,38 @@ function expiresAtSetChange() {
   if (form.expiresAt === null)
     form.expiresAt = makeISOStringUsable(new Date().toISOString())
 }
+
+let deleteBusy = $ref<boolean>(false)
+const { t } = useI18n()
+const router = useRouter()
+
+async function deleteFilter() {
+  if (await openConfirmDialog({
+    title: t('settings.preferences.filters.confirm_delete'),
+    confirm: t('settings.preferences.filters.confirm_delete_button'),
+    cancel: t('settings.preferences.filters.cancel_delete_button'),
+  }) !== 'confirm')
+    return
+
+  deleteBusy = true
+
+  try {
+    await client.v2.filters.remove(params.id)
+  }
+  catch (error) {
+    console.error(error)
+  }
+  finally {
+    router.push('/settings/preferences/filters')
+  }
+}
 </script>
 
 <template>
-  <MainContent back-on-small-screen>
+  <MainContent
+    back-on-small-screen
+    :class="deleteBusy ? 'opacity-50 pointer-events-none' : ''"
+  >
     <form p6 space-y-5 @submit.prevent="submitterResult.submit">
       <label space-y-2 block>
         <p font-medium>
@@ -188,7 +216,6 @@ function expiresAtSetChange() {
             items-center relative focus-within:box-shadow-outline gap-3
           >
             <input
-              ref="inputRef"
               v-model="newKeyword"
               bg-transparent
               outline="focus:none"
@@ -217,6 +244,18 @@ function expiresAtSetChange() {
         >
           <div aria-hidden="true" i-ri:eraser-line />
           {{ $t('action.reset') }}
+        </button>
+        <button
+          type="button"
+          btn-text text-sm
+          border border-red rounded-full
+          flex gap-x-2 items-center
+          class="hover:bg-red/20 hover:text-base"
+          text-red
+          @click="deleteFilter()"
+        >
+          <div aria-hidden="true" i-ri:delete-bin-2-line />
+          {{ $t('settings.preferences.filters.delete_start_button') }}
         </button>
 
         <button

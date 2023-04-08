@@ -5,7 +5,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-useHeadFixed({
+useHead({
   title: () => t('settings.preferences.filters.title'),
 })
 

@@ -5,6 +5,10 @@ const { account } = defineProps<{
   account: mastodon.v1.Account
   command?: boolean
 }>()
+const emit = defineEmits<{
+  (evt: 'addNote'): void
+}>()
+
 let relationship = $(useRelationship(account))
 
 const isSelf = $(useSelfAccount(() => account))
@@ -63,6 +67,18 @@ async function toggleReblogs() {
   const showingReblogs = !relationship?.showingReblogs
   relationship = await client.v1.accounts.follow(account.id, { reblogs: showingReblogs })
 }
+
+async function addUserNote() {
+  emit('addNote')
+}
+
+async function removeUserNote() {
+  if (!relationship!.note || relationship!.note.length === 0)
+    return
+
+  const newNote = await client.v1.accounts.createNote(account.id, { comment: '' })
+  relationship!.note = newNote.note
+}
 </script>
 
 <template>
@@ -110,6 +126,21 @@ async function toggleReblogs() {
             icon="i-ri:repeat-line"
             :command="command"
             @click="toggleReblogs()"
+          />
+
+          <CommonDropdownItem
+            v-if="!relationship?.note || relationship?.note?.length === 0"
+            :text="$t('menu.add_personal_note', [`@${account.acct}`])"
+            icon="i-ri-edit-2-line"
+            :command="command"
+            @click="addUserNote()"
+          />
+          <CommonDropdownItem
+            v-else
+            :text="$t('menu.remove_personal_note', [`@${account.acct}`])"
+            icon="i-ri-edit-2-line"
+            :command="command"
+            @click="removeUserNote()"
           />
 
           <CommonDropdownItem

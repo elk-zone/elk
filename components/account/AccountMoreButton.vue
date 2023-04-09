@@ -7,6 +7,7 @@ const { account } = defineProps<{
 }>()
 const emit = defineEmits<{
   (evt: 'addNote'): void
+  (evt: 'removeNote'): void
 }>()
 
 let relationship = $(useRelationship(account))
@@ -78,6 +79,7 @@ async function removeUserNote() {
 
   const newNote = await client.v1.accounts.createNote(account.id, { comment: '' })
   relationship!.note = newNote.note
+  emit('removeNote')
 }
 </script>
 

@@ -164,7 +164,7 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
         </div>
       </div>
       <label
-        v-if="relationship?.note || isEditingPersonalNote"
+        v-if="relationship?.note?.length !== 0 || isEditingPersonalNote"
         space-y-2
         pb-4
         block

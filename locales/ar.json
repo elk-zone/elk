@@ -91,11 +91,6 @@
     "toggle_zen_mode": "تبديل الوضع الهادئ"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "لا",
-      "confirm": "نعم",
-      "title": "هل أنت متأكد؟"
-    },
     "end_of_list": "نهاية القائمة",
     "error": "حدث خطأ",
     "in": "في",
@@ -191,11 +186,6 @@
     "copy_original_link_to_post": "انسخ الرابط الأصلي لهذا المنشور",
     "delete": "حذف",
     "delete_and_redraft": "حذف وإعادة صياغة",
-    "delete_confirm": {
-      "cancel": "إلغاء",
-      "confirm": "حذف",
-      "title": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
-    },
     "direct_message_account": "إرسال رسالة مباشرة إلى {0}",
     "edit": "تعديل",
     "hide_reblogs": "إخفاء المشاركات من {0}",
@@ -313,12 +303,6 @@
     "account_settings": {
       "description": "قم بتحرير إعدادات حسابك في موقع ماستودون الأصل",
       "label": "إعدادت الحساب"
-    },
-    "feature_flags": {
-      "github_cards": "بطاقات GitHub",
-      "title": "الميزات التجريبية",
-      "user_picker": "الشريط الجانبي لمبدل المستخدم",
-      "virtual_scroll": "التمرير الافتراضي"
     },
     "interface": {
       "color_mode": "وضع اللون",

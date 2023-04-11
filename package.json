@@ -121,7 +121,7 @@
     "prettier": "^2.8.7",
     "simple-git-hooks": "^2.8.1",
     "typescript": "^5.0.3",
-    "vitest": "^0.29.7",
+    "vitest": "^0.30.1",
     "vue-tsc": "^1.2.0"
   },
   "pnpm": {

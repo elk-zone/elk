@@ -216,7 +216,7 @@
     "content_warning": "여기에 경고를 적으세요",
     "default_1": "무슨 생각을 하고 계신가요?",
     "reply_to_account": "{0}에게 답글",
-    "replying": "Replying",
+    "replying": "답글",
     "the_thread": "스레드"
   },
   "pwa": {
@@ -283,7 +283,7 @@
     "language": {
       "display_language": "표시 언어",
       "label": "언어",
-      "status": "변역 진척도: {0}/{1} ({2}%)",
+      "status": "변역 진행도: {0}/{1} ({2}%)",
       "translations": {
         "add": "추가",
         "choose_language": "언어 선택",
@@ -296,6 +296,18 @@
       "label": "알림",
       "notifications": {
         "label": "알림 설정"
+      },
+      "push_notifications": {
+        "description": "Elk를 사용하지 않을 때에도 알림을 받습니다.",
+        "label": "푸시 알림 설정",
+        "warning": {
+          "enable_close": "닫기",
+          "enable_description": "Elk가 열려 있지 않을 때 알림을 받으려면 푸시 알림을 활성화하세요. 푸시 알림을 활성화하면 위의 \"@:settings.notifications.show_btn{'\"'} 버튼을 통해 어떤 유형의 상호작용이 푸시 알림을 생성하는지 정확하게 제어할 수 있습니다.",
+          "enable_description_settings": "Elk가 열려 있지 않을 때 알림을 받으려면 푸시 알림을 사용 설정하세요. 푸시 알림을 사용 설정하면 동일한 화면에서 푸시 알림을 생성하는 상호 작용 유형을 정확하게 제어할 수 있습니다.",
+          "enable_desktop": "푸시 알림 활성화",
+          "enable_title": "어떤 것도 놓치지 마세요",
+          "re_auth": "사용 중인 서버가 푸시 알림을 지원하지 않는 것 같습니다. 로그아웃했다가 다시 로그인한 후에도 이 메시지가 계속 표시되면 서버 관리자에게 문의하세요."
+        }
       }
     },
     "notifications_settings": "알림",
@@ -336,7 +348,7 @@
       },
       "label": "프로필"
     },
-    "select_a_settings": "Select a setting",
+    "select_a_settings": "설정 선택",
     "users": {
       "export": "유저 토큰 내보내기",
       "import": "유저 토큰 가져오기",
@@ -358,8 +370,8 @@
     "img_alt": {
       "ALT": "ALT",
       "desc": "설명",
-      "dismiss": "",
-      "read": "Read {0} description"
+      "dismiss": "닫기",
+      "read": "{0} 설명 읽기"
     },
     "poll": {
       "count": "{0}투표|{0}투표|{0}투표",
@@ -421,8 +433,32 @@
     "short_year_future": "{n}년",
     "short_year_past": "{n}년",
     "week_future": "0주 후|다음 주|{n}주 후",
-    "week_past": "0주 전|last week|{n} weeks ago",
-    "year_future": "0년 후|next year|in {n} 년 후",
+    "week_past": "0주 전|저번 주|{n}주 전",
+    "year_future": "0년 후|내년|{n} 년 후",
     "year_past": "0년 전|작년|{n}년 전"
+  },
+  "tooltip": {
+    "add_content_warning": "콘텐츠 경고 추가",
+    "add_emojis": "이모지 추가",
+    "add_media": "이미지, 비디오, 오디오 파일 추가",
+    "add_publishable_content": "콘텐츠를 게시합니다",
+    "change_content_visibility": "콘텐츠 가시성 변경",
+    "change_language": "언어 변경",
+    "emoji": "이모지",
+    "open_editor_tools": "에디터 툴",
+    "pick_an_icon": "아이콘 선택",
+    "toggle_bold": "굵게",
+    "toggle_code_block": "코드 블록 토글",
+    "toggle_italic": "이탤릭 토글"
+  },
+  "visibility": {
+    "direct": "다이렉트",
+    "direct_desc": "멘션된 사용자만 볼 수 있음",
+    "private": "팔로워 전용",
+    "private_desc": "팔로워만 볼 수 있음",
+    "public": "공개",
+    "public_desc": "모두가 볼 수 있음",
+    "unlisted": "미등재",
+    "unlisted_desc": "모든 사용자에게 표시되지만, 발견하기 기능에서는 제외됨"
   }
 }

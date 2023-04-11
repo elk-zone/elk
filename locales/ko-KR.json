@@ -72,12 +72,12 @@
     "block_account": {
       "cancel": "취소",
       "confirm": "차단",
-      "title": "정말로 {0}을/를 차단할까요？"
+      "title": "정말로 {0}을/를 차단할까요?"
     },
     "block_domain": {
       "cancel": "취소",
       "confirm": "차단",
-      "title": "정말로 {0}을/를 차단할까요？"
+      "title": "정말로 {0}을/를 차단할까요?"
     },
     "common": {
       "cancel": "아니오",
@@ -96,12 +96,12 @@
     "mute_account": {
       "cancel": "취소",
       "confirm": "Mute",
-      "title": "정말로 {0}을.를 뮤트하시겠어요？"
+      "title": "정말로 {0}을.를 뮤트하시겠어요?"
     },
     "show_reblogs": {
       "cancel": "취소",
       "confirm": "보기",
-      "title": "정말로 부스트를 {0}에서 표시할까요?？"
+      "title": "정말로 부스트를 {0}에서 표시할까요?"
     },
     "unfollow": {
       "cancel": "취소",

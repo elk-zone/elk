@@ -385,6 +385,10 @@
     "uploading": "Hochladen..."
   },
   "status": {
+    "account": {
+      "suspended_message": "Der Account dieses Status wurde vorübergehend gesperrt.",
+      "suspended_show": "Inhalt trotzdem anzeigen?"
+    },
     "boosted_by": "Boosted von",
     "edited": "Zuletzt bearbeitet: {0}",
     "favourited_by": "Favorisiert von",

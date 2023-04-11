@@ -119,12 +119,12 @@ const forceShow = ref(false)
       <template v-if="status.account.suspended && !forceShow">
         <div flex="~col 1" min-w-0>
           <p italic>
-            The account of this status has been suspended.
+            {{ $t('status.account.suspended_message') }}
           </p>
           <div>
             <button p-0 flex="~ center" gap-2 text-sm btn-text @click="forceShow = true">
               <div i-ri:eye-line />
-              <span>Show content anyways?</span>
+              <span>{{ $t('status.account.suspended_show') }}</span>
             </button>
           </div>
         </div>

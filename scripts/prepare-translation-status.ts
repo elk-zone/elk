@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer'
 import flatten from 'flat'
 import { createResolver } from '@nuxt/kit'
 import fs from 'fs-extra'

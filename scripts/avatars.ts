@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer'
 import { join, resolve } from 'pathe'
 import fs from 'fs-extra'
 import { ofetch } from 'ofetch'

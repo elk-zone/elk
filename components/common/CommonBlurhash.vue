@@ -20,28 +20,26 @@ const placeholderSrc = $computed(() => {
   return getDataUrlFromArr(pixels, 32, 32)
 })
 
+const target = ref<HTMLImageElement | null>(null)
+const targetIsVisible = ref(false)
+
 function loadImage() {
-  const img = document.createElement('img')
-
-  img.onload = () => {
-    isLoaded.value = true
-  }
-
-  img.src = src
-
-  if (srcset)
-    img.srcset = srcset
-
-  setTimeout(() => {
-    isLoaded.value = true
-  }, 3_000)
+  isLoaded.value = true
 }
 
-onMounted(() => {
-  if (shouldLoadImage)
-    loadImage()
-})
+const { stop } = useIntersectionObserver(target, ([{ isIntersecting }]) => {
+  targetIsVisible.value = isIntersecting
 
+  if (isIntersecting) {
+    if (shouldLoadImage)
+      loadImage()
+
+    // Once the image is loaded, we don't need to observe it anymore
+    stop()
+  }
+}, { threshold: 0.2 })
+
+// If the loading is requested lazy from outside, we need to load the image
 watch(() => shouldLoadImage, () => {
   if (shouldLoadImage)
     loadImage()
@@ -49,6 +47,6 @@ watch(() => shouldLoadImage, () => {
 </script>
 
 <template>
-  <img v-if="isLoaded || !placeholderSrc" v-bind="$attrs" :src="src" :srcset="srcset">
-  <img v-else v-bind="$attrs" :src="placeholderSrc">
+  <img v-if="isLoaded || !placeholderSrc" v-bind="$attrs" ref="target" loading="lazy" :src="src" :srcset="srcset">
+  <img v-else v-bind="$attrs" ref="target" loading="lazy" :src="placeholderSrc">
 </template>

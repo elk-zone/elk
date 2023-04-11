@@ -1,27 +1,36 @@
-<script setup lang="ts">
-defineProps<{
+<script setup lang="ts" generic="T extends boolean | unknown[]">
+const { value } = defineProps<{
   label: string
   hover?: boolean
+  value?: string
 }>()
+
 const { modelValue } = defineModel<{
-  modelValue?: boolean
+  modelValue?: T
 }>()
+
+const checked = $computed(() => {
+  if (Array.isArray(modelValue.value))
+    return modelValue.value.includes(value)
+
+  return modelValue.value
+})
 </script>
 
 <template>
   <label
     class="common-checkbox flex items-center cursor-pointer py-1 text-md w-full gap-y-1"
     :class="hover ? 'hover:bg-active ms--2 px-4 py-2' : null"
-    @click.prevent="modelValue = !modelValue"
   >
     <span flex-1 ms-2 pointer-events-none>{{ label }}</span>
     <span
-      :class="modelValue ? 'i-ri:checkbox-line' : 'i-ri:checkbox-blank-line'"
+      :class="checked ? 'i-ri:checkbox-line' : 'i-ri:checkbox-blank-line'"
       text-lg
       aria-hidden="true"
     />
     <input
       v-model="modelValue"
+      :value="value"
       type="checkbox"
       sr-only
     >
@@ -29,6 +38,10 @@ const { modelValue } = defineModel<{
 </template>
 
 <style>
+.common-checkbox {
+  border-bottom: 1px solid transparent;
+}
+
 .common-checkbox:focus-within {
   outline: none;
   border-bottom: 1px solid var(--c-text-base);

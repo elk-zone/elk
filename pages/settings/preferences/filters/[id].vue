@@ -58,7 +58,6 @@ function addKeyword() {
   form.keywords.push({
     id: 'new',
     keyword: newKeyword.value,
-    // @ts-expect-error 2322 Mastodon's documentation saying wholeWord is a string is wrong, it is in fact a boolean
     wholeWord: true,
     modified: true,
     removed: false,
@@ -128,7 +127,7 @@ async function deleteFilter() {
   deleteBusy = true
 
   try {
-    await client.v2.filters.remove(params.id)
+    await client.v2.filters.remove(params.id as string)
   }
   catch (error) {
     console.error(error)

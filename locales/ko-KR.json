@@ -414,7 +414,7 @@
     "just_now": "지금",
     "minute_future": "0분 후|1분|in {n}분 후",
     "minute_past": "0분 전|1분 전|{n}분 전",
-    "month_future": "0 달|다음 달|in {n} months",
+    "month_future": "0 달|다음 달|{n}달 후",
     "month_past": "0달 전|지난 달|{n}달 전",
     "second_future": "지금|{n}초 후| {n}초 후",
     "second_past": "지금|{n}초 전|{n}초 전",

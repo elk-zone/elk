@@ -1,7 +1,7 @@
-import LRU from 'lru-cache'
+import { LRUCache } from 'lru-cache'
 import type { mastodon } from 'masto'
 
-const cache = new LRU<string, any>({
+const cache = new LRUCache<string, any>({
   max: 1000,
 })
 

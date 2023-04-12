@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-let { modelValue } = $defineModel<{
+let { modelValue } = $defineModels<{
   modelValue: boolean
 }>()
 const colorMode = useColorMode()

@@ -19,11 +19,11 @@ const { client } = $(useMasto())
 
 async function vote(e: Event) {
   const formData = new FormData(e.target as HTMLFormElement)
-  const choices = formData.getAll('choices') as string[]
+  const choices = formData.getAll('choices').map(i => +i) as number[]
 
   // Update the poll optimistically
   for (const [index, option] of poll.options.entries()) {
-    if (choices.includes(String(index)))
+    if (choices.includes(index))
       option.votesCount = (option.votesCount || 0) + 1
   }
   poll.voted = true

@@ -32,11 +32,14 @@ export default defineNuxtConfig({
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
-    '@nuxt/devtools',
   ],
+  devtools: {
+    enabled: true,
+  },
   experimental: {
     payloadExtraction: false,
     inlineSSRStyles: false,
+    renderJsonPayloads: true,
   },
   css: [
     '@unocss/reset/tailwind.css',

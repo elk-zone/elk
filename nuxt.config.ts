@@ -3,6 +3,7 @@ import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
+import type { BuildInfo } from './types'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -32,11 +33,14 @@ export default defineNuxtConfig({
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
-    '@nuxt/devtools',
   ],
+  devtools: {
+    enabled: true,
+  },
   experimental: {
     payloadExtraction: false,
     inlineSSRStyles: false,
+    renderJsonPayloads: true,
   },
   css: [
     '@unocss/reset/tailwind.css',
@@ -257,5 +261,13 @@ declare global {
 declare module 'nuxt/dist/app' {
   interface RuntimeNuxtHooks {
     'elk-logo:click': () => void
+  }
+}
+
+declare module '@nuxt/schema' {
+  interface AppConfig {
+    storage: any
+    env: BuildInfo['env']
+    buildInfo: BuildInfo
   }
 }

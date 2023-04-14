@@ -8,7 +8,7 @@ const { options, command } = defineProps<{
   command?: boolean
 }>()
 
-const { modelValue } = defineModel<{
+const { modelValue } = defineModels<{
   modelValue: string
 }>()
 

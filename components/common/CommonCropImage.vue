@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
   stencilSizePercentage: 0.9,
 })
 
-const { modelValue: file } = defineModel<{
+const { modelValue: file } = defineModels<{
   /** Images to be cropped */
   modelValue: File | null
 }>()

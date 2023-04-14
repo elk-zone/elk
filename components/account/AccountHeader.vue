@@ -81,6 +81,8 @@ watchEffect(() => {
   iconFields.value = icons
 })
 
+const personalNoteDraft = ref(relationship?.note ?? '')
+
 async function editNote(event: Event) {
   if (!event.target || !('value' in event.target) || !relationship)
     return
@@ -92,10 +94,13 @@ async function editNote(event: Event) {
 
   const newNoteApiResult = await client.v1.accounts.createNote(account.id, { comment: newNote })
   relationship.note = newNoteApiResult.note
+  personalNoteDraft.value = relationship.note ?? ''
 }
 
 const isSelf = $(useSelfAccount(() => account))
 const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
+
+const personalNoteMaxLength = 2000
 </script>
 
 <template>
@@ -124,7 +129,7 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
               <AccountMoreButton
                 :account="account" :command="command"
                 @add-note="isEditingPersonalNote = true"
-                @remove-note="isEditingPersonalNote = false"
+                @remove-note="() => { isEditingPersonalNote = false; personalNoteDraft = '' }"
               />
               <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
                 <button
@@ -175,12 +180,31 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           <p font-medium>
             {{ $t('account.profile_personal_note') }}
           </p>
+          <p text-secondary text-sm :class="{ 'text-orange': personalNoteDraft.length > (personalNoteMaxLength - 100) }">
+            {{ personalNoteDraft.length }} / {{ personalNoteMaxLength }}
+          </p>
         </div>
-        <textarea
-          input-base
-          :value="relationship?.note ?? ''"
-          @change="editNote"
-        />
+        <div position-relative>
+          <div
+            input-base
+            min-h-10ex
+            whitespace-pre-wrap
+            opacity-0
+            :class="{ 'trailing-newline': personalNoteDraft.endsWith('\n') }"
+          >
+            {{ personalNoteDraft }}
+          </div>
+          <textarea
+            v-model="personalNoteDraft"
+            input-base
+            position-absolute
+            style="height: 100%"
+            top-0
+            resize-none
+            :maxlength="personalNoteMaxLength"
+            @change="editNote"
+          />
+        </div>
       </label>
       <div v-if="account.note" max-h-100 overflow-y-auto>
         <ContentRich text-4 text-base :content="account.note" :emojis="account.emojis" />
@@ -205,3 +229,9 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
     </div>
   </div>
 </template>
+
+<style>
+.trailing-newline::after {
+  content: '\a';
+}
+</style>

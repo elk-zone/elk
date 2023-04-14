@@ -7,7 +7,7 @@ const props = defineProps<{
   disabled?: boolean
 }>()
 
-const account = props.account || (props.handle ? useAccountByHandle(props.handle!) : undefined)
+const account = computed(() => props.account || (props.handle ? useAccountByHandle(props.handle!) : undefined))
 const userSettings = useUserSettings()
 
 defineOptions({

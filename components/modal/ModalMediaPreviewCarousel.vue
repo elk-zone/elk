@@ -14,7 +14,7 @@ const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
-const { modelValue } = defineModel<{
+const { modelValue } = defineModels<{
   modelValue: number
 }>()
 

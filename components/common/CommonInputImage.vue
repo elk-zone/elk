@@ -22,7 +22,7 @@ const emit = defineEmits<{
   (event: 'error', code: number, message: string): void
 }>()
 
-const { modelValue: file } = defineModel<{
+const { modelValue: file } = defineModels<{
   modelValue: FileWithHandle | null
 }>()
 

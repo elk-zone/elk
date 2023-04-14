@@ -6,7 +6,7 @@ const emit = defineEmits<{
   (e: 'listUpdated', list: mastodon.v1.List): void
   (e: 'listRemoved', id: string): void
 }>()
-const { list } = defineModel<{
+const { list } = defineModels<{
   list: mastodon.v1.List
 }>()
 

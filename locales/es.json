@@ -34,6 +34,7 @@
     "posts": "Publicaciones",
     "posts_count": "{0} Publicaciones|{0} Publicación|{0} Publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
+    "profile_personal_note": "Nota Personal",
     "profile_unavailable": "Perfil no disponible",
     "request_follow": "Solicitar seguirle",
     "unblock": "Desbloquear",
@@ -225,6 +226,7 @@
     "sequence_then": "seguido de"
   },
   "menu": {
+    "add_personal_note": "Agregar una nota personal a {0}",
     "block_account": "Bloquear a {0}",
     "block_domain": "Bloquear dominio {0}",
     "copy_link_to_post": "Copiar enlace",
@@ -239,6 +241,7 @@
     "mute_conversation": "Silenciar publicación",
     "open_in_original_site": "Abrir página original",
     "pin_on_profile": "Fijar en tu perfil",
+    "remove_personal_note": "Eliminar nota personal de {0}",
     "share_post": "Compartir esta publicación",
     "show_favourited_and_boosted_by": "Mostrar quien marcó como favorita y quien retooteó",
     "show_reblogs": "Mostrar retoots de {0}",

@@ -497,6 +497,10 @@
     "uploading": "Uploading..."
   },
   "status": {
+    "account": {
+      "suspended_message": "The account of this status has been suspended.",
+      "suspended_show": "Show content anyways?"
+    },
     "boosted_by": "Boosted By",
     "edited": "Edited {0}",
     "favourited_by": "Favorited By",

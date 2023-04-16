@@ -65,6 +65,8 @@ const isDM = $computed(() => status.visibility === 'direct')
 
 const showUpperBorder = $computed(() => props.newer && !directReply)
 const showReplyTo = $computed(() => !replyToMain && !directReply)
+
+const forceShow = ref(false)
 </script>
 
 <template>
@@ -114,60 +116,75 @@ const showReplyTo = $computed(() => !replyToMain && !directReply)
     </slot>
 
     <div flex gap-3 :class="{ 'text-secondary': inNotification }">
-      <!-- Avatar -->
-      <div relative>
-        <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
-          <div i-ri:repeat-fill text-green w-16px h-16px />
+      <template v-if="status.account.suspended && !forceShow">
+        <div flex="~col 1" min-w-0>
+          <p italic>
+            {{ $t('status.account.suspended_message') }}
+          </p>
+          <div>
+            <button p-0 flex="~ center" gap-2 text-sm btn-text @click="forceShow = true">
+              <div i-ri:eye-line />
+              <span>{{ $t('status.account.suspended_show') }}</span>
+            </button>
+          </div>
         </div>
-        <AccountHoverWrapper :account="status.account">
-          <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
-            <AccountBigAvatar :account="status.account" />
-          </NuxtLink>
-        </AccountHoverWrapper>
-
-        <div v-if="connectReply" w-full h-full flex mt--3px justify-center>
-          <div w-1px border="x base" />
-        </div>
-      </div>
-
-      <!-- Main -->
-      <div flex="~ col 1" min-w-0>
-        <!-- Account Info -->
-        <div flex items-center space-x-1>
+      </template>
+      <template v-else>
+        <!-- Avatar -->
+        <div relative>
+          <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
+            <div i-ri:repeat-fill text-green w-16px h-16px />
+          </div>
           <AccountHoverWrapper :account="status.account">
-            <StatusAccountDetails :account="status.account" />
+            <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
+              <AccountBigAvatar :account="status.account" />
+            </NuxtLink>
           </AccountHoverWrapper>
-          <div flex-auto />
-          <div v-show="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
-            <AccountBotIndicator v-if="status.account.bot" me-2 />
-            <div flex="~ gap1" items-center>
-              <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
-              <div flex>
-                <CommonTooltip :content="createdAt">
-                  <NuxtLink :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
-                    <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
-                      {{ timeago }}
-                    </time>
-                  </NuxtLink>
-                </CommonTooltip>
-                <StatusEditIndicator :status="status" inline />
+
+          <div v-if="connectReply" w-full h-full flex mt--3px justify-center>
+            <div w-1px border="x base" />
+          </div>
+        </div>
+
+        <!-- Main -->
+        <div flex="~ col 1" min-w-0>
+          <!-- Account Info -->
+          <div flex items-center space-x-1>
+            <AccountHoverWrapper :account="status.account">
+              <StatusAccountDetails :account="status.account" />
+            </AccountHoverWrapper>
+            <div flex-auto />
+            <div v-show="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
+              <AccountBotIndicator v-if="status.account.bot" me-2 />
+              <div flex="~ gap1" items-center>
+                <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
+                <div flex>
+                  <CommonTooltip :content="createdAt">
+                    <NuxtLink :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
+                      <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
+                        {{ timeago }}
+                      </time>
+                    </NuxtLink>
+                  </CommonTooltip>
+                  <StatusEditIndicator :status="status" inline />
+                </div>
               </div>
             </div>
+            <StatusActionsMore v-if="actions !== false" :status="status" me--2 />
           </div>
-          <StatusActionsMore v-if="actions !== false" :status="status" me--2 />
-        </div>
 
-        <!-- Content -->
-        <StatusContent
-          :status="status"
-          :newer="newer"
-          :context="context"
-          :is-preview="isPreview"
-          :in-notification="inNotification"
-          mb2 :class="{ 'mt-2 mb1': isDM }"
-        />
-        <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
-      </div>
+          <!-- Content -->
+          <StatusContent
+            :status="status"
+            :newer="newer"
+            :context="context"
+            :is-preview="isPreview"
+            :in-notification="inNotification"
+            mb2 :class="{ 'mt-2 mb1': isDM }"
+          />
+          <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
+        </div>
+      </template>
     </div>
   </StatusLink>
 </template>

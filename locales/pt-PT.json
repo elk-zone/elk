@@ -497,6 +497,10 @@
     "uploading": "A carregar..."
   },
   "status": {
+    "account": {
+      "suspended_message": "A conta de estado foi suspensa.",
+      "suspended_show": "Mostrar conteúdo mesmo assim?"
+    },
     "boosted_by": "Partilhada Por",
     "edited": "Editada {0}",
     "favourited_by": "Adicionada Aos Favoritos Por",
@@ -623,3 +627,4 @@
     "unlisted_desc": "Visível por todos, mas não incluída nas funcionalidades de divulgação"
   }
 }
+

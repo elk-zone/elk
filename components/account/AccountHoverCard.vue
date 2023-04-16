@@ -19,6 +19,6 @@ const relationship = $(useRelationship(account))
     <div v-if="account.note" max-h-100 overflow-y-auto>
       <ContentRich text-4 text-secondary :content="account.note" :emojis="account.emojis" />
     </div>
-    <AccountPostsFollowers text-sm :account="account" />
+    <AccountPostsFollowers text-sm :account="account" :is-hover-card="true" />
   </div>
 </template>

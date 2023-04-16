@@ -99,8 +99,7 @@
   "confirm": {
     "common": {
       "cancel": "Hayır",
-      "confirm": "Evet",
-      "title": "Emin misiniz?"
+      "confirm": "Evet"
     },
     "delete_posts": {
       "cancel": "İptal et",

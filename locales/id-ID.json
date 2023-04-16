@@ -30,7 +30,6 @@
     "mutuals": "Terkait",
     "notifications_on_post_disable": "Berhenti memberi tahu saya saat {username} memposting",
     "notifications_on_post_enable": "Beri tahu saya jika {username} memposting",
-    "notify_on_post": "Beri tahu saya jika {username} memposting",
     "pinned": "Dilekatkan",
     "posts": "Posting",
     "posts_count": "{0} Pos|{0} Pos|{0} Pos",
@@ -92,11 +91,6 @@
     "toggle_zen_mode": "Beralih ke modus zen"
   },
   "common": {
-    "confirm_dialog": {
-      "cancel": "Tidak",
-      "confirm": "Ya",
-      "title": "Apakah Anda yakin {0}?"
-    },
     "end_of_list": "Akhir dari daftar",
     "error": "KESALAHAN",
     "in": "di dalam",
@@ -180,11 +174,6 @@
     "copy_link_to_post": "Salin tautan pos ini",
     "delete": "Hapus",
     "delete_and_redraft": "Hapus dan buat ulang draf",
-    "delete_confirm": {
-      "cancel": "Batalkan",
-      "confirm": "Hapus",
-      "title": "Yakin ingin menghapus postingan ini?"
-    },
     "direct_message_account": "Pesan langsung {0}",
     "edit": "Sunting",
     "hide_reblogs": "Sembunyikan dukungan dari {0}",

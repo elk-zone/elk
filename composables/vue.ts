@@ -1,6 +1,6 @@
 import type { ComponentInternalInstance } from 'vue'
 import { onActivated, onDeactivated, ref } from 'vue'
-import type { ActiveHeadEntry, HeadEntryOptions, UseHeadInput } from '@vueuse/head'
+import type { ActiveHeadEntry, HeadEntryOptions, UseHeadInput } from '@unhead/vue'
 import type { SchemaAugmentations } from '@unhead/schema'
 
 export const isHydrated = ref(false)

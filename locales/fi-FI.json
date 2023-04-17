@@ -295,13 +295,6 @@
       "font_size": "Kirjasinkoko",
       "label": "Käyttöliittymä",
       "light_mode": "Vaalea",
-      "size_label": {
-        "lg": "Suuri",
-        "md": "Keski",
-        "sm": "Pieni",
-        "xl": "Ekstra-suuri",
-        "xs": "Ekstra-pieni"
-      },
       "system_mode": "Laitteen asetus",
       "theme_color": "Korostusväri"
     },

@@ -2,7 +2,7 @@
 
 const { t } = useI18n()
 
-useHead({
+useHydratedHead({
   title: () => t('title.local_timeline'),
 })
 </script>

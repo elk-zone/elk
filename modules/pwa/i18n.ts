@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer'
 import { readFile } from 'fs-extra'
 import { createResolver } from '@nuxt/kit'
 import type { ManifestOptions } from 'vite-plugin-pwa'
@@ -92,12 +93,13 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
           src: 'pwa-512x512.png',
           sizes: '512x512',
           type: 'image/png',
+          purpose: 'any',
         },
         {
           src: 'maskable-icon.png',
           sizes: '512x512',
           type: 'image/png',
-          purpose: 'any maskable',
+          purpose: 'maskable',
         },
       ],
       share_target: {
@@ -139,12 +141,13 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
           src: 'pwa-512x512.png',
           sizes: '512x512',
           type: 'image/png',
+          purpose: 'any',
         },
         {
           src: 'maskable-icon.png',
           sizes: '512x512',
           type: 'image/png',
-          purpose: 'any maskable',
+          purpose: 'maskable',
         },
       ],
       share_target: {

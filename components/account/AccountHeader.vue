@@ -20,6 +20,7 @@ const relationship = $(useRelationship(account))
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
+const isEditingPersonalNote = ref<boolean>(false)
 const hasHeader = $computed(() => !account.header.endsWith('/original/missing.png'))
 
 function getFieldIconTitle(fieldName: string) {
@@ -80,6 +81,19 @@ watchEffect(() => {
   iconFields.value = icons
 })
 
+async function editNote(event: Event) {
+  if (!event.target || !('value' in event.target) || !relationship)
+    return
+
+  const newNote = event.target?.value as string
+
+  if (relationship.note?.trim() === newNote.trim())
+    return
+
+  const newNoteApiResult = await client.v1.accounts.createNote(account.id, { comment: newNote })
+  relationship.note = newNoteApiResult.note
+}
+
 const isSelf = $(useSelfAccount(() => account))
 const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
 </script>
@@ -107,7 +121,11 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
             </NuxtLink>
             <AccountFollowButton :account="account" :command="command" />
             <span inset-ie-0 flex gap-2 items-center>
-              <AccountMoreButton :account="account" :command="command" />
+              <AccountMoreButton
+                :account="account" :command="command"
+                @add-note="isEditingPersonalNote = true"
+                @remove-note="isEditingPersonalNote = false"
+              />
               <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
                 <button
                   :aria-pressed="isNotifiedOnPost"
@@ -145,6 +163,25 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
           <AccountHandle :account="account" />
         </div>
       </div>
+      <label
+        v-if="relationship?.note?.length !== 0 || isEditingPersonalNote"
+        space-y-2
+        pb-4
+        block
+        border="b base"
+      >
+        <div flex flex-row space-x-2 flex-v-center>
+          <div i-ri-edit-2-line />
+          <p font-medium>
+            {{ $t('account.profile_personal_note') }}
+          </p>
+        </div>
+        <textarea
+          input-base
+          :value="relationship?.note ?? ''"
+          @change="editNote"
+        />
+      </label>
       <div v-if="account.note" max-h-100 overflow-y-auto>
         <ContentRich text-4 text-base :content="account.note" :emojis="account.emojis" />
       </div>

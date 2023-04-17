@@ -142,13 +142,6 @@
     "replying": "Sem napište odpověď",
     "the_thread": "vlákno"
   },
-  "settings": {
-    "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
-    }
-  },
   "state": {
     "edited": "(Upraveno)",
     "editing": "Upravuje se",

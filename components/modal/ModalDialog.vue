@@ -48,7 +48,7 @@ const emit = defineEmits<{
   (event: 'close',): void
 }>()
 
-const { modelValue: visible } = defineModel<{
+const { modelValue: visible } = defineModels<{
   /** v-model dislog visibility */
   modelValue: boolean
 }>()

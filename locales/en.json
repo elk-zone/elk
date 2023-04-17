@@ -34,6 +34,7 @@
     "posts": "Posts",
     "posts_count": "{0} Posts|{0} Post|{0} Posts",
     "profile_description": "{0}'s profile header",
+    "profile_personal_note": "Personal Note",
     "profile_unavailable": "Profile unavailable",
     "request_follow": "Request to follow",
     "unblock": "Unblock",
@@ -225,6 +226,7 @@
     "sequence_then": "then"
   },
   "menu": {
+    "add_personal_note": "Add personal note to {0}",
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
     "copy_link_to_post": "Copy link to this post",
@@ -239,6 +241,7 @@
     "mute_conversation": "Mute this post",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
+    "remove_personal_note": "Remove personal note from {0}",
     "share_post": "Share this post",
     "show_favourited_and_boosted_by": "Show who favorited and boosted",
     "show_reblogs": "Show boosts from {0}",
@@ -494,6 +497,10 @@
     "uploading": "Uploading..."
   },
   "status": {
+    "account": {
+      "suspended_message": "The account of this status has been suspended.",
+      "suspended_show": "Show content anyways?"
+    },
     "boosted_by": "Boosted By",
     "edited": "Edited {0}",
     "favourited_by": "Favorited By",

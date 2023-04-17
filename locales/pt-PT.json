@@ -34,6 +34,7 @@
     "posts": "Publicações",
     "posts_count": "{0} Publicações|{0} Publicação|{0} Publicações",
     "profile_description": "Descrição de perfil de {0}",
+    "profile_personal_note": "Nota Pessoal",
     "profile_unavailable": "Perfil indisponível",
     "request_follow": "Pedir para seguir",
     "unblock": "Desbloquear",
@@ -225,6 +226,7 @@
     "sequence_then": "seguido de"
   },
   "menu": {
+    "add_personal_note": "Adicionar nota pessoal para {0}",
     "block_account": "Bloquear {0}",
     "block_domain": "Bloquear domínio {0}",
     "copy_link_to_post": "Copiar ligação para esta publicação",
@@ -239,6 +241,7 @@
     "mute_conversation": "Silenciar esta publicação",
     "open_in_original_site": "Abrir no sítio original",
     "pin_on_profile": "Fixar no perfil",
+    "remove_personal_note": "Remover nota pessoal para {0}",
     "share_post": "Partilhar esta publicação",
     "show_favourited_and_boosted_by": "Mostrar quem adicionou aos favoritos e partilhou",
     "show_reblogs": "Mostrar partilhas de {0}",
@@ -494,6 +497,10 @@
     "uploading": "A carregar..."
   },
   "status": {
+    "account": {
+      "suspended_message": "A conta de estado foi suspensa.",
+      "suspended_show": "Mostrar conteúdo mesmo assim?"
+    },
     "boosted_by": "Partilhada Por",
     "edited": "Editada {0}",
     "favourited_by": "Adicionada Aos Favoritos Por",

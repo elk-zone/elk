@@ -77,7 +77,7 @@
     "sign_in_desc": "기존 계정 추가",
     "switch_account": "{0}로 전환",
     "switch_account_desc": "다른 계정으로 전환",
-    "toggle_dark_mode": "다크 모드 토클"
+    "toggle_dark_mode": "다크 모드 토글"
   },
   "confirm": {
     "block_account": {
@@ -180,7 +180,7 @@
     "show_favourited_and_boosted_by": "누가 좋아요와 부스트를 했는지 보기",
     "show_untranslated": "미번역본 보기",
     "toggle_theme": {
-      "dark": "다크 모드 토클",
+      "dark": "다크 모드 토글",
       "light": "라이크 모드 토글"
     },
     "translate_post": "포스트 번역",
@@ -217,7 +217,7 @@
     "select_language": "표시 언어",
     "settings": "설정",
     "show_intro": "인트로 보기",
-    "toggle_theme": "토클 테마"
+    "toggle_theme": "테마 토글"
   },
   "notification": {
     "favourited_post": "당신의 포스트를 좋아합니다",

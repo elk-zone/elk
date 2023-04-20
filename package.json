@@ -74,7 +74,7 @@
     "lru-cache": "^9.0.1",
     "masto": "^5.11.1",
     "nuxt-security": "^0.13.0",
-    "nuxt-vitest": "^0.6.9",
+    "nuxt-vitest": "^0.6.10",
     "page-lifecycle": "^0.1.2",
     "pinia": "^2.0.34",
     "postcss-nested": "^6.0.1",

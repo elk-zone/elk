@@ -10213,7 +10213,7 @@ packages:
       '@vitejs/plugin-vue-jsx': '*'
       vite: '*'
     dependencies:
-      '@nuxt/kit': file:../nuxt/ecosystem-ci/workspace/nuxt/packages/kit(rollup@2.79.1)
+      '@nuxt/kit': 3.4.1(rollup@2.79.1)
       '@vitejs/plugin-vue': 4.1.0(vite@4.2.1)(vue@3.2.45)
       '@vitejs/plugin-vue-jsx': 3.0.1(vite@4.2.1)(vue@3.2.45)
       '@vitest/ui': 0.30.1
@@ -14321,36 +14321,6 @@ packages:
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
-
-  file:../nuxt/ecosystem-ci/workspace/nuxt/packages/kit(rollup@2.79.1):
-    resolution: {directory: ../nuxt/ecosystem-ci/workspace/nuxt/packages/kit, type: directory}
-    id: file:../nuxt/ecosystem-ci/workspace/nuxt/packages/kit
-    name: '@nuxt/kit'
-    version: 3.4.1
-    engines: {node: ^14.18.0 || ^16.10.0 || ^17.0.0 || ^18.0.0 || ^19.0.0}
-    dependencies:
-      '@nuxt/schema': link:../schema
-      c12: 1.4.1
-      consola: 3.1.0
-      defu: 6.1.2
-      globby: 13.1.4
-      hash-sum: 2.0.0
-      ignore: 5.2.4
-      jiti: 1.18.2
-      knitwork: 1.0.0
-      lodash.template: 4.5.0
-      mlly: 1.2.0
-      pathe: 1.1.0
-      pkg-types: 1.0.2
-      scule: 1.0.0
-      semver: 7.5.0
-      unctx: 2.3.0
-      unimport: 3.0.6(rollup@2.79.1)
-      untyped: 1.3.2
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-    dev: false
 
   github.com/tauri-apps/tauri-plugin-log/36100c269e33ac91246b0a4bfadd18c1caee5296:
     resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/36100c269e33ac91246b0a4bfadd18c1caee5296}

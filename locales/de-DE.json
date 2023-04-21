@@ -112,7 +112,8 @@
       "title": "Möchtest du diesen Beitrag wirklich löschen?"
     },
     "block_account": {
-      "cancel": "Stornieren"
+      "cancel": "Stornieren",
+      "confirm": "Block"
     }
   },
   "conversation": {

@@ -548,6 +548,7 @@
     "clear_error": "Fehler löschen",
     "create": "Erstellen",
     "delete": "Löschen Sie diese Liste",
-    "delete_error": "Beim Löschen der Liste ist ein Fehler aufgetreten"
+    "delete_error": "Beim Löschen der Liste ist ein Fehler aufgetreten",
+    "edit": "Bearbeiten Sie diese Liste"
   }
 }

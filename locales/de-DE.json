@@ -120,6 +120,9 @@
       "cancel": "Stornieren",
       "confirm": "Block",
       "title": "Möchten Sie {0} wirklich blockieren?"
+    },
+    "delete_list": {
+      "cancel": "Stornieren"
     }
   },
   "conversation": {

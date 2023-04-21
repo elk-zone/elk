@@ -132,7 +132,8 @@
       "title": "Möchten Sie {0} wirklich stumm schalten?"
     },
     "show_reblogs": {
-      "cancel": "Stornieren"
+      "cancel": "Stornieren",
+      "confirm": "Zeigen"
     }
   },
   "conversation": {

@@ -94,7 +94,8 @@
     "error": "FEHLER",
     "in": "in",
     "not_found": "404 - Nicht gefunden",
-    "offline_desc": "Anscheinend bist du offline. Bitte überprüfe deine Netzwerkverbindung."
+    "offline_desc": "Anscheinend bist du offline. Bitte überprüfe deine Netzwerkverbindung.",
+    "fetching": "Holen..."
   },
   "compose": {
     "draft_title": "Entwurf {0}",

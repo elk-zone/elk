@@ -113,7 +113,8 @@
     },
     "block_account": {
       "cancel": "Stornieren",
-      "confirm": "Block"
+      "confirm": "Block",
+      "title": "Möchten Sie {0} wirklich blockieren?"
     }
   },
   "conversation": {

@@ -543,6 +543,7 @@
     }
   },
   "list": {
-    "add_account": "Konto zur Liste hinzufügen"
+    "add_account": "Konto zur Liste hinzufügen",
+    "cancel_edit": "Bearbeitung abbrechen"
   }
 }

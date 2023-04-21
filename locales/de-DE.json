@@ -530,7 +530,8 @@
   },
   "custom_cards": {
     "stackblitz": {
-      "lines": "Linien {0}"
+      "lines": "Linien {0}",
+      "open": "Offen"
     }
   }
 }

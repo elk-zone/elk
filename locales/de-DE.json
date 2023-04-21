@@ -547,6 +547,7 @@
     "cancel_edit": "Bearbeitung abbrechen",
     "clear_error": "Fehler löschen",
     "create": "Erstellen",
-    "delete": "Löschen Sie diese Liste"
+    "delete": "Löschen Sie diese Liste",
+    "delete_error": "Beim Löschen der Liste ist ein Fehler aufgetreten"
   }
 }

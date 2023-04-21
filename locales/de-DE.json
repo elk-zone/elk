@@ -110,6 +110,9 @@
       "cancel": "Abbrechen",
       "confirm": "Löschen",
       "title": "Möchtest du diesen Beitrag wirklich löschen?"
+    },
+    "block_account": {
+      "cancel": "Stornieren"
     }
   },
   "conversation": {

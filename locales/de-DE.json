@@ -531,7 +531,8 @@
   "custom_cards": {
     "stackblitz": {
       "lines": "Linien {0}",
-      "open": "Offen"
+      "open": "Offen",
+      "snippet_from": "Ausschnitt von {0}"
     }
   }
 }

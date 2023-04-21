@@ -130,6 +130,9 @@
       "cancel": "Stornieren",
       "confirm": "Stumm",
       "title": "Möchten Sie {0} wirklich stumm schalten?"
+    },
+    "show_reblogs": {
+      "cancel": "Stornieren"
     }
   },
   "conversation": {

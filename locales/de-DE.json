@@ -138,7 +138,8 @@
     },
     "unfollow": {
       "cancel": "Stornieren",
-      "confirm": "Entfolgen"
+      "confirm": "Entfolgen",
+      "title": "Sind Sie sicher, dass Sie nicht mehr folgen möchten?"
     }
   },
   "conversation": {

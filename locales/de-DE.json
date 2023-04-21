@@ -122,7 +122,8 @@
       "title": "Möchten Sie {0} wirklich blockieren?"
     },
     "delete_list": {
-      "cancel": "Stornieren"
+      "cancel": "Stornieren",
+      "confirm": "Löschen"
     }
   },
   "conversation": {

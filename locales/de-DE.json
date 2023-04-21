@@ -541,5 +541,8 @@
       "open": "Offen",
       "snippet_from": "Ausschnitt von {0}"
     }
+  },
+  "list": {
+    "add_account": "Konto zur Liste hinzufügen"
   }
 }

@@ -161,7 +161,10 @@
     "desc_para4": "Elk ist Open Source. \nWenn du beim Testen helfen, Feedback geben oder einen Beitrag leisten möchtest,",
     "desc_para5": "Kontaktiere uns auf GitHub",
     "desc_para6": "und mache mit.",
-    "title": "Elk ist in der Alpha!"
+    "title": "Elk ist in der Alpha!",
+    "build_preview": {
+      "desc1": "Sie sehen sich gerade eine Vorschauversion von Elk aus der Community an – {0}."
+    }
   },
   "language": {
     "search": "Suche"

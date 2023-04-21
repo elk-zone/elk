@@ -133,7 +133,8 @@
     },
     "show_reblogs": {
       "cancel": "Stornieren",
-      "confirm": "Zeigen"
+      "confirm": "Zeigen",
+      "title": "Sind Sie sicher, dass Sie Boosts von {0} anzeigen möchten?"
     }
   },
   "conversation": {

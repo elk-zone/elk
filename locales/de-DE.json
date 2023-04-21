@@ -167,7 +167,8 @@
       "desc2": "Es kann ungeprüfte oder sogar böswillige Änderungen enthalten.",
       "desc3": "Melden Sie sich nicht mit Ihrem echten Konto an.",
       "title": "Vorschau der Bereitstellung"
-    }
+    },
+    "footer_team": "Das Elk-Team"
   },
   "language": {
     "search": "Suche"

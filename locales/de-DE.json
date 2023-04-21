@@ -545,6 +545,7 @@
   "list": {
     "add_account": "Konto zur Liste hinzufügen",
     "cancel_edit": "Bearbeitung abbrechen",
-    "clear_error": "Fehler löschen"
+    "clear_error": "Fehler löschen",
+    "create": "Erstellen"
   }
 }

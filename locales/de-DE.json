@@ -165,7 +165,8 @@
     "build_preview": {
       "desc1": "Sie sehen sich gerade eine Vorschauversion von Elk aus der Community an – {0}.",
       "desc2": "Es kann ungeprüfte oder sogar böswillige Änderungen enthalten.",
-      "desc3": "Melden Sie sich nicht mit Ihrem echten Konto an."
+      "desc3": "Melden Sie sich nicht mit Ihrem echten Konto an.",
+      "title": "Vorschau der Bereitstellung"
     }
   },
   "language": {

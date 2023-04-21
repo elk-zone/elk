@@ -127,7 +127,8 @@
       "title": "Möchten Sie die Liste \"{0}\" wirklich löschen?"
     },
     "mute_account": {
-      "cancel": "Stornieren"
+      "cancel": "Stornieren",
+      "confirm": "Stumm"
     }
   },
   "conversation": {

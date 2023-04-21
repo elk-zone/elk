@@ -128,7 +128,8 @@
     },
     "mute_account": {
       "cancel": "Stornieren",
-      "confirm": "Stumm"
+      "confirm": "Stumm",
+      "title": "Möchten Sie {0} wirklich stumm schalten?"
     }
   },
   "conversation": {

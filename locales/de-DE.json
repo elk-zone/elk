@@ -549,6 +549,7 @@
     "create": "Erstellen",
     "delete": "Löschen Sie diese Liste",
     "delete_error": "Beim Löschen der Liste ist ein Fehler aufgetreten",
-    "edit": "Bearbeiten Sie diese Liste"
+    "edit": "Bearbeiten Sie diese Liste",
+    "edit_error": "Beim Aktualisieren der Liste ist ein Fehler aufgetreten"
   }
 }

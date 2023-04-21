@@ -163,7 +163,8 @@
     "desc_para6": "und mache mit.",
     "title": "Elk ist in der Alpha!",
     "build_preview": {
-      "desc1": "Sie sehen sich gerade eine Vorschauversion von Elk aus der Community an – {0}."
+      "desc1": "Sie sehen sich gerade eine Vorschauversion von Elk aus der Community an – {0}.",
+      "desc2": "Es kann ungeprüfte oder sogar böswillige Änderungen enthalten."
     }
   },
   "language": {

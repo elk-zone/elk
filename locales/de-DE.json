@@ -67,7 +67,8 @@
     "sign_in": "Anmelden",
     "switch_account": "Account wechseln",
     "vote": "Abstimmen",
-    "clear_publish_failed": "Veröffentlichungsfehler löschen"
+    "clear_publish_failed": "Veröffentlichungsfehler löschen",
+    "sign_in_to": "Melden Sie sich bei {0} an"
   },
   "app_desc_short": "Ein flinker Mastodon Web-Client",
   "app_logo": "Elk Logo",

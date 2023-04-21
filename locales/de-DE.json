@@ -117,7 +117,8 @@
       "title": "Möchten Sie {0} wirklich blockieren?"
     },
     "block_domain": {
-      "cancel": "Stornieren"
+      "cancel": "Stornieren",
+      "confirm": "Block"
     }
   },
   "conversation": {

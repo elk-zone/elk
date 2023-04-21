@@ -527,5 +527,10 @@
     "public_desc": "Für alle sichtbar",
     "unlisted": "Nicht gelistet",
     "unlisted_desc": "Für alle sichtbar, aber Erkennungsfunktionen deaktiviert"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Linien {0}"
+    }
   }
 }

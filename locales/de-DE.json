@@ -123,7 +123,8 @@
     },
     "delete_list": {
       "cancel": "Stornieren",
-      "confirm": "Löschen"
+      "confirm": "Löschen",
+      "title": "Möchten Sie die Liste \"{0}\" wirklich löschen?"
     }
   },
   "conversation": {

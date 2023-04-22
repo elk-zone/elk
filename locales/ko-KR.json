@@ -21,9 +21,11 @@
     "followers_count": "{0}팔로워|{0}팔로워|{0}팔로워",
     "following": "팔로잉",
     "following_count": "{0}팔로잉",
+    "muted_users": "뮤트된 사용자",
+    "mutuals": "맞팔로우 중",
     "pinned": "고정됨",
     "posts": "포스트",
-    "posts_count": "{0} 포스트|{0} 포스트|{0} 포스트",
+    "posts_count": "{0}포스트|{0}포스트|{0}포스트",
     "profile_description": "{0}의 프로필 헤더",
     "profile_unavailable": "프로필 사용 불가능",
     "request_follow": "팔로우 요청",
@@ -62,11 +64,20 @@
     "vote": "투표"
   },
   "app_desc_short": "민첩한 마스토돈 웹 클라이언트",
-  "app_logo": "Elk Logo",
+  "app_logo": "Elk 로고",
   "app_name": "Elk",
   "attachment": {
     "edit_title": "설명",
     "remove_label": "첨부파일 삭제"
+  },
+  "command": {
+    "complete": "완료",
+    "compose_desc": "새 포스트 쓰기",
+    "select_lang": "언어 선택",
+    "sign_in_desc": "기존 계정 추가",
+    "switch_account": "{0}로 전환",
+    "switch_account_desc": "다른 계정으로 전환",
+    "toggle_dark_mode": "다크 모드 토글"
   },
   "confirm": {
     "block_account": {
@@ -122,6 +133,12 @@
   "language": {
     "search": "검색"
   },
+  "list": {
+    "add_account": "리스트에 계정 추가",
+    "cancel_edit": "편집 취소",
+    "create": "생성",
+    "list_title_placeholder": "리스트 제목"
+  },
   "magic_keys": {
     "dialog_header": "키보드 단축키",
     "groups": {
@@ -163,7 +180,7 @@
     "show_favourited_and_boosted_by": "누가 좋아요와 부스트를 했는지 보기",
     "show_untranslated": "미번역본 보기",
     "toggle_theme": {
-      "dark": "다크 모드 토클",
+      "dark": "다크 모드 토글",
       "light": "라이크 모드 토글"
     },
     "translate_post": "포스트 번역",
@@ -177,7 +194,7 @@
     "aria_label_close": "닫기"
   },
   "nav": {
-    "back": " 뒤로 가기",
+    "back": "뒤로 가기",
     "blocked_domains": "차단된 도메인",
     "blocked_users": "차단된 유저",
     "bookmarks": "북마크",
@@ -200,7 +217,7 @@
     "select_language": "표시 언어",
     "settings": "설정",
     "show_intro": "인트로 보기",
-    "toggle_theme": "토클 테마"
+    "toggle_theme": "테마 토글"
   },
   "notification": {
     "favourited_post": "당신의 포스트를 좋아합니다",
@@ -256,12 +273,12 @@
   "settings": {
     "about": {
       "built_at": "빌트",
-      "label": "소개",
+      "label": "Elk에 대하여",
       "meet_the_team": "팀과 만나기",
       "sponsor_action": "우리를 지원하기",
       "sponsor_action_desc": "Elk 개발침을 위해 지원하기",
       "sponsors": "스폰서",
-      "sponsors_body_1": "ELk는 다음과 같은 분들의 아낌없는 후원과 도움 덕분에 가능했습니다:",
+      "sponsors_body_1": "Elk는 다음과 같은 분들의 아낌없는 후원과 도움 덕분에 가능했습니다:",
       "sponsors_body_2": "그리고 Elk 팀과 멤버들을 후원하는 모든 기업과 개인에게도 감사드립니다",
       "sponsors_body_3": "앱을 즐기고 계신다면 후원을 고려해 보세요:",
       "version": "버전"
@@ -350,8 +367,8 @@
     },
     "select_a_settings": "설정 선택",
     "users": {
-      "export": "유저 토큰 내보내기",
-      "import": "유저 토큰 가져오기",
+      "export": "사용자 토큰 내보내기",
+      "import": "사용자 토큰 가져오기",
       "label": "로그인된 유저"
     }
   },
@@ -361,7 +378,7 @@
     "loading": "로딩 중...",
     "publish_failed": "게시 실패",
     "publishing": "게시 중",
-    "upload_failed": "U업로드 실패",
+    "upload_failed": "업로드 실패",
     "uploading": "업로드 중..."
   },
   "status": {
@@ -436,6 +453,9 @@
     "week_past": "0주 전|저번 주|{n}주 전",
     "year_future": "0년 후|내년|{n} 년 후",
     "year_past": "0년 전|작년|{n}년 전"
+  },
+  "timeline": {
+    "show_new_items": "{v}개의 새 툿 보기|{v}개의 새 툿 보기|{v}개의 새 툿 보기"
   },
   "tooltip": {
     "add_content_warning": "콘텐츠 경고 추가",

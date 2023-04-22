@@ -23,7 +23,6 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   }
 
   whenever(logicAnd(notUsingInput, keys['?']), toggleKeyboardShortcuts)
-  whenever(logicAnd(notUsingInput, keys.z), () => userSettings.value.zenMode = !userSettings.value.zenMode)
 
   const defaultPublishDialog = () => {
     const current = keys.current

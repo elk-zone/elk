@@ -225,6 +225,7 @@
     "sequence_then": "の後に"
   },
   "menu": {
+    "add_personal_note": "{0} に個人メモを追加",
     "block_account": "{0}さんをブロック",
     "block_domain": "{0}をドメインブロック",
     "copy_link_to_post": "この投稿へのリンクをコピー",
@@ -239,6 +240,7 @@
     "mute_conversation": "投稿をミュート",
     "open_in_original_site": "元のサイトで開く",
     "pin_on_profile": "プロフィールに固定",
+    "remove_personal_note": "{0} から個人メモを削除",
     "share_post": "この投稿を共有",
     "show_favourited_and_boosted_by": "お気に入り・ブーストしたユーザーを表示",
     "show_reblogs": "{0} からのブーストを表示",
@@ -494,6 +496,10 @@
     "uploading": "更新中..."
   },
   "status": {
+    "account": {
+      "suspended_message": "この投稿のアカウントはサスペンドされました。",
+      "suspended_show": "それでもコンテンツを表示しますか？"
+    },
     "boosted_by": "ブーストしたユーザー",
     "edited": "編集済み {0}",
     "favourited_by": "お気に入りしたユーザー",

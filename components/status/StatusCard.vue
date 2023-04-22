@@ -154,7 +154,7 @@ const forceShow = ref(false)
               <StatusAccountDetails :account="status.account" />
             </AccountHoverWrapper>
             <div flex-auto />
-            <div v-show="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
+            <div v-show="!getPreferences(userSettings, 'zenMode')" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
               <AccountBotIndicator v-if="status.account.bot" me-2 />
               <div flex="~ gap1" items-center>
                 <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
@@ -182,7 +182,7 @@ const forceShow = ref(false)
             :in-notification="inNotification"
             mb2 :class="{ 'mt-2 mb1': isDM }"
           />
-          <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
+          <StatusActions v-if="actions !== false" v-show="!getPreferences(userSettings, 'zenMode')" :status="status" />
         </div>
       </template>
     </div>

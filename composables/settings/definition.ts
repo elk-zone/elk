@@ -20,6 +20,7 @@ export interface PreferencesSettings {
   enableAutoplay: boolean
   enableDataSaving: boolean
   enablePinchToZoom: boolean
+  zenMode: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
@@ -31,7 +32,6 @@ export interface UserSettings {
   fontSize: FontSize
   language: string
   disabledTranslationLanguages: string[]
-  zenMode: boolean
   themeColors?: ThemeColors
 }
 
@@ -62,7 +62,6 @@ export function getDefaultUserSettings(locales: string[]): UserSettings {
     language: getDefaultLanguage(locales),
     fontSize: DEFAULT_FONT_SIZE,
     disabledTranslationLanguages: [],
-    zenMode: false,
     preferences: {},
   }
 }
@@ -80,6 +79,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   enableAutoplay: true,
   enableDataSaving: false,
   enablePinchToZoom: false,
+  zenMode: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,

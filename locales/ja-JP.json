@@ -216,8 +216,8 @@
       "navigation": {
         "go_to_home": "ホーム",
         "go_to_notifications": "通知",
-        "next_status": "次のステータス",
-        "previous_status": "前のステータス",
+        "next_status": "次の投稿",
+        "previous_status": "前の投稿",
         "shortcut_help": "ショートカットのヘルプ",
         "title": "ナビゲーション"
       }

@@ -57,15 +57,6 @@ export function getDefaultLanguage(languages: string[]) {
   return matchLanguages(languages, navigator.languages) || 'en-US'
 }
 
-export function getDefaultUserSettings(locales: string[]): UserSettings {
-  return {
-    language: getDefaultLanguage(locales),
-    fontSize: DEFAULT_FONT_SIZE,
-    disabledTranslationLanguages: [],
-    preferences: {},
-  }
-}
-
 export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAltIndicatorOnPosts: false,
   hideBoostCount: false,
@@ -83,4 +74,13 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,
+}
+
+export function getDefaultUserSettings(locales: string[]): UserSettings {
+  return {
+    language: getDefaultLanguage(locales),
+    fontSize: DEFAULT_FONT_SIZE,
+    disabledTranslationLanguages: [],
+    preferences: DEFAULT__PREFERENCES_SETTINGS,
+  }
 }

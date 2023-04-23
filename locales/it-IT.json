@@ -289,7 +289,7 @@
   },
   "notification": {
     "favourited_post": "ha apprezzato il tuo post",
-    "followed_you": "ti ha cominciato a seguire",
+    "followed_you": "ti ha iniziato a seguire",
     "followed_you_count": "{0} persone ti hanno cominciato a seguire|{0} persona ti ha cominciato a seguire|{0} persone ti hanno cominciato a seguire",
     "missing_type": "notification.type MANCANTE:",
     "reblogged_post": "ha potenziato il tuo post",

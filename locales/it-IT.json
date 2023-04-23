@@ -208,7 +208,7 @@
         "command_mode": "Modalità comando",
         "compose": "Componi",
         "favourite": "Apprezza",
-        "title": "Azioni",
+        "title": "Azioni"
       },
       "media": {
         "title": "Media"
@@ -452,8 +452,8 @@
       "title": "Funzionalità sperimentali",
       "user_picker": "Selettore utente",
       "virtual_scroll": "Scorrimento virtuale",
-      "wellbeing": "Benessere"
-      "zen_mode": "Modalità zen"
+      "wellbeing": "Benessere",
+      "zen_mode": "Modalità zen",
       "zen_mode_description": "Nasconde l'interfaccia laterale a meno che il mouse non ci passi sopra. Nasconde anche certi elementi della cronologia."
     },
     "profile": {

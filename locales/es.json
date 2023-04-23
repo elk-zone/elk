@@ -91,7 +91,7 @@
     "switch_account": "Cambiar a {0}",
     "switch_account_desc": "Cambiar a otra cuenta",
     "toggle_dark_mode": "Cambiar a modo oscuro",
-    "toggle_zen_mode": "Cambiar a modo zen"
+    "toggle_zen_mode": "Cambiar a modo Zen"
   },
   "common": {
     "end_of_list": "Fin",
@@ -208,8 +208,7 @@
         "command_mode": "Modo comando",
         "compose": "Redactar",
         "favourite": "Favorito",
-        "title": "Acciones",
-        "zen_mode": "Modo Zen"
+        "title": "Acciones"
       },
       "media": {
         "title": "Media"
@@ -453,7 +452,9 @@
       "title": "Funcionalidades experimentales",
       "user_picker": "Selector de usuarios",
       "virtual_scroll": "Desplazamiento virtual",
-      "wellbeing": "Bienestar"
+      "wellbeing": "Bienestar",
+      "zen_mode": "Modo Zen",
+      "zen_mode_description": "Oculta las secciones laterales de la interfaz a menos que el cursor del ratón esté sobre ellas. Oculta también algunos elementos de las líneas de tiempo."
     },
     "profile": {
       "appearance": {
@@ -497,6 +498,10 @@
     "uploading": "Subiendo..."
   },
   "status": {
+    "account": {
+      "suspended_message": "La cuenta de este mensaje ha sido suspendida.",
+      "suspended_show": "¿Mostrar contenido de todos modos?"
+    },
     "boosted_by": "Retooteado por",
     "edited": "Editado {0}",
     "favourited_by": "Marcado como favorita por",

@@ -454,7 +454,7 @@
       "virtual_scroll": "Desplazamiento virtual",
       "wellbeing": "Bienestar",
       "zen_mode": "Modo Zen",
-      "zen_mode_description": "Oculta los laterales a menos que el cursor del ratón esté sobre ellos. Oculta también algunos elementos de las líneas de tiempo."
+      "zen_mode_description": "Oculta las secciones laterales de la interfaz a menos que el cursor del ratón esté sobre ellas. Oculta también algunos elementos de las líneas de tiempo."
     },
     "profile": {
       "appearance": {

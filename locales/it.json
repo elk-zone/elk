@@ -209,7 +209,6 @@
         "compose": "Componi",
         "favourite": "Apprezza",
         "title": "Azioni",
-        "zen_mode": "Modalità zen"
       },
       "media": {
         "title": "Media"
@@ -454,6 +453,8 @@
       "user_picker": "Selettore utente",
       "virtual_scroll": "Scorrimento virtuale",
       "wellbeing": "Benessere"
+      "zen_mode": "Modalità zen"
+      "zen_mode_description": "Nasconde l'interfaccia laterale a meno che il mouse non ci passi sopra. Nasconde anche certi elementi della cronologia."
     },
     "profile": {
       "appearance": {

@@ -165,7 +165,7 @@ const personalNoteMaxLength = 2000
             <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
             <AccountBotIndicator v-if="account.bot" show-label />
           </div>
-          <AccountHandle :account="account" />
+          <AccountHandle :account="account" overflow-unset line-clamp-unset />
         </div>
       </div>
       <label

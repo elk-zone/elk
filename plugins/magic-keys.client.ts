@@ -2,7 +2,6 @@ import type { RouteLocationRaw } from 'vue-router'
 import { useMagicSequence } from '~/composables/magickeys'
 
 export default defineNuxtPlugin(({ $scrollToTop }) => {
-  const userSettings = useUserSettings()
   const keys = useMagicKeys()
   const router = useRouter()
 

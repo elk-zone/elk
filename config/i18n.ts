@@ -194,6 +194,11 @@ const locales: LocaleObjectData[] = [
     file: 'ko-KR.json',
     name: '한국어',
   },
+  {
+    code: 'it-IT',
+    file: 'it-IT.json',
+    name: 'Italiano',
+  },
 ]
 
 function buildLocales() {

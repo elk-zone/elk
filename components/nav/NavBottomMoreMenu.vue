@@ -93,9 +93,9 @@ onBeforeUnmount(() => {
               transition-colors duration-200 transform
               hover="bg-gray-100 dark:(bg-gray-700 text-white)"
               :aria-label="$t('nav.zen_mode')"
-              @click="userSettings.zenMode = !userSettings.zenMode"
+              @click="togglePreferences('zenMode')"
             >
-              <span :class="userSettings.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'" class="flex-shrink-0 text-xl me-4 !align-middle" />
+              <span :class="getPreferences(userSettings, 'zenMode') ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'" class="flex-shrink-0 text-xl me-4 !align-middle" />
               {{ $t('nav.zen_mode') }}
             </button>
           </div>

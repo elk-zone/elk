@@ -66,10 +66,6 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
         description: t('magic_keys.groups.actions.boost'),
         shortcut: { keys: ['b'], isSequence: false },
       },
-      {
-        description: t('magic_keys.groups.actions.zen_mode'),
-        shortcut: { keys: ['z'], isSequence: false },
-      },
     ],
   },
   {

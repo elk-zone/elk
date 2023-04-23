@@ -208,8 +208,7 @@
         "command_mode": "Command mode",
         "compose": "Compose",
         "favourite": "Favourite",
-        "title": "Actions",
-        "zen_mode": "Zen mode"
+        "title": "Actions"
       },
       "media": {
         "title": "Media"
@@ -453,7 +452,9 @@
       "title": "Experimental Features",
       "user_picker": "User Picker",
       "virtual_scroll": "Virtual Scrolling",
-      "wellbeing": "Wellbeing"
+      "wellbeing": "Wellbeing",
+      "zen_mode": "Zen mode",
+      "zen_mode_description": "Hide asides unless the mouse cursor is over them. Also hide some elements from the timeline."
     },
     "profile": {
       "appearance": {

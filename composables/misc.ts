@@ -1,6 +1,6 @@
 import type { mastodon } from 'masto'
 
-export const UserLinkRE = /^https?:\/\/([^/]+)\/@([^/]+)$/
+export const UserLinkRE = /^(?:https:\/)?\/([^/]+)\/@([^/]+)$/
 export const TagLinkRE = /^https?:\/\/([^/]+)\/tags\/([^/]+)$/
 export const HTMLTagRE = /<[^>]+>/g
 

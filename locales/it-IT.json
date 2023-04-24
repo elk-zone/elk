@@ -15,11 +15,11 @@
     "bot": "BOT",
     "favourites": "Preferiti",
     "follow": "Segui",
-    "follow_back": "Ricambia Segui",
+    "follow_back": "Ricambia",
     "follow_requested": "Richiesta inviata",
     "followers": "Seguaci",
     "followers_count": "{0} seguaci|{0} seguace|{0} seguaci",
-    "following": "Seguiti",
+    "following": "Segui già",
     "following_count": "{0} Seguiti",
     "follows_you": "Ti segue",
     "go_to_profile": "Vai al profilo",
@@ -238,7 +238,7 @@
     "mention_account": "Menziona {0}",
     "mute_account": "Silenzia {0}",
     "mute_conversation": "Silenzia questo post",
-    "open_in_original_site": "Apti nel sito originale",
+    "open_in_original_site": "Apri nel sito originale",
     "pin_on_profile": "Fissa nel profilo",
     "remove_personal_note": "Rimuovi nota personale da {0}",
     "share_post": "Condividi questo post",
@@ -289,7 +289,7 @@
   },
   "notification": {
     "favourited_post": "ha apprezzato il tuo post",
-    "followed_you": "ti ha cominciato a seguire",
+    "followed_you": "ti ha iniziato a seguire",
     "followed_you_count": "{0} persone ti hanno cominciato a seguire|{0} persona ti ha cominciato a seguire|{0} persone ti hanno cominciato a seguire",
     "missing_type": "notification.type MANCANTE:",
     "reblogged_post": "ha potenziato il tuo post",
@@ -301,7 +301,7 @@
     "content_warning": "Scrivi il tuo avviso qui",
     "default_1": "A cosa pensi?",
     "reply_to_account": "Rispondi a {0}",
-    "replying": "Rispondendo",
+    "replying": "Rispondi",
     "the_thread": "la discussione"
   },
   "pwa": {
@@ -352,7 +352,7 @@
       "version": "Versione"
     },
     "account_settings": {
-      "description": "Modifica le tue impostazioni account su Mastodon",
+      "description": "Modifica le impostazioni del tuo account su Mastodon",
       "label": "Impostazioni account"
     },
     "interface": {
@@ -363,7 +363,7 @@
       "label": "Interfaccia",
       "light_mode": "Chiaro",
       "system_mode": "Sistema",
-      "theme_color": "Colore tema"
+      "theme_color": "Colore"
     },
     "language": {
       "display_language": "Lingua interfaccia",
@@ -373,7 +373,7 @@
         "add": "Aggiungi",
         "choose_language": "Scegli lingua",
         "heading": "Traduzioni",
-        "hide_specific": "Nascondi traduzioni specifiche",
+        "hide_specific": "Nascondi specifiche traduzioni",
         "remove": "Rimuovi"
       }
     },
@@ -490,7 +490,7 @@
     "attachments_exceed_server_limit": "Il numero di allegati superava il limite per post.",
     "attachments_limit_error": "Limite per post superato.",
     "edited": "(Modificato)",
-    "editing": "Modifico",
+    "editing": "Modifica",
     "loading": "Carico...",
     "publish_failed": "Pubblicazione fallita",
     "publishing": "Pubblico",
@@ -499,7 +499,7 @@
   },
   "status": {
     "account": {
-      "suspended_message": "L'account di questo stato è stato sospeso.",
+      "suspended_message": "L'account di questo stato è sospeso.",
       "suspended_show": "Mostra comunque contenuto?"
     },
     "boosted_by": "Potenziato da",
@@ -519,7 +519,7 @@
       "ends": "termina {0}",
       "finished": "terminato {0}"
     },
-    "reblogged": "{0} hanno ripostato",
+    "reblogged": "{0} hanno potenziato",
     "replying_to": "In risposta a {0}",
     "show_full_thread": "Mostra discussione",
     "someone": "qualcuno",
@@ -542,7 +542,7 @@
     "notifications_all": "Tutte",
     "notifications_mention": "Menzioni",
     "posts": "Post",
-    "posts_with_replies": "Posts e risposte"
+    "posts_with_replies": "Post e risposte"
   },
   "tag": {
     "follow": "Segui",
@@ -591,7 +591,7 @@
   },
   "tooltip": {
     "add_content_warning": "Aggiungi avviso contenuto",
-    "add_emojis": "Add emoji",
+    "add_emojis": "Aggiungi emoji",
     "add_media": "Aggiungi immagini, un video o un file audio",
     "add_publishable_content": "Aggiungi contenuto da pubblicare",
     "change_content_visibility": "Cambia visibilità contenuto",
@@ -600,7 +600,7 @@
     "explore_links_intro": "Queste novità stanno venendo discusse da persone di questa e di altre istanze della rete decentralizzata in questo momento.",
     "explore_posts_intro": "Questi post da questa e da altre istanze della rete decentralizzata stanno acquistando popolarità in questo momento.",
     "explore_tags_intro": "Questi hashtag stanno acquistando popolarità fra persone di questa e di altre istanze della rete decentralizzata in questo momento.",
-    "open_editor_tools": "Strumenti editor",
+    "open_editor_tools": "Formattazione testo",
     "pick_an_icon": "Scegli un'icona'",
     "publish_failed": "Chiudi i messaggi falliti in cima all'editor per ripubblicare i post",
     "toggle_bold": "Grassetto",

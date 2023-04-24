@@ -519,7 +519,7 @@
       "ends": "termina {0}",
       "finished": "terminato {0}"
     },
-    "reblogged": "{0} hanno ripostato",
+    "reblogged": "{0} hanno potenziato",
     "replying_to": "In risposta a {0}",
     "show_full_thread": "Mostra discussione",
     "someone": "qualcuno",
@@ -600,7 +600,7 @@
     "explore_links_intro": "Queste novità stanno venendo discusse da persone di questa e di altre istanze della rete decentralizzata in questo momento.",
     "explore_posts_intro": "Questi post da questa e da altre istanze della rete decentralizzata stanno acquistando popolarità in questo momento.",
     "explore_tags_intro": "Questi hashtag stanno acquistando popolarità fra persone di questa e di altre istanze della rete decentralizzata in questo momento.",
-    "open_editor_tools": "Strumenti editor",
+    "open_editor_tools": "Formattazione testo",
     "pick_an_icon": "Scegli un'icona'",
     "publish_failed": "Chiudi i messaggi falliti in cima all'editor per ripubblicare i post",
     "toggle_bold": "Grassetto",

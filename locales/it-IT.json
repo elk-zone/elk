@@ -84,7 +84,7 @@
   "command": {
     "activate": "Attiva",
     "complete": "Completa",
-    "compose_desc": "Scrivi un nuovo post",
+    "compose_desc": "Componi un nuovo post",
     "n-people-in-the-past-n-days": "{0} persone negli ultimi {1} giorni",
     "select_lang": "Scegli lingua",
     "sign_in_desc": "Aggiungi account esistente",
@@ -216,8 +216,8 @@
       "navigation": {
         "go_to_home": "Home",
         "go_to_notifications": "Notifiche",
-        "next_status": "Stato successivo",
-        "previous_status": "Stato precedente",
+        "next_status": "Post successivo",
+        "previous_status": "Post precedente",
         "shortcut_help": "Aiuto scorciatoie",
         "title": "Navigazione"
       }
@@ -499,7 +499,7 @@
   },
   "status": {
     "account": {
-      "suspended_message": "L'account di questo stato è sospeso.",
+      "suspended_message": "L'account di questo post è stato sospeso.",
       "suspended_show": "Mostra comunque contenuto?"
     },
     "boosted_by": "Potenziato da",

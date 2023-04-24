@@ -64,7 +64,7 @@ function activate() {
 
 <template>
   <div ref="el" relative group>
-    <div bg-base border="~ base" h10 ps-4 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
+    <div bg-base border="~ base" h10 ps-4 pe-1 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline>
       <div i-ri:search-2-line pointer-events-none text-secondary mt="1px" class="rtl-flip" />
       <input
         ref="input"
@@ -74,7 +74,8 @@ function activate() {
         w-full
         bg-transparent
         outline="focus:none"
-        pe-4
+        ps-3
+        pe-1
         ml-1
         :placeholder="isHydrated ? t('nav.search') : ''"
         pb="1px"

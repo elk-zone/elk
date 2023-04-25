@@ -274,10 +274,10 @@ export function provideGlobalCommands() {
     scope: 'Preferences',
 
     name: () => t('command.toggle_zen_mode'),
-    icon: () => userSettings.value.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
+    icon: () => userSettings.value.preferences.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
 
     onActivate() {
-      userSettings.value.zenMode = !userSettings.value.zenMode
+      togglePreferences('zenMode')
     },
   })
 

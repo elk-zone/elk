@@ -25,7 +25,7 @@ export default defineNuxtPlugin(() => {
   if (settings.language) {
     html.setAttribute('lang', settings.language)
   }
-  if (settings.zenMode) {
+  if (settings.preferences.zenMode) {
     html.classList.add('zen')
   }
   if (settings.themeColors) {

@@ -103,7 +103,7 @@ If you are updating a translation in your local environment, you can run the fol
 ### Adding a new language
 
 1. Add a new file in [locales](./locales) folder with the language code as the filename.
-2. Copy [en-US](./locales/en-US.json) and translate the strings.
+2. Copy [en](./locales/en.json) and translate the strings.
 3. Add the language to the `locales` array in [config/i18n.ts](./config/i18n.ts#L61), below `en` and `ar`:
    - If your language has multiple country variants, add the generic one for language only (only if there are a lot of common entries, you can always add it as a new one)
       - Add all country variants in [country variants object](./config/i18n.ts#L12)

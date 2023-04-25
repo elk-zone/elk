@@ -8,12 +8,23 @@ defineProps<{
   noOverflowHidden?: boolean
 }>()
 
+const container = ref()
 const route = useRoute()
+const { height: windowHeight } = useWindowSize()
+const { height: containerHeight } = useElementBounding(container)
 const wideLayout = computed(() => route.meta.wideLayout ?? false)
+const sticky = computed(() => route.path?.startsWith('/settings/'))
+const containerClass = computed(() => {
+  // we keep original behavior when not in settings page and when the window height is smaller than the container height
+  if (!isHydrated.value || !sticky.value || (windowHeight.value < containerHeight.value))
+    return null
+
+  return 'lg:sticky lg:top-0'
+})
 </script>
 
 <template>
-  <div>
+  <div ref="container" :class="containerClass">
     <div
       sticky top-0 z10 backdrop-blur
       pt="[env(safe-area-inset-top,0)]"

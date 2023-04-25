@@ -193,12 +193,6 @@
     "about": {
       "label": "Over"
     },
-    "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "title": "Experimentele Functies",
-      "user_picker": "Gebruiker Kiezer",
-      "virtual_scroll": "Virtueel Scrollen"
-    },
     "interface": {
       "color_mode": "Kleur Modus",
       "dark_mode": "Donkere Modus",
@@ -284,7 +278,6 @@
     }
   },
   "state": {
-
     "attachments_exceed_server_limit": "De hoeveelheid bijlagen is meer dan het limiet per post.",
     "attachments_limit_error": "Limiet per post overschreden",
     "edited": "(Aangepast)",

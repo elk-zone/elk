@@ -189,6 +189,16 @@ const locales: LocaleObjectData[] = [
     file: 'gl-ES.json',
     name: 'Galego',
   },
+  {
+    code: 'ko-KR',
+    file: 'ko-KR.json',
+    name: '한국어',
+  },
+  {
+    code: 'it-IT',
+    file: 'it-IT.json',
+    name: 'Italiano',
+  },
 ]
 
 function buildLocales() {

@@ -125,7 +125,7 @@ function showFavoritedAndBoostedBy() {
 
     <template #popper>
       <div flex="~ col">
-        <template v-if="userSettings.zenMode">
+        <template v-if="getPreferences(userSettings, 'zenMode')">
           <CommonDropdownItem
             :text="$t('action.reply')"
             icon="i-ri:chat-1-line"

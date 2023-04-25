@@ -208,8 +208,7 @@
         "command_mode": "Command mode",
         "compose": "Compose",
         "favourite": "Favourite",
-        "title": "Actions",
-        "zen_mode": "Zen mode"
+        "title": "Actions"
       },
       "media": {
         "title": "Media"
@@ -293,7 +292,7 @@
     "followed_you": "followed you",
     "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
     "missing_type": "MISSING notification.type:",
-    "reblogged_post": "reblogged your post",
+    "reblogged_post": "boosted your post",
     "request_to_follow": "requested to follow you",
     "signed_up": "signed up",
     "update_status": "updated their post"
@@ -453,7 +452,9 @@
       "title": "Experimental Features",
       "user_picker": "User Picker",
       "virtual_scroll": "Virtual Scrolling",
-      "wellbeing": "Wellbeing"
+      "wellbeing": "Wellbeing",
+      "zen_mode": "Zen mode",
+      "zen_mode_description": "Hide asides unless the mouse cursor is over them. Also hide some elements from the timeline."
     },
     "profile": {
       "appearance": {
@@ -497,6 +498,10 @@
     "uploading": "Uploading..."
   },
   "status": {
+    "account": {
+      "suspended_message": "The account of this status has been suspended.",
+      "suspended_show": "Show content anyways?"
+    },
     "boosted_by": "Boosted By",
     "edited": "Edited {0}",
     "favourited_by": "Favorited By",

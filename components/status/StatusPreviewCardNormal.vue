@@ -69,6 +69,7 @@ function loadAttachment() {
         :width="card.width"
         :height="card.height"
         :alt="alt"
+        :should-load-image="shouldLoadAttachment"
         w-full h-full object-cover
         :class="!shouldLoadAttachment ? 'brightness-60' : ''"
       />

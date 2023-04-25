@@ -112,7 +112,7 @@
     "@types/js-yaml": "^4.0.5",
     "@types/prettier": "^2.7.2",
     "@types/wicg-file-system-access": "^2020.9.6",
-    "@unlazy/nuxt": "^0.8.2",
+    "@unlazy/nuxt": "^0.8.4",
     "bumpp": "^9.1.0",
     "consola": "^3.0.1",
     "eslint": "^8.38.0",

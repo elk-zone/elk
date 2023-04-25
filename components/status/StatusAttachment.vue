@@ -225,6 +225,7 @@ watch(shouldLoadAttachment, () => {
             aspectRatio,
             objectPosition,
           }"
+          :should-load-image="shouldLoadAttachment"
           rounded-lg
           h-full
           w-full

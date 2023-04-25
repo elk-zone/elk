@@ -36,7 +36,7 @@ const modes = [
       :class="colorMode.preference === mode ? 'pointer-events-none' : 'filter-saturate-0'"
       @click="setColorMode(mode)"
     >
-      <div :class="`${icon}`" />
+      <span :class="`${icon}`" />
       {{ $t(label) }}
     </button>
   </div>

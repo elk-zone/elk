@@ -261,8 +261,8 @@
   },
   "nav": {
     "back": "Bumalik",
-    "blocked_domains": "Mga Blokedong Domain",
-    "blocked_users": "Mga Blokedong Gumagamit",
+    "blocked_domains": "Mga Naka-Block na Domain",
+    "blocked_users": "Mga Naka-Block na Users",
     "bookmarks": "Mga Tandang-Pahina",
     "built_at": "Ginawa noong {0}",
     "compose": "Lumikha ng Mensahe",

@@ -29,7 +29,7 @@
     "muting": "Naka-mute",
     "mutuals": "Mga mutual",
     "notifications_on_post_disable": "Huwag nang magbigay ng abiso kapag nagpopost si {username}",
-    "notifications_on_post_enable": "Magbigay ng abiso kapag nagpopost si {username}",
+    "notifications_on_post_enable": "Magbigay ng abiso kapag nagpost si {username}",
     "pinned": "Nakapin",
     "posts": "Mga post",
     "posts_count": "{0} Mga post|{0} Post|{0} Mga post",

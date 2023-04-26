@@ -420,7 +420,7 @@
         "warning": {
           "enable_close": "Isara",
           "enable_description": "Upang matanggap ng mga abiso kahit hindi bukas ang Elk, paganahin ang push notifications. Maari mong kontrolin kung anong uri ng mga interaksyon ang magpapadala ng push notifications sa pamamagitan ng buton na \"@:settings.notifications.show_btn{'\"'} sa itaas pagkatapos paganahin.",
-          "enable_description_desktop": "Para makatanggap ng mga abiso kapag hindi bukas ang Elk, paganahin ang mga abisong itinutulak. Maaari mong kontrolin nang eksaktong anong uri ng mga interaksyon ang naglilikha ng mga abisong itinutulak sa \"Mga Setting > Mga Abiso > Mga Setting sa Itinutulak na Abiso\" kapag ito ay naka-paganang na.",
+          "enable_description_desktop": "Upang makatanggap ng mga abiso kahit hindi nakabukas ang Elk, paganahin ang Push Notifications. Maaari mong kontrolin nang eksaktong anong uri ng mga interaksyon ang naglilikha ng mga abisong itinutulak sa \"Mga Setting > Mga Abiso > Mga Setting ng Push Notifications\" kapag ito ay naka-paganang na.",
           "enable_description_mobile": "Maaari mo ring ma-access ang mga setting gamit ang navigation menu \"Settings > Notifications > Push notification settings\".",
           "enable_description_settings": "Para makatanggap ng mga notification kahit hindi bukas ang Elk, paganahin ang push notifications. Makakapagkontrol ka ng kung anong mga uri ng interactions ang magbibigay ng push notifications sa parehong screen na ito kapag paganahin mo ito.",
           "enable_desktop": "Paganahin ang push notifications",

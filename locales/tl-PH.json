@@ -9,8 +9,8 @@
   "account": {
     "avatar_description": "Avatar ni {0}",
     "blocked_by": "Ika'y na-block ng user na ito.",
-    "blocked_domains": "Mga na-block na domains",
-    "blocked_users": "Mga na-block na users",
+    "blocked_domains": "Mga naka-block na domain",
+    "blocked_users": "Mga naka-block na user",
     "blocking": "Naka-block",
     "bot": "BOT",
     "favourites": "Mga paborito",

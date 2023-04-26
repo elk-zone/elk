@@ -257,8 +257,8 @@ importers:
         specifier: ^2020.9.6
         version: 2020.9.6
       '@unlazy/nuxt':
-        specifier: ^0.8.4
-        version: 0.8.4(fast-blurhash@1.1.2)(rollup@2.79.1)(thumbhash@0.1.1)
+        specifier: ^0.8.8
+        version: 0.8.8(fast-blurhash@1.1.2)(rollup@2.79.1)(thumbhash@0.1.1)
       bumpp:
         specifier: ^9.1.0
         version: 9.1.0
@@ -3862,19 +3862,19 @@ packages:
       unhead: 1.1.26
       vue: 3.2.45
 
-  /@unlazy/core@0.8.4:
-    resolution: {integrity: sha512-wI0Qp4i7FCte0baVLvaPOhOZqBXbk5rHf/GefgFyofkzhhVz3gwh8XlbGEe2TNAFhmNU9rKESE0ndQCjii0FSg==}
+  /@unlazy/core@0.8.8:
+    resolution: {integrity: sha512-V1QBPCF9IN8PK4d9uxl3fcQEndmqu47kOH7Ai7/Lj98Nuobnjv8K9xJfXfwqGkPcYfVBcFKvnwA3Z41XWLcd0Q==}
     dependencies:
       fast-blurhash: 1.1.2
       thumbhash: 0.1.1
     dev: true
 
-  /@unlazy/nuxt@0.8.4(fast-blurhash@1.1.2)(rollup@2.79.1)(thumbhash@0.1.1):
-    resolution: {integrity: sha512-8KAUX030xdjrtKM3h7CAf9fD4eVsFDmuJzGQS8Hz2SWXqQj6LmEx5y6apXMudxRF0vezddWhUzEl6sH4V8B8HA==}
+  /@unlazy/nuxt@0.8.8(fast-blurhash@1.1.2)(rollup@2.79.1)(thumbhash@0.1.1):
+    resolution: {integrity: sha512-Osb6RHNGYLFHJ3Ib0XKpCwFLpodWUJWd5QA2kk4iR+vfU+3fIxXYFbcX3zG7sFLUIBN9n+NuNY2CuIAJV4BJqQ==}
     dependencies:
       '@nuxt/kit': 3.4.2(rollup@2.79.1)
       defu: 6.1.2
-      unlazy: 0.8.4(fast-blurhash@1.1.2)(thumbhash@0.1.1)
+      unlazy: 0.8.8(fast-blurhash@1.1.2)(thumbhash@0.1.1)
     transitivePeerDependencies:
       - fast-blurhash
       - rollup
@@ -12961,13 +12961,13 @@ packages:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
 
-  /unlazy@0.8.4(fast-blurhash@1.1.2)(thumbhash@0.1.1):
-    resolution: {integrity: sha512-NFGFc71I8aDS1M7F+64ugtNn8gvFBdfQ9oOFnTdsMyyGqdregvoVKbAzX1/0V3+8KsqHrrSzH85QevIfc6wa9Q==}
+  /unlazy@0.8.8(fast-blurhash@1.1.2)(thumbhash@0.1.1):
+    resolution: {integrity: sha512-7wro4wypXPr2WurVcuapEYwju9YXkJP9fHT2SgK5e0aegmuGL/M6wPaZNFQMzfMUCiFb5NODxW9lykq7ymOEog==}
     peerDependencies:
       fast-blurhash: ^1.1.2
       thumbhash: ^0.1.1
     dependencies:
-      '@unlazy/core': 0.8.4
+      '@unlazy/core': 0.8.8
       fast-blurhash: 1.1.2
       thumbhash: 0.1.1
     dev: true

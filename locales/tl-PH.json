@@ -411,7 +411,7 @@
           "request_error": "May naganap na error habang hinihiling ang subscription. Subukan muli at, kung patuloy pa rin ang error, mangyaring mag-ulat ng isyu sa repository ng Elk.",
           "title": "Hindi maaring mag-subscribe sa mga push notifications",
           "too_many_registrations": "Dahil sa mga limitasyon ng browser, hindi magamit ng Elk ang push notification service para sa maraming accounts sa iba't-ibang servers. Dapat kang mag-unsubscribe sa push notifications sa ibang account at subukan muli.",
-          "vapid_not_supported": "Suportado ng iyong browser ang Web Push Notifications, ngunit tila hindi nag-i-implement ng VAPID protocol."
+          "vapid_not_supported": "Suportado ang Web Push Notifications ng iyong browser, ngunit tila hindi ito nag-i-implement ng VAPID protocol."
         },
         "title": "Mga Setting ng Push Notifications",
         "undo_settings": "I-Undo ang mga Pagbabago",

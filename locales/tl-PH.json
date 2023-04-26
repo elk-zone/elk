@@ -30,7 +30,7 @@
     "mutuals": "Mga mutual",
     "notifications_on_post_disable": "Huwag nang magbigay ng abiso kapag nagpopost si {username}",
     "notifications_on_post_enable": "Magbigay ng abiso kapag nagpost si {username}",
-    "pinned": "Nakapin",
+    "pinned": "Naka-pin",
     "posts": "Mga post",
     "posts_count": "{0} Mga post|{0} Post|{0} Mga post",
     "profile_description": "Header ng profile ni {0}",
@@ -41,25 +41,25 @@
     "unfollow": "Huminto sa pagsunod",
     "unmute": "Tanggalin ang pagka-mute",
     "view_other_followers": "Ang mga tagasunod mula sa ibang mga instance ay hindi maipapakita.",
-    "view_other_following": "Ang mga sinusunod mula sa ibang mga instance ay hindi maipapakita."
+    "view_other_following": "Ang mga sinusundan mula sa ibang mga instance ay hindi maipapakita."
   },
   "action": {
     "apply": "Mag-apply",
     "bookmark": "I-bookmark",
     "bookmarked": "Nai-bookmark na",
-    "boost": "Mag-boost",
-    "boost_count": "{0} ang bumuo",
-    "boosted": "Na-boost na",
+    "boost": "I-boost",
+    "boost_count": "{0} ang nag-boost",
+    "boosted": "Nai-boost na",
     "clear_publish_failed": "Tanggalin ang mga error sa pag-publish",
     "clear_upload_failed": "Tanggalin ang mga error sa pag-upload ng file",
     "close": "Isara",
     "compose": "Mag-compose",
     "confirm": "Kumpirmahin",
     "edit": "I-edit",
-    "enter_app": "Pumasok sa App",
+    "enter_app": "Tumuloy sa App",
     "favourite": "I-favorite",
-    "favourite_count": "{0} ang paborito",
-    "favourited": "Na-favorite na",
+    "favourite_count": "{0} ang nag-favorite",
+    "favourited": "Nai-favorite na",
     "more": "Iba pa",
     "next": "Susunod",
     "prev": "Nakaraan",
@@ -83,7 +83,7 @@
   },
   "command": {
     "activate": "I-activate",
-    "complete": "Tapos na",
+    "complete": "Tapusin",
     "compose_desc": "Sumulat ng bagong post",
     "n-people-in-the-past-n-days": "{0} na mga tao sa nakaraang {1} araw",
     "select_lang": "Pumili ng wika",
@@ -122,13 +122,13 @@
     },
     "delete_list": {
       "cancel": "Kanselahin",
-      "confirm": "Tanggalin",
-      "title": "Sigurado ka bang gusto mong tanggalin ang listahan na \"{0}\"?"
+      "confirm": "Burahin",
+      "title": "Sigurado ka bang gusto mong burahin ang listahan na \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Kanselahin",
-      "confirm": "Tanggalin",
-      "title": "Sigurado ka bang gusto mong tanggalin ang post na ito?"
+      "confirm": "Burahin",
+      "title": "Sigurado ka bang gusto mong burahin ang post na ito?"
     },
     "mute_account": {
       "cancel": "Kanselahin",
@@ -142,8 +142,8 @@
     },
     "unfollow": {
       "cancel": "Kanselahin",
-      "confirm": "Huwag sundan",
-      "title": "Sigurado ka bang gusto mong huwag sundan?"
+      "confirm": "Huminto sa pagsunod",
+      "title": "Sigurado ka bang gusto mong huminto sa pagsunod?"
     }
   },
   "conversation": {
@@ -158,7 +158,7 @@
   },
   "error": {
     "account_not_found": "Hindi mahanap ang account na {0}",
-    "explore-list-empty": "Walang laman ang trending ngayon. Balik ka na lang mamaya!",
+    "explore-list-empty": "Walang laman ang trending ngayon. Subukan muli mamaya!",
     "file_size_cannot_exceed_n_mb": "Hindi pwede lumampas sa {0}MB ang laki ng file",
     "sign_in_error": "Hindi maka-connect sa server.",
     "status_not_found": "Hindi mahanap ang post",
@@ -171,10 +171,10 @@
       "desc3": "Huwag mag-login gamit ang iyong tunay na account.",
       "title": "Preview deploy"
     },
-    "desc_highlight": "Maaaring mayroon kang makikitang mga bug at kulang na features dito at doon.",
-    "desc_para1": "Salamat sa iyong interes sa pagsubok ng Elk, aming work-in-progress na Mastodon web client!",
+    "desc_highlight": "Maaaring mayroon kang makikitang mga bug at kulang na features.",
+    "desc_para1": "Salamat sa iyong interes sa pagsubok ng Elk, ang aming work-in-progress na Mastodon web client!",
     "desc_para2": "Dedikado kami sa pag-develop at pagpapabuti dito sa mga susunod na panahon.",
-    "desc_para3": "Para mapalago ang pag-develop, maaari kang mag-sponsor sa Team sa pamamagitan ng GitHub Sponsors. Sana magustuhan mo ang Elk!",
+    "desc_para3": "Para mapalago pa ang proyekto, maaari mong i-sponsor ang Team sa pamamagitan ng GitHub Sponsors. Sana magustuhan mo ang Elk!",
     "desc_para4": "Ang Elk ay Open Source. Kung nais mong tumulong sa pagsubok, magbigay ng feedback, o mag-contribute,",
     "desc_para5": "makipag-ugnayan sa amin sa GitHub",
     "desc_para6": "at makilahok.",
@@ -189,8 +189,8 @@
     "cancel_edit": "kanselahin ang pag-edit",
     "clear_error": "Burahin ang error",
     "create": "lumikha",
-    "delete": "Tanggalin ang listahang ito",
-    "delete_error": "Mayroong error sa pagtanggal ng listahan",
+    "delete": "Burahin ang listahang ito",
+    "delete_error": "Mayroong error sa pagbura ng listahan",
     "edit": "I-edit ang listahang ito",
     "edit_error": "Mayroong error sa pag-update ng listahan",
     "error": "Mayroong error sa paglikha ng listahan",
@@ -215,7 +215,7 @@
       },
       "navigation": {
         "go_to_home": "Tungo sa Home",
-        "go_to_notifications": "Tungo sa mga Notification",
+        "go_to_notifications": "Tungo sa mga Abiso",
         "next_status": "Susunod na status",
         "previous_status": "Nakaraang status",
         "shortcut_help": "Tulong sa shortcut",
@@ -226,13 +226,13 @@
   },
   "menu": {
     "add_personal_note": "Magdagdag ng personal na note sa {0}",
-    "block_account": "I-block ang {0}",
+    "block_account": "I-block si {0}",
     "block_domain": "I-block ang domain ng {0}",
-    "copy_link_to_post": "Kopyahin ang link ng post na ito",
-    "copy_original_link_to_post": "Kopyahin ang orihinal na link ng post na ito",
-    "delete": "Tanggalin",
-    "delete_and_redraft": "Tanggalin at ulitin ang draft",
-    "direct_message_account": "Magpadala ng direkta ng mensahe kay {0}",
+    "copy_link_to_post": "Kopyahin ang link,
+    "copy_original_link_to_post": "Kopyahin ang orihinal na link,
+    "delete": "Burahin",
+    "delete_and_redraft": "Burahin at ulitin ang draft",
+    "direct_message_account": "I-message ng direkta si {0}",
     "edit": "I-edit",
     "hide_reblogs": "Itago ang mga boost mula kay {0}",
     "mention_account": "Banggitin si {0}",
@@ -242,7 +242,7 @@
     "pin_on_profile": "I-pin sa profile",
     "remove_personal_note": "Tanggalin ang personal na note sa {0}",
     "share_post": "I-share ang post na ito",
-    "show_favourited_and_boosted_by": "Ipakita kung sino ang nag-favorite at nag-boost",
+    "show_favourited_and_boosted_by": "Ipakita ang mga nag-favorite at nag-boost",
     "show_reblogs": "Ipakita ang mga boost mula kay {0}",
     "show_untranslated": "Ipakita ang hindi na-translate",
     "toggle_theme": {
@@ -274,7 +274,7 @@
     "list": "Listahan",
     "lists": "Mga Listahan",
     "local": "Lokal",
-    "muted_users": "Mga Nakapipi na Gumagamit",
+    "muted_users": "Mga Naka-Mute na User",
     "notifications": "Mga Abiso",
     "privacy": "Privacy",
     "profile": "Profile",
@@ -343,7 +343,7 @@
       "built_at": "Ginawa noong",
       "label": "Tungkol sa",
       "meet_the_team": "Makilala ang team",
-      "sponsor_action": "Sponsorin kami",
+      "sponsor_action": "I-sponsor kami",
       "sponsor_action_desc": "Upang suportahan ang team na nagde-develop ng Elk",
       "sponsors": "Mga Sponsor",
       "sponsors_body_1": "Ang Elk ay patuloy na matagumpay dahil sa mga nagbibigay ng malaking suporta at tulong:",

@@ -408,7 +408,7 @@
           "invalid_vapid_key": "Tila hindi wasto ang VAPID public key.",
           "permission_denied": "Pagkakaitan ng pahintulot: paganahin ang abiso sa iyong browser.",
           "repo_link": "Repository ng Elk sa GitHub",
-          "request_error": "May naganap na error habang hinahiling ang subscription, subukan muli at kung patuloy pa rin ang error, mangyaring mag-ulat ng isyu sa repository ng Elk.",
+          "request_error": "May naganap na error habang hinihiling ang subscription. Subukan muli at, kung patuloy pa rin ang error, mangyaring mag-ulat ng isyu sa repository ng Elk.",
           "title": "Hindi maaring mag-subscribe sa mga push notifications",
           "too_many_registrations": "Dahil sa mga limitasyon ng browser, hindi magamit ng Elk ang push notification service para sa maraming accounts sa iba't-ibang servers. Dapat kang mag-unsubscribe sa push notifications sa ibang account at subukan muli.",
           "vapid_not_supported": "Suportado ng iyong browser ang Web Push Notifications, ngunit tila hindi nag-i-implement ng VAPID protocol."

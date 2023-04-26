@@ -24,6 +24,7 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
+    '@unlazy/nuxt',
     'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/emoji-mart-translation',
@@ -247,6 +248,9 @@ export default defineNuxtConfig({
   pwa,
   staleDep: {
     packageManager: 'pnpm',
+  },
+  unlazy: {
+    ssr: false,
   },
 })
 

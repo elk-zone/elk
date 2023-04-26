@@ -214,7 +214,7 @@ watch(shouldLoadAttachment, () => {
         @click="!shouldLoadAttachment ? loadAttachment() : openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
       >
         <CommonBlurhash
-          :blurhash="attachment.blurhash"
+          :blurhash="attachment.blurhash || ''"
           class="status-attachment-image"
           :src="src"
           :srcset="srcset"

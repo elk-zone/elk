@@ -391,7 +391,7 @@
           "reblog": "Mga Reblog ng iyong Post",
           "title": "Anong mga abiso ang nais mong matanggap?"
         },
-        "description": "Matatanggap mo pa rin ang mga abiso kahit hindi ka gumagamit ng Elk.",
+        "description": "Makakatanggap ka pa rin ang mga abiso kahit hindi nakabukas ng Elk.",
         "instructions": "Huwag kalimutang i-save ang iyong mga pagbabago gamit ang @:settings.notifications.push_notifications.save_settings button!",
         "label": "Mga Setting ng Push Notifications",
         "policy": {

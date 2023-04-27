@@ -48,7 +48,7 @@ const emit = defineEmits<{
   (event: 'close',): void
 }>()
 
-const { modelValue: visible } = defineModel<{
+const { modelValue: visible } = defineModels<{
   /** v-model dislog visibility */
   modelValue: boolean
 }>()
@@ -119,9 +119,11 @@ const isVShow = computed(() => {
     : true
 })
 
-const bindTypeToAny = ($attrs: any) => $attrs as any
+function bindTypeToAny($attrs: any) {
+  return $attrs as any
+}
 
-const trapFocusDialog = () => {
+function trapFocusDialog() {
   if (isVShow.value)
     nextTick().then(() => activate())
 }

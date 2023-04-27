@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
 
-let { modelValue } = $defineModel<{
+let { modelValue } = $defineModels<{
   modelValue: string
 }>()
 

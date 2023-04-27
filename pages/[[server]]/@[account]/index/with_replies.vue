@@ -10,7 +10,7 @@ const account = await fetchAccountByHandle(handle)
 const paginator = useMastoClient().v1.accounts.listStatuses(account.id, { excludeReplies: false })
 
 if (account) {
-  useHeadFixed({
+  useHydratedHead({
     title: () => `${t('tab.posts_with_replies')} | ${getDisplayName(account)} (@${account.acct})`,
   })
 }

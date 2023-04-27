@@ -6,7 +6,7 @@ definePageMeta({
 const { t } = useI18n()
 const pwaEnabled = useAppConfig().pwaEnabled
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.notifications.label')} | ${t('nav.settings')}`,
 })
 </script>
@@ -15,20 +15,20 @@ useHeadFixed({
   <MainContent back-on-small-screen>
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.notifications.label') }}</span>
+        <span>{{ isHydrated ? $t('settings.notifications.label') : '' }}</span>
       </div>
     </template>
 
     <SettingsItem
       command
-      :text="$t('settings.notifications.notifications.label')"
+      :text="isHydrated ? $t('settings.notifications.notifications.label') : ''"
       to="/settings/notifications/notifications"
     />
     <SettingsItem
       command
       :disabled="!pwaEnabled"
-      :text="$t('settings.notifications.push_notifications.label')"
-      :description="$t('settings.notifications.push_notifications.description')"
+      :text="isHydrated ? $t('settings.notifications.push_notifications.label') : ''"
+      :description="isHydrated ? $t('settings.notifications.push_notifications.description') : ''"
       to="/settings/notifications/push-notifications"
     />
   </MainContent>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.preferences.label')} | ${t('nav.settings')}`,
 })
 
@@ -29,9 +29,19 @@ const userSettings = useUserSettings()
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enableAutoplay')"
+      :disabled="getPreferences(userSettings, 'enableDataSaving')"
       @click="togglePreferences('enableAutoplay')"
     >
       {{ $t('settings.preferences.enable_autoplay') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enableDataSaving')"
+      @click="togglePreferences('enableDataSaving')"
+    >
+      {{ $t("settings.preferences.enable_data_saving") }}
+      <template #description>
+        {{ $t("settings.preferences.enable_data_saving_description") }}
+      </template>
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enablePinchToZoom')"
@@ -80,6 +90,15 @@ const userSettings = useUserSettings()
       {{ $t("settings.preferences.hide_username_emojis") }}
       <template #description>
         {{ $t('settings.preferences.hide_username_emojis_description') }}
+      </template>
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'zenMode')"
+      @click="togglePreferences('zenMode')"
+    >
+      {{ $t("settings.preferences.zen_mode") }}
+      <template #description>
+        {{ $t('settings.preferences.zen_mode_description') }}
       </template>
     </SettingsToggleItem>
     <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>

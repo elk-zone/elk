@@ -6,7 +6,7 @@ const emit = defineEmits<{
 }>()
 
 const all = useUsers()
-const { busy, singleInstanceServer, oauth } = useSignIn()
+const { singleInstanceServer, oauth } = useSignIn()
 
 const sorted = computed(() => {
   return [
@@ -16,13 +16,13 @@ const sorted = computed(() => {
 })
 
 const router = useRouter()
-const clickUser = (user: UserLogin) => {
+function clickUser(user: UserLogin) {
   if (user.account.id === currentUser.value?.account.id)
     router.push(getAccountRoute(user.account))
   else
     switchUser(user)
 }
-const processSignIn = () => {
+function processSignIn() {
   if (singleInstanceServer)
     oauth()
   else

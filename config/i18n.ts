@@ -33,6 +33,13 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     { code: 'en-US', name: 'English (US)' },
     { code: 'en-GB', name: 'English (UK)' },
   ],
+  ca: [
+    // { code: 'ca-AD', name: 'Català (Andorra)' },
+    { code: 'ca-ES', name: 'Català (Espanya)' },
+    { code: 'ca-valencia', name: 'Català (valencià)' },
+    // { code: 'ca-FR', name: 'Català (França)' },
+    // { code: 'ca-IT', name: 'Català (Itàlia)' },
+  ],
   es: [
     // { code: 'es-AR', name: 'Español (Argentina)' },
     // { code: 'es-BO', name: 'Español (Bolivia)' },
@@ -75,6 +82,11 @@ const locales: LocaleObjectData[] = [
     },
   } satisfies LocaleObjectData),
   {
+    code: 'ca',
+    file: 'ca.json',
+    name: 'Català',
+  },
+  {
     code: 'de-DE',
     file: 'de-DE.json',
     name: 'Deutsch',
@@ -103,6 +115,11 @@ const locales: LocaleObjectData[] = [
     code: 'es',
     file: 'es.json',
     name: 'Español',
+  },
+  {
+    code: 'eu-ES',
+    file: 'eu-ES.json',
+    name: 'Euskara',
   },
   {
     code: 'fr-FR',
@@ -172,9 +189,19 @@ const locales: LocaleObjectData[] = [
     file: 'gl-ES.json',
     name: 'Galego',
   },
+  {
+    code: 'ko-KR',
+    file: 'ko-KR.json',
+    name: '한국어',
+  },
+  {
+    code: 'it-IT',
+    file: 'it-IT.json',
+    name: 'Italiano',
+  },
 ]
 
-const buildLocales = () => {
+function buildLocales() {
   const useLocales = Object.values(locales).reduce((acc, data) => {
     const locales = countryLocaleVariants[data.code]
     if (locales) {

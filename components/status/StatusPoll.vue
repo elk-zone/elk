@@ -19,11 +19,11 @@ const { client } = $(useMasto())
 
 async function vote(e: Event) {
   const formData = new FormData(e.target as HTMLFormElement)
-  const choices = formData.getAll('choices') as string[]
+  const choices = formData.getAll('choices').map(i => +i) as number[]
 
   // Update the poll optimistically
   for (const [index, option] of poll.options.entries()) {
-    if (choices.includes(String(index)))
+    if (choices.includes(index))
       option.votesCount = (option.votesCount || 0) + 1
   }
   poll.voted = true
@@ -57,7 +57,7 @@ const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
       <div
         v-for="(option, index) of poll.options"
         :key="index" py-1 relative
-        :style="{ '--bar-width': toPercentage((option.votesCount || 0) / poll.votesCount) }"
+        :style="{ '--bar-width': toPercentage(votersCount === 0 ? 0 : (option.votesCount ?? 0) / votersCount) }"
       >
         <div flex justify-between pb-2 w-full>
           <span inline-flex align-items>
@@ -67,7 +67,7 @@ const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
           <span text-primary-active> {{ formatPercentage(votersCount > 0 ? (option.votesCount || 0) / votersCount : 0) }}</span>
         </div>
         <div class="bg-gray/40" rounded-l-sm rounded-r-lg h-5px w-full>
-          <div bg-primary-active h-full class="w-[var(--bar-width)]" />
+          <div bg-primary-active h-full min-w="1%" class="w-[var(--bar-width)]" />
         </div>
       </div>
     </template>

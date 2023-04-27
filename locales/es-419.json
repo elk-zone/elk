@@ -37,6 +37,7 @@
   },
   "common": {
     "end_of_list": "Fin de la lista",
+    "fetching": "Listando...",
     "offline_desc": "No tienes acceso a internet. Por favor, comprueba que tienes una conexión a la red."
   },
   "confirm": {
@@ -150,7 +151,8 @@
       "under_construction": "En desarrollo"
     },
     "preferences": {
-      "grayscale_mode": "Tema en escala de grises"
+      "grayscale_mode": "Tema en escala de grises",
+      "hide_username_emojis_description": "Oculta, de la historia, los emojis en los nombres de usuario. Los emojis seguirán visibles en los perfiles."
     },
     "profile": {
       "appearance": {
@@ -183,6 +185,7 @@
   },
   "tooltip": {
     "add_emojis": "Insertar emoji",
+    "add_media": "Insertar imágenes, un video o archivos de audio",
     "change_content_visibility": "Cambiar visibilidad"
   },
   "user": {

@@ -3,6 +3,7 @@ import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
+import type { BuildInfo } from './types'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -23,19 +24,24 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
+    '@unlazy/nuxt',
     'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
+    '~/modules/emoji-mart-translation',
     '~/modules/purge-comments',
     '~/modules/setup-components',
     '~/modules/build-env',
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
-    '~/modules/stale-dep',
-    '@nuxt/devtools',
+    'stale-dep/nuxt',
   ],
+  devtools: {
+    enabled: true,
+  },
   experimental: {
     payloadExtraction: false,
     inlineSSRStyles: false,
+    renderJsonPayloads: true,
   },
   css: [
     '@unocss/reset/tailwind.css',
@@ -129,9 +135,34 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
     },
+    publicAssets: [
+      {
+        dir: '~/public/avatars',
+        maxAge: 24 * 60 * 60 * 30, // 30 days
+        baseURL: '/avatars',
+      },
+      {
+        dir: '~/public/emojis',
+        maxAge: 24 * 60 * 60 * 15, // 15 days, matching service worker
+        baseURL: '/emojis',
+      },
+      {
+        dir: '~/public/fonts',
+        maxAge: 24 * 60 * 60 * 365, // 1 year (versioned)
+        baseURL: '/fonts',
+      },
+      {
+        dir: '~/public/shiki',
+        maxAge: 24 * 60 * 60 * 365, // 1 year, matching service worker
+        baseURL: '/shiki',
+      },
+    ],
   },
   sourcemap: isDevelopment,
   hooks: {
+    'prepare:types': function ({ references }) {
+      references.push({ types: '@types/wicg-file-system-access' })
+    },
     'nitro:config': function (config) {
       const nuxt = useNuxt()
       config.virtual = config.virtual || {}
@@ -195,22 +226,19 @@ export default defineNuxtConfig({
     headers: {
       crossOriginEmbedderPolicy: false,
       contentSecurityPolicy: {
-        value: {
-          'default-src': ['\'self\''],
-          'base-uri': ['\'self\''],
-          'connect-src': ['\'self\'', 'https:', 'http:', 'wss:', 'ws:'],
-          'font-src': ['\'self\''],
-          'form-action': ['\'none\''],
-          'frame-ancestors': ['\'none\''],
-          'img-src': ['\'self\'', 'https:', 'http:', 'data:'],
-          'media-src': ['\'self\'', 'https:', 'http:'],
-          'object-src': ['\'none\''],
-          'script-src': ['\'self\'', '\'unsafe-inline\'', '\'wasm-unsafe-eval\''],
-          'script-src-attr': ['\'none\''],
-          'style-src': ['\'self\'', '\'unsafe-inline\''],
-          'upgrade-insecure-requests': true,
-        },
-        route: '/**',
+        'default-src': ['\'self\''],
+        'base-uri': ['\'self\''],
+        'connect-src': ['\'self\'', 'https:', 'http:', 'wss:', 'ws:'],
+        'font-src': ['\'self\''],
+        'form-action': ['\'none\''],
+        'frame-ancestors': ['\'none\''],
+        'img-src': ['\'self\'', 'https:', 'http:', 'data:', 'blob:'],
+        'media-src': ['\'self\'', 'https:', 'http:'],
+        'object-src': ['\'none\''],
+        'script-src': ['\'self\'', '\'unsafe-inline\'', '\'wasm-unsafe-eval\''],
+        'script-src-attr': ['\'none\''],
+        'style-src': ['\'self\'', '\'unsafe-inline\''],
+        'upgrade-insecure-requests': true,
       },
     },
     rateLimiter: false,
@@ -218,6 +246,12 @@ export default defineNuxtConfig({
   colorMode: { classSuffix: '' },
   i18n,
   pwa,
+  staleDep: {
+    packageManager: 'pnpm',
+  },
+  unlazy: {
+    ssr: false,
+  },
 })
 
 declare global {
@@ -231,5 +265,13 @@ declare global {
 declare module 'nuxt/dist/app' {
   interface RuntimeNuxtHooks {
     'elk-logo:click': () => void
+  }
+}
+
+declare module '@nuxt/schema' {
+  interface AppConfig {
+    storage: any
+    env: BuildInfo['env']
+    buildInfo: BuildInfo
   }
 }

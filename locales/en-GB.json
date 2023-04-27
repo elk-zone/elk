@@ -6,6 +6,9 @@
     "favourite": "Favourite",
     "favourited": "Favourited"
   },
+  "menu": {
+    "show_favourited_and_boosted_by": "Show who favourited and boosted"
+  },
   "nav": {
     "favourites": "Favourites"
   },

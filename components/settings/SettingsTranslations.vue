@@ -53,7 +53,7 @@ function removeDisabledTranslation(code: string) {
               {{ availableOption.nativeName }}
             </option>
           </select>
-          <button class="btn-text" @click="addDisabledTranslation">
+          <button class="btn-text shrink-0" @click="addDisabledTranslation">
             {{ $t('settings.language.translations.add') }}
           </button>
         </div>

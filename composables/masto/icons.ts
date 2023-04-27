@@ -21,6 +21,7 @@ export const accountFieldIcons: Record<string, string> = Object.fromEntries(Obje
   LinkedIn: 'i-ri:linkedin-box-line',
   Location: 'i-ri:map-pin-2-line',
   Mastodon: 'i-ri:mastodon-line',
+  Matrix: 'i-tabler:brand-matrix',
   Medium: 'i-ri:medium-line',
   OpenPGP: 'i-ri:key-2-line',
   Patreon: 'i-ri:patreon-line',
@@ -54,7 +55,7 @@ const accountFieldIconsLowercase = Object.fromEntries(
   ),
 )
 
-export const getAccountFieldIcon = (value: string) => {
+export function getAccountFieldIcon(value: string) {
   const name = value.trim().toLowerCase()
   return accountFieldIconsLowercase[name] || undefined
 }

@@ -18,7 +18,9 @@ export interface PreferencesSettings {
   hideAccountHoverCard: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
+  enableDataSaving: boolean
   enablePinchToZoom: boolean
+  zenMode: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
@@ -30,7 +32,6 @@ export interface UserSettings {
   fontSize: FontSize
   language: string
   disabledTranslationLanguages: string[]
-  zenMode: boolean
   themeColors?: ThemeColors
 }
 
@@ -56,16 +57,6 @@ export function getDefaultLanguage(languages: string[]) {
   return matchLanguages(languages, navigator.languages) || 'en-US'
 }
 
-export function getDefaultUserSettings(locales: string[]): UserSettings {
-  return {
-    language: getDefaultLanguage(locales),
-    fontSize: DEFAULT_FONT_SIZE,
-    disabledTranslationLanguages: [],
-    zenMode: false,
-    preferences: {},
-  }
-}
-
 export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAltIndicatorOnPosts: false,
   hideBoostCount: false,
@@ -77,8 +68,19 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAccountHoverCard: false,
   grayscaleMode: false,
   enableAutoplay: true,
+  enableDataSaving: false,
   enablePinchToZoom: false,
+  zenMode: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,
+}
+
+export function getDefaultUserSettings(locales: string[]): UserSettings {
+  return {
+    language: getDefaultLanguage(locales),
+    fontSize: DEFAULT_FONT_SIZE,
+    disabledTranslationLanguages: [],
+    preferences: DEFAULT__PREFERENCES_SETTINGS,
+  }
 }

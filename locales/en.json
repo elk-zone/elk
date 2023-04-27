@@ -34,6 +34,7 @@
     "posts": "Posts",
     "posts_count": "{0} Posts|{0} Post|{0} Posts",
     "profile_description": "{0}'s profile header",
+    "profile_personal_note": "Personal Note",
     "profile_unavailable": "Profile unavailable",
     "request_follow": "Request to follow",
     "unblock": "Unblock",
@@ -95,6 +96,7 @@
   "common": {
     "end_of_list": "End of the list",
     "error": "ERROR",
+    "fetching": "Fetching...",
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
@@ -198,7 +200,32 @@
     "remove_account": "Remove account from list",
     "save": "Save changes"
   },
+  "magic_keys": {
+    "dialog_header": "Keyboard shortcuts",
+    "groups": {
+      "actions": {
+        "boost": "Boost",
+        "command_mode": "Command mode",
+        "compose": "Compose",
+        "favourite": "Favourite",
+        "title": "Actions"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Home",
+        "go_to_notifications": "Notifications",
+        "next_status": "Next status",
+        "previous_status": "Previous status",
+        "shortcut_help": "Shortcut help",
+        "title": "Navigation"
+      }
+    },
+    "sequence_then": "then"
+  },
   "menu": {
+    "add_personal_note": "Add personal note to {0}",
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
     "copy_link_to_post": "Copy link to this post",
@@ -213,8 +240,9 @@
     "mute_conversation": "Mute this post",
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
+    "remove_personal_note": "Remove personal note from {0}",
     "share_post": "Share this post",
-    "show_favourited_and_boosted_by": "Show who favourited and boosted",
+    "show_favourited_and_boosted_by": "Show who favorited and boosted",
     "show_reblogs": "Show boosts from {0}",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
@@ -227,6 +255,9 @@
     "unmute_account": "Unmute {0}",
     "unmute_conversation": "Unmute this post",
     "unpin_on_profile": "Unpin on profile"
+  },
+  "modals": {
+    "aria_label_close": "Close"
   },
   "nav": {
     "back": "Go back",
@@ -261,7 +292,7 @@
     "followed_you": "followed you",
     "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
     "missing_type": "MISSING notification.type:",
-    "reblogged_post": "reblogged your post",
+    "reblogged_post": "boosted your post",
     "request_to_follow": "requested to follow you",
     "signed_up": "signed up",
     "update_status": "updated their post"
@@ -373,6 +404,7 @@
         "save_settings": "Save settings",
         "subscription_error": {
           "clear_error": "Clear error",
+          "error_hint": "You can consult a list of frequently asked questions to try to solve the problem: {0}.",
           "invalid_vapid_key": "The VAPID public key seems to be invalid.",
           "permission_denied": "Permission denied: enable notifications in your browser.",
           "repo_link": "Elk's repository in GitHub",
@@ -402,6 +434,8 @@
     "notifications_settings": "Notifications",
     "preferences": {
       "enable_autoplay": "Enable Autoplay",
+      "enable_data_saving": "Enable data saving",
+      "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
       "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Grayscale mode",
@@ -409,7 +443,7 @@
       "hide_alt_indi_on_posts": "Hide alt indicator on posts",
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",
-      "hide_follower_count": "Hide follower count",
+      "hide_follower_count": "Hide following/follower count",
       "hide_reply_count": "Hide reply count",
       "hide_translation": "Hide translation",
       "hide_username_emojis": "Hide username emojis",
@@ -418,7 +452,9 @@
       "title": "Experimental Features",
       "user_picker": "User Picker",
       "virtual_scroll": "Virtual Scrolling",
-      "wellbeing": "Wellbeing"
+      "wellbeing": "Wellbeing",
+      "zen_mode": "Zen mode",
+      "zen_mode_description": "Hide asides unless the mouse cursor is over them. Also hide some elements from the timeline."
     },
     "profile": {
       "appearance": {
@@ -462,6 +498,10 @@
     "uploading": "Uploading..."
   },
   "status": {
+    "account": {
+      "suspended_message": "The account of this status has been suspended.",
+      "suspended_show": "Show content anyways?"
+    },
     "boosted_by": "Boosted By",
     "edited": "Edited {0}",
     "favourited_by": "Favorited By",
@@ -561,6 +601,7 @@
     "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
     "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
     "open_editor_tools": "Editor tools",
+    "pick_an_icon": "Pick an icon",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",

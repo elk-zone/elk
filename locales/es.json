@@ -34,8 +34,9 @@
     "posts": "Publicaciones",
     "posts_count": "{0} Publicaciones|{0} Publicación|{0} Publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
+    "profile_personal_note": "Nota Personal",
     "profile_unavailable": "Perfil no disponible",
-    "request_follow": "Solicitud para seguirte",
+    "request_follow": "Solicitar seguirle",
     "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
     "unmute": "Dejar de silenciar",
@@ -90,11 +91,12 @@
     "switch_account": "Cambiar a {0}",
     "switch_account_desc": "Cambiar a otra cuenta",
     "toggle_dark_mode": "Cambiar a modo oscuro",
-    "toggle_zen_mode": "Cambiar a modo zen"
+    "toggle_zen_mode": "Cambiar a modo Zen"
   },
   "common": {
     "end_of_list": "Fin",
     "error": "ERROR",
+    "fetching": "Cargando...",
     "in": "en",
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer no tienes conexión a internet. Por favor, comprueba tu conexión a la red."
@@ -198,7 +200,32 @@
     "remove_account": "Eliminar cuenta de la lista",
     "save": "Guardar"
   },
+  "magic_keys": {
+    "dialog_header": "Atajos de teclado",
+    "groups": {
+      "actions": {
+        "boost": "Retootear",
+        "command_mode": "Modo comando",
+        "compose": "Redactar",
+        "favourite": "Favorito",
+        "title": "Acciones"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Inicio",
+        "go_to_notifications": "Notificaciones",
+        "next_status": "Siguiente estado",
+        "previous_status": "Anterior estado",
+        "shortcut_help": "Atajo de ayuda",
+        "title": "Navegación"
+      }
+    },
+    "sequence_then": "seguido de"
+  },
   "menu": {
+    "add_personal_note": "Agregar una nota personal a {0}",
     "block_account": "Bloquear a {0}",
     "block_domain": "Bloquear dominio {0}",
     "copy_link_to_post": "Copiar enlace",
@@ -213,6 +240,7 @@
     "mute_conversation": "Silenciar publicación",
     "open_in_original_site": "Abrir página original",
     "pin_on_profile": "Fijar en tu perfil",
+    "remove_personal_note": "Eliminar nota personal de {0}",
     "share_post": "Compartir esta publicación",
     "show_favourited_and_boosted_by": "Mostrar quien marcó como favorita y quien retooteó",
     "show_reblogs": "Mostrar retoots de {0}",
@@ -227,6 +255,9 @@
     "unmute_account": "Dejar de silenciar a {0}",
     "unmute_conversation": "Dejar de silenciar la publicación",
     "unpin_on_profile": "Desfijar del perfil"
+  },
+  "modals": {
+    "aria_label_close": "Cerrar"
   },
   "nav": {
     "back": "Regresar",
@@ -373,6 +404,7 @@
         "save_settings": "Guardar cambios",
         "subscription_error": {
           "clear_error": "Limpiar error",
+          "error_hint": "Puede consultar una lista de preguntas más frecuentes para tratar de solucionar el problema: {0}.",
           "invalid_vapid_key": "La clave pública VAPID parece no ser válida.",
           "permission_denied": "Permiso denegado: habilita las notificaciones en tu navegador.",
           "repo_link": "Repositorio de Elk en GitHub",
@@ -402,6 +434,8 @@
     "notifications_settings": "Notificaciones",
     "preferences": {
       "enable_autoplay": "Habilitar reproducción automática",
+      "enable_data_saving": "Habilitar el ahorro de datos",
+      "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
       "enable_pinch_to_zoom": "Habilitar pellizcar para hacer zoom",
       "github_cards": "Tarjetas GitHub",
       "grayscale_mode": "Modo escala de grises",
@@ -413,12 +447,14 @@
       "hide_reply_count": "Ocultar número de respuestas",
       "hide_translation": "Ocultar traducción",
       "hide_username_emojis": "Ocultar emojis en el nombre de usuario",
-      "hide_username_emojis_description": "Se ocultan los emojis en el nombre de usuario en las líneas de tiempo. Los emojis seguirán siendo visibles en sus perfiles.",
+      "hide_username_emojis_description": "Oculta los emojis de los nombres de usuarios en la línea de tiempo. Los emojis permanecerán visibles en sus perfiles.",
       "label": "Preferencias",
       "title": "Funcionalidades experimentales",
       "user_picker": "Selector de usuarios",
       "virtual_scroll": "Desplazamiento virtual",
-      "wellbeing": "Bienestar"
+      "wellbeing": "Bienestar",
+      "zen_mode": "Modo Zen",
+      "zen_mode_description": "Oculta las secciones laterales de la interfaz a menos que el cursor del ratón esté sobre ellas. Oculta también algunos elementos de las líneas de tiempo."
     },
     "profile": {
       "appearance": {
@@ -428,6 +464,8 @@
         "label": "Apariencia",
         "profile_metadata": "Metadatos de perfil",
         "profile_metadata_desc": "Puede mostrar hasta 4 elementos en forma de tabla en tu perfil",
+        "profile_metadata_label": "Texto",
+        "profile_metadata_value": "Contenido",
         "title": "Editar perfil"
       },
       "featured_tags": {
@@ -460,6 +498,10 @@
     "uploading": "Subiendo..."
   },
   "status": {
+    "account": {
+      "suspended_message": "La cuenta de este mensaje ha sido suspendida.",
+      "suspended_show": "¿Mostrar contenido de todos modos?"
+    },
     "boosted_by": "Retooteado por",
     "edited": "Editado {0}",
     "favourited_by": "Marcado como favorita por",
@@ -559,6 +601,7 @@
     "explore_posts_intro": "Estos mensajes de este y otros servidores de la red descentralizada están siendo tendencia ahora mismo en este servidor.",
     "explore_tags_intro": "Estas etiquetas están siendo tendencia ahora mismo entre los usuarios de este y otros servidores de la red descentralizada.",
     "open_editor_tools": "Herramientas de edición",
+    "pick_an_icon": "Selecciona un icono",
     "publish_failed": "Cierra los mensajes fallidos en la parte superior del editor para volver a publicar",
     "toggle_bold": "Cambiar a negrita",
     "toggle_code_block": "Cambiar a bloque de código",

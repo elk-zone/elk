@@ -14,7 +14,7 @@ const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
-const { modelValue } = defineModel<{
+const { modelValue } = defineModels<{
   modelValue: number
 }>()
 
@@ -63,8 +63,8 @@ const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
 })
 
 useGesture({
-  onPinch({ offset: [distance, angle] }) {
-    set({ scale: 1 + distance / 200 })
+  onPinch({ offset: [distance, _angle] }) {
+    set({ scale: Math.max(0.5, 1 + distance / 200) })
   },
   onMove({ movement: [x, y], dragging, pinching }) {
     if (dragging && !pinching)

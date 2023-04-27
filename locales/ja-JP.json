@@ -95,6 +95,7 @@
   "common": {
     "end_of_list": "リストの最後です",
     "error": "ERROR",
+    "fetching": "取得中...",
     "in": "in",
     "not_found": "404 Not Found",
     "offline_desc": "現在オフラインのようです。ネットワーク接続を確認してください。"
@@ -337,6 +338,7 @@
     "language": {
       "display_language": "表示言語",
       "label": "言語",
+      "status": "翻訳状況: {0}/{1} ({2}%)",
       "translations": {
         "add": "追加",
         "choose_language": "言語を選択",
@@ -372,6 +374,7 @@
         "save_settings": "設定を保存",
         "subscription_error": {
           "clear_error": "エラーのクリア",
+          "error_hint": "問題を解決するために、よくある質問の一覧を参照できます: {0}",
           "invalid_vapid_key": "VAPID公開鍵が無効なようです。",
           "permission_denied": "パーミッション拒否: ブラウザで通知を有効にしてください。",
           "repo_link": "ElkのGitHubリポジトリ",
@@ -401,6 +404,8 @@
     "notifications_settings": "通知",
     "preferences": {
       "enable_autoplay": "自動再生を有効化",
+      "enable_data_saving": "データセーバーを有効にする",
+      "enable_data_saving_description": "添付の自動読み込みを防止してデータを節約します。",
       "enable_pinch_to_zoom": "ピンチによるズームを有効にする",
       "github_cards": "GitHubカード",
       "grayscale_mode": "グレースケールモード",
@@ -427,6 +432,8 @@
         "label": "外観",
         "profile_metadata": "プロフィールのメタデータ",
         "profile_metadata_desc": "プロフィールのテーブルには最大{0}項目まで表示できます",
+        "profile_metadata_label": "ラベル",
+        "profile_metadata_value": "コンテンツ",
         "title": "プロフィールを編集"
       },
       "featured_tags": {
@@ -558,6 +565,7 @@
     "explore_posts_intro": "これらの投稿は、分散型ネットワーク上のこのサーバーや他のサーバー上にあり、現在このサーバー上で注目を集めています。",
     "explore_tags_intro": "これらのハッシュタグは、分散型ネットワーク上のこのサーバーや他のサーバーにいるユーザーの間で現在注目を集めています。",
     "open_editor_tools": "エディタツール",
+    "pick_an_icon": "アイコンの選択",
     "publish_failed": "投稿の再公開時にエディタ上部のエラーメッセージを閉じる",
     "toggle_bold": "太字を切り替える",
     "toggle_code_block": "コードブロックを切り替える",
@@ -569,6 +577,7 @@
     "sign_in_desc": "サインインすると、アカウントやハッシュタグのフォロー、お気に入りの追加、投稿の共有、投稿への返信のほか、異なるサーバー上のあなたのアカウントから交流できるようになります。",
     "sign_in_notice_title": "{0}の公開データを表示しています",
     "sign_out_account": "{0}からサインアウト",
+    "single_instance_sign_in_desc": "サインインすると、プロファイルやハッシュタグのフォロー、投稿のお気に入り、共有、返信ができるようになります。",
     "tip_no_account": "まだMastodonアカウントを持っていない場合は、{0}しましょう。",
     "tip_register_account": "サーバーを選んでアカウントを登録"
   },

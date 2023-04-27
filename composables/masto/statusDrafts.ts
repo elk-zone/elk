@@ -13,14 +13,16 @@ export const builtinDraftKeys = [
   'home',
 ]
 
+const ALL_VISIBILITY = ['public', 'unlisted', 'private', 'direct'] as const
+
 function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
   // The default privacy only should be taken into account if it makes
   // the post more private than the replying to post
-  const ALL_VISIBILITY = ['public', 'unlisted', 'private', 'direct'] as const
+  const preferredVisibility = currentUser.value?.account.source.privacy || 'public'
   return ALL_VISIBILITY.indexOf(currentVisibility)
-   > ALL_VISIBILITY.indexOf(currentUser.value?.account.source.privacy || 'public')
+   > ALL_VISIBILITY.indexOf(preferredVisibility)
     ? currentVisibility
-    : currentUser.value?.account.source.privacy || 'public'
+    : preferredVisibility
 }
 
 export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {

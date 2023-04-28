@@ -14,6 +14,8 @@ onActivated(() =>
 )
 onDeactivated(() => search?.input?.blur())
 
+const userSettings = useUserSettings()
+
 const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
     to: isHydrated.value ? `/${currentServer.value}/explore` : '/explore',
@@ -26,6 +28,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
     to: isHydrated.value ? `/${currentServer.value}/explore/links` : '/explore/links',
     display: isHydrated.value ? t('tab.news') : '',
+    hide: userSettings.value.preferences.hideNews,
   },
   // This section can only be accessed after logging in
   {

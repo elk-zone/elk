@@ -93,6 +93,12 @@ const userSettings = useUserSettings()
       </template>
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideNews')"
+      @click="togglePreferences('hideNews')"
+    >
+      {{ $t("settings.preferences.hide_news") }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'zenMode')"
       @click="togglePreferences('zenMode')"
     >

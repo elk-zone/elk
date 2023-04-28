@@ -132,6 +132,11 @@ export default defineConfig({
       res += `\n${res.replace('{scrollbar-width:none;}', '::-webkit-scrollbar{display: none;}')}`
       return res
     }],
+    [/^h-100dvh$/, (_, { constructCSS }) => {
+      let res = constructCSS({ height: '100vh' })
+      res += `\n${res.replace('{height:100vh;}', '{height:100vh;height:100dvh;}')}`
+      return res
+    }],
     ['box-shadow-outline', { 'box-shadow': '0 0 0 1px var(--c-primary)' }],
   ],
 })

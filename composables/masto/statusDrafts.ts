@@ -63,6 +63,7 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
     sensitive: status.sensitive,
     spoilerText: status.spoilerText,
     language: status.language,
+    inReplyToId: status.inReplyToId,
   })
 }
 

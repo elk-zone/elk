@@ -153,6 +153,10 @@ defineExpose({
     editor.value?.commands?.focus?.()
   },
 })
+
+onDeactivated(() => {
+  clearEmptyDrafts()
+})
 </script>
 
 <template>

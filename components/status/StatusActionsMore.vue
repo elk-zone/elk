@@ -7,6 +7,10 @@ const props = defineProps<{
   command?: boolean
 }>()
 
+const emit = defineEmits<{
+  (event: 'afterEdit'): void
+}>()
+
 const { details, command } = $(props)
 
 const {
@@ -101,10 +105,11 @@ function reply() {
 }
 
 async function editStatus() {
-  openPublishDialog(`edit-${status.id}`, {
+  await openPublishDialog(`edit-${status.id}`, {
     ...await getDraftFromStatus(status),
     editingStatus: status,
   }, true)
+  emit('afterEdit')
 }
 
 function showFavoritedAndBoostedBy() {

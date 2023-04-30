@@ -16,7 +16,7 @@ const main = ref<ComponentPublicInstance | null>(null)
 
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   `status:${id}`,
-  () => fetchStatus(id),
+  () => fetchStatus(id, true),
   { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef() },
 )
 const { client } = $(useMasto())
@@ -83,6 +83,7 @@ onReactivated(() => {
             :newer="context?.ancestors.at(-1)"
             command
             style="scroll-margin-top: 60px"
+            @refetch-status="refreshStatus()"
           />
           <PublishWidget
             v-if="currentUser"

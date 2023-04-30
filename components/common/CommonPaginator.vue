@@ -11,7 +11,7 @@ const {
   virtualScroller = false,
   eventType = 'update',
   preprocess,
-  noEndMessage = false,
+  endMessage = true,
 } = defineProps<{
   paginator: Paginator<T[], O>
   keyProp?: keyof T
@@ -19,7 +19,7 @@ const {
   stream?: Promise<WsEvents>
   eventType?: 'notification' | 'update'
   preprocess?: (items: (U | T)[]) => U[]
-  noEndMessage?: boolean
+  endMessage?: boolean | string
 }>()
 
 defineSlots<{
@@ -109,9 +109,9 @@ defineExpose({ createEntry, removeEntry, updateEntry })
     <slot v-if="state === 'loading'" name="loading">
       <TimelineSkeleton />
     </slot>
-    <slot v-else-if="state === 'done' && !noEndMessage" name="done">
+    <slot v-else-if="state === 'done' && endMessage !== false" name="done">
       <div p5 text-secondary italic text-center>
-        {{ t('common.end_of_list') }}
+        {{ t(typeof endMessage === 'string' ? endMessage : 'common.end_of_list') }}
       </div>
     </slot>
     <div v-else-if="state === 'error'" p5 text-secondary>

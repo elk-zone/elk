@@ -53,11 +53,12 @@ const containerClass = computed(() => {
         </div>
       </div>
       <slot name="header">
-        <div hidden :class="{ 'xl:block': $route.name !== 'tag' }" h-6 />
+        <div hidden />
       </slot>
     </div>
     <PwaInstallPrompt lg:hidden />
     <div :class="isHydrated && wideLayout ? 'xl:w-full sm:max-w-600px' : 'sm:max-w-600px md:shrink-0'" m-auto>
+      <div hidden :class="{ 'xl:block': $route.name !== 'tag' && !$slots.header }" h-6 />
       <slot />
     </div>
   </div>

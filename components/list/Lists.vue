@@ -62,7 +62,7 @@ async function edit(listId: string) {
       hover:bg-active @click="showCreate = true"
     >
       <span block i-carbon:add />
-      Create a new list
+      {{ $t('list.create_new_list') }}
     </button>
   </div>
 </template>

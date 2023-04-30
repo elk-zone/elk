@@ -208,8 +208,7 @@
         "command_mode": "Menu de comandos",
         "compose": "Compor",
         "favourite": "Adcionar aos favoritos",
-        "title": "Ações",
-        "zen_mode": "Modo Zen"
+        "title": "Ações"
       },
       "media": {
         "title": "Media"
@@ -453,7 +452,9 @@
       "title": "Funcionalidades Experimentais",
       "user_picker": "Selecionador de Utilizador",
       "virtual_scroll": "Deslocamento Virtual",
-      "wellbeing": "Bem-estar"
+      "wellbeing": "Bem-estar",
+      "zen_mode": "Modo Zen",
+      "zen_mode_description": "Esconde as colunas laterais, a menos que o cursor do rato esteja sobre elas. Esconde também alguns elementos da cronologia."
     },
     "profile": {
       "appearance": {

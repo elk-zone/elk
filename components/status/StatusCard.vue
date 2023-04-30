@@ -142,7 +142,7 @@ const forceShow = ref(false)
           </AccountHoverWrapper>
 
           <div v-if="connectReply" w-full h-full flex mt--3px justify-center>
-            <div w-1px border="x base" />
+            <div w-1px border="x base" mb-9 />
           </div>
         </div>
 

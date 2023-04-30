@@ -16,6 +16,7 @@ export interface PreferencesSettings {
   hideTranslation: boolean
   hideUsernameEmojis: boolean
   hideAccountHoverCard: boolean
+  hideNews: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
   enableDataSaving: boolean
@@ -66,6 +67,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideTranslation: false,
   hideUsernameEmojis: false,
   hideAccountHoverCard: false,
+  hideNews: false,
   grayscaleMode: false,
   enableAutoplay: true,
   enableDataSaving: false,

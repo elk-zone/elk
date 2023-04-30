@@ -32,19 +32,14 @@ async function edit(listId: string) {
 </script>
 
 <template>
-  <CommonPaginator :end-message="false" :paginator="paginator">
-    <template #default="{ item }">
-      <div p4 hover:bg-active block w="100%" flex justify-between items-center gap-4>
-        <p>{{ item.title }}</p>
-        <CommonTooltip
-          :content="indexOfUserInList(item.id) === -1 ? $t('list.add_account') : $t('list.remove_account')"
-          :hover="indexOfUserInList(item.id) === -1 ? 'text-green' : 'text-red'"
-        >
-          <button
-            text-sm p2 border-1 transition-colors
-            border-dark
-            btn-action-icon
-            @click="() => edit(item.id)"
+  <div>
+    <CommonPaginator :end-message="false" :paginator="paginator">
+      <template #default="{ item }">
+        <div p4 hover:bg-active block w="100%" flex justify-between items-center gap-4>
+          <p>{{ item.title }}</p>
+          <CommonTooltip
+            :content="indexOfUserInList(item.id) === -1 ? $t('list.add_account') : $t('list.remove_account')"
+            :hover="indexOfUserInList(item.id) === -1 ? 'text-green' : 'text-red'"
           >
             <button
               text-sm p2 border-1 transition-colors
@@ -52,7 +47,14 @@ async function edit(listId: string) {
               btn-action-icon
               @click="() => edit(item.id)"
             >
-              <span :class="indexOfUserInList(item.id) === -1 ? 'i-ri:user-add-line' : 'i-ri:user-unfollow-line'" />
+              <button
+                text-sm p2 border-1 transition-colors
+                border-dark
+                btn-action-icon
+                @click="() => edit(item.id)"
+              >
+                <span :class="indexOfUserInList(item.id) === -1 ? 'i-ri:user-add-line' : 'i-ri:user-unfollow-line'" />
+              </button>
             </button>
           </CommonTooltip>
         </div>

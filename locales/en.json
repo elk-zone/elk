@@ -98,6 +98,8 @@
     "error": "ERROR",
     "fetching": "Fetching...",
     "in": "in",
+    "no_bookmarks": "No bookmarked posts yet",
+    "no_favourites": "No liked posts yet",
     "not_found": "404 Not Found",
     "offline_desc": "Seems like you are offline. Please check your network connection."
   },

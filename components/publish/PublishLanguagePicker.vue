@@ -20,7 +20,7 @@ const languages = $computed(() =>
     ? fuse.search(languageKeyword).map(r => r.item)
     : [...languagesNameList].filter(entry => !userSettings.value.disabledTranslationLanguages.includes(entry.code))
         .sort(({ code: a }, { code: b }) => {
-          // Prefer code en over everything else
+          // Put English on the top
           if (a === 'en')
             return -1
 

@@ -55,9 +55,10 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
   >
     <CommonTooltip :disabled="!isMediumOrLargeScreen" :content="text" placement="right">
       <div
+        class="item"
         flex items-center gap4
         w-fit rounded-3
-        px2 py2 mx3 sm:mxa
+        px2 mx3 sm:mxa
         xl="ml0 mr5 px5 w-auto"
         transition-100
         elk-group-hover="bg-active" group-focus-visible:ring="2 current"
@@ -72,3 +73,22 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
     </CommonTooltip>
   </NuxtLink>
 </template>
+
+<style scoped>
+  .item {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  @media screen and ( max-height: 820px ) {
+    .item {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+    }
+  }
+  @media screen and ( max-height: 720px ) {
+    .item {
+      padding-top: 0.05rem;
+      padding-bottom: 0.05rem;
+    }
+  }
+</style>

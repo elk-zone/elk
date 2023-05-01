@@ -1,7 +1,7 @@
 import { withoutProtocol } from 'ufo'
 import type { mastodon } from 'masto'
 import type { EffectScope, Ref } from 'vue'
-import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
+import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
 import type { ElkMasto } from './masto/masto'
 import type { UserLogin } from '~/types'
 import type { Overwrite } from '~/types/utils'
@@ -114,7 +114,7 @@ if (process.client) {
 export function useUsers() {
   return users
 }
-export function useSelfAccount(user: MaybeComputedRef<mastodon.v1.Account | undefined>) {
+export function useSelfAccount(user: MaybeRefOrGetter<mastodon.v1.Account | undefined>) {
   return computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
 }
 

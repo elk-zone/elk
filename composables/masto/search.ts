@@ -1,8 +1,8 @@
-import type { MaybeComputedRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { Paginator, mastodon } from 'masto'
 import type { RouteLocation } from 'vue-router'
 
-export type UseSearchOptions = MaybeComputedRef<
+export type UseSearchOptions = MaybeRefOrGetter<
   Partial<Omit<mastodon.v1.SearchParams, keyof mastodon.DefaultPaginationParams | 'q'>>
 >
 
@@ -20,7 +20,7 @@ export type StatusSearchResult = BuildSearchResult<'status', mastodon.v1.Status>
 
 export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSearchResult
 
-export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOptions = {}) {
+export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOptions = {}) {
   const done = ref(false)
   const { client } = $(useMasto())
   const loading = ref(false)

@@ -52,9 +52,9 @@ export function useHydratedHead<T extends SchemaAugmentations>(input: UseHeadInp
       (input as any).title = () => isHydrated.value ? typeof title === 'function' ? title() : title : ''
     }
   }
-  return useHead(() => {
+  return useHead((() => {
     if (!isHydrated.value)
       return {}
     return resolveUnref(input)
-  }, options)
+  }) as UseHeadInput<T>, options)
 }

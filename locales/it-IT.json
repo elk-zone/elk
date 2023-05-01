@@ -239,7 +239,7 @@
     "mute_account": "Silenzia {0}",
     "mute_conversation": "Silenzia questo post",
     "open_in_original_site": "Apri nel sito originale",
-    "pin_on_profile": "Fissa nel profilo",
+    "pin_on_profile": "Fissa in cima al profilo",
     "remove_personal_note": "Rimuovi nota personale da {0}",
     "share_post": "Condividi questo post",
     "show_favourited_and_boosted_by": "Mostra chi ha apprezzato e potenziato",
@@ -254,7 +254,7 @@
     "unblock_domain": "Sblocca dominio {0}",
     "unmute_account": "Riattiva {0}",
     "unmute_conversation": "Riattiva questo post",
-    "unpin_on_profile": "Togli dal profilo"
+    "unpin_on_profile": "Togli dai fissati"
   },
   "modals": {
     "aria_label_close": "Chiudi"

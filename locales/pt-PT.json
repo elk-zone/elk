@@ -98,6 +98,8 @@
     "error": "ERRO",
     "fetching": "A carregar...",
     "in": "em",
+    "no_bookmarks": "Não tem ainda itens salvos",
+    "no_favourites": "Não tem ainda publicações favoritas",
     "not_found": "404 Não Encontrado",
     "offline_desc": "Parece que está offline. Por favor, confirme a sua conexão à internet."
   },
@@ -444,6 +446,7 @@
       "hide_boost_count": "Esconder contagem de partilhas",
       "hide_favorite_count": "Esconder contagem de favoritos",
       "hide_follower_count": "Esconder contagem de seguidores",
+      "hide_news": "Esconder notícias",
       "hide_reply_count": "Esconder contagem de respostas",
       "hide_translation": "Esconder botão de tradução",
       "hide_username_emojis": "Esconder emojis do nome de utilizador",

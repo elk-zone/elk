@@ -30,7 +30,7 @@
     "mutuals": "Reciproci",
     "notifications_on_post_disable": "Disattiva notifiche per i post di {username}",
     "notifications_on_post_enable": "Attiva notifiche per i post di {username}",
-    "pinned": "Fissato",
+    "pinned": "Fissati",
     "posts": "Post",
     "posts_count": "{0} post|{0} post|{0} post",
     "profile_description": "Copertina profilo di {0}",
@@ -90,7 +90,7 @@
     "sign_in_desc": "Aggiungi account esistente",
     "switch_account": "Passa a {0}",
     "switch_account_desc": "Cambia account",
-    "toggle_dark_mode": "Tema scuro",
+    "toggle_dark_mode": "Aspetto scuro",
     "toggle_zen_mode": "Modalità zen"
   },
   "common": {
@@ -239,7 +239,7 @@
     "mute_account": "Silenzia {0}",
     "mute_conversation": "Silenzia questo post",
     "open_in_original_site": "Apri nel sito originale",
-    "pin_on_profile": "Fissa nel profilo",
+    "pin_on_profile": "Fissa in cima al profilo",
     "remove_personal_note": "Rimuovi nota personale da {0}",
     "share_post": "Condividi questo post",
     "show_favourited_and_boosted_by": "Mostra chi ha apprezzato e potenziato",
@@ -254,7 +254,7 @@
     "unblock_domain": "Sblocca dominio {0}",
     "unmute_account": "Riattiva {0}",
     "unmute_conversation": "Riattiva questo post",
-    "unpin_on_profile": "Togli dal profilo"
+    "unpin_on_profile": "Togli dai fissati"
   },
   "modals": {
     "aria_label_close": "Chiudi"
@@ -284,7 +284,7 @@
     "select_language": "Lingua interfaccia",
     "settings": "Impostazioni",
     "show_intro": "Mostra intro",
-    "toggle_theme": "Cambia tema",
+    "toggle_theme": "Cambia aspetto",
     "zen_mode": "Modalità zen"
   },
   "notification": {
@@ -564,8 +564,8 @@
     "second_past": "adesso|{n} secondo fa|{n} secondi fa",
     "short_day_future": "in {n}g",
     "short_day_past": "{n}g",
-    "short_hour_future": "in {n}o",
-    "short_hour_past": "{n}o",
+    "short_hour_future": "in {n}h",
+    "short_hour_past": "{n}h",
     "short_minute_future": "in {n}min",
     "short_minute_past": "{n}min",
     "short_month_future": "in {n}m",
@@ -583,7 +583,7 @@
   },
   "timeline": {
     "show_new_items": "Mostra {v} nuovi elementi|Mostra {v} nuovo elemento|Mostra {v} nuovi elementi",
-    "view_older_posts": "Non è possibile mostrare post passati da altre istanze"
+    "view_older_posts": "Non è possibile mostrare post passati di altre istanze"
   },
   "title": {
     "federated_timeline": "Cronologia federata",

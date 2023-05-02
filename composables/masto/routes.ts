@@ -29,6 +29,10 @@ export function getAccountFollowersRoute(account: mastodon.v1.Account) {
   })
 }
 
+export function getReportRoute(id: number) {
+  // TODO: return link to Mastodon (NOT Elk)
+}
+
 export function getStatusRoute(status: mastodon.v1.Status) {
   return useRouter().resolve({
     name: 'status',

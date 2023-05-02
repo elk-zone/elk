@@ -1,0 +1,175 @@
+diff --git a/dist/index.js b/dist/index.js
+index 3fc6a2dd5f9ebaf20504db26a32e809cac929480..693f015856bdbfdfcf67b066877b9f349061d5cd 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -285,15 +285,6 @@ async function loadWorkboxBuild() {
+     return require("workbox-build");
+   }
+ }
+-async function loadRollupReplacePlugin() {
+-  try {
+-    const { createRequire } = await import("module").then((m) => m.default || m);
+-    const nodeRequire = createRequire(_dirname);
+-    return nodeRequire("@rollup/plugin-replace");
+-  } catch (_) {
+-    return require("@rollup/plugin-replace");
+-  }
+-}
+ async function generateRegisterSW2(options2, mode, source = "register") {
+   const sw = options2.buildBase + options2.filename;
+   const scope = options2.scope;
+@@ -335,38 +326,29 @@ async function generateInjectManifest(options2, viteOptions) {
+     await generateServiceWorker(options2, viteOptions);
+     return;
+   }
+-  const vitePlugins = options2.vitePlugins;
+-  const includedPluginNames = [];
+-  if (typeof vitePlugins === "function")
+-    includedPluginNames.push(...vitePlugins(viteOptions.plugins.map((p) => p.name)));
+-  else
+-    includedPluginNames.push(...vitePlugins);
+-  if (includedPluginNames.length === 0)
+-    includedPluginNames.push(...defaultInjectManifestVitePlugins);
+-  const replace = await loadRollupReplacePlugin();
+-  const plugins = [
+-    replace({
+-      "preventAssignment": true,
+-      "process.env.NODE_ENV": JSON.stringify(options2.mode)
+-    }),
+-    ...viteOptions.plugins.filter((p) => includedPluginNames.includes(p.name))
+-  ];
+-  const { rollup } = await import("rollup");
+-  const bundle = await rollup({
+-    input: options2.swSrc,
+-    plugins
++  const { build } = await import("vite");
++  const define = { ...viteOptions.define ?? {} };
++  define["process.env.NODE_ENV"] = JSON.stringify(options2.mode);
++  await build({
++    base: viteOptions.base,
++    build: {
++      sourcemap: viteOptions.build.sourcemap,
++      lib: {
++        entry: options2.swSrc,
++        name: "app",
++        formats: [options2.rollupFormat]
++      },
++      rollupOptions: {
++        output: {
++          entryFileNames: options2.filename
++        }
++      },
++      outDir: options2.outDir,
++      emptyOutDir: false
++    },
++    configFile: false,
++    define
+   });
+-  try {
+-    await bundle.write({
+-      format: options2.rollupFormat,
+-      exports: "none",
+-      inlineDynamicImports: true,
+-      file: options2.injectManifest.swDest,
+-      sourcemap: viteOptions.build.sourcemap
+-    });
+-  } finally {
+-    await bundle.close();
+-  }
+   if (!options2.injectManifest.injectionPoint)
+     return;
+   const injectManifestOptions = {
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 4353dc00f19298bf56e3f970a7e27b2266e8d33d..e7407dcddc4fe67a1c08c70c2c5b1700fd89b465 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -258,15 +258,6 @@ async function loadWorkboxBuild() {
+     return __require("workbox-build");
+   }
+ }
+-async function loadRollupReplacePlugin() {
+-  try {
+-    const { createRequire } = await import("module").then((m) => m.default || m);
+-    const nodeRequire = createRequire(_dirname);
+-    return nodeRequire("@rollup/plugin-replace");
+-  } catch (_) {
+-    return __require("@rollup/plugin-replace");
+-  }
+-}
+ async function generateRegisterSW2(options2, mode, source = "register") {
+   const sw = options2.buildBase + options2.filename;
+   const scope = options2.scope;
+@@ -308,38 +299,29 @@ async function generateInjectManifest(options2, viteOptions) {
+     await generateServiceWorker(options2, viteOptions);
+     return;
+   }
+-  const vitePlugins = options2.vitePlugins;
+-  const includedPluginNames = [];
+-  if (typeof vitePlugins === "function")
+-    includedPluginNames.push(...vitePlugins(viteOptions.plugins.map((p) => p.name)));
+-  else
+-    includedPluginNames.push(...vitePlugins);
+-  if (includedPluginNames.length === 0)
+-    includedPluginNames.push(...defaultInjectManifestVitePlugins);
+-  const replace = await loadRollupReplacePlugin();
+-  const plugins = [
+-    replace({
+-      "preventAssignment": true,
+-      "process.env.NODE_ENV": JSON.stringify(options2.mode)
+-    }),
+-    ...viteOptions.plugins.filter((p) => includedPluginNames.includes(p.name))
+-  ];
+-  const { rollup } = await import("rollup");
+-  const bundle = await rollup({
+-    input: options2.swSrc,
+-    plugins
++  const { build } = await import("vite");
++  const define = { ...viteOptions.define ?? {} };
++  define["process.env.NODE_ENV"] = JSON.stringify(options2.mode);
++  await build({
++    base: viteOptions.base,
++    build: {
++      sourcemap: viteOptions.build.sourcemap,
++      lib: {
++        entry: options2.swSrc,
++        name: "app",
++        formats: [options2.rollupFormat]
++      },
++      rollupOptions: {
++        output: {
++          entryFileNames: options2.filename
++        }
++      },
++      outDir: options2.outDir,
++      emptyOutDir: false
++    },
++    configFile: false,
++    define
+   });
+-  try {
+-    await bundle.write({
+-      format: options2.rollupFormat,
+-      exports: "none",
+-      inlineDynamicImports: true,
+-      file: options2.injectManifest.swDest,
+-      sourcemap: viteOptions.build.sourcemap
+-    });
+-  } finally {
+-    await bundle.close();
+-  }
+   if (!options2.injectManifest.injectionPoint)
+     return;
+   const injectManifestOptions = {
+diff --git a/package.json b/package.json
+index 138d97e8a26743d6dfcfa94c29e6b6c20af54e5c..8ef1d02abb43e418ef8ee7bd9d09948587b08865 100644
+--- a/package.json
++++ b/package.json
+@@ -93,8 +93,6 @@
+     "debug": "^4.3.4",
+     "fast-glob": "^3.2.12",
+     "pretty-bytes": "^6.0.0",
+-    "rollup": "^3.7.2",
+-    "@rollup/plugin-replace": "^5.0.1",
+     "workbox-build": "^6.5.4",
+     "workbox-window": "^6.5.4"
+   },

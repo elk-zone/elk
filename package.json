@@ -132,7 +132,8 @@
       "vue": "3.2.45"
     },
     "patchedDependencies": {
-      "nuxt-security@0.13.0": "patches/nuxt-security@0.13.0.patch"
+      "nuxt-security@0.13.0": "patches/nuxt-security@0.13.0.patch",
+      "vite-plugin-pwa@0.14.7": "patches/vite-plugin-pwa@0.14.7.patch"
     }
   },
   "simple-git-hooks": {

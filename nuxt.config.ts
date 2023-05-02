@@ -262,7 +262,7 @@ declare global {
   }
 }
 
-declare module 'nuxt/dist/app' {
+declare module '#app' {
   interface RuntimeNuxtHooks {
     'elk-logo:click': () => void
   }

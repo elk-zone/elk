@@ -42,7 +42,7 @@ const { notification } = defineProps<{
     <template v-else-if="notification.type === 'admin.report'">
       <NuxtLink :to="getReportRoute(notification.report.id)">
         <div flex p3 items-center bg-shaded>
-          <div i-ri:admin-fill me-1 color-purple />
+          <div i-ri:flag-fill me-1 color-purple />
           <AccountDisplayName
             :account="notification.account"
             text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all

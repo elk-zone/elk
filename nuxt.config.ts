@@ -255,6 +255,7 @@ export default defineNuxtConfig({
 })
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace NodeJS {
     interface Process {
       mock?: Record<string, any>

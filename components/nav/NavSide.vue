@@ -42,7 +42,7 @@ const { notifications } = useNotifications()
   .spacer {
     margin-top: 0.5em;
   }
-  @media screen and ( max-height: 820px ) {
+  @media screen and ( max-height: 820px ) and ( min-width: 640px ) {
     .spacer {
       margin-top: 0;
     }

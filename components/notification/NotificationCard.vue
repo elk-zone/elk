@@ -50,7 +50,7 @@ const { notification } = defineProps<{
             />
             <AccountDisplayName
               :account="notification.report?.targetAccount!"
-              text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+              text-purple ms-1 font-bold line-clamp-1 ws-pre-wrap break-all
             />
           </i18n-t>
         </div>

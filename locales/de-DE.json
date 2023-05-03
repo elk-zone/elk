@@ -196,6 +196,7 @@
     "followed_you_count": "{n} Account folgt dir|{n} Accounts folgen dir",
     "missing_type": "Fehlender notification.type:",
     "reblogged_post": "hat deinen Beitrag geteilt",
+    "reported": "{0} hat {1} gemeldet",
     "request_to_follow": "möchte dir folgen",
     "signed_up": "hat sich registriert",
     "update_status": "hat diesen Beitrag aktualisiert"

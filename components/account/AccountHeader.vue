@@ -169,7 +169,7 @@ const personalNoteMaxLength = 2000
         </div>
       </div>
       <label
-        v-if="relationship?.note?.length !== 0 || isEditingPersonalNote"
+        v-if="isEditingPersonalNote || (relationship?.note && relationship.note.length > 0)"
         space-y-2
         pb-4
         block

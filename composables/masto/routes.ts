@@ -30,7 +30,7 @@ export function getAccountFollowersRoute(account: mastodon.v1.Account) {
 }
 
 export function getReportRoute(id: string | number) {
-  return `https://${currentUser.value?.server}/admin/reports/${id}`
+  return `https://${currentUser.value?.server}/admin/reports/${encodeURIComponent(id)}`
 }
 
 export function getStatusRoute(status: mastodon.v1.Status) {

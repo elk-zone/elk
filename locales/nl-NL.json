@@ -203,7 +203,15 @@
     },
     "language": {
       "display_language": "Weergave taal",
-      "label": "Taal"
+      "label": "Taal",
+      "status": "Vertalingsstatus: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Toevoegen",
+        "choose_language": "Kies taal",
+        "heading": "Vertalingen",
+        "hide_specific": "Verberg specifieke vertalingen",
+        "remove": "Verwijder"
+      }
     },
     "notifications": {
       "label": "Notificaties",

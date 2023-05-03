@@ -157,7 +157,7 @@
     "federated": "Gefedereerd",
     "home": "Home",
     "local": "Lokaal",
-    "notifications": "Notificaties",
+    "notifications": "Meldingen",
     "profile": "Profiel",
     "search": "Zoeken",
     "select_feature_flags": "Selecteer Feature Vlaggen",
@@ -220,9 +220,9 @@
       }
     },
     "notifications": {
-      "label": "Notificaties",
+      "label": "Meldingen",
       "notifications": {
-        "label": "Notificaties instellingen"
+        "label": "Meldingsinstellingen"
       },
       "push_notifications": {
         "alerts": {
@@ -241,7 +241,7 @@
           "followed": "Van mensen die ik volg",
           "follower": "Van mensen die mij volgen",
           "none": "Van niemand",
-          "title": "Van wie kan ik notificaties krijgen?"
+          "title": "Van wie kan ik meldingen krijgen?"
         },
         "save_settings": "Instellingen aanpassingen opslaan",
         "subscription_error": {
@@ -255,16 +255,16 @@
         "unsupported": "Je browser ondersteunt geen pushnotificaties.",
         "warning": {
           "enable_close": "Sluit",
-          "enable_description": "Om notificaties te krijgen terwijl Elk niet actief is, zet pushnotificaties aan. Je kan precies instellen wat voor type interacties pushnotificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
-          "enable_description_settings": "Om notificaties te ontvangen wanneer Elk niet actief is, schakel pushnotificaties in. Je kunt precies instellen welke soorten interacties pushnotificaties genereren in dit venster zodra je ze hebt inschakelt.",
+          "enable_description": "Om meldingen te krijgen terwijl Elk niet actief is, zet pushnotificaties aan. Je kan precies instellen wat voor type interacties pushnotificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
+          "enable_description_settings": "Om meldingen te ontvangen wanneer Elk niet actief is, schakel pushnotificaties in. Je kunt precies instellen welke soorten interacties pushnotificaties genereren in dit venster zodra je ze hebt inschakelt.",
           "enable_desktop": "Zet pushnotificaties aan",
           "enable_title": "Mis niets",
           "re_auth": "Het lijkt erop dat je server geen pushnotificaties ondersteunt. Probeer uitloggen en opnieuw inloggen. Neem contact op met de serverbeheerder als dit bericht nog steeds verschijnt."
         }
       },
-      "show_btn": "Ga naar notificatie instellingen"
+      "show_btn": "Ga naar meldingsinstellingen"
     },
-    "notifications_settings": "Notificaties",
+    "notifications_settings": "Meldingen",
     "preferences": {
       "label": "Voorkeuren"
     },

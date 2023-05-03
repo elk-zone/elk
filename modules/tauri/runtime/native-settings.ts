@@ -34,9 +34,11 @@ async function tauriStoreRef<T>(store: Store, key: string, defaultValue: T): Pro
   return ref
 }
 
-const nativeSettings = async () => ({
-  minimizeToTray: await tauriStoreRef(store, 'minimize_to_tray', true),
-})
+async function nativeSettings() {
+  return {
+    minimizeToTray: await tauriStoreRef(store, 'minimize_to_tray', true),
+  }
+}
 
 interface NativeSettings {
   minimizeToTray: TauriStoreRef<boolean>

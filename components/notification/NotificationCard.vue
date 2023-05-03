@@ -40,7 +40,7 @@ const { notification } = defineProps<{
       </div>
     </template>
     <template v-else-if="notification.type === 'admin.report'">
-      <NuxtLink :to="getReportRoute(notification.report.id)">
+      <NuxtLink :to="getReportRoute(notification.report?.id!)">
         <div flex p3 items-center bg-shaded>
           <div i-ri:flag-fill me-1 color-purple />
           <AccountDisplayName
@@ -49,7 +49,7 @@ const { notification } = defineProps<{
           />
           <span>{{ $t("notification.reported") }}</span>
           <AccountDisplayName
-            :account="notification.report.target_account"
+            :account="notification.report?.targetAccount!"
             text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
           />
         </div>

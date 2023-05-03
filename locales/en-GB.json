@@ -13,8 +13,7 @@
     "favourites": "Favourites"
   },
   "notification": {
-    "favourited_post": "favourited your post",
-    "reported": "{0} reported {1}"
+    "favourited_post": "favourited your post"
   },
   "user": {
     "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."

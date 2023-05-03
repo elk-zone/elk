@@ -3,8 +3,8 @@ defineProps<{
   label: string
   hover?: boolean
 }>()
-const { modelValue } = defineModel<{
-  modelValue: boolean
+const { modelValue } = defineModels<{
+  modelValue?: boolean
 }>()
 </script>
 

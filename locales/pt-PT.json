@@ -34,6 +34,7 @@
     "posts": "Publicações",
     "posts_count": "{0} Publicações|{0} Publicação|{0} Publicações",
     "profile_description": "Descrição de perfil de {0}",
+    "profile_personal_note": "Nota Pessoal",
     "profile_unavailable": "Perfil indisponível",
     "request_follow": "Pedir para seguir",
     "unblock": "Desbloquear",
@@ -97,6 +98,8 @@
     "error": "ERRO",
     "fetching": "A carregar...",
     "in": "em",
+    "no_bookmarks": "Não tem ainda itens salvos",
+    "no_favourites": "Não tem ainda publicações favoritas",
     "not_found": "404 Não Encontrado",
     "offline_desc": "Parece que está offline. Por favor, confirme a sua conexão à internet."
   },
@@ -199,7 +202,32 @@
     "remove_account": "Remover conta da lista",
     "save": "Salvar alterações"
   },
+  "magic_keys": {
+    "dialog_header": "Atalhos de teclado",
+    "groups": {
+      "actions": {
+        "boost": "Partilhar",
+        "command_mode": "Menu de comandos",
+        "compose": "Compor",
+        "favourite": "Adcionar aos favoritos",
+        "title": "Ações"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Início",
+        "go_to_notifications": "Notificações",
+        "next_status": "Publicação seguinte",
+        "previous_status": "Publicação anterior",
+        "shortcut_help": "Lista de atalhos",
+        "title": "Navegação"
+      }
+    },
+    "sequence_then": "seguido de"
+  },
   "menu": {
+    "add_personal_note": "Adicionar nota pessoal para {0}",
     "block_account": "Bloquear {0}",
     "block_domain": "Bloquear domínio {0}",
     "copy_link_to_post": "Copiar ligação para esta publicação",
@@ -214,6 +242,7 @@
     "mute_conversation": "Silenciar esta publicação",
     "open_in_original_site": "Abrir no sítio original",
     "pin_on_profile": "Fixar no perfil",
+    "remove_personal_note": "Remover nota pessoal para {0}",
     "share_post": "Partilhar esta publicação",
     "show_favourited_and_boosted_by": "Mostrar quem adicionou aos favoritos e partilhou",
     "show_reblogs": "Mostrar partilhas de {0}",
@@ -228,6 +257,9 @@
     "unmute_account": "Deixar de silenciar {0}",
     "unmute_conversation": "Deixar de silenciar esta publicação",
     "unpin_on_profile": "Desafixar do perfil"
+  },
+  "modals": {
+    "aria_label_close": "Fechar"
   },
   "nav": {
     "back": "Voltar",
@@ -414,6 +446,7 @@
       "hide_boost_count": "Esconder contagem de partilhas",
       "hide_favorite_count": "Esconder contagem de favoritos",
       "hide_follower_count": "Esconder contagem de seguidores",
+      "hide_news": "Esconder notícias",
       "hide_reply_count": "Esconder contagem de respostas",
       "hide_translation": "Esconder botão de tradução",
       "hide_username_emojis": "Esconder emojis do nome de utilizador",
@@ -422,7 +455,9 @@
       "title": "Funcionalidades Experimentais",
       "user_picker": "Selecionador de Utilizador",
       "virtual_scroll": "Deslocamento Virtual",
-      "wellbeing": "Bem-estar"
+      "wellbeing": "Bem-estar",
+      "zen_mode": "Modo Zen",
+      "zen_mode_description": "Esconde as colunas laterais, a menos que o cursor do rato esteja sobre elas. Esconde também alguns elementos da cronologia."
     },
     "profile": {
       "appearance": {
@@ -466,6 +501,10 @@
     "uploading": "A carregar..."
   },
   "status": {
+    "account": {
+      "suspended_message": "A conta de estado foi suspensa.",
+      "suspended_show": "Mostrar conteúdo mesmo assim?"
+    },
     "boosted_by": "Partilhada Por",
     "edited": "Editada {0}",
     "favourited_by": "Adicionada Aos Favoritos Por",

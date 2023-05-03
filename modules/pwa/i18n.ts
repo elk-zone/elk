@@ -1,3 +1,4 @@
+import { Buffer } from 'node:buffer'
 import { readFile } from 'fs-extra'
 import { createResolver } from '@nuxt/kit'
 import type { ManifestOptions } from 'vite-plugin-pwa'
@@ -31,7 +32,7 @@ export const pwaLocales = i18n.locales as LocaleObject[]
 type WebManifestEntry = Pick<ExtendedManifestOptions, 'name' | 'short_name' | 'description'>
 type RequiredWebManifestEntry = Required<WebManifestEntry & Pick<ExtendedManifestOptions, 'dir' | 'lang'>>
 
-export const createI18n = async (): Promise<LocalizedWebManifest> => {
+export async function createI18n(): Promise<LocalizedWebManifest> {
   const { env } = await getEnv()
   const envName = `${env === 'release' ? '' : `(${env})`}`
   const { pwa } = await readI18nFile('en.json')
@@ -92,12 +93,13 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
           src: 'pwa-512x512.png',
           sizes: '512x512',
           type: 'image/png',
+          purpose: 'any',
         },
         {
           src: 'maskable-icon.png',
           sizes: '512x512',
           type: 'image/png',
-          purpose: 'any maskable',
+          purpose: 'maskable',
         },
       ],
       share_target: {
@@ -139,12 +141,13 @@ export const createI18n = async (): Promise<LocalizedWebManifest> => {
           src: 'pwa-512x512.png',
           sizes: '512x512',
           type: 'image/png',
+          purpose: 'any',
         },
         {
           src: 'maskable-icon.png',
           sizes: '512x512',
           type: 'image/png',
-          purpose: 'any maskable',
+          purpose: 'maskable',
         },
       ],
       share_target: {

@@ -9,7 +9,9 @@ defineProps<{
 const dropdown = $ref<any>()
 const colorMode = useColorMode()
 
-const hide = () => dropdown.hide()
+function hide() {
+  return dropdown.hide()
+}
 provide(InjectionKeyDropdownContext, {
   hide,
 })

@@ -12,10 +12,14 @@ const {
 } = useTranslation(status, getLanguageCode())
 const preferenceHideTranslation = usePreferences('hideTranslation')
 
-const showButton = computed(() => !preferenceHideTranslation.value && isTranslationEnabled)
+const showButton = computed(() =>
+  !preferenceHideTranslation.value
+  && isTranslationEnabled
+  && status.content.trim().length,
+)
 
 let translating = $ref(false)
-const toggleTranslation = async () => {
+async function toggleTranslation() {
   translating = true
   try {
     await _toggleTranslation()

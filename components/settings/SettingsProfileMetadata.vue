@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { form } = defineModel<{
+const { form } = defineModels<{
   form: {
     fieldsAttributes: NonNullable<mastodon.v1.UpdateCredentialsParams['fieldsAttributes']>
   }
@@ -25,7 +25,7 @@ const fieldCount = $computed(() => {
   )
 })
 
-const chooseIcon = (i: number, text: string) => {
+function chooseIcon(i: number, text: string) {
   form.value.fieldsAttributes[i].name = text
   dropdown[i]?.hide()
 }
@@ -49,7 +49,7 @@ const chooseIcon = (i: number, text: string) => {
             </button>
           </CommonTooltip>
           <template #popper>
-            <div flex="~ wrap gap-1" max-w-50 m2>
+            <div flex="~ wrap gap-1" max-w-60 m2 me1>
               <CommonTooltip
                 v-for="(icon, text) in accountFieldIcons"
                 :key="icon"

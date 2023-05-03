@@ -5,7 +5,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.profile.featured_tags.label')} | ${t('nav.settings')}`,
 })
 </script>

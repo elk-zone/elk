@@ -13,7 +13,7 @@ const paginator = client.v1.timelines.listHashtag(tagName)
 const stream = useStreaming(client => client.v1.stream.streamTagTimeline(tagName))
 
 if (tag) {
-  useHeadFixed({
+  useHydratedHead({
     title: () => `#${tag.name}`,
   })
 }

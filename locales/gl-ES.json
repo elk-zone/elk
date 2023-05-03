@@ -95,6 +95,7 @@
   "common": {
     "end_of_list": "Fin da lista",
     "error": "ERRO",
+    "fetching": "Obtendo...",
     "in": "en",
     "not_found": "404 Non Atopado",
     "offline_desc": "Semella que non tes conexión. Comproba a conexión á rede."
@@ -198,6 +199,31 @@
     "remove_account": "Retirar conta da lista",
     "save": "Gardar cambios"
   },
+  "magic_keys": {
+    "dialog_header": "Atallos de teclado",
+    "groups": {
+      "actions": {
+        "boost": "Promover",
+        "command_mode": "Modo de ordes",
+        "compose": "Escribir",
+        "favourite": "Favorita",
+        "title": "Accións",
+        "zen_mode": "Modo Cen"
+      },
+      "media": {
+        "title": "Multimedia"
+      },
+      "navigation": {
+        "go_to_home": "Inicio",
+        "go_to_notifications": "Notificacións",
+        "next_status": "Seguinte mensaxe",
+        "previous_status": "Mensaxe anterior",
+        "shortcut_help": "Axuda cos atallos",
+        "title": "Navegación"
+      }
+    },
+    "sequence_then": "e"
+  },
   "menu": {
     "block_account": "Bloquear {0}",
     "block_domain": "Bloquear o dominio {0}",
@@ -227,6 +253,9 @@
     "unmute_account": "Reactivar {0}",
     "unmute_conversation": "Reactivar esta publicación",
     "unpin_on_profile": "Desafixar do perfil"
+  },
+  "modals": {
+    "aria_label_close": "Pechar"
   },
   "nav": {
     "back": "Atrás",
@@ -349,7 +378,7 @@
     "notifications": {
       "label": "Notificacións",
       "notifications": {
-        "label": "Axuste da notificacións"
+        "label": "Axuste das notificacións"
       },
       "push_notifications": {
         "alerts": {
@@ -373,6 +402,7 @@
         "save_settings": "Gardar axustes",
         "subscription_error": {
           "clear_error": "Limpar erro",
+          "error_hint": "Podes ler as preguntas máis frecuentes e intentar solucionar o problema: {0}.",
           "invalid_vapid_key": "A chave pública VAPID non semella válida.",
           "permission_denied": "Permiso non concedido: activa as notificacións no navegador.",
           "repo_link": "Repositorio de Elk en GitHub",
@@ -402,6 +432,8 @@
     "notifications_settings": "Notificacións",
     "preferences": {
       "enable_autoplay": "Activar reprodución auto.",
+      "enable_data_saving": "Activar aforro de datos",
+      "enable_data_saving_description": "Aforra datos evitando a carga automática de adxuntos.",
       "enable_pinch_to_zoom": "Activar belisco para aumentar",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Modo en escala de grises",
@@ -428,6 +460,8 @@
         "label": "Aspecto",
         "profile_metadata": "Metadatos do perfil",
         "profile_metadata_desc": "Podes mostrar {0} elementos nunha táboa no teu perfil",
+        "profile_metadata_label": "Etiqueta",
+        "profile_metadata_value": "Contido",
         "title": "Editar perfil"
       },
       "featured_tags": {
@@ -559,6 +593,7 @@
     "explore_posts_intro": "Estas publicacións deste e outros servidores da rede descentralizada están aumentando a súa popularidade.",
     "explore_tags_intro": "Está aumentando a popularidade destes cancelos entre as persoas deste e outros servidores da rede descentralizada.",
     "open_editor_tools": "Ferramentas de edición",
+    "pick_an_icon": "Elixe unha icona",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
     "toggle_bold": "Activar grosa",
     "toggle_code_block": "Activar bloque de código",

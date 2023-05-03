@@ -1,0 +1,630 @@
+{
+  "a11y": {
+    "loading_page": "Nagloload ng pahina, mangyaring maghintay",
+    "loading_titled_page": "Nagloload ng pahinang {0}, mangyaring maghintay",
+    "locale_changed": "Nabago ang wika sa {0}",
+    "locale_changing": "Nagbabago ng wika, mangyaring maghintay",
+    "route_loaded": "Naloload na ang pahina {0}"
+  },
+  "account": {
+    "avatar_description": "Avatar ni {0}",
+    "blocked_by": "Ika'y na-block ng user na ito.",
+    "blocked_domains": "Mga naka-block na domain",
+    "blocked_users": "Mga naka-block na user",
+    "blocking": "Naka-block",
+    "bot": "BOT",
+    "favourites": "Mga paborito",
+    "follow": "Sundan",
+    "follow_back": "Sundan pabalik",
+    "follow_requested": "Humiling ng pagsunod",
+    "followers": "Mga tagasunod",
+    "followers_count": "{0} Mga tagasunod|{0} Tagasunod|{0} Mga tagasunod",
+    "following": "Sinusundan mo",
+    "following_count": "{0} Sinusundan",
+    "follows_you": "Sinusundan ka",
+    "go_to_profile": "Pumunta sa profile",
+    "joined": "Sumali",
+    "moved_title": "nagpahiwatig na ang kanilang bagong account ay:",
+    "muted_users": "Mga naka-mute na user",
+    "muting": "Naka-mute",
+    "mutuals": "Kayo'y mutuals",
+    "notifications_on_post_disable": "Huwag nang magbigay ng abiso kapag nagpopost si {username}",
+    "notifications_on_post_enable": "Magbigay ng abiso kapag nagpost si {username}",
+    "pinned": "Naka-pin",
+    "posts": "Mga post",
+    "posts_count": "{0} Mga post|{0} Post|{0} Mga post",
+    "profile_description": "Header ng profile ni {0}",
+    "profile_personal_note": "Personal na Tala",
+    "profile_unavailable": "Hindi magamit ang profile",
+    "request_follow": "Humiling ng pagsunod",
+    "unblock": "Tanggalin ang pagka-block",
+    "unfollow": "Huminto sa pagsunod",
+    "unmute": "Tanggalin ang pagka-mute",
+    "view_other_followers": "Ang mga tagasunod mula sa ibang mga instance ay hindi maipapakita.",
+    "view_other_following": "Ang mga sinusundan mula sa ibang mga instance ay hindi maipapakita."
+  },
+  "action": {
+    "apply": "Mag-apply",
+    "bookmark": "I-bookmark",
+    "bookmarked": "Nai-bookmark na",
+    "boost": "I-boost",
+    "boost_count": "{0} ang nag-boost",
+    "boosted": "Nai-boost na",
+    "clear_publish_failed": "Tanggalin ang mga error sa pag-publish",
+    "clear_upload_failed": "Tanggalin ang mga error sa pag-upload ng file",
+    "close": "Isara",
+    "compose": "Mag-compose",
+    "confirm": "Kumpirmahin",
+    "edit": "I-edit",
+    "enter_app": "Tumuloy sa App",
+    "favourite": "I-favorite",
+    "favourite_count": "{0} ang nag-favorite",
+    "favourited": "Nai-favorite na",
+    "more": "Iba pa",
+    "next": "Susunod",
+    "prev": "Nakaraan",
+    "publish": "I-publish",
+    "reply": "Sumagot",
+    "reply_count": "{0} ang sumagot",
+    "reset": "I-reset",
+    "save": "I-save",
+    "save_changes": "I-save ang mga pagbabago",
+    "sign_in": "Mag-sign in",
+    "sign_in_to": "Mag-sign in sa {0}",
+    "switch_account": "Magpalit ng account",
+    "vote": "Bumoto"
+  },
+  "app_desc_short": "Isang mabilis na web client ng Mastodon",
+  "app_logo": "Logo ng Elk",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Paglalarawan",
+    "remove_label": "Tanggalin ang attachment"
+  },
+  "command": {
+    "activate": "I-activate",
+    "complete": "Tapusin",
+    "compose_desc": "Sumulat ng bagong post",
+    "n-people-in-the-past-n-days": "{0} na mga tao sa nakaraang {1} araw",
+    "select_lang": "Pumili ng wika",
+    "sign_in_desc": "Magdagdag ng isang umiiral na account",
+    "switch_account": "Lumipat sa {0}",
+    "switch_account_desc": "Lumipat sa ibang account",
+    "toggle_dark_mode": "I-toggle ang dark mode",
+    "toggle_zen_mode": "I-toggle ang zen mode"
+  },
+  "common": {
+    "end_of_list": "Katapusan ng listahan",
+    "error": "ERROR",
+    "fetching": "Kumukuha...",
+    "in": "sa",
+    "not_found": "404 Hindi Nakita",
+    "offline_desc": "Mukhang offline ka. Mangyaring suriin ang iyong koneksyon sa network."
+  },
+  "compose": {
+    "draft_title": "Draft {0}",
+    "drafts": "Mga Draft ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "Kanselahin",
+      "confirm": "I-block",
+      "title": "Sigurado ka bang gusto mong i-block si {0}?"
+    },
+    "block_domain": {
+      "cancel": "Kanselahin",
+      "confirm": "I-block",
+      "title": "Sigurado ka bang gusto mong i-block ang {0}?"
+    },
+    "common": {
+      "cancel": "Hindi",
+      "confirm": "Oo"
+    },
+    "delete_list": {
+      "cancel": "Kanselahin",
+      "confirm": "Burahin",
+      "title": "Sigurado ka bang gusto mong burahin ang listahan na \"{0}\"?"
+    },
+    "delete_posts": {
+      "cancel": "Kanselahin",
+      "confirm": "Burahin",
+      "title": "Sigurado ka bang gusto mong burahin ang post na ito?"
+    },
+    "mute_account": {
+      "cancel": "Kanselahin",
+      "confirm": "I-mute",
+      "title": "Sigurado ka bang gusto mong i-mute si {0}?"
+    },
+    "show_reblogs": {
+      "cancel": "Kanselahin",
+      "confirm": "Ipakita",
+      "title": "Sigurado ka bang gusto mong ipakita ang mga boosts mula kay {0}?"
+    },
+    "unfollow": {
+      "cancel": "Kanselahin",
+      "confirm": "Huminto sa pagsunod",
+      "title": "Sigurado ka bang gusto mong huminto sa pagsunod?"
+    }
+  },
+  "conversation": {
+    "with": "kasama"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Mga linya {0}",
+      "open": "Buksan",
+      "snippet_from": "Snippet mula kay {0}"
+    }
+  },
+  "error": {
+    "account_not_found": "Hindi mahanap ang account na {0}",
+    "explore-list-empty": "Walang laman ang trending ngayon. Subukan muli mamaya!",
+    "file_size_cannot_exceed_n_mb": "Hindi pwede lumampas sa {0}MB ang laki ng file",
+    "sign_in_error": "Hindi maka-connect sa server.",
+    "status_not_found": "Hindi mahanap ang post",
+    "unsupported_file_format": "Hindi suportado ang file format"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "Ikaw ay kasalukuyang nakakakita ng preview version ng Elk mula sa community - {0}.",
+      "desc2": "Maaaring mayroon itong hindi pa na-review o kaya malicious changes.",
+      "desc3": "Huwag mag-login gamit ang iyong tunay na account.",
+      "title": "Preview deploy"
+    },
+    "desc_highlight": "Maaaring mayroon kang makikitang mga bug at kulang na features.",
+    "desc_para1": "Salamat sa iyong interes sa pagsubok ng Elk, ang aming work-in-progress na Mastodon web client!",
+    "desc_para2": "Dedikado kami sa pag-develop at pagpapabuti dito sa mga susunod na panahon.",
+    "desc_para3": "Para mapalago pa ang proyekto, maaari mong i-sponsor ang Team sa pamamagitan ng GitHub Sponsors. Sana magustuhan mo ang Elk!",
+    "desc_para4": "Ang Elk ay Open Source. Kung nais mong tumulong sa pagsubok, magbigay ng feedback, o mag-contribute,",
+    "desc_para5": "makipag-ugnayan sa amin sa GitHub",
+    "desc_para6": "at makilahok.",
+    "footer_team": "Ang Elk Team",
+    "title": "Ang Elk ay nasa Preview!"
+  },
+  "language": {
+    "search": "Hanapin"
+  },
+  "list": {
+    "add_account": "Magdagdag ng account sa listahan",
+    "cancel_edit": "kanselahin ang pag-edit",
+    "clear_error": "Burahin ang error",
+    "create": "lumikha",
+    "delete": "Burahin ang listahang ito",
+    "delete_error": "Mayroong error sa pagbura ng listahan",
+    "edit": "I-edit ang listahang ito",
+    "edit_error": "Mayroong error sa pag-update ng listahan",
+    "error": "Mayroong error sa paglikha ng listahan",
+    "error_prefix": "Error: ",
+    "list_title_placeholder": "Pamagat ng listahan",
+    "modify_account": "Baguhin ang mga listahan sa account",
+    "remove_account": "Tanggalin ang account sa listahan",
+    "save": "I-save ang mga pagbabago"
+  },
+  "magic_keys": {
+    "dialog_header": "Mga shortcut sa keyboard",
+    "groups": {
+      "actions": {
+        "boost": "Mag-boost",
+        "command_mode": "Mode ng Command",
+        "compose": "Mag-compose",
+        "favourite": "Paborito",
+        "title": "Mga aksyon"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Tungo sa Home",
+        "go_to_notifications": "Tungo sa mga Abiso",
+        "next_status": "Susunod na status",
+        "previous_status": "Nakaraang status",
+        "shortcut_help": "Tulong sa shortcut",
+        "title": "Pag-navigate"
+      }
+    },
+    "sequence_then": "pagkatapos"
+  },
+  "menu": {
+    "add_personal_note": "Magdagdag ng personal na note sa {0}",
+    "block_account": "I-block si {0}",
+    "block_domain": "I-block ang domain ng {0}",
+    "copy_link_to_post": "Kopyahin ang link",
+    "copy_original_link_to_post": "Kopyahin ang orihinal na link",
+    "delete": "Burahin",
+    "delete_and_redraft": "Burahin at ulitin ang draft",
+    "direct_message_account": "I-message ng direkta si {0}",
+    "edit": "I-edit",
+    "hide_reblogs": "Itago ang mga boost mula kay {0}",
+    "mention_account": "Banggitin si {0}",
+    "mute_account": "I-mute si {0}",
+    "mute_conversation": "I-mute ang post na ito",
+    "open_in_original_site": "Buksan sa orihinal na site",
+    "pin_on_profile": "I-pin sa profile",
+    "remove_personal_note": "Tanggalin ang personal na note sa {0}",
+    "share_post": "I-share ang post na ito",
+    "show_favourited_and_boosted_by": "Ipakita ang mga nag-favorite at nag-boost",
+    "show_reblogs": "Ipakita ang mga boost mula kay {0}",
+    "show_untranslated": "Ipakita ang hindi na-translate",
+    "toggle_theme": {
+      "dark": "Magpapalit sa madilim na mode",
+      "light": "Magpapalit sa maliwanag na mode"
+    },
+    "translate_post": "I-translate ang post",
+    "unblock_account": "I-unblock ang {0}",
+    "unblock_domain": "I-unblock ang domain ng {0}",
+    "unmute_account": "I-unmute si {0}",
+    "unmute_conversation": "I-unmute ang post na ito",
+    "unpin_on_profile": "I-unpin sa profile"
+  },
+  "modals": {
+    "aria_label_close": "Isara"
+  },
+  "nav": {
+    "back": "Bumalik",
+    "blocked_domains": "Mga Naka-Block na Domain",
+    "blocked_users": "Mga Naka-Block na Users",
+    "bookmarks": "Mga Tandang-Pahina",
+    "built_at": "Ginawa noong {0}",
+    "compose": "Lumikha ng Mensahe",
+    "conversations": "Mga Usapang Pribado",
+    "explore": "Mag-Explore",
+    "favourites": "Mga Paborito",
+    "federated": "Pederal",
+    "home": "Tahanan",
+    "list": "Listahan",
+    "lists": "Mga Listahan",
+    "local": "Lokal",
+    "muted_users": "Mga Naka-Mute na User",
+    "notifications": "Mga Abiso",
+    "privacy": "Privacy",
+    "profile": "Profile",
+    "search": "Maghanap",
+    "select_feature_flags": "Magbago ng Feature Flags",
+    "select_font_size": "Laki ng Font",
+    "select_language": "Ipakita ang Wika",
+    "settings": "Mga Setting",
+    "show_intro": "Ipakita ang Intro",
+    "toggle_theme": "Magpapalit ng Tema",
+    "zen_mode": "Zen Mode"
+  },
+  "notification": {
+    "favourited_post": "nag-favorite ng iyong post",
+    "followed_you": "nag-follow sa iyo",
+    "followed_you_count": "{0} na tao ang nag-follow sa iyo|{0} na tao ang nag-follow sa iyo|{0} na tao ang nag-follow sa iyo",
+    "missing_type": "MISSING notification.type:",
+    "reblogged_post": "bumoost ng iyong post",
+    "request_to_follow": "humiling na sumunod sa iyo",
+    "signed_up": "nag-sign up",
+    "update_status": "nag-update ng kanilang post"
+  },
+  "placeholder": {
+    "content_warning": "Isulat ang iyong babala dito",
+    "default_1": "Ano ang nasa isip mo?",
+    "reply_to_account": "Sagot kay {0}",
+    "replying": "Sumasagot",
+    "the_thread": "ang thread"
+  },
+  "pwa": {
+    "dismiss": "I-dismiss",
+    "install": "I-install",
+    "install_title": "I-install ang Elk",
+    "title": "May bagong update para sa Elk!",
+    "update": "I-update",
+    "update_available_short": "I-update ang Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "Isang mabilis na Mastodon web client (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "Isang mabilis na Mastodon web client (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "Isang mabilis na Mastodon web client (preview)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description": "Isang mabilis na Mastodon web client",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "Maghanap ng mga tao at hashtag",
+    "search_empty": "Walang nahanap para sa mga terminong ito"
+  },
+  "settings": {
+    "about": {
+      "built_at": "Ginawa noong",
+      "label": "Tungkol sa",
+      "meet_the_team": "Makilala ang team",
+      "sponsor_action": "I-sponsor kami",
+      "sponsor_action_desc": "Upang suportahan ang team na nagde-develop ng Elk",
+      "sponsors": "Mga Sponsor",
+      "sponsors_body_1": "Ang Elk ay patuloy na matagumpay dahil sa mga nagbibigay ng malaking suporta at tulong:",
+      "sponsors_body_2": "At lahat ng mga kumpanya at indibidwal na nagbibigay ng suporta sa Elk Team at sa mga miyembro nito.",
+      "sponsors_body_3": "Kung nag-eenjoy ka sa app, mag-isip-isip na mag-sponsor sa amin:",
+      "version": "Bersyon"
+    },
+    "account_settings": {
+      "description": "I-edit ang iyong mga account setting sa Mastodon UI",
+      "label": "Mga account setting"
+    },
+    "interface": {
+      "color_mode": "Mode ng Kulay",
+      "dark_mode": "Madilim",
+      "default": " (default)",
+      "font_size": "Laki ng Font",
+      "label": "Interface",
+      "light_mode": "Maliwanag",
+      "system_mode": "System",
+      "theme_color": "Kulay ng Tema"
+    },
+    "language": {
+      "display_language": "Ipakita ang Wika",
+      "label": "Wika",
+      "status": "Kalagayan ng Pagsasalin: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Magdagdag",
+        "choose_language": "Pumili ng wika",
+        "heading": "Mga Pagsasalin",
+        "hide_specific": "Itago ang partikular na mga pagsasalin",
+        "remove": "Tanggalin"
+      }
+    },
+    "notifications": {
+      "label": "Mga Abiso",
+      "notifications": {
+        "label": "Mga Setting ng Abiso"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Mga Paborito",
+          "follow": "Mga Bagong Tagasunod",
+          "mention": "Mga Mention",
+          "poll": "Mga Poll",
+          "reblog": "Mga Reblog ng iyong Post",
+          "title": "Anong mga abiso ang nais mong matanggap?"
+        },
+        "description": "Makakatanggap ka pa rin ang mga abiso kahit hindi nakabukas ng Elk.",
+        "instructions": "Huwag kalimutang i-save ang iyong mga pagbabago gamit ang @:settings.notifications.push_notifications.save_settings button!",
+        "label": "Mga Setting ng Push Notifications",
+        "policy": {
+          "all": "Mula sa kahit sino",
+          "followed": "Mula sa mga taong sinusundan ko",
+          "follower": "Mula sa mga taong sumusunod sa akin",
+          "none": "Walang sinuman",
+          "title": "Sino ang maari kong matanggap ng abiso?"
+        },
+        "save_settings": "I-save ang Mga Setting",
+        "subscription_error": {
+          "clear_error": "I-clear ang Error",
+          "error_hint": "Maari mong konsultahin ang listahan ng mga madalas na tanong upang subukan malutas ang problema: {0}.",
+          "invalid_vapid_key": "Tila hindi wasto ang VAPID public key.",
+          "permission_denied": "Pagkakaitan ng pahintulot: paganahin ang abiso sa iyong browser.",
+          "repo_link": "Repository ng Elk sa GitHub",
+          "request_error": "May naganap na error habang hinihiling ang subscription. Subukan muli at, kung patuloy pa rin ang error, mangyaring mag-ulat ng isyu sa repository ng Elk.",
+          "title": "Hindi maaring mag-subscribe sa mga push notifications",
+          "too_many_registrations": "Dahil sa mga limitasyon ng browser, hindi magamit ng Elk ang push notification service para sa maraming accounts sa iba't-ibang servers. Dapat kang mag-unsubscribe sa push notifications sa ibang account at subukan muli.",
+          "vapid_not_supported": "Suportado ang Web Push Notifications ng iyong browser, ngunit tila hindi ito nag-i-implement ng VAPID protocol."
+        },
+        "title": "Mga Setting ng Push Notifications",
+        "undo_settings": "I-Undo ang mga Pagbabago",
+        "unsubscribe": "I-disable ang Push Notifications",
+        "unsupported": "Hindi suportado ng iyong browser ang push notifications.",
+        "warning": {
+          "enable_close": "Isara",
+          "enable_description": "Upang matanggap ng mga abiso kahit hindi bukas ang Elk, paganahin ang push notifications. Maari mong kontrolin kung anong uri ng mga interaksyon ang magpapadala ng push notifications sa pamamagitan ng buton na \"@:settings.notifications.show_btn{'\"'} sa itaas pagkatapos paganahin.",
+          "enable_description_desktop": "Upang makatanggap ng mga abiso kahit hindi nakabukas ang Elk, paganahin ang Push Notifications. Maaari mong kontrolin nang eksaktong anong uri ng mga interaksyon ang naglilikha ng mga abisong itinutulak sa \"Mga Setting > Mga Abiso > Mga Setting ng Push Notifications\" kapag ito ay naka-paganang na.",
+          "enable_description_mobile": "Maaari mo ring ma-access ang mga setting gamit ang navigation menu \"Settings > Notifications > Push notification settings\".",
+          "enable_description_settings": "Para makatanggap ng mga notification kahit hindi bukas ang Elk, paganahin ang push notifications. Makakapagkontrol ka ng kung anong mga uri ng interactions ang magbibigay ng push notifications sa parehong screen na ito kapag paganahin mo ito.",
+          "enable_desktop": "Paganahin ang push notifications",
+          "enable_title": "Huwag magpahuli sa anumang bagay",
+          "re_auth": "Mukhang hindi sinusuportahan ng iyong server ang push notifications. Subukan mag-sign out at mag-sign in muli, kung patuloy pa rin itong lumalabas, makipag-ugnayan sa administrator ng iyong server."
+        }
+      },
+      "show_btn": "Pumunta sa mga settings ng notifications",
+      "under_construction": "Nasa ilalim ng konstruksyon"
+    },
+    "notifications_settings": "Mga Notification",
+    "preferences": {
+      "enable_autoplay": "Paganahin ang Autoplay",
+      "enable_data_saving": "Paganahin ang pag-save ng data",
+      "enable_data_saving_description": "I-save ang data sa pamamagitan ng pagpigil sa mga attachment na auto-loading.",
+      "enable_pinch_to_zoom": "Paganahin ang pinch-to-zoom",
+      "github_cards": "Mga Card ng GitHub",
+      "grayscale_mode": "Grayscale mode",
+      "hide_account_hover_card": "Itago ang account hover card",
+      "hide_alt_indi_on_posts": "Itago ang alt indicator sa mga post",
+      "hide_boost_count": "Itago ang boost count",
+      "hide_favorite_count": "Itago ang favorite count",
+      "hide_follower_count": "Itago ang following/follower count",
+      "hide_reply_count": "Itago ang reply count",
+      "hide_translation": "Itago ang translation",
+      "hide_username_emojis": "Itago ang username emojis",
+      "hide_username_emojis_description": "Itinatago ang mga emojis mula sa mga usernames sa timelines. Makikita pa rin ang mga emojis sa kanilang mga profile.",
+      "label": "Mga Nais",
+      "title": "Mga Experimental na Tampok",
+      "user_picker": "User Picker",
+      "virtual_scroll": "Virtual Scrolling",
+      "wellbeing": "Kalusugan at Kagalingan",
+      "zen_mode": "Modong Zen",
+      "zen_mode_description": "Itago ang ibang mga elemento sa timeline at mga asides maliban kung naka-focus ang mouse cursor sa kanila."
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Tungkol sa Akin",
+        "description": "I-edit ang avatar, username, profile, atbp.",
+        "display_name": "Pangalan na Ipapakita",
+        "label": "Pakikipag-ugnayan",
+        "profile_metadata": "Metadata ng Profile",
+        "profile_metadata_desc": "Maaari kang maglagay ng hanggang sa {0} items bilang isang table sa iyong profile",
+        "profile_metadata_label": "Label",
+        "profile_metadata_value": "Nilalaman",
+        "title": "I-edit ang profile"
+      },
+      "featured_tags": {
+        "description": "Maaring i-browse ng mga tao ang iyong mga public post gamit ang mga hashtags na ito.",
+        "label": "Napiling mga hashtags"
+      },
+      "label": "Profile"
+    },
+    "select_a_settings": "Pumili ng isang setting",
+    "users": {
+      "export": "I-export ang mga User Token",
+      "import": "I-import ang mga User Token",
+      "label": "Naka-log in na mga user"
+    }
+  },
+  "share-target": {
+    "description": "Maaring i-configure ang Elk upang maishare ang mga nilalaman mula sa ibang aplikasyon, mag-install lamang ng Elk sa iyong device o computer at mag-sign in.",
+    "hint": "Upang maishare ang nilalaman sa Elk, kinakailangan na naka-install ang Elk at nakapag-sign in ka.",
+    "title": "I-share sa Elk"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "Nalagpasan na ang bilang ng mga attachments na pinapayagan bawat post.",
+    "attachments_limit_error": "Lumagpas sa limitasyon bawat post",
+    "edited": "(Naedit)",
+    "editing": "Pinaeedit",
+    "loading": "Nagloload...",
+    "publish_failed": "Nabigo sa pagpapaskil",
+    "publishing": "Nagpapaskil",
+    "upload_failed": "Nabigo sa pag-upload",
+    "uploading": "Naguuupload..."
+  },
+  "status": {
+    "account": {
+      "suspended_message": "Ang account ng status na ito ay nakasuspinde.",
+      "suspended_show": "Ipakita pa rin ang nilalaman?"
+    },
+    "boosted_by": "Binuhay muli ni",
+    "edited": "Naedit {0}",
+    "favourited_by": "Pumaborito si",
+    "filter_hidden_phrase": "Nakafilter dahil sa",
+    "filter_removed_phrase": "Tinanggal dahil sa filter",
+    "filter_show_anyway": "Ipakita pa rin",
+    "img_alt": {
+      "ALT": "ALT",
+      "desc": "Paglalarawan",
+      "dismiss": "I-dismiss",
+      "read": "Basahin ang {0} paglalarawan"
+    },
+    "poll": {
+      "count": "{0} boto|{0} boto|{0} mga boto",
+      "ends": "magtatapos {0}",
+      "finished": "natapos {0}"
+    },
+    "reblogged": "Binlog ni {0}",
+    "replying_to": "Sumasagot kay {0}",
+    "show_full_thread": "Ipakita ang buong thread",
+    "someone": "isa",
+    "spoiler_show_less": "Ipakita nang mas kaunti",
+    "spoiler_show_more": "Ipakita nang mas marami",
+    "thread": "Thread",
+    "try_original_site": "Subukan ang orihinal na site"
+  },
+  "status_history": {
+    "created": "Nilikha noong {0}",
+    "edited": "Naedit noong {0}"
+  },
+  "tab": {
+    "accounts": "Mga Account",
+    "for_you": "Para sa iyo",
+    "hashtags": "Mga Hashtag",
+    "list": "Listahan",
+    "media": "Media",
+    "news": "Balita",
+    "notifications_all": "Lahat",
+    "notifications_mention": "Mention",
+    "posts": "Mga Post",
+    "posts_with_replies": "Mga Post at Mga Tugon"
+  },
+  "tag": {
+    "follow": "Sundan",
+    "follow_label": "Sundan ang {0} na tag",
+    "unfollow": "Huwag sundan",
+    "unfollow_label": "Huwag sundan ang {0} na tag"
+  },
+  "time_ago_options": {
+    "day_future": "sa 0 araw|bukas|sa {n} araw",
+    "day_past": "0 araw ang nakalipas|kahapon|{n} araw ang nakalipas",
+    "hour_future": "sa 0 oras|sa 1 oras|sa {n} oras",
+    "hour_past": "0 oras ang nakalipas|1 oras ang nakalipas|{n} oras ang nakalipas",
+    "just_now": "ngayon lang",
+    "minute_future": "sa 0 minuto|sa 1 minuto|sa {n} minuto",
+    "minute_past": "0 minuto ang nakalipas|1 minuto ang nakalipas|{n} minuto ang nakalipas",
+    "month_future": "sa 0 buwan|susunod na buwan|sa {n} buwan",
+    "month_past": "0 buwan ang nakalipas|nakaraang buwan|{n} buwan ang nakalipas",
+    "second_future": "ngayon lang|sa {n} segundo|sa {n} segundo",
+    "second_past": "ngayon lang|{n} segundo ang nakalipas|{n} segundo ang nakalipas",
+    "short_day_future": "sa {n}d",
+    "short_day_past": "{n}d",
+    "short_hour_future": "sa {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "sa loob ng {n}min",
+    "short_minute_past": "{n}min",
+    "short_month_future": "sa {n}mo",
+    "short_month_past": "{n}mo",
+    "short_second_future": "sa {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "sa {n}w",
+    "short_week_past": "{n}w",
+    "short_year_future": "sa {n}y",
+    "short_year_past": "{n}y",
+    "week_future": "sa 0 linggo|susunod na linggo|sa {n} linggo",
+    "week_past": "0 linggo ang nakalipas|nakaraang linggo|{n} linggo ang nakalipas",
+    "year_future": "sa 0 taon|susunod na taon|sa {n} taon",
+    "year_past": "0 taon na ang nakalipas|nakaraang taon|{n} taon na ang nakalipas"
+  },
+  "timeline": {
+    "show_new_items": "Ipakita ang {v} bagong item|Ipakita ang {v} bagong item|Ipakita ang {v} bagong item",
+    "view_older_posts": "Maaaring hindi ipakita ang mga lumang post mula sa ibang pagkakataon."
+  },
+  "title": {
+    "federated_timeline": "Federated Timeline",
+    "local_timeline": "Lokal na Timeline"
+  },
+  "tooltip": {
+    "add_content_warning": "Magdagdag ng babala sa nilalaman",
+    "add_emojis": "Magdagdag ng mga emoji",
+    "add_media": "Magdagdag ng mga larawan, isang video o isang audio file",
+    "add_publishable_content": "Magdagdag ng nilalamang ilalathala",
+    "change_content_visibility": "Baguhin ang visibility ng nilalaman",
+    "change_language": "Baguhin ang wika",
+    "emoji": "Emoji",
+    "explore_links_intro": "Ang mga balitang ito ay pinag-uusapan ng mga tao dito at sa iba pang mga server ng desentralisadong network ngayon.",
+    "explore_posts_intro": "Ang mga post na ito mula dito at sa iba pang mga server sa desentralisadong network ay nakakakuha ng traksyon sa server na ito ngayon.",
+    "explore_tags_intro": "Ang mga hashtag na ito ay nakakakuha ng traksyon sa mga tao dito at sa iba pang mga server ng desentralisadong network ngayon.",
+    "open_editor_tools": "Mga tool sa editor",
+    "pick_an_icon": "Pumili ng icon",
+    "publish_failed": "Isara ang mga nabigong mensahe sa tuktok ng editor upang muling i-publish ang mga post",
+    "toggle_bold": "I-toggle ang bold",
+    "toggle_code_block": "I-toggle ang block ng code",
+    "toggle_italic": "I-toggle ang italic"
+  },
+  "user": {
+    "add_existing": "Magdagdag ng kasalukuyang account",
+    "server_address_label": "Address ng Server ng Mastodon",
+    "sign_in_desc": "Mag-sign in upang sundan ang mga profile o hashtag, paborito, ibahagi at tumugon sa mga post, o makipag-ugnayan mula sa iyong account sa ibang server.",
+    "sign_in_notice_title": "Pagtingin sa {0} pampublikong data",
+    "sign_out_account": "Mag-sign out {0}",
+    "single_instance_sign_in_desc": "Mag-sign in upang sundan ang mga profile o hashtag, paborito, ibahagi at tumugon sa mga post.",
+    "tip_no_account": "Kung wala ka pang Mastodon account, {0}.",
+    "tip_register_account": "piliin ang iyong server at magrehistro ng isa"
+  },
+  "visibility": {
+    "direct": "Direkta",
+    "direct_desc": "Makikita lamang para sa mga nabanggit na user",
+    "private": "Mga tagasunod lamang",
+    "private_desc": "Nakikita para sa mga tagasunod lamang",
+    "public": "Pampubliko",
+    "public_desc": "Nakikita ng lahat",
+    "unlisted": "Hindi nakalista",
+    "unlisted_desc": "Nakikita ng lahat, ngunit nag-opt out sa mga feature ng pagtuklas"
+  }
+}

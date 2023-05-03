@@ -16,7 +16,7 @@ const main = ref<ComponentPublicInstance | null>(null)
 
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   `status:${id}`,
-  () => fetchStatus(id),
+  () => fetchStatus(id, true),
   { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef() },
 )
 const { client } = $(useMasto())
@@ -43,7 +43,9 @@ async function scrollTo() {
 }
 
 const publishWidget = ref()
-const focusEditor = () => publishWidget.value?.focusEditor?.()
+function focusEditor() {
+  return publishWidget.value?.focusEditor?.()
+}
 
 provide('focus-editor', focusEditor)
 
@@ -81,6 +83,7 @@ onReactivated(() => {
             :newer="context?.ancestors.at(-1)"
             command
             style="scroll-margin-top: 60px"
+            @refetch-status="refreshStatus()"
           />
           <PublishWidget
             v-if="currentUser"
@@ -96,6 +99,7 @@ onReactivated(() => {
               v-slot="{ item, index, active }"
               :items="context?.descendants || []"
               :min-item-size="200"
+              :buffer="800"
               key-field="id"
               page-mode
             >

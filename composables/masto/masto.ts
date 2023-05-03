@@ -6,7 +6,7 @@ import type { ElkInstance } from '../users'
 import type { Mutable } from '~/types/utils'
 import type { UserLogin } from '~/types'
 
-export const createMasto = () => {
+export function createMasto() {
   let client = $shallowRef<mastodon.Client>(undefined as never)
   let params = $ref<Mutable<CreateClientParams>>()
   const canStreaming = $computed(() => !!params?.streamingApiUrl)
@@ -26,8 +26,12 @@ export const createMasto = () => {
 }
 export type ElkMasto = ReturnType<typeof createMasto>
 
-export const useMasto = () => useNuxtApp().$masto as ElkMasto
-export const useMastoClient = () => useMasto().client.value
+export function useMasto() {
+  return useNuxtApp().$masto as ElkMasto
+}
+export function useMastoClient() {
+  return useMasto().client.value
+}
 
 export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'token'>) {
   const { setParams } = $(masto)

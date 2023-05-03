@@ -6,12 +6,10 @@ import type {
 } from '~/composables/push-notifications/types'
 import { PushSubscriptionError } from '~/composables/push-notifications/types'
 
-export const createPushSubscription = async (
-  user: RequiredUserLogin,
+export async function createPushSubscription(user: RequiredUserLogin,
   notificationData: CreatePushNotification,
   policy: mastodon.v1.SubscriptionPolicy = 'all',
-  force = false,
-): Promise<mastodon.v1.WebPushSubscription | undefined> => {
+  force = false): Promise<mastodon.v1.WebPushSubscription | undefined> {
   const { server: serverEndpoint, vapidKey } = user
 
   return await getRegistration()

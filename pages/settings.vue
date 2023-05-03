@@ -5,7 +5,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => t('nav.settings'),
 })
 
@@ -23,12 +23,12 @@ const isTauriApp = !!import.meta.env.TAURI_PLATFORM
           <template #title>
             <div timeline-title-style flex items-center gap-2 @click="$scrollToTop">
               <div i-ri:settings-3-line />
-              <span>{{ $t('nav.settings') }}</span>
+              <span>{{ isHydrated ? $t('nav.settings') : '' }}</span>
             </div>
           </template>
           <div xl:w-97 lg:w-78 w-full>
             <SettingsItem
-              v-if="isHydrated && currentUser "
+              v-if="isHydrated && currentUser"
               command
               icon="i-ri:user-line"
               :text="$t('settings.profile.label')"
@@ -38,7 +38,7 @@ const isTauriApp = !!import.meta.env.TAURI_PLATFORM
             <SettingsItem
               command
               icon="i-ri-compasses-2-line"
-              :text="$t('settings.interface.label')"
+              :text="isHydrated ? $t('settings.interface.label') : ''"
               to="/settings/interface"
               :match="$route.path.startsWith('/settings/interface/')"
             />
@@ -53,14 +53,14 @@ const isTauriApp = !!import.meta.env.TAURI_PLATFORM
             <SettingsItem
               command
               icon="i-ri-globe-line"
-              :text="$t('settings.language.label')"
+              :text="isHydrated ? $t('settings.language.label') : ''"
               to="/settings/language"
               :match="$route.path.startsWith('/settings/language/')"
             />
             <SettingsItem
               command
               icon="i-ri-equalizer-line"
-              :text="$t('settings.preferences.label')"
+              :text="isHydrated ? $t('settings.preferences.label') : ''"
               to="/settings/preferences"
               :match="$route.path.startsWith('/settings/preferences/')"
             />
@@ -75,14 +75,14 @@ const isTauriApp = !!import.meta.env.TAURI_PLATFORM
             <SettingsItem
               command
               icon="i-ri-group-line"
-              :text="$t('settings.users.label')"
+              :text="isHydrated ? $t('settings.users.label') : ''"
               to="/settings/users"
               :match="$route.path.startsWith('/settings/users/')"
             />
             <SettingsItem
               command
               icon="i-ri:information-line"
-              :text="$t('settings.about.label')"
+              :text="isHydrated ? $t('settings.about.label') : ''"
               to="/settings/about"
               :match="$route.path.startsWith('/settings/about/')"
             />

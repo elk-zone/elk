@@ -3,7 +3,7 @@ const { t } = useI18n()
 
 const nativeSettings = (await useNativeSettings())!
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.native.label')} | ${t('nav.settings')}`,
 })
 

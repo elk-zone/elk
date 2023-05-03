@@ -28,14 +28,20 @@
     "muted_users": "Gedempte gebruikers",
     "muting": "Gedempt",
     "mutuals": "Gedeeld",
+    "notifications_on_post_disable": "Stop met melden wanneer {username} post",
+    "notifications_on_post_enable": "Meld me wanneer {username} post",
     "pinned": "Gepind",
     "posts": "Posts",
     "posts_count": "{0} Posts|{0} Post|{0} Posts",
     "profile_description": "{0}'s profiel koptekst",
+    "profile_personal_note": "Persoonlijke Nota",
     "profile_unavailable": "Profiel niet beschikbaar",
+    "request_follow": "Verzoek om te volgen",
     "unblock": " Deblokkeren",
     "unfollow": "Ontvolgen",
-    "unmute": "Ontdempen"
+    "unmute": "Ontdempen",
+    "view_other_followers": "Volgers van andere servers worden mogelijk niet getoond.",
+    "view_other_following": "Volgend van andere servers worden mogelijk niet getoond."
   },
   "action": {
     "apply": "Toepassen",

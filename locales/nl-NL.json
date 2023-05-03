@@ -1,9 +1,9 @@
 {
   "a11y": {
-    "loading_page": "Pagina laden, even wachten",
-    "loading_titled_page": "Pagina {0} laden, even wachten",
+    "loading_page": "Pagina wordt geladen, even wachten",
+    "loading_titled_page": "Pagina {0} wordt geladen, even wachten",
     "locale_changed": "Taal veranderd naar {0}",
-    "locale_changing": "Taal veranderen, even geduld",
+    "locale_changing": "Taal wordt veranderd, even wachten",
     "route_loaded": "Pagina {0} geladen"
   },
   "account": {

@@ -142,8 +142,8 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
       masto:
-        specifier: ^5.11.1
-        version: 5.11.1
+        specifier: ^5.11.3
+        version: 5.11.3
       nuxt-security:
         specifier: ^0.13.0
         version: 0.13.0(patch_hash=4zi7vnypkav7i5l74w6qfcndqy)(rollup@2.79.1)
@@ -9121,8 +9121,8 @@ packages:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
     dev: true
 
-  /masto@5.11.1:
-    resolution: {integrity: sha512-M9sVPrac9VyzYL8MgunZBudiaKbQwCg96lGXxB57rFlH7xrjjXXvEaPhHF+3xnR27mnCaeA1FskyN0npRg8W4Q==}
+  /masto@5.11.3:
+    resolution: {integrity: sha512-GtSnrqm5fHPaaU0iwag4LCmvpp82rDng6yOZinmOJHHlUfo6Gnq5QY6x3lJCxCnsPIXpTu1yaX42bWrSQyoQPA==}
     dependencies:
       '@mastojs/ponyfills': 1.0.4
       change-case: 4.1.2

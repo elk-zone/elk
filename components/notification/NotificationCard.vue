@@ -40,10 +40,10 @@ const { notification } = defineProps<{
       </div>
     </template>
     <template v-else-if="notification.type === 'admin.report'">
-      <i18n-t keypath="notification.reported">
-        <NuxtLink :to="getReportRoute(notification.report?.id!)">
-          <div flex p3 items-center bg-shaded>
-            <div i-ri:flag-fill me-1 color-purple />
+      <NuxtLink :to="getReportRoute(notification.report?.id!)">
+        <div flex p3 items-center bg-shaded>
+          <div i-ri:flag-fill me-1 color-purple />
+          <i18n-t keypath="notification.reported">
             <AccountDisplayName
               :account="notification.account"
               text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
@@ -52,9 +52,9 @@ const { notification } = defineProps<{
               :account="notification.report?.targetAccount!"
               text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
             />
-          </div>
-        </NuxtLink>
-      </i18n-t>
+          </i18n-t>
+        </div>
+      </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'follow_request'">
       <div flex ms-4 items-center class="-top-2.5" absolute inset-ie-2 px-2>

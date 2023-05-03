@@ -50,9 +50,9 @@
     "confirm": "Bevestigen",
     "edit": "Aanpassen",
     "enter_app": "Ga naar App",
-    "favourite": "Favoriet",
+    "favourite": "Als favoriet opslaan",
     "favourite_count": "{0}",
-    "favourited": "Favoriet",
+    "favourited": "Als favoriet opgeslagen",
     "more": "Meer",
     "next": "Volgende",
     "prev": "Vorige",
@@ -163,7 +163,7 @@
     "zen_mode": "Zen Modus"
   },
   "notification": {
-    "favourited_post": "vindt jouw post favoriet",
+    "favourited_post": "vindt jouw post leuk",
     "followed_you": "volgt jou",
     "followed_you_count": "{0} mensen hebben je gevolgd|{0} persoon heeft je gevold|{0} mensen hebben je gevolgd",
     "missing_type": "MISSEND notificatie.type:",

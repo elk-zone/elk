@@ -1,11 +1,13 @@
 <script setup lang="ts">
 const props = defineProps<{ enabled?: boolean; filter?: boolean; isDM?: boolean }>()
 
-const showContent = ref(!props.enabled)
+const expandSpoilersByDefault = computed(() => currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false)
+
+const showContent = ref(expandSpoilersByDefault.value ? true : !props.enabled)
 const toggleContent = useToggle(showContent)
 
 watchEffect(() => {
-  showContent.value = !props.enabled
+  showContent.value = expandSpoilersByDefault.value ? true : !props.enabled
 })
 </script>
 

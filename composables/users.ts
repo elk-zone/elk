@@ -169,10 +169,23 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
   currentUserHandle.value = me.acct
 }
 
+const accountPreferencesMap = new Map<string, mastodon.v1.Preference>()
+export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentials) {
+  return accountPreferencesMap.get(account.acct)?.['reading:expand:spoilers'] ?? false
+}
+
 export async function fetchAccountInfo(client: mastodon.Client, server: string) {
-  const account = await client.v1.accounts.verifyCredentials()
+  const [account, preferences] = await Promise.all([
+    client.v1.accounts.verifyCredentials(),
+    client.v1.preferences.fetch(),
+  ])
+
   if (!account.acct.includes('@'))
     account.acct = `${account.acct}@${server}`
+
+  // TODO: lazy load preferences
+  accountPreferencesMap.set(account.acct, preferences)
+
   cacheAccount(account, server, true)
   return account
 }

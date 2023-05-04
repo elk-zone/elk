@@ -46,9 +46,13 @@ router.afterEach(() => {
         </NuxtLink>
       </CommonTooltip>
       <CommonTooltip :content="$t('action.compose')">
-        <button :aria-label="$t('action.compose')" btn-action-icon @click="openPublishDialog('compose')">
+        <NuxtLink
+          to="/compose"
+          :aria-label="$t('action.compose')"
+          btn-action-icon
+        >
           <div text-xl i-ri:quill-pen-line user-only class="rtl-flip" btn-text />
-        </button>
+        </NuxtLink>
       </CommonTooltip>
     </div>
   </div>

@@ -38,7 +38,7 @@ const hideAllMedia = computed(
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',
     }"
   >
-    <StatusBody v-if="isSensitiveNonSpoiler || hideAllMedia" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+    <StatusBody v-if="(!isFiltered && isSensitiveNonSpoiler) || hideAllMedia" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
     <StatusSpoiler :enabled="hasSpoilerOrSensitiveMedia || isFiltered" :filter="isFiltered" :sensitive-non-spoiler="isSensitiveNonSpoiler || hideAllMedia" :is-d-m="isDM">
       <template v-if="status.spoilerText" #spoiler>
         <p>{{ status.spoilerText }}</p>

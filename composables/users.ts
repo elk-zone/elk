@@ -170,8 +170,26 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
 }
 
 const accountPreferencesMap = new Map<string, mastodon.v1.Preference>()
+
+/**
+ * @returns `true` when user ticked the preference to always expand posts with content warnings
+ */
 export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentials) {
   return accountPreferencesMap.get(account.acct)?.['reading:expand:spoilers'] ?? false
+}
+
+/**
+ * @returns `true` when user selected "Always show media" as Media Display preference
+ */
+export function getExpandMediaByDefault(account: mastodon.v1.AccountCredentials) {
+  return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'show_all' ?? false
+}
+
+/**
+ * @returns `true` when user selected "Always hide media" as Media Display preference
+ */
+export function getHideMediaByDefault(account: mastodon.v1.AccountCredentials) {
+  return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'hide_all' ?? false
 }
 
 export async function fetchAccountInfo(client: mastodon.Client, server: string) {

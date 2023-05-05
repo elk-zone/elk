@@ -99,7 +99,9 @@ function reply() {
     <div flex-none>
       <StatusActionButton
         :content="$t('action.bookmark')"
-        color="text-yellow" hover="text-yellow" elk-group-hover="bg-yellow/10"
+        :color="getPreferences(userSettings, 'useStarFavoriteIcon') ? 'text-rose' : 'text-yellow'"
+        :hover="getPreferences(userSettings, 'useStarFavoriteIcon') ? 'text-rose' : 'text-yellow'"
+        :elk-group-hover="getPreferences(userSettings, 'useStarFavoriteIcon') ? 'bg-rose/10' : 'bg-yellow/10' "
         icon="i-ri:bookmark-line"
         active-icon="i-ri:bookmark-fill"
         :active="!!status.bookmarked"

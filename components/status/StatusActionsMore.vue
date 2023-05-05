@@ -159,7 +159,7 @@ function showFavoritedAndBoostedBy() {
           <CommonDropdownItem
             :text="status.bookmarked ? $t('action.bookmarked') : $t('action.bookmark')"
             :icon="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'"
-            :class="status.bookmarked ? 'text-yellow' : ''"
+            :class="status.bookmarked ? `text-${getPreferences(userSettings, 'useStarFavoriteIcon') ? 'rose' : 'yellow'}` : ''"
             :command="command"
             :disabled="isLoading.bookmarked"
             @click="toggleBookmark()"

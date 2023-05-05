@@ -5,7 +5,7 @@ const expandSpoilers = computed(() => {
   const expandCW = currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false
   const expandMedia = currentUser.value ? getExpandMediaByDefault(currentUser.value.account) : false
 
-  return !props.filter // always closed if post is filtered
+  return !props.filter // always prevent expansion if filtered
     && ((props.sensitiveNonSpoiler && expandMedia)
     || (!props.sensitiveNonSpoiler && expandCW))
 })

@@ -173,6 +173,10 @@ const accountPreferencesMap = new Map<string, mastodon.v1.Preference>()
 export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentials) {
   return accountPreferencesMap.get(account.acct)?.['reading:expand:spoilers'] ?? false
 }
+export function getExpandMediaByDefault(account: mastodon.v1.AccountCredentials) {
+  const expandMedia = accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'show_all'
+  return expandMedia ?? false
+}
 
 export async function fetchAccountInfo(client: mastodon.Client, server: string) {
   const [account, preferences] = await Promise.all([

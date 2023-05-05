@@ -3,7 +3,6 @@
 const moreMenuVisible = ref(false)
 
 const { notifications } = useNotifications()
-const userSettings = useUserSettings()
 </script>
 
 <template>
@@ -17,7 +16,7 @@ const userSettings = useUserSettings()
       <NuxtLink to="/home" :aria-label="$t('nav.home')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:home-5-line />
       </NuxtLink>
-      <NuxtLink :to="(isHydrated ? `/${currentServer}/explore` : '/explore') + (userSettings.preferences.hideTrendsPosts ? '' : '/posts')" :aria-label="$t('nav.explore')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
+      <NuxtLink :to="isHydrated ? `/${currentServer}/explore` : '/explore'" :aria-label="$t('nav.explore')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:search-line />
       </NuxtLink>
       <NuxtLink to="/notifications" :aria-label="$t('nav.notifications')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
@@ -33,7 +32,7 @@ const userSettings = useUserSettings()
       </NuxtLink>
     </template>
     <template v-else>
-      <NuxtLink :to="(isHydrated ? `/${currentServer}/explore` : '/explore') + (userSettings.preferences.hideTrendsPosts ? '' : '/posts')" :aria-label="$t('nav.explore')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
+      <NuxtLink :to="`/${currentServer}/explore`" :aria-label="$t('nav.explore')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:hashtag />
       </NuxtLink>
       <NuxtLink group :to="`/${currentServer}/public/local`" :aria-label="$t('nav.local')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">

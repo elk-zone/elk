@@ -416,7 +416,6 @@
       "hide_follower_count": "フォロワーの数を隠す",
       "hide_reply_count": "リプライの数を隠す",
       "hide_translation": "翻訳を隠す",
-      "hide_trends_posts": "人気の投稿を隠す",
       "hide_username_emojis": "ユーザー名の絵文字を隠す",
       "hide_username_emojis_description": "タイムライン上でユーザー名に含まれる絵文字を隠します。プロフィールでは絵文字は引き続き表示されます。",
       "label": "環境設定",

@@ -3,13 +3,12 @@ const { command } = defineProps<{
   command?: boolean
 }>()
 const { notifications } = useNotifications()
-const userSettings = useUserSettings()
 </script>
 
 <template>
   <nav sm:px3 flex="~ col gap2" shrink text-size-base leading-normal md:text-lg h-full mt-1 overflow-y-auto>
     <SearchWidget lg:ms-1 lg:me-5 hidden xl:block />
-    <NavSideItem :text="$t('nav.search')" :to="(isHydrated ? `/${currentServer}/explore` : '/explore') + (userSettings.preferences.hideTrendsPosts ? '' : '/posts')" icon="i-ri:search-line" hidden sm:block xl:hidden :command="command" />
+    <NavSideItem :text="$t('nav.search')" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:search-line" hidden sm:block xl:hidden :command="command" />
 
     <div class="spacer" shrink hidden sm:block />
     <NavSideItem :text="$t('nav.home')" to="/home" icon="i-ri:home-5-line" user-only :command="command" />
@@ -29,7 +28,7 @@ const userSettings = useUserSettings()
     <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-line" user-only :command="command" />
 
     <div class="spacer" shrink hidden sm:block />
-    <NavSideItem :text="$t('nav.explore')" :to="(isHydrated ? `/${currentServer}/explore` : '/explore') + (userSettings.preferences.hideTrendsPosts ? '' : '/posts')" icon="i-ri:hashtag" :command="command" xs:hidden sm:hidden xl:block />
+    <NavSideItem :text="$t('nav.explore')" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:hashtag" :command="command" xs:hidden sm:hidden xl:block />
     <NavSideItem :text="$t('nav.local')" :to="isHydrated ? `/${currentServer}/public/local` : '/public/local'" icon="i-ri:group-2-line " :command="command" />
     <NavSideItem :text="$t('nav.federated')" :to="isHydrated ? `/${currentServer}/public` : '/public'" icon="i-ri:earth-line" :command="command" />
     <NavSideItem :text="$t('nav.lists')" :to="isHydrated ? `/${currentServer}/lists` : '/lists'" icon="i-ri:list-check" user-only :command="command" />

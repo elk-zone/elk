@@ -175,6 +175,16 @@ const locales: LocaleObjectData[] = [
     name: 'Türkçe',
   },
   {
+    code: 'pt-PT',
+    file: 'pt-PT.json',
+    name: 'Português (PT)',
+  },
+  {
+    code: 'pt-BR',
+    file: 'pt-BR.json',
+    name: 'Português (BR)',
+  },
+  {
     code: 'id-ID',
     file: 'id-ID.json',
     name: 'Indonesia',

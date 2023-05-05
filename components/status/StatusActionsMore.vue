@@ -149,8 +149,8 @@ function showFavoritedAndBoostedBy() {
 
           <CommonDropdownItem
             :text="status.favourited ? $t('action.favourited') : $t('action.favourite')"
-            :icon="status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
-            :class="status.favourited ? 'text-rose' : ''"
+            :icon="`${getPreferences(userSettings, 'useStarFavoriteIcon') ? 'i-ri:star-' : 'i-ri:heart-3-'}${status.favourited ? 'fill' : 'line'}`"
+            :class="status.favourited ? `text-${getPreferences(userSettings, 'useStarFavoriteIcon') ? 'yellow' : 'rose'}` : ''"
             :command="command"
             :disabled="isLoading.favourited"
             @click="toggleFavourite()"

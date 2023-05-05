@@ -3,6 +3,7 @@ const { command } = defineProps<{
   command?: boolean
 }>()
 const { notifications } = useNotifications()
+const userSettings = useUserSettings()
 </script>
 
 <template>
@@ -23,7 +24,7 @@ const { notifications } = useNotifications()
       </template>
     </NavSideItem>
     <NavSideItem :text="$t('nav.conversations')" to="/conversations" icon="i-ri:at-line" user-only :command="command" />
-    <NavSideItem :text="$t('nav.favourites')" to="/favourites" icon="i-ri:heart-3-line" user-only :command="command" />
+    <NavSideItem :text="$t('nav.favourites')" to="/favourites" :icon="getPreferences(userSettings, 'useStarFavoriteIcon') ? 'i-ri:star-line' : 'i-ri:heart-3-line'" user-only :command="command" />
     <NavSideItem :text="$t('nav.bookmarks')" to="/bookmarks" icon="i-ri:bookmark-line" user-only :command="command" />
     <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-line" user-only :command="command" />
 

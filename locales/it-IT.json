@@ -50,8 +50,8 @@
     "boost": "Potenzia",
     "boost_count": "{0}",
     "boosted": "Potenziato",
-    "clear_publish_failed": "Cancella errori di pubblicazione",
-    "clear_upload_failed": "Cancella errori di caricamento file",
+    "clear_publish_failed": "Ignora errori di pubblicazione",
+    "clear_upload_failed": "Ignora errori di caricamento file",
     "close": "Chiudi",
     "compose": "Componi",
     "confirm": "Conferma",
@@ -74,7 +74,7 @@
     "switch_account": "Cambia account",
     "vote": "Vota"
   },
-  "app_desc_short": "Un agile client web per Mastodon",
+  "app_desc_short": "Un client web agile per Mastodon",
   "app_logo": "Logo Elk",
   "app_name": "Elk",
   "attachment": {
@@ -246,8 +246,8 @@
     "show_reblogs": "Mostra potenziamenti da {0}",
     "show_untranslated": "Mostra versione originale",
     "toggle_theme": {
-      "dark": "Usa tema scuro",
-      "light": "Usa tema chiaro"
+      "dark": "Usa aspetto scuro",
+      "light": "Usa aspetto chiaro"
     },
     "translate_post": "Traduci post",
     "unblock_account": "Sblocca {0}",
@@ -313,22 +313,22 @@
     "update_available_short": "Aggiorna Elk",
     "webmanifest": {
       "canary": {
-        "description": "Un agile client web per Mastodon (canary)",
+        "description": "Un client web agile per Mastodon (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Un agile client web per Mastodon (dev)",
+        "description": "Un client web agile per Mastodon (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Un agile client web per Mastodon (anteprima)",
+        "description": "Un client web agile per Mastodon (anteprima)",
         "name": "Elk (anteprima)",
         "short_name": "Elk (anteprima)"
       },
       "release": {
-        "description": "Un agile client web per Mastodon",
+        "description": "Un client web agile per Mastodon",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -474,7 +474,7 @@
       },
       "label": "Profilo"
     },
-    "select_a_settings": "Seleziona un'impostazione'",
+    "select_a_settings": "Seleziona un'impostazione",
     "users": {
       "export": "Esporta token utente",
       "import": "Importa token utente",
@@ -494,8 +494,8 @@
     "loading": "Carico...",
     "publish_failed": "Pubblicazione fallita",
     "publishing": "Pubblico",
-    "upload_failed": "Upload fallito",
-    "uploading": "Upload in corso..."
+    "upload_failed": "Caricamento fallito",
+    "uploading": "Caricamento in corso..."
   },
   "status": {
     "account": {
@@ -619,9 +619,9 @@
   },
   "visibility": {
     "direct": "Diretto",
-    "direct_desc": "Solo utenti visibili o menzionati",
+    "direct_desc": "Visibile solo agli utenti menzionati",
     "private": "Solo seguaci",
-    "private_desc": "Visibile solo ai seguaci",
+    "private_desc": "Visibile solo ai tuoi seguaci",
     "public": "Pubblico",
     "public_desc": "Visibile a tutti",
     "unlisted": "Non in lista",

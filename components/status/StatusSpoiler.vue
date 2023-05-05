@@ -1,13 +1,19 @@
 <script setup lang="ts">
-const props = defineProps<{ enabled?: boolean; filter?: boolean; isDM?: boolean }>()
+const props = defineProps<{ enabled?: boolean; filter?: boolean; isDM?: boolean; unfilteredSensitive?: boolean }>()
 
-const expandSpoilersByDefault = computed(() => currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false)
+const expandSpoilers = computed(() => {
+  const expandCW = currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false
+  const expandMedia = currentUser.value ? getExpandMediaByDefault(currentUser.value.account) : false
 
-const showContent = ref(expandSpoilersByDefault.value ? true : !props.enabled)
+  return (props.unfilteredSensitive && expandMedia)
+    || (!props.unfilteredSensitive && expandCW)
+})
+
+const showContent = ref(expandSpoilers.value ? true : !props.enabled)
 const toggleContent = useToggle(showContent)
 
 watchEffect(() => {
-  showContent.value = expandSpoilersByDefault.value ? true : !props.enabled
+  showContent.value = expandSpoilers.value ? true : !props.enabled
 })
 </script>
 

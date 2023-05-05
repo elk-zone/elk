@@ -16,7 +16,7 @@ const isSelf = $(useSelfAccount(() => account))
 
 const { t } = useI18n()
 const { client } = $(useMasto())
-const userSettings = useUserSettings()
+const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 async function toggleMute() {
   if (!relationship!.muting && await openConfirmDialog({
@@ -199,7 +199,7 @@ async function removeUserNote() {
             <CommonDropdownItem :text="$t('account.pinned')" icon="i-ri:pushpin-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/favourites">
-            <CommonDropdownItem :text="$t('account.favourites')" :icon="getPreferences(userSettings, 'useStarFavoriteIcon') ? 'i-ri:star-line' : 'i-ri:heart-3-line'" :command="command" />
+            <CommonDropdownItem :text="$t('account.favourites')" :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'" :command="command" />
           </NuxtLink>
           <NuxtLink to="/mutes">
             <CommonDropdownItem :text="$t('account.muted_users')" icon="i-ri:volume-mute-line" :command="command" />

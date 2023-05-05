@@ -9,16 +9,22 @@ const expandSpoilers = computed(() => {
     || (!props.unfilteredSensitive && expandCW)
 })
 
-const showContent = ref(expandSpoilers.value ? true : !props.enabled)
+const hideContent = props.enabled || props.unfilteredSensitive
+const showContent = ref(expandSpoilers.value ? true : !hideContent)
 const toggleContent = useToggle(showContent)
 
 watchEffect(() => {
-  showContent.value = expandSpoilers.value ? true : !props.enabled
+  showContent.value = expandSpoilers.value ? true : !hideContent
 })
+function getToggleText() {
+  if (props.unfilteredSensitive)
+    return 'status.spoiler_media_hidden'
+  return props.filter ? 'status.filter_show_anyway' : 'status.spoiler_show_more'
+}
 </script>
 
 <template>
-  <div v-if="enabled" flex flex-col items-start>
+  <div v-if="hideContent" flex flex-col items-start>
     <div class="content-rich" p="x-4 b-2.5" text-center text-secondary w-full border="~ base" border-0 border-b-dotted border-b-3 mt-2>
       <slot name="spoiler" />
     </div>
@@ -26,9 +32,9 @@ watchEffect(() => {
       <button btn-text px-2 py-1 :bg="isDM ? 'transparent' : 'base'" flex="~ center gap-2" :class="showContent ? '' : 'filter-saturate-0 hover:filter-saturate-100'" @click="toggleContent()">
         <div v-if="showContent" i-ri:eye-line />
         <div v-else i-ri:eye-close-line />
-        {{ showContent ? $t('status.spoiler_show_less') : $t(filter ? 'status.filter_show_anyway' : 'status.spoiler_show_more') }}
+        {{ showContent ? $t('status.spoiler_show_less') : $t(getToggleText()) }}
       </button>
     </div>
   </div>
-  <slot v-if="!enabled || showContent" />
+  <slot v-if="!hideContent || showContent" />
 </template>

@@ -99,6 +99,12 @@ const userSettings = useUserSettings()
       {{ $t("settings.preferences.hide_news") }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideTrendsPosts')"
+      @click="togglePreferences('hideTrendsPosts')"
+    >
+      {{ $t("settings.preferences.hide_trends_posts") }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'zenMode')"
       @click="togglePreferences('zenMode')"
     >

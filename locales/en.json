@@ -450,6 +450,7 @@
       "hide_news": "Hide news",
       "hide_reply_count": "Hide reply count",
       "hide_translation": "Hide translation",
+      "hide_trends_posts": "Hide trends posts",
       "hide_username_emojis": "Hide username emojis",
       "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",
       "label": "Preferences",

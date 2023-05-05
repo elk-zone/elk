@@ -14,11 +14,15 @@ onActivated(() =>
 )
 onDeactivated(() => search?.input?.blur())
 
+useHydratedHead({
+  title: () => `${t('nav.explore')}`,
+})
+
 const userSettings = useUserSettings()
 
 const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
-    to: isHydrated.value ? `/${currentServer.value}/explore` : '/explore',
+    to: isHydrated.value ? `/${currentServer.value}/explore/posts` : '/explore/posts',
     display: isHydrated.value ? t('tab.posts') : '',
   },
   {

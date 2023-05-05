@@ -1,16 +1,16 @@
 <script setup lang="ts">
-const props = defineProps<{ enabled?: boolean; filter?: boolean; isDM?: boolean; unfilteredSensitive?: boolean }>()
+const props = defineProps<{ enabled?: boolean; filter?: boolean; isDM?: boolean; sensitiveNonSpoiler?: boolean }>()
 
 const expandSpoilers = computed(() => {
   const expandCW = currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false
   const expandMedia = currentUser.value ? getExpandMediaByDefault(currentUser.value.account) : false
 
   return !props.filter // always closed if post is filtered
-    && ((props.unfilteredSensitive && expandMedia)
-    || (!props.unfilteredSensitive && expandCW))
+    && ((props.sensitiveNonSpoiler && expandMedia)
+    || (!props.sensitiveNonSpoiler && expandCW))
 })
 
-const hideContent = props.enabled || props.unfilteredSensitive
+const hideContent = props.enabled || props.sensitiveNonSpoiler
 const showContent = ref(expandSpoilers.value ? true : !hideContent)
 const toggleContent = useToggle(showContent)
 
@@ -18,7 +18,7 @@ watchEffect(() => {
   showContent.value = expandSpoilers.value ? true : !hideContent
 })
 function getToggleText() {
-  if (props.unfilteredSensitive)
+  if (props.sensitiveNonSpoiler)
     return 'status.spoiler_media_hidden'
   return props.filter ? 'status.filter_show_anyway' : 'status.spoiler_show_more'
 }

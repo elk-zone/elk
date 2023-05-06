@@ -295,6 +295,7 @@
     "followed_you_count": "{0} pessoas seguem-no|{0} pessoa segue-o|{0} pessoas seguem-no",
     "missing_type": "notification.type em FALTA:",
     "reblogged_post": "partilhou a sua publicação",
+    "reported": "{0} denunciou {1}","
     "request_to_follow": "pediu para segui-lo",
     "signed_up": "inscreveu-se",
     "update_status": "atualizou a sua publicação"
@@ -526,6 +527,7 @@
     "replying_to": "Em resposta a {0}",
     "show_full_thread": "Mostrar toda a conversa",
     "someone": "alguém",
+    "spoiler_media_hidden": "Media oculta",
     "spoiler_show_less": "Mostrar menos",
     "spoiler_show_more": "Mostrar mais",
     "thread": "Conversa",

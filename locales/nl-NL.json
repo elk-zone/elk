@@ -1,9 +1,9 @@
 {
   "a11y": {
-    "loading_page": "Pagina laden, even wachten",
-    "loading_titled_page": "Pagina {0} laden, even wachten",
+    "loading_page": "Pagina wordt geladen, even wachten",
+    "loading_titled_page": "Pagina {0} wordt geladen, even wachten",
     "locale_changed": "Taal veranderd naar {0}",
-    "locale_changing": "Taal veranderen, even geduld",
+    "locale_changing": "Taal wordt veranderd, even wachten",
     "route_loaded": "Pagina {0} geladen"
   },
   "account": {
@@ -28,14 +28,20 @@
     "muted_users": "Gedempte gebruikers",
     "muting": "Gedempt",
     "mutuals": "Gedeeld",
+    "notifications_on_post_disable": "Stop met melden wanneer {username} post",
+    "notifications_on_post_enable": "Meld me wanneer {username} post",
     "pinned": "Gepind",
     "posts": "Posts",
     "posts_count": "{0} Posts|{0} Post|{0} Posts",
     "profile_description": "{0}'s profiel koptekst",
+    "profile_personal_note": "Persoonlijke Nota",
     "profile_unavailable": "Profiel niet beschikbaar",
+    "request_follow": "Verzoek om te volgen",
     "unblock": " Deblokkeren",
     "unfollow": "Ontvolgen",
-    "unmute": "Ontdempen"
+    "unmute": "Ontdempen",
+    "view_other_followers": "Volgers van andere servers worden mogelijk niet getoond.",
+    "view_other_following": "Volgend van andere servers worden mogelijk niet getoond."
   },
   "action": {
     "apply": "Toepassen",
@@ -50,9 +56,9 @@
     "confirm": "Bevestigen",
     "edit": "Aanpassen",
     "enter_app": "Ga naar App",
-    "favourite": "Favoriet",
+    "favourite": "Als favoriet opslaan",
     "favourite_count": "{0}",
-    "favourited": "Favoriet",
+    "favourited": "Als favoriet opgeslagen",
     "more": "Meer",
     "next": "Volgende",
     "prev": "Vorige",
@@ -151,7 +157,7 @@
     "federated": "Gefedereerd",
     "home": "Home",
     "local": "Lokaal",
-    "notifications": "Notificaties",
+    "notifications": "Meldingen",
     "profile": "Profiel",
     "search": "Zoeken",
     "select_feature_flags": "Selecteer Feature Vlaggen",
@@ -163,13 +169,13 @@
     "zen_mode": "Zen Modus"
   },
   "notification": {
-    "favourited_post": "vindt jouw post favoriet",
+    "favourited_post": "vindt jouw post leuk",
     "followed_you": "volgt jou",
     "followed_you_count": "{0} mensen hebben je gevolgd|{0} persoon heeft je gevold|{0} mensen hebben je gevolgd",
     "missing_type": "MISSEND notificatie.type:",
     "reblogged_post": "herblogt je post",
     "request_to_follow": "vraagt om jou te volgen",
-    "signed_up": "signed up",
+    "signed_up": "ingeschreven",
     "update_status": "heeft hun post aangepast"
   },
   "placeholder": {
@@ -203,12 +209,20 @@
     },
     "language": {
       "display_language": "Weergave taal",
-      "label": "Taal"
+      "label": "Taal",
+      "status": "Vertalingsstatus: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Toevoegen",
+        "choose_language": "Kies taal",
+        "heading": "Vertalingen",
+        "hide_specific": "Verberg specifieke vertalingen",
+        "remove": "Verwijder"
+      }
     },
     "notifications": {
-      "label": "Notificaties",
+      "label": "Meldingen",
       "notifications": {
-        "label": "Notificaties instellingen"
+        "label": "Meldingsinstellingen"
       },
       "push_notifications": {
         "alerts": {
@@ -227,7 +241,7 @@
           "followed": "Van mensen die ik volg",
           "follower": "Van mensen die mij volgen",
           "none": "Van niemand",
-          "title": "Van wie kan ik notificaties krijgen?"
+          "title": "Van wie kan ik meldingen krijgen?"
         },
         "save_settings": "Instellingen aanpassingen opslaan",
         "subscription_error": {
@@ -241,16 +255,16 @@
         "unsupported": "Je browser ondersteunt geen pushnotificaties.",
         "warning": {
           "enable_close": "Sluit",
-          "enable_description": "Om notificaties te krijgen terwijl Elk niet actief is, zet pushnotificaties aan. Je kan precies instellen wat voor type interacties pushnotificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
-          "enable_description_settings": "Om notificaties te ontvangen wanneer Elk niet actief is, schakel pushnotificaties in. Je kunt precies instellen welke soorten interacties pushnotificaties genereren in dit venster zodra je ze hebt inschakelt.",
+          "enable_description": "Om meldingen te krijgen terwijl Elk niet actief is, zet pushnotificaties aan. Je kan precies instellen wat voor type interacties pushnotificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
+          "enable_description_settings": "Om meldingen te ontvangen wanneer Elk niet actief is, schakel pushnotificaties in. Je kunt precies instellen welke soorten interacties pushnotificaties genereren in dit venster zodra je ze hebt inschakelt.",
           "enable_desktop": "Zet pushnotificaties aan",
           "enable_title": "Mis niets",
           "re_auth": "Het lijkt erop dat je server geen pushnotificaties ondersteunt. Probeer uitloggen en opnieuw inloggen. Neem contact op met de serverbeheerder als dit bericht nog steeds verschijnt."
         }
       },
-      "show_btn": "Ga naar notificatie instellingen"
+      "show_btn": "Ga naar meldingsinstellingen"
     },
-    "notifications_settings": "Notificaties",
+    "notifications_settings": "Meldingen",
     "preferences": {
       "label": "Voorkeuren"
     },

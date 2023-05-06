@@ -153,7 +153,10 @@ function showFavoritedAndBoostedBy() {
             :icon="useStarFavoriteIcon
               ? status.favourited ? 'i-ri:star-fill' : 'i-ri:star-line'
               : status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
-            :class="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
+            :class="status.favourited
+              ? useStarFavoriteIcon ? 'text-yellow' : 'text-rose'
+              : ''
+            "
             :command="command"
             :disabled="isLoading.favourited"
             @click="toggleFavourite()"

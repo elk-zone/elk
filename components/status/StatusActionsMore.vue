@@ -150,8 +150,10 @@ function showFavoritedAndBoostedBy() {
 
           <CommonDropdownItem
             :text="status.favourited ? $t('action.favourited') : $t('action.favourite')"
-            :icon="`${useStarFavoriteIcon ? 'i-ri:star-' : 'i-ri:heart-3-'}${status.favourited ? 'fill' : 'line'}`"
-            :class="status.favourited ? `text-${useStarFavoriteIcon ? 'yellow' : 'rose'}` : ''"
+            :icon="useStarFavoriteIcon
+              ? status.favourited ? 'i-ri:star-fill' : 'i-ri:star-line'
+              : status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
+            :class="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
             :command="command"
             :disabled="isLoading.favourited"
             @click="toggleFavourite()"
@@ -160,7 +162,10 @@ function showFavoritedAndBoostedBy() {
           <CommonDropdownItem
             :text="status.bookmarked ? $t('action.bookmarked') : $t('action.bookmark')"
             :icon="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'"
-            :class="status.bookmarked ? `text-${useStarFavoriteIcon ? 'rose' : 'yellow'}` : ''"
+            :class="status.bookmarked
+              ? useStarFavoriteIcon ? 'text-rose' : 'text-yellow'
+              : ''
+            "
             :command="command"
             :disabled="isLoading.bookmarked"
             @click="toggleBookmark()"

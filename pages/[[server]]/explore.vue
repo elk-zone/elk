@@ -14,15 +14,11 @@ onActivated(() =>
 )
 onDeactivated(() => search?.input?.blur())
 
-useHydratedHead({
-  title: () => `${t('nav.explore')}`,
-})
-
 const userSettings = useUserSettings()
 
 const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
-    to: isHydrated.value ? `/${currentServer.value}/explore/posts` : '/explore/posts',
+    to: isHydrated.value ? `/${currentServer.value}/explore` : '/explore',
     display: isHydrated.value ? t('tab.posts') : '',
   },
   {
@@ -50,9 +46,6 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
         <div i-ri:hashtag />
         <span>{{ t('nav.explore') }}</span>
       </span>
-    </template>
-    <template v-else #title>
-      <SearchWidget v-if="isHydrated" ref="search" class="m-1" />
     </template>
 
     <template #header>

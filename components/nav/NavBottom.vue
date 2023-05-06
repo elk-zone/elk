@@ -16,7 +16,7 @@ const { notifications } = useNotifications()
       <NuxtLink to="/home" :aria-label="$t('nav.home')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:home-5-line />
       </NuxtLink>
-      <NuxtLink :to="isHydrated ? `/${currentServer}/explore` : '/explore'" :aria-label="$t('nav.explore')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
+      <NuxtLink to="/search" :aria-label="$t('nav.search')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:search-line />
       </NuxtLink>
       <NuxtLink to="/notifications" :aria-label="$t('nav.notifications')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">

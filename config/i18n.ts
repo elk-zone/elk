@@ -63,6 +63,10 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     // { code: 'es-UY', name: 'Español (Uruguay)' },
     // { code: 'es-VE', name: 'Español (Venezuela)' },
   ],
+  pt: [
+    { code: 'pt-BR', name: 'Português (Brasil)' },
+    { code: 'pt-PT', name: 'Português (Portugal)' },
+  ],
 }
 
 const locales: LocaleObjectData[] = [
@@ -165,14 +169,9 @@ const locales: LocaleObjectData[] = [
     },
   },
   {
-    code: 'pt-PT',
-    file: 'pt-PT.json',
-    name: 'Português (Portugal)',
-  },
-  {
-    code: 'pt-BR',
-    file: 'pt-BR.json',
-    name: 'Português (Brasil)',
+    code: 'pt',
+    file: 'pt.json',
+    name: 'Português',
   },
   {
     code: 'tr-TR',

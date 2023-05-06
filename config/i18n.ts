@@ -167,7 +167,12 @@ const locales: LocaleObjectData[] = [
   {
     code: 'pt-PT',
     file: 'pt-PT.json',
-    name: 'Português',
+    name: 'Português (Portugal)',
+  },
+  {
+    code: 'pt-BR',
+    file: 'pt-BR.json',
+    name: 'Português (Brasil)',
   },
   {
     code: 'tr-TR',

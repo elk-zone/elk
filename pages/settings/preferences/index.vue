@@ -49,6 +49,12 @@ const userSettings = useUserSettings()
     >
       {{ $t('settings.preferences.enable_pinch_to_zoom') }}
     </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'useStarFavoriteIcon')"
+      @click="togglePreferences('useStarFavoriteIcon')"
+    >
+      {{ $t('settings.preferences.use_star_favorite_icon') }}
+    </SettingsToggleItem>
     <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-hearts-line />
       {{ $t('settings.preferences.wellbeing') }}

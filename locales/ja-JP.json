@@ -454,6 +454,7 @@
       "hide_username_emojis_description": "タイムライン上でユーザー名に含まれる絵文字を隠します。プロフィールでは絵文字は引き続き表示されます。",
       "label": "環境設定",
       "title": "実験的機能",
+      "use_star_favorite_icon": "星のお気に入りアイコンを使用する",
       "user_picker": "ユーザーピッカー",
       "virtual_scroll": "仮想スクロール",
       "wellbeing": "ウェルビーイング",

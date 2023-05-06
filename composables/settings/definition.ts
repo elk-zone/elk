@@ -21,6 +21,7 @@ export interface PreferencesSettings {
   enableAutoplay: boolean
   enableDataSaving: boolean
   enablePinchToZoom: boolean
+  useStarFavoriteIcon: boolean
   zenMode: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
@@ -72,6 +73,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   enableAutoplay: true,
   enableDataSaving: false,
   enablePinchToZoom: false,
+  useStarFavoriteIcon: false,
   zenMode: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,

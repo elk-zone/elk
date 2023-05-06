@@ -7,7 +7,6 @@ const { notifications } = useNotifications()
 
 <template>
   <nav sm:px3 flex="~ col gap2" shrink text-size-base leading-normal md:text-lg h-full mt-1 overflow-y-auto>
-    <SearchWidget lg:ms-1 lg:me-5 hidden xl:block />
     <NavSideItem :text="$t('nav.search')" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:search-line" hidden sm:block xl:hidden :command="command" />
 
     <div class="spacer" shrink hidden sm:block />

@@ -22,7 +22,7 @@ const isFiltered = $computed(() => status.account.id !== currentUser.value?.acco
 // check spoiler text or media attachment
 // needed to handle accounts that mark all their posts as sensitive
 const hasSpoilerOrSensitiveMedia = $computed(() => !!status.spoilerText || (status.sensitive && !!status.mediaAttachments.length))
-const isSensitiveNonSpoiler = computed(() => status.sensitive && !status.spoilerText)
+const isSensitiveNonSpoiler = computed(() => status.sensitive && !status.spoilerText && !!status.mediaAttachments.length)
 const hideAllMedia = computed(
   () => {
     return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && !!status.mediaAttachments.length) : false

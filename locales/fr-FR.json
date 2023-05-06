@@ -24,6 +24,7 @@
     "follows_you": "@:account.follow_back",
     "go_to_profile": "Aller à son profil",
     "joined": "a rejoint",
+    "link_verified_on": "La propriété de ce lien a été vérifiée le {0}",
     "moved_title": "a indiqué que son nouveau compte est désormais :",
     "muted_users": "Comptes masqués",
     "muting": "Masqué·e",

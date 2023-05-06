@@ -60,6 +60,8 @@ export function getAccountFieldIcon(value: string) {
   return accountFieldIconsLowercase[name] || undefined
 }
 
+export const accountVerifiedFieldIcon = 'i-ri:check-line'
+
 export const statusVisibilities = [
   {
     value: 'public',

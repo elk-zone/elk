@@ -454,6 +454,7 @@
       "hide_username_emojis_description": "Esconde os emojis do nome de utilizador nas cronologias. Os Emojis continuarão a ser visíveis nos seus perfis.",
       "label": "Preferências",
       "title": "Funcionalidades Experimentais",
+      "use_star_favorite_icon": "Utilizar estrela como ícone de favoritos",
       "user_picker": "Selecionador de Utilizador",
       "virtual_scroll": "Deslocamento Virtual",
       "wellbeing": "Bem-estar",

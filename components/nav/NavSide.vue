@@ -27,11 +27,7 @@ const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
     <NavSideItem :text="$t('nav.bookmarks')" to="/bookmarks" icon="i-ri:bookmark-line" user-only :command="command" />
 
     <div class="spacer" shrink hidden sm:block />
-    <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-fill" user-only :command="command" font-bold>
-      <template #icon>
-        <div class="i-ri:quill-pen-fill" text-xl text-primary />
-      </template>
-    </NavSideItem>
+    <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-fill" user-only :command="command" font-bold />
 
     <div class="spacer" shrink hidden sm:block />
     <NavSideItem :text="$t('nav.explore')" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:hashtag" :command="command" xs:hidden sm:hidden xl:block />

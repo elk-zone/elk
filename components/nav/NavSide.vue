@@ -3,11 +3,11 @@ const { command } = defineProps<{
   command?: boolean
 }>()
 const { notifications } = useNotifications()
+const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 </script>
 
 <template>
   <nav sm:px3 flex="~ col gap2" shrink text-size-base leading-normal md:text-lg h-full mt-1 overflow-y-auto>
-    <SearchWidget lg:ms-1 lg:me-5 hidden xl:block />
     <NavSideItem :text="$t('nav.search')" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:search-line" hidden sm:block xl:hidden :command="command" />
 
     <div class="spacer" shrink hidden sm:block />
@@ -23,7 +23,7 @@ const { notifications } = useNotifications()
       </template>
     </NavSideItem>
     <NavSideItem :text="$t('nav.conversations')" to="/conversations" icon="i-ri:at-line" user-only :command="command" />
-    <NavSideItem :text="$t('nav.favourites')" to="/favourites" icon="i-ri:heart-3-line" user-only :command="command" />
+    <NavSideItem :text="$t('nav.favourites')" to="/favourites" :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'" user-only :command="command" />
     <NavSideItem :text="$t('nav.bookmarks')" to="/bookmarks" icon="i-ri:bookmark-line" user-only :command="command" />
     <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-line" user-only :command="command" />
 

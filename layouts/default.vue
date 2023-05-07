@@ -62,6 +62,7 @@ const isGrayscale = usePreferences('grayscaleMode')
       <aside v-if="isHydrated && !wideLayout" class="hidden lg:w-1/5 xl:w-1/4 sm:none xl:block native:w-full zen-hide">
         <div sticky top-0 h-100dvh flex="~ col" gap-2 py3 ms-2>
           <slot name="right">
+            <SearchWidget mt-4 mx-1 hidden xl:block />
             <div flex-auto />
 
             <PwaPrompt />

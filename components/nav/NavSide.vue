@@ -25,6 +25,8 @@ const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
     <NavSideItem :text="$t('nav.conversations')" to="/conversations" icon="i-ri:at-line" user-only :command="command" />
     <NavSideItem :text="$t('nav.favourites')" to="/favourites" :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'" user-only :command="command" />
     <NavSideItem :text="$t('nav.bookmarks')" to="/bookmarks" icon="i-ri:bookmark-line" user-only :command="command" />
+
+    <div class="spacer" shrink hidden sm:block />
     <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-line" user-only :command="command" />
 
     <div class="spacer" shrink hidden sm:block />

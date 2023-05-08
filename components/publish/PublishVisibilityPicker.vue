@@ -3,7 +3,7 @@ const { editing } = defineProps<{
   editing?: boolean
 }>()
 
-let { modelValue } = $defineModel<{
+let { modelValue } = $defineModels<{
   modelValue: string
 }>()
 

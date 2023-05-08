@@ -3,5 +3,5 @@ const paginator = useMastoClient().v1.bookmarks.list()
 </script>
 
 <template>
-  <TimelinePaginator :paginator="paginator" />
+  <TimelinePaginator end-message="common.no_bookmarks" :paginator="paginator" />
 </template>

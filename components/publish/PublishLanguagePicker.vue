@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
 
-let { modelValue } = $defineModel<{
+let { modelValue } = $defineModels<{
   modelValue: string
 }>()
 
@@ -20,6 +20,10 @@ const languages = $computed(() =>
     ? fuse.search(languageKeyword).map(r => r.item)
     : [...languagesNameList].filter(entry => !userSettings.value.disabledTranslationLanguages.includes(entry.code))
         .sort(({ code: a }, { code: b }) => {
+          // Put English on the top
+          if (a === 'en')
+            return -1
+
           return a === modelValue ? -1 : b === modelValue ? 1 : a.localeCompare(b)
         }),
 )

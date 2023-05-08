@@ -20,6 +20,7 @@ const relationship = $(useRelationship(account))
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
+const isEditingPersonalNote = ref<boolean>(false)
 const hasHeader = $computed(() => !account.header.endsWith('/original/missing.png'))
 
 function getFieldIconTitle(fieldName: string) {
@@ -80,8 +81,26 @@ watchEffect(() => {
   iconFields.value = icons
 })
 
+const personalNoteDraft = ref(relationship?.note ?? '')
+
+async function editNote(event: Event) {
+  if (!event.target || !('value' in event.target) || !relationship)
+    return
+
+  const newNote = event.target?.value as string
+
+  if (relationship.note?.trim() === newNote.trim())
+    return
+
+  const newNoteApiResult = await client.v1.accounts.createNote(account.id, { comment: newNote })
+  relationship.note = newNoteApiResult.note
+  personalNoteDraft.value = relationship.note ?? ''
+}
+
 const isSelf = $(useSelfAccount(() => account))
 const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
+
+const personalNoteMaxLength = 2000
 </script>
 
 <template>
@@ -107,7 +126,11 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
             </NuxtLink>
             <AccountFollowButton :account="account" :command="command" />
             <span inset-ie-0 flex gap-2 items-center>
-              <AccountMoreButton :account="account" :command="command" />
+              <AccountMoreButton
+                :account="account" :command="command"
+                @add-note="isEditingPersonalNote = true"
+                @remove-note="() => { isEditingPersonalNote = false; personalNoteDraft = '' }"
+              />
               <CommonTooltip v-if="!isSelf && relationship?.following" :content="getNotificationIconTitle()">
                 <button
                   :aria-pressed="isNotifiedOnPost"
@@ -142,17 +165,56 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
             <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
             <AccountBotIndicator v-if="account.bot" show-label />
           </div>
-          <AccountHandle :account="account" />
+          <AccountHandle :account="account" overflow-unset line-clamp-unset />
         </div>
       </div>
+      <label
+        v-if="isEditingPersonalNote || (relationship?.note && relationship.note.length > 0)"
+        space-y-2
+        pb-4
+        block
+        border="b base"
+      >
+        <div flex flex-row space-x-2 flex-v-center>
+          <div i-ri-edit-2-line />
+          <p font-medium>
+            {{ $t('account.profile_personal_note') }}
+          </p>
+          <p text-secondary text-sm :class="{ 'text-orange': personalNoteDraft.length > (personalNoteMaxLength - 100) }">
+            {{ personalNoteDraft.length }} / {{ personalNoteMaxLength }}
+          </p>
+        </div>
+        <div position-relative>
+          <div
+            input-base
+            min-h-10ex
+            whitespace-pre-wrap
+            opacity-0
+            :class="{ 'trailing-newline': personalNoteDraft.endsWith('\n') }"
+          >
+            {{ personalNoteDraft }}
+          </div>
+          <textarea
+            v-model="personalNoteDraft"
+            input-base
+            position-absolute
+            style="height: 100%"
+            top-0
+            resize-none
+            :maxlength="personalNoteMaxLength"
+            @change="editNote"
+          />
+        </div>
+      </label>
       <div v-if="account.note" max-h-100 overflow-y-auto>
         <ContentRich text-4 text-base :content="account.note" :emojis="account.emojis" />
       </div>
       <div v-if="namedFields.length" flex="~ col wrap gap1">
         <div v-for="field in namedFields" :key="field.name" flex="~ gap-1" items-center>
-          <div text-secondary uppercase text-xs font-bold>
-            {{ field.name }} |
+          <div mt="0.5" text-secondary uppercase text-xs font-bold>
+            <ContentRich :content="field.name" :emojis="account.emojis" />
           </div>
+          <span text-secondary text-xs font-bold>|</span>
           <ContentRich :content="field.value" :emojis="account.emojis" />
         </div>
       </div>
@@ -168,3 +230,9 @@ const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
     </div>
   </div>
 </template>
+
+<style>
+.trailing-newline::after {
+  content: '\a';
+}
+</style>

@@ -34,6 +34,7 @@
     "posts": "投稿",
     "posts_count": "{0} 投稿",
     "profile_description": "{0}さんのプロフィールヘッダー",
+    "profile_personal_note": "個人メモ",
     "profile_unavailable": "プロフィールが利用できません",
     "request_follow": "フォローをリクエスト",
     "unblock": "ブロック解除",
@@ -97,6 +98,8 @@
     "error": "ERROR",
     "fetching": "取得中...",
     "in": "in",
+    "no_bookmarks": "ブックマークされた投稿はまだありません",
+    "no_favourites": "お気に入りされた投稿はまだありません",
     "not_found": "404 Not Found",
     "offline_desc": "現在オフラインのようです。ネットワーク接続を確認してください。"
   },
@@ -199,7 +202,32 @@
     "remove_account": "アカウントをリストから削除",
     "save": "変更を保存"
   },
+  "magic_keys": {
+    "dialog_header": "キーボードショートカット",
+    "groups": {
+      "actions": {
+        "boost": "ブースト",
+        "command_mode": "コマンドモード",
+        "compose": "投稿",
+        "favourite": "お気に入り",
+        "title": "アクション"
+      },
+      "media": {
+        "title": "メディア"
+      },
+      "navigation": {
+        "go_to_home": "ホーム",
+        "go_to_notifications": "通知",
+        "next_status": "次の投稿",
+        "previous_status": "前の投稿",
+        "shortcut_help": "ショートカットのヘルプ",
+        "title": "ナビゲーション"
+      }
+    },
+    "sequence_then": "の後に"
+  },
   "menu": {
+    "add_personal_note": "{0} に個人メモを追加",
     "block_account": "{0}さんをブロック",
     "block_domain": "{0}をドメインブロック",
     "copy_link_to_post": "この投稿へのリンクをコピー",
@@ -214,6 +242,7 @@
     "mute_conversation": "投稿をミュート",
     "open_in_original_site": "元のサイトで開く",
     "pin_on_profile": "プロフィールに固定",
+    "remove_personal_note": "{0} から個人メモを削除",
     "share_post": "この投稿を共有",
     "show_favourited_and_boosted_by": "お気に入り・ブーストしたユーザーを表示",
     "show_reblogs": "{0} からのブーストを表示",
@@ -228,6 +257,9 @@
     "unmute_account": "{0}さんのミュートを解除",
     "unmute_conversation": "投稿のミュートを解除",
     "unpin_on_profile": "プロフィールへの固定を解除"
+  },
+  "modals": {
+    "aria_label_close": "閉じる"
   },
   "nav": {
     "back": "戻る",
@@ -263,6 +295,7 @@
     "followed_you_count": "{0}人のユーザーがあなたをフォローしました",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "さんがあなたの投稿をブーストしました",
+    "reported": "{0}さんが{1}を報告しました",
     "request_to_follow": "さんがあなたへフォローをリクエストしました",
     "signed_up": "サインアップ",
     "update_status": "さんが投稿を更新しました"
@@ -414,15 +447,19 @@
       "hide_boost_count": "ブーストの数を隠す",
       "hide_favorite_count": "お気に入りの数を隠す",
       "hide_follower_count": "フォロワーの数を隠す",
+      "hide_news": "ニュースを隠す",
       "hide_reply_count": "リプライの数を隠す",
       "hide_translation": "翻訳を隠す",
       "hide_username_emojis": "ユーザー名の絵文字を隠す",
       "hide_username_emojis_description": "タイムライン上でユーザー名に含まれる絵文字を隠します。プロフィールでは絵文字は引き続き表示されます。",
       "label": "環境設定",
       "title": "実験的機能",
+      "use_star_favorite_icon": "星のお気に入りアイコンを使用する",
       "user_picker": "ユーザーピッカー",
       "virtual_scroll": "仮想スクロール",
-      "wellbeing": "ウェルビーイング"
+      "wellbeing": "ウェルビーイング",
+      "zen_mode": "禅モード",
+      "zen_mode_description": "マウスカーソルを上に載せない限り、サイドバーを隠します。また、タイムラインの一部の要素も隠します。"
     },
     "profile": {
       "appearance": {
@@ -466,6 +503,10 @@
     "uploading": "更新中..."
   },
   "status": {
+    "account": {
+      "suspended_message": "この投稿のアカウントはサスペンドされました。",
+      "suspended_show": "それでもコンテンツを表示しますか？"
+    },
     "boosted_by": "ブーストしたユーザー",
     "edited": "編集済み {0}",
     "favourited_by": "お気に入りしたユーザー",

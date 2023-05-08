@@ -34,6 +34,7 @@
     "posts": "Bidalketak",
     "posts_count": "{0} bidalketa|Bidalketa {0}|{0} bidalketa",
     "profile_description": "{0}(r)en profilaren goiburua",
+    "profile_personal_note": "Nire oharra",
     "profile_unavailable": "Profila ez dago eskuragai",
     "request_follow": "Bidali jarraipen-eskaera",
     "unblock": "Utzi blokeatzeari",
@@ -178,7 +179,7 @@
     "desc_para5": "jarri harremanetan GitHub bidez",
     "desc_para6": "eta hartu parte.",
     "footer_team": "Elk taldea",
-    "title": "Elk-en aurreikuspena da hau!"
+    "title": "Elk-en aurrebista da hau!"
   },
   "language": {
     "search": "Bilatu"
@@ -225,6 +226,7 @@
     "sequence_then": "orduan"
   },
   "menu": {
+    "add_personal_note": "Gehitu {0}(r)i buruzko oharra",
     "block_account": "Blokeatu {0}",
     "block_domain": "Blokeatu {0} domeinua",
     "copy_link_to_post": "Kopiatu bidalketa honen esteka",
@@ -239,6 +241,7 @@
     "mute_conversation": "Mututu bidalketa",
     "open_in_original_site": "Ireki jatorrizko orrian",
     "pin_on_profile": "Finkatu profilean",
+    "remove_personal_note": "Kendu {0}(r)i buruzko oharra",
     "share_post": "Partekatu bidalketa",
     "show_favourited_and_boosted_by": "Erakutsi nork egin duen gogoko eta nork bultzatu duen",
     "show_reblogs": "Erakutsi {0}(r)en bultzadak",

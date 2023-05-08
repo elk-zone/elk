@@ -39,6 +39,23 @@ const { notification } = defineProps<{
         <span>{{ $t("notification.signed_up") }}</span>
       </div>
     </template>
+    <template v-else-if="notification.type === 'admin.report'">
+      <NuxtLink :to="getReportRoute(notification.report?.id!)">
+        <div flex p3 items-center bg-shaded>
+          <div i-ri:flag-fill me-1 color-purple />
+          <i18n-t keypath="notification.reported">
+            <AccountDisplayName
+              :account="notification.account"
+              text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+            />
+            <AccountDisplayName
+              :account="notification.report?.targetAccount!"
+              text-purple ms-1 font-bold line-clamp-1 ws-pre-wrap break-all
+            />
+          </i18n-t>
+        </div>
+      </NuxtLink>
+    </template>
     <template v-else-if="notification.type === 'follow_request'">
       <div flex ms-4 items-center class="-top-2.5" absolute inset-ie-2 px-2>
         <div i-ri:user-follow-fill text-xl me-1 />

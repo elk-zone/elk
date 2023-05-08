@@ -13,6 +13,18 @@ export const builtinDraftKeys = [
   'home',
 ]
 
+const ALL_VISIBILITY = ['public', 'unlisted', 'private', 'direct'] as const
+
+function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
+  // The default privacy only should be taken into account if it makes
+  // the post more private than the replying to post
+  const preferredVisibility = currentUser.value?.account.source.privacy || 'public'
+  return ALL_VISIBILITY.indexOf(currentVisibility)
+   > ALL_VISIBILITY.indexOf(preferredVisibility)
+    ? currentVisibility
+    : preferredVisibility
+}
+
 export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
   const {
     attachments = [],
@@ -32,7 +44,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
     params: {
       status: status || '',
       inReplyToId,
-      visibility: visibility || 'public',
+      visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
       language: language || '', // auto inferred from current language on posting
@@ -51,6 +63,7 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
     sensitive: status.sensitive,
     spoilerText: status.spoilerText,
     language: status.language,
+    inReplyToId: status.inReplyToId,
   })
 }
 
@@ -145,7 +158,7 @@ export function directMessageUser(account: mastodon.v1.Account) {
 
 export function clearEmptyDrafts() {
   for (const key in currentUserDrafts.value) {
-    if (builtinDraftKeys.includes(key))
+    if (builtinDraftKeys.includes(key) && !isEmptyDraft(currentUserDrafts.value[key]))
       continue
     if (!currentUserDrafts.value[key].params || isEmptyDraft(currentUserDrafts.value[key]))
       delete currentUserDrafts.value[key]

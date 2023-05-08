@@ -145,7 +145,6 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
   const tree = parseMastodonHTML(html, {
     emojis: customEmojis,
     markdown: true,
-    replaceUnicodeEmoji: false,
     convertMentionLink: true,
   })
   return render(tree)

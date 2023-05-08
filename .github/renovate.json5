@@ -4,6 +4,10 @@
   "labels": ["c: dependencies"],
   "rangeStrategy": "bump",
   "node": false,
+  "ignoreDeps": [
+    "vue",
+    "vue-tsc"
+  ],
   "packageRules": [
     {
       "groupName": "devDependencies",

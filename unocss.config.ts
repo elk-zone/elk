@@ -66,6 +66,7 @@ export default defineConfig({
 
       'timeline-title-style': 'text-primary text-lg font-bold',
     },
+    [/^elk-group-hover[:-](\S+)$/, ([,r]) => `media-mouse-group-hover-${r} group-active-${r}`],
   ],
   presets: [
     presetUno({
@@ -129,6 +130,11 @@ export default defineConfig({
     [/^scrollbar-hide$/, (_, { constructCSS }) => {
       let res = constructCSS({ 'scrollbar-width': 'none' })
       res += `\n${res.replace('{scrollbar-width:none;}', '::-webkit-scrollbar{display: none;}')}`
+      return res
+    }],
+    [/^h-100dvh$/, (_, { constructCSS }) => {
+      let res = constructCSS({ height: '100vh' })
+      res += `\n${res.replace('{height:100vh;}', '{height:100vh;height:100dvh;}')}`
       return res
     }],
     ['box-shadow-outline', { 'box-shadow': '0 0 0 1px var(--c-primary)' }],

@@ -34,6 +34,7 @@
     "posts": "Publicaciones",
     "posts_count": "{0} Publicaciones|{0} Publicación|{0} Publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
+    "profile_personal_note": "Nota Personal",
     "profile_unavailable": "Perfil no disponible",
     "request_follow": "Solicitar seguirle",
     "unblock": "Desbloquear",
@@ -90,7 +91,7 @@
     "switch_account": "Cambiar a {0}",
     "switch_account_desc": "Cambiar a otra cuenta",
     "toggle_dark_mode": "Cambiar a modo oscuro",
-    "toggle_zen_mode": "Cambiar a modo zen"
+    "toggle_zen_mode": "Cambiar a modo Zen"
   },
   "common": {
     "end_of_list": "Fin",
@@ -199,7 +200,32 @@
     "remove_account": "Eliminar cuenta de la lista",
     "save": "Guardar"
   },
+  "magic_keys": {
+    "dialog_header": "Atajos de teclado",
+    "groups": {
+      "actions": {
+        "boost": "Retootear",
+        "command_mode": "Modo comando",
+        "compose": "Redactar",
+        "favourite": "Favorito",
+        "title": "Acciones"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Inicio",
+        "go_to_notifications": "Notificaciones",
+        "next_status": "Siguiente estado",
+        "previous_status": "Anterior estado",
+        "shortcut_help": "Atajo de ayuda",
+        "title": "Navegación"
+      }
+    },
+    "sequence_then": "seguido de"
+  },
   "menu": {
+    "add_personal_note": "Agregar una nota personal a {0}",
     "block_account": "Bloquear a {0}",
     "block_domain": "Bloquear dominio {0}",
     "copy_link_to_post": "Copiar enlace",
@@ -214,6 +240,7 @@
     "mute_conversation": "Silenciar publicación",
     "open_in_original_site": "Abrir página original",
     "pin_on_profile": "Fijar en tu perfil",
+    "remove_personal_note": "Eliminar nota personal de {0}",
     "share_post": "Compartir esta publicación",
     "show_favourited_and_boosted_by": "Mostrar quien marcó como favorita y quien retooteó",
     "show_reblogs": "Mostrar retoots de {0}",
@@ -228,6 +255,9 @@
     "unmute_account": "Dejar de silenciar a {0}",
     "unmute_conversation": "Dejar de silenciar la publicación",
     "unpin_on_profile": "Desfijar del perfil"
+  },
+  "modals": {
+    "aria_label_close": "Cerrar"
   },
   "nav": {
     "back": "Regresar",
@@ -422,7 +452,9 @@
       "title": "Funcionalidades experimentales",
       "user_picker": "Selector de usuarios",
       "virtual_scroll": "Desplazamiento virtual",
-      "wellbeing": "Bienestar"
+      "wellbeing": "Bienestar",
+      "zen_mode": "Modo Zen",
+      "zen_mode_description": "Oculta las secciones laterales de la interfaz a menos que el cursor del ratón esté sobre ellas. Oculta también algunos elementos de las líneas de tiempo."
     },
     "profile": {
       "appearance": {
@@ -466,6 +498,10 @@
     "uploading": "Subiendo..."
   },
   "status": {
+    "account": {
+      "suspended_message": "La cuenta de este mensaje ha sido suspendida.",
+      "suspended_show": "¿Mostrar contenido de todos modos?"
+    },
     "boosted_by": "Retooteado por",
     "edited": "Editado {0}",
     "favourited_by": "Marcado como favorita por",

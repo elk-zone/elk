@@ -5,7 +5,7 @@ const { t, locale } = useI18n()
 
 const translationStatus: ElkTranslationStatus = await import('~/elk-translation-status.json').then(m => m.default)
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.language.label')} | ${t('nav.settings')}`,
 })
 const status = computed(() => {

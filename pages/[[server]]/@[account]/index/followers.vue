@@ -11,7 +11,7 @@ const paginator = account ? useMastoClient().v1.accounts.listFollowers(account.i
 const isSelf = useSelfAccount(account)
 
 if (account) {
-  useHeadFixed({
+  useHydratedHead({
     title: () => `${t('account.followers')} | ${getDisplayName(account)} (@${account.acct})`,
   })
 }

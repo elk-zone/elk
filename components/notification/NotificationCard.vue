@@ -39,6 +39,23 @@ const { notification } = defineProps<{
         <span>{{ $t("notification.signed_up") }}</span>
       </div>
     </template>
+    <template v-else-if="notification.type === 'admin.report'">
+      <NuxtLink :to="getReportRoute(notification.report?.id!)">
+        <div flex p3 items-center bg-shaded>
+          <div i-ri:flag-fill me-1 color-purple />
+          <i18n-t keypath="notification.reported">
+            <AccountDisplayName
+              :account="notification.account"
+              text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+            />
+            <AccountDisplayName
+              :account="notification.report?.targetAccount!"
+              text-purple ms-1 font-bold line-clamp-1 ws-pre-wrap break-all
+            />
+          </i18n-t>
+        </div>
+      </NuxtLink>
+    </template>
     <template v-else-if="notification.type === 'follow_request'">
       <div flex ms-4 items-center class="-top-2.5" absolute inset-ie-2 px-2>
         <div i-ri:user-follow-fill text-xl me-1 />
@@ -47,28 +64,8 @@ const { notification } = defineProps<{
       <!-- TODO: accept request -->
       <AccountCard :account="notification.account" />
     </template>
-    <template v-else-if="notification.type === 'favourite'">
-      <StatusCard :status="notification.status!" :faded="true">
-        <template #meta>
-          <div flex="~" gap-1 items-center mt1>
-            <div i-ri:heart-fill text-xl me-1 color-red />
-            <AccountInlineInfo text-primary font-bold :account="notification.account" me1 />
-          </div>
-        </template>
-      </StatusCard>
-    </template>
-    <template v-else-if="notification.type === 'reblog'">
-      <StatusCard :status="notification.status!" :faded="true">
-        <template #meta>
-          <div flex="~" gap-1 items-center mt1>
-            <div i-ri:repeat-fill text-xl me-1 color-green />
-            <AccountInlineInfo text-primary font-bold :account="notification.account" me1 />
-          </div>
-        </template>
-      </StatusCard>
-    </template>
     <template v-else-if="notification.type === 'update'">
-      <StatusCard :status="notification.status!" :faded="true">
+      <StatusCard :status="notification.status!" :in-notification="true" :actions="false">
         <template #meta>
           <div flex="~" gap-1 items-center mt1>
             <div i-ri:edit-2-fill text-xl me-1 text-secondary />
@@ -84,6 +81,7 @@ const { notification } = defineProps<{
       <StatusCard :status="notification.status!" />
     </template>
     <template v-else>
+      <!-- type 'favourite' and 'reblog' should always rendered by NotificationGroupedLikes -->
       <div text-red font-bold>
         [DEV] {{ $t('notification.missing_type') }} '{{ notification.type }}'
       </div>

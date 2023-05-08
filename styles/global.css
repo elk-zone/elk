@@ -34,25 +34,17 @@ body {
   display: none;
 }
 
-.custom-emoji {
-  display: inline-block;
-  vertical-align: text-bottom;
-}
-
 .content-editor img.custom-emoji,
-.custom-emoji img {
-  max-height: 1.3em;
-  max-width: 1.3em;
-  object-fit: contain;
-}
-
+.custom-emoji img,
 .iconify-emoji {
   display: inline-block;
+  height: 1.2em;
+  width: 1.2em;
+  margin-right: 0.075em;
+  margin-left: 0.075em;
+  object-fit: contain;
   overflow: hidden;
-  max-height: 1.2em;
-  max-width: 1.2em;
-  vertical-align: text-bottom;
-  margin: 0 0.1em;
+  vertical-align: -20%;
 }
 
 .iconify-emoji-padded {

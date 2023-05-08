@@ -15,7 +15,7 @@ self.addEventListener('message', (event) => {
     closeDatabaseConnections()
 })
 
-export const onPush = (event: PushEvent) => {
+export function onPush(event: PushEvent) {
   const promise = isClientFocused().then((isFocused) => {
     if (isFocused)
       return Promise.resolve()
@@ -35,7 +35,7 @@ export const onPush = (event: PushEvent) => {
   event.waitUntil(promise)
 }
 
-export const onNotificationClick = (event: NotificationEvent) => {
+export function onNotificationClick(event: NotificationEvent) {
   const reactToNotificationClick = new Promise((resolve) => {
     event.notification.close()
     resolve(openUrl(event.notification.data.url))

@@ -7,6 +7,10 @@ const props = defineProps<{
   command?: boolean
 }>()
 
+const emit = defineEmits<{
+  (event: 'afterEdit'): void
+}>()
+
 const { details, command } = $(props)
 
 const {
@@ -24,38 +28,39 @@ const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 const userSettings = useUserSettings()
+const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
 const { client } = $(useMasto())
 
-const getPermalinkUrl = (status: mastodon.v1.Status) => {
+function getPermalinkUrl(status: mastodon.v1.Status) {
   const url = getStatusPermalinkRoute(status)
   if (url)
     return `${location.origin}/${url}`
   return null
 }
 
-const copyLink = async (status: mastodon.v1.Status) => {
+async function copyLink(status: mastodon.v1.Status) {
   const url = getPermalinkUrl(status)
   if (url)
     await clipboard.copy(url)
 }
 
-const copyOriginalLink = async (status: mastodon.v1.Status) => {
+async function copyOriginalLink(status: mastodon.v1.Status) {
   const url = status.url
   if (url)
     await clipboard.copy(url)
 }
 
 const { share, isSupported: isShareSupported } = useShare()
-const shareLink = async (status: mastodon.v1.Status) => {
+async function shareLink(status: mastodon.v1.Status) {
   const url = getPermalinkUrl(status)
   if (url)
     await share({ url })
 }
 
-const deleteStatus = async () => {
+async function deleteStatus() {
   if (await openConfirmDialog({
     title: t('confirm.delete_posts.title'),
     confirm: t('confirm.delete_posts.confirm'),
@@ -72,7 +77,7 @@ const deleteStatus = async () => {
   // TODO when timeline, remove this item
 }
 
-const deleteAndRedraft = async () => {
+async function deleteAndRedraft() {
   // TODO confirm to delete
   if (process.dev) {
     // eslint-disable-next-line no-alert
@@ -90,7 +95,7 @@ const deleteAndRedraft = async () => {
     router.push(getStatusRoute(lastPublishDialogStatus.value))
 }
 
-const reply = () => {
+function reply() {
   if (details) {
     // TODO focus to editor
   }
@@ -101,13 +106,14 @@ const reply = () => {
 }
 
 async function editStatus() {
-  openPublishDialog(`edit-${status.id}`, {
+  await openPublishDialog(`edit-${status.id}`, {
     ...await getDraftFromStatus(status),
     editingStatus: status,
   }, true)
+  emit('afterEdit')
 }
 
-const showFavoritedAndBoostedBy = () => {
+function showFavoritedAndBoostedBy() {
   openFavoridedBoostedByDialog(status.id)
 }
 </script>
@@ -118,14 +124,14 @@ const showFavoritedAndBoostedBy = () => {
       :content="$t('action.more')"
       color="text-primary"
       hover="text-primary"
-      group-hover="bg-primary-light"
+      elk-group-hover="bg-primary-light"
       icon="i-ri:more-line"
       my--2
     />
 
     <template #popper>
       <div flex="~ col">
-        <template v-if="userSettings.zenMode">
+        <template v-if="getPreferences(userSettings, 'zenMode')">
           <CommonDropdownItem
             :text="$t('action.reply')"
             icon="i-ri:chat-1-line"
@@ -144,8 +150,13 @@ const showFavoritedAndBoostedBy = () => {
 
           <CommonDropdownItem
             :text="status.favourited ? $t('action.favourited') : $t('action.favourite')"
-            :icon="status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
-            :class="status.favourited ? 'text-rose' : ''"
+            :icon="useStarFavoriteIcon
+              ? status.favourited ? 'i-ri:star-fill' : 'i-ri:star-line'
+              : status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
+            :class="status.favourited
+              ? useStarFavoriteIcon ? 'text-yellow' : 'text-rose'
+              : ''
+            "
             :command="command"
             :disabled="isLoading.favourited"
             @click="toggleFavourite()"
@@ -154,7 +165,10 @@ const showFavoritedAndBoostedBy = () => {
           <CommonDropdownItem
             :text="status.bookmarked ? $t('action.bookmarked') : $t('action.bookmark')"
             :icon="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'"
-            :class="status.bookmarked ? 'text-yellow' : ''"
+            :class="status.bookmarked
+              ? useStarFavoriteIcon ? 'text-rose' : 'text-yellow'
+              : ''
+            "
             :command="command"
             :disabled="isLoading.bookmarked"
             @click="toggleBookmark()"

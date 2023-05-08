@@ -4,7 +4,7 @@ import type { UserLogin } from '~/types'
 const all = useUsers()
 const router = useRouter()
 
-const clickUser = (user: UserLogin) => {
+function clickUser(user: UserLogin) {
   if (user.account.acct === currentUser.value?.account.acct)
     router.push(getAccountRoute(user.account))
   else

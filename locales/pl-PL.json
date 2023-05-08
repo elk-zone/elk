@@ -34,6 +34,7 @@
     "posts": "Wpisy",
     "posts_count": "{0} Wpisów|{0} Wpis|{0} Wpisy|{0} Wpisów",
     "profile_description": "nagłówek profilu {0}",
+    "profile_personal_note": "Notatka osobista",
     "profile_unavailable": "Profil niedostępny",
     "request_follow": "Prośba o śledzenie",
     "unblock": "Odblokuj",
@@ -200,6 +201,7 @@
     "save": "Zapisz zmiany"
   },
   "menu": {
+    "add_personal_note": "Dodaj osobistą notatkę do {0}",
     "block_account": "Zablokuj {0}",
     "block_domain": "Zablokuj domenę {0}",
     "copy_link_to_post": "Skopiuj odnośnik do wpisu",
@@ -214,6 +216,7 @@
     "mute_conversation": "Wycisz ten wpis",
     "open_in_original_site": "Otwórz na oryginalnej stronie",
     "pin_on_profile": "Przypnij do profilu",
+    "remove_personal_note": "Usuń osobistą notatkę z {0}",
     "share_post": "Udostępnij ten wpis",
     "show_favourited_and_boosted_by": "Pokaż, kto dodał do ulubionych i udostępnił",
     "show_reblogs": "Pokaż podbicia od {0}",

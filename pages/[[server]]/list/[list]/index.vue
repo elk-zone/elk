@@ -35,7 +35,7 @@ const { client } = $(useMasto())
 const { data: listInfo, refresh } = $(await useAsyncData(() => client.v1.lists.fetch(list), { default: () => shallowRef() }))
 
 if (listInfo) {
-  useHeadFixed({
+  useHydratedHead({
     title: () => `${listInfo.title} | ${route.fullPath.endsWith('/accounts') ? t('tab.accounts') : t('tab.posts')} | ${t('nav.lists')}`,
   })
 }

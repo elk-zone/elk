@@ -14,7 +14,7 @@ const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
 let ariaLive = $ref<AriaLive>('polite')
 let ariaMessage = $ref<string>('')
 
-const onMessage = (event: AriaAnnounceType, message?: string) => {
+function onMessage(event: AriaAnnounceType, message?: string) {
   if (event === 'announce')
     ariaMessage = message!
   else if (event === 'mute')

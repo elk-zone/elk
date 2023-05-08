@@ -34,6 +34,7 @@
     "posts": "Messages",
     "posts_count": "{0} Messages",
     "profile_description": "En-tête du profil de {0}",
+    "profile_personal_note": "Note personnelle",
     "profile_unavailable": "Profil non accessible",
     "request_follow": "Demander à suivre",
     "unblock": "Débloquer",
@@ -97,6 +98,8 @@
     "error": "ERREUR",
     "fetching": "Récupération...",
     "in": "sur",
+    "no_bookmarks": "Aucun message mis dans les marques-page pour le moment",
+    "no_favourites": "Aucun message mis en favoris pour le moment",
     "not_found": "404 Introuvable",
     "offline_desc": "Il semble que vous soyez hors-ligne. Vérifiez votre connexion internet."
   },
@@ -199,7 +202,33 @@
     "remove_account": "Supprimer ce compte de listes",
     "save": "Enregistrer les changements"
   },
+  "magic_keys": {
+    "dialog_header": "Raccourcis clavier",
+    "groups": {
+      "actions": {
+        "boost": "Partager",
+        "command_mode": "Mode commande",
+        "compose": "Composer",
+        "favourite": "J'aime",
+        "title": "Actions",
+        "zen_mode": "Mode Zen"
+      },
+      "media": {
+        "title": "Média"
+      },
+      "navigation": {
+        "go_to_home": "Accueil",
+        "go_to_notifications": "Notifications",
+        "next_status": "Message suivant",
+        "previous_status": "Message précédent",
+        "shortcut_help": "Aide sur les raccourcis",
+        "title": "Navigation"
+      }
+    },
+    "sequence_then": "puis"
+  },
   "menu": {
+    "add_personal_note": "Ajouter une note personnelle à {0}",
     "block_account": "Bloquer {0}",
     "block_domain": "Bloquer le domaine {0}",
     "copy_link_to_post": "Copier le lien du message",
@@ -214,6 +243,7 @@
     "mute_conversation": "Message muet",
     "open_in_original_site": "Ouvrir sur le site d'origine",
     "pin_on_profile": "Épingler sur le profil",
+    "remove_personal_note": "Retirer la note personnelle de {0}",
     "share_post": "Partager ce message",
     "show_favourited_and_boosted_by": "Montrer qui a aimé et partagé",
     "show_reblogs": "Voir les partages de {0}",
@@ -228,6 +258,9 @@
     "unmute_account": "Enlever la sourdine à {0}",
     "unmute_conversation": "Réactiver le message",
     "unpin_on_profile": "Désépingler du profil"
+  },
+  "modals": {
+    "aria_label_close": "Fermer"
   },
   "nav": {
     "back": "Retourner à la page précédente",
@@ -263,6 +296,7 @@
     "followed_you_count": "{0} personnes vous suivent|{0} personne vous suit|{0} personnes vous suivent",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "a relayé votre message",
+    "reported": "{0} a signalé {1}",
     "request_to_follow": "vous demande de le suivre",
     "signed_up": "s'est inscrit·e",
     "update_status": "a posté un nouveau message"
@@ -374,6 +408,7 @@
         "save_settings": "Enregistrer les paramètres",
         "subscription_error": {
           "clear_error": "Effacer l'erreur",
+          "error_hint": "Vous pouvez consulter une liste des questions fréquemment posées pour essayer de résoudre le problème : {0}",
           "invalid_vapid_key": "La clé publique VAPID ne semble pas être valide",
           "permission_denied": "Autorisation refusée : activez les notifications dans votre navigateur.",
           "repo_link": "Dépôt Elk sur GitHub",
@@ -413,6 +448,7 @@
       "hide_boost_count": "Masquer les compteurs de partages",
       "hide_favorite_count": "Masquer les compteurs de favoris",
       "hide_follower_count": "Masquer les compteurs d'abonné·e·s",
+      "hide_news": "Masquer les actualités",
       "hide_reply_count": "Masquer les compteurs de réponses",
       "hide_translation": "Masquer traduction",
       "hide_username_emojis": "Masquer les emojis sur le nom d'utilisateur",
@@ -421,7 +457,9 @@
       "title": "Fonctionnalités expérimentales",
       "user_picker": "User Picker",
       "virtual_scroll": "Défilement virtuel",
-      "wellbeing": "Bien-être"
+      "wellbeing": "Bien-être",
+      "zen_mode": "Mode Zen",
+      "zen_mode_description": "Masquer les côtés à moins que le curseur de la souris ne les survole. Masquer également certains éléments du fil d'actualité."
     },
     "profile": {
       "appearance": {
@@ -465,6 +503,10 @@
     "uploading": "Téléversement en cours..."
   },
   "status": {
+    "account": {
+      "suspended_message": "Le compte à l'origine de ce message a été suspendu.",
+      "suspended_show": "Afficher le contenu malgré tout ?"
+    },
     "boosted_by": "Partagé par",
     "edited": "Edité {0}",
     "favourited_by": "Aimé par",

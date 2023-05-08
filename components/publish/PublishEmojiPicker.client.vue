@@ -47,7 +47,7 @@ async function openEmojiPicker() {
   el?.appendChild(picker as any as HTMLElement)
 }
 
-const hideEmojiPicker = () => {
+function hideEmojiPicker() {
   if (picker)
     el?.removeChild(picker as any as HTMLElement)
 }

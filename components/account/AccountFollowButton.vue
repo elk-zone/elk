@@ -98,23 +98,23 @@ const buttonStyle = $computed(() => {
     @click="relationship?.blocking ? unblock() : relationship?.muting ? unmute() : toggleFollow()"
   >
     <template v-if="relationship?.blocking">
-      <span group-hover="hidden">{{ $t('account.blocking') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.unblock') }}</span>
+      <span elk-group-hover="hidden">{{ $t('account.blocking') }}</span>
+      <span hidden elk-group-hover="inline">{{ $t('account.unblock') }}</span>
     </template>
     <template v-if="relationship?.muting">
-      <span group-hover="hidden">{{ $t('account.muting') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.unmute') }}</span>
+      <span elk-group-hover="hidden">{{ $t('account.muting') }}</span>
+      <span hidden elk-group-hover="inline">{{ $t('account.unmute') }}</span>
     </template>
     <template v-else-if="relationship ? relationship.following : context === 'following'">
-      <span group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
+      <span elk-group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
+      <span hidden elk-group-hover="inline">{{ $t('account.unfollow') }}</span>
     </template>
     <template v-else-if="relationship?.requested">
       <span>{{ $t('account.follow_requested') }}</span>
     </template>
     <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
-      <span group-hover="hidden">{{ $t('account.follows_you') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.follow_back') }}</span>
+      <span elk-group-hover="hidden">{{ $t('account.follows_you') }}</span>
+      <span hidden elk-group-hover="inline">{{ $t('account.follow_back') }}</span>
     </template>
     <template v-else>
       <span>{{ account.locked ? $t('account.request_follow') : $t('account.follow') }}</span>

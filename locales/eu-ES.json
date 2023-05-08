@@ -34,6 +34,7 @@
     "posts": "Bidalketak",
     "posts_count": "{0} bidalketa|Bidalketa {0}|{0} bidalketa",
     "profile_description": "{0}(r)en profilaren goiburua",
+    "profile_personal_note": "Nire oharra",
     "profile_unavailable": "Profila ez dago eskuragai",
     "request_follow": "Bidali jarraipen-eskaera",
     "unblock": "Utzi blokeatzeari",
@@ -178,7 +179,7 @@
     "desc_para5": "jarri harremanetan GitHub bidez",
     "desc_para6": "eta hartu parte.",
     "footer_team": "Elk taldea",
-    "title": "Elk-en aurreikuspena da hau!"
+    "title": "Elk-en aurrebista da hau!"
   },
   "language": {
     "search": "Bilatu"
@@ -199,7 +200,33 @@
     "remove_account": "Kendu kontua zerrendatik",
     "save": "Gorde aldaketak"
   },
+  "magic_keys": {
+    "dialog_header": "Teklatuaren lasterbideak",
+    "groups": {
+      "actions": {
+        "boost": "Bultzatu",
+        "command_mode": "Komando modua",
+        "compose": "Idatzi",
+        "favourite": "Egin gogoko",
+        "title": "Ekintzak",
+        "zen_mode": "Zen modua"
+      },
+      "media": {
+        "title": "Multimedia"
+      },
+      "navigation": {
+        "go_to_home": "Hasiera",
+        "go_to_notifications": "Jakinarazpenak",
+        "next_status": "Hurrengo egoera",
+        "previous_status": "Aurreko egoera",
+        "shortcut_help": "Laster-teklak",
+        "title": "Nabigazioa"
+      }
+    },
+    "sequence_then": "orduan"
+  },
   "menu": {
+    "add_personal_note": "Gehitu {0}(r)i buruzko oharra",
     "block_account": "Blokeatu {0}",
     "block_domain": "Blokeatu {0} domeinua",
     "copy_link_to_post": "Kopiatu bidalketa honen esteka",
@@ -214,6 +241,7 @@
     "mute_conversation": "Mututu bidalketa",
     "open_in_original_site": "Ireki jatorrizko orrian",
     "pin_on_profile": "Finkatu profilean",
+    "remove_personal_note": "Kendu {0}(r)i buruzko oharra",
     "share_post": "Partekatu bidalketa",
     "show_favourited_and_boosted_by": "Erakutsi nork egin duen gogoko eta nork bultzatu duen",
     "show_reblogs": "Erakutsi {0}(r)en bultzadak",
@@ -228,6 +256,9 @@
     "unmute_account": "Utzi {0} mututzeari",
     "unmute_conversation": "Utzi bidalketa mututzeari",
     "unpin_on_profile": "Utzi finkatzeari"
+  },
+  "modals": {
+    "aria_label_close": "Itxi"
   },
   "nav": {
     "back": "Joan atzera",
@@ -374,6 +405,7 @@
         "save_settings": "Gorde ezarpenak",
         "subscription_error": {
           "clear_error": "Garbitu errorea",
+          "error_hint": "Ohiko galderen zerrenda kontsulta dezakezu arazoa konpontzen saiatzeko: {0}.",
           "invalid_vapid_key": "Ez dirudi VAPID gako publikoa baliozkoa denik.",
           "permission_denied": "Baimena ukatu da: gaitu jakinarazpenak zure nabigatzailean.",
           "repo_link": "Elk-en biltegia GitHub-en",

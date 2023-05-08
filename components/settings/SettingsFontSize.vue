@@ -6,7 +6,7 @@ const userSettings = useUserSettings()
 
 const sizes = (new Array(11)).fill(0).map((x, i) => `${10 + i}px`) as FontSize[]
 
-const setFontSize = (e: Event) => {
+function setFontSize(e: Event) {
   if (e.target && 'valueAsNumber' in e.target)
     userSettings.value.fontSize = sizes[e.target.valueAsNumber as number]
 }

@@ -2,7 +2,6 @@ import type { RouteLocationRaw } from 'vue-router'
 import { useMagicSequence } from '~/composables/magickeys'
 
 export default defineNuxtPlugin(({ $scrollToTop }) => {
-  const userSettings = useUserSettings()
   const keys = useMagicKeys()
   const router = useRouter()
 
@@ -18,12 +17,11 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
 
   const navigateTo = (to: string | RouteLocationRaw) => {
     closeKeyboardShortcuts()
-    $scrollToTop() // is this really required?
+    ;($scrollToTop as () => void)() // is this really required?
     router.push(to)
   }
 
   whenever(logicAnd(notUsingInput, keys['?']), toggleKeyboardShortcuts)
-  whenever(logicAnd(notUsingInput, keys.z), () => userSettings.value.zenMode = !userSettings.value.zenMode)
 
   const defaultPublishDialog = () => {
     const current = keys.current

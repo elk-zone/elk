@@ -11,6 +11,7 @@ interface LocaleObjectData extends LocaleObject {
 
 const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
   ar: [
+    // ar.json contains ar-EG translations
     // { code: 'ar-DZ', name: 'Arabic (Algeria)' },
     // { code: 'ar-BH', name: 'Arabic (Bahrain)' },
     { code: 'ar-EG', name: 'العربية' },
@@ -30,10 +31,12 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     // { code: 'ar-YE', name: 'Arabic (Yemen)' },
   ],
   en: [
+    // en.json contains en-US translations
     { code: 'en-US', name: 'English (US)' },
     { code: 'en-GB', name: 'English (UK)' },
   ],
   ca: [
+    // ca.json contains ca-ES translations
     // { code: 'ca-AD', name: 'Català (Andorra)' },
     { code: 'ca-ES', name: 'Català (Espanya)' },
     { code: 'ca-valencia', name: 'Català (valencià)' },
@@ -41,6 +44,7 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     // { code: 'ca-IT', name: 'Català (Itàlia)' },
   ],
   es: [
+    // es.json contains es-ES translations
     // { code: 'es-AR', name: 'Español (Argentina)' },
     // { code: 'es-BO', name: 'Español (Bolivia)' },
     // { code: 'es-CL', name: 'Español (Chile)' },
@@ -62,6 +66,11 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     // { code: 'es-US', name: 'Español (Estados Unidos)' },
     // { code: 'es-UY', name: 'Español (Uruguay)' },
     // { code: 'es-VE', name: 'Español (Venezuela)' },
+  ],
+  pt: [
+    // pt.json contains pt-PT translations
+    { code: 'pt-PT', name: 'Português (Portugal)' },
+    { code: 'pt-BR', name: 'Português (Brasil)' },
   ],
 }
 
@@ -165,8 +174,8 @@ const locales: LocaleObjectData[] = [
     },
   },
   {
-    code: 'pt-PT',
-    file: 'pt-PT.json',
+    code: 'pt',
+    file: 'pt.json',
     name: 'Português',
   },
   {
@@ -189,9 +198,24 @@ const locales: LocaleObjectData[] = [
     file: 'gl-ES.json',
     name: 'Galego',
   },
+  {
+    code: 'ko-KR',
+    file: 'ko-KR.json',
+    name: '한국어',
+  },
+  {
+    code: 'it-IT',
+    file: 'it-IT.json',
+    name: 'Italiano',
+  },
+  {
+    code: 'tl-PH',
+    file: 'tl-PH.json',
+    name: 'Tagalog',
+  },
 ]
 
-const buildLocales = () => {
+function buildLocales() {
   const useLocales = Object.values(locales).reduce((acc, data) => {
     const locales = countryLocaleVariants[data.code]
     if (locales) {

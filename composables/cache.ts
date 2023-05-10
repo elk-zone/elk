@@ -59,12 +59,12 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
 export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Account> {
   const server = currentServer.value
   const userId = currentUser.value?.account.id
-  const userAcct = acct.endsWith(`@${server}`) ? acct.slice(0, -server.length - 1) : acct
+  const domain = currentInstance.value ? getInstanceDomain(currentInstance.value) : undefined
+  const userAcct = (domain && acct.endsWith(`@${domain}`)) ? acct.slice(0, -domain.length - 1) : acct
   const key = `${server}:${userId}:account:${userAcct}`
   const cached = cache.get(key)
   if (cached)
     return cached
-  const domain = currentInstance.value ? getInstanceDomain(currentInstance.value) : undefined
 
   async function lookupAccount() {
     const client = useMastoClient()

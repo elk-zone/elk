@@ -1,7 +1,7 @@
 {
   "name": "@elk-zone/elk",
   "type": "module",
-  "version": "0.9.2",
+  "version": "0.9.5",
   "packageManager": "pnpm@8.3.1",
   "license": "MIT",
   "homepage": "https://elk.zone/",
@@ -72,7 +72,7 @@
     "iso-639-1": "^2.1.15",
     "js-yaml": "^4.1.0",
     "lru-cache": "^9.0.1",
-    "masto": "^5.11.1",
+    "masto": "^5.11.3",
     "nuxt-security": "^0.13.0",
     "nuxt-vitest": "^0.6.10",
     "page-lifecycle": "^0.1.2",

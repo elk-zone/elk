@@ -39,7 +39,7 @@ The Elk team maintains a deployment at:
 
 ### Self-Host Docker Deployment
 
-In order to host Elk yourself you can use the provided Dockerfile to build a container with elk. Be aware, that Elk only loads properly of the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself. 
+In order to host Elk yourself you can use the provided Dockerfile to build a container with elk. Be aware, that Elk only loads properly if the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself. 
 One could put Elk behind popular reverse proxies with SSL Handling like Traefik, NGINX etc. 
 
 1. checkout source ```git clone https://github.com/elk-zone/elk.git```

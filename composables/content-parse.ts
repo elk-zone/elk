@@ -168,6 +168,8 @@ export function recursiveTreeToText(input: Node): string {
     return treeToText(input)
 }
 
+const emojiIdNeedsWrappingRE = /^(\d|\w|-|_)$/
+
 export function treeToText(input: Node): string {
   let pre = ''
   let body = ''
@@ -218,8 +220,8 @@ export function treeToText(input: Node): string {
 
   if (input.name === 'img' || input.name === 'picture') {
     if (input.attributes.class?.includes('custom-emoji')) {
-      const id = input.attributes['data-emoji-id'] ?? input.attributes.title ?? input.attributes.alt ?? 'unknown'
-      return id[0] !== ':' ? `:${id}:` : id
+      const id = input.attributes['data-emoji-id'] ?? input.attributes.alt ?? input.attributes.title ?? 'unknown'
+      return id.match(emojiIdNeedsWrappingRE) ? `:${id}:` : id
     }
     if (input.attributes.class?.includes('iconify-emoji'))
       return input.attributes.alt

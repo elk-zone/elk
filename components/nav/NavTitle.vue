@@ -45,11 +45,6 @@ router.afterEach(() => {
           <div text-xl i-ri:arrow-left-line class="rtl-flip" btn-text />
         </NuxtLink>
       </CommonTooltip>
-      <CommonTooltip :content="$t('action.compose')">
-        <button :aria-label="$t('action.compose')" btn-action-icon @click="openPublishDialog('compose')">
-          <div text-xl i-ri:quill-pen-line user-only class="rtl-flip" btn-text />
-        </button>
-      </CommonTooltip>
     </div>
   </div>
 </template>

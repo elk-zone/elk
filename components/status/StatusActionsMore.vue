@@ -28,6 +28,7 @@ const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 const userSettings = useUserSettings()
+const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
@@ -149,8 +150,13 @@ function showFavoritedAndBoostedBy() {
 
           <CommonDropdownItem
             :text="status.favourited ? $t('action.favourited') : $t('action.favourite')"
-            :icon="status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
-            :class="status.favourited ? 'text-rose' : ''"
+            :icon="useStarFavoriteIcon
+              ? status.favourited ? 'i-ri:star-fill' : 'i-ri:star-line'
+              : status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
+            :class="status.favourited
+              ? useStarFavoriteIcon ? 'text-yellow' : 'text-rose'
+              : ''
+            "
             :command="command"
             :disabled="isLoading.favourited"
             @click="toggleFavourite()"
@@ -159,7 +165,10 @@ function showFavoritedAndBoostedBy() {
           <CommonDropdownItem
             :text="status.bookmarked ? $t('action.bookmarked') : $t('action.bookmark')"
             :icon="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'"
-            :class="status.bookmarked ? 'text-yellow' : ''"
+            :class="status.bookmarked
+              ? useStarFavoriteIcon ? 'text-rose' : 'text-yellow'
+              : ''
+            "
             :command="command"
             :disabled="isLoading.bookmarked"
             @click="toggleBookmark()"

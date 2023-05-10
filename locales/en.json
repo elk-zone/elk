@@ -295,6 +295,7 @@
     "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "boosted your post",
+    "reported": "{0} reported {1}",
     "request_to_follow": "requested to follow you",
     "signed_up": "signed up",
     "update_status": "updated their post"
@@ -453,6 +454,7 @@
       "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",
       "label": "Preferences",
       "title": "Experimental Features",
+      "use_star_favorite_icon": "Use star favorite icon",
       "user_picker": "User Picker",
       "virtual_scroll": "Virtual Scrolling",
       "wellbeing": "Wellbeing",
@@ -526,6 +528,7 @@
     "replying_to": "Replying to {0}",
     "show_full_thread": "Show Full thread",
     "someone": "someone",
+    "spoiler_media_hidden": "Media hidden",
     "spoiler_show_less": "Show less",
     "spoiler_show_more": "Show more",
     "thread": "Thread",

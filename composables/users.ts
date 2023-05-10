@@ -209,8 +209,11 @@ export async function fetchAccountInfo(client: mastodon.Client, server: string) 
     fetchPrefs(),
   ])
 
-  if (!account.acct.includes('@'))
-    account.acct = `${account.acct}@${server}`
+  if (!account.acct.includes('@')) {
+    const instance = getInstanceCache(server)
+    const webDomain = instance ? getInstanceDomain(instance) : server
+    account.acct = `${account.acct}@${webDomain}`
+  }
 
   // TODO: lazy load preferences
   accountPreferencesMap.set(account.acct, preferences)
@@ -340,10 +343,28 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
     const scope = effectScope(true)
     const value = scope.run(() => {
       const all = useLocalStorage<Record<string, T>>(key, {}, { deep: true })
+
       return computed(() => {
         const id = currentUser.value?.account.id
           ? currentUser.value.account.acct
           : '[anonymous]'
+
+        // Backward compatibility, respect webDomain in acct
+        // In previous versions, acct was username@server instead of username@webDomain
+        // for example: elk@m.webtoo.ls instead of elk@webtoo.ls
+        if (!all.value[id]) {
+          const [username, webDomain] = id.split('@')
+          const server = currentServer.value
+          if (webDomain && server && server !== webDomain) {
+            const oldId = `${username}@${server}`
+            const outdatedSettings = all.value[oldId]
+            if (outdatedSettings) {
+              const newAllValue = { ...all.value, [id]: outdatedSettings }
+              delete newAllValue[oldId]
+              all.value = newAllValue
+            }
+          }
+        }
         all.value[id] = Object.assign(initial(), all.value[id] || {})
         return all.value[id]
       })

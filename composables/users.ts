@@ -210,8 +210,7 @@ export async function fetchAccountInfo(client: mastodon.Client, server: string) 
   ])
 
   if (!account.acct.includes('@')) {
-    const instance = getInstanceCache(server)
-    const webDomain = instance ? getInstanceDomain(instance) : server
+    const webDomain = getInstanceDomainFromServer(server)
     account.acct = `${account.acct}@${webDomain}`
   }
 
@@ -220,6 +219,12 @@ export async function fetchAccountInfo(client: mastodon.Client, server: string) 
 
   cacheAccount(account, server, true)
   return account
+}
+
+export function getInstanceDomainFromServer(server: string) {
+  const instance = getInstanceCache(server)
+  const webDomain = instance ? getInstanceDomain(instance) : server
+  return webDomain
 }
 
 export async function refreshAccountInfo() {

@@ -302,7 +302,7 @@
   },
   "placeholder": {
     "content_warning": "Scrivi il tuo avviso qui",
-    "default_1": "A cosa pensi?",
+    "default_1": "A cosa stai pensando?",
     "reply_to_account": "Rispondi a {0}",
     "replying": "Rispondi",
     "the_thread": "la discussione"

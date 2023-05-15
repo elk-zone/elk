@@ -1,6 +1,7 @@
 export interface LocaleEntry {
   title: string
   file: string
+  useFile: string
   translated: string[]
   missing: string[]
   outdated: string[]

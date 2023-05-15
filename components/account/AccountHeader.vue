@@ -82,6 +82,10 @@ watchEffect(() => {
 })
 
 const personalNoteDraft = ref(relationship?.note ?? '')
+watch($$(relationship), (relationship, oldValue) => {
+  if (!oldValue && relationship)
+    personalNoteDraft.value = relationship.note ?? ''
+})
 
 async function editNote(event: Event) {
   if (!event.target || !('value' in event.target) || !relationship)

@@ -10,7 +10,7 @@ const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
   <nav sm:px3 flex="~ col gap2" shrink text-size-base leading-normal md:text-lg h-full mt-1 overflow-y-auto>
     <NavSideItem :text="$t('nav.search')" to="/search" icon="i-ri:search-line" xl:hidden :command="command" />
 
-    <div class="spacer" shrink hidden sm:block />
+    <div class="spacer" shrink xl:hidden />
     <NavSideItem :text="$t('nav.home')" to="/home" icon="i-ri:home-5-line" user-only :command="command" />
     <NavSideItem :text="$t('nav.notifications')" to="/notifications" icon="i-ri:notification-4-line" user-only :command="command">
       <template #icon>
@@ -44,7 +44,7 @@ const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
   .spacer {
     margin-top: 0.5em;
   }
-  @media screen and ( max-height: 820px ) and ( min-width: 640px ) {
+  @media screen and ( max-height: 920px ) and ( min-width: 640px ) {
     .spacer {
       margin-top: 0;
     }

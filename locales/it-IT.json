@@ -302,7 +302,7 @@
   },
   "placeholder": {
     "content_warning": "Scrivi il tuo avviso qui",
-    "default_1": "A cosa pensi?",
+    "default_1": "A cosa stai pensando?",
     "reply_to_account": "Rispondi a {0}",
     "replying": "Rispondi",
     "the_thread": "la discussione"
@@ -607,7 +607,7 @@
     "explore_posts_intro": "Questi post da questa e da altre istanze della rete decentralizzata stanno acquistando popolarità in questo momento.",
     "explore_tags_intro": "Questi hashtag stanno acquistando popolarità fra persone di questa e di altre istanze della rete decentralizzata in questo momento.",
     "open_editor_tools": "Formattazione testo",
-    "pick_an_icon": "Scegli un'icona'",
+    "pick_an_icon": "Scegli un'icona",
     "publish_failed": "Chiudi i messaggi falliti in cima all'editor per ripubblicare i post",
     "toggle_bold": "Grassetto",
     "toggle_code_block": "Blocco di codice",

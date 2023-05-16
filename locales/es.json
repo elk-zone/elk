@@ -98,6 +98,8 @@
     "error": "ERROR",
     "fetching": "Cargando...",
     "in": "en",
+    "no_bookmarks": "Sin publicaciones marcadas aún",
+    "no_favourites": "Sin publicaciones favoritas aún",
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer no tienes conexión a internet. Por favor, comprueba tu conexión a la red."
   },
@@ -211,7 +213,7 @@
         "title": "Acciones"
       },
       "media": {
-        "title": "Media"
+        "title": "Multimedia"
       },
       "navigation": {
         "go_to_home": "Inicio",
@@ -293,6 +295,7 @@
     "followed_you_count": "{0} personas te siguieron|{0} persona te siguió|{0} personas te siguieron",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "retooteó tu publicación",
+    "reported": "{0} reportó {1}",
     "request_to_follow": "ha solicitado seguirte",
     "signed_up": "registrado",
     "update_status": "ha actualizado su publicación"
@@ -444,12 +447,14 @@
       "hide_boost_count": "Ocultar contador de retoots",
       "hide_favorite_count": "Ocultar número de publicaciones favoritas",
       "hide_follower_count": "Ocultar número de seguidores",
+      "hide_news": "Ocultar noticias",
       "hide_reply_count": "Ocultar número de respuestas",
       "hide_translation": "Ocultar traducción",
       "hide_username_emojis": "Ocultar emojis en el nombre de usuario",
       "hide_username_emojis_description": "Oculta los emojis de los nombres de usuarios en la línea de tiempo. Los emojis permanecerán visibles en sus perfiles.",
       "label": "Preferencias",
       "title": "Funcionalidades experimentales",
+      "use_star_favorite_icon": "Utilizar icono de estrella para favoritos",
       "user_picker": "Selector de usuarios",
       "virtual_scroll": "Desplazamiento virtual",
       "wellbeing": "Bienestar",
@@ -523,6 +528,7 @@
     "replying_to": "Respondiendo a {0}",
     "show_full_thread": "Mostrar hilo completo",
     "someone": "alguien",
+    "spoiler_media_hidden": "Multimedia oculta",
     "spoiler_show_less": "Mostrar menos",
     "spoiler_show_more": "Mostrar más",
     "thread": "Hilo",

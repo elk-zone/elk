@@ -2,7 +2,7 @@ import { Buffer } from 'node:buffer'
 import flatten from 'flat'
 import { createResolver } from '@nuxt/kit'
 import fs from 'fs-extra'
-import { currentLocales } from '../config/i18n'
+import { countryLocaleVariants, currentLocales } from '../config/i18n'
 import type { LocaleEntry } from '../docs/types'
 import type { ElkTranslationStatus } from '~/types/translation-status'
 
@@ -63,10 +63,11 @@ async function prepareTranslationStatus() {
   const entries: Record<string, any> = await readI18nFile(sourceLanguageLocale[1])
   const flatEntries = flatten<typeof entries, Record<string, string>>(entries)
   const total = Object.keys(flatEntries).length
-  const data: Record<string, LocaleEntry> = {
+  const data: Record<string, LocaleEntry & { useFile: string }> = {
     en: {
       translated: [],
       file: 'en.json',
+      useFile: 'en.json',
       missing: [],
       outdated: [],
       title: 'English (source)',
@@ -77,8 +78,16 @@ async function prepareTranslationStatus() {
 
   await Promise.all(localeData.filter(l => l[0] !== 'en-US').map(async ([code, file, title]) => {
     console.info(`Comparing ${code}...`, title)
+    let useFile = file[file.length - 1]
+    const entry = countryLocaleVariants[file[0].slice(0, file[0].indexOf('.'))]
+    if (entry) {
+      const countryFile = entry.find(e => e.code === code && e.country === true)
+      if (countryFile)
+        useFile = file[0]
+    }
     data[code] = {
       title,
+      useFile,
       file: Array.isArray(file) ? file[file.length - 1] : file,
       translated: [],
       missing: [],

@@ -357,19 +357,19 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
         // Backward compatibility, respect webDomain in acct
         // In previous versions, acct was username@server instead of username@webDomain
         // for example: elk@m.webtoo.ls instead of elk@webtoo.ls
-        if (!all.value[id]) {
-          const [username, webDomain] = id.split('@')
-          const server = currentServer.value
-          if (webDomain && server && server !== webDomain) {
-            const oldId = `${username}@${server}`
-            const outdatedSettings = all.value[oldId]
-            if (outdatedSettings) {
-              const newAllValue = { ...all.value, [id]: outdatedSettings }
-              delete newAllValue[oldId]
-              all.value = newAllValue
-            }
+        // if (!all.value[id]) { // TODO: add back this condition in the future
+        const [username, webDomain] = id.split('@')
+        const server = currentServer.value
+        if (webDomain && server && server !== webDomain) {
+          const oldId = `${username}@${server}`
+          const outdatedSettings = all.value[oldId]
+          if (outdatedSettings) {
+            const newAllValue = { ...all.value, [id]: outdatedSettings }
+            delete newAllValue[oldId]
+            all.value = newAllValue
           }
         }
+        // }
         all.value[id] = Object.assign(initial(), all.value[id] || {})
         return all.value[id]
       })

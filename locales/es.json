@@ -98,8 +98,8 @@
     "error": "ERROR",
     "fetching": "Cargando...",
     "in": "en",
-    "no_bookmarks": "Sin publicaciones marcadas todavía",
-    "no_favourites": "Sin publicaciones favoritas todavía",
+    "no_bookmarks": "Sin publicaciones marcadas aún",
+    "no_favourites": "Sin publicaciones favoritas aún",
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer no tienes conexión a internet. Por favor, comprueba tu conexión a la red."
   },

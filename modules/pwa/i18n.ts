@@ -39,6 +39,58 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
 
   const defaultManifest: Required<WebManifestEntry> = pwa.webmanifest[env]
 
+  const manifestEntries: Partial<ExtendedManifestOptions> = {
+    scope: '/',
+    id: '/',
+    start_url: '/',
+    display: 'standalone',
+    orientation: 'portrait',
+    icons: [
+      {
+        src: 'pwa-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        src: 'pwa-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: 'maskable-icon.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
+      },
+    ],
+    screenshots: [{
+      src: 'elk-og.png',
+      sizes: '3900x1900',
+      type: 'image/png',
+    }, {
+      src: 'maskable-icon.png',
+      sizes: '512x512',
+      type: 'image/png',
+    }],
+    share_target: {
+      action: '/web-share-target',
+      method: 'POST',
+      enctype: 'multipart/form-data',
+      params: {
+        title: 'title',
+        text: 'text',
+        url: 'url',
+        files: [
+          {
+            name: 'files',
+            accept: ['image/*', 'video/*'],
+          },
+        ],
+      },
+    },
+  }
+
   const locales: RequiredWebManifestEntry[] = await Promise.all(
     pwaLocales
       .filter(l => l.code !== 'en-US')
@@ -72,10 +124,6 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
   })
   return locales.reduce((acc, { lang, dir, name, short_name, description }) => {
     acc[lang] = {
-      scope: '/',
-      id: '/',
-      start_url: '/',
-      display: 'standalone',
       lang,
       name,
       short_name,
@@ -83,47 +131,9 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
       dir,
       background_color: '#ffffff',
       theme_color: '#ffffff',
-      icons: [
-        {
-          src: 'pwa-192x192.png',
-          sizes: '192x192',
-          type: 'image/png',
-        },
-        {
-          src: 'pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'any',
-        },
-        {
-          src: 'maskable-icon.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'maskable',
-        },
-      ],
-      share_target: {
-        action: '/web-share-target',
-        method: 'POST',
-        enctype: 'multipart/form-data',
-        params: {
-          title: 'title',
-          text: 'text',
-          url: 'url',
-          files: [
-            {
-              name: 'files',
-              accept: ['image/*', 'video/*'],
-            },
-          ],
-        },
-      },
+      ...manifestEntries,
     }
     acc[`${lang}-dark`] = {
-      scope: '/',
-      id: '/',
-      start_url: '/',
-      display: 'standalone',
       lang,
       name,
       short_name,
@@ -131,41 +141,7 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
       dir,
       background_color: '#111111',
       theme_color: '#111111',
-      icons: [
-        {
-          src: 'pwa-192x192.png',
-          sizes: '192x192',
-          type: 'image/png',
-        },
-        {
-          src: 'pwa-512x512.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'any',
-        },
-        {
-          src: 'maskable-icon.png',
-          sizes: '512x512',
-          type: 'image/png',
-          purpose: 'maskable',
-        },
-      ],
-      share_target: {
-        action: '/web-share-target',
-        method: 'POST',
-        enctype: 'multipart/form-data',
-        params: {
-          title: 'title',
-          text: 'text',
-          url: 'url',
-          files: [
-            {
-              name: 'files',
-              accept: ['image/*', 'video/*'],
-            },
-          ],
-        },
-      },
+      ...manifestEntries,
     }
 
     return acc

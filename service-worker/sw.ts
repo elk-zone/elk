@@ -32,8 +32,18 @@ if (import.meta.env.DEV)
 
 // deny api and server page calls
 let denylist: undefined | RegExp[]
-if (import.meta.env.PROD)
-  denylist = [/^\/api\//, /^\/login\//, /^\/oauth\//, /^\/signin\//, /^\/web-share-target\//]
+if (import.meta.env.PROD) {
+  denylist = [
+    /^\/api\//,
+    /^\/login\//,
+    /^\/oauth\//,
+    /^\/signin\//,
+    /^\/web-share-target\//,
+    /^\/shiki\//,
+    /^\/emojis\//,
+    /^\/manifest-\w+-\w\.webmanifest$/,
+  ]
+}
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {

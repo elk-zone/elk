@@ -4,8 +4,7 @@ export default defineNuxtRouteMiddleware((to) => {
   if (process.server)
     return
 
-  // allow browsing public assets
-  if (to.path === '/signin/callback' || isElkPublicAsset(to.path))
+  if (to.path === '/signin/callback')
     return
 
   if (isHydrated.value)

@@ -76,12 +76,12 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
       label: 'Screenshot of Elk running in light mode',
     }, */{
         src: 'screenshots/dark-1.webp',
-        sizes: '1280x804',
+        sizes: '3438x2160',
         type: 'image/webp',
         label: 'Screenshot of Elk running in dark mode',
       }, {
         src: 'screenshots/light-1.webp',
-        sizes: '1280x803',
+        sizes: '3444x2160',
         type: 'image/webp',
         label: 'Screenshot of Elk running in light mode',
       }],

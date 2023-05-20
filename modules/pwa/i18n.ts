@@ -45,6 +45,7 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     start_url: '/',
     display: 'standalone',
     orientation: 'portrait',
+    categories: ['social', 'social networking'],
     icons: [
       {
         src: 'pwa-192x192.png',

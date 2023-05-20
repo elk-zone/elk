@@ -65,13 +65,15 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
       },
     ],
     screenshots: [{
-      src: 'elk-og.png',
-      sizes: '3900x1900',
-      type: 'image/png',
+      src: 'screenshots/dark-1.jpg',
+      sizes: '3444x2160',
+      type: 'image/jpeg',
+      label: 'Screenshot of Elk running in dark mode',
     }, {
-      src: 'maskable-icon.png',
-      sizes: '512x512',
-      type: 'image/png',
+      src: 'screenshots/light-1.jpg',
+      sizes: '3444x2160',
+      type: 'image/jpeg',
+      label: 'Screenshot of Elk running in light mode',
     }],
     share_target: {
       action: '/web-share-target',

@@ -63,6 +63,16 @@ const { editor } = useTiptap({
   onPaste: handlePaste,
 })
 
+function editPollOptionDraft(event: Event, index: number) {
+  draft.poll!.options[index] = (event.target as HTMLInputElement).value
+  const indexLastNonEmpty = draft.poll!.options.findLastIndex(option => option.trim().length > 0)
+  draft.poll!.options = [...draft.poll!.options.slice(0, indexLastNonEmpty + 1), '']
+}
+
+function deletePollOption(index: number) {
+  draft.poll!.options.splice(index, 1)
+}
+
 const characterCount = $computed(() => {
   const text = htmlToText(editor.value?.getHTML() || '')
 
@@ -124,6 +134,9 @@ async function toggleSensitive() {
 }
 
 async function publish() {
+  if (draft.poll && draft.poll.options.length > 0)
+    draft.poll.options = draft.poll.options.slice(0, draft.poll.options.length - 1)
+
   const status = await publishDraft()
   if (status)
     emit('published', status)
@@ -277,92 +290,131 @@ onDeactivated(() => {
     </div>
     <div flex gap-4>
       <div w-12 h-full sm:block hidden />
-      <div
-        v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full
-        border="t base"
-      >
-        <PublishEmojiPicker
-          @select="insertEmoji"
-          @select-custom="insertCustomEmoji"
+      <div flex="~ col 1" max-w-full>
+        <form v-if="draft.poll" my-4 flex="~ 1 col" gap-3 m="s--1">
+          <div
+            v-for="(option, index) in draft.poll.options"
+            :key="index"
+            flex="~ row"
+            gap-3
+          >
+            <input
+              :value="option"
+              bg-base
+              border="~ base" flex-1 h10 pe-4 rounded-2 w-full flex="~ row"
+              items-center relative focus-within:box-shadow-outline gap-3
+              px-4 py-2
+              placeholder="Poll option"
+              @input="editPollOptionDraft($event, index)"
+            >
+            <CommonTooltip placement="top" content="Remove option">
+              <button
+                btn-action-icon class="hover:bg-red/75"
+                :disabled="index === draft.poll!.options.length - 1"
+                @click.prevent="deletePollOption(index)"
+              >
+                <div i-ri:delete-bin-line />
+              </button>
+            </CommonTooltip>
+          </div>
+          <div flex="~ row" gap-3>
+            <CommonCheckbox label="Allow multiple" />
+            <CommonCheckbox label="Hide votes until end" />
+          </div>
+        </form>
+        <div
+          v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full
+          border="t base"
         >
-          <button btn-action-icon :title="$t('tooltip.emoji')">
-            <div i-ri:emotion-line />
-          </button>
-        </PublishEmojiPicker>
-
-        <CommonTooltip placement="top" :content="$t('tooltip.add_media')">
-          <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
-            <div i-ri:image-add-line />
-          </button>
-        </CommonTooltip>
-
-        <PublishEditorTools v-if="editor" :editor="editor" />
-
-        <div flex-auto />
-
-        <PublishCharacterCounter :max="characterLimit" :length="characterCount" />
-
-        <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
-          <CommonDropdown placement="bottom" auto-boundary-max-size>
-            <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-max mr1>
-              <span v-if="postLanguageDisplay" text-secondary text-sm ml1>{{ postLanguageDisplay }}</span>
-              <div v-else i-ri:translate-2 />
-              <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+          <PublishEmojiPicker
+            @select="insertEmoji"
+            @select-custom="insertCustomEmoji"
+          >
+            <button btn-action-icon :title="$t('tooltip.emoji')">
+              <div i-ri:emotion-line />
             </button>
+          </PublishEmojiPicker>
 
-            <template #popper>
-              <PublishLanguagePicker v-model="draft.params.language" min-w-80 />
+          <CommonTooltip placement="top" :content="$t('tooltip.add_media')">
+            <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
+              <div i-ri:image-add-line />
+            </button>
+          </CommonTooltip>
+
+          <CommonTooltip placement="top" content="Create poll">
+            <button btn-action-icon aria-label="Create poll" @click="draft.poll = draft.poll ? undefined : { options: [''], expiresIn: 9999 }">
+              <div i-ri:chat-poll-line />
+            </button>
+          </CommonTooltip>
+
+          <PublishEditorTools v-if="editor" :editor="editor" />
+
+          <div flex-auto />
+
+          <PublishCharacterCounter :max="characterLimit" :length="characterCount" />
+
+          <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
+            <CommonDropdown placement="bottom" auto-boundary-max-size>
+              <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-max mr1>
+                <span v-if="postLanguageDisplay" text-secondary text-sm ml1>{{ postLanguageDisplay }}</span>
+                <div v-else i-ri:translate-2 />
+                <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+              </button>
+
+              <template #popper>
+                <PublishLanguagePicker v-model="draft.params.language" min-w-80 />
+              </template>
+            </CommonDropdown>
+          </CommonTooltip>
+
+          <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
+            <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
+              <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
+              <div v-else i-ri:alarm-warning-line />
+            </button>
+          </CommonTooltip>
+
+          <PublishVisibilityPicker v-model="draft.params.visibility" :editing="!!draft.editingStatus">
+            <template #default="{ visibility }">
+              <button :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon :class="{ 'w-12': !draft.editingStatus }">
+                <div :class="visibility.icon" />
+                <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+              </button>
             </template>
-          </CommonDropdown>
-        </CommonTooltip>
+          </PublishVisibilityPicker>
 
-        <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
-          <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
-            <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
-            <div v-else i-ri:alarm-warning-line />
-          </button>
-        </CommonTooltip>
-
-        <PublishVisibilityPicker v-model="draft.params.visibility" :editing="!!draft.editingStatus">
-          <template #default="{ visibility }">
-            <button :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon :class="{ 'w-12': !draft.editingStatus }">
-              <div :class="visibility.icon" />
-              <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+          <CommonTooltip v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top" :content="$t('tooltip.publish_failed')">
+            <button
+              btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit aria-describedby="publish-failed-tooltip"
+            >
+              <span block>
+                <div block i-carbon:face-dizzy-filled />
+              </span>
+              <span>{{ $t('state.publish_failed') }}</span>
             </button>
-          </template>
-        </PublishVisibilityPicker>
+          </CommonTooltip>
 
-        <CommonTooltip v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top" :content="$t('tooltip.publish_failed')">
-          <button
-            btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit aria-describedby="publish-failed-tooltip"
-          >
-            <span block>
-              <div block i-carbon:face-dizzy-filled />
-            </span>
-            <span>{{ $t('state.publish_failed') }}</span>
-          </button>
-        </CommonTooltip>
-
-        <CommonTooltip v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')" :disabled="!(isPublishDisabled || isExceedingCharacterLimit)">
-          <button
-            btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center
-            md:w-fit
-            class="publish-button"
-            :aria-disabled="isPublishDisabled || isExceedingCharacterLimit"
-            aria-describedby="publish-tooltip"
-            @click="publish"
-          >
-            <span v-if="isSending" block animate-spin preserve-3d>
-              <div block i-ri:loader-2-fill />
-            </span>
-            <span v-if="failedMessages.length" block>
-              <div block i-carbon:face-dizzy-filled />
-            </span>
-            <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
-            <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
-            <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
-          </button>
-        </CommonTooltip>
+          <CommonTooltip v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')" :disabled="!(isPublishDisabled || isExceedingCharacterLimit)">
+            <button
+              btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center
+              md:w-fit
+              class="publish-button"
+              :aria-disabled="isPublishDisabled || isExceedingCharacterLimit"
+              aria-describedby="publish-tooltip"
+              @click="publish"
+            >
+              <span v-if="isSending" block animate-spin preserve-3d>
+                <div block i-ri:loader-2-fill />
+              </span>
+              <span v-if="failedMessages.length" block>
+                <div block i-carbon:face-dizzy-filled />
+              </span>
+              <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
+              <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
+              <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
+            </button>
+          </CommonTooltip>
+        </div>
       </div>
     </div>
   </div>

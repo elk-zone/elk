@@ -51,6 +51,9 @@ export interface Draft {
   attachments: mastodon.v1.MediaAttachment[]
   lastUpdated: number
   mentions?: string[]
+  poll?: {
+    -readonly [key in keyof mastodon.v1.CreateStatusPollParam]: mastodon.v1.CreateStatusPollParam[key]
+  }
 }
 
 export type DraftMap = Record<string, Draft>

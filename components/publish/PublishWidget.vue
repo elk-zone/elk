@@ -64,13 +64,13 @@ const { editor } = useTiptap({
 })
 
 function editPollOptionDraft(event: Event, index: number) {
-  draft.poll!.options[index] = (event.target as HTMLInputElement).value
-  const indexLastNonEmpty = draft.poll!.options.findLastIndex(option => option.trim().length > 0)
-  draft.poll!.options = [...draft.poll!.options.slice(0, indexLastNonEmpty + 1), '']
+  draft.params.poll!.options[index] = (event.target as HTMLInputElement).value
+  const indexLastNonEmpty = draft.params.poll!.options.findLastIndex(option => option.trim().length > 0)
+  draft.params.poll!.options = [...draft.params.poll!.options.slice(0, indexLastNonEmpty + 1), '']
 }
 
 function deletePollOption(index: number) {
-  draft.poll!.options.splice(index, 1)
+  draft.params.poll!.options.splice(index, 1)
 }
 
 const expiresInOptions = [
@@ -313,9 +313,9 @@ onDeactivated(() => {
     <div flex gap-4>
       <div w-12 h-full sm:block hidden />
       <div flex="~ col 1" max-w-full>
-        <form v-if="draft.poll" my-4 flex="~ 1 col" gap-3 m="s--1">
+        <form v-if="isExpanded && draft.params.poll" my-4 flex="~ 1 col" gap-3 m="s--1">
           <div
-            v-for="(option, index) in draft.poll.options"
+            v-for="(option, index) in draft.params.poll.options"
             :key="index"
             flex="~ row"
             gap-3
@@ -332,7 +332,7 @@ onDeactivated(() => {
             <CommonTooltip placement="top" :content="$t('polls.remove_option')">
               <button
                 btn-action-icon class="hover:bg-red/75"
-                :disabled="index === draft.poll!.options.length - 1"
+                :disabled="index === draft.params.poll!.options.length - 1"
                 @click.prevent="deletePollOption(index)"
               >
                 <div i-ri:delete-bin-line />
@@ -353,35 +353,43 @@ onDeactivated(() => {
             </button>
           </PublishEmojiPicker>
 
-          <CommonTooltip v-if="draft.poll === undefined" placement="top" :content="$t('tooltip.add_media')">
+          <CommonTooltip v-if="draft.params.poll === undefined" placement="top" :content="$t('tooltip.add_media')">
             <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
               <div i-ri:image-add-line />
             </button>
           </CommonTooltip>
 
           <template v-if="draft.attachments.length === 0">
-            <CommonTooltip v-if="draft.poll === undefined" placement="top" :content="$t('polls.create')">
-              <button btn-action-icon :aria-label="$t('polls.create')" @click="draft.poll = { options: [''], expiresIn: expiresInOptions[expiresInDefaultOptionIndex].seconds }">
+            <CommonTooltip v-if="!draft.params.poll" placement="top" :content="$t('polls.create')">
+              <button btn-action-icon :aria-label="$t('polls.create')" @click="draft.params.poll = { options: [''], expiresIn: expiresInOptions[expiresInDefaultOptionIndex].seconds }">
                 <div i-ri:chat-poll-line />
               </button>
             </CommonTooltip>
             <div v-else rounded-full b-1 border-dark flex="~ row" gap-1>
               <CommonTooltip placement="top" :content="$t('polls.cancel')">
-                <button btn-action-icon b-r border-dark :aria-label="$t('polls.cancel')" @click="draft.poll = undefined">
+                <button btn-action-icon b-r border-dark :aria-label="$t('polls.cancel')" @click="draft.params.poll = undefined">
                   <div i-ri:close-line />
                 </button>
               </CommonTooltip>
-              <CommonTooltip placement="top" :content="$t('polls.allow_multiple')">
-                <CommonCheckbox v-model="draft.poll.multiple" h-9 flex justify-center hover:bg-active rounded-full aspect-ratio-1 icon-checked="i-ri:checkbox-multiple-line" icon-unchecked="i-ri:checkbox-multiple-blank-line" />
-              </CommonTooltip>
-              <CommonTooltip placement="top" :content="$t('polls.hide_votes')">
-                <CommonCheckbox v-model="draft.poll.hideTotals" h-9 flex justify-center hover:bg-active rounded-full aspect-ratio-1 icon-checked="i-ri:eye-close-line" icon-unchecked="i-ri:eye-line" />
-              </CommonTooltip>
+              <CommonDropdown placement="top">
+                <CommonTooltip placement="top" :content="$t('polls.settings')">
+                  <button :aria-label="$t('polls.settings')" btn-action-icon w-12>
+                    <div i-ri:list-settings-line />
+                    <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+                  </button>
+                </CommonTooltip>
+                <template #popper>
+                  <div flex="~ col" gap-1 p-2>
+                    <CommonCheckbox v-model="draft.params.poll.multiple" :label="draft.params.poll.multiple ? $t('polls.disallow_multiple') : $t('polls.allow_multiple')" px-2 gap-3 h-9 flex justify-center hover:bg-active rounded-full icon-checked="i-ri:checkbox-multiple-blank-line" icon-unchecked="i-ri:checkbox-blank-circle-line" />
+                    <CommonCheckbox v-model="draft.params.poll.hideTotals" :label="draft.params.poll.hideTotals ? $t('polls.show_votes') : $t('polls.hide_votes')" px-2 gap-3 h-9 flex justify-center hover:bg-active rounded-full icon-checked="i-ri:eye-close-line" icon-unchecked="i-ri:eye-line" />
+                  </div>
+                </template>
+              </CommonDropdown>
               <CommonDropdown placement="bottom">
                 <CommonTooltip placement="top" :content="$t('polls.expiration')">
                   <button :aria-label="$t('polls.expiration')" btn-action-icon w-12>
                     <div i-ri:hourglass-line />
-                    <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+                    <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
                   </button>
                 </CommonTooltip>
                 <template #popper>
@@ -389,8 +397,8 @@ onDeactivated(() => {
                     v-for="expiresInOption in expiresInOptions"
                     :key="expiresInOption.seconds"
                     :text="expiresInOption.label"
-                    :checked="draft.poll!.expiresIn === expiresInOption.seconds"
-                    @click="draft.poll!.expiresIn = expiresInOption.seconds"
+                    :checked="draft.params.poll!.expiresIn === expiresInOption.seconds"
+                    @click="draft.params.poll!.expiresIn = expiresInOption.seconds"
                   />
                 </template>
               </CommonDropdown>

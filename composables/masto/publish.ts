@@ -39,10 +39,10 @@ export function usePublish(options: {
           || isSending
           || (draft.attachments.length === 0 && !draft.params.status)
           || failedMessages.length > 0
-          || (draft.attachments.length > 0 && draft.poll !== undefined)
-          || (draft.poll !== undefined && draft.poll.options.length <= 1)
-          || (draft.poll !== undefined && ![-1, draft.poll.options.length - 1].includes(draft.poll.options.findIndex(option => option.trim().length === 0)))
-          || (draft.poll !== undefined && new Set(draft.poll.options).size !== draft.poll.options.length)
+          || (draft.attachments.length > 0 && draft.params.poll)
+          || (draft.params.poll && draft.params.poll.options.length <= 1)
+          || (draft.params.poll && ![-1, draft.params.poll.options.length - 1].includes(draft.params.poll.options.findIndex(option => option.trim().length === 0)))
+          || (draft.params.poll && new Set(draft.params.poll.options).size !== draft.params.poll.options.length)
   })
 
   watch(() => draft, () => {
@@ -64,7 +64,7 @@ export function usePublish(options: {
       status: content,
       mediaIds: draft.attachments.map(a => a.id),
       language: draft.params.language || preferredLanguage,
-      poll: draft.poll ? { ...draft.poll, options: draft.poll.options.slice(0, draft.poll.options.length - 1) } : undefined,
+      poll: draft.params.poll ? { ...draft.params.poll, options: draft.params.poll.options.slice(0, draft.params.poll.options.length - 1) } : undefined,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.v1.CreateStatusParams
 

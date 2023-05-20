@@ -47,13 +47,10 @@ export type TranslateFn = ReturnType<typeof useI18n>['t']
 export interface Draft {
   editingStatus?: mastodon.v1.Status
   initialText?: string
-  params: MarkNonNullable<Mutable<mastodon.v1.CreateStatusParams>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'>
+  params: MarkNonNullable<Mutable<Omit<mastodon.v1.CreateStatusParams, 'poll'>>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'> & { poll: Mutable<mastodon.v1.CreateStatusParams['poll']> }
   attachments: mastodon.v1.MediaAttachment[]
   lastUpdated: number
   mentions?: string[]
-  poll?: {
-    -readonly [key in keyof mastodon.v1.CreateStatusPollParam]: mastodon.v1.CreateStatusPollParam[key]
-  }
 }
 
 export type DraftMap = Record<string, Draft>

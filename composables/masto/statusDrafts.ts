@@ -36,6 +36,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
     spoilerText,
     language,
     mentions,
+    poll,
   } = options
 
   return {
@@ -43,6 +44,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
     initialText,
     params: {
       status: status || '',
+      poll,
       inReplyToId,
       visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,
@@ -55,16 +57,29 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatu
 }
 
 export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Draft> {
-  return getDefaultDraft({
+  const info = {
     status: await convertMastodonHTML(status.content),
-    mediaIds: status.mediaAttachments.map(att => att.id),
     visibility: status.visibility,
     attachments: status.mediaAttachments,
     sensitive: status.sensitive,
     spoilerText: status.spoilerText,
     language: status.language,
     inReplyToId: status.inReplyToId,
-  })
+  }
+
+  return getDefaultDraft((status.mediaAttachments !== undefined && status.mediaAttachments.length > 0)
+    ? { ...info, mediaIds: status.mediaAttachments.map(att => att.id) }
+    : {
+        ...info,
+        poll: status.poll
+          ? {
+              expiresIn: Math.abs(new Date().getTime() - new Date(status.poll.expiresAt!).getTime()) / 1000,
+              options: [...status.poll.options.map(({ title }) => title), ''],
+              multiple: status.poll.multiple,
+              hideTotals: status.poll.options[0].votesCount === null,
+            }
+          : undefined,
+      })
 }
 
 function getAccountsToMention(status: mastodon.v1.Status) {

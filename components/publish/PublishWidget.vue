@@ -75,23 +75,23 @@ function deletePollOption(index: number) {
 
 const expiresInOptions = [
   {
-    seconds: 1 * 60 * 60, // 1h
+    seconds: 1 * 60 * 60,
     label: t('time_ago_options.hour_future', 1),
   },
   {
-    seconds: 2 * 60 * 60, // 1h
+    seconds: 2 * 60 * 60,
     label: t('time_ago_options.hour_future', 2),
   },
   {
-    seconds: 1 * 24 * 60 * 60, // 1h
+    seconds: 1 * 24 * 60 * 60,
     label: t('time_ago_options.day_future', 1),
   },
   {
-    seconds: 2 * 24 * 60 * 60, // 1h
+    seconds: 2 * 24 * 60 * 60,
     label: t('time_ago_options.day_future', 2),
   },
   {
-    seconds: 7 * 24 * 60 * 60, // 1h
+    seconds: 7 * 24 * 60 * 60,
     label: t('time_ago_options.day_future', 7),
   },
 ]

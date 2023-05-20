@@ -1,10 +1,12 @@
 <script setup lang="ts">
 defineProps<{
-  label: string
+  label?: string
   hover?: boolean
+  iconChecked?: string
+  iconUnchecked?: string
 }>()
 const { modelValue } = defineModels<{
-  modelValue?: boolean
+  modelValue?: boolean | null
 }>()
 </script>
 
@@ -12,11 +14,12 @@ const { modelValue } = defineModels<{
   <label
     class="common-checkbox flex items-center cursor-pointer py-1 text-md w-full gap-y-1"
     :class="hover ? 'hover:bg-active ms--2 px-4 py-2' : null"
+    v-bind="$attrs"
     @click.prevent="modelValue = !modelValue"
   >
-    <span flex-1 ms-2 pointer-events-none>{{ label }}</span>
+    <span v-if="label" flex-1 ms-2 pointer-events-none>{{ label }}</span>
     <span
-      :class="modelValue ? 'i-ri:checkbox-line' : 'i-ri:checkbox-blank-line'"
+      :class="modelValue ? (iconChecked ?? 'i-ri:checkbox-line') : (iconUnchecked ?? 'i-ri:checkbox-blank-line')"
       text-lg
       aria-hidden="true"
     />

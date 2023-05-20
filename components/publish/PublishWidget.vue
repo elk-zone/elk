@@ -326,10 +326,10 @@ onDeactivated(() => {
               border="~ base" flex-1 h10 pe-4 rounded-2 w-full flex="~ row"
               items-center relative focus-within:box-shadow-outline gap-3
               px-4 py-2
-              placeholder="Poll option"
+              :placeholder="$t('polls.option_placeholder')"
               @input="editPollOptionDraft($event, index)"
             >
-            <CommonTooltip placement="top" content="Remove option">
+            <CommonTooltip placement="top" :content="$t('polls.remove_option')">
               <button
                 btn-action-icon class="hover:bg-red/75"
                 :disabled="index === draft.poll!.options.length - 1"

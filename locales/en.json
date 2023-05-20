@@ -312,7 +312,9 @@
     "cancel": "Cancel",
     "create": "Create poll",
     "expiration": "Poll expiration",
-    "hide_votes": "Hide vote totals until the end"
+    "hide_votes": "Hide vote totals until the end",
+    "option_placeholder": "Poll choice",
+    "remove_option": "Remove choice"
   },
   "pwa": {
     "dismiss": "Dismiss",

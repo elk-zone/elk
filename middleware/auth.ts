@@ -4,11 +4,9 @@ export default defineNuxtRouteMiddleware((to) => {
   if (process.server)
     return
 
-  // eslint-disable-next-line no-console
-  console.info('auth middleware', to.path)
-
   if (
     to.path === '/signin/callback'
+      // allow browsing public assets
       || to.path.startsWith('/_nuxt/')
       || to.path.startsWith('/avatars/')
       || to.path.startsWith('/emojis/')

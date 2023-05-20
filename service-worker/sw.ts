@@ -41,7 +41,7 @@ if (import.meta.env.PROD) {
     /^\/web-share-target\//,
     /^\/shiki\//,
     /^\/emojis\//,
-    /^\/manifest-\w-\w.webmanifest$/,
+    /^\/manifest-\w-\w\.webmanifest$/,
   ]
 }
 

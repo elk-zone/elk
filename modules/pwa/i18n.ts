@@ -64,7 +64,7 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
         purpose: 'maskable',
       },
     ],
-    screenshots: [{
+    screenshots: [/* {
       src: 'screenshots/dark-1.jpg',
       sizes: '3444x2160',
       type: 'image/jpeg',
@@ -74,7 +74,17 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
       sizes: '3444x2160',
       type: 'image/jpeg',
       label: 'Screenshot of Elk running in light mode',
-    }],
+    }, */{
+        src: 'screenshots/dark-1.webp',
+        sizes: '1280x804',
+        type: 'image/webp',
+        label: 'Screenshot of Elk running in dark mode',
+      }, {
+        src: 'screenshots/light-1.webp',
+        sizes: '1280x803',
+        type: 'image/webp',
+        label: 'Screenshot of Elk running in light mode',
+      }],
     share_target: {
       action: '/web-share-target',
       method: 'POST',

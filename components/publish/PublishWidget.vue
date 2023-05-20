@@ -73,6 +73,31 @@ function deletePollOption(index: number) {
   draft.poll!.options.splice(index, 1)
 }
 
+const expiresInOptions = [
+  {
+    seconds: 1 * 60, // 1h
+    label: t('time_ago_options.hour_future', 1),
+  },
+  {
+    seconds: 2 * 60, // 1h
+    label: t('time_ago_options.hour_future', 2),
+  },
+  {
+    seconds: 1 * 24 * 60, // 1h
+    label: t('time_ago_options.day_future', 1),
+  },
+  {
+    seconds: 2 * 24 * 60, // 1h
+    label: t('time_ago_options.day_future', 2),
+  },
+  {
+    seconds: 7 * 24 * 60, // 1h
+    label: t('time_ago_options.day_future', 7),
+  },
+]
+
+const expiresInDefaultOptionIndex = 2
+
 const characterCount = $computed(() => {
   const text = htmlToText(editor.value?.getHTML() || '')
 
@@ -134,9 +159,6 @@ async function toggleSensitive() {
 }
 
 async function publish() {
-  if (draft.poll && draft.poll.options.length > 0)
-    draft.poll.options = draft.poll.options.slice(0, draft.poll.options.length - 1)
-
   const status = await publishDraft()
   if (status)
     emit('published', status)
@@ -317,10 +339,6 @@ onDeactivated(() => {
               </button>
             </CommonTooltip>
           </div>
-          <div flex="~ row" gap-3>
-            <CommonCheckbox label="Allow multiple" />
-            <CommonCheckbox label="Hide votes until end" />
-          </div>
         </form>
         <div
           v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full
@@ -335,17 +353,49 @@ onDeactivated(() => {
             </button>
           </PublishEmojiPicker>
 
-          <CommonTooltip placement="top" :content="$t('tooltip.add_media')">
+          <CommonTooltip v-if="draft.poll === undefined" placement="top" :content="$t('tooltip.add_media')">
             <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
               <div i-ri:image-add-line />
             </button>
           </CommonTooltip>
 
-          <CommonTooltip placement="top" content="Create poll">
-            <button btn-action-icon aria-label="Create poll" @click="draft.poll = draft.poll ? undefined : { options: [''], expiresIn: 9999 }">
-              <div i-ri:chat-poll-line />
-            </button>
-          </CommonTooltip>
+          <template v-if="draft.attachments.length === 0">
+            <CommonTooltip v-if="draft.poll === undefined" placement="top" :content="$t('polls.create')">
+              <button btn-action-icon :aria-label="$t('polls.create')" @click="draft.poll = { options: [''], expiresIn: expiresInOptions[expiresInDefaultOptionIndex].seconds }">
+                <div i-ri:chat-poll-line />
+              </button>
+            </CommonTooltip>
+            <div v-else rounded-full b-1 border-dark flex="~ row" gap-1>
+              <CommonTooltip placement="top" :content="$t('polls.cancel')">
+                <button btn-action-icon b-r border-dark :aria-label="$t('polls.cancel')" @click="draft.poll = undefined">
+                  <div i-ri:close-line />
+                </button>
+              </CommonTooltip>
+              <CommonTooltip placement="top" :content="$t('polls.allow_multiple')">
+                <CommonCheckbox v-model="draft.poll.multiple" h-9 flex justify-center hover:bg-active rounded-full aspect-ratio-1 icon-checked="i-ri:checkbox-multiple-line" icon-unchecked="i-ri:checkbox-multiple-blank-line" />
+              </CommonTooltip>
+              <CommonTooltip placement="top" :content="$t('polls.hide_votes')">
+                <CommonCheckbox v-model="draft.poll.hideTotals" h-9 flex justify-center hover:bg-active rounded-full aspect-ratio-1 icon-checked="i-ri:eye-close-line" icon-unchecked="i-ri:eye-line" />
+              </CommonTooltip>
+              <CommonDropdown placement="bottom">
+                <CommonTooltip placement="top" :content="$t('polls.expiration')">
+                  <button :aria-label="$t('polls.expiration')" btn-action-icon w-12>
+                    <div i-ri:hourglass-line />
+                    <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+                  </button>
+                </CommonTooltip>
+                <template #popper>
+                  <CommonDropdownItem
+                    v-for="expiresInOption in expiresInOptions"
+                    :key="expiresInOption.seconds"
+                    :text="expiresInOption.label"
+                    :checked="draft.poll!.expiresIn === expiresInOption.seconds"
+                    @click="draft.poll!.expiresIn = expiresInOption.seconds"
+                  />
+                </template>
+              </CommonDropdown>
+            </div>
+          </template>
 
           <PublishEditorTools v-if="editor" :editor="editor" />
 

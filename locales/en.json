@@ -307,6 +307,13 @@
     "replying": "Replying",
     "the_thread": "the thread"
   },
+  "polls": {
+    "allow_multiple": "Allow multiple choices",
+    "cancel": "Cancel",
+    "create": "Create poll",
+    "expiration": "Poll expiration",
+    "hide_votes": "Hide vote totals until the end"
+  },
   "pwa": {
     "dismiss": "Dismiss",
     "install": "Install",

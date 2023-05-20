@@ -34,7 +34,15 @@ export function usePublish(options: {
 
   const shouldExpanded = $computed(() => expanded || isExpanded || !isEmpty)
   const isPublishDisabled = $computed(() => {
-    return isEmpty || isUploading || isSending || (draft.attachments.length === 0 && !draft.params.status) || failedMessages.length > 0
+    return isEmpty
+          || isUploading
+          || isSending
+          || (draft.attachments.length === 0 && !draft.params.status)
+          || failedMessages.length > 0
+          || (draft.attachments.length > 0 && draft.poll !== undefined)
+          || (draft.poll !== undefined && draft.poll.options.length <= 1)
+          || (draft.poll !== undefined && ![-1, draft.poll.options.length - 1].includes(draft.poll.options.findIndex(option => option.trim().length === 0)))
+          || (draft.poll !== undefined && new Set(draft.poll.options).size !== draft.poll.options.length)
   })
 
   watch(() => draft, () => {
@@ -56,7 +64,7 @@ export function usePublish(options: {
       status: content,
       mediaIds: draft.attachments.map(a => a.id),
       language: draft.params.language || preferredLanguage,
-      poll: draft.poll,
+      poll: draft.poll ? { ...draft.poll, options: draft.poll.options.slice(0, draft.poll.options.length - 1) } : undefined,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.v1.CreateStatusParams
 

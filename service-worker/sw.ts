@@ -39,9 +39,14 @@ if (import.meta.env.PROD) {
     /^\/oauth\//,
     /^\/signin\//,
     /^\/web-share-target\//,
+    // exclude shiki: have its own cache
     /^\/shiki\//,
+    // exclude shiki: have its own cache
     /^\/emojis\//,
-    /^\/manifest-\w-\w\.webmanifest$/,
+    // exclude sw: if user navigates to it, fallback to index.html
+    /^\/sw.js$/,
+    // exclude webmanifest: have its own cache
+    /^\/manifest-(.*).webmanifest$/,
   ]
 }
 

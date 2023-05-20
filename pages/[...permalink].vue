@@ -3,6 +3,13 @@ import { hasProtocol, parseURL } from 'ufo'
 
 definePageMeta({
   middleware: async (to) => {
+    // don't intercept any requests to public assets: sw.js and webmanifest requests will fail
+    if (isElkPublicAsset(to.path)) {
+      return (_to, _from, next) => {
+        next()
+      }
+    }
+
     const permalink = Array.isArray(to.params.permalink)
       ? to.params.permalink.join('/')
       : to.params.permalink

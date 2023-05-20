@@ -39,10 +39,10 @@ export function usePublish(options: {
           || isSending
           || (draft.attachments.length === 0 && !draft.params.status)
           || failedMessages.length > 0
-          || (draft.attachments.length > 0 && draft.params.poll)
-          || (draft.params.poll && draft.params.poll.options.length <= 1)
-          || (draft.params.poll && ![-1, draft.params.poll.options.length - 1].includes(draft.params.poll.options.findIndex(option => option.trim().length === 0)))
-          || (draft.params.poll && new Set(draft.params.poll.options).size !== draft.params.poll.options.length)
+          || (draft.attachments.length > 0 && draft.params.poll !== null && draft.params.poll !== undefined)
+          || (draft.params.poll !== null && draft.params.poll !== undefined && draft.params.poll.options.length <= 1)
+          || (draft.params.poll !== null && draft.params.poll !== undefined && ![-1, draft.params.poll.options.length - 1].includes(draft.params.poll.options.findIndex(option => option.trim().length === 0)))
+          || (draft.params.poll !== null && draft.params.poll !== undefined && new Set(draft.params.poll.options).size !== draft.params.poll.options.length)
   })
 
   watch(() => draft, () => {

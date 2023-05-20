@@ -64,27 +64,17 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
         purpose: 'maskable',
       },
     ],
-    screenshots: [/* {
-      src: 'screenshots/dark-1.jpg',
-      sizes: '3444x2160',
-      type: 'image/jpeg',
+    screenshots: [{
+      src: 'screenshots/dark-1.webp',
+      sizes: '3840x2400',
+      type: 'image/webp',
       label: 'Screenshot of Elk running in dark mode',
     }, {
-      src: 'screenshots/light-1.jpg',
-      sizes: '3444x2160',
-      type: 'image/jpeg',
+      src: 'screenshots/light-1.webp',
+      sizes: '3840x2400',
+      type: 'image/webp',
       label: 'Screenshot of Elk running in light mode',
-    }, */{
-        src: 'screenshots/dark-1.webp',
-        sizes: '3438x2160',
-        type: 'image/webp',
-        label: 'Screenshot of Elk running in dark mode',
-      }, {
-        src: 'screenshots/light-1.webp',
-        sizes: '3444x2160',
-        type: 'image/webp',
-        label: 'Screenshot of Elk running in light mode',
-      }],
+    }],
     share_target: {
       action: '/web-share-target',
       method: 'POST',

@@ -323,6 +323,10 @@
     "dismiss": "Dismiss",
     "install": "Install",
     "install_title": "Install Elk",
+    "screenshots": {
+      "dark": "Screenshot of Elk running in dark mode",
+      "light": "Screenshot of Elk running in light mode"
+    },
     "title": "New Elk update available!",
     "update": "Update",
     "update_available_short": "Update Elk",

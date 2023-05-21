@@ -1,4 +1,3 @@
-import { withoutProtocol } from 'ufo'
 import type { mastodon } from 'masto'
 import type { EffectScope, Ref } from 'vue'
 import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
@@ -45,14 +44,13 @@ function initializeUsers(): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>
 const users = process.server ? initializeUsers() as Ref<UserLogin[]> | RemovableRef<UserLogin[]> : await initializeUsers()
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
 const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
-export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
+export const instanceStorage = useLocalStorage<Record<string, mastodon.v2.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 
-export type ElkInstance = Partial<mastodon.v1.Instance> & {
-  uri: string
+export type ElkInstance = Partial<Omit<mastodon.v2.Instance, 'domain'>> & Pick<mastodon.v2.Instance, 'domain'> & {
   /** support GoToSocial */
   accountDomain?: string | null
 }
-export function getInstanceCache(server: string): mastodon.v1.Instance | undefined {
+export function getInstanceCache(server: string): mastodon.v2.Instance | undefined {
   return instanceStorage.value[server]
 }
 
@@ -70,7 +68,7 @@ const publicInstance = ref<ElkInstance | null>(null)
 export const currentInstance = computed<null | ElkInstance>(() => currentUser.value ? instanceStorage.value[currentUser.value.server] ?? null : publicInstance.value)
 
 export function getInstanceDomain(instance: ElkInstance) {
-  return instance.accountDomain || withoutProtocol(instance.uri)
+  return instance.accountDomain ?? instance.domain
 }
 
 export const publicServer = ref('')

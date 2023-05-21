@@ -311,6 +311,10 @@
     "dismiss": "Descartar",
     "install": "Instalar",
     "install_title": "Instalar Elk",
+    "screenshots": {
+      "dark": "Captura de pantalla de Elk ejecutándose en modo oscuro",
+      "light": "Captura de pantalla de Elk ejecutándose en modo claro"
+    },
     "title": "Nueva versión de Elk disponible",
     "update": "Actualizar",
     "update_available_short": "Actualiza Elk",

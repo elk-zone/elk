@@ -314,7 +314,7 @@
     "disallow_multiple": "Disallow multiple choice",
     "expiration": "Poll expiration",
     "hide_votes": "Hide vote totals until the end",
-    "option_placeholder": "Poll choice",
+    "option_placeholder": "Poll choice {current}/{max}",
     "remove_option": "Remove choice",
     "settings": "Poll options",
     "show_votes": "Always show vote totals"

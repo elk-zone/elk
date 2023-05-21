@@ -40,9 +40,16 @@ export function usePublish(options: {
           || (draft.attachments.length === 0 && !draft.params.status)
           || failedMessages.length > 0
           || (draft.attachments.length > 0 && draft.params.poll !== null && draft.params.poll !== undefined)
-          || (draft.params.poll !== null && draft.params.poll !== undefined && draft.params.poll.options.length <= 1)
-          || (draft.params.poll !== null && draft.params.poll !== undefined && ![-1, draft.params.poll.options.length - 1].includes(draft.params.poll.options.findIndex(option => option.trim().length === 0)))
-          || (draft.params.poll !== null && draft.params.poll !== undefined && new Set(draft.params.poll.options).size !== draft.params.poll.options.length)
+          || ((draft.params.poll !== null && draft.params.poll !== undefined)
+              && (
+                draft.params.poll.options.length <= 1
+                || (![-1, draft.params.poll.options.length - 1].includes(draft.params.poll.options.findIndex(option => option.trim().length === 0)))
+                || (new Set(draft.params.poll.options).size !== draft.params.poll.options.length)
+                || (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined
+                    && draft.params.poll.options.find(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption) !== undefined
+                )
+              )
+          )
   })
 
   watch(() => draft, () => {

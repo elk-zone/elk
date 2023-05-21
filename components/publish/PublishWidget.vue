@@ -63,14 +63,25 @@ const { editor } = useTiptap({
   onPaste: handlePaste,
 })
 
+function trimPollOptions() {
+  const indexLastNonEmpty = draft.params.poll!.options.findLastIndex(option => option.trim().length > 0)
+  const trimmedOptions = draft.params.poll!.options.slice(0, indexLastNonEmpty + 1)
+
+  if (currentInstance.value?.configuration
+      && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions)
+    draft.params.poll!.options = trimmedOptions
+  else
+    draft.params.poll!.options = [...trimmedOptions, '']
+}
+
 function editPollOptionDraft(event: Event, index: number) {
   draft.params.poll!.options[index] = (event.target as HTMLInputElement).value
-  const indexLastNonEmpty = draft.params.poll!.options.findLastIndex(option => option.trim().length > 0)
-  draft.params.poll!.options = [...draft.params.poll!.options.slice(0, indexLastNonEmpty + 1), '']
+  trimPollOptions()
 }
 
 function deletePollOption(index: number) {
   draft.params.poll!.options.splice(index, 1)
+  trimPollOptions()
 }
 
 const expiresInOptions = [
@@ -326,18 +337,26 @@ onDeactivated(() => {
               border="~ base" flex-1 h10 pe-4 rounded-2 w-full flex="~ row"
               items-center relative focus-within:box-shadow-outline gap-3
               px-4 py-2
-              :placeholder="$t('polls.option_placeholder')"
+              :placeholder="$t('polls.option_placeholder', { current: index + 1, max: currentInstance?.configuration?.polls.maxOptions })"
+              class="option-input"
               @input="editPollOptionDraft($event, index)"
             >
-            <CommonTooltip placement="top" :content="$t('polls.remove_option')">
+            <CommonTooltip placement="top" :content="$t('polls.remove_option')" class="delete-button">
               <button
                 btn-action-icon class="hover:bg-red/75"
-                :disabled="index === draft.params.poll!.options.length - 1"
+                :disabled="index === draft.params.poll!.options.length - 1 && (index + 1 !== currentInstance?.configuration?.polls.maxOptions || draft.params.poll!.options[index].length === 0)"
                 @click.prevent="deletePollOption(index)"
               >
                 <div i-ri:delete-bin-line />
               </button>
             </CommonTooltip>
+            <span
+              v-if="currentInstance?.configuration?.polls.maxCharactersPerOption"
+              class="char-limit-radial"
+              aspect-ratio-1
+              h-10
+              :style="{ background: `radial-gradient(closest-side, rgba(var(--rgb-bg-base)) 79%, transparent 80% 100%), conic-gradient(${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption > 1 ? 'var(--c-danger)' : 'var(--c-primary)'} ${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption * 100}%, var(--c-primary-fade) 0)` }"
+            >{{ draft.params.poll!.options[index].length }}</span>
           </div>
         </form>
         <div
@@ -487,5 +506,19 @@ onDeactivated(() => {
   .publish-button[aria-disabled=true]:hover {
     background-color: var(--c-bg-btn-disabled);
     color: var(--c-text-btn-disabled);
+  }
+  .option-input:focus + .delete-button {
+    display: none;
+  }
+
+  .option-input:not(:focus) + .delete-button + .char-limit-radial {
+    display: none;
+  }
+
+  .char-limit-radial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
   }
 </style>

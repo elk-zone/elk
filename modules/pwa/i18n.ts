@@ -23,23 +23,38 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
   const defaultShortcuts: ManifestOptions['shortcuts'] = [{
     name: nav.home,
     url: '/home',
-    icons: [{ src: 'shortcuts/home.png', sizes: '192x192', type: 'image/png' }],
+    icons: [
+      { src: 'shortcuts/home-96x96.png', sizes: '96x96', type: 'image/png' },
+      { src: 'shortcuts/home.png', sizes: '192x192', type: 'image/png' },
+    ],
   }, {
     name: nav.local,
     url: '/',
-    icons: [{ src: 'shortcuts/local.png', sizes: '192x192', type: 'image/png' }],
+    icons: [
+      { src: 'shortcuts/local-96x96.png', sizes: '96x96', type: 'image/png' },
+      { src: 'shortcuts/local.png', sizes: '192x192', type: 'image/png' },
+    ],
   }, {
     name: nav.notifications,
     url: '/notifications',
-    icons: [{ src: 'shortcuts/notifications.png', sizes: '192x192', type: 'image/png' }],
+    icons: [
+      { src: 'shortcuts/notifications-96x96.png', sizes: '96x96', type: 'image/png' },
+      { src: 'shortcuts/notifications.png', sizes: '192x192', type: 'image/png' },
+    ],
   }, {
     name: action.compose,
     url: '/compose',
-    icons: [{ src: 'shortcuts/compose.png', sizes: '192x192', type: 'image/png' }],
+    icons: [
+      { src: 'shortcuts/compose-96x96.png', sizes: '96x96', type: 'image/png' },
+      { src: 'shortcuts/compose.png', sizes: '192x192', type: 'image/png' },
+    ],
   }, {
     name: nav.settings,
     url: '/settings',
-    icons: [{ src: 'shortcuts/settings.png', sizes: '192x192', type: 'image/png' }],
+    icons: [
+      { src: 'shortcuts/settings-96x96.png', sizes: '96x96', type: 'image/png' },
+      { src: 'shortcuts/settings.png', sizes: '192x192', type: 'image/png' },
+    ],
   }]
 
   const defaultScreenshots: ManifestOptions['screenshots'] = [{

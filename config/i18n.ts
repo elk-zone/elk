@@ -216,7 +216,7 @@ const locales: LocaleObjectData[] = [
   {
     code: 'vi-VN',
     file: 'vi-VN.json',
-    name: 'Vietnamese',
+    name: 'Tiếng Việt',
   },
 ]
 

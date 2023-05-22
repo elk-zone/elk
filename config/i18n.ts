@@ -213,6 +213,11 @@ const locales: LocaleObjectData[] = [
     file: 'tl-PH.json',
     name: 'Tagalog',
   },
+  {
+    code: 'vi-VN',
+    file: 'vi-VN.json',
+    name: 'Tiếng Việt',
+  },
 ]
 
 function buildLocales() {

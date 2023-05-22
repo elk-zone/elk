@@ -324,8 +324,8 @@
     "install": "Cài đặt",
     "install_title": "Cài đặt Elk",
     "screenshots": {
-    "dark": "Ảnh chụp Elk chế độ tối",
-    "light": "Ảnh chụp Elk chế độ sáng"
+      "dark": "Ảnh chụp Elk chế độ tối",
+      "light": "Ảnh chụp Elk chế độ sáng"
     },
     "title": "Có bản cập nhật Elk mới!",
     "update": "Cập nhật",

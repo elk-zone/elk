@@ -245,8 +245,8 @@ export default defineNuxtConfig({
   },
   colorMode: {
     classSuffix: '',
-    preference: 'dim', // default value of $colorMode.preference
-    fallback: 'dim', // fallback value if not system preference found
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'light', // fallback value if not system preference found
   },
   i18n,
   pwa,

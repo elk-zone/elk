@@ -268,7 +268,7 @@
     "bookmarks": "Itens Salvos",
     "built_at": "Produzido {0}",
     "compose": "Compor",
-    "conversations": "Conversações",
+    "conversations": "Conversas",
     "explore": "Explorar",
     "favourites": "Favoritos",
     "federated": "Federada",
@@ -307,10 +307,26 @@
     "replying": "Respondendo",
     "the_thread": "a conversa"
   },
+  "polls": {
+    "allow_multiple": "Permitir múltiplas escolhas",
+    "cancel": "Cancelar",
+    "create": "Criar sondagem",
+    "disallow_multiple": "Não permitir múltiplas escolhas",
+    "expiration": "Validade da sondagem",
+    "hide_votes": "Esconder o total de votos até ao término da sondagem",
+    "option_placeholder": "Opção da sondagem {current}/{max}",
+    "remove_option": "Remover opção",
+    "settings": "Opções da sondagem",
+    "show_votes": "Mostrar sempre o total de votos"
+  },
   "pwa": {
     "dismiss": "Dispensar",
     "install": "Instalar",
     "install_title": "Instalar Elk",
+    "screenshots": {
+      "dark": "Captura de ecrã do Elk em modo escuro",
+      "light": "Captura de ecrã do Elk em modo claro"
+    },
     "title": "Nova atualização do Elk disponível!",
     "update": "Atualizar",
     "update_available_short": "Atualizar Elk",

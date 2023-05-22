@@ -34,6 +34,8 @@ export function usePublish(options: {
 
   const shouldExpanded = $computed(() => expanded || isExpanded || !isEmpty)
   const isPublishDisabled = $computed(() => {
+    const firstEmptyInputIndex = draft.params.poll?.options.findIndex(option => option.trim().length === 0)
+
     return isEmpty
           || isUploading
           || isSending
@@ -42,8 +44,10 @@ export function usePublish(options: {
           || (draft.attachments.length > 0 && draft.params.poll !== null && draft.params.poll !== undefined)
           || ((draft.params.poll !== null && draft.params.poll !== undefined)
               && (
-                draft.params.poll.options.length <= 1
-                || (![-1, draft.params.poll.options.length - 1].includes(draft.params.poll.options.findIndex(option => option.trim().length === 0)))
+                (firstEmptyInputIndex !== -1
+                 && firstEmptyInputIndex !== draft.params.poll.options.length - 1
+                )
+                || draft.params.poll.options.findLastIndex(option => option.trim().length > 0) + 1 < 2
                 || (new Set(draft.params.poll.options).size !== draft.params.poll.options.length)
                 || (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined
                     && draft.params.poll.options.find(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption) !== undefined
@@ -65,13 +69,29 @@ export function usePublish(options: {
     if (draft.mentions?.length)
       content = `${draft.mentions.map(i => `@${i}`).join(' ')} ${content}`
 
+    let poll
+
+    if (draft.params.poll) {
+      let options = draft.params.poll.options
+
+      if (currentInstance.value?.configuration !== undefined
+        && (
+          options.length < currentInstance.value.configuration.polls.maxOptions
+          || options[options.length - 1].trim().length === 0
+        )
+      )
+        options = options.slice(0, options.length - 1)
+
+      poll = { ...draft.params.poll, options }
+    }
+
     const payload = {
       ...draft.params,
       spoilerText: publishSpoilerText,
       status: content,
       mediaIds: draft.attachments.map(a => a.id),
       language: draft.params.language || preferredLanguage,
-      poll: draft.params.poll ? { ...draft.params.poll, options: draft.params.poll.options.slice(0, draft.params.poll.options.length - 1) } : undefined,
+      poll,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.v1.CreateStatusParams
 

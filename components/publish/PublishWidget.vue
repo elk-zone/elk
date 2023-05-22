@@ -3,6 +3,7 @@ import { EditorContent } from '@tiptap/vue-3'
 import stringLength from 'string-length'
 import type { mastodon } from 'masto'
 import type { Draft } from '~/types'
+import { urlRegex } from '~/utils/url-regex'
 
 const {
   draftKey,
@@ -110,22 +111,15 @@ const expiresInOptions = [
 const expiresInDefaultOptionIndex = 2
 
 const characterCount = $computed(() => {
-  const text = htmlToText(editor.value?.getHTML() || '')
+  // use twitter-text library
+  // taken from https://github.com/mastodon/mastodon/blob/af578e/app/javascript/mastodon/features/compose/util/counter.js
+  const urlPlaceholder = '$2xxxxxxxxxxxxxxxxxxxxxxx'
+  const text = htmlToText(editor.value?.getHTML() || '').replace(urlRegex, urlPlaceholder)
 
   let length = stringLength(text)
 
-  // taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
-  const linkRegex = /(https?:\/\/(www\.)?|xmpp:)\S+/g
-
   // taken from https://github.com/mastodon/mastodon/blob/af578e/app/javascript/mastodon/features/compose/util/counter.js
   const countableMentionRegex = /(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig
-
-  // maximum of 23 chars per link
-  // https://github.com/elk-zone/elk/issues/1651
-  const maxLength = 23
-
-  for (const [fullMatch] of text.matchAll(linkRegex))
-    length -= fullMatch.length - Math.min(maxLength, fullMatch.length)
 
   for (const [fullMatch, before, _handle, username] of text.matchAll(countableMentionRegex))
     length -= fullMatch.length - (before + username).length - 1 // - 1 for the @

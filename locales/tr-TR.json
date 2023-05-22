@@ -13,7 +13,7 @@
     "blocked_users": "Engellenen kullanıcılar",
     "blocking": "Engelli",
     "bot": "BOT",
-    "favourites": "Favoriles",
+    "favourites": "Favoriler",
     "follow": "Takip et",
     "follow_back": "Geri takip et",
     "follow_requested": "İstek gönderildi",
@@ -28,14 +28,20 @@
     "muted_users": "Susturulmuş kullanıcılar",
     "muting": "Susturulmuş",
     "mutuals": "Karşılıklı takip",
+    "notifications_on_post_disable": "{username} gönderi yaptığında bildirim göndermeyi durdur.",
+    "notifications_on_post_enable": "{username} gönderi yaptığında bildirim gönder.",
     "pinned": "Sabitlendi",
     "posts": "Gönderiler",
     "posts_count": "{0} Gönderi",
     "profile_description": "{0} profil başlığı",
+    "profile_personal_note": "Kişisel not",
     "profile_unavailable": "Profil mevcut değil",
+    "request_follow": "Takip isteği gönder",
     "unblock": "Engeli kaldır",
     "unfollow": "Takibi bırak",
-    "unmute": "Susturulmayı kaldır"
+    "unmute": "Susturulmayı kaldır",
+    "view_other_followers": "Diğer örneklerden takipçiler görüntülenmeyebilir.",
+    "view_other_following": "Diğer örneklerden takip edilenler görüntülenmeyebilir."
   },
   "action": {
     "apply": "Uygula",
@@ -44,6 +50,7 @@
     "boost": "Boost",
     "boost_count": "{0}",
     "boosted": "Boost edildi",
+    "clear_publish_failed": "Yayınlama hatalarını temizle",
     "clear_upload_failed": "Dosya yükleme hatalarını temizle",
     "close": "Kapat",
     "compose": "Oluştur",
@@ -56,13 +63,14 @@
     "more": "Daha fazla",
     "next": "Sonraki",
     "prev": "Önceki",
-    "publish": "Yayımla",
+    "publish": "Yayınla",
     "reply": "Cevap ver",
     "reply_count": "{0}",
     "reset": "Sıfırla",
     "save": "Kaydet",
     "save_changes": "Değişikleri kaydet",
     "sign_in": "Giriş yap",
+    "sign_in_to": "{0}'da oturum açın",
     "switch_account": "Hesap değiştir",
     "vote": "Oy ver"
   },
@@ -88,7 +96,10 @@
   "common": {
     "end_of_list": "Listenin sonu",
     "error": "HATA",
+    "fetching": "Yükleniyor...",
     "in": "içinde",
+    "no_bookmarks": "Henüz hiç yer imi eklenmedi",
+    "no_favourites": "Henüz beğenilen gönderi yok",
     "not_found": "404 Bulunamadı",
     "offline_desc": "Çevrimdışısınız gibi görünüyor. Lütfen internet bağlantınızı kontrol edin."
   },
@@ -97,18 +108,55 @@
     "drafts": "Taslaklar ({v})"
   },
   "confirm": {
+    "block_account": {
+      "cancel": "İptal et",
+      "confirm": "Engelle",
+      "title": "{0}'i engellemek istediğinizden emin misiniz?"
+    },
+    "block_domain": {
+      "cancel": "İptal et",
+      "confirm": "Engelle",
+      "title": "{0}'i engellemek istediğinizden emin misiniz?"
+    },
     "common": {
       "cancel": "Hayır",
       "confirm": "Evet"
+    },
+    "delete_list": {
+      "cancel": "İptal et",
+      "confirm": "Sil",
+      "title": "\"{0}\" listesini silmek istediğinizden emin misiniz?"
     },
     "delete_posts": {
       "cancel": "İptal et",
       "confirm": "Sil",
       "title": "Bu gönderiyi silmek istediğinizden emin misiniz?"
+    },
+    "mute_account": {
+      "cancel": "İptal et",
+      "confirm": "Sessize al",
+      "title": "{0} sessize almak istediğinizden emin misiniz?"
+    },
+    "show_reblogs": {
+      "cancel": "İptal et",
+      "confirm": "Göster",
+      "title": "{0} tarafından yapılan desteklemeleri göstermek istediğinizden emin misiniz?"
+    },
+    "unfollow": {
+      "cancel": "İptal et",
+      "confirm": "Takibi bırak",
+      "title": "Takibi bırakmak istediğinizden emin misiniz?"
     }
   },
   "conversation": {
     "with": "ile"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "{0} Satır",
+      "open": "Aç",
+      "snippet_from": "{0}'dan kod bloğu"
+    }
   },
   "error": {
     "account_not_found": "Hesap {0} bulunamadı",
@@ -119,6 +167,12 @@
     "unsupported_file_format": "Desteklenmeyen dosya biçimi"
   },
   "help": {
+    "build_preview": {
+      "desc1": "Şu anda Elk'in topluluktan bir önizleme sürümünü görüntülüyorsunuz - {0}.",
+      "desc2": "Bunlar incelenmemiş veya hatta zararlı değişiklikler içerebilir.",
+      "desc3": "Gerçek hesabınızla giriş yapmayın",
+      "title": "Dağıtımı önizleyin"
+    },
     "desc_highlight": "Orada burada bir kaç hata ve eksik özellik bekleyin.",
     "desc_para1": "Elk'i, bizim çalışması devam eden Mastodon web istemcimizi, denemedeki ilginiz için teşekkürler!",
     "desc_para2": "Zaman içinde geliştirmek ve iyileştirmek için çok çalışıyoruz.",
@@ -126,15 +180,58 @@
     "desc_para4": "Elk açık kaynaklıdır. Test etmek, geri dönüş vermek veya katkıda bulunmak isterseniz,",
     "desc_para5": "GitHub'da bize ulaşın",
     "desc_para6": "ve dahil olun.",
+    "footer_team": "Elk Takımı",
     "title": "Elk ön izlemede!"
   },
   "language": {
     "search": "Ara"
   },
+  "list": {
+    "add_account": "Listeye hesap ekleyin",
+    "cancel_edit": "Düzenlemeyi iptal et",
+    "clear_error": "Hata temizle",
+    "create": "Oluştur",
+    "delete": "Bu listeyi sil",
+    "delete_error": "Listeyi silerken bir hata oluştu",
+    "edit": "Listeyi düzenle",
+    "edit_error": "Listeyi güncellerken bir hata oluştu",
+    "error": "Listeyi oluştururken bir hata oluştu",
+    "error_prefix": "Hata: ",
+    "list_title_placeholder": "Liste başlığı",
+    "modify_account": "Hesapla listeleri düzenle",
+    "remove_account": "Listeden hesabı kaldır",
+    "save": "Değişiklikleri kaydet"
+  },
+  "magic_keys": {
+    "dialog_header": "Klavye kısayolları",
+    "groups": {
+      "actions": {
+        "boost": "Boost",
+        "command_mode": "Komut modu",
+        "compose": "Oluştur",
+        "favourite": "Favori",
+        "title": "Eylemler"
+      },
+      "media": {
+        "title": "Medya"
+      },
+      "navigation": {
+        "go_to_home": "Anasayfa",
+        "go_to_notifications": "Bildirimler",
+        "next_status": "Sonraki durum",
+        "previous_status": "Önceki durum",
+        "shortcut_help": "Kısayol yardımı",
+        "title": "Navigasyon"
+      }
+    },
+    "sequence_then": "ve"
+  },
   "menu": {
+    "add_personal_note": "{0} için kişisel not ekle",
     "block_account": "Engele {0}",
     "block_domain": "Alan adı {0} engelle",
     "copy_link_to_post": "Bu gönderinin linkini kopyala",
+    "copy_original_link_to_post": "Bu gönderinin orijinal linkini kopyala",
     "delete": "Sil",
     "delete_and_redraft": "Sil & yeniden taslak yap",
     "direct_message_account": "{0} özel mesaj gönder",
@@ -145,6 +242,7 @@
     "mute_conversation": "Bu gönderiyi sustur",
     "open_in_original_site": "Orijinal sitede aç",
     "pin_on_profile": "Profilde sabitle",
+    "remove_personal_note": "{0} için kişisel notu kaldır",
     "share_post": "Bu gönderiyi paylaş",
     "show_favourited_and_boosted_by": "Favoriye ekleyenleri ve boost edenleri göster",
     "show_reblogs": "{0} boostlarını göster",
@@ -160,20 +258,27 @@
     "unmute_conversation": "Gönderinin sesini aç",
     "unpin_on_profile": "Profildeki sabiti kaldır"
   },
+  "modals": {
+    "aria_label_close": "Kapat"
+  },
   "nav": {
     "back": "Geri git",
     "blocked_domains": "Engellenen alan adları",
     "blocked_users": "Engellenen kullanıcılar",
     "bookmarks": "Yer imleri",
     "built_at": "{0} derlendi",
+    "compose": "Oluştur",
     "conversations": "Konuşmalar",
     "explore": "Keşfet",
     "favourites": "Favoriler",
     "federated": "Federe",
     "home": "Ev",
+    "list": "List",
+    "lists": "Listeler",
     "local": "Yerel",
     "muted_users": "Susturulmuş kullanıcılar",
     "notifications": "Bildirimler",
+    "privacy": "Gizlilik",
     "profile": "Profil",
     "search": "Ara",
     "select_feature_flags": "Özelliklerin Durumunu Değiştir",
@@ -190,6 +295,7 @@
     "followed_you_count": "{0} kişi seni takip etti",
     "missing_type": "EKSİK notification.type:",
     "reblogged_post": "gönderini yeniden blogladı",
+    "reported": "{0} bildirildi {1}",
     "request_to_follow": "Takip isteği attı",
     "signed_up": "Kaydoldu",
     "update_status": "Gönderisini güncelledi"
@@ -203,6 +309,8 @@
   },
   "pwa": {
     "dismiss": "Görmezden gel",
+    "install": "Yükle",
+    "install_title": "Elk'i yükle",
     "title": "Yeni Elk güncellemesi mevcut!",
     "update": "Güncelle",
     "update_available_short": "Elk'i güncelle",
@@ -235,6 +343,7 @@
   },
   "settings": {
     "about": {
+      "built_at": "Kurulmuş",
       "label": "Hakkında",
       "meet_the_team": "Takım ile buluş",
       "sponsor_action": "Bize spponsor ol",
@@ -242,7 +351,8 @@
       "sponsors": "Sponsorlar",
       "sponsors_body_1": "Elk cömert sponsorluk ve şunların yardımı sayesinde mümkün oldu:",
       "sponsors_body_2": "Ve Elk takımına ve üyelerine sponsor olan tüm şirketler ve şahıslar.",
-      "sponsors_body_3": "Eğer uygulamadan hoşlandıysanız bize sponsor olmayı düşünün:"
+      "sponsors_body_3": "Eğer uygulamadan hoşlandıysanız bize sponsor olmayı düşünün:",
+      "version": "Versiyon"
     },
     "account_settings": {
       "description": "Mastodon UI'da hesap ayarlarını değiştir",
@@ -255,11 +365,20 @@
       "font_size": "Font Boyutu",
       "label": "Arayüz",
       "light_mode": "Aydınlık Mod",
-      "system_mode": "Sistem"
+      "system_mode": "Sistem",
+      "theme_color": "Tema Rengi"
     },
     "language": {
       "display_language": "Görünüm Dili",
-      "label": "Dil"
+      "label": "Dil",
+      "status": "Çeviri Durumu: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Ekle",
+        "choose_language": "Dil seçin",
+        "heading": "Diller",
+        "hide_specific": "Belirli dilleri gizle",
+        "remove": "Sil"
+      }
     },
     "notifications": {
       "label": "Bildirimler",
@@ -288,10 +407,14 @@
         "save_settings": "Ayarları kaydet",
         "subscription_error": {
           "clear_error": "Hatayı temizle",
+          "error_hint": "Sorunu çözmeye çalışmak için sık sorulan sorular listesine gidebilirsiniz: {0}.",
+          "invalid_vapid_key": "VAPID public anahtarı geçersiz görünüyor.",
           "permission_denied": "Erişim engellendi: tarayıcınızda bildirimleri etkinleştirin.",
+          "repo_link": "Elk'in GitHub'daki deposu",
           "request_error": "Abonelik talep edilirken bir hata oluştu, tekrar deneyin ve hata devam ederse lütfen sorunu Elk deposuna bildirin.",
           "title": "Anlık bildirimlere abone olunamadı",
-          "too_many_registrations": "Tarayıcı kısıtlamaları nedeniyle Elk, farklı sunuculardaki birden çok hesap için anlık bildirimler hizmetini kullanamaz. Başka bir hesaptaki anlık bildirim aboneliğinden çıkmalı ve tekrar denemelisiniz."
+          "too_many_registrations": "Tarayıcı kısıtlamaları nedeniyle Elk, farklı sunuculardaki birden çok hesap için anlık bildirimler hizmetini kullanamaz. Başka bir hesaptaki anlık bildirim aboneliğinden çıkmalı ve tekrar denemelisiniz.",
+          "vapid_not_supported": "Tarayıcınız Web Push Bildirimlerini destekliyor, ancak VAPID protokolünü uygulamıyor gibi görünüyor."
         },
         "title": "Anlık bildirim ayarları",
         "undo_settings": "Değişiklikleri geri al",
@@ -308,18 +431,35 @@
           "re_auth": "Görünüşe göre sunucunuz anlık bildirimleri desteklemiyor. Çıkış yapmayı deneyin ve tekrar giriş yapın, bu mesaj hala görünüyorsa sunucu yöneticinizle iletişime geçin."
         }
       },
-      "show_btn": "Bildirim ayarlarına git"
+      "show_btn": "Bildirim ayarlarına git",
+      "under_construction": "Yapım halinde"
     },
     "notifications_settings": "Bildirimler",
     "preferences": {
-      "github_cards": "GitHub Cards",
+      "enable_autoplay": "Otomatik oynatmayı etkinleştir",
+      "enable_data_saving": "Veri tasarrufunu etkinleştir",
+      "enable_data_saving_description": "Eklerin otomatik olarak yüklenmesini önleyerek veri kullanın.",
+      "enable_pinch_to_zoom": "Yakınlaştırmak için sıkıştırmayı etkinleştirin",
+      "github_cards": "GitHub Kartları",
+      "grayscale_mode": "Siyah beyaz modu",
+      "hide_account_hover_card": "Hesap üzerine gelindiğinde kartı gizle",
+      "hide_alt_indi_on_posts": "Gönderilerde alt göstergesini gizle",
       "hide_boost_count": "Boost sayısını gizle",
       "hide_favorite_count": "Favori sayısını gizle",
       "hide_follower_count": "Takipçi sayısını gizle",
-      "label": "Ayarlar",
+      "hide_news": "Haberleri gizle",
+      "hide_reply_count": "Yanıt sayısını gizle",
+      "hide_translation": "Çeviriyi gizle",
+      "hide_username_emojis": "Kullanıcı adı emojilerini gizle",
+      "hide_username_emojis_description": "Zaman çizelgelerindeki kullanıcı adlarından emojileri gizler. Emojiler profillerinde görünmeye devam edecek.      ",
+      "label": "Tercihler",
       "title": "Deneysel Özellikler",
+      "use_star_favorite_icon": "Yıldız favori ikonunu kullan",
       "user_picker": "Kullanıcı Seçici",
-      "virtual_scroll": "Görsel Kaydırma"
+      "virtual_scroll": "Görsel Kaydırma",
+      "wellbeing": "Esenlik",
+      "zen_mode": "Zen mode",
+      "zen_mode_description": "Fare imleci üzerlerinde olmadığı sürece kenarları gizleyin. Ayrıca zaman çizelgesinden bazı öğeleri gizleyin."
     },
     "profile": {
       "appearance": {
@@ -329,6 +469,8 @@
         "label": "Görünüm",
         "profile_metadata": "Profil üstverisi",
         "profile_metadata_desc": "Profilinizde bir tablo olarak görüntülenen en fazla {0} öğeye sahip olabilirsiniz.",
+        "profile_metadata_label": "Etiket",
+        "profile_metadata_value": "İçerik",
         "title": "Profili düzenle"
       },
       "featured_tags": {
@@ -344,17 +486,27 @@
       "label": "Giriş yapılan kullanıcılar"
     }
   },
+  "share-target": {
+    "description": "Elk, diğer uygulamalardan içerik paylaşabilmeniz için yapılandırılabilir, Elk'i cihazınıza veya bilgisayarınıza yükleyip oturum açmanız yeterlidir.",
+    "hint": "Elk ile içerik paylaşmak için Elk kurulu olmalı ve oturum açmış olmalısınız.",
+    "title": "Elk ile paylaş"
+  },
   "state": {
     "attachments_exceed_server_limit": "Ek sayısı gönderi başına sınırı aştı.",
     "attachments_limit_error": "Gönderi başına sınır aşıldı",
     "edited": "(Düzenlendi)",
     "editing": "Düzenleniyor",
     "loading": "Yükleniyor...",
-    "publishing": "Yayımlanıyor",
-    "upload_failed": "Yükleme başarısız",
+    "publish_failed": "Yayınlama başarısız oldu",
+    "publishing": "Yayınlanıyor",
+    "upload_failed": "Yükleme başarısız oldu",
     "uploading": "Yükleniyor..."
   },
   "status": {
+    "account": {
+      "suspended_message": "Bu durumun hesabı askıya alınmıştır.",
+      "suspended_show": "İçeriği yine de göster"
+    },
     "boosted_by": "Tarafından boostlandı:",
     "edited": "Düzenlendi {0}",
     "favourited_by": "Tarafından favorilendi:",
@@ -362,8 +514,10 @@
     "filter_removed_phrase": "Filtre tarafından silindi",
     "filter_show_anyway": "Yine de göster",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Açıklama",
-      "dismiss": "Görmezden gel"
+      "dismiss": "Görmezden gel",
+      "read": "{0} açıklamasını oku"
     },
     "poll": {
       "count": "{0} oy",
@@ -374,6 +528,7 @@
     "replying_to": "{0} cevap veriliyor",
     "show_full_thread": "Tüm konuyu göster",
     "someone": "biri",
+    "spoiler_media_hidden": "Medya gizlendi",
     "spoiler_show_less": "Daha az göster",
     "spoiler_show_more": "Daha çok göster",
     "thread": "Konu",
@@ -384,8 +539,10 @@
     "edited": "{0} düzenlendi"
   },
   "tab": {
+    "accounts": "Hesaplar",
     "for_you": "Senin için",
     "hashtags": "Etiketler",
+    "list": "List",
     "media": "Medya",
     "news": "Haberler",
     "notifications_all": "Hepsi",
@@ -442,14 +599,19 @@
     "add_content_warning": "İçerik uyarısı ekle",
     "add_emojis": "Emoji ekle",
     "add_media": "resim, video yada ses dosyası ekle",
-    "add_publishable_content": "Yayımlanacak içerik ekle",
+    "add_publishable_content": "Yayınlanacak içerik ekle",
     "change_content_visibility": "İçerik görünürlüğünü değiştir",
     "change_language": "Dil değiştir",
     "emoji": "Emoji",
     "explore_links_intro": "Bu haberler, şu anda merkezi olmayan ağın bu ve diğer sunucularındaki insanlar tarafından konuşuluyor.",
     "explore_posts_intro": "Bu gönderiler, şu anda merkezi olmayan ağın bu ve diğer sunucularındaki insanlar tarafından ilgi görüyor.",
     "explore_tags_intro": "Bu etiketler, şu anda merkezi olmayan ağın bu ve diğer sunucularındaki insanlar tarafından ilgi görüyor.",
-    "toggle_code_block": "Kod bloğu durumunu değiştir"
+    "open_editor_tools": "Editör araçları",
+    "pick_an_icon": "İkon seç",
+    "publish_failed": "Gönderileri yeniden yayınlamak için başarısız olan iletileri düzenleyicinin üst kısmından kapatın",
+    "toggle_bold": "Kalın değiştir",
+    "toggle_code_block": "Kod bloğu durumunu değiştir",
+    "toggle_italic": "İtalik değiştir"
   },
   "user": {
     "add_existing": "Var olan bir hesap ekle",
@@ -457,6 +619,7 @@
     "sign_in_desc": "Profilleri veya hashtag'leri takip etmek, favorilere eklemek, gönderileri paylaşmak ve yanıtlamak veya farklı bir sunucudaki hesabınızdan etkileşim kurmak için oturum açın.",
     "sign_in_notice_title": "{0} herkese açık veri görüntüleniyor",
     "sign_out_account": "{0} çıkış yap",
+    "single_instance_sign_in_desc": "Profilleri veya hashtag'leri takip etmek, favorilere eklemek, gönderileri paylaşmak ve yanıtlamak için oturum açın.",
     "tip_no_account": "Eğer bir Mastodon hesabınız yoksa, {0}.",
     "tip_register_account": "sunucunuzu seçin ve kaydolun"
   },

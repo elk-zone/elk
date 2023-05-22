@@ -1,0 +1,652 @@
+{
+  "a11y": {
+    "loading_page": "Đang tải, đợi xíu",
+    "loading_titled_page": "Đang tải {0} trang, đợi xíu",
+    "locale_changed": "Đã đổi ngôn ngữ thành {0}",
+    "locale_changing": "Đang đổi ngôn ngữ, đợi xíu",
+    "route_loaded": "Đã tải {0} trang"
+  },
+  "account": {
+    "avatar_description": "Ảnh đại diện {0}",
+    "blocked_by": "Bạn bị người này chặn.",
+    "blocked_domains": "Máy chủ đã chặn",
+    "blocked_users": "Người đã chặn",
+    "blocking": "Đã chặn",
+    "bot": "BOT",
+    "favourites": "Lượt thích",
+    "follow": "Theo dõi",
+    "follow_back": "Theo dõi lại",
+    "follow_requested": "Đã yêu cầu",
+    "followers": "Người theo dõi",
+    "followers_count": "{0} Người theo dõi|{0} Người theo dõi|{0} Người theo dõi",
+    "following": "Đang theo dõi",
+    "following_count": "{0} Đang theo dõi",
+    "follows_you": "Đang theo dõi bạn",
+    "go_to_profile": "Xem hồ sơ",
+    "joined": "Đã tham gia",
+    "moved_title": "cho hay địa chỉ mới của họ bây giờ là:",
+    "muted_users": "Người đã ẩn",
+    "muting": "Đã ẩn",
+    "mutuals": "Theo dõi nhau",
+    "notifications_on_post_disable": "Ngừng thông báo khi {username} đăng tút mới",
+    "notifications_on_post_enable": "Thông báo khi {username} đăng tút mới",
+    "pinned": "Đã ghim",
+    "posts": "Tút",
+    "posts_count": "{0} Tút|{0} Tút|{0} Tút",
+    "profile_description": "Ảnh bìa của {0}",
+    "profile_personal_note": "Ghi chú về người này",
+    "profile_unavailable": "Hồ sơ không khả dụng",
+    "request_follow": "Yêu cầu theo dõi",
+    "unblock": "Bỏ chặn",
+    "unfollow": "Bỏ theo dõi",
+    "unmute": "Bỏ ẩn",
+    "view_other_followers": "Người theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
+    "view_other_following": "Người đang theo dõi từ các máy chủ khác có thể không hiển thị đủ."
+  },
+  "action": {
+    "apply": "Áp dụng",
+    "bookmark": "Lưu",
+    "bookmarked": "Đã lưu",
+    "boost": "Đăng lại",
+    "boost_count": "{0}",
+    "boosted": "Đã đăng lại",
+    "clear_publish_failed": "Xảy ra lỗi đăng tút",
+    "clear_upload_failed": "Xảy ra lỗi khi xóa file",
+    "close": "Đóng",
+    "compose": "Viết tút",
+    "confirm": "Xác nhận",
+    "edit": "Sửa",
+    "enter_app": "Mở App",
+    "favourite": "Thích",
+    "favourite_count": "{0}",
+    "favourited": "Đã thích",
+    "more": "Xem thêm",
+    "next": "Kế tiếp",
+    "prev": "Trước đó",
+    "publish": "Đăng",
+    "reply": "Trả lời",
+    "reply_count": "{0}",
+    "reset": "Đặt lại",
+    "save": "Lưu",
+    "save_changes": "Lưu mọi thay đổi",
+    "sign_in": "Đăng nhập",
+    "sign_in_to": "Đăng nhập {0}",
+    "switch_account": "Chuyển sang tài khoản khác",
+    "vote": "Bình chọn"
+  },
+  "app_desc_short": "Một ứng dụng web Mastodon nhanh nhẹn",
+  "app_logo": "Elk Logo",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Mô tả",
+    "remove_label": "Xóa file đính kèm"
+  },
+  "command": {
+    "activate": "Kích hoạt",
+    "complete": "Hoàn thành",
+    "compose_desc": "Viết tút mới",
+    "n-people-in-the-past-n-days": "{0} người trong {1} ngày gần đây",
+    "select_lang": "Chọn ngôn ngữ",
+    "sign_in_desc": "Thêm một tài khoản khác",
+    "switch_account": "Chuyển sang {0}",
+    "switch_account_desc": "Chuyển sang tài khoản khác",
+    "toggle_dark_mode": "Đổi chủ đề Tối",
+    "toggle_zen_mode": "Đổi chế độ Tập Trung"
+  },
+  "common": {
+    "end_of_list": "Hết danh sách",
+    "error": "LỖI",
+    "fetching": "Đang nạp dữ liệu...",
+    "in": "trong",
+    "no_bookmarks": "Chưa lưu tút nào",
+    "no_favourites": "Chưa thích tút nào",
+    "not_found": "Hông tìm thấy gì hết",
+    "offline_desc": "Có vẻ như rớt mạng. Hãy kiểm tra lại kết nối."
+  },
+  "compose": {
+    "draft_title": "Tút nháp {0}",
+    "drafts": "Tút nháp ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "Hủy bỏ",
+      "confirm": "Chặn",
+      "title": "Bạn có chắc muốn chặn {0}？"
+    },
+    "block_domain": {
+      "cancel": "Hủy bỏ",
+      "confirm": "Chặn",
+      "title": "Bạn có chắc muốn chặn {0}？"
+    },
+    "common": {
+      "cancel": "Không",
+      "confirm": "Đồng ý"
+    },
+    "delete_list": {
+      "cancel": "Hủy bỏ",
+      "confirm": "Xóa",
+      "title": "Bạn có chắc muốn xóa \"{0}\"?"
+    },
+    "delete_posts": {
+      "cancel": "Hủy bỏ",
+      "confirm": "Xóa",
+      "title": "Bạn có chắc muốn xóa tút này?"
+    },
+    "mute_account": {
+      "cancel": "Hủy bỏ",
+      "confirm": "Ẩn",
+      "title": "Bạn có chắc muốn ẩn {0}？"
+    },
+    "show_reblogs": {
+      "cancel": "Hủy bỏ",
+      "confirm": "Hiện",
+      "title": "Bạn có chắc muốn hiện lượt đăng lại từ {0}？"
+    },
+    "unfollow": {
+      "cancel": "Hủy bỏ",
+      "confirm": "Bỏ theo dõi",
+      "title": "Bạn có chắc muốn bỏ theo dõi?"
+    }
+  },
+  "conversation": {
+    "with": "với"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Dòng {0}",
+      "open": "Mở",
+      "snippet_from": "Snippet từ {0}"
+    }
+  },
+  "error": {
+    "account_not_found": "Không tìm thấy {0}",
+    "explore-list-empty": "Chưa có xu hướng. Hãy quay lại sau!",
+    "file_size_cannot_exceed_n_mb": "Dung lượng file tối đa {0}MB",
+    "sign_in_error": "Không thể kết nối tới máy chủ.",
+    "status_not_found": "Không tìm thấy tút",
+    "unsupported_file_format": "Định dạng file không được hỗ trợ"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "Bạn đang dùng bản xem trước của Elk từ cộng đồng - {0}.",
+      "desc2": "Nó có thể chứa các thay đổi chưa được xem xét hoặc thậm chí độc hại.",
+      "desc3": "Đừng đăng nhập bằng tài khoản chính.",
+      "title": "Bản xem trước"
+    },
+    "desc_highlight": "Sẽ có một số lỗi và tính năng bị thiếu ở đây.",
+    "desc_para1": "Cảm ơn bạn đã quan tâm đến việc dùng thử Elk, ứng dụng web Mastodon đang được triển khai của chúng tôi!",
+    "desc_para2": "Chúng tôi đang nỗ lực phát triển và cải thiện nó.",
+    "desc_para3": "Để thúc đẩy sự phát triển, bạn có thể tài trợ cho Nhóm thông qua GitHub Sponsors. Chúng tôi hy vọng bạn thích Elk!",
+    "desc_para4": "Elk là Mã Nguồn Mở. Nếu bạn muốn thử nghiệm, đưa ra phản hồi hoặc đóng góp,",
+    "desc_para5": "liên hệ trên GitHub",
+    "desc_para6": "và tham gia.",
+    "footer_team": "Đội ngũ Elk",
+    "title": "Elk đang Thử Nghiệm!"
+  },
+  "language": {
+    "search": "Tìm kiếm"
+  },
+  "list": {
+    "add_account": "Thêm vào danh sách",
+    "cancel_edit": "Bỏ sửa đổi",
+    "clear_error": "Xóa lỗi",
+    "create": "Tạo",
+    "delete": "Xóa danh sách này",
+    "delete_error": "Xảy ra lỗi khi xóa danh sách",
+    "edit": "Sửa danh sách này",
+    "edit_error": "Xảy ra lỗi khi cập nhật danh sách",
+    "error": "Xảy ra lỗi khi tạo danh sách",
+    "error_prefix": "Lỗi: ",
+    "list_title_placeholder": "Tên danh sách",
+    "modify_account": "Sửa danh sách với người trong đó",
+    "remove_account": "Xóa người ra khỏi danh sách",
+    "save": "Lưu thay đổi"
+  },
+  "magic_keys": {
+    "dialog_header": "Phím tắt",
+    "groups": {
+      "actions": {
+        "boost": "Đăng lại",
+        "command_mode": "Chế độ dòng lệnh",
+        "compose": "Viết",
+        "favourite": "Thích",
+        "title": "Hành động"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Trang chính",
+        "go_to_notifications": "Thông báo",
+        "next_status": "Tút tiếp theo",
+        "previous_status": "Tút trước đó",
+        "shortcut_help": "Trợ giúp phím tắt",
+        "title": "Điều hướng"
+      }
+    },
+    "sequence_then": "sau"
+  },
+  "menu": {
+    "add_personal_note": "Thêm ghi chú về {0}",
+    "block_account": "Chặn {0}",
+    "block_domain": "Chặn máy chủ {0}",
+    "copy_link_to_post": "Sao chép liên kết tút này",
+    "copy_original_link_to_post": "Sao chép liên kết gốc tút này",
+    "delete": "Xóa",
+    "delete_and_redraft": "Xóa & viết lại",
+    "direct_message_account": "Nhắn riêng {0}",
+    "edit": "Sửa",
+    "hide_reblogs": "Ẩn đăng lại từ {0}",
+    "mention_account": "Nhắc đến {0}",
+    "mute_account": "Ẩn {0}",
+    "mute_conversation": "Ẩn tút này",
+    "open_in_original_site": "Mở ở máy chủ gốc",
+    "pin_on_profile": "Ghim lên đầu",
+    "remove_personal_note": "Xóa ghi chú về {0}",
+    "share_post": "Chia sẻ tút này",
+    "show_favourited_and_boosted_by": "Hiện lượt thích và đăng lại",
+    "show_reblogs": "Hiện đăng lại từ {0}",
+    "show_untranslated": "Hiện bản chưa dịch",
+    "toggle_theme": {
+      "dark": "Chế độ Tối",
+      "light": "Chế độ Sáng"
+    },
+    "translate_post": "Dịch tút",
+    "unblock_account": "Bỏ chặn {0}",
+    "unblock_domain": "Bỏ chặn máy chủ {0}",
+    "unmute_account": "Bỏ ẩn {0}",
+    "unmute_conversation": "Bỏ ẩn tút này",
+    "unpin_on_profile": "Bỏ ghim khỏi hồ sơ"
+  },
+  "modals": {
+    "aria_label_close": "Đóng"
+  },
+  "nav": {
+    "back": "Quay về",
+    "blocked_domains": "Máy chủ đã chặn",
+    "blocked_users": "Người đã chặn",
+    "bookmarks": "Tút đã lưu",
+    "built_at": "Bản dựng {0}",
+    "compose": "Viết tút",
+    "conversations": "Thảo luận",
+    "explore": "Khám phá",
+    "favourites": "Lượt thích",
+    "federated": "Liên hợp",
+    "home": "Bảng tin",
+    "list": "Danh sách",
+    "lists": "Danh sách",
+    "local": "Máy chủ",
+    "muted_users": "Người đã ẩn",
+    "notifications": "Thông báo",
+    "privacy": "Bảo mật",
+    "profile": "Hồ sơ",
+    "search": "Tìm kiếm",
+    "select_feature_flags": "Đổi Cờ Tính Năng",
+    "select_font_size": "Cỡ Chữ",
+    "select_language": "Ngôn Ngữ",
+    "settings": "Cài đặt",
+    "show_intro": "Giới thiệu",
+    "toggle_theme": "Đổi chủ đề",
+    "zen_mode": "Tập Trung"
+  },
+  "notification": {
+    "favourited_post": "thích tút của bạn",
+    "followed_you": "theo dõi bạn",
+    "followed_you_count": "{0} người theo dõi bạn|{0} người theo dõi bạn|{0} người theo dõi bạn",
+    "missing_type": "THIẾU notification.type:",
+    "reblogged_post": "đăng lại tút của bạn",
+    "reported": "{0} báo cáo {1}",
+    "request_to_follow": "yêu cầu theo dõi bạn",
+    "signed_up": "đăng ký",
+    "update_status": "sửa tút của họ"
+  },
+  "placeholder": {
+    "content_warning": "Viết cảnh báo của bạn ở đây",
+    "default_1": "Bạn đang nghĩ gì vậy?",
+    "reply_to_account": "Trả lời {0}",
+    "replying": "Trả lời",
+    "the_thread": "thảo luận"
+  },
+  "polls": {
+    "allow_multiple": "Cho phép chọn nhiều lựa chọn",
+    "cancel": "Hủy bỏ",
+    "create": "Tạo bình chọn",
+    "disallow_multiple": "Chỉ chọn một lựa chọn",
+    "expiration": "Thời hạn",
+    "hide_votes": "Ẩn số lượt bình chọn cho tới khi hết hạn",
+    "option_placeholder": "Lựa chọn {current}/{max}",
+    "remove_option": "Xóa lựa chọn",
+    "settings": "Tùy chọn",
+    "show_votes": "Hiện số lượt bình chọn"
+  },
+  "pwa": {
+    "dismiss": "Bỏ qua",
+    "install": "Cài đặt",
+    "install_title": "Cài đặt Elk",
+    "screenshots": {
+      "dark": "Ảnh chụp Elk chế độ tối",
+      "light": "Ảnh chụp Elk chế độ sáng"
+    },
+    "title": "Có bản cập nhật Elk mới!",
+    "update": "Cập nhật",
+    "update_available_short": "Cập nhật Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "Một ứng dụng web Mastodon nhanh nhẹn (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "Một ứng dụng web Mastodon nhanh nhẹn (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "Một ứng dụng web Mastodon nhanh nhẹn (preview)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description": "Một ứng dụng web Mastodon nhanh nhẹn",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "Tìm người hoặc hashtag",
+    "search_empty": "Không tìm thấy gì với cụm từ tìm kiếm này"
+  },
+  "settings": {
+    "about": {
+      "built_at": "Bản dựng",
+      "label": "Giới thiệu",
+      "meet_the_team": "Đội ngũ",
+      "sponsor_action": "Tài trợ",
+      "sponsor_action_desc": "Hỗ trợ đội ngũ phát triển Elk",
+      "sponsors": "Nhà tài trợ",
+      "sponsors_body_1": "Elk được thực hiện nhờ sự tài trợ và giúp đỡ hào phóng của:",
+      "sponsors_body_2": "Và tất cả các công ty, cá nhân tài trợ cho đội ngũ Elk.",
+      "sponsors_body_3": "Nếu bạn thích ứng dụng này, hãy tài trợ cho chúng tôi:",
+      "version": "Phiên bản"
+    },
+    "account_settings": {
+      "description": "Cài đặt tài khoản trong Mastodon UI",
+      "label": "Cài đặt tài khoản"
+    },
+    "interface": {
+      "color_mode": "Chủ đề",
+      "dark_mode": "Tối",
+      "default": " (mặc định)",
+      "font_size": "Cỡ chữ",
+      "label": "Giao diện",
+      "light_mode": "Sáng",
+      "system_mode": "Thiết bị",
+      "theme_color": "Màu"
+    },
+    "language": {
+      "display_language": "Ngôn ngữ hiển thị",
+      "label": "Ngôn ngữ",
+      "status": "Tình trạng dịch: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Thêm",
+        "choose_language": "Chọn ngôn ngữ",
+        "heading": "Dịch",
+        "hide_specific": "Không dịch",
+        "remove": "Xóa"
+      }
+    },
+    "notifications": {
+      "label": "Thông báo",
+      "notifications": {
+        "label": "Cài đặt thông báo"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Lượt thích",
+          "follow": "Người theo dõi",
+          "mention": "Lượt nhắc",
+          "poll": "Cuộc bình chọn",
+          "reblog": "Lượt đăng lại",
+          "title": "Bạn muốn nhận những kiểu thông báo nào?"
+        },
+        "description": "Nhận thông báo kể cả khi bạn không sử dụng Elk.",
+        "instructions": "Đừng quên lưu các thay đổi của bạn bằng cách @:settings.notifications.push_notifications.save_settings button!",
+        "label": "Cài đặt thông báo đẩy",
+        "policy": {
+          "all": "Từ bất kỳ ai",
+          "followed": "Từ người tôi theo dõi",
+          "follower": "Từ người theo dõi tôi",
+          "none": "Không ai cả",
+          "title": "Tôi sẽ nhận thông báo từ ai?"
+        },
+        "save_settings": "Lưu cài đặt",
+        "subscription_error": {
+          "clear_error": "Xóa lỗi",
+          "error_hint": "Bạn có thể tham khảo danh sách các câu hỏi thường gặp: {0}.",
+          "invalid_vapid_key": "Khóa công khai VAPID dường như không hợp lệ.",
+          "permission_denied": "Quyền bị từ chối: bật thông báo trong trình duyệt của bạn.",
+          "repo_link": "Repository Elk trên GitHub",
+          "request_error": "Đã xảy ra lỗi khi yêu cầu, hãy thử lại và nếu lỗi vẫn tiếp diễn, vui lòng báo cáo sự cố với repository Elk.",
+          "title": "Không thể bật thông báo đẩy",
+          "too_many_registrations": "Do giới hạn của trình duyệt, Elk không thể sử dụng dịch vụ thông báo đẩy cho nhiều tài khoản trên các máy chủ khác nhau. Bạn nên hủy đăng ký nhận thông báo đẩy trên một tài khoản khác và thử lại.",
+          "vapid_not_supported": "Trình duyệt của bạn hỗ trợ thông báo đẩy trên web, nhưng dường như không triển khai giao thức VAPID."
+        },
+        "title": "Cài đặt thông báo đẩy",
+        "undo_settings": "Hoàn tác thay đổi",
+        "unsubscribe": "Tắt thông báo đẩy",
+        "unsupported": "Trình duyệt của bạn không hỗ trợ thông báo đẩy.",
+        "warning": {
+          "enable_close": "Đóng",
+          "enable_description": "Để nhận thông báo khi Elk không mở, hãy bật thông báo đẩy. Bạn có thể kiểm soát chính xác loại tương tác nào sẽ tạo thông báo đẩy thông qua nút \"@:settings.notifications.show_btn{'\"'} ở trên sau khi đã bật.",
+          "enable_description_desktop": "Để nhận thông báo khi Elk không mở, hãy bật thông báo đẩy. Bạn có thể kiểm soát chính xác loại tương tác nào sẽ tạo thông báo đẩy trong \"Cài đặt > Thông báo > Thông báo đẩy\" sau khi đã bật.",
+          "enable_description_mobile": "Bạn cũng có thể truy cập cài đặt bằng menu điều hướng \"Cài đặt > Thông báo > Thông báo đẩy\".",
+          "enable_description_settings": "Để nhận thông báo khi Elk không mở, hãy bật thông báo đẩy. Bạn sẽ có thể kiểm soát chính xác loại tương tác nào sẽ tạo thông báo đẩy trên cùng màn hình này sau khi bạn bật chúng.",
+          "enable_desktop": "Bật thông báo đẩy",
+          "enable_title": "Không bỏ lỡ bất cứ điều gì",
+          "re_auth": "Hình như máy chủ của bạn không hỗ trợ thông báo đẩy. Hãy thử đăng xuất và đăng nhập lại, nếu thông báo này vẫn xuất hiện, hãy liên hệ với quản trị viên máy chủ của bạn."
+        }
+      },
+      "show_btn": "Đến cài đặt thông báo",
+      "under_construction": "Đang được xây dựng"
+    },
+    "notifications_settings": "Thông báo",
+    "preferences": {
+      "enable_autoplay": "Bật tự động phát",
+      "enable_data_saving": "Bật chế độ tiết kiệm dữ liệu mạng",
+      "enable_data_saving_description": "Tiết kiệm dữ liệu bằng cách ngăn các file đính kèm tự động tải.",
+      "enable_pinch_to_zoom": "Bật chụm để thu phóng",
+      "github_cards": "GitHub Cards",
+      "grayscale_mode": "Chế độ xám",
+      "hide_account_hover_card": "Ẩn popup hồ sơ",
+      "hide_alt_indi_on_posts": "Ẩn văn bản thay thế trên tút",
+      "hide_boost_count": "Ẩn số lượt đăng lại",
+      "hide_favorite_count": "Ẩn số lượt thích",
+      "hide_follower_count": "Ẩn số lượt người theo dõi/đang theo dõi",
+      "hide_news": "Ẩn tin tức",
+      "hide_reply_count": "Ẩn số lượt trả lời",
+      "hide_translation": "Ẩn bản dịch",
+      "hide_username_emojis": "Ẩn emoji trong tên người dùng",
+      "hide_username_emojis_description": "Ẩn emoji khỏi tên người dùng trong bảng tin. Emoji sẽ vẫn hiển thị trong hồ sơ của họ.",
+      "label": "Thiết lập",
+      "title": "Tính năng thử nghiệm",
+      "use_star_favorite_icon": "Dùng biểu tượng thích ngôi sao",
+      "user_picker": "Chọn người dùng",
+      "virtual_scroll": "Cuộn ảo",
+      "wellbeing": "Chống nghiện",
+      "zen_mode": "Tập Trung",
+      "zen_mode_description": "Ẩn thanh bên trừ khi con trỏ chuột rê qua. Đồng thời ẩn một số thành phần khỏi bảng tin."
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Giới thiệu",
+        "description": "Sửa ảnh đại diện, tên, giới thiệu, etc.",
+        "display_name": "Biệt danh",
+        "label": "Diện mạo",
+        "profile_metadata": "Metadata",
+        "profile_metadata_desc": "Bạn có thể thêm {0} mục hiển thị như bảng trên hồ sơ",
+        "profile_metadata_label": "Nhãn",
+        "profile_metadata_value": "Nội dung",
+        "title": "Sửa hồ sơ"
+      },
+      "featured_tags": {
+        "description": "Mọi người có thể tìm các tút công khai của bạn.",
+        "label": "Hashtag thường dùng"
+      },
+      "label": "Hồ sơ"
+    },
+    "select_a_settings": "Chọn cài đặt",
+    "users": {
+      "export": "Xuất token người dùng",
+      "import": "Nhập token người dùng",
+      "label": "Danh sách tài khoản"
+    }
+  },
+  "share-target": {
+    "description": "Elk có thể cấu hình để bạn có thể chia sẻ nội dung từ các ứng dụng khác, chỉ cần cài đặt Elk trên thiết bị hoặc máy tính của bạn và đăng nhập.",
+    "hint": "Để chia sẻ nội dung với Elk, Elk phải được cài đặt và bạn phải đăng nhập.",
+    "title": "Chia sẻ với Elk"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "Số lượng file đính kèm vượt quá giới hạn.",
+    "attachments_limit_error": "Đã vượt quá giới hạn cho mỗi tút",
+    "edited": "(Đã sửa)",
+    "editing": "Sửa",
+    "loading": "Đang tải...",
+    "publish_failed": "Đăng thất bại",
+    "publishing": "Đăng",
+    "upload_failed": "Tải lên thất bại",
+    "uploading": "Đang tải lên..."
+  },
+  "status": {
+    "account": {
+      "suspended_message": "Người này đã bị vô hiệu hóa.",
+      "suspended_show": "Vẫn xem nội dung chứ?"
+    },
+    "boosted_by": "Đăng lại bởi",
+    "edited": "Đã sửa {0}",
+    "favourited_by": "Thích bởi",
+    "filter_hidden_phrase": "Lọc theo",
+    "filter_removed_phrase": "Xóa theo bộ lọc",
+    "filter_show_anyway": "Vẫn cứ hiện",
+    "img_alt": {
+      "ALT": "ALT",
+      "desc": "Mô tả",
+      "dismiss": "Bỏ qua",
+      "read": "Đọc {0} mô tả"
+    },
+    "poll": {
+      "count": "{0} bình chọn|{0} bình chọn|{0} bình chọn",
+      "ends": "kết thúc {0}",
+      "finished": "hết hạn {0}"
+    },
+    "reblogged": "{0} đăng lại",
+    "replying_to": "Trả lời {0}",
+    "show_full_thread": "Chuỗi đề tài",
+    "someone": "ai đó",
+    "spoiler_media_hidden": "Ẩn media",
+    "spoiler_show_less": "Thu gọn",
+    "spoiler_show_more": "Mở rộng",
+    "thread": "Thảo luận",
+    "try_original_site": "Thử trang gốc"
+  },
+  "status_history": {
+    "created": "đăng {0}",
+    "edited": "sửa {0}"
+  },
+  "tab": {
+    "accounts": "Người dùng",
+    "for_you": "Cho bạn",
+    "hashtags": "Hashtag",
+    "list": "Danh sách",
+    "media": "Media",
+    "news": "Tin tức",
+    "notifications_all": "Tất cả",
+    "notifications_mention": "Lượt nhắc",
+    "posts": "Tút",
+    "posts_with_replies": "Lượt trả lời"
+  },
+  "tag": {
+    "follow": "Theo dõi",
+    "follow_label": "Theo dõi {0} hashtag",
+    "unfollow": "Bỏ theo dõi",
+    "unfollow_label": "Bỏ theo dõi {0} hashtag"
+  },
+  "time_ago_options": {
+    "day_future": "sau 0 ngày|ngày mai|sau {n} ngày",
+    "day_past": "0 ngày trước|hôm qua|{n} ngày trước",
+    "hour_future": "sau 0 giờ|sau 1 giờ|sau {n} giờ",
+    "hour_past": "0 giờ trước|1 giờ trước|{n} giờ trước",
+    "just_now": "vừa xong",
+    "minute_future": "sau 0 phút|sau 1 phút|sau {n} phút",
+    "minute_past": "0 phút trước|1 phút trước|{n} phút trước",
+    "month_future": "sau 0 tháng|tháng sau|sau {n} tháng",
+    "month_past": "0 tháng trước|tháng trước|{n} tháng trước",
+    "second_future": "vừa xong|sau {n} giây|sau {n} giây",
+    "second_past": "vừa xong|{n}s trước|{n}s trước",
+    "short_day_future": "sau {n} ngày",
+    "short_day_past": "{n} ngày",
+    "short_hour_future": "sau {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "sau {n} phút",
+    "short_minute_past": "{n} phút",
+    "short_month_future": "sau {n} tháng",
+    "short_month_past": "{n} tháng",
+    "short_second_future": "sau {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "sau {n}w",
+    "short_week_past": "{n}w",
+    "short_year_future": "sau {n}y",
+    "short_year_past": "{n}y",
+    "week_future": "sau 0 tuần|tuần sau|trong {n} tuần",
+    "week_past": "0 tuần trước|tuần trước|{n} tuần trước",
+    "year_future": "sau 0 năm|năm sau|in {n} năm sau",
+    "year_past": "0 năm trước|năm trước|{n} năm trước"
+  },
+  "timeline": {
+    "show_new_items": "Hiện {v} mục mới|Hiện {v} mục mới|Hiện {v} mục mới",
+    "view_older_posts": "Các tút cũ ở máy chủ khác có thể không hiển thị đầy đủ."
+  },
+  "title": {
+    "federated_timeline": "Bảng tin Liên hợp",
+    "local_timeline": "Bảng tin Máy chủ"
+  },
+  "tooltip": {
+    "add_content_warning": "Thêm cảnh báo nội dung",
+    "add_emojis": "Chèn emoji",
+    "add_media": "Thêm ảnh, video hoặc âm thanh",
+    "add_publishable_content": "Thêm nội dung đăng",
+    "change_content_visibility": "Chọn kiểu hiển thị nội dung",
+    "change_language": "Đổi ngôn ngữ",
+    "emoji": "Emoji",
+    "explore_links_intro": "Những tin tức này đang được nhắc đến bởi những người trên máy chủ này và các máy chủ khác thuộc mạng liên hợp.",
+    "explore_posts_intro": "Các tút này đang thu hút sự chú ý trên máy chủ này và các máy chủ khác thuộc mạng liên hợp.",
+    "explore_tags_intro": "Những hashtag này đang thu hút sự chú ý của những người trên máy chủ này và các máy chủ khác thuộc mạng liên hợp.",
+    "open_editor_tools": "Công cụ soạn thảo",
+    "pick_an_icon": "Chọn biểu tượng",
+    "publish_failed": "Đóng các thông báo không thành công để đăng lại tút",
+    "toggle_bold": "In đậm",
+    "toggle_code_block": "Đoạn mã",
+    "toggle_italic": "In nghiêng"
+  },
+  "user": {
+    "add_existing": "Thêm một tài khoản khác",
+    "server_address_label": "Địa chỉ máy chủ Mastodon",
+    "sign_in_desc": "Đăng nhập để theo dõi người dùng hoặc hashtag, thích, chia sẻ và trả lời tút hoặc tương tác từ tài khoản của bạn trên một máy chủ khác.",
+    "sign_in_notice_title": "Đang hiện {0} công khai",
+    "sign_out_account": "Đăng xuất {0}",
+    "single_instance_sign_in_desc": "Đăng nhập để theo dõi người dùng hoặc hashtag, thích, chia sẻ và trả lời tút",
+    "tip_no_account": "Nếu bạn chưa có tài khoản Mastodon, {0}.",
+    "tip_register_account": "chọn máy chủ và đăng ký"
+  },
+  "visibility": {
+    "direct": "Nhắn riêng",
+    "direct_desc": "Chỉ người được nhắc đến thấy",
+    "private": "Chỉ người theo dõi",
+    "private_desc": "Chỉ người theo dõi bạn thấy",
+    "public": "Công khai",
+    "public_desc": "Ai cũng có thể thấy",
+    "unlisted": "Hạn chế",
+    "unlisted_desc": "Ai cũng thấy, nhưng không hiện trên bảng tin"
+  }
+}

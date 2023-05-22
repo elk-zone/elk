@@ -307,10 +307,26 @@
     "replying": "Replying",
     "the_thread": "the thread"
   },
+  "polls": {
+    "allow_multiple": "Allow multiple choice",
+    "cancel": "Cancel",
+    "create": "Create poll",
+    "disallow_multiple": "Disallow multiple choice",
+    "expiration": "Poll expiration",
+    "hide_votes": "Hide vote totals until the end",
+    "option_placeholder": "Poll choice {current}/{max}",
+    "remove_option": "Remove choice",
+    "settings": "Poll options",
+    "show_votes": "Always show vote totals"
+  },
   "pwa": {
     "dismiss": "Dismiss",
     "install": "Install",
     "install_title": "Install Elk",
+    "screenshots": {
+      "dark": "Screenshot of Elk running in dark mode",
+      "light": "Screenshot of Elk running in light mode"
+    },
     "title": "New Elk update available!",
     "update": "Update",
     "update_available_short": "Update Elk",

@@ -362,6 +362,7 @@
       "color_mode": "カラーモード",
       "dark_mode": "ダークモード",
       "default": " (デフォルト)",
+      "dim_mode": "トワイライトモード",
       "font_size": "フォントサイズ",
       "label": "インターフェイス",
       "light_mode": "ライトモード",

@@ -128,6 +128,7 @@
       "color_mode": "Temas de color",
       "dark_mode": "Tema oscuro",
       "default": " (predeterminado)",
+      "dim_mode": "Tema atenuado",
       "font_size": "Tamaño de fuente",
       "light_mode": "Tema claro",
       "system_mode": "Color del sistema"

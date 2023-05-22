@@ -259,6 +259,7 @@
       "color_mode": "Farbschema",
       "dark_mode": "Dunkles Farbschema",
       "default": " (Standard)",
+      "dim_mode": "Dim Farbschema",
       "font_size": "Schriftgröße",
       "label": "Oberfläche",
       "light_mode": "Helles Farbschema",

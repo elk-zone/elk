@@ -16,6 +16,22 @@
     }
   ],
   [
+    "#d88e14",
+    {
+      "--theme-color-name": "#d88e14",
+      "--c-primary": "rgb(var(--rgb-primary))",
+      "--c-primary-active": "#cd8221",
+      "--c-primary-light": "#d88e1480",
+      "--c-primary-fade": "#c7781f1a",
+      "--rgb-primary": "216, 142, 20",
+      "--c-dark-primary": "rgb(var(--rgb-dark-primary))",
+      "--c-dark-primary-active": "#bb7d2e",
+      "--c-dark-primary-light": "#d1822980",
+      "--c-dark-primary-fade": "#d88e141a",
+      "--rgb-dark-primary": "216, 142, 20"
+    }
+  ],
+  [
     "#8d9614",
     {
       "--theme-color-name": "#8d9614",

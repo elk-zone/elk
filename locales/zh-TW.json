@@ -323,6 +323,7 @@
       "color_mode": "色彩模式",
       "dark_mode": "深色",
       "default": "（預設）",
+      "dim_mode": "衰减模式",
       "font_size": "字體大小",
       "label": "外觀",
       "light_mode": "淺色",

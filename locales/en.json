@@ -378,6 +378,7 @@
       "color_mode": "Color Mode",
       "dark_mode": "Dark",
       "default": " (default)",
+      "dim_mode": "Dim",
       "font_size": "Font Size",
       "label": "Interface",
       "light_mode": "Light",

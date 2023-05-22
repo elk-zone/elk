@@ -21,8 +21,21 @@ function clickEvent(mouse: MouseEvent) {
   }
 }
 
-function toggleDark() {
-  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+function colorModeToggle() {
+  switch (colorMode.value) {
+    case 'light':
+      colorMode.preference = 'dim'
+      break
+    case 'dim':
+      colorMode.preference = 'dark'
+      break
+    case 'dark':
+      colorMode.preference = 'light'
+      break
+    default:
+      colorMode.preference = 'dim'
+      break
+  }
 }
 
 watch($$(modelValue), (val) => {
@@ -79,10 +92,12 @@ onBeforeUnmount(() => {
               text-sm text-base capitalize text-left whitespace-nowrap
               transition-colors duration-200 transform
               hover="bg-gray-100 dark:(bg-gray-700 text-white)"
-              @click="toggleDark()"
+              @click="colorModeToggle()"
             >
-              <span class="i-ri:sun-line dark:i-ri:moon-line flex-shrink-0 text-xl me-4 !align-middle" />
-              {{ colorMode.value === 'light' ? $t('menu.toggle_theme.dark') : $t('menu.toggle_theme.light') }}
+              <span v-if="colorMode.value === 'light'" class="i-ri:moon-foggy-line flex-shrink-0 text-xl me-4 !align-middle" />
+              <span v-if="colorMode.value === 'dim'" class="i-ri:moon-fill flex-shrink-0 text-xl me-4 !align-middle" />
+              <span v-if="colorMode.value === 'dark'" class="i-ri:sun-line flex-shrink-0 text-xl me-4 !align-middle" />
+              {{ $t('nav.toggle_theme') }}
             </button>
 
             <!-- Zen Mode -->

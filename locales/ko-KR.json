@@ -291,6 +291,7 @@
       "color_mode": "컬러 모드",
       "dark_mode": "다크",
       "default": " (기본)",
+      "dim_mode": "희미한 모드",
       "font_size": "글자 크기",
       "label": "인터페이스",
       "light_mode": "라이트",

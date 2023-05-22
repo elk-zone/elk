@@ -9,9 +9,14 @@ function setColorMode(mode: ColorMode) {
 
 const modes = [
   {
-    icon: 'i-ri-moon-line',
+    icon: 'i-ri-moon-fill',
     label: 'settings.interface.dark_mode',
     mode: 'dark',
+  },
+  {
+    icon: 'i-ri-moon-foggy-line',
+    label: 'settings.interface.dim_mode',
+    mode: 'dim',
   },
   {
     icon: 'i-ri-sun-line',

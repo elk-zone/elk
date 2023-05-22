@@ -8,8 +8,21 @@ const buildTimeDate = new Date(buildInfo.time)
 const buildTimeAgo = useTimeAgo(buildTimeDate, timeAgoOptions)
 
 const colorMode = useColorMode()
-function toggleDark() {
-  colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+function colorModeToggle() {
+  switch (colorMode.value) {
+    case 'light':
+      colorMode.preference = 'dim'
+      break
+    case 'dim':
+      colorMode.preference = 'dark'
+      break
+    case 'dark':
+      colorMode.preference = 'light'
+      break
+    default:
+      colorMode.preference = 'dim'
+      break
+  }
 }
 </script>
 
@@ -17,7 +30,9 @@ function toggleDark() {
   <footer p4 text-sm text-secondary-light flex="~ col">
     <div flex="~ gap2" items-center mb4>
       <CommonTooltip :content="$t('nav.toggle_theme')">
-        <button flex i-ri:sun-line dark-i-ri:moon-line text-lg :aria-label="$t('nav.toggle_theme')" @click="toggleDark()" />
+        <button v-if="colorMode.value === 'light'" flex i-ri:moon-foggy-line text-lg :aria-label="$t('nav.toggle_theme')" @click="colorModeToggle" />
+        <button v-if="colorMode.value === 'dim'" flex i-ri:moon-fill text-lg :aria-label="$t('nav.toggle_theme')" @click="colorModeToggle" />
+        <button v-if="colorMode.value === 'dark'" flex i-ri:sun-line text-lg :aria-label="$t('nav.toggle_theme')" @click="colorModeToggle" />
       </CommonTooltip>
       <CommonTooltip :content="$t('nav.zen_mode')">
         <button

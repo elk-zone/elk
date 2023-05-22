@@ -363,6 +363,7 @@
       "color_mode": "Couleur de thème",
       "dark_mode": "Mode sombre",
       "default": " (par défaut)",
+      "dim_mode": "Mode pénombre",
       "font_size": "Taille de police",
       "label": "Interface",
       "light_mode": "Mode lumineux",

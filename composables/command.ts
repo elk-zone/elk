@@ -259,14 +259,27 @@ export function provideGlobalCommands() {
     },
   })
 
+  const colorModeToggle = computed(() => {
+    switch (colorMode.value) {
+      case 'light':
+        return { icon: 'i-ri:moon-line', preference: 'dim' }
+      case 'dim':
+        return { icon: 'i-ri:moon-fill', preference: 'dark' }
+      case 'dark':
+        return { icon: 'i-ri:sun-line', preference: 'light' }
+      default:
+        return { icon: 'i-ri:moon-fill', preference: 'dark' }
+    }
+  })
+
   useCommand({
     scope: 'Preferences',
 
     name: () => t('command.toggle_dark_mode'),
-    icon: () => colorMode.value === 'light' ? 'i-ri:sun-line' : 'i-ri:moon-line',
+    icon: () => colorModeToggle.value.icon,
 
     onActivate() {
-      colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'
+      colorMode.preference = colorModeToggle.value.preference
     },
   })
 

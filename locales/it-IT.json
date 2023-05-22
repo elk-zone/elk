@@ -362,6 +362,7 @@
       "color_mode": "Aspetto",
       "dark_mode": "Scuro",
       "default": " (default)",
+      "dim_mode": "Attenuato",
       "font_size": "Dimensione testo",
       "label": "Interfaccia",
       "light_mode": "Chiaro",

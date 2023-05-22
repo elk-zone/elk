@@ -378,6 +378,7 @@
       "color_mode": "Modo de cores",
       "dark_mode": "Modo Escuro",
       "default": " (padrão)",
+      "dim_mode": "Modo Atenuado",
       "font_size": "Tamanho da fonte",
       "label": "Apresentação",
       "light_mode": "Modo Claro",

@@ -290,6 +290,7 @@
       "color_mode": "Berwarna",
       "dark_mode": "Gelap",
       "default": "(bawaan)",
+      "dim_mode": "Redup",
       "font_size": "Ukuran huruf",
       "label": "Antarmuka",
       "light_mode": "Terang",

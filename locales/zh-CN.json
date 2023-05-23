@@ -95,6 +95,7 @@
   "common": {
     "end_of_list": "列表到底啦",
     "error": "错误",
+    "fetching": "加载中...",
     "in": "在",
     "not_found": "无法找到相关内容",
     "offline_desc": "您目前已离线，请检查网络连接。"
@@ -198,6 +199,31 @@
     "remove_account": "移除列表中的用户",
     "save": "保存更改"
   },
+  "magic_keys": {
+    "dialog_header": "快捷键",
+    "groups": {
+      "actions": {
+        "boost": "转发",
+        "command_mode": "命令面板",
+        "compose": "撰写",
+        "favourite": "喜欢",
+        "title": "操作",
+        "zen_mode": "禅模式"
+      },
+      "media": {
+        "title": "媒体"
+      },
+      "navigation": {
+        "go_to_home": "首页",
+        "go_to_notifications": "通知",
+        "next_status": "下一条帖文",
+        "previous_status": "上一条帖文",
+        "shortcut_help": "快捷键帮助",
+        "title": "导航"
+      }
+    },
+    "sequence_then": "then"
+  },
   "menu": {
     "block_account": "拉黑 {0}",
     "block_domain": "拉黑域名 {0}",
@@ -227,6 +253,9 @@
     "unmute_account": "解除屏蔽 {0}",
     "unmute_conversation": "取消静音帖子",
     "unpin_on_profile": "取消置顶"
+  },
+  "modals": {
+    "aria_label_close": "关闭"
   },
   "nav": {
     "back": "回退",
@@ -373,6 +402,7 @@
         "save_settings": "保存设置改动",
         "subscription_error": {
           "clear_error": "清除错误",
+          "error_hint": "你可以参考常见问题列表来尝试解决问题：{0}。",
           "invalid_vapid_key": "VAPID 密钥无效。",
           "permission_denied": "权限不足：请在你的浏览器中打开通知权限。",
           "repo_link": "鹿鸣在 Github 上的仓库",
@@ -402,6 +432,8 @@
     "notifications_settings": "通知",
     "preferences": {
       "enable_autoplay": "开启自动播放",
+      "enable_data_saving": "启用数据保存",
+      "enable_data_saving_description": "通过阻止附件自动加载来保存数据。",
       "enable_pinch_to_zoom": "启用双指缩放功能",
       "github_cards": "GitHub 卡片",
       "grayscale_mode": "灰色模式",
@@ -410,6 +442,7 @@
       "hide_boost_count": "隐藏转发数",
       "hide_favorite_count": "隐藏收藏数",
       "hide_follower_count": "隐藏关注者数",
+      "hide_news": "隐藏新闻页",
       "hide_reply_count": "隐藏回复数",
       "hide_translation": "隐藏翻译",
       "hide_username_emojis": "隐藏用户昵称的表情符号",
@@ -561,6 +594,7 @@
     "explore_posts_intro": "来自本站和分布式网络上其他站点的这些嘟文正在本站引起关注。",
     "explore_tags_intro": "这些标签正在本站和分布式网络上其他站点的用户中引起关注。",
     "open_editor_tools": "编辑器工具",
+    "pick_an_icon": "选择一个图标",
     "publish_failed": "关闭编辑器上方的错误信息以重新发布帖文。",
     "toggle_bold": "切换加粗",
     "toggle_code_block": "切换代码块",

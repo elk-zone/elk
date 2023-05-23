@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n()
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('tab.notifications_mention')} | ${t('nav.notifications')}`,
 })
 </script>

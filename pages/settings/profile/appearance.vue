@@ -9,7 +9,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.profile.appearance.title')} | ${t('nav.settings')}`,
 })
 
@@ -71,6 +71,12 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
     return
   }
 
+  const server = currentUser.value!.server
+
+  if (!res.account.acct.includes('@'))
+    res.account.acct = `${res.account.acct}@${server}`
+
+  cacheAccount(res.account, server, true)
   currentUser.value!.account = res.account
   reset()
 })

@@ -64,7 +64,7 @@ function activate() {
 
 <template>
   <div ref="el" relative group>
-    <div bg-base border="~ base" h10 px-4 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline gap-3>
+    <div bg-base border="~ base" h10 ps-4 pe-1 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline>
       <div i-ri:search-2-line pointer-events-none text-secondary mt="1px" class="rtl-flip" />
       <input
         ref="input"
@@ -74,7 +74,8 @@ function activate() {
         w-full
         bg-transparent
         outline="focus:none"
-        pe-4
+        ps-3
+        pe-1
         ml-1
         :placeholder="isHydrated ? t('nav.search') : ''"
         pb="1px"
@@ -83,6 +84,9 @@ function activate() {
         @keydown.up.prevent="shift(-1)"
         @keypress.enter="activate"
       >
+      <button v-if="query.length" btn-action-icon text-secondary @click="query = ''; input?.focus()">
+        <span aria-hidden="true" class="i-ri:close-line" />
+      </button>
     </div>
     <!-- Results -->
     <div left-0 top-11 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>

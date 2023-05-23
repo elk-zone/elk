@@ -54,7 +54,6 @@
     "not_found": "404 No s'ha trobat",
     "offline_desc": "Sembla que estàs fora de línia. Comprova la connexió de xarxa."
   },
-  "compose": {},
   "confirm": {
     "block_account": {
       "cancel": "Cancel·la",
@@ -91,7 +90,6 @@
       "title": "Segur que vols deixar de seguir-lo?"
     }
   },
-  "conversation": {},
   "custom_cards": {
     "stackblitz": {
       "open": "Obri",
@@ -119,7 +117,6 @@
     "footer_team": "L'equip d'Elk",
     "title": "Elk està en proves!"
   },
-  "language": {},
   "list": {
     "add_account": "Afig el compte a una llista",
     "create": "Crea",

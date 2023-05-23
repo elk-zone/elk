@@ -12,7 +12,7 @@ export function setupPageHeader() {
     return acc
   }, {} as Record<string, Directions>)
 
-  useHeadFixed({
+  useHydratedHead({
     htmlAttrs: {
       lang: () => locale.value,
       dir: () => localeMap[locale.value] ?? 'ltr',
@@ -22,7 +22,7 @@ export function setupPageHeader() {
       name: 'viewport',
       content: () => `width=device-width,initial-scale=1${enablePinchToZoom.value ? '' : ',maximum-scale=1,user-scalable=0'},viewport-fit=cover`,
     }],
-    titleTemplate: (title) => {
+    titleTemplate: (title?: string) => {
       let titleTemplate = title ?? ''
 
       if (titleTemplate.match(/&[a-z0-9#]+;/gi)) {

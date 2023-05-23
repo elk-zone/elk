@@ -1,6 +1,6 @@
 import type { ComponentInternalInstance } from 'vue'
 import { onActivated, onDeactivated, ref } from 'vue'
-import type { ActiveHeadEntry, HeadEntryOptions, UseHeadInput } from '@vueuse/head'
+import type { ActiveHeadEntry, HeadEntryOptions, UseHeadInput } from '@unhead/vue'
 import type { SchemaAugmentations } from '@unhead/schema'
 
 export const isHydrated = ref(false)
@@ -37,9 +37,7 @@ export function onReactivated(hook: Function, target?: ComponentInternalInstance
   onDeactivated(() => initial.value = false)
 }
 
-// TODO: Workaround for Nuxt bug: https://github.com/elk-zone/elk/pull/199#issuecomment-1329771961
-export function useHeadFixed<T extends SchemaAugmentations>(input: UseHeadInput<T>, options?: HeadEntryOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
-  const deactivated = useDeactivated()
+export function useHydratedHead<T extends SchemaAugmentations>(input: UseHeadInput<T>, options?: HeadEntryOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
   if (input && typeof input === 'object' && !('value' in input)) {
     const title = 'title' in input ? input.title : undefined
     if (process.server && title) {
@@ -54,9 +52,9 @@ export function useHeadFixed<T extends SchemaAugmentations>(input: UseHeadInput<
       (input as any).title = () => isHydrated.value ? typeof title === 'function' ? title() : title : ''
     }
   }
-  return useHead(() => {
-    if (deactivated.value)
+  return useHead((() => {
+    if (!isHydrated.value)
       return {}
     return resolveUnref(input)
-  }, options)
+  }) as UseHeadInput<T>, options)
 }

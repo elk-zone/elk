@@ -1,6 +1,11 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: 'auth',
+})
+
 const { t } = useI18n()
-useHeadFixed({
+
+useHydratedHead({
   title: () => t('nav.compose'),
 })
 </script>

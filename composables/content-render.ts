@@ -66,6 +66,9 @@ function nodeToVNode(node: Node): VNode | string | null {
 function treeToVNode(
   input: Node,
 ): VNode | string | null {
+  if (!input)
+    return null
+
   if (input.type === TEXT_NODE)
     return decode(input.value)
 

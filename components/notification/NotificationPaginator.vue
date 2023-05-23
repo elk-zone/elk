@@ -75,7 +75,12 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
       }
       return
     }
-    else if (group.length && group[0].status && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
+    else if (group.length && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
+      if (!group[0].status) {
+        // Ignore favourite or reblog if status is null, sometimes the API is sending these
+        // notifications
+        return
+      }
       // All notifications in these group are reblogs or favourites of the same status
       const likes: GroupedAccountLike[] = []
       for (const notification of group) {

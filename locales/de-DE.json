@@ -28,7 +28,6 @@
     "muted_users": "Stummgeschaltete Accounts",
     "muting": "Stummgeschaltet",
     "mutuals": "Freunde",
-    "notify_on_post": "Benachrichtige mich, wenn {username} etwas postet",
     "pinned": "Angepinnt",
     "posts": "Beiträge",
     "posts_count": "{0} Beiträge",
@@ -102,8 +101,7 @@
   "confirm": {
     "common": {
       "cancel": "Abbrechen",
-      "confirm": "OK",
-      "title": "Bist du sicher, {0}?"
+      "confirm": "OK"
     },
     "delete_posts": {
       "cancel": "Abbrechen",
@@ -198,6 +196,7 @@
     "followed_you_count": "{n} Account folgt dir|{n} Accounts folgen dir",
     "missing_type": "Fehlender notification.type:",
     "reblogged_post": "hat deinen Beitrag geteilt",
+    "reported": "{0} hat {1} gemeldet",
     "request_to_follow": "möchte dir folgen",
     "signed_up": "hat sich registriert",
     "update_status": "hat diesen Beitrag aktualisiert"
@@ -255,12 +254,6 @@
     "account_settings": {
       "description": "Bearbeite Kontoeinstellungen in der Mastodon-Benutzeroberfläche",
       "label": "Account Einstellungen"
-    },
-    "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "title": "Experimentelle Funktionen",
-      "user_picker": "Benutzerauswahl",
-      "virtual_scroll": "Virtuelles Scrollen"
     },
     "interface": {
       "color_mode": "Farbschema",
@@ -385,6 +378,10 @@
     "uploading": "Hochladen..."
   },
   "status": {
+    "account": {
+      "suspended_message": "Der Account dieses Status wurde vorübergehend gesperrt.",
+      "suspended_show": "Inhalt trotzdem anzeigen?"
+    },
     "boosted_by": "Boosted von",
     "edited": "Zuletzt bearbeitet: {0}",
     "favourited_by": "Favorisiert von",

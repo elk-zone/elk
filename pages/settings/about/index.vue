@@ -2,7 +2,7 @@
 const buildInfo = useBuildInfo()
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.about.label')} | ${t('nav.settings')}`,
 })
 

@@ -145,7 +145,6 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
   const tree = parseMastodonHTML(html, {
     emojis: customEmojis,
     markdown: true,
-    replaceUnicodeEmoji: false,
     convertMentionLink: true,
   })
   return render(tree)
@@ -168,6 +167,8 @@ export function recursiveTreeToText(input: Node): string {
   else
     return treeToText(input)
 }
+
+const emojiIdNeedsWrappingRE = /^(\d|\w|-|_)$/
 
 export function treeToText(input: Node): string {
   let pre = ''
@@ -219,8 +220,8 @@ export function treeToText(input: Node): string {
 
   if (input.name === 'img' || input.name === 'picture') {
     if (input.attributes.class?.includes('custom-emoji')) {
-      const id = input.attributes['data-emoji-id'] ?? input.attributes.title ?? input.attributes.alt ?? 'unknown'
-      return id[0] !== ':' ? `:${id}:` : id
+      const id = input.attributes['data-emoji-id'] ?? input.attributes.alt ?? input.attributes.title ?? 'unknown'
+      return id.match(emojiIdNeedsWrappingRE) ? `:${id}:` : id
     }
     if (input.attributes.class?.includes('iconify-emoji'))
       return input.attributes.alt

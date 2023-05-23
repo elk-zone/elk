@@ -5,12 +5,18 @@ const { account } = defineProps<{
   account: mastodon.v1.Account
   command?: boolean
 }>()
+const emit = defineEmits<{
+  (evt: 'addNote'): void
+  (evt: 'removeNote'): void
+}>()
+
 let relationship = $(useRelationship(account))
 
 const isSelf = $(useSelfAccount(() => account))
 
 const { t } = useI18n()
 const { client } = $(useMasto())
+const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 async function toggleMute() {
   if (!relationship!.muting && await openConfirmDialog({
@@ -63,6 +69,19 @@ async function toggleReblogs() {
   const showingReblogs = !relationship?.showingReblogs
   relationship = await client.v1.accounts.follow(account.id, { reblogs: showingReblogs })
 }
+
+async function addUserNote() {
+  emit('addNote')
+}
+
+async function removeUserNote() {
+  if (!relationship!.note || relationship!.note.length === 0)
+    return
+
+  const newNote = await client.v1.accounts.createNote(account.id, { comment: '' })
+  relationship!.note = newNote.note
+  emit('removeNote')
+}
 </script>
 
 <template>
@@ -110,6 +129,21 @@ async function toggleReblogs() {
             icon="i-ri:repeat-line"
             :command="command"
             @click="toggleReblogs()"
+          />
+
+          <CommonDropdownItem
+            v-if="!relationship?.note || relationship?.note?.length === 0"
+            :text="$t('menu.add_personal_note', [`@${account.acct}`])"
+            icon="i-ri-edit-2-line"
+            :command="command"
+            @click="addUserNote()"
+          />
+          <CommonDropdownItem
+            v-else
+            :text="$t('menu.remove_personal_note', [`@${account.acct}`])"
+            icon="i-ri-edit-2-line"
+            :command="command"
+            @click="removeUserNote()"
           />
 
           <CommonDropdownItem
@@ -165,7 +199,7 @@ async function toggleReblogs() {
             <CommonDropdownItem :text="$t('account.pinned')" icon="i-ri:pushpin-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/favourites">
-            <CommonDropdownItem :text="$t('account.favourites')" icon="i-ri:heart-3-line" :command="command" />
+            <CommonDropdownItem :text="$t('account.favourites')" :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'" :command="command" />
           </NuxtLink>
           <NuxtLink to="/mutes">
             <CommonDropdownItem :text="$t('account.muted_users')" icon="i-ri:volume-mute-line" :command="command" />

@@ -60,7 +60,6 @@ const derivedStatus = $computed(() => {
   } as mastodon.v1.Status
 })
 
-const createdAt = useFormattedDateTime(derivedStatus.createdAt)
 const timeAgoOptions = useTimeAgoOptions(true)
 const timeago = useTimeAgo(() => derivedStatus.createdAt ?? Date.now(), timeAgoOptions)
 </script>
@@ -111,7 +110,7 @@ const timeago = useTimeAgo(() => derivedStatus.createdAt ?? Date.now(), timeAgoO
           </div>
         </div>
         <div flex-auto />
-        <StatusActionsMore v-if="derivedStatus" :status="derivedStatus" :details="false" :command="false" :hide-favorited-and-boosted-by="true" :hide-mention-account="true" me--2 />
+        <StatusActionsMore v-if="derivedStatus" :status="derivedStatus" :details="false" :command="false" :hide-copy-link-to-post="true" :hide-favorited-and-boosted-by="true" :hide-mention-account="true" me--2 />
       </div>
       <!-- Content -->
       <div space-y-3 my-2>
@@ -124,7 +123,8 @@ const timeago = useTimeAgo(() => derivedStatus.createdAt ?? Date.now(), timeAgoO
         <StatusMedia
           v-if="derivedStatus.mediaAttachments?.length > 0"
           :status="derivedStatus"
-          :is-preview="true"
+          :full-size="true"
+          :is-preview="false"
         />
       </div>
       <!-- END -->

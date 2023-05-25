@@ -17,8 +17,8 @@ const gitHubCards = $(usePreferences('experimentalGitHubCards'))
 </script>
 
 <template>
-  <StatusPreviewMastodon v-if="linkToStatus" :link-to-status="linkToStatus" :source-status="status" :card="card" />
-  <LazyStatusPreviewGitHub v-else-if="gitHubCards && providerName.toLowerCase().includes('github')" :card="card" />
-  <LazyStatusPreviewStackBlitz v-else-if="gitHubCards && providerName.toLowerCase().includes('stackblitz')" :card="card" :small-picture-only="smallPictureOnly" :root="root" />
+  <LazyStatusPreviewGitHub v-if="gitHubCards && providerName.toLowerCase() === 'gitHub'" :card="card" />
+  <LazyStatusPreviewStackBlitz v-else-if="gitHubCards && providerName.toLowerCase() === 'stackblitz'" :card="card" :small-picture-only="smallPictureOnly" :root="root" />
+  <StatusPreviewMastodon v-else-if="linkToStatus" :link-to-status="linkToStatus" :source-status="status" :card="card" />
   <StatusPreviewCardNormal v-else :card="card" :small-picture-only="smallPictureOnly" :root="root" />
 </template>

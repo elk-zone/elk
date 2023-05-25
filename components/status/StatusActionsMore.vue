@@ -5,6 +5,7 @@ const props = defineProps<{
   status: mastodon.v1.Status
   details?: boolean
   command?: boolean
+  hideCopyLinkToPost?: boolean
   hideFavoritedAndBoostedBy?: boolean
   hideMentionAccount?: boolean
 }>()
@@ -186,6 +187,7 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
+          v-if="!hideCopyLinkToPost"
           :text="$t('menu.copy_link_to_post')"
           icon="i-ri:link"
           :command="command"

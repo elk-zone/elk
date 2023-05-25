@@ -71,7 +71,6 @@ const hideAllMedia = computed(
 <template>
   <div
     space-y-3
-    my-4
     :class="{
       'pt2 pb0.5 px3.5 bg-dm rounded-4 me--1': isDM,
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',

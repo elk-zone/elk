@@ -15,20 +15,21 @@ defineProps<{
     max-h-2xl
     flex flex-col
     my-auto
+    p4
     :class="[
       root ? 'flex-gap-1' : 'justify-center sm:justify-start',
     ]"
   >
-    <p text-secondary break-all line-clamp-1>
+    <p text-secondary ws-pre-wrap break-all line-clamp-1>
       {{ provider }}
     </p>
     <strong
       v-if="card.title" font-normal sm:font-medium line-clamp-1
-      break-all
+      break-all ws-pre-wrap
     >{{ card.title }}</strong>
     <p
       v-if="card.description"
-      line-clamp-1 break-all sm:break-words text-secondary :class="[root ? 'sm:line-clamp-2' : '']"
+      line-clamp-1 break-all sm:break-normal text-secondary ws-pre-wrap sm:line-clamp-2
     >
       {{ card.description }}
     </p>

@@ -53,7 +53,7 @@ const derivedStatus = $computed(() => {
     mentions: Array<mastodon.v1.StatusMention>(),
     emojis: Array<mastodon.v1.CustomEmoji>(),
     language: null,
-    content: card.description.replace(/^attached.? ?\d* (?:image|video)?[\n\r]*/gi, '').trim(),
+    content: card.description.replace(/^attached.? ?\d* (?:images?|videos?)?[\n\r]*/gi, '').trim(),
     // account: useAccountByHandle(acct).value ?? placeholderAccount as mastodon.v1.Account,
     account: placeholderAccount as mastodon.v1.Account,
     mediaAttachments: (!possibleMediaAttachment) ? Array<mastodon.v1.MediaAttachment>() : [possibleMediaAttachment],

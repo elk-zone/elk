@@ -41,7 +41,7 @@ const derivedStatus = $computed(() => {
     acct,
     displayName: card.title.replaceAll(/\(@[^\)]+\)/gi, '').trim(),
     bot: false,
-    avatar: 'https://static.fedified.com/avatars/original/missing.png',
+    avatar: 'https://raw.githubusercontent.com/mastodon/mastodon/38c6216082e67581e83d04b3096cdb020ad0edea/public/avatars/original/missing.png',
   }
 
   return {

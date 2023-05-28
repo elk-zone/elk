@@ -12,7 +12,7 @@ type IconType = 'transparent' | 'maskable' | 'apple'
 
 /**
  * PWA Icons definition:
- * - transparent: [{ sizes: [192, 512], padding: 0, resizeOptions: { fit: 'contain', background: 'transparent' } }]
+ * - transparent: [{ sizes: [192, 512], padding: 0.05, resizeOptions: { fit: 'contain', background: 'transparent' } }]
  * - maskable: [{ sizes: [512], padding: 0.3 }, resizeOptions: { fit: 'contain', background: 'white' } }]
  * - apple: [{ sizes: [180], padding: 0.3 }, resizeOptions: { fit: 'contain', background: 'white' } }]
  */
@@ -28,7 +28,7 @@ interface ResolvedIcons extends Required<Icons> {}
 const defaultIcons: Icons = {
   transparent: {
     sizes: [192, 512],
-    padding: 0,
+    padding: 0.05,
     resizeOptions: {
       fit: 'contain',
       background: 'transparent',
@@ -56,6 +56,13 @@ const root = process.cwd()
 
 const publicFolders = ['public', 'public-dev', 'public-staging'].map(folder => resolve(root, folder))
 
+async function optimizePng(filePath: string) {
+  await sharp(filePath).png({
+    compressionLevel: 9,
+    quality: 60,
+  }).toFile(`${filePath.replace(/\.png$/, '.optimized.png')}`)
+}
+
 async function generateTransparentIcons(icons: ResolvedIcons, svgLogo: string, folder: string) {
   const { sizes, padding, resizeOptions } = icons.transparent
   await Promise.all(sizes.map(async (size) => {
@@ -75,6 +82,7 @@ async function generateTransparentIcons(icons: ResolvedIcons, svgLogo: string, f
           resizeOptions,
         ).toBuffer(),
     }]).toFile(filePath)
+    await optimizePng(filePath)
   }))
 }
 
@@ -98,6 +106,7 @@ async function generateMaskableIcons(type: IconType, icons: ResolvedIcons, svgLo
           resizeOptions,
         ).toBuffer(),
     }]).toFile(filePath)
+    await optimizePng(filePath)
   }))
 }
 

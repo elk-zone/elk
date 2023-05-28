@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { useGesture } from '@vueuse/gesture'
-import type { PermissiveMotionProperties } from '@vueuse/motion'
 import { useReducedMotion } from '@vueuse/motion'
 import type { mastodon } from 'masto'
 
-const { media = [], threshold = 20 } = defineProps<{
+const { media = [], threshold = 70 } = defineProps<{
   media?: mastodon.v1.MediaAttachment[]
   threshold?: number
 }>()
@@ -17,88 +16,148 @@ const { modelValue } = defineModels<{
   modelValue: number
 }>()
 
-const target = ref()
+const view = ref()
+const slider = ref()
+const slide = ref()
+const image = ref()
 
 const animateTimeout = useTimeout(10)
 const reduceMotion = process.server ? ref(false) : useReducedMotion()
-
 const canAnimate = computed(() => !reduceMotion.value && animateTimeout.value)
 
-const { motionProperties } = useMotionProperties(target, {
-  cursor: 'grab',
-  scale: 1,
-  x: 0,
-  y: 0,
-})
-const { set } = useSpring(motionProperties as Partial<PermissiveMotionProperties>)
+const scale = ref(1)
+const x = ref(0)
+const y = ref(0)
 
-function resetZoom() {
-  set({ scale: 1 })
+const isDragging = ref(false)
+const isPinching = ref(false)
+
+const isZoomed = computed(() => scale.value > 1)
+
+function scrollToFocusedSlide() {
+  scale.value = 1
+  x.value = slide.value[modelValue.value].offsetLeft * scale.value
+  y.value = 0
 }
 
-watch(modelValue, resetZoom)
+onMounted(() => scrollToFocusedSlide())
+watch(modelValue, scrollToFocusedSlide)
 
-const { width, height } = useElementSize(target)
-const { isSwiping, lengthX, lengthY, direction } = useSwipe(target, {
-  threshold: 5,
+useSwipe(view, {
+  threshold,
   passive: false,
-  onSwipeEnd(e, direction) {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    if (direction === 'right' && Math.abs(distanceX.value) > threshold) {
+  onSwipeEnd(event, direction) {
+    if (isZoomed.value || isPinching.value)
+      return
+
+    isDragging.value = false
+
+    if (direction === 'right')
       modelValue.value = Math.max(0, modelValue.value - 1)
-      resetZoom()
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    if (direction === 'left' && Math.abs(distanceX.value) > threshold) {
+    if (direction === 'left')
       modelValue.value = Math.min(media.length - 1, modelValue.value + 1)
-      resetZoom()
-    }
-
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    if (direction === 'up' && Math.abs(distanceY.value) > threshold)
+    if (direction === 'up')
       emit('close')
   },
 })
 
+function restrictToInsideSlide() {
+  const focusedImage = image.value[modelValue.value]
+  const focusedSlide = slide.value[modelValue.value]
+
+  const gap = 20
+  const scaledImageWidth = focusedImage.offsetWidth * scale.value
+  const horizontalOverflow = (scaledImageWidth / 2 - view.value.clientWidth / 2 + gap) / scale.value
+  const scaledImageHeight = focusedImage.offsetHeight * scale.value
+  const verticalOverflow = (scaledImageHeight / 2 - view.value.clientHeight / 2 + gap) / scale.value
+
+  const restrictions = {
+    left: focusedSlide.offsetLeft - horizontalOverflow,
+    right: focusedSlide.offsetLeft + horizontalOverflow,
+    top: focusedSlide.offsetTop - verticalOverflow,
+    bottom: focusedSlide.offsetTop + verticalOverflow,
+  }
+
+  x.value = Math.min(restrictions.right, Math.max(restrictions.left, x.value))
+  y.value = Math.min(restrictions.bottom, Math.max(restrictions.top, y.value))
+}
+
 useGesture({
   onPinch({ offset: [distance, _angle] }) {
-    set({ scale: Math.max(0.5, 1 + distance / 200) })
+    isPinching.value = true
+
+    scale.value = Math.max(1, 1 + distance / 200)
+    // restrictToInsideSlide()
   },
-  onMove({ movement: [x, y], dragging, pinching }) {
-    if (dragging && !pinching)
-      set({ x, y })
+  onPinchEnd() {
+    isPinching.value = false
+
+    if (!isZoomed.value)
+      scrollToFocusedSlide()
+  },
+  onDrag({ delta: [deltaX, deltaY], pinching }) {
+    isDragging.value = true
+
+    if (pinching)
+      return
+
+    x.value -= deltaX / scale.value
+    y.value -= deltaY / scale.value
+
+    if (!isZoomed.value)
+      y.value = Math.max(0, y.value)
+    else
+      restrictToInsideSlide()
+  },
+  onDragEnd() {
+    isDragging.value = false
+
+    if (!isZoomed.value)
+      scrollToFocusedSlide()
   },
 }, {
-  domTarget: target,
+  domTarget: view,
   eventOptions: {
     passive: true,
   },
 })
 
-const distanceX = computed(() => {
-  if (width.value === 0)
-    return 0
+const sliderStyle = computed(() => {
+  const style = {
+    transform: `scale(${scale.value}) translate(${-x.value}px, ${-y.value}px)`,
+    transition: 'none',
+  }
 
-  if (!isSwiping.value || (direction.value !== 'left' && direction.value !== 'right'))
-    return modelValue.value * 100 * -1
+  if (canAnimate.value && !isDragging.value)
+    style.transition = 'all 0.5s ease'
 
-  return (lengthX.value / width.value) * 100 * -1 + (modelValue.value * 100) * -1
-})
-
-const distanceY = computed(() => {
-  if (height.value === 0 || !isSwiping.value || direction.value !== 'up')
-    return 0
-
-  return (lengthY.value / height.value) * 100 * -1
+  return style
 })
 </script>
 
 <template>
-  <div ref="target" flex flex-row max-h-full max-w-full overflow-hidden>
-    <div flex :style="{ transform: `translateX(${distanceX}%) translateY(${distanceY}%)`, transition: isSwiping ? 'none' : canAnimate ? 'all 0.5s ease' : 'none' }">
-      <div v-for="item in media" :key="item.id" p4 select-none w-full flex-shrink-0 flex flex-col items-center justify-center>
-        <img max-h-full max-w-full :draggable="false" select-none :src="item.url || item.previewUrl" :alt="item.description || ''">
+  <div ref="view" flex flex-row max-h-full max-w-full overflow-hidden>
+    <div ref="slider" :style="sliderStyle" flex items-center gap="20px">
+      <div
+        v-for="item in media"
+        :key="item.id"
+        ref="slide"
+        flex-shrink-0
+        w-full
+        h-full
+        flex
+        items-center
+        justify-center
+      >
+        <img
+          ref="image"
+          select-none
+          max-w-full
+          max-h-full
+          :draggable="false"
+          :src="item.url || item.previewUrl"
+          :alt="item.description || ''"
+        >
       </div>
     </div>
   </div>

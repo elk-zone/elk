@@ -30,10 +30,16 @@ const isDragging = ref(false)
 const isPinching = ref(false)
 
 const isZoomed = computed(() => scale.value > 1)
+const focusedSlideStartX = computed(() => {
+  if (!slide.value)
+    return 0
+
+  return slide.value[modelValue.value].offsetLeft * scale.value
+})
 
 function scrollToFocusedSlide() {
   scale.value = 1
-  x.value = slide.value[modelValue.value].offsetLeft * scale.value
+  x.value = focusedSlideStartX.value
   y.value = 0
 }
 
@@ -41,6 +47,7 @@ onMounted(() => scrollToFocusedSlide())
 watch(modelValue, scrollToFocusedSlide)
 
 let lastGestureDistance = 0
+
 useGesture({
   onPinch({ offset: [distance, _angle] }) {
     isPinching.value = true
@@ -57,7 +64,7 @@ useGesture({
     if (!isZoomed.value)
       scrollToFocusedSlide()
   },
-  onDrag({ delta, pinching, tap, first, swipe, event }) {
+  onDrag({ movement, delta, pinching, tap, first, swipe, event }) {
     event.preventDefault()
 
     if (first || pinching)
@@ -67,8 +74,10 @@ useGesture({
       handleTap()
     else if (swipe[0] || swipe[1])
       handleSwipe(swipe)
+    else if (isZoomed.value)
+      handleZoomDrag(delta)
     else
-      handleDrag(delta)
+      handleDrag(movement)
   },
   onDragEnd() {
     isDragging.value = false
@@ -116,7 +125,7 @@ function handleTap() {
   if (isZoomed.value)
     scale.value = 1
   else
-    scale.value = 1.5
+    scale.value = 2
 }
 
 function handleSwipe([horiz, vert]: [number, number]) {
@@ -131,16 +140,28 @@ function handleSwipe([horiz, vert]: [number, number]) {
     emit('close')
 }
 
-function handleDrag([deltaX, deltaY]: [number, number]) {
+function handleZoomDrag([deltaX, deltaY]: [number, number]) {
   isDragging.value = true
 
   x.value -= deltaX / scale.value
   y.value -= deltaY / scale.value
 
-  if (!isZoomed.value)
-    y.value = Math.max(0, y.value)
-  else
-    restrictDragToInsideSlide()
+  restrictDragToInsideSlide()
+}
+
+function handleDrag([movementX, movementY]: [number, number]) {
+  isDragging.value = true
+
+  if (Math.abs(movementY) > Math.abs(movementX)) { // more vertical movement then horizontal
+    x.value = focusedSlideStartX.value
+    y.value = -movementY / scale.value
+  }
+  else { // more horizontal movement then vertical
+    x.value = focusedSlideStartX.value - movementX / scale.value
+    y.value = 0
+  }
+
+  y.value = Math.max(0, y.value)
 }
 
 function restrictDragToInsideSlide() {

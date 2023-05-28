@@ -1,5 +1,5 @@
 import { resolve } from 'pathe'
-import type { ResizeOptions } from 'sharp'
+import type { PngOptions, ResizeOptions } from 'sharp'
 import sharp from 'sharp'
 
 interface Icon {
@@ -17,6 +17,10 @@ type IconType = 'transparent' | 'maskable' | 'apple'
  * - apple: [{ sizes: [180], padding: 0.3 }, resizeOptions: { fit: 'contain', background: 'white' } }]
  */
 interface Icons extends Record<IconType, Icon> {
+  /**
+   * @default: { compressionLevel: 9, quality: 60 }`
+   */
+  png?: PngOptions
   /**
    * @default `pwa-<size>x<size>.png`, `maskable-icon-<size>x<size>.png`, `apple-touch-icon-<size>x<size>.png`
    */
@@ -56,11 +60,12 @@ const root = process.cwd()
 
 const publicFolders = ['public', 'public-dev', 'public-staging'].map(folder => resolve(root, folder))
 
-async function optimizePng(filePath: string) {
-  await sharp(filePath).png({
-    compressionLevel: 9,
-    quality: 60,
-  }).toFile(`${filePath.replace(/\.png$/, '.optimized.png')}`)
+async function optimizePng(filePath: string, png: PngOptions) {
+  await sharp(filePath).png(png).toFile(`${filePath.replace(/\.png$/, '.optimized.png')}`)
+/*
+  await sharp(filePath).png(png).toFile(`${filePath.replace(/-test\.png$/, '.png')}`)
+  await rm(filePath)
+*/
 }
 
 async function generateTransparentIcons(icons: ResolvedIcons, svgLogo: string, folder: string) {
@@ -82,7 +87,7 @@ async function generateTransparentIcons(icons: ResolvedIcons, svgLogo: string, f
           resizeOptions,
         ).toBuffer(),
     }]).toFile(filePath)
-    await optimizePng(filePath)
+    await optimizePng(filePath, icons.png)
   }))
 }
 
@@ -106,7 +111,7 @@ async function generateMaskableIcons(type: IconType, icons: ResolvedIcons, svgLo
           resizeOptions,
         ).toBuffer(),
     }]).toFile(filePath)
-    await optimizePng(filePath)
+    await optimizePng(filePath, icons.png)
   }))
 }
 
@@ -122,6 +127,7 @@ async function generatePWAIconForEnv(folder: string, icons: ResolvedIcons) {
 
 async function generatePWAIcons(folders: string[], icons: Icons) {
   const {
+    png = { compressionLevel: 9, quality: 60 },
     iconName = (type, size) => {
       switch (type) {
         case 'transparent':
@@ -147,6 +153,7 @@ async function generatePWAIcons(folders: string[], icons: Icons) {
     apple.resizeOptions = { ...defaultIcons.apple.resizeOptions }
 
   await Promise.all(folders.map(folder => generatePWAIconForEnv(folder, {
+    png,
     iconName,
     transparent,
     maskable,

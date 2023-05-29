@@ -98,6 +98,8 @@
     "error": "ERROREA",
     "fetching": "Eskuratzen…",
     "in": "·",
+    "no_bookmarks": "Oraindik ez duzu laster-markarik",
+    "no_favourites": "Oraindik ez duzu gogokorik",
     "not_found": "404 Ez da aurkitu",
     "offline_desc": "Lineaz kanpo zaudela dirudi. Egiaztatu konexioa."
   },
@@ -208,8 +210,7 @@
         "command_mode": "Komando modua",
         "compose": "Idatzi",
         "favourite": "Egin gogoko",
-        "title": "Ekintzak",
-        "zen_mode": "Zen modua"
+        "title": "Ekintzak"
       },
       "media": {
         "title": "Multimedia"
@@ -294,6 +295,7 @@
     "followed_you_count": "{0} pertsonak jarraitu dizute|pertsona {0}ek jarraitu dizu|{0} pertsonak jarraitu dizute",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "zure bidalketari bultzada eman dio",
+    "reported": "{0}(e)k {1} salatu du",
     "request_to_follow": "jarraipen-eskaera bidali dizu",
     "signed_up": "izena eman du",
     "update_status": "bidalketa eguneratu du"
@@ -444,16 +446,20 @@
       "hide_alt_indi_on_posts": "Ezkutatu ALT adierazlea bidalketetan",
       "hide_boost_count": "Ezkutatu bultzaden kopurua",
       "hide_favorite_count": "Ezkutatu gogokoen kopurua",
-      "hide_follower_count": "Ezkutatu jarraitzaileen kopurua",
+      "hide_follower_count": "Ezkutatu jarraitzaile kopurua",
+      "hide_news": "Ezkutatu berriak",
       "hide_reply_count": "Ezkutatu erantzunen kopurua",
       "hide_translation": "Ezkutatu itzulpenak",
       "hide_username_emojis": "Ezkutatu emojiak erabiltzaile izenetan",
       "hide_username_emojis_description": "Denbora-lerroetan erabiltzaile izenetako emojiak ezkutatzen ditu. Emojiak ikusgai egoten jarraituko dute euren profiletan.",
       "label": "Hobespenak",
       "title": "Ezaugarri esperimentalak",
+      "use_star_favorite_icon": "Erabili izarraren ikonoa gogokoetarako",
       "user_picker": "Erabiltzaile hautatzailea",
       "virtual_scroll": "Korritze birtuala",
-      "wellbeing": "Ongizatea"
+      "wellbeing": "Ongizatea",
+      "zen_mode": "Zen modua",
+      "zen_mode_description": "Aldamenetako elementuak ezkutatzen ditu xagua gainean jarri arte. Denbora-lerroko elementu batzuk ere ezkutatzen ditu."
     },
     "profile": {
       "appearance": {
@@ -497,6 +503,10 @@
     "uploading": "Igotzen…"
   },
   "status": {
+    "account": {
+      "suspended_message": "Argitalpen honen egileari zigorra jarri zaio.",
+      "suspended_show": "Erakutsi edukia hala ere?"
+    },
     "boosted_by": "Bultzatu dute:",
     "edited": "Azken edizioa: {0}",
     "favourited_by": "Gogoko egin dute:",
@@ -518,6 +528,7 @@
     "replying_to": "{0}(r)i erantzunez",
     "show_full_thread": "Erakutsi hari osoa",
     "someone": "norbait",
+    "spoiler_media_hidden": "Multimedia ezkutatuta dago",
     "spoiler_show_less": "Erakutsi gutxiago",
     "spoiler_show_more": "Erakutsi gehiago",
     "thread": "Haria",

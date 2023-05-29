@@ -76,7 +76,7 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     orientation: 'natural',
     display: 'standalone',
     display_override: ['window-controls-overlay'],
-    categories: ['social', 'social networking'],
+    categories: ['social', 'social networking', 'news'],
     icons: [
       {
         src: 'pwa-64x64.png',

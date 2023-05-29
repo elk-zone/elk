@@ -251,8 +251,8 @@ importers:
         specifier: ^2020.9.6
         version: 2020.9.6
       '@unlazy/nuxt':
-        specifier: ^0.8.8
-        version: 0.8.8(fast-blurhash@1.1.2)(rollup@2.79.1)(thumbhash@0.1.1)
+        specifier: ^0.8.9
+        version: 0.8.9(fast-blurhash@1.1.2)(rollup@2.79.1)(thumbhash@0.1.1)
       bumpp:
         specifier: ^9.1.0
         version: 9.1.0
@@ -300,8 +300,8 @@ importers:
         version: 0.0.5
     devDependencies:
       '@nuxt-themes/docus':
-        specifier: ^1.11.0
-        version: 1.11.0(nuxt@3.5.2)(postcss@8.4.24)(rollup@3.23.0)(vue@3.3.4)
+        specifier: ^1.12.0
+        version: 1.12.0(nuxt@3.5.2)(postcss@8.4.24)(rollup@3.23.0)(vue@3.3.4)
       nuxt:
         specifier: ^3.5.2
         version: 3.5.2(@types/node@20.2.5)(eslint@8.39.0)(rollup@3.23.0)(typescript@5.0.4)(vue-tsc@1.6.5)
@@ -2323,14 +2323,14 @@ packages:
       - supports-color
     dev: false
 
-  /@nuxt-themes/docus@1.11.0(nuxt@3.5.2)(postcss@8.4.24)(rollup@3.23.0)(vue@3.3.4):
-    resolution: {integrity: sha512-9VeQrOocIQBN8p+/syVvMpHxVqUG8BO1KKWxfzlHI0hRfMRJ12rSUIWtSt9R3MdMNoeDdiNoEZ6F1dtPGfS/aQ==}
+  /@nuxt-themes/docus@1.12.0(nuxt@3.5.2)(postcss@8.4.24)(rollup@3.23.0)(vue@3.3.4):
+    resolution: {integrity: sha512-/YAlsKbyyjxIflFOIO3bKdM/QNsWLNRBXK11CTXod8zBlJe7lL/XqtNmbtqoNyQ+WumnkfVRA4UyKnu4W/Ya9w==}
     dependencies:
       '@nuxt-themes/elements': 0.9.4(postcss@8.4.24)(rollup@3.23.0)(vue@3.3.4)
       '@nuxt-themes/tokens': 1.9.1(postcss@8.4.24)(rollup@3.23.0)(vue@3.3.4)
       '@nuxt-themes/typography': 0.11.0(postcss@8.4.24)(rollup@3.23.0)(vue@3.3.4)
       '@nuxt/content': 2.6.0(rollup@3.23.0)
-      '@nuxthq/studio': 0.10.1(rollup@3.23.0)
+      '@nuxthq/studio': 0.12.1(rollup@3.23.0)
       '@vueuse/nuxt': 10.1.2(nuxt@3.5.2)(rollup@3.23.0)(vue@3.3.4)
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -2857,13 +2857,13 @@ packages:
       - vue-tsc
     dev: true
 
-  /@nuxthq/studio@0.10.1(rollup@3.23.0):
-    resolution: {integrity: sha512-EWzk3HkE6QuiqVxqZ7jsAc/8GxSDKRO+jnTBv1wlOAvPKJNPsHrlYGP8EyR6S1NaB3pQTJ9iVBhmskAtrKIsYQ==}
+  /@nuxthq/studio@0.12.1(rollup@3.23.0):
+    resolution: {integrity: sha512-g9GV8JkQqqYLtP+gsNtPr4fh49jc3eIdAB2ZfiudZKkFdW0BxtT/xPx8RjNYQwyInKssDDB26zzYrRYH9hhHCQ==}
     dependencies:
       '@nuxt/kit': 3.5.2(rollup@3.23.0)
       defu: 6.1.2
       nuxt-component-meta: 0.5.1(rollup@3.23.0)
-      nuxt-config-schema: 0.4.5(rollup@3.23.0)
+      nuxt-config-schema: 0.4.6(rollup@3.23.0)
       socket.io-client: 4.6.1
       ufo: 1.1.2
     transitivePeerDependencies:
@@ -3897,19 +3897,19 @@ packages:
       unhead: 1.1.27
       vue: 3.3.4
 
-  /@unlazy/core@0.8.8:
-    resolution: {integrity: sha512-V1QBPCF9IN8PK4d9uxl3fcQEndmqu47kOH7Ai7/Lj98Nuobnjv8K9xJfXfwqGkPcYfVBcFKvnwA3Z41XWLcd0Q==}
+  /@unlazy/core@0.8.9:
+    resolution: {integrity: sha512-DQ4WB/cuEWTknU/59uRwpSipvMAJzBDmRyaHDUc1RcXi0Z7/Vcl0EE7BpROxEynqd1EI+2oMWQaDLyXffUdUiA==}
     dependencies:
       fast-blurhash: 1.1.2
       thumbhash: 0.1.1
     dev: true
 
-  /@unlazy/nuxt@0.8.8(fast-blurhash@1.1.2)(rollup@2.79.1)(thumbhash@0.1.1):
-    resolution: {integrity: sha512-Osb6RHNGYLFHJ3Ib0XKpCwFLpodWUJWd5QA2kk4iR+vfU+3fIxXYFbcX3zG7sFLUIBN9n+NuNY2CuIAJV4BJqQ==}
+  /@unlazy/nuxt@0.8.9(fast-blurhash@1.1.2)(rollup@2.79.1)(thumbhash@0.1.1):
+    resolution: {integrity: sha512-STnVhXKpJNZRHDH/eamZVF9nfR4NLOmBQEr+yYHmlTMM9v81hSu+iwiekKDBJJi8hwNZuTiEIudIz4OP4hqe3w==}
     dependencies:
       '@nuxt/kit': 3.5.2(rollup@2.79.1)
       defu: 6.1.2
-      unlazy: 0.8.8(fast-blurhash@1.1.2)(thumbhash@0.1.1)
+      unlazy: 0.8.9(fast-blurhash@1.1.2)(thumbhash@0.1.1)
     transitivePeerDependencies:
       - fast-blurhash
       - rollup
@@ -10251,6 +10251,19 @@ packages:
       - supports-color
     dev: true
 
+  /nuxt-config-schema@0.4.6(rollup@3.23.0):
+    resolution: {integrity: sha512-kHLWJFynj5QrxVZ1MjY2xmDaTSN1BCMLGExA+hMMLoCb3wn9TJlDVqnE/nSdUJPMRkNn/NQ5WP9NLA9vlAXRUw==}
+    dependencies:
+      '@nuxt/kit': 3.5.2(rollup@3.23.0)
+      defu: 6.1.2
+      jiti: 1.18.2
+      pathe: 1.1.0
+      untyped: 1.3.2
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
   /nuxt-csurf@1.2.0(rollup@2.79.1):
     resolution: {integrity: sha512-sO8Hm3fR+GB3DMc0y1Slzt+f9LiUKpvF/qvUUZBWz1ZknfTRTYemZkfSNcoYf0/hoL2Wb9O0c8pFtzj0hs8Spw==}
     dependencies:
@@ -10266,7 +10279,7 @@ packages:
     dependencies:
       '@iconify/vue': 4.1.0(vue@3.3.4)
       '@nuxt/kit': 3.5.2(rollup@3.23.0)
-      nuxt-config-schema: 0.4.5(rollup@3.23.0)
+      nuxt-config-schema: 0.4.6(rollup@3.23.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -10893,7 +10906,7 @@ packages:
       '@volar/vue-language-core': 1.6.5
       acorn: 8.8.2
       chroma-js: 2.4.2
-      consola: 3.1.0
+      consola: 2.15.3
       csstype: 3.1.1
       defu: 6.1.2
       magic-string: 0.30.0
@@ -13212,13 +13225,13 @@ packages:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
 
-  /unlazy@0.8.8(fast-blurhash@1.1.2)(thumbhash@0.1.1):
-    resolution: {integrity: sha512-7wro4wypXPr2WurVcuapEYwju9YXkJP9fHT2SgK5e0aegmuGL/M6wPaZNFQMzfMUCiFb5NODxW9lykq7ymOEog==}
+  /unlazy@0.8.9(fast-blurhash@1.1.2)(thumbhash@0.1.1):
+    resolution: {integrity: sha512-lRCuXN20N1esqSQqtSVBLAw9GJz0lcBuOBs3UGGw7cFWHQlWJVZZ3OviwOl42f1CnVHjAON1rs2hIdJWgMAUyg==}
     peerDependencies:
       fast-blurhash: ^1.1.2
       thumbhash: ^0.1.1
     dependencies:
-      '@unlazy/core': 0.8.8
+      '@unlazy/core': 0.8.9
       fast-blurhash: 1.1.2
       thumbhash: 0.1.1
     dev: true

@@ -307,10 +307,26 @@
     "replying": "Erantzuten",
     "the_thread": "haria"
   },
+  "polls": {
+    "allow_multiple": "Baimendu aukera anitzak",
+    "cancel": "Utzi",
+    "create": "Sortu bozketa",
+    "disallow_multiple": "Ezgaitu aukera anitzak",
+    "expiration": "Bozketaren epemuga",
+    "hide_votes": "Ezkutatu emaitza osoa bozketa amaitu arte",
+    "option_placeholder": "Bozketaren aukera {unean}/{gehienez}",
+    "remove_option": "Kendu aukera",
+    "settings": "Bozketaren ezarpenak",
+    "show_votes": "Erakutsi beti bozketaren emaitza osoa"
+  },
   "pwa": {
     "dismiss": "Baztertu",
     "install": "Instalatu",
     "install_title": "Instalatu Elk",
+    "screenshots": {
+      "dark": "Elk-en pantaila-argazkia, kolore ilunak darabiltzala",
+      "light": "Elk-en pantaila-argazkia, kolore argiak darabiltzala"
+    },
     "title": "Eguneraketa berria eskuragai!",
     "update": "Eguneratu",
     "update_available_short": "Eguneratu Elk",

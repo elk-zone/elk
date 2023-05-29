@@ -140,7 +140,6 @@ async function generatePWAIconForEnv(folder: string, icons: ResolvedIcons) {
   ])
 
   if (icons.ico) {
-    console.log('Generating favicon.ico')
     const {
       icoName = size => `favicon-${size}x${size}.ico`,
     } = icons.ico

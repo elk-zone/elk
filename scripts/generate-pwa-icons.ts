@@ -1,3 +1,4 @@
+import { rm } from 'node:fs/promises'
 import { resolve } from 'pathe'
 import type { PngOptions, ResizeOptions } from 'sharp'
 import sharp from 'sharp'
@@ -61,11 +62,8 @@ const root = process.cwd()
 const publicFolders = ['public', 'public-dev', 'public-staging'].map(folder => resolve(root, folder))
 
 async function optimizePng(filePath: string, png: PngOptions) {
-  await sharp(filePath).png(png).toFile(`${filePath.replace(/\.png$/, '.optimized.png')}`)
-/*
-  await sharp(filePath).png(png).toFile(`${filePath.replace(/-test\.png$/, '.png')}`)
+  await sharp(filePath).png(png).toFile(`${filePath.replace(/-temp\.png$/, '.png')}`)
   await rm(filePath)
-*/
 }
 
 async function generateTransparentIcons(icons: ResolvedIcons, svgLogo: string, folder: string) {
@@ -92,7 +90,6 @@ async function generateTransparentIcons(icons: ResolvedIcons, svgLogo: string, f
 }
 
 async function generateMaskableIcons(type: IconType, icons: ResolvedIcons, svgLogo: string, folder: string) {
-  // https://github.com/lovell/sharp/issues/729
   const { sizes, padding, resizeOptions } = icons[type]
   await Promise.all(sizes.map(async (size) => {
     const filePath = resolve(folder, icons.iconName(type, size))
@@ -117,7 +114,6 @@ async function generateMaskableIcons(type: IconType, icons: ResolvedIcons, svgLo
 
 async function generatePWAIconForEnv(folder: string, icons: ResolvedIcons) {
   const svgLogo = resolve(folder, 'logo.svg')
-  console.log(icons)
   await Promise.all([
     generateTransparentIcons(icons, svgLogo, folder),
     generateMaskableIcons('maskable', icons, svgLogo, folder),
@@ -168,11 +164,11 @@ generatePWAIcons(publicFolders, <Icons>{
   iconName: (type, size) => {
     switch (type) {
       case 'transparent':
-        return size === 64 ? `pwa-windows-44x44-${size}-test.png` : `pwa-${size}x${size}-test.png`
+        return size === 64 ? `pwa-windows-44x44-${size}-temp.png` : `pwa-${size}x${size}-temp.png`
       case 'maskable':
-        return 'maskable-icon-test.png'
+        return 'maskable-icon-temp.png'
       case 'apple':
-        return 'apple-touch-icon-test.png'
+        return 'apple-touch-icon-temp.png'
     }
   },
 }).then(() => console.log('Elk PWA Icons generated')).catch(console.error)

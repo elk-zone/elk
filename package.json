@@ -95,7 +95,7 @@
     "ufo": "^1.1.1",
     "ultrahtml": "^1.2.0",
     "unimport": "^3.0.6",
-    "vite-plugin-pwa": "^0.15.0",
+    "vite-plugin-pwa": "^0.15.1",
     "vue-advanced-cropper": "^2.8.8",
     "vue-virtual-scroller": "2.0.0-beta.8",
     "workbox-build": "^6.5.4",

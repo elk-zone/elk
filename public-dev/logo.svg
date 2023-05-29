@@ -18,7 +18,7 @@
      maskUnits="userSpaceOnUse"
      style="mask-type:alpha">
     <path
-       fill="#D9D9D9"
+       fill="white"
        d="M244 123c0 64.617-38.383 112-103 112-64.617 0-103-30.883-103-95.5C38 111.194-8.729 36.236 8 16 29.46-9.959 88.689 6 125 6c64.617 0 119 52.383 119 117Z"
        id="path19" />
   </mask>

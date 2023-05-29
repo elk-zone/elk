@@ -37,7 +37,7 @@ const isPinching = ref(false)
 const maxZoomOut = ref(1)
 const isZoomedIn = computed(() => scale.value > 1)
 
-function scrollToFocusedSlide() {
+function goToFocusedSlide() {
   scale.value = 1
   x.value = slide.value[modelValue.value].offsetLeft * scale.value
   y.value = 0
@@ -47,9 +47,9 @@ onMounted(() => {
   const slideGapAsScale = slideGap / view.value.clientWidth
   maxZoomOut.value = 1 - slideGapAsScale
 
-  scrollToFocusedSlide()
+  goToFocusedSlide()
 })
-watch(modelValue, scrollToFocusedSlide)
+watch(modelValue, goToFocusedSlide)
 
 let lastGestureDistance = 0
 useGesture({
@@ -66,28 +66,18 @@ useGesture({
     isPinching.value = false
 
     if (!isZoomedIn.value)
-      scrollToFocusedSlide()
+      goToFocusedSlide()
   },
-  onDrag({ movement, delta, pinching, tap, first, swipe, event }) {
+  onDrag({ movement, delta, pinching, tap, first, last, swipe, event }) {
     event.preventDefault()
 
     if (first || pinching)
       return
 
-    if (tap)
-      handleTap()
-    else if (swipe[0] || swipe[1])
-      handleSwipe(swipe)
-    else if (isZoomedIn.value)
-      handleZoomDrag(delta)
+    if (last)
+      handleLastDrag(tap, swipe)
     else
-      handleDrag(movement)
-  },
-  onDragEnd() {
-    isDragging.value = false
-
-    if (!isZoomedIn.value)
-      scrollToFocusedSlide()
+      handleDrag(delta, movement)
   },
 }, {
   domTarget: view,
@@ -116,6 +106,17 @@ const dragRestrictions = computed(() => {
   }
 })
 
+function handleLastDrag(tap: boolean, swipe: [number, number]) {
+  isDragging.value = false
+
+  if (tap)
+    handleTap()
+  else if (swipe[0] || swipe[1])
+    handleSwipe(swipe)
+  else if (!isZoomedIn.value)
+    slideToClosestSlide()
+}
+
 let lastTapAt = 0
 function handleTap() {
   const now = Date.now()
@@ -126,7 +127,7 @@ function handleTap() {
     return
 
   if (isZoomedIn.value)
-    scale.value = 1
+    goToFocusedSlide()
   else
     scale.value = 2
 }
@@ -141,21 +142,40 @@ function handleSwipe([horiz, vert]: [number, number]) {
     modelValue.value = Math.min(media.length - 1, modelValue.value + 1)
   if (vert === -1) // top
     emit('close')
+
+  goToFocusedSlide()
+}
+
+function slideToClosestSlide() {
+  const startOfFocusedSlide = slide.value[modelValue.value].offsetLeft * scale.value
+  const slideWidth = slide.value[modelValue.value].offsetWidth * scale.value
+
+  if (x.value > startOfFocusedSlide + slideWidth / 2)
+    modelValue.value = Math.min(media.length - 1, modelValue.value + 1)
+  else if (x.value < startOfFocusedSlide - slideWidth / 2)
+    modelValue.value = Math.max(0, modelValue.value - 1)
+
+  goToFocusedSlide()
+}
+
+function handleDrag(delta: [number, number], movement: [number, number]) {
+  isDragging.value = true
+
+  if (isZoomedIn.value)
+    handleZoomDrag(delta)
+  else
+    handleSlideDrag(movement)
 }
 
 function handleZoomDrag([deltaX, deltaY]: [number, number]) {
-  isDragging.value = true
-
   x.value -= deltaX / scale.value
   y.value -= deltaY / scale.value
 
   restrictDragToInsideSlide()
 }
 
-function handleDrag([movementX, movementY]: [number, number]) {
-  isDragging.value = true
-
-  scrollToFocusedSlide()
+function handleSlideDrag([movementX, movementY]: [number, number]) {
+  goToFocusedSlide()
 
   if (-movementY > Math.abs(movementX)) // upwards movement is more then horizontal
     y.value -= movementY / scale.value
@@ -163,6 +183,9 @@ function handleDrag([movementX, movementY]: [number, number]) {
     x.value -= movementX / scale.value
 
   y.value = Math.max(0, y.value)
+
+  if (media.length === 1)
+    x.value = 0
 }
 
 function restrictDragToInsideSlide() {
@@ -174,6 +197,7 @@ const sliderStyle = computed(() => {
   const style = {
     transform: `scale(${scale.value}) translate(${-x.value}px, ${-y.value}px)`,
     transition: 'none',
+    gap: `${slideGap}px`,
   }
 
   if (canAnimate.value && !isDragging.value && !isPinching.value)
@@ -184,8 +208,8 @@ const sliderStyle = computed(() => {
 </script>
 
 <template>
-  <div ref="view" flex flex-row max-h-full max-w-full overflow-hidden>
-    <div ref="slider" :style="sliderStyle" flex items-center :gap="`${slideGap}px`">
+  <div ref="view" flex flex-row h-full w-full overflow-hidden>
+    <div ref="slider" :style="sliderStyle" w-full h-full flex items-center>
       <div
         v-for="item in media"
         :key="item.id"

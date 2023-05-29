@@ -18,7 +18,7 @@ defineOptions({
 })
 
 defineSlots<{
-  text: {}
+  text: (props: {}) => void
 }>()
 
 const el = ref<HTMLDivElement>()

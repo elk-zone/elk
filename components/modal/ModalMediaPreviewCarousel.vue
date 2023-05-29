@@ -64,18 +64,19 @@ useGesture({
   },
   onPinchEnd() {
     isPinching.value = false
+    isDragging.value = false
 
     if (!isZoomedIn.value)
       goToFocusedSlide()
   },
-  onDrag({ movement, delta, pinching, tap, first, last, swipe, event }) {
+  onDrag({ movement, delta, pinching, tap, last, swipe, event }) {
     event.preventDefault()
 
-    if (first || pinching)
+    if (pinching)
       return
 
     if (last)
-      handleLastDrag(tap, swipe)
+      handleLastDrag(tap, swipe, movement)
     else
       handleDrag(delta, movement)
   },
@@ -106,13 +107,13 @@ const dragRestrictions = computed(() => {
   }
 })
 
-function handleLastDrag(tap: boolean, swipe: [number, number]) {
+function handleLastDrag(tap: boolean, swipe: [number, number], movement: [number, number]) {
   isDragging.value = false
 
   if (tap)
     handleTap()
   else if (swipe[0] || swipe[1])
-    handleSwipe(swipe)
+    handleSwipe(swipe, movement)
   else if (!isZoomedIn.value)
     slideToClosestSlide()
 }
@@ -132,16 +133,21 @@ function handleTap() {
     scale.value = 2
 }
 
-function handleSwipe([horiz, vert]: [number, number]) {
+function handleSwipe([horiz, vert]: [number, number], [movementX, movementY]: [number, number]) {
   if (isZoomedIn.value || isPinching.value)
     return
 
-  if (horiz === 1) // left
-    modelValue.value = Math.max(0, modelValue.value - 1)
-  if (horiz === -1) // right
-    modelValue.value = Math.min(media.length - 1, modelValue.value + 1)
-  if (vert === -1) // top
+  const isHorizontalDrag = Math.abs(movementX) >= Math.abs(movementY)
+
+  if (isHorizontalDrag) {
+    if (horiz === 1) // left
+      modelValue.value = Math.max(0, modelValue.value - 1)
+    if (horiz === -1) // right
+      modelValue.value = Math.min(media.length - 1, modelValue.value + 1)
+  }
+  else if (vert === -1) { // top
     emit('close')
+  }
 
   goToFocusedSlide()
 }
@@ -205,6 +211,10 @@ const sliderStyle = computed(() => {
 
   return style
 })
+
+const imageStyle = computed(() => ({
+  cursor: isDragging.value ? 'grabbing' : 'grab',
+}))
 </script>
 
 <template>
@@ -226,7 +236,7 @@ const sliderStyle = computed(() => {
           select-none
           max-w-full
           max-h-full
-          cursor-pointer
+          :style="imageStyle"
           :draggable="false"
           :src="item.url || item.previewUrl"
           :alt="item.description || ''"

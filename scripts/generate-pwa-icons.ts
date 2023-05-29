@@ -1,7 +1,8 @@
-import { rm } from 'node:fs/promises'
+import { rm, writeFile } from 'node:fs/promises'
 import { resolve } from 'pathe'
 import type { PngOptions, ResizeOptions } from 'sharp'
 import sharp from 'sharp'
+import ico from 'sharp-ico'
 
 interface Icon {
   sizes: number[]
@@ -26,9 +27,27 @@ interface Icons extends Record<IconType, Icon> {
    * @default `pwa-<size>x<size>.png`, `maskable-icon-<size>x<size>.png`, `apple-touch-icon-<size>x<size>.png`
    */
   iconName?: (type: IconType, size: number) => string
+  /**
+   * Generate `favicon.ico` from transparent icons (from `pwa-<size>x<size>.png` ones)
+   */
+  ico?: {
+    /**
+     * @default `favicon-<size>x<size>.ico`
+     */
+    icoName?: (size: number) => string
+    sizes: number[]
+  }
 }
 
-interface ResolvedIcons extends Required<Icons> {}
+interface ResolvedIcons extends Required<Omit<Icons, 'ico'>> {
+  ico?: {
+    /**
+     * @default `favicon-<size>x<size>.ico`
+     */
+    icoName?: (size: number) => string
+    sizes: number[]
+  }
+}
 
 const defaultIcons: Icons = {
   transparent: {
@@ -119,6 +138,19 @@ async function generatePWAIconForEnv(folder: string, icons: ResolvedIcons) {
     generateMaskableIcons('maskable', icons, svgLogo, folder),
     generateMaskableIcons('apple', icons, svgLogo, folder),
   ])
+
+  if (icons.ico) {
+    console.log('Generating favicon.ico')
+    const {
+      icoName = size => `favicon-${size}x${size}.ico`,
+    } = icons.ico
+    await Promise.all(icons.ico.sizes.map(async (size) => {
+      const png = await sharp(
+        resolve(folder, icons.iconName('transparent', size).replace(/-temp\.png$/, '.png')),
+      ).toFormat('png').toBuffer()
+      await writeFile(resolve(folder, icoName(size)), ico.encode([png]))
+    }))
+  }
 }
 
 async function generatePWAIcons(folders: string[], icons: Icons) {
@@ -137,6 +169,7 @@ async function generatePWAIcons(folders: string[], icons: Icons) {
     transparent = { ...defaultIcons.transparent },
     maskable = { ...defaultIcons.maskable },
     apple = { ...defaultIcons.apple },
+    ico,
   } = icons
 
   if (!transparent.resizeOptions)
@@ -154,6 +187,7 @@ async function generatePWAIcons(folders: string[], icons: Icons) {
     transparent,
     maskable,
     apple,
+    ico,
   })))
 }
 
@@ -161,10 +195,11 @@ console.log('Generating Elk PWA Icons...')
 
 generatePWAIcons(publicFolders, <Icons>{
   transparent: { ...defaultIcons.transparent, sizes: [64, 192, 512] },
+  ico: { sizes: [64], icoName: _ => 'favicon.ico' },
   iconName: (type, size) => {
     switch (type) {
       case 'transparent':
-        return size === 64 ? `pwa-windows-44x44-${size}-temp.png` : `pwa-${size}x${size}-temp.png`
+        return `pwa-${size}x${size}-temp.png`
       case 'maskable':
         return 'maskable-icon-temp.png'
       case 'apple':

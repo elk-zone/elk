@@ -79,7 +79,7 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     categories: ['social', 'social networking'],
     icons: [
       {
-        src: 'pwa-windows-44x44-64.png',
+        src: 'pwa-64x64.png',
         sizes: '64x64',
         type: 'image/png',
       },

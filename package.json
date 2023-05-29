@@ -122,6 +122,7 @@
     "nuxt": "3.5.1",
     "prettier": "^2.8.8",
     "sharp": "^0.32.1",
+    "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.8.1",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4",

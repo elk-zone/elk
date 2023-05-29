@@ -15,12 +15,17 @@ const { modelValue } = defineModels<{
   modelValue: number
 }>()
 
+const slideGap = 20
+const doubleTapTreshold = 250
+
 const view = ref()
 const slider = ref()
 const slide = ref()
 const image = ref()
 
 const reduceMotion = process.server ? ref(false) : useReducedMotion()
+const isInitialScrollDone = useTimeout(350)
+const canAnimate = computed(() => isInitialScrollDone.value && !reduceMotion.value)
 
 const scale = ref(1)
 const x = ref(0)
@@ -29,25 +34,24 @@ const y = ref(0)
 const isDragging = ref(false)
 const isPinching = ref(false)
 
-const isZoomed = computed(() => scale.value > 1)
-const focusedSlideStartX = computed(() => {
-  if (!slide.value)
-    return 0
-
-  return slide.value[modelValue.value].offsetLeft * scale.value
-})
+const maxZoomOut = ref(1)
+const isZoomedIn = computed(() => scale.value > 1)
 
 function scrollToFocusedSlide() {
   scale.value = 1
-  x.value = focusedSlideStartX.value
+  x.value = slide.value[modelValue.value].offsetLeft * scale.value
   y.value = 0
 }
 
-onMounted(() => scrollToFocusedSlide())
+onMounted(() => {
+  const slideGapAsScale = slideGap / view.value.clientWidth
+  maxZoomOut.value = 1 - slideGapAsScale
+
+  scrollToFocusedSlide()
+})
 watch(modelValue, scrollToFocusedSlide)
 
 let lastGestureDistance = 0
-
 useGesture({
   onPinch({ offset: [distance, _angle] }) {
     isPinching.value = true
@@ -55,13 +59,13 @@ useGesture({
     const currDistance = distance - lastGestureDistance
     lastGestureDistance = distance
 
-    scale.value = Math.max(1, scale.value + currDistance / 200)
+    scale.value = Math.max(maxZoomOut.value, scale.value + currDistance / 200)
     restrictDragToInsideSlide()
   },
   onPinchEnd() {
     isPinching.value = false
 
-    if (!isZoomed.value)
+    if (!isZoomedIn.value)
       scrollToFocusedSlide()
   },
   onDrag({ movement, delta, pinching, tap, first, swipe, event }) {
@@ -74,7 +78,7 @@ useGesture({
       handleTap()
     else if (swipe[0] || swipe[1])
       handleSwipe(swipe)
-    else if (isZoomed.value)
+    else if (isZoomedIn.value)
       handleZoomDrag(delta)
     else
       handleDrag(movement)
@@ -82,7 +86,7 @@ useGesture({
   onDragEnd() {
     isDragging.value = false
 
-    if (!isZoomed.value)
+    if (!isZoomedIn.value)
       scrollToFocusedSlide()
   },
 }, {
@@ -96,14 +100,12 @@ const dragRestrictions = computed(() => {
   const focusedImage = image.value[modelValue.value]
   const focusedSlide = slide.value[modelValue.value]
 
-  const gap = 20
-
   const scaledImageWidth = focusedImage.offsetWidth * scale.value
-  const scaledHorizontalOverflow = scaledImageWidth / 2 - view.value.clientWidth / 2 + gap
+  const scaledHorizontalOverflow = scaledImageWidth / 2 - view.value.clientWidth / 2 + slideGap
   const horizontalOverflow = Math.max(0, scaledHorizontalOverflow / scale.value)
 
   const scaledImageHeight = focusedImage.offsetHeight * scale.value
-  const scaledVerticalOverflow = scaledImageHeight / 2 - view.value.clientHeight / 2 + gap
+  const scaledVerticalOverflow = scaledImageHeight / 2 - view.value.clientHeight / 2 + slideGap
   const verticalOverflow = Math.max(0, scaledVerticalOverflow / scale.value)
 
   return {
@@ -117,19 +119,20 @@ const dragRestrictions = computed(() => {
 let lastTapAt = 0
 function handleTap() {
   const now = Date.now()
-  const isDoubleTap = now - lastTapAt < 250
+  const isDoubleTap = now - lastTapAt < doubleTapTreshold
   lastTapAt = now
+
   if (!isDoubleTap)
     return
 
-  if (isZoomed.value)
+  if (isZoomedIn.value)
     scale.value = 1
   else
     scale.value = 2
 }
 
 function handleSwipe([horiz, vert]: [number, number]) {
-  if (isZoomed.value || isPinching.value)
+  if (isZoomedIn.value || isPinching.value)
     return
 
   if (horiz === 1) // left
@@ -152,14 +155,12 @@ function handleZoomDrag([deltaX, deltaY]: [number, number]) {
 function handleDrag([movementX, movementY]: [number, number]) {
   isDragging.value = true
 
-  if (Math.abs(movementY) > Math.abs(movementX)) { // more vertical movement then horizontal
-    x.value = focusedSlideStartX.value
-    y.value = -movementY / scale.value
-  }
-  else { // more horizontal movement then vertical
-    x.value = focusedSlideStartX.value - movementX / scale.value
-    y.value = 0
-  }
+  scrollToFocusedSlide()
+
+  if (-movementY > Math.abs(movementX)) // upwards movement is more then horizontal
+    y.value -= movementY / scale.value
+  else
+    x.value -= movementX / scale.value
 
   y.value = Math.max(0, y.value)
 }
@@ -175,7 +176,7 @@ const sliderStyle = computed(() => {
     transition: 'none',
   }
 
-  if (!reduceMotion.value && !isDragging.value && !isPinching.value)
+  if (canAnimate.value && !isDragging.value && !isPinching.value)
     style.transition = 'all 0.3s ease'
 
   return style
@@ -184,7 +185,7 @@ const sliderStyle = computed(() => {
 
 <template>
   <div ref="view" flex flex-row max-h-full max-w-full overflow-hidden>
-    <div ref="slider" :style="sliderStyle" flex items-center gap="20px">
+    <div ref="slider" :style="sliderStyle" flex items-center :gap="`${slideGap}px`">
       <div
         v-for="item in media"
         :key="item.id"
@@ -201,6 +202,7 @@ const sliderStyle = computed(() => {
           select-none
           max-w-full
           max-h-full
+          cursor-pointer
           :draggable="false"
           :src="item.url || item.previewUrl"
           :alt="item.description || ''"

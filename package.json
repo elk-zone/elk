@@ -118,7 +118,7 @@
     "flat": "^5.0.2",
     "fs-extra": "^11.1.1",
     "lint-staged": "^13.2.2",
-    "nuxt": "3.5.1",
+    "nuxt": "3.5.2",
     "prettier": "^2.8.8",
     "simple-git-hooks": "^2.8.1",
     "tsx": "^3.12.7",

@@ -69,6 +69,7 @@ function removeEntry(entryId: any) {
 }
 
 defineExpose({ createEntry, removeEntry, updateEntry })
+const key = 'key' as any
 </script>
 
 <template>
@@ -84,6 +85,7 @@ defineExpose({ createEntry, removeEntry, updateEntry })
           page-mode
         >
           <slot
+            :[key]="item[keyProp]"
             :item="item"
             :active="active"
             :older="items[index + 1] as U"
@@ -96,6 +98,7 @@ defineExpose({ createEntry, removeEntry, updateEntry })
       <template v-else>
         <slot
           v-for="item, index of items"
+          :[key]="item[keyProp]"
           :item="item as U"
           :older="items[index + 1] as U"
           :newer="items[index - 1] as U"

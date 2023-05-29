@@ -76,8 +76,13 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     orientation: 'natural',
     display: 'standalone',
     display_override: ['window-controls-overlay'],
-    categories: ['social', 'social networking'],
+    categories: ['social', 'social networking', 'news'],
     icons: [
+      {
+        src: 'pwa-64x64.png',
+        sizes: '64x64',
+        type: 'image/png',
+      },
       {
         src: 'pwa-192x192.png',
         sizes: '192x192',
@@ -113,6 +118,8 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
       },
     },
   }
+
+  // TODO: add related_applications, only when env === 'release'
 
   const locales: RequiredWebManifestEntry[] = await Promise.all(
     pwaLocales

@@ -56,11 +56,11 @@ useGesture({
   onPinch({ offset: [distance, _angle] }) {
     isPinching.value = true
 
-    const currDistance = distance - lastGestureDistance
+    const deltaDistance = distance - lastGestureDistance
     lastGestureDistance = distance
 
-    scale.value = Math.max(maxZoomOut.value, scale.value + currDistance / 200)
-    restrictDragToInsideSlide()
+    scale.value = Math.max(maxZoomOut.value, scale.value + deltaDistance / 200)
+    restrictShiftToInsideSlide()
   },
   onPinchEnd() {
     isPinching.value = false
@@ -69,14 +69,14 @@ useGesture({
     if (!isZoomedIn.value)
       goToFocusedSlide()
   },
-  onDrag({ movement, delta, pinching, tap, last, swipe, event }) {
+  onDrag({ movement, delta, pinching, tap, last, swipe, event, xy }) {
     event.preventDefault()
 
     if (pinching)
       return
 
     if (last)
-      handleLastDrag(tap, swipe, movement)
+      handleLastDrag(tap, swipe, movement, xy)
     else
       handleDrag(delta, movement)
   },
@@ -87,7 +87,7 @@ useGesture({
   },
 })
 
-const dragRestrictions = computed(() => {
+const shiftRestrictions = computed(() => {
   const focusedImage = image.value[modelValue.value]
   const focusedSlide = slide.value[modelValue.value]
 
@@ -107,11 +107,11 @@ const dragRestrictions = computed(() => {
   }
 })
 
-function handleLastDrag(tap: boolean, swipe: [number, number], movement: [number, number]) {
+function handleLastDrag(tap: boolean, swipe: [number, number], movement: [number, number], position: [number, number]) {
   isDragging.value = false
 
   if (tap)
-    handleTap()
+    handleTap(position)
   else if (swipe[0] || swipe[1])
     handleSwipe(swipe, movement)
   else if (!isZoomedIn.value)
@@ -119,7 +119,7 @@ function handleLastDrag(tap: boolean, swipe: [number, number], movement: [number
 }
 
 let lastTapAt = 0
-function handleTap() {
+function handleTap([positionX, positionY]: [number, number]) {
   const now = Date.now()
   const isDoubleTap = now - lastTapAt < doubleTapTreshold
   lastTapAt = now
@@ -127,10 +127,19 @@ function handleTap() {
   if (!isDoubleTap)
     return
 
-  if (isZoomedIn.value)
+  if (isZoomedIn.value) {
     goToFocusedSlide()
-  else
+  }
+  else {
+    const focusedSlideBounding = slide.value[modelValue.value].getBoundingClientRect()
+    const slideCenterX = focusedSlideBounding.left + focusedSlideBounding.width / 2
+    const slideCenterY = focusedSlideBounding.top + focusedSlideBounding.height / 2
+
     scale.value = 2
+    x.value += positionX - slideCenterX
+    y.value += positionY - slideCenterY
+    restrictShiftToInsideSlide()
+  }
 }
 
 function handleSwipe([horiz, vert]: [number, number], [movementX, movementY]: [number, number]) {
@@ -177,7 +186,7 @@ function handleZoomDrag([deltaX, deltaY]: [number, number]) {
   x.value -= deltaX / scale.value
   y.value -= deltaY / scale.value
 
-  restrictDragToInsideSlide()
+  restrictShiftToInsideSlide()
 }
 
 function handleSlideDrag([movementX, movementY]: [number, number]) {
@@ -194,9 +203,9 @@ function handleSlideDrag([movementX, movementY]: [number, number]) {
     x.value = 0
 }
 
-function restrictDragToInsideSlide() {
-  x.value = Math.min(dragRestrictions.value.right, Math.max(dragRestrictions.value.left, x.value))
-  y.value = Math.min(dragRestrictions.value.bottom, Math.max(dragRestrictions.value.top, y.value))
+function restrictShiftToInsideSlide() {
+  x.value = Math.min(shiftRestrictions.value.right, Math.max(shiftRestrictions.value.left, x.value))
+  y.value = Math.min(shiftRestrictions.value.bottom, Math.max(shiftRestrictions.value.top, y.value))
 }
 
 const sliderStyle = computed(() => {

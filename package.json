@@ -86,7 +86,7 @@
     "slimeform": "^0.9.1",
     "stale-dep": "^0.6.0",
     "std-env": "^3.3.3",
-    "string-length": "^5.0.1",
+    "string-length": "^6.0.0",
     "tauri-plugin-log-api": "github:tauri-apps/tauri-plugin-log",
     "tauri-plugin-store-api": "github:tauri-apps/tauri-plugin-store",
     "theme-vitesse": "^0.6.4",

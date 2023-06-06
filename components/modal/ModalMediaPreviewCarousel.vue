@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Vector2 } from '@vueuse/gesture'
 import { useGesture } from '@vueuse/gesture'
 import { useReducedMotion } from '@vueuse/motion'
 import type { mastodon } from 'masto'
@@ -51,16 +52,26 @@ onMounted(() => {
 })
 watch(modelValue, goToFocusedSlide)
 
-let lastGestureDistance = 0
+let lastCenterPos = [0, 0]
+let initialScale = 0
 useGesture({
-  onPinch({ offset: [distance, _angle] }) {
+  onPinch({ first, initial: [initialDistance], da: [distance], origin: [originX, originY] }) {
     isPinching.value = true
 
-    const deltaDistance = distance - lastGestureDistance
-    lastGestureDistance = distance
+    if (first) {
+      initialScale = scale.value
+    }
+    else {
+      scale.value = initialScale * (distance / initialDistance)
+      scale.value = Math.max(maxZoomOut.value, scale.value)
 
-    scale.value = Math.max(maxZoomOut.value, scale.value + deltaDistance / 200)
-    restrictShiftToInsideSlide()
+      const deltaCenterX = originX - lastCenterPos[0]
+      const deltaCenterY = originY - lastCenterPos[1]
+
+      handleZoomDrag([deltaCenterX, deltaCenterY])
+    }
+
+    lastCenterPos = [originX, originY]
   },
   onPinchEnd() {
     isPinching.value = false
@@ -119,7 +130,7 @@ function handleLastDrag(tap: boolean, swipe: [number, number], movement: [number
 }
 
 let lastTapAt = 0
-function handleTap([positionX, positionY]: [number, number]) {
+function handleTap([positionX, positionY]: Vector2) {
   const now = Date.now()
   const isDoubleTap = now - lastTapAt < doubleTapTreshold
   lastTapAt = now
@@ -135,14 +146,14 @@ function handleTap([positionX, positionY]: [number, number]) {
     const slideCenterX = focusedSlideBounding.left + focusedSlideBounding.width / 2
     const slideCenterY = focusedSlideBounding.top + focusedSlideBounding.height / 2
 
-    scale.value = 2
+    scale.value = 3
     x.value += positionX - slideCenterX
     y.value += positionY - slideCenterY
     restrictShiftToInsideSlide()
   }
 }
 
-function handleSwipe([horiz, vert]: [number, number], [movementX, movementY]: [number, number]) {
+function handleSwipe([horiz, vert]: Vector2, [movementX, movementY]: Vector2) {
   if (isZoomedIn.value || isPinching.value)
     return
 
@@ -154,7 +165,7 @@ function handleSwipe([horiz, vert]: [number, number], [movementX, movementY]: [n
     if (horiz === -1) // right
       modelValue.value = Math.min(media.length - 1, modelValue.value + 1)
   }
-  else if (vert === -1) { // top
+  else if (vert === 1 || vert === -1) {
     emit('close')
   }
 
@@ -173,7 +184,7 @@ function slideToClosestSlide() {
   goToFocusedSlide()
 }
 
-function handleDrag(delta: [number, number], movement: [number, number]) {
+function handleDrag(delta: Vector2, movement: Vector2) {
   isDragging.value = true
 
   if (isZoomedIn.value)
@@ -182,22 +193,20 @@ function handleDrag(delta: [number, number], movement: [number, number]) {
     handleSlideDrag(movement)
 }
 
-function handleZoomDrag([deltaX, deltaY]: [number, number]) {
+function handleZoomDrag([deltaX, deltaY]: Vector2) {
   x.value -= deltaX / scale.value
   y.value -= deltaY / scale.value
 
   restrictShiftToInsideSlide()
 }
 
-function handleSlideDrag([movementX, movementY]: [number, number]) {
+function handleSlideDrag([movementX, movementY]: Vector2) {
   goToFocusedSlide()
 
-  if (-movementY > Math.abs(movementX)) // upwards movement is more then horizontal
+  if (Math.abs(movementY) > Math.abs(movementX)) // vertical movement is more then horizontal
     y.value -= movementY / scale.value
   else
     x.value -= movementX / scale.value
-
-  y.value = Math.max(0, y.value)
 
   if (media.length === 1)
     x.value = 0

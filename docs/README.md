@@ -89,11 +89,11 @@ We use [Merriam-Webster](https://www.merriam-webster.com/) as the standard dicti
 Place image files in the /docs/public/images folder.
 You can create subfolders to organize the images.
 
-To add an image to a doc, use standard markdown:
+To add an image to a doc, use standard markdown with [alt text](https://accessibility.huit.harvard.edu/describe-content-images):
 
 ```md
-[![Label](/docs/images/image.svg)](URL.for.hyperlink)
-[![StackBlitz](/docs/images/stackblitz.svg)](https://stackblitz.com/)
+[![Alt text](/docs/images/image.svg)](URL.for.hyperlink)
+[![StackBlitz logo](/docs/images/stackblitz.svg)](https://stackblitz.com/)
 ```
 
 ## In-house Styles

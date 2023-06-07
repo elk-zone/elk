@@ -323,7 +323,7 @@
     "dismiss": "Ignora",
     "install": "Installa",
     "install_title": "Installa Elk",
-    "screenshots":{
+    "screenshots": {
       "dark": "Screenshot di Elk con aspetto chiaro",
       "light": "Screenshot di Elk con aspetto scuro"
     },

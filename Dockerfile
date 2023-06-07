@@ -3,6 +3,10 @@ FROM docker.io/library/node:lts-alpine AS base
 # Prepare work directory
 WORKDIR /elk
 
+# Make storage directory, change permissions
+RUN mkdir /elk/data
+RUN chown 911:911 /elk/data
+
 FROM base AS builder
 
 # Prepare pnpm https://pnpm.io/installation#using-corepack

@@ -23,6 +23,13 @@ const {
   toggleMute,
 } = $(useStatusActions(props))
 
+const {
+  account,
+  relationship,
+  toggleMuteUser,
+  toggleBlockUser,
+} = $(useAccountActions({ account: status.account }))
+
 const clipboard = useClipboard()
 const router = useRouter()
 const route = useRoute()
@@ -190,13 +197,6 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
-          :text="$t('menu.copy_original_link_to_post')"
-          icon="i-ri:links-fill"
-          :command="command"
-          @click="copyOriginalLink(status)"
-        />
-
-        <CommonDropdownItem
           v-if="isShareSupported"
           :text="$t('menu.share_post')"
           icon="i-ri:share-line"
@@ -259,6 +259,38 @@ function showFavoritedAndBoostedBy() {
               icon="i-ri:at-line"
               :command="command"
               @click="mentionUser(status.account)"
+            />
+
+            <CommonDropdownItem
+              v-if="!relationship?.muting"
+              :text="$t('menu.mute_account', [`@${account.acct}`])"
+              icon="i-ri:volume-up-fill"
+              :command="command"
+              @click="toggleMuteUser()"
+            />
+
+            <CommonDropdownItem
+              v-else
+              :text="$t('menu.unmute_account', [`@${account.acct}`])"
+              icon="i-ri:volume-mute-line"
+              :command="command"
+              @click="toggleMuteUser()"
+            />
+
+            <CommonDropdownItem
+              v-if="!relationship?.blocking"
+              :text="$t('menu.block_account', [`@${account.acct}`])"
+              icon="i-ri:forbid-2-line"
+              :command="command"
+              @click="toggleBlockUser()"
+            />
+
+            <CommonDropdownItem
+              v-else
+              :text="$t('menu.unblock_account', [`@${account.acct}`])"
+              icon="i-ri:checkbox-circle-line"
+              :command="command"
+              @click="toggleBlockUser()"
             />
           </template>
         </template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { account } = defineProps<{
+const props = defineProps<{
   account: mastodon.v1.Account
   command?: boolean
 }>()
@@ -10,65 +10,21 @@ const emit = defineEmits<{
   (evt: 'removeNote'): void
 }>()
 
-let relationship = $(useRelationship(account))
+const { account } = $(props)
+
+const {
+  toggleMuteUser,
+  toggleBlockUser,
+  toggleBlockDomain,
+  toggleReblogs,
+} = $(useAccountActions(props))
+
+const relationship = $(useRelationship(account))
 
 const isSelf = $(useSelfAccount(() => account))
 
-const { t } = useI18n()
 const { client } = $(useMasto())
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
-
-async function toggleMute() {
-  if (!relationship!.muting && await openConfirmDialog({
-    title: t('confirm.mute_account.title', [account.acct]),
-    confirm: t('confirm.mute_account.confirm'),
-    cancel: t('confirm.mute_account.cancel'),
-  }) !== 'confirm')
-    return
-
-  relationship!.muting = !relationship!.muting
-  relationship = relationship!.muting
-    ? await client.v1.accounts.mute(account.id, {
-      // TODO support more options
-    })
-    : await client.v1.accounts.unmute(account.id)
-}
-
-async function toggleBlockUser() {
-  if (!relationship!.blocking && await openConfirmDialog({
-    title: t('confirm.block_account.title', [account.acct]),
-    confirm: t('confirm.block_account.confirm'),
-    cancel: t('confirm.block_account.cancel'),
-  }) !== 'confirm')
-    return
-
-  relationship!.blocking = !relationship!.blocking
-  relationship = await client.v1.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
-}
-
-async function toggleBlockDomain() {
-  if (!relationship!.domainBlocking && await openConfirmDialog({
-    title: t('confirm.block_domain.title', [getServerName(account)]),
-    confirm: t('confirm.block_domain.confirm'),
-    cancel: t('confirm.block_domain.cancel'),
-  }) !== 'confirm')
-    return
-
-  relationship!.domainBlocking = !relationship!.domainBlocking
-  await client.v1.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
-}
-
-async function toggleReblogs() {
-  if (!relationship!.showingReblogs && await openConfirmDialog({
-    title: t('confirm.show_reblogs.title', [account.acct]),
-    confirm: t('confirm.show_reblogs.confirm'),
-    cancel: t('confirm.show_reblogs.cancel'),
-  }) !== 'confirm')
-    return
-
-  const showingReblogs = !relationship?.showingReblogs
-  relationship = await client.v1.accounts.follow(account.id, { reblogs: showingReblogs })
-}
 
 async function addUserNote() {
   emit('addNote')
@@ -151,14 +107,14 @@ async function removeUserNote() {
             :text="$t('menu.mute_account', [`@${account.acct}`])"
             icon="i-ri:volume-up-fill"
             :command="command"
-            @click="toggleMute()"
+            @click="toggleMuteUser()"
           />
           <CommonDropdownItem
             v-else
             :text="$t('menu.unmute_account', [`@${account.acct}`])"
             icon="i-ri:volume-mute-line"
             :command="command"
-            @click="toggleMute()"
+            @click="toggleMuteUser()"
           />
 
           <CommonDropdownItem

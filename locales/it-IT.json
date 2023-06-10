@@ -406,8 +406,8 @@
           "favourite": "Apprezzamenti",
           "follow": "Nuovi seguaci",
           "mention": "Menzioni",
-          "poll": "Votazioni",
-          "reblog": "Potenziamenti dei tuoi post",
+          "poll": "Risultati dei sondaggi",
+          "reblog": "Potenziamenti",
           "title": "Quali notifiche vuoi ricevere?"
         },
         "description": "Ricevi notifiche anche quando non stai utilizzando Elk.",

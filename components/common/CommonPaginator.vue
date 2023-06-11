@@ -3,6 +3,7 @@
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { Paginator, WsEvents } from 'masto'
+import type { UnwrapRef } from 'vue'
 
 const {
   paginator,
@@ -23,23 +24,23 @@ const {
 }>()
 
 defineSlots<{
-  default: {
+  default: (props: {
     items: U[]
     item: U
     index: number
     active?: boolean
-    older?: U
-    newer?: U // newer is undefined when index === 0
-  }
-  items: {
-    items: U[]
-  }
-  updater: {
+    older: U
+    newer: U // newer is undefined when index === 0
+  }) => void
+  items: (props: {
+    items: UnwrapRef<U[]>
+  }) => void
+  updater: (props: {
     number: number
     update: () => void
-  }
-  loading: {}
-  done: {}
+  }) => void
+  loading: (props: {}) => void
+  done: (props: {}) => void
 }>()
 
 const { t } = useI18n()
@@ -83,25 +84,25 @@ defineExpose({ createEntry, removeEntry, updateEntry })
           page-mode
         >
           <slot
-            :key="item[keyProp]"
+            v-bind="{ key: item[keyProp] }"
             :item="item"
             :active="active"
-            :older="items[index + 1]"
-            :newer="items[index - 1]"
+            :older="items[index + 1] as U"
+            :newer="items[index - 1] as U"
             :index="index"
-            :items="items"
+            :items="items as U[]"
           />
         </DynamicScroller>
       </template>
       <template v-else>
         <slot
           v-for="item, index of items"
-          :key="(item as any)[keyProp]"
-          :item="item"
-          :older="items[index + 1]"
-          :newer="items[index - 1]"
+          v-bind="{ key: item[keyProp as keyof U] }"
+          :item="item as U"
+          :older="items[index + 1] as U"
+          :newer="items[index - 1] as U"
           :index="index"
-          :items="items"
+          :items="items as U[]"
         />
       </template>
     </slot>

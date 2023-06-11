@@ -33,13 +33,21 @@ const userSettings = useUserSettings()
       text-secondary exact-active-class="text-primary"
     >
       <template #default="{ isExactActive }">
-        <CommonLocalizedNumber
+        <template
           v-if="!getPreferences(userSettings, 'hideFollowerCount')"
-          keypath="account.following_count"
-          :count="account.followingCount"
-          font-bold
-          :class="isExactActive ? 'text-primary' : 'text-base'"
-        />
+        >
+          <CommonLocalizedNumber
+            v-if="account.followingCount >= 0"
+            keypath="account.following_count"
+            :count="account.followingCount"
+            font-bold
+            :class="isExactActive ? 'text-primary' : 'text-base'"
+          />
+          <div v-else flex gap-x-1>
+            <span font-bold text-base>Hidden</span>
+            <span>{{ $t('account.following') }}</span>
+          </div>
+        </template>
         <span v-else>{{ $t('account.following') }}</span>
       </template>
     </NuxtLink>
@@ -50,13 +58,19 @@ const userSettings = useUserSettings()
       exact-active-class="text-primary"
     >
       <template #default="{ isExactActive }">
-        <CommonLocalizedNumber
-          v-if="!getPreferences(userSettings, 'hideFollowerCount')"
-          keypath="account.followers_count"
-          :count="account.followersCount"
-          font-bold
-          :class="isExactActive ? 'text-primary' : 'text-base'"
-        />
+        <template v-if="!getPreferences(userSettings, 'hideFollowerCount')">
+          <CommonLocalizedNumber
+            v-if="account.followersCount >= 0"
+            keypath="account.followers_count"
+            :count="account.followersCount"
+            font-bold
+            :class="isExactActive ? 'text-primary' : 'text-base'"
+          />
+          <div v-else flex gap-x-1>
+            <span font-bold text-base>Hidden</span>
+            <span>{{ $t('account.followers') }}</span>
+          </div>
+        </template>
         <span v-else>{{ $t('account.followers') }}</span>
       </template>
     </NuxtLink>

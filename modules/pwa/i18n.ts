@@ -117,6 +117,13 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
         ],
       },
     },
+    handle_links: 'preferred',
+    launch_handler: {
+      client_mode: ['navigate-existing', 'auto'],
+    },
+    edge_side_panel: {
+      preferred_width: 480,
+    },
   }
 
   // TODO: add related_applications, only when env === 'release'

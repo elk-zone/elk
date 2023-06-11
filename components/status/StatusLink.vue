@@ -19,6 +19,10 @@ function onclick(evt: MouseEvent | KeyboardEvent) {
 }
 
 function go(evt: MouseEvent | KeyboardEvent) {
+  // check login
+  if (!checkLogin())
+    return
+
   if (evt.metaKey || evt.ctrlKey) {
     window.open(statusRoute.href)
   }

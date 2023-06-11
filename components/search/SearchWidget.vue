@@ -13,8 +13,13 @@ defineExpose({
   input,
 })
 
+const isUserLoggedIn = ref<boolean>(currentUser.value !== undefined)
+
 const results = computed(() => {
   if (query.value.length === 0)
+    return []
+
+  else if (!isUserLoggedIn.value && !checkLogin())
     return []
 
   const results = [

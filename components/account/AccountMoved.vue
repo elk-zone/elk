@@ -14,15 +14,28 @@ defineProps<{
     </div>
 
     <div flex>
-      <NuxtLink :to="getAccountRoute(account.moved!)">
-        <AccountInfo :account="account.moved!" />
-      </NuxtLink>
-      <div flex-auto />
-      <div flex items-center>
-        <NuxtLink :to="getAccountRoute(account.moved as any)" btn-solid inline-block h-fit>
-          {{ $t('account.go_to_profile') }}
+      <template v-if="currentUser">
+        <NuxtLink :to="getAccountRoute(account.moved!)">
+          <AccountInfo :account="account.moved!" />
         </NuxtLink>
-      </div>
+        <div flex-auto />
+        <div flex items-center>
+          <NuxtLink :to="getAccountRoute(account.moved as any)" btn-solid inline-block h-fit>
+            {{ $t('account.go_to_profile') }}
+          </NuxtLink>
+        </div>
+      </template>
+      <template v-else>
+        <NuxtLink :to="undefined" @click.prevent="checkLogin()">
+          <AccountInfo :account="account.moved!" />
+        </NuxtLink>
+        <div flex-auto />
+        <div flex items-center>
+          <NuxtLink :to="undefined" btn-solid inline-block h-fit @click.prevent="checkLogin()">
+            {{ $t('account.go_to_profile') }}
+          </NuxtLink>
+        </div>
+      </template>
     </div>
   </div>
 </template>

@@ -39,6 +39,18 @@ export function getRedirectURI(origin: string, server: string) {
   return `${origin}/api/${server}/oauth/${encodeURIComponent(origin)}`
 }
 
+async function resolveServer(server: string) {
+  const nodeinfo: { links: { rel: string; href: string }[] } = await $fetch(`https://${server}/.well-known/nodeinfo`)
+  for (const link of nodeinfo.links) {
+    if (link.rel === 'http://nodeinfo.diaspora.software/ns/schema/2.0') {
+      const url = new URL(link.href)
+
+      return url.hostname
+    }
+  }
+  return server
+}
+
 async function fetchAppInfo(origin: string, server: string) {
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
@@ -49,17 +61,19 @@ async function fetchAppInfo(origin: string, server: string) {
       scopes: 'read write follow push',
     },
   })
+  app.server = server
   return app
 }
 
 export async function getApp(origin: string, server: string) {
+  const resServer = await resolveServer(server)
   const host = origin.replace(/^https?:\/\//, '').replace(/[^\w\d]/g, '-').replace(/\?.*$/, '')
-  const key = `servers:v3:${server}:${host}.json`.toLowerCase()
+  const key = `servers:v3:${resServer}:${host}.json`.toLowerCase()
 
   try {
     if (await storage.hasItem(key))
       return await storage.getItem(key) as Promise<AppInfo>
-    const appInfo = await fetchAppInfo(origin, server)
+    const appInfo = await fetchAppInfo(origin, resServer)
     await storage.setItem(key, appInfo)
     return appInfo
   }

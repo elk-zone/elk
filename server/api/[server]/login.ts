@@ -19,8 +19,8 @@ export default defineEventHandler(async (event) => {
     scope: 'read write follow push',
     response_type: 'code',
     lang,
-    redirect_uri: getRedirectURI(origin, server),
+    redirect_uri: getRedirectURI(origin, app.server),
   })
 
-  return `https://${server}/oauth/authorize?${query}`
+  return `https://${app.server}/oauth/authorize?${query}`
 })

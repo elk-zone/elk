@@ -22,12 +22,12 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const result: any = await $fetch(`https://${server}/oauth/token`, {
+    const result: any = await $fetch(`https://${app.server}/oauth/token`, {
       method: 'POST',
       body: {
         client_id: app.client_id,
         client_secret: app.client_secret,
-        redirect_uri: getRedirectURI(origin, server),
+        redirect_uri: getRedirectURI(origin, app.server),
         grant_type: 'authorization_code',
         code,
         scope: 'read write follow push',
@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
       retry: 3,
     })
 
-    const url = `/signin/callback?${stringifyQuery({ server, token: result.access_token, vapid_key: app.vapid_key })}`
+    const url = `/signin/callback?${stringifyQuery({ server: app.server, token: result.access_token, vapid_key: app.vapid_key })}`
     await sendRedirect(event, url, 302)
   }
   catch (e) {

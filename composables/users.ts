@@ -120,15 +120,47 @@ export function useSelfAccount(user: MaybeRefOrGetter<mastodon.v1.Account | unde
 
 export const characterLimit = computed(() => currentInstance.value?.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
+async function fetchMastodonNodeinfo(url: string, mode: RequestMode = 'cors') {
+  return fetch(`${url}/.well-known/nodeinfo`, { mode })
+    .then((r) => { return r.json() })
+    .catch((e) => {
+      if (process.env)
+        console.warn((e as Error).message)
+      return null
+    })
+}
+
+// GoToSocial only API
+async function fetchGoToSocialNodeinfo(url: string, mode: RequestMode = 'cors') {
+  return fetch(`${url}/nodeinfo/2.0`, { mode })
+    .then((r) => { return r.json() })
+    .catch((e) => {
+      if (process.env)
+        console.warn((e as Error).message)
+      return null
+    })
+}
+
 export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { account?: mastodon.v1.AccountCredentials }>) {
   const { client } = $(masto)
   const instance = mastoLogin(masto, user)
 
-  // GoToSocial only API
   const url = `https://${user.server}`
-  fetch(`${url}/nodeinfo/2.0`).then(r => r.json()).then((info) => {
-    nodes.value[user.server] = info
-  }).catch(() => undefined)
+  if (!nodes.value[user.server] || !currentUser.value || currentUser.value?.server !== publicServer.value) {
+    let info = await fetchMastodonNodeinfo(url, 'cors')
+
+    if (!info)
+      info = await fetchGoToSocialNodeinfo(url, 'cors')
+
+    if (!info)
+      info = await fetchMastodonNodeinfo(url, 'no-cors')
+
+    if (!info)
+      info = await fetchGoToSocialNodeinfo(url, 'no-cors')
+
+    if (info)
+      nodes.value[user.server] = info
+  }
 
   if (!user?.token) {
     publicServer.value = user.server

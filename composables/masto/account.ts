@@ -18,10 +18,7 @@ export function getShortHandle({ acct }: mastodon.v1.Account) {
 }
 
 export function getServerName(account: mastodon.v1.Account) {
-  if (account.acct?.includes('@'))
-    return account.acct.split('@')[1]
-  // We should only lack the server name if we're on the same server as the account
-  return currentInstance.value ? getInstanceDomain(currentInstance.value) : ''
+  return account.url.replace('https://', '').split('/')[0]
 }
 
 export function getFullHandle(account: mastodon.v1.Account) {
@@ -38,6 +35,22 @@ export function toShortHandle(fullHandle: string) {
   if (fullHandle.endsWith(`@${server}`))
     return fullHandle.slice(0, -server.length - 1)
   return fullHandle
+}
+
+export function rawAcctToResolvedAccount(acct: string) {
+  return fetchAccountByHandle(`@${acct}`)
+}
+
+export function getAcctFromPerspectiveOfCurrentServer(account: mastodon.v1.Account) {
+  return `${account.username}@${getServerName(account)}`.replace(`@${currentServer.value}`, '')
+}
+
+export function parseAcctFromPerspectiveOfCurrentServer(webfingerOrUriOrUrl: string) {
+  // see https://github.com/mastodon/mastodon/blob/25c66fa640962a4d54d59a3f53516ab6dcb1dae6/app/models/concerns/omniauthable.rb#L95
+  if (webfingerOrUriOrUrl.search(/^@[a-z0-9_]{1,30}$/i) === 0)
+    return webfingerOrUriOrUrl
+
+  return extractAccountWebfinger(webfingerOrUriOrUrl)?.replace(`@${currentServer.value}`, '') ?? undefined
 }
 
 export function extractAccountHandle(account: mastodon.v1.Account) {

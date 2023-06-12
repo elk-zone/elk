@@ -4,11 +4,10 @@ definePageMeta({
 })
 
 const params = useRoute().params
-const accountName = $(computedEager(() => toShortHandle(params.account as string)))
 
 const { t } = useI18n()
 
-const { data: account, pending, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null), { immediate: process.client, default: () => shallowRef() }))
+const { data: account, pending, refresh } = $(await useAsyncData(() => rawAcctToResolvedAccount(params.account as string).catch(() => null), { immediate: process.client, default: () => shallowRef() }))
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
 
 const userSettings = useUserSettings()
@@ -48,7 +47,7 @@ onReactivated(() => {
     </template>
 
     <CommonNotFound v-else>
-      {{ $t('error.account_not_found', [`@${accountName}`]) }}
+      {{ $t('error.account_not_found') }}
     </CommonNotFound>
   </MainContent>
 </template>

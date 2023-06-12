@@ -86,19 +86,22 @@ function treeToVNode(
 function handleMention(el: Node) {
   // Redirect mentions to the user page
   if (el.name === 'a' && el.attributes.class?.includes('mention')) {
-    const href = el.attributes.href
+    const href = el.attributes.href as string | undefined
     if (href) {
-      const matchUser = href.match(UserLinkRE)
-      if (matchUser) {
-        const [, server, username] = matchUser
-        const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
-        el.attributes.href = `/${server}/@${username}`
-        return h(AccountHoverWrapper, { handle, class: 'inline-block' }, () => nodeToVNode(el))
-      }
       const matchTag = href.match(TagLinkRE)
       if (matchTag) {
         const [, , name] = matchTag
         el.attributes.href = `/${currentServer.value}/tags/${name}`
+      }
+      // Only do this if the user is logged in and a tag match failed
+      else if (currentUser.value !== undefined) {
+        const matchUser = href.match(UserLinkRE)
+        if (matchUser) {
+          const [, server, username] = matchUser
+          const handle = (parseAcctFromPerspectiveOfCurrentServer(href) ?? username)
+          el.attributes.href = `/${server}/@${handle}`
+          return h(AccountHoverWrapper, { handle, class: 'inline-block' }, () => nodeToVNode(el))
+        }
       }
     }
   }

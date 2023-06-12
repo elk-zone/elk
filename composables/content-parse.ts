@@ -517,7 +517,7 @@ function isSpacing(node: Node) {
 
 // Extract the username from a known mention node
 function getMentionHandle(node: Node): string | undefined {
-  return hrefToHandle(node.children?.[0].attributes.href) ?? node.children?.[0]?.children?.[0]?.attributes?.['data-id']
+  return parseAcctFromPerspectiveOfCurrentServer(node.children?.[0].attributes.href) ?? parseAcctFromPerspectiveOfCurrentServer(node.children?.[0]?.children?.[0]?.attributes?.['data-id']) ?? hrefToHandle(node.children?.[0].attributes.href) ?? node.children?.[0]?.children?.[0]?.attributes?.['data-id']
 }
 
 function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?: mastodon.v1.Status): Transform {
@@ -601,6 +601,9 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
 }
 
 function hrefToHandle(href: string): string | undefined {
+  if (href.includes('/tags/'))
+    return undefined
+
   const matchUser = href.match(UserLinkRE)
   if (matchUser) {
     const [, server, username] = matchUser
@@ -613,9 +616,10 @@ function transformMentionLink(node: Node): string | Node | (string | Node)[] | n
     const href = node.attributes.href
     if (href) {
       const handle = hrefToHandle(href)
-      if (handle) {
+      const parsedAcct = parseAcctFromPerspectiveOfCurrentServer(href)
+      if (parsedAcct || handle) {
         // convert to Tiptap mention node
-        return h('span', { 'data-type': 'mention', 'data-id': handle }, handle)
+        return h('span', { 'data-type': 'mention', 'data-id': parsedAcct ?? handle }, parsedAcct ?? handle)
       }
     }
   }
@@ -626,10 +630,15 @@ function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[]) {
   return (node: Node): string | Node | (string | Node)[] | null => {
     if (node.name === 'a' && node.attributes.class?.includes('mention')) {
       const href = node.attributes.href
+
+      if (href.includes('/tags/'))
+        return node
+
+      const parsedAcct = parseAcctFromPerspectiveOfCurrentServer(href)
       const mention = href && mentions.find(m => m.url === href)
-      if (mention) {
-        node.attributes.href = `/${currentServer.value}/@${mention.acct}`
-        node.children = [h('span', { 'data-type': 'mention', 'data-id': mention.acct }, `@${mention.username}`)]
+      if (parsedAcct || mention) {
+        node.attributes.href = `/${currentServer.value}/@${parsedAcct ?? mention.acct}`
+        node.children = [h('span', { 'data-type': 'mention', 'data-id': parsedAcct ?? mention.acct }, `@${mention.username}`)]
         return node
       }
     }

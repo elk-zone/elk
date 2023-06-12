@@ -124,15 +124,16 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     edge_side_panel: {
       preferred_width: 480,
     },
-    prefer_related_applications: true,
-    related_applications: [{
+  }
+
+  if (env === 'release') {
+    manifestEntries.prefer_related_applications = true
+    manifestEntries.related_applications = [{
       platform: 'windows',
       url: 'https://www.microsoft.com/store/apps/9PNZMMXQHQZ5',
       id: '9PNZMMXQHQZ5',
-    }],
+    }]
   }
-
-  // TODO: add related_applications, only when env === 'release'
 
   const locales: RequiredWebManifestEntry[] = await Promise.all(
     pwaLocales

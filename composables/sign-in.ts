@@ -15,6 +15,15 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
     if (busy.value)
       return
 
+    if (!isReachableDomain(server.value)) {
+      await openErrorDialog({
+        title: t('common.error'),
+        messages: [t('error.sign_in_error')],
+        close: t('action.close'),
+      })
+      return
+    }
+
     busy.value = true
     error.value = false
     displayError.value = false

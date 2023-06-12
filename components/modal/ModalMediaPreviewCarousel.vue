@@ -52,26 +52,23 @@ onMounted(() => {
 })
 watch(modelValue, goToFocusedSlide)
 
-let lastCenterPos = [0, 0]
+let lastOrigin = [0, 0]
 let initialScale = 0
 useGesture({
-  onPinch({ first, initial: [initialDistance], da: [distance], origin: [originX, originY] }) {
+  onPinch({ first, initial: [initialDistance], movement: [deltaDistance], da: [distance], origin, touches }) {
     isPinching.value = true
 
     if (first) {
       initialScale = scale.value
     }
     else {
-      scale.value = initialScale * (distance / initialDistance)
-      scale.value = Math.max(maxZoomOut.value, scale.value)
-
-      const deltaCenterX = originX - lastCenterPos[0]
-      const deltaCenterY = originY - lastCenterPos[1]
-
-      handleZoomDrag([deltaCenterX, deltaCenterY])
+      if (touches === 0)
+        handleMouseWheelZoom(initialScale, deltaDistance, origin)
+      else
+        handlePinchZoom(initialScale, initialDistance, distance, origin)
     }
 
-    lastCenterPos = [originX, originY]
+    lastOrigin = origin
   },
   onPinchEnd() {
     isPinching.value = false
@@ -118,7 +115,27 @@ const shiftRestrictions = computed(() => {
   }
 })
 
-function handleLastDrag(tap: boolean, swipe: [number, number], movement: [number, number], position: [number, number]) {
+function handlePinchZoom(initialScale: number, initialDistance: number, distance: number, [originX, originY]: Vector2) {
+  scale.value = initialScale * (distance / initialDistance)
+  scale.value = Math.max(maxZoomOut.value, scale.value)
+
+  const deltaCenterX = originX - lastOrigin[0]
+  const deltaCenterY = originY - lastOrigin[1]
+
+  handleZoomDrag([deltaCenterX, deltaCenterY])
+}
+
+function handleMouseWheelZoom(initialScale: number, deltaDistance: number, [originX, originY]: Vector2) {
+  scale.value = initialScale + (deltaDistance / 1000)
+  scale.value = Math.max(maxZoomOut.value, scale.value)
+
+  const deltaCenterX = lastOrigin[0] - originX
+  const deltaCenterY = lastOrigin[1] - originY
+
+  handleZoomDrag([deltaCenterX, deltaCenterY])
+}
+
+function handleLastDrag(tap: boolean, swipe: Vector2, movement: Vector2, position: Vector2) {
   isDragging.value = false
 
   if (tap)

@@ -22,19 +22,8 @@ export function getServerName(account: mastodon.v1.Account) {
 }
 
 export function getFullHandle(account: mastodon.v1.Account) {
-  const handle = `@${account.acct}`
-  if (!currentUser.value || account.acct.includes('@'))
-    return handle
-  return `${handle}@${getServerName(account)}`
-}
-
-export function toShortHandle(fullHandle: string) {
-  if (!currentUser.value)
-    return fullHandle
-  const server = currentUser.value.server
-  if (fullHandle.endsWith(`@${server}`))
-    return fullHandle.slice(0, -server.length - 1)
-  return fullHandle
+  const handle = `@${account.username}@${getServerName(account)}`
+  return (currentUser.value?.server) ? handle.replace(`@${currentUser.value?.server}`, '') : handle
 }
 
 export function rawAcctToResolvedAccount(acct: string) {
@@ -60,11 +49,4 @@ export function extractAccountHandle(account: mastodon.v1.Account) {
     handle = handle.slice(0, -uri.length - 1)
 
   return handle
-}
-
-export function useAccountHandle(account: mastodon.v1.Account, fullServer = true) {
-  return computed(() => fullServer
-    ? getFullHandle(account)
-    : getShortHandle(account),
-  )
 }

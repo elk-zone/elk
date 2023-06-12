@@ -18,6 +18,7 @@ const { t } = useI18n()
 const { client } = $(useMasto())
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
+const accountServerName = $computed(() => getServerName(account))
 async function toggleMute() {
   if (!relationship!.muting && await openConfirmDialog({
     title: t('confirm.mute_account.title', [account.acct]),
@@ -48,14 +49,14 @@ async function toggleBlockUser() {
 
 async function toggleBlockDomain() {
   if (!relationship!.domainBlocking && await openConfirmDialog({
-    title: t('confirm.block_domain.title', [getServerName(account)]),
+    title: t('confirm.block_domain.title', [accountServerName]),
     confirm: t('confirm.block_domain.confirm'),
     cancel: t('confirm.block_domain.cancel'),
   }) !== 'confirm')
     return
 
   relationship!.domainBlocking = !relationship!.domainBlocking
-  await client.v1.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
+  await client.v1.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](accountServerName)
 }
 
 async function toggleReblogs() {
@@ -176,17 +177,17 @@ async function removeUserNote() {
             @click="toggleBlockUser()"
           />
 
-          <template v-if="getServerName(account) !== currentServer">
+          <template v-if="accountServerName !== currentServer">
             <CommonDropdownItem
               v-if="!relationship?.domainBlocking"
-              :text="$t('menu.block_domain', [getServerName(account)])"
+              :text="$t('menu.block_domain', [accountServerName])"
               icon="i-ri:shut-down-line"
               :command="command"
               @click="toggleBlockDomain()"
             />
             <CommonDropdownItem
               v-else
-              :text="$t('menu.unblock_domain', [getServerName(account)])"
+              :text="$t('menu.unblock_domain', [accountServerName])"
               icon="i-ri:restart-line"
               :command="command"
               @click="toggleBlockDomain()"

@@ -1,4 +1,5 @@
 import type { mastodon } from 'masto'
+import type { ShallowUnwrapRef } from 'vue'
 
 export function getDisplayName(account: mastodon.v1.Account, options?: { rich?: boolean }) {
   const displayName = account.displayName || account.username || account.acct || ''
@@ -11,27 +12,37 @@ export function accountToShortHandle(acct: string) {
   return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
 }
 
-export function getShortHandle({ acct }: mastodon.v1.Account) {
-  if (!acct)
-    return ''
-  return accountToShortHandle(acct)
+export function getShortHandle(account: mastodon.v1.Account | ShallowUnwrapRef<mastodon.v1.Account>) {
+  if (account && account.acct)
+    return accountToShortHandle(account.acct)
+  return ''
 }
 
-export function getServerName(account: mastodon.v1.Account) {
-  return account.url.replace('https://', '').split('/')[0]
+export function getServerName(account?: mastodon.v1.Account | ShallowUnwrapRef<mastodon.v1.Account>) {
+  if (account && account.acct && account.url) {
+    const webDomain = account.acct.split('@')
+    return (webDomain.length === 2 && webDomain[1].includes('.')) ? webDomain[1] : account.url.replace('https://', '').split('/')[0]
+  }
+  return ''
 }
 
-export function getFullHandle(account: mastodon.v1.Account) {
-  const handle = `@${account.username}@${getServerName(account)}`
-  return (currentUser.value?.server) ? handle.replace(`@${currentUser.value?.server}`, '') : handle
+export function getFullHandle(account: mastodon.v1.Account | ShallowUnwrapRef<mastodon.v1.Account>) {
+  if (account && account.acct && account.acct && account.url) {
+    const handle = `@${account.username}@${getServerName(account)}`
+    return (currentUser.value?.server) ? handle.replace(`@${currentUser.value?.server}`, '') : handle
+  }
+  return ''
 }
 
 export function rawAcctToResolvedAccount(acct: string) {
   return fetchAccountByHandle(`@${acct}`)
 }
 
-export function getAcctFromPerspectiveOfCurrentServer(account: mastodon.v1.Account) {
-  return `${account.username}@${getServerName(account)}`.replace(`@${currentServer.value}`, '')
+export function getAcctFromPerspectiveOfCurrentServer(account?: mastodon.v1.Account | ShallowUnwrapRef<mastodon.v1.Account>) {
+  if (account && account.acct && account.acct && account.url)
+    return `${account.username}@${getServerName(account)}`?.replace(`@${currentServer.value}`, '')
+
+  return ''
 }
 
 export function parseAcctFromPerspectiveOfCurrentServer(webfingerOrUriOrUrl: string) {
@@ -40,13 +51,4 @@ export function parseAcctFromPerspectiveOfCurrentServer(webfingerOrUriOrUrl: str
     return webfingerOrUriOrUrl
 
   return extractAccountWebfinger(webfingerOrUriOrUrl)?.replace(`@${currentServer.value}`, '') ?? undefined
-}
-
-export function extractAccountHandle(account: mastodon.v1.Account) {
-  let handle = getFullHandle(account).slice(1)
-  const uri = currentInstance.value ? getInstanceDomain(currentInstance.value) : currentServer.value
-  if (currentInstance.value && handle.endsWith(`@${uri}`))
-    handle = handle.slice(0, -uri.length - 1)
-
-  return handle
 }

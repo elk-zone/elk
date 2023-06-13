@@ -76,7 +76,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!res.account.acct.includes('@'))
     res.account.acct = `${res.account.acct}@${server}`
 
-  cacheAccount(res.account, server, true)
+  cacheAccount(res.account, true)
   currentUser.value!.account = res.account
   reset()
 })

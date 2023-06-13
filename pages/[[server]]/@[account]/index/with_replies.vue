@@ -7,7 +7,7 @@ const handle = $(computedEager(() => params.account as string))
 
 const account = await fetchAccountByHandle(handle)
 
-const paginator = useMastoClient().v1.accounts.listStatuses(account.id, { excludeReplies: false })
+const paginator = account ? useMastoClient().v1.accounts.listStatuses(account.id, { excludeReplies: false }) : undefined
 
 if (account) {
   useHydratedHead({
@@ -19,6 +19,8 @@ if (account) {
 <template>
   <div>
     <AccountTabs />
-    <TimelinePaginator :paginator="paginator" :preprocess="reorderedTimeline" context="account" :account="account" />
+    <template v-if="paginator && account">
+      <TimelinePaginator :paginator="paginator" :preprocess="reorderedTimeline" context="account" :account="account" />
+    </template>
   </div>
 </template>

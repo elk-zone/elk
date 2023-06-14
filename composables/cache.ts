@@ -82,7 +82,7 @@ export function fetchStatus(id: string, force = false): Promise<mastodon.v1.Stat
   return promise
 }
 
-function federateRemoteAccount(webfingerOrUriOrUrl: string, force = false): mastodon.v1.Account | Promise<mastodon.v1.Account | null> {
+function federateRemoteAccount(webfingerOrUriOrUrl: string, force = false): Promise<mastodon.v1.Account | null> {
   const accountWebfinger = extractAccountWebfinger(webfingerOrUriOrUrl)
   if (!accountWebfinger) {
     if (process.dev)
@@ -111,7 +111,7 @@ function federateRemoteAccount(webfingerOrUriOrUrl: string, force = false): mast
       && (cachedAuthoritative.acct === accountWebfinger)
       && !force
     ) {
-      return cachedAuthoritative
+      return Promise.resolve(cachedAuthoritative)
     }
     else if (cachedAuthoritative instanceof Promise) {
       return cachedAuthoritative
@@ -173,7 +173,7 @@ function federateRemoteAccount(webfingerOrUriOrUrl: string, force = false): mast
   return promise
 }
 
-export function fetchAccountById(accountId?: string | null, force = false): mastodon.v1.Account | Promise<mastodon.v1.Account | null> {
+export function fetchAccountById(accountId?: string | null, force = false): Promise<mastodon.v1.Account | null> {
   if (!accountId || accountId.trim() === '')
     return Promise.resolve(null)
 
@@ -220,7 +220,7 @@ export function fetchAccountById(accountId?: string | null, force = false): mast
       && cachedAccountLocallyAccessibleToCurrentUser.url.includes(currentServer.value)
     ) {
       // if we already cached the authoritative value, then return that
-      return cachedAccountLocallyAccessibleToCurrentUser
+      return Promise.resolve(cachedAccountLocallyAccessibleToCurrentUser)
     }
   }
 
@@ -244,7 +244,7 @@ export function fetchAccountById(accountId?: string | null, force = false): mast
   return promise
 }
 
-export function fetchAccountByHandle(str?: string, force = false): mastodon.v1.Account | Promise<mastodon.v1.Account | null> {
+export function fetchAccountByHandle(str?: string, force = false): Promise<mastodon.v1.Account | null> {
   if (!str || str.trim() === '')
     return Promise.resolve(null)
 
@@ -265,7 +265,7 @@ export function fetchAccountByHandle(str?: string, force = false): mastodon.v1.A
     ) {
       // if the cached version is authoritative, then return it
       if (!force && (cachedAccountLocallyAccessibleToCurrentUser.url.includes(currentServer.value)))
-        return cachedAccountLocallyAccessibleToCurrentUser
+        return Promise.resolve(cachedAccountLocallyAccessibleToCurrentUser)
     }
     else if (cachedAccountLocallyAccessibleToCurrentUser instanceof Promise) {
       return cachedAccountLocallyAccessibleToCurrentUser

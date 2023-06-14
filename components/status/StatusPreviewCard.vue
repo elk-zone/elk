@@ -2,20 +2,23 @@
 import type { mastodon } from 'masto'
 
 const props = defineProps<{
+  status?: mastodon.v1.Status
   card: mastodon.v1.PreviewCard
   /** For the preview image, only the small image mode is displayed */
   smallPictureOnly?: boolean
   /** When it is root card in the list, not appear as a child card */
   root?: boolean
+  linkToStatus?: URL
 }>()
 
-const providerName = props.card.providerName
+const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
 
 const gitHubCards = $(usePreferences('experimentalGitHubCards'))
 </script>
 
 <template>
-  <LazyStatusPreviewGitHub v-if="gitHubCards && providerName === 'GitHub'" :card="card" />
-  <LazyStatusPreviewStackBlitz v-else-if="gitHubCards && providerName === 'StackBlitz'" :card="card" :small-picture-only="smallPictureOnly" :root="root" />
+  <LazyStatusPreviewGitHub v-if="gitHubCards && providerName.toLowerCase() === 'gitHub'" :card="card" />
+  <LazyStatusPreviewStackBlitz v-else-if="gitHubCards && providerName.toLowerCase() === 'stackblitz'" :card="card" :small-picture-only="smallPictureOnly" :root="root" />
+  <StatusPreviewMastodon v-else-if="linkToStatus" :link-to-status="linkToStatus" :source-status="status" :card="card" />
   <StatusPreviewCardNormal v-else :card="card" :small-picture-only="smallPictureOnly" :root="root" />
 </template>

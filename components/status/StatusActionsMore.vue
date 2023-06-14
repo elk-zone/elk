@@ -5,6 +5,9 @@ const props = defineProps<{
   status: mastodon.v1.Status
   details?: boolean
   command?: boolean
+  hideCopyLinkToPost?: boolean
+  hideFavoritedAndBoostedBy?: boolean
+  hideMentionAccount?: boolean
 }>()
 
 const emit = defineEmits<{
@@ -176,6 +179,7 @@ function showFavoritedAndBoostedBy() {
         </template>
 
         <CommonDropdownItem
+          v-if="!hideFavoritedAndBoostedBy"
           :text="$t('menu.show_favourited_and_boosted_by')"
           icon="i-ri:hearts-line"
           :command="command"
@@ -183,6 +187,7 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
+          v-if="!hideCopyLinkToPost"
           :text="$t('menu.copy_link_to_post')"
           icon="i-ri:link"
           :command="command"
@@ -254,12 +259,14 @@ function showFavoritedAndBoostedBy() {
             />
           </template>
           <template v-else>
-            <CommonDropdownItem
-              :text="$t('menu.mention_account', [`@${status.account.acct}`])"
-              icon="i-ri:at-line"
-              :command="command"
-              @click="mentionUser(status.account)"
-            />
+            <template v-if="!hideMentionAccount ?? false">
+              <CommonDropdownItem
+                :text="$t('menu.mention_account', [`@${status.account.acct}`])"
+                icon="i-ri:at-line"
+                :command="command"
+                @click="mentionUser(status.account)"
+              />
+            </template>
           </template>
         </template>
       </div>

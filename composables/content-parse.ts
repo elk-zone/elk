@@ -125,10 +125,10 @@ export function parseMastodonHTML(
     transforms.push(transformMarkdown)
 
   if (mentions?.length)
-    transforms.push(createTransformNamedMentions(mentions))
+    transforms.push(createTransformNamedMentions(mentions, status, inReplyToStatus))
 
   if (convertMentionLink)
-    transforms.push(transformMentionLink)
+    transforms.push(transformMentionLink(status, inReplyToStatus))
 
   transforms.push(transformParagraphs)
 
@@ -516,8 +516,11 @@ function isSpacing(node: Node) {
 }
 
 // Extract the username from a known mention node
-function getMentionHandle(node: Node): string | undefined {
-  return parseAcctFromPerspectiveOfCurrentServer(node.children?.[0].attributes.href) ?? parseAcctFromPerspectiveOfCurrentServer(node.children?.[0]?.children?.[0]?.attributes?.['data-id']) ?? hrefToHandle(node.children?.[0].attributes.href) ?? node.children?.[0]?.children?.[0]?.attributes?.['data-id']
+function getMentionHandle(node: Node, status?: mastodon.v1.Status): string | undefined {
+  return deriveMentionHandle(node.children?.[0].attributes.href, status)
+    ?? deriveMentionHandle(node.children?.[0]?.children?.[0]?.attributes?.['data-id'], status)
+    ?? hrefToHandle(node.children?.[0].attributes.href)
+    ?? node.children?.[0]?.children?.[0]?.attributes?.['data-id']
 }
 
 function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?: mastodon.v1.Status): Transform {
@@ -571,7 +574,7 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
       if (isMention(mention)) {
         mentionsCount++
         if (inReplyToStatus) {
-          const mentionHandle = getMentionHandle(mention)
+          const mentionHandle = getMentionHandle(mention, status ?? inReplyToStatus)
           if (inReplyToStatus.account.acct === mentionHandle || inReplyToStatus.mentions.some(m => m.acct === mentionHandle)) {
             removeNextSpacing = true
             return false
@@ -611,22 +614,24 @@ function hrefToHandle(href: string): string | undefined {
   }
 }
 
-function transformMentionLink(node: Node): string | Node | (string | Node)[] | null {
-  if (node.name === 'a' && node.attributes.class?.includes('mention')) {
-    const href = node.attributes.href
-    if (href) {
-      const handle = hrefToHandle(href)
-      const parsedAcct = parseAcctFromPerspectiveOfCurrentServer(href)
-      if (parsedAcct || handle) {
-        // convert to Tiptap mention node
-        return h('span', { 'data-type': 'mention', 'data-id': parsedAcct ?? handle }, parsedAcct ?? handle)
+function transformMentionLink(status?: mastodon.v1.Status, inReplyToStatus?: mastodon.v1.Status) {
+  return (node: Node): string | Node | (string | Node)[] | null => {
+    if (node.name === 'a' && node.attributes.class?.includes('mention')) {
+      const href = node.attributes.href
+      if (href) {
+        const handle = hrefToHandle(href)
+        const parsedAcct = deriveMentionHandle(href, status ?? inReplyToStatus)
+        if (parsedAcct || handle) {
+          // convert to Tiptap mention node
+          return h('span', { 'data-type': 'mention', 'data-id': parsedAcct ?? handle }, parsedAcct ?? handle)
+        }
       }
     }
+    return node
   }
-  return node
 }
 
-function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[]) {
+function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[], status?: mastodon.v1.Status, inReplyToStatus?: mastodon.v1.Status) {
   return (node: Node): string | Node | (string | Node)[] | null => {
     if (node.name === 'a' && node.attributes.class?.includes('mention')) {
       const href = node.attributes.href
@@ -634,7 +639,7 @@ function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[]) {
       if (href.includes('/tags/'))
         return node
 
-      const parsedAcct = parseAcctFromPerspectiveOfCurrentServer(href)
+      const parsedAcct = deriveMentionHandle(href, status ?? inReplyToStatus)
       const mention = href && mentions.find(m => m.url === href)
       if (parsedAcct || mention) {
         node.attributes.href = `/${currentServer.value}/@${parsedAcct ?? mention.acct}`

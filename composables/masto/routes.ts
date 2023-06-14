@@ -1,7 +1,8 @@
 import { withoutProtocol } from 'ufo'
 import type { mastodon } from 'masto'
+import type { ShallowUnwrapRef, UnwrapNestedRefs, UnwrapRef } from 'vue'
 
-export function getAccountRoute(account: mastodon.v1.Account) {
+export function getAccountRoute(account: mastodon.v1.Account | ShallowUnwrapRef<mastodon.v1.Account> | UnwrapRef<mastodon.v1.Account> | UnwrapNestedRefs<mastodon.v1.Account>) {
   return useRouter().resolve({
     name: 'account-index',
     params: {
@@ -10,7 +11,7 @@ export function getAccountRoute(account: mastodon.v1.Account) {
     },
   })
 }
-export function getAccountFollowingRoute(account: mastodon.v1.Account) {
+export function getAccountFollowingRoute(account: mastodon.v1.Account | ShallowUnwrapRef<mastodon.v1.Account> | UnwrapRef<mastodon.v1.Account> | UnwrapNestedRefs<mastodon.v1.Account>) {
   return useRouter().resolve({
     name: 'account-following',
     params: {
@@ -19,7 +20,7 @@ export function getAccountFollowingRoute(account: mastodon.v1.Account) {
     },
   })
 }
-export function getAccountFollowersRoute(account: mastodon.v1.Account) {
+export function getAccountFollowersRoute(account: mastodon.v1.Account | ShallowUnwrapRef<mastodon.v1.Account> | UnwrapRef<mastodon.v1.Account> | UnwrapNestedRefs<mastodon.v1.Account>) {
   return useRouter().resolve({
     name: 'account-followers',
     params: {

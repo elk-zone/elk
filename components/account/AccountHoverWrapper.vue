@@ -7,11 +7,16 @@ const props = defineProps<{
   disabled?: boolean
 }>()
 
-const account = computed(() => props.account || (props.handle ? useAccountByHandle(props.handle!) : undefined))
+const account = ref<mastodon.v1.Account | null>(null)
+
 const userSettings = useUserSettings()
 
 defineOptions({
   inheritAttrs: false,
+})
+
+onMounted(async () => {
+  account.value = props.account || await fetchAccountByHandle(props.handle)
 })
 </script>
 

@@ -82,15 +82,19 @@ export function fetchStatus(id: string, force = false): Promise<mastodon.v1.Stat
   return promise
 }
 
-async function federateRemoteAccount(webfingerOrUriOrUrl: string, force = false): Promise<mastodon.v1.Account | null> {
+function federateRemoteAccount(webfingerOrUriOrUrl: string, force = false): mastodon.v1.Account | Promise<mastodon.v1.Account | null> {
   const accountWebfinger = extractAccountWebfinger(webfingerOrUriOrUrl)
-  if (!accountWebfinger)
+  if (!accountWebfinger) {
+    if (process.dev)
+      // eslint-disable-next-line no-console
+      console.debug(`Not a valid account webfinger: ${accountWebfinger}`)
     return Promise.resolve(null)
+  }
 
   if (accountWebfinger.includes(currentServer.value)) {
     if (process.dev)
       // eslint-disable-next-line no-console
-      console.info(`Local domain is authoritative, so redirecting resolution request for account: ${accountWebfinger}`)
+      console.debug(`Local domain is authoritative, so redirecting resolution request for account: ${accountWebfinger}`)
 
     return fetchAccountByHandle(accountWebfinger, force)
   }
@@ -113,42 +117,63 @@ async function federateRemoteAccount(webfingerOrUriOrUrl: string, force = false)
       return cachedAuthoritative
     }
     else if (typeof cachedAuthoritative === 'number') {
-      if ([401, 403, 418].includes(cachedAuthoritative))
-        console.error(`Current user is forbidden or lacks authorization to fetch account: ${webfingerOrUriOrUrl}`)
-      if ([404].includes(cachedAuthoritative))
-        console.error(`The requested account Webfinger address cannot be found: ${webfingerOrUriOrUrl}`)
-      if ([429].includes(cachedAuthoritative))
-        console.error('The request was rate-limited by the Mastodon server')
-      if ([500, 501, 503].includes(cachedAuthoritative))
-        console.error('The Mastodon server is unresponsive')
-      return Promise.resolve(null)
+      if ([401, 403, 418].includes(cachedAuthoritative)) {
+        if (process.dev)
+
+          console.error(`Current user is forbidden or lacks authorization to fetch account: ${webfingerOrUriOrUrl}`)
+        return Promise.resolve(null)
+      }
+
+      if ([404].includes(cachedAuthoritative) && !force) {
+        if (process.dev)
+
+          console.error(`The requested account Webfinger address cannot be found: ${webfingerOrUriOrUrl}`)
+        return Promise.resolve(null)
+      }
+
+      if ([429].includes(cachedAuthoritative)) {
+        if (process.dev)
+
+          console.error('The request was rate-limited by the Mastodon server')
+        return Promise.resolve(null)
+      }
+
+      if ([500, 501, 503].includes(cachedAuthoritative) && !force) {
+        if (process.dev)
+
+          console.error('The Mastodon server is unresponsive')
+        return Promise.resolve(null)
+      }
     }
   }
 
-  const promise = useMastoClient().v2.search({ q: accountWebfinger, type: 'accounts', resolve: (!!currentUser.value), limit: 1 })
+  const promise = useMastoClient().v2.search({ q: accountWebfinger, type: 'accounts', resolve: (currentUser.value !== undefined), limit: 1 })
     .then((results) => {
       const account = results.accounts.pop()
       if (!account) {
         console.error(`Account could not be federated, perhaps it no longer exists: '${accountWebfinger}'`)
         cache.set(cacheKeyAuthoritativeAccount, 404)
-        return Promise.resolve(null)
+        return null
       }
 
-      account.acct = accountWebfinger
+      account.acct = extractAccountWebfinger(account.acct)!
       // Intentionally overriding cached value because this should be the most recent
       cache.set(cacheKeyAuthoritativeAccount, account)
+      cache.set(generateAccountIdCacheKey(account.acct)!, account)
+      cache.set(account.acct, account)
+
       return account
     })
     .catch((e) => {
       console.error(`Encountered error while federating account using Webfinger address '${accountWebfinger}' | ${(e as Error).message}`)
       cache.set(cacheKeyAuthoritativeAccount, null)
-      return Promise.resolve(null)
+      return null
     })
   cache.set(cacheKeyAuthoritativeAccount, promise)
   return promise
 }
 
-function fetchAccountById(accountId?: string | null, force = false): Promise<mastodon.v1.Account | null> {
+export function fetchAccountById(accountId?: string | null, force = false): mastodon.v1.Account | Promise<mastodon.v1.Account | null> {
   if (!accountId || accountId.trim() === '')
     return Promise.resolve(null)
 
@@ -159,24 +184,43 @@ function fetchAccountById(accountId?: string | null, force = false): Promise<mas
     if (cachedAccountLocallyAccessibleToCurrentUser instanceof Promise)
       return cachedAccountLocallyAccessibleToCurrentUser
     if (typeof cachedAccountLocallyAccessibleToCurrentUser === 'number') {
-      // wait for the cached value to expire before trying again
-      if ([401, 403, 418].includes(cachedAccountLocallyAccessibleToCurrentUser))
-        console.error(`Current user is forbidden or lacks authorization to fetch account id: ${accountId}`)
-      if ([404].includes(cachedAccountLocallyAccessibleToCurrentUser))
-        console.error(`The requested account id cannot be found: ${accountId}`)
-      if ([429].includes(cachedAccountLocallyAccessibleToCurrentUser))
-        console.error(`Rate-limiting interrupted request for account id: ${accountId}`)
-      if ([500, 501, 503].includes(cachedAccountLocallyAccessibleToCurrentUser))
-        console.error(`Unresponsive Mastodon server encountered while fetching account id: ${accountId}`)
-      return Promise.resolve(null)
+      if ([401, 403, 418].includes(cachedAccountLocallyAccessibleToCurrentUser)) {
+        if (process.dev)
+
+          console.error(`Current user is forbidden or lacks authorization to fetch account id: ${accountId}`)
+        return Promise.resolve(null)
+      }
+
+      if ([404].includes(cachedAccountLocallyAccessibleToCurrentUser) && !force) {
+        if (process.dev)
+
+          console.error(`The requested account id cannot be found: ${accountId}`)
+        return Promise.resolve(null)
+      }
+
+      if ([429].includes(cachedAccountLocallyAccessibleToCurrentUser)) {
+        if (process.dev)
+
+          console.error(`Rate-limiting interrupted request for account id: ${accountId}`)
+        return Promise.resolve(null)
+      }
+
+      if ([500, 501, 503].includes(cachedAccountLocallyAccessibleToCurrentUser) && !force) {
+        if (process.dev)
+
+          console.error(`Unresponsive Mastodon server encountered while fetching account id: ${accountId}`)
+        return Promise.resolve(null)
+      }
     }
+
     if (
-      (cachedAccountLocallyAccessibleToCurrentUser.id === accountId)
+      (typeof cachedAccountLocallyAccessibleToCurrentUser !== 'number')
+      && (cachedAccountLocallyAccessibleToCurrentUser.id === accountId)
       && !force
       && cachedAccountLocallyAccessibleToCurrentUser.url.includes(currentServer.value)
     ) {
       // if we already cached the authoritative value, then return that
-      return Promise.resolve(cachedAccountLocallyAccessibleToCurrentUser)
+      return cachedAccountLocallyAccessibleToCurrentUser
     }
   }
 
@@ -194,13 +238,16 @@ function fetchAccountById(accountId?: string | null, force = false): Promise<mas
     .catch((e) => {
       console.error(`Encountered error while fetching account Id '${accountId}' | ${(e as Error).message}`)
       cache.set(cacheKeyAccountId, 404)
-      return Promise.resolve(null)
+      return null
     })
   cache.set(cacheKeyAccountId, promise)
   return promise
 }
 
-export async function fetchAccountByHandle(str: string, force = false): Promise<mastodon.v1.Account | null> {
+export function fetchAccountByHandle(str?: string, force = false): mastodon.v1.Account | Promise<mastodon.v1.Account | null> {
+  if (!str || str.trim() === '')
+    return Promise.resolve(null)
+
   const accountWebfinger = extractAccountWebfinger(str)
   if (!accountWebfinger) {
     console.error(`Malformed or invalid account handle: ${str}`)
@@ -224,19 +271,36 @@ export async function fetchAccountByHandle(str: string, force = false): Promise<
       return cachedAccountLocallyAccessibleToCurrentUser
     }
     else if (typeof cachedAccountLocallyAccessibleToCurrentUser === 'number') {
-      if ([401, 403, 418].includes(cachedAccountLocallyAccessibleToCurrentUser))
+      if ([401, 403, 418].includes(cachedAccountLocallyAccessibleToCurrentUser)) {
         console.error(`Current user is forbidden or lacks authorization to fetch account: ${accountWebfinger}`)
-      if ([404].includes(cachedAccountLocallyAccessibleToCurrentUser))
+        return Promise.resolve(null)
+      }
+
+      if ([404].includes(cachedAccountLocallyAccessibleToCurrentUser) && !force) {
         console.error(`The requested account Webfinger address cannot be found: ${accountWebfinger}`)
-      if ([429].includes(cachedAccountLocallyAccessibleToCurrentUser))
+        return Promise.resolve(null)
+      }
+
+      if ([429].includes(cachedAccountLocallyAccessibleToCurrentUser)) {
         console.error('The request was rate-limited by the Mastodon server')
-      if ([500, 501, 503].includes(cachedAccountLocallyAccessibleToCurrentUser))
+        return Promise.resolve(null)
+      }
+
+      if ([500, 501, 503].includes(cachedAccountLocallyAccessibleToCurrentUser) && !force) {
         console.error('The Mastodon server is unresponsive')
-      return Promise.resolve(null)
+        return Promise.resolve(null)
+      }
     }
   }
 
-  const promise = useMastoClient().v1.accounts.lookup({ acct: parseAcctFromPerspectiveOfCurrentServer(str) ?? str })
+  if (!accountWebfinger.includes(currentServer.value)) {
+    if (process.dev)
+      // eslint-disable-next-line no-console
+      console.info(`Remote domain is authoritative, so redirecting resolution request for account: ${accountWebfinger}`)
+    return federateRemoteAccount(accountWebfinger, force)
+  }
+
+  const promise = useMastoClient().v1.accounts.lookup({ acct: accountWebfinger ?? parseAcctFromPerspectiveOfCurrentServer(str) ?? str })
     .then((account) => {
       account.acct = accountWebfinger
 
@@ -247,28 +311,13 @@ export async function fetchAccountByHandle(str: string, force = false): Promise<
       return account
     })
     .catch((e) => {
-      if (!accountWebfinger.includes(currentServer.value)) {
-        if (process.dev)
-          // eslint-disable-next-line no-console
-          console.info(`Remote domain is authoritative, so redirecting resolution request for account: ${accountWebfinger}`)
-
-        return federateRemoteAccount(accountWebfinger)
-      }
       if (process.dev)
         console.error(`Encountered error while fetching account: '${accountWebfinger}' | ${(e as Error).message}`)
       cache.set(cacheKeyWebfingerAccount, 404)
-      return Promise.resolve(null)
+      return null
     })
   cache.set(cacheKeyWebfingerAccount, promise)
   return promise
-}
-
-export function useAccountByHandle(acct: string) {
-  return useAsyncState(() => fetchAccountByHandle(acct), null).state
-}
-
-export function useAccountById(id?: string | null) {
-  return useAsyncState(() => fetchAccountById(id), null).state
 }
 
 export function cacheStatus(status: mastodon.v1.Status, server = currentServer.value, override?: boolean) {

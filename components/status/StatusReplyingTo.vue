@@ -9,13 +9,16 @@ const {
   isSelfReply: boolean
 }>()
 
-const isSelf = $computed(() => status.inReplyToAccountId === status.account.id)
-const account = isSelf ? computed(() => status.account) : useAccountById(status.inReplyToAccountId)
+const account = ref<mastodon.v1.Account | null>(null)
+
+onMounted(async () => {
+  account.value = (status && status.inReplyToAccountId === status.account.id) ? status.account : await fetchAccountById(status.inReplyToAccountId)
+})
 </script>
 
 <template>
   <NuxtLink
-    v-if="status.inReplyToId"
+    v-if="account && status.inReplyToId"
     flex="~ gap2" items-center h-auto text-sm text-secondary
     :to="getStatusInReplyToRoute(status)"
     :title="$t('status.replying_to', [account ? getDisplayName(account) : $t('status.someone')])"

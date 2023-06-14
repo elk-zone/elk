@@ -1,5 +1,5 @@
 import type { mastodon } from 'masto'
-import type { ShallowUnwrapRef } from 'vue'
+import type { type ShallowUnwrapRef, UnwrapNestedRefs, UnwrapRef } from 'vue'
 
 export function getDisplayName(account: mastodon.v1.Account, options?: { rich?: boolean }) {
   const displayName = account.displayName || account.username || account.acct || ''
@@ -38,7 +38,7 @@ export function rawAcctToResolvedAccount(acct: string) {
   return fetchAccountByHandle(`@${acct}`)
 }
 
-export function getAcctFromPerspectiveOfCurrentServer(account?: mastodon.v1.Account | ShallowUnwrapRef<mastodon.v1.Account>) {
+export function getAcctFromPerspectiveOfCurrentServer(account?: mastodon.v1.Account | ShallowUnwrapRef<mastodon.v1.Account> | UnwrapRef<mastodon.v1.Account> | UnwrapNestedRefs<mastodon.v1.Account>) {
   if (account && account.acct && account.acct && account.url)
     return `${account.username}@${getServerName(account)}`?.replace(`@${currentServer.value}`, '')
 
@@ -47,8 +47,19 @@ export function getAcctFromPerspectiveOfCurrentServer(account?: mastodon.v1.Acco
 
 export function parseAcctFromPerspectiveOfCurrentServer(webfingerOrUriOrUrl: string) {
   // see https://github.com/mastodon/mastodon/blob/25c66fa640962a4d54d59a3f53516ab6dcb1dae6/app/models/concerns/omniauthable.rb#L95
-  if (webfingerOrUriOrUrl.search(/^@[a-z0-9_]{1,30}$/i) === 0)
-    return webfingerOrUriOrUrl
+  return (webfingerOrUriOrUrl.search(/^@[a-z0-9_]{1,30}$/i) === 0)
+    ? webfingerOrUriOrUrl
+    : extractAccountWebfinger(webfingerOrUriOrUrl)?.replace(`@${currentServer.value}`, '') ?? undefined
+}
 
-  return extractAccountWebfinger(webfingerOrUriOrUrl)?.replace(`@${currentServer.value}`, '') ?? undefined
+export function deriveMentionHandle(mentionTextOrHref: string, sourceStatus?: mastodon.v1.Status) {
+  const mentionAcct = parseAcctFromPerspectiveOfCurrentServer(mentionTextOrHref)
+
+  if (mentionAcct && sourceStatus) {
+    const sourceWebDomain = sourceStatus.account.url.replace('https://', '').split('/')[0]
+    const sourceLocalDomain = sourceStatus.uri.replace('https://', '').split('/')[0]
+    const response = (mentionAcct.endsWith(sourceLocalDomain)) ? mentionAcct.replace(sourceLocalDomain, sourceWebDomain) : mentionAcct
+    return response
+  }
+  return mentionAcct ?? null
 }

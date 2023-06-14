@@ -1,5 +1,5 @@
 import type { mastodon } from 'masto'
-import type { type ShallowUnwrapRef, UnwrapNestedRefs, UnwrapRef } from 'vue'
+import type { ShallowUnwrapRef, UnwrapNestedRefs, UnwrapRef } from 'vue'
 
 export function getDisplayName(account: mastodon.v1.Account, options?: { rich?: boolean }) {
   const displayName = account.displayName || account.username || account.acct || ''

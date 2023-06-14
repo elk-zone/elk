@@ -307,6 +307,18 @@
     "replying": "Respondiendo",
     "the_thread": "el hilo"
   },
+  "polls": {
+    "allow_multiple": "Permitir múltiples opciones",
+    "cancel": "Cancelar",
+    "create": "Crear encuesta",
+    "disallow_multiple": "No permitir múltiples opciones",
+    "expiration": "Caducidad de la encuesta",
+    "hide_votes": "Ocultar el total de votos hasta el final de la encuesta",
+    "option_placeholder": "Opción de encuesta {current}/{max}",
+    "remove_option": "Eliminar opción",
+    "settings": "Opciones de la encuesta",
+    "show_votes": "Mostrar siempre el total de votos"
+  },
   "pwa": {
     "dismiss": "Descartar",
     "install": "Instalar",

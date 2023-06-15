@@ -8,7 +8,7 @@ const { notifications } = useNotifications()
 <template>
   <nav
     h-14 border="t base" flex flex-row text-xl
-    of-y-scroll scrollbar-hide overscroll-none
+    sticky bottom-0 left-0 right-0 overscroll-none small="hidden"
     class="after-content-empty after:(h-[calc(100%+0.5px)] w-0.1px pointer-events-none)"
   >
     <!-- These weird styles above are used for scroll locking, don't change it unless you know exactly what you're doing. -->

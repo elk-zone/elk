@@ -7,7 +7,7 @@ const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 </script>
 
 <template>
-  <nav sm:px3 flex="~ col gap2" shrink text-size-base leading-normal md:text-lg h-full mt-1 overflow-y-auto>
+  <nav flex="~ col gap2" shrink text-size-base leading-normal md:text-lg place-content-start overflow-y-auto overscroll-contain overflow-x-hidden>
     <NavSideItem :text="$t('nav.search')" to="/search" icon="i-ri:search-line" xl:hidden :command="command" />
 
     <div class="spacer" shrink xl:hidden />

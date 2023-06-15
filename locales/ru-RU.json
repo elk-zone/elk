@@ -190,6 +190,7 @@
     "block_account": "Заблокировать {0}",
     "block_domain": "Заблокировать домен {0}",
     "copy_link_to_post": "Скопировать ссылку на этот пост",
+    "copy_original_link_to_post": "Копировать ссылку на пост на исходном сайте",
     "delete": "Удалить",
     "delete_and_redraft": "Удалить и переписать",
     "direct_message_account": "Отправьте личное сообщение {0}",
@@ -343,7 +344,15 @@
     },
     "language": {
       "display_language": "Язык отображения",
-      "label": "Язык"
+      "label": "Язык",
+      "status": "Статус перевода: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Добавить",
+        "choose_language": "Выберите язык",
+        "heading": "Переводы",
+        "hide_specific": "Скрыть определённые языки",
+        "remove": "Удалить"
+      }
     },
     "notifications": {
       "label": "Уведомления",
@@ -411,6 +420,7 @@
       "hide_reply_count": "Скрыть количество ответов",
       "hide_translation": "Скрыть перевод",
       "hide_username_emojis": "Скрыть эмодзи в именах",
+      "hide_username_emojis_description": "Скрывает эмодзи в именах в ленте. Эмодзи всё ещё будут видны в профилях.",
       "label": "Настройки",
       "title": "Экспериментальные функции",
       "use_star_favorite_icon": "Использовать значок звезды для кнопки \"Добавить в избранное\"",
@@ -505,7 +515,7 @@
     "notifications_all": "Все",
     "notifications_mention": "Упоминания",
     "posts": "Посты",
-    "posts_with_replies": "Посты и Ответы"
+    "posts_with_replies": "Посты и ответы"
   },
   "tag": {
     "follow": "Подписаться",

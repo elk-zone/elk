@@ -308,6 +308,13 @@ function showFavoritedAndBoostedBy() {
                 @click="toggleBlockDomain(useRelationship(status.account).value!, status.account)"
               />
             </template>
+
+            <CommonDropdownItem
+              :text="$t('menu.report_account', [`@${status.account.acct}`])"
+              icon="i-ri:flag-2-line"
+              :command="command"
+              @click="openReportDialog(status.account, status)"
+            />
           </template>
         </template>
       </div>

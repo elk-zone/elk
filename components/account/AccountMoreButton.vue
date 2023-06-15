@@ -153,6 +153,13 @@ async function removeUserNote() {
               @click="toggleBlockDomain(relationship!, account)"
             />
           </template>
+
+          <CommonDropdownItem
+            :text="$t('menu.report_account', [`@${account.acct}`])"
+            icon="i-ri:flag-2-line"
+            :command="command"
+            @click="openReportDialog(account)"
+          />
         </template>
 
         <template v-else>

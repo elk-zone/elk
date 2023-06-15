@@ -32,6 +32,22 @@ async function fetchRelationships() {
     requested[i][1].value = relationships[i]
 }
 
+export async function toggleFollowAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
+  const { client } = $(useMasto())
+  const i18n = useNuxtApp().$i18n
+
+  if (relationship!.following) {
+    if (await openConfirmDialog({
+      title: i18n.t('confirm.unfollow.title'),
+      confirm: i18n.t('confirm.unfollow.confirm'),
+      cancel: i18n.t('confirm.unfollow.cancel'),
+    }) !== 'confirm')
+      return
+  }
+  relationship!.following = !relationship!.following
+  relationship = await client.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+}
+
 export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
   const { client } = $(useMasto())
   const i18n = useNuxtApp().$i18n

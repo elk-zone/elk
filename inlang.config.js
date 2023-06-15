@@ -10,8 +10,7 @@ export async function defineConfig(env) {
 	return {
 		referenceLanguage: 'en',
 		plugins: [i18next({ 
-			pathPattern: './locales/{language}.json',
-			variableReferencePattern: ["@:"]
+			pathPattern: './locales/{language}.json'
 		}), standardLintRules()]
 	};
 }

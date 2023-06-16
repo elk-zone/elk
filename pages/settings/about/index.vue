@@ -51,12 +51,12 @@ function handleShowCommit() {
 
     <div h-1px bg-border my2 />
 
-    <!-- <SettingsItem
+    <SettingsItem
       :text="$t('nav.show_intro')"
       icon="i-ri:article-line"
       cursor-pointer large
       @click="openPreviewHelp"
-    /> -->
+    />
 
     <SettingsItem
       text="Mastodon"

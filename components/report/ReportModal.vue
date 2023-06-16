@@ -13,27 +13,60 @@ const emit = defineEmits<{
 
 const { client } = useMasto()
 
-const step = ref('choose')
+const step = ref('selectCategory')
 const serverRules = ref((await client.value.v2.instance.fetch()).rules || [])
 const reportReason = ref('')
 const selectedRuleIds = ref([])
+const availableStatuses = ref(status ? [status] : [])
+const selectedStatusIds = ref(status ? [status.id] : [])
 const additionalComments = ref('')
 const forwardReport = ref(false)
 
 const dismissButton = ref<HTMLDivElement>()
 
+loadStatuses() // Load statuses asynchronously ahead of time
+
+function categoryChosen() {
+  step.value = reportReason.value === 'dontlike' ? 'furtherActions' : 'selectStatuses'
+  resetModal()
+}
+
+async function loadStatuses() {
+  if (status) {
+    // Load the 5 statuses before and after the reported status
+    const prevStatuses = await client.value.v1.accounts.listStatuses(account.id, {
+      maxId: status.id,
+      limit: 5,
+    })
+    const nextStatuses = await client.value.v1.accounts.listStatuses(account.id, {
+      minId: status.id,
+      limit: 5,
+    })
+    availableStatuses.value = availableStatuses.value.concat(prevStatuses)
+    availableStatuses.value = availableStatuses.value.concat(nextStatuses)
+  }
+  else {
+    // Reporting an account directly
+    // Load the 10 most recent statuses
+    const mostRecentStatuses = await client.value.v1.accounts.listStatuses(account.id, {
+      limit: 10,
+    })
+    availableStatuses.value = mostRecentStatuses
+  }
+  availableStatuses.value.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+}
+
 async function submitReport() {
   await client.value.v1.reports.create({
     accountId: account.id,
-    statusIds: status?.id ? [status.id] : null,
+    statusIds: selectedStatusIds.value,
     comment: additionalComments.value,
     forward: forwardReport.value,
     category: reportReason.value === 'spam' ? 'spam' : reportReason.value === 'violation' ? 'violation' : 'other',
     ruleIds: reportReason.value === 'violation' ? selectedRuleIds.value : null,
   })
-  step.value = 'thanks'
-  // TODO: extract this scroll/reset logic into ModalDialog element
-  dismissButton.value?.scrollIntoView() // scroll to top
+  step.value = 'furtherActions'
+  resetModal()
 }
 
 function unfollow() {
@@ -50,6 +83,11 @@ function block() {
   emit('close')
   toggleBlockAccount(useRelationship(account).value!, account)
 }
+
+function resetModal() {
+  // TODO: extract this scroll/reset logic into ModalDialog element
+  dismissButton.value?.scrollIntoView() // scroll to top
+}
 </script>
 
 <template>
@@ -61,7 +99,7 @@ function block() {
       <div i-ri:close-line />
     </button>
 
-    <template v-if="step === 'choose'">
+    <template v-if="step === 'selectCategory'">
       <h1 mxa text-4xl mb4>
         Tell us what's wrong with this {{ status ? "post" : "account" }}
       </h1>
@@ -133,14 +171,45 @@ function block() {
       <button
         btn-solid mxa mt-10
         :disabled="!reportReason || (reportReason === 'violation' && selectedRuleIds.length < 1)"
-        tabindex="2"
-        @click="submitReport()"
+        @click="categoryChosen()"
       >
-        {{ reportReason === 'dontlike' ? "Next" : "Submit Report" }}
+        Next
       </button>
     </template>
 
-    <template v-else-if="step === 'thanks'">
+    <template v-else-if="step === 'selectStatuses'">
+      <h1 mxa text-4xl mb4>
+        Are there any {{ status ? "other" : "" }} posts that back up this report?
+      </h1>
+      <p text-primary font-bold>
+        Select all that apply:
+      </p>
+      <table>
+        <tr v-for="availableStatus in availableStatuses" :key="availableStatus.id">
+          <td>
+            <input
+              :id="availableStatus.id"
+              v-model="selectedStatusIds"
+              type="checkbox"
+              :value="availableStatus.id"
+            >
+          </td>
+          <td>
+            <label :for="availableStatus.id">
+              <StatusCard :status="availableStatus" :actions="false" pointer-events-none />
+            </label>
+          </td>
+        </tr>
+      </table>
+      <button
+        btn-solid mxa mt-5
+        @click="submitReport()"
+      >
+        Submit Report
+      </button>
+    </template>
+
+    <template v-else-if="step === 'furtherActions'">
       <h1 mxa text-4xl mb4>
         {{ reportReason === 'dontlike' ? "Don't want to see this?" : "Thanks for reporting, we'll look into this." }}
       </h1>
@@ -149,26 +218,41 @@ function block() {
       </p>
 
       <div v-if="useRelationship(account).value?.following">
-        <button btn-outline mxa mt-4 mb-2 tabindex="2" @click="unfollow()">
+        <button btn-outline mxa mt-4 mb-2 @click="unfollow()">
           Unfollow <b>@{{ account.acct }}</b>
         </button><br>
         You will no longer see posts from this user in your home feed. You may still see posts from them elsewhere.
       </div>
       <div v-if="!useRelationship(account).value?.muting">
-        <button btn-outline mxa mt-4 mb-2 tabindex="3" @click="mute()">
+        <button btn-outline mxa mt-4 mb-2 @click="mute()">
           Mute <b>@{{ account.acct }}</b>
         </button><br>
         You will no longer see any posts from this user. They can still follow you and see your posts. They will not know that they are muted.
       </div>
       <div v-if="!useRelationship(account).value?.blocking">
-        <button btn-outline mxa mt-4 mb-2 tabindex="4" @click="block()">
+        <button btn-outline mxa mt-4 mb-2 @click="block()">
           Block <b>@{{ account.acct }}</b>
         </button><br>
         You will no longer see any posts from this user. They will not be able to see your posts or follow you. They will be able to tell that they are blocked.
       </div>
-      <button btn-solid mxa mt-10 tabindex="5" @click="emit('close')">
+      <button btn-solid mxa mt-10 @click="emit('close')">
         Done
       </button>
     </template>
   </div>
 </template>
+
+<style>
+tr {
+  border-bottom-width: 1px;
+}
+
+tr:last-child {
+  border: none;
+}
+
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+</style>

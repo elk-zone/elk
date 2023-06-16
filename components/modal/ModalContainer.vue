@@ -9,7 +9,7 @@ import {
   isFavouritedBoostedByDialogOpen,
   isKeyboardShortcutsDialogOpen,
   isMediaPreviewOpen,
-  // isPreviewHelpOpen,
+  isPreviewHelpOpen,
   isPublishDialogOpen,
   isSigninDialogOpen,
 } from '~/composables/dialog'
@@ -57,9 +57,9 @@ function handleFavouritedBoostedByClose() {
     <ModalDialog v-model="isSigninDialogOpen" py-4 px-8 max-w-125>
       <UserSignIn />
     </ModalDialog>
-    <!-- <ModalDialog v-model="isPreviewHelpOpen" keep-alive max-w-125>
+    <ModalDialog v-model="isPreviewHelpOpen" keep-alive max-w-125>
       <HelpPreview @close="closePreviewHelp()" />
-    </ModalDialog> -->
+    </ModalDialog>
     <ModalDialog
       v-model="isPublishDialogOpen"
       max-w-180 flex

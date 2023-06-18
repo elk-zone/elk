@@ -15,7 +15,7 @@ const relationship = $computed(() => props.relationship || useRelationship(accou
 
 const { client } = $(useMasto())
 async function toggleFollow() {
-  if (relationship!.following) {
+  if (relationship!.following || relationship!.requested) {
     if (await openConfirmDialog({
       title: t('confirm.unfollow.title'),
       confirm: t('confirm.unfollow.confirm'),
@@ -23,7 +23,11 @@ async function toggleFollow() {
     }) !== 'confirm')
       return
   }
-  relationship!.following = !relationship!.following
+
+  if (relationship!.requested)
+    relationship!.following = false
+  else
+    relationship!.following = !relationship!.following
   try {
     const newRel = await client.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
     Object.assign(relationship!, newRel)
@@ -90,7 +94,6 @@ const buttonStyle = $computed(() => {
   <button
     v-if="enable"
     gap-1 items-center group
-    :disabled="relationship?.requested"
     border-1
     rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
     :class="buttonStyle"

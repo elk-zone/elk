@@ -12,7 +12,6 @@ const emit = defineEmits<{
 }>()
 
 const { client } = useMasto()
-const { t } = useI18n()
 
 const step = ref('selectCategory')
 const serverRules = ref((await client.value.v2.instance.fetch()).rules || [])

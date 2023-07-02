@@ -36,6 +36,10 @@ export interface Props {
   dialogLabelledBy?: string
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<Props>(), {
   zIndex: 100,
   closeByMask: true,
@@ -52,10 +56,6 @@ const { modelValue: visible } = defineModels<{
   /** v-model dislog visibility */
   modelValue: boolean
 }>()
-
-defineOptions({
-  inheritAttrs: false,
-})
 
 const deactivated = useDeactivated()
 const route = useRoute()

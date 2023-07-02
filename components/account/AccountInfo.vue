@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const { account, as = 'div' } = defineProps<{
   account: mastodon.v1.Account
   as?: string
   hoverCard?: boolean
   square?: boolean
 }>()
-
-defineOptions({
-  inheritAttrs: false,
-})
 </script>
 
 <!-- TODO: Make this work for both buttons and links -->

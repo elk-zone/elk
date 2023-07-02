@@ -409,7 +409,7 @@
           "error_hint": "Możesz zapoznać się z listą najczęściej zadawanych pytań, aby spróbować rozwiązać problem: {0}.",
           "invalid_vapid_key": "Wydaje się, że klucz publiczny VAPID jest nieprawidłowy.",
           "permission_denied": "Brak uprawnień: włącz powiadomienia w przeglądarce.",
-          "repo_link": "Repozytorium Elk w Github",
+          "repo_link": "Repozytorium Elk w GitHub",
           "request_error": "Wystąpił błąd podczas żądania subskrypcji, spróbuj ponownie, a jeśli błąd będzie się powtarzał, zgłoś problem do repozytorium Elk.",
           "title": "Nie można zasubskrybować powiadomień push",
           "too_many_registrations": "Ze względu na ograniczenia przeglądarki Elk nie może korzystać z usługi powiadomień push dla wielu kont na różnych serwerach. Powinieneś anulować subskrypcję powiadomień push na innym koncie i spróbować ponownie.",

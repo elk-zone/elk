@@ -72,7 +72,7 @@
     "ignore-dependency-scripts": "^1.0.1",
     "iso-639-1": "^2.1.15",
     "js-yaml": "^4.1.0",
-    "lru-cache": "^9.0.1",
+    "lru-cache": "^10.0.0",
     "masto": "^5.11.3",
     "nuxt-security": "^0.13.0",
     "nuxt-vitest": "^0.7.2",

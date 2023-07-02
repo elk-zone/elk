@@ -165,8 +165,9 @@ const personalNoteMaxLength = 2000
           </div>
         </div>
         <div flex="~ col gap1" pt2>
-          <div flex justify-between>
+          <div flex gap2 items-center>
             <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
+            <AccountLockIndicator v-if="account.locked" show-label />
             <AccountBotIndicator v-if="account.bot" show-label />
           </div>
           <AccountHandle :account="account" overflow-unset line-clamp-unset />

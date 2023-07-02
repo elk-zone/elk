@@ -35,7 +35,7 @@
     "@iconify-emoji/twemoji": "^1.0.2",
     "@iconify/json": "^2.2.49",
     "@iconify/utils": "^2.1.5",
-    "@nuxt/devtools": "^0.5.3",
+    "@nuxt/devtools": "^0.6.6",
     "@nuxtjs/color-mode": "^3.2.0",
     "@nuxtjs/i18n": "8.0.0-beta.10",
     "@pinia/nuxt": "^0.4.9",

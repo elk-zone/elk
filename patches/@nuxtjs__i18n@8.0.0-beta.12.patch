@@ -1,0 +1,13 @@
+diff --git a/dist/runtime/utils.mjs b/dist/runtime/utils.mjs
+index 21f7780ac104abddfd5c8038e1574bc0e3212cf6..b2e7584912c9eede4d152f0ddaeb70ac917ec828 100644
+--- a/dist/runtime/utils.mjs
++++ b/dist/runtime/utils.mjs
+@@ -77,7 +77,7 @@ export async function loadInitialMessages(context, messages, options) {
+       const fallbackLocales = makeFallbackLocaleCodes(fallbackLocale, [defaultLocale, initialLocale]);
+       await Promise.all(fallbackLocales.map((locale) => loadLocale(context, locale, setter)));
+     }
+-    const locales = lazy ? [...(/* @__PURE__ */ new Set()).add(defaultLocale).add(initialLocale)] : localeCodes;
++    const locales = lazy ? localeCodes : [...(/* @__PURE__ */ new Set()).add(defaultLocale).add(initialLocale)];
+     await Promise.all(locales.map((locale) => loadLocale(context, locale, setter)));
+   }
+   return messages;

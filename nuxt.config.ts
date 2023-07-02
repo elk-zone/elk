@@ -1,9 +1,9 @@
 import { createResolver, useNuxt } from '@nuxt/kit'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
-import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
 import type { BuildInfo } from './types'
+import { currentLocales } from './config/i18n'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -243,7 +243,15 @@ export default defineNuxtConfig({
     rateLimiter: false,
   },
   colorMode: { classSuffix: '' },
-  i18n,
+  i18n: {
+    locales: currentLocales,
+    lazy: true,
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
+    langDir: 'locales',
+    defaultLocale: 'en-US',
+    vueI18n: './config/i18n.config.ts',
+  },
   pwa,
   staleDep: {
     packageManager: 'pnpm',

@@ -28,6 +28,9 @@ importers:
       '@iconify/utils':
         specifier: ^2.1.5
         version: 2.1.5
+      '@inlang/cli':
+        specifier: ^0.10.1
+        version: 0.10.1
       '@nuxt/devtools':
         specifier: ^0.5.3
         version: 0.5.3(nuxt@3.6.1)(rollup@2.79.1)(vite@4.3.9)
@@ -2150,6 +2153,12 @@ packages:
       '@iconify/types': 2.0.0
       vue: 3.3.4
     dev: true
+
+  /@inlang/cli@0.10.1:
+    resolution: {integrity: sha512-hzosMLQVF87y5Y2SDQZy5bsk2GBLo6XeHrnNXEQDI1IBfvCM7oi3w5sVjCU84BjqBme5N2YWfNkvhYZRQAo0qg==}
+    engines: {node: '>=16.15.0'}
+    hasBin: true
+    dev: false
 
   /@intlify/bundle-utils@3.4.0(vue-i18n@9.3.0-beta.16):
     resolution: {integrity: sha512-2UQkqiSAOSPEHMGWlybqWm4G2K0X+FyYho5AwXz6QklSX1EY5EDmOSxZmwscn2qmKBnp6OYsme5kUrnN9xrWzQ==}

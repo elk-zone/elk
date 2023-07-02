@@ -6,6 +6,7 @@
     "csstools.postcss",
     "dbaeumer.vscode-eslint",
     "vue.volar",
-    "lokalise.i18n-ally"
+    "lokalise.i18n-ally",
+    "inlang.vs-code-extension"
   ]
 }

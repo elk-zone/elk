@@ -28,11 +28,15 @@
     "muted_users": "Stummgeschaltete Accounts",
     "muting": "Stummgeschaltet",
     "mutuals": "Freunde",
+    "notifications_on_post_disable": "Benachrichtigungen deaktivieren, wenn {username} Beiträge veröffentlicht",
+    "notifications_on_post_enable": "Benachrichtige mich, wenn {username} Beiträge veröffentlicht",
     "pinned": "Angepinnt",
     "posts": "Beiträge",
     "posts_count": "{0} Beiträge",
     "profile_description": "{0}'s Profil",
+    "profile_personal_note": "Persönliche Notiz",
     "profile_unavailable": "Profil nicht verfügbar",
+    "request_follow": "Folgeanfrage senden",
     "unblock": "Entblocken",
     "unfollow": "Entfolgen",
     "unmute": "Stummschaltung aufheben",
@@ -46,10 +50,12 @@
     "boost": "Teilen",
     "boost_count": "{0}",
     "boosted": "Geteilt",
+    "clear_publish_failed": "Veröffentlichungsfehler löschen",
     "clear_upload_failed": "Fehler beim Hochladen von Dateien entfernen",
     "close": "Schließen",
     "compose": "Verfassen",
     "confirm": "Bestätigen",
+    "done": "Fertig",
     "edit": "Bearbeiten",
     "enter_app": "App öffnen",
     "favourite": "Favorisieren",
@@ -65,6 +71,7 @@
     "save": "Speichern",
     "save_changes": "Änderungen speichern",
     "sign_in": "Anmelden",
+    "sign_in_to": "Anmelden bei {0}",
     "switch_account": "Account wechseln",
     "vote": "Abstimmen"
   },
@@ -90,7 +97,10 @@
   "common": {
     "end_of_list": "Ende der Liste",
     "error": "FEHLER",
+    "fetching": "Abrufen…",
     "in": "in",
+    "no_bookmarks": "Noch keine Beiträge als Lesezeichen markiert",
+    "no_favourites": "Noch keine Beiträge als Favoriten markiert",
     "not_found": "404 - Nicht gefunden",
     "offline_desc": "Anscheinend bist du offline. Bitte überprüfe deine Netzwerkverbindung."
   },
@@ -99,18 +109,55 @@
     "drafts": "Entwürfe ({v})"
   },
   "confirm": {
+    "block_account": {
+      "cancel": "Abbrechen",
+      "confirm": "Blockieren",
+      "title": "Bist du sicher, dass du {0} blockieren möchtest?"
+    },
+    "block_domain": {
+      "cancel": "Abbrechen",
+      "confirm": "Blockieren",
+      "title": "Bist du sicher, dass du {0} blockieren möchtest?"
+    },
     "common": {
       "cancel": "Abbrechen",
       "confirm": "OK"
+    },
+    "delete_list": {
+      "cancel": "Abbrechen",
+      "confirm": "Löschen",
+      "title": "Bist du sicher, dass du die Liste \"{0}\" löschen möchtest?"
     },
     "delete_posts": {
       "cancel": "Abbrechen",
       "confirm": "Löschen",
       "title": "Möchtest du diesen Beitrag wirklich löschen?"
+    },
+    "mute_account": {
+      "cancel": "Abbrechen",
+      "confirm": "Stummschalten",
+      "title": "Bist du sicher, dass du {0} stummschalten möchtest?"
+    },
+    "show_reblogs": {
+      "cancel": "Abbrechen",
+      "confirm": "Anzeigen",
+      "title": "Bist du sicher, dass du Weiterleitungen von {0} anzeigen möchtest?"
+    },
+    "unfollow": {
+      "cancel": "Abbrechen",
+      "confirm": "Entfolgen",
+      "title": "Bist du sicher, dass du entfolgen möchtest?"
     }
   },
   "conversation": {
     "with": "mit"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Zeilen {0}",
+      "open": "Öffnen",
+      "snippet_from": "Snippet von {0}"
+    }
   },
   "error": {
     "account_not_found": "Account {0} nicht gefunden",
@@ -121,6 +168,12 @@
     "unsupported_file_format": "Nicht unterstütztes Dateiformat"
   },
   "help": {
+    "build_preview": {
+      "desc1": "Du betrachtest derzeit eine Vorschauversion von Elk aus der Community - {0}.",
+      "desc2": "Es können unüberprüfte oder sogar bösartige Änderungen enthalten sein.",
+      "desc3": "Melde dich nicht mit deinem echten Konto an.",
+      "title": "Vorschau bereitstellen"
+    },
     "desc_highlight": "Erwarte hier und da einige Bugs und fehlende Funktionen.",
     "desc_para1": "Danke für dein Interesse an Elk, unser noch in der Bearbeitung befindlicher, generischer Mastodon-Client!",
     "desc_para2": "Wir arbeiten stetig an der Entwicklung und verbessern ihn mit der Zeit. Und wir laden dich schon sehr bald ein uns zu helfen, sobald wir ihn Quelloffen machen!",
@@ -128,12 +181,54 @@
     "desc_para4": "Elk ist Open Source. \nWenn du beim Testen helfen, Feedback geben oder einen Beitrag leisten möchtest,",
     "desc_para5": "Kontaktiere uns auf GitHub",
     "desc_para6": "und mache mit.",
+    "footer_team": "Das Elk-Team",
     "title": "Elk ist in der Alpha!"
   },
   "language": {
     "search": "Suche"
   },
+  "list": {
+    "add_account": "Account zur Liste hinzufügen",
+    "cancel_edit": "Bearbeitung abbrechen",
+    "clear_error": "Fehler löschen",
+    "create": "Erstellen",
+    "delete": "Diese Liste löschen",
+    "delete_error": "Beim Löschen der Liste ist ein Fehler aufgetreten",
+    "edit": "Diese Liste bearbeiten",
+    "edit_error": "Beim Aktualisieren der Liste ist ein Fehler aufgetreten",
+    "error": "Beim Erstellen der Liste ist ein Fehler aufgetreten",
+    "error_prefix": "Fehler: ",
+    "list_title_placeholder": "Listentitel",
+    "modify_account": "Listen mit Konto bearbeiten",
+    "remove_account": "Account aus der Liste entfernen",
+    "save": "Änderungen speichern"
+  },
+  "magic_keys": {
+    "dialog_header": "Tastaturkürzel",
+    "groups": {
+      "actions": {
+        "boost": "Boosten",
+        "command_mode": "Befehlsmodus",
+        "compose": "Verfassen",
+        "favourite": "Favorisieren",
+        "title": "Aktionen"
+      },
+      "media": {
+        "title": "Medien"
+      },
+      "navigation": {
+        "go_to_home": "Startseite",
+        "go_to_notifications": "Benachrichtigungen",
+        "next_status": "Nächster Status",
+        "previous_status": "Vorheriger Status",
+        "shortcut_help": "Tastaturkürzel-Hilfe",
+        "title": "Navigation"
+      }
+    },
+    "sequence_then": "danach"
+  },
   "menu": {
+    "add_personal_note": "Persönliche Notiz zu {0} hinzufügen",
     "block_account": "Sperre {0}",
     "block_domain": "Sperre Domain {0}",
     "copy_link_to_post": "Link zu diesem Beitrag kopieren",
@@ -148,6 +243,8 @@
     "mute_conversation": "Diesem Beitrag stummschalten",
     "open_in_original_site": "Auf Originalseite öffnen",
     "pin_on_profile": "An Profil anpinnen",
+    "remove_personal_note": "Persönliche Notiz von {0} entfernen",
+    "report_account": "{0} melden",
     "share_post": "Teile diesen Beitrag",
     "show_favourited_and_boosted_by": "Zeige mir, wer favorisiert und geboostet hat",
     "show_reblogs": "Boosts von {0} anzeigen",
@@ -159,9 +256,13 @@
     "translate_post": "Beitrag übersetzen",
     "unblock_account": "Entsperre {0}",
     "unblock_domain": "Entsperren Domain {0}",
+    "unfollow_account": "{0} entfolgen",
     "unmute_account": "Stummschaltung von {0} aufheben",
     "unmute_conversation": "Stummschaltung aufheben",
     "unpin_on_profile": "Von Profil lösen"
+  },
+  "modals": {
+    "aria_label_close": "Schließen"
   },
   "nav": {
     "back": "Zurück",
@@ -180,6 +281,7 @@
     "local": "Lokal",
     "muted_users": "Stummgeschaltete Benutzer",
     "notifications": "Mitteilungen",
+    "privacy": "Datenschutz",
     "profile": "Profil",
     "search": "Suche",
     "select_feature_flags": "Feature-Flags aktivieren",
@@ -208,8 +310,26 @@
     "replying": "Antworten",
     "the_thread": "der Thread"
   },
+  "polls": {
+    "allow_multiple": "Mehrfachauswahl erlauben",
+    "cancel": "Abbrechen",
+    "create": "Umfrage erstellen",
+    "disallow_multiple": "Mehrfachauswahl nicht erlauben",
+    "expiration": "Ablauf der Umfrage",
+    "hide_votes": "Abstimmungsergebnisse bis zum Ende verbergen",
+    "option_placeholder": "Umfrageoption {current}/{max}",
+    "remove_option": "Option entfernen",
+    "settings": "Umfrageoptionen",
+    "show_votes": "Abstimmungsergebnisse immer anzeigen"
+  },
   "pwa": {
     "dismiss": "Ignorieren",
+    "install": "Installieren",
+    "install_title": "Elk installieren",
+    "screenshots": {
+      "dark": "Screenshot von Elk im Dunkelmodus",
+      "light": "Screenshot von Elk im Hellmodus"
+    },
     "title": "Neues Elk-Update verfügbar!",
     "update": "Aktualisieren",
     "update_available_short": "Elk aktualisieren",
@@ -236,12 +356,49 @@
       }
     }
   },
+  "report": {
+    "additional_comments": "Zusätzliche Kommentare",
+    "another_server": "Der gemeldete Benutzer stammt von einem anderen Server",
+    "anything_else": "Gibt es noch etwas, das du denkst, dass wir wissen sollten?",
+    "block_desc": "Du wirst keine Beiträge mehr von diesem Benutzer sehen. Sie werden deine Beiträge nicht sehen oder dir folgen können. Sie werden jedoch feststellen können, dass sie blockiert wurden.",
+    "dontlike": "Ich mag es nicht",
+    "dontlike_desc": "Es ist etwas, das du nicht sehen möchtest",
+    "forward": "Ja, diese Meldung an {0} weiterleiten",
+    "forward_question": "Möchtest du eine anonymisierte Kopie dieser Meldung auch an diesen Server senden?",
+    "further_actions": {
+      "limit": {
+        "description": "Hier sind deine Optionen, um zu kontrollieren, was du siehst:",
+        "title": "Möchtest du dies nicht sehen?"
+      },
+      "report": {
+        "description": "Während wir dies überprüfen, hier sind die Aktionen, die du unternehmen kannst:",
+        "title": "Danke für die Meldung, wir werden uns das ansehen."
+      }
+    },
+    "limiting": "{0} einschränken",
+    "mute_desc": "Du wirst keine Beiträge mehr von diesem Benutzer sehen. Sie können dir jedoch immer noch folgen und deine Beiträge sehen. Sie werden nicht wissen, dass sie stummgeschaltet sind.",
+    "other": "Es ist etwas anderes",
+    "other_desc": "Das Problem passt nicht in andere Kategorien",
+    "reporting": "{0} melden",
+    "select_many": "Wähle alle zutreffenden Optionen:",
+    "select_one": "Wähle die beste Übereinstimmung:",
+    "select_posts": "Gibt es Beiträge, die diese Meldung unterstützen?",
+    "select_posts_other": "Gibt es andere Beiträge, die diese Meldung unterstützen?",
+    "spam": "Es ist Spam",
+    "spam_desc": "Bösartige Links, gefälschtes Engagement oder wiederholte Antworten",
+    "submit": "Meldung senden",
+    "unfollow_desc": "Du wirst keine Beiträge dieses Benutzers mehr in deinem Startbildschirm sehen. Du könntest jedoch immer noch Beiträge von ihnen an anderer Stelle sehen.",
+    "violation": "Es verstößt gegen eine oder mehrere Serverregeln",
+    "whats_wrong_account": "Teile uns mit, was mit diesem Account nicht stimmt",
+    "whats_wrong_post": "Teile uns mit, was mit diesem Beitrag nicht stimmt"
+  },
   "search": {
     "search_desc": "Suche nach Accounts & Hashtags",
     "search_empty": "Nichts für diese Suchbegriffe gefunden"
   },
   "settings": {
     "about": {
+      "built_at": "Erstellt am",
       "label": "Info",
       "meet_the_team": "Triff das Team",
       "sponsor_action": "Sponsere uns",
@@ -249,7 +406,8 @@
       "sponsors": "Sponsoren",
       "sponsors_body_1": "Elk wird ermöglicht durch das großzügige Sponsoring und die Hilfe von:",
       "sponsors_body_2": "Und alle Unternehmen und Einzelpersonen, die das Elk Team und die Mitglieder sponsern.",
-      "sponsors_body_3": "Wenn dir die App gefällt, erwäge uns zu sponsern:"
+      "sponsors_body_3": "Wenn dir die App gefällt, erwäge uns zu sponsern:",
+      "version": "Version"
     },
     "account_settings": {
       "description": "Bearbeite Kontoeinstellungen in der Mastodon-Benutzeroberfläche",
@@ -262,11 +420,13 @@
       "font_size": "Schriftgröße",
       "label": "Oberfläche",
       "light_mode": "Helles Farbschema",
-      "system_mode": "System"
+      "system_mode": "System",
+      "theme_color": "Farbschema"
     },
     "language": {
       "display_language": "Anzeigesprache",
       "label": "Sprache",
+      "status": "Übersetzungsstatus: {0}/{1} ({2}%)",
       "translations": {
         "add": "Hinzufügen",
         "choose_language": "Sprache wählen",
@@ -302,10 +462,14 @@
         "save_settings": "Einstellungen speichern",
         "subscription_error": {
           "clear_error": "Fehler aufräumen",
+          "error_hint": "Du kannst eine Liste häufig gestellter Fragen konsultieren, um das Problem zu lösen: {0}.",
+          "invalid_vapid_key": "Der öffentliche VAPID-Schlüssel scheint ungültig zu sein.",
           "permission_denied": "Berechtigung verweigert: Aktiviere Benachrichtigungen im  Browser.",
+          "repo_link": "Elk-Repository auf GitHub",
           "request_error": "Beim Anfordern des Abonnements ist ein Fehler aufgetreten. Versuche es bitte erneut. Wenn der Fehler weiterhin besteht, melde das Problem bitte dem Elk-Repository.",
           "title": "Push-Benachrichtigungen konnten nicht abonniert werden",
-          "too_many_registrations": "Aufgrund von Browserbeschränkungen kann Elk den Push-Benachrichtigungsdienst nicht für mehrere Konten auf verschiedenen Servern verwenden. \nDu solltest Push-Benachrichtigungen für andere Konten abbestellen und es erneut versuchen."
+          "too_many_registrations": "Aufgrund von Browserbeschränkungen kann Elk den Push-Benachrichtigungsdienst nicht für mehrere Konten auf verschiedenen Servern verwenden. \nDu solltest Push-Benachrichtigungen für andere Konten abbestellen und es erneut versuchen.",
+          "vapid_not_supported": "Dein Browser unterstützt Web-Push-Benachrichtigungen, scheint jedoch das VAPID-Protokoll nicht zu implementieren."
         },
         "title": "Einstellungen für Push-Benachrichtigungen",
         "undo_settings": "Änderungen rückgängig machen",
@@ -322,22 +486,35 @@
           "re_auth": "Offenbar unterstützt dein Server keine Push-Benachrichtigungen. \nVersuche dich abzumelden und erneut anzumelden. Wenn diese Meldung weiterhin angezeigt wird, wende dich an dein Serveradministrator."
         }
       },
-      "show_btn": "Gehe zu den Benachrichtigungseinstellungen"
+      "show_btn": "Gehe zu den Benachrichtigungseinstellungen",
+      "under_construction": "In Bearbeitung"
     },
     "notifications_settings": "Benachrichtigungen",
     "preferences": {
       "enable_autoplay": "Autoplay aktivieren",
+      "enable_data_saving": "Daten sparen aktivieren",
+      "enable_data_saving_description": "Spare Daten, indem du das automatische Laden von Anhängen verhinderst.",
+      "enable_pinch_to_zoom": "Pinch-to-Zoom aktivieren",
       "github_cards": "GitHub Cards",
+      "grayscale_mode": "Graustufenmodus",
+      "hide_account_hover_card": "Benutzer-Hover-Karte verbergen",
+      "hide_alt_indi_on_posts": "Alternativtext-Hinweis in Beiträgen ausblenden",
       "hide_boost_count": "Boost-Zähler ausblenden",
       "hide_favorite_count": "Favoritenzahl ausblenden",
       "hide_follower_count": "Anzahl der Follower ausblenden",
+      "hide_news": "Nachrichten ausblenden",
+      "hide_reply_count": "Antwortanzahl ausblenden",
       "hide_translation": "Übersetzungen komplett ausblenden",
       "hide_username_emojis": "Emojis in Namen ausblenden",
       "hide_username_emojis_description": "Blendet in der Timeline Emojis in den Namen von Kommentator:innen aus. In deren Profilen sind die Emojis weiterhin zu sehen.",
       "label": "Einstellungen",
       "title": "Experimentelle Funktionen",
+      "use_star_favorite_icon": "Stern als Favoriten-Symbol verwenden",
       "user_picker": "Benutzerauswahl",
-      "virtual_scroll": "Virtuelles Scrollen"
+      "virtual_scroll": "Virtuelles Scrollen",
+      "wellbeing": "Wohlbefinden",
+      "zen_mode": "Zen-Modus",
+      "zen_mode_description": "Seitenleiste ausblenden, es sei denn, der Mauszeiger befindet sich darüber. Einige Elemente der Zeitleiste ebenfalls ausblenden."
     },
     "profile": {
       "appearance": {
@@ -347,6 +524,8 @@
         "label": "Erscheinungsbild",
         "profile_metadata": "Profil-Metadaten",
         "profile_metadata_desc": "Du kannst bis zu vier Einträge als Tabelle in deinem Profil anzeigen lassen",
+        "profile_metadata_label": "Bezeichnung",
+        "profile_metadata_value": "Inhalt",
         "title": "Profil bearbeiten"
       },
       "featured_tags": {
@@ -373,6 +552,7 @@
     "edited": "(bearbeitet)",
     "editing": "Bearbeiten",
     "loading": "Laden...",
+    "publish_failed": "Veröffentlichung fehlgeschlagen",
     "publishing": "Veröffentlichung",
     "upload_failed": "Upload fehlgeschlagen",
     "uploading": "Hochladen..."
@@ -386,10 +566,13 @@
     "edited": "Zuletzt bearbeitet: {0}",
     "favourited_by": "Favorisiert von",
     "filter_hidden_phrase": "Versteckt durch",
+    "filter_removed_phrase": "Durch Filter entfernt",
     "filter_show_anyway": "Trotzdem zeigen",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Beschreibung",
-      "dismiss": "Schließen"
+      "dismiss": "Schließen",
+      "read": "{0}-Beschreibung lesen"
     },
     "poll": {
       "count": "{0} Stimmen|{0} Stimme|{0} Stimmen",
@@ -400,6 +583,7 @@
     "replying_to": "Antworten auf {0}",
     "show_full_thread": "Vollständigen Thread anzeigen",
     "someone": "Jemand",
+    "spoiler_media_hidden": "Medien ausgeblendet",
     "spoiler_show_less": "Zeige weniger",
     "spoiler_show_more": "Zeige mehr",
     "thread": "Thread",
@@ -410,8 +594,10 @@
     "edited": "Bearbeitet: {0}"
   },
   "tab": {
+    "accounts": "Konten",
     "for_you": "Für dich",
     "hashtags": "Hashtags",
+    "list": "Liste",
     "media": "Medien",
     "news": "Nachrichten",
     "notifications_all": "Alle",
@@ -475,7 +661,12 @@
     "explore_links_intro": "Diese Nachrichten werden gerade von Leuten auf diesem und anderen Servern des dezentralen Netzwerks besprochen.",
     "explore_posts_intro": "Diese Beiträge von diesem Server gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzwerks an Reichweite.",
     "explore_tags_intro": "Diese Hashtags gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzweks an Reichweite.",
-    "toggle_code_block": "Codeblock umschalten"
+    "open_editor_tools": "Bearbeitungswerkzeuge",
+    "pick_an_icon": "Wähle ein Symbol",
+    "publish_failed": "Schließe fehlgeschlagene Nachrichten oben im Editor, um Beiträge erneut zu veröffentlichen",
+    "toggle_bold": "Fett darstellen umschalten",
+    "toggle_code_block": "Codeblock umschalten",
+    "toggle_italic": "Kursiv umschalten"
   },
   "user": {
     "add_existing": "Bestehendes Konto hinzufügen",
@@ -483,6 +674,7 @@
     "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren.",
     "sign_in_notice_title": "Anzeigen von {0} öffentlichen Daten",
     "sign_out_account": "{0} abmelden",
+    "single_instance_sign_in_desc": "Melde dich an, um Profile oder Hashtags zu verfolgen, Beiträge zu favorisieren, zu teilen und darauf zu antworten.",
     "tip_no_account": "Wenn du noch kein Mastodon-Konto hast, {0}.",
     "tip_register_account": "wähle einen Server aus und registriere einen"
   },

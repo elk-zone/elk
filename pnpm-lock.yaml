@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  nuxt-security@0.13.1:
+    hash: bd6cmp7ukwwiwrxafbbotwkihe
+    path: patches/nuxt-security@0.13.1.patch
+
 importers:
 
   .:
@@ -142,7 +147,7 @@ importers:
         version: 5.11.3
       nuxt-security:
         specifier: ^0.13.1
-        version: 0.13.1(rollup@2.79.1)
+        version: 0.13.1(patch_hash=bd6cmp7ukwwiwrxafbbotwkihe)(rollup@2.79.1)
       nuxt-vitest:
         specifier: ^0.8.7
         version: 0.8.7(@vitejs/plugin-vue-jsx@3.0.1)(@vitejs/plugin-vue@4.2.3)(rollup@2.79.1)(vite@4.3.9)(vitest@0.32.4)(vue-router@4.2.2)(vue@3.3.4)
@@ -7079,7 +7084,7 @@ packages:
     dependencies:
       debug: 3.2.7
       is-core-module: 2.12.1
-      resolve: 1.22.3
+      resolve: 1.22.2
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -10417,7 +10422,7 @@ packages:
       - vue
     dev: true
 
-  /nuxt-security@0.13.1(rollup@2.79.1):
+  /nuxt-security@0.13.1(patch_hash=bd6cmp7ukwwiwrxafbbotwkihe)(rollup@2.79.1):
     resolution: {integrity: sha512-ZqO9Eu2LmB43U/NK+kAQtTcEO+7swu6WhgZBjvHwSCvg5cDvruhfEjLOffF4nuhvyVpKnt5HRfeRao8ABIe3ug==}
     dependencies:
       '@nuxt/kit': 3.6.1(rollup@2.79.1)
@@ -10432,6 +10437,7 @@ packages:
       - rollup
       - supports-color
     dev: false
+    patched: true
 
   /nuxt-vitest@0.8.7(@vitejs/plugin-vue-jsx@3.0.1)(@vitejs/plugin-vue@4.2.3)(rollup@2.79.1)(vite@4.3.9)(vitest@0.32.4)(vue-router@4.2.2)(vue@3.3.4):
     resolution: {integrity: sha512-OaQqF8QxfLKzYzSrwcfkhv5BeyLQGGvrSvOedjV3OHuDjOaTJa6OPU2VTCZBVNvPMjnbm2h71/CsXbH6smvEJw==}

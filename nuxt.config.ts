@@ -34,6 +34,9 @@ export default defineNuxtConfig({
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
   ],
+  macros: {
+    setupSFC: true,
+  },
   devtools: {
     enabled: true,
   },

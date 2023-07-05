@@ -40,7 +40,7 @@ defineSlots<{
     update: () => void
   }) => void
   loading: (props: {}) => void
-  done: (props: {}) => void
+  done: (props: { items: U[] }) => void
 }>()
 
 const { t } = useI18n()
@@ -110,7 +110,7 @@ defineExpose({ createEntry, removeEntry, updateEntry })
     <slot v-if="state === 'loading'" name="loading">
       <TimelineSkeleton />
     </slot>
-    <slot v-else-if="state === 'done' && endMessage !== false" name="done">
+    <slot v-else-if="state === 'done' && endMessage !== false" name="done" :items="items as U[]">
       <div p5 text-secondary italic text-center>
         {{ t(typeof endMessage === 'string' ? endMessage : 'common.end_of_list') }}
       </div>

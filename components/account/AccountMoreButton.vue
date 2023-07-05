@@ -18,6 +18,11 @@ const isSelf = $(useSelfAccount(() => account))
 const { t } = useI18n()
 const { client } = $(useMasto())
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
+const { share, isSupported: isShareSupported } = useShare()
+
+function shareAccount() {
+  share({ url: location.href })
+}
 
 async function toggleReblogs() {
   if (!relationship!.showingReblogs && await openConfirmDialog({
@@ -61,6 +66,13 @@ async function removeUserNote() {
           :command="command"
         />
       </NuxtLink>
+      <CommonDropdownItem
+        v-if="isShareSupported"
+        :text="`Share @${account.acct}`"
+        icon="i-ri:share-line"
+        :command="command"
+        @click="shareAccount()"
+      />
 
       <template v-if="currentUser">
         <template v-if="!isSelf">

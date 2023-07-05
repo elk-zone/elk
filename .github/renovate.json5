@@ -6,7 +6,11 @@
   "node": false,
   "ignoreDeps": [
     "vue",
-    "vue-tsc"
+    "vue-tsc",
+    "typescript",
+
+    // Intl.Segmenter is not supported in Firefox
+    "string-length"
   ],
   "packageRules": [
     {

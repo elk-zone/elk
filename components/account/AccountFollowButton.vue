@@ -71,7 +71,6 @@ const buttonStyle = $computed(() => {
   <button
     v-if="enable"
     gap-1 items-center group
-    :disabled="relationship?.requested"
     border-1
     rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
     :class="buttonStyle"
@@ -91,11 +90,12 @@ const buttonStyle = $computed(() => {
       <span hidden elk-group-hover="inline">{{ $t('account.unfollow') }}</span>
     </template>
     <template v-else-if="relationship?.requested">
-      <span>{{ $t('account.follow_requested') }}</span>
+      <span elk-group-hover="hidden">{{ $t('account.follow_requested') }}</span>
+      <span hidden elk-group-hover="inline">Withdraw follow request</span>
     </template>
     <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
       <span elk-group-hover="hidden">{{ $t('account.follows_you') }}</span>
-      <span hidden elk-group-hover="inline">{{ $t('account.follow_back') }}</span>
+      <span hidden elk-group-hover="inline">{{ account.locked ? $t('account.request_follow') : $t('account.follow_back') }}</span>
     </template>
     <template v-else>
       <span>{{ account.locked ? $t('account.request_follow') : $t('account.follow') }}</span>

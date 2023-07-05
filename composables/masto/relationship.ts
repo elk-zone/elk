@@ -36,7 +36,9 @@ export async function toggleFollowAccount(relationship: mastodon.v1.Relationship
   const { client } = $(useMasto())
   const i18n = useNuxtApp().$i18n
 
-  if (relationship!.following) {
+  const unfollow = relationship!.following || relationship!.requested
+
+  if (unfollow) {
     if (await openConfirmDialog({
       title: i18n.t('confirm.unfollow.title'),
       confirm: i18n.t('confirm.unfollow.confirm'),
@@ -44,8 +46,19 @@ export async function toggleFollowAccount(relationship: mastodon.v1.Relationship
     }) !== 'confirm')
       return
   }
-  relationship!.following = !relationship!.following
-  relationship = await client.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
+
+  if (unfollow) {
+    relationship!.following = false
+    relationship!.requested = false
+  }
+  else if (account.locked) {
+    relationship!.requested = true
+  }
+  else {
+    relationship!.following = true
+  }
+
+  relationship = await client.v1.accounts[unfollow ? 'unfollow' : 'follow'](account.id)
 }
 
 export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {

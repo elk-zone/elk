@@ -245,7 +245,7 @@
         "subscription_error": {
           "invalid_vapid_key": "Sembla que la clau pública VAPID no és vàlida.",
           "permission_denied": "Permís denegat: activa les notificacions al navegador.",
-          "repo_link": "Repositori d'Elk a Github",
+          "repo_link": "Repositori d'Elk a GitHub",
           "request_error": "S'ha produït un error en sol·licitar la subscripció, torna-ho a provar i si l'error persisteix, informa del problema al repositori d'Elk.",
           "title": "No s'han pogut activar les notificacions emergents",
           "too_many_registrations": "A causa de les limitacions del navegador, Elk no pot utilitzar el servei de notificacions emergents per a diversos comptes en diferents servidors. Hauries de desactivar les notificacions emergents de l'altre compte i tornar-ho a provar.",

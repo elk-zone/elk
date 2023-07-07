@@ -29,14 +29,14 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     ],
   }, {
     name: nav.local,
-    url: '/',
+    url: '/?local-pwa-shortcut=true',
     icons: [
       { src: 'shortcuts/local-96x96.png', sizes: '96x96', type: 'image/png' },
       { src: 'shortcuts/local.png', sizes: '192x192', type: 'image/png' },
     ],
   }, {
     name: nav.notifications,
-    url: '/notifications',
+    url: '/?notifications-pwa-shortcut=true',
     icons: [
       { src: 'shortcuts/notifications-96x96.png', sizes: '96x96', type: 'image/png' },
       { src: 'shortcuts/notifications.png', sizes: '192x192', type: 'image/png' },

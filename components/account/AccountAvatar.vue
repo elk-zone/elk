@@ -1,18 +1,29 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-defineProps<{
+const { account, status } = defineProps<{
   account: mastodon.v1.Account
   square?: boolean
+  status?: mastodon.v1.Status
 }>()
 
 const loaded = $ref(false)
 const error = $ref(false)
+
+const viewTransitionStyle = computed(() => {
+  if (!status)
+    return
+
+  const targets = getViewTransitionTargets().value
+  if (targets.statusId === status.id && targets.accountId === account.id)
+    return { 'view-transition-name': 'account-avatar' }
+})
 </script>
 
 <template>
   <img
     :key="account.avatar"
+    v-bind="$attrs"
     width="400"
     height="400"
     select-none
@@ -21,8 +32,7 @@ const error = $ref(false)
     loading="lazy"
     class="account-avatar"
     :class="(loaded ? 'bg-base' : 'bg-gray:10') + (square ? ' ' : ' rounded-full')"
-    :style="{ 'clip-path': square ? `url(#avatar-mask)` : 'none' }"
-    v-bind="$attrs"
+    :style="{ 'clip-path': square ? `url(#avatar-mask)` : 'none', ...viewTransitionStyle }"
     @load="loaded = true"
     @error="error = true"
   >

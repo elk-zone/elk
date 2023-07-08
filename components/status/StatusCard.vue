@@ -106,11 +106,11 @@ const forceShow = ref(false)
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">
               <NuxtLink :to="getAccountRoute(rebloggedBy)">
-                <AccountAvatar :account="rebloggedBy" />
+                <AccountAvatar :account="rebloggedBy" :status="status" />
               </NuxtLink>
             </AccountHoverWrapper>
           </div>
-          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" text-sm />
+          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" :status="status" text-sm />
         </div>
       </div>
     </slot>
@@ -137,7 +137,7 @@ const forceShow = ref(false)
           </div>
           <AccountHoverWrapper :account="status.account">
             <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
-              <AccountBigAvatar :account="status.account" />
+              <AccountBigAvatar :account="status.account" :status="status" />
             </NuxtLink>
           </AccountHoverWrapper>
 
@@ -151,7 +151,7 @@ const forceShow = ref(false)
           <!-- Account Info -->
           <div flex items-center space-x-1>
             <AccountHoverWrapper :account="status.account">
-              <StatusAccountDetails :account="status.account" />
+              <StatusAccountDetails :status="status" />
             </AccountHoverWrapper>
             <div flex-auto />
             <div v-show="!getPreferences(userSettings, 'zenMode')" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>

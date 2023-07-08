@@ -4,6 +4,8 @@ declare global {
       test?: boolean
     }
   }
+
+  interface Document { startViewTransition: Function | undefined }
 }
 
 export {}

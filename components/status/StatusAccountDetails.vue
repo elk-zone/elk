@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { account, link = true } = defineProps<{
-  account: mastodon.v1.Account
+const { status, link = true } = defineProps<{
+  status: mastodon.v1.Status
   link?: boolean
 }>()
 
@@ -11,11 +11,11 @@ const userSettings = useUserSettings()
 
 <template>
   <NuxtLink
-    :to="link ? getAccountRoute(account) : undefined"
+    :to="link ? getAccountRoute(status.account) : undefined"
     flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
     text-link-rounded
   >
-    <AccountDisplayName :account="account" :hide-emojis="getPreferences(userSettings, 'hideUsernameEmojis')" font-bold line-clamp-1 ws-pre-wrap break-all />
-    <AccountHandle :account="account" class="zen-none" />
+    <AccountDisplayName :account="status.account" :status="status" :hide-emojis="getPreferences(userSettings, 'hideUsernameEmojis')" font-bold line-clamp-1 ws-pre-wrap break-all />
+    <AccountHandle :account="status.account" :status="status" class="zen-none" />
   </NuxtLink>
 </template>

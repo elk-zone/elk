@@ -18,13 +18,27 @@ function onclick(evt: MouseEvent | KeyboardEvent) {
     go(evt)
 }
 
-function go(evt: MouseEvent | KeyboardEvent) {
+async function go(evt: MouseEvent | KeyboardEvent) {
   if (evt.metaKey || evt.ctrlKey) {
     window.open(statusRoute.href)
   }
   else {
+    const targets = getViewTransitionTargets()
+    targets.value.statusId = props.status.id
+    targets.value.accountId = props.status.account.id
     cacheStatus(props.status)
-    router.push(statusRoute)
+
+    await nextTick()
+
+    if (document.startViewTransition === undefined) {
+      router.push(statusRoute)
+    }
+    else {
+      document.startViewTransition(() => new Promise((resolve) => {
+        router.push(statusRoute)
+        setTimeout(resolve, 100)
+      }))
+    }
   }
 }
 </script>

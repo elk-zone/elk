@@ -31,10 +31,15 @@ function reply() {
   else
     navigateToStatus({ status, focusReply: true })
 }
+
+const viewTransitionStyle = computed(() => {
+  if (getViewTransitionTargets().value.statusId === props.status.id)
+    return { 'view-transition-name': 'status-actions' }
+})
 </script>
 
 <template>
-  <div flex justify-between items-center class="status-actions">
+  <div flex justify-between items-center class="status-actions" :style="viewTransitionStyle">
     <div flex-1>
       <StatusActionButton
         :content="$t('action.reply')"

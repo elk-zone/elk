@@ -44,6 +44,7 @@ export default defineNuxtConfig({
     payloadExtraction: false,
     inlineSSRStyles: false,
     renderJsonPayloads: true,
+    viewTransition: true,
   },
   css: [
     '@unocss/reset/tailwind.css',

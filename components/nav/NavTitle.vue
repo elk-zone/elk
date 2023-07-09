@@ -15,18 +15,6 @@ onMounted(() => {
 router.afterEach(() => {
   back.value = router.options.history.state.back
 })
-
-function goBack() {
-  if (document.startViewTransition === undefined) {
-    router.go(-1)
-  }
-  else {
-    document.startViewTransition(() => new Promise((resolve) => {
-      router.go(-1)
-      setTimeout(resolve, 100)
-    }))
-  }
-}
 </script>
 
 <template>
@@ -52,7 +40,7 @@ function goBack() {
         <NuxtLink
           :aria-label="$t('nav.back')"
           :class="{ 'pointer-events-none op0': !back || back === '/', 'xl:flex': $route.name !== 'tag' }"
-          @click="goBack()"
+          @click="$router.go(-1)"
         >
           <div text-xl i-ri:arrow-left-line class="rtl-flip" btn-text />
         </NuxtLink>

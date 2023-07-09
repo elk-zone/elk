@@ -12,7 +12,7 @@ const userSettings = useUserSettings()
 <template>
   <NuxtLink
     :to="link ? getAccountRoute(status.account) : undefined"
-    flex="~ col" min-w-0 md:flex="~ row gap-2" md:items-center
+    flex="~ col" min-w-0 items-start md:flex="~ row gap-2" md:items-center
     text-link-rounded
   >
     <AccountDisplayName :account="status.account" :status="status" :hide-emojis="getPreferences(userSettings, 'hideUsernameEmojis')" font-bold line-clamp-1 ws-pre-wrap break-all />

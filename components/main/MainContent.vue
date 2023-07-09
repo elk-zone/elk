@@ -21,20 +21,6 @@ const containerClass = computed(() => {
 
   return 'lg:sticky lg:top-0'
 })
-
-function goBack() {
-  const router = useRouter()
-
-  if (document.startViewTransition === undefined) {
-    router.go(-1)
-  }
-  else {
-    document.startViewTransition(() => new Promise((resolve) => {
-      router.go(-1)
-      setTimeout(resolve, 100)
-    }))
-  }
-}
 </script>
 
 <template>
@@ -50,7 +36,7 @@ function goBack() {
           <NuxtLink
             v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0 xl:hidden
             :aria-label="$t('nav.back')"
-            @click="goBack()"
+            @click="$router.go(-1)"
           >
             <div i-ri:arrow-left-line class="rtl-flip" />
           </NuxtLink>

@@ -28,17 +28,7 @@ async function go(evt: MouseEvent | KeyboardEvent) {
     targets.value.accountId = props.status.account.id
     cacheStatus(props.status)
 
-    await nextTick()
-
-    if (document.startViewTransition === undefined) {
-      router.push(statusRoute)
-    }
-    else {
-      document.startViewTransition(() => new Promise((resolve) => {
-        router.push(statusRoute)
-        setTimeout(resolve, 100)
-      }))
-    }
+    router.push(statusRoute)
   }
 }
 </script>

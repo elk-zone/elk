@@ -200,6 +200,11 @@ defineExpose({
   },
 })
 
+function stopQuestionMarkPropagation(e: KeyboardEvent) {
+  if (e.key === '?')
+    e.stopImmediatePropagation()
+}
+
 onDeactivated(() => {
   clearEmptyDrafts()
 })
@@ -272,6 +277,7 @@ onDeactivated(() => {
             :editor="editor"
             flex max-w-full
             :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
+            @keydown="stopQuestionMarkPropagation"
           />
         </div>
 

@@ -310,10 +310,10 @@ importers:
         version: 0.0.5
     devDependencies:
       '@nuxt-themes/docus':
-        specifier: ^1.13.0
-        version: 1.13.0(nuxt@3.6.2)(postcss@8.4.24)(rollup@3.26.0)(vue@3.3.4)
+        specifier: ^1.13.1
+        version: 1.13.1(nuxt@3.6.2)(postcss@8.4.24)(rollup@3.26.0)(vue@3.3.4)
       nuxt:
-        specifier: ^3.6.1
+        specifier: ^3.6.2
         version: 3.6.2(@types/node@20.3.3)(eslint@8.44.0)(rollup@3.26.0)(typescript@5.1.6)(vue-tsc@1.8.3)
 
 packages:
@@ -2208,8 +2208,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.3.0-beta.21
-      '@intlify/shared': 9.3.0-beta.21
+      '@intlify/message-compiler': 9.3.0-beta.24
+      '@intlify/shared': 9.3.0-beta.24
       jsonc-eslint-parser: 1.4.1
       source-map: 0.6.1
       vue-i18n: 9.3.0-beta.16(vue@3.3.4)
@@ -2241,11 +2241,11 @@ packages:
       source-map: 0.6.1
     dev: false
 
-  /@intlify/message-compiler@9.3.0-beta.21:
-    resolution: {integrity: sha512-0h3D9AYKW037bfg4OArPKPYPShoWyjWco0DZBD7ASwXsQ8YlplW2HJSRW5V5hgsHpD25ghSRIpFhPPTL0A+QEw==}
+  /@intlify/message-compiler@9.3.0-beta.24:
+    resolution: {integrity: sha512-prhHATkgp0mpPqoVgiAtLmUc1JMvs8fMH6w53AVEBn+VF87dLhzanfmWY5FoZWORG51ag54gBDBOoM/VFv3m3A==}
     engines: {node: '>= 16'}
     dependencies:
-      '@intlify/shared': 9.3.0-beta.21
+      '@intlify/shared': 9.3.0-beta.24
       source-map-js: 1.0.2
     dev: false
 
@@ -2254,8 +2254,8 @@ packages:
     engines: {node: '>= 14'}
     dev: false
 
-  /@intlify/shared@9.3.0-beta.21:
-    resolution: {integrity: sha512-VcE3XKBlQXHKRKAGP7YB/7n0TFH4EibJSGJ+t4rZuC8gTL6r/eqYM1fsw3JJFe70wamqx1oEmd2Hu/pnPlsfiQ==}
+  /@intlify/shared@9.3.0-beta.24:
+    resolution: {integrity: sha512-AKxJ8s7eKIQWkNaf4wyyoLRwf4puCuQgjSChlDJm5JBEt6T8HGgnYTJLRXu6LD/JACn3Qwu6hM/XRX1c9yvjmQ==}
     engines: {node: '>= 16'}
     dev: false
 
@@ -2275,7 +2275,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 4.0.0(vue-i18n@9.3.0-beta.16)
-      '@intlify/shared': 9.3.0-beta.21
+      '@intlify/shared': 9.3.0-beta.24
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.3.4
       debug: 4.3.4
@@ -2574,14 +2574,14 @@ packages:
       - supports-color
     dev: false
 
-  /@nuxt-themes/docus@1.13.0(nuxt@3.6.2)(postcss@8.4.24)(rollup@3.26.0)(vue@3.3.4):
-    resolution: {integrity: sha512-baEsGZnMrbAfT4ChTTuAxsSQUr+AooDrpG9WfbykuE+lxCTUhjfodtzUy1lPFPp5CZXm+TcSeN9P5ZK5l+JJDA==}
+  /@nuxt-themes/docus@1.13.1(nuxt@3.6.2)(postcss@8.4.24)(rollup@3.26.0)(vue@3.3.4):
+    resolution: {integrity: sha512-8mS8tQK0KKB1QNBwUUXub2Gb0xIJt5djZv6HsD4jf+4XUp1wLwMqFuNKGvbL8+Rc6G6nc9A93BbsOTCSPubcSA==}
     dependencies:
       '@nuxt-themes/elements': 0.9.4(postcss@8.4.24)(rollup@3.26.0)(vue@3.3.4)
       '@nuxt-themes/tokens': 1.9.1(postcss@8.4.24)(rollup@3.26.0)(vue@3.3.4)
       '@nuxt-themes/typography': 0.11.0(postcss@8.4.24)(rollup@3.26.0)(vue@3.3.4)
       '@nuxt/content': 2.7.0(rollup@3.26.0)
-      '@nuxthq/studio': 0.13.2(rollup@3.26.0)
+      '@nuxthq/studio': 0.13.4(rollup@3.26.0)
       '@vueuse/nuxt': 10.2.1(nuxt@3.6.2)(rollup@3.26.0)(vue@3.3.4)
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -3144,8 +3144,8 @@ packages:
       - vue-tsc
     dev: true
 
-  /@nuxthq/studio@0.13.2(rollup@3.26.0):
-    resolution: {integrity: sha512-lSjMDSq0yxX3I3O8EVJWoU+kA9iEwUuTS1sZfyha625FhiU2qDIGGkc7gEeA1ubBNeZmJMXTl2hIauxOVTSfgQ==}
+  /@nuxthq/studio@0.13.4(rollup@3.26.0):
+    resolution: {integrity: sha512-+Jn0iN6TvRTTtTBX4qXWhtOMLL4rsyUIX3/9HM+eBAwr5/cELLw3RuI1tgp942QteTi7PvI5Av4nEi6BlLBr+A==}
     dependencies:
       '@nuxt/kit': 3.6.2(rollup@3.26.0)
       defu: 6.1.2
@@ -14201,7 +14201,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.21
+      '@intlify/shared': 9.3.0-beta.24
       '@intlify/vue-i18n-bridge': 0.8.0(vue-i18n@9.3.0-beta.16)
       '@intlify/vue-router-bridge': 0.8.0(vue-router@4.2.4)(vue@3.3.4)
       ufo: 1.1.2

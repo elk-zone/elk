@@ -3,7 +3,6 @@
   "extends": ["config:base", "schedule:weekly", "group:allNonMajor"],
   "labels": ["c: dependencies"],
   "rangeStrategy": "bump",
-  "node": false,
   "ignoreDeps": [
     "vue",
     "vue-tsc",
@@ -65,6 +64,10 @@
     {
       "groupName": "typescript",
       "matchPackageNames": ["typescript"]
+    },
+    {
+      "matchDatasources": ["node-version"],
+      "enabled": false
     }
   ],
   "vulnerabilityAlerts": {

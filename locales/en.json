@@ -514,7 +514,7 @@
       "user_picker": "User Picker",
       "user_picker_description": "Displays all avatars of logged accounts in the bottom-left so you can switch quickly between them.",
       "virtual_scroll": "Virtual Scrolling",
-      "virtual_scroll_label": "The posts you see on the feed will dynamically update, loading as the page is scrolled down.",
+      "virtual_scroll_description": "Use a virtual list in timelines, so a larger number of items can be rendered performantly.",
       "wellbeing": "Wellbeing",
       "zen_mode": "Zen mode",
       "zen_mode_description": "Hide asides unless the mouse cursor is over them. Also hide some elements from the timeline."

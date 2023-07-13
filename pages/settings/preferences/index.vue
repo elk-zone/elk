@@ -123,7 +123,7 @@ const userSettings = useUserSettings()
     >
       {{ $t('settings.preferences.virtual_scroll') }}
       <template #description>
-        {{ $t('settings.preferences.virtual_scroll_label') }}
+        {{ $t('settings.preferences.virtual_scroll_description') }}
       </template>
     </SettingsToggleItem>
     <SettingsToggleItem
@@ -132,7 +132,7 @@ const userSettings = useUserSettings()
     >
       {{ $t('settings.preferences.github_cards') }}
       <template #description>
-        {{ $t('settings.preferences.github_cards_label') }}
+        {{ $t('settings.preferences.github_cards_description') }}
       </template>
     </SettingsToggleItem>
     <SettingsToggleItem
@@ -141,7 +141,7 @@ const userSettings = useUserSettings()
     >
       {{ $t('settings.preferences.user_picker') }}
       <template #description>
-        {{ $t('settings.preferences.user_picker_label') }}
+        {{ $t('settings.preferences.user_picker_description') }}
       </template>
     </SettingsToggleItem>
   </MainContent>

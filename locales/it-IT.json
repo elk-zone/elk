@@ -307,10 +307,26 @@
     "replying": "Rispondi",
     "the_thread": "la discussione"
   },
+  "polls": {
+    "allow_multiple": "Consenti risposte multiple",
+    "cancel": "Annulla",
+    "create": "Crea sondaggio",
+    "disallow_multiple": "Vieta risposte multiple",
+    "expiration": "Scadenza sondaggio",
+    "hide_votes": "Nascondi conteggio totale fino alla scadenza",
+    "option_placeholder": "Scelta sondaggio {current}/{max}",
+    "remove_option": "Rimuovi scelta",
+    "settings": "Opzioni sondaggio",
+    "show_votes": "Mostra sempre conteggi totali"
+  },
   "pwa": {
     "dismiss": "Ignora",
     "install": "Installa",
     "install_title": "Installa Elk",
+    "screenshots": {
+      "dark": "Screenshot di Elk con aspetto chiaro",
+      "light": "Screenshot di Elk con aspetto scuro"
+    },
     "title": "Nuova versione di Elk disponibile!",
     "update": "Aggiorna",
     "update_available_short": "Aggiorna Elk",
@@ -390,8 +406,8 @@
           "favourite": "Apprezzamenti",
           "follow": "Nuovi seguaci",
           "mention": "Menzioni",
-          "poll": "Votazioni",
-          "reblog": "Potenziamenti dei tuoi post",
+          "poll": "Risultati dei sondaggi",
+          "reblog": "Potenziamenti",
           "title": "Quali notifiche vuoi ricevere?"
         },
         "description": "Ricevi notifiche anche quando non stai utilizzando Elk.",
@@ -564,9 +580,9 @@
     "just_now": "adesso",
     "minute_future": "in 0 minuti|in 1 minuto|in {n} minuti",
     "minute_past": "0 minuti fa|1 minuto fa|{n} minuti fa",
-    "month_future": "in 0 mesi|mese prossimo|in {n} mesi",
-    "month_past": "0 mesi fa|mese scorso|{n} mesi fa",
-    "second_future": "adesso|in {n} secondo|in {n} secondi",
+    "month_future": "in 0 mesi|fra 1 mese|fra {n} mesi",
+    "month_past": "0 mesi fa|1 mese fa|{n} mesi fa",
+    "second_future": "adesso|fra {n} secondo|fra {n} secondi",
     "second_past": "adesso|{n} secondo fa|{n} secondi fa",
     "short_day_future": "in {n}g",
     "short_day_past": "{n}g",

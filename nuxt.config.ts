@@ -12,8 +12,7 @@ export default defineNuxtConfig({
     tsConfig: {
       exclude: ['../service-worker'],
       vueCompilerOptions: {
-        jsxTemplates: true,
-        experimentalRfc436: true,
+        target: 3.3,
       },
     },
   },
@@ -35,6 +34,9 @@ export default defineNuxtConfig({
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
   ],
+  macros: {
+    setupSFC: true,
+  },
   devtools: {
     enabled: true,
   },

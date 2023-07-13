@@ -36,7 +36,7 @@ const vnode = $computed(() => {
       class="content-rich line-compact" dir="auto"
       :lang="('language' in status && status.language) || undefined"
     >
-      <component :is="vnode" />
+      <component :is="vnode" v-if="vnode" />
     </span>
     <div v-else />
     <template v-if="translation.visible">

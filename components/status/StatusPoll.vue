@@ -77,7 +77,7 @@ const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
         :count="poll.votesCount"
       />
       &middot;
-      <CommonTooltip :content="expiredTimeFormatted" class="inline-block" placement="right">
+      <CommonTooltip v-if="poll.expiresAt" :content="expiredTimeFormatted" class="inline-block" placement="right">
         <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>
       </CommonTooltip>
     </div>

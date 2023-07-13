@@ -171,7 +171,7 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
     img.src = url
   })
 
-  function resizeImage(img: CanvasImageSource, type = 'image/png'): Promise<Blob | null> {
+  function resizeImage(img: HTMLImageElement, type = 'image/png'): Promise<Blob | null> {
     const { width, height } = img
 
     const aspectRatio = (width as number) / (height as number)

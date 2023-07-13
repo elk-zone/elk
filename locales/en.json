@@ -55,6 +55,7 @@
     "close": "Close",
     "compose": "Compose",
     "confirm": "Confirm",
+    "done": "Done",
     "edit": "Edit",
     "enter_app": "Enter App",
     "favourite": "Favorite",
@@ -243,6 +244,7 @@
     "open_in_original_site": "Open in original site",
     "pin_on_profile": "Pin on profile",
     "remove_personal_note": "Remove personal note from {0}",
+    "report_account": "Report {0}",
     "share_post": "Share this post",
     "show_favourited_and_boosted_by": "Show who favorited and boosted",
     "show_reblogs": "Show boosts from {0}",
@@ -254,6 +256,7 @@
     "translate_post": "Translate post",
     "unblock_account": "Unblock {0}",
     "unblock_domain": "Unblock domain {0}",
+    "unfollow_account": "Unfollow {0}",
     "unmute_account": "Unmute {0}",
     "unmute_conversation": "Unmute this post",
     "unpin_on_profile": "Unpin on profile"
@@ -352,6 +355,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "Additional comments",
+    "another_server": "The user you're reporting is from another server",
+    "anything_else": "Is there anything else you think we should know?",
+    "block_desc": "You will no longer see any posts from this user. They will not be able to see your posts or follow you. They will be able to tell that they are blocked.",
+    "dontlike": "I don't like it",
+    "dontlike_desc": "It is not something you want to see",
+    "forward": "Yes, forward this report to {0}",
+    "forward_question": "Do you want to send an anonymized copy of this report to that server as well?",
+    "further_actions": {
+      "limit": {
+        "description": "Here are your options for controlling what you see:",
+        "title": "Don't want to see this?"
+      },
+      "report": {
+        "description": "While we review this, here are the actions you can take:",
+        "title": "Thanks for reporting, we'll look into this."
+      }
+    },
+    "limiting": "Limiting {0}",
+    "mute_desc": "You will no longer see any posts from this user. They can still follow you and see your posts. They will not know that they are muted.",
+    "other": "It's something else",
+    "other_desc": "The issue does not fit into other categories",
+    "reporting": "Reporting {0}",
+    "select_many": "Select all that apply:",
+    "select_one": "Choose the best match:",
+    "select_posts": "Are there any posts that back up this report?",
+    "select_posts_other": "Are there any other posts that back up this report?",
+    "spam": "It's spam",
+    "spam_desc": "Malicious links, fake engagement, or repetitive replies",
+    "submit": "Submit Report",
+    "unfollow_desc": "You will no longer see posts from this user in your home feed. You may still see posts from them elsewhere.",
+    "violation": "It violates one or more of the server rules",
+    "whats_wrong_account": "Tell us what's wrong with this account",
+    "whats_wrong_post": "Tell us what's wrong with this post"
   },
   "search": {
     "search_desc": "Search for people & hashtags",

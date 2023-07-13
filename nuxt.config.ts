@@ -104,7 +104,7 @@ export default defineNuxtConfig({
       // our default translation server #76
       translateApi: '',
       // Use the instance where Elk has its Mastodon account as the default
-      defaultServer: 'm.webtoo.ls',
+      defaultServer: 'mozilla.social',
       singleInstance: false,
     },
     storage: {
@@ -196,6 +196,7 @@ export default defineNuxtConfig({
     },
   },
   app: {
+    baseURL: '/elk/',
     keepalive: true,
     head: {
       viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',

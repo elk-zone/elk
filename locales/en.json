@@ -496,6 +496,7 @@
       "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
       "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
+      "github_cards_label": "When a Github profile link is posted, an elegant card containing an overview of the shared account is displayed.",
       "grayscale_mode": "Grayscale mode",
       "hide_account_hover_card": "Hide account hover card",
       "hide_alt_indi_on_posts": "Hide alt indicator on posts",
@@ -511,7 +512,9 @@
       "title": "Experimental Features",
       "use_star_favorite_icon": "Use star favorite icon",
       "user_picker": "User Picker",
+      "user_picker_label": "Displays thumbnails of logged accounts in the bottom-left menu then you can switch quickly.",
       "virtual_scroll": "Virtual Scrolling",
+      "virtual_scroll_label": "The posts you see on the feed will dynamically update, loading as the page is scrolled down.",
       "wellbeing": "Wellbeing",
       "zen_mode": "Zen mode",
       "zen_mode_description": "Hide asides unless the mouse cursor is over them. Also hide some elements from the timeline."

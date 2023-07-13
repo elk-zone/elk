@@ -512,7 +512,7 @@
       "title": "Experimental Features",
       "use_star_favorite_icon": "Use star favorite icon",
       "user_picker": "User Picker",
-      "user_picker_label": "Displays thumbnails of logged accounts in the bottom-left menu then you can switch quickly.",
+      "user_picker_description": "Displays all avatars of logged accounts in the bottom-left so you can switch quickly between them.",
       "virtual_scroll": "Virtual Scrolling",
       "virtual_scroll_label": "The posts you see on the feed will dynamically update, loading as the page is scrolled down.",
       "wellbeing": "Wellbeing",

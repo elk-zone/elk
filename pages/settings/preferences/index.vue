@@ -122,18 +122,27 @@ const userSettings = useUserSettings()
       @click="togglePreferences('experimentalVirtualScroller')"
     >
       {{ $t('settings.preferences.virtual_scroll') }}
+      <template #description>
+        {{ $t('settings.preferences.virtual_scroll_description') }}
+      </template>
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalGitHubCards')"
       @click="togglePreferences('experimentalGitHubCards')"
     >
       {{ $t('settings.preferences.github_cards') }}
+      <template #description>
+        {{ $t('settings.preferences.github_cards_description') }}
+      </template>
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalUserPicker')"
       @click="togglePreferences('experimentalUserPicker')"
     >
       {{ $t('settings.preferences.user_picker') }}
+      <template #description>
+        {{ $t('settings.preferences.user_picker_description') }}
+      </template>
     </SettingsToggleItem>
   </MainContent>
 </template>

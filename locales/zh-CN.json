@@ -405,7 +405,7 @@
           "error_hint": "你可以参考常见问题列表来尝试解决问题：{0}。",
           "invalid_vapid_key": "VAPID 密钥无效。",
           "permission_denied": "权限不足：请在你的浏览器中打开通知权限。",
-          "repo_link": "鹿鸣在 Github 上的仓库",
+          "repo_link": "鹿鸣在 GitHub 上的仓库",
           "request_error": "请求订阅时发生了一个错误，请再次尝试。如错误仍然存在，请到鹿鸣代码仓库中报告这一问题。",
           "title": "无法订阅推送通知。",
           "too_many_registrations": "由于浏览器限制，鹿鸣无法为不同服务器上的多个帐户使用推送通知服务。请取消订阅另一个帐户的推送通知，然后重试。",

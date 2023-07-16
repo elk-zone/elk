@@ -168,7 +168,7 @@ export function recursiveTreeToText(input: Node): string {
     return treeToText(input)
 }
 
-const emojiIdNeedsWrappingRE = /^(\d|\w|-|_)$/
+const emojiIdNeedsWrappingRE = /^(\d|\w|-|_)+$/
 
 export function treeToText(input: Node): string {
   let pre = ''

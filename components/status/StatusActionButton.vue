@@ -1,4 +1,8 @@
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const { as = 'button', command, disabled, content, icon } = defineProps<{
   text?: string | number
   content: string
@@ -12,10 +16,6 @@ const { as = 'button', command, disabled, content, icon } = defineProps<{
   as?: string
   command?: boolean
 }>()
-
-defineOptions({
-  inheritAttrs: false,
-})
 
 defineSlots<{
   text: (props: {}) => void

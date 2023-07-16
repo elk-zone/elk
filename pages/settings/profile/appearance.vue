@@ -47,6 +47,7 @@ const { form, reset, submitter, isDirty, isError } = useForm({
       fieldsAttributes,
 
       bot: account?.bot ?? false,
+      locked: account?.locked ?? false,
 
       // These look more like account and privacy settings than appearance settings
       // discoverable: false,
@@ -143,13 +144,22 @@ onReactivated(refreshInfo)
               :account="{ ...account, displayName: form.displayName }"
               font-bold sm:text-2xl text-xl
             />
-            <label>
-              <AccountBotIndicator show-label px2 py1>
-                <template #prepend>
-                  <input v-model="form.bot" type="checkbox" cursor-pointer>
-                </template>
-              </AccountBotIndicator>
-            </label>
+            <div flex="~ row" items-center gap2>
+              <label>
+                <AccountLockIndicator show-label px2 py1>
+                  <template #prepend>
+                    <input v-model="form.locked" type="checkbox" cursor-pointer>
+                  </template>
+                </AccountLockIndicator>
+              </label>
+              <label>
+                <AccountBotIndicator show-label px2 py1>
+                  <template #prepend>
+                    <input v-model="form.bot" type="checkbox" cursor-pointer>
+                  </template>
+                </AccountBotIndicator>
+              </label>
+            </div>
           </div>
           <AccountHandle :account="account" />
         </div>

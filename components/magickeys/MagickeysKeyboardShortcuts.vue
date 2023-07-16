@@ -21,6 +21,9 @@ interface ShortcutItemGroup {
   items: ShortcutItem[]
 }
 
+const isMac = useIsMac()
+const modifierKeyName = $computed(() => isMac.value ? '⌘' : 'Ctrl')
+
 const shortcutItemGroups: ShortcutItemGroup[] = [
   {
     name: t('magic_keys.groups.navigation.title'),
@@ -52,7 +55,7 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
     items: [
       {
         description: t('magic_keys.groups.actions.command_mode'),
-        shortcut: { keys: ['cmd', '/'], isSequence: false },
+        shortcut: { keys: [modifierKeyName, '/'], isSequence: false },
       },
       {
         description: t('magic_keys.groups.actions.compose'),

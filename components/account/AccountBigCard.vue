@@ -1,16 +1,16 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const { account, as = 'div' } = $defineProps<{
   account: mastodon.v1.Account
   as?: string
 }>()
 
 cacheAccount(account)
-
-defineOptions({
-  inheritAttrs: false,
-})
 </script>
 
 <template>

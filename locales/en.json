@@ -376,7 +376,7 @@
       }
     },
     "limiting": "Limiting {0}",
-    "mute_desc": "You will no longer see any posts from this user. They can still follow you and see your posts. They will not know that they are muted.",
+    "mute_desc": "`You will no longer see any posts from this user. They can still follow you and see your posts. They will not know that they are muted.`",
     "other": "It's something else",
     "other_desc": "The issue does not fit into other categories",
     "reporting": "Reporting {0}",
@@ -496,7 +496,7 @@
       "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
       "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
-      "github_cards_description": "When a Github link is posted, an accessible HTML card using the social graph meta is displayed instead of the social image.",
+      "github_cards_description": "When a GitHub link is posted, an accessible HTML card using the social graph meta is displayed instead of the social image.",
       "grayscale_mode": "Grayscale mode",
       "hide_account_hover_card": "Hide account hover card",
       "hide_alt_indi_on_posts": "Hide alt indicator on posts",

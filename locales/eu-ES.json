@@ -55,6 +55,7 @@
     "close": "Itxi",
     "compose": "Idatzi",
     "confirm": "Baieztatu",
+    "done": "Eginda",
     "edit": "Editatu",
     "enter_app": "Sartu aplikaziora",
     "favourite": "Egin gogoko",
@@ -243,6 +244,7 @@
     "open_in_original_site": "Ireki jatorrizko orrian",
     "pin_on_profile": "Finkatu profilean",
     "remove_personal_note": "Kendu {0}(r)i buruzko oharra",
+    "report_account": "Salatu kontua",
     "share_post": "Partekatu bidalketa",
     "show_favourited_and_boosted_by": "Erakutsi nork egin duen gogoko eta nork bultzatu duen",
     "show_reblogs": "Erakutsi {0}(r)en bultzadak",
@@ -254,6 +256,7 @@
     "translate_post": "Egin itzulpena",
     "unblock_account": "Utzi {0} blokeatzeari",
     "unblock_domain": "Utzi {0} domeinua blokeatzeari",
+    "unfollow_account": "Utzi {0} jarraitzeari",
     "unmute_account": "Utzi {0} mututzeari",
     "unmute_conversation": "Utzi bidalketa mututzeari",
     "unpin_on_profile": "Utzi finkatzeari"
@@ -307,10 +310,26 @@
     "replying": "Erantzuten",
     "the_thread": "haria"
   },
+  "polls": {
+    "allow_multiple": "Baimendu aukera anitzak",
+    "cancel": "Utzi",
+    "create": "Sortu bozketa",
+    "disallow_multiple": "Ezgaitu aukera anitzak",
+    "expiration": "Bozketaren epemuga",
+    "hide_votes": "Ezkutatu emaitza osoa bozketa amaitu arte",
+    "option_placeholder": "Bozketaren aukera {unean}/{gehienez}",
+    "remove_option": "Kendu aukera",
+    "settings": "Bozketaren ezarpenak",
+    "show_votes": "Erakutsi beti bozketaren emaitza osoa"
+  },
   "pwa": {
     "dismiss": "Baztertu",
     "install": "Instalatu",
     "install_title": "Instalatu Elk",
+    "screenshots": {
+      "dark": "Elk-en pantaila-argazkia, kolore ilunak darabiltzala",
+      "light": "Elk-en pantaila-argazkia, kolore argiak darabiltzala"
+    },
     "title": "Eguneraketa berria eskuragai!",
     "update": "Eguneratu",
     "update_available_short": "Eguneratu Elk",
@@ -336,6 +355,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "Ohar gehigarriak",
+    "another_server": "Salatzen ari zaren erabiltzailea beste zerbitzari batekoa da",
+    "anything_else": "Ba al dago jakin beharko genukeen beste ezer?",
+    "block_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko. Ezin izango ditu zure bidalketak ikusi edo zuri jarraitu. Blokeatu duzula jakingo du.",
+    "dontlike": "Ez zait gustatzen",
+    "dontlike_desc": "Ikustea gogoko ez duzun zerbait da",
+    "forward": "Bai, bidali salaketa {0}(r)i",
+    "forward_question": "Salaketa honen kopia anonimo bat bidali nahi duzu salatzen ari zaren erabiltzilearen zerbitzarira?",
+    "further_actions": {
+      "limit": {
+        "description": "Hauek dira ikusten duzuna kontrolatzeko dituzun aukerak:",
+        "title": "Ez duzu hau ikusi nahi?"
+      },
+      "report": {
+        "description": "Salaketa berrikusi bitartean, hemen dituzu har ditzazkezun ekintzak:",
+        "title": "Eskerrik asko jakinarazteagatik, salaketa aztertuko dugu."
+      }
+    },
+    "limiting": "Limiting {0}",
+    "mute_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko. Zure bidalketak ikusi eta zuri jarraitu diezazuke. Ez du jakingo mututu duzunik.",
+    "other": "Beste zerbait da",
+    "other_desc": "Arazoa ez da beste kategorietan sartzen",
+    "reporting": "{0} salatzen",
+    "select_many": "Hautatu bat datozen guztiak:",
+    "select_one": "Aukeratu hobekien datorrena:",
+    "select_posts": "Salaketa hau sostengatzen duen bidalketarik al dago?",
+    "select_posts_other": "Ba al dago salaketa sostengatzen duen beste bidalketarik?",
+    "spam": "Spama da",
+    "spam_desc": "Esteka maltzurrak, elkarrekintza faltsua edo erantzun errepikakorrak.",
+    "submit": "Bidali salaketa",
+    "unfollow_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko hasierako jarioan. Bere bidalketak beste jario batzuetan egongo dira ikusgai.",
+    "violation": "Zerbitzariko arau bat edo gehiago urratzen d(it)u",
+    "whats_wrong_account": "Esan zer arazo dagoen kontu honekin",
+    "whats_wrong_post": "Esan zer arazo dagoen bidalketa honekin"
   },
   "search": {
     "search_desc": "Bilatu pertsonak eta traolak",

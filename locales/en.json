@@ -496,7 +496,7 @@
       "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
       "enable_pinch_to_zoom": "Enable pinch to zoom",
       "github_cards": "GitHub Cards",
-      "github_cards_description": "When a Github link is posted, an accessible HTML card using the social graph meta is displayed instead of the social image.",
+      "github_cards_description": "When a GitHub link is posted, an accessible HTML card using the social graph meta is displayed instead of the social image.",
       "grayscale_mode": "Grayscale mode",
       "hide_account_hover_card": "Hide account hover card",
       "hide_alt_indi_on_posts": "Hide alt indicator on posts",

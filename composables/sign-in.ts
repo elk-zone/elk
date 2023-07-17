@@ -1,7 +1,8 @@
 import type { Ref } from 'vue'
 
 export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
-  const singleInstanceServer = useRuntimeConfig().public.singleInstance
+  const config = useRuntimeConfig()
+  const singleInstanceServer = config.public.singleInstance
   const userSettings = useUserSettings()
   const users = useUsers()
   const { t } = useI18n()
@@ -27,7 +28,7 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
     try {
       let href: string
       if (singleInstanceServer) {
-        href = await (globalThis.$fetch as any)(`/api/${publicServer.value}/login`, {
+        href = await (globalThis.$fetch as any)(`${config.app.baseURL || ''}/api/${publicServer.value}/login`, {
           method: 'POST',
           body: {
             force_login: users.value.length > 0,
@@ -38,7 +39,7 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
         busy.value = false
       }
       else {
-        href = await (globalThis.$fetch as any)(`/api/${server.value || publicServer.value}/login`, {
+        href = await (globalThis.$fetch as any)(`${config.app.baseURL || ''}/api/${server.value || publicServer.value}/login`, {
           method: 'POST',
           body: {
             force_login: users.value.some(u => u.server === server.value),

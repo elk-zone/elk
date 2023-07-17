@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
       retry: 3,
     })
 
-    const url = `/signin/callback?${stringifyQuery({ server, token: result.access_token, vapid_key: app.vapid_key })}`
+    const url = `${useRuntimeConfig().app.baseURL || ''}/signin/callback?${stringifyQuery({ server, token: result.access_token, vapid_key: app.vapid_key })}`
     await sendRedirect(event, url, 302)
   }
   catch (e) {

@@ -35,7 +35,7 @@ else if (driver === 'memory') {
 
 export function getRedirectURI(origin: string, server: string) {
   origin = origin.replace(/\?.*$/, '')
-  return `${origin}/api/${server}/oauth/${encodeURIComponent(origin)}`
+  return `${origin}${useRuntimeConfig().app.baseURL || ''}/api/${server}/oauth/${encodeURIComponent(origin)}`
 }
 
 async function fetchAppInfo(origin: string, server: string) {

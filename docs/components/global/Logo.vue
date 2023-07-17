@@ -1,6 +1,10 @@
+<script setup lang="ts">
+import { makeAbsolutePath } from '~/utils/path.ts'
+</script>
+
 <template>
   <div class="logo">
-    <img alt="Elk" src="/logo.svg">
+    <img alt="Elk" :src="makeAbsolutePath('/logo.svg')">
     Elk
   </div>
 </template>

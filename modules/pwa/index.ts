@@ -114,8 +114,8 @@ export default defineNuxtModule<VitePWANuxtOptions>({
 
           const folder = dirname(fileURLToPath(import.meta.url))
           const useIcons = mappedIcons.reduce((acc, icon) => {
-            icon.src = `${nuxt.options.app.baseURL}${icon.src}`
-            acc[icon.src] = {
+            const iconAbsoluteSrc = `${nuxt.options.app.baseURL}${icon.src}`
+            acc[iconAbsoluteSrc] = {
               ...icon,
               data: readFile(resolve(join(folder, '../../public-dev', icon.src))),
             }

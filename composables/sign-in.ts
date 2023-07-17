@@ -1,4 +1,5 @@
 import type { Ref } from 'vue'
+import { makeAbsolutePath } from '~/utils/path.ts'
 
 export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
   const singleInstanceServer = useRuntimeConfig().public.singleInstance
@@ -27,7 +28,7 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
     try {
       let href: string
       if (singleInstanceServer) {
-        href = await (globalThis.$fetch as any)(`/api/${publicServer.value}/login`, {
+        href = await (globalThis.$fetch as any)(makeAbsolutePath(`/api/${publicServer.value}/login`), {
           method: 'POST',
           body: {
             force_login: users.value.length > 0,
@@ -38,7 +39,7 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
         busy.value = false
       }
       else {
-        href = await (globalThis.$fetch as any)(`/api/${server.value || publicServer.value}/login`, {
+        href = await (globalThis.$fetch as any)(makeAbsolutePath(`/api/${server.value || publicServer.value}/login`), {
           method: 'POST',
           body: {
             force_login: users.value.some(u => u.server === server.value),

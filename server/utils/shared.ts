@@ -15,6 +15,8 @@ import { driver } from '#storage-config'
 import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
 
+import { makeAbsolutePath } from '~/utils/path.ts'
+
 const storage = useStorage<AppInfo>()
 
 if (driver === 'fs') {
@@ -35,7 +37,7 @@ else if (driver === 'memory') {
 
 export function getRedirectURI(origin: string, server: string) {
   origin = origin.replace(/\?.*$/, '')
-  return `${origin}/api/${server}/oauth/${encodeURIComponent(origin)}`
+  return `${origin}${makeAbsolutePath(`/api/${server}/oauth/${encodeURIComponent(origin)}`)}`
 }
 
 async function fetchAppInfo(origin: string, server: string) {

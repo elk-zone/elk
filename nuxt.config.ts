@@ -196,7 +196,7 @@ export default defineNuxtConfig({
     },
   },
   app: {
-    baseURL: '/elk',
+    baseURL: '/elk/',
     keepalive: true,
     head: {
       viewport: 'width=device-width,initial-scale=1,viewport-fit=cover',

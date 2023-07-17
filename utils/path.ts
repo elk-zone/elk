@@ -1,3 +1,4 @@
 export function makeAbsolutePath(path: string): string {
-  return `${useRuntimeConfig().app.baseURL || ''}${path}`
+  const baseURL = useRuntimeConfig().app.baseURL?.replace(/\/$/, '') || ''
+  return `${baseURL}${path}`
 }

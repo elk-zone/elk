@@ -9,6 +9,8 @@ import { ExpirationPlugin } from 'workbox-expiration'
 import { onNotificationClick, onPush } from './web-push-notifications'
 import { onShareTarget } from './share-target'
 
+import { createRegExpForRootPath } from '~/utils/path.ts'
+
 declare const self: ServiceWorkerGlobalScope
 
 self.addEventListener('message', (event) => {
@@ -34,19 +36,19 @@ if (import.meta.env.DEV)
 let denylist: undefined | RegExp[]
 if (import.meta.env.PROD) {
   denylist = [
-    /^\/api\//,
-    /^\/login\//,
-    /^\/oauth\//,
-    /^\/signin\//,
-    /^\/web-share-target\//,
+    createRegExpForRootPath('/api/'),
+    createRegExpForRootPath('/login/'),
+    createRegExpForRootPath('/oauth/'),
+    createRegExpForRootPath('/signin/'),
+    createRegExpForRootPath('/web-share-target/'),
     // exclude shiki: has its own cache
-    /^\/shiki\//,
+    createRegExpForRootPath(/shiki/),
     // exclude shiki: has its own cache
-    /^\/emojis\//,
+    createRegExpForRootPath(/emojis/),
     // exclude sw: if the user navigates to it, fallback to index.html
-    /^\/sw.js$/,
+    createRegExpForRootPath('/sw.js$'),
     // exclude webmanifest: has its own cache
-    /^\/manifest-(.*).webmanifest$/,
+    createRegExpForRootPath('/manifest-(.*).webmanifest$'),
   ]
 }
 

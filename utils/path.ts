@@ -1,4 +1,11 @@
+export function baseURLorEmpty(): string {
+  return useRuntimeConfig().app.baseURL?.replace(/\/$/, '') || ''
+}
+
 export function makeAbsolutePath(path: string): string {
-  const baseURL = useRuntimeConfig().app.baseURL?.replace(/\/$/, '') || ''
-  return `${baseURL}${path}`
+  return `${baseURLorEmpty()}${path}`
+}
+
+export function createRegExpForRootPath(path: string): any {
+  return new RegExp(`${baseURLorEmpty()}${path}`.replace('/', '^/'))
 }

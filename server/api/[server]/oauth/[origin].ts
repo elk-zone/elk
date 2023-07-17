@@ -1,4 +1,5 @@
 import { stringifyQuery } from 'ufo'
+import { makeAbsolutePath } from '~/utils/path.ts'
 
 export default defineEventHandler(async (event) => {
   let { server, origin } = getRouterParams(event)
@@ -35,7 +36,7 @@ export default defineEventHandler(async (event) => {
       retry: 3,
     })
 
-    const url = `${useRuntimeConfig().app.baseURL || ''}/signin/callback?${stringifyQuery({ server, token: result.access_token, vapid_key: app.vapid_key })}`
+    const url = `${makeAbsolutePath('/signin/callback')}?${stringifyQuery({ server, token: result.access_token, vapid_key: app.vapid_key })}`
     await sendRedirect(event, url, 302)
   }
   catch (e) {

@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <img alt="Elk" src="`${useRuntimeConfig().app.baseURL || ''}/logo.svg}`">
+    <img alt="Elk" src="`${makeAbsolutePath('/logo.svg')}`">
     Elk
   </div>
 </template>

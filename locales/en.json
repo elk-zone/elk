@@ -376,7 +376,7 @@
       }
     },
     "limiting": "Limiting {0}",
-    "mute_desc": "`You will no longer see any posts from this user. They can still follow you and see your posts. They will not know that they are muted.`",
+    "mute_desc": "You will no longer see any posts from this user. They can still follow you and see your posts. They will not know that they are muted.",
     "other": "It's something else",
     "other_desc": "The issue does not fit into other categories",
     "reporting": "Reporting {0}",

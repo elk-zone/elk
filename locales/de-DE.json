@@ -496,6 +496,7 @@
       "enable_data_saving_description": "Spare Daten, indem du das automatische Laden von Anhängen verhinderst.",
       "enable_pinch_to_zoom": "Pinch-to-Zoom aktivieren",
       "github_cards": "GitHub Cards",
+      "github_cards_description": "Wenn ein GitHub-Link gepostet wird, wird anstelle des sozialen Bildes eine zugängliche HTML-Karte mit der Social-Graph-Meta angezeigt.",
       "grayscale_mode": "Graustufenmodus",
       "hide_account_hover_card": "Benutzer-Hover-Karte verbergen",
       "hide_alt_indi_on_posts": "Alternativtext-Hinweis in Beiträgen ausblenden",
@@ -511,7 +512,9 @@
       "title": "Experimentelle Funktionen",
       "use_star_favorite_icon": "Stern als Favoriten-Symbol verwenden",
       "user_picker": "Benutzerauswahl",
+      "user_picker_description": "Zeigt alle Avatare der angemeldeten Konten unten links an, damit du schnell zwischen ihnen wechseln kannst.",
       "virtual_scroll": "Virtuelles Scrollen",
+      "virtual_scroll_description": "Verwende eine virtuelle Liste in Zeitleisten, damit eine größere Anzahl von Elementen performant gerendert werden kann.",
       "wellbeing": "Wohlbefinden",
       "zen_mode": "Zen-Modus",
       "zen_mode_description": "Seitenleiste ausblenden, es sei denn, der Mauszeiger befindet sich darüber. Einige Elemente der Zeitleiste ebenfalls ausblenden."

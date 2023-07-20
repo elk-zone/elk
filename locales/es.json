@@ -55,6 +55,7 @@
     "close": "Cerrar",
     "compose": "Redactar",
     "confirm": "Confirmar",
+    "done": "Hecho",
     "edit": "Editar",
     "enter_app": "Entrar",
     "favourite": "Favorita",
@@ -243,6 +244,7 @@
     "open_in_original_site": "Abrir página original",
     "pin_on_profile": "Fijar en tu perfil",
     "remove_personal_note": "Eliminar nota personal de {0}",
+    "report_account": "Reportar a {0}",
     "share_post": "Compartir esta publicación",
     "show_favourited_and_boosted_by": "Mostrar quien marcó como favorita y quien retooteó",
     "show_reblogs": "Mostrar retoots de {0}",
@@ -254,6 +256,7 @@
     "translate_post": "Traducir",
     "unblock_account": "Desbloquear a {0}",
     "unblock_domain": "Desbloquear dominio {0}",
+    "unfollow_account": "Dejar de seguir a {0}",
     "unmute_account": "Dejar de silenciar a {0}",
     "unmute_conversation": "Dejar de silenciar la publicación",
     "unpin_on_profile": "Desfijar del perfil"
@@ -352,6 +355,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "Comentarios adicionales",
+    "another_server": "El usuario que estás reportando pertenece a otro servidor",
+    "anything_else": "¿Hay algo más que creas debamos saber?",
+    "block_desc": "No podrás ver más publicaciones de este usuario. No podrán ver tus publicaciones o seguirte. Te indicarán que están bloqueados.",
+    "dontlike": "No me gusta",
+    "dontlike_desc": "No es algo que quieres ver",
+    "forward": "Si, continuar con el reporte a {0}",
+    "forward_question": "¿Deseas enviar también una copia anónima de este reporte a ese servidor?",
+    "further_actions": {
+      "limit": {
+        "description": "Estas son las opciones para controlar lo que ves:",
+        "title": "¿No quieres ver esto?"
+      },
+      "report": {
+        "description": "Mientras lo revisamos, estas son las acciones que puedes tomar:",
+        "title": "Gracias por reportar, lo investigaremos."
+      }
+    },
+    "limiting": "Limitar a {0}",
+    "mute_desc": "No podrás ver más publicaciones de este usuario. Aún pueden seguirte y ver tus publicaciones. No sabrán que están silenciados.",
+    "other": "Es algo más",
+    "other_desc": "La novedad no encaja en otras categorías.",
+    "reporting": "Reportar a {0}",
+    "select_many": "Selecciona todas las que correspondan:",
+    "select_one": "Selecciona la opción más acorde:",
+    "select_posts": "¿Hay alguna publicación de apoyo para este reporte?",
+    "select_posts_other": "¿Hay alguna otra publicación de apoyo para este reporte?",
+    "spam": "Es spam",
+    "spam_desc": "Enlaces maliciosos, interacciones falsas o respuestas repetitivas",
+    "submit": "Enviar reporte",
+    "unfollow_desc": "Ya no verás las publicaciones de este usuario en tu línea de tiempo. Es posible que aún veas sus publicaciones en otros lugares.",
+    "violation": "Viola una o más reglas del servidor.",
+    "whats_wrong_account": "Cuéntanos qué sucede con esta cuenta",
+    "whats_wrong_post": "Cuéntanos qué sucede con esta publicación."
   },
   "search": {
     "search_desc": "Buscar personas y etiquetas",

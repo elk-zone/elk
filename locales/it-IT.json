@@ -55,6 +55,7 @@
     "close": "Chiudi",
     "compose": "Componi",
     "confirm": "Conferma",
+    "done": "Fatto",
     "edit": "Modifica",
     "enter_app": "Entra nell'app",
     "favourite": "Apprezza",
@@ -243,6 +244,7 @@
     "open_in_original_site": "Apri nel sito originale",
     "pin_on_profile": "Fissa in cima al profilo",
     "remove_personal_note": "Rimuovi nota personale da {0}",
+    "report_account": "Segnala {0}",
     "share_post": "Condividi questo post",
     "show_favourited_and_boosted_by": "Mostra chi ha apprezzato e potenziato",
     "show_reblogs": "Mostra potenziamenti da {0}",
@@ -254,6 +256,7 @@
     "translate_post": "Traduci post",
     "unblock_account": "Sblocca {0}",
     "unblock_domain": "Sblocca dominio {0}",
+    "unfollow_account": "Smetti di seguire {0}",
     "unmute_account": "Riattiva {0}",
     "unmute_conversation": "Riattiva questo post",
     "unpin_on_profile": "Togli dai fissati"
@@ -352,6 +355,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "Altri commenti",
+    "another_server": "L'utente che stai segnalando è di un'altra istanza",
+    "anything_else": "C'è qualcos'altro che pensi dovremmo sapere?",
+    "block_desc": "Non vedrai più nessun post di questo utente. Questo utente non potrà vedere i tuoi post o seguirti. Questo utente vedrà che l'hai bloccato.",
+    "dontlike": "Non mi piace",
+    "dontlike_desc": "Non è qualcosa che vuoi vedere",
+    "forward": "Sì, inoltra questo rapporto a {0}",
+    "forward_question": "Vuoi inviare una copia anonima di questo rapporto anche alla sua istanza?",
+    "further_actions": {
+      "limit": {
+        "description": "Ecco le tue opzioni per controllare cosa vedi:",
+        "title": "Non vuoi vedere queste cose?"
+      },
+      "report": {
+        "description": "Mentre verifichiamo, ecco cosa puoi fare:",
+        "title": "Grazie per la segnalazione, faremo le dovute verifiche."
+      }
+    },
+    "limiting": "Limitando {0}",
+    "mute_desc": "Non vedrai più nessun post di questo utente. Questo utente può comunque seguirti e vedere i tuoi post. Questo utente non saprà che è silenziato.",
+    "other": "È qualcos'altro",
+    "other_desc": "Il problema non rientra in queste categorie",
+    "reporting": "Segnalando {0}",
+    "select_many": "Scegli ciò che si applica:",
+    "select_one": "Scegli la corrispondenza migliore:",
+    "select_posts": "Ci sono dei post a sostegno di questo rapporto?",
+    "select_posts_other": "Ci sono altri post a sostegno di questo rapporto?",
+    "spam": "È spam",
+    "spam_desc": "Link ingannevoli, interazioni false o risposte ripetitive ",
+    "submit": "Invia rapporto",
+    "unfollow_desc": "Non vedrai più post di questo utente nella tua cronologia. Potresti vedere comunque i suoi post altrove.",
+    "violation": "Viola una o più regole dell'istanza",
+    "whats_wrong_account": "Dicci cosa c'è che non va con questo profilo",
+    "whats_wrong_post": "Dicci cosa c'è che non va con questo post"
   },
   "search": {
     "search_desc": "Cerca persone e hashtag",
@@ -457,6 +496,7 @@
       "enable_data_saving_description": "Risparmia dati disattivando il download automatico degli allegati.",
       "enable_pinch_to_zoom": "Pizzica per ingrandire",
       "github_cards": "GitHub Cards",
+      "github_cards_description": "Quando viene pubblicato un link GitHub, viene mostrato un riquadro HTML accessibile usando i metadati del grafico sociale invece dell'immmagine.",
       "grayscale_mode": "Modalità scala di grigi",
       "hide_account_hover_card": "Nascondi anteprima account al passaggio del mouse",
       "hide_alt_indi_on_posts": "Nascondi indicatori testo alternativo sui post",
@@ -472,7 +512,9 @@
       "title": "Funzionalità sperimentali",
       "use_star_favorite_icon": "Usa icona stella per apprezzamenti",
       "user_picker": "Selettore utente",
+      "user_picker_description": "Mostra gli avatar di tutti gli account connessi in basso a sinistra così da poter cambiare account in un attimo.",
       "virtual_scroll": "Scorrimento virtuale",
+      "virtual_scroll_description": "Usa una lista virtuale nelle cronologie, così da caricare velocemente un maggior numero di elementi.",
       "wellbeing": "Benessere",
       "zen_mode": "Modalità zen",
       "zen_mode_description": "Nasconde l'interfaccia laterale a meno che il mouse non ci passi sopra. Nasconde anche certi elementi della cronologia."

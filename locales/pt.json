@@ -496,7 +496,7 @@
       "enable_data_saving_description": "Poupar dados, impedindo que os anexos sejam carregados automaticamente.",
       "enable_pinch_to_zoom": "Habilitar afastar/aproximar dedos para fazer zoom",
       "github_cards": "Cartões do GitHub",
-      "github_cards_description": "Quando é publicada uma ligação para o Github, é apresentado um cartão HTML acessível que utiliza os metadados do gráfico social ao invés da imagem social.",
+      "github_cards_description": "Quando é publicada uma ligação para o GitHub, é apresentado um cartão HTML acessível que utiliza os metadados do gráfico social ao invés da imagem social.",
       "grayscale_mode": "Modo tons de cinza",
       "hide_account_hover_card": "Esconder cartão flutuante de conta",
       "hide_alt_indi_on_posts": "Esconder indicador alt nas publicações",

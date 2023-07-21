@@ -49,7 +49,7 @@ const { notifications } = useNotifications()
         aria-label="More menu"
         @click="toggleVisible"
       >
-        <span :class="show ? 'i-ri:close-fill' : 'i-ri:more-fill' />"
+        <span :class="show ? 'i-ri:close-fill' : 'i-ri:more-fill'" />
       </button>
     </NavBottomMoreMenu>
   </nav>

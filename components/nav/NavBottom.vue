@@ -43,14 +43,15 @@ const { notifications } = useNotifications()
       </NuxtLink>
     </template>
     <NavBottomMoreMenu v-slot="{ toggleVisible, show }" v-model="moreMenuVisible" flex flex-row items-center place-content-center h-full flex-1 cursor-pointer>
-      <label
+      <button
         flex items-center place-content-center h-full flex-1 class="select-none"
         :class="show ? '!text-primary' : ''"
+        aria-label="More menu"
+        @click="toggleVisible"
       >
-        <input type="checkbox" z="-1" absolute inset-0 opacity-0 @click="toggleVisible">
         <span v-show="show" i-ri:close-fill />
         <span v-show="!show" i-ri:more-fill />
-      </label>
+      </button>
     </NavBottomMoreMenu>
   </nav>
 </template>

@@ -378,26 +378,26 @@ onDeactivated(() => {
             </button>
           </PublishEmojiPicker>
 
-          <CommonTooltip v-if="draft.params.poll === undefined" placement="top" :content="$t('tooltip.add_media')">
+          <CommonTooltip v-if="draft.params.poll === undefined" placement="top" :content="$t('tooltip.add_media')" no-auto-focus>
             <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
               <div i-ri:image-add-line />
             </button>
           </CommonTooltip>
 
           <template v-if="draft.attachments.length === 0">
-            <CommonTooltip v-if="!draft.params.poll" placement="top" :content="$t('polls.create')">
+            <CommonTooltip v-if="!draft.params.poll" placement="top" :content="$t('polls.create')" no-auto-focus>
               <button btn-action-icon :aria-label="$t('polls.create')" @click="draft.params.poll = { options: [''], expiresIn: expiresInOptions[expiresInDefaultOptionIndex].seconds }">
                 <div i-ri:chat-poll-line />
               </button>
             </CommonTooltip>
             <div v-else rounded-full b-1 border-dark flex="~ row" gap-1>
-              <CommonTooltip placement="top" :content="$t('polls.cancel')">
+              <CommonTooltip placement="top" :content="$t('polls.cancel')" no-auto-focus>
                 <button btn-action-icon b-r border-dark :aria-label="$t('polls.cancel')" @click="draft.params.poll = undefined">
                   <div i-ri:close-line />
                 </button>
               </CommonTooltip>
               <CommonDropdown placement="top">
-                <CommonTooltip placement="top" :content="$t('polls.settings')">
+                <CommonTooltip placement="top" :content="$t('polls.settings')" no-auto-focus>
                   <button :aria-label="$t('polls.settings')" btn-action-icon w-12>
                     <div i-ri:list-settings-line />
                     <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
@@ -411,7 +411,7 @@ onDeactivated(() => {
                 </template>
               </CommonDropdown>
               <CommonDropdown placement="bottom">
-                <CommonTooltip placement="top" :content="$t('polls.expiration')">
+                <CommonTooltip placement="top" :content="$t('polls.expiration')" no-auto-focus>
                   <button :aria-label="$t('polls.expiration')" btn-action-icon w-12>
                     <div i-ri:hourglass-line />
                     <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
@@ -436,7 +436,7 @@ onDeactivated(() => {
 
           <PublishCharacterCounter :max="characterLimit" :length="characterCount" />
 
-          <CommonTooltip placement="top" :content="$t('tooltip.change_language')">
+          <CommonTooltip placement="top" :content="$t('tooltip.change_language')" no-auto-focus>
             <CommonDropdown placement="bottom" auto-boundary-max-size>
               <button btn-action-icon :aria-label="$t('tooltip.change_language')" w-max mr1>
                 <span v-if="postLanguageDisplay" text-secondary text-sm ml1>{{ postLanguageDisplay }}</span>
@@ -450,7 +450,7 @@ onDeactivated(() => {
             </CommonDropdown>
           </CommonTooltip>
 
-          <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')">
+          <CommonTooltip placement="top" :content="$t('tooltip.add_content_warning')" no-auto-focus>
             <button btn-action-icon :aria-label="$t('tooltip.add_content_warning')" @click="toggleSensitive">
               <div v-if="draft.params.sensitive" i-ri:alarm-warning-fill text-orange />
               <div v-else i-ri:alarm-warning-line />
@@ -466,7 +466,7 @@ onDeactivated(() => {
             </template>
           </PublishVisibilityPicker>
 
-          <CommonTooltip v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top" :content="$t('tooltip.publish_failed')">
+          <CommonTooltip v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top" :content="$t('tooltip.publish_failed')" no-auto-focus>
             <button
               btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit aria-describedby="publish-failed-tooltip"
             >
@@ -477,7 +477,7 @@ onDeactivated(() => {
             </button>
           </CommonTooltip>
 
-          <CommonTooltip v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')" :disabled="!(isPublishDisabled || isExceedingCharacterLimit)">
+          <CommonTooltip v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')" :disabled="!(isPublishDisabled || isExceedingCharacterLimit)" no-auto-focus>
             <button
               btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center
               md:w-fit

@@ -5,7 +5,13 @@ definePageMeta({
     const params = to.params
     const id = params.status as string
     const status = await fetchStatus(id)
-    return getStatusRoute(status)
+    if (status)
+      return getStatusRoute(status)
+
+    if (process.dev)
+      console.error(`Status not found: ${id}`)
+
+    return undefined
   },
 })
 </script>

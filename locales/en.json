@@ -491,6 +491,8 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "auto_scroll": "Auto Scrolling",
+      "auto_scroll_description": "Scroll automatically when new messages are loaded.",
       "enable_autoplay": "Enable Autoplay",
       "enable_data_saving": "Enable data saving",
       "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",

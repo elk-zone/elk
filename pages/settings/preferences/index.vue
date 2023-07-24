@@ -127,6 +127,15 @@ const userSettings = useUserSettings()
       </template>
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'experimentalAutoScroller')"
+      @click="togglePreferences('experimentalAutoScroller')"
+    >
+      {{ $t('settings.preferences.auto_scroll') }}
+      <template #description>
+        {{ $t('settings.preferences.auto_scroll_description') }}
+      </template>
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalGitHubCards')"
       @click="togglePreferences('experimentalGitHubCards')"
     >

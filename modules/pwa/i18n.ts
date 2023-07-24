@@ -71,7 +71,7 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
 
   const manifestEntries: Partial<ManifestOptions> = {
     scope: '/',
-    id: 'zone.elk',
+    id: 'elk.zone',
     start_url: '/',
     orientation: 'natural',
     display: 'standalone',

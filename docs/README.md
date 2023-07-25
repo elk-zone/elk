@@ -24,7 +24,7 @@ We use [Docus](https://docus.dev) as the site generator and deploy through Netli
 5. Run `npm install`
    Note: Run this from the project's `docs` folder, not the root of the repository on your machine!
 6. Run `npm run dev` to launch a preview
-7. Visit `localhost:3000/docs/` to see a live preview of the docs
+7. Visit `localhost:3000/` to see a live preview of the docs
 
 ### Contributing
 

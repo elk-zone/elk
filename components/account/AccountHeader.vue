@@ -167,6 +167,7 @@ const personalNoteMaxLength = 2000
         <div flex="~ col gap1" pt2>
           <div flex gap2 items-center>
             <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
+            <AccountRoleIndicator v-for="role in account.roles" :key="role.id" :role="role" />
             <AccountLockIndicator v-if="account.locked" show-label />
             <AccountBotIndicator v-if="account.bot" show-label />
           </div>

@@ -327,8 +327,8 @@
     "install": "Installa",
     "install_title": "Installa Elk",
     "screenshots": {
-      "dark": "Screenshot di Elk con aspetto chiaro",
-      "light": "Screenshot di Elk con aspetto scuro"
+      "dark": "Schermata di Elk con aspetto chiaro",
+      "light": "Schermata di Elk con aspetto scuro"
     },
     "title": "Nuova versione di Elk disponibile!",
     "update": "Aggiorna",
@@ -673,7 +673,7 @@
   },
   "user": {
     "add_existing": "Aggiungi account esistente",
-    "server_address_label": "Indirizzo server Mastodon",
+    "server_address_label": "Indirizzo istanza Mastodon",
     "sign_in_desc": "Accedi per seguire profili o hashtag, apprezzare, condividere e rispondere a post o interagire dal tuo account su un'altra istanza.",
     "sign_in_notice_title": "Visualizzando {0} dati pubblici",
     "sign_out_account": "Esci {0}",

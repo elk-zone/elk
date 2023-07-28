@@ -213,8 +213,10 @@ onDeactivated(() => {
 <template>
   <div v-if="isHydrated && currentUser" flex="~ col gap-4" py3 px2 sm:px4 aria-roledescription="publish-widget">
     <template v-if="draft.editingStatus">
-      <div id="state-editing" text-secondary self-center>
-        {{ $t('state.editing') }}
+      <div flex="~ col gap-1">
+        <div id="state-editing" text-secondary self-center>
+          {{ $t('state.editing') }}
+        </div>
       </div>
     </template>
 
@@ -496,6 +498,11 @@ onDeactivated(() => {
         </div>
       </div>
     </div>
+
+    <template v-if="draft.editingStatus">
+      <div border="b dashed gray/40" />
+      <StatusCard :status="draft.editingStatus" :actions="false" :hover="false" is-preview px-0 />
+    </template>
   </div>
 </template>
 

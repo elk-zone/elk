@@ -479,7 +479,7 @@
     "year_past": "0년 전|작년|{n}년 전"
   },
   "timeline": {
-    "show_new_items": "{v}개의 새 툿 보기|{v}개의 새 툿 보기|{v}개의 새 툿 보기"
+    "show_new_items": "{v}개의 새 게시물 보기|{v}개의 새 게시물 보기|{v}개의 새 게시물 보기"
   },
   "tooltip": {
     "add_content_warning": "콘텐츠 경고 추가",

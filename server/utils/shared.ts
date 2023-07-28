@@ -41,6 +41,9 @@ export function getRedirectURI(origin: string, server: string) {
 async function fetchAppInfo(origin: string, server: string) {
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
+    headers: {
+      'user-agent': APP_NAME,
+    },
     body: {
       client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
       website: 'https://elk.zone',

@@ -242,6 +242,9 @@ export default defineNuxtConfig({
         'style-src': ['\'self\'', '\'unsafe-inline\''],
         'upgrade-insecure-requests': true,
       },
+      permissionsPolicy: {
+        fullscreen: ['\'self\'', 'https:', 'http:'],
+      },
     },
     rateLimiter: false,
   },

@@ -34,6 +34,7 @@
     "posts": "帖文",
     "posts_count": "{0} 条帖文",
     "profile_description": "{0} 的个人资料头图",
+    "profile_personal_note": "私人简介",
     "profile_unavailable": "个人资料不可见",
     "request_follow": "请求关注",
     "unblock": "取消拉黑",
@@ -54,6 +55,7 @@
     "close": "关闭",
     "compose": "撰写",
     "confirm": "确认",
+    "done": "完成",
     "edit": "编辑",
     "enter_app": "进入应用",
     "favourite": "喜欢",
@@ -97,6 +99,8 @@
     "error": "错误",
     "fetching": "加载中...",
     "in": "在",
+    "no_bookmarks": "还没有收藏的贴文。",
+    "no_favourites": "还没有喜欢的贴文。",
     "not_found": "无法找到相关内容",
     "offline_desc": "您目前已离线，请检查网络连接。"
   },
@@ -207,8 +211,7 @@
         "command_mode": "命令面板",
         "compose": "撰写",
         "favourite": "喜欢",
-        "title": "操作",
-        "zen_mode": "禅模式"
+        "title": "操作"
       },
       "media": {
         "title": "媒体"
@@ -225,6 +228,7 @@
     "sequence_then": "then"
   },
   "menu": {
+    "add_personal_note": "添加个人简介到 {0}",
     "block_account": "拉黑 {0}",
     "block_domain": "拉黑域名 {0}",
     "copy_link_to_post": "复制这篇帖文的链接",
@@ -239,6 +243,8 @@
     "mute_conversation": "静音这条帖文",
     "open_in_original_site": "从源站打开",
     "pin_on_profile": "置顶在个人资料上",
+    "remove_personal_note": "从 {0} 中移除个人简介",
+    "report_account": "举报 {0}",
     "share_post": "分享这条帖文",
     "show_favourited_and_boosted_by": "展示谁喜欢和转发了",
     "show_reblogs": "显示来自 {0} 的转发",
@@ -250,6 +256,7 @@
     "translate_post": "翻译帖文",
     "unblock_account": "解除拉黑 {0}",
     "unblock_domain": "解除拉黑域名 {0}",
+    "unfollow_account": "取消关注 {0}",
     "unmute_account": "解除屏蔽 {0}",
     "unmute_conversation": "取消静音帖子",
     "unpin_on_profile": "取消置顶"
@@ -291,6 +298,7 @@
     "followed_you_count": "{n} 人关注了你",
     "missing_type": "未知的通知类型：",
     "reblogged_post": "转发了你的帖文",
+    "reported": "{0} 举报了 {1}",
     "request_to_follow": "请求关注你",
     "signed_up": "注册了",
     "update_status": "更新了他们的状态"
@@ -302,10 +310,26 @@
     "replying": "回复",
     "the_thread": "这个帖文"
   },
+  "polls": {
+    "allow_multiple": "允许多选",
+    "cancel": "取消",
+    "create": "创建一个投票",
+    "disallow_multiple": "禁止多选",
+    "expiration": "投票过期时间",
+    "hide_votes": "隐藏投票总数直到投票结束",
+    "option_placeholder": "投票选择数 {current}/{max}",
+    "remove_option": "删除选择",
+    "settings": "投票选项",
+    "show_votes": "一直展示投票总数"
+  },
   "pwa": {
     "dismiss": "忽略",
     "install": "安装",
     "install_title": "安装鹿鸣",
+    "screenshots": {
+      "dark": "鹿鸣在深色模式下运行的截图",
+      "light": "鹿鸣在浅色模式下运行的截图"
+    },
     "title": "鹿鸣存在新的更新",
     "update": "更新",
     "update_available_short": "更新鹿鸣",
@@ -331,6 +355,42 @@
         "short_name": "鹿鸣"
       }
     }
+  },
+  "report": {
+    "additional_comments": "额外信息",
+    "another_server": "你正在举报的用户来自其他服务器",
+    "anything_else": "还有什么你认为是我们应该了解的吗？",
+    "block_desc": "你将不再看到该用户的任何贴文，他们也无法看到你的贴文或关注你。他们将知道自己被你屏蔽了。",
+    "dontlike": "我不喜欢",
+    "dontlike_desc": "这并非是你想看到的",
+    "forward": "是的，将举报转发给 {0}",
+    "forward_question": "你是否也想发送一份举报的匿名拷贝到那个服务器上？",
+    "further_actions": {
+      "limit": {
+        "description": "以下是你可以控制你所看到内容的选项：",
+        "title": "不想看到这个？"
+      },
+      "report": {
+        "description": "在我们审核这件事情时的同时，这些是你可以采取的行动：",
+        "title": "感谢你的举报，我们会调查此事。"
+      }
+    },
+    "limiting": "限制 {0}",
+    "mute_desc": "你将不再看到该用户的任何贴文，他们仍可以关注你并看到你的贴文。他们不会知道自己被你屏蔽了。",
+    "other": "其他",
+    "other_desc": "问题不适用于其他类别",
+    "reporting": "举报 {0}",
+    "select_many": "请选择适用的选项：",
+    "select_one": "选择最佳匹配：",
+    "select_posts": "有没有任何贴文可以证实这份举报的内容？",
+    "select_posts_other": "有没有其他贴文可以证实这份举报的内容？",
+    "spam": "是垃圾信息",
+    "spam_desc": "恶意链接，虚假互动，或者重复的回复。",
+    "submit": "提交举报",
+    "unfollow_desc": "你的主页将不再显示这个用户的贴文，但你仍可能会在其他地方看到。",
+    "violation": "违反了一项或多项服务器准则",
+    "whats_wrong_account": "告诉我们这个帐号有什么问题",
+    "whats_wrong_post": "告诉我们这篇贴文有什么问题"
   },
   "search": {
     "search_desc": "搜索用户或话题标签",
@@ -433,9 +493,10 @@
     "preferences": {
       "enable_autoplay": "开启自动播放",
       "enable_data_saving": "启用数据保存",
-      "enable_data_saving_description": "通过阻止附件自动加载来保存数据。",
+      "enable_data_saving_description": "通过阻止附件自动加载来节省数据。",
       "enable_pinch_to_zoom": "启用双指缩放功能",
       "github_cards": "GitHub 卡片",
+      "github_cards_description": "当发布一个 Github 链接时，将会显示一个可访问的 HTML 卡片，而不是图片。",
       "grayscale_mode": "灰色模式",
       "hide_account_hover_card": "隐藏用户悬浮卡",
       "hide_alt_indi_on_posts": "隐藏帖文上的描述按钮",
@@ -449,9 +510,14 @@
       "hide_username_emojis_description": "隐藏时间线上用户的表情符号。表情符号仍然会在用户个人资料中展示。",
       "label": "首选项",
       "title": "实验功能",
+      "use_star_favorite_icon": "使用星标图标代替心形图标",
       "user_picker": "用户选择器",
+      "user_picker_description": "在左下角显示所有已登录账户的头像，以便你可以快速在它们之间切换。",
       "virtual_scroll": "虚拟滚动",
-      "wellbeing": "社交偏好"
+      "virtual_scroll_description": "在时间线中使用虚拟列表，这样可以高效地渲染更多的贴文。",
+      "wellbeing": "社交偏好",
+      "zen_mode": "禅模式",
+      "zen_mode_description": "除非鼠标光标悬停在它们上面，否则隐藏侧边栏。同时也隐藏时间线上的一些元素。"
     },
     "profile": {
       "appearance": {
@@ -495,6 +561,10 @@
     "uploading": "上传中..."
   },
   "status": {
+    "account": {
+      "suspended_message": "该账户已被暂停使用",
+      "suspended_show": "无论如何都要展示内容吗?"
+    },
     "boosted_by": "被转发",
     "edited": "在 {0} 编辑了",
     "favourited_by": "被喜欢",
@@ -516,6 +586,7 @@
     "replying_to": "回复{0}",
     "show_full_thread": "显示完整贴文串",
     "someone": "某人",
+    "spoiler_media_hidden": "媒体已被隐藏",
     "spoiler_show_less": "隐藏",
     "spoiler_show_more": "显示更多",
     "thread": "帖文串",

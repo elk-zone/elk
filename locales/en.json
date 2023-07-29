@@ -51,6 +51,7 @@
     "boost_count": "{0}",
     "boosted": "Boosted",
     "clear_publish_failed": "Clear publish errors",
+    "clear_save_failed": "Clear save errors",
     "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
@@ -557,6 +558,7 @@
     "loading": "Loading...",
     "publish_failed": "Publish failed",
     "publishing": "Publishing",
+    "save_failed": "Save failed",
     "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },

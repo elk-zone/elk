@@ -51,6 +51,7 @@
     "boost_count": "{0}",
     "boosted": "ブースト済み",
     "clear_publish_failed": "投稿エラーをクリア",
+    "clear_save_failed": "保存エラーをクリア",
     "clear_upload_failed": "ファイルアップロードエラーをクリア",
     "close": "閉じる",
     "compose": "投稿",
@@ -499,6 +500,7 @@
     "loading": "読込中...",
     "publish_failed": "投稿に失敗しました",
     "publishing": "投稿中",
+    "save_failed": "保存に失敗しました",
     "upload_failed": "アップロードに失敗しました",
     "uploading": "更新中..."
   },

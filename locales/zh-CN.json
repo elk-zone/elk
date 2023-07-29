@@ -492,8 +492,8 @@
     "notifications_settings": "通知",
     "preferences": {
       "enable_autoplay": "开启自动播放",
-      "enable_data_saving": "启用数据保存",
-      "enable_data_saving_description": "通过阻止附件自动加载来保存数据。",
+      "enable_data_saving": "启用数据流量节省",
+      "enable_data_saving_description": "通过阻止附件自动加载来节省数据流量。",
       "enable_pinch_to_zoom": "启用双指缩放功能",
       "github_cards": "GitHub 卡片",
       "github_cards_description": "在一个 GitHub 链接被发布后，会显示一个可访问的HTML卡片，同时会使用社交图谱来替换掉社交形象",

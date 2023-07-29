@@ -131,7 +131,7 @@ watch(shouldLoadAttachment, () => {
           :poster="videoThumbnail"
           muted
           loop
-          playsinline
+          :playsinline="isSmallScreen"
           :controls="shouldLoadAttachment"
           rounded-lg
           object-cover

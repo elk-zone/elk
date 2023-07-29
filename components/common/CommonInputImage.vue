@@ -22,7 +22,7 @@ const emit = defineEmits<{
   (event: 'error', code: number, message: string): void
 }>()
 
-const { modelValue: file } = defineModel<{
+const { modelValue: file } = defineModels<{
   modelValue: FileWithHandle | null
 }>()
 
@@ -34,7 +34,7 @@ const previewImage = ref('')
 /** The current images on display */
 const imageSrc = computed<string>(() => previewImage.value || defaultImage.value)
 
-const pickImage = async () => {
+async function pickImage() {
   if (process.server)
     return
   const image = await fileOpen({

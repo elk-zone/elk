@@ -34,8 +34,9 @@
     "posts": "Publicaciones",
     "posts_count": "{0} Publicaciones|{0} Publicación|{0} Publicaciones",
     "profile_description": "Encabezado del perfil de {0}",
+    "profile_personal_note": "Nota Personal",
     "profile_unavailable": "Perfil no disponible",
-    "request_follow": "Solicitud para seguirte",
+    "request_follow": "Solicitar seguirle",
     "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
     "unmute": "Dejar de silenciar",
@@ -54,6 +55,7 @@
     "close": "Cerrar",
     "compose": "Redactar",
     "confirm": "Confirmar",
+    "done": "Hecho",
     "edit": "Editar",
     "enter_app": "Entrar",
     "favourite": "Favorita",
@@ -90,12 +92,15 @@
     "switch_account": "Cambiar a {0}",
     "switch_account_desc": "Cambiar a otra cuenta",
     "toggle_dark_mode": "Cambiar a modo oscuro",
-    "toggle_zen_mode": "Cambiar a modo zen"
+    "toggle_zen_mode": "Cambiar a modo Zen"
   },
   "common": {
     "end_of_list": "Fin",
     "error": "ERROR",
+    "fetching": "Cargando...",
     "in": "en",
+    "no_bookmarks": "Sin publicaciones marcadas aún",
+    "no_favourites": "Sin publicaciones favoritas aún",
     "not_found": "404 No Encontrado",
     "offline_desc": "Al parecer no tienes conexión a internet. Por favor, comprueba tu conexión a la red."
   },
@@ -198,7 +203,32 @@
     "remove_account": "Eliminar cuenta de la lista",
     "save": "Guardar"
   },
+  "magic_keys": {
+    "dialog_header": "Atajos de teclado",
+    "groups": {
+      "actions": {
+        "boost": "Retootear",
+        "command_mode": "Modo comando",
+        "compose": "Redactar",
+        "favourite": "Favorito",
+        "title": "Acciones"
+      },
+      "media": {
+        "title": "Multimedia"
+      },
+      "navigation": {
+        "go_to_home": "Inicio",
+        "go_to_notifications": "Notificaciones",
+        "next_status": "Siguiente estado",
+        "previous_status": "Anterior estado",
+        "shortcut_help": "Atajo de ayuda",
+        "title": "Navegación"
+      }
+    },
+    "sequence_then": "seguido de"
+  },
   "menu": {
+    "add_personal_note": "Agregar una nota personal a {0}",
     "block_account": "Bloquear a {0}",
     "block_domain": "Bloquear dominio {0}",
     "copy_link_to_post": "Copiar enlace",
@@ -213,6 +243,8 @@
     "mute_conversation": "Silenciar publicación",
     "open_in_original_site": "Abrir página original",
     "pin_on_profile": "Fijar en tu perfil",
+    "remove_personal_note": "Eliminar nota personal de {0}",
+    "report_account": "Reportar a {0}",
     "share_post": "Compartir esta publicación",
     "show_favourited_and_boosted_by": "Mostrar quien marcó como favorita y quien retooteó",
     "show_reblogs": "Mostrar retoots de {0}",
@@ -224,9 +256,13 @@
     "translate_post": "Traducir",
     "unblock_account": "Desbloquear a {0}",
     "unblock_domain": "Desbloquear dominio {0}",
+    "unfollow_account": "Dejar de seguir a {0}",
     "unmute_account": "Dejar de silenciar a {0}",
     "unmute_conversation": "Dejar de silenciar la publicación",
     "unpin_on_profile": "Desfijar del perfil"
+  },
+  "modals": {
+    "aria_label_close": "Cerrar"
   },
   "nav": {
     "back": "Regresar",
@@ -262,6 +298,7 @@
     "followed_you_count": "{0} personas te siguieron|{0} persona te siguió|{0} personas te siguieron",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "retooteó tu publicación",
+    "reported": "{0} reportó {1}",
     "request_to_follow": "ha solicitado seguirte",
     "signed_up": "registrado",
     "update_status": "ha actualizado su publicación"
@@ -273,10 +310,26 @@
     "replying": "Respondiendo",
     "the_thread": "el hilo"
   },
+  "polls": {
+    "allow_multiple": "Permitir múltiples opciones",
+    "cancel": "Cancelar",
+    "create": "Crear encuesta",
+    "disallow_multiple": "No permitir múltiples opciones",
+    "expiration": "Caducidad de la encuesta",
+    "hide_votes": "Ocultar el total de votos hasta el final de la encuesta",
+    "option_placeholder": "Opción de encuesta {current}/{max}",
+    "remove_option": "Eliminar opción",
+    "settings": "Opciones de la encuesta",
+    "show_votes": "Mostrar siempre el total de votos"
+  },
   "pwa": {
     "dismiss": "Descartar",
     "install": "Instalar",
     "install_title": "Instalar Elk",
+    "screenshots": {
+      "dark": "Captura de pantalla de Elk ejecutándose en modo oscuro",
+      "light": "Captura de pantalla de Elk ejecutándose en modo claro"
+    },
     "title": "Nueva versión de Elk disponible",
     "update": "Actualizar",
     "update_available_short": "Actualiza Elk",
@@ -302,6 +355,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "Comentarios adicionales",
+    "another_server": "El usuario que estás reportando pertenece a otro servidor",
+    "anything_else": "¿Hay algo más que creas debamos saber?",
+    "block_desc": "No podrás ver más publicaciones de este usuario. No podrán ver tus publicaciones o seguirte. Te indicarán que están bloqueados.",
+    "dontlike": "No me gusta",
+    "dontlike_desc": "No es algo que quieres ver",
+    "forward": "Si, continuar con el reporte a {0}",
+    "forward_question": "¿Deseas enviar también una copia anónima de este reporte a ese servidor?",
+    "further_actions": {
+      "limit": {
+        "description": "Estas son las opciones para controlar lo que ves:",
+        "title": "¿No quieres ver esto?"
+      },
+      "report": {
+        "description": "Mientras lo revisamos, estas son las acciones que puedes tomar:",
+        "title": "Gracias por reportar, lo investigaremos."
+      }
+    },
+    "limiting": "Limitar a {0}",
+    "mute_desc": "No podrás ver más publicaciones de este usuario. Aún pueden seguirte y ver tus publicaciones. No sabrán que están silenciados.",
+    "other": "Es algo más",
+    "other_desc": "La novedad no encaja en otras categorías.",
+    "reporting": "Reportar a {0}",
+    "select_many": "Selecciona todas las que correspondan:",
+    "select_one": "Selecciona la opción más acorde:",
+    "select_posts": "¿Hay alguna publicación de apoyo para este reporte?",
+    "select_posts_other": "¿Hay alguna otra publicación de apoyo para este reporte?",
+    "spam": "Es spam",
+    "spam_desc": "Enlaces maliciosos, interacciones falsas o respuestas repetitivas",
+    "submit": "Enviar reporte",
+    "unfollow_desc": "Ya no verás las publicaciones de este usuario en tu línea de tiempo. Es posible que aún veas sus publicaciones en otros lugares.",
+    "violation": "Viola una o más reglas del servidor.",
+    "whats_wrong_account": "Cuéntanos qué sucede con esta cuenta",
+    "whats_wrong_post": "Cuéntanos qué sucede con esta publicación."
   },
   "search": {
     "search_desc": "Buscar personas y etiquetas",
@@ -373,6 +462,7 @@
         "save_settings": "Guardar cambios",
         "subscription_error": {
           "clear_error": "Limpiar error",
+          "error_hint": "Puede consultar una lista de preguntas más frecuentes para tratar de solucionar el problema: {0}.",
           "invalid_vapid_key": "La clave pública VAPID parece no ser válida.",
           "permission_denied": "Permiso denegado: habilita las notificaciones en tu navegador.",
           "repo_link": "Repositorio de Elk en GitHub",
@@ -402,6 +492,8 @@
     "notifications_settings": "Notificaciones",
     "preferences": {
       "enable_autoplay": "Habilitar reproducción automática",
+      "enable_data_saving": "Habilitar el ahorro de datos",
+      "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
       "enable_pinch_to_zoom": "Habilitar pellizcar para hacer zoom",
       "github_cards": "Tarjetas GitHub",
       "grayscale_mode": "Modo escala de grises",
@@ -410,15 +502,19 @@
       "hide_boost_count": "Ocultar contador de retoots",
       "hide_favorite_count": "Ocultar número de publicaciones favoritas",
       "hide_follower_count": "Ocultar número de seguidores",
+      "hide_news": "Ocultar noticias",
       "hide_reply_count": "Ocultar número de respuestas",
       "hide_translation": "Ocultar traducción",
       "hide_username_emojis": "Ocultar emojis en el nombre de usuario",
-      "hide_username_emojis_description": "Se ocultan los emojis en el nombre de usuario en las líneas de tiempo. Los emojis seguirán siendo visibles en sus perfiles.",
+      "hide_username_emojis_description": "Oculta los emojis de los nombres de usuarios en la línea de tiempo. Los emojis permanecerán visibles en sus perfiles.",
       "label": "Preferencias",
       "title": "Funcionalidades experimentales",
+      "use_star_favorite_icon": "Utilizar icono de estrella para favoritos",
       "user_picker": "Selector de usuarios",
       "virtual_scroll": "Desplazamiento virtual",
-      "wellbeing": "Bienestar"
+      "wellbeing": "Bienestar",
+      "zen_mode": "Modo Zen",
+      "zen_mode_description": "Oculta las secciones laterales de la interfaz a menos que el cursor del ratón esté sobre ellas. Oculta también algunos elementos de las líneas de tiempo."
     },
     "profile": {
       "appearance": {
@@ -428,6 +524,8 @@
         "label": "Apariencia",
         "profile_metadata": "Metadatos de perfil",
         "profile_metadata_desc": "Puede mostrar hasta 4 elementos en forma de tabla en tu perfil",
+        "profile_metadata_label": "Texto",
+        "profile_metadata_value": "Contenido",
         "title": "Editar perfil"
       },
       "featured_tags": {
@@ -460,6 +558,10 @@
     "uploading": "Subiendo..."
   },
   "status": {
+    "account": {
+      "suspended_message": "La cuenta de este mensaje ha sido suspendida.",
+      "suspended_show": "¿Mostrar contenido de todos modos?"
+    },
     "boosted_by": "Retooteado por",
     "edited": "Editado {0}",
     "favourited_by": "Marcado como favorita por",
@@ -481,6 +583,7 @@
     "replying_to": "Respondiendo a {0}",
     "show_full_thread": "Mostrar hilo completo",
     "someone": "alguien",
+    "spoiler_media_hidden": "Multimedia oculta",
     "spoiler_show_less": "Mostrar menos",
     "spoiler_show_more": "Mostrar más",
     "thread": "Hilo",
@@ -559,6 +662,7 @@
     "explore_posts_intro": "Estos mensajes de este y otros servidores de la red descentralizada están siendo tendencia ahora mismo en este servidor.",
     "explore_tags_intro": "Estas etiquetas están siendo tendencia ahora mismo entre los usuarios de este y otros servidores de la red descentralizada.",
     "open_editor_tools": "Herramientas de edición",
+    "pick_an_icon": "Selecciona un icono",
     "publish_failed": "Cierra los mensajes fallidos en la parte superior del editor para volver a publicar",
     "toggle_bold": "Cambiar a negrita",
     "toggle_code_block": "Cambiar a bloque de código",

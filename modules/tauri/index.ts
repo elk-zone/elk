@@ -1,4 +1,4 @@
-import { rm } from 'fs/promises'
+import { rm } from 'node:fs/promises'
 import { addImports, addImportsSources, addPlugin, createResolver, defineNuxtModule, useNuxt } from '@nuxt/kit'
 
 export default defineNuxtModule({

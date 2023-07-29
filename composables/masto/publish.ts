@@ -34,7 +34,26 @@ export function usePublish(options: {
 
   const shouldExpanded = $computed(() => expanded || isExpanded || !isEmpty)
   const isPublishDisabled = $computed(() => {
-    return isEmpty || isUploading || isSending || (draft.attachments.length === 0 && !draft.params.status) || failedMessages.length > 0
+    const firstEmptyInputIndex = draft.params.poll?.options.findIndex(option => option.trim().length === 0)
+
+    return isEmpty
+          || isUploading
+          || isSending
+          || (draft.attachments.length === 0 && !draft.params.status)
+          || failedMessages.length > 0
+          || (draft.attachments.length > 0 && draft.params.poll !== null && draft.params.poll !== undefined)
+          || ((draft.params.poll !== null && draft.params.poll !== undefined)
+              && (
+                (firstEmptyInputIndex !== -1
+                 && firstEmptyInputIndex !== draft.params.poll.options.length - 1
+                )
+                || draft.params.poll.options.findLastIndex(option => option.trim().length > 0) + 1 < 2
+                || (new Set(draft.params.poll.options).size !== draft.params.poll.options.length)
+                || (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined
+                    && draft.params.poll.options.find(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption) !== undefined
+                )
+              )
+          )
   })
 
   watch(() => draft, () => {
@@ -50,12 +69,29 @@ export function usePublish(options: {
     if (draft.mentions?.length)
       content = `${draft.mentions.map(i => `@${i}`).join(' ')} ${content}`
 
+    let poll
+
+    if (draft.params.poll) {
+      let options = draft.params.poll.options
+
+      if (currentInstance.value?.configuration !== undefined
+        && (
+          options.length < currentInstance.value.configuration.polls.maxOptions
+          || options[options.length - 1].trim().length === 0
+        )
+      )
+        options = options.slice(0, options.length - 1)
+
+      poll = { ...draft.params.poll, options }
+    }
+
     const payload = {
       ...draft.params,
       spoilerText: publishSpoilerText,
       status: content,
       mediaIds: draft.attachments.map(a => a.id),
       language: draft.params.language || preferredLanguage,
+      poll,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.v1.CreateStatusParams
 
@@ -120,6 +156,63 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
   let failedAttachments = $ref<MediaAttachmentUploadError[]>([])
   const dropZoneRef = ref<HTMLDivElement>()
 
+  const maxPixels = $computed(() => {
+    return currentInstance.value?.configuration?.mediaAttachments?.imageMatrixLimit
+        ?? 4096 ** 2
+  })
+
+  const loadImage = (inputFile: Blob) => new Promise<HTMLImageElement>((resolve, reject) => {
+    const url = URL.createObjectURL(inputFile)
+    const img = new Image()
+
+    img.onerror = err => reject(err)
+    img.onload = () => resolve(img)
+
+    img.src = url
+  })
+
+  function resizeImage(img: HTMLImageElement, type = 'image/png'): Promise<Blob | null> {
+    const { width, height } = img
+
+    const aspectRatio = (width as number) / (height as number)
+
+    const canvas = document.createElement('canvas')
+
+    const resizedWidth = canvas.width = Math.round(Math.sqrt(maxPixels * aspectRatio))
+    const resizedHeight = canvas.height = Math.round(Math.sqrt(maxPixels / aspectRatio))
+
+    const context = canvas.getContext('2d')
+
+    context?.drawImage(img, 0, 0, resizedWidth, resizedHeight)
+
+    return new Promise((resolve) => {
+      canvas.toBlob(resolve, type)
+    })
+  }
+
+  async function processImageFile(file: File) {
+    try {
+      const image = await loadImage(file) as HTMLImageElement
+
+      if (image.width * image.height > maxPixels)
+        file = await resizeImage(image, file.type) as File
+
+      return file
+    }
+    catch (e) {
+      // Resize failed, just use the original file
+      console.error(e)
+      return file
+    }
+  }
+
+  async function processFile(file: File) {
+    if (file.type.startsWith('image/'))
+      return await processImageFile(file)
+
+    return file
+  }
+
   async function uploadAttachments(files: File[]) {
     isUploading = true
     failedAttachments = []
@@ -131,7 +224,7 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
         isExceedingAttachmentLimit = false
         try {
           const attachment = await client.v1.mediaAttachments.create({
-            file,
+            file: await processFile(file),
           })
           draft.attachments.push(attachment)
         }

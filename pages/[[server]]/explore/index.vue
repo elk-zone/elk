@@ -7,7 +7,7 @@ const paginator = useMastoClient().v1.trends.listStatuses()
 
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS, false)
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('tab.posts')} | ${t('nav.explore')}`,
 })
 </script>

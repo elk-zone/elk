@@ -34,8 +34,9 @@
     "posts": "Wpisy",
     "posts_count": "{0} Wpisów|{0} Wpis|{0} Wpisy|{0} Wpisów",
     "profile_description": "nagłówek profilu {0}",
+    "profile_personal_note": "Notatka osobista",
     "profile_unavailable": "Profil niedostępny",
-    "request_follow": "Prośba o śledzenie",
+    "request_follow": "Prośba o możliwość obserwowania",
     "unblock": "Odblokuj",
     "unfollow": "Przestań obserwować",
     "unmute": "Wyłącz wyciszenie",
@@ -95,7 +96,10 @@
   "common": {
     "end_of_list": "Koniec listy",
     "error": "BŁĄD",
+    "fetching": "Pobieranie...",
     "in": "w",
+    "no_bookmarks": "Brak zapisanych postów",
+    "no_favourites": "Brak polubionych postów",
     "not_found": "404 Nie Znaleziono",
     "offline_desc": "Wygląda na to, że jesteś offline. Sprawdź połączenie sieciowe."
   },
@@ -198,7 +202,32 @@
     "remove_account": "Usuń konto z listy",
     "save": "Zapisz zmiany"
   },
+  "magic_keys": {
+    "dialog_header": "Skróty klawiszowe",
+    "groups": {
+      "actions": {
+        "boost": "Podbij",
+        "command_mode": "Tryb poleceń",
+        "compose": "Napisz",
+        "favourite": "Ulubione",
+        "title": "Działania"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Strona główna",
+        "go_to_notifications": "Powiadomienia",
+        "next_status": "Następny status",
+        "previous_status": "Poprzedni status",
+        "shortcut_help": "Pomoc skróty klawiszowe",
+        "title": "Nawigacja"
+      }
+    },
+    "sequence_then": "następny"
+  },
   "menu": {
+    "add_personal_note": "Dodaj osobistą notatkę do {0}",
     "block_account": "Zablokuj {0}",
     "block_domain": "Zablokuj domenę {0}",
     "copy_link_to_post": "Skopiuj odnośnik do wpisu",
@@ -213,6 +242,7 @@
     "mute_conversation": "Wycisz ten wpis",
     "open_in_original_site": "Otwórz na oryginalnej stronie",
     "pin_on_profile": "Przypnij do profilu",
+    "remove_personal_note": "Usuń osobistą notatkę z {0}",
     "share_post": "Udostępnij ten wpis",
     "show_favourited_and_boosted_by": "Pokaż, kto dodał do ulubionych i udostępnił",
     "show_reblogs": "Pokaż podbicia od {0}",
@@ -227,6 +257,9 @@
     "unmute_account": "Wyłącz wyciszenie {0}",
     "unmute_conversation": "Wyłącz wyciszenie tego wpisu",
     "unpin_on_profile": "Odepnij z profilu"
+  },
+  "modals": {
+    "aria_label_close": "Zamknij"
   },
   "nav": {
     "back": "Wróć",
@@ -263,7 +296,7 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "udostępnił Twój wpis",
     "request_to_follow": "chciałby Cię śledzić",
-    "signed_up": "zapisany",
+    "signed_up": "zarejestrował(-a) się",
     "update_status": "zaktualizował swój wpis"
   },
   "placeholder": {
@@ -373,9 +406,10 @@
         "save_settings": "Zapisz ustawienia",
         "subscription_error": {
           "clear_error": "Usuń błąd",
+          "error_hint": "Możesz zapoznać się z listą najczęściej zadawanych pytań, aby spróbować rozwiązać problem: {0}.",
           "invalid_vapid_key": "Wydaje się, że klucz publiczny VAPID jest nieprawidłowy.",
           "permission_denied": "Brak uprawnień: włącz powiadomienia w przeglądarce.",
-          "repo_link": "Repozytorium Elk w Github",
+          "repo_link": "Repozytorium Elk w GitHub",
           "request_error": "Wystąpił błąd podczas żądania subskrypcji, spróbuj ponownie, a jeśli błąd będzie się powtarzał, zgłoś problem do repozytorium Elk.",
           "title": "Nie można zasubskrybować powiadomień push",
           "too_many_registrations": "Ze względu na ograniczenia przeglądarki Elk nie może korzystać z usługi powiadomień push dla wielu kont na różnych serwerach. Powinieneś anulować subskrypcję powiadomień push na innym koncie i spróbować ponownie.",
@@ -402,6 +436,8 @@
     "notifications_settings": "Powiadomienia",
     "preferences": {
       "enable_autoplay": "Włącz autoodtwarzanie",
+      "enable_data_saving": "Włącz oszczędzanie danych",
+      "enable_data_saving_description": "Oszczędzaj dane, zapobiegając automatycznemu ładowaniu załączników.",
       "enable_pinch_to_zoom": "Włącz powiększanie za pomocą gestów",
       "github_cards": "GitHub Cards",
       "grayscale_mode": "Wpisy w odcieniach szarości",
@@ -410,15 +446,18 @@
       "hide_boost_count": "Ukryj liczbę podbić",
       "hide_favorite_count": "Ukryj liczbę polubień",
       "hide_follower_count": "Ukryj liczbę obserwujących",
+      "hide_news": "Ukryj aktualności",
       "hide_reply_count": "Ukryj liczbę odpowiedzi",
       "hide_translation": "Ukryj funkcję tłumaczenia",
       "hide_username_emojis": "Ukryj emotikony w nazwie użytkownika",
       "hide_username_emojis_description": "Ukrywa emotikony przed nazwami użytkowników na osi czasu. Emotikony będą nadal widoczne w ich profilach.",
       "label": "Preferencje",
       "title": "Funkcje eksperymentalne",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling",
-      "wellbeing": "Dla dobrego samopoczucia"
+      "user_picker": "Wybór użytkownika",
+      "virtual_scroll": "Wirtualne przewijanie",
+      "wellbeing": "Dla dobrego samopoczucia",
+      "zen_mode": "Tryb zen",
+      "zen_mode_description": "Ukrywaj boczne panele, chyba że kursor myszy jest nad nimi. Ukrywaj także niektóre elementy z osi czasu."
     },
     "profile": {
       "appearance": {
@@ -462,6 +501,10 @@
     "uploading": "Przesyłanie..."
   },
   "status": {
+    "account": {
+      "suspended_message": "Konto związane z tym statusem zostało zawieszone.",
+      "suspended_show": "Mimo wszystko wyświetlić zawartość?"
+    },
     "boosted_by": "Podbite przez",
     "edited": "Edytowano {0}",
     "favourited_by": "Polubione przez",
@@ -561,6 +604,7 @@
     "explore_posts_intro": "Te wpisy z tego i innych serwerów w zdecentralizowanej sieci zyskują teraz popularność na tym serwerze.",
     "explore_tags_intro": "Te hasztagi zyskują obecnie na popularności wśród osób na tym i innych serwerach zdecentralizowanej sieci.",
     "open_editor_tools": "Narzędzia edycji",
+    "pick_an_icon": "Wybierz ikonę",
     "publish_failed": "Zamknij komunikaty o błędzie u góry edytora, aby ponownie opublikować wpisy",
     "toggle_bold": "Zmień na pogrubienie",
     "toggle_code_block": "Przełączenie do trybu kodowania",

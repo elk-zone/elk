@@ -145,7 +145,6 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
   const tree = parseMastodonHTML(html, {
     emojis: customEmojis,
     markdown: true,
-    replaceUnicodeEmoji: false,
     convertMentionLink: true,
   })
   return render(tree)
@@ -161,6 +160,15 @@ export function htmlToText(html: string) {
     return ''
   }
 }
+
+export function recursiveTreeToText(input: Node): string {
+  if (input && input.children && input.children.length > 0)
+    return input.children.map((n: Node) => recursiveTreeToText(n)).join('')
+  else
+    return treeToText(input)
+}
+
+const emojiIdNeedsWrappingRE = /^(\d|\w|-|_)+$/
 
 export function treeToText(input: Node): string {
   let pre = ''
@@ -211,8 +219,10 @@ export function treeToText(input: Node): string {
     body = (input.children as Node[]).map(n => treeToText(n)).join('')
 
   if (input.name === 'img' || input.name === 'picture') {
-    if (input.attributes.class?.includes('custom-emoji'))
-      return `:${input.attributes['data-emoji-id']}:`
+    if (input.attributes.class?.includes('custom-emoji')) {
+      const id = input.attributes['data-emoji-id'] ?? input.attributes.alt ?? input.attributes.title ?? 'unknown'
+      return id.match(emojiIdNeedsWrappingRE) ? `:${id}:` : id
+    }
     if (input.attributes.class?.includes('iconify-emoji'))
       return input.attributes.alt
   }
@@ -445,7 +455,7 @@ function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji
 }
 
 const _markdownReplacements: [RegExp, (c: (string | Node)[]) => Node][] = [
-  [/\*\*\*(.*?)\*\*\*/g, c => h('b', null, [h('em', null, c)])],
+  [/\*\*\*(.*?)\*\*\*/g, ([c]) => h('b', null, [h('em', null, c)])],
   [/\*\*(.*?)\*\*/g, c => h('b', null, c)],
   [/\*(.*?)\*/g, c => h('em', null, c)],
   [/~~(.*?)~~/g, c => h('del', null, c)],

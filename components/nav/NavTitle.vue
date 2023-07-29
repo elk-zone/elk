@@ -5,7 +5,7 @@ const back = ref<any>('')
 
 const nuxtApp = useNuxtApp()
 
-const onClickLogo = () => {
+function onClickLogo() {
   nuxtApp.hooks.callHook('elk-logo:click')
 }
 
@@ -29,20 +29,22 @@ router.afterEach(() => {
       @click.prevent="onClickLogo"
     >
       <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
-      <div hidden xl:block text-secondary>
+      <div v-show="isHydrated" hidden xl:block text-secondary>
         {{ $t('app_name') }} <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
       </div>
     </NuxtLink>
     <div
-      hidden xl:flex items-center me-8 mt-2
-      :class="{ 'pointer-events-none op0': !back || back === '/', 'xl:flex': $route.name !== 'tag' }"
+      hidden xl:flex items-center me-8 mt-2 gap-1
     >
-      <NuxtLink
-        :aria-label="$t('nav.back')"
-        @click="$router.go(-1)"
-      >
-        <div i-ri:arrow-left-line class="rtl-flip" btn-text />
-      </NuxtLink>
+      <CommonTooltip :content="$t('nav.back')">
+        <NuxtLink
+          :aria-label="$t('nav.back')"
+          :class="{ 'pointer-events-none op0': !back || back === '/', 'xl:flex': $route.name !== 'tag' }"
+          @click="$router.go(-1)"
+        >
+          <div text-xl i-ri:arrow-left-line class="rtl-flip" btn-text />
+        </NuxtLink>
+      </CommonTooltip>
     </div>
   </div>
 </template>

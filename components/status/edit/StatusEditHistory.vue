@@ -8,18 +8,19 @@ const { status } = defineProps<{
 
 const paginator = useMastoClient().v1.statuses.listHistory(status.id)
 
-const showHistory = (edit: mastodon.v1.StatusEdit) => {
+function showHistory(edit: mastodon.v1.StatusEdit) {
   openEditHistoryDialog(edit)
 }
 const timeAgoOptions = useTimeAgoOptions()
 
 // TODO: rework, this is only reversing the first page of edits
-const reverseHistory = (items: mastodon.v1.StatusEdit[]) =>
-  [...items].reverse()
+function reverseHistory(items: mastodon.v1.StatusEdit[]) {
+  return [...items].reverse()
+}
 </script>
 
 <template>
-  <CommonPaginator :paginator="paginator" key-prop="createdAt" :preprocess="reverseHistory" :buffer="0">
+  <CommonPaginator :paginator="paginator" key-prop="createdAt" :preprocess="reverseHistory">
     <template #default="{ items, item, index }">
       <CommonDropdownItem
         px="0.5"

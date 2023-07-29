@@ -2,7 +2,7 @@
 const { client } = $(useMasto())
 const paginator = client.v1.domainBlocks.list()
 
-const unblock = async (domain: string) => {
+async function unblock(domain: string) {
   await client.v1.domainBlocks.unblock(domain)
 }
 </script>

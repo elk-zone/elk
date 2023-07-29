@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
-import { ofetch } from 'ofetch'
 import { useForm } from 'slimeform'
 import { parse } from 'ultrahtml'
-import type { Component } from 'vue'
 
 definePageMeta({
   middleware: 'auth',
@@ -11,7 +9,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.profile.appearance.title')} | ${t('nav.settings')}`,
 })
 
@@ -27,7 +25,7 @@ const onlineSrc = $computed(() => ({
   header: account?.header || '',
 }))
 
-const { form, reset, submitter, isDirty, dirtyFields, isError } = useForm({
+const { form, reset, submitter, isDirty, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
@@ -49,6 +47,7 @@ const { form, reset, submitter, isDirty, dirtyFields, isError } = useForm({
       fieldsAttributes,
 
       bot: account?.bot ?? false,
+      locked: account?.locked ?? false,
 
       // These look more like account and privacy settings than appearance settings
       // discoverable: false,
@@ -73,11 +72,17 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
     return
   }
 
+  const server = currentUser.value!.server
+
+  if (!res.account.acct.includes('@'))
+    res.account.acct = `${res.account.acct}@${server}`
+
+  cacheAccount(res.account, server, true)
   currentUser.value!.account = res.account
   reset()
 })
 
-const refreshInfo = async () => {
+async function refreshInfo() {
   if (!currentUser.value)
     return
   // Keep the information to be edited up to date
@@ -139,13 +144,22 @@ onReactivated(refreshInfo)
               :account="{ ...account, displayName: form.displayName }"
               font-bold sm:text-2xl text-xl
             />
-            <label>
-              <AccountBotIndicator show-label px2 py1>
-                <template #prepend>
-                  <input v-model="form.bot" type="checkbox" cursor-pointer>
-                </template>
-              </AccountBotIndicator>
-            </label>
+            <div flex="~ row" items-center gap2>
+              <label>
+                <AccountLockIndicator show-label px2 py1>
+                  <template #prepend>
+                    <input v-model="form.locked" type="checkbox" cursor-pointer>
+                  </template>
+                </AccountLockIndicator>
+              </label>
+              <label>
+                <AccountBotIndicator show-label px2 py1>
+                  <template #prepend>
+                    <input v-model="form.bot" type="checkbox" cursor-pointer>
+                  </template>
+                </AccountBotIndicator>
+              </label>
+            </div>
           </div>
           <AccountHandle :account="account" />
         </div>

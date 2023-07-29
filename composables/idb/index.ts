@@ -1,4 +1,4 @@
-import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
+import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
 import type { Ref } from 'vue'
 import type { UseIDBOptions } from '@vueuse/integrations/useIDBKeyval'
 import { del, get, set, update } from '~/utils/elk-idb'
@@ -7,7 +7,7 @@ const isIDBSupported = !process.test && typeof indexedDB !== 'undefined'
 
 export async function useAsyncIDBKeyval<T>(
   key: IDBValidKey,
-  initialValue: MaybeComputedRef<T>,
+  initialValue: MaybeRefOrGetter<T>,
   options: UseIDBOptions = {},
 ): Promise<RemovableRef<T>> {
   const {

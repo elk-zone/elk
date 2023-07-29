@@ -1,7 +1,7 @@
 import { withoutProtocol } from 'ufo'
 import type { mastodon } from 'masto'
 import type { EffectScope, Ref } from 'vue'
-import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
+import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
 import type { ElkMasto } from './masto/masto'
 import type { UserLogin } from '~/types'
 import type { Overwrite } from '~/types/utils'
@@ -19,7 +19,7 @@ import { useAsyncIDBKeyval } from '~/composables/idb'
 
 const mock = process.mock
 
-const initializeUsers = (): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>> | Ref<UserLogin[]> | RemovableRef<UserLogin[]> => {
+function initializeUsers(): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>> | Ref<UserLogin[]> | RemovableRef<UserLogin[]> {
   let defaultUsers = mock ? [mock.user] : []
 
   // Backward compatibility with localStorage
@@ -52,7 +52,9 @@ export type ElkInstance = Partial<mastodon.v1.Instance> & {
   /** support GoToSocial */
   accountDomain?: string | null
 }
-export const getInstanceCache = (server: string): mastodon.v1.Instance | undefined => instanceStorage.value[server]
+export function getInstanceCache(server: string): mastodon.v1.Instance | undefined {
+  return instanceStorage.value[server]
+}
 
 export const currentUser = computed<UserLogin | undefined>(() => {
   if (currentUserHandle.value) {
@@ -109,9 +111,12 @@ if (process.client) {
   }, { immediate: true, flush: 'post' })
 }
 
-export const useUsers = () => users
-export const useSelfAccount = (user: MaybeComputedRef<mastodon.v1.Account | undefined>) =>
-  computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
+export function useUsers() {
+  return users
+}
+export function useSelfAccount(user: MaybeRefOrGetter<mastodon.v1.Account | undefined>) {
+  return computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
+}
 
 export const characterLimit = computed(() => currentInstance.value?.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
@@ -164,12 +169,62 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
   currentUserHandle.value = me.acct
 }
 
+const accountPreferencesMap = new Map<string, Partial<mastodon.v1.Preference>>()
+
+/**
+ * @returns `true` when user ticked the preference to always expand posts with content warnings
+ */
+export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentials) {
+  return accountPreferencesMap.get(account.acct)?.['reading:expand:spoilers'] ?? false
+}
+
+/**
+ * @returns `true` when user selected "Always show media" as Media Display preference
+ */
+export function getExpandMediaByDefault(account: mastodon.v1.AccountCredentials) {
+  return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'show_all' ?? false
+}
+
+/**
+ * @returns `true` when user selected "Always hide media" as Media Display preference
+ */
+export function getHideMediaByDefault(account: mastodon.v1.AccountCredentials) {
+  return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'hide_all' ?? false
+}
+
 export async function fetchAccountInfo(client: mastodon.Client, server: string) {
-  const account = await client.v1.accounts.verifyCredentials()
-  if (!account.acct.includes('@'))
-    account.acct = `${account.acct}@${server}`
+  // Try to fetch user preferences if the backend supports it.
+  const fetchPrefs = async (): Promise<Partial<mastodon.v1.Preference>> => {
+    try {
+      return await client.v1.preferences.fetch()
+    }
+    catch (e) {
+      console.warn(`Cannot fetch preferences: ${e}`)
+      return {}
+    }
+  }
+
+  const [account, preferences] = await Promise.all([
+    client.v1.accounts.verifyCredentials(),
+    fetchPrefs(),
+  ])
+
+  if (!account.acct.includes('@')) {
+    const webDomain = getInstanceDomainFromServer(server)
+    account.acct = `${account.acct}@${webDomain}`
+  }
+
+  // TODO: lazy load preferences
+  accountPreferencesMap.set(account.acct, preferences)
+
   cacheAccount(account, server, true)
   return account
+}
+
+export function getInstanceDomainFromServer(server: string) {
+  const instance = getInstanceCache(server)
+  const webDomain = instance ? getInstanceDomain(instance) : server
+  return webDomain
 }
 
 export async function refreshAccountInfo() {
@@ -293,10 +348,28 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
     const scope = effectScope(true)
     const value = scope.run(() => {
       const all = useLocalStorage<Record<string, T>>(key, {}, { deep: true })
+
       return computed(() => {
         const id = currentUser.value?.account.id
           ? currentUser.value.account.acct
           : '[anonymous]'
+
+        // Backward compatibility, respect webDomain in acct
+        // In previous versions, acct was username@server instead of username@webDomain
+        // for example: elk@m.webtoo.ls instead of elk@webtoo.ls
+        // if (!all.value[id]) { // TODO: add back this condition in the future
+        const [username, webDomain] = id.split('@')
+        const server = currentServer.value
+        if (webDomain && server && server !== webDomain) {
+          const oldId = `${username}@${server}`
+          const outdatedSettings = all.value[oldId]
+          if (outdatedSettings) {
+            const newAllValue = { ...all.value, [id]: outdatedSettings }
+            delete newAllValue[oldId]
+            all.value = newAllValue
+          }
+        }
+        // }
         all.value[id] = Object.assign(initial(), all.value[id] || {})
         return all.value[id]
       })

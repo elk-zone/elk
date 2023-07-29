@@ -42,7 +42,7 @@ export const supportedTranslationCodes = [
   'zh',
 ] as const
 
-export const getLanguageCode = () => {
+export function getLanguageCode() {
   let code = 'en'
   const getCode = (code: string) => code.replace(/-.*$/, '')
   if (!process.server) {

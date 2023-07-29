@@ -7,6 +7,7 @@ export interface CommonRouteTabOption {
   disabled?: boolean
   name?: string
   icon?: string
+  hide?: boolean
 }
 const { options, command, replace, preventScrollTop = false } = $defineProps<{
   options: CommonRouteTabOption[]
@@ -29,9 +30,9 @@ useCommands(() => command
 </script>
 
 <template>
-  <div flex w-full items-center lg:text-lg of-x-auto scrollbar-hide>
+  <div flex w-full items-center lg:text-lg of-x-auto scrollbar-hide border="b base">
     <template
-      v-for="(option, index) in options"
+      v-for="(option, index) in options.filter(item => !item.hide)"
       :key="option?.name || index"
     >
       <NuxtLink

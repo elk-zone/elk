@@ -3,7 +3,7 @@ const { editing } = defineProps<{
   editing?: boolean
 }>()
 
-let { modelValue } = $defineModel<{
+let { modelValue } = $defineModels<{
   modelValue: string
 }>()
 
@@ -11,7 +11,7 @@ const currentVisibility = $computed(() =>
   statusVisibilities.find(v => v.value === modelValue) || statusVisibilities[0],
 )
 
-const chooseVisibility = (visibility: string) => {
+function chooseVisibility(visibility: string) {
   modelValue = visibility
 }
 </script>

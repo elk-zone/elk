@@ -10,11 +10,18 @@ const { link = true, avatar = true } = defineProps<{
 const userSettings = useUserSettings()
 </script>
 
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+}
+</script>
+
 <template>
   <AccountHoverWrapper :account="account">
     <NuxtLink
       :to="link ? getAccountRoute(account) : undefined"
-      :class="link ? 'text-link-rounded -ml-1.8rem pl-1.8rem rtl-(ml0 pl-0.5rem -mr-1.8rem pr-1.8rem)' : ''"
+      :class="link ? 'text-link-rounded -ml-1.5rem pl-1.5rem rtl-(ml0 pl-0.5rem -mr-1.5rem pr-1.5rem)' : ''"
+      v-bind="$attrs"
       min-w-0 flex gap-2 items-center
     >
       <AccountAvatar v-if="avatar" :account="account" w-5 h-5 />

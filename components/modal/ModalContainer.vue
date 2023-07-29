@@ -7,9 +7,11 @@ import {
   isEditHistoryDialogOpen,
   isErrorDialogOpen,
   isFavouritedBoostedByDialogOpen,
+  isKeyboardShortcutsDialogOpen,
   isMediaPreviewOpen,
   isPreviewHelpOpen,
   isPublishDialogOpen,
+  isReportDialogOpen,
   isSigninDialogOpen,
 } from '~/composables/dialog'
 
@@ -32,21 +34,21 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   }
 })
 
-const handlePublished = (status: mastodon.v1.Status) => {
+function handlePublished(status: mastodon.v1.Status) {
   lastPublishDialogStatus.value = status
   isPublishDialogOpen.value = false
 }
 
-const handlePublishClose = () => {
+function handlePublishClose() {
   lastPublishDialogStatus.value = null
 }
 
-const handleConfirmChoice = (choice: ConfirmDialogChoice) => {
+function handleConfirmChoice(choice: ConfirmDialogChoice) {
   confirmDialogChoice.value = choice
   isConfirmDialogOpen.value = false
 }
 
-const handleFavouritedBoostedByClose = () => {
+function handleFavouritedBoostedByClose() {
   isFavouritedBoostedByDialogOpen.value = false
 }
 </script>
@@ -97,6 +99,12 @@ const handleFavouritedBoostedByClose = () => {
       @close="handleFavouritedBoostedByClose"
     >
       <StatusFavouritedBoostedBy />
+    </ModalDialog>
+    <ModalDialog v-model="isKeyboardShortcutsDialogOpen" max-w-full sm:max-w-140 md:max-w-170 lg:max-w-220 md:min-w-160>
+      <MagickeysKeyboardShortcuts @close="closeKeyboardShortcuts()" />
+    </ModalDialog>
+    <ModalDialog v-model="isReportDialogOpen" keep-alive max-w-175>
+      <ReportModal v-if="reportAccount" :account="reportAccount" :status="reportStatus" @close="closeReportDialog()" />
     </ModalDialog>
   </template>
 </template>

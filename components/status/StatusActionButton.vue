@@ -1,4 +1,8 @@
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const { as = 'button', command, disabled, content, icon } = defineProps<{
   text?: string | number
   content: string
@@ -6,19 +10,15 @@ const { as = 'button', command, disabled, content, icon } = defineProps<{
   icon: string
   activeIcon?: string
   hover: string
-  groupHover: string
+  elkGroupHover: string
   active?: boolean
   disabled?: boolean
   as?: string
   command?: boolean
 }>()
 
-defineOptions({
-  inheritAttrs: false,
-})
-
 defineSlots<{
-  text: {}
+  text: (props: {}) => void
 }>()
 
 const el = ref<HTMLDivElement>()
@@ -62,8 +62,8 @@ useCommand({
       <div
         rounded-full p2
         v-bind="disabled ? {} : {
-          'group-hover': groupHover,
-          'group-focus-visible': groupHover,
+          'elk-group-hover': elkGroupHover,
+          'group-focus-visible': elkGroupHover,
           'group-focus-visible:ring': '2 current',
         }"
       >

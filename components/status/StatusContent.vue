@@ -5,6 +5,8 @@ const { status, context } = defineProps<{
   status: mastodon.v1.Status
   newer?: mastodon.v1.Status
   context?: mastodon.v2.FilterContext | 'details'
+  isPreview?: boolean
+  inNotification?: boolean
 }>()
 
 const isDM = $computed(() => status.visibility === 'direct')
@@ -19,7 +21,14 @@ const isFiltered = $computed(() => status.account.id !== currentUser.value?.acco
 
 // check spoiler text or media attachment
 // needed to handle accounts that mark all their posts as sensitive
-const hasSensitiveSpoilerOrMedia = $computed(() => status.sensitive && (!!status.spoilerText || !!status.mediaAttachments.length))
+const spoilerTextPresent = $computed(() => !!status.spoilerText && status.spoilerText.trim().length > 0)
+const hasSpoilerOrSensitiveMedia = $computed(() => spoilerTextPresent || (status.sensitive && !!status.mediaAttachments.length))
+const isSensitiveNonSpoiler = computed(() => status.sensitive && !status.spoilerText && !!status.mediaAttachments.length)
+const hideAllMedia = computed(
+  () => {
+    return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && !!status.mediaAttachments.length) : false
+  },
+)
 </script>
 
 <template>
@@ -30,20 +39,21 @@ const hasSensitiveSpoilerOrMedia = $computed(() => status.sensitive && (!!status
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',
     }"
   >
-    <StatusBody v-if="!isFiltered && status.sensitive && !status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
-    <StatusSpoiler :enabled="hasSensitiveSpoilerOrMedia || isFiltered" :filter="isFiltered" :is-d-m="isDM">
-      <template v-if="status.spoilerText" #spoiler>
+    <StatusBody v-if="(!isFiltered && isSensitiveNonSpoiler) || hideAllMedia" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+    <StatusSpoiler :enabled="hasSpoilerOrSensitiveMedia || isFiltered" :filter="isFiltered" :sensitive-non-spoiler="isSensitiveNonSpoiler || hideAllMedia" :is-d-m="isDM">
+      <template v-if="spoilerTextPresent" #spoiler>
         <p>{{ status.spoilerText }}</p>
       </template>
       <template v-else-if="filterPhrase" #spoiler>
         <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
       </template>
-      <StatusBody v-if="!status.sensitive || status.spoilerText" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
+      <StatusBody v-if="!(isSensitiveNonSpoiler || hideAllMedia)" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
       <StatusTranslation :status="status" />
       <StatusPoll v-if="status.poll" :status="status" />
       <StatusMedia
         v-if="status.mediaAttachments?.length"
         :status="status"
+        :is-preview="isPreview"
       />
       <StatusPreviewCard
         v-if="status.card"

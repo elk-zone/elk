@@ -4,7 +4,7 @@ const { t } = useI18n()
 // limit: 20 is the default configuration of the official client
 const paginator = useMastoClient().v2.suggestions.list({ limit: 20 })
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('tab.for_you')} | ${t('nav.explore')}`,
 })
 </script>

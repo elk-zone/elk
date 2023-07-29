@@ -124,6 +124,10 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     edge_side_panel: {
       preferred_width: 480,
     },
+    protocol_handlers: [{
+      protocol: 'web+ap',
+      url: '/?protocol-handler=1&target=%s',
+    }],
   }
 
   if (env === 'release') {

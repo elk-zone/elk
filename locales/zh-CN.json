@@ -362,7 +362,7 @@
     "anything_else": "还有什么你认为是我们应该了解的吗？",
     "block_desc": "你将不再看到该用户的任何贴文，他们也无法看到你的贴文或关注你。他们将知道自己被你屏蔽了。",
     "dontlike": "我不喜欢",
-    "dontlike_desc": "这并非是你想看到的",
+    "dontlike_desc": "这不是你想看到的",
     "forward": "是的，将举报转发给 {0}",
     "forward_question": "你是否也想发送一份举报的匿名拷贝到那个服务器上？",
     "further_actions": {

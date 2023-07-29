@@ -51,6 +51,7 @@
     "boost_count": "{0}",
     "boosted": "Boosted",
     "clear_publish_failed": "Clear publish errors",
+    "clear_save_failed": "Clear save errors",
     "clear_upload_failed": "Clear file upload errors",
     "close": "Close",
     "compose": "Compose",
@@ -426,6 +427,7 @@
     "language": {
       "display_language": "Display Language",
       "label": "Language",
+      "post_language": "Posting Language",
       "status": "Translation status: {0}/{1} ({2}%)",
       "translations": {
         "add": "Add",
@@ -557,6 +559,7 @@
     "loading": "Loading...",
     "publish_failed": "Publish failed",
     "publishing": "Publishing",
+    "save_failed": "Save failed",
     "upload_failed": "Upload failed",
     "uploading": "Uploading..."
   },

@@ -427,6 +427,7 @@
     "language": {
       "display_language": "Display Language",
       "label": "Language",
+      "post_language": "Posting Language",
       "status": "Translation status: {0}/{1} ({2}%)",
       "translations": {
         "add": "Add",

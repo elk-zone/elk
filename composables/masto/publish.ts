@@ -15,7 +15,7 @@ export function usePublish(options: {
   const { client } = $(useMasto())
   const settings = useUserSettings()
 
-  const preferredLanguage = $computed(() => (settings.value?.language || 'en').split('-')[0])
+  const preferredLanguage = $computed(() => (currentUser.value?.account.source.language || settings.value?.language || 'en').split('-')[0])
 
   let isSending = $ref(false)
   const isExpanded = $ref(false)

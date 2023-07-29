@@ -40,7 +40,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
     focus:outline-none focus-visible:ring="2 primary"
     cursor-pointer
     transition-100
-    class="dark:media-mouse-hover-bg-white/3 media-mouse-hover-bg-black/3"
+    class="dark:media-mouse-hover-bg-white/2 media-mouse-hover-bg-black/2"
     aria-roledescription="status-card"
     :lang="status.language ?? undefined"
     @click="onclick"

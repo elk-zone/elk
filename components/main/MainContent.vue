@@ -31,7 +31,7 @@ const containerClass = computed(() => {
       bg="[rgba(var(--rgb-bg-base),0.7)]"
       class="native:lg:w-[calc(100vw-5rem)] native:xl:w-[calc(135%+(100vw-1200px)/2)]"
     >
-      <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex" border="b base">
+      <div flex justify-between px5 py2 class="native:xl:flex" border="b base">
         <div flex gap-3 items-center :overflow-hidden="!noOverflowHidden ? '' : false" py2 w-full>
           <NuxtLink
             v-if="backOnSmallScreen || back" flex="~ gap1" items-center btn-text p-0 xl:hidden
@@ -57,8 +57,11 @@ const containerClass = computed(() => {
       </slot>
     </div>
     <PwaInstallPrompt xl:hidden />
-    <div :class="isHydrated && wideLayout ? 'xl:w-full sm:max-w-600px' : 'sm:max-w-600px md:shrink-0'" m-auto>
-      <div hidden :class="{ 'xl:block': $route.name !== 'tag' && !$slots.header }" h-6 />
+    <div
+      :class="isHydrated && wideLayout ? 'xl:w-full sm:max-w-600px' : 'sm:max-w-600px md:shrink-0'" m-auto
+      overflow-y-scroll h-100dvh
+    >
+      <div hidden :class="{ 'xl:block': $route.name !== 'tag' && !$slots.header }" />
       <slot />
     </div>
   </div>

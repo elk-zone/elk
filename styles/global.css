@@ -2,6 +2,9 @@ html {
   font-size: var(--font-size, 15px);
   width: 100%;
   width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 @font-face {
@@ -20,9 +23,14 @@ html {
   background: var(--c-bg-selection);
 }
 
-/* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
 body {
-  overflow-y: scroll;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overscroll-behavior-y: contain;
+  overscroll-behavior-x: none;
+  overscroll-behavior-block: contain;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -162,12 +170,15 @@ em-emoji-picker {
   }
 }
 
-html,
-body,
+/* Force vertical scrollbar to be always visible to avoid layout shift while loading the content */
 #__nuxt {
   height: 100vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
+  overflow-y: scroll;
+  overscroll-behavior-y: contain;
+  overscroll-behavior-block: contain;
 }
 
 html.dark {

@@ -4,4 +4,3 @@ export const breakpoints = useBreakpoints(breakpointsTailwind)
 
 export const isMediumOrLargeScreen = breakpoints.between('sm', 'xl')
 export const isExtraLargeScreen = breakpoints.smallerOrEqual('xl')
-export const isSmallScreen = breakpoints.smallerOrEqual('sm')

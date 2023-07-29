@@ -76,7 +76,7 @@
     "vote": "Eman botoa"
   },
   "app_desc_short": "Mastodon web-bezero arin bat",
-  "app_logo": "Elk Logo",
+  "app_logo": "Elk-en logoa",
   "app_name": "Elk",
   "attachment": {
     "edit_title": "Deskribapena",
@@ -172,7 +172,7 @@
       "desc1": "Komunitateak sortutako Elk-en aurreikuspen bat duzu aurrean - {0}.",
       "desc2": "Litekeena da berrikusi ez diren aldaketak izatea, baita maltzurrak izan litezkeenak ere.",
       "desc3": "Ez hasi saioa zure benetako kontuarekin.",
-      "title": "Preview deploy"
+      "title": "Aurrebista erabiltzen du"
     },
     "desc_highlight": "Oso litekeena da erroreak eta ezaugarriak faltan egotea aplikazioan zehar.",
     "desc_para1": "Eskerrik asko interesagatik eta Elk probatzeagatik, amaitu gabe dagoen Mastodonerako web-bezero arin bat!",
@@ -272,7 +272,7 @@
     "built_at": "Biltze-data: {0}",
     "compose": "Idatzi",
     "conversations": "Elkarrizketak",
-    "explore": "Esploratu",
+    "explore": "Arakatu",
     "favourites": "Gogokoak",
     "federated": "Federatua",
     "home": "Hasiera",
@@ -284,7 +284,7 @@
     "privacy": "Pribatutasuna",
     "profile": "Profila",
     "search": "Bilaketa",
-    "select_feature_flags": "Toggle Feature Flags",
+    "select_feature_flags": "Aldatu ezaugarrien adierazleak (Toggle Feature Flags)",
     "select_font_size": "Letra-tipoaren tamaina",
     "select_language": "Hizkuntza",
     "settings": "Ezarpenak",
@@ -316,11 +316,11 @@
     "create": "Sortu bozketa",
     "disallow_multiple": "Ezgaitu aukera anitzak",
     "expiration": "Bozketaren epemuga",
-    "hide_votes": "Ezkutatu emaitza osoa bozketa amaitu arte",
-    "option_placeholder": "Bozketaren aukera {unean}/{gehienez}",
+    "hide_votes": "Ezkutatu emaitza bozketa amaitu arte",
+    "option_placeholder": "{current}. aukera (gehienez {max})",
     "remove_option": "Kendu aukera",
     "settings": "Bozketaren ezarpenak",
-    "show_votes": "Erakutsi beti bozketaren emaitza osoa"
+    "show_votes": "Erakutsi uneoro bozketaren emaitza"
   },
   "pwa": {
     "dismiss": "Baztertu",
@@ -340,14 +340,14 @@
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Mastodon web-bezero arin bat (dev)",
-        "name": "Elk (dev)",
-        "short_name": "Elk (dev)"
+        "description": "Mastodon web-bezero arin bat (garapena)",
+        "name": "Elk (garapena)",
+        "short_name": "Elk (garapena)"
       },
       "preview": {
-        "description": "Mastodon web-bezero arin bat (preview)",
-        "name": "Elk (preview)",
-        "short_name": "Elk (preview)"
+        "description": "Mastodon web-bezero arin bat (aurrebista)",
+        "name": "Elk (aurrebista)",
+        "short_name": "Elk (aurrebista)"
       },
       "release": {
         "description": "Mastodon web-bezero arin bat",
@@ -375,7 +375,7 @@
         "title": "Eskerrik asko jakinarazteagatik, salaketa aztertuko dugu."
       }
     },
-    "limiting": "Limiting {0}",
+    "limiting": "Mugatu {0}",
     "mute_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko. Zure bidalketak ikusi eta zuri jarraitu diezazuke. Ez du jakingo mututu duzunik.",
     "other": "Beste zerbait da",
     "other_desc": "Arazoa ez da beste kategorietan sartzen",
@@ -426,7 +426,7 @@
     "language": {
       "display_language": "Hizkuntza",
       "label": "Hizkuntza",
-      "status": "Itzulpenaren egoera: {0}/{1} ({2}%)",
+      "status": "Itzulpenaren egoera: {1} kateetatik {0} itzulita (%{2}a)",
       "translations": {
         "add": "Gehitu",
         "choose_language": "Hautatu hizkuntza",
@@ -495,7 +495,8 @@
       "enable_data_saving": "Gaitu datu aurrezlea",
       "enable_data_saving_description": "Aurreztu datuak eranskinen kargatze-automatikoa galarazten.",
       "enable_pinch_to_zoom": "Gaitu atximur keinua zoom egiteko",
-      "github_cards": "GitHub Cards",
+      "github_cards": "GitHub txartelak",
+      "github_cards_description": "GitHub-eko esteka argitaratzean, HTML txartel irisgarri bat erakusten du gizarte-grafikoaren metadatuak erabiliz, irudi sozialaren ordez.",
       "grayscale_mode": "Gris modua",
       "hide_account_hover_card": "Ezkutatu kontuaren geruza (Hide account hover card)",
       "hide_alt_indi_on_posts": "Ezkutatu ALT adierazlea bidalketetan",
@@ -511,7 +512,9 @@
       "title": "Ezaugarri esperimentalak",
       "use_star_favorite_icon": "Erabili izarraren ikonoa gogokoetarako",
       "user_picker": "Erabiltzaile hautatzailea",
+      "user_picker_description": "Beheko ezkerreko aldean saioa hasia duten kontuen abatar guztiak erakusten ditu, haien artean azkar aldatu ahal dezazun.",
       "virtual_scroll": "Korritze birtuala",
+      "virtual_scroll_description": "Zerrenda birtual bat erabiltzen du denbora-lerroetan, item kopuru handiagoa modu eraginkorrean erakutsi ahal izateko.",
       "wellbeing": "Ongizatea",
       "zen_mode": "Zen modua",
       "zen_mode_description": "Aldamenetako elementuak ezkutatzen ditu xagua gainean jarri arte. Denbora-lerroko elementu batzuk ere ezkutatzen ditu."

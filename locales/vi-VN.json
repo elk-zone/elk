@@ -367,7 +367,7 @@
     "forward_question": "Bạn có chắc muốn gửi luôn báo cáo tới máy chủ của người này?",
     "further_actions": {
       "limit": {
-        "description": "Đây là vài cách kiểm soát những thứ mà bạn thấy:",
+        "description": "Đây là cách kiểm soát những thứ mà bạn thấy:",
         "title": "Không muốn xem thứ này?"
       },
       "report": {
@@ -380,8 +380,8 @@
     "other": "Một lý do khác",
     "other_desc": "Vấn đề không nằm trong những mục trên",
     "reporting": "Báo cáo {0}",
-    "select_many": "Chọn tất cả những tút khớp:",
-    "select_one": "Chọn tút khớp nhất:",
+    "select_many": "Chọn tất cả lý do phù hợp:",
+    "select_one": "Chọn lý do phù hợp nhất:",
     "select_posts": "Bạn muốn báo cáo tút nào?",
     "select_posts_other": "Bạn muốn báo cáo những tút nào?",
     "spam": "Đây là spam",
@@ -389,8 +389,8 @@
     "submit": "Gửi báo cáo",
     "unfollow_desc": "Bạn sẽ không còn thấy tút của người này trên bảng tin. Tút của họ vẫn có thể xuất hiện ở những nơi khác.",
     "violation": "Vi phạm nội quy máy chủ",
-    "whats_wrong_account": "Có vấn đề gì với người này",
-    "whats_wrong_post": "Có vấn đề gì với tút này"
+    "whats_wrong_account": "Người này có vấn đề gì?",
+    "whats_wrong_post": "Tút này có vấn đề gì?"
   },
   "search": {
     "search_desc": "Tìm người hoặc hashtag",
@@ -628,18 +628,18 @@
     "second_past": "vừa xong|{n}s trước|{n}s trước",
     "short_day_future": "sau {n} ngày",
     "short_day_past": "{n} ngày",
-    "short_hour_future": "sau {n}h",
-    "short_hour_past": "{n}h",
+    "short_hour_future": "sau {n} giờ",
+    "short_hour_past": "{n} giờ",
     "short_minute_future": "sau {n} phút",
     "short_minute_past": "{n} phút",
     "short_month_future": "sau {n} tháng",
     "short_month_past": "{n} tháng",
     "short_second_future": "sau {n}s",
     "short_second_past": "{n}s",
-    "short_week_future": "sau {n}w",
-    "short_week_past": "{n}w",
-    "short_year_future": "sau {n}y",
-    "short_year_past": "{n}y",
+    "short_week_future": "sau {n} tuần",
+    "short_week_past": "{n} tuần",
+    "short_year_future": "sau {n} năm",
+    "short_year_past": "{n} năm",
     "week_future": "sau 0 tuần|tuần sau|trong {n} tuần",
     "week_past": "0 tuần trước|tuần trước|{n} tuần trước",
     "year_future": "sau 0 năm|năm sau|in {n} năm sau",

@@ -426,6 +426,7 @@
     "language": {
       "display_language": "Anzeigesprache",
       "label": "Sprache",
+      "post_language": "Beitragssprache",
       "status": "Übersetzungsstatus: {0}/{1} ({2}%)",
       "translations": {
         "add": "Hinzufügen",

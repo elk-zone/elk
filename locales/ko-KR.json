@@ -108,7 +108,7 @@
     },
     "mute_account": {
       "cancel": "취소",
-      "confirm": "Mute",
+      "confirm": "뮤트",
       "title": "정말로 {0}을.를 뮤트하시겠어요?"
     },
     "show_reblogs": {

@@ -12,8 +12,7 @@ export default defineNuxtConfig({
     tsConfig: {
       exclude: ['../service-worker'],
       vueCompilerOptions: {
-        jsxTemplates: true,
-        experimentalRfc436: true,
+        target: 3.3,
       },
     },
   },
@@ -24,6 +23,7 @@ export default defineNuxtConfig({
     '@vue-macros/nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
+    '@unlazy/nuxt',
     'nuxt-vitest',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/emoji-mart-translation',
@@ -34,6 +34,9 @@ export default defineNuxtConfig({
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
   ],
+  macros: {
+    setupSFC: true,
+  },
   devtools: {
     enabled: true,
   },
@@ -239,6 +242,9 @@ export default defineNuxtConfig({
         'style-src': ['\'self\'', '\'unsafe-inline\''],
         'upgrade-insecure-requests': true,
       },
+      permissionsPolicy: {
+        fullscreen: ['\'self\'', 'https:', 'http:'],
+      },
     },
     rateLimiter: false,
   },
@@ -248,9 +254,13 @@ export default defineNuxtConfig({
   staleDep: {
     packageManager: 'pnpm',
   },
+  unlazy: {
+    ssr: false,
+  },
 })
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace NodeJS {
     interface Process {
       mock?: Record<string, any>
@@ -258,7 +268,7 @@ declare global {
   }
 }
 
-declare module 'nuxt/dist/app' {
+declare module '#app' {
   interface RuntimeNuxtHooks {
     'elk-logo:click': () => void
   }

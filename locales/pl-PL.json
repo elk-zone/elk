@@ -36,7 +36,7 @@
     "profile_description": "nagłówek profilu {0}",
     "profile_personal_note": "Notatka osobista",
     "profile_unavailable": "Profil niedostępny",
-    "request_follow": "Prośba o śledzenie",
+    "request_follow": "Prośba o możliwość obserwowania",
     "unblock": "Odblokuj",
     "unfollow": "Przestań obserwować",
     "unmute": "Wyłącz wyciszenie",
@@ -98,6 +98,8 @@
     "error": "BŁĄD",
     "fetching": "Pobieranie...",
     "in": "w",
+    "no_bookmarks": "Brak zapisanych postów",
+    "no_favourites": "Brak polubionych postów",
     "not_found": "404 Nie Znaleziono",
     "offline_desc": "Wygląda na to, że jesteś offline. Sprawdź połączenie sieciowe."
   },
@@ -200,6 +202,30 @@
     "remove_account": "Usuń konto z listy",
     "save": "Zapisz zmiany"
   },
+  "magic_keys": {
+    "dialog_header": "Skróty klawiszowe",
+    "groups": {
+      "actions": {
+        "boost": "Podbij",
+        "command_mode": "Tryb poleceń",
+        "compose": "Napisz",
+        "favourite": "Ulubione",
+        "title": "Działania"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Strona główna",
+        "go_to_notifications": "Powiadomienia",
+        "next_status": "Następny status",
+        "previous_status": "Poprzedni status",
+        "shortcut_help": "Pomoc skróty klawiszowe",
+        "title": "Nawigacja"
+      }
+    },
+    "sequence_then": "następny"
+  },
   "menu": {
     "add_personal_note": "Dodaj osobistą notatkę do {0}",
     "block_account": "Zablokuj {0}",
@@ -231,6 +257,9 @@
     "unmute_account": "Wyłącz wyciszenie {0}",
     "unmute_conversation": "Wyłącz wyciszenie tego wpisu",
     "unpin_on_profile": "Odepnij z profilu"
+  },
+  "modals": {
+    "aria_label_close": "Zamknij"
   },
   "nav": {
     "back": "Wróć",
@@ -267,7 +296,7 @@
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "udostępnił Twój wpis",
     "request_to_follow": "chciałby Cię śledzić",
-    "signed_up": "zapisany",
+    "signed_up": "zarejestrował(-a) się",
     "update_status": "zaktualizował swój wpis"
   },
   "placeholder": {
@@ -380,7 +409,7 @@
           "error_hint": "Możesz zapoznać się z listą najczęściej zadawanych pytań, aby spróbować rozwiązać problem: {0}.",
           "invalid_vapid_key": "Wydaje się, że klucz publiczny VAPID jest nieprawidłowy.",
           "permission_denied": "Brak uprawnień: włącz powiadomienia w przeglądarce.",
-          "repo_link": "Repozytorium Elk w Github",
+          "repo_link": "Repozytorium Elk w GitHub",
           "request_error": "Wystąpił błąd podczas żądania subskrypcji, spróbuj ponownie, a jeśli błąd będzie się powtarzał, zgłoś problem do repozytorium Elk.",
           "title": "Nie można zasubskrybować powiadomień push",
           "too_many_registrations": "Ze względu na ograniczenia przeglądarki Elk nie może korzystać z usługi powiadomień push dla wielu kont na różnych serwerach. Powinieneś anulować subskrypcję powiadomień push na innym koncie i spróbować ponownie.",
@@ -417,15 +446,18 @@
       "hide_boost_count": "Ukryj liczbę podbić",
       "hide_favorite_count": "Ukryj liczbę polubień",
       "hide_follower_count": "Ukryj liczbę obserwujących",
+      "hide_news": "Ukryj aktualności",
       "hide_reply_count": "Ukryj liczbę odpowiedzi",
       "hide_translation": "Ukryj funkcję tłumaczenia",
       "hide_username_emojis": "Ukryj emotikony w nazwie użytkownika",
       "hide_username_emojis_description": "Ukrywa emotikony przed nazwami użytkowników na osi czasu. Emotikony będą nadal widoczne w ich profilach.",
       "label": "Preferencje",
       "title": "Funkcje eksperymentalne",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling",
-      "wellbeing": "Dla dobrego samopoczucia"
+      "user_picker": "Wybór użytkownika",
+      "virtual_scroll": "Wirtualne przewijanie",
+      "wellbeing": "Dla dobrego samopoczucia",
+      "zen_mode": "Tryb zen",
+      "zen_mode_description": "Ukrywaj boczne panele, chyba że kursor myszy jest nad nimi. Ukrywaj także niektóre elementy z osi czasu."
     },
     "profile": {
       "appearance": {
@@ -469,6 +501,10 @@
     "uploading": "Przesyłanie..."
   },
   "status": {
+    "account": {
+      "suspended_message": "Konto związane z tym statusem zostało zawieszone.",
+      "suspended_show": "Mimo wszystko wyświetlić zawartość?"
+    },
     "boosted_by": "Podbite przez",
     "edited": "Edytowano {0}",
     "favourited_by": "Polubione przez",

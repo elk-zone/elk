@@ -6,6 +6,8 @@
 *.txt
 Dockerfile
 public/
+public-dev/
+public-staging/
 https-dev-config/localhost.crt
 https-dev-config/localhost.key
 Dockerfile

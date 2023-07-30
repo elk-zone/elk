@@ -142,7 +142,7 @@ const forceShow = ref(false)
           </AccountHoverWrapper>
 
           <div v-if="connectReply" w-full h-full flex mt--3px justify-center>
-            <div w-1px border="x base" />
+            <div w-1px border="x base" mb-9 />
           </div>
         </div>
 
@@ -154,12 +154,13 @@ const forceShow = ref(false)
               <StatusAccountDetails :account="status.account" />
             </AccountHoverWrapper>
             <div flex-auto />
-            <div v-show="!userSettings.zenMode" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
+            <div v-show="!getPreferences(userSettings, 'zenMode')" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
+              <AccountLockIndicator v-if="status.account.locked" me-2 />
               <AccountBotIndicator v-if="status.account.bot" me-2 />
               <div flex="~ gap1" items-center>
                 <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
                 <div flex>
-                  <CommonTooltip :content="createdAt">
+                  <CommonTooltip :content="createdAt" no-auto-focus>
                     <NuxtLink :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
                       <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
                         {{ timeago }}
@@ -182,7 +183,7 @@ const forceShow = ref(false)
             :in-notification="inNotification"
             mb2 :class="{ 'mt-2 mb1': isDM }"
           />
-          <StatusActions v-if="actions !== false" v-show="!userSettings.zenMode" :status="status" />
+          <StatusActions v-if="actions !== false" v-show="!getPreferences(userSettings, 'zenMode')" :status="status" />
         </div>
       </template>
     </div>

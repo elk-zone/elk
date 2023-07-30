@@ -1,7 +1,7 @@
 import type { mastodon } from 'masto'
 
-export const UserLinkRE = /^https?:\/\/([^/]+)\/@([^/]+)$/
-export const TagLinkRE = /^https?:\/\/([^/]+)\/tags\/([^/]+)$/
+export const UserLinkRE = /^(?:https:\/)?\/([^/]+)\/@([^/]+)$/
+export const TagLinkRE = /^https?:\/\/([^/]+)\/tags\/([^/]+)\/?$/
 export const HTMLTagRE = /<[^>]+>/g
 
 export function getDataUrlFromArr(arr: Uint8ClampedArray, w: number, h: number) {

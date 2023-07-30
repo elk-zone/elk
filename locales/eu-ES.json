@@ -34,6 +34,7 @@
     "posts": "Bidalketak",
     "posts_count": "{0} bidalketa|Bidalketa {0}|{0} bidalketa",
     "profile_description": "{0}(r)en profilaren goiburua",
+    "profile_personal_note": "Nire oharra",
     "profile_unavailable": "Profila ez dago eskuragai",
     "request_follow": "Bidali jarraipen-eskaera",
     "unblock": "Utzi blokeatzeari",
@@ -54,6 +55,7 @@
     "close": "Itxi",
     "compose": "Idatzi",
     "confirm": "Baieztatu",
+    "done": "Eginda",
     "edit": "Editatu",
     "enter_app": "Sartu aplikaziora",
     "favourite": "Egin gogoko",
@@ -74,7 +76,7 @@
     "vote": "Eman botoa"
   },
   "app_desc_short": "Mastodon web-bezero arin bat",
-  "app_logo": "Elk Logo",
+  "app_logo": "Elk-en logoa",
   "app_name": "Elk",
   "attachment": {
     "edit_title": "Deskribapena",
@@ -97,6 +99,8 @@
     "error": "ERROREA",
     "fetching": "Eskuratzen…",
     "in": "·",
+    "no_bookmarks": "Oraindik ez duzu laster-markarik",
+    "no_favourites": "Oraindik ez duzu gogokorik",
     "not_found": "404 Ez da aurkitu",
     "offline_desc": "Lineaz kanpo zaudela dirudi. Egiaztatu konexioa."
   },
@@ -168,7 +172,7 @@
       "desc1": "Komunitateak sortutako Elk-en aurreikuspen bat duzu aurrean - {0}.",
       "desc2": "Litekeena da berrikusi ez diren aldaketak izatea, baita maltzurrak izan litezkeenak ere.",
       "desc3": "Ez hasi saioa zure benetako kontuarekin.",
-      "title": "Preview deploy"
+      "title": "Aurrebista erabiltzen du"
     },
     "desc_highlight": "Oso litekeena da erroreak eta ezaugarriak faltan egotea aplikazioan zehar.",
     "desc_para1": "Eskerrik asko interesagatik eta Elk probatzeagatik, amaitu gabe dagoen Mastodonerako web-bezero arin bat!",
@@ -178,7 +182,7 @@
     "desc_para5": "jarri harremanetan GitHub bidez",
     "desc_para6": "eta hartu parte.",
     "footer_team": "Elk taldea",
-    "title": "Elk-en aurreikuspena da hau!"
+    "title": "Elk-en aurrebista da hau!"
   },
   "language": {
     "search": "Bilatu"
@@ -207,8 +211,7 @@
         "command_mode": "Komando modua",
         "compose": "Idatzi",
         "favourite": "Egin gogoko",
-        "title": "Ekintzak",
-        "zen_mode": "Zen modua"
+        "title": "Ekintzak"
       },
       "media": {
         "title": "Multimedia"
@@ -225,6 +228,7 @@
     "sequence_then": "orduan"
   },
   "menu": {
+    "add_personal_note": "Gehitu {0}(r)i buruzko oharra",
     "block_account": "Blokeatu {0}",
     "block_domain": "Blokeatu {0} domeinua",
     "copy_link_to_post": "Kopiatu bidalketa honen esteka",
@@ -239,6 +243,8 @@
     "mute_conversation": "Mututu bidalketa",
     "open_in_original_site": "Ireki jatorrizko orrian",
     "pin_on_profile": "Finkatu profilean",
+    "remove_personal_note": "Kendu {0}(r)i buruzko oharra",
+    "report_account": "Salatu kontua",
     "share_post": "Partekatu bidalketa",
     "show_favourited_and_boosted_by": "Erakutsi nork egin duen gogoko eta nork bultzatu duen",
     "show_reblogs": "Erakutsi {0}(r)en bultzadak",
@@ -250,6 +256,7 @@
     "translate_post": "Egin itzulpena",
     "unblock_account": "Utzi {0} blokeatzeari",
     "unblock_domain": "Utzi {0} domeinua blokeatzeari",
+    "unfollow_account": "Utzi {0} jarraitzeari",
     "unmute_account": "Utzi {0} mututzeari",
     "unmute_conversation": "Utzi bidalketa mututzeari",
     "unpin_on_profile": "Utzi finkatzeari"
@@ -265,7 +272,7 @@
     "built_at": "Biltze-data: {0}",
     "compose": "Idatzi",
     "conversations": "Elkarrizketak",
-    "explore": "Esploratu",
+    "explore": "Arakatu",
     "favourites": "Gogokoak",
     "federated": "Federatua",
     "home": "Hasiera",
@@ -277,7 +284,7 @@
     "privacy": "Pribatutasuna",
     "profile": "Profila",
     "search": "Bilaketa",
-    "select_feature_flags": "Toggle Feature Flags",
+    "select_feature_flags": "Aldatu ezaugarrien adierazleak (Toggle Feature Flags)",
     "select_font_size": "Letra-tipoaren tamaina",
     "select_language": "Hizkuntza",
     "settings": "Ezarpenak",
@@ -291,6 +298,7 @@
     "followed_you_count": "{0} pertsonak jarraitu dizute|pertsona {0}ek jarraitu dizu|{0} pertsonak jarraitu dizute",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "zure bidalketari bultzada eman dio",
+    "reported": "{0}(e)k {1} salatu du",
     "request_to_follow": "jarraipen-eskaera bidali dizu",
     "signed_up": "izena eman du",
     "update_status": "bidalketa eguneratu du"
@@ -302,10 +310,26 @@
     "replying": "Erantzuten",
     "the_thread": "haria"
   },
+  "polls": {
+    "allow_multiple": "Baimendu aukera anitzak",
+    "cancel": "Utzi",
+    "create": "Sortu bozketa",
+    "disallow_multiple": "Ezgaitu aukera anitzak",
+    "expiration": "Bozketaren epemuga",
+    "hide_votes": "Ezkutatu emaitza bozketa amaitu arte",
+    "option_placeholder": "{current}. aukera (gehienez {max})",
+    "remove_option": "Kendu aukera",
+    "settings": "Bozketaren ezarpenak",
+    "show_votes": "Erakutsi uneoro bozketaren emaitza"
+  },
   "pwa": {
     "dismiss": "Baztertu",
     "install": "Instalatu",
     "install_title": "Instalatu Elk",
+    "screenshots": {
+      "dark": "Elk-en pantaila-argazkia, kolore ilunak darabiltzala",
+      "light": "Elk-en pantaila-argazkia, kolore argiak darabiltzala"
+    },
     "title": "Eguneraketa berria eskuragai!",
     "update": "Eguneratu",
     "update_available_short": "Eguneratu Elk",
@@ -316,14 +340,14 @@
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Mastodon web-bezero arin bat (dev)",
-        "name": "Elk (dev)",
-        "short_name": "Elk (dev)"
+        "description": "Mastodon web-bezero arin bat (garapena)",
+        "name": "Elk (garapena)",
+        "short_name": "Elk (garapena)"
       },
       "preview": {
-        "description": "Mastodon web-bezero arin bat (preview)",
-        "name": "Elk (preview)",
-        "short_name": "Elk (preview)"
+        "description": "Mastodon web-bezero arin bat (aurrebista)",
+        "name": "Elk (aurrebista)",
+        "short_name": "Elk (aurrebista)"
       },
       "release": {
         "description": "Mastodon web-bezero arin bat",
@@ -331,6 +355,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "Ohar gehigarriak",
+    "another_server": "Salatzen ari zaren erabiltzailea beste zerbitzari batekoa da",
+    "anything_else": "Ba al dago jakin beharko genukeen beste ezer?",
+    "block_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko. Ezin izango ditu zure bidalketak ikusi edo zuri jarraitu. Blokeatu duzula jakingo du.",
+    "dontlike": "Ez zait gustatzen",
+    "dontlike_desc": "Ikustea gogoko ez duzun zerbait da",
+    "forward": "Bai, bidali salaketa {0}(r)i",
+    "forward_question": "Salaketa honen kopia anonimo bat bidali nahi duzu salatzen ari zaren erabiltzilearen zerbitzarira?",
+    "further_actions": {
+      "limit": {
+        "description": "Hauek dira ikusten duzuna kontrolatzeko dituzun aukerak:",
+        "title": "Ez duzu hau ikusi nahi?"
+      },
+      "report": {
+        "description": "Salaketa berrikusi bitartean, hemen dituzu har ditzazkezun ekintzak:",
+        "title": "Eskerrik asko jakinarazteagatik, salaketa aztertuko dugu."
+      }
+    },
+    "limiting": "Mugatu {0}",
+    "mute_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko. Zure bidalketak ikusi eta zuri jarraitu diezazuke. Ez du jakingo mututu duzunik.",
+    "other": "Beste zerbait da",
+    "other_desc": "Arazoa ez da beste kategorietan sartzen",
+    "reporting": "{0} salatzen",
+    "select_many": "Hautatu bat datozen guztiak:",
+    "select_one": "Aukeratu hobekien datorrena:",
+    "select_posts": "Salaketa hau sostengatzen duen bidalketarik al dago?",
+    "select_posts_other": "Ba al dago salaketa sostengatzen duen beste bidalketarik?",
+    "spam": "Spama da",
+    "spam_desc": "Esteka maltzurrak, elkarrekintza faltsua edo erantzun errepikakorrak.",
+    "submit": "Bidali salaketa",
+    "unfollow_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko hasierako jarioan. Bere bidalketak beste jario batzuetan egongo dira ikusgai.",
+    "violation": "Zerbitzariko arau bat edo gehiago urratzen d(it)u",
+    "whats_wrong_account": "Esan zer arazo dagoen kontu honekin",
+    "whats_wrong_post": "Esan zer arazo dagoen bidalketa honekin"
   },
   "search": {
     "search_desc": "Bilatu pertsonak eta traolak",
@@ -366,7 +426,7 @@
     "language": {
       "display_language": "Hizkuntza",
       "label": "Hizkuntza",
-      "status": "Itzulpenaren egoera: {0}/{1} ({2}%)",
+      "status": "Itzulpenaren egoera: {1} kateetatik {0} itzulita (%{2}a)",
       "translations": {
         "add": "Gehitu",
         "choose_language": "Hautatu hizkuntza",
@@ -435,22 +495,29 @@
       "enable_data_saving": "Gaitu datu aurrezlea",
       "enable_data_saving_description": "Aurreztu datuak eranskinen kargatze-automatikoa galarazten.",
       "enable_pinch_to_zoom": "Gaitu atximur keinua zoom egiteko",
-      "github_cards": "GitHub Cards",
+      "github_cards": "GitHub txartelak",
+      "github_cards_description": "GitHub-eko esteka argitaratzean, HTML txartel irisgarri bat erakusten du gizarte-grafikoaren metadatuak erabiliz, irudi sozialaren ordez.",
       "grayscale_mode": "Gris modua",
       "hide_account_hover_card": "Ezkutatu kontuaren geruza (Hide account hover card)",
       "hide_alt_indi_on_posts": "Ezkutatu ALT adierazlea bidalketetan",
       "hide_boost_count": "Ezkutatu bultzaden kopurua",
       "hide_favorite_count": "Ezkutatu gogokoen kopurua",
-      "hide_follower_count": "Ezkutatu jarraitzaileen kopurua",
+      "hide_follower_count": "Ezkutatu jarraitzaile kopurua",
+      "hide_news": "Ezkutatu berriak",
       "hide_reply_count": "Ezkutatu erantzunen kopurua",
       "hide_translation": "Ezkutatu itzulpenak",
       "hide_username_emojis": "Ezkutatu emojiak erabiltzaile izenetan",
       "hide_username_emojis_description": "Denbora-lerroetan erabiltzaile izenetako emojiak ezkutatzen ditu. Emojiak ikusgai egoten jarraituko dute euren profiletan.",
       "label": "Hobespenak",
       "title": "Ezaugarri esperimentalak",
+      "use_star_favorite_icon": "Erabili izarraren ikonoa gogokoetarako",
       "user_picker": "Erabiltzaile hautatzailea",
+      "user_picker_description": "Beheko ezkerreko aldean saioa hasia duten kontuen abatar guztiak erakusten ditu, haien artean azkar aldatu ahal dezazun.",
       "virtual_scroll": "Korritze birtuala",
-      "wellbeing": "Ongizatea"
+      "virtual_scroll_description": "Zerrenda birtual bat erabiltzen du denbora-lerroetan, item kopuru handiagoa modu eraginkorrean erakutsi ahal izateko.",
+      "wellbeing": "Ongizatea",
+      "zen_mode": "Zen modua",
+      "zen_mode_description": "Aldamenetako elementuak ezkutatzen ditu xagua gainean jarri arte. Denbora-lerroko elementu batzuk ere ezkutatzen ditu."
     },
     "profile": {
       "appearance": {
@@ -494,6 +561,10 @@
     "uploading": "Igotzen…"
   },
   "status": {
+    "account": {
+      "suspended_message": "Argitalpen honen egileari zigorra jarri zaio.",
+      "suspended_show": "Erakutsi edukia hala ere?"
+    },
     "boosted_by": "Bultzatu dute:",
     "edited": "Azken edizioa: {0}",
     "favourited_by": "Gogoko egin dute:",
@@ -515,6 +586,7 @@
     "replying_to": "{0}(r)i erantzunez",
     "show_full_thread": "Erakutsi hari osoa",
     "someone": "norbait",
+    "spoiler_media_hidden": "Multimedia ezkutatuta dago",
     "spoiler_show_less": "Erakutsi gutxiago",
     "spoiler_show_more": "Erakutsi gehiago",
     "thread": "Haria",

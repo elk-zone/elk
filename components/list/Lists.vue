@@ -30,7 +30,7 @@ async function edit(listId: string) {
 </script>
 
 <template>
-  <CommonPaginator no-end-message :paginator="paginator">
+  <CommonPaginator :end-message="false" :paginator="paginator">
     <template #default="{ item }">
       <div p4 hover:bg-active block w="100%" flex justify-between items-center gap-4>
         <p>{{ item.title }}</p>

@@ -49,6 +49,12 @@ const userSettings = useUserSettings()
     >
       {{ $t('settings.preferences.enable_pinch_to_zoom') }}
     </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'useStarFavoriteIcon')"
+      @click="togglePreferences('useStarFavoriteIcon')"
+    >
+      {{ $t('settings.preferences.use_star_favorite_icon') }}
+    </SettingsToggleItem>
     <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-hearts-line />
       {{ $t('settings.preferences.wellbeing') }}
@@ -92,6 +98,21 @@ const userSettings = useUserSettings()
         {{ $t('settings.preferences.hide_username_emojis_description') }}
       </template>
     </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideNews')"
+      @click="togglePreferences('hideNews')"
+    >
+      {{ $t("settings.preferences.hide_news") }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'zenMode')"
+      @click="togglePreferences('zenMode')"
+    >
+      {{ $t("settings.preferences.zen_mode") }}
+      <template #description>
+        {{ $t('settings.preferences.zen_mode_description') }}
+      </template>
+    </SettingsToggleItem>
     <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-flask-line />
       {{ $t('settings.preferences.title') }}
@@ -101,18 +122,27 @@ const userSettings = useUserSettings()
       @click="togglePreferences('experimentalVirtualScroller')"
     >
       {{ $t('settings.preferences.virtual_scroll') }}
+      <template #description>
+        {{ $t('settings.preferences.virtual_scroll_description') }}
+      </template>
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalGitHubCards')"
       @click="togglePreferences('experimentalGitHubCards')"
     >
       {{ $t('settings.preferences.github_cards') }}
+      <template #description>
+        {{ $t('settings.preferences.github_cards_description') }}
+      </template>
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalUserPicker')"
       @click="togglePreferences('experimentalUserPicker')"
     >
       {{ $t('settings.preferences.user_picker') }}
+      <template #description>
+        {{ $t('settings.preferences.user_picker_description') }}
+      </template>
     </SettingsToggleItem>
   </MainContent>
 </template>

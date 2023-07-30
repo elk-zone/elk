@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import { toggleBlockAccount, toggleMuteAccount, useRelationship } from '~~/composables/masto/relationship'
 
 const props = defineProps<{
   status: mastodon.v1.Status
   details?: boolean
   command?: boolean
+}>()
+
+const emit = defineEmits<{
+  (event: 'afterEdit'): void
 }>()
 
 const { details, command } = $(props)
@@ -24,6 +29,7 @@ const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 const userSettings = useUserSettings()
+const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
@@ -101,10 +107,11 @@ function reply() {
 }
 
 async function editStatus() {
-  openPublishDialog(`edit-${status.id}`, {
+  await openPublishDialog(`edit-${status.id}`, {
     ...await getDraftFromStatus(status),
     editingStatus: status,
   }, true)
+  emit('afterEdit')
 }
 
 function showFavoritedAndBoostedBy() {
@@ -125,7 +132,7 @@ function showFavoritedAndBoostedBy() {
 
     <template #popper>
       <div flex="~ col">
-        <template v-if="userSettings.zenMode">
+        <template v-if="getPreferences(userSettings, 'zenMode')">
           <CommonDropdownItem
             :text="$t('action.reply')"
             icon="i-ri:chat-1-line"
@@ -144,8 +151,13 @@ function showFavoritedAndBoostedBy() {
 
           <CommonDropdownItem
             :text="status.favourited ? $t('action.favourited') : $t('action.favourite')"
-            :icon="status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
-            :class="status.favourited ? 'text-rose' : ''"
+            :icon="useStarFavoriteIcon
+              ? status.favourited ? 'i-ri:star-fill' : 'i-ri:star-line'
+              : status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
+            :class="status.favourited
+              ? useStarFavoriteIcon ? 'text-yellow' : 'text-rose'
+              : ''
+            "
             :command="command"
             :disabled="isLoading.favourited"
             @click="toggleFavourite()"
@@ -154,7 +166,10 @@ function showFavoritedAndBoostedBy() {
           <CommonDropdownItem
             :text="status.bookmarked ? $t('action.bookmarked') : $t('action.bookmark')"
             :icon="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'"
-            :class="status.bookmarked ? 'text-yellow' : ''"
+            :class="status.bookmarked
+              ? useStarFavoriteIcon ? 'text-rose' : 'text-yellow'
+              : ''
+            "
             :command="command"
             :disabled="isLoading.bookmarked"
             @click="toggleBookmark()"
@@ -245,6 +260,60 @@ function showFavoritedAndBoostedBy() {
               icon="i-ri:at-line"
               :command="command"
               @click="mentionUser(status.account)"
+            />
+
+            <CommonDropdownItem
+              v-if="!useRelationship(status.account).value?.muting"
+              :text="$t('menu.mute_account', [`@${status.account.acct}`])"
+              icon="i-ri:volume-mute-line"
+              :command="command"
+              @click="toggleMuteAccount(useRelationship(status.account).value!, status.account)"
+            />
+            <CommonDropdownItem
+              v-else
+              :text="$t('menu.unmute_account', [`@${status.account.acct}`])"
+              icon="i-ri:volume-up-fill"
+              :command="command"
+              @click="toggleMuteAccount(useRelationship(status.account).value!, status.account)"
+            />
+
+            <CommonDropdownItem
+              v-if="!useRelationship(status.account).value?.blocking"
+              :text="$t('menu.block_account', [`@${status.account.acct}`])"
+              icon="i-ri:forbid-2-line"
+              :command="command"
+              @click="toggleBlockAccount(useRelationship(status.account).value!, status.account)"
+            />
+            <CommonDropdownItem
+              v-else
+              :text="$t('menu.unblock_account', [`@${status.account.acct}`])"
+              icon="i-ri:checkbox-circle-line"
+              :command="command"
+              @click="toggleBlockAccount(useRelationship(status.account).value!, status.account)"
+            />
+
+            <template v-if="getServerName(status.account) && getServerName(status.account) !== currentServer">
+              <CommonDropdownItem
+                v-if="!useRelationship(status.account).value?.domainBlocking"
+                :text="$t('menu.block_domain', [getServerName(status.account)])"
+                icon="i-ri:shut-down-line"
+                :command="command"
+                @click="toggleBlockDomain(useRelationship(status.account).value!, status.account)"
+              />
+              <CommonDropdownItem
+                v-else
+                :text="$t('menu.unblock_domain', [getServerName(status.account)])"
+                icon="i-ri:restart-line"
+                :command="command"
+                @click="toggleBlockDomain(useRelationship(status.account).value!, status.account)"
+              />
+            </template>
+
+            <CommonDropdownItem
+              :text="$t('menu.report_account', [`@${status.account.acct}`])"
+              icon="i-ri:flag-2-line"
+              :command="command"
+              @click="openReportDialog(status.account, status)"
             />
           </template>
         </template>

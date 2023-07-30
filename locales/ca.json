@@ -377,7 +377,7 @@
           "error_hint": "Podeu consultar una llista de preguntes freqüents per intentar resoldre el problema: {0}.",
           "invalid_vapid_key": "La clau pública VAPID sembla que no és vàlida.",
           "permission_denied": "Permís denegat: activeu les notificacions al vostre navegador.",
-          "repo_link": "El dipòsit d'Elk a Github",
+          "repo_link": "El dipòsit d'Elk a GitHub",
           "request_error": "S'ha produït un error en sol·licitar la subscripció, torneu-ho a provar i, si l'error persisteix, informeu-lo al repositori d'Elk.",
           "title": "No s'ha pogut subscriure a les notificacions push",
           "too_many_registrations": "A causa de les limitacions del navegador, Elk no pot utilitzar el servei de notificacions push per a diversos comptes en diferents servidors. Hauríeu de cancel·lar la subscripció a les notificacions push d'un altre compte i tornar-ho a provar.",

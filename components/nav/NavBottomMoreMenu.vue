@@ -120,11 +120,11 @@ const { dragging, dragDistance } = invoke(() => {
     <!-- Drawer -->
     <Transition
       enter-active-class="transition duration-250 ease-out"
-      enter-from-class="opacity-0 children:(transform translate-y-full)"
-      enter-to-class="opacity-100 children:(transform translate-y-0)"
+      enter-from-class="opacity-0 children:(translate-y-full)"
+      enter-to-class="opacity-100 children:(translate-y-0)"
       leave-active-class="transition duration-250 ease-in"
-      leave-from-class="opacity-100 children:(transform translate-y-0)"
-      leave-to-class="opacity-0 children:(transform translate-y-full)"
+      leave-from-class="opacity-100 children:(translate-y-0)"
+      leave-to-class="opacity-0 children:(translate-y-full)"
     >
       <div
         v-show="modelValue"
@@ -141,9 +141,10 @@ const { dragging, dragDistance } = invoke(() => {
             transform: dragging ? `translateY(${dragDistance}px)` : '',
           }"
           :class="{
-            'transition duration-0 ease-in': dragging,
-            'translate-y-0 transition duration-250 ease-in': !dragging,
+            'duration-0': dragging,
+            'duration-250': !dragging,
           }"
+          transition="transform ease-in"
           flex-1 min-w-48 py-6 mb="-1px"
           of-y-auto scrollbar-hide overscroll-none max-h="[calc(100vh-200px)]"
           rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter backdrop-blur-md

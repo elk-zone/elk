@@ -1,10 +1,14 @@
 <script lang="ts" setup>
+import { invoke } from '@vueuse/core'
+
 let { modelValue } = $defineModels<{
   modelValue: boolean
 }>()
 const colorMode = useColorMode()
 
 const userSettings = useUserSettings()
+
+const drawerEl = ref<HTMLDivElement>()
 
 function toggleVisible() {
   modelValue = !modelValue
@@ -33,6 +37,80 @@ watch($$(modelValue), (val) => {
 onBeforeUnmount(() => {
   document.removeEventListener('click', clickEvent)
 })
+
+// Pull down to close
+const { dragging, dragDistance } = invoke(() => {
+  const triggerDistance = 120
+
+  let scrollTop = 0
+  let beforeTouchPointY = 0
+
+  const dragDistance = ref(0)
+  const dragging = ref(false)
+
+  useEventListener(drawerEl, 'scroll', (e: Event) => {
+    scrollTop = (e.target as HTMLDivElement).scrollTop
+
+    // Prevent the page from scrolling when the drawer is being dragged.
+    if (dragDistance.value > 0)
+      (e.target as HTMLDivElement).scrollTop = 0
+  }, { passive: true })
+
+  useEventListener(drawerEl, 'touchstart', (e: TouchEvent) => {
+    if (!modelValue)
+      return
+
+    beforeTouchPointY = e.touches[0].pageY
+    dragDistance.value = 0
+  }, { passive: true })
+
+  useEventListener(drawerEl, 'touchmove', (e: TouchEvent) => {
+    if (!modelValue)
+      return
+
+    // Do not move the entire drawer when its contents are not scrolled to the top.
+    if (scrollTop > 0 && dragDistance.value <= 0) {
+      dragging.value = false
+      beforeTouchPointY = e.touches[0].pageY
+      return
+    }
+
+    const { pageY } = e.touches[0]
+
+    // Calculate the drag distance.
+    dragDistance.value += pageY - beforeTouchPointY
+    if (dragDistance.value < 0)
+      dragDistance.value = 0
+    beforeTouchPointY = pageY
+
+    // Marked as dragging.
+    if (dragDistance.value > 1)
+      dragging.value = true
+
+    // Prevent the page from scrolling when the drawer is being dragged.
+    if (dragDistance.value > 0) {
+      if (e?.cancelable && e?.preventDefault)
+        e.preventDefault()
+      e?.stopPropagation()
+    }
+  }, { passive: true })
+
+  useEventListener(drawerEl, 'touchend', (e: TouchEvent) => {
+    if (!modelValue)
+      return
+
+    if (dragDistance.value >= triggerDistance)
+      modelValue = false
+
+    dragging.value = false
+    // code
+  }, { passive: true })
+
+  return {
+    dragDistance,
+    dragging,
+  }
+})
 </script>
 
 <template>
@@ -41,10 +119,10 @@ onBeforeUnmount(() => {
 
     <!-- Drawer -->
     <Transition
-      enter-active-class="transition duration-250 ease-out children:(transition duration-250 ease-out)"
+      enter-active-class="transition duration-250 ease-out"
       enter-from-class="opacity-0 children:(transform translate-y-full)"
       enter-to-class="opacity-100 children:(transform translate-y-0)"
-      leave-active-class="transition duration-250 ease-in  children:(transition duration-250 ease-in)"
+      leave-active-class="transition duration-250 ease-in"
       leave-from-class="opacity-100 children:(transform translate-y-0)"
       leave-to-class="opacity-0 children:(transform translate-y-full)"
     >
@@ -58,7 +136,14 @@ onBeforeUnmount(() => {
         <!-- corresponding to issue: #106, so please don't remove it. -->
         <div absolute inset-0 opacity-0 h="[calc(100vh+0.5px)]" />
         <div
-
+          ref="drawerEl"
+          :style="{
+            transform: dragging ? `translateY(${dragDistance}px)` : '',
+          }"
+          :class="{
+            'transition duration-0 ease-in': dragging,
+            'translate-y-0 transition duration-250 ease-in': !dragging,
+          }"
           flex-1 min-w-48 py-6 mb="-1px"
           of-y-auto scrollbar-hide overscroll-none max-h="[calc(100vh-200px)]"
           rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter backdrop-blur-md

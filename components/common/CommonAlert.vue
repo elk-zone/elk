@@ -2,9 +2,7 @@
 const emit = defineEmits<{
   (event: 'close'): void
 }>()
-const { modelValue: visible } = defineModels<{
-  modelValue?: boolean
-}>()
+const visible = defineModel<boolean>()
 
 function close() {
   emit('close')

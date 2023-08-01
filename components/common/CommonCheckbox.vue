@@ -5,9 +5,7 @@ defineProps<{
   iconChecked?: string
   iconUnchecked?: string
 }>()
-const { modelValue } = defineModels<{
-  modelValue?: boolean | null
-}>()
+const modelValue = defineModel<boolean | null>()
 </script>
 
 <template>

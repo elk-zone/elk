@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { form } = defineModels<{
-  form: {
-    fieldsAttributes: NonNullable<mastodon.v1.UpdateCredentialsParams['fieldsAttributes']>
-  }
-}>()
+const form = defineModel<{
+  fieldsAttributes: NonNullable<mastodon.v1.UpdateCredentialsParams['fieldsAttributes']>
+}>({ required: true })
 const dropdown = $ref<any>()
 
 const fieldIcons = computed(() =>

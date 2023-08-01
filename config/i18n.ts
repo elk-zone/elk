@@ -1,5 +1,6 @@
-import type { NuxtI18nOptions } from '@nuxtjs/i18n'
-import type { DateTimeFormats, NumberFormats, PluralizationRule, PluralizationRules } from '@intlify/core-base'
+import { fileURLToPath } from 'node:url'
+import type { NuxtI18nOptions } from '@nuxtjs/i18n/dist/module'
+import type { DateTimeFormats, NumberFormats, PluralizationRule } from '@intlify/core-base'
 
 import type { LocaleObject } from '#i18n'
 
@@ -246,73 +247,6 @@ function buildLocales() {
 
 export const currentLocales = buildLocales()
 
-const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
-  const dateTimeFormats = data.dateTimeFormats
-  if (dateTimeFormats) {
-    acc[data.code] = { ...dateTimeFormats }
-    delete data.dateTimeFormats
-  }
-  else {
-    acc[data.code] = {
-      shortDate: {
-        dateStyle: 'short',
-      },
-      short: {
-        dateStyle: 'short',
-        timeStyle: 'short',
-      },
-      long: {
-        dateStyle: 'long',
-        timeStyle: 'medium',
-      },
-    }
-  }
-
-  return acc
-}, <DateTimeFormats>{})
-
-const numberFormats = Object.values(currentLocales).reduce((acc, data) => {
-  const numberFormats = data.numberFormats
-  if (numberFormats) {
-    acc[data.code] = { ...numberFormats }
-    delete data.numberFormats
-  }
-  else {
-    acc[data.code] = {
-      percentage: {
-        style: 'percent',
-        maximumFractionDigits: 1,
-      },
-      smallCounting: {
-        style: 'decimal',
-        maximumFractionDigits: 0,
-      },
-      kiloCounting: {
-        notation: 'compact',
-        compactDisplay: 'short',
-        maximumFractionDigits: 1,
-      },
-      millionCounting: {
-        notation: 'compact',
-        compactDisplay: 'short',
-        maximumFractionDigits: 2,
-      },
-    }
-  }
-
-  return acc
-}, <NumberFormats>{})
-
-const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
-  const pluralRule = data.pluralRule
-  if (pluralRule) {
-    acc[data.code] = pluralRule
-    delete data.pluralRule
-  }
-
-  return acc
-}, <PluralizationRules>{})
-
 export const i18n: NuxtI18nOptions = {
   locales: currentLocales,
   lazy: true,
@@ -320,13 +254,5 @@ export const i18n: NuxtI18nOptions = {
   detectBrowserLanguage: false,
   langDir: 'locales',
   defaultLocale: 'en-US',
-  vueI18n: {
-    availableLocales: currentLocales.map(l => l.code),
-    fallbackLocale: 'en-US',
-    fallbackWarn: false,
-    missingWarn: false,
-    datetimeFormats,
-    numberFormats,
-    pluralRules,
-  },
+  vueI18n: fileURLToPath(new URL('./vue-i18n.config.ts', import.meta.url)),
 }

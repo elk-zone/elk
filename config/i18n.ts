@@ -1,4 +1,3 @@
-import { fileURLToPath } from 'node:url'
 import type { NuxtI18nOptions } from '@nuxtjs/i18n/dist/module'
 import type { DateTimeFormats, NumberFormats, PluralizationRule } from '@intlify/core-base'
 
@@ -254,5 +253,5 @@ export const i18n: NuxtI18nOptions = {
   detectBrowserLanguage: false,
   langDir: 'locales',
   defaultLocale: 'en-US',
-  vueI18n: fileURLToPath(new URL('./vue-i18n.config.ts', import.meta.url)),
+  vueI18n: './config/vue-i18n.config.ts',
 }

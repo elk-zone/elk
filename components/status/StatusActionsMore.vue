@@ -79,7 +79,13 @@ async function deleteStatus() {
 }
 
 async function deleteAndRedraft() {
-  // TODO confirm to delete
+  if (await openConfirmDialog({
+    title: t('confirm.delete_posts.title'),
+    confirm: t('confirm.delete_posts.confirm'),
+    cancel: t('confirm.delete_posts.cancel'),
+  }) !== 'confirm')
+    return
+
   if (process.dev) {
     // eslint-disable-next-line no-alert
     const result = confirm('[DEV] Are you sure you want to delete and re-draft this post?')

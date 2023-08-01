@@ -185,7 +185,7 @@ onReactivated(refreshInfo)
 
         <!-- metadata -->
 
-        <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
+        <SettingsProfileMetadata v-if="isHydrated" v-model="form" />
 
         <!-- actions -->
         <div flex="~ gap2" justify-end>

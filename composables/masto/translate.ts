@@ -66,7 +66,7 @@ export async function translateText(text: string, from: string | null | undefine
     text: '',
   })
   try {
-    const response = await $fetch(config.public.translateApi, {
+    const response = await ($fetch as any)(config.public.translateApi, {
       method: 'POST',
       body: {
         q: text,

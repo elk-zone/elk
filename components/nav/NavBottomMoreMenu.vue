@@ -95,7 +95,7 @@ const { dragging, dragDistance } = invoke(() => {
     }
   }, { passive: true })
 
-  useEventListener(drawerEl, 'touchend', (e: TouchEvent) => {
+  useEventListener(drawerEl, 'touchend', () => {
     if (!modelValue)
       return
 

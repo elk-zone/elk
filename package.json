@@ -103,7 +103,7 @@
     "workbox-window": "^7.0.0"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.6",
+    "@antfu/eslint-config": "^0.40.0",
     "@antfu/ni": "^0.21.5",
     "@types/chroma-js": "^2.4.0",
     "@types/file-saver": "^2.0.5",
@@ -116,7 +116,7 @@
     "@unlazy/nuxt": "^0.9.2",
     "bumpp": "^9.1.1",
     "consola": "^3.2.3",
-    "eslint": "^8.44.0",
+    "eslint": "^8.46.0",
     "flat": "^5.0.2",
     "fs-extra": "^11.1.1",
     "lint-staged": "^13.2.3",

@@ -1,3 +1,4 @@
+import process from 'node:process'
 import fs from 'fs-extra'
 import { emojiPrefix, iconifyEmojiPackage } from '../config/emojis'
 import { colorsMap } from './generate-themes'

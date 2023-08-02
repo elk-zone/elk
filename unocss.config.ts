@@ -1,3 +1,4 @@
+import process from 'node:process'
 import type { Variant } from 'unocss'
 import {
   defineConfig,

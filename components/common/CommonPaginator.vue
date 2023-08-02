@@ -39,7 +39,7 @@ defineSlots<{
     number: number
     update: () => void
   }) => void
-  loading: (props: {}) => void
+  loading: (props: object) => void
   done: (props: { items: U[] }) => void
 }>()
 

@@ -10,8 +10,8 @@ const props = withDefaults(defineProps<{
 })
 
 defineSlots<{
-  icon: (props: {}) => void
-  default: (props: {}) => void
+  icon: (props: object) => void
+  default: (props: object) => void
 }>()
 
 const router = useRouter()

@@ -1,4 +1,5 @@
 import { rm, writeFile } from 'node:fs/promises'
+import process from 'node:process'
 import { resolve } from 'pathe'
 import type { PngOptions, ResizeOptions } from 'sharp'
 import sharp from 'sharp'

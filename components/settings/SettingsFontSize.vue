@@ -4,7 +4,7 @@ import type { FontSize } from '~/composables/settings'
 
 const userSettings = useUserSettings()
 
-const sizes = (new Array(11)).fill(0).map((x, i) => `${10 + i}px`) as FontSize[]
+const sizes = (Array.from({ length: 11 })).fill(0).map((x, i) => `${10 + i}px`) as FontSize[]
 
 function setFontSize(e: Event) {
   if (e.target && 'valueAsNumber' in e.target)

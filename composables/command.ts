@@ -52,6 +52,9 @@ export type ResolvedCommand = Exclude<CommandProvider, 'icon' | 'name' | 'descri
   bindings: string[] | undefined
 }
 
+// TODO: define a type for command arg
+export type CommandHandler<T = void> = (arg: T) => void
+
 export interface BaseQueryResultItem {
   index: number
   type: string
@@ -78,7 +81,7 @@ export interface QueryResult {
   grouped: Map<CommandScopeNames, QueryResultItem[]>
 }
 
-function r<T extends Object | undefined>(i: T | (() => T)): T {
+function resolveFunction<T>(i: T): T extends () => infer R ? R : T {
   return typeof i === 'function' ? i() : i
 }
 
@@ -90,10 +93,10 @@ export const useCommandRegistry = defineStore('command', () => {
       .filter(command => command.visible ? command.visible() : true)
       .map(provider => ({
         ...provider,
-        icon: r(provider.icon),
-        name: r(provider.name),
-        description: r(provider.description),
-        bindings: r(provider.bindings),
+        icon: resolveFunction(provider.icon),
+        name: resolveFunction(provider.name),
+        description: resolveFunction(provider.description),
+        bindings: resolveFunction(provider.bindings),
       })))
 
   let lastScope = ''

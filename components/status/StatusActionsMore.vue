@@ -12,6 +12,8 @@ const emit = defineEmits<{
   (event: 'afterEdit'): void
 }>()
 
+const focusEditor = inject<typeof noop>('focus-editor', noop)
+
 const { details, command } = $(props)
 
 const {
@@ -103,8 +105,10 @@ async function deleteAndRedraft() {
 }
 
 function reply() {
+  if (!checkLogin())
+    return
   if (details) {
-    // TODO focus to editor
+    focusEditor()
   }
   else {
     const { key, draft } = getReplyDraft(status)

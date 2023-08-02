@@ -33,7 +33,7 @@ export function useIsMac() {
     ?? navigator?.platform?.includes('Mac') ?? false)
 }
 
-export function isEmptyObject(object: Object) {
+export function isEmptyObject(object: object) {
   return Object.keys(object).length === 0
 }
 

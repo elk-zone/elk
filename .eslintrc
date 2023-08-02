@@ -13,6 +13,7 @@
     "vue/no-restricted-syntax":["error", {
       "selector": "VElement[name='a']",
       "message": "Use NuxtLink instead."
-    }]
+    }],
+    "n/prefer-global/process": "off"
   }
 }

@@ -18,7 +18,7 @@ const { as = 'button', command, disabled, content, icon } = defineProps<{
 }>()
 
 defineSlots<{
-  text: (props: {}) => void
+  text: (props: object) => void
 }>()
 
 const el = ref<HTMLDivElement>()

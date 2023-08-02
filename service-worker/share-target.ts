@@ -1,7 +1,7 @@
 /// <reference lib="WebWorker" />
 declare const self: ServiceWorkerGlobalScope
 
-const clientResolves: { [key: string]: Function } = {}
+const clientResolves: { [key: string]: () => void } = {}
 
 self.addEventListener('message', (event) => {
   if (event.data.action !== 'ready-to-receive')

@@ -5,7 +5,7 @@ const colorMode = useColorMode()
 const userSettings = useUserSettings()
 
 function toggleVisible() {
-  modelValue.value = !modelValue
+  modelValue.value = !modelValue.value
 }
 
 const buttonEl = ref<HTMLDivElement>()

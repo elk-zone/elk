@@ -1,6 +1,6 @@
 import { stringifyQuery } from 'ufo'
 
-import { APP_NAME } from '~/constants'
+import { defaultUserAgent } from '~/server/utils/shared'
 
 export default defineEventHandler(async (event) => {
   let { server, origin } = getRouterParams(event)
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
     const result: any = await $fetch(`https://${server}/oauth/token`, {
       method: 'POST',
       headers: {
-        'user-agent': APP_NAME,
+        'user-agent': defaultUserAgent,
       },
       body: {
         client_id: app.client_id,

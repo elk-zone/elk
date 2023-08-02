@@ -1,13 +1,11 @@
 <script lang="ts" setup>
-let { modelValue } = $defineModels<{
-  modelValue: boolean
-}>()
+const modelValue = defineModel<boolean>({ required: true })
 const colorMode = useColorMode()
 
 const userSettings = useUserSettings()
 
 function toggleVisible() {
-  modelValue = !modelValue
+  modelValue.value = !modelValue
 }
 
 const buttonEl = ref<HTMLDivElement>()
@@ -16,7 +14,7 @@ function clickEvent(mouse: MouseEvent) {
   if (mouse.target && !buttonEl.value?.children[0].contains(mouse.target as any)) {
     if (modelValue) {
       document.removeEventListener('click', clickEvent)
-      modelValue = false
+      modelValue.value = false
     }
   }
 }

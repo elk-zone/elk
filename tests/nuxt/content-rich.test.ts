@@ -1,5 +1,4 @@
-// TODO: fix shadowing of `vi` import
-import { vi as _vi, describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import type { mastodon } from 'masto'
@@ -271,7 +270,7 @@ async function render(content: string, options?: ContentParseOptions) {
 }
 
 // mocks
-_vi.mock('vue-router', async () => {
+vi.mock('vue-router', async () => {
   const { defineComponent, h } = await import('vue')
   return {
     RouterLink: defineComponent((attrs) => {
@@ -280,7 +279,7 @@ _vi.mock('vue-router', async () => {
   }
 })
 
-_vi.mock('shiki-es', async (importOriginal) => {
+vi.mock('shiki-es', async (importOriginal) => {
   const mod = await importOriginal()
   return {
     ...(mod as any),

@@ -254,7 +254,7 @@ async function render(content: string, options?: ContentParseOptions) {
   let formatted = ''
 
   try {
-    formatted = format(html, {
+    formatted = await format(html, {
       parser: 'html',
     })
   }

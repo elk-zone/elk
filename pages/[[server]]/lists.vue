@@ -77,8 +77,8 @@ onDeactivated(() => clearError(false))
       <CommonPaginator ref="paginatorRef" :paginator="paginator">
         <template #default="{ item }">
           <ListEntry
-            :list="item"
-            @update:list="updateEntry"
+            :model-value="item"
+            @update:model-value="updateEntry"
             @list-removed="removeEntry"
           />
         </template>

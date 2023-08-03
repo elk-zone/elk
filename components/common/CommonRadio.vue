@@ -4,9 +4,7 @@ defineProps<{
   value: any
   hover?: boolean
 }>()
-const { modelValue } = defineModels<{
-  modelValue: any
-}>()
+const modelValue = defineModel()
 </script>
 
 <template>

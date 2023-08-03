@@ -32,8 +32,23 @@ if (import.meta.env.DEV)
 
 // deny api and server page calls
 let denylist: undefined | RegExp[]
-if (import.meta.env.PROD)
-  denylist = [/^\/api\//, /^\/login\//, /^\/oauth\//, /^\/signin\//, /^\/web-share-target\//]
+if (import.meta.env.PROD) {
+  denylist = [
+    /^\/api\//,
+    /^\/login\//,
+    /^\/oauth\//,
+    /^\/signin\//,
+    /^\/web-share-target\//,
+    // exclude shiki: has its own cache
+    /^\/shiki\//,
+    // exclude shiki: has its own cache
+    /^\/emojis\//,
+    // exclude sw: if the user navigates to it, fallback to index.html
+    /^\/sw.js$/,
+    // exclude webmanifest: has its own cache
+    /^\/manifest-(.*).webmanifest$/,
+  ]
+}
 
 // only cache pages and external assets on local build + start or in production
 if (import.meta.env.PROD) {
@@ -59,7 +74,7 @@ if (import.meta.env.PROD) {
       plugins: [
         new CacheableResponsePlugin({ statuses: [200] }),
         // 365 days max
-        new ExpirationPlugin({ maxAgeSeconds: 60 * 60 * 24 * 365 }),
+        new ExpirationPlugin({ purgeOnQuotaError: true, maxAgeSeconds: 60 * 60 * 24 * 365 }),
       ],
     }),
   )
@@ -74,7 +89,7 @@ if (import.meta.env.PROD) {
       plugins: [
         new CacheableResponsePlugin({ statuses: [200] }),
         // 15 days max
-        new ExpirationPlugin({ maxAgeSeconds: 60 * 60 * 24 * 15 }),
+        new ExpirationPlugin({ purgeOnQuotaError: true, maxAgeSeconds: 60 * 60 * 24 * 15 }),
       ],
     }),
   )

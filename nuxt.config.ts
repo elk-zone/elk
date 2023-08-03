@@ -12,8 +12,7 @@ export default defineNuxtConfig({
     tsConfig: {
       exclude: ['../service-worker'],
       vueCompilerOptions: {
-        jsxTemplates: true,
-        experimentalRfc436: true,
+        target: 3.3,
       },
     },
   },
@@ -35,6 +34,14 @@ export default defineNuxtConfig({
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
   ],
+  vue: {
+    defineModel: true,
+  },
+  macros: {
+    setupSFC: true,
+    betterDefine: false,
+    defineModels: false,
+  },
   devtools: {
     enabled: true,
   },
@@ -239,6 +246,9 @@ export default defineNuxtConfig({
         'script-src-attr': ['\'none\''],
         'style-src': ['\'self\'', '\'unsafe-inline\''],
         'upgrade-insecure-requests': true,
+      },
+      permissionsPolicy: {
+        fullscreen: ['\'self\'', 'https:', 'http:'],
       },
     },
     rateLimiter: false,

@@ -10,7 +10,7 @@ defineProps<{
 defineEmits(['hide', 'subscribe'])
 
 defineSlots<{
-  error: {}
+  error: (props: object) => void
 }>()
 
 const xl = useMediaQuery('(min-width: 1280px)')

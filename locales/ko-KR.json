@@ -21,11 +21,13 @@
     "followers_count": "{0}팔로워|{0}팔로워|{0}팔로워",
     "following": "팔로잉",
     "following_count": "{0}팔로잉",
+    "follows_you": "나를 팔로우함",
+    "go_to_profile": "프로필로 가기",
     "muted_users": "뮤트된 사용자",
     "mutuals": "맞팔로우 중",
     "pinned": "고정됨",
-    "posts": "포스트",
-    "posts_count": "{0}포스트|{0}포스트|{0}포스트",
+    "posts": "게시물",
+    "posts_count": "{0}게시물|{0}게시물|{0}게시물",
     "profile_description": "{0}의 프로필 헤더",
     "profile_unavailable": "프로필 사용 불가능",
     "request_follow": "팔로우 요청",
@@ -56,10 +58,10 @@
     "reply": "답글",
     "reply_count": "{0}",
     "reset": "리셋",
-    "save": "서정",
-    "save_changes": "변경사항이 저장됨",
+    "save": "저장",
+    "save_changes": "변경사항 저장",
     "sign_in": "로그인",
-    "sign_in_to": "{0}으로 로그인됨",
+    "sign_in_to": "{0}에 로그인",
     "switch_account": "계정 전환",
     "vote": "투표"
   },
@@ -72,7 +74,7 @@
   },
   "command": {
     "complete": "완료",
-    "compose_desc": "새 포스트 쓰기",
+    "compose_desc": "새 게시물 쓰기",
     "select_lang": "언어 선택",
     "sign_in_desc": "기존 계정 추가",
     "switch_account": "{0}로 전환",
@@ -102,17 +104,17 @@
     "delete_posts": {
       "cancel": "취소",
       "confirm": "삭제",
-      "title": "정말로 이 포스트를 삭제할까요?"
+      "title": "정말로 이 게시물을 삭제할까요?"
     },
     "mute_account": {
       "cancel": "취소",
-      "confirm": "Mute",
-      "title": "정말로 {0}을.를 뮤트하시겠어요?"
+      "confirm": "뮤트",
+      "title": "정말로 {0}을/를 뮤트하시겠어요?"
     },
     "show_reblogs": {
       "cancel": "취소",
       "confirm": "보기",
-      "title": "정말로 부스트를 {0}에서 표시할까요?"
+      "title": "정말로 {0}이/가 부스트한 게시물을 표시할까요?"
     },
     "unfollow": {
       "cancel": "취소",
@@ -127,7 +129,7 @@
     "account_not_found": "{0} 계정을 찾을 수 없습니다",
     "file_size_cannot_exceed_n_mb": "파일 크기는 {0}MB를 초과할 수 없습니다",
     "sign_in_error": "서버에 연결할 수 없습니다.",
-    "status_not_found": "포스트를 찾을 수 없습니다",
+    "status_not_found": "게시물을 찾을 수 없습니다",
     "unsupported_file_format": "지원하지 않는 파일 포맷"
   },
   "language": {
@@ -154,8 +156,8 @@
       "navigation": {
         "go_to_home": "홈",
         "go_to_notifications": "알림",
-        "next_status": "다음 상태",
-        "previous_status": "이전 상태",
+        "next_status": "다음 게시물",
+        "previous_status": "이전 게시물",
         "shortcut_help": "단축키 도움말",
         "title": "네비게이션"
       }
@@ -164,30 +166,30 @@
   "menu": {
     "block_account": "차단 {0}",
     "block_domain": "도메인 차단 {0}",
-    "copy_link_to_post": "이 포스트의 링크를 복사했습니다",
-    "copy_original_link_to_post": "이 포스트의 원래 링크를 복사",
+    "copy_link_to_post": "이 게시물의 링크를 복사했습니다",
+    "copy_original_link_to_post": "이 게시물의 원래 링크를 복사",
     "delete": "삭제",
     "delete_and_redraft": "삭제 후 재게시",
     "direct_message_account": "다이렉트 메시지 {0}",
     "edit": "수정",
-    "hide_reblogs": "{0} 부스트를 숨기기",
+    "hide_reblogs": "{0}이/가 부스트한 게시물 숨기기",
     "mention_account": "멘션 {0}",
     "mute_account": "뮤트 {0}",
-    "mute_conversation": "이 포스트를 뮤트",
+    "mute_conversation": "이 게시물을 뮤트",
     "open_in_original_site": "원래 사이트에서 열기",
     "pin_on_profile": "프로필에 고정",
-    "share_post": "포스트를 공유",
+    "share_post": "게시물을 공유",
     "show_favourited_and_boosted_by": "누가 좋아요와 부스트를 했는지 보기",
     "show_untranslated": "미번역본 보기",
     "toggle_theme": {
       "dark": "다크 모드 토글",
       "light": "라이크 모드 토글"
     },
-    "translate_post": "포스트 번역",
+    "translate_post": "게시물 번역",
     "unblock_account": "차단 해제 {0}",
     "unblock_domain": "도메인 차단 해제 {0}",
     "unmute_account": "언뮤트 {0}",
-    "unmute_conversation": "이 포스트를 언뮤트",
+    "unmute_conversation": "이 게시물을 언뮤트",
     "unpin_on_profile": "프로필에 고정 해제"
   },
   "modals": {
@@ -198,7 +200,7 @@
     "blocked_domains": "차단된 도메인",
     "blocked_users": "차단된 유저",
     "bookmarks": "북마크",
-    "built_at": "빌트 {0}",
+    "built_at": "{0}에 빌드됨",
     "compose": "작성",
     "conversations": "대화",
     "explore": "탐색",
@@ -216,18 +218,18 @@
     "select_font_size": "글자 크기",
     "select_language": "표시 언어",
     "settings": "설정",
-    "show_intro": "인트로 보기",
+    "show_intro": "소개 보기",
     "toggle_theme": "테마 토글"
   },
   "notification": {
-    "favourited_post": "당신의 포스트를 좋아합니다",
+    "favourited_post": "당신의 게시물을 좋아합니다",
     "followed_you": "당신을 팔로우 합니다",
     "followed_you_count": "{0}명이 당신을 팔로우 합니다|{0}명이 당신을 팔로우 합니다|{0}명이 당신을 팔로우 합니다",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "당신의 게시물을 리블로그했습니다.",
     "request_to_follow": "팔로우 요청",
     "signed_up": "회원가입 됨",
-    "update_status": "포스트가 업데이트 됨"
+    "update_status": "게시물이 업데이트 됨"
   },
   "placeholder": {
     "content_warning": "여기에 경고를 적으세요",
@@ -267,7 +269,7 @@
     }
   },
   "search": {
-    "search_desc": "사람과 해시태크 검색",
+    "search_desc": "사람과 해시태그 검색",
     "search_empty": "다음 검색어에 대한 내용을 찾을 수 없습니다"
   },
   "settings": {
@@ -315,8 +317,29 @@
         "label": "알림 설정"
       },
       "push_notifications": {
+        "alerts": {
+          "favourite": "좋아요",
+          "follow": "새로운 팔로워",
+          "mention": "맞팔로우",
+          "poll": "투표",
+          "reblog": "리블로그",
+          "title": "어느 알림을 받을까요?"
+        },
         "description": "Elk를 사용하지 않을 때에도 알림을 받습니다.",
+        "instructions": "@:settings.notifications.push_notifications.save_settings 버튼을 사용하여 설정을 저장하는 것을 잊지 마세요!",
         "label": "푸시 알림 설정",
+        "policy": {
+          "all": "누구나",
+          "followed": "내가 팔로우하는 사람",
+          "follower": "나를 팔로우하는 사람",
+          "none": "어느 사람의 알림도 받지 않음",
+          "title": "누구의 알림을 받을까요?"
+        },
+        "save_settings": "설정 저장",
+        "title": "푸시 알림 설정",
+        "undo_settings": "변경사항 되돌리기",
+        "unsubscribe": "푸시 알림 비활성화",
+        "unsupported": "지금 사용하는 브라우저는 푸시 알림을 지원하지 않습니다.",
         "warning": {
           "enable_close": "닫기",
           "enable_description": "Elk가 열려 있지 않을 때 알림을 받으려면 푸시 알림을 활성화하세요. 푸시 알림을 활성화하면 위의 \"@:settings.notifications.show_btn{'\"'} 버튼을 통해 어떤 유형의 상호작용이 푸시 알림을 생성하는지 정확하게 제어할 수 있습니다.",
@@ -336,7 +359,7 @@
       "github_cards": "깃허브 카드",
       "grayscale_mode": "그레이스케일 모드",
       "hide_account_hover_card": "계정 호버 카드 숨기기",
-      "hide_alt_indi_on_posts": "포스트에서 대체 표시 숨기기",
+      "hide_alt_indi_on_posts": "게시물에서 대체 표시 숨기기",
       "hide_boost_count": "부스트 갯수 숨기기",
       "hide_favorite_count": "좋아요 갯수 숨기기",
       "hide_follower_count": "팔로잉/팔로워 갯수 숨기기",
@@ -356,7 +379,7 @@
         "profile_metadata": "프로필 메타데이터",
         "profile_metadata_desc": "프로필에 최대 {0}개의 항목을 표로 표시할 수 있습니다",
         "profile_metadata_label": "라벨",
-        "profile_metadata_value": "콘텐트",
+        "profile_metadata_value": "콘텐츠",
         "title": "프로필 수정"
       },
       "featured_tags": {
@@ -408,14 +431,14 @@
   },
   "tab": {
     "accounts": "계정",
-    "hashtags": "해시태크",
+    "hashtags": "해시태그",
     "list": "리스트",
     "media": "미디어",
     "news": "뉴스",
     "notifications_all": "모두",
     "notifications_mention": "멘션",
-    "posts": "포스트",
-    "posts_with_replies": "포스트&답글"
+    "posts": "게시물",
+    "posts_with_replies": "게시물과 답글"
   },
   "tag": {
     "follow": "팔로우",
@@ -455,14 +478,14 @@
     "year_past": "0년 전|작년|{n}년 전"
   },
   "timeline": {
-    "show_new_items": "{v}개의 새 툿 보기|{v}개의 새 툿 보기|{v}개의 새 툿 보기"
+    "show_new_items": "{v}개의 새 게시물 보기|{v}개의 새 게시물 보기|{v}개의 새 게시물 보기"
   },
   "tooltip": {
     "add_content_warning": "콘텐츠 경고 추가",
     "add_emojis": "이모지 추가",
     "add_media": "이미지, 비디오, 오디오 파일 추가",
     "add_publishable_content": "콘텐츠를 게시합니다",
-    "change_content_visibility": "콘텐츠 가시성 변경",
+    "change_content_visibility": "콘텐츠 공개 범위 변경",
     "change_language": "언어 변경",
     "emoji": "이모지",
     "open_editor_tools": "에디터 툴",

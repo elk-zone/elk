@@ -105,6 +105,7 @@ onReactivated(() => {
             >
               <DynamicScrollerItem :item="item" :active="active">
                 <StatusCard
+                  :key="item.id"
                   :status="item"
                   context="account"
                   :older="context?.descendants[index + 1]"

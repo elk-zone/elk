@@ -55,6 +55,7 @@
     "close": "Fermer",
     "compose": "Composer",
     "confirm": "Confirmer",
+    "done": "Terminé",
     "edit": "Éditer",
     "enter_app": "Entrer dans l'application",
     "favourite": "J'aime",
@@ -244,6 +245,7 @@
     "open_in_original_site": "Ouvrir sur le site d'origine",
     "pin_on_profile": "Épingler sur le profil",
     "remove_personal_note": "Retirer la note personnelle de {0}",
+    "report_account": "Signaler {0}",
     "share_post": "Partager ce message",
     "show_favourited_and_boosted_by": "Montrer qui a aimé et partagé",
     "show_reblogs": "Voir les partages de {0}",
@@ -255,6 +257,7 @@
     "translate_post": "Traduire le message",
     "unblock_account": "Débloquer {0}",
     "unblock_domain": "Débloquer le domaine {0}",
+    "unfollow_account": "Ne plus suivre {0}",
     "unmute_account": "Enlever la sourdine à {0}",
     "unmute_conversation": "Réactiver le message",
     "unpin_on_profile": "Désépingler du profil"
@@ -308,10 +311,26 @@
     "replying": "Répondre",
     "the_thread": "Le thread"
   },
+  "polls": {
+    "allow_multiple": "Autoriser plusieurs choix",
+    "cancel": "Annuler",
+    "create": "Créer un sondage",
+    "disallow_multiple": "Désactiver le choix multiple",
+    "expiration": "Expiration du sondage",
+    "hide_votes": "Masquer le total des votes jusqu'à la fin",
+    "option_placeholder": "Option du sondage {current}/{max}",
+    "remove_option": "Retirer l'option",
+    "settings": "Options du sondage",
+    "show_votes": "Toujours montrer le total des votes"
+  },
   "pwa": {
     "dismiss": "Fermer",
     "install": "Installer",
     "install_title": "Installer Elk",
+    "screenshots": {
+      "dark": "Capture d'écran de Elk en thème sombre",
+      "light": "Capture d'écran de Elk en thème lumineux"
+    },
     "title": "Nouvelle mise à jour Elk disponible !",
     "update": "Mettre à jour",
     "update_available_short": "Mettre à jour Elk",
@@ -337,6 +356,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "Commentaires additionnels",
+    "another_server": "L'utilisateur que vous signalez appartient à une autre instance",
+    "anything_else": "Est-ce qu'il y a autre chose dont nous devrions être mis au courant ?",
+    "block_desc": "Vous ne verrez plus aucun message de cet utilisateur. Il ou elle ne pourra pas voir vos publications ni vous suivre, mais il ou elle pourra dire qu'il ou elle est bloqué.e.",
+    "dontlike": "Je n'aime pas ça",
+    "dontlike_desc": "Ce n'est pas quelque chose que vous souhaitez voir",
+    "forward": "Oui, transférez ce signalement à {0}",
+    "forward_question": "Souhaitez-vous également envoyer une copie anonyme de ce signalement à ce serveur ?",
+    "further_actions": {
+      "limit": {
+        "description": "Voici vos options pour contrôler ce que vous voyez :",
+        "title": "Vous ne voulez pas voir cela ?"
+      },
+      "report": {
+        "description": "Pendant que nous examinons cela, voici les actions que vous pouvez entreprendre :",
+        "title": "Merci pour le signalement, nous allons examiner cela."
+      }
+    },
+    "limiting": "Limiter {0}",
+    "mute_desc": "Vous ne verrez plus aucun message de cet utilisateur. Il pourra toujours vous suivre et voir vos messages. Il ne saura pas qu'il est muet.",
+    "other": "C'est quelque chose d'autre",
+    "other_desc": "Le problème ne rentre pas dans les autres catégories",
+    "reporting": "Signaler {0}",
+    "select_many": "Sélectionnez tout ce qui correspond :",
+    "select_one": "Choisissez la meilleure correspondance :",
+    "select_posts": "Y a-t-il des messages qui étayent ce signalement ?",
+    "select_posts_other": "Y a-t-il d'autres messages qui étayent ce rapport ?",
+    "spam": "C'est du spam",
+    "spam_desc": "Liens malveillants, faux engagement ou réponses répétitives",
+    "submit": "Envoyer le signalement",
+    "unfollow_desc": "Vous ne verrez plus les messages de cet utilisateur dans votre flux d'accueil. Vous pourrez toujours voir des messages de lui ailleurs.",
+    "violation": "Il enfreint une ou plusieurs des règles du serveur",
+    "whats_wrong_account": "Dites-nous le problème de ce compte",
+    "whats_wrong_post": "Dites-nous ce qui ne va pas avec ce post"
   },
   "search": {
     "search_desc": "Recherche de personnes & hashtags",
@@ -442,9 +497,10 @@
       "enable_data_saving_description": "Economise les données en évitant le chargement automatique des médias.",
       "enable_pinch_to_zoom": "Activer le zoom par pincement",
       "github_cards": "Cartes GitHub",
+      "github_cards_description": "Lorsqu'un lien Github est publié, une carte HTML accessible utilisant la méta du graphe social s'affiche à la place de l'image sociale.",
       "grayscale_mode": "Mode niveaux de gris",
       "hide_account_hover_card": "Masquer la carte de survol du compte",
-      "hide_alt_indi_on_posts": "Masquer l'indicateur alt sur les messsages",
+      "hide_alt_indi_on_posts": "Masquer l'indicateur alt sur les messages",
       "hide_boost_count": "Masquer les compteurs de partages",
       "hide_favorite_count": "Masquer les compteurs de favoris",
       "hide_follower_count": "Masquer les compteurs d'abonné·e·s",
@@ -455,8 +511,11 @@
       "hide_username_emojis_description": "Masque les emojis des noms d'utilisateur dans la timeline. \nLes emojis seront toujours visibles sur leurs profils.",
       "label": "Préférences",
       "title": "Fonctionnalités expérimentales",
+      "use_star_favorite_icon": "Utiliser l'icône de l'étoile en favoris",
       "user_picker": "User Picker",
+      "user_picker_description": "Affiche tous les avatars des comptes connectés en bas à gauche afin que vous puissiez basculer rapidement entre eux.",
       "virtual_scroll": "Défilement virtuel",
+      "virtual_scroll_description": "Utilisez une liste virtuelle dans les chronologies, afin qu'un plus grand nombre d'éléments puissent être rendus de manière performante.",
       "wellbeing": "Bien-être",
       "zen_mode": "Mode Zen",
       "zen_mode_description": "Masquer les côtés à moins que le curseur de la souris ne les survole. Masquer également certains éléments du fil d'actualité."
@@ -528,6 +587,7 @@
     "replying_to": "Répondre à {0}",
     "show_full_thread": "Voir le fil de discussion complet",
     "someone": "quelqu'un",
+    "spoiler_media_hidden": "Média caché",
     "spoiler_show_less": "Voir moins",
     "spoiler_show_more": "Voir plus",
     "thread": "Fil de discussion",
@@ -538,6 +598,7 @@
     "edited": "a édité {0}"
   },
   "tab": {
+    "account": "Compte",
     "accounts": "Comptes",
     "for_you": "Pour vous",
     "hashtags": "Hashtags",

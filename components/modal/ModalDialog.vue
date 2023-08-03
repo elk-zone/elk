@@ -36,6 +36,10 @@ export interface Props {
   dialogLabelledBy?: string
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<Props>(), {
   zIndex: 100,
   closeByMask: true,
@@ -45,17 +49,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   /** v-model dialog visibility */
-  (event: 'close',): void
+  (event: 'close'): void
 }>()
 
-const { modelValue: visible } = defineModels<{
-  /** v-model dislog visibility */
-  modelValue: boolean
-}>()
-
-defineOptions({
-  inheritAttrs: false,
-})
+const visible = defineModel<boolean>({ required: true })
 
 const deactivated = useDeactivated()
 const route = useRoute()
@@ -80,6 +77,8 @@ defineExpose({
 
 /** close the dialog */
 function close() {
+  if (!visible.value)
+    return
   visible.value = false
   emit('close')
 }

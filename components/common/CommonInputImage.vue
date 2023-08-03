@@ -22,9 +22,7 @@ const emit = defineEmits<{
   (event: 'error', code: number, message: string): void
 }>()
 
-const { modelValue: file } = defineModels<{
-  modelValue: FileWithHandle | null
-}>()
+const file = defineModel<FileWithHandle | null>()
 
 const { t } = useI18n()
 

@@ -20,7 +20,7 @@ function reverseHistory(items: mastodon.v1.StatusEdit[]) {
 </script>
 
 <template>
-  <CommonPaginator :paginator="paginator" key-prop="createdAt" :preprocess="reverseHistory" :buffer="0">
+  <CommonPaginator :paginator="paginator" key-prop="createdAt" :preprocess="reverseHistory">
     <template #default="{ items, item, index }">
       <CommonDropdownItem
         px="0.5"

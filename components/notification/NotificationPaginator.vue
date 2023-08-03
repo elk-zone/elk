@@ -155,14 +155,14 @@ const { clearNotifications } = useNotifications()
 const { formatNumber } = useHumanReadableNumber()
 </script>
 
+<!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <CommonPaginator
     :paginator="paginator"
     :preprocess="preprocess"
     :stream="stream"
-    :eager="3"
-    :virtual-scroller="virtualScroller"
-    event-type="notification"
+    :virtualScroller="virtualScroller"
+    eventType="notification"
   >
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">

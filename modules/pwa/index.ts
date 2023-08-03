@@ -1,14 +1,27 @@
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import type { Buffer } from 'node:buffer'
+import { dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
 import type { Plugin } from 'vite'
-import { join } from 'pathe'
+import { join, resolve } from 'pathe'
 import type { VitePWANuxtOptions } from './types'
 import { configurePWAOptions } from './config'
 import { type LocalizedWebManifest, createI18n, pwaLocales } from './i18n'
 
 export * from './types'
+
+interface PwaDevIcon {
+  src: string
+  type: string
+}
+
+interface ResolvedPwaDevIcon extends PwaDevIcon {
+  data: Promise<Buffer>
+}
+
 export default defineNuxtModule<VitePWANuxtOptions>({
   meta: {
     name: 'elk-pwa',
@@ -88,12 +101,33 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         })
       }
       viteInlineConfig.plugins.push({
-        name: 'elk:pwa:locales:dev',
+        name: 'elk:pwa:dev',
         apply: 'serve',
         configureServer(server) {
+          const icons: PwaDevIcon[] = webmanifests?.['en-US']?.icons as any
+          const mappedIcons: PwaDevIcon[] = [
+            ...icons.map(({ src, type }) => ({ src, type })),
+            { src: 'favicon.ico', type: 'image/x-icon' },
+            { src: 'apple-touch-icon.png', type: 'image/png' },
+            { src: 'logo.svg', type: 'image/svg+xml' },
+          ]
+
+          const folder = dirname(fileURLToPath(import.meta.url))
+          const useIcons = mappedIcons.reduce((acc, icon) => {
+            icon.src = `${nuxt.options.app.baseURL}${icon.src}`
+            acc[icon.src] = {
+              ...icon,
+              data: readFile(resolve(join(folder, '../../public-dev', icon.src))),
+            }
+            return acc
+          }, <Record<string, ResolvedPwaDevIcon>>{})
           const localeMatcher = new RegExp(`^${nuxt.options.app.baseURL}manifest-(.*).webmanifest$`)
-          server.middlewares.use((req, res, next) => {
-            const match = req.url?.match(localeMatcher)
+          server.middlewares.use(async (req, res, next) => {
+            const url = req.url
+            if (!url)
+              return next()
+
+            const match = url.match(localeMatcher)
             const entry = match && webmanifests![match[1]]
             if (entry) {
               res.statusCode = 200
@@ -101,10 +135,18 @@ export default defineNuxtModule<VitePWANuxtOptions>({
               res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate')
               res.write(JSON.stringify(entry), 'utf-8')
               res.end()
+              return
             }
-            else {
-              next()
-            }
+
+            const icon = useIcons[url]
+            if (!icon)
+              return next()
+
+            res.statusCode = 200
+            res.setHeader('Content-Type', icon.type)
+            res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate')
+            res.write(await icon.data)
+            res.end()
           })
         },
       })

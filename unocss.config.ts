@@ -1,3 +1,5 @@
+import process from 'node:process'
+import type { Variant } from 'unocss'
 import {
   defineConfig,
   presetAttributify,
@@ -106,22 +108,29 @@ export default defineConfig({
     },
   },
   variants: [
-    (matcher) => {
-      if (!process.env.TAURI_PLATFORM || !matcher.startsWith('native:'))
-        return matcher
-      return {
-        matcher: matcher.slice(7),
-        layer: 'native',
-      }
-    },
-    (matcher) => {
-      if (process.env.TAURI_PLATFORM !== 'macos' || !matcher.startsWith('native-mac:'))
-        return matcher
-      return {
-        matcher: matcher.slice(11),
-        layer: 'native-mac',
-      }
-    },
+    ...(process.env.TAURI_PLATFORM
+      ? <Variant<any>[]>[(matcher) => {
+        if (!matcher.startsWith('native:'))
+          return
+        return {
+          matcher: matcher.slice(7),
+          layer: 'native',
+        }
+      }]
+      : []),
+    ...(process.env.TAURI_PLATFORM !== 'macos'
+      ? <Variant<any>[]>[
+        (matcher) => {
+          if (!matcher.startsWith('native-mac:'))
+            return
+          return {
+            matcher: matcher.slice(11),
+            layer: 'native-mac',
+          }
+        },
+      ]
+      : []
+    ),
     variantParentMatcher('fullscreen', '@media (display-mode: fullscreen)'),
     variantParentMatcher('coarse-pointer', '@media (pointer: coarse)'),
   ],

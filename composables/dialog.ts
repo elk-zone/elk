@@ -12,6 +12,9 @@ export const mediaPreviewIndex = ref(0)
 export const statusEdit = ref<mastodon.v1.StatusEdit>()
 export const dialogDraftKey = ref<string>()
 
+export const reportAccount = ref<mastodon.v1.Account>()
+export const reportStatus = ref<mastodon.v1.Status>()
+
 export const commandPanelInput = ref('')
 
 export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, !process.mock)
@@ -26,6 +29,7 @@ export const isCommandPanelOpen = ref(false)
 export const isConfirmDialogOpen = ref(false)
 export const isErrorDialogOpen = ref(false)
 export const isFavouritedBoostedByDialogOpen = ref(false)
+export const isReportDialogOpen = ref(false)
 
 export const lastPublishDialogStatus = ref<mastodon.v1.Status | null>(null)
 
@@ -147,4 +151,14 @@ export function toggleKeyboardShortcuts() {
 
 export function closeKeyboardShortcuts() {
   isKeyboardShortcutsDialogOpen.value = false
+}
+
+export function openReportDialog(account: mastodon.v1.Account, status?: mastodon.v1.Status) {
+  reportAccount.value = account
+  reportStatus.value = status
+  isReportDialogOpen.value = true
+}
+
+export function closeReportDialog() {
+  isReportDialogOpen.value = false
 }

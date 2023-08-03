@@ -55,6 +55,7 @@
     "close": "Fechar",
     "compose": "Compor",
     "confirm": "Confirmar",
+    "done": "Concluído",
     "edit": "Editar",
     "enter_app": "Entrar na App",
     "favourite": "Adicionar aos favoritos",
@@ -243,6 +244,7 @@
     "open_in_original_site": "Abrir no sítio original",
     "pin_on_profile": "Fixar no perfil",
     "remove_personal_note": "Remover nota pessoal para {0}",
+    "report_account": "Denunciar {0}",
     "share_post": "Partilhar esta publicação",
     "show_favourited_and_boosted_by": "Mostrar quem adicionou aos favoritos e partilhou",
     "show_reblogs": "Mostrar partilhas de {0}",
@@ -254,6 +256,7 @@
     "translate_post": "Traduzir publicação",
     "unblock_account": "Desbloquear {0}",
     "unblock_domain": "Desbloquear domínio {0}",
+    "unfollow_account": "Deixar de seguir {0}",
     "unmute_account": "Deixar de silenciar {0}",
     "unmute_conversation": "Deixar de silenciar esta publicação",
     "unpin_on_profile": "Desafixar do perfil"
@@ -268,7 +271,7 @@
     "bookmarks": "Itens Salvos",
     "built_at": "Produzido {0}",
     "compose": "Compor",
-    "conversations": "Conversações",
+    "conversations": "Conversas",
     "explore": "Explorar",
     "favourites": "Favoritos",
     "federated": "Federada",
@@ -307,10 +310,26 @@
     "replying": "Respondendo",
     "the_thread": "a conversa"
   },
+  "polls": {
+    "allow_multiple": "Permitir múltiplas escolhas",
+    "cancel": "Cancelar",
+    "create": "Criar sondagem",
+    "disallow_multiple": "Não permitir múltiplas escolhas",
+    "expiration": "Validade da sondagem",
+    "hide_votes": "Esconder o total de votos até ao término da sondagem",
+    "option_placeholder": "Opção da sondagem {current}/{max}",
+    "remove_option": "Remover opção",
+    "settings": "Opções da sondagem",
+    "show_votes": "Mostrar sempre o total de votos"
+  },
   "pwa": {
     "dismiss": "Dispensar",
     "install": "Instalar",
     "install_title": "Instalar Elk",
+    "screenshots": {
+      "dark": "Captura de ecrã do Elk em modo escuro",
+      "light": "Captura de ecrã do Elk em modo claro"
+    },
     "title": "Nova atualização do Elk disponível!",
     "update": "Atualizar",
     "update_available_short": "Atualizar Elk",
@@ -336,6 +355,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "Adicionar comentários",
+    "another_server": "O utilizador que está a denunciar é de outro servidor",
+    "anything_else": "Há algo mais que necessitamos saber?",
+    "block_desc": "Deixará de visualizar publicações deste utilizador. O utilizador não vai poder visualizar as suas publicações ou segui-lo. O utilizador conseguirá saber que está bloqueado.",
+    "dontlike": "Não gosto disto",
+    "dontlike_desc": "É algo que você não pretende ver",
+    "forward": "Sim, encaminhar esta denúncia para {0}",
+    "forward_question": "Pretende enviar uma cópia anónima desta denúncia também para esse servidor?",
+    "further_actions": {
+      "limit": {
+        "description": "Aqui estão as suas opções para controlar o que vê:",
+        "title": "Não pretende ver isto?"
+      },
+      "report": {
+        "description": "Enquanto revemos a sua denúncia, aqui estão as ações que pode ter:",
+        "title": "Obrigado pela sua denúncia, vamos analisá-la."
+      }
+    },
+    "limiting": "Limitar {0}",
+    "mute_desc": "Deixará de visualizar as mensagens deste utilizador. O utilizador pode continuar a segui-lo e a visualizar as suas mensagens. O utilizador não conseguirá saber que está silenciado.",
+    "other": "É outra questão",
+    "other_desc": "A questão não se enquadra noutras categorias",
+    "reporting": "A denunciar {0}",
+    "select_many": "Selecionar todas as opções aplicáveis:",
+    "select_one": "Escolher a melhor correspondência:",
+    "select_posts": "Existe alguma publicação que corrobore esta denúncia?",
+    "select_posts_other": "Existem outras publicações que corroborem esta denúncia?",
+    "spam": "É spam",
+    "spam_desc": "Ligações maliciosas, falso engajamento ou respostas repetitivas",
+    "submit": "Submeter Denúncia",
+    "unfollow_desc": "Deixará de visualizar as publicações deste utilizador na sua página inicial. Poderá continuar a visualizar publicações deste utilizador noutros locais.",
+    "violation": "Infringe uma ou mais regras do servidor",
+    "whats_wrong_account": "Diga-nos o que está errado com esta conta",
+    "whats_wrong_post": "Diga-nos o que está errado com esta publicação"
   },
   "search": {
     "search_desc": "Procure por pessoas e hashtags",
@@ -441,6 +496,7 @@
       "enable_data_saving_description": "Poupar dados, impedindo que os anexos sejam carregados automaticamente.",
       "enable_pinch_to_zoom": "Habilitar afastar/aproximar dedos para fazer zoom",
       "github_cards": "Cartões do GitHub",
+      "github_cards_description": "Quando é publicada uma ligação para o GitHub, é apresentado um cartão HTML acessível que utiliza os metadados do gráfico social ao invés da imagem social.",
       "grayscale_mode": "Modo tons de cinza",
       "hide_account_hover_card": "Esconder cartão flutuante de conta",
       "hide_alt_indi_on_posts": "Esconder indicador alt nas publicações",
@@ -456,7 +512,9 @@
       "title": "Funcionalidades Experimentais",
       "use_star_favorite_icon": "Utilizar estrela como ícone de favoritos",
       "user_picker": "Selecionador de Utilizador",
+      "user_picker_description": "Exibe as imagens de perfil de todas as contas registadas no canto inferior esquerdo para que possa alternar rapidamente entre elas.",
       "virtual_scroll": "Deslocamento Virtual",
+      "virtual_scroll_description": "Utiliza uma lista virtual nas cronologias, para que um maior número de itens possa ser processado de forma eficiente.",
       "wellbeing": "Bem-estar",
       "zen_mode": "Modo Zen",
       "zen_mode_description": "Esconde as colunas laterais, a menos que o cursor do rato esteja sobre elas. Esconde também alguns elementos da cronologia."

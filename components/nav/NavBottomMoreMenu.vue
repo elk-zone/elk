@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { invoke } from '@vueuse/core'
 
-let { modelValue } = $defineModels<{
-  modelValue: boolean
-}>()
+const modelValue = defineModel<boolean>({ required: true })
 const colorMode = useColorMode()
 
 const userSettings = useUserSettings()
@@ -11,16 +9,16 @@ const userSettings = useUserSettings()
 const drawerEl = ref<HTMLDivElement>()
 
 function toggleVisible() {
-  modelValue = !modelValue
+  modelValue.value = !modelValue.value
 }
 
 const buttonEl = ref<HTMLDivElement>()
 /** Close the drop-down menu if the mouse click is not on the drop-down menu button when the drop-down menu is opened */
 function clickEvent(mouse: MouseEvent) {
   if (mouse.target && !buttonEl.value?.children[0].contains(mouse.target as any)) {
-    if (modelValue) {
+    if (modelValue.value) {
       document.removeEventListener('click', clickEvent)
-      modelValue = false
+      modelValue.value = false
     }
   }
 }
@@ -29,7 +27,7 @@ function toggleDark() {
   colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
 }
 
-watch($$(modelValue), (val) => {
+watch(modelValue, (val) => {
   if (val && typeof document !== 'undefined')
     document.addEventListener('click', clickEvent)
 })
@@ -57,7 +55,7 @@ const { dragging, dragDistance } = invoke(() => {
   }, { passive: true })
 
   useEventListener(drawerEl, 'touchstart', (e: TouchEvent) => {
-    if (!modelValue)
+    if (!modelValue.value)
       return
 
     beforeTouchPointY = e.touches[0].pageY
@@ -65,7 +63,7 @@ const { dragging, dragDistance } = invoke(() => {
   }, { passive: true })
 
   useEventListener(drawerEl, 'touchmove', (e: TouchEvent) => {
-    if (!modelValue)
+    if (!modelValue.value)
       return
 
     // Do not move the entire drawer when its contents are not scrolled to the top.
@@ -96,11 +94,11 @@ const { dragging, dragDistance } = invoke(() => {
   }, { passive: true })
 
   useEventListener(drawerEl, 'touchend', () => {
-    if (!modelValue)
+    if (!modelValue.value)
       return
 
     if (dragDistance.value >= triggerDistance)
-      modelValue = false
+      modelValue.value = false
 
     dragging.value = false
     // code

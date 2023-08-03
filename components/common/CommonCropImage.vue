@@ -14,10 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
   stencilSizePercentage: 0.9,
 })
 
-const { modelValue: file } = defineModels<{
-  /** Images to be cropped */
-  modelValue: File | null
-}>()
+const file = defineModel<File | null>()
 
 const cropperDialog = ref(false)
 

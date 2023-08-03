@@ -27,7 +27,7 @@ export function useDeactivated() {
  *
  * for handling problems caused by the keepalive function
  */
-export function onReactivated(hook: Function, target?: ComponentInternalInstance | null): void {
+export function onReactivated(hook: () => void, target?: ComponentInternalInstance | null): void {
   const initial = ref(true)
   onActivated(() => {
     if (initial.value)

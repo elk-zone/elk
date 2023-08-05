@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 import CommonScrollIntoView from '../common/CommonScrollIntoView.vue'
+import type { CommandHandler } from '~/composables/command'
 
 const { items, command } = defineProps<{
   items: mastodon.v1.Account[]
-  command: Function
+  command: CommandHandler<{ id: string }>
   isPending?: boolean
 }>()
 

@@ -59,9 +59,9 @@
     "reply_count": "{0}",
     "reset": "리셋",
     "save": "저장",
-    "save_changes": "변경사항이 저장됨",
+    "save_changes": "변경사항 저장",
     "sign_in": "로그인",
-    "sign_in_to": "{0}으로 로그인됨",
+    "sign_in_to": "{0}에 로그인",
     "switch_account": "계정 전환",
     "vote": "투표"
   },
@@ -109,12 +109,12 @@
     "mute_account": {
       "cancel": "취소",
       "confirm": "뮤트",
-      "title": "정말로 {0}을.를 뮤트하시겠어요?"
+      "title": "정말로 {0}을/를 뮤트하시겠어요?"
     },
     "show_reblogs": {
       "cancel": "취소",
       "confirm": "보기",
-      "title": "정말로 부스트를 {0}에서 표시할까요?"
+      "title": "정말로 {0}이/가 부스트한 게시물을 표시할까요?"
     },
     "unfollow": {
       "cancel": "취소",
@@ -156,8 +156,8 @@
       "navigation": {
         "go_to_home": "홈",
         "go_to_notifications": "알림",
-        "next_status": "다음 상태",
-        "previous_status": "이전 상태",
+        "next_status": "다음 게시물",
+        "previous_status": "이전 게시물",
         "shortcut_help": "단축키 도움말",
         "title": "네비게이션"
       }
@@ -172,7 +172,7 @@
     "delete_and_redraft": "삭제 후 재게시",
     "direct_message_account": "다이렉트 메시지 {0}",
     "edit": "수정",
-    "hide_reblogs": "{0} 부스트를 숨기기",
+    "hide_reblogs": "{0}이/가 부스트한 게시물 숨기기",
     "mention_account": "멘션 {0}",
     "mute_account": "뮤트 {0}",
     "mute_conversation": "이 게시물을 뮤트",
@@ -200,7 +200,7 @@
     "blocked_domains": "차단된 도메인",
     "blocked_users": "차단된 유저",
     "bookmarks": "북마크",
-    "built_at": "빌트 {0}",
+    "built_at": "{0}에 빌드됨",
     "compose": "작성",
     "conversations": "대화",
     "explore": "탐색",
@@ -269,7 +269,7 @@
     }
   },
   "search": {
-    "search_desc": "사람과 해시태크 검색",
+    "search_desc": "사람과 해시태그 검색",
     "search_empty": "다음 검색어에 대한 내용을 찾을 수 없습니다"
   },
   "settings": {
@@ -379,7 +379,7 @@
         "profile_metadata": "프로필 메타데이터",
         "profile_metadata_desc": "프로필에 최대 {0}개의 항목을 표로 표시할 수 있습니다",
         "profile_metadata_label": "라벨",
-        "profile_metadata_value": "콘텐트",
+        "profile_metadata_value": "콘텐츠",
         "title": "프로필 수정"
       },
       "featured_tags": {
@@ -431,7 +431,7 @@
   },
   "tab": {
     "accounts": "계정",
-    "hashtags": "해시태크",
+    "hashtags": "해시태그",
     "list": "리스트",
     "media": "미디어",
     "news": "뉴스",
@@ -485,7 +485,7 @@
     "add_emojis": "이모지 추가",
     "add_media": "이미지, 비디오, 오디오 파일 추가",
     "add_publishable_content": "콘텐츠를 게시합니다",
-    "change_content_visibility": "콘텐츠 가시성 변경",
+    "change_content_visibility": "콘텐츠 공개 범위 변경",
     "change_language": "언어 변경",
     "emoji": "이모지",
     "open_editor_tools": "에디터 툴",

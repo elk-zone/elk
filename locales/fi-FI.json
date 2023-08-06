@@ -105,12 +105,12 @@
     "block_account": {
       "cancel": "Peru",
       "confirm": "Estä",
-      "title": "Oletko varma, että haluat estää {0}?"
+      "description": "Oletko varma, että haluat estää {0}?"
     },
     "block_domain": {
       "cancel": "Peru",
       "confirm": "Estä",
-      "title": "Oletko varma, että haluat estää {0}?"
+      "description": "Oletko varma, että haluat estää {0}?"
     },
     "common": {
       "cancel": "Peru",
@@ -119,22 +119,22 @@
     "delete_posts": {
       "cancel": "Peru",
       "confirm": "Poista",
-      "title": "Oletko varma, että haluat poistaa tämän viestin?"
+      "description": "Oletko varma, että haluat poistaa tämän viestin?"
     },
     "mute_account": {
       "cancel": "Peru",
       "confirm": "Hiljennä",
-      "title": "Oletko varma, että haluat hiljentää {0}?"
+      "description": "Oletko varma, että haluat hiljentää {0}?"
     },
     "show_reblogs": {
       "cancel": "Peru",
       "confirm": "Näytä",
-      "title": "Oletko varma, että haluat nähdä {0}:n edelleenjaot?"
+      "description": "Oletko varma, että haluat nähdä {0}:n edelleenjaot?"
     },
     "unfollow": {
       "cancel": "Peru",
       "confirm": "Älä seuraa",
-      "title": "Oletko varma, että haluat lopettaa seuraamisen?"
+      "description": "Oletko varma, että haluat lopettaa seuraamisen?"
     }
   },
   "conversation": {

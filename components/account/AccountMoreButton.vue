@@ -26,7 +26,8 @@ function shareAccount() {
 
 async function toggleReblogs() {
   if (!relationship!.showingReblogs && await openConfirmDialog({
-    title: t('confirm.show_reblogs.title', [account.acct]),
+    title: t('confirm.show_reblogs.title'),
+    description: t('confirm.show_reblogs.description', [account.acct]),
     confirm: t('confirm.show_reblogs.confirm'),
     cancel: t('confirm.show_reblogs.cancel'),
   }) !== 'confirm')

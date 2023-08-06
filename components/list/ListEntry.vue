@@ -58,7 +58,8 @@ async function removeList() {
     return
 
   const confirmDelete = await openConfirmDialog({
-    title: t('confirm.delete_list.title', [list.value.title]),
+    title: t('confirm.delete_list.title'),
+    description: t('confirm.delete_list.description', [list.value.title]),
     confirm: t('confirm.delete_list.confirm'),
     cancel: t('confirm.delete_list.cancel'),
   })

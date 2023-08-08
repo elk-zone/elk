@@ -131,6 +131,9 @@
     "vue-tsc": "^1.8.8"
   },
   "pnpm": {
+    "overrides": {
+      "unstorage": "^1.9.0"
+    },
     "patchedDependencies": {
       "nuxt-security@0.13.1": "patches/nuxt-security@0.13.1.patch"
     }

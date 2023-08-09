@@ -90,6 +90,13 @@ async function deleteAndRedraft() {
   }) !== 'confirm')
     return
 
+  if (process.dev) {
+    // eslint-disable-next-line no-alert
+    const result = confirm('[DEV] Are you sure you want to delete and re-draft this post?')
+    if (!result)
+      return
+  }
+
   removeCachedStatus(status.id)
   await client.v1.statuses.remove(status.id)
   await openPublishDialog('dialog', await getDraftFromStatus(status), true)

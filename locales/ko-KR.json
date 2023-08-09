@@ -188,7 +188,7 @@
     "copy_original_link_to_post": "이 게시물의 원본 링크를 복사",
     "delete": "삭제",
     "delete_and_redraft": "삭제 후 재게시",
-    "direct_message_account": "{0}을/를 한테 DM 보내기",
+    "direct_message_account": "{0}한테 DM 보내기",
     "edit": "수정",
     "hide_reblogs": "{0}이/가 부스트한 게시물 숨기기",
     "mention_account": "{0}을/를 멘션하기",

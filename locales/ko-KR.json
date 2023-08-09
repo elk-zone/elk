@@ -331,7 +331,7 @@
         "alerts": {
           "favourite": "좋아요",
           "follow": "새로운 팔로워",
-          "mention": "맞팔로워",
+          "mention": "멘션",
           "poll": "투표",
           "reblog": "리블로그",
           "title": "어느 알림을 받을까요?"

@@ -9,7 +9,7 @@
   "account": {
     "avatar_description": "{0}의 아바타",
     "blocked_by": "당신은 이 유저한테 차단당했습니다.",
-    "blocked_domains": "차단된 도메인",
+    "blocked_domains": "차단한 도메인",
     "blocked_users": "차단한 유저",
     "blocking": "차단",
     "bot": "봇",

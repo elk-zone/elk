@@ -182,21 +182,21 @@
     }
   },
   "menu": {
-    "block_account": "차단 {0}",
-    "block_domain": "도메인 차단 {0}",
+    "block_account": "{0}을/를 차단하기",
+    "block_domain": "{0} 도메인을 차단하기",
     "copy_link_to_post": "이 게시물의 링크를 복사하기",
     "copy_original_link_to_post": "이 게시물의 원본 링크를 복사",
     "delete": "삭제",
     "delete_and_redraft": "삭제 후 재게시",
-    "direct_message_account": "다이렉트 메시지 {0}",
+    "direct_message_account": "{0}을/를 한테 DM 보내기",
     "edit": "수정",
     "hide_reblogs": "{0}이/가 부스트한 게시물 숨기기",
-    "mention_account": "멘션 {0}",
-    "mute_account": "뮤트 {0}",
-    "mute_conversation": "이 게시물을 뮤트",
-    "open_in_original_site": "원래 사이트에서 열기",
+    "mention_account": "{0}을/를 멘션하기",
+    "mute_account": "{0}을/를 뮤트하기",
+    "mute_conversation": "이 게시물을 뮤트하기",
+    "open_in_original_site": "원본 사이트에서 열기",
     "pin_on_profile": "프로필에 고정",
-    "share_post": "게시물을 공유",
+    "share_post": "이 게시물을 공유",
     "show_favourited_and_boosted_by": "누가 좋아요와 부스트를 했는지 보기",
     "show_untranslated": "미번역본 보기",
     "toggle_theme": {
@@ -435,8 +435,9 @@
     "uploading": "업로드 중..."
   },
   "status": {
-    "boosted_by": "부스트 했습니다",
-    "edited": "수정함 {0}",
+    "boosted_by": "부스트를 한 사람",
+    "edited": "{0}에 수정됨",
+    "favourited_by": "좋아요를 한 사람",
     "img_alt": {
       "ALT": "ALT",
       "desc": "설명",
@@ -453,7 +454,7 @@
     "spoiler_show_less": "최소한으로 보기",
     "spoiler_show_more": "더 보기",
     "thread": "스레드",
-    "try_original_site": "오리지널 사이트에서 시도하기"
+    "try_original_site": "원본 사이트에서 시도하기"
   },
   "status_history": {
     "created": "만듬 {0}",

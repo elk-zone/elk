@@ -184,8 +184,8 @@
   "menu": {
     "block_account": "차단 {0}",
     "block_domain": "도메인 차단 {0}",
-    "copy_link_to_post": "이 게시물의 링크를 복사했습니다",
-    "copy_original_link_to_post": "이 게시물의 원래 링크를 복사",
+    "copy_link_to_post": "이 게시물의 링크를 복사하기",
+    "copy_original_link_to_post": "이 게시물의 원본 링크를 복사",
     "delete": "삭제",
     "delete_and_redraft": "삭제 후 재게시",
     "direct_message_account": "다이렉트 메시지 {0}",
@@ -261,11 +261,11 @@
     "create": "투표 만들기",
     "disallow_multiple": "복수 투표 불허",
     "expiration": "투표 종료 시점",
-    "hide_votes": "투표가 끝날때 까지 총 투표수 숨기기",
+    "hide_votes": "투표가 끝날때 까지 총 득표수 숨기기",
     "option_placeholder": "투표 선택지 {current}/{max}",
     "remove_option": "선택지 지우기",
     "settings": "투표 설정",
-    "show_votes": "항상 총 투표수 보이기"
+    "show_votes": "항상 총 득표수 보이기"
   },
   "pwa": {
     "dismiss": "설치하지 않기",

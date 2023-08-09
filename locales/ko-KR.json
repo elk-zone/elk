@@ -196,6 +196,7 @@
     "mute_conversation": "이 게시물을 뮤트하기",
     "open_in_original_site": "원본 사이트에서 열기",
     "pin_on_profile": "프로필에 고정",
+    "report_account": "{0}을/를 신고하기",
     "share_post": "이 게시물을 공유",
     "show_favourited_and_boosted_by": "누가 좋아요와 부스트를 했는지 보기",
     "show_untranslated": "미번역본 보기",
@@ -204,9 +205,9 @@
       "light": "라이크 모드 토글"
     },
     "translate_post": "게시물 번역",
-    "unblock_account": "차단 해제 {0}",
-    "unblock_domain": "도메인 차단 해제 {0}",
-    "unmute_account": "언뮤트 {0}",
+    "unblock_account": "{0}을/를 차단 해제하기",
+    "unblock_domain": "{0} 도메인을 차단 해제하기",
+    "unmute_account": "{0}을/를 언뮤트하기",
     "unmute_conversation": "이 게시물을 언뮤트",
     "unpin_on_profile": "프로필에 고정 해제"
   },

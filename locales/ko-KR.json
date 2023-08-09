@@ -182,7 +182,7 @@
     }
   },
   "menu": {
-    "add_personal_note": "{0}에 대한 개인 메모 추가",
+    "add_personal_note": "{0}에 대한 개인 메모 추가하기",
     "block_account": "{0}을/를 차단하기",
     "block_domain": "{0} 도메인을 차단하기",
     "copy_link_to_post": "이 게시물의 링크를 복사하기",

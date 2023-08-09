@@ -331,7 +331,7 @@
     "language": {
       "display_language": "표시 언어",
       "label": "언어",
-      "status": "변역 진행도: {0}/{1}({2}%)",
+      "status": "번역 진행도: {0}/{1}({2}%)",
       "translations": {
         "add": "추가",
         "choose_language": "언어 선택",

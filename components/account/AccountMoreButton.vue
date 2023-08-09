@@ -1,52 +1,59 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import { toggleBlockAccount, toggleBlockDomain, toggleMuteAccount } from '~~/composables/masto/relationship'
 
 const { account } = defineProps<{
   account: mastodon.v1.Account
   command?: boolean
 }>()
+const emit = defineEmits<{
+  (evt: 'addNote'): void
+  (evt: 'removeNote'): void
+}>()
+
 let relationship = $(useRelationship(account))
 
 const isSelf = $(useSelfAccount(() => account))
 
-const masto = useMasto()
-const toggleMute = async () => {
-  // TODO: Add confirmation
+const { t } = useI18n()
+const { client } = $(useMasto())
+const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
+const { share, isSupported: isShareSupported } = useShare()
 
-  relationship!.muting = !relationship!.muting
-  relationship = relationship!.muting
-    ? await masto.v1.accounts.mute(account.id, {
-      // TODO support more options
-    })
-    : await masto.v1.accounts.unmute(account.id)
+function shareAccount() {
+  share({ url: location.href })
 }
 
-const toggleBlockUser = async () => {
-  // TODO: Add confirmation
-
-  relationship!.blocking = !relationship!.blocking
-  relationship = await masto.v1.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
-}
-
-const toggleBlockDomain = async () => {
-  // TODO: Add confirmation
-
-  relationship!.domainBlocking = !relationship!.domainBlocking
-  await masto.v1.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
-}
-
-const toggleReblogs = async () => {
-  // TODO: Add confirmation
+async function toggleReblogs() {
+  if (!relationship!.showingReblogs && await openConfirmDialog({
+    title: t('confirm.show_reblogs.title', [account.acct]),
+    confirm: t('confirm.show_reblogs.confirm'),
+    cancel: t('confirm.show_reblogs.cancel'),
+  }) !== 'confirm')
+    return
 
   const showingReblogs = !relationship?.showingReblogs
-  relationship = await masto.v1.accounts.follow(account.id, { reblogs: showingReblogs })
+  relationship = await client.v1.accounts.follow(account.id, { reblogs: showingReblogs })
+}
+
+async function addUserNote() {
+  emit('addNote')
+}
+
+async function removeUserNote() {
+  if (!relationship!.note || relationship!.note.length === 0)
+    return
+
+  const newNote = await client.v1.accounts.createNote(account.id, { comment: '' })
+  relationship!.note = newNote.note
+  emit('removeNote')
 }
 </script>
 
 <template>
   <CommonDropdown :eager-mount="command">
     <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group aria-label="More actions">
-      <div rounded-5 p2 group-hover="bg-purple/10">
+      <div rounded-5 p2 elk-group-hover="bg-purple/10">
         <div i-ri:more-2-fill />
       </div>
     </button>
@@ -59,6 +66,13 @@ const toggleReblogs = async () => {
           :command="command"
         />
       </NuxtLink>
+      <CommonDropdownItem
+        v-if="isShareSupported"
+        :text="`Share @${account.acct}`"
+        icon="i-ri:share-line"
+        :command="command"
+        @click="shareAccount()"
+      />
 
       <template v-if="currentUser">
         <template v-if="!isSelf">
@@ -80,29 +94,44 @@ const toggleReblogs = async () => {
             icon="i-ri:repeat-line"
             :text="$t('menu.show_reblogs', [`@${account.acct}`])"
             :command="command"
-            @click="toggleReblogs"
+            @click="toggleReblogs()"
           />
           <CommonDropdownItem
             v-else
             :text="$t('menu.hide_reblogs', [`@${account.acct}`])"
             icon="i-ri:repeat-line"
             :command="command"
-            @click="toggleReblogs"
+            @click="toggleReblogs()"
+          />
+
+          <CommonDropdownItem
+            v-if="!relationship?.note || relationship?.note?.length === 0"
+            :text="$t('menu.add_personal_note', [`@${account.acct}`])"
+            icon="i-ri-edit-2-line"
+            :command="command"
+            @click="addUserNote()"
+          />
+          <CommonDropdownItem
+            v-else
+            :text="$t('menu.remove_personal_note', [`@${account.acct}`])"
+            icon="i-ri-edit-2-line"
+            :command="command"
+            @click="removeUserNote()"
           />
 
           <CommonDropdownItem
             v-if="!relationship?.muting"
             :text="$t('menu.mute_account', [`@${account.acct}`])"
-            icon="i-ri:volume-up-fill"
+            icon="i-ri:volume-mute-line"
             :command="command"
-            @click="toggleMute"
+            @click="toggleMuteAccount (relationship!, account)"
           />
           <CommonDropdownItem
             v-else
             :text="$t('menu.unmute_account', [`@${account.acct}`])"
-            icon="i-ri:volume-mute-line"
+            icon="i-ri:volume-up-fill"
             :command="command"
-            @click="toggleMute"
+            @click="toggleMuteAccount (relationship!, account)"
           />
 
           <CommonDropdownItem
@@ -110,14 +139,14 @@ const toggleReblogs = async () => {
             :text="$t('menu.block_account', [`@${account.acct}`])"
             icon="i-ri:forbid-2-line"
             :command="command"
-            @click="toggleBlockUser"
+            @click="toggleBlockAccount (relationship!, account)"
           />
           <CommonDropdownItem
             v-else
             :text="$t('menu.unblock_account', [`@${account.acct}`])"
             icon="i-ri:checkbox-circle-line"
             :command="command"
-            @click="toggleBlockUser"
+            @click="toggleBlockAccount (relationship!, account)"
           />
 
           <template v-if="getServerName(account) !== currentServer">
@@ -126,16 +155,23 @@ const toggleReblogs = async () => {
               :text="$t('menu.block_domain', [getServerName(account)])"
               icon="i-ri:shut-down-line"
               :command="command"
-              @click="toggleBlockDomain"
+              @click="toggleBlockDomain(relationship!, account)"
             />
             <CommonDropdownItem
               v-else
               :text="$t('menu.unblock_domain', [getServerName(account)])"
               icon="i-ri:restart-line"
               :command="command"
-              @click="toggleBlockDomain"
+              @click="toggleBlockDomain(relationship!, account)"
             />
           </template>
+
+          <CommonDropdownItem
+            :text="$t('menu.report_account', [`@${account.acct}`])"
+            icon="i-ri:flag-2-line"
+            :command="command"
+            @click="openReportDialog(account)"
+          />
         </template>
 
         <template v-else>
@@ -143,7 +179,7 @@ const toggleReblogs = async () => {
             <CommonDropdownItem :text="$t('account.pinned')" icon="i-ri:pushpin-line" :command="command" />
           </NuxtLink>
           <NuxtLink to="/favourites">
-            <CommonDropdownItem :text="$t('account.favourites')" icon="i-ri:heart-3-line" :command="command" />
+            <CommonDropdownItem :text="$t('account.favourites')" :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'" :command="command" />
           </NuxtLink>
           <NuxtLink to="/mutes">
             <CommonDropdownItem :text="$t('account.muted_users')" icon="i-ri:volume-mute-line" :command="command" />

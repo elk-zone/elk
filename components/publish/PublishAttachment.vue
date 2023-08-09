@@ -15,9 +15,12 @@ const emit = defineEmits<{
   (evt: 'setDescription', description: string): void
 }>()
 
+// from https://github.com/mastodon/mastodon/blob/dfa984/app/models/media_attachment.rb#L40
+const maxDescriptionLength = 1500
+
 const isEditDialogOpen = ref(false)
 const description = ref(props.attachment.description ?? '')
-const toggleApply = () => {
+function toggleApply() {
   isEditDialogOpen.value = false
   emit('setDescription', unref(description))
 }
@@ -25,17 +28,16 @@ const toggleApply = () => {
 
 <template>
   <div relative group>
-    <StatusAttachment :attachment="attachment" w-full />
+    <StatusAttachment :attachment="attachment" w-full is-preview />
     <div absolute right-2 top-2>
       <div
         v-if="removable"
         :aria-label="$t('attachment.remove_label')"
-        hover:bg="gray/40" transition-100 p-1 rounded-5 cursor-pointer
-        :class="[isHydrated && isSmallScreen ? '' : 'op-0 group-hover:op-100hover:']"
-        mix-blend-difference
+        class="bg-black/75 hover:bg-red/75"
+        text-white px2 py2 rounded-full cursor-pointer
         @click="$emit('remove')"
       >
-        <div i-ri:close-line text-3 :class="[isHydrated && isSmallScreen ? 'text-6' : 'text-3']" />
+        <div i-ri:close-line text-3 text-6 md:text-3 />
       </div>
     </div>
     <div absolute right-2 bottom-2>
@@ -56,7 +58,10 @@ const toggleApply = () => {
           </h1>
           <div flex flex-col gap-2>
             <textarea v-model="description" p-3 h-50 bg-base rounded-2 border-strong border-1 md:w-100 />
-            <button btn-outline @click="toggleApply">
+            <div flex flex-row-reverse>
+              <PublishCharacterCounter :length="description.length" :max="maxDescriptionLength" />
+            </div>
+            <button btn-outline :disabled="description.length > maxDescriptionLength" @click="toggleApply">
               {{ $t('action.apply') }}
             </button>
           </div>
@@ -64,7 +69,7 @@ const toggleApply = () => {
             {{ $t('action.close') }}
           </button>
         </div>
-        <StatusAttachment :attachment="attachment" w-full />
+        <StatusAttachment :attachment="attachment" w-full is-preview />
       </div>
     </ModalDialog>
   </div>

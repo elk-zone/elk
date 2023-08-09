@@ -2,7 +2,7 @@
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => t('title.local_timeline'),
 })
 </script>
@@ -16,6 +16,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <TimelinePublicLocal v-if="isMastoInitialised" />
+    <TimelinePublicLocal v-if="isHydrated" />
   </MainContent>
 </template>

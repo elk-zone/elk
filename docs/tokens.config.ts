@@ -1,10 +1,8 @@
-import { defineTheme, palette } from 'pinceau'
+import { defineTheme } from 'pinceau'
+import { getColors } from 'theme-colors'
 
 export default defineTheme({
-  font: {
-    sans: 'DM Sans',
-  },
   color: {
-    primary: palette('#d98018'),
+    primary: getColors('#d98018'),
   },
 })

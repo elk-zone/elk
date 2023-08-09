@@ -25,9 +25,9 @@ declare module '@tiptap/core' {
   }
 }
 
-export const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/
+const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/
 
-export const CustomEmoji = Node.create<EmojiOptions>({
+export const TiptapPluginCustomEmoji = Node.create<EmojiOptions>({
   name: 'custom-emoji',
 
   addOptions() {

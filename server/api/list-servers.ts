@@ -1,6 +1,3 @@
-import { defineEventHandler } from 'h3'
-import { listServers } from '~/server/shared'
-
 let servers: string[]
 
 export default defineEventHandler(async () => {

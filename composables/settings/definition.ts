@@ -1,47 +1,90 @@
-import { DEFAULT_FONT_SIZE, DEFAULT_LANGUAGE } from '~/constants'
+import { DEFAULT_FONT_SIZE } from '~/constants'
 
-export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type FontSize = `${number}px`
+
+// Temporary type for backward compatibility
+export type OldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
 export type ColorMode = 'light' | 'dark' | 'system'
 
-export interface FeatureFlags {
+export interface PreferencesSettings {
+  hideAltIndicatorOnPosts: boolean
+  hideBoostCount: boolean
+  hideReplyCount: boolean
+  hideFavoriteCount: boolean
+  hideFollowerCount: boolean
+  hideTranslation: boolean
+  hideUsernameEmojis: boolean
+  hideAccountHoverCard: boolean
+  hideNews: boolean
+  grayscaleMode: boolean
+  enableAutoplay: boolean
+  enableDataSaving: boolean
+  enablePinchToZoom: boolean
+  useStarFavoriteIcon: boolean
+  zenMode: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
 }
 
-export interface WellnessSettings {
-  hideBoostCount: boolean
-  hideFavoriteCount: boolean
-  hideFollowerCount: boolean
-}
-
 export interface UserSettings {
-  featureFlags: Partial<FeatureFlags>
-  wellnessSettings: Partial<WellnessSettings>
+  preferences: Partial<PreferencesSettings>
   colorMode?: ColorMode
   fontSize: FontSize
   language: string
-  zenMode: boolean
+  disabledTranslationLanguages: string[]
+  themeColors?: ThemeColors
 }
 
-export function getDefaultUserSettings(): UserSettings {
-  return {
-    language: DEFAULT_LANGUAGE,
-    fontSize: DEFAULT_FONT_SIZE,
-    zenMode: false,
-    featureFlags: {},
-    wellnessSettings: {},
-  }
+export interface ThemeColors {
+  '--theme-color-name': string
+
+  '--c-primary': string
+  '--c-primary-active': string
+  '--c-primary-light': string
+  '--c-primary-fade': string
+  '--c-dark-primary': string
+  '--c-dark-primary-active': string
+  '--c-dark-primary-light': string
+  '--c-dark-primary-fade': string
+
+  '--rgb-primary': string
+  '--rgb-dark-primary': string
 }
 
-export const DEFAULT_WELLNESS_SETTINGS: WellnessSettings = {
+export function getDefaultLanguage(languages: string[]) {
+  if (process.server)
+    return 'en-US'
+  return matchLanguages(languages, navigator.languages) || 'en-US'
+}
+
+export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
+  hideAltIndicatorOnPosts: false,
   hideBoostCount: false,
+  hideReplyCount: false,
   hideFavoriteCount: false,
   hideFollowerCount: false,
-}
-
-export const DEFAULT_FEATURE_FLAGS: FeatureFlags = {
+  hideTranslation: false,
+  hideUsernameEmojis: false,
+  hideAccountHoverCard: false,
+  hideNews: false,
+  grayscaleMode: false,
+  enableAutoplay: true,
+  enableDataSaving: false,
+  enablePinchToZoom: false,
+  useStarFavoriteIcon: false,
+  zenMode: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,
+}
+
+export function getDefaultUserSettings(locales: string[]): UserSettings {
+  return {
+    language: getDefaultLanguage(locales),
+    fontSize: DEFAULT_FONT_SIZE,
+    disabledTranslationLanguages: [],
+    preferences: DEFAULT__PREFERENCES_SETTINGS,
+  }
 }

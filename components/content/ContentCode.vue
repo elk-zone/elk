@@ -18,5 +18,6 @@ const highlighted = computed(() => {
 </script>
 
 <template>
-  <pre class="code-block" v-html="highlighted" />
+  <pre v-if="lang" class="code-block" v-html="highlighted" />
+  <pre v-else class="code-block">{{ raw }}</pre>
 </template>

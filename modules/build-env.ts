@@ -10,17 +10,22 @@ export default defineNuxtModule({
     name: 'elk:build-env',
   },
   async setup(_options, nuxt) {
-    const { env, commit, branch } = await getEnv()
+    const { env, commit, shortCommit, branch } = await getEnv()
     const buildInfo: BuildInfo = {
       version,
       time: +Date.now(),
       commit,
+      shortCommit,
       branch,
       env,
     }
 
-    nuxt.options.runtimeConfig.public.env = env
-    nuxt.options.runtimeConfig.public.buildInfo = buildInfo
+    nuxt.options.appConfig = nuxt.options.appConfig || {}
+    nuxt.options.appConfig.env = env
+    nuxt.options.appConfig.buildInfo = buildInfo
+
+    nuxt.options.nitro.virtual = nuxt.options.nitro.virtual || {}
+    nuxt.options.nitro.virtual['#build-info'] = `export const env = ${JSON.stringify(env)}`
 
     nuxt.options.nitro.publicAssets = nuxt.options.nitro.publicAssets || []
     if (env === 'dev')

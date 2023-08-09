@@ -4,8 +4,9 @@ definePageMeta({
 })
 
 const { t } = useI18n()
+const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
-useHeadFixed({
+useHydratedHead({
   title: () => t('nav.favourites'),
 })
 </script>
@@ -14,11 +15,11 @@ useHeadFixed({
   <MainContent>
     <template #title>
       <NuxtLink to="/favourites" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
-        <div i-ri:heart-3-line />
+        <div :class="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'" />
         <span>{{ t('nav.favourites') }}</span>
       </NuxtLink>
     </template>
 
-    <TimelineFavourites v-if="isMastoInitialised" />
+    <TimelineFavourites v-if="isHydrated" />
   </MainContent>
 </template>

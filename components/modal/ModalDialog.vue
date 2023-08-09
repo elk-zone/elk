@@ -36,6 +36,10 @@ export interface Props {
   dialogLabelledBy?: string
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<Props>(), {
   zIndex: 100,
   closeByMask: true,
@@ -45,13 +49,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   /** v-model dialog visibility */
-  (event: 'close',): void
+  (event: 'close'): void
 }>()
 
-const { modelValue: visible } = defineModel<{
-  /** v-model dislog visibility */
-  modelValue: boolean
-}>()
+const visible = defineModel<boolean>({ required: true })
 
 const deactivated = useDeactivated()
 const route = useRoute()
@@ -76,6 +77,8 @@ defineExpose({
 
 /** close the dialog */
 function close() {
+  if (!visible.value)
+    return
   visible.value = false
   emit('close')
 }
@@ -115,9 +118,11 @@ const isVShow = computed(() => {
     : true
 })
 
-const bindTypeToAny = ($attrs: any) => $attrs as any
+function bindTypeToAny($attrs: any) {
+  return $attrs as any
+}
 
-const trapFocusDialog = () => {
+function trapFocusDialog() {
   if (isVShow.value)
     nextTick().then(() => activate())
 }
@@ -130,12 +135,6 @@ useEventListener('keydown', (e: KeyboardEvent) => {
     e.preventDefault()
   }
 })
-</script>
-
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-}
 </script>
 
 <template>

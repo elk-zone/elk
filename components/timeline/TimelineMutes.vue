@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = useMasto().v1.mutes.list()
+const paginator = useMastoClient().v1.mutes.list()
 </script>
 
 <template>

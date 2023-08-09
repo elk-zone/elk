@@ -6,8 +6,13 @@ definePageMeta({
   alias: ['/signin/callback'],
 })
 
+const route = useRoute()
+const router = useRouter()
+if (process.client && route.path === '/signin/callback')
+  router.push('/home')
+
 const { t } = useI18n()
-useHeadFixed({
+useHydratedHead({
   title: () => t('nav.home'),
 })
 </script>
@@ -21,6 +26,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <TimelineHome v-if="isMastoInitialised" />
+    <TimelineHome v-if="isHydrated" />
   </MainContent>
 </template>

@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import type { Popper as VTooltipType } from 'floating-vue/dist'
 
-defineProps<{
+export interface Props extends Partial<typeof VTooltipType> {
   content?: string
-} & Partial<typeof VTooltipType>>()
+}
+
+defineProps<Props>()
 </script>
 
 <template>
   <VTooltip
     v-bind="$attrs"
+    auto-hide
   >
     <slot />
     <template #popper>

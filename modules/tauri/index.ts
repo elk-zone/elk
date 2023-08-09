@@ -1,5 +1,5 @@
-import { rm } from 'fs/promises'
-import { addImports, addPlugin, createResolver, defineNuxtModule, useNuxt } from '@nuxt/kit'
+import { rm } from 'node:fs/promises'
+import { addImports, addImportsSources, addPlugin, createResolver, defineNuxtModule, useNuxt } from '@nuxt/kit'
 
 export default defineNuxtModule({
   meta: {
@@ -22,7 +22,9 @@ export default defineNuxtModule({
       ...nuxt.options.alias,
       'unstorage/drivers/fs': 'unenv/runtime/mock/proxy',
       'unstorage/drivers/cloudflare-kv-http': 'unenv/runtime/mock/proxy',
+      '#storage-config': resolve('./runtime/storage-config'),
       'node:events': 'unenv/runtime/node/events/index',
+      '#build-info': resolve('./runtime/build-info'),
     }
 
     nuxt.hook('vite:extend', ({ config }) => {
@@ -35,6 +37,14 @@ export default defineNuxtModule({
       config.srcDir = './_nonexistent'
       config.scanDirs = []
     })
+
+    addImportsSources({
+      from: 'h3',
+      imports: ['defineEventHandler', 'getQuery', 'getRouterParams', 'readBody', 'sendRedirect'] as Array<keyof typeof import('h3')>,
+    })
+
+    nuxt.options.imports.dirs = nuxt.options.imports.dirs || []
+    nuxt.options.imports.dirs.push(resolve('../../server/utils'))
 
     addImports({ name: 'useStorage', from: resolve('./runtime/storage') })
 

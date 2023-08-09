@@ -5,7 +5,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => t('nav.bookmarks'),
 })
 </script>
@@ -19,6 +19,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <TimelineBookmarks v-if="isMastoInitialised" />
+    <TimelineBookmarks v-if="isHydrated" />
   </MainContent>
 </template>

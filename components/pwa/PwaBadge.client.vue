@@ -1,7 +1,7 @@
 <template>
   <button
     v-if="$pwa?.needRefresh"
-    bg="fade" relative rounded
+    bg="primary-fade" relative rounded
     flex="~ gap-1 center" px3 py1 text-primary
     @click="$pwa.updateServiceWorker()"
   >

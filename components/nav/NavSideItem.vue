@@ -10,8 +10,8 @@ const props = withDefaults(defineProps<{
 })
 
 defineSlots<{
-  icon: {}
-  default: {}
+  icon: (props: object) => void
+  default: (props: object) => void
 }>()
 
 const router = useRouter()
@@ -29,7 +29,7 @@ useCommand({
 })
 
 let activeClass = $ref('text-primary')
-onMastoInit(async () => {
+onHydrated(async () => {
   // TODO: force NuxtLink to reevaluate, we now we are in this route though, so we should force it to active
   // we don't have currentServer defined until later
   activeClass = ''
@@ -39,8 +39,8 @@ onMastoInit(async () => {
 
 // Optimize rendering for the common case of being logged in, only show visual feedback for disabled user-only items
 // when we know there is no user.
-const noUserDisable = computed(() => !isMastoInitialised.value || (props.userOnly && !currentUser.value))
-const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly && !currentUser.value)
+const noUserDisable = computed(() => !isHydrated.value || (props.userOnly && !currentUser.value))
+const noUserVisual = computed(() => isHydrated.value && props.userOnly && !currentUser.value)
 </script>
 
 <template>
@@ -53,22 +53,48 @@ const noUserVisual = computed(() => isMastoInitialised.value && props.userOnly &
     :tabindex="noUserDisable ? -1 : null"
     @click="$scrollToTop"
   >
-    <CommonTooltip :disabled="!isMediumScreen" :content="text" placement="right">
+    <CommonTooltip :disabled="!isMediumOrLargeScreen" :content="text" placement="right">
       <div
+        class="item"
         flex items-center gap4
         w-fit rounded-3
-        px2 py2 mx3 sm:mxa
+        px2 mx3 sm:mxa
         xl="ml0 mr5 px5 w-auto"
         transition-100
-        group-hover="bg-active" group-focus-visible:ring="2 current"
+        elk-group-hover="bg-active" group-focus-visible:ring="2 current"
       >
         <slot name="icon">
           <div :class="icon" text-xl />
         </slot>
         <slot>
-          <span block sm:hidden xl:block>{{ isHydrated ? text : '&nbsp;' }}</span>
+          <span block sm:hidden xl:block select-none>{{ isHydrated ? text : '&nbsp;' }}</span>
         </slot>
       </div>
     </CommonTooltip>
   </NuxtLink>
 </template>
+
+<style scoped>
+  .item {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  @media screen and ( max-height: 820px ) and ( min-width: 1280px ) {
+    .item {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+    }
+  }
+  @media screen and ( max-height: 780px ) and ( min-width: 640px ) {
+    .item {
+      padding-top: 0.35rem;
+      padding-bottom: 0.35rem;
+    }
+  }
+  @media screen and ( max-height: 780px ) and ( min-width: 1280px ) {
+    .item {
+      padding-top: 0.05rem;
+      padding-bottom: 0.05rem;
+    }
+  }
+</style>

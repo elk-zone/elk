@@ -17,14 +17,14 @@ watchEffect(() => {
   draftKey = route.query.draft?.toString() || 'home'
 })
 
-onMounted(() => {
+onDeactivated(() => {
   clearEmptyDrafts()
 })
 </script>
 
 <template>
   <div flex="~ col" pt-6 h-screen>
-    <div text-right h-8>
+    <div inline-flex justify-end h-8>
       <VDropdown v-if="nonEmptyDrafts.length" placement="bottom-end">
         <button btn-text flex="inline center">
           {{ $t('compose.drafts', nonEmptyDrafts.length, { named: { v: formatNumber(nonEmptyDrafts.length) } }) }}&#160;<div aria-hidden="true" i-ri:arrow-down-s-line />

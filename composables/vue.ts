@@ -1,10 +1,13 @@
 import type { ComponentInternalInstance } from 'vue'
 import { onActivated, onDeactivated, ref } from 'vue'
-import type { ActiveHeadEntry, HeadEntryOptions, UseHeadInput } from '@vueuse/head'
-import type { HeadAugmentations } from '@nuxt/schema'
-import { useHead } from '#head'
+import type { ActiveHeadEntry, HeadEntryOptions, UseHeadInput } from '@unhead/vue'
+import type { SchemaAugmentations } from '@unhead/schema'
 
 export const isHydrated = ref(false)
+
+export function onHydrated(cb: () => unknown) {
+  watchOnce(isHydrated, () => cb(), { immediate: isHydrated.value })
+}
 
 /**
  * ### Whether the current component is running in the background
@@ -24,7 +27,7 @@ export function useDeactivated() {
  *
  * for handling problems caused by the keepalive function
  */
-export function onReactivated(hook: Function, target?: ComponentInternalInstance | null): void {
+export function onReactivated(hook: () => void, target?: ComponentInternalInstance | null): void {
   const initial = ref(true)
   onActivated(() => {
     if (initial.value)
@@ -34,9 +37,7 @@ export function onReactivated(hook: Function, target?: ComponentInternalInstance
   onDeactivated(() => initial.value = false)
 }
 
-// TODO: Workaround for Nuxt bug: https://github.com/elk-zone/elk/pull/199#issuecomment-1329771961
-export function useHeadFixed<T extends HeadAugmentations>(input: UseHeadInput<T>, options?: HeadEntryOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
-  const deactivated = useDeactivated()
+export function useHydratedHead<T extends SchemaAugmentations>(input: UseHeadInput<T>, options?: HeadEntryOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
   if (input && typeof input === 'object' && !('value' in input)) {
     const title = 'title' in input ? input.title : undefined
     if (process.server && title) {
@@ -51,9 +52,9 @@ export function useHeadFixed<T extends HeadAugmentations>(input: UseHeadInput<T>
       (input as any).title = () => isHydrated.value ? typeof title === 'function' ? title() : title : ''
     }
   }
-  return useHead(() => {
-    if (deactivated.value)
+  return useHead((() => {
+    if (!isHydrated.value)
       return {}
     return resolveUnref(input)
-  }, options)
+  }) as UseHeadInput<T>, options)
 }

@@ -29,6 +29,10 @@ export function getAccountFollowersRoute(account: mastodon.v1.Account) {
   })
 }
 
+export function getReportRoute(id: string | number) {
+  return `https://${currentUser.value?.server}/admin/reports/${encodeURIComponent(id)}`
+}
+
 export function getStatusRoute(status: mastodon.v1.Status) {
   return useRouter().resolve({
     name: 'status',
@@ -64,11 +68,12 @@ export function getStatusInReplyToRoute(status: mastodon.v1.Status) {
   })
 }
 
-export const navigateToStatus = ({ status, focusReply = false }: {
+export function navigateToStatus({ status, focusReply = false }: {
   status: mastodon.v1.Status
   focusReply?: boolean
-}) =>
-  navigateTo({
+}) {
+  return navigateTo({
     path: getStatusRoute(status).href,
     state: { focusReply },
   })
+}

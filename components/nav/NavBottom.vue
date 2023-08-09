@@ -1,6 +1,8 @@
 <script setup lang="ts">
 // only one icon can be lit up at the same time
 const moreMenuVisible = ref(false)
+
+const { notifications } = useNotifications()
 </script>
 
 <template>
@@ -10,43 +12,45 @@ const moreMenuVisible = ref(false)
     class="after-content-empty after:(h-[calc(100%+0.5px)] w-0.1px pointer-events-none)"
   >
     <!-- These weird styles above are used for scroll locking, don't change it unless you know exactly what you're doing. -->
-    <template v-if="isMastoInitialised && currentUser">
-      <NuxtLink to="/home" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+    <template v-if="currentUser">
+      <NuxtLink to="/home" :aria-label="$t('nav.home')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:home-5-line />
       </NuxtLink>
-      <NuxtLink to="/search" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+      <NuxtLink to="/search" :aria-label="$t('nav.search')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:search-line />
       </NuxtLink>
-      <NuxtLink to="/notifications" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-        <div i-ri:notification-4-line />
+      <NuxtLink to="/notifications" :aria-label="$t('nav.notifications')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
+        <div flex relative>
+          <div class="i-ri:notification-4-line" text-xl />
+          <div v-if="notifications" class="top-[-0.3rem] right-[-0.3rem]" absolute font-bold rounded-full h-4 w-4 text-xs bg-primary text-inverted flex items-center justify-center>
+            {{ notifications < 10 ? notifications : '•' }}
+          </div>
+        </div>
       </NuxtLink>
-      <NuxtLink to="/conversations" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+      <NuxtLink to="/conversations" :aria-label="$t('nav.conversations')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:at-line />
       </NuxtLink>
     </template>
-    <template v-if="isMastoInitialised && !currentUser">
-      <NuxtLink :to="`/${currentServer}/explore`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+    <template v-else>
+      <NuxtLink :to="`/${currentServer}/explore`" :aria-label="$t('nav.explore')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:hashtag />
       </NuxtLink>
-      <NuxtLink to="/search" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
-        <div i-ri:search-line />
-      </NuxtLink>
-      <NuxtLink group :to="`/${currentServer}/public/local`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+      <NuxtLink group :to="`/${currentServer}/public/local`" :aria-label="$t('nav.local')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:group-2-line />
       </NuxtLink>
-      <NuxtLink :to="`/${currentServer}/public`" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 @click="$scrollToTop">
+      <NuxtLink :to="`/${currentServer}/public`" :aria-label="$t('nav.federated')" :active-class="moreMenuVisible ? '' : 'text-primary'" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
         <div i-ri:earth-line />
       </NuxtLink>
     </template>
     <NavBottomMoreMenu v-slot="{ toggleVisible, show }" v-model="moreMenuVisible" flex flex-row items-center place-content-center h-full flex-1 cursor-pointer>
-      <label
+      <button
         flex items-center place-content-center h-full flex-1 class="select-none"
         :class="show ? '!text-primary' : ''"
+        aria-label="More menu"
+        @click="toggleVisible"
       >
-        <input type="checkbox" z="-1" absolute inset-0 opacity-0 @click="toggleVisible">
-        <span v-show="show" i-ri:close-fill />
-        <span v-show="!show" i-ri:more-fill />
-      </label>
+        <span :class="show ? 'i-ri:close-fill' : 'i-ri:more-fill'" />
+      </button>
     </NavBottomMoreMenu>
   </nav>
 </template>

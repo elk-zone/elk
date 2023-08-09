@@ -1,7 +1,8 @@
+import { Buffer } from 'node:buffer'
 import { join, resolve } from 'pathe'
 import fs from 'fs-extra'
-import { $fetch } from 'ohmyfetch'
-import { teams } from '../composables/about'
+import { ofetch } from 'ofetch'
+import { elkTeamMembers } from '../composables/about'
 
 const avatarsDir = resolve('./public/avatars/')
 
@@ -13,7 +14,7 @@ async function download(url: string, fileName: string) {
 
   console.log('downloading', fileName)
   try {
-    const image = await $fetch(url, { responseType: 'arrayBuffer' })
+    const image = await ofetch(url, { responseType: 'arrayBuffer' })
     await fs.writeFile(fileName, Buffer.from(image))
   }
   catch (err) {
@@ -24,7 +25,7 @@ async function download(url: string, fileName: string) {
 async function fetchAvatars() {
   await fs.ensureDir(avatarsDir)
 
-  await Promise.all(teams.reduce((acc, { github }) => {
+  await Promise.all(elkTeamMembers.reduce((acc, { github }) => {
     acc.push(...sizes.map(s => download(`https://github.com/${github}.png?size=${s}`, join(avatarsDir, `${github}-${s}x${s}.png`))))
     return acc
   }, [] as Promise<void>[]))

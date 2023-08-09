@@ -7,17 +7,21 @@ export function getDisplayName(account: mastodon.v1.Account, options?: { rich?: 
   return displayName.replace(/:([\w-]+?):/g, '')
 }
 
+export function accountToShortHandle(acct: string) {
+  return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
+}
+
 export function getShortHandle({ acct }: mastodon.v1.Account) {
   if (!acct)
     return ''
-  return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
+  return accountToShortHandle(acct)
 }
 
 export function getServerName(account: mastodon.v1.Account) {
   if (account.acct?.includes('@'))
     return account.acct.split('@')[1]
   // We should only lack the server name if we're on the same server as the account
-  return currentInstance.value?.uri || ''
+  return currentInstance.value ? getInstanceDomain(currentInstance.value) : ''
 }
 
 export function getFullHandle(account: mastodon.v1.Account) {
@@ -38,7 +42,7 @@ export function toShortHandle(fullHandle: string) {
 
 export function extractAccountHandle(account: mastodon.v1.Account) {
   let handle = getFullHandle(account).slice(1)
-  const uri = currentInstance.value?.uri ?? currentServer.value
+  const uri = currentInstance.value ? getInstanceDomain(currentInstance.value) : currentServer.value
   if (currentInstance.value && handle.endsWith(`@${uri}`))
     handle = handle.slice(0, -uri.length - 1)
 

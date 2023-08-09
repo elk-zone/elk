@@ -1,11 +1,13 @@
-import type { MaybeComputedRef, RemovableRef } from '@vueuse/core'
+import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
 import type { Ref } from 'vue'
-import { del, get, set, update } from 'idb-keyval'
 import type { UseIDBOptions } from '@vueuse/integrations/useIDBKeyval'
+import { del, get, set, update } from '~/utils/elk-idb'
+
+const isIDBSupported = !process.test && typeof indexedDB !== 'undefined'
 
 export async function useAsyncIDBKeyval<T>(
   key: IDBValidKey,
-  initialValue: MaybeComputedRef<T>,
+  initialValue: MaybeRefOrGetter<T>,
   options: UseIDBOptions = {},
 ): Promise<RemovableRef<T>> {
   const {
@@ -22,6 +24,8 @@ export async function useAsyncIDBKeyval<T>(
   const rawInit: T = resolveUnref(initialValue)
 
   async function read() {
+    if (!isIDBSupported)
+      return
     try {
       const rawValue = await get<T>(key)
       if (rawValue === undefined) {
@@ -40,6 +44,8 @@ export async function useAsyncIDBKeyval<T>(
   await read()
 
   async function write() {
+    if (!isIDBSupported)
+      return
     try {
       if (data.value == null) {
         await del(key)

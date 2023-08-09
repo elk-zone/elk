@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
 
+export interface CommonRouteTabOption {
+  to: RouteLocationRaw
+  display: string
+  disabled?: boolean
+  name?: string
+  icon?: string
+  hide?: boolean
+}
 const { options, command, replace, preventScrollTop = false } = $defineProps<{
-  options: {
-    to: RouteLocationRaw
-    display: string
-    disabled?: boolean
-    name?: string
-    icon?: string
-  }[]
+  options: CommonRouteTabOption[]
   command?: boolean
   replace?: boolean
   preventScrollTop?: boolean
@@ -28,9 +30,9 @@ useCommands(() => command
 </script>
 
 <template>
-  <div flex w-full items-center lg:text-lg of-x-auto scrollbar-hide>
+  <div flex w-full items-center lg:text-lg of-x-auto scrollbar-hide border="b base">
     <template
-      v-for="(option, index) in options"
+      v-for="(option, index) in options.filter(item => !item.hide)"
       :key="option?.name || index"
     >
       <NuxtLink

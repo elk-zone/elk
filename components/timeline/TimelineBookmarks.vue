@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const paginator = useMasto().v1.bookmarks.list()
+const paginator = useMastoClient().v1.bookmarks.list()
 </script>
 
 <template>
-  <TimelinePaginator :paginator="paginator" />
+  <TimelinePaginator end-message="common.no_bookmarks" :paginator="paginator" />
 </template>

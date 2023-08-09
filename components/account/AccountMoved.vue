@@ -19,10 +19,8 @@ defineProps<{
       </NuxtLink>
       <div flex-auto />
       <div flex items-center>
-        <NuxtLink :to="getAccountRoute(account.moved as any)">
-          <button btn-solid h-fit>
-            {{ $t('account.go_to_profile') }}
-          </button>
+        <NuxtLink :to="getAccountRoute(account.moved as any)" btn-solid inline-block h-fit>
+          {{ $t('account.go_to_profile') }}
         </NuxtLink>
       </div>
     </div>

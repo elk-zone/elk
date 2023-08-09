@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
+
 const params = useRoute().params
 const handle = $(computedEager(() => params.account as string))
 
@@ -8,10 +10,14 @@ const { t } = useI18n()
 
 const account = await fetchAccountByHandle(handle)
 
-const paginator = useMasto().v1.accounts.listStatuses(account.id, { limit: 30, excludeReplies: true })
+function reorderAndFilter(items: mastodon.v1.Status[]) {
+  return reorderedTimeline(items, 'account')
+}
+
+const paginator = useMastoClient().v1.accounts.listStatuses(account.id, { limit: 30, excludeReplies: true })
 
 if (account) {
-  useHeadFixed({
+  useHydratedHead({
     title: () => `${t('account.posts')} | ${getDisplayName(account)} (@${account.acct})`,
   })
 }
@@ -20,6 +26,6 @@ if (account) {
 <template>
   <div>
     <AccountTabs />
-    <TimelinePaginator :paginator="paginator" :preprocess="reorderedTimeline" context="account" :account="account" />
+    <TimelinePaginator :paginator="paginator" :preprocess="reorderAndFilter" context="account" :account="account" />
   </div>
 </template>

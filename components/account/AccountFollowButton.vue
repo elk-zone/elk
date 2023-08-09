@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import { toggleFollowAccount, useRelationship } from '~~/composables/masto/relationship'
 
 const { account, command, context, ...props } = defineProps<{
   account: mastodon.v1.Account
@@ -8,28 +9,17 @@ const { account, command, context, ...props } = defineProps<{
   command?: boolean
 }>()
 
+const { t } = useI18n()
 const isSelf = $(useSelfAccount(() => account))
 const enable = $computed(() => !isSelf && currentUser.value)
 const relationship = $computed(() => props.relationship || useRelationship(account).value)
 
-const masto = useMasto()
-async function toggleFollow() {
-  relationship!.following = !relationship!.following
-  try {
-    const newRel = await masto.v1.accounts[relationship!.following ? 'follow' : 'unfollow'](account.id)
-    Object.assign(relationship!, newRel)
-  }
-  catch (err) {
-    console.error(err)
-    // TODO error handling
-    relationship!.following = !relationship!.following
-  }
-}
+const { client } = $(useMasto())
 
 async function unblock() {
   relationship!.blocking = false
   try {
-    const newRel = await masto.v1.accounts.unblock(account.id)
+    const newRel = await client.v1.accounts.unblock(account.id)
     Object.assign(relationship!, newRel)
   }
   catch (err) {
@@ -42,7 +32,7 @@ async function unblock() {
 async function unmute() {
   relationship!.muting = false
   try {
-    const newRel = await masto.v1.accounts.unmute(account.id)
+    const newRel = await client.v1.accounts.unmute(account.id)
     Object.assign(relationship!, newRel)
   }
   catch (err) {
@@ -52,15 +42,13 @@ async function unmute() {
   }
 }
 
-const { t } = useI18n()
-
 useCommand({
   scope: 'Actions',
   order: -2,
   visible: () => command && enable,
   name: () => `${relationship?.following ? t('account.unfollow') : t('account.follow')} ${getShortHandle(account)}`,
   icon: 'i-ri:star-line',
-  onActivate: () => toggleFollow(),
+  onActivate: () => toggleFollowAccount(relationship!, account),
 })
 
 const buttonStyle = $computed(() => {
@@ -83,34 +71,34 @@ const buttonStyle = $computed(() => {
   <button
     v-if="enable"
     gap-1 items-center group
-    :disabled="relationship?.requested"
     border-1
     rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
     :class="buttonStyle"
     :hover="!relationship?.blocking && !relationship?.muting && relationship?.following ? 'border-red text-red' : 'bg-base border-primary text-primary'"
-    @click="relationship?.blocking ? unblock() : relationship?.muting ? unmute() : toggleFollow()"
+    @click="relationship?.blocking ? unblock() : relationship?.muting ? unmute() : toggleFollowAccount(relationship!, account)"
   >
     <template v-if="relationship?.blocking">
-      <span group-hover="hidden">{{ $t('account.blocking') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.unblock') }}</span>
+      <span elk-group-hover="hidden">{{ $t('account.blocking') }}</span>
+      <span hidden elk-group-hover="inline">{{ $t('account.unblock') }}</span>
     </template>
     <template v-if="relationship?.muting">
-      <span group-hover="hidden">{{ $t('account.muting') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.unmute') }}</span>
+      <span elk-group-hover="hidden">{{ $t('account.muting') }}</span>
+      <span hidden elk-group-hover="inline">{{ $t('account.unmute') }}</span>
     </template>
     <template v-else-if="relationship ? relationship.following : context === 'following'">
-      <span group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.unfollow') }}</span>
+      <span elk-group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
+      <span hidden elk-group-hover="inline">{{ $t('account.unfollow') }}</span>
     </template>
     <template v-else-if="relationship?.requested">
-      <span>{{ $t('account.follow_requested') }}</span>
+      <span elk-group-hover="hidden">{{ $t('account.follow_requested') }}</span>
+      <span hidden elk-group-hover="inline">Withdraw follow request</span>
     </template>
     <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
-      <span group-hover="hidden">{{ $t('account.follows_you') }}</span>
-      <span hidden group-hover="inline">{{ $t('account.follow_back') }}</span>
+      <span elk-group-hover="hidden">{{ $t('account.follows_you') }}</span>
+      <span hidden elk-group-hover="inline">{{ account.locked ? $t('account.request_follow') : $t('account.follow_back') }}</span>
     </template>
     <template v-else>
-      <span>{{ $t('account.follow') }}</span>
+      <span>{{ account.locked ? $t('account.request_follow') : $t('account.follow') }}</span>
     </template>
   </button>
 </template>

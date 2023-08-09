@@ -1,51 +1,47 @@
 import type { Ref } from 'vue'
-import type { FeatureFlags, UserSettings, WellnessSettings } from './definition'
+import type { VueI18n } from 'vue-i18n'
+import type { LocaleObject } from 'vue-i18n-routing'
+import type { FontSize, OldFontSize, PreferencesSettings, UserSettings } from './definition'
 import { STORAGE_KEY_SETTINGS } from '~/constants'
+import { oldFontSizeMap } from '~~/constants/options'
 
 export function useUserSettings() {
-  return useUserLocalStorage<UserSettings>(STORAGE_KEY_SETTINGS, getDefaultUserSettings)
+  const i18n = useNuxtApp().vueApp.config.globalProperties.$i18n as VueI18n
+  const { locales } = i18n
+  const supportLanguages = (locales as LocaleObject[]).map(locale => locale.code)
+  const settingsStorage = useUserLocalStorage<UserSettings>(STORAGE_KEY_SETTINGS, () => getDefaultUserSettings(supportLanguages))
+
+  // Backward compatibility, font size was xs, sm, md, lg, xl before
+  if (settingsStorage.value.fontSize && !settingsStorage.value.fontSize.includes('px'))
+    settingsStorage.value.fontSize = oldFontSizeMap[settingsStorage.value.fontSize as OldFontSize] as FontSize
+
+  return settingsStorage
 }
 
 // TODO: refactor & simplify this
 
-export function useWellnessSetting<T extends keyof WellnessSettings>(name: T): Ref<WellnessSettings[T]> {
+export function usePreferences<T extends keyof PreferencesSettings>(name: T): Ref<PreferencesSettings[T]> {
   const userSettings = useUserSettings()
   return computed({
     get() {
-      return getWellnessSetting(userSettings.value, name)
+      return getPreferences(userSettings.value, name)
     },
     set(value) {
-      userSettings.value.wellnessSettings[name] = value
+      userSettings.value.preferences[name] = value
     },
   })
 }
 
-export function getWellnessSetting<T extends keyof WellnessSettings>(userSettings: UserSettings, name: T): WellnessSettings[T] {
-  return userSettings?.wellnessSettings?.[name] ?? DEFAULT_WELLNESS_SETTINGS[name]
+export function getPreferences<T extends keyof PreferencesSettings>(userSettings: UserSettings, name: T): PreferencesSettings[T] {
+  const preference = userSettings?.preferences?.[name] ?? DEFAULT__PREFERENCES_SETTINGS[name]
+
+  if (name === 'enableAutoplay')
+    return getPreferences(userSettings, 'enableDataSaving') ? false : preference
+
+  return preference
 }
 
-export function toggleWellnessSetting(key: keyof WellnessSettings) {
-  const flag = useWellnessSetting(key)
-  flag.value = !flag.value
-}
-
-export function useFeatureFlag<T extends keyof FeatureFlags>(name: T): Ref<FeatureFlags[T]> {
-  const userSettings = useUserSettings()
-  return computed({
-    get() {
-      return getFeatureFlag(userSettings.value, name)
-    },
-    set(value) {
-      userSettings.value.featureFlags[name] = value
-    },
-  })
-}
-
-export function getFeatureFlag<T extends keyof FeatureFlags>(userSettings: UserSettings, name: T): FeatureFlags[T] {
-  return userSettings?.featureFlags?.[name] ?? DEFAULT_FEATURE_FLAGS[name]
-}
-
-export function toggleFeatureFlag(key: keyof FeatureFlags) {
-  const flag = useFeatureFlag(key)
+export function togglePreferences(key: keyof PreferencesSettings) {
+  const flag = usePreferences(key)
   flag.value = !flag.value
 }

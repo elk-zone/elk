@@ -5,7 +5,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => t('account.pinned'),
 })
 </script>
@@ -19,6 +19,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <TimelinePinned v-if="isMastoInitialised && currentUser" />
+    <TimelinePinned v-if="isHydrated && currentUser" />
   </MainContent>
 </template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.interface.label')} | ${t('nav.settings')}`,
 })
 </script>
@@ -23,6 +23,12 @@ useHeadFixed({
           {{ $t('settings.interface.color_mode') }}
         </p>
         <SettingsColorMode />
+      </div>
+      <div space-y-2>
+        <p font-medium>
+          {{ $t('settings.interface.theme_color') }}
+        </p>
+        <SettingsThemeColors />
       </div>
     </div>
   </MainContent>

@@ -142,13 +142,6 @@
     "replying": "Sem napište odpověď",
     "the_thread": "vlákno"
   },
-  "settings": {
-    "feature_flags": {
-      "github_cards": "GitHub Cards",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling"
-    }
-  },
   "state": {
     "edited": "(Upraveno)",
     "editing": "Upravuje se",
@@ -158,7 +151,6 @@
   "status": {
     "edited": "Upraveno {0}",
     "filter_hidden_phrase": "Vyfiltrováno",
-    "filter_removed_phrase": "Vyfiltrováno",
     "filter_show_anyway": "Ukázat i tak",
     "img_alt": {
       "desc": "Popis",

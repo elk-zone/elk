@@ -53,28 +53,29 @@ onUnmounted(() => locked.value = false)
       <div i-ri:arrow-left-s-line text-white />
     </button>
 
-    <div flex flex-row items-center mxa>
+    <div flex="~ col center" h-full w-full>
       <ModalMediaPreviewCarousel v-model="index" :media="mediaPreviewList" @close="emit('close')" />
+
+      <div bg="black/30" dark:bg="white/10" mb-6 mt-4 text-white rounded-full flex="~ center shrink-0" overflow-hidden>
+        <div v-if="mediaPreviewList.length > 1" p="y-1 x-3" rounded-r-0 shrink-0>
+          {{ index + 1 }} / {{ mediaPreviewList.length }}
+        </div>
+        <p
+          v-if="current.description" bg="dark/30" dark:bg="white/10" p="y-1 x-3" rounded-ie-full line-clamp-1
+          ws-pre-wrap break-all :title="current.description" w-full
+        >
+          {{ current.description }}
+        </p>
+      </div>
     </div>
 
-    <div absolute top-0 w-full flex justify-between>
+    <div absolute top-0 w-full flex justify-end>
       <button
         btn-action-icon bg="black/30" aria-label="action.close" hover:bg="black/40" dark:bg="white/30"
         dark:hover-bg="white/20" pointer-events-auto shrink-0 @click="emit('close')"
       >
         <div i-ri:close-line text-white />
       </button>
-      <div bg="black/30" dark:bg="white/10" ms-4 my-auto text-white rounded-full flex="~ center" overflow-hidden>
-        <div v-if="mediaPreviewList.length > 1" p="y-1 x-2" rounded-r-0 shrink-0>
-          {{ index + 1 }} / {{ mediaPreviewList.length }}
-        </div>
-        <p
-          v-if="current.description" bg="dark/30" dark:bg="white/10" p="y-1 x-2" rounded-ie-full line-clamp-1
-          ws-pre-wrap break-all :title="current.description" w-full
-        >
-          {{ current.description }}
-        </p>
-      </div>
     </div>
   </div>
 </template>

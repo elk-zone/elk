@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  key: route => `${route.params.server}:${route.params.account}`,
+  key: route => `${route.params.server ?? currentServer.value}:${route.params.account}`,
 })
 
 const params = useRoute().params
@@ -8,8 +8,10 @@ const accountName = $(computedEager(() => toShortHandle(params.account as string
 
 const { t } = useI18n()
 
-const { data: account, pending, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null), { watch: [isMastoInitialised], immediate: isMastoInitialised.value }))
+const { data: account, pending, refresh } = $(await useAsyncData(() => fetchAccountByHandle(accountName).catch(() => null), { immediate: process.client, default: () => shallowRef() }))
 const relationship = $computed(() => account ? useRelationship(account).value : undefined)
+
+const userSettings = useUserSettings()
 
 onReactivated(() => {
   // Silently update data when reentering the page
@@ -21,7 +23,12 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <ContentRich timeline-title-style :content="account ? getDisplayName(account) : t('nav.profile')" />
+      <ContentRich
+        timeline-title-style
+        :content="account ? getDisplayName(account) : t('nav.profile')"
+        :show-emojis="!getPreferences(userSettings, 'hideUsernameEmojis')"
+        :markdown="false"
+      />
     </template>
 
     <template v-if="pending" />

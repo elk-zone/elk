@@ -5,13 +5,16 @@ import type { UserLogin } from '~/types'
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.users.label')} | ${t('nav.settings')}`,
 })
 
 const loggedInUsers = useUsers()
 
 async function exportTokens() {
+  if (process.server)
+    return
+
   if (!confirm('Please aware that the tokens represent the **full access** to your accounts, and should be treated as sensitive information. Are you sure you want to export the tokens?'))
     return
 
@@ -28,6 +31,8 @@ async function exportTokens() {
 }
 
 async function importTokens() {
+  if (process.server)
+    return
   const file = await fileOpen({
     description: 'Token File',
     mimeTypes: ['application/json'],

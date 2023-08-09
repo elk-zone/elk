@@ -6,12 +6,10 @@ import type {
 } from '~/composables/push-notifications/types'
 import { PushSubscriptionError } from '~/composables/push-notifications/types'
 
-export const createPushSubscription = async (
-  user: RequiredUserLogin,
+export async function createPushSubscription(user: RequiredUserLogin,
   notificationData: CreatePushNotification,
   policy: mastodon.v1.SubscriptionPolicy = 'all',
-  force = false,
-): Promise<mastodon.v1.WebPushSubscription | undefined> => {
+  force = false): Promise<mastodon.v1.WebPushSubscription | undefined> {
   const { server: serverEndpoint, vapidKey } = user
 
   return await getRegistration()
@@ -46,9 +44,9 @@ export const createPushSubscription = async (
       if (error.code === 11 && error.name === 'InvalidStateError')
         useError = new PushSubscriptionError('too_many_registrations', 'Too many registrations')
       else if (error.code === 20 && error.name === 'AbortError')
-        console.error('Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.')
+        useError = new PushSubscriptionError('vapid_not_supported', 'Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol.')
       else if (error.code === 5 && error.name === 'InvalidCharacterError')
-        console.error('The VAPID public key seems to be invalid:', vapidKey)
+        useError = new PushSubscriptionError('invalid_vapid_key', `The VAPID public key seems to be invalid: ${vapidKey}`)
 
       return getRegistration()
         .then(getPushSubscription)
@@ -132,5 +130,5 @@ async function sendSubscriptionToBackend(
     data,
   }
 
-  return await useMasto().v1.webPushSubscriptions.create(params)
+  return await useMastoClient().v1.webPushSubscriptions.create(params)
 }

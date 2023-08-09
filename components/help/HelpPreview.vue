@@ -10,7 +10,7 @@ const emit = defineEmits<{
       <div i-ri:close-line />
     </button>
 
-    <img :alt="$t('app_logo')" src="/logo.svg" w-20 h-20 height="80" width="80" mxa class="rtl-flip">
+    <img :alt="$t('app_logo')" :src="`/${''}logo.svg`" w-20 h-20 height="80" width="80" mxa class="rtl-flip">
     <h1 mxa text-4xl mb4>
       {{ $t('help.title') }}
     </h1>
@@ -30,7 +30,7 @@ const emit = defineEmits<{
     </p>
     {{ $t('help.desc_para3') }}
     <p flex="~ gap-2 wrap" mxa>
-      <template v-for="team of teams" :key="team.github">
+      <template v-for="team of elkTeamMembers" :key="team.github">
         <NuxtLink :href="`https://github.com/sponsors/${team.github}`" target="_blank" external rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
           <img :src="`/avatars/${team.github}-100x100.png`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
         </NuxtLink>
@@ -38,7 +38,7 @@ const emit = defineEmits<{
     </p>
     <p italic flex justify-center w-full>
       <NuxtLink href="https://github.com/sponsors/elk-zone" target="_blank">
-        <span text-xl font-script hover:text-primary transition duration-300>The Elk Team</span>
+        <span text-xl font-script hover:text-primary transition duration-300>{{ $t('help.footer_team') }}</span>
       </NuxtLink>
     </p>
 

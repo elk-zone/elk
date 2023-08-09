@@ -6,10 +6,8 @@ import {
 } from '@tiptap/core'
 import { emojiRegEx, getEmojiAttributes } from '~/config/emojis'
 
-const createEmojiRule = <NR extends typeof nodeInputRule | typeof nodePasteRule>(
-  nodeRule: NR,
-  type: Parameters<NR>[0]['type'],
-): ReturnType<NR>[] => {
+function createEmojiRule<NR extends typeof nodeInputRule | typeof nodePasteRule>(nodeRule: NR,
+  type: Parameters<NR>[0]['type']): ReturnType<NR>[] {
   const rule = nodeRule({
     find: emojiRegEx as RegExp,
     type,
@@ -35,7 +33,7 @@ const createEmojiRule = <NR extends typeof nodeInputRule | typeof nodePasteRule>
   ]
 }
 
-export const Emoji = Node.create({
+export const TiptapPluginEmoji = Node.create({
   name: 'em-emoji',
 
   inline: () => true,

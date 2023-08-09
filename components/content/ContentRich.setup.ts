@@ -7,10 +7,12 @@ defineOptions({
 const {
   content,
   emojis,
+  hideEmojis = false,
   markdown = true,
 } = defineProps<{
   content: string
   emojis?: mastodon.v1.CustomEmoji[]
+  hideEmojis?: boolean
   markdown?: boolean
 }>()
 
@@ -21,6 +23,7 @@ export default () => h(
   { class: 'content-rich', dir: 'auto' },
   contentToVNode(content, {
     emojis: emojisObject.value,
+    hideEmojis,
     markdown,
   }),
 )

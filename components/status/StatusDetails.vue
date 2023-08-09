@@ -3,13 +3,16 @@ import type { mastodon } from 'masto'
 
 const props = withDefaults(defineProps<{
   status: mastodon.v1.Status
+  newer?: mastodon.v1.Status
   command?: boolean
   actions?: boolean
 }>(), {
   actions: true,
 })
 
-const userSettings = useUserSettings()
+defineEmits<{
+  (event: 'refetchStatus'): void
+}>()
 
 const status = $computed(() => {
   if (props.status.reblog && props.status.reblog)
@@ -21,22 +24,20 @@ const createdAt = useFormattedDateTime(status.createdAt)
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${getDisplayName(status.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
 })
-
-const isDM = $computed(() => status.visibility === 'direct')
 </script>
 
 <template>
-  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative :lang="status.language ?? undefined">
-    <StatusActionsMore :status="status" absolute inset-ie-2 top-2 />
+  <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative :lang="status.language ?? undefined" aria-roledescription="status-details">
+    <StatusActionsMore :status="status" absolute inset-ie-2 top-2 @after-edit="$emit('refetchStatus')" />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pe5 me-a>
       <AccountHoverWrapper :account="status.account">
         <AccountInfo :account="status.account" />
       </AccountHoverWrapper>
     </NuxtLink>
-    <StatusContent :status="status" context="details" />
+    <StatusContent :status="status" :newer="newer" context="details" />
     <div flex="~ gap-1" items-center text-secondary text-sm>
       <div flex>
         <div>{{ createdAt }}</div>
@@ -61,8 +62,8 @@ const isDM = $computed(() => status.visibility === 'direct')
         {{ status.application?.name }}
       </div>
     </div>
-    <div border="t base" pt-2>
-      <StatusActions v-if="actions" v-show="!userSettings.zenMode" :status="status" details :command="command" />
+    <div border="t base" py-2>
+      <StatusActions v-if="actions" :status="status" details :command="command" />
     </div>
   </div>
 </template>

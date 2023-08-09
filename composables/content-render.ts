@@ -10,6 +10,14 @@ import ContentCode from '~/components/content/ContentCode.vue'
 import ContentMentionGroup from '~/components/content/ContentMentionGroup.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
 
+function getTextualAstComponents(astChildren: Node[]): string {
+  return astChildren
+    .filter(({ type }) => type === TEXT_NODE)
+    .map(({ value }) => value)
+    .reduce((accumulator, current) => accumulator + current, '')
+    .trim()
+}
+
 /**
 * Raw HTML to VNodes
 */
@@ -17,11 +25,18 @@ export function contentToVNode(
   content: string,
   options?: ContentParseOptions,
 ): VNode {
-  const tree = parseMastodonHTML(content, options)
+  let tree = parseMastodonHTML(content, options)
+
+  const textContents = getTextualAstComponents(tree.children)
+
+  // if the username only contains emojis, we should probably show the emojis anyway to avoid a blank name
+  if (options?.hideEmojis && textContents.length === 0)
+    tree = parseMastodonHTML(content, { ...options, hideEmojis: false })
+
   return h(Fragment, (tree.children as Node[] || []).map(n => treeToVNode(n)))
 }
 
-export function nodeToVNode(node: Node): VNode | string | null {
+function nodeToVNode(node: Node): VNode | string | null {
   if (node.type === TEXT_NODE)
     return node.value
 
@@ -31,8 +46,8 @@ export function nodeToVNode(node: Node): VNode | string | null {
   if ('children' in node) {
     if (node.name === 'a' && (node.attributes.href?.startsWith('/') || node.attributes.href?.startsWith('.'))) {
       node.attributes.to = node.attributes.href
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { href, target, ...attrs } = node.attributes
+
+      const { href: _href, target: _target, ...attrs } = node.attributes
       return h(
         RouterLink as any,
         attrs,
@@ -51,6 +66,9 @@ export function nodeToVNode(node: Node): VNode | string | null {
 function treeToVNode(
   input: Node,
 ): VNode | string | null {
+  if (!input)
+    return null
+
   if (input.type === TEXT_NODE)
     return decode(input.value)
 
@@ -73,7 +91,7 @@ function handleMention(el: Node) {
       const matchUser = href.match(UserLinkRE)
       if (matchUser) {
         const [, server, username] = matchUser
-        const handle = `@${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
+        const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
         el.attributes.href = `/${server}/@${username}`
         return h(AccountHoverWrapper, { handle, class: 'inline-block' }, () => nodeToVNode(el))
       }
@@ -92,7 +110,9 @@ function handleCodeBlock(el: Node) {
     const codeEl = el.children[0] as Node
     const classes = codeEl.attributes.class as string
     const lang = classes?.split(/\s/g).find(i => i.startsWith('language-'))?.replace('language-', '')
-    const code = codeEl.children[0] ? treeToText(codeEl.children[0]) : ''
+    const code = (codeEl.children && codeEl.children.length > 0)
+      ? recursiveTreeToText(codeEl)
+      : ''
     return h(ContentCode, { lang, code: encodeURIComponent(code) })
   }
 }

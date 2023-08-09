@@ -6,15 +6,14 @@ definePageMeta({
 const params = useRoute().params
 const tagName = $(computedEager(() => params.tag as string))
 
-const masto = useMasto()
-const { data: tag, refresh } = $(await useAsyncData(() => masto.v1.tags.fetch(tagName), { watch: [isMastoInitialised], immediate: isMastoInitialised.value }))
+const { client } = $(useMasto())
+const { data: tag, refresh } = $(await useAsyncData(() => client.v1.tags.fetch(tagName), { default: () => shallowRef() }))
 
-const paginator = masto.v1.timelines.listHashtag(tagName)
-const stream = masto.v1.stream.streamTagTimeline(tagName)
-onBeforeUnmount(() => stream.then(s => s.disconnect()))
+const paginator = client.v1.timelines.listHashtag(tagName)
+const stream = useStreaming(client => client.v1.stream.streamTagTimeline(tagName))
 
 if (tag) {
-  useHeadFixed({
+  useHydratedHead({
     title: () => `#${tag.name}`,
   })
 }

@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import { toggleBlockAccount, toggleMuteAccount, useRelationship } from '~~/composables/masto/relationship'
 
 const props = defineProps<{
   status: mastodon.v1.Status
   details?: boolean
   command?: boolean
 }>()
+
+const emit = defineEmits<{
+  (event: 'afterEdit'): void
+}>()
+
+const focusEditor = inject<typeof noop>('focus-editor', noop)
 
 const { details, command } = $(props)
 
@@ -24,53 +31,48 @@ const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 const userSettings = useUserSettings()
+const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
 
-const {
-  toggle: _toggleTranslation,
-  translation,
-  enabled: isTranslationEnabled,
-} = useTranslation(props.status)
+const { client } = $(useMasto())
 
-const toggleTranslation = async () => {
-  isLoading.translation = true
-  await _toggleTranslation()
-  isLoading.translation = false
-}
-
-const masto = useMasto()
-
-const getPermalinkUrl = (status: mastodon.v1.Status) => {
+function getPermalinkUrl(status: mastodon.v1.Status) {
   const url = getStatusPermalinkRoute(status)
   if (url)
     return `${location.origin}/${url}`
   return null
 }
 
-const copyLink = async (status: mastodon.v1.Status) => {
+async function copyLink(status: mastodon.v1.Status) {
   const url = getPermalinkUrl(status)
   if (url)
     await clipboard.copy(url)
 }
 
+async function copyOriginalLink(status: mastodon.v1.Status) {
+  const url = status.url
+  if (url)
+    await clipboard.copy(url)
+}
+
 const { share, isSupported: isShareSupported } = useShare()
-const shareLink = async (status: mastodon.v1.Status) => {
+async function shareLink(status: mastodon.v1.Status) {
   const url = getPermalinkUrl(status)
   if (url)
     await share({ url })
 }
 
-const deleteStatus = async () => {
+async function deleteStatus() {
   if (await openConfirmDialog({
-    title: t('menu.delete_confirm.title'),
-    confirm: t('menu.delete_confirm.confirm'),
-    cancel: t('menu.delete_confirm.cancel'),
+    title: t('confirm.delete_posts.title'),
+    confirm: t('confirm.delete_posts.confirm'),
+    cancel: t('confirm.delete_posts.cancel'),
   }) !== 'confirm')
     return
 
   removeCachedStatus(status.id)
-  await masto.v1.statuses.remove(status.id)
+  await client.v1.statuses.remove(status.id)
 
   if (route.name === 'status')
     router.back()
@@ -78,8 +80,14 @@ const deleteStatus = async () => {
   // TODO when timeline, remove this item
 }
 
-const deleteAndRedraft = async () => {
-  // TODO confirm to delete
+async function deleteAndRedraft() {
+  if (await openConfirmDialog({
+    title: t('confirm.delete_posts.title'),
+    confirm: t('confirm.delete_posts.confirm'),
+    cancel: t('confirm.delete_posts.cancel'),
+  }) !== 'confirm')
+    return
+
   if (process.dev) {
     // eslint-disable-next-line no-alert
     const result = confirm('[DEV] Are you sure you want to delete and re-draft this post?')
@@ -88,7 +96,7 @@ const deleteAndRedraft = async () => {
   }
 
   removeCachedStatus(status.id)
-  await masto.v1.statuses.remove(status.id)
+  await client.v1.statuses.remove(status.id)
   await openPublishDialog('dialog', await getDraftFromStatus(status), true)
 
   // Go to the new status, if the page is the old status
@@ -96,9 +104,11 @@ const deleteAndRedraft = async () => {
     router.push(getStatusRoute(lastPublishDialogStatus.value))
 }
 
-const reply = () => {
+function reply() {
+  if (!checkLogin())
+    return
   if (details) {
-    // TODO focus to editor
+    focusEditor()
   }
   else {
     const { key, draft } = getReplyDraft(status)
@@ -107,13 +117,14 @@ const reply = () => {
 }
 
 async function editStatus() {
-  openPublishDialog(`edit-${status.id}`, {
+  await openPublishDialog(`edit-${status.id}`, {
     ...await getDraftFromStatus(status),
     editingStatus: status,
   }, true)
+  emit('afterEdit')
 }
 
-const showFavoritedAndBoostedBy = () => {
+function showFavoritedAndBoostedBy() {
   openFavoridedBoostedByDialog(status.id)
 }
 </script>
@@ -124,14 +135,14 @@ const showFavoritedAndBoostedBy = () => {
       :content="$t('action.more')"
       color="text-primary"
       hover="text-primary"
-      group-hover="bg-primary-light"
+      elk-group-hover="bg-primary-light"
       icon="i-ri:more-line"
       my--2
     />
 
     <template #popper>
       <div flex="~ col">
-        <template v-if="userSettings.zenMode">
+        <template v-if="getPreferences(userSettings, 'zenMode')">
           <CommonDropdownItem
             :text="$t('action.reply')"
             icon="i-ri:chat-1-line"
@@ -150,8 +161,13 @@ const showFavoritedAndBoostedBy = () => {
 
           <CommonDropdownItem
             :text="status.favourited ? $t('action.favourited') : $t('action.favourite')"
-            :icon="status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
-            :class="status.favourited ? 'text-rose' : ''"
+            :icon="useStarFavoriteIcon
+              ? status.favourited ? 'i-ri:star-fill' : 'i-ri:star-line'
+              : status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
+            :class="status.favourited
+              ? useStarFavoriteIcon ? 'text-yellow' : 'text-rose'
+              : ''
+            "
             :command="command"
             :disabled="isLoading.favourited"
             @click="toggleFavourite()"
@@ -160,7 +176,10 @@ const showFavoritedAndBoostedBy = () => {
           <CommonDropdownItem
             :text="status.bookmarked ? $t('action.bookmarked') : $t('action.bookmark')"
             :icon="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'"
-            :class="status.bookmarked ? 'text-yellow' : ''"
+            :class="status.bookmarked
+              ? useStarFavoriteIcon ? 'text-rose' : 'text-yellow'
+              : ''
+            "
             :command="command"
             :disabled="isLoading.bookmarked"
             @click="toggleBookmark()"
@@ -179,6 +198,13 @@ const showFavoritedAndBoostedBy = () => {
           icon="i-ri:link"
           :command="command"
           @click="copyLink(status)"
+        />
+
+        <CommonDropdownItem
+          :text="$t('menu.copy_original_link_to_post')"
+          icon="i-ri:links-fill"
+          :command="command"
+          @click="copyOriginalLink(status)"
         />
 
         <CommonDropdownItem
@@ -206,15 +232,7 @@ const showFavoritedAndBoostedBy = () => {
           />
         </NuxtLink>
 
-        <CommonDropdownItem
-          v-if="isTranslationEnabled && status.language !== languageCode"
-          :text="translation.visible ? $t('menu.show_untranslated') : $t('menu.translate_post')"
-          icon="i-ri:translate"
-          :command="command"
-          @click="toggleTranslation"
-        />
-
-        <template v-if="isMastoInitialised && currentUser">
+        <template v-if="isHydrated && currentUser">
           <template v-if="isAuthor">
             <CommonDropdownItem
               :text="status.pinned ? $t('menu.unpin_on_profile') : $t('menu.pin_on_profile')"
@@ -252,6 +270,60 @@ const showFavoritedAndBoostedBy = () => {
               icon="i-ri:at-line"
               :command="command"
               @click="mentionUser(status.account)"
+            />
+
+            <CommonDropdownItem
+              v-if="!useRelationship(status.account).value?.muting"
+              :text="$t('menu.mute_account', [`@${status.account.acct}`])"
+              icon="i-ri:volume-mute-line"
+              :command="command"
+              @click="toggleMuteAccount(useRelationship(status.account).value!, status.account)"
+            />
+            <CommonDropdownItem
+              v-else
+              :text="$t('menu.unmute_account', [`@${status.account.acct}`])"
+              icon="i-ri:volume-up-fill"
+              :command="command"
+              @click="toggleMuteAccount(useRelationship(status.account).value!, status.account)"
+            />
+
+            <CommonDropdownItem
+              v-if="!useRelationship(status.account).value?.blocking"
+              :text="$t('menu.block_account', [`@${status.account.acct}`])"
+              icon="i-ri:forbid-2-line"
+              :command="command"
+              @click="toggleBlockAccount(useRelationship(status.account).value!, status.account)"
+            />
+            <CommonDropdownItem
+              v-else
+              :text="$t('menu.unblock_account', [`@${status.account.acct}`])"
+              icon="i-ri:checkbox-circle-line"
+              :command="command"
+              @click="toggleBlockAccount(useRelationship(status.account).value!, status.account)"
+            />
+
+            <template v-if="getServerName(status.account) && getServerName(status.account) !== currentServer">
+              <CommonDropdownItem
+                v-if="!useRelationship(status.account).value?.domainBlocking"
+                :text="$t('menu.block_domain', [getServerName(status.account)])"
+                icon="i-ri:shut-down-line"
+                :command="command"
+                @click="toggleBlockDomain(useRelationship(status.account).value!, status.account)"
+              />
+              <CommonDropdownItem
+                v-else
+                :text="$t('menu.unblock_domain', [getServerName(status.account)])"
+                icon="i-ri:restart-line"
+                :command="command"
+                @click="toggleBlockDomain(useRelationship(status.account).value!, status.account)"
+              />
+            </template>
+
+            <CommonDropdownItem
+              :text="$t('menu.report_account', [`@${status.account.acct}`])"
+              icon="i-ri:flag-2-line"
+              :command="command"
+              @click="openReportDialog(status.account, status)"
             />
           </template>
         </template>

@@ -5,7 +5,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => t('nav.conversations'),
 })
 </script>
@@ -19,6 +19,6 @@ useHeadFixed({
       </NuxtLink>
     </template>
 
-    <TimelineConversations v-if="isMastoInitialised" />
+    <TimelineConversations v-if="isHydrated" />
   </MainContent>
 </template>

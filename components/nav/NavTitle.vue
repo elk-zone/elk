@@ -2,6 +2,13 @@
 const { env } = useBuildInfo()
 const router = useRouter()
 const back = ref<any>('')
+
+const nuxtApp = useNuxtApp()
+
+function onClickLogo() {
+  nuxtApp.hooks.callHook('elk-logo:click')
+}
+
 onMounted(() => {
   back.value = router.options.history.state.back
 })
@@ -11,31 +18,33 @@ router.afterEach(() => {
 </script>
 
 <template>
-  <!-- Use external to force refresh page and jump to top of timeline -->
-  <div flex justify-between>
+  <div flex justify-between sticky top-0 bg-base z-1 py-4 native:py-7 data-tauri-drag-region>
     <NuxtLink
-      flex items-end gap-4
+      flex items-end gap-3
       py2 px-5
       text-2xl
+      select-none
       focus-visible:ring="2 current"
-      to="/"
-      external
+      to="/home"
+      @click.prevent="onClickLogo"
     >
-      <img :alt="$t('app_logo')" src="/logo.svg" shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip">
-      <div hidden xl:block>
-        {{ $t('app_name') }} <sup text-sm italic text-secondary mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
+      <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
+      <div v-show="isHydrated" hidden xl:block text-secondary>
+        {{ $t('app_name') }} <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
       </div>
     </NuxtLink>
     <div
-      hidden xl:flex items-center me-8 mt-2
-      :class="{ 'pointer-events-none op40': !back || back === '/', 'xl:flex': $route.name !== 'tag' }"
+      hidden xl:flex items-center me-8 mt-2 gap-1
     >
-      <NuxtLink
-        :aria-label="$t('nav.back')"
-        @click="$router.go(-1)"
-      >
-        <div i-ri:arrow-left-line class="rtl-flip" btn-text />
-      </NuxtLink>
+      <CommonTooltip :content="$t('nav.back')">
+        <NuxtLink
+          :aria-label="$t('nav.back')"
+          :class="{ 'pointer-events-none op0': !back || back === '/', 'xl:flex': $route.name !== 'tag' }"
+          @click="$router.go(-1)"
+        >
+          <div text-xl i-ri:arrow-left-line class="rtl-flip" btn-text />
+        </NuxtLink>
+      </CommonTooltip>
     </div>
   </div>
 </template>

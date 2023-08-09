@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { PushSubscriptionError } from '~/composables/push-notifications/types'
-
 defineProps<{ show?: boolean }>()
 
 const {
@@ -17,7 +15,7 @@ const {
 } = usePushManager()
 const { t } = useI18n()
 
-const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+const pwaEnabled = useAppConfig().pwaEnabled
 
 let busy = $ref<boolean>(false)
 let animateSave = $ref<boolean>(false)
@@ -26,7 +24,7 @@ let animateRemoveSubscription = $ref<boolean>(false)
 let subscribeError = $ref<string>('')
 let showSubscribeError = $ref<boolean>(false)
 
-const hideNotification = () => {
+function hideNotification() {
   const key = currentUser.value?.account?.acct
   if (key)
     hiddenNotification.value[key] = true
@@ -41,7 +39,7 @@ const showWarning = $computed(() => {
       && !(hiddenNotification.value[currentUser.value?.account?.acct ?? ''] === true)
 })
 
-const saveSettings = async () => {
+async function saveSettings() {
   if (busy)
     return
 
@@ -50,7 +48,7 @@ const saveSettings = async () => {
   animateSave = true
 
   try {
-    const subscription = await updateSubscription()
+    await updateSubscription()
   }
   catch (err) {
     // todo: handle error
@@ -62,7 +60,7 @@ const saveSettings = async () => {
   }
 }
 
-const doSubscribe = async () => {
+async function doSubscribe() {
   if (busy)
     return
 
@@ -92,7 +90,7 @@ const doSubscribe = async () => {
     animateSubscription = false
   }
 }
-const removeSubscription = async () => {
+async function removeSubscription() {
   if (busy)
     return
 

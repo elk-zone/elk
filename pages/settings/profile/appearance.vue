@@ -9,9 +9,14 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.profile.appearance.title')} | ${t('nav.settings')}`,
 })
+
+const { client } = $(useMasto())
+
+const avatarInput = ref<any>()
+const headerInput = ref<any>()
 
 const account = $computed(() => currentUser.value?.account)
 
@@ -20,7 +25,7 @@ const onlineSrc = $computed(() => ({
   header: account?.header || '',
 }))
 
-const { form, reset, submitter, dirtyFields, isError } = useForm({
+const { form, reset, submitter, isDirty, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
@@ -42,6 +47,7 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
       fieldsAttributes,
 
       bot: account?.bot ?? false,
+      locked: account?.locked ?? false,
 
       // These look more like account and privacy settings than appearance settings
       // discoverable: false,
@@ -50,35 +56,52 @@ const { form, reset, submitter, dirtyFields, isError } = useForm({
   },
 })
 
-const isDirty = $computed(() => !isEmptyObject(dirtyFields.value))
-const isCanSubmit = computed(() => !isError.value && isDirty)
+const isCanSubmit = computed(() => !isError.value && isDirty.value)
+const failedMessages = $ref<string[]>([])
 
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
     return
 
-  const res = await useMasto().v1.accounts.updateCredentials(dirtyFields.value as mastodon.v1.UpdateCredentialsParams)
+  const res = await client.v1.accounts.updateCredentials(dirtyFields.value as mastodon.v1.UpdateCredentialsParams)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))
 
   if ('error' in res) {
-    // TODO: Show error message
-    console.error('Error(updateCredentials):', res.error)
+    console.error(res.error)
+    failedMessages.push(res.error.message)
     return
   }
 
-  setAccountInfo(account!.id, res.account)
+  const server = currentUser.value!.server
+
+  if (!res.account.acct.includes('@'))
+    res.account.acct = `${res.account.acct}@${server}`
+
+  cacheAccount(res.account, server, true)
+  currentUser.value!.account = res.account
   reset()
 })
 
-const refreshInfo = async () => {
+async function refreshInfo() {
+  if (!currentUser.value)
+    return
   // Keep the information to be edited up to date
-  await pullMyAccountInfo()
+  await refreshAccountInfo()
   if (!isDirty)
     reset()
 }
 
-onMastoInit(refreshInfo)
+useDropZone(avatarInput, (files) => {
+  if (files?.[0])
+    form.avatar = files[0]
+})
+useDropZone(headerInput, (files) => {
+  if (files?.[0])
+    form.header = files[0]
+})
+
+onHydrated(refreshInfo)
 onReactivated(refreshInfo)
 </script>
 
@@ -95,6 +118,7 @@ onReactivated(refreshInfo)
         <!-- banner -->
         <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
+            ref="headerInput"
             v-model="form.header"
             :original="onlineSrc.header"
             w-full h-full
@@ -105,6 +129,7 @@ onReactivated(refreshInfo)
         <!-- avatar -->
         <div px-4 flex="~ gap4">
           <CommonInputImage
+            ref="avatarInput"
             v-model="form.avatar"
             :original="onlineSrc.avatar"
             mt--10
@@ -120,13 +145,22 @@ onReactivated(refreshInfo)
               :account="{ ...account, displayName: form.displayName }"
               font-bold sm:text-2xl text-xl
             />
-            <label>
-              <AccountBotIndicator show-label px2 py1>
-                <template #prepend>
-                  <input v-model="form.bot" type="checkbox" cursor-pointer>
-                </template>
-              </AccountBotIndicator>
-            </label>
+            <div flex="~ row" items-center gap2>
+              <label>
+                <AccountLockIndicator show-label px2 py1>
+                  <template #prepend>
+                    <input v-model="form.locked" type="checkbox" cursor-pointer>
+                  </template>
+                </AccountLockIndicator>
+              </label>
+              <label>
+                <AccountBotIndicator show-label px2 py1>
+                  <template #prepend>
+                    <input v-model="form.bot" type="checkbox" cursor-pointer>
+                  </template>
+                </AccountBotIndicator>
+              </label>
+            </div>
           </div>
           <AccountHandle :account="account" />
         </div>
@@ -151,7 +185,7 @@ onReactivated(refreshInfo)
 
         <!-- metadata -->
 
-        <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
+        <SettingsProfileMetadata v-if="isHydrated" v-model="form" />
 
         <!-- actions -->
         <div flex="~ gap2" justify-end>
@@ -167,6 +201,7 @@ onReactivated(refreshInfo)
           </button>
 
           <button
+            v-if="failedMessages.length === 0"
             type="submit"
             btn-solid rounded-full text-sm
             flex gap-x-2 items-center
@@ -178,7 +213,42 @@ onReactivated(refreshInfo)
             <span v-else aria-hidden="true" block i-ri:save-line />
             {{ $t('action.save') }}
           </button>
+
+          <button
+            v-else
+            type="submit"
+            btn-danger rounded-full text-sm
+            flex gap-x-2 items-center
+          >
+            <span
+              aria-hidden="true" block i-carbon:face-dizzy-filled
+            />
+            <span>{{ $t('state.save_failed') }}</span>
+          </button>
         </div>
+
+        <CommonErrorMessage v-if="failedMessages.length > 0" described-by="save-failed">
+          <header id="save-failed" flex justify-between>
+            <div flex items-center gap-x-2 font-bold>
+              <div aria-hidden="true" i-ri:error-warning-fill />
+              <p>{{ $t('state.save_failed') }}</p>
+            </div>
+            <CommonTooltip placement="bottom" :content="$t('action.clear_save_failed')">
+              <button
+                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('action.clear_save_failed')"
+                @click="failedMessages = []"
+              >
+                <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
+              </button>
+            </CommonTooltip>
+          </header>
+          <ol ps-2 sm:ps-1>
+            <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+              <strong>{{ i + 1 }}.</strong>
+              <span>{{ error }}</span>
+            </li>
+          </ol>
+        </CommonErrorMessage>
       </div>
     </form>
   </MainContent>

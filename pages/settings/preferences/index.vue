@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.preferences.label')} | ${t('nav.settings')}`,
 })
 
@@ -11,31 +11,138 @@ const userSettings = useUserSettings()
 <template>
   <MainContent back-on-small-screen>
     <template #title>
-      <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.preferences.label') }}</span>
-      </div>
+      <h1 text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
+        {{ $t('settings.preferences.label') }}
+      </h1>
     </template>
-    <h3 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideAltIndicatorOnPosts')"
+      @click="togglePreferences('hideAltIndicatorOnPosts')"
+    >
+      {{ $t('settings.preferences.hide_alt_indi_on_posts') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideAccountHoverCard')"
+      @click="togglePreferences('hideAccountHoverCard')"
+    >
+      {{ $t('settings.preferences.hide_account_hover_card') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enableAutoplay')"
+      :disabled="getPreferences(userSettings, 'enableDataSaving')"
+      @click="togglePreferences('enableAutoplay')"
+    >
+      {{ $t('settings.preferences.enable_autoplay') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enableDataSaving')"
+      @click="togglePreferences('enableDataSaving')"
+    >
+      {{ $t("settings.preferences.enable_data_saving") }}
+      <template #description>
+        {{ $t("settings.preferences.enable_data_saving_description") }}
+      </template>
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enablePinchToZoom')"
+      @click="togglePreferences('enablePinchToZoom')"
+    >
+      {{ $t('settings.preferences.enable_pinch_to_zoom') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'useStarFavoriteIcon')"
+      @click="togglePreferences('useStarFavoriteIcon')"
+    >
+      {{ $t('settings.preferences.use_star_favorite_icon') }}
+    </SettingsToggleItem>
+    <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
+      <div i-ri-hearts-line />
+      {{ $t('settings.preferences.wellbeing') }}
+    </h2>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'grayscaleMode')"
+      @click="togglePreferences('grayscaleMode')"
+    >
+      {{ $t('settings.preferences.grayscale_mode') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideBoostCount')"
+      @click="togglePreferences('hideBoostCount')"
+    >
+      {{ $t('settings.preferences.hide_boost_count') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideFavoriteCount')"
+      @click="togglePreferences('hideFavoriteCount')"
+    >
+      {{ $t('settings.preferences.hide_favorite_count') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideReplyCount')"
+      @click="togglePreferences('hideReplyCount')"
+    >
+      {{ $t('settings.preferences.hide_reply_count') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideFollowerCount')"
+      @click="togglePreferences('hideFollowerCount')"
+    >
+      {{ $t('settings.preferences.hide_follower_count') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideUsernameEmojis')"
+      @click="togglePreferences('hideUsernameEmojis')"
+    >
+      {{ $t("settings.preferences.hide_username_emojis") }}
+      <template #description>
+        {{ $t('settings.preferences.hide_username_emojis_description') }}
+      </template>
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideNews')"
+      @click="togglePreferences('hideNews')"
+    >
+      {{ $t("settings.preferences.hide_news") }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'zenMode')"
+      @click="togglePreferences('zenMode')"
+    >
+      {{ $t("settings.preferences.zen_mode") }}
+      <template #description>
+        {{ $t('settings.preferences.zen_mode_description') }}
+      </template>
+    </SettingsToggleItem>
+    <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
       <div i-ri-flask-line />
-      {{ $t('settings.feature_flags.title') }}
-    </h3>
+      {{ $t('settings.preferences.title') }}
+    </h2>
     <SettingsToggleItem
-      :checked="getFeatureFlag(userSettings, 'experimentalVirtualScroller')"
-      @click="toggleFeatureFlag('experimentalVirtualScroller')"
+      :checked="getPreferences(userSettings, 'experimentalVirtualScroller')"
+      @click="togglePreferences('experimentalVirtualScroller')"
     >
-      {{ $t('settings.feature_flags.virtual_scroll') }}
+      {{ $t('settings.preferences.virtual_scroll') }}
+      <template #description>
+        {{ $t('settings.preferences.virtual_scroll_description') }}
+      </template>
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="getFeatureFlag(userSettings, 'experimentalGitHubCards')"
-      @click="toggleFeatureFlag('experimentalGitHubCards')"
+      :checked="getPreferences(userSettings, 'experimentalGitHubCards')"
+      @click="togglePreferences('experimentalGitHubCards')"
     >
-      {{ $t('settings.feature_flags.github_cards') }}
+      {{ $t('settings.preferences.github_cards') }}
+      <template #description>
+        {{ $t('settings.preferences.github_cards_description') }}
+      </template>
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="getFeatureFlag(userSettings, 'experimentalUserPicker')"
-      @click="toggleFeatureFlag('experimentalUserPicker')"
+      :checked="getPreferences(userSettings, 'experimentalUserPicker')"
+      @click="togglePreferences('experimentalUserPicker')"
     >
-      {{ $t('settings.feature_flags.user_picker') }}
+      {{ $t('settings.preferences.user_picker') }}
+      <template #description>
+        {{ $t('settings.preferences.user_picker_description') }}
+      </template>
     </SettingsToggleItem>
   </MainContent>
 </template>

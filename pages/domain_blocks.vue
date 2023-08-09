@@ -5,7 +5,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => t('nav.blocked_domains'),
 })
 </script>
@@ -16,6 +16,6 @@ useHeadFixed({
       <span timeline-title-style>{{ $t('nav.blocked_domains') }}</span>
     </template>
 
-    <TimelineDomainBlocks v-if="isMastoInitialised" />
+    <TimelineDomainBlocks v-if="isHydrated" />
   </MainContent>
 </template>

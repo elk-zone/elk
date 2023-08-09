@@ -22,9 +22,7 @@ const emit = defineEmits<{
   (event: 'error', code: number, message: string): void
 }>()
 
-const { modelValue: file } = defineModel<{
-  modelValue: FileWithHandle | null
-}>()
+const file = defineModel<FileWithHandle | null>()
 
 const { t } = useI18n()
 
@@ -34,7 +32,9 @@ const previewImage = ref('')
 /** The current images on display */
 const imageSrc = computed<string>(() => previewImage.value || defaultImage.value)
 
-const pickImage = async () => {
+async function pickImage() {
+  if (process.server)
+    return
   const image = await fileOpen({
     description: 'Image',
     mimeTypes: props.allowedFileTypes,

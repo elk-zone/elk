@@ -1,8 +1,8 @@
-import type { MaybeComputedRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { Paginator, mastodon } from 'masto'
 import type { RouteLocation } from 'vue-router'
 
-export type UseSearchOptions = MaybeComputedRef<
+export type UseSearchOptions = MaybeRefOrGetter<
   Partial<Omit<mastodon.v1.SearchParams, keyof mastodon.DefaultPaginationParams | 'q'>>
 >
 
@@ -20,9 +20,9 @@ export type StatusSearchResult = BuildSearchResult<'status', mastodon.v1.Status>
 
 export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSearchResult
 
-export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOptions = {}) {
+export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOptions = {}) {
   const done = ref(false)
-  const masto = useMasto()
+  const { client } = $(useMasto())
   const loading = ref(false)
   const accounts = ref<AccountSearchResult[]>([])
   const hashtags = ref<HashTagSearchResult[]>([])
@@ -59,11 +59,11 @@ export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOpt
   }
 
   watch(() => resolveUnref(query), () => {
-    loading.value = !!(q && isMastoInitialised.value)
+    loading.value = !!(q && isHydrated.value)
   })
 
   debouncedWatch(() => resolveUnref(query), async () => {
-    if (!q || !isMastoInitialised.value)
+    if (!q || !isHydrated.value)
       return
 
     loading.value = true
@@ -72,7 +72,7 @@ export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOpt
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
-    paginator = masto.v2.search({
+    paginator = client.v2.search({
       q,
       ...resolveUnref(options),
       resolve: !!currentUser.value,
@@ -87,7 +87,7 @@ export function useSearch(query: MaybeComputedRef<string>, options: UseSearchOpt
   }, { debounce: 300 })
 
   const next = async () => {
-    if (!q || !isMastoInitialised.value || !paginator)
+    if (!q || !isHydrated.value || !paginator)
       return
 
     loading.value = true

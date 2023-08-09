@@ -1,12 +1,12 @@
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = defineProps<{
   count: number
   keypath: string
 }>()
-
-defineOptions({
-  inheritAttrs: false,
-})
 
 const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumber()
 

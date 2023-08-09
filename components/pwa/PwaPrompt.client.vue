@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="$pwa?.needRefresh"
-    m-2 p5 bg="fade" relative
+    m-2 p5 bg="primary-fade" relative
     rounded-lg of-hidden
     flex="~ col gap-3"
   >
@@ -16,6 +16,6 @@
         {{ $t('pwa.dismiss') }}
       </button>
     </div>
-    <div i-ri-arrow-down-circle-line absolute text-8em bottom--10 inset-ie--10 text-primary op10 class="-z-1" />
+    <div i-ri-arrow-down-circle-line absolute text-8em bottom--10 inset-ie--10 text-primary dark:text-white op10 class="-z-1" />
   </div>
 </template>

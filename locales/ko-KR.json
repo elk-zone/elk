@@ -303,7 +303,7 @@
   },
   "settings": {
     "about": {
-      "built_at": "빌트",
+      "built_at": "최근 빌드 일시",
       "label": "Elk에 대하여",
       "meet_the_team": "팀과 만나기",
       "sponsor_action": "우리를 지원하기",
@@ -445,7 +445,7 @@
     },
     "poll": {
       "count": "{0}투표|{0}투표|{0}투표",
-      "ends": "{0} 마감",
+      "ends": "{0}후 마감",
       "finished": "{0} 마감됨"
     },
     "show_full_thread": "스레드 전체보기",

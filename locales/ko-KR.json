@@ -217,8 +217,8 @@
   },
   "nav": {
     "back": "뒤로 가기",
-    "blocked_domains": "차단된 도메인",
-    "blocked_users": "차단된 유저",
+    "blocked_domains": "차단한 도메인",
+    "blocked_users": "차단한 유저",
     "bookmarks": "북마크",
     "built_at": "{0}에 빌드됨",
     "compose": "작성",

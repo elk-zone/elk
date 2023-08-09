@@ -105,6 +105,18 @@ const isSelf = $(useSelfAccount(() => account))
 const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
 
 const personalNoteMaxLength = 2000
+
+async function copyAccountName() {
+  try {
+    const shortHandle = getShortHandle(account)
+    const serverName = getServerName(account)
+    const accountName = `${shortHandle}@${serverName}`
+    await navigator.clipboard.writeText(accountName)
+  }
+  catch (err) {
+    console.error('Failed to copy account name:', err)
+  }
+}
 </script>
 
 <template>
@@ -175,7 +187,13 @@ const personalNoteMaxLength = 2000
             <AccountLockIndicator v-if="account.locked" show-label />
             <AccountBotIndicator v-if="account.bot" show-label />
           </div>
-          <AccountHandle :account="account" overflow-unset line-clamp-unset />
+
+          <div flex items-center gap-1>
+            <AccountHandle :account="account" overflow-unset line-clamp-unset />
+            <CommonTooltip placement="bottom" :content="$t('account.copy_account_name')" no-auto-focus flex>
+              <button text-secondary-light text-sm i-ri:file-copy-line @click="copyAccountName" />
+            </CommonTooltip>
+          </div>
         </div>
       </div>
       <label

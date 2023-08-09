@@ -186,7 +186,7 @@
     "block_account": "{0}을/를 차단하기",
     "block_domain": "{0} 도메인을 차단하기",
     "copy_link_to_post": "이 게시물의 링크를 복사하기",
-    "copy_original_link_to_post": "이 게시물의 원본 링크를 복사",
+    "copy_original_link_to_post": "이 게시물의 원본 링크를 복사하기",
     "delete": "삭제",
     "delete_and_redraft": "삭제 후 재게시",
     "direct_message_account": "{0}한테 DM 보내기",
@@ -198,7 +198,7 @@
     "open_in_original_site": "원본 사이트에서 열기",
     "pin_on_profile": "프로필에 고정",
     "report_account": "{0}을/를 신고하기",
-    "share_post": "이 게시물을 공유",
+    "share_post": "이 게시물을 공유하기",
     "show_favourited_and_boosted_by": "누가 좋아요와 부스트를 했는지 보기",
     "show_untranslated": "미번역본 보기",
     "toggle_theme": {

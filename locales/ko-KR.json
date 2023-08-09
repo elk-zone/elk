@@ -276,17 +276,17 @@
     "update_available_short": "업데이트 Elk",
     "webmanifest": {
       "canary": {
-        "description": "민첩한 마스토돈 웹 클라이언트 (카나리)",
+        "description": "민첩한 마스토돈 웹 클라이언트(카나리)",
         "name": "Elk (카나리)",
         "short_name": "Elk (카나리)"
       },
       "dev": {
-        "description": "민첩한 마스토돈 웹 클라이언트 (개발)",
+        "description": "민첩한 마스토돈 웹 클라이언트(개발)",
         "name": "Elk (개발)",
         "short_name": "Elk (개발)"
       },
       "preview": {
-        "description": "민첩한 마스토돈 웹 클라이언트 (미리보기)",
+        "description": "민첩한 마스토돈 웹 클라이언트(미리보기)",
         "name": "Elk (미리보기)",
         "short_name": "Elk (미리보기)"
       },
@@ -331,7 +331,7 @@
     "language": {
       "display_language": "표시 언어",
       "label": "언어",
-      "status": "변역 진행도: {0}/{1} ({2}%)",
+      "status": "변역 진행도: {0}/{1}({2}%)",
       "translations": {
         "add": "추가",
         "choose_language": "언어 선택",

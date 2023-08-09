@@ -225,7 +225,6 @@
     "favourited_post": "당신의 게시물을 좋아합니다",
     "followed_you": "당신을 팔로우 합니다",
     "followed_you_count": "{0}명이 당신을 팔로우 합니다|{0}명이 당신을 팔로우 합니다|{0}명이 당신을 팔로우 합니다",
-    "missing_type": "MISSING notification.type:",
     "reblogged_post": "당신의 게시물을 리블로그했습니다.",
     "request_to_follow": "팔로우 요청",
     "signed_up": "회원가입 됨",
@@ -237,6 +236,18 @@
     "reply_to_account": "{0}에게 답글",
     "replying": "답글",
     "the_thread": "스레드"
+  },
+  "polls": {
+    "allow_multiple": "복수 투표 허용",
+    "cancel": "취소",
+    "create": "투표 만들기",
+    "disallow_multiple": "복수 투표 불허",
+    "expiration": "투표 종료 시점",
+    "hide_votes": "투표가 끝날때 까지 총 투표수 숨기기",
+    "option_placeholder": "투표 선택지 {current}/{max}",
+    "remove_option": "선택지 지우기",
+    "settings": "투표 설정",
+    "show_votes": "항상 총 투표수 보이기"
   },
   "pwa": {
     "dismiss": "설치하지 않기",
@@ -320,7 +331,7 @@
         "alerts": {
           "favourite": "좋아요",
           "follow": "새로운 팔로워",
-          "mention": "맞팔로우",
+          "mention": "맞팔로워",
           "poll": "투표",
           "reblog": "리블로그",
           "title": "어느 알림을 받을까요?"
@@ -368,7 +379,8 @@
       "hide_username_emojis": "사용자 이름 이모지 숨기기",
       "hide_username_emojis_description": "타임라인의 사용자 아이디에서 이모티콘을 숨깁니다. 이모티콘은 프로필에 계속 표시됩니다.",
       "label": "개인 설정",
-      "title": "실험적 기능"
+      "title": "실험적 기능",
+      "use_star_favorite_icon": "별을 좋아요 아이콘으로 사용"
     },
     "profile": {
       "appearance": {
@@ -493,6 +505,16 @@
     "toggle_bold": "굵게",
     "toggle_code_block": "코드 블록 토글",
     "toggle_italic": "이탤릭 토글"
+  },
+  "user": {
+    "add_existing": "기존 계정 추가",
+    "server_address_label": "마스토돈 서버 주소",
+    "sign_in_desc": "로그인해서 프로필을 팔로우하거나 해시태그, 좋아요, 게시물을 공유하고 답글을 남기거나 다른 서버에서 당신의 계정과 상호작용할 수 있습니다.",
+    "sign_in_notice_title": "{0}의 공개 데이터를 보고 있습니다",
+    "sign_out_account": "{0} 계정 로그아웃",
+    "single_instance_sign_in_desc": "로그인해서 프로필을 팔로우하거나 해시태그, 좋아요, 게시물을 공유하고 답글을 남길 수 있습니다.",
+    "tip_no_account": "만약 마스토돈 계정을 가지고 있지 않는 경우, {0}.",
+    "tip_register_account": "서버를 선택하고 계정을 만드세요"
   },
   "visibility": {
     "direct": "다이렉트",

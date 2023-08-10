@@ -15,7 +15,7 @@ export function usePublish(options: {
   const { client } = $(useMasto())
   const settings = useUserSettings()
 
-  const preferredLanguage = $computed(() => (settings.value?.language || 'en').split('-')[0])
+  const preferredLanguage = $computed(() => (currentUser.value?.account.source.language || settings.value?.language || 'en').split('-')[0])
 
   let isSending = $ref(false)
   const isExpanded = $ref(false)
@@ -111,11 +111,20 @@ export function usePublish(options: {
       isSending = true
 
       let status: mastodon.v1.Status
-      if (!draft.editingStatus)
+      if (!draft.editingStatus) {
         status = await client.v1.statuses.create(payload)
+      }
 
-      else
-        status = await client.v1.statuses.update(draft.editingStatus.id, payload)
+      else {
+        const updatePayload = {
+          ...payload,
+          mediaAttributes: draft.attachments.map(media => ({
+            id: media.id,
+            description: media.description,
+          })),
+        } as mastodon.v1.UpdateStatusParams
+        status = await client.v1.statuses.update(draft.editingStatus.id, updatePayload)
+      }
       if (draft.params.inReplyToId)
         navigateToStatus({ status })
 
@@ -256,7 +265,8 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
 
   async function setDescription(att: mastodon.v1.MediaAttachment, description: string) {
     att.description = description
-    await client.v1.mediaAttachments.update(att.id, { description: att.description })
+    if (!draft.editingStatus)
+      await client.v1.mediaAttachments.update(att.id, { description: att.description })
   }
 
   function removeAttachment(index: number) {

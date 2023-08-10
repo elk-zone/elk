@@ -57,6 +57,7 @@ const { form, reset, submitter, isDirty, isError } = useForm({
 })
 
 const isCanSubmit = computed(() => !isError.value && isDirty.value)
+const failedMessages = $ref<string[]>([])
 
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
@@ -67,8 +68,8 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
     .catch((error: Error) => ({ error }))
 
   if ('error' in res) {
-    // TODO: Show error message
-    console.error('Error(updateCredentials):', res.error)
+    console.error(res.error)
+    failedMessages.push(res.error.message)
     return
   }
 
@@ -184,7 +185,7 @@ onReactivated(refreshInfo)
 
         <!-- metadata -->
 
-        <SettingsProfileMetadata v-if="isHydrated" v-model:form="form" />
+        <SettingsProfileMetadata v-if="isHydrated" v-model="form" />
 
         <!-- actions -->
         <div flex="~ gap2" justify-end>
@@ -200,6 +201,7 @@ onReactivated(refreshInfo)
           </button>
 
           <button
+            v-if="failedMessages.length === 0"
             type="submit"
             btn-solid rounded-full text-sm
             flex gap-x-2 items-center
@@ -211,7 +213,42 @@ onReactivated(refreshInfo)
             <span v-else aria-hidden="true" block i-ri:save-line />
             {{ $t('action.save') }}
           </button>
+
+          <button
+            v-else
+            type="submit"
+            btn-danger rounded-full text-sm
+            flex gap-x-2 items-center
+          >
+            <span
+              aria-hidden="true" block i-carbon:face-dizzy-filled
+            />
+            <span>{{ $t('state.save_failed') }}</span>
+          </button>
         </div>
+
+        <CommonErrorMessage v-if="failedMessages.length > 0" described-by="save-failed">
+          <header id="save-failed" flex justify-between>
+            <div flex items-center gap-x-2 font-bold>
+              <div aria-hidden="true" i-ri:error-warning-fill />
+              <p>{{ $t('state.save_failed') }}</p>
+            </div>
+            <CommonTooltip placement="bottom" :content="$t('action.clear_save_failed')">
+              <button
+                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('action.clear_save_failed')"
+                @click="failedMessages = []"
+              >
+                <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
+              </button>
+            </CommonTooltip>
+          </header>
+          <ol ps-2 sm:ps-1>
+            <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+              <strong>{{ i + 1 }}.</strong>
+              <span>{{ error }}</span>
+            </li>
+          </ol>
+        </CommonErrorMessage>
       </div>
     </form>
   </MainContent>

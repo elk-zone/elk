@@ -28,14 +28,18 @@ export default defineNuxtConfig({
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/emoji-mart-translation',
     '~/modules/purge-comments',
-    '~/modules/setup-components',
     '~/modules/build-env',
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module
     'stale-dep/nuxt',
   ],
+  vue: {
+    defineModel: true,
+  },
   macros: {
     setupSFC: true,
+    betterDefine: false,
+    defineModels: false,
   },
   devtools: {
     enabled: true,
@@ -241,6 +245,9 @@ export default defineNuxtConfig({
         'script-src-attr': ['\'none\''],
         'style-src': ['\'self\'', '\'unsafe-inline\''],
         'upgrade-insecure-requests': true,
+      },
+      permissionsPolicy: {
+        fullscreen: ['\'self\'', 'https:', 'http:'],
       },
     },
     rateLimiter: false,

@@ -71,7 +71,7 @@ async function render(input: string, options?: ContentParseOptions) {
   const serializedText = treeToText(tree).trim()
 
   try {
-    formatted = format(html, {
+    formatted = await format(html, {
       parser: 'html',
     })
   }

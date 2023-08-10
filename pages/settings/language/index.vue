@@ -22,13 +22,27 @@ const status = computed(() => {
       </div>
     </template>
     <div p6>
-      <label space-y-2>
-        <span block font-medium>{{ $t('settings.language.display_language') }}</span>
-        <span block>
-          {{ status }}
-        </span>
+      <div space-y-2>
+        <h2 py2 font-bold text-xl flex="~ gap-1" items-center>
+          {{ $t('settings.language.display_language') }}
+        </h2>
+        <div>{{ status }}</div>
         <SettingsLanguage select-settings />
-      </label>
+      </div>
+      <div mt4>
+        <h2 font-bold text-xl flex="~ gap-1" items-center>
+          {{ $t('settings.language.post_language') }}
+        </h2>
+        <SettingsItem
+          v-if="currentUser"
+          command large
+          icon="i-ri:quill-pen-line"
+          :text="$t('settings.language.post_language')"
+          :description="$t('settings.account_settings.description')"
+          :to="`https://${currentUser!.server}/settings/preferences/other`"
+          external target="_blank"
+        />
+      </div>
       <h2 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
         {{ $t('settings.language.translations.heading') }}
       </h2>

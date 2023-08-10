@@ -500,7 +500,7 @@
       "github_cards_description": "Lorsqu'un lien Github est publié, une carte HTML accessible utilisant la méta du graphe social s'affiche à la place de l'image sociale.",
       "grayscale_mode": "Mode niveaux de gris",
       "hide_account_hover_card": "Masquer la carte de survol du compte",
-      "hide_alt_indi_on_posts": "Masquer l'indicateur alt sur les messsages",
+      "hide_alt_indi_on_posts": "Masquer l'indicateur alt sur les messages",
       "hide_boost_count": "Masquer les compteurs de partages",
       "hide_favorite_count": "Masquer les compteurs de favoris",
       "hide_follower_count": "Masquer les compteurs d'abonné·e·s",

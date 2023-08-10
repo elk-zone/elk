@@ -451,6 +451,8 @@
       "ends": "{0} 후 마감",
       "finished": "{0} 마감됨"
     },
+    "reblogged": "{0}님이 리블로그 했습니다",
+    "replying_to": "{0}님한테 답글을 남겼습니다",
     "show_full_thread": "스레드 전체보기",
     "someone": "누군가",
     "spoiler_show_less": "최소한으로 보기",
@@ -459,8 +461,8 @@
     "try_original_site": "원본 사이트에서 시도하기"
   },
   "status_history": {
-    "created": "만듬 {0}",
-    "edited": "수정함 {0}"
+    "created": "{0}에 처음 게시함",
+    "edited": "{0}에 수정함"
   },
   "tab": {
     "accounts": "계정",

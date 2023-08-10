@@ -488,7 +488,7 @@
     "hour_future": "0시간 후|1시간 후|{n} 시간",
     "hour_past": "0시간 전|1시간 전|{n}시간 전",
     "just_now": "지금",
-    "minute_future": "0분 후|1분|in {n}분 후",
+    "minute_future": "0분 후|1분|{n}분 후",
     "minute_past": "0분 전|1분 전|{n}분 전",
     "month_future": "0 달|다음 달|{n}달 후",
     "month_past": "0달 전|지난 달|{n}달 전",

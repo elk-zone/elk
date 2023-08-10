@@ -438,7 +438,7 @@
   },
   "status": {
     "boosted_by": "부스트를 한 사람",
-    "edited": "{0}에 수정됨",
+    "edited": "{0}에 수정함",
     "favourited_by": "좋아요를 한 사람",
     "img_alt": {
       "ALT": "ALT",

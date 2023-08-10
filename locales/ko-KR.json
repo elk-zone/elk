@@ -510,6 +510,10 @@
   "timeline": {
     "show_new_items": "{v}개의 새 게시물 보기|{v}개의 새 게시물 보기|{v}개의 새 게시물 보기"
   },
+  "title": {
+    "federated_timeline": "연합 타임라인",
+    "local_timeline": "로컬 타입라인"
+  },
   "tooltip": {
     "add_content_warning": "콘텐츠 경고 추가",
     "add_emojis": "이모지 추가",

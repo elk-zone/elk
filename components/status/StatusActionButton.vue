@@ -68,7 +68,7 @@ useCommand({
           'group-focus-visible:ring': '2 current',
         }"
       >
-        <div :class="active && activeIcon ? activeIcon : (disabled ? inactiveIcon : icon)" />
+        <div :class="active && activeIcon ? activeIcon : (disabled && inactiveIcon ? inactiveIcon : icon)" />
       </div>
     </CommonTooltip>
 

@@ -9,6 +9,7 @@ const { as = 'button', command, disabled, content, icon } = defineProps<{
   color: string
   icon: string
   activeIcon?: string
+  inactiveIcon?: string
   hover: string
   elkGroupHover: string
   active?: boolean
@@ -54,7 +55,7 @@ useCommand({
     :hover=" !disabled ? hover : undefined"
     focus:outline-none
     :focus-visible="hover"
-    :class="active ? color : 'text-secondary'"
+    :class="active ? color : (disabled ? 'op25 pointer-events-none' : 'text-secondary')"
     :aria-label="content"
     :disabled="disabled"
   >
@@ -67,7 +68,7 @@ useCommand({
           'group-focus-visible:ring': '2 current',
         }"
       >
-        <div :class="active && activeIcon ? activeIcon : icon" />
+        <div :class="active && activeIcon ? activeIcon : (disabled ? inactiveIcon : icon)" />
       </div>
     </CommonTooltip>
 

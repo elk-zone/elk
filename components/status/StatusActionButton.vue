@@ -57,6 +57,7 @@ useCommand({
     :class="active ? color : 'text-secondary'"
     :aria-label="content"
     :disabled="disabled"
+    :aria-disabled="disabled"
   >
     <CommonTooltip placement="bottom" :content="content">
       <div

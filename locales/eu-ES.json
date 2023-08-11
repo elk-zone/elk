@@ -51,6 +51,7 @@
     "boost_count": "{0}",
     "boosted": "Bultzatuta",
     "clear_publish_failed": "Garbitu argitalpen erroreak",
+    "clear_save_failed": "Garbitu gordetzerakoan gertatutako erroreak",
     "clear_upload_failed": "Garbitu fitxategi-igoeren erroreak",
     "close": "Itxi",
     "compose": "Idatzi",
@@ -426,6 +427,7 @@
     "language": {
       "display_language": "Hizkuntza",
       "label": "Hizkuntza",
+      "post_language": "Argitalpenaren hizkuntza",
       "status": "Itzulpenaren egoera: {1} kateetatik {0} itzulita (%{2}a)",
       "translations": {
         "add": "Gehitu",
@@ -557,6 +559,7 @@
     "loading": "Kargatzen…",
     "publish_failed": "Argitaratzeak huts egin du",
     "publishing": "Argitaratzen",
+    "save_failed": "Gordetzeak huts egin du",
     "upload_failed": "Igotzeak huts egin du",
     "uploading": "Igotzen…"
   },

@@ -369,7 +369,7 @@ onDeactivated(() => {
             @select="insertEmoji"
             @select-custom="insertCustomEmoji"
           >
-            <button btn-action-icon :title="$t('tooltip.add_emojis')">
+            <button btn-action-icon :title="$t('tooltip.emojis')" :aria-label="$t('tooltip.add_emojis')">
               <div i-ri:emotion-line />
             </button>
           </PublishEmojiPicker>

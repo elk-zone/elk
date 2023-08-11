@@ -55,7 +55,7 @@ useCommand({
     :hover=" !disabled ? hover : undefined"
     focus:outline-none
     :focus-visible="hover"
-    :class="active ? color : (disabled ? 'op25 pointer-events-none cursor-not-allowed' : 'text-secondary')"
+    :class="active ? color : (disabled ? 'op25 cursor-not-allowed' : 'text-secondary')"
     :aria-label="content"
     :disabled="disabled"
     :aria-disabled="disabled"

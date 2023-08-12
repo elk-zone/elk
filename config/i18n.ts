@@ -30,6 +30,9 @@ export const countryLocaleVariants: Record<string, (LocaleObjectData & { country
     // { code: 'ar-AE', name: 'Arabic (U.A.E.)' },
     // { code: 'ar-YE', name: 'Arabic (Yemen)' },
   ],
+   ckb: [ 
+    { code: 'ckb', name: 'کوردیی ناوەندی' },
+  ],
   en: [
     // en.json contains en-US translations
     { country: true, code: 'en-US', name: 'English (US)' },
@@ -87,6 +90,16 @@ const locales: LocaleObjectData[] = [
     dir: 'rtl',
     pluralRule: (choice: number) => {
       const name = new Intl.PluralRules('ar-EG').select(choice)
+      return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
+    },
+  } satisfies LocaleObjectData),
+  ({
+    code: 'ckb',
+    file: 'ckb.json',
+    name: 'کوردیی ناوەندی',
+    dir: 'rtl',
+    pluralRule: (choice: number) => {
+      const name = new Intl.PluralRules('ckb').select(choice)
       return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
     },
   } satisfies LocaleObjectData),

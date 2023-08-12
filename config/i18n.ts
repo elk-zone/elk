@@ -30,7 +30,7 @@ export const countryLocaleVariants: Record<string, (LocaleObjectData & { country
     // { code: 'ar-AE', name: 'Arabic (U.A.E.)' },
     // { code: 'ar-YE', name: 'Arabic (Yemen)' },
   ],
-   ckb: [ 
+  ckb: [ 
     { code: 'ckb', name: 'کوردیی ناوەندی' },
   ],
   en: [

@@ -28,7 +28,6 @@ export default defineNuxtConfig({
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/emoji-mart-translation',
     '~/modules/purge-comments',
-    '~/modules/setup-components',
     '~/modules/build-env',
     '~/modules/tauri/index',
     '~/modules/pwa/index', // change to '@vite-pwa/nuxt' once released and remove pwa module

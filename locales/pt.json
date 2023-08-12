@@ -51,6 +51,7 @@
     "boost_count": "{0}",
     "boosted": "Partilhado",
     "clear_publish_failed": "Limpar erros de publicação",
+    "clear_save_failed": "Limpar erros ocorridos ao tentar guardar",
     "clear_upload_failed": "Limpar erros de carregamento de ficheiro",
     "close": "Fechar",
     "compose": "Compor",
@@ -426,6 +427,7 @@
     "language": {
       "display_language": "Idioma de Apresentação",
       "label": "Idioma",
+      "post_language": "Idioma de Publicação",
       "status": "Estado da tradução: {0}/{1} ({2}%)",
       "translations": {
         "add": "Adicionar",
@@ -557,6 +559,7 @@
     "loading": "Carregando...",
     "publish_failed": "Publicação falhou",
     "publishing": "Publicando",
+    "save_failed": "Falha ao guardar",
     "upload_failed": "Carregamento falhou",
     "uploading": "A carregar..."
   },

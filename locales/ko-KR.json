@@ -8,7 +8,7 @@
   },
   "account": {
     "avatar_description": "{0}의 아바타",
-    "blocked_by": "당신은 이 유저한테 차단당했습니다.",
+    "blocked_by": "당신은 이 유저에게 차단당했습니다.",
     "blocked_domains": "차단한 도메인",
     "blocked_users": "차단한 유저",
     "blocking": "차단",
@@ -189,10 +189,10 @@
     "copy_original_link_to_post": "이 게시물의 원본 링크를 복사하기",
     "delete": "삭제",
     "delete_and_redraft": "삭제 후 재게시",
-    "direct_message_account": "{0}한테 DM 보내기",
+    "direct_message_account": "{0} 님에게 DM 보내기",
     "edit": "수정",
     "hide_reblogs": "{0}이/가 부스트한 게시물 숨기기",
-    "mention_account": "{0}한테 멘션하기",
+    "mention_account": "{0} 님에게 멘션하기",
     "mute_account": "{0}을/를 뮤트하기",
     "mute_conversation": "이 게시물을 뮤트하기",
     "open_in_original_site": "원본 사이트에서 열기",
@@ -438,7 +438,7 @@
   },
   "status": {
     "boosted_by": "부스트를 한 사람",
-    "edited": "{0}에 수정됨",
+    "edited": "{0}에 수정함",
     "favourited_by": "좋아요를 한 사람",
     "img_alt": {
       "ALT": "ALT",
@@ -451,6 +451,8 @@
       "ends": "{0} 후 마감",
       "finished": "{0} 마감됨"
     },
+    "reblogged": "{0} 님이 리블로그 했습니다",
+    "replying_to": "{0} 님에게 답글을 달았습니다",
     "show_full_thread": "스레드 전체보기",
     "someone": "누군가",
     "spoiler_show_less": "최소한으로 보기",
@@ -459,11 +461,12 @@
     "try_original_site": "원본 사이트에서 시도하기"
   },
   "status_history": {
-    "created": "만듬 {0}",
-    "edited": "수정함 {0}"
+    "created": "{0}에 처음 게시함",
+    "edited": "{0}에 수정함"
   },
   "tab": {
     "accounts": "계정",
+    "for_you": "팔로우 추천",
     "hashtags": "해시태그",
     "list": "리스트",
     "media": "미디어",
@@ -485,7 +488,7 @@
     "hour_future": "0시간 후|1시간 후|{n} 시간",
     "hour_past": "0시간 전|1시간 전|{n}시간 전",
     "just_now": "지금",
-    "minute_future": "0분 후|1분|in {n}분 후",
+    "minute_future": "0분 후|1분|{n}분 후",
     "minute_past": "0분 전|1분 전|{n}분 전",
     "month_future": "0 달|다음 달|{n}달 후",
     "month_past": "0달 전|지난 달|{n}달 전",
@@ -513,6 +516,10 @@
   "timeline": {
     "show_new_items": "{v}개의 새 게시물 보기|{v}개의 새 게시물 보기|{v}개의 새 게시물 보기"
   },
+  "title": {
+    "federated_timeline": "연합 타임라인",
+    "local_timeline": "로컬 타입라인"
+  },
   "tooltip": {
     "add_content_warning": "콘텐츠 경고 추가",
     "add_emojis": "이모지 추가",
@@ -530,10 +537,10 @@
   "user": {
     "add_existing": "기존 계정 추가",
     "server_address_label": "마스토돈 서버 주소",
-    "sign_in_desc": "로그인해서 프로필을 팔로우하거나 해시태그, 좋아요, 게시물을 공유하고 답글을 남기거나 다른 서버에서 당신의 계정과 상호작용할 수 있습니다.",
+    "sign_in_desc": "로그인해서 프로필을 팔로우하거나 해시태그, 좋아요, 게시물을 공유하고 답글을 달거나 다른 서버에서 당신의 계정과 상호작용할 수 있습니다.",
     "sign_in_notice_title": "{0}의 공개 데이터를 보고 있습니다",
     "sign_out_account": "{0} 계정 로그아웃",
-    "single_instance_sign_in_desc": "로그인해서 프로필을 팔로우하거나 해시태그, 좋아요, 게시물을 공유하고 답글을 남길 수 있습니다.",
+    "single_instance_sign_in_desc": "로그인해서 프로필을 팔로우하거나 해시태그, 좋아요, 게시물을 공유하고 답글을 달 수 있습니다.",
     "tip_no_account": "만약 마스토돈 계정을 가지고 있지 않는 경우, {0}.",
     "tip_register_account": "서버를 선택하고 계정을 만드세요"
   },

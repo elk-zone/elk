@@ -18,7 +18,7 @@ function preprocess(items: mastodon.v1.Conversation[]): mastodon.v1.Conversation
     <template #default="{ item }">
       <ConversationCard
         :conversation="item"
-        border="b base" py-1
+        border="b base"
       />
     </template>
   </CommonPaginator>

@@ -4,11 +4,9 @@ import type { mastodon } from 'masto'
 const {
   status,
   newer,
-  withAction = true,
 } = defineProps<{
   status: mastodon.v1.Status | mastodon.v1.StatusEdit
   newer?: mastodon.v1.Status
-  withAction?: boolean
 }>()
 
 const { translation } = useTranslation(status, getLanguageCode())
@@ -30,7 +28,7 @@ const vnode = $computed(() => {
 </script>
 
 <template>
-  <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }" relative>
+  <div class="status-body" whitespace-pre-wrap break-words relative>
     <span
       v-if="status.content"
       class="content-rich line-compact" dir="auto"
@@ -48,9 +46,3 @@ const vnode = $computed(() => {
     </template>
   </div>
 </template>
-
-<style>
-.status-body.with-action p {
-  cursor: pointer;
-}
-</style>

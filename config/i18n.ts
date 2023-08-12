@@ -9,11 +9,12 @@ interface LocaleObjectData extends LocaleObject {
   pluralRule?: PluralizationRule
 }
 
-const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
+export const countryLocaleVariants: Record<string, (LocaleObjectData & { country?: boolean }) []> = {
   ar: [
+    // ar.json contains ar-EG translations
     // { code: 'ar-DZ', name: 'Arabic (Algeria)' },
     // { code: 'ar-BH', name: 'Arabic (Bahrain)' },
-    { code: 'ar-EG', name: 'العربية' },
+    { country: true, code: 'ar-EG', name: 'العربية' },
     // { code: 'ar-EG', name: 'Arabic (Egypt)' },
     // { code: 'ar-IQ', name: 'Arabic (Iraq)' },
     // { code: 'ar-JO', name: 'Arabic (Jordan)' },
@@ -33,10 +34,20 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     { code: 'ckb', name: 'کوردیی ناوەندی' },
   ],
   en: [
-    { code: 'en-US', name: 'English (US)' },
+    // en.json contains en-US translations
+    { country: true, code: 'en-US', name: 'English (US)' },
     { code: 'en-GB', name: 'English (UK)' },
   ],
+  ca: [
+    // ca.json contains ca-ES translations
+    // { code: 'ca-AD', name: 'Català (Andorra)' },
+    { country: true, code: 'ca-ES', name: 'Català (Espanya)' },
+    { code: 'ca-valencia', name: 'Català (valencià)' },
+    // { code: 'ca-FR', name: 'Català (França)' },
+    // { code: 'ca-IT', name: 'Català (Itàlia)' },
+  ],
   es: [
+    // es.json contains es-ES translations
     // { code: 'es-AR', name: 'Español (Argentina)' },
     // { code: 'es-BO', name: 'Español (Bolivia)' },
     // { code: 'es-CL', name: 'Español (Chile)' },
@@ -44,7 +55,7 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     // { code: 'es-CR', name: 'Español (Costa Rica)' },
     // { code: 'es-DO', name: 'Español (República Dominicana)' },
     // { code: 'es-EC', name: 'Español (Ecuador)' },
-    { code: 'es-ES', name: 'Español (España)' },
+    { country: true, code: 'es-ES', name: 'Español (España)' },
     // TODO: Support es-419, if we include spanish country variants remove also fix on utils/language.ts module
     { code: 'es-419', name: 'Español (Latinoamérica)' },
     // { code: 'es-GT', name: 'Español (Guatemala)' },
@@ -58,6 +69,11 @@ const countryLocaleVariants: Record<string, LocaleObjectData[]> = {
     // { code: 'es-US', name: 'Español (Estados Unidos)' },
     // { code: 'es-UY', name: 'Español (Uruguay)' },
     // { code: 'es-VE', name: 'Español (Venezuela)' },
+  ],
+  pt: [
+    // pt.json contains pt-PT translations
+    { country: true, code: 'pt-PT', name: 'Português (Portugal)' },
+    { code: 'pt-BR', name: 'Português (Brasil)' },
   ],
 }
 
@@ -88,6 +104,11 @@ const locales: LocaleObjectData[] = [
     },
   } satisfies LocaleObjectData),
   {
+    code: 'ca',
+    file: 'ca.json',
+    name: 'Català',
+  },
+  {
     code: 'de-DE',
     file: 'de-DE.json',
     name: 'Deutsch',
@@ -116,6 +137,11 @@ const locales: LocaleObjectData[] = [
     code: 'es',
     file: 'es.json',
     name: 'Español',
+  },
+  {
+    code: 'eu-ES',
+    file: 'eu-ES.json',
+    name: 'Euskara',
   },
   {
     code: 'fr-FR',
@@ -161,8 +187,8 @@ const locales: LocaleObjectData[] = [
     },
   },
   {
-    code: 'pt-PT',
-    file: 'pt-PT.json',
+    code: 'pt',
+    file: 'pt.json',
     name: 'Português',
   },
   {
@@ -185,9 +211,34 @@ const locales: LocaleObjectData[] = [
     file: 'gl-ES.json',
     name: 'Galego',
   },
+  {
+    code: 'ko-KR',
+    file: 'ko-KR.json',
+    name: '한국어',
+  },
+  {
+    code: 'it-IT',
+    file: 'it-IT.json',
+    name: 'Italiano',
+  },
+  {
+    code: 'th-TH',
+    file: 'th-TH.json',
+    name: 'ไทย',
+  },
+  {
+    code: 'tl-PH',
+    file: 'tl-PH.json',
+    name: 'Tagalog',
+  },
+  {
+    code: 'vi-VN',
+    file: 'vi-VN.json',
+    name: 'Tiếng Việt',
+  },
 ]
 
-const buildLocales = () => {
+function buildLocales() {
   const useLocales = Object.values(locales).reduce((acc, data) => {
     const locales = countryLocaleVariants[data.code]
     if (locales) {
@@ -211,7 +262,7 @@ const buildLocales = () => {
   return useLocales.sort((a, b) => a.code.localeCompare(b.code))
 }
 
-const currentLocales = buildLocales()
+export const currentLocales = buildLocales()
 
 const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
   const dateTimeFormats = data.dateTimeFormats

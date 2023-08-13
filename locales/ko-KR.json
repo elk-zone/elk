@@ -373,8 +373,9 @@
         "unsupported": "지금 사용하는 브라우저는 푸시 알림을 지원하지 않습니다.",
         "warning": {
           "enable_close": "닫기",
-          "enable_description": "Elk가 열려 있지 않을 때 알림을 받으려면 푸시 알림을 활성화하세요. 푸시 알림을 활성화하면 위의 \"@:settings.notifications.show_btn{'\"'} 버튼을 통해 어떤 유형의 상호작용이 푸시 알림을 생성하는지 정확하게 제어할 수 있습니다.",
-          "enable_description_settings": "Elk가 열려 있지 않을 때 알림을 받으려면 푸시 알림을 사용 설정하세요. 푸시 알림을 사용 설정하면 동일한 화면에서 푸시 알림을 생성하는 상호 작용 유형을 정확하게 제어할 수 있습니다.",
+          "enable_description": "Elk가 열려 있지 않을 때 알림을 받으려면 푸시 알림을 활성화하세요. 푸시 알림을 활성화하면 위의 \"@:settings.notifications.show_btn{'\"'} 버튼을 통해 어떤 유형의 상호 작용이 푸시 알림을 생성하는지 정확하게 제어할 수 있습니다.",
+          "enable_description_desktop": "Elk가 열려 있지 않을 때 알림을 받으려면 푸시 알림을 활성화하세요. 푸시 알림의 활성화 하면 \"설정 > 알림 > 푸시 알림 설정\"에서 어떤 유형의 상호 작용이 푸시 알림을 생성하는지 정확하게 제어할 수 있습니다.",
+          "enable_description_settings": "Elk가 열려 있지 않을 때 알림을 받으려면 푸시 알림을 활성화하세요. 푸시 알림을 사용 설정하면 동일한 화면에서 푸시 알림을 생성하는 상호 작용 유형을 정확하게 제어할 수 있습니다.",
           "enable_desktop": "푸시 알림 활성화",
           "enable_title": "어떤 것도 놓치지 마세요",
           "re_auth": "사용 중인 서버가 푸시 알림을 지원하지 않는 것 같습니다. 로그아웃했다가 다시 로그인한 후에도 이 메시지가 계속 표시되면 서버 관리자에게 문의하세요."
@@ -400,7 +401,8 @@
       "hide_username_emojis_description": "타임라인의 사용자 아이디에서 이모티콘을 숨깁니다. 이모티콘은 프로필에 계속 표시됩니다.",
       "label": "개인 설정",
       "title": "실험적 기능",
-      "use_star_favorite_icon": "별을 좋아요 아이콘으로 사용"
+      "use_star_favorite_icon": "별을 좋아요 아이콘으로 사용",
+      "wellbeing": "웰빙"
     },
     "profile": {
       "appearance": {

@@ -13,5 +13,5 @@ await fs.copy('node_modules/theme-vitesse/themes', 'public/shiki/themes', { dere
 await fs.copy('node_modules/theme-vitesse/themes', 'node_modules/shiki/themes', { overwrite: true, dereference })
 await fs.copy(`node_modules/${iconifyEmojiPackage}/icons`, `public/emojis/${emojiPrefix}`, { overwrite: true, dereference })
 
-await fs.writeJSON('constants/themes.json', colorsMap, { spaces: 2, EOL: '\n' })
+// await fs.writeJSON('constants/themes.json', colorsMap, { spaces: 2, EOL: '\n' })
 await fs.writeFile('styles/default-theme.css', `:root {\n${Object.entries(colorsMap[0][1]).map(([k, v]) => `  ${k}: ${v};`).join('\n')}\n}\n`, { encoding: 'utf-8' })

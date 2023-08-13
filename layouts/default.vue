@@ -34,7 +34,7 @@ const isGrayscale = usePreferences('grayscaleMode')
                     <div v-else flex="~" items-center justify-between>
                       <NuxtLink
                         hidden xl:block
-                        rounded-3 text-primary text-start w-full
+                        rounded-2 text-primary text-start w-full
                         hover:bg-active cursor-pointer transition-100
                         :to="getAccountRoute(currentUser.account)"
                       >

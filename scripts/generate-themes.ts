@@ -7,6 +7,7 @@ export const themesColor = Array.from(
   (_, i) => chroma.hcl((67.14 + i * 40) % 360, 62.19, 59.56).hex(),
 )
 
+const expandedThemesColor = [themesColor[0], '#d88e14', ...themesColor.slice(1)]
 export function getThemeColors(primary: string): ThemeColors {
   const c = chroma(primary)
   const dc = c.brighten(0.1)
@@ -28,4 +29,4 @@ export function getThemeColors(primary: string): ThemeColors {
   }
 }
 
-export const colorsMap = themesColor.map(color => [color, getThemeColors(color)])
+export const colorsMap = expandedThemesColor.map(color => [color, getThemeColors(color)])

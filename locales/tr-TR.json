@@ -362,6 +362,7 @@
       "color_mode": "Renk Modu",
       "dark_mode": "Karanlık Mod",
       "default": " (varsayılan)",
+      "dim_mode": "Zayıflatılmış Mod",
       "font_size": "Font Boyutu",
       "label": "Arayüz",
       "light_mode": "Aydınlık Mod",

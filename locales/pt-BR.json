@@ -194,6 +194,7 @@
     "interface": {
       "color_mode": "Plano de fundo",
       "dark_mode": "Escuro",
+      "dim_mode": "Atenuado",
       "label": "Interface",
       "light_mode": "Claro",
       "theme_color": "Cor do tema"

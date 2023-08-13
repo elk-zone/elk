@@ -203,6 +203,7 @@
       "color_mode": "Kleur Modus",
       "dark_mode": "Donkere Modus",
       "default": " (standaard)",
+      "dim_mode": "Gedimde modus",
       "font_size": "Letter Grootte",
       "label": "Interface",
       "light_mode": "Lichte Modus"

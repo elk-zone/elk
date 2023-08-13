@@ -357,6 +357,7 @@
       "color_mode": "Modo de cor",
       "dark_mode": "Escuro",
       "default": " (por defecto)",
+      "dim_mode": "Penumbra",
       "font_size": "Tamaño da letra",
       "label": "Interface",
       "light_mode": "Claro",

@@ -292,6 +292,7 @@
       "color_mode": "Pohjaväri",
       "dark_mode": "Tumma",
       "default": " (oletus)",
+      "dim_mode": "Hämärä",
       "font_size": "Kirjasinkoko",
       "label": "Käyttöliittymä",
       "light_mode": "Vaalea",

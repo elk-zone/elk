@@ -51,6 +51,7 @@
     "boost_count": "{0}",
     "boosted": "هاوبەشکرا",
     "clear_publish_failed": "هەڵەکانی بڵاوکردنەوە پاک بکەرەوە",
+    "clear_save_failed": "Clear save errors",
     "clear_upload_failed": "هەڵەکانی بارکردنی پەڕگە پاک بکەرەوە",
     "close": "داخستن",
     "compose": "نووسین",
@@ -426,6 +427,7 @@
     "language": {
       "display_language": "زمانی پیشاندان",
       "label": "زمان",
+      "post_language": "Posting Language",
       "status": "دۆخی وەرگێڕان: {0}/{1} ({2}٪)",
       "translations": {
         "add": "زیادکردن",
@@ -557,6 +559,7 @@
     "loading": "خرمەخرم ...",
     "publish_failed": "بڵاوکردنەوە سەرکەوتوو نەبوو",
     "publishing": "بڵاوکردنەوە",
+    "save_failed": "Save failed",
     "upload_failed": "بارکردن سەرکەوتوو نەبوو",
     "uploading": "بارکردنەوە..."
   },

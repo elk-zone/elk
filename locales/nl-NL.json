@@ -182,8 +182,7 @@
     "content_warning": "Schrijf je waarschuwing hier",
     "default_1": "Waar denk je aan?",
     "reply_to_account": "Reageer op {0}",
-    "replying": "Reageren",
-    "the_thread": "de thread"
+    "replying": "Reageren"
   },
   "pwa": {
     "dismiss": "Afwijzen",
@@ -313,7 +312,6 @@
       "ends": "eindigt {0}",
       "finished": "geëindigd {0}"
     },
-    "reblogged": "{0} herblogd",
     "someone": "Iemand",
     "spoiler_show_less": "Minder zien",
     "spoiler_show_more": "Meer zien",

@@ -139,8 +139,7 @@
     "content_warning": "Sem napište varování",
     "default_1": "O čem chcete psát?",
     "reply_to_account": "Odpovědět {0}",
-    "replying": "Sem napište odpověď",
-    "the_thread": "vlákno"
+    "replying": "Sem napište odpověď"
   },
   "state": {
     "edited": "(Upraveno)",
@@ -161,7 +160,6 @@
       "ends": "končí {0}",
       "finished": "ukončeno {0}"
     },
-    "reblogged": "{0} přeposlal",
     "someone": "Někdo",
     "spoiler_show_less": "Skrýt",
     "spoiler_show_more": "Ukázat",

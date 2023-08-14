@@ -301,8 +301,7 @@
     "content_warning": "Isulat ang iyong babala dito",
     "default_1": "Ano ang nasa isip mo?",
     "reply_to_account": "Sagot kay {0}",
-    "replying": "Sumasagot",
-    "the_thread": "ang thread"
+    "replying": "Sumasagot"
   },
   "pwa": {
     "dismiss": "I-dismiss",
@@ -506,7 +505,6 @@
     "edited": "Naedit {0}",
     "favourited_by": "Pumaborito si",
     "filter_hidden_phrase": "Nakafilter dahil sa",
-    "filter_removed_phrase": "Tinanggal dahil sa filter",
     "filter_show_anyway": "Ipakita pa rin",
     "img_alt": {
       "ALT": "ALT",
@@ -519,7 +517,6 @@
       "ends": "magtatapos {0}",
       "finished": "natapos {0}"
     },
-    "reblogged": "Binlog ni {0}",
     "replying_to": "Sumasagot kay {0}",
     "show_full_thread": "Ipakita ang buong thread",
     "someone": "isa",

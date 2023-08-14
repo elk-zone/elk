@@ -308,8 +308,7 @@
     "content_warning": "Viết cảnh báo của bạn ở đây",
     "default_1": "Bạn đang nghĩ gì vậy?",
     "reply_to_account": "Trả lời {0}",
-    "replying": "Trả lời",
-    "the_thread": "thảo luận"
+    "replying": "Trả lời"
   },
   "polls": {
     "allow_multiple": "Cho phép chọn nhiều lựa chọn",
@@ -572,7 +571,6 @@
     "edited": "Đã sửa {0}",
     "favourited_by": "Thích bởi",
     "filter_hidden_phrase": "Lọc theo",
-    "filter_removed_phrase": "Xóa theo bộ lọc",
     "filter_show_anyway": "Vẫn cứ hiện",
     "img_alt": {
       "ALT": "ALT",
@@ -585,7 +583,6 @@
       "ends": "kết thúc {0}",
       "finished": "hết hạn {0}"
     },
-    "reblogged": "{0} đăng lại",
     "replying_to": "Trả lời {0}",
     "show_full_thread": "Chuỗi thảo luận",
     "someone": "ai đó",

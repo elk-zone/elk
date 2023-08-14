@@ -254,8 +254,7 @@
     "content_warning": "여기에 경고를 적으세요",
     "default_1": "무슨 생각을 하고 계신가요?",
     "reply_to_account": "{0}에게 답글",
-    "replying": "답글",
-    "the_thread": "스레드"
+    "replying": "답글"
   },
   "polls": {
     "allow_multiple": "복수 투표 허용",
@@ -451,7 +450,6 @@
       "ends": "{0} 후 마감",
       "finished": "{0} 마감됨"
     },
-    "reblogged": "{0} 님이 리블로그 했습니다",
     "replying_to": "{0} 님에게 답글을 달았습니다",
     "show_full_thread": "스레드 전체보기",
     "someone": "누군가",

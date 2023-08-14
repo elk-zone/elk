@@ -303,8 +303,7 @@
     "content_warning": "Wpisz tutaj swoje ostrzeżenie",
     "default_1": "O czym chciałbyś napisać?",
     "reply_to_account": "Odpowiedz do {0}",
-    "replying": "Twoja odpowiedź",
-    "the_thread": "wątek"
+    "replying": "Twoja odpowiedź"
   },
   "pwa": {
     "dismiss": "Odrzuć",
@@ -509,7 +508,6 @@
     "edited": "Edytowano {0}",
     "favourited_by": "Polubione przez",
     "filter_hidden_phrase": "Filtrowane według",
-    "filter_removed_phrase": "Usunięto przez filtr",
     "filter_show_anyway": "Pokaż mimo wszystko",
     "img_alt": {
       "ALT": "ALT",
@@ -522,7 +520,6 @@
       "ends": "kończy się {0}",
       "finished": "ukończone {0}"
     },
-    "reblogged": "{0} przekazany",
     "replying_to": "W odpowiedzi do {0}",
     "show_full_thread": "Pokaż cały wątek",
     "someone": "ktoś",

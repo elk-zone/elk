@@ -305,8 +305,7 @@
     "content_warning": "ここに警告を記入",
     "default_1": "今なにしてる？",
     "reply_to_account": "{0}さんに返信",
-    "replying": "返信する",
-    "the_thread": "スレッド"
+    "replying": "返信する"
   },
   "pwa": {
     "dismiss": "閉じる",
@@ -513,7 +512,6 @@
     "edited": "編集済み {0}",
     "favourited_by": "お気に入りしたユーザー",
     "filter_hidden_phrase": "フィルター",
-    "filter_removed_phrase": "フィルターにより削除",
     "filter_show_anyway": "とにかく表示",
     "img_alt": {
       "ALT": "ALT",
@@ -526,7 +524,6 @@
       "ends": "{0}に終了",
       "finished": "{0}に完了"
     },
-    "reblogged": "{0}さんがリブログしました",
     "replying_to": "{0}さんへの返信",
     "show_full_thread": "スレッド全体を表示",
     "someone": "誰か",

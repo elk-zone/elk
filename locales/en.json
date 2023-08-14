@@ -41,7 +41,8 @@
     "unfollow": "Unfollow",
     "unmute": "Unmute",
     "view_other_followers": "Followers from other instances may not be displayed.",
-    "view_other_following": "Following from other instances may not be displayed."
+    "view_other_following": "Following from other instances may not be displayed.",
+    "withdraw_follow_request": "Withdraw follow request"
   },
   "action": {
     "apply": "Apply",
@@ -246,6 +247,7 @@
     "pin_on_profile": "Pin on profile",
     "remove_personal_note": "Remove personal note from {0}",
     "report_account": "Report {0}",
+    "share_account": "Share {0}",
     "share_post": "Share this post",
     "show_favourited_and_boosted_by": "Show who favorited and boosted",
     "show_reblogs": "Show boosts from {0}",

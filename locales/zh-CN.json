@@ -41,7 +41,8 @@
     "unfollow": "取消关注",
     "unmute": "取消屏蔽",
     "view_other_followers": "其他站点上的关注者可能不会在这里显示。",
-    "view_other_following": "其他站点上正在关注的人可能不会在这里显示。"
+    "view_other_following": "其他站点上正在关注的人可能不会在这里显示。",
+    "withdraw_follow_request": "撤销关注请求"
   },
   "action": {
     "apply": "应用",
@@ -245,6 +246,7 @@
     "pin_on_profile": "置顶在个人资料上",
     "remove_personal_note": "给 {0} 移除私人备注",
     "report_account": "举报 {0}",
+    "share_account": "分享 {0}",
     "share_post": "分享这条帖文",
     "show_favourited_and_boosted_by": "展示谁喜欢和转发了",
     "show_reblogs": "显示来自 {0} 的转发",

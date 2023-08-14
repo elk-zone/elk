@@ -302,8 +302,7 @@
     "content_warning": "اكتب تحذيرك هنا",
     "default_1": "ماذا يدور في ذهنك؟",
     "reply_to_account": "الرد على {0}",
-    "replying": "الرد",
-    "the_thread": "المحادثة"
+    "replying": "الرد"
   },
   "pwa": {
     "dismiss": "تجاهل",
@@ -505,7 +504,6 @@
     "edited": "عدل {0}",
     "favourited_by": "مُفضل من",
     "filter_hidden_phrase": "تمت تصفيتها بواسطة",
-    "filter_removed_phrase": "تمت إزالته بواسطة عامل التصفية",
     "filter_show_anyway": "عرض على أي حال",
     "img_alt": {
       "ALT": "نص بديل",
@@ -518,7 +516,6 @@
       "ends": "ينتهي في {0}",
       "finished": "انتهى في {0}"
     },
-    "reblogged": "{0} اعاد نشر",
     "replying_to": "الرد على {0}",
     "show_full_thread": "إظهار المحادثة كاملاً",
     "someone": "شخص ما",

@@ -238,8 +238,7 @@
     "content_warning": "Kirjoita aiheesi",
     "default_1": "Mitä tuumaat?",
     "reply_to_account": "Vastaus {0}:lle",
-    "replying": "Vastauksesi",
-    "the_thread": "säie"
+    "replying": "Vastauksesi"
   },
   "pwa": {
     "dismiss": "Hylkää",
@@ -411,7 +410,6 @@
     "edited": "Muokattu {0}",
     "favourited_by": "Tykännyt",
     "filter_hidden_phrase": "Suodatettu",
-    "filter_removed_phrase": "Suodattimen poistama",
     "filter_show_anyway": "Näytä suodatetut",
     "img_alt": {
       "desc": "Kuvaus",
@@ -422,7 +420,6 @@
       "ends": "loppuu {0}",
       "finished": "loppunut {0}"
     },
-    "reblogged": "{0} jakoi",
     "replying_to": "Vastaa {0}:lle",
     "show_full_thread": "Näytä koko säie",
     "someone": "joku",

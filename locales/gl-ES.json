@@ -299,8 +299,7 @@
     "content_warning": "Escribe aquí o aviso",
     "default_1": "En que estás a pensar?",
     "reply_to_account": "Responder a {0}",
-    "replying": "Responde aquí",
-    "the_thread": "a conversa"
+    "replying": "Responde aquí"
   },
   "pwa": {
     "dismiss": "Desbotar",
@@ -498,7 +497,6 @@
     "edited": "Editada por {0}",
     "favourited_by": "Favorecida por",
     "filter_hidden_phrase": "Filtrada por",
-    "filter_removed_phrase": "Eliminada polo filtro",
     "filter_show_anyway": "Mostrar igualmente",
     "img_alt": {
       "ALT": "Texto Alt",
@@ -511,7 +509,6 @@
       "ends": "remata en {0}",
       "finished": "rematou o {0}"
     },
-    "reblogged": "Promovida por {0}",
     "replying_to": "En resposta a {0}",
     "show_full_thread": "Mostrar conversa completa",
     "someone": "alguén",

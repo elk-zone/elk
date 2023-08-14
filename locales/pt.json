@@ -308,8 +308,7 @@
     "content_warning": "Escreva aqui o seu aviso",
     "default_1": "Em que está a pensar?",
     "reply_to_account": "Responder a {0}",
-    "replying": "Respondendo",
-    "the_thread": "a conversa"
+    "replying": "Respondendo"
   },
   "polls": {
     "allow_multiple": "Permitir múltiplas escolhas",
@@ -572,7 +571,6 @@
     "edited": "Editada {0}",
     "favourited_by": "Adicionada Aos Favoritos Por",
     "filter_hidden_phrase": "Filtrada por",
-    "filter_removed_phrase": "Removida pelo filtro",
     "filter_show_anyway": "Mostrar mesmo assim",
     "img_alt": {
       "ALT": "ALT",
@@ -585,7 +583,6 @@
       "ends": "termina {0}",
       "finished": "terminou {0}"
     },
-    "reblogged": "{0} partilhou",
     "replying_to": "Em resposta a {0}",
     "show_full_thread": "Mostrar toda a conversa",
     "someone": "alguém",

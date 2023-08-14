@@ -307,8 +307,7 @@
     "content_warning": "Escribe tu advertencia aquí",
     "default_1": "¿En qué estás pensando?",
     "reply_to_account": "Responder a {0}",
-    "replying": "Respondiendo",
-    "the_thread": "el hilo"
+    "replying": "Respondiendo"
   },
   "polls": {
     "allow_multiple": "Permitir múltiples opciones",
@@ -566,7 +565,6 @@
     "edited": "Editado {0}",
     "favourited_by": "Marcado como favorita por",
     "filter_hidden_phrase": "Filtrado por",
-    "filter_removed_phrase": "Eliminado por filtrado",
     "filter_show_anyway": "Mostrar de todas formas",
     "img_alt": {
       "ALT": "ALT",
@@ -579,7 +577,6 @@
       "ends": "finaliza {0}",
       "finished": "finalizada {0}"
     },
-    "reblogged": "{0} retooteó",
     "replying_to": "Respondiendo a {0}",
     "show_full_thread": "Mostrar hilo completo",
     "someone": "alguien",

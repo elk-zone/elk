@@ -307,8 +307,7 @@
     "content_warning": "Напишите ваше предупреждение...",
     "default_1": "Что у вас нового?",
     "reply_to_account": "Ответить {0}",
-    "replying": "Написать в ответ",
-    "the_thread": "тред"
+    "replying": "Написать в ответ"
   },
   "polls": {
     "allow_multiple": "Включить выбор нескольких ответов",
@@ -566,7 +565,6 @@
     "edited": "Отредактировано {0}",
     "favourited_by": "Добавили в избранное",
     "filter_hidden_phrase": "Отфильтровано по",
-    "filter_removed_phrase": "Удалено фильтром",
     "filter_show_anyway": "Показать все равно",
     "img_alt": {
       "ALT": "ALT",
@@ -579,7 +577,6 @@
       "ends": "Завершается {0}",
       "finished": "Завершен {0}"
     },
-    "reblogged": "{0} сделали репост",
     "replying_to": "Ответ на пост {0}",
     "show_full_thread": "Показать весь тред",
     "someone": "кого-то",

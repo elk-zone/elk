@@ -301,11 +301,9 @@
     "edited": "Editado {0}",
     "favourited_by": "Favoritado por",
     "filter_hidden_phrase": "Filtrado por",
-    "filter_removed_phrase": "Removido pelo filtro",
     "img_alt": {
       "dismiss": "Fechar"
     },
-    "reblogged": "{0} compartilhou",
     "replying_to": "Respondendo {0}",
     "spoiler_media_hidden": "Mídia oculta",
     "try_original_site": "Tentar o site original"

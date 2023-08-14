@@ -304,8 +304,7 @@
     "content_warning": "Uyarını buraya yaz",
     "default_1": "Aklında ne var?",
     "reply_to_account": "{0} cevap ver",
-    "replying": "Cevap veriliyor",
-    "the_thread": "konu"
+    "replying": "Cevap veriliyor"
   },
   "pwa": {
     "dismiss": "Görmezden gel",
@@ -511,7 +510,6 @@
     "edited": "Düzenlendi {0}",
     "favourited_by": "Tarafından favorilendi:",
     "filter_hidden_phrase": "Tarafından filtrelendi:",
-    "filter_removed_phrase": "Filtre tarafından silindi",
     "filter_show_anyway": "Yine de göster",
     "img_alt": {
       "ALT": "ALT",
@@ -524,7 +522,6 @@
       "ends": "{0} biter",
       "finished": "{0} bitti"
     },
-    "reblogged": "{0} yeniden blogladı",
     "replying_to": "{0} cevap veriliyor",
     "show_full_thread": "Tüm konuyu göster",
     "someone": "biri",

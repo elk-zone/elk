@@ -304,8 +304,7 @@
     "content_warning": "เขียนคำเตือนของคุณที่นี่",
     "default_1": "คุณคิดอะไรอยู่?",
     "reply_to_account": "ตอบ {0}",
-    "replying": "กำลังชอบ",
-    "the_thread": "เธรด"
+    "replying": "กำลังชอบ"
   },
   "polls": {
     "allow_multiple": "อนุญาตหลายตัวเลือก",
@@ -523,7 +522,6 @@
     "edited": "แก้ไข {0}",
     "favourited_by": "ชื่อชอบโดย",
     "filter_hidden_phrase": "กรองโดย",
-    "filter_removed_phrase": "เอาออกโดยตัวกรอง",
     "filter_show_anyway": "แสดง",
     "img_alt": {
       "ALT": "ALT",
@@ -536,7 +534,6 @@
       "ends": "จบ {0}",
       "finished": "สิ้นสุด {0}"
     },
-    "reblogged": "{0} การดัน",
     "replying_to": "ตอบกลับ {0}",
     "show_full_thread": "แสดงเธรดเต็ม",
     "someone": "บางคน",

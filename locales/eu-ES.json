@@ -308,8 +308,7 @@
     "content_warning": "Idatzi oharra hemen",
     "default_1": "Zer duzu buruan?",
     "reply_to_account": "Erantzun {0}(r)i",
-    "replying": "Erantzuten",
-    "the_thread": "haria"
+    "replying": "Erantzuten"
   },
   "polls": {
     "allow_multiple": "Baimendu aukera anitzak",
@@ -572,7 +571,6 @@
     "edited": "Azken edizioa: {0}",
     "favourited_by": "Gogoko egin dute:",
     "filter_hidden_phrase": "Iragazia:",
-    "filter_removed_phrase": "Iragazki honek kendu du:",
     "filter_show_anyway": "Erakutsi edonola ere",
     "img_alt": {
       "ALT": "ALT",
@@ -585,7 +583,6 @@
       "ends": "epemuga: {0}",
       "finished": "amaiera: {0}"
     },
-    "reblogged": "{0}(e)k bultzatua",
     "replying_to": "{0}(r)i erantzunez",
     "show_full_thread": "Erakutsi hari osoa",
     "someone": "norbait",

@@ -316,7 +316,6 @@
   },
   "status": {
     "favourited_by": "Marcat com a preferit per",
-    "filter_removed_phrase": "Eliminat pel filtre",
     "filter_show_anyway": "Mostra-ho igualment",
     "img_alt": {
       "dismiss": "Descarta",
@@ -326,7 +325,6 @@
       "ends": "acaba en {0}",
       "finished": "finalitzada {0}"
     },
-    "reblogged": "{0} ha impulsat",
     "replying_to": "En resposta a {0}",
     "spoiler_show_less": "Mostra'm menys",
     "spoiler_show_more": "Mostra'm més",

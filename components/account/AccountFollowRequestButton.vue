@@ -9,7 +9,7 @@ const relationship = $computed(() => props.relationship || useRelationship(accou
 const { client } = $(useMasto())
 
 async function authorizeFollowRequest() {
-  relationship!.requested = false
+  relationship!.requestedBy = false
   relationship!.followedBy = true
   try {
     const newRel = await client.v1.followRequests.authorize(account.id)
@@ -17,20 +17,20 @@ async function authorizeFollowRequest() {
   }
   catch (err) {
     console.error(err)
-    relationship!.requested = true
+    relationship!.requestedBy = true
     relationship!.followedBy = false
   }
 }
 
 async function rejectFollowRequest() {
-  relationship!.requested = false
+  relationship!.requestedBy = false
   try {
     const newRel = await client.v1.followRequests.reject(account.id)
     Object.assign(relationship!, newRel)
   }
   catch (err) {
     console.error(err)
-    relationship!.requested = true
+    relationship!.requestedBy = true
   }
 }
 </script>

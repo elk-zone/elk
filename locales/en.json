@@ -171,7 +171,7 @@
   "help": {
     "build_preview": {
       "desc1": "You are currently viewing a preview version of Elk from the community - {0}.",
-      "desc2": "It may contains unreviewed or even malicious changes.",
+      "desc2": "It may contain unreviewed or even malicious changes.",
       "desc3": "Don't log in with your real account.",
       "title": "Preview deploy"
     },

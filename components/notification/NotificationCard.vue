@@ -57,12 +57,14 @@ const { notification } = defineProps<{
       </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'follow_request'">
-      <div flex ms-4 items-center class="-top-2.5" absolute inset-ie-2 px-2>
+      <!-- <div flex ms-4 items-center class="-top-2.5" absolute inset-ie-2 px-2>
         <div i-ri:user-follow-fill text-xl me-1 />
         <AccountInlineInfo :account="notification.account" me1 />
-      </div>
+      </div> -->
       <!-- TODO: accept request -->
-      <AccountCard :account="notification.account" />
+      <AccountCard hover-card :account="notification.account">
+        <AccountFollowRequestButton :account="notification.account" />
+      </AccountCard>
     </template>
     <template v-else-if="notification.type === 'update'">
       <StatusCard :status="notification.status!" :in-notification="true" :actions="false">

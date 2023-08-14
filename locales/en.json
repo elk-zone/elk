@@ -113,12 +113,12 @@
     "block_account": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "title": "Are you sure you want to block {0}？"
+      "title": "Are you sure you want to block {0}?"
     },
     "block_domain": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "title": "Are you sure you want to block {0}？"
+      "title": "Are you sure you want to block {0}?"
     },
     "common": {
       "cancel": "No",
@@ -137,12 +137,12 @@
     "mute_account": {
       "cancel": "Cancel",
       "confirm": "Mute",
-      "title": "Are you sure you want to mute {0}？"
+      "title": "Are you sure you want to mute {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancel",
       "confirm": "Show",
-      "title": "Are you sure you want to show boosts from {0}？"
+      "title": "Are you sure you want to show boosts from {0}?"
     },
     "unfollow": {
       "cancel": "Cancel",

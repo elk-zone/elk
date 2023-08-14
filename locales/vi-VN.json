@@ -113,12 +113,12 @@
     "block_account": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-      "title": "Bạn có chắc muốn chặn {0}？"
+      "title": "Bạn có chắc muốn chặn {0}?"
     },
     "block_domain": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-      "title": "Bạn có chắc muốn chặn {0}？"
+      "title": "Bạn có chắc muốn chặn {0}?"
     },
     "common": {
       "cancel": "Không",
@@ -137,12 +137,12 @@
     "mute_account": {
       "cancel": "Hủy bỏ",
       "confirm": "Ẩn",
-      "title": "Bạn có chắc muốn ẩn {0}？"
+      "title": "Bạn có chắc muốn ẩn {0}?"
     },
     "show_reblogs": {
       "cancel": "Hủy bỏ",
       "confirm": "Hiện",
-      "title": "Bạn có chắc muốn hiện lượt đăng lại từ {0}？"
+      "title": "Bạn có chắc muốn hiện lượt đăng lại từ {0}?"
     },
     "unfollow": {
       "cancel": "Hủy bỏ",

@@ -67,12 +67,14 @@ const type = $computed(() => {
 const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
 const isAudio = $computed(() => attachment.type === 'audio')
+const isPlaying = ref(true)
 
 const enableAutoplay = usePreferences('enableAutoplay')
 
 useIntersectionObserver(video, (entries) => {
   const ready = video.value?.dataset.ready === 'true'
   if (prefersReducedMotion.value === 'reduce' || !enableAutoplay.value) {
+    isPlaying.value = false
     if (ready && !video.value?.paused)
       video.value?.pause()
 
@@ -97,6 +99,15 @@ const shouldLoadAttachment = ref(isPreview || !getPreferences(userSettings.value
 
 function loadAttachment() {
   shouldLoadAttachment.value = true
+}
+
+function togglePlay() {
+  if (isPlaying.value && video.value)
+    video.value?.pause()
+  else if (video.value)
+    video.value?.play()
+
+  isPlaying.value = !isPlaying.value
 }
 
 const blurHashSrc = $computed(() => {
@@ -180,9 +191,23 @@ watch(shouldLoadAttachment, () => {
             aspectRatio,
             objectPosition,
           }"
+          @click="togglePlay"
         >
           <source :src="attachment.url || attachment.previewUrl" type="video/mp4">
         </video>
+        <div
+          v-if="!isPlaying"
+          absolute
+          flex
+          rounded
+          p-4
+          class="status-attachment-load bg-slate-950/70"
+          @click="togglePlay"
+        >
+          <button>
+            <div text-3xl i-ri:play-line />
+          </button>
+        </div>
         <span
           v-if="!shouldLoadAttachment"
           class="status-attachment-load"

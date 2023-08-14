@@ -108,12 +108,12 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tes certeza de querer bloquear a {0}？"
+      "title": "Tes certeza de querer bloquear a {0}?"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tes certeza de querer bloquear {0}？"
+      "title": "Tes certeza de querer bloquear {0}?"
     },
     "common": {
       "cancel": "Non",
@@ -132,12 +132,12 @@
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Acalar",
-      "title": "Tes certeza de querer acalar a {0}？"
+      "title": "Tes certeza de querer acalar a {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "Tes certeza de querer mostrar as promocións de {0}？"
+      "title": "Tes certeza de querer mostrar as promocións de {0}?"
     },
     "unfollow": {
       "cancel": "Cancelar",

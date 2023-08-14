@@ -112,12 +112,12 @@
     "block_account": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}？"
+      "title": "Confermi di voler bloccare {0}?"
     },
     "block_domain": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}？"
+      "title": "Confermi di voler bloccare {0}?"
     },
     "common": {
       "cancel": "Annulla",
@@ -136,12 +136,12 @@
     "mute_account": {
       "cancel": "Annulla",
       "confirm": "Silenzia",
-      "title": "Confermi di voler silenziare {0}？"
+      "title": "Confermi di voler silenziare {0}?"
     },
     "show_reblogs": {
       "cancel": "Annulla",
       "confirm": "Mostra",
-      "title": "Confermi di voler mostrare i post potenziati da {0}？"
+      "title": "Confermi di voler mostrare i post potenziati da {0}?"
     },
     "unfollow": {
       "cancel": "Annulla",

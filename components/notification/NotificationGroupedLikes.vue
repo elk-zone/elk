@@ -8,6 +8,7 @@ const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const reblogs = $computed(() => group.likes.filter(i => i.reblog))
 const likes = $computed(() => group.likes.filter(i => i.favourite && !i.reblog))
+const likedAndReblogged = $computed(() => group.likes.filter(i => i.favourite && i.reblog))
 </script>
 
 <template>
@@ -16,6 +17,15 @@ const likes = $computed(() => group.likes.filter(i => i.favourite && !i.reblog))
       <div flex flex-col gap-2>
         <div v-if="reblogs.length" flex="~ gap-1">
           <div i-ri:repeat-fill text-xl me-1 color-green />
+          <div
+            v-if="likedAndReblogged.length"
+            :class="useStarFavoriteIcon ? 'i-ri:star-fill color-yellow' : 'i-ri:heart-fill color-red'"
+            me-1
+            absolute
+            top-2
+            left-6
+          />
+          <!-- Maybe only add heart/star on avatars who've liked this post? -->
           <template v-for="i, idx of reblogs" :key="idx">
             <AccountHoverWrapper :account="i.account">
               <NuxtLink :to="getAccountRoute(i.account)">
@@ -24,7 +34,7 @@ const likes = $computed(() => group.likes.filter(i => i.favourite && !i.reblog))
             </AccountHoverWrapper>
           </template>
           <div ml1>
-            {{ $t('notification.reblogged_post') }}
+            {{ likedAndReblogged.length ? $t('notification.reblogged_and_favourited_post') : $t('notification.reblogged_post') }}
           </div>
         </div>
         <div v-if="likes.length" flex="~ gap-1">

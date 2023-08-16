@@ -298,6 +298,7 @@
     "followed_you": "followed you",
     "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
     "missing_type": "MISSING notification.type:",
+    "reblogged_and_favourited_post": "boosted and favorited your post",
     "reblogged_post": "boosted your post",
     "reported": "{0} reported {1}",
     "request_to_follow": "requested to follow you",

@@ -138,7 +138,7 @@ nr test
 
 ## 📲 PWA
 
-You can consult the [PWA documentation](https://docs.elk.zone/docs/pwa) to learn more about the PWA capabilities on Elk, how to install Elk PWA in your desktop or mobile device and some hints about PWA stuff on Elk.
+You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more about the PWA capabilities on Elk, how to install Elk PWA in your desktop or mobile device and some hints about PWA stuff on Elk.
 
 ## 🦄 Stack
 

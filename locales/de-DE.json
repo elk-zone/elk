@@ -307,8 +307,7 @@
     "content_warning": "Schreib hier deine Warnung",
     "default_1": "Was geht dir gerade durch den Kopf?",
     "reply_to_account": "Antwort an {0}",
-    "replying": "Antworten",
-    "the_thread": "der Thread"
+    "replying": "Antworten"
   },
   "polls": {
     "allow_multiple": "Mehrfachauswahl erlauben",
@@ -570,7 +569,6 @@
     "edited": "Zuletzt bearbeitet: {0}",
     "favourited_by": "Favorisiert von",
     "filter_hidden_phrase": "Versteckt durch",
-    "filter_removed_phrase": "Durch Filter entfernt",
     "filter_show_anyway": "Trotzdem zeigen",
     "img_alt": {
       "ALT": "ALT",
@@ -583,7 +581,6 @@
       "ends": "Endet: {0}",
       "finished": "Beendet: {0}"
     },
-    "reblogged": "{0} teilte",
     "replying_to": "Antworten auf {0}",
     "show_full_thread": "Vollständigen Thread anzeigen",
     "someone": "Jemand",

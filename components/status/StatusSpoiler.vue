@@ -30,7 +30,7 @@ function getToggleText() {
       <slot name="spoiler" />
     </div>
     <div flex="~ gap-1 center" w-full :mb="isDM && !showContent ? '4' : ''" mt="-4.5">
-      <button btn-text px-2 py-1 :bg="isDM ? 'transparent' : 'base'" flex="~ center gap-2" :class="showContent ? '' : 'filter-saturate-0 hover:filter-saturate-100'" @click="toggleContent()">
+      <button btn-text px-2 py-1 :bg="isDM ? 'transparent' : 'base'" flex="~ center gap-2" :class="showContent ? '' : 'filter-saturate-0 hover:filter-saturate-100'" :aria-expanded="showContent" @click="toggleContent()">
         <div v-if="showContent" i-ri:eye-line />
         <div v-else i-ri:eye-close-line />
         {{ showContent ? $t('status.spoiler_show_less') : $t(getToggleText()) }}

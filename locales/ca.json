@@ -271,8 +271,7 @@
     "content_warning": "Escriu el teu avís aquí",
     "default_1": "Què et passa pel cap?",
     "reply_to_account": "Respon a {0}",
-    "replying": "Responent",
-    "the_thread": "el fil"
+    "replying": "Responent"
   },
   "pwa": {
     "dismiss": "Descartar",
@@ -470,7 +469,6 @@
     "edited": "Editat {0}",
     "favourited_by": "Favorit per",
     "filter_hidden_phrase": "Filtrat per",
-    "filter_removed_phrase": "Eliminat per filtre",
     "filter_show_anyway": "Mostra de totes maneres",
     "img_alt": {
       "ALT": "ALT",
@@ -483,7 +481,6 @@
       "ends": "acaba {0}",
       "finished": "acabat {0}"
     },
-    "reblogged": "{0} ha reblogjat",
     "replying_to": "Responent a {0}",
     "show_full_thread": "Mostra el fil complet",
     "someone": "algú",

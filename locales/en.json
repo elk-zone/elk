@@ -113,12 +113,12 @@
     "block_account": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "title": "Are you sure you want to block {0}？"
+      "title": "Are you sure you want to block {0}?"
     },
     "block_domain": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "title": "Are you sure you want to block {0}？"
+      "title": "Are you sure you want to block {0}?"
     },
     "common": {
       "cancel": "No",
@@ -137,12 +137,12 @@
     "mute_account": {
       "cancel": "Cancel",
       "confirm": "Mute",
-      "title": "Are you sure you want to mute {0}？"
+      "title": "Are you sure you want to mute {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancel",
       "confirm": "Show",
-      "title": "Are you sure you want to show boosts from {0}？"
+      "title": "Are you sure you want to show boosts from {0}?"
     },
     "unfollow": {
       "cancel": "Cancel",
@@ -171,7 +171,7 @@
   "help": {
     "build_preview": {
       "desc1": "You are currently viewing a preview version of Elk from the community - {0}.",
-      "desc2": "It may contains unreviewed or even malicious changes.",
+      "desc2": "It may contain unreviewed or even malicious changes.",
       "desc3": "Don't log in with your real account.",
       "title": "Preview deploy"
     },
@@ -308,8 +308,7 @@
     "content_warning": "Write your warning here",
     "default_1": "What is on your mind?",
     "reply_to_account": "Reply to {0}",
-    "replying": "Replying",
-    "the_thread": "the thread"
+    "replying": "Replying"
   },
   "polls": {
     "allow_multiple": "Allow multiple choice",
@@ -572,7 +571,6 @@
     "edited": "Edited {0}",
     "favourited_by": "Favorited By",
     "filter_hidden_phrase": "Filtered by",
-    "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
     "img_alt": {
       "ALT": "ALT",
@@ -585,7 +583,6 @@
       "ends": "ends {0}",
       "finished": "finished {0}"
     },
-    "reblogged": "{0} reblogged",
     "replying_to": "Replying to {0}",
     "show_full_thread": "Show Full thread",
     "someone": "someone",

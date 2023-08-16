@@ -40,10 +40,10 @@
   },
   "confirm": {
     "block_account": {
-      "title": "Tem certeza que quer bloquear {0}？"
+      "title": "Tem certeza que quer bloquear {0}?"
     },
     "block_domain": {
-      "title": "Tem certeza que quer bloquear {0}？"
+      "title": "Tem certeza que quer bloquear {0}?"
     },
     "delete_list": {
       "confirm": "Apagar",
@@ -54,10 +54,10 @@
       "title": "Tem certeza que quer apagar esse post?"
     },
     "mute_account": {
-      "title": "Tem certeza que quer silenciar {0}？"
+      "title": "Tem certeza que quer silenciar {0}?"
     },
     "show_reblogs": {
-      "title": "Tem certeza que quer mostrar os compartilhamentos de {0}？"
+      "title": "Tem certeza que quer mostrar os compartilhamentos de {0}?"
     },
     "unfollow": {
       "title": "Tem certeza que quer deixar de seguir?"
@@ -301,11 +301,9 @@
     "edited": "Editado {0}",
     "favourited_by": "Favoritado por",
     "filter_hidden_phrase": "Filtrado por",
-    "filter_removed_phrase": "Removido pelo filtro",
     "img_alt": {
       "dismiss": "Fechar"
     },
-    "reblogged": "{0} compartilhou",
     "replying_to": "Respondendo {0}",
     "spoiler_media_hidden": "Mídia oculta",
     "try_original_site": "Tentar o site original"

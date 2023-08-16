@@ -265,8 +265,7 @@
     "content_warning": "寫下你的警告",
     "default_1": "在想些什麼？",
     "reply_to_account": "回覆 {0}",
-    "replying": "回覆",
-    "the_thread": "這個貼文"
+    "replying": "回覆"
   },
   "pwa": {
     "dismiss": "忽略",
@@ -457,7 +456,6 @@
     "edited": "在 {0} 編輯了",
     "favourited_by": "被喜歡",
     "filter_hidden_phrase": "篩選依據",
-    "filter_removed_phrase": "從篩選中移除",
     "filter_show_anyway": "仍然顯示",
     "img_alt": {
       "ALT": "ALT",
@@ -470,7 +468,6 @@
       "ends": "將在 {0} 結束",
       "finished": "已在 {0} 結束"
     },
-    "reblogged": "{0} 轉發了",
     "replying_to": "回覆{0}",
     "show_full_thread": "顯示完整貼文串",
     "someone": "某人",

@@ -307,8 +307,7 @@
     "content_warning": "写下你的警告",
     "default_1": "在想些什么？",
     "reply_to_account": "回复 {0}",
-    "replying": "回复",
-    "the_thread": "这个帖文"
+    "replying": "回复"
   },
   "polls": {
     "allow_multiple": "允许多选",
@@ -569,7 +568,6 @@
     "edited": "在 {0} 编辑了",
     "favourited_by": "被喜欢",
     "filter_hidden_phrase": "筛选依据",
-    "filter_removed_phrase": "从筛选中移除",
     "filter_show_anyway": "仍然展示",
     "img_alt": {
       "ALT": "ALT",
@@ -582,7 +580,6 @@
       "ends": "将在 {0} 结束",
       "finished": "已在 {0} 结束"
     },
-    "reblogged": "{0} 转发了",
     "replying_to": "回复{0}",
     "show_full_thread": "显示完整贴文串",
     "someone": "某人",

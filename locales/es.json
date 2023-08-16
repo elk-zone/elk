@@ -51,6 +51,7 @@
     "boost_count": "{0}",
     "boosted": "Retooteado",
     "clear_publish_failed": "Limpiar errores de publicación",
+    "clear_save_failed": "Limpiar errores al guardar",
     "clear_upload_failed": "Limpiar errores de subida de archivos",
     "close": "Cerrar",
     "compose": "Redactar",
@@ -112,12 +113,12 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "¿Estás seguro que quieres bloquear a {0}？"
+      "title": "¿Estás seguro que quieres bloquear a {0}?"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "¿Estás seguro que quieres bloquear a {0}？"
+      "title": "¿Estás seguro que quieres bloquear a {0}?"
     },
     "common": {
       "cancel": "No",
@@ -136,12 +137,12 @@
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
-      "title": "¿Estás seguro que quieres silenciar a {0}？"
+      "title": "¿Estás seguro que quieres silenciar a {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "¿Estás seguro que quieres mostrar los retoots de {0}？"
+      "title": "¿Estás seguro que quieres mostrar los retoots de {0}?"
     },
     "unfollow": {
       "cancel": "Cancelar",
@@ -307,8 +308,7 @@
     "content_warning": "Escribe tu advertencia aquí",
     "default_1": "¿En qué estás pensando?",
     "reply_to_account": "Responder a {0}",
-    "replying": "Respondiendo",
-    "the_thread": "el hilo"
+    "replying": "Respondiendo"
   },
   "polls": {
     "allow_multiple": "Permitir múltiples opciones",
@@ -426,6 +426,7 @@
     "language": {
       "display_language": "Idioma de pantalla",
       "label": "Idioma",
+      "post_language": "Idioma de publicación",
       "status": "Estado traducción: {0}/{1} ({2}%)",
       "translations": {
         "add": "Agregar",
@@ -496,6 +497,7 @@
       "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
       "enable_pinch_to_zoom": "Habilitar pellizcar para hacer zoom",
       "github_cards": "Tarjetas GitHub",
+      "github_cards_description": "Cuando se publica un enlace de GitHub, se muestra una tarjeta HTML accesible que usa el meta del gráfico social en lugar de la imagen social.",
       "grayscale_mode": "Modo escala de grises",
       "hide_account_hover_card": "Ocultar tarjeta flotante de cuenta",
       "hide_alt_indi_on_posts": "Ocultar indicador ALT en publicaciones",
@@ -511,7 +513,9 @@
       "title": "Funcionalidades experimentales",
       "use_star_favorite_icon": "Utilizar icono de estrella para favoritos",
       "user_picker": "Selector de usuarios",
+      "user_picker_description": "Muestra todos los avatares de las cuentas registradas en la parte inferior izquierda para que puedas cambiar rápidamente entre ellos.",
       "virtual_scroll": "Desplazamiento virtual",
+      "virtual_scroll_description": "Utilizar una lista virtual en las líneas de tiempo, de modo que se pueda representar una mayor cantidad de elementos de manera eficaz.",
       "wellbeing": "Bienestar",
       "zen_mode": "Modo Zen",
       "zen_mode_description": "Oculta las secciones laterales de la interfaz a menos que el cursor del ratón esté sobre ellas. Oculta también algunos elementos de las líneas de tiempo."
@@ -554,6 +558,7 @@
     "loading": "Cargando...",
     "publish_failed": "Fallo en la publicación",
     "publishing": "Publicando",
+    "save_failed": "Error al guardar",
     "upload_failed": "Subida fallida",
     "uploading": "Subiendo..."
   },
@@ -566,7 +571,6 @@
     "edited": "Editado {0}",
     "favourited_by": "Marcado como favorita por",
     "filter_hidden_phrase": "Filtrado por",
-    "filter_removed_phrase": "Eliminado por filtrado",
     "filter_show_anyway": "Mostrar de todas formas",
     "img_alt": {
       "ALT": "ALT",
@@ -579,7 +583,6 @@
       "ends": "finaliza {0}",
       "finished": "finalizada {0}"
     },
-    "reblogged": "{0} retooteó",
     "replying_to": "Respondiendo a {0}",
     "show_full_thread": "Mostrar hilo completo",
     "someone": "alguien",

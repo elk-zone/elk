@@ -10,6 +10,6 @@ const visibility = $computed(() => statusVisibilities.find(v => v.value === stat
 
 <template>
   <CommonTooltip :content="$t(`visibility.${visibility.value}`)" placement="bottom">
-    <div :class="visibility.icon" />
+    <div :class="visibility.icon" :aria-label="$t(`visibility.${visibility.value}`)" />
   </CommonTooltip>
 </template>

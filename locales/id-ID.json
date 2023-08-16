@@ -105,12 +105,12 @@
     "block_account": {
       "cancel": "Batalkan",
       "confirm": "Blokir",
-      "title": "Yakin ingin memblokir {0}？"
+      "title": "Yakin ingin memblokir {0}?"
     },
     "block_domain": {
       "cancel": "Batalkan",
       "confirm": "Blokir",
-      "title": "Yakin ingin memblokir {0}？"
+      "title": "Yakin ingin memblokir {0}?"
     },
     "common": {
       "cancel": "Tidak",
@@ -124,12 +124,12 @@
     "mute_account": {
       "cancel": "Batalkan",
       "confirm": "Bisukan",
-      "title": "Yakin ingin membisukan {0}？"
+      "title": "Yakin ingin membisukan {0}?"
     },
     "show_reblogs": {
       "cancel": "Batalkan",
       "confirm": "Tampilkan",
-      "title": "Yakin ingin menampilkan dukungan dari {0}？"
+      "title": "Yakin ingin menampilkan dukungan dari {0}?"
     },
     "unfollow": {
       "cancel": "Batalkan",
@@ -236,8 +236,7 @@
     "content_warning": "Tulis peringatan Anda di sini",
     "default_1": "Apa yang Anda pikirkan?",
     "reply_to_account": "Balas ke {0}",
-    "replying": "Membalas",
-    "the_thread": "utas"
+    "replying": "Membalas"
   },
   "pwa": {
     "dismiss": "Batalkan",
@@ -405,7 +404,6 @@
     "edited": "Disunting {0}",
     "favourited_by": "Difavoritkan Oleh",
     "filter_hidden_phrase": "Difilter oleh",
-    "filter_removed_phrase": "Dihapus oleh filter",
     "filter_show_anyway": "Tetap tampilkan",
     "img_alt": {
       "desc": "Keterangan",
@@ -416,7 +414,6 @@
       "ends": "berakhir {0}",
       "finished": "selesai {0}"
     },
-    "reblogged": "{0} di-reblog",
     "replying_to": "Membalas ke {0}",
     "show_full_thread": "Tampilkan utas Penuh",
     "someone": "seseorang",

@@ -51,6 +51,7 @@
     "boost_count": "{0}",
     "boosted": "Bultzatuta",
     "clear_publish_failed": "Garbitu argitalpen erroreak",
+    "clear_save_failed": "Garbitu gordetzerakoan gertatutako erroreak",
     "clear_upload_failed": "Garbitu fitxategi-igoeren erroreak",
     "close": "Itxi",
     "compose": "Idatzi",
@@ -307,8 +308,7 @@
     "content_warning": "Idatzi oharra hemen",
     "default_1": "Zer duzu buruan?",
     "reply_to_account": "Erantzun {0}(r)i",
-    "replying": "Erantzuten",
-    "the_thread": "haria"
+    "replying": "Erantzuten"
   },
   "polls": {
     "allow_multiple": "Baimendu aukera anitzak",
@@ -426,6 +426,7 @@
     "language": {
       "display_language": "Hizkuntza",
       "label": "Hizkuntza",
+      "post_language": "Argitalpenaren hizkuntza",
       "status": "Itzulpenaren egoera: {1} kateetatik {0} itzulita (%{2}a)",
       "translations": {
         "add": "Gehitu",
@@ -557,6 +558,7 @@
     "loading": "Kargatzen…",
     "publish_failed": "Argitaratzeak huts egin du",
     "publishing": "Argitaratzen",
+    "save_failed": "Gordetzeak huts egin du",
     "upload_failed": "Igotzeak huts egin du",
     "uploading": "Igotzen…"
   },
@@ -569,7 +571,6 @@
     "edited": "Azken edizioa: {0}",
     "favourited_by": "Gogoko egin dute:",
     "filter_hidden_phrase": "Iragazia:",
-    "filter_removed_phrase": "Iragazki honek kendu du:",
     "filter_show_anyway": "Erakutsi edonola ere",
     "img_alt": {
       "ALT": "ALT",
@@ -582,7 +583,6 @@
       "ends": "epemuga: {0}",
       "finished": "amaiera: {0}"
     },
-    "reblogged": "{0}(e)k bultzatua",
     "replying_to": "{0}(r)i erantzunez",
     "show_full_thread": "Erakutsi hari osoa",
     "someone": "norbait",

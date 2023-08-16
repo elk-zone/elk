@@ -308,8 +308,7 @@
     "content_warning": "Écrivez votre message d'avertissement ici",
     "default_1": "Quelque chose à partager ?",
     "reply_to_account": "Répondre à {0}",
-    "replying": "Répondre",
-    "the_thread": "Le thread"
+    "replying": "Répondre"
   },
   "polls": {
     "allow_multiple": "Autoriser plusieurs choix",
@@ -570,7 +569,6 @@
     "edited": "Edité {0}",
     "favourited_by": "Aimé par",
     "filter_hidden_phrase": "Filtré par",
-    "filter_removed_phrase": "Supprimé par le filtre",
     "filter_show_anyway": "Montrer coûte que coûte",
     "img_alt": {
       "ALT": "ALT",
@@ -583,7 +581,6 @@
       "ends": "se clôt {0}",
       "finished": "clos {0}"
     },
-    "reblogged": "{0} relayé",
     "replying_to": "Répondre à {0}",
     "show_full_thread": "Voir le fil de discussion complet",
     "someone": "quelqu'un",

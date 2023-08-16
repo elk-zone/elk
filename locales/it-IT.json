@@ -112,12 +112,12 @@
     "block_account": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}？"
+      "title": "Confermi di voler bloccare {0}?"
     },
     "block_domain": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}？"
+      "title": "Confermi di voler bloccare {0}?"
     },
     "common": {
       "cancel": "Annulla",
@@ -136,12 +136,12 @@
     "mute_account": {
       "cancel": "Annulla",
       "confirm": "Silenzia",
-      "title": "Confermi di voler silenziare {0}？"
+      "title": "Confermi di voler silenziare {0}?"
     },
     "show_reblogs": {
       "cancel": "Annulla",
       "confirm": "Mostra",
-      "title": "Confermi di voler mostrare i post potenziati da {0}？"
+      "title": "Confermi di voler mostrare i post potenziati da {0}?"
     },
     "unfollow": {
       "cancel": "Annulla",
@@ -307,8 +307,7 @@
     "content_warning": "Scrivi il tuo avviso qui",
     "default_1": "A cosa stai pensando?",
     "reply_to_account": "Rispondi a {0}",
-    "replying": "Rispondi",
-    "the_thread": "la discussione"
+    "replying": "Rispondi"
   },
   "polls": {
     "allow_multiple": "Consenti risposte multiple",
@@ -569,7 +568,6 @@
     "edited": "Modificato {0}",
     "favourited_by": "Apprezzato da",
     "filter_hidden_phrase": "Filtrato da",
-    "filter_removed_phrase": "Rimosso dal filtro",
     "filter_show_anyway": "Mostra comunque",
     "img_alt": {
       "ALT": "ALT",
@@ -582,7 +580,6 @@
       "ends": "termina {0}",
       "finished": "terminato {0}"
     },
-    "reblogged": "{0} hanno potenziato",
     "replying_to": "In risposta a {0}",
     "show_full_thread": "Mostra discussione",
     "someone": "qualcuno",

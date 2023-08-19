@@ -333,6 +333,7 @@
     "language": {
       "display_language": "표시 언어",
       "label": "언어",
+      "post_language": "게시 언어",
       "status": "번역 진행도: {0}/{1}({2}%)",
       "translations": {
         "add": "추가",

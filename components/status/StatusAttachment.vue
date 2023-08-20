@@ -208,6 +208,19 @@ watch(shouldLoadAttachment, () => {
             <div text-3xl i-ri:play-line />
           </button>
         </div>
+        <div
+          v-else
+          absolute
+          flex
+          rounded
+          p-4
+          class="pause-button bg-slate-950/70"
+          @click="togglePlay"
+        >
+          <button>
+            <div text-xs i-ri:pause-line />
+          </button>
+        </div>
         <span
           v-if="!shouldLoadAttachment"
           class="status-attachment-load"
@@ -309,5 +322,11 @@ watch(shouldLoadAttachment, () => {
   left: 50%;
   top: 50%;
   translate: -50% -50%;
+}
+
+.pause-button {
+  right: 1%;
+  top: 2%;
+  padding: 0.3rem;
 }
 </style>

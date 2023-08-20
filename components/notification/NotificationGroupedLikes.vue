@@ -17,19 +17,22 @@ const likedAndReblogged = $computed(() => group.likes.filter(i => i.favourite &&
       <div flex flex-col gap-2>
         <div v-if="reblogs.length" flex="~ gap-1">
           <div i-ri:repeat-fill text-xl me-1 color-green />
-          <div
-            v-if="likedAndReblogged.length"
-            :class="useStarFavoriteIcon ? 'i-ri:star-fill color-yellow' : 'i-ri:heart-fill color-red'"
-            me-1
-            absolute
-            top-2
-            left-6
-          />
           <!-- Maybe only add heart/star on avatars who've liked this post? -->
           <template v-for="i, idx of reblogs" :key="idx">
             <AccountHoverWrapper :account="i.account">
               <NuxtLink :to="getAccountRoute(i.account)">
-                <AccountAvatar text-primary font-bold :account="i.account" class="h-1.5em w-1.5em" />
+                <div relative>
+                  <div
+                    v-if="i.favourite && i.reblog"
+                    :class="useStarFavoriteIcon ? 'i-ri:star-fill color-yellow' : 'i-ri:heart-fill color-red'"
+                    me-1
+                    absolute
+                    text-sm
+                    left-3
+                    bottom-3
+                  />
+                  <AccountAvatar text-primary font-bold :account="i.account" class="h-1.5em w-1.5em" />
+                </div>
               </NuxtLink>
             </AccountHoverWrapper>
           </template>

@@ -40,7 +40,7 @@ const containerClass = computed(() => {
           >
             <div i-ri:arrow-left-line class="rtl-flip" />
           </NuxtLink>
-          <div :truncate="!noOverflowHidden ? '' : false" flex w-full data-tauri-drag-region class="native-mac:justify-center native-mac:text-center native-mac:sm:justify-start">
+          <div :truncate="!noOverflowHidden ? '' : false" flex w-full data-tauri-drag-region class="native-mac:justify-start native-mac:text-center">
             <slot name="title" />
           </div>
           <div sm:hidden h-7 w-1px />

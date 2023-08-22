@@ -220,8 +220,8 @@
       "navigation": {
         "go_to_home": "Home",
         "go_to_notifications": "Notifications",
-        "next_status": "Next status",
-        "previous_status": "Previous status",
+        "next_status": "Next post",
+        "previous_status": "Previous post",
         "shortcut_help": "Shortcut help",
         "title": "Navigation"
       }
@@ -447,7 +447,7 @@
           "follow": "New followers",
           "mention": "Mentions",
           "poll": "Polls",
-          "reblog": "Reblog your post",
+          "reblog": "Boosts",
           "title": "What notifications to receive?"
         },
         "description": "Receive notifications even when you are not using Elk.",
@@ -564,7 +564,7 @@
   },
   "status": {
     "account": {
-      "suspended_message": "The account of this status has been suspended.",
+      "suspended_message": "The account of this post has been suspended.",
       "suspended_show": "Show content anyways?"
     },
     "boosted_by": "Boosted By",

@@ -219,7 +219,7 @@ onDeactivated(() => {
     </template>
 
     <div flex gap-3 flex-1>
-      <NuxtLink :to="getAccountRoute(currentUser.account)">
+      <NuxtLink self-start :to="getAccountRoute(currentUser.account)">
         <AccountBigAvatar :account="currentUser.account" square />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->

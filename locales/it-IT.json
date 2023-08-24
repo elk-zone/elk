@@ -50,8 +50,9 @@
     "boost": "Potenzia",
     "boost_count": "{0}",
     "boosted": "Potenziato",
-    "clear_publish_failed": "Ignora errori di pubblicazione",
-    "clear_upload_failed": "Ignora errori di caricamento file",
+    "clear_publish_failed": "Cancella errori di pubblicazione",
+    "clear_save_failed": "Cancella errori di salvataggio",
+    "clear_upload_failed": "Cancella errori di caricamento file",
     "close": "Chiudi",
     "compose": "Componi",
     "confirm": "Conferma",
@@ -425,6 +426,7 @@
     "language": {
       "display_language": "Lingua interfaccia",
       "label": "Lingua",
+      "post_language": "Lingua di pubblicazione",
       "status": "Stato traduzione: {0}/{1} ({2}%)",
       "translations": {
         "add": "Aggiungi",
@@ -556,6 +558,7 @@
     "loading": "Carico...",
     "publish_failed": "Pubblicazione fallita",
     "publishing": "Pubblico",
+    "save_failed": "Salvataggio fallito",
     "upload_failed": "Caricamento fallito",
     "uploading": "Caricamento in corso..."
   },

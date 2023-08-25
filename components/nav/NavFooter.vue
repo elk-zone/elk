@@ -16,6 +16,9 @@ function toggleDark() {
 <template>
   <footer p4 text-sm text-secondary-light flex="~ col">
     <div flex="~ gap2" items-center mb4>
+      <CommonTooltip :content="$t('magic_keys.dialog_header')">
+        <button flex i-ri:keyboard-box-line dark-i-ri:keyboard-box-line text-lg :aria-label="$t('magic_keys.dialog_header')" @click="toggleKeyboardShortcuts" />
+      </CommonTooltip>
       <CommonTooltip :content="$t('nav.toggle_theme')">
         <button flex i-ri:sun-line dark-i-ri:moon-line text-lg :aria-label="$t('nav.toggle_theme')" @click="toggleDark()" />
       </CommonTooltip>

@@ -229,7 +229,7 @@ watch(shouldLoadAttachment, () => {
           flex
           rounded
           p-4
-          b="~ 1px white"
+          b="~ 1px text-gray/50"
           class="pause-button bg-slate-950 text-white"
           :aria-label="isHydrated ? $t('a11y.pause_video') : ''"
           @click="togglePlay"
@@ -242,7 +242,7 @@ watch(shouldLoadAttachment, () => {
           flex
           rounded
           p-4
-          b="~ 1px white"
+          b="~ 1px text-gray/50"
           class="status-attachment-load bg-slate-950 text-white"
           :aria-label="isHydrated ? $t('a11y.play_video') : ''"
           @click="togglePlay"

@@ -9,8 +9,9 @@ export interface CommonRouteTabOption {
   icon?: string
   hide?: boolean
 }
-const { options, command, replace, preventScrollTop = false } = $defineProps<{
+const { options, command, replace, preventScrollTop = false, more = [] } = $defineProps<{
   options: CommonRouteTabOption[]
+  more?: CommonRouteTabOption[]
   command?: boolean
   replace?: boolean
   preventScrollTop?: boolean
@@ -51,5 +52,42 @@ useCommands(() => command
         <span ws-nowrap mxa sm:px2 sm:py3 py2 text-center text-secondary-light op50>{{ option.display }}</span>
       </div>
     </template>
+    <template v-if="more?.length > 0">
+      <CommonDropdown placement="bottom">
+        <CommonTooltip placement="top" content="Filter notifications by type">
+          <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group aria-label="More actions">
+            <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+          </button>
+        </CommonTooltip>
+        <template #popper>
+          <NuxtLink
+            v-for="(option, index) in more.filter(item => !item.hide)"
+            :key="option?.name || index"
+            :to="option.to"
+          >
+            <CommonDropdownItem>
+              {{ option.display }}
+            </CommonDropdownItem>
+          </NuxtLink>
+        </template>
+      </commondropdown>
+    </template>
   </div>
+  <!-- <div v-if="more?.length > 0">
+    <CommonDropdown placement="bottom">
+      <CommonTooltip placement="top" content="Filter notifications by type">
+        <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group aria-label="More actions">
+          Other
+          <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+        </button>
+      </CommonTooltip>
+      <template #popper>
+        <NuxtLink to="/notifications/reblog">
+          <CommonDropdownItem>
+            Reblog
+          </CommonDropdownItem>
+        </NuxtLink>
+      </template>
+    </CommonDropdown>
+  </div> -->
 </template>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { NOTIFICATION_TYPES } from '~/constants'
 import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
 
 definePageMeta({
@@ -20,6 +21,15 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
     display: isHydrated.value ? t('tab.notifications_mention') : '',
   },
 ])
+
+const supportedTypes = NOTIFICATION_TYPES.filter(type => type !== 'mention')
+const more = $computed<CommonRouteTabOption[]>(() => supportedTypes.map(
+  name => ({
+    name,
+    to: `/notifications/${name}`,
+    display: isHydrated.value ? t(`tab.notifications_${name}`) : '',
+  }),
+))
 </script>
 
 <template>
@@ -43,7 +53,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
     </template>
 
     <template #header>
-      <CommonRouteTabs replace :options="tabs" />
+      <CommonRouteTabs replace :options="tabs" :more="more" />
     </template>
 
     <slot>

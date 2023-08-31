@@ -9,9 +9,10 @@ export interface CommonRouteTabOption {
   icon?: string
   hide?: boolean
 }
-const { options, command, replace, preventScrollTop = false, more = [] } = $defineProps<{
+const { options, command, replace, preventScrollTop = false, more = [], moreTooltip } = $defineProps<{
   options: CommonRouteTabOption[]
   more?: CommonRouteTabOption[]
+  moreTooltip?: string
   command?: boolean
   replace?: boolean
   preventScrollTop?: boolean
@@ -54,8 +55,8 @@ useCommands(() => command
     </template>
     <template v-if="more?.length > 0">
       <CommonDropdown placement="bottom">
-        <CommonTooltip placement="top" content="Filter notifications by type">
-          <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group aria-label="More actions">
+        <CommonTooltip placement="top" :content="moreTooltip">
+          <button flex gap-1 items-center w-full rounded op75 px4 hover="op100 text-purple" group aria-label="More actions">
             <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
           </button>
         </CommonTooltip>
@@ -73,21 +74,4 @@ useCommands(() => command
       </commondropdown>
     </template>
   </div>
-  <!-- <div v-if="more?.length > 0">
-    <CommonDropdown placement="bottom">
-      <CommonTooltip placement="top" content="Filter notifications by type">
-        <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group aria-label="More actions">
-          Other
-          <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
-        </button>
-      </CommonTooltip>
-      <template #popper>
-        <NuxtLink to="/notifications/reblog">
-          <CommonDropdownItem>
-            Reblog
-          </CommonDropdownItem>
-        </NuxtLink>
-      </template>
-    </CommonDropdown>
-  </div> -->
 </template>

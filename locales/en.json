@@ -612,6 +612,7 @@
     "notifications_follow": "Follow",
     "notifications_follow_request": "Follow request",
     "notifications_mention": "Mention",
+    "notifications_more_tooltip": "Filter notifications by type",
     "notifications_poll": "Poll",
     "notifications_reblog": "Reblog",
     "notifications_status": "Status",

@@ -22,7 +22,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
   },
 ])
 
-const supportedTypes = NOTIFICATION_TYPES.filter(type => type !== 'mention')
+const supportedTypes = NOTIFICATION_TYPES.filter(type => type !== 'mention' && !type.includes('admin'))
 const more = $computed<CommonRouteTabOption[]>(() => supportedTypes.map(
   name => ({
     name,
@@ -53,7 +53,7 @@ const more = $computed<CommonRouteTabOption[]>(() => supportedTypes.map(
     </template>
 
     <template #header>
-      <CommonRouteTabs replace :options="tabs" :more="more" />
+      <CommonRouteTabs replace :options="tabs" :more="more" :more-tooltip="t('tab.notifications_more_tooltip')" />
     </template>
 
     <slot>

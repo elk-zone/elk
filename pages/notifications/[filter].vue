@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import type { NotificationType } from 'components/timeline/TimelineNotifications.vue'
-
-const { t } = useI18n()
-useHydratedHead({
-  title: () => `${t('tab.notifications_all')} | ${t('nav.notifications')}`,
-})
+import type { mastodon } from 'masto'
 
 const route = useRoute()
-const rawFilter = route.params.filter as string
-const filter = ['mention', 'reblog', 'favourite', 'follow'].includes(rawFilter)
-  ? rawFilter as NotificationType
-  : undefined
+const filter = route.params.filter as mastodon.v1.NotificationType | undefined
+const { t } = useI18n()
+useHydratedHead({
+  title: () => `${t(`tab.notifications_${filter ?? 'all'}`)} | ${t('nav.notifications')}`,
+})
 </script>
 
 <template>

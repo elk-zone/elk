@@ -1,7 +1,8 @@
 <script setup lang="ts">
-export type NotificationType = 'mention' | 'reblog' | 'favourite' | 'follow'
+import type { mastodon } from 'masto'
+
 const { filter } = defineProps<{
-  filter?: NotificationType
+  filter?: mastodon.v1.NotificationType
 }>()
 
 const options = { limit: 30, types: filter ? [filter] : [] }

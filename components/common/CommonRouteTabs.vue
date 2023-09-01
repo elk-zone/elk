@@ -9,10 +9,14 @@ export interface CommonRouteTabOption {
   icon?: string
   hide?: boolean
 }
-const { options, command, replace, preventScrollTop = false, more = [], moreTooltip } = $defineProps<{
+export interface CommonRouteTabMoreOption {
   options: CommonRouteTabOption[]
-  more?: CommonRouteTabOption[]
-  moreTooltip?: string
+  icon?: string
+  tooltip?: string
+}
+const { options, command, replace, preventScrollTop = false, moreOptions } = $defineProps<{
+  options: CommonRouteTabOption[]
+  moreOptions?: CommonRouteTabMoreOption
   command?: boolean
   replace?: boolean
   preventScrollTop?: boolean
@@ -23,7 +27,6 @@ const router = useRouter()
 useCommands(() => command
   ? options.map(tab => ({
     scope: 'Tabs',
-
     name: tab.display,
     icon: tab.icon ?? 'i-ri:file-list-2-line',
     onActivate: () => router.replace(tab.to),
@@ -53,16 +56,17 @@ useCommands(() => command
         <span ws-nowrap mxa sm:px2 sm:py3 py2 text-center text-secondary-light op50>{{ option.display }}</span>
       </div>
     </template>
-    <template v-if="more?.length > 0">
-      <CommonDropdown placement="bottom">
-        <CommonTooltip placement="top" :content="moreTooltip">
-          <button flex gap-1 items-center w-full rounded op75 px4 hover="op100 text-purple" group aria-label="More actions">
+    <template v-if="moreOptions && moreOptions.options?.length > 0">
+      <CommonDropdown placement="bottom" flex cursor-pointer>
+        <CommonTooltip placement="top" :content="moreOptions.tooltip">
+          <button cursor-pointer flex gap-1 w-12 rounded hover:bg-active btn-action-icon op75 px4 group aria-label="More actions">
+            <div v-if="moreOptions.icon" :class="moreOptions.icon" text-sm text-secondary me--1 />
             <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
           </button>
         </CommonTooltip>
         <template #popper>
           <NuxtLink
-            v-for="(option, index) in more.filter(item => !item.hide)"
+            v-for="(option, index) in moreOptions.options.filter(item => !item.hide)"
             :key="option?.name || index"
             :to="option.to"
           >

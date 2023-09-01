@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { NOTIFICATION_TYPES } from '~/constants'
-import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
+import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
 
 definePageMeta({
   middleware: 'auth',
@@ -30,6 +30,11 @@ const more = $computed<CommonRouteTabOption[]>(() => supportedTypes.map(
     display: isHydrated.value ? t(`tab.notifications_${name}`) : '',
   }),
 ))
+const moreOptions: CommonRouteTabMoreOption = {
+  options: more,
+  icon: 'i-ri:filter-2-line',
+  tooltip: isHydrated.value ? t('tab.notifications_more_tooltip') : '',
+}
 </script>
 
 <template>
@@ -53,7 +58,7 @@ const more = $computed<CommonRouteTabOption[]>(() => supportedTypes.map(
     </template>
 
     <template #header>
-      <CommonRouteTabs replace :options="tabs" :more="more" :more-tooltip="t('tab.notifications_more_tooltip')" />
+      <CommonRouteTabs replace :options="tabs" :more-options="moreOptions" />
     </template>
 
     <slot>

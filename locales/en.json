@@ -605,8 +605,10 @@
     "list": "List",
     "media": "Media",
     "news": "News",
-    "notifications_admin.report": "Admin Report",
-    "notifications_admin.sign_up": "Admin Sign-Up",
+    "notifications_admin": {
+      "report": "Report",
+      "sign_up": "Sign-Up"
+    },
     "notifications_all": "All",
     "notifications_favourite": "Favourite",
     "notifications_follow": "Follow",

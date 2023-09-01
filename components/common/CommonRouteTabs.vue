@@ -62,8 +62,8 @@ useCommands(() => command
       <CommonDropdown placement="bottom" flex cursor-pointer>
         <CommonTooltip placement="top" :content="moreOptions.tooltip || t('action.more')">
           <button cursor-pointer flex gap-1 w-12 rounded hover:bg-active btn-action-icon op75 px4 group :aria-label="t('action.more')">
-            <div v-if="moreOptions.icon" :class="moreOptions.icon" text-sm text-secondary me--1 />
-            <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
+            <span v-if="moreOptions.icon" :class="moreOptions.icon" text-sm text-secondary me--1 block />
+            <span i-ri:arrow-down-s-line text-sm text-secondary me--1 block />
           </button>
         </CommonTooltip>
         <template #popper>

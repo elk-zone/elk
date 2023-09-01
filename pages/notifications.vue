@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NOTIFICATION_TYPES } from '~/constants'
+import { SUPPORTED_NOTIFICATION_TYPES } from '~/constants'
 import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
 
 definePageMeta({
@@ -22,19 +22,18 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
   },
 ])
 
-const supportedTypes = NOTIFICATION_TYPES.filter(type => type !== 'mention' && !type.includes('admin'))
-const more = $computed<CommonRouteTabOption[]>(() => supportedTypes.map(
+const more = $computed<CommonRouteTabOption[]>(() => SUPPORTED_NOTIFICATION_TYPES.map(
   name => ({
     name,
     to: `/notifications/${name}`,
-    display: t(`tab.notifications_${name}`),
+    display: isHydrated.value ? t(`tab.notifications_${name}`) : '',
   }),
 ))
-const moreOptions: CommonRouteTabMoreOption = {
+const moreOptions: CommonRouteTabMoreOption = $computed(() => ({
   options: more,
   icon: 'i-ri:filter-2-line',
-  tooltip: t('tab.notifications_more_tooltip'),
-}
+  tooltip: isHydrated.value ? t('tab.notifications_more_tooltip') : '',
+}))
 </script>
 
 <template>
@@ -42,7 +41,7 @@ const moreOptions: CommonRouteTabMoreOption = {
     <template #title>
       <NuxtLink to="/notifications" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:notification-4-line />
-        <span>{{ t('nav.notifications') }}</span>
+        <span>{{ isHydrated ? t('nav.notifications') : '' }}</span>
       </NuxtLink>
     </template>
 
@@ -50,7 +49,7 @@ const moreOptions: CommonRouteTabMoreOption = {
       <NuxtLink
         flex rounded-4 p1
         hover:bg-active cursor-pointer transition-100
-        :title="t('settings.notifications.show_btn')"
+        :title="isHydrated ? t('settings.notifications.show_btn') : ''"
         to="/settings/notifications"
       >
         <span aria-hidden="true" i-ri:notification-badge-line />

@@ -61,7 +61,7 @@ useCommands(() => command
       </div>
     </template>
     <template v-if="moreOptions?.options?.length">
-      <CommonDropdown placement="bottom" flex cursor-pointer>
+      <CommonDropdown placement="bottom" flex cursor-pointer mx-1rem>
         <CommonTooltip placement="top" :content="moreOptions.tooltip || t('action.more')">
           <button
             cursor-pointer

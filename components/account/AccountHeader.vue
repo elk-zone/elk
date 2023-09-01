@@ -225,11 +225,19 @@ const personalNoteMaxLength = 2000
         </div>
       </div>
       <div v-if="iconFields.length" flex="~ wrap gap-2">
-        <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" px1 items-center :class="`${field.verifiedAt ? 'border-1 rounded-full border-dark' : ''}`">
+        <div v-for="field in iconFields" :key="field.name" flex="~ gap-1" items-center :class="`${field.verifiedAt ? 'relative border-1 px-2 rounded-full border-dark' : ''}`">
           <CommonTooltip :content="getFieldIconTitle(field.name)">
-            <div text-secondary :class="getAccountFieldIcon(field.name)" :title="getFieldIconTitle(field.name)" />
+            <div v-if="field.verifiedAt" absolute top-1.2 left-1 text-0.6rem bg-base rounded-full z-10>
+              <div text-primary class="i-ri:check-line" />
+            </div>
+            <div text-secondary text-lg :class="getAccountFieldIcon(field.name)" :title="getFieldIconTitle(field.name)" />
           </CommonTooltip>
-          <ContentRich text-sm :content="field.value" :emojis="account.emojis" />
+          <div flex flex-col>
+            <div text-0.6rem text-secondary-light leading-tight uppercase>
+              {{ getFieldIconTitle(field.name) }}
+            </div>
+            <ContentRich text-sm leading-tight :content="field.value" :emojis="account.emojis" />
+          </div>
         </div>
       </div>
       <AccountPostsFollowers :account="account" />

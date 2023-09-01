@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -2228,8 +2228,8 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/message-compiler': 9.3.0-beta.27
-      '@intlify/shared': 9.3.0-beta.27
+      '@intlify/message-compiler': 9.3.0-beta.25
+      '@intlify/shared': 9.3.0-beta.25
       jsonc-eslint-parser: 1.4.1
       source-map: 0.6.1
       vue-i18n: 9.3.0-beta.16(vue@3.3.4)
@@ -2261,11 +2261,11 @@ packages:
       source-map: 0.6.1
     dev: false
 
-  /@intlify/message-compiler@9.3.0-beta.27:
-    resolution: {integrity: sha512-GC8rSbd7V67Zu+a9Z0bpV4riBek11YCURJU50YaEhV4Ub2JHEPtoYxK5r2eIsq/kp+M2hJyGLiC4NJUrGa2VwQ==}
+  /@intlify/message-compiler@9.3.0-beta.25:
+    resolution: {integrity: sha512-uT7ybqKoDEw1XITQYnTYjWgZnpCDmHv9e3D4MmJDqHl2qCm6anzdUXWKHUhqR87Ha9Z8Rl44v40iSI/4NUbppQ==}
     engines: {node: '>= 16'}
     dependencies:
-      '@intlify/shared': 9.3.0-beta.27
+      '@intlify/shared': 9.3.0-beta.25
       source-map-js: 1.0.2
     dev: false
 
@@ -2274,8 +2274,8 @@ packages:
     engines: {node: '>= 14'}
     dev: false
 
-  /@intlify/shared@9.3.0-beta.27:
-    resolution: {integrity: sha512-hPMsmVCs+ZUVHHU5VORG6LopzXZT7zmyVNqc9OQG80YpA/N4lT/pkJ4B6DTNIsv2C7mwfGM7RdK+0qPki43YgA==}
+  /@intlify/shared@9.3.0-beta.25:
+    resolution: {integrity: sha512-Zg+ECV9RPdp227tCJOgvPb+S3i651nf4kKHsMojSyWCppVK/4NFuDrBG2lIQSQL6Iq5LKVr5MkezHCW2NBTQRg==}
     engines: {node: '>= 16'}
     dev: false
 
@@ -2295,7 +2295,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 4.0.0(vue-i18n@9.3.0-beta.16)
-      '@intlify/shared': 9.3.0-beta.27
+      '@intlify/shared': 9.3.0-beta.25
       '@rollup/pluginutils': 4.2.1
       '@vue/compiler-sfc': 3.3.4
       debug: 4.3.4
@@ -14580,7 +14580,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.3.0-beta.27
+      '@intlify/shared': 9.3.0-beta.25
       '@intlify/vue-i18n-bridge': 0.8.0(vue-i18n@9.3.0-beta.16)
       '@intlify/vue-router-bridge': 0.8.0(vue-router@4.2.4)(vue@3.3.4)
       ufo: 1.1.2

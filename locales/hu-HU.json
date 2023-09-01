@@ -101,58 +101,58 @@
       "error": "HIBA",
       "fetching": "Betöltés...",
       "in": "be",
-      "no_bookmarks": "No bookmarked posts yet",
-      "no_favourites": "No liked posts yet",
-      "not_found": "404 Not Found",
-      "offline_desc": "Seems like you are offline. Please check your network connection."
+      "no_bookmarks": "Még nincs könyvjelzőzött bejegyzés",
+      "no_favourites": "Még nincs kedvelt bejegyzés",
+      "not_found": "404 Nem található",
+      "offline_desc": "Úgy tűnik offline vagy. Kérlek ellenőrízd a hálózati csatlatkozásodat."
     },
     "compose": {
-      "draft_title": "Draft {0}",
-      "drafts": "Drafts ({v})"
+      "draft_title": "Vázlat {0}",
+      "drafts": "Vázlatok ({v})"
     },
     "confirm": {
       "block_account": {
-        "cancel": "Cancel",
-        "confirm": "Block",
-        "title": "Are you sure you want to block {0}?"
+        "cancel": "Mégsem",
+        "confirm": "Blokkol",
+        "title": "Biztosan blokkolod? {0}"
       },
       "block_domain": {
         "cancel": "Cancel",
-        "confirm": "Block",
-        "title": "Are you sure you want to block {0}?"
+        "confirm": "Blokkol",
+        "title": "Biztosan blokkolod? {0}"
       },
       "common": {
-        "cancel": "No",
-        "confirm": "Yes"
+        "cancel": "Mégsem",
+        "confirm": "Igen"
       },
       "delete_list": {
-        "cancel": "Cancel",
-        "confirm": "Delete",
-        "title": "Are you sure you want to delete the \"{0}\" list?"
+        "cancel": "Mégsem",
+        "confirm": "Töröl",
+        "title": "Biztosan törlöd a listát? \"{0}\""
       },
       "delete_posts": {
-        "cancel": "Cancel",
-        "confirm": "Delete",
-        "title": "Are you sure you want to delete this post?"
+        "cancel": "Mégsem",
+        "confirm": "Töröl",
+        "title": "Biztosan törlöd a bejegyzést?"
       },
       "mute_account": {
-        "cancel": "Cancel",
-        "confirm": "Mute",
-        "title": "Are you sure you want to mute {0}?"
+        "cancel": "Mégsem",
+        "confirm": "Némít",
+        "title": "Biztosan némítod? {0}"
       },
       "show_reblogs": {
-        "cancel": "Cancel",
-        "confirm": "Show",
-        "title": "Are you sure you want to show boosts from {0}?"
+        "cancel": "Mégsem",
+        "confirm": "Mutat",
+        "title": "Biztosan megjeleníted a Turbót tőle? {0}"
       },
       "unfollow": {
-        "cancel": "Cancel",
-        "confirm": "Unfollow",
-        "title": "Are you sure you want to unfollow?"
+        "cancel": "Mégsem",
+        "confirm": "Követés leállítása",
+        "title": "Biztosan leállítod a követését?"
       }
     },
     "conversation": {
-      "with": "with"
+      "with": "vele: "
     },
     "custom_cards": {
       "stackblitz": {

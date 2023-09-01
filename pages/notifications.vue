@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import { SUPPORTED_NOTIFICATION_TYPES } from '~/constants'
-import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
+import type { mastodon } from 'masto'
+import { NOTIFICATION_TYPES, SUPPORTED_NOTIFICATION_TYPES } from '~/constants'
+import type {
+  CommonRouteTabMoreOption,
+  CommonRouteTabOption,
+} from '~/components/common/CommonRouteTabs.vue'
 
 definePageMeta({
   middleware: 'auth',
 })
 
+const route = useRoute()
 const { t } = useI18n()
 const pwaEnabled = useAppConfig().pwaEnabled
 
@@ -22,17 +27,64 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
   },
 ])
 
+const filter = $computed(() => {
+  if (!isHydrated.value)
+    return undefined
+
+  const rawFilter = route.params?.filter
+  if (!rawFilter)
+    return undefined
+
+  if (NOTIFICATION_TYPES.includes(Array.isArray(rawFilter) ? rawFilter[0] : rawFilter))
+    return rawFilter as mastodon.v1.NotificationType
+
+  return undefined
+})
+
+const icons = SUPPORTED_NOTIFICATION_TYPES.reduce((acc, name) => {
+  switch (name) {
+    case 'status':
+      acc[name] = 'i-ri:account-pin-circle-line'
+      break
+    case 'reblog':
+      acc[name] = 'i-ri:repeat-fill'
+      break
+    case 'follow':
+      acc[name] = 'i-ri:user-follow-line'
+      break
+    case 'follow_request':
+      acc[name] = 'i-ri:user-shared-line'
+      break
+    case 'favourite':
+      acc[name] = 'i-ri:heart-3-line'
+      break
+    case 'poll':
+      acc[name] = 'i-ri:chat-poll-line'
+      break
+    case 'update':
+      acc[name] = 'i-ri:refresh-line'
+      break
+  }
+  return acc
+}, {} as Record<string, string>)
+
+const filtered = $computed(() => (!!filter && filter !== 'mention'))
+const filterText = $computed(() => (`${t('tab.notifications_more_tooltip')}${filtered ? `: ${t(`tab.notifications_${filter!}`)}` : ''}`))
+
 const more = $computed<CommonRouteTabOption[]>(() => SUPPORTED_NOTIFICATION_TYPES.map(
   name => ({
     name,
     to: `/notifications/${name}`,
     display: isHydrated.value ? t(`tab.notifications_${name}`) : '',
+    icon: icons[name],
+    match: name === filter,
   }),
 ))
-const moreOptions: CommonRouteTabMoreOption = $computed(() => ({
+const moreOptions = $computed<CommonRouteTabMoreOption>(() => ({
   options: more,
   icon: 'i-ri:filter-2-line',
-  tooltip: isHydrated.value ? t('tab.notifications_more_tooltip') : '',
+  tooltip: filterText,
+  match: filtered,
 }))
 </script>
 

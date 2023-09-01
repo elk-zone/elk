@@ -10,11 +10,13 @@ export interface CommonRouteTabOption {
   name?: string
   icon?: string
   hide?: boolean
+  match?: boolean
 }
 export interface CommonRouteTabMoreOption {
   options: CommonRouteTabOption[]
   icon?: string
   tooltip?: string
+  match?: boolean
 }
 const { options, command, replace, preventScrollTop = false, moreOptions } = $defineProps<{
   options: CommonRouteTabOption[]
@@ -58,12 +60,25 @@ useCommands(() => command
         <span ws-nowrap mxa sm:px2 sm:py3 py2 text-center text-secondary-light op50>{{ option.display }}</span>
       </div>
     </template>
-    <template v-if="moreOptions && moreOptions.options?.length > 0">
+    <template v-if="moreOptions?.options?.length">
       <CommonDropdown placement="bottom" flex cursor-pointer>
         <CommonTooltip placement="top" :content="moreOptions.tooltip || t('action.more')">
-          <button cursor-pointer flex gap-1 w-12 rounded hover:bg-active btn-action-icon op75 px4 group :aria-label="t('action.more')">
-            <span v-if="moreOptions.icon" :class="moreOptions.icon" text-sm text-secondary me--1 block />
-            <span i-ri:arrow-down-s-line text-sm text-secondary me--1 block />
+          <button
+            cursor-pointer
+            flex
+            gap-1
+            w-12
+            rounded
+            hover:bg-active
+            btn-action-icon
+            op75
+            px4
+            group
+            :aria-label="t('action.more')"
+            :class="moreOptions.match ? 'text-primary' : 'text-secondary'"
+          >
+            <span v-if="moreOptions.icon" :class="moreOptions.icon" text-sm me--1 block />
+            <span i-ri:arrow-down-s-line text-sm me--1 block />
           </button>
         </CommonTooltip>
         <template #popper>
@@ -73,7 +88,11 @@ useCommands(() => command
             :to="option.to"
           >
             <CommonDropdownItem>
-              {{ option.display }}
+              <span flex="~ row" gap-x-4 items-center :class="option.match ? 'text-primary' : ''">
+                <span v-if="option.icon" :class="[option.icon, option.match ? 'text-primary' : 'text.secondary']" text-md me--1 block />
+                <span v-else block>&#160;</span>
+                <span>{{ option.display }}</span>
+              </span>
             </CommonDropdownItem>
           </NuxtLink>
         </template>

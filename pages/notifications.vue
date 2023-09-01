@@ -27,13 +27,13 @@ const more = $computed<CommonRouteTabOption[]>(() => supportedTypes.map(
   name => ({
     name,
     to: `/notifications/${name}`,
-    display: isHydrated.value ? t(`tab.notifications_${name}`) : '',
+    display: t(`tab.notifications_${name}`),
   }),
 ))
 const moreOptions: CommonRouteTabMoreOption = {
   options: more,
   icon: 'i-ri:filter-2-line',
-  tooltip: isHydrated.value ? t('tab.notifications_more_tooltip') : '',
+  tooltip: t('tab.notifications_more_tooltip'),
 }
 </script>
 

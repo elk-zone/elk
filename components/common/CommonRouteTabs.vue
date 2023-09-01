@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
 
+const { t } = useI18n()
+
 export interface CommonRouteTabOption {
   to: RouteLocationRaw
   display: string
@@ -58,8 +60,8 @@ useCommands(() => command
     </template>
     <template v-if="moreOptions && moreOptions.options?.length > 0">
       <CommonDropdown placement="bottom" flex cursor-pointer>
-        <CommonTooltip placement="top" :content="moreOptions.tooltip">
-          <button cursor-pointer flex gap-1 w-12 rounded hover:bg-active btn-action-icon op75 px4 group aria-label="More actions">
+        <CommonTooltip placement="top" :content="moreOptions.tooltip || t('action.more')">
+          <button cursor-pointer flex gap-1 w-12 rounded hover:bg-active btn-action-icon op75 px4 group :aria-label="t('action.more')">
             <div v-if="moreOptions.icon" :class="moreOptions.icon" text-sm text-secondary me--1 />
             <div i-ri:arrow-down-s-line text-sm text-secondary me--1 />
           </button>

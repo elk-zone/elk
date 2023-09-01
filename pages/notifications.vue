@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import { NOTIFICATION_TYPES, SUPPORTED_NOTIFICATION_TYPES } from '~/constants'
+import { SUPPORTED_NOTIFICATION_TYPES } from '~/constants'
 import type {
   CommonRouteTabMoreOption,
   CommonRouteTabOption,
@@ -35,7 +35,7 @@ const filter = $computed(() => {
   if (!rawFilter)
     return undefined
 
-  if (NOTIFICATION_TYPES.includes(Array.isArray(rawFilter) ? rawFilter[0] : rawFilter))
+  if (SUPPORTED_NOTIFICATION_TYPES.includes(Array.isArray(rawFilter) ? rawFilter[0] : rawFilter))
     return rawFilter as mastodon.v1.NotificationType
 
   return undefined
@@ -68,8 +68,7 @@ const icons = SUPPORTED_NOTIFICATION_TYPES.reduce((acc, name) => {
   return acc
 }, {} as Record<string, string>)
 
-const filtered = $computed(() => (!!filter && filter !== 'mention'))
-const filterText = $computed(() => (`${t('tab.notifications_more_tooltip')}${filtered ? `: ${t(`tab.notifications_${filter!}`)}` : ''}`))
+const filterText = $computed(() => (`${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}`))
 
 const more = $computed<CommonRouteTabOption[]>(() => SUPPORTED_NOTIFICATION_TYPES.map(
   name => ({
@@ -84,7 +83,7 @@ const moreOptions = $computed<CommonRouteTabMoreOption>(() => ({
   options: more,
   icon: 'i-ri:filter-2-line',
   tooltip: filterText,
-  match: filtered,
+  match: !!filter,
 }))
 </script>
 

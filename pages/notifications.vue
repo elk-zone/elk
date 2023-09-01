@@ -62,7 +62,7 @@ const icons = NOTIFICATION_TYPES.reduce((acc, name) => {
       acc[name] = 'i-ri:chat-poll-line'
       break
     case 'update':
-      acc[name] = 'i-ri:refresh-line'
+      acc[name] = 'i-ri:edit-2-line'
       break
     case 'admin.report':
       acc[name] = 'i-ri:flag-line'

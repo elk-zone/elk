@@ -27,7 +27,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
   },
 ])
 
-const filter = $computed(() => {
+const filter = $computed<mastodon.v1.NotificationType | undefined>(() => {
   if (!isHydrated.value)
     return undefined
 
@@ -35,8 +35,6 @@ const filter = $computed(() => {
   const actualFilter = Array.isArray(rawFilter) ? rawFilter[0] : rawFilter
   if (isNotificationFilter(actualFilter))
     return actualFilter
-
-  return undefined
 })
 
 const filterIconMap: Record<mastodon.v1.NotificationType, string> = {

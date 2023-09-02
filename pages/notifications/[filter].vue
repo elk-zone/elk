@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
+
 const route = useRoute()
 const { t } = useI18n()
 
-const filter = $computed(() => {
+const filter = $computed<mastodon.v1.NotificationType | undefined>(() => {
   if (!isHydrated.value)
     return undefined
 
@@ -10,8 +12,6 @@ const filter = $computed(() => {
   const actualFilter = Array.isArray(rawFilter) ? rawFilter[0] : rawFilter
   if (isNotification(actualFilter))
     return actualFilter
-
-  return undefined
 })
 
 useHydratedHead({

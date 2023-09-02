@@ -42,6 +42,7 @@
     "unmute": "Utzi mututzeari",
     "view_other_followers": "Litekeena da beste instantziatako jarraitzaileak erakusgai ez egotea.",
     "view_other_following": "Litekeena da beste instantziatan jarraitzen direnak erakusgai ez egotea."
+    "withdraw_follow_request": "Utzi bertan behera bidalitako jarraipen-eskaera"
   },
   "action": {
     "apply": "Ezarri",
@@ -246,6 +247,7 @@
     "pin_on_profile": "Finkatu profilean",
     "remove_personal_note": "Kendu {0}(r)i buruzko oharra",
     "report_account": "Salatu kontua",
+    "share_account": "Partekatu {0}",
     "share_post": "Partekatu bidalketa",
     "show_favourited_and_boosted_by": "Erakutsi nork egin duen gogoko eta nork bultzatu duen",
     "show_reblogs": "Erakutsi {0}(r)en bultzadak",
@@ -295,7 +297,7 @@
   },
   "notification": {
     "favourited_post": "zure bidalketa gogoko egin du",
-    "followed_you": "jarraitu dizu",
+    "followed_you": "(e)k jarraitu dizu",
     "followed_you_count": "{0} pertsonak jarraitu dizute|pertsona {0}ek jarraitu dizu|{0} pertsonak jarraitu dizute",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "zure bidalketari bultzada eman dio",

@@ -76,7 +76,7 @@ const icons = NOTIFICATION_TYPES.reduce((acc, name) => {
 
 const filterText = $computed(() => (`${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}`))
 
-const more = $computed<CommonRouteTabOption[]>(() => NOTIFICATION_TYPES.filter(type => type !== 'mention').map(
+const more = $computed<CommonRouteTabOption[]>(() => NOTIFICATION_TYPES.map(
   name => ({
     name,
     to: `/notifications/${name}`,

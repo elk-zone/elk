@@ -13,7 +13,7 @@ const filter = $computed(() => {
   if (!rawFilter)
     return undefined
 
-  if (NOTIFICATION_TYPES.includes(Array.isArray(rawFilter) ? rawFilter[0] : rawFilter))
+  if (['mention', ...NOTIFICATION_TYPES].includes(Array.isArray(rawFilter) ? rawFilter[0] : rawFilter))
     return rawFilter as mastodon.v1.NotificationType
 
   return undefined

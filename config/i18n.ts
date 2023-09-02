@@ -72,10 +72,6 @@ export const countryLocaleVariants: Record<string, (LocaleObjectData & { country
     { country: true, code: 'pt-PT', name: 'Português (Portugal)' },
     { code: 'pt-BR', name: 'Português (Brasil)' },
   ],
-  hu: [
-    // hu.json contains hu-HU translations
-    { country: true, code: 'hu-HU', name: 'Hungarian (Hungarian)' },
-  ]
 }
 
 const locales: LocaleObjectData[] = [
@@ -103,6 +99,11 @@ const locales: LocaleObjectData[] = [
     code: 'de-DE',
     file: 'de-DE.json',
     name: 'Deutsch',
+  },
+  {
+    code: 'hu-HU',
+    file: 'hu-HU.json',
+    name: 'Magyar',
   },
   {
     code: 'zh-CN',

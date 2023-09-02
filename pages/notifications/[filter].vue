@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
-import { NOTIFICATION_TYPES } from '~/constants'
-
 const route = useRoute()
 const { t } = useI18n()
 
@@ -10,11 +7,9 @@ const filter = $computed(() => {
     return undefined
 
   const rawFilter = route.params?.filter
-  if (!rawFilter)
-    return undefined
-
-  if (['mention', ...NOTIFICATION_TYPES].includes(Array.isArray(rawFilter) ? rawFilter[0] : rawFilter))
-    return rawFilter as mastodon.v1.NotificationType
+  const actualFilter = Array.isArray(rawFilter) ? rawFilter[0] : rawFilter
+  if (isNotification(actualFilter))
+    return actualFilter
 
   return undefined
 })

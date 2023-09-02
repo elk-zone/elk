@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import { NOTIFICATION_TYPES } from '~/constants'
+import { NOTIFICATION_FILTER_TYPES } from '~/constants'
 import type {
   CommonRouteTabMoreOption,
   CommonRouteTabOption,
@@ -32,51 +32,29 @@ const filter = $computed(() => {
     return undefined
 
   const rawFilter = route.params?.filter
-  if (!rawFilter)
-    return undefined
-
-  if (NOTIFICATION_TYPES.includes(Array.isArray(rawFilter) ? rawFilter[0] : rawFilter))
-    return rawFilter as mastodon.v1.NotificationType
+  const actualFilter = Array.isArray(rawFilter) ? rawFilter[0] : rawFilter
+  if (isNotificationFilter(actualFilter))
+    return actualFilter
 
   return undefined
 })
 
-const icons = NOTIFICATION_TYPES.reduce((acc, name) => {
-  switch (name) {
-    case 'status':
-      acc[name] = 'i-ri:account-pin-circle-line'
-      break
-    case 'reblog':
-      acc[name] = 'i-ri:repeat-fill'
-      break
-    case 'follow':
-      acc[name] = 'i-ri:user-follow-line'
-      break
-    case 'follow_request':
-      acc[name] = 'i-ri:user-shared-line'
-      break
-    case 'favourite':
-      acc[name] = 'i-ri:heart-3-line'
-      break
-    case 'poll':
-      acc[name] = 'i-ri:chat-poll-line'
-      break
-    case 'update':
-      acc[name] = 'i-ri:edit-2-line'
-      break
-    case 'admin.report':
-      acc[name] = 'i-ri:flag-line'
-      break
-    case 'admin.sign_up':
-      acc[name] = 'i-ri:user-add-line'
-      break
-  }
-  return acc
-}, {} as Record<string, string>)
+const icons: Record<mastodon.v1.NotificationType, string> = {
+  'mention': 'i-ri:at-line',
+  'status': 'i-ri:account-pin-circle-line',
+  'reblog': 'i-ri:repeat-fill',
+  'follow': 'i-ri:user-follow-line',
+  'follow_request': 'i-ri:user-shared-line',
+  'favourite': 'i-ri:heart-3-line',
+  'poll': 'i-ri:chat-poll-line',
+  'update': 'i-ri:edit-2-line',
+  'admin.sign_up': 'i-ri:user-add-line',
+  'admin.report': 'i-ri:flag-line',
+}
 
 const filterText = $computed(() => (`${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}`))
 
-const more = $computed<CommonRouteTabOption[]>(() => NOTIFICATION_TYPES.map(
+const more = $computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
   name => ({
     name,
     to: `/notifications/${name}`,

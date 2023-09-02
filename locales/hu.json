@@ -156,9 +156,9 @@
     },
     "custom_cards": {
       "stackblitz": {
-        "lines": "Lines {0}",
-        "open": "Open",
-        "snippet_from": "Snippet from {0}"
+        "lines": "Sorok: {0}",
+        "open": "Megnyit",
+        "snippet_from": "Snippet from {0}" 
       }
     },
     "error": {

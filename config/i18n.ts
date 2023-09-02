@@ -73,8 +73,8 @@ export const countryLocaleVariants: Record<string, (LocaleObjectData & { country
     { code: 'pt-BR', name: 'Português (Brasil)' },
   ],
   hu: [
+    // hu.json contains hu-HU translations
     { country: true, code: 'hu-HU', name: 'Hungarian (Hungarian)' },
-    { code: 'hu-HU', name: 'Hungarian (Hungarian)' },
   ]
 }
 

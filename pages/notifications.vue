@@ -39,7 +39,7 @@ const filter = $computed(() => {
   return undefined
 })
 
-const icons: Record<mastodon.v1.NotificationType, string> = {
+const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
   'mention': 'i-ri:at-line',
   'status': 'i-ri:account-pin-circle-line',
   'reblog': 'i-ri:repeat-fill',
@@ -54,17 +54,17 @@ const icons: Record<mastodon.v1.NotificationType, string> = {
 
 const filterText = $computed(() => (`${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}`))
 
-const more = $computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
+const notificationFilterRoutes = $computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
   name => ({
     name,
     to: `/notifications/${name}`,
     display: isHydrated.value ? t(`tab.notifications_${name}`) : '',
-    icon: icons[name],
+    icon: filterIconMap[name],
     match: name === filter,
   }),
 ))
 const moreOptions = $computed<CommonRouteTabMoreOption>(() => ({
-  options: more,
+  options: notificationFilterRoutes,
   icon: 'i-ri:filter-2-line',
   tooltip: filterText,
   match: !!filter,

@@ -201,33 +201,33 @@
       "error": "Hiba történt a lista létrehozása közben",
       "error_prefix": "Hiba: ",
       "list_title_placeholder": "Lista címe",
-      "modify_account": "Modify lists with account",
-      "remove_account": "Remove account from list",
-      "save": "Save changes"
+      "modify_account": "Listák módosítása fiókkal",
+      "remove_account": "Fiók eltávolítása a listáról",
+      "save": "Változtatások mentése"
     },
     "magic_keys": {
-      "dialog_header": "Keyboard shortcuts",
+      "dialog_header": "Gyorsbillentyűk",
       "groups": {
         "actions": {
-          "boost": "Boost",
-          "command_mode": "Command mode",
-          "compose": "Compose",
-          "favourite": "Favourite",
-          "title": "Actions"
+          "boost": "Kiemel",
+          "command_mode": "Parancs mód",
+          "compose": "Összeállít",
+          "favourite": "Kedvenc",
+          "title": "Műveletek"
         },
         "media": {
-          "title": "Media"
+          "title": "Média"
         },
         "navigation": {
-          "go_to_home": "Home",
-          "go_to_notifications": "Notifications",
-          "next_status": "Next post",
-          "previous_status": "Previous post",
-          "shortcut_help": "Shortcut help",
-          "title": "Navigation"
+          "go_to_home": "Otthon",
+          "go_to_notifications": "Értesítések",
+          "next_status": "Következő bejegyzés",
+          "previous_status": "Előző bejegyzés",
+          "shortcut_help": "Gyors segítség",
+          "title": "Navigáció"
         }
       },
-      "sequence_then": "then"
+      "sequence_then": "miután"
     },
     "menu": {
       "add_personal_note": "Add personal note to {0}",

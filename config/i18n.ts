@@ -103,7 +103,7 @@ const locales: LocaleObjectData[] = [
   {
     code: 'hu-HU',
     file: 'hu-HU.json',
-    name: 'Magyar',
+    name: 'Magyar', 
   },
   {
     code: 'zh-CN',

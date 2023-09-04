@@ -553,16 +553,16 @@
     "title": "Share with Elk"
   },
   "state": {
-    "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
-    "attachments_limit_error": "Limit per post exceeded",
-    "edited": "(Edited)",
-    "editing": "Editing",
-    "loading": "Loading...",
-    "publish_failed": "Publish failed",
-    "publishing": "Publishing",
-    "save_failed": "Save failed",
-    "upload_failed": "Upload failed",
-    "uploading": "Uploading..."
+    "attachments_exceed_server_limit": "A csatolmányok száma meghaladja a bejegyzésenkénti korlátot.",
+    "attachments_limit_error": "Túllépte a bejegyzésenkénti korlátot",
+    "edited": "(Szerkesztve)",
+    "editing": "Szerkesztés",
+    "loading": "Betöltés...",
+    "publish_failed": "Közzétetel sikertelen",
+    "publishing": "Közzététel",
+    "save_failed": "Mentés sikertelen",
+    "upload_failed": "Feltöltés sikertelen",
+    "uploading": "Feltöltés..."
   },
   "status": {
     "account": {

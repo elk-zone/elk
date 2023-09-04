@@ -548,12 +548,8 @@
     }
   },
   "share-target": {
-    "description": "Elk can be configured so that you can share content from other applications, simply install Elk on your device or computer and sign in.",
-    "hint": "In order to share content with Elk, Elk must be installed and you must be signed in.",
-    "title": "Share with Elk"
-  },
-  "state": {
-    "attachments_exceed_server_limit": "A csatolmányok száma meghaladja a bejegyzésenkénti korlátot.",
+    "description": "Az Elk tud más alkalmazásokból is megosztani tartalmat, ha beállítod, csak telepítse fel és jelentkezzen be.",
+    "hint": "Tartalmom megosztáshoz fel kell telepítenie az Elket és bejelentkeznie.",
     "attachments_limit_error": "Túllépte a bejegyzésenkénti korlátot",
     "edited": "(Szerkesztve)",
     "editing": "Szerkesztés",
@@ -566,49 +562,49 @@
   },
   "status": {
     "account": {
-      "suspended_message": "The account of this post has been suspended.",
-      "suspended_show": "Show content anyways?"
+      "suspended_message": "Ezt a bejegyzést közzétevő fiókot felfüggesztették.",
+      "suspended_show": "Szeretné ennek ellenére megjeleníteni?"
     },
-    "boosted_by": "Boosted By",
-    "edited": "Edited {0}",
-    "favourited_by": "Favorited By",
-    "filter_hidden_phrase": "Filtered by",
-    "filter_show_anyway": "Show anyway",
+    "boosted_by": "Kiemelte",
+    "edited": "Szerkesztve {0}",
+    "favourited_by": "Kedvencelte",
+    "filter_hidden_phrase": "Kiszűrve",
+    "filter_show_anyway": "Megjelenítés mindenképp",
     "img_alt": {
       "ALT": "ALT",
-      "desc": "Description",
-      "dismiss": "Dismiss",
-      "read": "Read {0} description"
+      "desc": "Leírás",
+      "dismiss": "Elvetés",
+      "read": "Olvassa el a {0} leírását"
     },
     "poll": {
-      "count": "{0} votes|{0} vote|{0} votes",
-      "ends": "ends {0}",
-      "finished": "finished {0}"
+      "count": "{0} szavazat|{0} szavazat|{0} szavazat",
+      "ends": "véget ér {0}",
+      "finished": "véget ért {0}"
     },
-    "replying_to": "Replying to {0}",
-    "show_full_thread": "Show Full thread",
-    "someone": "someone",
-    "spoiler_media_hidden": "Media hidden",
-    "spoiler_show_less": "Show less",
-    "spoiler_show_more": "Show more",
-    "thread": "Thread",
-    "try_original_site": "Try original site"
+    "replying_to": "Válasz {0}-nak",
+    "show_full_thread": "Teljes beszélgetés megjelenítése",
+    "someone": "valaki",
+    "spoiler_media_hidden": "Média elrejtve",
+    "spoiler_show_less": "Mutass kevesebbet",
+    "spoiler_show_more": "Mutass többet",
+    "thread": "Szál",
+    "try_original_site": "Próbálja az eredeti weblapon"
   },
   "status_history": {
-    "created": "created {0}",
-    "edited": "edited {0}"
+    "created": "létrehozva {0}",
+    "edited": "szerkesztve {0}"
   },
   "tab": {
-    "accounts": "Accounts",
-    "for_you": "For you",
-    "hashtags": "Hashtags",
-    "list": "List",
-    "media": "Media",
-    "news": "News",
-    "notifications_all": "All",
-    "notifications_mention": "Mention",
-    "posts": "Posts",
-    "posts_with_replies": "Posts & Replies"
+    "accounts": "Fiókok",
+    "for_you": "Önnek",
+    "hashtags": "#Címkék",
+    "list": "Lista",
+    "media": "Média",
+    "news": "Hírek",
+    "notifications_all": "Összes értesítés",
+    "notifications_mention": "Említések",
+    "posts": "Bejegyzések",
+    "posts_with_replies": "Bejegyzések & válaszok"
   },
   "tag": {
     "follow": "Follow",

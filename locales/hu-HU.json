@@ -550,6 +550,10 @@
   "share-target": {
     "description": "Az Elk tud más alkalmazásokból is megosztani tartalmat, ha beállítod, csak telepítse fel és jelentkezzen be.",
     "hint": "Tartalmom megosztáshoz fel kell telepítenie az Elket és bejelentkeznie.",
+    "title": "Megosztás ELkkel" 
+  },
+  "state": {
+    "attachments_exceed_server_limit": "A csatolások száma túllépte a bejegyzésenkénti maximumot.",
     "attachments_limit_error": "Túllépte a bejegyzésenkénti korlátot",
     "edited": "(Szerkesztve)",
     "editing": "Szerkesztés",

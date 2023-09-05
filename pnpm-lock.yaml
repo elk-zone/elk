@@ -43,39 +43,48 @@ importers:
       '@pinia/nuxt':
         specifier: ^0.4.11
         version: 0.4.11(rollup@2.79.1)(typescript@5.1.6)(vue@3.3.4)
+      '@tiptap/core':
+        specifier: 2.0.3
+        version: 2.0.3(@tiptap/pm@2.0.3)
+      '@tiptap/extension-bold':
+        specifier: 2.0.3
+        version: 2.0.3(@tiptap/core@2.0.3)
       '@tiptap/extension-character-count':
         specifier: 2.0.3
-        version: 2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)
+        version: 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)
       '@tiptap/extension-code-block':
         specifier: 2.0.3
-        version: 2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)
+        version: 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)
       '@tiptap/extension-history':
         specifier: 2.0.3
-        version: 2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)
+        version: 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)
+      '@tiptap/extension-italic':
+        specifier: 2.0.3
+        version: 2.0.3(@tiptap/core@2.0.3)
       '@tiptap/extension-mention':
         specifier: 2.0.3
-        version: 2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)(@tiptap/suggestion@2.0.3)
+        version: 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)(@tiptap/suggestion@2.0.3)
       '@tiptap/extension-paragraph':
         specifier: 2.0.3
-        version: 2.0.3(@tiptap/core@2.1.8)
+        version: 2.0.3(@tiptap/core@2.0.3)
       '@tiptap/extension-placeholder':
         specifier: 2.0.3
-        version: 2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)
+        version: 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)
       '@tiptap/extension-text':
         specifier: 2.0.3
-        version: 2.0.3(@tiptap/core@2.1.8)
+        version: 2.0.3(@tiptap/core@2.0.3)
       '@tiptap/pm':
         specifier: ^2.0.3
-        version: 2.0.3(@tiptap/core@2.1.8)
+        version: 2.0.3(@tiptap/core@2.0.3)
       '@tiptap/starter-kit':
         specifier: 2.0.3
         version: 2.0.3(@tiptap/pm@2.0.3)
       '@tiptap/suggestion':
         specifier: 2.0.3
-        version: 2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)
+        version: 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)
       '@tiptap/vue-3':
         specifier: 2.0.3
-        version: 2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)(vue@3.3.4)
+        version: 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)(vue@3.3.4)
       '@unocss/nuxt':
         specifier: ^0.53.4
         version: 0.53.4(postcss@8.4.29)(rollup@2.79.1)(vite@4.4.9)(webpack@5.88.2)
@@ -1842,6 +1851,7 @@ packages:
   /@babel/standalone@7.22.5:
     resolution: {integrity: sha512-6Lwhzral4YDEbIM3dBC8/w0BMDvOosGBGaJWSORLkerx8byawkmwwzXKUB0jGlI1Zp90+cK2uyTl62UPtLbUjQ==}
     engines: {node: '>=6.9.0'}
+    dev: true
 
   /@babel/template@7.22.15:
     resolution: {integrity: sha512-QPErUVm4uyJa60rkI73qneDacvdvzxshT3kksGqlGWYdOTIUOwJ7RDUL8sGqslY1uXWSL6xMFKEXDS3ox2uF0w==}
@@ -3341,8 +3351,8 @@ packages:
       nuxt: ^3.5.1
       vite: '*'
     dependencies:
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
-      '@nuxt/schema': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
+      '@nuxt/schema': 3.7.0(rollup@2.79.1)
       execa: 7.1.1
       nuxt: 3.7.0(eslint@8.46.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vue-tsc@1.8.8)
       vite: 4.4.9(@types/node@20.3.3)
@@ -3377,7 +3387,7 @@ packages:
     dependencies:
       '@nuxt/devtools-kit': 0.6.6(nuxt@3.7.0)(rollup@2.79.1)(vite@4.4.9)
       '@nuxt/devtools-wizard': 0.6.6
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       birpc: 0.2.12
       boxen: 7.1.0
       consola: 3.2.3
@@ -3417,32 +3427,6 @@ packages:
       - rollup
       - supports-color
       - utf-8-validate
-    dev: false
-
-  /@nuxt/kit@3.6.5(rollup@2.79.1):
-    resolution: {integrity: sha512-uBI5I2Zx6sk+vRHU+nBmifwxg/nyXCGZ1g5hUKrUfgv1ZfiKB8JkN5T9iRoduDOaqbwM6XSnEl1ja73iloDcrw==}
-    engines: {node: ^14.18.0 || >=16.10.0}
-    dependencies:
-      '@nuxt/schema': 3.6.5(rollup@2.79.1)
-      c12: 1.4.2
-      consola: 3.2.3
-      defu: 6.1.2
-      globby: 13.2.2
-      hash-sum: 2.0.0
-      ignore: 5.2.4
-      jiti: 1.19.1
-      knitwork: 1.0.0
-      mlly: 1.4.2
-      pathe: 1.1.1
-      pkg-types: 1.0.3
-      scule: 1.0.0
-      semver: 7.5.3
-      unctx: 2.3.1
-      unimport: 3.0.14(rollup@2.79.1)
-      untyped: 1.3.2
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
     dev: false
 
   /@nuxt/kit@3.7.0(rollup@2.79.1):
@@ -3497,24 +3481,6 @@ packages:
       - rollup
       - supports-color
     dev: true
-
-  /@nuxt/schema@3.6.5(rollup@2.79.1):
-    resolution: {integrity: sha512-UPUnMB0W5TZ/Pi1fiF71EqIsPlj8LGZqzhSf8wOeh538KHwxbA9r7cuvEUU92eXRksOZaylbea3fJxZWhOITVw==}
-    engines: {node: ^14.18.0 || >=16.10.0}
-    dependencies:
-      defu: 6.1.2
-      hookable: 5.5.3
-      pathe: 1.1.1
-      pkg-types: 1.0.3
-      postcss-import-resolver: 2.0.0
-      std-env: 3.3.3
-      ufo: 1.3.0
-      unimport: 3.0.14(rollup@2.79.1)
-      untyped: 1.3.2
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-    dev: false
 
   /@nuxt/schema@3.7.0(rollup@2.79.1):
     resolution: {integrity: sha512-fNRAubny1x6rIibm/HcacnEGeAQri/FkJ5ei24aY4YjQ12+xDfi7bljfFr6C2+CrEGc1beYd4OQcUqXqEpz5+g==}
@@ -3755,7 +3721,7 @@ packages:
   /@nuxtjs/color-mode@3.3.0(rollup@2.79.1):
     resolution: {integrity: sha512-YVFNmTISke1eL7uk5p9I1suOsM222FxrqKoF13HS4x94OKCWwPLLeTCEzHZ8orzKnaFUbCXpuL4pRv8gvW+0Kw==}
     dependencies:
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       lodash.template: 4.5.0
       pathe: 1.1.1
     transitivePeerDependencies:
@@ -3781,7 +3747,7 @@ packages:
       '@intlify/bundle-utils': 4.0.0(vue-i18n@9.3.0-beta.16)
       '@intlify/shared': 9.3.0-beta.16
       '@intlify/unplugin-vue-i18n': 0.8.2(vue-i18n@9.3.0-beta.16)
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       '@vue/compiler-sfc': 3.3.4
       cookie-es: 0.5.0
       debug: 4.3.4
@@ -3946,7 +3912,7 @@ packages:
   /@pinia/nuxt@0.4.11(rollup@2.79.1)(typescript@5.1.6)(vue@3.3.4):
     resolution: {integrity: sha512-bhuNFngJpmBCdAqWguezNJ/oJFR7wvKieqiZrmmdmPR07XjsidAw8RLXHMZE9kUm32M9E6T057OBbG/22jERTg==}
     dependencies:
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       pinia: 2.1.4(typescript@5.1.6)(vue@3.3.4)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -4391,15 +4357,7 @@ packages:
     peerDependencies:
       '@tiptap/pm': ^2.0.0
     dependencies:
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
-    dev: false
-
-  /@tiptap/core@2.1.8(@tiptap/pm@2.0.3):
-    resolution: {integrity: sha512-QTGgqki7hkonLJ93gWqCUkD6cCAQ3rEX9gbMLwzfnegIZ+/BKLQYKYCozsEMZnMPXgdRrKuyRBOL+RH+IolMeA==}
-    peerDependencies:
-      '@tiptap/pm': ^2.0.0
-    dependencies:
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
     dev: false
 
   /@tiptap/extension-blockquote@2.0.3(@tiptap/core@2.0.3):
@@ -4418,14 +4376,14 @@ packages:
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
     dev: false
 
-  /@tiptap/extension-bubble-menu@2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3):
+  /@tiptap/extension-bubble-menu@2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3):
     resolution: {integrity: sha512-lPt1ELrYCuoQrQEUukqjp9xt38EwgPUwaKHI3wwt2Rbv+C6q1gmRsK1yeO/KqCNmFxNqF2p9ZF9srOnug/RZDQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
       '@tiptap/pm': ^2.0.0
     dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
       tippy.js: 6.3.7
     dev: false
 
@@ -4437,14 +4395,14 @@ packages:
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
     dev: false
 
-  /@tiptap/extension-character-count@2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3):
+  /@tiptap/extension-character-count@2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3):
     resolution: {integrity: sha512-Ge4aUmgYOmQR/HLPkbQSFKEywyRu6IalHAQmH3laY6LB9qrmT90AoaiFnaVCDpphYFQ7RygnBXJMgjtJ3WpZmw==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
       '@tiptap/pm': ^2.0.0
     dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
     dev: false
 
   /@tiptap/extension-code-block@2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3):
@@ -4454,17 +4412,7 @@ packages:
       '@tiptap/pm': ^2.0.0
     dependencies:
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
-    dev: false
-
-  /@tiptap/extension-code-block@2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3):
-    resolution: {integrity: sha512-F4xMy18EwgpyY9f5Te7UuF7UwxRLptOtCq1p2c2DfxBvHDWhAjQqVqcW/sq/I/WuED7FwCnPLyyAasPiVPkLPw==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0
-      '@tiptap/pm': ^2.0.0
-    dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
     dev: false
 
   /@tiptap/extension-code@2.0.3(@tiptap/core@2.0.3):
@@ -4490,17 +4438,17 @@ packages:
       '@tiptap/pm': ^2.0.0
     dependencies:
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
     dev: false
 
-  /@tiptap/extension-floating-menu@2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3):
+  /@tiptap/extension-floating-menu@2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3):
     resolution: {integrity: sha512-zN1vRGRvyK3pO2aHRmQSOTpl4UJraXYwKYM009n6WviYKUNm0LPGo+VD4OAtdzUhPXyccnlsTv2p6LIqFty6Bg==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
       '@tiptap/pm': ^2.0.0
     dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
       tippy.js: 6.3.7
     dev: false
 
@@ -4511,7 +4459,7 @@ packages:
       '@tiptap/pm': ^2.0.0
     dependencies:
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
     dev: false
 
   /@tiptap/extension-hard-break@2.0.3(@tiptap/core@2.0.3):
@@ -4537,17 +4485,7 @@ packages:
       '@tiptap/pm': ^2.0.0
     dependencies:
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
-    dev: false
-
-  /@tiptap/extension-history@2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3):
-    resolution: {integrity: sha512-00KHIcJ8kivn2ARI6NQYphv2LfllVCXViHGm0EhzDW6NQxCrriJKE3tKDcTFCu7LlC5doMpq9Z6KXdljc4oVeQ==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0
-      '@tiptap/pm': ^2.0.0
-    dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
     dev: false
 
   /@tiptap/extension-horizontal-rule@2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3):
@@ -4557,7 +4495,7 @@ packages:
       '@tiptap/pm': ^2.0.0
     dependencies:
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
     dev: false
 
   /@tiptap/extension-italic@2.0.3(@tiptap/core@2.0.3):
@@ -4576,16 +4514,16 @@ packages:
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
     dev: false
 
-  /@tiptap/extension-mention@2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)(@tiptap/suggestion@2.0.3):
+  /@tiptap/extension-mention@2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)(@tiptap/suggestion@2.0.3):
     resolution: {integrity: sha512-mT+tMJyf15gN3kW7UfZrP+J0jlhlBnR50SHj0PnDWqGnJ70qKSZTxcHfohrxU6On6yaOFsd+5Omn5seGK4XFWA==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
       '@tiptap/pm': ^2.0.0
       '@tiptap/suggestion': ^2.0.0
     dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
-      '@tiptap/suggestion': 2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)
+      '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
+      '@tiptap/suggestion': 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)
     dev: false
 
   /@tiptap/extension-ordered-list@2.0.3(@tiptap/core@2.0.3):
@@ -4604,22 +4542,14 @@ packages:
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
     dev: false
 
-  /@tiptap/extension-paragraph@2.0.3(@tiptap/core@2.1.8):
-    resolution: {integrity: sha512-a+tKtmj4bU3GVCH1NE8VHWnhVexxX5boTVxsHIr4yGG3UoKo1c5AO7YMaeX2W5xB5iIA+BQqOPCDPEAx34dd2A==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0
-    dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-    dev: false
-
-  /@tiptap/extension-placeholder@2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3):
+  /@tiptap/extension-placeholder@2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3):
     resolution: {integrity: sha512-Z42jo0termRAf0S0L8oxrts94IWX5waU4isS2CUw8xCUigYyCFslkhQXkWATO1qRbjNFLKN2C9qvCgGf4UeBrw==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
       '@tiptap/pm': ^2.0.0
     dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
     dev: false
 
   /@tiptap/extension-strike@2.0.3(@tiptap/core@2.0.3):
@@ -4638,20 +4568,12 @@ packages:
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
     dev: false
 
-  /@tiptap/extension-text@2.0.3(@tiptap/core@2.1.8):
-    resolution: {integrity: sha512-LvzChcTCcPSMNLUjZe/A9SHXWGDHtvk73fR7CBqAeNU0MxhBPEBI03GFQ6RzW3xX0CmDmjpZoDxFMB+hDEtW1A==}
-    peerDependencies:
-      '@tiptap/core': ^2.0.0
-    dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-    dev: false
-
-  /@tiptap/pm@2.0.3(@tiptap/core@2.1.8):
+  /@tiptap/pm@2.0.3(@tiptap/core@2.0.3):
     resolution: {integrity: sha512-I9dsInD89Agdm1QjFRO9dmJtU1ldVSILNPW0pEhv9wYqYVvl4HUj/JMtYNqu2jWrCHNXQcaX/WkdSdvGJtmg5g==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
     dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
+      '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
       prosemirror-changeset: 2.2.1
       prosemirror-collab: 1.3.1
       prosemirror-commands: 1.5.2
@@ -4700,27 +4622,27 @@ packages:
       - '@tiptap/pm'
     dev: false
 
-  /@tiptap/suggestion@2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3):
+  /@tiptap/suggestion@2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3):
     resolution: {integrity: sha512-1y3palQStGZq13UtHjouZ50k4sotM+N56cIlFeygIv3gqdai2zGPaPQtqV9FOVVQizXpUbQMTlPSDC5Ej4SPnQ==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
       '@tiptap/pm': ^2.0.0
     dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
     dev: false
 
-  /@tiptap/vue-3@2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)(vue@3.3.4):
+  /@tiptap/vue-3@2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)(vue@3.3.4):
     resolution: {integrity: sha512-2CtNUzt+e7sgvIjxPOyBwoiRcuCHNeJzW+XGxNK2uCWlAKp/Yw3boJ51d51UuIbj9RitGHJ5GpCdLJoL7SDiQA==}
     peerDependencies:
       '@tiptap/core': ^2.0.0
       '@tiptap/pm': ^2.0.0
       vue: ^3.0.0
     dependencies:
-      '@tiptap/core': 2.1.8(@tiptap/pm@2.0.3)
-      '@tiptap/extension-bubble-menu': 2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)
-      '@tiptap/extension-floating-menu': 2.0.3(@tiptap/core@2.1.8)(@tiptap/pm@2.0.3)
-      '@tiptap/pm': 2.0.3(@tiptap/core@2.1.8)
+      '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
+      '@tiptap/extension-bubble-menu': 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)
+      '@tiptap/extension-floating-menu': 2.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)
+      '@tiptap/pm': 2.0.3(@tiptap/core@2.0.3)
       vue: 3.3.4
     dev: false
 
@@ -5220,7 +5142,7 @@ packages:
   /@unocss/nuxt@0.53.4(postcss@8.4.29)(rollup@2.79.1)(vite@4.4.9)(webpack@5.88.2):
     resolution: {integrity: sha512-KKLWLcOQw65oWaye3MF6rpZBc/zy8f5pJPPaqS0r2VQ1vGN85KuEc0yY2E0HK1KrW5yB/YU3aPWosRf5wPa5mQ==}
     dependencies:
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       '@unocss/config': 0.53.4
       '@unocss/core': 0.53.4
       '@unocss/preset-attributify': 0.53.4
@@ -5858,7 +5780,7 @@ packages:
     peerDependencies:
       nuxt: ^3.0.0
     dependencies:
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       '@vue-macros/boolean-prop': 0.1.1(rollup@2.79.1)(vue@3.3.4)
       '@vue-macros/common': 1.7.0(rollup@2.79.1)(vue@3.3.4)
       '@vue-macros/short-vmodel': 1.2.15(rollup@2.79.1)(vue@3.3.4)
@@ -6354,7 +6276,7 @@ packages:
     peerDependencies:
       nuxt: ^3.0.0
     dependencies:
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       '@vueuse/core': 10.2.1(vue@3.3.4)
       '@vueuse/metadata': 10.2.1
       local-pkg: 0.4.3
@@ -11650,7 +11572,7 @@ packages:
   /nuxt-csurf@1.2.0(rollup@2.79.1):
     resolution: {integrity: sha512-sO8Hm3fR+GB3DMc0y1Slzt+f9LiUKpvF/qvUUZBWz1ZknfTRTYemZkfSNcoYf0/hoL2Wb9O0c8pFtzj0hs8Spw==}
     dependencies:
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       defu: 6.1.2
     transitivePeerDependencies:
       - rollup
@@ -11672,7 +11594,7 @@ packages:
   /nuxt-security@0.13.1(patch_hash=bd6cmp7ukwwiwrxafbbotwkihe)(rollup@2.79.1):
     resolution: {integrity: sha512-ZqO9Eu2LmB43U/NK+kAQtTcEO+7swu6WhgZBjvHwSCvg5cDvruhfEjLOffF4nuhvyVpKnt5HRfeRao8ABIe3ug==}
     dependencies:
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       basic-auth: 2.0.1
       defu: 6.1.2
       limiter: 2.1.0
@@ -11694,7 +11616,7 @@ packages:
       vite: '*'
       vitest: ^0.24.5 || ^0.26.0 || ^0.27.0 || ^0.28.0 || ^0.29.0 || ^0.30.0 || ^0.33.0
     dependencies:
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       '@vitejs/plugin-vue': 4.3.4(vite@4.4.9)(vue@3.3.4)
       '@vitejs/plugin-vue-jsx': 3.0.2(vite@4.4.9)(vue@3.3.4)
       '@vitest/ui': 0.33.0(vitest@0.33.0)
@@ -15163,6 +15085,7 @@ packages:
       scule: 1.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /untyped@1.4.0:
     resolution: {integrity: sha512-Egkr/s4zcMTEuulcIb7dgURS6QpN7DyqQYdf+jBtiaJvQ+eRsrtWUoX84SbvQWuLkXsOjM+8sJC9u6KoMK/U7Q==}
@@ -15499,7 +15422,7 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@nuxt/kit': 3.6.5(rollup@2.79.1)
+      '@nuxt/kit': 3.7.0(rollup@2.79.1)
       '@vue/test-utils': 2.4.0(vue@3.3.4)
       defu: 6.1.2
       estree-walker: 3.0.3

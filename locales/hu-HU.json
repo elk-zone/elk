@@ -427,7 +427,7 @@
     },
     "language": {
       "display_language": "Megjelenítés nyelve",
-      "label": "nyelv",
+      "label": "Nyelv",
       "post_language": "Tartalom nyelve",
       "status": "Fordítás állapota: {0}/{1} ({2}%)",
       "translations": {

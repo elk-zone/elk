@@ -288,8 +288,8 @@ importers:
         specifier: ^11.1.1
         version: 11.1.1
       lint-staged:
-        specifier: ^13.3.0
-        version: 13.3.0
+        specifier: ^14.0.1
+        version: 14.0.1
       nuxt:
         specifier: 3.7.0
         version: 3.7.0(eslint@8.48.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vue-tsc@1.8.8)
@@ -3335,7 +3335,7 @@ packages:
     dependencies:
       '@nuxt/kit': 3.7.0(rollup@2.79.1)
       '@nuxt/schema': 3.7.0(rollup@2.79.1)
-      execa: 7.1.1
+      execa: 7.2.0
       nuxt: 3.7.0(eslint@8.48.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vue-tsc@1.8.8)
       vite: 4.4.9(@types/node@20.3.3)
     transitivePeerDependencies:
@@ -3349,7 +3349,7 @@ packages:
     dependencies:
       consola: 3.2.3
       diff: 5.1.0
-      execa: 7.1.1
+      execa: 7.2.0
       global-dirs: 3.0.1
       magicast: 0.2.9
       pathe: 1.1.1
@@ -7743,7 +7743,7 @@ packages:
     dependencies:
       bundle-name: 3.0.0
       default-browser-id: 3.0.0
-      execa: 7.1.1
+      execa: 7.2.0
       titleize: 3.0.0
     dev: false
 
@@ -8669,7 +8669,6 @@ packages:
       onetime: 6.0.0
       signal-exit: 3.0.7
       strip-final-newline: 3.0.0
-    dev: true
 
   /execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
@@ -8895,7 +8894,7 @@ packages:
     engines: {node: '>=14'}
     dependencies:
       cross-spawn: 7.0.3
-      signal-exit: 4.0.2
+      signal-exit: 4.1.0
     dev: false
 
   /form-data@3.0.1:
@@ -10185,8 +10184,8 @@ packages:
       uc.micro: 1.0.6
     dev: false
 
-  /lint-staged@13.3.0:
-    resolution: {integrity: sha512-mPRtrYnipYYv1FEE134ufbWpeggNTo+O/UPzngoaKzbzHAthvR55am+8GfHTnqNRQVRRrYQLGW9ZyUoD7DsBHQ==}
+  /lint-staged@14.0.1:
+    resolution: {integrity: sha512-Mw0cL6HXnHN1ag0mN/Dg4g6sr8uf8sn98w2Oc1ECtFto9tvRF7nkXGJRbx8gPlHyoR0pLyBr2lQHbWwmUHe1Sw==}
     engines: {node: ^16.14.0 || >=18.0.0}
     hasBin: true
     dependencies:
@@ -11792,7 +11791,7 @@ packages:
     resolution: {integrity: sha512-O7bumfWgUXlJefT1Y41SF4vsCvzeUYmnKABuOKStheCObzrkWPDmqJc+RJVU+57oFu9bITcrUq8sKFIHgjCnTg==}
     engines: {node: ^14.16.0 || >=16.10.0}
     dependencies:
-      execa: 7.1.1
+      execa: 7.2.0
     dev: false
 
   /nypm@0.3.2:
@@ -13579,11 +13578,6 @@ packages:
 
   /signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
-
-  /signal-exit@4.0.2:
-    resolution: {integrity: sha512-MY2/qGx4enyjprQnFaZsHib3Yadh3IXyV2C321GY0pjGfVBu4un0uDJkwgdxqO+Rdx8JMT8IfJIRwbYVz3Ob3Q==}
-    engines: {node: '>=14'}
-    dev: false
 
   /signal-exit@4.1.0:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}

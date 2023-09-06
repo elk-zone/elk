@@ -18,7 +18,7 @@ function includeNotificationsForStatusCard({ type, status }: mastodon.v1.Notific
   // no makes sense to include them
   // Those notifications will be shown using StatusCard SFC:
   // check NotificationCard SFC L68 and L81 => :status="notification.status!"
-  return !((type === 'update' || type === 'mention' || type === 'poll' || type === 'status') && !status)
+  return status || !['update', 'mention', 'poll', 'status'].includes(type)
 }
 
 // Group by type (and status when applicable)

@@ -13,12 +13,14 @@ const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 
 const groupCapacity = Number.MAX_VALUE // No limit
 
+const includeNotificationTypes: mastodon.v1.NotificationType[] = ['update', 'mention', 'poll', 'status']
+
 function includeNotificationsForStatusCard({ type, status }: mastodon.v1.Notification) {
   // Exclude update, mention, pool and status notifications without the status entry:
   // no makes sense to include them
   // Those notifications will be shown using StatusCard SFC:
   // check NotificationCard SFC L68 and L81 => :status="notification.status!"
-  return status || !['update', 'mention', 'poll', 'status'].includes(type)
+  return status || !includeNotificationTypes.includes(type)
 }
 
 // Group by type (and status when applicable)

@@ -82,7 +82,7 @@
     "activate": "Aktifkan",
     "complete": "Selesai",
     "compose_desc": "Tulis postingan baru",
-    "n-people-in-the-past-n-days": "{0} orang dalam {1} hari terakhir",
+    "n_people_in_the_past_n_days": "{0} orang dalam {1} hari terakhir",
     "select_lang": "Pilih bahasa",
     "sign_in_desc": "Tambahkan akun yang ada",
     "switch_account": "Beralih ke {0}",
@@ -149,7 +149,7 @@
   },
   "error": {
     "account_not_found": "Akun {0} tidak ditemukan",
-    "explore-list-empty": "Tidak ada yang sedang tren saat ini. \nPeriksa kembali nanti!",
+    "explore_list_empty": "Tidak ada yang sedang tren saat ini. \nPeriksa kembali nanti!",
     "file_size_cannot_exceed_n_mb": "Ukuran file tidak boleh melebihi {0}MB",
     "sign_in_error": "Tidak dapat terhubung ke server.",
     "status_not_found": "Pos tidak ditemukan",
@@ -383,7 +383,7 @@
       "label": "Pengguna yang masuk"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk dapat dikonfigurasi sehingga Anda dapat berbagi konten dari aplikasi lain, cukup instal Elk di perangkat atau komputer Anda dan masuk.",
     "hint": "Untuk berbagi konten dengan Elk, Elk harus diinstal dan Anda harus masuk.",
     "title": "Bagikan dengan Elk"

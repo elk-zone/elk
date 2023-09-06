@@ -31,7 +31,7 @@ const { notification } = defineProps<{
     </template>
     <template v-else-if="notification.type === 'admin.sign_up'">
       <div flex p3 items-center bg-shaded>
-        <div i-ri:admin-fill me-1 color-purple />
+        <div i-ri:user-add-fill me-1 color-purple />
         <AccountDisplayName
           :account="notification.account"
           text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
@@ -58,7 +58,7 @@ const { notification } = defineProps<{
     </template>
     <template v-else-if="notification.type === 'follow_request'">
       <div flex ms-4 items-center class="-top-2.5" absolute inset-ie-2 px-2>
-        <div i-ri:user-follow-fill text-xl me-1 />
+        <div i-ri:user-shared-fill text-xl me-1 />
         <AccountInlineInfo :account="notification.account" me1 />
       </div>
       <!-- TODO: accept request -->

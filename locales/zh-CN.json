@@ -87,7 +87,7 @@
     "activate": "执行",
     "complete": "完成",
     "compose_desc": "写一条新帖文",
-    "n-people-in-the-past-n-days": "过去 {1} 天中 {0} 人访问",
+    "n_people_in_the_past_n_days": "过去 {1} 天中 {0} 人访问",
     "select_lang": "选择语言",
     "sign_in_desc": "添加现有帐户",
     "switch_account": "切换到 {0}",
@@ -162,7 +162,7 @@
   },
   "error": {
     "account_not_found": "未找到用户 {0}",
-    "explore-list-empty": "目前没有热门话题，稍后再来看看吧！",
+    "explore_list_empty": "目前没有热门话题，稍后再来看看吧！",
     "file_size_cannot_exceed_n_mb": "文件大小不能超过 {0}MB",
     "sign_in_error": "无法连接服务器",
     "status_not_found": "未找到帖文",
@@ -545,7 +545,7 @@
       "label": "当前用户"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "只需要在你的设备或电脑上安装并登录鹿鸣，通过简单的配置，你就可以从其他应用中分享内容至鹿鸣。",
     "hint": "为了分享内容至鹿鸣，你必须安装并登录鹿鸣。",
     "title": "分享至鹿鸣"

@@ -33,7 +33,7 @@
     "remove_label": "Eliminar archivo adjunto"
   },
   "command": {
-    "n-people-in-the-past-n-days": "{0} usuarios en los últimos {1} días"
+    "n_people_in_the_past_n_days": "{0} usuarios en los últimos {1} días"
   },
   "common": {
     "end_of_list": "Fin de la lista",

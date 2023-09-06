@@ -605,8 +605,20 @@
     "list": "List",
     "media": "Media",
     "news": "News",
+    "notifications_admin": {
+      "report": "Report",
+      "sign_up": "Sign-Up"
+    },
     "notifications_all": "All",
+    "notifications_favourite": "Favourite",
+    "notifications_follow": "Follow",
+    "notifications_follow_request": "Follow request",
     "notifications_mention": "Mention",
+    "notifications_more_tooltip": "Filter notifications by type",
+    "notifications_poll": "Poll",
+    "notifications_reblog": "Boost",
+    "notifications_status": "Status",
+    "notifications_update": "Update",
     "posts": "Posts",
     "posts_with_replies": "Posts & Replies"
   },

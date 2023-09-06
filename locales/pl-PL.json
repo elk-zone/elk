@@ -85,7 +85,7 @@
     "activate": "Aktywuj",
     "complete": "Kompletny",
     "compose_desc": "Utwórz nowy wpis",
-    "n-people-in-the-past-n-days": "{0} osób w ciągu ostatnich {1} dni",
+    "n_people_in_the_past_n_days": "{0} osób w ciągu ostatnich {1} dni",
     "select_lang": "Wybierz język",
     "sign_in_desc": "Dodaj istniejące konto",
     "switch_account": "Przełącz na {0}",
@@ -160,7 +160,7 @@
   },
   "error": {
     "account_not_found": "Nie znaleziono konta {0}",
-    "explore-list-empty": "Nic nie jest w tej chwili popularne. Sprawdź później!",
+    "explore_list_empty": "Nic nie jest w tej chwili popularne. Sprawdź później!",
     "file_size_cannot_exceed_n_mb": "Rozmiar pliku nie może przekraczać {0}MB",
     "sign_in_error": "Nie można połączyć się z serwerem.",
     "status_not_found": "Nie znaleziono wpisu",
@@ -483,7 +483,7 @@
       "label": "Zalogowani użytkownicy"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk można skonfigurować tak, aby można było udostępniać treści z innych aplikacji, wystarczy zainstalować Elk na swoim urządzeniu lub komputerze i zalogować się.",
     "hint": "Aby udostępniać treści w Elk, aplikacja Elk musi być zainstalowana, a Ty musisz być zalogowany.",
     "title": "Podziel się z Elk"

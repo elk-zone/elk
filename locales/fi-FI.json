@@ -87,7 +87,7 @@
     "activate": "Valitse",
     "complete": "Täydennä",
     "compose_desc": "Kirjoita uusi julkaisu",
-    "n-people-in-the-past-n-days": "{0} ihmistä viime {1} päivän aikana",
+    "n_people_in_the_past_n_days": "{0} ihmistä viime {1} päivän aikana",
     "select_lang": "Valitse kieli",
     "sign_in_desc": "Lisää olemassa oleva tili",
     "switch_account": "Vaihda tiliin {0}",
@@ -162,7 +162,7 @@
   },
   "error": {
     "account_not_found": "Tiliä {0} ei löytynyt",
-    "explore-list-empty": "Mikään ei ole juuri nyt nousussa. Tarkista myöhemmin uudelleen!",
+    "explore_list_empty": "Mikään ei ole juuri nyt nousussa. Tarkista myöhemmin uudelleen!",
     "file_size_cannot_exceed_n_mb": "Tiedosto ei voi olla suurempi kuin {0}\u00A0Mt",
     "sign_in_error": "Tähän palvelimeen ei voitu yhdistää.",
     "status_not_found": "Julkaisua ei löytynyt",
@@ -545,7 +545,7 @@
       "label": "Kirjautuneet käyttäjät"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elkin voi määrittää niin, että voit jakaa sisältöä muista sovelluksista: asenna Elk laitteellesi ja kirjaudu sisään.",
     "hint": "Jotta voit jakaa sisältöä Elkillä, sen täytyy olla asennettuna ja sisään kirjautuneena.",
     "title": "Jaa Elkillä"

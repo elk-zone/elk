@@ -114,7 +114,6 @@ function reply() {
     </div>
 
     <!-- ⚠️ Placeholder for UnoCSS parse. ⚠️ -->
-    <!-- <template elk-group-hover="bg-yellow/10"></template>
-    <template elk-group-hover="bg-rose/10"></template> -->
+    <!-- <template elk-group-hover="bg-yellow/10" elk-group-hover="bg-rose/10"></template> -->
   </div>
 </template>

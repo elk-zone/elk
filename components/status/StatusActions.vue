@@ -81,7 +81,7 @@ function reply() {
         :text="!getPreferences(userSettings, 'hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
         :color="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
         :hover="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
-        :elk-group-hover="useStarFavoriteIcon ? 'bg-yellow/10' : 'bg-rose/10'"
+        v-bind="{ elkGroupHover: useStarFavoriteIcon ? 'bg-yellow/10' : 'bg-rose/10' }"
         :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'"
         :active-icon="useStarFavoriteIcon ? 'i-ri:star-fill' : 'i-ri:heart-3-fill'"
         :active="!!status.favourited"
@@ -103,7 +103,7 @@ function reply() {
         :content="$t('action.bookmark')"
         :color="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
         :hover="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
-        :elk-group-hover="useStarFavoriteIcon ? 'bg-rose/10' : 'bg-yellow/10' "
+        v-bind="{ elkGroupHover: useStarFavoriteIcon ? 'bg-rose/10' : 'bg-yellow/10' }"
         icon="i-ri:bookmark-line"
         active-icon="i-ri:bookmark-fill"
         :active="!!status.bookmarked"
@@ -112,5 +112,9 @@ function reply() {
         @click="toggleBookmark()"
       />
     </div>
+
+    <!-- ⚠️ Placeholder for UnoCSS parse. ⚠️ -->
+    <!-- <template elk-group-hover="bg-yellow/10"></template>
+    <template elk-group-hover="bg-rose/10"></template> -->
   </div>
 </template>

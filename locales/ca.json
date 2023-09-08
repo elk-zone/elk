@@ -84,7 +84,7 @@
     "activate": "Activar",
     "complete": "Completa",
     "compose_desc": "Escriu una publicació nova",
-    "n-people-in-the-past-n-days": "{0} persones en els darrers {1} dies",
+    "n_people_in_the_past_n_days": "{0} persones en els darrers {1} dies",
     "select_lang": "Escolliu l'idioma",
     "sign_in_desc": "Afegeix un compte existent",
     "switch_account": "Canvia a {0}",
@@ -157,7 +157,7 @@
   },
   "error": {
     "account_not_found": "No s'ha trobat el compte {0}",
-    "explore-list-empty": "No hi ha res de tendència ara mateix. Torna més tard!",
+    "explore_list_empty": "No hi ha res de tendència ara mateix. Torna més tard!",
     "file_size_cannot_exceed_n_mb": "La mida del fitxer no pot superar els {0}MB",
     "sign_in_error": "No es pot connectar al servidor.",
     "status_not_found": "No s'ha trobat la publicació",
@@ -448,7 +448,7 @@
       "label": "Usuaris connectats"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk es pot configurar perquè pugueu compartir contingut d'altres aplicacions, només cal que instal·leu Elk al vostre dispositiu o ordinador i inicieu sessió.",
     "hint": "Per compartir contingut amb Elk, cal que l'Elk estigui instal·lat i inicieu sessió.",
     "title": "Comparteix amb Elk"

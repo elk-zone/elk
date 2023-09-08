@@ -87,7 +87,7 @@
     "activate": "Kích hoạt",
     "complete": "Hoàn thành",
     "compose_desc": "Soạn tút mới",
-    "n-people-in-the-past-n-days": "{0} người trong {1} ngày gần đây",
+    "n_people_in_the_past_n_days": "{0} người trong {1} ngày gần đây",
     "select_lang": "Chọn ngôn ngữ",
     "sign_in_desc": "Thêm một tài khoản khác",
     "switch_account": "Chuyển sang {0}",
@@ -162,7 +162,7 @@
   },
   "error": {
     "account_not_found": "Không tìm thấy {0}",
-    "explore-list-empty": "Chưa có xu hướng. Hãy quay lại sau!",
+    "explore_list_empty": "Chưa có xu hướng. Hãy quay lại sau!",
     "file_size_cannot_exceed_n_mb": "Dung lượng file tối đa {0}MB",
     "sign_in_error": "Không thể kết nối tới máy chủ.",
     "status_not_found": "Không tìm thấy tút",
@@ -545,7 +545,7 @@
       "label": "Danh sách tài khoản"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk có thể cấu hình để bạn có thể chia sẻ nội dung từ các ứng dụng khác, chỉ cần cài đặt Elk trên thiết bị hoặc máy tính của bạn và đăng nhập.",
     "hint": "Để chia sẻ nội dung với Elk, Elk phải được cài đặt và bạn phải đăng nhập.",
     "title": "Chia sẻ với Elk"

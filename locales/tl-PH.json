@@ -85,7 +85,7 @@
     "activate": "I-activate",
     "complete": "Tapusin",
     "compose_desc": "Sumulat ng bagong post",
-    "n-people-in-the-past-n-days": "{0} na mga tao sa nakaraang {1} araw",
+    "n_people_in_the_past_n_days": "{0} na mga tao sa nakaraang {1} araw",
     "select_lang": "Pumili ng wika",
     "sign_in_desc": "Magdagdag ng isang umiiral na account",
     "switch_account": "Lumipat sa {0}",
@@ -158,7 +158,7 @@
   },
   "error": {
     "account_not_found": "Hindi mahanap ang account na {0}",
-    "explore-list-empty": "Walang laman ang trending ngayon. Subukan muli mamaya!",
+    "explore_list_empty": "Walang laman ang trending ngayon. Subukan muli mamaya!",
     "file_size_cannot_exceed_n_mb": "Hindi pwede lumampas sa {0}MB ang laki ng file",
     "sign_in_error": "Hindi maka-connect sa server.",
     "status_not_found": "Hindi mahanap ang post",
@@ -480,7 +480,7 @@
       "label": "Naka-log in na mga user"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Maaring i-configure ang Elk upang maishare ang mga nilalaman mula sa ibang aplikasyon, mag-install lamang ng Elk sa iyong device o computer at mag-sign in.",
     "hint": "Upang maishare ang nilalaman sa Elk, kinakailangan na naka-install ang Elk at nakapag-sign in ka.",
     "title": "I-share sa Elk"

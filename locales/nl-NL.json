@@ -83,7 +83,7 @@
     "activate": "Activeren",
     "complete": "Compleet",
     "compose_desc": "Schrijf een nieuwe post",
-    "n-people-in-the-past-n-days": "{0} mensen in de laatste {1} dagen",
+    "n_people_in_the_past_n_days": "{0} mensen in de laatste {1} dagen",
     "select_lang": "Selecteer een taal",
     "sign_in_desc": "Voeg bestaande account toe",
     "switch_account": "Wissel naar {0}",
@@ -103,7 +103,7 @@
   },
   "error": {
     "account_not_found": "Account {0} niet gevonden",
-    "explore-list-empty": "Er is nu niets trending. Kom later terug!",
+    "explore_list_empty": "Er is nu niets trending. Kom later terug!",
     "file_size_cannot_exceed_n_mb": "Bestandsgrootte mag niet groter zijn dan {0}MB",
     "sign_in_error": "Kan geen verbinding maken met de server.",
     "status_not_found": "Post niet gevonden",

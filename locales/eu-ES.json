@@ -41,7 +41,7 @@
     "unfollow": "Utzi jarraitzeari",
     "unmute": "Utzi mututzeari",
     "view_other_followers": "Litekeena da beste instantziatako jarraitzaileak erakusgai ez egotea.",
-    "view_other_following": "Litekeena da beste instantziatan jarraitzen direnak erakusgai ez egotea."
+    "view_other_following": "Litekeena da beste instantziatan jarraitzen direnak erakusgai ez egotea.",
     "withdraw_follow_request": "Utzi bertan behera bidalitako jarraipen-eskaera"
   },
   "action": {
@@ -605,8 +605,20 @@
     "list": "Zerrendak",
     "media": "Multimedia",
     "news": "Albisteak",
+    "notifications_admin": {
+      "report": "Salaketa",
+      "sign_up": "Izen-ematea"
+    },
     "notifications_all": "Guztiak",
+    "notifications_favourite": "Gogokoak",
+    "notifications_follow": "Jarraipena",
+    "notifications_follow_request": "Jarraipen-eskaerak",
     "notifications_mention": "Aipamenak",
+    "notifications_more_tooltip": "Iragazi jakinarazpenak motaren arabera",
+    "notifications_poll": "Bozketak",
+    "notifications_reblog": "Bultzadak",
+    "notifications_status": "Egoerak",
+    "notifications_update": "Eguneraketak",
     "posts": "Bidalketak",
     "posts_with_replies": "Bidalketak eta erantzunak"
   },

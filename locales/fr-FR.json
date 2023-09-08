@@ -298,6 +298,7 @@
     "followed_you": "vous suit",
     "followed_you_count": "{0} personnes vous suivent|{0} personne vous suit|{0} personnes vous suivent",
     "missing_type": "MISSING notification.type:",
+    "reblogged_and_favourited_post": "a relayé et aimé votre message",
     "reblogged_post": "a relayé votre message",
     "reported": "{0} a signalé {1}",
     "request_to_follow": "vous demande de le suivre",

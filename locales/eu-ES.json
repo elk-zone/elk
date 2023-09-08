@@ -87,7 +87,7 @@
     "activate": "Aktibatu",
     "complete": "Osatu",
     "compose_desc": "Idatzi bidalketa berria",
-    "n-people-in-the-past-n-days": "{0} pertsona azken {1} egunetan",
+    "n_people_in_the_past_n_days": "{0} pertsona azken {1} egunetan",
     "select_lang": "Hautatu hizkuntza",
     "sign_in_desc": "Gehitu dagoeneko existitzen den kontu bat",
     "switch_account": "Aldatu {0}(e)ra",
@@ -162,7 +162,7 @@
   },
   "error": {
     "account_not_found": "{0} kontua ez da aurkitu",
-    "explore-list-empty": "Ez dago joerarik une honetan. Zatoz geroago!",
+    "explore_list_empty": "Ez dago joerarik une honetan. Zatoz geroago!",
     "file_size_cannot_exceed_n_mb": "Fitxategien tamaina ezin da {0}MB baino handiagoa izan",
     "sign_in_error": "Ezin izan da zerbitzarira konektatu.",
     "status_not_found": "Ez da bidalketa aurkitu",
@@ -545,7 +545,7 @@
       "label": "Saioa hasitako erabiltzaileak"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk beste aplikazioetako edukia partekatu ahal izateko konfiguratu daiteke; Elk zure gailuan instalatu eta saioa hasi behar duzu, besterik ez.",
     "hint": "Elk-ekin edukia partekatu nahi izatekotan, Elk instalatuta egon behar da eta saioa hasita.",
     "title": "Partekatu Elk-ekin"

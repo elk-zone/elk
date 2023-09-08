@@ -85,7 +85,7 @@
     "activate": "Etkinleştir",
     "complete": "Tamamla",
     "compose_desc": "Yeni bir gönderi yaz",
-    "n-people-in-the-past-n-days": "geçen {1} gündeki {0} kişi",
+    "n_people_in_the_past_n_days": "geçen {1} gündeki {0} kişi",
     "select_lang": "Dil seç",
     "sign_in_desc": "Var olan bir hesap ekle",
     "switch_account": "{0} hesabına geç",
@@ -160,7 +160,7 @@
   },
   "error": {
     "account_not_found": "Hesap {0} bulunamadı",
-    "explore-list-empty": "Şu anda hiçbir şey trend değil. Daha sonra tekrar kontrol edin!",
+    "explore_list_empty": "Şu anda hiçbir şey trend değil. Daha sonra tekrar kontrol edin!",
     "file_size_cannot_exceed_n_mb": "Dosya boyutu {0}MB'ı geçemez",
     "sign_in_error": "Sunucuya bağlanılamadı.",
     "status_not_found": "Gönderi bulunamadı",
@@ -485,7 +485,7 @@
       "label": "Giriş yapılan kullanıcılar"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk, diğer uygulamalardan içerik paylaşabilmeniz için yapılandırılabilir, Elk'i cihazınıza veya bilgisayarınıza yükleyip oturum açmanız yeterlidir.",
     "hint": "Elk ile içerik paylaşmak için Elk kurulu olmalı ve oturum açmış olmalısınız.",
     "title": "Elk ile paylaş"

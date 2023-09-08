@@ -65,13 +65,12 @@ export async function translateText(text: string, from: string | null | undefine
     error: '',
     text: '',
   })
-  const regex = /(<a[^>]*>)(.*?)(<\/a>)/g
-  const filteredText = text.replace(regex, '$1$3')
+  const regex = /<a[^>]*>.*?<\/a>/g
   try {
     const response = await ($fetch as any)(config.public.translateApi, {
       method: 'POST',
       body: {
-        q: filteredText,
+        q: text,
         source: from ?? 'auto',
         target: to,
         format: 'html',
@@ -79,9 +78,10 @@ export async function translateText(text: string, from: string | null | undefine
       },
     }) as TranslationResponse
     status.success = true
+    // reaplace the translated links with the original
     status.text = response.translatedText.replace(regex, (match) => {
-      const res = regex.exec(text)
-      return res ? res[0] : match
+      const tagLink = regex.exec(text)
+      return tagLink ? tagLink[0] : match
     })
   }
   catch (err) {

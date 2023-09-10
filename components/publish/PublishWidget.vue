@@ -84,28 +84,28 @@ function deletePollOption(index: number) {
   trimPollOptions()
 }
 
-const expiresInOptions = [
+const expiresInOptions = computed(() => [
   {
     seconds: 1 * 60 * 60,
-    label: t('time_ago_options.hour_future', 1),
+    label: isHydrated.value ? t('time_ago_options.hour_future', 1) : '',
   },
   {
     seconds: 2 * 60 * 60,
-    label: t('time_ago_options.hour_future', 2),
+    label: isHydrated.value ? t('time_ago_options.hour_future', 2) : '',
   },
   {
     seconds: 1 * 24 * 60 * 60,
-    label: t('time_ago_options.day_future', 1),
+    label: isHydrated.value ? t('time_ago_options.day_future', 1) : '',
   },
   {
     seconds: 2 * 24 * 60 * 60,
-    label: t('time_ago_options.day_future', 2),
+    label: isHydrated.value ? t('time_ago_options.day_future', 2) : '',
   },
   {
     seconds: 7 * 24 * 60 * 60,
-    label: t('time_ago_options.day_future', 7),
+    label: isHydrated.value ? t('time_ago_options.day_future', 7) : '',
   },
-]
+])
 
 const expiresInDefaultOptionIndex = 2
 
@@ -219,7 +219,7 @@ onDeactivated(() => {
     </template>
 
     <div flex gap-3 flex-1>
-      <NuxtLink :to="getAccountRoute(currentUser.account)">
+      <NuxtLink self-start :to="getAccountRoute(currentUser.account)">
         <AccountBigAvatar :account="currentUser.account" square />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
@@ -272,7 +272,7 @@ onDeactivated(() => {
           <EditorContent
             :editor="editor"
             flex max-w-full
-            :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
+            :class="shouldExpanded ? 'min-h-30 max-h-[calc(100vh-400px)] xl:max-h-35 of-y-auto overscroll-contain' : ''"
             @keydown="stopQuestionMarkPropagation"
           />
         </div>
@@ -369,7 +369,7 @@ onDeactivated(() => {
             @select="insertEmoji"
             @select-custom="insertCustomEmoji"
           >
-            <button btn-action-icon :title="$t('tooltip.emoji')">
+            <button btn-action-icon :title="$t('tooltip.emojis')" :aria-label="$t('tooltip.add_emojis')">
               <div i-ri:emotion-line />
             </button>
           </PublishEmojiPicker>

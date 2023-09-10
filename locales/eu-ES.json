@@ -87,7 +87,7 @@
     "activate": "Aktibatu",
     "complete": "Osatu",
     "compose_desc": "Idatzi bidalketa berria",
-    "n-people-in-the-past-n-days": "{0} pertsona azken {1} egunetan",
+    "n_people_in_the_past_n_days": "{0} pertsona azken {1} egunetan",
     "select_lang": "Hautatu hizkuntza",
     "sign_in_desc": "Gehitu dagoeneko existitzen den kontu bat",
     "switch_account": "Aldatu {0}(e)ra",
@@ -162,7 +162,7 @@
   },
   "error": {
     "account_not_found": "{0} kontua ez da aurkitu",
-    "explore-list-empty": "Ez dago joerarik une honetan. Zatoz geroago!",
+    "explore_list_empty": "Ez dago joerarik une honetan. Zatoz geroago!",
     "file_size_cannot_exceed_n_mb": "Fitxategien tamaina ezin da {0}MB baino handiagoa izan",
     "sign_in_error": "Ezin izan da zerbitzarira konektatu.",
     "status_not_found": "Ez da bidalketa aurkitu",
@@ -308,8 +308,7 @@
     "content_warning": "Idatzi oharra hemen",
     "default_1": "Zer duzu buruan?",
     "reply_to_account": "Erantzun {0}(r)i",
-    "replying": "Erantzuten",
-    "the_thread": "haria"
+    "replying": "Erantzuten"
   },
   "polls": {
     "allow_multiple": "Baimendu aukera anitzak",
@@ -546,7 +545,7 @@
       "label": "Saioa hasitako erabiltzaileak"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk beste aplikazioetako edukia partekatu ahal izateko konfiguratu daiteke; Elk zure gailuan instalatu eta saioa hasi behar duzu, besterik ez.",
     "hint": "Elk-ekin edukia partekatu nahi izatekotan, Elk instalatuta egon behar da eta saioa hasita.",
     "title": "Partekatu Elk-ekin"
@@ -572,7 +571,6 @@
     "edited": "Azken edizioa: {0}",
     "favourited_by": "Gogoko egin dute:",
     "filter_hidden_phrase": "Iragazia:",
-    "filter_removed_phrase": "Iragazki honek kendu du:",
     "filter_show_anyway": "Erakutsi edonola ere",
     "img_alt": {
       "ALT": "ALT",
@@ -585,7 +583,6 @@
       "ends": "epemuga: {0}",
       "finished": "amaiera: {0}"
     },
-    "reblogged": "{0}(e)k bultzatua",
     "replying_to": "{0}(r)i erantzunez",
     "show_full_thread": "Erakutsi hari osoa",
     "someone": "norbait",

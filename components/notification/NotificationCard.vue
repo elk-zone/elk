@@ -17,21 +17,22 @@ const { notification } = defineProps<{
           py-3 bg-base top-0
           :lang="notification.status?.language ?? undefined"
         >
-          <div i-ri:user-follow-fill me-1 color-primary />
+          <div i-ri-user-3-line text-xl me-3 color-blue />
           <AccountDisplayName :account="notification.account" text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all />
           <span ws-nowrap>
             {{ $t('notification.followed_you') }}
           </span>
         </div>
         <AccountBigCard
+          ms10
           :account="notification.account"
           :lang="notification.status?.language ?? undefined"
         />
       </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'admin.sign_up'">
-      <div flex p3 items-center bg-shaded>
-        <div i-ri:admin-fill me-1 color-purple />
+      <div flex p4 items-center bg-shaded>
+        <div i-ri:user-add-line text-xl me-2 color-purple />
         <AccountDisplayName
           :account="notification.account"
           text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
@@ -41,8 +42,8 @@ const { notification } = defineProps<{
     </template>
     <template v-else-if="notification.type === 'admin.report'">
       <NuxtLink :to="getReportRoute(notification.report?.id!)">
-        <div flex p3 items-center bg-shaded>
-          <div i-ri:flag-fill me-1 color-purple />
+        <div flex p4 items-center bg-shaded>
+          <div i-ri:flag-line text-xl me-2 color-purple />
           <i18n-t keypath="notification.reported">
             <AccountDisplayName
               :account="notification.account"
@@ -58,7 +59,7 @@ const { notification } = defineProps<{
     </template>
     <template v-else-if="notification.type === 'follow_request'">
       <div flex ms-4 items-center class="-top-2.5" absolute inset-ie-2 px-2>
-        <div i-ri:user-follow-fill text-xl me-1 />
+        <div i-ri:user-shared-fill text-xl me-1 />
         <AccountInlineInfo :account="notification.account" me1 />
       </div>
       <!-- TODO: accept request -->

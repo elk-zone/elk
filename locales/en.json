@@ -41,7 +41,8 @@
     "unfollow": "Unfollow",
     "unmute": "Unmute",
     "view_other_followers": "Followers from other instances may not be displayed.",
-    "view_other_following": "Following from other instances may not be displayed."
+    "view_other_following": "Following from other instances may not be displayed.",
+    "withdraw_follow_request": "Withdraw follow request"
   },
   "action": {
     "apply": "Apply",
@@ -87,7 +88,7 @@
     "activate": "Activate",
     "complete": "Complete",
     "compose_desc": "Write a new post",
-    "n-people-in-the-past-n-days": "{0} people in the past {1} days",
+    "n_people_in_the_past_n_days": "{0} people in the past {1} days",
     "select_lang": "Select language",
     "sign_in_desc": "Add an existing account",
     "switch_account": "Switch to {0}",
@@ -113,12 +114,12 @@
     "block_account": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "title": "Are you sure you want to block {0}？"
+      "title": "Are you sure you want to block {0}?"
     },
     "block_domain": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "title": "Are you sure you want to block {0}？"
+      "title": "Are you sure you want to block {0}?"
     },
     "common": {
       "cancel": "No",
@@ -137,12 +138,12 @@
     "mute_account": {
       "cancel": "Cancel",
       "confirm": "Mute",
-      "title": "Are you sure you want to mute {0}？"
+      "title": "Are you sure you want to mute {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancel",
       "confirm": "Show",
-      "title": "Are you sure you want to show boosts from {0}？"
+      "title": "Are you sure you want to show boosts from {0}?"
     },
     "unfollow": {
       "cancel": "Cancel",
@@ -162,7 +163,7 @@
   },
   "error": {
     "account_not_found": "Account {0} not found",
-    "explore-list-empty": "Nothing is trending right now. Check back later!",
+    "explore_list_empty": "Nothing is trending right now. Check back later!",
     "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
     "sign_in_error": "Cannot connect to the server.",
     "status_not_found": "Post not found",
@@ -171,7 +172,7 @@
   "help": {
     "build_preview": {
       "desc1": "You are currently viewing a preview version of Elk from the community - {0}.",
-      "desc2": "It may contains unreviewed or even malicious changes.",
+      "desc2": "It may contain unreviewed or even malicious changes.",
       "desc3": "Don't log in with your real account.",
       "title": "Preview deploy"
     },
@@ -220,8 +221,8 @@
       "navigation": {
         "go_to_home": "Home",
         "go_to_notifications": "Notifications",
-        "next_status": "Next status",
-        "previous_status": "Previous status",
+        "next_status": "Next post",
+        "previous_status": "Previous post",
         "shortcut_help": "Shortcut help",
         "title": "Navigation"
       }
@@ -246,6 +247,7 @@
     "pin_on_profile": "Pin on profile",
     "remove_personal_note": "Remove personal note from {0}",
     "report_account": "Report {0}",
+    "share_account": "Share {0}",
     "share_post": "Share this post",
     "show_favourited_and_boosted_by": "Show who favorited and boosted",
     "show_reblogs": "Show boosts from {0}",
@@ -308,8 +310,7 @@
     "content_warning": "Write your warning here",
     "default_1": "What is on your mind?",
     "reply_to_account": "Reply to {0}",
-    "replying": "Replying",
-    "the_thread": "the thread"
+    "replying": "Replying"
   },
   "polls": {
     "allow_multiple": "Allow multiple choice",
@@ -448,7 +449,7 @@
           "follow": "New followers",
           "mention": "Mentions",
           "poll": "Polls",
-          "reblog": "Reblog your post",
+          "reblog": "Boosts",
           "title": "What notifications to receive?"
         },
         "description": "Receive notifications even when you are not using Elk.",
@@ -546,7 +547,7 @@
       "label": "Logged in users"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk can be configured so that you can share content from other applications, simply install Elk on your device or computer and sign in.",
     "hint": "In order to share content with Elk, Elk must be installed and you must be signed in.",
     "title": "Share with Elk"
@@ -565,14 +566,13 @@
   },
   "status": {
     "account": {
-      "suspended_message": "The account of this status has been suspended.",
+      "suspended_message": "The account of this post has been suspended.",
       "suspended_show": "Show content anyways?"
     },
     "boosted_by": "Boosted By",
     "edited": "Edited {0}",
     "favourited_by": "Favorited By",
     "filter_hidden_phrase": "Filtered by",
-    "filter_removed_phrase": "Removed by filter",
     "filter_show_anyway": "Show anyway",
     "img_alt": {
       "ALT": "ALT",
@@ -585,7 +585,6 @@
       "ends": "ends {0}",
       "finished": "finished {0}"
     },
-    "reblogged": "{0} reblogged",
     "replying_to": "Replying to {0}",
     "show_full_thread": "Show Full thread",
     "someone": "someone",
@@ -606,8 +605,20 @@
     "list": "List",
     "media": "Media",
     "news": "News",
+    "notifications_admin": {
+      "report": "Report",
+      "sign_up": "Sign-Up"
+    },
     "notifications_all": "All",
+    "notifications_favourite": "Favourite",
+    "notifications_follow": "Follow",
+    "notifications_follow_request": "Follow request",
     "notifications_mention": "Mention",
+    "notifications_more_tooltip": "Filter notifications by type",
+    "notifications_poll": "Poll",
+    "notifications_reblog": "Boost",
+    "notifications_status": "Status",
+    "notifications_update": "Update",
     "posts": "Posts",
     "posts_with_replies": "Posts & Replies"
   },

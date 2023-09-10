@@ -64,7 +64,7 @@
     }
   },
   "error": {
-    "explore-list-empty": "Nada em tendência no momento. Confira mais tarde!",
+    "explore_list_empty": "Nada em tendência no momento. Confira mais tarde!",
     "file_size_cannot_exceed_n_mb": "O tamanho do arquivo não pode ser maior que {0}MB",
     "status_not_found": "Post não encontrado",
     "unsupported_file_format": "Formato de arquivo não suportado"
@@ -282,7 +282,7 @@
       "label": "Usuários conectados"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "O Elk pode ser configurado para que você possa compartilhar conteúdo de outros apps, basta instalar o Elk no seu dispositivo e entrar.",
     "hint": "Para compartilhar conteúdo com o Elk, o mesmo deve estar instalado e você deve estar conectado.",
     "title": "Compartilhar com Elk"

@@ -86,7 +86,7 @@
     "activate": "有効化",
     "complete": "完了する",
     "compose_desc": "新しい投稿を書く",
-    "n-people-in-the-past-n-days": "過去{1}日のユーザー数: {0}",
+    "n_people_in_the_past_n_days": "過去{1}日のユーザー数: {0}",
     "select_lang": "言語を選択する",
     "sign_in_desc": "既存のアカウントを追加する",
     "switch_account": "{0} に切り替える",
@@ -161,7 +161,7 @@
   },
   "error": {
     "account_not_found": "アカウント {0} が見つかりません",
-    "explore-list-empty": "現在トレンドには何もありません。あとで確認してください！",
+    "explore_list_empty": "現在トレンドには何もありません。あとで確認してください！",
     "file_size_cannot_exceed_n_mb": "ファイルサイズは{0}MBを超えてはいけません",
     "sign_in_error": "サーバーに接続できません。",
     "status_not_found": "投稿が見つかりません",
@@ -486,7 +486,7 @@
       "label": "ログインユーザー"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elkは他のアプリケーションからコンテンツを共有できるように設定されています。共有するには、Elkをデバイスやコンピューターにインストールしてサインインします。",
     "hint": "Elkでコンテンツを共有するには、Elkをインストールし、サインインする必要があります。",
     "title": "Elkで共有する"

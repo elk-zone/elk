@@ -53,7 +53,7 @@
     "activate": "Aktivovat",
     "complete": "Dokončit",
     "compose_desc": "Napsat příspěvek",
-    "n-people-in-the-past-n-days": "{0} lidí v posledních {1} dnech",
+    "n_people_in_the_past_n_days": "{0} lidí v posledních {1} dnech",
     "select_lang": "Vybrat jazyk",
     "sign_in_desc": "Přidat existující účet",
     "switch_account": "Přepnout na {0}",
@@ -72,7 +72,7 @@
   },
   "error": {
     "account_not_found": "Účet {0} nenalezen",
-    "explore-list-empty": "Momentálně tu není nic zajímavého. Zkuste to jindy.",
+    "explore_list_empty": "Momentálně tu není nic zajímavého. Zkuste to jindy.",
     "sign_in_error": "Nemohu se připojit k serveru.",
     "status_not_found": "Status nenalezen"
   },

@@ -87,7 +87,7 @@
     "activate": "Activar",
     "complete": "Completar",
     "compose_desc": "Escribir una nueva publicación",
-    "n-people-in-the-past-n-days": "{0} personas en los últimos {1} días",
+    "n_people_in_the_past_n_days": "{0} personas en los últimos {1} días",
     "select_lang": "Seleccionar idioma",
     "sign_in_desc": "Agregar una cuenta existente",
     "switch_account": "Cambiar a {0}",
@@ -162,7 +162,7 @@
   },
   "error": {
     "account_not_found": "No se encontró la cuenta {0}",
-    "explore-list-empty": "No hay tendencias en este momento. ¡Vuelve más tarde!",
+    "explore_list_empty": "No hay tendencias en este momento. ¡Vuelve más tarde!",
     "file_size_cannot_exceed_n_mb": "El tamaño del fichero no puede exceder los {0}MB",
     "sign_in_error": "No se pudo conectar con el servidor.",
     "status_not_found": "Publicación no encontrada",
@@ -545,7 +545,7 @@
       "label": "Usuarios conectados"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk puede ser configurado para que pueda compartir contenido desde otras aplicaciones, simplemente tiene que instalar Elk en su dispositivo u ordenador e iniciar sesión.",
     "hint": "Para poder compartir contenido con Elk, debes instalar Elk e iniciar sesión.",
     "title": "Compartir con Elk"

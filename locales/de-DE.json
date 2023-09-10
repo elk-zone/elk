@@ -86,7 +86,7 @@
     "activate": "Aktivieren",
     "complete": "Vollständig",
     "compose_desc": "Schreib einen neuen Beitrag",
-    "n-people-in-the-past-n-days": "{0} Personen in den vergangenen {1} Tagen",
+    "n_people_in_the_past_n_days": "{0} Personen in den vergangenen {1} Tagen",
     "select_lang": "Sprache auswählen",
     "sign_in_desc": "Bestehenden Account hinzufügen",
     "switch_account": "Zu {0} wechseln",
@@ -161,7 +161,7 @@
   },
   "error": {
     "account_not_found": "Account {0} nicht gefunden",
-    "explore-list-empty": "Momentan ist nichts in den Trends. Schau einfach später nochmal vorbei!",
+    "explore_list_empty": "Momentan ist nichts in den Trends. Schau einfach später nochmal vorbei!",
     "file_size_cannot_exceed_n_mb": "Die Dateigröße darf {0} MB nicht überschreiten",
     "sign_in_error": "Kann nicht mit Server verbinden",
     "status_not_found": "Beitrag nicht gefunden",
@@ -544,7 +544,7 @@
       "label": "Eingeloggte Benutzer"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk kann so konfiguriert werden, dass du Inhalte aus anderen Anwendungen teilen kannst, installiere einfach Elk auf deinem Gerät oder Computer und melden dich an.",
     "hint": "Um Inhalte mit Elk zu teilen, muss Elk installiert sein und du musst angemeldet sein.",
     "title": "Teile über Elk"

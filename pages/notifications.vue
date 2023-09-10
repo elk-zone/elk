@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
+import type { mastodon } from 'masto'
+import { NOTIFICATION_FILTER_TYPES } from '~/constants'
+import type {
+  CommonRouteTabMoreOption,
+  CommonRouteTabOption,
+} from '~/components/common/CommonRouteTabs.vue'
 
 definePageMeta({
   middleware: 'auth',
 })
 
+const route = useRoute()
 const { t } = useI18n()
 const pwaEnabled = useAppConfig().pwaEnabled
 
@@ -20,6 +26,47 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
     display: isHydrated.value ? t('tab.notifications_mention') : '',
   },
 ])
+
+const filter = $computed<mastodon.v1.NotificationType | undefined>(() => {
+  if (!isHydrated.value)
+    return undefined
+
+  const rawFilter = route.params?.filter
+  const actualFilter = Array.isArray(rawFilter) ? rawFilter[0] : rawFilter
+  if (isNotificationFilter(actualFilter))
+    return actualFilter
+})
+
+const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
+  'mention': 'i-ri:at-line',
+  'status': 'i-ri:account-pin-circle-line',
+  'reblog': 'i-ri:repeat-fill',
+  'follow': 'i-ri:user-follow-line',
+  'follow_request': 'i-ri:user-shared-line',
+  'favourite': 'i-ri:heart-3-line',
+  'poll': 'i-ri:chat-poll-line',
+  'update': 'i-ri:edit-2-line',
+  'admin.sign_up': 'i-ri:user-add-line',
+  'admin.report': 'i-ri:flag-line',
+}
+
+const filterText = $computed(() => (`${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}`))
+
+const notificationFilterRoutes = $computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
+  name => ({
+    name,
+    to: `/notifications/${name}`,
+    display: isHydrated.value ? t(`tab.notifications_${name}`) : '',
+    icon: filterIconMap[name],
+    match: name === filter,
+  }),
+))
+const moreOptions = $computed<CommonRouteTabMoreOption>(() => ({
+  options: notificationFilterRoutes,
+  icon: 'i-ri:filter-2-line',
+  tooltip: filterText,
+  match: !!filter,
+}))
 </script>
 
 <template>
@@ -27,7 +74,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
     <template #title>
       <NuxtLink to="/notifications" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:notification-4-line />
-        <span>{{ t('nav.notifications') }}</span>
+        <span>{{ isHydrated ? t('nav.notifications') : '' }}</span>
       </NuxtLink>
     </template>
 
@@ -35,7 +82,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
       <NuxtLink
         flex rounded-4 p1
         hover:bg-active cursor-pointer transition-100
-        :title="t('settings.notifications.show_btn')"
+        :title="isHydrated ? t('settings.notifications.show_btn') : ''"
         to="/settings/notifications"
       >
         <span aria-hidden="true" i-ri:notification-badge-line />
@@ -43,7 +90,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
     </template>
 
     <template #header>
-      <CommonRouteTabs replace :options="tabs" />
+      <CommonRouteTabs replace :options="tabs" :more-options="moreOptions" />
     </template>
 
     <slot>

@@ -84,28 +84,28 @@ function deletePollOption(index: number) {
   trimPollOptions()
 }
 
-const expiresInOptions = [
+const expiresInOptions = computed(() => [
   {
     seconds: 1 * 60 * 60,
-    label: t('time_ago_options.hour_future', 1),
+    label: isHydrated.value ? t('time_ago_options.hour_future', 1) : '',
   },
   {
     seconds: 2 * 60 * 60,
-    label: t('time_ago_options.hour_future', 2),
+    label: isHydrated.value ? t('time_ago_options.hour_future', 2) : '',
   },
   {
     seconds: 1 * 24 * 60 * 60,
-    label: t('time_ago_options.day_future', 1),
+    label: isHydrated.value ? t('time_ago_options.day_future', 1) : '',
   },
   {
     seconds: 2 * 24 * 60 * 60,
-    label: t('time_ago_options.day_future', 2),
+    label: isHydrated.value ? t('time_ago_options.day_future', 2) : '',
   },
   {
     seconds: 7 * 24 * 60 * 60,
-    label: t('time_ago_options.day_future', 7),
+    label: isHydrated.value ? t('time_ago_options.day_future', 7) : '',
   },
-]
+])
 
 const expiresInDefaultOptionIndex = 2
 
@@ -219,7 +219,7 @@ onDeactivated(() => {
     </template>
 
     <div flex gap-3 flex-1>
-      <NuxtLink :to="getAccountRoute(currentUser.account)">
+      <NuxtLink self-start :to="getAccountRoute(currentUser.account)">
         <AccountBigAvatar :account="currentUser.account" square />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->

@@ -28,6 +28,9 @@ function toggleDark() {
           @click="togglePreferences('zenMode')"
         />
       </CommonTooltip>
+      <CommonTooltip :content="$t('magic_keys.dialog_header')">
+        <button flex i-ri:keyboard-box-line dark-i-ri:keyboard-box-line text-lg :aria-label="$t('magic_keys.dialog_header')" @click="toggleKeyboardShortcuts" />
+      </CommonTooltip>
       <CommonTooltip :content="$t('settings.about.sponsor_action')">
         <NuxtLink
           flex

@@ -87,7 +87,7 @@
     "activate": "Kích hoạt",
     "complete": "Hoàn thành",
     "compose_desc": "Soạn tút mới",
-    "n-people-in-the-past-n-days": "{0} người trong {1} ngày gần đây",
+    "n_people_in_the_past_n_days": "{0} người trong {1} ngày gần đây",
     "select_lang": "Chọn ngôn ngữ",
     "sign_in_desc": "Thêm một tài khoản khác",
     "switch_account": "Chuyển sang {0}",
@@ -113,12 +113,12 @@
     "block_account": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-      "title": "Bạn có chắc muốn chặn {0}？"
+      "title": "Bạn có chắc muốn chặn {0}?"
     },
     "block_domain": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-      "title": "Bạn có chắc muốn chặn {0}？"
+      "title": "Bạn có chắc muốn chặn {0}?"
     },
     "common": {
       "cancel": "Không",
@@ -137,12 +137,12 @@
     "mute_account": {
       "cancel": "Hủy bỏ",
       "confirm": "Ẩn",
-      "title": "Bạn có chắc muốn ẩn {0}？"
+      "title": "Bạn có chắc muốn ẩn {0}?"
     },
     "show_reblogs": {
       "cancel": "Hủy bỏ",
       "confirm": "Hiện",
-      "title": "Bạn có chắc muốn hiện lượt đăng lại từ {0}？"
+      "title": "Bạn có chắc muốn hiện lượt đăng lại từ {0}?"
     },
     "unfollow": {
       "cancel": "Hủy bỏ",
@@ -162,7 +162,7 @@
   },
   "error": {
     "account_not_found": "Không tìm thấy {0}",
-    "explore-list-empty": "Chưa có xu hướng. Hãy quay lại sau!",
+    "explore_list_empty": "Chưa có xu hướng. Hãy quay lại sau!",
     "file_size_cannot_exceed_n_mb": "Dung lượng file tối đa {0}MB",
     "sign_in_error": "Không thể kết nối tới máy chủ.",
     "status_not_found": "Không tìm thấy tút",
@@ -308,8 +308,7 @@
     "content_warning": "Viết cảnh báo của bạn ở đây",
     "default_1": "Bạn đang nghĩ gì vậy?",
     "reply_to_account": "Trả lời {0}",
-    "replying": "Trả lời",
-    "the_thread": "thảo luận"
+    "replying": "Trả lời"
   },
   "polls": {
     "allow_multiple": "Cho phép chọn nhiều lựa chọn",
@@ -546,7 +545,7 @@
       "label": "Danh sách tài khoản"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk có thể cấu hình để bạn có thể chia sẻ nội dung từ các ứng dụng khác, chỉ cần cài đặt Elk trên thiết bị hoặc máy tính của bạn và đăng nhập.",
     "hint": "Để chia sẻ nội dung với Elk, Elk phải được cài đặt và bạn phải đăng nhập.",
     "title": "Chia sẻ với Elk"
@@ -572,7 +571,6 @@
     "edited": "Đã sửa {0}",
     "favourited_by": "Thích bởi",
     "filter_hidden_phrase": "Lọc theo",
-    "filter_removed_phrase": "Xóa theo bộ lọc",
     "filter_show_anyway": "Vẫn cứ hiện",
     "img_alt": {
       "ALT": "ALT",
@@ -585,7 +583,6 @@
       "ends": "kết thúc {0}",
       "finished": "hết hạn {0}"
     },
-    "reblogged": "{0} đăng lại",
     "replying_to": "Trả lời {0}",
     "show_full_thread": "Chuỗi thảo luận",
     "someone": "ai đó",

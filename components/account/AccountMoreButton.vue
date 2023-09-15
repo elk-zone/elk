@@ -181,6 +181,9 @@ async function removeUserNote() {
           <NuxtLink to="/favourites">
             <CommonDropdownItem :text="$t('account.favourites')" :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'" :command="command" />
           </NuxtLink>
+          <NuxtLink to="/followed_tags">
+            <CommonDropdownItem :text="$t('account.followed_tags')" icon="i-ri:hashtag" :command="command" />
+          </NuxtLink>
           <NuxtLink to="/mutes">
             <CommonDropdownItem :text="$t('account.muted_users')" icon="i-ri:volume-mute-line" :command="command" />
           </NuxtLink>

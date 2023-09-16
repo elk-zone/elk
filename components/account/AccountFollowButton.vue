@@ -86,7 +86,7 @@ const buttonStyle = $computed(() => {
       <span hidden elk-group-hover="inline">{{ $t('account.unmute') }}</span>
     </template>
     <template v-else-if="relationship ? relationship.following : context === 'following'">
-      <span elk-group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
+      <span elk-group-hover="hidden">{{ relationship?.followedBy ? $t('account.unfollow') : $t('account.following') }}</span>
       <span hidden elk-group-hover="inline">{{ $t('account.unfollow') }}</span>
     </template>
     <template v-else-if="relationship?.requested">
@@ -94,7 +94,7 @@ const buttonStyle = $computed(() => {
       <span hidden elk-group-hover="inline">{{ $t('account.withdraw_follow_request') }}</span>
     </template>
     <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
-      <span elk-group-hover="hidden">{{ $t('account.follows_you') }}</span>
+      <span elk-group-hover="hidden">{{ account.locked ? $t('account.request_follow') : $t('account.follow_back') }}</span>
       <span hidden elk-group-hover="inline">{{ account.locked ? $t('account.request_follow') : $t('account.follow_back') }}</span>
     </template>
     <template v-else>

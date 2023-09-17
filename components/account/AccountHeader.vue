@@ -170,11 +170,9 @@ const personalNoteMaxLength = 2000
             <AccountRolesIndicator v-if="account.roles?.length" :account="account" />
             <AccountLockIndicator v-if="account.locked" show-label />
             <AccountBotIndicator v-if="account.bot" show-label />
-          </div>
-          <div flex gap2 items-center flex-wrap>
-            <AccountHandle :account="account" overflow-unset line-clamp-unset />
             <AccountRelationshipIndicator :relationship="relationship" />
           </div>
+          <AccountHandle :account="account" overflow-unset line-clamp-unset />
         </div>
       </div>
       <label

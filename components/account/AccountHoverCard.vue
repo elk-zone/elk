@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { account } = defineProps<{
+const props = defineProps<{
   account: mastodon.v1.Account
 }>()
 
+const account = props.account
 const relationship = $(useRelationship(account))
 </script>
 

@@ -453,7 +453,7 @@
           "title": "Quali notifiche vuoi ricevere?"
         },
         "description": "Ricevi notifiche anche quando non stai utilizzando Elk.",
-        "instructions": "Ricordati di salvare le tue modifiche usando @:settings.notifications.push_notifications.save_settings button!",
+        "instructions": "Ricordati di salvare le tue modifiche usando il tasto @:settings.notifications.push_notifications.save_settings!",
         "label": "Impostazioni notifiche push",
         "policy": {
           "all": "Da chiunque",

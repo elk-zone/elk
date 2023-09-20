@@ -41,7 +41,8 @@
     "unfollow": "Smetti di seguire",
     "unmute": "Riattiva",
     "view_other_followers": "I seguaci di altre istanze non sono disponibili.",
-    "view_other_following": "I seguiti di altre istanze non sono disponibili."
+    "view_other_following": "I seguiti di altre istanze non sono disponibili.",
+    "withdraw_follow_request": "Ritira richiesta di seguire"
   },
   "action": {
     "apply": "Applica",
@@ -246,6 +247,7 @@
     "pin_on_profile": "Fissa in cima al profilo",
     "remove_personal_note": "Rimuovi nota personale da {0}",
     "report_account": "Segnala {0}",
+    "share_account": "Condividi {0}",
     "share_post": "Condividi questo post",
     "show_favourited_and_boosted_by": "Mostra chi ha apprezzato e potenziato",
     "show_reblogs": "Mostra potenziamenti da {0}",

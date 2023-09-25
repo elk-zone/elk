@@ -453,7 +453,7 @@
           "title": "Quali notifiche vuoi ricevere?"
         },
         "description": "Ricevi notifiche anche quando non stai utilizzando Elk.",
-        "instructions": "Ricordati di salvare le tue modifiche usando @:settings.notifications.push_notifications.save_settings button!",
+        "instructions": "Ricordati di salvare le tue modifiche usando il tasto @:settings.notifications.push_notifications.save_settings!",
         "label": "Impostazioni notifiche push",
         "policy": {
           "all": "Da chiunque",
@@ -605,8 +605,20 @@
     "list": "Lista",
     "media": "Media",
     "news": "Notizie",
-    "notifications_all": "Tutte",
-    "notifications_mention": "Menzioni",
+    "notifications_admin": {
+      "report": "Segnalazione",
+      "sign_up": "Iscrizione"
+    },
+    "notifications_all": "Tutti",
+    "notifications_favourite": "Apprezzamento",
+    "notifications_follow": "Nuovo seguace",
+    "notifications_follow_request": "Richiesta di seguire",
+    "notifications_mention": "Menzione",
+    "notifications_more_tooltip": "Filtra notifiche per tipo",
+    "notifications_poll": "Sondaggio",
+    "notifications_reblog": "Apprezzamento",
+    "notifications_status": "Stato",
+    "notifications_update": "Aggiornamento",
     "posts": "Post",
     "posts_with_replies": "Post e risposte"
   },

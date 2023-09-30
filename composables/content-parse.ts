@@ -4,6 +4,7 @@ import type { Node } from 'ultrahtml'
 import { DOCUMENT_NODE, ELEMENT_NODE, TEXT_NODE, h, parse, render } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { decode } from 'tiny-decode'
+import { VNode } from 'nuxt/dist/app/compat/capi'
 import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 export interface ContentParseOptions {
@@ -148,6 +149,24 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
     convertMentionLink: true,
   })
   return render(tree)
+}
+
+export function sanitizeEmbeddedIframe(html: string): Promise<string> {
+  const transforms: Transform[] = [
+    sanitize({
+      iframe: {
+        src: (src) => {
+          if (typeof src !== 'string')
+            return undefined
+
+          const url = new URL(src)
+          return url.protocol === 'https:' ? src : undefined
+        },
+      },
+    }),
+  ]
+
+  return render(transformSync(parse(html), transforms))
 }
 
 export function htmlToText(html: string) {

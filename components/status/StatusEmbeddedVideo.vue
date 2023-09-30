@@ -4,10 +4,12 @@ import type { mastodon } from 'masto'
 const { status } = defineProps<{
   status: mastodon.v1.Status
 }>()
+
+const sanitizedHtml = ref(await sanitizeEmbeddedIframe(status.card?.html || ''))
 </script>
 
 <template>
-  <div h-70 rounded-lg v-html="status.card?.html" />
+  <div v-if="sanitizedHtml" h-70 v-html="sanitizedHtml" />
 </template>
 
 <style>

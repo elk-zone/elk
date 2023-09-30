@@ -161,6 +161,7 @@ export function sanitizeEmbeddedIframe(html: string): Promise<string> {
           const url = new URL(src)
           return url.protocol === 'https:' ? src : undefined
         },
+        allowfullscreen: set('true'),
       },
     }),
   ]

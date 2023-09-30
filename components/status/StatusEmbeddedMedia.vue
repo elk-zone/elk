@@ -47,7 +47,7 @@ const card = ref(status.card)
           {{ card?.title }}
         </p>
         <p line-clamp-1>
-          Watching this video may reveal your IP address to others.
+          {{ $t('status.embedded_media.warning') }}
         </p>
       </NuxtLink>
       <div

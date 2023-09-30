@@ -60,7 +60,7 @@ const hideAllMedia = computed(
         :card="status.card"
         :small-picture-only="status.mediaAttachments?.length > 0"
       />
-      <div v-if="status.card?.html" v-html="status.card?.html" />
+      <StatusEmbeddedVideo v-if="status.card?.html" :status="status" />
       <StatusCard
         v-if="status.reblog"
         :status="status.reblog" border="~ rounded"

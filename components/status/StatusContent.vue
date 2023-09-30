@@ -56,10 +56,11 @@ const hideAllMedia = computed(
         :is-preview="isPreview"
       />
       <StatusPreviewCard
-        v-if="status.card"
+        v-if="status.card && !status.card.html"
         :card="status.card"
         :small-picture-only="status.mediaAttachments?.length > 0"
       />
+      <div v-if="status.card?.html" v-html="status.card?.html" />
       <StatusCard
         v-if="status.reblog"
         :status="status.reblog" border="~ rounded"

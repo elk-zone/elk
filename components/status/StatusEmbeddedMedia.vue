@@ -5,7 +5,8 @@ const { status } = defineProps<{
   status: mastodon.v1.Status
 }>()
 
-const sanitizedHtml = ref(await sanitizeEmbeddedIframe(status.card?.html || ''))
+const cardHtml = $computed(() => status.card?.html ?? '')
+const sanitizedHtml = ref(await sanitizeEmbeddedIframe(cardHtml))
 </script>
 
 <template>

@@ -571,9 +571,7 @@
     },
     "boosted_by": "Boosted By",
     "edited": "Edited {0}",
-    "embedded_media": {
-      "warning": "Playing this this may reveal your IP address to others."
-    },
+    "embedded_warning": "Playing this may reveal your IP address to others.",
     "favourited_by": "Favorited By",
     "filter_hidden_phrase": "Filtered by",
     "filter_show_anyway": "Show anyway",

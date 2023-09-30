@@ -7,13 +7,12 @@ const { status } = defineProps<{
 </script>
 
 <template>
-  <div h-100 v-html="status.card?.html" />
+  <div h-70 rounded-lg v-html="status.card?.html" />
 </template>
 
 <style>
 iframe {
     width: 100%;
     height: 100%;
-    border: none;
 }
 </style>

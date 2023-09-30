@@ -1,16 +1,21 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import { h } from 'vue'
 
 const { status } = defineProps<{
   status: mastodon.v1.Status
 }>()
 
-const cardHtml = $computed(() => status.card?.html ?? '')
-const sanitizedHtml = ref(await sanitizeEmbeddedIframe(cardHtml))
+const vnode = $computed(() => {
+  if (!status.card?.html)
+    return null
+  const node = sanitizeEmbeddedIframe(status.card?.html).children[0]
+  return nodeToVNode(node)
+})
 </script>
 
 <template>
-  <div v-if="sanitizedHtml" h-70 v-html="sanitizedHtml" />
+  <component :is="vnode" v-if="vnode" h-70 />
 </template>
 
 <style>

@@ -150,7 +150,7 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
   return render(tree)
 }
 
-export function sanitizeEmbeddedIframe(html: string): Promise<string> {
+export function sanitizeEmbeddedIframe(html: string): Node {
   const transforms: Transform[] = [
     sanitize({
       iframe: {
@@ -166,7 +166,7 @@ export function sanitizeEmbeddedIframe(html: string): Promise<string> {
     }),
   ]
 
-  return render(transformSync(parse(html), transforms))
+  return transformSync(parse(html), transforms)
 }
 
 export function htmlToText(html: string) {

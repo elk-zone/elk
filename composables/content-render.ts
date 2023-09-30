@@ -36,7 +36,7 @@ export function contentToVNode(
   return h(Fragment, (tree.children as Node[] || []).map(n => treeToVNode(n)))
 }
 
-function nodeToVNode(node: Node): VNode | string | null {
+export function nodeToVNode(node: Node): VNode | string | null {
   if (node.type === TEXT_NODE)
     return node.value
 

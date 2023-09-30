@@ -11,47 +11,83 @@ const vnode = $computed(() => {
   const node = sanitizeEmbeddedIframe(status.card?.html)?.children[0]
   return node ? nodeToVNode(node) : null
 })
-const toggle = ref(true)
+const overlayToggle = ref(true)
 const card = ref(status.card)
 </script>
 
 <template>
-  <div v-if="toggle">
+  <div
+    v-if="overlayToggle"
+    h-80
+    cursor-pointer
+    relative
+  >
     <div
-      w-full h-full
+      p-3
+      absolute
+      w-full
+      h-full
+      z-100
+      rounded-lg
+      style="background: linear-gradient(black, rgba(0,0,0,0.5), transparent, transparent, rgba(0,0,0,0.20))"
     >
+      <NuxtLink flex flex-col gap-1 hover:underline text-xs text-light font-light target="_blank" :href="card?.url">
+        <div flex gap-0.5>
+          <p flex-row line-clamp-1>
+            {{ card?.providerName }} • {{ card?.authorName }}
+          </p>
+          <span
+            flex-row
+            w-4 h-4
+            pointer-events-none
+            i-ri:arrow-right-up-line
+          />
+        </div>
+        <p font-bold line-clamp-1 text-size-base>
+          {{ card?.title }}
+        </p>
+        <p line-clamp-1>
+          Watching this video may reveal your IP address to others.
+        </p>
+      </NuxtLink>
       <div
-        rounded-full
-        absolute
-        bg-primary
-        opacity-80
-        cursor-pointer
-        @click="() => toggle = !toggle"
+        flex
+        h-50
+        mt-1
+        justify-center
+        flex-items-center
       >
-        <span
-          text-center
-          justify-center
-          items-center
-          text-white
-          hover:text-primary
-          flex flex-col
-          gap-3 h-30 w-30
-          pointer-events-none
-          i-ri:play-circle-line
-        />
+        <button
+          absolute
+          bg-primary
+          rounded-full
+          hover:bg-primary-active
+          @click.stop.prevent="() => overlayToggle = !overlayToggle"
+        >
+          <span
+            text-light
+            flex flex-col
+            gap-3
+            w-25 h-25
+            pointer-events-none
+            i-ri:play-circle-line
+          />
+        </button>
       </div>
-
-      <CommonBlurhash
-        v-if="card?.image"
-        :blurhash="card.blurhash"
-        :src="card.image"
-        w-full
-        max-h-70 object-cover rounded-lg
-      />
     </div>
+    <CommonBlurhash
+      v-if="card?.image"
+      :blurhash="card.blurhash"
+      :src="card.image"
+      w-full
+      h-full
+      object-cover
+      rounded-lg
+    />
   </div>
   <div v-else>
-    <component :is="vnode" v-if="vnode" rounded-lg h-70 />
+    <!-- this inserts the iframe -->
+    <component :is="vnode" v-if="vnode" rounded-lg h-80 />
   </div>
 </template>
 

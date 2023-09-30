@@ -9,8 +9,8 @@ const { status } = defineProps<{
 const vnode = $computed(() => {
   if (!status.card?.html)
     return null
-  const node = sanitizeEmbeddedIframe(status.card?.html).children[0]
-  return nodeToVNode(node)
+  const node = sanitizeEmbeddedIframe(status.card?.html)?.children[0]
+  return node ? nodeToVNode(node) : null
 })
 </script>
 

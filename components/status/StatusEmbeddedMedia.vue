@@ -68,7 +68,7 @@ const card = ref(status.card)
             text-light
             flex flex-col
             gap-3
-            w-25 h-25
+            w-27 h-27
             pointer-events-none
             i-ri:play-circle-line
           />

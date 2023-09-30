@@ -26,7 +26,7 @@ const hasSpoilerOrSensitiveMedia = $computed(() => spoilerTextPresent || (status
 const isSensitiveNonSpoiler = computed(() => status.sensitive && !status.spoilerText && !!status.mediaAttachments.length)
 const hideAllMedia = computed(
   () => {
-    return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && !!status.mediaAttachments.length) : false
+    return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && (!!status.mediaAttachments.length || !!status.card?.html)) : false
   },
 )
 </script>

@@ -62,8 +62,6 @@ const card = ref(status.card)
             absolute
             bg-primary
             rounded-full
-            opacity-90
-            hover:opacity-100
             hover:bg-primary-active
             box-shadow-outline
             @click.stop.prevent="() => overlayToggle = !overlayToggle"

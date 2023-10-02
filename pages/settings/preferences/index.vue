@@ -127,7 +127,6 @@ const userSettings = useUserSettings()
         {{ $t('settings.preferences.embedded_media_description') }}
       </template>
     </SettingsToggleItem>
-    <!--  -->
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalVirtualScroller')"
       @click="togglePreferences('experimentalVirtualScroller')"

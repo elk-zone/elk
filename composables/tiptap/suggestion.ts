@@ -11,7 +11,7 @@ import TiptapMentionList from '~/components/tiptap/TiptapMentionList.vue'
 import TiptapHashtagList from '~/components/tiptap/TiptapHashtagList.vue'
 import TiptapEmojiList from '~/components/tiptap/TiptapEmojiList.vue'
 
-export { Emoji }
+export type { Emoji }
 
 export type CustomEmoji = (mastodon.v1.CustomEmoji & { custom: true })
 export function isCustomEmoji(emoji: CustomEmoji | Emoji): emoji is CustomEmoji {

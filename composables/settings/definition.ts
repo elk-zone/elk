@@ -26,6 +26,7 @@ export interface PreferencesSettings {
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
+  experimentalEmbeddedMedia: boolean
 }
 
 export interface UserSettings {

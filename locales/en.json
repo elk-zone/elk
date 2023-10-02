@@ -494,6 +494,8 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "embedded_media": "Embedded Media Player",
+      "embedded_media_description": "Display an embedded player instead of the normal preview card when expanding shared media streaming links.",
       "enable_autoplay": "Enable Autoplay",
       "enable_data_saving": "Enable data saving",
       "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",

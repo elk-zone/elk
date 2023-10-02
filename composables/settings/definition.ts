@@ -79,6 +79,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,
+  experimentalEmbeddedMedia: false,
 }
 
 export function getDefaultUserSettings(locales: string[]): UserSettings {

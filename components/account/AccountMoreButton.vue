@@ -53,7 +53,7 @@ async function removeUserNote() {
 <template>
   <CommonDropdown :eager-mount="command">
     <button flex gap-1 items-center w-full rounded op75 hover="op100 text-primary" group aria-label="More actions">
-      <div rounded-5 p2 elk-group-hover="bg-primary-light">
+      <div rounded-5 p2 elk-group-hover="bg-primary-fade">
         <div i-ri:more-2-fill />
       </div>
     </button>

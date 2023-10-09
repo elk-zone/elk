@@ -41,7 +41,8 @@
     "unfollow": "Ne plus suivre",
     "unmute": "Réafficher",
     "view_other_followers": "Les comptes abonnés d'autres instances peuvent ne pas être affichés.",
-    "view_other_following": "Les comptes suivis d'autres instances peuvent ne pas être affichés."
+    "view_other_following": "Les comptes suivis d'autres instances peuvent ne pas être affichés.",
+    "withdraw_follow_request": "Retirer la demande de suivi"
   },
   "action": {
     "apply": "Appliquer",
@@ -51,6 +52,7 @@
     "boost_count": "{0}",
     "boosted": "Partagé",
     "clear_publish_failed": "Effacer les erreurs de publication",
+    "clear_save_failed": "Effacer les erreurs de sauvegarde",
     "clear_upload_failed": "Effacer les erreurs de téléversement de fichier",
     "close": "Fermer",
     "compose": "Composer",
@@ -246,6 +248,7 @@
     "pin_on_profile": "Épingler sur le profil",
     "remove_personal_note": "Retirer la note personnelle de {0}",
     "report_account": "Signaler {0}",
+    "share_account": "Partager {0}",
     "share_post": "Partager ce message",
     "show_favourited_and_boosted_by": "Montrer qui a aimé et partagé",
     "show_reblogs": "Voir les partages de {0}",
@@ -426,6 +429,7 @@
     "language": {
       "display_language": "Langue d'affichage",
       "label": "Langue",
+      "post_language": "Langue de publication",
       "status": "État de la traduction : {0}/{1} ({2} %)",
       "translations": {
         "add": "Ajouter",
@@ -544,6 +548,9 @@
       "label": "Comptes connectés"
     }
   },
+  "share-target": {
+    "title": ""
+  },
   "share_target": {
     "description": "Elk peut être configuré pour que vous puissiez partager du contenu à partir d'autres applications, installez simplement Elk sur votre appareil ou ordinateur et connectez-vous.",
     "hint": "Pour partager du contenu avec Elk, Elk doit être installé et vous devez être connecté.",
@@ -557,6 +564,7 @@
     "loading": "Chargement...",
     "publish_failed": "La publication a échoué",
     "publishing": "Envoi",
+    "save_failed": "Échec de la sauvegarde",
     "upload_failed": "Le téléversement a échoué",
     "uploading": "Téléversement en cours..."
   },
@@ -602,8 +610,20 @@
     "list": "Liste",
     "media": "Média",
     "news": "Actualités",
+    "notifications_admin": {
+      "report": "Signaler",
+      "sign_up": "S'inscrire"
+    },
     "notifications_all": "Tout",
+    "notifications_favourite": "f",
+    "notifications_follow": "Suivre",
+    "notifications_follow_request": "Demande de suivi",
     "notifications_mention": "Mentions",
+    "notifications_more_tooltip": "Filtrer les notifications par type",
+    "notifications_poll": "Sondage",
+    "notifications_reblog": "Partager",
+    "notifications_status": "Statut",
+    "notifications_update": "Mise à jour",
     "posts": "Messages",
     "posts_with_replies": "Messages et réponses"
   },

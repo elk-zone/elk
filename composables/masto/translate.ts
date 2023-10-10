@@ -1,13 +1,5 @@
 import type { mastodon } from 'masto'
 
-export interface TranslationResponse {
-  translatedText: string
-  detectedLanguage: {
-    confidence: number
-    language: string
-  }
-}
-
 // @see https://github.com/LibreTranslate/LibreTranslate/tree/main/libretranslate/locales
 export const supportedTranslationCodes = [
   'ar',
@@ -57,8 +49,8 @@ interface TranslationErr {
     error?: string
   }
 }
-
-export async function translateText(text: string, from: string | null | undefined, to: string) {
+ 
+export async function translateText(id: string, from: string | null | undefined, to: string) {
   const config = useRuntimeConfig()
   const status = $ref({
     success: false,
@@ -66,26 +58,13 @@ export async function translateText(text: string, from: string | null | undefine
     text: '',
   })
   try {
-    const response = await ($fetch as any)(config.public.translateApi, {
-      method: 'POST',
-      body: {
-        q: text,
-        source: from ?? 'auto',
-        target: to,
-        format: 'html',
-        api_key: '',
-      },
-    }) as TranslationResponse
+    const { client } = $(useMasto())
+    const response = await client.v1.statuses.translate(id)
     status.success = true
-    status.text = response.translatedText
+    status.text = response.content
   }
   catch (err) {
-    // TODO: improve type
-    if ((err as TranslationErr).data?.error)
-      status.error = (err as TranslationErr).data!.error!
-    else
-      status.error = 'Unknown Error, Please check your console in browser devtool.'
-    console.error('Translate Post Error: ', err)
+    status.error = response.error
   }
   return status
 }
@@ -110,7 +89,7 @@ export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEd
       return
 
     if (!translation.text) {
-      const { success, text, error } = await translateText(status.content, status.language, to)
+      const { success, text, error } = await translateText(status.id, status.language, to)
       translation.error = error
       translation.text = text
       translation.success = success

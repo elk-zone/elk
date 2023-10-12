@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@unlazy/nuxt',
     'nuxt-vitest',
-    // ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
+    ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/emoji-mart-translation',
     '~/modules/purge-comments',
     '~/modules/build-env',
@@ -228,7 +228,7 @@ export default defineNuxtConfig({
   },
   // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
   // @ts-ignore nuxt-security is conditional
-  /* security: {
+  security: {
     headers: {
       crossOriginEmbedderPolicy: false,
       contentSecurityPolicy: {
@@ -239,6 +239,7 @@ export default defineNuxtConfig({
         'form-action': ['\'none\''],
         'frame-ancestors': ['\'none\''],
         'img-src': ['\'self\'', 'https:', 'http:', 'data:', 'blob:'],
+        'manifest-src': ['\'self\''],
         'media-src': ['\'self\'', 'https:', 'http:'],
         'object-src': ['\'none\''],
         'script-src': ['\'self\'', '\'unsafe-inline\'', '\'wasm-unsafe-eval\''],
@@ -251,7 +252,7 @@ export default defineNuxtConfig({
       },
     },
     rateLimiter: false,
-  }, */
+  },
   colorMode: { classSuffix: '' },
   i18n,
   pwa,

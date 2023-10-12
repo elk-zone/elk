@@ -135,6 +135,7 @@
   },
   "pnpm": {
     "overrides": {
+      "@nuxt/schema": "3.7.4",
       "unstorage": "^1.9.0"
     },
     "patchedDependencies": {

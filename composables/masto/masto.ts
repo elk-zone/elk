@@ -1,6 +1,6 @@
 import type { Pausable } from '@vueuse/core'
 import type { CreateClientParams, WsEvents, mastodon } from 'masto'
-import { createClient, fetchV1Instance } from 'masto'
+import { createClient, fetchV1Instance, fetchV2Instance } from 'masto'
 import type { Ref } from 'vue'
 import type { ElkInstance } from '../users'
 import type { Mutable } from '~/types/utils'
@@ -52,6 +52,15 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
       streamingApiUrl: newInstance.urls.streamingApi,
     })
     instanceStorage.value[server] = newInstance
+
+    try {
+      fetchV2Instance({ url }).then((newInstance) => {
+        instanceStorage.value[server].configuration.translationEnabled = newInstance.configuration.translation.enabled
+      })
+    }
+    catch(err) {
+      //
+    }
   })
 
   return instance

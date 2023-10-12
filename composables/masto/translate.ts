@@ -58,35 +58,48 @@ interface TranslationErr {
   }
 }
 
-export async function translateText(text: string, from: string | null | undefined, to: string) {
+export async function translateText(input: mastodon.v1.Status, from: string | null | undefined, to: string) {
   const config = useRuntimeConfig()
   const status = $ref({
     success: false,
     error: '',
     text: '',
   })
-  try {
-    const response = await ($fetch as any)(config.public.translateApi, {
-      method: 'POST',
-      body: {
-        q: text,
-        source: from ?? 'auto',
-        target: to,
-        format: 'html',
-        api_key: '',
-      },
-    }) as TranslationResponse
-    status.success = true
-    status.text = response.translatedText
+  if (currentInstance.value.configuration?.translationEnabled) {
+    try {
+      const { client } = $(useMasto())
+      const response = await client.v1.statuses.translate(input.id)
+      status.success = true
+      status.text = response.content
+    }
+    catch (err) {
+      status.error = response.error
+    }
+  } else {
+    try {
+      const response = await ($fetch as any)(config.public.translateApi, {
+        method: 'POST',
+        body: {
+          q: input.content,
+          source: from ?? 'auto',
+          target: to,
+          format: 'html',
+          api_key: '',
+        },
+      }) as TranslationResponse
+      status.success = true
+      status.text = response.translatedText
+    }
+    catch (err) {
+      // TODO: improve type
+      if ((err as TranslationErr).data?.error)
+        status.error = (err as TranslationErr).data!.error!
+      else
+        status.error = 'Unknown Error, Please check your console in browser devtool.'
+      console.error('Translate Post Error: ', err)
+    }
   }
-  catch (err) {
-    // TODO: improve type
-    if ((err as TranslationErr).data?.error)
-      status.error = (err as TranslationErr).data!.error!
-    else
-      status.error = 'Unknown Error, Please check your console in browser devtool.'
-    console.error('Translate Post Error: ', err)
-  }
+  
   return status
 }
 
@@ -110,7 +123,7 @@ export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEd
       return
 
     if (!translation.text) {
-      const { success, text, error } = await translateText(status.content, status.language, to)
+      const { success, text, error } = await translateText(status, status.language, to)
       translation.error = error
       translation.text = text
       translation.success = success

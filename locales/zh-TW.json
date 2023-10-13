@@ -83,7 +83,7 @@
     "activate": "執行",
     "complete": "完成",
     "compose_desc": "寫一條新貼文",
-    "n-people-in-the-past-n-days": "{0} 人在過去 {1} 天",
+    "n_people_in_the_past_n_days": "{0} 人在過去 {1} 天",
     "select_lang": "選擇語言",
     "sign_in_desc": "加入現有帳號",
     "switch_account": "切換到 {0}",
@@ -151,7 +151,7 @@
   },
   "error": {
     "account_not_found": "未找到使用者 {0}",
-    "explore-list-empty": "目前沒有熱門話題，稍後再來看看吧！",
+    "explore_list_empty": "目前沒有熱門話題，稍後再來看看吧！",
     "file_size_cannot_exceed_n_mb": "檔案大小不能超過 {0} MB",
     "sign_in_error": "無法連接伺服器",
     "status_not_found": "未找到貼文",
@@ -435,7 +435,7 @@
       "label": "當前使用者"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "如果你想分享其他應用程式上的內容到鹿鳴。請在你的行動裝置裝置或電腦上安裝鹿鳴並登入。",
     "hint": "為了將內容分享到鹿鳴，你需要安裝鹿鳴並且登入。",
     "title": "分享到鹿鳴"

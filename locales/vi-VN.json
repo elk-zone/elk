@@ -41,7 +41,8 @@
     "unfollow": "Bỏ theo dõi",
     "unmute": "Bỏ ẩn",
     "view_other_followers": "Người theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
-    "view_other_following": "Người đang theo dõi từ các máy chủ khác có thể không hiển thị đủ."
+    "view_other_following": "Người đang theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
+    "withdraw_follow_request": "Rút lại yêu cầu theo dõi"
   },
   "action": {
     "apply": "Áp dụng",
@@ -87,7 +88,7 @@
     "activate": "Kích hoạt",
     "complete": "Hoàn thành",
     "compose_desc": "Soạn tút mới",
-    "n-people-in-the-past-n-days": "{0} người trong {1} ngày gần đây",
+    "n_people_in_the_past_n_days": "{0} người trong {1} ngày gần đây",
     "select_lang": "Chọn ngôn ngữ",
     "sign_in_desc": "Thêm một tài khoản khác",
     "switch_account": "Chuyển sang {0}",
@@ -162,7 +163,7 @@
   },
   "error": {
     "account_not_found": "Không tìm thấy {0}",
-    "explore-list-empty": "Chưa có xu hướng. Hãy quay lại sau!",
+    "explore_list_empty": "Chưa có xu hướng. Hãy quay lại sau!",
     "file_size_cannot_exceed_n_mb": "Dung lượng file tối đa {0}MB",
     "sign_in_error": "Không thể kết nối tới máy chủ.",
     "status_not_found": "Không tìm thấy tút",
@@ -246,6 +247,7 @@
     "pin_on_profile": "Ghim lên đầu",
     "remove_personal_note": "Xóa ghi chú về {0}",
     "report_account": "Báo cáo {0}",
+    "share_account": "Chia sẻ {0}",
     "share_post": "Chia sẻ tút",
     "show_favourited_and_boosted_by": "Hiện lượt thích và đăng lại",
     "show_reblogs": "Hiện đăng lại từ {0}",
@@ -545,7 +547,7 @@
       "label": "Danh sách tài khoản"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk có thể cấu hình để bạn có thể chia sẻ nội dung từ các ứng dụng khác, chỉ cần cài đặt Elk trên thiết bị hoặc máy tính của bạn và đăng nhập.",
     "hint": "Để chia sẻ nội dung với Elk, Elk phải được cài đặt và bạn phải đăng nhập.",
     "title": "Chia sẻ với Elk"
@@ -603,8 +605,20 @@
     "list": "Danh sách",
     "media": "Media",
     "news": "Tin tức",
+    "notifications_admin": {
+      "report": "Báo cáo",
+      "sign_up": "Đăng ký"
+    },
     "notifications_all": "Toàn bộ",
+    "notifications_favourite": "Lượt thích",
+    "notifications_follow": "Theo dõi",
+    "notifications_follow_request": "Yêu cầu theo dõi",
     "notifications_mention": "Lượt nhắc",
+    "notifications_more_tooltip": "Lọc loại thông báo",
+    "notifications_poll": "Bình chọn",
+    "notifications_reblog": "Đăng lại",
+    "notifications_status": "Tút mới",
+    "notifications_update": "Sửa tút",
     "posts": "Tút",
     "posts_with_replies": "Lượt trả lời"
   },

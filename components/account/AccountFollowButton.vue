@@ -91,7 +91,7 @@ const buttonStyle = $computed(() => {
     </template>
     <template v-else-if="relationship?.requested">
       <span elk-group-hover="hidden">{{ $t('account.follow_requested') }}</span>
-      <span hidden elk-group-hover="inline">Withdraw follow request</span>
+      <span hidden elk-group-hover="inline">{{ $t('account.withdraw_follow_request') }}</span>
     </template>
     <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
       <span elk-group-hover="hidden">{{ $t('account.follows_you') }}</span>

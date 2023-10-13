@@ -20,7 +20,7 @@
     "followers": "Seguaci",
     "followers_count": "{0} seguaci|{0} seguace|{0} seguaci",
     "following": "Segui già",
-    "following_count": "{0} Seguiti",
+    "following_count": "{0} seguiti",
     "follows_you": "Ti segue",
     "go_to_profile": "Vai al profilo",
     "joined": "Iscritto",
@@ -41,7 +41,8 @@
     "unfollow": "Smetti di seguire",
     "unmute": "Riattiva",
     "view_other_followers": "I seguaci di altre istanze non sono disponibili.",
-    "view_other_following": "I seguiti di altre istanze non sono disponibili."
+    "view_other_following": "I seguiti di altre istanze non sono disponibili.",
+    "withdraw_follow_request": "Ritira richiesta di seguire"
   },
   "action": {
     "apply": "Applica",
@@ -50,8 +51,9 @@
     "boost": "Potenzia",
     "boost_count": "{0}",
     "boosted": "Potenziato",
-    "clear_publish_failed": "Ignora errori di pubblicazione",
-    "clear_upload_failed": "Ignora errori di caricamento file",
+    "clear_publish_failed": "Cancella errori di pubblicazione",
+    "clear_save_failed": "Cancella errori di salvataggio",
+    "clear_upload_failed": "Cancella errori di caricamento file",
     "close": "Chiudi",
     "compose": "Componi",
     "confirm": "Conferma",
@@ -86,7 +88,7 @@
     "activate": "Attiva",
     "complete": "Completa",
     "compose_desc": "Componi un nuovo post",
-    "n-people-in-the-past-n-days": "{0} persone negli ultimi {1} giorni",
+    "n_people_in_the_past_n_days": "{0} persone negli ultimi {1} giorni",
     "select_lang": "Scegli lingua",
     "sign_in_desc": "Aggiungi account esistente",
     "switch_account": "Passa a {0}",
@@ -112,12 +114,12 @@
     "block_account": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}？"
+      "title": "Confermi di voler bloccare {0}?"
     },
     "block_domain": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}？"
+      "title": "Confermi di voler bloccare {0}?"
     },
     "common": {
       "cancel": "Annulla",
@@ -136,12 +138,12 @@
     "mute_account": {
       "cancel": "Annulla",
       "confirm": "Silenzia",
-      "title": "Confermi di voler silenziare {0}？"
+      "title": "Confermi di voler silenziare {0}?"
     },
     "show_reblogs": {
       "cancel": "Annulla",
       "confirm": "Mostra",
-      "title": "Confermi di voler mostrare i post potenziati da {0}？"
+      "title": "Confermi di voler mostrare i post potenziati da {0}?"
     },
     "unfollow": {
       "cancel": "Annulla",
@@ -161,7 +163,7 @@
   },
   "error": {
     "account_not_found": "Account {0} non trovato",
-    "explore-list-empty": "Non c'è niente in tendenza al momento. Torna più tardi!",
+    "explore_list_empty": "Non c'è niente in tendenza al momento. Torna più tardi!",
     "file_size_cannot_exceed_n_mb": "La dimensione del file non può superare {0}MB",
     "sign_in_error": "Impossibile connettersi al server.",
     "status_not_found": "Post non trovato",
@@ -245,6 +247,7 @@
     "pin_on_profile": "Fissa in cima al profilo",
     "remove_personal_note": "Rimuovi nota personale da {0}",
     "report_account": "Segnala {0}",
+    "share_account": "Condividi {0}",
     "share_post": "Condividi questo post",
     "show_favourited_and_boosted_by": "Mostra chi ha apprezzato e potenziato",
     "show_reblogs": "Mostra potenziamenti da {0}",
@@ -307,8 +310,7 @@
     "content_warning": "Scrivi il tuo avviso qui",
     "default_1": "A cosa stai pensando?",
     "reply_to_account": "Rispondi a {0}",
-    "replying": "Rispondi",
-    "the_thread": "la discussione"
+    "replying": "Rispondi"
   },
   "polls": {
     "allow_multiple": "Consenti risposte multiple",
@@ -426,6 +428,7 @@
     "language": {
       "display_language": "Lingua interfaccia",
       "label": "Lingua",
+      "post_language": "Lingua di pubblicazione",
       "status": "Stato traduzione: {0}/{1} ({2}%)",
       "translations": {
         "add": "Aggiungi",
@@ -450,7 +453,7 @@
           "title": "Quali notifiche vuoi ricevere?"
         },
         "description": "Ricevi notifiche anche quando non stai utilizzando Elk.",
-        "instructions": "Ricordati di salvare le tue modifiche usando @:settings.notifications.push_notifications.save_settings button!",
+        "instructions": "Ricordati di salvare le tue modifiche usando il tasto @:settings.notifications.push_notifications.save_settings!",
         "label": "Impostazioni notifiche push",
         "policy": {
           "all": "Da chiunque",
@@ -544,7 +547,7 @@
       "label": "Utenti connessi"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk può essere configurato in modo da poter condividere contenuti da altre app, ti basta installare Elk sul tuo dispositivo o computer e accedere.",
     "hint": "Per poter condividere contenuti con Elk, Elk deve essere installato e devi aver effettuato l'accesso.",
     "title": "Condividi con Elk"
@@ -557,6 +560,7 @@
     "loading": "Carico...",
     "publish_failed": "Pubblicazione fallita",
     "publishing": "Pubblico",
+    "save_failed": "Salvataggio fallito",
     "upload_failed": "Caricamento fallito",
     "uploading": "Caricamento in corso..."
   },
@@ -569,7 +573,6 @@
     "edited": "Modificato {0}",
     "favourited_by": "Apprezzato da",
     "filter_hidden_phrase": "Filtrato da",
-    "filter_removed_phrase": "Rimosso dal filtro",
     "filter_show_anyway": "Mostra comunque",
     "img_alt": {
       "ALT": "ALT",
@@ -582,7 +585,6 @@
       "ends": "termina {0}",
       "finished": "terminato {0}"
     },
-    "reblogged": "{0} hanno potenziato",
     "replying_to": "In risposta a {0}",
     "show_full_thread": "Mostra discussione",
     "someone": "qualcuno",
@@ -603,8 +605,20 @@
     "list": "Lista",
     "media": "Media",
     "news": "Notizie",
-    "notifications_all": "Tutte",
-    "notifications_mention": "Menzioni",
+    "notifications_admin": {
+      "report": "Segnalazione",
+      "sign_up": "Iscrizione"
+    },
+    "notifications_all": "Tutti",
+    "notifications_favourite": "Apprezzamento",
+    "notifications_follow": "Nuovo seguace",
+    "notifications_follow_request": "Richiesta di seguire",
+    "notifications_mention": "Menzione",
+    "notifications_more_tooltip": "Filtra notifiche per tipo",
+    "notifications_poll": "Sondaggio",
+    "notifications_reblog": "Apprezzamento",
+    "notifications_status": "Stato",
+    "notifications_update": "Aggiornamento",
     "posts": "Post",
     "posts_with_replies": "Post e risposte"
   },

@@ -37,7 +37,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
     p="b-2 is-3 ie-4"
     :class="{ 'hover:bg-active': hover }"
     tabindex="0"
-    focus:outline-none focus-visible:ring="2 primary"
+    focus:outline-none focus-visible:ring="2 primary inset"
     aria-roledescription="status-card"
     :lang="status.language ?? undefined"
     @click="onclick"

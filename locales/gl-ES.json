@@ -84,7 +84,7 @@
     "activate": "Activar",
     "complete": "Completar",
     "compose_desc": "Escribir nova publicación",
-    "n-people-in-the-past-n-days": "{0} persoas nos últimos {1} días",
+    "n_people_in_the_past_n_days": "{0} persoas nos últimos {1} días",
     "select_lang": "Elixe idioma",
     "sign_in_desc": "Engadir unha conta existente",
     "switch_account": "Cambiar a {0}",
@@ -108,12 +108,12 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tes certeza de querer bloquear a {0}？"
+      "title": "Tes certeza de querer bloquear a {0}?"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tes certeza de querer bloquear {0}？"
+      "title": "Tes certeza de querer bloquear {0}?"
     },
     "common": {
       "cancel": "Non",
@@ -132,12 +132,12 @@
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Acalar",
-      "title": "Tes certeza de querer acalar a {0}？"
+      "title": "Tes certeza de querer acalar a {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "Tes certeza de querer mostrar as promocións de {0}？"
+      "title": "Tes certeza de querer mostrar as promocións de {0}?"
     },
     "unfollow": {
       "cancel": "Cancelar",
@@ -157,7 +157,7 @@
   },
   "error": {
     "account_not_found": "Non se atopa a conta {0}",
-    "explore-list-empty": "Non hai tendencias agora. Mira máis tarde!",
+    "explore_list_empty": "Non hai tendencias agora. Mira máis tarde!",
     "file_size_cannot_exceed_n_mb": "O ficheiro non pode superar os {0}MB",
     "sign_in_error": "Non se conectou co servidor.",
     "status_not_found": "Non se atopa a publicación",
@@ -299,8 +299,7 @@
     "content_warning": "Escribe aquí o aviso",
     "default_1": "En que estás a pensar?",
     "reply_to_account": "Responder a {0}",
-    "replying": "Responde aquí",
-    "the_thread": "a conversa"
+    "replying": "Responde aquí"
   },
   "pwa": {
     "dismiss": "Desbotar",
@@ -477,7 +476,7 @@
       "label": "Contas conectadas"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Podes configurar Elk para compartir contido desde outras aplicacións, simplemente instala Elk no teu dispositivo ou computadora e inicia sesión.",
     "hint": "Para poder compartir usando Elk, debes instalar Elk e iniciar sesión.",
     "title": "Compartir con Elk"
@@ -498,7 +497,6 @@
     "edited": "Editada por {0}",
     "favourited_by": "Favorecida por",
     "filter_hidden_phrase": "Filtrada por",
-    "filter_removed_phrase": "Eliminada polo filtro",
     "filter_show_anyway": "Mostrar igualmente",
     "img_alt": {
       "ALT": "Texto Alt",
@@ -511,7 +509,6 @@
       "ends": "remata en {0}",
       "finished": "rematou o {0}"
     },
-    "reblogged": "Promovida por {0}",
     "replying_to": "En resposta a {0}",
     "show_full_thread": "Mostrar conversa completa",
     "someone": "alguén",

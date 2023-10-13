@@ -78,7 +78,7 @@ export async function translateText(text: string, from: string | null | undefine
       },
     }) as TranslationResponse
     status.success = true
-    // reaplace the translated links with the original
+    // replace the translated links with the original
     status.text = response.translatedText.replace(regex, (match) => {
       const tagLink = regex.exec(text)
       return tagLink ? tagLink[0] : match

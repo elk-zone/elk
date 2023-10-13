@@ -88,7 +88,7 @@
     "activate": "Activate",
     "complete": "Complete",
     "compose_desc": "Write a new post",
-    "n-people-in-the-past-n-days": "{0} people in the past {1} days",
+    "n_people_in_the_past_n_days": "{0} people in the past {1} days",
     "select_lang": "Select language",
     "sign_in_desc": "Add an existing account",
     "switch_account": "Switch to {0}",
@@ -163,7 +163,7 @@
   },
   "error": {
     "account_not_found": "Account {0} not found",
-    "explore-list-empty": "Nothing is trending right now. Check back later!",
+    "explore_list_empty": "Nothing is trending right now. Check back later!",
     "file_size_cannot_exceed_n_mb": "File size cannot exceed {0}MB",
     "sign_in_error": "Cannot connect to the server.",
     "status_not_found": "Post not found",
@@ -547,7 +547,7 @@
       "label": "Logged in users"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk can be configured so that you can share content from other applications, simply install Elk on your device or computer and sign in.",
     "hint": "In order to share content with Elk, Elk must be installed and you must be signed in.",
     "title": "Share with Elk"
@@ -605,8 +605,20 @@
     "list": "List",
     "media": "Media",
     "news": "News",
+    "notifications_admin": {
+      "report": "Report",
+      "sign_up": "Sign-Up"
+    },
     "notifications_all": "All",
+    "notifications_favourite": "Favourite",
+    "notifications_follow": "Follow",
+    "notifications_follow_request": "Follow request",
     "notifications_mention": "Mention",
+    "notifications_more_tooltip": "Filter notifications by type",
+    "notifications_poll": "Poll",
+    "notifications_reblog": "Boost",
+    "notifications_status": "Status",
+    "notifications_update": "Update",
     "posts": "Posts",
     "posts_with_replies": "Posts & Replies"
   },

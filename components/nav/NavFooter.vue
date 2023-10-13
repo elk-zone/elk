@@ -95,10 +95,5 @@ function toggleDark() {
         GitHub
       </NuxtLink>
     </div>
-    <div>
-      <button hover:underline @click="toggleKeyboardShortcuts">
-        {{ $t('magic_keys.dialog_header') }}
-      </button>
-    </div>
   </footer>
 </template>

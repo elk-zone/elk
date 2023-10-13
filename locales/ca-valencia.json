@@ -42,7 +42,7 @@
   },
   "command": {
     "activate": "Activa",
-    "n-people-in-the-past-n-days": "{0} persones en els últims {1} dies",
+    "n_people_in_the_past_n_days": "{0} persones en els últims {1} dies",
     "select_lang": "Selecciona una llengua",
     "sign_in_desc": "Afig un compte existent",
     "toggle_dark_mode": "Activa el mode fosc",
@@ -97,7 +97,7 @@
     }
   },
   "error": {
-    "explore-list-empty": "No hi ha res en tendències. Comprova-ho més tard!",
+    "explore_list_empty": "No hi ha res en tendències. Comprova-ho més tard!",
     "file_size_cannot_exceed_n_mb": "El fitxer no pot superar els {0} MB",
     "unsupported_file_format": "Format del fitxer no compatible"
   },
@@ -300,7 +300,7 @@
       "label": "Usuaris iniciats"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk es pot configurar perquè pugues compartir contingut d'altres aplicacions, simplement instal·la Elk al teu dispositiu o ordinador i inicia la sessió.",
     "hint": "Per a compartir contingut amb Elk, Elk ha d'estar instal·lat i has d'iniciar la sessió."
   },

@@ -101,6 +101,11 @@ const locales: LocaleObjectData[] = [
     name: 'Deutsch',
   },
   {
+    code: 'hu-HU',
+    file: 'hu-HU.json',
+    name: 'Magyar',
+  },
+  {
     code: 'zh-CN',
     file: 'zh-CN.json',
     name: '简体中文',

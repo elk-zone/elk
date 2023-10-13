@@ -41,7 +41,8 @@
     "unfollow": "Dejar de seguir",
     "unmute": "Dejar de silenciar",
     "view_other_followers": "Puede que no se muestren los seguidores de otras instancias.",
-    "view_other_following": "Puede que no se muestren los seguidos de otras instancias."
+    "view_other_following": "Puede que no se muestren los seguidos de otras instancias.",
+    "withdraw_follow_request": "Retirar solitud de seguimiento"
   },
   "action": {
     "apply": "Aplicar",
@@ -246,6 +247,7 @@
     "pin_on_profile": "Fijar en tu perfil",
     "remove_personal_note": "Eliminar nota personal de {0}",
     "report_account": "Reportar a {0}",
+    "share_account": "Compartir {0}",
     "share_post": "Compartir esta publicación",
     "show_favourited_and_boosted_by": "Mostrar quien marcó como favorita y quien retooteó",
     "show_reblogs": "Mostrar retoots de {0}",
@@ -603,8 +605,20 @@
     "list": "Lista",
     "media": "Multimedia",
     "news": "Noticias",
+    "notifications_admin": {
+      "report": "Informes",
+      "sign_up": "Inscripciones"
+    },
     "notifications_all": "Todas",
+    "notifications_favourite": "Favoritas",
+    "notifications_follow": "Te siguieron",
+    "notifications_follow_request": "Solicitudes de seguimiento",
     "notifications_mention": "Menciones",
+    "notifications_more_tooltip": "Filtrar notificaciones por tipo",
+    "notifications_poll": "Encuestas",
+    "notifications_reblog": "Retoots",
+    "notifications_status": "Publicaciones",
+    "notifications_update": "Actualizaciones",
     "posts": "Publicaciones",
     "posts_with_replies": "Publicaciones y respuestas"
   },

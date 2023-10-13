@@ -31,14 +31,16 @@ const { notification } = defineProps<{
       </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'admin.sign_up'">
-      <div flex p4 items-center bg-shaded>
-        <div i-ri:user-add-line text-xl me-2 color-purple />
-        <AccountDisplayName
-          :account="notification.account"
-          text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
-        />
-        <span>{{ $t("notification.signed_up") }}</span>
-      </div>
+      <NuxtLink :to="getAccountRoute(notification.account)">
+        <div flex p4 items-center bg-shaded>
+          <div i-ri:user-add-line text-xl me-2 color-purple />
+          <AccountDisplayName
+            :account="notification.account"
+            text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+          />
+          <span>{{ $t("notification.signed_up") }}</span>
+        </div>
+      </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'admin.report'">
       <NuxtLink :to="getReportRoute(notification.report?.id!)">

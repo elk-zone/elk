@@ -41,7 +41,8 @@
     "unfollow": "Bỏ theo dõi",
     "unmute": "Bỏ ẩn",
     "view_other_followers": "Người theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
-    "view_other_following": "Người đang theo dõi từ các máy chủ khác có thể không hiển thị đủ."
+    "view_other_following": "Người đang theo dõi từ các máy chủ khác có thể không hiển thị đủ.",
+    "withdraw_follow_request": "Rút lại yêu cầu theo dõi"
   },
   "action": {
     "apply": "Áp dụng",
@@ -246,6 +247,7 @@
     "pin_on_profile": "Ghim lên đầu",
     "remove_personal_note": "Xóa ghi chú về {0}",
     "report_account": "Báo cáo {0}",
+    "share_account": "Chia sẻ {0}",
     "share_post": "Chia sẻ tút",
     "show_favourited_and_boosted_by": "Hiện lượt thích và đăng lại",
     "show_reblogs": "Hiện đăng lại từ {0}",
@@ -603,8 +605,20 @@
     "list": "Danh sách",
     "media": "Media",
     "news": "Tin tức",
+    "notifications_admin": {
+      "report": "Báo cáo",
+      "sign_up": "Đăng ký"
+    },
     "notifications_all": "Toàn bộ",
+    "notifications_favourite": "Lượt thích",
+    "notifications_follow": "Theo dõi",
+    "notifications_follow_request": "Yêu cầu theo dõi",
     "notifications_mention": "Lượt nhắc",
+    "notifications_more_tooltip": "Lọc loại thông báo",
+    "notifications_poll": "Bình chọn",
+    "notifications_reblog": "Đăng lại",
+    "notifications_status": "Tút mới",
+    "notifications_update": "Sửa tút",
     "posts": "Tút",
     "posts_with_replies": "Lượt trả lời"
   },

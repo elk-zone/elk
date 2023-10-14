@@ -54,6 +54,10 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
     name: t('magic_keys.groups.actions.title'),
     items: [
       {
+        description: t('magic_keys.groups.actions.search'),
+        shortcut: { keys: [modifierKeyName, 'k'], isSequence: false },
+      },
+      {
         description: t('magic_keys.groups.actions.command_mode'),
         shortcut: { keys: [modifierKeyName, '/'], isSequence: false },
       },

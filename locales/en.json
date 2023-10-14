@@ -210,6 +210,7 @@
     "groups": {
       "actions": {
         "boost": "Boost",
+        "search": "Search",
         "command_mode": "Command mode",
         "compose": "Compose",
         "favourite": "Favourite",

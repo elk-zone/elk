@@ -36,7 +36,7 @@ async function rejectFollowRequest() {
 </script>
 
 <template>
-  <div flex gap-4 items-center pe-4>
+  <div flex gap-4>
     <template v-if="relationship?.requestedBy">
       <CommonTooltip :content="$t('account.authorize')" no-auto-focus>
         <button

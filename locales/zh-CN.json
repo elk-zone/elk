@@ -41,7 +41,7 @@
     "reject": "拒绝关注请求",
     "rejected": "你拒绝了关注请求",
     "request_follow": "请求关注",
-    "requested": "{0} 已经向你发送了关注请求",
+    "requested": "{0} 向你发送了关注请求",
     "unblock": "取消拉黑",
     "unfollow": "取消关注",
     "unmute": "取消屏蔽",

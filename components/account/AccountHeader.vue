@@ -109,7 +109,7 @@ const personalNoteMaxLength = 2000
 
 <template>
   <div flex flex-col>
-    <div v-if="relationship?.requestedBy" p="is-4 y-4" flex justify-between items-center bg-card>
+    <div v-if="relationship?.requestedBy" p-4 flex justify-between items-center bg-card>
       <span text-primary font-bold>{{ $t('account.requested', [account.displayName]) }}</span>
       <AccountFollowRequestButton :account="account" :relationship="relationship" />
     </div>

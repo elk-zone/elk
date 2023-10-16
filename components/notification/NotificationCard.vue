@@ -60,12 +60,17 @@ const { notification } = defineProps<{
       </NuxtLink>
     </template>
     <template v-else-if="notification.type === 'follow_request'">
-      <!-- <div flex ms-4 items-center class="-top-2.5" absolute inset-ie-2 px-2>
-        <div i-ri:user-shared-fill text-xl me-1 />
-        <AccountInlineInfo :account="notification.account" me1 />
-      </div> -->
-      <!-- TODO: accept request -->
-      <AccountCard hover-card :account="notification.account">
+      <div flex px-3 py-2>
+        <div i-ri-user-shared-line text-xl me-3 color-blue />
+        <AccountDisplayName
+          :account="notification.account"
+          text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+        />
+        <span me-1 ws-nowrap>
+          {{ $t('notification.request_to_follow') }}
+        </span>
+      </div>
+      <AccountCard p="s-2 e-4 b-2" hover-card :account="notification.account">
         <AccountFollowRequestButton :account="notification.account" />
       </AccountCard>
     </template>

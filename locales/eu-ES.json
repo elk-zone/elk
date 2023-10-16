@@ -15,7 +15,7 @@
     "bot": "BOTa",
     "favourites": "Gogokoak",
     "follow": "Jarraitu",
-    "follow_back": "Jarraitu bera ere",
+    "follow_back": "Jarraitu berari ere",
     "follow_requested": "Eskaera bidalita",
     "followers": "Jarraitzaileak",
     "followers_count": "{0} jarraitzaile|Jarraitzaile {0}|{0} jarraitzaile",
@@ -213,6 +213,7 @@
         "command_mode": "Komando modua",
         "compose": "Idatzi",
         "favourite": "Egin gogoko",
+        "search": "Bilatu",
         "title": "Ekintzak"
       },
       "media": {
@@ -624,7 +625,7 @@
   },
   "tag": {
     "follow": "Jarraitu",
-    "follow_label": "Jarraitu {0} traola",
+    "follow_label": "Jarraitu {0} traolari",
     "unfollow": "Utzi jarraitzeari",
     "unfollow_label": "Utzi {0} traola jarraitzeari"
   },

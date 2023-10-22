@@ -7,6 +7,8 @@
     "route_loaded": "页面{0}已加载"
   },
   "account": {
+    "authorize": "同意关注请求",
+    "authorized": "你同意了关注请求",
     "avatar_description": "{0} 的头像",
     "blocked_by": "您已被此用户拉黑",
     "blocked_domains": "已拉黑的域名",
@@ -36,7 +38,10 @@
     "profile_description": "{0} 的个人资料头图",
     "profile_personal_note": "私人备注",
     "profile_unavailable": "个人资料不可见",
+    "reject": "拒绝关注请求",
+    "rejected": "你拒绝了关注请求",
     "request_follow": "请求关注",
+    "requested": "{0} 向你发送了关注请求",
     "unblock": "取消拉黑",
     "unfollow": "取消关注",
     "unmute": "取消屏蔽",

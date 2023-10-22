@@ -7,6 +7,8 @@
     "route_loaded": "Pagina {0} caricata"
   },
   "account": {
+    "authorize": "Autorizza a seguire",
+    "authorized": "Hai autorizzato la richiesta",
     "avatar_description": "Avatar di {0}",
     "blocked_by": "Questo utente ti ha bloccato.",
     "blocked_domains": "Domini bloccati",
@@ -36,7 +38,10 @@
     "profile_description": "Copertina profilo di {0}",
     "profile_personal_note": "Nota personale",
     "profile_unavailable": "Profilo non disponibile",
+    "reject": "Rifiuta la richiesta",
+    "rejected": "Hai rifiutato la richiesta",
     "request_follow": "Chiedi di seguire",
+    "requested": "{0} has requested to follow you",
     "unblock": "Sblocca",
     "unfollow": "Smetti di seguire",
     "unmute": "Riattiva",
@@ -213,6 +218,7 @@
         "command_mode": "Modalità comando",
         "compose": "Componi",
         "favourite": "Apprezza",
+        "search": "Cerca",
         "title": "Azioni"
       },
       "media": {

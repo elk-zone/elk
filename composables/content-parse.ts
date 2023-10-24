@@ -331,6 +331,8 @@ function filterHref() {
     if (href.startsWith('/') || href.startsWith('.'))
       return href
 
+    href = href.replace(/&amp;/g, '&')
+
     let url
     try {
       url = new URL(href)

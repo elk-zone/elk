@@ -109,6 +109,10 @@ const personalNoteMaxLength = 2000
 
 <template>
   <div flex flex-col>
+    <div v-if="relationship?.requestedBy" p-4 flex justify-between items-center bg-card>
+      <span text-primary font-bold>{{ $t('account.requested', [account.displayName]) }}</span>
+      <AccountFollowRequestButton :account="account" :relationship="relationship" />
+    </div>
     <component :is="hasHeader ? 'button' : 'div'" border="b base" z-1 @click="hasHeader ? previewHeader() : undefined">
       <img h-50 height="200" w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])">
     </component>

@@ -187,7 +187,7 @@
     "title": "Elk está em Antevisão!"
   },
   "language": {
-    "search": "Procurar"
+    "search": "Pesquisar"
   },
   "list": {
     "add_account": "Adicionar conta à lista",
@@ -213,6 +213,7 @@
         "command_mode": "Menu de comandos",
         "compose": "Compor",
         "favourite": "Adcionar aos favoritos",
+        "search": "Pesquisar",
         "title": "Ações"
       },
       "media": {
@@ -286,7 +287,7 @@
     "notifications": "Notificações",
     "privacy": "Privacidade",
     "profile": "Perfil",
-    "search": "Procurar",
+    "search": "Pesquisar",
     "select_feature_flags": "Alternar Funcionalidades",
     "select_font_size": "Tamanho da Fonte",
     "select_language": "Idioma de Apresentação",
@@ -395,7 +396,7 @@
     "whats_wrong_post": "Diga-nos o que está errado com esta publicação"
   },
   "search": {
-    "search_desc": "Procure por pessoas e hashtags",
+    "search_desc": "Pesquise por pessoas e hashtags",
     "search_empty": "Não foi possível encontrar nada para os termos que pesquisou"
   },
   "settings": {

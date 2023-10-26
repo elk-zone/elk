@@ -7,6 +7,8 @@
     "route_loaded": "Página {0} carregada"
   },
   "account": {
+    "authorize": "Autorizar pedido para seguir",
+    "authorized": "Autorizou o pedido",
     "avatar_description": "Imagem de perfil de {0}",
     "blocked_by": "Está bloqueado por este utilizador.",
     "blocked_domains": "Domínios bloqueados",
@@ -36,7 +38,10 @@
     "profile_description": "Descrição de perfil de {0}",
     "profile_personal_note": "Nota Pessoal",
     "profile_unavailable": "Perfil indisponível",
+    "reject": "Rejeitar pedido para seguir",
+    "rejected": "Rejeitou o pedido",
     "request_follow": "Pedir para seguir",
+    "requested": "{0} pediu para o seguir",
     "unblock": "Desbloquear",
     "unfollow": "Deixar de seguir",
     "unmute": "Deixar de silenciar",

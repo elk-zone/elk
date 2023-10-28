@@ -7,6 +7,8 @@
     "route_loaded": "Page {0} loaded"
   },
   "account": {
+    "authorize": "Authorize to follow",
+    "authorized": "You have Authorized the request",
     "avatar_description": "{0}'s avatar",
     "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
@@ -36,7 +38,10 @@
     "profile_description": "{0}'s profile header",
     "profile_personal_note": "Personal Note",
     "profile_unavailable": "Profile unavailable",
+    "reject": "Reject to follow",
+    "rejected": "You have rejected the request",
     "request_follow": "Request to follow",
+    "requested": "{0} has requested to follow you",
     "unblock": "Unblock",
     "unfollow": "Unfollow",
     "unmute": "Unmute",
@@ -213,6 +218,7 @@
         "command_mode": "Command mode",
         "compose": "Compose",
         "favourite": "Favourite",
+        "search": "Search",
         "title": "Actions"
       },
       "media": {

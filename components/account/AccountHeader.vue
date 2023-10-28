@@ -109,13 +109,17 @@ const personalNoteMaxLength = 2000
 
 <template>
   <div flex flex-col>
+    <div v-if="relationship?.requestedBy" p-4 flex justify-between items-center bg-card>
+      <span text-primary font-bold>{{ $t('account.requested', [account.displayName]) }}</span>
+      <AccountFollowRequestButton :account="account" :relationship="relationship" />
+    </div>
     <component :is="hasHeader ? 'button' : 'div'" border="b base" z-1 @click="hasHeader ? previewHeader() : undefined">
       <img h-50 height="200" w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])">
     </component>
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
         <div flex justify-between>
-          <button shrink-0 :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" p1 bg-base border-bg-base z-2 @click="previewAvatar">
+          <button shrink-0 h-full :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" p1 bg-base border-bg-base z-2 @click="previewAvatar">
             <AccountAvatar :square="isSelf" :account="account" hover:opacity-90 transition-opacity w-28 h-28 />
           </button>
           <div inset-ie-0 flex="~ wrap row-reverse" gap-2 items-center pt18 justify-start>

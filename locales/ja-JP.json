@@ -41,7 +41,8 @@
     "unfollow": "フォロー解除",
     "unmute": "ミュート解除",
     "view_other_followers": "他のインスタンスからのフォロワーは表示されないことがあります。",
-    "view_other_following": "他のインスタンスからのフォローは表示されないことがあります。"
+    "view_other_following": "他のインスタンスからのフォローは表示されないことがあります。",
+    "withdraw_follow_request": "フォローリクエストを取り下げる"
   },
   "action": {
     "apply": "適用する",
@@ -56,6 +57,7 @@
     "close": "閉じる",
     "compose": "投稿",
     "confirm": "確認",
+    "done": "完了",
     "edit": "編集する",
     "enter_app": "使い始める",
     "favourite": "お気に入り",
@@ -211,6 +213,7 @@
         "command_mode": "コマンドモード",
         "compose": "投稿",
         "favourite": "お気に入り",
+        "search": "検索",
         "title": "アクション"
       },
       "media": {
@@ -244,6 +247,8 @@
     "open_in_original_site": "元のサイトで開く",
     "pin_on_profile": "プロフィールに固定",
     "remove_personal_note": "{0} から個人メモを削除",
+    "report_account": "{0}さんを報告",
+    "share_account": "{0}さんを共有",
     "share_post": "この投稿を共有",
     "show_favourited_and_boosted_by": "お気に入り・ブーストしたユーザーを表示",
     "show_reblogs": "{0} からのブーストを表示",
@@ -255,6 +260,7 @@
     "translate_post": "投稿を翻訳",
     "unblock_account": "{0}さんのブロックを解除",
     "unblock_domain": "{0}のドメインブロックを解除",
+    "unfollow_account": "{0}さんのフォローを解除",
     "unmute_account": "{0}さんのミュートを解除",
     "unmute_conversation": "投稿のミュートを解除",
     "unpin_on_profile": "プロフィールへの固定を解除"
@@ -307,10 +313,26 @@
     "reply_to_account": "{0}さんに返信",
     "replying": "返信する"
   },
+  "polls": {
+    "allow_multiple": "複数の選択肢を許可する",
+    "cancel": "キャンセル",
+    "create": "投票を追加",
+    "disallow_multiple": "複数の選択肢を許可しない",
+    "expiration": "投票の期限",
+    "hide_votes": "終了まで投票数の合計を隠す",
+    "option_placeholder": "投票の選択肢 {current}/{max}",
+    "remove_option": "選択肢を削除する",
+    "settings": "投票オプション",
+    "show_votes": "常に投票数の合計を表示する"
+  },
   "pwa": {
     "dismiss": "閉じる",
     "install": "インストール",
     "install_title": "Elkをインストール",
+    "screenshots": {
+      "dark": "ダークモードで実行中のElkのスクリーンショット",
+      "light": "ライトモードで実行中のElkのスクリーンショット"
+    },
     "title": "新しいElkのアップデートが利用できます！",
     "update": "アップデート",
     "update_available_short": "Elkをアップデート",
@@ -336,6 +358,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "追加コメント",
+    "another_server": "報告しようとしているユーザーは他のサーバーのユーザーです",
+    "anything_else": "他に私たちが知る必要があることはありますか？",
+    "block_desc": "あなたは今後、このユーザーの投稿を見ることはありません。このユーザーもあなたの投稿を見たり、あなたをフォローしたりすることもできなくなります。ただし、相手はブロックされたことが分かります。",
+    "dontlike": "気に入りません",
+    "dontlike_desc": "これは見たくない投稿です。",
+    "forward": "はい、この報告を {0} に転送してください。",
+    "forward_question": "この報告の匿名化されたコピーをそのサーバーにも送信しますか？",
+    "further_actions": {
+      "limit": {
+        "description": "表示するものをコントロールするための選択肢はこちらです。",
+        "title": "これを見たくないですか？"
+      },
+      "report": {
+        "description": "私たちがこの報告をレビューしている間、あなたには以下のことができます。",
+        "title": "報告をありがとうございます。この報告を確認します。"
+      }
+    },
+    "limiting": "{0} を制限する",
+    "mute_desc": "このユーザーの投稿が表示されることがなくなります。ただし、このユーザーはあなたをフォローしたり、あなたの投稿を見ることはできます。あなたがミュートしたことは相手には分かりません。",
+    "other": "それ以外です",
+    "other_desc": "この問題は他のカテゴリーには当てはまりません",
+    "reporting": "{0} を報告する",
+    "select_many": "次の中から当てはまるものをすべて選択してください。",
+    "select_one": "次の中から最も当てはまるものを選んでください。",
+    "select_posts": "この報告を裏付ける投稿はありますか？",
+    "select_posts_other": "この報告を裏付ける他の投稿はありますか？",
+    "spam": "スパムです",
+    "spam_desc": "害のあるリンク、偽のエンゲージメント、または繰り返しの返信",
+    "submit": "報告を送信",
+    "unfollow_desc": "このユーザーの投稿は今後、ホームフィードには表示されません。他の場所で同じ投稿が表示される可能性はあります。",
+    "violation": "1つ以上のサーバーのルールを破っています",
+    "whats_wrong_account": "このアカウントの問題点を教えてください",
+    "whats_wrong_post": "この投稿の問題点を教えてください"
   },
   "search": {
     "search_desc": "ユーザーやハッシュタグを検索します",
@@ -371,6 +429,7 @@
     "language": {
       "display_language": "表示言語",
       "label": "言語",
+      "post_language": "投稿言語",
       "status": "翻訳状況: {0}/{1} ({2}%)",
       "translations": {
         "add": "追加",
@@ -441,6 +500,7 @@
       "enable_data_saving_description": "添付の自動読み込みを防止してデータを節約します。",
       "enable_pinch_to_zoom": "ピンチによるズームを有効にする",
       "github_cards": "GitHubカード",
+      "github_cards_description": "GitHubリンクが投稿されたとき、ソーシャル画像の代わりにソーシャルグラフのメタデータを使用してアクセシブルなHTMLカードを表示します。",
       "grayscale_mode": "グレースケールモード",
       "hide_account_hover_card": "アカウントのホバーカードを隠す",
       "hide_alt_indi_on_posts": "投稿上のalt表示を隠す",
@@ -456,7 +516,9 @@
       "title": "実験的機能",
       "use_star_favorite_icon": "星のお気に入りアイコンを使用する",
       "user_picker": "ユーザーピッカー",
+      "user_picker_description": "右下にログインしたすべてのアカウントを表示することで、アカウントを素早く切り替えられるようにします。",
       "virtual_scroll": "仮想スクロール",
+      "virtual_scroll_description": "タイムラインで仮想リストを使用することで、多数のアイテムのレンダリング性能が改善します。",
       "wellbeing": "ウェルビーイング",
       "zen_mode": "禅モード",
       "zen_mode_description": "マウスカーソルを上に載せない限り、サイドバーを隠します。また、タイムラインの一部の要素も隠します。"
@@ -527,6 +589,7 @@
     "replying_to": "{0}さんへの返信",
     "show_full_thread": "スレッド全体を表示",
     "someone": "誰か",
+    "spoiler_media_hidden": "非表示のメディア",
     "spoiler_show_less": "隠す",
     "spoiler_show_more": "表示する",
     "thread": "スレッド",
@@ -543,8 +606,20 @@
     "list": "リスト",
     "media": "メディア",
     "news": "ニュース",
+    "notifications_admin": {
+      "report": "報告",
+      "sign_up": "サインアップ"
+    },
     "notifications_all": "すべて",
+    "notifications_favourite": "お気に入り",
+    "notifications_follow": "フォロー",
+    "notifications_follow_request": "フォローリクエスト",
     "notifications_mention": "メンション",
+    "notifications_more_tooltip": "通知を種類別にフィルタする",
+    "notifications_poll": "投稿",
+    "notifications_reblog": "ブースト",
+    "notifications_status": "ステータス",
+    "notifications_update": "更新",
     "posts": "投稿",
     "posts_with_replies": "投稿と返信"
   },

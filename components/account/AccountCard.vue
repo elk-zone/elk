@@ -19,8 +19,10 @@ cacheAccount(account)
       overflow-hidden
       :to="getAccountRoute(account)"
     />
-    <div h-full p1 shrink-0>
-      <AccountFollowButton :account="account" :context="relationshipContext" />
-    </div>
+    <slot>
+      <div h-full p1 shrink-0>
+        <AccountFollowButton :account="account" :context="relationshipContext" />
+      </div>
+    </slot>
   </div>
 </template>

@@ -7,6 +7,8 @@
     "route_loaded": "Pagina {0} caricata"
   },
   "account": {
+    "authorize": "Autorizza a seguire",
+    "authorized": "Hai autorizzato la richiesta",
     "avatar_description": "Avatar di {0}",
     "blocked_by": "Questo utente ti ha bloccato.",
     "blocked_domains": "Domini bloccati",
@@ -36,12 +38,16 @@
     "profile_description": "Copertina profilo di {0}",
     "profile_personal_note": "Nota personale",
     "profile_unavailable": "Profilo non disponibile",
+    "reject": "Rifiuta la richiesta",
+    "rejected": "Hai rifiutato la richiesta",
     "request_follow": "Chiedi di seguire",
+    "requested": "{0} has requested to follow you",
     "unblock": "Sblocca",
     "unfollow": "Smetti di seguire",
     "unmute": "Riattiva",
     "view_other_followers": "I seguaci di altre istanze non sono disponibili.",
-    "view_other_following": "I seguiti di altre istanze non sono disponibili."
+    "view_other_following": "I seguiti di altre istanze non sono disponibili.",
+    "withdraw_follow_request": "Ritira richiesta di seguire"
   },
   "action": {
     "apply": "Applica",
@@ -212,6 +218,7 @@
         "command_mode": "Modalità comando",
         "compose": "Componi",
         "favourite": "Apprezza",
+        "search": "Cerca",
         "title": "Azioni"
       },
       "media": {
@@ -246,6 +253,7 @@
     "pin_on_profile": "Fissa in cima al profilo",
     "remove_personal_note": "Rimuovi nota personale da {0}",
     "report_account": "Segnala {0}",
+    "share_account": "Condividi {0}",
     "share_post": "Condividi questo post",
     "show_favourited_and_boosted_by": "Mostra chi ha apprezzato e potenziato",
     "show_reblogs": "Mostra potenziamenti da {0}",
@@ -451,7 +459,7 @@
           "title": "Quali notifiche vuoi ricevere?"
         },
         "description": "Ricevi notifiche anche quando non stai utilizzando Elk.",
-        "instructions": "Ricordati di salvare le tue modifiche usando @:settings.notifications.push_notifications.save_settings button!",
+        "instructions": "Ricordati di salvare le tue modifiche usando il tasto @:settings.notifications.push_notifications.save_settings!",
         "label": "Impostazioni notifiche push",
         "policy": {
           "all": "Da chiunque",
@@ -603,8 +611,20 @@
     "list": "Lista",
     "media": "Media",
     "news": "Notizie",
-    "notifications_all": "Tutte",
-    "notifications_mention": "Menzioni",
+    "notifications_admin": {
+      "report": "Segnalazione",
+      "sign_up": "Iscrizione"
+    },
+    "notifications_all": "Tutti",
+    "notifications_favourite": "Apprezzamento",
+    "notifications_follow": "Nuovo seguace",
+    "notifications_follow_request": "Richiesta di seguire",
+    "notifications_mention": "Menzione",
+    "notifications_more_tooltip": "Filtra notifiche per tipo",
+    "notifications_poll": "Sondaggio",
+    "notifications_reblog": "Apprezzamento",
+    "notifications_status": "Stato",
+    "notifications_update": "Aggiornamento",
     "posts": "Post",
     "posts_with_replies": "Post e risposte"
   },

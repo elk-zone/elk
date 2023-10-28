@@ -15,7 +15,7 @@
     "bot": "BOTa",
     "favourites": "Gogokoak",
     "follow": "Jarraitu",
-    "follow_back": "Jarraitu bera ere",
+    "follow_back": "Jarraitu berari ere",
     "follow_requested": "Eskaera bidalita",
     "followers": "Jarraitzaileak",
     "followers_count": "{0} jarraitzaile|Jarraitzaile {0}|{0} jarraitzaile",
@@ -41,7 +41,8 @@
     "unfollow": "Utzi jarraitzeari",
     "unmute": "Utzi mututzeari",
     "view_other_followers": "Litekeena da beste instantziatako jarraitzaileak erakusgai ez egotea.",
-    "view_other_following": "Litekeena da beste instantziatan jarraitzen direnak erakusgai ez egotea."
+    "view_other_following": "Litekeena da beste instantziatan jarraitzen direnak erakusgai ez egotea.",
+    "withdraw_follow_request": "Utzi bertan behera bidalitako jarraipen-eskaera"
   },
   "action": {
     "apply": "Ezarri",
@@ -212,6 +213,7 @@
         "command_mode": "Komando modua",
         "compose": "Idatzi",
         "favourite": "Egin gogoko",
+        "search": "Bilatu",
         "title": "Ekintzak"
       },
       "media": {
@@ -246,6 +248,7 @@
     "pin_on_profile": "Finkatu profilean",
     "remove_personal_note": "Kendu {0}(r)i buruzko oharra",
     "report_account": "Salatu kontua",
+    "share_account": "Partekatu {0}",
     "share_post": "Partekatu bidalketa",
     "show_favourited_and_boosted_by": "Erakutsi nork egin duen gogoko eta nork bultzatu duen",
     "show_reblogs": "Erakutsi {0}(r)en bultzadak",
@@ -295,7 +298,7 @@
   },
   "notification": {
     "favourited_post": "zure bidalketa gogoko egin du",
-    "followed_you": "jarraitu dizu",
+    "followed_you": "(e)k jarraitu dizu",
     "followed_you_count": "{0} pertsonak jarraitu dizute|pertsona {0}ek jarraitu dizu|{0} pertsonak jarraitu dizute",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "zure bidalketari bultzada eman dio",
@@ -603,14 +606,26 @@
     "list": "Zerrendak",
     "media": "Multimedia",
     "news": "Albisteak",
+    "notifications_admin": {
+      "report": "Salaketa",
+      "sign_up": "Izen-ematea"
+    },
     "notifications_all": "Guztiak",
+    "notifications_favourite": "Gogokoak",
+    "notifications_follow": "Jarraipenak",
+    "notifications_follow_request": "Jarraipen-eskaerak",
     "notifications_mention": "Aipamenak",
+    "notifications_more_tooltip": "Iragazi jakinarazpenak motaren arabera",
+    "notifications_poll": "Bozketak",
+    "notifications_reblog": "Bultzadak",
+    "notifications_status": "Egoerak",
+    "notifications_update": "Eguneraketak",
     "posts": "Bidalketak",
     "posts_with_replies": "Bidalketak eta erantzunak"
   },
   "tag": {
     "follow": "Jarraitu",
-    "follow_label": "Jarraitu {0} traola",
+    "follow_label": "Jarraitu {0} traolari",
     "unfollow": "Utzi jarraitzeari",
     "unfollow_label": "Utzi {0} traola jarraitzeari"
   },

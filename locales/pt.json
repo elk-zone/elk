@@ -41,7 +41,8 @@
     "unfollow": "Deixar de seguir",
     "unmute": "Deixar de silenciar",
     "view_other_followers": "Os seguidores de outras instâncias podem não ser exibidos.",
-    "view_other_following": "As pessoas que segue de outras instâncias podem não ser exibidas."
+    "view_other_following": "As pessoas que segue de outras instâncias podem não ser exibidas.",
+    "withdraw_follow_request": "Retirar pedido para seguir"
   },
   "action": {
     "apply": "Aplicar",
@@ -186,7 +187,7 @@
     "title": "Elk está em Antevisão!"
   },
   "language": {
-    "search": "Procurar"
+    "search": "Pesquisar"
   },
   "list": {
     "add_account": "Adicionar conta à lista",
@@ -212,6 +213,7 @@
         "command_mode": "Menu de comandos",
         "compose": "Compor",
         "favourite": "Adcionar aos favoritos",
+        "search": "Pesquisar",
         "title": "Ações"
       },
       "media": {
@@ -246,6 +248,7 @@
     "pin_on_profile": "Fixar no perfil",
     "remove_personal_note": "Remover nota pessoal para {0}",
     "report_account": "Denunciar {0}",
+    "share_account": "Partilhar {0}",
     "share_post": "Partilhar esta publicação",
     "show_favourited_and_boosted_by": "Mostrar quem adicionou aos favoritos e partilhou",
     "show_reblogs": "Mostrar partilhas de {0}",
@@ -284,7 +287,7 @@
     "notifications": "Notificações",
     "privacy": "Privacidade",
     "profile": "Perfil",
-    "search": "Procurar",
+    "search": "Pesquisar",
     "select_feature_flags": "Alternar Funcionalidades",
     "select_font_size": "Tamanho da Fonte",
     "select_language": "Idioma de Apresentação",
@@ -393,7 +396,7 @@
     "whats_wrong_post": "Diga-nos o que está errado com esta publicação"
   },
   "search": {
-    "search_desc": "Procure por pessoas e hashtags",
+    "search_desc": "Pesquise por pessoas e hashtags",
     "search_empty": "Não foi possível encontrar nada para os termos que pesquisou"
   },
   "settings": {
@@ -603,8 +606,20 @@
     "list": "Lista",
     "media": "Media",
     "news": "Notícias",
+    "notifications_admin": {
+      "report": "Denúncias",
+      "sign_up": "Inscrições"
+    },
     "notifications_all": "Todas",
+    "notifications_favourite": "Favoritos",
+    "notifications_follow": "Seguidores",
+    "notifications_follow_request": "Pedidos para seguir",
     "notifications_mention": "Menções",
+    "notifications_more_tooltip": "Filtra notificações por tipo",
+    "notifications_poll": "Sondagens",
+    "notifications_reblog": "Partilhas",
+    "notifications_status": "Publicações",
+    "notifications_update": "Atualizações",
     "posts": "Publicações",
     "posts_with_replies": "Publicações e Respostas"
   },

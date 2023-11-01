@@ -16,6 +16,7 @@ const { paginator, stream, account, buffer = 10, endMessage = true } = definePro
 
 const { formatNumber } = useHumanReadableNumber()
 const virtualScroller = $(usePreferences('experimentalVirtualScroller'))
+const autoScroller = $(usePreferences('experimentalAutoScroller'))
 
 const showOriginSite = $computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
@@ -25,9 +26,14 @@ const showOriginSite = $computed(() =>
 <template>
   <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer, endMessage }" :virtual-scroller="virtualScroller">
     <template #updater="{ number, update }">
-      <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
-        {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
-      </button>
+      <div>
+        <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
+          {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
+          <template v-if="autoScroller">
+            <TimelineAutoScroller :update="update" />
+          </template>
+        </button>
+      </div>
     </template>
     <template #default="{ item, older, newer, active }">
       <template v-if="virtualScroller">

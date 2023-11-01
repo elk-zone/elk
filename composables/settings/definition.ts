@@ -24,6 +24,7 @@ export interface PreferencesSettings {
   useStarFavoriteIcon: boolean
   zenMode: boolean
   experimentalVirtualScroller: boolean
+  experimentalAutoScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
 }

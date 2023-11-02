@@ -3,7 +3,7 @@
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
-import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
+import { StaleWhileRevalidate } from 'workbox-strategies'
 import { ExpirationPlugin } from 'workbox-expiration'
 
 import { onNotificationClick, onPush } from './web-push-notifications'
@@ -56,7 +56,7 @@ if (import.meta.env.PROD) {
   registerRoute(
     ({ request, sameOrigin, url }) =>
       sameOrigin && request.destination === 'manifest' && url.pathname.startsWith('/manifest-'),
-    new NetworkFirst({
+    new StaleWhileRevalidate({
       cacheName: 'elk-webmanifest',
       // responses with a Vary: Accept-Encoding header
       matchOptions: {

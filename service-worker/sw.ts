@@ -63,6 +63,19 @@ if (import.meta.env.PROD) {
         ignoreVary: true,
       },
       plugins: [
+        {
+          fetchDidFail: async ({ error, request }) => {
+            console.error('webmanifest fetchDidFail', error, request.url)
+          },
+          handlerDidError: async ({ error, request }) => {
+            console.error('webmanifest handlerDidError', error, request.url)
+            return undefined
+          },
+          cacheWillUpdate: async ({ request, response }) => {
+            console.error('webmanifest cacheWillUpdate', request.url)
+            return response?.status === 200 ? response : null
+          },
+        },
         new CacheableResponsePlugin({ statuses: [200] }),
         // we only need a few entries
         new ExpirationPlugin({ maxEntries: 100 }),

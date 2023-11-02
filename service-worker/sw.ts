@@ -44,9 +44,9 @@ if (import.meta.env.PROD) {
     // exclude shiki: has its own cache
     /^\/emojis\//,
     // exclude sw: if the user navigates to it, fallback to index.html
-    /^\/sw.js$/,
-    // exclude webmanifest: has its own cache
-    /^\/manifest-(.*).webmanifest$/,
+    /^\/sw\.js$/,
+    // exclude webmanifest: has its own cache, if the user navigates to it, fallback to index.html
+    /^\/manifest-(.*)\.webmanifest$/,
   ]
 }
 
@@ -54,10 +54,14 @@ if (import.meta.env.PROD) {
 if (import.meta.env.PROD) {
   // include webmanifest cache
   registerRoute(
-    ({ request, sameOrigin }) =>
-      sameOrigin && request.destination === 'manifest',
+    ({ request, sameOrigin, url }) =>
+      sameOrigin && request.destination === 'manifest' && url.pathname.startsWith('/manifest-'),
     new NetworkFirst({
       cacheName: 'elk-webmanifest',
+      // responses with a Vary: Accept-Encoding header
+      matchOptions: {
+        ignoreVary: true,
+      },
       plugins: [
         new CacheableResponsePlugin({ statuses: [200] }),
         // we only need a few entries
@@ -86,6 +90,10 @@ if (import.meta.env.PROD) {
         && url.pathname.startsWith('/emojis/'),
     new StaleWhileRevalidate({
       cacheName: 'elk-emojis',
+      // responses with a Vary: Accept-Encoding header
+      matchOptions: {
+        ignoreVary: true,
+      },
       plugins: [
         new CacheableResponsePlugin({ statuses: [200] }),
         // 15 days max

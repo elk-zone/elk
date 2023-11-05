@@ -616,17 +616,18 @@
       "sign_up": "Feliratkozás"
     },
     "notifications_all": "Összes értesítés",
-    "notifications_mention": "Említések",
-    "posts": "Bejegyzések",
-    "posts_with_replies": "Bejegyzések & válaszok",
     "notifications_favourite": "Kedvencek",
     "notifications_follow": "Követés",
     "notifications_follow_request": "Követés kérése",
+    "notifications_mention": "Említések",
     "notifications_more_tooltip": "Az értesítések szűrése tipus szerint",
     "notifications_poll": "Szavazás",
     "notifications_reblog": "Kiemelés",
     "notifications_status": "Státusz",
-    "notifications_update": "Frissítés"
+    "notifications_update": "Frissítés",
+    "posts": "Bejegyzések",
+    "posts_with_replies": "Bejegyzések & válaszok"
+
   },
   "tag": {
     "follow": "Követés",

@@ -7,6 +7,8 @@
     "route_loaded": "Oldal {0} betöltődött"
   },
   "account": {
+    "authorize": "Engedélyezze a követést",
+    "authorized": "Engedélyezte a kérést",
     "avatar_description": "{0} felhasználó avatarja",
     "blocked_by": "Ez a felhasználó blokkolt.",
     "blocked_domains": "Blokkolt domainek",
@@ -36,7 +38,10 @@
     "profile_description": "{0} felhasználó profil fejléce",
     "profile_personal_note": "Személyes jegyzetek",
     "profile_unavailable": "A profil nem elérhető",
+    "reject": "Követés elutasítása",
+    "rejected": "Elutasítottad a kérést",
     "request_follow": "Követés kérése",
+    "requested": "{0} kérte, hogy kövessen",
     "unblock": "Ne legyen blokkolva",
     "unfollow": "Nem követem tovább",
     "unmute": "Némítás megszűntetve",
@@ -163,7 +168,7 @@
   },
   "error": {
     "account_not_found": "Fiók {0} nem található",
-    "explore-list-empty": "Nincs most itt semmi... Nézz vissza később!",
+    "explore_list-empty": "Nincs most itt semmi... Nézz vissza később!",
     "file_size_cannot_exceed_n_mb": "A fájl mérete nem haladhatja meg a {0}MB-ot",
     "sign_in_error": "Nem lehetséges a csatlakozás.",
     "status_not_found": "A bejegyzés nem található",
@@ -213,6 +218,7 @@
         "command_mode": "Parancs mód",
         "compose": "Összeállít",
         "favourite": "Kedvenc",
+        "search": "Keresés",
         "title": "Műveletek"
       },
       "media": {
@@ -404,7 +410,7 @@
       "label": "Rólunk",
       "meet_the_team": "A csapat",
       "sponsor_action": "Támogass minket",
-      "sponsor_action_desc": "Hogy támogasd az Elk fejleszők csapatát",
+      "sponsor_action_desc": "Hogyan támogasd az Elk fejleszők csapatát",
       "sponsors": "Támogatók",
       "sponsors_body_1": "Az Elk a nagylelkű szponzorációnak és segítségnek köszönhetően lehetséges:",
       "sponsors_body_2": "És az összes cég és magánszemély, aki szponzorálja az Elk Teamet és a tagokat.",
@@ -595,7 +601,8 @@
     "try_original_site": "Próbálja az eredeti weblapon"
   },
   "status_history": {
-    "created": "létrehozva {0}"
+    "created": "létrehozva {0}",
+    "edited": "szerkesztve: {0}"
   },
   "tab": {
     "accounts": "Fiókok",
@@ -604,10 +611,23 @@
     "list": "Lista",
     "media": "Média",
     "news": "Hírek",
+    "notifications_admin": {
+      "report": "Jelentés",
+      "sign_up": "Feliratkozás"
+    },
     "notifications_all": "Összes értesítés",
+    "notifications_favourite": "Kedvencek",
+    "notifications_follow": "Követés",
+    "notifications_follow_request": "Követés kérése",
     "notifications_mention": "Említések",
+    "notifications_more_tooltip": "Az értesítések szűrése tipus szerint",
+    "notifications_poll": "Szavazás",
+    "notifications_reblog": "Kiemelés",
+    "notifications_status": "Státusz",
+    "notifications_update": "Frissítés",
     "posts": "Bejegyzések",
     "posts_with_replies": "Bejegyzések & válaszok"
+
   },
   "tag": {
     "follow": "Követés",

@@ -117,6 +117,16 @@ const userSettings = useUserSettings()
       <div i-ri-flask-line />
       {{ $t('settings.preferences.title') }}
     </h2>
+    <!-- Embedded Media -->
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'experimentalEmbeddedMedia')"
+      @click="togglePreferences('experimentalEmbeddedMedia')"
+    >
+      {{ $t('settings.preferences.embedded_media') }}
+      <template #description>
+        {{ $t('settings.preferences.embedded_media_description') }}
+      </template>
+    </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalVirtualScroller')"
       @click="togglePreferences('experimentalVirtualScroller')"

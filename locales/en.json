@@ -500,6 +500,8 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "embedded_media": "Embedded Media Player",
+      "embedded_media_description": "Display an embedded player instead of the normal preview card when expanding shared media streaming links.",
       "enable_autoplay": "Enable Autoplay",
       "enable_data_saving": "Enable data saving",
       "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
@@ -577,6 +579,7 @@
     },
     "boosted_by": "Boosted By",
     "edited": "Edited {0}",
+    "embedded_warning": "Playing this may reveal your IP address to others.",
     "favourited_by": "Favorited By",
     "filter_hidden_phrase": "Filtered by",
     "filter_show_anyway": "Show anyway",

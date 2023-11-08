@@ -28,6 +28,7 @@ export const accountFieldIcons: Record<string, string> = Object.fromEntries(Obje
   PayPal: 'i-ri:paypal-line',
   PGP: 'i-ri:key-2-line',
   Photos: 'i-ri:camera-2-line',
+  Pinterest: 'i-ri:pinterest-line',
   PlayStation: 'i-ri:playstation-line',
   Portfolio: 'i-ri:link',
   Pronouns: 'i-ri:contacts-line',

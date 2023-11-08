@@ -15,7 +15,8 @@ export interface PwaInjection {
   close: () => Promise<void>
 }
 
-declare module '#app/nuxt' {
+// TODO: we'll need to review this to '#app/nuxt'
+declare module '#app' {
   interface NuxtApp {
     $pwa: UnwrapNestedRefs<PwaInjection>
   }

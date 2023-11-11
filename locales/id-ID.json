@@ -47,7 +47,7 @@
     "unmute": "Bunyikan",
     "view_other_followers": "Pengikut dari contoh lain mungkin tidak ditampilkan.",
     "view_other_following": "Mengikuti dari contoh lain mungkin tidak ditampilkan.",
-    "withdraw_follow_request": "Withdraw follow request"
+    "withdraw_follow_request": "Tarik permintaan ikuti"
   },
   "action": {
     "apply": "Terapkan",
@@ -98,8 +98,8 @@
     "sign_in_desc": "Tambahkan akun yang ada",
     "switch_account": "Beralih ke {0}",
     "switch_account_desc": "Beralih ke akun lain",
-    "toggle_dark_mode": "Beralih ke modus gelap",
-    "toggle_zen_mode": "Beralih ke modus zen"
+    "toggle_dark_mode": "Beralih ke mode gelap",
+    "toggle_zen_mode": "Beralih ke mode zen"
   },
   "common": {
     "end_of_list": "Akhir dari daftar",
@@ -215,7 +215,7 @@
     "groups": {
       "actions": {
         "boost": "Dorongan",
-        "command_mode": "Modus perintah",
+        "command_mode": "Mode perintah",
         "compose": "Menyusun",
         "favourite": "Favorit",
         "search": "Cari",
@@ -299,7 +299,7 @@
     "settings": "Pengaturan",
     "show_intro": "Tampilkan pengantar",
     "toggle_theme": "Beralih Tema",
-    "zen_mode": "Modus Zen"
+    "zen_mode": "Mode Zen"
   },
   "notification": {
     "favourited_post": "memfavoritkan pos Anda",
@@ -335,8 +335,8 @@
     "install": "Instal",
     "install_title": "Instal Elk",
     "screenshots": {
-      "dark": "Screenshot of Elk running in dark mode",
-      "light": "Screenshot of Elk running in light mode"
+      "dark": "Tangkapan layar Elk yang berjalan dalam mode gelap",
+      "light": "Tangkapan layar Elk yang berjalan dalam mode terang"
     },
     "title": "Pembaruan Elk tersedia!",
     "update": "Perbarui",
@@ -409,12 +409,12 @@
       "built_at": "Dibuat",
       "label": "Tentang",
       "meet_the_team": "Tim Pengembang",
-      "sponsor_action": "Dukung kami",
+      "sponsor_action": "Sponsori kami",
       "sponsor_action_desc": "Untuk mendukung tim mengembangkan Elk",
-      "sponsors": "Sponsorship",
+      "sponsors": "Sponsors",
       "sponsors_body_1": "Elk dimungkinkan berkat pendukung yang murah hati dan bantuan dari:",
-      "sponsors_body_2": "Dan semua perusahaan dan individu yang mendukung Tim Elk dan para anggotanya.",
-      "sponsors_body_3": "Jika Anda menikmati aplikasi ini, pertimbangkan untuk mendukung kami:",
+      "sponsors_body_2": "Dan semua perusahaan dan individu yang mensponsori Tim Elk dan para anggotanya.",
+      "sponsors_body_3": "Jika Anda menikmati aplikasi ini, pertimbangkan untuk mensponsori kami:",
       "version": "Versi"
     },
     "account_settings": {
@@ -500,13 +500,15 @@
     },
     "notifications_settings": "Notifikasi",
     "preferences": {
+      "embedded_media": "Pemutar Media Tertanam",
+      "embedded_media_description": "Tampilkan pemutar media tertanam sebagai pengganti kartu pratinjau normal saat memperluas tautan media streaming.",
       "enable_autoplay": "Aktifkan Autoplay",
       "enable_data_saving": "Aktifkan penghematan data",
       "enable_data_saving_description": "Hemat data dengan mencegah lampiran untuk memuat secara otomatis.",
       "enable_pinch_to_zoom": "Aktifkan cubit untuk memperbesar",
       "github_cards": "Kartu GitHub",
       "github_cards_description": "Saat tautan GitHub diposting, kartu HTML yang dapat diakses menggunakan meta grafik sosial ditampilkan, bukan gambar sosial.",
-      "grayscale_mode": "Modus Hitam Putih",
+      "grayscale_mode": "Mode Hitam Putih",
       "hide_account_hover_card": "Sembunyikan kartu hover akun",
       "hide_alt_indi_on_posts": "Sembunyikan indikator alternatif pada postingan",
       "hide_boost_count": "Sembunyikan jumlah dukungan",
@@ -577,6 +579,7 @@
     },
     "boosted_by": "Didukung Oleh",
     "edited": "Disunting {0}",
+    "embedded_warning": "Memainkan ini dapat mengungkapkan alamat IP Anda kepada orang lain.",
     "favourited_by": "Difavoritkan Oleh",
     "filter_hidden_phrase": "Difilter oleh",
     "filter_show_anyway": "Tetap tampilkan",

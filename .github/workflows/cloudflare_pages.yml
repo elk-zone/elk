@@ -1,0 +1,54 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  # Uncomment *ONLY* this to enable CD for every new release
+  # push:
+  #   tags:
+  #     - 'v*'
+  # Uncomment *ONLY* this to enable CD for every push to the `main` branch
+  push:
+    branches: release
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - run: corepack enable
+
+      - name: Set node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+
+      - name: Install build dependencies
+        run: npm install -g pnpm && pnpm i --frozen-lockfile
+
+      - name: Build Elk
+        run: pnpm run build
+        env:
+          HOST: 0.0.0.0
+          NODE_ENV: production
+          NUXT_DEPLOY_URL: ${{ vars.NUXT_DEPLOY_URL }}
+          NUXT_PUBLIC_DEFAULT_SERVER: ${{ vars.NUXT_PUBLIC_DEFAULT_SERVER }}
+          NUXT_STORAGE_DRIVER: kv-binding
+          VITE_DEV_PWA: true
+          NITRO_PRESET: ${{ vars.NITRO_PRESET }}
+
+      - name: Publish
+        uses: cloudflare/pages-action@1
+        with:
+          directory: .output/public
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ secrets.CLOUDFLARE_PAGES_PROJECT_NAME }}
+          apiToken: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

@@ -22,6 +22,7 @@ const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
 const isEditingPersonalNote = ref<boolean>(false)
 const hasHeader = $computed(() => !account.header.endsWith('/original/missing.png'))
+const isCopied = ref<boolean>(false)
 
 function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
@@ -116,6 +117,11 @@ async function copyAccountName() {
   catch (err) {
     console.error('Failed to copy account name:', err)
   }
+
+  isCopied.value = true
+  setTimeout(() => {
+    isCopied.value = false
+  }, 2000)
 }
 </script>
 
@@ -191,7 +197,7 @@ async function copyAccountName() {
           <div flex items-center gap-1>
             <AccountHandle :account="account" overflow-unset line-clamp-unset />
             <CommonTooltip placement="bottom" :content="$t('account.copy_account_name')" no-auto-focus flex>
-              <button text-secondary-light text-sm i-ri:file-copy-line @click="copyAccountName">
+              <button text-secondary-light text-sm :class="isCopied ? 'i-ri:check-fill text-green' : 'i-ri:file-copy-line'" @click="copyAccountName">
                 <span sr-only>{{ $t('account.copy_account_name') }}</span>
               </button>
             </CommonTooltip>

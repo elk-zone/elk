@@ -238,6 +238,7 @@ export default defineNuxtConfig({
         'font-src': ['\'self\''],
         'form-action': ['\'none\''],
         'frame-ancestors': ['\'none\''],
+        'frame-src': ['https:'],
         'img-src': ['\'self\'', 'https:', 'http:', 'data:', 'blob:'],
         'manifest-src': ['\'self\''],
         'media-src': ['\'self\'', 'https:', 'http:'],

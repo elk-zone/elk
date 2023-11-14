@@ -1,7 +1,9 @@
 {
   "a11y": {
     "locale_changed": "Idioma configurado en {0}",
-    "locale_changing": "Actualizando idioma, espera..."
+    "locale_changing": "Actualizando idioma, espera...",
+    "pause_video": "Pausar video",
+    "play_video": "Reproducir video"
   },
   "account": {
     "avatar_description": "Foto de perfil de",

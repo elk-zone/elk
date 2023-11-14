@@ -4,6 +4,8 @@
     "loading_titled_page": "Cargando página {0}, espera por favor",
     "locale_changed": "Idioma cambiado a {0}",
     "locale_changing": "Cambiando idioma, espera por favor",
+    "pause_video": "Pausar vídeo",
+    "play_video": "Reproducir vídeo",
     "route_loaded": "Página {0} cargada"
   },
   "account": {

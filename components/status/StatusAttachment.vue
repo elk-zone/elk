@@ -67,26 +67,39 @@ const type = $computed(() => {
 const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
 const isAudio = $computed(() => attachment.type === 'audio')
+const isPlaying = ref(false)
+const showButtons = ref(false)
 
 const enableAutoplay = usePreferences('enableAutoplay')
 
 useIntersectionObserver(video, (entries) => {
-  const ready = video.value?.dataset.ready === 'true'
-  if (prefersReducedMotion.value === 'reduce' || !enableAutoplay.value) {
-    if (ready && !video.value?.paused)
-      video.value?.pause()
-
-    return
-  }
+  const shouldStart = !(prefersReducedMotion.value === 'reduce' || !enableAutoplay.value)
 
   entries.forEach((entry) => {
     if (entry.intersectionRatio <= 0.75) {
-      ready && !video.value?.paused && video.value?.pause()
+      if (showButtons.value && !video.value?.paused)
+        video.value?.pause()
+
+      showButtons.value = false
+      isPlaying.value = false
     }
     else {
+      if (!shouldStart) {
+        if (showButtons.value && !video.value?.paused)
+          video.value?.pause()
+
+        showButtons.value = true
+        isPlaying.value = false
+        return
+      }
+
       video.value?.play().then(() => {
-        video.value!.dataset.ready = 'true'
-      }).catch(noop)
+        showButtons.value = true
+        isPlaying.value = true
+      }).catch(() => {
+        showButtons.value = false
+        isPlaying.value = false
+      })
     }
   })
 }, { threshold: 0.75 })
@@ -97,6 +110,20 @@ const shouldLoadAttachment = ref(isPreview || !getPreferences(userSettings.value
 
 function loadAttachment() {
   shouldLoadAttachment.value = true
+}
+
+function togglePlay() {
+  if (isPlaying.value && video.value)
+    video.value?.pause()
+  else if (video.value)
+    video.value?.play()
+
+  isPlaying.value = !isPlaying.value
+}
+
+function loadAttachAndPlayVideo() {
+  loadAttachment()
+  showButtons.value && nextTick(togglePlay)
 }
 
 const blurHashSrc = $computed(() => {
@@ -163,7 +190,7 @@ watch(shouldLoadAttachment, () => {
       <button
         type="button"
         relative
-        @click="!shouldLoadAttachment ? loadAttachment() : null"
+        @click="!shouldLoadAttachment ? loadAttachAndPlayVideo() : (showButtons && togglePlay())"
       >
         <video
           ref="video"
@@ -195,6 +222,34 @@ watch(shouldLoadAttachment, () => {
           i-ri:video-download-line
         />
       </button>
+      <template v-if="showButtons">
+        <button
+          v-if="isPlaying"
+          absolute
+          flex
+          rounded
+          p-4
+          b="~ 1px text-gray/50"
+          class="pause-button bg-slate-950 text-white"
+          :aria-label="isHydrated ? $t('a11y.pause_video') : ''"
+          @click="togglePlay"
+        >
+          <span block text-xs i-ri:pause-line />
+        </button>
+        <button
+          v-else
+          absolute
+          flex
+          rounded
+          p-4
+          b="~ 1px text-gray/50"
+          class="status-attachment-load bg-slate-950 text-white"
+          :aria-label="isHydrated ? $t('a11y.play_video') : ''"
+          @click="togglePlay"
+        >
+          <span block text-3xl i-ri:play-line />
+        </button>
+      </template>
     </template>
     <template v-else-if="type === 'audio'">
       <audio controls h-15>
@@ -284,5 +339,11 @@ watch(shouldLoadAttachment, () => {
   left: 50%;
   top: 50%;
   translate: -50% -50%;
+}
+
+.pause-button {
+  right: 1%;
+  top: 2%;
+  padding: 0.3rem;
 }
 </style>

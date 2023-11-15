@@ -1,6 +1,6 @@
 import type { Pausable } from '@vueuse/core'
 import type { CreateClientParams, WsEvents, mastodon } from 'masto'
-import { createClient, fetchV1Instance } from 'masto'
+import { createClient, fetchV2Instance } from 'masto'
 import type { Ref } from 'vue'
 import type { ElkInstance } from '../users'
 import type { Mutable } from '~/types/utils'
@@ -38,18 +38,18 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
 
   const server = user.server
   const url = `https://${server}`
-  const instance: ElkInstance = reactive(getInstanceCache(server) || { uri: server, accountDomain: server })
+  const instance: ElkInstance = reactive(getInstanceCache(server) ?? { domain: server, accountDomain: server })
   setParams({
     url,
     accessToken: user?.token,
     disableVersionCheck: true,
-    streamingApiUrl: instance?.urls?.streamingApi,
+    streamingApiUrl: instance?.configuration?.urls?.streamingApi,
   })
 
-  fetchV1Instance({ url }).then((newInstance) => {
+  fetchV2Instance({ url }).then((newInstance) => {
     Object.assign(instance, newInstance)
     setParams({
-      streamingApiUrl: newInstance.urls.streamingApi,
+      streamingApiUrl: newInstance.configuration.urls.streamingApi,
     })
     instanceStorage.value[server] = newInstance
   })

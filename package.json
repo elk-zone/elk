@@ -33,7 +33,7 @@
     "@emoji-mart/data": "^1.1.2",
     "@fnando/sparkline": "^0.3.10",
     "@iconify-emoji/twemoji": "^1.0.2",
-    "@iconify/json": "^2.2.85",
+    "@iconify/json": "^2.2.142",
     "@iconify/utils": "^2.1.7",
     "@nuxt/devtools": "^1.0.0-beta.1",
     "@nuxtjs/color-mode": "^3.3.0",

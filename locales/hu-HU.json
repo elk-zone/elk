@@ -15,6 +15,7 @@
     "blocked_users": "Blokkolt felhasználók",
     "blocking": "Blokkolva",
     "bot": "BOT",
+    "copy_account_name": "Fiók nevének másolása",
     "favourites": "Kedvencek",
     "follow": "Követők",
     "follow_back": "Visszakövetés",
@@ -47,7 +48,7 @@
     "unmute": "Némítás megszűntetve",
     "view_other_followers": "A másik instancekról származó követések nem feltétlenül lesznek megjelenítve.",
     "view_other_following": "A másik instancekról származó követők nem feltétlenül lesznek megjelenítve.",
-    "withdraw_follow_request": "A követési kérés figyelmen kívül hagyása"
+    "withdraw_follow_request": "A követési kérés visszavonása"
   },
   "action": {
     "apply": "Alkalmaz",
@@ -500,6 +501,8 @@
     },
     "notifications_settings": "Értesítések",
     "preferences": {
+      "embedded_media": "Beágyazott Médialejátszó",
+      "embedded_media_description": "A beágyazott lejátszó megjelenítése a normál előnézeti kártya helyett mikor kinagyításra kerül a megosztott áramló média hivatkozás.",
       "enable_autoplay": "Automatikus lejátszás engedélyezése",
       "enable_data_saving": "Adatmentés engedélyezése",
       "enable_data_saving_description": "Mentse az adatokat a mellékletek automatikus betöltésének megakadályozásával.",

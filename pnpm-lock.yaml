@@ -27,8 +27,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       '@iconify/json':
-        specifier: ^2.2.85
-        version: 2.2.85
+        specifier: ^2.2.142
+        version: 2.2.142
       '@iconify/utils':
         specifier: ^2.1.7
         version: 2.1.7
@@ -2377,8 +2377,8 @@ packages:
     resolution: {integrity: sha512-C4W6ov4BkDXiVU3GzyqyVo8SBbU21KivXnZERgAnrYZEKjuiI3JwPDnu9oVJPsUkNI/Q4SM8iVnXjGW6kxt9DQ==}
     dev: false
 
-  /@iconify/json@2.2.85:
-    resolution: {integrity: sha512-T72zjZlpP311ftbdzpOFbRCictazlrX1xR8lLu3swVvFo22b/SZNBN4r0cv+e+eVNZvMxhF/cFww2fkaZ3m7Pg==}
+  /@iconify/json@2.2.142:
+    resolution: {integrity: sha512-EfQv1GMGxOySdwaGR3+Diqudkwk4W299cNtcQhg7QAlH9x6FW9851raiYvdOsMZp0ya+Ye+evTTqxyZ4vEh5cw==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.1

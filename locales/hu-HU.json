@@ -537,7 +537,7 @@
         "description": "Avatar szerkesztése, felhasználónév, profil, stb.",
         "display_name": "Megjelenített név",
         "label": "Megjelenés",
-        "profile_metadata": "Profil adatok",
+        "profile_metadata": "Profil meta adatok",
         "profile_metadata_desc": "Összesen: {0} elem jeleníthető meg a profilban",
         "profile_metadata_label": "Címke",
         "profile_metadata_value": "Tartalom",

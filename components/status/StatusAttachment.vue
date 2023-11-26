@@ -67,6 +67,7 @@ const type = $computed(() => {
 const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
 const isAudio = $computed(() => attachment.type === 'audio')
+const isVideo = $computed(() => attachment.type === 'video')
 
 const enableAutoplay = usePreferences('enableAutoplay')
 
@@ -246,7 +247,12 @@ watch(shouldLoadAttachment, () => {
         />
       </button>
     </template>
-    <div v-if="attachment.description && !getPreferences(userSettings, 'hideAltIndicatorOnPosts')" :class="isAudio ? '' : 'absolute left-2 bottom-2'">
+    <div
+      v-if="attachment.description && !getPreferences(userSettings, 'hideAltIndicatorOnPosts')" :class="isAudio ? [] : [
+        'absolute left-2',
+        isVideo ? 'top-2' : 'bottom-2',
+      ]"
+    >
       <VDropdown :distance="6" placement="bottom-start">
         <button
           font-bold text-sm

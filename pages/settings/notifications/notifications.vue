@@ -24,7 +24,7 @@ useHydratedHead({
         🚧
       </h1>
       <h3 text-xl>
-        {{ isHydrated ? $t('settings.notifications.under_construction') : '' }}
+        {{ isHydrated ? $t('settings.notifications.notifications.label') : '' }}
       </h3>
     </div>
   </MainContent>

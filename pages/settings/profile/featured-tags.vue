@@ -24,7 +24,7 @@ useHydratedHead({
         🚧
       </h1>
       <h3 text-xl>
-        {{ $t('settings.profile.featured_tags.under_construction') }}
+        {{ $t('settings.profile.featured_tags.label') }}
       </h3>
     </div>
   </MainContent>

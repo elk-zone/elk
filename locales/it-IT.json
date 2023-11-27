@@ -542,7 +542,8 @@
       },
       "featured_tags": {
         "description": "Le altre persone possono sfogliare i tuoi post pubblici raccolti sotto questi hashtag.",
-        "label": "Hashtag in evidenza"
+        "label": "Hashtag in evidenza",
+        "under_construction": "Lavori in corso"
       },
       "label": "Profilo"
     },

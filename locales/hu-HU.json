@@ -545,7 +545,8 @@
       },
       "featured_tags": {
         "description": "Az emberek ezen hashtagek alatt böngészhetik nyilvános bejegyzéseit.",
-        "label": "Kiemelt hashtagek"
+        "label": "Kiemelt hashtagek",
+        "under_construction": "Felújítás alatt"
       },
       "label": "Profil"
     },

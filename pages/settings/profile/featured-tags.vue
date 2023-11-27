@@ -20,10 +20,11 @@ useHydratedHead({
     </template>
     <div text-center mt-10>
       <h1 text-4xl>
+        <span sr-only>{{ $t('settings.profile.featured_tags.under_construction') }}</span>
         🚧
       </h1>
       <h3 text-xl>
-        {{ $t('settings.profile.featured_tags.label') }}
+        {{ $t('settings.profile.featured_tags.under_construction') }}
       </h3>
     </div>
   </MainContent>

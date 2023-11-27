@@ -474,7 +474,8 @@
       },
       "featured_tags": {
         "description": "İnsanlar bu etiketlerler altında herkese açık gönderilerinize göz atabilir.",
-        "label": "Öne çıkan etiketler"
+        "label": "Öne çıkan etiketler",
+        "under_construction": "Yapım halinde"
       },
       "label": "Profil"
     },

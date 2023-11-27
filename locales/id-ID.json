@@ -544,7 +544,8 @@
       },
       "featured_tags": {
         "description": "Orang-orang dapat menelusuri kiriman publik Anda di bawah tagar ini.",
-        "label": "Tagar unggulan"
+        "label": "Tagar unggulan",
+        "under_construction": "Dalam masa pembangunan"
       },
       "label": "Profil"
     },

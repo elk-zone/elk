@@ -545,7 +545,8 @@
       },
       "featured_tags": {
         "description": "People can browse your public posts under these hashtags.",
-        "label": "Featured hashtags"
+        "label": "Featured hashtags",
+        "under_construction": "Under construction"
       },
       "label": "Profile"
     },

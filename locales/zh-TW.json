@@ -424,7 +424,8 @@
       },
       "featured_tags": {
         "description": "人們可以在這些標籤下瀏覽你的公開嘟文。",
-        "label": "精選的話題標籤"
+        "label": "精選的話題標籤",
+        "under_construction": "建立中"
       },
       "label": "個人資料"
     },

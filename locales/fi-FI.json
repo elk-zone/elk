@@ -534,7 +534,8 @@
       },
       "featured_tags": {
         "description": "Ihmiset voivat selata julkisia julkaisujasi näillä aihetunnisteilla.",
-        "label": "Esiteltävät aihetunnisteet"
+        "label": "Esiteltävät aihetunnisteet",
+        "under_construction": "Rakenteilla"
       },
       "label": "Profiili"
     },

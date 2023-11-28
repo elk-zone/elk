@@ -538,7 +538,8 @@
       },
       "featured_tags": {
         "description": "他のユーザーはこれらのハッシュタグであなたの公開投稿を閲覧できます。",
-        "label": "注目のハッシュタグ"
+        "label": "注目のハッシュタグ",
+        "under_construction": "工事中"
       },
       "label": "プロフィール"
     },

@@ -533,7 +533,8 @@
       },
       "featured_tags": {
         "description": "Leute können deine öffentlichen Beiträge mit diesen Hashtags ansehen.",
-        "label": "Ausgewählte Hashtags"
+        "label": "Ausgewählte Hashtags",
+        "under_construction": "In Bearbeitung"
       },
       "label": "Profil"
     },

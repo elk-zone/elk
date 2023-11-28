@@ -402,7 +402,7 @@
     "whats_wrong_post": "Mondja el, mi a baj ezzel a bejegyzéssel"
   },
   "search": {
-    "search_desc": "Személyek és hashtagek keresése",
+    "search_desc": "Személyek és #címkék keresése",
     "search_empty": "Nem találtunk semmit ezekre a keresési kifejezésekre"
   },
   "settings": {

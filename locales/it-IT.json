@@ -15,6 +15,7 @@
     "blocked_users": "Utenti bloccati",
     "blocking": "Bloccato",
     "bot": "BOT",
+    "copy_account_name": "Copia nome account",
     "favourites": "Preferiti",
     "follow": "Segui",
     "follow_back": "Ricambia",
@@ -500,6 +501,8 @@
     },
     "notifications_settings": "Notifiche",
     "preferences": {
+      "embedded_media": "Riproduttore media incorporato",
+      "embedded_media_description": "Visualizza un riproduttore incorporato invece della normale anteprima quando si espande un link a un contenuto multimediale.",
       "enable_autoplay": "Attiva riproduzione automatica",
       "enable_data_saving": "Attiva risparmio dati",
       "enable_data_saving_description": "Risparmia dati disattivando il download automatico degli allegati.",
@@ -542,7 +545,8 @@
       },
       "featured_tags": {
         "description": "Le altre persone possono sfogliare i tuoi post pubblici raccolti sotto questi hashtag.",
-        "label": "Hashtag in evidenza"
+        "label": "Hashtag in evidenza",
+        "under_construction": "Lavori in corso"
       },
       "label": "Profilo"
     },
@@ -577,6 +581,7 @@
     },
     "boosted_by": "Potenziato da",
     "edited": "Modificato {0}",
+    "embedded_warning": "La riproduzione di questo contenuto potrebbe rivelare il tuo indirizzo IP ad altri.",
     "favourited_by": "Apprezzato da",
     "filter_hidden_phrase": "Filtrato da",
     "filter_show_anyway": "Mostra comunque",

@@ -544,7 +544,8 @@
       },
       "featured_tags": {
         "description": "Jendeak traola hauek dituzten zure bidalketa publikoak ikus ditzazke.",
-        "label": "Nabarmendutako traolak"
+        "label": "Nabarmendutako traolak",
+        "under_construction": "Amaitzeke"
       },
       "label": "Profila"
     },

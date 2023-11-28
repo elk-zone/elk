@@ -437,7 +437,8 @@
       },
       "featured_tags": {
         "description": "La gent pot navegar per les teves publicacions públiques amb aquests hashtags.",
-        "label": "Hashtags destacats"
+        "label": "Hashtags destacats",
+        "under_construction": "En construcció"
       },
       "label": "Perfil"
     },

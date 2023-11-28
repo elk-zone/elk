@@ -472,7 +472,8 @@
       },
       "featured_tags": {
         "description": "Ludzie mogą przeglądać Twoje publiczne wpisy pod tymi hasztagami.",
-        "label": "Polecane hasztagi"
+        "label": "Polecane hasztagi",
+        "under_construction": "W budowie"
       },
       "label": "Profil"
     },

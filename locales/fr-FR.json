@@ -537,7 +537,8 @@
       },
       "featured_tags": {
         "description": "Les gens peuvent parcourir vos messages publics sous ces hashtags.",
-        "label": "Hashtags en vedette"
+        "label": "Hashtags en vedette",
+        "under_construction": "En construction"
       },
       "label": "Profil"
     },

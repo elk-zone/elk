@@ -542,7 +542,8 @@
       },
       "featured_tags": {
         "description": "Mọi người có thể tìm các tút công khai có chứa những hashtag đó.",
-        "label": "Hashtag thường dùng"
+        "label": "Hashtag thường dùng",
+        "under_construction": "Đang được xây dựng"
       },
       "label": "Hồ sơ"
     },

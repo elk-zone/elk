@@ -6,6 +6,7 @@ import { RouterLink } from 'vue-router'
 import { decode } from 'tiny-decode'
 import type { ContentParseOptions } from './content-parse'
 import { parseMastodonHTML } from './content-parse'
+import Emoji from '~/components/emoji/Emoji.vue'
 import ContentCode from '~/components/content/ContentCode.vue'
 import ContentMentionGroup from '~/components/content/ContentMentionGroup.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
@@ -19,8 +20,11 @@ function getTextualAstComponents(astChildren: Node[]): string {
 }
 
 /**
-* Raw HTML to VNodes
-*/
+ * Raw HTML to VNodes.
+ *
+ * @param content HTML content.
+ * @param options Options.
+ */
 export function contentToVNode(
   content: string,
   options?: ContentParseOptions,
@@ -42,6 +46,17 @@ export function nodeToVNode(node: Node): VNode | string | null {
 
   if (node.name === 'mention-group')
     return h(ContentMentionGroup, node.attributes, () => node.children.map(treeToVNode))
+
+  // add tooltip to emojis
+  if (node.name === 'picture' || (node.name === 'img' && node.attributes?.alt)) {
+    const props = node.attributes ?? {}
+    props.as = node.name
+    return h(
+      Emoji,
+      props,
+      () => node.children.map(treeToVNode),
+    )
+  }
 
   if ('children' in node) {
     if (node.name === 'a' && (node.attributes.href?.startsWith('/') || node.attributes.href?.startsWith('.'))) {

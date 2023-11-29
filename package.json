@@ -123,7 +123,7 @@
     "flat": "^5.0.2",
     "fs-extra": "^11.1.1",
     "lint-staged": "^14.0.1",
-    "nuxt": "3.7.4",
+    "nuxt": "3.8.2",
     "prettier": "^3.0.3",
     "sharp": "^0.32.5",
     "sharp-ico": "^0.1.5",
@@ -135,7 +135,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@nuxt/schema": "3.7.4",
+      "@nuxt/schema": "3.8.2",
       "unstorage": "^1.9.0"
     },
     "patchedDependencies": {

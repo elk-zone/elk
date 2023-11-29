@@ -61,7 +61,7 @@
     "clear_save_failed": "Mentési hibák tisztítása",
     "clear_upload_failed": "Fájl feltöltési hibák tisztítása",
     "close": "Bezár",
-    "compose": "Összeállít",
+    "compose": "Közzétesz",
     "confirm": "Jóváhagy",
     "done": "Kész",
     "edit": "Szerkeszt",
@@ -280,7 +280,7 @@
     "blocked_users": "Blokkolt felhasználók",
     "bookmarks": "Könyvjelzők",
     "built_at": "Verzió {0}",
-    "compose": "Összeállít",
+    "compose": "Közzétesz",
     "conversations": "Párbeszédek",
     "explore": "Felfedezés",
     "favourites": "Kedvencek",
@@ -402,7 +402,7 @@
     "whats_wrong_post": "Mondja el, mi a baj ezzel a bejegyzéssel"
   },
   "search": {
-    "search_desc": "Személyek és hashtagek keresése",
+    "search_desc": "Személyek és címkék keresése",
     "search_empty": "Nem találtunk semmit ezekre a keresési kifejezésekre"
   },
   "settings": {
@@ -423,14 +423,14 @@
       "label": "Fiók beállítások"
     },
     "interface": {
-      "color_mode": "Színes mód",
+      "color_mode": "Szín mód",
       "dark_mode": "Sötét",
       "default": " (default)",
-      "font_size": "betű mérete",
+      "font_size": "Betű mérete",
       "label": "Felület",
       "light_mode": "Világos",
       "system_mode": "Rendszer",
-      "theme_color": "téma színe"
+      "theme_color": "Téma színe"
     },
     "language": {
       "display_language": "Megjelenítés nyelve",
@@ -544,8 +544,8 @@
         "title": "Profil szerkesztése"
       },
       "featured_tags": {
-        "description": "Az emberek ezen hashtagek alatt böngészhetik nyilvános bejegyzéseit.",
-        "label": "Kiemelt hashtagek",
+        "description": "Az emberek ezen címkék alatt böngészhetik nyilvános bejegyzéseit.",
+        "label": "Kiemelt címkék",
         "under_construction": "Felújítás alatt"
       },
       "label": "Profil"
@@ -611,7 +611,7 @@
   "tab": {
     "accounts": "Fiókok",
     "for_you": "Önnek",
-    "hashtags": "#Címkék",
+    "hashtags": "Címkék",
     "list": "Lista",
     "media": "Média",
     "news": "Hírek",
@@ -688,7 +688,7 @@
     "emoji": "Emoji",
     "explore_links_intro": "Ezekről a hírekről beszélnek az emberek ezen és a decentralizált hálózat más szerverein.",
     "explore_posts_intro": "Ezek a bejegyzések erről és a decentralizált hálózat más szervereiről jelenleg egyre nagyobb teret hódítanak ezen a szerveren.",
-    "explore_tags_intro": "Ezek a hashtagek jelenleg egyre nagyobb teret hódítanak az emberek körében ezen és a decentralizált hálózat más szerverein.",
+    "explore_tags_intro": "Ezek a címkék jelenleg egyre nagyobb teret hódítanak az emberek körében ezen és a decentralizált hálózat más szerverein.",
     "open_editor_tools": "Szerkesztő eszközök",
     "pick_an_icon": "Ikon választása",
     "publish_failed": "A bejegyzések újbóli közzétételéhez zárja be a sikertelen üzeneteket a szerkesztő tetején",
@@ -699,10 +699,10 @@
   "user": {
     "add_existing": "Egy látező fiók hozzáadása",
     "server_address_label": "Mastodon szerver címe",
-    "sign_in_desc": "Jelentkezzen be profilok vagy hashtagek követéséhez, kedvencekhez, bejegyzések megosztásához és megválaszolásához, vagy egy másik szerveren lévő fiókjából való interakcióhoz.",
+    "sign_in_desc": "Jelentkezzen be profilok vagy címkék követéséhez, kedvencekhez, bejegyzések megosztásához és megválaszolásához, vagy egy másik szerveren lévő fiókjából való interakcióhoz.",
     "sign_in_notice_title": "{0} nyilvános adat megtekintése",
     "sign_out_account": "Kijelentkezés {0}",
-    "single_instance_sign_in_desc": "Jelentkezzen be profilok vagy hashtagek követéséhez, kedvencei közé, bejegyzések megosztásához és megválaszolásához.",
+    "single_instance_sign_in_desc": "Jelentkezzen be profilok vagy címkék követéséhez, kedvencei közé, bejegyzések megosztásához és megválaszolásához.",
     "tip_no_account": "Ha még nincs Mastodon fiókod: {0}.",
     "tip_register_account": "válassz egy szervert és regisztrált egyet"
   },

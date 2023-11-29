@@ -123,7 +123,7 @@
       "title": "Biztosan blokkolja? {0}"
     },
     "block_domain": {
-      "cancel": "Cancel",
+      "cancel": "Mégsem",
       "confirm": "Blokkol",
       "title": "Biztosan blokkolja? {0}"
     },
@@ -425,7 +425,7 @@
     "interface": {
       "color_mode": "Szín mód",
       "dark_mode": "Sötét",
-      "default": " (default)",
+      "default": " (alapértelmezett)",
       "font_size": "Betű mérete",
       "label": "Felület",
       "light_mode": "Világos",
@@ -581,6 +581,7 @@
     },
     "boosted_by": "Kiemelve: ",
     "edited": "Szerkesztve: {0}",
+    "embedded_warning": "Ennek lejátszása mások számára felfedheti az IP-címét.",
     "favourited_by": "Kedvencek közé helyezve: ",
     "filter_hidden_phrase": "Szűrve: ",
     "filter_show_anyway": "Megjelenít mégis",
@@ -631,7 +632,6 @@
     "notifications_update": "Frissítés",
     "posts": "Bejegyzések",
     "posts_with_replies": "Bejegyzések & válaszok"
-
   },
   "tag": {
     "follow": "Követés",

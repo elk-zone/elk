@@ -36,7 +36,7 @@
     "@iconify/json": "^2.2.142",
     "@iconify/utils": "^2.1.7",
     "@nuxt/devtools": "^1.0.0-beta.1",
-    "@nuxtjs/color-mode": "^3.3.0",
+    "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/i18n": "8.0.0-beta.10",
     "@pinia/nuxt": "^0.4.11",
     "@tiptap/core": "2.1.8",

@@ -217,10 +217,8 @@ export default defineNuxtModule<VitePWANuxtOptions>({
           }
         }
       })
-      nuxt.hook('nitro:init', (nitro) => {
-        nitro.hooks.hook('rollup:before', async () => {
-          await resolveVitePluginPWAAPI()?.generateSW()
-        })
+      nuxt.hook('nitro:build:public-assets', async () => {
+        await resolveVitePluginPWAAPI()?.generateSW()
       })
     }
   },

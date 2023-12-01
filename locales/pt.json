@@ -545,7 +545,8 @@
       },
       "featured_tags": {
         "description": "As pessoas podem encontrar as suas publicações públicas que incluem essas hashtags.",
-        "label": "Hashtags destacadas"
+        "label": "Hashtags destacadas",
+        "under_construction": "Em construcão"
       },
       "label": "Perfil"
     },

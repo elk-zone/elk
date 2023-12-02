@@ -7,7 +7,7 @@ const plugin: Plugin<{
 }> = defineNuxtPlugin(() => {
   return {
     provide: {
-      pwa: {},
+      pwa: undefined,
     },
   }
 })

@@ -1,7 +1,12 @@
 import { useRegisterSW } from 'virtual:pwa-register/vue'
+import type { UnwrapNestedRefs } from 'vue'
+import type { PwaInjection } from './types'
 import { STORAGE_KEY_PWA_HIDE_INSTALL } from '~/constants'
+import type { Plugin } from '#app'
 
-export default defineNuxtPlugin(() => {
+const plugin: Plugin<{
+  pwa?: UnwrapNestedRefs<PwaInjection>
+}> = defineNuxtPlugin(() => {
   const online = useOnline()
   const registrationError = ref(false)
   const swActivated = ref(false)
@@ -105,7 +110,7 @@ export default defineNuxtPlugin(() => {
 
   return {
     provide: {
-      pwa: reactive({
+      pwa: reactive<PwaInjection>({
         isInstalled,
         showInstallPrompt,
         cancelInstall,
@@ -119,3 +124,5 @@ export default defineNuxtPlugin(() => {
     },
   }
 })
+
+export default plugin

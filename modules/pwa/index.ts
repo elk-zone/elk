@@ -56,8 +56,10 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     else {
       // Register PWA types
       nuxt.hook('prepare:types', ({ references }) => {
+        const types = resolver.resolve('runtime/types')
+        references.push({ path: resolver.resolve(nuxt.options.buildDir, types) })
         references.push({ types: 'vite-plugin-pwa/info' })
-        references.push({ types: 'vite-plugin-pwa/client' })
+        references.push({ types: 'vite-plugin-pwa/vue' })
       })
       // Inject $pwa helper throughout app
       addPlugin({ src: resolver.resolve('./runtime/pwa-plugin.client') })

@@ -50,16 +50,14 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       baseURL: '/',
       maxAge: 0,
     })
-    if (options.disable) {
-      addPlugin({ src: resolver.resolve('./runtime/pwa-plugin-stub.client') })
-    }
-    else {
-      // Register PWA types
-      nuxt.hook('prepare:types', ({ references }) => {
-        references.push({ path: resolver.resolve('runtime/types') })
-        references.push({ types: 'vite-plugin-pwa/info' })
-        references.push({ types: 'vite-plugin-pwa/vue' })
-      })
+
+    // Register PWA types
+    nuxt.hook('prepare:types', ({ references }) => {
+      references.push({ path: resolver.resolve('runtime/types') })
+      references.push({ types: 'vite-plugin-pwa/info' })
+      references.push({ types: 'vite-plugin-pwa/vue' })
+    })
+    if (!options.disable) {
       // Inject $pwa helper throughout app
       addPlugin({ src: resolver.resolve('./runtime/pwa-plugin.client') })
     }

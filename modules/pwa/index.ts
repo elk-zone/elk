@@ -53,6 +53,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
 
     // Register PWA types
     nuxt.hook('prepare:types', ({ references }) => {
+      // TODO: remove this once JetBrains fixes the issue with types: remove also the dts file
       references.push({ path: resolver.resolve('runtime/types') })
       references.push({ types: 'vite-plugin-pwa/info' })
       references.push({ types: 'vite-plugin-pwa/vue' })

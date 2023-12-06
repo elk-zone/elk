@@ -163,7 +163,8 @@
       },
       "featured_tags": {
         "description": "Los usuarios navegan por tus publicaciones públicas con estas etiquetas.",
-        "label": "Etiquetas destacadas"
+        "label": "Etiquetas destacadas",
+        "under_construction": "En desarrollo"
       }
     },
     "users": {

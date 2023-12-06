@@ -536,7 +536,8 @@
       },
       "featured_tags": {
         "description": "Las personas pueden navegar por tus publicaciones públicas con estas etiquetas.",
-        "label": "Etiquetas destacadas"
+        "label": "Etiquetas destacadas",
+        "under_construction": "En construcción"
       },
       "label": "Perfil"
     },

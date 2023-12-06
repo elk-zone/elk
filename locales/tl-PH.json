@@ -469,7 +469,8 @@
       },
       "featured_tags": {
         "description": "Maaring i-browse ng mga tao ang iyong mga public post gamit ang mga hashtags na ito.",
-        "label": "Napiling mga hashtags"
+        "label": "Napiling mga hashtags",
+        "under_construction": "Nasa ilalim ng konstruksyon"
       },
       "label": "Profile"
     },

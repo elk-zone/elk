@@ -465,7 +465,8 @@
       },
       "featured_tags": {
         "description": "Será posible buscar as túas publicacións públicas con estos cancelos.",
-        "label": "Cancelos destacados"
+        "label": "Cancelos destacados",
+        "under_construction": "En desenvolvemento"
       },
       "label": "Perfil"
     },

@@ -19,7 +19,7 @@
     "reject": "Omitir seguimiento",
     "rejected": "Omitiste la petición",
     "unmute": "Quitar silencio",
-    "withdraw_follow_request": "Quitar solitud de seguimiento"
+    "withdraw_follow_request": "Quitar solicitud de seguimiento"
   },
   "action": {
     "apply": "Guardar cambios",

@@ -7,6 +7,8 @@
     "route_loaded": "Página {0} cargada"
   },
   "account": {
+    "authorize": "Autorizar seguimiento",
+    "authorized": "Has autorizado la petición",
     "avatar_description": "avatar de {0}",
     "blocked_by": "Has sido bloqueado por este usuario.",
     "blocked_domains": "Dominios bloqueados",
@@ -36,6 +38,8 @@
     "profile_description": "Encabezado del perfil de {0}",
     "profile_personal_note": "Nota Personal",
     "profile_unavailable": "Perfil no disponible",
+    "reject": "Descartar seguimiento",
+    "rejected": "Has descartado la petición",
     "request_follow": "Solicitar seguirle",
     "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
@@ -69,7 +73,7 @@
     "publish": "Publicar",
     "reply": "Responder",
     "reply_count": "{0}",
-    "reset": "Reiniciar",
+    "reset": "Reestablecer",
     "save": "Guardar",
     "save_changes": "Guardar cambios",
     "sign_in": "Iniciar sesión",
@@ -213,6 +217,7 @@
         "command_mode": "Modo comando",
         "compose": "Redactar",
         "favourite": "Favorito",
+        "search": "Búsqueda",
         "title": "Acciones"
       },
       "media": {
@@ -494,6 +499,8 @@
     },
     "notifications_settings": "Notificaciones",
     "preferences": {
+      "embedded_media": "Reproductor de multimedia inscrustado",
+      "embedded_media_description": "Mostrar un reproductor incrustado en lugar de la tarjeta de vista previa normal al expandir enlaces compartidos de transmisión de multimedia.",
       "enable_autoplay": "Habilitar reproducción automática",
       "enable_data_saving": "Habilitar el ahorro de datos",
       "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
@@ -572,6 +579,7 @@
     },
     "boosted_by": "Retooteado por",
     "edited": "Editado {0}",
+    "embedded_warning": "Reproducir esto puede revelar tu dirección IP a otras personas.",
     "favourited_by": "Marcado como favorita por",
     "filter_hidden_phrase": "Filtrado por",
     "filter_show_anyway": "Mostrar de todas formas",

@@ -4,6 +4,7 @@
     "locale_changing": "Actualizando idioma, espera..."
   },
   "account": {
+    "authorized": "Autorizaste la petición",
     "avatar_description": "Foto de perfil de",
     "blocked_by": "Estás bloqueado por este usuario.",
     "blocked_domains": "Dominios ocultos",
@@ -15,16 +16,17 @@
     "notifications_on_post_enable": "Notificarme cuando {username} publique",
     "pinned": "Publicaciones ancladas",
     "profile_description": "Imagen de portada de {0}",
-    "unmute": "Quitar silencio"
+    "reject": "Omitir seguimiento",
+    "rejected": "Omitiste la petición",
+    "unmute": "Quitar silencio",
+    "withdraw_follow_request": "Quitar solicitud de seguimiento"
   },
   "action": {
     "apply": "Guardar cambios",
     "bookmark": "Marcar",
-    "confirm": "Cortar",
     "edit": "Actualizar",
     "enter_app": "Ingresar",
     "favourite": "Marcar como favorita",
-    "favourited": "Marcada como favorita",
     "reset": "Resetear",
     "switch_account": "Cambiar de cuenta"
   },

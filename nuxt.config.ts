@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
     '@unlazy/nuxt',
-    'nuxt-vitest',
+    '@nuxt/test-utils/module',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/emoji-mart-translation',
     '~/modules/purge-comments',

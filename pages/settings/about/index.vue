@@ -111,7 +111,22 @@ function handleShowCommit() {
 
     <template v-if="isHydrated">
       <p px5 py3 font-bold text-lg>
-        {{ $t('settings.about.meet_the_team') }}
+        Meet the crab team
+      </p>
+
+      <SettingsItem
+        v-for="team in crabTeamMembers" :key="team.github"
+        :text="team.display"
+        :to="`https://github.com/sponsors/${team.github}`"
+        external target="_blank"
+      >
+        <template #icon>
+          <img :src="`/avatars/${team.github}-60x60.png`" :alt="team.display" rounded-full w-8 h-8 height="32" width="32">
+        </template>
+      </SettingsItem>
+
+      <p px5 py3 font-bold text-lg>
+        Meet the Elk team
       </p>
 
       <SettingsItem

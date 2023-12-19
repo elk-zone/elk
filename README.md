@@ -1,10 +1,10 @@
 <p align="center">
   <a href="https://elk.bumscode.com" target="_blank" rel="noopener noreferrer">
-    <img height="160" src="./public/crab-original.png" alt="Crab logo">
+    <img height="160" src="./public/crab-original.png" alt="crab logo">
   </a>
 </p>
 
-<h1 align="center"/>Crab <sup><em>alpha</em></sup></h1>
+<h1 align="center"/>crab <sup><em>alpha</em></sup></h1>
 
 A nimble Mastodon web client, customized for [bumscode.com](https://bumscode.com).
 
@@ -26,7 +26,7 @@ If you want to contribute to the parent project, check out [its repo](https://gi
 
 ### Official Deployment
 
-The Crab team maintains a deployment at:
+The crab team maintains a deployment at:
 
 - 🦀 Production: [elk.bumscode.com](https://elk.bumscode.com)
 
@@ -48,7 +48,7 @@ We would also appreciate sponsoring other contributors to the Elk project. If so
 
 ## 🚀 Contributing
 
-Feel free to open PRs on this repo if you want to contribute to Crab!
+Feel free to open PRs on this repo if you want to contribute to crab!
 If you want to contribute to Elk, check out their [Contributing Guide](./CONTRIBUTING.md).
 
 ### Local Setup
@@ -102,4 +102,4 @@ You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more
 
 ## 📄 License
 
-[MIT](./LICENSE) &copy; 2022-PRESENT Crab & Elk contributors
+[MIT](./LICENSE) &copy; 2022-PRESENT crab & Elk contributors

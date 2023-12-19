@@ -1,5 +1,5 @@
 <template>
-  <img src="@/public/pwa-64x64.png" alt="logo" class="h-10">
+  <img src="@/public/pwa-192x192.png" alt="logo" class="h-10">
 </template>
 
 <style scoped>

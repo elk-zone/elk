@@ -109,7 +109,6 @@ export default defineNuxtModule<VitePWANuxtOptions>({
             ...icons.map(({ src, type }) => ({ src, type })),
             { src: 'favicon.ico', type: 'image/x-icon' },
             { src: 'apple-touch-icon.png', type: 'image/png' },
-            { src: 'logo.svg', type: 'image/svg+xml' },
           ]
 
           const folder = dirname(fileURLToPath(import.meta.url))

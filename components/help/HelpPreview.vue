@@ -10,7 +10,7 @@ const emit = defineEmits<{
       <div i-ri:close-line />
     </button>
 
-    <img :alt="$t('app_logo')" :src="`/${''}logo.svg`" w-20 h-20 height="80" width="80" mxa class="rtl-flip">
+    <img :alt="$t('app_logo')" :src="`/${''}pwa-192x192.png`" w-20 h-20 height="80" width="80" mxa class="rtl-flip">
     <h1 mxa text-4xl mb4>
       {{ $t('help.title') }}
     </h1>

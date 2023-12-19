@@ -25,7 +25,7 @@ function handleShowCommit() {
     </template>
 
     <div flex="~ col gap4" w-full items-center justify-center my5>
-      <img :alt="$t('app_logo')" :src="`${''}/logo.svg`" w-24 h-24 class="rtl-flip">
+      <img :alt="$t('app_logo')" :src="`${''}/pwa-192x192.png`" w-24 h-24 class="rtl-flip">
       <p text-lg>
         {{ $t('app_desc_short') }}
       </p>

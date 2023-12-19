@@ -1,41 +1,34 @@
 <p align="center">
-  <a href="https://elk.zone" target="_blank" rel="noopener noreferrer">
-    <img width="160" height="160" src="./public/logo.svg" alt="Elk logo">
+  <a href="https://elk.bumscode.com" target="_blank" rel="noopener noreferrer">
+    <img width="160" height="160" src="./public/logo.svg" alt="Crab logo">
   </a>
 </p>
 
-<h1 align="center"/>Elk <sup><em>alpha</em></sup></h1>
+<h1 align="center"/>Crab <sup><em>alpha</em></sup></h1>
 
-<p align="center">
-A nimble Mastodon web client
-</p>
+A nimble Mastodon web client, customized for [bumscode.com](https://bumscode.com).
+
 
 <br/>
-<p align="center">
-  <a href="https://chat.elk.zone"><img src="https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord" alt="discord chat"></a>
-  <a href="https://pr.new/elk-zone/elk"><img src="https://developer.stackblitz.com/img/start_pr_dark_small.svg" alt="Start new PR in StackBlitz Codeflow"></a>
-  <a href="https://volta.net/elk-zone/elk?utm_source=elk_readme"><img src="https://user-images.githubusercontent.com/904724/209143798-32345f6c-3cf8-4e06-9659-f4ace4a6acde.svg" alt="Open board on Volta"></a>
-</p>
-<br/>
+
 
 <p align="center">
-  <a href="https://elk.zone/" target="_blank" rel="noopener noreferrer" >
+  <a href="https://elk.bumscode.com/" target="_blank" rel="noopener noreferrer" >
     <img src="./public/elk-og.png" alt="Elk screenshots" width="600" height="auto">
   </a>
 </p>
 
-## ⚠️ Elk is in Alpha
+## ⚠️ Crab and its parent Elk are in Alpha
 
-It is already quite usable, but it isn't ready for wide adoption yet. We recommend you use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
+If you want to contribute to the parent project, check out [its repo](https://github.com/elk-zone/elk).
 
 ## Deployment
 
 ### Official Deployment
 
-The Elk team maintains a deployment at:
+The Crab team maintains a deployment at:
 
-- 🦌 Production: [elk.zone](https://elk.zone)
-- 🐙 Canary: [main.elk.zone](https://main.elk.zone) (deploys on every commit to `main` branch)
+- 🦀 Production: [elk.bumscode.com](https://elk.bumscode.com)
 
 ### Self-Host Docker Deployment
 
@@ -155,11 +148,10 @@ You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more
 - [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update, Web Push Notifications and Web Share Target API
 
 ## 👨‍💻 Contributors
-
-<a href="https://github.com/elk-zone/elk/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=elk-zone/elk" />   
-</a>    
+<a href="https://github.com/maybeanerd/crab/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=maybeanerd/crab" />   
+</a>
 
 ## 📄 License
 
-[MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors
+[MIT](./LICENSE) &copy; 2022-PRESENT Crab & Elk contributors

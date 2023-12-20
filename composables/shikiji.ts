@@ -1,4 +1,4 @@
-import { type Highlighter, type BuiltinLanguage as Lang, getHighlighter } from 'shikiji'
+import { type Highlighter, type BuiltinLanguage as Lang } from 'shikiji'
 
 const highlighter = ref<Highlighter>()
 

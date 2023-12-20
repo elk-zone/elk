@@ -279,14 +279,6 @@ vi.mock('vue-router', async () => {
   }
 })
 
-vi.mock('shiki-es', async (importOriginal) => {
-  const mod = await importOriginal()
-  return {
-    ...(mod as any),
-    setCDN() {},
-  }
-})
-
 mockComponent('ContentMentionGroup', {
   setup(props, { slots }) {
     return () => h('mention-group', null, { default: () => slots?.default?.() })

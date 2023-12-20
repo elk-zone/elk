@@ -151,7 +151,7 @@ You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more
 - [UnoCSS](https://uno.antfu.me/) - The instant on-demand atomic CSS engine
 - [Iconify](https://github.com/iconify/icon-sets#iconify-icon-sets-in-json-format) - Iconify icon sets in JSON format
 - [Masto.js](https://neet.github.io/masto.js) - Mastodon API client in TypeScript
-- [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
+- [shikiji](https://shikiji.netlify.app/) - A beautiful and powerful syntax highlighter
 - [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update, Web Push Notifications and Web Share Target API
 
 ## 👨‍💻 Contributors

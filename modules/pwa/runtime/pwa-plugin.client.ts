@@ -1,4 +1,6 @@
 import { useRegisterSW } from 'virtual:pwa-register/vue'
+import type { UnwrapNestedRefs } from 'vue'
+import type { PwaInjection } from './types'
 import { STORAGE_KEY_PWA_HIDE_INSTALL } from '~/constants'
 
 export default defineNuxtPlugin(() => {
@@ -11,7 +13,8 @@ export default defineNuxtPlugin(() => {
   // https://thomashunter.name/posts/2021-12-11-detecting-if-pwa-twa-is-installed
   const ua = navigator.userAgent
   const ios = ua.match(/iPhone|iPad|iPod/)
-  const standalone = window.matchMedia('(display-mode: standalone)').matches
+  const standalone = window.matchMedia('(display-mode: window-controls-overlay)').matches
+    || window.matchMedia('(display-mode: standalone)').matches
   const isInstalled = !!(standalone || (ios && !ua.match(/Safari/)))
 
   const registerPeriodicSync = (swUrl: string, r: ServiceWorkerRegistration) => {
@@ -114,7 +117,7 @@ export default defineNuxtPlugin(() => {
         needRefresh,
         updateServiceWorker,
         close,
-      }),
+      }) satisfies UnwrapNestedRefs<PwaInjection>,
     },
   }
 })

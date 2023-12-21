@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = defineProps<{
   account?: mastodon.v1.Account
   handle?: string
@@ -9,10 +13,6 @@ const props = defineProps<{
 
 const account = computed(() => props.account || (props.handle ? useAccountByHandle(props.handle!) : undefined))
 const userSettings = useUserSettings()
-
-defineOptions({
-  inheritAttrs: false,
-})
 </script>
 
 <template>

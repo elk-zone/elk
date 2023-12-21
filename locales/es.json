@@ -7,6 +7,8 @@
     "route_loaded": "Página {0} cargada"
   },
   "account": {
+    "authorize": "Autorizar seguimiento",
+    "authorized": "Has autorizado la petición",
     "avatar_description": "avatar de {0}",
     "blocked_by": "Has sido bloqueado por este usuario.",
     "blocked_domains": "Dominios bloqueados",
@@ -36,12 +38,15 @@
     "profile_description": "Encabezado del perfil de {0}",
     "profile_personal_note": "Nota Personal",
     "profile_unavailable": "Perfil no disponible",
+    "reject": "Descartar seguimiento",
+    "rejected": "Has descartado la petición",
     "request_follow": "Solicitar seguirle",
     "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
     "unmute": "Dejar de silenciar",
     "view_other_followers": "Puede que no se muestren los seguidores de otras instancias.",
-    "view_other_following": "Puede que no se muestren los seguidos de otras instancias."
+    "view_other_following": "Puede que no se muestren los seguidos de otras instancias.",
+    "withdraw_follow_request": "Retirar solitud de seguimiento"
   },
   "action": {
     "apply": "Aplicar",
@@ -51,10 +56,12 @@
     "boost_count": "{0}",
     "boosted": "Retooteado",
     "clear_publish_failed": "Limpiar errores de publicación",
+    "clear_save_failed": "Limpiar errores al guardar",
     "clear_upload_failed": "Limpiar errores de subida de archivos",
     "close": "Cerrar",
     "compose": "Redactar",
     "confirm": "Confirmar",
+    "done": "Hecho",
     "edit": "Editar",
     "enter_app": "Entrar",
     "favourite": "Favorita",
@@ -66,7 +73,7 @@
     "publish": "Publicar",
     "reply": "Responder",
     "reply_count": "{0}",
-    "reset": "Reiniciar",
+    "reset": "Reestablecer",
     "save": "Guardar",
     "save_changes": "Guardar cambios",
     "sign_in": "Iniciar sesión",
@@ -85,7 +92,7 @@
     "activate": "Activar",
     "complete": "Completar",
     "compose_desc": "Escribir una nueva publicación",
-    "n-people-in-the-past-n-days": "{0} personas en los últimos {1} días",
+    "n_people_in_the_past_n_days": "{0} personas en los últimos {1} días",
     "select_lang": "Seleccionar idioma",
     "sign_in_desc": "Agregar una cuenta existente",
     "switch_account": "Cambiar a {0}",
@@ -111,12 +118,12 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "¿Estás seguro que quieres bloquear a {0}？"
+      "title": "¿Estás seguro que quieres bloquear a {0}?"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "¿Estás seguro que quieres bloquear a {0}？"
+      "title": "¿Estás seguro que quieres bloquear a {0}?"
     },
     "common": {
       "cancel": "No",
@@ -135,12 +142,12 @@
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
-      "title": "¿Estás seguro que quieres silenciar a {0}？"
+      "title": "¿Estás seguro que quieres silenciar a {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "¿Estás seguro que quieres mostrar los retoots de {0}？"
+      "title": "¿Estás seguro que quieres mostrar los retoots de {0}?"
     },
     "unfollow": {
       "cancel": "Cancelar",
@@ -160,7 +167,7 @@
   },
   "error": {
     "account_not_found": "No se encontró la cuenta {0}",
-    "explore-list-empty": "No hay tendencias en este momento. ¡Vuelve más tarde!",
+    "explore_list_empty": "No hay tendencias en este momento. ¡Vuelve más tarde!",
     "file_size_cannot_exceed_n_mb": "El tamaño del fichero no puede exceder los {0}MB",
     "sign_in_error": "No se pudo conectar con el servidor.",
     "status_not_found": "Publicación no encontrada",
@@ -210,6 +217,7 @@
         "command_mode": "Modo comando",
         "compose": "Redactar",
         "favourite": "Favorito",
+        "search": "Búsqueda",
         "title": "Acciones"
       },
       "media": {
@@ -243,6 +251,8 @@
     "open_in_original_site": "Abrir página original",
     "pin_on_profile": "Fijar en tu perfil",
     "remove_personal_note": "Eliminar nota personal de {0}",
+    "report_account": "Reportar a {0}",
+    "share_account": "Compartir {0}",
     "share_post": "Compartir esta publicación",
     "show_favourited_and_boosted_by": "Mostrar quien marcó como favorita y quien retooteó",
     "show_reblogs": "Mostrar retoots de {0}",
@@ -254,6 +264,7 @@
     "translate_post": "Traducir",
     "unblock_account": "Desbloquear a {0}",
     "unblock_domain": "Desbloquear dominio {0}",
+    "unfollow_account": "Dejar de seguir a {0}",
     "unmute_account": "Dejar de silenciar a {0}",
     "unmute_conversation": "Dejar de silenciar la publicación",
     "unpin_on_profile": "Desfijar del perfil"
@@ -304,8 +315,19 @@
     "content_warning": "Escribe tu advertencia aquí",
     "default_1": "¿En qué estás pensando?",
     "reply_to_account": "Responder a {0}",
-    "replying": "Respondiendo",
-    "the_thread": "el hilo"
+    "replying": "Respondiendo"
+  },
+  "polls": {
+    "allow_multiple": "Permitir múltiples opciones",
+    "cancel": "Cancelar",
+    "create": "Crear encuesta",
+    "disallow_multiple": "No permitir múltiples opciones",
+    "expiration": "Caducidad de la encuesta",
+    "hide_votes": "Ocultar el total de votos hasta el final de la encuesta",
+    "option_placeholder": "Opción de encuesta {current}/{max}",
+    "remove_option": "Eliminar opción",
+    "settings": "Opciones de la encuesta",
+    "show_votes": "Mostrar siempre el total de votos"
   },
   "pwa": {
     "dismiss": "Descartar",
@@ -341,6 +363,42 @@
       }
     }
   },
+  "report": {
+    "additional_comments": "Comentarios adicionales",
+    "another_server": "El usuario que estás reportando pertenece a otro servidor",
+    "anything_else": "¿Hay algo más que creas debamos saber?",
+    "block_desc": "No podrás ver más publicaciones de este usuario. No podrán ver tus publicaciones o seguirte. Te indicarán que están bloqueados.",
+    "dontlike": "No me gusta",
+    "dontlike_desc": "No es algo que quieres ver",
+    "forward": "Si, continuar con el reporte a {0}",
+    "forward_question": "¿Deseas enviar también una copia anónima de este reporte a ese servidor?",
+    "further_actions": {
+      "limit": {
+        "description": "Estas son las opciones para controlar lo que ves:",
+        "title": "¿No quieres ver esto?"
+      },
+      "report": {
+        "description": "Mientras lo revisamos, estas son las acciones que puedes tomar:",
+        "title": "Gracias por reportar, lo investigaremos."
+      }
+    },
+    "limiting": "Limitar a {0}",
+    "mute_desc": "No podrás ver más publicaciones de este usuario. Aún pueden seguirte y ver tus publicaciones. No sabrán que están silenciados.",
+    "other": "Es algo más",
+    "other_desc": "La novedad no encaja en otras categorías.",
+    "reporting": "Reportar a {0}",
+    "select_many": "Selecciona todas las que correspondan:",
+    "select_one": "Selecciona la opción más acorde:",
+    "select_posts": "¿Hay alguna publicación de apoyo para este reporte?",
+    "select_posts_other": "¿Hay alguna otra publicación de apoyo para este reporte?",
+    "spam": "Es spam",
+    "spam_desc": "Enlaces maliciosos, interacciones falsas o respuestas repetitivas",
+    "submit": "Enviar reporte",
+    "unfollow_desc": "Ya no verás las publicaciones de este usuario en tu línea de tiempo. Es posible que aún veas sus publicaciones en otros lugares.",
+    "violation": "Viola una o más reglas del servidor.",
+    "whats_wrong_account": "Cuéntanos qué sucede con esta cuenta",
+    "whats_wrong_post": "Cuéntanos qué sucede con esta publicación."
+  },
   "search": {
     "search_desc": "Buscar personas y etiquetas",
     "search_empty": "No hubo resultados para estos términos de búsqueda"
@@ -375,6 +433,7 @@
     "language": {
       "display_language": "Idioma de pantalla",
       "label": "Idioma",
+      "post_language": "Idioma de publicación",
       "status": "Estado traducción: {0}/{1} ({2}%)",
       "translations": {
         "add": "Agregar",
@@ -440,11 +499,14 @@
     },
     "notifications_settings": "Notificaciones",
     "preferences": {
+      "embedded_media": "Reproductor de multimedia inscrustado",
+      "embedded_media_description": "Mostrar un reproductor incrustado en lugar de la tarjeta de vista previa normal al expandir enlaces compartidos de transmisión de multimedia.",
       "enable_autoplay": "Habilitar reproducción automática",
       "enable_data_saving": "Habilitar el ahorro de datos",
       "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
       "enable_pinch_to_zoom": "Habilitar pellizcar para hacer zoom",
       "github_cards": "Tarjetas GitHub",
+      "github_cards_description": "Cuando se publica un enlace de GitHub, se muestra una tarjeta HTML accesible que usa el meta del gráfico social en lugar de la imagen social.",
       "grayscale_mode": "Modo escala de grises",
       "hide_account_hover_card": "Ocultar tarjeta flotante de cuenta",
       "hide_alt_indi_on_posts": "Ocultar indicador ALT en publicaciones",
@@ -460,7 +522,9 @@
       "title": "Funcionalidades experimentales",
       "use_star_favorite_icon": "Utilizar icono de estrella para favoritos",
       "user_picker": "Selector de usuarios",
+      "user_picker_description": "Muestra todos los avatares de las cuentas registradas en la parte inferior izquierda para que puedas cambiar rápidamente entre ellos.",
       "virtual_scroll": "Desplazamiento virtual",
+      "virtual_scroll_description": "Utilizar una lista virtual en las líneas de tiempo, de modo que se pueda representar una mayor cantidad de elementos de manera eficaz.",
       "wellbeing": "Bienestar",
       "zen_mode": "Modo Zen",
       "zen_mode_description": "Oculta las secciones laterales de la interfaz a menos que el cursor del ratón esté sobre ellas. Oculta también algunos elementos de las líneas de tiempo."
@@ -479,7 +543,8 @@
       },
       "featured_tags": {
         "description": "Las personas pueden navegar por tus publicaciones públicas con estas etiquetas.",
-        "label": "Etiquetas destacadas"
+        "label": "Etiquetas destacadas",
+        "under_construction": "En construcción"
       },
       "label": "Perfil"
     },
@@ -490,7 +555,7 @@
       "label": "Usuarios conectados"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk puede ser configurado para que pueda compartir contenido desde otras aplicaciones, simplemente tiene que instalar Elk en su dispositivo u ordenador e iniciar sesión.",
     "hint": "Para poder compartir contenido con Elk, debes instalar Elk e iniciar sesión.",
     "title": "Compartir con Elk"
@@ -503,6 +568,7 @@
     "loading": "Cargando...",
     "publish_failed": "Fallo en la publicación",
     "publishing": "Publicando",
+    "save_failed": "Error al guardar",
     "upload_failed": "Subida fallida",
     "uploading": "Subiendo..."
   },
@@ -513,9 +579,9 @@
     },
     "boosted_by": "Retooteado por",
     "edited": "Editado {0}",
+    "embedded_warning": "Reproducir esto puede revelar tu dirección IP a otras personas.",
     "favourited_by": "Marcado como favorita por",
     "filter_hidden_phrase": "Filtrado por",
-    "filter_removed_phrase": "Eliminado por filtrado",
     "filter_show_anyway": "Mostrar de todas formas",
     "img_alt": {
       "ALT": "ALT",
@@ -528,7 +594,6 @@
       "ends": "finaliza {0}",
       "finished": "finalizada {0}"
     },
-    "reblogged": "{0} retooteó",
     "replying_to": "Respondiendo a {0}",
     "show_full_thread": "Mostrar hilo completo",
     "someone": "alguien",
@@ -549,8 +614,20 @@
     "list": "Lista",
     "media": "Multimedia",
     "news": "Noticias",
+    "notifications_admin": {
+      "report": "Informes",
+      "sign_up": "Inscripciones"
+    },
     "notifications_all": "Todas",
+    "notifications_favourite": "Favoritas",
+    "notifications_follow": "Te siguieron",
+    "notifications_follow_request": "Solicitudes de seguimiento",
     "notifications_mention": "Menciones",
+    "notifications_more_tooltip": "Filtrar notificaciones por tipo",
+    "notifications_poll": "Encuestas",
+    "notifications_reblog": "Retoots",
+    "notifications_status": "Publicaciones",
+    "notifications_update": "Actualizaciones",
     "posts": "Publicaciones",
     "posts_with_replies": "Publicaciones y respuestas"
   },

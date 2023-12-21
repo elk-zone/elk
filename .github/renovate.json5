@@ -3,10 +3,13 @@
   "extends": ["config:base", "schedule:weekly", "group:allNonMajor"],
   "labels": ["c: dependencies"],
   "rangeStrategy": "bump",
-  "node": false,
   "ignoreDeps": [
     "vue",
-    "vue-tsc"
+    "vue-tsc",
+    "typescript",
+
+    // Intl.Segmenter is not supported in Firefox
+    "string-length"
   ],
   "packageRules": [
     {
@@ -61,6 +64,10 @@
     {
       "groupName": "typescript",
       "matchPackageNames": ["typescript"]
+    },
+    {
+      "matchDatasources": ["node-version"],
+      "enabled": false
     }
   ],
   "vulnerabilityAlerts": {

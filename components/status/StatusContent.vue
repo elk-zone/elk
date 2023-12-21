@@ -26,9 +26,11 @@ const hasSpoilerOrSensitiveMedia = $computed(() => spoilerTextPresent || (status
 const isSensitiveNonSpoiler = computed(() => status.sensitive && !status.spoilerText && !!status.mediaAttachments.length)
 const hideAllMedia = computed(
   () => {
-    return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && !!status.mediaAttachments.length) : false
+    return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && (!!status.mediaAttachments.length || !!status.card?.html)) : false
   },
 )
+const embeddedMediaPreference = $(usePreferences('experimentalEmbeddedMedia'))
+const allowEmbeddedMedia = $computed(() => status.card?.html && embeddedMediaPreference)
 </script>
 
 <template>
@@ -56,10 +58,11 @@ const hideAllMedia = computed(
         :is-preview="isPreview"
       />
       <StatusPreviewCard
-        v-if="status.card"
+        v-if="status.card && !allowEmbeddedMedia"
         :card="status.card"
         :small-picture-only="status.mediaAttachments?.length > 0"
       />
+      <StatusEmbeddedMedia v-if="allowEmbeddedMedia" :status="status" />
       <StatusCard
         v-if="status.reblog"
         :status="status.reblog" border="~ rounded"

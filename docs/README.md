@@ -7,7 +7,7 @@ We use [Docus](https://docus.dev) as the site generator and deploy through Netli
 
 ### Prerequisites
 
-- Github account
+- GitHub account
 - Git installed on your machine
 - Node >14.18 installed
   - Use `node -v` to see which version you have installed.
@@ -17,26 +17,26 @@ We use [Docus](https://docus.dev) as the site generator and deploy through Netli
 
 ### Install and Preview
 
-1. [Fork the Elk Github project](https://github.com/elk-zone/elk/fork) into your own account
+1. [Fork the Elk GitHub project](https://github.com/elk-zone/elk/fork) into your own account
 2. Clone your fork to your local machine
 3. From your terminal, `cd` to the directory you cloned into
 4. `cd docs` to enter the docs folder
 5. Run `npm install`
    Note: Run this from the project's `docs` folder, not the root of the repository on your machine!
 6. Run `npm run dev` to launch a preview
-7. Visit `localhost:3000/docs/` to see a live preview of the docs
+7. Visit `localhost:3000/` to see a live preview of the docs
 
 ### Contributing
 
 When you are ready to submit work back to the main Elk repo, create a PR.
 
-1. If it has been a bit, synchronize your fork with the upstream repo on Github. 
+1. If it has been a bit, synchronize your fork with the upstream repo on GitHub. 
 2. Do your work in a branch on your fork
    Use `git checkout -b branchNameToUse` to create a working branch separate from `main`.
 3. Do your work in your preferred editor
 4. Commit changes often and write meaningful commits
-5. Push the changes from your local machine to your fork on Github
-6. Go to your fork of the Elk project in your Github account
+5. Push the changes from your local machine to your fork on GitHub
+6. Go to your fork of the Elk project in your GitHub account
 7. Select the **Pull Request** tab
 8. Select **New Pull Request**
 9.  Confirm the repo/branches to compare
@@ -89,11 +89,11 @@ We use [Merriam-Webster](https://www.merriam-webster.com/) as the standard dicti
 Place image files in the /docs/public/images folder.
 You can create subfolders to organize the images.
 
-To add an image to a doc, use standard markdown:
+To add an image to a doc, use standard markdown with [alt text](https://accessibility.huit.harvard.edu/describe-content-images):
 
 ```md
-[![Label](/docs/images/image.svg)](URL.for.hyperlink)
-[![StackBlitz](/docs/images/stackblitz.svg)](https://stackblitz.com/)
+[![Alt text](/docs/images/image.svg)](URL.for.hyperlink)
+[![StackBlitz logo](/docs/images/stackblitz.svg)](https://stackblitz.com/)
 ```
 
 ## In-house Styles

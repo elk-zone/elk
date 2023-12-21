@@ -29,14 +29,14 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     ],
   }, {
     name: nav.local,
-    url: '/',
+    url: '/?local-pwa-shortcut=true',
     icons: [
       { src: 'shortcuts/local-96x96.png', sizes: '96x96', type: 'image/png' },
       { src: 'shortcuts/local.png', sizes: '192x192', type: 'image/png' },
     ],
   }, {
     name: nav.notifications,
-    url: '/notifications',
+    url: '/?notifications-pwa-shortcut=true',
     icons: [
       { src: 'shortcuts/notifications-96x96.png', sizes: '96x96', type: 'image/png' },
       { src: 'shortcuts/notifications.png', sizes: '192x192', type: 'image/png' },
@@ -76,8 +76,13 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
     orientation: 'natural',
     display: 'standalone',
     display_override: ['window-controls-overlay'],
-    categories: ['social', 'social networking'],
+    categories: ['social', 'social networking', 'news'],
     icons: [
+      {
+        src: 'pwa-64x64.png',
+        sizes: '64x64',
+        type: 'image/png',
+      },
       {
         src: 'pwa-192x192.png',
         sizes: '192x192',
@@ -112,6 +117,22 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
         ],
       },
     },
+    handle_links: 'preferred',
+    launch_handler: {
+      client_mode: ['navigate-existing', 'auto'],
+    },
+    edge_side_panel: {
+      preferred_width: 480,
+    },
+  }
+
+  if (env === 'release') {
+    manifestEntries.prefer_related_applications = true
+    manifestEntries.related_applications = [{
+      platform: 'windows',
+      url: 'https://www.microsoft.com/store/apps/9PNZMMXQHQZ5',
+      id: '53213ElkTeam.Elk_6x2f3wfg7gnst',
+    }]
   }
 
   const locales: RequiredWebManifestEntry[] = await Promise.all(

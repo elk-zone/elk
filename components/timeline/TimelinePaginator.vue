@@ -4,7 +4,7 @@ import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { Paginator, WsEvents, mastodon } from 'masto'
 
-const { paginator, stream, account, buffer = 10, endMessage } = defineProps<{
+const { paginator, stream, account, buffer = 10, endMessage = true } = defineProps<{
   paginator: Paginator<mastodon.v1.Status[], mastodon.v1.ListAccountStatusesParams>
   stream?: Promise<WsEvents>
   context?: mastodon.v2.FilterContext
@@ -39,17 +39,23 @@ const showOriginSite = $computed(() =>
         <StatusCard :status="item" :context="context" :older="older" :newer="newer" />
       </template>
     </template>
-    <template v-if="context === 'account' && showOriginSite" #done>
-      <div p5 text-secondary text-center flex flex-col items-center gap1>
-        <span italic>{{ $t('timeline.view_older_posts') }}</span>
-        <NuxtLink
-          :href="account!.url" target="_blank" external
-          flex="~ gap-1" items-center text-primary
-          hover="underline text-primary-active"
-        >
-          <div i-ri:external-link-fill />
-          {{ $t('menu.open_in_original_site') }}
-        </NuxtLink>
+    <template v-if="context === 'account' " #done="{ items }">
+      <div
+        v-if="showOriginSite || items.length === 0"
+        p5 text-secondary text-center flex flex-col items-center gap1
+      >
+        <template v-if="showOriginSite">
+          <span italic>{{ $t('timeline.view_older_posts') }}</span>
+          <NuxtLink
+            :href="account!.url" target="_blank" external
+            flex="~ gap-1" items-center text-primary
+            hover="underline text-primary-active"
+          >
+            <div i-ri:external-link-fill />
+            {{ $t('menu.open_in_original_site') }}
+          </NuxtLink>
+        </template>
+        <span v-else-if="items.length === 0">No posts here!</span>
       </div>
     </template>
   </CommonPaginator>

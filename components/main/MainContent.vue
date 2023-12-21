@@ -40,14 +40,14 @@ const containerClass = computed(() => {
           >
             <div i-ri:arrow-left-line class="rtl-flip" />
           </NuxtLink>
-          <div :truncate="!noOverflowHidden ? '' : false" flex w-full data-tauri-drag-region class="native-mac:justify-center native-mac:text-center native-mac:sm:justify-start">
+          <div :truncate="!noOverflowHidden ? '' : false" flex w-full data-tauri-drag-region class="native-mac:justify-start native-mac:text-center">
             <slot name="title" />
           </div>
           <div sm:hidden h-7 w-1px />
         </div>
         <div flex items-center flex-shrink-0 gap-x-2>
           <slot name="actions" />
-          <PwaBadge lg:hidden />
+          <PwaBadge xl:hidden />
           <NavUser v-if="isHydrated" />
           <NavUserSkeleton v-else />
         </div>
@@ -56,7 +56,7 @@ const containerClass = computed(() => {
         <div hidden />
       </slot>
     </div>
-    <PwaInstallPrompt lg:hidden />
+    <PwaInstallPrompt xl:hidden />
     <div :class="isHydrated && wideLayout ? 'xl:w-full sm:max-w-600px' : 'sm:max-w-600px md:shrink-0'" m-auto>
       <div hidden :class="{ 'xl:block': $route.name !== 'tag' && !$slots.header }" h-6 />
       <slot />

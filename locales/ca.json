@@ -84,7 +84,7 @@
     "activate": "Activar",
     "complete": "Completa",
     "compose_desc": "Escriu una publicació nova",
-    "n-people-in-the-past-n-days": "{0} persones en els darrers {1} dies",
+    "n_people_in_the_past_n_days": "{0} persones en els darrers {1} dies",
     "select_lang": "Escolliu l'idioma",
     "sign_in_desc": "Afegeix un compte existent",
     "switch_account": "Canvia a {0}",
@@ -157,7 +157,7 @@
   },
   "error": {
     "account_not_found": "No s'ha trobat el compte {0}",
-    "explore-list-empty": "No hi ha res de tendència ara mateix. Torna més tard!",
+    "explore_list_empty": "No hi ha res de tendència ara mateix. Torna més tard!",
     "file_size_cannot_exceed_n_mb": "La mida del fitxer no pot superar els {0}MB",
     "sign_in_error": "No es pot connectar al servidor.",
     "status_not_found": "No s'ha trobat la publicació",
@@ -271,8 +271,7 @@
     "content_warning": "Escriu el teu avís aquí",
     "default_1": "Què et passa pel cap?",
     "reply_to_account": "Respon a {0}",
-    "replying": "Responent",
-    "the_thread": "el fil"
+    "replying": "Responent"
   },
   "pwa": {
     "dismiss": "Descartar",
@@ -377,7 +376,7 @@
           "error_hint": "Podeu consultar una llista de preguntes freqüents per intentar resoldre el problema: {0}.",
           "invalid_vapid_key": "La clau pública VAPID sembla que no és vàlida.",
           "permission_denied": "Permís denegat: activeu les notificacions al vostre navegador.",
-          "repo_link": "El dipòsit d'Elk a Github",
+          "repo_link": "El dipòsit d'Elk a GitHub",
           "request_error": "S'ha produït un error en sol·licitar la subscripció, torneu-ho a provar i, si l'error persisteix, informeu-lo al repositori d'Elk.",
           "title": "No s'ha pogut subscriure a les notificacions push",
           "too_many_registrations": "A causa de les limitacions del navegador, Elk no pot utilitzar el servei de notificacions push per a diversos comptes en diferents servidors. Hauríeu de cancel·lar la subscripció a les notificacions push d'un altre compte i tornar-ho a provar.",
@@ -438,7 +437,8 @@
       },
       "featured_tags": {
         "description": "La gent pot navegar per les teves publicacions públiques amb aquests hashtags.",
-        "label": "Hashtags destacats"
+        "label": "Hashtags destacats",
+        "under_construction": "En construcció"
       },
       "label": "Perfil"
     },
@@ -449,7 +449,7 @@
       "label": "Usuaris connectats"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk es pot configurar perquè pugueu compartir contingut d'altres aplicacions, només cal que instal·leu Elk al vostre dispositiu o ordinador i inicieu sessió.",
     "hint": "Per compartir contingut amb Elk, cal que l'Elk estigui instal·lat i inicieu sessió.",
     "title": "Comparteix amb Elk"
@@ -470,7 +470,6 @@
     "edited": "Editat {0}",
     "favourited_by": "Favorit per",
     "filter_hidden_phrase": "Filtrat per",
-    "filter_removed_phrase": "Eliminat per filtre",
     "filter_show_anyway": "Mostra de totes maneres",
     "img_alt": {
       "ALT": "ALT",
@@ -483,7 +482,6 @@
       "ends": "acaba {0}",
       "finished": "acabat {0}"
     },
-    "reblogged": "{0} ha reblogjat",
     "replying_to": "Responent a {0}",
     "show_full_thread": "Mostra el fil complet",
     "someone": "algú",

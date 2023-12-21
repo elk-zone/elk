@@ -4,6 +4,7 @@ import { useMagicSequence } from '~/composables/magickeys'
 export default defineNuxtPlugin(({ $scrollToTop }) => {
   const keys = useMagicKeys()
   const router = useRouter()
+  const i18n = useNuxtApp().$i18n
 
   // disable shortcuts when focused on inputs (https://vueuse.org/core/usemagickeys/#conditionally-disable)
   const activeElement = useActiveElement()
@@ -41,7 +42,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
     // TODO: find a better solution than clicking buttons...
     document
       .querySelector<HTMLElement>('[aria-roledescription=status-details]')
-      ?.querySelector<HTMLElement>('button[aria-label=Favourite]')
+      ?.querySelector<HTMLElement>(`button[aria-label=${i18n.t('action.favourite')}]`)
       ?.click()
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys.f), toggleFavouriteActiveStatus)
@@ -50,7 +51,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
     // TODO: find a better solution than clicking buttons...
     document
       .querySelector<HTMLElement>('[aria-roledescription=status-details]')
-      ?.querySelector<HTMLElement>('button[aria-label=Boost]')
+      ?.querySelector<HTMLElement>(`button[aria-label=${i18n.t('action.boost')}]`)
       ?.click()
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys.b), toggleBoostActiveStatus)

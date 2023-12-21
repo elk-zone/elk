@@ -6,9 +6,7 @@ const emit = defineEmits<{
   (e: 'listUpdated', list: mastodon.v1.List): void
   (e: 'listRemoved', id: string): void
 }>()
-const { list } = defineModels<{
-  list: mastodon.v1.List
-}>()
+const list = defineModel<mastodon.v1.List>({ required: true })
 
 const { t } = useI18n()
 const client = useMastoClient()

@@ -17,7 +17,7 @@ const emojisObject = useEmojisFallback(() => status.emojis)
 const vnode = $computed(() => {
   if (!status.content)
     return null
-  const vnode = contentToVNode(status.content, {
+  return contentToVNode(status.content, {
     emojis: emojisObject.value,
     mentions: 'mentions' in status ? status.mentions : undefined,
     markdown: true,
@@ -25,7 +25,6 @@ const vnode = $computed(() => {
     status: 'id' in status ? status : undefined,
     inReplyToStatus: newer,
   })
-  return vnode
 })
 </script>
 
@@ -36,7 +35,7 @@ const vnode = $computed(() => {
       class="content-rich line-compact" dir="auto"
       :lang="('language' in status && status.language) || undefined"
     >
-      <component :is="vnode" />
+      <component :is="vnode" v-if="vnode" />
     </span>
     <div v-else />
     <template v-if="translation.visible">

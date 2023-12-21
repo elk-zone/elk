@@ -1,10 +1,15 @@
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const { as = 'button', command, disabled, content, icon } = defineProps<{
   text?: string | number
   content: string
   color: string
   icon: string
   activeIcon?: string
+  inactiveIcon?: string
   hover: string
   elkGroupHover: string
   active?: boolean
@@ -13,12 +18,8 @@ const { as = 'button', command, disabled, content, icon } = defineProps<{
   command?: boolean
 }>()
 
-defineOptions({
-  inheritAttrs: false,
-})
-
 defineSlots<{
-  text: {}
+  text: (props: object) => void
 }>()
 
 const el = ref<HTMLDivElement>()
@@ -54,9 +55,10 @@ useCommand({
     :hover=" !disabled ? hover : undefined"
     focus:outline-none
     :focus-visible="hover"
-    :class="active ? color : 'text-secondary'"
+    :class="active ? color : (disabled ? 'op25 cursor-not-allowed' : 'text-secondary')"
     :aria-label="content"
     :disabled="disabled"
+    :aria-disabled="disabled"
   >
     <CommonTooltip placement="bottom" :content="content">
       <div
@@ -67,7 +69,7 @@ useCommand({
           'group-focus-visible:ring': '2 current',
         }"
       >
-        <div :class="active && activeIcon ? activeIcon : icon" />
+        <div :class="active && activeIcon ? activeIcon : (disabled && inactiveIcon ? inactiveIcon : icon)" />
       </div>
     </CommonTooltip>
 

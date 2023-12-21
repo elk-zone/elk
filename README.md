@@ -57,12 +57,16 @@ Note: The provided Dockerfile creates a container which will eventually run Elk 
 These are known deployments using Elk as an alternative Web client for Mastodon servers or as a base for other projects in the fediverse:
 
 - [elk.fedified.com](https://elk.fedified.com) - Use Elk to log into any compatible instance
+- [elk.me.uk](https://elk.me.uk) - Use Elk to log into any compatible instance, hosted on Google Cloud Run with no Cloudflare proxy
 - [elk.h4.io](https://elk.h4.io) - Use Elk for the `h4.io` Server
 - [elk.universeodon.com](https://elk.universeodon.com) - Use Elk for the Universeodon Server
 - [elk.vmst.io](https://elk.vmst.io) - Use Elk for the `vmst.io` Server
 - [elk.hostux.social](https://elk.hostux.social) - Use Elk for the `hostux.social` Server
 - [elk.cupoftea.social](https://elk.cupoftea.social) - Use Elk for the `cupoftea.social` Server
 - [elk.aus.social](https://elk.aus.social) - Use Elk for the `aus.social` Server
+- [elk.mstdn.ca](https://elk.mstdn.ca) - Use Elk for the `mstdn.ca` Server
+- [elk.mastodonapp.uk](https://elk.mastodonapp.uk) - Use Elk for the `mastodonapp.uk` Server
+- [elk.bolha.us](https://elk.bolha.us) - Use Elk for the `bolha.us` Server
 
 > **Note**: Community deployments are **NOT** maintained by the Elk team. It may not be synced with Elk's source code. Please do your own research about the host servers before using them.
 
@@ -134,7 +138,7 @@ nr test
 
 ## 📲 PWA
 
-You can consult the [PWA documentation](https://docs.elk.zone/docs/pwa) to learn more about the PWA capabilities on Elk, how to install Elk PWA in your desktop or mobile device and some hints about PWA stuff on Elk.
+You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more about the PWA capabilities on Elk, how to install Elk PWA in your desktop or mobile device and some hints about PWA stuff on Elk.
 
 ## 🦄 Stack
 
@@ -147,7 +151,7 @@ You can consult the [PWA documentation](https://docs.elk.zone/docs/pwa) to learn
 - [UnoCSS](https://uno.antfu.me/) - The instant on-demand atomic CSS engine
 - [Iconify](https://github.com/iconify/icon-sets#iconify-icon-sets-in-json-format) - Iconify icon sets in JSON format
 - [Masto.js](https://neet.github.io/masto.js) - Mastodon API client in TypeScript
-- [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
+- [shikiji](https://shikiji.netlify.app/) - A beautiful and powerful syntax highlighter
 - [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update, Web Push Notifications and Web Share Target API
 
 ## 👨‍💻 Contributors

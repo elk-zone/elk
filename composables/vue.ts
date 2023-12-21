@@ -1,6 +1,6 @@
 import type { ComponentInternalInstance } from 'vue'
 import { onActivated, onDeactivated, ref } from 'vue'
-import type { ActiveHeadEntry, HeadEntryOptions, UseHeadInput } from '@unhead/vue'
+import type { ActiveHeadEntry, UseHeadInput, UseHeadOptions } from '@unhead/vue'
 import type { SchemaAugmentations } from '@unhead/schema'
 
 export const isHydrated = ref(false)
@@ -27,7 +27,7 @@ export function useDeactivated() {
  *
  * for handling problems caused by the keepalive function
  */
-export function onReactivated(hook: Function, target?: ComponentInternalInstance | null): void {
+export function onReactivated(hook: () => void, target?: ComponentInternalInstance | null): void {
   const initial = ref(true)
   onActivated(() => {
     if (initial.value)
@@ -37,7 +37,7 @@ export function onReactivated(hook: Function, target?: ComponentInternalInstance
   onDeactivated(() => initial.value = false)
 }
 
-export function useHydratedHead<T extends SchemaAugmentations>(input: UseHeadInput<T>, options?: HeadEntryOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
+export function useHydratedHead<T extends SchemaAugmentations>(input: UseHeadInput<T>, options?: UseHeadOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
   if (input && typeof input === 'object' && !('value' in input)) {
     const title = 'title' in input ? input.title : undefined
     if (process.server && title) {

@@ -48,9 +48,11 @@ useHydratedHead({
           <span ms1 font-bold cursor-pointer>{{ $t('state.edited') }}</span>
         </StatusEditIndicator>
       </div>
-      <div>&middot;</div>
+      <div aria-hidden="true">
+        &middot;
+      </div>
       <StatusVisibilityIndicator :status="status" />
-      <div v-if="status.application?.name">
+      <div v-if="status.application?.name" aria-hidden="true">
         &middot;
       </div>
       <div v-if="status.application?.website && status.application.name">

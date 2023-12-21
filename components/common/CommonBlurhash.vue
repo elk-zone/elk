@@ -1,14 +1,14 @@
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const { blurhash = '', src, srcset, shouldLoadImage = true } = defineProps<{
   blurhash?: string
   src: string
   srcset?: string
   shouldLoadImage?: boolean
 }>()
-
-defineOptions({
-  inheritAttrs: false,
-})
 </script>
 
 <template>

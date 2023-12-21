@@ -69,10 +69,13 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   async function lookupAccount() {
     const client = useMastoClient()
     let account: mastodon.v1.Account
-    if (!isGotoSocial.value)
+    if (!isGotoSocial.value) { // TODO: GoToSocial will support this endpoint from 0.10.0
       account = await client.v1.accounts.lookup({ acct: userAcct })
-    else
-      account = (await client.v1.search({ q: `@${userAcct}`, type: 'accounts' })).accounts[0]
+    }
+    else {
+      const userAcctDomain = userAcct.includes('@') ? userAcct : `${userAcct}@${domain}`
+      account = (await client.v1.search({ q: `@${userAcctDomain}`, type: 'accounts' })).accounts[0]
+    }
 
     if (account.acct && !account.acct.includes('@') && domain)
       account.acct = `${account.acct}@${domain}`

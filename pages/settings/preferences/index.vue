@@ -117,23 +117,42 @@ const userSettings = useUserSettings()
       <div i-ri-flask-line />
       {{ $t('settings.preferences.title') }}
     </h2>
+    <!-- Embedded Media -->
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'experimentalEmbeddedMedia')"
+      @click="togglePreferences('experimentalEmbeddedMedia')"
+    >
+      {{ $t('settings.preferences.embedded_media') }}
+      <template #description>
+        {{ $t('settings.preferences.embedded_media_description') }}
+      </template>
+    </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalVirtualScroller')"
       @click="togglePreferences('experimentalVirtualScroller')"
     >
       {{ $t('settings.preferences.virtual_scroll') }}
+      <template #description>
+        {{ $t('settings.preferences.virtual_scroll_description') }}
+      </template>
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalGitHubCards')"
       @click="togglePreferences('experimentalGitHubCards')"
     >
       {{ $t('settings.preferences.github_cards') }}
+      <template #description>
+        {{ $t('settings.preferences.github_cards_description') }}
+      </template>
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalUserPicker')"
       @click="togglePreferences('experimentalUserPicker')"
     >
       {{ $t('settings.preferences.user_picker') }}
+      <template #description>
+        {{ $t('settings.preferences.user_picker_description') }}
+      </template>
     </SettingsToggleItem>
   </MainContent>
 </template>

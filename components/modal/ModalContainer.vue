@@ -11,6 +11,7 @@ import {
   isMediaPreviewOpen,
   isPreviewHelpOpen,
   isPublishDialogOpen,
+  isReportDialogOpen,
   isSigninDialogOpen,
 } from '~/composables/dialog'
 
@@ -101,6 +102,9 @@ function handleFavouritedBoostedByClose() {
     </ModalDialog>
     <ModalDialog v-model="isKeyboardShortcutsDialogOpen" max-w-full sm:max-w-140 md:max-w-170 lg:max-w-220 md:min-w-160>
       <MagickeysKeyboardShortcuts @close="closeKeyboardShortcuts()" />
+    </ModalDialog>
+    <ModalDialog v-model="isReportDialogOpen" keep-alive max-w-175>
+      <ReportModal v-if="reportAccount" :account="reportAccount" :status="reportStatus" @close="closeReportDialog()" />
     </ModalDialog>
   </template>
 </template>

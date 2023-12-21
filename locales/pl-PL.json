@@ -85,7 +85,7 @@
     "activate": "Aktywuj",
     "complete": "Kompletny",
     "compose_desc": "Utwórz nowy wpis",
-    "n-people-in-the-past-n-days": "{0} osób w ciągu ostatnich {1} dni",
+    "n_people_in_the_past_n_days": "{0} osób w ciągu ostatnich {1} dni",
     "select_lang": "Wybierz język",
     "sign_in_desc": "Dodaj istniejące konto",
     "switch_account": "Przełącz na {0}",
@@ -160,7 +160,7 @@
   },
   "error": {
     "account_not_found": "Nie znaleziono konta {0}",
-    "explore-list-empty": "Nic nie jest w tej chwili popularne. Sprawdź później!",
+    "explore_list_empty": "Nic nie jest w tej chwili popularne. Sprawdź później!",
     "file_size_cannot_exceed_n_mb": "Rozmiar pliku nie może przekraczać {0}MB",
     "sign_in_error": "Nie można połączyć się z serwerem.",
     "status_not_found": "Nie znaleziono wpisu",
@@ -303,8 +303,7 @@
     "content_warning": "Wpisz tutaj swoje ostrzeżenie",
     "default_1": "O czym chciałbyś napisać?",
     "reply_to_account": "Odpowiedz do {0}",
-    "replying": "Twoja odpowiedź",
-    "the_thread": "wątek"
+    "replying": "Twoja odpowiedź"
   },
   "pwa": {
     "dismiss": "Odrzuć",
@@ -409,7 +408,7 @@
           "error_hint": "Możesz zapoznać się z listą najczęściej zadawanych pytań, aby spróbować rozwiązać problem: {0}.",
           "invalid_vapid_key": "Wydaje się, że klucz publiczny VAPID jest nieprawidłowy.",
           "permission_denied": "Brak uprawnień: włącz powiadomienia w przeglądarce.",
-          "repo_link": "Repozytorium Elk w Github",
+          "repo_link": "Repozytorium Elk w GitHub",
           "request_error": "Wystąpił błąd podczas żądania subskrypcji, spróbuj ponownie, a jeśli błąd będzie się powtarzał, zgłoś problem do repozytorium Elk.",
           "title": "Nie można zasubskrybować powiadomień push",
           "too_many_registrations": "Ze względu na ograniczenia przeglądarki Elk nie może korzystać z usługi powiadomień push dla wielu kont na różnych serwerach. Powinieneś anulować subskrypcję powiadomień push na innym koncie i spróbować ponownie.",
@@ -473,7 +472,8 @@
       },
       "featured_tags": {
         "description": "Ludzie mogą przeglądać Twoje publiczne wpisy pod tymi hasztagami.",
-        "label": "Polecane hasztagi"
+        "label": "Polecane hasztagi",
+        "under_construction": "W budowie"
       },
       "label": "Profil"
     },
@@ -484,7 +484,7 @@
       "label": "Zalogowani użytkownicy"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk można skonfigurować tak, aby można było udostępniać treści z innych aplikacji, wystarczy zainstalować Elk na swoim urządzeniu lub komputerze i zalogować się.",
     "hint": "Aby udostępniać treści w Elk, aplikacja Elk musi być zainstalowana, a Ty musisz być zalogowany.",
     "title": "Podziel się z Elk"
@@ -509,7 +509,6 @@
     "edited": "Edytowano {0}",
     "favourited_by": "Polubione przez",
     "filter_hidden_phrase": "Filtrowane według",
-    "filter_removed_phrase": "Usunięto przez filtr",
     "filter_show_anyway": "Pokaż mimo wszystko",
     "img_alt": {
       "ALT": "ALT",
@@ -522,7 +521,6 @@
       "ends": "kończy się {0}",
       "finished": "ukończone {0}"
     },
-    "reblogged": "{0} przekazany",
     "replying_to": "W odpowiedzi do {0}",
     "show_full_thread": "Pokaż cały wątek",
     "someone": "ktoś",

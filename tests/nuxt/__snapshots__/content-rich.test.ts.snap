@@ -58,7 +58,7 @@ exports[`content-rich > code frame no lang 1`] = `"<p><pre class="code-block">he
 
 exports[`content-rich > custom emoji 1`] = `
 "Daniel Roe
-<picture alt=":nuxt:" class="custom-emoji" data-emoji-id="nuxt"
+<picture class="custom-emoji" alt=":nuxt:" data-emoji-id="nuxt" title="nuxt"
   ><source
     srcset="
       https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png
@@ -67,6 +67,7 @@ exports[`content-rich > custom emoji 1`] = `
   <img
     src="https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png"
     alt=":nuxt:"
+    title="nuxt"
 /></picture>
 "
 `;
@@ -129,8 +130,8 @@ exports[`content-rich > link + mention 1`] = `
   Happy
   <img
     src="/emojis/twemoji/1f917.svg"
-    alt="🤗"
     class="iconify-emoji iconify-emoji--twemoji"
+    alt="🤗"
   />
   we’re now using
   <span class="h-card"

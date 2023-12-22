@@ -2,6 +2,7 @@ node_modules
 *.log
 dist
 .output
+.pnpm-store
 .nuxt
 .env
 .DS_Store

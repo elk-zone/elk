@@ -79,6 +79,7 @@
     "js-yaml": "^4.1.0",
     "lru-cache": "^10.0.0",
     "masto": "^5.11.3",
+    "node-emoji": "^2.1.3",
     "nuxt-security": "^0.13.1",
     "page-lifecycle": "^0.1.2",
     "pinia": "^2.1.4",

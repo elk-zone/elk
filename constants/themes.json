@@ -1,5 +1,21 @@
 [
   [
+    "#ef6061",
+    {
+      "--theme-color-name": "crab",
+      "--c-primary": "rgb(var(--rgb-primary))",
+      "--c-primary-active": "#d3474c",
+      "--c-primary-light": "#ef606180",
+      "--c-primary-fade": "#e95b5d1a",
+      "--rgb-primary": "239, 96, 97",
+      "--c-dark-primary": "rgb(var(--rgb-dark-primary))",
+      "--c-dark-primary-active": "#d94c50",
+      "--c-dark-primary-light": "#f5656580",
+      "--c-dark-primary-fade": "#ef60611a",
+      "--rgb-dark-primary": "239, 96, 97"
+    }
+  ],
+  [
     "#cc7d24",
     {
       "--theme-color-name": "#cc7d24",
@@ -125,22 +141,6 @@
       "--c-dark-primary-light": "#eb62ae80",
       "--c-dark-primary-fade": "#e65da91a",
       "--rgb-dark-primary": "230, 93, 169"
-    }
-  ],
-  [
-    "#ef6061",
-    {
-      "--theme-color-name": "#ef6061",
-      "--c-primary": "rgb(var(--rgb-primary))",
-      "--c-primary-active": "#d3474c",
-      "--c-primary-light": "#ef606180",
-      "--c-primary-fade": "#e95b5d1a",
-      "--rgb-primary": "239, 96, 97",
-      "--c-dark-primary": "rgb(var(--rgb-dark-primary))",
-      "--c-dark-primary-active": "#d94c50",
-      "--c-dark-primary-light": "#f5656580",
-      "--c-dark-primary-fade": "#ef60611a",
-      "--rgb-dark-primary": "239, 96, 97"
     }
   ]
 ]

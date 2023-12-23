@@ -7,12 +7,22 @@ export const themesColor = Array.from(
   (_, i) => chroma.hcl((67.14 + i * 40) % 360, 62.19, 59.56).hex(),
 )
 
+function isCrabColor(color: string) {
+  return color === '#ef6061'
+}
+
+function getColorName(color: string) {
+  return isCrabColor(color) ? 'crab' : color
+}
+
+themesColor.sort((primaryA, primaryB) => isCrabColor(primaryA) ? -1 : isCrabColor(primaryB) ? 1 : 0)
+
 export function getThemeColors(primary: string): ThemeColors {
   const c = chroma(primary)
   const dc = c.brighten(0.1)
 
   return {
-    '--theme-color-name': primary,
+    '--theme-color-name': getColorName(primary),
 
     '--c-primary': 'rgb(var(--rgb-primary))',
     '--c-primary-active': c.darken(0.5).hex(),

@@ -40,7 +40,7 @@ async function cancelEdit() {
 
 const { submit, submitting } = submitter(async () => {
   try {
-    list.value = await client.v1.lists.update(form.id, {
+    list.value = await client.v1.lists.$select(form.id).update({
       title: form.title,
     })
     cancelEdit()
@@ -70,7 +70,7 @@ async function removeList() {
   if (confirmDelete === 'confirm') {
     await nextTick()
     try {
-      await client.v1.lists.remove(list.value.id)
+      await client.v1.lists.$select(list.value.id).remove()
       emit('listRemoved', list.value.id)
     }
     catch (err) {

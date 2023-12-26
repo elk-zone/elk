@@ -53,7 +53,7 @@ function previewAvatar() {
 async function toggleNotifications() {
   relationship!.notifying = !relationship?.notifying
   try {
-    const newRel = await client.v1.accounts.follow(account.id, { notify: relationship?.notifying })
+    const newRel = await client.v1.accounts.$select(account.id).follow({ notify: relationship?.notifying })
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -97,7 +97,7 @@ async function editNote(event: Event) {
   if (relationship.note?.trim() === newNote.trim())
     return
 
-  const newNoteApiResult = await client.v1.accounts.createNote(account.id, { comment: newNote })
+  const newNoteApiResult = await client.v1.accounts.$select(account.id).note.create({ comment: newNote })
   relationship.note = newNoteApiResult.note
   personalNoteDraft.value = relationship.note ?? ''
 }

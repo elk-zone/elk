@@ -2,7 +2,7 @@
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { Paginator, WsEvents } from 'masto'
+import type { mastodon } from 'masto'
 import type { UnwrapRef } from 'vue'
 
 const {
@@ -14,10 +14,10 @@ const {
   preprocess,
   endMessage = true,
 } = defineProps<{
-  paginator: Paginator<T[], O>
+  paginator: mastodon.Paginator<T[], O>
   keyProp?: keyof T
   virtualScroller?: boolean
-  stream?: Promise<WsEvents>
+  stream?: mastodon.streaming.Subscription
   eventType?: 'notification' | 'update'
   preprocess?: (items: (U | T)[]) => U[]
   endMessage?: boolean | string

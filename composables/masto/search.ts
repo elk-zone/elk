@@ -1,9 +1,9 @@
 import type { MaybeRefOrGetter } from '@vueuse/core'
-import type { Paginator, mastodon } from 'masto'
+import type { mastodon } from 'masto'
 import type { RouteLocation } from 'vue-router'
 
 export type UseSearchOptions = MaybeRefOrGetter<
-  Partial<Omit<mastodon.v1.SearchParams, keyof mastodon.DefaultPaginationParams | 'q'>>
+  Partial<Omit<mastodon.rest.v2.SearchParams, keyof mastodon.DefaultPaginationParams | 'q'>>
 >
 
 export interface BuildSearchResult<K extends keyof any, T> {
@@ -30,7 +30,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
 
   const q = $computed(() => resolveUnref(query).trim())
 
-  let paginator: Paginator<mastodon.v2.Search, mastodon.v2.SearchParams> | undefined
+  let paginator: mastodon.Paginator<mastodon.v2.Search, mastodon.rest.v2.SearchParams> | undefined
 
   const appendResults = (results: mastodon.v2.Search, empty = false) => {
     if (empty) {
@@ -44,6 +44,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
       data: account,
       to: getAccountRoute(account),
     }))]
+    // @ts-expect-error The type definition is wrong
     hashtags.value = [...hashtags.value, ...results.hashtags.map<HashTagSearchResult>(hashtag => ({
       type: 'hashtag',
       id: `hashtag-${hashtag.name}`,
@@ -72,7 +73,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
-    paginator = client.v2.search({
+    paginator = client.v2.search.fetch({
       q,
       ...resolveUnref(options),
       resolve: !!currentUser.value,

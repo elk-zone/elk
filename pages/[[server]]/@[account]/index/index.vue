@@ -14,7 +14,7 @@ function reorderAndFilter(items: mastodon.v1.Status[]) {
   return reorderedTimeline(items, 'account')
 }
 
-const paginator = useMastoClient().v1.accounts.listStatuses(account.id, { limit: 30, excludeReplies: true })
+const paginator = useMastoClient().v1.accounts.$select(account.id).statuses.list({ limit: 30, excludeReplies: true })
 
 if (account) {
   useHydratedHead({

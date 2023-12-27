@@ -44,7 +44,6 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
       data: account,
       to: getAccountRoute(account),
     }))]
-    // @ts-expect-error The type definition is wrong
     hashtags.value = [...hashtags.value, ...results.hashtags.map<HashTagSearchResult>(hashtag => ({
       type: 'hashtag',
       id: `hashtag-${hashtag.name}`,
@@ -73,7 +72,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
-    paginator = client.v2.search.fetch({
+    paginator = client.v2.search.list({
       q,
       ...resolveUnref(options),
       resolve: !!currentUser.value,

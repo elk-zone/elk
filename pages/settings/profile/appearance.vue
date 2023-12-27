@@ -60,7 +60,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
     return
 
-  const res = await client.v1.accounts.updateCredentials(dirtyFields.value as mastodon.v1.UpdateCredentialsParams)
+  const res = await client.v1.accounts.updateCredentials(dirtyFields.value as mastodon.rest.v1.UpdateCredentialsParams)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))
 

@@ -6,7 +6,7 @@
 
 <h1 align="center"/>crab <sup><em>alpha</em></sup></h1>
 
-A nimble Mastodon web client, customized for [bumscode.com](https://bumscode.com).
+A nimble Mastodon web client, based on [elk](https://github.com/elk-zone/elk) and customized for [bumscode.com](https://bumscode.com).
 
 
 <br/>

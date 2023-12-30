@@ -112,7 +112,7 @@ defineExpose({ createEntry, removeEntry, updateEntry })
     </slot>
     <slot v-else-if="state === 'done' && endMessage !== false" name="done" :items="items as U[]">
       <div p5 text-secondary italic text-center>
-        {{ t(typeof endMessage === 'string' ? endMessage : 'common.end_of_list') }}
+        {{ t(typeof endMessage === 'string' && items.length <= 0 ? endMessage : 'common.end_of_list') }}
       </div>
     </slot>
     <div v-else-if="state === 'error'" p5 text-secondary>

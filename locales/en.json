@@ -7,12 +7,15 @@
     "route_loaded": "Page {0} loaded"
   },
   "account": {
+    "authorize": "Authorize to follow",
+    "authorized": "You have Authorized the request",
     "avatar_description": "{0}'s avatar",
     "blocked_by": "You're blocked by this user.",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "blocking": "Blocked",
     "bot": "BOT",
+    "copy_account_name": "Copy account name",
     "favourites": "Favorites",
     "follow": "Follow",
     "follow_back": "Follow back",
@@ -36,7 +39,10 @@
     "profile_description": "{0}'s profile header",
     "profile_personal_note": "Personal Note",
     "profile_unavailable": "Profile unavailable",
+    "reject": "Reject to follow",
+    "rejected": "You have rejected the request",
     "request_follow": "Request to follow",
+    "requested": "{0} has requested to follow you",
     "unblock": "Unblock",
     "unfollow": "Unfollow",
     "unmute": "Unmute",
@@ -213,6 +219,7 @@
         "command_mode": "Command mode",
         "compose": "Compose",
         "favourite": "Favourite",
+        "search": "Search",
         "title": "Actions"
       },
       "media": {
@@ -494,6 +501,8 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "embedded_media": "Embedded Media Player",
+      "embedded_media_description": "Display an embedded player instead of the normal preview card when expanding shared media streaming links.",
       "enable_autoplay": "Enable Autoplay",
       "enable_data_saving": "Enable data saving",
       "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
@@ -536,7 +545,8 @@
       },
       "featured_tags": {
         "description": "People can browse your public posts under these hashtags.",
-        "label": "Featured hashtags"
+        "label": "Featured hashtags",
+        "under_construction": "Under construction"
       },
       "label": "Profile"
     },
@@ -571,6 +581,7 @@
     },
     "boosted_by": "Boosted By",
     "edited": "Edited {0}",
+    "embedded_warning": "Playing this may reveal your IP address to others.",
     "favourited_by": "Favorited By",
     "filter_hidden_phrase": "Filtered by",
     "filter_show_anyway": "Show anyway",

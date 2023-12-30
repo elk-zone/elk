@@ -150,6 +150,25 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
   return render(tree)
 }
 
+export function sanitizeEmbeddedIframe(html: string): Node {
+  const transforms: Transform[] = [
+    sanitize({
+      iframe: {
+        src: (src) => {
+          if (typeof src !== 'string')
+            return undefined
+
+          const url = new URL(src)
+          return url.protocol === 'https:' ? src : undefined
+        },
+        allowfullscreen: set('true'),
+      },
+    }),
+  ]
+
+  return transformSync(parse(html), transforms)
+}
+
 export function htmlToText(html: string) {
   try {
     const tree = parse(html)
@@ -330,6 +349,8 @@ function filterHref() {
     // Allow relative links
     if (href.startsWith('/') || href.startsWith('.'))
       return href
+
+    href = href.replace(/&amp;/g, '&')
 
     let url
     try {

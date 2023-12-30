@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import type { mastodon } from 'masto'
-import { mockComponent } from 'nuxt-vitest/utils'
+import { mockComponent } from '@nuxt/test-utils/runtime'
 import { contentToVNode } from '~/composables/content-render'
 import type { ContentParseOptions } from '~/composables/content-parse'
 
@@ -91,47 +91,47 @@ describe('content-rich', () => {
     })
     expect(formatted).toMatchInlineSnapshot(`
       "<p>
-        <span class=\\"h-card\\"
+        <span class="h-card"
           ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@elk\\"
+            class="u-url mention"
+            rel="nofollow noopener noreferrer"
+            to="/m.webtoo.ls/@elk"
           ></a
         ></span>
-        <span class=\\"h-card\\"
+        <span class="h-card"
           ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@elk\\"
+            class="u-url mention"
+            rel="nofollow noopener noreferrer"
+            to="/m.webtoo.ls/@elk"
           ></a
         ></span>
         content
-        <span class=\\"h-card\\"
+        <span class="h-card"
           ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@antfu\\"
+            class="u-url mention"
+            rel="nofollow noopener noreferrer"
+            to="/m.webtoo.ls/@antfu"
           ></a
         ></span>
-        <span class=\\"h-card\\"
+        <span class="h-card"
           ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/mastodon.roe.dev/@daniel\\"
+            class="u-url mention"
+            rel="nofollow noopener noreferrer"
+            to="/mastodon.roe.dev/@daniel"
           ></a
         ></span>
-        <span class=\\"h-card\\"
+        <span class="h-card"
           ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@sxzz\\"
+            class="u-url mention"
+            rel="nofollow noopener noreferrer"
+            to="/m.webtoo.ls/@sxzz"
           ></a
         ></span>
-        <span class=\\"h-card\\"
+        <span class="h-card"
           ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@patak\\"
+            class="u-url mention"
+            rel="nofollow noopener noreferrer"
+            to="/m.webtoo.ls/@patak"
           ></a
         ></span>
         content
@@ -158,11 +158,11 @@ describe('content-rich', () => {
     })
     expect(formatted).toMatchInlineSnapshot(`
       "<p>
-        <span class=\\"h-card\\"
+        <span class="h-card"
           ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@antfu\\"
+            class="u-url mention"
+            rel="nofollow noopener noreferrer"
+            to="/m.webtoo.ls/@antfu"
           ></a
         ></span>
         content
@@ -179,25 +179,25 @@ describe('content-rich', () => {
     expect(formatted).toMatchInlineSnapshot(`
       "<p>
         <mention-group
-          ><span class=\\"h-card\\"
+          ><span class="h-card"
             ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@antfu\\"
+              class="u-url mention"
+              rel="nofollow noopener noreferrer"
+              to="/m.webtoo.ls/@antfu"
             ></a
           ></span>
-          <span class=\\"h-card\\"
+          <span class="h-card"
             ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@patak\\"
+              class="u-url mention"
+              rel="nofollow noopener noreferrer"
+              to="/m.webtoo.ls/@patak"
             ></a
           ></span>
-          <span class=\\"h-card\\"
+          <span class="h-card"
             ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@sxzz\\"
+              class="u-url mention"
+              rel="nofollow noopener noreferrer"
+              to="/m.webtoo.ls/@sxzz"
             ></a></span></mention-group
         >content
       </p>
@@ -276,14 +276,6 @@ vi.mock('vue-router', async () => {
     RouterLink: defineComponent((attrs) => {
       return () => h('a', attrs)
     }),
-  }
-})
-
-vi.mock('shiki-es', async (importOriginal) => {
-  const mod = await importOriginal()
-  return {
-    ...(mod as any),
-    setCDN() {},
   }
 })
 

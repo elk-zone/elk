@@ -7,6 +7,8 @@
     "route_loaded": "Página {0} cargada"
   },
   "account": {
+    "authorize": "Autorizar seguimiento",
+    "authorized": "Has autorizado la petición",
     "avatar_description": "avatar de {0}",
     "blocked_by": "Has sido bloqueado por este usuario.",
     "blocked_domains": "Dominios bloqueados",
@@ -36,12 +38,15 @@
     "profile_description": "Encabezado del perfil de {0}",
     "profile_personal_note": "Nota Personal",
     "profile_unavailable": "Perfil no disponible",
+    "reject": "Descartar seguimiento",
+    "rejected": "Has descartado la petición",
     "request_follow": "Solicitar seguirle",
     "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
     "unmute": "Dejar de silenciar",
     "view_other_followers": "Puede que no se muestren los seguidores de otras instancias.",
-    "view_other_following": "Puede que no se muestren los seguidos de otras instancias."
+    "view_other_following": "Puede que no se muestren los seguidos de otras instancias.",
+    "withdraw_follow_request": "Retirar solitud de seguimiento"
   },
   "action": {
     "apply": "Aplicar",
@@ -68,7 +73,7 @@
     "publish": "Publicar",
     "reply": "Responder",
     "reply_count": "{0}",
-    "reset": "Reiniciar",
+    "reset": "Reestablecer",
     "save": "Guardar",
     "save_changes": "Guardar cambios",
     "sign_in": "Iniciar sesión",
@@ -212,6 +217,7 @@
         "command_mode": "Modo comando",
         "compose": "Redactar",
         "favourite": "Favorito",
+        "search": "Búsqueda",
         "title": "Acciones"
       },
       "media": {
@@ -246,6 +252,7 @@
     "pin_on_profile": "Fijar en tu perfil",
     "remove_personal_note": "Eliminar nota personal de {0}",
     "report_account": "Reportar a {0}",
+    "share_account": "Compartir {0}",
     "share_post": "Compartir esta publicación",
     "show_favourited_and_boosted_by": "Mostrar quien marcó como favorita y quien retooteó",
     "show_reblogs": "Mostrar retoots de {0}",
@@ -492,6 +499,8 @@
     },
     "notifications_settings": "Notificaciones",
     "preferences": {
+      "embedded_media": "Reproductor de multimedia inscrustado",
+      "embedded_media_description": "Mostrar un reproductor incrustado en lugar de la tarjeta de vista previa normal al expandir enlaces compartidos de transmisión de multimedia.",
       "enable_autoplay": "Habilitar reproducción automática",
       "enable_data_saving": "Habilitar el ahorro de datos",
       "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
@@ -534,7 +543,8 @@
       },
       "featured_tags": {
         "description": "Las personas pueden navegar por tus publicaciones públicas con estas etiquetas.",
-        "label": "Etiquetas destacadas"
+        "label": "Etiquetas destacadas",
+        "under_construction": "En construcción"
       },
       "label": "Perfil"
     },
@@ -569,6 +579,7 @@
     },
     "boosted_by": "Retooteado por",
     "edited": "Editado {0}",
+    "embedded_warning": "Reproducir esto puede revelar tu dirección IP a otras personas.",
     "favourited_by": "Marcado como favorita por",
     "filter_hidden_phrase": "Filtrado por",
     "filter_show_anyway": "Mostrar de todas formas",
@@ -603,8 +614,20 @@
     "list": "Lista",
     "media": "Multimedia",
     "news": "Noticias",
+    "notifications_admin": {
+      "report": "Informes",
+      "sign_up": "Inscripciones"
+    },
     "notifications_all": "Todas",
+    "notifications_favourite": "Favoritas",
+    "notifications_follow": "Te siguieron",
+    "notifications_follow_request": "Solicitudes de seguimiento",
     "notifications_mention": "Menciones",
+    "notifications_more_tooltip": "Filtrar notificaciones por tipo",
+    "notifications_poll": "Encuestas",
+    "notifications_reblog": "Retoots",
+    "notifications_status": "Publicaciones",
+    "notifications_update": "Actualizaciones",
     "posts": "Publicaciones",
     "posts_with_replies": "Publicaciones y respuestas"
   },

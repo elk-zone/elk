@@ -40,6 +40,7 @@ export const accountFieldIcons: Record<string, string> = Object.fromEntries(Obje
   Switch: 'i-ri:switch-line',
   Telegram: 'i-ri:telegram-line',
   Threads: 'i-ri:threads-line',
+  TikTok: 'i-ri:tiktok-line',
   Tumblr: 'i-ri:tumblr-line',
   Twitch: 'i-ri:twitch-line',
   Twitter: 'i-ri:twitter-line',

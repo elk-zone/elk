@@ -5,7 +5,7 @@ const highlighter = ref<Highlighter>()
 const registeredLang = ref(new Map<string, boolean>())
 let shikijiImport: Promise<void> | undefined
 
-export function useHighlighter(lang: Lang) {
+export function useHighlighter(lang: Lang): { promise?: Promise<void>; highlighter?: Highlighter } {
   if (!shikijiImport) {
     shikijiImport = import('shikiji')
       .then(async ({ getHighlighter }) => {
@@ -21,13 +21,15 @@ export function useHighlighter(lang: Lang) {
           ],
         })
       })
+
+    return { promise: shikijiImport }
   }
 
   if (!highlighter.value)
-    return undefined
+    return { promise: shikijiImport }
 
   if (!registeredLang.value.get(lang)) {
-    highlighter.value.loadLanguage(lang)
+    const promise = highlighter.value.loadLanguage(lang)
       .then(() => {
         registeredLang.value.set(lang, true)
       })
@@ -37,10 +39,10 @@ export function useHighlighter(lang: Lang) {
           registeredLang.value.set(fallbackLang, true)
         })
       })
-    return undefined
+    return { promise }
   }
 
-  return highlighter.value
+  return { highlighter: highlighter.value }
 }
 
 function useShikijiTheme() {
@@ -60,7 +62,7 @@ function escapeHtml(text: string) {
 }
 
 export function highlightCode(code: string, lang: Lang) {
-  const highlighter = useHighlighter(lang)
+  const { highlighter } = useHighlighter(lang)
   if (!highlighter)
     return escapeHtml(code)
 

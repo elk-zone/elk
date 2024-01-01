@@ -86,7 +86,7 @@
     "page-lifecycle": "^0.1.2",
     "pinia": "^2.1.4",
     "postcss-nested": "^6.0.1",
-    "prosemirror-highlight": "^0.3.3",
+    "prosemirror-highlight": "^0.4.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "shikiji": "^0.9.9",
     "simple-git": "^3.19.1",

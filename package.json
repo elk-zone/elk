@@ -57,6 +57,8 @@
     "@tiptap/suggestion": "2.1.8",
     "@tiptap/vue-3": "2.1.8",
     "@unocss/nuxt": "^0.53.4",
+    "@upstash/redis": "^1.27.1",
+    "@vercel/kv": "^1.0.1",
     "@vue-macros/nuxt": "^1.6.0",
     "@vueuse/core": "^10.2.1",
     "@vueuse/gesture": "2.0.0-beta.1",

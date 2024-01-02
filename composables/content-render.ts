@@ -105,7 +105,7 @@ function checkRTLNode(rootNode: Node, node: Node) {
     rootNode.attributes.dir = isRtlText(decode(node.value)) ? 'rtl' : 'ltr'
   }
   else if ('children' in node) {
-    node.children.forEach((n: Node) => isVNode(n) && checkRTLNode(rootNode, n))
+    node.children.forEach((n: Node) => checkRTLNode(rootNode, n))
   }
 }
 

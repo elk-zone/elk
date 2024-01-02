@@ -198,6 +198,14 @@ html[dir="rtl"] .rtl-flip {
   transform: scale(-1, 1)
 }
 
+a.mention.hashtag[dir="rtl"] {
+  direction: rtl;
+}
+a.mention.hashtag[dir="ltr"] {
+  unicode-bidi: embed;
+  direction: ltr;
+}
+
 footer {
   a {
     --at-apply: 'hover:underline';

@@ -10,6 +10,7 @@ import Emoji from '~/components/emoji/Emoji.vue'
 import ContentCode from '~/components/content/ContentCode.vue'
 import ContentMentionGroup from '~/components/content/ContentMentionGroup.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
+import { isRtlText } from '~/utils/rtl-text-detection'
 
 function getTextualAstComponents(astChildren: Node[]): string {
   return astChildren
@@ -98,6 +99,16 @@ function treeToVNode(
   return null
 }
 
+function checkRTLNode(rootNode: Node, node: Node) {
+  if (node.type === TEXT_NODE) {
+    rootNode.attributes = rootNode.attributes ?? {}
+    rootNode.attributes.dir = isRtlText(decode(node.value)) ? 'rtl' : 'ltr'
+  }
+  else if ('children' in node) {
+    node.children.forEach((n: Node) => isVNode(n) && checkRTLNode(rootNode, n))
+  }
+}
+
 function handleMention(el: Node) {
   // Redirect mentions to the user page
   if (el.name === 'a' && el.attributes.class?.includes('mention')) {
@@ -113,6 +124,7 @@ function handleMention(el: Node) {
       const matchTag = href.match(TagLinkRE)
       if (matchTag) {
         const [, , name] = matchTag
+        checkRTLNode(el, el)
         el.attributes.href = `/${currentServer.value}/tags/${name}`
       }
     }

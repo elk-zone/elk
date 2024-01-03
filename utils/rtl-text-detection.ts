@@ -11,8 +11,11 @@ const rtlChars = [
 const reRTL = new RegExp(`[${rtlChars}]`, 'g')
 
 export function isRtlText(text: string) {
-  const textCount = text.replace(/[0-9\s\\\/.,\-+="']/g, '').length
+  const rtl = text.match(reRTL)
+  if (rtl == null || rtl.length === 0)
+    return false
+
   // remove multi-lang characters from count
-  const rtlCount = (text.match(reRTL) || []).length
-  return rtlCount >= (textCount - rtlCount) && textCount > 0
+  const textCount = text.replace(/[0-9\s\\\/.,\-+="']/g, '').length
+  return textCount > 0 && rtl.length >= (textCount - rtl.length)
 }

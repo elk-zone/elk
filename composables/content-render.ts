@@ -1,7 +1,6 @@
-import { TEXT_NODE } from 'ultrahtml'
-import type { Node } from 'ultrahtml'
-import { Fragment, h, isVNode } from 'vue'
+import { ELEMENT_NODE, type ElementNode, type Node, TEXT_NODE } from 'ultrahtml'
 import type { VNode } from 'vue'
+import { Fragment, h, isVNode } from 'vue'
 import { RouterLink } from 'vue-router'
 import { decode } from 'tiny-decode'
 import type { ContentParseOptions } from './content-parse'
@@ -10,7 +9,6 @@ import Emoji from '~/components/emoji/Emoji.vue'
 import ContentCode from '~/components/content/ContentCode.vue'
 import ContentMentionGroup from '~/components/content/ContentMentionGroup.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
-import { isRtlText } from '~/utils/rtl-text-detection'
 
 function getTextualAstComponents(astChildren: Node[]): string {
   return astChildren
@@ -99,14 +97,21 @@ function treeToVNode(
   return null
 }
 
-function checkRTLNode(rootNode: Node, node: Node) {
-  if (node.type === TEXT_NODE) {
-    rootNode.attributes = rootNode.attributes ?? {}
-    rootNode.attributes.dir = isRtlText(decode(node.value)) ? 'rtl' : 'ltr'
-  }
-  else if ('children' in node) {
-    node.children.forEach((n: Node) => checkRTLNode(rootNode, n))
-  }
+function addBdiNode(node: Node) {
+  if (node.children.length === 1 && node.children[0].type === ELEMENT_NODE && node.children[0].name === 'bdi')
+    return
+
+  const children = node.children.splice(0, node.children.length)
+  const bdi = {
+    name: 'bdi',
+    parent: node,
+    loc: node.loc,
+    type: ELEMENT_NODE,
+    attributes: {},
+    children,
+  } satisfies ElementNode
+  children.forEach((n: Node) => n.parent = bdi)
+  node.children.push(bdi)
 }
 
 function handleMention(el: Node) {
@@ -124,7 +129,7 @@ function handleMention(el: Node) {
       const matchTag = href.match(TagLinkRE)
       if (matchTag) {
         const [, , name] = matchTag
-        checkRTLNode(el, el)
+        addBdiNode(el)
         el.attributes.href = `/${currentServer.value}/tags/${name}`
       }
     }

@@ -1,9 +1,9 @@
 import { createResolver, useNuxt } from '@nuxt/kit'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
-import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
 import type { BuildInfo } from './types'
+import { currentLocales } from './config/i18n'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -44,9 +44,14 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+  features: {
+    inlineStyles: false,
+  },
+  /* future: {
+    typescriptBundlerResolution: true,
+  }, */
   experimental: {
     payloadExtraction: false,
-    inlineSSRStyles: false,
     renderJsonPayloads: true,
   },
   css: [
@@ -83,6 +88,17 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
+    },
+    optimizeDeps: {
+      include: [
+        '@vueuse/integrations/useFocusTrap', 'browser-fs-access', 'file-saver', 'slimeform', 'iso-639-1', '@tiptap/vue-3', 'string-length',
+        'vue-advanced-cropper', 'github-reserved-names', 'emoji-mart', '@tiptap/extension-placeholder',
+        '@tiptap/extension-document', '@tiptap/extension-paragraph', '@tiptap/extension-text',
+        '@tiptap/extension-mention', '@tiptap/extension-hard-break', '@tiptap/extension-bold',
+        '@tiptap/extension-italic', '@tiptap/extension-code', '@tiptap/extension-history',
+        'prosemirror-state', '@tiptap/core', '@tiptap/extension-code-block', 'prosemirror-highlight',
+        'tippy.js', 'prosemirror-highlight/shikiji',
+      ],
     },
   },
   postcss: {
@@ -250,7 +266,15 @@ export default defineNuxtConfig({
     rateLimiter: false,
   },
   colorMode: { classSuffix: '' },
-  i18n,
+  i18n: {
+    locales: currentLocales,
+    lazy: true,
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
+    langDir: 'locales',
+    defaultLocale: 'en-US',
+    vueI18n: './config/i18n.config.ts',
+  },
   pwa,
   staleDep: {
     packageManager: 'pnpm',

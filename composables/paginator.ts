@@ -122,6 +122,7 @@ export function usePaginator<T, P, U = T>(
         )
           loadNext()
       },
+      { immediate: true, flush: 'post' },
     )
   }
 

@@ -1,0 +1,44 @@
+diff --git a/dist/module.d.mts b/dist/module.d.mts
+index 218d0384bbcd11e848cef9ef5f27fbe05f9689ac..0828d70aad9b163fc43898a4f1c3daf6832f966b 100644
+--- a/dist/module.d.mts
++++ b/dist/module.d.mts
+@@ -233,13 +233,13 @@ interface ModuleOptions {
+ }
+ type NuxtSecurityRouteRules = Pick<ModuleOptions, 'headers' | 'requestSizeLimiter' | 'rateLimiter' | 'xssValidator' | 'corsHandler' | 'allowedMethodsRestricter' | 'nonce' | 'sri' | 'ssg'>;
+ 
+-declare module 'nuxt/schema' {
++declare module '@nuxt/schema' {
+     interface NuxtOptions {
+-        security: ModuleOptions;
++        security?: ModuleOptions;
+     }
+     interface RuntimeConfig {
+-        security: ModuleOptions;
+-        private: {
++        security?: ModuleOptions;
++        private?: {
+             basicAuth: BasicAuth | false;
+             [key: string]: any;
+         };
+diff --git a/dist/module.d.ts b/dist/module.d.ts
+index 218d0384bbcd11e848cef9ef5f27fbe05f9689ac..0828d70aad9b163fc43898a4f1c3daf6832f966b 100644
+--- a/dist/module.d.ts
++++ b/dist/module.d.ts
+@@ -233,13 +233,13 @@ interface ModuleOptions {
+ }
+ type NuxtSecurityRouteRules = Pick<ModuleOptions, 'headers' | 'requestSizeLimiter' | 'rateLimiter' | 'xssValidator' | 'corsHandler' | 'allowedMethodsRestricter' | 'nonce' | 'sri' | 'ssg'>;
+ 
+-declare module 'nuxt/schema' {
++declare module '@nuxt/schema' {
+     interface NuxtOptions {
+-        security: ModuleOptions;
++        security?: ModuleOptions;
+     }
+     interface RuntimeConfig {
+-        security: ModuleOptions;
+-        private: {
++        security?: ModuleOptions;
++        private?: {
+             basicAuth: BasicAuth | false;
+             [key: string]: any;
+         };

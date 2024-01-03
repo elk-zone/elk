@@ -1,4 +1,3 @@
-import type { NuxtI18nOptions } from '@nuxtjs/i18n'
 import type { DateTimeFormats, NumberFormats, PluralizationRule, PluralizationRules } from '@intlify/core-base'
 
 import type { LocaleObject } from '#i18n'
@@ -256,7 +255,7 @@ function buildLocales() {
 
 export const currentLocales = buildLocales()
 
-const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
+export const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
   const dateTimeFormats = data.dateTimeFormats
   if (dateTimeFormats) {
     acc[data.code] = { ...dateTimeFormats }
@@ -281,7 +280,7 @@ const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
   return acc
 }, <DateTimeFormats>{})
 
-const numberFormats = Object.values(currentLocales).reduce((acc, data) => {
+export const numberFormats = Object.values(currentLocales).reduce((acc, data) => {
   const numberFormats = data.numberFormats
   if (numberFormats) {
     acc[data.code] = { ...numberFormats }
@@ -313,7 +312,7 @@ const numberFormats = Object.values(currentLocales).reduce((acc, data) => {
   return acc
 }, <NumberFormats>{})
 
-const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
+export const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
   const pluralRule = data.pluralRule
   if (pluralRule) {
     acc[data.code] = pluralRule
@@ -322,21 +321,3 @@ const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
 
   return acc
 }, <PluralizationRules>{})
-
-export const i18n: NuxtI18nOptions = {
-  locales: currentLocales,
-  lazy: true,
-  strategy: 'no_prefix',
-  detectBrowserLanguage: false,
-  langDir: 'locales',
-  defaultLocale: 'en-US',
-  vueI18n: {
-    availableLocales: currentLocales.map(l => l.code),
-    fallbackLocale: 'en-US',
-    fallbackWarn: false,
-    missingWarn: false,
-    datetimeFormats,
-    numberFormats,
-    pluralRules,
-  },
-}

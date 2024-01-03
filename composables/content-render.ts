@@ -1,4 +1,4 @@
-import { ELEMENT_NODE , TEXT_NODE } from 'ultrahtml'
+import { ELEMENT_NODE, TEXT_NODE } from 'ultrahtml'
 import type { ElementNode, Node } from 'ultrahtml'
 import { Fragment, h, isVNode } from 'vue'
 import type { VNode } from 'vue'

@@ -57,6 +57,62 @@ exports[`content-rich > code frame empty 1`] = `"<p><pre class="code-block"></pr
 
 exports[`content-rich > code frame no lang 1`] = `"<p><pre class="code-block">hello world</pre><br>no lang</p>"`;
 
+exports[`content-rich > collapse mentions 1`] = `
+"<p>
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@elk"
+      ><bdi>@<span>elk</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@elk"
+      ><bdi>@<span>elk</span></bdi></a
+    ></span
+  >
+  content
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@antfu"
+      ><bdi>@<span>antfu</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/mastodon.roe.dev/@daniel"
+      ><bdi>@<span>daniel</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@sxzz"
+      ><bdi>@<span>sxzz</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@patak"
+      ><bdi>@<span>patak</span></bdi></a
+    ></span
+  >
+  content
+</p>
+"
+`;
+
 exports[`content-rich > custom emoji 1`] = `
 "Daniel Roe
 <picture class="custom-emoji" alt=":nuxt:" data-emoji-id="nuxt" title="nuxt"

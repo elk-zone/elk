@@ -155,7 +155,8 @@ describe('content-rich', () => {
     `)
     expect(formatted).toMatchSnapshot()
   })
-  // TODO: there is something wrong with this test in the rendered output, missing bdi content, ultrahtml parses it correctly
+
+  // REVIEW: there is something wrong with this test in the rendered output, missing bdi content, ultrahtml parses it correctly
   it ('hashtag doesn\'t add 2 bdi', async () => {
     const { formatted } = await render(`
       <p>Testing bdi not added <a href="https://universeodon.com/tags/turkey" class="mention hashtag" rel="tag"><bdi>#<span>turkey</span></bdi></a></p>

@@ -12,6 +12,7 @@ export function usePaginator<T, P, U = T>(
   // called `next` method will mutate the internal state of the variable,
   // and we need its initial state after HMR
   // so clone it
+
   const paginator = _paginator.clone()
 
   const state = ref<PaginatorState>(isHydrated.value ? 'idle' : 'loading')
@@ -57,6 +58,11 @@ export function usePaginator<T, P, U = T>(
         removeCachedStatus(id)
 
         const data = items.value as mastodon.v1.Status[]
+
+        const prevItemsIndex = prevItems.value.findIndex((i: any) => i.id === id)
+        if (prevItemsIndex >= 0)
+          prevItems.value.splice(prevItemsIndex, 1)
+
         const index = data.findIndex(s => s.id === id)
         if (index >= 0)
           data.splice(index, 1)

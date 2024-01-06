@@ -1,6 +1,6 @@
 // @unimport-disable
 import type { mastodon } from 'masto'
-import type { Node } from 'ultrahtml'
+import type { ElementNode, Node } from 'ultrahtml'
 import { DOCUMENT_NODE, ELEMENT_NODE, TEXT_NODE, h, parse, render } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { decode } from 'tiny-decode'
@@ -524,10 +524,60 @@ function transformMarkdown(node: Node) {
   return _markdownProcess(node.value)
 }
 
+function addBdiParagraphs(node: Node) {
+  if (node.name === 'p' && node.children && node.children.length > 1) {
+    const split = node.children.every((child: Node) => child.type === TEXT_NODE || child.name === 'br')
+    if (!split) {
+      // adding dir="auto" to the root paragraph just works
+      node.attributes.dir = 'auto'
+      return node
+    }
+
+    // convert <p>some test<br/>some text...<br/>some text...</p>
+    // to <div><p dir="auto">some text</p><p dir="auto">some text...</p><p dir="auto">some text...</p></div>
+    node.name = 'div'
+    const children = node.children.splice(0) as Node[]
+    let child: Node
+    for (let i = 0; i < children.length; i++) {
+      child = children[i]
+      if (child.name === 'p') {
+        node.children.push(child)
+        continue
+      }
+
+      // we don't need <br/> since we are adding <p> tags
+      if (child.name === 'br')
+        continue
+
+      if (child.type === TEXT_NODE && !child.value.trim().length) {
+        node.children.push(child)
+        continue
+      }
+
+      const p: ElementNode = {
+        name: 'p',
+        parent: node,
+        loc: node.loc,
+        type: ELEMENT_NODE,
+        attributes: { dir: 'auto' },
+        children: [child],
+      }
+      child.parent = p
+      node.children.push(p)
+    }
+  }
+
+  return node
+}
+
 function transformParagraphs(node: Node): Node | Node[] {
+  // Add bdi to paragraphs
+  addBdiParagraphs(node)
+
   // For top level paragraphs, inject an empty <p> to preserve status paragraphs in our editor (except for the last one)
   if (node.parent?.type === DOCUMENT_NODE && node.name === 'p' && node.parent.children.at(-1) !== node)
     return [node, h('p')]
+
   return node
 }
 

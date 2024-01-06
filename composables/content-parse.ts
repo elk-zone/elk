@@ -525,7 +525,7 @@ function transformMarkdown(node: Node) {
 }
 
 function addBdiParagraphs(node: Node) {
-  if (node.name === 'p' && node.children && node.children.length > 1) {
+  if (node.name === 'p' && !('dir' in node.attributes) && node.children?.length && node.children.length > 1) {
     const split = node.children.every((child: Node) => child.type === TEXT_NODE || child.name === 'br')
     if (!split) {
       // adding dir="auto" to the root paragraph just works
@@ -537,19 +537,13 @@ function addBdiParagraphs(node: Node) {
     // to <div><p dir="auto">some text</p><p dir="auto">some text...</p><p dir="auto">some text...</p></div>
     node.name = 'div'
     const children = node.children.splice(0) as Node[]
-    let child: Node
-    for (let i = 0; i < children.length; i++) {
-      child = children[i]
-      if (child.name === 'p') {
-        node.children.push(child)
-        continue
-      }
-
+    for (const child of children) {
       // we don't need <br/> since we are adding <p> tags
       if (child.name === 'br')
         continue
 
-      if (child.type === TEXT_NODE && !child.value.trim().length) {
+      // empty text nodes are just added
+      if (!child.value.trim().length) {
         node.children.push(child)
         continue
       }

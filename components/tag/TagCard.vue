@@ -39,8 +39,10 @@ function go(evt: MouseEvent | KeyboardEvent) {
     <div>
       <h4 flex items-center text-size-base leading-normal font-medium line-clamp-1 break-all ws-pre-wrap>
         <TagActionButton :tag="tag" />
-        <span>#</span>
-        <span hover:underline>{{ tag.name }}</span>
+        <bdi>
+          <span>#</span>
+          <span hover:underline>{{ tag.name }}</span>
+        </bdi>
       </h4>
       <CommonTrending v-if="tag.history" :history="tag.history" text-sm text-secondary line-clamp-1 ws-pre-wrap break-all />
     </div>

@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
 import { useForm } from 'slimeform'
-import { parse } from 'ultrahtml'
 
 definePageMeta({
   middleware: 'auth',
@@ -31,9 +30,7 @@ const { form, reset, submitter, isDirty, isError } = useForm({
     const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
       const field = { ...account?.fields?.[i] || { name: '', value: '' } }
 
-      const linkElement = (parse(field.value)?.children?.[0])
-      if (linkElement && linkElement?.attributes?.href)
-        field.value = linkElement.attributes.href
+      field.value = convertMetadata(field.value)
 
       return field
     })

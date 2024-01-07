@@ -7,6 +7,8 @@
     "route_loaded": "Đã tải {0} trang"
   },
   "account": {
+    "authorize": "Yêu cầu cấp quyền",
+    "authorized": "Bạn cần cấp quyền yêu cầu",
     "avatar_description": "Ảnh đại diện {0}",
     "blocked_by": "Bạn bị người này chặn.",
     "blocked_domains": "Máy chủ đã chặn",
@@ -36,7 +38,10 @@
     "profile_description": "Ảnh bìa của {0}",
     "profile_personal_note": "Ghi chú về người này",
     "profile_unavailable": "Hồ sơ không khả dụng",
+    "reject": "Từ chối theo dõi",
+    "rejected": "Bạn đã từ chối yêu cầu",
     "request_follow": "Yêu cầu theo dõi",
+    "requested": "{0} người yêu cầu theo dõi bạn",
     "unblock": "Bỏ chặn",
     "unfollow": "Bỏ theo dõi",
     "unmute": "Bỏ ẩn",
@@ -213,6 +218,7 @@
         "command_mode": "Chế độ dòng lệnh",
         "compose": "Viết",
         "favourite": "Thích",
+        "search": "Tìm kiếm",
         "title": "Hành động"
       },
       "media": {
@@ -536,7 +542,8 @@
       },
       "featured_tags": {
         "description": "Mọi người có thể tìm các tút công khai có chứa những hashtag đó.",
-        "label": "Hashtag thường dùng"
+        "label": "Hashtag thường dùng",
+        "under_construction": "Đang được xây dựng"
       },
       "label": "Hồ sơ"
     },

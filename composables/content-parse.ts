@@ -72,6 +72,8 @@ const sanitizer = sanitize({
 /**
  * Parse raw HTML form Mastodon server to AST,
  * with interop of custom emojis and inline Markdown syntax
+ * @param html The content to parse
+ * @param options The parsing options
  */
 export function parseMastodonHTML(
   html: string,
@@ -140,6 +142,8 @@ export function parseMastodonHTML(
 
 /**
  * Converts raw HTML form Mastodon server to HTML for Tiptap editor
+ * @param html The content to parse
+ * @param customEmojis The custom emojis to use
  */
 export function convertMastodonHTML(html: string, customEmojis: Record<string, mastodon.v1.CustomEmoji> = {}) {
   const tree = parseMastodonHTML(html, {
@@ -148,6 +152,25 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
     convertMentionLink: true,
   })
   return render(tree)
+}
+
+export function sanitizeEmbeddedIframe(html: string): Node {
+  const transforms: Transform[] = [
+    sanitize({
+      iframe: {
+        src: (src) => {
+          if (typeof src !== 'string')
+            return undefined
+
+          const url = new URL(src)
+          return url.protocol === 'https:' ? src : undefined
+        },
+        allowfullscreen: set('true'),
+      },
+    }),
+  ]
+
+  return transformSync(parse(html), transforms)
 }
 
 export function htmlToText(html: string) {

@@ -580,7 +580,6 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
     if (mentions.length === 0)
       return node
 
-    let mentionsCount = 0
     let contextualMentionsCount = 0
     let removeNextSpacing = false
 
@@ -594,7 +593,6 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
       }
 
       if (isMention(mention)) {
-        mentionsCount++
         if (inReplyToStatus) {
           const mentionHandle = getMentionHandle(mention)
           if (inReplyToStatus.account.acct === mentionHandle || inReplyToStatus.mentions.some(m => m.acct === mentionHandle)) {
@@ -611,13 +609,12 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
     // We already have the replying to badge in this case or the status is connected to the previous one.
     // This is needed because the status doesn't included the in Reply to handle, only the account id.
     // But this covers the majority of cases.
-    const showMentions = !(contextualMentionsCount === 0 || (mentionsCount === 1 && status?.inReplyToAccountId))
     const grouped = contextualMentionsCount > 2
-    if (!showMentions || grouped)
+    if (grouped)
       trimContentStart?.()
 
     const contextualChildren = children.slice(mentions.length)
-    const mentionNodes = showMentions ? (grouped ? [h('mention-group', null, ...contextualMentions)] : contextualMentions) : []
+    const mentionNodes = grouped ? [h('mention-group', null, ...contextualMentions)] : contextualMentions
     return {
       ...node,
       children: [...mentionNodes, ...contextualChildren],

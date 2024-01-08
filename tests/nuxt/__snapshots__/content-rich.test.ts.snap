@@ -44,8 +44,9 @@ exports[`content-rich > code frame 2 1`] = `
       class="u-url mention"
       rel="nofollow noopener noreferrer"
       to="/webtoo.ls/@antfu"
-    ></a
-  ></span>
+      ><bdi>@<span>antfu</span></bdi></a
+    ></span
+  >
   Testing<br />
   <pre class="code-block">const a = hello</pre>
 </p>
@@ -55,6 +56,62 @@ exports[`content-rich > code frame 2 1`] = `
 exports[`content-rich > code frame empty 1`] = `"<p><pre class="code-block"></pre><br></p>"`;
 
 exports[`content-rich > code frame no lang 1`] = `"<p><pre class="code-block">hello world</pre><br>no lang</p>"`;
+
+exports[`content-rich > collapse mentions 1`] = `
+"<p>
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@elk"
+      ><bdi>@<span>elk</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@elk"
+      ><bdi>@<span>elk</span></bdi></a
+    ></span
+  >
+  content
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@antfu"
+      ><bdi>@<span>antfu</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/mastodon.roe.dev/@daniel"
+      ><bdi>@<span>daniel</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@sxzz"
+      ><bdi>@<span>sxzz</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@patak"
+      ><bdi>@<span>patak</span></bdi></a
+    ></span
+  >
+  content
+</p>
+"
+`;
 
 exports[`content-rich > custom emoji 1`] = `
 "Daniel Roe
@@ -81,8 +138,13 @@ exports[`content-rich > group mention > html 1`] = `
       class="u-url mention"
       rel="nofollow noopener noreferrer"
       to="/m.webtoo.ls/@pilipinas@lemmy.ml"
-    ></a
-  ></span>
+      ><bdi
+        ><span data-type="mention" data-id="pilipinas@lemmy.ml"
+          >@pilipinas</span
+        ></bdi
+      ></a
+    ></span
+  >
 </p>
 "
 `;
@@ -115,6 +177,39 @@ exports[`content-rich > handles html within code blocks 1`] = `
 "
 `;
 
+exports[`content-rich > hashtag adds bdi 1`] = `
+"<p>
+  Testing bdi is added
+  <a
+    class="mention hashtag"
+    rel="nofollow noopener noreferrer"
+    to="/m.webtoo.ls/tags/turkey"
+    ><bdi>#<span>turkey</span></bdi></a
+  >
+</p>
+<p></p>
+"
+`;
+
+exports[`content-rich > hashtag doesn't add 2 bdi 1`] = `
+"<p>
+  Testing bdi not added
+  <a
+    class="mention hashtag"
+    rel="nofollow noopener noreferrer"
+    to="/m.webtoo.ls/tags/turkey"
+    ><bdi></bdi
+  ></a>
+</p>
+<p></p>
+"
+`;
+
+exports[`content-rich > hides collapsed mentions 1`] = `
+"<p>content</p>
+"
+`;
+
 exports[`content-rich > inline code with link 1`] = `
 "<p>
   Inline code with link:
@@ -139,8 +234,9 @@ exports[`content-rich > link + mention 1`] = `
       class="u-url mention"
       rel="nofollow noopener noreferrer"
       to="/webtoo.ls/@vitest"
-    ></a
-  ></span>
+      ><bdi>@<span>vitest</span></bdi></a
+    ></span
+  >
   (migrated from chai+mocha)
   <a
     href="https://github.com/ayoayco/astro-reactive-library/pull/203"
@@ -156,6 +252,53 @@ exports[`content-rich > link + mention 1`] = `
 
 exports[`content-rich > plain text 1`] = `
 "hello there
+"
+`;
+
+exports[`content-rich > shows some collapsed mentions grouped 1`] = `
+"<p>
+  <mention-group
+    ><span class="h-card"
+      ><a
+        class="u-url mention"
+        rel="nofollow noopener noreferrer"
+        to="/m.webtoo.ls/@antfu"
+        ><bdi>@<span>antfu</span></bdi></a
+      ></span
+    >
+    <span class="h-card"
+      ><a
+        class="u-url mention"
+        rel="nofollow noopener noreferrer"
+        to="/m.webtoo.ls/@patak"
+        ><bdi>@<span>patak</span></bdi></a
+      ></span
+    >
+    <span class="h-card"
+      ><a
+        class="u-url mention"
+        rel="nofollow noopener noreferrer"
+        to="/m.webtoo.ls/@sxzz"
+        ><bdi>@<span>sxzz</span></bdi></a
+      ></span
+    ></mention-group
+  >content
+</p>
+"
+`;
+
+exports[`content-rich > shows some collapsed mentions inline 1`] = `
+"<p>
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@antfu"
+      ><bdi>@<span>antfu</span></bdi></a
+    ></span
+  >
+  content
+</p>
 "
 `;
 

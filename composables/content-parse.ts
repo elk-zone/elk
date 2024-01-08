@@ -72,8 +72,8 @@ const sanitizer = sanitize({
 /**
  * Parse raw HTML form Mastodon server to AST,
  * with interop of custom emojis and inline Markdown syntax
- * @param html
- * @param options
+ * @param html The content to parse
+ * @param options The parsing options
  */
 export function parseMastodonHTML(
   html: string,
@@ -142,8 +142,8 @@ export function parseMastodonHTML(
 
 /**
  * Converts raw HTML form Mastodon server to HTML for Tiptap editor
- * @param html
- * @param customEmojis
+ * @param html The content to parse
+ * @param customEmojis The custom emojis to use
  */
 export function convertMastodonHTML(html: string, customEmojis: Record<string, mastodon.v1.CustomEmoji> = {}) {
   const tree = parseMastodonHTML(html, {

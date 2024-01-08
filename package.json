@@ -2,7 +2,7 @@
   "name": "@elk-zone/elk",
   "type": "module",
   "version": "0.10.3",
-  "packageManager": "pnpm@8.13.1",
+  "packageManager": "pnpm@8.14.0",
   "license": "MIT",
   "homepage": "https://elk.zone/",
   "main": "./nuxt.config.ts",
@@ -71,7 +71,7 @@
     "chroma-js": "^2.4.2",
     "emoji-mart": "^5.5.2",
     "file-saver": "^2.0.5",
-    "floating-vue": "2.0.0-beta.24",
+    "floating-vue": "^5.0.2",
     "focus-trap": "^7.5.1",
     "form-data": "^4.0.0",
     "fuse.js": "^6.6.2",
@@ -105,7 +105,7 @@
     "ultrahtml": "^1.5.2",
     "unimport": "^3.7.1",
     "vite-plugin-pwa": "^0.17.4",
-    "vue": "^3.4.4",
+    "vue": "^3.4.5",
     "vue-advanced-cropper": "^2.8.8",
     "vue-router": "^4.2.5",
     "vue-virtual-scroller": "2.0.0-beta.8",
@@ -131,7 +131,7 @@
     "flat": "^5.0.2",
     "fs-extra": "^11.1.1",
     "lint-staged": "^14.0.1",
-    "nuxt": "3.9.0",
+    "nuxt": "3.9.1",
     "prettier": "^3.0.3",
     "sharp": "^0.32.6",
     "sharp-ico": "^0.1.5",
@@ -143,7 +143,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@nuxt/schema": "3.9.0",
+      "@nuxt/schema": "3.9.1",
       "unstorage": "^1.9.0"
     },
     "patchedDependencies": {

@@ -5,6 +5,8 @@ import { oldFontSizeMap } from '~/constants/options'
  * Injecting scripts before renders
  */
 export default defineNuxtPlugin(() => {
+  // eslint-disable-next-line no-console
+  console.log('head', Date.now())
   useHead({
     script: [
       {

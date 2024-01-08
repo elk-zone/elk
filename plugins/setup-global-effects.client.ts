@@ -3,6 +3,8 @@ import { oldFontSizeMap } from '~/constants/options'
 import { DEFAULT_FONT_SIZE } from '~/constants'
 
 export default defineNuxtPlugin(() => {
+  // eslint-disable-next-line no-console
+  console.log('global-effects', Date.now())
   const userSettings = useUserSettings()
   const html = document.documentElement
   watchEffect(() => {

@@ -1,4 +1,6 @@
 export default defineNuxtPlugin(() => {
+  // eslint-disable-next-line no-console
+  console.log('masto.ts', Date.now())
   const { params, query } = useRoute()
 
   publicServer.value = params.server as string || useRuntimeConfig().public.defaultServer

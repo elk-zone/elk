@@ -89,7 +89,7 @@ export default defineNuxtConfig({
     build: {
       target: 'esnext',
     },
-    optimizeDeps: {
+    /* optimizeDeps: {
       include: [
         '@vueuse/integrations/useFocusTrap', 'browser-fs-access', 'file-saver', 'slimeform', 'iso-639-1', '@tiptap/vue-3', 'string-length',
         'vue-advanced-cropper', 'github-reserved-names', 'emoji-mart', '@tiptap/extension-placeholder',
@@ -99,6 +99,11 @@ export default defineNuxtConfig({
         'prosemirror-state', '@tiptap/core', '@tiptap/extension-code-block', 'prosemirror-highlight',
         'tippy.js', 'prosemirror-highlight/shikiji',
       ],
+    }, */
+    server: {
+      fs: {
+        cachedChecks: true,
+      },
     },
   },
   postcss: {

@@ -1,6 +1,8 @@
 import type { LocaleObject } from 'vue-i18n-routing'
 
 export default defineNuxtPlugin(async () => {
+  // eslint-disable-next-line no-console
+  console.log('i18n', Date.now())
   const { locale, locales, setLocale } = useNuxtApp().$i18n
   const userSettings = useUserSettings()
   const lang = $computed(() => userSettings.value.language)

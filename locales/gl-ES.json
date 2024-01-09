@@ -8,7 +8,7 @@
   },
   "account": {
     "authorize": "Permitir o seguimento",
-    "authorized": "Aceptaches a solicitude",  
+    "authorized": "Aceptaches a solicitude",
     "avatar_description": "Avatar de {0}",
     "blocked_by": "Esta usuaria bloqueoute.",
     "blocked_domains": "Dominios bloqueados",

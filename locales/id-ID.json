@@ -134,7 +134,7 @@
     "delete_list": {
       "cancel": "Batalkan",
       "confirm": "Hapus",
-      "title": "Apakah Anda yakin ingin menghapus daftar \"{0}\"?"
+      "description": "Apakah Anda yakin ingin menghapus daftar \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Batalkan",

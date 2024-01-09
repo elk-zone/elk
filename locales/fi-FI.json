@@ -128,7 +128,7 @@
     "delete_list": {
       "cancel": "Peruuta",
       "confirm": "Poista",
-      "title": "Haluatko varmasti poistaa listan \"{0}\"?"
+      "description": "Haluatko varmasti poistaa listan \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Peruuta",

@@ -27,7 +27,7 @@ export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.R
 
 async function fetchRelationships() {
   const requested = Array.from(requestedRelationships.entries()).filter(([, r]) => !r.value)
-  const relationships = await useMastoClient().v1.accounts.fetchRelationships(requested.map(([id]) => id))
+  const relationships = await useMastoClient().v1.accounts.relationships.fetch({ id: requested.map(([id]) => id) })
   for (let i = 0; i < requested.length; i++)
     requested[i][1].value = relationships[i]
 }
@@ -58,7 +58,7 @@ export async function toggleFollowAccount(relationship: mastodon.v1.Relationship
     relationship!.following = true
   }
 
-  relationship = await client.v1.accounts[unfollow ? 'unfollow' : 'follow'](account.id)
+  relationship = await client.v1.accounts.$select(account.id)[unfollow ? 'unfollow' : 'follow']()
 }
 
 export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
@@ -74,10 +74,10 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
 
   relationship!.muting = !relationship!.muting
   relationship = relationship!.muting
-    ? await client.v1.accounts.mute(account.id, {
+    ? await client.v1.accounts.$select(account.id).mute({
       // TODO support more options
     })
-    : await client.v1.accounts.unmute(account.id)
+    : await client.v1.accounts.$select(account.id).unmute()
 }
 
 export async function toggleBlockAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
@@ -92,7 +92,7 @@ export async function toggleBlockAccount(relationship: mastodon.v1.Relationship,
     return
 
   relationship!.blocking = !relationship!.blocking
-  relationship = await client.v1.accounts[relationship!.blocking ? 'block' : 'unblock'](account.id)
+  relationship = await client.v1.accounts.$select(account.id)[relationship!.blocking ? 'block' : 'unblock']()
 }
 
 export async function toggleBlockDomain(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
@@ -107,5 +107,5 @@ export async function toggleBlockDomain(relationship: mastodon.v1.Relationship, 
     return
 
   relationship!.domainBlocking = !relationship!.domainBlocking
-  await client.v1.domainBlocks[relationship!.domainBlocking ? 'block' : 'unblock'](getServerName(account))
+  await client.v1.domainBlocks[relationship!.domainBlocking ? 'create' : 'remove']({ domain: getServerName(account) })
 }

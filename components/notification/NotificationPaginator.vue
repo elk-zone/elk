@@ -1,12 +1,12 @@
 <script setup lang="ts">
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
-import type { Paginator, WsEvents, mastodon } from 'masto'
+import type { mastodon } from 'masto'
 import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
-  paginator: Paginator<mastodon.v1.Notification[], mastodon.v1.ListNotificationsParams>
-  stream?: Promise<WsEvents>
+  paginator: mastodon.Paginator<mastodon.v1.Notification[], mastodon.rest.v1.ListNotificationsParams>
+  stream?: mastodon.streaming.Subscription
 }>()
 
 const virtualScroller = false // TODO: fix flickering issue with virtual scroll

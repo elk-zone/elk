@@ -149,7 +149,7 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
     // if PWA is not enabled, don't get push subscription
     useAppConfig().pwaEnabled
     // we get 404 response instead empty data
-      ? client.v1.webPushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
+      ? client.v1.push.subscription.fetch().catch(() => Promise.resolve(undefined))
       : Promise.resolve(undefined),
   ])
 
@@ -195,7 +195,7 @@ export function getHideMediaByDefault(account: mastodon.v1.AccountCredentials) {
   return (accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'hide_all') ?? false
 }
 
-export async function fetchAccountInfo(client: mastodon.Client, server: string) {
+export async function fetchAccountInfo(client: mastodon.rest.Client, server: string) {
   // Try to fetch user preferences if the backend supports it.
   const fetchPrefs = async (): Promise<Partial<mastodon.v1.Preference>> => {
     try {
@@ -270,7 +270,7 @@ export async function removePushNotifications(user: UserLogin) {
     return
 
   // unsubscribe push notifications
-  await useMastoClient().v1.webPushSubscriptions.remove().catch(() => Promise.resolve())
+  await useMastoClient().v1.push.subscription.remove().catch(() => Promise.resolve())
 }
 
 export async function switchUser(user: UserLogin) {

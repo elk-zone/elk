@@ -18,6 +18,7 @@
     "profile_description": "Imagen de portada de {0}",
     "reject": "Omitir seguimiento",
     "rejected": "Omitiste la petición",
+    "requested": "{0} quiere seguirte",
     "unmute": "Quitar silencio",
     "withdraw_follow_request": "Quitar solicitud de seguimiento"
   },
@@ -50,7 +51,7 @@
     },
     "block_domain": {
       "cancel": "No",
-      "confirm": "Sí ocultar",
+      "confirm": "Sí, ocultar",
       "title": "¿De verdad quieres ocultar a {0}?"
     },
     "delete_posts": {

@@ -4,4 +4,9 @@ export default defineVitestConfig({
   define: {
     'process.test': 'true',
   },
+  test: {
+    setupFiles: [
+      '/tests/setup.ts',
+    ],
+  },
 })

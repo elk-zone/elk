@@ -72,7 +72,7 @@ async function deleteStatus() {
     return
 
   removeCachedStatus(status.id)
-  await client.v1.statuses.remove(status.id)
+  await client.v1.statuses.$select(status.id).remove()
 
   if (route.name === 'status')
     router.back()
@@ -96,7 +96,7 @@ async function deleteAndRedraft() {
   }
 
   removeCachedStatus(status.id)
-  await client.v1.statuses.remove(status.id)
+  await client.v1.statuses.$select(status.id).remove()
   await openPublishDialog('dialog', await getDraftFromStatus(status), true)
 
   // Go to the new status, if the page is the old status

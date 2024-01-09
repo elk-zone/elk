@@ -82,7 +82,7 @@
     "iso-639-1": "^3.0.0",
     "js-yaml": "^4.1.0",
     "lru-cache": "^10.0.0",
-    "masto": "^5.11.3",
+    "masto": "^6.5.2",
     "node-emoji": "^2.1.3",
     "nuxt-security": "^0.13.1",
     "page-lifecycle": "^0.1.2",
@@ -108,7 +108,8 @@
     "vue-advanced-cropper": "^2.8.8",
     "vue-virtual-scroller": "2.0.0-beta.8",
     "workbox-build": "^7.0.0",
-    "workbox-window": "^7.0.0"
+    "workbox-window": "^7.0.0",
+    "ws": "^8.15.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.41.3",
@@ -121,6 +122,7 @@
     "@types/js-yaml": "^4.0.5",
     "@types/prettier": "^2.7.3",
     "@types/wicg-file-system-access": "^2020.9.6",
+    "@types/ws": "^8.5.10",
     "@unlazy/nuxt": "^0.9.3",
     "@vue/test-utils": "^2.4.3",
     "bumpp": "^9.2.0",

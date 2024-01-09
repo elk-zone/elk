@@ -33,7 +33,7 @@ async function toggleReblogs() {
     return
 
   const showingReblogs = !relationship?.showingReblogs
-  relationship = await client.v1.accounts.follow(account.id, { reblogs: showingReblogs })
+  relationship = await client.v1.accounts.$select(account.id).follow({ reblogs: showingReblogs })
 }
 
 async function addUserNote() {
@@ -44,7 +44,7 @@ async function removeUserNote() {
   if (!relationship!.note || relationship!.note.length === 0)
     return
 
-  const newNote = await client.v1.accounts.createNote(account.id, { comment: '' })
+  const newNote = await client.v1.accounts.$select(account.id).note.create({ comment: '' })
   relationship!.note = newNote.note
   emit('removeNote')
 }

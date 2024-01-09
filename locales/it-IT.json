@@ -120,12 +120,12 @@
     "block_account": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}?"
+      "description": "Confermi di voler bloccare {0}?"
     },
     "block_domain": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}?"
+      "description": "Confermi di voler bloccare {0}?"
     },
     "common": {
       "cancel": "Annulla",
@@ -134,27 +134,27 @@
     "delete_list": {
       "cancel": "Annulla",
       "confirm": "Elimina",
-      "title": "Confermi di voler eliminare la lista \"{0}\"?"
+      "description": "Confermi di voler eliminare la lista \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Annulla",
       "confirm": "Elimina",
-      "title": "Confermi di voler eliminare questo post?"
+      "description": "Confermi di voler eliminare questo post?"
     },
     "mute_account": {
       "cancel": "Annulla",
       "confirm": "Silenzia",
-      "title": "Confermi di voler silenziare {0}?"
+      "description": "Confermi di voler silenziare {0}?"
     },
     "show_reblogs": {
       "cancel": "Annulla",
       "confirm": "Mostra",
-      "title": "Confermi di voler mostrare i post potenziati da {0}?"
+      "description": "Confermi di voler mostrare i post potenziati da {0}?"
     },
     "unfollow": {
       "cancel": "Annulla",
       "confirm": "Smetti di seguire",
-      "title": "Confermi di voler smettere di seguire?"
+      "description": "Confermi di voler smettere di seguire?"
     }
   },
   "conversation": {

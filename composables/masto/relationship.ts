@@ -41,6 +41,7 @@ export async function toggleFollowAccount(relationship: mastodon.v1.Relationship
   if (unfollow) {
     if (await openConfirmDialog({
       title: i18n.t('confirm.unfollow.title'),
+      description: i18n.t('confirm.unfollow.description', [`@${account.acct}`]),
       confirm: i18n.t('confirm.unfollow.confirm'),
       cancel: i18n.t('confirm.unfollow.cancel'),
     }) !== 'confirm')
@@ -66,7 +67,8 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
   const i18n = useNuxtApp().$i18n
 
   if (!relationship!.muting && await openConfirmDialog({
-    title: i18n.t('confirm.mute_account.title', [account.acct]),
+    title: i18n.t('confirm.mute_account.title'),
+    description: i18n.t('confirm.mute_account.description', [account.acct]),
     confirm: i18n.t('confirm.mute_account.confirm'),
     cancel: i18n.t('confirm.mute_account.cancel'),
   }) !== 'confirm')
@@ -85,7 +87,8 @@ export async function toggleBlockAccount(relationship: mastodon.v1.Relationship,
   const i18n = useNuxtApp().$i18n
 
   if (!relationship!.blocking && await openConfirmDialog({
-    title: i18n.t('confirm.block_account.title', [account.acct]),
+    title: i18n.t('confirm.block_account.title'),
+    description: i18n.t('confirm.block_account.description', [account.acct]),
     confirm: i18n.t('confirm.block_account.confirm'),
     cancel: i18n.t('confirm.block_account.cancel'),
   }) !== 'confirm')
@@ -100,7 +103,8 @@ export async function toggleBlockDomain(relationship: mastodon.v1.Relationship, 
   const i18n = useNuxtApp().$i18n
 
   if (!relationship!.domainBlocking && await openConfirmDialog({
-    title: i18n.t('confirm.block_domain.title', [getServerName(account)]),
+    title: i18n.t('confirm.block_domain.title'),
+    description: i18n.t('confirm.block_domain.description', [getServerName(account)]),
     confirm: i18n.t('confirm.block_domain.confirm'),
     cancel: i18n.t('confirm.block_domain.cancel'),
   }) !== 'confirm')

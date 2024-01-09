@@ -120,12 +120,12 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "¿Estás seguro que quieres bloquear a {0}?"
+      "description": "¿Estás seguro que quieres bloquear a {0}?"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "¿Estás seguro que quieres bloquear a {0}?"
+      "description": "¿Estás seguro que quieres bloquear a {0}?"
     },
     "common": {
       "cancel": "No",
@@ -134,27 +134,27 @@
     "delete_list": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "¿Está seguro de querer eliminar la lista \"{0}\"?"
+      "description": "¿Está seguro de querer eliminar la lista \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "¿Estás seguro que quieres eliminar esta publicación?"
+      "description": "¿Estás seguro que quieres eliminar esta publicación?"
     },
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
-      "title": "¿Estás seguro que quieres silenciar a {0}?"
+      "description": "¿Estás seguro que quieres silenciar a {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "¿Estás seguro que quieres mostrar los retoots de {0}?"
+      "description": "¿Estás seguro que quieres mostrar los retoots de {0}?"
     },
     "unfollow": {
       "cancel": "Cancelar",
       "confirm": "Dejar de seguir",
-      "title": "¿Estás seguro que quieres dejar de seguir?"
+      "description": "¿Estás seguro que quieres dejar de seguir?"
     }
   },
   "conversation": {

@@ -10,7 +10,7 @@ const emit = defineEmits<{
 
 <template>
   <div flex="~ col" gap-6>
-    <div font-bold text-lg text-center>
+    <div font-bold text-lg>
       {{ title }}
     </div>
     <div v-if="description">

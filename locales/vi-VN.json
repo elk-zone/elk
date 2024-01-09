@@ -120,12 +120,12 @@
     "block_account": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-      "title": "Bạn có chắc muốn chặn {0}?"
+      "description": "Bạn có chắc muốn chặn {0}?"
     },
     "block_domain": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-      "title": "Bạn có chắc muốn chặn {0}?"
+      "description": "Bạn có chắc muốn chặn {0}?"
     },
     "common": {
       "cancel": "Không",
@@ -134,27 +134,27 @@
     "delete_list": {
       "cancel": "Hủy bỏ",
       "confirm": "Xóa",
-      "title": "Bạn có chắc muốn xóa \"{0}\"?"
+      "description": "Bạn có chắc muốn xóa \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Hủy bỏ",
       "confirm": "Xóa",
-      "title": "Bạn có chắc muốn xóa tút này?"
+      "description": "Bạn có chắc muốn xóa tút này?"
     },
     "mute_account": {
       "cancel": "Hủy bỏ",
       "confirm": "Ẩn",
-      "title": "Bạn có chắc muốn ẩn {0}?"
+      "description": "Bạn có chắc muốn ẩn {0}?"
     },
     "show_reblogs": {
       "cancel": "Hủy bỏ",
       "confirm": "Hiện",
-      "title": "Bạn có chắc muốn hiện lượt đăng lại từ {0}?"
+      "description": "Bạn có chắc muốn hiện lượt đăng lại từ {0}?"
     },
     "unfollow": {
       "cancel": "Hủy bỏ",
       "confirm": "Bỏ theo dõi",
-      "title": "Bạn có chắc muốn bỏ theo dõi?"
+      "description": "Bạn có chắc muốn bỏ theo dõi?"
     }
   },
   "conversation": {

@@ -120,12 +120,14 @@
     "block_account": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "title": "Are you sure you want to block {0}?"
+      "description": "Are you sure you want to block {0}?",
+      "title": "Block account"
     },
     "block_domain": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "title": "Are you sure you want to block {0}?"
+      "description": "Are you sure you want to block {0}?",
+      "title": "Block domain"
     },
     "common": {
       "cancel": "No",
@@ -134,27 +136,32 @@
     "delete_list": {
       "cancel": "Cancel",
       "confirm": "Delete",
-      "title": "Are you sure you want to delete the \"{0}\" list?"
+      "description": "Are you sure you want to delete the \"{0}\" list?",
+      "title": "Delete list"
     },
     "delete_posts": {
       "cancel": "Cancel",
       "confirm": "Delete",
-      "title": "Are you sure you want to delete this post?"
+      "description": "Are you sure you want to delete this post?",
+      "title": "Delete post"
     },
     "mute_account": {
       "cancel": "Cancel",
       "confirm": "Mute",
-      "title": "Are you sure you want to mute {0}?"
+      "description": "Are you sure you want to mute {0}?",
+      "title": "Mute account"
     },
     "show_reblogs": {
       "cancel": "Cancel",
       "confirm": "Show",
-      "title": "Are you sure you want to show boosts from {0}?"
+      "description": "Are you sure you want to show boosts from {0}?",
+      "title": "Show boosts"
     },
     "unfollow": {
       "cancel": "Cancel",
       "confirm": "Unfollow",
-      "title": "Are you sure you want to unfollow?"
+      "description": "Are you sure you want to unfollow {0}?",
+      "title": "Unfollow"
     }
   },
   "conversation": {

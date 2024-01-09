@@ -120,12 +120,12 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tem a certeza que pretende bloquear {0}?"
+      "description": "Tem a certeza que pretende bloquear {0}?"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tem a certeza que pretende bloquear {0}?"
+      "description": "Tem a certeza que pretende bloquear {0}?"
     },
     "common": {
       "cancel": "Não",
@@ -134,27 +134,27 @@
     "delete_list": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "Tem a certeza que pretende elimnar a lista \"{0}\"?"
+      "description": "Tem a certeza que pretende elimnar a lista \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "Tem a certeza que pretende eliminar esta publicação?"
+      "description": "Tem a certeza que pretende eliminar esta publicação?"
     },
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
-      "title": "Tem a certeza que pretende silenciar {0}?"
+      "description": "Tem a certeza que pretende silenciar {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "Tem a certeza que pretende mostrar partilhas de {0}?"
+      "description": "Tem a certeza que pretende mostrar partilhas de {0}?"
     },
     "unfollow": {
       "cancel": "Cancelar",
       "confirm": "Deixar de seguir",
-      "title": "Tem a certeza que pretende deixar de seguir?"
+      "description": "Tem a certeza que pretende deixar de seguir?"
     }
   },
   "conversation": {

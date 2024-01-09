@@ -107,37 +107,37 @@
     "block_account": {
       "cancel": "取消",
       "confirm": "封鎖",
-      "title": "你確定要封鎖 {0} 嗎？"
+      "description": "你確定要封鎖 {0} 嗎？"
     },
     "block_domain": {
       "cancel": "取消",
       "confirm": "封鎖",
-      "title": "你確定要封鎖 {0} 域名嗎？"
+      "description": "你確定要封鎖 {0} 域名嗎？"
     },
     "delete_list": {
       "cancel": "取消",
       "confirm": "確認",
-      "title": "你確定要刪除 \"{0}\" 列表嗎？"
+      "description": "你確定要刪除 \"{0}\" 列表嗎？"
     },
     "delete_posts": {
       "cancel": "取消",
       "confirm": "刪除",
-      "title": "你確定要刪除這則貼文嗎？"
+      "description": "你確定要刪除這則貼文嗎？"
     },
     "mute_account": {
       "cancel": "取消",
       "confirm": "靜音",
-      "title": "你確定要靜音 {0} 嗎？"
+      "description": "你確定要靜音 {0} 嗎？"
     },
     "show_reblogs": {
       "cancel": "取消",
       "confirm": "顯示",
-      "title": "你確定要顯示來自 {0} 的轉發嗎？"
+      "description": "你確定要顯示來自 {0} 的轉發嗎？"
     },
     "unfollow": {
       "cancel": "取消",
       "confirm": "取消追蹤",
-      "title": "你確定要取消追蹤嗎？"
+      "description": "你確定要取消追蹤嗎？"
     }
   },
   "conversation": {

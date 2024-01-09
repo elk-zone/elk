@@ -160,7 +160,7 @@
     "unfollow": {
       "cancel": "Cancel",
       "confirm": "Unfollow",
-      "description": "Are you sure you want to unfollow?",
+      "description": "Are you sure you want to unfollow {0}?",
       "title": "Unfollow"
     }
   },

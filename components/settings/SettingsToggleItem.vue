@@ -11,6 +11,7 @@ const { disabled = false } = defineProps<{
   <button
     exact-active-class="text-primary"
     block w-full group focus:outline-none text-start
+    role="checkbox" :aria-checked="checked"
     :disabled="disabled"
     :class="disabled ? 'opacity-50 cursor-not-allowed' : ''"
   >

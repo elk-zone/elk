@@ -1,16 +1,15 @@
-import type { Highlighter, Lang } from 'shiki-es'
+import { type Highlighter, type BuiltinLanguage as Lang } from 'shikiji'
 
-const shiki = ref<Highlighter>()
+const highlighter = ref<Highlighter>()
 
 const registeredLang = ref(new Map<string, boolean>())
-let shikiImport: Promise<void> | undefined
+let shikijiImport: Promise<void> | undefined
 
-export function useHighlighter(lang: Lang) {
-  if (!shikiImport) {
-    shikiImport = import('shiki-es')
-      .then(async (r) => {
-        r.setCDN('/shiki/')
-        shiki.value = await r.getHighlighter({
+export function useHighlighter(lang: Lang): { promise?: Promise<void>; highlighter?: Highlighter } {
+  if (!shikijiImport) {
+    shikijiImport = import('shikiji')
+      .then(async ({ getHighlighter }) => {
+        highlighter.value = await getHighlighter({
           themes: [
             'vitesse-dark',
             'vitesse-light',
@@ -22,29 +21,31 @@ export function useHighlighter(lang: Lang) {
           ],
         })
       })
+
+    return { promise: shikijiImport }
   }
 
-  if (!shiki.value)
-    return undefined
+  if (!highlighter.value)
+    return { promise: shikijiImport }
 
   if (!registeredLang.value.get(lang)) {
-    shiki.value.loadLanguage(lang)
+    const promise = highlighter.value.loadLanguage(lang)
       .then(() => {
         registeredLang.value.set(lang, true)
       })
       .catch(() => {
         const fallbackLang = 'md'
-        shiki.value?.loadLanguage(fallbackLang).then(() => {
+        highlighter.value?.loadLanguage(fallbackLang).then(() => {
           registeredLang.value.set(fallbackLang, true)
         })
       })
-    return undefined
+    return { promise }
   }
 
-  return shiki.value
+  return { highlighter: highlighter.value }
 }
 
-export function useShikiTheme() {
+function useShikijiTheme() {
   return useColorMode().value === 'dark' ? 'vitesse-dark' : 'vitesse-light'
 }
 
@@ -61,16 +62,12 @@ function escapeHtml(text: string) {
 }
 
 export function highlightCode(code: string, lang: Lang) {
-  const shiki = useHighlighter(lang)
-  if (!shiki)
+  const { highlighter } = useHighlighter(lang)
+  if (!highlighter)
     return escapeHtml(code)
 
-  return shiki.codeToHtml(code, {
+  return highlighter.codeToHtml(code, {
     lang,
-    theme: useShikiTheme(),
+    theme: useShikijiTheme(),
   })
-}
-
-export function useShiki() {
-  return shiki
 }

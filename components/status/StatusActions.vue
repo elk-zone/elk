@@ -60,6 +60,7 @@ function reply() {
         color="text-green" hover="text-green" elk-group-hover="bg-green/10"
         icon="i-ri:repeat-line"
         active-icon="i-ri:repeat-fill"
+        inactive-icon="i-tabler:repeat-off"
         :active="!!status.reblogged"
         :disabled="isLoading.reblogged || !canReblog"
         :command="command"

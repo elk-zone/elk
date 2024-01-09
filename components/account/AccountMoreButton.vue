@@ -69,7 +69,7 @@ async function removeUserNote() {
       </NuxtLink>
       <CommonDropdownItem
         v-if="isShareSupported"
-        :text="`Share @${account.acct}`"
+        :text="$t('menu.share_account', [`@${account.acct}`])"
         icon="i-ri:share-line"
         :command="command"
         @click="shareAccount()"

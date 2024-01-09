@@ -28,7 +28,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>#{{ tagName }}</span>
+      <bdi text-lg font-bold>#{{ tagName }}</bdi>
     </template>
 
     <template #actions>

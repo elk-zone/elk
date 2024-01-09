@@ -149,7 +149,7 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
     // if PWA is not enabled, don't get push subscription
     useAppConfig().pwaEnabled
     // we get 404 response instead empty data
-      ? client.v1.webPushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
+      ? client.v1.push.subscription.fetch().catch(() => Promise.resolve(undefined))
       : Promise.resolve(undefined),
   ])
 
@@ -172,6 +172,7 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
 const accountPreferencesMap = new Map<string, Partial<mastodon.v1.Preference>>()
 
 /**
+ * @param account
  * @returns `true` when user ticked the preference to always expand posts with content warnings
  */
 export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentials) {
@@ -179,6 +180,7 @@ export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentia
 }
 
 /**
+ * @param account
  * @returns `true` when user selected "Always show media" as Media Display preference
  */
 export function getExpandMediaByDefault(account: mastodon.v1.AccountCredentials) {
@@ -186,13 +188,14 @@ export function getExpandMediaByDefault(account: mastodon.v1.AccountCredentials)
 }
 
 /**
+ * @param account
  * @returns `true` when user selected "Always hide media" as Media Display preference
  */
 export function getHideMediaByDefault(account: mastodon.v1.AccountCredentials) {
   return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'hide_all' ?? false
 }
 
-export async function fetchAccountInfo(client: mastodon.Client, server: string) {
+export async function fetchAccountInfo(client: mastodon.rest.Client, server: string) {
   // Try to fetch user preferences if the backend supports it.
   const fetchPrefs = async (): Promise<Partial<mastodon.v1.Preference>> => {
     try {
@@ -267,7 +270,7 @@ export async function removePushNotifications(user: UserLogin) {
     return
 
   // unsubscribe push notifications
-  await useMastoClient().v1.webPushSubscriptions.remove().catch(() => Promise.resolve())
+  await useMastoClient().v1.push.subscription.remove().catch(() => Promise.resolve())
 }
 
 export async function switchUser(user: UserLogin) {
@@ -336,6 +339,8 @@ interface UseUserLocalStorageCache {
 
 /**
  * Create reactive storage for the current user
+ * @param key
+ * @param initial
  */
 export function useUserLocalStorage<T extends object>(key: string, initial: () => T): Ref<T> {
   if (process.server || process.test)
@@ -382,6 +387,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
 
 /**
  * Clear all storages for the given account
+ * @param account
  */
 export function clearUserLocalStorage(account?: mastodon.v1.Account) {
   if (!account)

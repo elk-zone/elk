@@ -15,6 +15,7 @@
     "blocked_users": "Người đã chặn",
     "blocking": "Đã chặn",
     "bot": "BOT",
+    "copy_account_name": "Sao chép tên tài khoản",
     "favourites": "Lượt thích",
     "follow": "Theo dõi",
     "follow_back": "Theo dõi lại",
@@ -225,7 +226,7 @@
         "title": "Media"
       },
       "navigation": {
-        "go_to_home": "Trang chính",
+        "go_to_home": "Trang chủ",
         "go_to_notifications": "Thông báo",
         "next_status": "Tút tiếp theo",
         "previous_status": "Tút trước đó",
@@ -284,7 +285,7 @@
     "explore": "Khám phá",
     "favourites": "Lượt thích",
     "federated": "Liên hợp",
-    "home": "Trang chính",
+    "home": "Trang chủ",
     "list": "Danh sách",
     "lists": "Danh sách",
     "local": "Máy chủ",
@@ -500,6 +501,8 @@
     },
     "notifications_settings": "Thông báo",
     "preferences": {
+      "embedded_media": "Trình phát media dạng Nhúng",
+      "embedded_media_description": "Hiển thị trình phát dạng nhúng, thay vì hình xem trước khi chia sẻ các liên kết media.",
       "enable_autoplay": "Bật tự động phát",
       "enable_data_saving": "Bật chế độ tiết kiệm dữ liệu mạng",
       "enable_data_saving_description": "Tiết kiệm dữ liệu bằng cách không cho tự động tải file đính kèm.",
@@ -578,6 +581,7 @@
     },
     "boosted_by": "Đăng lại bởi",
     "edited": "Đã sửa {0}",
+    "embedded_warning": "Địa chỉ IP của bạn có thể bị lộ.",
     "favourited_by": "Thích bởi",
     "filter_hidden_phrase": "Lọc theo",
     "filter_show_anyway": "Vẫn cứ hiện",
@@ -593,7 +597,7 @@
       "finished": "hết hạn {0}"
     },
     "replying_to": "Trả lời {0}",
-    "show_full_thread": "Chuỗi thảo luận",
+    "show_full_thread": "Chuyên đề",
     "someone": "ai đó",
     "spoiler_media_hidden": "Ẩn media",
     "spoiler_show_less": "Thu gọn",

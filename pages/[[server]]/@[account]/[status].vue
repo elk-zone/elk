@@ -22,7 +22,7 @@ const { data: status, pending, refresh: refreshStatus } = useAsyncData(
 const { client } = $(useMasto())
 const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
   `context:${id}`,
-  async () => client.v1.statuses.fetchContext(id),
+  async () => client.v1.statuses.$select(id).context.fetch(),
   { watch: [isHydrated], immediate: isHydrated.value, lazy: true, default: () => shallowRef() },
 )
 

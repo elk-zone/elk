@@ -25,7 +25,7 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
     : preferredVisibility
 }
 
-export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
+export function getDefaultDraft(options: Partial<Mutable<mastodon.rest.v1.CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
   const {
     attachments = [],
     initialText = '',

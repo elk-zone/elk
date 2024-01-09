@@ -6,7 +6,7 @@ definePageMeta({
 const params = useRoute().params
 const listId = $(computedEager(() => params.list as string))
 
-const paginator = useMastoClient().v1.lists.listAccounts(listId)
+const paginator = useMastoClient().v1.lists.$select(listId).accounts.list()
 </script>
 
 <template>

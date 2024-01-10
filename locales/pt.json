@@ -136,7 +136,7 @@
     "delete_list": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "description": "Tem a certeza que pretende elimnar a lista \"{0}\"?",
+      "description": "Tem a certeza que pretende eliminar a lista \"{0}\"?",
       "title": "Eliminar lista"
     },
     "delete_posts": {

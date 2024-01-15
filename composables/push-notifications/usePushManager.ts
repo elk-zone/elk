@@ -61,7 +61,7 @@ export function usePushManager() {
 
   const subscribe = async (
     notificationData?: CreatePushNotification,
-    policy?: mastodon.v1.SubscriptionPolicy,
+    policy?: mastodon.v1.WebPushSubscriptionPolicy,
     force?: boolean,
   ): Promise<SubscriptionResult> => {
     if (!isSupported)
@@ -116,7 +116,7 @@ export function usePushManager() {
     await removePushNotificationData(currentUser.value)
   }
 
-  const saveSettings = async (policy?: mastodon.v1.SubscriptionPolicy) => {
+  const saveSettings = async (policy?: mastodon.v1.WebPushSubscriptionPolicy) => {
     if (policy)
       pushNotificationData.value.policy = policy
 
@@ -173,7 +173,7 @@ export function usePushManager() {
       if (policyChanged)
         await subscribe(data, policy, true)
       else
-        currentUser.value.pushSubscription = await client.v1.webPushSubscriptions.update({ data })
+        currentUser.value.pushSubscription = await client.v1.push.subscription.update({ data })
 
       policyChanged && await nextTick()
 
@@ -198,7 +198,7 @@ export function usePushManager() {
 
 function createRawSettings(
   pushSubscription?: mastodon.v1.WebPushSubscription,
-  subscriptionPolicy?: mastodon.v1.SubscriptionPolicy,
+  subscriptionPolicy?: mastodon.v1.WebPushSubscriptionPolicy,
 ) {
   return {
     follow: pushSubscription?.alerts.follow ?? true,

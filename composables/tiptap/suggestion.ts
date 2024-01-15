@@ -11,7 +11,7 @@ import TiptapMentionList from '~/components/tiptap/TiptapMentionList.vue'
 import TiptapHashtagList from '~/components/tiptap/TiptapHashtagList.vue'
 import TiptapEmojiList from '~/components/tiptap/TiptapEmojiList.vue'
 
-export { Emoji }
+export type { Emoji }
 
 export type CustomEmoji = (mastodon.v1.CustomEmoji & { custom: true })
 export function isCustomEmoji(emoji: CustomEmoji | Emoji): emoji is CustomEmoji {
@@ -27,8 +27,8 @@ export const TiptapMentionSuggestion: Partial<SuggestionOptions> = process.serve
         if (query.length === 0)
           return []
 
-        const results = await useMastoClient().v2.search({ q: query, type: 'accounts', limit: 25, resolve: true })
-        return results.accounts
+        const paginator = useMastoClient().v2.search.list({ q: query, type: 'accounts', limit: 25, resolve: true })
+        return (await paginator.next()).value?.accounts ?? []
       },
       render: createSuggestionRenderer(TiptapMentionList),
     }
@@ -40,14 +40,14 @@ export const TiptapHashtagSuggestion: Partial<SuggestionOptions> = {
     if (query.length === 0)
       return []
 
-    const results = await useMastoClient().v2.search({
+    const paginator = useMastoClient().v2.search.list({
       q: query,
       type: 'hashtags',
       limit: 25,
       resolve: false,
       excludeUnreviewed: true,
     })
-    return results.hashtags
+    return (await paginator.next()).value?.hashtags ?? []
   },
   render: createSuggestionRenderer(TiptapHashtagList),
 }

@@ -15,7 +15,7 @@ export function usePublish(options: {
   const { client } = $(useMasto())
   const settings = useUserSettings()
 
-  const preferredLanguage = $computed(() => (settings.value?.language || 'en').split('-')[0])
+  const preferredLanguage = $computed(() => (currentUser.value?.account.source.language || settings.value?.language || 'en').split('-')[0])
 
   let isSending = $ref(false)
   const isExpanded = $ref(false)
@@ -93,7 +93,7 @@ export function usePublish(options: {
       language: draft.params.language || preferredLanguage,
       poll,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
-    } as mastodon.v1.CreateStatusParams
+    } as mastodon.rest.v1.CreateStatusParams
 
     if (process.dev) {
       // eslint-disable-next-line no-console
@@ -111,11 +111,19 @@ export function usePublish(options: {
       isSending = true
 
       let status: mastodon.v1.Status
-      if (!draft.editingStatus)
+      if (!draft.editingStatus) {
         status = await client.v1.statuses.create(payload)
+      }
 
-      else
-        status = await client.v1.statuses.update(draft.editingStatus.id, payload)
+      else {
+        status = await client.v1.statuses.$select(draft.editingStatus.id).update({
+          ...payload,
+          mediaAttributes: draft.attachments.map(media => ({
+            id: media.id,
+            description: media.description,
+          })),
+        })
+      }
       if (draft.params.inReplyToId)
         navigateToStatus({ status })
 
@@ -223,7 +231,7 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
       if (draft.attachments.length < limit) {
         isExceedingAttachmentLimit = false
         try {
-          const attachment = await client.v1.mediaAttachments.create({
+          const attachment = await client.v1.media.create({
             file: await processFile(file),
           })
           draft.attachments.push(attachment)
@@ -256,7 +264,8 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
 
   async function setDescription(att: mastodon.v1.MediaAttachment, description: string) {
     att.description = description
-    await client.v1.mediaAttachments.update(att.id, { description: att.description })
+    if (!draft.editingStatus)
+      await client.v1.media.$select(att.id).update({ description: att.description })
   }
 
   function removeAttachment(index: number) {

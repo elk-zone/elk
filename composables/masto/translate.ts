@@ -65,8 +65,9 @@ export async function translateText(text: string, from: string | null | undefine
     error: '',
     text: '',
   })
+  const regex = /<a[^>]*>.*?<\/a>/g
   try {
-    const response = await $fetch<TranslationResponse>(config.public.translateApi, {
+    const response = await ($fetch as any)(config.public.translateApi, {
       method: 'POST',
       body: {
         q: text,
@@ -75,9 +76,13 @@ export async function translateText(text: string, from: string | null | undefine
         format: 'html',
         api_key: '',
       },
-    })
+    }) as TranslationResponse
     status.success = true
-    status.text = response.translatedText
+    // replace the translated links with the original
+    status.text = response.translatedText.replace(regex, (match) => {
+      const tagLink = regex.exec(text)
+      return tagLink ? tagLink[0] : match
+    })
   }
   catch (err) {
     // TODO: improve type

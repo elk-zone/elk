@@ -12,9 +12,7 @@ const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
-const { modelValue } = defineModels<{
-  modelValue: number
-}>()
+const modelValue = defineModel<number>({ required: true })
 
 const slideGap = 20
 const doubleTapTreshold = 250

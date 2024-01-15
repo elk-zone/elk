@@ -3,7 +3,7 @@ import { STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS } from '~~/constants'
 
 const { t } = useI18n()
 
-const paginator = useMastoClient().v1.trends.listStatuses()
+const paginator = useMastoClient().v1.trends.statuses.list()
 
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS, false)
 

@@ -12,6 +12,8 @@ const emit = defineEmits<{
   (event: 'afterEdit'): void
 }>()
 
+const focusEditor = inject<typeof noop>('focus-editor', noop)
+
 const { details, command } = $(props)
 
 const {
@@ -64,13 +66,14 @@ async function shareLink(status: mastodon.v1.Status) {
 async function deleteStatus() {
   if (await openConfirmDialog({
     title: t('confirm.delete_posts.title'),
+    description: t('confirm.delete_posts.description'),
     confirm: t('confirm.delete_posts.confirm'),
     cancel: t('confirm.delete_posts.cancel'),
   }) !== 'confirm')
     return
 
   removeCachedStatus(status.id)
-  await client.v1.statuses.remove(status.id)
+  await client.v1.statuses.$select(status.id).remove()
 
   if (route.name === 'status')
     router.back()
@@ -79,7 +82,14 @@ async function deleteStatus() {
 }
 
 async function deleteAndRedraft() {
-  // TODO confirm to delete
+  if (await openConfirmDialog({
+    title: t('confirm.delete_posts.title'),
+    description: t('confirm.delete_posts.description'),
+    confirm: t('confirm.delete_posts.confirm'),
+    cancel: t('confirm.delete_posts.cancel'),
+  }) !== 'confirm')
+    return
+
   if (process.dev) {
     // eslint-disable-next-line no-alert
     const result = confirm('[DEV] Are you sure you want to delete and re-draft this post?')
@@ -88,7 +98,7 @@ async function deleteAndRedraft() {
   }
 
   removeCachedStatus(status.id)
-  await client.v1.statuses.remove(status.id)
+  await client.v1.statuses.$select(status.id).remove()
   await openPublishDialog('dialog', await getDraftFromStatus(status), true)
 
   // Go to the new status, if the page is the old status
@@ -97,8 +107,10 @@ async function deleteAndRedraft() {
 }
 
 function reply() {
+  if (!checkLogin())
+    return
   if (details) {
-    // TODO focus to editor
+    focusEditor()
   }
   else {
     const { key, draft } = getReplyDraft(status)

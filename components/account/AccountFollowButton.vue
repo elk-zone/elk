@@ -19,7 +19,7 @@ const { client } = $(useMasto())
 async function unblock() {
   relationship!.blocking = false
   try {
-    const newRel = await client.v1.accounts.unblock(account.id)
+    const newRel = await client.v1.accounts.$select(account.id).unblock()
     Object.assign(relationship!, newRel)
   }
   catch (err) {
@@ -32,7 +32,7 @@ async function unblock() {
 async function unmute() {
   relationship!.muting = false
   try {
-    const newRel = await client.v1.accounts.unmute(account.id)
+    const newRel = await client.v1.accounts.$select(account.id).unmute()
     Object.assign(relationship!, newRel)
   }
   catch (err) {
@@ -91,7 +91,7 @@ const buttonStyle = $computed(() => {
     </template>
     <template v-else-if="relationship?.requested">
       <span elk-group-hover="hidden">{{ $t('account.follow_requested') }}</span>
-      <span hidden elk-group-hover="inline">Withdraw follow request</span>
+      <span hidden elk-group-hover="inline">{{ $t('account.withdraw_follow_request') }}</span>
     </template>
     <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
       <span elk-group-hover="hidden">{{ $t('account.follows_you') }}</span>

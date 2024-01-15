@@ -2,7 +2,7 @@
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { Paginator, WsEvents } from 'masto'
+import type { mastodon } from 'masto'
 import type { UnwrapRef } from 'vue'
 
 const {
@@ -14,10 +14,10 @@ const {
   preprocess,
   endMessage = true,
 } = defineProps<{
-  paginator: Paginator<T[], O>
+  paginator: mastodon.Paginator<T[], O>
   keyProp?: keyof T
   virtualScroller?: boolean
-  stream?: Promise<WsEvents>
+  stream?: mastodon.streaming.Subscription
   eventType?: 'notification' | 'update'
   preprocess?: (items: (U | T)[]) => U[]
   endMessage?: boolean | string
@@ -39,7 +39,7 @@ defineSlots<{
     number: number
     update: () => void
   }) => void
-  loading: (props: {}) => void
+  loading: (props: object) => void
   done: (props: { items: U[] }) => void
 }>()
 
@@ -112,7 +112,7 @@ defineExpose({ createEntry, removeEntry, updateEntry })
     </slot>
     <slot v-else-if="state === 'done' && endMessage !== false" name="done" :items="items as U[]">
       <div p5 text-secondary italic text-center>
-        {{ t(typeof endMessage === 'string' ? endMessage : 'common.end_of_list') }}
+        {{ t(typeof endMessage === 'string' && items.length <= 0 ? endMessage : 'common.end_of_list') }}
       </div>
     </slot>
     <div v-else-if="state === 'error'" p5 text-secondary>

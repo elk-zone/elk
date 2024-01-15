@@ -1,10 +1,10 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`content-rich > block with backticks 1`] = `"<p><pre class=\\"code-block\\">[(\`number string) (\`tag string)]</pre></p>"`;
+exports[`content-rich > block with backticks 1`] = `"<p><pre class="code-block">[(\`number string) (\`tag string)]</pre></p>"`;
 
 exports[`content-rich > block with injected html, with a known language 1`] = `
 "<pre>
-        <code class=\\"language-js\\">
+        <code class="language-js">
           &lt;a href=&quot;javascript:alert(1)&quot;&gt;click me&lt;/a&gt;
         </code>
       </pre>
@@ -13,7 +13,7 @@ exports[`content-rich > block with injected html, with a known language 1`] = `
 
 exports[`content-rich > block with injected html, with an unknown language 1`] = `
 "<pre>
-        <code class=\\"language-xyzzy\\">
+        <code class="language-xyzzy">
           &lt;a href=&quot;javascript:alert(1)&quot;&gt;click me&lt;/a&gt;
         </code>
       </pre>
@@ -30,7 +30,7 @@ exports[`content-rich > block with injected html, without language 1`] = `
 `;
 
 exports[`content-rich > code frame 1`] = `
-"<p>Testing code block</p><p></p><p><pre class=\\"code-block\\">import { useMouse, usePreferredDark } from &apos;@vueuse/core&apos;
+"<p>Testing code block</p><p></p><p><pre class="code-block">import { useMouse, usePreferredDark } from &apos;@vueuse/core&apos;
 // tracks mouse position
 const { x, y } = useMouse()
 // is the user prefers dark theme
@@ -39,34 +39,92 @@ const isDark = usePreferredDark()</pre></p>"
 
 exports[`content-rich > code frame 2 1`] = `
 "<p>
-  <span class=\\"h-card\\"
+  <span class="h-card"
     ><a
-      class=\\"u-url mention\\"
-      rel=\\"nofollow noopener noreferrer\\"
-      to=\\"/webtoo.ls/@antfu\\"
-    ></a
-  ></span>
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/webtoo.ls/@antfu"
+      ><bdi>@<span>antfu</span></bdi></a
+    ></span
+  >
   Testing<br />
-  <pre class=\\"code-block\\">const a = hello</pre>
+  <pre class="code-block">const a = hello</pre>
 </p>
 "
 `;
 
-exports[`content-rich > code frame empty 1`] = `"<p><pre class=\\"code-block\\"></pre><br></p>"`;
+exports[`content-rich > code frame empty 1`] = `"<p><pre class="code-block"></pre><br></p>"`;
 
-exports[`content-rich > code frame no lang 1`] = `"<p><pre class=\\"code-block\\">hello world</pre><br>no lang</p>"`;
+exports[`content-rich > code frame no lang 1`] = `"<p><pre class="code-block">hello world</pre><br>no lang</p>"`;
+
+exports[`content-rich > collapse mentions 1`] = `
+"<p>
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@elk"
+      ><bdi>@<span>elk</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@elk"
+      ><bdi>@<span>elk</span></bdi></a
+    ></span
+  >
+  content
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@antfu"
+      ><bdi>@<span>antfu</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/mastodon.roe.dev/@daniel"
+      ><bdi>@<span>daniel</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@sxzz"
+      ><bdi>@<span>sxzz</span></bdi></a
+    ></span
+  >
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@patak"
+      ><bdi>@<span>patak</span></bdi></a
+    ></span
+  >
+  content
+</p>
+"
+`;
 
 exports[`content-rich > custom emoji 1`] = `
 "Daniel Roe
-<picture alt=\\":nuxt:\\" class=\\"custom-emoji\\" data-emoji-id=\\"nuxt\\"
+<picture class="custom-emoji" alt=":nuxt:" data-emoji-id="nuxt" title="nuxt"
   ><source
-    srcset=\\"
+    srcset="
       https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png
-    \\"
-    media=\\"(prefers-reduced-motion: reduce)\\" />
+    "
+    media="(prefers-reduced-motion: reduce)" />
   <img
-    src=\\"https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png\\"
-    alt=\\":nuxt:\\"
+    src="https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png"
+    alt=":nuxt:"
+    title="nuxt"
 /></picture>
 "
 `;
@@ -75,13 +133,18 @@ exports[`content-rich > empty 1`] = `""`;
 
 exports[`content-rich > group mention > html 1`] = `
 "<p>
-  <span class=\\"h-card\\"
+  <span class="h-card"
     ><a
-      class=\\"u-url mention\\"
-      rel=\\"nofollow noopener noreferrer\\"
-      to=\\"//@pilipinas@lemmy.ml\\"
-    ></a
-  ></span>
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@pilipinas@lemmy.ml"
+      ><bdi
+        ><span data-type="mention" data-id="pilipinas@lemmy.ml"
+          >@pilipinas</span
+        ></bdi
+      ></a
+    ></span
+  >
 </p>
 "
 `;
@@ -106,11 +169,44 @@ exports[`content-rich > handles formatting from servers 1`] = `
 exports[`content-rich > handles html within code blocks 1`] = `
 "<p>
   HTML block code:<br />
-  <pre class=\\"code-block\\">
+  <pre class="code-block">
 &lt;span class=&quot;icon--noto icon--noto--1st-place-medal&quot;&gt;&lt;/span&gt;
 &lt;span class=&quot;icon--noto icon--noto--2nd-place-medal-medal&quot;&gt;&lt;/span&gt;</pre
   >
 </p>
+"
+`;
+
+exports[`content-rich > hashtag adds bdi 1`] = `
+"<p>
+  Testing bdi is added
+  <a
+    class="mention hashtag"
+    rel="nofollow noopener noreferrer"
+    to="/m.webtoo.ls/tags/turkey"
+    ><bdi>#<span>turkey</span></bdi></a
+  >
+</p>
+<p></p>
+"
+`;
+
+exports[`content-rich > hashtag doesn't add 2 bdi 1`] = `
+"<p>
+  Testing bdi not added
+  <a
+    class="mention hashtag"
+    rel="nofollow noopener noreferrer"
+    to="/m.webtoo.ls/tags/turkey"
+    ><bdi></bdi
+  ></a>
+</p>
+<p></p>
+"
+`;
+
+exports[`content-rich > hides collapsed mentions 1`] = `
+"<p>content</p>
 "
 `;
 
@@ -128,26 +224,27 @@ exports[`content-rich > link + mention 1`] = `
 "<p>
   Happy
   <img
-    src=\\"/emojis/twemoji/1f917.svg\\"
-    alt=\\"🤗\\"
-    class=\\"iconify-emoji iconify-emoji--twemoji\\"
+    src="/emojis/twemoji/1f917.svg"
+    class="iconify-emoji iconify-emoji--twemoji"
+    alt="🤗"
   />
   we’re now using
-  <span class=\\"h-card\\"
+  <span class="h-card"
     ><a
-      class=\\"u-url mention\\"
-      rel=\\"nofollow noopener noreferrer\\"
-      to=\\"/webtoo.ls/@vitest\\"
-    ></a
-  ></span>
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/webtoo.ls/@vitest"
+      ><bdi>@<span>vitest</span></bdi></a
+    ></span
+  >
   (migrated from chai+mocha)
   <a
-    href=\\"https://github.com/ayoayco/astro-reactive-library/pull/203\\"
-    rel=\\"nofollow noopener noreferrer\\"
-    target=\\"_blank\\"
-    ><span class=\\"invisible\\">https://</span
-    ><span class=\\"ellipsis\\">github.com/ayoayco/astro-react</span
-    ><span class=\\"invisible\\">ive-library/pull/203</span></a
+    href="https://github.com/ayoayco/astro-reactive-library/pull/203"
+    rel="nofollow noopener noreferrer"
+    target="_blank"
+    ><span class="invisible">https://</span
+    ><span class="ellipsis">github.com/ayoayco/astro-react</span
+    ><span class="invisible">ive-library/pull/203</span></a
   >
 </p>
 "
@@ -155,6 +252,53 @@ exports[`content-rich > link + mention 1`] = `
 
 exports[`content-rich > plain text 1`] = `
 "hello there
+"
+`;
+
+exports[`content-rich > shows some collapsed mentions grouped 1`] = `
+"<p>
+  <mention-group
+    ><span class="h-card"
+      ><a
+        class="u-url mention"
+        rel="nofollow noopener noreferrer"
+        to="/m.webtoo.ls/@antfu"
+        ><bdi>@<span>antfu</span></bdi></a
+      ></span
+    >
+    <span class="h-card"
+      ><a
+        class="u-url mention"
+        rel="nofollow noopener noreferrer"
+        to="/m.webtoo.ls/@patak"
+        ><bdi>@<span>patak</span></bdi></a
+      ></span
+    >
+    <span class="h-card"
+      ><a
+        class="u-url mention"
+        rel="nofollow noopener noreferrer"
+        to="/m.webtoo.ls/@sxzz"
+        ><bdi>@<span>sxzz</span></bdi></a
+      ></span
+    ></mention-group
+  >content
+</p>
+"
+`;
+
+exports[`content-rich > shows some collapsed mentions inline 1`] = `
+"<p>
+  <span class="h-card"
+    ><a
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      to="/m.webtoo.ls/@antfu"
+      ><bdi>@<span>antfu</span></bdi></a
+    ></span
+  >
+  content
+</p>
 "
 `;
 

@@ -50,15 +50,15 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       baseURL: '/',
       maxAge: 0,
     })
-    if (options.disable) {
-      addPlugin({ src: resolver.resolve('./runtime/pwa-plugin-stub.client') })
-    }
-    else {
-      // Register PWA types
-      nuxt.hook('prepare:types', ({ references }) => {
-        references.push({ types: 'vite-plugin-pwa/info' })
-        references.push({ types: 'vite-plugin-pwa/client' })
-      })
+
+    // Register PWA types
+    nuxt.hook('prepare:types', ({ references }) => {
+      // TODO: remove this once JetBrains fixes the issue with types: remove also the dts file
+      references.push({ path: resolver.resolve('runtime/types') })
+      references.push({ types: 'vite-plugin-pwa/info' })
+      references.push({ types: 'vite-plugin-pwa/vue' })
+    })
+    if (!options.disable) {
       // Inject $pwa helper throughout app
       addPlugin({ src: resolver.resolve('./runtime/pwa-plugin.client') })
     }
@@ -217,10 +217,8 @@ export default defineNuxtModule<VitePWANuxtOptions>({
           }
         }
       })
-      nuxt.hook('nitro:init', (nitro) => {
-        nitro.hooks.hook('rollup:before', async () => {
-          await resolveVitePluginPWAAPI()?.generateSW()
-        })
+      nuxt.hook('nitro:build:public-assets', async () => {
+        await resolveVitePluginPWAAPI()?.generateSW()
       })
     }
   },

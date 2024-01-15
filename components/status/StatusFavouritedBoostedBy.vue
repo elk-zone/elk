@@ -6,7 +6,7 @@ const type = ref<'favourited-by' | 'boosted-by'>('favourited-by')
 const { client } = $(useMasto())
 
 function load() {
-  return client.v1.statuses[type.value === 'favourited-by' ? 'listFavouritedBy' : 'listRebloggedBy'](favouritedBoostedByStatusId.value!)
+  return client.v1.statuses.$select(favouritedBoostedByStatusId.value!)[type.value === 'favourited-by' ? 'favouritedBy' : 'rebloggedBy'].list()
 }
 
 const paginator = $computed(() => load())

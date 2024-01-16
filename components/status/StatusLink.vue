@@ -18,14 +18,12 @@ function onclick(evt: MouseEvent | KeyboardEvent) {
     go(evt)
 }
 
-async function go(evt: MouseEvent | KeyboardEvent) {
+function go(evt: MouseEvent | KeyboardEvent) {
   if (evt.metaKey || evt.ctrlKey) {
     window.open(statusRoute.href)
   }
   else {
-    const targets = getViewTransitionTargets()
-    targets.value.statusId = props.status.id
-    targets.value.accountId = props.status.account.id
+    setViewTransitionTarget({ status: props.status })
     cacheStatus(props.status)
 
     router.push(statusRoute)

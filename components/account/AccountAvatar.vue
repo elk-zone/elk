@@ -1,23 +1,15 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { account, status } = defineProps<{
+const { account } = defineProps<{
   account: mastodon.v1.Account
   square?: boolean
-  status?: mastodon.v1.Status
 }>()
 
 const loaded = $ref(false)
 const error = $ref(false)
 
-const viewTransitionStyle = computed(() => {
-  if (!status)
-    return
-
-  const targets = getViewTransitionTargets().value
-  if (targets.statusId === status.id && targets.accountId === account.id)
-    return { 'view-transition-name': 'account-avatar' }
-})
+const viewTransitionStyle = getViewTransitionStyles('account-avatar', { account })
 </script>
 
 <template>

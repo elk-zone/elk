@@ -2,6 +2,7 @@
 // @ts-expect-error missing types
 import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller'
 import type { ComponentPublicInstance } from 'vue'
+import type { mastodon } from 'masto'
 
 definePageMeta({
   name: 'status',
@@ -16,7 +17,7 @@ const main = ref<ComponentPublicInstance | null>(null)
 
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   `status:${id}`,
-  () => fetchStatus(id),
+  () => fetchStatus(id), // TODO: check if this change causes problems
   { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef() },
 )
 const { client } = $(useMasto())
@@ -29,8 +30,13 @@ const { data: context, pending: pendingContext, refresh: refreshContext } = useA
 if (pendingContext)
   watchOnce(pendingContext, scrollTo)
 
-if (pending)
-  watchOnce(pending, scrollTo)
+if (pending) {
+  watchOnce(pending, () => {
+    setViewTransitionTarget({ status: status.value })
+
+    scrollTo()
+  })
+}
 
 async function scrollTo() {
   await nextTick()

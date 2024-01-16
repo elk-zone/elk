@@ -7,7 +7,6 @@ defineOptions({
 
 const { account, as = 'div' } = defineProps<{
   account: mastodon.v1.Account
-  status?: mastodon.v1.Status
   as?: string
   hoverCard?: boolean
   square?: boolean
@@ -19,16 +18,16 @@ const { account, as = 'div' } = defineProps<{
 <template>
   <component :is="as" flex gap-3 v-bind="$attrs">
     <AccountHoverWrapper :disabled="!hoverCard" :account="account">
-      <AccountBigAvatar :account="account" :status="status" shrink-0 :square="square" />
+      <AccountBigAvatar :account="account" shrink-0 :square="square" />
     </AccountHoverWrapper>
     <div flex="~ col" shrink pt-1 h-full overflow-hidden justify-center leading-none select-none>
       <div flex="~" gap-2>
-        <AccountDisplayName :account="account" :status="status" font-bold line-clamp-1 ws-pre-wrap break-all text-lg />
+        <AccountDisplayName :account="account" font-bold line-clamp-1 ws-pre-wrap break-all text-lg />
         <AccountRolesIndicator v-if="account.roles?.length" :account="account" :limit="1" />
         <AccountLockIndicator v-if="account.locked" text-xs />
         <AccountBotIndicator v-if="account.bot" text-xs />
       </div>
-      <AccountHandle :account="account" :status="status" text-secondary-light />
+      <AccountHandle :account="account" text-secondary-light />
     </div>
   </component>
 </template>

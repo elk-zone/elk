@@ -19,6 +19,7 @@ export interface PreferencesSettings {
   hideNews: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
+  enableBackgroundBlur: boolean
   enableDataSaving: boolean
   enablePinchToZoom: boolean
   useStarFavoriteIcon: boolean
@@ -72,6 +73,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideNews: false,
   grayscaleMode: false,
   enableAutoplay: true,
+  enableBackgroundBlur: true,
   enableDataSaving: false,
   enablePinchToZoom: false,
   useStarFavoriteIcon: false,

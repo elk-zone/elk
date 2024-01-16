@@ -35,6 +35,12 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.enable_autoplay') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'enableBackgroundBlur')"
+      @click="togglePreferences('enableBackgroundBlur')"
+    >
+      {{ $t('settings.preferences.enable_background_blur') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enableDataSaving')"
       @click="togglePreferences('enableDataSaving')"
     >

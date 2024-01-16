@@ -141,11 +141,12 @@ const { dragging, dragDistance } = invoke(() => {
           :class="{
             'duration-0': dragging,
             'duration-250': !dragging,
+            'backdrop-blur-md': getPreferences(userSettings, 'enableBackgroundBlur'),
           }"
           transition="transform ease-in"
           flex-1 min-w-48 py-6 mb="-1px"
           of-y-auto scrollbar-hide overscroll-none max-h="[calc(100vh-200px)]"
-          rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter backdrop-blur-md
+          rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter
           border-t-1 border-base
         >
           <!-- Nav -->

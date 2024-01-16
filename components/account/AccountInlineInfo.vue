@@ -5,7 +5,6 @@ const { link = true, avatar = true } = defineProps<{
   account: mastodon.v1.Account
   link?: boolean
   avatar?: boolean
-  status?: mastodon.v1.Status
 }>()
 
 const userSettings = useUserSettings()
@@ -25,8 +24,8 @@ export default {
       v-bind="$attrs"
       min-w-0 flex gap-2 items-center
     >
-      <AccountAvatar v-if="avatar" :account="account" :status="status" w-5 h-5 />
-      <AccountDisplayName :account="account" :status="status" :hide-emojis="getPreferences(userSettings, 'hideUsernameEmojis')" line-clamp-1 ws-pre-wrap break-all />
+      <AccountAvatar v-if="avatar" :account="account" w-5 h-5 />
+      <AccountDisplayName :account="account" :hide-emojis="getPreferences(userSettings, 'hideUsernameEmojis')" line-clamp-1 ws-pre-wrap break-all />
     </NuxtLink>
   </AccountHoverWrapper>
 </template>

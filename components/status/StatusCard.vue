@@ -32,6 +32,8 @@ const status = $computed(() => {
   return props.status
 })
 
+provide(viewTransitionStatusInjectionKey, status)
+
 // Use original status, avoid connecting a reblog
 const directReply = $computed(() => props.hasNewer || (!!status.inReplyToId && (status.inReplyToId === props.newer?.id || status.inReplyToId === props.newer?.reblog?.id)))
 // Use reblogged status, connect it to further replies
@@ -106,11 +108,11 @@ const forceShow = ref(false)
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">
               <NuxtLink :to="getAccountRoute(rebloggedBy)">
-                <AccountAvatar :account="rebloggedBy" :status="status" />
+                <AccountAvatar :account="rebloggedBy" />
               </NuxtLink>
             </AccountHoverWrapper>
           </div>
-          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" :status="status" text-sm />
+          <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" text-sm />
         </div>
       </div>
     </slot>
@@ -137,7 +139,7 @@ const forceShow = ref(false)
           </div>
           <AccountHoverWrapper :account="status.account">
             <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
-              <AccountBigAvatar :account="status.account" :status="status" />
+              <AccountBigAvatar :account="status.account" />
             </NuxtLink>
           </AccountHoverWrapper>
 

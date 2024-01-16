@@ -29,10 +29,7 @@ const hideAllMedia = computed(
     return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && (!!status.mediaAttachments.length || !!status.card?.html)) : false
   },
 )
-const viewTransitionStyle = computed(() => {
-  if (getViewTransitionTargets().value.statusId === status.id)
-    return { 'view-transition-name': 'status-content' }
-})
+const viewTransitionStyle = getViewTransitionStyles('status-content')
 
 const embeddedMediaPreference = $(usePreferences('experimentalEmbeddedMedia'))
 const allowEmbeddedMedia = $computed(() => status.card?.html && embeddedMediaPreference)

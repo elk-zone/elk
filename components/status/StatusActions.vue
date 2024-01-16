@@ -32,10 +32,7 @@ function reply() {
     navigateToStatus({ status, focusReply: true })
 }
 
-const viewTransitionStyle = computed(() => {
-  if (getViewTransitionTargets().value.statusId === props.status.id)
-    return { 'view-transition-name': 'status-actions' }
-})
+const viewTransitionStyle = getViewTransitionStyles('status-actions')
 </script>
 
 <template>

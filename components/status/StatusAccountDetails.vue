@@ -15,7 +15,7 @@ const userSettings = useUserSettings()
     flex="~ col" min-w-0 items-start md:flex="~ row gap-2" md:items-center
     text-link-rounded
   >
-    <AccountDisplayName :account="status.account" :status="status" :hide-emojis="getPreferences(userSettings, 'hideUsernameEmojis')" font-bold line-clamp-1 ws-pre-wrap break-all />
-    <AccountHandle :account="status.account" :status="status" class="zen-none" />
+    <AccountDisplayName :account="status.account" :hide-emojis="getPreferences(userSettings, 'hideUsernameEmojis')" font-bold line-clamp-1 ws-pre-wrap break-all />
+    <AccountHandle :account="status.account" class="zen-none" />
   </NuxtLink>
 </template>

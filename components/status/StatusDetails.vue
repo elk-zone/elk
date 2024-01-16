@@ -20,6 +20,8 @@ const status = $computed(() => {
   return props.status
 })
 
+provide(viewTransitionStatusInjectionKey, status)
+
 const createdAt = useFormattedDateTime(status.createdAt)
 
 const { t } = useI18n()
@@ -34,7 +36,7 @@ useHydratedHead({
     <StatusActionsMore :status="status" absolute inset-ie-2 top-2 @after-edit="$emit('refetchStatus')" />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pe5 me-a>
       <AccountHoverWrapper :account="status.account">
-        <AccountInfo :account="status.account" :status="status" />
+        <AccountInfo :account="status.account" />
       </AccountHoverWrapper>
     </NuxtLink>
     <StatusContent :status="status" :newer="newer" context="details" />

@@ -120,12 +120,14 @@
     "block_account": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
-      "description": "Bạn có chắc muốn chặn {0}?"
+      "description": "Bạn có chắc muốn chặn {0}?",
+      "title": "Chặn người"
     },
     "block_domain": {
       "cancel": "Hủy bỏ",
       "confirm": "Chặn",
       "description": "Bạn có chắc muốn chặn {0}?"
+      "title": "Chặn máy chủ"
     },
     "common": {
       "cancel": "Không",
@@ -135,26 +137,31 @@
       "cancel": "Hủy bỏ",
       "confirm": "Xóa",
       "description": "Bạn có chắc muốn xóa \"{0}\"?"
+      "title": "Xóa danh sách"
     },
     "delete_posts": {
       "cancel": "Hủy bỏ",
       "confirm": "Xóa",
       "description": "Bạn có chắc muốn xóa tút này?"
+      "title": "Xóa tút"
     },
     "mute_account": {
       "cancel": "Hủy bỏ",
       "confirm": "Ẩn",
       "description": "Bạn có chắc muốn ẩn {0}?"
+      "title": "Ẩn người"
     },
     "show_reblogs": {
       "cancel": "Hủy bỏ",
-      "confirm": "Hiện",
-      "description": "Bạn có chắc muốn hiện lượt đăng lại từ {0}?"
+      "confirm": "Xem",
+      "description": "Bạn có chắc muốn xem lượt đăng lại từ {0}?"
+      "title": "Xem lượt đăng lại"
     },
     "unfollow": {
       "cancel": "Hủy bỏ",
       "confirm": "Bỏ theo dõi",
       "description": "Bạn có chắc muốn bỏ theo dõi?"
+      "title": "Bỏ theo dõi"
     }
   },
   "conversation": {
@@ -256,9 +263,9 @@
     "report_account": "Báo cáo {0}",
     "share_account": "Chia sẻ {0}",
     "share_post": "Chia sẻ tút",
-    "show_favourited_and_boosted_by": "Hiện lượt thích và đăng lại",
-    "show_reblogs": "Hiện đăng lại từ {0}",
-    "show_untranslated": "Hiện bản chưa dịch",
+    "show_favourited_and_boosted_by": "Xem lượt thích và đăng lại",
+    "show_reblogs": "Xem đăng lại từ {0}",
+    "show_untranslated": "Xem bản chưa dịch",
     "toggle_theme": {
       "dark": "Chế độ Tối",
       "light": "Chế độ Sáng"
@@ -597,7 +604,7 @@
       "finished": "hết hạn {0}"
     },
     "replying_to": "Trả lời {0}",
-    "show_full_thread": "Chuyên đề",
+    "show_full_thread": "Chuỗi tút liên quan",
     "someone": "ai đó",
     "spoiler_media_hidden": "Ẩn media",
     "spoiler_show_less": "Thu gọn",

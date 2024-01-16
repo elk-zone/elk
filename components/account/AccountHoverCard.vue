@@ -6,6 +6,9 @@ const { account } = defineProps<{
 }>()
 
 const relationship = $(useRelationship(account))
+
+provide(viewTransitionAccountInjectionKey, undefined)
+provide(viewTransitionStatusInjectionKey, undefined)
 </script>
 
 <template>

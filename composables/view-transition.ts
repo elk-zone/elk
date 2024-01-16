@@ -14,8 +14,8 @@ function getViewTransitionState() {
   return useState<null | ViewTransitionState>('viewTransitionTargets', () => null)
 }
 
-export const viewTransitionStatusInjectionKey = Symbol('the status of the parent status card') as InjectionKey<mastodon.v1.Status>
-export const viewTransitionAccountInjectionKey = Symbol('the account of the viewed profile') as InjectionKey<mastodon.v1.Account>
+export const viewTransitionStatusInjectionKey: InjectionKey<undefined | mastodon.v1.Status> = Symbol('the status of the parent status card')
+export const viewTransitionAccountInjectionKey: InjectionKey<undefined | mastodon.v1.Account> = Symbol('the account of the viewed profile')
 
 export function setViewTransitionTarget(targets: ViewTransitionSources) {
   getViewTransitionState().value = {

@@ -17,15 +17,9 @@ function getViewTransitionState() {
 export const viewTransitionStatusInjectionKey = Symbol('the status of the parent status card') as InjectionKey<mastodon.v1.Status>
 export const viewTransitionAccountInjectionKey = Symbol('the account of the viewed profile') as InjectionKey<mastodon.v1.Account>
 
-export function setViewTransitionTarget(manualSources?: ViewTransitionSources) {
-  const status = manualSources?.status || inject(viewTransitionStatusInjectionKey, undefined)
-  const account = manualSources?.account || inject(viewTransitionAccountInjectionKey, undefined) || status?.account
-
+export function setViewTransitionTarget(targets: ViewTransitionSources) {
   getViewTransitionState().value = {
-    targets: {
-      status,
-      account,
-    },
+    targets: calcTransitionSources(targets),
     setOnPath: useRoute().path,
   }
 }
@@ -45,13 +39,13 @@ export function getViewTransitionStyles(viewTransitionName: string, sources?: Vi
 
 function shouldTakePartInTransition(manualSources?: ViewTransitionSources) {
   const state = getViewTransitionState().value
-  if (!state)
+  if (!state || (!state.targets.account && !state.targets.status))
     return false
 
-  const sources = {
-    status: manualSources?.status || inject(viewTransitionStatusInjectionKey, null),
-    account: manualSources?.account || inject(viewTransitionAccountInjectionKey, null),
-  }
+  const sources = calcTransitionSources({
+    status: manualSources?.status || inject(viewTransitionStatusInjectionKey, undefined),
+    account: manualSources?.account || inject(viewTransitionAccountInjectionKey, undefined),
+  })
 
   const route = useRoute()
   const currPath = route.path
@@ -60,18 +54,22 @@ function shouldTakePartInTransition(manualSources?: ViewTransitionSources) {
 
   if (arrivingOnProfile) {
     if (sources.account && !sources.status)
-      return state?.targets.account?.id === sources.account.id
+      return state.targets.account?.id === sources.account.id
   }
   else {
-    let key: keyof ViewTransitionSources
-    for (key in state.targets) {
-      if (!state.targets[key])
-        continue
+    if (state.targets.account && state.targets.account.id !== sources.account?.id)
+      return false
 
-      if (!sources[key] || sources[key]!.id !== state.targets[key]!.id)
-        return false
-    }
+    if (state.targets.status && state.targets.status.id !== sources.status?.id)
+      return false
 
     return true
+  }
+}
+
+function calcTransitionSources(sources: ViewTransitionSources): ViewTransitionSources {
+  return {
+    status: sources.status,
+    account: sources.account || sources.status?.account,
   }
 }

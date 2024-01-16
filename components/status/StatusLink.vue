@@ -23,11 +23,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
     window.open(statusRoute.href)
   }
   else {
-    setViewTransitionTarget()
-    // getViewTransitionState().value = {
-    //   target: props.status,
-    //   setOnPath: useRoute().path,
-    // }
+    setViewTransitionTarget({ status: props.status })
     cacheStatus(props.status)
 
     router.push(statusRoute)

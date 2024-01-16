@@ -69,6 +69,11 @@ const showUpperBorder = $computed(() => props.newer && !directReply)
 const showReplyTo = $computed(() => !replyToMain && !directReply)
 
 const forceShow = ref(false)
+
+function goToAccount(account: mastodon.v1.Account) {
+  setViewTransitionTarget({ account, status })
+  router.push(getAccountRoute(account))
+}
 </script>
 
 <template>
@@ -107,7 +112,7 @@ const forceShow = ref(false)
           <div i-ri:repeat-fill me-46px text-green w-16px h-16px class="status-boosted" />
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">
-              <NuxtLink :to="getAccountRoute(rebloggedBy)">
+              <NuxtLink @click="goToAccount(rebloggedBy)">
                 <AccountAvatar :account="rebloggedBy" />
               </NuxtLink>
             </AccountHoverWrapper>
@@ -138,7 +143,7 @@ const forceShow = ref(false)
             <div i-ri:repeat-fill text-green w-16px h-16px />
           </div>
           <AccountHoverWrapper :account="status.account">
-            <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
+            <NuxtLink rounded-full @click="goToAccount(status.account)">
               <AccountBigAvatar :account="status.account" />
             </NuxtLink>
           </AccountHoverWrapper>

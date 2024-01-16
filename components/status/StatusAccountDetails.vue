@@ -7,13 +7,22 @@ const { status, link = true } = defineProps<{
 }>()
 
 const userSettings = useUserSettings()
+
+const router = useRouter()
+function goToAccount(account: mastodon.v1.Account) {
+  if (!link)
+    return
+
+  setViewTransitionTarget({ account, status })
+  router.push(getAccountRoute(account))
+}
 </script>
 
 <template>
   <NuxtLink
-    :to="link ? getAccountRoute(status.account) : undefined"
-    flex="~ col" min-w-0 items-start md:flex="~ row gap-2" md:items-center
-    text-link-rounded
+    flex="~ col"
+    min-w-0 items-start md:flex="~ row gap-2" md:items-center text-link-rounded
+    @click="goToAccount(status.account)"
   >
     <AccountDisplayName :account="status.account" :hide-emojis="getPreferences(userSettings, 'hideUsernameEmojis')" font-bold line-clamp-1 ws-pre-wrap break-all />
     <AccountHandle :account="status.account" class="zen-none" />

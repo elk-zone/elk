@@ -2,7 +2,6 @@
 // @ts-expect-error missing types
 import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller'
 import type { ComponentPublicInstance } from 'vue'
-import type { mastodon } from 'masto'
 
 definePageMeta({
   name: 'status',

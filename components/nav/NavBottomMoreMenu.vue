@@ -13,7 +13,10 @@ function toggleVisible() {
 }
 
 const buttonEl = ref<HTMLDivElement>()
-/** Close the drop-down menu if the mouse click is not on the drop-down menu button when the drop-down menu is opened */
+/**
+ * Close the drop-down menu if the mouse click is not on the drop-down menu button when the drop-down menu is opened
+ * @param mouse
+ */
 function clickEvent(mouse: MouseEvent) {
   if (mouse.target && !buttonEl.value?.children[0].contains(mouse.target as any)) {
     if (modelValue.value) {
@@ -141,7 +144,7 @@ const { dragging, dragDistance } = invoke(() => {
           :class="{
             'duration-0': dragging,
             'duration-250': !dragging,
-            'backdrop-blur-md': getPreferences(userSettings, 'enableBackgroundBlur'),
+            'backdrop-blur-md': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
           }"
           transition="transform ease-in"
           flex-1 min-w-48 py-6 mb="-1px"

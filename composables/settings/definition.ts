@@ -19,7 +19,7 @@ export interface PreferencesSettings {
   hideNews: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
-  enableBackgroundBlur: boolean
+  optimizeForLowPerformanceDevice: boolean
   enableDataSaving: boolean
   enablePinchToZoom: boolean
   useStarFavoriteIcon: boolean
@@ -73,7 +73,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideNews: false,
   grayscaleMode: false,
   enableAutoplay: true,
-  enableBackgroundBlur: true,
+  optimizeForLowPerformanceDevice: false,
   enableDataSaving: false,
   enablePinchToZoom: false,
   useStarFavoriteIcon: false,

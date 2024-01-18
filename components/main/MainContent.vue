@@ -32,7 +32,7 @@ const containerClass = computed(() => {
       bg="[rgba(var(--rgb-bg-base),0.7)]"
       class="native:lg:w-[calc(100vw-5rem)] native:xl:w-[calc(135%+(100vw-1200px)/2)]"
       :class="{
-        'backdrop-blur': getPreferences(userSettings, 'enableBackgroundBlur'),
+        'backdrop-blur': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
       }"
     >
       <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex" border="b base">

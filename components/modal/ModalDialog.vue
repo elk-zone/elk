@@ -160,7 +160,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
         <div
           class="dialog-mask"
           :class="{
-            'backdrop-blur-sm': getPreferences(userSettings, 'enableBackgroundBlur'),
+            'backdrop-blur-sm': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
           }"
           absolute inset-0 z-0 bg-transparent opacity-100 backdrop-filter touch-none
         />

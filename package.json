@@ -35,7 +35,7 @@
     "@emoji-mart/data": "^1.1.2",
     "@fnando/sparkline": "^0.3.10",
     "@iconify-emoji/twemoji": "^1.0.2",
-    "@iconify/json": "^2.2.142",
+    "@iconify/json": "^2.2.170",
     "@iconify/utils": "^2.1.7",
     "@nuxt/devtools": "^1.0.0-beta.1",
     "@nuxt/test-utils": "^3.9.0-alpha.1",

@@ -27,8 +27,8 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       '@iconify/json':
-        specifier: ^2.2.142
-        version: 2.2.142
+        specifier: ^2.2.170
+        version: 2.2.170
       '@iconify/utils':
         specifier: ^2.1.7
         version: 2.1.7
@@ -2394,8 +2394,8 @@ packages:
     resolution: {integrity: sha512-C4W6ov4BkDXiVU3GzyqyVo8SBbU21KivXnZERgAnrYZEKjuiI3JwPDnu9oVJPsUkNI/Q4SM8iVnXjGW6kxt9DQ==}
     dev: false
 
-  /@iconify/json@2.2.142:
-    resolution: {integrity: sha512-EfQv1GMGxOySdwaGR3+Diqudkwk4W299cNtcQhg7QAlH9x6FW9851raiYvdOsMZp0ya+Ye+evTTqxyZ4vEh5cw==}
+  /@iconify/json@2.2.170:
+    resolution: {integrity: sha512-KJQ+LPj5KOpBrTknm0vpb2A6+T12ZyIFInubW3kT/58eZRKtiDv5D87QWVXczL5/uyDr2rkRu8rAfOrGr/UFhA==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.1
@@ -13194,7 +13194,7 @@ packages:
     hasBin: true
     peerDependencies:
       '@nuxt/kit': ^3.0.0
-      '@nuxt/schema': ^3.0.0
+      '@nuxt/schema': 3.8.2
     peerDependenciesMeta:
       '@nuxt/kit':
         optional: true

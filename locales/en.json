@@ -528,6 +528,7 @@
       "hide_username_emojis": "Hide username emojis",
       "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",
       "label": "Preferences",
+      "optimize_for_low_performance_device": "Optimize for low performance device",
       "title": "Experimental Features",
       "use_star_favorite_icon": "Use star favorite icon",
       "user_picker": "User Picker",

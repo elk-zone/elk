@@ -40,27 +40,27 @@
   },
   "confirm": {
     "block_account": {
-      "title": "Tem certeza que quer bloquear {0}?"
+      "description": "Tem certeza que quer bloquear {0}?"
     },
     "block_domain": {
-      "title": "Tem certeza que quer bloquear {0}?"
+      "description": "Tem certeza que quer bloquear {0}?"
     },
     "delete_list": {
       "confirm": "Apagar",
-      "title": "Tem certeza que quer apagar a lista \"{0}\"?"
+      "description": "Tem certeza que quer apagar a lista \"{0}\"?"
     },
     "delete_posts": {
       "confirm": "Apagar",
-      "title": "Tem certeza que quer apagar esse post?"
+      "description": "Tem certeza que quer apagar esse post?"
     },
     "mute_account": {
-      "title": "Tem certeza que quer silenciar {0}?"
+      "description": "Tem certeza que quer silenciar {0}?"
     },
     "show_reblogs": {
-      "title": "Tem certeza que quer mostrar os compartilhamentos de {0}?"
+      "description": "Tem certeza que quer mostrar os compartilhamentos de {0}?"
     },
     "unfollow": {
-      "title": "Tem certeza que quer deixar de seguir?"
+      "description": "Tem certeza que quer deixar de seguir?"
     }
   },
   "error": {

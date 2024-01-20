@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const paginator = useMastoClient().v1.timelines.listHome({ limit: 30 })
-const stream = $(useStreaming(client => client.v1.stream.streamUser()))
+const paginator = useMastoClient().v1.timelines.home.list({ limit: 30 })
+const stream = useStreaming(client => client.user.subscribe())
 function reorderAndFilter(items: mastodon.v1.Status[]) {
   return reorderedTimeline(items, 'home')
 }

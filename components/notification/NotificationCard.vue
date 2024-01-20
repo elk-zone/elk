@@ -15,7 +15,6 @@ const { notification } = defineProps<{
           ps-3 pe-4 inset-is-0
           rounded-ie-be-3
           py-3 bg-base top-0
-          :lang="notification.status?.language ?? undefined"
         >
           <div i-ri-user-3-line text-xl me-3 color-blue />
           <AccountDisplayName :account="notification.account" text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all />
@@ -26,7 +25,6 @@ const { notification } = defineProps<{
         <AccountBigCard
           ms10
           :account="notification.account"
-          :lang="notification.status?.language ?? undefined"
         />
       </NuxtLink>
     </template>

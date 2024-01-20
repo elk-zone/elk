@@ -66,13 +66,14 @@ async function shareLink(status: mastodon.v1.Status) {
 async function deleteStatus() {
   if (await openConfirmDialog({
     title: t('confirm.delete_posts.title'),
+    description: t('confirm.delete_posts.description'),
     confirm: t('confirm.delete_posts.confirm'),
     cancel: t('confirm.delete_posts.cancel'),
   }) !== 'confirm')
     return
 
   removeCachedStatus(status.id)
-  await client.v1.statuses.remove(status.id)
+  await client.v1.statuses.$select(status.id).remove()
 
   if (route.name === 'status')
     router.back()
@@ -83,6 +84,7 @@ async function deleteStatus() {
 async function deleteAndRedraft() {
   if (await openConfirmDialog({
     title: t('confirm.delete_posts.title'),
+    description: t('confirm.delete_posts.description'),
     confirm: t('confirm.delete_posts.confirm'),
     cancel: t('confirm.delete_posts.cancel'),
   }) !== 'confirm')
@@ -96,7 +98,7 @@ async function deleteAndRedraft() {
   }
 
   removeCachedStatus(status.id)
-  await client.v1.statuses.remove(status.id)
+  await client.v1.statuses.$select(status.id).remove()
   await openPublishDialog('dialog', await getDraftFromStatus(status), true)
 
   // Go to the new status, if the page is the old status

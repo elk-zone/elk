@@ -10,6 +10,7 @@ const {
   stream,
   keyProp = 'id',
   virtualScroller = false,
+  eventType = 'update',
   preprocess,
   endMessage = true,
 } = defineProps<{
@@ -17,6 +18,7 @@ const {
   keyProp?: keyof T
   virtualScroller?: boolean
   stream?: mastodon.streaming.Subscription
+  eventType?: 'notification' | 'update'
   preprocess?: (items: (U | T)[]) => U[]
   endMessage?: boolean | string
 }>()
@@ -44,7 +46,7 @@ defineSlots<{
 const { t } = useI18n()
 const nuxtApp = useNuxtApp()
 
-const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), preprocess)
+const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), eventType, preprocess)
 
 nuxtApp.hook('elk-logo:click', () => {
   update()

@@ -5,6 +5,7 @@ import type { PaginatorState } from '~/types'
 export function usePaginator<T, P, U = T>(
   _paginator: mastodon.Paginator<T[], P>,
   stream: Ref<mastodon.streaming.Subscription | undefined>,
+  eventType: 'notification' | 'update' = 'update',
   preprocess: (items: (T | U)[]) => U[] = items => items as unknown as U[],
   buffer = 10,
 ) {

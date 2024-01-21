@@ -64,10 +64,10 @@ export const TiptapEmojiSuggestion: Partial<SuggestionOptions> = {
 
     const emojis = await import('@emoji-mart/data')
       .then(r => r.default as EmojiMartData)
-      .then(data => Object.values(data.emojis).filter(({ id }) => id.startsWith(query)))
+      .then(data => Object.values(data.emojis).filter(({ id }) => id.toLowerCase().startsWith(query.toLowerCase())))
 
     const customEmojis: CustomEmoji[] = currentCustomEmojis.value.emojis
-      .filter(emoji => emoji.shortcode.startsWith(query))
+      .filter(emoji => emoji.shortcode.toLowerCase().startsWith(query.toLowerCase()))
       .map(emoji => ({ ...emoji, custom: true }))
     return [...emojis, ...customEmojis]
   },

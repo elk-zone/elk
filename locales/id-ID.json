@@ -120,12 +120,12 @@
     "block_account": {
       "cancel": "Batalkan",
       "confirm": "Blokir",
-      "title": "Yakin ingin memblokir {0}?"
+      "description": "Yakin ingin memblokir {0}?"
     },
     "block_domain": {
       "cancel": "Batalkan",
       "confirm": "Blokir",
-      "title": "Yakin ingin memblokir {0}?"
+      "description": "Yakin ingin memblokir {0}?"
     },
     "common": {
       "cancel": "Tidak",
@@ -134,27 +134,27 @@
     "delete_list": {
       "cancel": "Batalkan",
       "confirm": "Hapus",
-      "title": "Apakah Anda yakin ingin menghapus daftar \"{0}\"?"
+      "description": "Apakah Anda yakin ingin menghapus daftar \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Batalkan",
       "confirm": "Hapus",
-      "title": "Yakin ingin menghapus postingan ini?"
+      "description": "Yakin ingin menghapus postingan ini?"
     },
     "mute_account": {
       "cancel": "Batalkan",
       "confirm": "Bisukan",
-      "title": "Yakin ingin membisukan {0}?"
+      "description": "Yakin ingin membisukan {0}?"
     },
     "show_reblogs": {
       "cancel": "Batalkan",
       "confirm": "Tampilkan",
-      "title": "Yakin ingin menampilkan dukungan dari {0}?"
+      "description": "Yakin ingin menampilkan dukungan dari {0}?"
     },
     "unfollow": {
       "cancel": "Batalkan",
       "confirm": "Berhenti mengikuti",
-      "title": "Anda yakin ingin berhenti mengikuti?"
+      "description": "Anda yakin ingin berhenti mengikuti?"
     }
   },
   "conversation": {

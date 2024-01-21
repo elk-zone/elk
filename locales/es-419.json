@@ -47,26 +47,26 @@
     "block_account": {
       "cancel": "No",
       "confirm": "Sí, bloquear",
-      "title": "¿De verdad quieres bloquear a {0}?"
+      "description": "¿De verdad quieres bloquear a {0}?"
     },
     "block_domain": {
       "cancel": "No",
       "confirm": "Sí, ocultar",
-      "title": "¿De verdad quieres ocultar a {0}?"
+      "description": "¿De verdad quieres ocultar a {0}?"
     },
     "delete_posts": {
-      "title": "¿De verdad quieres eliminar esta publicación?"
+      "description": "¿De verdad quieres eliminar esta publicación?"
     },
     "mute_account": {
-      "title": "¿De verdad quieres silenciar a {0}?"
+      "description": "¿De verdad quieres silenciar a {0}?"
     },
     "show_reblogs": {
       "cancel": "No",
       "confirm": "Sí, ver",
-      "title": "¿De verdad quieres ver los retoots de {0}"
+      "description": "¿De verdad quieres ver los retoots de {0}"
     },
     "unfollow": {
-      "title": "¿De verdad quieres dejar de seguir?"
+      "description": "¿De verdad quieres dejar de seguir?"
     }
   },
   "error": {

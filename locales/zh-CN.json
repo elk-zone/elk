@@ -119,12 +119,12 @@
     "block_account": {
       "cancel": "取消",
       "confirm": "拉黑",
-      "title": "你确定拉黑 {0} 吗？"
+      "description": "你确定拉黑 {0} 吗？"
     },
     "block_domain": {
       "cancel": "取消",
       "confirm": "拉黑",
-      "title": "你确定拉黑域名 {0} 吗？"
+      "description": "你确定拉黑域名 {0} 吗？"
     },
     "common": {
       "cancel": "否",
@@ -133,27 +133,27 @@
     "delete_list": {
       "cancel": "取消",
       "confirm": "删除",
-      "title": "你确定要删除 \"{0}\" 列表吗？"
+      "description": "你确定要删除 \"{0}\" 列表吗？"
     },
     "delete_posts": {
       "cancel": "取消",
       "confirm": "删除",
-      "title": "你确定要删除这条帖文吗？"
+      "description": "你确定要删除这条帖文吗？"
     },
     "mute_account": {
       "cancel": "取消",
       "confirm": "屏蔽",
-      "title": "你确定屏蔽 {0} 吗？"
+      "description": "你确定屏蔽 {0} 吗？"
     },
     "show_reblogs": {
       "cancel": "取消",
       "confirm": "显示",
-      "title": "你确定要显示来自 {0} 的转发吗？"
+      "description": "你确定要显示来自 {0} 的转发吗？"
     },
     "unfollow": {
       "cancel": "取消",
       "confirm": "取消关注",
-      "title": "你确定要取消关注吗？"
+      "description": "你确定要取消关注吗？"
     }
   },
   "conversation": {

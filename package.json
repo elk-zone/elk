@@ -35,7 +35,7 @@
     "@emoji-mart/data": "^1.1.2",
     "@fnando/sparkline": "^0.3.10",
     "@iconify-emoji/twemoji": "^1.0.2",
-    "@iconify/json": "^2.2.163",
+    "@iconify/json": "^2.2.170",
     "@iconify/utils": "^2.1.14",
     "@nuxt/devtools": "^1.0.6",
     "@nuxt/test-utils": "^3.9.0",
@@ -133,7 +133,7 @@
     "flat": "^5.0.2",
     "fs-extra": "^11.1.1",
     "lint-staged": "^14.0.1",
-    "nuxt": "3.9.1",
+    "nuxt": "3.9.3",
     "prettier": "^3.0.3",
     "sharp": "^0.32.6",
     "sharp-ico": "^0.1.5",
@@ -145,7 +145,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@nuxt/schema": "3.9.1",
+      "@nuxt/schema": "3.9.3",
       "unstorage": "^1.9.0"
     },
     "patchedDependencies": {

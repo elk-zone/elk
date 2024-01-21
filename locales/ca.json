@@ -109,12 +109,12 @@
     "block_account": {
       "cancel": "Cancel·lar",
       "confirm": "Bloc",
-      "title": "Confirmes que vols bloquejar {0}?"
+      "description": "Confirmes que vols bloquejar {0}?"
     },
     "block_domain": {
       "cancel": "Cancel·lar",
       "confirm": "Bloc",
-      "title": "Confirmes que vols bloquejar {0}?"
+      "description": "Confirmes que vols bloquejar {0}?"
     },
     "common": {
       "cancel": "No",
@@ -123,27 +123,27 @@
     "delete_list": {
       "cancel": "Cancel·lar",
       "confirm": "Suprimeix",
-      "title": "Esteu segur que voleu suprimir la llista \"{0}\"?"
+      "description": "Esteu segur que voleu suprimir la llista \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Cancel·lar",
       "confirm": "Suprimeix",
-      "title": "Esteu segur que voleu suprimir aquesta publicació?"
+      "description": "Esteu segur que voleu suprimir aquesta publicació?"
     },
     "mute_account": {
       "cancel": "Cancel·lar",
       "confirm": "Silenciar",
-      "title": "Confirmes que vols silenciar {0}?"
+      "description": "Confirmes que vols silenciar {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancel·lar",
       "confirm": "Espectacle",
-      "title": "Confirmes que vols mostrar els augments de {0}?"
+      "description": "Confirmes que vols mostrar els augments de {0}?"
     },
     "unfollow": {
       "cancel": "Cancel·lar",
       "confirm": "Deixa de seguir",
-      "title": "Estàs segur que vols deixar de seguir?"
+      "description": "Estàs segur que vols deixar de seguir?"
     }
   },
   "conversation": {

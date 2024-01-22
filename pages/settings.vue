@@ -27,10 +27,10 @@ const isRootPath = computedEager(() => route.name === 'settings')
           </template>
           <div xl:w-97 lg:w-78 w-full>
             <SettingsItem
-              v-if="isHydrated && currentUser"
+              v-if="currentUser"
               command
               icon="i-ri:user-line"
-              :text="$t('settings.profile.label')"
+              :text="isHydrated ? $t('settings.profile.label') : ''"
               to="/settings/profile"
               :match="$route.path.startsWith('/settings/profile/')"
             />
@@ -42,10 +42,10 @@ const isRootPath = computedEager(() => route.name === 'settings')
               :match="$route.path.startsWith('/settings/interface/')"
             />
             <SettingsItem
-              v-if="isHydrated && currentUser"
+              v-if="currentUser"
               command
               icon="i-ri:notification-badge-line"
-              :text="$t('settings.notifications_settings')"
+              :text="isHydrated ? $t('settings.notifications_settings') : ''"
               to="/settings/notifications"
               :match="$route.path.startsWith('/settings/notifications/')"
             />

@@ -25,7 +25,7 @@ onReactivated(() => {
     <template #title>
       <ContentRich
         timeline-title-style
-        :content="account ? getDisplayName(account) : t('nav.profile')"
+        :content="isHydrated ? (account ? getDisplayName(account) : t('nav.profile')) : ''"
         :show-emojis="!getPreferences(userSettings, 'hideUsernameEmojis')"
         :markdown="false"
       />
@@ -38,17 +38,17 @@ onReactivated(() => {
 
       <div v-if="relationship?.blockedBy" h-30 flex="~ col center gap-2">
         <div text-secondary>
-          {{ $t('account.profile_unavailable') }}
+          {{ isHydrated ? $t('account.profile_unavailable') : '' }}
         </div>
         <div text-secondary-light text-sm>
-          {{ $t('account.blocked_by') }}
+          {{ isHydrated ? $t('account.blocked_by') : '' }}
         </div>
       </div>
       <NuxtPage v-else />
     </template>
 
     <CommonNotFound v-else>
-      {{ $t('error.account_not_found', [`@${accountName}`]) }}
+      {{ isHydrated ? $t('error.account_not_found', [`@${accountName}`]) : '' }}
     </CommonNotFound>
   </MainContent>
 </template>

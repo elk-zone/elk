@@ -50,20 +50,20 @@ useCommand({
     flex gap-3 items-center cursor-pointer px4 py3
     select-none
     hover-bg-active
-    :aria-label="text"
+    :aria-label="isHydrated ? text : ''"
     @click="handleClick"
   >
     <div v-if="icon" :class="icon" />
     <div flex="~ col">
       <div text-15px>
         <slot>
-          {{ text }}
+          {{ isHydrated ? text : '' }}
         </slot>
       </div>
       <div text-3 text-secondary>
         <slot name="description">
           <p v-if="description">
-            {{ description }}
+            {{ isHydrated ? description : '' }}
           </p>
         </slot>
       </div>

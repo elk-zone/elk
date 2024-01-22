@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n()
+
 useHydratedHead({
   title: () => t('nav.search'),
 })
@@ -22,7 +23,7 @@ onDeactivated(() => search?.input?.blur())
     <template #title>
       <NuxtLink to="/search" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:search-line class="rtl-flip" />
-        <span>{{ $t('nav.search') }}</span>
+        <span>{{ isHydrated ? $t('nav.search') : '' }}</span>
       </NuxtLink>
     </template>
 

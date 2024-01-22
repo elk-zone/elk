@@ -44,7 +44,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
     <template #title>
       <span timeline-title-style flex items-center gap-2 cursor-pointer @click="$scrollToTop">
         <div i-ri:hashtag />
-        <span>{{ t('nav.explore') }}</span>
+        <span>{{ isHydrated ? t('nav.explore') : '' }}</span>
       </span>
     </template>
 

@@ -111,7 +111,7 @@ onReactivated(refreshInfo)
     </template>
 
     <form space-y-5 @submit.prevent="submit">
-      <div v-if="isHydrated && account">
+      <div v-if="account">
         <!-- banner -->
         <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
@@ -182,7 +182,7 @@ onReactivated(refreshInfo)
 
         <!-- metadata -->
 
-        <SettingsProfileMetadata v-if="isHydrated" v-model="form" />
+        <SettingsProfileMetadata v-model="form" />
 
         <!-- actions -->
         <div flex="~ gap2" justify-end>

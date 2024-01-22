@@ -184,7 +184,7 @@ export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentia
  * @returns `true` when user selected "Always show media" as Media Display preference
  */
 export function getExpandMediaByDefault(account: mastodon.v1.AccountCredentials) {
-  return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'show_all' ?? false
+  return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'show_all'
 }
 
 /**
@@ -192,7 +192,7 @@ export function getExpandMediaByDefault(account: mastodon.v1.AccountCredentials)
  * @returns `true` when user selected "Always hide media" as Media Display preference
  */
 export function getHideMediaByDefault(account: mastodon.v1.AccountCredentials) {
-  return (accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'hide_all') ?? false
+  return (accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'hide_all')
 }
 
 export async function fetchAccountInfo(client: mastodon.rest.Client, server: string) {

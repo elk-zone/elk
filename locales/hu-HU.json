@@ -120,12 +120,12 @@
     "block_account": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "title": "Biztosan blokkolja? {0}"
+      "description": "Biztosan blokkolja? {0}"
     },
     "block_domain": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "title": "Biztosan blokkolja? {0}"
+      "description": "Biztosan blokkolja? {0}"
     },
     "common": {
       "cancel": "Mégsem",
@@ -134,27 +134,27 @@
     "delete_list": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "title": "Biztosan törli a listát? \"{0}\""
+      "description": "Biztosan törli a listát? \"{0}\""
     },
     "delete_posts": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "title": "Biztosan törli a bejegyzést?"
+      "description": "Biztosan törli a bejegyzést?"
     },
     "mute_account": {
       "cancel": "Mégsem",
       "confirm": "Némít",
-      "title": "Biztosan némítja? {0}"
+      "description": "Biztosan némítja? {0}"
     },
     "show_reblogs": {
       "cancel": "Mégsem",
       "confirm": "Mutat",
-      "title": "Biztosan megjeleníti a Turbót tőle? {0}"
+      "description": "Biztosan megjeleníti a Turbót tőle? {0}"
     },
     "unfollow": {
       "cancel": "Mégsem",
       "confirm": "Követés leállítása",
-      "title": "Biztosan leállítja a követését?"
+      "description": "Biztosan leállítja a követését?"
     }
   },
   "conversation": {

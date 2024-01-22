@@ -20,9 +20,9 @@ async function toggleFollowTag() {
 
   try {
     if (previousFollowingState)
-      await client.v1.tags.unfollow(tag.name)
+      await client.v1.tags.$select(tag.name).unfollow()
     else
-      await client.v1.tags.follow(tag.name)
+      await client.v1.tags.$select(tag.name).follow()
 
     emit('change')
   }

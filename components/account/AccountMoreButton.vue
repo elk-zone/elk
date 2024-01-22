@@ -26,14 +26,15 @@ function shareAccount() {
 
 async function toggleReblogs() {
   if (!relationship!.showingReblogs && await openConfirmDialog({
-    title: t('confirm.show_reblogs.title', [account.acct]),
+    title: t('confirm.show_reblogs.title'),
+    description: t('confirm.show_reblogs.description', [account.acct]),
     confirm: t('confirm.show_reblogs.confirm'),
     cancel: t('confirm.show_reblogs.cancel'),
   }) !== 'confirm')
     return
 
   const showingReblogs = !relationship?.showingReblogs
-  relationship = await client.v1.accounts.follow(account.id, { reblogs: showingReblogs })
+  relationship = await client.v1.accounts.$select(account.id).follow({ reblogs: showingReblogs })
 }
 
 async function addUserNote() {
@@ -44,7 +45,7 @@ async function removeUserNote() {
   if (!relationship!.note || relationship!.note.length === 0)
     return
 
-  const newNote = await client.v1.accounts.createNote(account.id, { comment: '' })
+  const newNote = await client.v1.accounts.$select(account.id).note.create({ comment: '' })
   relationship!.note = newNote.note
   emit('removeNote')
 }

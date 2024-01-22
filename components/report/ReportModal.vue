@@ -34,11 +34,11 @@ function categoryChosen() {
 async function loadStatuses() {
   if (status) {
     // Load the 5 statuses before and after the reported status
-    const prevStatuses = await client.value.v1.accounts.listStatuses(account.id, {
+    const prevStatuses = await client.value.v1.accounts.$select(account.id).statuses.list({
       maxId: status.id,
       limit: 5,
     })
-    const nextStatuses = await client.value.v1.accounts.listStatuses(account.id, {
+    const nextStatuses = await client.value.v1.accounts.$select(account.id).statuses.list({
       minId: status.id,
       limit: 5,
     })
@@ -48,7 +48,7 @@ async function loadStatuses() {
   else {
     // Reporting an account directly
     // Load the 10 most recent statuses
-    const mostRecentStatuses = await client.value.v1.accounts.listStatuses(account.id, {
+    const mostRecentStatuses = await client.value.v1.accounts.$select(account.id).statuses.list({
       limit: 10,
     })
     availableStatuses.value = mostRecentStatuses

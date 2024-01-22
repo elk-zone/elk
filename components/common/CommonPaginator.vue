@@ -2,7 +2,7 @@
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { Paginator, WsEvents } from 'masto'
+import type { mastodon } from 'masto'
 import type { UnwrapRef } from 'vue'
 
 const {
@@ -10,15 +10,13 @@ const {
   stream,
   keyProp = 'id',
   virtualScroller = false,
-  eventType = 'update',
   preprocess,
   endMessage = true,
 } = defineProps<{
-  paginator: Paginator<T[], O>
+  paginator: mastodon.Paginator<T[], O>
   keyProp?: keyof T
   virtualScroller?: boolean
-  stream?: Promise<WsEvents>
-  eventType?: 'notification' | 'update'
+  stream?: mastodon.streaming.Subscription
   preprocess?: (items: (U | T)[]) => U[]
   endMessage?: boolean | string
 }>()
@@ -46,7 +44,7 @@ defineSlots<{
 const { t } = useI18n()
 const nuxtApp = useNuxtApp()
 
-const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), eventType, preprocess)
+const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), preprocess)
 
 nuxtApp.hook('elk-logo:click', () => {
   update()

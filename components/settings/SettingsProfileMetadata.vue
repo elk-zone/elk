@@ -2,7 +2,7 @@
 import type { mastodon } from 'masto'
 
 const form = defineModel<{
-  fieldsAttributes: NonNullable<mastodon.v1.UpdateCredentialsParams['fieldsAttributes']>
+  fieldsAttributes: NonNullable<mastodon.rest.v1.UpdateCredentialsParams['fieldsAttributes']>
 }>({ required: true })
 const dropdown = $ref<any>()
 

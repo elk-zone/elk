@@ -1,11 +1,10 @@
-import type { Paginator, WsEvents, mastodon } from 'masto'
+import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
 import type { PaginatorState } from '~/types'
 
 export function usePaginator<T, P, U = T>(
-  _paginator: Paginator<T[], P>,
-  stream: Ref<Promise<WsEvents> | undefined>,
-  eventType: 'notification' | 'update' = 'update',
+  _paginator: mastodon.Paginator<T[], P>,
+  stream: Ref<mastodon.streaming.Subscription | undefined>,
   preprocess: (items: (T | U)[]) => U[] = items => items as unknown as U[],
   buffer = 10,
 ) {
@@ -30,10 +29,15 @@ export function usePaginator<T, P, U = T>(
     prevItems.value = []
   }
 
-  watch(stream, (stream) => {
-    stream?.then((s) => {
-      s.on(eventType, (status) => {
-        if ('uri' in status)
+  watch(stream, async (stream) => {
+    if (!stream)
+      return
+
+    for await (const entry of stream) {
+      if (entry.event === 'update') {
+        const status = entry.payload
+
+        if ('uri' in entry)
           cacheStatus(status, undefined, true)
 
         const index = prevItems.value.findIndex((i: any) => i.id === status.id)
@@ -41,27 +45,27 @@ export function usePaginator<T, P, U = T>(
           prevItems.value.splice(index, 1)
 
         prevItems.value.unshift(status as any)
-      })
-
-      // TODO: update statuses
-      s.on('status.update', (status) => {
+      }
+      else if (entry.event === 'status.update') {
+        const status = entry.payload
         cacheStatus(status, undefined, true)
 
         const data = items.value as mastodon.v1.Status[]
         const index = data.findIndex(s => s.id === status.id)
         if (index >= 0)
           data[index] = status
-      })
+      }
 
-      s.on('delete', (id) => {
+      else if (entry.event === 'delete') {
+        const id = entry.payload
         removeCachedStatus(id)
 
         const data = items.value as mastodon.v1.Status[]
         const index = data.findIndex(s => s.id === id)
         if (index >= 0)
           data.splice(index, 1)
-      })
-    })
+      }
+    }
   }, { immediate: true })
 
   async function loadNext() {

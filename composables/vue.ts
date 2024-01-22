@@ -26,6 +26,9 @@ export function useDeactivated() {
  * ### When the component is restored from the background
  *
  * for handling problems caused by the keepalive function
+ *
+ * @param hook
+ * @param target
  */
 export function onReactivated(hook: () => void, target?: ComponentInternalInstance | null): void {
   const initial = ref(true)

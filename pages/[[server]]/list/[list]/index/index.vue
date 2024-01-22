@@ -8,8 +8,8 @@ const listId = $(computedEager(() => params.list as string))
 
 const client = useMastoClient()
 
-const paginator = client.v1.timelines.listList(listId)
-const stream = useStreaming(client => client.v1.stream.streamListTimeline(listId))
+const paginator = client.v1.timelines.list.$select(listId).list()
+const stream = useStreaming(client => client.list.subscribe({ list: listId }))
 </script>
 
 <template>

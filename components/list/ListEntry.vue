@@ -40,7 +40,7 @@ async function cancelEdit() {
 
 const { submit, submitting } = submitter(async () => {
   try {
-    list.value = await client.v1.lists.update(form.id, {
+    list.value = await client.v1.lists.$select(form.id).update({
       title: form.title,
     })
     cancelEdit()
@@ -58,7 +58,8 @@ async function removeList() {
     return
 
   const confirmDelete = await openConfirmDialog({
-    title: t('confirm.delete_list.title', [list.value.title]),
+    title: t('confirm.delete_list.title'),
+    description: t('confirm.delete_list.description', [list.value.title]),
     confirm: t('confirm.delete_list.confirm'),
     cancel: t('confirm.delete_list.cancel'),
   })
@@ -70,7 +71,7 @@ async function removeList() {
   if (confirmDelete === 'confirm') {
     await nextTick()
     try {
-      await client.v1.lists.remove(list.value.id)
+      await client.v1.lists.$select(list.value.id).remove()
       emit('listRemoved', list.value.id)
     }
     catch (err) {

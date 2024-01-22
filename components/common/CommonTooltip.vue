@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Popper as VTooltipType } from 'floating-vue/dist'
+import type { Popper as VTooltipType } from 'floating-vue'
 
 export interface Props extends Partial<typeof VTooltipType> {
   content?: string

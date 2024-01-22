@@ -58,36 +58,36 @@
     "block_account": {
       "cancel": "Cancel·la",
       "confirm": "Bloqueja",
-      "title": "Segur que vols bloquejar {0}?"
+      "description": "Segur que vols bloquejar {0}?"
     },
     "block_domain": {
       "cancel": "Cancel·la",
       "confirm": "Bloqueja",
-      "title": "Segur que vols bloquejar {0}?"
+      "description": "Segur que vols bloquejar {0}?"
     },
     "delete_list": {
       "cancel": "Cancel·la",
       "confirm": "Elimina",
-      "title": "Segur que vols eliminar la llista «{0}»?"
+      "description": "Segur que vols eliminar la llista «{0}»?"
     },
     "delete_posts": {
       "cancel": "Cancel·la",
       "confirm": "Elimina",
-      "title": "Segur que vols eliminar la publicació?"
+      "description": "Segur que vols eliminar la publicació?"
     },
     "mute_account": {
       "cancel": "Cancel·la",
       "confirm": "Silencia",
-      "title": "Segur que vols silenciar {0}?"
+      "description": "Segur que vols silenciar {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancel·la",
       "confirm": "Mostra",
-      "title": "Segur que vols mostrar els impulsos de: {0}?"
+      "description": "Segur que vols mostrar els impulsos de: {0}?"
     },
     "unfollow": {
       "cancel": "Cancel·la",
-      "title": "Segur que vols deixar de seguir-lo?"
+      "description": "Segur que vols deixar de seguir-lo?"
     }
   },
   "custom_cards": {

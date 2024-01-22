@@ -352,7 +352,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
   if (!map.has(key)) {
     const scope = effectScope(true)
     const value = scope.run(() => {
-      const all = useLocalStorage<Record<string, T>>(key, {}, { deep: true })
+      const all = useLocalStorage<Record<string, T>>(key, {}, { deep: true, shallow: true })
 
       return computed(() => {
         const id = currentUser.value?.account.id

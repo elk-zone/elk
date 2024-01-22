@@ -6,7 +6,10 @@ import type { SchemaAugmentations } from '@unhead/schema'
 export const isHydrated = ref(false)
 
 export function onHydrated(cb: () => unknown) {
-  watchOnce(isHydrated, () => cb(), { immediate: isHydrated.value })
+  if (isHydrated.value)
+    watchOnce(isHydrated, () => cb(), { immediate: true })
+  else
+    watchOnce(isHydrated, () => cb(), { immediate: false })
 }
 
 /**

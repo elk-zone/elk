@@ -9,7 +9,7 @@ export function onHydrated(cb: () => unknown) {
   if (isHydrated.value)
     watchOnce(isHydrated, () => cb(), { immediate: true })
   else
-    watchOnce(isHydrated, () => cb(), { immediate: false })
+    watchOnce(isHydrated, () => cb())
 }
 
 /**

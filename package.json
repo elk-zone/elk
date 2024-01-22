@@ -38,7 +38,7 @@
     "@iconify/json": "^2.2.170",
     "@iconify/utils": "^2.1.14",
     "@nuxt/devtools": "^1.0.6",
-    "@nuxt/test-utils": "^3.9.0",
+    "@nuxt/test-utils": "^3.10.0",
     "@nuxtjs/color-mode": "^3.3.2",
     "@nuxtjs/i18n": "^8.0.0",
     "@pinia/nuxt": "^0.5.1",
@@ -65,7 +65,7 @@
     "@vueuse/integrations": "^10.7.1",
     "@vueuse/math": "^10.7.1",
     "@vueuse/motion": "2.0.0",
-    "@vueuse/nuxt": "^10.7.1",
+    "@vueuse/nuxt": "^10.7.2",
     "blurhash": "^2.0.5",
     "browser-fs-access": "^0.35.0",
     "chroma-js": "^2.4.2",
@@ -84,7 +84,7 @@
     "lru-cache": "^10.0.0",
     "masto": "^6.5.2",
     "node-emoji": "^2.1.3",
-    "nuxt-security": "^1.0.0",
+    "nuxt-security": "^1.0.1",
     "page-lifecycle": "^0.1.2",
     "pinia": "^2.1.7",
     "postcss-nested": "^6.0.1",
@@ -105,7 +105,7 @@
     "ultrahtml": "^1.5.2",
     "unimport": "^3.7.1",
     "vite-plugin-pwa": "^0.17.4",
-    "vue": "^3.4.5",
+    "vue": "^3.4.15",
     "vue-advanced-cropper": "^2.8.8",
     "vue-router": "^4.2.5",
     "vue-virtual-scroller": "2.0.0-beta.8",
@@ -125,7 +125,7 @@
     "@types/prettier": "^2.7.3",
     "@types/wicg-file-system-access": "^2020.9.6",
     "@types/ws": "^8.5.10",
-    "@unlazy/nuxt": "^0.10.2",
+    "@unlazy/nuxt": "^0.10.4",
     "@vue/test-utils": "^2.4.3",
     "bumpp": "^9.2.0",
     "consola": "^3.2.3",
@@ -146,10 +146,10 @@
   "pnpm": {
     "overrides": {
       "@nuxt/schema": "3.9.3",
-      "unstorage": "^1.9.0"
+      "unstorage": "^1.10.1"
     },
     "patchedDependencies": {
-      "nuxt-security@1.0.0": "patches/nuxt-security@1.0.0.patch"
+      "nuxt-security@1.0.1": "patches/nuxt-security@1.0.1.patch"
     }
   },
   "simple-git-hooks": {

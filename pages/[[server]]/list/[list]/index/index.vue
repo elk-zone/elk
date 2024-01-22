@@ -4,12 +4,12 @@ definePageMeta({
 })
 
 const params = useRoute().params
-const listId = $(computedEager(() => params.list as string))
+const listId = computed(() => params.list as string)
 
 const client = useMastoClient()
 
-const paginator = client.v1.timelines.list.$select(listId).list()
-const stream = useStreaming(client => client.list.subscribe({ list: listId }))
+const paginator = client.v1.timelines.list.$select(listId.value).list()
+const stream = useStreaming(client => client.list.subscribe({ list: listId.value }))
 </script>
 
 <template>

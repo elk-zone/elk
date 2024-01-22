@@ -11,7 +11,7 @@ useHydratedHead({
 
 const route = useRoute()
 
-const isRootPath = computedEager(() => route.name === 'settings')
+const isRootPath = computed(() => route.name === 'settings')
 </script>
 
 <template>

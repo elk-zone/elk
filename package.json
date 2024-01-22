@@ -146,7 +146,8 @@
   "pnpm": {
     "overrides": {
       "@nuxt/schema": "3.9.3",
-      "unstorage": "^1.10.1"
+      "unstorage": "^1.10.1",
+      "vitest": "1.1.1"
     },
     "patchedDependencies": {
       "nuxt-security@1.0.1": "patches/nuxt-security@1.0.1.patch"

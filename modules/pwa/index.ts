@@ -58,10 +58,8 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       references.push({ types: 'vite-plugin-pwa/info' })
       references.push({ types: 'vite-plugin-pwa/vue' })
     })
-    if (!options.disable) {
-      // Inject $pwa helper throughout app
-      addPlugin({ src: resolver.resolve('./runtime/pwa-plugin.client') })
-    }
+    // Inject $pwa helper throughout app: vue complaining about missing $pwa in pwa badges
+    addPlugin({ src: resolver.resolve(options.disable ? './runtime/pwa-plugin-stub.client' : './runtime/pwa-plugin.client') })
 
     // TODO: combine with configurePWAOptions?
     nuxt.hook('nitro:init', (nitro) => {

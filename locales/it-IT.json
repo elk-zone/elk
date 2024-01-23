@@ -120,12 +120,14 @@
     "block_account": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "description": "Confermi di voler bloccare {0}?"
+      "description": "Confermi di voler bloccare {0}?",
+      "title": "Blocca account"
     },
     "block_domain": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "description": "Confermi di voler bloccare {0}?"
+      "description": "Confermi di voler bloccare {0}?",
+      "title": "Blocca dominio"
     },
     "common": {
       "cancel": "Annulla",
@@ -134,27 +136,32 @@
     "delete_list": {
       "cancel": "Annulla",
       "confirm": "Elimina",
-      "description": "Confermi di voler eliminare la lista \"{0}\"?"
+      "description": "Confermi di voler eliminare la lista \"{0}\"?",
+      "title": "Elimina lista"
     },
     "delete_posts": {
       "cancel": "Annulla",
       "confirm": "Elimina",
-      "description": "Confermi di voler eliminare questo post?"
+      "description": "Confermi di voler eliminare questo post?",
+      "title": "Elimina post"
     },
     "mute_account": {
       "cancel": "Annulla",
       "confirm": "Silenzia",
-      "description": "Confermi di voler silenziare {0}?"
+      "description": "Confermi di voler silenziare {0}?",
+      "title": "Silenzia account"
     },
     "show_reblogs": {
       "cancel": "Annulla",
       "confirm": "Mostra",
-      "description": "Confermi di voler mostrare i post potenziati da {0}?"
+      "description": "Confermi di voler mostrare i post potenziati da {0}?",
+      "title": "Mostra potenziamenti"
     },
     "unfollow": {
       "cancel": "Annulla",
       "confirm": "Smetti di seguire",
-      "description": "Confermi di voler smettere di seguire?"
+      "description": "Confermi di voler smettere di seguire?",
+      "title": "Smetti di seguire"
     }
   },
   "conversation": {
@@ -521,6 +528,7 @@
       "hide_username_emojis": "Nascondi emoji dai nomi utente",
       "hide_username_emojis_description": "Nasconde le emoji all'interno dei nomi utente nella cronologia. Le emoji saranno comunque visibili nelle pagine dei profili.",
       "label": "Preferenze",
+      "optimize_for_low_performance_device": "Ottimizza per dispositivi a basse prestazioni",
       "title": "Funzionalità sperimentali",
       "use_star_favorite_icon": "Usa icona stella per apprezzamenti",
       "user_picker": "Selettore utente",

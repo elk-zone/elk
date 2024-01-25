@@ -2,6 +2,8 @@
 defineProps<{
   showLabel?: boolean
 }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -15,7 +17,7 @@ defineProps<{
       <div i-ri:lock-line />
     </CommonTooltip>
     <div v-if="showLabel">
-      Lock
+      {{ t('account.lock') }}
     </div>
   </div>
 </template>

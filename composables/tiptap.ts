@@ -110,6 +110,9 @@ export function useTiptap(options: UseTiptapOptions) {
         class: 'content-editor content-rich',
       },
     },
+    parseOptions: {
+      preserveWhitespace: 'full',
+    },
     autofocus,
     editable: true,
   })

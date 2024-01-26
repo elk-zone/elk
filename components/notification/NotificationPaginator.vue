@@ -172,7 +172,6 @@ const { formatNumber } = useHumanReadableNumber()
     :preprocess="preprocess"
     :stream="stream"
     :virtualScroller="virtualScroller"
-    eventType="notification"
   >
     <template #updater="{ number, update }">
       <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">

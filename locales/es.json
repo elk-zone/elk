@@ -27,6 +27,7 @@
     "follows_you": "Te sigue",
     "go_to_profile": "Ir al perfil",
     "joined": "Se unió",
+    "lock": "Cuenta privada",
     "moved_title": "ha indicado que su nueva cuenta ahora es:",
     "muted_users": "Usuarios silenciados",
     "muting": "Silenciado",
@@ -120,12 +121,14 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "description": "¿Estás seguro que quieres bloquear a {0}?"
+      "description": "¿Estás seguro que quieres bloquear a {0}?",
+      "title": "Bloquear cuenta"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "description": "¿Estás seguro que quieres bloquear a {0}?"
+      "description": "¿Estás seguro que quieres bloquear a {0}?",
+      "title": "Bloquear dominio"
     },
     "common": {
       "cancel": "No",
@@ -134,27 +137,32 @@
     "delete_list": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "description": "¿Está seguro de querer eliminar la lista \"{0}\"?"
+      "description": "¿Está seguro de querer eliminar la lista \"{0}\"?",
+      "title": "Eliminar lista"
     },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "description": "¿Estás seguro que quieres eliminar esta publicación?"
+      "description": "¿Estás seguro que quieres eliminar esta publicación?",
+      "title": "Eliminar publicación"
     },
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
-      "description": "¿Estás seguro que quieres silenciar a {0}?"
+      "description": "¿Estás seguro que quieres silenciar a {0}?",
+      "title": "Silenciar cuenta"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "description": "¿Estás seguro que quieres mostrar los retoots de {0}?"
+      "description": "¿Estás seguro que quieres mostrar los retoots de {0}?",
+      "title": "Mostrar retoots"
     },
     "unfollow": {
       "cancel": "Cancelar",
       "confirm": "Dejar de seguir",
-      "description": "¿Estás seguro que quieres dejar de seguir?"
+      "description": "¿Estás seguro que quieres dejar de seguir?",
+      "title": "Dejar de seguir"
     }
   },
   "conversation": {
@@ -521,6 +529,7 @@
       "hide_username_emojis": "Ocultar emojis en el nombre de usuario",
       "hide_username_emojis_description": "Oculta los emojis de los nombres de usuarios en la línea de tiempo. Los emojis permanecerán visibles en sus perfiles.",
       "label": "Preferencias",
+      "optimize_for_low_performance_device": "Optimizar para dispositivos de bajo rendimiento",
       "title": "Funcionalidades experimentales",
       "use_star_favorite_icon": "Utilizar icono de estrella para favoritos",
       "user_picker": "Selector de usuarios",

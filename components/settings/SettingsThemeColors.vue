@@ -4,7 +4,7 @@ import type { ThemeColors } from '~/composables/settings'
 const themes = await import('~/constants/themes.json').then(r => r.default) as [string, ThemeColors][]
 const settings = $(useUserSettings())
 
-const currentTheme = $computed(() => settings.themeColors?.['--theme-color-name'] || themes[0][0])
+const currentTheme = $computed(() => settings.themeColors?.['--theme-color-name'] || themes[0][1]['--theme-color-name'])
 
 function updateTheme(theme: ThemeColors) {
   settings.themeColors = theme
@@ -19,8 +19,8 @@ function updateTheme(theme: ThemeColors) {
         'background': key,
         '--local-ring-color': key,
       }"
-      :class="currentTheme === key ? 'ring-2' : 'scale-90'"
-      :title="key"
+      :class="currentTheme === theme['--theme-color-name'] ? 'ring-2' : 'scale-90'"
+      :title="theme['--theme-color-name']"
       w-8 h-8 rounded-full transition-all
       ring="$local-ring-color offset-3 offset-$c-bg-base"
       @click="updateTheme(theme)"

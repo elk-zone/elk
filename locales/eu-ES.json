@@ -7,12 +7,15 @@
     "route_loaded": "{0} orrialdea kargatu da"
   },
   "account": {
+    "authorize": "Baimendu jarraipena",
+    "authorized": "Eskaerari baiezkoa eman diozu",
     "avatar_description": "{0}(r)en abatarra",
     "blocked_by": "Erabiltzaile honek blokeatu zaitu.",
     "blocked_domains": "Blokeatutako domeinuak",
     "blocked_users": "Blokeatutako erabiltzaileak",
     "blocking": "Blokeatuta",
     "bot": "BOTa",
+    "copy_account_name": "Kopiatu kontuaren izena",
     "favourites": "Gogokoak",
     "follow": "Jarraitu",
     "follow_back": "Jarraitu berari ere",
@@ -36,7 +39,10 @@
     "profile_description": "{0}(r)en profilaren goiburua",
     "profile_personal_note": "Nire oharra",
     "profile_unavailable": "Profila ez dago eskuragai",
+    "reject": "Ukatu jarraipena",
+    "rejected": "Eskaerari ezezkoa eman diozu",
     "request_follow": "Bidali jarraipen-eskaera",
+    "requested": "{0}(e)k jarraipen-eskaera bidali dizu",
     "unblock": "Utzi blokeatzeari",
     "unfollow": "Utzi jarraitzeari",
     "unmute": "Utzi mututzeari",
@@ -114,12 +120,12 @@
     "block_account": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "title": "Ziur {0} blokeatu nahi duzula?"
+      "description": "Ziur {0} blokeatu nahi duzula?"
     },
     "block_domain": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "title": "Ziur {0} domeinua blokeatu nahi duzula?"
+      "description": "Ziur {0} domeinua blokeatu nahi duzula?"
     },
     "common": {
       "cancel": "Ez",
@@ -128,27 +134,27 @@
     "delete_list": {
       "cancel": "Utzi",
       "confirm": "Ezabatu",
-      "title": "Ziur \"{0}\" zerrenda ezabatu nahi duzula?"
+      "description": "Ziur \"{0}\" zerrenda ezabatu nahi duzula?"
     },
     "delete_posts": {
       "cancel": "Utzi",
       "confirm": "Ezabatu",
-      "title": "Ziur bidalketa hau ezabatu nahi duzula?"
+      "description": "Ziur bidalketa hau ezabatu nahi duzula?"
     },
     "mute_account": {
       "cancel": "Utzi",
       "confirm": "Mututu",
-      "title": "Ziur {0} mututu nahi duzula?"
+      "description": "Ziur {0} mututu nahi duzula?"
     },
     "show_reblogs": {
       "cancel": "Utzi",
       "confirm": "Erakutsi",
-      "title": "Ziur {0}(r)en bultzadak ikusi nahi dituzula?"
+      "description": "Ziur {0}(r)en bultzadak ikusi nahi dituzula?"
     },
     "unfollow": {
       "cancel": "Utzi",
       "confirm": "Utzi jarraitzeari",
-      "title": "Ziur jarraitzeari utzi nahi diozula?"
+      "description": "Ziur jarraitzeari utzi nahi diozula?"
     }
   },
   "conversation": {
@@ -495,6 +501,8 @@
     },
     "notifications_settings": "Jakinarazpenak",
     "preferences": {
+      "embedded_media": "Kapsulatutako multimedia erreproduzigailua",
+      "embedded_media_description": "Kapsulatutako erreproduzigailu bat erakusten du partekatutako multimedia jarioen estekak zabaltzean, ez aurrebista txartel arrunta.",
       "enable_autoplay": "Gaitu erreproduzitze automatikoa",
       "enable_data_saving": "Gaitu datu aurrezlea",
       "enable_data_saving_description": "Aurreztu datuak eranskinen kargatze-automatikoa galarazten.",
@@ -537,7 +545,8 @@
       },
       "featured_tags": {
         "description": "Jendeak traola hauek dituzten zure bidalketa publikoak ikus ditzazke.",
-        "label": "Nabarmendutako traolak"
+        "label": "Nabarmendutako traolak",
+        "under_construction": "Amaitzeke"
       },
       "label": "Profila"
     },
@@ -572,6 +581,7 @@
     },
     "boosted_by": "Bultzatu dute:",
     "edited": "Azken edizioa: {0}",
+    "embedded_warning": "Litekeena da honakoa erreproduzitzean zure IPa gainontzekoentzak ikusgai egotea.",
     "favourited_by": "Gogoko egin dute:",
     "filter_hidden_phrase": "Iragazia:",
     "filter_show_anyway": "Erakutsi edonola ere",

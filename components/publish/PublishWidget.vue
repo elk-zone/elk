@@ -75,12 +75,13 @@ function trimPollOptions() {
 }
 
 function editPollOptionDraft(event: Event, index: number) {
-  draft.params.poll!.options[index] = (event.target as HTMLInputElement).value
+  draft.params.poll!.options = Object.assign(draft.params.poll!.options.slice(), { [index]: (event.target as HTMLInputElement).value })
+
   trimPollOptions()
 }
 
 function deletePollOption(index: number) {
-  draft.params.poll!.options.splice(index, 1)
+  draft.params.poll!.options = draft.params.poll!.options.slice().splice(index, 1)
   trimPollOptions()
 }
 

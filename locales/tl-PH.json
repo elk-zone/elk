@@ -13,6 +13,7 @@
     "blocked_users": "Mga naka-block na user",
     "blocking": "Naka-block",
     "bot": "BOT",
+    "copy_account_name": "Kopyahin ang pangalan ng account",
     "favourites": "Mga paborito",
     "follow": "Sundan",
     "follow_back": "Sundan pabalik",
@@ -109,12 +110,12 @@
     "block_account": {
       "cancel": "Kanselahin",
       "confirm": "I-block",
-      "title": "Sigurado ka bang gusto mong i-block si {0}?"
+      "description": "Sigurado ka bang gusto mong i-block si {0}?"
     },
     "block_domain": {
       "cancel": "Kanselahin",
       "confirm": "I-block",
-      "title": "Sigurado ka bang gusto mong i-block ang {0}?"
+      "description": "Sigurado ka bang gusto mong i-block ang {0}?"
     },
     "common": {
       "cancel": "Hindi",
@@ -123,27 +124,27 @@
     "delete_list": {
       "cancel": "Kanselahin",
       "confirm": "Burahin",
-      "title": "Sigurado ka bang gusto mong burahin ang listahan na \"{0}\"?"
+      "description": "Sigurado ka bang gusto mong burahin ang listahan na \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Kanselahin",
       "confirm": "Burahin",
-      "title": "Sigurado ka bang gusto mong burahin ang post na ito?"
+      "description": "Sigurado ka bang gusto mong burahin ang post na ito?"
     },
     "mute_account": {
       "cancel": "Kanselahin",
       "confirm": "I-mute",
-      "title": "Sigurado ka bang gusto mong i-mute si {0}?"
+      "description": "Sigurado ka bang gusto mong i-mute si {0}?"
     },
     "show_reblogs": {
       "cancel": "Kanselahin",
       "confirm": "Ipakita",
-      "title": "Sigurado ka bang gusto mong ipakita ang mga boosts mula kay {0}?"
+      "description": "Sigurado ka bang gusto mong ipakita ang mga boosts mula kay {0}?"
     },
     "unfollow": {
       "cancel": "Kanselahin",
       "confirm": "Huminto sa pagsunod",
-      "title": "Sigurado ka bang gusto mong huminto sa pagsunod?"
+      "description": "Sigurado ka bang gusto mong huminto sa pagsunod?"
     }
   },
   "conversation": {
@@ -469,7 +470,8 @@
       },
       "featured_tags": {
         "description": "Maaring i-browse ng mga tao ang iyong mga public post gamit ang mga hashtags na ito.",
-        "label": "Napiling mga hashtags"
+        "label": "Napiling mga hashtags",
+        "under_construction": "Nasa ilalim ng konstruksyon"
       },
       "label": "Profile"
     },

@@ -13,6 +13,7 @@
     "blocked_users": "Estetyt käyttäjät",
     "blocking": "Estetty",
     "bot": "BOTTI",
+    "copy_account_name": "Kopioi tilin nimi",
     "favourites": "Suosikit",
     "follow": "Seuraa",
     "follow_back": "Seuraa takaisin",
@@ -113,12 +114,12 @@
     "block_account": {
       "cancel": "Peruuta",
       "confirm": "Estä",
-      "title": "Haluatko varmasti estää käyttäjän {0}?"
+      "description": "Haluatko varmasti estää käyttäjän {0}?"
     },
     "block_domain": {
       "cancel": "Peruuta",
       "confirm": "Estä",
-      "title": "Haluatko varmasti estää verkkotunnuksen {0}?"
+      "description": "Haluatko varmasti estää verkkotunnuksen {0}?"
     },
     "common": {
       "cancel": "Kyllä",
@@ -127,27 +128,27 @@
     "delete_list": {
       "cancel": "Peruuta",
       "confirm": "Poista",
-      "title": "Haluatko varmasti poistaa listan \"{0}\"?"
+      "description": "Haluatko varmasti poistaa listan \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Peruuta",
       "confirm": "Poista",
-      "title": "Haluatko varmasti poistaa tämän julkaisun?"
+      "description": "Haluatko varmasti poistaa tämän julkaisun?"
     },
     "mute_account": {
       "cancel": "Peruuta",
       "confirm": "Hiljennä",
-      "title": "Haluatko varmasti hiljentää käyttäjän {0}?"
+      "description": "Haluatko varmasti hiljentää käyttäjän {0}?"
     },
     "show_reblogs": {
       "cancel": "Peruuta",
       "confirm": "Näytä",
-      "title": "Haluatko varmasti näyttää tehostukset käyttäjältä {0}?"
+      "description": "Haluatko varmasti näyttää tehostukset käyttäjältä {0}?"
     },
     "unfollow": {
       "cancel": "Peruuta",
       "confirm": "Lopeta seuraaminen",
-      "title": "Haluatko varmasti lopettaa seuraamisen?"
+      "description": "Haluatko varmasti lopettaa seuraamisen?"
     }
   },
   "conversation": {
@@ -534,7 +535,8 @@
       },
       "featured_tags": {
         "description": "Ihmiset voivat selata julkisia julkaisujasi näillä aihetunnisteilla.",
-        "label": "Esiteltävät aihetunnisteet"
+        "label": "Esiteltävät aihetunnisteet",
+        "under_construction": "Rakenteilla"
       },
       "label": "Profiili"
     },

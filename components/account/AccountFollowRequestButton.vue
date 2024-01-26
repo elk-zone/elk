@@ -12,7 +12,7 @@ async function authorizeFollowRequest() {
   relationship!.requestedBy = false
   relationship!.followedBy = true
   try {
-    const newRel = await client.v1.followRequests.authorize(account.id)
+    const newRel = await client.v1.followRequests.$select(account.id).authorize()
     Object.assign(relationship!, newRel)
   }
   catch (err) {
@@ -25,7 +25,7 @@ async function authorizeFollowRequest() {
 async function rejectFollowRequest() {
   relationship!.requestedBy = false
   try {
-    const newRel = await client.v1.followRequests.reject(account.id)
+    const newRel = await client.v1.followRequests.$select(account.id).reject()
     Object.assign(relationship!, newRel)
   }
   catch (err) {

@@ -13,6 +13,7 @@
     "blocked_users": "Gesperrte Accounts",
     "blocking": "Blockiert",
     "bot": "BOT",
+    "copy_account_name": "Kontonamen kopieren",
     "favourites": "Favoriten",
     "follow": "Folgen",
     "follow_back": "Zurück folgen",
@@ -112,12 +113,12 @@
     "block_account": {
       "cancel": "Abbrechen",
       "confirm": "Blockieren",
-      "title": "Bist du sicher, dass du {0} blockieren möchtest?"
+      "description": "Bist du sicher, dass du {0} blockieren möchtest?"
     },
     "block_domain": {
       "cancel": "Abbrechen",
       "confirm": "Blockieren",
-      "title": "Bist du sicher, dass du {0} blockieren möchtest?"
+      "description": "Bist du sicher, dass du {0} blockieren möchtest?"
     },
     "common": {
       "cancel": "Abbrechen",
@@ -126,27 +127,27 @@
     "delete_list": {
       "cancel": "Abbrechen",
       "confirm": "Löschen",
-      "title": "Bist du sicher, dass du die Liste \"{0}\" löschen möchtest?"
+      "description": "Bist du sicher, dass du die Liste \"{0}\" löschen möchtest?"
     },
     "delete_posts": {
       "cancel": "Abbrechen",
       "confirm": "Löschen",
-      "title": "Möchtest du diesen Beitrag wirklich löschen?"
+      "description": "Möchtest du diesen Beitrag wirklich löschen?"
     },
     "mute_account": {
       "cancel": "Abbrechen",
       "confirm": "Stummschalten",
-      "title": "Bist du sicher, dass du {0} stummschalten möchtest?"
+      "description": "Bist du sicher, dass du {0} stummschalten möchtest?"
     },
     "show_reblogs": {
       "cancel": "Abbrechen",
       "confirm": "Anzeigen",
-      "title": "Bist du sicher, dass du Weiterleitungen von {0} anzeigen möchtest?"
+      "description": "Bist du sicher, dass du Weiterleitungen von {0} anzeigen möchtest?"
     },
     "unfollow": {
       "cancel": "Abbrechen",
       "confirm": "Entfolgen",
-      "title": "Bist du sicher, dass du entfolgen möchtest?"
+      "description": "Bist du sicher, dass du entfolgen möchtest?"
     }
   },
   "conversation": {
@@ -533,7 +534,8 @@
       },
       "featured_tags": {
         "description": "Leute können deine öffentlichen Beiträge mit diesen Hashtags ansehen.",
-        "label": "Ausgewählte Hashtags"
+        "label": "Ausgewählte Hashtags",
+        "under_construction": "In Bearbeitung"
       },
       "label": "Profil"
     },

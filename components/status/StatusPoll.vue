@@ -36,7 +36,7 @@ async function vote(e: Event) {
 
   cacheStatus({ ...status, poll }, undefined, true)
 
-  await client.v1.polls.vote(poll.id, { choices })
+  await client.v1.polls.$select(poll.id).votes.create({ choices })
 }
 
 const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)

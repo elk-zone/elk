@@ -13,6 +13,7 @@
     "blocked_users": "ブロックしたユーザー",
     "blocking": "ブロック中",
     "bot": "BOT",
+    "copy_account_name": "アカウント名をコピー",
     "favourites": "お気に入り",
     "follow": "フォローする",
     "follow_back": "フォローバックする",
@@ -114,12 +115,12 @@
     "block_account": {
       "cancel": "キャンセル",
       "confirm": "ブロック",
-      "title": "{0}さんを本当にミュートしたいですか？"
+      "description": "{0}さんを本当にミュートしたいですか？"
     },
     "block_domain": {
       "cancel": "キャンセル",
       "confirm": "ブロック",
-      "title": "{0}さんを本当にブロックしたいですか？"
+      "description": "{0}さんを本当にブロックしたいですか？"
     },
     "common": {
       "cancel": "いいえ",
@@ -128,27 +129,27 @@
     "delete_list": {
       "cancel": "キャンセル",
       "confirm": "削除",
-      "title": "リスト \"{0}\" を本当に削除したいですか？"
+      "description": "リスト \"{0}\" を本当に削除したいですか？"
     },
     "delete_posts": {
       "cancel": "キャンセル",
       "confirm": "削除",
-      "title": "この投稿を本当に削除したいですか？"
+      "description": "この投稿を本当に削除したいですか？"
     },
     "mute_account": {
       "cancel": "キャンセル",
       "confirm": "ミュート",
-      "title": "{0}さんを本当にミュートしたいですか？"
+      "description": "{0}さんを本当にミュートしたいですか？"
     },
     "show_reblogs": {
       "cancel": "キャンセル",
       "confirm": "表示",
-      "title": "{0}さんのブーストを本当に表示したいですか？"
+      "description": "{0}さんのブーストを本当に表示したいですか？"
     },
     "unfollow": {
       "cancel": "キャンセル",
       "confirm": "フォロー解除",
-      "title": "本当にフォロー解除したいですか？"
+      "description": "本当にフォロー解除したいですか？"
     }
   },
   "conversation": {
@@ -537,7 +538,8 @@
       },
       "featured_tags": {
         "description": "他のユーザーはこれらのハッシュタグであなたの公開投稿を閲覧できます。",
-        "label": "注目のハッシュタグ"
+        "label": "注目のハッシュタグ",
+        "under_construction": "工事中"
       },
       "label": "プロフィール"
     },

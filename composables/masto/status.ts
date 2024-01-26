@@ -61,7 +61,7 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
-    () => client.v1.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
+    () => client.v1.statuses.$select(status.id)[status.reblogged ? 'unreblog' : 'reblog']().then((res) => {
       if (status.reblogged)
       // returns the original status
         return res.reblog!
@@ -72,23 +72,23 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleFavourite = () => toggleStatusAction(
     'favourited',
-    () => client.v1.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+    () => client.v1.statuses.$select(status.id)[status.favourited ? 'unfavourite' : 'favourite'](),
     'favouritesCount',
   )
 
   const toggleBookmark = () => toggleStatusAction(
     'bookmarked',
-    () => client.v1.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
+    () => client.v1.statuses.$select(status.id)[status.bookmarked ? 'unbookmark' : 'bookmark'](),
   )
 
   const togglePin = async () => toggleStatusAction(
     'pinned',
-    () => client.v1.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+    () => client.v1.statuses.$select(status.id)[status.pinned ? 'unpin' : 'pin'](),
   )
 
   const toggleMute = async () => toggleStatusAction(
     'muted',
-    () => client.v1.statuses[status.muted ? 'unmute' : 'mute'](status.id),
+    () => client.v1.statuses.$select(status.id)[status.muted ? 'unmute' : 'mute'](),
   )
 
   return {

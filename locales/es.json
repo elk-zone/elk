@@ -7,12 +7,15 @@
     "route_loaded": "Página {0} cargada"
   },
   "account": {
+    "authorize": "Autorizar seguimiento",
+    "authorized": "Has autorizado la solicitud",
     "avatar_description": "avatar de {0}",
     "blocked_by": "Has sido bloqueado por este usuario.",
     "blocked_domains": "Dominios bloqueados",
     "blocked_users": "Usuarios bloqueados",
     "blocking": "Bloqueado",
     "bot": "BOT",
+    "copy_account_name": "Copiar nombre de cuenta",
     "favourites": "Favoritas",
     "follow": "Seguir",
     "follow_back": "Seguir de vuelta",
@@ -28,7 +31,7 @@
     "muted_users": "Usuarios silenciados",
     "muting": "Silenciado",
     "mutuals": "Mutuo",
-    "notifications_on_post_disable": "Parar notificaciones cuando {username} publique",
+    "notifications_on_post_disable": "Detener notificaciones cuando {username} publique",
     "notifications_on_post_enable": "Notificarme cuando {username} publique",
     "pinned": "Publicaciones fijadas",
     "posts": "Publicaciones",
@@ -36,7 +39,10 @@
     "profile_description": "Encabezado del perfil de {0}",
     "profile_personal_note": "Nota Personal",
     "profile_unavailable": "Perfil no disponible",
+    "reject": "Descartar seguimiento",
+    "rejected": "Has descartado la solicitud",
     "request_follow": "Solicitar seguirle",
+    "requested": "{0} ha solicitado seguirte",
     "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
     "unmute": "Dejar de silenciar",
@@ -69,7 +75,7 @@
     "publish": "Publicar",
     "reply": "Responder",
     "reply_count": "{0}",
-    "reset": "Reiniciar",
+    "reset": "Reestablecer",
     "save": "Guardar",
     "save_changes": "Guardar cambios",
     "sign_in": "Iniciar sesión",
@@ -114,12 +120,12 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "¿Estás seguro que quieres bloquear a {0}?"
+      "description": "¿Estás seguro que quieres bloquear a {0}?"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "¿Estás seguro que quieres bloquear a {0}?"
+      "description": "¿Estás seguro que quieres bloquear a {0}?"
     },
     "common": {
       "cancel": "No",
@@ -128,27 +134,27 @@
     "delete_list": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "¿Está seguro de querer eliminar la lista \"{0}\"?"
+      "description": "¿Está seguro de querer eliminar la lista \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "¿Estás seguro que quieres eliminar esta publicación?"
+      "description": "¿Estás seguro que quieres eliminar esta publicación?"
     },
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
-      "title": "¿Estás seguro que quieres silenciar a {0}?"
+      "description": "¿Estás seguro que quieres silenciar a {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "¿Estás seguro que quieres mostrar los retoots de {0}?"
+      "description": "¿Estás seguro que quieres mostrar los retoots de {0}?"
     },
     "unfollow": {
       "cancel": "Cancelar",
       "confirm": "Dejar de seguir",
-      "title": "¿Estás seguro que quieres dejar de seguir?"
+      "description": "¿Estás seguro que quieres dejar de seguir?"
     }
   },
   "conversation": {
@@ -213,6 +219,7 @@
         "command_mode": "Modo comando",
         "compose": "Redactar",
         "favourite": "Favorito",
+        "search": "Búsqueda",
         "title": "Acciones"
       },
       "media": {
@@ -494,6 +501,8 @@
     },
     "notifications_settings": "Notificaciones",
     "preferences": {
+      "embedded_media": "Reproductor de multimedia inscrustado",
+      "embedded_media_description": "Mostrar un reproductor incrustado en lugar de la tarjeta de vista previa normal al expandir enlaces compartidos de transmisión de multimedia.",
       "enable_autoplay": "Habilitar reproducción automática",
       "enable_data_saving": "Habilitar el ahorro de datos",
       "enable_data_saving_description": "Ahorre datos al evitar que los archivos adjuntos se carguen automáticamente.",
@@ -536,7 +545,8 @@
       },
       "featured_tags": {
         "description": "Las personas pueden navegar por tus publicaciones públicas con estas etiquetas.",
-        "label": "Etiquetas destacadas"
+        "label": "Etiquetas destacadas",
+        "under_construction": "En construcción"
       },
       "label": "Perfil"
     },
@@ -571,6 +581,7 @@
     },
     "boosted_by": "Retooteado por",
     "edited": "Editado {0}",
+    "embedded_warning": "Reproducir esto puede revelar tu dirección IP a otras personas.",
     "favourited_by": "Marcado como favorita por",
     "filter_hidden_phrase": "Filtrado por",
     "filter_show_anyway": "Mostrar de todas formas",

@@ -22,6 +22,7 @@ const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
 const isEditingPersonalNote = ref<boolean>(false)
 const hasHeader = $computed(() => !account.header.endsWith('/original/missing.png'))
+const isCopied = ref<boolean>(false)
 
 function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
@@ -52,7 +53,7 @@ function previewAvatar() {
 async function toggleNotifications() {
   relationship!.notifying = !relationship?.notifying
   try {
-    const newRel = await client.v1.accounts.follow(account.id, { notify: relationship?.notifying })
+    const newRel = await client.v1.accounts.$select(account.id).follow({ notify: relationship?.notifying })
     Object.assign(relationship!, newRel)
   }
   catch {
@@ -96,7 +97,7 @@ async function editNote(event: Event) {
   if (relationship.note?.trim() === newNote.trim())
     return
 
-  const newNoteApiResult = await client.v1.accounts.createNote(account.id, { comment: newNote })
+  const newNoteApiResult = await client.v1.accounts.$select(account.id).note.create({ comment: newNote })
   relationship.note = newNoteApiResult.note
   personalNoteDraft.value = relationship.note ?? ''
 }
@@ -105,6 +106,23 @@ const isSelf = $(useSelfAccount(() => account))
 const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
 
 const personalNoteMaxLength = 2000
+
+async function copyAccountName() {
+  try {
+    const shortHandle = getShortHandle(account)
+    const serverName = getServerName(account)
+    const accountName = `${shortHandle}@${serverName}`
+    await navigator.clipboard.writeText(accountName)
+  }
+  catch (err) {
+    console.error('Failed to copy account name:', err)
+  }
+
+  isCopied.value = true
+  setTimeout(() => {
+    isCopied.value = false
+  }, 2000)
+}
 </script>
 
 <template>
@@ -175,7 +193,15 @@ const personalNoteMaxLength = 2000
             <AccountLockIndicator v-if="account.locked" show-label />
             <AccountBotIndicator v-if="account.bot" show-label />
           </div>
-          <AccountHandle :account="account" overflow-unset line-clamp-unset />
+
+          <div flex items-center gap-1>
+            <AccountHandle :account="account" overflow-unset line-clamp-unset />
+            <CommonTooltip placement="bottom" :content="$t('account.copy_account_name')" no-auto-focus flex>
+              <button text-secondary-light text-sm :class="isCopied ? 'i-ri:check-fill text-green' : 'i-ri:file-copy-line'" @click="copyAccountName">
+                <span sr-only>{{ $t('account.copy_account_name') }}</span>
+              </button>
+            </CommonTooltip>
+          </div>
         </div>
       </div>
       <label

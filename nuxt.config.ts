@@ -24,7 +24,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
     '@unlazy/nuxt',
-    'nuxt-vitest',
+    '@nuxt/test-utils/module',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/emoji-mart-translation',
     '~/modules/purge-comments',
@@ -102,6 +102,12 @@ export default defineNuxtConfig({
       namespaceId: '',
       apiToken: '',
     },
+    vercel: {
+      url: '',
+      token: '',
+      env: '',
+      base: '',
+    },
     public: {
       privacyPolicyUrl: '',
       // We use LibreTranslate (https://github.com/LibreTranslate/LibreTranslate) as
@@ -157,11 +163,6 @@ export default defineNuxtConfig({
         maxAge: 24 * 60 * 60 * 365, // 1 year (versioned)
         baseURL: '/fonts',
       },
-      {
-        dir: '~/public/shiki',
-        maxAge: 24 * 60 * 60 * 365, // 1 year, matching service worker
-        baseURL: '/shiki',
-      },
     ],
   },
   sourcemap: isDevelopment,
@@ -179,7 +180,7 @@ export default defineNuxtConfig({
         const alias = config.resolve!.alias as Record<string, string>
         for (const dep of ['eventemitter3', 'isomorphic-ws'])
           alias[dep] = resolve('./mocks/class')
-        for (const dep of ['shiki-es', 'fuse.js'])
+        for (const dep of ['fuse.js'])
           alias[dep] = 'unenv/runtime/mock/proxy'
         const resolver = createResolver(import.meta.url)
 
@@ -238,6 +239,7 @@ export default defineNuxtConfig({
         'font-src': ['\'self\''],
         'form-action': ['\'none\''],
         'frame-ancestors': ['\'none\''],
+        'frame-src': ['https:'],
         'img-src': ['\'self\'', 'https:', 'http:', 'data:', 'blob:'],
         'manifest-src': ['\'self\''],
         'media-src': ['\'self\'', 'https:', 'http:'],

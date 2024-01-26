@@ -7,10 +7,10 @@ const params = useRoute().params
 const tagName = $(computedEager(() => params.tag as string))
 
 const { client } = $(useMasto())
-const { data: tag, refresh } = $(await useAsyncData(() => client.v1.tags.fetch(tagName), { default: () => shallowRef() }))
+const { data: tag, refresh } = $(await useAsyncData(() => client.v1.tags.$select(tagName).fetch(), { default: () => shallowRef() }))
 
-const paginator = client.v1.timelines.listHashtag(tagName)
-const stream = useStreaming(client => client.v1.stream.streamTagTimeline(tagName))
+const paginator = client.v1.timelines.tag.$select(tagName).list()
+const stream = useStreaming(client => client.hashtag.subscribe({ tag: tagName }))
 
 if (tag) {
   useHydratedHead({
@@ -28,7 +28,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>#{{ tagName }}</span>
+      <bdi text-lg font-bold>#{{ tagName }}</bdi>
     </template>
 
     <template #actions>

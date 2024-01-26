@@ -1,6 +1,7 @@
 import fs from 'unstorage/drivers/fs'
 import memory from 'unstorage/drivers/memory'
 import kv from 'unstorage/drivers/cloudflare-kv-http'
+import vercelKVDriver from 'unstorage/drivers/vercel-kv'
 
 import { $fetch } from 'ofetch'
 
@@ -27,6 +28,15 @@ else if (driver === 'cloudflare') {
     accountId: config.cloudflare.accountId,
     namespaceId: config.cloudflare.namespaceId,
     apiToken: config.cloudflare.apiToken,
+  })))
+}
+else if (driver === 'vercel') {
+  const config = useRuntimeConfig()
+  storage.mount('servers', cached(vercelKVDriver({
+    url: config.vercel.url,
+    token: config.vercel.token,
+    env: config.vercel.env,
+    base: config.vercel.base,
   })))
 }
 else if (driver === 'memory') {

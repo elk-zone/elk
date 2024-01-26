@@ -7,12 +7,15 @@
     "route_loaded": "Oldal {0} betöltődött"
   },
   "account": {
+    "authorize": "Engedélyezze a követést",
+    "authorized": "Engedélyezte a kérést",
     "avatar_description": "{0} felhasználó avatarja",
     "blocked_by": "Ez a felhasználó blokkolt.",
     "blocked_domains": "Blokkolt domainek",
     "blocked_users": "Blokkolt felhasználók",
     "blocking": "Blokkolva",
     "bot": "BOT",
+    "copy_account_name": "Fiók nevének másolása",
     "favourites": "Kedvencek",
     "follow": "Követők",
     "follow_back": "Visszakövetés",
@@ -36,13 +39,16 @@
     "profile_description": "{0} felhasználó profil fejléce",
     "profile_personal_note": "Személyes jegyzetek",
     "profile_unavailable": "A profil nem elérhető",
+    "reject": "Követés elutasítása",
+    "rejected": "Elutasítottad a kérést",
     "request_follow": "Követés kérése",
+    "requested": "{0} kérte, hogy kövessen",
     "unblock": "Ne legyen blokkolva",
     "unfollow": "Nem követem tovább",
     "unmute": "Némítás megszűntetve",
     "view_other_followers": "A másik instancekról származó követések nem feltétlenül lesznek megjelenítve.",
     "view_other_following": "A másik instancekról származó követők nem feltétlenül lesznek megjelenítve.",
-    "withdraw_follow_request": "A követési kérés figyelmen kívül hagyása"
+    "withdraw_follow_request": "A követési kérés visszavonása"
   },
   "action": {
     "apply": "Alkalmaz",
@@ -55,7 +61,7 @@
     "clear_save_failed": "Mentési hibák tisztítása",
     "clear_upload_failed": "Fájl feltöltési hibák tisztítása",
     "close": "Bezár",
-    "compose": "Összeállít",
+    "compose": "Közzétesz",
     "confirm": "Jóváhagy",
     "done": "Kész",
     "edit": "Szerkeszt",
@@ -114,12 +120,12 @@
     "block_account": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "title": "Biztosan blokkolja? {0}"
+      "description": "Biztosan blokkolja? {0}"
     },
     "block_domain": {
-      "cancel": "Cancel",
+      "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "title": "Biztosan blokkolja? {0}"
+      "description": "Biztosan blokkolja? {0}"
     },
     "common": {
       "cancel": "Mégsem",
@@ -128,27 +134,27 @@
     "delete_list": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "title": "Biztosan törli a listát? \"{0}\""
+      "description": "Biztosan törli a listát? \"{0}\""
     },
     "delete_posts": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "title": "Biztosan törli a bejegyzést?"
+      "description": "Biztosan törli a bejegyzést?"
     },
     "mute_account": {
       "cancel": "Mégsem",
       "confirm": "Némít",
-      "title": "Biztosan némítja? {0}"
+      "description": "Biztosan némítja? {0}"
     },
     "show_reblogs": {
       "cancel": "Mégsem",
       "confirm": "Mutat",
-      "title": "Biztosan megjeleníti a Turbót tőle? {0}"
+      "description": "Biztosan megjeleníti a Turbót tőle? {0}"
     },
     "unfollow": {
       "cancel": "Mégsem",
       "confirm": "Követés leállítása",
-      "title": "Biztosan leállítja a követését?"
+      "description": "Biztosan leállítja a követését?"
     }
   },
   "conversation": {
@@ -163,7 +169,7 @@
   },
   "error": {
     "account_not_found": "Fiók {0} nem található",
-    "explore-list-empty": "Nincs most itt semmi... Nézz vissza később!",
+    "explore_list-empty": "Nincs most itt semmi... Nézz vissza később!",
     "file_size_cannot_exceed_n_mb": "A fájl mérete nem haladhatja meg a {0}MB-ot",
     "sign_in_error": "Nem lehetséges a csatlakozás.",
     "status_not_found": "A bejegyzés nem található",
@@ -211,8 +217,9 @@
       "actions": {
         "boost": "Kiemel",
         "command_mode": "Parancs mód",
-        "compose": "Összeállít",
+        "compose": "Közzétesz",
         "favourite": "Kedvenc",
+        "search": "Keresés",
         "title": "Műveletek"
       },
       "media": {
@@ -273,7 +280,7 @@
     "blocked_users": "Blokkolt felhasználók",
     "bookmarks": "Könyvjelzők",
     "built_at": "Verzió {0}",
-    "compose": "Összeállít",
+    "compose": "Közzétesz",
     "conversations": "Párbeszédek",
     "explore": "Felfedezés",
     "favourites": "Kedvencek",
@@ -395,7 +402,7 @@
     "whats_wrong_post": "Mondja el, mi a baj ezzel a bejegyzéssel"
   },
   "search": {
-    "search_desc": "Személyek és hashtagek keresése",
+    "search_desc": "Személyek és címkék keresése",
     "search_empty": "Nem találtunk semmit ezekre a keresési kifejezésekre"
   },
   "settings": {
@@ -404,26 +411,26 @@
       "label": "Rólunk",
       "meet_the_team": "A csapat",
       "sponsor_action": "Támogass minket",
-      "sponsor_action_desc": "Hogy támogasd az Elk fejleszők csapatát",
+      "sponsor_action_desc": "Hogyan támogasd az Elk fejleszők csapatát",
       "sponsors": "Támogatók",
       "sponsors_body_1": "Az Elk a nagylelkű szponzorációnak és segítségnek köszönhetően lehetséges:",
       "sponsors_body_2": "És az összes cég és magánszemély, aki szponzorálja az Elk Teamet és a tagokat.",
-      "sponsors_body_3": "Ha tetszik az alkalmazás, fontolja meg, hogy szponzoráljon minket:",
+      "sponsors_body_3": "Ha tetszik az alkalmazás, fontold meg hogy szponzorálj minket:",
       "version": "Verzió"
     },
     "account_settings": {
-      "description": "Szerkessze fiókbeállításait a Mastodon UI-ban",
+      "description": "Szerkessze fiókbeállításait a Mastodonban.",
       "label": "Fiók beállítások"
     },
     "interface": {
-      "color_mode": "Színes mód",
+      "color_mode": "Szín mód",
       "dark_mode": "Sötét",
-      "default": " (default)",
-      "font_size": "betű mérete",
+      "default": " (alapértelmezett)",
+      "font_size": "Betű mérete",
       "label": "Felület",
       "light_mode": "Világos",
       "system_mode": "Rendszer",
-      "theme_color": "téma színe"
+      "theme_color": "Téma színe"
     },
     "language": {
       "display_language": "Megjelenítés nyelve",
@@ -468,7 +475,7 @@
           "error_hint": "A probléma megoldásához megtekintheti a gyakran ismételt kérdések listáját: {0}.",
           "invalid_vapid_key": "Úgy tűnik, hogy a VAPID nyilvános kulcs érvénytelen.",
           "permission_denied": "Engedély megtagadva: engedélyezze az értesítéseket a böngészőben.",
-          "repo_link": "Elktároló a GitHub-on",
+          "repo_link": "Elk tároló a GitHub-on",
           "request_error": "Hiba történt az feliratkozás kérése közben, próbálja újra, és ha a hiba továbbra is fennáll, kérjük, jelentse a problémát az Elk adattárának.",
           "title": "Nem sikerült feliratkozni a push értesítésekre",
           "too_many_registrations": "A böngésző korlátozásai miatt az Elk nem tudja használni a push értesítési szolgáltatást több fiókhoz különböző szervereken. Leiratkoznia kell a push értesítésekről egy másik fiókban, és próbálkozzon újra.",
@@ -480,10 +487,10 @@
         "unsupported": "Az Ön böngészője nem támogatja a push értesítéseket.",
         "warning": {
           "enable_close": "Bezár",
-          "enable_description": "Ha értesítéseket szeretne kapni, amikor az Elk nincs nyitva, engedélyezze a push értesítéseket. A fenti \"@:settings.notifications.show_btn{'\"'} gomb segítségével pontosan szabályozhatja, hogy milyen típusú interakciók generáljanak push értesítéseket.",
-          "enable_description_desktop": "Ha értesítéseket szeretne kapni, amikor az Elk nincs nyitva, engedélyezze a push értesítéseket. A \"Beállítások > Értesítések > Push értesítések beállításai\" menüpontban pontosan szabályozhatja, hogy az engedélyezést követően milyen típusú interakciók generáljanak push értesítéseket.",
+          "enable_description": "Ha értesítéseket szeretne kapni amikor az Elk nincs nyitva, engedélyezze a push értesítéseket. A fenti \"@:settings.notifications.show_btn{'\"'} gomb segítségével pontosan szabályozhatja, hogy milyen típusú interakciók generáljanak push értesítéseket.",
+          "enable_description_desktop": "Ha értesítéseket szeretne kapni amikor az Elk nincs nyitva, engedélyezze a push értesítéseket. A \"Beállítások > Értesítések > Push értesítések beállításai\" menüpontban pontosan szabályozhatja, hogy az engedélyezést követően milyen típusú interakciók generáljanak push értesítéseket.",
           "enable_description_mobile": "A beállításokat a \"Beállítások > Értesítések > Push értesítési beállítások\" navigációs menü segítségével is elérheti.",
-          "enable_description_settings": "Ha értesítéseket szeretne kapni, amikor az Elk nincs nyitva, engedélyezze a push értesítéseket. Pontosan szabályozhatja, hogy milyen típusú interakciók generálnak push értesítéseket ugyanazon a képernyőn, miután engedélyezte őket.",
+          "enable_description_settings": "Ha értesítéseket szeretne kapni amikor az Elk nincs nyitva, engedélyezze a push értesítéseket. Pontosan szabályozhatja, hogy milyen típusú interakciók generálnak push értesítéseket ugyanazon a képernyőn, miután engedélyezte őket.",
           "enable_desktop": "Push értesítések engedélyezése",
           "enable_title": "Sose hagyj ki semmit",
           "re_auth": "Úgy tűnik, hogy a szervere nem támogatja a push értesítéseket. Próbáljon kijelentkezni, majd újra bejelentkezni. Ha ez az üzenet továbbra is megjelenik, forduljon a szerver rendszergazdájához."
@@ -494,6 +501,8 @@
     },
     "notifications_settings": "Értesítések",
     "preferences": {
+      "embedded_media": "Beágyazott Médialejátszó",
+      "embedded_media_description": "A beágyazott lejátszó megjelenítése a normál előnézeti kártya helyett mikor kinagyításra kerül a megosztott áramló média hivatkozás.",
       "enable_autoplay": "Automatikus lejátszás engedélyezése",
       "enable_data_saving": "Adatmentés engedélyezése",
       "enable_data_saving_description": "Mentse az adatokat a mellékletek automatikus betöltésének megakadályozásával.",
@@ -514,11 +523,11 @@
       "label": "Preferenciák",
       "title": "Kísérleti képességek",
       "use_star_favorite_icon": "Használja a csillag favikont",
-      "user_picker": "felhasználó választás",
+      "user_picker": "Felhasználók váltása",
       "user_picker_description": "Megjeleníti a naplózott fiókok összes avatarját a bal alsó sarokban, így gyorsan válthat közöttük.",
       "virtual_scroll": "Virtuális scrollozás",
       "virtual_scroll_description": "Használjon virtuális listát az idővonalakban, így nagyobb számú elemet lehet hatékonyan megjeleníteni.",
-      "wellbeing": "Jólét",
+      "wellbeing": "Jó érzés",
       "zen_mode": "Zen mód",
       "zen_mode_description": "Oldasáv elrejtése, hacsak az egérkurzor nem felette van. Egyszerre jelenti néhány elem elrejtését az idővonalról"
     },
@@ -535,8 +544,9 @@
         "title": "Profil szerkesztése"
       },
       "featured_tags": {
-        "description": "Az emberek ezen hashtagek alatt böngészhetik nyilvános bejegyzéseit.",
-        "label": "Kiemelt hashtagek"
+        "description": "Az emberek ezen címkék alatt böngészhetik nyilvános bejegyzéseit.",
+        "label": "Kiemelt címkék",
+        "under_construction": "Felújítás alatt"
       },
       "label": "Profil"
     },
@@ -571,6 +581,7 @@
     },
     "boosted_by": "Kiemelve: ",
     "edited": "Szerkesztve: {0}",
+    "embedded_warning": "Ennek lejátszása mások számára felfedheti az IP-címét.",
     "favourited_by": "Kedvencek közé helyezve: ",
     "filter_hidden_phrase": "Szűrve: ",
     "filter_show_anyway": "Megjelenít mégis",
@@ -595,17 +606,30 @@
     "try_original_site": "Próbálja az eredeti weblapon"
   },
   "status_history": {
-    "created": "létrehozva {0}"
+    "created": "létrehozva {0}",
+    "edited": "szerkesztve: {0}"
   },
   "tab": {
     "accounts": "Fiókok",
     "for_you": "Önnek",
-    "hashtags": "#Címkék",
+    "hashtags": "Címkék",
     "list": "Lista",
     "media": "Média",
     "news": "Hírek",
+    "notifications_admin": {
+      "report": "Jelentés",
+      "sign_up": "Feliratkozás"
+    },
     "notifications_all": "Összes értesítés",
+    "notifications_favourite": "Kedvencek",
+    "notifications_follow": "Követés",
+    "notifications_follow_request": "Követés kérése",
     "notifications_mention": "Említések",
+    "notifications_more_tooltip": "Az értesítések szűrése tipus szerint",
+    "notifications_poll": "Szavazás",
+    "notifications_reblog": "Kiemelés",
+    "notifications_status": "Státusz",
+    "notifications_update": "Frissítés",
     "posts": "Bejegyzések",
     "posts_with_replies": "Bejegyzések & válaszok"
   },
@@ -638,7 +662,7 @@
     "short_second_future": "{n} másodpercen belül",
     "short_second_past": "{n} másodperccel ezelőtt",
     "short_week_future": "{n} héten belül",
-    "short_week_past": "{n}w hete",
+    "short_week_past": "{n} hete",
     "short_year_future": "{n} éven belül",
     "short_year_past": "{n} éve",
     "week_future": "0 héten belül|jövő héten|{n} héten belül",
@@ -664,7 +688,7 @@
     "emoji": "Emoji",
     "explore_links_intro": "Ezekről a hírekről beszélnek az emberek ezen és a decentralizált hálózat más szerverein.",
     "explore_posts_intro": "Ezek a bejegyzések erről és a decentralizált hálózat más szervereiről jelenleg egyre nagyobb teret hódítanak ezen a szerveren.",
-    "explore_tags_intro": "Ezek a hashtagek jelenleg egyre nagyobb teret hódítanak az emberek körében ezen és a decentralizált hálózat más szerverein.",
+    "explore_tags_intro": "Ezek a címkék jelenleg egyre nagyobb teret hódítanak az emberek körében ezen és a decentralizált hálózat más szerverein.",
     "open_editor_tools": "Szerkesztő eszközök",
     "pick_an_icon": "Ikon választása",
     "publish_failed": "A bejegyzések újbóli közzétételéhez zárja be a sikertelen üzeneteket a szerkesztő tetején",
@@ -675,10 +699,10 @@
   "user": {
     "add_existing": "Egy látező fiók hozzáadása",
     "server_address_label": "Mastodon szerver címe",
-    "sign_in_desc": "Jelentkezzen be profilok vagy hashtagek követéséhez, kedvencekhez, bejegyzések megosztásához és megválaszolásához, vagy egy másik szerveren lévő fiókjából való interakcióhoz.",
+    "sign_in_desc": "Jelentkezzen be profilok vagy címkék követéséhez, kedvencekhez, bejegyzések megosztásához és megválaszolásához, vagy egy másik szerveren lévő fiókjából való interakcióhoz.",
     "sign_in_notice_title": "{0} nyilvános adat megtekintése",
     "sign_out_account": "Kijelentkezés {0}",
-    "single_instance_sign_in_desc": "Jelentkezzen be profilok vagy hashtagek követéséhez, kedvencei közé, bejegyzések megosztásához és megválaszolásához.",
+    "single_instance_sign_in_desc": "Jelentkezzen be profilok vagy címkék követéséhez, kedvencei közé, bejegyzések megosztásához és megválaszolásához.",
     "tip_no_account": "Ha még nincs Mastodon fiókod: {0}.",
     "tip_register_account": "válassz egy szervert és regisztrált egyet"
   },

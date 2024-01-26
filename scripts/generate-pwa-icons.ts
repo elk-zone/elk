@@ -21,7 +21,7 @@ type IconType = 'transparent' | 'maskable' | 'apple'
  */
 interface Icons extends Record<IconType, Icon> {
   /**
-   * @default: { compressionLevel: 9, quality: 60 }`
+   * @default: `{ compressionLevel: 9, quality: 60 }`
    */
   png?: PngOptions
   /**

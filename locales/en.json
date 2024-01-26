@@ -15,6 +15,7 @@
     "blocked_users": "Blocked users",
     "blocking": "Blocked",
     "bot": "BOT",
+    "copy_account_name": "Copy account name",
     "favourites": "Favorites",
     "follow": "Follow",
     "follow_back": "Follow back",
@@ -26,6 +27,7 @@
     "follows_you": "Follows you",
     "go_to_profile": "Go to profile",
     "joined": "Joined",
+    "lock": "Lock",
     "moved_title": "has indicated that their new account is now:",
     "muted_users": "Muted users",
     "muting": "Muted",
@@ -119,12 +121,14 @@
     "block_account": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "title": "Are you sure you want to block {0}?"
+      "description": "Are you sure you want to block {0}?",
+      "title": "Block account"
     },
     "block_domain": {
       "cancel": "Cancel",
       "confirm": "Block",
-      "title": "Are you sure you want to block {0}?"
+      "description": "Are you sure you want to block {0}?",
+      "title": "Block domain"
     },
     "common": {
       "cancel": "No",
@@ -133,27 +137,32 @@
     "delete_list": {
       "cancel": "Cancel",
       "confirm": "Delete",
-      "title": "Are you sure you want to delete the \"{0}\" list?"
+      "description": "Are you sure you want to delete the \"{0}\" list?",
+      "title": "Delete list"
     },
     "delete_posts": {
       "cancel": "Cancel",
       "confirm": "Delete",
-      "title": "Are you sure you want to delete this post?"
+      "description": "Are you sure you want to delete this post?",
+      "title": "Delete post"
     },
     "mute_account": {
       "cancel": "Cancel",
       "confirm": "Mute",
-      "title": "Are you sure you want to mute {0}?"
+      "description": "Are you sure you want to mute {0}?",
+      "title": "Mute account"
     },
     "show_reblogs": {
       "cancel": "Cancel",
       "confirm": "Show",
-      "title": "Are you sure you want to show boosts from {0}?"
+      "description": "Are you sure you want to show boosts from {0}?",
+      "title": "Show boosts"
     },
     "unfollow": {
       "cancel": "Cancel",
       "confirm": "Unfollow",
-      "title": "Are you sure you want to unfollow?"
+      "description": "Are you sure you want to unfollow {0}?",
+      "title": "Unfollow"
     }
   },
   "conversation": {
@@ -500,6 +509,8 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "embedded_media": "Embedded Media Player",
+      "embedded_media_description": "Display an embedded player instead of the normal preview card when expanding shared media streaming links.",
       "enable_autoplay": "Enable Autoplay",
       "enable_data_saving": "Enable data saving",
       "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
@@ -518,6 +529,7 @@
       "hide_username_emojis": "Hide username emojis",
       "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",
       "label": "Preferences",
+      "optimize_for_low_performance_device": "Optimize for low performance device",
       "title": "Experimental Features",
       "use_star_favorite_icon": "Use star favorite icon",
       "user_picker": "User Picker",
@@ -542,7 +554,8 @@
       },
       "featured_tags": {
         "description": "People can browse your public posts under these hashtags.",
-        "label": "Featured hashtags"
+        "label": "Featured hashtags",
+        "under_construction": "Under construction"
       },
       "label": "Profile"
     },
@@ -577,6 +590,7 @@
     },
     "boosted_by": "Boosted By",
     "edited": "Edited {0}",
+    "embedded_warning": "Playing this may reveal your IP address to others.",
     "favourited_by": "Favorited By",
     "filter_hidden_phrase": "Filtered by",
     "filter_show_anyway": "Show anyway",
@@ -619,7 +633,7 @@
     "notifications_favourite": "Favourite",
     "notifications_follow": "Follow",
     "notifications_follow_request": "Follow request",
-    "notifications_mention": "Mention",
+    "notifications_mention": "Mentions",
     "notifications_more_tooltip": "Filter notifications by type",
     "notifications_poll": "Poll",
     "notifications_reblog": "Boost",

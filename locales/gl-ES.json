@@ -7,12 +7,15 @@
     "route_loaded": "Cargouse a páxina {0}"
   },
   "account": {
+    "authorize": "Permitir o seguimento",
+    "authorized": "Aceptaches a solicitude",
     "avatar_description": "Avatar de {0}",
     "blocked_by": "Esta usuaria bloqueoute.",
     "blocked_domains": "Dominios bloqueados",
     "blocked_users": "Usuarias bloqueadas",
     "blocking": "Bloqueada",
     "bot": "BOT",
+    "copy_account_name": "Copiar o nome da conta",
     "favourites": "Favoritas",
     "follow": "Seguir",
     "follow_back": "Seguir tamén",
@@ -34,13 +37,18 @@
     "posts": "Publicacións",
     "posts_count": "{0} Publicacións|{0} Publicación|{0} Publicacións",
     "profile_description": "Cabeceira do perfil de {0}",
+    "profile_personal_note": "Nota persoal",
     "profile_unavailable": "Perfil non dispoñible",
+    "reject": "Rexeitar seguimento",
+    "rejected": "Rexeitaches a solicitude",
     "request_follow": "Solicitar seguimento",
+    "requested": "{0} solicitou seguirte",
     "unblock": "Desbloquear",
     "unfollow": "Retirar seguimento",
     "unmute": "Reactivar",
     "view_other_followers": "É posible que non se mostren as seguidoras desde outras instancias.",
-    "view_other_following": "É posible que non se mostren os seguimentos noutras instancias."
+    "view_other_following": "É posible que non se mostren os seguimentos noutras instancias.",
+    "withdraw_follow_request": "Desbotar solicitude de seguimento"
   },
   "action": {
     "apply": "Aplicar",
@@ -50,10 +58,12 @@
     "boost_count": "{0}",
     "boosted": "Promovida",
     "clear_publish_failed": "Limpar erros de publicación",
+    "clear_save_failed": "Limpar error de gardado",
     "clear_upload_failed": "Limpar o ficheiro de erros de subida",
     "close": "Pechar",
     "compose": "Escribir",
     "confirm": "Confirmar",
+    "done": "Feito",
     "edit": "Editar",
     "enter_app": "Entrar na App",
     "favourite": "Favorita",
@@ -97,6 +107,8 @@
     "error": "ERRO",
     "fetching": "Obtendo...",
     "in": "en",
+    "no_bookmarks": "Aínda non tes marcadores",
+    "no_favourites": "Aínda non favoreceches ningunha publicación",
     "not_found": "404 Non Atopado",
     "offline_desc": "Semella que non tes conexión. Comproba a conexión á rede."
   },
@@ -108,12 +120,12 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tes certeza de querer bloquear a {0}?"
+      "description": "Tes certeza de querer bloquear a {0}?"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tes certeza de querer bloquear {0}?"
+      "description": "Tes certeza de querer bloquear {0}?"
     },
     "common": {
       "cancel": "Non",
@@ -122,27 +134,27 @@
     "delete_list": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "Tes a certeza de querer eliminar a lista \"{0}\"?"
+      "description": "Tes a certeza de querer eliminar a lista \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "Tes certeza de querer eliminar esta publicación?"
+      "description": "Tes certeza de querer eliminar esta publicación?"
     },
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Acalar",
-      "title": "Tes certeza de querer acalar a {0}?"
+      "description": "Tes certeza de querer acalar a {0}?"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "Tes certeza de querer mostrar as promocións de {0}?"
+      "description": "Tes certeza de querer mostrar as promocións de {0}?"
     },
     "unfollow": {
       "cancel": "Cancelar",
       "confirm": "Retirar",
-      "title": "Tes certeza de querer retirar o seguimento?"
+      "description": "Tes certeza de querer retirar o seguimento?"
     }
   },
   "conversation": {
@@ -185,7 +197,7 @@
   },
   "list": {
     "add_account": "Engadir conta á lista",
-    "cancel_edit": "Cancelar a edición",
+    "cancel_edit": "Desbotar a edición",
     "clear_error": "Limpar erro",
     "create": "Crear",
     "delete": "Elimina esta lista",
@@ -207,8 +219,8 @@
         "command_mode": "Modo de ordes",
         "compose": "Escribir",
         "favourite": "Favorita",
-        "title": "Accións",
-        "zen_mode": "Modo Cen"
+        "search": "Buscar",
+        "title": "Accións"
       },
       "media": {
         "title": "Multimedia"
@@ -225,6 +237,7 @@
     "sequence_then": "e"
   },
   "menu": {
+    "add_personal_note": "Engadir nota persoal sobre {0}",
     "block_account": "Bloquear {0}",
     "block_domain": "Bloquear o dominio {0}",
     "copy_link_to_post": "Copiar ligazón á publicación",
@@ -239,6 +252,9 @@
     "mute_conversation": "Acalar esta publicación",
     "open_in_original_site": "Abrir no sitio web orixinal",
     "pin_on_profile": "Fixar no perfil",
+    "remove_personal_note": "Eliminar nota persoal sobre {0}",
+    "report_account": "Denunciar a {0}",
+    "share_account": "Compartir {0}",
     "share_post": "Compartir esta publicación",
     "show_favourited_and_boosted_by": "Mostrar quen favoreceu e promoveu",
     "show_reblogs": "Mostrar promocións desde {0}",
@@ -250,6 +266,7 @@
     "translate_post": "Traducir publicación",
     "unblock_account": "Desbloquear a {0}",
     "unblock_domain": "Desbloquear o dominio {0}",
+    "unfollow_account": "Deixar de seguir a {0}",
     "unmute_account": "Reactivar {0}",
     "unmute_conversation": "Reactivar esta publicación",
     "unpin_on_profile": "Desafixar do perfil"
@@ -291,6 +308,7 @@
     "followed_you_count": "{0} persoas seguíronte|{0} persoa seguiute|{0} persoas seguíronte",
     "missing_type": "FALTA o notification.type:",
     "reblogged_post": "promoveu a túa publicación",
+    "reported": "{0} denunciou a {1}",
     "request_to_follow": "solicitou seguirte",
     "signed_up": "creou a conta",
     "update_status": "actualizou a publicación"
@@ -301,10 +319,26 @@
     "reply_to_account": "Responder a {0}",
     "replying": "Responde aquí"
   },
+  "polls": {
+    "allow_multiple": "Permitir selección múltiple",
+    "cancel": "Desbotar",
+    "create": "Crear enquisa",
+    "disallow_multiple": "Desactivar selección múltiple",
+    "expiration": "Caducidade da enquisa",
+    "hide_votes": "Agochar resultados ata o remate",
+    "option_placeholder": "Número de opcións {current}/{max}",
+    "remove_option": "Retirar opción",
+    "settings": "Opcións da enquisa",
+    "show_votes": "Mostrar sempre o total de votos"
+  },
   "pwa": {
     "dismiss": "Desbotar",
     "install": "Instalar",
     "install_title": "Instalar Elk",
+    "screenshots": {
+      "dark": "Pantallazo de Elk en modo escuro",
+      "light": "Pantallazo de Elk en modo claro"
+    },
     "title": "Dispoñible nova versión de Elk!",
     "update": "Actualizar",
     "update_available_short": "Actualizar Elk",
@@ -330,6 +364,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "Comentario adicional",
+    "another_server": "A conta que denuncias pertence a outro servidor",
+    "anything_else": "Hai algo máis que debamos saber?",
+    "block_desc": "Non vas ver máis publicacións desta conta. Non poderá ver as túas publicacións ou seguirte. Non saberá que a bloqueaches.",
+    "dontlike": "Non me gusta",
+    "dontlike_desc": "É algo que non quero ver",
+    "forward": "Si, informar tamén a {0}",
+    "forward_question": "Queres enviar tamén unha copia anónima da denuncia ao servidor desa conta?",
+    "further_actions": {
+      "limit": {
+        "description": "Aquí tes as opcións para controlar o que ves:",
+        "title": "Non queres ver isto?"
+      },
+      "report": {
+        "description": "Mentras a revisamos, isto é o que podes facer:",
+        "title": "Grazas pola denuncia, investigaremos o asunto."
+      }
+    },
+    "limiting": "Limitar {0}",
+    "mute_desc": "Non verás máis publicacións desta conta. Poderá seguir seguíndote. Non saberá que a silenciaches.",
+    "other": "É por outra problema",
+    "other_desc": "O problema non encaixa noutras categorías",
+    "reporting": "Denunciando a {0}",
+    "select_many": "Elixe todo o que proceda:",
+    "select_one": "Elixe a opción máis axeitada:",
+    "select_posts": "Hai algunha publicación que apoie esta denuncia?",
+    "select_posts_other": "Hai algunha outra publicación para apoiar a denuncia?",
+    "spam": "É spam",
+    "spam_desc": "Ligazóns maliciosas, suplantación, ou respostas repetitivas",
+    "submit": "Enviar Denuncia",
+    "unfollow_desc": "Non vas ver máis mensaxes desta conta na túa cronoloxía. Poderías ver as súas mensaxes noutros sitios.",
+    "violation": "Ofende algunha das regra e termos do servidor",
+    "whats_wrong_account": "Cóntanos cal é o problema con esta conta",
+    "whats_wrong_post": "Cóntanos cal é o problema con esta publicación"
   },
   "search": {
     "search_desc": "Buscar persoas e cancelos",
@@ -359,12 +429,13 @@
       "font_size": "Tamaño da letra",
       "label": "Interface",
       "light_mode": "Claro",
-      "system_mode": "Escuro",
+      "system_mode": "Sistema",
       "theme_color": "Cor do decorado"
     },
     "language": {
       "display_language": "Idioma da interface",
       "label": "Idioma",
+      "post_language": "Idioma de publicación",
       "status": "Estado da tradución: {0}/{1} ({2}%)",
       "translations": {
         "add": "Engadir",
@@ -430,26 +501,35 @@
     },
     "notifications_settings": "Notificacións",
     "preferences": {
+      "embedded_media": "Reprodutor Multimedia incrustado",
+      "embedded_media_description": "Mostrar un reprodutor no lugar dunha tarxeta de vista previa ao despregar as ligazóns de fluxos multimedia compartidos.",
       "enable_autoplay": "Activar reprodución auto.",
       "enable_data_saving": "Activar aforro de datos",
       "enable_data_saving_description": "Aforra datos evitando a carga automática de adxuntos.",
       "enable_pinch_to_zoom": "Activar belisco para aumentar",
       "github_cards": "GitHub Cards",
+      "github_cards_description": "Ao compartir unha ligazón a GitHub móstrase unha tarxeta HTML accesible usando os metadatos no lugar dunha simple imaxe",
       "grayscale_mode": "Modo en escala de grises",
       "hide_account_hover_card": "Non mostrar tarxetas emerxentes",
       "hide_alt_indi_on_posts": "Agochar indicador ALT nas publicacións",
       "hide_boost_count": "Agochar conta de promocións",
       "hide_favorite_count": "Agochar conta de favoritos",
       "hide_follower_count": "Agochar conta de seguimentos",
+      "hide_news": "Agochar as novas",
       "hide_reply_count": "Agochar conta de respostas",
       "hide_translation": "Agochar tradución",
       "hide_username_emojis": "Agochar emojis nos nomes",
       "hide_username_emojis_description": "Agocha nas cronoloxías os emojis nos nomes de usuaria. Emojis seguirán visibles na páxina de perfil da usuaria.",
       "label": "Preferencias",
       "title": "Características experimentais",
+      "use_star_favorite_icon": "Usar icona da estrela para favoritas",
       "user_picker": "Selector de conta",
+      "user_picker_description": "Mostra abaixo á esquerda todos os avatares das contas conectadas para poder cambiar rápidamente entre elas",
       "virtual_scroll": "Desprazamento virtual",
-      "wellbeing": "Benestar"
+      "virtual_scroll_description": "Usar unha lista virtual nas cronoloxías, así pódense mostrar un gran número de elementos de xeito máis eficiente.",
+      "wellbeing": "Benestar",
+      "zen_mode": "Modo Cen",
+      "zen_mode_description": "Agocha os laterais a non se que o punteiro pase sobre eles. Tamén oculta algúns elementos da cronoloxía"
     },
     "profile": {
       "appearance": {
@@ -465,7 +545,8 @@
       },
       "featured_tags": {
         "description": "Será posible buscar as túas publicacións públicas con estos cancelos.",
-        "label": "Cancelos destacados"
+        "label": "Cancelos destacados",
+        "under_construction": "En desenvolvemento"
       },
       "label": "Perfil"
     },
@@ -489,12 +570,18 @@
     "loading": "Cargando...",
     "publish_failed": "Fallou a publicación",
     "publishing": "Publicando",
+    "save_failed": "Fallou o gardado",
     "upload_failed": "Fallou a subida",
     "uploading": "Subindo..."
   },
   "status": {
+    "account": {
+      "suspended_message": "A conta desta publicación foi suspendida.",
+      "suspended_show": "Queres vela igualmente?"
+    },
     "boosted_by": "Promovida por",
     "edited": "Editada por {0}",
+    "embedded_warning": "Ao reproducir poderías revelar o teu enderezo IP.",
     "favourited_by": "Favorecida por",
     "filter_hidden_phrase": "Filtrada por",
     "filter_show_anyway": "Mostrar igualmente",
@@ -512,6 +599,7 @@
     "replying_to": "En resposta a {0}",
     "show_full_thread": "Mostrar conversa completa",
     "someone": "alguén",
+    "spoiler_media_hidden": "Medios ocultos",
     "spoiler_show_less": "Mostrar menos",
     "spoiler_show_more": "Mostrar máis",
     "thread": "Fío",
@@ -528,10 +616,22 @@
     "list": "Lista",
     "media": "Multimedia",
     "news": "Novas",
+    "notifications_admin": {
+      "report": "Denuncia",
+      "sign_up": "Rexistro"
+    },
     "notifications_all": "Todo",
+    "notifications_favourite": "Favorita",
+    "notifications_follow": "Seguimento",
+    "notifications_follow_request": "Solicitude de seguimento",
     "notifications_mention": "Mención",
+    "notifications_more_tooltip": "Filtrar notificacións por tipo",
+    "notifications_poll": "Enquisa",
+    "notifications_reblog": "Promoción",
+    "notifications_status": "Estado",
+    "notifications_update": "Actualización",
     "posts": "Publicacións",
-    "posts_with_replies": "Publicacións & Respostas"
+    "posts_with_replies": "Publicacións e Respostas"
   },
   "tag": {
     "follow": "Seguir",

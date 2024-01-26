@@ -19,6 +19,7 @@ export interface PreferencesSettings {
   hideNews: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
+  optimizeForLowPerformanceDevice: boolean
   enableDataSaving: boolean
   enablePinchToZoom: boolean
   useStarFavoriteIcon: boolean
@@ -26,6 +27,7 @@ export interface PreferencesSettings {
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
+  experimentalEmbeddedMedia: boolean
 }
 
 export interface UserSettings {
@@ -71,6 +73,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideNews: false,
   grayscaleMode: false,
   enableAutoplay: true,
+  optimizeForLowPerformanceDevice: false,
   enableDataSaving: false,
   enablePinchToZoom: false,
   useStarFavoriteIcon: false,
@@ -78,6 +81,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,
   experimentalUserPicker: true,
+  experimentalEmbeddedMedia: false,
 }
 
 export function getDefaultUserSettings(locales: string[]): UserSettings {

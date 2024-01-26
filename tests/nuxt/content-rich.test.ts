@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import type { mastodon } from 'masto'
-import { mockComponent } from 'nuxt-vitest/utils'
+import { mockComponent } from '@nuxt/test-utils/runtime'
 import { contentToVNode } from '~/composables/content-render'
 import type { ContentParseOptions } from '~/composables/content-parse'
 
@@ -89,55 +89,7 @@ describe('content-rich', () => {
     const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> content <span class="h-card"><a href="https://m.webtoo.ls/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> <span class="h-card"><a href="https://mastodon.roe.dev/@daniel" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>daniel</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@sxzz" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>sxzz</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@patak" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>patak</span></a></span> content</p>', {
       collapseMentionLink: true,
     })
-    expect(formatted).toMatchInlineSnapshot(`
-      "<p>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@elk\\"
-          ></a
-        ></span>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@elk\\"
-          ></a
-        ></span>
-        content
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@antfu\\"
-          ></a
-        ></span>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/mastodon.roe.dev/@daniel\\"
-          ></a
-        ></span>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@sxzz\\"
-          ></a
-        ></span>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@patak\\"
-          ></a
-        ></span>
-        content
-      </p>
-      "
-    `)
+    expect(formatted).toMatchSnapshot()
   })
 
   it('hides collapsed mentions', async () => {
@@ -145,10 +97,7 @@ describe('content-rich', () => {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })
-    expect(formatted).toMatchInlineSnapshot(`
-      "<p>content</p>
-      "
-    `)
+    expect(formatted).toMatchSnapshot()
   })
 
   it('shows some collapsed mentions inline', async () => {
@@ -156,19 +105,7 @@ describe('content-rich', () => {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })
-    expect(formatted).toMatchInlineSnapshot(`
-      "<p>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@antfu\\"
-          ></a
-        ></span>
-        content
-      </p>
-      "
-    `)
+    expect(formatted).toMatchSnapshot()
   })
 
   it('shows some collapsed mentions grouped', async () => {
@@ -176,33 +113,7 @@ describe('content-rich', () => {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })
-    expect(formatted).toMatchInlineSnapshot(`
-      "<p>
-        <mention-group
-          ><span class=\\"h-card\\"
-            ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@antfu\\"
-            ></a
-          ></span>
-          <span class=\\"h-card\\"
-            ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@patak\\"
-            ></a
-          ></span>
-          <span class=\\"h-card\\"
-            ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@sxzz\\"
-            ></a></span></mention-group
-        >content
-      </p>
-      "
-    `)
+    expect(formatted).toMatchSnapshot()
   })
 
   it ('block with injected html, without language', async () => {
@@ -234,6 +145,21 @@ describe('content-rich', () => {
           &lt;a href="javascript:alert(1)">click me&lt;/a>
         </code>
       </pre>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
+
+  it ('hashtag adds bdi', async () => {
+    const { formatted } = await render(`
+      <p>Testing bdi is added <a href="https://universeodon.com/tags/turkey" class="mention hashtag" rel="tag">#<span>turkey</span></a></p>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
+
+  // REVIEW: there is something wrong with this test in the rendered output, missing bdi content, ultrahtml parses it correctly
+  it ('hashtag doesn\'t add 2 bdi', async () => {
+    const { formatted } = await render(`
+      <p>Testing bdi not added <a href="https://universeodon.com/tags/turkey" class="mention hashtag" rel="tag"><bdi>#<span>turkey</span></bdi></a></p>
     `)
     expect(formatted).toMatchSnapshot()
   })
@@ -273,17 +199,11 @@ async function render(content: string, options?: ContentParseOptions) {
 vi.mock('vue-router', async () => {
   const { defineComponent, h } = await import('vue')
   return {
-    RouterLink: defineComponent((attrs) => {
-      return () => h('a', attrs)
+    RouterLink: defineComponent({
+      setup(props, { slots }) {
+        return () => h('a', props, { default: () => slots?.default?.() })
+      },
     }),
-  }
-})
-
-vi.mock('shiki-es', async (importOriginal) => {
-  const mod = await importOriginal()
-  return {
-    ...(mod as any),
-    setCDN() {},
   }
 })
 

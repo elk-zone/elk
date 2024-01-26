@@ -7,12 +7,15 @@
     "route_loaded": "{0} halaman dimuat"
   },
   "account": {
+    "authorize": "Izin untuk mengikuti",
+    "authorized": "Anda telah memberikan izin tersebut",
     "avatar_description": "avatar {0}",
     "blocked_by": "Anda diblokir oleh pengguna ini.",
     "blocked_domains": "Domain yang diblokir",
     "blocked_users": "Pengguna diblokir",
     "blocking": "Diblokir",
     "bot": "BOT",
+    "copy_account_name": "Salin nama akun",
     "favourites": "Favorit",
     "follow": "Ikuti",
     "follow_back": "Ikuti kembali",
@@ -33,13 +36,19 @@
     "pinned": "Dilekatkan",
     "posts": "Posting",
     "posts_count": "{0} Pos|{0} Pos|{0} Pos",
-    "profile_description": "tajuk profil {0}",
+    "profile_description": "judul profil {0}",
+    "profile_personal_note": "Catatan Pribadi",
     "profile_unavailable": "Profil tidak tersedia",
+    "reject": "Menolak untuk mengikuti",
+    "rejected": "Anda telah menolak permintaan tersebut",
+    "request_follow": "Permintaan untuk mengikuti",
+    "requested": "{0} telah meminta untuk mengikuti Anda",
     "unblock": "Buka blokir",
     "unfollow": "Berhenti mengikuti",
     "unmute": "Bunyikan",
     "view_other_followers": "Pengikut dari contoh lain mungkin tidak ditampilkan.",
-    "view_other_following": "Mengikuti dari contoh lain mungkin tidak ditampilkan."
+    "view_other_following": "Mengikuti dari contoh lain mungkin tidak ditampilkan.",
+    "withdraw_follow_request": "Tarik permintaan ikuti"
   },
   "action": {
     "apply": "Terapkan",
@@ -49,10 +58,12 @@
     "boost_count": "{0}",
     "boosted": "Didukung",
     "clear_publish_failed": "Hapus error publikasi",
+    "clear_save_failed": "Hapus kesalahan penyimpanan",
     "clear_upload_failed": "Hapus kesalahan pengunggahan file",
     "close": "Tutup",
     "compose": "Menulis",
     "confirm": "Konfirmasi",
+    "done": "Selesai",
     "edit": "Sunting",
     "enter_app": "Masuk Aplikasi",
     "favourite": "Favorit",
@@ -68,6 +79,7 @@
     "save": "Simpan",
     "save_changes": "Simpan perubahan",
     "sign_in": "Masuk",
+    "sign_in_to": "Masuk ke {0}",
     "switch_account": "Ganti akun",
     "vote": "Pilih"
   },
@@ -87,13 +99,16 @@
     "sign_in_desc": "Tambahkan akun yang ada",
     "switch_account": "Beralih ke {0}",
     "switch_account_desc": "Beralih ke akun lain",
-    "toggle_dark_mode": "Beralih ke modus gelap",
-    "toggle_zen_mode": "Beralih ke modus zen"
+    "toggle_dark_mode": "Beralih ke mode gelap",
+    "toggle_zen_mode": "Beralih ke mode zen"
   },
   "common": {
     "end_of_list": "Akhir dari daftar",
     "error": "KESALAHAN",
+    "fetching": "Mengambil...",
     "in": "di dalam",
+    "no_bookmarks": "Belum ada postingan yang ditandai",
+    "no_favourites": "Belum ada postingan yang disukai",
     "not_found": "404 tidak ditemukan",
     "offline_desc": "Sepertinya Anda sedang offline. \nSilakan periksa koneksi jaringan Anda."
   },
@@ -105,36 +120,41 @@
     "block_account": {
       "cancel": "Batalkan",
       "confirm": "Blokir",
-      "title": "Yakin ingin memblokir {0}?"
+      "description": "Yakin ingin memblokir {0}?"
     },
     "block_domain": {
       "cancel": "Batalkan",
       "confirm": "Blokir",
-      "title": "Yakin ingin memblokir {0}?"
+      "description": "Yakin ingin memblokir {0}?"
     },
     "common": {
       "cancel": "Tidak",
       "confirm": "Ya"
     },
+    "delete_list": {
+      "cancel": "Batalkan",
+      "confirm": "Hapus",
+      "description": "Apakah Anda yakin ingin menghapus daftar \"{0}\"?"
+    },
     "delete_posts": {
       "cancel": "Batalkan",
       "confirm": "Hapus",
-      "title": "Yakin ingin menghapus postingan ini?"
+      "description": "Yakin ingin menghapus postingan ini?"
     },
     "mute_account": {
       "cancel": "Batalkan",
       "confirm": "Bisukan",
-      "title": "Yakin ingin membisukan {0}?"
+      "description": "Yakin ingin membisukan {0}?"
     },
     "show_reblogs": {
       "cancel": "Batalkan",
       "confirm": "Tampilkan",
-      "title": "Yakin ingin menampilkan dukungan dari {0}?"
+      "description": "Yakin ingin menampilkan dukungan dari {0}?"
     },
     "unfollow": {
       "cancel": "Batalkan",
       "confirm": "Berhenti mengikuti",
-      "title": "Anda yakin ingin berhenti mengikuti?"
+      "description": "Anda yakin ingin berhenti mengikuti?"
     }
   },
   "conversation": {
@@ -156,6 +176,12 @@
     "unsupported_file_format": "Format berkas tidak didukung"
   },
   "help": {
+    "build_preview": {
+      "desc1": "Anda sedang melihat versi pratinjau Elk dari komunitas - {0}",
+      "desc2": "Ini mungkin berisi perubahan yang belum ditinjau atau bahkan berbahaya.",
+      "desc3": "Jangan masuk dengan akun asli Anda.",
+      "title": "Pratinjau penerapan"
+    },
     "desc_highlight": "Masih terdapat beberapa bug dan fitur yang hilang di sana-sini.",
     "desc_para1": "Terima kasih atas minat Anda untuk mencoba Elk, klien web Mastodon kami yang sedang dalam proses penyempurnaan!",
     "desc_para2": "kami bekerja keras untuk mengembangkan dan memperbaikinya dari waktu ke waktu.",
@@ -163,15 +189,59 @@
     "desc_para4": "Elk adalah Software Sumber Terbuka. \nJika Anda ingin membantu dalam pengujian, memberikan umpan balik, atau berkontribusi,",
     "desc_para5": "hubungi kami di GitHub",
     "desc_para6": "dan terlibat.",
+    "footer_team": "Tim Elk",
     "title": "Elk sedang dalam Uji Pratinjau!"
   },
   "language": {
     "search": "Cari"
   },
+  "list": {
+    "add_account": "Tambahkan akun ke daftar",
+    "cancel_edit": "Batalkan pengeditan",
+    "clear_error": "Hapus kesalahan",
+    "create": "Buat",
+    "delete": "Hapus daftar ini",
+    "delete_error": "Terjadi kesalahan saat menghapus daftar",
+    "edit": "Edit daftar ini",
+    "edit_error": "Terjadi kesalahan saat memperbarui daftar",
+    "error": "Terjadi kesalahan saat membuat daftar",
+    "error_prefix": "Kesalahan: ",
+    "list_title_placeholder": "Judul daftar",
+    "modify_account": "Ubah daftar dengan akun",
+    "remove_account": "Hapus akun dari daftar",
+    "save": "Simpan perubahan"
+  },
+  "magic_keys": {
+    "dialog_header": "Pintasan keyboard",
+    "groups": {
+      "actions": {
+        "boost": "Dorongan",
+        "command_mode": "Mode perintah",
+        "compose": "Menyusun",
+        "favourite": "Favorit",
+        "search": "Cari",
+        "title": "Tindakan"
+      },
+      "media": {
+        "title": "Media"
+      },
+      "navigation": {
+        "go_to_home": "Beranda",
+        "go_to_notifications": "Notifikasi",
+        "next_status": "Posting selanjutnya",
+        "previous_status": "Posting sebelumnya",
+        "shortcut_help": "Bantuan jalan pintas",
+        "title": "Navigasi"
+      }
+    },
+    "sequence_then": "Kemudian"
+  },
   "menu": {
+    "add_personal_note": "Tambahkan catatan pribadi ke {0}",
     "block_account": "Blokir {0}",
     "block_domain": "Blokir domain {0}",
     "copy_link_to_post": "Salin tautan pos ini",
+    "copy_original_link_to_post": "Salin tautan asli ke pos ini",
     "delete": "Hapus",
     "delete_and_redraft": "Hapus dan buat ulang draf",
     "direct_message_account": "Pesan langsung {0}",
@@ -182,20 +252,27 @@
     "mute_conversation": "Nonaktifkan postingan ini",
     "open_in_original_site": "Buka di situs asli",
     "pin_on_profile": "Sematkan di profil",
+    "remove_personal_note": "Hapus catatan pribadi dari {0}",
+    "report_account": "Laporkan {0}",
+    "share_account": "Bagikan {0}",
     "share_post": "Bagikan postingan ini",
     "show_favourited_and_boosted_by": "Tampilkan siapa yang memfavoritkan dan mendukung",
     "show_reblogs": "Tampilkan dukungan dari {0}",
     "show_untranslated": "Tampilkan versi non-terjemahan",
     "toggle_theme": {
-      "dark": "Beralih ke modus gelap",
-      "light": "Beralih ke modus terang"
+      "dark": "Beralih ke tema gelap",
+      "light": "Beralih ke tema terang"
     },
     "translate_post": "Terjemahkan pos",
     "unblock_account": "Buka blokir {0}",
     "unblock_domain": "Buka blokir domain {0}",
+    "unfollow_account": "Berhenti mengikuti {0}",
     "unmute_account": "Aktifkan {0}",
     "unmute_conversation": "Aktifkan postingan ini",
     "unpin_on_profile": "Lepas sematan di profil"
+  },
+  "modals": {
+    "aria_label_close": "Tutup"
   },
   "nav": {
     "back": "Kembali",
@@ -209,9 +286,12 @@
     "favourites": "Favorit",
     "federated": "Federasi",
     "home": "Beranda",
+    "list": "Daftar",
+    "lists": "Daftar",
     "local": "Lokal",
     "muted_users": "Pengguna dibisukan",
     "notifications": "Notifikasi",
+    "privacy": "Privasi",
     "profile": "Profil",
     "search": "Cari",
     "select_feature_flags": "Alihkan Bendera Fitur",
@@ -220,14 +300,15 @@
     "settings": "Pengaturan",
     "show_intro": "Tampilkan pengantar",
     "toggle_theme": "Beralih Tema",
-    "zen_mode": "Modus Zen"
+    "zen_mode": "Mode Zen"
   },
   "notification": {
-    "favourited_post": "memfavoritkan kiriman Anda",
+    "favourited_post": "memfavoritkan pos Anda",
     "followed_you": "mengikutimu",
     "followed_you_count": "{0} orang mengikuti Anda|{0} orang mengikuti Anda|{0} orang mengikuti Anda",
     "missing_type": "NOTIFIKASI HILANG.jenis:",
-    "reblogged_post": "mendukung posting Anda",
+    "reblogged_post": "meningkatkan postingan Anda",
+    "reported": "{0} melaporkan {1}",
     "request_to_follow": "meminta untuk mengikuti Anda",
     "signed_up": "mendaftar",
     "update_status": "memperbarui postingannya"
@@ -238,8 +319,26 @@
     "reply_to_account": "Balas ke {0}",
     "replying": "Membalas"
   },
+  "polls": {
+    "allow_multiple": "Izinkan pilihan ganda",
+    "cancel": "Batalkan",
+    "create": "Buat jajak pendapat",
+    "disallow_multiple": "Larang pilihan ganda",
+    "expiration": "Kedaluwarsa jajak pendapat",
+    "hide_votes": "Sembunyikan total suara hingga akhir",
+    "option_placeholder": "Pilihan jajak pendapat {current}/{max}",
+    "remove_option": "Hapus pilihan",
+    "settings": "Opsi jajak pendapat",
+    "show_votes": "Selalu tampilkan total suara"
+  },
   "pwa": {
     "dismiss": "Batalkan",
+    "install": "Instal",
+    "install_title": "Instal Elk",
+    "screenshots": {
+      "dark": "Tangkapan layar Elk yang berjalan dalam mode gelap",
+      "light": "Tangkapan layar Elk yang berjalan dalam mode terang"
+    },
     "title": "Pembaruan Elk tersedia!",
     "update": "Perbarui",
     "update_available_short": "Perbarui Elk",
@@ -266,27 +365,65 @@
       }
     }
   },
+  "report": {
+    "additional_comments": "Komentar tambahan",
+    "another_server": "Pengguna yang Anda laporkan berasal dari server lain",
+    "anything_else": "Apakah ada hal lain yang menurut Anda perlu kami ketahui?",
+    "block_desc": "Anda tidak akan lagi melihat postingan apa pun dari pengguna ini. Mereka tidak akan dapat melihat postingan Anda atau mengikuti Anda. Mereka akan tahu bahwa mereka diblokir.",
+    "dontlike": "Saya tidak menyukainya",
+    "dontlike_desc": "Itu bukanlah sesuatu yang ingin Anda lihat",
+    "forward": "Ya, teruskan laporan ini ke {0}",
+    "forward_question": "Apakah Anda ingin mengirim salinan laporan ini yang dianonimkan ke server itu juga?",
+    "further_actions": {
+      "limit": {
+        "description": "Berikut pilihan Anda untuk mengontrol apa yang Anda lihat:",
+        "title": "Tidak ingin melihat ini?"
+      },
+      "report": {
+        "description": "Selagi kami meninjau hal ini, berikut tindakan yang dapat Anda ambil:",
+        "title": "Terima kasih telah melaporkan, kami akan memeriksanya."
+      }
+    },
+    "limiting": "Membatasi {0}",
+    "mute_desc": "Anda tidak akan melihat lagi postingan dari pengguna ini. Mereka masih dapat mengikuti Anda dan melihat postingan Anda. Mereka tidak akan tahu bahwa mereka dibisukan.",
+    "other": "Ini adalah sesuatu yang lain",
+    "other_desc": "Masalah ini tidak sesuai dengan kategori lainnya",
+    "reporting": "Melaporkan {0}",
+    "select_many": "Pilih semua yang sesuai:",
+    "select_one": "Pilih yang paling cocok:",
+    "select_posts": "Apakah ada postingan yang mendukung laporan ini?",
+    "select_posts_other": "Apakah ada postingan lain yang mendukung laporan ini?",
+    "spam": "Ini adalah spam",
+    "spam_desc": "Tautan berbahaya, interaksi palsu, atau balasan yang berulang",
+    "submit": "Kirim Laporan",
+    "unfollow_desc": "Anda tidak akan lagi melihat postingan dari pengguna ini di beranda Anda. Anda masih mungkin melihat postingan dari mereka di tempat lain.",
+    "violation": "Ini melanggar satu atau lebih aturan server",
+    "whats_wrong_account": "Beritahu kami apa yang salah dengan akun ini",
+    "whats_wrong_post": "Beritahu kami apa yang salah dengan postingan ini"
+  },
   "search": {
     "search_desc": "Cari orang & tagar",
     "search_empty": "Tidak dapat menemukan apa pun untuk istilah pencarian ini"
   },
   "settings": {
     "about": {
+      "built_at": "Dibuat",
       "label": "Tentang",
       "meet_the_team": "Tim Pengembang",
-      "sponsor_action": "Dukung kami",
+      "sponsor_action": "Sponsori kami",
       "sponsor_action_desc": "Untuk mendukung tim mengembangkan Elk",
-      "sponsors": "Sponsorship",
+      "sponsors": "Sponsors",
       "sponsors_body_1": "Elk dimungkinkan berkat pendukung yang murah hati dan bantuan dari:",
-      "sponsors_body_2": "Dan semua perusahaan dan individu yang mendukung Tim Elk dan para anggotanya.",
-      "sponsors_body_3": "Jika Anda menikmati aplikasi ini, pertimbangkan untuk mendukung kami:"
+      "sponsors_body_2": "Dan semua perusahaan dan individu yang mensponsori Tim Elk dan para anggotanya.",
+      "sponsors_body_3": "Jika Anda menikmati aplikasi ini, pertimbangkan untuk mensponsori kami:",
+      "version": "Versi"
     },
     "account_settings": {
       "description": "Sunting pengaturan akun Anda di Mastodon UI",
       "label": "Pengaturan akun"
     },
     "interface": {
-      "color_mode": "Berwarna",
+      "color_mode": "Tema",
       "dark_mode": "Gelap",
       "default": "(bawaan)",
       "font_size": "Ukuran huruf",
@@ -297,7 +434,16 @@
     },
     "language": {
       "display_language": "Bahasa tampilan",
-      "label": "Bahasa"
+      "label": "Bahasa",
+      "post_language": "Bahasa Postingan",
+      "status": "Status terjemahan: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Tambahkan",
+        "choose_language": "Pilih bahasa",
+        "heading": "Terjemahan",
+        "hide_specific": "Sembunyikan terjemahan tertentu",
+        "remove": "Hapus"
+      }
     },
     "notifications": {
       "label": "Notifikasi",
@@ -326,10 +472,14 @@
         "save_settings": "Simpan Pengaturan",
         "subscription_error": {
           "clear_error": "Hapus kesalahan",
+          "error_hint": "Anda dapat melihat daftar pertanyaan umum untuk mencoba menyelesaikan masalah: {0}.",
+          "invalid_vapid_key": "Kunci publik VAPID tampaknya tidak valid.",
           "permission_denied": "Izin ditolak: aktifkan notifikasi di browser Anda.",
+          "repo_link": "Repositori Elk di GitHub",
           "request_error": "Terjadi kesalahan saat meminta langganan, coba lagi dan jika kesalahan berlanjut, harap laporkan masalah tersebut ke repositori Elk.",
           "title": "Tidak dapat berlangganan notifikasi push",
-          "too_many_registrations": "Karena keterbatasan browser, Elk tidak dapat menggunakan layanan pemberitahuan push untuk banyak akun di server yang berbeda. \nAnda harus berhenti berlangganan notifikasi push di akun lain dan coba lagi."
+          "too_many_registrations": "Karena keterbatasan browser, Elk tidak dapat menggunakan layanan pemberitahuan push untuk banyak akun di server yang berbeda. \nAnda harus berhenti berlangganan notifikasi push di akun lain dan coba lagi.",
+          "vapid_not_supported": "Browser Anda mendukung Pemberitahuan Push Web, namun tampaknya tidak menerapkan protokol VAPID."
         },
         "title": "Pengaturan pemberitahuan push",
         "undo_settings": "Membatalkan perubahan",
@@ -346,19 +496,40 @@
           "re_auth": "Tampaknya server Anda tidak mendukung pemberitahuan push. \nCoba keluar dan masuk lagi, jika pesan ini masih muncul hubungi administrator server Anda."
         }
       },
-      "show_btn": "Buka pengaturan notifikasi"
+      "show_btn": "Buka pengaturan notifikasi",
+      "under_construction": "Dalam masa pembangunan"
     },
     "notifications_settings": "Notifikasi",
     "preferences": {
+      "embedded_media": "Pemutar Media Tertanam",
+      "embedded_media_description": "Tampilkan pemutar media tertanam sebagai pengganti kartu pratinjau normal saat memperluas tautan media streaming.",
+      "enable_autoplay": "Aktifkan Autoplay",
+      "enable_data_saving": "Aktifkan penghematan data",
+      "enable_data_saving_description": "Hemat data dengan mencegah lampiran untuk memuat secara otomatis.",
+      "enable_pinch_to_zoom": "Aktifkan cubit untuk memperbesar",
       "github_cards": "Kartu GitHub",
-      "grayscale_mode": "Modus Hitam Putih",
+      "github_cards_description": "Saat tautan GitHub diposting, kartu HTML yang dapat diakses menggunakan meta grafik sosial ditampilkan, bukan gambar sosial.",
+      "grayscale_mode": "Mode Hitam Putih",
+      "hide_account_hover_card": "Sembunyikan kartu hover akun",
+      "hide_alt_indi_on_posts": "Sembunyikan indikator alternatif pada postingan",
       "hide_boost_count": "Sembunyikan jumlah dukungan",
       "hide_favorite_count": "Sembunyikan jumlah favorit",
       "hide_follower_count": "Sembunyikan jumlah pengikut",
+      "hide_news": "Sembunyikan berita",
+      "hide_reply_count": "Sembunyikan jumlah balasan",
+      "hide_translation": "Sembunyikan terjemahan",
+      "hide_username_emojis": "Sembunyikan emoji di nama pengguna",
+      "hide_username_emojis_description": "Sembunyikan emoji dari nama pengguna dalam timeline. Emoji tetap akan terlihat di profil mereka.",
       "label": "Preferensi",
       "title": "Fitur Eksperimental",
+      "use_star_favorite_icon": "Gunakan ikon bintang favorit",
       "user_picker": "Pemilih Pengguna",
-      "virtual_scroll": "Pengguliran Virtual"
+      "user_picker_description": "Menampilkan semua avatar akun yang dicatat di kiri bawah sehingga Anda dapat beralih antar akun dengan cepat.",
+      "virtual_scroll": "Pengguliran Virtual",
+      "virtual_scroll_description": "Gunakan daftar virtual dalam timeline, sehingga sejumlah besar item dapat ditampilkan dengan performa yang baik.",
+      "wellbeing": "Kesejahteraan",
+      "zen_mode": "Mode Zen",
+      "zen_mode_description": "Sembunyikan elemen samping kecuali kursor mouse berada di atasnya. Juga sembunyikan beberapa elemen dari timeline."
     },
     "profile": {
       "appearance": {
@@ -368,11 +539,14 @@
         "label": "Penampilan",
         "profile_metadata": "Metadata profil",
         "profile_metadata_desc": "Anda dapat menampilkan hingga {0} item sebagai tabel di profil Anda",
+        "profile_metadata_label": "Label",
+        "profile_metadata_value": "Konten",
         "title": "Sunting profil"
       },
       "featured_tags": {
         "description": "Orang-orang dapat menelusuri kiriman publik Anda di bawah tagar ini.",
-        "label": "Tagar unggulan"
+        "label": "Tagar unggulan",
+        "under_construction": "Dalam masa pembangunan"
       },
       "label": "Profil"
     },
@@ -396,18 +570,26 @@
     "loading": "Memuat...",
     "publish_failed": "Publikasi gagal",
     "publishing": "Penerbitan",
+    "save_failed": "Gagal menyimpan",
     "upload_failed": "Gagal mengunggah",
     "uploading": "Mengunggah..."
   },
   "status": {
+    "account": {
+      "suspended_message": "Akun postingan ini telah ditangguhkan.",
+      "suspended_show": "Tetap tampilkan konten?"
+    },
     "boosted_by": "Didukung Oleh",
     "edited": "Disunting {0}",
+    "embedded_warning": "Memainkan ini dapat mengungkapkan alamat IP Anda kepada orang lain.",
     "favourited_by": "Difavoritkan Oleh",
     "filter_hidden_phrase": "Difilter oleh",
     "filter_show_anyway": "Tetap tampilkan",
     "img_alt": {
+      "ALT": "ALT",
       "desc": "Keterangan",
-      "dismiss": "Batalkan"
+      "dismiss": "Batalkan",
+      "read": "Baca deskripsi {0}"
     },
     "poll": {
       "count": "{0} suara|{0} suara|{0} suara",
@@ -417,6 +599,7 @@
     "replying_to": "Membalas ke {0}",
     "show_full_thread": "Tampilkan utas Penuh",
     "someone": "seseorang",
+    "spoiler_media_hidden": "Media disembunyikan",
     "spoiler_show_less": "Tampilkan lebih sedikit",
     "spoiler_show_more": "Menampilkan lebih banyak",
     "thread": "Utas",
@@ -427,12 +610,26 @@
     "edited": "disunting {0}"
   },
   "tab": {
+    "accounts": "Akun",
     "for_you": "Untuk kamu",
     "hashtags": "Tagar",
+    "list": "Daftar",
     "media": "Media",
     "news": "Berita",
+    "notifications_admin": {
+      "report": "Laporan",
+      "sign_up": "Mendaftar"
+    },
     "notifications_all": "Semua",
+    "notifications_favourite": "Favorit",
+    "notifications_follow": "Ikuti",
+    "notifications_follow_request": "Permintaan mengikuti",
     "notifications_mention": "Penyebutan",
+    "notifications_more_tooltip": "Filter pemberitahuan berdasarkan jenis",
+    "notifications_poll": "Polling",
+    "notifications_reblog": "Menggiatkan",
+    "notifications_status": "Status",
+    "notifications_update": "Pembaruan",
     "posts": "Postingan",
     "posts_with_replies": "Postingan dan Balasan"
   },
@@ -492,8 +689,12 @@
     "explore_links_intro": "Berita-berita ini sedang dibicarakan oleh orang-orang di server ini dan server-server lain dari jaringan terdesentralisasi saat ini.",
     "explore_posts_intro": "Postingan-postingan ini dari server ini dan server lain di jaringan terdesentralisasi sedang mendapatkan daya tarik di server ini sekarang.",
     "explore_tags_intro": "Tagar-tagar ini mendapatkan daya tarik di antara orang-orang di server ini dan server lain dari jaringan terdesentralisasi saat ini.",
+    "open_editor_tools": "Alat Editor",
+    "pick_an_icon": "Pilih ikon",
     "publish_failed": "Tutup pesan yang gagal di bagian atas editor untuk mempublikasikan ulang postingan",
-    "toggle_code_block": "Tulis sebagai blok kode"
+    "toggle_bold": "Ubah tebal",
+    "toggle_code_block": "Tulis sebagai blok kode",
+    "toggle_italic": "Alihkan miring"
   },
   "user": {
     "add_existing": "Tambahkan akun yang ada",
@@ -501,6 +702,7 @@
     "sign_in_desc": "Masuk untuk mengikuti profil atau hashtag, favorit, berbagi dan membalas posting, atau berinteraksi dari akun Anda di server lain.",
     "sign_in_notice_title": "Menampilkan data publik {0}",
     "sign_out_account": "Keluar {0}",
+    "single_instance_sign_in_desc": "Masuk untuk mengikuti profil atau hashtag, memfavoritkan, berbagi, dan membalas postingan.",
     "tip_no_account": "Jika Anda belum memiliki akun Mastodon, {0}.",
     "tip_register_account": "pilih server Anda dan daftarkan"
   },

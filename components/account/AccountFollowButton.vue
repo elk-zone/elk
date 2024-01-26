@@ -19,7 +19,7 @@ const { client } = $(useMasto())
 async function unblock() {
   relationship!.blocking = false
   try {
-    const newRel = await client.v1.accounts.unblock(account.id)
+    const newRel = await client.v1.accounts.$select(account.id).unblock()
     Object.assign(relationship!, newRel)
   }
   catch (err) {
@@ -32,7 +32,7 @@ async function unblock() {
 async function unmute() {
   relationship!.muting = false
   try {
-    const newRel = await client.v1.accounts.unmute(account.id)
+    const newRel = await client.v1.accounts.$select(account.id).unmute()
     Object.assign(relationship!, newRel)
   }
   catch (err) {

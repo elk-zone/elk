@@ -7,12 +7,15 @@
     "route_loaded": "تم تحميل الصفحة {0}"
   },
   "account": {
+    "authorize": "إعطاء إذن المتابعة",
+    "authorized": "لقد أعطيت إذن المتابعة",
     "avatar_description": "صورة حساب {0}",
     "blocked_by": "تم حظرك من قبل هذا المستخدم",
     "blocked_domains": "النطاقات المحظورة",
     "blocked_users": "المستخدمون المحظورون",
     "blocking": "محظور",
     "bot": "حساب آلي",
+    "copy_account_name": "انسخ اسم الحساب",
     "favourites": "المفضلة",
     "follow": "إتبع",
     "follow_back": "إعادة متابعة",
@@ -36,12 +39,16 @@
     "profile_description": "{0} رأسية حساب",
     "profile_personal_note": "ملاحظة شخصية",
     "profile_unavailable": "حساب غير متوفر",
+    "reject": "رفض طلب المتابعة",
+    "rejected": "لقد رفضت طلب المتابعة",
     "request_follow": "طلب متابعة",
+    "requested": "لقد طلب(ت) {0} متابعتك",
     "unblock": "إلغاء حظر",
     "unfollow": "إلغاء متابعة",
     "unmute": "إلغاء كتم",
     "view_other_followers": "قد لا يتم عرض المتابعين من خوادم مختلفين عن الخاص بك.",
-    "view_other_following": "قد لا يتم عرض من تتابع من خوادم مختلفين عن الخاص بك."
+    "view_other_following": "قد لا يتم عرض من تتابع من خوادم مختلفين عن الخاص بك.",
+    "withdraw_follow_request": "إلغاء طلب المتابعة"
   },
   "action": {
     "apply": "تطبيق",
@@ -51,10 +58,12 @@
     "boost_count": "{0}",
     "boosted": "أعيد نشرها",
     "clear_publish_failed": "مسح أخطاء النشر",
+    "clear_save_failed": "مسح أخطاء الحفظ",
     "clear_upload_failed": "مسح أخطاء تحميل الملف",
     "close": "أغلق",
     "compose": "منشور جديد",
     "confirm": "تأكد",
+    "done": "منتهي",
     "edit": "تعديل",
     "enter_app": "أدخل التطبيق",
     "favourite": "إضافة إلى المفضلة",
@@ -98,6 +107,8 @@
     "error": "حدث خطأ",
     "fetching": "في عملية الجلب ...",
     "in": "في",
+    "no_bookmarks": "لا توجد علامات المرجعية حتى الآن",
+    "no_favourites": "لا توجد مشاركات معجبة حتى الآن",
     "not_found": "404 غير موجود",
     "offline_desc": "يبدو أنك غير متصل بالإنترنت. يرجى التحقق من اتصالك."
   },
@@ -109,12 +120,12 @@
     "block_account": {
       "cancel": "إلغاء",
       "confirm": "حظر",
-      "title": "هل أنت متأكد أنك تريد حظر {0}؟"
+      "description": "هل أنت متأكد أنك تريد حظر {0}؟"
     },
     "block_domain": {
       "cancel": "إلغاء",
       "confirm": "حظر",
-      "title": "هل أنت متأكد أنك تريد حظر {0}؟"
+      "description": "هل أنت متأكد أنك تريد حظر {0}؟"
     },
     "common": {
       "cancel": "لا",
@@ -123,27 +134,27 @@
     "delete_list": {
       "cancel": "إلغاء",
       "confirm": "حذف",
-      "title": "هل أنت متأكد أنك تريد حذف القائمة \"{0}\"؟"
+      "description": "هل أنت متأكد أنك تريد حذف القائمة \"{0}\"؟"
     },
     "delete_posts": {
       "cancel": "إلغاء",
       "confirm": "حذف",
-      "title": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
+      "description": "هل أنت متأكد أنك تريد حذف هذا المنشور؟"
     },
     "mute_account": {
       "cancel": "إلغاء",
       "confirm": "كتم",
-      "title": "هل أنت متأكد أنك تريد كتم {0}؟"
+      "description": "هل أنت متأكد أنك تريد كتم {0}؟"
     },
     "show_reblogs": {
       "cancel": "إلغاء",
       "confirm": "اعرض",
-      "title": "هل أنت متأكد أنك تريد إظهار تعزيزات من {0}؟"
+      "description": "هل أنت متأكد أنك تريد إظهار إعادة المدونات من {0}؟"
     },
     "unfollow": {
       "cancel": "إلغاء",
       "confirm": "إلغاء المتابعة",
-      "title": "هل أنت متأكد أنك تريد إلغاء المتابعة؟"
+      "description": "هل أنت متأكد أنك تريد إلغاء المتابعة؟"
     }
   },
   "conversation": {
@@ -208,8 +219,8 @@
         "command_mode": "Command mode",
         "compose": "منشور جديد",
         "favourite": "إعجاب",
-        "title": "أجراءات",
-        "zen_mode": "وضع Zen"
+        "search": "بحث",
+        "title": "أجراءات"
       },
       "media": {
         "title": "الوسائل الرقمية"
@@ -235,16 +246,18 @@
     "delete_and_redraft": "حذف وإعادة صياغة",
     "direct_message_account": "إرسال رسالة مباشرة إلى {0}",
     "edit": "تعديل",
-    "hide_reblogs": "إخفاء المشاركات من {0}",
+    "hide_reblogs": "إخفاء إعادة المدونات من {0}",
     "mention_account": "أذكر {0}",
     "mute_account": "كتم {0}",
     "mute_conversation": "تجاهل هذا المنصب",
     "open_in_original_site": "فتح في الموقع الأصلي",
     "pin_on_profile": "تثبيت على حسابك الشخصي",
     "remove_personal_note": "إزالة الملاحظة الشخصية من {0}",
+    "report_account": "أبلغ عن {0}",
+    "share_account": "مشاركة {0}",
     "share_post": "شارك هذا المنشور",
     "show_favourited_and_boosted_by": "أظهر من فضل وشارك",
-    "show_reblogs": "عرض المشاركات من {0}",
+    "show_reblogs": "عرض إعادة المدونات من {0}",
     "show_untranslated": "عرض بدون ترجمة",
     "toggle_theme": {
       "dark": "التغيير إلى الوضع الداكن",
@@ -253,6 +266,7 @@
     "translate_post": "ترجم المنشور",
     "unblock_account": "رفع الحظر عن {0}",
     "unblock_domain": "رفع الحظر عن النطاق {0}",
+    "unfollow_account": "إلغاء متابعة {0}",
     "unmute_account": "إلغاء كتم الحساب {0}",
     "unmute_conversation": "إلغاء كتم المحادثة",
     "unpin_on_profile": "إلغاء التثبيت من الملف الشخصي"
@@ -294,6 +308,7 @@
     "followed_you_count": "لم يتبعك أحد|تبعك شخص واحد|تبعك شخصان|تبعك {0} أشخاص|تبعك {0} شخص| تبعك {0} شخص",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "اعاد نشر منشورك",
+    "reported": "تم الإبلاغ من {0} عن {1}",
     "request_to_follow": "طلب(ت) متابعتك",
     "signed_up": "تسجل",
     "update_status": "قام(ت) بتحديث حالته(ا)"
@@ -304,10 +319,26 @@
     "reply_to_account": "الرد على {0}",
     "replying": "الرد"
   },
+  "polls": {
+    "allow_multiple": "السماح بالاختيار المتعدد",
+    "cancel": "إلغاء",
+    "create": "إنشاء استطلاع",
+    "disallow_multiple": "عدم السماح بالاختيار المتعدد",
+    "expiration": "انتهاء صلاحية الاستطلاع",
+    "hide_votes": "إخفاء إجمالي الأصوات حتى النهاية",
+    "option_placeholder": "اختيار الاستطلاع {current}/{max}",
+    "remove_option": "إزالة الاختيار",
+    "settings": "خيارات الاستطلاع",
+    "show_votes": "اعرض دائمًا إجمالي الأصوات"
+  },
   "pwa": {
     "dismiss": "تجاهل",
     "install": "تحميل",
     "install_title": "تحميل Elk",
+    "screenshots": {
+      "dark": "لقطة شاشة لـ Elk وهو يعمل في الوضع المظلم",
+      "light": "لقطة شاشة لـ Elk وهو يعمل في الوضع الفاتح"
+    },
     "title": "يتوفر تحديث Elk جديد",
     "update": "تحديث",
     "update_available_short": "تحديث Elk",
@@ -333,6 +364,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "تعليقات اضافية",
+    "another_server": "المستخدم الذي تقوم بالإبلاغ عنه ينتمي إلى خادم آخر",
+    "anything_else": "هل هناك أي شيء آخر تعتقد أننا يجب أن نعرفه؟",
+    "block_desc": "لن ترى بعد الآن أي مشاركات من هذا المستخدم. لن يتمكنوا من رؤية منشوراتك أو متابعتك. سيكونون قادرين على معرفة أنهم محظورون.",
+    "dontlike": "أنا لا أحب ذلك",
+    "dontlike_desc": "إنه ليس شيئًا تريد رؤيته",
+    "forward": "نعم، قم بإعادة توجيه هذا التقرير إلى {0}",
+    "forward_question": "هل تريد إرسال نسخة مجهولة المصدر من هذا التقرير إلى هذا الخادم أيضًا؟",
+    "further_actions": {
+      "limit": {
+        "description": "فيما يلي خياراتك للتحكم في ما تراه:",
+        "title": "لا تريد أن ترى هذا؟"
+      },
+      "report": {
+        "description": "أثناء قيامنا بمراجعة هذا الأمر، إليك الإجراءات التي يمكنك اتخاذها:",
+        "title": "شكرًا على الإبلاغ، سننظر في هذا الأمر."
+      }
+    },
+    "limiting": "كتم {0}",
+    "mute_desc": "لن ترى بعد الآن أي مشاركات من هذا المستخدم. لا يزال بإمكانهم متابعتك ورؤية مشاركاتك. لن يعرفوا أنهم مكتومون.",
+    "other": "إنه شيء آخر",
+    "other_desc": "هذه القضية لا تتناسب مع الفئات الأخرى",
+    "reporting": "الإبلاغ عن {0}",
+    "select_many": "اختر كل ما ينطبق:",
+    "select_one": "اختر الخيار الذي يطابق:",
+    "select_posts": "هل هناك أي مشاركات تدعم هذا الإبلاغ؟",
+    "select_posts_other": "هل هناك أي مشاركات أخرى تدعم هذا الإبلاغ؟",
+    "spam": "أنها رسائل مزعجه",
+    "spam_desc": "الروابط الضارة أو التفاعلات الزائفة أو الردود المتكررة",
+    "submit": "إرسال الإبلاغ",
+    "unfollow_desc": "لن ترى بعد الآن مشاركات من هذا المستخدم في صفحتك الرئيسية. ربما لا يزال بإمكانك رؤية مشاركات منهم في مكان آخر.",
+    "violation": "ينتهك واحدًا أو أكثر من قواعد الخادم",
+    "whats_wrong_account": "أخبرنا ما هو الخطأ في هذا الحساب",
+    "whats_wrong_post": "أخبرنا ما هو الخطأ في هذا المنشور"
   },
   "search": {
     "search_desc": "ابحث عن الأشخاص والهاشتاج",
@@ -368,7 +435,8 @@
     "language": {
       "display_language": "اللغة المعروضة",
       "label": "اللغة",
-      "status": "حالة الترجمة: {0} / {1} ({2}٪)",
+      "post_language": "لغة النشر",
+      "status": "حالة الترجمة: {0}/{1} ({2}٪)",
       "translations": {
         "add": "إضافة",
         "choose_language": "اختر اللغة",
@@ -438,21 +506,28 @@
       "enable_data_saving_description": "حفظ البيانات عن طريق منع المرفقات من التحميل تلقائيا.",
       "enable_pinch_to_zoom": "تمكين القرص للتكبير",
       "github_cards": "بطاقات GitHub",
+      "github_cards_description": "عند نشر رابط GitHub، يتم عرض بطاقة HTML يمكن الوصول إليها باستخدام تعريف الرسم البياني الاجتماعي بدلاً من الصورة الاجتماعية.",
       "grayscale_mode": "مظهر رمادي",
       "hide_account_hover_card": "إخفاء بطاقة الحساب عند المرور فوقها",
       "hide_alt_indi_on_posts": "إخفاء مؤشر النص البديل على المشاركات",
       "hide_boost_count": "إخفاء عدد التعزيز",
       "hide_favorite_count": "إخفاء التعداد المفضل",
       "hide_follower_count": "إخفاء عدد المتابعين",
+      "hide_news": "إخفاء الأخبار",
       "hide_reply_count": "إخفاء عدد الردود",
       "hide_translation": "إخفاء الترجمة",
       "hide_username_emojis": "إخفاء الرموز التعبيرية في أسماء المستخدمين",
       "hide_username_emojis_description": "يخفي الرموز التعبيرية من أسماء المستخدمين في الجداول الزمنية. ستظل الرموز التعبيرية مرئية في ملفاتهم الشخصية.",
       "label": "التفضيلات",
       "title": "الميزات التجريبية",
+      "use_star_favorite_icon": "استخدم النجمة كأيقونة مفضلة",
       "user_picker": "منتقي الحسابات",
+      "user_picker_description": "عرض جميع الصور الرمزية للحسابات المسجلة في الجزء السفلي الأيسر حتى تتمكن من التبديل بينها بسرعة.",
       "virtual_scroll": "التمرير الافتراضي",
-      "wellbeing": "السلامة"
+      "virtual_scroll_description": "استخدم قائمة افتراضية في المخططات الزمنية، بحيث يمكن عرض عدد أكبر من العناصر بشكل فعال.",
+      "wellbeing": "السلامة",
+      "zen_mode": "الوضع الهادئ",
+      "zen_mode_description": "إخفاء الجوانب ما لم يكن مؤشر الماوس فوقها. قم أيضًا بإخفاء بعض العناصر من المخطط الزمني."
     },
     "profile": {
       "appearance": {
@@ -468,7 +543,8 @@
       },
       "featured_tags": {
         "description": "يمكن للأشخاص تصفح مشاركاتك العامة تحت علامات الهاشتاغ هذه",
-        "label": "الهاشتاغ البارزة"
+        "label": "الهاشتاغ البارزة",
+        "under_construction": "تحت التطوير"
       },
       "label": "الملف الشخصي"
     },
@@ -492,6 +568,7 @@
     "loading": "جاري التحميل ...",
     "publish_failed": "فشل النشر",
     "publishing": "قيد النشر",
+    "save_failed": "فشل عملية الحفظ",
     "upload_failed": "التحميل فشل",
     "uploading": "جاري التحميل ..."
   },
@@ -519,6 +596,7 @@
     "replying_to": "الرد على {0}",
     "show_full_thread": "إظهار المحادثة كاملاً",
     "someone": "شخص ما",
+    "spoiler_media_hidden": "الوسائط المرئية مخفية",
     "spoiler_show_less": "عرض أقل",
     "spoiler_show_more": "عرض المزيد",
     "thread": "المحادثة",
@@ -535,8 +613,20 @@
     "list": "قائمة",
     "media": "الصور/الفيديو",
     "news": "الأخبار",
+    "notifications_admin": {
+      "report": "الإبلاغ",
+      "sign_up": "التسجيل"
+    },
     "notifications_all": "كل شىء",
+    "notifications_favourite": "اضافة الى المفضلة",
+    "notifications_follow": "اتبع",
+    "notifications_follow_request": "طلب المتابعة",
     "notifications_mention": "موجهة إلي",
+    "notifications_more_tooltip": "تصفية الإخطارات حسب النوع",
+    "notifications_poll": "استطلاع",
+    "notifications_reblog": "إعادة المدونات",
+    "notifications_status": "حالة",
+    "notifications_update": "التحديثات",
     "posts": "المنشورات",
     "posts_with_replies": "المنشورات والردود"
   },

@@ -13,6 +13,7 @@
     "blocked_users": "Zablokowani użytkownicy",
     "blocking": "Zablokowany",
     "bot": "BOT",
+    "copy_account_name": "Skopiuj nazwę konta",
     "favourites": "Ulubione",
     "follow": "Obserwuj",
     "follow_back": "Przestań obserwować",
@@ -111,12 +112,12 @@
     "block_account": {
       "cancel": "Anuluj",
       "confirm": "Blokuj",
-      "title": "Czy na pewno chcesz zablokować {0}?"
+      "description": "Czy na pewno chcesz zablokować {0}?"
     },
     "block_domain": {
       "cancel": "Anuluj",
       "confirm": "Blokuj",
-      "title": "Czy na pewno chcesz zablokować {0}?"
+      "description": "Czy na pewno chcesz zablokować {0}?"
     },
     "common": {
       "cancel": "Nie",
@@ -125,27 +126,27 @@
     "delete_list": {
       "cancel": "Anuluj",
       "confirm": "Usuń",
-      "title": "Czy na pewno chcesz usunąć listę „{0}”?"
+      "description": "Czy na pewno chcesz usunąć listę „{0}”?"
     },
     "delete_posts": {
       "cancel": "Anuluj",
       "confirm": "Usuń",
-      "title": "Czy na pewno chcesz usunąć ten post?"
+      "description": "Czy na pewno chcesz usunąć ten post?"
     },
     "mute_account": {
       "cancel": "Anuluj",
       "confirm": "Wycisz",
-      "title": "Czy na pewno chcesz wyciszyć {0}?"
+      "description": "Czy na pewno chcesz wyciszyć {0}?"
     },
     "show_reblogs": {
       "cancel": "Anuluj",
       "confirm": "Pokaż",
-      "title": "Czy na pewno chcesz pokazać podbicia od {0}?"
+      "description": "Czy na pewno chcesz pokazać podbicia od {0}?"
     },
     "unfollow": {
       "cancel": "Anuluj",
       "confirm": "Przestań obserwować",
-      "title": "Czy na pewno chcesz przestać obserwować?"
+      "description": "Czy na pewno chcesz przestać obserwować?"
     }
   },
   "conversation": {
@@ -472,7 +473,8 @@
       },
       "featured_tags": {
         "description": "Ludzie mogą przeglądać Twoje publiczne wpisy pod tymi hasztagami.",
-        "label": "Polecane hasztagi"
+        "label": "Polecane hasztagi",
+        "under_construction": "W budowie"
       },
       "label": "Profil"
     },

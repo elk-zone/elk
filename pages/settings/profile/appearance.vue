@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
 import { useForm } from 'slimeform'
-import { parse } from 'ultrahtml'
 
 definePageMeta({
   middleware: 'auth',
@@ -31,9 +30,7 @@ const { form, reset, submitter, isDirty, isError } = useForm({
     const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
       const field = { ...account?.fields?.[i] || { name: '', value: '' } }
 
-      const linkElement = (parse(field.value)?.children?.[0])
-      if (linkElement && linkElement?.attributes?.href)
-        field.value = linkElement.attributes.href
+      field.value = convertMetadata(field.value)
 
       return field
     })
@@ -63,7 +60,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
     return
 
-  const res = await client.v1.accounts.updateCredentials(dirtyFields.value as mastodon.v1.UpdateCredentialsParams)
+  const res = await client.v1.accounts.updateCredentials(dirtyFields.value as mastodon.rest.v1.UpdateCredentialsParams)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))
 

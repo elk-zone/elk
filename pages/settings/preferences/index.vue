@@ -35,6 +35,12 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.enable_autoplay') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'optimizeForLowPerformanceDevice')"
+      @click="togglePreferences('optimizeForLowPerformanceDevice')"
+    >
+      {{ $t('settings.preferences.optimize_for_low_performance_device') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enableDataSaving')"
       @click="togglePreferences('enableDataSaving')"
     >
@@ -117,6 +123,16 @@ const userSettings = useUserSettings()
       <div i-ri-flask-line />
       {{ $t('settings.preferences.title') }}
     </h2>
+    <!-- Embedded Media -->
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'experimentalEmbeddedMedia')"
+      @click="togglePreferences('experimentalEmbeddedMedia')"
+    >
+      {{ $t('settings.preferences.embedded_media') }}
+      <template #description>
+        {{ $t('settings.preferences.embedded_media_description') }}
+      </template>
+    </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'experimentalVirtualScroller')"
       @click="togglePreferences('experimentalVirtualScroller')"

@@ -13,6 +13,7 @@
     "blocked_users": "Comptes bloqués",
     "blocking": "Bloqué·e",
     "bot": "Automatisé",
+    "copy_account_name": "Copier le nom du compte",
     "favourites": "Aimés",
     "follow": "Suivre",
     "follow_back": "Suivre en retour",
@@ -114,12 +115,12 @@
     "block_account": {
       "cancel": "Annuler",
       "confirm": "Bloquer",
-      "title": "Voulez-vous vraiment bloquer {0} ?"
+      "description": "Voulez-vous vraiment bloquer {0} ?"
     },
     "block_domain": {
       "cancel": "Annuler",
       "confirm": "Bloquer",
-      "title": "Voulez-vous vraiment bloquer {0} ?"
+      "description": "Voulez-vous vraiment bloquer {0} ?"
     },
     "common": {
       "cancel": "Non",
@@ -128,27 +129,27 @@
     "delete_list": {
       "cancel": "Annuler",
       "confirm": "Supprimer",
-      "title": "Voulez-vous vraiment supprimer la liste \"{0}\" ?"
+      "description": "Voulez-vous vraiment supprimer la liste \"{0}\" ?"
     },
     "delete_posts": {
       "cancel": "Annuler",
       "confirm": "Supprimer",
-      "title": "Voulez-vous vraiment supprimer ce message ?"
+      "description": "Voulez-vous vraiment supprimer ce message ?"
     },
     "mute_account": {
       "cancel": "Annuler",
       "confirm": "Mettre en sourdine",
-      "title": "Voulez-vous vraiment mettre en sourdine {0} ?"
+      "description": "Voulez-vous vraiment mettre en sourdine {0} ?"
     },
     "show_reblogs": {
       "cancel": "Annuler",
       "confirm": "Afficher",
-      "title": "Voulez-vous vraiment afficher les partages de {0} ?"
+      "description": "Voulez-vous vraiment afficher les partages de {0} ?"
     },
     "unfollow": {
       "cancel": "Annuler",
       "confirm": "Se désabonner",
-      "title": "Voulez-vous vraiment vous désabonner ?"
+      "description": "Voulez-vous vraiment vous désabonner ?"
     }
   },
   "conversation": {
@@ -537,7 +538,8 @@
       },
       "featured_tags": {
         "description": "Les gens peuvent parcourir vos messages publics sous ces hashtags.",
-        "label": "Hashtags en vedette"
+        "label": "Hashtags en vedette",
+        "under_construction": "En construction"
       },
       "label": "Profil"
     },

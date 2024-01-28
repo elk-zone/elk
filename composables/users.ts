@@ -126,7 +126,9 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
 
   // GoToSocial only API
   const url = `https://${user.server}`
-  fetch(`${url}/nodeinfo/2.0`).then(r => r.json()).then((info) => {
+  fetch(`${url}/nodeinfo/2.0`, {
+    mode: 'no-cors',
+  }).then(r => r.json()).then((info) => {
     nodes.value[user.server] = info
   }).catch(() => undefined)
 

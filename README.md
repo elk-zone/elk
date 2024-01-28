@@ -1,41 +1,34 @@
 <p align="center">
-  <a href="https://elk.zone" target="_blank" rel="noopener noreferrer">
-    <img width="160" height="160" src="./public/logo.svg" alt="Elk logo">
+  <a href="https://elk.bumscode.com" target="_blank" rel="noopener noreferrer">
+    <img height="160" src="./public/crab-original.png" alt="crab logo">
   </a>
 </p>
 
-<h1 align="center"/>Elk <sup><em>alpha</em></sup></h1>
+<h1 align="center"/>crab <sup><em>alpha</em></sup></h1>
 
-<p align="center">
-A nimble Mastodon web client
-</p>
+A nimble Mastodon web client, based on [elk](https://github.com/elk-zone/elk) and customized for [bumscode.com](https://bumscode.com).
+
 
 <br/>
-<p align="center">
-  <a href="https://chat.elk.zone"><img src="https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord" alt="discord chat"></a>
-  <a href="https://pr.new/elk-zone/elk"><img src="https://developer.stackblitz.com/img/start_pr_dark_small.svg" alt="Start new PR in StackBlitz Codeflow"></a>
-  <a href="https://volta.net/elk-zone/elk?utm_source=elk_readme"><img src="https://user-images.githubusercontent.com/904724/209143798-32345f6c-3cf8-4e06-9659-f4ace4a6acde.svg" alt="Open board on Volta"></a>
-</p>
-<br/>
+
 
 <p align="center">
-  <a href="https://elk.zone/" target="_blank" rel="noopener noreferrer" >
+  <a href="https://elk.bumscode.com/" target="_blank" rel="noopener noreferrer" >
     <img src="./public/elk-og.png" alt="Elk screenshots" width="600" height="auto">
   </a>
 </p>
 
-## ⚠️ Elk is in Alpha
+## ⚠️ Crab and its parent Elk are in Alpha
 
-It is already quite usable, but it isn't ready for wide adoption yet. We recommend you use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
+If you want to contribute to the parent project, check out [its repo](https://github.com/elk-zone/elk).
 
 ## Deployment
 
 ### Official Deployment
 
-The Elk team maintains a deployment at:
+The crab team maintains a deployment at:
 
-- 🦌 Production: [elk.zone](https://elk.zone)
-- 🐙 Canary: [main.elk.zone](https://main.elk.zone) (deploys on every commit to `main` branch)
+- 🦀 Production: [crab.bumscode.com](https://crab.bumscode.com)
 
 ### Self-Host Docker Deployment
 
@@ -71,24 +64,14 @@ These are known deployments using Elk as an alternative Web client for Mastodon 
 
 > **Note**: Community deployments are **NOT** maintained by the Elk team. It may not be synced with Elk's source code. Please do your own research about the host servers before using them.
 
+
 ## 💖 Sponsors
 
-We are grateful for the generous sponsorship and help of:
-
-<a href="https://nuxtlabs.com/" target="_blank" rel="noopener noreferrer" >
-  <img src="./images/nuxtlabs.svg" alt="NuxtLabs" height="85">
-</a>
-<br><br>
-<a href="https://stackblitz.com/" target="_blank" rel="noopener noreferrer" >
-  <img src="./images/stackblitz.svg" alt="StackBlitz" height="85">
-</a>
-<br><br>
-
-And all the companies and individuals sponsoring Elk Team and the members. If you're enjoying the app, consider sponsoring us:
+If you're enjoying the app, consider sponsoring the Elk team:
 
 - [Elk Team's GitHub Sponsors](https://github.com/sponsors/elk-zone)
 
-Or you can sponsor our core team members individually:
+Or you can sponsor their core team members individually:
 
 - [Anthony Fu](https://github.com/sponsors/antfu)
 - [Daniel Roe](https://github.com/sponsors/danielroe)
@@ -97,19 +80,11 @@ Or you can sponsor our core team members individually:
 
 We would also appreciate sponsoring other contributors to the Elk project. If someone helps you solve an issue or implement a feature you wanted, supporting them would help make this project and OS more sustainable.
 
-## 📍 Roadmap
 
-[Open board on Volta](https://volta.net/elk-zone/elk)
+## 🚀 Contributing
 
-## 🧑‍💻 Contributing
-
-We're really excited that you're interested in contributing to Elk! Before submitting your contribution, please read through the following guide.
-
-### Online
-
-You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 
-
-[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
+Feel free to open PRs on this repo if you want to contribute to crab!
+If you want to contribute to Elk, check out their [Contributing Guide](./CONTRIBUTING.md).
 
 ### Local Setup
 
@@ -156,11 +131,10 @@ You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more
 - [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update, Web Push Notifications and Web Share Target API
 
 ## 👨‍💻 Contributors
-
-<a href="https://github.com/elk-zone/elk/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=elk-zone/elk" />   
-</a>    
+<a href="https://github.com/maybeanerd/crab/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=maybeanerd/crab" />   
+</a>
 
 ## 📄 License
 
-[MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors
+[MIT](./LICENSE) &copy; 2022-PRESENT crab & Elk contributors

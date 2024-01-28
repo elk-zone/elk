@@ -1,6 +1,6 @@
 <template>
   <div class="logo">
-    <img alt="Elk" src="/logo.svg">
+    <img alt="Elk" src="/pwa-192x192.png">
     Elk
   </div>
 </template>

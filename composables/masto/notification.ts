@@ -1,11 +1,11 @@
-import type { WsEvents } from 'masto'
+import type { mastodon } from 'masto'
 
-const notifications = reactive<Record<string, undefined | [Promise<WsEvents>, string[]]>>({})
+const notifications = reactive<Record<string, undefined | [Promise<mastodon.streaming.Subscription>, string[]]>>({})
 
 export function useNotifications() {
   const id = currentUser.value?.account.id
 
-  const { client, canStreaming } = $(useMasto())
+  const { client, streamingClient } = $(useMasto())
 
   async function clearNotifications() {
     if (!id || !notifications[id])
@@ -19,21 +19,27 @@ export function useNotifications() {
     }
   }
 
+  async function processNotifications(stream: mastodon.streaming.Subscription, id: string) {
+    for await (const entry of stream) {
+      if (entry.event === 'notification' && notifications[id])
+        notifications[id]![1].unshift(entry.payload.id)
+    }
+  }
+
   async function connect(): Promise<void> {
-    if (!isHydrated.value || !id || notifications[id] || !currentUser.value?.token)
+    if (!isHydrated.value || !id || notifications[id] !== undefined || !currentUser.value?.token)
       return
 
     let resolveStream
-    const stream = new Promise<WsEvents>(resolve => resolveStream = resolve)
-    notifications[id] = [stream, []]
+    const streamPromise = new Promise<mastodon.streaming.Subscription>(resolve => resolveStream = resolve)
+    notifications[id] = [streamPromise, []]
 
-    await until($$(canStreaming)).toBe(true)
+    await until($$(streamingClient)).toBe(true)
 
-    client.v1.stream.streamUser().then(resolveStream)
-    stream.then(s => s.on('notification', (n) => {
-      if (notifications[id])
-        notifications[id]![1].unshift(n.id)
-    }))
+    const stream = streamingClient!.user.subscribe()
+    resolveStream!(stream)
+
+    processNotifications(stream, id)
 
     const position = await client.v1.markers.fetch({ timeline: ['notifications'] })
     const paginator = client.v1.notifications.list({ limit: 30 })
@@ -55,7 +61,7 @@ export function useNotifications() {
   function disconnect(): void {
     if (!id || !notifications[id])
       return
-    notifications[id]![0].then(stream => stream.disconnect())
+    notifications[id]![0].then(stream => stream.unsubscribe())
     notifications[id] = undefined
   }
 
@@ -67,7 +73,6 @@ export function useNotifications() {
 
   return {
     notifications: computed(() => id ? notifications[id]?.[1].length ?? 0 : 0),
-    disconnect,
     clearNotifications,
   }
 }

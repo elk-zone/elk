@@ -27,14 +27,14 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       '@iconify/json':
-        specifier: ^2.2.142
-        version: 2.2.142
+        specifier: ^2.2.170
+        version: 2.2.170
       '@iconify/utils':
         specifier: ^2.1.7
         version: 2.1.7
       '@nuxt/devtools':
         specifier: ^1.0.0-beta.1
-        version: 1.0.4(idb-keyval@6.2.1)(nuxt@3.8.2)(rollup@2.79.1)(vite@4.5.0)
+        version: 1.0.4(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(nuxt@3.8.2)(rollup@2.79.1)(vite@4.5.0)
       '@nuxt/test-utils':
         specifier: ^3.9.0-alpha.1
         version: 3.9.0-alpha.1(@vue/test-utils@2.4.3)(h3@1.9.0)(happy-dom@10.5.2)(rollup@2.79.1)(vite@4.5.0)(vitest@1.1.0)(vue-router@4.2.5)(vue@3.3.9)
@@ -92,6 +92,12 @@ importers:
       '@unocss/nuxt':
         specifier: ^0.53.4
         version: 0.53.4(postcss@8.4.32)(rollup@2.79.1)(vite@4.5.0)(webpack@5.89.0)
+      '@upstash/redis':
+        specifier: ^1.27.1
+        version: 1.27.1
+      '@vercel/kv':
+        specifier: ^1.0.1
+        version: 1.0.1
       '@vue-macros/nuxt':
         specifier: ^1.6.0
         version: 1.6.0(@vue-macros/reactivity-transform@0.3.23)(@vueuse/core@10.2.1)(nuxt@3.8.2)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)(vue@3.3.9)(webpack@5.89.0)
@@ -162,8 +168,8 @@ importers:
         specifier: ^10.0.0
         version: 10.0.1
       masto:
-        specifier: ^5.11.3
-        version: 5.11.3
+        specifier: ^6.5.2
+        version: 6.5.2
       node-emoji:
         specifier: ^2.1.3
         version: 2.1.3
@@ -180,8 +186,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(postcss@8.4.32)
       prosemirror-highlight:
-        specifier: ^0.3.3
-        version: 0.3.3(prosemirror-model@1.19.2)(prosemirror-state@1.4.3)(prosemirror-view@1.31.5)(shikiji@0.9.9)
+        specifier: ^0.4.0
+        version: 0.4.0(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.32.7)(shikiji@0.9.9)
       rollup-plugin-node-polyfills:
         specifier: ^0.2.1
         version: 0.2.1
@@ -205,10 +211,10 @@ importers:
         version: 5.0.1
       tauri-plugin-log-api:
         specifier: github:tauri-apps/tauri-plugin-log
-        version: github.com/tauri-apps/tauri-plugin-log/91dd3fe9dcaa69bae62706e75702a0ce18ce9885
+        version: github.com/tauri-apps/tauri-plugin-log/19f5dcc0425e9127d2c591780e5047b83e77a7c2
       tauri-plugin-store-api:
         specifier: github:tauri-apps/tauri-plugin-store
-        version: github.com/tauri-apps/tauri-plugin-store/3367248b2661abcb73d2a89f30df780c387fb57d
+        version: github.com/tauri-apps/tauri-plugin-store/7d2632996f290b0f18cc5f8a2b2791046400690e
       theme-vitesse:
         specifier: ^0.7.2
         version: 0.7.2
@@ -242,6 +248,9 @@ importers:
       workbox-window:
         specifier: ^7.0.0
         version: 7.0.0
+      ws:
+        specifier: ^8.15.1
+        version: 8.15.1
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.41.3
@@ -273,6 +282,9 @@ importers:
       '@types/wicg-file-system-access':
         specifier: ^2020.9.6
         version: 2020.9.6
+      '@types/ws':
+        specifier: ^8.5.10
+        version: 8.5.10
       '@unlazy/nuxt':
         specifier: ^0.9.3
         version: 0.9.3(rollup@2.79.1)
@@ -299,7 +311,7 @@ importers:
         version: 14.0.1
       nuxt:
         specifier: 3.8.2
-        version: 3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
+        version: 3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -333,10 +345,10 @@ importers:
     devDependencies:
       '@nuxt-themes/docus':
         specifier: ^1.14.6
-        version: 1.14.6(idb-keyval@6.2.1)(nuxt@3.8.2)(postcss@8.4.32)(rollup@3.29.4)(vue@3.3.9)
+        version: 1.14.6(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(nuxt@3.8.2)(postcss@8.4.32)(rollup@3.29.4)(vue@3.3.9)
       nuxt:
         specifier: ^3.7.0
-        version: 3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@3.29.4)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
+        version: 3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@3.29.4)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
 
 packages:
 
@@ -2382,8 +2394,8 @@ packages:
     resolution: {integrity: sha512-C4W6ov4BkDXiVU3GzyqyVo8SBbU21KivXnZERgAnrYZEKjuiI3JwPDnu9oVJPsUkNI/Q4SM8iVnXjGW6kxt9DQ==}
     dev: false
 
-  /@iconify/json@2.2.142:
-    resolution: {integrity: sha512-EfQv1GMGxOySdwaGR3+Diqudkwk4W299cNtcQhg7QAlH9x6FW9851raiYvdOsMZp0ya+Ye+evTTqxyZ4vEh5cw==}
+  /@iconify/json@2.2.170:
+    resolution: {integrity: sha512-KJQ+LPj5KOpBrTknm0vpb2A6+T12ZyIFInubW3kT/58eZRKtiDv5D87QWVXczL5/uyDr2rkRu8rAfOrGr/UFhA==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.1
@@ -2693,18 +2705,6 @@ packages:
       - encoding
       - supports-color
 
-  /@mastojs/ponyfills@1.0.4:
-    resolution: {integrity: sha512-1NaIGmcU7OmyNzx0fk+cYeGTkdXlOJOSdetaC4pStVWsrhht2cdlYSAfe5NDW3FcUmcEm2vVceB9lcClN1RCxw==}
-    dependencies:
-      '@types/node': 18.16.19
-      '@types/node-fetch': 2.6.4
-      abort-controller: 3.0.0
-      form-data: 4.0.0
-      node-fetch: 2.6.12
-    transitivePeerDependencies:
-      - encoding
-    dev: false
-
   /@netlify/functions@2.4.0:
     resolution: {integrity: sha512-dIqhdj5u4Lu/8qbYwtYpn8NfvIyPHbSTV2lAP4ocL+iwC9As06AXT0wa/xOpO2vRWJa0IMxdZaqCPnkyHlHiyg==}
     engines: {node: '>=14.0.0'}
@@ -2804,13 +2804,13 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@nuxt-themes/docus@1.14.6(idb-keyval@6.2.1)(nuxt@3.8.2)(postcss@8.4.32)(rollup@3.29.4)(vue@3.3.9):
+  /@nuxt-themes/docus@1.14.6(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(nuxt@3.8.2)(postcss@8.4.32)(rollup@3.29.4)(vue@3.3.9):
     resolution: {integrity: sha512-tkSG7j0jhVo53wEpK9V48hIvaK0XEzVU64hXhFfnIMv6LJu99cKOC//boebPbN9qLbJmkBdo4IAIJ0tN5MD0qw==}
     dependencies:
       '@nuxt-themes/elements': 0.9.4(postcss@8.4.32)(rollup@3.29.4)(vue@3.3.9)
       '@nuxt-themes/tokens': 1.9.1(postcss@8.4.32)(rollup@3.29.4)(vue@3.3.9)
       '@nuxt-themes/typography': 0.11.0(postcss@8.4.32)(rollup@3.29.4)(vue@3.3.9)
-      '@nuxt/content': 2.7.2(idb-keyval@6.2.1)(rollup@3.29.4)
+      '@nuxt/content': 2.7.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(rollup@3.29.4)
       '@nuxthq/studio': 0.13.4(rollup@3.29.4)
       '@vueuse/integrations': 10.2.1(focus-trap@7.5.2)(fuse.js@6.6.2)(idb-keyval@6.2.1)(vue@3.3.9)
       '@vueuse/nuxt': 10.2.1(nuxt@3.8.2)(rollup@3.29.4)(vue@3.3.9)
@@ -2893,7 +2893,7 @@ packages:
       - vue
     dev: true
 
-  /@nuxt/content@2.7.2(idb-keyval@6.2.1)(rollup@3.29.4):
+  /@nuxt/content@2.7.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(rollup@3.29.4):
     resolution: {integrity: sha512-fP0nrnyjtFbluKltKUtC7jSMFc1xAH+bwweZyLwXb3gkIap2EHlVL+e9ptGt39+4HIkRkLgME7TNr/fUO+CHug==}
     dependencies:
       '@nuxt/kit': 3.8.2(rollup@3.29.4)
@@ -2930,7 +2930,7 @@ packages:
       unist-util-position: 5.0.0
       unist-util-stringify-position: 4.0.0
       unist-util-visit: 5.0.0
-      unstorage: 1.9.0(idb-keyval@6.2.1)
+      unstorage: 1.9.0(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)
       ws: 8.14.2
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -2962,7 +2962,7 @@ packages:
       '@nuxt/kit': 3.8.2(rollup@2.79.1)
       '@nuxt/schema': 3.8.2(rollup@2.79.1)
       execa: 7.2.0
-      nuxt: 3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
+      nuxt: 3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
       vite: 4.5.0
     transitivePeerDependencies:
       - rollup
@@ -2977,7 +2977,7 @@ packages:
       '@nuxt/kit': 3.8.2(rollup@3.29.4)
       '@nuxt/schema': 3.8.2(rollup@3.29.4)
       execa: 7.2.0
-      nuxt: 3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@3.29.4)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
+      nuxt: 3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@3.29.4)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
       vite: 4.5.0
     transitivePeerDependencies:
       - rollup
@@ -2999,7 +2999,7 @@ packages:
       rc9: 2.1.1
       semver: 7.5.4
 
-  /@nuxt/devtools@1.0.4(idb-keyval@6.2.1)(nuxt@3.8.2)(rollup@2.79.1)(vite@4.5.0):
+  /@nuxt/devtools@1.0.4(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(nuxt@3.8.2)(rollup@2.79.1)(vite@4.5.0):
     resolution: {integrity: sha512-G1Oo9+TaOYzePIXpNX+Zzalw/rJyIZKZpZmXfzolPlOJSA1i0JKzZX6Z7iQHdqPwNJ8t+HnVaF4PghPIpo1kwg==}
     hasBin: true
     peerDependencies:
@@ -3025,8 +3025,8 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.2
-      nitropack: 2.8.1(idb-keyval@6.2.1)
-      nuxt: 3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
+      nitropack: 2.8.1(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)
+      nuxt: 3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
       nypm: 0.3.3
       ofetch: 1.3.3
       ohash: 1.1.3
@@ -3065,7 +3065,7 @@ packages:
       - utf-8-validate
       - xml2js
 
-  /@nuxt/devtools@1.0.4(idb-keyval@6.2.1)(nuxt@3.8.2)(rollup@3.29.4)(vite@4.5.0):
+  /@nuxt/devtools@1.0.4(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(nuxt@3.8.2)(rollup@3.29.4)(vite@4.5.0):
     resolution: {integrity: sha512-G1Oo9+TaOYzePIXpNX+Zzalw/rJyIZKZpZmXfzolPlOJSA1i0JKzZX6Z7iQHdqPwNJ8t+HnVaF4PghPIpo1kwg==}
     hasBin: true
     peerDependencies:
@@ -3091,8 +3091,8 @@ packages:
       launch-editor: 2.6.1
       local-pkg: 0.5.0
       magicast: 0.3.2
-      nitropack: 2.8.1(idb-keyval@6.2.1)
-      nuxt: 3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@3.29.4)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
+      nitropack: 2.8.1(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)
+      nuxt: 3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@3.29.4)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
       nypm: 0.3.3
       ofetch: 1.3.3
       ohash: 1.1.3
@@ -4166,8 +4166,8 @@ packages:
       string.prototype.matchall: 4.0.8
     dev: false
 
-  /@tauri-apps/api@1.5.1:
-    resolution: {integrity: sha512-6unsZDOdlXTmauU3NhWhn+Cx0rODV+rvNvTdvolE5Kls5ybA6cqndQENDt1+FS0tF7ozCP66jwWoH6a5h90BrA==}
+  /@tauri-apps/api@1.5.3:
+    resolution: {integrity: sha512-zxnDjHHKjOsrIzZm6nO5Xapb/BxqUq1tc7cGkFXsFkGTsSWgCPH1D8mm0XS9weJY2OaR73I3k3S+b7eSzJDfqA==}
     engines: {node: '>= 14.6.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
     dev: false
 
@@ -4403,14 +4403,14 @@ packages:
       prosemirror-keymap: 1.2.2
       prosemirror-markdown: 1.11.1
       prosemirror-menu: 1.2.2
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
       prosemirror-schema-basic: 1.2.2
       prosemirror-schema-list: 1.3.0
       prosemirror-state: 1.4.3
       prosemirror-tables: 1.3.4
-      prosemirror-trailing-node: 2.0.4(prosemirror-model@1.19.2)(prosemirror-state@1.4.3)(prosemirror-view@1.31.5)
+      prosemirror-trailing-node: 2.0.4(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.32.7)
       prosemirror-transform: 1.7.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.32.7
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -4568,17 +4568,6 @@ packages:
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: true
 
-  /@types/node-fetch@2.6.4:
-    resolution: {integrity: sha512-1ZX9fcN4Rvkvgv4E6PAY5WXUFWFcRWxZa3EW83UjycOB9ljJCedb2CupIP4RZMEwF/M3eTcCihbBRgwtGbg5Rg==}
-    dependencies:
-      '@types/node': 20.8.6
-      form-data: 3.0.1
-    dev: false
-
-  /@types/node@18.16.19:
-    resolution: {integrity: sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==}
-    dev: false
-
   /@types/node@20.8.6:
     resolution: {integrity: sha512-eWO4K2Ji70QzKUqRy6oyJWUeB7+g2cRagT3T/nxYibYcT4y2BDL8lqolRXjTHmkZCdJfIPaY73KbJAZmcryxTQ==}
     dependencies:
@@ -4642,6 +4631,12 @@ packages:
 
   /@types/wicg-file-system-access@2020.9.6:
     resolution: {integrity: sha512-6hogE75Hl2Ov/jgp8ZhDaGmIF/q3J07GtXf8nCJCwKTHq7971po5+DId7grft09zG7plBwpF6ZU0yx9Du4/e1A==}
+    dev: true
+
+  /@types/ws@8.5.10:
+    resolution: {integrity: sha512-vmQSUcfalpIq0R9q7uTo2lXs6eGIpt9wtnLdMv9LVpIjCA/+ufZRozlVoVelIYixx1ugCBKDhn89vnsEGOCx9A==}
+    dependencies:
+      '@types/node': 20.8.6
     dev: true
 
   /@typescript-eslint/eslint-plugin@6.7.0(@typescript-eslint/parser@6.7.0)(eslint@8.49.0)(typescript@5.1.6):
@@ -5122,6 +5117,22 @@ packages:
     transitivePeerDependencies:
       - rollup
     dev: false
+
+  /@upstash/redis@1.25.1:
+    resolution: {integrity: sha512-ACj0GhJ4qrQyBshwFgPod6XufVEfKX2wcaihsEvSdLYnY+m+pa13kGt1RXm/yTHKf4TQi/Dy2A8z/y6WUEOmlg==}
+    dependencies:
+      crypto-js: 4.2.0
+
+  /@upstash/redis@1.27.1:
+    resolution: {integrity: sha512-K9UgTBypJ4Dx65s2u5auoyf/5YoCQjaN91QtxlkNg+3g0rqXXy4ELtzACstk1v+bTa547Mm3rzTjotDX/s9+Zg==}
+    dependencies:
+      crypto-js: 4.2.0
+
+  /@vercel/kv@1.0.1:
+    resolution: {integrity: sha512-uTKddsqVYS2GRAM/QMNNXCTuw9N742mLoGRXoNDcyECaxEXvIHG0dEY+ZnYISV4Vz534VwJO+64fd9XeSggSKw==}
+    engines: {node: '>=14.6'}
+    dependencies:
+      '@upstash/redis': 1.25.1
 
   /@vercel/nft@0.24.3:
     resolution: {integrity: sha512-IyBdIxmFAeGZnEfMgt4QrGK7XX4lWazlQj34HEi9dw04/WeDBJ7r1yaOIO5tTf9pbfvwUFodj9b0H+NDGGoOMg==}
@@ -5618,7 +5629,7 @@ packages:
       '@vue-macros/common': 1.7.2(rollup@2.79.1)(vue@3.3.9)
       '@vue-macros/short-vmodel': 1.2.15(rollup@2.79.1)(vue@3.3.9)
       '@vue-macros/volar': 0.13.3(@vue-macros/reactivity-transform@0.3.23)(rollup@2.79.1)(typescript@5.1.6)(vue-tsc@1.8.8)(vue@3.3.9)
-      nuxt: 3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
+      nuxt: 3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
       unplugin-vue-macros: 2.4.4(@vueuse/core@10.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue@3.3.9)(webpack@5.89.0)
     transitivePeerDependencies:
       - '@vue-macros/reactivity-transform'
@@ -6037,7 +6048,7 @@ packages:
       '@vueuse/core': 10.2.1(vue@3.3.9)
       '@vueuse/metadata': 10.2.1
       local-pkg: 0.4.3
-      nuxt: 3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
+      nuxt: 3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
       vue-demi: 0.14.5(vue@3.3.9)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -6055,7 +6066,7 @@ packages:
       '@vueuse/core': 10.2.1(vue@3.3.9)
       '@vueuse/metadata': 10.2.1
       local-pkg: 0.4.3
-      nuxt: 3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@3.29.4)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
+      nuxt: 3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@3.29.4)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8)
       vue-demi: 0.14.5(vue@3.3.9)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -6197,13 +6208,6 @@ packages:
 
   /abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
-
-  /abort-controller@3.0.0:
-    resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
-    engines: {node: '>=6.5'}
-    dependencies:
-      event-target-shim: 5.0.1
-    dev: false
 
   /acorn-import-assertions@1.9.0(acorn@8.11.2):
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
@@ -7184,6 +7188,9 @@ packages:
   /crypt@0.0.2:
     resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
     dev: false
+
+  /crypto-js@4.2.0:
+    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
 
   /crypto-random-string@2.0.0:
     resolution: {integrity: sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==}
@@ -8251,13 +8258,13 @@ packages:
     resolution: {integrity: sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==}
     engines: {node: '>= 0.6'}
 
-  /event-target-shim@5.0.1:
-    resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
-    engines: {node: '>=6'}
-    dev: false
-
   /eventemitter3@5.0.1:
     resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
+    dev: true
+
+  /events-to-async@2.0.1:
+    resolution: {integrity: sha512-RtnLYrMbXp4JkZIoZu+3VTqV21bNVBlJBZ4NmtwvMNqSE3qouhxv2gvLE4JJDaQc54ioPkrX74V6x+hp/hqjkQ==}
+    dev: false
 
   /events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
@@ -8450,15 +8457,6 @@ packages:
     dependencies:
       cross-spawn: 7.0.3
       signal-exit: 4.1.0
-
-  /form-data@3.0.1:
-    resolution: {integrity: sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg==}
-    engines: {node: '>= 6'}
-    dependencies:
-      asynckit: 0.4.0
-      combined-stream: 1.0.8
-      mime-types: 2.1.35
-    dev: false
 
   /form-data@4.0.0:
     resolution: {integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==}
@@ -9486,12 +9484,12 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /isomorphic-ws@5.0.0(ws@8.14.2):
+  /isomorphic-ws@5.0.0(ws@8.15.1):
     resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
     peerDependencies:
       ws: '*'
     dependencies:
-      ws: 8.14.2
+      ws: 8.15.1
     dev: false
 
   /jackspeak@2.2.1:
@@ -9990,19 +9988,16 @@ packages:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
     dev: true
 
-  /masto@5.11.3:
-    resolution: {integrity: sha512-GtSnrqm5fHPaaU0iwag4LCmvpp82rDng6yOZinmOJHHlUfo6Gnq5QY6x3lJCxCnsPIXpTu1yaX42bWrSQyoQPA==}
+  /masto@6.5.2:
+    resolution: {integrity: sha512-JfnG7MSQmhszWnLsvdBuxXc2tcVUyCvlTxnSH/5S+In4dU1tvc1wGhFR87kO+YW8gfDsDw9CHh+AD/z+DbTTfQ==}
     dependencies:
-      '@mastojs/ponyfills': 1.0.4
       change-case: 4.1.2
-      eventemitter3: 5.0.1
-      isomorphic-ws: 5.0.0(ws@8.14.2)
-      qs: 6.11.2
-      semver: 7.5.4
-      ws: 8.14.2
+      events-to-async: 2.0.1
+      isomorphic-ws: 5.0.0(ws@8.15.1)
+      ts-custom-error: 3.3.1
+      ws: 8.15.1
     transitivePeerDependencies:
       - bufferutil
-      - encoding
       - utf-8-validate
     dev: false
 
@@ -10675,7 +10670,7 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: false
 
-  /nitropack@2.8.1(idb-keyval@6.2.1):
+  /nitropack@2.8.1(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1):
     resolution: {integrity: sha512-pODv2kEEzZSDQR+1UMXbGyNgMedUDq/qUomtiAnQKQvLy52VGlecXO1xDfH3i0kP1yKEcKTnWsx1TAF5gHM7xQ==}
     engines: {node: ^16.11.0 || >=17.0.0}
     hasBin: true
@@ -10748,7 +10743,7 @@ packages:
       unctx: 2.3.1
       unenv: 1.8.0
       unimport: 3.6.0(rollup@4.6.0)
-      unstorage: 1.9.0(idb-keyval@6.2.1)
+      unstorage: 1.9.0(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -11043,7 +11038,7 @@ packages:
     dev: false
     patched: true
 
-  /nuxt@3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8):
+  /nuxt@3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@2.79.1)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8):
     resolution: {integrity: sha512-HUAyifmqTs2zcQBGvcby3KNs2pBAk+l7ZbLjD1oCNqQQ+wBuZ1qgLC4Ebu++y4g3o3Y8WAWSvpafbKRLQZziPw==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -11057,7 +11052,7 @@ packages:
         optional: true
     dependencies:
       '@nuxt/devalue': 2.0.2
-      '@nuxt/devtools': 1.0.4(idb-keyval@6.2.1)(nuxt@3.8.2)(rollup@2.79.1)(vite@4.5.0)
+      '@nuxt/devtools': 1.0.4(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(nuxt@3.8.2)(rollup@2.79.1)(vite@4.5.0)
       '@nuxt/kit': 3.8.2(rollup@2.79.1)
       '@nuxt/schema': 3.8.2(rollup@2.79.1)
       '@nuxt/telemetry': 2.5.2(rollup@2.79.1)
@@ -11086,7 +11081,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.5
       mlly: 1.4.2
-      nitropack: 2.8.1(idb-keyval@6.2.1)
+      nitropack: 2.8.1(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)
       nuxi: 3.10.0
       nypm: 0.3.3
       ofetch: 1.3.3
@@ -11146,7 +11141,7 @@ packages:
       - vue-tsc
       - xml2js
 
-  /nuxt@3.8.2(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@3.29.4)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8):
+  /nuxt@3.8.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(eslint@8.49.0)(idb-keyval@6.2.1)(rollup@3.29.4)(typescript@5.1.6)(vite@4.5.0)(vue-tsc@1.8.8):
     resolution: {integrity: sha512-HUAyifmqTs2zcQBGvcby3KNs2pBAk+l7ZbLjD1oCNqQQ+wBuZ1qgLC4Ebu++y4g3o3Y8WAWSvpafbKRLQZziPw==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -11160,7 +11155,7 @@ packages:
         optional: true
     dependencies:
       '@nuxt/devalue': 2.0.2
-      '@nuxt/devtools': 1.0.4(idb-keyval@6.2.1)(nuxt@3.8.2)(rollup@3.29.4)(vite@4.5.0)
+      '@nuxt/devtools': 1.0.4(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(nuxt@3.8.2)(rollup@3.29.4)(vite@4.5.0)
       '@nuxt/kit': 3.8.2(rollup@3.29.4)
       '@nuxt/schema': 3.8.2(rollup@3.29.4)
       '@nuxt/telemetry': 2.5.2(rollup@3.29.4)
@@ -11189,7 +11184,7 @@ packages:
       knitwork: 1.0.0
       magic-string: 0.30.5
       mlly: 1.4.2
-      nitropack: 2.8.1(idb-keyval@6.2.1)
+      nitropack: 2.8.1(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)
       nuxi: 3.10.0
       nypm: 0.3.3
       ofetch: 1.3.3
@@ -12096,7 +12091,7 @@ packages:
   /prosemirror-commands@1.5.2:
     resolution: {integrity: sha512-hgLcPaakxH8tu6YvVAaILV2tXYsW3rAdDR8WNkeKGcgeMVQg3/TMhPdVoh7iAmfgVjZGtcOSjKiQaoeKjzd2mQ==}
     dependencies:
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.7.3
     dev: false
@@ -12106,20 +12101,20 @@ packages:
     dependencies:
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.7.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.32.7
     dev: false
 
   /prosemirror-gapcursor@1.3.2:
     resolution: {integrity: sha512-wtjswVBd2vaQRrnYZaBCbyDqr232Ed4p2QPtRIUK5FuqHYKGWkEwl08oQM4Tw7DOR0FsasARV5uJFvMZWxdNxQ==}
     dependencies:
       prosemirror-keymap: 1.2.2
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.32.7
     dev: false
 
-  /prosemirror-highlight@0.3.3(prosemirror-model@1.19.2)(prosemirror-state@1.4.3)(prosemirror-view@1.31.5)(shikiji@0.9.9):
-    resolution: {integrity: sha512-tOGyPvmRKZ49ubzKmFIwiwS7CNXlU9g/D4zZLaHGzXLVNVnBrmbDOajZ4eP0lylOAWPxZN+vrFZ9DwrtyikuoA==}
+  /prosemirror-highlight@0.4.0(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.32.7)(shikiji@0.9.9):
+    resolution: {integrity: sha512-RHGi5QjcWnWgn6bMkjbC2+ehv9Piv3D5UN/dNJG2r738NCQCFye0dkFa6c1oURsvUuwpFiQREqp1YYGpGbZOuA==}
     peerDependencies:
       '@types/hast': ^3.0.0
       highlight.js: ^11.9.0
@@ -12129,7 +12124,7 @@ packages:
       prosemirror-transform: ^1.8.0
       prosemirror-view: ^1.32.4
       refractor: ^4.8.1
-      shiki: ^0.14.6
+      shiki: ^0.14.0
       shikiji: ^0.8.0 || ^0.9.0
     peerDependenciesMeta:
       '@types/hast':
@@ -12153,9 +12148,9 @@ packages:
       shikiji:
         optional: true
     dependencies:
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.32.7
       shikiji: 0.9.9
     dev: false
 
@@ -12164,7 +12159,7 @@ packages:
     dependencies:
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.7.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.32.7
       rope-sequence: 1.3.4
     dev: false
 
@@ -12186,7 +12181,7 @@ packages:
     resolution: {integrity: sha512-CLOieKoaSSEusKyYcXIj8v2qHGLW+tnuffci+8678Sen48NEFQE7M3o0Nx0gj9v63iVDj+yLibj2gCe8eb3jIw==}
     dependencies:
       markdown-it: 13.0.1
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
     dev: false
 
   /prosemirror-menu@1.2.2:
@@ -12198,8 +12193,8 @@ packages:
       prosemirror-state: 1.4.3
     dev: false
 
-  /prosemirror-model@1.19.2:
-    resolution: {integrity: sha512-RXl0Waiss4YtJAUY3NzKH0xkJmsZupCIccqcIFoLTIKFlKNbIvFDRl27/kQy1FP8iUAxrjRRfIVvOebnnXJgqQ==}
+  /prosemirror-model@1.19.4:
+    resolution: {integrity: sha512-RPmVXxUfOhyFdayHawjuZCxiROsm9L4FCUA6pWI+l7n2yCBsWy9VpdE1hpDHUS8Vad661YLY9AzqfjLhAKQ4iQ==}
     dependencies:
       orderedmap: 2.1.1
     dev: false
@@ -12207,13 +12202,13 @@ packages:
   /prosemirror-schema-basic@1.2.2:
     resolution: {integrity: sha512-/dT4JFEGyO7QnNTe9UaKUhjDXbTNkiWTq/N4VpKaF79bBjSExVV2NXmJpcM7z/gD7mbqNjxbmWW5nf1iNSSGnw==}
     dependencies:
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
     dev: false
 
   /prosemirror-schema-list@1.3.0:
     resolution: {integrity: sha512-Hz/7gM4skaaYfRPNgr421CU4GSwotmEwBVvJh5ltGiffUJwm7C8GfN/Bc6DR1EKEp5pDKhODmdXXyi9uIsZl5A==}
     dependencies:
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.7.3
     dev: false
@@ -12221,22 +12216,22 @@ packages:
   /prosemirror-state@1.4.3:
     resolution: {integrity: sha512-goFKORVbvPuAQaXhpbemJFRKJ2aixr+AZMGiquiqKxaucC6hlpHNZHWgz5R7dS4roHiwq9vDctE//CZ++o0W1Q==}
     dependencies:
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
       prosemirror-transform: 1.7.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.32.7
     dev: false
 
   /prosemirror-tables@1.3.4:
     resolution: {integrity: sha512-z6uLSQ1BLC3rgbGwZmpfb+xkdvD7W/UOsURDfognZFYaTtc0gsk7u/t71Yijp2eLflVpffMk6X0u0+u+MMDvIw==}
     dependencies:
       prosemirror-keymap: 1.2.2
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.7.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.32.7
     dev: false
 
-  /prosemirror-trailing-node@2.0.4(prosemirror-model@1.19.2)(prosemirror-state@1.4.3)(prosemirror-view@1.31.5):
+  /prosemirror-trailing-node@2.0.4(prosemirror-model@1.19.4)(prosemirror-state@1.4.3)(prosemirror-view@1.32.7):
     resolution: {integrity: sha512-0Yl9w7IdHkaCdqR+NE3FOucePME4OmiGcybnF1iasarEILP5U8+4xTnl53yafULjmwcg1SrSG65Hg7Zk2H2v3g==}
     peerDependencies:
       prosemirror-model: ^1.19.0
@@ -12247,9 +12242,9 @@ packages:
       '@remirror/core-constants': 2.0.1
       '@remirror/core-helpers': 2.0.3
       escape-string-regexp: 4.0.0
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
-      prosemirror-view: 1.31.5
+      prosemirror-view: 1.32.7
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -12257,13 +12252,13 @@ packages:
   /prosemirror-transform@1.7.3:
     resolution: {integrity: sha512-qDapyx5lqYfxVeUWEw0xTGgeP2S8346QtE7DxkalsXlX89lpzkY6GZfulgfHyk1n4tf74sZ7CcXgcaCcGjsUtA==}
     dependencies:
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
     dev: false
 
-  /prosemirror-view@1.31.5:
-    resolution: {integrity: sha512-tobRCDeCp61elR1d97XE/JTL9FDIfswZpWeNs7GKJjAJvWyMGHWYFCq29850p6bbG2bckP+i9n1vT56RifosbA==}
+  /prosemirror-view@1.32.7:
+    resolution: {integrity: sha512-pvxiOoD4shW41X5bYDjRQk3DSG4fMqxh36yPMt7VYgU3dWRmqFzWJM/R6zeo1KtC8nyk717ZbQND3CC9VNeptw==}
     dependencies:
-      prosemirror-model: 1.19.2
+      prosemirror-model: 1.19.4
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.7.3
     dev: false
@@ -12284,13 +12279,6 @@ packages:
   /punycode@2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
-
-  /qs@6.11.2:
-    resolution: {integrity: sha512-tDNIz22aBzCDxLtVH++VnTfzxlfeK5CbqohpSqpJgj1Wg/cQbStNAz3NuqCs5vV+pjBsK4x4pN9HlVh7rcYRiA==}
-    engines: {node: '>=0.6'}
-    dependencies:
-      side-channel: 1.0.4
-    dev: false
 
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -13656,6 +13644,11 @@ packages:
       typescript: 5.1.6
     dev: true
 
+  /ts-custom-error@3.3.1:
+    resolution: {integrity: sha512-5OX1tzOjxWEgsr/YEUWSuPrQ00deKLh6D7OTWcvNHm12/7QPyRh8SYpyWvA4IZv8H/+GQWQEh/kwo95Q9OVW1A==}
+    engines: {node: '>=14.0.0'}
+    dev: false
+
   /tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
     dev: true
@@ -14248,7 +14241,7 @@ packages:
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.1
 
-  /unstorage@1.9.0(idb-keyval@6.2.1):
+  /unstorage@1.9.0(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1):
     resolution: {integrity: sha512-VpD8ZEYc/le8DZCrny3bnqKE4ZjioQxBRnWE+j5sGNvziPjeDlaS1NaFFHzl/kkXaO3r7UaF8MGQrs14+1B4pQ==}
     peerDependencies:
       '@azure/app-configuration': ^1.4.1
@@ -14286,6 +14279,8 @@ packages:
       idb-keyval:
         optional: true
     dependencies:
+      '@upstash/redis': 1.27.1
+      '@vercel/kv': 1.0.1
       anymatch: 3.1.3
       chokidar: 3.5.3
       destr: 2.0.2
@@ -15327,6 +15322,19 @@ packages:
       utf-8-validate:
         optional: true
 
+  /ws@8.15.1:
+    resolution: {integrity: sha512-W5OZiCjXEmk0yZ66ZN82beM5Sz7l7coYxpRkzS+p9PP+ToQry8szKh+61eNktr7EA9DOwvFGhfC605jDHbP6QQ==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: false
+
   /xml-name-validator@4.0.0:
     resolution: {integrity: sha512-ICP2e+jsHvAj2E2lIHxa5tjXRlKDJo4IdvPvCXbXQGdzSfmSpNVyIKMvoZHjDY9DP0zV17iI85o90vRFXNccRw==}
     engines: {node: '>=12'}
@@ -15426,18 +15434,18 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
 
-  github.com/tauri-apps/tauri-plugin-log/91dd3fe9dcaa69bae62706e75702a0ce18ce9885:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/91dd3fe9dcaa69bae62706e75702a0ce18ce9885}
+  github.com/tauri-apps/tauri-plugin-log/19f5dcc0425e9127d2c591780e5047b83e77a7c2:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/19f5dcc0425e9127d2c591780e5047b83e77a7c2}
     name: tauri-plugin-log-api
     version: 0.0.0
     dependencies:
-      '@tauri-apps/api': 1.5.1
+      '@tauri-apps/api': 1.5.3
     dev: false
 
-  github.com/tauri-apps/tauri-plugin-store/3367248b2661abcb73d2a89f30df780c387fb57d:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/3367248b2661abcb73d2a89f30df780c387fb57d}
+  github.com/tauri-apps/tauri-plugin-store/7d2632996f290b0f18cc5f8a2b2791046400690e:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/7d2632996f290b0f18cc5f8a2b2791046400690e}
     name: tauri-plugin-store-api
     version: 0.0.0
     dependencies:
-      '@tauri-apps/api': 1.5.1
+      '@tauri-apps/api': 1.5.3
     dev: false

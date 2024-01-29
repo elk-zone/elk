@@ -27,6 +27,7 @@
     "follows_you": "Ti segue",
     "go_to_profile": "Vai al profilo",
     "joined": "Iscritto",
+    "lock": "Privato",
     "moved_title": "ha indicato che il suo nuovo account è:",
     "muted_users": "Utenti silenziati",
     "muting": "Silenziato",
@@ -120,12 +121,14 @@
     "block_account": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}?"
+      "description": "Confermi di voler bloccare {0}?",
+      "title": "Blocca account"
     },
     "block_domain": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}?"
+      "description": "Confermi di voler bloccare {0}?",
+      "title": "Blocca dominio"
     },
     "common": {
       "cancel": "Annulla",
@@ -134,27 +137,32 @@
     "delete_list": {
       "cancel": "Annulla",
       "confirm": "Elimina",
-      "title": "Confermi di voler eliminare la lista \"{0}\"?"
+      "description": "Confermi di voler eliminare la lista \"{0}\"?",
+      "title": "Elimina lista"
     },
     "delete_posts": {
       "cancel": "Annulla",
       "confirm": "Elimina",
-      "title": "Confermi di voler eliminare questo post?"
+      "description": "Confermi di voler eliminare questo post?",
+      "title": "Elimina post"
     },
     "mute_account": {
       "cancel": "Annulla",
       "confirm": "Silenzia",
-      "title": "Confermi di voler silenziare {0}?"
+      "description": "Confermi di voler silenziare {0}?",
+      "title": "Silenzia account"
     },
     "show_reblogs": {
       "cancel": "Annulla",
       "confirm": "Mostra",
-      "title": "Confermi di voler mostrare i post potenziati da {0}?"
+      "description": "Confermi di voler mostrare i post potenziati da {0}?",
+      "title": "Mostra potenziamenti"
     },
     "unfollow": {
       "cancel": "Annulla",
       "confirm": "Smetti di seguire",
-      "title": "Confermi di voler smettere di seguire?"
+      "description": "Confermi di voler smettere di seguire?",
+      "title": "Smetti di seguire"
     }
   },
   "conversation": {
@@ -510,7 +518,7 @@
       "github_cards": "GitHub Cards",
       "github_cards_description": "Quando viene pubblicato un link GitHub, viene mostrato un riquadro HTML accessibile usando i metadati del grafico sociale invece dell'immmagine.",
       "grayscale_mode": "Modalità scala di grigi",
-      "hide_account_hover_card": "Nascondi anteprima account al passaggio del mouse",
+      "hide_account_hover_card": "Nascondi anteprima profilo al passaggio del mouse",
       "hide_alt_indi_on_posts": "Nascondi indicatori testo alternativo sui post",
       "hide_boost_count": "Nascondi contatore potenziamenti",
       "hide_favorite_count": "Nascondi contatore apprezzamenti",
@@ -521,6 +529,7 @@
       "hide_username_emojis": "Nascondi emoji dai nomi utente",
       "hide_username_emojis_description": "Nasconde le emoji all'interno dei nomi utente nella cronologia. Le emoji saranno comunque visibili nelle pagine dei profili.",
       "label": "Preferenze",
+      "optimize_for_low_performance_device": "Ottimizza per dispositivi a basse prestazioni",
       "title": "Funzionalità sperimentali",
       "use_star_favorite_icon": "Usa icona stella per apprezzamenti",
       "user_picker": "Selettore utente",
@@ -624,10 +633,10 @@
     "notifications_favourite": "Apprezzamento",
     "notifications_follow": "Nuovo seguace",
     "notifications_follow_request": "Richiesta di seguire",
-    "notifications_mention": "Menzione",
+    "notifications_mention": "Menzioni",
     "notifications_more_tooltip": "Filtra notifiche per tipo",
     "notifications_poll": "Sondaggio",
-    "notifications_reblog": "Apprezzamento",
+    "notifications_reblog": "Potenziamento",
     "notifications_status": "Stato",
     "notifications_update": "Aggiornamento",
     "posts": "Post",

@@ -1,5 +1,5 @@
-import { TEXT_NODE } from 'ultrahtml'
-import type { Node } from 'ultrahtml'
+import { ELEMENT_NODE, TEXT_NODE } from 'ultrahtml'
+import type { ElementNode, Node } from 'ultrahtml'
 import { Fragment, h, isVNode } from 'vue'
 import type { VNode } from 'vue'
 import { RouterLink } from 'vue-router'
@@ -98,6 +98,23 @@ function treeToVNode(
   return null
 }
 
+function addBdiNode(node: Node) {
+  if (node.children.length === 1 && node.children[0].type === ELEMENT_NODE && node.children[0].name === 'bdi')
+    return
+
+  const children = node.children.splice(0, node.children.length)
+  const bdi = {
+    name: 'bdi',
+    parent: node,
+    loc: node.loc,
+    type: ELEMENT_NODE,
+    attributes: {},
+    children,
+  } satisfies ElementNode
+  children.forEach((n: Node) => n.parent = bdi)
+  node.children.push(bdi)
+}
+
 function handleMention(el: Node) {
   // Redirect mentions to the user page
   if (el.name === 'a' && el.attributes.class?.includes('mention')) {
@@ -108,11 +125,13 @@ function handleMention(el: Node) {
         const [, server, username] = matchUser
         const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
         el.attributes.href = `/${server}/@${username}`
+        addBdiNode(el)
         return h(AccountHoverWrapper, { handle, class: 'inline-block' }, () => nodeToVNode(el))
       }
       const matchTag = href.match(TagLinkRE)
       if (matchTag) {
         const [, , name] = matchTag
+        addBdiNode(el)
         el.attributes.href = `/${currentServer.value}/tags/${name}`
       }
     }

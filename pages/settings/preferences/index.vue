@@ -35,6 +35,12 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.enable_autoplay') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'optimizeForLowPerformanceDevice')"
+      @click="togglePreferences('optimizeForLowPerformanceDevice')"
+    >
+      {{ $t('settings.preferences.optimize_for_low_performance_device') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enableDataSaving')"
       @click="togglePreferences('enableDataSaving')"
     >

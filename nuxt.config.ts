@@ -102,6 +102,12 @@ export default defineNuxtConfig({
       namespaceId: '',
       apiToken: '',
     },
+    vercel: {
+      url: '',
+      token: '',
+      env: '',
+      base: '',
+    },
     public: {
       privacyPolicyUrl: '',
       // We use LibreTranslate (https://github.com/LibreTranslate/LibreTranslate) as

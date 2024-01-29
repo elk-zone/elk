@@ -32,7 +32,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
 )
 
 const { client } = $(useMasto())
-const { data: listInfo, refresh } = $(await useAsyncData(() => client.v1.lists.fetch(list), { default: () => shallowRef() }))
+const { data: listInfo, refresh } = $(await useAsyncData(() => client.v1.lists.$select(list).fetch(), { default: () => shallowRef() }))
 
 if (listInfo) {
   useHydratedHead({

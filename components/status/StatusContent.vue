@@ -31,6 +31,17 @@ const hideAllMedia = computed(
 )
 const embeddedMediaPreference = $(usePreferences('experimentalEmbeddedMedia'))
 const allowEmbeddedMedia = $computed(() => status.card?.html && embeddedMediaPreference)
+
+// In case that the spoiler text has emojis
+const emojisObject = useEmojisFallback(() => status.emojis)
+const vnode = $computed(() => {
+  if (!status.spoilerText)
+    return null
+  return contentToVNode(status.spoilerText, {
+    emojis: emojisObject.value,
+    markdown: true,
+  })
+})
 </script>
 
 <template>
@@ -44,7 +55,7 @@ const allowEmbeddedMedia = $computed(() => status.card?.html && embeddedMediaPre
     <StatusBody v-if="(!isFiltered && isSensitiveNonSpoiler) || hideAllMedia" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
     <StatusSpoiler :enabled="hasSpoilerOrSensitiveMedia || isFiltered" :filter="isFiltered" :sensitive-non-spoiler="isSensitiveNonSpoiler || hideAllMedia" :is-d-m="isDM">
       <template v-if="spoilerTextPresent" #spoiler>
-        <p>{{ status.spoilerText }}</p>
+        <component :is="vnode" />
       </template>
       <template v-else-if="filterPhrase" #spoiler>
         <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>

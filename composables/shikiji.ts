@@ -1,13 +1,13 @@
-import { type Highlighter, type BuiltinLanguage as Lang } from 'shikiji'
+import type { Highlighter, BuiltinLanguage as Lang } from 'shiki'
 
 const highlighter = ref<Highlighter>()
 
 const registeredLang = ref(new Map<string, boolean>())
-let shikijiImport: Promise<void> | undefined
+let shikiImport: Promise<void> | undefined
 
 export function useHighlighter(lang: Lang): { promise?: Promise<void>; highlighter?: Highlighter } {
-  if (!shikijiImport) {
-    shikijiImport = import('shikiji')
+  if (!shikiImport) {
+    shikiImport = import('shiki')
       .then(async ({ getHighlighter }) => {
         highlighter.value = await getHighlighter({
           themes: [
@@ -22,11 +22,11 @@ export function useHighlighter(lang: Lang): { promise?: Promise<void>; highlight
         })
       })
 
-    return { promise: shikijiImport }
+    return { promise: shikiImport }
   }
 
   if (!highlighter.value)
-    return { promise: shikijiImport }
+    return { promise: shikiImport }
 
   if (!registeredLang.value.get(lang)) {
     const promise = highlighter.value.loadLanguage(lang)
@@ -45,7 +45,7 @@ export function useHighlighter(lang: Lang): { promise?: Promise<void>; highlight
   return { highlighter: highlighter.value }
 }
 
-function useShikijiTheme() {
+function useShikiTheme() {
   return useColorMode().value === 'dark' ? 'vitesse-dark' : 'vitesse-light'
 }
 
@@ -68,6 +68,6 @@ export function highlightCode(code: string, lang: Lang) {
 
   return highlighter.codeToHtml(code, {
     lang,
-    theme: useShikijiTheme(),
+    theme: useShikiTheme(),
   })
 }

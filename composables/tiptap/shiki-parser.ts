@@ -1,9 +1,9 @@
-import { type Parser, createParser } from 'prosemirror-highlight/shikiji'
-import type { BuiltinLanguage } from 'shikiji/langs'
+import { type Parser, createParser } from 'prosemirror-highlight/shiki'
+import type { BuiltinLanguage } from 'shiki'
 
 let parser: Parser | undefined
 
-export const shikijiParser: Parser = (options) => {
+export const shikiParser: Parser = (options) => {
   const lang = options.language ?? 'text'
 
   // Register the language if it's not yet registered

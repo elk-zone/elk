@@ -27,6 +27,7 @@
     "follows_you": "Jarraitzen dizu",
     "go_to_profile": "Joan profilera",
     "joined": "Batze-data:",
+    "lock": "Pribatua",
     "moved_title": "adierazi du bere kontua aurrerantzean honakoa izango dela:",
     "muted_users": "Mutututako erabiltzaileak",
     "muting": "Mutututa",
@@ -120,12 +121,14 @@
     "block_account": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "description": "Ziur {0} blokeatu nahi duzula?"
+      "description": "Ziur {0} blokeatu nahi duzula?",
+      "title": "Blokeatu kontua"
     },
     "block_domain": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "description": "Ziur {0} domeinua blokeatu nahi duzula?"
+      "description": "Ziur {0} domeinua blokeatu nahi duzula?",
+      "title": "Blokeatu domeinua"
     },
     "common": {
       "cancel": "Ez",
@@ -134,27 +137,32 @@
     "delete_list": {
       "cancel": "Utzi",
       "confirm": "Ezabatu",
-      "description": "Ziur \"{0}\" zerrenda ezabatu nahi duzula?"
+      "description": "Ziur \"{0}\" zerrenda ezabatu nahi duzula?",
+      "title": "Ezabatu zerrenda"
     },
     "delete_posts": {
       "cancel": "Utzi",
       "confirm": "Ezabatu",
-      "description": "Ziur bidalketa hau ezabatu nahi duzula?"
+      "description": "Ziur bidalketa hau ezabatu nahi duzula?",
+      "title": "Ezabatu bidalketa"
     },
     "mute_account": {
       "cancel": "Utzi",
       "confirm": "Mututu",
-      "description": "Ziur {0} mututu nahi duzula?"
+      "description": "Ziur {0} mututu nahi duzula?",
+      "title": "Mututu kontua"
     },
     "show_reblogs": {
       "cancel": "Utzi",
       "confirm": "Erakutsi",
-      "description": "Ziur {0}(r)en bultzadak ikusi nahi dituzula?"
+      "description": "Ziur {0}(r)en bultzadak ikusi nahi dituzula?",
+      "title": "Erakutsi bultzadak"
     },
     "unfollow": {
       "cancel": "Utzi",
       "confirm": "Utzi jarraitzeari",
-      "description": "Ziur jarraitzeari utzi nahi diozula?"
+      "description": "Ziur jarraitzeari utzi nahi diozula?",
+      "title": "Utzi jarraitzeari"
     }
   },
   "conversation": {
@@ -521,6 +529,7 @@
       "hide_username_emojis": "Ezkutatu emojiak erabiltzaile izenetan",
       "hide_username_emojis_description": "Denbora-lerroetan erabiltzaile izenetako emojiak ezkutatzen ditu. Emojiak ikusgai egoten jarraituko dute euren profiletan.",
       "label": "Hobespenak",
+      "optimize_for_low_performance_device": "Optimizatu errendimendu baxuko gailuetarako",
       "title": "Ezaugarri esperimentalak",
       "use_star_favorite_icon": "Erabili izarraren ikonoa gogokoetarako",
       "user_picker": "Erabiltzaile hautatzailea",

@@ -121,13 +121,13 @@
     "block_account": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "description": "Ziur {0} blokeatu nahi duzula?"
+      "description": "Ziur {0} blokeatu nahi duzula?",
       "title": "Blokeatu kontua"
     },
     "block_domain": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "description": "Ziur {0} domeinua blokeatu nahi duzula?"
+      "description": "Ziur {0} domeinua blokeatu nahi duzula?",
       "title": "Blokeatu domeinua"
     },
     "common": {
@@ -137,31 +137,31 @@
     "delete_list": {
       "cancel": "Utzi",
       "confirm": "Ezabatu",
-      "description": "Ziur \"{0}\" zerrenda ezabatu nahi duzula?"
+      "description": "Ziur \"{0}\" zerrenda ezabatu nahi duzula?",
       "title": "Ezabatu zerrenda"
     },
     "delete_posts": {
       "cancel": "Utzi",
       "confirm": "Ezabatu",
-      "description": "Ziur bidalketa hau ezabatu nahi duzula?"
+      "description": "Ziur bidalketa hau ezabatu nahi duzula?",
       "title": "Ezabatu bidalketa"
     },
     "mute_account": {
       "cancel": "Utzi",
       "confirm": "Mututu",
-      "description": "Ziur {0} mututu nahi duzula?"
+      "description": "Ziur {0} mututu nahi duzula?",
       "title": "Mututu kontua"
     },
     "show_reblogs": {
       "cancel": "Utzi",
       "confirm": "Erakutsi",
-      "description": "Ziur {0}(r)en bultzadak ikusi nahi dituzula?"
+      "description": "Ziur {0}(r)en bultzadak ikusi nahi dituzula?",
       "title": "Erakutsi bultzadak"
     },
     "unfollow": {
       "cancel": "Utzi",
       "confirm": "Utzi jarraitzeari",
-      "description": "Ziur jarraitzeari utzi nahi diozula?"
+      "description": "Ziur jarraitzeari utzi nahi diozula?",
       "title": "Utzi jarraitzeari"
     }
   },

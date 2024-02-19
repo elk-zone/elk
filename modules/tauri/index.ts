@@ -9,8 +9,10 @@ export default defineNuxtModule({
     const nuxt = useNuxt()
     const { resolve } = createResolver(import.meta.url)
 
-    if (!process.env.TAURI_PLATFORM)
+    if (!process.env.TAURI_PLATFORM) {
+      addImports({ name: 'useNativeSettings', from: resolve('./runtime/native-settings-undefined') })
       return
+    }
 
     if (nuxt.options.dev)
       nuxt.options.ssr = false
@@ -47,6 +49,7 @@ export default defineNuxtModule({
     nuxt.options.imports.dirs.push(resolve('../../server/utils'))
 
     addImports({ name: 'useStorage', from: resolve('./runtime/storage') })
+    addImports({ name: 'useNativeSettings', from: resolve('./runtime/native-settings') })
 
     addPlugin(resolve('./runtime/logging.client'))
     addPlugin(resolve('./runtime/nitro.client'))

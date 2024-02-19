@@ -12,6 +12,7 @@ useHydratedHead({
 const route = useRoute()
 
 const isRootPath = computedEager(() => route.name === 'settings')
+const isTauriApp = !!import.meta.env.TAURI_PLATFORM
 </script>
 
 <template>
@@ -62,6 +63,14 @@ const isRootPath = computedEager(() => route.name === 'settings')
               :text="isHydrated ? $t('settings.preferences.label') : ''"
               to="/settings/preferences"
               :match="$route.path.startsWith('/settings/preferences/')"
+            />
+            <SettingsItem
+              v-if="isTauriApp"
+              command
+              icon="i-ri-apps-2-line"
+              :text="$t('settings.native.label')"
+              to="/settings/native"
+              :match="$route.path.startsWith('/settings/native/')"
             />
             <SettingsItem
               command

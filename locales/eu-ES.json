@@ -529,6 +529,7 @@
       "hide_username_emojis": "Ezkutatu emojiak erabiltzaile izenetan",
       "hide_username_emojis_description": "Denbora-lerroetan erabiltzaile izenetako emojiak ezkutatzen ditu. Emojiak ikusgai egoten jarraituko dute euren profiletan.",
       "label": "Hobespenak",
+      "optimize_for_low_performance_device": "Optimizatu errendimendu baxuko gailuetarako",
       "title": "Ezaugarri esperimentalak",
       "use_star_favorite_icon": "Erabili izarraren ikonoa gogokoetarako",
       "user_picker": "Erabiltzaile hautatzailea",

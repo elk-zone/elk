@@ -8,7 +8,7 @@ const { editor } = defineProps<{
 
 <template>
   <CommonTooltip placement="top" :content="$t('tooltip.open_editor_tools')">
-    <VDropdown v-if="editor" placement="top">
+    <VDropdown v-if="editor" placement="bottom">
       <button
         btn-action-icon
         :aria-label="$t('tooltip.open_editor_tools')"

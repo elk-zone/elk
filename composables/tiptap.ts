@@ -14,7 +14,7 @@ import { Plugin } from 'prosemirror-state'
 
 import type { Ref } from 'vue'
 import { TiptapEmojiSuggestion, TiptapHashtagSuggestion, TiptapMentionSuggestion } from './tiptap/suggestion'
-import { TiptapPluginCodeBlockShikiji } from './tiptap/shikiji'
+import { TiptapPluginCodeBlockShiki } from './tiptap/shiki'
 import { TiptapPluginCustomEmoji } from './tiptap/custom-emoji'
 import { TiptapPluginEmoji } from './tiptap/emoji'
 
@@ -70,7 +70,7 @@ export function useTiptap(options: UseTiptapOptions) {
       Placeholder.configure({
         placeholder: () => placeholder.value!,
       }),
-      TiptapPluginCodeBlockShikiji,
+      TiptapPluginCodeBlockShiki,
       History.configure({
         depth: 10,
       }),

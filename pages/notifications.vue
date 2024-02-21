@@ -14,7 +14,7 @@ const route = useRoute()
 const { t } = useI18n()
 const pwaEnabled = useAppConfig().pwaEnabled
 
-const tabs = $computed<CommonRouteTabOption[]>(() => [
+const tabs = computed<CommonRouteTabOption[]>(() => [
   {
     name: 'all',
     to: '/notifications',
@@ -27,7 +27,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
   },
 ])
 
-const filter = $computed<mastodon.v1.NotificationType | undefined>(() => {
+const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
   if (!isHydrated.value)
     return undefined
 
@@ -50,22 +50,22 @@ const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
   'admin.report': 'i-ri:flag-line',
 }
 
-const filterText = $computed(() => (`${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}`))
+const filterText = computed(() => (`${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}`))
 
-const notificationFilterRoutes = $computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
+const notificationFilterRoutes = computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
   name => ({
     name,
     to: `/notifications/${name}`,
     display: isHydrated.value ? t(`tab.notifications_${name}`) : '',
     icon: filterIconMap[name],
-    match: name === filter,
+    match: name === filter.value,
   }),
 ))
-const moreOptions = $computed<CommonRouteTabMoreOption>(() => ({
-  options: notificationFilterRoutes,
+const moreOptions = computed<CommonRouteTabMoreOption>(() => ({
+  options: notificationFilterRoutes.value,
   icon: 'i-ri:filter-2-line',
-  tooltip: filterText,
-  match: !!filter,
+  tooltip: filterText.value,
+  match: !!filter.value,
 }))
 </script>
 

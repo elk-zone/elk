@@ -3,20 +3,20 @@ import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.v
 
 const { t } = useI18n()
 
-const search = $ref<{ input?: HTMLInputElement }>()
+const search = ref<{ input?: HTMLInputElement }>()
 const route = useRoute()
 watchEffect(() => {
-  if (isMediumOrLargeScreen && route.name === 'explore' && search?.input)
-    search?.input?.focus()
+  if (isMediumOrLargeScreen && route.name === 'explore' && search.value?.input)
+    search.value?.input?.focus()
 })
 onActivated(() =>
-  search?.input?.focus(),
+  search.value?.input?.focus(),
 )
-onDeactivated(() => search?.input?.blur())
+onDeactivated(() => search.value?.input?.blur())
 
 const userSettings = useUserSettings()
 
-const tabs = $computed<CommonRouteTabOption[]>(() => [
+const tabs = computed<CommonRouteTabOption[]>(() => [
   {
     to: isHydrated.value ? `/${currentServer.value}/explore` : '/explore',
     display: isHydrated.value ? t('tab.posts') : '',

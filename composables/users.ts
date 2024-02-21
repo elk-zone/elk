@@ -121,7 +121,7 @@ export function useSelfAccount(user: MaybeRefOrGetter<mastodon.v1.Account | unde
 export const characterLimit = computed(() => currentInstance.value?.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
 export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { account?: mastodon.v1.AccountCredentials }>) {
-  const { client } = $(masto)
+  const { client } = masto
   const instance = mastoLogin(masto, user)
 
   // GoToSocial only API
@@ -145,11 +145,11 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
     currentUserHandle.value = account.acct
 
   const [me, pushSubscription] = await Promise.all([
-    fetchAccountInfo(client, user.server),
+    fetchAccountInfo(client.value, user.server),
     // if PWA is not enabled, don't get push subscription
     useAppConfig().pwaEnabled
     // we get 404 response instead empty data
-      ? client.v1.push.subscription.fetch().catch(() => Promise.resolve(undefined))
+      ? client.value.v1.push.subscription.fetch().catch(() => Promise.resolve(undefined))
       : Promise.resolve(undefined),
   ])
 

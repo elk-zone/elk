@@ -22,7 +22,7 @@ interface ShortcutItemGroup {
 }
 
 const isMac = useIsMac()
-const modifierKeyName = $computed(() => isMac.value ? '⌘' : 'Ctrl')
+const modifierKeyName = computed(() => isMac.value ? '⌘' : 'Ctrl')
 
 const shortcutItemGroups: ShortcutItemGroup[] = [
   {
@@ -55,11 +55,11 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
     items: [
       {
         description: t('magic_keys.groups.actions.search'),
-        shortcut: { keys: [modifierKeyName, 'k'], isSequence: false },
+        shortcut: { keys: [modifierKeyName.value, 'k'], isSequence: false },
       },
       {
         description: t('magic_keys.groups.actions.command_mode'),
-        shortcut: { keys: [modifierKeyName, '/'], isSequence: false },
+        shortcut: { keys: [modifierKeyName.value, '/'], isSequence: false },
       },
       {
         description: t('magic_keys.groups.actions.compose'),

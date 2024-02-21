@@ -19,8 +19,8 @@ export function usePaginator<T, P, U = T>(
   const prevItems = ref<T[]>([])
 
   const endAnchor = ref<HTMLDivElement>()
-  const bound = reactive(useElementBounding(endAnchor))
-  const isInScreen = $computed(() => bound.top < window.innerHeight * 2)
+  const bound = useElementBounding(endAnchor)
+  const isInScreen = computed(() => bound.top.value < window.innerHeight * 2)
   const error = ref<unknown | undefined>()
   const deactivated = useDeactivated()
 
@@ -29,11 +29,11 @@ export function usePaginator<T, P, U = T>(
     prevItems.value = []
   }
 
-  watch(stream, async (stream) => {
-    if (!stream)
+  watch(() => stream, async (stream) => {
+    if (!stream.value)
       return
 
-    for await (const entry of stream) {
+    for await (const entry of stream.value) {
       if (entry.event === 'update') {
         const status = entry.payload
 
@@ -115,11 +115,10 @@ export function usePaginator<T, P, U = T>(
       })
     }
 
-    watch(
-      () => [isInScreen, state],
+    watchEffect(
       () => {
         if (
-          isInScreen
+          isInScreen.value
           && state.value === 'idle'
           // No new content is loaded when the keepAlive page enters the background
           && deactivated.value === false

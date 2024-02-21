@@ -15,9 +15,9 @@ const { paginator, stream, account, buffer = 10, endMessage = true } = definePro
 }>()
 
 const { formatNumber } = useHumanReadableNumber()
-const virtualScroller = $(usePreferences('experimentalVirtualScroller'))
+const virtualScroller = usePreferences('experimentalVirtualScroller')
 
-const showOriginSite = $computed(() =>
+const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
 )
 </script>

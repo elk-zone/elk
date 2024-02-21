@@ -22,13 +22,13 @@ export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSea
 
 export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOptions = {}) {
   const done = ref(false)
-  const { client } = $(useMasto())
+  const { client } = useMasto()
   const loading = ref(false)
   const accounts = ref<AccountSearchResult[]>([])
   const hashtags = ref<HashTagSearchResult[]>([])
   const statuses = ref<StatusSearchResult[]>([])
 
-  const q = $computed(() => resolveUnref(query).trim())
+  const q = computed(() => resolveUnref(query).trim())
 
   let paginator: mastodon.Paginator<mastodon.v2.Search, mastodon.rest.v2.SearchParams> | undefined
 
@@ -72,8 +72,8 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
-    paginator = client.v2.search.list({
-      q,
+    paginator = client.value.v2.search.list({
+      q: q.value,
       ...resolveUnref(options),
       resolve: !!currentUser.value,
     })

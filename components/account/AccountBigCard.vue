@@ -5,7 +5,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const { account, as = 'div' } = $defineProps<{
+const { account, as = 'div' } = defineProps<{
   account: mastodon.v1.Account
   as?: string
 }>()

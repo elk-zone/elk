@@ -28,13 +28,13 @@ useCommand({
   },
 })
 
-let activeClass = $ref('text-primary')
+const activeClass = ref('text-primary')
 onHydrated(async () => {
   // TODO: force NuxtLink to reevaluate, we now we are in this route though, so we should force it to active
   // we don't have currentServer defined until later
-  activeClass = ''
+  activeClass.value = ''
   await nextTick()
-  activeClass = 'text-primary'
+  activeClass.value = 'text-primary'
 })
 
 // Optimize rendering for the common case of being logged in, only show visual feedback for disabled user-only items

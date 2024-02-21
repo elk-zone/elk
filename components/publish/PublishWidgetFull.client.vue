@@ -5,16 +5,16 @@ const route = useRoute()
 const { formatNumber } = useHumanReadableNumber()
 const timeAgoOptions = useTimeAgoOptions()
 
-let draftKey = $ref('home')
+const draftKey = ref('home')
 
-const draftKeys = $computed(() => Object.keys(currentUserDrafts.value))
-const nonEmptyDrafts = $computed(() => draftKeys
-  .filter(i => i !== draftKey && !isEmptyDraft(currentUserDrafts.value[i]))
+const draftKeys = computed(() => Object.keys(currentUserDrafts.value))
+const nonEmptyDrafts = computed(() => draftKeys.value
+  .filter(i => i !== draftKey.value && !isEmptyDraft(currentUserDrafts.value[i]))
   .map(i => [i, currentUserDrafts.value[i]] as const),
 )
 
 watchEffect(() => {
-  draftKey = route.query.draft?.toString() || 'home'
+  draftKey.value = route.query.draft?.toString() || 'home'
 })
 
 onDeactivated(() => {

@@ -35,11 +35,13 @@ export default defineNuxtConfig({
   ],
   vue: {
     defineModel: true,
+    propsDestructure: true,
   },
   macros: {
     setupSFC: true,
     betterDefine: false,
     defineModels: false,
+    reactivityTransform: false,
   },
   devtools: {
     enabled: true,

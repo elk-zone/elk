@@ -3,11 +3,11 @@ import type { mastodon } from 'masto'
 
 const {
   tag,
-} = $defineProps<{
+} = defineProps<{
   tag: mastodon.v1.Tag
 }>()
 
-const to = $computed(() => {
+const to = computed(() => {
   const { hostname, pathname } = new URL(tag.url)
   return `/${hostname}${pathname}`
 })
@@ -24,9 +24,9 @@ function onclick(evt: MouseEvent | KeyboardEvent) {
 
 function go(evt: MouseEvent | KeyboardEvent) {
   if (evt.metaKey || evt.ctrlKey)
-    window.open(to)
+    window.open(to.value)
   else
-    router.push(to)
+    router.push(to.value)
 }
 </script>
 

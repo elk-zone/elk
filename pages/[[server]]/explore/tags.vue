@@ -3,8 +3,8 @@ import { STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS } from '~~/constants'
 
 const { t } = useI18n()
 
-const { client } = $(useMasto())
-const paginator = client.v1.trends.tags.list({
+const { client } = useMasto()
+const paginator = client.value.v1.trends.tags.list({
   limit: 20,
 })
 

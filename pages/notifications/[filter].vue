@@ -4,7 +4,7 @@ import type { mastodon } from 'masto'
 const route = useRoute()
 const { t } = useI18n()
 
-const filter = $computed<mastodon.v1.NotificationType | undefined>(() => {
+const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
   if (!isHydrated.value)
     return undefined
 

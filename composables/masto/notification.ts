@@ -5,7 +5,7 @@ const notifications = reactive<Record<string, undefined | [Promise<mastodon.stre
 export function useNotifications() {
   const id = currentUser.value?.account.id
 
-  const { client, streamingClient } = $(useMasto())
+  const { client, streamingClient } = useMasto()
 
   async function clearNotifications() {
     if (!id || !notifications[id])
@@ -15,7 +15,7 @@ export function useNotifications() {
     notifications[id]![1] = []
 
     if (lastReadId) {
-      await client.v1.markers.create({
+      await client.value.v1.markers.create({
         notifications: { lastReadId },
       })
     }
@@ -36,15 +36,15 @@ export function useNotifications() {
     const streamPromise = new Promise<mastodon.streaming.Subscription>(resolve => resolveStream = resolve)
     notifications[id] = [streamPromise, []]
 
-    await until($$(streamingClient)).toBeTruthy()
+    await until(streamingClient).toBeTruthy()
 
-    const stream = streamingClient!.user.subscribe()
+    const stream = streamingClient.value!.user.subscribe()
     resolveStream!(stream)
 
     processNotifications(stream, id)
 
-    const position = await client.v1.markers.fetch({ timeline: ['notifications'] })
-    const paginator = client.v1.notifications.list({ limit: 30 })
+    const position = await client.value.v1.markers.fetch({ timeline: ['notifications'] })
+    const paginator = client.value.v1.notifications.list({ limit: 30 })
 
     do {
       const result = await paginator.next()

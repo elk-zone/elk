@@ -8,10 +8,10 @@ const { paginator, account, context } = defineProps<{
   relationshipContext?: 'followedBy' | 'following'
 }>()
 
-const fallbackContext = $computed(() => {
+const fallbackContext = computed(() => {
   return ['following', 'followers'].includes(context!)
 })
-const showOriginSite = $computed(() =>
+const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
 )
 </script>

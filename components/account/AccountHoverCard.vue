@@ -5,7 +5,7 @@ const { account } = defineProps<{
   account: mastodon.v1.Account
 }>()
 
-const relationship = $(useRelationship(account))
+const relationship = useRelationship(account)
 </script>
 
 <template>

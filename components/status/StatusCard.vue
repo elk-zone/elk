@@ -26,45 +26,45 @@ const props = withDefaults(
 
 const userSettings = useUserSettings()
 
-const status = $computed(() => {
+const status = computed(() => {
   if (props.status.reblog && (!props.status.content || props.status.content === props.status.reblog.content))
     return props.status.reblog
   return props.status
 })
 
 // Use original status, avoid connecting a reblog
-const directReply = $computed(() => props.hasNewer || (!!status.inReplyToId && (status.inReplyToId === props.newer?.id || status.inReplyToId === props.newer?.reblog?.id)))
+const directReply = computed(() => props.hasNewer || (!!status.value.inReplyToId && (status.value.inReplyToId === props.newer?.id || status.value.inReplyToId === props.newer?.reblog?.id)))
 // Use reblogged status, connect it to further replies
-const connectReply = $computed(() => props.hasOlder || status.id === props.older?.inReplyToId || status.id === props.older?.reblog?.inReplyToId)
+const connectReply = computed(() => props.hasOlder || status.value.id === props.older?.inReplyToId || status.value.id === props.older?.reblog?.inReplyToId)
 // Open a detailed status, the replies directly to it
-const replyToMain = $computed(() => props.main && props.main.id === status.inReplyToId)
+const replyToMain = computed(() => props.main && props.main.id === status.value.inReplyToId)
 
-const rebloggedBy = $computed(() => props.status.reblog ? props.status.account : null)
+const rebloggedBy = computed(() => props.status.reblog ? props.status.account : null)
 
-const statusRoute = $computed(() => getStatusRoute(status))
+const statusRoute = computed(() => getStatusRoute(status.value))
 
 const router = useRouter()
 
 function go(evt: MouseEvent | KeyboardEvent) {
   if (evt.metaKey || evt.ctrlKey) {
-    window.open(statusRoute.href)
+    window.open(statusRoute.value.href)
   }
   else {
-    cacheStatus(status)
-    router.push(statusRoute)
+    cacheStatus(status.value)
+    router.push(statusRoute.value)
   }
 }
 
-const createdAt = useFormattedDateTime(status.createdAt)
+const createdAt = useFormattedDateTime(status.value.createdAt)
 const timeAgoOptions = useTimeAgoOptions(true)
-const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
+const timeago = useTimeAgo(() => status.value.createdAt, timeAgoOptions)
 
-const isSelfReply = $computed(() => status.inReplyToAccountId === status.account.id)
-const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
-const isDM = $computed(() => status.visibility === 'direct')
+const isSelfReply = computed(() => status.value.inReplyToAccountId === status.value.account.id)
+const collapseRebloggedBy = computed(() => rebloggedBy.value?.id === status.value.account.id)
+const isDM = computed(() => status.value.visibility === 'direct')
 
-const showUpperBorder = $computed(() => props.newer && !directReply)
-const showReplyTo = $computed(() => !replyToMain && !directReply)
+const showUpperBorder = computed(() => props.newer && !directReply)
+const showReplyTo = computed(() => !replyToMain && !directReply)
 
 const forceShow = ref(false)
 </script>

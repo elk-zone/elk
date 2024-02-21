@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import type { RouteLocationRaw } from 'vue-router'
 
+const { options, command, replace, preventScrollTop = false, moreOptions } = defineProps<{
+  options: CommonRouteTabOption[]
+  moreOptions?: CommonRouteTabMoreOption
+  command?: boolean
+  replace?: boolean
+  preventScrollTop?: boolean
+}>()
+
 const { t } = useI18n()
 
 export interface CommonRouteTabOption {
@@ -18,14 +26,6 @@ export interface CommonRouteTabMoreOption {
   tooltip?: string
   match?: boolean
 }
-const { options, command, replace, preventScrollTop = false, moreOptions } = $defineProps<{
-  options: CommonRouteTabOption[]
-  moreOptions?: CommonRouteTabMoreOption
-  command?: boolean
-  replace?: boolean
-  preventScrollTop?: boolean
-}>()
-
 const router = useRouter()
 
 useCommands(() => command

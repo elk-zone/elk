@@ -5,10 +5,10 @@ const { items } = defineProps<{
   items: GroupedNotifications
 }>()
 
-const count = $computed(() => items.items.length)
+const count = computed(() => items.items.length)
 const isExpanded = ref(false)
-const lang = $computed(() => {
-  return (count > 1 || count === 0) ? undefined : items.items[0].status?.language
+const lang = computed(() => {
+  return (count.value > 1 || count.value === 0) ? undefined : items.items[0].status?.language
 })
 </script>
 

@@ -15,23 +15,23 @@ const { form, isDirty, submitter, reset } = useForm({
   form: () => ({ ...list.value }),
 })
 
-let isEditing = $ref<boolean>(false)
-let deleting = $ref<boolean>(false)
-let actionError = $ref<string | undefined>(undefined)
+const isEditing = ref<boolean>(false)
+const deleting = ref<boolean>(false)
+const actionError = ref<string | undefined>(undefined)
 
 const input = ref<HTMLInputElement>()
 const editBtn = ref<HTMLButtonElement>()
 const deleteBtn = ref<HTMLButtonElement>()
 
 async function prepareEdit() {
-  isEditing = true
-  actionError = undefined
+  isEditing.value = true
+  actionError.value = undefined
   await nextTick()
   input.value?.focus()
 }
 async function cancelEdit() {
-  isEditing = false
-  actionError = undefined
+  isEditing.value = false
+  actionError.value = undefined
   reset()
 
   await nextTick()
@@ -47,14 +47,14 @@ const { submit, submitting } = submitter(async () => {
   }
   catch (err) {
     console.error(err)
-    actionError = (err as Error).message
+    actionError.value = (err as Error).message
     await nextTick()
     input.value?.focus()
   }
 })
 
 async function removeList() {
-  if (deleting)
+  if (deleting.value)
     return
 
   const confirmDelete = await openConfirmDialog({
@@ -64,8 +64,8 @@ async function removeList() {
     cancel: t('confirm.delete_list.cancel'),
   })
 
-  deleting = true
-  actionError = undefined
+  deleting.value = true
+  actionError.value = undefined
   await nextTick()
 
   if (confirmDelete === 'confirm') {
@@ -76,21 +76,21 @@ async function removeList() {
     }
     catch (err) {
       console.error(err)
-      actionError = (err as Error).message
+      actionError.value = (err as Error).message
       await nextTick()
       deleteBtn.value?.focus()
     }
     finally {
-      deleting = false
+      deleting.value = false
     }
   }
   else {
-    deleting = false
+    deleting.value = false
   }
 }
 
 async function clearError() {
-  actionError = undefined
+  actionError.value = undefined
   await nextTick()
   if (isEditing)
     input.value?.focus()

@@ -6,15 +6,15 @@ useHydratedHead({
   title: () => t('nav.search'),
 })
 
-const search = $ref<{ input?: HTMLInputElement }>()
+const search = ref<{ input?: HTMLInputElement }>()
 watchEffect(() => {
-  if (search?.input)
-    search?.input?.focus()
+  if (search.value?.input)
+    search.value?.input?.focus()
 })
 onActivated(() =>
-  search?.input?.focus(),
+  search.value?.input?.focus(),
 )
-onDeactivated(() => search?.input?.blur())
+onDeactivated(() => search.value?.input?.blur())
 </script>
 
 <template>

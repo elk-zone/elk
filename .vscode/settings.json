@@ -6,7 +6,7 @@
     "unstorage"
   ],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.eslint": true
   },
   "editor.formatOnSave": false,
   "files.associations": {

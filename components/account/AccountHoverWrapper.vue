@@ -18,7 +18,7 @@ const props = defineProps<{
 const hoverCard = ref()
 const targetIsVisible = ref(false)
 const useAccount = ref<AccountType>(props.account)
-const account = computed(() => unref(useAccount))
+const account = computed(() => unref(useAccount.value))
 
 useIntersectionObserver(
   hoverCard,

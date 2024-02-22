@@ -8,7 +8,7 @@ definePageMeta({
 
 useWebShareTarget()
 
-const pwaIsInstalled = process.client && !!useNuxtApp().$pwa?.isInstalled
+const pwaIsInstalled = import.meta.client && !!useNuxtApp().$pwa?.isInstalled
 </script>
 
 <template>

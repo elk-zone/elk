@@ -12,7 +12,7 @@ useHydratedHead({
 const loggedInUsers = useUsers()
 
 async function exportTokens() {
-  if (process.server)
+  if (import.meta.server)
     return
 
   if (!confirm('Please aware that the tokens represent the **full access** to your accounts, and should be treated as sensitive information. Are you sure you want to export the tokens?'))
@@ -31,7 +31,7 @@ async function exportTokens() {
 }
 
 async function importTokens() {
-  if (process.server)
+  if (import.meta.server)
     return
   const file = await fileOpen({
     description: 'Token File',

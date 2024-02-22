@@ -33,7 +33,7 @@ const previewImage = ref('')
 const imageSrc = computed<string>(() => previewImage.value || defaultImage.value)
 
 async function pickImage() {
-  if (process.server)
+  if (import.meta.server)
     return
   const image = await fileOpen({
     description: 'Image',

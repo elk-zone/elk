@@ -16,7 +16,7 @@ export default defineNuxtPlugin(() => {
   if (!settings) { return }
 
   const html = document.documentElement
-  ${import.meta.env.DEV ? 'console.log({ settings })' : ''}
+  ${import.meta.dev ? 'console.log({ settings })' : ''}
 
   if (settings.fontSize) {
     const oldFontSizeMap = ${JSON.stringify(oldFontSizeMap)}

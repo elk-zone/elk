@@ -105,8 +105,8 @@ importers:
         specifier: ^10.8.0
         version: 10.8.0(vue@3.4.19)
       '@vueuse/gesture':
-        specifier: 2.0.0-beta.1
-        version: 2.0.0-beta.1(vue@3.4.19)
+        specifier: ^2.0.0
+        version: 2.0.0(vue@3.4.19)
       '@vueuse/integrations':
         specifier: ^10.8.0
         version: 10.8.0(focus-trap@7.5.4)(fuse.js@6.6.2)(idb-keyval@6.2.1)(vue@3.4.19)
@@ -5980,8 +5980,8 @@ packages:
       - vue
     dev: true
 
-  /@vueuse/gesture@2.0.0-beta.1(vue@3.4.19):
-    resolution: {integrity: sha512-HTLibLy3bh6TjRnDAbMAvHSsEmrkRituMj2x+mHwmp1EnM8A8CDRTfNJEr8d/hIairnPPp5Va2KWYVmyP/zvkA==}
+  /@vueuse/gesture@2.0.0(vue@3.4.19):
+    resolution: {integrity: sha512-+F0bhhd8j+gxHaXG4fJgfokrkFfWenQ10MtrWOJk68B5UaTwtJm4EpsZFiVdluA3jpKExG6H+HtroJpvO7Qx0A==}
     peerDependencies:
       '@vue/composition-api': ^1.4.1
       vue: ^2.0.0 || >=3.0.0-rc.0
@@ -5990,7 +5990,7 @@ packages:
         optional: true
     dependencies:
       chokidar: 3.6.0
-      consola: 2.15.3
+      consola: 3.2.3
       upath: 2.0.1
       vue: 3.4.19(typescript@5.3.3)
       vue-demi: 0.14.7(vue@3.4.19)
@@ -7171,6 +7171,7 @@ packages:
 
   /consola@2.15.3:
     resolution: {integrity: sha512-9vAdYbHj6x2fLKC4+oPH0kFzY/orMZyG2Aj+kNylHxKGJ/Ed4dpNyAQYwJOdqO4zdM7XpVHmyejQDcQHrnuXbw==}
+    dev: true
 
   /consola@3.2.3:
     resolution: {integrity: sha512-I5qxpzLv+sJhTVEoLYNcTW+bThDCPsit0vLNKShZx6rLtpilNpmmeTPaeqJb9ZE9dV3DGaeby6Vuhrw38WjeyQ==}

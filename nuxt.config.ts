@@ -10,9 +10,6 @@ const { resolve } = createResolver(import.meta.url)
 export default defineNuxtConfig({
   typescript: {
     tsConfig: {
-      compilerOptions: {
-        moduleResolution: 'node',
-      },
       exclude: ['../service-worker'],
     },
   },

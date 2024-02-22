@@ -61,7 +61,7 @@
     "@vercel/kv": "^1.0.1",
     "@vue-macros/nuxt": "^1.6.0",
     "@vueuse/core": "^10.8.0",
-    "@vueuse/gesture": "2.0.0-beta.1",
+    "@vueuse/gesture": "^2.0.0",
     "@vueuse/integrations": "^10.8.0",
     "@vueuse/math": "^10.8.0",
     "@vueuse/motion": "2.1.0",

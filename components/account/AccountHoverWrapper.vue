@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
-import { useAccountByHandle } from '~/composables/cache'
 
-type PropsType = [acc?: mastodon.v1.Account, h?: string, v?: boolean]
+type WatcherType = [acc?: mastodon.v1.Account, h?: string, v?: boolean]
 type AccountType = mastodon.v1.Account | null | undefined | Ref<mastodon.v1.Account | null>
 
 defineOptions({
@@ -18,7 +17,8 @@ const props = defineProps<{
 
 const hoverCard = ref()
 const targetIsVisible = ref(false)
-const account = ref<AccountType>(props.account)
+const useAccount = ref<AccountType>(props.account)
+const account = computed(() => unref(useAccount))
 
 useIntersectionObserver(
   hoverCard,
@@ -28,10 +28,10 @@ useIntersectionObserver(
 )
 
 watch(
-  () => [props.account, props.handle, targetIsVisible.value] satisfies PropsType,
-  async ([newAccount, newHandle, newVisible], oldProps) => {
+  () => [props.account, props.handle, targetIsVisible.value] satisfies WatcherType,
+  ([newAccount, newHandle, newVisible], oldProps) => {
     if (newAccount) {
-      account.value = newAccount
+      useAccount.value = newAccount
       return
     }
 
@@ -42,13 +42,13 @@ watch(
       const [_oldAccount, oldHandle, _oldVisible] = oldProps ?? [undefined, undefined, false]
       if (!oldHandle || newHandle !== oldHandle || !account.value) {
         // @ts-expect-error just ignore
-        account.value = useAccountByHandle(newHandle)
+        useAccount.value = useAccountByHandle(newHandle)
       }
 
       return
     }
 
-    account.value = undefined
+    useAccount.value = undefined
   }, { immediate: true, flush: 'post' },
 )
 
@@ -59,7 +59,7 @@ const userSettings = useUserSettings()
 <template>
   <div ref="hoverCard">
     <VMenu
-      v-if="!disabled && toValue(account) && !getPreferences(userSettings, 'hideAccountHoverCard')"
+      v-if="!disabled && account && !getPreferences(userSettings, 'hideAccountHoverCard')"
       placement="bottom-start"
       :delay="{ show: 500, hide: 100 }"
       v-bind="$attrs"
@@ -67,7 +67,7 @@ const userSettings = useUserSettings()
     >
       <slot />
       <template #popper>
-        <AccountHoverCard v-if="account" :account="toValue(account)" />
+        <AccountHoverCard v-if="account" :account="account" />
       </template>
     </VMenu>
     <slot v-else />

@@ -70,7 +70,7 @@ onDeactivated(() => clearError(false))
     <template #title>
       <NuxtLink to="/lists" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:list-check />
-        <span text-lg font-bold>{{ t('nav.lists') }}</span>
+        <span text-lg font-bold>{{ isHydrated ? t('nav.lists') : '' }}</span>
       </NuxtLink>
     </template>
     <slot>
@@ -104,7 +104,7 @@ onDeactivated(() => clearError(false))
                 pb="1px"
                 flex-1
                 placeholder-text-secondary
-                :placeholder="$t('list.list_title_placeholder')"
+                :placeholder="isHydrated ? $t('list.list_title_placeholder') : ''"
                 @keypress.enter="createList"
               >
             </div>
@@ -114,7 +114,7 @@ onDeactivated(() => clearError(false))
                   <span block i-ri:loader-2-fill aria-hidden="true" />
                 </span>
                 <span v-else aria-hidden="true" block i-material-symbols:playlist-add-rounded class="rtl-flip" />
-                {{ $t('list.create') }}
+                {{ isHydrated ? $t('list.create') : '' }}
               </button>
             </div>
           </form>
@@ -127,11 +127,11 @@ onDeactivated(() => clearError(false))
             <header id="create-list-failed" flex justify-between>
               <div flex items-center gap-x-2 font-bold>
                 <div aria-hidden="true" i-ri:error-warning-fill />
-                <p>{{ $t('list.error') }}</p>
+                <p>{{ isHydrated ? $t('list.error') : '' }}</p>
               </div>
               <CommonTooltip placement="bottom" :content="$t('list.clear_error')" no-auto-focus>
                 <button
-                  flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('list.clear_error')"
+                  flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="isHydrated ? $t('list.clear_error') : ''"
                   @click="clearError(true)"
                 >
                   <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
@@ -140,7 +140,7 @@ onDeactivated(() => clearError(false))
             </header>
             <ol ps-2 sm:ps-1>
               <li flex="~ col sm:row" gap-y-1 sm:gap-x-2>
-                <strong sr-only>{{ $t('list.error_prefix') }}</strong>
+                <strong sr-only>{{ isHydrated ? $t('list.error_prefix') : '' }}</strong>
                 <span>{{ actionError }}</span>
               </li>
             </ol>

@@ -13,7 +13,7 @@ export function usePaginator<T, P, U = T>(
   // so clone it
   const paginator = _paginator.clone()
 
-  const state = ref<PaginatorState>(isHydrated.value ? 'idle' : 'loading')
+  const state = shallowRef<PaginatorState>(isHydrated.value ? 'idle' : 'loading')
   const items = ref<U[]>([])
   const nextItems = ref<U[]>([])
   const prevItems = ref<T[]>([])
@@ -103,7 +103,7 @@ export function usePaginator<T, P, U = T>(
     bound.update()
   }
 
-  if (process.client) {
+  if (import.meta.client) {
     useIntervalFn(() => {
       bound.update()
     }, 1000)

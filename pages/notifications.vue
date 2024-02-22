@@ -50,7 +50,7 @@ const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
   'admin.report': 'i-ri:flag-line',
 }
 
-const filterText = computed(() => (`${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}`))
+const filterText = computed(() => (isHydrated.value ? `${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}` : ''))
 
 const notificationFilterRoutes = computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
   name => ({

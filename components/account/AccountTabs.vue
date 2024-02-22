@@ -4,8 +4,8 @@ import type { CommonRouteTabOption } from '../common/CommonRouteTabs.vue'
 const { t } = useI18n()
 const route = useRoute()
 
-const server = computedEager(() => route.params.server as string)
-const account = computedEager(() => route.params.account as string)
+const server = computed(() => route.params.server as string)
+const account = computed(() => route.params.account as string)
 
 const tabs = computed<CommonRouteTabOption[]>(() => [
   {

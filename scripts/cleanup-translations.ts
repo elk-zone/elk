@@ -22,7 +22,7 @@ function merge(src: Record<string, any>, dst: Record<string, any>) {
   }
 }
 
-const sourceFiles: string[] = sourceLanguageLocale.files ? sourceLanguageLocale.files : [sourceLanguageLocale.file!]
+const sourceFiles = sourceLanguageLocale.files ? sourceLanguageLocale.files : [sourceLanguageLocale.file!]
 
 const sourceTranslations: Record<string, string> = {}
 
@@ -36,7 +36,7 @@ for (const file of sourceFiles) {
 
 async function removeOutdatedTranslations() {
   for (const locale of currentLocales.filter(l => l.code !== 'en-US')) {
-    const files: string[] = locale.files ? locale.files : [locale.file!]
+    const files = locale.files ? locale.files as string[] : [locale.file as string]
 
     for (const file of files) {
       const path = resolver.resolve(`../locales/${file}`)

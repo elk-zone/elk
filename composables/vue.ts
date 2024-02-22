@@ -6,7 +6,10 @@ import type { SchemaAugmentations } from '@unhead/schema'
 export const isHydrated = ref(false)
 
 export function onHydrated(cb: () => unknown) {
-  watchOnce(isHydrated, () => cb(), { immediate: isHydrated.value })
+  if (isHydrated.value)
+    watchOnce(isHydrated, () => cb(), { immediate: true })
+  else
+    watchOnce(isHydrated, () => cb())
 }
 
 /**
@@ -43,7 +46,7 @@ export function onReactivated(hook: () => void, target?: ComponentInternalInstan
 export function useHydratedHead<T extends SchemaAugmentations>(input: UseHeadInput<T>, options?: UseHeadOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
   if (input && typeof input === 'object' && !('value' in input)) {
     const title = 'title' in input ? input.title : undefined
-    if (process.server && title) {
+    if (import.meta.server && title) {
       input.meta = input.meta || []
       if (Array.isArray(input.meta)) {
         input.meta.push(

@@ -1,19 +1,19 @@
 import { createResolver, useNuxt } from '@nuxt/kit'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
-import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
 import type { BuildInfo } from './types'
+import { currentLocales } from './config/i18n'
 
 const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
   typescript: {
     tsConfig: {
-      exclude: ['../service-worker'],
-      vueCompilerOptions: {
-        target: 3.3,
+      compilerOptions: {
+        moduleResolution: 'node',
       },
+      exclude: ['../service-worker'],
     },
   },
   modules: [
@@ -34,7 +34,6 @@ export default defineNuxtConfig({
     'stale-dep/nuxt',
   ],
   vue: {
-    defineModel: true,
     propsDestructure: true,
   },
   macros: {
@@ -46,9 +45,11 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
+  features: {
+    inlineStyles: false,
+  },
   experimental: {
     payloadExtraction: false,
-    inlineSSRStyles: false,
     renderJsonPayloads: true,
   },
   css: [
@@ -85,6 +86,18 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
+    },
+    optimizeDeps: {
+      include: [
+        '@vueuse/integrations/useFocusTrap', '@tiptap/vue-3', 'string-length', 'emoji-mart',
+        'iso-639-1',
+        '@tiptap/extension-document', '@tiptap/extension-paragraph', '@tiptap/extension-text',
+        '@tiptap/extension-mention', '@tiptap/extension-hard-break', '@tiptap/extension-bold',
+        '@tiptap/extension-italic', '@tiptap/extension-code', '@tiptap/extension-history',
+        'prosemirror-state', 'browser-fs-access', '@vueuse/gesture', '@fnando/sparkline',
+        'blurhash', '@tiptap/extension-code-block', '@tiptap/core', 'prosemirror-highlight',
+        'tippy.js', 'vue-virtual-scroller', 'prosemirror-highlight/shikiji',
+      ],
     },
   },
   postcss: {
@@ -258,7 +271,15 @@ export default defineNuxtConfig({
     rateLimiter: false,
   },
   colorMode: { classSuffix: '' },
-  i18n,
+  i18n: {
+    locales: currentLocales,
+    lazy: true,
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
+    langDir: 'locales',
+    defaultLocale: 'en-US',
+    vueI18n: './config/i18n.config.ts',
+  },
   pwa,
   staleDep: {
     packageManager: 'pnpm',

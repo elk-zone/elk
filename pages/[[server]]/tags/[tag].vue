@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 const params = useRoute().params
-const tagName = computedEager(() => params.tag as string)
+const tagName = computed(() => params.tag as string)
 
 const { client } = useMasto()
 const { data: tag, refresh } = await useAsyncData(() => client.value.v1.tags.$select(tagName.value).fetch(), { default: () => shallowRef() })

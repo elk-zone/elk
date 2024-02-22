@@ -1,5 +1,5 @@
 import { type Parser, createParser } from 'prosemirror-highlight/shiki'
-import type { BuiltinLanguage } from 'shiki'
+import type { BundledLanguage } from 'shiki'
 
 let parser: Parser | undefined
 
@@ -7,7 +7,7 @@ export const shikiParser: Parser = (options) => {
   const lang = options.language ?? 'text'
 
   // Register the language if it's not yet registered
-  const { highlighter, promise } = useHighlighter(lang as BuiltinLanguage)
+  const { highlighter, promise } = useHighlighter(lang as BundledLanguage)
 
   // If the highlighter or the language is not available, return a promise that
   // will resolve when it's ready. When the promise resolves, the editor will

@@ -5,7 +5,7 @@ const cache = new LRUCache<string, any>({
   max: 1000,
 })
 
-if (process.dev && process.client)
+if (import.meta.env.DEV && import.meta.client)
   // eslint-disable-next-line no-console
   console.log({ cache })
 

@@ -37,7 +37,7 @@ export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
 
   const h3App = createApp({
-    debug: import.meta.env.DEV,
+    debug: import.meta.dev,
     // TODO: add global error handler
     // onError: (err, event) => {
     //  console.log({ err, event })

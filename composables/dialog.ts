@@ -56,7 +56,7 @@ export async function openPublishDialog(draftKey = 'dialog', draft?: Draft, over
     if (overwrite && !isEmptyDraft(currentUserDrafts.value[draftKey])) {
       // TODO overwrite warning
       // TODO don't overwrite, have a draft list
-      if (import.meta.env.DEV) {
+      if (import.meta.dev) {
         // eslint-disable-next-line no-alert
         const result = confirm('[DEV] Are you sure you overwrite draft content?')
         if (!result)

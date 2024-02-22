@@ -94,7 +94,7 @@ export function usePublish(options: {
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.rest.v1.CreateStatusParams
 
-    if (import.meta.env.DEV) {
+    if (import.meta.dev) {
       // eslint-disable-next-line no-console
       console.info({
         raw: draft.value.params.status,

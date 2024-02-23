@@ -1,9 +1,6 @@
 import { useI18n as useOriginalI18n } from 'vue-i18n'
 
 export function useI18n() {
-  if (process.server)
-    return useOriginalI18n()
-
   const {
     t,
     d,

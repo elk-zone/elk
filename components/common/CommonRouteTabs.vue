@@ -46,7 +46,7 @@ useCommands(() => command
     </template>
     <template v-if="isHydrated && moreOptions?.options?.length">
       <CommonDropdown placement="bottom" flex cursor-pointer mx-1.25rem>
-        <CommonTooltip placement="top" :content="isHydrated ? (moreOptions.tooltip || t('action.more')) : ''">
+        <CommonTooltip placement="top" :content="moreOptions.tooltip || t('action.more')">
           <button
             cursor-pointer
             flex
@@ -58,7 +58,7 @@ useCommands(() => command
             op75
             px4
             group
-            :aria-label="isHydrated ? t('action.more') : ''"
+            :aria-label="t('action.more')"
             :class="moreOptions.match ? 'text-primary' : 'text-secondary'"
           >
             <span v-if="moreOptions.icon" :class="moreOptions.icon" text-sm me--1 block />
@@ -75,7 +75,7 @@ useCommands(() => command
               <span flex="~ row" gap-x-4 items-center :class="option.match ? 'text-primary' : ''">
                 <span v-if="option.icon" :class="[option.icon, option.match ? 'text-primary' : 'text.secondary']" text-md me--1 block />
                 <span v-else block>&#160;</span>
-                <span>{{ isHydrated ? option.display : '' }}</span>
+                <span>{{ option.display }}</span>
               </span>
             </CommonDropdownItem>
           </NuxtLink>

@@ -14,7 +14,7 @@ useHydratedHead({
 
 <template>
   <CommonAlert v-if="isHydrated && !hideNewsTips" @close="hideNewsTips = true">
-    <p>{{ isHydrated ? $t('tooltip.explore_posts_intro') : '' }}</p>
+    <p>{{ $t('tooltip.explore_posts_intro') }}</p>
   </CommonAlert>
   <!-- TODO: Tabs for trending statuses, tags, and links -->
   <TimelinePaginator v-if="isHydrated" :paginator="paginator" context="public" />

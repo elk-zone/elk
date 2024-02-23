@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-
 const { t } = useI18n()
 
 useHydratedHead({

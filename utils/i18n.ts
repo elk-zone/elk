@@ -9,16 +9,8 @@ export function useI18n() {
   return { ...rest, t: wrapI18n(t) } satisfies ReturnType<typeof useOriginalI18n>
 }
 
-type GenericFunction = (...args: any[]) => any
-
-export function wrapI18n<Func extends GenericFunction>(fn: Func): ((...args: Parameters<Func>) => ReturnType<Func>) {
-  const wrappedFn = (...args: Parameters<Func>): ReturnType<Func> => {
-    if (!isHydrated.value)
-      return '' as ReturnType<Func>
-
-    // console.log(args)
-
-    return fn(...args)
-  }
-  return wrappedFn
+export function wrapI18n<T extends (...args: any[]) => any>(t: T): T {
+  return <T>((...args: any[]) => {
+    return isHydrated.value ? t(...args) : ''
+  })
 }

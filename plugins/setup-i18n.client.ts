@@ -1,7 +1,7 @@
 import type { VueI18n } from 'vue-i18n'
 import type { LocaleObject } from 'vue-i18n-routing'
-import { wrapI18n } from '~/utils/i18n'
 
+// @ts-expect-error Vue: default implicitly has type any because it does not have a type annotation and is referenced directly or indirectly in its own initializer.
 export default defineNuxtPlugin(async (nuxt) => {
   const i18n = nuxt.vueApp.config.globalProperties.$i18n as VueI18n
   const { setLocale, locales } = i18n
@@ -23,12 +23,8 @@ export default defineNuxtPlugin(async (nuxt) => {
   return {
     provide: {
       t: wrapI18n(nuxt.vueApp.config.globalProperties.$t),
+      d: wrapI18n(nuxt.vueApp.config.globalProperties.$d),
+      n: wrapI18n(nuxt.vueApp.config.globalProperties.$n),
     },
   }
 })
-
-/* declare module '@vue/runtime-core' {
-  interface ComponentCustomProperties {
-    $ht: (key: string, ...args: any[]) => string
-  }
-} */

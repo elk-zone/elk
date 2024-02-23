@@ -75,6 +75,11 @@ export default defineNuxtConfig({
       './composables/settings',
       './composables/tiptap/index.ts',
     ],
+    imports: [{
+      name: 'useI18n',
+      from: '~/utils/i18n',
+      priority: 100,
+    }],
     injectAtEnd: true,
   },
   vite: {

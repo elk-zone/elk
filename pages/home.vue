@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
 definePageMeta({
   middleware: 'auth',
   alias: ['/signin/callback'],
@@ -22,7 +20,7 @@ useHydratedHead({
     <template #title>
       <NuxtLink to="/home" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:home-5-line />
-        <span>{{ isHydrated ? $t('nav.home') : '' }}</span>
+        <span>{{ $t('nav.home') }}</span>
       </NuxtLink>
     </template>
 

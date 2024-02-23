@@ -16,7 +16,7 @@ useHydratedHead({
     <template #title>
       <NuxtLink to="/favourites" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div :class="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'" />
-        <span>{{ isHydrated ? t('nav.favourites') : '' }}</span>
+        <span>{{ t('nav.favourites') }}</span>
       </NuxtLink>
     </template>
 

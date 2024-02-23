@@ -13,7 +13,7 @@ export function usePaginator<T, P, U = T>(
   // so clone it
   const paginator = _paginator.clone()
 
-  const state = shallowRef<PaginatorState>(isHydrated.value ? 'idle' : 'loading')
+  const state = ref<PaginatorState>(isHydrated.value ? 'idle' : 'loading')
   const items = ref<U[]>([])
   const nextItems = ref<U[]>([])
   const prevItems = ref<T[]>([])

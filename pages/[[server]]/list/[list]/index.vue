@@ -17,7 +17,7 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
       name: 'list',
       params: { server: server.value, list: list.value },
     },
-    display: isHydrated.value ? t('tab.posts') : '',
+    display: t('tab.posts'),
     icon: 'i-ri:list-unordered',
   },
   {
@@ -25,7 +25,7 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
       name: 'list-accounts',
       params: { server: server.value, list: list.value },
     },
-    display: isHydrated.value ? t('tab.accounts') : '',
+    display: t('tab.accounts'),
     icon: 'i-ri:user-line',
   },
 ],

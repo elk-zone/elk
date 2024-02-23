@@ -25,7 +25,7 @@ onReactivated(() => {
     <template #title>
       <ContentRich
         timeline-title-style
-        :content="isHydrated ? (account ? getDisplayName(account) : t('nav.profile')) : ''"
+        :content="account ? getDisplayName(account) : t('nav.profile')"
         :show-emojis="!getPreferences(userSettings, 'hideUsernameEmojis')"
         :markdown="false"
       />

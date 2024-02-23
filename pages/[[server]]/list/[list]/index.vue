@@ -50,7 +50,7 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <span text-lg font-bold>{{ isHydrated ? (listInfo ? listInfo.title : t('nav.list')) : '' }}</span>
+      <span text-lg font-bold>{{ listInfo ? listInfo.title : t('nav.list') }}</span>
     </template>
     <template #header>
       <CommonRouteTabs replace :options="tabs" />

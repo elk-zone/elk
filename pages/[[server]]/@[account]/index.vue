@@ -38,17 +38,17 @@ onReactivated(() => {
 
       <div v-if="relationship?.blockedBy" h-30 flex="~ col center gap-2">
         <div text-secondary>
-          {{ isHydrated ? $t('account.profile_unavailable') : '' }}
+          {{ $t('account.profile_unavailable') }}
         </div>
         <div text-secondary-light text-sm>
-          {{ isHydrated ? $t('account.blocked_by') : '' }}
+          {{ $t('account.blocked_by') }}
         </div>
       </div>
       <NuxtPage v-else />
     </template>
 
     <CommonNotFound v-else>
-      {{ isHydrated ? $t('error.account_not_found', [`@${accountName}`]) : '' }}
+      {{ $t('error.account_not_found', [`@${accountName}`]) }}
     </CommonNotFound>
   </MainContent>
 </template>

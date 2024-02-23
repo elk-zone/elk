@@ -14,7 +14,6 @@ const props = defineProps<{
   disabled?: boolean
 }>()
 
-const resolving = ref(false)
 const hoverCard = ref()
 const targetIsVisible = ref(false)
 const account = ref<mastodon.v1.Account | null | undefined>(props.account)

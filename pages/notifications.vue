@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 import { NOTIFICATION_FILTER_TYPES } from '~/constants'
-import type {
-  CommonRouteTabMoreOption,
-  CommonRouteTabOption,
-} from '~/components/common/CommonRouteTabs.vue'
+import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/types'
 
 definePageMeta({
   middleware: 'auth',
@@ -50,8 +47,7 @@ const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
   'admin.report': 'i-ri:flag-line',
 }
 
-const filterText = computed(() => (`${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}`))
-
+const filterText = computed(() => (isHydrated.value ? `${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}` : ''))
 const notificationFilterRoutes = computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
   name => ({
     name,

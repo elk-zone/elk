@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     tsConfig: {
       exclude: ['../service-worker'],
       vueCompilerOptions: {
-        target: 3.3,
+        target: 3.4,
       },
     },
   },
@@ -85,6 +85,20 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
+    },
+    optimizeDeps: {
+      include: [
+        '@tiptap/vue-3', 'string-length', 'vue-virtual-scroller', 'emoji-mart', 'iso-639-1',
+        '@tiptap/extension-placeholder', '@tiptap/extension-document', '@tiptap/extension-paragraph',
+        '@tiptap/extension-text', '@tiptap/extension-mention', '@tiptap/extension-hard-break',
+        '@tiptap/extension-bold', '@tiptap/extension-italic', '@tiptap/extension-code',
+        '@tiptap/extension-history', 'prosemirror-state', 'browser-fs-access', 'blurhash',
+        '@vueuse/integrations/useFocusTrap', '@tiptap/extension-code-block', 'prosemirror-highlight',
+        '@tiptap/core', 'tippy.js', 'prosemirror-highlight/shiki', '@fnando/sparkline',
+        '@vueuse/gesture', 'github-reserved-names', 'file-saver', 'slimeform', 'vue-advanced-cropper',
+        'workbox-window', 'workbox-precaching', 'workbox-routing', 'workbox-cacheable-response',
+        'workbox-strategies', 'workbox-expiration',
+      ],
     },
   },
   postcss: {

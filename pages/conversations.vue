@@ -15,7 +15,7 @@ useHydratedHead({
     <template #title>
       <NuxtLink to="/conversations" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:at-line />
-        <span>{{ t('nav.conversations') }}</span>
+        <span>{{ isHydrated ? t('nav.conversations') : '' }}</span>
       </NuxtLink>
     </template>
 

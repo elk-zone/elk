@@ -24,7 +24,7 @@ interface ShortcutItemGroup {
 const isMac = useIsMac()
 const modifierKeyName = computed(() => isMac.value ? '⌘' : 'Ctrl')
 
-const shortcutItemGroups: ShortcutItemGroup[] = [
+const shortcutItemGroups = computed<ShortcutItemGroup[]>(() => [
   {
     name: t('magic_keys.groups.navigation.title'),
     items: [
@@ -79,7 +79,7 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
     name: t('magic_keys.groups.media.title'),
     items: [],
   },
-]
+])
 </script>
 
 <template>

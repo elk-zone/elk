@@ -1,5 +1,6 @@
 import type { mastodon } from 'masto'
 import type { MarkNonNullable, Mutable } from './utils'
+import type { RouteLocationRaw } from '#vue-router'
 
 export interface AppInfo {
   id: string
@@ -62,6 +63,22 @@ export interface ConfirmDialogLabel {
   cancel?: string
 }
 export type ConfirmDialogChoice = 'confirm' | 'cancel'
+
+export interface CommonRouteTabOption {
+  to: RouteLocationRaw
+  display: string
+  disabled?: boolean
+  name?: string
+  icon?: string
+  hide?: boolean
+  match?: boolean
+}
+export interface CommonRouteTabMoreOption {
+  options: CommonRouteTabOption[]
+  icon?: string
+  tooltip?: string
+  match?: boolean
+}
 
 export interface ErrorDialogData {
   title: string

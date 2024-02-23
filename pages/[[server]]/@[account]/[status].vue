@@ -11,7 +11,7 @@ definePageMeta({
 })
 
 const route = useRoute()
-const id = computedEager(() => route.params.status as string)
+const id = computed(() => route.params.status as string)
 const main = ref<ComponentPublicInstance | null>(null)
 
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
@@ -71,7 +71,7 @@ onReactivated(() => {
         <div xl:mt-4 mb="50vh" border="b base">
           <template v-if="!pendingContext">
             <StatusCard
-              v-for="comment, i of context?.ancestors" :key="comment.id"
+              v-for="(comment, i) of context?.ancestors" :key="comment.id"
               :status="comment" :actions="comment.visibility !== 'direct'" context="account"
               :has-older="true" :newer="context?.ancestors[i - 1]"
             />

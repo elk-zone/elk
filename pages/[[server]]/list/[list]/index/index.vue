@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 const params = useRoute().params
-const listId = computedEager(() => params.list as string)
+const listId = computed(() => params.list as string)
 
 const client = useMastoClient()
 

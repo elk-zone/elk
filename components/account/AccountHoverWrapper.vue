@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import type { Ref } from 'vue'
+import { fetchAccountByHandle } from '~/composables/cache'
 
 type WatcherType = [acc?: mastodon.v1.Account, h?: string, v?: boolean]
-type AccountType = mastodon.v1.Account | null | undefined | Ref<mastodon.v1.Account | null>
 
 defineOptions({
   inheritAttrs: false,
@@ -15,10 +14,10 @@ const props = defineProps<{
   disabled?: boolean
 }>()
 
+const resolving = ref(false)
 const hoverCard = ref()
 const targetIsVisible = ref(false)
-const useAccount = ref<AccountType>(props.account)
-const account = computed(() => unref(useAccount.value))
+const account = ref<mastodon.v1.Account | null | undefined>(props.account)
 
 useIntersectionObserver(
   hoverCard,
@@ -30,7 +29,7 @@ watch(
   () => [props.account, props.handle, targetIsVisible.value] satisfies WatcherType,
   ([newAccount, newHandle, newVisible], oldProps) => {
     if (newAccount) {
-      useAccount.value = newAccount
+      account.value = newAccount
       return
     }
 
@@ -40,17 +39,19 @@ watch(
     if (newHandle) {
       const [_oldAccount, oldHandle, _oldVisible] = oldProps ?? [undefined, undefined, false]
       if (!oldHandle || newHandle !== oldHandle || !account.value) {
-        // @ts-expect-error just ignore
-        useAccount.value = useAccountByHandle(newHandle)
+        fetchAccountByHandle(newHandle).then((acc) => {
+          if (acc.acct === props.handle)
+            account.value = acc
+        })
       }
+
       return
     }
 
-    useAccount.value = undefined
+    account.value = undefined
   }, { immediate: true, flush: 'post' },
 )
 
-// const account = computed(() => props.account || (props.handle ? useAccountByHandle(props.handle!) : undefined))
 const userSettings = useUserSettings()
 </script>
 

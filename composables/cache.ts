@@ -91,10 +91,6 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   return account
 }
 
-export function useAccountByHandle(acct: string) {
-  return useAsyncState(() => fetchAccountByHandle(acct), null).state
-}
-
 export function useAccountById(id?: string | null) {
   return useAsyncState(() => fetchAccountById(id), null).state
 }

@@ -13,7 +13,7 @@ useHydratedHead({
 <template>
   <MainContent back>
     <template #title>
-      <span timeline-title-style>{{ isHydrated ? $t('nav.blocked_domains') : '' }}</span>
+      <span timeline-title-style>{{ $t('nav.blocked_domains') }}</span>
     </template>
 
     <TimelineDomainBlocks v-if="isHydrated" />

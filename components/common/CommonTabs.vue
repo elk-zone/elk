@@ -49,7 +49,7 @@ useCommands(() => command
       ><label
         flex flex-auto cursor-pointer px3 m1 rounded transition-all
         :for="`tab-${toValidName(option.name)}`"
-        tabindex="0"
+        tabindex="1"
         hover:bg-active transition-100
         @keypress.enter="modelValue = option.name"
       ><span

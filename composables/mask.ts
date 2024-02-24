@@ -13,7 +13,7 @@ export function useMask(options: UseMaskOptions = {}) {
     getContainer = () => document.body,
     zIndex = 100,
   } = options
-  const wrapperEl = (process.server ? null : document.createElement('div')) as HTMLDivElement
+  const wrapperEl = (import.meta.server ? null : document.createElement('div')) as HTMLDivElement
 
   function show() {
     const container = getContainer()

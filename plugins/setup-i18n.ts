@@ -7,13 +7,13 @@ export default defineNuxtPlugin(async (nuxt) => {
   nuxt.vueApp.config.globalProperties.$d = wrapI18n(d)
   nuxt.vueApp.config.globalProperties.$n = wrapI18n(n)
 
-  if (process.client) {
-    const i18n = nuxt.vueApp.config.globalProperties.$i18n as import('vue-i18n').VueI18n
+  if (import.meta.client) {
+    const i18n = useNuxtApp().$i18n
     const { setLocale, locales } = i18n
     const userSettings = useUserSettings()
     const lang = computed(() => userSettings.value.language)
 
-    const supportLanguages = (locales as import('vue-i18n-routing').LocaleObject[]).map(locale => locale.code)
+    const supportLanguages = unref(locales).map(locale => locale.code)
     if (!supportLanguages.includes(lang.value))
       userSettings.value.language = getDefaultLanguage(supportLanguages)
 

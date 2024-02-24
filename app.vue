@@ -4,7 +4,7 @@ provideGlobalCommands()
 
 const route = useRoute()
 
-if (process.server && !route.path.startsWith('/settings')) {
+if (import.meta.server && !route.path.startsWith('/settings')) {
   const url = useRequestURL()
 
   useHead({

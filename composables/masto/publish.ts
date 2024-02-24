@@ -94,7 +94,7 @@ export function usePublish(options: {
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.rest.v1.CreateStatusParams
 
-    if (process.dev) {
+    if (import.meta.dev) {
       // eslint-disable-next-line no-console
       console.info({
         raw: draft.value.params.status,
@@ -249,7 +249,7 @@ export function useUploadMediaAttachment(draft: Ref<Draft>) {
   }
 
   async function pickAttachments() {
-    if (process.server)
+    if (import.meta.server)
       return
     const mimeTypes = currentInstance.value!.configuration?.mediaAttachments.supportedMimeTypes
     const files = await fileOpen({

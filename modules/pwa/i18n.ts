@@ -3,12 +3,11 @@ import { readFile } from 'fs-extra'
 import { createResolver } from '@nuxt/kit'
 import type { ManifestOptions } from 'vite-plugin-pwa'
 import { getEnv } from '../../config/env'
-import { i18n } from '../../config/i18n'
-import type { LocaleObject } from '#i18n'
+import { currentLocales } from '../../config/i18n'
 
 export type LocalizedWebManifest = Record<string, Partial<ManifestOptions>>
 
-export const pwaLocales = i18n.locales as LocaleObject[]
+export const pwaLocales = currentLocales
 
 type WebManifestEntry = Pick<ManifestOptions, 'name' | 'short_name' | 'description' | 'screenshots' | 'shortcuts'>
 type RequiredWebManifestEntry = Required<WebManifestEntry & Pick<ManifestOptions, 'dir' | 'lang' | 'screenshots' | 'shortcuts'>>
@@ -141,8 +140,8 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
       .map(async ({ code, dir = 'ltr', file, files }) => {
         // read locale file or files
         const { action, app_desc_short, app_name, nav, pwa } = file
-          ? await readI18nFile(file)
-          : await findBestWebManifestData(files, env)
+          ? await readI18nFile(file as string)
+          : await findBestWebManifestData(files as string[], env)
         const entry = pwa?.webmanifest?.[env] ?? {}
 
         if (!entry.name && app_name)

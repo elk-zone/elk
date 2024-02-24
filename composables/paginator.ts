@@ -103,7 +103,7 @@ export function usePaginator<T, P, U = T>(
     bound.update()
   }
 
-  if (process.client) {
+  if (import.meta.client) {
     useIntervalFn(() => {
       bound.update()
     }, 1000)

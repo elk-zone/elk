@@ -29,11 +29,11 @@ export function usePaginator<T, P, U = T>(
     prevItems.value = []
   }
 
-  watch(() => stream, async (stream) => {
-    if (!stream.value)
+  watch(stream, async (stream) => {
+    if (!stream)
       return
 
-    for await (const entry of stream.value) {
+    for await (const entry of stream) {
       if (entry.event === 'update') {
         const status = entry.payload
 

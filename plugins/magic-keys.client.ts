@@ -55,4 +55,12 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
       ?.click()
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys.b), toggleBoostActiveStatus)
+
+  const showNewItems = () => {
+    // TODO: find a better solution than clicking buttons...
+    document
+      ?.querySelector<HTMLElement>('button#elk_show_new_items')
+      ?.click()
+  }
+  whenever(logicAnd(isAuthenticated, notUsingInput, keys['.']), showNewItems)
 })

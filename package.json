@@ -52,7 +52,7 @@
     "@tiptap/extension-paragraph": "2.2.4",
     "@tiptap/extension-placeholder": "2.2.4",
     "@tiptap/extension-text": "2.2.4",
-    "@tiptap/pm": "^2.0.3",
+    "@tiptap/pm": "^2.2.4",
     "@tiptap/starter-kit": "2.2.4",
     "@tiptap/suggestion": "2.2.4",
     "@tiptap/vue-3": "2.2.4",

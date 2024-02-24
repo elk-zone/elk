@@ -15,16 +15,16 @@ useHydratedHead({
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:test-tube-line />
-        <span>{{ isHydrated ? $t('settings.notifications.notifications.label') : '' }}</span>
+        <span>{{ $t('settings.notifications.notifications.label') }}</span>
       </div>
     </template>
     <div text-center mt-10>
       <h1 text-4xl>
-        <span sr-only>{{ isHydrated ? $t('settings.notifications.under_construction') : '' }}</span>
+        <span sr-only>{{ $t('settings.notifications.under_construction') }}</span>
         🚧
       </h1>
       <h3 text-xl>
-        {{ isHydrated ? $t('settings.notifications.notifications.label') : '' }}
+        {{ $t('settings.notifications.notifications.label') }}
       </h3>
     </div>
   </MainContent>

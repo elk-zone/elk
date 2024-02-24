@@ -38,8 +38,9 @@ watch(
     if (newHandle) {
       const [_oldAccount, oldHandle, _oldVisible] = oldProps ?? [undefined, undefined, false]
       if (!oldHandle || newHandle !== oldHandle || !account.value) {
+        // new handle can be wrong: using server instead of webDomain
         fetchAccountByHandle(newHandle).then((acc) => {
-          if (acc.acct === props.handle)
+          if (newHandle === props.handle)
             account.value = acc
         })
       }
@@ -55,7 +56,7 @@ const userSettings = useUserSettings()
 </script>
 
 <template>
-  <div ref="hoverCard">
+  <span ref="hoverCard">
     <VMenu v-if="!disabled && account && !getPreferences(userSettings, 'hideAccountHoverCard')" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
       <slot />
       <template #popper>
@@ -63,5 +64,5 @@ const userSettings = useUserSettings()
       </template>
     </VMenu>
     <slot v-else />
-  </div>
+  </span>
 </template>

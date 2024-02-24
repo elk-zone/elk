@@ -33,7 +33,7 @@ useCommands(() => command
         :to="option.to"
         :replace="replace"
         relative flex flex-auto cursor-pointer sm:px6 px2 rounded transition-all
-        tabindex="1"
+        tabindex="0"
         hover:bg-active transition-100
         exact-active-class="children:(text-secondary !border-primary !op100 !text-base)"
         @click="!preventScrollTop && $scrollToTop()"
@@ -46,7 +46,7 @@ useCommands(() => command
     </template>
     <template v-if="isHydrated && moreOptions?.options?.length">
       <CommonDropdown placement="bottom" flex cursor-pointer mx-1.25rem>
-        <CommonTooltip placement="top" :content="moreOptions.tooltip || t('action.more')">
+        <CommonTooltip placement="top" no-auto-focus :content="moreOptions.tooltip || t('action.more')">
           <button
             cursor-pointer
             flex

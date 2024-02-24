@@ -13,7 +13,7 @@ const { items, command } = defineProps<{
 }>()
 
 const emojis = computed(() => {
-  if (process.server)
+  if (import.meta.server)
     return []
 
   return items.map((item: CustomEmoji | Emoji) => {

@@ -32,7 +32,7 @@ function initializeUsers(): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>
     }
   }
 
-  const users = process.server
+  const users = import.meta.server
     ? ref<UserLogin[]>(defaultUsers)
     : useAsyncIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, { deep: true })
 
@@ -42,7 +42,7 @@ function initializeUsers(): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>
   return users
 }
 
-const users = process.server ? initializeUsers() as Ref<UserLogin[]> | RemovableRef<UserLogin[]> : await initializeUsers()
+const users = import.meta.server ? initializeUsers() as Ref<UserLogin[]> | RemovableRef<UserLogin[]> : await initializeUsers()
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
 const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
 export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
@@ -81,7 +81,7 @@ export const isGotoSocial = computed(() => currentNodeInfo.value?.software?.name
 export const isGlitchEdition = computed(() => currentInstance.value?.version?.includes('+glitch'))
 
 // when multiple tabs: we need to reload window when sign in, switch account or sign out
-if (process.client) {
+if (import.meta.client) {
   const windowReload = () => {
     document.visibilityState === 'visible' && window.location.reload()
   }
@@ -343,7 +343,7 @@ interface UseUserLocalStorageCache {
  * @param initial
  */
 export function useUserLocalStorage<T extends object>(key: string, initial: () => T): Ref<T> {
-  if (process.server || process.test)
+  if (import.meta.server || process.test)
     return shallowRef(initial())
 
   // @ts-expect-error bind value to the function

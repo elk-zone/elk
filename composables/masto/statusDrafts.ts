@@ -4,7 +4,7 @@ import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
 
-export const currentUserDrafts = (process.server || process.test)
+export const currentUserDrafts = (import.meta.server || process.test)
   ? computed<DraftMap>(() => ({}))
   : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 

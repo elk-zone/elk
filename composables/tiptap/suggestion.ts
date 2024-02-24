@@ -18,7 +18,7 @@ export function isCustomEmoji(emoji: CustomEmoji | Emoji): emoji is CustomEmoji 
   return !!(emoji as CustomEmoji).custom
 }
 
-export const TiptapMentionSuggestion: Partial<SuggestionOptions> = process.server
+export const TiptapMentionSuggestion: Partial<SuggestionOptions> = import.meta.server
   ? {}
   : {
       pluginKey: new PluginKey('mention'),
@@ -56,7 +56,7 @@ export const TiptapEmojiSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('emoji'),
   char: ':',
   async items({ query }): Promise<(CustomEmoji | Emoji)[]> {
-    if (process.server || query.length === 0)
+    if (import.meta.server || query.length === 0)
       return []
 
     if (currentCustomEmojis.value.emojis.length === 0)

@@ -1,7 +1,6 @@
 import fs from 'fs-extra'
 import { createResolver, defineNuxtModule } from '@nuxt/kit'
-import { i18n } from '../config/i18n'
-import type { LocaleObject } from '#i18n'
+import { currentLocales } from '../config/i18n'
 
 const virtual = 'virtual:emoji-mart-lang-importer'
 const resolvedVirtual = `\0${virtual}.mjs`
@@ -25,7 +24,7 @@ export default defineNuxtModule({
           if (id === resolvedVirtual) {
             const locales = await Promise.all(
               Array
-                .from(new Set((i18n.locales as LocaleObject[]).map(l => l.code.split('-')[0])))
+                .from(new Set((currentLocales).map(l => l.code.split('-')[0])))
                 .map(async (l) => {
                   const exists = await isFile(resolver.resolve(`../node_modules/@emoji-mart/data/i18n/${l}.json`))
                   return [l, exists] as [code: string, exists: boolean]

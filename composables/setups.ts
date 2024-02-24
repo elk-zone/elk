@@ -1,5 +1,4 @@
-import type { Directions } from 'vue-i18n-routing'
-import type { LocaleObject } from '#i18n'
+import type { Directions, LocaleObject } from '@nuxtjs/i18n'
 
 export function setupPageHeader() {
   const { locale, locales, t } = useI18n()
@@ -52,7 +51,7 @@ export function setupPageHeader() {
 
       return titleTemplate
     },
-    link: (process.client && useAppConfig().pwaEnabled)
+    link: (import.meta.client && useAppConfig().pwaEnabled)
       ? () => [{
           key: 'webmanifest',
           rel: 'manifest',

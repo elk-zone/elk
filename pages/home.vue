@@ -6,7 +6,7 @@ definePageMeta({
 
 const route = useRoute()
 const router = useRouter()
-if (process.client && route.path === '/signin/callback')
+if (import.meta.client && route.path === '/signin/callback')
   router.push('/home')
 
 const { t } = useI18n()

@@ -45,7 +45,7 @@ export const supportedTranslationCodes = [
 export function getLanguageCode() {
   let code = 'en'
   const getCode = (code: string) => code.replace(/-.*$/, '')
-  if (!process.server) {
+  if (import.meta.client) {
     const { locale } = useI18n()
     code = getCode(locale.value ? locale.value : navigator.language)
   }

@@ -11,7 +11,7 @@ function getDefault(): CustomEmojisInfo {
   }
 }
 
-export const currentCustomEmojis = process.server
+export const currentCustomEmojis = import.meta.server
   ? computed(getDefault)
   : useUserLocalStorage(STORAGE_KEY_CUSTOM_EMOJIS, getDefault)
 

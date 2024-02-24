@@ -42,7 +42,7 @@ const tabs = [
     >
       <div
         relative flex flex-auto cursor-pointer sm:px6 px2 rounded transition-all
-        tabindex="1"
+        tabindex="0"
         hover:bg-active transition-100
         @click="option.onClick"
       >

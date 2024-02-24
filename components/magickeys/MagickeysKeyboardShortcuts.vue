@@ -66,6 +66,10 @@ const shortcutItemGroups = computed<ShortcutItemGroup[]>(() => [
         shortcut: { keys: ['c'], isSequence: false },
       },
       {
+        description: t('magic_keys.groups.actions.show_new_items'),
+        shortcut: { keys: ['.'], isSequence: false },
+      },
+      {
         description: t('magic_keys.groups.actions.favourite'),
         shortcut: { keys: ['f'], isSequence: false },
       },

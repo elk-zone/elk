@@ -228,6 +228,7 @@
         "compose": "Compose",
         "favourite": "Favourite",
         "search": "Search",
+        "show_new_items": "Show new items",
         "title": "Actions"
       },
       "media": {

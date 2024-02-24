@@ -26,13 +26,12 @@ const meta = computed(() => {
   const lines = meta?.[2]
   const code = meta?.[3].split('\n').slice(0, maxLines).join('\n')
   const project = props.card.title?.replace(' - StackBlitz', '')
-  const info = {
+  return {
     file,
     lines,
     code,
     project,
-  }
-  return info
+  } satisfies Meta
 })
 
 const vnodeCode = computed(() => {

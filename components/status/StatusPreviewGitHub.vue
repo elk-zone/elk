@@ -64,7 +64,7 @@ const meta = computed(() => {
   const avatar = `https://github.com/${user}.png?size=256`
 
   const author = props.card.authorName
-  const info = {
+  return {
     type,
     user,
     titleUrl: `https://github.com/${user}${repo ? `/${repo}` : ''}`,
@@ -78,8 +78,7 @@ const meta = computed(() => {
           user: author,
         }
       : undefined,
-  }
-  return info
+  } satisfies Meta
 })
 </script>
 

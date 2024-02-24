@@ -3,7 +3,7 @@ definePageMeta({ name: 'account-replies' })
 
 const { t } = useI18n()
 const params = useRoute().params
-const handle = computedEager(() => params.account as string)
+const handle = computed(() => params.account as string)
 
 const account = await fetchAccountByHandle(handle.value)
 

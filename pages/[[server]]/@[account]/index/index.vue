@@ -2,7 +2,7 @@
 import type { mastodon } from 'masto'
 
 const params = useRoute().params
-const handle = computedEager(() => params.account as string)
+const handle = computed(() => params.account as string)
 
 definePageMeta({ name: 'account-index' })
 

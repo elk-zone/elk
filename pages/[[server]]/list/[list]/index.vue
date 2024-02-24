@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
+import type { CommonRouteTabOption } from '~/types'
 
 definePageMeta({
   middleware: 'auth',

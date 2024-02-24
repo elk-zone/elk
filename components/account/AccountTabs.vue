@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { CommonRouteTabOption } from '../common/CommonRouteTabs.vue'
+import type { CommonRouteTabOption } from '~/types'
 
 const { t } = useI18n()
 const route = useRoute()
 
-const server = computedEager(() => route.params.server as string)
-const account = computedEager(() => route.params.account as string)
+const server = computed(() => route.params.server as string)
+const account = computed(() => route.params.account as string)
 
 const tabs = computed<CommonRouteTabOption[]>(() => [
   {

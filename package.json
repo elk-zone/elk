@@ -150,6 +150,9 @@
       "nuxt-security@0.13.1": "patches/nuxt-security@0.13.1.patch"
     }
   },
+  "resolutions": {
+    "vue": "^3.4.19"
+  },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },

@@ -4,7 +4,7 @@ definePageMeta({
 })
 
 const params = useRoute().params
-const accountName = computedEager(() => toShortHandle(params.account as string))
+const accountName = computed(() => toShortHandle(params.account as string))
 
 const { t } = useI18n()
 

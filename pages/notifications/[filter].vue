@@ -15,7 +15,7 @@ const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
 })
 
 useHydratedHead({
-  title: () => `${t(`tab.notifications_${filter ?? 'all'}`)} | ${t('nav.notifications')}`,
+  title: () => `${t(`tab.notifications_${filter.value ?? 'all'}`)} | ${t('nav.notifications')}`,
 })
 </script>
 

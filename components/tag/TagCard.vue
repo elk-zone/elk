@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { tag, layout } = defineProps<{
+const { tag } = defineProps<{
   tag: mastodon.v1.Tag
-  layout: 'card' | 'hovercard'
 }>()
 
 const to = computed(() => {
@@ -35,19 +34,20 @@ function go(evt: MouseEvent | KeyboardEvent) {
     @click="onclick"
     @keydown.enter="onclick"
   >
-    <div>
-      <h4 flex items-center text-size-base leading-normal font-medium line-clamp-1 break-all ws-pre-wrap>
-        <TagActionButton v-show="layout === 'card'" :tag="tag" />
-        <bdi>
-          <span>#</span>
-          <span hover:underline>{{ tag.name }}</span>
-        </bdi>
-      </h4>
-      <CommonTrending v-if="tag.history" :history="tag.history" text-sm text-secondary line-clamp-1 ws-pre-wrap break-all />
+    <div flex flex-gap-2>
+      <TagActionButton :tag="tag" />
+      <div>
+        <h4 flex items-center text-size-base leading-normal font-medium line-clamp-1 break-all ws-pre-wrap>
+          <bdi>
+            <span>#</span>
+            <span hover:underline>{{ tag.name }}</span>
+          </bdi>
+        </h4>
+        <CommonTrending v-if="tag.history" :history="tag.history" text-sm text-secondary line-clamp-1 ws-pre-wrap break-all />
+      </div>
     </div>
     <div v-if="tag.history" flex items-center>
       <CommonTrendingCharts :history="tag.history" />
-      <TagActionButton v-show="layout === 'hovercard'" :tag="tag" />
     </div>
   </div>
 </template>

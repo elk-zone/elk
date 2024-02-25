@@ -1,11 +1,18 @@
 <script lang="ts" setup>
 import type { mastodon } from 'masto'
 
-const {
-  tag,
-} = defineProps<{
-  tag: mastodon.v1.Tag
+const props = defineProps<{
+  tag?: mastodon.v1.Tag
+  tagName?: string
 }>()
+
+let tag: mastodon.v1.Tag
+if (props.tag)
+  tag = props.tag
+else if (props.tagName)
+  tag = await fetchTag(props.tagName)
+else
+  console.error('TagCard: tag or tagName is required')
 
 const to = computed(() => {
   const { hostname, pathname } = new URL(tag.url)

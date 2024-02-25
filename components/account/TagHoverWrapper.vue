@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
 import TagCard from '~/components/tag/TagCard.vue'
-import { fetchTag } from '~/composables/cache'
 
 type WatcherType = [tagName?: string, v?: boolean]
 
@@ -16,7 +14,7 @@ const props = defineProps<{
 
 const hoverCard = ref()
 const targetIsVisible = ref(false)
-const tag = ref<mastodon.v1.Tag | undefined>()
+const tagName = ref<string | undefined>()
 
 useIntersectionObserver(
   hoverCard,
@@ -24,18 +22,19 @@ useIntersectionObserver(
     targetIsVisible.value = intersectionRatio <= 0.75
   },
 )
+
 watch(
   () => [props.tagName, targetIsVisible.value] satisfies WatcherType,
   async ([newTagName, newVisible]) => {
     if (newTagName) {
-      tag.value = await fetchTag(newTagName)
+      tagName.value = newTagName
       return
     }
 
     if (!newVisible)
       return
 
-    tag.value = undefined
+    tagName.value = undefined
   }, { immediate: true, flush: 'post' },
 )
 
@@ -44,10 +43,10 @@ const userSettings = useUserSettings()
 
 <template>
   <span ref="hoverCard">
-    <VMenu v-if="!disabled && tag && !getPreferences(userSettings, 'hideAccountAndTagHoverCard')" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
+    <VMenu v-if="!disabled && tagName && !getPreferences(userSettings, 'hideAccountAndTagHoverCard')" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
       <slot />
       <template #popper>
-        <TagCard v-if="tag" :tag="tag" />
+        <TagCard v-if="tagName" :tag-name="tagName" />
       </template>
     </VMenu>
     <slot v-else />

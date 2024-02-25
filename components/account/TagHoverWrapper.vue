@@ -35,7 +35,7 @@ watch(
       return
     }
 
-    if (!newVisible)
+    if (!newVisible || process.test)
       return
 
     if (newTagName) {

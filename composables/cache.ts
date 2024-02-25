@@ -1,7 +1,6 @@
 import { LRUCache } from 'lru-cache'
 import type { mastodon } from 'masto'
 
-const fetchPromises = new Map<string, any>()
 const cache = new LRUCache<string, any>({
   max: 1000,
 })
@@ -26,23 +25,12 @@ export function fetchStatus(id: string, force = false): Promise<mastodon.v1.Stat
   if (cached && !force)
     return Promise.resolve(cached)
 
-  let fetchPromise = fetchPromises.get(key)
-  if (!fetchPromise || force) {
-    fetchPromise = useMastoClient().v1.statuses.$select(id).fetch()
-      .then((status) => {
-        cacheStatus(status)
-        return Promise.resolve(status)
-      })
-      .finally(() => fetchPromises.delete(key))
-    fetchPromises.set(key, fetchPromise)
-  }
-
-  const promise = new Promise<any>((resolve) => {
-    fetchPromise!.then(resolve)
-  })
-  if (!cache.has(key) || force)
-    cache.set(key, promise)
-
+  const promise = useMastoClient().v1.statuses.$select(id).fetch()
+    .then((status) => {
+      cacheStatus(status)
+      return status
+    })
+  cache.set(key, promise)
   return promise
 }
 
@@ -57,27 +45,16 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
   if (cached)
     return Promise.resolve(cached)
 
-  let fetchPromise = fetchPromises.get(key)
-  if (!fetchPromise) {
-    const domain = getInstanceDomainFromServer(server)
-    fetchPromise = useMastoClient().v1.accounts.$select(id).fetch()
-      .then((r) => {
-        if (r.acct && !r.acct.includes('@') && domain)
-          r.acct = `${r.acct}@${domain}`
+  const domain = getInstanceDomainFromServer(server)
+  const promise = useMastoClient().v1.accounts.$select(id).fetch()
+    .then((r) => {
+      if (r.acct && !r.acct.includes('@') && domain)
+        r.acct = `${r.acct}@${domain}`
 
-        cacheAccount(r, server, true)
-        return Promise.resolve(r)
-      })
-      .finally(() => fetchPromises.delete(key))
-    fetchPromises.set(key, fetchPromise)
-  }
-
-  const promise = new Promise<any>((resolve) => {
-    fetchPromise!.then(resolve)
-  })
-  if (!cache.has(key))
-    cache.set(key, promise)
-
+      cacheAccount(r, server, true)
+      return r
+    })
+  cache.set(key, promise)
   return promise
 }
 
@@ -106,23 +83,13 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
       account.acct = `${account.acct}@${domain}`
     return account
   }
-  let fetchPromise = fetchPromises.get(key)
-  if (!fetchPromise) {
-    fetchPromise = lookupAccount()
-      .then((r) => {
-        cacheAccount(r, server, true)
-        return Promise.resolve(r)
-      })
-      .finally(() => fetchPromises.delete(key))
-    fetchPromises.set(key, fetchPromise)
-  }
 
-  const promise = new Promise<any>((resolve) => {
-    fetchPromise!.then(resolve)
-  })
-  if (!cache.has(key))
-    cache.set(key, promise)
-
+  const promise = lookupAccount()
+    .then((r) => {
+      cacheAccount(r, server, true)
+      return r
+    })
+  cache.set(key, promise)
   return promise
 }
 

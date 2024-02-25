@@ -1,6 +1,7 @@
 import { LRUCache } from 'lru-cache'
 import type { mastodon } from 'masto'
 
+const promises = new Map<string, Promise<any>>()
 const cache = new LRUCache<string, any>({
   max: 1000,
 })
@@ -82,13 +83,24 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
     return account
   }
 
-  const account = lookupAccount()
-    .then((r) => {
-      cacheAccount(r, server, true)
-      return r
-    })
-  cache.set(key, account)
-  return account
+  let fetchPromise = promises.get(key)
+  if (!fetchPromise) {
+    fetchPromise = lookupAccount()
+      .then((r) => {
+        cacheAccount(r, server, true)
+        return Promise.resolve(r)
+      })
+      .finally(() => promises.delete(key))
+    promises.set(key, fetchPromise)
+  }
+
+  const promise = new Promise<any>((resolve) => {
+    fetchPromise!.then(resolve)
+  })
+  if (!cache.has(key))
+    cache.set(key, promise)
+
+  return promise
 }
 
 export function fetchTag(tagName: string, force = false): Promise<mastodon.v1.Tag> {
@@ -98,12 +110,24 @@ export function fetchTag(tagName: string, force = false): Promise<mastodon.v1.Ta
   const cached = cache.get(key)
   if (cached && !force)
     return cached
-  const promise = useMastoClient().v1.tags.$select(tagName).fetch()
-    .then((tag) => {
-      cacheTag(tag)
-      return tag
-    })
-  cache.set(key, promise)
+
+  let fetchPromise = promises.get(key)
+  if (!fetchPromise) {
+    fetchPromise = useMastoClient().v1.tags.$select(tagName).fetch()
+      .then((tag) => {
+        cacheTag(tag)
+        return Promise.resolve(tag)
+      })
+      .finally(() => promises.delete(key))
+    promises.set(key, fetchPromise)
+  }
+
+  const promise = new Promise<any>((resolve) => {
+    fetchPromise!.then(resolve)
+  })
+  if (!cache.has(key))
+    cache.set(key, promise)
+
   return promise
 }
 

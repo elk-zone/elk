@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import TagCard from '~/components/tag/TagCard.vue'
 import { fetchTag } from '~/composables/cache'
 
 type WatcherType = [tag?: mastodon.v1.Tag, tagName?: string, v?: boolean]
@@ -17,7 +16,6 @@ const props = defineProps<{
 
 const hoverCard = ref()
 const targetIsVisible = ref(false)
-const tagName = ref<string | undefined>()
 const tag = ref<mastodon.v1.Tag | null | undefined>(props.tag)
 
 useIntersectionObserver(
@@ -50,7 +48,7 @@ watch(
       return
     }
 
-    tagName.value = undefined
+    tag.value = undefined
   }, { immediate: true, flush: 'post' },
 )
 

@@ -12,7 +12,7 @@ if (import.meta.dev && import.meta.client)
 
 export function setCached(key: string, value: any, override = false) {
   if (override || !cache.has(key))
-    cache.set(key, Promise.resolve(value))
+    cache.set(key, value)
 }
 function removeCached(key: string) {
   cache.delete(key)
@@ -77,7 +77,7 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   const key = `${server}:${userId}:account:${userAcct}`
   const cached = cache.get(key)
   if (cached)
-    return cached
+    return Promise.resolve(cached)
 
   async function lookupAccount() {
     const client = useMastoClient()
@@ -121,7 +121,7 @@ export function fetchTag(tagName: string, force = false): Promise<mastodon.v1.Ta
   const key = `${server}:${userId}:tag:${tagName}`
   const cached = cache.get(key)
   if (cached && !force)
-    return cached
+    return Promise.resolve(cached)
 
   let fetchPromise = promises.get(key)
   if (!fetchPromise) {

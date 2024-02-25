@@ -235,8 +235,18 @@
         "title": "Multimedia"
       },
       "navigation": {
+        "go_to_bookmarks": "Marcadores",
+        "go_to_conversations": "Conversaciones",
+        "go_to_explore": "Explorar",
+        "go_to_favourites": "Favoritas",
+        "go_to_federated": "Federados",
         "go_to_home": "Inicio",
+        "go_to_lists": "Listas",
+        "go_to_local": "Local",
         "go_to_notifications": "Notificaciones",
+        "go_to_profile": "Perfil",
+        "go_to_search": "Buscar",
+        "go_to_settings": "Ajustes",
         "next_status": "Siguiente estado",
         "previous_status": "Anterior estado",
         "shortcut_help": "Atajo de ayuda",

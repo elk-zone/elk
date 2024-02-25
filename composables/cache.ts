@@ -44,16 +44,28 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
   const cached = cache.get(key)
   if (cached)
     return cached
-  const domain = getInstanceDomainFromServer(server)
-  const promise = useMastoClient().v1.accounts.$select(id).fetch()
-    .then((r) => {
-      if (r.acct && !r.acct.includes('@') && domain)
-        r.acct = `${r.acct}@${domain}`
 
-      cacheAccount(r, server, true)
-      return r
-    })
-  cache.set(key, promise)
+  let fetchPromise = promises.get(key)
+  if (!fetchPromise) {
+    const domain = getInstanceDomainFromServer(server)
+    fetchPromise = useMastoClient().v1.accounts.$select(id).fetch()
+      .then((r) => {
+        if (r.acct && !r.acct.includes('@') && domain)
+          r.acct = `${r.acct}@${domain}`
+
+        cacheAccount(r, server, true)
+        return Promise.resolve(r)
+      })
+      .finally(() => promises.delete(key))
+    promises.set(key, fetchPromise)
+  }
+
+  const promise = new Promise<any>((resolve) => {
+    fetchPromise!.then(resolve)
+  })
+  if (!cache.has(key))
+    cache.set(key, promise)
+
   return promise
 }
 

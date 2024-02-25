@@ -97,7 +97,8 @@ export function fetchTag(tagName: string, force = false): Promise<mastodon.v1.Ta
   const key = `${server}:${userId}:tag:${tagName}`
   const cached = cache.get(key)
   if (cached && !force)
-    return cached
+    return Promise.resolve(cached)
+
   const promise = useMastoClient().v1.tags.$select(tagName).fetch()
     .then((tag) => {
       cacheTag(tag)

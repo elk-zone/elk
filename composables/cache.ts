@@ -11,7 +11,7 @@ if (import.meta.dev && import.meta.client)
 
 export function setCached(key: string, value: any, override = false) {
   if (override || !cache.has(key))
-    cache.set(key, value)
+    cache.set(key, Promise.resolve(value))
 }
 function removeCached(key: string) {
   cache.delete(key)

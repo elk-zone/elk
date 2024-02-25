@@ -8,5 +8,6 @@ export default defineVitestConfig({
     setupFiles: [
       '/tests/setup.ts',
     ],
+    pool: 'forks',
   },
 })

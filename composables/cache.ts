@@ -43,7 +43,7 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
   const key = `${server}:${userId}:account:${id}`
   const cached = cache.get(key)
   if (cached)
-    return cached
+    return Promise.resolve(cached)
 
   let fetchPromise = promises.get(key)
   if (!fetchPromise) {

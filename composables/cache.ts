@@ -23,7 +23,8 @@ export function fetchStatus(id: string, force = false): Promise<mastodon.v1.Stat
   const key = `${server}:${userId}:status:${id}`
   const cached = cache.get(key)
   if (cached && !force)
-    return cached
+    return Promise.resolve(cached)
+
   const promise = useMastoClient().v1.statuses.$select(id).fetch()
     .then((status) => {
       cacheStatus(status)
@@ -42,7 +43,8 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
   const key = `${server}:${userId}:account:${id}`
   const cached = cache.get(key)
   if (cached)
-    return cached
+    return Promise.resolve(cached)
+
   const domain = getInstanceDomainFromServer(server)
   const promise = useMastoClient().v1.accounts.$select(id).fetch()
     .then((r) => {
@@ -64,7 +66,7 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   const key = `${server}:${userId}:account:${userAcct}`
   const cached = cache.get(key)
   if (cached)
-    return cached
+    return Promise.resolve(cached)
 
   async function lookupAccount() {
     const client = useMastoClient()
@@ -82,13 +84,13 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
     return account
   }
 
-  const account = lookupAccount()
+  const promise = lookupAccount()
     .then((r) => {
       cacheAccount(r, server, true)
       return r
     })
-  cache.set(key, account)
-  return account
+  cache.set(key, promise)
+  return promise
 }
 
 export function useAccountById(id?: string | null) {

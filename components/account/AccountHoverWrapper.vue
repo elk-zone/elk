@@ -57,7 +57,7 @@ const userSettings = useUserSettings()
 
 <template>
   <span ref="hoverCard">
-    <VMenu v-if="!disabled && account && !getPreferences(userSettings, 'hideAccountHoverCard')" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
+    <VMenu v-if="!disabled && account && !getPreferences(userSettings, 'hideAccountAndTagHoverCard')" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
       <slot />
       <template #popper>
         <AccountHoverCard v-if="account" :account="account" />

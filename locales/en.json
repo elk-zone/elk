@@ -529,7 +529,7 @@
       "github_cards": "GitHub Cards",
       "github_cards_description": "When a GitHub link is posted, an accessible HTML card using the social graph meta is displayed instead of the social image.",
       "grayscale_mode": "Grayscale mode",
-      "hide_account_hover_card": "Hide account hover card",
+      "hide_account_and_tag_hover_card": "Hide account and tag hover card",
       "hide_alt_indi_on_posts": "Hide alt indicator on posts",
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",

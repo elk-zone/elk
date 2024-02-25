@@ -29,7 +29,7 @@ useIntersectionObserver(
 
 watch(
   () => [props.tag, props.tagName, targetIsVisible.value] satisfies WatcherType,
-  async ([newTag, newTagName, newVisible], oldProps) => {
+  ([newTag, newTagName, newVisible], oldProps) => {
     if (newTag) {
       tag.value = newTag
       return

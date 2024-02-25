@@ -519,7 +519,7 @@
       "github_cards": "Tarjetas GitHub",
       "github_cards_description": "Cuando se publica un enlace de GitHub, se muestra una tarjeta HTML accesible que usa el meta del gráfico social en lugar de la imagen social.",
       "grayscale_mode": "Modo escala de grises",
-      "hide_account_hover_card": "Ocultar tarjeta flotante de cuenta",
+      "hide_account_and_tag_hover_card": "Ocultar tarjetas flotantes de cuenta y etiqueta",
       "hide_alt_indi_on_posts": "Ocultar indicador ALT en publicaciones",
       "hide_boost_count": "Ocultar contador de retoots",
       "hide_favorite_count": "Ocultar número de publicaciones favoritas",

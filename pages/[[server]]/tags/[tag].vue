@@ -4,17 +4,17 @@ definePageMeta({
 })
 
 const params = useRoute().params
-const tagName = $(computedEager(() => params.tag as string))
+const tagName = computed(() => params.tag as string)
 
-const { client } = $(useMasto())
-const { data: tag, refresh } = $(await useAsyncData(() => client.v1.tags.$select(tagName).fetch(), { default: () => shallowRef() }))
+const { client } = useMasto()
+const { data: tag, refresh } = await useAsyncData(() => client.value.v1.tags.$select(tagName.value).fetch(), { default: () => shallowRef() })
 
-const paginator = client.v1.timelines.tag.$select(tagName).list()
-const stream = useStreaming(client => client.hashtag.subscribe({ tag: tagName }))
+const paginator = client.value.v1.timelines.tag.$select(tagName.value).list()
+const stream = useStreaming(client => client.hashtag.subscribe({ tag: tagName.value }))
 
-if (tag) {
+if (tag.value) {
   useHydratedHead({
-    title: () => `#${tag.name}`,
+    title: () => `#${tag.value.name}`,
   })
 }
 

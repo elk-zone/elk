@@ -29,23 +29,23 @@ interface ViewTransitionSources {
 }
 
 export function getViewTransitionStyles(viewTransitionName: string, sources?: ViewTransitionSources) {
+  const calcedSources = calcTransitionSources({
+    status: sources?.status || inject(viewTransitionStatusInjectionKey, undefined),
+    account: sources?.account || inject(viewTransitionAccountInjectionKey, undefined),
+  })
+
   return computed(() => {
-    if (shouldTakePartInTransition(sources))
+    if (shouldTakePartInTransition(calcedSources))
       return { 'view-transition-name': viewTransitionName }
     else
       return {}
   })
 }
 
-function shouldTakePartInTransition(manualSources?: ViewTransitionSources) {
+function shouldTakePartInTransition(sources: ViewTransitionSources) {
   const state = getViewTransitionState().value
-  if (!state || (!state.targets.account && !state.targets.status))
+  if (!state?.targets.account && !state?.targets.status)
     return false
-
-  const sources = calcTransitionSources({
-    status: manualSources?.status || inject(viewTransitionStatusInjectionKey, undefined),
-    account: manualSources?.account || inject(viewTransitionAccountInjectionKey, undefined),
-  })
 
   const route = useRoute()
   const currPath = route.path

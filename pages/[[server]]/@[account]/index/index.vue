@@ -2,13 +2,13 @@
 import type { mastodon } from 'masto'
 
 const params = useRoute().params
-const handle = $(computedEager(() => params.account as string))
+const handle = computed(() => params.account as string)
 
 definePageMeta({ name: 'account-index' })
 
 const { t } = useI18n()
 
-const account = await fetchAccountByHandle(handle)
+const account = await fetchAccountByHandle(handle.value)
 
 function reorderAndFilter(items: mastodon.v1.Status[]) {
   return reorderedTimeline(items, 'account')

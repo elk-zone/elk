@@ -22,7 +22,7 @@ const slider = ref()
 const slide = ref()
 const image = ref()
 
-const reduceMotion = process.server ? ref(false) : useReducedMotion()
+const reduceMotion = import.meta.server ? ref(false) : useReducedMotion()
 const isInitialScrollDone = useTimeout(350)
 const canAnimate = computed(() => isInitialScrollDone.value && !reduceMotion.value)
 

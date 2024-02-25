@@ -15,9 +15,9 @@ const { paginator, stream, account, buffer = 10, endMessage = true } = definePro
 }>()
 
 const { formatNumber } = useHumanReadableNumber()
-const virtualScroller = $(usePreferences('experimentalVirtualScroller'))
+const virtualScroller = usePreferences('experimentalVirtualScroller')
 
-const showOriginSite = $computed(() =>
+const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
 )
 </script>
@@ -25,7 +25,7 @@ const showOriginSite = $computed(() =>
 <template>
   <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer, endMessage }" :virtual-scroller="virtualScroller">
     <template #updater="{ number, update }">
-      <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
+      <button id="elk_show_new_items" py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>

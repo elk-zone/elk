@@ -27,6 +27,7 @@
     "follows_you": "Follows you",
     "go_to_profile": "Go to profile",
     "joined": "Joined",
+    "lock": "Lock",
     "moved_title": "has indicated that their new account is now:",
     "muted_users": "Muted users",
     "muting": "Muted",
@@ -227,6 +228,7 @@
         "compose": "Compose",
         "favourite": "Favourite",
         "search": "Search",
+        "show_new_items": "Show new items",
         "title": "Actions"
       },
       "media": {
@@ -632,7 +634,7 @@
     "notifications_favourite": "Favourite",
     "notifications_follow": "Follow",
     "notifications_follow_request": "Follow request",
-    "notifications_mention": "Mention",
+    "notifications_mention": "Mentions",
     "notifications_more_tooltip": "Filter notifications by type",
     "notifications_poll": "Poll",
     "notifications_reblog": "Boost",

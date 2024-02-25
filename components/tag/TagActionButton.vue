@@ -9,7 +9,7 @@ const emit = defineEmits<{
   (event: 'change'): void
 }>()
 
-const { client } = $(useMasto())
+const { client } = useMasto()
 
 async function toggleFollowTag() {
   // We save the state so be can do an optimistic UI update, but fallback to the previous state if the API call fails
@@ -20,9 +20,9 @@ async function toggleFollowTag() {
 
   try {
     if (previousFollowingState)
-      await client.v1.tags.$select(tag.name).unfollow()
+      await client.value.v1.tags.$select(tag.name).unfollow()
     else
-      await client.v1.tags.$select(tag.name).follow()
+      await client.value.v1.tags.$select(tag.name).follow()
 
     emit('change')
   }

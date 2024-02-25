@@ -56,7 +56,7 @@ export interface ThemeColors {
 }
 
 export function getDefaultLanguage(languages: string[]) {
-  if (process.server)
+  if (import.meta.server)
     return 'en-US'
   return matchLanguages(languages, navigator.languages) || 'en-US'
 }

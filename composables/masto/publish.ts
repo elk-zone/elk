@@ -10,69 +10,68 @@ export function usePublish(options: {
   isUploading: Ref<boolean>
   initialDraft: Ref<() => Draft>
 }) {
-  const { expanded, isUploading, initialDraft } = $(options)
-  let { draft, isEmpty } = $(options.draftState)
-  const { client } = $(useMasto())
+  const { draft, isEmpty } = options.draftState
+  const { client } = useMasto()
   const settings = useUserSettings()
 
-  const preferredLanguage = $computed(() => (currentUser.value?.account.source.language || settings.value?.language || 'en').split('-')[0])
+  const preferredLanguage = computed(() => (currentUser.value?.account.source.language || settings.value?.language || 'en').split('-')[0])
 
-  let isSending = $ref(false)
-  const isExpanded = $ref(false)
-  const failedMessages = $ref<string[]>([])
+  const isSending = ref(false)
+  const isExpanded = ref(false)
+  const failedMessages = ref<string[]>([])
 
-  const publishSpoilerText = $computed({
+  const publishSpoilerText = computed({
     get() {
-      return draft.params.sensitive ? draft.params.spoilerText : ''
+      return draft.value.params.sensitive ? draft.value.params.spoilerText : ''
     },
     set(val) {
-      if (!draft.params.sensitive)
+      if (!draft.value.params.sensitive)
         return
-      draft.params.spoilerText = val
+      draft.value.params.spoilerText = val
     },
   })
 
-  const shouldExpanded = $computed(() => expanded || isExpanded || !isEmpty)
-  const isPublishDisabled = $computed(() => {
-    const firstEmptyInputIndex = draft.params.poll?.options.findIndex(option => option.trim().length === 0)
-
-    return isEmpty
-          || isUploading
-          || isSending
-          || (draft.attachments.length === 0 && !draft.params.status)
-          || failedMessages.length > 0
-          || (draft.attachments.length > 0 && draft.params.poll !== null && draft.params.poll !== undefined)
-          || ((draft.params.poll !== null && draft.params.poll !== undefined)
+  const shouldExpanded = computed(() => options.expanded.value || isExpanded.value || !isEmpty.value)
+  const isPublishDisabled = computed(() => {
+    const { params, attachments } = draft.value
+    const firstEmptyInputIndex = params.poll?.options.findIndex(option => option.trim().length === 0)
+    return isEmpty.value
+          || options.isUploading.value
+          || isSending.value
+          || (attachments.length === 0 && !params.status)
+          || failedMessages.value.length > 0
+          || (attachments.length > 0 && params.poll !== null && params.poll !== undefined)
+          || ((params.poll !== null && params.poll !== undefined)
               && (
                 (firstEmptyInputIndex !== -1
-                 && firstEmptyInputIndex !== draft.params.poll.options.length - 1
+                 && firstEmptyInputIndex !== params.poll.options.length - 1
                 )
-                || draft.params.poll.options.findLastIndex(option => option.trim().length > 0) + 1 < 2
-                || (new Set(draft.params.poll.options).size !== draft.params.poll.options.length)
+                || params.poll.options.findLastIndex(option => option.trim().length > 0) + 1 < 2
+                || (new Set(params.poll.options).size !== params.poll.options.length)
                 || (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined
-                    && draft.params.poll.options.find(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption) !== undefined
+                    && params.poll.options.find(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption) !== undefined
                 )
               )
           )
   })
 
   watch(() => draft, () => {
-    if (failedMessages.length > 0)
-      failedMessages.length = 0
+    if (failedMessages.value.length > 0)
+      failedMessages.value.length = 0
   }, { deep: true })
 
   async function publishDraft() {
-    if (isPublishDisabled)
+    if (isPublishDisabled.value)
       return
 
-    let content = htmlToText(draft.params.status || '')
-    if (draft.mentions?.length)
-      content = `${draft.mentions.map(i => `@${i}`).join(' ')} ${content}`
+    let content = htmlToText(draft.value.params.status || '')
+    if (draft.value.mentions?.length)
+      content = `${draft.value.mentions.map(i => `@${i}`).join(' ')} ${content}`
 
     let poll
 
-    if (draft.params.poll) {
-      let options = draft.params.poll.options
+    if (draft.value.params.poll) {
+      let options = draft.value.params.poll.options
 
       if (currentInstance.value?.configuration !== undefined
         && (
@@ -82,23 +81,23 @@ export function usePublish(options: {
       )
         options = options.slice(0, options.length - 1)
 
-      poll = { ...draft.params.poll, options }
+      poll = { ...draft.value.params.poll, options }
     }
 
     const payload = {
-      ...draft.params,
-      spoilerText: publishSpoilerText,
+      ...draft.value.params,
+      spoilerText: publishSpoilerText.value,
       status: content,
-      mediaIds: draft.attachments.map(a => a.id),
-      language: draft.params.language || preferredLanguage,
+      mediaIds: draft.value.attachments.map(a => a.id),
+      language: draft.value.params.language || preferredLanguage.value,
       poll,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.rest.v1.CreateStatusParams
 
-    if (process.dev) {
+    if (import.meta.dev) {
       // eslint-disable-next-line no-console
       console.info({
-        raw: draft.params.status,
+        raw: draft.value.params.status,
         ...payload,
       })
       // eslint-disable-next-line no-alert
@@ -108,39 +107,39 @@ export function usePublish(options: {
     }
 
     try {
-      isSending = true
+      isSending.value = true
 
       let status: mastodon.v1.Status
-      if (!draft.editingStatus) {
-        status = await client.v1.statuses.create(payload)
+      if (!draft.value.editingStatus) {
+        status = await client.value.v1.statuses.create(payload)
       }
 
       else {
-        status = await client.v1.statuses.$select(draft.editingStatus.id).update({
+        status = await client.value.v1.statuses.$select(draft.value.editingStatus.id).update({
           ...payload,
-          mediaAttributes: draft.attachments.map(media => ({
+          mediaAttributes: draft.value.attachments.map(media => ({
             id: media.id,
             description: media.description,
           })),
         })
       }
-      if (draft.params.inReplyToId)
+      if (draft.value.params.inReplyToId)
         navigateToStatus({ status })
 
-      draft = initialDraft()
+      draft.value = options.initialDraft.value()
 
       return status
     }
     catch (err) {
       console.error(err)
-      failedMessages.push((err as Error).message)
+      failedMessages.value.push((err as Error).message)
     }
     finally {
-      isSending = false
+      isSending.value = false
     }
   }
 
-  return $$({
+  return {
     isSending,
     isExpanded,
     shouldExpanded,
@@ -149,22 +148,21 @@ export function usePublish(options: {
     preferredLanguage,
     publishSpoilerText,
     publishDraft,
-  })
+  }
 }
 
 export type MediaAttachmentUploadError = [filename: string, message: string]
 
-export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
-  const draft = $(draftRef)
-  const { client } = $(useMasto())
+export function useUploadMediaAttachment(draft: Ref<Draft>) {
+  const { client } = useMasto()
   const { t } = useI18n()
 
-  let isUploading = $ref<boolean>(false)
-  let isExceedingAttachmentLimit = $ref<boolean>(false)
-  let failedAttachments = $ref<MediaAttachmentUploadError[]>([])
+  const isUploading = ref<boolean>(false)
+  const isExceedingAttachmentLimit = ref<boolean>(false)
+  const failedAttachments = ref<MediaAttachmentUploadError[]>([])
   const dropZoneRef = ref<HTMLDivElement>()
 
-  const maxPixels = $computed(() => {
+  const maxPixels = computed(() => {
     return currentInstance.value?.configuration?.mediaAttachments?.imageMatrixLimit
         ?? 4096 ** 2
   })
@@ -186,8 +184,8 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
 
     const canvas = document.createElement('canvas')
 
-    const resizedWidth = canvas.width = Math.round(Math.sqrt(maxPixels * aspectRatio))
-    const resizedHeight = canvas.height = Math.round(Math.sqrt(maxPixels / aspectRatio))
+    const resizedWidth = canvas.width = Math.round(Math.sqrt(maxPixels.value * aspectRatio))
+    const resizedHeight = canvas.height = Math.round(Math.sqrt(maxPixels.value / aspectRatio))
 
     const context = canvas.getContext('2d')
 
@@ -202,7 +200,7 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
     try {
       const image = await loadImage(file) as HTMLImageElement
 
-      if (image.width * image.height > maxPixels)
+      if (image.width * image.height > maxPixels.value)
         file = await resizeImage(image, file.type) as File
 
       return file
@@ -222,36 +220,36 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
   }
 
   async function uploadAttachments(files: File[]) {
-    isUploading = true
-    failedAttachments = []
+    isUploading.value = true
+    failedAttachments.value = []
     // TODO: display some kind of message if too many media are selected
     // DONE
     const limit = currentInstance.value!.configuration?.statuses.maxMediaAttachments || 4
     for (const file of files.slice(0, limit)) {
-      if (draft.attachments.length < limit) {
-        isExceedingAttachmentLimit = false
+      if (draft.value.attachments.length < limit) {
+        isExceedingAttachmentLimit.value = false
         try {
-          const attachment = await client.v1.media.create({
+          const attachment = await client.value.v1.media.create({
             file: await processFile(file),
           })
-          draft.attachments.push(attachment)
+          draft.value.attachments.push(attachment)
         }
         catch (e) {
           // TODO: add some human-readable error message, problem is that masto api will not return response code
           console.error(e)
-          failedAttachments = [...failedAttachments, [file.name, (e as Error).message]]
+          failedAttachments.value = [...failedAttachments.value, [file.name, (e as Error).message]]
         }
       }
       else {
-        isExceedingAttachmentLimit = true
-        failedAttachments = [...failedAttachments, [file.name, t('state.attachments_limit_error')]]
+        isExceedingAttachmentLimit.value = true
+        failedAttachments.value = [...failedAttachments.value, [file.name, t('state.attachments_limit_error')]]
       }
     }
-    isUploading = false
+    isUploading.value = false
   }
 
   async function pickAttachments() {
-    if (process.server)
+    if (import.meta.server)
       return
     const mimeTypes = currentInstance.value!.configuration?.mediaAttachments.supportedMimeTypes
     const files = await fileOpen({
@@ -264,12 +262,12 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
 
   async function setDescription(att: mastodon.v1.MediaAttachment, description: string) {
     att.description = description
-    if (!draft.editingStatus)
-      await client.v1.media.$select(att.id).update({ description: att.description })
+    if (!draft.value.editingStatus)
+      await client.value.v1.media.$select(att.id).update({ description: att.description })
   }
 
   function removeAttachment(index: number) {
-    draft.attachments.splice(index, 1)
+    draft.value.attachments.splice(index, 1)
   }
 
   async function onDrop(files: File[] | null) {
@@ -279,7 +277,7 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
 
   const { isOverDropZone } = useDropZone(dropZoneRef, onDrop)
 
-  return $$({
+  return {
     isUploading,
     isExceedingAttachmentLimit,
     isOverDropZone,
@@ -291,5 +289,5 @@ export function useUploadMediaAttachment(draftRef: Ref<Draft>) {
     pickAttachments,
     setDescription,
     removeAttachment,
-  })
+  }
 }

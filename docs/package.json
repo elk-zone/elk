@@ -9,10 +9,10 @@
     "preview": "nuxi preview"
   },
   "dependencies": {
-    "theme-colors": "^0.0.5"
+    "theme-colors": "^0.1.0"
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "^1.14.6",
-    "nuxt": "^3.7.0"
+    "@nuxt-themes/docus": "^1.15.0",
+    "nuxt": "^3.10.3"
   }
 }

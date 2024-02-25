@@ -22,9 +22,9 @@ interface ShortcutItemGroup {
 }
 
 const isMac = useIsMac()
-const modifierKeyName = $computed(() => isMac.value ? '⌘' : 'Ctrl')
+const modifierKeyName = computed(() => isMac.value ? '⌘' : 'Ctrl')
 
-const shortcutItemGroups: ShortcutItemGroup[] = [
+const shortcutItemGroups = computed<ShortcutItemGroup[]>(() => [
   {
     name: t('magic_keys.groups.navigation.title'),
     items: [
@@ -55,15 +55,19 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
     items: [
       {
         description: t('magic_keys.groups.actions.search'),
-        shortcut: { keys: [modifierKeyName, 'k'], isSequence: false },
+        shortcut: { keys: [modifierKeyName.value, 'k'], isSequence: false },
       },
       {
         description: t('magic_keys.groups.actions.command_mode'),
-        shortcut: { keys: [modifierKeyName, '/'], isSequence: false },
+        shortcut: { keys: [modifierKeyName.value, '/'], isSequence: false },
       },
       {
         description: t('magic_keys.groups.actions.compose'),
         shortcut: { keys: ['c'], isSequence: false },
+      },
+      {
+        description: t('magic_keys.groups.actions.show_new_items'),
+        shortcut: { keys: ['.'], isSequence: false },
       },
       {
         description: t('magic_keys.groups.actions.favourite'),
@@ -79,7 +83,7 @@ const shortcutItemGroups: ShortcutItemGroup[] = [
     name: t('magic_keys.groups.media.title'),
     items: [],
   },
-]
+])
 </script>
 
 <template>

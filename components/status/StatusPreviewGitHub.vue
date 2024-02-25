@@ -29,7 +29,7 @@ interface Meta {
 // /sponsors/user
 const supportedReservedRoutes = ['sponsors']
 
-const meta = $computed(() => {
+const meta = computed(() => {
   const { url } = props.card
   const path = url.split('https://github.com/')[1]
   const [firstName, secondName] = path?.split('/') || []
@@ -64,7 +64,7 @@ const meta = $computed(() => {
   const avatar = `https://github.com/${user}.png?size=256`
 
   const author = props.card.authorName
-  const info = $ref<Meta>({
+  return {
     type,
     user,
     titleUrl: `https://github.com/${user}${repo ? `/${repo}` : ''}`,
@@ -78,8 +78,7 @@ const meta = $computed(() => {
           user: author,
         }
       : undefined,
-  })
-  return info
+  } satisfies Meta
 })
 </script>
 

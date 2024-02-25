@@ -14,8 +14,6 @@ const emit = defineEmits<{
 
 const focusEditor = inject<typeof noop>('focus-editor', noop)
 
-const { details, command } = $(props)
-
 const {
   status,
   isLoading,
@@ -24,7 +22,7 @@ const {
   togglePin,
   toggleReblog,
   toggleMute,
-} = $(useStatusActions(props))
+} = useStatusActions(props)
 
 const clipboard = useClipboard()
 const router = useRouter()
@@ -33,9 +31,9 @@ const { t } = useI18n()
 const userSettings = useUserSettings()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
-const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
+const isAuthor = computed(() => status.value.account.id === currentUser.value?.account.id)
 
-const { client } = $(useMasto())
+const { client } = useMasto()
 
 function getPermalinkUrl(status: mastodon.v1.Status) {
   const url = getStatusPermalinkRoute(status)
@@ -72,8 +70,8 @@ async function deleteStatus() {
   }) !== 'confirm')
     return
 
-  removeCachedStatus(status.id)
-  await client.v1.statuses.$select(status.id).remove()
+  removeCachedStatus(status.value.id)
+  await client.value.v1.statuses.$select(status.value.id).remove()
 
   if (route.name === 'status')
     router.back()
@@ -90,16 +88,16 @@ async function deleteAndRedraft() {
   }) !== 'confirm')
     return
 
-  if (process.dev) {
+  if (import.meta.dev) {
     // eslint-disable-next-line no-alert
     const result = confirm('[DEV] Are you sure you want to delete and re-draft this post?')
     if (!result)
       return
   }
 
-  removeCachedStatus(status.id)
-  await client.v1.statuses.$select(status.id).remove()
-  await openPublishDialog('dialog', await getDraftFromStatus(status), true)
+  removeCachedStatus(status.value.id)
+  await client.value.v1.statuses.$select(status.value.id).remove()
+  await openPublishDialog('dialog', await getDraftFromStatus(status.value), true)
 
   // Go to the new status, if the page is the old status
   if (lastPublishDialogStatus.value && route.name === 'status')
@@ -109,25 +107,25 @@ async function deleteAndRedraft() {
 function reply() {
   if (!checkLogin())
     return
-  if (details) {
+  if (props.details) {
     focusEditor()
   }
   else {
-    const { key, draft } = getReplyDraft(status)
+    const { key, draft } = getReplyDraft(status.value)
     openPublishDialog(key, draft())
   }
 }
 
 async function editStatus() {
-  await openPublishDialog(`edit-${status.id}`, {
-    ...await getDraftFromStatus(status),
-    editingStatus: status,
+  await openPublishDialog(`edit-${status.value.id}`, {
+    ...await getDraftFromStatus(status.value),
+    editingStatus: status.value,
   }, true)
   emit('afterEdit')
 }
 
 function showFavoritedAndBoostedBy() {
-  openFavoridedBoostedByDialog(status.id)
+  openFavoridedBoostedByDialog(status.value.id)
 }
 </script>
 

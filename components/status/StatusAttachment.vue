@@ -14,8 +14,8 @@ const {
   isPreview?: boolean
 }>()
 
-const src = $computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
-const srcset = $computed(() => [
+const src = computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
+const srcset = computed(() => [
   [attachment.url, attachment.meta?.original?.width],
   [attachment.remoteUrl, attachment.meta?.original?.width],
   [attachment.previewUrl, attachment.meta?.small?.width],
@@ -53,12 +53,12 @@ const typeExtsMap = {
   gifv: ['gifv', 'gif'],
 }
 
-const type = $computed(() => {
+const type = computed(() => {
   if (attachment.type && attachment.type !== 'unknown')
     return attachment.type
   // some server returns unknown type, we need to guess it based on file extension
   for (const [type, exts] of Object.entries(typeExtsMap)) {
-    if (exts.some(ext => src?.toLowerCase().endsWith(`.${ext}`)))
+    if (exts.some(ext => src.value?.toLowerCase().endsWith(`.${ext}`)))
       return type
   }
   return 'unknown'
@@ -66,8 +66,8 @@ const type = $computed(() => {
 
 const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
-const isAudio = $computed(() => attachment.type === 'audio')
-const isVideo = $computed(() => attachment.type === 'video')
+const isAudio = computed(() => attachment.type === 'audio')
+const isVideo = computed(() => attachment.type === 'video')
 
 const enableAutoplay = usePreferences('enableAutoplay')
 
@@ -100,21 +100,21 @@ function loadAttachment() {
   shouldLoadAttachment.value = true
 }
 
-const blurHashSrc = $computed(() => {
+const blurHashSrc = computed(() => {
   if (!attachment.blurhash)
     return ''
   const pixels = decode(attachment.blurhash, 32, 32)
   return getDataUrlFromArr(pixels, 32, 32)
 })
 
-let videoThumbnail = shouldLoadAttachment.value
+const videoThumbnail = ref(shouldLoadAttachment.value
   ? attachment.previewUrl
-  : blurHashSrc
+  : blurHashSrc.value)
 
 watch(shouldLoadAttachment, () => {
-  videoThumbnail = shouldLoadAttachment
+  videoThumbnail.value = shouldLoadAttachment.value
     ? attachment.previewUrl
-    : blurHashSrc
+    : blurHashSrc.value
 })
 </script>
 

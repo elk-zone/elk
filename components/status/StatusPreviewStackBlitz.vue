@@ -19,31 +19,30 @@ interface Meta {
 // Protect against long code snippets
 const maxLines = 20
 
-const meta = $computed(() => {
+const meta = computed(() => {
   const { description } = props.card
   const meta = description.match(/.*Code Snippet from (.+), lines (\S+)\n\n(.+)/s)
   const file = meta?.[1]
   const lines = meta?.[2]
   const code = meta?.[3].split('\n').slice(0, maxLines).join('\n')
   const project = props.card.title?.replace(' - StackBlitz', '')
-  const info = $ref<Meta>({
+  return {
     file,
     lines,
     code,
     project,
-  })
-  return info
+  } satisfies Meta
 })
 
-const vnodeCode = $computed(() => {
-  if (!meta.code)
+const vnodeCode = computed(() => {
+  if (!meta.value.code)
     return null
-  const code = meta.code
+  const code = meta.value.code
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/`/g, '&#96;')
 
-  const vnode = contentToVNode(`<p>\`\`\`${meta.file?.split('.')?.[1] ?? ''}\n${code}\n\`\`\`\</p>`, {
+  const vnode = contentToVNode(`<p>\`\`\`${meta.value.file?.split('.')?.[1] ?? ''}\n${code}\n\`\`\`\</p>`, {
     markdown: true,
   })
   return vnode

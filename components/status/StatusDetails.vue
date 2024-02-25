@@ -14,20 +14,20 @@ defineEmits<{
   (event: 'refetchStatus'): void
 }>()
 
-const status = $computed(() => {
+const status = computed(() => {
   if (props.status.reblog && props.status.reblog)
     return props.status.reblog
   return props.status
 })
 
-provide(viewTransitionStatusInjectionKey, status)
+provide(viewTransitionStatusInjectionKey, status.value)
 
-const createdAt = useFormattedDateTime(status.createdAt)
+const createdAt = useFormattedDateTime(status.value.createdAt)
 
 const { t } = useI18n()
 
 useHydratedHead({
-  title: () => `${getDisplayName(status.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
+  title: () => `${getDisplayName(status.value.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.value.content) || ''}"`,
 })
 </script>
 

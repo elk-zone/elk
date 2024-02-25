@@ -25,7 +25,8 @@
     "follows_you": "フォローされています",
     "go_to_profile": "プロフィールに移動",
     "joined": "登録日",
-    "moved_title": "さんの新しいアカウントは現在のこちらです",
+    "lock": "非公開",
+    "moved_title": "さんの新しいアカウントは現在こちらです",
     "muted_users": "ミュートしたユーザー",
     "muting": "ミュート済み",
     "mutuals": "相互フォロー",
@@ -95,7 +96,7 @@
     "switch_account": "{0} に切り替える",
     "switch_account_desc": "他のアカウントに切り替える",
     "toggle_dark_mode": "ダークモードに切り替える",
-    "toggle_zen_mode": "禅モードを切り替える"
+    "toggle_zen_mode": "禅モードに切り替える"
   },
   "common": {
     "end_of_list": "リストの最後です",
@@ -164,7 +165,7 @@
   },
   "error": {
     "account_not_found": "アカウント {0} が見つかりません",
-    "explore_list_empty": "現在トレンドには何もありません。あとで確認してください！",
+    "explore_list_empty": "現在トレンドには何もありません。またあとで！",
     "file_size_cannot_exceed_n_mb": "ファイルサイズは{0}MBを超えてはいけません",
     "sign_in_error": "サーバーに接続できません。",
     "status_not_found": "投稿が見つかりません",
@@ -173,11 +174,11 @@
   "help": {
     "build_preview": {
       "desc1": "あなたは現在、コミュニティから提供されたプレビュー版のElkを表示しています - {0}。",
-      "desc2": "まだレビューされていない変更や、害がある変更が含まれている可能性もあります。",
+      "desc2": "まだレビューされていない変更や、有害な変更が含まれている可能性もあります。",
       "desc3": "実際のアカウントでは決してログインしないでください。",
       "title": "プレビューデプロイ"
     },
-    "desc_highlight": "いくつかのバグや足りない機能がいろいろなところにあることが期待されています。",
+    "desc_highlight": "バグや足りない機能があちこちにある想定です。",
     "desc_para1": "開発中のMastodonウェブクライアントのElkに興味を持って試してくれてありがとうございます！",
     "desc_para2": "私たちは時間をかけて開発と改善に努めています。",
     "desc_para3": "開発を進めるために、GitHubスポンサーでチームをサポートできます。Elkを楽しんでくれることを願っています！",
@@ -298,7 +299,7 @@
     "zen_mode": "禅モード"
   },
   "notification": {
-    "favourited_post": "さんがあなたの投稿お気に入り登録しました",
+    "favourited_post": "さんがあなたの投稿をお気に入り登録しました",
     "followed_you": "さんがあなたをフォローしました",
     "followed_you_count": "{0}人のユーザーがあなたをフォローしました",
     "missing_type": "MISSING notification.type:",
@@ -372,11 +373,11 @@
     "further_actions": {
       "limit": {
         "description": "表示するものをコントロールするための選択肢はこちらです。",
-        "title": "これを見たくないですか？"
+        "title": "これを見たくありませんか？"
       },
       "report": {
         "description": "私たちがこの報告をレビューしている間、あなたには以下のことができます。",
-        "title": "報告をありがとうございます。この報告を確認します。"
+        "title": "報告ありがとうございます。確認します。"
       }
     },
     "limiting": "{0} を制限する",
@@ -389,7 +390,7 @@
     "select_posts": "この報告を裏付ける投稿はありますか？",
     "select_posts_other": "この報告を裏付ける他の投稿はありますか？",
     "spam": "スパムです",
-    "spam_desc": "害のあるリンク、偽のエンゲージメント、または繰り返しの返信",
+    "spam_desc": "有害なリンク、偽のエンゲージメント、または繰り返しの返信",
     "submit": "報告を送信",
     "unfollow_desc": "このユーザーの投稿は今後、ホームフィードには表示されません。他の場所で同じ投稿が表示される可能性はあります。",
     "violation": "1つ以上のサーバーのルールを破っています",
@@ -455,7 +456,7 @@
           "title": "どの通知を受け取りますか？"
         },
         "description": "Elkを使用していないときでも通知を受け取ります。",
-        "instructions": "@:settings.notifications.push_notifications.save_settings ボタンで設定を保存するのを忘れないよう気をつけてください！",
+        "instructions": "@:settings.notifications.push_notifications.save_settings ボタンで設定を保存するのを忘れないように！",
         "label": "プッシュ通知の設定",
         "policy": {
           "all": "誰からでも受け取る",
@@ -471,7 +472,7 @@
           "invalid_vapid_key": "VAPID公開鍵が無効なようです。",
           "permission_denied": "パーミッション拒否: ブラウザで通知を有効にしてください。",
           "repo_link": "ElkのGitHubリポジトリ",
-          "request_error": "購読のリクエスト中にエラーが発生しました。再試行してエラーが続くかどうか確認してください。もしエラーが解消しない場合、Elkリポジトリにissueを報告してください。",
+          "request_error": "購読のリクエスト中にエラーが発生しました。再試行してもエラーが解消しない場合、Elkリポジトリにissueを報告してください。",
           "title": "プッシュ通知を購読できませんでした",
           "too_many_registrations": "ブラウザーの制限により、Elkは異なるサーバー上の複数アカウントに対してプッシュ通知サービスを使用できません。他のアカウントのプッシュ通知の購読を解除して、再購読する必要があります。",
           "vapid_not_supported": "このブラウザはWeb Push通知をサポートしていませんが、VAPIDプロトコルをサポートしているようです。"
@@ -514,6 +515,7 @@
       "hide_username_emojis": "ユーザー名の絵文字を隠す",
       "hide_username_emojis_description": "タイムライン上でユーザー名に含まれる絵文字を隠します。プロフィールでは絵文字は引き続き表示されます。",
       "label": "環境設定",
+      "optimize_for_low_performance_device": "処理能力が低いデバイス向けに最適化",
       "title": "実験的機能",
       "use_star_favorite_icon": "星のお気に入りアイコンを使用する",
       "user_picker": "ユーザーピッカー",
@@ -569,7 +571,7 @@
   },
   "status": {
     "account": {
-      "suspended_message": "この投稿のアカウントはサスペンドされました。",
+      "suspended_message": "この投稿のアカウントは凍結されました。",
       "suspended_show": "それでもコンテンツを表示しますか？"
     },
     "boosted_by": "ブーストしたユーザー",
@@ -684,9 +686,9 @@
     "open_editor_tools": "エディタツール",
     "pick_an_icon": "アイコンの選択",
     "publish_failed": "投稿の再公開時にエディタ上部のエラーメッセージを閉じる",
-    "toggle_bold": "太字を切り替える",
-    "toggle_code_block": "コードブロックを切り替える",
-    "toggle_italic": "イタリックを切り替える"
+    "toggle_bold": "太字",
+    "toggle_code_block": "コードブロック",
+    "toggle_italic": "斜体"
   },
   "user": {
     "add_existing": "既存のアカウントを追加する",

@@ -12,39 +12,39 @@ useHydratedHead({
   title: () => `${t('settings.profile.appearance.title')} | ${t('nav.settings')}`,
 })
 
-const { client } = $(useMasto())
+const { client } = useMasto()
 
 const avatarInput = ref<any>()
 const headerInput = ref<any>()
 
-const account = $computed(() => currentUser.value?.account)
+const account = computed(() => currentUser.value?.account)
 
-const onlineSrc = $computed(() => ({
-  avatar: account?.avatar || '',
-  header: account?.header || '',
+const onlineSrc = computed(() => ({
+  avatar: account.value?.avatar || '',
+  header: account.value?.header || '',
 }))
 
 const { form, reset, submitter, isDirty, isError } = useForm({
   form: () => {
     // For complex types of objects, a deep copy is required to ensure correct comparison of initial and modified values
     const fieldsAttributes = Array.from({ length: maxAccountFieldCount.value }, (_, i) => {
-      const field = { ...account?.fields?.[i] || { name: '', value: '' } }
+      const field = { ...account.value?.fields?.[i] || { name: '', value: '' } }
 
       field.value = convertMetadata(field.value)
 
       return field
     })
     return {
-      displayName: account?.displayName ?? '',
-      note: account?.source.note.replaceAll('\r', '') ?? '',
+      displayName: account.value?.displayName ?? '',
+      note: account.value?.source.note.replaceAll('\r', '') ?? '',
 
       avatar: null as null | File,
       header: null as null | File,
 
       fieldsAttributes,
 
-      bot: account?.bot ?? false,
-      locked: account?.locked ?? false,
+      bot: account.value?.bot ?? false,
+      locked: account.value?.locked ?? false,
 
       // These look more like account and privacy settings than appearance settings
       // discoverable: false,
@@ -54,19 +54,19 @@ const { form, reset, submitter, isDirty, isError } = useForm({
 })
 
 const isCanSubmit = computed(() => !isError.value && isDirty.value)
-const failedMessages = $ref<string[]>([])
+const failedMessages = ref<string[]>([])
 
 const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
     return
 
-  const res = await client.v1.accounts.updateCredentials(dirtyFields.value as mastodon.rest.v1.UpdateCredentialsParams)
+  const res = await client.value.v1.accounts.updateCredentials(dirtyFields.value as mastodon.rest.v1.UpdateCredentialsParams)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))
 
   if ('error' in res) {
     console.error(res.error)
-    failedMessages.push(res.error.message)
+    failedMessages.value.push(res.error.message)
     return
   }
 
@@ -111,7 +111,7 @@ onReactivated(refreshInfo)
     </template>
 
     <form space-y-5 @submit.prevent="submit">
-      <div v-if="isHydrated && account">
+      <div v-if="account">
         <!-- banner -->
         <div of-hidden bg="gray-500/20" aspect="3">
           <CommonInputImage
@@ -182,7 +182,7 @@ onReactivated(refreshInfo)
 
         <!-- metadata -->
 
-        <SettingsProfileMetadata v-if="isHydrated" v-model="form" />
+        <SettingsProfileMetadata v-model="form" />
 
         <!-- actions -->
         <div flex="~ gap2" justify-end>

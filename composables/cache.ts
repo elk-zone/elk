@@ -5,7 +5,7 @@ const cache = new LRUCache<string, any>({
   max: 1000,
 })
 
-if (process.dev && process.client)
+if (import.meta.dev && import.meta.client)
   // eslint-disable-next-line no-console
   console.log({ cache })
 
@@ -89,10 +89,6 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
     })
   cache.set(key, account)
   return account
-}
-
-export function useAccountByHandle(acct: string) {
-  return useAsyncState(() => fetchAccountByHandle(acct), null).state
 }
 
 export function useAccountById(id?: string | null) {

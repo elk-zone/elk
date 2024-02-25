@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 import { NOTIFICATION_FILTER_TYPES } from '~/constants'
-import type {
-  CommonRouteTabMoreOption,
-  CommonRouteTabOption,
-} from '~/components/common/CommonRouteTabs.vue'
+import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/types'
 
 definePageMeta({
   middleware: 'auth',
@@ -14,20 +11,20 @@ const route = useRoute()
 const { t } = useI18n()
 const pwaEnabled = useAppConfig().pwaEnabled
 
-const tabs = $computed<CommonRouteTabOption[]>(() => [
+const tabs = computed<CommonRouteTabOption[]>(() => [
   {
     name: 'all',
     to: '/notifications',
-    display: isHydrated.value ? t('tab.notifications_all') : '',
+    display: t('tab.notifications_all'),
   },
   {
     name: 'mention',
     to: '/notifications/mention',
-    display: isHydrated.value ? t('tab.notifications_mention') : '',
+    display: t('tab.notifications_mention'),
   },
 ])
 
-const filter = $computed<mastodon.v1.NotificationType | undefined>(() => {
+const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
   if (!isHydrated.value)
     return undefined
 
@@ -50,22 +47,21 @@ const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
   'admin.report': 'i-ri:flag-line',
 }
 
-const filterText = $computed(() => (`${t('tab.notifications_more_tooltip')}${filter ? `: ${t(`tab.notifications_${filter}`)}` : ''}`))
-
-const notificationFilterRoutes = $computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
+const filterText = computed(() => `${t('tab.notifications_more_tooltip')}${filter.value ? `: ${t(`tab.notifications_${filter.value}`)}` : ''}`)
+const notificationFilterRoutes = computed<CommonRouteTabOption[]>(() => NOTIFICATION_FILTER_TYPES.map(
   name => ({
     name,
     to: `/notifications/${name}`,
-    display: isHydrated.value ? t(`tab.notifications_${name}`) : '',
+    display: t(`tab.notifications_${name}`),
     icon: filterIconMap[name],
-    match: name === filter,
+    match: name === filter.value,
   }),
 ))
-const moreOptions = $computed<CommonRouteTabMoreOption>(() => ({
-  options: notificationFilterRoutes,
+const moreOptions = computed<CommonRouteTabMoreOption>(() => ({
+  options: notificationFilterRoutes.value,
   icon: 'i-ri:filter-2-line',
-  tooltip: filterText,
-  match: !!filter,
+  tooltip: filterText.value,
+  match: !!filter.value,
 }))
 </script>
 
@@ -74,7 +70,7 @@ const moreOptions = $computed<CommonRouteTabMoreOption>(() => ({
     <template #title>
       <NuxtLink to="/notifications" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:notification-4-line />
-        <span>{{ isHydrated ? t('nav.notifications') : '' }}</span>
+        <span>{{ t('nav.notifications') }}</span>
       </NuxtLink>
     </template>
 
@@ -82,7 +78,7 @@ const moreOptions = $computed<CommonRouteTabMoreOption>(() => ({
       <NuxtLink
         flex rounded-4 p1
         hover:bg-active cursor-pointer transition-100
-        :title="isHydrated ? t('settings.notifications.show_btn') : ''"
+        :title="t('settings.notifications.show_btn')"
         to="/settings/notifications"
       >
         <span aria-hidden="true" i-ri:notification-badge-line />

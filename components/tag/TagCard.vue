@@ -1,9 +1,10 @@
-<script lang="ts" setup>
+<script lang="ts" setup xmlns:hover="http://www.w3.org/1999/xhtml">
 import type { mastodon } from 'masto'
 
 const props = defineProps<{
   tag?: mastodon.v1.Tag
   tagName?: string
+  layout: 'card' | 'hovercard'
 }>()
 
 let tag: mastodon.v1.Tag
@@ -39,13 +40,13 @@ function go(evt: MouseEvent | KeyboardEvent) {
 
 <template>
   <div
-    block p4 hover:bg-active flex justify-between cursor-pointer
+    block p4 hover:bg-active flex justify-between cursor-pointer flex-gap-2
     @click="onclick"
     @keydown.enter="onclick"
   >
     <div>
       <h4 flex items-center text-size-base leading-normal font-medium line-clamp-1 break-all ws-pre-wrap>
-        <TagActionButton :tag="tag" />
+        <TagActionButton v-show="props.layout === 'card'" :tag="tag" />
         <bdi>
           <span>#</span>
           <span hover:underline>{{ tag.name }}</span>
@@ -55,6 +56,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
     </div>
     <div v-if="tag.history" flex items-center>
       <CommonTrendingCharts :history="tag.history" />
+      <TagActionButton v-show="props.layout === 'hovercard'" :tag="tag" />
     </div>
   </div>
 </template>

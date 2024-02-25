@@ -9,7 +9,7 @@ const { paginator } = defineProps<{
 <template>
   <CommonPaginator :paginator="paginator" key-prop="name">
     <template #default="{ item }">
-      <TagCard :tag="item" border="b base" />
+      <TagCard layout="card" :tag="item" border="b base" />
     </template>
     <template #loading>
       <TagCardSkeleton border="b base" />

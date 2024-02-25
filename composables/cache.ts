@@ -1,6 +1,7 @@
 import { LRUCache } from 'lru-cache'
 import type { mastodon } from 'masto'
 
+const fetchPromises = new Map<string, any>()
 const cache = new LRUCache<string, any>({
   max: 1000,
 })
@@ -11,7 +12,7 @@ if (import.meta.dev && import.meta.client)
 
 export function setCached(key: string, value: any, override = false) {
   if (override || !cache.has(key))
-    cache.set(key, value)
+    cache.set(key, Promise.resolve(value))
 }
 function removeCached(key: string) {
   cache.delete(key)
@@ -43,16 +44,27 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
   const cached = cache.get(key)
   if (cached)
     return cached
-  const domain = getInstanceDomainFromServer(server)
-  const promise = useMastoClient().v1.accounts.$select(id).fetch()
-    .then((r) => {
-      if (r.acct && !r.acct.includes('@') && domain)
-        r.acct = `${r.acct}@${domain}`
+  let fetchPromise = fetchPromises.get(key)
+  if (!fetchPromise) {
+    const domain = getInstanceDomainFromServer(server)
+    fetchPromise = useMastoClient().v1.accounts.$select(id).fetch()
+      .then((r) => {
+        if (r.acct && !r.acct.includes('@') && domain)
+          r.acct = `${r.acct}@${domain}`
 
-      cacheAccount(r, server, true)
-      return r
-    })
-  cache.set(key, promise)
+        cacheAccount(r, server, true)
+        return Promise.resolve(r)
+      })
+      .finally(() => fetchPromises.delete(key))
+    fetchPromises.set(key, fetchPromise)
+  }
+
+  const promise = new Promise<any>((resolve) => {
+    fetchPromise!.then(resolve)
+  })
+  if (!cache.has(key))
+    cache.set(key, promise)
+
   return promise
 }
 
@@ -81,14 +93,24 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
       account.acct = `${account.acct}@${domain}`
     return account
   }
+  let fetchPromise = fetchPromises.get(key)
+  if (!fetchPromise) {
+    fetchPromise = lookupAccount()
+      .then((r) => {
+        cacheAccount(r, server, true)
+        return Promise.resolve(r)
+      })
+      .finally(() => fetchPromises.delete(key))
+    fetchPromises.set(key, fetchPromise)
+  }
 
-  const account = lookupAccount()
-    .then((r) => {
-      cacheAccount(r, server, true)
-      return r
-    })
-  cache.set(key, account)
-  return account
+  const promise = new Promise<any>((resolve) => {
+    fetchPromise!.then(resolve)
+  })
+  if (!cache.has(key))
+    cache.set(key, promise)
+
+  return promise
 }
 
 export function useAccountById(id?: string | null) {

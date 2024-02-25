@@ -1,19 +1,10 @@
-<script lang="ts" setup xmlns:hover="http://www.w3.org/1999/xhtml">
+<script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const props = defineProps<{
-  tag?: mastodon.v1.Tag
-  tagName?: string
+const { tag, layout } = defineProps<{
+  tag: mastodon.v1.Tag
   layout: 'card' | 'hovercard'
 }>()
-
-let tag: mastodon.v1.Tag
-if (props.tag)
-  tag = props.tag
-else if (props.tagName)
-  tag = await fetchTag(props.tagName)
-else
-  console.error('TagCard: tag or tagName is required')
 
 const to = computed(() => {
   const { hostname, pathname } = new URL(tag.url)
@@ -46,7 +37,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
   >
     <div>
       <h4 flex items-center text-size-base leading-normal font-medium line-clamp-1 break-all ws-pre-wrap>
-        <TagActionButton v-show="props.layout === 'card'" :tag="tag" />
+        <TagActionButton v-show="layout === 'card'" :tag="tag" />
         <bdi>
           <span>#</span>
           <span hover:underline>{{ tag.name }}</span>
@@ -56,7 +47,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
     </div>
     <div v-if="tag.history" flex items-center>
       <CommonTrendingCharts :history="tag.history" />
-      <TagActionButton v-show="props.layout === 'hovercard'" :tag="tag" />
+      <TagActionButton v-show="layout === 'hovercard'" :tag="tag" />
     </div>
   </div>
 </template>

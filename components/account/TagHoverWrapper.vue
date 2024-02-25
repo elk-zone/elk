@@ -1,13 +1,16 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
 import TagCard from '~/components/tag/TagCard.vue'
+import { fetchTag } from '~/composables/cache'
 
-type WatcherType = [tagName?: string, v?: boolean]
+type WatcherType = [tag?: mastodon.v1.Tag, tagName?: string, v?: boolean]
 
 defineOptions({
   inheritAttrs: false,
 })
 
 const props = defineProps<{
+  tag?: mastodon.v1.Tag
   tagName?: string
   disabled?: boolean
 }>()
@@ -15,24 +18,37 @@ const props = defineProps<{
 const hoverCard = ref()
 const targetIsVisible = ref(false)
 const tagName = ref<string | undefined>()
+const tag = ref<mastodon.v1.Tag | null | undefined>(props.tag)
 
 useIntersectionObserver(
   hoverCard,
   ([{ intersectionRatio }]) => {
-    targetIsVisible.value = intersectionRatio <= 0.75
+    targetIsVisible.value = intersectionRatio > 0.1
   },
 )
 
 watch(
-  () => [props.tagName, targetIsVisible.value] satisfies WatcherType,
-  async ([newTagName, newVisible]) => {
-    if (newTagName) {
-      tagName.value = newTagName
+  () => [props.tag, props.tagName, targetIsVisible.value] satisfies WatcherType,
+  async ([newTag, newTagName, newVisible], oldProps) => {
+    if (newTag) {
+      tag.value = newTag
       return
     }
 
     if (!newVisible)
       return
+
+    if (newTagName) {
+      const [_oldTag, oldTagName, _oldVisible] = oldProps ?? [undefined, undefined, false]
+      if (!oldTagName || newTagName !== oldTagName || !tag.value) {
+        fetchTag(newTagName).then((t) => {
+          if (newTagName === props.tagName)
+            tag.value = t
+        })
+      }
+
+      return
+    }
 
     tagName.value = undefined
   }, { immediate: true, flush: 'post' },
@@ -43,10 +59,10 @@ const userSettings = useUserSettings()
 
 <template>
   <span ref="hoverCard">
-    <VMenu v-if="!disabled && tagName && !getPreferences(userSettings, 'hideAccountAndTagHoverCard')" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
+    <VMenu v-if="!disabled && tag && !getPreferences(userSettings, 'hideAccountAndTagHoverCard')" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
       <slot />
       <template #popper>
-        <TagCard v-if="tagName" layout="hovercard" :tag-name="tagName" />
+        <TagCard v-if="tag" :tag="tag" layout="hovercard" />
       </template>
     </VMenu>
     <slot v-else />

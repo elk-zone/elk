@@ -1,7 +1,6 @@
 import { LRUCache } from 'lru-cache'
 import type { mastodon } from 'masto'
 
-const promises = new Map<string, Promise<any>>()
 const cache = new LRUCache<string, any>({
   max: 1000,
 })
@@ -43,29 +42,17 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
   const key = `${server}:${userId}:account:${id}`
   const cached = cache.get(key)
   if (cached)
-    return Promise.resolve(cached)
+    return cached
+  const domain = getInstanceDomainFromServer(server)
+  const promise = useMastoClient().v1.accounts.$select(id).fetch()
+    .then((r) => {
+      if (r.acct && !r.acct.includes('@') && domain)
+        r.acct = `${r.acct}@${domain}`
 
-  let fetchPromise = promises.get(key)
-  if (!fetchPromise) {
-    const domain = getInstanceDomainFromServer(server)
-    fetchPromise = useMastoClient().v1.accounts.$select(id).fetch()
-      .then((r) => {
-        if (r.acct && !r.acct.includes('@') && domain)
-          r.acct = `${r.acct}@${domain}`
-
-        cacheAccount(r, server, true)
-        return Promise.resolve(r)
-      })
-      .finally(() => promises.delete(key))
-    promises.set(key, fetchPromise)
-  }
-
-  const promise = new Promise<any>((resolve) => {
-    fetchPromise!.then(resolve)
-  })
-  if (!cache.has(key))
-    cache.set(key, promise)
-
+      cacheAccount(r, server, true)
+      return r
+    })
+  cache.set(key, promise)
   return promise
 }
 
@@ -77,7 +64,7 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   const key = `${server}:${userId}:account:${userAcct}`
   const cached = cache.get(key)
   if (cached)
-    return Promise.resolve(cached)
+    return cached
 
   async function lookupAccount() {
     const client = useMastoClient()
@@ -95,24 +82,13 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
     return account
   }
 
-  let fetchPromise = promises.get(key)
-  if (!fetchPromise) {
-    fetchPromise = lookupAccount()
-      .then((r) => {
-        cacheAccount(r, server, true)
-        return Promise.resolve(r)
-      })
-      .finally(() => promises.delete(key))
-    promises.set(key, fetchPromise)
-  }
-
-  const promise = new Promise<any>((resolve) => {
-    fetchPromise!.then(resolve)
-  })
-  if (!cache.has(key))
-    cache.set(key, promise)
-
-  return promise
+  const account = lookupAccount()
+    .then((r) => {
+      cacheAccount(r, server, true)
+      return r
+    })
+  cache.set(key, account)
+  return account
 }
 
 export function fetchTag(tagName: string, force = false): Promise<mastodon.v1.Tag> {
@@ -121,25 +97,13 @@ export function fetchTag(tagName: string, force = false): Promise<mastodon.v1.Ta
   const key = `${server}:${userId}:tag:${tagName}`
   const cached = cache.get(key)
   if (cached && !force)
-    return Promise.resolve(cached)
-
-  let fetchPromise = promises.get(key)
-  if (!fetchPromise) {
-    fetchPromise = useMastoClient().v1.tags.$select(tagName).fetch()
-      .then((tag) => {
-        cacheTag(tag)
-        return Promise.resolve(tag)
-      })
-      .finally(() => promises.delete(key))
-    promises.set(key, fetchPromise)
-  }
-
-  const promise = new Promise<any>((resolve) => {
-    fetchPromise!.then(resolve)
-  })
-  if (!cache.has(key))
-    cache.set(key, promise)
-
+    return cached
+  const promise = useMastoClient().v1.tags.$select(tagName).fetch()
+    .then((tag) => {
+      cacheTag(tag)
+      return tag
+    })
+  cache.set(key, promise)
   return promise
 }
 

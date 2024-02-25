@@ -12,7 +12,7 @@ if (import.meta.dev && import.meta.client)
 
 export function setCached(key: string, value: any, override = false) {
   if (override || !cache.has(key))
-    cache.set(key, Promise.resolve(value))
+    cache.set(key, value)
 }
 function removeCached(key: string) {
   cache.delete(key)
@@ -24,13 +24,25 @@ export function fetchStatus(id: string, force = false): Promise<mastodon.v1.Stat
   const key = `${server}:${userId}:status:${id}`
   const cached = cache.get(key)
   if (cached && !force)
-    return cached
-  const promise = useMastoClient().v1.statuses.$select(id).fetch()
-    .then((status) => {
-      cacheStatus(status)
-      return status
-    })
-  cache.set(key, promise)
+    return Promise.resolve(cached)
+
+  let fetchPromise = fetchPromises.get(key)
+  if (!fetchPromise || force) {
+    fetchPromise = useMastoClient().v1.statuses.$select(id).fetch()
+      .then((status) => {
+        cacheStatus(status)
+        return Promise.resolve(status)
+      })
+      .finally(() => fetchPromises.delete(key))
+    fetchPromises.set(key, fetchPromise)
+  }
+
+  const promise = new Promise<any>((resolve) => {
+    fetchPromise!.then(resolve)
+  })
+  if (!cache.has(key) || force)
+    cache.set(key, promise)
+
   return promise
 }
 
@@ -43,7 +55,8 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
   const key = `${server}:${userId}:account:${id}`
   const cached = cache.get(key)
   if (cached)
-    return cached
+    return Promise.resolve(cached)
+
   let fetchPromise = fetchPromises.get(key)
   if (!fetchPromise) {
     const domain = getInstanceDomainFromServer(server)
@@ -76,7 +89,7 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   const key = `${server}:${userId}:account:${userAcct}`
   const cached = cache.get(key)
   if (cached)
-    return cached
+    return Promise.resolve(cached)
 
   async function lookupAccount() {
     const client = useMastoClient()

@@ -21,7 +21,7 @@ const account = ref<mastodon.v1.Account | null | undefined>(props.account)
 useIntersectionObserver(
   hoverCard,
   ([{ intersectionRatio }]) => {
-    targetIsVisible.value = intersectionRatio > 0.1
+    targetIsVisible.value = intersectionRatio <= 0.75
   },
 )
 watch(

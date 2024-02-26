@@ -1,63 +1,38 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import { fetchTag } from '~/composables/cache'
-
-type WatcherType = [tag?: mastodon.v1.Tag, tagName?: string, v?: boolean]
 
 defineOptions({
   inheritAttrs: false,
 })
 
-const props = defineProps<{
-  tag?: mastodon.v1.Tag
+const { tagName, disabled } = defineProps<{
   tagName?: string
   disabled?: boolean
 }>()
 
-const hoverCard = ref()
-const targetIsVisible = ref(false)
-const tag = ref<mastodon.v1.Tag | null | undefined>(props.tag)
+const tag = ref<mastodon.v1.Tag>()
+const hovered = ref(false)
 
-useIntersectionObserver(
-  hoverCard,
-  ([{ intersectionRatio }]) => {
-    targetIsVisible.value = intersectionRatio > 0.1
-  },
-)
-
-watch(
-  () => [props.tag, props.tagName, targetIsVisible.value] satisfies WatcherType,
-  ([newTag, newTagName, newVisible], oldProps) => {
-    if (newTag) {
-      tag.value = newTag
-      return
-    }
-
-    if (!newVisible || process.test)
-      return
-
-    if (newTagName) {
-      const [_oldTag, oldTagName, _oldVisible] = oldProps ?? [undefined, undefined, false]
-      if (!oldTagName || newTagName !== oldTagName || !tag.value) {
-        fetchTag(newTagName).then((t) => {
-          if (newTagName === props.tagName)
-            tag.value = t
-        })
-      }
-
-      return
-    }
-
-    tag.value = undefined
-  }, { immediate: true, flush: 'post' },
-)
+watch(hovered, () => {
+  if (tagName) {
+    fetchTag(tagName).then((t) => {
+      tag.value = t
+    })
+  }
+})
 
 const userSettings = useUserSettings()
 </script>
 
 <template>
-  <span ref="hoverCard">
-    <VMenu v-if="!disabled && tag && !getPreferences(userSettings, 'hideTagHoverCard')" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
+  <span @mouseenter="hovered = true">
+    <VMenu
+      v-if="!disabled && !getPreferences(userSettings, 'hideTagHoverCard')"
+      placement="bottom-start"
+      :delay="{ show: 500, hide: 100 }"
+      v-bind="$attrs"
+      :close-on-content-click="false"
+    >
       <slot />
       <template #popper>
         <TagCard v-if="tag" :tag="tag" />

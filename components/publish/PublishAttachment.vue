@@ -19,7 +19,8 @@ const emit = defineEmits<{
 const maxDescriptionLength = 1500
 
 const isEditDialogOpen = ref(false)
-const description = computed(() => props.attachment.description ?? '')
+const description = ref(props.attachment.description ?? '')
+
 function toggleApply() {
   isEditDialogOpen.value = false
   emit('setDescription', description.value)

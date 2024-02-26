@@ -22,10 +22,16 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_alt_indi_on_posts') }}
     </SettingsToggleItem>
     <SettingsToggleItem
-      :checked="getPreferences(userSettings, 'hideAccountAndTagHoverCard')"
-      @click="togglePreferences('hideAccountAndTagHoverCard')"
+      :checked="getPreferences(userSettings, 'hideAccountHoverCard')"
+      @click="togglePreferences('hideAccountHoverCard')"
     >
-      {{ $t('settings.preferences.hide_account_and_tag_hover_card') }}
+      {{ $t('settings.preferences.hide_account_hover_card') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideTagHoverCard')"
+      @click="togglePreferences('hideTagHoverCard')"
+    >
+      {{ $t('settings.preferences.hide_tag_hover_card') }}
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enableAutoplay')"

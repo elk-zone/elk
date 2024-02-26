@@ -15,7 +15,8 @@ export interface PreferencesSettings {
   hideFollowerCount: boolean
   hideTranslation: boolean
   hideUsernameEmojis: boolean
-  hideAccountAndTagHoverCard: boolean
+  hideAccountHoverCard: boolean
+  hideTagHoverCard: boolean
   hideNews: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
@@ -69,7 +70,8 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideFollowerCount: false,
   hideTranslation: false,
   hideUsernameEmojis: false,
-  hideAccountAndTagHoverCard: false,
+  hideAccountHoverCard: false,
+  hideTagHoverCard: false,
   hideNews: false,
   grayscaleMode: false,
   enableAutoplay: true,

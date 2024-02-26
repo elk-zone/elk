@@ -228,14 +228,25 @@
         "compose": "Componi",
         "favourite": "Apprezza",
         "search": "Cerca",
+        "show_new_items": "Mostra nuovi elementi",
         "title": "Azioni"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Segnalibri",
+        "go_to_conversations": "Conversazioni",
+        "go_to_explore": "Esplora",
+        "go_to_favourites": "Preferiti",
+        "go_to_federated": "Federata",
         "go_to_home": "Home",
+        "go_to_lists": "Liste",
+        "go_to_local": "Locale",
         "go_to_notifications": "Notifiche",
+        "go_to_profile": "Profilo",
+        "go_to_search": "Cerca",
+        "go_to_settings": "Impostazioni",
         "next_status": "Post successivo",
         "previous_status": "Post precedente",
         "shortcut_help": "Aiuto scorciatoie",

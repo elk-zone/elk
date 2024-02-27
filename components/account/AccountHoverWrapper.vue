@@ -2,14 +2,14 @@
 import type { mastodon } from 'masto'
 import { fetchAccountByHandle } from '~/composables/cache'
 
-type WatcherType = [acc?: mastodon.v1.Account, h?: string, v?: boolean]
+type WatcherType = [acc?: mastodon.v1.Account | null, h?: string, v?: boolean]
 
 defineOptions({
   inheritAttrs: false,
 })
 
 const props = defineProps<{
-  account?: mastodon.v1.Account
+  account?: mastodon.v1.Account | null
   handle?: string
   disabled?: boolean
 }>()

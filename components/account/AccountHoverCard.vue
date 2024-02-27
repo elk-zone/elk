@@ -2,10 +2,10 @@
 import type { mastodon } from 'masto'
 
 const { account } = defineProps<{
-  account?: mastodon.v1.Account
+  account?: mastodon.v1.Account | null
 }>()
 
-const relationship = computed(() => account ? useRelationship(account) : undefined)
+const relationship = computed(() => account ? useRelationship(account).value : undefined)
 </script>
 
 <template>

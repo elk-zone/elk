@@ -14,26 +14,19 @@ const props = defineProps<{
   disabled?: boolean
 }>()
 
-const hoverCard = ref()
-const targetIsVisible = ref(false)
+const targetIsHover = ref(false)
 const account = ref<mastodon.v1.Account | null | undefined>(props.account)
 
-useIntersectionObserver(
-  hoverCard,
-  ([{ intersectionRatio }]) => {
-    targetIsVisible.value = intersectionRatio > 0.1
-  },
-)
 watch(
-  () => [props.account, props.handle, targetIsVisible.value] satisfies WatcherType,
+  () => [props.account, props.handle, targetIsHover.value] satisfies WatcherType,
   ([newAccount, newHandle, newVisible], oldProps) => {
+    if (!newVisible || process.test)
+      return
+
     if (newAccount) {
       account.value = newAccount
       return
     }
-
-    if (!newVisible || process.test)
-      return
 
     if (newHandle) {
       const [_oldAccount, oldHandle, _oldVisible] = oldProps ?? [undefined, undefined, false]
@@ -56,11 +49,17 @@ const userSettings = useUserSettings()
 </script>
 
 <template>
-  <span ref="hoverCard">
-    <VMenu v-if="!disabled && account && !getPreferences(userSettings, 'hideAccountHoverCard')" placement="bottom-start" :delay="{ show: 500, hide: 100 }" v-bind="$attrs" :close-on-content-click="false">
+  <span @mouseenter="targetIsHover = true" @mouseleave="targetIsHover = false">
+    <VMenu
+      v-if="!disabled && !getPreferences(userSettings, 'hideAccountHoverCard')"
+      placement="bottom-start"
+      :delay="{ show: 0, hide: 100 }"
+      v-bind="$attrs"
+      :close-on-content-click="false"
+    >
       <slot />
       <template #popper>
-        <AccountHoverCard v-if="account" :account="account" />
+        <AccountHoverCard :account="account" />
       </template>
     </VMenu>
     <slot v-else />

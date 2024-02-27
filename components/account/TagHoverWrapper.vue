@@ -13,8 +13,8 @@ const { tagName, disabled } = defineProps<{
 const tag = ref<mastodon.v1.Tag>()
 const hovered = ref(false)
 
-watch(hovered, () => {
-  if (tagName) {
+watch(hovered, (newHovered) => {
+  if (newHovered && tagName) {
     fetchTag(tagName).then((t) => {
       tag.value = t
     })
@@ -25,7 +25,10 @@ const userSettings = useUserSettings()
 </script>
 
 <template>
-  <span @mouseenter="hovered = true">
+  <span
+    @mouseenter="hovered = true"
+    @mouseleave="hovered = false"
+  >
     <VMenu
       v-if="!disabled && !getPreferences(userSettings, 'hideTagHoverCard')"
       placement="bottom-start"

@@ -181,11 +181,16 @@ exports[`content-rich > hashtag adds bdi 1`] = `
 "<p>
   Testing bdi is added
   <span
-    ><a
-      class="mention hashtag"
-      rel="nofollow noopener noreferrer"
-      to="/m.webtoo.ls/tags/turkey"
-      ><bdi>#<span>turkey</span></bdi></a
+    ><VMenu
+      placement="bottom-start"
+      class="inline-block"
+      close-on-content-click="false"
+      ><a
+        class="mention hashtag"
+        rel="nofollow noopener noreferrer"
+        to="/m.webtoo.ls/tags/turkey"
+        ><bdi>#<span>turkey</span></bdi></a
+      ></VMenu
     ></span
   >
 </p>
@@ -197,11 +202,15 @@ exports[`content-rich > hashtag doesn't add 2 bdi 1`] = `
 "<p>
   Testing bdi not added
   <span
-    ><a
-      class="mention hashtag"
-      rel="nofollow noopener noreferrer"
-      to="/m.webtoo.ls/tags/turkey"
-      ><bdi></bdi></a
+    ><VMenu
+      placement="bottom-start"
+      class="inline-block"
+      close-on-content-click="false"
+      ><a
+        class="mention hashtag"
+        rel="nofollow noopener noreferrer"
+        to="/m.webtoo.ls/tags/turkey"
+        ><bdi></bdi></a></VMenu
   ></span>
 </p>
 <p></p>

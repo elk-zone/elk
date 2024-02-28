@@ -14,11 +14,12 @@ const props = defineProps<{
   disabled?: boolean
 }>()
 
-const targetIsHover = ref(false)
+const accountHover = ref()
+const hovered = useElementHover(accountHover)
 const account = ref<mastodon.v1.Account | null | undefined>(props.account)
 
 watch(
-  () => [props.account, props.handle, targetIsHover.value] satisfies WatcherType,
+  () => [props.account, props.handle, hovered.value] satisfies WatcherType,
   ([newAccount, newHandle, newVisible], oldProps) => {
     if (!newVisible || process.test)
       return
@@ -49,11 +50,11 @@ const userSettings = useUserSettings()
 </script>
 
 <template>
-  <span @mouseenter="targetIsHover = true" @mouseleave="targetIsHover = false">
+  <span ref="accountHover">
     <VMenu
       v-if="!disabled && !getPreferences(userSettings, 'hideAccountHoverCard')"
       placement="bottom-start"
-      :delay="{ show: 0, hide: 100 }"
+      :delay="{ show: 5, hide: 100 }"
       v-bind="$attrs"
       :close-on-content-click="false"
     >

@@ -235,8 +235,8 @@ importers:
         specifier: ^3.7.1
         version: 3.7.1(rollup@4.6.0)
       vite-plugin-pwa:
-        specifier: ^0.19.0
-        version: 0.19.0(vite@5.1.4)(workbox-build@7.0.0)(workbox-window@7.0.0)
+        specifier: ^0.19.1
+        version: 0.19.1(vite@5.1.4)(workbox-build@7.0.0)(workbox-window@7.0.0)
       vue-advanced-cropper:
         specifier: ^2.8.8
         version: 2.8.8(vue@3.4.19)
@@ -14514,8 +14514,8 @@ packages:
       - rollup
       - supports-color
 
-  /vite-plugin-pwa@0.19.0(vite@5.1.4)(workbox-build@7.0.0)(workbox-window@7.0.0):
-    resolution: {integrity: sha512-Unfb4Jk/ka4HELtpMLIPCmGcW4LFT+CL7Ri1/Of1544CVKXS2ftP91kUkNzkzeI1sGpOdVGuxprVLB9NjMoCAA==}
+  /vite-plugin-pwa@0.19.1(vite@5.1.4)(workbox-build@7.0.0)(workbox-window@7.0.0):
+    resolution: {integrity: sha512-pxubJSqDfiUflmFfU8ErPP2eIHz7SqiSuJz6Qk2dPlEeC5Wm2hTInYhmVBYVx1KbVUEhQ4f8uCdmhYB/YP/pqw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@vite-pwa/assets-generator': ^0.2.4

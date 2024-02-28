@@ -32,13 +32,14 @@ const userSettings = useUserSettings()
     <VMenu
       v-if="!disabled && !getPreferences(userSettings, 'hideTagHoverCard')"
       placement="bottom-start"
-      :delay="{ show: 500, hide: 100 }"
+      :delay="{ show: 5, hide: 100 }"
       v-bind="$attrs"
       :close-on-content-click="false"
     >
       <slot />
       <template #popper>
-        <TagCard v-if="tag" :tag="tag" />
+        <TagCardSkeleton v-if="!tag" />
+        <TagCard v-else :tag="tag" />
       </template>
     </VMenu>
     <slot v-else />

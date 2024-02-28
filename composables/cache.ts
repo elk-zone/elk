@@ -93,10 +93,6 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   return promise
 }
 
-export function useAccountById(id?: string | null) {
-  return useAsyncState(() => fetchAccountById(id), null).state
-}
-
 export function cacheStatus(status: mastodon.v1.Status, server = currentServer.value, override?: boolean) {
   const userId = currentUser.value?.account.id
   setCached(`${server}:${userId}:status:${status.id}`, status, override)

@@ -10,13 +10,13 @@ const relationship = computed(() => account ? useRelationship(account).value : u
 
 <template>
   <div>
-    <StatusCardSkeleton v-if="!relationship" />
-    <div v-else-if="account" flex="~ col gap2" rounded min-w-90 max-w-120 z-100 overflow-hidden p-4>
+    <StatusCardSkeleton v-if="!account" />
+    <div v-else flex="~ col gap2" rounded min-w-90 max-w-120 z-100 overflow-hidden p-4>
       <div flex="~ gap2" items-center>
         <NuxtLink :to="getAccountRoute(account)" flex-auto rounded-full hover:bg-active transition-100 pe5 me-a>
           <AccountInfo :account="account" />
         </NuxtLink>
-        <AccountFollowButton text-sm :account="account" :relationship="relationship" />
+        <AccountFollowButton v-show="relationship" text-sm :account="account" :relationship="relationship" />
       </div>
       <div v-if="account.note" max-h-100 overflow-y-auto>
         <ContentRich text-4 text-secondary :content="account.note" :emojis="account.emojis" />

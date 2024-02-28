@@ -54,7 +54,7 @@ const userSettings = useUserSettings()
     <VMenu
       v-if="!disabled && !getPreferences(userSettings, 'hideAccountHoverCard')"
       placement="bottom-start"
-      :delay="{ show: 5, hide: 100 }"
+      :delay="{ show: 500, hide: 100 }"
       v-bind="$attrs"
       :close-on-content-click="false"
     >

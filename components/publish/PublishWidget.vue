@@ -467,7 +467,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
           <CommonDropdown placement="bottom">
             <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
               <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
-                <div i-ri:calendar-schedule-line />
+                <div i-ri:calendar-schedule-line :class="scheduleDateTime !== '' ? 'text-primary' : ''" />
               </button>
             </CommonTooltip>
             <template #popper>

@@ -95,7 +95,7 @@ export function usePublish(options: {
       language: draftItem.value.params.language || preferredLanguage.value,
       poll,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
-    } as mastodon.rest.v1.CreateStatusParams
+    } as mastodon.rest.v1.CreateScheduledStatusParams
 
     if (import.meta.dev) {
       // eslint-disable-next-line no-console

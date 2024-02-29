@@ -37,6 +37,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     language,
     mentions,
     poll,
+    scheduledAt,
   } = options
 
   return {
@@ -45,6 +46,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
     params: {
       status: status || '',
       poll,
+      scheduledAt,
       inReplyToId,
       visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,

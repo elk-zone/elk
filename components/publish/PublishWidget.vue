@@ -132,6 +132,8 @@ const expiresInOptions = computed(() => [
 
 const expiresInDefaultOptionIndex = 2
 
+const scheduleDateTime = ref('')
+
 const characterCount = computed(() => {
   const text = htmlToText(editor.value?.getHTML() || '')
 
@@ -462,7 +464,23 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
 
             <PublishEditorTools v-if="editor" :editor="editor" />
 
-            <div flex-auto />
+          <CommonDropdown placement="bottom">
+            <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
+              <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
+                <div i-ri:calendar-schedule-line />
+              </button>
+            </CommonTooltip>
+            <template #popper>
+              <input
+                v-model="scheduleDateTime"
+                p2
+                type="datetime-local"
+                name="schedule-datetime"
+              >
+            </template>
+          </CommonDropdown>
+
+          <div flex-auto />
 
             <PublishCharacterCounter :max="characterLimit" :length="characterCount" />
 

@@ -63,8 +63,8 @@ const isSelfReply = computed(() => status.value.inReplyToAccountId === status.va
 const collapseRebloggedBy = computed(() => rebloggedBy.value?.id === status.value.account.id)
 const isDM = computed(() => status.value.visibility === 'direct')
 
-const showUpperBorder = computed(() => props.newer && !directReply)
-const showReplyTo = computed(() => !replyToMain && !directReply)
+const showUpperBorder = computed(() => props.newer && !directReply.value)
+const showReplyTo = computed(() => !replyToMain.value && !directReply.value)
 
 const forceShow = ref(false)
 </script>

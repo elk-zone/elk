@@ -2,7 +2,6 @@ import type { ExtendedRegExpMatchArray, InputRuleFinder, nodeInputRule } from '@
 import {
   InputRule,
   Node,
-  callOrReturn,
   mergeAttributes,
   nodePasteRule,
 } from '@tiptap/core'
@@ -94,7 +93,7 @@ export const TiptapPluginEmoji = Node.create({
       return new InputRule({
         find: config.find,
         handler: ({ state, range, match }) => {
-          const attributes = callOrReturn(config.getAttributes, undefined, match) || {}
+          const attributes = typeof config.getAttributes === 'function' ? config.getAttributes(match) : {}
           const { tr } = state
           const start = range.from
           const end = range.to

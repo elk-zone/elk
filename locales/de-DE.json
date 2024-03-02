@@ -218,8 +218,18 @@
         "title": "Medien"
       },
       "navigation": {
+        "go_to_bookmarks": "Favoriten",
+        "go_to_conversations": "Direktnachrichten",
+        "go_to_explore": "Entdecken",
+        "go_to_favourites": "Favoriten",
+        "go_to_federated": "Föderiert",
         "go_to_home": "Startseite",
+        "go_to_lists": "Listen",
+        "go_to_local": "Lokal",
         "go_to_notifications": "Benachrichtigungen",
+        "go_to_profile": "Profil",
+        "go_to_search": "Suche",
+        "go_to_settings": "Einstellungen",
         "next_status": "Nächster Status",
         "previous_status": "Vorheriger Status",
         "shortcut_help": "Tastaturkürzel-Hilfe",

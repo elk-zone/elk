@@ -41,12 +41,52 @@ const shortcutItemGroups = computed<ShortcutItemGroup[]>(() => [
       //   shortcut: { keys: ['k'], isSequence: false },
       // },
       {
+        description: t('magic_keys.groups.navigation.go_to_search'),
+        shortcut: { keys: ['/'], isSequence: false },
+      },
+      {
         description: t('magic_keys.groups.navigation.go_to_home'),
         shortcut: { keys: ['g', 'h'], isSequence: true },
       },
       {
         description: t('magic_keys.groups.navigation.go_to_notifications'),
         shortcut: { keys: ['g', 'n'], isSequence: true },
+      },
+      {
+        description: t('magic_keys.groups.navigation.go_to_conversations'),
+        shortcut: { keys: ['g', 'c'], isSequence: true },
+      },
+      {
+        description: t('magic_keys.groups.navigation.go_to_favourites'),
+        shortcut: { keys: ['g', 'f'], isSequence: true },
+      },
+      {
+        description: t('magic_keys.groups.navigation.go_to_bookmarks'),
+        shortcut: { keys: ['g', 'b'], isSequence: true },
+      },
+      {
+        description: t('magic_keys.groups.navigation.go_to_explore'),
+        shortcut: { keys: ['g', 'e'], isSequence: true },
+      },
+      {
+        description: t('magic_keys.groups.navigation.go_to_local'),
+        shortcut: { keys: ['g', 'l'], isSequence: true },
+      },
+      {
+        description: t('magic_keys.groups.navigation.go_to_federated'),
+        shortcut: { keys: ['g', 't'], isSequence: true },
+      },
+      {
+        description: t('magic_keys.groups.navigation.go_to_lists'),
+        shortcut: { keys: ['g', 'i'], isSequence: true },
+      },
+      {
+        description: t('magic_keys.groups.navigation.go_to_settings'),
+        shortcut: { keys: ['g', 's'], isSequence: true },
+      },
+      {
+        description: t('magic_keys.groups.navigation.go_to_profile'),
+        shortcut: { keys: ['g', 'p'], isSequence: true },
       },
     ],
   },

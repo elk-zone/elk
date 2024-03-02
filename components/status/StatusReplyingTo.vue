@@ -10,7 +10,7 @@ const {
 }>()
 
 const isSelf = computed(() => status.inReplyToAccountId === status.account.id)
-const account = isSelf ? computed(() => status.account) : useAccountById(status.inReplyToAccountId)
+const account = isSelf.value ? computed(() => status.account) : useAccountById(status.inReplyToAccountId)
 </script>
 
 <template>

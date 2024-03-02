@@ -14,8 +14,9 @@ function getViewTransitionState() {
   return useState<null | ViewTransitionState>('viewTransitionTargets', () => null)
 }
 
-export const viewTransitionStatusInjectionKey: InjectionKey<undefined | mastodon.v1.Status> = Symbol('the status of the parent status card')
-export const viewTransitionAccountInjectionKey: InjectionKey<undefined | mastodon.v1.Account> = Symbol('the account of the viewed profile')
+export const viewTransitionEnabledInjectionKey: InjectionKey<boolean> = Symbol('whether view-transition is enabled for this component')
+export const viewTransitionStatusInjectionKey: InjectionKey<undefined | mastodon.v1.Status> = Symbol('the status in context')
+export const viewTransitionAccountInjectionKey: InjectionKey<undefined | mastodon.v1.Account> = Symbol('the account in context')
 
 export function setViewTransitionTarget(targets: ViewTransitionSources) {
   getViewTransitionState().value = {
@@ -29,6 +30,10 @@ interface ViewTransitionSources {
 }
 
 export function getViewTransitionStyles(viewTransitionName: string, sources?: ViewTransitionSources) {
+  const isEnabled = inject(viewTransitionEnabledInjectionKey, false)
+  if (!isEnabled)
+    return {}
+
   const calcedSources = calcTransitionSources({
     status: sources?.status || inject(viewTransitionStatusInjectionKey, undefined),
     account: sources?.account || inject(viewTransitionAccountInjectionKey, undefined),

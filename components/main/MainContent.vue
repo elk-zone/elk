@@ -22,6 +22,8 @@ const containerClass = computed(() => {
 
   return 'lg:sticky lg:top-0'
 })
+
+provide(viewTransitionEnabledInjectionKey, true)
 </script>
 
 <template>

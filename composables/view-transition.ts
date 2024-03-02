@@ -30,9 +30,8 @@ interface ViewTransitionSources {
 }
 
 export function getViewTransitionStyles(viewTransitionName: string, sources?: ViewTransitionSources) {
-  const isEnabledInPreferences = usePreferences('experimentalViewTransitions').value
   const isEnabledInContext = inject(viewTransitionEnabledInjectionKey, false)
-  if (!isEnabledInPreferences || !isEnabledInContext)
+  if (!isEnabledInContext)
     return {}
 
   const calcedSources = calcTransitionSources({
@@ -41,10 +40,11 @@ export function getViewTransitionStyles(viewTransitionName: string, sources?: Vi
   })
 
   return computed(() => {
-    if (shouldTakePartInTransition(calcedSources))
-      return { 'view-transition-name': viewTransitionName }
-    else
+    const isEnabledInPreferences = usePreferences('experimentalViewTransitions').value
+    if (!isEnabledInPreferences || !shouldTakePartInTransition(calcedSources))
       return {}
+
+    return { 'view-transition-name': viewTransitionName }
   })
 }
 

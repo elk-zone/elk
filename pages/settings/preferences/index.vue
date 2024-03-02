@@ -160,5 +160,14 @@ const userSettings = useUserSettings()
         {{ $t('settings.preferences.user_picker_description') }}
       </template>
     </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'experimentalViewTransitions')"
+      @click="togglePreferences('experimentalViewTransitions')"
+    >
+      {{ $t('settings.preferences.view_transitions') }}
+      <template #description>
+        {{ $t('settings.preferences.view_transitions_description') }}
+      </template>
+    </SettingsToggleItem>
   </MainContent>
 </template>

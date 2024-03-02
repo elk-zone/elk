@@ -30,8 +30,9 @@ interface ViewTransitionSources {
 }
 
 export function getViewTransitionStyles(viewTransitionName: string, sources?: ViewTransitionSources) {
-  const isEnabled = inject(viewTransitionEnabledInjectionKey, false)
-  if (!isEnabled)
+  const isEnabledInPreferences = usePreferences('experimentalViewTransitions').value
+  const isEnabledInContext = inject(viewTransitionEnabledInjectionKey, false)
+  if (!isEnabledInPreferences || !isEnabledInContext)
     return {}
 
   const calcedSources = calcTransitionSources({
@@ -58,7 +59,7 @@ function shouldTakePartInTransition(sources: ViewTransitionSources) {
   const arrivingOnProfile = state?.setOnPath !== currPath && onProfilePage
 
   if (arrivingOnProfile) {
-    if (sources.account && !sources.status)
+    if (sources.account && !sources.status) // the navigation source was an avatar not a status
       return state.targets.account?.id === sources.account.id
   }
   else {

@@ -1,4 +1,5 @@
 import type { ExtendedRegExpMatchArray, InputRuleFinder, nodeInputRule } from '@tiptap/core'
+import type { NodeType } from '@tiptap/pm/model'
 import {
   InputRule,
   Node,
@@ -6,7 +7,6 @@ import {
   mergeAttributes,
   nodePasteRule,
 } from '@tiptap/core'
-import type { NodeType } from '@tiptap/pm/model'
 import { emojiRegEx, getEmojiAttributes } from '~/config/emojis'
 
 function wrapHandler<T extends (...args: any[]) => any>(handler: T): T {

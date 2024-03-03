@@ -132,10 +132,9 @@ const expiresInOptions = computed(() => [
 
 const expiresInDefaultOptionIndex = 2
 
-const scheduleDateTime = ref('')
-
+const scheduledTime = ref('')
 watchEffect(() => {
-  draft.value.params.scheduledAt = scheduleDateTime.value
+  draft.value.params.scheduledAt = scheduledTime.value
 })
 
 const characterCount = computed(() => {
@@ -310,11 +309,11 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
           <header id="publish-failed" flex justify-between>
             <div flex items-center gap-x-2 font-bold>
               <div aria-hidden="true" i-ri:error-warning-fill />
-              <p>{{ scheduleDateTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</p>
+              <p>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</p>
             </div>
-            <CommonTooltip placement="bottom" :content="scheduleDateTime ? $t('state.clear_schedule_failed') : $t('action.clear_publish_failed')">
+            <CommonTooltip placement="bottom" :content="scheduledTime ? $t('state.clear_schedule_failed') : $t('action.clear_publish_failed')">
               <button
-                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="scheduleDateTime ? $t('state.clear_schedule_failed') : $t('action.clear_publish_failed')"
+                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="scheduledTime ? $t('state.clear_schedule_failed') : $t('action.clear_publish_failed')"
                 @click="failedMessages = []"
               >
                 <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
@@ -493,12 +492,12 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
           <CommonDropdown placement="bottom">
             <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
               <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
-                <div i-ri:calendar-schedule-line :class="scheduleDateTime !== '' ? 'text-primary' : ''" />
+                <div i-ri:calendar-schedule-line :class="scheduledTime !== '' ? 'text-primary' : ''" />
               </button>
             </CommonTooltip>
             <template #popper>
               <input
-                v-model="scheduleDateTime"
+                v-model="scheduledTime"
                 p2
                 type="datetime-local"
                 name="schedule-datetime"
@@ -547,7 +546,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
 
             <CommonTooltip
               v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"
-              :content="scheduleDateTime ? $t('state.schedule_failed') : $t('tooltip.publish_failed')"
+              :content="scheduledTime ? $t('state.schedule_failed') : $t('tooltip.publish_failed')"
             >
               <button
                 btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit
@@ -556,7 +555,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 <span block>
                   <div block i-carbon:face-dizzy-filled />
                 </span>
-                <span>{{ scheduleDateTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</span>
+                <span>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</span>
               </button>
             </CommonTooltip>
 
@@ -583,7 +582,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 <template v-else>
                   <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
                   <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
-                  <span v-else-if="scheduleDateTime">{{ !isSending ? $t('action.schedule') : $t('state.scheduling') }}</span>
+                  <span v-else-if="scheduledTime">{{ !isSending ? $t('action.schedule') : $t('state.scheduling') }}</span>
                   <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
                 </template>
               </button>

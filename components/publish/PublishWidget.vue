@@ -306,6 +306,28 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 </li>
               </ol>
             </CommonErrorMessage>
+        <CommonErrorMessage v-if="failedMessages.length > 0" described-by="publish-failed">
+          <header id="publish-failed" flex justify-between>
+            <div flex items-center gap-x-2 font-bold>
+              <div aria-hidden="true" i-ri:error-warning-fill />
+              <p>{{ scheduleDateTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</p>
+            </div>
+            <CommonTooltip placement="bottom" :content="scheduleDateTime ? $t('state.clear_schedule_failed') : $t('action.clear_publish_failed')">
+              <button
+                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="scheduleDateTime ? $t('state.clear_schedule_failed') : $t('action.clear_publish_failed')"
+                @click="failedMessages = []"
+              >
+                <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
+              </button>
+            </CommonTooltip>
+          </header>
+          <ol ps-2 sm:ps-1>
+            <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+              <strong>{{ i + 1 }}.</strong>
+              <span>{{ error }}</span>
+            </li>
+          </ol>
+        </CommonErrorMessage>
 
             <div relative flex-1 flex flex-col :class="shouldExpanded ? 'min-h-30' : ''">
               <EditorContent
@@ -525,7 +547,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
 
             <CommonTooltip
               v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"
-              :content="$t('tooltip.publish_failed')"
+              :content="scheduleDateTime ? $t('state.schedule_failed') : $t('tooltip.publish_failed')"
             >
               <button
                 btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit
@@ -534,7 +556,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 <span block>
                   <div block i-carbon:face-dizzy-filled />
                 </span>
-                <span>{{ $t('state.publish_failed') }}</span>
+                <span>{{ scheduleDateTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</span>
               </button>
             </CommonTooltip>
 
@@ -561,6 +583,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 <template v-else>
                   <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
                   <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
+                  <span v-else-if="scheduleDateTime">{{ !isSending ? $t('action.schedule') : $t('state.scheduling') }}</span>
                   <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
                 </template>
               </button>

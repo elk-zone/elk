@@ -618,6 +618,7 @@
     "publishing": "Publishing",
     "save_failed": "Save failed",
     "schedule_failed": "Schedule failed",
+    "schedule_time_invalid": "The scheduled time must be at least 5 minutes later in the future. Set to {0} or later.",
     "scheduling": "Scheduling",
     "upload_failed": "Upload failed",
     "uploading": "Uploading..."

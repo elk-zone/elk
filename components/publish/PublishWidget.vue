@@ -134,14 +134,19 @@ const expiresInOptions = computed(() => [
 const expiresInDefaultOptionIndex = 2
 
 const scheduledTime = ref('')
-watchEffect(() => {
-  draft.value.params.scheduledAt = scheduledTime.value
+const now = useNow({ interval: 1000 })
+const minimumScheduledTime = computed(() => getMinimumScheduledTime(now.value))
+
+const isValidScheduledTime = computed(() => {
+  if (scheduledTime.value === '')
+    return true
+
+  const scheduledTimeDate = new Date(scheduledTime.value)
+  return minimumScheduledTime.value.getTime() <= scheduledTimeDate.getTime()
 })
 
-const now = useNow({ interval: 1000 })
-const minimumScheduledTime = ref()
 watchEffect(() => {
-  minimumScheduledTime.value = getMinimumScheduledTime(now.value)
+  draft.value.params.scheduledAt = scheduledTime.value
 })
 
 // Calculate the minimum scheduled time.
@@ -149,13 +154,16 @@ watchEffect(() => {
 // but if the specified scheduled time is less than 5 minutes, Mastodon will
 // send the post immediately.
 // To prevent this, we add a buffer and round up the minutes.
-function getMinimumScheduledTime(now: Date): string {
+function getMinimumScheduledTime(now: Date): Date {
   const bufferInSec = 5 + 5 * 60 // + 5 minutes and 5 seconds
   const nowInSec = Math.floor(now.getTime() / 1000)
   const bufferedTimeInSec
       = Math.ceil((nowInSec + bufferInSec) / 60) * 60
-  const minimumScheduledTime = new Date(bufferedTimeInSec * 1000)
-  return minimumScheduledTime.toISOString().slice(0, 16)
+  return new Date(bufferedTimeInSec * 1000)
+}
+
+function getDatetimeInputFormat(time: Date) {
+  return time.toISOString().slice(0, 16)
 }
 
 const characterCount = computed(() => {
@@ -332,9 +340,9 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
               <div aria-hidden="true" i-ri:error-warning-fill />
               <p>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</p>
             </div>
-            <CommonTooltip placement="bottom" :content="scheduledTime ? $t('state.clear_schedule_failed') : $t('action.clear_publish_failed')">
+            <CommonTooltip placement="bottom" :content="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')">
               <button
-                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="scheduledTime ? $t('state.clear_schedule_failed') : $t('action.clear_publish_failed')"
+                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
                 @click="failedMessages = []"
               >
                 <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
@@ -347,6 +355,15 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
               <span>{{ error }}</span>
             </li>
           </ol>
+        </CommonErrorMessage>
+
+        <CommonErrorMessage v-if="!isValidScheduledTime" described-by="scheduled-time-invalid" pt-2>
+          <header id="scheduled-time-invalid" flex justify-between>
+            <div flex items-center gap-x-2 font-bold>
+              <div aria-hidden="true" i-ri:error-warning-fill />
+              <p>{{ $t('state.schedule_time_invalid', [minimumScheduledTime.toLocaleString()]) }}</p>
+            </div>
+          </header>
         </CommonErrorMessage>
 
             <div relative flex-1 flex flex-col :class="shouldExpanded ? 'min-h-30' : ''">
@@ -522,7 +539,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 p2
                 type="datetime-local"
                 name="schedule-datetime"
-                :min="minimumScheduledTime"
+                :min="getDatetimeInputFormat(minimumScheduledTime)"
               >
             </template>
           </CommonDropdown>
@@ -589,7 +606,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 v-if="!threadIsActive || isFinalItemOfThread"
                 btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
                 :aria-disabled="isPublishDisabled || isExceedingCharacterLimit" aria-describedby="publish-tooltip"
-                :disabled="isPublishDisabled || isExceedingCharacterLimit"
+                :disabled="isPublishDisabled || isExceedingCharacterLimit || !isValidScheduledTime"
                 @click="publish"
               >
                 <span v-if="isSending" block animate-spin preserve-3d>
@@ -603,8 +620,8 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 </template>
                 <template v-else>
                   <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
-                  <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
                   <span v-else-if="scheduledTime">{{ !isSending ? $t('action.schedule') : $t('state.scheduling') }}</span>
+                  <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
                   <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
                 </template>
               </button>

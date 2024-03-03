@@ -119,14 +119,7 @@ export function usePublish(options: {
       let status: mastodon.v1.Status
       if (!draftItem.value.editingStatus) {
         status = await client.value.v1.statuses.create(payload)
-
-        if (scheduledAt)
-          // When created a scheduled post, it returns `mastodon.v1.ScheduledStatus` instead
-          // We want to return only Status, which will be used to route to the posted status page
-          // ref. Mastodon documentation - https://docs.joinmastodon.org/methods/statuses/#create
-          return
       }
-
       else {
         status = await client.value.v1.statuses.$select(draftItem.value.editingStatus.id).update({
           ...payload,
@@ -140,6 +133,12 @@ export function usePublish(options: {
         navigateToStatus({ status })
 
       draftItem.value = options.initialDraft()
+
+      if (scheduledAt)
+        // When created a scheduled post, it returns `mastodon.v1.ScheduledStatus` instead
+        // We want to return only Status, which will be used to route to the posted status page
+        // ref. Mastodon documentation - https://docs.joinmastodon.org/methods/statuses/#create
+        return
 
       return status
     }

@@ -645,7 +645,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
   color: var(--c-text-btn-disabled);
 }
 
-.option-input:focus+.delete-button {
+.option-input:focus + .delete-button {
   display: none;
 }
 
@@ -658,5 +658,9 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+}
+
+input[name="schedule-datetime"]:invalid {
+  color: var(--c-danger);
 }
 </style>

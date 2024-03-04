@@ -1,6 +1,6 @@
 // @unimport-disable
 import type { mastodon } from 'masto'
-import type { ElementNode, Node } from 'ultrahtml'
+import type { Node } from 'ultrahtml'
 import { DOCUMENT_NODE, ELEMENT_NODE, TEXT_NODE, h, parse, render } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { decode } from 'tiny-decode'
@@ -526,39 +526,8 @@ function transformMarkdown(node: Node) {
 
 function addBdiParagraphs(node: Node) {
   if (node.name === 'p' && !('dir' in node.attributes) && node.children?.length && node.children.length > 1) {
-    const split = node.children.every((child: Node) => child.type === TEXT_NODE || child.name === 'br')
-    if (!split) {
-      // adding dir="auto" to the root paragraph just works
-      node.attributes.dir = 'auto'
-      return node
-    }
-
-    // convert <p>some test<br/>some text...<br/>some text...</p>
-    // to <div><p dir="auto">some text</p><p dir="auto">some text...</p><p dir="auto">some text...</p></div>
-    node.name = 'div'
-    const children = node.children.splice(0) as Node[]
-    for (const child of children) {
-      // we don't need <br/> since we are adding <p> tags
-      if (child.name === 'br')
-        continue
-
-      // empty text nodes are just added
-      if (!child.value.trim().length) {
-        node.children.push(child)
-        continue
-      }
-
-      const p: ElementNode = {
-        name: 'p',
-        parent: node,
-        loc: node.loc,
-        type: ELEMENT_NODE,
-        attributes: { dir: 'auto' },
-        children: [child],
-      }
-      child.parent = p
-      node.children.push(p)
-    }
+    node.attributes.dir = 'auto'
+    return node
   }
 
   return node

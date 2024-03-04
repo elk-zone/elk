@@ -293,8 +293,8 @@ importers:
         specifier: ^2.4.4
         version: 2.4.4(vue@3.4.19)
       bumpp:
-        specifier: ^9.3.0
-        version: 9.3.0
+        specifier: ^9.4.0
+        version: 9.4.0
       consola:
         specifier: ^3.2.3
         version: 3.2.3
@@ -323,8 +323,8 @@ importers:
         specifier: ^0.1.5
         version: 0.1.5
       simple-git-hooks:
-        specifier: ^2.9.0
-        version: 2.9.0
+        specifier: ^2.10.0
+        version: 2.10.0
       tsx:
         specifier: ^4.7.1
         version: 4.7.1
@@ -6833,14 +6833,15 @@ packages:
     dependencies:
       semver: 7.6.0
 
-  /bumpp@9.3.0:
-    resolution: {integrity: sha512-P46VikoEZadYCqx7mbClKlaJnOyvc+JfRJPRf1YwlOjwqeYmutgFe1w9hvfXe819VhpU0N0TNXtxyVAUlAgaNA==}
+  /bumpp@9.4.0:
+    resolution: {integrity: sha512-T+N+B5mSSvsTt7kgxGXCKQd957IxmEZwMn2nWirspGUY08u/cBNrpQDMXk43fzLegZtKtXS1v9S06vq2zf6lXQ==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
       '@jsdevtools/ez-spawn': 3.0.4
       c12: 1.9.0
       cac: 6.7.14
+      escalade: 3.1.2
       fast-glob: 3.3.2
       js-yaml: 4.1.0
       prompts: 2.4.2
@@ -7940,6 +7941,11 @@ packages:
   /escalade@3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
     engines: {node: '>=6'}
+
+  /escalade@3.1.2:
+    resolution: {integrity: sha512-ErCHMCae19vR8vQGe50xIsVomy19rg6gFu3+r3jkEO46suLMWBksvVyoGgQV+jOfl84ZSOSlmv6Gxa89PmTGmA==}
+    engines: {node: '>=6'}
+    dev: true
 
   /escape-html@1.0.3:
     resolution: {integrity: sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==}
@@ -13007,8 +13013,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /simple-git-hooks@2.9.0:
-    resolution: {integrity: sha512-waSQ5paUQtyGC0ZxlHmcMmD9I1rRXauikBwX31bX58l5vTOhCEcBC5Bi+ZDkPXTjDnZAF8TbCqKBY+9+sVPScw==}
+  /simple-git-hooks@2.10.0:
+    resolution: {integrity: sha512-TtCytVYfV77pILCkzVxpOSgYKHQyaO7fBI/iwG5bLGb0dIo/v/K1Y1IZ5DN40RQu6WNNJiN0gkuRvSYjxOhFog==}
     hasBin: true
     requiresBuild: true
     dev: true

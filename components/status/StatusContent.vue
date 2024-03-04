@@ -30,7 +30,7 @@ const hideAllMedia = computed(
   },
 )
 const embeddedMediaPreference = usePreferences('experimentalEmbeddedMedia')
-const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPreference)
+const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPreference.value)
 </script>
 
 <template>

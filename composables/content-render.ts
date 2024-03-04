@@ -10,6 +10,7 @@ import Emoji from '~/components/emoji/Emoji.vue'
 import ContentCode from '~/components/content/ContentCode.vue'
 import ContentMentionGroup from '~/components/content/ContentMentionGroup.vue'
 import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
+import TagHoverWrapper from '~/components/account/TagHoverWrapper.vue'
 
 function getTextualAstComponents(astChildren: Node[]): string {
   return astChildren
@@ -128,11 +129,13 @@ function handleMention(el: Node) {
         addBdiNode(el)
         return h(AccountHoverWrapper, { handle, class: 'inline-block' }, () => nodeToVNode(el))
       }
+
       const matchTag = href.match(TagLinkRE)
       if (matchTag) {
-        const [, , name] = matchTag
+        const [, , tagName] = matchTag
         addBdiNode(el)
-        el.attributes.href = `/${currentServer.value}/tags/${name}`
+        el.attributes.href = `/${currentServer.value}/tags/${tagName}`
+        return h(TagHoverWrapper, { tagName, class: 'inline-block' }, () => nodeToVNode(el))
       }
     }
   }

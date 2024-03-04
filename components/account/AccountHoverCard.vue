@@ -5,7 +5,7 @@ const { account } = defineProps<{
   account: mastodon.v1.Account
 }>()
 
-const relationship = computed(() => account ? useRelationship(account).value : undefined)
+const relationship = useRelationship(account)
 </script>
 
 <template>

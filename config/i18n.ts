@@ -89,6 +89,16 @@ const locales: LocaleObjectData[] = [
     },
   } satisfies LocaleObjectData),
   ({
+    code: 'ckb',
+    file: 'ckb.json',
+    name: 'کوردیی ناوەندی',
+    dir: 'rtl',
+    pluralRule: (choice: number) => {
+      const name = new Intl.PluralRules('ckb').select(choice)
+      return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
+    },
+  } satisfies LocaleObjectData),
+  ({
     code: 'fa-IR',
     file: 'fa-IR.json',
     name: 'فارسی',

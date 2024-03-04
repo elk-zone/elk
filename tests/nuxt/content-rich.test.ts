@@ -210,7 +210,7 @@ vi.mock('vue-router', async () => {
     }),
   }
 })
-/*
+
 vi.mock('@vueuse/shared', async () => {
   const vueuseShared = await import('@vueuse/shared')
   // mock pausableWatch and watchPausable: vitest process hangs from time to time
@@ -234,7 +234,7 @@ vi.mock('@vueuse/shared', async () => {
     },
   }
 })
-*/
+
 mockComponent('ContentMentionGroup', {
   setup(props, { slots }) {
     return () => h('mention-group', null, { default: () => slots?.default?.() })

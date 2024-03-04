@@ -175,7 +175,7 @@ describe('content-rich', () => {
     expect(formatted).toMatchSnapshot()
   })
 
-  it ('p modved to div and text children replaced with p[dir="auto"] tags: br children removed', async () => {
+  it ('p moved to div and text children replaced with p[dir="auto"] tags: br children removed', async () => {
     const { formatted } = await render(`
       <p><span class="h-card"><a href="https://strangeobject.space/@bebatjof" class="u-url mention">@<span>bebatjof</span></a></span> هذا اختبار:<br />أنا أحب الطريقة التي يتم بها دعم النموذج المزدوج العربي. تمت ترجمة الكلمة الأخيرة بشكل خاطئ وأحاول العثور على كيفية إصلاحها. أيضًا، يجب إصلاح نموذج 0.</p><p>This is a test:<br />I like how the arabic dual form is supported. The last one is mistranslated and I&#39;m trying to find how to fix it. Also, the form for 0 needs to be fixed.</p>
     `)

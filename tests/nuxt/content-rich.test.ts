@@ -1,10 +1,14 @@
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import type { mastodon } from 'masto'
 import { mockComponent } from '@nuxt/test-utils/runtime'
 import { contentToVNode } from '~/composables/content-render'
 import type { ContentParseOptions } from '~/composables/content-parse'
+
+beforeEach(() => {
+  publicServer.value = useRuntimeConfig().public.defaultServer
+})
 
 describe('content-rich', () => {
   it('empty', async () => {
@@ -218,6 +222,30 @@ vi.mock('vue-router', async () => {
         return () => h('a', props, { default: () => slots?.default?.() })
       },
     }),
+  }
+})
+
+vi.mock('@vueuse/shared', async () => {
+  const vueuseShared = await import('@vueuse/shared')
+  // mock pausableWatch and watchPausable: vitest process hangs from time to time
+  return {
+    ...vueuseShared,
+    pausableWatch: () => {
+      return {
+        stop: () => {},
+        pause: () => {},
+        resume: () => {},
+        isActive: readonly(ref(true)),
+      }
+    },
+    watchPausable: () => {
+      return {
+        stop: () => {},
+        pause: () => {},
+        resume: () => {},
+        isActive: readonly(ref(true)),
+      }
+    },
   }
 })
 

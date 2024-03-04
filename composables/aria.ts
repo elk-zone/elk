@@ -20,18 +20,18 @@ export function useAriaAnnouncer() {
 }
 
 export function useAriaLog() {
-  let logs = $ref<any[]>([])
+  const logs = ref<any[]>([])
 
   const announceLogs = (messages: any[]) => {
-    logs = messages
+    logs.value = messages
   }
 
   const appendLogs = (messages: any[]) => {
-    logs = logs.concat(messages)
+    logs.value = logs.value.concat(messages)
   }
 
   const clearLogs = () => {
-    logs = []
+    logs.value = []
   }
 
   return {
@@ -43,14 +43,14 @@ export function useAriaLog() {
 }
 
 export function useAriaStatus() {
-  let status = $ref<any>('')
+  const status = ref<any>('')
 
   const announceStatus = (message: any) => {
-    status = message
+    status.value = message
   }
 
   const clearStatus = () => {
-    status = ''
+    status.value = ''
   }
 
   return {

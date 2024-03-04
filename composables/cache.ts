@@ -5,7 +5,7 @@ const cache = new LRUCache<string, any>({
   max: 1000,
 })
 
-if (process.dev && process.client)
+if (import.meta.dev && import.meta.client)
   // eslint-disable-next-line no-console
   console.log({ cache })
 
@@ -23,8 +23,9 @@ export function fetchStatus(id: string, force = false): Promise<mastodon.v1.Stat
   const key = `${server}:${userId}:status:${id}`
   const cached = cache.get(key)
   if (cached && !force)
-    return cached
-  const promise = useMastoClient().v1.statuses.fetch(id)
+    return Promise.resolve(cached)
+
+  const promise = useMastoClient().v1.statuses.$select(id).fetch()
     .then((status) => {
       cacheStatus(status)
       return status
@@ -42,9 +43,10 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
   const key = `${server}:${userId}:account:${id}`
   const cached = cache.get(key)
   if (cached)
-    return cached
+    return Promise.resolve(cached)
+
   const domain = getInstanceDomainFromServer(server)
-  const promise = useMastoClient().v1.accounts.fetch(id)
+  const promise = useMastoClient().v1.accounts.$select(id).fetch()
     .then((r) => {
       if (r.acct && !r.acct.includes('@') && domain)
         r.acct = `${r.acct}@${domain}`
@@ -64,7 +66,7 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   const key = `${server}:${userId}:account:${userAcct}`
   const cached = cache.get(key)
   if (cached)
-    return cached
+    return Promise.resolve(cached)
 
   async function lookupAccount() {
     const client = useMastoClient()
@@ -74,7 +76,7 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
     }
     else {
       const userAcctDomain = userAcct.includes('@') ? userAcct : `${userAcct}@${domain}`
-      account = (await client.v1.search({ q: `@${userAcctDomain}`, type: 'accounts' })).accounts[0]
+      account = (await client.v1.search.fetch({ q: `@${userAcctDomain}`, type: 'accounts' })).accounts[0]
     }
 
     if (account.acct && !account.acct.includes('@') && domain)
@@ -82,17 +84,30 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
     return account
   }
 
-  const account = lookupAccount()
+  const promise = lookupAccount()
     .then((r) => {
       cacheAccount(r, server, true)
       return r
     })
-  cache.set(key, account)
-  return account
+  cache.set(key, promise)
+  return promise
 }
 
-export function useAccountByHandle(acct: string) {
-  return useAsyncState(() => fetchAccountByHandle(acct), null).state
+export function fetchTag(tagName: string, force = false): Promise<mastodon.v1.Tag> {
+  const server = currentServer.value
+  const userId = currentUser.value?.account.id
+  const key = `${server}:${userId}:tag:${tagName}`
+  const cached = cache.get(key)
+  if (cached && !force)
+    return Promise.resolve(cached)
+
+  const promise = useMastoClient().v1.tags.$select(tagName).fetch()
+    .then((tag) => {
+      cacheTag(tag)
+      return tag
+    })
+  cache.set(key, promise)
+  return promise
 }
 
 export function useAccountById(id?: string | null) {
@@ -114,4 +129,9 @@ export function cacheAccount(account: mastodon.v1.Account, server = currentServe
   const userAcct = account.acct.endsWith(`@${server}`) ? account.acct.slice(0, -server.length - 1) : account.acct
   setCached(`${server}:${userId}:account:${account.id}`, account, override)
   setCached(`${server}:${userId}:account:${userAcct}`, account, override)
+}
+
+export function cacheTag(tag: mastodon.v1.Tag, server = currentServer.value, override?: boolean) {
+  const userId = currentUser.value?.account.id
+  setCached(`${server}:${userId}:tag:${tag.name}`, tag, override)
 }

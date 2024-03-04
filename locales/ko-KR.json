@@ -13,6 +13,7 @@
     "blocked_users": "차단한 유저",
     "blocking": "차단",
     "bot": "봇",
+    "copy_account_name": "계정 이름 복사",
     "favourites": "좋아요",
     "follow": "팔로우",
     "follow_back": "맞팔로우",
@@ -86,12 +87,12 @@
     "block_account": {
       "cancel": "취소",
       "confirm": "차단",
-      "title": "정말로 {0}을/를 차단할까요?"
+      "description": "정말로 {0}을/를 차단할까요?"
     },
     "block_domain": {
       "cancel": "취소",
       "confirm": "차단",
-      "title": "정말로 {0}을/를 차단할까요?"
+      "description": "정말로 {0}을/를 차단할까요?"
     },
     "common": {
       "cancel": "아니오",
@@ -100,27 +101,27 @@
     "delete_list": {
       "cancel": "취소",
       "confirm": "삭제",
-      "title": "정말로 \"{0}\" 리스트를 삭제할까요?"
+      "description": "정말로 \"{0}\" 리스트를 삭제할까요?"
     },
     "delete_posts": {
       "cancel": "취소",
       "confirm": "삭제",
-      "title": "정말로 이 게시물을 삭제할까요?"
+      "description": "정말로 이 게시물을 삭제할까요?"
     },
     "mute_account": {
       "cancel": "취소",
       "confirm": "뮤트",
-      "title": "정말로 {0}을/를 뮤트하시겠어요?"
+      "description": "정말로 {0}을/를 뮤트하시겠어요?"
     },
     "show_reblogs": {
       "cancel": "취소",
       "confirm": "보기",
-      "title": "정말로 {0}이/가 부스트한 게시물을 표시할까요?"
+      "description": "정말로 {0}이/가 부스트한 게시물을 표시할까요?"
     },
     "unfollow": {
       "cancel": "취소",
       "confirm": "언팔로우",
-      "title": "정말로 언팔로우를 하시겠어요?"
+      "description": "정말로 언팔로우를 하시겠어요?"
     }
   },
   "conversation": {

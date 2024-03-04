@@ -10,6 +10,7 @@ defineProps<Props>()
 
 <template>
   <VTooltip
+    v-if="isHydrated"
     v-bind="$attrs"
     auto-hide
   >

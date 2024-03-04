@@ -8,17 +8,17 @@ export interface StatusActionsProps {
 }
 
 export function useStatusActions(props: StatusActionsProps) {
-  let status = $ref<mastodon.v1.Status>({ ...props.status })
-  const { client } = $(useMasto())
+  const status = ref<mastodon.v1.Status>({ ...props.status })
+  const { client } = useMasto()
 
   watch(
     () => props.status,
-    val => status = { ...val },
+    val => status.value = { ...val },
     { deep: true, immediate: true },
   )
 
   // Use different states to let the user press different actions right after the other
-  const isLoading = $ref({
+  const isLoading = ref({
     reblogged: false,
     favourited: false,
     bookmarked: false,
@@ -32,10 +32,10 @@ export function useStatusActions(props: StatusActionsProps) {
     if (!checkLogin())
       return
 
-    const prevCount = countField ? status[countField] : undefined
+    const prevCount = countField ? status.value[countField] : undefined
 
-    isLoading[action] = true
-    const isCancel = status[action]
+    isLoading.value[action] = true
+    const isCancel = status.value[action]
     fetchNewStatus().then((newStatus) => {
       // when the action is cancelled, the count is not updated highly likely (if they're the same)
       // issue of Mastodon API
@@ -45,24 +45,24 @@ export function useStatusActions(props: StatusActionsProps) {
       Object.assign(status, newStatus)
       cacheStatus(newStatus, undefined, true)
     }).finally(() => {
-      isLoading[action] = false
+      isLoading.value[action] = false
     })
     // Optimistic update
-    status[action] = !status[action]
-    cacheStatus(status, undefined, true)
+    status.value[action] = !status.value[action]
+    cacheStatus(status.value, undefined, true)
     if (countField)
-      status[countField] += status[action] ? 1 : -1
+      status.value[countField] += status.value[action] ? 1 : -1
   }
 
-  const canReblog = $computed(() =>
-    status.visibility !== 'direct'
-    && (status.visibility !== 'private' || status.account.id === currentUser.value?.account.id),
+  const canReblog = computed(() =>
+    status.value.visibility !== 'direct'
+    && (status.value.visibility !== 'private' || status.value.account.id === currentUser.value?.account.id),
   )
 
   const toggleReblog = () => toggleStatusAction(
     'reblogged',
-    () => client.v1.statuses[status.reblogged ? 'unreblog' : 'reblog'](status.id).then((res) => {
-      if (status.reblogged)
+    () => client.value.v1.statuses.$select(status.value.id)[status.value.reblogged ? 'unreblog' : 'reblog']().then((res) => {
+      if (status.value.reblogged)
       // returns the original status
         return res.reblog!
       return res
@@ -72,29 +72,29 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const toggleFavourite = () => toggleStatusAction(
     'favourited',
-    () => client.v1.statuses[status.favourited ? 'unfavourite' : 'favourite'](status.id),
+    () => client.value.v1.statuses.$select(status.value.id)[status.value.favourited ? 'unfavourite' : 'favourite'](),
     'favouritesCount',
   )
 
   const toggleBookmark = () => toggleStatusAction(
     'bookmarked',
-    () => client.v1.statuses[status.bookmarked ? 'unbookmark' : 'bookmark'](status.id),
+    () => client.value.v1.statuses.$select(status.value.id)[status.value.bookmarked ? 'unbookmark' : 'bookmark'](),
   )
 
   const togglePin = async () => toggleStatusAction(
     'pinned',
-    () => client.v1.statuses[status.pinned ? 'unpin' : 'pin'](status.id),
+    () => client.value.v1.statuses.$select(status.value.id)[status.value.pinned ? 'unpin' : 'pin'](),
   )
 
   const toggleMute = async () => toggleStatusAction(
     'muted',
-    () => client.v1.statuses[status.muted ? 'unmute' : 'mute'](status.id),
+    () => client.value.v1.statuses.$select(status.value.id)[status.value.muted ? 'unmute' : 'mute'](),
   )
 
   return {
-    status: $$(status),
-    isLoading: $$(isLoading),
-    canReblog: $$(canReblog),
+    status,
+    isLoading,
+    canReblog,
     toggleMute,
     toggleReblog,
     toggleFavourite,

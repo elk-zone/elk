@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { Paginator, mastodon } from 'masto'
+import type { mastodon } from 'masto'
 
 const { paginator, account, context } = defineProps<{
-  paginator: Paginator<mastodon.v1.Account[], mastodon.DefaultPaginationParams>
+  paginator: mastodon.Paginator<mastodon.v1.Account[], mastodon.DefaultPaginationParams | undefined>
   context?: 'following' | 'followers'
   account?: mastodon.v1.Account
   relationshipContext?: 'followedBy' | 'following'
 }>()
 
-const fallbackContext = $computed(() => {
+const fallbackContext = computed(() => {
   return ['following', 'followers'].includes(context!)
 })
-const showOriginSite = $computed(() =>
+const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
 )
 </script>

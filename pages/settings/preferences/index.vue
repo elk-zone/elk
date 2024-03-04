@@ -28,11 +28,23 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_account_hover_card') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideTagHoverCard')"
+      @click="togglePreferences('hideTagHoverCard')"
+    >
+      {{ $t('settings.preferences.hide_tag_hover_card') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enableAutoplay')"
       :disabled="getPreferences(userSettings, 'enableDataSaving')"
       @click="togglePreferences('enableAutoplay')"
     >
       {{ $t('settings.preferences.enable_autoplay') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'optimizeForLowPerformanceDevice')"
+      @click="togglePreferences('optimizeForLowPerformanceDevice')"
+    >
+      {{ $t('settings.preferences.optimize_for_low_performance_device') }}
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enableDataSaving')"

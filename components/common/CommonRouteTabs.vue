@@ -1,24 +1,7 @@
 <script setup lang="ts">
-import type { RouteLocationRaw } from 'vue-router'
+import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/types'
 
-const { t } = useI18n()
-
-export interface CommonRouteTabOption {
-  to: RouteLocationRaw
-  display: string
-  disabled?: boolean
-  name?: string
-  icon?: string
-  hide?: boolean
-  match?: boolean
-}
-export interface CommonRouteTabMoreOption {
-  options: CommonRouteTabOption[]
-  icon?: string
-  tooltip?: string
-  match?: boolean
-}
-const { options, command, replace, preventScrollTop = false, moreOptions } = $defineProps<{
+const { options, command, replace, preventScrollTop = false, moreOptions } = defineProps<{
   options: CommonRouteTabOption[]
   moreOptions?: CommonRouteTabMoreOption
   command?: boolean
@@ -26,6 +9,7 @@ const { options, command, replace, preventScrollTop = false, moreOptions } = $de
   preventScrollTop?: boolean
 }>()
 
+const { t } = useI18n()
 const router = useRouter()
 
 useCommands(() => command
@@ -49,7 +33,7 @@ useCommands(() => command
         :to="option.to"
         :replace="replace"
         relative flex flex-auto cursor-pointer sm:px6 px2 rounded transition-all
-        tabindex="1"
+        tabindex="0"
         hover:bg-active transition-100
         exact-active-class="children:(text-secondary !border-primary !op100 !text-base)"
         @click="!preventScrollTop && $scrollToTop()"
@@ -60,9 +44,9 @@ useCommands(() => command
         <span ws-nowrap mxa sm:px2 sm:py3 py2 text-center text-secondary-light op50>{{ option.display }}</span>
       </div>
     </template>
-    <template v-if="moreOptions?.options?.length">
+    <template v-if="isHydrated && moreOptions?.options?.length">
       <CommonDropdown placement="bottom" flex cursor-pointer mx-1.25rem>
-        <CommonTooltip placement="top" :content="moreOptions.tooltip || t('action.more')">
+        <CommonTooltip placement="top" no-auto-focus :content="moreOptions.tooltip || t('action.more')">
           <button
             cursor-pointer
             flex

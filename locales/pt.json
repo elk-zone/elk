@@ -27,6 +27,7 @@
     "follows_you": "Segue-o",
     "go_to_profile": "Ir para o perfil",
     "joined": "Juntou-se a",
+    "lock": "Privada",
     "moved_title": "Indicou que a sua nova conta é agora:",
     "muted_users": "Utilizadores silenciados",
     "muting": "Silenciados",
@@ -120,12 +121,14 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tem a certeza que pretende bloquear {0}?"
+      "description": "Tem a certeza que pretende bloquear {0}?",
+      "title": "Bloquear conta"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tem a certeza que pretende bloquear {0}?"
+      "description": "Tem a certeza que pretende bloquear {0}?",
+      "title": "Bloquear domínio"
     },
     "common": {
       "cancel": "Não",
@@ -134,27 +137,32 @@
     "delete_list": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "Tem a certeza que pretende elimnar a lista \"{0}\"?"
+      "description": "Tem a certeza que pretende eliminar a lista \"{0}\"?",
+      "title": "Eliminar lista"
     },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "Tem a certeza que pretende eliminar esta publicação?"
+      "description": "Tem a certeza que pretende eliminar esta publicação?",
+      "title": "Eliminar publicação"
     },
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
-      "title": "Tem a certeza que pretende silenciar {0}?"
+      "description": "Tem a certeza que pretende silenciar {0}?",
+      "title": "Silenciar conta"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "Tem a certeza que pretende mostrar partilhas de {0}?"
+      "description": "Tem a certeza que pretende mostrar partilhas de {0}?",
+      "title": "Mostrar partilhas"
     },
     "unfollow": {
       "cancel": "Cancelar",
       "confirm": "Deixar de seguir",
-      "title": "Tem a certeza que pretende deixar de seguir?"
+      "description": "Tem a certeza que pretende deixar de seguir?",
+      "title": "Deixar de seguir"
     }
   },
   "conversation": {
@@ -218,16 +226,27 @@
         "boost": "Partilhar",
         "command_mode": "Menu de comandos",
         "compose": "Compor",
-        "favourite": "Adcionar aos favoritos",
+        "favourite": "Adicionar aos favoritos",
         "search": "Pesquisar",
+        "show_new_items": "Mostrar novos itens",
         "title": "Ações"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Itens Salvos",
+        "go_to_conversations": "Conversas",
+        "go_to_explore": "Explorar",
+        "go_to_favourites": "Favoritos",
+        "go_to_federated": "Federada",
         "go_to_home": "Início",
+        "go_to_lists": "Listas",
+        "go_to_local": "Local",
         "go_to_notifications": "Notificações",
+        "go_to_profile": "Perfil",
+        "go_to_search": "Pesquisa",
+        "go_to_settings": "Definições",
         "next_status": "Publicação seguinte",
         "previous_status": "Publicação anterior",
         "shortcut_help": "Lista de atalhos",
@@ -521,6 +540,7 @@
       "hide_username_emojis": "Esconder emojis do nome de utilizador",
       "hide_username_emojis_description": "Esconde os emojis do nome de utilizador nas cronologias. Os Emojis continuarão a ser visíveis nos seus perfis.",
       "label": "Preferências",
+      "optimize_for_low_performance_device": "Otimizar para dispositivos de menor desempenho",
       "title": "Funcionalidades Experimentais",
       "use_star_favorite_icon": "Utilizar estrela como ícone de favoritos",
       "user_picker": "Selecionador de Utilizador",

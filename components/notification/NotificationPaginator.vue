@@ -1,12 +1,12 @@
 <script setup lang="ts">
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
-import type { Paginator, WsEvents, mastodon } from 'masto'
+import type { mastodon } from 'masto'
 import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
-  paginator: Paginator<mastodon.v1.Notification[], mastodon.v1.ListNotificationsParams>
-  stream?: Promise<WsEvents>
+  paginator: mastodon.Paginator<mastodon.v1.Notification[], mastodon.rest.v1.ListNotificationsParams>
+  stream?: mastodon.streaming.Subscription
 }>()
 
 const virtualScroller = false // TODO: fix flickering issue with virtual scroll
@@ -172,10 +172,9 @@ const { formatNumber } = useHumanReadableNumber()
     :preprocess="preprocess"
     :stream="stream"
     :virtualScroller="virtualScroller"
-    eventType="notification"
   >
     <template #updater="{ number, update }">
-      <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
+      <button id="elk_show_new_items" py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>

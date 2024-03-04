@@ -9,16 +9,16 @@ const emit = defineEmits<{
 
 const { locale } = useI18n()
 
-const el = $ref<HTMLElement>()
-let picker = $ref<Picker>()
+const el = ref<HTMLElement>()
+const picker = ref<Picker>()
 const colorMode = useColorMode()
 
 async function openEmojiPicker() {
   await updateCustomEmojis()
 
-  if (picker) {
-    picker.update({
-      theme: colorMode.value,
+  if (picker.value) {
+    picker.value.update({
+      theme: colorMode,
       custom: customEmojisData.value,
     })
   }
@@ -29,7 +29,7 @@ async function openEmojiPicker() {
       importEmojiLang(locale.value.split('-')[0]),
     ])
 
-    picker = new Picker({
+    picker.value = new Picker({
       data: () => dataPromise,
       onEmojiSelect({ native, src, alt, name }: any) {
         native
@@ -37,19 +37,19 @@ async function openEmojiPicker() {
           : emit('selectCustom', { src, alt, 'data-emoji-id': name })
       },
       set: 'twitter',
-      theme: colorMode.value,
+      theme: colorMode,
       custom: customEmojisData.value,
       i18n,
     })
   }
   await nextTick()
   // TODO: custom picker
-  el?.appendChild(picker as any as HTMLElement)
+  el.value?.appendChild(picker.value as any as HTMLElement)
 }
 
 function hideEmojiPicker() {
-  if (picker)
-    el?.removeChild(picker as any as HTMLElement)
+  if (picker.value)
+    el.value?.removeChild(picker.value as any as HTMLElement)
 }
 </script>
 

@@ -11,7 +11,7 @@ function getDefault(): CustomEmojisInfo {
   }
 }
 
-export const currentCustomEmojis = process.server
+export const currentCustomEmojis = import.meta.server
   ? computed(getDefault)
   : useUserLocalStorage(STORAGE_KEY_CUSTOM_EMOJIS, getDefault)
 
@@ -19,8 +19,8 @@ export async function updateCustomEmojis() {
   if (Date.now() - currentCustomEmojis.value.lastUpdate < TTL)
     return
 
-  const { client } = $(useMasto())
-  const emojis = await client.v1.customEmojis.list()
+  const { client } = useMasto()
+  const emojis = await client.value.v1.customEmojis.list()
   Object.assign(currentCustomEmojis.value, {
     lastUpdate: Date.now(),
     emojis,

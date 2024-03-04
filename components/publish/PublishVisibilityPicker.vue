@@ -7,7 +7,7 @@ const modelValue = defineModel<string>({
   required: true,
 })
 
-const currentVisibility = $computed(() =>
+const currentVisibility = computed(() =>
   statusVisibilities.find(v => v.value === modelValue.value) || statusVisibilities[0],
 )
 

@@ -525,10 +525,8 @@ function transformMarkdown(node: Node) {
 }
 
 function addBdiParagraphs(node: Node) {
-  if (node.name === 'p' && !('dir' in node.attributes) && node.children?.length && node.children.length > 1) {
+  if (node.name === 'p' && !('dir' in node.attributes) && node.children?.length && node.children.length > 1)
     node.attributes.dir = 'auto'
-    return node
-  }
 
   return node
 }

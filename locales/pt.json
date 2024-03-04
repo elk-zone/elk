@@ -226,16 +226,27 @@
         "boost": "Partilhar",
         "command_mode": "Menu de comandos",
         "compose": "Compor",
-        "favourite": "Adcionar aos favoritos",
+        "favourite": "Adicionar aos favoritos",
         "search": "Pesquisar",
+        "show_new_items": "Mostrar novos itens",
         "title": "Ações"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Itens Salvos",
+        "go_to_conversations": "Conversas",
+        "go_to_explore": "Explorar",
+        "go_to_favourites": "Favoritos",
+        "go_to_federated": "Federada",
         "go_to_home": "Início",
+        "go_to_lists": "Listas",
+        "go_to_local": "Local",
         "go_to_notifications": "Notificações",
+        "go_to_profile": "Perfil",
+        "go_to_search": "Pesquisa",
+        "go_to_settings": "Definições",
         "next_status": "Publicação seguinte",
         "previous_status": "Publicação anterior",
         "shortcut_help": "Lista de atalhos",

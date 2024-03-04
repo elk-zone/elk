@@ -9,7 +9,7 @@ const accountName = computed(() => toShortHandle(params.account as string))
 const { t } = useI18n()
 
 const { data: account, pending, refresh } = await useAsyncData(() => fetchAccountByHandle(accountName.value).catch(() => null), { immediate: import.meta.client, default: () => shallowRef() })
-const relationship = computed(() => account ? useRelationship(account.value).value : undefined)
+const relationship = computed(() => account.value ? useRelationship(account.value).value : undefined)
 
 const userSettings = useUserSettings()
 

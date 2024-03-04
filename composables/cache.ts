@@ -93,6 +93,23 @@ export async function fetchAccountByHandle(acct: string): Promise<mastodon.v1.Ac
   return promise
 }
 
+export function fetchTag(tagName: string, force = false): Promise<mastodon.v1.Tag> {
+  const server = currentServer.value
+  const userId = currentUser.value?.account.id
+  const key = `${server}:${userId}:tag:${tagName}`
+  const cached = cache.get(key)
+  if (cached && !force)
+    return Promise.resolve(cached)
+
+  const promise = useMastoClient().v1.tags.$select(tagName).fetch()
+    .then((tag) => {
+      cacheTag(tag)
+      return tag
+    })
+  cache.set(key, promise)
+  return promise
+}
+
 export function useAccountById(id?: string | null) {
   return useAsyncState(() => fetchAccountById(id), null).state
 }
@@ -112,4 +129,9 @@ export function cacheAccount(account: mastodon.v1.Account, server = currentServe
   const userAcct = account.acct.endsWith(`@${server}`) ? account.acct.slice(0, -server.length - 1) : account.acct
   setCached(`${server}:${userId}:account:${account.id}`, account, override)
   setCached(`${server}:${userId}:account:${userAcct}`, account, override)
+}
+
+export function cacheTag(tag: mastodon.v1.Tag, server = currentServer.value, override?: boolean) {
+  const userId = currentUser.value?.account.id
+  setCached(`${server}:${userId}:tag:${tag.name}`, tag, override)
 }

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="$pwa?.showInstallPrompt && !$pwa?.needRefresh"
+    v-if="useNuxtApp().$pwa?.showInstallPrompt && !useNuxtApp().$pwa?.needRefresh"
     m-2 p5 bg="primary-fade" relative
     rounded-lg of-hidden
     flex="~ col gap-3"
@@ -10,10 +10,10 @@
       {{ $t('pwa.install_title') }}
     </h2>
     <div flex="~ gap-1">
-      <button type="button" btn-solid px-4 py-1 text-center text-sm @click="$pwa.install()">
+      <button type="button" btn-solid px-4 py-1 text-center text-sm @click="useNuxtApp().$pwa?.install()">
         {{ $t('pwa.install') }}
       </button>
-      <button type="button" btn-text filter-saturate-0 px-4 py-1 text-center text-sm @click="$pwa.cancelInstall()">
+      <button type="button" btn-text filter-saturate-0 px-4 py-1 text-center text-sm @click="useNuxtApp().$pwa?.cancelInstall()">
         {{ $t('pwa.dismiss') }}
       </button>
     </div>

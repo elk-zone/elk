@@ -6,29 +6,30 @@ const { account } = defineProps<{
   command?: boolean
 }>()
 
-const { client } = $(useMasto())
+const { client } = useMasto()
 
 const { t } = useI18n()
 
-const createdAt = $(useFormattedDateTime(() => account.createdAt, {
+const createdAt = useFormattedDateTime(() => account.createdAt, {
   month: 'long',
   day: 'numeric',
   year: 'numeric',
-}))
+})
 
-const relationship = $(useRelationship(account))
+const relationship = useRelationship(account)
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
 const isEditingPersonalNote = ref<boolean>(false)
-const hasHeader = $computed(() => !account.header.endsWith('/original/missing.png'))
+const hasHeader = computed(() => !account.header.endsWith('/original/missing.png'))
+const isCopied = ref<boolean>(false)
 
 function getFieldIconTitle(fieldName: string) {
   return fieldName === 'Joined' ? t('account.joined') : fieldName
 }
 
 function getNotificationIconTitle() {
-  return relationship?.notifying ? t('account.notifications_on_post_disable', { username: `@${account.username}` }) : t('account.notifications_on_post_enable', { username: `@${account.username}` })
+  return relationship.value?.notifying ? t('account.notifications_on_post_disable', { username: `@${account.username}` }) : t('account.notifications_on_post_enable', { username: `@${account.username}` })
 }
 
 function previewHeader() {
@@ -50,14 +51,14 @@ function previewAvatar() {
 }
 
 async function toggleNotifications() {
-  relationship!.notifying = !relationship?.notifying
+  relationship.value!.notifying = !relationship.value?.notifying
   try {
-    const newRel = await client.v1.accounts.follow(account.id, { notify: relationship?.notifying })
+    const newRel = await client.value.v1.accounts.$select(account.id).follow({ notify: relationship.value?.notifying })
     Object.assign(relationship!, newRel)
   }
   catch {
     // TODO error handling
-    relationship!.notifying = !relationship?.notifying
+    relationship.value!.notifying = !relationship.value?.notifying
   }
 }
 
@@ -74,48 +75,69 @@ watchEffect(() => {
   })
   icons.push({
     name: 'Joined',
-    value: createdAt,
+    value: createdAt.value,
   })
 
   namedFields.value = named
   iconFields.value = icons
 })
 
-const personalNoteDraft = ref(relationship?.note ?? '')
-watch($$(relationship), (relationship, oldValue) => {
+const personalNoteDraft = ref(relationship.value?.note ?? '')
+watch(relationship, (relationship, oldValue) => {
   if (!oldValue && relationship)
     personalNoteDraft.value = relationship.note ?? ''
 })
 
 async function editNote(event: Event) {
-  if (!event.target || !('value' in event.target) || !relationship)
+  if (!event.target || !('value' in event.target) || !relationship.value)
     return
 
   const newNote = event.target?.value as string
 
-  if (relationship.note?.trim() === newNote.trim())
+  if (relationship.value.note?.trim() === newNote.trim())
     return
 
-  const newNoteApiResult = await client.v1.accounts.createNote(account.id, { comment: newNote })
-  relationship.note = newNoteApiResult.note
-  personalNoteDraft.value = relationship.note ?? ''
+  const newNoteApiResult = await client.value.v1.accounts.$select(account.id).note.create({ comment: newNote })
+  relationship.value.note = newNoteApiResult.note
+  personalNoteDraft.value = relationship.value.note ?? ''
 }
 
-const isSelf = $(useSelfAccount(() => account))
-const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
+const isSelf = useSelfAccount(() => account)
+const isNotifiedOnPost = computed(() => !!relationship.value?.notifying)
 
 const personalNoteMaxLength = 2000
+
+async function copyAccountName() {
+  try {
+    const shortHandle = getShortHandle(account)
+    const serverName = getServerName(account)
+    const accountName = `${shortHandle}@${serverName}`
+    await navigator.clipboard.writeText(accountName)
+  }
+  catch (err) {
+    console.error('Failed to copy account name:', err)
+  }
+
+  isCopied.value = true
+  setTimeout(() => {
+    isCopied.value = false
+  }, 2000)
+}
 </script>
 
 <template>
   <div flex flex-col>
+    <div v-if="relationship?.requestedBy" p-4 flex justify-between items-center bg-card>
+      <span text-primary font-bold>{{ $t('account.requested', [account.displayName]) }}</span>
+      <AccountFollowRequestButton :account="account" :relationship="relationship" />
+    </div>
     <component :is="hasHeader ? 'button' : 'div'" border="b base" z-1 @click="hasHeader ? previewHeader() : undefined">
       <img h-50 height="200" w-full object-cover :src="account.header" :alt="t('account.profile_description', [account.username])">
     </component>
     <div p4 mt--18 flex flex-col gap-4>
       <div relative>
         <div flex justify-between>
-          <button shrink-0 :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" p1 bg-base border-bg-base z-2 @click="previewAvatar">
+          <button shrink-0 h-full :class="{ 'rounded-full': !isSelf, 'squircle': isSelf }" p1 bg-base border-bg-base z-2 @click="previewAvatar">
             <AccountAvatar :square="isSelf" :account="account" hover:opacity-90 transition-opacity w-28 h-28 />
           </button>
           <div inset-ie-0 flex="~ wrap row-reverse" gap-2 items-center pt18 justify-start>
@@ -167,11 +189,19 @@ const personalNoteMaxLength = 2000
         <div flex="~ col gap1" pt2>
           <div flex gap2 items-center flex-wrap>
             <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
-            <AccountRolesIndicator :account="account" />
+            <AccountRolesIndicator v-if="account.roles?.length" :account="account" />
             <AccountLockIndicator v-if="account.locked" show-label />
             <AccountBotIndicator v-if="account.bot" show-label />
           </div>
-          <AccountHandle :account="account" overflow-unset line-clamp-unset />
+
+          <div flex items-center gap-1>
+            <AccountHandle :account="account" overflow-unset line-clamp-unset />
+            <CommonTooltip placement="bottom" :content="$t('account.copy_account_name')" no-auto-focus flex>
+              <button text-secondary-light text-sm :class="isCopied ? 'i-ri:check-fill text-green' : 'i-ri:file-copy-line'" @click="copyAccountName">
+                <span sr-only>{{ $t('account.copy_account_name') }}</span>
+              </button>
+            </CommonTooltip>
+          </div>
         </div>
       </div>
       <label

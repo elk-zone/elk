@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const focusEditor = inject<typeof noop>('focus-editor', noop)
 
-const { details, command } = $(props)
+const { details, command } = props // TODO
 
 const userSettings = useUserSettings()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
@@ -21,7 +21,7 @@ const {
   toggleBookmark,
   toggleFavourite,
   toggleReblog,
-} = $(useStatusActions(props))
+} = useStatusActions(props)
 
 function reply() {
   if (!checkLogin())
@@ -29,7 +29,7 @@ function reply() {
   if (details)
     focusEditor()
   else
-    navigateToStatus({ status, focusReply: true })
+    navigateToStatus({ status: status.value, focusReply: true })
 }
 </script>
 

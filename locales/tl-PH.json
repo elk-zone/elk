@@ -13,6 +13,7 @@
     "blocked_users": "Mga naka-block na user",
     "blocking": "Naka-block",
     "bot": "BOT",
+    "copy_account_name": "Kopyahin ang pangalan ng account",
     "favourites": "Mga paborito",
     "follow": "Sundan",
     "follow_back": "Sundan pabalik",
@@ -85,7 +86,7 @@
     "activate": "I-activate",
     "complete": "Tapusin",
     "compose_desc": "Sumulat ng bagong post",
-    "n-people-in-the-past-n-days": "{0} na mga tao sa nakaraang {1} araw",
+    "n_people_in_the_past_n_days": "{0} na mga tao sa nakaraang {1} araw",
     "select_lang": "Pumili ng wika",
     "sign_in_desc": "Magdagdag ng isang umiiral na account",
     "switch_account": "Lumipat sa {0}",
@@ -109,12 +110,12 @@
     "block_account": {
       "cancel": "Kanselahin",
       "confirm": "I-block",
-      "title": "Sigurado ka bang gusto mong i-block si {0}?"
+      "description": "Sigurado ka bang gusto mong i-block si {0}?"
     },
     "block_domain": {
       "cancel": "Kanselahin",
       "confirm": "I-block",
-      "title": "Sigurado ka bang gusto mong i-block ang {0}?"
+      "description": "Sigurado ka bang gusto mong i-block ang {0}?"
     },
     "common": {
       "cancel": "Hindi",
@@ -123,27 +124,27 @@
     "delete_list": {
       "cancel": "Kanselahin",
       "confirm": "Burahin",
-      "title": "Sigurado ka bang gusto mong burahin ang listahan na \"{0}\"?"
+      "description": "Sigurado ka bang gusto mong burahin ang listahan na \"{0}\"?"
     },
     "delete_posts": {
       "cancel": "Kanselahin",
       "confirm": "Burahin",
-      "title": "Sigurado ka bang gusto mong burahin ang post na ito?"
+      "description": "Sigurado ka bang gusto mong burahin ang post na ito?"
     },
     "mute_account": {
       "cancel": "Kanselahin",
       "confirm": "I-mute",
-      "title": "Sigurado ka bang gusto mong i-mute si {0}?"
+      "description": "Sigurado ka bang gusto mong i-mute si {0}?"
     },
     "show_reblogs": {
       "cancel": "Kanselahin",
       "confirm": "Ipakita",
-      "title": "Sigurado ka bang gusto mong ipakita ang mga boosts mula kay {0}?"
+      "description": "Sigurado ka bang gusto mong ipakita ang mga boosts mula kay {0}?"
     },
     "unfollow": {
       "cancel": "Kanselahin",
       "confirm": "Huminto sa pagsunod",
-      "title": "Sigurado ka bang gusto mong huminto sa pagsunod?"
+      "description": "Sigurado ka bang gusto mong huminto sa pagsunod?"
     }
   },
   "conversation": {
@@ -158,7 +159,7 @@
   },
   "error": {
     "account_not_found": "Hindi mahanap ang account na {0}",
-    "explore-list-empty": "Walang laman ang trending ngayon. Subukan muli mamaya!",
+    "explore_list_empty": "Walang laman ang trending ngayon. Subukan muli mamaya!",
     "file_size_cannot_exceed_n_mb": "Hindi pwede lumampas sa {0}MB ang laki ng file",
     "sign_in_error": "Hindi maka-connect sa server.",
     "status_not_found": "Hindi mahanap ang post",
@@ -301,8 +302,7 @@
     "content_warning": "Isulat ang iyong babala dito",
     "default_1": "Ano ang nasa isip mo?",
     "reply_to_account": "Sagot kay {0}",
-    "replying": "Sumasagot",
-    "the_thread": "ang thread"
+    "replying": "Sumasagot"
   },
   "pwa": {
     "dismiss": "I-dismiss",
@@ -470,7 +470,8 @@
       },
       "featured_tags": {
         "description": "Maaring i-browse ng mga tao ang iyong mga public post gamit ang mga hashtags na ito.",
-        "label": "Napiling mga hashtags"
+        "label": "Napiling mga hashtags",
+        "under_construction": "Nasa ilalim ng konstruksyon"
       },
       "label": "Profile"
     },
@@ -481,7 +482,7 @@
       "label": "Naka-log in na mga user"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Maaring i-configure ang Elk upang maishare ang mga nilalaman mula sa ibang aplikasyon, mag-install lamang ng Elk sa iyong device o computer at mag-sign in.",
     "hint": "Upang maishare ang nilalaman sa Elk, kinakailangan na naka-install ang Elk at nakapag-sign in ka.",
     "title": "I-share sa Elk"
@@ -506,7 +507,6 @@
     "edited": "Naedit {0}",
     "favourited_by": "Pumaborito si",
     "filter_hidden_phrase": "Nakafilter dahil sa",
-    "filter_removed_phrase": "Tinanggal dahil sa filter",
     "filter_show_anyway": "Ipakita pa rin",
     "img_alt": {
       "ALT": "ALT",
@@ -519,7 +519,6 @@
       "ends": "magtatapos {0}",
       "finished": "natapos {0}"
     },
-    "reblogged": "Binlog ni {0}",
     "replying_to": "Sumasagot kay {0}",
     "show_full_thread": "Ipakita ang buong thread",
     "someone": "isa",

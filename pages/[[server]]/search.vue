@@ -1,20 +1,18 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
 const { t } = useI18n()
 useHydratedHead({
   title: () => t('nav.search'),
 })
 
-const search = $ref<{ input?: HTMLInputElement }>()
+const search = ref<{ input?: HTMLInputElement }>()
 watchEffect(() => {
-  if (search?.input)
-    search?.input?.focus()
+  if (search.value?.input)
+    search.value?.input?.focus()
 })
 onActivated(() =>
-  search?.input?.focus(),
+  search.value?.input?.focus(),
 )
-onDeactivated(() => search?.input?.blur())
+onDeactivated(() => search.value?.input?.blur())
 </script>
 
 <template>

@@ -5,17 +5,17 @@ const { items } = defineProps<{
   items: GroupedNotifications
 }>()
 
-const count = $computed(() => items.items.length)
+const count = computed(() => items.items.length)
 const isExpanded = ref(false)
-const lang = $computed(() => {
-  return (count > 1 || count === 0) ? undefined : items.items[0].status?.language
+const lang = computed(() => {
+  return (count.value > 1 || count.value === 0) ? undefined : items.items[0].status?.language
 })
 </script>
 
 <template>
   <article flex flex-col relative :lang="lang ?? undefined">
     <div flex items-center top-0 left-2 pt-2 px-3>
-      <div i-ri:user-follow-fill me-3 color-primary aria-hidden="true" />
+      <div :class="count > 1 ? 'i-ri-group-line' : 'i-ri-user-3-line'" me-3 color-blue text-xl aria-hidden="true" />
       <template v-if="count > 1">
         <CommonLocalizedNumber
           keypath="notification.followed_you_count"
@@ -32,7 +32,7 @@ const lang = $computed(() => {
         </span>
       </template>
     </div>
-    <div pb-2>
+    <div pb-2 ps8>
       <div v-if="isExpanded">
         <AccountCard
           v-for="item in items.items"

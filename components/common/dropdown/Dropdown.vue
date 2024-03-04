@@ -6,11 +6,11 @@ defineProps<{
   autoBoundaryMaxSize?: boolean
 }>()
 
-const dropdown = $ref<any>()
+const dropdown = ref<any>()
 const colorMode = useColorMode()
 
 function hide() {
-  return dropdown.hide()
+  return dropdown.value.hide()
 }
 provide(InjectionKeyDropdownContext, {
   hide,

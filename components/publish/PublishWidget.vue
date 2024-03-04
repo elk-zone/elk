@@ -27,64 +27,65 @@ const emit = defineEmits<{
 const { t } = useI18n()
 
 const draftState = useDraft(draftKey, initial)
-const { draft } = $(draftState)
+const { draft } = draftState
 
 const {
   isExceedingAttachmentLimit, isUploading, failedAttachments, isOverDropZone,
   uploadAttachments, pickAttachments, setDescription, removeAttachment,
   dropZoneRef,
-} = $(useUploadMediaAttachment($$(draft)))
+} = useUploadMediaAttachment(draft)
 
-let { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage, publishSpoilerText } = $(usePublish(
+const { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage, publishSpoilerText } = usePublish(
   {
     draftState,
-    ...$$({ expanded, isUploading, initialDraft: initial }),
+    ...{ expanded: toRef(() => expanded), isUploading, initialDraft: toRef(() => initial) },
   },
-))
+)
 
 const { editor } = useTiptap({
   content: computed({
-    get: () => draft.params.status,
+    get: () => draft.value.params.status,
     set: (newVal) => {
-      draft.params.status = newVal
-      draft.lastUpdated = Date.now()
+      draft.value.params.status = newVal
+      draft.value.lastUpdated = Date.now()
     },
   }),
-  placeholder: computed(() => placeholder ?? draft.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
-  autofocus: shouldExpanded,
+  placeholder: computed(() => placeholder ?? draft.value.params.inReplyToId ? t('placeholder.replying') : t('placeholder.default_1')),
+  autofocus: shouldExpanded.value,
   onSubmit: publish,
   onFocus() {
-    if (!isExpanded && draft.initialText) {
-      editor.value?.chain().insertContent(`${draft.initialText} `).focus('end').run()
-      draft.initialText = ''
+    if (!isExpanded && draft.value.initialText) {
+      editor.value?.chain().insertContent(`${draft.value.initialText} `).focus('end').run()
+      draft.value.initialText = ''
     }
-    isExpanded = true
+    isExpanded.value = true
   },
   onPaste: handlePaste,
 })
 
 function trimPollOptions() {
-  const indexLastNonEmpty = draft.params.poll!.options.findLastIndex(option => option.trim().length > 0)
-  const trimmedOptions = draft.params.poll!.options.slice(0, indexLastNonEmpty + 1)
+  const indexLastNonEmpty = draft.value.params.poll!.options.findLastIndex(option => option.trim().length > 0)
+  const trimmedOptions = draft.value.params.poll!.options.slice(0, indexLastNonEmpty + 1)
 
   if (currentInstance.value?.configuration
       && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions)
-    draft.params.poll!.options = trimmedOptions
+    draft.value.params.poll!.options = trimmedOptions
   else
-    draft.params.poll!.options = [...trimmedOptions, '']
+    draft.value.params.poll!.options = [...trimmedOptions, '']
 }
 
 function editPollOptionDraft(event: Event, index: number) {
-  draft.params.poll!.options[index] = (event.target as HTMLInputElement).value
+  draft.value.params.poll!.options = Object.assign(draft.value.params.poll!.options.slice(), { [index]: (event.target as HTMLInputElement).value })
+
   trimPollOptions()
 }
 
 function deletePollOption(index: number) {
-  draft.params.poll!.options.splice(index, 1)
+  draft.value.params.poll!.options = draft.value.params.poll!.options.slice().splice(index, 1)
   trimPollOptions()
 }
 
-const expiresInOptions = [
+const expiresInOptions = computed(() => [
   {
     seconds: 1 * 60 * 60,
     label: t('time_ago_options.hour_future', 1),
@@ -105,11 +106,11 @@ const expiresInOptions = [
     seconds: 7 * 24 * 60 * 60,
     label: t('time_ago_options.day_future', 7),
   },
-]
+])
 
 const expiresInDefaultOptionIndex = 2
 
-const characterCount = $computed(() => {
+const characterCount = computed(() => {
   const text = htmlToText(editor.value?.getHTML() || '')
 
   let length = stringLength(text)
@@ -130,24 +131,24 @@ const characterCount = $computed(() => {
   for (const [fullMatch, before, _handle, username] of text.matchAll(countableMentionRegex))
     length -= fullMatch.length - (before + username).length - 1 // - 1 for the @
 
-  if (draft.mentions) {
+  if (draft.value.mentions) {
     // + 1 is needed as mentions always need a space seperator at the end
-    length += draft.mentions.map((mention) => {
+    length += draft.value.mentions.map((mention) => {
       const [handle] = mention.split('@')
       return `@${handle}`
     }).join(' ').length + 1
   }
 
-  length += stringLength(publishSpoilerText)
+  length += stringLength(publishSpoilerText.value)
 
   return length
 })
 
-const isExceedingCharacterLimit = $computed(() => {
-  return characterCount > characterLimit.value
+const isExceedingCharacterLimit = computed(() => {
+  return characterCount.value > characterLimit.value
 })
 
-const postLanguageDisplay = $computed(() => languagesNameList.find(i => i.code === (draft.params.language || preferredLanguage))?.nativeName)
+const postLanguageDisplay = computed(() => languagesNameList.find(i => i.code === (draft.value.params.language || preferredLanguage))?.nativeName)
 
 async function handlePaste(evt: ClipboardEvent) {
   const files = evt.clipboardData?.files
@@ -166,7 +167,7 @@ function insertCustomEmoji(image: any) {
 }
 
 async function toggleSensitive() {
-  draft.params.sensitive = !draft.params.sensitive
+  draft.value.params.sensitive = !draft.value.params.sensitive
 }
 
 async function publish() {
@@ -219,7 +220,7 @@ onDeactivated(() => {
     </template>
 
     <div flex gap-3 flex-1>
-      <NuxtLink :to="getAccountRoute(currentUser.account)">
+      <NuxtLink self-start :to="getAccountRoute(currentUser.account)">
         <AccountBigAvatar :account="currentUser.account" square />
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->

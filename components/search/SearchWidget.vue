@@ -77,7 +77,7 @@ function activate() {
         ps-3
         pe-1
         ml-1
-        :placeholder="isHydrated ? t('nav.search') : ''"
+        :placeholder="t('nav.search')"
         pb="1px"
         placeholder-text-secondary
         @keydown.down.prevent="shift(1)"

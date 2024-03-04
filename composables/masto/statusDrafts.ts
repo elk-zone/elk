@@ -4,7 +4,7 @@ import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
 
-export const currentUserDrafts = (process.server || process.test)
+export const currentUserDrafts = (import.meta.server || process.test)
   ? computed<DraftMap>(() => ({}))
   : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 
@@ -25,7 +25,7 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
     : preferredVisibility
 }
 
-export function getDefaultDraft(options: Partial<Mutable<mastodon.v1.CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
+export function getDefaultDraft(options: Partial<Mutable<mastodon.rest.v1.CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
   const {
     attachments = [],
     initialText = '',

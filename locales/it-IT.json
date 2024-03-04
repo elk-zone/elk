@@ -7,12 +7,15 @@
     "route_loaded": "Pagina {0} caricata"
   },
   "account": {
+    "authorize": "Autorizza a seguire",
+    "authorized": "Hai autorizzato la richiesta",
     "avatar_description": "Avatar di {0}",
     "blocked_by": "Questo utente ti ha bloccato.",
     "blocked_domains": "Domini bloccati",
     "blocked_users": "Utenti bloccati",
     "blocking": "Bloccato",
     "bot": "BOT",
+    "copy_account_name": "Copia nome account",
     "favourites": "Preferiti",
     "follow": "Segui",
     "follow_back": "Ricambia",
@@ -24,6 +27,7 @@
     "follows_you": "Ti segue",
     "go_to_profile": "Vai al profilo",
     "joined": "Iscritto",
+    "lock": "Privato",
     "moved_title": "ha indicato che il suo nuovo account è:",
     "muted_users": "Utenti silenziati",
     "muting": "Silenziato",
@@ -36,12 +40,16 @@
     "profile_description": "Copertina profilo di {0}",
     "profile_personal_note": "Nota personale",
     "profile_unavailable": "Profilo non disponibile",
+    "reject": "Rifiuta la richiesta",
+    "rejected": "Hai rifiutato la richiesta",
     "request_follow": "Chiedi di seguire",
+    "requested": "{0} ha chiesto di seguirti",
     "unblock": "Sblocca",
     "unfollow": "Smetti di seguire",
     "unmute": "Riattiva",
     "view_other_followers": "I seguaci di altre istanze non sono disponibili.",
-    "view_other_following": "I seguiti di altre istanze non sono disponibili."
+    "view_other_following": "I seguiti di altre istanze non sono disponibili.",
+    "withdraw_follow_request": "Ritira richiesta di seguire"
   },
   "action": {
     "apply": "Applica",
@@ -50,8 +58,9 @@
     "boost": "Potenzia",
     "boost_count": "{0}",
     "boosted": "Potenziato",
-    "clear_publish_failed": "Ignora errori di pubblicazione",
-    "clear_upload_failed": "Ignora errori di caricamento file",
+    "clear_publish_failed": "Cancella errori di pubblicazione",
+    "clear_save_failed": "Cancella errori di salvataggio",
+    "clear_upload_failed": "Cancella errori di caricamento file",
     "close": "Chiudi",
     "compose": "Componi",
     "confirm": "Conferma",
@@ -86,7 +95,7 @@
     "activate": "Attiva",
     "complete": "Completa",
     "compose_desc": "Componi un nuovo post",
-    "n-people-in-the-past-n-days": "{0} persone negli ultimi {1} giorni",
+    "n_people_in_the_past_n_days": "{0} persone negli ultimi {1} giorni",
     "select_lang": "Scegli lingua",
     "sign_in_desc": "Aggiungi account esistente",
     "switch_account": "Passa a {0}",
@@ -112,12 +121,14 @@
     "block_account": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}？"
+      "description": "Confermi di voler bloccare {0}?",
+      "title": "Blocca account"
     },
     "block_domain": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "title": "Confermi di voler bloccare {0}？"
+      "description": "Confermi di voler bloccare {0}?",
+      "title": "Blocca dominio"
     },
     "common": {
       "cancel": "Annulla",
@@ -126,27 +137,32 @@
     "delete_list": {
       "cancel": "Annulla",
       "confirm": "Elimina",
-      "title": "Confermi di voler eliminare la lista \"{0}\"?"
+      "description": "Confermi di voler eliminare la lista \"{0}\"?",
+      "title": "Elimina lista"
     },
     "delete_posts": {
       "cancel": "Annulla",
       "confirm": "Elimina",
-      "title": "Confermi di voler eliminare questo post?"
+      "description": "Confermi di voler eliminare questo post?",
+      "title": "Elimina post"
     },
     "mute_account": {
       "cancel": "Annulla",
       "confirm": "Silenzia",
-      "title": "Confermi di voler silenziare {0}？"
+      "description": "Confermi di voler silenziare {0}?",
+      "title": "Silenzia account"
     },
     "show_reblogs": {
       "cancel": "Annulla",
       "confirm": "Mostra",
-      "title": "Confermi di voler mostrare i post potenziati da {0}？"
+      "description": "Confermi di voler mostrare i post potenziati da {0}?",
+      "title": "Mostra potenziamenti"
     },
     "unfollow": {
       "cancel": "Annulla",
       "confirm": "Smetti di seguire",
-      "title": "Confermi di voler smettere di seguire?"
+      "description": "Confermi di voler smettere di seguire?",
+      "title": "Smetti di seguire"
     }
   },
   "conversation": {
@@ -161,7 +177,7 @@
   },
   "error": {
     "account_not_found": "Account {0} non trovato",
-    "explore-list-empty": "Non c'è niente in tendenza al momento. Torna più tardi!",
+    "explore_list_empty": "Non c'è niente in tendenza al momento. Torna più tardi!",
     "file_size_cannot_exceed_n_mb": "La dimensione del file non può superare {0}MB",
     "sign_in_error": "Impossibile connettersi al server.",
     "status_not_found": "Post non trovato",
@@ -211,14 +227,26 @@
         "command_mode": "Modalità comando",
         "compose": "Componi",
         "favourite": "Apprezza",
+        "search": "Cerca",
+        "show_new_items": "Mostra nuovi elementi",
         "title": "Azioni"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Segnalibri",
+        "go_to_conversations": "Conversazioni",
+        "go_to_explore": "Esplora",
+        "go_to_favourites": "Preferiti",
+        "go_to_federated": "Federata",
         "go_to_home": "Home",
+        "go_to_lists": "Liste",
+        "go_to_local": "Locale",
         "go_to_notifications": "Notifiche",
+        "go_to_profile": "Profilo",
+        "go_to_search": "Cerca",
+        "go_to_settings": "Impostazioni",
         "next_status": "Post successivo",
         "previous_status": "Post precedente",
         "shortcut_help": "Aiuto scorciatoie",
@@ -245,6 +273,7 @@
     "pin_on_profile": "Fissa in cima al profilo",
     "remove_personal_note": "Rimuovi nota personale da {0}",
     "report_account": "Segnala {0}",
+    "share_account": "Condividi {0}",
     "share_post": "Condividi questo post",
     "show_favourited_and_boosted_by": "Mostra chi ha apprezzato e potenziato",
     "show_reblogs": "Mostra potenziamenti da {0}",
@@ -307,8 +336,7 @@
     "content_warning": "Scrivi il tuo avviso qui",
     "default_1": "A cosa stai pensando?",
     "reply_to_account": "Rispondi a {0}",
-    "replying": "Rispondi",
-    "the_thread": "la discussione"
+    "replying": "Rispondi"
   },
   "polls": {
     "allow_multiple": "Consenti risposte multiple",
@@ -426,6 +454,7 @@
     "language": {
       "display_language": "Lingua interfaccia",
       "label": "Lingua",
+      "post_language": "Lingua di pubblicazione",
       "status": "Stato traduzione: {0}/{1} ({2}%)",
       "translations": {
         "add": "Aggiungi",
@@ -450,7 +479,7 @@
           "title": "Quali notifiche vuoi ricevere?"
         },
         "description": "Ricevi notifiche anche quando non stai utilizzando Elk.",
-        "instructions": "Ricordati di salvare le tue modifiche usando @:settings.notifications.push_notifications.save_settings button!",
+        "instructions": "Ricordati di salvare le tue modifiche usando il tasto @:settings.notifications.push_notifications.save_settings!",
         "label": "Impostazioni notifiche push",
         "policy": {
           "all": "Da chiunque",
@@ -491,6 +520,8 @@
     },
     "notifications_settings": "Notifiche",
     "preferences": {
+      "embedded_media": "Riproduttore media incorporato",
+      "embedded_media_description": "Visualizza un riproduttore incorporato invece della normale anteprima quando si espande un link a un contenuto multimediale.",
       "enable_autoplay": "Attiva riproduzione automatica",
       "enable_data_saving": "Attiva risparmio dati",
       "enable_data_saving_description": "Risparmia dati disattivando il download automatico degli allegati.",
@@ -498,7 +529,7 @@
       "github_cards": "GitHub Cards",
       "github_cards_description": "Quando viene pubblicato un link GitHub, viene mostrato un riquadro HTML accessibile usando i metadati del grafico sociale invece dell'immmagine.",
       "grayscale_mode": "Modalità scala di grigi",
-      "hide_account_hover_card": "Nascondi anteprima account al passaggio del mouse",
+      "hide_account_hover_card": "Nascondi anteprima profilo al passaggio del mouse",
       "hide_alt_indi_on_posts": "Nascondi indicatori testo alternativo sui post",
       "hide_boost_count": "Nascondi contatore potenziamenti",
       "hide_favorite_count": "Nascondi contatore apprezzamenti",
@@ -509,6 +540,7 @@
       "hide_username_emojis": "Nascondi emoji dai nomi utente",
       "hide_username_emojis_description": "Nasconde le emoji all'interno dei nomi utente nella cronologia. Le emoji saranno comunque visibili nelle pagine dei profili.",
       "label": "Preferenze",
+      "optimize_for_low_performance_device": "Ottimizza per dispositivi a basse prestazioni",
       "title": "Funzionalità sperimentali",
       "use_star_favorite_icon": "Usa icona stella per apprezzamenti",
       "user_picker": "Selettore utente",
@@ -533,7 +565,8 @@
       },
       "featured_tags": {
         "description": "Le altre persone possono sfogliare i tuoi post pubblici raccolti sotto questi hashtag.",
-        "label": "Hashtag in evidenza"
+        "label": "Hashtag in evidenza",
+        "under_construction": "Lavori in corso"
       },
       "label": "Profilo"
     },
@@ -544,7 +577,7 @@
       "label": "Utenti connessi"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk può essere configurato in modo da poter condividere contenuti da altre app, ti basta installare Elk sul tuo dispositivo o computer e accedere.",
     "hint": "Per poter condividere contenuti con Elk, Elk deve essere installato e devi aver effettuato l'accesso.",
     "title": "Condividi con Elk"
@@ -557,6 +590,7 @@
     "loading": "Carico...",
     "publish_failed": "Pubblicazione fallita",
     "publishing": "Pubblico",
+    "save_failed": "Salvataggio fallito",
     "upload_failed": "Caricamento fallito",
     "uploading": "Caricamento in corso..."
   },
@@ -567,9 +601,9 @@
     },
     "boosted_by": "Potenziato da",
     "edited": "Modificato {0}",
+    "embedded_warning": "La riproduzione di questo contenuto potrebbe rivelare il tuo indirizzo IP ad altri.",
     "favourited_by": "Apprezzato da",
     "filter_hidden_phrase": "Filtrato da",
-    "filter_removed_phrase": "Rimosso dal filtro",
     "filter_show_anyway": "Mostra comunque",
     "img_alt": {
       "ALT": "ALT",
@@ -582,7 +616,6 @@
       "ends": "termina {0}",
       "finished": "terminato {0}"
     },
-    "reblogged": "{0} hanno potenziato",
     "replying_to": "In risposta a {0}",
     "show_full_thread": "Mostra discussione",
     "someone": "qualcuno",
@@ -603,8 +636,20 @@
     "list": "Lista",
     "media": "Media",
     "news": "Notizie",
-    "notifications_all": "Tutte",
+    "notifications_admin": {
+      "report": "Segnalazione",
+      "sign_up": "Iscrizione"
+    },
+    "notifications_all": "Tutti",
+    "notifications_favourite": "Apprezzamento",
+    "notifications_follow": "Nuovo seguace",
+    "notifications_follow_request": "Richiesta di seguire",
     "notifications_mention": "Menzioni",
+    "notifications_more_tooltip": "Filtra notifiche per tipo",
+    "notifications_poll": "Sondaggio",
+    "notifications_reblog": "Potenziamento",
+    "notifications_status": "Stato",
+    "notifications_update": "Aggiornamento",
     "posts": "Post",
     "posts_with_replies": "Post e risposte"
   },

@@ -10,7 +10,7 @@ const { options, command } = defineProps<{
 
 const modelValue = defineModel<string>({ required: true })
 
-const tabs = $computed(() => {
+const tabs = computed(() => {
   return options.map((option) => {
     if (typeof option === 'string')
       return { name: option, display: option }
@@ -24,7 +24,7 @@ function toValidName(otpion: string) {
 }
 
 useCommands(() => command
-  ? tabs.map(tab => ({
+  ? tabs.value.map(tab => ({
     scope: 'Tabs',
 
     name: tab.display,
@@ -49,7 +49,7 @@ useCommands(() => command
       ><label
         flex flex-auto cursor-pointer px3 m1 rounded transition-all
         :for="`tab-${toValidName(option.name)}`"
-        tabindex="1"
+        tabindex="0"
         hover:bg-active transition-100
         @keypress.enter="modelValue = option.name"
       ><span

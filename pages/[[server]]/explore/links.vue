@@ -3,7 +3,7 @@ import { STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS } from '~~/constants'
 
 const { t } = useI18n()
 
-const paginator = useMastoClient().v1.trends.listLinks()
+const paginator = useMastoClient().v1.trends.links.list()
 
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_NEWS_TIPS, false)
 

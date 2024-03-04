@@ -1,7 +1,7 @@
 import type { ComputedRef } from 'vue'
 import { defineStore } from 'pinia'
 import Fuse from 'fuse.js'
-import type { LocaleObject } from '#i18n'
+import type { LocaleObject } from '@nuxtjs/i18n'
 import type { SearchResult } from '~/composables/masto/search'
 
 // @unocss-include

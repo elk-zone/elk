@@ -4,10 +4,12 @@ provideGlobalCommands()
 
 const route = useRoute()
 
-if (process.server && !route.path.startsWith('/settings')) {
+if (import.meta.server && !route.path.startsWith('/settings')) {
+  const url = useRequestURL()
+
   useHead({
     meta: [
-      { property: 'og:url', content: `https://elk.zone${route.path}` },
+      { property: 'og:url', content: `${url.origin}${route.path}` },
     ],
   })
 }

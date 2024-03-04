@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CommonRouteTabOption } from '~/components/common/CommonRouteTabs.vue'
+import type { CommonRouteTabOption } from '~/types'
 
 definePageMeta({
   middleware: 'auth',
@@ -8,14 +8,14 @@ definePageMeta({
 const route = useRoute()
 const { t } = useI18n()
 
-const list = $computed(() => route.params.list as string)
-const server = $computed(() => (route.params.server ?? currentServer.value) as string)
+const list = computed(() => route.params.list as string)
+const server = computed(() => (route.params.server ?? currentServer.value) as string)
 
-const tabs = $computed<CommonRouteTabOption[]>(() => [
+const tabs = computed<CommonRouteTabOption[]>(() => [
   {
     to: {
       name: 'list',
-      params: { server, list },
+      params: { server: server.value, list: list.value },
     },
     display: t('tab.posts'),
     icon: 'i-ri:list-unordered',
@@ -23,7 +23,7 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
   {
     to: {
       name: 'list-accounts',
-      params: { server, list },
+      params: { server: server.value, list: list.value },
     },
     display: t('tab.accounts'),
     icon: 'i-ri:user-line',
@@ -31,12 +31,12 @@ const tabs = $computed<CommonRouteTabOption[]>(() => [
 ],
 )
 
-const { client } = $(useMasto())
-const { data: listInfo, refresh } = $(await useAsyncData(() => client.v1.lists.fetch(list), { default: () => shallowRef() }))
+const { client } = useMasto()
+const { data: listInfo, refresh } = await useAsyncData(() => client.value.v1.lists.$select(list.value).fetch(), { default: () => shallowRef() })
 
 if (listInfo) {
   useHydratedHead({
-    title: () => `${listInfo.title} | ${route.fullPath.endsWith('/accounts') ? t('tab.accounts') : t('tab.posts')} | ${t('nav.lists')}`,
+    title: () => `${listInfo.value.title} | ${route.fullPath.endsWith('/accounts') ? t('tab.accounts') : t('tab.posts')} | ${t('nav.lists')}`,
   })
 }
 

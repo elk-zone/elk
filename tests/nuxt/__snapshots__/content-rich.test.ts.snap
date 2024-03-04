@@ -277,14 +277,12 @@ exports[`content-rich > p moved to div and text children replaced with p[dir="au
   إصلاح نموذج 0.
 </p>
 <p></p>
-<div>
-  <p dir="auto">This is a test:</p>
-  <p dir="auto">
-    I like how the arabic dual form is supported. The last one is mistranslated
-    and I&#39;m trying to find how to fix it. Also, the form for 0 needs to be
-    fixed.
-  </p>
-</div>
+<p dir="auto">
+  This is a test:<br />I like how the arabic dual form is supported. The last
+  one is mistranslated and I&#39;m trying to find how to fix it. Also, the form
+  for 0 needs to be fixed.
+</p>
+<p></p>
 "
 `;
 

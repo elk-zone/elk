@@ -55,7 +55,7 @@ export function usePublish(options: {
           )
   })
 
-  watch(() => draft, () => {
+  watch(draft, () => {
     if (failedMessages.value.length > 0)
       failedMessages.value.length = 0
   }, { deep: true })

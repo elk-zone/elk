@@ -1,9 +1,7 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const {
-  tag,
-} = defineProps<{
+const { tag } = defineProps<{
   tag: mastodon.v1.Tag
 }>()
 
@@ -32,19 +30,21 @@ function go(evt: MouseEvent | KeyboardEvent) {
 
 <template>
   <div
-    block p4 hover:bg-active flex justify-between cursor-pointer
+    block p4 hover:bg-active flex justify-between cursor-pointer flex-gap-2
     @click="onclick"
     @keydown.enter="onclick"
   >
-    <div>
-      <h4 flex items-center text-size-base leading-normal font-medium line-clamp-1 break-all ws-pre-wrap>
-        <TagActionButton :tag="tag" />
-        <bdi>
-          <span>#</span>
-          <span hover:underline>{{ tag.name }}</span>
-        </bdi>
-      </h4>
-      <CommonTrending v-if="tag.history" :history="tag.history" text-sm text-secondary line-clamp-1 ws-pre-wrap break-all />
+    <div flex flex-gap-2>
+      <TagActionButton :tag="tag" />
+      <div>
+        <h4 flex items-center text-size-base leading-normal font-medium line-clamp-1 break-all ws-pre-wrap>
+          <bdi>
+            <span>#</span>
+            <span hover:underline>{{ tag.name }}</span>
+          </bdi>
+        </h4>
+        <CommonTrending v-if="tag.history" :history="tag.history" text-sm text-secondary line-clamp-1 ws-pre-wrap break-all />
+      </div>
     </div>
     <div v-if="tag.history" flex items-center>
       <CommonTrendingCharts :history="tag.history" />

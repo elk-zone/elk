@@ -10,5 +10,13 @@ export default defineVitestConfig({
     setupFiles: [
       '/tests/setup.ts',
     ],
+    environmentOptions: {
+      nuxt: {
+        mock: {
+          indexedDb: true,
+          intersectionObserver: true,
+        },
+      },
+    },
   },
 })

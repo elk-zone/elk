@@ -494,7 +494,10 @@ function _markdownProcess(value: string) {
 
   let start = 0
   while (true) {
-    let found: { match: RegExpMatchArray; replacer: (c: (string | Node)[]) => Node } | undefined
+    let found: {
+      match: RegExpMatchArray
+      replacer: (c: (string | Node)[]) => Node
+    } | undefined
 
     for (const [re, replacer] of _markdownReplacements) {
       re.lastIndex = start

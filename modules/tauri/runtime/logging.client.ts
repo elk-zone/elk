@@ -13,7 +13,6 @@ export default defineNuxtPlugin(() => {
   }
 
   window.addEventListener('unhandledrejection', err =>
-    log.error(err.reason),
-  )
+    log.error(err.reason))
   window.addEventListener('error', err => log.error(err.error), true)
 })

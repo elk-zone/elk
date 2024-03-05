@@ -170,7 +170,8 @@ export const useCommandRegistry = defineStore('command', () => {
         const indexed = cmds.map((cmd, index) => ({ ...cmd, index }))
 
         const grouped = new Map<CommandScopeNames, CommandQueryResultItem[]>(
-          scopes.map(scope => [scope, []]))
+          scopes.map(scope => [scope, []]),
+        )
         for (const cmd of indexed) {
           const scope = cmd.scope ?? ''
           grouped.get(scope)!.push({

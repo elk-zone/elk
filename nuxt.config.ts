@@ -94,16 +94,42 @@ export default defineNuxtConfig({
     },
     optimizeDeps: {
       include: [
-        '@tiptap/vue-3', 'string-length', 'vue-virtual-scroller', 'emoji-mart', 'iso-639-1',
-        '@tiptap/extension-placeholder', '@tiptap/extension-document', '@tiptap/extension-paragraph',
-        '@tiptap/extension-text', '@tiptap/extension-mention', '@tiptap/extension-hard-break',
-        '@tiptap/extension-bold', '@tiptap/extension-italic', '@tiptap/extension-code',
-        '@tiptap/extension-history', 'prosemirror-state', 'browser-fs-access', 'blurhash',
-        '@vueuse/integrations/useFocusTrap', '@tiptap/extension-code-block', 'prosemirror-highlight',
-        '@tiptap/core', 'tippy.js', 'prosemirror-highlight/shiki', '@fnando/sparkline',
-        '@vueuse/gesture', 'github-reserved-names', 'file-saver', 'slimeform', 'vue-advanced-cropper',
-        'workbox-window', 'workbox-precaching', 'workbox-routing', 'workbox-cacheable-response',
-        'workbox-strategies', 'workbox-expiration',
+        '@tiptap/vue-3',
+        'string-length',
+        'vue-virtual-scroller',
+        'emoji-mart',
+        'iso-639-1',
+        '@tiptap/extension-placeholder',
+        '@tiptap/extension-document',
+        '@tiptap/extension-paragraph',
+        '@tiptap/extension-text',
+        '@tiptap/extension-mention',
+        '@tiptap/extension-hard-break',
+        '@tiptap/extension-bold',
+        '@tiptap/extension-italic',
+        '@tiptap/extension-code',
+        '@tiptap/extension-history',
+        'prosemirror-state',
+        'browser-fs-access',
+        'blurhash',
+        '@vueuse/integrations/useFocusTrap',
+        '@tiptap/extension-code-block',
+        'prosemirror-highlight',
+        '@tiptap/core',
+        'tippy.js',
+        'prosemirror-highlight/shiki',
+        '@fnando/sparkline',
+        '@vueuse/gesture',
+        'github-reserved-names',
+        'file-saver',
+        'slimeform',
+        'vue-advanced-cropper',
+        'workbox-window',
+        'workbox-precaching',
+        'workbox-routing',
+        'workbox-cacheable-response',
+        'workbox-strategies',
+        'workbox-expiration',
       ],
     },
   },
@@ -249,7 +275,8 @@ export default defineNuxtConfig({
       ],
     },
   },
-  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
+
+  // eslint-disable-next-line ts/prefer-ts-expect-error
   // @ts-ignore nuxt-security is conditional
   security: {
     headers: {
@@ -297,7 +324,7 @@ export default defineNuxtConfig({
 })
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
+  // eslint-disable-next-line ts/no-namespace
   namespace NodeJS {
     interface Process {
       mock?: Record<string, any>

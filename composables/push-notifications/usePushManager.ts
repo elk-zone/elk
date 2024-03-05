@@ -87,7 +87,10 @@ export function usePushManager() {
 
     currentUser.value.pushSubscription = await createPushSubscription(
       {
-        pushSubscription, server, token, vapidKey,
+        pushSubscription,
+        server,
+        token,
+        vapidKey,
       },
       notificationData ?? {
         alerts: {

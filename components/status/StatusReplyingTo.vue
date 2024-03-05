@@ -42,7 +42,8 @@ watch(
       return
     }
     account.value = undefined
-  }, { immediate: true, flush: 'post' },
+  },
+  { immediate: true, flush: 'post' },
 )
 </script>
 

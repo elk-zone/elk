@@ -20,7 +20,7 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
   // the post more private than the replying to post
   const preferredVisibility = currentUser.value?.account.source.privacy || 'public'
   return ALL_VISIBILITY.indexOf(currentVisibility)
-   > ALL_VISIBILITY.indexOf(preferredVisibility)
+    > ALL_VISIBILITY.indexOf(preferredVisibility)
     ? currentVisibility
     : preferredVisibility
 }

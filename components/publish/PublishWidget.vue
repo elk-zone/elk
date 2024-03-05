@@ -30,8 +30,14 @@ const draftState = useDraft(draftKey, initial)
 const { draft } = draftState
 
 const {
-  isExceedingAttachmentLimit, isUploading, failedAttachments, isOverDropZone,
-  uploadAttachments, pickAttachments, setDescription, removeAttachment,
+  isExceedingAttachmentLimit,
+  isUploading,
+  failedAttachments,
+  isOverDropZone,
+  uploadAttachments,
+  pickAttachments,
+  setDescription,
+  removeAttachment,
   dropZoneRef,
 } = useUploadMediaAttachment(draft)
 
@@ -68,7 +74,7 @@ function trimPollOptions() {
   const trimmedOptions = draft.value.params.poll!.options.slice(0, indexLastNonEmpty + 1)
 
   if (currentInstance.value?.configuration
-      && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions)
+    && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions)
     draft.value.params.poll!.options = trimmedOptions
   else
     draft.value.params.poll!.options = [...trimmedOptions, '']

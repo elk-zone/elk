@@ -20,8 +20,10 @@ function wrapHandler<T extends (...args: any[]) => any>(handler: T): T {
   })
 }
 
-function createEmojiRule<NR extends typeof nodeInputRule | typeof nodePasteRule>(nodeRule: NR,
-  type: Parameters<NR>[0]['type']): ReturnType<NR>[] {
+function createEmojiRule<NR extends typeof nodeInputRule | typeof nodePasteRule>(
+  nodeRule: NR,
+  type: Parameters<NR>[0]['type'],
+): ReturnType<NR>[] {
   const rule = nodeRule({
     find: emojiRegEx as RegExp,
     type,
@@ -86,10 +88,10 @@ export const TiptapPluginEmoji = Node.create({
       find: InputRuleFinder
       type: NodeType
       getAttributes?:
-      | Record<string, any>
-      | ((match: ExtendedRegExpMatchArray) => Record<string, any>)
-      | false
-      | null
+        | Record<string, any>
+        | ((match: ExtendedRegExpMatchArray) => Record<string, any>)
+        | false
+        | null
     }) {
       return new InputRule({
         find: config.find,

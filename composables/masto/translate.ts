@@ -95,7 +95,12 @@ export async function translateText(text: string, from: string | null | undefine
   return status
 }
 
-const translations = new WeakMap<mastodon.v1.Status | mastodon.v1.StatusEdit, { visible: boolean; text: string; success: boolean; error: string }>()
+const translations = new WeakMap<mastodon.v1.Status | mastodon.v1.StatusEdit, {
+  visible: boolean
+  text: string
+  success: boolean
+  error: string
+}>()
 
 export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEdit, to: string) {
   if (!translations.has(status))

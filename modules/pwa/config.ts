@@ -10,8 +10,8 @@ export function configurePWAOptions(options: Partial<VitePWAOptions>, nuxt: Nuxt
 
   let config: Partial<
     import('workbox-build').BasePartial
-    & import('workbox-build').GlobPartial
-    & import('workbox-build').RequiredGlobDirectoryPartial
+      & import('workbox-build').GlobPartial
+      & import('workbox-build').RequiredGlobDirectoryPartial
     >
 
   if (options.strategies === 'injectManifest') {

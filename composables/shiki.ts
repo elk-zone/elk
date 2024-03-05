@@ -5,7 +5,10 @@ const highlighter = ref<Highlighter>()
 const registeredLang = ref(new Map<string, boolean>())
 let shikiImport: Promise<void> | undefined
 
-export function useHighlighter(lang: Lang): { promise?: Promise<void>; highlighter?: Highlighter } {
+export function useHighlighter(lang: Lang): {
+  promise?: Promise<void>
+  highlighter?: Highlighter
+} {
   if (!shikiImport) {
     shikiImport = import('shiki')
       .then(async ({ getHighlighter }) => {

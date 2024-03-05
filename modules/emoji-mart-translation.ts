@@ -28,7 +28,8 @@ export default defineNuxtModule({
                 .map(async (l) => {
                   const exists = await isFile(resolver.resolve(`../node_modules/@emoji-mart/data/i18n/${l}.json`))
                   return [l, exists] as [code: string, exists: boolean]
-                }))
+                }),
+            )
               .then(l => l.filter(l => l[1]).map(l => l[0]))
             const switchStmt = locales.filter(l => l[1]).map((l) => {
               return `

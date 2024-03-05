@@ -11,16 +11,16 @@ const paginator = client.value.v1.followedTags.list({
 })
 
 useHydratedHead({
-  title: () => t('nav.followed_tags'),
+  title: () => t('nav.hashtags'),
 })
 </script>
 
 <template>
   <MainContent>
     <template #title>
-      <NuxtLink to="/followed-tags" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
+      <NuxtLink to="/hashtags" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div class="i-ri:hashtag" />
-        <span>{{ t('nav.followed_tags') }}</span>
+        <span>{{ t('nav.hashtags') }}</span>
       </NuxtLink>
     </template>
 

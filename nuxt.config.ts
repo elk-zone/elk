@@ -275,8 +275,9 @@ export default defineNuxtConfig({
       ],
     },
   },
-  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
-  // @ts-expect-error nuxt-security is conditional
+
+  // eslint-disable-next-line ts/prefer-ts-expect-error
+  // @ts-ignore nuxt-security is conditional
   security: {
     headers: {
       crossOriginEmbedderPolicy: false,
@@ -323,7 +324,7 @@ export default defineNuxtConfig({
 })
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
+  // eslint-disable-next-line ts/no-namespace
   namespace NodeJS {
     interface Process {
       mock?: Record<string, any>

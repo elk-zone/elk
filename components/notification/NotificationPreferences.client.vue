@@ -35,8 +35,8 @@ const showWarning = computed(() => {
     return false
 
   return isSupported
-      && (!isSubscribed.value || !notificationPermission.value || notificationPermission.value === 'prompt')
-      && !(hiddenNotification.value[currentUser.value?.account?.acct ?? ''] === true)
+    && (!isSubscribed.value || !notificationPermission.value || notificationPermission.value === 'prompt')
+    && !(hiddenNotification.value[currentUser.value?.account?.acct ?? ''])
 })
 
 async function saveSettings() {

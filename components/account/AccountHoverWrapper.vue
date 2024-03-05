@@ -43,7 +43,8 @@ watch(
     }
 
     account.value = undefined
-  }, { immediate: true, flush: 'post' },
+  },
+  { immediate: true, flush: 'post' },
 )
 
 const userSettings = useUserSettings()

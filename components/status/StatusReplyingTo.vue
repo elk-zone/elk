@@ -24,7 +24,7 @@ useIntersectionObserver(
 watch(
   () => [props.status, targetIsVisible.value] satisfies WatcherType,
   ([newStatus, newVisible]) => {
-    if (newStatus.account) {
+    if (newStatus.account && newStatus.inReplyToAccountId === newStatus.account.id) {
       account.value = newStatus.account
       return
     }

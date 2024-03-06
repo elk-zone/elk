@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE } from '~/constants'
+import { STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE, STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE } from '~/constants'
 
 const { command } = defineProps<{
   command?: boolean
@@ -7,6 +7,7 @@ const { command } = defineProps<{
 const { notifications } = useNotifications()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 const lastAccessedNotificationRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE, '')
+const lastAccessedExploreRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE, '')
 </script>
 
 <template>
@@ -33,7 +34,7 @@ const lastAccessedNotificationRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_
     <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-line" user-only :command="command" />
 
     <div class="spacer" shrink hidden sm:block />
-    <NavSideItem :text="$t('nav.explore')" :to="isHydrated ? `/${currentServer}/explore` : '/explore'" icon="i-ri:compass-3-line" :command="command" />
+    <NavSideItem :text="$t('nav.explore')" :to="isHydrated ? `/${currentServer}/explore/${lastAccessedExploreRoute}` : `/explore/${lastAccessedExploreRoute}`" icon="i-ri:compass-3-line" :command="command" />
     <NavSideItem :text="$t('nav.local')" :to="isHydrated ? `/${currentServer}/public/local` : '/public/local'" icon="i-ri:group-2-line " :command="command" />
     <NavSideItem :text="$t('nav.federated')" :to="isHydrated ? `/${currentServer}/public` : '/public'" icon="i-ri:earth-line" :command="command" />
     <NavSideItem :text="$t('nav.lists')" :to="isHydrated ? `/${currentServer}/lists` : '/lists'" icon="i-ri:list-check" user-only :command="command" />

@@ -55,6 +55,9 @@ export function useTiptap(options: UseTiptapOptions) {
         },
       }),
       Mention.configure({
+        renderHTML({ options, node }) {
+          return ['span', { 'data-type': 'mention', 'data-id': node.attrs.id }, `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`]
+        },
         suggestion: TiptapMentionSuggestion,
       }),
       Mention

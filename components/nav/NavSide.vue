@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE } from '~/constants'
+
 const { command } = defineProps<{
   command?: boolean
 }>()
 const { notifications } = useNotifications()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
+const lastAccessedNotificationRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE, '')
 </script>
 
 <template>
@@ -12,7 +15,7 @@ const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
     <div class="spacer" shrink xl:hidden />
     <NavSideItem :text="$t('nav.home')" to="/home" icon="i-ri:home-5-line" user-only :command="command" />
-    <NavSideItem :text="$t('nav.notifications')" to="/notifications" icon="i-ri:notification-4-line" user-only :command="command">
+    <NavSideItem :text="$t('nav.notifications')" :to="`/notifications/${lastAccessedNotificationRoute}`" icon="i-ri:notification-4-line" user-only :command="command">
       <template #icon>
         <div flex relative>
           <div class="i-ri:notification-4-line" text-xl />

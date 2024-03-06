@@ -8,9 +8,7 @@
 
 A nimble Mastodon web client, based on [elk](https://github.com/elk-zone/elk) and customized for [bumscode.com](https://bumscode.com).
 
-
 <br/>
-
 
 <p align="center">
   <a href="https://elk.bumscode.com/" target="_blank" rel="noopener noreferrer" >
@@ -44,7 +42,6 @@ Or you can sponsor their core team members individually:
 - [Patak](https://github.com/sponsors/patak-dev)
 
 We would also appreciate sponsoring other contributors to the Elk project. If someone helps you solve an issue or implement a feature you wanted, supporting them would help make this project and OS more sustainable.
-
 
 ## 🚀 Contributing
 
@@ -97,7 +94,7 @@ You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more
 
 ## 👨‍💻 Contributors
 <a href="https://github.com/maybeanerd/crab/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=maybeanerd/crab" />   
+  <img src="https://contrib.rocks/image?repo=maybeanerd/crab" />
 </a>
 
 ## 📄 License

@@ -97,7 +97,7 @@ describe('content-rich', () => {
   })
 
   it('hides collapsed mentions', async () => {
-    const { formatted } = await render('<p>content</p>', {
+    const { formatted } = await render('<p><span class="h-card"><a href="https://webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> content</p>', {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })

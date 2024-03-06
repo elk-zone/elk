@@ -33,7 +33,7 @@ async function fetchRelationships() {
 }
 
 export async function toggleFollowAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
-  const { client } = $(useMasto())
+  const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
   const unfollow = relationship!.following || relationship!.requested
@@ -59,11 +59,11 @@ export async function toggleFollowAccount(relationship: mastodon.v1.Relationship
     relationship!.following = true
   }
 
-  relationship = await client.v1.accounts.$select(account.id)[unfollow ? 'unfollow' : 'follow']()
+  relationship = await client.value.v1.accounts.$select(account.id)[unfollow ? 'unfollow' : 'follow']()
 }
 
 export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
-  const { client } = $(useMasto())
+  const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
   if (!relationship!.muting && await openConfirmDialog({
@@ -76,14 +76,14 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
 
   relationship!.muting = !relationship!.muting
   relationship = relationship!.muting
-    ? await client.v1.accounts.$select(account.id).mute({
+    ? await client.value.v1.accounts.$select(account.id).mute({
       // TODO support more options
     })
-    : await client.v1.accounts.$select(account.id).unmute()
+    : await client.value.v1.accounts.$select(account.id).unmute()
 }
 
 export async function toggleBlockAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
-  const { client } = $(useMasto())
+  const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
   if (!relationship!.blocking && await openConfirmDialog({
@@ -95,11 +95,11 @@ export async function toggleBlockAccount(relationship: mastodon.v1.Relationship,
     return
 
   relationship!.blocking = !relationship!.blocking
-  relationship = await client.v1.accounts.$select(account.id)[relationship!.blocking ? 'block' : 'unblock']()
+  relationship = await client.value.v1.accounts.$select(account.id)[relationship!.blocking ? 'block' : 'unblock']()
 }
 
 export async function toggleBlockDomain(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
-  const { client } = $(useMasto())
+  const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
   if (!relationship!.domainBlocking && await openConfirmDialog({
@@ -111,5 +111,5 @@ export async function toggleBlockDomain(relationship: mastodon.v1.Relationship, 
     return
 
   relationship!.domainBlocking = !relationship!.domainBlocking
-  await client.v1.domainBlocks[relationship!.domainBlocking ? 'create' : 'remove']({ domain: getServerName(account) })
+  await client.value.v1.domainBlocks[relationship!.domainBlocking ? 'create' : 'remove']({ domain: getServerName(account) })
 }

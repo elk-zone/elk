@@ -6,22 +6,22 @@ const { account } = defineProps<{
   command?: boolean
 }>()
 
-const { client } = $(useMasto())
+const { client } = useMasto()
 
 const { t } = useI18n()
 
-const createdAt = $(useFormattedDateTime(() => account.createdAt, {
+const createdAt = useFormattedDateTime(() => account.createdAt, {
   month: 'long',
   day: 'numeric',
   year: 'numeric',
-}))
+})
 
-const relationship = $(useRelationship(account))
+const relationship = useRelationship(account)
 
 const namedFields = ref<mastodon.v1.AccountField[]>([])
 const iconFields = ref<mastodon.v1.AccountField[]>([])
 const isEditingPersonalNote = ref<boolean>(false)
-const hasHeader = $computed(() => !account.header.endsWith('/original/missing.png'))
+const hasHeader = computed(() => !account.header.endsWith('/original/missing.png'))
 const isCopied = ref<boolean>(false)
 
 function getFieldIconTitle(fieldName: string) {
@@ -29,7 +29,7 @@ function getFieldIconTitle(fieldName: string) {
 }
 
 function getNotificationIconTitle() {
-  return relationship?.notifying ? t('account.notifications_on_post_disable', { username: `@${account.username}` }) : t('account.notifications_on_post_enable', { username: `@${account.username}` })
+  return relationship.value?.notifying ? t('account.notifications_on_post_disable', { username: `@${account.username}` }) : t('account.notifications_on_post_enable', { username: `@${account.username}` })
 }
 
 function previewHeader() {
@@ -51,14 +51,14 @@ function previewAvatar() {
 }
 
 async function toggleNotifications() {
-  relationship!.notifying = !relationship?.notifying
+  relationship.value!.notifying = !relationship.value?.notifying
   try {
-    const newRel = await client.v1.accounts.$select(account.id).follow({ notify: relationship?.notifying })
+    const newRel = await client.value.v1.accounts.$select(account.id).follow({ notify: relationship.value?.notifying })
     Object.assign(relationship!, newRel)
   }
   catch {
     // TODO error handling
-    relationship!.notifying = !relationship?.notifying
+    relationship.value!.notifying = !relationship.value?.notifying
   }
 }
 
@@ -75,35 +75,35 @@ watchEffect(() => {
   })
   icons.push({
     name: 'Joined',
-    value: createdAt,
+    value: createdAt.value,
   })
 
   namedFields.value = named
   iconFields.value = icons
 })
 
-const personalNoteDraft = ref(relationship?.note ?? '')
-watch($$(relationship), (relationship, oldValue) => {
+const personalNoteDraft = ref(relationship.value?.note ?? '')
+watch(relationship, (relationship, oldValue) => {
   if (!oldValue && relationship)
     personalNoteDraft.value = relationship.note ?? ''
 })
 
 async function editNote(event: Event) {
-  if (!event.target || !('value' in event.target) || !relationship)
+  if (!event.target || !('value' in event.target) || !relationship.value)
     return
 
   const newNote = event.target?.value as string
 
-  if (relationship.note?.trim() === newNote.trim())
+  if (relationship.value.note?.trim() === newNote.trim())
     return
 
-  const newNoteApiResult = await client.v1.accounts.$select(account.id).note.create({ comment: newNote })
-  relationship.note = newNoteApiResult.note
-  personalNoteDraft.value = relationship.note ?? ''
+  const newNoteApiResult = await client.value.v1.accounts.$select(account.id).note.create({ comment: newNote })
+  relationship.value.note = newNoteApiResult.note
+  personalNoteDraft.value = relationship.value.note ?? ''
 }
 
-const isSelf = $(useSelfAccount(() => account))
-const isNotifiedOnPost = $computed(() => !!relationship?.notifying)
+const isSelf = useSelfAccount(() => account)
+const isNotifiedOnPost = computed(() => !!relationship.value?.notifying)
 
 const personalNoteMaxLength = 2000
 

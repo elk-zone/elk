@@ -1,5 +1,10 @@
 <script setup lang="ts">
-const props = defineProps<{ enabled?: boolean; filter?: boolean; isDM?: boolean; sensitiveNonSpoiler?: boolean }>()
+const props = defineProps<{
+  enabled?: boolean
+  filter?: boolean
+  isDM?: boolean
+  sensitiveNonSpoiler?: boolean
+}>()
 
 const expandSpoilers = computed(() => {
   const expandCW = currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false

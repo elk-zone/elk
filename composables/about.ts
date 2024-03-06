@@ -49,7 +49,8 @@ export const crabTeamMembers: Team[] = [
     github: 'tiborpilz',
     display: 'Tibor',
     mastodon: 'tibor@bumscode.com',
-  }, {
+  },
+  {
     github: 'lostdesign',
     display: 'André',
     mastodon: 'wellerli@bumscode.com',

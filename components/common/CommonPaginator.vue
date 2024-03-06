@@ -44,7 +44,7 @@ defineSlots<{
 const { t } = useI18n()
 const nuxtApp = useNuxtApp()
 
-const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), preprocess)
+const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, toRef(() => stream), preprocess)
 
 nuxtApp.hook('elk-logo:click', () => {
   update()
@@ -94,8 +94,8 @@ defineExpose({ createEntry, removeEntry, updateEntry })
       </template>
       <template v-else>
         <slot
-          v-for="item, index of items"
-          v-bind="{ key: item[keyProp as keyof U] }"
+          v-for="(item, index) of items"
+          v-bind="{ key: (item as U)[keyProp as keyof U] }"
           :item="item as U"
           :older="items[index + 1] as U"
           :newer="items[index - 1] as U"

@@ -22,7 +22,7 @@ const isDark = usePreferredDark()
 `;
 
 exports[`html-parse > code frame 2 > html 1`] = `
-"<p>
+"<p dir="auto">
   <span class="h-card"
     ><a
       href="https://webtoo.ls/@antfu"
@@ -99,7 +99,7 @@ exports[`html-parse > html entities > html 1`] = `
 
 exports[`html-parse > html entities > text 1`] = `"Hello <World />."`;
 
-exports[`html-parse > inline markdown > html 1`] = `"<p>text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p><p></p><p><pre><code class="language-js">code block</code></pre></p>"`;
+exports[`html-parse > inline markdown > html 1`] = `"<p dir="auto">text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p><p></p><p><pre><code class="language-js">code block</code></pre></p>"`;
 
 exports[`html-parse > inline markdown > text 1`] = `
 "text \`code\` **bold** *italic* ~~del~~
@@ -111,7 +111,7 @@ code block
 `;
 
 exports[`html-parse > link + mention > html 1`] = `
-"<p>
+"<p dir="auto">
   Happy
   <img
     src="/emojis/twemoji/1f917.svg"

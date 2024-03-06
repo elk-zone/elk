@@ -494,7 +494,10 @@ function _markdownProcess(value: string) {
 
   let start = 0
   while (true) {
-    let found: { match: RegExpMatchArray; replacer: (c: (string | Node)[]) => Node } | undefined
+    let found: {
+      match: RegExpMatchArray
+      replacer: (c: (string | Node)[]) => Node
+    } | undefined
 
     for (const [re, replacer] of _markdownReplacements) {
       re.lastIndex = start
@@ -524,10 +527,21 @@ function transformMarkdown(node: Node) {
   return _markdownProcess(node.value)
 }
 
+function addBdiParagraphs(node: Node) {
+  if (node.name === 'p' && !('dir' in node.attributes) && node.children?.length && node.children.length > 1)
+    node.attributes.dir = 'auto'
+
+  return node
+}
+
 function transformParagraphs(node: Node): Node | Node[] {
+  // Add bdi to paragraphs
+  addBdiParagraphs(node)
+
   // For top level paragraphs, inject an empty <p> to preserve status paragraphs in our editor (except for the last one)
   if (node.parent?.type === DOCUMENT_NODE && node.name === 'p' && node.parent.children.at(-1) !== node)
     return [node, h('p')]
+
   return node
 }
 

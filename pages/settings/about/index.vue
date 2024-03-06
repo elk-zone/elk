@@ -6,12 +6,12 @@ useHydratedHead({
   title: () => `${t('settings.about.label')} | ${t('nav.settings')}`,
 })
 
-let showCommit = $ref(buildInfo.env !== 'release' && buildInfo.env !== 'dev')
+const showCommit = ref(buildInfo.env !== 'release' && buildInfo.env !== 'dev')
 const builtTime = useFormattedDateTime(buildInfo.time)
 
 function handleShowCommit() {
   setTimeout(() => {
-    showCommit = true
+    showCommit.value = true
   }, 50)
 }
 </script>

@@ -14,10 +14,10 @@ css({
     gap: '0.5rem',
     fontSize: '1.5rem',
   },
-  img: {
+  'img': {
     flexShrink: 0,
     aspectRatio: '1/1',
-    height: '2.5rem'
-  }
+    height: '2.5rem',
+  },
 })
 </style>

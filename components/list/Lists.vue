@@ -3,9 +3,9 @@ const { userId } = defineProps<{
   userId: string
 }>()
 
-const { client } = $(useMasto())
-const paginator = client.v1.lists.list()
-const listsWithUser = ref((await client.v1.accounts.$select(userId).lists.list()).map(list => list.id))
+const { client } = useMasto()
+const paginator = client.value.v1.lists.list()
+const listsWithUser = ref((await client.value.v1.accounts.$select(userId).lists.list()).map(list => list.id))
 
 function indexOfUserInList(listId: string) {
   return listsWithUser.value.indexOf(listId)
@@ -15,11 +15,11 @@ async function edit(listId: string) {
   try {
     const index = indexOfUserInList(listId)
     if (index === -1) {
-      await client.v1.lists.$select(listId).accounts.create({ accountIds: [userId] })
+      await client.value.v1.lists.$select(listId).accounts.create({ accountIds: [userId] })
       listsWithUser.value.push(listId)
     }
     else {
-      await client.v1.lists.$select(listId).accounts.remove({ accountIds: [userId] })
+      await client.value.v1.lists.$select(listId).accounts.remove({ accountIds: [userId] })
       listsWithUser.value = listsWithUser.value.filter(id => id !== listId)
     }
   }

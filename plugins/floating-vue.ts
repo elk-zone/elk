@@ -1,5 +1,5 @@
 import FloatingVue from 'floating-vue'
-import { defineNuxtPlugin } from '#app'
+import { defineNuxtPlugin } from '#imports'
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(FloatingVue)

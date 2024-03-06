@@ -18,12 +18,12 @@ useCommand({
   scope: 'Settings',
 
   name: () => props.text
-    ?? (props.to
-      ? typeof props.to === 'string'
-        ? props.to
-        : props.to.name
-      : ''
-    ),
+  ?? (props.to
+    ? typeof props.to === 'string'
+      ? props.to
+      : props.to.name
+    : ''
+  ),
   description: () => props.description,
   icon: () => props.icon || '',
   visible: () => props.command && props.to,
@@ -46,7 +46,7 @@ useCommand({
     @click="to ? $scrollToTop() : undefined"
   >
     <div
-      w-full flex w-fit px5 py3 md:gap2 gap4 items-center
+      w-full flex px5 py3 md:gap2 gap4 items-center
       transition-250 group-hover:bg-active
       group-focus-visible:ring="2 current"
     >

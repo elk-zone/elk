@@ -16,7 +16,11 @@ declare module '@tiptap/core' {
       /**
        * Insert a custom emoji.
        */
-      insertCustomEmoji: (options: { src: string; alt?: string; title?: string }) => ReturnType
+      insertCustomEmoji: (options: {
+        src: string
+        alt?: string
+        title?: string
+      }) => ReturnType
       /**
        * Insert a emoji.
        */

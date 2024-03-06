@@ -4,7 +4,7 @@ import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { Draft, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
 
-export const currentUserDrafts = (process.server || process.test)
+export const currentUserDrafts = (import.meta.server || process.test)
   ? computed<DraftMap>(() => ({}))
   : useUserLocalStorage<DraftMap>(STORAGE_KEY_DRAFTS, () => ({}))
 
@@ -20,7 +20,7 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
   // the post more private than the replying to post
   const preferredVisibility = currentUser.value?.account.source.privacy || 'public'
   return ALL_VISIBILITY.indexOf(currentVisibility)
-   > ALL_VISIBILITY.indexOf(preferredVisibility)
+    > ALL_VISIBILITY.indexOf(preferredVisibility)
     ? currentVisibility
     : preferredVisibility
 }

@@ -6,8 +6,8 @@ defineProps<{
   square?: boolean
 }>()
 
-const loaded = $ref(false)
-const error = $ref(false)
+const loaded = ref(false)
+const error = ref(false)
 </script>
 
 <template>

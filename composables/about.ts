@@ -3,7 +3,7 @@ import type { BuildInfo } from '~~/types'
 export interface Team {
   github: string
   display: string
-  twitter: string
+  twitter?: string
   mastodon: string
 }
 
@@ -31,6 +31,28 @@ export const elkTeamMembers: Team[] = [
     display: '三咲智子 Kevin Deng',
     twitter: 'sanxiaozhizi',
     mastodon: 'sxzz@webtoo.ls',
+  },
+].sort(() => Math.random() - 0.5)
+
+export const crabTeamMembers: Team[] = [
+  {
+    github: 'maybeanerd',
+    display: 'Basti',
+    mastodon: 'maybeanerd@bumscode.com',
+  },
+  {
+    github: 'kriskbx',
+    display: 'Kris',
+    mastodon: 'kris@bumscode.com',
+  },
+  {
+    github: 'tiborpilz',
+    display: 'Tibor',
+    mastodon: 'tibor@bumscode.com',
+  }, {
+    github: 'lostdesign',
+    display: 'André',
+    mastodon: 'wellerli@bumscode.com',
   },
 ].sort(() => Math.random() - 0.5)
 

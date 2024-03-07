@@ -189,6 +189,42 @@
     "remove_account": "Видалити обліковий запис зі списку",
     "save": "Зберегти зміни"
   },
+  "magic_keys": {
+    "dialog_header": "Гарячі клавіші",
+    "groups": {
+      "actions": {
+        "boost": "Поширити",
+        "command_mode": "Командний режим",
+        "compose": "Написати",
+        "favourite": "Вподобати",
+        "search": "Пошук",
+        "show_new_items": "Показати нові елементи",
+        "title": "Дії"
+      },
+      "media": {
+        "title": "Медіа"
+      },
+      "navigation": {
+        "go_to_bookmarks": "Закладки",
+        "go_to_conversations": "Розмови",
+        "go_to_explore": "Огляд",
+        "go_to_favourites": "Вподобане",
+        "go_to_federated": "Глобальна",
+        "go_to_home": "Головна",
+        "go_to_lists": "Списки",
+        "go_to_local": "Локальна",
+        "go_to_notifications": "Сповіщення",
+        "go_to_profile": "Профіль",
+        "go_to_search": "Пошук",
+        "go_to_settings": "Налаштування",
+        "next_status": "Наступний допис",
+        "previous_status": "Попередній допис",
+        "shortcut_help": "Допомога з гарячими клавішами",
+        "title": "Навігація"
+      }
+    },
+    "sequence_then": "потім"
+  },
   "menu": {
     "block_account": "Заблокувати {0}",
     "block_domain": "Заблокувати домен {0}",
@@ -222,7 +258,7 @@
     "bookmarks": "Закладки",
     "built_at": "Оновлено {0}",
     "compose": "Написати",
-    "conversations": "Прямі повідомлення",
+    "conversations": "Розмови",
     "explore": "Огляд",
     "favourites": "Вподобане",
     "federated": "Глобальна стрічка",

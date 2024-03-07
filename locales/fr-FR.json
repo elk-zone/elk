@@ -214,8 +214,7 @@
         "command_mode": "Mode commande",
         "compose": "Composer",
         "favourite": "J'aime",
-        "title": "Actions",
-        "zen_mode": "Mode Zen"
+        "title": "Actions"
       },
       "media": {
         "title": "Média"
@@ -550,9 +549,6 @@
       "label": "Comptes connectés"
     }
   },
-  "share-target": {
-    "title": ""
-  },
   "share_target": {
     "description": "Elk peut être configuré pour que vous puissiez partager du contenu à partir d'autres applications, installez simplement Elk sur votre appareil ou ordinateur et connectez-vous.",
     "hint": "Pour partager du contenu avec Elk, Elk doit être installé et vous devez être connecté.",
@@ -605,7 +601,6 @@
     "edited": "a édité {0}"
   },
   "tab": {
-    "account": "Compte",
     "accounts": "Comptes",
     "for_you": "Pour vous",
     "hashtags": "Hashtags",

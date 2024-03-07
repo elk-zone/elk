@@ -262,9 +262,37 @@
   },
   "pwa": {
     "dismiss": "Закрити",
+    "install": "Встановити",
+    "install_title": "Встановити Elk",
+    "screenshots": {
+      "dark": "Знімок екрану Elk, в темному режимі",
+      "light": "Знімок екрану Elk, в світлому режимі"
+    },
     "title": "Доступна нова версія Elk!",
     "update": "Оновити",
-    "update_available_short": "Оновити Elk"
+    "update_available_short": "Оновити Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "Спритний веб-клієнт для Mastodon (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "Спритний веб-клієнт для Mastodon (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "Спритний веб-клієнт для Mastodon (preview)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description": "Спритний веб-клієнт для Mastodon",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
   },
   "search": {
     "search_desc": "Пошук користувачів та хештеґів",

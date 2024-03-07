@@ -28,3 +28,10 @@ export const STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE = 'elk-last-accessed-explor
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\d-]+\.)+\w+\/(@[@\w\d-\.]+)(\/objects)?(\/\d+)?$/
 
 export const NOTIFICATION_FILTER_TYPES: mastodon.v1.NotificationType[] = ['status', 'reblog', 'follow', 'follow_request', 'favourite', 'poll', 'update', 'admin.sign_up', 'admin.report']
+
+export const THEME_COLORS = {
+  themeDark: '#111111',
+  themeLight: '#fafafa',
+  backgroundDark: '#fafafa',
+  backgroundLight: '#111111',
+} as const

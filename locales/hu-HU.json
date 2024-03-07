@@ -94,7 +94,6 @@
     "activate": "Aktivál",
     "complete": "Befejez",
     "compose_desc": "Új bejegyzés írása",
-    "n-people-in-the-past-n-days": "{0} felhasználó az elmúlt {1} napban",
     "select_lang": "Nyelv kiválasztása",
     "sign_in_desc": "Létező fiók hozzáadása",
     "switch_account": "Váltás: {0}",
@@ -169,7 +168,6 @@
   },
   "error": {
     "account_not_found": "Fiók {0} nem található",
-    "explore_list-empty": "Nincs most itt semmi... Nézz vissza később!",
     "file_size_cannot_exceed_n_mb": "A fájl mérete nem haladhatja meg a {0}MB-ot",
     "sign_in_error": "Nem lehetséges a csatlakozás.",
     "status_not_found": "A bejegyzés nem található",
@@ -556,11 +554,6 @@
       "import": "Felhasználói tokenek importálása",
       "label": "Bejelentkezett felhasználók"
     }
-  },
-  "share-target": {
-    "description": "Az Elk konfigurálható úgy, hogy más alkalmazásokból is megoszthasson tartalmat, egyszerűen telepítse az Elket eszközére vagy számítógépére, és jelentkezzen be.",
-    "hint": "A tartalom Elkkel való megosztásához telepíteni kell az Elket, és be kell jelentkeznie.",
-    "title": "Megosztás Elkkel"
   },
   "state": {
     "attachments_exceed_server_limit": "A mellékletek száma meghaladta a bejegyzésenkénti korlátot.",

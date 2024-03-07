@@ -247,7 +247,9 @@
       "default": " (за замовчуванням)",
       "font_size": "Розмір шрифта",
       "label": "Інтерфейс",
-      "light_mode": "Світла"
+      "light_mode": "Світла",
+      "system_mode": "Cистемна",
+      "theme_color": "Колір теми"
     },
     "language": {
       "display_language": "Мова інтерфейсу",

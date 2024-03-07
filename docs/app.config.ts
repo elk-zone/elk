@@ -1,15 +1,14 @@
 export default defineAppConfig({
   docus: {
-    title: 'Elk',
+    title: 'crab',
     description: 'A nimble Mastodon web client.',
-    image: 'https://docs.elk.zone/elk-screenshot.png',
+    image: 'https://github.com/maybeanerd/crab/blob/main/public/crab-original.png?raw=true',
     socials: {
-      twitter: 'elk_zone',
-      github: 'elk-zone/elk',
+      github: 'maybeanerd/crab',
       mastodon: {
         label: 'Mastodon',
         icon: 'IconMastodon',
-        href: 'https://elk.zone/@elk@webtoo.ls',
+        href: 'https://crab.bumscode.com/@maybeanerd',
       },
     },
     aside: {
@@ -28,7 +27,7 @@ export default defineAppConfig({
           icon: 'IconNuxtLabs',
         },
         {
-          href: 'https://m.webtoo.ls/@elk',
+          href: 'https://crab.bumscode.com/@maybeanerd',
           icon: 'IconMastodon',
         },
       ],

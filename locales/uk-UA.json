@@ -226,19 +226,27 @@
     "sequence_then": "потім"
   },
   "menu": {
+    "add_personal_note": "Додати нотатку до {0}",
     "block_account": "Заблокувати {0}",
     "block_domain": "Заблокувати домен {0}",
     "copy_link_to_post": "Скопіювати посилання на цей допис",
+    "copy_original_link_to_post": "Скопіювати оригінальне посилання на цей допис",
     "delete": "Видалити",
     "delete_and_redraft": "Видалити і переписати",
     "direct_message_account": "Пряме повідомлення {0}",
     "edit": "Редагувати",
+    "hide_reblogs": "Приховати поширення від {0}",
     "mention_account": "Згадати {0}",
     "mute_account": "Приховати {0}",
     "mute_conversation": "Ігнорувати цей допис",
     "open_in_original_site": "Відкрити на оригінальному сайті",
     "pin_on_profile": "Закріпити на профілі",
+    "remove_personal_note": "Вилучити нотатку з {0}",
+    "report_account": "Повідомити про зловживання {0}",
+    "share_account": "Поділитися {0}",
     "share_post": "Поділіться цим дописом",
+    "show_favourited_and_boosted_by": "Показати, хто вподобав та поширив",
+    "show_reblogs": "Показати поширення від {0}",
     "show_untranslated": "Показати без перекладу",
     "toggle_theme": {
       "dark": "Увімкнути темний режим",
@@ -247,6 +255,7 @@
     "translate_post": "Перекласти допис",
     "unblock_account": "Розблокувати {0}",
     "unblock_domain": "Розблокувати домен {0}",
+    "unfollow_account": "Скасувати підписку на {0}",
     "unmute_account": "Не приховувати {0}",
     "unmute_conversation": "Не ігнорувати цей допис",
     "unpin_on_profile": "Відкріпити з профілю"
@@ -281,7 +290,7 @@
     "zen_mode": "Zen-режим"
   },
   "notification": {
-    "favourited_post": "додали ваший допис до вибраного",
+    "favourited_post": "вподобав ваший допис",
     "followed_you": "підписались на вас",
     "followed_you_count": "{0} людей підписалися на вас|{0} людина підписалися на вас|{0} людини підписалися на вас|{0} людей підписалися на вас",
     "missing_type": "ВІДСУТНІЙ notification.type:",

@@ -1,9 +1,9 @@
 import type { mastodon } from 'masto'
-import type { ConfirmDialogChoice, ConfirmDialogLabel, Draft, ErrorDialogData } from '~/types'
+import type { ConfirmDialogChoice, ConfirmDialogOptions, Draft, ErrorDialogData } from '~/types'
 import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
-export const confirmDialogLabel = ref<ConfirmDialogLabel>()
+export const confirmDialogLabel = ref<ConfirmDialogOptions>()
 export const errorDialogData = ref<ErrorDialogData>()
 
 export const mediaPreviewList = ref<mastodon.v1.MediaAttachment[]>([])
@@ -39,7 +39,7 @@ export function openSigninDialog() {
   isSigninDialogOpen.value = true
 }
 
-export async function openConfirmDialog(label: ConfirmDialogLabel | string): Promise<ConfirmDialogChoice> {
+export async function openConfirmDialog(label: ConfirmDialogOptions | string): Promise<ConfirmDialogChoice> {
   confirmDialogLabel.value = typeof label === 'string' ? { title: label } : label
   confirmDialogChoice.value = undefined
   isConfirmDialogOpen.value = true

@@ -153,6 +153,7 @@
       "description": "Are you sure you want to mute {0}?",
       "hours": "hours|hour|hours",
       "minute": "minutes|minute|minutes",
+      "notifications": "Mute notifications",
       "specify_duration": "Specify mute duration",
       "title": "Mute account"
     },

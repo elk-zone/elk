@@ -149,7 +149,12 @@
     "mute_account": {
       "cancel": "Hủy bỏ",
       "confirm": "Ẩn",
+      "days": "ngày|ngày|ngày",
       "description": "Bạn có chắc muốn ẩn {0}?",
+      "hours": "giờ|giờ|giờ",
+      "minute": "phút|phút|phút",
+      "notifications": "Ẩn thông báo",
+      "specify_duration": "Thời hạn ẩn cụ thể",
       "title": "Ẩn người"
     },
     "show_reblogs": {
@@ -275,7 +280,7 @@
     "report_account": "Báo cáo {0}",
     "share_account": "Chia sẻ {0}",
     "share_post": "Chia sẻ tút",
-    "show_favourited_and_boosted_by": "Xem lượt thích và đăng lại",
+    "show_favourited_and_boosted_by": "Xem lượt thích & đăng lại",
     "show_reblogs": "Xem đăng lại từ {0}",
     "show_untranslated": "Xem bản chưa dịch",
     "toggle_theme": {

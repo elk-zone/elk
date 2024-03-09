@@ -68,7 +68,7 @@ async function removeList() {
   actionError.value = undefined
   await nextTick()
 
-  if (confirmDelete === 'confirm') {
+  if (confirmDelete.choice === 'confirm') {
     await nextTick()
     try {
       await client.v1.lists.$select(list.value.id).remove()

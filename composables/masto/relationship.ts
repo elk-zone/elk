@@ -39,12 +39,13 @@ export async function toggleFollowAccount(relationship: mastodon.v1.Relationship
   const unfollow = relationship!.following || relationship!.requested
 
   if (unfollow) {
-    if (await openConfirmDialog({
+    const confirmUnfollow = await openConfirmDialog({
       title: i18n.t('confirm.unfollow.title'),
       description: i18n.t('confirm.unfollow.description', [`@${account.acct}`]),
       confirm: i18n.t('confirm.unfollow.confirm'),
       cancel: i18n.t('confirm.unfollow.cancel'),
-    }) !== 'confirm')
+    })
+    if (confirmUnfollow.choice !== 'confirm')
       return
   }
 
@@ -66,18 +67,28 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
   const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
-  if (!relationship!.muting && await openConfirmDialog({
-    title: i18n.t('confirm.mute_account.title'),
-    description: i18n.t('confirm.mute_account.description', [account.acct]),
-    confirm: i18n.t('confirm.mute_account.confirm'),
-    cancel: i18n.t('confirm.mute_account.cancel'),
-  }) !== 'confirm')
-    return
+  let duration = 0 // default 0 == indefinite
+  let notifications = true // default true = mute notifications
+  if (!relationship!.muting) {
+    const confirmMute = await openConfirmDialog({
+      title: i18n.t('confirm.mute_account.title'),
+      description: i18n.t('confirm.mute_account.description', [account.acct]),
+      confirm: i18n.t('confirm.mute_account.confirm'),
+      cancel: i18n.t('confirm.mute_account.cancel'),
+      extraOptionType: 'mute',
+    })
+    if (confirmMute.choice !== 'confirm')
+      return
+
+    duration = confirmMute.extraOptions!.mute.duration
+    notifications = confirmMute.extraOptions!.mute.notifications
+  }
 
   relationship!.muting = !relationship!.muting
   relationship = relationship!.muting
     ? await client.value.v1.accounts.$select(account.id).mute({
-      // TODO support more options
+      duration,
+      notifications,
     })
     : await client.value.v1.accounts.$select(account.id).unmute()
 }
@@ -86,13 +97,16 @@ export async function toggleBlockAccount(relationship: mastodon.v1.Relationship,
   const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
-  if (!relationship!.blocking && await openConfirmDialog({
-    title: i18n.t('confirm.block_account.title'),
-    description: i18n.t('confirm.block_account.description', [account.acct]),
-    confirm: i18n.t('confirm.block_account.confirm'),
-    cancel: i18n.t('confirm.block_account.cancel'),
-  }) !== 'confirm')
-    return
+  if (!relationship!.blocking) {
+    const confirmBlock = await openConfirmDialog({
+      title: i18n.t('confirm.block_account.title'),
+      description: i18n.t('confirm.block_account.description', [account.acct]),
+      confirm: i18n.t('confirm.block_account.confirm'),
+      cancel: i18n.t('confirm.block_account.cancel'),
+    })
+    if (confirmBlock.choice !== 'confirm')
+      return
+  }
 
   relationship!.blocking = !relationship!.blocking
   relationship = await client.value.v1.accounts.$select(account.id)[relationship!.blocking ? 'block' : 'unblock']()
@@ -102,13 +116,16 @@ export async function toggleBlockDomain(relationship: mastodon.v1.Relationship, 
   const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
-  if (!relationship!.domainBlocking && await openConfirmDialog({
-    title: i18n.t('confirm.block_domain.title'),
-    description: i18n.t('confirm.block_domain.description', [getServerName(account)]),
-    confirm: i18n.t('confirm.block_domain.confirm'),
-    cancel: i18n.t('confirm.block_domain.cancel'),
-  }) !== 'confirm')
-    return
+  if (!relationship!.domainBlocking) {
+    const confirmDomainBlock = await openConfirmDialog({
+      title: i18n.t('confirm.block_domain.title'),
+      description: i18n.t('confirm.block_domain.description', [getServerName(account)]),
+      confirm: i18n.t('confirm.block_domain.confirm'),
+      cancel: i18n.t('confirm.block_domain.cancel'),
+    })
+    if (confirmDomainBlock.choice !== 'confirm')
+      return
+  }
 
   relationship!.domainBlocking = !relationship!.domainBlocking
   await client.value.v1.domainBlocks[relationship!.domainBlocking ? 'create' : 'remove']({ domain: getServerName(account) })

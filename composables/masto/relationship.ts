@@ -11,9 +11,12 @@ let timeoutHandle: NodeJS.Timeout | undefined
 export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.Relationship | undefined> {
   if (!currentUser.value)
     return ref()
+
   let relationship = requestedRelationships.get(account.id)
   if (relationship)
     return relationship
+
+  // allow batch relationship requests
   relationship = ref<mastodon.v1.Relationship | undefined>()
   requestedRelationships.set(account.id, relationship)
   if (timeoutHandle)
@@ -22,14 +25,19 @@ export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.R
     timeoutHandle = undefined
     fetchRelationships()
   }, 100)
+
   return relationship
 }
 
 async function fetchRelationships() {
   const requested = Array.from(requestedRelationships.entries()).filter(([, r]) => !r.value)
   const relationships = await useMastoClient().v1.accounts.relationships.fetch({ id: requested.map(([id]) => id) })
-  for (let i = 0; i < requested.length; i++)
-    requested[i][1].value = relationships[i]
+  for (const relationship of relationships) {
+    const requestedToUpdate = requested.find(([id]) => id === relationship.id)
+    if (!requestedToUpdate)
+      continue
+    requestedToUpdate[1].value = relationship
+  }
 }
 
 export async function toggleFollowAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {

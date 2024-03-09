@@ -67,6 +67,8 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
   const { client } = useMasto()
   const i18n = useNuxtApp().$i18n
 
+  let duration = 0 // default 0 == indefinite
+  let notifications = true // default true = mute notifications
   if (!relationship!.muting) {
     const confirmMute = await openConfirmDialog({
       title: i18n.t('confirm.mute_account.title'),
@@ -77,13 +79,16 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
     })
     if (confirmMute.choice !== 'confirm')
       return
+
+    duration = confirmMute.extraOptions!.mute.duration
+    notifications = confirmMute.extraOptions!.mute.notifications
   }
 
   relationship!.muting = !relationship!.muting
   relationship = relationship!.muting
     ? await client.value.v1.accounts.$select(account.id).mute({
-      duration: 0, // default 0 == indifinite
-      notifications: true, // default true
+      duration,
+      notifications,
     })
     : await client.value.v1.accounts.$select(account.id).unmute()
 }

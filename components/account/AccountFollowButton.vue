@@ -13,11 +13,7 @@ const { t } = useI18n()
 const isSelf = useSelfAccount(() => account)
 const enable = computed(() => !isSelf.value && currentUser.value)
 const relationship = computed(() => props.relationship || useRelationship(account).value)
-const isLoading = ref(false)
-
-watchEffect(() => {
-  isLoading.value = relationship.value === undefined
-})
+const isLoading = computed(() => relationship.value === undefined)
 
 const { client } = useMasto()
 

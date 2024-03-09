@@ -149,7 +149,12 @@
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
+      "days": "dias|dia|dias",
       "description": "Tem a certeza que pretende silenciar {0}?",
+      "hours": "horas|hora|horas",
+      "minute": "minutos|minuto|minutos",
+      "notifications": "Silenciar notificações",
+      "specify_duration": "Especificar duração do silêncio",
       "title": "Silenciar conta"
     },
     "show_reblogs": {

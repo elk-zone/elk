@@ -63,7 +63,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
   })
 
   debouncedWatch(() => resolveUnref(query), async () => {
-    if (!q || !isHydrated.value)
+    if (!q.value || !isHydrated.value)
       return
 
     loading.value = true

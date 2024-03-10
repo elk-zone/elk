@@ -233,7 +233,7 @@
         "compose": "Mag-compose",
         "favourite": "Paborito",
         "search": "Hanapin",
-        "show_new_items": "I-pakita ang mga bagong items",
+        "show_new_items": "Ipakita ang mga bagong item",
         "title": "Mga aksyon"
       },
       "media": {
@@ -258,7 +258,7 @@
         "title": "Pag-navigate"
       }
     },
-    "sequence_then": "pagkatapos"
+    "sequence_then": "tapos"
   },
   "menu": {
     "add_personal_note": "Sumulat ng personal na tala",

@@ -7,6 +7,8 @@
     "route_loaded": "Naloload na ang pahina {0}"
   },
   "account": {
+    "authorize": "Pahintulutan na sumunod",
+    "authorized": "Pinahintulutan mo ang kahilingan",
     "avatar_description": "Avatar ni {0}",
     "blocked_by": "Ika'y na-block ng user na ito.",
     "blocked_domains": "Mga naka-block na domain",
@@ -25,6 +27,7 @@
     "follows_you": "Sinusundan ka",
     "go_to_profile": "Pumunta sa profile",
     "joined": "Sumali",
+    "lock": "Ikandado",
     "moved_title": "nagpahiwatig na ang kanilang bagong account ay:",
     "muted_users": "Mga naka-mute na user",
     "muting": "Naka-mute",
@@ -37,36 +40,42 @@
     "profile_description": "Header ng profile ni {0}",
     "profile_personal_note": "Personal na Tala",
     "profile_unavailable": "Hindi magamit ang profile",
+    "reject": "Tanggihan na sumunod",
+    "rejected": "Tinanggihan mo ang kahilingan",
     "request_follow": "Humiling ng pagsunod",
+    "requested": "{0} ay humiling na sundan ka",
     "unblock": "Tanggalin ang pagka-block",
     "unfollow": "Huminto sa pagsunod",
     "unmute": "Tanggalin ang pagka-mute",
     "view_other_followers": "Ang mga tagasunod mula sa ibang mga instance ay hindi maipapakita.",
-    "view_other_following": "Ang mga sinusundan mula sa ibang mga instance ay hindi maipapakita."
+    "view_other_following": "Ang mga sinusundan mula sa ibang mga instance ay hindi maipapakita.",
+    "withdraw_follow_request": "Bawiin ang kahilingan na sumunod"
   },
   "action": {
     "apply": "Mag-apply",
     "bookmark": "I-bookmark",
     "bookmarked": "Nai-bookmark na",
     "boost": "I-boost",
-    "boost_count": "{0} ang nag-boost",
+    "boost_count": "{0} nag-boost",
     "boosted": "Nai-boost na",
-    "clear_publish_failed": "Tanggalin ang mga error sa pag-publish",
-    "clear_upload_failed": "Tanggalin ang mga error sa pag-upload ng file",
+    "clear_publish_failed": "I-clear ang mga error sa pag-publish",
+    "clear_save_failed": "I-clear ang mga error sa pag-save",
+    "clear_upload_failed": "I-clear ang mga error sa pag-upload ng file",
     "close": "Isara",
     "compose": "Mag-compose",
     "confirm": "Kumpirmahin",
+    "done": "Tapos na",
     "edit": "I-edit",
     "enter_app": "Tumuloy sa App",
     "favourite": "I-favorite",
-    "favourite_count": "{0} ang nag-favorite",
+    "favourite_count": "{0} nag-favorite",
     "favourited": "Nai-favorite na",
     "more": "Iba pa",
     "next": "Susunod",
     "prev": "Nakaraan",
     "publish": "I-publish",
     "reply": "Sumagot",
-    "reply_count": "{0} ang sumagot",
+    "reply_count": "{0} sumagot",
     "reset": "I-reset",
     "save": "I-save",
     "save_changes": "I-save ang mga pagbabago",
@@ -99,6 +108,8 @@
     "error": "ERROR",
     "fetching": "Kumukuha...",
     "in": "sa",
+    "no_bookmarks": "Wala pang naka-bookmark na mga post",
+    "no_favourites": "Wala pang ni-like na post",
     "not_found": "404 Hindi Nakita",
     "offline_desc": "Mukhang offline ka. Mangyaring suriin ang iyong koneksyon sa network."
   },
@@ -110,12 +121,14 @@
     "block_account": {
       "cancel": "Kanselahin",
       "confirm": "I-block",
-      "description": "Sigurado ka bang gusto mong i-block si {0}?"
+      "description": "Sigurado ka bang gusto mong i-block si {0}?",
+      "title": "I-block ang account"
     },
     "block_domain": {
       "cancel": "Kanselahin",
       "confirm": "I-block",
-      "description": "Sigurado ka bang gusto mong i-block ang {0}?"
+      "description": "Sigurado ka bang gusto mong i-block ang {0}?",
+      "title": "I-block ang domain"
     },
     "common": {
       "cancel": "Hindi",
@@ -124,27 +137,37 @@
     "delete_list": {
       "cancel": "Kanselahin",
       "confirm": "Burahin",
-      "description": "Sigurado ka bang gusto mong burahin ang listahan na \"{0}\"?"
+      "description": "Sigurado ka bang gusto mong burahin ang listahan na \"{0}\"?",
+      "title": "I-delete ang list"
     },
     "delete_posts": {
       "cancel": "Kanselahin",
       "confirm": "Burahin",
-      "description": "Sigurado ka bang gusto mong burahin ang post na ito?"
+      "description": "Sigurado ka bang gusto mong burahin ang post na ito?",
+      "title": "I-delete post"
     },
     "mute_account": {
       "cancel": "Kanselahin",
       "confirm": "I-mute",
-      "description": "Sigurado ka bang gusto mong i-mute si {0}?"
+      "days": "mga araw|araw|mga araw",
+      "description": "Sigurado ka bang gusto mong i-mute si {0}?",
+      "hours": "mga oras|oras|mga oras",
+      "minute": "mga minuto|minuto|mga minuto",
+      "notifications": "I-mute ang notifications",
+      "specify_duration": "Tukuyin ang tagal ng pag-mute",
+      "title": "I-mute ang account"
     },
     "show_reblogs": {
       "cancel": "Kanselahin",
       "confirm": "Ipakita",
-      "description": "Sigurado ka bang gusto mong ipakita ang mga boosts mula kay {0}?"
+      "description": "Sigurado ka bang gusto mong ipakita ang mga boosts mula kay {0}?",
+      "title": "Ipakita ang boosts"
     },
     "unfollow": {
       "cancel": "Kanselahin",
-      "confirm": "Huminto sa pagsunod",
-      "description": "Sigurado ka bang gusto mong huminto sa pagsunod?"
+      "confirm": "Itigil ang pagsunod",
+      "description": "Sigurado ka bang gusto mong huminto sa pagsunod?",
+      "title": "Itigil ang pagsunod"
     }
   },
   "conversation": {
@@ -196,7 +219,7 @@
     "edit_error": "Mayroong error sa pag-update ng listahan",
     "error": "Mayroong error sa paglikha ng listahan",
     "error_prefix": "Error: ",
-    "list_title_placeholder": "Pamagat ng listahan",
+    "list_title_placeholder": "Pangalan ng listahan",
     "modify_account": "Baguhin ang mga listahan sa account",
     "remove_account": "Tanggalin ang account sa listahan",
     "save": "I-save ang mga pagbabago"
@@ -209,24 +232,36 @@
         "command_mode": "Mode ng Command",
         "compose": "Mag-compose",
         "favourite": "Paborito",
+        "search": "Hanapin",
+        "show_new_items": "Ipakita ang mga bagong item",
         "title": "Mga aksyon"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Mga Tandang-Pahina",
+        "go_to_conversations": "Mga Usapang Pribado",
+        "go_to_explore": "Mag-Explore",
+        "go_to_favourites": "Mga Paborito",
+        "go_to_federated": "Pederal",
         "go_to_home": "Tungo sa Home",
+        "go_to_lists": "Mga Listahan",
+        "go_to_local": "Lokal",
         "go_to_notifications": "Tungo sa mga Abiso",
+        "go_to_profile": "Profile",
+        "go_to_search": "Hanapin",
+        "go_to_settings": "Mga Setting",
         "next_status": "Susunod na status",
         "previous_status": "Nakaraang status",
         "shortcut_help": "Tulong sa shortcut",
         "title": "Pag-navigate"
       }
     },
-    "sequence_then": "pagkatapos"
+    "sequence_then": "tapos"
   },
   "menu": {
-    "add_personal_note": "Magdagdag ng personal na note sa {0}",
+    "add_personal_note": "Sumulat ng personal na tala",
     "block_account": "I-block si {0}",
     "block_domain": "I-block ang domain ng {0}",
     "copy_link_to_post": "Kopyahin ang link",
@@ -236,12 +271,14 @@
     "direct_message_account": "I-message ng direkta si {0}",
     "edit": "I-edit",
     "hide_reblogs": "Itago ang mga boost mula kay {0}",
-    "mention_account": "Banggitin si {0}",
+    "mention_account": "Tumugon kay {0}",
     "mute_account": "I-mute si {0}",
     "mute_conversation": "I-mute ang post na ito",
     "open_in_original_site": "Buksan sa orihinal na site",
     "pin_on_profile": "I-pin sa profile",
-    "remove_personal_note": "Tanggalin ang personal na note sa {0}",
+    "remove_personal_note": "Tanggalin ang personal na tala",
+    "report_account": "I-report si {0}",
+    "share_account": "I-share si {0}",
     "share_post": "I-share ang post na ito",
     "show_favourited_and_boosted_by": "Ipakita ang mga nag-favorite at nag-boost",
     "show_reblogs": "Ipakita ang mga boost mula kay {0}",
@@ -253,6 +290,7 @@
     "translate_post": "I-translate ang post",
     "unblock_account": "I-unblock ang {0}",
     "unblock_domain": "I-unblock ang domain ng {0}",
+    "unfollow_account": "Unfollow {0}",
     "unmute_account": "I-unmute si {0}",
     "unmute_conversation": "I-unmute ang post na ito",
     "unpin_on_profile": "I-unpin sa profile"
@@ -265,12 +303,13 @@
     "blocked_domains": "Mga Naka-Block na Domain",
     "blocked_users": "Mga Naka-Block na Users",
     "bookmarks": "Mga Tandang-Pahina",
-    "built_at": "Ginawa noong {0}",
+    "built_at": "Build version mula noong {0}",
     "compose": "Lumikha ng Mensahe",
     "conversations": "Mga Usapang Pribado",
     "explore": "Mag-Explore",
     "favourites": "Mga Paborito",
     "federated": "Pederal",
+    "hashtags": "Mga Hashtags",
     "home": "Tahanan",
     "list": "Listahan",
     "lists": "Mga Listahan",
@@ -304,10 +343,26 @@
     "reply_to_account": "Sagot kay {0}",
     "replying": "Sumasagot"
   },
+  "polls": {
+    "allow_multiple": "Payagan ang maramihang pagboto",
+    "cancel": "Kanselahin",
+    "create": "Likhain ang poll",
+    "disallow_multiple": "Huwag payagan ang maramihang pagboto",
+    "expiration": "Katapusan ng pagboto",
+    "hide_votes": "Itago ang bilang ng mga boto hanggang sa katapusan",
+    "option_placeholder": "Poll choice {current}/{max}",
+    "remove_option": "Remove choice",
+    "settings": "Poll options",
+    "show_votes": "Always show vote totals"
+  },
   "pwa": {
     "dismiss": "I-dismiss",
     "install": "I-install",
     "install_title": "I-install ang Elk",
+    "screenshots": {
+      "dark": "Screenshot of Elk running in dark mode",
+      "light": "Screenshot of Elk running in light mode"
+    },
     "title": "May bagong update para sa Elk!",
     "update": "I-update",
     "update_available_short": "I-update ang Elk",
@@ -333,6 +388,42 @@
         "short_name": "Elk"
       }
     }
+  },
+  "report": {
+    "additional_comments": "Karagdagang mga komento",
+    "another_server": "Ang user na iyong inire-report ay mula sa ibang server",
+    "anything_else": "May iba pa ba kaming kailangan malaman?",
+    "block_desc": "Hindi mo na makikita ang mga post mula sa user na ito. Hindi rin nila masusundan ang iyong account o makikita ang iyong mga post. Malalaman nilang naka-block sila.",
+    "dontlike": "Hindi ko ito gusto",
+    "dontlike_desc": "Hindi mo ito gustong makita",
+    "forward": "Oo, ipasa ang report na ito sa {0}",
+    "forward_question": "Gusto mo bang magpadala din ng anonymous na kopya ng report na ito sa server na iyon?",
+    "further_actions": {
+      "limit": {
+        "description": "Narito ang iyong mga pwedeng gawin upang ma-control iyong nakikita:",
+        "title": "Ayaw mong makita ito?"
+      },
+      "report": {
+        "description": "Habang sinusuri namin ang iyong report, narito ang mga maaari mong gawin:",
+        "title": "Salamat sa pag-report, titingnan namin ito"
+      }
+    },
+    "limiting": "Inili-limit {0}",
+    "mute_desc": "Hindi mo na makikita ang mga post mula sa user na ito. Maaari ka pa rin nilang sundan at makita ang iyong mga post. Hindi nila malalaman na sila ay naka-mute",
+    "other": "Iba ang aking dahilan",
+    "other_desc": "Ang isyu ay hindi umaangkop sa mga nabanggit na kategorya",
+    "reporting": "Pag-report si {0}",
+    "select_many": "Piliin ang lahat ng tugma:",
+    "select_one": "Piliin ang pinaka-tugma:",
+    "select_posts": "Mayroon bang mga post na nagba-back up sa report na ito?",
+    "select_posts_other": "Mayroon pa bang mga post na nagba-back up sa report na ito?",
+    "spam": "Ito ay spam",
+    "spam_desc": "May mga malicious na link, pekeng engagement, o paulit-ulit na reply",
+    "submit": "I-sumite ang report",
+    "unfollow_desc": "Hindi mo na makikita ang mga post mula sa user na ito sa iyong feed na Tahanan. Maaari ka pa ring makakita ng mga post mula sa kanila sa ibang lugar.",
+    "violation": "Lumalabag ito sa mga rules ng server",
+    "whats_wrong_account": "Sabihin sa amin kung ano ang mali sa account na ito",
+    "whats_wrong_post": "Sabihin sa amin kung ano ang mali sa post na ito"
   },
   "search": {
     "search_desc": "Maghanap ng mga tao at hashtag",
@@ -368,6 +459,7 @@
     "language": {
       "display_language": "Ipakita ang Wika",
       "label": "Wika",
+      "post_language": "Posting Language",
       "status": "Kalagayan ng Pagsasalin: {0}/{1} ({2}%)",
       "translations": {
         "add": "Magdagdag",
@@ -386,7 +478,7 @@
         "alerts": {
           "favourite": "Mga Paborito",
           "follow": "Mga Bagong Tagasunod",
-          "mention": "Mga Mention",
+          "mention": "Mga Tugon",
           "poll": "Mga Poll",
           "reblog": "Mga Reblog ng iyong Post",
           "title": "Anong mga abiso ang nais mong matanggap?"
@@ -433,25 +525,33 @@
     },
     "notifications_settings": "Mga Notification",
     "preferences": {
+      "embedded_media": "Naka-Embed na Media Player",
+      "embedded_media_description": "Magpakita ng naka-embed na player sa halip na preview card para sa mga post na may media streaming.",
       "enable_autoplay": "Paganahin ang Autoplay",
       "enable_data_saving": "Paganahin ang pag-save ng data",
       "enable_data_saving_description": "I-save ang data sa pamamagitan ng pagpigil sa mga attachment na auto-loading.",
       "enable_pinch_to_zoom": "Paganahin ang pinch-to-zoom",
       "github_cards": "Mga Card ng GitHub",
+      "github_cards_description": "Kapag may post na GitHub link, ipakita ang isang HTML preview card na naglalaman ng social graph meta sa halip na ang social image.",
       "grayscale_mode": "Grayscale mode",
       "hide_account_hover_card": "Itago ang account hover card",
       "hide_alt_indi_on_posts": "Itago ang alt indicator sa mga post",
       "hide_boost_count": "Itago ang boost count",
       "hide_favorite_count": "Itago ang favorite count",
       "hide_follower_count": "Itago ang following/follower count",
+      "hide_news": "Itago ang mga balita",
       "hide_reply_count": "Itago ang reply count",
+      "hide_tag_hover_card": "Itago ang tag hover card",
       "hide_translation": "Itago ang translation",
       "hide_username_emojis": "Itago ang username emojis",
       "hide_username_emojis_description": "Itinatago ang mga emojis mula sa mga usernames sa timelines. Makikita pa rin ang mga emojis sa kanilang mga profile.",
       "label": "Mga Nais",
+      "optimize_for_low_performance_device": "I-optimize para sa device na mabagal",
       "title": "Mga Experimental na Tampok",
-      "user_picker": "User Picker",
-      "virtual_scroll": "Virtual Scrolling",
+      "use_star_favorite_icon": "Gumamit ng star na icon para sa pag-paborito",
+      "user_picker": "Pagpipilian na mga Account",
+      "user_picker_description": "Ipakita ang mga avatar ng mga naka-login na account sa kaliwang ibaba para makalipat sa mga ito.",
+      "virtual_scroll": "Virtual na Scrolling",
       "wellbeing": "Kalusugan at Kagalingan",
       "zen_mode": "Modong Zen",
       "zen_mode_description": "Itago ang ibang mga elemento sa timeline at mga asides maliban kung naka-focus ang mouse cursor sa kanila."
@@ -495,6 +595,7 @@
     "loading": "Nagloload...",
     "publish_failed": "Nabigo sa pagpapaskil",
     "publishing": "Nagpapaskil",
+    "save_failed": "Nabigo ang pag-save",
     "upload_failed": "Nabigo sa pag-upload",
     "uploading": "Naguuupload..."
   },
@@ -503,8 +604,9 @@
       "suspended_message": "Ang account ng status na ito ay nakasuspinde.",
       "suspended_show": "Ipakita pa rin ang nilalaman?"
     },
-    "boosted_by": "Binuhay muli ni",
+    "boosted_by": "Ini-boost ni",
     "edited": "Naedit {0}",
+    "embedded_warning": "Ang pag-play nito ay maaaring magbunyag ng iyong IP address sa iba.",
     "favourited_by": "Pumaborito si",
     "filter_hidden_phrase": "Nakafilter dahil sa",
     "filter_show_anyway": "Ipakita pa rin",
@@ -539,8 +641,20 @@
     "list": "Listahan",
     "media": "Media",
     "news": "Balita",
+    "notifications_admin": {
+      "report": "Mga Report",
+      "sign_up": "Mga Sign-Up"
+    },
     "notifications_all": "Lahat",
-    "notifications_mention": "Mention",
+    "notifications_favourite": "Mga Paborito",
+    "notifications_follow": "Mga Pagsunod",
+    "notifications_follow_request": "Mga Hiling ng Pagsunod",
+    "notifications_mention": "Mga Tugon",
+    "notifications_more_tooltip": "I-filter ang mga notification ayon sa uri",
+    "notifications_poll": "Mga Poll",
+    "notifications_reblog": "Mga Boost",
+    "notifications_status": "Mga Sinusundang Status",
+    "notifications_update": "Mga Update",
     "posts": "Mga Post",
     "posts_with_replies": "Mga Post at Mga Tugon"
   },

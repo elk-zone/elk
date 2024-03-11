@@ -95,7 +95,7 @@
     "activate": "Kích hoạt",
     "complete": "Hoàn thành",
     "compose_desc": "Soạn tút mới",
-    "n_people_in_the_past_n_days": "{0} người nhắc đến trong {1} ngày gần đây",
+    "n_people_in_the_past_n_days": "{0} người dùng trong {1} ngày qua",
     "select_lang": "Chọn ngôn ngữ",
     "sign_in_desc": "Thêm một tài khoản khác",
     "switch_account": "Chuyển sang {0}",
@@ -149,7 +149,12 @@
     "mute_account": {
       "cancel": "Hủy bỏ",
       "confirm": "Ẩn",
+      "days": "ngày|ngày|ngày",
       "description": "Bạn có chắc muốn ẩn {0}?",
+      "hours": "giờ|giờ|giờ",
+      "minute": "phút|phút|phút",
+      "notifications": "Ẩn thông báo",
+      "specify_duration": "Thời hạn ẩn cụ thể",
       "title": "Ẩn người"
     },
     "show_reblogs": {
@@ -228,14 +233,25 @@
         "compose": "Soạn",
         "favourite": "Thích",
         "search": "Tìm kiếm",
+        "show_new_items": "Hiện những tút mới",
         "title": "Hành động"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Tút đã lưu",
+        "go_to_conversations": "Nhắn riêng",
+        "go_to_explore": "Khám phá",
+        "go_to_favourites": "Lượt thích",
+        "go_to_federated": "Liên hợp",
         "go_to_home": "Trang chủ",
+        "go_to_lists": "Danh sách",
+        "go_to_local": "Máy chủ",
         "go_to_notifications": "Thông báo",
+        "go_to_profile": "Hồ sơ",
+        "go_to_search": "Tìm kiếm",
+        "go_to_settings": "Cài đặt",
         "next_status": "Tút tiếp theo",
         "previous_status": "Tút trước đó",
         "shortcut_help": "Trợ giúp phím tắt",
@@ -264,7 +280,7 @@
     "report_account": "Báo cáo {0}",
     "share_account": "Chia sẻ {0}",
     "share_post": "Chia sẻ tút",
-    "show_favourited_and_boosted_by": "Xem lượt thích và đăng lại",
+    "show_favourited_and_boosted_by": "Xem lượt thích & đăng lại",
     "show_reblogs": "Xem đăng lại từ {0}",
     "show_untranslated": "Xem bản chưa dịch",
     "toggle_theme": {
@@ -293,6 +309,7 @@
     "explore": "Khám phá",
     "favourites": "Lượt thích",
     "federated": "Liên hợp",
+    "hashtags": "Hashtag",
     "home": "Trang chủ",
     "list": "Danh sách",
     "lists": "Danh sách",
@@ -525,6 +542,7 @@
       "hide_follower_count": "Ẩn số lượt người theo dõi/đang theo dõi",
       "hide_news": "Ẩn tin tức",
       "hide_reply_count": "Ẩn số lượt trả lời",
+      "hide_tag_hover_card": "Ẩn xem trước hashtag",
       "hide_translation": "Ẩn chức năng dịch",
       "hide_username_emojis": "Ẩn emoji trong tên người dùng",
       "hide_username_emojis_description": "Ẩn emoji khỏi tên người dùng, emoji vẫn sẽ hiển thị trong mô tả của họ.",

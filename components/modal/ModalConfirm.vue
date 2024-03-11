@@ -17,7 +17,7 @@ const isMute = computed(() => props.extraOptionType === 'mute')
 function handleChoice(choice: ConfirmDialogChoice['choice']) {
   const dialogChoice = {
     choice,
-    ...isMute && {
+    ...isMute.value && {
       extraOptions: {
         mute: {
           duration: hasDuration.value ? duration.value : 0,

@@ -32,6 +32,8 @@ const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
   const actualFilter = Array.isArray(rawFilter) ? rawFilter[0] : rawFilter
   if (isNotificationFilter(actualFilter))
     return actualFilter
+
+  return undefined
 })
 
 const filterIconMap: Record<mastodon.v1.NotificationType, string> = {

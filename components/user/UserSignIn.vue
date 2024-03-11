@@ -72,7 +72,7 @@ function onEnter(e: KeyboardEvent) {
 }
 
 function escapeAutocomplete(evt: KeyboardEvent) {
-  if (!autocompleteShow)
+  if (!autocompleteShow.value)
     return
   autocompleteShow.value = false
   evt.stopPropagation()

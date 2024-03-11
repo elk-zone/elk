@@ -59,7 +59,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
   }
 
   watch(() => resolveUnref(query), () => {
-    loading.value = !!(q && isHydrated.value)
+    loading.value = !!(q.value && isHydrated.value)
   })
 
   debouncedWatch(() => resolveUnref(query), async () => {
@@ -87,7 +87,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
   }, { debounce: 300 })
 
   const next = async () => {
-    if (!q || !isHydrated.value || !paginator)
+    if (!q.value || !isHydrated.value || !paginator)
       return
 
     loading.value = true

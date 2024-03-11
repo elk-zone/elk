@@ -12,6 +12,8 @@ const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
   const actualFilter = Array.isArray(rawFilter) ? rawFilter[0] : rawFilter
   if (isNotification(actualFilter))
     return actualFilter
+
+  return undefined
 })
 
 useHydratedHead({

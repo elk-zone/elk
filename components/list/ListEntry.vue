@@ -92,7 +92,7 @@ async function removeList() {
 async function clearError() {
   actionError.value = undefined
   await nextTick()
-  if (isEditing)
+  if (isEditing.value)
     input.value?.focus()
   else
     deleteBtn.value?.focus()

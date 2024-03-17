@@ -1,4 +1,5 @@
 import type { mastodon } from 'masto'
+import type { ViewTransition } from '#app/plugins/view-transitions.client'
 
 interface ViewTransitionSources {
   status?: mastodon.v1.Status
@@ -12,6 +13,10 @@ interface ViewTransitionState {
 
 function getViewTransitionState() {
   return useState<null | ViewTransitionState>('viewTransitionTargets', () => null)
+}
+
+export function getIsViewTransitionFinished() {
+  return useState<boolean>('isVewTransitionFinished', () => true)
 }
 
 export const viewTransitionEnabledInjectionKey: InjectionKey<boolean> = Symbol('whether view-transition is enabled for this component')

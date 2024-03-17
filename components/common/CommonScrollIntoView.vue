@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const { as = 'div', active } = defineProps<{ as: any; active: boolean }>()
+const { as = 'div', active } = defineProps<{
+  as: any
+  active: boolean
+}>()
+
 const el = ref()
 
 watch(() => active, (active) => {

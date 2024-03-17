@@ -149,7 +149,12 @@
     "mute_account": {
       "cancel": "Cancel",
       "confirm": "Mute",
+      "days": "days|day|days",
       "description": "Are you sure you want to mute {0}?",
+      "hours": "hours|hour|hours",
+      "minute": "minutes|minute|minutes",
+      "notifications": "Mute notifications",
+      "specify_duration": "Specify mute duration",
       "title": "Mute account"
     },
     "show_reblogs": {
@@ -304,6 +309,7 @@
     "explore": "Explore",
     "favourites": "Favorites",
     "federated": "Federated",
+    "hashtags": "Hashtags",
     "home": "Home",
     "list": "List",
     "lists": "Lists",
@@ -536,6 +542,7 @@
       "hide_follower_count": "Hide following/follower count",
       "hide_news": "Hide news",
       "hide_reply_count": "Hide reply count",
+      "hide_tag_hover_card": "Hide tag hover card",
       "hide_translation": "Hide translation",
       "hide_username_emojis": "Hide username emojis",
       "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",

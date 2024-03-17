@@ -4,6 +4,7 @@ import { createResolver } from '@nuxt/kit'
 import type { ManifestOptions } from 'vite-plugin-pwa'
 import { getEnv } from '../../config/env'
 import { currentLocales } from '../../config/i18n'
+import { THEME_COLORS } from '../../constants/index'
 
 export type LocalizedWebManifest = Record<string, Partial<ManifestOptions>>
 
@@ -217,8 +218,8 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
       short_name,
       description,
       dir,
-      background_color: '#ffffff',
-      theme_color: '#ffffff',
+      background_color: THEME_COLORS.backgroundLight,
+      theme_color: THEME_COLORS.themeLight,
       ...manifestEntries,
       shortcuts,
       screenshots,
@@ -229,8 +230,8 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
       short_name,
       description,
       dir,
-      background_color: '#111111',
-      theme_color: '#111111',
+      background_color: THEME_COLORS.backgroundDark,
+      theme_color: THEME_COLORS.themeDark,
       ...manifestEntries,
       shortcuts,
       screenshots,

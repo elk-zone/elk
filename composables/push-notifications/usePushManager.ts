@@ -64,7 +64,7 @@ export function usePushManager() {
     policy?: mastodon.v1.WebPushSubscriptionPolicy,
     force?: boolean,
   ): Promise<SubscriptionResult> => {
-    if (!isSupported)
+    if (!isSupported.value)
       return 'not-supported'
 
     if (!currentUser.value)
@@ -87,7 +87,10 @@ export function usePushManager() {
 
     currentUser.value.pushSubscription = await createPushSubscription(
       {
-        pushSubscription, server, token, vapidKey,
+        pushSubscription,
+        server,
+        token,
+        vapidKey,
       },
       notificationData ?? {
         alerts: {
@@ -109,7 +112,7 @@ export function usePushManager() {
   }
 
   const unsubscribe = async () => {
-    if (!isSupported || !isSubscribed || !currentUser.value)
+    if (!isSupported.value || !isSubscribed.value || !currentUser.value)
       return false
 
     await removePushNotifications(currentUser.value)

@@ -60,6 +60,8 @@ export function createNotificationOptions(
     icon,
     lang: preferred_locale,
     tag: notification_id,
+    // eslint-disable-next-line ts/prefer-ts-expect-error
+    // @ts-ignore error missing type, just ignore
     timestamp: new Date().getTime(),
   }
 
@@ -70,8 +72,11 @@ export function createNotificationOptions(
     if (notification.account.avatar_static)
       notificationOptions.icon = notification.account.avatar_static
 */
-    if (notification.created_at)
+    if (notification.created_at) {
+      // eslint-disable-next-line ts/prefer-ts-expect-error
+      // @ts-ignore error missing type, just ignore
       notificationOptions.timestamp = new Date(notification.created_at).getTime()
+    }
 
     /* TODO: add spolier when actions available, checking also notification type
     if (notification.status && (notification.status.spoilerText || notification.status.sensitive)) {
@@ -83,8 +88,11 @@ export function createNotificationOptions(
     */
     if (notification.status) {
       // notificationOptions.body = htmlToPlainText(notification.status.content)
-      if (notification.status.media_attachments && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url)
+      if (notification.status.media_attachments && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url) {
+        // eslint-disable-next-line ts/prefer-ts-expect-error
+        // @ts-ignore error missing type, just ignore
         notificationOptions.image = notification.status.media_attachments[0].preview_url
+      }
 
       if (notification.type === 'favourite' || notification.type === 'reblog' || notification.type === 'mention')
         notificationOptions.data.url = `${user.server}/@${user.account.username}/${notification.status.id}`

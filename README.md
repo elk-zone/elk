@@ -39,8 +39,8 @@ The Elk team maintains a deployment at:
 
 ### Self-Host Docker Deployment
 
-In order to host Elk yourself you can use the provided Dockerfile to build a container with elk. Be aware, that Elk only loads properly if the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself. 
-One could put Elk behind popular reverse proxies with SSL Handling like Traefik, NGINX etc. 
+In order to host Elk yourself you can use the provided Dockerfile to build a container with elk. Be aware, that Elk only loads properly if the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself.
+One could put Elk behind popular reverse proxies with SSL Handling like Traefik, NGINX etc.
 
 1. checkout source ```git clone https://github.com/elk-zone/elk.git```
 1. got into new source dir: ```cd elk```
@@ -51,7 +51,6 @@ One could put Elk behind popular reverse proxies with SSL Handling like Traefik,
 
 > [!NOTE]
 > The provided Dockerfile creates a container which will eventually run Elk as non-root user and create a persistent named Docker volume upon first start (if that volume does not yet exist). This volume is always created with root permission. Failing to change the permissions of ```/elk/data``` inside this volume to UID:GID 911 (as specified for Elk in the Dockerfile) will prevent Elk from storing it's config for user accounts. You either have to fix the permission in the created named volume, or mount a directory with the correct permission to ```/elk/data``` into the container.
-
 
 ### Ecosystem
 
@@ -107,7 +106,7 @@ We're really excited that you're interested in contributing to Elk! Before submi
 
 ### Online
 
-You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 
+You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow).
 
 [![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
 
@@ -158,8 +157,8 @@ You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more
 ## 👨‍💻 Contributors
 
 <a href="https://github.com/elk-zone/elk/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=elk-zone/elk" />   
-</a>    
+  <img src="https://contrib.rocks/image?repo=elk-zone/elk" />
+</a>
 
 ## 📄 License
 

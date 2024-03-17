@@ -32,7 +32,7 @@ const hideAllMedia = computed(
 const viewTransitionStyle = getViewTransitionStyles('status-content')
 
 const embeddedMediaPreference = usePreferences('experimentalEmbeddedMedia')
-const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPreference)
+const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPreference.value)
 </script>
 
 <template>

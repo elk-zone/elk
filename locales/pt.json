@@ -149,7 +149,12 @@
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
+      "days": "dias|dia|dias",
       "description": "Tem a certeza que pretende silenciar {0}?",
+      "hours": "horas|hora|horas",
+      "minute": "minutos|minuto|minutos",
+      "notifications": "Silenciar notificações",
+      "specify_duration": "Especificar duração do silêncio",
       "title": "Silenciar conta"
     },
     "show_reblogs": {
@@ -226,16 +231,27 @@
         "boost": "Partilhar",
         "command_mode": "Menu de comandos",
         "compose": "Compor",
-        "favourite": "Adcionar aos favoritos",
+        "favourite": "Adicionar aos favoritos",
         "search": "Pesquisar",
+        "show_new_items": "Mostrar novos itens",
         "title": "Ações"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Itens Salvos",
+        "go_to_conversations": "Conversas",
+        "go_to_explore": "Explorar",
+        "go_to_favourites": "Favoritos",
+        "go_to_federated": "Federada",
         "go_to_home": "Início",
+        "go_to_lists": "Listas",
+        "go_to_local": "Local",
         "go_to_notifications": "Notificações",
+        "go_to_profile": "Perfil",
+        "go_to_search": "Pesquisa",
+        "go_to_settings": "Definições",
         "next_status": "Publicação seguinte",
         "previous_status": "Publicação anterior",
         "shortcut_help": "Lista de atalhos",
@@ -293,6 +309,7 @@
     "explore": "Explorar",
     "favourites": "Favoritos",
     "federated": "Federada",
+    "hashtags": "Hashtags",
     "home": "Início",
     "list": "Lista",
     "lists": "Listas",
@@ -525,6 +542,7 @@
       "hide_follower_count": "Esconder contagem de seguidores",
       "hide_news": "Esconder notícias",
       "hide_reply_count": "Esconder contagem de respostas",
+      "hide_tag_hover_card": "Esconder cartão flutuante de hashtag",
       "hide_translation": "Esconder botão de tradução",
       "hide_username_emojis": "Esconder emojis do nome de utilizador",
       "hide_username_emojis_description": "Esconde os emojis do nome de utilizador nas cronologias. Os Emojis continuarão a ser visíveis nos seus perfis.",

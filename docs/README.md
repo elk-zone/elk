@@ -30,7 +30,7 @@ We use [Docus](https://docus.dev) as the site generator and deploy through Netli
 
 When you are ready to submit work back to the main Elk repo, create a PR.
 
-1. If it has been a bit, synchronize your fork with the upstream repo on GitHub. 
+1. If it has been a bit, synchronize your fork with the upstream repo on GitHub.
 2. Do your work in a branch on your fork
    Use `git checkout -b branchNameToUse` to create a working branch separate from `main`.
 3. Do your work in your preferred editor

@@ -167,6 +167,20 @@ describe('content-rich', () => {
     `)
     expect(formatted).toMatchSnapshot()
   })
+
+  it ('root p includes dir="auto" attr when mixed content', async () => {
+    const { formatted } = await render(`
+      <p>هذا اختبار جديد 🐦🐤 <span class="h-card"><a href="https://strangeobject.space/@bebatjof" class="u-url mention">@<span>bebatjof</span></a></span> <br />أنا أحب الطريقة التي يتم بها دعم النموذج المزدوج العربي. تمت ترجمة الكلمة الأخيرة بشكل خاطئ وأحاول العثور على كيفية إصلاحها. 🐦🐤 ;). كما أن النموذج الخاص بـ 0 يحتاج إلى إصلاح <a href="https://m.webtoo.ls/tags/turkey" class="mention hashtag" rel="tag">#<span>turkey</span></a> <a href="https://m.webtoo.ls/tags/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" class="mention hashtag" rel="tag">#<span>العربية</span></a> .</p><p>This is a new test 🐦🐤 <span class="h-card"><a href="https://strangeobject.space/@bebatjof" class="u-url mention">@<span>bebatjof</span></a></span> <br />I like how the arabic dual form is supported. The last one is mistranslated and I&#39;m trying to find how to fix it. 🐦🐤 ;). Also, the form for 0 needs to be fixed <a href="https://m.webtoo.ls/tags/turkey" class="mention hashtag" rel="tag">#<span>turkey</span></a> <a href="https://m.webtoo.ls/tags/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" class="mention hashtag" rel="tag">#<span>العربية</span></a> .</p>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
+
+  it ('p moved to div and text children replaced with p[dir="auto"] tags: br children removed', async () => {
+    const { formatted } = await render(`
+      <p><span class="h-card"><a href="https://strangeobject.space/@bebatjof" class="u-url mention">@<span>bebatjof</span></a></span> هذا اختبار:<br />أنا أحب الطريقة التي يتم بها دعم النموذج المزدوج العربي. تمت ترجمة الكلمة الأخيرة بشكل خاطئ وأحاول العثور على كيفية إصلاحها. أيضًا، يجب إصلاح نموذج 0.</p><p>This is a test:<br />I like how the arabic dual form is supported. The last one is mistranslated and I&#39;m trying to find how to fix it. Also, the form for 0 needs to be fixed.</p>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
 })
 
 describe('editor', () => {
@@ -208,6 +222,30 @@ vi.mock('vue-router', async () => {
         return () => h('a', props, { default: () => slots?.default?.() })
       },
     }),
+  }
+})
+
+vi.mock('@vueuse/shared', async () => {
+  const vueuseShared = await import('@vueuse/shared')
+  // mock pausableWatch and watchPausable: vitest process hangs from time to time
+  return {
+    ...vueuseShared,
+    pausableWatch: () => {
+      return {
+        stop: () => {},
+        pause: () => {},
+        resume: () => {},
+        isActive: readonly(ref(true)),
+      }
+    },
+    watchPausable: () => {
+      return {
+        stop: () => {},
+        pause: () => {},
+        resume: () => {},
+        isActive: readonly(ref(true)),
+      }
+    },
   }
 })
 

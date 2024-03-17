@@ -62,12 +62,13 @@ async function shareLink(status: mastodon.v1.Status) {
 }
 
 async function deleteStatus() {
-  if (await openConfirmDialog({
+  const confirmDelete = await openConfirmDialog({
     title: t('confirm.delete_posts.title'),
     description: t('confirm.delete_posts.description'),
     confirm: t('confirm.delete_posts.confirm'),
     cancel: t('confirm.delete_posts.cancel'),
-  }) !== 'confirm')
+  })
+  if (confirmDelete.choice !== 'confirm')
     return
 
   removeCachedStatus(status.value.id)
@@ -80,12 +81,13 @@ async function deleteStatus() {
 }
 
 async function deleteAndRedraft() {
-  if (await openConfirmDialog({
+  const confirmDelete = await openConfirmDialog({
     title: t('confirm.delete_posts.title'),
     description: t('confirm.delete_posts.description'),
     confirm: t('confirm.delete_posts.confirm'),
     cancel: t('confirm.delete_posts.cancel'),
-  }) !== 'confirm')
+  })
+  if (confirmDelete.choice !== 'confirm')
     return
 
   if (import.meta.dev) {

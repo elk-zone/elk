@@ -56,13 +56,22 @@ export interface Draft {
 
 export type DraftMap = Record<string, Draft>
 
-export interface ConfirmDialogLabel {
+export interface ConfirmDialogOptions {
   title: string
   description?: string
   confirm?: string
   cancel?: string
+  extraOptionType?: 'mute'
 }
-export type ConfirmDialogChoice = 'confirm' | 'cancel'
+export interface ConfirmDialogChoice {
+  choice: 'confirm' | 'cancel'
+  extraOptions?: {
+    mute: {
+      duration: number
+      notifications: boolean
+    }
+  }
+}
 
 export interface CommonRouteTabOption {
   to: RouteLocationRaw

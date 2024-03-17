@@ -22,7 +22,7 @@ onMounted(() => {
 
 const commandMode = computed(() => input.value.startsWith('>'))
 
-const query = computed(() => commandMode ? '' : input.value.trim())
+const query = computed(() => commandMode.value ? '' : input.value.trim())
 
 const { accounts, hashtags, loading } = useSearch(query)
 
@@ -61,7 +61,7 @@ const searchResult = computed<QueryResult>(() => {
   }
 })
 
-const result = computed<QueryResult>(() => commandMode
+const result = computed<QueryResult>(() => commandMode.value
   ? registry.query(scopes.value.map(s => s.id).join('.'), input.value.slice(1).trim())
   : searchResult.value,
 )

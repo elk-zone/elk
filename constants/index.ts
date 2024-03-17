@@ -22,7 +22,16 @@ export const STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS = 'elk-hide-explore-tags-tips'
 export const STORAGE_KEY_NOTIFICATION = 'elk-notification'
 export const STORAGE_KEY_NOTIFICATION_POLICY = 'elk-notification-policy'
 export const STORAGE_KEY_PWA_HIDE_INSTALL = 'elk-pwa-hide-install'
+export const STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE = 'elk-last-accessed-notification-route'
+export const STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE = 'elk-last-accessed-explore-route'
 
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\d-]+\.)+\w+\/(@[@\w\d-\.]+)(\/objects)?(\/\d+)?$/
 
 export const NOTIFICATION_FILTER_TYPES: mastodon.v1.NotificationType[] = ['status', 'reblog', 'follow', 'follow_request', 'favourite', 'poll', 'update', 'admin.sign_up', 'admin.report']
+
+export const THEME_COLORS = {
+  themeDark: '#111111',
+  themeLight: '#fafafa',
+  backgroundDark: '#fafafa',
+  backgroundLight: '#111111',
+} as const

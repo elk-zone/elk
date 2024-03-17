@@ -67,8 +67,8 @@ if (import.meta.env.PROD) {
   registerRoute(
     ({ sameOrigin, request, url }) =>
       sameOrigin
-        && request.destination === 'image'
-        && url.pathname.startsWith('/emojis/'),
+      && request.destination === 'image'
+      && url.pathname.startsWith('/emojis/'),
     new StaleWhileRevalidate({
       cacheName: 'elk-emojis',
       plugins: [

@@ -8,8 +8,7 @@ const dropdown = ref<any>()
 
 const fieldIcons = computed(() =>
   Array.from({ length: maxAccountFieldCount.value }, (_, i) =>
-    getAccountFieldIcon(form.value.fieldsAttributes[i].name),
-  ),
+    getAccountFieldIcon(form.value.fieldsAttributes[i].name)),
 )
 
 const fieldCount = computed(() => {

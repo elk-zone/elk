@@ -36,26 +36,25 @@ export function usePublish(options: {
     const { params, attachments } = draft.value
     const firstEmptyInputIndex = params.poll?.options.findIndex(option => option.trim().length === 0)
     return isEmpty.value
-          || options.isUploading.value
-          || isSending.value
-          || (attachments.length === 0 && !params.status)
-          || failedMessages.value.length > 0
-          || (attachments.length > 0 && params.poll !== null && params.poll !== undefined)
-          || ((params.poll !== null && params.poll !== undefined)
-              && (
-                (firstEmptyInputIndex !== -1
-                 && firstEmptyInputIndex !== params.poll.options.length - 1
-                )
-                || params.poll.options.findLastIndex(option => option.trim().length > 0) + 1 < 2
-                || (new Set(params.poll.options).size !== params.poll.options.length)
-                || (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined
-                    && params.poll.options.find(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption) !== undefined
-                )
-              )
-          )
+      || options.isUploading.value
+      || isSending.value
+      || (attachments.length === 0 && !params.status)
+      || failedMessages.value.length > 0
+      || (attachments.length > 0 && params.poll !== null && params.poll !== undefined)
+      || ((params.poll !== null && params.poll !== undefined)
+      && (
+        (firstEmptyInputIndex !== -1
+        && firstEmptyInputIndex !== params.poll.options.length - 1
+        )
+        || params.poll.options.findLastIndex(option => option.trim().length > 0) + 1 < 2
+        || (new Set(params.poll.options).size !== params.poll.options.length)
+        || (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined
+        && params.poll.options.find(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption) !== undefined
+        )
+      ))
   })
 
-  watch(() => draft, () => {
+  watch(draft, () => {
     if (failedMessages.value.length > 0)
       failedMessages.value.length = 0
   }, { deep: true })
@@ -164,7 +163,7 @@ export function useUploadMediaAttachment(draft: Ref<Draft>) {
 
   const maxPixels = computed(() => {
     return currentInstance.value?.configuration?.mediaAttachments?.imageMatrixLimit
-        ?? 4096 ** 2
+      ?? 4096 ** 2
   })
 
   const loadImage = (inputFile: Blob) => new Promise<HTMLImageElement>((resolve, reject) => {

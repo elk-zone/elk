@@ -149,7 +149,12 @@
     "mute_account": {
       "cancel": "Utzi",
       "confirm": "Mututu",
+      "days": "egun|egun|egun",
       "description": "Ziur {0} mututu nahi duzula?",
+      "hours": "ordu|ordu|ordu",
+      "minute": "minutu|minutu|minutu",
+      "notifications": "Mututu jakinarazpenak",
+      "specify_duration": "Zehaztu mututzearen iraupena",
       "title": "Mututu kontua"
     },
     "show_reblogs": {
@@ -228,16 +233,27 @@
         "compose": "Idatzi",
         "favourite": "Egin gogoko",
         "search": "Bilatu",
+        "show_new_items": "Erakutsi elementu berriak",
         "title": "Ekintzak"
       },
       "media": {
         "title": "Multimedia"
       },
       "navigation": {
+        "go_to_bookmarks": "Laster-markak",
+        "go_to_conversations": "Elkarrizketak",
+        "go_to_explore": "Arakatu",
+        "go_to_favourites": "Gogokoak",
+        "go_to_federated": "Federatua",
         "go_to_home": "Hasiera",
+        "go_to_lists": "Zerrendak",
+        "go_to_local": "Lokala",
         "go_to_notifications": "Jakinarazpenak",
-        "next_status": "Hurrengo egoera",
-        "previous_status": "Aurreko egoera",
+        "go_to_profile": "Profila",
+        "go_to_search": "Bilatu",
+        "go_to_settings": "Ezarpenak",
+        "next_status": "Hurrengo bidalketa",
+        "previous_status": "Aurreko bidalketa",
         "shortcut_help": "Laster-teklak",
         "title": "Nabigazioa"
       }
@@ -293,6 +309,7 @@
     "explore": "Arakatu",
     "favourites": "Gogokoak",
     "federated": "Federatua",
+    "hashtags": "Traolak",
     "home": "Hasiera",
     "list": "Zerrenda",
     "lists": "Zerrendak",
@@ -304,22 +321,22 @@
     "search": "Bilaketa",
     "select_feature_flags": "Aldatu ezaugarrien adierazleak (Toggle Feature Flags)",
     "select_font_size": "Letra-tipoaren tamaina",
-    "select_language": "Hizkuntza",
+    "select_language": "Interfazearen hizkuntza",
     "settings": "Ezarpenak",
     "show_intro": "Erakutsi aurkezpena",
     "toggle_theme": "Gai argia/iluna",
     "zen_mode": "ZEN modua"
   },
   "notification": {
-    "favourited_post": "zure bidalketa gogoko egin du",
+    "favourited_post": "(e)k zure bidalketa gogoko egin du",
     "followed_you": "(e)k jarraitu dizu",
     "followed_you_count": "{0} pertsonak jarraitu dizute|pertsona {0}ek jarraitu dizu|{0} pertsonak jarraitu dizute",
     "missing_type": "MISSING notification.type:",
-    "reblogged_post": "zure bidalketari bultzada eman dio",
+    "reblogged_post": "(e)k zure bidalketari bultzada eman dio",
     "reported": "{0}(e)k {1} salatu du",
-    "request_to_follow": "jarraipen-eskaera bidali dizu",
-    "signed_up": "izena eman du",
-    "update_status": "bidalketa eguneratu du"
+    "request_to_follow": "(e)k jarraipen-eskaera bidali dizu",
+    "signed_up": "(e)k izena eman du",
+    "update_status": "(e)k bidalketa eguneratu du"
   },
   "placeholder": {
     "content_warning": "Idatzi oharra hemen",
@@ -374,7 +391,7 @@
     }
   },
   "report": {
-    "additional_comments": "Ohar gehigarriak",
+    "additional_comments": "Iruzkin gehigarriak",
     "another_server": "Salatzen ari zaren erabiltzailea beste zerbitzari batekoa da",
     "anything_else": "Ba al dago jakin beharko genukeen beste ezer?",
     "block_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko. Ezin izango ditu zure bidalketak ikusi edo zuri jarraitu. Blokeatu duzula jakingo du.",
@@ -395,10 +412,10 @@
     "limiting": "Mugatu {0}",
     "mute_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko. Zure bidalketak ikusi eta zuri jarraitu diezazuke. Ez du jakingo mututu duzunik.",
     "other": "Beste zerbait da",
-    "other_desc": "Arazoa ez da beste kategorietan sartzen",
+    "other_desc": "Arazoa ez dator bat beste kategoriekin",
     "reporting": "{0} salatzen",
-    "select_many": "Hautatu bat datozen guztiak:",
-    "select_one": "Aukeratu hobekien datorrena:",
+    "select_many": "Hautatu dagozkion guztiak:",
+    "select_one": "Aukeratu hobekien doakiona:",
     "select_posts": "Salaketa hau sostengatzen duen bidalketarik al dago?",
     "select_posts_other": "Ba al dago salaketa sostengatzen duen beste bidalketarik?",
     "spam": "Spama da",
@@ -441,9 +458,9 @@
       "theme_color": "Gaiaren kolorea"
     },
     "language": {
-      "display_language": "Hizkuntza",
+      "display_language": "Interfazearen hizkuntza",
       "label": "Hizkuntza",
-      "post_language": "Argitalpenaren hizkuntza",
+      "post_language": "Bidalketen hizkuntza",
       "status": "Itzulpenaren egoera: {1} kateetatik {0} itzulita (%{2}a)",
       "translations": {
         "add": "Gehitu",
@@ -518,13 +535,14 @@
       "github_cards": "GitHub txartelak",
       "github_cards_description": "GitHub-eko esteka argitaratzean, HTML txartel irisgarri bat erakusten du gizarte-grafikoaren metadatuak erabiliz, irudi sozialaren ordez.",
       "grayscale_mode": "Gris modua",
-      "hide_account_hover_card": "Ezkutatu kontuaren geruza (Hide account hover card)",
+      "hide_account_hover_card": "Ezkutatu kontuen aurrebista-txartelak sagua gainetik pasatzean",
       "hide_alt_indi_on_posts": "Ezkutatu ALT adierazlea bidalketetan",
       "hide_boost_count": "Ezkutatu bultzaden kopurua",
       "hide_favorite_count": "Ezkutatu gogokoen kopurua",
       "hide_follower_count": "Ezkutatu jarraitzaile kopurua",
       "hide_news": "Ezkutatu berriak",
       "hide_reply_count": "Ezkutatu erantzunen kopurua",
+      "hide_tag_hover_card": "Ezkutatu traolen aurrebista-txartelak sagua gainetik pasatzean",
       "hide_translation": "Ezkutatu itzulpenak",
       "hide_username_emojis": "Ezkutatu emojiak erabiltzaile izenetan",
       "hide_username_emojis_description": "Denbora-lerroetan erabiltzaile izenetako emojiak ezkutatzen ditu. Emojiak ikusgai egoten jarraituko dute euren profiletan.",
@@ -537,7 +555,7 @@
       "virtual_scroll": "Korritze birtuala",
       "virtual_scroll_description": "Zerrenda birtual bat erabiltzen du denbora-lerroetan, item kopuru handiagoa modu eraginkorrean erakutsi ahal izateko.",
       "wellbeing": "Ongizatea",
-      "zen_mode": "Zen modua",
+      "zen_mode": "ZEN modua",
       "zen_mode_description": "Aldamenetako elementuak ezkutatzen ditu xagua gainean jarri arte. Denbora-lerroko elementu batzuk ere ezkutatzen ditu."
     },
     "profile": {
@@ -585,7 +603,7 @@
   },
   "status": {
     "account": {
-      "suspended_message": "Argitalpen honen egileari zigorra jarri zaio.",
+      "suspended_message": "Bidalketa honen egileari zigorra jarri zaio.",
       "suspended_show": "Erakutsi edukia hala ere?"
     },
     "boosted_by": "Bultzatu dute:",

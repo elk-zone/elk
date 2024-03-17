@@ -25,13 +25,16 @@ function shareAccount() {
 }
 
 async function toggleReblogs() {
-  if (!relationship.value!.showingReblogs && await openConfirmDialog({
-    title: t('confirm.show_reblogs.title'),
-    description: t('confirm.show_reblogs.description', [account.acct]),
-    confirm: t('confirm.show_reblogs.confirm'),
-    cancel: t('confirm.show_reblogs.cancel'),
-  }) !== 'confirm')
-    return
+  if (!relationship.value!.showingReblogs) {
+    const dialogChoice = await openConfirmDialog({
+      title: t('confirm.show_reblogs.title'),
+      description: t('confirm.show_reblogs.description', [account.acct]),
+      confirm: t('confirm.show_reblogs.confirm'),
+      cancel: t('confirm.show_reblogs.cancel'),
+    })
+    if (dialogChoice.choice !== 'confirm')
+      return
+  }
 
   const showingReblogs = !relationship.value?.showingReblogs
   relationship.value = await client.value.v1.accounts.$select(account.id).follow({ reblogs: showingReblogs })

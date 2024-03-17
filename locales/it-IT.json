@@ -149,7 +149,12 @@
     "mute_account": {
       "cancel": "Annulla",
       "confirm": "Silenzia",
+      "days": "giorni|giorno|giorni",
       "description": "Confermi di voler silenziare {0}?",
+      "hours": "ore|ora|ore",
+      "minute": "minuti|minuto|minuti",
+      "notifications": "Silenzia notifiche",
+      "specify_duration": "Specifica durata silenziamento",
       "title": "Silenzia account"
     },
     "show_reblogs": {
@@ -304,6 +309,7 @@
     "explore": "Esplora",
     "favourites": "Preferiti",
     "federated": "Federata",
+    "hashtags": "Hashtag",
     "home": "Home",
     "list": "Lista",
     "lists": "Liste",
@@ -536,6 +542,7 @@
       "hide_follower_count": "Nascondi contatore seguaci/seguiti",
       "hide_news": "Nascondi notizie",
       "hide_reply_count": "Nascondi contatore risposte",
+      "hide_tag_hover_card": "Nascondi anteprima tag al passaggio del mouse",
       "hide_translation": "Nascondi traduzione",
       "hide_username_emojis": "Nascondi emoji dai nomi utente",
       "hide_username_emojis_description": "Nasconde le emoji all'interno dei nomi utente nella cronologia. Le emoji saranno comunque visibili nelle pagine dei profili.",

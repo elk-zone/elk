@@ -122,7 +122,7 @@
       "cancel": "Mégsem",
       "confirm": "Blokkol",
       "description": "Biztosan blokkolja? {0}",
-		"title": "Hozzáférés blokkolása"
+      "title": "Hozzáférés blokkolása"
     },
     "block_domain": {
       "cancel": "Mégsem",
@@ -240,7 +240,7 @@
         "title": "Média"
       },
       "navigation": {
-      	"go_to_bookmarks": "Könyvjelzők",
+        "go_to_bookmarks": "Könyvjelzők",
         "go_to_conversations": "Párbeszédek",
         "go_to_explore": "Felfedez",
         "go_to_favourites": "Kedvencek",

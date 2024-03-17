@@ -55,15 +55,10 @@ export default defineNuxtPlugin(async () => {
   const localCall = createCall(toNodeListener(h3App) as any)
   const localFetch = createLocalFetch(localCall, globalThis.fetch)
 
-  // eslint-disable-next-line ts/prefer-ts-expect-error
-  // @ts-ignore error TS2321: Excessive stack depth comparing types
   globalThis.$fetch = createFetch({
-    // eslint-disable-next-line ts/prefer-ts-expect-error
-    // @ts-ignore slight differences in api
+    // @ts-expect-error slight differences in api
     fetch: localFetch,
     Headers,
-    // eslint-disable-next-line ts/prefer-ts-expect-error
-    // @ts-ignore error TS2321: Excessive stack depth comparing types
     defaults: { baseURL: config.app.baseURL },
   })
 

@@ -9,6 +9,7 @@ const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
   typescript: {
+    hoist: ['ofetch'],
     tsConfig: {
       exclude: ['../service-worker'],
       vueCompilerOptions: {

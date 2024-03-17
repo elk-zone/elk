@@ -27,6 +27,7 @@
     "follows_you": "Követ téged",
     "go_to_profile": "Ugrás a profilhoz",
     "joined": "Csatlakozott",
+    "lock": "Zárolt",
     "moved_title": "jelezte, hogy az új fiók mostantól:",
     "muted_users": "Némított felhasználók",
     "muting": "Némított",
@@ -79,7 +80,7 @@
     "save": "Ment",
     "save_changes": "Változások mentése",
     "sign_in": "Bejelentkezés",
-    "sign_in_to": "Bejelentkezés: {0}",
+    "sign_in_to": "Bejelentkezve: {0}",
     "switch_account": "Fiók váltás",
     "vote": "Szavazás"
   },
@@ -94,6 +95,7 @@
     "activate": "Aktivál",
     "complete": "Befejez",
     "compose_desc": "Új bejegyzés írása",
+    "n_people_in_the_past_n_days": "{0} ember az elmúlt {1} napban",
     "select_lang": "Nyelv kiválasztása",
     "sign_in_desc": "Létező fiók hozzáadása",
     "switch_account": "Váltás: {0}",
@@ -119,12 +121,14 @@
     "block_account": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "description": "Biztosan blokkolja? {0}"
+      "description": "Biztosan blokkolja? {0}",
+      "title": "Hozzáférés blokkolása"
     },
     "block_domain": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "description": "Biztosan blokkolja? {0}"
+      "description": "Biztosan blokkolja? {0}",
+      "title": "Domain blokkolása"
     },
     "common": {
       "cancel": "Mégsem",
@@ -133,27 +137,37 @@
     "delete_list": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "description": "Biztosan törli a listát? \"{0}\""
+      "description": "Biztosan törli a listát? \"{0}\"",
+      "title": "Lista törlése"
     },
     "delete_posts": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "description": "Biztosan törli a bejegyzést?"
+      "description": "Biztosan törli a bejegyzést?",
+      "title": "Bejegyzés törlése"
     },
     "mute_account": {
       "cancel": "Mégsem",
       "confirm": "Némít",
-      "description": "Biztosan némítja? {0}"
+      "days": "napok|nap|napok",
+      "description": "Biztosan némítja? {0}",
+      "hours": "órák|óra|órák",
+      "minute": "perc|perc|perc",
+      "notifications": "Értesítések némítása",
+      "specify_duration": "Határozzon meg némítási időtartamot",
+      "title": "Hozzáférés némítása"
     },
     "show_reblogs": {
       "cancel": "Mégsem",
       "confirm": "Mutat",
-      "description": "Biztosan megjeleníti a Turbót tőle? {0}"
+      "description": "Biztosan megjeleníti a Kiemelést tőle? {0}",
+      "title": "Kiemelés megjenítése"
     },
     "unfollow": {
       "cancel": "Mégsem",
       "confirm": "Követés leállítása",
-      "description": "Biztosan leállítja a követését?"
+      "description": "Biztosan leállítja a követését?",
+      "title": "Követés elállítása"
     }
   },
   "conversation": {
@@ -168,6 +182,7 @@
   },
   "error": {
     "account_not_found": "Fiók {0} nem található",
+    "explore_list_empty": "Nincs most semmi érdekes. Térj vissza később!",
     "file_size_cannot_exceed_n_mb": "A fájl mérete nem haladhatja meg a {0}MB-ot",
     "sign_in_error": "Nem lehetséges a csatlakozás.",
     "status_not_found": "A bejegyzés nem található",
@@ -218,14 +233,25 @@
         "compose": "Közzétesz",
         "favourite": "Kedvenc",
         "search": "Keresés",
+        "show_new_items": "Új elemek mutatása",
         "title": "Műveletek"
       },
       "media": {
         "title": "Média"
       },
       "navigation": {
+        "go_to_bookmarks": "Könyvjelzők",
+        "go_to_conversations": "Párbeszédek",
+        "go_to_explore": "Felfedez",
+        "go_to_favourites": "Kedvencek",
+        "go_to_federated": "Összesített",
         "go_to_home": "Otthon",
+        "go_to_lists": "Listák",
+        "go_to_local": "Helyi",
         "go_to_notifications": "Értesítések",
+        "go_to_profile": "Profil",
+        "go_to_search": "Keresés",
+        "go_to_settings": "Beállítások",
         "next_status": "Következő bejegyzés",
         "previous_status": "Előző bejegyzés",
         "shortcut_help": "Gyors segítség",
@@ -283,6 +309,7 @@
     "explore": "Felfedezés",
     "favourites": "Kedvencek",
     "federated": "Összesített",
+    "hashtags": "Címkék",
     "home": "Otthon",
     "list": "Lista",
     "lists": "Listák",
@@ -314,7 +341,7 @@
   "placeholder": {
     "content_warning": "Írja ide figyelmeztetését",
     "default_1": "Mi jár a fejedben?",
-    "reply_to_account": "Válasz: {0}",
+    "reply_to_account": "Válasz erre: {0}",
     "replying": "Válaszol"
   },
   "polls": {
@@ -515,10 +542,12 @@
       "hide_follower_count": "Követők/Követések számláló elrejtése",
       "hide_news": "Hírek elrejtése",
       "hide_reply_count": "Visszajelzések számláló elrejtése",
+      "hide_tag_hover_card": "Lebegő kártya elrejtése",
       "hide_translation": "Fordítás elrejtése",
       "hide_username_emojis": "Felhasználói emoji elrejtése",
       "hide_username_emojis_description": "Elrejti a hangulatjeleket a felhasználónevek elől az idővonalakban. A hangulatjelek továbbra is láthatók lesznek a profiljukban.",
       "label": "Preferenciák",
+      "optimize_for_low_performance_device": "Alacsony teljesítményre optimalizálás",
       "title": "Kísérleti képességek",
       "use_star_favorite_icon": "Használja a csillag favikont",
       "user_picker": "Felhasználók váltása",
@@ -554,6 +583,11 @@
       "import": "Felhasználói tokenek importálása",
       "label": "Bejelentkezett felhasználók"
     }
+  },
+  "share_target": {
+    "description": "Az Elk konfigurálható úgy, hogy más alkalmazásokból is megoszthasson tartalmat, egyszerűen telepítse az Elket eszközére vagy számítógépére, és jelentkezzen be.",
+    "hint": "A tartalom megosztásához telepíteni kell az Elket, és be kell jelentkeznie.",
+    "title": "Oszd meg Elkkel"
   },
   "state": {
     "attachments_exceed_server_limit": "A mellékletek száma meghaladta a bejegyzésenkénti korlátot.",

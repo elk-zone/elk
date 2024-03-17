@@ -112,7 +112,7 @@
     "ws": "^8.15.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.8.1",
+    "@antfu/eslint-config": "^2.8.3",
     "@antfu/ni": "^0.21.12",
     "@types/chroma-js": "^2.4.4",
     "@types/file-saver": "^2.0.7",
@@ -134,7 +134,7 @@
     "fs-extra": "^11.2.0",
     "lint-staged": "^14.0.1",
     "nuxt": "^3.11.0",
-    "prettier": "^3.0.3",
+    "prettier": "^3.2.5",
     "sharp": "^0.33.2",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.10.0",

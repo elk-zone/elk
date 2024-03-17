@@ -7,7 +7,7 @@ settings:
 overrides:
   vitest: 1.4.0
   vue: ^3.4.21
-  unstorage: ^1.10.1
+  unstorage: ^1.10.2
 
 patchedDependencies:
   nuxt-security@0.13.1:
@@ -2980,6 +2980,7 @@ packages:
       - change-case
       - drauu
       - idb-keyval
+      - ioredis
       - jwt-decode
       - nprogress
       - nuxt
@@ -3068,7 +3069,7 @@ packages:
       socket.io-client: 4.7.4
       ufo: 1.5.1
       unist-util-stringify-position: 4.0.0
-      unstorage: 1.10.1(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)
+      unstorage: 1.10.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(ioredis@5.3.2)
       ws: 8.16.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -3085,6 +3086,7 @@ packages:
       - '@vue/composition-api'
       - bufferutil
       - idb-keyval
+      - ioredis
       - nuxt
       - rollup
       - supports-color
@@ -3877,6 +3879,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+    dev: true
     bundledDependencies:
       - napi-wasm
 
@@ -7858,6 +7861,7 @@ packages:
 
   /crossws@0.1.1:
     resolution: {integrity: sha512-c9c/o7bS3OjsdpSkvexpka0JNlesBF2JU9B2V1yNsYGwRbAafxhJQ7VI9b48D5bpONz/oxbPGMzBojy9sXoQIQ==}
+    dev: true
 
   /crossws@0.2.4:
     resolution: {integrity: sha512-DAxroI2uSOgUKLz00NX6A8U/8EE3SZHmIND+10jkVSaypvyt57J5JEOxAQOL6lQxyzi/wZbTIwssU1uy69h5Vg==}
@@ -9594,6 +9598,7 @@ packages:
       ufo: 1.5.1
       uncrypto: 0.1.3
       unenv: 1.9.0
+    dev: true
 
   /h3@1.11.1:
     resolution: {integrity: sha512-AbaH6IDnZN6nmbnJOH72y3c5Wwh9P97soSVdGSBbcDACRdkC0FEWf25pzx4f/NuOCK6quHmW18yF2Wx+G4Zi1A==}
@@ -10542,6 +10547,7 @@ packages:
       ufo: 1.5.1
       untun: 0.1.3
       uqr: 0.1.2
+    dev: true
 
   /listhen@1.7.2:
     resolution: {integrity: sha512-7/HamOm5YD9Wb7CFgAZkKgVPA96WwhcTQoqtm2VTZGVbVVn3IWKRBTgrU7cchA3Q8k9iCsG8Osoi9GX4JsGM9g==}
@@ -11568,7 +11574,7 @@ packages:
       unctx: 2.3.1
       unenv: 1.9.0
       unimport: 3.7.1(rollup@4.13.0)
-      unstorage: 1.10.1(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)
+      unstorage: 1.10.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(ioredis@5.3.2)
       unwasm: 0.3.8
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -11916,7 +11922,7 @@ packages:
       unimport: 3.7.1(rollup@3.29.4)
       unplugin: 1.10.0
       unplugin-vue-router: 0.7.0(rollup@3.29.4)(vue-router@4.3.0)(vue@3.4.21)
-      unstorage: 1.10.1(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)
+      unstorage: 1.10.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(ioredis@5.3.2)
       untyped: 1.4.2
       vue: 3.4.21(typescript@5.4.2)
       vue-bundle-renderer: 2.0.0
@@ -11942,6 +11948,7 @@ packages:
       - encoding
       - eslint
       - idb-keyval
+      - ioredis
       - less
       - lightningcss
       - meow
@@ -12026,7 +12033,7 @@ packages:
       unimport: 3.7.1(rollup@4.13.0)
       unplugin: 1.10.0
       unplugin-vue-router: 0.7.0(rollup@4.13.0)(vue-router@4.3.0)(vue@3.4.21)
-      unstorage: 1.10.1(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)
+      unstorage: 1.10.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(ioredis@5.3.2)
       untyped: 1.4.2
       vue: 3.4.21(typescript@5.4.2)
       vue-bundle-renderer: 2.0.0
@@ -12052,6 +12059,7 @@ packages:
       - encoding
       - eslint
       - idb-keyval
+      - ioredis
       - less
       - lightningcss
       - meow
@@ -13128,6 +13136,7 @@ packages:
 
   /radix3@1.1.0:
     resolution: {integrity: sha512-pNsHDxbGORSvuSScqNJ+3Km6QAVqk8CfsCBIEoDgpqLrkD2f3QM4I7d1ozJJ172OmIcoUcerZaNWqtLkRXTV3A==}
+    dev: true
 
   /radix3@1.1.1:
     resolution: {integrity: sha512-yUUd5VTiFtcMEx0qFUxGAv5gbMc1un4RvEO1JZdP7ZUl/RHygZK6PknIKntmQRZxnMY3ZXD2ISaw1ij8GYW1yg==}
@@ -15076,21 +15085,22 @@ packages:
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.1
 
-  /unstorage@1.10.1(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1):
-    resolution: {integrity: sha512-rWQvLRfZNBpF+x8D3/gda5nUCQL2PgXy2jNG4U7/Rc9BGEv9+CAJd0YyGCROUBKs9v49Hg8huw3aih5Bf5TAVw==}
+  /unstorage@1.10.2(@upstash/redis@1.27.1)(@vercel/kv@1.0.1)(idb-keyval@6.2.1)(ioredis@5.3.2):
+    resolution: {integrity: sha512-cULBcwDqrS8UhlIysUJs2Dk0Mmt8h7B0E6mtR+relW9nZvsf/u4SkAYyNliPiPW7XtFNb5u3IUMkxGxFTTRTgQ==}
     peerDependencies:
-      '@azure/app-configuration': ^1.4.1
+      '@azure/app-configuration': ^1.5.0
       '@azure/cosmos': ^4.0.0
       '@azure/data-tables': ^13.2.2
-      '@azure/identity': ^3.3.2
-      '@azure/keyvault-secrets': ^4.7.0
-      '@azure/storage-blob': ^12.16.0
-      '@capacitor/preferences': ^5.0.6
-      '@netlify/blobs': ^6.2.0
-      '@planetscale/database': ^1.11.0
-      '@upstash/redis': ^1.23.4
-      '@vercel/kv': ^0.2.3
+      '@azure/identity': ^4.0.1
+      '@azure/keyvault-secrets': ^4.8.0
+      '@azure/storage-blob': ^12.17.0
+      '@capacitor/preferences': ^5.0.7
+      '@netlify/blobs': ^6.5.0 || ^7.0.0
+      '@planetscale/database': ^1.16.0
+      '@upstash/redis': ^1.28.4
+      '@vercel/kv': ^1.0.1
       idb-keyval: ^6.2.1
+      ioredis: ^5.3.2
     peerDependenciesMeta:
       '@azure/app-configuration':
         optional: true
@@ -15116,6 +15126,8 @@ packages:
         optional: true
       idb-keyval:
         optional: true
+      ioredis:
+        optional: true
     dependencies:
       '@upstash/redis': 1.27.1
       '@vercel/kv': 1.0.1
@@ -15125,14 +15137,13 @@ packages:
       h3: 1.11.1
       idb-keyval: 6.2.1
       ioredis: 5.3.2
-      listhen: 1.6.0
+      listhen: 1.7.2
       lru-cache: 10.2.0
       mri: 1.2.0
       node-fetch-native: 1.6.2
       ofetch: 1.3.3
       ufo: 1.5.1
     transitivePeerDependencies:
-      - supports-color
       - uWebSockets.js
 
   /untun@0.1.3:

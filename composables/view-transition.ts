@@ -1,5 +1,4 @@
 import type { mastodon } from 'masto'
-import type { ViewTransition } from '#app/plugins/view-transitions.client'
 
 interface ViewTransitionSources {
   status?: mastodon.v1.Status

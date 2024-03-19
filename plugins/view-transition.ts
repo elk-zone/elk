@@ -1,9 +1,9 @@
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.hook('page:view-transition:start', (transition) => {
-    const viewTransitionFinished = getIsViewTransitionFinished()
-    viewTransitionFinished.value = false
+    const viewTransitionInProgress = getIsViewTransitionInProgress()
+    viewTransitionInProgress.value = true
 
     transition.finished
-      .then(() => viewTransitionFinished.value = true)
+      .then(() => viewTransitionInProgress.value = false)
   })
 })

@@ -14,8 +14,8 @@ function getViewTransitionState() {
   return useState<null | ViewTransitionState>('viewTransitionTargets', () => null)
 }
 
-export function getIsViewTransitionFinished() {
-  return useState<boolean>('isVewTransitionFinished', () => true)
+export function getIsViewTransitionInProgress() {
+  return useState<boolean>('isVewTransitionFinished', () => false)
 }
 
 export const viewTransitionEnabledInjectionKey: InjectionKey<boolean> = Symbol('whether view-transition is enabled for this component')
@@ -27,10 +27,6 @@ export function setViewTransitionTarget(targets: ViewTransitionSources) {
     targets: calcTransitionSources(targets),
     setOnPath: useRoute().path,
   }
-}
-interface ViewTransitionSources {
-  status?: mastodon.v1.Status
-  account?: mastodon.v1.Account
 }
 
 export function getViewTransitionStyles(viewTransitionName: string, sources?: ViewTransitionSources) {
@@ -58,13 +54,11 @@ function shouldTakePartInTransition(sources: ViewTransitionSources) {
     return false
 
   const route = useRoute()
-  const currPath = route.path
-  const onProfilePage = route.name === 'account-index'
-  const arrivingOnProfile = state?.setOnPath !== currPath && onProfilePage
+  const onAccountPage = route.name?.toString().startsWith('account-')
+  const arrivingOnProfile = onAccountPage && state.setOnPath !== route.path
 
   if (arrivingOnProfile) {
-    if (sources.account && !sources.status) // the navigation source was an avatar not a status
-      return state.targets.account?.id === sources.account.id
+    return !sources.status && state.targets.account!.id === sources.account?.id
   }
   else {
     if (state.targets.account && state.targets.account.id !== sources.account?.id)

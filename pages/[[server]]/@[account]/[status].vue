@@ -33,10 +33,19 @@ if (pending) {
   })
 }
 
-const viewTransitionFinished = getIsViewTransitionFinished()
+const viewTransitionInProgress = getIsViewTransitionInProgress()
+const viewTransitionFinished = ref(!viewTransitionInProgress.value)
+
 const contextReady = computed(() => !pendingContext.value && viewTransitionFinished.value)
-if (!contextReady.value)
-  watchOnce(contextReady, scrollTo)
+
+onActivated(() => {
+  viewTransitionFinished.value = !viewTransitionInProgress.value
+  if (!viewTransitionFinished.value)
+    watchOnce(viewTransitionInProgress, () => viewTransitionFinished.value = true)
+
+  if (!contextReady.value)
+    watchOnce(contextReady, scrollTo)
+})
 
 async function scrollTo() {
   await nextTick()

@@ -12,9 +12,11 @@ const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
 
 const router = useRouter()
 function goToAccount(account: mastodon.v1.Account) {
-  setViewTransitionTarget({ account })
+  setViewTransitionTarget({ account, status: group.status })
   router.push(getAccountRoute(account))
 }
+
+provide(viewTransitionStatusInjectionKey, group.status)
 </script>
 
 <template>

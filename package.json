@@ -116,7 +116,6 @@
     "@antfu/ni": "^0.21.12",
     "@types/chroma-js": "^2.4.4",
     "@types/file-saver": "^2.0.7",
-    "@types/flat": "^5.0.5",
     "@types/fnando__sparkline": "^0.3.7",
     "@types/fs-extra": "^11.0.4",
     "@types/js-yaml": "^4.0.9",

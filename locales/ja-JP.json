@@ -7,6 +7,8 @@
     "route_loaded": "ページ{0}を読み込みました"
   },
   "account": {
+    "authorize": "フォローを承認",
+    "authorized": "リクエストを承認しました",
     "avatar_description": "{0}さんのアバター",
     "blocked_by": "あなたはこのユーザーからブロックされています。",
     "blocked_domains": "ブロックしたドメイン",
@@ -38,7 +40,10 @@
     "profile_description": "{0}さんのプロフィールヘッダー",
     "profile_personal_note": "個人メモ",
     "profile_unavailable": "プロフィールが利用できません",
+    "reject": "フォローを拒否",
+    "rejected": "クエストを拒否しました",
     "request_follow": "フォローをリクエスト",
+    "requested": "{0} がフォローをリクエストしました",
     "unblock": "ブロック解除",
     "unfollow": "フォロー解除",
     "unmute": "ミュート解除",
@@ -116,12 +121,14 @@
     "block_account": {
       "cancel": "キャンセル",
       "confirm": "ブロック",
-      "description": "{0}さんを本当にミュートしたいですか？"
+      "description": "{0}さんを本当にミュートしたいですか？",
+      "title": "アカウントのブロック"
     },
     "block_domain": {
       "cancel": "キャンセル",
       "confirm": "ブロック",
-      "description": "{0}さんを本当にブロックしたいですか？"
+      "description": "{0}さんを本当にブロックしたいですか？",
+      "title": "ドメインのブロック"
     },
     "common": {
       "cancel": "いいえ",
@@ -130,27 +137,37 @@
     "delete_list": {
       "cancel": "キャンセル",
       "confirm": "削除",
-      "description": "リスト \"{0}\" を本当に削除したいですか？"
+      "description": "リスト \"{0}\" を本当に削除したいですか？",
+      "title": "リストの削除"
     },
     "delete_posts": {
       "cancel": "キャンセル",
       "confirm": "削除",
-      "description": "この投稿を本当に削除したいですか？"
+      "description": "この投稿を本当に削除したいですか？",
+      "title": "投稿の削除"
     },
     "mute_account": {
       "cancel": "キャンセル",
       "confirm": "ミュート",
-      "description": "{0}さんを本当にミュートしたいですか？"
+      "days": "日|日|日",
+      "description": "{0}さんを本当にミュートしたいですか？",
+      "hours": "時間|時間|時間",
+      "minute": "分|分|分",
+      "notifications": "通知をミュート",
+      "specify_duration": "ミュート期間を指定",
+      "title": "アカウントのミュート"
     },
     "show_reblogs": {
       "cancel": "キャンセル",
       "confirm": "表示",
-      "description": "{0}さんのブーストを本当に表示したいですか？"
+      "description": "{0}さんのブーストを本当に表示したいですか？",
+      "title": "ブーストの表示"
     },
     "unfollow": {
       "cancel": "キャンセル",
       "confirm": "フォロー解除",
-      "description": "本当にフォロー解除したいですか？"
+      "description": "本当にフォロー解除したいですか？",
+      "title": "フォロー解除"
     }
   },
   "conversation": {
@@ -222,8 +239,18 @@
         "title": "メディア"
       },
       "navigation": {
+        "go_to_bookmarks": "ブックマーク",
+        "go_to_conversations": "会話",
+        "go_to_explore": "話題の投稿",
+        "go_to_favourites": "お気に入り",
+        "go_to_federated": "連合",
         "go_to_home": "ホーム",
+        "go_to_lists": "リスト",
+        "go_to_local": "ローカル",
         "go_to_notifications": "通知",
+        "go_to_profile": "プロフィール",
+        "go_to_search": "検索",
+        "go_to_settings": "設定",
         "next_status": "次の投稿",
         "previous_status": "前の投稿",
         "shortcut_help": "ショートカットのヘルプ",
@@ -281,6 +308,7 @@
     "explore": "話題の投稿",
     "favourites": "お気に入り",
     "federated": "連合",
+    "hashtags": "ハッシュタグ",
     "home": "ホーム",
     "list": "リスト",
     "lists": "リスト",
@@ -497,6 +525,8 @@
     },
     "notifications_settings": "通知",
     "preferences": {
+      "embedded_media": "埋め込みメディアプレイヤー",
+      "embedded_media_description": "メディアストリーミングのリンクを展開するときに、通常のプレビューカードの代わりに、埋め込みのプレイヤーを表示します。",
       "enable_autoplay": "自動再生を有効化",
       "enable_data_saving": "データセーバーを有効にする",
       "enable_data_saving_description": "添付の自動読み込みを防止してデータを節約します。",
@@ -576,6 +606,7 @@
     },
     "boosted_by": "ブーストしたユーザー",
     "edited": "編集済み {0}",
+    "embedded_warning": "これを再生すると、IPアドレスが他のサービスに知られる可能性があります。",
     "favourited_by": "お気に入りしたユーザー",
     "filter_hidden_phrase": "フィルター",
     "filter_show_anyway": "とにかく表示",

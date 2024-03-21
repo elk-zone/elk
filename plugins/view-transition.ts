@@ -4,6 +4,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     viewTransitionInProgress.value = true
 
     transition.finished
-      .then(() => viewTransitionInProgress.value = false)
+      .finally(() => viewTransitionInProgress.value = false)
   })
 })

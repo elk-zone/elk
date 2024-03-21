@@ -592,6 +592,8 @@
   "state": {
     "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
     "attachments_limit_error": "Limit per post exceeded",
+    "attachments_limit_image_error": "Maximum image size exceeded: {0}",
+    "attachments_limit_video_error": "Maximum video size exceeded: {0}",
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",

@@ -242,7 +242,17 @@ export function useUploadMediaAttachment(draft: Ref<Draft>) {
         }
         else {
           if (file.size > maxVideoSize) {
-            failedAttachments.value = [...failedAttachments.value, [file.name, t('state.attachments_limit_video_error', [formatter.value.format(maxVideoSize / (1024 * 1024))])]]
+            failedAttachments.value = [
+              ...failedAttachments.value,
+              [file.name, t(
+                file.type.startsWith('audio/')
+                  ? 'state.attachments_limit_audio_error'
+                  : file.type.startsWith('video/')
+                    ? 'state.attachments_limit_video_error'
+                    : 'state.attachments_limit_unknown_error',
+                [formatter.value.format(maxVideoSize / (1024 * 1024))],
+              )],
+            ]
             continue
           }
         }

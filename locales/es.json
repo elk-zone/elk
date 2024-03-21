@@ -591,8 +591,10 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Número máximo de archivos adjuntos por publicación excedido.",
+    "attachments_limit_audio_error": "Tamaño máximo de audio excedido: {0}",
     "attachments_limit_error": "Límite por publicación excedido",
     "attachments_limit_image_error": "Tamaño máximo de imagen excedido: {0}",
+    "attachments_limit_unknown_error": "Tamaño máximo de archivo excedido: {0}",
     "attachments_limit_video_error": "Tamaño máximo de vídeo excedido: {0}",
     "edited": "(Editado)",
     "editing": "Editando",

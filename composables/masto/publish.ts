@@ -235,13 +235,13 @@ export function useUploadMediaAttachment(draft: Ref<Draft>) {
     for (const file of files.slice(0, limit)) {
       if (draft.value.attachments.length < limit) {
         if (file.type.startsWith('image/')) {
-          if (file.size > maxImageSize) {
+          if (maxImageSize > 0 && file.size > maxImageSize) {
             failedAttachments.value = [...failedAttachments.value, [file.name, t('state.attachments_limit_image_error', [formatter.value.format(maxImageSize / (1024 * 1024))])]]
             continue
           }
         }
         else {
-          if (file.size > maxVideoSize) {
+          if (maxVideoSize > 0 && file.size > maxVideoSize) {
             failedAttachments.value = [
               ...failedAttachments.value,
               [file.name, t(

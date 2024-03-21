@@ -85,6 +85,9 @@ em-emoji-picker {
   p:last-child {
     --at-apply: mb-1;
   }
+  pre {
+    --at-apply: whitespace-pre-wrap;
+  }
   code {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.875em leading-0.8em;
   }

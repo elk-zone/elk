@@ -6,12 +6,12 @@ const { account, hideEmojis = false } = defineProps<{
   hideEmojis?: boolean
 }>()
 
-const viewTransitionStype = getViewTransitionStyles('account-display-name', { account })
+const viewTransitionStyle = getViewTransitionStyles('account-display-name', { account })
 </script>
 
 <template>
   <ContentRich
-    :style="viewTransitionStype"
+    :style="viewTransitionStyle"
     :content="getDisplayName(account, { rich: true })"
     :emojis="account.emojis"
     :hide-emojis="hideEmojis"

@@ -154,13 +154,8 @@ export type MediaAttachmentUploadError = [filename: string, message: string]
 
 export function useUploadMediaAttachment(draft: Ref<Draft>) {
   const { client } = useMasto()
-  const { t, locale } = useI18n()
-  const formatter = computed(() => Intl.NumberFormat(locale.value, {
-    style: 'unit',
-    unit: 'megabyte',
-    unitDisplay: 'narrow',
-    maximumFractionDigits: 0,
-  }))
+  const { t } = useI18n()
+  const { formatFileSize } = useFileSizeFormatter()
 
   const isUploading = ref<boolean>(false)
   const isExceedingAttachmentLimit = ref<boolean>(false)
@@ -236,7 +231,7 @@ export function useUploadMediaAttachment(draft: Ref<Draft>) {
       if (draft.value.attachments.length < limit) {
         if (file.type.startsWith('image/')) {
           if (maxImageSize > 0 && file.size > maxImageSize) {
-            failedAttachments.value = [...failedAttachments.value, [file.name, t('state.attachments_limit_image_error', [formatter.value.format(maxImageSize / (1024 * 1024))])]]
+            failedAttachments.value = [...failedAttachments.value, [file.name, t('state.attachments_limit_image_error', [formatFileSize(maxImageSize)])]]
             continue
           }
         }
@@ -250,7 +245,7 @@ export function useUploadMediaAttachment(draft: Ref<Draft>) {
                   : file.type.startsWith('video/')
                     ? 'state.attachments_limit_video_error'
                     : 'state.attachments_limit_unknown_error',
-                [formatter.value.format(maxVideoSize / (1024 * 1024))],
+                [formatFileSize(maxVideoSize)],
               )],
             ]
             continue

@@ -77,3 +77,30 @@ export function useTimeAgoOptions(short = false): UseTimeAgoOptions<false> {
     },
   }
 }
+
+export function useFileSizeFormatter() {
+  const { locale } = useI18n()
+
+  const formatters = computed(() => ([
+    Intl.NumberFormat(locale.value, {
+      style: 'unit',
+      unit: 'megabyte',
+      unitDisplay: 'narrow',
+      maximumFractionDigits: 0,
+    }),
+    Intl.NumberFormat(locale.value, {
+      style: 'unit',
+      unit: 'kilobyte',
+      unitDisplay: 'narrow',
+      maximumFractionDigits: 0,
+    }),
+  ]))
+
+  function formatFileSize(size: number) {
+    return size >= 1048576
+      ? formatters.value[0].format(size / 1048576)
+      : formatters.value[1].format(size / 1024)
+  }
+
+  return { formatFileSize }
+}

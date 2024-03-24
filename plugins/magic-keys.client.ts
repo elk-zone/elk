@@ -76,4 +76,42 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
       ?.click()
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys['.']), showNewItems)
+
+  const statusSelector = '[aria-roledescription="status-card"]'
+
+  // find the nearest status element id traversing up from the current active element
+  // `activeElement` can be some of an element within a status element
+  // otherwise, reach to the root `<html>`
+  function getActiveStatueId(element: HTMLElement): string | undefined {
+    if (element.nodeName === 'HTML')
+      return undefined
+
+    if (element.matches(statusSelector))
+      return element.id
+
+    return getActiveStatueId(element.parentNode as HTMLElement)
+  }
+
+  function focusNextOrPreviousStatus(direction: 'next' | 'previous') {
+    const activeStatusId = getActiveStatueId(activeElement.value)
+    if (activeStatusId) {
+      const nextOrPreviousStatusId = getNextOrPreviousStatusId(activeStatusId, direction)
+      if (nextOrPreviousStatusId) {
+        document.getElementById(nextOrPreviousStatusId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        document.getElementById(nextOrPreviousStatusId)?.focus()
+      }
+    }
+  }
+
+  function getNextOrPreviousStatusId(currentStatusId: string, direction: 'next' | 'previous'): string | undefined {
+    const statusIds = [...document.querySelectorAll(statusSelector)].map(s => s.id)
+    const currentIndex = statusIds.findIndex(id => id === currentStatusId)
+    const statusId = direction === 'next'
+      ? statusIds[Math.min(currentIndex + 1, statusIds.length)]
+      : statusIds[Math.max(0, currentIndex - 1)]
+    return statusId
+  }
+
+  whenever(logicAnd(notUsingInput, keys.j), () => focusNextOrPreviousStatus('next'))
+  whenever(logicAnd(notUsingInput, keys.k), () => focusNextOrPreviousStatus('previous'))
 })

@@ -459,6 +459,7 @@
     },
     "language": {
       "display_language": "Display Language",
+      "how_to_contribute": "How to contribute?",
       "label": "Language",
       "post_language": "Posting Language",
       "status": "Translation status: {0}/{1} ({2}%)",

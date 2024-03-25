@@ -57,6 +57,7 @@ onDeactivated(() => {
       </VDropdown>
     </div>
     <div>
+      <!-- TODO show multiple widgets for a single thread? Or add thread support into this widget itself -->
       <PublishWidget :key="draftKey" expanded class="min-h-100!" :draft-key="draftKey" />
     </div>
   </div>

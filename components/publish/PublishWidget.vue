@@ -437,6 +437,8 @@ onDeactivated(() => {
 
           <PublishEditorTools v-if="editor" :editor="editor" />
 
+          <PublishThreadTools :active="true" />
+
           <div flex-auto />
 
           <PublishCharacterCounter :max="characterLimit" :length="characterCount" />

@@ -119,7 +119,7 @@
     "@types/fnando__sparkline": "^0.3.7",
     "@types/fs-extra": "^11.0.4",
     "@types/js-yaml": "^4.0.9",
-    "@types/prettier": "^2.7.3",
+    "@types/prettier": "^3.0.0",
     "@types/wicg-file-system-access": "^2020.9.8",
     "@types/ws": "^8.5.10",
     "@unlazy/nuxt": "^0.11.1",

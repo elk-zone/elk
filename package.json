@@ -84,7 +84,7 @@
     "lru-cache": "^10.0.0",
     "masto": "^6.7.0",
     "node-emoji": "^2.1.3",
-    "nuxt-security": "^0.13.1",
+    "nuxt-security": "^0.14.0",
     "page-lifecycle": "^0.1.2",
     "pinia": "^2.1.7",
     "postcss-nested": "^6.0.1",

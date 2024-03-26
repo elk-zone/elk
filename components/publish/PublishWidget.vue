@@ -2,6 +2,7 @@
 import { EditorContent } from '@tiptap/vue-3'
 import stringLength from 'string-length'
 import type { mastodon } from 'masto'
+import { useNow } from '@vueuse/core'
 import type { Draft } from '~/types'
 
 const {
@@ -115,6 +116,39 @@ const expiresInOptions = computed(() => [
 ])
 
 const expiresInDefaultOptionIndex = 2
+
+const scheduledTime = ref('')
+const now = useNow({ interval: 1000 })
+const minimumScheduledTime = computed(() => getMinimumScheduledTime(now.value))
+
+const isValidScheduledTime = computed(() => {
+  if (scheduledTime.value === '')
+    return true
+
+  const scheduledTimeDate = new Date(scheduledTime.value)
+  return minimumScheduledTime.value.getTime() <= scheduledTimeDate.getTime()
+})
+
+watchEffect(() => {
+  draft.value.params.scheduledAt = scheduledTime.value
+})
+
+// Calculate the minimum scheduled time.
+// Mastodon API allows to set the scheduled time to 5 minutes in the future
+// but if the specified scheduled time is less than 5 minutes, Mastodon will
+// send the post immediately.
+// To prevent this, we add a buffer and round up the minutes.
+function getMinimumScheduledTime(now: Date): Date {
+  const bufferInSec = 5 + 5 * 60 // + 5 minutes and 5 seconds
+  const nowInSec = Math.floor(now.getTime() / 1000)
+  const bufferedTimeInSec
+      = Math.ceil((nowInSec + bufferInSec) / 60) * 60
+  return new Date(bufferedTimeInSec * 1000)
+}
+
+function getDatetimeInputFormat(time: Date) {
+  return time.toISOString().slice(0, 16)
+}
 
 const characterCount = computed(() => {
   const text = htmlToText(editor.value?.getHTML() || '')
@@ -256,11 +290,11 @@ onDeactivated(() => {
           <header id="publish-failed" flex justify-between>
             <div flex items-center gap-x-2 font-bold>
               <div aria-hidden="true" i-ri:error-warning-fill />
-              <p>{{ $t('state.publish_failed') }}</p>
+              <p>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</p>
             </div>
-            <CommonTooltip placement="bottom" :content="$t('action.clear_publish_failed')">
+            <CommonTooltip placement="bottom" :content="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')">
               <button
-                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('action.clear_publish_failed')"
+                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
                 @click="failedMessages = []"
               >
                 <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
@@ -273,6 +307,15 @@ onDeactivated(() => {
               <span>{{ error }}</span>
             </li>
           </ol>
+        </CommonErrorMessage>
+
+        <CommonErrorMessage v-if="!isValidScheduledTime" described-by="scheduled-time-invalid" pt-2>
+          <header id="scheduled-time-invalid" flex justify-between>
+            <div flex items-center gap-x-2 font-bold>
+              <div aria-hidden="true" i-ri:error-warning-fill />
+              <p>{{ $t('state.schedule_time_invalid', [minimumScheduledTime.toLocaleString()]) }}</p>
+            </div>
+          </header>
         </CommonErrorMessage>
 
         <div relative flex-1 flex flex-col>
@@ -435,6 +478,23 @@ onDeactivated(() => {
 
           <PublishEditorTools v-if="editor" :editor="editor" />
 
+          <CommonDropdown placement="bottom">
+            <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
+              <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
+                <div i-ri:calendar-schedule-line :class="scheduledTime !== '' ? 'text-primary' : ''" />
+              </button>
+            </CommonTooltip>
+            <template #popper>
+              <input
+                v-model="scheduledTime"
+                p2
+                type="datetime-local"
+                name="schedule-datetime"
+                :min="getDatetimeInputFormat(minimumScheduledTime)"
+              >
+            </template>
+          </CommonDropdown>
+
           <div flex-auto />
 
           <PublishCharacterCounter :max="characterLimit" :length="characterCount" />
@@ -469,14 +529,14 @@ onDeactivated(() => {
             </template>
           </PublishVisibilityPicker>
 
-          <CommonTooltip v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top" :content="$t('tooltip.publish_failed')" no-auto-focus>
+          <CommonTooltip v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top" :content="scheduledTime ? $t('state.schedule_failed') : $t('tooltip.publish_failed')" no-auto-focus>
             <button
               btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit aria-describedby="publish-failed-tooltip"
             >
               <span block>
                 <div block i-carbon:face-dizzy-filled />
               </span>
-              <span>{{ $t('state.publish_failed') }}</span>
+              <span>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</span>
             </button>
           </CommonTooltip>
 
@@ -485,7 +545,7 @@ onDeactivated(() => {
               btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center
               md:w-fit
               class="publish-button"
-              :aria-disabled="isPublishDisabled || isExceedingCharacterLimit"
+              :aria-disabled="isPublishDisabled || isExceedingCharacterLimit || !isValidScheduledTime"
               aria-describedby="publish-tooltip"
               @click="publish"
             >
@@ -496,6 +556,7 @@ onDeactivated(() => {
                 <div block i-carbon:face-dizzy-filled />
               </span>
               <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
+              <span v-else-if="scheduledTime">{{ !isSending ? $t('action.schedule') : $t('state.scheduling') }}</span>
               <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
               <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
             </button>
@@ -512,10 +573,12 @@ onDeactivated(() => {
     background-color: var(--c-bg-btn-disabled);
     color: var(--c-text-btn-disabled);
   }
+
   .publish-button[aria-disabled=true]:hover {
     background-color: var(--c-bg-btn-disabled);
     color: var(--c-text-btn-disabled);
   }
+
   .option-input:focus + .delete-button {
     display: none;
   }
@@ -529,5 +592,9 @@ onDeactivated(() => {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+  }
+
+  input[name="schedule-datetime"]:invalid {
+    color: var(--c-danger);
   }
 </style>

@@ -25,7 +25,7 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
     : preferredVisibility
 }
 
-export function getDefaultDraft(options: Partial<Mutable<mastodon.rest.v1.CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
+export function getDefaultDraft(options: Partial<Mutable<mastodon.rest.v1.CreateScheduledStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
   const {
     attachments = [],
     initialText = '',
@@ -37,6 +37,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.rest.v1.Create
     language,
     mentions,
     poll,
+    scheduledAt,
   } = options
 
   return {
@@ -45,6 +46,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.rest.v1.Create
     params: {
       status: status || '',
       poll,
+      scheduledAt,
       inReplyToId,
       visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,

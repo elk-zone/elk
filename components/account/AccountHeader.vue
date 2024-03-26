@@ -10,6 +10,8 @@ const { client } = useMasto()
 
 const { t } = useI18n()
 
+provide(viewTransitionAccountInjectionKey, account)
+
 const createdAt = useFormattedDateTime(() => account.createdAt, {
   month: 'long',
   day: 'numeric',

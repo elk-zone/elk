@@ -20,6 +20,8 @@ const status = computed(() => {
   return props.status
 })
 
+provide(viewTransitionStatusInjectionKey, status.value)
+
 const createdAt = useFormattedDateTime(status.value.createdAt)
 
 const { t } = useI18n()

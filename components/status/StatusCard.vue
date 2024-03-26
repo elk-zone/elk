@@ -32,6 +32,8 @@ const status = computed(() => {
   return props.status
 })
 
+provide(viewTransitionStatusInjectionKey, status.value)
+
 // Use original status, avoid connecting a reblog
 const directReply = computed(() => props.hasNewer || (!!status.value.inReplyToId && (status.value.inReplyToId === props.newer?.id || status.value.inReplyToId === props.newer?.reblog?.id)))
 // Use reblogged status, connect it to further replies
@@ -67,6 +69,11 @@ const showUpperBorder = computed(() => props.newer && !directReply.value)
 const showReplyTo = computed(() => !replyToMain.value && !directReply.value)
 
 const forceShow = ref(false)
+
+function goToAccount(account: mastodon.v1.Account) {
+  setViewTransitionTarget({ account, status: status.value })
+  router.push(getAccountRoute(account))
+}
 </script>
 
 <template>
@@ -105,7 +112,7 @@ const forceShow = ref(false)
           <div i-ri:repeat-fill me-46px text-green w-16px h-16px class="status-boosted" />
           <div absolute top-1 ms-24px w-32px h-32px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">
-              <NuxtLink :to="getAccountRoute(rebloggedBy)">
+              <NuxtLink @click="goToAccount(rebloggedBy)">
                 <AccountAvatar :account="rebloggedBy" />
               </NuxtLink>
             </AccountHoverWrapper>
@@ -136,7 +143,7 @@ const forceShow = ref(false)
             <div i-ri:repeat-fill text-green w-16px h-16px />
           </div>
           <AccountHoverWrapper :account="status.account">
-            <NuxtLink :to="getAccountRoute(status.account)" rounded-full>
+            <NuxtLink rounded-full @click="goToAccount(status.account)">
               <AccountBigAvatar :account="status.account" />
             </NuxtLink>
           </AccountHoverWrapper>
@@ -151,7 +158,7 @@ const forceShow = ref(false)
           <!-- Account Info -->
           <div flex items-center space-x-1>
             <AccountHoverWrapper :account="status.account">
-              <StatusAccountDetails :account="status.account" />
+              <StatusAccountDetails :status="status" />
             </AccountHoverWrapper>
             <div flex-auto />
             <div v-show="!getPreferences(userSettings, 'zenMode')" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>

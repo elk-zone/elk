@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
 import type { GroupedLikeNotifications } from '~/types'
 
 const { group } = defineProps<{
@@ -8,6 +9,14 @@ const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const reblogs = computed(() => group.likes.filter(i => i.reblog))
 const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
+
+const router = useRouter()
+function goToAccount(account: mastodon.v1.Account) {
+  setViewTransitionTarget({ account, status: group.status })
+  router.push(getAccountRoute(account))
+}
+
+provide(viewTransitionStatusInjectionKey, group.status)
 </script>
 
 <template>
@@ -18,7 +27,7 @@ const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
           <div i-ri:repeat-fill text-xl me-2 color-green />
           <template v-for="i, idx of reblogs" :key="idx">
             <AccountHoverWrapper :account="i.account">
-              <NuxtLink :to="getAccountRoute(i.account)">
+              <NuxtLink @click="goToAccount(i.account)">
                 <AccountAvatar text-primary font-bold :account="i.account" class="h-1.5em w-1.5em" />
               </NuxtLink>
             </AccountHoverWrapper>
@@ -31,7 +40,7 @@ const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
           <div :class="useStarFavoriteIcon ? 'i-ri:star-line color-yellow' : 'i-ri:heart-line color-red'" text-xl me-2 />
           <template v-for="i, idx of likes" :key="idx">
             <AccountHoverWrapper :account="i.account">
-              <NuxtLink :to="getAccountRoute(i.account)">
+              <NuxtLink @click="goToAccount(i.account)">
                 <AccountAvatar text-primary font-bold :account="i.account" class="h-1.5em w-1.5em" />
               </NuxtLink>
             </AccountHoverWrapper>

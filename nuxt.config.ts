@@ -51,6 +51,7 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false,
     renderJsonPayloads: true,
+    viewTransition: true,
   },
   css: [
     '@unocss/reset/tailwind.css',

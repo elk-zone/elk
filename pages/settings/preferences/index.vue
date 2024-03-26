@@ -6,6 +6,7 @@ useHydratedHead({
 })
 
 const userSettings = useUserSettings()
+const isViewTransitionAvailable = !!document.startViewTransition
 </script>
 
 <template>
@@ -164,6 +165,16 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.user_picker') }}
       <template #description>
         {{ $t('settings.preferences.user_picker_description') }}
+      </template>
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :disabled="!isViewTransitionAvailable"
+      :checked="getPreferences(userSettings, 'experimentalViewTransitions')"
+      @click="togglePreferences('experimentalViewTransitions')"
+    >
+      {{ $t('settings.preferences.view_transitions') }}
+      <template #description>
+        {{ $t('settings.preferences.view_transitions_description') }}
       </template>
     </SettingsToggleItem>
   </MainContent>

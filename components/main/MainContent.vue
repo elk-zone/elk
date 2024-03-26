@@ -22,6 +22,8 @@ const containerClass = computed(() => {
 
   return 'lg:sticky lg:top-0'
 })
+
+provide(viewTransitionEnabledInjectionKey, true)
 </script>
 
 <template>
@@ -30,6 +32,7 @@ const containerClass = computed(() => {
       sticky top-0 z10
       pt="[env(safe-area-inset-top,0)]"
       bg="[rgba(var(--rgb-bg-base),0.7)]"
+      style="view-transition-name: header"
       class="native:lg:w-[calc(100vw-5rem)] native:xl:w-[calc(135%+(100vw-1200px)/2)]"
       :class="{
         'backdrop-blur': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),

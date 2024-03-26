@@ -31,10 +31,12 @@ function reply() {
   else
     navigateToStatus({ status: status.value, focusReply: true })
 }
+
+const viewTransitionStyle = getViewTransitionStyles('status-actions')
 </script>
 
 <template>
-  <div flex justify-between items-center class="status-actions">
+  <div flex justify-between items-center class="status-actions" :style="viewTransitionStyle">
     <div flex-1>
       <StatusActionButton
         :content="$t('action.reply')"

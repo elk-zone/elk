@@ -591,7 +591,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Número máximo de archivos adjuntos por publicación excedido.",
+    "attachments_limit_audio_error": "Tamaño máximo de audio excedido: {0}",
     "attachments_limit_error": "Límite por publicación excedido",
+    "attachments_limit_image_error": "Tamaño máximo de imagen excedido: {0}",
+    "attachments_limit_unknown_error": "Tamaño máximo de archivo excedido: {0}",
+    "attachments_limit_video_error": "Tamaño máximo de vídeo excedido: {0}",
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Cargando...",
@@ -708,7 +712,7 @@
   "tooltip": {
     "add_content_warning": "Añadir advertencia de contenido",
     "add_emojis": "Agregar emojis",
-    "add_media": "Añadir imágenes, video o audio",
+    "add_media": "Añadir imágenes, vídeo o audio",
     "add_publishable_content": "Publicar contenido",
     "change_content_visibility": "Cambiar visibilidad de contenido",
     "change_language": "Cambiar idioma",

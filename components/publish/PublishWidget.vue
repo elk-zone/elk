@@ -233,24 +233,22 @@ onDeactivated(() => {
       </NuxtLink>
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <div
-        ref="dropZoneRef"
-        flex w-0 flex-col gap-3 flex-1
-        border="2 dashed transparent"
+        ref="dropZoneRef" flex w-0 flex-col gap-3 flex-1 border="2 dashed transparent"
         :class="[isSending ? 'pointer-events-none' : '', isOverDropZone ? '!border-primary' : '']"
       >
         <ContentMentionGroup v-if="draft.mentions?.length && shouldExpanded" replying>
-          <button v-for="m, i of draft.mentions" :key="m" text-primary hover:color-red @click="draft.mentions?.splice(i, 1)">
+          <button
+            v-for="m, i of draft.mentions" :key="m" text-primary hover:color-red
+            @click="draft.mentions?.splice(i, 1)"
+          >
             {{ accountToShortHandle(m) }}
           </button>
         </ContentMentionGroup>
 
         <div v-if="draft.params.sensitive">
           <input
-            v-model="publishSpoilerText"
-            type="text"
-            :placeholder="$t('placeholder.content_warning')"
-            p2 border-rounded w-full bg-transparent
-            outline-none border="~ base"
+            v-model="publishSpoilerText" type="text" :placeholder="$t('placeholder.content_warning')" p2
+            border-rounded w-full bg-transparent outline-none border="~ base"
           >
         </div>
 
@@ -262,8 +260,8 @@ onDeactivated(() => {
             </div>
             <CommonTooltip placement="bottom" :content="$t('action.clear_publish_failed')">
               <button
-                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('action.clear_publish_failed')"
-                @click="failedMessages = []"
+                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100
+                :aria-label="$t('action.clear_publish_failed')" @click="failedMessages = []"
               >
                 <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
               </button>
@@ -279,8 +277,7 @@ onDeactivated(() => {
 
         <div relative flex-1 flex flex-col>
           <EditorContent
-            :editor="editor"
-            flex max-w-full
+            :editor="editor" flex max-w-full
             :class="shouldExpanded ? 'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain' : ''"
             @keydown="stopQuestionMarkPropagation"
           />
@@ -323,11 +320,9 @@ onDeactivated(() => {
 
         <div v-if="draft.attachments.length" flex="~ col gap-2" overflow-auto>
           <PublishAttachment
-            v-for="(att, idx) in draft.attachments" :key="att.id"
-            :attachment="att"
+            v-for="(att, idx) in draft.attachments" :key="att.id" :attachment="att"
             :dialog-labelled-by="dialogLabelledBy ?? (draft.editingStatus ? 'state-editing' : undefined)"
-            @remove="removeAttachment(idx)"
-            @set-description="setDescription(att, $event)"
+            @remove="removeAttachment(idx)" @set-description="setDescription(att, $event)"
           />
         </div>
       </div>
@@ -336,21 +331,12 @@ onDeactivated(() => {
       <div w-12 h-full sm:block hidden />
       <div flex="~ col 1" max-w-full>
         <form v-if="isExpanded && draft.params.poll" my-4 flex="~ 1 col" gap-3 m="s--1">
-          <div
-            v-for="(option, index) in draft.params.poll.options"
-            :key="index"
-            flex="~ row"
-            gap-3
-          >
+          <div v-for="(option, index) in draft.params.poll.options" :key="index" flex="~ row" gap-3>
             <input
-              :value="option"
-              bg-base
-              border="~ base" flex-1 h10 pe-4 rounded-2 w-full flex="~ row"
-              items-center relative focus-within:box-shadow-outline gap-3
-              px-4 py-2
+              :value="option" bg-base border="~ base" flex-1 h10 pe-4 rounded-2 w-full flex="~ row" items-center
+              relative focus-within:box-shadow-outline gap-3 px-4 py-2
               :placeholder="$t('polls.option_placeholder', { current: index + 1, max: currentInstance?.configuration?.polls.maxOptions })"
-              class="option-input"
-              @input="editPollOptionDraft($event, index)"
+              class="option-input" @input="editPollOptionDraft($event, index)"
             >
             <CommonTooltip placement="top" :content="$t('polls.remove_option')" class="delete-button">
               <button
@@ -362,28 +348,24 @@ onDeactivated(() => {
               </button>
             </CommonTooltip>
             <span
-              v-if="currentInstance?.configuration?.polls.maxCharactersPerOption"
-              class="char-limit-radial"
-              aspect-ratio-1
-              h-10
+              v-if="currentInstance?.configuration?.polls.maxCharactersPerOption" class="char-limit-radial"
+              aspect-ratio-1 h-10
               :style="{ background: `radial-gradient(closest-side, rgba(var(--rgb-bg-base)) 79%, transparent 80% 100%), conic-gradient(${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption > 1 ? 'var(--c-danger)' : 'var(--c-primary)'} ${draft.params.poll!.options[index].length / currentInstance?.configuration?.polls.maxCharactersPerOption * 100}%, var(--c-primary-fade) 0)` }"
-            >{{ draft.params.poll!.options[index].length }}</span>
+            >{{
+              draft.params.poll!.options[index].length }}</span>
           </div>
         </form>
-        <div
-          v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full
-          border="t base"
-        >
-          <PublishEmojiPicker
-            @select="insertEmoji"
-            @select-custom="insertCustomEmoji"
-          >
+        <div v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full border="t base">
+          <PublishEmojiPicker @select="insertEmoji" @select-custom="insertCustomEmoji">
             <button btn-action-icon :title="$t('tooltip.emojis')" :aria-label="$t('tooltip.add_emojis')">
               <div i-ri:emotion-line />
             </button>
           </PublishEmojiPicker>
 
-          <CommonTooltip v-if="draft.params.poll === undefined" placement="top" :content="$t('tooltip.add_media')" no-auto-focus>
+          <CommonTooltip
+            v-if="draft.params.poll === undefined" placement="top" :content="$t('tooltip.add_media')"
+            no-auto-focus
+          >
             <button btn-action-icon :aria-label="$t('tooltip.add_media')" @click="pickAttachments">
               <div i-ri:image-add-line />
             </button>
@@ -391,13 +373,19 @@ onDeactivated(() => {
 
           <template v-if="draft.attachments.length === 0">
             <CommonTooltip v-if="!draft.params.poll" placement="top" :content="$t('polls.create')" no-auto-focus>
-              <button btn-action-icon :aria-label="$t('polls.create')" @click="draft.params.poll = { options: [''], expiresIn: expiresInOptions[expiresInDefaultOptionIndex].seconds }">
+              <button
+                btn-action-icon :aria-label="$t('polls.create')"
+                @click="draft.params.poll = { options: [''], expiresIn: expiresInOptions[expiresInDefaultOptionIndex].seconds }"
+              >
                 <div i-ri:chat-poll-line />
               </button>
             </CommonTooltip>
             <div v-else rounded-full b-1 border-dark flex="~ row" gap-1>
               <CommonTooltip placement="top" :content="$t('polls.cancel')" no-auto-focus>
-                <button btn-action-icon b-r border-dark :aria-label="$t('polls.cancel')" @click="draft.params.poll = undefined">
+                <button
+                  btn-action-icon b-r border-dark :aria-label="$t('polls.cancel')"
+                  @click="draft.params.poll = undefined"
+                >
                   <div i-ri:close-line />
                 </button>
               </CommonTooltip>
@@ -410,8 +398,19 @@ onDeactivated(() => {
                 </CommonTooltip>
                 <template #popper>
                   <div flex="~ col" gap-1 p-2>
-                    <CommonCheckbox v-model="draft.params.poll.multiple" :label="draft.params.poll.multiple ? $t('polls.disallow_multiple') : $t('polls.allow_multiple')" px-2 gap-3 h-9 flex justify-center hover:bg-active rounded-full icon-checked="i-ri:checkbox-multiple-blank-line" icon-unchecked="i-ri:checkbox-blank-circle-line" />
-                    <CommonCheckbox v-model="draft.params.poll.hideTotals" :label="draft.params.poll.hideTotals ? $t('polls.show_votes') : $t('polls.hide_votes')" px-2 gap-3 h-9 flex justify-center hover:bg-active rounded-full icon-checked="i-ri:eye-close-line" icon-unchecked="i-ri:eye-line" />
+                    <CommonCheckbox
+                      v-model="draft.params.poll.multiple"
+                      :label="draft.params.poll.multiple ? $t('polls.disallow_multiple') : $t('polls.allow_multiple')"
+                      px-2 gap-3 h-9 flex justify-center hover:bg-active rounded-full
+                      icon-checked="i-ri:checkbox-multiple-blank-line"
+                      icon-unchecked="i-ri:checkbox-blank-circle-line"
+                    />
+                    <CommonCheckbox
+                      v-model="draft.params.poll.hideTotals"
+                      :label="draft.params.poll.hideTotals ? $t('polls.show_votes') : $t('polls.hide_votes')" px-2 gap-3
+                      h-9 flex justify-center hover:bg-active rounded-full icon-checked="i-ri:eye-close-line"
+                      icon-unchecked="i-ri:eye-line"
+                    />
                   </div>
                 </template>
               </CommonDropdown>
@@ -424,10 +423,8 @@ onDeactivated(() => {
                 </CommonTooltip>
                 <template #popper>
                   <CommonDropdownItem
-                    v-for="expiresInOption in expiresInOptions"
-                    :key="expiresInOption.seconds"
-                    :text="expiresInOption.label"
-                    :checked="draft.params.poll!.expiresIn === expiresInOption.seconds"
+                    v-for="expiresInOption in expiresInOptions" :key="expiresInOption.seconds"
+                    :text="expiresInOption.label" :checked="draft.params.poll!.expiresIn === expiresInOption.seconds"
                     @click="draft.params.poll!.expiresIn = expiresInOption.seconds"
                   />
                 </template>
@@ -464,17 +461,25 @@ onDeactivated(() => {
 
           <PublishVisibilityPicker v-model="draft.params.visibility" :editing="!!draft.editingStatus">
             <template #default="{ visibility }">
-              <button :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')" btn-action-icon :class="{ 'w-12': !draft.editingStatus }">
+              <button
+                :disabled="!!draft.editingStatus" :aria-label="$t('tooltip.change_content_visibility')"
+                btn-action-icon :class="{ 'w-12': !draft.editingStatus }"
+              >
                 <div :class="visibility.icon" />
                 <div v-if="!draft.editingStatus" i-ri:arrow-down-s-line text-sm text-secondary me--1 />
               </button>
             </template>
           </PublishVisibilityPicker>
 
-          <CommonTooltip v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top" :content="$t('tooltip.publish_failed')" no-auto-focus>
-            <PublishThreadTools :thread-index="1" />
+          <PublishThreadTools :thread-index="1" />
+
+          <CommonTooltip
+            v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"
+            :content="$t('tooltip.publish_failed')" no-auto-focus
+          >
             <button
-              btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit aria-describedby="publish-failed-tooltip"
+              btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit
+              aria-describedby="publish-failed-tooltip"
             >
               <span block>
                 <div block i-carbon:face-dizzy-filled />
@@ -483,13 +488,13 @@ onDeactivated(() => {
             </button>
           </CommonTooltip>
 
-          <CommonTooltip v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')" :disabled="!(isPublishDisabled || isExceedingCharacterLimit)" no-auto-focus>
+          <CommonTooltip
+            v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')"
+            :disabled="!(isPublishDisabled || isExceedingCharacterLimit)" no-auto-focus
+          >
             <button
-              btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center
-              md:w-fit
-              class="publish-button"
-              :aria-disabled="isPublishDisabled || isExceedingCharacterLimit"
-              aria-describedby="publish-tooltip"
+              btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
+              :aria-disabled="isPublishDisabled || isExceedingCharacterLimit" aria-describedby="publish-tooltip"
               @click="publish"
             >
               <span v-if="isSending" block animate-spin preserve-3d>
@@ -510,27 +515,29 @@ onDeactivated(() => {
 </template>
 
 <style scoped>
-  .publish-button[aria-disabled=true] {
-    cursor: not-allowed;
-    background-color: var(--c-bg-btn-disabled);
-    color: var(--c-text-btn-disabled);
-  }
-  .publish-button[aria-disabled=true]:hover {
-    background-color: var(--c-bg-btn-disabled);
-    color: var(--c-text-btn-disabled);
-  }
-  .option-input:focus + .delete-button {
-    display: none;
-  }
+.publish-button[aria-disabled=true] {
+  cursor: not-allowed;
+  background-color: var(--c-bg-btn-disabled);
+  color: var(--c-text-btn-disabled);
+}
 
-  .option-input:not(:focus) + .delete-button + .char-limit-radial {
-    display: none;
-  }
+.publish-button[aria-disabled=true]:hover {
+  background-color: var(--c-bg-btn-disabled);
+  color: var(--c-text-btn-disabled);
+}
 
-  .char-limit-radial {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-  }
+.option-input:focus+.delete-button {
+  display: none;
+}
+
+.option-input:not(:focus)+.delete-button+.char-limit-radial {
+  display: none;
+}
+
+.char-limit-radial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
 </style>

@@ -437,8 +437,6 @@ onDeactivated(() => {
 
           <PublishEditorTools v-if="editor" :editor="editor" />
 
-          <PublishThreadTools :active="true" />
-
           <div flex-auto />
 
           <PublishCharacterCounter :max="characterLimit" :length="characterCount" />
@@ -474,6 +472,7 @@ onDeactivated(() => {
           </PublishVisibilityPicker>
 
           <CommonTooltip v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top" :content="$t('tooltip.publish_failed')" no-auto-focus>
+            <PublishThreadTools :thread-index="1" />
             <button
               btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit aria-describedby="publish-failed-tooltip"
             >

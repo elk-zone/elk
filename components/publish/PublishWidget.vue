@@ -471,7 +471,7 @@ onDeactivated(() => {
             </template>
           </PublishVisibilityPicker>
 
-          <PublishThreadTools :thread-index="1" />
+          <PublishThreadTools :thread-index="1" :draft="ref(draft)" />
 
           <CommonTooltip
             v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"

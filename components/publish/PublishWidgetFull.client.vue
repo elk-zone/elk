@@ -13,6 +13,8 @@ const nonEmptyDrafts = computed(() => draftKeys.value
   .map(i => [i, currentUserDrafts.value[i]] as const),
 )
 
+const { threadDraftKeys, threadIsActive } = useThreadComposer(draftKey.value)
+
 watchEffect(() => {
   draftKey.value = route.query.draft?.toString() || 'home'
 })
@@ -57,8 +59,13 @@ onDeactivated(() => {
       </VDropdown>
     </div>
     <div>
-      <!-- TODO show multiple widgets for a single thread? Or add thread support into this widget itself -->
-      <PublishWidget :key="draftKey" expanded class="min-h-100!" :draft-key="draftKey" />
+      <template v-if="threadIsActive">
+        <div v-for="(threadDraftKey) in threadDraftKeys" :key="threadDraftKey">
+          {{ threadDraftKey }}
+        </div>
+        <PublishWidget v-for="(threadDraftKey) in threadDraftKeys" :key="threadDraftKey" class="min-h-100!" :draft-key="threadDraftKey" />
+      </template>
+      <PublishWidget v-else :key="draftKey" expanded class="min-h-100!" :draft-key="draftKey" />
     </div>
   </div>
 </template>

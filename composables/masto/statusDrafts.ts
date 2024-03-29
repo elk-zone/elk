@@ -125,7 +125,7 @@ export function isEmptyDraft(draft: Draft | null | undefined) {
 
 export interface UseDraft {
   draft: Ref<Draft>
-  isEmpty: ComputedRef<boolean>
+  isEmpty: ComputedRef<boolean> | Ref<boolean>
 }
 
 export function useDraft(

@@ -100,7 +100,7 @@ function reply() {
 
     <div flex-none>
       <StatusActionButton
-        :content="$t('action.bookmark')"
+        :content="$t(status.bookmarked ? 'action.bookmarked' : 'action.bookmark')"
         :color="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
         :hover="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
         :elk-group-hover="useStarFavoriteIcon ? 'bg-rose/10' : 'bg-yellow/10' "

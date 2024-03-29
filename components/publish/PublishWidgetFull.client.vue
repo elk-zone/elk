@@ -13,7 +13,9 @@ const nonEmptyDrafts = computed(() => draftKeys.value
   .map(i => [i, currentUserDrafts.value[i]] as const),
 )
 
-const { threadDraftKeys, threadIsActive } = useThreadComposer(draftKey.value)
+const { threadDraftKeys, threadIsActive, addThreadDraft } = useThreadComposer(draftKey.value)
+
+addThreadDraft(draftKey.value)
 
 watchEffect(() => {
   draftKey.value = route.query.draft?.toString() || 'home'
@@ -29,16 +31,14 @@ onDeactivated(() => {
     <div inline-flex justify-end h-8>
       <VDropdown v-if="nonEmptyDrafts.length" placement="bottom-end">
         <button btn-text flex="inline center">
-          {{ $t('compose.drafts', nonEmptyDrafts.length, { named: { v: formatNumber(nonEmptyDrafts.length) } }) }}&#160;<div aria-hidden="true" i-ri:arrow-down-s-line />
+          {{ $t('compose.drafts', nonEmptyDrafts.length, { named: { v: formatNumber(nonEmptyDrafts.length) } }) }}&#160;
+          <div aria-hidden="true" i-ri:arrow-down-s-line />
         </button>
         <template #popper="{ hide }">
           <div flex="~ col">
             <NuxtLink
-              v-for="[key, draft] of nonEmptyDrafts" :key="key"
-              border="b base" text-left py2 px4 hover:bg-active
-              :replace="true"
-              :to="`/compose?draft=${encodeURIComponent(key)}`"
-              @click="hide()"
+              v-for="[key, draft] of nonEmptyDrafts" :key="key" border="b base" text-left py2 px4
+              hover:bg-active :replace="true" :to="`/compose?draft=${encodeURIComponent(key)}`" @click="hide()"
             >
               <div>
                 <div flex="~ gap-1" items-center>
@@ -63,7 +63,10 @@ onDeactivated(() => {
         <div v-for="(threadDraftKey) in threadDraftKeys" :key="threadDraftKey">
           {{ threadDraftKey }}
         </div>
-        <PublishWidget v-for="(threadDraftKey) in threadDraftKeys" :key="threadDraftKey" class="min-h-100!" :draft-key="threadDraftKey" />
+        <PublishWidget
+          v-for="(threadDraftKey) in threadDraftKeys" :key="threadDraftKey" class="min-h-100!"
+          :draft-key="threadDraftKey"
+        />
       </template>
       <PublishWidget v-else :key="draftKey" expanded class="min-h-100!" :draft-key="draftKey" />
     </div>

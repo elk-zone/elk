@@ -25,16 +25,16 @@ export function useThreadComposer(baseDraftKey?: string) {
   /**
    * Whether the thread is active (has at least one draft)
    */
-  const threadIsActive = computed<boolean>(() => threadLength.value > 0)
+  const threadIsActive = computed<boolean>(() => threadLength.value > 1)
 
   /**
    * Add a draft to the thread
-   * @param draftKey
+   * @param forcedDraftKey
    * @param draft
    */
-  function addThreadDraft(draft?: Ref<Draft>) {
-    const draftKey = (threadBaseDraftKey.value ?? '') + threadLength.value
-    threadDrafts.value[draftKey] = draft ?? ref(getDefaultDraft({}))
+  function addThreadDraft(forcedDraftKey?: string) {
+    const draftKey = (`${threadBaseDraftKey.value ?? ''}--thread--${threadLength.value}`)
+    threadDrafts.value[forcedDraftKey ?? draftKey] = ref(getDefaultDraft({}))
   }
 
   /**
@@ -54,7 +54,7 @@ export function useThreadComposer(baseDraftKey?: string) {
   })
 
   function getThreadDraftIndex(draftKey: string) {
-    return threadDraftKeys.value.indexOf(draftKey)
+    return computed(() => threadDraftKeys.value.indexOf(draftKey))
   }
 
   async function publishThread() {

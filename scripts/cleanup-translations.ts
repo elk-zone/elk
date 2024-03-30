@@ -1,5 +1,5 @@
 import { Buffer } from 'node:buffer'
-import flatten from 'flat'
+import { flatten, unflatten } from 'flat'
 import { createResolver } from '@nuxt/kit'
 import fs from 'fs-extra'
 import { currentLocales } from '../config/i18n'
@@ -51,7 +51,7 @@ async function removeOutdatedTranslations() {
           delete targetTranslations[key]
       }
 
-      const unflattened = flatten.unflatten(targetTranslations)
+      const unflattened = unflatten(targetTranslations)
 
       await fs.writeFile(
         path,

@@ -138,7 +138,7 @@ const characterCount = computed(() => {
     length -= fullMatch.length - (before + username).length - 1 // - 1 for the @
 
   if (draft.value.mentions) {
-    // + 1 is needed as mentions always need a space seperator at the end
+    // + 1 is needed as mentions always need a space separator at the end
     length += draft.value.mentions.map((mention) => {
       const [handle] = mention.split('@')
       return `@${handle}`

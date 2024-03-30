@@ -63,6 +63,9 @@ export function useTiptap(options: UseTiptapOptions) {
       Mention
         .extend({ name: 'hashtag' })
         .configure({
+          renderHTML({ options, node }) {
+            return ['span', { 'data-type': 'hashtag', 'data-id': node.attrs.id }, `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`]
+          },
           suggestion: TiptapHashtagSuggestion,
         }),
       Mention

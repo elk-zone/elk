@@ -4,16 +4,16 @@ const props = defineProps<{
   draftItemIndex: number
 }>()
 
-const { threadIsActive, addThreadItem, threadItems,
-} = useThreadComposer(props.draftKey)
+const { threadIsActive, addThreadItem, threadItems, removeThreadItem } = useThreadComposer(props.draftKey)
 
-const isLastDraftInThread = computed(() => props.draftItemIndex === threadItems.value.length - 1)
+const isRemovableItem = computed(() => threadIsActive.value && props.draftItemIndex < threadItems.value.length - 1)
 
-function toggleThread() {
-  // TODO what do on remove
+function addOrRemoveItem() {
+  if (isRemovableItem.value)
+    removeThreadItem(props.draftItemIndex)
 
-  // Add a new draft to the current thread
-  addThreadItem()
+  else
+    addThreadItem()
 }
 </script>
 
@@ -27,8 +27,8 @@ function toggleThread() {
       }}</span>
     </div>
 
-    <button btn-action-icon :aria-label="$t('tooltip.manage_thread')" @click="toggleThread">
-      <div v-if="threadIsActive && !isLastDraftInThread" i-ri:chat-delete-line />
+    <button btn-action-icon :aria-label="$t('tooltip.manage_thread')" @click="addOrRemoveItem">
+      <div v-if="isRemovableItem" i-ri:chat-delete-line />
       <div v-else i-ri:chat-new-line />
     </button>
   </div>

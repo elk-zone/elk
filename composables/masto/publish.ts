@@ -142,8 +142,6 @@ export function usePublish(options: {
     }
   }
 
-  // TODO return threadId and threadIndex to be used in the thread composer
-
   return {
     isSending,
     isExpanded,

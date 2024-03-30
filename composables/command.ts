@@ -245,23 +245,11 @@ export function useCommands(cmds: () => CommandProvider[]) {
 export function provideGlobalCommands() {
   const { locale, t } = useI18n()
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
-  const router = useRouter()
   const users = useUsers()
   const masto = useMasto()
   const colorMode = useColorMode()
   const userSettings = useUserSettings()
   const { singleInstanceServer, oauth } = useSignIn()
-
-  useCommand({
-    scope: 'Navigation',
-
-    name: () => t('nav.settings'),
-    icon: 'i-ri:settings-3-line',
-
-    onActivate() {
-      router.push('/settings')
-    },
-  })
 
   useCommand({
     scope: 'Preferences',

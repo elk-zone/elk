@@ -134,21 +134,19 @@ export interface UseDraft {
 }
 
 export function useDraft(
-  draftKey?: string,
+  draftKey: string,
   initial: () => DraftItem = () => getDefaultDraftItem({}),
 ): UseDraft {
-  const draftItems = draftKey
-    ? computed({
-      get() {
-        if (!currentUserDrafts.value[draftKey])
-          currentUserDrafts.value[draftKey] = [initial()]
-        return currentUserDrafts.value[draftKey]
-      },
-      set(val) {
-        currentUserDrafts.value[draftKey] = val
-      },
-    })
-    : ref([initial()])
+  const draftItems = computed({
+    get() {
+      if (!currentUserDrafts.value[draftKey])
+        currentUserDrafts.value[draftKey] = [initial()]
+      return currentUserDrafts.value[draftKey]
+    },
+    set(val) {
+      currentUserDrafts.value[draftKey] = val
+    },
+  })
 
   const isEmpty = computed(() => isEmptyDraft(draftItems.value))
 

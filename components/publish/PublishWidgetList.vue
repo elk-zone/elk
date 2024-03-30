@@ -29,13 +29,6 @@ onDeactivated(() => {
 
 <template>
   <template v-if="isHydrated && currentUser">
-    {{ threadItems }}
-    <div v-for="(draftItem, index) in threadItems" :key="index">
-      item: {{ draftItem }}
-      <br>
-      index: {{ index }}
-    </div>
-
     <PublishWidget
       v-for="(_, index) in threadItems" :key="index"
       :draft-key="draftKey"

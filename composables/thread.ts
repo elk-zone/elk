@@ -1,11 +1,5 @@
 import type { DraftItem } from '~/types'
 
-/**
- * The list of draft keys that are part of the thread.
- * There is a single global thread for the whole app, to keep complexity low.
- */
-const threadItems: Ref<Array<DraftItem>> = ref([])
-
 export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
   const { draftItems } = useDraft(draftKey, initial)
 
@@ -30,7 +24,7 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
   }
 
   return {
-    threadItems,
+    threadItems: draftItems,
     threadIsActive,
     addThreadItem,
     removeThreadItem,

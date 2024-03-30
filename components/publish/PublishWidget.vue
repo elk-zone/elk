@@ -28,9 +28,11 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const { threadItems } = useThreadComposer(draftKey)
+const { threadItems, threadIsActive } = useThreadComposer(draftKey)
 
 const draft = computed(() => threadItems.value[draftItemIndex])
+
+const isFinalItemOfThread = computed(() => draftItemIndex === threadItems.value.length - 1)
 
 const {
   isExceedingAttachmentLimit,
@@ -471,7 +473,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
             </template>
           </PublishVisibilityPicker>
 
-          <PublishThreadTools :draft-item-index="1" :draft-key="draftKey" />
+          <PublishThreadTools :draft-item-index="draftItemIndex" :draft-key="draftKey" />
 
           <CommonTooltip
             v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"
@@ -493,6 +495,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
             :disabled="!(isPublishDisabled || isExceedingCharacterLimit)" no-auto-focus
           >
             <button
+              v-if="!threadIsActive || isFinalItemOfThread"
               btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
               :aria-disabled="isPublishDisabled || isExceedingCharacterLimit" aria-describedby="publish-tooltip"
               @click="publish"
@@ -503,9 +506,14 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
               <span v-if="failedMessages.length" block>
                 <div block i-carbon:face-dizzy-filled />
               </span>
-              <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
-              <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
-              <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
+              <template v-if="threadIsActive">
+                <span>{{ $t('action.publish_thread') }} </span>
+              </template>
+              <template v-else>
+                <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
+                <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
+                <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
+              </template>
             </button>
           </CommonTooltip>
         </div>

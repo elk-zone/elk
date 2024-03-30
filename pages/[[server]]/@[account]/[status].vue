@@ -85,7 +85,7 @@ onReactivated(() => {
             style="scroll-margin-top: 60px"
             @refetch-status="refreshStatus()"
           />
-          <PublishWidget
+          <PublishWidgetList
             v-if="currentUser"
             ref="publishWidget"
             border="y base"

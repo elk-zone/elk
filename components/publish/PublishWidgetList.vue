@@ -39,6 +39,5 @@ onDeactivated(() => {
       :in-reply-to-id="inReplyToId"
       :in-reply-to-visibility="inReplyToVisibility"
     />
-    <div h="1px" w-auto bg-border mb-3 />
   </template>
 </template>

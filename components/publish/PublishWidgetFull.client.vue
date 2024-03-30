@@ -23,7 +23,7 @@ onDeactivated(() => {
 </script>
 
 <template>
-  <div flex="~ col" pt-6 h-screen>
+  <div flex="~ col" pb-6>
     <div inline-flex justify-end h-8>
       <VDropdown v-if="nonEmptyDrafts.length" placement="bottom-end">
         <button btn-text flex="inline center">

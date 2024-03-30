@@ -87,7 +87,9 @@ function editPollOptionDraft(event: Event, index: number) {
 }
 
 function deletePollOption(index: number) {
-  draft.value.params.poll!.options = draft.value.params.poll!.options.slice().splice(index, 1)
+  const newPollOptions = draft.value.params.poll!.options.slice()
+  newPollOptions.splice(index, 1)
+  draft.value.params.poll!.options = newPollOptions
   trimPollOptions()
 }
 

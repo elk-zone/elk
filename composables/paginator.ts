@@ -34,10 +34,10 @@ export function usePaginator<T, P, U = T>(
       return
 
     for await (const entry of stream) {
-      if (entry.event === 'update') {
+      if (entry.event === 'update' || entry.event === 'notification') {
         const status = entry.payload
 
-        if ('uri' in entry)
+        if ('uri' in status)
           cacheStatus(status, undefined, true)
 
         const index = prevItems.value.findIndex((i: any) => i.id === status.id)

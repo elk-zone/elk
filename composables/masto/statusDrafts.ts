@@ -137,7 +137,7 @@ export function useDraft(
   draftKey?: string,
   initial: () => DraftItem = () => getDefaultDraftItem({}),
 ): UseDraft {
-  const draft = draftKey
+  const draftItems = draftKey
     ? computed({
       get() {
         if (!currentUserDrafts.value[draftKey])
@@ -150,7 +150,7 @@ export function useDraft(
     })
     : ref([initial()])
 
-  const isEmpty = computed(() => isEmptyDraft(draft.value))
+  const isEmpty = computed(() => isEmptyDraft(draftItems.value))
 
   onUnmounted(async () => {
     // Remove draft if it's empty
@@ -160,7 +160,7 @@ export function useDraft(
     }
   })
 
-  return { draftItems: draft, isEmpty }
+  return { draftItems, isEmpty }
 }
 
 export function mentionUser(account: mastodon.v1.Account) {

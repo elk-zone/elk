@@ -4,7 +4,7 @@ const props = defineProps<{
   draftItemIndex: number
 }>()
 
-const { threadIsActive, addThreadItem: addThreadDraft, threadItems,
+const { threadIsActive, addThreadItem, threadItems,
 } = useThreadComposer(props.draftKey)
 
 const isLastDraftInThread = computed(() => props.draftItemIndex === threadItems.value.length - 1)
@@ -13,7 +13,7 @@ function toggleThread() {
   // TODO what do on remove
 
   // Add a new draft to the current thread
-  addThreadDraft()
+  addThreadItem()
 }
 </script>
 

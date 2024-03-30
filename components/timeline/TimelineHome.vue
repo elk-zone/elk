@@ -10,7 +10,7 @@ function reorderAndFilter(items: mastodon.v1.Status[]) {
 
 <template>
   <div>
-    <PublishWidget draft-key="home" border="b base" />
+    <PublishWidgetList draft-key="home" border="b base" />
     <TimelinePaginator v-bind="{ paginator, stream }" :preprocess="reorderAndFilter" context="home" />
   </div>
 </template>

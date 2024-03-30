@@ -217,10 +217,6 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
   if (e.key === '?')
     e.stopImmediatePropagation()
 }
-
-onDeactivated(() => {
-  clearEmptyDrafts()
-})
 </script>
 
 <template>

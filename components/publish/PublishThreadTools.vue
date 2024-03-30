@@ -1,12 +1,13 @@
 <script setup lang="ts">
 const props = defineProps<{
   draftKey: string
+  draftItemIndex: number
 }>()
 
-const { threadIsActive, addThreadDraft, getThreadDraftIndex, threadLength,
-} = useThreadComposer()
+const { threadIsActive, addThreadItem: addThreadDraft, threadItems,
+} = useThreadComposer(props.draftKey)
 
-const isLastDraftInThread = computed(() => getThreadDraftIndex(props.draftKey).value === threadLength.value - 1)
+const isLastDraftInThread = computed(() => props.draftItemIndex === threadItems.value.length - 1)
 
 function toggleThread() {
   // TODO what do on remove
@@ -22,7 +23,7 @@ function toggleThread() {
       v-if="threadIsActive" dir="ltr" pointer-events-none pe-1 pt-2 pl-2 text-sm tabular-nums text-secondary flex
       gap="0.5"
     >
-      {{ getThreadDraftIndex(draftKey) }}<span text-secondary-light>/</span><span text-secondary-light>{{ threadLength
+      {{ draftItemIndex + 1 }}<span text-secondary-light>/</span><span text-secondary-light>{{ threadItems.length
       }}</span>
     </div>
 

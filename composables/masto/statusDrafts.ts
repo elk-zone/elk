@@ -1,7 +1,7 @@
 import type { mastodon } from 'masto'
 import type { ComputedRef, Ref } from 'vue'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
-import type { Draft, DraftMap } from '~/types'
+import type { DraftItem, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
 
 export const currentUserDrafts = (import.meta.server || process.test)
@@ -25,7 +25,7 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
     : preferredVisibility
 }
 
-export function getDefaultDraft(options: Partial<Mutable<mastodon.rest.v1.CreateStatusParams> & Omit<Draft, 'params'>> = {}): Draft {
+export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.CreateStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
   const {
     attachments = [],
     initialText = '',
@@ -56,7 +56,7 @@ export function getDefaultDraft(options: Partial<Mutable<mastodon.rest.v1.Create
   }
 }
 
-export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Draft> {
+export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<DraftItem> {
   const info = {
     status: await convertMastodonHTML(status.content),
     visibility: status.visibility,
@@ -67,7 +67,7 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
     inReplyToId: status.inReplyToId,
   }
 
-  return getDefaultDraft((status.mediaAttachments !== undefined && status.mediaAttachments.length > 0)
+  return getDefaultDraftItem((status.mediaAttachments !== undefined && status.mediaAttachments.length > 0)
     ? { ...info, mediaIds: status.mediaAttachments.map(att => att.id) }
     : {
         ...info,
@@ -99,7 +99,7 @@ export function getReplyDraft(status: mastodon.v1.Status) {
   return {
     key: `reply-${status.id}`,
     draft: () => {
-      return getDefaultDraft({
+      return getDefaultDraftItem({
         initialText: '',
         inReplyToId: status!.id,
         sensitive: status.sensitive,
@@ -112,9 +112,14 @@ export function getReplyDraft(status: mastodon.v1.Status) {
   }
 }
 
-export function isEmptyDraft(draft: Draft | null | undefined) {
+export function isEmptyDraft(drafts: Array<DraftItem> | null | undefined) {
+  if (!drafts)
+    return true
+
+  const draft = drafts.at(0)
   if (!draft)
     return true
+
   const { params, attachments } = draft
   const status = params.status || ''
   const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
@@ -124,26 +129,26 @@ export function isEmptyDraft(draft: Draft | null | undefined) {
 }
 
 export interface UseDraft {
-  draft: Ref<Draft>
+  draftItems: Ref<Array<DraftItem>>
   isEmpty: ComputedRef<boolean> | Ref<boolean>
 }
 
 export function useDraft(
   draftKey?: string,
-  initial: () => Draft = () => getDefaultDraft({}),
+  initial: () => DraftItem = () => getDefaultDraftItem({}),
 ): UseDraft {
   const draft = draftKey
     ? computed({
       get() {
         if (!currentUserDrafts.value[draftKey])
-          currentUserDrafts.value[draftKey] = initial()
+          currentUserDrafts.value[draftKey] = [initial()]
         return currentUserDrafts.value[draftKey]
       },
       set(val) {
         currentUserDrafts.value[draftKey] = val
       },
     })
-    : ref(initial())
+    : ref([initial()])
 
   const isEmpty = computed(() => isEmptyDraft(draft.value))
 
@@ -155,17 +160,17 @@ export function useDraft(
     }
   })
 
-  return { draft, isEmpty }
+  return { draftItems: draft, isEmpty }
 }
 
 export function mentionUser(account: mastodon.v1.Account) {
-  openPublishDialog('dialog', getDefaultDraft({
+  openPublishDialog('dialog', getDefaultDraftItem({
     status: `@${account.acct} `,
   }))
 }
 
 export function directMessageUser(account: mastodon.v1.Account) {
-  openPublishDialog('dialog', getDefaultDraft({
+  openPublishDialog('dialog', getDefaultDraftItem({
     status: `@${account.acct} `,
     visibility: 'direct',
   }))
@@ -175,7 +180,7 @@ export function clearEmptyDrafts() {
   for (const key in currentUserDrafts.value) {
     if (builtinDraftKeys.includes(key) && !isEmptyDraft(currentUserDrafts.value[key]))
       continue
-    if (!currentUserDrafts.value[key].params || isEmptyDraft(currentUserDrafts.value[key]))
+    if (isEmptyDraft(currentUserDrafts.value[key]))
       delete currentUserDrafts.value[key]
   }
 }

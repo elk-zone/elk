@@ -1,91 +1,38 @@
-import type { Draft } from '~/types'
+import type { DraftItem } from '~/types'
 
 /**
  * The list of draft keys that are part of the thread.
  * There is a single global thread for the whole app, to keep complexity low.
  */
-const threadDrafts: Ref<Record<string, Ref<Draft>>> = ref({})
+const threadItems: Ref<Array<DraftItem>> = ref([])
 
-// TODO remove debug info
-watch(threadDrafts, (value) => {
-  console.log('threadDrafts', value)
-}, { immediate: true })
-
-const threadBaseDraftKey = ref<string>()
-
-export function useThreadComposer(baseDraftKey?: string) {
-  if (baseDraftKey)
-    threadBaseDraftKey.value = baseDraftKey
+export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
+  const { draftItems } = useDraft(draftKey, initial)
 
   /**
-   * Current length of the thread
+   * Whether the thread is active (has more than one item)
    */
-  const threadLength = computed<number>(() => Object.keys(threadDrafts.value).length)
+  const threadIsActive = computed<boolean>(() => draftItems.value.length > 1)
 
   /**
-   * Whether the thread is active (has at least one draft)
+   * Add an item to the thread
    */
-  const threadIsActive = computed<boolean>(() => threadLength.value > 1)
-
-  /**
-   * Add a draft to the thread
-   * @param forcedDraftKey
-   * @param draft
-   */
-  function addThreadDraft(forcedDraftKey?: string) {
-    const draftKey = (`${threadBaseDraftKey.value ?? ''}--thread--${threadLength.value}`)
-    threadDrafts.value[forcedDraftKey ?? draftKey] = ref(getDefaultDraft({}))
+  function addThreadItem() {
+    draftItems.value.push(getDefaultDraftItem({}))
   }
 
   /**
    *
    * @param index index of the draft to remove from the thread
    */
-  function removeThreadDraft(draftKey: string) {
-    delete threadDrafts.value[draftKey]
-  }
-
-  function getThreadDraft(draftKey: string) {
-    return threadDrafts.value[draftKey]
-  }
-
-  const threadDraftKeys = computed(() => {
-    return Object.keys(threadDrafts.value)
-  })
-
-  function getThreadDraftIndex(draftKey: string) {
-    return computed(() => threadDraftKeys.value.indexOf(draftKey))
-  }
-
-  async function publishThread() {
-    const publishFunctions = Object.values(threadDrafts.value).map((draft) => {
-      const isUploading = ref(false)
-      const isEmpty = computed(() => isEmptyDraft(draft.value))
-      const { publishDraft } = usePublish({
-        draftState: { draft, isEmpty },
-        isUploading,
-        expanded: ref(false),
-        initialDraft: ref(() => draft.value,
-        ),
-      })
-
-      return publishDraft
-    })
-
-    // TODO check option for concurrency, but prob due to needing to always answer to the previous one, it needs to be sequential
-    for (const publish of publishFunctions)
-      await publish()
+  function removeThreadItem(index: number) {
+    draftItems.value.splice(index, 1)
   }
 
   return {
-    threadDrafts,
-    threadDraftKeys,
-    threadLength,
+    threadItems,
     threadIsActive,
-    addThreadDraft,
-    removeThreadDraft,
-    getThreadDraft,
-    getThreadDraftIndex,
-    publishThread,
+    addThreadItem,
+    removeThreadItem,
   }
 }

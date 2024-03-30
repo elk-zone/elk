@@ -1,16 +1,20 @@
 import { fileOpen } from 'browser-fs-access'
 import type { Ref } from 'vue'
 import type { mastodon } from 'masto'
-import type { UseDraft } from './statusDrafts'
-import type { Draft } from '~~/types'
+import type { DraftItem } from '~~/types'
 
 export function usePublish(options: {
-  draftState: UseDraft
+  draftItem: Ref<DraftItem>
+  draftItemIndex: number
   expanded: Ref<boolean>
   isUploading: Ref<boolean>
-  initialDraft: Ref<() => Draft>
+  initialDraft: () => DraftItem
 }) {
-  const { draft, isEmpty } = options.draftState
+  // TODO make publish work with a thread
+  const { draftItem: draft } = options
+
+  const isEmpty = computed(() => isEmptyDraft([draft.value]))
+
   const { client } = useMasto()
   const settings = useUserSettings()
 
@@ -125,7 +129,7 @@ export function usePublish(options: {
       if (draft.value.params.inReplyToId)
         navigateToStatus({ status })
 
-      draft.value = options.initialDraft.value()
+      draft.value = options.initialDraft()
 
       return status
     }
@@ -154,7 +158,7 @@ export function usePublish(options: {
 
 export type MediaAttachmentUploadError = [filename: string, message: string]
 
-export function useUploadMediaAttachment(draft: Ref<Draft>) {
+export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
   const { client } = useMasto()
   const { t } = useI18n()
 

@@ -13,10 +13,6 @@ const nonEmptyDrafts = computed(() => draftKeys.value
   .map(i => [i, currentUserDrafts.value[i]] as const),
 )
 
-const { threadDraftKeys, threadIsActive, addThreadDraft } = useThreadComposer(draftKey.value)
-
-addThreadDraft(draftKey.value)
-
 watchEffect(() => {
   draftKey.value = route.query.draft?.toString() || 'home'
 })
@@ -43,14 +39,15 @@ onDeactivated(() => {
               <div>
                 <div flex="~ gap-1" items-center>
                   <i18n-t keypath="compose.draft_title">
-                    <code>{{ key }}</code>
+                    <!-- TODO localize -->
+                    <code>{{ key }}{{ draft.length > 1 ? ' (Thread)' : '' }}</code>
                   </i18n-t>
-                  <span v-if="draft.lastUpdated" text-secondary text-sm>
-                    &middot; {{ formatTimeAgo(new Date(draft.lastUpdated), timeAgoOptions) }}
+                  <span v-if="draft[0].lastUpdated" text-secondary text-sm>
+                    &middot; {{ formatTimeAgo(new Date(draft[0].lastUpdated), timeAgoOptions) }}
                   </span>
                 </div>
                 <div text-secondary>
-                  {{ htmlToText(draft.params.status).slice(0, 50) }}
+                  {{ htmlToText(draft[0].params.status).slice(0, 50) }}
                 </div>
               </div>
             </NuxtLink>
@@ -59,16 +56,7 @@ onDeactivated(() => {
       </VDropdown>
     </div>
     <div>
-      <template v-if="threadIsActive">
-        <div v-for="(threadDraftKey) in threadDraftKeys" :key="threadDraftKey">
-          {{ threadDraftKey }}
-        </div>
-        <PublishWidget
-          v-for="(threadDraftKey) in threadDraftKeys" :key="threadDraftKey" class="min-h-100!"
-          :draft-key="threadDraftKey"
-        />
-      </template>
-      <PublishWidget v-else :key="draftKey" expanded class="min-h-100!" :draft-key="draftKey" />
+      <PublishWidgetList expanded class="min-h-100!" :draft-key="draftKey" />
     </div>
   </div>
 </template>

@@ -2,17 +2,19 @@
 import { EditorContent } from '@tiptap/vue-3'
 import stringLength from 'string-length'
 import type { mastodon } from 'masto'
-import type { Draft } from '~/types'
+import type { DraftItem } from '~/types'
 
 const {
   draftKey,
-  initial = getDefaultDraft,
+  draftItemIndex,
   expanded = false,
   placeholder,
   dialogLabelledBy,
+  initial = getDefaultDraftItem,
 } = defineProps<{
-  draftKey?: string
-  initial?: () => Draft
+  draftKey: string
+  draftItemIndex: number
+  initial?: () => DraftItem
   placeholder?: string
   inReplyToId?: string
   inReplyToVisibility?: mastodon.v1.StatusVisibility
@@ -26,8 +28,9 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const draftState = useDraft(draftKey, initial)
-const { draft } = draftState
+const { threadItems } = useThreadComposer(draftKey)
+
+const draft = computed(() => threadItems.value[draftItemIndex])
 
 const {
   isExceedingAttachmentLimit,
@@ -43,8 +46,9 @@ const {
 
 const { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage, publishSpoilerText } = usePublish(
   {
-    draftState,
-    ...{ expanded: toRef(() => expanded), isUploading, initialDraft: toRef(() => initial) },
+    draftItemIndex,
+    draftItem: draft,
+    ...{ expanded: toRef(() => expanded), isUploading, initialDraft: initial },
   },
 )
 
@@ -471,7 +475,7 @@ onDeactivated(() => {
             </template>
           </PublishVisibilityPicker>
 
-          <PublishThreadTools :thread-index="1" :draft="ref(draft)" />
+          <PublishThreadTools :draft-item-index="1" :draft-key="draftKey" />
 
           <CommonTooltip
             v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"

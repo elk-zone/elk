@@ -1,8 +1,28 @@
 import type { mastodon } from 'masto'
 import type { DraftItem } from '~/types'
 
+const maxThreadLength = 99
+
+function getThreadStatusPrefix(position: number, totalAmount: number) {
+  if (totalAmount === 1)
+    return ''
+  return `🧵 ${position}/${totalAmount} `
+}
+
+function updateThreadStatusPrefix(text: string, index: number, totalAmount: number) {
+  return getThreadStatusPrefix(index, totalAmount) + text.replace(/^🧵 \d+\/\d+ /, '')
+}
+
 export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
   const { draftItems } = useDraft(draftKey, initial)
+
+  // TODO find out why this didn't just work with a watcher on draftItems
+  function updateDraftItemAmount() {
+    const totalLength = draftItems.value.length
+    draftItems.value.forEach((draftItem, index) => {
+      draftItem.params.status = updateThreadStatusPrefix(draftItem.params.status || '', index + 1, totalLength)
+    })
+  }
 
   /**
    * Whether the thread is active (has more than one item)
@@ -13,6 +33,11 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
    * Add an item to the thread
    */
   function addThreadItem() {
+    if (draftItems.value.length >= maxThreadLength) {
+      // TODO handle sanely
+      throw new Error('Thread is too long')
+    }
+
     const lastItem = draftItems.value[draftItems.value.length - 1]
     draftItems.value.push(getDefaultDraftItem({
       language: lastItem.params.language,
@@ -20,6 +45,7 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
       spoilerText: lastItem.params.spoilerText,
       visibility: lastItem.params.visibility,
     }))
+    updateDraftItemAmount()
   }
 
   /**
@@ -28,6 +54,7 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
    */
   function removeThreadItem(index: number) {
     draftItems.value.splice(index, 1)
+    updateDraftItemAmount()
   }
 
   /**

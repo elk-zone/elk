@@ -13,8 +13,13 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
    * Add an item to the thread
    */
   function addThreadItem() {
-    // TODO pass settings of prior message to others as default
-    draftItems.value.push(getDefaultDraftItem({ }))
+    const lastItem = draftItems.value[draftItems.value.length - 1]
+    draftItems.value.push(getDefaultDraftItem({
+      language: lastItem.params.language,
+      sensitive: lastItem.params.sensitive,
+      spoilerText: lastItem.params.spoilerText,
+      visibility: lastItem.params.visibility,
+    }))
   }
 
   /**
@@ -30,6 +35,7 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
    */
   async function publishThread() {
     let lastPublishedStatus: mastodon.v1.Status | null = null
+    let amountPublished = 0
     for (const draftItem of draftItems.value) {
       if (lastPublishedStatus)
         draftItem.params.inReplyToId = lastPublishedStatus.id
@@ -44,12 +50,16 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
       const status = await publishDraft()
       if (status) {
         lastPublishedStatus = status
+        amountPublished++
       }
       else {
         // TODO handle error here somehow
         break
       }
     }
+
+    // Remove all published items from the thread
+    draftItems.value.splice(0, amountPublished)
 
     return lastPublishedStatus
   }

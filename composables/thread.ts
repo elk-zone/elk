@@ -2,29 +2,20 @@ import type { mastodon } from 'masto'
 import type { DraftItem } from '~/types'
 
 const maxThreadLength = 99
-
-const originalThreadIcon = '🧵'
-
-const tiptapThreadIcon = ref(originalThreadIcon)
-
-// use tiptap to generate the thread icon as HTML, which will enforce compatability with new and existing messages
-useTiptap({
-  content: tiptapThreadIcon,
-  placeholder: ref(''),
-  onSubmit: () => {},
-  onFocus: () => {},
-  onPaste: () => {},
-  autofocus: true,
-})
+/**
+ * This is a hardcoded workaround, but it seems to work reliably.
+ * We should definitely look into the emoji handling of tiptap a bit more and make this work better in the future.
+ */
+const threadIcon = '<img alt="🧵" src="/emojis/twemoji/1f9f5.svg" class="iconify-emoji iconify-emoji--twemoji">'
 
 function getThreadStatusPrefix(position: number, totalAmount: number) {
   if (totalAmount === 1)
     return ''
-  return `${tiptapThreadIcon.value} ${position}/${totalAmount} `
+  return `${threadIcon} ${position}/${totalAmount} `
 }
 
 function updateThreadStatusPrefix(text: string, index: number, totalAmount: number) {
-  return getThreadStatusPrefix(index, totalAmount) + text.replace(new RegExp(`${tiptapThreadIcon.value} \\d+/\\d+ `), '')
+  return getThreadStatusPrefix(index, totalAmount) + text.replace(new RegExp(`${threadIcon} \\d+/\\d+ `), '')
 }
 
 export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {

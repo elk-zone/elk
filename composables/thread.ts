@@ -3,14 +3,28 @@ import type { DraftItem } from '~/types'
 
 const maxThreadLength = 99
 
+const originalThreadIcon = '🧵'
+
+const tiptapThreadIcon = ref(originalThreadIcon)
+
+// use tiptap to generate the thread icon as HTML, which will enforce compatability with new and existing messages
+useTiptap({
+  content: tiptapThreadIcon,
+  placeholder: ref(''),
+  onSubmit: () => {},
+  onFocus: () => {},
+  onPaste: () => {},
+  autofocus: true,
+})
+
 function getThreadStatusPrefix(position: number, totalAmount: number) {
   if (totalAmount === 1)
     return ''
-  return `🧵 ${position}/${totalAmount} `
+  return `${tiptapThreadIcon.value} ${position}/${totalAmount} `
 }
 
 function updateThreadStatusPrefix(text: string, index: number, totalAmount: number) {
-  return getThreadStatusPrefix(index, totalAmount) + text.replace(/^🧵 \d+\/\d+ /, '')
+  return getThreadStatusPrefix(index, totalAmount) + text.replace(new RegExp(`${tiptapThreadIcon.value} \\d+/\\d+ `), '')
 }
 
 export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {

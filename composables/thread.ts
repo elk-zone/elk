@@ -1,3 +1,4 @@
+import type { mastodon } from 'masto'
 import type { DraftItem } from '~/types'
 
 export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
@@ -12,7 +13,8 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
    * Add an item to the thread
    */
   function addThreadItem() {
-    draftItems.value.push(getDefaultDraftItem({}))
+    // TODO pass settings of prior message to others as default
+    draftItems.value.push(getDefaultDraftItem({ }))
   }
 
   /**
@@ -23,10 +25,40 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
     draftItems.value.splice(index, 1)
   }
 
+  /**
+   * Publish all items in the thread in order
+   */
+  async function publishThread() {
+    let lastPublishedStatus: mastodon.v1.Status | null = null
+    for (const draftItem of draftItems.value) {
+      if (lastPublishedStatus)
+        draftItem.params.inReplyToId = lastPublishedStatus.id
+
+      const { publishDraft } = usePublish({
+        draftItem: ref(draftItem),
+        expanded: computed(() => true),
+        isUploading: ref(false),
+        initialDraft: () => draftItem,
+      })
+
+      const status = await publishDraft()
+      if (status) {
+        lastPublishedStatus = status
+      }
+      else {
+        // TODO handle error here somehow
+        break
+      }
+    }
+
+    return lastPublishedStatus
+  }
+
   return {
     threadItems: draftItems,
     threadIsActive,
     addThreadItem,
     removeThreadItem,
+    publishThread,
   }
 }

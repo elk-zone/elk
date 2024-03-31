@@ -28,7 +28,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const { threadItems, threadIsActive } = useThreadComposer(draftKey)
+const { threadItems, threadIsActive, publishThread } = useThreadComposer(draftKey)
 
 const draft = computed(() => threadItems.value[draftItemIndex])
 
@@ -48,7 +48,6 @@ const {
 
 const { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage, publishSpoilerText } = usePublish(
   {
-    draftItemIndex,
     draftItem: draft,
     ...{ expanded: toRef(() => expanded), isUploading, initialDraft: initial },
   },
@@ -185,7 +184,7 @@ async function toggleSensitive() {
 }
 
 async function publish() {
-  const status = await publishDraft()
+  const status = await (threadIsActive.value ? publishThread() : publishDraft())
   if (status)
     emit('published', status)
 }

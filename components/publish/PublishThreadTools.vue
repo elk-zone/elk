@@ -18,7 +18,7 @@ function addOrRemoveItem() {
 </script>
 
 <template>
-  <div flex flex-row rounded-3 bg-border>
+  <div flex flex-row rounded-3 :class="{ 'bg-border': threadIsActive }">
     <div
       v-if="threadIsActive" dir="ltr" pointer-events-none pe-1 pt-2 pl-2 text-sm tabular-nums text-secondary flex
       gap="0.5"

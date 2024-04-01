@@ -78,7 +78,7 @@ export function createNotificationOptions(
       notificationOptions.timestamp = new Date(notification.created_at).getTime()
     }
 
-    /* TODO: add spolier when actions available, checking also notification type
+    /* TODO: add spoiler when actions available, checking also notification type
     if (notification.status && (notification.status.spoilerText || notification.status.sensitive)) {
       if (notification.status.spoilerText)
         notificationOptions.body = notification.status.spoilerText

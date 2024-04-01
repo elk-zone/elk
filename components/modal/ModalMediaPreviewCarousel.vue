@@ -15,7 +15,7 @@ const emit = defineEmits<{
 const modelValue = defineModel<number>({ required: true })
 
 const slideGap = 20
-const doubleTapTreshold = 250
+const doubleTapThreshold = 250
 
 const view = ref()
 const slider = ref()
@@ -147,7 +147,7 @@ function handleLastDrag(tap: boolean, swipe: Vector2, movement: Vector2, positio
 let lastTapAt = 0
 function handleTap([positionX, positionY]: Vector2) {
   const now = Date.now()
-  const isDoubleTap = now - lastTapAt < doubleTapTreshold
+  const isDoubleTap = now - lastTapAt < doubleTapThreshold
   lastTapAt = now
 
   if (!isDoubleTap)

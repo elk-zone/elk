@@ -33,7 +33,7 @@ const vAutoFocus = (el: HTMLElement) => el.focus()
     {{ $t('help.desc_para3') }}
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of elkTeamMembers" :key="team.github">
-        <NuxtLink :href="`https://github.com/sponsors/${team.github}`" target="_blank" external rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
+        <NuxtLink :href="`https://github.com/sponsors/${team.sponsors ?? team.github}`" target="_blank" external rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
           <img :src="`/avatars/${team.github}-100x100.png`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
         </NuxtLink>
       </template>

@@ -459,6 +459,7 @@
     },
     "language": {
       "display_language": "Interfazearen hizkuntza",
+      "how_to_contribute": "Nola lagun dezaket?",
       "label": "Hizkuntza",
       "post_language": "Bidalketen hizkuntza",
       "status": "Itzulpenaren egoera: {1} kateetatik {0} itzulita (%{2}a)",

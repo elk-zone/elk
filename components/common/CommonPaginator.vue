@@ -8,6 +8,7 @@ import type { UnwrapRef } from 'vue'
 const {
   paginator,
   stream,
+  eventType,
   keyProp = 'id',
   virtualScroller = false,
   preprocess,
@@ -17,6 +18,7 @@ const {
   keyProp?: keyof T
   virtualScroller?: boolean
   stream?: mastodon.streaming.Subscription
+  eventType?: 'update' | 'notification'
   preprocess?: (items: (U | T)[]) => U[]
   endMessage?: boolean | string
 }>()
@@ -44,7 +46,7 @@ defineSlots<{
 const { t } = useI18n()
 const nuxtApp = useNuxtApp()
 
-const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, toRef(() => stream), preprocess)
+const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, toRef(() => stream), eventType, preprocess)
 
 nuxtApp.hook('elk-logo:click', () => {
   update()

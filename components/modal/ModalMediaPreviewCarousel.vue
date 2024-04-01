@@ -218,7 +218,7 @@ function handleZoomDrag([deltaX, deltaY]: Vector2) {
 function handleSlideDrag([movementX, movementY]: Vector2) {
   goToFocusedSlide()
 
-  if (Math.abs(movementY) > Math.abs(movementX)) // vertical movement is more then horizontal
+  if (Math.abs(movementY) > Math.abs(movementX)) // vertical movement is more than horizontal
     y.value -= movementY / scale.value
   else
     x.value -= movementX / scale.value

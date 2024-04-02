@@ -112,6 +112,9 @@ em-emoji-picker {
   ul > li {
     --at-apply: pl-2;
   }
+  blockquote {
+    --at-apply: border-primary border-l-4 border-solid pl-3 my-3 text-secondary;
+  }
   .code-block {
     --at-apply: bg-code text-0.875em p3 mt-2 rounded overflow-auto
       leading-1.6em;

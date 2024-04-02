@@ -116,7 +116,7 @@ async function copyToClipboard() {
           >
             <td :class="[{ expandable: !isSource }]">
               <div>
-                <ToogleIcon v-if="!isSource" :up="hidden || key !== locale" />
+                <ToggleIcon v-if="!isSource" :up="hidden || key !== locale" />
                 {{ title }}
               </div>
             </td>

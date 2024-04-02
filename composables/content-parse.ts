@@ -623,7 +623,7 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
 
     // We have a special case for single mentions that are part of a reply.
     // We already have the replying to badge in this case or the status is connected to the previous one.
-    // This is needed because the status doesn't included the in Reply to handle, only the account id.
+    // This is needed because the status doesn't include the in Reply to handle, only the account id.
     // But this covers the majority of cases.
     const showMentions = !(contextualMentionsCount === 0 || (mentionsCount === 1 && status?.inReplyToAccountId))
     const grouped = contextualMentionsCount > 2

@@ -59,6 +59,13 @@ function handleShowCommit() {
     />
 
     <SettingsItem
+      :text="$t('nav.docs')"
+      icon="i-ri:book-open-line"
+      to="https://docs.elk.zone/"
+      large target="_blank"
+    />
+
+    <SettingsItem
       text="Mastodon"
       icon="i-ri:mastodon-line"
       to="/m.webtoo.ls/@elk"
@@ -117,7 +124,7 @@ function handleShowCommit() {
       <SettingsItem
         v-for="team in elkTeamMembers" :key="team.github"
         :text="team.display"
-        :to="`https://github.com/sponsors/${team.github}`"
+        :to="team.link"
         external target="_blank"
       >
         <template #icon>

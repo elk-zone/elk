@@ -82,6 +82,7 @@ function activate() {
         placeholder-text-secondary
         @keydown.down.prevent="shift(1)"
         @keydown.up.prevent="shift(-1)"
+        @keydown.esc.prevent="input?.blur()"
         @keypress.enter="activate"
       >
       <button v-if="query.length" btn-action-icon text-secondary @click="query = ''; input?.focus()">

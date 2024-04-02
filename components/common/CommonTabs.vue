@@ -19,8 +19,8 @@ const tabs = computed(() => {
   })
 })
 
-function toValidName(otpion: string) {
-  return otpion.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-')
+function toValidName(option: string) {
+  return option.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-')
 }
 
 useCommands(() => command

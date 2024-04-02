@@ -21,7 +21,6 @@ function updateThreadStatusPrefix(text: string, index: number, totalAmount: numb
 export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
   const { draftItems } = useDraft(draftKey, initial)
 
-  // TODO find out why this didn't just work with a watcher on draftItems
   function updateDraftItemAmount() {
     const totalLength = draftItems.value.length
     draftItems.value.forEach((draftItem, index) => {
@@ -39,8 +38,9 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
    */
   function addThreadItem() {
     if (draftItems.value.length >= maxThreadLength) {
-      // TODO handle sanely
-      throw new Error('Thread is too long')
+      // TODO handle with error message that tells the user what's wrong
+      // For now just fail silently without breaking anything
+      return
     }
 
     const lastItem = draftItems.value[draftItems.value.length - 1]

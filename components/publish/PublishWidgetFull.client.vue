@@ -39,8 +39,7 @@ onDeactivated(() => {
               <div>
                 <div flex="~ gap-1" items-center>
                   <i18n-t keypath="compose.draft_title">
-                    <!-- TODO localize -->
-                    <code>{{ key }}{{ draft.length > 1 ? ' (Thread)' : '' }}</code>
+                    <code>{{ key }}</code>
                   </i18n-t>
                   <span v-if="draft[0].lastUpdated" text-secondary text-sm>
                     &middot; {{ formatTimeAgo(new Date(draft[0].lastUpdated), timeAgoOptions) }}

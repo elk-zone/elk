@@ -74,6 +74,7 @@
     "next": "Next",
     "prev": "Prev",
     "publish": "Publish",
+    "publish_thread": "Publish thread",
     "reply": "Reply",
     "reply_count": "{0}",
     "reset": "Reset",

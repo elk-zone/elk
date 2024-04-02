@@ -25,6 +25,10 @@ const { threadItems } = useThreadComposer(draftKey, initial)
 onDeactivated(() => {
   clearEmptyDrafts()
 })
+
+function isFirstItem(index: number) {
+  return index === 0
+}
 </script>
 
 <template>
@@ -33,10 +37,10 @@ onDeactivated(() => {
       v-for="(_, index) in threadItems" :key="index"
       :draft-key="draftKey"
       :draft-item-index="index"
-      :expanded="expanded"
+      :expanded="isFirstItem(index) ? expanded : true"
       :placeholder="placeholder"
       :dialog-labelled-by="dialogLabelledBy"
-      :in-reply-to-id="inReplyToId"
+      :in-reply-to-id="isFirstItem(index) ? inReplyToId : undefined"
       :in-reply-to-visibility="inReplyToVisibility"
     />
   </template>

@@ -66,13 +66,15 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
    * Publish all items in the thread in order
    */
   async function publishThread() {
+    const allFailedMessages: Array<string> = []
+
     let lastPublishedStatus: mastodon.v1.Status | null = null
     let amountPublished = 0
     for (const draftItem of draftItems.value) {
       if (lastPublishedStatus)
         draftItem.params.inReplyToId = lastPublishedStatus.id
 
-      const { publishDraft } = usePublish({
+      const { publishDraft, failedMessages } = usePublish({
         draftItem: ref(draftItem),
         expanded: computed(() => true),
         isUploading: ref(false),
@@ -85,13 +87,18 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
         amountPublished++
       }
       else {
-        // TODO handle error here somehow
+        allFailedMessages.push(...failedMessages.value)
+        // Stop publishing if one fails
         break
       }
     }
 
     // Remove all published items from the thread
     draftItems.value.splice(0, amountPublished)
+
+    // If we have errors, return them
+    if (allFailedMessages.length > 0)
+      return allFailedMessages
 
     return lastPublishedStatus
   }

@@ -186,9 +186,13 @@ async function toggleSensitive() {
 }
 
 async function publish() {
-  const status = await (threadIsActive.value ? publishThread() : publishDraft())
-  if (status)
-    emit('published', status)
+  const publishResult = await (threadIsActive.value ? publishThread() : publishDraft())
+  if (publishResult) {
+    if (Array.isArray(publishResult))
+      failedMessages.value = publishResult
+    else
+      emit('published', publishResult)
+  }
 }
 
 useWebShareTarget(async ({ data: { data, action } }: any) => {

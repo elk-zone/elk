@@ -171,6 +171,7 @@ const { formatNumber } = useHumanReadableNumber()
     :paginator="paginator"
     :preprocess="preprocess"
     :stream="stream"
+    eventType="notification"
     :virtualScroller="virtualScroller"
   >
     <template #updater="{ number, update }">

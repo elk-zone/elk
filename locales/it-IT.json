@@ -121,13 +121,13 @@
     "block_account": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "description": "Confermi di voler bloccare {0}?",
+      "description": "Bloccare {0}?",
       "title": "Blocca account"
     },
     "block_domain": {
       "cancel": "Annulla",
       "confirm": "Blocca",
-      "description": "Confermi di voler bloccare {0}?",
+      "description": "Bloccare {0}?",
       "title": "Blocca dominio"
     },
     "common": {
@@ -137,20 +137,20 @@
     "delete_list": {
       "cancel": "Annulla",
       "confirm": "Elimina",
-      "description": "Confermi di voler eliminare la lista \"{0}\"?",
+      "description": "Eliminare la lista \"{0}\"?",
       "title": "Elimina lista"
     },
     "delete_posts": {
       "cancel": "Annulla",
       "confirm": "Elimina",
-      "description": "Confermi di voler eliminare questo post?",
+      "description": "Eliminare questo post?",
       "title": "Elimina post"
     },
     "mute_account": {
       "cancel": "Annulla",
       "confirm": "Silenzia",
       "days": "giorni|giorno|giorni",
-      "description": "Confermi di voler silenziare {0}?",
+      "description": "Silenziare {0}?",
       "hours": "ore|ora|ore",
       "minute": "minuti|minuto|minuti",
       "notifications": "Silenzia notifiche",
@@ -160,13 +160,13 @@
     "show_reblogs": {
       "cancel": "Annulla",
       "confirm": "Mostra",
-      "description": "Confermi di voler mostrare i post potenziati da {0}?",
+      "description": "Mostrare i post potenziati da {0}?",
       "title": "Mostra potenziamenti"
     },
     "unfollow": {
       "cancel": "Annulla",
       "confirm": "Smetti di seguire",
-      "description": "Confermi di voler smettere di seguire?",
+      "description": "Smettere di seguire?",
       "title": "Smetti di seguire"
     }
   },
@@ -306,6 +306,7 @@
     "built_at": "Sviluppato {0}",
     "compose": "Componi",
     "conversations": "Conversazioni",
+    "docs": "Documentazione",
     "explore": "Esplora",
     "favourites": "Preferiti",
     "federated": "Federata",
@@ -459,6 +460,7 @@
     },
     "language": {
       "display_language": "Lingua interfaccia",
+      "how_to_contribute": "Come posso contribuire?",
       "label": "Lingua",
       "post_language": "Lingua di pubblicazione",
       "status": "Stato traduzione: {0}/{1} ({2}%)",

@@ -96,9 +96,11 @@ export function useFileSizeFormatter() {
     }),
   ]))
 
+  const megaByte = 1024 * 1024
+
   function formatFileSize(size: number) {
-    return size >= 1048576
-      ? formatters.value[0].format(size / 1048576)
+    return size >= megaByte
+      ? formatters.value[0].format(size / megaByte)
       : formatters.value[1].format(size / 1024)
   }
 

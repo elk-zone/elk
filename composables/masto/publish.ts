@@ -237,16 +237,16 @@ export function useUploadMediaAttachment(draft: Ref<Draft>) {
         }
         else {
           if (maxVideoSize > 0 && file.size > maxVideoSize) {
+            const key
+              = file.type.startsWith('audio/')
+                ? 'state.attachments_limit_audio_error'
+                : file.type.startsWith('video/')
+                  ? 'state.attachments_limit_video_error'
+                  : 'state.attachments_limit_unknown_error'
+            const errorMessage = t(key, [formatFileSize(maxVideoSize)])
             failedAttachments.value = [
               ...failedAttachments.value,
-              [file.name, t(
-                file.type.startsWith('audio/')
-                  ? 'state.attachments_limit_audio_error'
-                  : file.type.startsWith('video/')
-                    ? 'state.attachments_limit_video_error'
-                    : 'state.attachments_limit_unknown_error',
-                [formatFileSize(maxVideoSize)],
-              )],
+              [file.name, errorMessage],
             ]
             continue
           }

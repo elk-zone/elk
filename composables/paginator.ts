@@ -5,6 +5,7 @@ import type { PaginatorState } from '~/types'
 export function usePaginator<T, P, U = T>(
   _paginator: mastodon.Paginator<T[], P>,
   stream: Ref<mastodon.streaming.Subscription | undefined>,
+  eventType: 'update' | 'notification' = 'update',
   preprocess: (items: (T | U)[]) => U[] = items => items as unknown as U[],
   buffer = 10,
 ) {
@@ -34,7 +35,7 @@ export function usePaginator<T, P, U = T>(
       return
 
     for await (const entry of stream) {
-      if (entry.event === 'update' || entry.event === 'notification') {
+      if (entry.event === eventType) {
         const status = entry.payload
 
         if ('uri' in status)

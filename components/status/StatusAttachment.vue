@@ -68,6 +68,7 @@ const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
 const isAudio = computed(() => attachment.type === 'audio')
 const isVideo = computed(() => attachment.type === 'video')
+const isGif = computed(() => attachment.type === 'gifv')
 
 const enableAutoplay = usePreferences('enableAutoplay')
 
@@ -164,7 +165,7 @@ watch(shouldLoadAttachment, () => {
       <button
         type="button"
         relative
-        @click="!shouldLoadAttachment ? loadAttachment() : null"
+        @click="!shouldLoadAttachment ? loadAttachment() : openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
       >
         <video
           ref="video"
@@ -248,12 +249,13 @@ watch(shouldLoadAttachment, () => {
       </button>
     </template>
     <div
-      v-if="attachment.description && !getPreferences(userSettings, 'hideAltIndicatorOnPosts')" :class="isAudio ? [] : [
+      :class="isAudio ? [] : [
         'absolute left-2',
         isVideo ? 'top-2' : 'bottom-2',
       ]"
+      flex gap-col-2
     >
-      <VDropdown :distance="6" placement="bottom-start">
+      <VDropdown v-if="attachment.description && !getPreferences(userSettings, 'hideAltIndicatorOnPosts')" :distance="6" placement="bottom-start">
         <button
           font-bold text-sm
           :class="isAudio
@@ -281,6 +283,14 @@ watch(shouldLoadAttachment, () => {
           </div>
         </template>
       </VDropdown>
+      <div v-if="isGif && !getPreferences(userSettings, 'hideGifIndicatorOnPosts')">
+        <button
+          aria-hidden font-bold text-sm
+          rounded-1 bg-black:65 text-white px1.2 py0.2 pointer-events-none
+        >
+          {{ $t('status.gif') }}
+        </button>
+      </div>
     </div>
   </div>
 </template>

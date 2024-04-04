@@ -36,6 +36,8 @@ const isPinching = ref(false)
 const maxZoomOut = ref(1)
 const isZoomedIn = computed(() => scale.value > 1)
 
+const enableAutoplay = usePreferences('enableAutoplay')
+
 function goToFocusedSlide() {
   scale.value = 1
   x.value = slide.value[modelValue.value].offsetLeft * scale.value
@@ -264,8 +266,12 @@ const imageStyle = computed(() => ({
         items-center
         justify-center
       >
-        <img
+        <component
+          :is="item.type === 'gifv' ? 'video' : 'img'"
           ref="image"
+          :autoplay="enableAutoplay"
+          controls
+          loop
           select-none
           max-w-full
           max-h-full
@@ -273,7 +279,7 @@ const imageStyle = computed(() => ({
           :draggable="false"
           :src="item.url || item.previewUrl"
           :alt="item.description || ''"
-        >
+        />
       </div>
     </div>
   </div>

@@ -155,6 +155,7 @@ export type MediaAttachmentUploadError = [filename: string, message: string]
 export function useUploadMediaAttachment(draft: Ref<Draft>) {
   const { client } = useMasto()
   const { t } = useI18n()
+  const { formatFileSize } = useFileSizeFormatter()
 
   const isUploading = ref<boolean>(false)
   const isExceedingAttachmentLimit = ref<boolean>(false)
@@ -224,8 +225,32 @@ export function useUploadMediaAttachment(draft: Ref<Draft>) {
     // TODO: display some kind of message if too many media are selected
     // DONE
     const limit = currentInstance.value!.configuration?.statuses.maxMediaAttachments || 4
+    const maxVideoSize = currentInstance.value!.configuration?.mediaAttachments.videoSizeLimit || 0
+    const maxImageSize = currentInstance.value!.configuration?.mediaAttachments.imageSizeLimit || 0
     for (const file of files.slice(0, limit)) {
       if (draft.value.attachments.length < limit) {
+        if (file.type.startsWith('image/')) {
+          if (maxImageSize > 0 && file.size > maxImageSize) {
+            failedAttachments.value = [...failedAttachments.value, [file.name, t('state.attachments_limit_image_error', [formatFileSize(maxImageSize)])]]
+            continue
+          }
+        }
+        else {
+          if (maxVideoSize > 0 && file.size > maxVideoSize) {
+            const key
+              = file.type.startsWith('audio/')
+                ? 'state.attachments_limit_audio_error'
+                : file.type.startsWith('video/')
+                  ? 'state.attachments_limit_video_error'
+                  : 'state.attachments_limit_unknown_error'
+            const errorMessage = t(key, [formatFileSize(maxVideoSize)])
+            failedAttachments.value = [
+              ...failedAttachments.value,
+              [file.name, errorMessage],
+            ]
+            continue
+          }
+        }
         isExceedingAttachmentLimit.value = false
         try {
           const attachment = await client.value.v1.media.create({

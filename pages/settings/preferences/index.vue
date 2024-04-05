@@ -9,7 +9,7 @@ const userSettings = useUserSettings()
 </script>
 
 <template>
-  <MainContent back-on-small-screen>
+  <MainContent back-on-small-screen skip-content="settings.preferences.label">
     <template #title>
       <h1 text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         {{ $t('settings.preferences.label') }}

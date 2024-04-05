@@ -6,6 +6,8 @@ defineProps<{
   back?: boolean
   /** Do not applying overflow hidden to let use floatable components in title */
   noOverflowHidden?: boolean
+  /** Show the skip content link */
+  skipContent?: string
 }>()
 
 const container = ref()
@@ -26,6 +28,9 @@ const containerClass = computed(() => {
 
 <template>
   <div ref="container" :class="containerClass">
+    <SkipContentLink v-if="skipContent">
+      {{ $t(skipContent) }}
+    </SkipContentLink>
     <div
       sticky top-0 z10
       pt="[env(safe-area-inset-top,0)]"

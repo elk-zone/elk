@@ -37,7 +37,7 @@ onUnmounted(() => locked.value = false)
 </script>
 
 <template>
-  <div relative h-full w-full flex pt-12 w-100vh @click="onClick">
+  <div relative h-full w-full flex pt-12 @click="onClick">
     <button
       v-if="hasNext" pointer-events-auto btn-action-icon bg="black/20" :aria-label="$t('action.previous')"
       hover:bg="black/40" dark:bg="white/30" dark-hover:bg="white/20" absolute top="1/2" right-1 z5

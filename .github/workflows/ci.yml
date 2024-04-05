@@ -32,6 +32,7 @@ jobs:
 
       - name: 🧪 Test project
         run: pnpm test:ci
+        timeout-minutes: 10
 
       - name: 📝 Lint
         run: pnpm lint

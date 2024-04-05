@@ -289,12 +289,12 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
               </ol>
             </CommonErrorMessage>
 
-            <div relative flex-1 flex flex-col>
+            <div relative flex-1 flex flex-col min-h-30>
               <EditorContent
                 :editor="editor" flex max-w-full
                 :class="{
-                  'min-h-30 md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain': shouldExpanded,
-                  'pt2 pb0.5 px3.5 bg-dm rounded-4 me--1 ms--1 mt--1': isDM,
+                  'md:max-h-[calc(100vh-200px)] sm:max-h-[calc(100vh-400px)] max-h-35 of-y-auto overscroll-contain': shouldExpanded,
+                  'py2 px3.5 bg-dm rounded-4 me--1 ms--1 mt--1': isDM,
                 }"
                 @keydown="stopQuestionMarkPropagation"
                 @keydown.esc.prevent="editor?.commands.blur()"

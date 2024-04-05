@@ -160,7 +160,7 @@ const forceShow = ref(false)
               <div flex="~ gap1" items-center>
                 <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
                 <div flex>
-                  <CommonTooltip :content="createdAt" no-auto-focus>
+                  <CommonTooltip :content="createdAt">
                     <NuxtLink :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
                       <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
                         {{ timeago }}

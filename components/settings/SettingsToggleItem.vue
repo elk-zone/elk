@@ -16,7 +16,7 @@ const { disabled = false } = defineProps<{
     :class="disabled ? 'opacity-50 cursor-not-allowed' : ''"
   >
     <div
-      w-full flex w-fit px5 py3 md:gap2 gap4 items-center
+      w-full flex px5 py3 md:gap2 gap4 items-center
       transition-250
       :class="disabled ? '' : 'group-hover:bg-active'"
       group-focus-visible:ring="2 current"

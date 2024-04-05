@@ -542,6 +542,7 @@
       "hide_boost_count": "Esconder contagem de partilhas",
       "hide_favorite_count": "Esconder contagem de favoritos",
       "hide_follower_count": "Esconder contagem de seguidores",
+      "hide_gif_indi_on_posts": "Esconder indicador gif nas publicações",
       "hide_news": "Esconder notícias",
       "hide_reply_count": "Esconder contagem de respostas",
       "hide_tag_hover_card": "Esconder cartão flutuante de hashtag",
@@ -593,7 +594,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "O número de anexos excedeu o limite permitido por publicação.",
+    "attachments_limit_audio_error": "Tamanho máximo para áudio excedido: {0}",
     "attachments_limit_error": "Limite permitido por publicação excedido",
+    "attachments_limit_image_error": "Tamanho máximo para imagem excedido: {0}",
+    "attachments_limit_unknown_error": "Tamanho máximo para ficheiro excedido: {0}",
+    "attachments_limit_video_error": "Tamanho máximo para video excedido: {0}",
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Carregando...",
@@ -614,6 +619,7 @@
     "favourited_by": "Adicionada Aos Favoritos Por",
     "filter_hidden_phrase": "Filtrada por",
     "filter_show_anyway": "Mostrar mesmo assim",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Descrição",

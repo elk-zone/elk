@@ -9,9 +9,6 @@ const avatarsDir = resolve('./public/avatars/')
 const sizes = [60, 100]
 
 async function download(url: string, fileName: string) {
-  if (fs.existsSync(fileName))
-    return
-
   console.log('downloading', fileName)
   try {
     const image = await ofetch(url, { responseType: 'arrayBuffer' })

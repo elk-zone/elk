@@ -37,7 +37,7 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
   <div
     space-y-3
     :class="{
-      'pt2 pb0.5 px3.5 bg-dm rounded-4 me--1': isDM,
+      'py2 px3.5 bg-dm rounded-4 me--1': isDM,
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',
     }"
   >
@@ -68,7 +68,6 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
         :status="status.reblog" border="~ rounded"
         :actions="false"
       />
-      <div v-if="isDM" />
     </StatusSpoiler>
   </div>
 </template>

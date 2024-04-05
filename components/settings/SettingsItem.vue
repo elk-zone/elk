@@ -11,10 +11,27 @@ const props = defineProps<{
   large?: true
   match?: boolean
   target?: string
+  button?: boolean
 }>()
 
+defineEmits<{
+  (event: 'click'): void
+}>()
+
+const vm = getCurrentInstance()
 const router = useRouter()
 const scrollOnClick = computed(() => props.to && !(props.target === '_blank' || props.external))
+
+function focus() {
+  setTimeout(() => {
+    if (props.button)
+      vm?.vnode.el?.querySelector('button')?.focus()
+    else
+      vm?.vnode.el?.focus()
+  }, 100)
+}
+
+defineExpose({ focus })
 
 useCommand({
   scope: 'Settings',
@@ -45,13 +62,17 @@ useCommand({
     exact-active-class="text-primary"
     :class="disabled ? 'op25 pointer-events-none ' : match ? 'text-primary' : ''"
     block w-full group focus:outline-none
-    :tabindex="disabled ? -1 : null"
+    :tabindex="!button && disabled ? -1 : undefined"
+    :custom="button"
     @click="scrollOnClick ? $scrollToTop() : undefined"
   >
-    <div
+    <component
+      :is="button ? 'button' : 'div'"
       w-full flex px5 py3 md:gap2 gap4 items-center
       transition-250 group-hover:bg-active
       group-focus-visible:ring="2 current"
+      :disabled="button ? disabled : undefined"
+      @click="button && !disabled && $emit('click')"
     >
       <div flex-1 flex items-center md:gap2 gap4>
         <div
@@ -85,6 +106,6 @@ useCommand({
         </slot>
       </p>
       <div v-if="to" :class="!external ? 'i-ri:arrow-right-s-line' : 'i-ri:external-link-line'" text-xl text-secondary-light class="rtl-flip" />
-    </div>
+    </component>
   </NuxtLink>
 </template>

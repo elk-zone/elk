@@ -6,7 +6,7 @@ defineProps<{
   back?: boolean
   /** Do not applying overflow hidden to let use floatable components in title */
   noOverflowHidden?: boolean
-  /** Show the skip content link */
+  /** Add the skip content link: it is the translation key */
   skipContent?: string
 }>()
 

@@ -5,7 +5,7 @@ export default defineComponent({
   setup() {
     const { t } = useI18n()
     return () => h('a', {
-      id: 'skip',
+      id: 'skip-navigation',
       class: 'sr-only',
       href: '#skip-content',
       accesskey: accessKeys.SkipContent,

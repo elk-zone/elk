@@ -32,7 +32,6 @@ const modes = [
       v-for="{ icon, label, mode } in modes"
       :key="mode"
       btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base ws-nowrap
-      :tabindex="colorMode.preference === mode ? 0 : -1"
       :class="colorMode.preference === mode ? 'pointer-events-none' : 'filter-saturate-0'"
       @click="setColorMode(mode)"
     >

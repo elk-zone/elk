@@ -196,7 +196,7 @@ async function copyAccountName() {
 
           <div flex items-center gap-1>
             <AccountHandle :account="account" overflow-unset line-clamp-unset />
-            <CommonTooltip placement="bottom" :content="$t('account.copy_account_name')" no-auto-focus flex>
+            <CommonTooltip placement="bottom" :content="$t('account.copy_account_name')" flex>
               <button text-secondary-light text-sm :class="isCopied ? 'i-ri:check-fill text-green' : 'i-ri:file-copy-line'" @click="copyAccountName">
                 <span sr-only>{{ $t('account.copy_account_name') }}</span>
               </button>

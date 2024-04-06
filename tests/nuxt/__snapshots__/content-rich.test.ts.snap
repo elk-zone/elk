@@ -185,6 +185,7 @@ exports[`content-rich > hashtag adds bdi 1`] = `
       placement="bottom-start"
       class="inline-block"
       close-on-content-click="false"
+      no-auto-focus
       ><a
         class="mention hashtag"
         rel="nofollow noopener noreferrer"
@@ -206,6 +207,7 @@ exports[`content-rich > hashtag doesn't add 2 bdi 1`] = `
       placement="bottom-start"
       class="inline-block"
       close-on-content-click="false"
+      no-auto-focus
       ><a
         class="mention hashtag"
         rel="nofollow noopener noreferrer"
@@ -328,6 +330,7 @@ exports[`content-rich > root p includes dir="auto" attr when mixed content 1`] =
       placement="bottom-start"
       class="inline-block"
       close-on-content-click="false"
+      no-auto-focus
       ><a
         class="mention hashtag"
         rel="nofollow noopener noreferrer"
@@ -341,6 +344,7 @@ exports[`content-rich > root p includes dir="auto" attr when mixed content 1`] =
       placement="bottom-start"
       class="inline-block"
       close-on-content-click="false"
+      no-auto-focus
       ><a
         class="mention hashtag"
         rel="nofollow noopener noreferrer"
@@ -388,6 +392,7 @@ exports[`content-rich > root p includes dir="auto" attr when mixed content 1`] =
       placement="bottom-start"
       class="inline-block"
       close-on-content-click="false"
+      no-auto-focus
       ><a
         class="mention hashtag"
         rel="nofollow noopener noreferrer"
@@ -401,6 +406,7 @@ exports[`content-rich > root p includes dir="auto" attr when mixed content 1`] =
       placement="bottom-start"
       class="inline-block"
       close-on-content-click="false"
+      no-auto-focus
       ><a
         class="mention hashtag"
         rel="nofollow noopener noreferrer"

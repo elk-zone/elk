@@ -1,14 +1,14 @@
 {
   "a11y": {
-    "loading_page": "Az oldal töltődik, kérem várjon",
-    "loading_titled_page": "Töltődik a(z) {0} oldal, kérem várjon",
-    "locale_changed": "A nyelv megváltoztatva {0} -ra",
-    "locale_changing": "Nyelv változtatás, kérem várjon",
+    "loading_page": "Az oldal töltődik, kérjük várjon",
+    "loading_titled_page": "Töltődik a(z) {0} oldal, kérjük várjon",
+    "locale_changed": "A nyelv megváltoztatva: {0}",
+    "locale_changing": "Nyelv változtatás, kérjük várjon",
     "route_loaded": "Oldal {0} betöltődött"
   },
   "account": {
-    "authorize": "Engedélyezze a követést",
-    "authorized": "Engedélyezte a kérést",
+    "authorize": "Engedélyezed a követést",
+    "authorized": "Engedélyezted a kérést",
     "avatar_description": "{0} felhasználó avatarja",
     "blocked_by": "Ez a felhasználó blokkolt.",
     "blocked_domains": "Blokkolt domainek",
@@ -19,7 +19,7 @@
     "favourites": "Kedvencek",
     "follow": "Követők",
     "follow_back": "Visszakövetés",
-    "follow_requested": "Kérve",
+    "follow_requested": "Követés kérve",
     "followers": "Követők",
     "followers_count": "{0} Követők|{0} Követő|{0} Követők",
     "following": "Követve",
@@ -121,53 +121,53 @@
     "block_account": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "description": "Biztosan blokkolja? {0}",
+      "description": "Biztosan blokkolod? {0}",
       "title": "Hozzáférés blokkolása"
     },
     "block_domain": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "description": "Biztosan blokkolja? {0}",
+      "description": "Biztosan blokkolod? {0}",
       "title": "Domain blokkolása"
     },
     "common": {
-      "cancel": "Mégsem",
+      "cancel": "Nem",
       "confirm": "Igen"
     },
     "delete_list": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "description": "Biztosan törli a listát? \"{0}\"",
+      "description": "Biztosan törlöd a listát? \"{0}\"",
       "title": "Lista törlése"
     },
     "delete_posts": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "description": "Biztosan törli a bejegyzést?",
+      "description": "Biztosan törlöd a bejegyzést?",
       "title": "Bejegyzés törlése"
     },
     "mute_account": {
       "cancel": "Mégsem",
       "confirm": "Némít",
       "days": "napok|nap|napok",
-      "description": "Biztosan némítja? {0}",
+      "description": "Biztosan némítod? {0}",
       "hours": "órák|óra|órák",
       "minute": "perc|perc|perc",
       "notifications": "Értesítések némítása",
-      "specify_duration": "Határozzon meg némítási időtartamot",
+      "specify_duration": "Határozz meg némítási időtartamot",
       "title": "Hozzáférés némítása"
     },
     "show_reblogs": {
       "cancel": "Mégsem",
       "confirm": "Mutat",
-      "description": "Biztosan megjeleníti a Kiemelést tőle? {0}",
+      "description": "Biztosan megjeleníted a kiemelést tőle? {0}",
       "title": "Kiemelés megjenítése"
     },
     "unfollow": {
       "cancel": "Mégsem",
       "confirm": "Követés leállítása",
-      "description": "Biztosan leállítja a követését?",
-      "title": "Követés elállítása"
+      "description": "Biztosan leállítod a követését?",
+      "title": "Követés leállítása"
     }
   },
   "conversation": {
@@ -181,7 +181,7 @@
     }
   },
   "error": {
-    "account_not_found": "Fiók {0} nem található",
+    "account_not_found": "A {0} fiók nem található",
     "explore_list_empty": "Nincs most semmi érdekes. Térj vissza később!",
     "file_size_cannot_exceed_n_mb": "A fájl mérete nem haladhatja meg a {0}MB-ot",
     "sign_in_error": "Nem lehetséges a csatlakozás.",
@@ -306,6 +306,7 @@
     "built_at": "Verzió {0}",
     "compose": "Közzétesz",
     "conversations": "Párbeszédek",
+    "docs": "Dokumentáció",
     "explore": "Felfedezés",
     "favourites": "Kedvencek",
     "federated": "Összesített",
@@ -459,8 +460,9 @@
     },
     "language": {
       "display_language": "Megjelenítés nyelve",
+      "how_to_contribute": "Hogyan tesze közzé?",
       "label": "Nyelv",
-      "post_language": "Tartalom nyelve",
+      "post_language": "Bejegyzés nyelve",
       "status": "Fordítás állapota: {0}/{1} ({2}%)",
       "translations": {
         "add": "Hozzáadás",
@@ -540,6 +542,7 @@
       "hide_boost_count": "Kiemelés számláló elrejtése",
       "hide_favorite_count": "Kedvencek számláló elrejtése",
       "hide_follower_count": "Követők/Követések számláló elrejtése",
+      "hide_gif_indi_on_posts": "GIF jelölők elrejtése a bejegyzésekben",
       "hide_news": "Hírek elrejtése",
       "hide_reply_count": "Visszajelzések számláló elrejtése",
       "hide_tag_hover_card": "Lebegő kártya elrejtése",
@@ -577,7 +580,7 @@
       },
       "label": "Profil"
     },
-    "select_a_settings": "Válasszon egy beállítást",
+    "select_a_settings": "Válassz egy beállítást",
     "users": {
       "export": "Felhasználói tokenek exportálása",
       "import": "Felhasználói tokenek importálása",
@@ -591,7 +594,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "A mellékletek száma meghaladta a bejegyzésenkénti korlátot.",
+    "attachments_limit_audio_error": "A maximális audió méret meghaladva: {0}",
     "attachments_limit_error": "Túllépte a bejegyzésenkénti korlátot",
+    "attachments_limit_image_error": "A maximális kép méret meghaladva: {0}",
+    "attachments_limit_unknown_error": "A maximális fájl méret meghaladva: {0}",
+    "attachments_limit_video_error": "A maximális videó méret meghaladva: {0}",
     "edited": "(Szerkesztve)",
     "editing": "Szerkesztés",
     "loading": "Betöltés...",
@@ -612,6 +619,7 @@
     "favourited_by": "Kedvencek közé helyezve: ",
     "filter_hidden_phrase": "Szűrve: ",
     "filter_show_anyway": "Megjelenít mégis",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Leírás",

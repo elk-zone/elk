@@ -129,7 +129,7 @@ onDeactivated(() => clearError(false))
                 <div aria-hidden="true" i-ri:error-warning-fill />
                 <p>{{ $t('list.error') }}</p>
               </div>
-              <CommonTooltip placement="bottom" :content="$t('list.clear_error')" no-auto-focus>
+              <CommonTooltip placement="bottom" :content="$t('list.clear_error')">
                 <button
                   flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('list.clear_error')"
                   @click="clearError(true)"

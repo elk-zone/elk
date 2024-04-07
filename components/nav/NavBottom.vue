@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { NavButtonExplore, NavButtonFederated, NavButtonHome, NavButtonLocal, NavButtonMention, NavButtonNotification, NavButtonSearch } from '#components'
+import { NavButtonExplore, NavButtonFederated, NavButtonHome, NavButtonLocal, NavButtonMention, NavButtonMoreMenu, NavButtonNotification, NavButtonSearch } from '#components'
 
 const navButtons = currentUser.value
-  ? [NavButtonHome, NavButtonSearch, NavButtonNotification, NavButtonMention]
-  : [NavButtonExplore, NavButtonLocal, NavButtonFederated]
+  ? [NavButtonHome, NavButtonSearch, NavButtonNotification, NavButtonMention, NavButtonMoreMenu]
+  : [NavButtonExplore, NavButtonLocal, NavButtonFederated, NavButtonMoreMenu]
 
 // only one icon can be lit up at the same time
 const moreMenuVisible = ref(false)
@@ -17,15 +17,5 @@ const moreMenuVisible = ref(false)
   >
     <!-- These weird styles above are used for scroll locking, don't change it unless you know exactly what you're doing. -->
     <Component :is="button" v-for="button in navButtons" :key="button.name" :active-class="moreMenuVisible ? '' : 'text-primary'" />
-    <NavBottomMoreMenu v-slot="{ toggleVisible, show }" v-model="moreMenuVisible" flex flex-row items-center place-content-center h-full flex-1 cursor-pointer>
-      <button
-        flex items-center place-content-center h-full flex-1 class="select-none"
-        :class="show ? '!text-primary' : ''"
-        aria-label="More menu"
-        @click="toggleVisible"
-      >
-        <span :class="show ? 'i-ri:close-fill' : 'i-ri:more-fill'" />
-      </button>
-    </NavBottomMoreMenu>
   </nav>
 </template>

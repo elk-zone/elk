@@ -233,7 +233,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
         {{ $t('state.editing') }}
       </div>
     </template>
-    <div flex>
+    <div flex gap-3 flex-1>
       <div>
         <NuxtLink self-start :to="getAccountRoute(currentUser.account)">
           <AccountBigAvatar :account="currentUser.account" square />

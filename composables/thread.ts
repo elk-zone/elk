@@ -3,7 +3,7 @@ import type { DraftItem } from '~/types'
 
 const maxThreadLength = 99
 /**
- * This is a hardcoded workaround, but it seems to work reliably.
+ * TODO: This is a hardcoded workaround, but it seems to work reliably.
  * We should definitely look into the emoji handling of tiptap a bit more and make this work better in the future.
  */
 const threadIcon = '<img alt="🧵" src="/emojis/twemoji/1f9f5.svg" class="iconify-emoji iconify-emoji--twemoji">'

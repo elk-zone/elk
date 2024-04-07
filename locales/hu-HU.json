@@ -190,9 +190,9 @@
   },
   "help": {
     "build_preview": {
-      "desc1": "Jelenleg az Elk előzetes változatát nézi, a közösség jóvoltából - {0}.",
-      "desc2": "Tartalmazhat áttekintés mentes vagy kártékony változtatásokat is.",
-      "desc3": "Ne lépjen be valódi hozzáféréseddel.",
+      "desc1": "Jelenleg az Elk előzetes változatát látja, a közösség jóvoltából - {0}.",
+      "desc2": "Tartalmazhat áttekintésmentes vagy kártékony változtatásokat is.",
+      "desc3": "Ne lépj be valódi hozzáféréssel.",
       "title": "Előzetes változatát telepítése"
     },
     "desc_highlight": "Számíthat néhány hibára és hiányzó funkcióra itt és ott.",
@@ -460,7 +460,7 @@
     },
     "language": {
       "display_language": "Megjelenítés nyelve",
-      "how_to_contribute": "Hogyan tesze közzé?",
+      "how_to_contribute": "Hogyan tehetsz közzé?",
       "label": "Nyelv",
       "post_language": "Bejegyzés nyelve",
       "status": "Fordítás állapota: {0}/{1} ({2}%)",

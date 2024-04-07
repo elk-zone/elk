@@ -93,18 +93,21 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   }
 
   function focusNextOrPreviousStatus(direction: 'next' | 'previous') {
-    const activeStatusId = getActiveStatueId(activeElement.value)
-    if (activeStatusId) {
-      const nextOrPreviousStatusId = getNextOrPreviousStatusId(activeStatusId, direction)
-      if (nextOrPreviousStatusId) {
-        document.getElementById(nextOrPreviousStatusId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        document.getElementById(nextOrPreviousStatusId)?.focus()
-      }
+    const activeStatusId = activeElement.value ? getActiveStatueId(activeElement.value) : undefined
+    const nextOrPreviousStatusId = getNextOrPreviousStatusId(activeStatusId, direction)
+    if (nextOrPreviousStatusId) {
+      document.getElementById(nextOrPreviousStatusId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      document.getElementById(nextOrPreviousStatusId)?.focus()
     }
   }
 
-  function getNextOrPreviousStatusId(currentStatusId: string, direction: 'next' | 'previous'): string | undefined {
+  function getNextOrPreviousStatusId(currentStatusId: string | undefined, direction: 'next' | 'previous'): string | undefined {
     const statusIds = [...document.querySelectorAll(statusSelector)].map(s => s.id)
+    if (currentStatusId === undefined) {
+      // if there is no selection, always focus on the first status
+      return statusIds[0]
+    }
+
     const currentIndex = statusIds.findIndex(id => id === currentStatusId)
     const statusId = direction === 'next'
       ? statusIds[Math.min(currentIndex + 1, statusIds.length)]

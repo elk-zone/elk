@@ -62,6 +62,7 @@ const timeago = useTimeAgo(() => status.value.createdAt, timeAgoOptions)
 const isSelfReply = computed(() => status.value.inReplyToAccountId === status.value.account.id)
 const collapseRebloggedBy = computed(() => rebloggedBy.value?.id === status.value.account.id)
 const isDM = computed(() => status.value.visibility === 'direct')
+const isPinned = computed(() => status.value.pinned)
 
 const showUpperBorder = computed(() => props.newer && !directReply.value)
 const showReplyTo = computed(() => !replyToMain.value && !directReply.value)
@@ -111,6 +112,19 @@ const forceShow = ref(false)
             </AccountHoverWrapper>
           </div>
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" text-sm />
+        </div>
+      </div>
+
+      <!-- Pinned status -->
+      <div flex="~ col" justify-between>
+        <div
+          v-if="isPinned"
+          flex="~" items-center
+          p="t-1 b-0.5 x-1px"
+          relative text-secondary ws-nowrap
+        >
+          <div i-ri:pushpin-line mx-1 text-orange w-16px h-16px />
+          <span text-primary>Pinned post</span>
         </div>
       </div>
     </slot>

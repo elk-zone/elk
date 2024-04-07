@@ -116,16 +116,19 @@ export function isEmptyDraft(drafts: Array<DraftItem> | null | undefined) {
   if (!drafts)
     return true
 
-  const draft = drafts.at(0)
-  if (!draft)
+  if (drafts.length === 0)
     return true
 
-  const { params, attachments } = draft
-  const status = params.status || ''
-  const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
+  const anyDraftHasContent = drafts.some((draft) => {
+    const { params, attachments } = draft
+    const status = params.status ?? ''
+    const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
 
-  return (text.length === 0)
-    && attachments.length === 0
+    return (text.length > 0)
+      || (attachments.length > 0)
+  })
+
+  return !anyDraftHasContent
 }
 
 export interface UseDraft {

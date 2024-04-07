@@ -7,6 +7,7 @@ export function usePublish(options: {
   draftItem: Ref<DraftItem>
   expanded: Ref<boolean>
   isUploading: Ref<boolean>
+  isPartOfThread: boolean
   initialDraft: () => DraftItem
 }) {
   const { draftItem } = options
@@ -124,7 +125,7 @@ export function usePublish(options: {
           })),
         })
       }
-      if (draftItem.value.params.inReplyToId)
+      if (draftItem.value.params.inReplyToId && !options.isPartOfThread)
         navigateToStatus({ status })
 
       draftItem.value = options.initialDraft()

@@ -49,7 +49,7 @@ const {
 const { shouldExpanded, isExpanded, isSending, isPublishDisabled, publishDraft, failedMessages, preferredLanguage, publishSpoilerText } = usePublish(
   {
     draftItem: draft,
-    ...{ expanded: toRef(() => expanded), isUploading, initialDraft: initial },
+    ...{ expanded: toRef(() => expanded), isUploading, initialDraft: initial, isPartOfThread: false },
   },
 )
 

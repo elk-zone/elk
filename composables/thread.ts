@@ -67,6 +67,7 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
    */
   async function publishThread() {
     const allFailedMessages: Array<string> = []
+    const isAReplyThread = Boolean(draftItems.value[0].params.inReplyToId)
 
     let lastPublishedStatus: mastodon.v1.Status | null = null
     let amountPublished = 0
@@ -79,6 +80,7 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
         expanded: computed(() => true),
         isUploading: ref(false),
         initialDraft: () => draftItem,
+        isPartOfThread: true,
       })
 
       const status = await publishDraft()
@@ -92,13 +94,16 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
         break
       }
     }
-
     // Remove all published items from the thread
     draftItems.value.splice(0, amountPublished)
 
     // If we have errors, return them
     if (allFailedMessages.length > 0)
       return allFailedMessages
+
+    // If the thread was a reply and all items were published, jump to it
+    if (isAReplyThread && lastPublishedStatus && draftItems.value.length === 0)
+      navigateToStatus({ status: lastPublishedStatus })
 
     return lastPublishedStatus
   }

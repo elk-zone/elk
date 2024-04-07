@@ -30,7 +30,13 @@ const { t } = useI18n()
 
 const { threadItems, threadIsActive, publishThread } = useThreadComposer(draftKey)
 
-const draft = computed(() => threadItems.value[draftItemIndex])
+const draft = computed({
+  get: () => threadItems.value[draftItemIndex],
+  set: (updatedDraft: DraftItem) => {
+    threadItems.value[draftItemIndex] = updatedDraft
+  },
+},
+)
 
 const isFinalItemOfThread = computed(() => draftItemIndex === threadItems.value.length - 1)
 

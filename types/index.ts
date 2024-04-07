@@ -54,7 +54,9 @@ export interface DraftItem {
   mentions?: string[]
 }
 
-export type DraftMap = Record<string, Array<DraftItem>>
+export type DraftMap = Record<string, Array<DraftItem>
+ // For backward compatibility we need to support single draft items
+  | DraftItem>
 
 export interface ConfirmDialogOptions {
   title: string

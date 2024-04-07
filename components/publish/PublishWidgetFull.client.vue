@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { formatTimeAgo } from '@vueuse/core'
+import type { DraftItem } from '~/types'
 
 const route = useRoute()
 const { formatNumber } = useHumanReadableNumber()
@@ -20,6 +21,12 @@ watchEffect(() => {
 onDeactivated(() => {
   clearEmptyDrafts()
 })
+
+function firstDraftItemOf(drafts: DraftItem | Array<DraftItem>): DraftItem {
+  if (Array.isArray(drafts))
+    return drafts[0]
+  return drafts
+}
 </script>
 
 <template>
@@ -33,7 +40,7 @@ onDeactivated(() => {
         <template #popper="{ hide }">
           <div flex="~ col">
             <NuxtLink
-              v-for="[key, draft] of nonEmptyDrafts" :key="key" border="b base" text-left py2 px4
+              v-for="[key, drafts] of nonEmptyDrafts" :key="key" border="b base" text-left py2 px4
               hover:bg-active :replace="true" :to="`/compose?draft=${encodeURIComponent(key)}`" @click="hide()"
             >
               <div>
@@ -41,12 +48,12 @@ onDeactivated(() => {
                   <i18n-t keypath="compose.draft_title">
                     <code>{{ key }}</code>
                   </i18n-t>
-                  <span v-if="draft[0].lastUpdated" text-secondary text-sm>
-                    &middot; {{ formatTimeAgo(new Date(draft[0].lastUpdated), timeAgoOptions) }}
+                  <span v-if="firstDraftItemOf(drafts).lastUpdated" text-secondary text-sm>
+                    &middot; {{ formatTimeAgo(new Date(firstDraftItemOf(drafts).lastUpdated), timeAgoOptions) }}
                   </span>
                 </div>
                 <div text-secondary>
-                  {{ htmlToText(draft[0].params.status).slice(0, 50) }}
+                  {{ htmlToText(firstDraftItemOf(drafts).params.status).slice(0, 50) }}
                 </div>
               </div>
             </NuxtLink>

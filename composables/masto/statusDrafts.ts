@@ -112,14 +112,16 @@ export function getReplyDraft(status: mastodon.v1.Status) {
   }
 }
 
-export function isEmptyDraft(drafts: Array<DraftItem> | null | undefined) {
+export function isEmptyDraft(drafts: Array<DraftItem> | DraftItem | null | undefined) {
   if (!drafts)
     return true
 
-  if (drafts.length === 0)
+  const draftsArray: Array<DraftItem> = Array.isArray(drafts) ? drafts : [drafts]
+
+  if (draftsArray.length === 0)
     return true
 
-  const anyDraftHasContent = drafts.some((draft) => {
+  const anyDraftHasContent = draftsArray.some((draft) => {
     const { params, attachments } = draft
     const status = params.status ?? ''
     const text = htmlToText(status).trim().replace(/^(@\S+\s?)+/, '').replaceAll(/```/g, '').trim()
@@ -144,7 +146,10 @@ export function useDraft(
     get() {
       if (!currentUserDrafts.value[draftKey])
         currentUserDrafts.value[draftKey] = [initial()]
-      return currentUserDrafts.value[draftKey]
+      const drafts = currentUserDrafts.value[draftKey]
+      if (Array.isArray(drafts))
+        return drafts
+      return [drafts]
     },
     set(val) {
       currentUserDrafts.value[draftKey] = val

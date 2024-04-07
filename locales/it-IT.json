@@ -542,6 +542,7 @@
       "hide_boost_count": "Nascondi contatore potenziamenti",
       "hide_favorite_count": "Nascondi contatore apprezzamenti",
       "hide_follower_count": "Nascondi contatore seguaci/seguiti",
+      "hide_gif_indi_on_posts": "Nascondi indicatore gif sui post",
       "hide_news": "Nascondi notizie",
       "hide_reply_count": "Nascondi contatore risposte",
       "hide_tag_hover_card": "Nascondi anteprima tag al passaggio del mouse",
@@ -593,7 +594,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Il numero di allegati superava il limite per post.",
+    "attachments_limit_audio_error": "Dimensione massima audio superata: {0}",
     "attachments_limit_error": "Limite per post superato.",
+    "attachments_limit_image_error": "Dimensione massima immagine superata: {0}",
+    "attachments_limit_unknown_error": "Dimensione massima file superata: {0}",
+    "attachments_limit_video_error": "Dimensione massima video superata: {0}",
     "edited": "(Modificato)",
     "editing": "Modifica",
     "loading": "Carico...",
@@ -614,6 +619,7 @@
     "favourited_by": "Apprezzato da",
     "filter_hidden_phrase": "Filtrato da",
     "filter_show_anyway": "Mostra comunque",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Descrizione",

@@ -72,7 +72,7 @@ const forceShow = ref(false)
 <template>
   <StatusLink :status="status" :hover="hover">
     <!-- Upper border -->
-    <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 />
+    <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 z--1 />
 
     <slot name="meta">
       <!-- Line connecting to previous status -->

@@ -6,6 +6,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   const keys = useMagicKeys()
   const router = useRouter()
   const i18n = useNuxtApp().$i18n
+  const { y } = useWindowScroll({ behavior: 'smooth' })
 
   // disable shortcuts when focused on inputs (https://vueuse.org/core/usemagickeys/#conditionally-disable)
   const activeElement = useActiveElement()
@@ -96,8 +97,12 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
     const activeStatusId = activeElement.value ? getActiveStatueId(activeElement.value) : undefined
     const nextOrPreviousStatusId = getNextOrPreviousStatusId(activeStatusId, direction)
     if (nextOrPreviousStatusId) {
-      document.getElementById(nextOrPreviousStatusId)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-      document.getElementById(nextOrPreviousStatusId)?.focus()
+      const status = document.getElementById(nextOrPreviousStatusId)
+      if (status) {
+        status.focus({ preventScroll: true })
+        const topBarHeight = 58
+        y.value += status.getBoundingClientRect().top - topBarHeight
+      }
     }
   }
 

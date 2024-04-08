@@ -2,31 +2,9 @@ import type { mastodon } from 'masto'
 import type { DraftItem } from '~/types'
 
 const maxThreadLength = 99
-/**
- * TODO: This is a hardcoded workaround, but it seems to work reliably.
- * We should definitely look into the emoji handling of tiptap a bit more and make this work better in the future.
- */
-const threadIcon = '<img alt="🧵" src="/emojis/twemoji/1f9f5.svg" class="iconify-emoji iconify-emoji--twemoji">'
-
-function getThreadStatusPrefix(position: number, totalAmount: number) {
-  if (totalAmount === 1)
-    return ''
-  return `${threadIcon} ${position}/${totalAmount} `
-}
-
-function updateThreadStatusPrefix(text: string, index: number, totalAmount: number) {
-  return getThreadStatusPrefix(index, totalAmount) + text.replace(new RegExp(`${threadIcon} \\d+/\\d+ `), '')
-}
 
 export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
   const { draftItems } = useDraft(draftKey, initial)
-
-  function updateDraftItemAmount() {
-    const totalLength = draftItems.value.length
-    draftItems.value.forEach((draftItem, index) => {
-      draftItem.params.status = updateThreadStatusPrefix(draftItem.params.status || '', index + 1, totalLength)
-    })
-  }
 
   /**
    * Whether the thread is active (has more than one item)
@@ -50,7 +28,6 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
       spoilerText: lastItem.params.spoilerText,
       visibility: lastItem.params.visibility,
     }))
-    updateDraftItemAmount()
   }
 
   /**
@@ -59,7 +36,6 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
    */
   function removeThreadItem(index: number) {
     draftItems.value.splice(index, 1)
-    updateDraftItemAmount()
   }
 
   /**

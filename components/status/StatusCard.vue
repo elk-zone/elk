@@ -76,6 +76,19 @@ const forceShow = ref(false)
     <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 />
 
     <slot name="meta">
+      <!-- Pinned status -->
+      <div flex="~ col" justify-between>
+        <div
+          v-if="isPinned"
+          flex="~ gap2" items-center h-auto text-sm text-orange
+          m="is-5" p="t-1 is-5"
+          relative text-secondary ws-nowrap
+        >
+          <div i-ri:pushpin-line />
+          <span>Pinned post</span>
+        </div>
+      </div>
+
       <!-- Line connecting to previous status -->
       <template v-if="status.inReplyToAccountId">
         <StatusReplyingTo
@@ -112,19 +125,6 @@ const forceShow = ref(false)
             </AccountHoverWrapper>
           </div>
           <AccountInlineInfo font-bold :account="rebloggedBy" :avatar="false" text-sm />
-        </div>
-      </div>
-
-      <!-- Pinned status -->
-      <div flex="~ col" justify-between>
-        <div
-          v-if="isPinned"
-          flex="~" items-center
-          p="t-1 b-0.5 x-1px"
-          relative text-secondary ws-nowrap
-        >
-          <div i-ri:pushpin-line mx-1 text-orange w-16px h-16px />
-          <span text-primary>Pinned post</span>
         </div>
       </div>
     </slot>

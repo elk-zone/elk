@@ -295,7 +295,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
               </ol>
             </CommonErrorMessage>
 
-            <div relative flex-1 flex flex-col min-h-30>
+            <div relative flex-1 flex flex-col :class="shouldExpanded ? 'min-h-30' : ''">
               <EditorContent
                 :editor="editor" flex max-w-full
                 :class="{

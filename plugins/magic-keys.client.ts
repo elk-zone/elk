@@ -31,7 +31,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
     // TODO: bugfix -> create PR for vueuse, reset `current` ref on window focus|blur
     if (!current.has('shift') && !current.has('meta') && !current.has('control') && !current.has('alt')) {
       // TODO: is this the correct way of using openPublishDialog()?
-      openPublishDialog('dialog', getDefaultDraft())
+      openPublishDialog('dialog', getDefaultDraftItem())
     }
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys.c), defaultPublishDialog)

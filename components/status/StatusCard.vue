@@ -85,7 +85,7 @@ const forceShow = ref(false)
           relative text-secondary ws-nowrap
         >
           <div i-ri:pushpin-line />
-          <span>Pinned post</span>
+          <span>{{ $t('status.pinned') }}</span>
         </div>
       </div>
 

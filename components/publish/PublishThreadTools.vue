@@ -15,6 +15,15 @@ function addOrRemoveItem() {
   else
     addThreadItem()
 }
+
+const { t } = useI18n()
+
+const label = computed(() => {
+  if (!isRemovableItem.value && props.draftItemIndex === 0)
+    return t('tooltip.start_thread')
+
+  return isRemovableItem.value ? t('tooltip.remove_thread_item') : t('tooltip.add_thread_item')
+})
 </script>
 
 <template>
@@ -26,10 +35,11 @@ function addOrRemoveItem() {
       {{ draftItemIndex + 1 }}<span text-secondary-light>/</span><span text-secondary-light>{{ threadItems.length
       }}</span>
     </div>
-
-    <button btn-action-icon :aria-label="$t('tooltip.manage_thread')" @click="addOrRemoveItem">
-      <div v-if="isRemovableItem" i-ri:chat-delete-line />
-      <div v-else i-ri:chat-new-line />
-    </button>
+    <CommonTooltip placement="top" :content="label">
+      <button btn-action-icon :aria-label="label" @click="addOrRemoveItem">
+        <div v-if="isRemovableItem" i-ri:chat-delete-line />
+        <div v-else i-ri:chat-new-line />
+      </button>
+    </CommonTooltip>
   </div>
 </template>

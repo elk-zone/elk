@@ -719,6 +719,7 @@
     "add_emojis": "Add emojis",
     "add_media": "Add images, a video or an audio file",
     "add_publishable_content": "Add content to publish",
+    "add_thread_item": "Add item to thread",
     "change_content_visibility": "Change content visibility",
     "change_language": "Change language",
     "emoji": "Emoji",
@@ -728,6 +729,8 @@
     "open_editor_tools": "Editor tools",
     "pick_an_icon": "Pick an icon",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
+    "remove_thread_item": "Remove item from thread",
+    "start_thread": "Start thread",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",
     "toggle_italic": "Toggle italic"

@@ -165,9 +165,9 @@
     },
     "unfollow": {
       "cancel": "Mégsem",
-      "confirm": "Követés leállítása",
+      "confirm": "Leállítás",
       "description": "Biztosan leállítod a követését?",
-      "title": "Követés leállítása"
+      "title": "Leállítás"
     }
   },
   "conversation": {

@@ -83,15 +83,11 @@ function toggleDark() {
         </NuxtLink>
       </template>
       &middot;
-      <NuxtLink href="/m.webtoo.ls/@elk" target="_blank">
+      <NuxtLink href="/@maybeanerd" target="_blank">
         Mastodon
       </NuxtLink>
       &middot;
-      <NuxtLink href="https://chat.elk.zone" target="_blank" external>
-        Discord
-      </NuxtLink>
-      &middot;
-      <NuxtLink href="https://github.com/elk-zone/elk" target="_blank" external>
+      <NuxtLink href="https://github.com/maybeanerd/crab" target="_blank" external>
         GitHub
       </NuxtLink>
     </div>

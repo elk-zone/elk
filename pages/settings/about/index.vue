@@ -25,7 +25,7 @@ function handleShowCommit() {
     </template>
 
     <div flex="~ col gap4" w-full items-center justify-center my5>
-      <img :alt="$t('app_logo')" :src="`${''}/logo.svg`" w-24 h-24 class="rtl-flip">
+      <img :alt="$t('app_logo')" :src="`${''}/pwa-192x192.png`" w-24 h-24 class="rtl-flip">
       <p text-lg>
         {{ $t('app_desc_short') }}
       </p>
@@ -34,7 +34,7 @@ function handleShowCommit() {
     <template v-if="isHydrated">
       <SettingsItem
         :text="$t('settings.about.version')"
-        :to="showCommit ? `https://github.com/elk-zone/elk/commit/${buildInfo.commit}` : undefined"
+        :to="showCommit ? `https://github.com/maybeanerd/crab/commit/${buildInfo.commit}` : undefined"
         external target="_blank"
         @click="handleShowCommit"
       >
@@ -68,19 +68,13 @@ function handleShowCommit() {
     <SettingsItem
       text="Mastodon"
       icon="i-ri:mastodon-line"
-      to="/m.webtoo.ls/@elk"
+      to="/@maybeanerd"
       large target="_blank"
-    />
-    <SettingsItem
-      text="Discord"
-      icon="i-ri:discord-fill"
-      to="https://chat.elk.zone"
-      external large target="_blank"
     />
     <SettingsItem
       text="GitHub"
       icon="i-ri:github-fill"
-      to="https://github.com/elk-zone/elk"
+      to="https://github.com/maybeanerd/crab"
       external large target="_blank"
     />
 
@@ -118,7 +112,22 @@ function handleShowCommit() {
 
     <template v-if="isHydrated">
       <p px5 py3 font-bold text-lg>
-        {{ $t('settings.about.meet_the_team') }}
+        Meet the crab team
+      </p>
+
+      <SettingsItem
+        v-for="team in crabTeamMembers" :key="team.github"
+        :text="team.display"
+        :to="`https://github.com/sponsors/${team.github}`"
+        external target="_blank"
+      >
+        <template #icon>
+          <img :src="`/avatars/${team.github}-60x60.png`" :alt="team.display" rounded-full w-8 h-8 height="32" width="32">
+        </template>
+      </SettingsItem>
+
+      <p px5 py3 font-bold text-lg>
+        Meet the Elk team
       </p>
 
       <SettingsItem

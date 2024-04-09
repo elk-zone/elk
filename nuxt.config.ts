@@ -162,8 +162,8 @@ export default defineNuxtConfig({
       // our default translation server #76
       translateApi: '',
       // Use the instance where Elk has its Mastodon account as the default
-      defaultServer: 'm.webtoo.ls',
-      singleInstance: false,
+      defaultServer: 'bumscode.com',
+      singleInstance: true,
     },
     storage: {
       fsBase: 'node_modules/.cache/app',
@@ -257,7 +257,6 @@ export default defineNuxtConfig({
       },
       link: [
         { rel: 'icon', href: '/favicon.ico', sizes: 'any' },
-        { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
       meta: [

@@ -12,9 +12,9 @@ const vAutoFocus = (el: HTMLElement) => el.focus()
       <span i-ri:close-line />
     </button>
 
-    <img :alt="$t('app_logo')" :src="`/${''}logo.svg`" w-20 h-20 height="80" width="80" mxa class="rtl-flip">
+    <img :alt="$t('app_logo')" :src="`/${''}pwa-192x192.png`" w-20 h-20 height="80" width="80" mxa class="rtl-flip">
     <h1 mxa text-4xl mb4>
-      {{ $t('help.title') }}
+      crab is in preview!
     </h1>
     <p>
       {{ $t('help.desc_para1') }}
@@ -34,6 +34,21 @@ const vAutoFocus = (el: HTMLElement) => el.focus()
       {{ $t('help.desc_para3') }}
     </NuxtLink>
     <p flex="~ gap-2 wrap justify-center" mxa>
+    {{ $t('help.desc_para3') }}
+    </p>
+    <p flex="~ gap-2 wrap" mxa>
+      <template v-for="team of crabTeamMembers" :key="team.github">
+        <NuxtLink :href="`https://github.com/sponsors/${team.github}`" target="_blank" external rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
+          <img :src="`/avatars/${team.github}-100x100.png`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">
+        </NuxtLink>
+      </template>
+    </p>
+    <p italic flex justify-center w-full>
+      <NuxtLink href="https://github.com/sponsors/maybeanerd" target="_blank">
+        <span text-xl font-script hover:text-primary transition duration-300>The crab Team</span>
+      </NuxtLink>
+    </p>
+    <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of elkTeamMembers" :key="team.github">
         <NuxtLink :href="team.link" target="_blank" external rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">
           <img :src="`/avatars/${team.github}-100x100.png`" :alt="team.display" rounded-full w-15 h-15 height="60" width="60">

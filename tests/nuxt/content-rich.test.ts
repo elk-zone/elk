@@ -90,14 +90,14 @@ describe('content-rich', () => {
   })
 
   it('collapse mentions', async () => {
-    const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> content <span class="h-card"><a href="https://m.webtoo.ls/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> <span class="h-card"><a href="https://mastodon.roe.dev/@daniel" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>daniel</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@sxzz" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>sxzz</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@patak" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>patak</span></a></span> content</p>', {
+    const { formatted } = await render('<p><span class="h-card"><a href="https://bumscode.com/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://bumscode.com/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> content <span class="h-card"><a href="https://bumscode.com/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> <span class="h-card"><a href="https://mastodon.roe.dev/@daniel" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>daniel</span></a></span> <span class="h-card"><a href="https://bumscode.com/@sxzz" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>sxzz</span></a></span> <span class="h-card"><a href="https://bumscode.com/@patak" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>patak</span></a></span> content</p>', {
       collapseMentionLink: true,
     })
     expect(formatted).toMatchSnapshot()
   })
 
   it('hides collapsed mentions', async () => {
-    const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> content</p>', {
+    const { formatted } = await render('<p><span class="h-card"><a href="https://webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> content</p>', {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })
@@ -105,7 +105,7 @@ describe('content-rich', () => {
   })
 
   it('shows some collapsed mentions inline', async () => {
-    const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> content</p>', {
+    const { formatted } = await render('<p><span class="h-card"><a href="https://bumscode.com/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> content</p>', {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })
@@ -113,7 +113,7 @@ describe('content-rich', () => {
   })
 
   it('shows some collapsed mentions grouped', async () => {
-    const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@patak" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>patak</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@sxzz" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>sxzz</span></a></span>content</p>', {
+    const { formatted } = await render('<p><span class="h-card"><a href="https://bumscode.com/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> <span class="h-card"><a href="https://bumscode.com/@patak" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>patak</span></a></span> <span class="h-card"><a href="https://bumscode.com/@sxzz" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>sxzz</span></a></span>content</p>', {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })
@@ -185,7 +185,7 @@ describe('content-rich', () => {
 
 describe('editor', () => {
   it('transform mentions', () => {
-    const ast = parseMastodonHTML('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention">@<span>elk</span></a></span> Hello</p>')
+    const ast = parseMastodonHTML('<p><span class="h-card"><a href="https://bumscode.com/@elk" class="u-url mention">@<span>elk</span></a></span> Hello</p>')
     const transformed = treeToText(ast)
     expect(transformed).toMatchSnapshot()
   })

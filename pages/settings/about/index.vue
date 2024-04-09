@@ -126,6 +126,8 @@ function handleShowCommit() {
         </template>
       </SettingsItem>
 
+      <div h-1px bg-border my2 />
+
       <p px5 py3 font-bold text-lg>
         Meet the Elk team
       </p>

@@ -33,9 +33,6 @@ const vAutoFocus = (el: HTMLElement) => el.focus()
     <NuxtLink hover:text-primary href="https://github.com/sponsors/elk-zone" target="_blank">
       {{ $t('help.desc_para3') }}
     </NuxtLink>
-    <p flex="~ gap-2 wrap justify-center" mxa>
-    {{ $t('help.desc_para3') }}
-    </p>
     <p flex="~ gap-2 wrap" mxa>
       <template v-for="team of crabTeamMembers" :key="team.github">
         <NuxtLink :href="`https://github.com/sponsors/${team.github}`" target="_blank" external rounded-full transition duration-300 border="~ transparent" hover="scale-105 border-primary">

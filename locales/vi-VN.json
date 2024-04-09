@@ -74,6 +74,7 @@
     "next": "Kế tiếp",
     "prev": "Trước đó",
     "publish": "Đăng",
+    "publish_thread": "Đăng chuỗi tút",
     "reply": "Trả lời",
     "reply_count": "{0}",
     "reset": "Đặt lại",
@@ -196,14 +197,14 @@
       "title": "Bản dựng"
     },
     "desc_highlight": "Sẽ có một số lỗi và tính năng bị thiếu ở đây.",
-    "desc_para1": "Cảm ơn bạn đã quan tâm đến việc dùng thử Elk, ứng dụng web Mastodon đang được triển khai của chúng tôi!",
-    "desc_para2": "Chúng tôi đang nỗ lực phát triển và cải thiện nó.",
+    "desc_para1": "Elk là một ứng dụng web Mastodon nhanh nhẹn. Sử dụng để đăng nhập Mastodon và tương tác với Fediverse.",
+    "desc_para2": "Elk là Mã Nguồn Mở và chúng tôi cải tiến nó như một dự án cộng đồng. Hãy tham gia và cùng xây dựng!",
     "desc_para3": "Để thúc đẩy sự phát triển, bạn có thể tài trợ cho Nhóm thông qua GitHub Sponsors. Chúng tôi hy vọng bạn thích Elk!",
-    "desc_para4": "Elk là Mã Nguồn Mở. Nếu bạn muốn thử nghiệm, đưa ra phản hồi hoặc đóng góp,",
+    "desc_para4": "Nếu bạn muốn thử nghiệm, đưa ra phản hồi hoặc đóng góp,",
     "desc_para5": "liên hệ trên GitHub",
     "desc_para6": "và tham gia.",
     "footer_team": "Elk Team",
-    "title": "Elk đang Thử Nghiệm!"
+    "title": "Elk xin chào!"
   },
   "language": {
     "search": "Tìm kiếm"
@@ -306,6 +307,7 @@
     "built_at": "Bản dựng {0}",
     "compose": "Soạn tút",
     "conversations": "Nhắn riêng",
+    "docs": "Tài liệu",
     "explore": "Khám phá",
     "favourites": "Lượt thích",
     "federated": "Liên hợp",
@@ -459,6 +461,7 @@
     },
     "language": {
       "display_language": "Ngôn ngữ giao diện",
+      "how_to_contribute": "Giúp một tay?",
       "label": "Ngôn ngữ",
       "post_language": "Ngôn ngữ đăng tút",
       "status": "Tình trạng dịch: {0}/{1} ({2}%)",
@@ -540,6 +543,7 @@
       "hide_boost_count": "Ẩn số lượt đăng lại",
       "hide_favorite_count": "Ẩn số lượt thích",
       "hide_follower_count": "Ẩn số lượt người theo dõi/đang theo dõi",
+      "hide_gif_indi_on_posts": "Ẩn biểu tượng GIF trên tút",
       "hide_news": "Ẩn tin tức",
       "hide_reply_count": "Ẩn số lượt trả lời",
       "hide_tag_hover_card": "Ẩn xem trước hashtag",
@@ -591,7 +595,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Vượt quá giới hạn số lượng file đính kèm.",
+    "attachments_limit_audio_error": "Dung lượng âm thanh tối đa: {0}",
     "attachments_limit_error": "Đã vượt quá giới hạn cho mỗi tút",
+    "attachments_limit_image_error": "Dung lượng ảnh tối đa: {0}",
+    "attachments_limit_unknown_error": "Dung lượng tập tin tối đa: {0}",
+    "attachments_limit_video_error": "Dung lượng video tối đa: {0}",
     "edited": "(Đã sửa)",
     "editing": "Sửa",
     "loading": "Đang tải...",
@@ -612,6 +620,7 @@
     "favourited_by": "Thích bởi",
     "filter_hidden_phrase": "Lọc theo",
     "filter_show_anyway": "Vẫn cứ hiện",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Mô tả",
@@ -710,6 +719,7 @@
     "add_emojis": "Chèn emoji",
     "add_media": "Thêm ảnh, video hoặc âm thanh",
     "add_publishable_content": "Thêm nội dung đăng",
+    "add_thread_item": "Thêm tút vào chuỗi",
     "change_content_visibility": "Chọn kiểu tút",
     "change_language": "Đổi ngôn ngữ",
     "emoji": "Emoji",
@@ -719,6 +729,8 @@
     "open_editor_tools": "Công cụ soạn thảo",
     "pick_an_icon": "Chọn biểu tượng",
     "publish_failed": "Đóng các thông báo không thành công để đăng lại tút",
+    "remove_thread_item": "Xóa tút khỏi chuỗi",
+    "start_thread": "Bắt đầu chuỗi tút",
     "toggle_bold": "In đậm",
     "toggle_code_block": "Đoạn mã",
     "toggle_italic": "In nghiêng"

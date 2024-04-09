@@ -6,8 +6,8 @@ const { group } = defineProps<{
 }>()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
-const reblogs = $computed(() => group.likes.filter(i => i.reblog))
-const likes = $computed(() => group.likes.filter(i => i.favourite && !i.reblog))
+const reblogs = computed(() => group.likes.filter(i => i.reblog))
+const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
 </script>
 
 <template>

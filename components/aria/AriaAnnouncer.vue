@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import type { LocaleObject } from '@nuxtjs/i18n'
 import type { AriaAnnounceType, AriaLive } from '~/composables/aria'
-import type { LocaleObject } from '#i18n'
 
 const router = useRouter()
 const { t, locale, locales } = useI18n()
@@ -11,16 +11,16 @@ const localeMap = (locales.value as LocaleObject[]).reduce((acc, l) => {
   return acc
 }, {} as Record<string, string>)
 
-let ariaLive = $ref<AriaLive>('polite')
-let ariaMessage = $ref<string>('')
+const ariaLive = ref<AriaLive>('polite')
+const ariaMessage = ref<string>('')
 
 function onMessage(event: AriaAnnounceType, message?: string) {
   if (event === 'announce')
-    ariaMessage = message!
+    ariaMessage.value = message!
   else if (event === 'mute')
-    ariaLive = 'off'
+    ariaLive.value = 'off'
   else
-    ariaLive = 'polite'
+    ariaLive.value = 'polite'
 }
 
 watch(locale, (l, ol) => {

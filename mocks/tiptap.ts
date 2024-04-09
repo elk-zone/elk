@@ -13,5 +13,7 @@ export const nodePasteRule = proxy
 export const VueNodeViewRenderer = proxy
 export const findChildren = proxy
 export const VueRenderer = proxy
+export const callOrReturn = proxy
+export const InputRule = proxy
 
 export { proxy as default }

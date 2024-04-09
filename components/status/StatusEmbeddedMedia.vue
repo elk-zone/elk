@@ -5,7 +5,7 @@ const { status } = defineProps<{
   status: mastodon.v1.Status
 }>()
 
-const vnode = $computed(() => {
+const vnode = computed(() => {
   if (!status.card?.html)
     return null
   const node = sanitizeEmbeddedIframe(status.card?.html)?.children[0]

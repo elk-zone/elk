@@ -17,17 +17,17 @@ useHydratedHead({
 
 const paginatorRef = ref()
 const inputRef = ref<HTMLInputElement>()
-let actionError = $ref<string | undefined>(undefined)
-let busy = $ref<boolean>(false)
+const actionError = ref<string | undefined>(undefined)
+const busy = ref<boolean>(false)
 const createText = ref('')
 const enableSubmit = computed(() => createText.value.length > 0)
 
 async function createList() {
-  if (busy || !enableSubmit.value)
+  if (busy.value || !enableSubmit.value)
     return
 
-  busy = true
-  actionError = undefined
+  busy.value = true
+  actionError.value = undefined
   await nextTick()
   try {
     const newEntry = await client.v1.lists.create({
@@ -38,18 +38,18 @@ async function createList() {
   }
   catch (err) {
     console.error(err)
-    actionError = (err as Error).message
+    actionError.value = (err as Error).message
     nextTick(() => {
       inputRef.value?.focus()
     })
   }
   finally {
-    busy = false
+    busy.value = false
   }
 }
 
 function clearError(focusBtn: boolean) {
-  actionError = undefined
+  actionError.value = undefined
   focusBtn && nextTick(() => {
     inputRef.value?.focus()
   })
@@ -129,7 +129,7 @@ onDeactivated(() => clearError(false))
                 <div aria-hidden="true" i-ri:error-warning-fill />
                 <p>{{ $t('list.error') }}</p>
               </div>
-              <CommonTooltip placement="bottom" :content="$t('list.clear_error')" no-auto-focus>
+              <CommonTooltip placement="bottom" :content="$t('list.clear_error')">
                 <button
                   flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('list.clear_error')"
                   @click="clearError(true)"

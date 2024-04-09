@@ -39,7 +39,6 @@ async function edit() {
       <CommonTooltip
         :content="isRemoved ? $t('list.add_account') : $t('list.remove_account')"
         :hover="isRemoved ? 'text-green' : 'text-red'"
-        no-auto-focus
       >
         <button
           text-sm p2 border-1 transition-colors

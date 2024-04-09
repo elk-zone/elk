@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const focusEditor = inject<typeof noop>('focus-editor', noop)
 
-const { details, command } = $(props)
+const { details, command } = props // TODO
 
 const userSettings = useUserSettings()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
@@ -21,7 +21,7 @@ const {
   toggleBookmark,
   toggleFavourite,
   toggleReblog,
-} = $(useStatusActions(props))
+} = useStatusActions(props)
 
 function reply() {
   if (!checkLogin())
@@ -29,7 +29,7 @@ function reply() {
   if (details)
     focusEditor()
   else
-    navigateToStatus({ status, focusReply: true })
+    navigateToStatus({ status: status.value, focusReply: true })
 }
 </script>
 
@@ -55,7 +55,7 @@ function reply() {
 
     <div flex-1>
       <StatusActionButton
-        :content="$t('action.boost')"
+        :content="$t(status.reblogged ? 'action.boosted' : 'action.boost')"
         :text="!getPreferences(userSettings, 'hideBoostCount') && status.reblogsCount ? status.reblogsCount : ''"
         color="text-green" hover="text-green" elk-group-hover="bg-green/10"
         icon="i-ri:repeat-line"
@@ -77,7 +77,7 @@ function reply() {
 
     <div flex-1>
       <StatusActionButton
-        :content="$t('action.favourite')"
+        :content="$t(status.favourited ? 'action.favourited' : 'action.favourite')"
         :text="!getPreferences(userSettings, 'hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
         :color="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
         :hover="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
@@ -100,7 +100,7 @@ function reply() {
 
     <div flex-none>
       <StatusActionButton
-        :content="$t('action.bookmark')"
+        :content="$t(status.bookmarked ? 'action.bookmarked' : 'action.bookmark')"
         :color="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
         :hover="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
         :elk-group-hover="useStarFavoriteIcon ? 'bg-rose/10' : 'bg-yellow/10' "

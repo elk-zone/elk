@@ -18,7 +18,7 @@ export function isCustomEmoji(emoji: CustomEmoji | Emoji): emoji is CustomEmoji 
   return !!(emoji as CustomEmoji).custom
 }
 
-export const TiptapMentionSuggestion: Partial<SuggestionOptions> = process.server
+export const TiptapMentionSuggestion: Partial<SuggestionOptions> = import.meta.server
   ? {}
   : {
       pluginKey: new PluginKey('mention'),
@@ -56,19 +56,21 @@ export const TiptapEmojiSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('emoji'),
   char: ':',
   async items({ query }): Promise<(CustomEmoji | Emoji)[]> {
-    if (process.server || query.length === 0)
+    if (import.meta.server || query.length === 0)
       return []
 
     if (currentCustomEmojis.value.emojis.length === 0)
       await updateCustomEmojis()
 
-    const emojis = await import('@emoji-mart/data')
-      .then(r => r.default as EmojiMartData)
-      .then(data => Object.values(data.emojis).filter(({ id }) => id.startsWith(query)))
+    const lowerCaseQuery = query.toLowerCase()
+
+    const { data } = await useAsyncData<EmojiMartData>('emoji-data', () => import('@emoji-mart/data').then(r => r.default as EmojiMartData))
+    const emojis: Emoji[] = Object.values(data.value?.emojis || []).filter(({ id }) => id.toLowerCase().startsWith(lowerCaseQuery))
 
     const customEmojis: CustomEmoji[] = currentCustomEmojis.value.emojis
-      .filter(emoji => emoji.shortcode.startsWith(query))
+      .filter(emoji => emoji.shortcode.toLowerCase().startsWith(lowerCaseQuery))
       .map(emoji => ({ ...emoji, custom: true }))
+
     return [...emojis, ...customEmojis]
   },
   command: ({ editor, props, range }) => {

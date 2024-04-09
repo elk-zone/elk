@@ -74,6 +74,7 @@
     "next": "Next",
     "prev": "Prev",
     "publish": "Publish",
+    "publish_thread": "Publish thread",
     "reply": "Reply",
     "reply_count": "{0}",
     "reset": "Reset",
@@ -149,7 +150,12 @@
     "mute_account": {
       "cancel": "Cancel",
       "confirm": "Mute",
+      "days": "days|day|days",
       "description": "Are you sure you want to mute {0}?",
+      "hours": "hours|hour|hours",
+      "minute": "minutes|minute|minutes",
+      "notifications": "Mute notifications",
+      "specify_duration": "Specify mute duration",
       "title": "Mute account"
     },
     "show_reblogs": {
@@ -191,14 +197,14 @@
       "title": "Preview deploy"
     },
     "desc_highlight": "Expect some bugs and missing features here and there.",
-    "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress Mastodon web client!",
-    "desc_para2": "we are working hard on the development and improving it over time.",
+    "desc_para1": "Elk is a nimble Mastodon web client. You can login to your Mastodon account and use it to interact with the fediverse.",
+    "desc_para2": "Elk is Open Source and we're actively improving it as a community project. Join us and let's build it together!",
     "desc_para3": "To boost development, you can sponsor the Team through GitHub Sponsors. We hope you enjoy Elk!",
-    "desc_para4": "Elk is Open Source. If you'd like to help with testing, giving feedback, or contributing,",
+    "desc_para4": "If you'd like to report a bug, help us testing, give feedback, or contribute,",
     "desc_para5": "reach out to us on GitHub",
     "desc_para6": "and get involved.",
     "footer_team": "The Elk Team",
-    "title": "Elk is in Preview!"
+    "title": "Welcome to Elk!"
   },
   "language": {
     "search": "Search"
@@ -226,16 +232,27 @@
         "boost": "Boost",
         "command_mode": "Command mode",
         "compose": "Compose",
-        "favourite": "Favourite",
+        "favourite": "Favorite",
         "search": "Search",
+        "show_new_items": "Show new items",
         "title": "Actions"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Bookmarks",
+        "go_to_conversations": "Conversations",
+        "go_to_explore": "Explore",
+        "go_to_favourites": "Favorites",
+        "go_to_federated": "Federated",
         "go_to_home": "Home",
+        "go_to_lists": "Lists",
+        "go_to_local": "Local",
         "go_to_notifications": "Notifications",
+        "go_to_profile": "Profile",
+        "go_to_search": "Search",
+        "go_to_settings": "Settings",
         "next_status": "Next post",
         "previous_status": "Previous post",
         "shortcut_help": "Shortcut help",
@@ -290,9 +307,11 @@
     "built_at": "Built {0}",
     "compose": "Compose",
     "conversations": "Conversations",
+    "docs": "Documentation",
     "explore": "Explore",
     "favourites": "Favorites",
     "federated": "Federated",
+    "hashtags": "Hashtags",
     "home": "Home",
     "list": "List",
     "lists": "Lists",
@@ -442,6 +461,7 @@
     },
     "language": {
       "display_language": "Display Language",
+      "how_to_contribute": "How to contribute?",
       "label": "Language",
       "post_language": "Posting Language",
       "status": "Translation status: {0}/{1} ({2}%)",
@@ -523,8 +543,10 @@
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",
       "hide_follower_count": "Hide following/follower count",
+      "hide_gif_indi_on_posts": "Hide gif indicator on posts",
       "hide_news": "Hide news",
       "hide_reply_count": "Hide reply count",
+      "hide_tag_hover_card": "Hide tag hover card",
       "hide_translation": "Hide translation",
       "hide_username_emojis": "Hide username emojis",
       "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",
@@ -573,7 +595,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
+    "attachments_limit_audio_error": "Maximum audio size exceeded: {0}",
     "attachments_limit_error": "Limit per post exceeded",
+    "attachments_limit_image_error": "Maximum image size exceeded: {0}",
+    "attachments_limit_unknown_error": "Maximum file size exceeded: {0}",
+    "attachments_limit_video_error": "Maximum video size exceeded: {0}",
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
@@ -594,6 +620,7 @@
     "favourited_by": "Favorited By",
     "filter_hidden_phrase": "Filtered by",
     "filter_show_anyway": "Show anyway",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Description",
@@ -692,6 +719,7 @@
     "add_emojis": "Add emojis",
     "add_media": "Add images, a video or an audio file",
     "add_publishable_content": "Add content to publish",
+    "add_thread_item": "Add item to thread",
     "change_content_visibility": "Change content visibility",
     "change_language": "Change language",
     "emoji": "Emoji",
@@ -701,6 +729,8 @@
     "open_editor_tools": "Editor tools",
     "pick_an_icon": "Pick an icon",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
+    "remove_thread_item": "Remove item from thread",
+    "start_thread": "Start thread",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",
     "toggle_italic": "Toggle italic"

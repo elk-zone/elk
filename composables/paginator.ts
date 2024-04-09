@@ -5,6 +5,7 @@ import type { PaginatorState } from '~/types'
 export function usePaginator<T, P, U = T>(
   _paginator: mastodon.Paginator<T[], P>,
   stream: Ref<mastodon.streaming.Subscription | undefined>,
+  eventType: 'update' | 'notification' = 'update',
   preprocess: (items: (T | U)[]) => U[] = items => items as unknown as U[],
   buffer = 10,
 ) {
@@ -19,8 +20,8 @@ export function usePaginator<T, P, U = T>(
   const prevItems = ref<T[]>([])
 
   const endAnchor = ref<HTMLDivElement>()
-  const bound = reactive(useElementBounding(endAnchor))
-  const isInScreen = $computed(() => bound.top < window.innerHeight * 2)
+  const bound = useElementBounding(endAnchor)
+  const isInScreen = computed(() => bound.top.value < window.innerHeight * 2)
   const error = ref<unknown | undefined>()
   const deactivated = useDeactivated()
 
@@ -34,10 +35,10 @@ export function usePaginator<T, P, U = T>(
       return
 
     for await (const entry of stream) {
-      if (entry.event === 'update') {
+      if (entry.event === eventType) {
         const status = entry.payload
 
-        if ('uri' in entry)
+        if ('uri' in status)
           cacheStatus(status, undefined, true)
 
         const index = prevItems.value.findIndex((i: any) => i.id === status.id)
@@ -103,7 +104,7 @@ export function usePaginator<T, P, U = T>(
     bound.update()
   }
 
-  if (process.client) {
+  if (import.meta.client) {
     useIntervalFn(() => {
       bound.update()
     }, 1000)
@@ -115,11 +116,10 @@ export function usePaginator<T, P, U = T>(
       })
     }
 
-    watch(
-      () => [isInScreen, state],
+    watchEffect(
       () => {
         if (
-          isInScreen
+          isInScreen.value
           && state.value === 'idle'
           // No new content is loaded when the keepAlive page enters the background
           && deactivated.value === false

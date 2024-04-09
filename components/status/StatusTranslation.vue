@@ -18,14 +18,14 @@ const showButton = computed(() =>
   && status.content.trim().length,
 )
 
-let translating = $ref(false)
+const translating = ref(false)
 async function toggleTranslation() {
-  translating = true
+  translating.value = true
   try {
     await _toggleTranslation()
   }
   finally {
-    translating = false
+    translating.value = false
   }
 }
 </script>

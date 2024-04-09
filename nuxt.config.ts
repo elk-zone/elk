@@ -1,9 +1,9 @@
 import { createResolver, useNuxt } from '@nuxt/kit'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
-import { i18n } from './config/i18n'
 import { pwa } from './config/pwa'
 import type { BuildInfo } from './types'
+import { currentLocales } from './config/i18n'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     tsConfig: {
       exclude: ['../service-worker'],
       vueCompilerOptions: {
-        target: 3.3,
+        target: 3.4,
       },
     },
   },
@@ -34,19 +34,22 @@ export default defineNuxtConfig({
     'stale-dep/nuxt',
   ],
   vue: {
-    defineModel: true,
+    propsDestructure: true,
   },
   macros: {
     setupSFC: true,
     betterDefine: false,
     defineModels: false,
+    reactivityTransform: false,
   },
   devtools: {
     enabled: true,
   },
+  features: {
+    inlineStyles: false,
+  },
   experimental: {
     payloadExtraction: false,
-    inlineSSRStyles: false,
     renderJsonPayloads: true,
   },
   css: [
@@ -73,6 +76,11 @@ export default defineNuxtConfig({
       './composables/settings',
       './composables/tiptap/index.ts',
     ],
+    imports: [{
+      name: 'useI18n',
+      from: '~/utils/i18n',
+      priority: 100,
+    }],
     injectAtEnd: true,
   },
   vite: {
@@ -83,6 +91,46 @@ export default defineNuxtConfig({
     },
     build: {
       target: 'esnext',
+    },
+    optimizeDeps: {
+      include: [
+        '@tiptap/vue-3',
+        'string-length',
+        'vue-virtual-scroller',
+        'emoji-mart',
+        'iso-639-1',
+        '@tiptap/extension-placeholder',
+        '@tiptap/extension-document',
+        '@tiptap/extension-paragraph',
+        '@tiptap/extension-text',
+        '@tiptap/extension-mention',
+        '@tiptap/extension-hard-break',
+        '@tiptap/extension-bold',
+        '@tiptap/extension-italic',
+        '@tiptap/extension-code',
+        '@tiptap/extension-history',
+        'prosemirror-state',
+        'browser-fs-access',
+        'blurhash',
+        '@vueuse/integrations/useFocusTrap',
+        '@tiptap/extension-code-block',
+        'prosemirror-highlight',
+        '@tiptap/core',
+        'tippy.js',
+        'prosemirror-highlight/shiki',
+        '@fnando/sparkline',
+        '@vueuse/gesture',
+        'github-reserved-names',
+        'file-saver',
+        'slimeform',
+        'vue-advanced-cropper',
+        'workbox-window',
+        'workbox-precaching',
+        'workbox-routing',
+        'workbox-cacheable-response',
+        'workbox-strategies',
+        'workbox-expiration',
+      ],
     },
   },
   postcss: {
@@ -149,17 +197,17 @@ export default defineNuxtConfig({
     },
     publicAssets: [
       {
-        dir: '~/public/avatars',
+        dir: resolve('./public/avatars'),
         maxAge: 24 * 60 * 60 * 30, // 30 days
         baseURL: '/avatars',
       },
       {
-        dir: '~/public/emojis',
+        dir: resolve('./public/emojis'),
         maxAge: 24 * 60 * 60 * 15, // 15 days, matching service worker
         baseURL: '/emojis',
       },
       {
-        dir: '~/public/fonts',
+        dir: resolve('./public/fonts'),
         maxAge: 24 * 60 * 60 * 365, // 1 year (versioned)
         baseURL: '/fonts',
       },
@@ -227,7 +275,8 @@ export default defineNuxtConfig({
       ],
     },
   },
-  // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
+
+  // eslint-disable-next-line ts/prefer-ts-expect-error
   // @ts-ignore nuxt-security is conditional
   security: {
     headers: {
@@ -256,7 +305,15 @@ export default defineNuxtConfig({
     rateLimiter: false,
   },
   colorMode: { classSuffix: '' },
-  i18n,
+  i18n: {
+    locales: currentLocales,
+    lazy: true,
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
+    langDir: 'locales',
+    defaultLocale: 'en-US',
+    vueI18n: './config/i18n.config.ts',
+  },
   pwa,
   staleDep: {
     packageManager: 'pnpm',
@@ -267,7 +324,7 @@ export default defineNuxtConfig({
 })
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
+  // eslint-disable-next-line ts/no-namespace
   namespace NodeJS {
     interface Process {
       mock?: Record<string, any>

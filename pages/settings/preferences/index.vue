@@ -22,10 +22,22 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_alt_indi_on_posts') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideGifIndicatorOnPosts')"
+      @click="togglePreferences('hideGifIndicatorOnPosts')"
+    >
+      {{ $t('settings.preferences.hide_gif_indi_on_posts') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'hideAccountHoverCard')"
       @click="togglePreferences('hideAccountHoverCard')"
     >
       {{ $t('settings.preferences.hide_account_hover_card') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideTagHoverCard')"
+      @click="togglePreferences('hideTagHoverCard')"
+    >
+      {{ $t('settings.preferences.hide_tag_hover_card') }}
     </SettingsToggleItem>
     <SettingsToggleItem
       :checked="getPreferences(userSettings, 'enableAutoplay')"

@@ -36,7 +36,8 @@ export default defineNuxtPlugin(() => {
   }
 
   const {
-    needRefresh, updateServiceWorker,
+    needRefresh,
+    updateServiceWorker,
   } = useRegisterSW({
     immediate: true,
     onRegisterError() {

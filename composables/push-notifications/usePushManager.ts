@@ -14,7 +14,7 @@ const supportsPushNotifications = typeof window !== 'undefined'
   && 'getKey' in PushSubscription.prototype
 
 export function usePushManager() {
-  const { client } = $(useMasto())
+  const { client } = useMasto()
   const isSubscribed = ref(false)
   const notificationPermission = ref<PermissionState | undefined>(
     Notification.permission === 'denied'
@@ -25,7 +25,7 @@ export function usePushManager() {
           ? 'prompt'
           : undefined,
   )
-  const isSupported = $computed(() => supportsPushNotifications)
+  const isSupported = computed(() => supportsPushNotifications)
   const hiddenNotification = useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {})
   const configuredPolicy = useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {})
   const pushNotificationData = ref(createRawSettings(
@@ -64,7 +64,7 @@ export function usePushManager() {
     policy?: mastodon.v1.WebPushSubscriptionPolicy,
     force?: boolean,
   ): Promise<SubscriptionResult> => {
-    if (!isSupported)
+    if (!isSupported.value)
       return 'not-supported'
 
     if (!currentUser.value)
@@ -87,7 +87,10 @@ export function usePushManager() {
 
     currentUser.value.pushSubscription = await createPushSubscription(
       {
-        pushSubscription, server, token, vapidKey,
+        pushSubscription,
+        server,
+        token,
+        vapidKey,
       },
       notificationData ?? {
         alerts: {
@@ -109,7 +112,7 @@ export function usePushManager() {
   }
 
   const unsubscribe = async () => {
-    if (!isSupported || !isSubscribed || !currentUser.value)
+    if (!isSupported.value || !isSubscribed.value || !currentUser.value)
       return false
 
     await removePushNotifications(currentUser.value)
@@ -173,7 +176,7 @@ export function usePushManager() {
       if (policyChanged)
         await subscribe(data, policy, true)
       else
-        currentUser.value.pushSubscription = await client.v1.push.subscription.update({ data })
+        currentUser.value.pushSubscription = await client.value.v1.push.subscription.update({ data })
 
       policyChanged && await nextTick()
 

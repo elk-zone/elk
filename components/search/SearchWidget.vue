@@ -77,11 +77,12 @@ function activate() {
         ps-3
         pe-1
         ml-1
-        :placeholder="isHydrated ? t('nav.search') : ''"
+        :placeholder="t('nav.search')"
         pb="1px"
         placeholder-text-secondary
         @keydown.down.prevent="shift(1)"
         @keydown.up.prevent="shift(-1)"
+        @keydown.esc.prevent="input?.blur()"
         @keypress.enter="activate"
       >
       <button v-if="query.length" btn-action-icon text-secondary @click="query = ''; input?.focus()">

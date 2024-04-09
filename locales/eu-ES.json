@@ -703,7 +703,7 @@
     "short_year_past": "{n}u",
     "week_future": "0 astetan|datorren astean|datozen {n} asteetan",
     "week_past": "duela 0 aste|aurreko astean|duela {n} aste",
-    "year_future": "0 urtetan|gaurtz|datozen {n} urteetan",
+    "year_future": "0 urtetan|geurtz|datozen {n} urteetan",
     "year_past": "duela 0 urte|aurreko urtean|duela {n} urte"
   },
   "timeline": {

@@ -45,7 +45,7 @@
     "request_follow": "Követés kérése",
     "requested": "{0} kérte, hogy kövessen",
     "unblock": "Ne legyen blokkolva",
-    "unfollow": "Nem követem tovább",
+    "unfollow": "Nem követem",
     "unmute": "Némítás megszűntetve",
     "view_other_followers": "A másik instancekról származó követések nem feltétlenül lesznek megjelenítve.",
     "view_other_following": "A másik instancekról származó követők nem feltétlenül lesznek megjelenítve.",
@@ -165,9 +165,9 @@
     },
     "unfollow": {
       "cancel": "Mégsem",
-      "confirm": "Követés leállítása",
+      "confirm": "Nem követem",
       "description": "Biztosan leállítod a követését?",
-      "title": "Követés leállítása"
+      "title": "Nem követem"
     }
   },
   "conversation": {

@@ -22,6 +22,12 @@ const userSettings = useUserSettings()
       {{ $t('settings.preferences.hide_alt_indi_on_posts') }}
     </SettingsToggleItem>
     <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideGifIndicatorOnPosts')"
+      @click="togglePreferences('hideGifIndicatorOnPosts')"
+    >
+      {{ $t('settings.preferences.hide_gif_indi_on_posts') }}
+    </SettingsToggleItem>
+    <SettingsToggleItem
       :checked="getPreferences(userSettings, 'hideAccountHoverCard')"
       @click="togglePreferences('hideAccountHoverCard')"
     >

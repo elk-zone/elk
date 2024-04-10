@@ -306,6 +306,7 @@
     "built_at": "Compilado {0}",
     "compose": "Redactar",
     "conversations": "Conversaciones",
+    "docs": "Documentación",
     "explore": "Explorar",
     "favourites": "Favoritas",
     "federated": "Federados",
@@ -459,6 +460,7 @@
     },
     "language": {
       "display_language": "Idioma de pantalla",
+      "how_to_contribute": "¿Cómo contribuir?",
       "label": "Idioma",
       "post_language": "Idioma de publicación",
       "status": "Estado traducción: {0}/{1} ({2}%)",
@@ -540,6 +542,7 @@
       "hide_boost_count": "Ocultar contador de retoots",
       "hide_favorite_count": "Ocultar número de publicaciones favoritas",
       "hide_follower_count": "Ocultar número de seguidores",
+      "hide_gif_indi_on_posts": "Ocultar indicador de gif en publicaciones",
       "hide_news": "Ocultar noticias",
       "hide_reply_count": "Ocultar número de respuestas",
       "hide_tag_hover_card": "Ocultar tarjeta flotante de etiqueta",
@@ -591,7 +594,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Número máximo de archivos adjuntos por publicación excedido.",
+    "attachments_limit_audio_error": "Tamaño máximo de audio excedido: {0}",
     "attachments_limit_error": "Límite por publicación excedido",
+    "attachments_limit_image_error": "Tamaño máximo de imagen excedido: {0}",
+    "attachments_limit_unknown_error": "Tamaño máximo de archivo excedido: {0}",
+    "attachments_limit_video_error": "Tamaño máximo de vídeo excedido: {0}",
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Cargando...",
@@ -612,6 +619,7 @@
     "favourited_by": "Marcado como favorita por",
     "filter_hidden_phrase": "Filtrado por",
     "filter_show_anyway": "Mostrar de todas formas",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Descripción",
@@ -708,7 +716,7 @@
   "tooltip": {
     "add_content_warning": "Añadir advertencia de contenido",
     "add_emojis": "Agregar emojis",
-    "add_media": "Añadir imágenes, video o audio",
+    "add_media": "Añadir imágenes, vídeo o audio",
     "add_publishable_content": "Publicar contenido",
     "change_content_visibility": "Cambiar visibilidad de contenido",
     "change_language": "Cambiar idioma",

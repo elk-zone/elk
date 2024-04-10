@@ -15,7 +15,7 @@ const emit = defineEmits<{
 const modelValue = defineModel<number>({ required: true })
 
 const slideGap = 20
-const doubleTapTreshold = 250
+const doubleTapThreshold = 250
 
 const view = ref()
 const slider = ref()
@@ -35,6 +35,8 @@ const isPinching = ref(false)
 
 const maxZoomOut = ref(1)
 const isZoomedIn = computed(() => scale.value > 1)
+
+const enableAutoplay = usePreferences('enableAutoplay')
 
 function goToFocusedSlide() {
   scale.value = 1
@@ -147,7 +149,7 @@ function handleLastDrag(tap: boolean, swipe: Vector2, movement: Vector2, positio
 let lastTapAt = 0
 function handleTap([positionX, positionY]: Vector2) {
   const now = Date.now()
-  const isDoubleTap = now - lastTapAt < doubleTapTreshold
+  const isDoubleTap = now - lastTapAt < doubleTapThreshold
   lastTapAt = now
 
   if (!isDoubleTap)
@@ -218,7 +220,7 @@ function handleZoomDrag([deltaX, deltaY]: Vector2) {
 function handleSlideDrag([movementX, movementY]: Vector2) {
   goToFocusedSlide()
 
-  if (Math.abs(movementY) > Math.abs(movementX)) // vertical movement is more then horizontal
+  if (Math.abs(movementY) > Math.abs(movementX)) // vertical movement is more than horizontal
     y.value -= movementY / scale.value
   else
     x.value -= movementX / scale.value
@@ -264,8 +266,12 @@ const imageStyle = computed(() => ({
         items-center
         justify-center
       >
-        <img
+        <component
+          :is="item.type === 'gifv' ? 'video' : 'img'"
           ref="image"
+          :autoplay="enableAutoplay"
+          controls
+          loop
           select-none
           max-w-full
           max-h-full
@@ -273,7 +279,7 @@ const imageStyle = computed(() => ({
           :draggable="false"
           :src="item.url || item.previewUrl"
           :alt="item.description || ''"
-        >
+        />
       </div>
     </div>
   </div>

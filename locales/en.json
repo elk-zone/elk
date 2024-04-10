@@ -196,14 +196,14 @@
       "title": "Preview deploy"
     },
     "desc_highlight": "Expect some bugs and missing features here and there.",
-    "desc_para1": "Thanks for your interest in trying out Elk, our work-in-progress Mastodon web client!",
-    "desc_para2": "we are working hard on the development and improving it over time.",
+    "desc_para1": "Elk is a nimble Mastodon web client. You can login to your Mastodon account and use it to interact with the fediverse.",
+    "desc_para2": "Elk is Open Source and we're actively improving it as a community project. Join us and let's build it together!",
     "desc_para3": "To boost development, you can sponsor the Team through GitHub Sponsors. We hope you enjoy Elk!",
-    "desc_para4": "Elk is Open Source. If you'd like to help with testing, giving feedback, or contributing,",
+    "desc_para4": "If you'd like to report a bug, help us testing, give feedback, or contribute,",
     "desc_para5": "reach out to us on GitHub",
     "desc_para6": "and get involved.",
     "footer_team": "The Elk Team",
-    "title": "Elk is in Preview!"
+    "title": "Welcome to Elk!"
   },
   "language": {
     "search": "Search"
@@ -306,6 +306,7 @@
     "built_at": "Built {0}",
     "compose": "Compose",
     "conversations": "Conversations",
+    "docs": "Documentation",
     "explore": "Explore",
     "favourites": "Favorites",
     "federated": "Federated",
@@ -459,6 +460,7 @@
     },
     "language": {
       "display_language": "Display Language",
+      "how_to_contribute": "How to contribute?",
       "label": "Language",
       "post_language": "Posting Language",
       "status": "Translation status: {0}/{1} ({2}%)",
@@ -540,6 +542,7 @@
       "hide_boost_count": "Hide boost count",
       "hide_favorite_count": "Hide favorite count",
       "hide_follower_count": "Hide following/follower count",
+      "hide_gif_indi_on_posts": "Hide gif indicator on posts",
       "hide_news": "Hide news",
       "hide_reply_count": "Hide reply count",
       "hide_tag_hover_card": "Hide tag hover card",
@@ -591,7 +594,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
+    "attachments_limit_audio_error": "Maximum audio size exceeded: {0}",
     "attachments_limit_error": "Limit per post exceeded",
+    "attachments_limit_image_error": "Maximum image size exceeded: {0}",
+    "attachments_limit_unknown_error": "Maximum file size exceeded: {0}",
+    "attachments_limit_video_error": "Maximum video size exceeded: {0}",
     "edited": "(Edited)",
     "editing": "Editing",
     "loading": "Loading...",
@@ -612,6 +619,7 @@
     "favourited_by": "Favorited By",
     "filter_hidden_phrase": "Filtered by",
     "filter_show_anyway": "Show anyway",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Description",

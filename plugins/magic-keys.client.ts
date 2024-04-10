@@ -49,7 +49,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'i'])), () => navigateTo('/lists'))
   whenever(logicAnd(notUsingInput, useMagicSequence(['g', 's'])), () => navigateTo('/settings'))
   whenever(logicAnd(isAuthenticated, notUsingInput, useMagicSequence(['g', 'p'])), () => navigateTo(`/${instanceDomain}/@${currentUser.value?.account.username}`))
-  whenever(logicAnd(notUsingInput, keys['/']), () => navigateTo('/search'))
+  whenever(logicAnd(notUsingInput, computed(() => keys.current.size === 1), keys['/']), () => navigateTo('/search'))
 
   const toggleFavouriteActiveStatus = () => {
     // TODO: find a better solution than clicking buttons...

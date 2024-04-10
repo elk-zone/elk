@@ -59,6 +59,13 @@ function handleShowCommit() {
     />
 
     <SettingsItem
+      :text="$t('nav.docs')"
+      icon="i-ri:book-open-line"
+      to="https://docs.elk.zone/"
+      large target="_blank"
+    />
+
+    <SettingsItem
       text="Mastodon"
       icon="i-ri:mastodon-line"
       to="/@maybeanerd"
@@ -111,13 +118,15 @@ function handleShowCommit() {
       <SettingsItem
         v-for="team in crabTeamMembers" :key="team.github"
         :text="team.display"
-        :to="`https://github.com/sponsors/${team.github}`"
+        :to="team.link"
         external target="_blank"
       >
         <template #icon>
           <img :src="`/avatars/${team.github}-60x60.png`" :alt="team.display" rounded-full w-8 h-8 height="32" width="32">
         </template>
       </SettingsItem>
+
+      <div h-1px bg-border my2 />
 
       <p px5 py3 font-bold text-lg>
         Meet the Elk team
@@ -126,7 +135,7 @@ function handleShowCommit() {
       <SettingsItem
         v-for="team in elkTeamMembers" :key="team.github"
         :text="team.display"
-        :to="`https://github.com/sponsors/${team.github}`"
+        :to="team.link"
         external target="_blank"
       >
         <template #icon>

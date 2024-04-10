@@ -184,6 +184,9 @@
       "label": "Usuarios en línea"
     }
   },
+  "state": {
+    "attachments_limit_video_error": "Tamaño máximo de video excedido: {0}"
+  },
   "status": {
     "spoiler_show_less": "Menos"
   },

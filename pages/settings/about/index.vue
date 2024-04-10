@@ -118,7 +118,7 @@ function handleShowCommit() {
       <SettingsItem
         v-for="team in crabTeamMembers" :key="team.github"
         :text="team.display"
-        :to="`https://github.com/sponsors/${team.github}`"
+        :to="team.link"
         external target="_blank"
       >
         <template #icon>

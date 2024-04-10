@@ -60,21 +60,25 @@ export const crabTeamMembers: Team[] = [
     github: 'maybeanerd',
     display: 'Basti',
     mastodon: 'maybeanerd@bumscode.com',
+    link: '/bumscode.com/@maybeanerd',
   },
   {
     github: 'kriskbx',
     display: 'Kris',
     mastodon: 'kris@bumscode.com',
+    link: '/bumscode.com/@kris',
   },
   {
     github: 'tiborpilz',
     display: 'Tibor',
     mastodon: 'tibor@bumscode.com',
+    link: '/bumscode.com/@tibor',
   },
   {
     github: 'lostdesign',
     display: 'André',
     mastodon: 'wellerli@bumscode.com',
+    link: '/bumscode.com/@wellerli',
   },
 ].sort(() => Math.random() - 0.5)
 

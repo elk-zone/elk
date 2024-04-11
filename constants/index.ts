@@ -24,6 +24,7 @@ export const STORAGE_KEY_NOTIFICATION_POLICY = 'elk-notification-policy'
 export const STORAGE_KEY_PWA_HIDE_INSTALL = 'elk-pwa-hide-install'
 export const STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE = 'elk-last-accessed-notification-route'
 export const STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE = 'elk-last-accessed-explore-route'
+export const STORAGE_KEY_BOTTOM_NAV_BUTTONS = 'elk-bottom-nav-buttons'
 
 export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\d-]+\.)+\w+\/(@[@\w\d-\.]+)(\/objects)?(\/\d+)?$/
 

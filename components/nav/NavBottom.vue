@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import type { Component } from 'vue'
+import type { NavButtonName } from '../../composables/settings'
+
+import { STORAGE_KEY_BOTTOM_NAV_BUTTONS } from '~/constants'
+
 import { NavButtonExplore, NavButtonFederated, NavButtonHome, NavButtonLocal, NavButtonMention, NavButtonMoreMenu, NavButtonNotification, NavButtonSearch } from '#components'
 
 interface NavButton {
@@ -17,11 +22,12 @@ const navButtons: NavButton[] = [
   { name: 'moreMenu', component: NavButtonMoreMenu },
 ]
 
-const selectedNavButtonNames = currentUser.value
+const defaultSelectedNavButtonNames: NavButtonName[] = currentUser.value
   ? ['home', 'search', 'notification', 'mention', 'moreMenu']
   : ['explore', 'local', 'federated', 'moreMenu']
+const selectedNavButtonNames = useLocalStorage<NavButtonName[]>(STORAGE_KEY_BOTTOM_NAV_BUTTONS, defaultSelectedNavButtonNames)
 
-const selectedNavButtons = selectedNavButtonNames.map(name => navButtons.find(navButton => navButton.name === name))
+const selectedNavButtons = computed(() => selectedNavButtonNames.value.map(name => navButtons.find(navButton => navButton.name === name)))
 
 // only one icon can be lit up at the same time
 const moreMenuVisible = ref(false)

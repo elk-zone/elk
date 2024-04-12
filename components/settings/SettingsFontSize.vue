@@ -55,9 +55,10 @@ function setFontSize(e: Event) {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 2.5rem;
-    height: 2.5rem;
-    border: 1px solid var(--c-primary);
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--c-primary);
+    border-radius: 50%;
   }
   input[type=range]::-webkit-slider-runnable-track {
     --at-apply: bg-secondary-light rounded-full h1 op60;

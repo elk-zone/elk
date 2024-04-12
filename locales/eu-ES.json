@@ -58,6 +58,7 @@
     "boost": "Bultzatu",
     "boost_count": "{0}",
     "boosted": "Bultzatuta",
+    "clear": "Garbitu",
     "clear_publish_failed": "Garbitu argitalpen erroreak",
     "clear_save_failed": "Garbitu gordetzerakoan gertatutako erroreak",
     "clear_upload_failed": "Garbitu fitxategi-igoeren erroreak",
@@ -316,6 +317,7 @@
     "list": "Zerrenda",
     "lists": "Zerrendak",
     "local": "Lokala",
+    "more_menu": "Hobespen gehiago",
     "muted_users": "Mutututako erabiltzaileak",
     "notifications": "Jakinarazpenak",
     "privacy": "Pribatutasuna",
@@ -450,6 +452,8 @@
       "label": "Kontuaren ezarpenak"
     },
     "interface": {
+      "bottom_nav": "Beheko nabigazioa",
+      "bottom_nav_instructions": "Aukeratu botoi gogokoenak, bost gehienez, beheko nabigaziorako. \"Hobespen gehiago\" botoia barne izan behar du.",
       "color_mode": "Kolorea",
       "dark_mode": "Iluna",
       "default": " (defektuzkoa)",

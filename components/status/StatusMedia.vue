@@ -6,10 +6,20 @@ const { status, isPreview = false } = defineProps<{
   fullSize?: boolean
   isPreview?: boolean
 }>()
+
+const gridColumnNumber = computed(() => {
+  const num = status.mediaAttachments.length
+  if (num <= 1)
+    return 1
+  else if (num <= 4)
+    return 2
+  else
+    return 3
+})
 </script>
 
 <template>
-  <div class="status-media-container" :class="`status-media-container-${status.mediaAttachments.length}`">
+  <div class="status-media-container" :class="`status-media-container-${gridColumnNumber}`">
     <template v-for="attachment of status.mediaAttachments" :key="attachment.id">
       <StatusAttachment
         :attachment="attachment"
@@ -36,14 +46,10 @@ const { status, isPreview = false } = defineProps<{
 }
 .status-media-container-2 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
 }
 .status-media-container-3 {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.status-media-container-4 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
 }
 </style>

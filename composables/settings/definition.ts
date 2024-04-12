@@ -7,6 +7,8 @@ export type OldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type ColorMode = 'light' | 'dark' | 'system'
 
+export type NavButtonName = 'home' | 'search' | 'notification' | 'mention' | 'explore' | 'local' | 'federated' | 'moreMenu'
+
 export interface PreferencesSettings {
   hideAltIndicatorOnPosts: boolean
   hideGifIndicatorOnPosts: boolean

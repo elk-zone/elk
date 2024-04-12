@@ -58,6 +58,7 @@
     "boost": "Retootear",
     "boost_count": "{0}",
     "boosted": "Retooteado",
+    "clear": "Limpiar",
     "clear_publish_failed": "Limpiar errores de publicación",
     "clear_save_failed": "Limpiar errores al guardar",
     "clear_upload_failed": "Limpiar errores de subida de archivos",
@@ -316,6 +317,7 @@
     "list": "Lista",
     "lists": "Listas",
     "local": "Local",
+    "more_menu": "Otras opciones",
     "muted_users": "Usuarios silenciados",
     "notifications": "Notificaciones",
     "privacy": "Privacidad",
@@ -450,6 +452,8 @@
       "label": "Ajustes de cuenta"
     },
     "interface": {
+      "bottom_nav": "Navegación inferior",
+      "bottom_nav_instructions": "Elija sus botones de navegación favoritos, hasta cinco para la navegación inferior. Debe incluir el botón \"Otras opciones\".",
       "color_mode": "Modos de color",
       "dark_mode": "Modo oscuro",
       "default": " (por defecto)",

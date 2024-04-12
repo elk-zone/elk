@@ -58,6 +58,7 @@
     "boost": "Potenzia",
     "boost_count": "{0}",
     "boosted": "Potenziato",
+    "clear": "Cancella",
     "clear_publish_failed": "Cancella errori di pubblicazione",
     "clear_save_failed": "Cancella errori di salvataggio",
     "clear_upload_failed": "Cancella errori di caricamento file",
@@ -316,6 +317,7 @@
     "list": "Lista",
     "lists": "Liste",
     "local": "Locale",
+    "more_menu": "Altro",
     "muted_users": "Utenti silenziati",
     "notifications": "Notifiche",
     "privacy": "Privacy",
@@ -450,6 +452,8 @@
       "label": "Impostazioni account"
     },
     "interface": {
+      "bottom_nav": "Barra di navigazione",
+      "bottom_nav_instructions": "Scegli non più di cinque tasti per la barra di navigazione. Il tasto \"Altro\" è obbligatorio.",
       "color_mode": "Aspetto",
       "dark_mode": "Scuro",
       "default": " (default)",

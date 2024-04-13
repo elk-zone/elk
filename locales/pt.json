@@ -58,6 +58,7 @@
     "boost": "Partilhar",
     "boost_count": "{0}",
     "boosted": "Partilhado",
+    "clear": "Limpar",
     "clear_publish_failed": "Limpar erros de publicação",
     "clear_save_failed": "Limpar erros ocorridos ao tentar guardar",
     "clear_upload_failed": "Limpar erros de carregamento de ficheiro",
@@ -316,6 +317,7 @@
     "list": "Lista",
     "lists": "Listas",
     "local": "Local",
+    "more_menu": "Mais opções",
     "muted_users": "Utilizadores silenciados",
     "notifications": "Notificações",
     "privacy": "Privacidade",
@@ -450,7 +452,9 @@
       "label": "Configurações da conta"
     },
     "interface": {
-      "color_mode": "Modo de cores",
+      "bottom_nav": "Barra de Navegação",
+      "bottom_nav_instructions": "Escolha as suas opções favoritas, até cinco, para a barra de navegação. Deve incluir o botão \"Mais opções\".",
+      "color_mode": "Modo de Cores",
       "dark_mode": "Modo Escuro",
       "default": " (padrão)",
       "font_size": "Tamanho da fonte",

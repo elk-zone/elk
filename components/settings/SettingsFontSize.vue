@@ -17,6 +17,7 @@ function setFontSize(e: Event) {
     <span text-xs text-secondary>Aa</span>
     <div flex-1 relative flex items-center>
       <input
+        aria-labelledby="interface-fs"
         :value="sizes.indexOf(userSettings.fontSize)"
         :aria-valuetext="`${userSettings.fontSize}${userSettings.fontSize === DEFAULT_FONT_SIZE ? ` ${$t('settings.interface.default')}` : ''}`"
         :min="0"

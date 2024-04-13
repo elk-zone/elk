@@ -67,59 +67,61 @@ function save() {
 </script>
 
 <template>
-  <!-- preview -->
-  <div flex="~ gap4 wrap" items-center select-settings h-14 p0>
-    <nav
-      v-for="availableNavButton in selectedNavButtons" :key="availableNavButton.name"
-      flex="~ 1" items-center justify-center text-xl
-      scrollbar-hide overscroll-none
-    >
-      <button btn-base :class="availableNavButton.icon" mx-4 tabindex="-1" />
-    </nav>
-  </div>
+  <form aria-labelledby="interface-bn" aria-describedby="interface-bn-desc" @submit.prevent="save">
+    <!-- preview -->
+    <div aria-hidden="true" flex="~ gap4 wrap" items-center select-settings h-14 p0>
+      <nav
+        v-for="availableNavButton in selectedNavButtons" :key="availableNavButton.name"
+        flex="~ 1" items-center justify-center text-xl
+        scrollbar-hide overscroll-none
+      >
+        <button btn-base :class="availableNavButton.icon" mx-4 tabindex="-1" />
+      </nav>
+    </div>
 
-  <!-- button selection -->
-  <div flex="~ gap4 wrap" py4>
-    <button
-      v-for="{ name, label, icon } in availableNavButtons"
-      :key="name"
-      btn-text flex="~ gap-2" items-center p2 border="~ base rounded" bg-base ws-nowrap
-      :class="isAdded(name) ? 'text-secondary hover:text-second bg-auto' : ''"
-      type="button"
-      role="switch"
-      :aria-checked="isAdded(name)"
-      @click="isAdded(name) ? remove(name) : append(name)"
-    >
-      <span :class="icon" />
-      {{ label ? $t(label) : 'More menu' }}
-    </button>
-  </div>
+    <!-- button selection -->
+    <div flex="~ gap4 wrap" py4>
+      <button
+        v-for="{ name, label, icon } in availableNavButtons"
+        :key="name"
+        btn-text flex="~ gap-2" items-center p2 border="~ base rounded" bg-base ws-nowrap
+        :class="isAdded(name) ? 'text-secondary hover:text-second bg-auto' : ''"
+        type="button"
+        role="switch"
+        :aria-checked="isAdded(name)"
+        @click="isAdded(name) ? remove(name) : append(name)"
+      >
+        <span :class="icon" />
+        {{ label ? $t(label) : 'More menu' }}
+      </button>
+    </div>
 
-  <div flex="~ col" gap-y-4 gap-x-2 py-1 sm="~ justify-end flex-row">
-    <button
-      btn-outline font-bold py2 full-w sm-wa flex="~ gap2 center"
-      type="button"
-      :disabled="selectedNavButtonNames.length === 0"
-      @click="clear"
-    >
-      <span aria-hidden="true" class="block i-ri:delete-bin-line" />
-      {{ $t('action.clear') }}
-    </button>
-    <button
-      btn-outline font-bold py2 full-w sm-wa flex="~ gap2 center"
-      type="button"
-      @click="reset"
-    >
-      <span aria-hidden="true" class="block i-ri:repeat-line" />
-      {{ $t('action.reset') }}
-    </button>
-    <button
-      btn-solid font-bold py2 full-w sm-wa flex="~ gap2 center"
-      :disabled="!canSave"
-      @click="save"
-    >
-      <span aria-hidden="true" i-ri:save-2-fill />
-      {{ $t('action.save') }}
-    </button>
-  </div>
+    <div flex="~ col" gap-y-4 gap-x-2 py-1 sm="~ justify-end flex-row">
+      <button
+        btn-outline font-bold py2 full-w sm-wa flex="~ gap2 center"
+        type="button"
+        :disabled="selectedNavButtonNames.length === 0"
+        :class="selectedNavButtonNames.length === 0 ? 'border-none' : undefined"
+        @click="clear"
+      >
+        <span aria-hidden="true" class="block i-ri:delete-bin-line" />
+        {{ $t('action.clear') }}
+      </button>
+      <button
+        btn-outline font-bold py2 full-w sm-wa flex="~ gap2 center"
+        type="reset"
+        @click="reset"
+      >
+        <span aria-hidden="true" class="block i-ri:repeat-line" />
+        {{ $t('action.reset') }}
+      </button>
+      <button
+        btn-solid font-bold py2 full-w sm-wa flex="~ gap2 center"
+        :disabled="!canSave"
+      >
+        <span aria-hidden="true" i-ri:save-2-fill />
+        {{ $t('action.save') }}
+      </button>
+    </div>
+  </form>
 </template>

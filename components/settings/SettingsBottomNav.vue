@@ -25,7 +25,7 @@ const defaultSelectedNavButtonNames = computed<NavButtonName[]>(() =>
     : ['explore', 'local', 'federated', 'moreMenu'],
 )
 const navButtonNamesSetting = useLocalStorage<NavButtonName[]>(STORAGE_KEY_BOTTOM_NAV_BUTTONS, defaultSelectedNavButtonNames.value)
-const selectedNavButtonNames = ref(navButtonNamesSetting.value)
+const selectedNavButtonNames = ref<NavButtonName[]>([])
 
 const selectedNavButtons = computed<NavButton[]>(() =>
   selectedNavButtonNames.value.map(name =>

@@ -15,7 +15,9 @@ useHydratedHead({
     </template>
     <div p6 flex="~ col gap6">
       <label space-y-2>
-        <p id="interface-fs" font-medium>{{ $t('settings.interface.font_size') }}</p>
+        <p id="interface-fs" font-medium>
+          {{ $t('settings.interface.font_size') }}
+        </p>
         <SettingsFontSize select-settings />
       </label>
       <div space-y-2>

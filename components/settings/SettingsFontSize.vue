@@ -32,6 +32,7 @@ function setFontSize(e: Event) {
       <div flex items-center justify-between absolute w-full pointer-events-none>
         <div
           v-for="i in sizes.length" :key="i"
+          class="container-marker"
           h-3 w-3
           rounded-full bg-secondary-light
           relative
@@ -49,6 +50,17 @@ function setFontSize(e: Event) {
 </template>
 
 <style>
+  input:focus + div .container-marker:has(> div)::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--c-primary);
+    border-radius: 50%;
+  }
   input[type=range]::-webkit-slider-runnable-track {
     --at-apply: bg-secondary-light rounded-full h1 op60;
   }

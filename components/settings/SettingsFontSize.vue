@@ -13,7 +13,7 @@ function setFontSize(e: Event) {
 </script>
 
 <template>
-  <section>
+  <section space-y-2>
     <h2 id="interface-fs" font-medium>
       {{ $t('settings.interface.font_size') }}
     </h2>

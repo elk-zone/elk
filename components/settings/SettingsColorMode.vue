@@ -27,7 +27,7 @@ const modes = [
 </script>
 
 <template>
-  <section>
+  <section space-y-2>
     <h2 id="interface-cm" font-medium>
       {{ $t('settings.interface.color_mode') }}
     </h2>

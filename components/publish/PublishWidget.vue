@@ -167,7 +167,7 @@ const isExceedingCharacterLimit = computed(() => {
   return characterCount.value > characterLimit.value
 })
 
-const postLanguageDisplay = computed(() => languagesNameList.find(i => i.code === (draft.value.params.language || preferredLanguage))?.nativeName)
+const postLanguageDisplay = computed(() => languagesNameList.find(i => i.code === (draft.value.params.language || preferredLanguage.value))?.nativeName)
 
 const isDM = computed(() => draft.value.params.visibility === 'direct')
 

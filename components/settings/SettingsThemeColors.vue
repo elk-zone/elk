@@ -12,7 +12,7 @@ function updateTheme(theme: ThemeColors) {
 </script>
 
 <template>
-  <section>
+  <section space-y-2>
     <h2 id="interface-tc" font-medium>
       {{ $t('settings.interface.theme_color') }}
     </h2>

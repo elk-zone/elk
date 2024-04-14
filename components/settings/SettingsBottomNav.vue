@@ -67,7 +67,7 @@ function save() {
 </script>
 
 <template>
-  <section>
+  <section space-y-2>
     <h2 id="interface-bn" font-medium>
       {{ $t('settings.interface.bottom_nav') }}
     </h2>

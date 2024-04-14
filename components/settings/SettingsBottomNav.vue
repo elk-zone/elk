@@ -69,13 +69,13 @@ function save() {
 <template>
   <form aria-labelledby="interface-bn" aria-describedby="interface-bn-desc" @submit.prevent="save">
     <!-- preview -->
-    <div aria-hidden="true" flex="~ gap4 wrap" items-center select-settings h-14 p0>
+    <div aria-hidden="true" flex="~ gap4 wrap" items-center select-settings h-14>
       <nav
         v-for="availableNavButton in selectedNavButtons" :key="availableNavButton.name"
         flex="~ 1" items-center justify-center text-xl
         scrollbar-hide overscroll-none
       >
-        <button btn-base :class="availableNavButton.icon" mx-4 tabindex="-1" />
+        <span :class="availableNavButton.icon" />
       </nav>
     </div>
 

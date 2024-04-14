@@ -14,10 +14,10 @@ useHydratedHead({
       </div>
     </template>
     <div px-6 pt-3 pb-6 flex="~ col gap6">
-      <SettingsFontSize space-y-2 />
-      <SettingsColorMode space-y-2 />
-      <SettingsThemeColors space-y-2 />
-      <SettingsBottomNav space-y-2 />
+      <SettingsFontSize />
+      <SettingsColorMode />
+      <SettingsThemeColors />
+      <SettingsBottomNav />
     </div>
   </MainContent>
 </template>

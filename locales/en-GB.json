@@ -52,6 +52,9 @@
   "status": {
     "favourited_by": "Favourited By"
   },
+  "tab": {
+    "notifications_favourite": "Favourite"
+  },
   "tooltip": {
     "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralised network right now.",
     "explore_posts_intro": "These posts from this and other servers in the decentralised network are gaining traction on this server right now.",

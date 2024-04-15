@@ -1,0 +1,56 @@
+{
+  "account": {
+    "favourites": "Favourites"
+  },
+  "action": {
+    "favourite": "Favourite",
+    "favourited": "Favourited"
+  },
+  "magic_keys": {
+    "groups": {
+      "actions": {
+        "favourite": "Favourite"
+      },
+      "navigation": {
+        "go_to_favourites": "Favourites"
+      }
+    }
+  },
+  "menu": {
+    "show_favourited_and_boosted_by": "Show who favourited and boosted"
+  },
+  "nav": {
+    "favourites": "Favourites"
+  },
+  "notification": {
+    "favourited_post": "favourited your post"
+  },
+  "settings": {
+    "interface": {
+      "bottom_nav_instructions": "Choose your favourite navigation buttons up to five for the bottom navigation. Must include the \"More menu\" button.",
+      "color_mode": "Colour Mode",
+      "theme_color": "Theme Colour"
+    },
+    "notifications": {
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favourites"
+        }
+      }
+    },
+    "preferences": {
+      "hide_favorite_count": "Hide favourite count",
+      "use_star_favorite_icon": "Use star favourite icon"
+    }
+  },
+  "status": {
+    "favourited_by": "Favourited By"
+  },
+  "tab": {
+    "notifications_favourite": "Favourite"
+  },
+  "user": {
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server.",
+    "single_instance_sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts."
+  }
+}

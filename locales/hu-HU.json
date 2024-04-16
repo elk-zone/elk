@@ -45,7 +45,7 @@
     "request_follow": "Követés kérése",
     "requested": "{0} kérte, hogy kövessen",
     "unblock": "Ne legyen blokkolva",
-    "unfollow": "Nem követem tovább",
+    "unfollow": "Nem követem",
     "unmute": "Némítás megszűntetve",
     "view_other_followers": "A másik instancekról származó követések nem feltétlenül lesznek megjelenítve.",
     "view_other_following": "A másik instancekról származó követők nem feltétlenül lesznek megjelenítve.",
@@ -58,7 +58,8 @@
     "boost": "Kiemel",
     "boost_count": "{0}",
     "boosted": "Kiemelt",
-    "clear_publish_failed": "Publikálási hibák tisztítása",
+    "clear": "Tisztítás",
+    "clear_publish_failed": "Közzétételi hibák tisztítása",
     "clear_save_failed": "Mentési hibák tisztítása",
     "clear_upload_failed": "Fájl feltöltési hibák tisztítása",
     "close": "Bezár",
@@ -73,7 +74,8 @@
     "more": "Tovább",
     "next": "Következő",
     "prev": "Előző",
-    "publish": "Publikál",
+    "publish": "Közzététel",
+    "publish_thread": "Szál közzététele",
     "reply": "Válaszol",
     "reply_count": "{0}",
     "reset": "Visszaállít",
@@ -165,9 +167,9 @@
     },
     "unfollow": {
       "cancel": "Mégsem",
-      "confirm": "Követés leállítása",
+      "confirm": "Nem követem",
       "description": "Biztosan leállítod a követését?",
-      "title": "Követés leállítása"
+      "title": "Nem követem"
     }
   },
   "conversation": {
@@ -203,7 +205,7 @@
     "desc_para5": "elér minket a GitHub-on",
     "desc_para6": "és legyen elkötelezett.",
     "footer_team": "Az Elk csapat",
-    "title": "Az Elk Előzetes változata"
+    "title": "Üdvözöl az Elk!"
   },
   "language": {
     "search": "Keresés"
@@ -315,6 +317,7 @@
     "list": "Lista",
     "lists": "Listák",
     "local": "Helyi",
+    "more_menu": "Továbbiak",
     "muted_users": "Némított felhasználók",
     "notifications": "Értesítések",
     "privacy": "Adatvédelem",
@@ -449,6 +452,8 @@
       "label": "Fiók beállítások"
     },
     "interface": {
+      "bottom_nav": "Alsó navigáció",
+      "bottom_nav_instructions": "Válaszd ki a kedvenc navigációs gombodjaid, maximum öt darabot az alsó navigációhoz. Mindenképpen tartalmaznia kell a \"Továbbiak\" gombot.",
       "color_mode": "Szín mód",
       "dark_mode": "Sötét",
       "default": " (alapértelmezett)",
@@ -602,8 +607,8 @@
     "edited": "(Szerkesztve)",
     "editing": "Szerkesztés",
     "loading": "Betöltés...",
-    "publish_failed": "A pubikálás sikertelen",
-    "publishing": "Publikálás",
+    "publish_failed": "A közzététel sikertelen",
+    "publishing": "Közzétesz",
     "save_failed": "Elmentés sikertelen",
     "upload_failed": "Fetöltés sikertelen",
     "uploading": "Fetöltés..."
@@ -632,13 +637,13 @@
       "finished": "véget ért {0}"
     },
     "replying_to": "Válasz {0}-nak",
-    "show_full_thread": "Teljes beszélgetés megjelenítése",
+    "show_full_thread": "Teljes szál megjelenítése",
     "someone": "valaki",
     "spoiler_media_hidden": "Média elrejtve",
     "spoiler_show_less": "Mutass kevesebbet",
     "spoiler_show_more": "Mutass többet",
     "thread": "Szál",
-    "try_original_site": "Próbálja az eredeti weblapon"
+    "try_original_site": "Próbálja az eredeti webhelyen"
   },
   "status_history": {
     "created": "létrehozva {0}",
@@ -718,6 +723,7 @@
     "add_emojis": "Emoji hozzáadása",
     "add_media": "Képek hozzáadása, egy videó, vagy egy audió fájl",
     "add_publishable_content": "Tartalom hozzáadása publikáláshoz",
+    "add_thread_item": "Tartalom hozzáadása a szálhoz",
     "change_content_visibility": "Tartalom láthatóságának megváltoztatása",
     "change_language": "nyelv megváltoztatása",
     "emoji": "Emoji",
@@ -727,6 +733,8 @@
     "open_editor_tools": "Szerkesztő eszközök",
     "pick_an_icon": "Ikon választása",
     "publish_failed": "A bejegyzések újbóli közzétételéhez zárja be a sikertelen üzeneteket a szerkesztő tetején",
+    "remove_thread_item": "Elem eltávolítása a szálból",
+    "start_thread": "Szál megkezdése",
     "toggle_bold": "Váltás félkövérre",
     "toggle_code_block": "Kódblokk váltása",
     "toggle_italic": "Váltás dőltbetűssé"

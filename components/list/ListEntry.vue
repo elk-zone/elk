@@ -32,9 +32,9 @@ async function prepareEdit() {
 async function cancelEdit() {
   isEditing.value = false
   actionError.value = undefined
-  reset()
 
   await nextTick()
+  reset()
   editBtn.value?.focus()
 }
 

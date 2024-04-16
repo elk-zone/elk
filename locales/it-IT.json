@@ -222,6 +222,7 @@
     "error": "C'è stato un errore nella creazione della lista",
     "error_prefix": "Errore: ",
     "list_title_placeholder": "Titolo lista",
+    "manage": "Gestisci liste",
     "modify_account": "Modifica liste con account",
     "remove_account": "Rimuovi account dalla lista",
     "save": "Salva modifiche"

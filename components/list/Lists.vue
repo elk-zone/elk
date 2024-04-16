@@ -30,7 +30,7 @@ async function edit(listId: string) {
 </script>
 
 <template>
-  <CommonPaginator :end-message="false" :paginator="paginator">
+  <CommonPaginator :paginator="paginator">
     <template #default="{ item }">
       <div p4 hover:bg-active block w="100%" flex justify-between items-center gap-4>
         <p>{{ item.title }}</p>
@@ -48,6 +48,14 @@ async function edit(listId: string) {
           </button>
         </CommonTooltip>
       </div>
+    </template>
+    <template #done>
+      <NuxtLink
+        p4 hover:bg-active block w="100%" flex justify-between items-center gap-4
+        to="/lists"
+      >
+        <p>{{ $t('list.manage') }}</p>
+      </NuxtLink>
     </template>
   </CommonPaginator>
 </template>

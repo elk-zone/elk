@@ -222,6 +222,7 @@
     "error": "Ocorreu um erro ao criar a lista",
     "error_prefix": "Erro: ",
     "list_title_placeholder": "Título da lista",
+    "manage": "Gerir listas",
     "modify_account": "Modificar listas com a conta",
     "remove_account": "Remover conta da lista",
     "save": "Salvar alterações"

@@ -43,8 +43,8 @@ importers:
         specifier: ^3.3.2
         version: 3.3.2(rollup@4.14.0)
       '@nuxtjs/i18n':
-        specifier: ^8.2.0
-        version: 8.2.0(rollup@4.14.0)(vue@3.4.21)
+        specifier: ^8.3.0
+        version: 8.3.0(rollup@4.14.0)(vue@3.4.21)
       '@pinia/nuxt':
         specifier: ^0.5.1
         version: 0.5.1(rollup@4.14.0)(typescript@5.4.4)(vue@3.4.21)
@@ -2745,8 +2745,8 @@ packages:
     engines: {node: '>= 16'}
     dev: false
 
-  /@intlify/unplugin-vue-i18n@2.0.0(rollup@4.14.0)(vue-i18n@9.9.1):
-    resolution: {integrity: sha512-1oKvm92L9l2od2H9wKx2ZvR4tzn7gUtd7bPLI7AWUmm7U9H1iEypndt5d985ypxGsEs0gToDaKTrytbBIJwwSg==}
+  /@intlify/unplugin-vue-i18n@3.0.1(rollup@4.14.0)(vue-i18n@9.9.1):
+    resolution: {integrity: sha512-q1zJhA/WpoLBzAAuKA5/AEp0e+bMOM10ll/HxT4g1VAw/9JhC4TTobP9KobKH90JMZ4U2daLFlYQfKNd29lpqw==}
     engines: {node: '>= 14.16'}
     peerDependencies:
       petite-vue-i18n: '*'
@@ -3700,13 +3700,13 @@ packages:
       - supports-color
     dev: false
 
-  /@nuxtjs/i18n@8.2.0(rollup@4.14.0)(vue@3.4.21):
-    resolution: {integrity: sha512-t37aF/WOD1g8CA/iCyCJrURXocjPy7diZG+kJcHLkLmJh1v4/2Zhe0AeUsjXubGgvQKLSL3b5w8rZuPkG4yhUw==}
+  /@nuxtjs/i18n@8.3.0(rollup@4.14.0)(vue@3.4.21):
+    resolution: {integrity: sha512-/2g4zYwBwHwIVJitu/i5zP73G4F9xH394Uq0RbfOGc34YxscN+B2kMnuPL8XXM9zThdMVj9ctHInQXXtr62CLg==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
       '@intlify/h3': 0.5.0
       '@intlify/shared': 9.9.1
-      '@intlify/unplugin-vue-i18n': 2.0.0(rollup@4.14.0)(vue-i18n@9.9.1)
+      '@intlify/unplugin-vue-i18n': 3.0.1(rollup@4.14.0)(vue-i18n@9.9.1)
       '@intlify/utils': 0.12.0
       '@miyaneee/rollup-plugin-json5': 1.2.0(rollup@4.14.0)
       '@nuxt/kit': 3.11.2(rollup@4.14.0)

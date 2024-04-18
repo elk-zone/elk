@@ -1,5 +1,5 @@
 import type { mastodon } from 'masto'
-import type { ConfirmDialogChoice, ConfirmDialogOptions, Draft, ErrorDialogData } from '~/types'
+import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, ErrorDialogData } from '~/types'
 import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
@@ -49,7 +49,7 @@ export async function openConfirmDialog(label: ConfirmDialogOptions | string): P
   return confirmDialogChoice.value!
 }
 
-export async function openPublishDialog(draftKey = 'dialog', draft?: Draft, overwrite = false): Promise<void> {
+export async function openPublishDialog(draftKey = 'dialog', draft?: DraftItem, overwrite = false): Promise<void> {
   dialogDraftKey.value = draftKey
 
   if (draft) {
@@ -65,7 +65,7 @@ export async function openPublishDialog(draftKey = 'dialog', draft?: Draft, over
     }
 
     if (overwrite || !currentUserDrafts.value[draftKey])
-      currentUserDrafts.value[draftKey] = draft
+      currentUserDrafts.value[draftKey] = [draft]
   }
   isPublishDialogOpen.value = true
 

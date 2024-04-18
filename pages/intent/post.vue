@@ -6,7 +6,7 @@ const route = useRoute()
 
 onMounted(async () => {
   // TODO: login check
-  await openPublishDialog('intent', getDefaultDraft({
+  await openPublishDialog('intent', getDefaultDraftItem({
     status: route.query.text as string,
     sensitive: route.query.sensitive === 'true' || route.query.sensitive === null,
     spoilerText: route.query.spoiler_text as string,

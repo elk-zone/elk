@@ -38,7 +38,7 @@ async function rejectFollowRequest() {
 <template>
   <div flex gap-4>
     <template v-if="relationship?.requestedBy">
-      <CommonTooltip :content="$t('account.authorize')" no-auto-focus>
+      <CommonTooltip :content="$t('account.authorize')">
         <button
           type="button"
           rounded-full text-sm p2 border-1
@@ -48,7 +48,7 @@ async function rejectFollowRequest() {
           <span block text-current i-ri:check-fill />
         </button>
       </CommonTooltip>
-      <CommonTooltip :content="$t('account.reject')" no-auto-focus>
+      <CommonTooltip :content="$t('account.reject')">
         <button
           type="button"
           rounded-full text-sm p2 border-1

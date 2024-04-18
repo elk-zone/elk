@@ -1,14 +1,14 @@
 {
   "a11y": {
-    "loading_page": "Az oldal töltődik, kérem várjon",
-    "loading_titled_page": "Töltődik a(z) {0} oldal, kérem várjon",
-    "locale_changed": "A nyelv megváltoztatva {0} -ra",
-    "locale_changing": "Nyelv változtatás, kérem várjon",
+    "loading_page": "Az oldal töltődik, kérjük várjon",
+    "loading_titled_page": "Töltődik a(z) {0} oldal, kérjük várjon",
+    "locale_changed": "A nyelv megváltoztatva: {0}",
+    "locale_changing": "Nyelv változtatás, kérjük várjon",
     "route_loaded": "Oldal {0} betöltődött"
   },
   "account": {
-    "authorize": "Engedélyezze a követést",
-    "authorized": "Engedélyezte a kérést",
+    "authorize": "Engedélyezed a követést",
+    "authorized": "Engedélyezted a kérést",
     "avatar_description": "{0} felhasználó avatarja",
     "blocked_by": "Ez a felhasználó blokkolt.",
     "blocked_domains": "Blokkolt domainek",
@@ -17,9 +17,9 @@
     "bot": "BOT",
     "copy_account_name": "Fiók nevének másolása",
     "favourites": "Kedvencek",
-    "follow": "Követők",
+    "follow": "Követem",
     "follow_back": "Visszakövetés",
-    "follow_requested": "Kérve",
+    "follow_requested": "Követés kérve",
     "followers": "Követők",
     "followers_count": "{0} Követők|{0} Követő|{0} Követők",
     "following": "Követve",
@@ -45,7 +45,7 @@
     "request_follow": "Követés kérése",
     "requested": "{0} kérte, hogy kövessen",
     "unblock": "Ne legyen blokkolva",
-    "unfollow": "Nem követem tovább",
+    "unfollow": "Nem követem",
     "unmute": "Némítás megszűntetve",
     "view_other_followers": "A másik instancekról származó követések nem feltétlenül lesznek megjelenítve.",
     "view_other_following": "A másik instancekról származó követők nem feltétlenül lesznek megjelenítve.",
@@ -58,7 +58,8 @@
     "boost": "Kiemel",
     "boost_count": "{0}",
     "boosted": "Kiemelt",
-    "clear_publish_failed": "Publikálási hibák tisztítása",
+    "clear": "Tisztítás",
+    "clear_publish_failed": "Közzétételi hibák tisztítása",
     "clear_save_failed": "Mentési hibák tisztítása",
     "clear_upload_failed": "Fájl feltöltési hibák tisztítása",
     "close": "Bezár",
@@ -73,7 +74,8 @@
     "more": "Tovább",
     "next": "Következő",
     "prev": "Előző",
-    "publish": "Publikál",
+    "publish": "Közzététel",
+    "publish_thread": "Szál közzététele",
     "reply": "Válaszol",
     "reply_count": "{0}",
     "reset": "Visszaállít",
@@ -84,7 +86,7 @@
     "switch_account": "Fiók váltás",
     "vote": "Szavazás"
   },
-  "app_desc_short": "A fürge Mastodon kliens",
+  "app_desc_short": "Egy fürge Mastodon kliens",
   "app_logo": "Elk Logó",
   "app_name": "Elk",
   "attachment": {
@@ -121,53 +123,53 @@
     "block_account": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "description": "Biztosan blokkolja? {0}",
+      "description": "Biztosan blokkolod? {0}",
       "title": "Hozzáférés blokkolása"
     },
     "block_domain": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "description": "Biztosan blokkolja? {0}",
+      "description": "Biztosan blokkolod? {0}",
       "title": "Domain blokkolása"
     },
     "common": {
-      "cancel": "Mégsem",
+      "cancel": "Nem",
       "confirm": "Igen"
     },
     "delete_list": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "description": "Biztosan törli a listát? \"{0}\"",
+      "description": "Biztosan törlöd a listát? \"{0}\"",
       "title": "Lista törlése"
     },
     "delete_posts": {
       "cancel": "Mégsem",
       "confirm": "Töröl",
-      "description": "Biztosan törli a bejegyzést?",
+      "description": "Biztosan törlöd a bejegyzést?",
       "title": "Bejegyzés törlése"
     },
     "mute_account": {
       "cancel": "Mégsem",
       "confirm": "Némít",
       "days": "napok|nap|napok",
-      "description": "Biztosan némítja? {0}",
+      "description": "Biztosan némítod? {0}",
       "hours": "órák|óra|órák",
       "minute": "perc|perc|perc",
       "notifications": "Értesítések némítása",
-      "specify_duration": "Határozzon meg némítási időtartamot",
+      "specify_duration": "Határozz meg némítási időtartamot",
       "title": "Hozzáférés némítása"
     },
     "show_reblogs": {
       "cancel": "Mégsem",
       "confirm": "Mutat",
-      "description": "Biztosan megjeleníti a Kiemelést tőle? {0}",
+      "description": "Biztosan megjeleníted a kiemelést tőle? {0}",
       "title": "Kiemelés megjenítése"
     },
     "unfollow": {
       "cancel": "Mégsem",
-      "confirm": "Követés leállítása",
-      "description": "Biztosan leállítja a követését?",
-      "title": "Követés elállítása"
+      "confirm": "Nem követem",
+      "description": "Biztosan leállítod a követését?",
+      "title": "Nem követem"
     }
   },
   "conversation": {
@@ -181,7 +183,7 @@
     }
   },
   "error": {
-    "account_not_found": "Fiók {0} nem található",
+    "account_not_found": "A {0} fiók nem található",
     "explore_list_empty": "Nincs most semmi érdekes. Térj vissza később!",
     "file_size_cannot_exceed_n_mb": "A fájl mérete nem haladhatja meg a {0}MB-ot",
     "sign_in_error": "Nem lehetséges a csatlakozás.",
@@ -190,9 +192,9 @@
   },
   "help": {
     "build_preview": {
-      "desc1": "Jelenleg az Elk előzetes változatát nézi, a közösség jóvoltából - {0}.",
-      "desc2": "Tartalmazhat áttekintés mentes vagy kártékony változtatásokat is.",
-      "desc3": "Ne lépjen be valódi hozzáféréseddel.",
+      "desc1": "Jelenleg az Elk előzetes változatát látja, a közösség jóvoltából - {0}.",
+      "desc2": "Tartalmazhat áttekintésmentes vagy kártékony változtatásokat is.",
+      "desc3": "Ne lépj be valódi hozzáféréssel.",
       "title": "Előzetes változatát telepítése"
     },
     "desc_highlight": "Számíthat néhány hibára és hiányzó funkcióra itt és ott.",
@@ -203,7 +205,7 @@
     "desc_para5": "elér minket a GitHub-on",
     "desc_para6": "és legyen elkötelezett.",
     "footer_team": "Az Elk csapat",
-    "title": "Az Elk Előzetes változata"
+    "title": "Üdvözöl az Elk!"
   },
   "language": {
     "search": "Keresés"
@@ -220,6 +222,7 @@
     "error": "Hiba történt a lista létrehozása közben",
     "error_prefix": "Hiba: ",
     "list_title_placeholder": "Lista címe",
+    "manage": "Listák kezelése",
     "modify_account": "Listák módosítása fiókkal",
     "remove_account": "Fiók eltávolítása a listáról",
     "save": "Változtatások mentése"
@@ -306,6 +309,7 @@
     "built_at": "Verzió {0}",
     "compose": "Közzétesz",
     "conversations": "Párbeszédek",
+    "docs": "Dokumentáció",
     "explore": "Felfedezés",
     "favourites": "Kedvencek",
     "federated": "Összesített",
@@ -314,6 +318,7 @@
     "list": "Lista",
     "lists": "Listák",
     "local": "Helyi",
+    "more_menu": "Továbbiak",
     "muted_users": "Némított felhasználók",
     "notifications": "Értesítések",
     "privacy": "Adatvédelem",
@@ -448,6 +453,8 @@
       "label": "Fiók beállítások"
     },
     "interface": {
+      "bottom_nav": "Alsó navigáció",
+      "bottom_nav_instructions": "Válaszd ki a kedvenc navigációs gombodjaid, maximum öt darabot az alsó navigációhoz. Mindenképpen tartalmaznia kell a \"Továbbiak\" gombot.",
       "color_mode": "Szín mód",
       "dark_mode": "Sötét",
       "default": " (alapértelmezett)",
@@ -459,8 +466,9 @@
     },
     "language": {
       "display_language": "Megjelenítés nyelve",
+      "how_to_contribute": "Hogyan tehetsz közzé?",
       "label": "Nyelv",
-      "post_language": "Tartalom nyelve",
+      "post_language": "Bejegyzés nyelve",
       "status": "Fordítás állapota: {0}/{1} ({2}%)",
       "translations": {
         "add": "Hozzáadás",
@@ -540,6 +548,7 @@
       "hide_boost_count": "Kiemelés számláló elrejtése",
       "hide_favorite_count": "Kedvencek számláló elrejtése",
       "hide_follower_count": "Követők/Követések számláló elrejtése",
+      "hide_gif_indi_on_posts": "GIF jelölők elrejtése a bejegyzésekben",
       "hide_news": "Hírek elrejtése",
       "hide_reply_count": "Visszajelzések számláló elrejtése",
       "hide_tag_hover_card": "Lebegő kártya elrejtése",
@@ -577,7 +586,7 @@
       },
       "label": "Profil"
     },
-    "select_a_settings": "Válasszon egy beállítást",
+    "select_a_settings": "Válassz egy beállítást",
     "users": {
       "export": "Felhasználói tokenek exportálása",
       "import": "Felhasználói tokenek importálása",
@@ -591,12 +600,16 @@
   },
   "state": {
     "attachments_exceed_server_limit": "A mellékletek száma meghaladta a bejegyzésenkénti korlátot.",
+    "attachments_limit_audio_error": "A maximális audió méret meghaladva: {0}",
     "attachments_limit_error": "Túllépte a bejegyzésenkénti korlátot",
+    "attachments_limit_image_error": "A maximális kép méret meghaladva: {0}",
+    "attachments_limit_unknown_error": "A maximális fájl méret meghaladva: {0}",
+    "attachments_limit_video_error": "A maximális videó méret meghaladva: {0}",
     "edited": "(Szerkesztve)",
     "editing": "Szerkesztés",
     "loading": "Betöltés...",
-    "publish_failed": "A pubikálás sikertelen",
-    "publishing": "Publikálás",
+    "publish_failed": "A közzététel sikertelen",
+    "publishing": "Közzétesz",
     "save_failed": "Elmentés sikertelen",
     "upload_failed": "Fetöltés sikertelen",
     "uploading": "Fetöltés..."
@@ -612,6 +625,7 @@
     "favourited_by": "Kedvencek közé helyezve: ",
     "filter_hidden_phrase": "Szűrve: ",
     "filter_show_anyway": "Megjelenít mégis",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Leírás",
@@ -624,13 +638,13 @@
       "finished": "véget ért {0}"
     },
     "replying_to": "Válasz {0}-nak",
-    "show_full_thread": "Teljes beszélgetés megjelenítése",
+    "show_full_thread": "Teljes szál megjelenítése",
     "someone": "valaki",
     "spoiler_media_hidden": "Média elrejtve",
     "spoiler_show_less": "Mutass kevesebbet",
     "spoiler_show_more": "Mutass többet",
     "thread": "Szál",
-    "try_original_site": "Próbálja az eredeti weblapon"
+    "try_original_site": "Próbálja az eredeti webhelyen"
   },
   "status_history": {
     "created": "létrehozva {0}",
@@ -710,6 +724,7 @@
     "add_emojis": "Emoji hozzáadása",
     "add_media": "Képek hozzáadása, egy videó, vagy egy audió fájl",
     "add_publishable_content": "Tartalom hozzáadása publikáláshoz",
+    "add_thread_item": "Tartalom hozzáadása a szálhoz",
     "change_content_visibility": "Tartalom láthatóságának megváltoztatása",
     "change_language": "nyelv megváltoztatása",
     "emoji": "Emoji",
@@ -719,6 +734,8 @@
     "open_editor_tools": "Szerkesztő eszközök",
     "pick_an_icon": "Ikon választása",
     "publish_failed": "A bejegyzések újbóli közzétételéhez zárja be a sikertelen üzeneteket a szerkesztő tetején",
+    "remove_thread_item": "Elem eltávolítása a szálból",
+    "start_thread": "Szál megkezdése",
     "toggle_bold": "Váltás félkövérre",
     "toggle_code_block": "Kódblokk váltása",
     "toggle_italic": "Váltás dőltbetűssé"

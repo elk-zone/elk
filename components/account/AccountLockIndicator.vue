@@ -13,7 +13,7 @@ const { t } = useI18n()
     text-secondary-light
   >
     <slot name="prepend" />
-    <CommonTooltip no-auto-focus content="Lock" :disabled="showLabel">
+    <CommonTooltip content="Lock" :disabled="showLabel">
       <div i-ri:lock-line />
     </CommonTooltip>
     <div v-if="showLabel">

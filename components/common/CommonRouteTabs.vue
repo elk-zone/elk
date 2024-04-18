@@ -46,7 +46,7 @@ useCommands(() => command
     </template>
     <template v-if="isHydrated && moreOptions?.options?.length">
       <CommonDropdown placement="bottom" flex cursor-pointer mx-1.25rem>
-        <CommonTooltip placement="top" no-auto-focus :content="moreOptions.tooltip || t('action.more')">
+        <CommonTooltip placement="top" :content="moreOptions.tooltip || t('action.more')">
           <button
             cursor-pointer
             flex

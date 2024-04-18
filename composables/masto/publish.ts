@@ -1,16 +1,19 @@
 import { fileOpen } from 'browser-fs-access'
 import type { Ref } from 'vue'
 import type { mastodon } from 'masto'
-import type { UseDraft } from './statusDrafts'
-import type { Draft } from '~~/types'
+import type { DraftItem } from '~~/types'
 
 export function usePublish(options: {
-  draftState: UseDraft
+  draftItem: Ref<DraftItem>
   expanded: Ref<boolean>
   isUploading: Ref<boolean>
-  initialDraft: Ref<() => Draft>
+  isPartOfThread: boolean
+  initialDraft: () => DraftItem
 }) {
-  const { draft, isEmpty } = options.draftState
+  const { draftItem } = options
+
+  const isEmpty = computed(() => isEmptyDraft([draftItem.value]))
+
   const { client } = useMasto()
   const settings = useUserSettings()
 
@@ -22,18 +25,18 @@ export function usePublish(options: {
 
   const publishSpoilerText = computed({
     get() {
-      return draft.value.params.sensitive ? draft.value.params.spoilerText : ''
+      return draftItem.value.params.sensitive ? draftItem.value.params.spoilerText : ''
     },
     set(val) {
-      if (!draft.value.params.sensitive)
+      if (!draftItem.value.params.sensitive)
         return
-      draft.value.params.spoilerText = val
+      draftItem.value.params.spoilerText = val
     },
   })
 
   const shouldExpanded = computed(() => options.expanded.value || isExpanded.value || !isEmpty.value)
   const isPublishDisabled = computed(() => {
-    const { params, attachments } = draft.value
+    const { params, attachments } = draftItem.value
     const firstEmptyInputIndex = params.poll?.options.findIndex(option => option.trim().length === 0)
     return isEmpty.value
       || options.isUploading.value
@@ -54,7 +57,7 @@ export function usePublish(options: {
       ))
   })
 
-  watch(draft, () => {
+  watch(draftItem, () => {
     if (failedMessages.value.length > 0)
       failedMessages.value.length = 0
   }, { deep: true })
@@ -63,14 +66,14 @@ export function usePublish(options: {
     if (isPublishDisabled.value)
       return
 
-    let content = htmlToText(draft.value.params.status || '')
-    if (draft.value.mentions?.length)
-      content = `${draft.value.mentions.map(i => `@${i}`).join(' ')} ${content}`
+    let content = htmlToText(draftItem.value.params.status || '')
+    if (draftItem.value.mentions?.length)
+      content = `${draftItem.value.mentions.map(i => `@${i}`).join(' ')} ${content}`
 
     let poll
 
-    if (draft.value.params.poll) {
-      let options = draft.value.params.poll.options
+    if (draftItem.value.params.poll) {
+      let options = draftItem.value.params.poll.options
 
       if (currentInstance.value?.configuration !== undefined
         && (
@@ -80,15 +83,15 @@ export function usePublish(options: {
       )
         options = options.slice(0, options.length - 1)
 
-      poll = { ...draft.value.params.poll, options }
+      poll = { ...draftItem.value.params.poll, options }
     }
 
     const payload = {
-      ...draft.value.params,
+      ...draftItem.value.params,
       spoilerText: publishSpoilerText.value,
       status: content,
-      mediaIds: draft.value.attachments.map(a => a.id),
-      language: draft.value.params.language || preferredLanguage.value,
+      mediaIds: draftItem.value.attachments.map(a => a.id),
+      language: draftItem.value.params.language || preferredLanguage.value,
       poll,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
     } as mastodon.rest.v1.CreateStatusParams
@@ -96,7 +99,7 @@ export function usePublish(options: {
     if (import.meta.dev) {
       // eslint-disable-next-line no-console
       console.info({
-        raw: draft.value.params.status,
+        raw: draftItem.value.params.status,
         ...payload,
       })
       // eslint-disable-next-line no-alert
@@ -109,23 +112,23 @@ export function usePublish(options: {
       isSending.value = true
 
       let status: mastodon.v1.Status
-      if (!draft.value.editingStatus) {
+      if (!draftItem.value.editingStatus) {
         status = await client.value.v1.statuses.create(payload)
       }
 
       else {
-        status = await client.value.v1.statuses.$select(draft.value.editingStatus.id).update({
+        status = await client.value.v1.statuses.$select(draftItem.value.editingStatus.id).update({
           ...payload,
-          mediaAttributes: draft.value.attachments.map(media => ({
+          mediaAttributes: draftItem.value.attachments.map(media => ({
             id: media.id,
             description: media.description,
           })),
         })
       }
-      if (draft.value.params.inReplyToId)
+      if (draftItem.value.params.inReplyToId && !options.isPartOfThread)
         navigateToStatus({ status })
 
-      draft.value = options.initialDraft.value()
+      draftItem.value = options.initialDraft()
 
       return status
     }
@@ -152,7 +155,7 @@ export function usePublish(options: {
 
 export type MediaAttachmentUploadError = [filename: string, message: string]
 
-export function useUploadMediaAttachment(draft: Ref<Draft>) {
+export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
   const { client } = useMasto()
   const { t } = useI18n()
   const { formatFileSize } = useFileSizeFormatter()

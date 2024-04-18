@@ -13,6 +13,7 @@ defineProps<Props>()
     v-if="isHydrated"
     v-bind="$attrs"
     auto-hide
+    no-auto-focus
   >
     <slot />
     <template #popper>

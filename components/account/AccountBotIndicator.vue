@@ -11,7 +11,7 @@ defineProps<{
     text-secondary-light
   >
     <slot name="prepend" />
-    <CommonTooltip no-auto-focus :content="$t('account.bot')" :disabled="showLabel">
+    <CommonTooltip :content="$t('account.bot')" :disabled="showLabel">
       <div i-mdi:robot-outline />
     </CommonTooltip>
     <div v-if="showLabel">

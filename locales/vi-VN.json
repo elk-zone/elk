@@ -222,6 +222,7 @@
     "error": "Xảy ra lỗi khi tạo danh sách",
     "error_prefix": "Lỗi: ",
     "list_title_placeholder": "Tên danh sách",
+    "manage": "Quản lý danh sách",
     "modify_account": "Sửa danh sách có người này",
     "remove_account": "Xóa người ra khỏi danh sách",
     "save": "Lưu thay đổi"
@@ -453,7 +454,7 @@
     },
     "interface": {
       "bottom_nav": "Menu dưới màn hình",
-      "bottom_nav_instructions": "Chọn tối đa năm nút điều hướng yêu thích của bạn. Bao gồm nút \"Thêm\".",
+      "bottom_nav_instructions": "Chọn tối đa năm nút điều hướng yêu thích của bạn. Bao gồm nút \"Thêm\" ",
       "color_mode": "Chủ đề",
       "dark_mode": "Tối",
       "default": " (mặc định)",
@@ -492,7 +493,7 @@
           "title": "Bạn muốn nhận những kiểu thông báo nào?"
         },
         "description": "Nhận thông báo kể cả khi bạn không sử dụng Elk.",
-        "instructions": "Nhớ lưu các thay đổi của bạn bằng cách nhấn @:settings.notifications.push_notifications.save_settings!",
+        "instructions": "Nhớ lưu các thay đổi của bạn bằng cách nhấn @:settings.notifications.push_notifications.save_settings !",
         "label": "Cài đặt thông báo đẩy",
         "policy": {
           "all": "Từ bất kỳ ai",

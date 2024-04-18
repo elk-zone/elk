@@ -1,0 +1,746 @@
+{
+  "a11y": {
+    "loading_page": "Η σελίδα φορτώνει, παρακαλώ περίμενε",
+    "loading_titled_page": "Η σελίδα {0} φορτώνει, παρακαλώ περίμενε",
+    "locale_changed": " Η γλώσσα άλλαξε σε {0}",
+    "locale_changing": "Η γλώσσα αλλάζει, παρακαλώ περίμενε",
+    "route_loaded": "Η σελίδα {0} φορτώθηκε"
+  },
+  "account": {
+    "authorize": "Εξουσιοδότησε για να ακολουθήσεις",
+    "authorized": "You have Authorized the request",
+    "avatar_description": "το άβαταρ του χρήστη {0}",
+    "blocked_by": "Είσαι αποκλεισμένος από αυτόν τον χρήστη.",
+    "blocked_domains": "Αποκλεισμένοι τομείς",
+    "blocked_users": "Αποκλεισμένοι χρήστες",
+    "blocking": "Αποκλεισμένοι",
+    "bot": "BOT",
+    "copy_account_name": "Αντιγραφή ονόματος λογαριασμού",
+    "favourites": "Αγαπημένα",
+    "follow": "Ακολούθησε",
+    "follow_back": "Ακολούθησε και συ",
+    "follow_requested": "Αιτήθηκε",
+    "followers": "Ακόλουθοι",
+    "followers_count": "{0} Ακόλουθοι|{0} Ακόλουθος|{0} Ακόλουθοι",
+    "following": "Ακολουθεί",
+    "following_count": "Ακολουθεί {0}",
+    "follows_you": "Σε ακολουθεί",
+    "go_to_profile": "Πήγαινε στο προφίλ",
+    "joined": "έγινε μέλος",
+    "lock": "Κλείδωμα",
+	"moved_title": "έχει δηλώσει ότι ο νέος του λογαριασμός είναι:",
+    "muted_users": "Χρήστες σε σίγαση",
+    "muting": "Σε σίγαση",
+    "mutuals": "Κοινοί",
+	"notifications_on_post_disable": "Σταμάτα να με ειδοποιείς όταν ο χρήστης {username} κάνει ανάρτηση",
+	"notifications_on_post_enable": "Ειδοποίησέ με όταν ο χρήστης {username} κάνει ανάρτηση",
+    "pinned": "Καρφιτσώθηκε",
+    "posts": "Αναρτήσεις",
+    "posts_count": "{0} Αναρτήσεις|{0} Ανάρτηση|{0} Αναρτήσεις",
+    "profile_description": "Κεφαλίδα προφίλ του χρήστη {0}",
+    "profile_personal_note": "Προσωπική Σημείωση",
+    "profile_unavailable": "Μη διαθέσιμο προφίλ",
+    "reject": "Άρνηση ακολούθησης",
+    "rejected": "Αρνήθηκες το αίτημα",
+    "request_follow": "Αίτημα ακολούθησης",
+    "requested": "Ο χρήστης {0} ζήτησε να σε ακολουθήσει",
+    "unblock": "Άρση αποκλεισμού",
+    "unfollow": "Άρση ακολούθησης",
+    "unmute": "Άρση σίγασης",
+    "view_other_followers": "Οι ακόλουθοι από άλλες οντότητες μπορεί να μην εμφανίζονται.",
+    "view_other_following": "Αυτοί που ακολουθείς από άλλες οντότητες μπορεί να μην εμφανίζονται.",
+    "withdraw_follow_request": "Ανάκληση αιτήματος ακολούθησης"
+  },
+  "action": {
+    "apply": "Εφαρμογή",
+    "bookmark": "Σελιδοδείκτης",
+    "bookmarked": "Με Σελιδοδείκτη",
+    "boost": "Ενίσχυση",
+    "boost_count": "{0}",
+    "boosted": "Ενισχύθηκε",
+    "clear_publish_failed": "Καθαρισμός σφαλμάτων ανάρτησης",
+    "clear_save_failed": "Καθαρισμός σφαλμάτων αποθήκευσης",
+    "clear_upload_failed": "Εκκαθάριση σφαλμάτων μεταμόρφωσης αρχείων",
+    "close": "Κλείσιμο",
+    "compose": "Σύνταξη",
+    "confirm": "Επιβεβαίωση",
+    "done": "Έγινε",
+    "edit": "Επεξεργασία",
+    "enter_app": "Είσοδος στην εφαρμογή",
+    "favourite": "Αγαπημένο",
+    "favourite_count": "{0}",
+    "favourited": "Είναι αγαπημένο",
+    "more": "Περισσότερα",
+    "next": "Επόμενο",
+    "prev": "Προηγ.",
+    "publish": "Δημοσίευση",
+    "reply": "Απάντηση",
+    "reply_count": "{0}",
+    "reset": "Επαναφορά",
+    "save": "Αποθήκευση",
+    "save_changes": "Αποθήκευση αλλαγών",
+    "sign_in": "Σύνδεση",
+    "sign_in_to": "Σύνδεση σε {0}",
+    "switch_account": "Εναλλαγή λογαριασμού",
+    "vote": "Ψήφος"
+  },
+  "app_desc_short": "Ένας ελαφρώς προσαρμοσμένος πελάτης για Mastodon",
+  "app_logo": "Λογότυπο Elk",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "Περιγραφή",
+    "remove_label": "Αφαίρεση επισύναψης"
+  },
+  "command": {
+    "activate": "Ενεργοποίηση",
+    "complete": "Ολοκλήρωση",
+    "compose_desc": "Γράψε νέα ανάρτηση",
+    "n_people_in_the_past_n_days": "{0} άτομα τις τελευταίες {1} μέρες",
+    "select_lang": "Επιλογή γλώσσας",
+    "sign_in_desc": "Προσθήκη υπάρχοντος λογαριασμού",
+    "switch_account": "Εναλλαγή σε {0}",
+    "switch_account_desc": "Εναλλαγή σε άλλο λογαριασμό",
+    "toggle_dark_mode": "Εναλλαγή σκοτεινής λειτουργίας",
+    "toggle_zen_mode": "Εναλλαγή λειτουργίας Zen"
+  },
+  "common": {
+    "end_of_list": "Τέλος της λίστας",
+    "error": "ΣΦΑΛΜΑ",
+    "fetching": "Ανάκτηση...",
+    "in": "σε",
+    "no_bookmarks": "Δεν υπάρχουν αναρτήσεις με σελιδοδείκτη ακόμα",
+    "no_favourites": "Δεν υπάρχουν αγαπημένες αναρτήσεις ακόμα",
+    "not_found": "404 Δε βρέθηκε",
+    "offline_desc": "Φαίνεται να είσαι αποσυνδεδεμένος. Παρακαλώ έλεγξε τη σύνδεση σου στο διαδίκτυο."
+  },
+  "compose": {
+    "draft_title": "Πρόχειρο {0}",
+    "drafts": "Πρόχειρο ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "Ακύρωση",
+      "confirm": "Αποκλεισμός",
+      "description": "Σίγουρα θες να αποκλείσεις τον {0};",
+      "title": "Αποκλεισμός λογαριασμού"
+    },
+    "block_domain": {
+      "cancel": "Ακύρωση",
+      "confirm": "Αποκλεισμός",
+      "description": "Σίγουρα θες να αποκλείσεις τον {0}?;",
+      "title": "Αποκλεισμός τομέα"
+    },
+    "common": {
+      "cancel": "Όχι",
+      "confirm": "Ναι"
+    },
+    "delete_list": {
+      "cancel": "Ακύρωση",
+      "confirm": "Διαγραφή",
+      "description": "Θες σίγουρα να διαγράψεις την λίστα \"{0}\";",
+      "title": "Διαγραφή λίστας"
+    },
+    "delete_posts": {
+      "cancel": "Ακύρωση",
+      "confirm": "Διαγραφή",
+      "description": "Θες σίγουρα να διαγράψεις αυτή την ανάρτηση;",
+      "title": "Διαγραφή ανάρτησης"
+    },
+    "mute_account": {
+      "cancel": "Ακύρωση",
+      "confirm": "Σίγαση",
+      "days": "μέρες|μέρα|μέρες",
+      "description": "Θες σίγουρα να κάνεις σίγαση στον {0};",
+      "hours": "ώρες|ώρα|ώρες",
+      "minute": "λεπτά|λεπτό|λεπτά",
+      "notifications": "Σίγαση ειδοποιήσεων",
+      "specify_duration": "Προσδιόρισε διάρκεια σίγασης",
+      "title": "Σίγαση λογαριασμού"
+    },
+    "show_reblogs": {
+      "cancel": "Ακύρωση",
+      "confirm": "Εμφάνιση",
+      "description": "Θες σίγουρα να εμφανίζεις τις ενισχύσεις του {0}?",
+      "title": "Εμφάνιση ενισχύσεων"
+    },
+    "unfollow": {
+      "cancel": "Ακύρωση",
+      "confirm": "Άρση ακολούθησης",
+      "description": "Θες σίγουρα να κάνεις άρση ακολούθησης στον {0};",
+      "title": "Άρση ακολούθησης"
+    }
+  },
+  "conversation": {
+    "with": "με"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "Γραμμές {0}",
+      "open": "Άνοιγμα",
+      "snippet_from": "Απόκομμα από {0}"
+    }
+  },
+  "error": {
+    "account_not_found": "Ο λογαριασμός {0} δεν βρέθηκε",
+	"explore_list_empty": "Δεν υπάρχει τίποτα δημοφιλές αυτήν τη στιγμή. Έλεγξε ξανά αργότερα!",
+    "file_size_cannot_exceed_n_mb": "Το μέγεθος του αρχείου δεν μπορεί να υπερβαίνει τα {0}MB",
+    "sign_in_error": "Σφάλμα σύνδεσης με τον διακομιστή",
+    "status_not_found": "Η ανάρτηση δεν βρέθηκε",
+    "unsupported_file_format": "Μη υποστηριζόμενη μορφή αρχείου"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "Βλέπεις, για την ώρα, μια δοκιμαστική έκδοση του Elk από την κοινότητα - {0}.",
+      "desc2": "Μπορεί να περιέχει μη αξιολογημένες ή ακόμα και κακόβουλες αλλαγές.",
+      "desc3": "Μην συνδεθείς με τον πραγματικό σου λογαριασμό",
+      "title": "Εκκίνηση προεπισκόπησης"
+    },
+    "desc_highlight": "Αναμένονται μερικά σφάλματα και ελλείψεις δυνατοτήτων πού και πού.",
+	"desc_para1": "Ευχαριστούμε για το ενδιαφέρον σου να δοκιμάσεις το Elk, τον εν εξελίξει πελάτη Mastodon για τον ιστό!",
+	"desc_para2": "Δουλεύουμε σκληρά στην ανάπτυξη και βελτίωσή του με τον καιρό.",
+    "desc_para3": "To boost development, you can sponsor the Team through GitHub Sponsors. We hope you enjoy Elk!",
+    "desc_para4": "Elk is Open Source. If you'd like to help with testing, giving feedback, or contributing,",
+    "desc_para5": "reach out to us on GitHub",
+    "desc_para6": "and get involved.",
+    "footer_team": "Η ομάδα του Elk",
+    "title": "Ο Elk είναι σε προεπισκόπηση!"
+  },
+  "language": {
+    "search": "Αναζήτηση"
+  },
+  "list": {
+    "add_account": "Προσθήκη λογαριασμού στη λίστα",
+    "cancel_edit": "Ακύρωση επεξεργασίας",
+    "clear_error": "Εκκαθάριση σφάλματος",
+    "create": "Δημιουργία",
+    "delete": "Διαγραφή λίστας",
+    "delete_error": "Υπήρξε ένα σφάλμα κατά τη διαγραφή της λίστας",
+	"edit": "Επεξεργασία αυτής της λίστας",
+	"edit_error": "Παρουσιάστηκε σφάλμα κατά την ενημέρωση της λίστας",
+	"error": "Παρουσιάστηκε ένα σφάλμα κατά τη δημιουργία της λίστας",
+    "error_prefix": "Σφάλμα: ",
+    "list_title_placeholder": "Τίτλος λίστας",
+	"modify_account": "Τροποποίηση λιστών με λογαριασμό",
+	"remove_account": "Αφαίρεση λογαριασμού από τη λίστα",
+    "save": "Αποθήκευση αλλαγών"
+  },
+  "magic_keys": {
+    "dialog_header": "Συντομεύσεις πληκτρολογίου",
+    "groups": {
+      "actions": {
+        "boost": "Ενίσχυση",
+        "command_mode": "Λειτουργία εντολών",
+        "compose": "Σύνταξη",
+        "favourite": "Αγαπημένο",
+        "search": "Αναζήτηση",
+        "show_new_items": "Εμφάνιση νέων αντικειμένων",
+        "title": "Ενέργειες"
+      },
+      "media": {
+        "title": "Πολυμέσα"
+      },
+      "navigation": {
+        "go_to_bookmarks": "Bookmarks",
+        "go_to_conversations": "Conversations",
+        "go_to_explore": "Explore",
+        "go_to_favourites": "Favorites",
+        "go_to_federated": "Federated",
+        "go_to_home": "Home",
+        "go_to_lists": "Lists",
+        "go_to_local": "Local",
+        "go_to_notifications": "Notifications",
+        "go_to_profile": "Profile",
+        "go_to_search": "Search",
+        "go_to_settings": "Settings",
+        "next_status": "Next post",
+        "previous_status": "Previous post",
+        "shortcut_help": "Shortcut help",
+        "title": "Navigation"
+      }
+    },
+    "sequence_then": "then"
+  },
+  "menu": {
+    "add_personal_note": "Add personal note to {0}",
+    "block_account": "Block {0}",
+    "block_domain": "Block domain {0}",
+    "copy_link_to_post": "Copy link to this post",
+    "copy_original_link_to_post": "Copy original link to this post",
+    "delete": "Delete",
+    "delete_and_redraft": "Delete & re-draft",
+    "direct_message_account": "Direct message {0}",
+    "edit": "Edit",
+    "hide_reblogs": "Hide boosts from {0}",
+    "mention_account": "Mention {0}",
+    "mute_account": "Mute {0}",
+    "mute_conversation": "Mute this post",
+    "open_in_original_site": "Open in original site",
+    "pin_on_profile": "Pin on profile",
+    "remove_personal_note": "Remove personal note from {0}",
+    "report_account": "Report {0}",
+    "share_account": "Share {0}",
+    "share_post": "Share this post",
+    "show_favourited_and_boosted_by": "Show who favorited and boosted",
+    "show_reblogs": "Show boosts from {0}",
+    "show_untranslated": "Show untranslated",
+    "toggle_theme": {
+      "dark": "Toggle dark mode",
+      "light": "Toggle light mode"
+    },
+    "translate_post": "Translate post",
+    "unblock_account": "Unblock {0}",
+    "unblock_domain": "Unblock domain {0}",
+    "unfollow_account": "Unfollow {0}",
+    "unmute_account": "Unmute {0}",
+    "unmute_conversation": "Unmute this post",
+    "unpin_on_profile": "Unpin on profile"
+  },
+  "modals": {
+    "aria_label_close": "Close"
+  },
+  "nav": {
+    "back": "Go back",
+    "blocked_domains": "Blocked domains",
+    "blocked_users": "Blocked users",
+    "bookmarks": "Bookmarks",
+    "built_at": "Built {0}",
+    "compose": "Compose",
+    "conversations": "Conversations",
+    "explore": "Explore",
+    "favourites": "Favorites",
+    "federated": "Federated",
+    "hashtags": "Hashtags",
+    "home": "Home",
+    "list": "List",
+    "lists": "Lists",
+    "local": "Local",
+    "muted_users": "Muted users",
+    "notifications": "Notifications",
+    "privacy": "Privacy",
+    "profile": "Profile",
+    "search": "Search",
+    "select_feature_flags": "Toggle Feature Flags",
+    "select_font_size": "Font Size",
+    "select_language": "Display Language",
+    "settings": "Settings",
+    "show_intro": "Show intro",
+    "toggle_theme": "Toggle Theme",
+    "zen_mode": "Zen Mode"
+  },
+  "notification": {
+    "favourited_post": "favorited your post",
+    "followed_you": "followed you",
+    "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
+    "missing_type": "MISSING notification.type:",
+    "reblogged_post": "boosted your post",
+    "reported": "{0} reported {1}",
+    "request_to_follow": "requested to follow you",
+    "signed_up": "signed up",
+    "update_status": "updated their post"
+  },
+  "placeholder": {
+    "content_warning": "Write your warning here",
+    "default_1": "What is on your mind?",
+    "reply_to_account": "Reply to {0}",
+    "replying": "Replying"
+  },
+  "polls": {
+    "allow_multiple": "Allow multiple choice",
+    "cancel": "Cancel",
+    "create": "Create poll",
+    "disallow_multiple": "Disallow multiple choice",
+    "expiration": "Poll expiration",
+    "hide_votes": "Hide vote totals until the end",
+    "option_placeholder": "Poll choice {current}/{max}",
+    "remove_option": "Remove choice",
+    "settings": "Poll options",
+    "show_votes": "Always show vote totals"
+  },
+  "pwa": {
+    "dismiss": "Dismiss",
+    "install": "Install",
+    "install_title": "Install Elk",
+    "screenshots": {
+      "dark": "Screenshot of Elk running in dark mode",
+      "light": "Screenshot of Elk running in light mode"
+    },
+    "title": "New Elk update available!",
+    "update": "Update",
+    "update_available_short": "Update Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "A nimble Mastodon web client (canary)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description": "A nimble Mastodon web client (dev)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description": "A nimble Mastodon web client (preview)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description": "A nimble Mastodon web client",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "report": {
+    "additional_comments": "Additional comments",
+    "another_server": "The user you're reporting is from another server",
+    "anything_else": "Is there anything else you think we should know?",
+    "block_desc": "You will no longer see any posts from this user. They will not be able to see your posts or follow you. They will be able to tell that they are blocked.",
+    "dontlike": "I don't like it",
+    "dontlike_desc": "It is not something you want to see",
+    "forward": "Yes, forward this report to {0}",
+    "forward_question": "Do you want to send an anonymized copy of this report to that server as well?",
+    "further_actions": {
+      "limit": {
+        "description": "Here are your options for controlling what you see:",
+        "title": "Don't want to see this?"
+      },
+      "report": {
+        "description": "While we review this, here are the actions you can take:",
+        "title": "Thanks for reporting, we'll look into this."
+      }
+    },
+    "limiting": "Limiting {0}",
+    "mute_desc": "You will no longer see any posts from this user. They can still follow you and see your posts. They will not know that they are muted.",
+    "other": "It's something else",
+    "other_desc": "The issue does not fit into other categories",
+    "reporting": "Reporting {0}",
+    "select_many": "Select all that apply:",
+    "select_one": "Choose the best match:",
+    "select_posts": "Are there any posts that back up this report?",
+    "select_posts_other": "Are there any other posts that back up this report?",
+    "spam": "It's spam",
+    "spam_desc": "Malicious links, fake engagement, or repetitive replies",
+    "submit": "Submit Report",
+    "unfollow_desc": "You will no longer see posts from this user in your home feed. You may still see posts from them elsewhere.",
+    "violation": "It violates one or more of the server rules",
+    "whats_wrong_account": "Tell us what's wrong with this account",
+    "whats_wrong_post": "Tell us what's wrong with this post"
+  },
+  "search": {
+    "search_desc": "Search for people & hashtags",
+    "search_empty": "Could not find anything for these search terms"
+  },
+  "settings": {
+    "about": {
+      "built_at": "Built",
+      "label": "About",
+      "meet_the_team": "Meet the team",
+      "sponsor_action": "Sponsor us",
+      "sponsor_action_desc": "To support the team developing Elk",
+      "sponsors": "Sponsors",
+      "sponsors_body_1": "Elk is made possible thanks the generous sponsoring and help of:",
+      "sponsors_body_2": "And all the companies and individuals sponsoring Elk Team and the members.",
+      "sponsors_body_3": "If you're enjoying the app, consider sponsoring us:",
+      "version": "Version"
+    },
+    "account_settings": {
+      "description": "Edit your account settings in Mastodon UI",
+      "label": "Account settings"
+    },
+    "interface": {
+      "color_mode": "Color Mode",
+      "dark_mode": "Dark",
+      "default": " (default)",
+      "font_size": "Font Size",
+      "label": "Interface",
+      "light_mode": "Light",
+      "system_mode": "System",
+      "theme_color": "Theme Color"
+    },
+    "language": {
+      "display_language": "Display Language",
+      "label": "Language",
+      "post_language": "Posting Language",
+      "status": "Translation status: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "Add",
+        "choose_language": "Choose language",
+        "heading": "Translations",
+        "hide_specific": "Hide specific translations",
+        "remove": "Remove"
+      }
+    },
+    "notifications": {
+      "label": "Notifications",
+      "notifications": {
+        "label": "Notifications settings"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favorites",
+          "follow": "New followers",
+          "mention": "Mentions",
+          "poll": "Polls",
+          "reblog": "Boosts",
+          "title": "What notifications to receive?"
+        },
+        "description": "Receive notifications even when you are not using Elk.",
+        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
+        "label": "Push notifications settings",
+        "policy": {
+          "all": "From anyone",
+          "followed": "Of people I follow",
+          "follower": "Of people who follow me",
+          "none": "From no one",
+          "title": "Who can I receive notifications from?"
+        },
+        "save_settings": "Save settings",
+        "subscription_error": {
+          "clear_error": "Clear error",
+          "error_hint": "You can consult a list of frequently asked questions to try to solve the problem: {0}.",
+          "invalid_vapid_key": "The VAPID public key seems to be invalid.",
+          "permission_denied": "Permission denied: enable notifications in your browser.",
+          "repo_link": "Elk's repository in GitHub",
+          "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
+          "title": "Could not subscribe to push notifications",
+          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again.",
+          "vapid_not_supported": "Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol."
+        },
+        "title": "Push notifications settings",
+        "undo_settings": "Undo changes",
+        "unsubscribe": "Disable push notifications",
+        "unsupported": "Your browser does not support push notifications.",
+        "warning": {
+          "enable_close": "Close",
+          "enable_description": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications via the \"@:settings.notifications.show_btn{'\"'} button above once enabled.",
+          "enable_description_desktop": "To receive notifications when Elk is not open, enable push notifications. You can control precisely what types of interactions generate push notifications in \"Settings > Notifications > Push notifications settings\" once enabled.",
+          "enable_description_mobile": "You can also access the settings using the navigation menu \"Settings > Notifications > Push notification settings\".",
+          "enable_description_settings": "To receive notifications when Elk is not open, enable push notifications. You will be able to control precisely what types of interactions generate push notifications on this same screen once you enable them.",
+          "enable_desktop": "Enable push notifications",
+          "enable_title": "Never miss anything",
+          "re_auth": "It seems that your server does not support push notifications. Try sign out and sign in again, if this message still appears contact your server administrator."
+        }
+      },
+      "show_btn": "Go to notifications settings",
+      "under_construction": "Under construction"
+    },
+    "notifications_settings": "Notifications",
+    "preferences": {
+      "embedded_media": "Embedded Media Player",
+      "embedded_media_description": "Display an embedded player instead of the normal preview card when expanding shared media streaming links.",
+      "enable_autoplay": "Enable Autoplay",
+      "enable_data_saving": "Enable data saving",
+      "enable_data_saving_description": "Save data by preventing attachments from automatically loading.",
+      "enable_pinch_to_zoom": "Enable pinch to zoom",
+      "github_cards": "GitHub Cards",
+      "github_cards_description": "When a GitHub link is posted, an accessible HTML card using the social graph meta is displayed instead of the social image.",
+      "grayscale_mode": "Grayscale mode",
+      "hide_account_hover_card": "Hide account hover card",
+      "hide_alt_indi_on_posts": "Hide alt indicator on posts",
+      "hide_boost_count": "Hide boost count",
+      "hide_favorite_count": "Hide favorite count",
+      "hide_follower_count": "Hide following/follower count",
+      "hide_news": "Hide news",
+      "hide_reply_count": "Hide reply count",
+      "hide_tag_hover_card": "Hide tag hover card",
+      "hide_translation": "Hide translation",
+      "hide_username_emojis": "Hide username emojis",
+      "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",
+      "label": "Preferences",
+      "optimize_for_low_performance_device": "Optimize for low performance device",
+      "title": "Experimental Features",
+      "use_star_favorite_icon": "Use star favorite icon",
+      "user_picker": "User Picker",
+      "user_picker_description": "Displays all avatars of logged accounts in the bottom-left so you can switch quickly between them.",
+      "virtual_scroll": "Virtual Scrolling",
+      "virtual_scroll_description": "Use a virtual list in timelines, so a larger number of items can be rendered performantly.",
+      "wellbeing": "Wellbeing",
+      "zen_mode": "Zen mode",
+      "zen_mode_description": "Hide asides unless the mouse cursor is over them. Also hide some elements from the timeline."
+    },
+    "profile": {
+      "appearance": {
+        "bio": "Bio",
+        "description": "Edit avatar, username, profile, etc.",
+        "display_name": "Display name",
+        "label": "Appearance",
+        "profile_metadata": "Profile metadata",
+        "profile_metadata_desc": "You can have up to {0} items displayed as a table on your profile",
+        "profile_metadata_label": "Label",
+        "profile_metadata_value": "Content",
+        "title": "Edit profile"
+      },
+      "featured_tags": {
+        "description": "People can browse your public posts under these hashtags.",
+        "label": "Featured hashtags",
+        "under_construction": "Under construction"
+      },
+      "label": "Profile"
+    },
+    "select_a_settings": "Select a setting",
+    "users": {
+      "export": "Export User Tokens",
+      "import": "Import User Tokens",
+      "label": "Logged in users"
+    }
+  },
+  "share_target": {
+    "description": "Elk can be configured so that you can share content from other applications, simply install Elk on your device or computer and sign in.",
+    "hint": "In order to share content with Elk, Elk must be installed and you must be signed in.",
+    "title": "Share with Elk"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "The number of attachments exceeded the limit per post.",
+    "attachments_limit_error": "Limit per post exceeded",
+    "edited": "(Edited)",
+    "editing": "Editing",
+    "loading": "Loading...",
+    "publish_failed": "Publish failed",
+    "publishing": "Publishing",
+    "save_failed": "Save failed",
+    "upload_failed": "Upload failed",
+    "uploading": "Uploading..."
+  },
+  "status": {
+    "account": {
+      "suspended_message": "The account of this post has been suspended.",
+      "suspended_show": "Show content anyways?"
+    },
+    "boosted_by": "Boosted By",
+    "edited": "Edited {0}",
+    "embedded_warning": "Playing this may reveal your IP address to others.",
+    "favourited_by": "Favorited By",
+    "filter_hidden_phrase": "Filtered by",
+    "filter_show_anyway": "Show anyway",
+    "img_alt": {
+      "ALT": "ALT",
+      "desc": "Description",
+      "dismiss": "Dismiss",
+      "read": "Read {0} description"
+    },
+    "poll": {
+      "count": "{0} votes|{0} vote|{0} votes",
+      "ends": "ends {0}",
+      "finished": "finished {0}"
+    },
+    "replying_to": "Replying to {0}",
+    "show_full_thread": "Show Full thread",
+    "someone": "someone",
+    "spoiler_media_hidden": "Media hidden",
+    "spoiler_show_less": "Show less",
+    "spoiler_show_more": "Show more",
+    "thread": "Thread",
+    "try_original_site": "Try original site"
+  },
+  "status_history": {
+    "created": "created {0}",
+    "edited": "edited {0}"
+  },
+  "tab": {
+    "accounts": "Accounts",
+    "for_you": "For you",
+    "hashtags": "Hashtags",
+    "list": "List",
+    "media": "Media",
+    "news": "News",
+    "notifications_admin": {
+      "report": "Report",
+      "sign_up": "Sign-Up"
+    },
+    "notifications_all": "All",
+    "notifications_favourite": "Favourite",
+    "notifications_follow": "Follow",
+    "notifications_follow_request": "Follow request",
+    "notifications_mention": "Mentions",
+    "notifications_more_tooltip": "Filter notifications by type",
+    "notifications_poll": "Poll",
+    "notifications_reblog": "Boost",
+    "notifications_status": "Status",
+    "notifications_update": "Update",
+    "posts": "Posts",
+    "posts_with_replies": "Posts & Replies"
+  },
+  "tag": {
+    "follow": "Follow",
+    "follow_label": "Follow {0} tag",
+    "unfollow": "Unfollow",
+    "unfollow_label": "Unfollow {0} tag"
+  },
+  "time_ago_options": {
+    "day_future": "in 0 days|tomorrow|in {n} days",
+    "day_past": "0 days ago|yesterday|{n} days ago",
+    "hour_future": "in 0 hours|in 1 hour|in {n} hours",
+    "hour_past": "0 hours ago|1 hour ago|{n} hours ago",
+    "just_now": "just now",
+    "minute_future": "in 0 minutes|in 1 minute|in {n} minutes",
+    "minute_past": "0 minutes ago|1 minute ago|{n} minutes ago",
+    "month_future": "in 0 months|next month|in {n} months",
+    "month_past": "0 months ago|last month|{n} months ago",
+    "second_future": "just now|in {n} second|in {n} seconds",
+    "second_past": "just now|{n} second ago|{n} seconds ago",
+    "short_day_future": "in {n}d",
+    "short_day_past": "{n}d",
+    "short_hour_future": "in {n}h",
+    "short_hour_past": "{n}h",
+    "short_minute_future": "in {n}min",
+    "short_minute_past": "{n}min",
+    "short_month_future": "in {n}mo",
+    "short_month_past": "{n}mo",
+    "short_second_future": "in {n}s",
+    "short_second_past": "{n}s",
+    "short_week_future": "in {n}w",
+    "short_week_past": "{n}w",
+    "short_year_future": "in {n}y",
+    "short_year_past": "{n}y",
+    "week_future": "in 0 weeks|next week|in {n} weeks",
+    "week_past": "0 weeks ago|last week|{n} weeks ago",
+    "year_future": "in 0 years|next year|in {n} years",
+    "year_past": "0 years ago|last year|{n} years ago"
+  },
+  "timeline": {
+    "show_new_items": "Show {v} new items|Show {v} new item|Show {v} new items",
+    "view_older_posts": "Older posts from other instances may not be displayed."
+  },
+  "title": {
+    "federated_timeline": "Federated Timeline",
+    "local_timeline": "Local Timeline"
+  },
+  "tooltip": {
+    "add_content_warning": "Add content warning",
+    "add_emojis": "Add emojis",
+    "add_media": "Add images, a video or an audio file",
+    "add_publishable_content": "Add content to publish",
+    "change_content_visibility": "Change content visibility",
+    "change_language": "Change language",
+    "emoji": "Emoji",
+    "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
+    "explore_posts_intro": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
+    "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
+    "open_editor_tools": "Editor tools",
+    "pick_an_icon": "Pick an icon",
+    "publish_failed": "Close failed messages at the top of editor to republish posts",
+    "toggle_bold": "Toggle bold",
+    "toggle_code_block": "Toggle code block",
+    "toggle_italic": "Toggle italic"
+  },
+  "user": {
+    "add_existing": "Add an existing account",
+    "server_address_label": "Mastodon Server Address",
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
+    "sign_in_notice_title": "Viewing {0} public data",
+    "sign_out_account": "Sign out {0}",
+    "single_instance_sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts.",
+    "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
+    "tip_register_account": "pick your server and register one"
+  },
+  "visibility": {
+    "direct": "Direct",
+    "direct_desc": "Visible for mentioned users only",
+    "private": "Followers only",
+    "private_desc": "Visible for followers only",
+    "public": "Public",
+    "public_desc": "Visible for all",
+    "unlisted": "Unlisted",
+    "unlisted_desc": "Visible for all, but opted-out of discovery features"
+  }
+}

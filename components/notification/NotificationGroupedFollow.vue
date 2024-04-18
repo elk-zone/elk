@@ -22,11 +22,13 @@ const lang = computed(() => {
           :count="count"
         />
       </template>
-      <template v-else>
-        <AccountDisplayName
-          :account="items.items[0]?.account"
-          text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
-        />
+      <template v-else-if="count === 1">
+        <NuxtLink :to="getAccountRoute(items.items[0].account)">
+          <AccountDisplayName
+            :account="items.items[0].account"
+            text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+          />
+        </NuxtLink>
         <span me-1 ws-nowrap>
           {{ $t('notification.followed_you') }}
         </span>

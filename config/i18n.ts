@@ -31,6 +31,7 @@ export const countryLocaleVariants: Record<string, (LocaleObjectData & { country
   en: [
     // en.json contains en-US translations
     { country: true, code: 'en-US', name: 'English (US)' },
+    { code: 'en-CA', name: 'English (Canada)' },
     { code: 'en-GB', name: 'English (UK)' },
   ],
   ca: [

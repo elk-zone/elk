@@ -58,6 +58,7 @@
     "boost": "Boost",
     "boost_count": "{0}",
     "boosted": "Boosted",
+    "clear": "Clear",
     "clear_publish_failed": "Clear publish errors",
     "clear_save_failed": "Clear save errors",
     "clear_upload_failed": "Clear file upload errors",
@@ -74,6 +75,7 @@
     "next": "Next",
     "prev": "Prev",
     "publish": "Publish",
+    "publish_thread": "Publish thread",
     "reply": "Reply",
     "reply_count": "{0}",
     "reset": "Reset",
@@ -220,6 +222,7 @@
     "error": "There was an error while creating the list",
     "error_prefix": "Error: ",
     "list_title_placeholder": "List title",
+    "manage": "Manage lists",
     "modify_account": "Modify lists with account",
     "remove_account": "Remove account from list",
     "save": "Save changes"
@@ -315,6 +318,7 @@
     "list": "List",
     "lists": "Lists",
     "local": "Local",
+    "more_menu": "More menu",
     "muted_users": "Muted users",
     "notifications": "Notifications",
     "privacy": "Privacy",
@@ -449,6 +453,8 @@
       "label": "Account settings"
     },
     "interface": {
+      "bottom_nav": "Bottom Navigation",
+      "bottom_nav_instructions": "Choose your favorite navigation buttons up to five for the bottom navigation. Must include the \"More menu\" button.",
       "color_mode": "Color Mode",
       "dark_mode": "Dark",
       "default": " (default)",
@@ -656,7 +662,7 @@
       "sign_up": "Sign-Up"
     },
     "notifications_all": "All",
-    "notifications_favourite": "Favourite",
+    "notifications_favourite": "Favorite",
     "notifications_follow": "Follow",
     "notifications_follow_request": "Follow request",
     "notifications_mention": "Mentions",
@@ -718,6 +724,7 @@
     "add_emojis": "Add emojis",
     "add_media": "Add images, a video or an audio file",
     "add_publishable_content": "Add content to publish",
+    "add_thread_item": "Add item to thread",
     "change_content_visibility": "Change content visibility",
     "change_language": "Change language",
     "emoji": "Emoji",
@@ -727,6 +734,8 @@
     "open_editor_tools": "Editor tools",
     "pick_an_icon": "Pick an icon",
     "publish_failed": "Close failed messages at the top of editor to republish posts",
+    "remove_thread_item": "Remove item from thread",
+    "start_thread": "Start thread",
     "toggle_bold": "Toggle bold",
     "toggle_code_block": "Toggle code block",
     "toggle_italic": "Toggle italic"

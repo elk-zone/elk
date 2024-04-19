@@ -217,11 +217,12 @@
     "create": "Crear",
     "delete": "Eliminar esta lista",
     "delete_error": "Se produjo un error eliminando la lista",
-    "edit": "Ediar esta lista",
+    "edit": "Editar esta lista",
     "edit_error": "Se produjo un error modificando la lista",
     "error": "Se produjo un error creando la lista",
     "error_prefix": "Error: ",
     "list_title_placeholder": "Título de la lista",
+    "manage": "Administrar listas",
     "modify_account": "Modificar listas con cuenta",
     "remove_account": "Eliminar cuenta de la lista",
     "save": "Guardar"

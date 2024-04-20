@@ -58,5 +58,8 @@
     "json",
     "jsonc",
     "yaml"
-  ]
+],
+"githubPullRequests.ignoredPullRequestBranches": [
+	"main"
+]
 }

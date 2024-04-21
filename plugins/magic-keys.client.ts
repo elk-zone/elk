@@ -6,7 +6,7 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   const keys = useMagicKeys()
   const router = useRouter()
   const i18n = useNuxtApp().$i18n
-  const { y } = useWindowScroll({ behavior: 'smooth' })
+  const { y } = useWindowScroll({ behavior: 'instant' })
 
   // disable shortcuts when focused on inputs (https://vueuse.org/core/usemagickeys/#conditionally-disable)
   const activeElement = useActiveElement()

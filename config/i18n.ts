@@ -115,7 +115,7 @@ const locales: LocaleObjectData[] = [
     name: 'Català',
   },
   {
-    code: 'el',
+    code: 'el-GR',
     file: 'el-GR.json',
     name: 'Ελληνικά',
   },

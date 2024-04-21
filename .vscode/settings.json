@@ -58,9 +58,5 @@
     "json",
     "jsonc",
     "yaml"
-  ],
-  "githubPullRequests.ignoredPullRequestBranches": [
-    "main"
-  ],
-  "cSpell.language": "en,el"
+  ]
 }

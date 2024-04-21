@@ -97,7 +97,7 @@ function resetModal() {
         <b text-primary>@{{ account.acct }}</b>
       </i18n-t>
     </h2>
-    <button ref="dismissButton" btn-action-icon absolute top--8 right-0 m1 aria-label="Close" @click="emit('close')">
+    <button ref="dismissButton" btn-action-icon absolute top--8 right-0 m1 :aria-label="$t('action.close')" @click="emit('close')">
       <div i-ri:close-line />
     </button>
 

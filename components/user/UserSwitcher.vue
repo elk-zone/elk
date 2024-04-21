@@ -36,7 +36,7 @@ function processSignIn() {
       <button
         flex rounded px4 py3 text-left
         hover:bg-active cursor-pointer transition-100
-        aria-label="Switch user"
+        :aria-label="$t('action.switch_account')"
         @click="clickUser(user)"
       >
         <AccountInfo :account="user.account" :hover-card="false" square />

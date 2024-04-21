@@ -211,7 +211,7 @@ watch(shouldLoadAttachment, () => {
         rounded-lg
         h-full
         w-full
-        aria-label="Open image preview dialog"
+        :aria-label="$t('action.open_image_preview_dialog')"
         relative
         @click="!shouldLoadAttachment ? loadAttachment() : openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
       >

@@ -222,6 +222,7 @@
     "error": "Errorea gertatu da zerrenda sortzerakoan",
     "error_prefix": "Errorea: ",
     "list_title_placeholder": "Zerrendaren izena",
+    "manage": "Kudeatu zerrendak",
     "modify_account": "Aldatu honako kontua duten zerrendak:",
     "remove_account": "Kendu kontua zerrendatik",
     "save": "Gorde aldaketak"

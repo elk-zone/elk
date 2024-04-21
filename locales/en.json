@@ -73,6 +73,7 @@
     "favourited": "Favorited",
     "more": "More",
     "next": "Next",
+    "open_image_preview_dialog": "Open image preview dialog",
     "prev": "Prev",
     "publish": "Publish",
     "publish_thread": "Publish thread",
@@ -222,6 +223,7 @@
     "error": "There was an error while creating the list",
     "error_prefix": "Error: ",
     "list_title_placeholder": "List title",
+    "manage": "Manage lists",
     "modify_account": "Modify lists with account",
     "remove_account": "Remove account from list",
     "save": "Save changes"

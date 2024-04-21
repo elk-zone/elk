@@ -222,6 +222,7 @@
     "error": "C'è stato un errore nella creazione della lista",
     "error_prefix": "Errore: ",
     "list_title_placeholder": "Titolo lista",
+    "manage": "Gestisci liste",
     "modify_account": "Modifica liste con account",
     "remove_account": "Rimuovi account dalla lista",
     "save": "Salva modifiche"
@@ -660,7 +661,7 @@
       "report": "Segnalazione",
       "sign_up": "Iscrizione"
     },
-    "notifications_all": "Tutti",
+    "notifications_all": "Tutte",
     "notifications_favourite": "Apprezzamento",
     "notifications_follow": "Nuovo seguace",
     "notifications_follow_request": "Richiesta di seguire",

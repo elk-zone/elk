@@ -222,6 +222,7 @@
     "error": "Hiba történt a lista létrehozása közben",
     "error_prefix": "Hiba: ",
     "list_title_placeholder": "Lista címe",
+    "manage": "Listák kezelése",
     "modify_account": "Listák módosítása fiókkal",
     "remove_account": "Fiók eltávolítása a listáról",
     "save": "Változtatások mentése"

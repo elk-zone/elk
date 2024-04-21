@@ -58,6 +58,7 @@
     "boost": "Đăng lại",
     "boost_count": "{0}",
     "boosted": "Đã đăng lại",
+    "clear": "Xóa",
     "clear_publish_failed": "Xóa lỗi khi đăng tút",
     "clear_save_failed": "Xóa lỗi khi lưu tút",
     "clear_upload_failed": "Xóa lỗi khi xóa file",
@@ -196,7 +197,7 @@
       "desc3": "Đừng đăng nhập bằng tài khoản chính.",
       "title": "Bản dựng"
     },
-    "desc_highlight": "Sẽ có một số lỗi và tính năng bị thiếu ở đây.",
+    "desc_highlight": "Sẽ có lỗi và một số tính năng bị thiếu.",
     "desc_para1": "Elk là một ứng dụng web Mastodon nhanh nhẹn. Sử dụng để đăng nhập Mastodon và tương tác với Fediverse.",
     "desc_para2": "Elk là Mã Nguồn Mở và chúng tôi cải tiến nó như một dự án cộng đồng. Hãy tham gia và cùng xây dựng!",
     "desc_para3": "Để thúc đẩy sự phát triển, bạn có thể tài trợ cho Nhóm thông qua GitHub Sponsors. Chúng tôi hy vọng bạn thích Elk!",
@@ -221,6 +222,7 @@
     "error": "Xảy ra lỗi khi tạo danh sách",
     "error_prefix": "Lỗi: ",
     "list_title_placeholder": "Tên danh sách",
+    "manage": "Quản lý danh sách",
     "modify_account": "Sửa danh sách có người này",
     "remove_account": "Xóa người ra khỏi danh sách",
     "save": "Lưu thay đổi"
@@ -316,6 +318,7 @@
     "list": "Danh sách",
     "lists": "Danh sách",
     "local": "Máy chủ",
+    "more_menu": "Thêm",
     "muted_users": "Người đã ẩn",
     "notifications": "Thông báo",
     "privacy": "Bảo mật",
@@ -450,6 +453,8 @@
       "label": "Cài đặt tài khoản"
     },
     "interface": {
+      "bottom_nav": "Menu dưới màn hình",
+      "bottom_nav_instructions": "Chọn tối đa năm nút điều hướng yêu thích của bạn. Bao gồm nút \"Thêm\" ",
       "color_mode": "Chủ đề",
       "dark_mode": "Tối",
       "default": " (mặc định)",
@@ -488,14 +493,14 @@
           "title": "Bạn muốn nhận những kiểu thông báo nào?"
         },
         "description": "Nhận thông báo kể cả khi bạn không sử dụng Elk.",
-        "instructions": "Đừng quên lưu các thay đổi của bạn bằng cách @:settings.notifications.push_notifications.save_settings button!",
+        "instructions": "Nhớ lưu các thay đổi của bạn bằng cách nhấn @:settings.notifications.push_notifications.save_settings !",
         "label": "Cài đặt thông báo đẩy",
         "policy": {
           "all": "Từ bất kỳ ai",
-          "followed": "Từ người tôi theo dõi",
-          "follower": "Từ người theo dõi tôi",
+          "followed": "Từ người bạn theo dõi",
+          "follower": "Từ người theo dõi bạn",
           "none": "Không ai cả",
-          "title": "Tôi sẽ nhận thông báo từ ai?"
+          "title": "Bạn muốn nhận thông báo từ ai?"
         },
         "save_settings": "Lưu cài đặt",
         "subscription_error": {

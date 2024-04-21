@@ -10,7 +10,7 @@ defineModel<boolean>()
     <button
       flex items-center place-content-center h-full flex-1 class="select-none"
       :class="show ? '!text-primary' : ''"
-      aria-label="More menu"
+      :aria-label="$t('nav.more_menu')"
       @click="toggleVisible"
     >
       <span :class="show ? 'i-ri:close-fill' : 'i-ri:more-fill'" />

@@ -20,7 +20,7 @@ function clickUser(user: UserLogin) {
           <button
             flex rounded
             cursor-pointer
-            aria-label="Switch user"
+            :aria-label="$t('action.switch_account')"
             :class="user.account.acct === currentUser?.account.acct ? '' : 'op25 grayscale'"
             hover="filter-none op100"
             @click="clickUser(user)"

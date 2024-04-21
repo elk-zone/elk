@@ -24,6 +24,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
     window.open(statusRoute.value.href)
   }
   else {
+    setViewTransitionTarget({ status: props.status })
     cacheStatus(props.status)
     router.push(statusRoute.value)
   }

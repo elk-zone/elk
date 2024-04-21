@@ -29,6 +29,8 @@ const hideAllMedia = computed(
     return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && (!!status.mediaAttachments.length || !!status.card?.html)) : false
   },
 )
+const viewTransitionStyle = getViewTransitionStyles('status-content')
+
 const embeddedMediaPreference = usePreferences('experimentalEmbeddedMedia')
 const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPreference.value)
 </script>
@@ -40,6 +42,7 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
       'py2 px3.5 bg-dm rounded-4 me--1': isDM,
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',
     }"
+    :style="viewTransitionStyle"
   >
     <StatusBody v-if="(!isFiltered && isSensitiveNonSpoiler) || hideAllMedia" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
     <StatusSpoiler :enabled="hasSpoilerOrSensitiveMedia || isFiltered" :filter="isFiltered" :sensitive-non-spoiler="isSensitiveNonSpoiler || hideAllMedia" :is-d-m="isDM">

@@ -561,6 +561,8 @@
       "use_star_favorite_icon": "Use star favorite icon",
       "user_picker": "User Picker",
       "user_picker_description": "Displays all avatars of logged accounts in the bottom-left so you can switch quickly between them.",
+      "view_transitions": "View Transitions",
+      "view_transitions_description": "Navigate pages while transitioning the common elements between them.",
       "virtual_scroll": "Virtual Scrolling",
       "virtual_scroll_description": "Use a virtual list in timelines, so a larger number of items can be rendered performantly.",
       "wellbeing": "Wellbeing",

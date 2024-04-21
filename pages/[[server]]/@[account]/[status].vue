@@ -16,7 +16,7 @@ const main = ref<ComponentPublicInstance | null>(null)
 
 const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   `status:${id.value}`,
-  () => fetchStatus(id.value, true),
+  () => fetchStatus(id.value), // TODO: check if this change causes problems
   { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef() },
 )
 const { client } = useMasto()
@@ -26,11 +26,26 @@ const { data: context, pending: pendingContext, refresh: refreshContext } = useA
   { watch: [isHydrated], immediate: isHydrated.value, lazy: true, default: () => shallowRef() },
 )
 
-if (pendingContext)
-  watchOnce(pendingContext, scrollTo)
+if (pending) {
+  watchOnce(pending, () => {
+    setViewTransitionTarget({ status: status.value })
+    scrollTo()
+  })
+}
 
-if (pending)
-  watchOnce(pending, scrollTo)
+const viewTransitionInProgress = getIsViewTransitionInProgress()
+const viewTransitionFinished = ref(!viewTransitionInProgress.value)
+
+const contextReady = computed(() => !pendingContext.value && viewTransitionFinished.value)
+
+onActivated(() => {
+  viewTransitionFinished.value = !viewTransitionInProgress.value
+  if (!viewTransitionFinished.value)
+    watchOnce(viewTransitionInProgress, () => viewTransitionFinished.value = true)
+
+  if (!contextReady.value)
+    watchOnce(contextReady, scrollTo)
+})
 
 async function scrollTo() {
   await nextTick()
@@ -69,7 +84,7 @@ onReactivated(() => {
     <template v-if="!pending">
       <template v-if="status">
         <div xl:mt-4 mb="50vh" border="b base">
-          <template v-if="!pendingContext">
+          <template v-if="contextReady">
             <StatusCard
               v-for="(comment, i) of context?.ancestors" :key="comment.id"
               :status="comment" :actions="comment.visibility !== 'direct'" context="account"
@@ -94,7 +109,7 @@ onReactivated(() => {
             @published="refreshContext()"
           />
 
-          <template v-if="!pendingContext">
+          <template v-if="contextReady">
             <DynamicScroller
               v-slot="{ item, index, active }"
               :items="context?.descendants || []"
@@ -116,13 +131,17 @@ onReactivated(() => {
               </DynamicScrollerItem>
             </DynamicScroller>
           </template>
+
+          <TimelineSkeleton v-else />
         </div>
       </template>
 
       <StatusNotFound v-else :account="route.params.account as string" :status="id" />
     </template>
 
-    <StatusCardSkeleton v-else border="b base" />
-    <TimelineSkeleton v-if="pending || pendingContext" />
+    <template v-else>
+      <StatusCardSkeleton border="b base" />
+      <TimelineSkeleton />
+    </template>
   </MainContent>
 </template>

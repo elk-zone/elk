@@ -14,6 +14,7 @@ interface ShortcutDef {
 interface ShortcutItem {
   description: string
   shortcut: ShortcutDef
+  info?: string
 }
 
 interface ShortcutItemGroup {
@@ -35,10 +36,12 @@ const shortcutItemGroups = computed<ShortcutItemGroup[]>(() => [
       {
         description: t('magic_keys.groups.navigation.next_status'),
         shortcut: { keys: ['j'], isSequence: false },
+        info: t('magic_keys.info.disable_virtual_scrolling'),
       },
       {
         description: t('magic_keys.groups.navigation.previous_status'),
         shortcut: { keys: ['k'], isSequence: false },
+        info: t('magic_keys.info.disable_virtual_scrolling'),
       },
       {
         description: t('magic_keys.groups.navigation.go_to_search'),
@@ -147,8 +150,11 @@ const shortcutItemGroups = computed<ShortcutItemGroup[]>(() => [
           :key="item.description"
           flex my-1 lg:my-2 justify-between place-items-center max-w-full text-base
         >
-          <div mr-2 break-words overflow-hidden leading-4 h-full inline-block align-middle>
+          <div mr-2 break-words overflow-hidden leading-4 h-full inline-block align-middle flex flex-inline gap-1 items-center>
             {{ item.description }}
+            <CommonTooltip v-if="item.info" :content="item.info">
+              <div i-ri:information-line />
+            </CommonTooltip>
           </div>
           <div>
             <template

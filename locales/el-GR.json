@@ -344,7 +344,7 @@
     "reply_to_account": "Απάντηση σε {0}",
     "replying": "Απαντάται"
   },
-"polls": {
+  "polls": {
     "allow_multiple": "Επιτρέπεται πολλαπλή επιλογή",
     "cancel": "Ακύρωση",
     "create": "Δημιουργία δημοσκόπησης",
@@ -355,7 +355,7 @@
     "remove_option": "Αφαίρεση επιλογής",
     "settings": "Επιλογές δημοσκόπησης",
     "show_votes": "Εμφάνιση συνολικών ψήφων πάντα"
-},
+  },
   "pwa": {
     "dismiss": "Απόρριψη",
     "install": "Εγκατάσταση",
@@ -391,14 +391,14 @@
     }
   },
   "report": {
-    "additional_comments": "Additional comments",
-    "another_server": "The user you're reporting is from another server",
-    "anything_else": "Is there anything else you think we should know?",
-    "block_desc": "You will no longer see any posts from this user. They will not be able to see your posts or follow you. They will be able to tell that they are blocked.",
-    "dontlike": "I don't like it",
-    "dontlike_desc": "It is not something you want to see",
-    "forward": "Yes, forward this report to {0}",
-    "forward_question": "Do you want to send an anonymized copy of this report to that server as well?",
+    "additional_comments": "Επιπρόσθετα σχόλια",
+    "another_server": "Ο χρήστης που αναφέρεις είναι από άλλο διακομιστή",
+    "anything_else": "Υπάρχει κάτι άλλο που πιστεύεις ότι πρέπει να γνωρίζουμε;",
+    "block_desc": "Δεν θα βλέπεις πλέον καμία ανάρτηση από αυτόν τον χρήστη. Δεν θα μπορεί να δει τις αναρτήσεις σου ή να σε ακολουθήσει. Θα μπορεί να διαπιστώσει ότι έχει αποκλειστεί.",
+    "dontlike": "Δεν μου αρέσει",
+    "dontlike_desc": "Δεν είναι κάτι που θες να βλέπεις",
+    "forward": "Ναι, προώθηση αυτής της αναφοράς σε {0}",
+    "forward_question": "Θες να στείλεις ένα ανώνυμο αντίγραφο αυτής της αναφοράς και σε εκείνον τον διακομιστή;",
     "further_actions": {
       "limit": {
         "description": "Here are your options for controlling what you see:",

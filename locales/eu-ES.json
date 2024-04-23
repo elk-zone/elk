@@ -470,7 +470,7 @@
       "how_to_contribute": "Nola lagun dezaket?",
       "label": "Hizkuntza",
       "post_language": "Bidalketen hizkuntza",
-      "status": "Itzulpenaren egoera: {1} kateetatik {0} itzulita (%{2}a)",
+      "status": "Itzulpenaren egoera: {1} kateetatik {0} itzulita ({'%'}{2}a)",
       "translations": {
         "add": "Gehitu",
         "choose_language": "Hautatu hizkuntza",

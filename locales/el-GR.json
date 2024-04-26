@@ -401,26 +401,26 @@
     "forward_question": "Θες να στείλεις ένα ανώνυμο αντίγραφο αυτής της αναφοράς και σε εκείνον τον διακομιστή;",
     "further_actions": {
       "limit": {
-        "description": "Here are your options for controlling what you see:",
-        "title": "Don't want to see this?"
+        "description": "Ορίστε οι επιλογές σου για τον έλεγχο του τί βλέπεις:",
+        "title": "Δε θες να το βλέπεις αυτό;"
       },
       "report": {
-        "description": "While we review this, here are the actions you can take:",
-        "title": "Thanks for reporting, we'll look into this."
+        "description": "Όσο το εξετάζουμε, ορίστε μερικές ενέργειες που μπορείς να κάνεις:",
+        "title": "Ευχαριστούμε για την αναφορά, θα το κοιτάξουμε"
       }
     },
-    "limiting": "Limiting {0}",
-    "mute_desc": "You will no longer see any posts from this user. They can still follow you and see your posts. They will not know that they are muted.",
-    "other": "It's something else",
-    "other_desc": "The issue does not fit into other categories",
-    "reporting": "Reporting {0}",
-    "select_many": "Select all that apply:",
-    "select_one": "Choose the best match:",
-    "select_posts": "Are there any posts that back up this report?",
-    "select_posts_other": "Are there any other posts that back up this report?",
-    "spam": "It's spam",
-    "spam_desc": "Malicious links, fake engagement, or repetitive replies",
-    "submit": "Submit Report",
+    "limiting": "Περιορίζεται ο χρήστης {0}",
+    "mute_desc": "Δεν θα βλέπεις πλέον αναρτήσεις από αυτόν τον χρήστη. Μπορεί ακόμα να σε ακολουθήσει και να βλέπει τις αναρτήσεις σου. Δεν θα ξέρει ότι είναι σε σίγαση.",
+    "other": "Είναι κάτι άλλο",
+    "other_desc": "Το ζήτημα δεν ταιριάζει στις άλλες κατηγορίες",
+    "reporting": "Γίνεται αναφορά του χρήστη {0}",
+    "select_many": "Επίλεξε όλα όσα ισχύουν:",
+    "select_one": "Διάλεξε τη καλύτερη αντιστοίχιση:",
+    "select_posts": "Υπάρχει κάποια ανάρτηση που υποστηρίζει αυτή την αναφορά;",
+    "select_posts_other": "Υπάρχουν άλλες αναρτήσεις που υποστηρίζουν αυτή την αναφορά;",
+    "spam": "Είναι σπαμ",
+    "spam_desc": "Επιβλαβείς σύνδεσμοι, ψεύτικη αλληλεπίδραση ή επαναλαμβανόμενες απαντήσεις",
+    "submit": "Καταχώριση Αναφοράς",
     "unfollow_desc": "You will no longer see posts from this user in your home feed. You may still see posts from them elsewhere.",
     "violation": "It violates one or more of the server rules",
     "whats_wrong_account": "Tell us what's wrong with this account",
@@ -432,8 +432,8 @@
   },
   "settings": {
     "about": {
-      "built_at": "Built",
-      "label": "About",
+      "built_at": "Δομήθηκε",
+      "label": "Σχετικά",
       "meet_the_team": "Meet the team",
       "sponsor_action": "Sponsor us",
       "sponsor_action_desc": "To support the team developing Elk",

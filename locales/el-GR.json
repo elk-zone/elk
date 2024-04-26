@@ -422,89 +422,89 @@
     "spam_desc": "Επιβλαβείς σύνδεσμοι, ψεύτικη αλληλεπίδραση ή επαναλαμβανόμενες απαντήσεις",
     "submit": "Καταχώριση Αναφοράς",
     "unfollow_desc": "Δεν θα βλέπεις πλέον αναρτήσεις από αυτόν τον χρήστη στην αρχική ροή σου. Μπορεί να βλέπεις τις αναρτήσεις του αλλού.",
-    "violation": "It violates one or more of the server rules",
-    "whats_wrong_account": "Tell us what's wrong with this account",
-    "whats_wrong_post": "Tell us what's wrong with this post"
+    "violation": "Παραβιάζει τουλάχιστον ένα κανόνα του διακομιστή",
+    "whats_wrong_account": "Πες μας τί πάει στραβά με αυτόν τον λογαριασμό",
+    "whats_wrong_post": "Πες μας τί πάει στραβά με αυτή την ανάρτηση"
   },
   "search": {
-    "search_desc": "Search for people & hashtags",
-    "search_empty": "Could not find anything for these search terms"
+    "search_desc": "Αναζήτησε για άτομα & ετικέτες",
+    "search_empty": "Δεν βρέθηκε τίποτα με αυτούς τους όρους αναζήτησης"
   },
   "settings": {
     "about": {
       "built_at": "Δομήθηκε",
       "label": "Σχετικά",
-      "meet_the_team": "Meet the team",
-      "sponsor_action": "Sponsor us",
-      "sponsor_action_desc": "To support the team developing Elk",
-      "sponsors": "Sponsors",
-      "sponsors_body_1": "Elk is made possible thanks the generous sponsoring and help of:",
-      "sponsors_body_2": "And all the companies and individuals sponsoring Elk Team and the members.",
-      "sponsors_body_3": "If you're enjoying the app, consider sponsoring us:",
-      "version": "Version"
+      "meet_the_team": "Γνώρισε την ομάδα",
+      "sponsor_action": "Χορήγησέ μας",
+      "sponsor_action_desc": "Για να υποστηρίξεις την ομάδα που αναπτύσσει το Elk",
+      "sponsors": "Χορηγοί",
+      "sponsors_body_1": "Ο Elk έγινε πραγματικότητα χάρη στις γενναιόδωρες χορηγίες και βοήθεια των:",
+      "sponsors_body_2": "Και όλες τις εταιρείες και άτομα που χορήγησαν στην ομάδα του Elk και των μελών της.",
+      "sponsors_body_3": "Αν απολαμβάνεις την εφαρμογή, σκέψου να μας χορηγήσεις:",
+      "version": "Έκδοση"
     },
     "account_settings": {
-      "description": "Edit your account settings in Mastodon UI",
-      "label": "Account settings"
+      "description": "Επεξεργάσου τις ρυθμίσεις του λογαριασμού σου στο UI του Mastodon",
+      "label": "Ρυθμίσεις λογαριασμού"
     },
     "interface": {
-      "color_mode": "Color Mode",
-      "dark_mode": "Dark",
-      "default": " (default)",
-      "font_size": "Font Size",
-      "label": "Interface",
-      "light_mode": "Light",
-      "system_mode": "System",
-      "theme_color": "Theme Color"
+      "color_mode": "Λειτουργία Χρώματος",
+      "dark_mode": "Σκοτεινό",
+      "default": " (προεπιλογή)",
+      "font_size": "Μέγεθος Γραμματοσειράς",
+      "label": "Διεπαφή",
+      "light_mode": "Φωτεινό",
+      "system_mode": "Σύστημα",
+      "theme_color": "Χρώμα Θέματος"
     },
     "language": {
-      "display_language": "Display Language",
-      "label": "Language",
-      "post_language": "Posting Language",
-      "status": "Translation status: {0}/{1} ({2}%)",
+      "display_language": "Γλώσσα Εμφάνισης",
+      "label": "Γλώσσα",
+      "post_language": "Γλώσσα ανάρτησης",
+      "status": "Κατάσταση μετάφρασης: {0}/{1} ({2}%)",
       "translations": {
-        "add": "Add",
-        "choose_language": "Choose language",
-        "heading": "Translations",
-        "hide_specific": "Hide specific translations",
+        "add": "Προσθήκη",
+        "choose_language": "Επίλεξε γλώσσα",
+        "heading": "Μεταφράσεις",
+        "hide_specific": "Απόκρυψη συγκεκριμένων μεταφράσεων",
         "remove": "Remove"
       }
     },
     "notifications": {
-      "label": "Notifications",
+      "label": "Ειδοποιήσεις",
       "notifications": {
-        "label": "Notifications settings"
+        "label": "Ρυθμίσεις ειδοποιήσεων"
       },
       "push_notifications": {
         "alerts": {
-          "favourite": "Favorites",
-          "follow": "New followers",
-          "mention": "Mentions",
-          "poll": "Polls",
-          "reblog": "Boosts",
-          "title": "What notifications to receive?"
+          "favourite": "Αγαπημένα",
+          "follow": "Νέοι ακόλουθοι",
+          "mention": "Αναφορές",
+          "poll": "Δημοσκοπήσεις",
+          "reblog": "Ενισχύσεις",
+          "title": "Τί ειδοποιήσεις να λαμβάνω;"
         },
-        "description": "Receive notifications even when you are not using Elk.",
-        "instructions": "Don't forget to save your changes using @:settings.notifications.push_notifications.save_settings button!",
-        "label": "Push notifications settings",
+        "description": "Λήψη ειδοποιήσεων ακόμα και όταν δεν χρησιμοποιείς τον Elk.",
+        "instructions": "Μη ξεχάσεις να αποθηκεύσεις τις αλλαγές σου χρησιμοποιώντας το κουμπί @:settings.notifications.push_notifications.save_settings !",
+        "label": "Ρυθμίσεις ειδοποιήσεων Push",
         "policy": {
-          "all": "From anyone",
-          "followed": "Of people I follow",
-          "follower": "Of people who follow me",
-          "none": "From no one",
-          "title": "Who can I receive notifications from?"
+          "all": "Από όλους",
+          "followed": "Από άτομα που ακολουθώ",
+          "follower": "Από άτομα που με ακολουθούν",
+          "none": "Από κανένα",
+          "title": "Από ποιον μπορώ να λαμβάνω ειδοποιήσεις;"
         },
-        "save_settings": "Save settings",
+        "save_settings": "Αποθήκευση ρυθμίσεων",
         "subscription_error": {
-          "clear_error": "Clear error",
-          "error_hint": "You can consult a list of frequently asked questions to try to solve the problem: {0}.",
-          "invalid_vapid_key": "The VAPID public key seems to be invalid.",
-          "permission_denied": "Permission denied: enable notifications in your browser.",
-          "repo_link": "Elk's repository in GitHub",
-          "request_error": "An error occurred while requesting the subscription, try again and if the error persists, please report the issue to the Elk repository.",
-          "title": "Could not subscribe to push notifications",
-          "too_many_registrations": "Due to browser limitations, Elk cannot use the push notifications service for multiple accounts on different servers. You should unsubscribe from push notifications on another account and try again.",
-          "vapid_not_supported": "Your browser supports Web Push Notifications, but does not seem to implement the VAPID protocol."
+          "clear_error": "Εκκαθάριση σφάλματος",
+          "error_hint": "Μπορείς να συμβουλευτείς τη λίστα των συχνών ερωτήσεων για να προσπαθήσεις να λύσεις το πρόβλημα: {0}.",
+          "invalid_vapid_key": "Το δημόσιο κλειδί VAPID φαίνεται να είναι άκυρο.",
+          "permission_denied": "Απορρίφθηκε άδεια: ενεργοποίησε τις ειδοποιήσεις στον περιηγητή σου.",
+          "repo_link": "Το αποθετήριο του Elk στο GitHub",
+          "request_error": "Προέκυψε σφάλμα κατά την αίτηση της εγγραφής, προσπάθησε ξανά και αν το σφάλμα παραμένει, παρακαλώ ανέφερε το ζήτημα στο αποθετήριο του Elk.",
+          "title": "Δε μπορούσες να κάνεις εγγραφή για ειδοποιήσεις push",
+          "too_many_registrations": "Λόγω περιορισμών του περιηγητή, ο Elk δε μπορεί να χρησιμοποιήσει την υπηρεσία ειδοποιήσεων push για πολλαπλούς λογαριασμούς σε διαφορετικούς διακομιστές. Πρέπει να καταργήσεις την εγγραφή από τις ειδοποιήσεις push σε έναν άλλο λογαριασμό και να προσπαθήσεις ξανά.",
+          "vapid_not_supported": "Ο περιηγητής σου υποστηρίζει Ειδοποιήσεις Ιστοτόπου Push αλλά, δε φαίνεται να υλοποιεί το πρωτόκολλο VAPID."
         },
         "title": "Push notifications settings",
         "undo_settings": "Undo changes",

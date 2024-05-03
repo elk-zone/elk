@@ -48,7 +48,7 @@
     "unfollow": "Entfolgen",
     "unmute": "Stummschaltung aufheben",
     "view_other_followers": "Follower aus anderen Instanzen werden möglicherweise nicht angezeigt.",
-    "view_other_following": "Das Folgen von anderen Instanzen wird möglicherweise nicht angezeigt."
+    "view_other_following": "Das Folgen von anderen Instanzen wird möglicherweise nicht angezeigt.",
     "withdraw_follow_request": "Folgeanfrage zurückziehen"
   },
   "action": {
@@ -151,7 +151,7 @@
       "cancel": "Abbrechen",
       "confirm": "Stummschalten",
       "days": "Tage|Tag|Tage",
-      "description": "Bist du sicher, dass du {0} stummschalten möchtest?"
+      "description": "Bist du sicher, dass du {0} stummschalten möchtest?",
       "hours": "Stunden|Stunde|Stunden",
       "minute": "Minuten|Minute|Minuten",
       "notifications": "Benachrichtigungen stummschalten",
@@ -167,7 +167,7 @@
     "unfollow": {
       "cancel": "Abbrechen",
       "confirm": "Entfolgen",
-      "description": "Bist du sicher, dass du entfolgen möchtest?"
+      "description": "Bist du sicher, dass du entfolgen möchtest?",
       "title": "Entfolgen"
     }
   },

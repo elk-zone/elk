@@ -30,13 +30,13 @@ const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
         <div v-if="likes.length" flex="~ gap-1">
           <div :class="useStarFavoriteIcon ? 'i-ri:star-line color-yellow' : 'i-ri:heart-line color-red'" text-xl me-2 />
           <template v-for="i, idx of likes" :key="idx">
-            <AccountHoverWrapper :account="i.account">
+            <AccountHoverWrapper :account="i.account" relative me--4 border="2 bg-base" rounded-full>
               <NuxtLink :to="getAccountRoute(i.account)">
                 <AccountAvatar text-primary font-bold :account="i.account" class="h-1.5em w-1.5em" />
               </NuxtLink>
             </AccountHoverWrapper>
           </template>
-          <div ms1>
+          <div ms-4>
             {{ $t('notification.favourited_post') }}
           </div>
         </div>

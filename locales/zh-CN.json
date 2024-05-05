@@ -27,6 +27,7 @@
     "follows_you": "已关注你",
     "go_to_profile": "转到个人资料",
     "joined": "已加入",
+    "lock": "非公开",
     "moved_title": "的新账号是：",
     "muted_users": "已屏蔽的用户",
     "muting": "已屏蔽",
@@ -59,6 +60,7 @@
     "boosted": "已转发",
     "clear": "清除",
     "clear_publish_failed": "清除发布失败信息",
+    "clear_save_failed": "清除保存失败信息",
     "clear_upload_failed": "清除上传失败信息",
     "close": "关闭",
     "compose": "撰写",
@@ -73,6 +75,7 @@
     "next": "下一个",
     "prev": "上一个",
     "publish": "发布",
+    "publish_thread": "发布串",
     "reply": "回复",
     "reply_count": "{0}",
     "reset": "重置",
@@ -120,12 +123,14 @@
     "block_account": {
       "cancel": "取消",
       "confirm": "拉黑",
-      "description": "你确定拉黑 {0} 吗？"
+      "description": "你确定拉黑 {0} 吗？",
+      "title": "拉黑用户"
     },
     "block_domain": {
       "cancel": "取消",
       "confirm": "拉黑",
-      "description": "你确定拉黑域名 {0} 吗？"
+      "description": "你确定拉黑域名 {0} 吗？",
+      "title": "拉黑域名"
     },
     "common": {
       "cancel": "否",
@@ -134,27 +139,37 @@
     "delete_list": {
       "cancel": "取消",
       "confirm": "删除",
-      "description": "你确定要删除 \"{0}\" 列表吗？"
+      "description": "你确定要删除 \"{0}\" 列表吗？",
+      "title": "删除列表"
     },
     "delete_posts": {
       "cancel": "取消",
       "confirm": "删除",
-      "description": "你确定要删除这条帖文吗？"
+      "description": "你确定要删除这条帖文吗？",
+      "title": "删除帖文"
     },
     "mute_account": {
       "cancel": "取消",
       "confirm": "屏蔽",
-      "description": "你确定屏蔽 {0} 吗？"
+      "days": "{0} 天",
+      "description": "你确定屏蔽{0} 吗？",
+      "hours": "{0} 小时",
+      "minute": "{0} 分钟",
+      "notifications": "屏蔽通知",
+      "specify_duration": "指定时长",
+      "title": "屏蔽用户"
     },
     "show_reblogs": {
       "cancel": "取消",
       "confirm": "显示",
-      "description": "你确定要显示来自 {0} 的转发吗？"
+      "description": "你确定要显示来自 {0} 的转发吗？",
+      "title": "显示转发"
     },
     "unfollow": {
       "cancel": "取消",
       "confirm": "取消关注",
-      "description": "你确定要取消关注吗？"
+      "description": "你确定要取消关注吗？",
+      "title": "取消关注"
     }
   },
   "conversation": {
@@ -207,6 +222,7 @@
     "error": "创建列表时出现了一个错误",
     "error_prefix": "错误：",
     "list_title_placeholder": "列表标题",
+    "manage": "管理列表",
     "modify_account": "修改列表中的用户",
     "remove_account": "移除列表中的用户",
     "save": "保存更改"
@@ -219,14 +235,26 @@
         "command_mode": "命令面板",
         "compose": "撰写",
         "favourite": "喜欢",
+        "search": "搜索",
+        "show_new_items": "显示新的帖子",
         "title": "操作"
       },
       "media": {
         "title": "媒体"
       },
       "navigation": {
+        "go_to_bookmarks": "书签",
+        "go_to_conversations": "会话",
+        "go_to_explore": "探索",
+        "go_to_favourites": "收藏",
+        "go_to_federated": "联合",
         "go_to_home": "首页",
+        "go_to_lists": "列表",
+        "go_to_local": "本地",
         "go_to_notifications": "通知",
+        "go_to_profile": "个人资料",
+        "go_to_search": "搜索",
+        "go_to_settings": "设置",
         "next_status": "下一条帖文",
         "previous_status": "上一条帖文",
         "shortcut_help": "快捷键帮助",
@@ -281,9 +309,11 @@
     "built_at": "构建于 {0}",
     "compose": "撰写",
     "conversations": "私信",
+    "docs": "文档",
     "explore": "探索",
     "favourites": "喜欢",
     "federated": "跨站",
+    "hashtags": "标签",
     "home": "主页",
     "list": "列表",
     "lists": "列表",

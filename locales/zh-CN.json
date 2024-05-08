@@ -27,6 +27,7 @@
     "follows_you": "已关注你",
     "go_to_profile": "转到个人资料",
     "joined": "已加入",
+    "lock": "非公开",
     "moved_title": "的新账号是：",
     "muted_users": "已屏蔽的用户",
     "muting": "已屏蔽",
@@ -57,7 +58,9 @@
     "boost": "转发",
     "boost_count": "{0}",
     "boosted": "已转发",
+    "clear": "清除",
     "clear_publish_failed": "清除发布失败信息",
+    "clear_save_failed": "清除保存失败信息",
     "clear_upload_failed": "清除上传失败信息",
     "close": "关闭",
     "compose": "撰写",
@@ -70,8 +73,10 @@
     "favourited": "已喜欢",
     "more": "更多",
     "next": "下一个",
+    "open_image_preview_dialog": "打开图像预览框",
     "prev": "上一个",
     "publish": "发布",
+    "publish_thread": "发布串",
     "reply": "回复",
     "reply_count": "{0}",
     "reset": "重置",
@@ -119,12 +124,14 @@
     "block_account": {
       "cancel": "取消",
       "confirm": "拉黑",
-      "description": "你确定拉黑 {0} 吗？"
+      "description": "你确定拉黑 {0} 吗？",
+      "title": "拉黑用户"
     },
     "block_domain": {
       "cancel": "取消",
       "confirm": "拉黑",
-      "description": "你确定拉黑域名 {0} 吗？"
+      "description": "你确定拉黑域名 {0} 吗？",
+      "title": "拉黑域名"
     },
     "common": {
       "cancel": "否",
@@ -133,27 +140,37 @@
     "delete_list": {
       "cancel": "取消",
       "confirm": "删除",
-      "description": "你确定要删除 \"{0}\" 列表吗？"
+      "description": "你确定要删除 \"{0}\" 列表吗？",
+      "title": "删除列表"
     },
     "delete_posts": {
       "cancel": "取消",
       "confirm": "删除",
-      "description": "你确定要删除这条帖文吗？"
+      "description": "你确定要删除这条帖文吗？",
+      "title": "删除帖文"
     },
     "mute_account": {
       "cancel": "取消",
       "confirm": "屏蔽",
-      "description": "你确定屏蔽 {0} 吗？"
+      "days": "{0} 天",
+      "description": "你确定屏蔽{0} 吗？",
+      "hours": "{0} 小时",
+      "minute": "{0} 分钟",
+      "notifications": "屏蔽通知",
+      "specify_duration": "指定时长",
+      "title": "屏蔽用户"
     },
     "show_reblogs": {
       "cancel": "取消",
       "confirm": "显示",
-      "description": "你确定要显示来自 {0} 的转发吗？"
+      "description": "你确定要显示来自 {0} 的转发吗？",
+      "title": "显示转发"
     },
     "unfollow": {
       "cancel": "取消",
       "confirm": "取消关注",
-      "description": "你确定要取消关注吗？"
+      "description": "你确定要取消关注吗？",
+      "title": "取消关注"
     }
   },
   "conversation": {
@@ -206,6 +223,7 @@
     "error": "创建列表时出现了一个错误",
     "error_prefix": "错误：",
     "list_title_placeholder": "列表标题",
+    "manage": "管理列表",
     "modify_account": "修改列表中的用户",
     "remove_account": "移除列表中的用户",
     "save": "保存更改"
@@ -218,14 +236,26 @@
         "command_mode": "命令面板",
         "compose": "撰写",
         "favourite": "喜欢",
+        "search": "搜索",
+        "show_new_items": "显示新的帖子",
         "title": "操作"
       },
       "media": {
         "title": "媒体"
       },
       "navigation": {
+        "go_to_bookmarks": "书签",
+        "go_to_conversations": "会话",
+        "go_to_explore": "探索",
+        "go_to_favourites": "收藏",
+        "go_to_federated": "联合",
         "go_to_home": "首页",
+        "go_to_lists": "列表",
+        "go_to_local": "本地",
         "go_to_notifications": "通知",
+        "go_to_profile": "个人资料",
+        "go_to_search": "搜索",
+        "go_to_settings": "设置",
         "next_status": "下一条帖文",
         "previous_status": "上一条帖文",
         "shortcut_help": "快捷键帮助",
@@ -280,13 +310,16 @@
     "built_at": "构建于 {0}",
     "compose": "撰写",
     "conversations": "私信",
+    "docs": "文档",
     "explore": "探索",
     "favourites": "喜欢",
     "federated": "跨站",
+    "hashtags": "标签",
     "home": "主页",
     "list": "列表",
     "lists": "列表",
     "local": "本地",
+    "more_menu": "更多",
     "muted_users": "已屏蔽的用户",
     "notifications": "通知",
     "privacy": "隐私协议",
@@ -421,6 +454,8 @@
       "label": "账号设置"
     },
     "interface": {
+      "bottom_nav": "底部导航",
+      "bottom_nav_instructions": "选择您最喜欢的导航按钮（最多五个）作为底部导航。\n必须包含“更多菜单”按钮。",
       "color_mode": "颜色",
       "dark_mode": "深色",
       "default": "（默认）",
@@ -432,7 +467,9 @@
     },
     "language": {
       "display_language": "首选语言",
+      "how_to_contribute": "如何贡献？",
       "label": "语言",
+      "post_language": "发布语言",
       "status": "翻译进度： {0}/{1} ({2}%)",
       "translations": {
         "add": "添加",
@@ -498,6 +535,8 @@
     },
     "notifications_settings": "通知",
     "preferences": {
+      "embedded_media": "嵌入式媒体播放器",
+      "embedded_media_description": "扩展共享媒体流链接时显示嵌入式播放器而不是普通预览卡。",
       "enable_autoplay": "开启自动播放",
       "enable_data_saving": "启用数据流量节省",
       "enable_data_saving_description": "通过阻止附件自动加载来节省数据流量。",
@@ -510,12 +549,15 @@
       "hide_boost_count": "隐藏转发数",
       "hide_favorite_count": "隐藏收藏数",
       "hide_follower_count": "隐藏关注者数",
+      "hide_gif_indi_on_posts": "隐藏帖子上的 gif 指示器",
       "hide_news": "隐藏新闻页",
       "hide_reply_count": "隐藏回复数",
+      "hide_tag_hover_card": "隐藏标签悬停卡",
       "hide_translation": "隐藏翻译",
       "hide_username_emojis": "隐藏用户昵称的表情符号",
       "hide_username_emojis_description": "隐藏时间线上用户的表情符号。表情符号仍然会在用户个人资料中展示。",
       "label": "首选项",
+      "optimize_for_low_performance_device": "针对低性能设备进行优化",
       "title": "实验功能",
       "use_star_favorite_icon": "使用星形喜欢图标",
       "user_picker": "用户选择器",
@@ -559,12 +601,17 @@
   },
   "state": {
     "attachments_exceed_server_limit": "附件的数量超出了最大限制",
+    "attachments_limit_audio_error": "超出最大音频尺寸：{0}",
     "attachments_limit_error": "超出每篇帖文的最大限制",
+    "attachments_limit_image_error": "超出最大图像尺寸：{0}",
+    "attachments_limit_unknown_error": "超出最大文件尺寸：{0}",
+    "attachments_limit_video_error": "超出最大视频尺寸：{0}",
     "edited": "（已编辑）",
     "editing": "编辑中",
     "loading": "加载中...",
     "publish_failed": "发布失败",
     "publishing": "发布中...",
+    "save_failed": "保存失败",
     "upload_failed": "上传失败",
     "uploading": "上传中..."
   },
@@ -575,9 +622,11 @@
     },
     "boosted_by": "被转发",
     "edited": "在 {0} 编辑了",
+    "embedded_warning": "播放此内容可能会将你的 IP 地址泄露给他人。",
     "favourited_by": "被喜欢",
     "filter_hidden_phrase": "筛选依据",
     "filter_show_anyway": "仍然展示",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "描述",
@@ -609,8 +658,20 @@
     "list": "列表",
     "media": "媒体",
     "news": "最新消息",
+    "notifications_admin": {
+      "report": "举报",
+      "sign_up": "注册"
+    },
     "notifications_all": "全部",
+    "notifications_favourite": "喜欢",
+    "notifications_follow": "关注",
+    "notifications_follow_request": "请求关注",
     "notifications_mention": "提及",
+    "notifications_more_tooltip": "按类型筛选通知",
+    "notifications_poll": "投票",
+    "notifications_reblog": "转发",
+    "notifications_status": "状态",
+    "notifications_update": "更新",
     "posts": "帖文",
     "posts_with_replies": "帖文与留言"
   },
@@ -664,6 +725,7 @@
     "add_emojis": "添加表情符号",
     "add_media": "添加图片、视频或者音频文件",
     "add_publishable_content": "添加要发布的内容",
+    "add_thread_item": "添加到帖文串",
     "change_content_visibility": "修改内容是否可见",
     "change_language": "更改语言",
     "emoji": "表情符号",
@@ -673,6 +735,8 @@
     "open_editor_tools": "编辑器工具",
     "pick_an_icon": "选择一个图标",
     "publish_failed": "关闭编辑器上方的错误信息以重新发布帖文。",
+    "remove_thread_item": "从帖文串中移除",
+    "start_thread": "开始帖文串",
     "toggle_bold": "切换加粗",
     "toggle_code_block": "切换代码块",
     "toggle_italic": "切换斜体"

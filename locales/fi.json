@@ -7,7 +7,9 @@
     "route_loaded": "Sivu {0} ladattu"
   },
   "account": {
-    "avatar_description": "Käyttäjän {0} avatar",
+    "authorize": "Valtuuta seurataksesi",
+    "authorized": "Olet valtuuttanut pyynnön",
+    "avatar_description": "Käyttäjän {0} profiilikuva",
     "blocked_by": "Tämä käyttäjä on estänyt sinut.",
     "blocked_domains": "Estetyt verkkotunnukset",
     "blocked_users": "Estetyt käyttäjät",
@@ -25,6 +27,7 @@
     "follows_you": "Seuraa sinua",
     "go_to_profile": "Siirry profiiliin",
     "joined": "Liittynyt",
+    "lock": "Lukittu",
     "moved_title": "on siirtynyt uudelle tilille:",
     "muted_users": "Hiljennetyt käyttäjät",
     "muting": "Hiljennetty",
@@ -35,14 +38,18 @@
     "posts": "Julkaisut",
     "posts_count": "{0} julkaisua|{0} julkaisu|{0} julkaisua",
     "profile_description": "Käyttäjän {0} profiilin ylätunniste",
-    "profile_personal_note": "Henkilökohtainen muistiinpano",
+    "profile_personal_note": "Henkilökohtainen merkintä",
     "profile_unavailable": "Profiili ei saatavilla",
+    "reject": "Hylkää seuraamispyyntö",
+    "rejected": "Olet hylännyt pyynnön",
     "request_follow": "Pyydä lupaa seurata",
+    "requested": "{0} on pyytänyt lupaa saada seurata sinua",
     "unblock": "Poista esto",
     "unfollow": "Älä seuraa",
     "unmute": "Poista hiljennys",
     "view_other_followers": "Seuraajat muilta palvelimilta eivät välttämättä näy.",
-    "view_other_following": "Seuratut muilta palvelimilta eivät välttämättä näy."
+    "view_other_following": "Seuratut muilta palvelimilta eivät välttämättä näy.",
+    "withdraw_follow_request": "Peruuta seuraamispyyntö"
   },
   "action": {
     "apply": "Käytä",
@@ -51,6 +58,7 @@
     "boost": "Tehosta",
     "boost_count": "{0}",
     "boosted": "Tehostettu",
+    "clear": "Tyhjennä",
     "clear_publish_failed": "Pyyhi julkaisuvirheet",
     "clear_save_failed": "Pyyhi tallennusvirheet",
     "clear_upload_failed": "Pyyhi tiedostojen lähetysvirheet",
@@ -65,8 +73,10 @@
     "favourited": "Lisätty suosikkeihin",
     "more": "Lisää",
     "next": "Seuraava",
+    "open_image_preview_dialog": "Avaa kuvan esikatseluikkuna",
     "prev": "Edellinen",
     "publish": "Julkaise",
+    "publish_thread": "Julkaise ketju",
     "reply": "Vastaa",
     "reply_count": "{0}",
     "reset": "Palauta",
@@ -88,7 +98,7 @@
     "activate": "Valitse",
     "complete": "Täydennä",
     "compose_desc": "Kirjoita uusi julkaisu",
-    "n_people_in_the_past_n_days": "{0} ihmistä viime {1} päivän aikana",
+    "n_people_in_the_past_n_days": "{0} ihmistä viimeisinä {1} päivänä",
     "select_lang": "Valitse kieli",
     "sign_in_desc": "Lisää olemassa oleva tili",
     "switch_account": "Vaihda tiliin {0}",
@@ -114,12 +124,14 @@
     "block_account": {
       "cancel": "Peruuta",
       "confirm": "Estä",
-      "description": "Haluatko varmasti estää käyttäjän {0}?"
+      "description": "Haluatko varmasti estää tilin {0}?",
+      "title": "Estä tili"
     },
     "block_domain": {
       "cancel": "Peruuta",
       "confirm": "Estä",
-      "description": "Haluatko varmasti estää verkkotunnuksen {0}?"
+      "description": "Haluatko varmasti estää verkkotunnuksen {0}?",
+      "title": "Estä verkkotunnus"
     },
     "common": {
       "cancel": "Kyllä",
@@ -128,27 +140,37 @@
     "delete_list": {
       "cancel": "Peruuta",
       "confirm": "Poista",
-      "description": "Haluatko varmasti poistaa listan \"{0}\"?"
+      "description": "Haluatko varmasti poistaa listan \"{0}\"?",
+      "title": "Poista lista"
     },
     "delete_posts": {
       "cancel": "Peruuta",
       "confirm": "Poista",
-      "description": "Haluatko varmasti poistaa tämän julkaisun?"
+      "description": "Haluatko varmasti poistaa tämän julkaisun?",
+      "title": "Poista julkaisu"
     },
     "mute_account": {
       "cancel": "Peruuta",
       "confirm": "Hiljennä",
-      "description": "Haluatko varmasti hiljentää käyttäjän {0}?"
+      "days": "päivää|päivä|päivää",
+      "description": "Haluatko varmasti hiljentää tilin {0}?",
+      "hours": "tuntia|tunti|tuntia",
+      "minute": "minuuttia|minuutti|minuuttia",
+      "notifications": "Hiljennä ilmoitukset",
+      "specify_duration": "Määrittele hiljennyksen kesto",
+      "title": "Hiljennä tili"
     },
     "show_reblogs": {
       "cancel": "Peruuta",
       "confirm": "Näytä",
-      "description": "Haluatko varmasti näyttää tehostukset käyttäjältä {0}?"
+      "description": "Haluatko varmasti näyttää tehostukset tililtä {0}?",
+      "title": "Näytä tehostukset"
     },
     "unfollow": {
       "cancel": "Peruuta",
       "confirm": "Lopeta seuraaminen",
-      "description": "Haluatko varmasti lopettaa seuraamisen?"
+      "description": "Haluatko varmasti lopettaa tilin {0} seuraamisen?",
+      "title": "Lopeta seuraaminen"
     }
   },
   "conversation": {
@@ -177,14 +199,14 @@
       "title": "Esijulkaisu"
     },
     "desc_highlight": "Saatat löytää bugeja ja puuttuvia ominaisuuksia sieltä täältä.",
-    "desc_para1": "Kiitos, että kokeilet Elkiä, keskeneräistä Mastodon-verkkosovellustamme!",
-    "desc_para2": "Teemme kovasti töitä sen kehittämiseksi ja parantamiseksi.",
+    "desc_para1": "Elk on ketterä verkkosovellus Mastodonille. Voit kirjautua sisään Mastodon-tilillesi ja olla sen avulla vuorovaikutuksessa fediversumin kanssa.",
+    "desc_para2": "Elk on avointa lähdekoodia, ja me parantelemme sitä vilkkaasti yhteisöprojektina. Liity joukkoomme, niin rakennamme sitä yhdessä!",
     "desc_para3": "Voit auttaa kehityksessä tukemalla tiimiä GitHub-sponsorina. Toivomme, että nautit Elkin käytöstä!",
-    "desc_para4": "Elk on avointa lähdekoodia. Jos haluat auttaa testaamalla, antamalla palautetta tai lahjoittamalla koodia,",
+    "desc_para4": "Jos haluat ilmoittaa ohjelmontivirheestä, auttaa testauksessa, antaa palautetta tai osallistua,",
     "desc_para5": "ota meihin yhteyttä GitHubissa",
-    "desc_para6": "ja liity joukkoomme.",
+    "desc_para6": "ja tule mukaan.",
     "footer_team": "Elk-tiimi",
-    "title": "Elk on koekäytössä!"
+    "title": "Tervetuloa Elkiin!"
   },
   "language": {
     "search": "Haku"
@@ -201,6 +223,7 @@
     "error": "Listan luonnissa tapahtui virhe",
     "error_prefix": "Virhe: ",
     "list_title_placeholder": "Listan nimi",
+    "manage": "Hallitse listoja",
     "modify_account": "Muokkaa listoja, joilla tämä tili on",
     "remove_account": "Poista tili listalta",
     "save": "Tallenna muutokset"
@@ -213,24 +236,36 @@
         "command_mode": "Komentotila",
         "compose": "Kirjoita",
         "favourite": "Lisää suosikkeihin",
-        "title": "Toimet"
+        "search": "Hae",
+        "show_new_items": "Näytä uudet kohteet",
+        "title": "Toiminnot"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Kirjanmerkit",
+        "go_to_conversations": "Keskustelut",
+        "go_to_explore": "Tutustu",
+        "go_to_favourites": "Suosikit",
+        "go_to_federated": "Federoitu",
         "go_to_home": "Koti",
+        "go_to_lists": "Listat",
+        "go_to_local": "Paikallinen",
         "go_to_notifications": "Ilmoitukset",
+        "go_to_profile": "Profiili",
+        "go_to_search": "Haku",
+        "go_to_settings": "Asetukset",
         "next_status": "Seuraava julkaisu",
         "previous_status": "Edellinen julkaisu",
         "shortcut_help": "Oikoteiden ohje",
-        "title": "Navigointi"
+        "title": "Siirtyminen"
       }
     },
-    "sequence_then": "sitten"
+    "sequence_then": "ja sitten"
   },
   "menu": {
-    "add_personal_note": "Lisää oma muistiinpano käyttäjälle {0}",
+    "add_personal_note": "Lisää oma merkintä käyttäjälle {0}",
     "block_account": "Estä {0}",
     "block_domain": "Estä verkkotunnus {0}",
     "copy_link_to_post": "Kopioi linkki tähän julkaisuun",
@@ -245,8 +280,9 @@
     "mute_conversation": "Hiljennä tämä julkaisu",
     "open_in_original_site": "Avaa alkuperäisellä sivustolla",
     "pin_on_profile": "Kiinnitä profiiliin",
-    "remove_personal_note": "Poista oma muistiinpano käyttäjältä {0}",
+    "remove_personal_note": "Poista oma merkintä käyttäjältä {0}",
     "report_account": "Ilmianna {0}",
+    "share_account": "Jaa {0}",
     "share_post": "Jaa tämä julkaisu",
     "show_favourited_and_boosted_by": "Näytä suosikkeihinsa lisänneet ja tehostaneet",
     "show_reblogs": "Näytä tehostukset käyttäjältä {0}",
@@ -274,13 +310,16 @@
     "built_at": "Koottu {0}",
     "compose": "Kirjoita",
     "conversations": "Keskustelut",
+    "docs": "Dokumentaatio",
     "explore": "Tutustu",
     "favourites": "Suosikit",
     "federated": "Federoitu",
+    "hashtags": "Aihetunnisteet",
     "home": "Koti",
     "list": "Lista",
     "lists": "Listat",
     "local": "Paikallinen",
+    "more_menu": "Lisää-valikko",
     "muted_users": "Hiljennetyt käyttäjät",
     "notifications": "Ilmoitukset",
     "privacy": "Yksityisyys",
@@ -314,13 +353,13 @@
   "polls": {
     "allow_multiple": "Salli monen valinta",
     "cancel": "Peruuta",
-    "create": "Luo kysely",
+    "create": "Luo äänestys",
     "disallow_multiple": "Estä monen valinta",
-    "expiration": "Kyselyn päättyminen",
+    "expiration": "Äänestyksen päättyminen",
     "hide_votes": "Piilota äänestystulokset vastausaikana",
     "option_placeholder": "Vastausvaihtoehto {current}/{max}",
     "remove_option": "Poista vaihtoehto",
-    "settings": "Kyselyn asetukset",
+    "settings": "Äänestyksen asetukset",
     "show_votes": "Näytä äänestystulokset koko ajan"
   },
   "pwa": {
@@ -415,6 +454,8 @@
       "label": "Tiliasetukset"
     },
     "interface": {
+      "bottom_nav": "Alanavigaatio",
+      "bottom_nav_instructions": "Valitse enintään viisi suosikkipainikettasi alanavigaatioon. Niiden joukossa pitää olla Lisää-valikon painike.",
       "color_mode": "Pohjaväri",
       "dark_mode": "Tumma",
       "default": " (oletus)",
@@ -426,6 +467,7 @@
     },
     "language": {
       "display_language": "Sovelluksen kieli",
+      "how_to_contribute": "Miten osallistua?",
       "label": "Kieli",
       "post_language": "Julkaisukieli",
       "status": "Käännöksen tila: {0}/{1} ({2}\u00A0%)",
@@ -447,7 +489,7 @@
           "favourite": "Suosikit",
           "follow": "Uudet seuraajat",
           "mention": "Maininnat",
-          "poll": "Kyselyt",
+          "poll": "Äänestykset",
           "reblog": "Tehostukset",
           "title": "Mitä ilmoituksia haluat saada?"
         },
@@ -493,6 +535,8 @@
     },
     "notifications_settings": "Ilmoitukset",
     "preferences": {
+      "embedded_media": "Upotettu mediasoitin",
+      "embedded_media_description": "Näytä upotettu mediasoitin tavallisen esikatselukortin sijaan, kun jaettu linkki johtaa median suoratoistoon.",
       "enable_autoplay": "Toista automaattisesti",
       "enable_data_saving": "Säästä tiedonsiirrossa",
       "enable_data_saving_description": "Estä liitteitä latautumasta automaattisesti.",
@@ -504,13 +548,16 @@
       "hide_alt_indi_on_posts": "Piilota julkaisujen ALT-ilmaisin",
       "hide_boost_count": "Piilota tehostusten lukumäärä",
       "hide_favorite_count": "Piilota suosikkien lukumäärä",
-      "hide_follower_count": "Piilota seurattujen/seuraajien lukumäärä",
+      "hide_follower_count": "Piilota seurattujen ja seuraajien lukumäärä",
+      "hide_gif_indi_on_posts": "Piilota julkaisujen GIF-ilmaisin",
       "hide_news": "Piilota uutiset",
       "hide_reply_count": "Piilota vastausten lukumäärä",
+      "hide_tag_hover_card": "Piilota tunnisteiden leijukortti",
       "hide_translation": "Piilota käännös",
       "hide_username_emojis": "Piilota käyttäjänimien emojit",
       "hide_username_emojis_description": "Piilottaa emojit käyttäjien nimistä aikajanoilla. Emojit näkyvät silti heidän profiileissaan.",
       "label": "Mieltymykset",
+      "optimize_for_low_performance_device": "Optimoi heikon suorituskyvyn laitteelle",
       "title": "Kokeelliset ominaisuudet",
       "use_star_favorite_icon": "Käytä tähteä suosikkikuvakkeena",
       "user_picker": "Käyttäjävalitsin",
@@ -549,12 +596,16 @@
   },
   "share_target": {
     "description": "Elkin voi määrittää niin, että voit jakaa sisältöä muista sovelluksista: asenna Elk laitteellesi ja kirjaudu sisään.",
-    "hint": "Jotta voit jakaa sisältöä Elkillä, sen täytyy olla asennettuna ja sisään kirjautuneena.",
+    "hint": "Jotta voit jakaa sisältöä Elkillä, sen täytyy olla asennettuna ja sinun sisäänkirjautuneena.",
     "title": "Jaa Elkillä"
   },
   "state": {
     "attachments_exceed_server_limit": "Julkaisussa on liian monta liitettä.",
-    "attachments_limit_error": "Liikaa liitteitä",
+    "attachments_limit_audio_error": "Ylitetty audion enimmäiskoko: {0}",
+    "attachments_limit_error": "Julkaisussa liikaa liitteitä",
+    "attachments_limit_image_error": "Ylitetty kuvan enimmäiskoko: {0}",
+    "attachments_limit_unknown_error": "Ylitetty tiedoston enimmäiskoko: {0}",
+    "attachments_limit_video_error": "Ylitetty videon enimmäiskoko: {0}",
     "edited": "(Muokattu)",
     "editing": "Muokkaa",
     "loading": "Ladataan...",
@@ -571,9 +622,11 @@
     },
     "boosted_by": "Tehostaneet",
     "edited": "Muokattu {0}",
+    "embedded_warning": "Tämän toistaminen voi paljastaa IP-osoitteesi muille.",
     "favourited_by": "Lisänneet suosikiksi",
     "filter_hidden_phrase": "Suodatettu",
     "filter_show_anyway": "Näytä silti",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Kuvaus",
@@ -605,8 +658,20 @@
     "list": "Lista",
     "media": "Media",
     "news": "Uutiset",
+    "notifications_admin": {
+      "report": "Ilmianto",
+      "sign_up": "Rekisteröityminen"
+    },
     "notifications_all": "Kaikki",
+    "notifications_favourite": "Suosikki",
+    "notifications_follow": "Seuraaminen",
+    "notifications_follow_request": "Seuraamispyyntö",
     "notifications_mention": "Maininnat",
+    "notifications_more_tooltip": "Suodata ilmoitustyypin perusteella",
+    "notifications_poll": "Äänestys",
+    "notifications_reblog": "Tehostus",
+    "notifications_status": "Tila",
+    "notifications_update": "Päivitys",
     "posts": "Julkaisut",
     "posts_with_replies": "Julkaisut ja vastaukset"
   },
@@ -660,6 +725,7 @@
     "add_emojis": "Lisää emojeja",
     "add_media": "Lisää kuvia, video tai äänitiedosto",
     "add_publishable_content": "Lisää julkaisuun sisältöä",
+    "add_thread_item": "Lisää kohde ketjuun",
     "change_content_visibility": "Muuta sisällön näkyvyyttä",
     "change_language": "Vaihda kieli",
     "emoji": "Emoji",
@@ -669,6 +735,8 @@
     "open_editor_tools": "Editorin työkalut",
     "pick_an_icon": "Valitse kuvake",
     "publish_failed": "Sulje epäonnistuneet viestit editorin yläosasta, niin voit julkaista uudelleen",
+    "remove_thread_item": "Poista kohde ketjusta",
+    "start_thread": "Aloita ketju",
     "toggle_bold": "Lihavoi",
     "toggle_code_block": "Koodilohko",
     "toggle_italic": "Kursivoi"

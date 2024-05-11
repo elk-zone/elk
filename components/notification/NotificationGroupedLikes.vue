@@ -27,7 +27,7 @@ const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
             {{ $t('notification.reblogged_post') }}
           </div>
         </div>
-        <div v-if="likes.length" flex="~ gap-1">
+        <div v-if="likes.length" flex="~ gap-1 wrap">
           <div :class="useStarFavoriteIcon ? 'i-ri:star-line color-yellow' : 'i-ri:heart-line color-red'" text-xl me-2 />
           <template v-for="i, idx of likes" :key="idx">
             <AccountHoverWrapper :account="i.account" relative me--4 border="2 bg-base" rounded-full hover:z-1 focus-within:z-1>

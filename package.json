@@ -2,7 +2,7 @@
   "name": "@elk-zone/elk",
   "type": "module",
   "version": "0.14.0",
-  "packageManager": "pnpm@8.15.5",
+  "packageManager": "pnpm@9.1.3",
   "license": "MIT",
   "homepage": "https://elk.zone/",
   "main": "./nuxt.config.ts",

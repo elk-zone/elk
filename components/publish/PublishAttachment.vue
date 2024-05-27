@@ -21,6 +21,74 @@ const maxDescriptionLength = 1500
 const isEditDialogOpen = ref(false)
 const description = ref(props.attachment.description ?? '')
 
+const generationInProgress = ref(false)
+
+async function generateAltText() {
+  // eslint-disable-next-line no-console
+  console.log(JSON.parse(JSON.stringify(props)))
+
+  const url = props.attachment.url
+
+  if (!url)
+    return
+
+  if (generationInProgress.value)
+    return
+
+  // TODO @Shinigami92 2024-05-27: Show confirm dialog warning message that a model with ~250MiB will be downloaded
+
+  generationInProgress.value = true
+
+  try {
+    const { pipeline, RawImage } = await import('@xenova/transformers')
+
+    const pipe = await pipeline('image-to-text', 'Xenova/vit-gpt2-image-captioning')
+
+    // const imageElement = document.querySelector<HTMLImageElement>('.dialog-main img.status-attachment-image')!
+    const imageElement = new Image()
+    imageElement.crossOrigin = 'Anonymous'
+    imageElement.src = `${url}?request-with-cors`
+    await imageElement.decode()
+
+    const dataUrl = new Promise<string>((resolve) => {
+      imageElement.onload = () => {
+        const canvas = document.createElement('canvas')
+        canvas.width = imageElement.width
+        canvas.height = imageElement.height
+
+        const ctx = canvas.getContext('2d')!
+        ctx.drawImage(imageElement, 0, 0)
+
+        // TODO @Shinigami92 2024-05-28: Fix "Uncaught DOMException: Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported."
+        const dataUrl = canvas.toDataURL(`image/${url.split('.').pop()!}`)
+
+        resolve(dataUrl)
+      }
+    })
+
+    const img = await RawImage.fromURL(await dataUrl)
+
+    const out = await pipe(img)
+
+    // eslint-disable-next-line no-console
+    console.debug(out)
+
+    const firstOut = out?.[0]
+
+    if (!firstOut || Array.isArray(firstOut))
+      return
+
+    description.value = firstOut.generated_text
+  }
+  catch (error) {
+    console.error(error)
+    // TODO @Shinigami92 2024-05-27: Display error message to the user, so they know that something went wrong
+  }
+  finally {
+    generationInProgress.value = false
+  }
+}
+
 function toggleApply() {
   isEditDialogOpen.value = false
   emit('setDescription', description.value)
@@ -62,6 +130,16 @@ function toggleApply() {
             <div flex flex-row-reverse>
               <PublishCharacterCounter :length="description.length" :max="maxDescriptionLength" />
             </div>
+
+            <!-- TODO @Shinigami92 2024-05-27: Style the button in the upper right corner of the textarea -->
+            <button type="button" btn-outline flex="~ gap2 center" :disabled="generationInProgress" @click="generateAltText">
+              <span block i-ri:sparkling-2-line />
+              {{ $t('action.generate-alt-text') }}
+              <span v-if="generationInProgress" aria-hidden="true" block animate-spin preserve-3d>
+                <span block i-ri:loader-2-fill aria-hidden="true" />
+              </span>
+            </button>
+
             <button btn-outline :disabled="description.length > maxDescriptionLength" @click="toggleApply">
               {{ $t('action.apply') }}
             </button>

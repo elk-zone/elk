@@ -19,7 +19,7 @@ export interface ContentParseOptions {
   inReplyToStatus?: mastodon.v1.Status
 }
 
-const sanitizerBasicClasses = filterClasses(/^(h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible)$/u)
+const sanitizerBasicClasses = filterClasses(/^h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible$/u)
 const sanitizer = sanitize({
   // Allow basic elements as seen in https://github.com/mastodon/mastodon/blob/17f79082b098e05b68d6f0d38fabb3ac121879a9/lib/sanitize_ext/sanitize_config.rb
   br: {},

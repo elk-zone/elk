@@ -20,7 +20,7 @@ const tabs = computed(() => {
 })
 
 function toValidName(option: string) {
-  return option.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-')
+  return option.toLowerCase().replace(/[^a-z0-9]/gi, '-')
 }
 
 useCommands(() => command

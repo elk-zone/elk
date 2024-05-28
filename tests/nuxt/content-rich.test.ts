@@ -194,7 +194,7 @@ describe('editor', () => {
 async function render(content: string, options?: ContentParseOptions) {
   const vnode = contentToVNode(content, options)
   const html = (await renderToString(vnode))
-    .replace(/<!--[\[\]]-->/g, '')
+    .replace(/<!--[[\]]-->/g, '')
   let formatted = ''
 
   try {

@@ -23,6 +23,8 @@ const description = ref(props.attachment.description ?? '')
 
 const generationInProgress = ref(false)
 
+const userSettings = useUserSettings()
+
 async function generateAltText() {
   // eslint-disable-next-line no-console
   console.log(JSON.parse(JSON.stringify(props)))
@@ -35,7 +37,18 @@ async function generateAltText() {
   if (generationInProgress.value)
     return
 
-  // TODO @Shinigami92 2024-05-27: Show confirm dialog warning message that a model with ~250MiB will be downloaded
+  const experimentalAltTextGeneration = getPreferences(userSettings.value, 'experimentalAltTextGeneration')
+
+  if (!experimentalAltTextGeneration) {
+    // TODO @Shinigami92 2024-05-28: Use a fancy dialog instead of the browser's alert
+    // eslint-disable-next-line no-alert
+    const allow = confirm('This will download a model with ~250MiB. Do you want to continue? This is an experimental feature and might fail in several scenarios.')
+
+    if (!allow)
+      return
+
+    togglePreferences('experimentalAltTextGeneration')
+  }
 
   generationInProgress.value = true
 
@@ -44,11 +57,10 @@ async function generateAltText() {
 
     const pipe = await pipeline('image-to-text', 'Xenova/vit-gpt2-image-captioning')
 
-    // const imageElement = document.querySelector<HTMLImageElement>('.dialog-main img.status-attachment-image')!
     const imageElement = new Image()
+    // See https://www.hacksoft.io/blog/handle-images-cors-error-in-chrome for why using `?request-with-cors`
     imageElement.crossOrigin = 'Anonymous'
     imageElement.src = `${url}?request-with-cors`
-    await imageElement.decode()
 
     const dataUrl = new Promise<string>((resolve) => {
       imageElement.onload = () => {

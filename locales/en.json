@@ -262,9 +262,6 @@
         "title": "Navigation"
       }
     },
-    "info": {
-      "disable_virtual_scrolling": "Disable the experimental \"Virtual Scrolling\" setting to use this shortcut."
-    },
     "sequence_then": "then"
   },
   "menu": {

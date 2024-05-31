@@ -6,6 +6,8 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
   const keys = useMagicKeys()
   const router = useRouter()
   const i18n = useNuxtApp().$i18n
+  const { y } = useWindowScroll({ behavior: 'instant' })
+  const virtualScroller = usePreferences('experimentalVirtualScroller')
 
   // disable shortcuts when focused on inputs (https://vueuse.org/core/usemagickeys/#conditionally-disable)
   const activeElement = useActiveElement()
@@ -76,4 +78,54 @@ export default defineNuxtPlugin(({ $scrollToTop }) => {
       ?.click()
   }
   whenever(logicAnd(isAuthenticated, notUsingInput, keys['.']), showNewItems)
+
+  // TODO: virtual scroller cannot load off-screen post
+  // that prevents focusing next post properly
+  // we disabled this shortcut when enabled virtual scroller
+  if (!virtualScroller.value) {
+    const statusSelector = '[aria-roledescription="status-card"]'
+
+    // find the nearest status element id traversing up from the current active element
+    // `activeElement` can be some of an element within a status element
+    // otherwise, reach to the root `<html>`
+    function getActiveStatueId(element: HTMLElement): string | undefined {
+      if (element.nodeName === 'HTML')
+        return undefined
+
+      if (element.matches(statusSelector))
+        return element.id
+
+      return getActiveStatueId(element.parentNode as HTMLElement)
+    }
+
+    function focusNextOrPreviousStatus(direction: 'next' | 'previous') {
+      const activeStatusId = activeElement.value ? getActiveStatueId(activeElement.value) : undefined
+      const nextOrPreviousStatusId = getNextOrPreviousStatusId(activeStatusId, direction)
+      if (nextOrPreviousStatusId) {
+        const status = document.getElementById(nextOrPreviousStatusId)
+        if (status) {
+          status.focus({ preventScroll: true })
+          const topBarHeight = 58
+          y.value += status.getBoundingClientRect().top - topBarHeight
+        }
+      }
+    }
+
+    function getNextOrPreviousStatusId(currentStatusId: string | undefined, direction: 'next' | 'previous'): string | undefined {
+      const statusIds = [...document.querySelectorAll(statusSelector)].map(s => s.id)
+      if (currentStatusId === undefined) {
+        // if there is no selection, always focus on the first status
+        return statusIds[0]
+      }
+
+      const currentIndex = statusIds.findIndex(id => id === currentStatusId)
+      const statusId = direction === 'next'
+        ? statusIds[Math.min(currentIndex + 1, statusIds.length)]
+        : statusIds[Math.max(0, currentIndex - 1)]
+      return statusId
+    }
+
+    whenever(logicAnd(notUsingInput, keys.j), () => focusNextOrPreviousStatus('next'))
+    whenever(logicAnd(notUsingInput, keys.k), () => focusNextOrPreviousStatus('previous'))
+  }
 })

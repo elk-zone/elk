@@ -343,10 +343,10 @@
   },
   "settings": {
     "about": {
-      "built_at": "Kurulmuş",
+      "built_at": "Kurulum",
       "label": "Hakkında",
       "meet_the_team": "Takım ile buluş",
-      "sponsor_action": "Bize spponsor ol",
+      "sponsor_action": "Bize sponsor ol",
       "sponsor_action_desc": "Elk'i geliştiren takıma destek olmak için",
       "sponsors": "Sponsorlar",
       "sponsors_body_1": "Elk cömert sponsorluk ve şunların yardımı sayesinde mümkün oldu:",

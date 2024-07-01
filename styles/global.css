@@ -239,3 +239,7 @@ allows controlling them individually
 [data-mode="grayscale"] video:hover {
   filter: grayscale(0);
 }
+
+.nuxt-loading-indicator {
+  opacity: unset !important;
+}

@@ -11,7 +11,7 @@ useHydratedHead({
 </script>
 
 <template>
-  <MainContent>
+  <MainContent skip-content="nav.conversations">
     <template #title>
       <NuxtLink to="/conversations" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:at-line />

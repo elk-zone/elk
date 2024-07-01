@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import ISO6391 from 'iso-639-1'
+import { getDisplayName, supportedTranslationLanguages } from 'virtual:iso-639-1'
 
-const supportedTranslationLanguages = ISO6391.getLanguages([...supportedTranslationCodes])
 const userSettings = useUserSettings()
 
 const language = ref<string | null>(null)
@@ -37,7 +36,7 @@ function removeDisabledTranslation(code: string) {
       <div class="ms-4">
         <ul>
           <li v-for="langCode in userSettings.disabledTranslationLanguages" :key="langCode" class="flex items-center">
-            <div>{{ ISO6391.getNativeName(langCode) }}</div>
+            <div>{{ getDisplayName(langCode) }}</div>
             <button class="btn-text" type="button" :title="$t('settings.language.translations.remove')" @click.prevent="removeDisabledTranslation(langCode)">
               <span class="block i-ri:close-line" aria-hidden="true" />
             </button>

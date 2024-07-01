@@ -14,32 +14,24 @@ const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
   <article flex flex-col relative>
     <StatusLink :status="group.status!" pb4 pt5>
       <div flex flex-col gap-3>
-        <div v-if="reblogs.length" flex="~ gap-1">
-          <div i-ri:repeat-fill text-xl me-2 color-green />
-          <template v-for="i, idx of reblogs" :key="idx">
-            <AccountHoverWrapper :account="i.account">
-              <NuxtLink :to="getAccountRoute(i.account)">
-                <AccountAvatar text-primary font-bold :account="i.account" class="h-1.5em w-1.5em" />
-              </NuxtLink>
-            </AccountHoverWrapper>
+        <NotificationGroupedLikeItem
+          v-if="reblogs.length"
+          :likes="reblogs"
+          :hint="$t('notification.reblogged_post')"
+        >
+          <template #icon>
+            <div i-ri:repeat-fill text-xl me-2 color-green />
           </template>
-          <div ml1>
-            {{ $t('notification.reblogged_post') }}
-          </div>
-        </div>
-        <div v-if="likes.length" flex="~ gap-1">
-          <div :class="useStarFavoriteIcon ? 'i-ri:star-line color-yellow' : 'i-ri:heart-line color-red'" text-xl me-2 />
-          <template v-for="i, idx of likes" :key="idx">
-            <AccountHoverWrapper :account="i.account">
-              <NuxtLink :to="getAccountRoute(i.account)">
-                <AccountAvatar text-primary font-bold :account="i.account" class="h-1.5em w-1.5em" />
-              </NuxtLink>
-            </AccountHoverWrapper>
+        </NotificationGroupedLikeItem>
+        <NotificationGroupedLikeItem
+          v-if="likes.length"
+          :likes="likes"
+          :hint="$t('notification.favourited_post')"
+        >
+          <template #icon>
+            <div :class="useStarFavoriteIcon ? 'i-ri:star-line color-yellow' : 'i-ri:heart-line color-red'" text-xl me-2 />
           </template>
-          <div ms1>
-            {{ $t('notification.favourited_post') }}
-          </div>
-        </div>
+        </NotificationGroupedLikeItem>
       </div>
       <div ps9 mt-1>
         <StatusBody :status="group.status!" text-secondary />

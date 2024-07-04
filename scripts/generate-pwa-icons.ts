@@ -90,7 +90,6 @@ async function generateTransparentIcons(icons: ResolvedIcons, svgLogo: string, f
   const { sizes, padding, resizeOptions } = icons.transparent
   await Promise.all(sizes.map(async (size) => {
     const filePath = resolve(folder, icons.iconName('transparent', size))
-    console.log(filePath)
     await sharp({
       create: {
         width: size,

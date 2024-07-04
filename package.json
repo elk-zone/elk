@@ -134,7 +134,7 @@
     "lint-staged": "^15.2.2",
     "nuxt": "^3.11.2",
     "prettier": "^3.2.5",
-    "sharp": "0.32.6",
+    "sharp": "^0.33.3",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.11.1",
     "tsx": "^4.7.2",

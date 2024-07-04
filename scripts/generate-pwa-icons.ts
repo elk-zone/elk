@@ -90,6 +90,7 @@ async function generateTransparentIcons(icons: ResolvedIcons, svgLogo: string, f
   const { sizes, padding, resizeOptions } = icons.transparent
   await Promise.all(sizes.map(async (size) => {
     const filePath = resolve(folder, icons.iconName('transparent', size))
+    console.log(filePath)
     await sharp({
       create: {
         width: size,
@@ -189,6 +190,26 @@ async function generatePWAIcons(folders: string[], icons: Icons) {
     apple,
     ico,
   })))
+
+  const svgLogo = resolve(folders[0], 'monochrome-logo.svg')
+
+  await generateTransparentIcons({
+    png: { compressionLevel: 9, quality: 60 },
+    iconName: (type, size) => {
+      switch (type) {
+        case 'transparent':
+          return `monochrome-${size}x${size}-temp.png`
+        case 'maskable':
+          return `maskable-icon-${size}x${size}.png`
+        case 'apple':
+          return `apple-touch-icon-${size}x${size}.png`
+      }
+    },
+    transparent,
+    maskable,
+    apple,
+    ico,
+  }, svgLogo, folders[0])
 }
 
 console.log('Generating Elk PWA Icons...')

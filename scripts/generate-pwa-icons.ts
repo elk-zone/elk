@@ -1,4 +1,4 @@
-import { rm, writeFile } from 'node:fs/promises'
+import { copyFile, rm, writeFile } from 'node:fs/promises'
 import process from 'node:process'
 import { resolve } from 'pathe'
 import type { PngOptions, ResizeOptions } from 'sharp'
@@ -209,6 +209,14 @@ async function generatePWAIcons(folders: string[], icons: Icons) {
     apple,
     ico,
   }, svgLogo, folders[0])
+
+  // copy monochrome png files to public dev and staging folders
+  await Promise.all(folders.slice(1).map(async (folder) => {
+    await Promise.all(transparent.sizes.map(size => copyFile(
+      resolve(folders[0], `monochrome-${size}x${size}.png`),
+      resolve(folder, `monochrome-${size}x${size}.png`),
+    )))
+  }))
 }
 
 console.log('Generating Elk PWA Icons...')

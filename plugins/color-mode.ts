@@ -13,6 +13,7 @@ export default defineNuxtPlugin(() => {
         id: 'apple-mobile-web-app-status-bar-style',
         name: 'apple-mobile-web-app-status-bar-style',
         content: () => 'default',
-      }],
+      },
+    ],
   })
 })

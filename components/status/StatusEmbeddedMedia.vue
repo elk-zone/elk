@@ -28,7 +28,7 @@ const card = ref(status.card)
         absolute
         w-full
         h-full
-        z-100
+        z-10
         rounded-lg
         style="background: linear-gradient(black, rgba(0,0,0,0.5), transparent, transparent, rgba(0,0,0,0.20))"
       >

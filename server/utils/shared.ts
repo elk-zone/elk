@@ -15,6 +15,7 @@ import { driver } from '#storage-config'
 
 import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
+import { version } from '~/config/env'
 
 const storage = useStorage<AppInfo>()
 
@@ -48,9 +49,14 @@ export function getRedirectURI(origin: string, server: string) {
   return `${origin}/api/${server}/oauth/${encodeURIComponent(origin)}`
 }
 
+export const defaultUserAgent = `${APP_NAME}/${version}`
+
 async function fetchAppInfo(origin: string, server: string) {
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
+    headers: {
+      'user-agent': defaultUserAgent,
+    },
     body: {
       client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
       website: 'https://elk.zone',

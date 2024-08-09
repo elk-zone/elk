@@ -84,9 +84,21 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
         type: 'image/png',
       },
       {
+        src: 'monochrome-64x64.png',
+        sizes: '64x64',
+        type: 'image/png',
+        purpose: 'monochrome',
+      },
+      {
         src: 'pwa-192x192.png',
         sizes: '192x192',
         type: 'image/png',
+      },
+      {
+        src: 'monochrome-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+        purpose: 'monochrome',
       },
       {
         src: 'pwa-512x512.png',
@@ -99,6 +111,12 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
         sizes: '512x512',
         type: 'image/png',
         purpose: 'maskable',
+      },
+      {
+        src: 'monochrome-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'monochrome',
       },
     ],
     share_target: {

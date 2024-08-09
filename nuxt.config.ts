@@ -27,6 +27,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     ...(isDevelopment || isWindows) ? [] : ['nuxt-security'],
     '~/modules/emoji-mart-translation',
+    '~/modules/iso-639-1',
     '~/modules/purge-comments',
     '~/modules/build-env',
     '~/modules/tauri/index',

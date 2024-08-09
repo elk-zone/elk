@@ -72,6 +72,8 @@ const sanitizer = sanitize({
 /**
  * Parse raw HTML form Mastodon server to AST,
  * with interop of custom emojis and inline Markdown syntax
+ * @param html The content to parse
+ * @param options The parsing options
  */
 export function parseMastodonHTML(
   html: string,
@@ -140,6 +142,8 @@ export function parseMastodonHTML(
 
 /**
  * Converts raw HTML form Mastodon server to HTML for Tiptap editor
+ * @param html The content to parse
+ * @param customEmojis The custom emojis to use
  */
 export function convertMastodonHTML(html: string, customEmojis: Record<string, mastodon.v1.CustomEmoji> = {}) {
   const tree = parseMastodonHTML(html, {
@@ -148,6 +152,25 @@ export function convertMastodonHTML(html: string, customEmojis: Record<string, m
     convertMentionLink: true,
   })
   return render(tree)
+}
+
+export function sanitizeEmbeddedIframe(html: string): Node {
+  const transforms: Transform[] = [
+    sanitize({
+      iframe: {
+        src: (src) => {
+          if (typeof src !== 'string')
+            return undefined
+
+          const url = new URL(src)
+          return url.protocol === 'https:' ? src : undefined
+        },
+        allowfullscreen: set('true'),
+      },
+    }),
+  ]
+
+  return transformSync(parse(html), transforms)
 }
 
 export function htmlToText(html: string) {
@@ -331,6 +354,8 @@ function filterHref() {
     if (href.startsWith('/') || href.startsWith('.'))
       return href
 
+    href = href.replace(/&amp;/g, '&')
+
     let url
     try {
       url = new URL(href)
@@ -469,7 +494,10 @@ function _markdownProcess(value: string) {
 
   let start = 0
   while (true) {
-    let found: { match: RegExpMatchArray; replacer: (c: (string | Node)[]) => Node } | undefined
+    let found: {
+      match: RegExpMatchArray
+      replacer: (c: (string | Node)[]) => Node
+    } | undefined
 
     for (const [re, replacer] of _markdownReplacements) {
       re.lastIndex = start
@@ -499,10 +527,21 @@ function transformMarkdown(node: Node) {
   return _markdownProcess(node.value)
 }
 
+function addBdiParagraphs(node: Node) {
+  if (node.name === 'p' && !('dir' in node.attributes) && node.children?.length && node.children.length > 1)
+    node.attributes.dir = 'auto'
+
+  return node
+}
+
 function transformParagraphs(node: Node): Node | Node[] {
+  // Add bdi to paragraphs
+  addBdiParagraphs(node)
+
   // For top level paragraphs, inject an empty <p> to preserve status paragraphs in our editor (except for the last one)
   if (node.parent?.type === DOCUMENT_NODE && node.name === 'p' && node.parent.children.at(-1) !== node)
     return [node, h('p')]
+
   return node
 }
 
@@ -584,7 +623,7 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
 
     // We have a special case for single mentions that are part of a reply.
     // We already have the replying to badge in this case or the status is connected to the previous one.
-    // This is needed because the status doesn't included the in Reply to handle, only the account id.
+    // This is needed because the status doesn't include the in Reply to handle, only the account id.
     // But this covers the majority of cases.
     const showMentions = !(contextualMentionsCount === 0 || (mentionsCount === 1 && status?.inReplyToAccountId))
     const grouped = contextualMentionsCount > 2

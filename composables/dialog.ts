@@ -1,9 +1,9 @@
 import type { mastodon } from 'masto'
-import type { ConfirmDialogChoice, ConfirmDialogLabel, Draft, ErrorDialogData } from '~/types'
+import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, ErrorDialogData } from '~/types'
 import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
-export const confirmDialogLabel = ref<ConfirmDialogLabel>()
+export const confirmDialogLabel = ref<ConfirmDialogOptions>()
 export const errorDialogData = ref<ErrorDialogData>()
 
 export const mediaPreviewList = ref<mastodon.v1.MediaAttachment[]>([])
@@ -39,7 +39,7 @@ export function openSigninDialog() {
   isSigninDialogOpen.value = true
 }
 
-export async function openConfirmDialog(label: ConfirmDialogLabel | string): Promise<ConfirmDialogChoice> {
+export async function openConfirmDialog(label: ConfirmDialogOptions | string): Promise<ConfirmDialogChoice> {
   confirmDialogLabel.value = typeof label === 'string' ? { title: label } : label
   confirmDialogChoice.value = undefined
   isConfirmDialogOpen.value = true
@@ -49,14 +49,14 @@ export async function openConfirmDialog(label: ConfirmDialogLabel | string): Pro
   return confirmDialogChoice.value!
 }
 
-export async function openPublishDialog(draftKey = 'dialog', draft?: Draft, overwrite = false): Promise<void> {
+export async function openPublishDialog(draftKey = 'dialog', draft?: DraftItem, overwrite = false): Promise<void> {
   dialogDraftKey.value = draftKey
 
   if (draft) {
     if (overwrite && !isEmptyDraft(currentUserDrafts.value[draftKey])) {
       // TODO overwrite warning
       // TODO don't overwrite, have a draft list
-      if (process.dev) {
+      if (import.meta.dev) {
         // eslint-disable-next-line no-alert
         const result = confirm('[DEV] Are you sure you overwrite draft content?')
         if (!result)
@@ -65,7 +65,7 @@ export async function openPublishDialog(draftKey = 'dialog', draft?: Draft, over
     }
 
     if (overwrite || !currentUserDrafts.value[draftKey])
-      currentUserDrafts.value[draftKey] = draft
+      currentUserDrafts.value[draftKey] = [draft]
   }
   isPublishDialogOpen.value = true
 
@@ -89,7 +89,7 @@ function restoreMediaPreviewFromState() {
   isMediaPreviewOpen.value = history.state?.mediaPreview ?? false
 }
 
-if (process.client) {
+if (import.meta.client) {
   window.addEventListener('popstate', restoreMediaPreviewFromState)
 
   restoreMediaPreviewFromState()

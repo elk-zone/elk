@@ -2,6 +2,8 @@
 defineProps<{
   showLabel?: boolean
 }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -11,11 +13,11 @@ defineProps<{
     text-secondary-light
   >
     <slot name="prepend" />
-    <CommonTooltip no-auto-focus content="Lock" :disabled="showLabel">
+    <CommonTooltip content="Lock" :disabled="showLabel">
       <div i-ri:lock-line />
     </CommonTooltip>
     <div v-if="showLabel">
-      Lock
+      {{ t('account.lock') }}
     </div>
   </div>
 </template>

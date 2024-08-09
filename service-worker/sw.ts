@@ -39,9 +39,7 @@ if (import.meta.env.PROD) {
     /^\/oauth\//,
     /^\/signin\//,
     /^\/web-share-target\//,
-    // exclude shiki: has its own cache
-    /^\/shiki\//,
-    // exclude shiki: has its own cache
+    // exclude emoji: has its own cache
     /^\/emojis\//,
     // exclude sw: if the user navigates to it, fallback to index.html
     /^\/sw.js$/,
@@ -65,25 +63,12 @@ if (import.meta.env.PROD) {
       ],
     }),
   )
-  // include shiki cache
-  registerRoute(
-    ({ sameOrigin, url }) =>
-      sameOrigin && url.pathname.startsWith('/shiki/'),
-    new StaleWhileRevalidate({
-      cacheName: 'elk-shiki',
-      plugins: [
-        new CacheableResponsePlugin({ statuses: [200] }),
-        // 365 days max
-        new ExpirationPlugin({ purgeOnQuotaError: true, maxAgeSeconds: 60 * 60 * 24 * 365 }),
-      ],
-    }),
-  )
   // include emoji icons
   registerRoute(
     ({ sameOrigin, request, url }) =>
       sameOrigin
-        && request.destination === 'image'
-        && url.pathname.startsWith('/emojis/'),
+      && request.destination === 'image'
+      && url.pathname.startsWith('/emojis/'),
     new StaleWhileRevalidate({
       cacheName: 'elk-emojis',
       plugins: [

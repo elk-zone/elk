@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { ComputedRef } from 'vue'
-import type { LocaleObject } from '#i18n'
+import type { LocaleObject } from '@nuxtjs/i18n'
 
 const userSettings = useUserSettings()
 

@@ -85,6 +85,9 @@ em-emoji-picker {
   p:last-child {
     --at-apply: mb-1;
   }
+  pre {
+    --at-apply: whitespace-pre-wrap;
+  }
   code {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.875em leading-0.8em;
   }
@@ -108,6 +111,9 @@ em-emoji-picker {
   }
   ul > li {
     --at-apply: pl-2;
+  }
+  blockquote {
+    --at-apply: border-primary border-l-4 border-solid pl-3 my-3 text-secondary;
   }
   .code-block {
     --at-apply: bg-code text-0.875em p3 mt-2 rounded overflow-auto

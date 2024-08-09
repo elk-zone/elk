@@ -28,7 +28,7 @@ export interface UseTiptapOptions {
 }
 
 export function useTiptap(options: UseTiptapOptions) {
-  if (process.server)
+  if (import.meta.server)
     return { editor: ref<Editor | undefined>() }
 
   const {
@@ -55,11 +55,17 @@ export function useTiptap(options: UseTiptapOptions) {
         },
       }),
       Mention.configure({
+        renderHTML({ options, node }) {
+          return ['span', { 'data-type': 'mention', 'data-id': node.attrs.id }, `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`]
+        },
         suggestion: TiptapMentionSuggestion,
       }),
       Mention
         .extend({ name: 'hashtag' })
         .configure({
+          renderHTML({ options, node }) {
+            return ['span', { 'data-type': 'hashtag', 'data-id': node.attrs.id }, `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`]
+          },
           suggestion: TiptapHashtagSuggestion,
         }),
       Mention
@@ -109,6 +115,9 @@ export function useTiptap(options: UseTiptapOptions) {
       attributes: {
         class: 'content-editor content-rich',
       },
+    },
+    parseOptions: {
+      preserveWhitespace: 'full',
     },
     autofocus,
     editable: true,

@@ -11,12 +11,12 @@ const emit = defineEmits<{
   (evt: 'removeNote'): void
 }>()
 
-let relationship = $(useRelationship(account))
+const relationship = useRelationship(account)
 
-const isSelf = $(useSelfAccount(() => account))
+const isSelf = useSelfAccount(() => account)
 
 const { t } = useI18n()
-const { client } = $(useMasto())
+const { client } = useMasto()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 const { share, isSupported: isShareSupported } = useShare()
 
@@ -25,15 +25,19 @@ function shareAccount() {
 }
 
 async function toggleReblogs() {
-  if (!relationship!.showingReblogs && await openConfirmDialog({
-    title: t('confirm.show_reblogs.title', [account.acct]),
-    confirm: t('confirm.show_reblogs.confirm'),
-    cancel: t('confirm.show_reblogs.cancel'),
-  }) !== 'confirm')
-    return
+  if (!relationship.value!.showingReblogs) {
+    const dialogChoice = await openConfirmDialog({
+      title: t('confirm.show_reblogs.title'),
+      description: t('confirm.show_reblogs.description', [account.acct]),
+      confirm: t('confirm.show_reblogs.confirm'),
+      cancel: t('confirm.show_reblogs.cancel'),
+    })
+    if (dialogChoice.choice !== 'confirm')
+      return
+  }
 
-  const showingReblogs = !relationship?.showingReblogs
-  relationship = await client.v1.accounts.follow(account.id, { reblogs: showingReblogs })
+  const showingReblogs = !relationship.value?.showingReblogs
+  relationship.value = await client.value.v1.accounts.$select(account.id).follow({ reblogs: showingReblogs })
 }
 
 async function addUserNote() {
@@ -41,18 +45,18 @@ async function addUserNote() {
 }
 
 async function removeUserNote() {
-  if (!relationship!.note || relationship!.note.length === 0)
+  if (!relationship.value!.note || relationship.value!.note.length === 0)
     return
 
-  const newNote = await client.v1.accounts.createNote(account.id, { comment: '' })
-  relationship!.note = newNote.note
+  const newNote = await client.value.v1.accounts.$select(account.id).note.create({ comment: '' })
+  relationship.value!.note = newNote.note
   emit('removeNote')
 }
 </script>
 
 <template>
   <CommonDropdown :eager-mount="command">
-    <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group aria-label="More actions">
+    <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group :aria-label="t('actions.more')">
       <div rounded-5 p2 elk-group-hover="bg-purple/10">
         <div i-ri:more-2-fill />
       </div>
@@ -68,7 +72,7 @@ async function removeUserNote() {
       </NuxtLink>
       <CommonDropdownItem
         v-if="isShareSupported"
-        :text="`Share @${account.acct}`"
+        :text="$t('menu.share_account', [`@${account.acct}`])"
         icon="i-ri:share-line"
         :command="command"
         @click="shareAccount()"

@@ -37,16 +37,16 @@ onUnmounted(() => locked.value = false)
 </script>
 
 <template>
-  <div relative h-full w-full flex pt-12 w-100vh @click="onClick">
+  <div relative h-full w-full flex pt-12 @click="onClick">
     <button
-      v-if="hasNext" pointer-events-auto btn-action-icon bg="black/20" :aria-label="$t('action.previous')"
+      v-if="hasNext" pointer-events-auto btn-action-icon bg="black/20" :aria-label="$t('action.next')"
       hover:bg="black/40" dark:bg="white/30" dark-hover:bg="white/20" absolute top="1/2" right-1 z5
       :title="$t('action.next')" @click="next"
     >
       <div i-ri:arrow-right-s-line text-white />
     </button>
     <button
-      v-if="hasPrev" pointer-events-auto btn-action-icon bg="black/20" aria-label="action.next"
+      v-if="hasPrev" pointer-events-auto btn-action-icon bg="black/20" :aria-label="$t('action.prev')"
       hover:bg="black/40" dark:bg="white/30" dark:hover-bg="white/20" absolute top="1/2" left-1 z5
       :title="$t('action.prev')" @click="prev"
     >
@@ -71,7 +71,7 @@ onUnmounted(() => locked.value = false)
 
     <div absolute top-0 w-full flex justify-end>
       <button
-        btn-action-icon bg="black/30" aria-label="action.close" hover:bg="black/40" dark:bg="white/30"
+        btn-action-icon bg="black/30" :aria-label="$t('action.close')" hover:bg="black/40" dark:bg="white/30"
         dark:hover-bg="white/20" pointer-events-auto shrink-0 @click="emit('close')"
       >
         <div i-ri:close-line text-white />

@@ -61,8 +61,8 @@ async function copyToClipboard() {
   try {
     await navigator.clipboard.writeText([
       `# ${localeTitle.value}`,
-      (localeTab.value === 'missing' ? missingEntries.value : outdatedEntries.value).join('\n')].join('\n'),
-    )
+      (localeTab.value === 'missing' ? missingEntries.value : outdatedEntries.value).join('\n'),
+    ].join('\n'))
     copied.value = true
     setTimeout(() => copied.value = false, 750)
   }
@@ -116,7 +116,7 @@ async function copyToClipboard() {
           >
             <td :class="[{ expandable: !isSource }]">
               <div>
-                <ToogleIcon v-if="!isSource" :up="hidden || key !== locale" />
+                <ToggleIcon v-if="!isSource" :up="hidden || key !== locale" />
                 {{ title }}
               </div>
             </td>

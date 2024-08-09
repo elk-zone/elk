@@ -63,11 +63,11 @@ function handleFavouritedBoostedByClose() {
     </ModalDialog>
     <ModalDialog
       v-model="isPublishDialogOpen"
-      max-w-180 flex
+      max-w-180 flex flex-col
       @close="handlePublishClose"
     >
       <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
-      <PublishWidget
+      <PublishWidgetList
         v-if="dialogDraftKey"
         :draft-key="dialogDraftKey" expanded flex-1 w-0
         @published="handlePublished"

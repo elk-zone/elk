@@ -14,10 +14,10 @@ const {
 const { translation } = useTranslation(status, getLanguageCode())
 
 const emojisObject = useEmojisFallback(() => status.emojis)
-const vnode = $computed(() => {
+const vnode = computed(() => {
   if (!status.content)
     return null
-  const vnode = contentToVNode(status.content, {
+  return contentToVNode(status.content, {
     emojis: emojisObject.value,
     mentions: 'mentions' in status ? status.mentions : undefined,
     markdown: true,
@@ -25,7 +25,6 @@ const vnode = $computed(() => {
     status: 'id' in status ? status : undefined,
     inReplyToStatus: newer,
   })
-  return vnode
 })
 </script>
 

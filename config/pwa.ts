@@ -14,17 +14,7 @@ export const pwa: VitePWANuxtOptions = {
   manifest: false,
   injectManifest: {
     globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
-    globIgnores: ['emojis/**', 'shiki/**', 'manifest**.webmanifest'],
-    manifestTransforms: [(entries) => {
-      const manifest = entries.map((entry) => {
-        if (entry.url.length > 1 && entry.url[0] !== '/')
-          entry.url = `/${entry.url}`
-
-        return entry
-      })
-
-      return { manifest, warnings: [] }
-    }],
+    globIgnores: ['emojis/**', 'manifest**.webmanifest'],
   },
   devOptions: {
     enabled: process.env.VITE_DEV_PWA === 'true',

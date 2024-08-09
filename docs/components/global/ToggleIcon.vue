@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'ToogleIcon',
+  name: 'ToggleIcon',
   props: { up: Boolean },
 }
 </script>

@@ -11,7 +11,7 @@ const props = defineProps<{
 
 const providerName = props.card.providerName
 
-const gitHubCards = $(usePreferences('experimentalGitHubCards'))
+const gitHubCards = usePreferences('experimentalGitHubCards')
 </script>
 
 <template>

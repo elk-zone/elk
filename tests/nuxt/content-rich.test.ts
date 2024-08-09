@@ -1,10 +1,14 @@
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import type { mastodon } from 'masto'
-import { mockComponent } from 'nuxt-vitest/utils'
+import { mockComponent } from '@nuxt/test-utils/runtime'
 import { contentToVNode } from '~/composables/content-render'
 import type { ContentParseOptions } from '~/composables/content-parse'
+
+beforeEach(() => {
+  publicServer.value = useRuntimeConfig().public.defaultServer
+})
 
 describe('content-rich', () => {
   it('empty', async () => {
@@ -89,55 +93,7 @@ describe('content-rich', () => {
     const { formatted } = await render('<p><span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@elk" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>elk</span></a></span> content <span class="h-card"><a href="https://m.webtoo.ls/@antfu" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>antfu</span></a></span> <span class="h-card"><a href="https://mastodon.roe.dev/@daniel" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>daniel</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@sxzz" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>sxzz</span></a></span> <span class="h-card"><a href="https://m.webtoo.ls/@patak" class="u-url mention" rel="nofollow noopener noreferrer" target="_blank">@<span>patak</span></a></span> content</p>', {
       collapseMentionLink: true,
     })
-    expect(formatted).toMatchInlineSnapshot(`
-      "<p>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@elk\\"
-          ></a
-        ></span>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@elk\\"
-          ></a
-        ></span>
-        content
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@antfu\\"
-          ></a
-        ></span>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/mastodon.roe.dev/@daniel\\"
-          ></a
-        ></span>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@sxzz\\"
-          ></a
-        ></span>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@patak\\"
-          ></a
-        ></span>
-        content
-      </p>
-      "
-    `)
+    expect(formatted).toMatchSnapshot()
   })
 
   it('hides collapsed mentions', async () => {
@@ -145,10 +101,7 @@ describe('content-rich', () => {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })
-    expect(formatted).toMatchInlineSnapshot(`
-      "<p>content</p>
-      "
-    `)
+    expect(formatted).toMatchSnapshot()
   })
 
   it('shows some collapsed mentions inline', async () => {
@@ -156,19 +109,7 @@ describe('content-rich', () => {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })
-    expect(formatted).toMatchInlineSnapshot(`
-      "<p>
-        <span class=\\"h-card\\"
-          ><a
-            class=\\"u-url mention\\"
-            rel=\\"nofollow noopener noreferrer\\"
-            to=\\"/m.webtoo.ls/@antfu\\"
-          ></a
-        ></span>
-        content
-      </p>
-      "
-    `)
+    expect(formatted).toMatchSnapshot()
   })
 
   it('shows some collapsed mentions grouped', async () => {
@@ -176,33 +117,7 @@ describe('content-rich', () => {
       collapseMentionLink: true,
       inReplyToStatus: { account: { acct: 'elk@webtoo.ls' }, mentions: [] as mastodon.v1.StatusMention[] } as mastodon.v1.Status,
     })
-    expect(formatted).toMatchInlineSnapshot(`
-      "<p>
-        <mention-group
-          ><span class=\\"h-card\\"
-            ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@antfu\\"
-            ></a
-          ></span>
-          <span class=\\"h-card\\"
-            ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@patak\\"
-            ></a
-          ></span>
-          <span class=\\"h-card\\"
-            ><a
-              class=\\"u-url mention\\"
-              rel=\\"nofollow noopener noreferrer\\"
-              to=\\"/m.webtoo.ls/@sxzz\\"
-            ></a></span></mention-group
-        >content
-      </p>
-      "
-    `)
+    expect(formatted).toMatchSnapshot()
   })
 
   it ('block with injected html, without language', async () => {
@@ -234,6 +149,35 @@ describe('content-rich', () => {
           &lt;a href="javascript:alert(1)">click me&lt;/a>
         </code>
       </pre>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
+
+  it ('hashtag adds bdi', async () => {
+    const { formatted } = await render(`
+      <p>Testing bdi is added <a href="https://universeodon.com/tags/turkey" class="mention hashtag" rel="tag">#<span>turkey</span></a></p>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
+
+  // REVIEW: there is something wrong with this test in the rendered output, missing bdi content, ultrahtml parses it correctly
+  it ('hashtag doesn\'t add 2 bdi', async () => {
+    const { formatted } = await render(`
+      <p>Testing bdi not added <a href="https://universeodon.com/tags/turkey" class="mention hashtag" rel="tag"><bdi>#<span>turkey</span></bdi></a></p>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
+
+  it ('root p includes dir="auto" attr when mixed content', async () => {
+    const { formatted } = await render(`
+      <p>هذا اختبار جديد 🐦🐤 <span class="h-card"><a href="https://strangeobject.space/@bebatjof" class="u-url mention">@<span>bebatjof</span></a></span> <br />أنا أحب الطريقة التي يتم بها دعم النموذج المزدوج العربي. تمت ترجمة الكلمة الأخيرة بشكل خاطئ وأحاول العثور على كيفية إصلاحها. 🐦🐤 ;). كما أن النموذج الخاص بـ 0 يحتاج إلى إصلاح <a href="https://m.webtoo.ls/tags/turkey" class="mention hashtag" rel="tag">#<span>turkey</span></a> <a href="https://m.webtoo.ls/tags/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" class="mention hashtag" rel="tag">#<span>العربية</span></a> .</p><p>This is a new test 🐦🐤 <span class="h-card"><a href="https://strangeobject.space/@bebatjof" class="u-url mention">@<span>bebatjof</span></a></span> <br />I like how the arabic dual form is supported. The last one is mistranslated and I&#39;m trying to find how to fix it. 🐦🐤 ;). Also, the form for 0 needs to be fixed <a href="https://m.webtoo.ls/tags/turkey" class="mention hashtag" rel="tag">#<span>turkey</span></a> <a href="https://m.webtoo.ls/tags/%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9" class="mention hashtag" rel="tag">#<span>العربية</span></a> .</p>
+    `)
+    expect(formatted).toMatchSnapshot()
+  })
+
+  it ('p moved to div and text children replaced with p[dir="auto"] tags: br children removed', async () => {
+    const { formatted } = await render(`
+      <p><span class="h-card"><a href="https://strangeobject.space/@bebatjof" class="u-url mention">@<span>bebatjof</span></a></span> هذا اختبار:<br />أنا أحب الطريقة التي يتم بها دعم النموذج المزدوج العربي. تمت ترجمة الكلمة الأخيرة بشكل خاطئ وأحاول العثور على كيفية إصلاحها. أيضًا، يجب إصلاح نموذج 0.</p><p>This is a test:<br />I like how the arabic dual form is supported. The last one is mistranslated and I&#39;m trying to find how to fix it. Also, the form for 0 needs to be fixed.</p>
     `)
     expect(formatted).toMatchSnapshot()
   })
@@ -273,17 +217,35 @@ async function render(content: string, options?: ContentParseOptions) {
 vi.mock('vue-router', async () => {
   const { defineComponent, h } = await import('vue')
   return {
-    RouterLink: defineComponent((attrs) => {
-      return () => h('a', attrs)
+    RouterLink: defineComponent({
+      setup(props, { slots }) {
+        return () => h('a', props, { default: () => slots?.default?.() })
+      },
     }),
   }
 })
 
-vi.mock('shiki-es', async (importOriginal) => {
-  const mod = await importOriginal()
+vi.mock('@vueuse/shared', async () => {
+  const vueuseShared = await import('@vueuse/shared')
+  // mock pausableWatch and watchPausable: vitest process hangs from time to time
   return {
-    ...(mod as any),
-    setCDN() {},
+    ...vueuseShared,
+    pausableWatch: () => {
+      return {
+        stop: () => {},
+        pause: () => {},
+        resume: () => {},
+        isActive: readonly(ref(true)),
+      }
+    },
+    watchPausable: () => {
+      return {
+        stop: () => {},
+        pause: () => {},
+        resume: () => {},
+        isActive: readonly(ref(true)),
+      }
+    },
   }
 })
 

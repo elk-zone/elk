@@ -1,21 +1,56 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import { fetchAccountById } from '~/composables/cache'
 
-const {
-  status,
-  isSelfReply = false,
-} = defineProps<{
+type WatcherType = [status?: mastodon.v1.Status, v?: boolean]
+
+const props = defineProps<{
   status: mastodon.v1.Status
   isSelfReply: boolean
 }>()
 
-const isSelf = $computed(() => status.inReplyToAccountId === status.account.id)
-const account = isSelf ? computed(() => status.account) : useAccountById(status.inReplyToAccountId)
+const link = ref()
+const targetIsVisible = ref(false)
+const isSelf = computed(() => props.status.inReplyToAccountId === props.status.account.id)
+const account = ref<mastodon.v1.Account | null | undefined>(isSelf.value ? props.status.account : undefined)
+
+useIntersectionObserver(
+  link,
+  ([{ intersectionRatio }]) => {
+    targetIsVisible.value = intersectionRatio > 0.1
+  },
+)
+
+watch(
+  () => [props.status, targetIsVisible.value] satisfies WatcherType,
+  ([newStatus, newVisible]) => {
+    if (newStatus.account && newStatus.inReplyToAccountId === newStatus.account.id) {
+      account.value = newStatus.account
+      return
+    }
+
+    if (!newVisible)
+      return
+
+    const newId = newStatus.inReplyToAccountId
+
+    if (newId) {
+      fetchAccountById(newStatus.inReplyToAccountId).then((acc) => {
+        if (newId === props.status.inReplyToAccountId)
+          account.value = acc
+      })
+      return
+    }
+    account.value = undefined
+  },
+  { immediate: true, flush: 'post' },
+)
 </script>
 
 <template>
   <NuxtLink
     v-if="status.inReplyToId"
+    ref="link"
     flex="~ gap2" items-center h-auto text-sm text-secondary
     :to="getStatusInReplyToRoute(status)"
     :title="$t('status.replying_to', [account ? getDisplayName(account) : $t('status.someone')])"

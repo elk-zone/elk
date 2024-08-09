@@ -15,83 +15,84 @@ const { form, isDirty, submitter, reset } = useForm({
   form: () => ({ ...list.value }),
 })
 
-let isEditing = $ref<boolean>(false)
-let deleting = $ref<boolean>(false)
-let actionError = $ref<string | undefined>(undefined)
+const isEditing = ref<boolean>(false)
+const deleting = ref<boolean>(false)
+const actionError = ref<string | undefined>(undefined)
 
 const input = ref<HTMLInputElement>()
 const editBtn = ref<HTMLButtonElement>()
 const deleteBtn = ref<HTMLButtonElement>()
 
 async function prepareEdit() {
-  isEditing = true
-  actionError = undefined
+  isEditing.value = true
+  actionError.value = undefined
   await nextTick()
   input.value?.focus()
 }
 async function cancelEdit() {
-  isEditing = false
-  actionError = undefined
-  reset()
+  isEditing.value = false
+  actionError.value = undefined
 
   await nextTick()
+  reset()
   editBtn.value?.focus()
 }
 
 const { submit, submitting } = submitter(async () => {
   try {
-    list.value = await client.v1.lists.update(form.id, {
+    list.value = await client.v1.lists.$select(form.id).update({
       title: form.title,
     })
     cancelEdit()
   }
   catch (err) {
     console.error(err)
-    actionError = (err as Error).message
+    actionError.value = (err as Error).message
     await nextTick()
     input.value?.focus()
   }
 })
 
 async function removeList() {
-  if (deleting)
+  if (deleting.value)
     return
 
   const confirmDelete = await openConfirmDialog({
-    title: t('confirm.delete_list.title', [list.value.title]),
+    title: t('confirm.delete_list.title'),
+    description: t('confirm.delete_list.description', [list.value.title]),
     confirm: t('confirm.delete_list.confirm'),
     cancel: t('confirm.delete_list.cancel'),
   })
 
-  deleting = true
-  actionError = undefined
+  deleting.value = true
+  actionError.value = undefined
   await nextTick()
 
-  if (confirmDelete === 'confirm') {
+  if (confirmDelete.choice === 'confirm') {
     await nextTick()
     try {
-      await client.v1.lists.remove(list.value.id)
+      await client.v1.lists.$select(list.value.id).remove()
       emit('listRemoved', list.value.id)
     }
     catch (err) {
       console.error(err)
-      actionError = (err as Error).message
+      actionError.value = (err as Error).message
       await nextTick()
       deleteBtn.value?.focus()
     }
     finally {
-      deleting = false
+      deleting.value = false
     }
   }
   else {
-    deleting = false
+    deleting.value = false
   }
 }
 
 async function clearError() {
-  actionError = undefined
+  actionError.value = undefined
   await nextTick()
-  if (isEditing)
+  if (isEditing.value)
     input.value?.focus()
   else
     deleteBtn.value?.focus()
@@ -112,7 +113,7 @@ onDeactivated(cancelEdit)
       bg-base border="~ base" h10 m2 ps-1 pe-4 rounded-3 w-full flex="~ row"
       items-center relative focus-within:box-shadow-outline gap-3
     >
-      <CommonTooltip v-if="isEditing" :content="$t('list.cancel_edit')" no-auto-focus>
+      <CommonTooltip v-if="isEditing" :content="$t('list.cancel_edit')">
         <button
           type="button"
           rounded-full text-sm p2 transition-colors
@@ -135,7 +136,7 @@ onDeactivated(cancelEdit)
       {{ form.title }}
     </NuxtLink>
     <div mr4 flex gap2>
-      <CommonTooltip v-if="isEditing" :content="$t('list.save')" no-auto-focus>
+      <CommonTooltip v-if="isEditing" :content="$t('list.save')">
         <button
           type="submit"
           text-sm p2 border-1 transition-colors
@@ -151,7 +152,7 @@ onDeactivated(cancelEdit)
           </template>
         </button>
       </CommonTooltip>
-      <CommonTooltip v-else :content="$t('list.edit')" no-auto-focus>
+      <CommonTooltip v-else :content="$t('list.edit')">
         <button
           ref="editBtn"
           type="button"
@@ -163,7 +164,7 @@ onDeactivated(cancelEdit)
           <span block text-current i-ri:edit-2-line class="rtl-flip" />
         </button>
       </CommonTooltip>
-      <CommonTooltip :content="$t('list.delete')" no-auto-focus>
+      <CommonTooltip :content="$t('list.delete')">
         <button
           type="button"
           text-sm p2 border-1 transition-colors
@@ -191,7 +192,7 @@ onDeactivated(cancelEdit)
         <div aria-hidden="true" i-ri:error-warning-fill />
         <p>{{ $t(`list.${isEditing ? 'edit_error' : 'delete_error'}`) }}</p>
       </div>
-      <CommonTooltip placement="bottom" :content="$t('list.clear_error')" no-auto-focus>
+      <CommonTooltip placement="bottom" :content="$t('list.clear_error')">
         <button
           flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="$t('list.clear_error')"
           @click="clearError"

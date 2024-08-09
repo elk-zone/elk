@@ -1,5 +1,5 @@
 export function useWebShareTarget(listener?: (message: MessageEvent) => void) {
-  if (process.server)
+  if (import.meta.server)
     return
 
   onBeforeMount(() => {

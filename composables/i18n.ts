@@ -29,13 +29,15 @@ export function useHumanReadableNumber() {
   }
 }
 
-export function useFormattedDateTime(value: MaybeRefOrGetter<string | number | Date | undefined | null>,
-  options: Intl.DateTimeFormatOptions = { dateStyle: 'long', timeStyle: 'medium' }) {
+export function useFormattedDateTime(
+  value: MaybeRefOrGetter<string | number | Date | undefined | null>,
+  options: Intl.DateTimeFormatOptions = { dateStyle: 'long', timeStyle: 'medium' },
+) {
   const { locale } = useI18n()
-  const formatter = $computed(() => Intl.DateTimeFormat(locale.value, options))
+  const formatter = computed(() => Intl.DateTimeFormat(locale.value, options))
   return computed(() => {
     const v = resolveUnref(value)
-    return v ? formatter.format(new Date(v)) : ''
+    return v ? formatter.value.format(new Date(v)) : ''
   })
 }
 
@@ -74,4 +76,33 @@ export function useTimeAgoOptions(short = false): UseTimeAgoOptions<false> {
       return d(date, short ? 'short' : 'long')
     },
   }
+}
+
+export function useFileSizeFormatter() {
+  const { locale } = useI18n()
+
+  const formatters = computed(() => ([
+    Intl.NumberFormat(locale.value, {
+      style: 'unit',
+      unit: 'megabyte',
+      unitDisplay: 'narrow',
+      maximumFractionDigits: 0,
+    }),
+    Intl.NumberFormat(locale.value, {
+      style: 'unit',
+      unit: 'kilobyte',
+      unitDisplay: 'narrow',
+      maximumFractionDigits: 0,
+    }),
+  ]))
+
+  const megaByte = 1024 * 1024
+
+  function formatFileSize(size: number) {
+    return size >= megaByte
+      ? formatters.value[0].format(size / megaByte)
+      : formatters.value[1].format(size / 1024)
+  }
+
+  return { formatFileSize }
 }

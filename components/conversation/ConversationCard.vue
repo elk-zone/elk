@@ -5,7 +5,7 @@ const { conversation } = defineProps<{
   conversation: mastodon.v1.Conversation
 }>()
 
-const withAccounts = $computed(() =>
+const withAccounts = computed(() =>
   conversation.accounts.filter(account => account.id !== conversation.lastStatus?.account.id),
 )
 </script>

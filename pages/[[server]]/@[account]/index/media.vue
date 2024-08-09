@@ -3,11 +3,11 @@ definePageMeta({ name: 'account-media' })
 
 const { t } = useI18n()
 const params = useRoute().params
-const handle = $(computedEager(() => params.account as string))
+const handle = computed(() => params.account as string)
 
-const account = await fetchAccountByHandle(handle)
+const account = await fetchAccountByHandle(handle.value)
 
-const paginator = useMastoClient().v1.accounts.listStatuses(account.id, { onlyMedia: true, excludeReplies: false })
+const paginator = useMastoClient().v1.accounts.$select(account.id).statuses.list({ onlyMedia: true, excludeReplies: false })
 
 if (account) {
   useHydratedHead({

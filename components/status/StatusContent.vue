@@ -9,40 +9,44 @@ const { status, context } = defineProps<{
   inNotification?: boolean
 }>()
 
-const isDM = $computed(() => status.visibility === 'direct')
-const isDetails = $computed(() => context === 'details')
+const isDM = computed(() => status.visibility === 'direct')
+const isDetails = computed(() => context === 'details')
 
 // Content Filter logic
-const filterResult = $computed(() => status.filtered?.length ? status.filtered[0] : null)
-const filter = $computed(() => filterResult?.filter)
+const filterResult = computed(() => status.filtered?.length ? status.filtered[0] : null)
+const filter = computed(() => filterResult.value?.filter)
 
-const filterPhrase = $computed(() => filter?.title)
-const isFiltered = $computed(() => status.account.id !== currentUser.value?.account.id && filterPhrase && context && context !== 'details' && !!filter?.context.includes(context))
+const filterPhrase = computed(() => filter.value?.title)
+const isFiltered = computed(() => status.account.id !== currentUser.value?.account.id && filterPhrase && context && context !== 'details' && !!filter.value?.context.includes(context))
 
 // check spoiler text or media attachment
 // needed to handle accounts that mark all their posts as sensitive
-const spoilerTextPresent = $computed(() => !!status.spoilerText && status.spoilerText.trim().length > 0)
-const hasSpoilerOrSensitiveMedia = $computed(() => spoilerTextPresent || (status.sensitive && !!status.mediaAttachments.length))
+const spoilerTextPresent = computed(() => !!status.spoilerText && status.spoilerText.trim().length > 0)
+const hasSpoilerOrSensitiveMedia = computed(() => spoilerTextPresent.value || (status.sensitive && !!status.mediaAttachments.length))
 const isSensitiveNonSpoiler = computed(() => status.sensitive && !status.spoilerText && !!status.mediaAttachments.length)
 const hideAllMedia = computed(
   () => {
-    return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && !!status.mediaAttachments.length) : false
+    return currentUser.value ? (getHideMediaByDefault(currentUser.value.account) && (!!status.mediaAttachments.length || !!status.card?.html)) : false
   },
 )
+const embeddedMediaPreference = usePreferences('experimentalEmbeddedMedia')
+const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPreference.value)
 </script>
 
 <template>
   <div
     space-y-3
     :class="{
-      'pt2 pb0.5 px3.5 bg-dm rounded-4 me--1': isDM,
+      'py2 px3.5 bg-dm rounded-4 me--1': isDM,
       'ms--3.5 mt--1 ms--1': isDM && context !== 'details',
     }"
   >
     <StatusBody v-if="(!isFiltered && isSensitiveNonSpoiler) || hideAllMedia" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
     <StatusSpoiler :enabled="hasSpoilerOrSensitiveMedia || isFiltered" :filter="isFiltered" :sensitive-non-spoiler="isSensitiveNonSpoiler || hideAllMedia" :is-d-m="isDM">
       <template v-if="spoilerTextPresent" #spoiler>
-        <p>{{ status.spoilerText }}</p>
+        <p>
+          <ContentRich :content="status.spoilerText" :emojis="status.emojis" :markdown="false" />
+        </p>
       </template>
       <template v-else-if="filterPhrase" #spoiler>
         <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>
@@ -56,16 +60,16 @@ const hideAllMedia = computed(
         :is-preview="isPreview"
       />
       <StatusPreviewCard
-        v-if="status.card"
+        v-if="status.card && !allowEmbeddedMedia"
         :card="status.card"
         :small-picture-only="status.mediaAttachments?.length > 0"
       />
+      <StatusEmbeddedMedia v-if="allowEmbeddedMedia" :status="status" />
       <StatusCard
         v-if="status.reblog"
         :status="status.reblog" border="~ rounded"
         :actions="false"
       />
-      <div v-if="isDM" />
     </StatusSpoiler>
   </div>
 </template>

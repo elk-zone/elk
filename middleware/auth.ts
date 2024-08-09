@@ -1,7 +1,7 @@
 import type { RouteLocationNormalized } from 'vue-router'
 
 export default defineNuxtRouteMiddleware((to) => {
-  if (process.server)
+  if (import.meta.server)
     return
 
   if (to.path === '/signin/callback')

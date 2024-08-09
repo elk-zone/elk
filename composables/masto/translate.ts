@@ -45,7 +45,7 @@ export const supportedTranslationCodes = [
 export function getLanguageCode() {
   let code = 'en'
   const getCode = (code: string) => code.replace(/-.*$/, '')
-  if (!process.server) {
+  if (import.meta.client) {
     const { locale } = useI18n()
     code = getCode(locale.value ? locale.value : navigator.language)
   }
@@ -60,11 +60,12 @@ interface TranslationErr {
 
 export async function translateText(text: string, from: string | null | undefined, to: string) {
   const config = useRuntimeConfig()
-  const status = $ref({
+  const status = ref({
     success: false,
     error: '',
     text: '',
   })
+  const regex = /<a[^>]*>.*?<\/a>/g
   try {
     const response = await ($fetch as any)(config.public.translateApi, {
       method: 'POST',
@@ -76,21 +77,30 @@ export async function translateText(text: string, from: string | null | undefine
         api_key: '',
       },
     }) as TranslationResponse
-    status.success = true
-    status.text = response.translatedText
+    status.value.success = true
+    // replace the translated links with the original
+    status.value.text = response.translatedText.replace(regex, (match) => {
+      const tagLink = regex.exec(text)
+      return tagLink ? tagLink[0] : match
+    })
   }
   catch (err) {
     // TODO: improve type
     if ((err as TranslationErr).data?.error)
-      status.error = (err as TranslationErr).data!.error!
+      status.value.error = (err as TranslationErr).data!.error!
     else
-      status.error = 'Unknown Error, Please check your console in browser devtool.'
+      status.value.error = 'Unknown Error, Please check your console in browser devtool.'
     console.error('Translate Post Error: ', err)
   }
   return status
 }
 
-const translations = new WeakMap<mastodon.v1.Status | mastodon.v1.StatusEdit, { visible: boolean; text: string; success: boolean; error: string }>()
+const translations = new WeakMap<mastodon.v1.Status | mastodon.v1.StatusEdit, {
+  visible: boolean
+  text: string
+  success: boolean
+  error: string
+}>()
 
 export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEdit, to: string) {
   if (!translations.has(status))
@@ -110,10 +120,10 @@ export function useTranslation(status: mastodon.v1.Status | mastodon.v1.StatusEd
       return
 
     if (!translation.text) {
-      const { success, text, error } = await translateText(status.content, status.language, to)
-      translation.error = error
-      translation.text = text
-      translation.success = success
+      const translated = await translateText(status.content, status.language, to)
+      translation.error = translated.value.error
+      translation.text = translated.value.text
+      translation.success = translated.value.success
     }
 
     translation.visible = !translation.visible

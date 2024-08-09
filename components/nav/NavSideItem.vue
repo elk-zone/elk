@@ -28,13 +28,13 @@ useCommand({
   },
 })
 
-let activeClass = $ref('text-primary')
+const activeClass = ref('text-primary')
 onHydrated(async () => {
   // TODO: force NuxtLink to reevaluate, we now we are in this route though, so we should force it to active
   // we don't have currentServer defined until later
-  activeClass = ''
+  activeClass.value = ''
   await nextTick()
-  activeClass = 'text-primary'
+  activeClass.value = 'text-primary'
 })
 
 // Optimize rendering for the common case of being logged in, only show visual feedback for disabled user-only items
@@ -57,11 +57,21 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
       <div
         class="item"
         flex items-center gap4
-        w-fit rounded-3
-        px2 mx3 sm:mxa
         xl="ml0 mr5 px5 w-auto"
-        transition-100
-        elk-group-hover="bg-active" group-focus-visible:ring="2 current"
+        :class="isSmallScreen
+          ? `
+            w-full
+            px5 sm:mxa
+            transition-colors duration-200 transform
+            hover-bg-gray-100 hover-dark:(bg-gray-700 text-white)
+          ` : `
+            w-fit rounded-3
+            px2 mx3 sm:mxa
+            transition-100
+            elk-group-hover-bg-active
+            group-focus-visible:ring-2
+            group-focus-visible:ring-current
+          `"
       >
         <slot name="icon">
           <div :class="icon" text-xl />

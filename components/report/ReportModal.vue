@@ -34,11 +34,11 @@ function categoryChosen() {
 async function loadStatuses() {
   if (status) {
     // Load the 5 statuses before and after the reported status
-    const prevStatuses = await client.value.v1.accounts.listStatuses(account.id, {
+    const prevStatuses = await client.value.v1.accounts.$select(account.id).statuses.list({
       maxId: status.id,
       limit: 5,
     })
-    const nextStatuses = await client.value.v1.accounts.listStatuses(account.id, {
+    const nextStatuses = await client.value.v1.accounts.$select(account.id).statuses.list({
       minId: status.id,
       limit: 5,
     })
@@ -48,7 +48,7 @@ async function loadStatuses() {
   else {
     // Reporting an account directly
     // Load the 10 most recent statuses
-    const mostRecentStatuses = await client.value.v1.accounts.listStatuses(account.id, {
+    const mostRecentStatuses = await client.value.v1.accounts.$select(account.id).statuses.list({
       limit: 10,
     })
     availableStatuses.value = mostRecentStatuses
@@ -97,7 +97,7 @@ function resetModal() {
         <b text-primary>@{{ account.acct }}</b>
       </i18n-t>
     </h2>
-    <button ref="dismissButton" btn-action-icon absolute top--8 right-0 m1 aria-label="Close" @click="emit('close')">
+    <button ref="dismissButton" btn-action-icon absolute top--8 right-0 m1 :aria-label="$t('action.close')" @click="emit('close')">
       <div i-ri:close-line />
     </button>
 

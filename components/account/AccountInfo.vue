@@ -25,10 +25,9 @@ const { account, as = 'div' } = defineProps<{
         <AccountDisplayName :account="account" font-bold line-clamp-1 ws-pre-wrap break-all text-lg />
         <AccountLockIndicator v-if="account.locked" text-xs />
         <AccountBotIndicator v-if="account.bot" text-xs />
-        <AccountRolesIndicator v-if="hoverCard && account.roles?.length" :account="account" :limit="1" />
       </div>
       <AccountHandle :account="account" text-secondary-light />
-      <div v-if="!hoverCard" self-start mt-1>
+      <div self-start mt-1>
         <AccountRolesIndicator v-if="account.roles?.length" :account="account" :limit="1" />
       </div>
     </div>

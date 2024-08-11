@@ -42,7 +42,7 @@ function reply() {
         color="text-blue" hover="text-blue" elk-group-hover="bg-blue/10"
         icon="i-ri:chat-1-line"
         :command="command"
-        @click="reply"
+        @click.prevent="reply"
       >
         <template v-if="status.repliesCount && !getPreferences(userSettings, 'hideReplyCount')" #text>
           <CommonLocalizedNumber
@@ -64,7 +64,7 @@ function reply() {
         :active="!!status.reblogged"
         :disabled="isLoading.reblogged || !canReblog"
         :command="command"
-        @click="toggleReblog()"
+        @click.prevent="toggleReblog()"
       >
         <template v-if="status.reblogsCount && !getPreferences(userSettings, 'hideBoostCount')" #text>
           <CommonLocalizedNumber
@@ -87,7 +87,7 @@ function reply() {
         :active="!!status.favourited"
         :disabled="isLoading.favourited"
         :command="command"
-        @click="toggleFavourite()"
+        @click.prevent="toggleFavourite()"
       >
         <template v-if="status.favouritesCount && !getPreferences(userSettings, 'hideFavoriteCount')" #text>
           <CommonLocalizedNumber
@@ -109,7 +109,7 @@ function reply() {
         :active="!!status.bookmarked"
         :disabled="isLoading.bookmarked"
         :command="command"
-        @click="toggleBookmark()"
+        @click.prevent="toggleBookmark()"
       />
     </div>
   </div>

@@ -333,6 +333,10 @@ declare global {
 }
 
 declare module '#app' {
+  interface PageMeta {
+    wideLayout?: boolean
+  }
+
   interface RuntimeNuxtHooks {
     'elk-logo:click': () => void
   }

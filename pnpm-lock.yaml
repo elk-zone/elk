@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  nuxt-component-meta: 0.6.4
   unstorage: ^1.10.2
   vitest: 2.0.5
   vue: ^3.4.21
@@ -5988,8 +5989,8 @@ packages:
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
-  nuxt-component-meta@0.6.3:
-    resolution: {integrity: sha512-GdqnSMC1vqabry7WSj3GWA2LZ1gBiWeS2lj943c9TjkL9SN/rABEFXVZA6RO4sOTKF1qV947UGi27PdRd7u+tA==}
+  nuxt-component-meta@0.6.4:
+    resolution: {integrity: sha512-5KRxI2y4fzCG9HaDdaiiTZDBjBATje+iVXJc7oG4A9NUrlQxgTSzovjqWF2rjg/hJlv63h5AAy/bUgAHK3pypw==}
     hasBin: true
 
   nuxt-config-schema@0.4.6:
@@ -10240,7 +10241,7 @@ snapshots:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)
       defu: 6.1.4
       git-url-parse: 14.0.0
-      nuxt-component-meta: 0.6.3(magicast@0.3.4)(rollup@4.20.0)
+      nuxt-component-meta: 0.6.4(magicast@0.3.4)(rollup@4.20.0)
       parse-git-config: 3.0.0
       pkg-types: 1.1.3
       socket.io-client: 4.7.4
@@ -15302,7 +15303,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  nuxt-component-meta@0.6.3(magicast@0.3.4)(rollup@4.20.0):
+  nuxt-component-meta@0.6.4(magicast@0.3.4)(rollup@4.20.0):
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)
       citty: 0.1.6

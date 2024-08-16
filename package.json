@@ -151,11 +151,9 @@
     }
   },
   "resolutions": {
-    "pinia": "^2.2.2",
     "unstorage": "^1.10.2",
     "vitest": "2.0.4",
-    "vue": "^3.4.21",
-    "vue-i18n": "9.13.1"
+    "vue": "^3.4.21"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

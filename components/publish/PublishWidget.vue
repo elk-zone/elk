@@ -85,10 +85,12 @@ function trimPollOptions() {
   const trimmedOptions = draft.value.params.poll!.options.slice(0, indexLastNonEmpty + 1)
 
   if (currentInstance.value?.configuration
-    && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions)
+    && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions) {
     draft.value.params.poll!.options = trimmedOptions
-  else
+  }
+  else {
     draft.value.params.poll!.options = [...trimmedOptions, '']
+  }
 }
 
 function editPollOptionDraft(event: Event, index: number) {

@@ -26,7 +26,7 @@ async function toggleFollowTag() {
 
     emit('change')
   }
-  catch (error) {
+  catch {
     // eslint-disable-next-line vue/no-mutating-props
     tag.following = previousFollowingState
   }

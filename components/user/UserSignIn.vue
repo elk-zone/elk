@@ -27,7 +27,7 @@ function isValidUrl(str: string) {
     new URL(str)
     return true
   }
-  catch (err) {
+  catch {
     return false
   }
 }
@@ -45,10 +45,13 @@ async function handleInput() {
     && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?$/i)
     // Do not hide the autocomplete if a result has an exact substring match on the input
     && !filteredServers.value.some(s => s.includes(input))
-  )
+  ) {
     autocompleteShow.value = false
-  else
+  }
+
+  else {
     autocompleteShow.value = true
+  }
 }
 
 function toSelector(server: string) {

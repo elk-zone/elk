@@ -119,7 +119,8 @@ function createSuggestionRenderer(component: Component): SuggestionOptions['rend
 
       // Use arrow function here because Nuxt will transform it incorrectly as Vue hook causing the build to fail
       onBeforeUpdate: (props) => {
-        props.editor.isFocused && renderer.updateProps({ ...props, isPending: true })
+        if (props.editor.isFocused)
+          renderer.updateProps({ ...props, isPending: true })
       },
 
       onUpdate(props) {

@@ -80,8 +80,9 @@ export function usePublish(options: {
           options.length < currentInstance.value.configuration.polls.maxOptions
           || options[options.length - 1].trim().length === 0
         )
-      )
+      ) {
         options = options.slice(0, options.length - 1)
+      }
 
       poll = { ...draftItem.value.params.poll, options }
     }

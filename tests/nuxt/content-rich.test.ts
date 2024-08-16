@@ -202,7 +202,7 @@ async function render(content: string, options?: ContentParseOptions) {
       parser: 'html',
     })
   }
-  catch (e) {
+  catch {
     formatted = html
   }
 

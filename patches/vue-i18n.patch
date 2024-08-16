@@ -1,0 +1,13 @@
+diff --git a/dist/vue-i18n.d.ts b/dist/vue-i18n.d.ts
+index 8d5c4fc0e551ab3beccfcaa67764818a2c4c6756..0cee95f214e03add239d3df5e91ad2a8a154ac1e 100644
+--- a/dist/vue-i18n.d.ts
++++ b/dist/vue-i18n.d.ts
+@@ -3125,7 +3125,7 @@ export declare type WarnHtmlInMessageLevel = 'off' | 'warn' | 'error';
+ 
+ export { }
+ 
+-declare module '@vue/runtime-core' {
++declare module 'vue' {
+   /**
+    * Component Custom Options for Vue I18n
+    *

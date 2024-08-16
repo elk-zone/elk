@@ -17,6 +17,9 @@ patchedDependencies:
   nuxt:
     hash: gml65k5ovmv3qtnq4qtbxb622a
     path: patches/nuxt.patch
+  nuxt-security:
+    hash: ioplwzeg3uw7dx44sezdh4wsmi
+    path: patches/nuxt-security.patch
   pinceau:
     hash: d6ha36xrn7oh52pyhfdxwv3tsq
     path: patches/pinceau.patch
@@ -136,6 +139,9 @@ importers:
       browser-fs-access:
         specifier: ^0.35.0
         version: 0.35.0
+      cheerio:
+        specifier: ^1.0.0
+        version: 1.0.0
       chroma-js:
         specifier: ^2.4.2
         version: 2.4.2
@@ -186,7 +192,7 @@ importers:
         version: 2.1.3
       nuxt-security:
         specifier: ^1.0.0
-        version: 1.4.3(magicast@0.3.4)(rollup@2.79.1)
+        version: 1.4.3(patch_hash=ioplwzeg3uw7dx44sezdh4wsmi)(magicast@0.3.4)(rollup@2.79.1)
       page-lifecycle:
         specifier: ^0.1.2
         version: 0.1.2
@@ -15514,7 +15520,7 @@ snapshots:
       - supports-color
       - vue
 
-  nuxt-security@1.4.3(magicast@0.3.4)(rollup@2.79.1):
+  nuxt-security@1.4.3(patch_hash=ioplwzeg3uw7dx44sezdh4wsmi)(magicast@0.3.4)(rollup@2.79.1):
     dependencies:
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@2.79.1)
       basic-auth: 2.0.1

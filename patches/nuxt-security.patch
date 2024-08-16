@@ -1,8 +1,8 @@
 diff --git a/dist/module.d.ts b/dist/module.d.ts
-index db3d86728b99c2f8dadd7782483cd0ec40688703..972a0da26f04f58de9301e757a34d318f8d95ece 100644
+index b529dffc651fdd47ccfcf19b896cf76bbe68a0a6..3db4fe583892e6f092dc09f4f11c1a30606d1b20 100644
 --- a/dist/module.d.ts
 +++ b/dist/module.d.ts
-@@ -222,15 +222,15 @@ interface NuxtSecurityRouteRules {
+@@ -232,15 +232,15 @@ interface NuxtSecurityRouteRules {
  
  declare module "@nuxt/schema" {
      interface NuxtOptions {

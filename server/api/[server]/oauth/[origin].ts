@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
     const url = `/signin/callback?${stringifyQuery({ server, token: result.access_token, vapid_key: app.vapid_key })}`
     await sendRedirect(event, url, 302)
   }
-  catch (e) {
+  catch {
     throw createError({
       statusCode: 400,
       statusMessage: 'Could not complete log in.',

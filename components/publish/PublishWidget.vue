@@ -85,10 +85,12 @@ function trimPollOptions() {
   const trimmedOptions = draft.value.params.poll!.options.slice(0, indexLastNonEmpty + 1)
 
   if (currentInstance.value?.configuration
-    && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions)
+    && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions) {
     draft.value.params.poll!.options = trimmedOptions
-  else
+  }
+  else {
     draft.value.params.poll!.options = [...trimmedOptions, '']
+  }
 }
 
 function editPollOptionDraft(event: Event, index: number) {
@@ -135,10 +137,10 @@ const characterCount = computed(() => {
   let length = stringLength(text)
 
   // taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
-  const linkRegex = /(https?:\/\/(www\.)?|xmpp:)\S+/g
+  const linkRegex = /(https?:\/\/|xmpp:)\S+/g
 
   // taken from https://github.com/mastodon/mastodon/blob/af578e/app/javascript/mastodon/features/compose/util/counter.js
-  const countableMentionRegex = /(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig
+  const countableMentionRegex = /(^|[^/\w])@((\w+)@[a-z0-9.-]+[a-z0-9])/gi
 
   // maximum of 23 chars per link
   // https://github.com/elk-zone/elk/issues/1651

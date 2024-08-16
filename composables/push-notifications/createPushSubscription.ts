@@ -102,7 +102,8 @@ async function unsubscribeFromBackend(fromSWPushManager: boolean, removePushNoti
   const cu = currentUser.value
   if (cu) {
     await removePushNotifications(cu)
-    removePushNotification && await removePushNotificationData(cu, fromSWPushManager)
+    if (removePushNotification)
+      await removePushNotificationData(cu, fromSWPushManager)
   }
 }
 

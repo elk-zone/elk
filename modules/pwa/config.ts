@@ -12,7 +12,7 @@ export function configurePWAOptions(options: Partial<VitePWAOptions>, nuxt: Nuxt
     import('workbox-build').BasePartial
       & import('workbox-build').GlobPartial
       & import('workbox-build').RequiredGlobDirectoryPartial
-    >
+  >
 
   if (options.strategies === 'injectManifest') {
     options.injectManifest = options.injectManifest ?? {}
@@ -76,7 +76,7 @@ function createManifestTransform(base: string, appManifestFolder?: string): impo
     })
 
     if (appManifestFolder) {
-      const regExp = /(\/)?[0-9a-f]{8}\b-[0-9a-f]{4}\b-[0-9a-f]{4}\b-[0-9a-f]{4}\b-[0-9a-f]{12}\.json$/i
+      const regExp = /\/?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.json$/i
       // we need to remove the revision from the sw prechaing manifest, UUID is enough:
       // we don't use dontCacheBustURLsMatching, single regex
       entries.filter(e => e && e.url.startsWith(appManifestFolder) && regExp.test(e.url)).forEach((e) => {

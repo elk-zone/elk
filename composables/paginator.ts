@@ -123,8 +123,9 @@ export function usePaginator<T, P, U = T>(
           && state.value === 'idle'
           // No new content is loaded when the keepAlive page enters the background
           && deactivated.value === false
-        )
+        ) {
           loadNext()
+        }
       },
     )
   }

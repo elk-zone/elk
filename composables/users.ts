@@ -83,7 +83,8 @@ export const isGlitchEdition = computed(() => currentInstance.value?.version?.in
 // when multiple tabs: we need to reload window when sign in, switch account or sign out
 if (import.meta.client) {
   const windowReload = () => {
-    document.visibilityState === 'visible' && window.location.reload()
+    if (document.visibilityState === 'visible')
+      window.location.reload()
   }
   watch(currentUserHandle, async (handle, oldHandle) => {
     // when sign in or switch account

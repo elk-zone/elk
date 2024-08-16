@@ -112,7 +112,7 @@
     "ws": "^8.15.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.9.0",
+    "@antfu/eslint-config": "^2.26.0",
     "@antfu/ni": "^0.21.12",
     "@types/chroma-js": "^2.4.4",
     "@types/file-saver": "^2.0.7",
@@ -122,12 +122,12 @@
     "@types/wicg-file-system-access": "^2023.10.5",
     "@types/ws": "^8.5.10",
     "@unlazy/nuxt": "^0.11.2",
-    "@unocss/eslint-config": "^0.58.9",
+    "@unocss/eslint-config": "^0.62.2",
     "@vue/test-utils": "2.4.5",
     "bumpp": "^9.4.0",
     "consola": "^3.2.3",
     "eslint": "^8.57.0",
-    "eslint-plugin-format": "^0.1.0",
+    "eslint-plugin-format": "^0.1.2",
     "flat": "^6.0.1",
     "fs-extra": "^11.2.0",
     "lint-staged": "^15.2.2",

@@ -19,7 +19,7 @@ export interface ContentParseOptions {
   inReplyToStatus?: mastodon.v1.Status
 }
 
-const sanitizerBasicClasses = filterClasses(/^(h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible)$/u)
+const sanitizerBasicClasses = filterClasses(/^h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible$/u)
 const sanitizer = sanitize({
   // Allow basic elements as seen in https://github.com/mastodon/mastodon/blob/17f79082b098e05b68d6f0d38fabb3ac121879a9/lib/sanitize_ext/sanitize_config.rb
   br: {},
@@ -93,6 +93,7 @@ export function parseMastodonHTML(
   if (markdown) {
     // Handle code blocks
     html = html
+      /* eslint-disable regexp/no-super-linear-backtracking, regexp/no-misleading-capturing-group */
       .replace(/>(```|~~~)(\w*)([\s\S]+?)\1/g, (_1, _2, lang: string, raw: string) => {
         const code = htmlToText(raw)
           .replace(/</g, '&lt;')
@@ -191,7 +192,7 @@ export function recursiveTreeToText(input: Node): string {
     return treeToText(input)
 }
 
-const emojiIdNeedsWrappingRE = /^(\d|\w|-|_)+$/
+const emojiIdNeedsWrappingRE = /^([\w\-])+$/
 
 export function treeToText(input: Node): string {
   let pre = ''
@@ -417,7 +418,7 @@ function removeCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji>
     if (node.type !== TEXT_NODE)
       return node
 
-    const split = node.value.split(/\s?:([\w-]+?):/g)
+    const split = node.value.split(/\s?:([\w-]+):/g)
     if (split.length === 1)
       return node
 
@@ -439,7 +440,7 @@ function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji
     if (node.type !== TEXT_NODE)
       return node
 
-    const split = node.value.split(/:([\w-]+?):/g)
+    const split = node.value.split(/:([\w-]+):/g)
     if (split.length === 1)
       return node
 
@@ -484,9 +485,9 @@ const _markdownReplacements: [RegExp, (c: (string | Node)[]) => Node][] = [
   [/\*\*(.*?)\*\*/g, c => h('b', null, c)],
   [/\*(.*?)\*/g, c => h('em', null, c)],
   [/~~(.*?)~~/g, c => h('del', null, c)],
-  [/`([^`]+?)`/g, c => h('code', null, c)],
+  [/`([^`]+)`/g, c => h('code', null, c)],
   // transform @username@twitter.com as links
-  [/\B@([a-zA-Z0-9_]+)@twitter\.com\b/gi, c => h('a', { href: `https://twitter.com/${c}`, target: '_blank', rel: 'nofollow noopener noreferrer', class: 'mention external' }, `@${c}@twitter.com`)],
+  [/\B@(\w+)@twitter\.com\b/gi, c => h('a', { href: `https://twitter.com/${c}`, target: '_blank', rel: 'nofollow noopener noreferrer', class: 'mention external' }, `@${c}@twitter.com`)],
 ]
 
 function _markdownProcess(value: string) {

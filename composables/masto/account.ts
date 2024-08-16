@@ -4,7 +4,7 @@ export function getDisplayName(account: mastodon.v1.Account, options?: { rich?: 
   const displayName = account.displayName || account.username || account.acct || ''
   if (options?.rich)
     return displayName
-  return displayName.replace(/:([\w-]+?):/g, '')
+  return displayName.replace(/:([\w-]+):/g, '')
 }
 
 export function accountToShortHandle(acct: string) {

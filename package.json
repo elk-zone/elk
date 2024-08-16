@@ -143,7 +143,6 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "nuxt-security@0.13.1": "patches/nuxt-security@0.13.1.patch",
       "@vueuse/motion": "patches/@vueuse__motion.patch",
       "pinceau": "patches/pinceau.patch",
       "vue-i18n": "patches/vue-i18n.patch",

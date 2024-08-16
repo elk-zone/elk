@@ -266,7 +266,7 @@ importers:
         version: 8.17.0
     devDependencies:
       '@antfu/eslint-config':
-        specifier: ^2.19.0
+        specifier: ^2.26.0
         version: 2.26.0(@typescript-eslint/utils@8.1.0(eslint@8.57.0)(typescript@5.4.4))(@unocss/eslint-plugin@0.62.2(eslint@8.57.0)(typescript@5.4.4))(@vue/compiler-sfc@3.4.38)(eslint-plugin-format@0.1.2(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.4)(vitest@2.0.5(@types/node@20.8.6)(happy-dom@10.5.2)(terser@5.22.0))
       '@antfu/ni':
         specifier: ^0.21.12
@@ -296,8 +296,8 @@ importers:
         specifier: ^0.11.2
         version: 0.11.2(magicast@0.3.3)(rollup@2.79.1)
       '@unocss/eslint-config':
-        specifier: ^0.58.9
-        version: 0.58.9(eslint@8.57.0)(typescript@5.4.4)
+        specifier: ^0.62.2
+        version: 0.62.2(eslint@8.57.0)(typescript@5.4.4)
       '@vue/test-utils':
         specifier: 2.4.5
         version: 2.4.5
@@ -311,7 +311,7 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
       eslint-plugin-format:
-        specifier: ^0.1.0
+        specifier: ^0.1.2
         version: 0.1.2(eslint@8.57.0)
       flat:
         specifier: ^6.0.1
@@ -2758,26 +2758,15 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  '@unocss/config@0.58.9':
-    resolution: {integrity: sha512-90wRXIyGNI8UenWxvHUcH4l4rgq813MsTzYWsf6ZKyLLvkFjV2b2EfGXI27GPvZ7fVE1OAqx+wJNTw8CyQxwag==}
-    engines: {node: '>=14'}
-
   '@unocss/config@0.62.2':
     resolution: {integrity: sha512-TgWhO0hkTADnuSgcUZvFP3i4AVpaiMvr41hhQqCPQTaiLMRrroXFnqL33cpkEbHLIfbTh74pXrDxnzMLaEKVdQ==}
     engines: {node: '>=14'}
 
-  '@unocss/core@0.58.9':
-    resolution: {integrity: sha512-wYpPIPPsOIbIoMIDuH8ihehJk5pAZmyFKXIYO/Kro98GEOFhz6lJoLsy6/PZuitlgp2/TSlubUuWGjHWvp5osw==}
-
   '@unocss/core@0.62.2':
     resolution: {integrity: sha512-86jEFUJ/PSwdb1qqiEi0lWlewfKLQwiH+JAfnh8c2hLjOPVmCkb0nnsYSMh8drmtN5kpk6E06mN0IrKMO7OnvQ==}
 
-  '@unocss/eslint-config@0.58.9':
-    resolution: {integrity: sha512-7Cf9NVPQqdhd6rbe2JDlqY9bBwuFfxvZOmeEUcKaI10QNNrDNvnMKd8rToxCdm5RToSjNeuj66V/scl8Kv8rfQ==}
-    engines: {node: '>=14'}
-
-  '@unocss/eslint-plugin@0.58.9':
-    resolution: {integrity: sha512-StlHO850jow2w/PTA01opkGAD6WO+iu65fxel062gp/aeoO/cRwVlQntVX7Z8QHDGXnftjW83RjvX9LqW8+iLw==}
+  '@unocss/eslint-config@0.62.2':
+    resolution: {integrity: sha512-/xh/kNoQ3RW0TTruCt0reesIzoBSsFgrDTJCcD1+iHgFqq7xsYK8sF6oeWRDUC/f+LoyUQiLtXAoTu2IRWrJzQ==}
     engines: {node: '>=14'}
 
   '@unocss/eslint-plugin@0.62.2':
@@ -7664,9 +7653,6 @@ packages:
     resolution: {integrity: sha512-J4efk69Aye43tWcBPCsLK7TIRppGrEN4pAlDzRKo3HSE6MgTSTBxSEuE3ccx7ixc62JvGQ/CoFXYqqF2AHozow==}
     hasBin: true
 
-  unconfig@0.3.13:
-    resolution: {integrity: sha512-N9Ph5NC4+sqtcOjPfHrRcHekBCadCXWTBzp2VYYbySOHW0PfD9XLCeXshTXjkPYwLrBr9AtSeU0CZmkYECJhng==}
-
   unconfig@0.5.5:
     resolution: {integrity: sha512-VQZ5PT9HDX+qag0XdgQi8tJepPhXiR/yVOkn707gJDKo31lGjRilPREiQJ9Z6zd/Ugpv6ZvO5VxVIcatldYcNQ==}
 
@@ -11605,11 +11591,6 @@ snapshots:
       - rollup
       - supports-color
 
-  '@unocss/config@0.58.9':
-    dependencies:
-      '@unocss/core': 0.58.9
-      unconfig: 0.3.13
-
   '@unocss/config@0.62.2':
     dependencies:
       '@unocss/core': 0.62.2
@@ -11617,25 +11598,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@unocss/core@0.58.9': {}
-
   '@unocss/core@0.62.2': {}
 
-  '@unocss/eslint-config@0.58.9(eslint@8.57.0)(typescript@5.4.4)':
+  '@unocss/eslint-config@0.62.2(eslint@8.57.0)(typescript@5.4.4)':
     dependencies:
-      '@unocss/eslint-plugin': 0.58.9(eslint@8.57.0)(typescript@5.4.4)
-    transitivePeerDependencies:
-      - eslint
-      - supports-color
-      - typescript
-
-  '@unocss/eslint-plugin@0.58.9(eslint@8.57.0)(typescript@5.4.4)':
-    dependencies:
-      '@typescript-eslint/utils': 7.5.0(eslint@8.57.0)(typescript@5.4.4)
-      '@unocss/config': 0.58.9
-      '@unocss/core': 0.58.9
-      magic-string: 0.30.11
-      synckit: 0.9.1
+      '@unocss/eslint-plugin': 0.62.2(eslint@8.57.0)(typescript@5.4.4)
     transitivePeerDependencies:
       - eslint
       - supports-color
@@ -11652,7 +11619,6 @@ snapshots:
       - eslint
       - supports-color
       - typescript
-    optional: true
 
   '@unocss/extractor-arbitrary-variants@0.62.2':
     dependencies:
@@ -18096,12 +18062,6 @@ snapshots:
     transitivePeerDependencies:
       - sass
       - supports-color
-
-  unconfig@0.3.13:
-    dependencies:
-      '@antfu/utils': 0.7.10
-      defu: 6.1.4
-      jiti: 1.21.6
 
   unconfig@0.5.5:
     dependencies:

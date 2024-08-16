@@ -1,23 +1,11 @@
-diff --git a/dist/module.d.ts b/dist/module.d.ts
-index b529dffc651fdd47ccfcf19b896cf76bbe68a0a6..3db4fe583892e6f092dc09f4f11c1a30606d1b20 100644
---- a/dist/module.d.ts
-+++ b/dist/module.d.ts
-@@ -232,15 +232,15 @@ interface NuxtSecurityRouteRules {
- 
- declare module "@nuxt/schema" {
-     interface NuxtOptions {
--        security: ModuleOptions;
-+        security?: ModuleOptions;
-     }
- }
- declare module "nitropack" {
-     interface NitroRouteRules {
--        security: NuxtSecurityRouteRules;
-+        security?: NuxtSecurityRouteRules;
-     }
-     interface NitroRouteConfig {
--        security: NuxtSecurityRouteRules;
-+        security?: NuxtSecurityRouteRules;
-     }
- }
- declare const _default: _nuxt_schema.NuxtModule<ModuleOptions>;
+diff --git a/dist/runtime/nitro/plugins/40-preprocessHtml.mjs b/dist/runtime/nitro/plugins/40-preprocessHtml.mjs
+index ce2df85b5951ac48adb0f3ecbfa9daaff5e4d6cf..cb47bd2858e46f141e75e6ebccf44079687968b7 100644
+--- a/dist/runtime/nitro/plugins/40-preprocessHtml.mjs
++++ b/dist/runtime/nitro/plugins/40-preprocessHtml.mjs
+@@ -1,5 +1,5 @@
+ import { defineNitroPlugin } from "#imports";
+-import * as cheerio from "cheerio/lib/slim";
++import * as cheerio from "cheerio/slim";
+ import { resolveSecurityRules } from "../utils/index.mjs";
+ export default defineNitroPlugin((nitroApp) => {
+   nitroApp.hooks.hook("render:html", (html, { event }) => {

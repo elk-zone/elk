@@ -330,7 +330,7 @@ importers:
         specifier: ^3.12.4
         version: 3.12.4(patch_hash=gml65k5ovmv3qtnq4qtbxb622a)(@parcel/watcher@2.4.1)(@types/node@20.8.6)(@upstash/redis@1.34.0)(@vercel/kv@2.0.0)(encoding@0.1.13)(eslint@9.9.0(jiti@1.21.6))(idb-keyval@6.2.1)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.3)(rollup@2.79.1)(terser@5.22.0)(typescript@5.4.4)(vue-tsc@2.0.10(typescript@5.4.4))
       prettier:
-        specifier: ^3.2.5
+        specifier: ^3.3.3
         version: 3.3.3
       sharp:
         specifier: ^0.33.5

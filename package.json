@@ -133,7 +133,7 @@
     "fs-extra": "^11.2.0",
     "lint-staged": "^15.2.9",
     "nuxt": "^3.12.4",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
     "sharp": "^0.33.5",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.11.1",

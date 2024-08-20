@@ -21,7 +21,7 @@ export async function useAsyncIDBKeyval<T>(
 
   const data = (shallow ? shallowRef : ref)(initialValue) as Ref<T>
 
-  const rawInit: T = toValue(initialValue)
+  const rawInit: T = toValue<T>(initialValue)
 
   async function read() {
     if (!isIDBSupported)

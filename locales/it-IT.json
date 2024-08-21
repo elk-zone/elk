@@ -648,8 +648,8 @@
     "try_original_site": "Prova sito originale"
   },
   "status_history": {
-    "created": "creato {0}",
-    "edited": "modificato {0}"
+    "created": "ha creato {0}",
+    "edited": "ha modificato {0}"
   },
   "tab": {
     "accounts": "Account",

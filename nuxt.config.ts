@@ -277,7 +277,8 @@ export default defineNuxtConfig({
     },
   },
 
-  // @ts-expect-error nuxt-security is conditional
+  // eslint-disable-next-line ts/ban-ts-comment
+  // @ts-ignore nuxt-security is conditional
   security: {
     headers: {
       crossOriginEmbedderPolicy: false,

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { AriaLive } from '~/composables/aria'
-
 // tsc complaining when using $defineProps
 withDefaults(defineProps<{
   ariaLive?: AriaLive

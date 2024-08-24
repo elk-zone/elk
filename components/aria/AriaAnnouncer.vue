@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { LocaleObject } from '@nuxtjs/i18n'
-import type { AriaAnnounceType, AriaLive } from '~/composables/aria'
 
 const router = useRouter()
 const { t, locale, locales } = useI18n()

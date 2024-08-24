@@ -1,10 +1,4 @@
 import type { mastodon } from 'masto'
-import type {
-  CreatePushNotification,
-  PushManagerSubscriptionInfo,
-  RequiredUserLogin,
-} from '~/composables/push-notifications/types'
-import { PushSubscriptionError } from '~/composables/push-notifications/types'
 
 export async function createPushSubscription(
   user: RequiredUserLogin,

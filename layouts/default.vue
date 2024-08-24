@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { usePreferences } from '~/composables/settings'
-
 const route = useRoute()
 const info = useBuildInfo()
 

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { favouritedBoostedByStatusId } from '~/composables/dialog'
-
 const type = ref<'favourited-by' | 'boosted-by'>('favourited-by')
 
 const { client } = useMasto()

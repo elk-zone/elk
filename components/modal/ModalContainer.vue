@@ -1,19 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 import type { ConfirmDialogChoice } from '~/types'
-import {
-  isCommandPanelOpen,
-  isConfirmDialogOpen,
-  isEditHistoryDialogOpen,
-  isErrorDialogOpen,
-  isFavouritedBoostedByDialogOpen,
-  isKeyboardShortcutsDialogOpen,
-  isMediaPreviewOpen,
-  isPreviewHelpOpen,
-  isPublishDialogOpen,
-  isReportDialogOpen,
-  isSigninDialogOpen,
-} from '~/composables/dialog'
 
 const isMac = useIsMac()
 

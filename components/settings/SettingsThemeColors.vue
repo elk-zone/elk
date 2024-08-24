@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { ThemeColors } from '~/composables/settings'
-
 const themes = await import('~/constants/themes.json').then(r => r.default) as [string, ThemeColors][]
 const settings = useUserSettings()
 

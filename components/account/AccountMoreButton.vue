@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import { toggleBlockAccount, toggleBlockDomain, toggleMuteAccount } from '~~/composables/masto/relationship'
 
 const { account } = defineProps<{
   account: mastodon.v1.Account

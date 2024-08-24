@@ -3,8 +3,6 @@ import { renderToString } from 'vue/server-renderer'
 import { format } from 'prettier'
 import type { mastodon } from 'masto'
 import { mockComponent } from '@nuxt/test-utils/runtime'
-import { contentToVNode } from '~/composables/content-render'
-import type { ContentParseOptions } from '~/composables/content-parse'
 
 beforeEach(() => {
   publicServer.value = useRuntimeConfig().public.defaultServer

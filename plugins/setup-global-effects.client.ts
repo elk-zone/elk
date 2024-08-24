@@ -1,4 +1,3 @@
-import type { OldFontSize } from '~/composables/settings'
 import { oldFontSizeMap } from '~/constants/options'
 import { DEFAULT_FONT_SIZE } from '~/constants'
 

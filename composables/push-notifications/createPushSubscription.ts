@@ -36,7 +36,7 @@ export async function createPushSubscription(
       )
     })
     .catch((error) => {
-      let useError: PushSubscriptionError | Error = error
+      let useError: typeof PushSubscriptionError | Error = error
       if (error.code === 11 && error.name === 'InvalidStateError')
         useError = new PushSubscriptionError('too_many_registrations', 'Too many registrations')
       else if (error.code === 20 && error.name === 'AbortError')

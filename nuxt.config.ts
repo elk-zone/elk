@@ -71,10 +71,11 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: [
-      './composables/masto',
-      './composables/push-notifications',
+      './composables/masto/*',
+      './composables/push-notifications/*',
       './composables/settings',
-      './composables/tiptap/index.ts',
+      './composables/tiptap/*',
+      './composables/idb',
     ],
     imports: [{
       name: 'useI18n',
@@ -276,8 +277,7 @@ export default defineNuxtConfig({
     },
   },
 
-  // eslint-disable-next-line ts/ban-ts-comment
-  // @ts-ignore nuxt-security is conditional
+  // @ts-expect-error nuxt-security is conditional
   security: {
     headers: {
       crossOriginEmbedderPolicy: false,

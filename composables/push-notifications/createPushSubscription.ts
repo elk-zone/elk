@@ -1,10 +1,4 @@
 import type { mastodon } from 'masto'
-import type {
-  CreatePushNotification,
-  PushManagerSubscriptionInfo,
-  RequiredUserLogin,
-} from '~/composables/push-notifications/types'
-import { PushSubscriptionError } from '~/composables/push-notifications/types'
 
 export async function createPushSubscription(
   user: RequiredUserLogin,
@@ -42,7 +36,7 @@ export async function createPushSubscription(
       )
     })
     .catch((error) => {
-      let useError: PushSubscriptionError | Error = error
+      let useError: typeof PushSubscriptionError | Error = error
       if (error.code === 11 && error.name === 'InvalidStateError')
         useError = new PushSubscriptionError('too_many_registrations', 'Too many registrations')
       else if (error.code === 20 && error.name === 'AbortError')

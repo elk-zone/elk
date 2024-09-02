@@ -71,10 +71,11 @@ export default defineNuxtConfig({
   },
   imports: {
     dirs: [
-      './composables/masto',
-      './composables/push-notifications',
+      './composables/masto/*',
+      './composables/push-notifications/*',
       './composables/settings',
-      './composables/tiptap/index.ts',
+      './composables/tiptap/*',
+      './composables/idb',
     ],
     imports: [{
       name: 'useI18n',

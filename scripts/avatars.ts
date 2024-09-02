@@ -2,7 +2,6 @@ import { Buffer } from 'node:buffer'
 import { join, resolve } from 'pathe'
 import fs from 'fs-extra'
 import { ofetch } from 'ofetch'
-import { elkTeamMembers } from '../composables/about'
 
 const avatarsDir = resolve('./public/avatars/')
 

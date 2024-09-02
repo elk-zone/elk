@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { SearchResult } from '~/composables/masto/search'
-
 defineProps<{
   result: SearchResult
   active: boolean

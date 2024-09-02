@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { ResolvedCommand } from '~/composables/command'
-
 const {
   cmd,
   index,

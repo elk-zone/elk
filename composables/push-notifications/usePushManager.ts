@@ -1,11 +1,5 @@
 import type { mastodon } from 'masto'
 
-import type {
-  CreatePushNotification,
-  PushNotificationPolicy,
-  PushNotificationRequest,
-  SubscriptionResult,
-} from '~/composables/push-notifications/types'
 import { STORAGE_KEY_NOTIFICATION, STORAGE_KEY_NOTIFICATION_POLICY } from '~/constants'
 
 const supportsPushNotifications = typeof window !== 'undefined'

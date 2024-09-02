@@ -14,8 +14,6 @@ import {
   STORAGE_KEY_SERVERS,
   STORAGE_KEY_USERS,
 } from '~/constants'
-import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
-import { useAsyncIDBKeyval } from '~/composables/idb'
 
 const mock = process.mock
 

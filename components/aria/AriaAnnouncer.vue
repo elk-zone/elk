@@ -38,12 +38,14 @@ onMounted(() => {
     announce(t('a11y.loading_page'))
   })
   router.afterEach((to, from) => {
-    from && setTimeout(() => {
-      requestAnimationFrame(() => {
-        const title = document.title.trim().split('|')
-        announce(t('a11y.route_loaded', [title[0]]))
-      })
-    }, 512)
+    if (from) {
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          const title = document.title.trim().split('|')
+          announce(t('a11y.route_loaded', [title[0]]))
+        })
+      }, 512)
+    }
   })
 })
 </script>

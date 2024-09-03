@@ -31,7 +31,7 @@ export default defineNuxtPlugin(() => {
   if (settings.themeColors) {
     Object.entries(settings.themeColors).map(i => html.style.setProperty(i[0], i[1]))
   }
-})()`.trim().replace(/\s*\n+\s*/g, ';'),
+})()`.trim().replace(/\s*\n\s*/g, ';'),
       },
     ],
   })

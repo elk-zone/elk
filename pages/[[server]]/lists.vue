@@ -50,9 +50,11 @@ async function createList() {
 
 function clearError(focusBtn: boolean) {
   actionError.value = undefined
-  focusBtn && nextTick(() => {
-    inputRef.value?.focus()
-  })
+  if (focusBtn) {
+    nextTick(() => {
+      inputRef.value?.focus()
+    })
+  }
 }
 
 function updateEntry(list: mastodon.v1.List) {

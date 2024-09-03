@@ -1,0 +1,19 @@
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 04537d45037445e8dc497d90ad631e48af69a18d..7802ccd80a5e507b57512438d5137038655a465d 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -1401,14 +1401,6 @@ interface _GlobalComponents {
+   ${componentTypes.map(([pascalName, type]) => `    'Lazy${pascalName}': ${type}`).join("\n")}
+ }
+ 
+-declare module '@vue/runtime-core' {
+-  export interface GlobalComponents extends _GlobalComponents { }
+-}
+-
+-declare module '@vue/runtime-dom' {
+-  export interface GlobalComponents extends _GlobalComponents { }
+-}
+-
+ declare module 'vue' {
+   export interface GlobalComponents extends _GlobalComponents { }
+ }

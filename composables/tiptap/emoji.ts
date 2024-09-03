@@ -14,7 +14,7 @@ function wrapHandler<T extends (...args: any[]) => any>(handler: T): T {
     try {
       return handler(...args)
     }
-    catch (e) {
+    catch {
       return null
     }
   })

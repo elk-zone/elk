@@ -7,6 +7,8 @@
     "route_loaded": "Seite {0} geladen"
   },
   "account": {
+    "authorize": "Erlauben zu folgen",
+    "authorized": "Du hast die Folgeanfrage erlaubt",
     "avatar_description": "{0}'s Avatar",
     "blocked_by": "Du wurdest von diesem Account geblockt",
     "blocked_domains": "Geblockte Mastodon-Instanzen",
@@ -25,6 +27,7 @@
     "follows_you": "Folgt dir",
     "go_to_profile": "Gehe zum Profil",
     "joined": "Beigetreten",
+    "lock": "Sperren",
     "moved_title": "hat angegeben, dass dies der neue Account ist:",
     "muted_users": "Stummgeschaltete Accounts",
     "muting": "Stummgeschaltet",
@@ -37,12 +40,16 @@
     "profile_description": "{0}'s Profil",
     "profile_personal_note": "Persönliche Notiz",
     "profile_unavailable": "Profil nicht verfügbar",
+    "reject": "Folgeanfrage ablehnen",
+    "rejected": "Du hast den Antrag abgelehnt",
     "request_follow": "Folgeanfrage senden",
+    "requested": "{0} hat beantragt, dir zu folgen",
     "unblock": "Entblocken",
     "unfollow": "Entfolgen",
     "unmute": "Stummschaltung aufheben",
     "view_other_followers": "Follower aus anderen Instanzen werden möglicherweise nicht angezeigt.",
-    "view_other_following": "Das Folgen von anderen Instanzen wird möglicherweise nicht angezeigt."
+    "view_other_following": "Das Folgen von anderen Instanzen wird möglicherweise nicht angezeigt.",
+    "withdraw_follow_request": "Folgeanfrage zurückziehen"
   },
   "action": {
     "apply": "Anwenden",
@@ -52,7 +59,8 @@
     "boost_count": "{0}",
     "boosted": "Geteilt",
     "clear_publish_failed": "Veröffentlichungsfehler löschen",
-    "clear_upload_failed": "Fehler beim Hochladen von Dateien entfernen",
+    "clear_save_failed": "Speicherfehler löschen",
+    "clear_upload_failed": "Uploadfehler entfernen",
     "close": "Schließen",
     "compose": "Verfassen",
     "confirm": "Bestätigen",
@@ -64,6 +72,7 @@
     "favourited": "Favorisiert",
     "more": "Mehr",
     "next": "Nächster",
+    "open_image_preview_dialog": "Bildvorschau öffnen",
     "prev": "Vorheriger",
     "publish": "Veröffentlichen",
     "publish_thread": "Thread veröffentlichen",
@@ -114,12 +123,14 @@
     "block_account": {
       "cancel": "Abbrechen",
       "confirm": "Blockieren",
-      "description": "Bist du sicher, dass du {0} blockieren möchtest?"
+      "description": "Bist du sicher, dass du {0} blockieren möchtest?",
+      "title": "Konto blockieren"
     },
     "block_domain": {
       "cancel": "Abbrechen",
       "confirm": "Blockieren",
-      "description": "Bist du sicher, dass du {0} blockieren möchtest?"
+      "description": "Bist du sicher, dass du {0} blockieren möchtest?",
+      "title": "Domain blockieren"
     },
     "common": {
       "cancel": "Abbrechen",
@@ -128,27 +139,37 @@
     "delete_list": {
       "cancel": "Abbrechen",
       "confirm": "Löschen",
-      "description": "Bist du sicher, dass du die Liste \"{0}\" löschen möchtest?"
+      "description": "Bist du sicher, dass du die Liste \"{0}\" löschen möchtest?",
+      "title": "Liste löschen"
     },
     "delete_posts": {
       "cancel": "Abbrechen",
       "confirm": "Löschen",
-      "description": "Möchtest du diesen Beitrag wirklich löschen?"
+      "description": "Möchtest du diesen Beitrag wirklich löschen?",
+      "title": "Beitrag löschen"
     },
     "mute_account": {
       "cancel": "Abbrechen",
       "confirm": "Stummschalten",
-      "description": "Bist du sicher, dass du {0} stummschalten möchtest?"
+      "days": "Tage|Tag|Tage",
+      "description": "Bist du sicher, dass du {0} stummschalten möchtest?",
+      "hours": "Stunden|Stunde|Stunden",
+      "minute": "Minuten|Minute|Minuten",
+      "notifications": "Benachrichtigungen stummschalten",
+      "specify_duration": "Dauer der Stummschaltung festlegen",
+      "title": "Konto stummschalten"
     },
     "show_reblogs": {
       "cancel": "Abbrechen",
       "confirm": "Anzeigen",
-      "description": "Bist du sicher, dass du Weiterleitungen von {0} anzeigen möchtest?"
+      "description": "Bist du sicher, dass du Weiterleitungen von {0} anzeigen möchtest?",
+      "title": "Weiterleitungen anzeigen"
     },
     "unfollow": {
       "cancel": "Abbrechen",
       "confirm": "Entfolgen",
-      "description": "Bist du sicher, dass du entfolgen möchtest?"
+      "description": "Bist du sicher, dass du entfolgen möchtest?",
+      "title": "Entfolgen"
     }
   },
   "conversation": {
@@ -213,6 +234,8 @@
         "command_mode": "Befehlsmodus",
         "compose": "Verfassen",
         "favourite": "Favorisieren",
+        "search": "Suchen",
+        "show_new_items": "Neue Einträge anzeigen",
         "title": "Aktionen"
       },
       "media": {
@@ -257,6 +280,7 @@
     "pin_on_profile": "An Profil anpinnen",
     "remove_personal_note": "Persönliche Notiz von {0} entfernen",
     "report_account": "{0} melden",
+    "share_account": "Konto von {0} teilen",
     "share_post": "Teile diesen Beitrag",
     "show_favourited_and_boosted_by": "Zeige mir, wer favorisiert und geboostet hat",
     "show_reblogs": "Boosts von {0} anzeigen",
@@ -284,13 +308,16 @@
     "built_at": "Letzter Build: {0}",
     "compose": "Verfassen",
     "conversations": "Direktnachrichten",
+    "docs": "Dokumentation",
     "explore": "Entdecken",
     "favourites": "Favoriten",
     "federated": "Föderiert",
+    "hashtags": "Hashtags",
     "home": "Startseite",
     "list": "Liste",
     "lists": "Listen",
     "local": "Lokal",
+    "more_menu": "Mehr Menü",
     "muted_users": "Stummgeschaltete Benutzer",
     "notifications": "Mitteilungen",
     "privacy": "Datenschutz",
@@ -436,6 +463,7 @@
     },
     "language": {
       "display_language": "Anzeigesprache",
+      "how_to_contribute": "Wie kann ich mithelfen?",
       "label": "Sprache",
       "post_language": "Beitragssprache",
       "status": "Übersetzungsstatus: {0}/{1} ({2}%)",
@@ -503,6 +531,8 @@
     },
     "notifications_settings": "Benachrichtigungen",
     "preferences": {
+      "embedded_media": "Eingebetteter Mediaplayer",
+      "embedded_media_description": "Zeige einen eingebetteten Player anstelle der normalen Vorschaukarte an, wenn gemeinsam genutzte Medien-Streaming-Links erweitert werden.",
       "enable_autoplay": "Autoplay aktivieren",
       "enable_data_saving": "Daten sparen aktivieren",
       "enable_data_saving_description": "Spare Daten, indem du das automatische Laden von Anhängen verhinderst.",
@@ -511,16 +541,19 @@
       "github_cards_description": "Wenn ein GitHub-Link gepostet wird, wird anstelle des sozialen Bildes eine zugängliche HTML-Karte mit der Social-Graph-Meta angezeigt.",
       "grayscale_mode": "Graustufenmodus",
       "hide_account_hover_card": "Benutzer-Hover-Karte verbergen",
-      "hide_alt_indi_on_posts": "Alternativtext-Hinweis in Beiträgen ausblenden",
-      "hide_boost_count": "Boost-Zähler ausblenden",
-      "hide_favorite_count": "Favoritenzahl ausblenden",
-      "hide_follower_count": "Anzahl der Follower ausblenden",
-      "hide_news": "Nachrichten ausblenden",
-      "hide_reply_count": "Antwortanzahl ausblenden",
-      "hide_translation": "Übersetzungen komplett ausblenden",
-      "hide_username_emojis": "Emojis in Namen ausblenden",
-      "hide_username_emojis_description": "Blendet in der Timeline Emojis in den Namen von Kommentator:innen aus. In deren Profilen sind die Emojis weiterhin zu sehen.",
+      "hide_alt_indi_on_posts": "Alternativtext-Hinweis in Beiträgen verbergen",
+      "hide_boost_count": "Boost-Zähler verbergen",
+      "hide_favorite_count": "Favoritenzahl verbergen",
+      "hide_follower_count": "Anzahl der Follower verbergen",
+      "hide_gif_indi_on_posts": "GIF-Indikator auf Beiträgen verbergen",
+      "hide_news": "Nachrichten verbergen",
+      "hide_reply_count": "Antwortanzahl verbergen",
+      "hide_tag_hover_card": "Tag-Hover-Karte verbergen",
+      "hide_translation": "Übersetzungen komplett verbergen",
+      "hide_username_emojis": "Emojis in Namen verbergen",
+      "hide_username_emojis_description": "Verbirgt in der Timeline Emojis in den Namen von Kommentator:innen. In deren Profilen sind die Emojis weiterhin zu sehen.",
       "label": "Einstellungen",
+      "optimize_for_low_performance_device": "Für Geräte mit geringer Leistung optimieren.",
       "title": "Experimentelle Funktionen",
       "use_star_favorite_icon": "Stern als Favoriten-Symbol verwenden",
       "user_picker": "Benutzerauswahl",
@@ -564,12 +597,17 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Die Anzahl der Anhänge hat das Limit pro Beitrag überschritten.",
+    "attachments_limit_audio_error": "Maximale Audio-Größe überschritten: {0}",
     "attachments_limit_error": "Limit pro Beitrag überschritten",
+    "attachments_limit_image_error": "Maximale Bildgröße überschritten: {0}",
+    "attachments_limit_unknown_error": "Maximale Dateigröße überschritten: {0}",
+    "attachments_limit_video_error": "Maximale Video-Größe überschritten: {0}",
     "edited": "(bearbeitet)",
     "editing": "Bearbeiten",
     "loading": "Laden...",
     "publish_failed": "Veröffentlichung fehlgeschlagen",
     "publishing": "Veröffentlichung",
+    "save_failed": "Speichern fehlgeschlagen",
     "upload_failed": "Upload fehlgeschlagen",
     "uploading": "Hochladen..."
   },
@@ -580,9 +618,11 @@
     },
     "boosted_by": "Boosted von",
     "edited": "Zuletzt bearbeitet: {0}",
+    "embedded_warning": "Das Abspielen kann deine IP-Adresse anderen offenlegen.",
     "favourited_by": "Favorisiert von",
     "filter_hidden_phrase": "Versteckt durch",
     "filter_show_anyway": "Trotzdem zeigen",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Beschreibung",
@@ -615,9 +655,17 @@
     "media": "Medien",
     "news": "Nachrichten",
     "notifications_all": "Alle",
+    "notifications_favourite": "Favorit",
+    "notifications_follow": "Folgen",
+    "notifications_follow_request": "Folgeanfrage",
     "notifications_mention": "Erwähnungen",
+    "notifications_more_tooltip": "Benachrichtigungen nach Typ filtern",
+    "notifications_poll": "Umfrage",
+    "notifications_reblog": "Boost",
+    "notifications_status": "Status",
+    "notifications_update": "Aktualisierung",
     "posts": "Beiträge",
-    "posts_with_replies": "Beiträge und Antworten"
+    "posts_with_replies": "Beiträge & Antworten"
   },
   "tag": {
     "follow": "Folgen",

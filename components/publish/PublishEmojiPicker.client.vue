@@ -32,9 +32,10 @@ async function openEmojiPicker() {
     picker.value = new Picker({
       data: () => dataPromise,
       onEmojiSelect({ native, src, alt, name }: any) {
-        native
-          ? emit('select', native)
-          : emit('selectCustom', { src, alt, 'data-emoji-id': name })
+        if (native)
+          emit('select', native)
+        else
+          emit('selectCustom', { src, alt, 'data-emoji-id': name })
       },
       set: 'twitter',
       theme: colorMode,

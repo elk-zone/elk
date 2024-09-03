@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { ConfirmDialogChoice, ConfirmDialogOptions } from '~/types'
-import DurationPicker from '~/components/modal/DurationPicker.vue'
 
 const props = defineProps<ConfirmDialogOptions>()
 

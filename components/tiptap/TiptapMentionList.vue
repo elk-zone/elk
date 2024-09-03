@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import CommonScrollIntoView from '../common/CommonScrollIntoView.vue'
 import type { CommandHandler } from '~/composables/command'
 
 const { items, command } = defineProps<{

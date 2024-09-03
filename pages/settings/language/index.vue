@@ -22,7 +22,7 @@ const status = computed(() => {
       </div>
     </template>
     <div p6>
-      <div space-y-2>
+      <section space-y-2>
         <h2 py2 font-bold text-xl flex="~ gap-1" items-center>
           {{ $t('settings.language.display_language') }}
         </h2>
@@ -38,8 +38,8 @@ const status = computed(() => {
           <span inline-block i-ri:information-line />
           {{ $t('settings.language.how_to_contribute') }}
         </NuxtLink>
-      </div>
-      <div mt4>
+      </section>
+      <section mt4>
         <h2 font-bold text-xl flex="~ gap-1" items-center>
           {{ $t('settings.language.post_language') }}
         </h2>
@@ -52,11 +52,13 @@ const status = computed(() => {
           :to="`https://${currentUser!.server}/settings/preferences/other`"
           external target="_blank"
         />
-      </div>
-      <h2 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
-        {{ $t('settings.language.translations.heading') }}
-      </h2>
-      <SettingsTranslations />
+      </section>
+      <section>
+        <h2 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>
+          {{ $t('settings.language.translations.heading') }}
+        </h2>
+        <SettingsTranslations />
+      </section>
     </div>
   </MainContent>
 </template>

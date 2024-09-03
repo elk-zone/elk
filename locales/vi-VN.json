@@ -28,7 +28,7 @@
     "go_to_profile": "Xem hồ sơ",
     "joined": "Đã tham gia",
     "lock": "KHÓA",
-    "moved_title": "cho hay địa chỉ mới của họ bây giờ là:",
+    "moved_title": "đã chuyển sang địa chỉ mới:",
     "muted_users": "Người đã ẩn",
     "muting": "Đã ẩn",
     "mutuals": "Theo dõi nhau",
@@ -73,6 +73,7 @@
     "favourited": "Đã thích",
     "more": "Xem thêm",
     "next": "Kế tiếp",
+    "open_image_preview_dialog": "Mở hộp thoại xem trước hình ảnh",
     "prev": "Trước đó",
     "publish": "Đăng",
     "publish_thread": "Đăng chuỗi tút",
@@ -186,7 +187,7 @@
     "account_not_found": "Không tìm thấy {0}",
     "explore_list_empty": "Chưa có xu hướng. Hãy quay lại sau!",
     "file_size_cannot_exceed_n_mb": "Dung lượng file tối đa {0}MB",
-    "sign_in_error": "Không thể kết nối tới máy chủ.",
+    "sign_in_error": "Không thể kết nối đến máy chủ.",
     "status_not_found": "Không tìm thấy tút",
     "unsupported_file_format": "Định dạng file không được hỗ trợ"
   },
@@ -246,7 +247,7 @@
         "go_to_bookmarks": "Tút đã lưu",
         "go_to_conversations": "Nhắn riêng",
         "go_to_explore": "Khám phá",
-        "go_to_favourites": "Lượt thích",
+        "go_to_favourites": "Đã thích",
         "go_to_federated": "Liên hợp",
         "go_to_home": "Trang chủ",
         "go_to_lists": "Danh sách",
@@ -305,13 +306,13 @@
     "back": "Quay về",
     "blocked_domains": "Máy chủ đã chặn",
     "blocked_users": "Người đã chặn",
-    "bookmarks": "Tút đã lưu",
+    "bookmarks": "Đã lưu",
     "built_at": "Bản dựng {0}",
     "compose": "Soạn tút",
     "conversations": "Nhắn riêng",
     "docs": "Tài liệu",
     "explore": "Khám phá",
-    "favourites": "Lượt thích",
+    "favourites": "Đã thích",
     "federated": "Liên hợp",
     "hashtags": "Hashtag",
     "home": "Trang chủ",
@@ -345,8 +346,8 @@
   },
   "placeholder": {
     "content_warning": "Viết cảnh báo của bạn ở đây",
-    "default_1": "Bạn đang nghĩ gì vậy?",
-    "reply_to_account": "Trả lời {0}",
+    "default_1": "Bạn đang nghĩ gì đó?",
+    "reply_to_account": "Trả lời đến {0}",
     "replying": "Trả lời"
   },
   "polls": {
@@ -355,7 +356,7 @@
     "create": "Tạo bình chọn",
     "disallow_multiple": "Chỉ chọn một lựa chọn",
     "expiration": "Hết hạn",
-    "hide_votes": "Ẩn số lượt bình chọn cho tới khi hết hạn",
+    "hide_votes": "Ẩn số lượt bình chọn đến khi hết hạn",
     "option_placeholder": "Lựa chọn {current}/{max}",
     "remove_option": "Xóa lựa chọn",
     "settings": "Tùy chọn",
@@ -402,8 +403,8 @@
     "block_desc": "Bạn sẽ không còn thấy tút của người này. Họ sẽ không thể thấy tút của bạn hoặc theo dõi bạn. Họ biết là bạn đã chặn họ.",
     "dontlike": "Tôi không thích nó",
     "dontlike_desc": "Đó không phải là thứ gì mà bạn muốn thấy",
-    "forward": "Gửi luôn báo cáo tới {0}",
-    "forward_question": "Bạn có chắc muốn gửi luôn báo cáo tới máy chủ của người này?",
+    "forward": "Gửi luôn báo cáo đến {0}",
+    "forward_question": "Bạn có chắc muốn gửi luôn báo cáo đến máy chủ của người này?",
     "further_actions": {
       "limit": {
         "description": "Đây là cách kiểm soát những thứ mà bạn thấy:",
@@ -441,7 +442,7 @@
       "label": "Giới thiệu",
       "meet_the_team": "Đội ngũ",
       "sponsor_action": "Tài trợ",
-      "sponsor_action_desc": "Hỗ trợ đội ngũ phát triển Elk",
+      "sponsor_action_desc": "Ủng hộ đội ngũ phát triển Elk",
       "sponsors": "Nhà tài trợ",
       "sponsors_body_1": "Elk được thực hiện nhờ sự tài trợ và giúp đỡ hào phóng của:",
       "sponsors_body_2": "Và tất cả các công ty, cá nhân tài trợ cho đội ngũ Elk.",
@@ -493,7 +494,7 @@
           "title": "Bạn muốn nhận những kiểu thông báo nào?"
         },
         "description": "Nhận thông báo kể cả khi bạn không sử dụng Elk.",
-        "instructions": "Nhớ lưu các thay đổi của bạn bằng cách nhấn @:settings.notifications.push_notifications.save_settings !",
+        "instructions": "Nhớ @:settings.notifications.push_notifications.save_settings sau khi chọn xong!",
         "label": "Cài đặt thông báo đẩy",
         "policy": {
           "all": "Từ bất kỳ ai",
@@ -550,7 +551,7 @@
       "hide_follower_count": "Ẩn số lượt người theo dõi/đang theo dõi",
       "hide_gif_indi_on_posts": "Ẩn biểu tượng GIF trên tút",
       "hide_news": "Ẩn tin tức",
-      "hide_reply_count": "Ẩn số lượt trả lời",
+      "hide_reply_count": "Ẩn số lượng trả lời",
       "hide_tag_hover_card": "Ẩn xem trước hashtag",
       "hide_translation": "Ẩn chức năng dịch",
       "hide_username_emojis": "Ẩn emoji trong tên người dùng",
@@ -634,8 +635,8 @@
     },
     "poll": {
       "count": "{0} bình chọn|{0} bình chọn|{0} bình chọn",
-      "ends": "kết thúc {0}",
-      "finished": "hết hạn {0}"
+      "ends": "đóng {0}",
+      "finished": "kết thúc {0}"
     },
     "replying_to": "Trả lời {0}",
     "show_full_thread": "Chuỗi tút liên quan",
@@ -672,7 +673,7 @@
     "notifications_status": "Tút mới",
     "notifications_update": "Sửa tút",
     "posts": "Tút",
-    "posts_with_replies": "Lượt trả lời"
+    "posts_with_replies": "Trả lời"
   },
   "tag": {
     "follow": "Theo dõi",
@@ -735,7 +736,7 @@
     "pick_an_icon": "Chọn biểu tượng",
     "publish_failed": "Đóng các thông báo không thành công để đăng lại tút",
     "remove_thread_item": "Xóa tút khỏi chuỗi",
-    "start_thread": "Bắt đầu chuỗi tút",
+    "start_thread": "Tạo chuỗi tút",
     "toggle_bold": "In đậm",
     "toggle_code_block": "Đoạn mã",
     "toggle_italic": "In nghiêng"

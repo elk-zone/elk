@@ -61,7 +61,7 @@
     "confirm": "確認",
     "done": "完了",
     "edit": "編集する",
-    "enter_app": "使い始める",
+    "enter_app": "始める",
     "favourite": "お気に入り",
     "favourite_count": "{0}",
     "favourited": "お気に入り済み",
@@ -116,12 +116,12 @@
     "block_account": {
       "cancel": "キャンセル",
       "confirm": "ブロック",
-      "description": "{0}さんを本当にミュートしたいですか？"
+      "description": "{0}さんを本当にミュートしますか？"
     },
     "block_domain": {
       "cancel": "キャンセル",
       "confirm": "ブロック",
-      "description": "{0}さんを本当にブロックしたいですか？"
+      "description": "{0}さんを本当にブロックしますか？"
     },
     "common": {
       "cancel": "いいえ",
@@ -130,27 +130,27 @@
     "delete_list": {
       "cancel": "キャンセル",
       "confirm": "削除",
-      "description": "リスト \"{0}\" を本当に削除したいですか？"
+      "description": "リスト \"{0}\" を本当に削除しますか？"
     },
     "delete_posts": {
       "cancel": "キャンセル",
       "confirm": "削除",
-      "description": "この投稿を本当に削除したいですか？"
+      "description": "この投稿を本当に削除しますか？"
     },
     "mute_account": {
       "cancel": "キャンセル",
       "confirm": "ミュート",
-      "description": "{0}さんを本当にミュートしたいですか？"
+      "description": "{0}さんを本当にミュートしますか？"
     },
     "show_reblogs": {
       "cancel": "キャンセル",
       "confirm": "表示",
-      "description": "{0}さんのブーストを本当に表示したいですか？"
+      "description": "{0}さんのブーストを本当に表示しますか？"
     },
     "unfollow": {
       "cancel": "キャンセル",
       "confirm": "フォロー解除",
-      "description": "本当にフォロー解除したいですか？"
+      "description": "本当にフォローを解除しますか？"
     }
   },
   "conversation": {
@@ -166,7 +166,7 @@
   "error": {
     "account_not_found": "アカウント {0} が見つかりません",
     "explore_list_empty": "現在トレンドには何もありません。またあとで！",
-    "file_size_cannot_exceed_n_mb": "ファイルサイズは{0}MBを超えてはいけません",
+    "file_size_cannot_exceed_n_mb": "{0}MBを超えるファイルはアップロードできません",
     "sign_in_error": "サーバーに接続できません。",
     "status_not_found": "投稿が見つかりません",
     "unsupported_file_format": "対応していないファイル形式です"
@@ -367,7 +367,7 @@
     "anything_else": "他に私たちが知る必要があることはありますか？",
     "block_desc": "あなたは今後、このユーザーの投稿を見ることはありません。このユーザーもあなたの投稿を見たり、あなたをフォローしたりすることもできなくなります。ただし、相手はブロックされたことが分かります。",
     "dontlike": "気に入りません",
-    "dontlike_desc": "これは見たくない投稿です。",
+    "dontlike_desc": "これは閲覧したくない投稿です",
     "forward": "はい、この報告を {0} に転送してください。",
     "forward_question": "この報告の匿名化されたコピーをそのサーバーにも送信しますか？",
     "further_actions": {
@@ -453,7 +453,7 @@
           "mention": "メンション",
           "poll": "投票",
           "reblog": "投稿のリブログ",
-          "title": "どの通知を受け取りますか？"
+          "title": "受け取りたい通知を選択してください"
         },
         "description": "Elkを使用していないときでも通知を受け取ります。",
         "instructions": "@:settings.notifications.push_notifications.save_settings ボタンで設定を保存するのを忘れないように！",
@@ -472,9 +472,9 @@
           "invalid_vapid_key": "VAPID公開鍵が無効なようです。",
           "permission_denied": "パーミッション拒否: ブラウザで通知を有効にしてください。",
           "repo_link": "ElkのGitHubリポジトリ",
-          "request_error": "購読のリクエスト中にエラーが発生しました。再試行してもエラーが解消しない場合、Elkリポジトリにissueを報告してください。",
-          "title": "プッシュ通知を購読できませんでした",
-          "too_many_registrations": "ブラウザーの制限により、Elkは異なるサーバー上の複数アカウントに対してプッシュ通知サービスを使用できません。他のアカウントのプッシュ通知の購読を解除して、再購読する必要があります。",
+          "request_error": "登録のリクエスト中にエラーが発生しました。再試行してもエラーが解消しない場合、Elkリポジトリにissueを報告してください。",
+          "title": "プッシュ通知を登録できませんでした",
+          "too_many_registrations": "ブラウザーの制限により、Elkは異なるサーバー上の複数アカウントに対してプッシュ通知サービスを使用できません。他のアカウントのプッシュ通知の登録を解除して、再登録する必要があります。",
           "vapid_not_supported": "このブラウザはWeb Push通知をサポートしていませんが、VAPIDプロトコルをサポートしているようです。"
         },
         "title": "プッシュ通知の設定",
@@ -572,7 +572,7 @@
   "status": {
     "account": {
       "suspended_message": "この投稿のアカウントは凍結されました。",
-      "suspended_show": "それでもコンテンツを表示しますか？"
+      "suspended_show": "本当にコンテンツを表示しますか？"
     },
     "boosted_by": "ブーストしたユーザー",
     "edited": "編集済み {0}",
@@ -708,6 +708,6 @@
     "public": "公開",
     "public_desc": "誰でも閲覧可能",
     "unlisted": "非掲載",
-    "unlisted_desc": "誰でも閲覧可能、検索機能からはオプトアウトする"
+    "unlisted_desc": "誰でも閲覧可能ですが、検索機能からは非表示にします"
   }
 }

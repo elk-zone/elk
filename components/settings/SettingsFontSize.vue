@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { DEFAULT_FONT_SIZE } from '~/constants'
 import type { FontSize } from '~/composables/settings'
 

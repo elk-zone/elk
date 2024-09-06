@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 
 export interface Props {

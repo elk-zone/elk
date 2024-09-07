@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import ISO6391 from 'iso-639-1'
 
 const supportedTranslationLanguages = ISO6391.getLanguages([...supportedTranslationCodes])

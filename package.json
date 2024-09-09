@@ -64,7 +64,7 @@
     "@vueuse/gesture": "^2.0.0",
     "@vueuse/integrations": "^11.0.0",
     "@vueuse/math": "^11.0.0",
-    "@vueuse/motion": "2.2.3",
+    "@vueuse/motion": "2.2.5",
     "@vueuse/nuxt": "^11.0.0",
     "blurhash": "^2.0.5",
     "browser-fs-access": "^0.35.0",

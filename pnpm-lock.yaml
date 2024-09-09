@@ -128,8 +128,8 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0(vue@3.4.38(typescript@5.4.4))
       '@vueuse/motion':
-        specifier: 2.2.3
-        version: 2.2.3(patch_hash=2v574i37tz7ffssjdagkznimyq)(magicast@0.3.4)(rollup@2.79.1)(vue@3.4.38(typescript@5.4.4))
+        specifier: 2.2.5
+        version: 2.2.5(patch_hash=2v574i37tz7ffssjdagkznimyq)(magicast@0.3.4)(rollup@2.79.1)(vue@3.4.38(typescript@5.4.4))
       '@vueuse/nuxt':
         specifier: ^11.0.0
         version: 11.0.0(magicast@0.3.4)(nuxt@3.13.0(patch_hash=gml65k5ovmv3qtnq4qtbxb622a)(@parcel/watcher@2.4.1)(@types/node@20.8.6)(@upstash/redis@1.34.0)(@vercel/kv@2.0.0)(encoding@0.1.13)(eslint@9.9.1(jiti@1.21.6))(idb-keyval@6.2.1)(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.3)(rollup@2.79.1)(terser@5.22.0)(typescript@5.4.4)(vue-tsc@2.0.10(typescript@5.4.4)))(rollup@2.79.1)(vue@3.4.38(typescript@5.4.4))
@@ -228,10 +228,10 @@ importers:
         version: 5.0.1
       tauri-plugin-log-api:
         specifier: github:tauri-apps/tauri-plugin-log
-        version: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/2bb26e22f7f7b4f164bad02f0ae4085796f77fff
+        version: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/cc86b2d9878d6ec02c9f25bd48292621a4bc2a6f
       tauri-plugin-store-api:
         specifier: github:tauri-apps/tauri-plugin-store
-        version: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/5f5404feea43b6cddd65e4171f52e92ca161a2aa
+        version: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/2352f0bda53b4725ef1d2f51cd5774e4396a20d1
       theme-vitesse:
         specifier: ^0.8.0
         version: 0.8.3
@@ -3422,8 +3422,8 @@ packages:
   '@vueuse/metadata@9.13.0':
     resolution: {integrity: sha512-gdU7TKNAUVlXXLbaF+ZCfte8BjRJQWPCa2J55+7/h+yDtzw3vOoGQDRXzI6pyKyo6bXFT5/QoPE4hAknExjRLQ==}
 
-  '@vueuse/motion@2.2.3':
-    resolution: {integrity: sha512-QsS9P7MDKFF2j4eDPuo6lezUDPE7MQp4+unBeR2Ym8RkhtMEw/oVbnHPHL986rsmnnlUZkHVSv5kKoHJzjbtmQ==}
+  '@vueuse/motion@2.2.5':
+    resolution: {integrity: sha512-pcqMdpPbm/Pd/rbQQ/sHyykdOahj0rueZ8WpLhhk8i1tbEcga80EhNJLn99G9J9DSuOvkJNYuv1n2OntGUc1rQ==}
     peerDependencies:
       vue: ^3.4.21
 
@@ -7392,12 +7392,12 @@ packages:
     resolution: {integrity: sha512-/Wo7DcT0u5HUV486xg675HtjNd3BXZ6xDbzsCUZPt5iw8bTQ63bP0Raut3mvro9u+CUyq7YQd8Cx55fsZXxqLQ==}
     engines: {node: '>=10'}
 
-  tauri-plugin-log-api@https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/2bb26e22f7f7b4f164bad02f0ae4085796f77fff:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/2bb26e22f7f7b4f164bad02f0ae4085796f77fff}
+  tauri-plugin-log-api@https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/cc86b2d9878d6ec02c9f25bd48292621a4bc2a6f:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/cc86b2d9878d6ec02c9f25bd48292621a4bc2a6f}
     version: 0.0.0
 
-  tauri-plugin-store-api@https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/5f5404feea43b6cddd65e4171f52e92ca161a2aa:
-    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/5f5404feea43b6cddd65e4171f52e92ca161a2aa}
+  tauri-plugin-store-api@https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/2352f0bda53b4725ef1d2f51cd5774e4396a20d1:
+    resolution: {tarball: https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/2352f0bda53b4725ef1d2f51cd5774e4396a20d1}
     version: 0.0.0
 
   temp-dir@2.0.0:
@@ -10223,7 +10223,7 @@ snapshots:
       tinyglobby: 0.2.5
       unimport: 3.11.1(rollup@4.20.0)
       vite: 5.4.2(@types/node@20.8.6)(terser@5.22.0)
-      vite-plugin-inspect: 0.8.7(@nuxt/kit@3.13.0(magicast@0.3.4)(rollup@4.20.0))(rollup@4.20.0)(vite@5.4.2(@types/node@20.8.6)(terser@5.22.0))
+      vite-plugin-inspect: 0.8.7(@nuxt/kit@3.13.0(magicast@0.3.4)(rollup@2.79.1))(rollup@4.20.0)(vite@5.4.2(@types/node@20.8.6)(terser@5.22.0))
       vite-plugin-vue-inspector: 5.1.3(vite@5.4.2(@types/node@20.8.6)(terser@5.22.0))
       which: 3.0.1
       ws: 8.18.0
@@ -12523,7 +12523,7 @@ snapshots:
 
   '@vueuse/metadata@9.13.0': {}
 
-  '@vueuse/motion@2.2.3(patch_hash=2v574i37tz7ffssjdagkznimyq)(magicast@0.3.4)(rollup@2.79.1)(vue@3.4.38(typescript@5.4.4))':
+  '@vueuse/motion@2.2.5(patch_hash=2v574i37tz7ffssjdagkznimyq)(magicast@0.3.4)(rollup@2.79.1)(vue@3.4.38(typescript@5.4.4))':
     dependencies:
       '@vueuse/core': 10.10.0(vue@3.4.38(typescript@5.4.4))
       '@vueuse/shared': 10.10.0(vue@3.4.38(typescript@5.4.4))
@@ -12533,7 +12533,7 @@ snapshots:
       style-value-types: 5.1.2
       vue: 3.4.38(typescript@5.4.4)
     optionalDependencies:
-      '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@2.79.1)
+      '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@2.79.1)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - magicast
@@ -12838,7 +12838,7 @@ snapshots:
 
   ast-types@0.15.2:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.7.0
 
   ast-walker-scope@0.5.0(rollup@2.79.1):
     dependencies:
@@ -15103,7 +15103,7 @@ snapshots:
 
   lower-case@2.0.2:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.7.0
 
   lru-cache@10.2.0: {}
 
@@ -16868,7 +16868,7 @@ snapshots:
       ast-types: 0.15.2
       esprima: 4.0.1
       source-map: 0.6.1
-      tslib: 2.6.2
+      tslib: 2.7.0
 
   redis-errors@1.2.0: {}
 
@@ -17609,11 +17609,11 @@ snapshots:
       mkdirp: 1.0.4
       yallist: 4.0.0
 
-  tauri-plugin-log-api@https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/2bb26e22f7f7b4f164bad02f0ae4085796f77fff:
+  tauri-plugin-log-api@https://codeload.github.com/tauri-apps/tauri-plugin-log/tar.gz/cc86b2d9878d6ec02c9f25bd48292621a4bc2a6f:
     dependencies:
       '@tauri-apps/api': 1.6.0
 
-  tauri-plugin-store-api@https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/5f5404feea43b6cddd65e4171f52e92ca161a2aa:
+  tauri-plugin-store-api@https://codeload.github.com/tauri-apps/tauri-plugin-store/tar.gz/2352f0bda53b4725ef1d2f51cd5774e4396a20d1:
     dependencies:
       '@tauri-apps/api': 1.6.0
 
@@ -18225,11 +18225,11 @@ snapshots:
 
   upper-case-first@2.0.2:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.7.0
 
   upper-case@2.0.2:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.7.0
 
   uqr@0.1.2: {}
 
@@ -18349,7 +18349,7 @@ snapshots:
       - rollup
       - supports-color
 
-  vite-plugin-inspect@0.8.7(@nuxt/kit@3.13.0(magicast@0.3.4)(rollup@4.20.0))(rollup@4.20.0)(vite@5.4.2(@types/node@20.8.6)(terser@5.22.0)):
+  vite-plugin-inspect@0.8.7(@nuxt/kit@3.13.0(magicast@0.3.4)(rollup@2.79.1))(rollup@4.20.0)(vite@5.4.2(@types/node@20.8.6)(terser@5.22.0)):
     dependencies:
       '@antfu/utils': 0.7.10
       '@rollup/pluginutils': 5.1.0(rollup@4.20.0)
@@ -18362,7 +18362,7 @@ snapshots:
       sirv: 2.0.4
       vite: 5.4.2(@types/node@20.8.6)(terser@5.22.0)
     optionalDependencies:
-      '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@4.20.0)
+      '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@2.79.1)
     transitivePeerDependencies:
       - rollup
       - supports-color

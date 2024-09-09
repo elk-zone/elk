@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { fileOpen } from 'browser-fs-access'
 import type { FileWithHandle } from 'browser-fs-access'
 

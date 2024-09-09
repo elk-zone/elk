@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 /* eslint-disable no-alert */
 import { fileOpen } from 'browser-fs-access'
 import type { UserLogin } from '~/types'

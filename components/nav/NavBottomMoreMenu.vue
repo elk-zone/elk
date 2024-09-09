@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { invoke } from '@vueuse/core'
 
 const modelValue = defineModel<boolean>({ required: true })

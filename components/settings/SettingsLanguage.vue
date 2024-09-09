@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import type { ComputedRef } from 'vue'
 import type { LocaleObject } from '@nuxtjs/i18n'
 

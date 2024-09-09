@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS, STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE } from '~~/constants'
 
 const { t } = useI18n()

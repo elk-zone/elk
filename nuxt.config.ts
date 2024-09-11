@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     tsConfig: {
       exclude: ['../service-worker'],
       vueCompilerOptions: {
-        target: 3.4,
+        target: 3.5,
       },
     },
   },

@@ -38,10 +38,10 @@
     "@iconify/json": "^2.2.170",
     "@iconify/utils": "^2.1.22",
     "@nuxt/devtools": "^1.4.2",
-    "@nuxt/test-utils": "^3.12.0",
-    "@nuxtjs/color-mode": "^3.3.4",
-    "@nuxtjs/i18n": "^8.4.0",
-    "@pinia/nuxt": "^0.5.3",
+    "@nuxt/test-utils": "^3.14.2",
+    "@nuxtjs/color-mode": "^3.4.4",
+    "@nuxtjs/i18n": "^8.5.3",
+    "@pinia/nuxt": "^0.5.4",
     "@tiptap/core": "2.2.4",
     "@tiptap/extension-bold": "2.2.4",
     "@tiptap/extension-character-count": "2.2.4",
@@ -85,7 +85,7 @@
     "lru-cache": "^11.0.0",
     "masto": "^6.7.5",
     "node-emoji": "^2.1.3",
-    "nuxt-security": "^1.0.0",
+    "nuxt-security": "^1.4.3",
     "page-lifecycle": "^0.1.2",
     "pinia": "^2.2.2",
     "postcss-nested": "^6.0.1",
@@ -152,7 +152,7 @@
     }
   },
   "resolutions": {
-    "nuxt-component-meta": "0.8.0",
+    "nuxt-component-meta": "0.8.1",
     "unstorage": "^1.12.0",
     "vitest": "2.0.5",
     "vue": "^3.5.4"

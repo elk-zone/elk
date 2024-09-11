@@ -105,11 +105,11 @@
     "ufo": "^1.5.3",
     "ultrahtml": "^1.5.3",
     "unimport": "^3.10.0",
-    "vite-plugin-pwa": "^0.20.0",
+    "vite-plugin-pwa": "^0.20.5",
     "vue-advanced-cropper": "^2.8.9",
     "vue-virtual-scroller": "2.0.0-beta.8",
-    "workbox-build": "^7.0.0",
-    "workbox-window": "^7.0.0",
+    "workbox-build": "^7.1.1",
+    "workbox-window": "^7.1.0",
     "ws": "^8.15.1"
   },
   "devDependencies": {

@@ -56,7 +56,7 @@
     "@tiptap/starter-kit": "2.2.4",
     "@tiptap/suggestion": "2.2.4",
     "@tiptap/vue-3": "2.2.4",
-    "@unocss/nuxt": "^0.62.0",
+    "@unocss/nuxt": "^0.62.3",
     "@upstash/redis": "^1.27.1",
     "@vercel/kv": "^2.0.0",
     "@vue-macros/nuxt": "^1.6.0",
@@ -147,13 +147,12 @@
       "@vueuse/motion": "patches/@vueuse__motion.patch",
       "pinceau": "patches/pinceau.patch",
       "vue-i18n": "patches/vue-i18n.patch",
-      "nuxt": "patches/nuxt.patch",
       "nuxt-security": "patches/nuxt-security.patch"
     }
   },
   "resolutions": {
     "nuxt-component-meta": "0.7.0",
-    "unstorage": "^1.10.2",
+    "unstorage": "^1.12.0",
     "vitest": "2.0.5",
     "vue": "^3.4.21"
   },

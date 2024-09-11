@@ -1,4 +1,4 @@
-import { Buffer } from 'node:buffer'
+import { writeFile } from 'node:fs/promises'
 import { join, resolve } from 'pathe'
 import fs from 'fs-extra'
 import { ofetch } from 'ofetch'
@@ -12,7 +12,7 @@ async function download(url: string, fileName: string) {
   console.log('downloading', fileName)
   try {
     const image = await ofetch(url, { responseType: 'arrayBuffer' })
-    await fs.writeFile(fileName, Buffer.from(image))
+    await writeFile(fileName, new Uint8Array(image))
   }
   catch (err) {
     console.error(err)

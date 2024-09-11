@@ -1,4 +1,4 @@
-import fs from 'fs-extra'
+import { lstat } from 'node:fs'
 import { createResolver, defineNuxtModule } from '@nuxt/kit'
 import { currentLocales } from '../config/i18n'
 
@@ -53,7 +53,7 @@ export default defineNuxtModule({
 
 async function isFile(path: string) {
   return new Promise<boolean>((resolve) => {
-    fs.lstat(path, (err, stats) => {
+    lstat(path, (err, stats) => {
       if (err)
         resolve(false)
       else

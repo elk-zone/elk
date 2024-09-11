@@ -5,6 +5,7 @@ import type { mastodon } from 'masto'
 import type { DraftItem } from '~/types'
 
 const {
+  threadComposer,
   draftKey,
   draftItemIndex,
   expanded = false,
@@ -15,6 +16,7 @@ const {
   draftKey: string
   draftItemIndex: number
   initial?: () => DraftItem
+  threadComposer?: ReturnType<typeof useThreadComposer>
   placeholder?: string
   inReplyToId?: string
   inReplyToVisibility?: mastodon.v1.StatusVisibility
@@ -28,7 +30,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const { threadItems, threadIsActive, publishThread } = useThreadComposer(draftKey)
+const { threadItems, threadIsActive, publishThread } = threadComposer ?? useThreadComposer(draftKey)
 
 const draft = computed({
   get: () => threadItems.value[draftItemIndex],

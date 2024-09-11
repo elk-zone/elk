@@ -148,7 +148,7 @@ async function generatePWAIconForEnv(folder: string, icons: ResolvedIcons) {
       const png = await sharp(
         resolve(folder, icons.iconName('transparent', size).replace(/-temp\.png$/, '.png')),
       ).toFormat('png').toBuffer()
-      await writeFile(resolve(folder, icoName(size)), ico.encode([png]))
+      await writeFile(resolve(folder, icoName(size)), new Uint8Array(ico.encode([png])))
     }))
   }
 }

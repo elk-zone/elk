@@ -59,13 +59,13 @@
     "@unocss/nuxt": "^0.62.3",
     "@upstash/redis": "^1.27.1",
     "@vercel/kv": "^2.0.0",
-    "@vue-macros/nuxt": "^1.6.0",
-    "@vueuse/core": "^11.0.0",
+    "@vue-macros/nuxt": "^1.11.12",
+    "@vueuse/core": "^11.0.3",
     "@vueuse/gesture": "^2.0.0",
-    "@vueuse/integrations": "^11.0.0",
-    "@vueuse/math": "^11.0.0",
+    "@vueuse/integrations": "^11.0.3",
+    "@vueuse/math": "^11.0.3",
     "@vueuse/motion": "2.2.5",
-    "@vueuse/nuxt": "^11.0.0",
+    "@vueuse/nuxt": "^11.0.3",
     "blurhash": "^2.0.5",
     "browser-fs-access": "^0.35.0",
     "cheerio": "^1.0.0",
@@ -106,7 +106,7 @@
     "ultrahtml": "^1.5.3",
     "unimport": "^3.10.0",
     "vite-plugin-pwa": "^0.20.0",
-    "vue-advanced-cropper": "^2.8.8",
+    "vue-advanced-cropper": "^2.8.9",
     "vue-virtual-scroller": "2.0.0-beta.8",
     "workbox-build": "^7.0.0",
     "workbox-window": "^7.0.0",
@@ -140,7 +140,7 @@
     "tsx": "^4.19.0",
     "typescript": "^5.4.4",
     "vitest": "2.0.5",
-    "vue-tsc": "^2.0.10"
+    "vue-tsc": "^2.1.6"
   },
   "pnpm": {
     "patchedDependencies": {
@@ -154,7 +154,7 @@
     "nuxt-component-meta": "0.8.0",
     "unstorage": "^1.12.0",
     "vitest": "2.0.5",
-    "vue": "^3.4.21"
+    "vue": "^3.5.4"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"

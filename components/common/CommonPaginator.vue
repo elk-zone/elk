@@ -3,7 +3,6 @@
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 import type { mastodon } from 'masto'
-import type { UnwrapRef } from 'vue'
 
 const {
   paginator,
@@ -33,7 +32,7 @@ defineSlots<{
     newer: U // newer is undefined when index === 0
   }) => void
   items: (props: {
-    items: UnwrapRef<U[]>
+    items: U[]
   }) => void
   updater: (props: {
     number: number
@@ -74,7 +73,7 @@ defineExpose({ createEntry, removeEntry, updateEntry })
 <template>
   <div>
     <slot v-if="prevItems.length" name="updater" v-bind="{ number: prevItems.length, update }" />
-    <slot name="items" :items="items">
+    <slot name="items" :items="items as U[]">
       <template v-if="virtualScroller">
         <DynamicScroller
           v-slot="{ item, active, index }"

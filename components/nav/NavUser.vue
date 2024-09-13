@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const { busy, oauth, singleInstanceServer } = useSignIn()
 </script>
 

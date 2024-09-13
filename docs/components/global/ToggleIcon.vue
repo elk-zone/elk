@@ -1,8 +1,7 @@
-<script>
-export default {
-  name: 'ToggleIcon',
-  props: { up: Boolean },
-}
+<script setup lang="ts">
+const { up } = defineProps<{
+  up?: boolean
+}>()
 </script>
 
 <template>

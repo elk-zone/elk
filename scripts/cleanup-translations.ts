@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer'
+import { readFile, writeFile } from 'node:fs/promises'
 import { flatten, unflatten } from 'flat'
 import { createResolver } from '@nuxt/kit'
-import fs from 'fs-extra'
 import { currentLocales } from '../config/i18n'
 
 const resolver = createResolver(import.meta.url)
@@ -27,7 +27,7 @@ const sourceTranslations: Record<string, string> = {}
 
 for (const file of sourceFiles) {
   const data = JSON.parse(Buffer.from(
-    await fs.readFile(resolver.resolve(`../locales/${file as string}`), 'utf-8'),
+    await readFile(resolver.resolve(`../locales/${file as string}`), 'utf-8'),
   ).toString()) as Record<string, unknown>
 
   merge(flatten(data), sourceTranslations)
@@ -41,7 +41,7 @@ async function removeOutdatedTranslations() {
       const path = resolver.resolve(`../locales/${file}`)
 
       const data = JSON.parse(Buffer.from(
-        await fs.readFile(path, 'utf-8'),
+        await readFile(path, 'utf-8'),
       ).toString())
 
       const targetTranslations: Record<string, string> = flatten(data)
@@ -53,7 +53,7 @@ async function removeOutdatedTranslations() {
 
       const unflattened = unflatten(targetTranslations)
 
-      await fs.writeFile(
+      await writeFile(
         path,
         `${JSON.stringify(unflattened, null, 2)}\n`,
         { encoding: 'utf-8' },

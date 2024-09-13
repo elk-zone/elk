@@ -1,19 +1,12 @@
 diff --git a/dist/index.mjs b/dist/index.mjs
-index 04537d45037445e8dc497d90ad631e48af69a18d..7802ccd80a5e507b57512438d5137038655a465d 100644
+index a5c61adc0c21b5df5b1a3ffcf81d2469c7f96873..9241cf294b398b43a4a5555f39746a6c844d0b0f 100644
 --- a/dist/index.mjs
 +++ b/dist/index.mjs
-@@ -1401,14 +1401,6 @@ interface _GlobalComponents {
-   ${componentTypes.map(([pascalName, type]) => `    'Lazy${pascalName}': ${type}`).join("\n")}
- }
- 
--declare module '@vue/runtime-core' {
--  export interface GlobalComponents extends _GlobalComponents { }
--}
--
--declare module '@vue/runtime-dom' {
--  export interface GlobalComponents extends _GlobalComponents { }
--}
--
- declare module 'vue' {
-   export interface GlobalComponents extends _GlobalComponents { }
- }
+@@ -2183,6 +2183,7 @@ function createTransformPlugin(nuxt, getComponents, mode) {
+   }
+   return createUnplugin(() => ({
+     name: "nuxt:components:imports",
++    enforce: "post",
+     transformInclude(id) {
+       id = normalize(id);
+       return id.startsWith("virtual:") || id.startsWith("\0virtual:") || id.startsWith(nuxt.options.buildDir) || !isIgnored(id);

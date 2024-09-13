@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({
   middleware: () => {
     if (!useAppConfig().pwaEnabled)

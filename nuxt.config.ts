@@ -8,11 +8,12 @@ import { currentLocales } from './config/i18n'
 const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
+  compatibilityDate: '2024-09-11',
   typescript: {
     tsConfig: {
       exclude: ['../service-worker'],
       vueCompilerOptions: {
-        target: 3.4,
+        target: 3.5,
       },
     },
   },

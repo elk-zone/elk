@@ -20,9 +20,8 @@ const {
   dialogLabelledBy?: string
 }>()
 
-const threadItems = computed(() =>
-  useThreadComposer(draftKey, initial).threadItems.value,
-)
+const threadComposer = useThreadComposer(draftKey, initial)
+const threadItems = computed(() => threadComposer.threadItems.value)
 
 onDeactivated(() => {
   clearEmptyDrafts()
@@ -37,6 +36,8 @@ function isFirstItem(index: number) {
   <template v-if="isHydrated && currentUser">
     <PublishWidget
       v-for="(_, index) in threadItems" :key="`${draftKey}-${index}`"
+      v-bind="$attrs"
+      :thread-composer="threadComposer"
       :draft-key="draftKey"
       :draft-item-index="index"
       :expanded="isFirstItem(index) ? expanded : true"

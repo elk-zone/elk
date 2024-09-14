@@ -66,7 +66,6 @@ function handleFavouritedBoostedByClose() {
       max-w-180 flex w-full
       @close="handlePublishClose"
     >
-      <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
       <PublishWidgetList
         v-if="dialogDraftKey"
         :draft-key="dialogDraftKey"

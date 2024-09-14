@@ -1,5 +1,5 @@
 import { Buffer } from 'node:buffer'
-import { readFile } from 'fs-extra'
+import { readFile } from 'node:fs/promises'
 import { createResolver } from '@nuxt/kit'
 import type { ManifestOptions } from 'vite-plugin-pwa'
 import { getEnv } from '../../config/env'

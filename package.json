@@ -89,7 +89,7 @@
     "page-lifecycle": "^0.1.2",
     "pinia": "^2.2.2",
     "postcss-nested": "^6.0.1",
-    "prosemirror-highlight": "^0.8.0",
+    "prosemirror-highlight": "^0.9.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "shiki": "^1.0.0",
     "simple-git": "^3.19.1",
@@ -123,7 +123,7 @@
     "@types/wicg-file-system-access": "^2023.10.5",
     "@types/ws": "^8.5.12",
     "@unlazy/nuxt": "^0.11.3",
-    "@unocss/eslint-config": "^0.62.3",
+    "@unocss/eslint-config": "^0.62.4",
     "@vue/test-utils": "2.4.6",
     "bumpp": "^9.5.2",
     "consola": "^3.2.3",
@@ -132,12 +132,12 @@
     "flat": "^6.0.1",
     "fs-extra": "^11.2.0",
     "lint-staged": "^15.2.10",
-    "nuxt": "^3.13.1",
+    "nuxt": "^3.13.2",
     "prettier": "^3.3.3",
     "sharp": "^0.33.5",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.11.1",
-    "tsx": "^4.19.0",
+    "tsx": "^4.19.1",
     "typescript": "^5.4.4",
     "vitest": "2.0.5",
     "vue-tsc": "^2.1.6"
@@ -152,7 +152,7 @@
     }
   },
   "resolutions": {
-    "nuxt-component-meta": "0.8.1",
+    "nuxt-component-meta": "0.8.2",
     "unstorage": "^1.12.0",
     "vitest": "2.0.5",
     "vue": "^3.5.4"

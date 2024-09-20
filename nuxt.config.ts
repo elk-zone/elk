@@ -300,7 +300,7 @@ export default defineNuxtConfig({
         'upgrade-insecure-requests': true,
       },
       permissionsPolicy: {
-        fullscreen: ['\'self\'', 'https:', 'http:'],
+        fullscreen: '*',
       },
     },
     rateLimiter: false,

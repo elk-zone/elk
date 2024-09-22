@@ -28,7 +28,7 @@
     "go_to_profile": "Xem hồ sơ",
     "joined": "Đã tham gia",
     "lock": "KHÓA",
-    "moved_title": "đã chuyển sang địa chỉ mới:",
+    "moved_title": "đã chuyển sang máy chủ khác",
     "muted_users": "Người đã ẩn",
     "muting": "Đã ẩn",
     "mutuals": "Theo dõi nhau",
@@ -157,7 +157,7 @@
       "hours": "giờ|giờ|giờ",
       "minute": "phút|phút|phút",
       "notifications": "Ẩn thông báo",
-      "specify_duration": "Thời hạn ẩn cụ thể",
+      "specify_duration": "Ẩn có thời hạn",
       "title": "Ẩn người"
     },
     "show_reblogs": {
@@ -342,7 +342,7 @@
     "reported": "{0} báo cáo {1}",
     "request_to_follow": "yêu cầu theo dõi bạn",
     "signed_up": "tham gia máy chủ",
-    "update_status": "sửa tút của họ"
+    "update_status": "cập nhật tút"
   },
   "placeholder": {
     "content_warning": "Viết cảnh báo của bạn ở đây",
@@ -555,7 +555,7 @@
       "hide_tag_hover_card": "Ẩn xem trước hashtag",
       "hide_translation": "Ẩn chức năng dịch",
       "hide_username_emojis": "Ẩn emoji trong tên người dùng",
-      "hide_username_emojis_description": "Ẩn emoji khỏi tên người dùng, emoji vẫn sẽ hiển thị trong mô tả của họ.",
+      "hide_username_emojis_description": "Emoji vẫn sẽ hiển thị trong mô tả của họ.",
       "label": "Thiết lập",
       "optimize_for_low_performance_device": "Tối ưu cho thiết bị yếu",
       "title": "Tính năng thử nghiệm",

@@ -43,6 +43,7 @@ if (import.meta.env.PROD) {
     /^\/emojis\//,
     // exclude sw: if the user navigates to it, fallback to index.html
     /^\/sw.js$/,
+    /^\/elk-sw.js$/,
     // exclude webmanifest: has its own cache
     /^\/manifest-(.*).webmanifest$/,
   ]

@@ -202,6 +202,11 @@ export default defineNuxtModule<VitePWANuxtOptions>({
             'Cache-Control': 'public, max-age=0, must-revalidate',
           },
         }
+        nitroConfig.routeRules!['/elk-sw.js'] = {
+          headers: {
+            'Cache-Control': 'public, max-age=0, must-revalidate',
+          },
+        }
         for (const locale of pwaLocales) {
           nitroConfig.routeRules![`/manifest-${locale.code}.webmanifest`] = {
             headers: {

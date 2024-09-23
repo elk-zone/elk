@@ -20,7 +20,7 @@ function handleShowCommit() {
   <MainContent back-on-small-screen>
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
-        <span>{{ $t('settings.about.label') }}</span>
+        <span>{{ $t('settings.about.label') }}X</span>
       </div>
     </template>
 

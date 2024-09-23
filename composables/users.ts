@@ -57,8 +57,14 @@ export const isGlitchEdition = computed(() => currentInstance.value?.version?.in
 
 // when multiple tabs: we need to reload window when sign in, switch account or sign out
 if (import.meta.client) {
+  // fix #2972: now users loaded from idb, we need to wait for it
+  const initialLoad = ref(true)
+  watchOnce(users, () => {
+    initialLoad.value = false
+  }, { immediate: true, flush: 'sync' })
+
   const windowReload = () => {
-    if (document.visibilityState === 'visible')
+    if (document.visibilityState === 'visible' && !initialLoad.value)
       window.location.reload()
   }
   watch(currentUserHandle, async (handle, oldHandle) => {

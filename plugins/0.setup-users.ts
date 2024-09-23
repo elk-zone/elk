@@ -59,7 +59,7 @@ export default defineNuxtPlugin({
         nextTick(() => channel.postMessage(acct || ''))
       }
 
-      await useAsyncIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, { deep: true }, users)
+      await useAsyncIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, users)
     }
 
     return {

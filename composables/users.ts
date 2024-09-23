@@ -12,37 +12,12 @@ import {
   STORAGE_KEY_NOTIFICATION,
   STORAGE_KEY_NOTIFICATION_POLICY,
   STORAGE_KEY_SERVERS,
-  STORAGE_KEY_USERS,
 } from '~/constants'
 import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
-import { useAsyncIDBKeyval } from '~/composables/idb'
 
 const mock = process.mock
 
-function initializeUsers(): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>> | Ref<UserLogin[]> | RemovableRef<UserLogin[]> {
-  let defaultUsers = mock ? [mock.user] : []
-
-  // Backward compatibility with localStorage
-  let removeUsersOnLocalStorage = false
-  if (globalThis?.localStorage) {
-    const usersOnLocalStorageString = globalThis.localStorage.getItem(STORAGE_KEY_USERS)
-    if (usersOnLocalStorageString) {
-      defaultUsers = JSON.parse(usersOnLocalStorageString)
-      removeUsersOnLocalStorage = true
-    }
-  }
-
-  const users = import.meta.server
-    ? ref<UserLogin[]>(defaultUsers)
-    : useAsyncIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, { deep: true })
-
-  if (removeUsersOnLocalStorage)
-    globalThis.localStorage.removeItem(STORAGE_KEY_USERS)
-
-  return users
-}
-
-const users = import.meta.server ? initializeUsers() as Ref<UserLogin[]> | RemovableRef<UserLogin[]> : await initializeUsers()
+const users: Ref<UserLogin[]> | RemovableRef<UserLogin[]> = import.meta.server ? ref<UserLogin[]>([]) : ref<UserLogin[]>([]) as RemovableRef<UserLogin[]>
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
 const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
 export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })

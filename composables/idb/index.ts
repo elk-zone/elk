@@ -1,4 +1,4 @@
-import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
+import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { Ref } from 'vue'
 import type { UseIDBOptions } from '@vueuse/integrations/useIDBKeyval'
 import { del, get, set, update } from '~/utils/elk-idb'
@@ -10,11 +10,12 @@ export async function useAsyncIDBKeyval<T>(
   initialValue: MaybeRefOrGetter<T>,
   options: UseIDBOptions = {},
   source?: Ref<T>,
-): Promise<RemovableRef<T>> {
+): Promise<void> {
   const {
     flush = 'pre',
     deep = true,
     shallow,
+    writeDefaults = true,
     onError = (e: unknown) => {
       console.error(e)
     },
@@ -30,8 +31,10 @@ export async function useAsyncIDBKeyval<T>(
     try {
       const rawValue = await get<T>(key)
       if (rawValue === undefined) {
-        if (rawInit !== undefined && rawInit !== null)
+        if (rawInit !== undefined && rawInit !== null && writeDefaults) {
           await set(key, rawInit)
+          data.value = rawInit
+        }
       }
       else {
         data.value = rawValue
@@ -67,6 +70,4 @@ export async function useAsyncIDBKeyval<T>(
   }
 
   watch(data, () => write(), { flush, deep })
-
-  return data as RemovableRef<T>
 }

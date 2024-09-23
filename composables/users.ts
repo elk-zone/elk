@@ -19,7 +19,7 @@ const mock = process.mock
 
 const users: Ref<UserLogin[]> | RemovableRef<UserLogin[]> = import.meta.server ? ref<UserLogin[]>([]) : ref<UserLogin[]>([]) as RemovableRef<UserLogin[]>
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
-const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
+export const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
 export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 
 export type ElkInstance = Partial<mastodon.v1.Instance> & {
@@ -32,17 +32,24 @@ export function getInstanceCache(server: string): mastodon.v1.Instance | undefin
 }
 
 export const currentUser = computed<UserLogin | undefined>(() => {
-  if (currentUserHandle.value) {
-    const user = users.value.find(user => user.account?.acct === currentUserHandle.value)
+  const handle = currentUserHandle.value
+  const currentUsers = users.value
+  if (handle) {
+    const user = currentUsers.find(user => user.account?.acct === handle)
     if (user)
       return user
   }
   // Fallback to the first account
-  return users.value[0]
+  return currentUsers.length ? currentUsers[0] : undefined
 })
 
 const publicInstance = ref<ElkInstance | null>(null)
-export const currentInstance = computed<null | ElkInstance>(() => currentUser.value ? instanceStorage.value[currentUser.value.server] ?? null : publicInstance.value)
+export const currentInstance = computed<null | ElkInstance>(() => {
+  const user = currentUser.value
+  const storage = instanceStorage.value
+  const instance = publicInstance.value
+  return user ? storage[user.server] ?? null : instance
+})
 
 export function getInstanceDomain(instance: ElkInstance) {
   return instance.accountDomain || withoutProtocol(instance.uri)
@@ -55,44 +62,6 @@ export const currentNodeInfo = computed<null | Record<string, any>>(() => nodes.
 export const isGotoSocial = computed(() => currentNodeInfo.value?.software?.name === 'gotosocial')
 export const isGlitchEdition = computed(() => currentInstance.value?.version?.includes('+glitch'))
 
-// when multiple tabs: we need to reload window when sign in, switch account or sign out
-if (import.meta.client) {
-  // fix #2972: now users loaded from idb, we need to wait for it
-  const initialLoad = ref(true)
-  watchOnce(users, () => {
-    initialLoad.value = false
-  }, { immediate: true, flush: 'sync' })
-
-  const windowReload = () => {
-    if (document.visibilityState === 'visible' && !initialLoad.value)
-      window.location.reload()
-  }
-  watch(currentUserHandle, async (handle, oldHandle) => {
-    // when sign in or switch account
-    if (handle) {
-      if (handle === currentUser.value?.account?.acct) {
-        // when sign in, the other tab will not have the user, idb is not reactive
-        const newUser = users.value.find(user => user.account?.acct === handle)
-        // if the user is there, then we are switching account
-        if (newUser) {
-          // check if the change is on current tab: if so, don't reload
-          if (document.hasFocus() || document.visibilityState === 'visible')
-            return
-        }
-      }
-
-      window.addEventListener('visibilitychange', windowReload, { capture: true })
-    }
-    // when sign out
-    else if (oldHandle) {
-      const oldUser = users.value.find(user => user.account?.acct === oldHandle)
-      // when sign out, the other tab will not have the user, idb is not reactive
-      if (oldUser)
-        window.addEventListener('visibilitychange', windowReload, { capture: true })
-    }
-  }, { immediate: true, flush: 'post' })
-}
-
 export function useUsers() {
   return users
 }
@@ -102,7 +71,11 @@ export function useSelfAccount(user: MaybeRefOrGetter<mastodon.v1.Account | unde
 
 export const characterLimit = computed(() => currentInstance.value?.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
-export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { account?: mastodon.v1.AccountCredentials }>) {
+export async function loginTo(
+  masto: ElkMasto,
+  user: Overwrite<UserLogin, { account?: mastodon.v1.AccountCredentials }>,
+  forceNotify = false,
+) {
   const { client } = masto
   const instance = mastoLogin(masto, user)
 
@@ -115,6 +88,9 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
   if (!user?.token) {
     publicServer.value = user.server
     publicInstance.value = instance
+    if (import.meta.client) {
+      useNuxtApp().$notifyCredentialsChanged()
+    }
     return
   }
 
@@ -123,6 +99,7 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
   }
 
   const account = getUser()?.account
+  const oldAcct = currentUserHandle.value
   if (account)
     currentUserHandle.value = account.acct
 
@@ -149,6 +126,14 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
   }
 
   currentUserHandle.value = me.acct
+
+  if (import.meta.client) {
+    // Prevent sending multiple notifications (check signOut):
+    // - when sign-out with multiple accounts oldAcct === me.acct
+    if (forceNotify || oldAcct !== me.acct) {
+      useNuxtApp().$notifyCredentialsChanged(me.acct)
+    }
+  }
 }
 
 const accountPreferencesMap = new Map<string, Partial<mastodon.v1.Preference>>()
@@ -282,6 +267,8 @@ export async function signOut() {
 
   const index = users.value.findIndex(u => u.account?.id === _currentUserId)
 
+  let forceNotify = false
+
   if (index !== -1) {
     // Clear stale data
     clearUserLocalStorage()
@@ -295,6 +282,8 @@ export async function signOut() {
     currentUserHandle.value = ''
     // Remove the current user from the users
     users.value.splice(index, 1)
+    // forceNotify when there are more accounts
+    forceNotify = users.value.length > 0
   }
 
   // Set currentUserId to next user if available
@@ -303,7 +292,7 @@ export async function signOut() {
   if (!currentUserHandle.value)
     await useRouter().push('/')
 
-  loginTo(masto, currentUser.value || { server: publicServer.value })
+  await loginTo(masto, currentUser.value || { server: publicServer.value }, forceNotify)
 }
 
 export function checkLogin() {

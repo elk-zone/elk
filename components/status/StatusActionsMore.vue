@@ -146,6 +146,7 @@ function showFavoritedAndBoostedBy() {
       <div flex="~ col">
         <template v-if="getPreferences(userSettings, 'zenMode') && !details">
           <CommonDropdownItem
+            is="button"
             :text="$t('action.reply')"
             icon="i-ri:chat-1-line"
             :command="command"
@@ -153,6 +154,7 @@ function showFavoritedAndBoostedBy() {
           />
 
           <CommonDropdownItem
+            is="button"
             :text="status.reblogged ? $t('action.boosted') : $t('action.boost')"
             icon="i-ri:repeat-fill"
             :class="status.reblogged ? 'text-green' : ''"
@@ -162,6 +164,7 @@ function showFavoritedAndBoostedBy() {
           />
 
           <CommonDropdownItem
+            is="button"
             :text="status.favourited ? $t('action.favourited') : $t('action.favourite')"
             :icon="useStarFavoriteIcon
               ? status.favourited ? 'i-ri:star-fill' : 'i-ri:star-line'
@@ -176,6 +179,7 @@ function showFavoritedAndBoostedBy() {
           />
 
           <CommonDropdownItem
+            is="button"
             :text="status.bookmarked ? $t('action.bookmarked') : $t('action.bookmark')"
             :icon="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'"
             :class="status.bookmarked
@@ -189,6 +193,7 @@ function showFavoritedAndBoostedBy() {
         </template>
 
         <CommonDropdownItem
+          is="button"
           :text="$t('menu.show_favourited_and_boosted_by')"
           icon="i-ri:hearts-line"
           :command="command"
@@ -196,6 +201,7 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
+          is="button"
           :text="$t('menu.copy_link_to_post')"
           icon="i-ri:link"
           :command="command"
@@ -203,6 +209,7 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
+          is="button"
           :text="$t('menu.copy_original_link_to_post')"
           icon="i-ri:links-fill"
           :command="command"
@@ -210,6 +217,7 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
+          is="button"
           v-if="isShareSupported"
           :text="$t('menu.share_post')"
           icon="i-ri:share-line"
@@ -218,6 +226,7 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
+          is="button"
           v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some(m => m.id === currentUser!.account.id))"
           :text="status.muted ? $t('menu.unmute_conversation') : $t('menu.mute_conversation')"
           :icon="status.muted ? 'i-ri:eye-line' : 'i-ri:eye-off-line'"
@@ -237,6 +246,7 @@ function showFavoritedAndBoostedBy() {
         <template v-if="isHydrated && currentUser">
           <template v-if="isAuthor">
             <CommonDropdownItem
+              is="button"
               :text="status.pinned ? $t('menu.unpin_on_profile') : $t('menu.pin_on_profile')"
               icon="i-ri:pushpin-line"
               :command="command"
@@ -244,6 +254,7 @@ function showFavoritedAndBoostedBy() {
             />
 
             <CommonDropdownItem
+              is="button"
               :text="$t('menu.edit')"
               icon="i-ri:edit-line"
               :command="command"
@@ -251,6 +262,7 @@ function showFavoritedAndBoostedBy() {
             />
 
             <CommonDropdownItem
+              is="button"
               :text="$t('menu.delete')"
               icon="i-ri:delete-bin-line"
               text-red-600
@@ -259,6 +271,7 @@ function showFavoritedAndBoostedBy() {
             />
 
             <CommonDropdownItem
+              is="button"
               :text="$t('menu.delete_and_redraft')"
               icon="i-ri:eraser-line"
               text-red-600
@@ -268,6 +281,7 @@ function showFavoritedAndBoostedBy() {
           </template>
           <template v-else>
             <CommonDropdownItem
+              is="button"
               :text="$t('menu.mention_account', [`@${status.account.acct}`])"
               icon="i-ri:at-line"
               :command="command"
@@ -275,6 +289,7 @@ function showFavoritedAndBoostedBy() {
             />
 
             <CommonDropdownItem
+              is="button"
               v-if="!useRelationship(status.account).value?.muting"
               :text="$t('menu.mute_account', [`@${status.account.acct}`])"
               icon="i-ri:volume-mute-line"
@@ -282,6 +297,7 @@ function showFavoritedAndBoostedBy() {
               @click="toggleMuteAccount(useRelationship(status.account).value!, status.account)"
             />
             <CommonDropdownItem
+              is="button"
               v-else
               :text="$t('menu.unmute_account', [`@${status.account.acct}`])"
               icon="i-ri:volume-up-fill"
@@ -290,6 +306,7 @@ function showFavoritedAndBoostedBy() {
             />
 
             <CommonDropdownItem
+              is="button"
               v-if="!useRelationship(status.account).value?.blocking"
               :text="$t('menu.block_account', [`@${status.account.acct}`])"
               icon="i-ri:forbid-2-line"
@@ -297,6 +314,7 @@ function showFavoritedAndBoostedBy() {
               @click="toggleBlockAccount(useRelationship(status.account).value!, status.account)"
             />
             <CommonDropdownItem
+              is="button"
               v-else
               :text="$t('menu.unblock_account', [`@${status.account.acct}`])"
               icon="i-ri:checkbox-circle-line"
@@ -306,6 +324,7 @@ function showFavoritedAndBoostedBy() {
 
             <template v-if="getServerName(status.account) && getServerName(status.account) !== currentServer">
               <CommonDropdownItem
+                is="button"
                 v-if="!useRelationship(status.account).value?.domainBlocking"
                 :text="$t('menu.block_domain', [getServerName(status.account)])"
                 icon="i-ri:shut-down-line"
@@ -313,6 +332,7 @@ function showFavoritedAndBoostedBy() {
                 @click="toggleBlockDomain(useRelationship(status.account).value!, status.account)"
               />
               <CommonDropdownItem
+                is="button"
                 v-else
                 :text="$t('menu.unblock_domain', [getServerName(status.account)])"
                 icon="i-ri:restart-line"
@@ -322,6 +342,7 @@ function showFavoritedAndBoostedBy() {
             </template>
 
             <CommonDropdownItem
+              is="button"
               :text="$t('menu.report_account', [`@${status.account.acct}`])"
               icon="i-ri:flag-2-line"
               :command="command"

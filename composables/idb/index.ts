@@ -4,10 +4,11 @@ import { del, get, set, update } from '~/utils/elk-idb'
 
 export interface UseAsyncIDBKeyvalReturn<T> {
   set: (value: T) => Promise<void>
+  readIDB: () => Promise<T | undefined>
 }
 
 export async function useAsyncIDBKeyval<T>(
-  key: IDBValidKey,
+  key: string,
   initialValue: MaybeRefOrGetter<T>,
   source: RemovableRef<T>,
   options: Omit<UseIDBOptions, 'shallow'> = {},
@@ -23,25 +24,21 @@ export async function useAsyncIDBKeyval<T>(
 
   const rawInit: T = toValue<T>(initialValue)
 
-  async function read() {
-    try {
-      const rawValue = await get<T>(key)
-      if (rawValue === undefined) {
-        if (rawInit !== undefined && rawInit !== null && writeDefaults) {
-          await set(key, rawInit)
-          source.value = rawInit
-        }
-      }
-      else {
-        source.value = rawValue
+  try {
+    const rawValue = await get<T>(key)
+    if (rawValue === undefined) {
+      if (rawInit !== undefined && rawInit !== null && writeDefaults) {
+        await set(key, rawInit)
+        source.value = rawInit
       }
     }
-    catch (e) {
-      onError(e)
+    else {
+      source.value = rawValue
     }
   }
-
-  await read()
+  catch (e) {
+    onError(e)
+  }
 
   async function write() {
     try {
@@ -74,5 +71,5 @@ export async function useAsyncIDBKeyval<T>(
     }
   }
 
-  return { set: setData }
+  return { set: setData, readIDB: () => get<T>(key) }
 }

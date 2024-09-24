@@ -5,7 +5,8 @@ import { STORAGE_KEY_USERS } from '~/constants'
 const mock = process.mock
 
 export default defineNuxtPlugin({
-  parallel: false,
+  enforce: 'pre',
+  parallel: import.meta.server,
   async setup() {
     const users = useUsers()
 
@@ -28,40 +29,40 @@ export default defineNuxtPlugin({
     if (removeUsersOnLocalStorage)
       globalThis.localStorage.removeItem(STORAGE_KEY_USERS)
 
-    let notifyCredentialsChanged = (_acct?: string) => {}
-
     // when multiple tabs: we need to reload window when sign in, switch account or sign out
     if (import.meta.client) {
-      const handlingMessage = ref(false)
-      const channel = new BroadcastChannel('elk')
-
-      channel.addEventListener('message', () => {
-        if (!handlingMessage.value) {
-          setTimeout(() => {
-            // force reload home page
-            reloadNuxtApp({
-              ttl: 0,
-              force: true,
-              path: '/',
-            })
-          }, 0)
-          return
-        }
-        handlingMessage.value = false
-      })
-
-      notifyCredentialsChanged = (acct) => {
-        handlingMessage.value = true
-        nextTick(() => channel.postMessage(acct || ''))
-      }
+      // prevent reloading on the first visit
+      const initialLoad = ref(true)
 
       await useAsyncIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, users)
-    }
 
-    return {
-      provide: {
-        notifyCredentialsChanged,
-      },
+      watch(
+        currentUserHandle,
+        async (handle, oldHandle) => {
+          if (initialLoad.value) {
+            initialLoad.value = false
+            return
+          }
+
+          let sameAcct: boolean
+          // 1. detect account switching or sign-out
+          if (oldHandle) {
+            sameAcct = handle === oldHandle
+          }
+          else {
+            const acct = currentUser.value?.account?.acct
+            // 2. detect sign-in
+            sameAcct = !acct || acct === handle
+          }
+
+          if (!sameAcct) {
+            setTimeout(() => {
+              window.location.reload()
+            }, 0)
+          }
+        },
+        { immediate: true, flush: 'post' },
+      )
     }
   },
 })

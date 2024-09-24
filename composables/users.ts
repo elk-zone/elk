@@ -19,7 +19,7 @@ const mock = process.mock
 
 const users: Ref<UserLogin[]> | RemovableRef<UserLogin[]> = import.meta.server ? ref<UserLogin[]>([]) : ref<UserLogin[]>([]) as RemovableRef<UserLogin[]>
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
-const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
+export const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
 export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 
 export type ElkInstance = Partial<mastodon.v1.Instance> & {
@@ -74,7 +74,6 @@ export const characterLimit = computed(() => currentInstance.value?.configuratio
 export async function loginTo(
   masto: ElkMasto,
   user: Overwrite<UserLogin, { account?: mastodon.v1.AccountCredentials }>,
-  forceNotify = false,
 ) {
   const { client } = masto
   const instance = mastoLogin(masto, user)
@@ -88,9 +87,6 @@ export async function loginTo(
   if (!user?.token) {
     publicServer.value = user.server
     publicInstance.value = instance
-    if (import.meta.client) {
-      useNuxtApp().$notifyCredentialsChanged()
-    }
     return
   }
 
@@ -99,7 +95,6 @@ export async function loginTo(
   }
 
   const account = getUser()?.account
-  const oldAcct = currentUserHandle.value
   if (account)
     currentUserHandle.value = account.acct
 
@@ -126,14 +121,6 @@ export async function loginTo(
   }
 
   currentUserHandle.value = me.acct
-
-  if (import.meta.client) {
-    // Prevent sending multiple notifications (check signOut):
-    // - when sign-out with multiple accounts oldAcct === me.acct
-    if (forceNotify || oldAcct !== me.acct) {
-      useNuxtApp().$notifyCredentialsChanged(me.acct)
-    }
-  }
 }
 
 const accountPreferencesMap = new Map<string, Partial<mastodon.v1.Preference>>()
@@ -267,8 +254,6 @@ export async function signOut() {
 
   const index = users.value.findIndex(u => u.account?.id === _currentUserId)
 
-  let forceNotify = false
-
   if (index !== -1) {
     // Clear stale data
     clearUserLocalStorage()
@@ -282,8 +267,6 @@ export async function signOut() {
     currentUserHandle.value = ''
     // Remove the current user from the users
     users.value.splice(index, 1)
-    // forceNotify when there are more accounts
-    forceNotify = users.value.length > 0
   }
 
   // Set currentUserId to next user if available
@@ -292,7 +275,7 @@ export async function signOut() {
   if (!currentUserHandle.value)
     await useRouter().push('/')
 
-  await loginTo(masto, currentUser.value || { server: publicServer.value }, forceNotify)
+  await loginTo(masto, currentUser.value || { server: publicServer.value })
 }
 
 export function checkLogin() {

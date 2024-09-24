@@ -35,10 +35,6 @@ export default defineNuxtPlugin({
       const handlingMessage = ref(false)
       const channel = new BroadcastChannel('elk')
 
-      onBeforeUnmount(() => {
-        channel.close()
-      })
-
       channel.addEventListener('message', () => {
         if (!handlingMessage.value) {
           setTimeout(() => {

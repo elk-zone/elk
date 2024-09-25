@@ -99,7 +99,7 @@ export default defineNuxtPlugin({
       : (currentUser.value || { server: publicServer.value })
 
     if (import.meta.client) {
-      loginTo(masto, user).then(callback)
+      loginTo(masto, user).finally(callback)
     }
 
     return {

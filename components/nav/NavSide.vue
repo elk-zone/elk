@@ -17,17 +17,21 @@ const notificationsLink = computed(() => {
     return '/notifications'
   }
 
-  return `/notifications/${lastAccessedNotificationRoute}`
+  return `/notifications/${lastRoute}`
 })
 const exploreLink = computed(() => {
   const hydrated = isHydrated.value
   const server = currentServer.value
-  const lastRoute = lastAccessedExploreRoute.value
-  if (!hydrated || !server || !lastRoute) {
+  let lastRoute = lastAccessedExploreRoute.value
+  if (!hydrated) {
     return '/explore'
   }
 
-  return server ? `/${server}/explore/${lastRoute}` : `/explore/${lastRoute}`
+  if (lastRoute.length) {
+    lastRoute = `/${lastRoute}`
+  }
+
+  return server ? `/${server}/explore${lastRoute}` : `/explore${lastRoute}`
 })
 </script>
 

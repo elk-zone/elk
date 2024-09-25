@@ -8,7 +8,7 @@ export interface UseAsyncIDBKeyvalReturn<T> {
 }
 
 export async function useAsyncIDBKeyval<T>(
-  key: string,
+  key: IDBValidKey,
   initialValue: MaybeRefOrGetter<T>,
   source: RemovableRef<T>,
   options: Omit<UseIDBOptions, 'shallow'> = {},
@@ -40,14 +40,14 @@ export async function useAsyncIDBKeyval<T>(
     onError(e)
   }
 
-  async function write() {
+  async function write(data: T) {
     try {
-      if (source.value == null) {
+      if (data == null) {
         await del(key)
       }
       else {
         // IndexedDB does not support saving proxies, convert from proxy before saving
-        await update(key, () => toRaw(source.value))
+        await update(key, () => toRaw(data))
       }
     }
     catch (e) {
@@ -58,13 +58,13 @@ export async function useAsyncIDBKeyval<T>(
   const {
     pause: pauseWatch,
     resume: resumeWatch,
-  } = watchPausable(source, () => write(), { flush, deep })
+  } = watchPausable(source, data => write(data), { flush, deep })
 
   async function setData(value: T): Promise<void> {
     pauseWatch()
     try {
+      await write(value)
       source.value = value
-      await write()
     }
     finally {
       resumeWatch()

@@ -8,6 +8,31 @@ const { notifications } = useNotifications()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 const lastAccessedNotificationRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE, '')
 const lastAccessedExploreRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE, '')
+
+const notificationsLink = computed(() => {
+  const hydrated = isHydrated.value
+  const user = currentUser.value
+  const lastRoute = lastAccessedNotificationRoute.value
+  if (!hydrated || !user || !lastRoute) {
+    return '/notifications'
+  }
+
+  return `/notifications/${lastRoute}`
+})
+const exploreLink = computed(() => {
+  const hydrated = isHydrated.value
+  const server = currentServer.value
+  let lastRoute = lastAccessedExploreRoute.value
+  if (!hydrated) {
+    return '/explore'
+  }
+
+  if (lastRoute.length) {
+    lastRoute = `/${lastRoute}`
+  }
+
+  return server ? `/${server}/explore${lastRoute}` : `/explore${lastRoute}`
+})
 </script>
 
 <template>
@@ -16,7 +41,7 @@ const lastAccessedExploreRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_EXPLO
 
     <div class="spacer" shrink xl:hidden />
     <NavSideItem :text="$t('nav.home')" to="/home" icon="i-ri:home-5-line" user-only :command="command" />
-    <NavSideItem :text="$t('nav.notifications')" :to="`/notifications/${lastAccessedNotificationRoute}`" icon="i-ri:notification-4-line" user-only :command="command">
+    <NavSideItem :text="$t('nav.notifications')" :to="notificationsLink" icon="i-ri:notification-4-line" user-only :command="command">
       <template #icon>
         <div flex relative>
           <div class="i-ri:notification-4-line" text-xl />
@@ -34,7 +59,7 @@ const lastAccessedExploreRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_EXPLO
     <NavSideItem :text="$t('action.compose')" to="/compose" icon="i-ri:quill-pen-line" user-only :command="command" />
 
     <div class="spacer" shrink hidden sm:block />
-    <NavSideItem :text="$t('nav.explore')" :to="isHydrated ? `/${currentServer}/explore/${lastAccessedExploreRoute}` : `/explore/${lastAccessedExploreRoute}`" icon="i-ri:compass-3-line" :command="command" />
+    <NavSideItem :text="$t('nav.explore')" :to="exploreLink" icon="i-ri:compass-3-line" :command="command" />
     <NavSideItem :text="$t('nav.local')" :to="isHydrated ? `/${currentServer}/public/local` : '/public/local'" icon="i-ri:group-2-line " :command="command" />
     <NavSideItem :text="$t('nav.federated')" :to="isHydrated ? `/${currentServer}/public` : '/public'" icon="i-ri:earth-line" :command="command" />
     <NavSideItem :text="$t('nav.lists')" :to="isHydrated ? `/${currentServer}/lists` : '/lists'" icon="i-ri:list-check" user-only :command="command" />

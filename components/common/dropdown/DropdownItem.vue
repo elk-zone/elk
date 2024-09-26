@@ -1,17 +1,23 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
+const {
+  is = 'div',
+  text,
+  description,
+  icon,
+  checked,
+  command,
+} = defineProps<{
   is?: string
   text?: string
   description?: string
   icon?: string
   checked?: boolean
   command?: boolean
-}>(), {
-  is: 'div',
-})
+}>()
+
 const emit = defineEmits(['click'])
 
-const type = computed(() => props.is === 'button' ? 'button' : null)
+const type = computed(() => is === 'button' ? 'button' : null)
 
 const { hide } = useDropdownContext() || {}
 
@@ -26,11 +32,11 @@ useCommand({
   scope: 'Actions',
 
   order: -1,
-  visible: () => props.command && props.text,
+  visible: () => command && text,
 
-  name: () => props.text!,
-  icon: () => props.icon ?? 'i-ri:question-line',
-  description: () => props.description,
+  name: () => text!,
+  icon: () => icon ?? 'i-ri:question-line',
+  description: () => description,
 
   onActivate() {
     const clickEvent = new MouseEvent('click', {

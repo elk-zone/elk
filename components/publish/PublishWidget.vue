@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
 import { EditorContent } from '@tiptap/vue-3'
 import stringLength from 'string-length'
-import type { mastodon } from 'masto'
 import type { DraftItem } from '~/types'
 
 const {

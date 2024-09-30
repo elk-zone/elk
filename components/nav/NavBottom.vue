@@ -2,9 +2,9 @@
 import type { Component } from 'vue'
 import type { NavButtonName } from '../../composables/settings'
 
-import { STORAGE_KEY_BOTTOM_NAV_BUTTONS } from '~/constants'
-
 import { NavButtonExplore, NavButtonFederated, NavButtonHome, NavButtonLocal, NavButtonMention, NavButtonMoreMenu, NavButtonNotification, NavButtonSearch } from '#components'
+
+import { STORAGE_KEY_BOTTOM_NAV_BUTTONS } from '~/constants'
 
 interface NavButton {
   name: string

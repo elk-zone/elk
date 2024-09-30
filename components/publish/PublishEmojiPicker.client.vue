@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import importEmojiLang from 'virtual:emoji-mart-lang-importer'
 import type { Picker } from 'emoji-mart'
+import importEmojiLang from 'virtual:emoji-mart-lang-importer'
 
 const emit = defineEmits<{
   (e: 'select', code: string): void

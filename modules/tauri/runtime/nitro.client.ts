@@ -1,10 +1,10 @@
+import type { FetchResponse } from 'ofetch'
 import {
   createApp,
   createRouter,
   defineLazyEventHandler,
   toNodeListener,
 } from 'h3'
-import type { FetchResponse } from 'ofetch'
 import { createFetch } from 'ofetch'
 import {
   createCall,

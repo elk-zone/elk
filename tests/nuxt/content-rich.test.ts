@@ -1,10 +1,10 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { renderToString } from 'vue/server-renderer'
-import { format } from 'prettier'
 import type { mastodon } from 'masto'
 import { mockComponent } from '@nuxt/test-utils/runtime'
-import { contentToVNode } from '~/composables/content-render'
+import { format } from 'prettier'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { renderToString } from 'vue/server-renderer'
 import type { ContentParseOptions } from '~/composables/content-parse'
+import { contentToVNode } from '~/composables/content-render'
 
 beforeEach(() => {
   publicServer.value = useRuntimeConfig().public.defaultServer

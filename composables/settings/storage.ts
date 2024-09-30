@@ -1,8 +1,8 @@
-import type { Ref } from 'vue'
 import type { LocaleObject } from '@nuxtjs/i18n'
+import type { Ref } from 'vue'
 import type { FontSize, OldFontSize, PreferencesSettings, UserSettings } from './definition'
-import { STORAGE_KEY_SETTINGS } from '~/constants'
 import { oldFontSizeMap } from '~~/constants/options'
+import { STORAGE_KEY_SETTINGS } from '~/constants'
 
 export function useUserSettings() {
   const { locales } = useNuxtApp().$i18n

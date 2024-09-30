@@ -1,5 +1,5 @@
-import { type Parser, createParser } from 'prosemirror-highlight/shiki'
 import type { BuiltinLanguage } from 'shiki'
+import { createParser, type Parser } from 'prosemirror-highlight/shiki'
 
 let parser: Parser | undefined
 

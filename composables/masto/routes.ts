@@ -1,5 +1,5 @@
-import { withoutProtocol } from 'ufo'
 import type { mastodon } from 'masto'
+import { withoutProtocol } from 'ufo'
 
 export function getAccountRoute(account: mastodon.v1.Account) {
   return useRouter().resolve({

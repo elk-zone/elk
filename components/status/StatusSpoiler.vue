@@ -12,7 +12,7 @@ const expandSpoilers = computed(() => {
 
   return !props.filter // always prevent expansion if filtered
     && ((props.sensitiveNonSpoiler && expandMedia)
-    || (!props.sensitiveNonSpoiler && expandCW))
+      || (!props.sensitiveNonSpoiler && expandCW))
 })
 
 const hideContent = props.enabled || props.sensitiveNonSpoiler

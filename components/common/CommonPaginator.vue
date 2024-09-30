@@ -1,8 +1,8 @@
 <script setup lang="ts" generic="T, O, U = T">
+import type { mastodon } from 'masto'
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { mastodon } from 'masto'
 
 const {
   paginator,

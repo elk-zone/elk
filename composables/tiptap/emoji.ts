@@ -1,10 +1,10 @@
 import type { ExtendedRegExpMatchArray, InputRuleFinder, nodeInputRule } from '@tiptap/core'
 import type { NodeType } from '@tiptap/pm/model'
 import {
-  InputRule,
-  Node,
   callOrReturn,
+  InputRule,
   mergeAttributes,
+  Node,
   nodePasteRule,
 } from '@tiptap/core'
 import { emojiRegEx, getEmojiAttributes } from '~/config/emojis'

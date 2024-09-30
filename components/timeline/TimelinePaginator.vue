@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { mastodon } from 'masto'
 
 const { paginator, stream, account, buffer = 10, endMessage = true } = defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.Status[], mastodon.rest.v1.ListAccountStatusesParams>

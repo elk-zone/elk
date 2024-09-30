@@ -1,5 +1,5 @@
-import { isCI, isDevelopment } from 'std-env'
 import type { VitePWANuxtOptions } from '../modules/pwa/types'
+import { isCI, isDevelopment } from 'std-env'
 
 export const pwa: VitePWANuxtOptions = {
   mode: isCI ? 'production' : 'development',

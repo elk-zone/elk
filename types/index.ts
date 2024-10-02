@@ -1,6 +1,6 @@
+import type { RouteLocationRaw } from '#vue-router'
 import type { mastodon } from 'masto'
 import type { MarkNonNullable, Mutable } from './utils'
-import type { RouteLocationRaw } from '#vue-router'
 
 export interface AppInfo {
   id: string

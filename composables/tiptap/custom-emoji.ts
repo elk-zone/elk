@@ -1,6 +1,6 @@
 import {
-  Node,
   mergeAttributes,
+  Node,
   nodeInputRule,
 } from '@tiptap/core'
 

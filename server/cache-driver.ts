@@ -1,6 +1,6 @@
 import type { Driver } from 'unstorage'
-import memory from 'unstorage/drivers/memory'
 import { defineDriver } from 'unstorage'
+import memory from 'unstorage/drivers/memory'
 
 export interface CacheDriverOptions {
   driver: Driver

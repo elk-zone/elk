@@ -1,8 +1,8 @@
 import type { Pausable } from '@vueuse/core'
 import type { mastodon } from 'masto'
-import { createRestAPIClient, createStreamingAPIClient } from 'masto'
 import type { Ref } from 'vue'
 import type { ElkInstance } from '../users'
+import { createRestAPIClient, createStreamingAPIClient } from 'masto'
 import type { UserLogin } from '~/types'
 
 export function createMasto() {

@@ -55,6 +55,8 @@ export default defineNuxtPlugin(async () => {
   const localCall = createCall(toNodeListener(h3App) as any)
   const localFetch = createLocalFetch(localCall, globalThis.fetch)
 
+  // eslint-disable-next-line ts/prefer-ts-expect-error
+  // @ts-ignore Nitro types are subtly different here in a future nitro version
   globalThis.$fetch = createFetch({
     // @ts-expect-error slight differences in api
     fetch: localFetch,

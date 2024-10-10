@@ -583,6 +583,11 @@ function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?
         if (child.type === TEXT_NODE) {
           trimContentStart = () => {
             child.value = child.value.trimStart()
+            // remove the comma after the collapsed mention.
+            if (child.value.at(0) === ',') {
+              child.value = child.value.slice(1)
+              child.value = child.value.trimStart()
+            }
           }
         }
         // remove <br> after mention

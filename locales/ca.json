@@ -618,7 +618,7 @@
   "status": {
     "account": {
       "suspended_message": "El compte d'aquest missatge ha estat suspès.",
-      "suspended_show": "Mostrar contingut igualment?",
+      "suspended_show": "Mostrar contingut igualment?"
     },
     "boosted_by": "Impulsat per",
     "edited": "Editat {0}",

@@ -155,7 +155,6 @@ const forceShow = ref(false)
             </AccountHoverWrapper>
             <div flex-auto />
             <div v-show="!getPreferences(userSettings, 'zenMode')" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
-              <AccountLockIndicator v-if="status.account.locked" me-2 />
               <AccountBotIndicator v-if="status.account.bot" me-2 />
               <div flex="~ gap1" items-center>
                 <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />

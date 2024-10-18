@@ -11,7 +11,7 @@ useHydratedHead({
 </script>
 
 <template>
-  <MainContent>
+  <MainContent skip-content="nav.bookmarks">
     <template #title>
       <NuxtLink to="/bookmarks" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:bookmark-line />

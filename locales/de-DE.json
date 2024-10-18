@@ -230,7 +230,7 @@
     "dialog_header": "Tastaturkürzel",
     "groups": {
       "actions": {
-        "boost": "Boosten",
+        "boost": "Teilen",
         "command_mode": "Befehlsmodus",
         "compose": "Verfassen",
         "favourite": "Favorisieren",
@@ -272,7 +272,7 @@
     "delete_and_redraft": "Löschen und neu erstellen",
     "direct_message_account": "Direktnachricht an {0}",
     "edit": "Bearbeiten",
-    "hide_reblogs": "Boosts von {0} ausblenden",
+    "hide_reblogs": "Von {0} geteilte Beiträge ausblenden",
     "mention_account": "Erwähne {0}",
     "mute_account": "{0} stummschalten",
     "mute_conversation": "Diesem Beitrag stummschalten",
@@ -282,8 +282,8 @@
     "report_account": "{0} melden",
     "share_account": "Konto von {0} teilen",
     "share_post": "Teile diesen Beitrag",
-    "show_favourited_and_boosted_by": "Zeige mir, wer favorisiert und geboostet hat",
-    "show_reblogs": "Boosts von {0} anzeigen",
+    "show_favourited_and_boosted_by": "Zeige mir, wer favorisiert und geteilt hat",
+    "show_reblogs": "Von {0} geteilte Beiträge anzeigen",
     "show_untranslated": "Übersetzung schliessen",
     "toggle_theme": {
       "dark": "Dunkles Farbschema aktivieren",
@@ -482,11 +482,11 @@
       },
       "push_notifications": {
         "alerts": {
-          "favourite": "Favoriten",
+          "favourite": "Favorisierung deiner Beiträge",
           "follow": "Neue Follower",
           "mention": "Erwähnungen",
           "poll": "Umfragen",
-          "reblog": "Reblogge deinen Beitrag",
+          "reblog": "Teilen deiner Beiträge",
           "title": "Welche Benachrichtigungen erhalten?"
         },
         "description": "Erhalte Benachrichtigungen, auch wenn du Elk nicht verwendest.",
@@ -616,7 +616,7 @@
       "suspended_message": "Der Account dieses Status wurde vorübergehend gesperrt.",
       "suspended_show": "Inhalt trotzdem anzeigen?"
     },
-    "boosted_by": "Boosted von",
+    "boosted_by": "Geteilt von",
     "edited": "Zuletzt bearbeitet: {0}",
     "embedded_warning": "Das Abspielen kann deine IP-Adresse anderen offenlegen.",
     "favourited_by": "Favorisiert von",
@@ -655,15 +655,15 @@
     "media": "Medien",
     "news": "Nachrichten",
     "notifications_all": "Alle",
-    "notifications_favourite": "Favorit",
+    "notifications_favourite": "Favorisiert",
     "notifications_follow": "Folgen",
     "notifications_follow_request": "Folgeanfrage",
-    "notifications_mention": "Erwähnungen",
+    "notifications_mention": "Erwähnung",
     "notifications_more_tooltip": "Benachrichtigungen nach Typ filtern",
     "notifications_poll": "Umfrage",
-    "notifications_reblog": "Boost",
+    "notifications_reblog": "Geteilt",
     "notifications_status": "Status",
-    "notifications_update": "Aktualisierung",
+    "notifications_update": "Bearbeitet",
     "posts": "Beiträge",
     "posts_with_replies": "Beiträge & Antworten"
   },

@@ -604,12 +604,12 @@
     "attachments_limit_video_error": "Maximale Video-Größe überschritten: {0}",
     "edited": "(bearbeitet)",
     "editing": "Bearbeiten",
-    "loading": "Laden...",
+    "loading": "Wird geladen...",
     "publish_failed": "Veröffentlichung fehlgeschlagen",
-    "publishing": "Veröffentlichung",
+    "publishing": "Wird veröffentlicht",
     "save_failed": "Speichern fehlgeschlagen",
-    "upload_failed": "Upload fehlgeschlagen",
-    "uploading": "Hochladen..."
+    "upload_failed": "Hochladen fehlgeschlagen",
+    "uploading": "Wird hochgeladen..."
   },
   "status": {
     "account": {
@@ -618,7 +618,7 @@
     },
     "boosted_by": "Geteilt von",
     "edited": "Zuletzt bearbeitet: {0}",
-    "embedded_warning": "Das Abspielen kann deine IP-Adresse anderen offenlegen.",
+    "embedded_warning": "Das Abspielen könnte deine IP-Adresse anderen verraten.",
     "favourited_by": "Favorisiert von",
     "filter_hidden_phrase": "Versteckt durch",
     "filter_show_anyway": "Trotzdem zeigen",
@@ -634,14 +634,14 @@
       "ends": "Endet: {0}",
       "finished": "Beendet: {0}"
     },
-    "replying_to": "Antworten auf {0}",
+    "replying_to": "Antwort auf {0}",
     "show_full_thread": "Vollständigen Thread anzeigen",
-    "someone": "Jemand",
+    "someone": "jemand",
     "spoiler_media_hidden": "Medien ausgeblendet",
-    "spoiler_show_less": "Zeige weniger",
-    "spoiler_show_more": "Zeige mehr",
+    "spoiler_show_less": "Weniger zeigen",
+    "spoiler_show_more": "Mehr zeigen",
     "thread": "Thread",
-    "try_original_site": "Versuche die ursprüngliche Seite"
+    "try_original_site": "Auf der ursprünglichen Seite versuchen"
   },
   "status_history": {
     "created": "Erstellt: {0}",

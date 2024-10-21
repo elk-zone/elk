@@ -13,9 +13,14 @@ const availableNavButtons: NavButton[] = [
   { name: 'search', label: 'nav.search', icon: 'i-ri:search-line' },
   { name: 'notification', label: 'nav.notifications', icon: 'i-ri:notification-4-line' },
   { name: 'mention', label: 'nav.conversations', icon: 'i-ri:at-line' },
+  { name: 'favorite', label: 'nav.favourites', icon: 'i-ri:heart-line' },
+  { name: 'bookmark', label: 'nav.bookmarks', icon: 'i-ri:bookmark-line' },
+  { name: 'compose', label: 'nav.compose', icon: 'i-ri:quill-pen-line' },
   { name: 'explore', label: 'nav.explore', icon: 'i-ri:compass-3-line' },
   { name: 'local', label: 'nav.local', icon: 'i-ri:group-2-line' },
   { name: 'federated', label: 'nav.federated', icon: 'i-ri:earth-line' },
+  { name: 'list', label: 'nav.lists', icon: 'i-ri:list-check' },
+  { name: 'hashtag', label: 'nav.hashtags', icon: 'i-ri:hashtag' },
   { name: 'moreMenu', label: 'nav.more_menu', icon: 'i-ri:more-fill' },
 ] as const
 

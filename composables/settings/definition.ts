@@ -7,7 +7,7 @@ export type OldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type ColorMode = 'light' | 'dark' | 'system'
 
-export type NavButtonName = 'home' | 'search' | 'notification' | 'mention' | 'explore' | 'local' | 'federated' | 'moreMenu'
+export type NavButtonName = 'home' | 'search' | 'notification' | 'mention' | 'favorite' | 'bookmark' | 'compose' | 'explore' | 'local' | 'federated' | 'list' | 'hashtag' | 'setting' | 'moreMenu'
 
 export interface PreferencesSettings {
   hideAltIndicatorOnPosts: boolean

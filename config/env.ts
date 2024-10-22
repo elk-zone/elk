@@ -32,22 +32,25 @@ export async function getGitInfo() {
   let branch
   try {
     branch = gitBranch || await git.revparse(['--abbrev-ref', 'HEAD'])
-  } catch (e) {
-    branch = "unknown"
+  }
+  catch {
+    branch = 'unknown'
   }
 
   let commit
   try {
     commit = await git.revparse(['HEAD'])
-  } catch (e) {
-    commit = "unknown"
+  }
+  catch {
+    commit = 'unknown'
   }
 
   let shortCommit
   try {
     shortCommit = await git.revparse(['--short=7', 'HEAD'])
-  } catch (e) {
-    shortCommit = "unknown"
+  }
+  catch {
+    shortCommit = 'unknown'
   }
 
   return { branch, commit, shortCommit }

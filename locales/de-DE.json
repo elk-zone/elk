@@ -705,6 +705,7 @@
     "year_past": "vor 0 Jahren|letztes Jahren|vor {n} Jahren"
   },
   "timeline": {
+    "no_posts": "Noch keine Beiträge hier!",
     "show_new_items": "Zeige {v} neue Beiträge|Zeige {v} neuen Beitrag|Zeige {v} neue Beiträge",
     "view_older_posts": "Ältere Beiträge aus anderen Instanzen werden möglicherweise nicht angezeigt."
   },

@@ -1,7 +1,7 @@
-// @unimport-disabled
-import { emojiFilename, emojiPrefix, emojiRegEx } from '@iconify-emoji/twemoji'
 import type { EmojiRegexMatch } from '@iconify/utils/lib/emoji/replace/find'
 import { getEmojiMatchesInText } from '@iconify/utils/lib/emoji/replace/find'
+// @unimport-disabled
+import { emojiFilename, emojiPrefix, emojiRegEx } from '@iconify-emoji/twemoji'
 
 // Re-export everything from package
 export * from '@iconify-emoji/twemoji'

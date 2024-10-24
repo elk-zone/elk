@@ -1,15 +1,15 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import type { Buffer } from 'node:buffer'
+import type { Plugin } from 'vite'
+import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
+import type { VitePWANuxtOptions } from './types'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
-import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
-import { VitePWA } from 'vite-plugin-pwa'
-import type { Plugin } from 'vite'
 import { join, resolve } from 'pathe'
-import type { VitePWANuxtOptions } from './types'
+import { VitePWA } from 'vite-plugin-pwa'
 import { configurePWAOptions } from './config'
-import { type LocalizedWebManifest, createI18n, pwaLocales } from './i18n'
+import { createI18n, type LocalizedWebManifest, pwaLocales } from './i18n'
 
 export * from './types'
 
@@ -198,6 +198,11 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       nuxt.hook('nitro:config', async (nitroConfig) => {
         nitroConfig.routeRules = nitroConfig.routeRules || {}
         nitroConfig.routeRules!['/sw.js'] = {
+          headers: {
+            'Cache-Control': 'public, max-age=0, must-revalidate',
+          },
+        }
+        nitroConfig.routeRules!['/elk-sw.js'] = {
           headers: {
             'Cache-Control': 'public, max-age=0, must-revalidate',
           },

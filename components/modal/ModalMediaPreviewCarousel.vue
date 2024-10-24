@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Vector2 } from '@vueuse/gesture'
+import type { mastodon } from 'masto'
 import { useGesture } from '@vueuse/gesture'
 import { useReducedMotion } from '@vueuse/motion'
-import type { mastodon } from 'masto'
 
 const { media = [] } = defineProps<{
   media?: mastodon.v1.MediaAttachment[]

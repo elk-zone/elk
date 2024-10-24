@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer'
 import { readFile, writeFile } from 'node:fs/promises'
-import { flatten, unflatten } from 'flat'
 import { createResolver } from '@nuxt/kit'
+import { flatten, unflatten } from 'flat'
 import { currentLocales } from '../config/i18n'
 
 const resolver = createResolver(import.meta.url)

@@ -1,5 +1,5 @@
-import { LRUCache } from 'lru-cache'
 import type { mastodon } from 'masto'
+import { LRUCache } from 'lru-cache'
 
 const cache = new LRUCache<string, any>({
   max: 1000,
@@ -25,11 +25,10 @@ export function fetchStatus(id: string, force = false): Promise<mastodon.v1.Stat
   if (cached && !force)
     return Promise.resolve(cached)
 
-  const promise = useMastoClient().v1.statuses.$select(id).fetch()
-    .then((status) => {
-      cacheStatus(status)
-      return status
-    })
+  const promise = useMastoClient().v1.statuses.$select(id).fetch().then((status) => {
+    cacheStatus(status)
+    return status
+  })
   cache.set(key, promise)
   return promise
 }
@@ -46,14 +45,13 @@ export function fetchAccountById(id?: string | null): Promise<mastodon.v1.Accoun
     return Promise.resolve(cached)
 
   const domain = getInstanceDomainFromServer(server)
-  const promise = useMastoClient().v1.accounts.$select(id).fetch()
-    .then((r) => {
-      if (r.acct && !r.acct.includes('@') && domain)
-        r.acct = `${r.acct}@${domain}`
+  const promise = useMastoClient().v1.accounts.$select(id).fetch().then((r) => {
+    if (r.acct && !r.acct.includes('@') && domain)
+      r.acct = `${r.acct}@${domain}`
 
-      cacheAccount(r, server, true)
-      return r
-    })
+    cacheAccount(r, server, true)
+    return r
+  })
   cache.set(key, promise)
   return promise
 }
@@ -101,11 +99,10 @@ export function fetchTag(tagName: string, force = false): Promise<mastodon.v1.Ta
   if (cached && !force)
     return Promise.resolve(cached)
 
-  const promise = useMastoClient().v1.tags.$select(tagName).fetch()
-    .then((tag) => {
-      cacheTag(tag)
-      return tag
-    })
+  const promise = useMastoClient().v1.tags.$select(tagName).fetch().then((tag) => {
+    cacheTag(tag)
+    return tag
+  })
   cache.set(key, promise)
   return promise
 }

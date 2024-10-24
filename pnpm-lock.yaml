@@ -185,8 +185,8 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0
       masto:
-        specifier: ^6.7.5
-        version: 6.7.7
+        specifier: ^6.10.1
+        version: 6.10.1
       node-emoji:
         specifier: ^2.1.3
         version: 2.1.3
@@ -5689,8 +5689,8 @@ packages:
   markdown-table@3.0.3:
     resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
 
-  masto@6.7.7:
-    resolution: {integrity: sha512-iu9pWcBfyJO+GXgmZQo8/nSS2N3p5FYSiR+gZNDMT/LMUZgA9Pmr/YeGgn4uqoz/rllQtFm2W/+1v1Etr4b1pA==}
+  masto@6.10.1:
+    resolution: {integrity: sha512-CBEAvWJfMLMgk0cURSGU/fRJDcFEZWo1LBfVYztBNEOyijoedQh4htKaon+XCE4aT7TLYPqOLmcllXwMjOvztA==}
 
   md5@2.3.0:
     resolution: {integrity: sha512-T1GITYmFaKuO91vxyoQMFETst+O71VUPEU3ze5GNzDm0OWdP8v1ziTaAEPUr/3kLsY3Sftgz242A1SetQiDL7g==}
@@ -15077,7 +15077,7 @@ snapshots:
 
   markdown-table@3.0.3: {}
 
-  masto@6.7.7:
+  masto@6.10.1:
     dependencies:
       change-case: 4.1.2
       events-to-async: 2.0.1

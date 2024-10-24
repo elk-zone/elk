@@ -55,7 +55,7 @@ const showOriginSite = computed(() =>
             {{ $t('menu.open_in_original_site') }}
           </NuxtLink>
         </template>
-        <span v-else-if="items.length === 0">No posts here!</span>
+        <span v-else-if="items.length === 0">{{ $t('timeline.no_posts') }}</span>
       </div>
     </template>
   </CommonPaginator>

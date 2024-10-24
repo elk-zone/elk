@@ -713,6 +713,7 @@
     "year_past": "0 years ago|last year|{n} years ago"
   },
   "timeline": {
+    "no_posts": "No posts here!",
     "show_new_items": "Show {v} new items|Show {v} new item|Show {v} new items",
     "view_older_posts": "Older posts from other instances may not be displayed."
   },

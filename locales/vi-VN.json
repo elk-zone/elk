@@ -28,7 +28,7 @@
     "go_to_profile": "Xem hồ sơ",
     "joined": "Đã tham gia",
     "lock": "KHÓA",
-    "moved_title": "đã chuyển sang địa chỉ mới:",
+    "moved_title": "đã chuyển sang máy chủ khác",
     "muted_users": "Người đã ẩn",
     "muting": "Đã ẩn",
     "mutuals": "Theo dõi nhau",
@@ -157,7 +157,7 @@
       "hours": "giờ|giờ|giờ",
       "minute": "phút|phút|phút",
       "notifications": "Ẩn thông báo",
-      "specify_duration": "Thời hạn ẩn cụ thể",
+      "specify_duration": "Ẩn có thời hạn",
       "title": "Ẩn người"
     },
     "show_reblogs": {
@@ -342,7 +342,7 @@
     "reported": "{0} báo cáo {1}",
     "request_to_follow": "yêu cầu theo dõi bạn",
     "signed_up": "tham gia máy chủ",
-    "update_status": "sửa tút của họ"
+    "update_status": "cập nhật tút"
   },
   "placeholder": {
     "content_warning": "Viết cảnh báo của bạn ở đây",
@@ -425,7 +425,7 @@
     "select_posts": "Bạn muốn báo cáo tút nào?",
     "select_posts_other": "Bạn muốn báo cáo những tút nào?",
     "spam": "Đây là spam",
-    "spam_desc": "Liên kết độc hại, tương tác giả, hoặc trả lời lặp đi lặp lại",
+    "spam_desc": "Liên kết độc hại, giả tương tác, hoặc trả lời lặp đi lặp lại",
     "submit": "Gửi báo cáo",
     "unfollow_desc": "Bạn sẽ không còn thấy tút của người này trên bảng tin. Tút của họ vẫn có thể xuất hiện ở những nơi khác.",
     "violation": "Vi phạm nội quy máy chủ",
@@ -548,14 +548,14 @@
       "hide_alt_indi_on_posts": "Ẩn văn bản thay thế trên tút",
       "hide_boost_count": "Ẩn số lượt đăng lại",
       "hide_favorite_count": "Ẩn số lượt thích",
-      "hide_follower_count": "Ẩn số lượt người theo dõi/đang theo dõi",
+      "hide_follower_count": "Ẩn số người theo dõi/đang theo dõi",
       "hide_gif_indi_on_posts": "Ẩn biểu tượng GIF trên tút",
       "hide_news": "Ẩn tin tức",
-      "hide_reply_count": "Ẩn số lượng trả lời",
+      "hide_reply_count": "Ẩn số trả lời",
       "hide_tag_hover_card": "Ẩn xem trước hashtag",
       "hide_translation": "Ẩn chức năng dịch",
       "hide_username_emojis": "Ẩn emoji trong tên người dùng",
-      "hide_username_emojis_description": "Ẩn emoji khỏi tên người dùng, emoji vẫn sẽ hiển thị trong mô tả của họ.",
+      "hide_username_emojis_description": "Emoji vẫn sẽ hiển thị trong mô tả của họ.",
       "label": "Thiết lập",
       "optimize_for_low_performance_device": "Tối ưu cho thiết bị yếu",
       "title": "Tính năng thử nghiệm",

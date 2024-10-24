@@ -2,7 +2,21 @@
 import type { Component } from 'vue'
 import type { NavButtonName } from '../../composables/settings'
 
-import { NavButtonExplore, NavButtonFederated, NavButtonHome, NavButtonLocal, NavButtonMention, NavButtonMoreMenu, NavButtonNotification, NavButtonSearch } from '#components'
+import {
+  NavButtonBookmark,
+  NavButtonCompose,
+  NavButtonExplore,
+  NavButtonFavorite,
+  NavButtonFederated,
+  NavButtonHashtag,
+  NavButtonHome,
+  NavButtonList,
+  NavButtonLocal,
+  NavButtonMention,
+  NavButtonMoreMenu,
+  NavButtonNotification,
+  NavButtonSearch,
+} from '#components'
 
 import { STORAGE_KEY_BOTTOM_NAV_BUTTONS } from '~/constants'
 
@@ -16,9 +30,14 @@ const navButtons: NavButton[] = [
   { name: 'search', component: NavButtonSearch },
   { name: 'notification', component: NavButtonNotification },
   { name: 'mention', component: NavButtonMention },
+  { name: 'favorite', component: NavButtonFavorite },
+  { name: 'bookmark', component: NavButtonBookmark },
+  { name: 'compose', component: NavButtonCompose },
   { name: 'explore', component: NavButtonExplore },
   { name: 'local', component: NavButtonLocal },
   { name: 'federated', component: NavButtonFederated },
+  { name: 'list', component: NavButtonList },
+  { name: 'hashtag', component: NavButtonHashtag },
   { name: 'moreMenu', component: NavButtonMoreMenu },
 ]
 

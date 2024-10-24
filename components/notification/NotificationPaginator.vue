@@ -15,6 +15,8 @@ const groupCapacity = Number.MAX_VALUE // No limit
 
 const includeNotificationTypes: mastodon.v1.NotificationType[] = ['update', 'mention', 'poll', 'status']
 
+let id = 0
+
 function includeNotificationsForStatusCard({ type, status }: mastodon.v1.Notification) {
   // Exclude update, mention, pool and status notifications without the status entry:
   // no makes sense to include them
@@ -44,7 +46,6 @@ function hasHeader(account: mastodon.v1.Account) {
 function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   const results: NotificationSlot[] = []
 
-  let id = 0
   let currentGroupId = ''
   let currentGroup: mastodon.v1.Notification[] = []
   const processGroup = () => {

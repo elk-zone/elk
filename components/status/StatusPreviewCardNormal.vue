@@ -104,6 +104,11 @@ function loadAttachment() {
       <div :class="cardTypeIconMap[card.type]" w="30%" h="30%" text-secondary />
     </div>
     <StatusPreviewCardInfo :p="isSquare ? 'x-4' : '4'" :root="root" :card="card" :provider="providerName" />
+    <StatusPreviewCardMoreFromAuthor
+      v-if="card?.authors?.[0].account"
+      :account="card.authors[0].account"
+      p-4 py-2
+    />
   </NuxtLink>
 </template>
 

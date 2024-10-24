@@ -713,6 +713,7 @@
     "year_past": "0 năm trước|năm trước|{n} năm trước"
   },
   "timeline": {
+    "no_posts": "Chưa có tút!",
     "show_new_items": "Hiện {v} mục mới|Hiện {v} mục mới|Hiện {v} mục mới",
     "view_older_posts": "Các tút cũ ở máy chủ khác có thể không hiển thị đầy đủ."
   },

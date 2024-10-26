@@ -535,8 +535,8 @@
     },
     "notifications_settings": "Jakinarazpenak",
     "preferences": {
-      "embedded_media": "Kapsulatutako multimedia erreproduzigailua",
-      "embedded_media_description": "Kapsulatutako erreproduzigailu bat erakusten du partekatutako multimedia jarioen estekak zabaltzean, ez aurrebista txartel arrunta.",
+      "embedded_media": "Txertatutako multimedia erreproduzigailua",
+      "embedded_media_description": "Txertatutako erreproduzigailu bat erakusten du partekatutako multimedia jarioen estekak zabaltzean, aurrebista txartel arruntaren ordez.",
       "enable_autoplay": "Gaitu erreproduzitze automatikoa",
       "enable_data_saving": "Gaitu datu-aurrezlea",
       "enable_data_saving_description": "Aurreztu datuak eranskinen kargatze-automatikoa galarazten.",
@@ -713,6 +713,7 @@
     "year_past": "duela 0 urte|aurreko urtean|duela {n} urte"
   },
   "timeline": {
+    "no_posts": "Ez dago bidalketarik!",
     "show_new_items": "Erakutsi {v} elementu berri|Erakutsi elementu berri {v}|Erakutsi {v} elementu berri",
     "view_older_posts": "Oso litekeena da beste instantziatako bidalketa zaharragoak ikusgai ez egotea."
   },

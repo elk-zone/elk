@@ -713,6 +713,7 @@
     "year_past": "0 anos atrás|ano passado|{n} anos atrás"
   },
   "timeline": {
+    "no_posts": "Sem publicações aqui!",
     "show_new_items": "Mostrar {v} novos itens|Mostrar {v} novo item|Mostrar {v} novos itens",
     "view_older_posts": "Publicações antigas de outras instâncias podem não ser apresentadas."
   },

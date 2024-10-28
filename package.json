@@ -56,7 +56,7 @@
     "@tiptap/starter-kit": "2.2.4",
     "@tiptap/suggestion": "2.2.4",
     "@tiptap/vue-3": "2.2.4",
-    "@unocss/nuxt": "^0.63.0",
+    "@unocss/nuxt": "^0.63.6",
     "@upstash/redis": "^1.27.1",
     "@vercel/kv": "^2.0.0",
     "@vue-macros/nuxt": "^1.11.12",

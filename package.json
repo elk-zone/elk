@@ -123,7 +123,7 @@
     "@types/wicg-file-system-access": "^2023.10.5",
     "@types/ws": "^8.5.12",
     "@unlazy/nuxt": "^0.11.3",
-    "@unocss/eslint-config": "^0.63.4",
+    "@unocss/eslint-config": "^0.63.6",
     "@vue/test-utils": "2.4.6",
     "bumpp": "^9.7.1",
     "consola": "^3.2.3",
@@ -137,7 +137,7 @@
     "sharp": "^0.33.5",
     "sharp-ico": "^0.1.5",
     "simple-git-hooks": "^2.11.1",
-    "tsx": "^4.19.1",
+    "tsx": "^4.19.2",
     "typescript": "^5.4.4",
     "vitest": "2.1.3",
     "vue-tsc": "^2.1.6"

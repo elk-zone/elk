@@ -1,6 +1,8 @@
-import { DEFAULT_FONT_SIZE } from '~/constants'
+import { DEFAULT_FONT_SIZE, DEFAULT_LINE_HEIGHT } from '~/constants'
 
 export type FontSize = `${number}px`
+
+export type LineHeight = 'narrow' | 'normal' | 'wide'
 
 // Temporary type for backward compatibility
 export type OldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
@@ -38,6 +40,7 @@ export interface UserSettings {
   preferences: Partial<PreferencesSettings>
   colorMode?: ColorMode
   fontSize: FontSize
+  lineHeight: LineHeight
   language: string
   disabledTranslationLanguages: string[]
   themeColors?: ThemeColors
@@ -94,6 +97,7 @@ export function getDefaultUserSettings(locales: string[]): UserSettings {
   return {
     language: getDefaultLanguage(locales),
     fontSize: DEFAULT_FONT_SIZE,
+    lineHeight: DEFAULT_LINE_HEIGHT,
     disabledTranslationLanguages: [],
     preferences: DEFAULT__PREFERENCES_SETTINGS,
   }

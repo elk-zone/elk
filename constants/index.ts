@@ -4,6 +4,7 @@ export const APP_NAME = 'Elk'
 
 export const DEFAULT_POST_CHARS_LIMIT = 500
 export const DEFAULT_FONT_SIZE = '15px'
+export const DEFAULT_LINE_HEIGHT = 'normal'
 
 export const ELK_PAGE_LIFECYCLE_FROZEN = 'elk-frozen'
 

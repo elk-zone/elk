@@ -47,6 +47,9 @@ const vnodeCode = computed(() => {
   })
   return vnode
 })
+
+const userSettings = useUserSettings()
+const lineHeight = userSettings.value.lineHeight
 </script>
 
 <template>
@@ -60,7 +63,7 @@ const vnodeCode = computed(() => {
     pb-2
   >
     <div whitespace-pre-wrap break-words>
-      <span v-if="vnodeCode" class="content-rich line-compact" dir="auto">
+      <span v-if="vnodeCode" class="content-rich" :class="[`line-height-${lineHeight}`]" dir="auto">
         <component :is="vnodeCode" />
       </span>
     </div>

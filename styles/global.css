@@ -125,8 +125,16 @@ em-emoji-picker {
   }
 }
 
-.line-compact {
-  line-height: calc(4 / 3 * 1em);
+.line-height-narrow {
+  line-height: 1.15;
+}
+
+.line-height-normal {
+  line-height: calc(4 / 3);
+}
+
+.line-height-wide {
+  line-height: 1.5;
 }
 
 .content-editor {

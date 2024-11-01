@@ -41,11 +41,11 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2
       '@iconify/json':
-        specifier: ^2.2.170
-        version: 2.2.170
+        specifier: ^2.2.266
+        version: 2.2.266
       '@iconify/utils':
-        specifier: ^2.1.22
-        version: 2.1.32
+        specifier: ^2.1.33
+        version: 2.1.33
       '@nuxt/devtools':
         specifier: ^1.5.2
         version: 1.5.2(rollup@2.79.1)(vite@5.4.5(@types/node@20.8.6)(terser@5.22.0))(vue@3.5.4(typescript@5.6.2))(webpack-sources@3.2.3)
@@ -1731,14 +1731,11 @@ packages:
   '@iconify-emoji/twemoji@1.0.2':
     resolution: {integrity: sha512-C4W6ov4BkDXiVU3GzyqyVo8SBbU21KivXnZERgAnrYZEKjuiI3JwPDnu9oVJPsUkNI/Q4SM8iVnXjGW6kxt9DQ==}
 
-  '@iconify/json@2.2.170':
-    resolution: {integrity: sha512-KJQ+LPj5KOpBrTknm0vpb2A6+T12ZyIFInubW3kT/58eZRKtiDv5D87QWVXczL5/uyDr2rkRu8rAfOrGr/UFhA==}
+  '@iconify/json@2.2.266':
+    resolution: {integrity: sha512-lv+lmPjhDh5/sCaom8AX39USmneRMcQRT/SKoDsxizOjVKycZ8PRk7kNKi776YkKzuksb0Xv5Tfi/Mrr3YLQgQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-
-  '@iconify/utils@2.1.32':
-    resolution: {integrity: sha512-LeifFZPPKu28O3AEDpYJNdEbvS4/ojAPyIW+pF/vUpJTYnbTiXUHkCh0bwgFRzKvdpb8H4Fbfd/742++MF4fPQ==}
 
   '@iconify/utils@2.1.33':
     resolution: {integrity: sha512-jP9h6v/g0BIZx0p7XGJJVtkVnydtbgTgt9mVNcGDYwaa7UhdHdI9dvoq+gKj9sijMSJKxUPEG2JyjsgXjxL7Kw==}
@@ -9549,24 +9546,12 @@ snapshots:
 
   '@iconify-emoji/twemoji@1.0.2': {}
 
-  '@iconify/json@2.2.170':
+  '@iconify/json@2.2.266':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
 
   '@iconify/types@2.0.0': {}
-
-  '@iconify/utils@2.1.32':
-    dependencies:
-      '@antfu/install-pkg': 0.4.1
-      '@antfu/utils': 0.7.10
-      '@iconify/types': 2.0.0
-      debug: 4.3.6
-      kolorist: 1.8.0
-      local-pkg: 0.5.0
-      mlly: 1.7.1
-    transitivePeerDependencies:
-      - supports-color
 
   '@iconify/utils@2.1.33':
     dependencies:

@@ -4,7 +4,7 @@ export default defineAppConfig({
     description: 'A nimble Mastodon web client.',
     image: 'https://docs.elk.zone/elk-screenshot.png',
     socials: {
-      twitter: 'elk_zone',
+      // twitter: 'elk_zone',
       github: 'elk-zone/elk',
       mastodon: {
         label: 'Mastodon',

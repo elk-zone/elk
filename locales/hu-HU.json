@@ -713,6 +713,7 @@
     "year_past": "0 évvel ezelőtt|múlt évben|{n} évvel ezelőtt"
   },
   "timeline": {
+    "no_posts": "Itt nincsenek bejegyzések.",
     "show_new_items": "{v} új elem megjelenítése|{v} új elem megjelenítése|{v} új elem megjelenítése",
     "view_older_posts": "Előfordulhat, hogy más instancekről származó régebbi bejegyzések nem jelennek meg."
   },

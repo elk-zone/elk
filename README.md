@@ -1,13 +1,13 @@
 <p align="center">
   <a href="https://elk.zone" target="_blank" rel="noopener noreferrer">
-    <img width="160" height="160" src="./public/logo.svg" alt="Elk logo">
+    <img style="color: #1083fe;" width="160" height="160" src="./public/nimbus.svg" alt="Nimbus logo">
   </a>
 </p>
 
-<h1 align="center"/>Elk <sup><em>alpha</em></sup></h1>
+<h1 align="center"/>Nimbus <sup><em>beta</em></sup></h1>
 
 <p align="center">
-A nimble Mastodon web client
+A nimble Bluesky web client
 </p>
 
 <br/>
@@ -20,13 +20,13 @@ A nimble Mastodon web client
 
 <p align="center">
   <a href="https://elk.zone/" target="_blank" rel="noopener noreferrer" >
-    <img src="./public/elk-og.png" alt="Elk screenshots" width="600" height="auto">
+    <img src="./public/elk-og.png" alt="Nimbus screenshots" width="600" height="auto">
   </a>
 </p>
 
-## ⚠️ Elk is in Alpha
+## ⚠️ Nimbus is in Beta
 
-It is already quite usable, but it isn't ready for wide adoption yet. We recommend you use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/elk-zone/elk/issues) and jump in the action. Join the [Elk discord server](https://chat.elk.zone) to chat with us and learn more about the project.
+It is already quite usable, but it isn't ready for wide adoption yet. We recommend you use it if you would like to help us build it. We appreciate your feedback and contributions. Check out the [Open Issues](https://github.com/nimbus-zone/nimbus/issues) and jump in the action. Join the [Nimbus discord server](https://chat.elk.zone) to chat with us and learn more about the project.
 
 ## Deployment
 
@@ -39,18 +39,18 @@ The Elk team maintains a deployment at:
 
 ### Self-Host Docker Deployment
 
-In order to host Elk yourself you can use the provided Dockerfile to build a container with elk. Be aware, that Elk only loads properly if the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself.
-One could put Elk behind popular reverse proxies with SSL Handling like Traefik, NGINX etc.
+In order to host Nimbus yourself you can use the provided Dockerfile to build a container with Nimbus. Be aware, that Nimbus only loads properly if the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself.
+One could put Nimbus behind popular reverse proxies with SSL Handling like Traefik, NGINX etc.
 
-1. checkout source ```git clone https://github.com/elk-zone/elk.git```
-1. got into new source dir: ```cd elk```
-1. build Docker image: ```docker build .```
-1. create local storage directory for settings: ```mkdir elk-storage```
-1. adjust permissions of storage dir: ```sudo chown 911:911 ./elk-storage```
-1. start container: ```docker-compose up -d```
+1. checkout source ```git clone https://github.com/nimbus-zone/nimbus.git```
+2. got into new source dir: ```cd nimbus```
+3. build Docker image: ```docker build .```
+4. create local storage directory for settings: ```mkdir elk-storage```
+5. adjust permissions of storage dir: ```sudo chown 911:911 ./elk-storage```
+6. start container: ```docker-compose up -d```
 
 > [!NOTE]
-> The provided Dockerfile creates a container which will eventually run Elk as non-root user and create a persistent named Docker volume upon first start (if that volume does not yet exist). This volume is always created with root permission. Failing to change the permissions of ```/elk/data``` inside this volume to UID:GID 911 (as specified for Elk in the Dockerfile) will prevent Elk from storing it's config for user accounts. You either have to fix the permission in the created named volume, or mount a directory with the correct permission to ```/elk/data``` into the container.
+> The provided Dockerfile creates a container which will eventually run Nimbus as non-root user and create a persistent named Docker volume upon first start (if that volume does not yet exist). This volume is always created with root permission. Failing to change the permissions of ```/nimbus/data``` inside this volume to UID:GID 911 (as specified for Nimbus in the Dockerfile) will prevent Nimbus from storing it's config for user accounts. You either have to fix the permission in the created named volume, or mount a directory with the correct permission to ```/nimbus/data``` into the container.
 
 ### Ecosystem
 
@@ -69,7 +69,7 @@ These are known deployments using Elk as an alternative Web client for Mastodon 
 - [elk.bolha.us](https://elk.bolha.us) - Use Elk for the `bolha.us` Server
 - [crab.bumscode.com](https://crab.bumscode.com) - Use [crab](https://github.com/maybeanerd/crab) - a soft fork of Elk - for the `bumscode.com` Server
 
-> **Note**: Community deployments are **NOT** maintained by the Elk team. It may not be synced with Elk's source code. Please do your own research about the host servers before using them.
+> **Note**: Community deployments are **NOT** maintained by the Nimbus team. It may not be synced with Nimbus' source code. Please do your own research about the host servers before using them.
 
 ## 💖 Sponsors
 
@@ -84,32 +84,29 @@ We are grateful for the generous sponsorship and help of:
 </a>
 <br><br>
 
-And all the companies and individuals sponsoring Elk Team and the members. If you're enjoying the app, consider sponsoring us:
+And all the companies and individuals sponsoring Nimbus Team and the members. If you're enjoying the app, consider sponsoring us:
 
-- [Elk Team's GitHub Sponsors](https://github.com/sponsors/elk-zone)
+- [Nimbus Team's GitHub Sponsors](https://github.com/sponsors/nimbus-zone)
 
 Or you can sponsor our core team members individually:
 
-- [Anthony Fu](https://github.com/sponsors/antfu)
-- [Daniel Roe](https://github.com/sponsors/danielroe)
-- [三咲智子 Kevin Deng](https://github.com/sponsors/sxzz)
 - [Patak](https://github.com/sponsors/patak-dev)
 
-We would also appreciate sponsoring other contributors to the Elk project. If someone helps you solve an issue or implement a feature you wanted, supporting them would help make this project and OS more sustainable.
+We would also appreciate sponsoring other contributors to the Nimbus project. If someone helps you solve an issue or implement a feature you wanted, supporting them would help make this project and OS more sustainable.
 
 ## 📍 Roadmap
 
-[Open board on Volta](https://volta.net/elk-zone/elk)
+[Open board on Volta](https://volta.net/nimbus-zone/nimbus)
 
 ## 🧑‍💻 Contributing
 
-We're really excited that you're interested in contributing to Elk! Before submitting your contribution, please read through the following guide.
+We're really excited that you're interested in contributing to Nimbus! Before submitting your contribution, please read through the following guide.
 
 ### Online
 
-You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow).
+You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the Nimbus repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow).
 
-[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
+[![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/nimbus-zone/nimbus)
 
 ### Local Setup
 
@@ -120,7 +117,7 @@ pnpm i
 pnpm run dev
 ```
 
-`Warning`: you will need `corepack` enabled, check out the [Elk Contributing Guide](./CONTRIBUTING.md) for a detailed guide on how to set up the project locally.
+`Warning`: you will need `corepack` enabled, check out the [Nimbus Contributing Guide](./CONTRIBUTING.md) for a detailed guide on how to set up the project locally.
 
 We recommend installing [ni](https://github.com/antfu/ni#ni), that will use the right package manager in each of your projects. If `ni` is installed, you can instead run:
 
@@ -157,10 +154,10 @@ You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more
 
 ## 👨‍💻 Contributors
 
-<a href="https://github.com/elk-zone/elk/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=elk-zone/elk" />
+<a href="https://github.com/nimbus-zone/nimbus/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=nimbus-zone/nimbus" />
 </a>
 
 ## 📄 License
 
-[MIT](./LICENSE) &copy; 2022-PRESENT Elk contributors
+[MIT](./LICENSE) &copy; 2024-PRESENT Nimbus contributors

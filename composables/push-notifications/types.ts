@@ -14,11 +14,11 @@ export interface RequiredUserLogin extends Required<Omit<UserLogin, 'account' | 
 
 export interface CreatePushNotification {
   alerts?: Partial<mastodon.v1.WebPushSubscriptionAlerts> | null
-  policy?: mastodon.v1.SubscriptionPolicy
+  policy?: mastodon.v1.WebPushSubscriptionPolicy
 }
 
 export type PushNotificationRequest = Record<string, boolean>
-export type PushNotificationPolicy = Record<string, mastodon.v1.SubscriptionPolicy>
+export type PushNotificationPolicy = Record<string, mastodon.v1.WebPushSubscriptionPolicy>
 
 export interface CustomEmojisInfo {
   lastUpdate: number

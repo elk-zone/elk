@@ -4,10 +4,10 @@ defineProps<{
   hover?: boolean
   iconChecked?: string
   iconUnchecked?: string
+  checkedIconColor?: string
+  prependCheckbox?: boolean
 }>()
-const { modelValue } = defineModels<{
-  modelValue?: boolean | null
-}>()
+const modelValue = defineModel<boolean | null>()
 </script>
 
 <template>
@@ -17,9 +17,12 @@ const { modelValue } = defineModels<{
     v-bind="$attrs"
     @click.prevent="modelValue = !modelValue"
   >
-    <span v-if="label" flex-1 ms-2 pointer-events-none>{{ label }}</span>
+    <span v-if="label && !prependCheckbox" flex-1 ms-2 pointer-events-none>{{ label }}</span>
     <span
-      :class="modelValue ? (iconChecked ?? 'i-ri:checkbox-line') : (iconUnchecked ?? 'i-ri:checkbox-blank-line')"
+      :class="[
+        modelValue ? (iconChecked ?? 'i-ri:checkbox-line') : (iconUnchecked ?? 'i-ri:checkbox-blank-line'),
+        modelValue && checkedIconColor,
+      ]"
       text-lg
       aria-hidden="true"
     />
@@ -28,6 +31,7 @@ const { modelValue } = defineModels<{
       type="checkbox"
       sr-only
     >
+    <span v-if="label && prependCheckbox" flex-1 ms-2 pointer-events-none>{{ label }}</span>
   </label>
 </template>
 

@@ -1,20 +1,25 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
-
+const keys = useMagicKeys()
 const { t } = useI18n()
+
 useHydratedHead({
   title: () => t('nav.search'),
 })
 
-const search = $ref<{ input?: HTMLInputElement }>()
+const search = ref<{ input?: HTMLInputElement }>()
+
 watchEffect(() => {
-  if (search?.input)
-    search?.input?.focus()
+  if (search.value?.input)
+    search.value?.input?.focus()
 })
-onActivated(() =>
-  search?.input?.focus(),
-)
-onDeactivated(() => search?.input?.blur())
+onActivated(() => search.value?.input?.focus())
+onDeactivated(() => search.value?.input?.blur())
+
+watch(keys['/'], (v) => {
+  // focus on input when '/' is up to avoid '/' being typed
+  if (!v)
+    search.value?.input?.focus()
+})
 </script>
 
 <template>

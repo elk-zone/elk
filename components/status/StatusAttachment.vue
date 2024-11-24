@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { clamp } from '@vueuse/core'
 import type { mastodon } from 'masto'
+import { clamp } from '@vueuse/core'
 import { decode } from 'blurhash'
 
 const {
@@ -14,8 +14,8 @@ const {
   isPreview?: boolean
 }>()
 
-const src = $computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
-const srcset = $computed(() => [
+const src = computed(() => attachment.previewUrl || attachment.url || attachment.remoteUrl!)
+const srcset = computed(() => [
   [attachment.url, attachment.meta?.original?.width],
   [attachment.remoteUrl, attachment.meta?.original?.width],
   [attachment.previewUrl, attachment.meta?.small?.width],
@@ -53,12 +53,12 @@ const typeExtsMap = {
   gifv: ['gifv', 'gif'],
 }
 
-const type = $computed(() => {
+const type = computed(() => {
   if (attachment.type && attachment.type !== 'unknown')
     return attachment.type
   // some server returns unknown type, we need to guess it based on file extension
   for (const [type, exts] of Object.entries(typeExtsMap)) {
-    if (exts.some(ext => src?.toLowerCase().endsWith(`.${ext}`)))
+    if (exts.some(ext => src.value?.toLowerCase().endsWith(`.${ext}`)))
       return type
   }
   return 'unknown'
@@ -66,7 +66,9 @@ const type = $computed(() => {
 
 const video = ref<HTMLVideoElement | undefined>()
 const prefersReducedMotion = usePreferredReducedMotion()
-const isAudio = $computed(() => attachment.type === 'audio')
+const isAudio = computed(() => attachment.type === 'audio')
+const isVideo = computed(() => attachment.type === 'video')
+const isGif = computed(() => attachment.type === 'gifv')
 
 const enableAutoplay = usePreferences('enableAutoplay')
 
@@ -81,7 +83,8 @@ useIntersectionObserver(video, (entries) => {
 
   entries.forEach((entry) => {
     if (entry.intersectionRatio <= 0.75) {
-      ready && !video.value?.paused && video.value?.pause()
+      if (ready && !video.value?.paused)
+        video.value?.pause()
     }
     else {
       video.value?.play().then(() => {
@@ -99,21 +102,21 @@ function loadAttachment() {
   shouldLoadAttachment.value = true
 }
 
-const blurHashSrc = $computed(() => {
+const blurHashSrc = computed(() => {
   if (!attachment.blurhash)
     return ''
   const pixels = decode(attachment.blurhash, 32, 32)
   return getDataUrlFromArr(pixels, 32, 32)
 })
 
-let videoThumbnail = shouldLoadAttachment.value
+const videoThumbnail = ref(shouldLoadAttachment.value
   ? attachment.previewUrl
-  : blurHashSrc
+  : blurHashSrc.value)
 
 watch(shouldLoadAttachment, () => {
-  videoThumbnail = shouldLoadAttachment
+  videoThumbnail.value = shouldLoadAttachment.value
     ? attachment.previewUrl
-    : blurHashSrc
+    : blurHashSrc.value
 })
 </script>
 
@@ -163,7 +166,7 @@ watch(shouldLoadAttachment, () => {
       <button
         type="button"
         relative
-        @click="!shouldLoadAttachment ? loadAttachment() : null"
+        @click="!shouldLoadAttachment ? loadAttachment() : openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
       >
         <video
           ref="video"
@@ -209,7 +212,7 @@ watch(shouldLoadAttachment, () => {
         rounded-lg
         h-full
         w-full
-        aria-label="Open image preview dialog"
+        :aria-label="$t('action.open_image_preview_dialog')"
         relative
         @click="!shouldLoadAttachment ? loadAttachment() : openMediaPreview(attachments ? attachments : [attachment], attachments?.indexOf(attachment) || 0)"
       >
@@ -246,8 +249,14 @@ watch(shouldLoadAttachment, () => {
         />
       </button>
     </template>
-    <div v-if="attachment.description && !getPreferences(userSettings, 'hideAltIndicatorOnPosts')" :class="isAudio ? '' : 'absolute left-2 bottom-2'">
-      <VDropdown :distance="6" placement="bottom-start">
+    <div
+      :class="isAudio ? [] : [
+        'absolute left-2',
+        isVideo ? 'top-2' : 'bottom-2',
+      ]"
+      flex gap-col-2
+    >
+      <VDropdown v-if="attachment.description && !getPreferences(userSettings, 'hideAltIndicatorOnPosts')" :distance="6" placement="bottom-start">
         <button
           font-bold text-sm
           :class="isAudio
@@ -275,6 +284,14 @@ watch(shouldLoadAttachment, () => {
           </div>
         </template>
       </VDropdown>
+      <div v-if="isGif && !getPreferences(userSettings, 'hideGifIndicatorOnPosts')">
+        <button
+          aria-hidden font-bold text-sm
+          rounded-1 bg-black:65 text-white px1.2 py0.2 pointer-events-none
+        >
+          {{ $t('status.gif') }}
+        </button>
+      </div>
     </div>
   </div>
 </template>

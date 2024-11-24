@@ -13,6 +13,7 @@
     "blocked_users": "已封鎖的使用者",
     "blocking": "已封鎖",
     "bot": "機器人",
+    "copy_account_name": "複製帳戶名",
     "favourites": "喜歡的貼文",
     "follow": "追蹤",
     "follow_back": "回追",
@@ -83,7 +84,7 @@
     "activate": "執行",
     "complete": "完成",
     "compose_desc": "寫一條新貼文",
-    "n-people-in-the-past-n-days": "{0} 人在過去 {1} 天",
+    "n_people_in_the_past_n_days": "{0} 人在過去 {1} 天",
     "select_lang": "選擇語言",
     "sign_in_desc": "加入現有帳號",
     "switch_account": "切換到 {0}",
@@ -106,37 +107,37 @@
     "block_account": {
       "cancel": "取消",
       "confirm": "封鎖",
-      "title": "你確定要封鎖 {0} 嗎？"
+      "description": "你確定要封鎖 {0} 嗎？"
     },
     "block_domain": {
       "cancel": "取消",
       "confirm": "封鎖",
-      "title": "你確定要封鎖 {0} 域名嗎？"
+      "description": "你確定要封鎖 {0} 域名嗎？"
     },
     "delete_list": {
       "cancel": "取消",
       "confirm": "確認",
-      "title": "你確定要刪除 \"{0}\" 列表嗎？"
+      "description": "你確定要刪除 \"{0}\" 列表嗎？"
     },
     "delete_posts": {
       "cancel": "取消",
       "confirm": "刪除",
-      "title": "你確定要刪除這則貼文嗎？"
+      "description": "你確定要刪除這則貼文嗎？"
     },
     "mute_account": {
       "cancel": "取消",
       "confirm": "靜音",
-      "title": "你確定要靜音 {0} 嗎？"
+      "description": "你確定要靜音 {0} 嗎？"
     },
     "show_reblogs": {
       "cancel": "取消",
       "confirm": "顯示",
-      "title": "你確定要顯示來自 {0} 的轉發嗎？"
+      "description": "你確定要顯示來自 {0} 的轉發嗎？"
     },
     "unfollow": {
       "cancel": "取消",
       "confirm": "取消追蹤",
-      "title": "你確定要取消追蹤嗎？"
+      "description": "你確定要取消追蹤嗎？"
     }
   },
   "conversation": {
@@ -151,7 +152,7 @@
   },
   "error": {
     "account_not_found": "未找到使用者 {0}",
-    "explore-list-empty": "目前沒有熱門話題，稍後再來看看吧！",
+    "explore_list_empty": "目前沒有熱門話題，稍後再來看看吧！",
     "file_size_cannot_exceed_n_mb": "檔案大小不能超過 {0} MB",
     "sign_in_error": "無法連接伺服器",
     "status_not_found": "未找到貼文",
@@ -265,8 +266,7 @@
     "content_warning": "寫下你的警告",
     "default_1": "在想些什麼？",
     "reply_to_account": "回覆 {0}",
-    "replying": "回覆",
-    "the_thread": "這個貼文"
+    "replying": "回覆"
   },
   "pwa": {
     "dismiss": "忽略",
@@ -425,7 +425,8 @@
       },
       "featured_tags": {
         "description": "人們可以在這些標籤下瀏覽你的公開嘟文。",
-        "label": "精選的話題標籤"
+        "label": "精選的話題標籤",
+        "under_construction": "建立中"
       },
       "label": "個人資料"
     },
@@ -436,7 +437,7 @@
       "label": "當前使用者"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "如果你想分享其他應用程式上的內容到鹿鳴。請在你的行動裝置裝置或電腦上安裝鹿鳴並登入。",
     "hint": "為了將內容分享到鹿鳴，你需要安裝鹿鳴並且登入。",
     "title": "分享到鹿鳴"
@@ -457,7 +458,6 @@
     "edited": "在 {0} 編輯了",
     "favourited_by": "被喜歡",
     "filter_hidden_phrase": "篩選依據",
-    "filter_removed_phrase": "從篩選中移除",
     "filter_show_anyway": "仍然顯示",
     "img_alt": {
       "ALT": "ALT",
@@ -470,7 +470,6 @@
       "ends": "將在 {0} 結束",
       "finished": "已在 {0} 結束"
     },
-    "reblogged": "{0} 轉發了",
     "replying_to": "回覆{0}",
     "show_full_thread": "顯示完整貼文串",
     "someone": "某人",

@@ -1,0 +1,13 @@
+diff --git a/dist/index.d.ts b/dist/index.d.ts
+index 612f1c7908c2e973870be08c6fba1515e6e2b9ca..445a3b0574c5388b624d537fc17cbf4a08973ded 100644
+--- a/dist/index.d.ts
++++ b/dist/index.d.ts
+@@ -115,7 +115,7 @@ interface ModuleHooks {
+ interface ModuleOptions extends PinceauOptions {
+ }
+ 
+-declare module '@vue/runtime-core' {
++declare module 'vue' {
+     interface ComponentCustomProperties {
+         $dt: DtFunction;
+         $pinceau: ComputedRef<string>;

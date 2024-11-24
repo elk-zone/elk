@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import type { Boundaries } from 'vue-advanced-cropper'
 import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css'
@@ -14,10 +14,7 @@ const props = withDefaults(defineProps<Props>(), {
   stencilSizePercentage: 0.9,
 })
 
-const { modelValue: file } = defineModels<{
-  /** Images to be cropped */
-  modelValue: File | null
-}>()
+const file = defineModel<File | null>()
 
 const cropperDialog = ref(false)
 

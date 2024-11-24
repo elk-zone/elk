@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import type { ConfirmDialogChoice } from '~/types'
 import {
   isCommandPanelOpen,
   isConfirmDialogOpen,
@@ -14,6 +13,7 @@ import {
   isReportDialogOpen,
   isSigninDialogOpen,
 } from '~/composables/dialog'
+import type { ConfirmDialogChoice } from '~/types'
 
 const isMac = useIsMac()
 
@@ -63,13 +63,14 @@ function handleFavouritedBoostedByClose() {
     </ModalDialog>
     <ModalDialog
       v-model="isPublishDialogOpen"
-      max-w-180 flex
+      max-w-180 flex w-full
       @close="handlePublishClose"
     >
-      <!-- This `w-0` style is used to avoid overflow problems in flex layouts，so don't remove it unless you know what you're doing -->
-      <PublishWidget
+      <PublishWidgetList
         v-if="dialogDraftKey"
-        :draft-key="dialogDraftKey" expanded flex-1 w-0
+        :draft-key="dialogDraftKey"
+        expanded
+        class="flex-1"
         @published="handlePublished"
       />
     </ModalDialog>

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({
   middleware: () => {
     if (!useAppConfig().pwaEnabled)
@@ -8,7 +8,7 @@ definePageMeta({
 
 useWebShareTarget()
 
-const pwaIsInstalled = process.client && !!useNuxtApp().$pwa?.isInstalled
+const pwaIsInstalled = import.meta.client && !!useNuxtApp().$pwa?.isInstalled
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const pwaIsInstalled = process.client && !!useNuxtApp().$pwa?.isInstalled
     <template #title>
       <NuxtLink to="/share-target" flex items-center gap-2>
         <div i-ri:share-line />
-        <span>{{ $t('share-target.title') }}</span>
+        <span>{{ $t('share_target.title') }}</span>
       </NuxtLink>
     </template>
     <slot>
@@ -29,9 +29,9 @@ const pwaIsInstalled = process.client && !!useNuxtApp().$pwa?.isInstalled
           text-red-600 dark:text-red-400
           border="~ base rounded red-600 dark:red-400"
         >
-          {{ $t('share-target.hint') }}
+          {{ $t('share_target.hint') }}
         </div>
-        <div>{{ $t('share-target.description') }}</div>
+        <div>{{ $t('share_target.description') }}</div>
       </div>
     </slot>
   </MainContent>

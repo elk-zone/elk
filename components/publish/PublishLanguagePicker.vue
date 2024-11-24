@@ -1,31 +1,28 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
 
-let { modelValue } = $defineModels<{
-  modelValue: string
-}>()
+const modelValue = defineModel<string>({ required: true })
 
 const { t } = useI18n()
 const userSettings = useUserSettings()
 
-const languageKeyword = $ref('')
+const languageKeyword = ref('')
 
 const fuse = new Fuse(languagesNameList, {
   keys: ['code', 'nativeName', 'name'],
   shouldSort: true,
 })
 
-const languages = $computed(() =>
-  languageKeyword.trim()
-    ? fuse.search(languageKeyword).map(r => r.item)
-    : [...languagesNameList].filter(entry => !userSettings.value.disabledTranslationLanguages.includes(entry.code))
-        .sort(({ code: a }, { code: b }) => {
-          // Put English on the top
-          if (a === 'en')
-            return -1
+const languages = computed(() =>
+  languageKeyword.value.trim()
+    ? fuse.search(languageKeyword.value).map(r => r.item)
+    : [...languagesNameList].filter(entry => !userSettings.value.disabledTranslationLanguages.includes(entry.code)).sort(({ code: a }, { code: b }) => {
+        // Put English on the top
+        if (a === 'en')
+          return -1
 
-          return a === modelValue ? -1 : b === modelValue ? 1 : a.localeCompare(b)
-        }),
+        return a === modelValue.value ? -1 : b === modelValue.value ? 1 : a.localeCompare(b)
+      }),
 )
 
 const preferredLanguages = computed(() => {
@@ -41,7 +38,7 @@ const preferredLanguages = computed(() => {
 )
 
 function chooseLanguage(language: string) {
-  modelValue = language
+  modelValue.value = language
 }
 </script>
 

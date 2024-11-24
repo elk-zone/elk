@@ -1,24 +1,24 @@
-import type { GetReferenceClientRect, Instance } from 'tippy.js'
-import tippy from 'tippy.js'
-import { VueRenderer } from '@tiptap/vue-3'
-import type { SuggestionOptions } from '@tiptap/suggestion'
-import { PluginKey } from 'prosemirror-state'
-import type { Component } from 'vue'
 import type { Emoji, EmojiMartData } from '@emoji-mart/data'
+import type { SuggestionOptions } from '@tiptap/suggestion'
 import type { mastodon } from 'masto'
-import { currentCustomEmojis, updateCustomEmojis } from '~/composables/emojis'
-import TiptapMentionList from '~/components/tiptap/TiptapMentionList.vue'
-import TiptapHashtagList from '~/components/tiptap/TiptapHashtagList.vue'
+import type { GetReferenceClientRect, Instance } from 'tippy.js'
+import type { Component } from 'vue'
+import { VueRenderer } from '@tiptap/vue-3'
+import { PluginKey } from 'prosemirror-state'
+import tippy from 'tippy.js'
 import TiptapEmojiList from '~/components/tiptap/TiptapEmojiList.vue'
+import TiptapHashtagList from '~/components/tiptap/TiptapHashtagList.vue'
+import TiptapMentionList from '~/components/tiptap/TiptapMentionList.vue'
+import { currentCustomEmojis, updateCustomEmojis } from '~/composables/emojis'
 
-export { Emoji }
+export type { Emoji }
 
 export type CustomEmoji = (mastodon.v1.CustomEmoji & { custom: true })
 export function isCustomEmoji(emoji: CustomEmoji | Emoji): emoji is CustomEmoji {
   return !!(emoji as CustomEmoji).custom
 }
 
-export const TiptapMentionSuggestion: Partial<SuggestionOptions> = process.server
+export const TiptapMentionSuggestion: Partial<SuggestionOptions> = import.meta.server
   ? {}
   : {
       pluginKey: new PluginKey('mention'),
@@ -27,8 +27,8 @@ export const TiptapMentionSuggestion: Partial<SuggestionOptions> = process.serve
         if (query.length === 0)
           return []
 
-        const results = await useMastoClient().v2.search({ q: query, type: 'accounts', limit: 25, resolve: true })
-        return results.accounts
+        const paginator = useMastoClient().v2.search.list({ q: query, type: 'accounts', limit: 25, resolve: true })
+        return (await paginator.next()).value?.accounts ?? []
       },
       render: createSuggestionRenderer(TiptapMentionList),
     }
@@ -40,14 +40,14 @@ export const TiptapHashtagSuggestion: Partial<SuggestionOptions> = {
     if (query.length === 0)
       return []
 
-    const results = await useMastoClient().v2.search({
+    const paginator = useMastoClient().v2.search.list({
       q: query,
       type: 'hashtags',
       limit: 25,
       resolve: false,
       excludeUnreviewed: true,
     })
-    return results.hashtags
+    return (await paginator.next()).value?.hashtags ?? []
   },
   render: createSuggestionRenderer(TiptapHashtagList),
 }
@@ -56,19 +56,21 @@ export const TiptapEmojiSuggestion: Partial<SuggestionOptions> = {
   pluginKey: new PluginKey('emoji'),
   char: ':',
   async items({ query }): Promise<(CustomEmoji | Emoji)[]> {
-    if (process.server || query.length === 0)
+    if (import.meta.server || query.length === 0)
       return []
 
     if (currentCustomEmojis.value.emojis.length === 0)
       await updateCustomEmojis()
 
-    const emojis = await import('@emoji-mart/data')
-      .then(r => r.default as EmojiMartData)
-      .then(data => Object.values(data.emojis).filter(({ id }) => id.startsWith(query)))
+    const lowerCaseQuery = query.toLowerCase()
+
+    const { data } = await useAsyncData<EmojiMartData>('emoji-data', () => import('@emoji-mart/data').then(r => r.default as EmojiMartData))
+    const emojis: Emoji[] = Object.values(data.value?.emojis || []).filter(({ id }) => id.toLowerCase().startsWith(lowerCaseQuery))
 
     const customEmojis: CustomEmoji[] = currentCustomEmojis.value.emojis
-      .filter(emoji => emoji.shortcode.startsWith(query))
+      .filter(emoji => emoji.shortcode.toLowerCase().startsWith(lowerCaseQuery))
       .map(emoji => ({ ...emoji, custom: true }))
+
     return [...emojis, ...customEmojis]
   },
   command: ({ editor, props, range }) => {
@@ -117,7 +119,8 @@ function createSuggestionRenderer(component: Component): SuggestionOptions['rend
 
       // Use arrow function here because Nuxt will transform it incorrectly as Vue hook causing the build to fail
       onBeforeUpdate: (props) => {
-        props.editor.isFocused && renderer.updateProps({ ...props, isPending: true })
+        if (props.editor.isFocused)
+          renderer.updateProps({ ...props, isPending: true })
       },
 
       onUpdate(props) {

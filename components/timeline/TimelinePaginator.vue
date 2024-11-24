@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { Paginator, WsEvents, mastodon } from 'masto'
 
 const { paginator, stream, account, buffer = 10, endMessage = true } = defineProps<{
-  paginator: Paginator<mastodon.v1.Status[], mastodon.v1.ListAccountStatusesParams>
-  stream?: Promise<WsEvents>
+  paginator: mastodon.Paginator<mastodon.v1.Status[], mastodon.rest.v1.ListAccountStatusesParams>
+  stream?: mastodon.streaming.Subscription
   context?: mastodon.v2.FilterContext
   account?: mastodon.v1.Account
   preprocess?: (items: mastodon.v1.Status[]) => mastodon.v1.Status[]
@@ -15,9 +15,9 @@ const { paginator, stream, account, buffer = 10, endMessage = true } = definePro
 }>()
 
 const { formatNumber } = useHumanReadableNumber()
-const virtualScroller = $(usePreferences('experimentalVirtualScroller'))
+const virtualScroller = usePreferences('experimentalVirtualScroller')
 
-const showOriginSite = $computed(() =>
+const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
 )
 </script>
@@ -25,7 +25,7 @@ const showOriginSite = $computed(() =>
 <template>
   <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer, endMessage }" :virtual-scroller="virtualScroller">
     <template #updater="{ number, update }">
-      <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
+      <button id="elk_show_new_items" py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="update">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>
@@ -55,7 +55,7 @@ const showOriginSite = $computed(() =>
             {{ $t('menu.open_in_original_site') }}
           </NuxtLink>
         </template>
-        <span v-else-if="items.length === 0">No posts here!</span>
+        <span v-else-if="items.length === 0">{{ $t('timeline.no_posts') }}</span>
       </div>
     </template>
   </CommonPaginator>

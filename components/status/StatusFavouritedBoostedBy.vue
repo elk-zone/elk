@@ -3,13 +3,13 @@ import { favouritedBoostedByStatusId } from '~/composables/dialog'
 
 const type = ref<'favourited-by' | 'boosted-by'>('favourited-by')
 
-const { client } = $(useMasto())
+const { client } = useMasto()
 
 function load() {
-  return client.v1.statuses[type.value === 'favourited-by' ? 'listFavouritedBy' : 'listRebloggedBy'](favouritedBoostedByStatusId.value!)
+  return client.value.v1.statuses.$select(favouritedBoostedByStatusId.value!)[type.value === 'favourited-by' ? 'favouritedBy' : 'rebloggedBy'].list()
 }
 
-const paginator = $computed(() => load())
+const paginator = computed(() => load())
 
 function showFavouritedBy() {
   type.value = 'favourited-by'
@@ -42,7 +42,7 @@ const tabs = [
     >
       <div
         relative flex flex-auto cursor-pointer sm:px6 px2 rounded transition-all
-        tabindex="1"
+        tabindex="0"
         hover:bg-active transition-100
         @click="option.onClick"
       >

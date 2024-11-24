@@ -1,7 +1,7 @@
+import type { LocaleObject } from '@nuxtjs/i18n'
 import type { ComputedRef } from 'vue'
-import { defineStore } from 'pinia'
 import Fuse from 'fuse.js'
-import type { LocaleObject } from '#i18n'
+import { defineStore } from 'pinia'
 import type { SearchResult } from '~/composables/masto/search'
 
 // @unocss-include
@@ -52,6 +52,9 @@ export type ResolvedCommand = Exclude<CommandProvider, 'icon' | 'name' | 'descri
   bindings: string[] | undefined
 }
 
+// TODO: define a type for command arg
+export type CommandHandler<T = void> = (arg: T) => void
+
 export interface BaseQueryResultItem {
   index: number
   type: string
@@ -78,7 +81,7 @@ export interface QueryResult {
   grouped: Map<CommandScopeNames, QueryResultItem[]>
 }
 
-function r<T extends Object | undefined>(i: T | (() => T)): T {
+function resolveFunction<T>(i: T): T extends () => infer R ? R : T {
   return typeof i === 'function' ? i() : i
 }
 
@@ -90,10 +93,10 @@ export const useCommandRegistry = defineStore('command', () => {
       .filter(command => command.visible ? command.visible() : true)
       .map(provider => ({
         ...provider,
-        icon: r(provider.icon),
-        name: r(provider.name),
-        description: r(provider.description),
-        bindings: r(provider.bindings),
+        icon: resolveFunction(provider.icon),
+        name: resolveFunction(provider.name),
+        description: resolveFunction(provider.description),
+        bindings: resolveFunction(provider.bindings),
       })))
 
   let lastScope = ''
@@ -167,7 +170,8 @@ export const useCommandRegistry = defineStore('command', () => {
         const indexed = cmds.map((cmd, index) => ({ ...cmd, index }))
 
         const grouped = new Map<CommandScopeNames, CommandQueryResultItem[]>(
-          scopes.map(scope => [scope, []]))
+          scopes.map(scope => [scope, []]),
+        )
         for (const cmd of indexed) {
           const scope = cmd.scope ?? ''
           grouped.get(scope)!.push({
@@ -241,23 +245,11 @@ export function useCommands(cmds: () => CommandProvider[]) {
 export function provideGlobalCommands() {
   const { locale, t } = useI18n()
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
-  const router = useRouter()
   const users = useUsers()
   const masto = useMasto()
   const colorMode = useColorMode()
   const userSettings = useUserSettings()
   const { singleInstanceServer, oauth } = useSignIn()
-
-  useCommand({
-    scope: 'Navigation',
-
-    name: () => t('nav.settings'),
-    icon: 'i-ri:settings-3-line',
-
-    onActivate() {
-      router.push('/settings')
-    },
-  })
 
   useCommand({
     scope: 'Preferences',

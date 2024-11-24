@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { SearchResult as SearchResultType } from '~/composables/masto/search'
 import type { CommandScope, QueryResult, QueryResultItem } from '~/composables/command'
+import type { SearchResult as SearchResultType } from '~/composables/masto/search'
 
 const emit = defineEmits<{
   (event: 'close'): void
@@ -10,21 +10,21 @@ const registry = useCommandRegistry()
 
 const router = useRouter()
 
-const inputEl = $ref<HTMLInputElement>()
-const resultEl = $ref<HTMLDivElement>()
+const inputEl = ref<HTMLInputElement>()
+const resultEl = ref<HTMLDivElement>()
 
-const scopes = $ref<CommandScope[]>([])
-let input = $(commandPanelInput)
+const scopes = ref<CommandScope[]>([])
+const input = commandPanelInput
 
 onMounted(() => {
-  inputEl?.focus()
+  inputEl.value?.focus()
 })
 
-const commandMode = $computed(() => input.startsWith('>'))
+const commandMode = computed(() => input.value.startsWith('>'))
 
-const query = $computed(() => commandMode ? '' : input.trim())
+const query = computed(() => commandMode.value ? '' : input.value.trim())
 
-const { accounts, hashtags, loading } = useSearch($$(query))
+const { accounts, hashtags, loading } = useSearch(query)
 
 function toSearchQueryResultItem(search: SearchResultType): QueryResultItem {
   return {
@@ -35,8 +35,8 @@ function toSearchQueryResultItem(search: SearchResultType): QueryResultItem {
   }
 }
 
-const searchResult = $computed<QueryResult>(() => {
-  if (query.length === 0 || loading.value)
+const searchResult = computed<QueryResult>(() => {
+  if (query.value.length === 0 || loading.value)
     return { length: 0, items: [], grouped: {} as any }
 
   // TODO extract this scope
@@ -61,22 +61,22 @@ const searchResult = $computed<QueryResult>(() => {
   }
 })
 
-const result = $computed<QueryResult>(() => commandMode
-  ? registry.query(scopes.map(s => s.id).join('.'), input.slice(1).trim())
-  : searchResult,
+const result = computed<QueryResult>(() => commandMode.value
+  ? registry.query(scopes.value.map(s => s.id).join('.'), input.value.slice(1).trim())
+  : searchResult.value,
 )
 
 const isMac = useIsMac()
-const modifierKeyName = $computed(() => isMac.value ? '⌘' : 'Ctrl')
+const modifierKeyName = computed(() => isMac.value ? '⌘' : 'Ctrl')
 
-let active = $ref(0)
-watch($$(result), (n, o) => {
+const active = ref(0)
+watch(result, (n, o) => {
   if (n.length !== o.length || !n.items.every((i, idx) => i === o.items[idx]))
-    active = 0
+    active.value = 0
 })
 
 function findItemEl(index: number) {
-  return resultEl?.querySelector(`[data-index="${index}"]`) as HTMLDivElement | null
+  return resultEl.value?.querySelector(`[data-index="${index}"]`) as HTMLDivElement | null
 }
 function onCommandActivate(item: QueryResultItem) {
   if (item.onActivate) {
@@ -84,14 +84,14 @@ function onCommandActivate(item: QueryResultItem) {
     emit('close')
   }
   else if (item.onComplete) {
-    scopes.push(item.onComplete())
-    input = '> '
+    scopes.value.push(item.onComplete())
+    input.value = '> '
   }
 }
 function onCommandComplete(item: QueryResultItem) {
   if (item.onComplete) {
-    scopes.push(item.onComplete())
-    input = '> '
+    scopes.value.push(item.onComplete())
+    input.value = '> '
   }
   else if (item.onActivate) {
     item.onActivate()
@@ -105,9 +105,9 @@ function intoView(index: number) {
 }
 
 function setActive(index: number) {
-  const len = result.length
-  active = (index + len) % len
-  intoView(active)
+  const len = result.value.length
+  active.value = (index + len) % len
+  intoView(active.value)
 }
 
 function onKeyDown(e: KeyboardEvent) {
@@ -118,7 +118,7 @@ function onKeyDown(e: KeyboardEvent) {
         break
       e.preventDefault()
 
-      setActive(active - 1)
+      setActive(active.value - 1)
 
       break
     }
@@ -128,7 +128,7 @@ function onKeyDown(e: KeyboardEvent) {
         break
       e.preventDefault()
 
-      setActive(active + 1)
+      setActive(active.value + 1)
 
       break
     }
@@ -136,9 +136,9 @@ function onKeyDown(e: KeyboardEvent) {
     case 'Home': {
       e.preventDefault()
 
-      active = 0
+      active.value = 0
 
-      intoView(active)
+      intoView(active.value)
 
       break
     }
@@ -146,7 +146,7 @@ function onKeyDown(e: KeyboardEvent) {
     case 'End': {
       e.preventDefault()
 
-      setActive(result.length - 1)
+      setActive(result.value.length - 1)
 
       break
     }
@@ -154,7 +154,7 @@ function onKeyDown(e: KeyboardEvent) {
     case 'Enter': {
       e.preventDefault()
 
-      const cmd = result.items[active]
+      const cmd = result.value.items[active.value]
       if (cmd)
         onCommandActivate(cmd)
 
@@ -164,7 +164,7 @@ function onKeyDown(e: KeyboardEvent) {
     case 'Tab': {
       e.preventDefault()
 
-      const cmd = result.items[active]
+      const cmd = result.value.items[active.value]
       if (cmd)
         onCommandComplete(cmd)
 
@@ -172,9 +172,9 @@ function onKeyDown(e: KeyboardEvent) {
     }
 
     case 'Backspace': {
-      if (input === '>' && scopes.length) {
+      if (input.value === '>' && scopes.value.length) {
         e.preventDefault()
-        scopes.pop()
+        scopes.value.pop()
       }
       break
     }

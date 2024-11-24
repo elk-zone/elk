@@ -1,63 +1,53 @@
 import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
-import type { Ref } from 'vue'
 import type { UseIDBOptions } from '@vueuse/integrations/useIDBKeyval'
 import { del, get, set, update } from '~/utils/elk-idb'
 
-const isIDBSupported = !process.test && typeof indexedDB !== 'undefined'
+export interface UseAsyncIDBKeyvalReturn<T> {
+  set: (value: T) => Promise<void>
+  readIDB: () => Promise<T | undefined>
+}
 
 export async function useAsyncIDBKeyval<T>(
   key: IDBValidKey,
   initialValue: MaybeRefOrGetter<T>,
-  options: UseIDBOptions = {},
-): Promise<RemovableRef<T>> {
+  source: RemovableRef<T>,
+  options: Omit<UseIDBOptions, 'shallow'> = {},
+): Promise<UseAsyncIDBKeyvalReturn<T>> {
   const {
     flush = 'pre',
     deep = true,
-    shallow,
+    writeDefaults = true,
     onError = (e: unknown) => {
       console.error(e)
     },
   } = options
 
-  const data = (shallow ? shallowRef : ref)(initialValue) as Ref<T>
+  const rawInit: T = toValue<T>(initialValue)
 
-  const rawInit: T = resolveUnref(initialValue)
-
-  async function read() {
-    if (!isIDBSupported)
-      return
-    try {
-      const rawValue = await get<T>(key)
-      if (rawValue === undefined) {
-        if (rawInit !== undefined && rawInit !== null)
-          await set(key, rawInit)
-      }
-      else {
-        data.value = rawValue
+  try {
+    const rawValue = await get<T>(key)
+    if (rawValue === undefined) {
+      if (rawInit !== undefined && rawInit !== null && writeDefaults) {
+        await set(key, rawInit)
+        source.value = rawInit
       }
     }
-    catch (e) {
-      onError(e)
+    else {
+      source.value = rawValue
     }
   }
+  catch (e) {
+    onError(e)
+  }
 
-  await read()
-
-  async function write() {
-    if (!isIDBSupported)
-      return
+  async function write(data: T) {
     try {
-      if (data.value == null) {
+      if (data == null) {
         await del(key)
       }
       else {
         // IndexedDB does not support saving proxies, convert from proxy before saving
-        if (Array.isArray(data.value))
-          await update(key, () => (JSON.parse(JSON.stringify(data.value))))
-        else if (typeof data.value === 'object')
-          await update(key, () => ({ ...data.value }))
-        else
-          await update(key, () => (data.value))
+        await update(key, () => toRaw(data))
       }
     }
     catch (e) {
@@ -65,7 +55,21 @@ export async function useAsyncIDBKeyval<T>(
     }
   }
 
-  watch(data, () => write(), { flush, deep })
+  const {
+    pause: pauseWatch,
+    resume: resumeWatch,
+  } = watchPausable(source, data => write(data), { flush, deep })
 
-  return data as RemovableRef<T>
+  async function setData(value: T): Promise<void> {
+    pauseWatch()
+    try {
+      await write(value)
+      source.value = value
+    }
+    finally {
+      resumeWatch()
+    }
+  }
+
+  return { set: setData, readIDB: () => get<T>(key) }
 }

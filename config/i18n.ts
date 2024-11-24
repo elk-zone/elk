@@ -1,7 +1,5 @@
-import type { NuxtI18nOptions } from '@nuxtjs/i18n'
 import type { DateTimeFormats, NumberFormats, PluralizationRule, PluralizationRules } from '@intlify/core-base'
-
-import type { LocaleObject } from '#i18n'
+import type { LocaleObject } from '@nuxtjs/i18n'
 
 interface LocaleObjectData extends LocaleObject {
   numberFormats?: NumberFormats
@@ -33,6 +31,7 @@ export const countryLocaleVariants: Record<string, (LocaleObjectData & { country
   en: [
     // en.json contains en-US translations
     { country: true, code: 'en-US', name: 'English (US)' },
+    { code: 'en-CA', name: 'English (Canada)' },
     { code: 'en-GB', name: 'English (UK)' },
   ],
   ca: [
@@ -76,11 +75,13 @@ export const countryLocaleVariants: Record<string, (LocaleObjectData & { country
 
 const locales: LocaleObjectData[] = [
   {
+    // @ts-expect-error en used as placeholder
     code: 'en',
     file: 'en.json',
     name: 'English',
   },
   ({
+    // @ts-expect-error ar used as placeholder
     code: 'ar',
     file: 'ar.json',
     name: 'العربية',
@@ -90,15 +91,46 @@ const locales: LocaleObjectData[] = [
       return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
     },
   } satisfies LocaleObjectData),
+  ({
+    code: 'ckb',
+    file: 'ckb.json',
+    name: 'کوردیی ناوەندی',
+    dir: 'rtl',
+    pluralRule: (choice: number) => {
+      const name = new Intl.PluralRules('ckb').select(choice)
+      return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
+    },
+  } satisfies LocaleObjectData),
+  ({
+    code: 'fa-IR',
+    file: 'fa-IR.json',
+    name: 'فارسی',
+    dir: 'rtl',
+    pluralRule: (choice: number) => {
+      const name = new Intl.PluralRules('fa-IR').select(choice)
+      return { zero: 0, one: 1, two: 2, few: 3, many: 4, other: 5 }[name]
+    },
+  } satisfies LocaleObjectData),
   {
+    // @ts-expect-error ca used as placeholder
     code: 'ca',
     file: 'ca.json',
     name: 'Català',
   },
   {
+    code: 'el-GR',
+    file: 'el-GR.json',
+    name: 'Ελληνικά',
+  },
+  {
     code: 'de-DE',
     file: 'de-DE.json',
     name: 'Deutsch',
+  },
+  {
+    code: 'hu-HU',
+    file: 'hu-HU.json',
+    name: 'Magyar',
   },
   {
     code: 'zh-CN',
@@ -121,6 +153,7 @@ const locales: LocaleObjectData[] = [
     name: 'Nederlands',
   },
   {
+    // @ts-expect-error es used as placeholder
     code: 'es',
     file: 'es.json',
     name: 'Español',
@@ -174,6 +207,7 @@ const locales: LocaleObjectData[] = [
     },
   },
   {
+    // @ts-expect-error pt used as placeholder
     code: 'pt',
     file: 'pt.json',
     name: 'Português',
@@ -189,9 +223,9 @@ const locales: LocaleObjectData[] = [
     name: 'Indonesia',
   },
   {
-    code: 'fi-FI',
-    file: 'fi-FI.json',
-    name: 'suomeksi',
+    code: 'fi',
+    file: 'fi.json',
+    name: 'Suomi',
   },
   {
     code: 'gl-ES',
@@ -207,6 +241,11 @@ const locales: LocaleObjectData[] = [
     code: 'it-IT',
     file: 'it-IT.json',
     name: 'Italiano',
+  },
+  {
+    code: 'th-TH',
+    file: 'th-TH.json',
+    name: 'ไทย',
   },
   {
     code: 'tl-PH',
@@ -229,7 +268,7 @@ function buildLocales() {
           ...data,
           code: l.code,
           name: l.name,
-          files: [data.file!, `${l.code}.json`],
+          files: [data.file as string, `${l.code}.json`],
         }
         delete entry.file
         acc.push(entry)
@@ -246,7 +285,7 @@ function buildLocales() {
 
 export const currentLocales = buildLocales()
 
-const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
+export const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
   const dateTimeFormats = data.dateTimeFormats
   if (dateTimeFormats) {
     acc[data.code] = { ...dateTimeFormats }
@@ -271,7 +310,7 @@ const datetimeFormats = Object.values(currentLocales).reduce((acc, data) => {
   return acc
 }, <DateTimeFormats>{})
 
-const numberFormats = Object.values(currentLocales).reduce((acc, data) => {
+export const numberFormats = Object.values(currentLocales).reduce((acc, data) => {
   const numberFormats = data.numberFormats
   if (numberFormats) {
     acc[data.code] = { ...numberFormats }
@@ -303,7 +342,7 @@ const numberFormats = Object.values(currentLocales).reduce((acc, data) => {
   return acc
 }, <NumberFormats>{})
 
-const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
+export const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
   const pluralRule = data.pluralRule
   if (pluralRule) {
     acc[data.code] = pluralRule
@@ -312,21 +351,3 @@ const pluralRules = Object.values(currentLocales).reduce((acc, data) => {
 
   return acc
 }, <PluralizationRules>{})
-
-export const i18n: NuxtI18nOptions = {
-  locales: currentLocales,
-  lazy: true,
-  strategy: 'no_prefix',
-  detectBrowserLanguage: false,
-  langDir: 'locales',
-  defaultLocale: 'en-US',
-  vueI18n: {
-    availableLocales: currentLocales.map(l => l.code),
-    fallbackLocale: 'en-US',
-    fallbackWarn: false,
-    missingWarn: false,
-    datetimeFormats,
-    numberFormats,
-    pluralRules,
-  },
-}

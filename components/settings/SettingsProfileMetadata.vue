@@ -1,20 +1,17 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { form } = defineModels<{
-  form: {
-    fieldsAttributes: NonNullable<mastodon.v1.UpdateCredentialsParams['fieldsAttributes']>
-  }
-}>()
-const dropdown = $ref<any>()
+const form = defineModel<{
+  fieldsAttributes: NonNullable<mastodon.rest.v1.UpdateCredentialsParams['fieldsAttributes']>
+}>({ required: true })
+const dropdown = ref<any>()
 
 const fieldIcons = computed(() =>
   Array.from({ length: maxAccountFieldCount.value }, (_, i) =>
-    getAccountFieldIcon(form.value.fieldsAttributes[i].name),
-  ),
+    getAccountFieldIcon(form.value.fieldsAttributes[i].name)),
 )
 
-const fieldCount = $computed(() => {
+const fieldCount = computed(() => {
   // find last non-empty field
   const idx = [...form.value.fieldsAttributes].reverse().findIndex(f => f.name || f.value)
   if (idx === -1)
@@ -27,7 +24,7 @@ const fieldCount = $computed(() => {
 
 function chooseIcon(i: number, text: string) {
   form.value.fieldsAttributes[i].name = text
-  dropdown[i]?.hide()
+  dropdown.value[i]?.hide()
 }
 </script>
 

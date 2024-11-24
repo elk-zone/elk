@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 
 export interface Props {
@@ -49,16 +49,14 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   /** v-model dialog visibility */
-  (event: 'close',): void
+  (event: 'close'): void
 }>()
 
-const { modelValue: visible } = defineModels<{
-  /** v-model dislog visibility */
-  modelValue: boolean
-}>()
+const visible = defineModel<boolean>({ required: true })
 
 const deactivated = useDeactivated()
 const route = useRoute()
+const userSettings = useUserSettings()
 
 /** scrollable HTML element */
 const elDialogMain = ref<HTMLDivElement>()
@@ -80,6 +78,8 @@ defineExpose({
 
 /** close the dialog */
 function close() {
+  if (!visible.value)
+    return
   visible.value = false
   emit('close')
 }
@@ -157,7 +157,13 @@ useEventListener('keydown', (e: KeyboardEvent) => {
         <!-- corresponding to issue: #106, so please don't remove it. -->
 
         <!-- Mask layer: blur -->
-        <div class="dialog-mask" absolute inset-0 z-0 bg-transparent opacity-100 backdrop-filter backdrop-blur-sm touch-none />
+        <div
+          class="dialog-mask"
+          :class="{
+            'backdrop-blur-sm': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
+          }"
+          absolute inset-0 z-0 bg-transparent opacity-100 backdrop-filter touch-none
+        />
         <!-- Mask layer: dimming -->
         <div class="dialog-mask" absolute inset-0 z-0 bg-black opacity-48 touch-none h="[calc(100%+0.5px)]" @click="clickMask" />
         <!-- Dialog container -->

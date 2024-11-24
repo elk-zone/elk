@@ -1,15 +1,15 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import type { Buffer } from 'node:buffer'
+import type { Plugin } from 'vite'
+import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
+import type { VitePWANuxtOptions } from './types'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
-import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
-import { VitePWA } from 'vite-plugin-pwa'
-import type { Plugin } from 'vite'
 import { join, resolve } from 'pathe'
-import type { VitePWANuxtOptions } from './types'
+import { VitePWA } from 'vite-plugin-pwa'
 import { configurePWAOptions } from './config'
-import { type LocalizedWebManifest, createI18n, pwaLocales } from './i18n'
+import { createI18n, type LocalizedWebManifest, pwaLocales } from './i18n'
 
 export * from './types'
 
@@ -50,15 +50,15 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       baseURL: '/',
       maxAge: 0,
     })
-    if (options.disable) {
-      addPlugin({ src: resolver.resolve('./runtime/pwa-plugin-stub.client') })
-    }
-    else {
-      // Register PWA types
-      nuxt.hook('prepare:types', ({ references }) => {
-        references.push({ types: 'vite-plugin-pwa/info' })
-        references.push({ types: 'vite-plugin-pwa/client' })
-      })
+
+    // Register PWA types
+    nuxt.hook('prepare:types', ({ references }) => {
+      // TODO: remove this once JetBrains fixes the issue with types: remove also the dts file
+      references.push({ path: resolver.resolve('runtime/types') })
+      references.push({ types: 'vite-plugin-pwa/info' })
+      references.push({ types: 'vite-plugin-pwa/vue' })
+    })
+    if (!options.disable) {
       // Inject $pwa helper throughout app
       addPlugin({ src: resolver.resolve('./runtime/pwa-plugin.client') })
     }
@@ -202,6 +202,11 @@ export default defineNuxtModule<VitePWANuxtOptions>({
             'Cache-Control': 'public, max-age=0, must-revalidate',
           },
         }
+        nitroConfig.routeRules!['/elk-sw.js'] = {
+          headers: {
+            'Cache-Control': 'public, max-age=0, must-revalidate',
+          },
+        }
         for (const locale of pwaLocales) {
           nitroConfig.routeRules![`/manifest-${locale.code}.webmanifest`] = {
             headers: {
@@ -217,10 +222,8 @@ export default defineNuxtModule<VitePWANuxtOptions>({
           }
         }
       })
-      nuxt.hook('nitro:init', (nitro) => {
-        nitro.hooks.hook('rollup:before', async () => {
-          await resolveVitePluginPWAAPI()?.generateSW()
-        })
+      nuxt.hook('nitro:build:public-assets', async () => {
+        await resolveVitePluginPWAAPI()?.generateSW()
       })
     }
   },

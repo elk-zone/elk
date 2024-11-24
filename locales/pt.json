@@ -7,12 +7,15 @@
     "route_loaded": "Página {0} carregada"
   },
   "account": {
+    "authorize": "Autorizar pedido para seguir",
+    "authorized": "Autorizou o pedido",
     "avatar_description": "Imagem de perfil de {0}",
     "blocked_by": "Está bloqueado por este utilizador.",
     "blocked_domains": "Domínios bloqueados",
     "blocked_users": "Utilizadores bloqueados",
     "blocking": "Bloqueado",
     "bot": "BOT",
+    "copy_account_name": "Copiar nome da conta",
     "favourites": "Favoritos",
     "follow": "Seguir",
     "follow_back": "Seguir de volta",
@@ -24,6 +27,7 @@
     "follows_you": "Segue-o",
     "go_to_profile": "Ir para o perfil",
     "joined": "Juntou-se a",
+    "lock": "Privada",
     "moved_title": "Indicou que a sua nova conta é agora:",
     "muted_users": "Utilizadores silenciados",
     "muting": "Silenciados",
@@ -36,12 +40,16 @@
     "profile_description": "Descrição de perfil de {0}",
     "profile_personal_note": "Nota Pessoal",
     "profile_unavailable": "Perfil indisponível",
+    "reject": "Rejeitar pedido para seguir",
+    "rejected": "Rejeitou o pedido",
     "request_follow": "Pedir para seguir",
+    "requested": "{0} pediu para o seguir",
     "unblock": "Desbloquear",
     "unfollow": "Deixar de seguir",
     "unmute": "Deixar de silenciar",
     "view_other_followers": "Os seguidores de outras instâncias podem não ser exibidos.",
-    "view_other_following": "As pessoas que segue de outras instâncias podem não ser exibidas."
+    "view_other_following": "As pessoas que segue de outras instâncias podem não ser exibidas.",
+    "withdraw_follow_request": "Retirar pedido para seguir"
   },
   "action": {
     "apply": "Aplicar",
@@ -50,7 +58,9 @@
     "boost": "Partilhar",
     "boost_count": "{0}",
     "boosted": "Partilhado",
+    "clear": "Limpar",
     "clear_publish_failed": "Limpar erros de publicação",
+    "clear_save_failed": "Limpar erros ocorridos ao tentar guardar",
     "clear_upload_failed": "Limpar erros de carregamento de ficheiro",
     "close": "Fechar",
     "compose": "Compor",
@@ -63,8 +73,10 @@
     "favourited": "Adicionado aos favoritos",
     "more": "Mais",
     "next": "Próximo",
+    "open_image_preview_dialog": "Abrir caixa de diálogo de pré-visualização da imagem",
     "prev": "Anterior",
     "publish": "Publicar",
+    "publish_thread": "Publicar sequência",
     "reply": "Responder",
     "reply_count": "{0}",
     "reset": "Repor",
@@ -86,7 +98,7 @@
     "activate": "Ativar",
     "complete": "Completar",
     "compose_desc": "Escrever uma nova publicação",
-    "n-people-in-the-past-n-days": "{0} pessoas nos últimos {1} dias",
+    "n_people_in_the_past_n_days": "{0} pessoas nos últimos {1} dias",
     "select_lang": "Selecionar idioma",
     "sign_in_desc": "Adicionar uma conta existente",
     "switch_account": "Mudar para {0}",
@@ -112,12 +124,14 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tem a certeza que pretende bloquear {0}？"
+      "description": "Tem a certeza que pretende bloquear {0}?",
+      "title": "Bloquear conta"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "Tem a certeza que pretende bloquear {0}？"
+      "description": "Tem a certeza que pretende bloquear {0}?",
+      "title": "Bloquear domínio"
     },
     "common": {
       "cancel": "Não",
@@ -126,27 +140,37 @@
     "delete_list": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "Tem a certeza que pretende elimnar a lista \"{0}\"?"
+      "description": "Tem a certeza que pretende eliminar a lista \"{0}\"?",
+      "title": "Eliminar lista"
     },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "Tem a certeza que pretende eliminar esta publicação?"
+      "description": "Tem a certeza que pretende eliminar esta publicação?",
+      "title": "Eliminar publicação"
     },
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
-      "title": "Tem a certeza que pretende silenciar {0}？"
+      "days": "dias|dia|dias",
+      "description": "Tem a certeza que pretende silenciar {0}?",
+      "hours": "horas|hora|horas",
+      "minute": "minutos|minuto|minutos",
+      "notifications": "Silenciar notificações",
+      "specify_duration": "Especificar duração do silêncio",
+      "title": "Silenciar conta"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "Tem a certeza que pretende mostrar partilhas de {0}？"
+      "description": "Tem a certeza que pretende mostrar partilhas de {0}?",
+      "title": "Mostrar partilhas"
     },
     "unfollow": {
       "cancel": "Cancelar",
       "confirm": "Deixar de seguir",
-      "title": "Tem a certeza que pretende deixar de seguir?"
+      "description": "Tem a certeza que pretende deixar de seguir?",
+      "title": "Deixar de seguir"
     }
   },
   "conversation": {
@@ -161,7 +185,7 @@
   },
   "error": {
     "account_not_found": "Conta {0} não encontrada",
-    "explore-list-empty": "Nada está em tendência agora. Confirme mais tarde!",
+    "explore_list_empty": "Nada está em tendência agora. Confirme mais tarde!",
     "file_size_cannot_exceed_n_mb": "O tamanho do ficheiro não pode exceder {0}MB",
     "sign_in_error": "Não é possível conectar ao servidor.",
     "status_not_found": "Publicação não encontrada",
@@ -175,17 +199,17 @@
       "title": "Produção de pré-visualização"
     },
     "desc_highlight": "Espere alguns problemas e funcionalidades em falta.",
-    "desc_para1": "Obrigado pelo seu interesse em experimentar o Elk, a nossa aplicação web para o Mastodon, ainda em construção!",
-    "desc_para2": "Estamos a trabalhar arduamente no seu desenvolvimento e melhoria ao longo do tempo.",
+    "desc_para1": "O Elk é uma ágil aplicação web para o Mastodon. Pode iniciar sessão com a sua conta Mastodon e utilizá-la para interagir com o fediverso.",
+    "desc_para2": "O Elk é software de código aberto e estamos a aperfeiçoá-lo ativamente como um projeto comunitário. Junte-se a nós e vamos construí-lo juntos!",
     "desc_para3": "Para ajudar a impulsionar o desenvolvimento, pode patrocinar a Equipa através do GitHub Sponsors. Esperamos que aprecie o Elk!",
-    "desc_para4": "Elk é um software de código aberto. Se quiser ajudar a testar a aplicação, dando o seu feedback ou contributo,",
+    "desc_para4": "Se quiser comunicar um erro, ajudar-nos a testar, dar feedback ou contribuir,",
     "desc_para5": "pode encontrar-nos no GitHub",
     "desc_para6": "e participar.",
     "footer_team": "A Equipa do Elk",
     "title": "Elk está em Antevisão!"
   },
   "language": {
-    "search": "Procurar"
+    "search": "Pesquisar"
   },
   "list": {
     "add_account": "Adicionar conta à lista",
@@ -199,6 +223,7 @@
     "error": "Ocorreu um erro ao criar a lista",
     "error_prefix": "Erro: ",
     "list_title_placeholder": "Título da lista",
+    "manage": "Gerir listas",
     "modify_account": "Modificar listas com a conta",
     "remove_account": "Remover conta da lista",
     "save": "Salvar alterações"
@@ -210,15 +235,27 @@
         "boost": "Partilhar",
         "command_mode": "Menu de comandos",
         "compose": "Compor",
-        "favourite": "Adcionar aos favoritos",
+        "favourite": "Adicionar aos favoritos",
+        "search": "Pesquisar",
+        "show_new_items": "Mostrar novos itens",
         "title": "Ações"
       },
       "media": {
         "title": "Media"
       },
       "navigation": {
+        "go_to_bookmarks": "Itens Salvos",
+        "go_to_conversations": "Conversas",
+        "go_to_explore": "Explorar",
+        "go_to_favourites": "Favoritos",
+        "go_to_federated": "Federada",
         "go_to_home": "Início",
+        "go_to_lists": "Listas",
+        "go_to_local": "Local",
         "go_to_notifications": "Notificações",
+        "go_to_profile": "Perfil",
+        "go_to_search": "Pesquisa",
+        "go_to_settings": "Definições",
         "next_status": "Publicação seguinte",
         "previous_status": "Publicação anterior",
         "shortcut_help": "Lista de atalhos",
@@ -245,10 +282,11 @@
     "pin_on_profile": "Fixar no perfil",
     "remove_personal_note": "Remover nota pessoal para {0}",
     "report_account": "Denunciar {0}",
+    "share_account": "Partilhar {0}",
     "share_post": "Partilhar esta publicação",
     "show_favourited_and_boosted_by": "Mostrar quem adicionou aos favoritos e partilhou",
     "show_reblogs": "Mostrar partilhas de {0}",
-    "show_untranslated": "Mostrar não traduzidas",
+    "show_untranslated": "Esconder tradução",
     "toggle_theme": {
       "dark": "Alternar modo escuro",
       "light": "Alternar modo claro"
@@ -272,18 +310,21 @@
     "built_at": "Produzido {0}",
     "compose": "Compor",
     "conversations": "Conversas",
+    "docs": "Documentação",
     "explore": "Explorar",
     "favourites": "Favoritos",
     "federated": "Federada",
+    "hashtags": "Hashtags",
     "home": "Início",
     "list": "Lista",
     "lists": "Listas",
     "local": "Local",
+    "more_menu": "Mais opções",
     "muted_users": "Utilizadores silenciados",
     "notifications": "Notificações",
     "privacy": "Privacidade",
     "profile": "Perfil",
-    "search": "Procurar",
+    "search": "Pesquisar",
     "select_feature_flags": "Alternar Funcionalidades",
     "select_font_size": "Tamanho da Fonte",
     "select_language": "Idioma de Apresentação",
@@ -307,8 +348,7 @@
     "content_warning": "Escreva aqui o seu aviso",
     "default_1": "Em que está a pensar?",
     "reply_to_account": "Responder a {0}",
-    "replying": "Respondendo",
-    "the_thread": "a conversa"
+    "replying": "Respondendo"
   },
   "polls": {
     "allow_multiple": "Permitir múltiplas escolhas",
@@ -393,7 +433,7 @@
     "whats_wrong_post": "Diga-nos o que está errado com esta publicação"
   },
   "search": {
-    "search_desc": "Procure por pessoas e hashtags",
+    "search_desc": "Pesquise por pessoas e hashtags",
     "search_empty": "Não foi possível encontrar nada para os termos que pesquisou"
   },
   "settings": {
@@ -414,7 +454,9 @@
       "label": "Configurações da conta"
     },
     "interface": {
-      "color_mode": "Modo de cores",
+      "bottom_nav": "Barra de Navegação",
+      "bottom_nav_instructions": "Escolha as suas opções favoritas, até cinco, para a barra de navegação. Deve incluir o botão \"Mais opções\".",
+      "color_mode": "Modo de Cores",
       "dark_mode": "Modo Escuro",
       "default": " (padrão)",
       "font_size": "Tamanho da fonte",
@@ -425,7 +467,9 @@
     },
     "language": {
       "display_language": "Idioma de Apresentação",
+      "how_to_contribute": "Como contribuir?",
       "label": "Idioma",
+      "post_language": "Idioma de Publicação",
       "status": "Estado da tradução: {0}/{1} ({2}%)",
       "translations": {
         "add": "Adicionar",
@@ -491,6 +535,8 @@
     },
     "notifications_settings": "Notificações",
     "preferences": {
+      "embedded_media": "Leitor de Media Incorporado",
+      "embedded_media_description": "Quando é publicada uma ligação para uma transmissão de media, é apresentado um leitor incorporado ao invés do cartão de pré-visualização normal.",
       "enable_autoplay": "Habilitar Reprodução Automática",
       "enable_data_saving": "Habilitar poupança de dados",
       "enable_data_saving_description": "Poupar dados, impedindo que os anexos sejam carregados automaticamente.",
@@ -503,12 +549,15 @@
       "hide_boost_count": "Esconder contagem de partilhas",
       "hide_favorite_count": "Esconder contagem de favoritos",
       "hide_follower_count": "Esconder contagem de seguidores",
+      "hide_gif_indi_on_posts": "Esconder indicador gif nas publicações",
       "hide_news": "Esconder notícias",
       "hide_reply_count": "Esconder contagem de respostas",
+      "hide_tag_hover_card": "Esconder cartão flutuante de hashtag",
       "hide_translation": "Esconder botão de tradução",
       "hide_username_emojis": "Esconder emojis do nome de utilizador",
       "hide_username_emojis_description": "Esconde os emojis do nome de utilizador nas cronologias. Os Emojis continuarão a ser visíveis nos seus perfis.",
       "label": "Preferências",
+      "optimize_for_low_performance_device": "Otimizar para dispositivos de menor desempenho",
       "title": "Funcionalidades Experimentais",
       "use_star_favorite_icon": "Utilizar estrela como ícone de favoritos",
       "user_picker": "Selecionador de Utilizador",
@@ -533,7 +582,8 @@
       },
       "featured_tags": {
         "description": "As pessoas podem encontrar as suas publicações públicas que incluem essas hashtags.",
-        "label": "Hashtags destacadas"
+        "label": "Hashtags destacadas",
+        "under_construction": "Em construção"
       },
       "label": "Perfil"
     },
@@ -544,19 +594,24 @@
       "label": "Utilizadores conectados"
     }
   },
-  "share-target": {
+  "share_target": {
     "description": "Elk pode ser configurado para que possa partilhar conteúdos de outras aplicações, basta instalar Elk no seu dispositivo ou computador e iniciar sessão.",
     "hint": "Para poder partilhar conteúdo com o Elk, este tem de estar instalado e você ter iniciado sessão.",
     "title": "Partilhar com o Elk"
   },
   "state": {
     "attachments_exceed_server_limit": "O número de anexos excedeu o limite permitido por publicação.",
+    "attachments_limit_audio_error": "Tamanho máximo para áudio excedido: {0}",
     "attachments_limit_error": "Limite permitido por publicação excedido",
+    "attachments_limit_image_error": "Tamanho máximo para imagem excedido: {0}",
+    "attachments_limit_unknown_error": "Tamanho máximo para ficheiro excedido: {0}",
+    "attachments_limit_video_error": "Tamanho máximo para video excedido: {0}",
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Carregando...",
     "publish_failed": "Publicação falhou",
     "publishing": "Publicando",
+    "save_failed": "Falha ao guardar",
     "upload_failed": "Carregamento falhou",
     "uploading": "A carregar..."
   },
@@ -567,10 +622,11 @@
     },
     "boosted_by": "Partilhada Por",
     "edited": "Editada {0}",
+    "embedded_warning": "Reproduzir isto pode revelar o seu endereço de IP a outros.",
     "favourited_by": "Adicionada Aos Favoritos Por",
     "filter_hidden_phrase": "Filtrada por",
-    "filter_removed_phrase": "Removida pelo filtro",
     "filter_show_anyway": "Mostrar mesmo assim",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Descrição",
@@ -582,7 +638,6 @@
       "ends": "termina {0}",
       "finished": "terminou {0}"
     },
-    "reblogged": "{0} partilhou",
     "replying_to": "Em resposta a {0}",
     "show_full_thread": "Mostrar toda a conversa",
     "someone": "alguém",
@@ -603,8 +658,20 @@
     "list": "Lista",
     "media": "Media",
     "news": "Notícias",
+    "notifications_admin": {
+      "report": "Denúncias",
+      "sign_up": "Inscrições"
+    },
     "notifications_all": "Todas",
+    "notifications_favourite": "Favoritos",
+    "notifications_follow": "Seguidores",
+    "notifications_follow_request": "Pedidos para seguir",
     "notifications_mention": "Menções",
+    "notifications_more_tooltip": "Filtra notificações por tipo",
+    "notifications_poll": "Sondagens",
+    "notifications_reblog": "Partilhas",
+    "notifications_status": "Publicações",
+    "notifications_update": "Atualizações",
     "posts": "Publicações",
     "posts_with_replies": "Publicações e Respostas"
   },
@@ -646,6 +713,7 @@
     "year_past": "0 anos atrás|ano passado|{n} anos atrás"
   },
   "timeline": {
+    "no_posts": "Sem publicações aqui!",
     "show_new_items": "Mostrar {v} novos itens|Mostrar {v} novo item|Mostrar {v} novos itens",
     "view_older_posts": "Publicações antigas de outras instâncias podem não ser apresentadas."
   },
@@ -658,6 +726,7 @@
     "add_emojis": "Adicionar emojis",
     "add_media": "Adicionar imagens, um video ou um ficheiro audio",
     "add_publishable_content": "Adicionar conteúdo a publicar",
+    "add_thread_item": "Adicionar item à sequência",
     "change_content_visibility": "Alterar visibilidade do conteúdo",
     "change_language": "Alterar idioma",
     "emoji": "Emoji",
@@ -667,6 +736,8 @@
     "open_editor_tools": "Ferramentas de edição",
     "pick_an_icon": "Escolher um ícone",
     "publish_failed": "Fechar mensagens de falha no topo do editor para republicar publicações",
+    "remove_thread_item": "Remover item da sequência",
+    "start_thread": "Iniciar sequência",
     "toggle_bold": "Alternar negrito",
     "toggle_code_block": "Alternar bloco de código",
     "toggle_italic": "Alternar itálico"

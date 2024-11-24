@@ -14,7 +14,7 @@ const supportsPushNotifications = typeof window !== 'undefined'
   && 'getKey' in PushSubscription.prototype
 
 export function usePushManager() {
-  const { client } = $(useMasto())
+  const { client } = useMasto()
   const isSubscribed = ref(false)
   const notificationPermission = ref<PermissionState | undefined>(
     Notification.permission === 'denied'
@@ -25,7 +25,7 @@ export function usePushManager() {
           ? 'prompt'
           : undefined,
   )
-  const isSupported = $computed(() => supportsPushNotifications)
+  const isSupported = computed(() => supportsPushNotifications)
   const hiddenNotification = useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {})
   const configuredPolicy = useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {})
   const pushNotificationData = ref(createRawSettings(
@@ -61,10 +61,10 @@ export function usePushManager() {
 
   const subscribe = async (
     notificationData?: CreatePushNotification,
-    policy?: mastodon.v1.SubscriptionPolicy,
+    policy?: mastodon.v1.WebPushSubscriptionPolicy,
     force?: boolean,
   ): Promise<SubscriptionResult> => {
-    if (!isSupported)
+    if (!isSupported.value)
       return 'not-supported'
 
     if (!currentUser.value)
@@ -87,7 +87,10 @@ export function usePushManager() {
 
     currentUser.value.pushSubscription = await createPushSubscription(
       {
-        pushSubscription, server, token, vapidKey,
+        pushSubscription,
+        server,
+        token,
+        vapidKey,
       },
       notificationData ?? {
         alerts: {
@@ -109,14 +112,14 @@ export function usePushManager() {
   }
 
   const unsubscribe = async () => {
-    if (!isSupported || !isSubscribed || !currentUser.value)
+    if (!isSupported.value || !isSubscribed.value || !currentUser.value)
       return false
 
     await removePushNotifications(currentUser.value)
     await removePushNotificationData(currentUser.value)
   }
 
-  const saveSettings = async (policy?: mastodon.v1.SubscriptionPolicy) => {
+  const saveSettings = async (policy?: mastodon.v1.WebPushSubscriptionPolicy) => {
     if (policy)
       pushNotificationData.value.policy = policy
 
@@ -173,9 +176,10 @@ export function usePushManager() {
       if (policyChanged)
         await subscribe(data, policy, true)
       else
-        currentUser.value.pushSubscription = await client.v1.webPushSubscriptions.update({ data })
+        currentUser.value.pushSubscription = await client.value.v1.push.subscription.update({ data })
 
-      policyChanged && await nextTick()
+      if (policyChanged)
+        await nextTick()
 
       // force change policy when changed: watch is resetting it on push subscription update
       await saveSettings(policyChanged ? policy : undefined)
@@ -198,7 +202,7 @@ export function usePushManager() {
 
 function createRawSettings(
   pushSubscription?: mastodon.v1.WebPushSubscription,
-  subscriptionPolicy?: mastodon.v1.SubscriptionPolicy,
+  subscriptionPolicy?: mastodon.v1.WebPushSubscriptionPolicy,
 ) {
   return {
     follow: pushSubscription?.alerts.follow ?? true,

@@ -1,7 +1,7 @@
-import { Buffer } from 'node:buffer'
-import { join, resolve } from 'pathe'
+import { writeFile } from 'node:fs/promises'
 import fs from 'fs-extra'
 import { ofetch } from 'ofetch'
+import { join, resolve } from 'pathe'
 import { elkTeamMembers } from '../composables/about'
 
 const avatarsDir = resolve('./public/avatars/')
@@ -9,13 +9,10 @@ const avatarsDir = resolve('./public/avatars/')
 const sizes = [60, 100]
 
 async function download(url: string, fileName: string) {
-  if (fs.existsSync(fileName))
-    return
-
   console.log('downloading', fileName)
   try {
     const image = await ofetch(url, { responseType: 'arrayBuffer' })
-    await fs.writeFile(fileName, Buffer.from(image))
+    await writeFile(fileName, new Uint8Array(image))
   }
   catch (err) {
     console.error(err)

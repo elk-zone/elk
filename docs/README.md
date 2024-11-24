@@ -30,7 +30,7 @@ We use [Docus](https://docus.dev) as the site generator and deploy through Netli
 
 When you are ready to submit work back to the main Elk repo, create a PR.
 
-1. If it has been a bit, synchronize your fork with the upstream repo on GitHub. 
+1. If it has been a bit, synchronize your fork with the upstream repo on GitHub.
 2. Do your work in a branch on your fork
    Use `git checkout -b branchNameToUse` to create a working branch separate from `main`.
 3. Do your work in your preferred editor
@@ -44,7 +44,7 @@ When you are ready to submit work back to the main Elk repo, create a PR.
    - base branch should be **main**
    - Head repository should be your fork
    - Compare branch should be your working branch you want to submit
-   If you don't see four drop downs, be sure you are comparing across forks.
+   If you don't see four drop-downs, be sure you are comparing across forks.
 10. Add a description of the changes your request makes
 11. Select **Add Pull Request**
 
@@ -65,7 +65,7 @@ Avoid screenshots until Elk reaches a stable release.
 
 ### Standards
 
-Write in **American English** using spelling as found in [Merriam Webster](https://www.merriam-webster.com).
+Write in **American English** using spelling as found in [Merriam-Webster](https://www.merriam-webster.com).
 Translation and localization will be handled separately as/when availability or necessity allow.
 
 Use [**semantic linefeeds**](https://rhodesmill.org/brandon/2012/one-sentence-per-line/) with no more than one sentence per line.

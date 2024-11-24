@@ -4,6 +4,7 @@
     "locale_changing": "Actualizando idioma, espera..."
   },
   "account": {
+    "authorized": "Autorizaste la petición",
     "avatar_description": "Foto de perfil de",
     "blocked_by": "Estás bloqueado por este usuario.",
     "blocked_domains": "Dominios ocultos",
@@ -15,16 +16,18 @@
     "notifications_on_post_enable": "Notificarme cuando {username} publique",
     "pinned": "Publicaciones ancladas",
     "profile_description": "Imagen de portada de {0}",
-    "unmute": "Quitar silencio"
+    "reject": "Omitir seguimiento",
+    "rejected": "Omitiste la petición",
+    "requested": "{0} quiere seguirte",
+    "unmute": "Quitar silencio",
+    "withdraw_follow_request": "Quitar solicitud de seguimiento"
   },
   "action": {
     "apply": "Guardar cambios",
     "bookmark": "Marcar",
-    "confirm": "Cortar",
     "edit": "Actualizar",
     "enter_app": "Ingresar",
     "favourite": "Marcar como favorita",
-    "favourited": "Marcada como favorita",
     "reset": "Resetear",
     "switch_account": "Cambiar de cuenta"
   },
@@ -33,7 +36,7 @@
     "remove_label": "Eliminar archivo adjunto"
   },
   "command": {
-    "n-people-in-the-past-n-days": "{0} usuarios en los últimos {1} días"
+    "n_people_in_the_past_n_days": "{0} usuarios en los últimos {1} días"
   },
   "common": {
     "end_of_list": "Fin de la lista",
@@ -44,26 +47,26 @@
     "block_account": {
       "cancel": "No",
       "confirm": "Sí, bloquear",
-      "title": "¿De verdad quieres bloquear a {0}?"
+      "description": "¿De verdad quieres bloquear a {0}?"
     },
     "block_domain": {
       "cancel": "No",
-      "confirm": "Sí ocultar",
-      "title": "¿De verdad quieres ocultar a {0}?"
+      "confirm": "Sí, ocultar",
+      "description": "¿De verdad quieres ocultar a {0}?"
     },
     "delete_posts": {
-      "title": "¿De verdad quieres eliminar esta publicación?"
+      "description": "¿De verdad quieres eliminar esta publicación?"
     },
     "mute_account": {
-      "title": "¿De verdad quieres silenciar a {0}?"
+      "description": "¿De verdad quieres silenciar a {0}?"
     },
     "show_reblogs": {
       "cancel": "No",
       "confirm": "Sí, ver",
-      "title": "¿De verdad quieres ver los retoots de {0}"
+      "description": "¿De verdad quieres ver los retoots de {0}"
     },
     "unfollow": {
-      "title": "¿De verdad quieres dejar de seguir?"
+      "description": "¿De verdad quieres dejar de seguir?"
     }
   },
   "error": {
@@ -80,6 +83,16 @@
   "list": {
     "add_account": "Añadir cuenta a la lista",
     "remove_account": "Quitar cuenta de la lista"
+  },
+  "magic_keys": {
+    "groups": {
+      "navigation": {
+        "go_to_conversations": "Mensajes directos",
+        "go_to_federated": "Historia federada",
+        "go_to_local": "Historia local",
+        "go_to_settings": "Preferencias"
+      }
+    }
   },
   "menu": {
     "block_domain": "Ocultar dominio {0}",
@@ -163,12 +176,16 @@
       },
       "featured_tags": {
         "description": "Los usuarios navegan por tus publicaciones públicas con estas etiquetas.",
-        "label": "Etiquetas destacadas"
+        "label": "Etiquetas destacadas",
+        "under_construction": "En desarrollo"
       }
     },
     "users": {
       "label": "Usuarios en línea"
     }
+  },
+  "state": {
+    "attachments_limit_video_error": "Tamaño máximo de video excedido: {0}"
   },
   "status": {
     "spoiler_show_less": "Menos"

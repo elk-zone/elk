@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import CommonScrollIntoView from '../common/CommonScrollIntoView.vue'
+import type { CommandHandler } from '~/composables/command'
 
 const { items, command } = defineProps<{
   items: mastodon.v1.Tag[]
-  command: Function
+  command: CommandHandler<{ id: string }>
   isPending?: boolean
 }>()
 
-let selectedIndex = $ref(0)
+const selectedIndex = ref(0)
 
-watch(items, () => {
-  selectedIndex = 0
+watch(() => items, () => {
+  selectedIndex.value = 0
 })
 
 function onKeyDown(event: KeyboardEvent) {
@@ -19,15 +19,15 @@ function onKeyDown(event: KeyboardEvent) {
     return false
 
   if (event.key === 'ArrowUp') {
-    selectedIndex = ((selectedIndex + items.length) - 1) % items.length
+    selectedIndex.value = ((selectedIndex.value + items.length) - 1) % items.length
     return true
   }
   else if (event.key === 'ArrowDown') {
-    selectedIndex = (selectedIndex + 1) % items.length
+    selectedIndex.value = (selectedIndex.value + 1) % items.length
     return true
   }
   else if (event.key === 'Enter') {
-    selectItem(selectedIndex)
+    selectItem(selectedIndex.value)
     return true
   }
 

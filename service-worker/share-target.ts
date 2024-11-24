@@ -1,7 +1,7 @@
 /// <reference lib="WebWorker" />
 declare const self: ServiceWorkerGlobalScope
 
-const clientResolves: { [key: string]: Function } = {}
+const clientResolves: { [key: string]: () => void } = {}
 
 self.addEventListener('message', (event) => {
   if (event.data.action !== 'ready-to-receive')
@@ -32,7 +32,10 @@ async function handleSharedTarget(event: FetchEvent) {
 }
 
 async function sendShareTargetMessage(client: Client, data: FormData) {
-  const sharedData: { textParts: string[]; files: File[] } = {
+  const sharedData: {
+    textParts: string[]
+    files: File[]
+  } = {
     textParts: [],
     files: [],
   }

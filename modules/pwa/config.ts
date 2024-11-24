@@ -10,9 +10,9 @@ export function configurePWAOptions(options: Partial<VitePWAOptions>, nuxt: Nuxt
 
   let config: Partial<
     import('workbox-build').BasePartial
-    & import('workbox-build').GlobPartial
-    & import('workbox-build').RequiredGlobDirectoryPartial
-    >
+      & import('workbox-build').GlobPartial
+      & import('workbox-build').RequiredGlobDirectoryPartial
+  >
 
   if (options.strategies === 'injectManifest') {
     options.injectManifest = options.injectManifest ?? {}
@@ -32,25 +32,37 @@ export function configurePWAOptions(options: Partial<VitePWAOptions>, nuxt: Nuxt
         options.devOptions.navigateFallbackAllowlist = [new RegExp(nuxt.options.app.baseURL) ?? /\//]
     }
     config = options.workbox
-    // todo: change navigateFallback based on the command: use 404 only when using generate
-    /* else if (nuxt.options.build) {
-      if (!options.workbox.navigateFallback)
-        options.workbox.navigateFallback = '/200.html'
-    } */
   }
+  let buildAssetsDir = nuxt.options.app.buildAssetsDir ?? '_nuxt/'
+  if (buildAssetsDir[0] === '/')
+    buildAssetsDir = buildAssetsDir.slice(1)
+  if (buildAssetsDir[buildAssetsDir.length - 1] !== '/')
+    buildAssetsDir += '/'
+
+  // Vite 5 support: allow override dontCacheBustURLsMatching
+  if (!('dontCacheBustURLsMatching' in config))
+    config.dontCacheBustURLsMatching = new RegExp(buildAssetsDir)
+
+  // handle payload extraction
+  if (nuxt.options.experimental.payloadExtraction) {
+    config.globPatterns = config.globPatterns ?? []
+    config.globPatterns.push('**/_payload.json')
+  }
+
+  // handle Nuxt App Manifest
+  let appManifestFolder: string | undefined
+  if (nuxt.options.experimental.appManifest) {
+    config.globPatterns = config.globPatterns ?? []
+    appManifestFolder = `${buildAssetsDir}builds/`
+    config.globPatterns.push(`${appManifestFolder}**/*.json`)
+  }
+
   if (!nuxt.options.dev)
-    config.manifestTransforms = [createManifestTransform(nuxt.options.app.baseURL ?? '/')]
+    config.manifestTransforms = [createManifestTransform(nuxt.options.app.baseURL ?? '/', appManifestFolder)]
 }
 
-function createManifestTransform(base: string): import('workbox-build').ManifestTransform {
+function createManifestTransform(base: string, appManifestFolder?: string): import('workbox-build').ManifestTransform {
   return async (entries) => {
-    // prefix non html assets with base
-    /*
-    entries.filter(e => e && !e.url.endsWith('.html')).forEach((e) => {
-      if (!e.url.startsWith(base))
-        e.url = `${base}${e.url}`
-    })
-*/
     entries.filter(e => e && e.url.endsWith('.html')).forEach((e) => {
       const url = e.url.startsWith('/') ? e.url.slice(1) : e.url
       if (url === 'index.html') {
@@ -59,10 +71,18 @@ function createManifestTransform(base: string): import('workbox-build').Manifest
       else {
         const parts = url.split('/')
         parts[parts.length - 1] = parts[parts.length - 1].replace(/\.html$/, '')
-        // e.url = `${base}${parts.length > 1 ? parts.slice(0, parts.length - 1).join('/') : parts[0]}`
         e.url = parts.length > 1 ? parts.slice(0, parts.length - 1).join('/') : parts[0]
       }
     })
+
+    if (appManifestFolder) {
+      const regExp = /\/?[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.json$/i
+      // we need to remove the revision from the sw prechaing manifest, UUID is enough:
+      // we don't use dontCacheBustURLsMatching, single regex
+      entries.filter(e => e && e.url.startsWith(appManifestFolder) && regExp.test(e.url)).forEach((e) => {
+        e.revision = null
+      })
+    }
 
     return { manifest: entries, warnings: [] }
   }

@@ -10,6 +10,7 @@ defineProps<{
 
 const container = ref()
 const route = useRoute()
+const userSettings = useUserSettings()
 const { height: windowHeight } = useWindowSize()
 const { height: containerHeight } = useElementBounding(container)
 const wideLayout = computed(() => route.meta.wideLayout ?? false)
@@ -26,10 +27,13 @@ const containerClass = computed(() => {
 <template>
   <div ref="container" :class="containerClass">
     <div
-      sticky top-0 z10 backdrop-blur
+      sticky top-0 z-20
       pt="[env(safe-area-inset-top,0)]"
       bg="[rgba(var(--rgb-bg-base),0.7)]"
       class="native:lg:w-[calc(100vw-5rem)] native:xl:w-[calc(135%+(100vw-1200px)/2)]"
+      :class="{
+        'backdrop-blur': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
+      }"
     >
       <div flex justify-between px5 py2 :class="{ 'xl:hidden': $route.name !== 'tag' }" class="native:xl:flex" border="b base">
         <div flex gap-3 items-center :overflow-hidden="!noOverflowHidden ? '' : false" py2 w-full>
@@ -40,7 +44,7 @@ const containerClass = computed(() => {
           >
             <div i-ri:arrow-left-line class="rtl-flip" />
           </NuxtLink>
-          <div :truncate="!noOverflowHidden ? '' : false" flex w-full data-tauri-drag-region class="native-mac:justify-center native-mac:text-center native-mac:sm:justify-start">
+          <div :truncate="!noOverflowHidden ? '' : false" flex w-full data-tauri-drag-region class="native-mac:justify-start native-mac:text-center">
             <slot name="title" />
           </div>
           <div sm:hidden h-7 w-1px />

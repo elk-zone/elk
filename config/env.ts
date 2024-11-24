@@ -29,9 +29,30 @@ export const isPreview = isPR || process.env.CONTEXT === 'deploy-preview' || pro
 
 const git = Git()
 export async function getGitInfo() {
-  const branch = gitBranch || await git.revparse(['--abbrev-ref', 'HEAD'])
-  const commit = await git.revparse(['HEAD'])
-  const shortCommit = await git.revparse(['--short=7', 'HEAD'])
+  let branch
+  try {
+    branch = gitBranch || await git.revparse(['--abbrev-ref', 'HEAD'])
+  }
+  catch {
+    branch = 'unknown'
+  }
+
+  let commit
+  try {
+    commit = await git.revparse(['HEAD'])
+  }
+  catch {
+    commit = 'unknown'
+  }
+
+  let shortCommit
+  try {
+    shortCommit = await git.revparse(['--short=7', 'HEAD'])
+  }
+  catch {
+    shortCommit = 'unknown'
+  }
+
   return { branch, commit, shortCommit }
 }
 

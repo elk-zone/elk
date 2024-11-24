@@ -39,8 +39,8 @@ The Elk team maintains a deployment at:
 
 ### Self-Host Docker Deployment
 
-In order to host Elk yourself you can use the provided Dockerfile to build a container with elk. Be aware, that Elk only loads properly if the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself. 
-One could put Elk behind popular reverse proxies with SSL Handling like Traefik, NGINX etc. 
+In order to host Elk yourself you can use the provided Dockerfile to build a container with elk. Be aware, that Elk only loads properly if the connection is done via SSL/TLS. The Docker container itself does not provide any SSL/TLS handling. You'll have to add this bit yourself.
+One could put Elk behind popular reverse proxies with SSL Handling like Traefik, NGINX etc.
 
 1. checkout source ```git clone https://github.com/elk-zone/elk.git```
 1. got into new source dir: ```cd elk```
@@ -49,8 +49,8 @@ One could put Elk behind popular reverse proxies with SSL Handling like Traefik,
 1. adjust permissions of storage dir: ```sudo chown 911:911 ./elk-storage```
 1. start container: ```docker-compose up -d```
 
-Note: The provided Dockerfile creates a container which will eventually run Elk as non-root user and create a persistent named Docker volume upon first start (if that volume does not yet exist). This volume is always created with root permission. Failing to change the permissions of ```/elk/data``` inside this volume to UID:GID 911 (as specified for Elk in the Dockerfile) will prevent Elk from storing it's config for user accounts. You either have to fix the permission in the created named volume, or mount a directory with the correct permission to ```/elk/data``` into the container.
-
+> [!NOTE]
+> The provided Dockerfile creates a container which will eventually run Elk as non-root user and create a persistent named Docker volume upon first start (if that volume does not yet exist). This volume is always created with root permission. Failing to change the permissions of ```/elk/data``` inside this volume to UID:GID 911 (as specified for Elk in the Dockerfile) will prevent Elk from storing it's config for user accounts. You either have to fix the permission in the created named volume, or mount a directory with the correct permission to ```/elk/data``` into the container.
 
 ### Ecosystem
 
@@ -67,6 +67,7 @@ These are known deployments using Elk as an alternative Web client for Mastodon 
 - [elk.mstdn.ca](https://elk.mstdn.ca) - Use Elk for the `mstdn.ca` Server
 - [elk.mastodonapp.uk](https://elk.mastodonapp.uk) - Use Elk for the `mastodonapp.uk` Server
 - [elk.bolha.us](https://elk.bolha.us) - Use Elk for the `bolha.us` Server
+- [crab.bumscode.com](https://crab.bumscode.com) - Use [crab](https://github.com/maybeanerd/crab) - a soft fork of Elk - for the `bumscode.com` Server
 
 > **Note**: Community deployments are **NOT** maintained by the Elk team. It may not be synced with Elk's source code. Please do your own research about the host servers before using them.
 
@@ -106,7 +107,7 @@ We're really excited that you're interested in contributing to Elk! Before submi
 
 ### Online
 
-You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow). 
+You can use [StackBlitz Codeflow](https://stackblitz.com/codeflow) to fix bugs or implement features. You'll also see a Codeflow button on PRs to review them without a local setup. Once the elk repo has been cloned in Codeflow, the dev server will start automatically and print the URL to open the App. You should receive a prompt in the bottom-right suggesting to open it in the Editor or in another Tab. To learn more, check out the [Codeflow docs](https://developer.stackblitz.com/codeflow/what-is-codeflow).
 
 [![Open in Codeflow](https://developer.stackblitz.com/img/open_in_codeflow.svg)](https://pr.new/elk-zone/elk)
 
@@ -138,7 +139,7 @@ nr test
 
 ## 📲 PWA
 
-You can consult the [PWA documentation](https://docs.elk.zone/docs/pwa) to learn more about the PWA capabilities on Elk, how to install Elk PWA in your desktop or mobile device and some hints about PWA stuff on Elk.
+You can consult the [PWA documentation](https://docs.elk.zone/pwa) to learn more about the PWA capabilities on Elk, how to install Elk PWA in your desktop or mobile device and some hints about PWA stuff on Elk.
 
 ## 🦄 Stack
 
@@ -151,14 +152,14 @@ You can consult the [PWA documentation](https://docs.elk.zone/docs/pwa) to learn
 - [UnoCSS](https://uno.antfu.me/) - The instant on-demand atomic CSS engine
 - [Iconify](https://github.com/iconify/icon-sets#iconify-icon-sets-in-json-format) - Iconify icon sets in JSON format
 - [Masto.js](https://neet.github.io/masto.js) - Mastodon API client in TypeScript
-- [shiki](https://shiki.matsu.io/) - A beautiful Syntax Highlighter
+- [shiki](https://shiki.style/) - A beautiful yet powerful syntax highlighter
 - [vite-plugin-pwa](https://github.com/vite-pwa/vite-plugin-pwa) - Prompt for update, Web Push Notifications and Web Share Target API
 
 ## 👨‍💻 Contributors
 
 <a href="https://github.com/elk-zone/elk/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=elk-zone/elk" />   
-</a>    
+  <img src="https://contrib.rocks/image?repo=elk-zone/elk" />
+</a>
 
 ## 📄 License
 

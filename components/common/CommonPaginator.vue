@@ -1,24 +1,23 @@
 <script setup lang="ts" generic="T, O, U = T">
+import type { mastodon } from 'masto'
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import type { Paginator, WsEvents } from 'masto'
-import type { UnwrapRef } from 'vue'
 
 const {
   paginator,
   stream,
+  eventType,
   keyProp = 'id',
   virtualScroller = false,
-  eventType = 'update',
   preprocess,
   endMessage = true,
 } = defineProps<{
-  paginator: Paginator<T[], O>
+  paginator: mastodon.Paginator<T[], O>
   keyProp?: keyof T
   virtualScroller?: boolean
-  stream?: Promise<WsEvents>
-  eventType?: 'notification' | 'update'
+  stream?: mastodon.streaming.Subscription
+  eventType?: 'update' | 'notification'
   preprocess?: (items: (U | T)[]) => U[]
   endMessage?: boolean | string
 }>()
@@ -33,20 +32,20 @@ defineSlots<{
     newer: U // newer is undefined when index === 0
   }) => void
   items: (props: {
-    items: UnwrapRef<U[]>
+    items: U[]
   }) => void
   updater: (props: {
     number: number
     update: () => void
   }) => void
-  loading: (props: {}) => void
+  loading: (props: object) => void
   done: (props: { items: U[] }) => void
 }>()
 
 const { t } = useI18n()
 const nuxtApp = useNuxtApp()
 
-const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, $$(stream), eventType, preprocess)
+const { items, prevItems, update, state, endAnchor, error } = usePaginator(paginator, toRef(() => stream), eventType, preprocess)
 
 nuxtApp.hook('elk-logo:click', () => {
   update()
@@ -74,7 +73,7 @@ defineExpose({ createEntry, removeEntry, updateEntry })
 <template>
   <div>
     <slot v-if="prevItems.length" name="updater" v-bind="{ number: prevItems.length, update }" />
-    <slot name="items" :items="items">
+    <slot name="items" :items="items as U[]">
       <template v-if="virtualScroller">
         <DynamicScroller
           v-slot="{ item, active, index }"
@@ -96,8 +95,8 @@ defineExpose({ createEntry, removeEntry, updateEntry })
       </template>
       <template v-else>
         <slot
-          v-for="item, index of items"
-          v-bind="{ key: item[keyProp as keyof U] }"
+          v-for="(item, index) of items"
+          v-bind="{ key: (item as U)[keyProp as keyof U] }"
           :item="item as U"
           :older="items[index + 1] as U"
           :newer="items[index - 1] as U"
@@ -112,7 +111,7 @@ defineExpose({ createEntry, removeEntry, updateEntry })
     </slot>
     <slot v-else-if="state === 'done' && endMessage !== false" name="done" :items="items as U[]">
       <div p5 text-secondary italic text-center>
-        {{ t(typeof endMessage === 'string' ? endMessage : 'common.end_of_list') }}
+        {{ t(typeof endMessage === 'string' && items.length <= 0 ? endMessage : 'common.end_of_list') }}
       </div>
     </slot>
     <div v-else-if="state === 'error'" p5 text-secondary>

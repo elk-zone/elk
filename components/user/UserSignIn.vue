@@ -2,19 +2,19 @@
 import Fuse from 'fuse.js'
 
 const input = ref<HTMLInputElement | undefined>()
-let knownServers = $ref<string[]>([])
-let autocompleteIndex = $ref(0)
-let autocompleteShow = $ref(false)
+const knownServers = ref<string[]>([])
+const autocompleteIndex = ref(0)
+const autocompleteShow = ref(false)
 
 const { busy, error, displayError, server, oauth } = useSignIn(input)
 
-let fuse = $shallowRef(new Fuse([] as string[]))
+const fuse = shallowRef(new Fuse([] as string[]))
 
-const filteredServers = $computed(() => {
+const filteredServers = computed(() => {
   if (!server.value)
     return []
 
-  const results = fuse.search(server.value, { limit: 6 }).map(result => result.item)
+  const results = fuse.value.search(server.value, { limit: 6 }).map(result => result.item)
   if (results[0] === server.value)
     return []
 
@@ -27,7 +27,7 @@ function isValidUrl(str: string) {
     new URL(str)
     return true
   }
-  catch (err) {
+  catch {
     return false
   }
 }
@@ -42,54 +42,57 @@ async function handleInput() {
 
   if (
     isValidUrl(`https://${input}`)
-    && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:[0-9]+)?$/i)
+    && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?$/i)
     // Do not hide the autocomplete if a result has an exact substring match on the input
-    && !filteredServers.some(s => s.includes(input))
-  )
-    autocompleteShow = false
-  else
-    autocompleteShow = true
+    && !filteredServers.value.some(s => s.includes(input))
+  ) {
+    autocompleteShow.value = false
+  }
+
+  else {
+    autocompleteShow.value = true
+  }
 }
 
 function toSelector(server: string) {
   return server.replace(/[^\w-]/g, '-')
 }
 function move(delta: number) {
-  if (filteredServers.length === 0) {
-    autocompleteIndex = 0
+  if (filteredServers.value.length === 0) {
+    autocompleteIndex.value = 0
     return
   }
-  autocompleteIndex = ((autocompleteIndex + delta) + filteredServers.length) % filteredServers.length
-  document.querySelector(`#${toSelector(filteredServers[autocompleteIndex])}`)?.scrollIntoView(false)
+  autocompleteIndex.value = ((autocompleteIndex.value + delta) + filteredServers.value.length) % filteredServers.value.length
+  document.querySelector(`#${toSelector(filteredServers.value[autocompleteIndex.value])}`)?.scrollIntoView(false)
 }
 
 function onEnter(e: KeyboardEvent) {
-  if (autocompleteShow === true && filteredServers[autocompleteIndex]) {
-    server.value = filteredServers[autocompleteIndex]
+  if (autocompleteShow.value === true && filteredServers.value[autocompleteIndex.value]) {
+    server.value = filteredServers.value[autocompleteIndex.value]
     e.preventDefault()
-    autocompleteShow = false
+    autocompleteShow.value = false
   }
 }
 
 function escapeAutocomplete(evt: KeyboardEvent) {
-  if (!autocompleteShow)
+  if (!autocompleteShow.value)
     return
-  autocompleteShow = false
+  autocompleteShow.value = false
   evt.stopPropagation()
 }
 
 function select(index: number) {
-  server.value = filteredServers[index]
+  server.value = filteredServers.value[index]
 }
 
 onMounted(async () => {
   input?.value?.focus()
-  knownServers = await (globalThis.$fetch as any)('/api/list-servers')
-  fuse = new Fuse(knownServers, { shouldSort: true })
+  knownServers.value = await (globalThis.$fetch as any)('/api/list-servers')
+  fuse.value = new Fuse(knownServers.value, { shouldSort: true })
 })
 
 onClickOutside(input, () => {
-  autocompleteShow = false
+  autocompleteShow.value = false
 })
 </script>
 

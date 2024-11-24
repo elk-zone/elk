@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { getEmojiMatchesInText } from '@iconify/utils/lib/emoji/replace/find'
-import CommonScrollIntoView from '../common/CommonScrollIntoView.vue'
-import type { CustomEmoji, Emoji } from '~~/composables/tiptap/suggestion'
-import { isCustomEmoji } from '~~/composables/tiptap/suggestion'
 import { emojiFilename, emojiPrefix, emojiRegEx } from '~~/config/emojis'
+import type { CommandHandler } from '~/composables/command'
+import type { CustomEmoji, Emoji } from '~/composables/tiptap/suggestion'
+import { isCustomEmoji } from '~/composables/tiptap/suggestion'
 
 const { items, command } = defineProps<{
   items: (CustomEmoji | Emoji)[]
-  command: Function
+  command: CommandHandler<any>
   isPending?: boolean
 }>()
 
 const emojis = computed(() => {
-  if (process.server)
+  if (import.meta.server)
     return []
 
   return items.map((item: CustomEmoji | Emoji) => {
@@ -36,10 +36,10 @@ const emojis = computed(() => {
   })
 })
 
-let selectedIndex = $ref(0)
+const selectedIndex = ref(0)
 
-watch(items, () => {
-  selectedIndex = 0
+watch(() => items, () => {
+  selectedIndex.value = 0
 })
 
 function onKeyDown(event: KeyboardEvent) {
@@ -47,15 +47,15 @@ function onKeyDown(event: KeyboardEvent) {
     return false
 
   if (event.key === 'ArrowUp') {
-    selectedIndex = ((selectedIndex + items.length) - 1) % items.length
+    selectedIndex.value = ((selectedIndex.value + items.length) - 1) % items.length
     return true
   }
   else if (event.key === 'ArrowDown') {
-    selectedIndex = (selectedIndex + 1) % items.length
+    selectedIndex.value = (selectedIndex.value + 1) % items.length
     return true
   }
   else if (event.key === 'Enter') {
-    selectItem(selectedIndex)
+    selectItem(selectedIndex.value)
     return true
   }
 

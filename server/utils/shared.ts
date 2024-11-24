@@ -1,8 +1,9 @@
+import { $fetch } from 'ofetch'
+import kv from 'unstorage/drivers/cloudflare-kv-http'
 import fs from 'unstorage/drivers/fs'
 import memory from 'unstorage/drivers/memory'
-import kv from 'unstorage/drivers/cloudflare-kv-http'
 
-import { $fetch } from 'ofetch'
+import vercelKVDriver from 'unstorage/drivers/vercel-kv'
 
 import cached from '../cache-driver'
 
@@ -12,9 +13,9 @@ import { env } from '#build-info'
 // @ts-expect-error virtual import
 import { driver } from '#storage-config'
 
-import type { AppInfo } from '~/types'
 import { APP_NAME } from '~/constants'
 import { version } from '~/config/env'
+import type { AppInfo } from '~/types'
 
 const storage = useStorage<AppInfo>()
 
@@ -28,6 +29,15 @@ else if (driver === 'cloudflare') {
     accountId: config.cloudflare.accountId,
     namespaceId: config.cloudflare.namespaceId,
     apiToken: config.cloudflare.apiToken,
+  })))
+}
+else if (driver === 'vercel') {
+  const config = useRuntimeConfig()
+  storage.mount('servers', cached(vercelKVDriver({
+    url: config.vercel.url,
+    token: config.vercel.token,
+    env: config.vercel.env,
+    base: config.vercel.base,
   })))
 }
 else if (driver === 'memory') {
@@ -58,7 +68,7 @@ async function fetchAppInfo(origin: string, server: string) {
 }
 
 export async function getApp(origin: string, server: string) {
-  const host = origin.replace(/^https?:\/\//, '').replace(/[^\w\d]/g, '-').replace(/\?.*$/, '')
+  const host = origin.replace(/^https?:\/\//, '').replace(/\W/g, '-').replace(/\?.*$/, '')
   const key = `servers:v3:${server}:${host}.json`.toLowerCase()
 
   try {

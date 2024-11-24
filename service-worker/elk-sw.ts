@@ -1,13 +1,13 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
+import { CacheableResponsePlugin } from 'workbox-cacheable-response'
+import { ExpirationPlugin } from 'workbox-expiration'
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
-import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
-import { ExpirationPlugin } from 'workbox-expiration'
 
-import { onNotificationClick, onPush } from './web-push-notifications'
 import { onShareTarget } from './share-target'
+import { onNotificationClick, onPush } from './web-push-notifications'
 
 declare const self: ServiceWorkerGlobalScope
 
@@ -39,12 +39,11 @@ if (import.meta.env.PROD) {
     /^\/oauth\//,
     /^\/signin\//,
     /^\/web-share-target\//,
-    // exclude shiki: has its own cache
-    /^\/shiki\//,
-    // exclude shiki: has its own cache
+    // exclude emoji: has its own cache
     /^\/emojis\//,
     // exclude sw: if the user navigates to it, fallback to index.html
     /^\/sw.js$/,
+    /^\/elk-sw.js$/,
     // exclude webmanifest: has its own cache
     /^\/manifest-(.*).webmanifest$/,
   ]
@@ -65,25 +64,12 @@ if (import.meta.env.PROD) {
       ],
     }),
   )
-  // include shiki cache
-  registerRoute(
-    ({ sameOrigin, url }) =>
-      sameOrigin && url.pathname.startsWith('/shiki/'),
-    new StaleWhileRevalidate({
-      cacheName: 'elk-shiki',
-      plugins: [
-        new CacheableResponsePlugin({ statuses: [200] }),
-        // 365 days max
-        new ExpirationPlugin({ purgeOnQuotaError: true, maxAgeSeconds: 60 * 60 * 24 * 365 }),
-      ],
-    }),
-  )
   // include emoji icons
   registerRoute(
     ({ sameOrigin, request, url }) =>
       sameOrigin
-        && request.destination === 'image'
-        && url.pathname.startsWith('/emojis/'),
+      && request.destination === 'image'
+      && url.pathname.startsWith('/emojis/'),
     new StaleWhileRevalidate({
       cacheName: 'elk-emojis',
       plugins: [

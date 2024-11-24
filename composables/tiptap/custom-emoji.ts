@@ -1,6 +1,6 @@
 import {
-  Node,
   mergeAttributes,
+  Node,
   nodeInputRule,
 } from '@tiptap/core'
 
@@ -16,7 +16,11 @@ declare module '@tiptap/core' {
       /**
        * Insert a custom emoji.
        */
-      insertCustomEmoji: (options: { src: string; alt?: string; title?: string }) => ReturnType
+      insertCustomEmoji: (options: {
+        src: string
+        alt?: string
+        title?: string
+      }) => ReturnType
       /**
        * Insert a emoji.
        */
@@ -25,7 +29,7 @@ declare module '@tiptap/core' {
   }
 }
 
-const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/
+const inputRegex = /(?:^|\s)(!\[(.+|:?)\]\((\S+)(?:\s+["'](\S+)["'])?\))$/
 
 export const TiptapPluginCustomEmoji = Node.create<EmojiOptions>({
   name: 'custom-emoji',

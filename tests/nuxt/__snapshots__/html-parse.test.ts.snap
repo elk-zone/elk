@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`html-parse > code frame > html 1`] = `
-"<p>Testing code block</p><p></p><p><pre><code class=\\"language-ts\\">import { useMouse, usePreferredDark } from '@vueuse/core'
+"<p>Testing code block</p><p></p><p><pre><code class="language-ts">import { useMouse, usePreferredDark } from '@vueuse/core'
 // tracks mouse position
 const { x, y } = useMouse()
 // is the user prefers dark theme
@@ -22,18 +22,18 @@ const isDark = usePreferredDark()
 `;
 
 exports[`html-parse > code frame 2 > html 1`] = `
-"<p>
-  <span class=\\"h-card\\"
+"<p dir="auto">
+  <span class="h-card"
     ><a
-      href=\\"https://webtoo.ls/@antfu\\"
-      class=\\"u-url mention\\"
-      rel=\\"nofollow noopener noreferrer\\"
-      target=\\"_blank\\"
+      href="https://webtoo.ls/@antfu"
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      target="_blank"
       >@<span>antfu</span></a
     ></span
   >
   Testing<br />
-  <pre><code class=\\"language-ts\\">const a = hello</code></pre>
+  <pre><code class="language-ts">const a = hello</code></pre>
 </p>
 "
 `;
@@ -48,15 +48,15 @@ const a = hello
 
 exports[`html-parse > custom emoji > html 1`] = `
 "Daniel Roe
-<picture alt=\\":nuxt:\\" class=\\"custom-emoji\\" data-emoji-id=\\"nuxt\\"
+<picture alt=":nuxt:" class="custom-emoji" data-emoji-id="nuxt"
   ><source
-    srcset=\\"
+    srcset="
       https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png
-    \\"
-    media=\\"(prefers-reduced-motion: reduce)\\" />
+    "
+    media="(prefers-reduced-motion: reduce)" />
   <img
-    src=\\"https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png\\"
-    alt=\\":nuxt:\\"
+    src="https://media.webtoo.ls/custom_emojis/images/000/000/366/original/73330dfc9dda4078.png"
+    alt=":nuxt:"
 /></picture>
 "
 `;
@@ -65,23 +65,23 @@ exports[`html-parse > custom emoji > text 1`] = `"Daniel Roe :nuxt:"`;
 
 exports[`html-parse > emojis > html 1`] = `
 "<img
-  src=\\"/emojis/twemoji/1f1eb-1f1f7.svg\\"
-  alt=\\"🇫🇷\\"
-  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+  src="/emojis/twemoji/1f1eb-1f1f7.svg"
+  alt="🇫🇷"
+  class="iconify-emoji iconify-emoji--twemoji"
 />
 <img
-  src=\\"/emojis/twemoji/1f468-200d-1f469-200d-1f466.svg\\"
-  alt=\\"👨‍👩‍👦\\"
-  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+  src="/emojis/twemoji/1f468-200d-1f469-200d-1f466.svg"
+  alt="👨‍👩‍👦"
+  class="iconify-emoji iconify-emoji--twemoji"
 />
 <img
-  src=\\"/emojis/twemoji/1f469-200d-1f692.svg\\"
-  alt=\\"👩‍🚒\\"
-  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+  src="/emojis/twemoji/1f469-200d-1f692.svg"
+  alt="👩‍🚒"
+  class="iconify-emoji iconify-emoji--twemoji"
 /><img
-  src=\\"/emojis/twemoji/1f9d1-1f3fd-200d-1f680.svg\\"
-  alt=\\"🧑🏽‍🚀\\"
-  class=\\"iconify-emoji iconify-emoji--twemoji\\"
+  src="/emojis/twemoji/1f9d1-1f3fd-200d-1f680.svg"
+  alt="🧑🏽‍🚀"
+  class="iconify-emoji iconify-emoji--twemoji"
 />
 "
 `;
@@ -99,7 +99,7 @@ exports[`html-parse > html entities > html 1`] = `
 
 exports[`html-parse > html entities > text 1`] = `"Hello <World />."`;
 
-exports[`html-parse > inline markdown > html 1`] = `"<p>text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p><p></p><p><pre><code class=\\"language-js\\">code block</code></pre></p>"`;
+exports[`html-parse > inline markdown > html 1`] = `"<p dir="auto">text <code>code</code> <b>bold</b> <em>italic</em> <del>del</del></p><p></p><p><pre><code class="language-js">code block</code></pre></p>"`;
 
 exports[`html-parse > inline markdown > text 1`] = `
 "text \`code\` **bold** *italic* ~~del~~
@@ -111,31 +111,31 @@ code block
 `;
 
 exports[`html-parse > link + mention > html 1`] = `
-"<p>
+"<p dir="auto">
   Happy
   <img
-    src=\\"/emojis/twemoji/1f917.svg\\"
-    alt=\\"🤗\\"
-    class=\\"iconify-emoji iconify-emoji--twemoji\\"
+    src="/emojis/twemoji/1f917.svg"
+    alt="🤗"
+    class="iconify-emoji iconify-emoji--twemoji"
   />
   we’re now using
-  <span class=\\"h-card\\"
+  <span class="h-card"
     ><a
-      href=\\"https://webtoo.ls/@vitest\\"
-      class=\\"u-url mention\\"
-      rel=\\"nofollow noopener noreferrer\\"
-      target=\\"_blank\\"
+      href="https://webtoo.ls/@vitest"
+      class="u-url mention"
+      rel="nofollow noopener noreferrer"
+      target="_blank"
       >@<span>vitest</span></a
     ></span
   >
   (migrated from chai+mocha)
   <a
-    href=\\"https://github.com/ayoayco/astro-reactive-library/pull/203\\"
-    rel=\\"nofollow noopener noreferrer\\"
-    target=\\"_blank\\"
-    ><span class=\\"invisible\\">https://</span
-    ><span class=\\"ellipsis\\">github.com/ayoayco/astro-react</span
-    ><span class=\\"invisible\\">ive-library/pull/203</span></a
+    href="https://github.com/ayoayco/astro-reactive-library/pull/203"
+    rel="nofollow noopener noreferrer"
+    target="_blank"
+    ><span class="invisible">https://</span
+    ><span class="ellipsis">github.com/ayoayco/astro-react</span
+    ><span class="invisible">ive-library/pull/203</span></a
   >
 </p>
 "

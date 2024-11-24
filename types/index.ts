@@ -1,3 +1,4 @@
+import type { RouteLocationRaw } from '#vue-router'
 import type { mastodon } from 'masto'
 import type { MarkNonNullable, Mutable } from './utils'
 
@@ -44,24 +45,51 @@ export type NotificationSlot = GroupedNotifications | GroupedLikeNotifications |
 
 export type TranslateFn = ReturnType<typeof useI18n>['t']
 
-export interface Draft {
+export interface DraftItem {
   editingStatus?: mastodon.v1.Status
   initialText?: string
-  params: MarkNonNullable<Mutable<Omit<mastodon.v1.CreateStatusParams, 'poll'>>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'> & { poll: Mutable<mastodon.v1.CreateStatusParams['poll']> }
+  params: MarkNonNullable<Mutable<Omit<mastodon.rest.v1.CreateStatusParams, 'poll'>>, 'status' | 'language' | 'sensitive' | 'spoilerText' | 'visibility'> & { poll: Mutable<mastodon.rest.v1.CreateStatusParams['poll']> }
   attachments: mastodon.v1.MediaAttachment[]
   lastUpdated: number
   mentions?: string[]
 }
 
-export type DraftMap = Record<string, Draft>
+export type DraftMap = Record<string, Array<DraftItem>
+ // For backward compatibility we need to support single draft items
+  | DraftItem>
 
-export interface ConfirmDialogLabel {
+export interface ConfirmDialogOptions {
   title: string
   description?: string
   confirm?: string
   cancel?: string
+  extraOptionType?: 'mute'
 }
-export type ConfirmDialogChoice = 'confirm' | 'cancel'
+export interface ConfirmDialogChoice {
+  choice: 'confirm' | 'cancel'
+  extraOptions?: {
+    mute: {
+      duration: number
+      notifications: boolean
+    }
+  }
+}
+
+export interface CommonRouteTabOption {
+  to: RouteLocationRaw
+  display: string
+  disabled?: boolean
+  name?: string
+  icon?: string
+  hide?: boolean
+  match?: boolean
+}
+export interface CommonRouteTabMoreOption {
+  options: CommonRouteTabOption[]
+  icon?: string
+  tooltip?: string
+  match?: boolean
+}
 
 export interface ErrorDialogData {
   title: string

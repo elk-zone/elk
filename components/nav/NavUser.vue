@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const { busy, oauth, singleInstanceServer } = useSignIn()
 </script>
 
@@ -34,7 +34,13 @@ const { busy, oauth, singleInstanceServer } = useSignIn()
         <strong>{{ currentServer }}</strong>
       </i18n-t>
     </button>
-    <button v-else btn-solid text-sm px-2 py-1 text-center xl:hidden @click="openSigninDialog()">
+    <button
+      v-else
+      flex="~ row"
+      gap-x-1 items-center justify-center btn-solid text-sm px-2 py-1 xl:hidden
+      @click="openSigninDialog()"
+    >
+      <span aria-hidden="true" block i-ri:login-circle-line class="rtl-flip" />
       {{ $t('action.sign_in') }}
     </button>
   </template>

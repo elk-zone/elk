@@ -1,21 +1,33 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
-import type { Paginator, WsEvents, mastodon } from 'masto'
 import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
-  paginator: Paginator<mastodon.v1.Notification[], mastodon.v1.ListNotificationsParams>
-  stream?: Promise<WsEvents>
+  paginator: mastodon.Paginator<mastodon.v1.Notification[], mastodon.rest.v1.ListNotificationsParams>
+  stream?: mastodon.streaming.Subscription
 }>()
 
 const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 
 const groupCapacity = Number.MAX_VALUE // No limit
 
+const includeNotificationTypes: mastodon.v1.NotificationType[] = ['update', 'mention', 'poll', 'status']
+
+let id = 0
+
+function includeNotificationsForStatusCard({ type, status }: mastodon.v1.Notification) {
+  // Exclude update, mention, pool and status notifications without the status entry:
+  // no makes sense to include them
+  // Those notifications will be shown using StatusCard SFC:
+  // check NotificationCard SFC L68 and L81 => :status="notification.status!"
+  return status || !includeNotificationTypes.includes(type)
+}
+
 // Group by type (and status when applicable)
 function groupId(item: mastodon.v1.Notification): string {
-  // If the update is related to an status, group notifications from the same account (boost + favorite the same status)
+  // If the update is related to a status, group notifications from the same account (boost + favorite the same status)
   const id = item.status
     ? {
         status: item.status?.id,
@@ -34,7 +46,6 @@ function hasHeader(account: mastodon.v1.Account) {
 function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   const results: NotificationSlot[] = []
 
-  let id = 0
   let currentGroupId = ''
   let currentGroup: mastodon.v1.Notification[] = []
   const processGroup = () => {
@@ -108,9 +119,9 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
     results.push(...group)
   }
 
-  for (const item of items) {
+  for (const item of items.filter(includeNotificationsForStatusCard)) {
     const itemId = groupId(item)
-    // Finalize group if it already has too many notifications
+    // Finalize the group if it already has too many notifications
     if (currentGroupId !== itemId || currentGroup.length >= groupCapacity)
       processGroup()
 
@@ -161,11 +172,11 @@ const { formatNumber } = useHumanReadableNumber()
     :paginator="paginator"
     :preprocess="preprocess"
     :stream="stream"
-    :virtualScroller="virtualScroller"
     eventType="notification"
+    :virtualScroller="virtualScroller"
   >
     <template #updater="{ number, update }">
-      <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
+      <button id="elk_show_new_items" py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>

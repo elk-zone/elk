@@ -1,10 +1,10 @@
+import type { FetchResponse } from 'ofetch'
 import {
   createApp,
   createRouter,
   defineLazyEventHandler,
   toNodeListener,
 } from 'h3'
-import type { FetchResponse } from 'ofetch'
 import { createFetch } from 'ofetch'
 import {
   createCall,
@@ -37,7 +37,7 @@ export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
 
   const h3App = createApp({
-    debug: process.dev,
+    debug: import.meta.dev,
     // TODO: add global error handler
     // onError: (err, event) => {
     //  console.log({ err, event })
@@ -55,6 +55,7 @@ export default defineNuxtPlugin(async () => {
   const localCall = createCall(toNodeListener(h3App) as any)
   const localFetch = createLocalFetch(localCall, globalThis.fetch)
 
+  // @ts-expect-error error types are subtly different here in a future nitro version
   globalThis.$fetch = createFetch({
     // @ts-expect-error slight differences in api
     fetch: localFetch,

@@ -10,17 +10,18 @@ on:
     branches:
       - main
   workflow_dispatch: {}
+  merge_group: {}
 
 jobs:
   ci:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: corepack enable
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: pnpm
 
       - name: 📦 Install dependencies
@@ -30,7 +31,8 @@ jobs:
         run: pnpm nuxi prepare
 
       - name: 🧪 Test project
-        run: pnpm test tests/unit
+        run: pnpm test:ci
+        timeout-minutes: 10
 
       - name: 📝 Lint
         run: pnpm lint

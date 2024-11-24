@@ -1,3 +1,5 @@
+import type { UnwrapNestedRefs } from 'vue'
+import type { PwaInjection } from './types'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { STORAGE_KEY_PWA_HIDE_INSTALL } from '~/constants'
 
@@ -34,7 +36,8 @@ export default defineNuxtPlugin(() => {
   }
 
   const {
-    needRefresh, updateServiceWorker,
+    needRefresh,
+    updateServiceWorker,
   } = useRegisterSW({
     immediate: true,
     onRegisterError() {
@@ -115,7 +118,7 @@ export default defineNuxtPlugin(() => {
         needRefresh,
         updateServiceWorker,
         close,
-      }),
+      }) satisfies UnwrapNestedRefs<PwaInjection>,
     },
   }
 })

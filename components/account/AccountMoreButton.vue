@@ -11,12 +11,12 @@ const emit = defineEmits<{
   (evt: 'removeNote'): void
 }>()
 
-let relationship = $(useRelationship(account))
+const relationship = useRelationship(account)
 
-const isSelf = $(useSelfAccount(() => account))
+const isSelf = useSelfAccount(() => account)
 
 const { t } = useI18n()
-const { client } = $(useMasto())
+const { client } = useMasto()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 const { share, isSupported: isShareSupported } = useShare()
 
@@ -25,15 +25,19 @@ function shareAccount() {
 }
 
 async function toggleReblogs() {
-  if (!relationship!.showingReblogs && await openConfirmDialog({
-    title: t('confirm.show_reblogs.title', [account.acct]),
-    confirm: t('confirm.show_reblogs.confirm'),
-    cancel: t('confirm.show_reblogs.cancel'),
-  }) !== 'confirm')
-    return
+  if (!relationship.value!.showingReblogs) {
+    const dialogChoice = await openConfirmDialog({
+      title: t('confirm.show_reblogs.title'),
+      description: t('confirm.show_reblogs.description', [account.acct]),
+      confirm: t('confirm.show_reblogs.confirm'),
+      cancel: t('confirm.show_reblogs.cancel'),
+    })
+    if (dialogChoice.choice !== 'confirm')
+      return
+  }
 
-  const showingReblogs = !relationship?.showingReblogs
-  relationship = await client.v1.accounts.follow(account.id, { reblogs: showingReblogs })
+  const showingReblogs = !relationship.value?.showingReblogs
+  relationship.value = await client.value.v1.accounts.$select(account.id).follow({ reblogs: showingReblogs })
 }
 
 async function addUserNote() {
@@ -41,18 +45,18 @@ async function addUserNote() {
 }
 
 async function removeUserNote() {
-  if (!relationship!.note || relationship!.note.length === 0)
+  if (!relationship.value!.note || relationship.value!.note.length === 0)
     return
 
-  const newNote = await client.v1.accounts.createNote(account.id, { comment: '' })
-  relationship!.note = newNote.note
+  const newNote = await client.value.v1.accounts.$select(account.id).note.create({ comment: '' })
+  relationship.value!.note = newNote.note
   emit('removeNote')
 }
 </script>
 
 <template>
   <CommonDropdown :eager-mount="command">
-    <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group aria-label="More actions">
+    <button flex gap-1 items-center w-full rounded op75 hover="op100 text-purple" group :aria-label="t('actions.more')">
       <div rounded-5 p2 elk-group-hover="bg-purple/10">
         <div i-ri:more-2-fill />
       </div>
@@ -67,8 +71,9 @@ async function removeUserNote() {
         />
       </NuxtLink>
       <CommonDropdownItem
+        is="button"
         v-if="isShareSupported"
-        :text="`Share @${account.acct}`"
+        :text="$t('menu.share_account', [`@${account.acct}`])"
         icon="i-ri:share-line"
         :command="command"
         @click="shareAccount()"
@@ -77,12 +82,14 @@ async function removeUserNote() {
       <template v-if="currentUser">
         <template v-if="!isSelf">
           <CommonDropdownItem
+            is="button"
             :text="$t('menu.mention_account', [`@${account.acct}`])"
             icon="i-ri:at-line"
             :command="command"
             @click="mentionUser(account)"
           />
           <CommonDropdownItem
+            is="button"
             :text="$t('menu.direct_message_account', [`@${account.acct}`])"
             icon="i-ri:message-3-line"
             :command="command"
@@ -90,6 +97,7 @@ async function removeUserNote() {
           />
 
           <CommonDropdownItem
+            is="button"
             v-if="!relationship?.showingReblogs"
             icon="i-ri:repeat-line"
             :text="$t('menu.show_reblogs', [`@${account.acct}`])"
@@ -97,6 +105,7 @@ async function removeUserNote() {
             @click="toggleReblogs()"
           />
           <CommonDropdownItem
+            is="button"
             v-else
             :text="$t('menu.hide_reblogs', [`@${account.acct}`])"
             icon="i-ri:repeat-line"
@@ -105,6 +114,7 @@ async function removeUserNote() {
           />
 
           <CommonDropdownItem
+            is="button"
             v-if="!relationship?.note || relationship?.note?.length === 0"
             :text="$t('menu.add_personal_note', [`@${account.acct}`])"
             icon="i-ri-edit-2-line"
@@ -112,6 +122,7 @@ async function removeUserNote() {
             @click="addUserNote()"
           />
           <CommonDropdownItem
+            is="button"
             v-else
             :text="$t('menu.remove_personal_note', [`@${account.acct}`])"
             icon="i-ri-edit-2-line"
@@ -120,6 +131,7 @@ async function removeUserNote() {
           />
 
           <CommonDropdownItem
+            is="button"
             v-if="!relationship?.muting"
             :text="$t('menu.mute_account', [`@${account.acct}`])"
             icon="i-ri:volume-mute-line"
@@ -127,6 +139,7 @@ async function removeUserNote() {
             @click="toggleMuteAccount (relationship!, account)"
           />
           <CommonDropdownItem
+            is="button"
             v-else
             :text="$t('menu.unmute_account', [`@${account.acct}`])"
             icon="i-ri:volume-up-fill"
@@ -135,6 +148,7 @@ async function removeUserNote() {
           />
 
           <CommonDropdownItem
+            is="button"
             v-if="!relationship?.blocking"
             :text="$t('menu.block_account', [`@${account.acct}`])"
             icon="i-ri:forbid-2-line"
@@ -142,6 +156,7 @@ async function removeUserNote() {
             @click="toggleBlockAccount (relationship!, account)"
           />
           <CommonDropdownItem
+            is="button"
             v-else
             :text="$t('menu.unblock_account', [`@${account.acct}`])"
             icon="i-ri:checkbox-circle-line"
@@ -151,6 +166,7 @@ async function removeUserNote() {
 
           <template v-if="getServerName(account) !== currentServer">
             <CommonDropdownItem
+              is="button"
               v-if="!relationship?.domainBlocking"
               :text="$t('menu.block_domain', [getServerName(account)])"
               icon="i-ri:shut-down-line"
@@ -158,6 +174,7 @@ async function removeUserNote() {
               @click="toggleBlockDomain(relationship!, account)"
             />
             <CommonDropdownItem
+              is="button"
               v-else
               :text="$t('menu.unblock_domain', [getServerName(account)])"
               icon="i-ri:restart-line"
@@ -167,6 +184,7 @@ async function removeUserNote() {
           </template>
 
           <CommonDropdownItem
+            is="button"
             :text="$t('menu.report_account', [`@${account.acct}`])"
             icon="i-ri:flag-2-line"
             :command="command"

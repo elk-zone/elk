@@ -1,0 +1,11 @@
+<script setup lang="ts">
+defineProps<{
+  activeClass: string
+}>()
+</script>
+
+<template>
+  <NuxtLink to="/compose" :aria-label="$t('nav.favourites')" :active-class="activeClass" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
+    <div i-ri:quill-pen-line />
+  </NuxtLink>
+</template>

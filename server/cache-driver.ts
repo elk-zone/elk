@@ -1,6 +1,6 @@
 import type { Driver } from 'unstorage'
-import memory from 'unstorage/drivers/memory'
 import { defineDriver } from 'unstorage'
+import memory from 'unstorage/drivers/memory'
 
 export interface CacheDriverOptions {
   driver: Driver
@@ -11,14 +11,14 @@ export default defineDriver((driver: Driver = memory()) => {
   return {
     ...driver,
     async hasItem(key: string) {
-      if (await memoryDriver.hasItem(key))
+      if (await memoryDriver.hasItem(key, {}))
         return true
 
       return driver.hasItem(key, {})
     },
     async setItem(key: string, value: any) {
       await Promise.all([
-        memoryDriver.setItem(key, value),
+        memoryDriver.setItem?.(key, value, {}),
         driver.setItem?.(key, value, {}),
       ])
     },
@@ -29,7 +29,7 @@ export default defineDriver((driver: Driver = memory()) => {
         return value
 
       value = await driver.getItem(key)
-      memoryDriver.setItem(key, value)
+      memoryDriver.setItem?.(key, value as string, {})
 
       return value
     },

@@ -1,0 +1,647 @@
+{
+  "a11y": {
+    "loading_page": "กำลังโหลดเพจโปรดรอสักครู่",
+    "loading_titled_page": "กำลังโหลดเพจ {0} โปรดรอสักครู่",
+    "locale_changed": "เปลี่ยนภาษาเป็น {0}",
+    "locale_changing": "กำลังเปลี่ยนภาษาโปรดรอสักครู่",
+    "route_loaded": "โหลดเพจ {0} แล้ว"
+  },
+  "account": {
+    "avatar_description": "อวตารของ {0}",
+    "blocked_by": "คุณถูกผู้ใช้คนนี้ปิดกั้น",
+    "blocked_domains": "โดเมนที่ถูกปิดกั้นBlocked domains",
+    "blocked_users": "ผู้ใช้ที่ถูกปิดกั้น",
+    "blocking": "ปิดกั้น",
+    "bot": "บอท",
+    "copy_account_name": "คัดลอกชื่อบัญชี",
+    "favourites": "รายการโปรด",
+    "follow": "ติดตาม",
+    "follow_back": "ติดตามกลับ",
+    "follow_requested": "ขอติดตามแล้ว",
+    "followers": "ผู้ติดตาม",
+    "followers_count": "ผู้ติดตาม {0} คน|ผู้ติดตาม {0} คน|ผู้ติดตาม {0} คน",
+    "following": "กำลังติดตาม",
+    "following_count": "ติดตามอยู่ {0} คน",
+    "follows_you": "ติดตามคุณ",
+    "go_to_profile": "ไปที่โปรไฟล์",
+    "joined": "เข้าร่วมแล้ว",
+    "moved_title": "ได้ระบุว่าบัญชีของพวกเขาคือ:",
+    "muted_users": "ผู้ใช้ที่ถูกปิดเสียง",
+    "muting": "ปิดเสียงแล้ว",
+    "mutuals": "ติดตามซึ่งกันและกัน",
+    "notifications_on_post_disable": "เลิกแจ้งเตือนเมื่อ {username} โพสต์",
+    "notifications_on_post_enable": "แจ้งเตือนเมื่อ {username} โพสต์",
+    "pinned": "ปักหมุดแล้ว",
+    "posts": "โพสต์",
+    "posts_count": "{0} โพสต์|{0} โพสต์|{0} โพสต์",
+    "profile_description": "หัวโปรไฟล์ของ {0}",
+    "profile_personal_note": "โน้ตส่วนตัว",
+    "profile_unavailable": "โปรไฟล์ไม่พร้อมใจ",
+    "request_follow": "ขอติดตาม",
+    "unblock": "เลิกปิดกั้น",
+    "unfollow": "เลิกติดตาม",
+    "unmute": "เลิกเปิดเสียง",
+    "view_other_followers": "ผู้ติดตามจากหน่วยอื่นอาจไม่ถูกแสดง",
+    "view_other_following": "การติดตามจากหน่วยอื่นอาจไม่ถูกแสดง"
+  },
+  "action": {
+    "apply": "ดำเนินการ",
+    "bookmark": "ที่คั่นหน้า",
+    "bookmarked": "คั่นหน้าแล้ว",
+    "boost": "ดัน",
+    "boost_count": "{0}",
+    "boosted": "ดันแล้ว",
+    "clear_publish_failed": "ลบข้อความแสดงการโพสต์ผิดพลาด",
+    "clear_upload_failed": "ลบข้อความแสดงการอัปโหลดไฟล์ผิดพลาด",
+    "close": "ปิด",
+    "compose": "เขียน",
+    "confirm": "ยืนยัน",
+    "edit": "แก้ไข",
+    "enter_app": "เข้าแอป",
+    "favourite": "ชื่นชอบ",
+    "favourite_count": "{0}",
+    "favourited": "ชื่นชอบแล้ว",
+    "more": "เพิ่มเติม",
+    "next": "ถัดไป",
+    "prev": "ก่อนหน้า",
+    "publish": "โพสต์",
+    "reply": "ตอบกลับ",
+    "reply_count": "{0}",
+    "reset": "รีเซต",
+    "save": "บันทึก",
+    "save_changes": "บันทึกที่เปลี่ยนแปลง",
+    "sign_in": "ลงชื่อเข้าใช้",
+    "sign_in_to": "ลงชื่อเข้าใช้ {0}",
+    "switch_account": "สลับบัญชี",
+    "vote": "โหวต"
+  },
+  "app_desc_short": "เว็บหน้าบ้านมาสโตดอนที่ปราดเปรียว",
+  "app_logo": "โลโก้ Elk",
+  "app_name": "Elk",
+  "attachment": {
+    "edit_title": "อธิบาย",
+    "remove_label": "เอาสิ่งแนบออก"
+  },
+  "command": {
+    "activate": "เปิดใช้",
+    "complete": "เติมเต็ม",
+    "compose_desc": "เขียนโพสต์ใหม่",
+    "n_people_in_the_past_n_days": "{0} คนใน {1} วันที่ผ่านมา",
+    "select_lang": "เลือกภาษา",
+    "sign_in_desc": "เพิ่มบัญชีที่มีอยู่แล้ว",
+    "switch_account": "สลับไป {0}",
+    "switch_account_desc": "สลับไปบัญชีอื่น",
+    "toggle_dark_mode": "สลับไปโหมดสีเข้ม",
+    "toggle_zen_mode": "สลับไปโหมดเซ็น"
+  },
+  "common": {
+    "end_of_list": "สินสุดรายการ",
+    "error": "ผิดพลาด",
+    "fetching": "กำลังดึงข้อมูล...",
+    "in": "ใน",
+    "no_bookmarks": "ยังไม่มีโพสต์ที่คั่นหน้าไว้",
+    "no_favourites": "ยังไม่มีโพสต์ในรายการโปรด",
+    "not_found": "404 ไม่พบ",
+    "offline_desc": "คล้ายว่าคุณออฟไลน์ โปรดตรวจสอบการเชื่อมต่อเครือข่าย"
+  },
+  "compose": {
+    "draft_title": "ร่าง {0}",
+    "drafts": "ร่าง ({v})"
+  },
+  "confirm": {
+    "block_account": {
+      "cancel": "ยกเลิก",
+      "confirm": "ปิดกั้น",
+      "description": "แน่ใจว่าต้องการปิดกั้น {0}?"
+    },
+    "block_domain": {
+      "cancel": "ยกเลิก",
+      "confirm": "ปิดกั้น",
+      "description": "แน่ใจว่าต้องการปิดกั้น {0}?"
+    },
+    "common": {
+      "cancel": "ยกเลิก",
+      "confirm": "ตกลง"
+    },
+    "delete_list": {
+      "cancel": "ยกเลิก",
+      "confirm": "ลบ",
+      "description": "แน่ใจว่าต้องการลบรายการ \"{0}\"?"
+    },
+    "delete_posts": {
+      "cancel": "ยกเลิก",
+      "confirm": "ลบ",
+      "description": "แน่ใจว่าต้องการลบโพสต์นี้?"
+    },
+    "mute_account": {
+      "cancel": "ยกเลิก",
+      "confirm": "ปิดเสียง",
+      "description": "แน่ใจว่าต้องการปิดเสียง {0}?"
+    },
+    "show_reblogs": {
+      "cancel": "ยกเลิก",
+      "confirm": "แสดง",
+      "description": "แน่ใจว่าต้องการดัน {0}?"
+    },
+    "unfollow": {
+      "cancel": "ยกเลิก",
+      "confirm": "เลิกติดตาม",
+      "description": "แน่ใจว่าต้องการเลิกติดตาม?"
+    }
+  },
+  "conversation": {
+    "with": "กับ"
+  },
+  "custom_cards": {
+    "stackblitz": {
+      "lines": "{0} บรรทัด",
+      "open": "เปิด",
+      "snippet_from": "Snippet จาก {0}"
+    }
+  },
+  "error": {
+    "account_not_found": "ไม่พบบัญชี {0}",
+    "explore_list_empty": "ไม่อะไรในเทรนตอนนี้ ดูใหม่คราวหน้า!",
+    "file_size_cannot_exceed_n_mb": "ขนาดของไฟล์ต้องไม่เกิน {0}MB",
+    "sign_in_error": "ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์",
+    "status_not_found": "ไม่พบโพสต์",
+    "unsupported_file_format": "ไม่รองรับรูปแบบไฟล์นี้"
+  },
+  "help": {
+    "build_preview": {
+      "desc1": "คุณกำลังดู Elk รุ่นตัวอย่างจากชุมชน - {0}.",
+      "desc2": "อาจมีการเปลี่ยนแปลงที่ไม่ได้ตรวจสอบหรือแม้แต่การเปลี่ยนแปลงที่เป็นอันตราย",
+      "desc3": "อย่าเข้าสู่ระบบด้วยบัญชีจริงของคุณ",
+      "title": "ดีพรอยสำหรับทดลอง"
+    },
+    "desc_highlight": "คาดว่ามีข้อบกพร่องและคุณสมบัติที่ขาดหายไป",
+    "desc_para1": "ขอขอบคุณที่สนใจทดลองใช้ Elk ซึ่งเป็นเว็บหน้าบ้านสำหรับมาสโตดอนที่กำลังดำเนินการอยู่ของเรา!",
+    "desc_para2": "เรากำลังทำงานอย่างหนักในการพัฒนาและปรับปรุงให้ดีขึ้นเมื่อเวลาผ่านไป",
+    "desc_para3": "หากต้องการส่งเสริมการพัฒนา คุณสามารถสนับสนุนทีมผ่านผู้สนับสนุน GitHub เราหวังว่าคุณจะสนุกกับ Elk!",
+    "desc_para4": "Elk เป็นโอเพ่นซอร์ส หากคุณต้องการช่วยเหลือในการทดสอบ แสดงความคิดเห็น หรือมีส่วนร่วม",
+    "desc_para5": "ติดต่อเราได้ที่ GitHub",
+    "desc_para6": "และเข้ามามีส่วนร่วม",
+    "footer_team": "ทีม Elk",
+    "title": "Elk อยู่ในช่วงทดลอง!"
+  },
+  "language": {
+    "search": "ค้นหา"
+  },
+  "list": {
+    "add_account": "เพิ่มบัญชีลงในรายการ",
+    "cancel_edit": "ยกเลิกการแก้ไข",
+    "clear_error": "ล้างข้อผิดพลาด",
+    "create": "สร้าง",
+    "delete": "ลบรายการนี้",
+    "delete_error": "เกิดข้อผิดพลาดขณะลบรายการ",
+    "edit": "แก้ไขรายการนี้",
+    "edit_error": "เกิดข้อผิดพลาดขณะอัปเดตรายการ",
+    "error": "เกิดข้อผิดพลาดขณะสร้างรายการ",
+    "error_prefix": "ข้อผิดพลาด: ",
+    "list_title_placeholder": "ชื่อรายการ",
+    "modify_account": "แก้ไขรายการด้วยบัญชี",
+    "remove_account": "ลบบัญชีออกจากรายการ",
+    "save": "บันทึกการเปลี่ยนแปลง"
+  },
+  "magic_keys": {
+    "dialog_header": "ปุ่มลัด",
+    "groups": {
+      "actions": {
+        "boost": "ดัน",
+        "command_mode": "โหมดคำสั่ง",
+        "compose": "เขียน",
+        "favourite": "ชื่อชอบ",
+        "title": "คำสั่ง"
+      },
+      "media": {
+        "title": "สื่อ"
+      },
+      "navigation": {
+        "go_to_home": "บ้าน",
+        "go_to_notifications": "การแจ้งเตือน",
+        "next_status": "สถานะถัดไป",
+        "previous_status": "สถานะก่อนหน้า",
+        "shortcut_help": "การช่วยเหลือทางลัด",
+        "title": "การนำทาง"
+      }
+    },
+    "sequence_then": "แล้ว"
+  },
+  "menu": {
+    "add_personal_note": "เพิ่มโน้ตส่วนตัวที่ {0}",
+    "block_account": "ปิดกั้น {0}",
+    "block_domain": "ปิดกั้นโดเมน {0}",
+    "copy_link_to_post": "คัดลอกลิงค์ไปที่โพสต์นี้",
+    "copy_original_link_to_post": "คัดลอกลิงค์เดิมไปที่โพสต์นี้",
+    "delete": "ลบ",
+    "delete_and_redraft": "ลบและร่างใหม่",
+    "direct_message_account": "ข้อความส่งตรง {0}",
+    "edit": "แก้ไข",
+    "hide_reblogs": "ซ่อนการดันจาก {0}",
+    "mention_account": "กล่าวถึง {0}",
+    "mute_account": "ปิดเสียง {0}",
+    "mute_conversation": "ปิดเสียงโพสต์นี้",
+    "open_in_original_site": "เปิดในไซท์เดิม",
+    "pin_on_profile": "ปัดหมุดในโปรไฟล์",
+    "remove_personal_note": "ลบโน้ตส่วนตัวจาก {0}",
+    "share_post": "แบ่งปันโพสต์นี้",
+    "show_favourited_and_boosted_by": "แสดงว่าใครชื่อชอบและดัน",
+    "show_reblogs": "แสดงการดันจาก {0}",
+    "show_untranslated": "แสดงที่ไม่ได้แปล",
+    "toggle_theme": {
+      "dark": "สลับเป็นโหมดมืด",
+      "light": "สลับเป็นโหมดสว่าง"
+    },
+    "translate_post": "แปลโพสต์",
+    "unblock_account": "เลิกปิดกั้น {0}",
+    "unblock_domain": "เลิกปิดกั้นโดเมน {0}",
+    "unmute_account": "เลิกเปิดเสียง {0}",
+    "unmute_conversation": "เลิกปิดเสียงโพสต์นี้",
+    "unpin_on_profile": "ถอนหมุดโปรไฟล์"
+  },
+  "modals": {
+    "aria_label_close": "ปิด"
+  },
+  "nav": {
+    "back": "กลับไป",
+    "blocked_domains": "โดเมนที่ถูกปิดกั้น",
+    "blocked_users": "ผู้ใช้ที่ถูกปิดกั้น",
+    "bookmarks": "ที่คั่นหน้า",
+    "built_at": "built เมื่อ {0}",
+    "compose": "เขียน",
+    "conversations": "การสนทนา",
+    "explore": "สำรวจ",
+    "favourites": "ชื่นชอบ",
+    "federated": "เข้าร่วมเครือข่าย",
+    "home": "บ้าน",
+    "list": "รายการ",
+    "lists": "รายการ",
+    "local": "ท้องถิ่น",
+    "muted_users": "ผู้ใช้ที่ถูกปิดเสียง",
+    "notifications": "การแจ้งเตือน",
+    "privacy": "ความเป็นส่วนบุคคล",
+    "profile": "โปรไฟล์",
+    "search": "ค้นหา",
+    "select_feature_flags": "สลับการตั้งค่าสถานะคุณลักษณะ",
+    "select_font_size": "ขนาดตัวอักษร",
+    "select_language": "แสดงภาษา",
+    "settings": "การตั้งค่า",
+    "show_intro": "แสดงบทนำ",
+    "toggle_theme": "สลับธีม",
+    "zen_mode": "โหมดเซ็น"
+  },
+  "notification": {
+    "favourited_post": "โพสต์ของคุณที่ได้รับความชื่นชอบ",
+    "followed_you": "ติดตามคุณแล้ว",
+    "followed_you_count": "{0} คนตามคุณ|{0} คนตามคุณ|{0} คนตามคุณ",
+    "missing_type": "ไม่มี notification.type:",
+    "reblogged_post": "ดันโพสต์ของคุณ",
+    "reported": "{0} รายงาน {1}",
+    "request_to_follow": "ข้อที่จะติดตามคุณ",
+    "signed_up": "ลงชื่อเข้าใช้แล้ว",
+    "update_status": "ปรับปรุงโพสต์ของพวกเขาแล้ว"
+  },
+  "placeholder": {
+    "content_warning": "เขียนคำเตือนของคุณที่นี่",
+    "default_1": "คุณคิดอะไรอยู่?",
+    "reply_to_account": "ตอบ {0}",
+    "replying": "กำลังชอบ"
+  },
+  "polls": {
+    "allow_multiple": "อนุญาตหลายตัวเลือก",
+    "cancel": "ยกเลิก",
+    "create": "สร้างโพล",
+    "disallow_multiple": "ไม่อนุญาตให้มีหลายตัวเลือก",
+    "expiration": "ตั้งเวลาสิ้นสุดโพล",
+    "hide_votes": "ซ่อนคะแนนทั้งหมดจนกว่าจะสิ้นสุด",
+    "option_placeholder": "ตัวเลือกโพล",
+    "remove_option": "ลบตัวเลือก",
+    "settings": "ตั้งค่าโพล",
+    "show_votes": "แสดงผลรวมคะแนนทุกครั้ง"
+  },
+  "pwa": {
+    "dismiss": "ยกเลิก",
+    "install": "ติดตั้ง",
+    "install_title": "ติดตั้ง Elk",
+    "title": "Elk มีอัปเดตใหม่",
+    "update": "อัปเดต",
+    "update_available_short": "อัปเดต Elk",
+    "webmanifest": {
+      "canary": {
+        "description": "เว็บหน้าบ้านมาสโตดอนที่ปราดเปรียว (ทดสอบ)",
+        "name": "Elk (ทดสอบ)",
+        "short_name": "Elk (ทดสอบ)"
+      },
+      "dev": {
+        "description": "เว็บหน้าบ้านมาสโตดอนที่ปราดเปรียว (นักพัฒนา)",
+        "name": "Elk (นักพัฒนา)",
+        "short_name": "Elk (นักพัฒนา)"
+      },
+      "preview": {
+        "description": "เว็บหน้าบ้านมาสโตดอนที่ปราดเปรียว (ตัวอย่าง)",
+        "name": "Elk (ตัวอย่าง)",
+        "short_name": "Elk (ตัวอย่าง)"
+      },
+      "release": {
+        "description": "เว็บหน้าบ้านมาสโตดอนที่ปราดเปรียว",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
+  },
+  "search": {
+    "search_desc": "ค้นหาผู้คนและแฮชแท็ก",
+    "search_empty": "ไม่พบสิ่งใดสำหรับคำค้นหาเหล่านี้"
+  },
+  "settings": {
+    "about": {
+      "built_at": "Built",
+      "label": "เกี่ยวกับ",
+      "meet_the_team": "พบกับทีม",
+      "sponsor_action": "สนับสนุนเรา",
+      "sponsor_action_desc": "เพื่อสนับสนุนทีมพัฒนา Elk",
+      "sponsors": "ผู้สนับสนุน",
+      "sponsors_body_1": "Elk เกิดขึ้นได้ด้วยการสนับสนุนและความช่วยเหลือจาก:",
+      "sponsors_body_2": "และบริษัทและบุคคลทั้งหมดที่สนับสนุน Elk Team และสมาชิก",
+      "sponsors_body_3": "หากคุณกำลังสนุกกับแอป ลองพิจารณาสนับสนุนเรา:",
+      "version": "รุ่น"
+    },
+    "account_settings": {
+      "description": "แก้ไขการตั้งค่าบัญชีของคุณในส่วนติดต่อผู้ใช้ของมาสโตดอน",
+      "label": "การตั้งค่าบัญชี"
+    },
+    "interface": {
+      "color_mode": "โหมดสี",
+      "dark_mode": "มืด",
+      "default": " (ปริยาย)",
+      "font_size": "ขนาดตัวอักษร",
+      "label": "ส่วนติดต่อ",
+      "light_mode": "สว่าง",
+      "system_mode": "ระบบ",
+      "theme_color": "สีธีม"
+    },
+    "language": {
+      "display_language": "ภาษาที่แสดง",
+      "label": "ภาษา",
+      "status": "สถานะการแปล: {0}/{1} ({2}%)",
+      "translations": {
+        "add": "เพิ่ม",
+        "choose_language": "เลือกภาษา",
+        "heading": "การแปล",
+        "hide_specific": "ซ่อนการแปลบางส่วน",
+        "remove": "เอาออก"
+      }
+    },
+    "notifications": {
+      "label": "การแจ้งเตือน",
+      "notifications": {
+        "label": "ตั้งค่าการแจ้งเตือน"
+      },
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favorites",
+          "follow": "New followers",
+          "mention": "Mentions",
+          "poll": "Polls",
+          "reblog": "Reblog your post",
+          "title": "What notifications to receive?"
+        },
+        "description": "รับการแจ้งเตือนแม้ในขณะที่คุณไม่ได้ใช้งาน Elk",
+        "instructions": "อย่าลืมบันทึกการเปลี่ยนแปลงของคุณโดยใช้ @:settings.notifications.push_notifications.save_settings button!",
+        "label": "การตั้งค่าการแจ้งเตือนแบบพุช",
+        "policy": {
+          "all": "จากใครก็ตาม",
+          "followed": "จากคนที่ฉันติดตาม",
+          "follower": "จากคนที่ติดตามค่ะ",
+          "none": "ไม่รับ",
+          "title": "ฉันสามารถรับการแจ้งเตือนจากใครได้บ้าง"
+        },
+        "save_settings": "ตั้งค่าการบันทึก",
+        "subscription_error": {
+          "clear_error": "ล้างการแสดงข้อผิดพลาด",
+          "error_hint": "คุณสามารถดูรายการคำถามที่พบบ่อยเพื่อพยายามแก้ไขปัญหา:{0}.",
+          "invalid_vapid_key": "รหัสสาธารณะ VAPID ดูเหมือนจะไม่ถูกต้อง",
+          "permission_denied": "ปฏิเสธการอนุญาต: เปิดใช้งานการแจ้งเตือนในเบราว์เซอร์ของคุณ",
+          "repo_link": "คลังรหัสต้นฉบับของ Elk ที่ GitHub",
+          "request_error": "เกิดข้อผิดพลาดขณะขอสมัครสมาชิก โปรดลองอีกครั้ง และหากข้อผิดพลาดยังคงอยู่ โปรดรายงานปัญหาไปยังหน้าของ Elk ที่ GitHub",
+          "title": "ไม่สามารถสมัครรับการแจ้งเตือนแบบพุช",
+          "too_many_registrations": "เนื่องจากข้อจำกัดของเบราว์เซอร์ Elk ไม่สามารถใช้บริการการแจ้งเตือนแบบพุชสำหรับหลายบัญชีบนเซิร์ฟเวอร์ที่แตกต่างกัน คุณควรยกเลิกการสมัครรับการแจ้งเตือนแบบพุชในบัญชีอื่นแล้วลองใหม่อีกครั้ง",
+          "vapid_not_supported": "เบราว์เซอร์ของคุณรองรับ Web Push Notifications แต่ดูเหมือนว่าจะไม่ใช้โปรโตคอล VAPID"
+        },
+        "title": "การตั้งค่าการแจ้งเตือนแบบพุช",
+        "undo_settings": "เลิกทำการเปลี่ยนแปลง",
+        "unsubscribe": "ปิดใช้งานการแจ้งเตือนแบบพุช",
+        "unsupported": "เบราว์เซอร์ของคุณไม่รองรับการแจ้งเตือนแบบพุช",
+        "warning": {
+          "enable_close": "ปิด",
+          "enable_description": "หากต้องการรับการแจ้งเตือนเมื่อ Elk ไม่ได้เปิดอยู่ ให้เปิดใช้งานการแจ้งเตือนแบบพุช คุณสามารถควบคุมได้อย่างแม่นยำว่าการโต้ตอบประเภทใดที่สร้างการแจ้งเตือนแบบพุชผ่าน \"@:settings.notifications.show_btn{'\"'} button above once enabled.",
+          "enable_description_desktop": "หากต้องการรับการแจ้งเตือนเมื่อ Elk ไม่ได้เปิดอยู่ ให้เปิดใช้งานการแจ้งเตือนแบบพุช คุณสามารถควบคุมได้อย่างแม่นยำว่าการโต้ตอบประเภทใดที่สร้างการแจ้งเตือนแบบพุช \"การตั้งค่า > การแจ้งเตือน > การตั้งค่าแจ้งเตือนแบบพุช\" เมื่อเปิดใช้งาน",
+          "enable_description_mobile": "คุณยังสามารถเข้าถึงการตั้งค่าโดยใช้เมนูการนำทาง \"การตั้งค่า > การแจ้งเตือน > การตั้งค่าแจ้งเตือนแบบพุช\"",
+          "enable_description_settings": "หากต้องการรับการแจ้งเตือนเมื่อ Elk ไม่ได้เปิดอยู่ ให้เปิดใช้งานการแจ้งเตือนแบบพุช คุณจะสามารถควบคุมได้อย่างแม่นยำว่าการโต้ตอบประเภทใดที่สร้างการแจ้งเตือนแบบพุชบนหน้าจอเดียวกันนี้เมื่อคุณเปิดใช้งาน",
+          "enable_desktop": "เปิดใช้งานการแจ้งเตือนแบบพุช",
+          "enable_title": "เพื่อไม่ให้พลาดสิ่งใดเลย",
+          "re_auth": "ดูเหมือนว่าเซิร์ฟเวอร์ของคุณไม่รองรับการแจ้งเตือนแบบพุช ลองออกจากระบบและลงชื่อเข้าใช้อีกครั้ง หากข้อความนี้ยังคงปรากฏขึ้น โปรดติดต่อผู้ดูแลระบบเซิร์ฟเวอร์ของคุณ"
+        }
+      },
+      "show_btn": "ไปที่การตั้งค่าการแจ้งเตือน",
+      "under_construction": "อยู่ระหว่างพัฒนา"
+    },
+    "notifications_settings": "การแจ้งเตือน",
+    "preferences": {
+      "enable_autoplay": "เปิดใช้งานการเล่นอัตโนมัติ",
+      "enable_data_saving": "เปิดใช้งานการบันทึกข้อมูล",
+      "enable_data_saving_description": "บันทึกข้อมูลโดยป้องกันไม่ให้ไฟล์แนบโหลดโดยอัตโนมัติ",
+      "enable_pinch_to_zoom": "เปิดใช้งานการบีบนิ้วเพื่อซูม",
+      "github_cards": "การ์ด GitHub",
+      "grayscale_mode": "โหมดสีเทา",
+      "hide_account_hover_card": "ซ่อนโฮเวอร์การ์ด",
+      "hide_alt_indi_on_posts": "ซ่อนตัวบ่งชี้ alt ในโพสต์",
+      "hide_boost_count": "ซ่อนจำนวนการดัน",
+      "hide_favorite_count": "ซ่อนจำนวนรายการโปรด",
+      "hide_follower_count": "ซ่อนจำนวนการติดตาม/ผู้ติดตาม",
+      "hide_news": "ซ่อนข่าว",
+      "hide_reply_count": "ซ่อนจำนวนการตอบกลับ",
+      "hide_translation": "ซ่อนคำแปล",
+      "hide_username_emojis": "ซ่อนอีโมจิชื่อผู้ใช้",
+      "hide_username_emojis_description": "ซ่อนอีโมจิจากชื่อผู้ใช้ในไทม์ไลน์ อิโมจิจะยังคงมองเห็นได้ในโปรไฟล์ของพวกเขา",
+      "label": "ตัวเลือก",
+      "title": "คุณสมบัติการทดลอง",
+      "use_star_favorite_icon": "ใช้ไอคอนดาวชื่นชอบ",
+      "user_picker": "ตัวเลือกผู้ใช้",
+      "virtual_scroll": "การเลื่อนเสมือน",
+      "wellbeing": "สวัสดิภาพ",
+      "zen_mode": "โหมดเซ็น",
+      "zen_mode_description": "ซ่อนไว้ข้าง ๆ เว้นแต่เคอร์เซอร์ของเมาส์จะอยู่เหนือพวกเขา ซ่อนองค์ประกอบบางอย่างจากไทม์ไลน์ด้วย"
+    },
+    "profile": {
+      "appearance": {
+        "bio": "ประวัติ",
+        "description": "แก้ไขอวาตาร์ ชื่อผู้ใช้ โปรไฟล์ ฯลฯ",
+        "display_name": "ชื่อที่แสดง",
+        "label": "รูปร่าง",
+        "profile_metadata": "ข้อมูลเมตาของโปรไฟล์",
+        "profile_metadata_desc": "คุณสามารถมีได้ถึง {0} รายการที่แสดงเป็นตารางในโปรไฟล์ของคุณ",
+        "profile_metadata_label": "ป้าย",
+        "profile_metadata_value": "เนื้อหา",
+        "title": "แก้ไขโปรไฟล์"
+      },
+      "featured_tags": {
+        "description": "ผู้คนสามารถเรียกดูโพสต์สาธารณะของคุณภายใต้แฮชแท็กเหล่านี้",
+        "label": "แฮชแท็กเด่น",
+        "under_construction": "อยู่ระหว่างพัฒนา"
+      },
+      "label": "โปรไฟล์"
+    },
+    "select_a_settings": "Select a setting",
+    "users": {
+      "export": "ส่งออกโทเค็นของผู้ใช้",
+      "import": "นำเข้าโทเค็นของผู้ใช้",
+      "label": "ผู้ใช้ที่เข้าสู่ระบบแล้ว"
+    }
+  },
+  "share_target": {
+    "description": "สามารถกำหนดค่า Elk เพื่อให้คุณสามารถแชร์เนื้อหาจากแอปพลิเคชันอื่นๆ ได้ เพียงติดตั้ง Elk บนอุปกรณ์หรือคอมพิวเตอร์ของคุณแล้วลงชื่อเข้าใช้",
+    "hint": "ในการแบ่งปันเนื้อหากับ Elk จะต้องติดตั้ง Elk และคุณต้องลงชื่อเข้าใช้",
+    "title": "แบ่งปันกับ Elk"
+  },
+  "state": {
+    "attachments_exceed_server_limit": "จำนวนไฟล์แนบเกินขีดจำกัดต่อโพสต์",
+    "attachments_limit_error": "เกินขีดจำกัดต่อโพสต์",
+    "edited": "(แก้ไขแล้ว)",
+    "editing": "กำลังแก้ไข",
+    "loading": "กำลังโหลด...",
+    "publish_failed": "โพสต์ล้มเหลว",
+    "publishing": "กำลังโพสต์",
+    "upload_failed": "อัปโหลดล้มเหลว",
+    "uploading": "อัปโหลด..."
+  },
+  "status": {
+    "account": {
+      "suspended_message": "บัญชีที่มีสถานะนี้ถูกระงับ",
+      "suspended_show": "แสดงเนื่อหา?"
+    },
+    "boosted_by": "ดันโดย",
+    "edited": "แก้ไข {0}",
+    "favourited_by": "ชื่อชอบโดย",
+    "filter_hidden_phrase": "กรองโดย",
+    "filter_show_anyway": "แสดง",
+    "img_alt": {
+      "ALT": "ALT",
+      "desc": "คำอธิบาบ",
+      "dismiss": "ยกเลิก",
+      "read": "อ่าน {0} คำอธิบาย"
+    },
+    "poll": {
+      "count": "{0} โหวต|{0} โหวต|{0} โหวต",
+      "ends": "จบ {0}",
+      "finished": "สิ้นสุด {0}"
+    },
+    "replying_to": "ตอบกลับ {0}",
+    "show_full_thread": "แสดงเธรดเต็ม",
+    "someone": "บางคน",
+    "spoiler_media_hidden": "สื่อที่ซ่อนอยู่",
+    "spoiler_show_less": "แสดงลดลง",
+    "spoiler_show_more": "แสดงมากขึ้น",
+    "thread": "เธรด",
+    "try_original_site": "ลองไซต์เดิม"
+  },
+  "status_history": {
+    "created": "สร้างแล้ว {0}",
+    "edited": "แก้ไขแล้ว {0}"
+  },
+  "tab": {
+    "accounts": "บัญชี",
+    "for_you": "สำหรับคุณ",
+    "hashtags": "แฮชแท็ก",
+    "list": "รายการ",
+    "media": "สื่อ",
+    "news": "ข่าว",
+    "notifications_all": "ทั้งหมด",
+    "notifications_mention": "กล่าวถึง",
+    "posts": "โพสต์",
+    "posts_with_replies": "โพสต์ & ตอบกลับ"
+  },
+  "tag": {
+    "follow": "ติดตาม",
+    "follow_label": "ติดตาม {0} แท็ก",
+    "unfollow": "เลิกติดตาม",
+    "unfollow_label": "เลิกติดตาม {0} แท็ก"
+  },
+  "time_ago_options": {
+    "day_future": "ใน 0 วัน|พรุ่งนี้|ใน {n} วัน",
+    "day_past": "0 วันที่แล้ว|เมื่อวาน|{n} วันที่แล้ว",
+    "hour_future": "ใน 0 ชั่วโมง|ใน 1 ชั่วโมง|ใน {n} ชั่วโมง",
+    "hour_past": "0 ชั่วโมงที่แล้ว|1 ชั่วโมงที่แล้ว|{n} ชั่วโมงที่แล้ว",
+    "just_now": "เดี๋ยวนี้",
+    "minute_future": "ใน 0 นาที|ใน 1 นาที|ใน {n} นาที",
+    "minute_past": "0 นาทีที่แล้ว|1 นาทีที่แล้ว|{n} นาทีที่แล้ว",
+    "month_future": "ใน 0 เดือน|เดือนหน้า|ใน {n} เดือน",
+    "month_past": "0 เดือนที่แล้ว|เดือนที่แล้ว|{n} เดือนที่แล้ว",
+    "second_future": "เดี๋ยวนี้|ใน {n} วินาที|ใน {n} วินาที",
+    "second_past": "เดี๋ยวนี้|{n} วินาทีที่แล้ว|{n} วินาทีที่แล้ว",
+    "short_day_future": "ใน {n}ว.",
+    "short_day_past": "{n}ว.",
+    "short_hour_future": "ใน {n}ชม.",
+    "short_hour_past": "{n}ชม.",
+    "short_minute_future": "ใน {n}นา.",
+    "short_minute_past": "{n}นา.",
+    "short_month_future": "ใน {n}ด.",
+    "short_month_past": "{n}ด.",
+    "short_second_future": "ใน {n}วิฯ",
+    "short_second_past": "{n}วิฯ",
+    "short_week_future": "ใน {n}สัปฯ",
+    "short_week_past": "{n}สัปฯ",
+    "short_year_future": "ใน {n}ปี",
+    "short_year_past": "{n}ปี",
+    "week_future": "ใน 0 สัปดาห์|สัปดาห์หน้า|ใน {n} สัปดาห์",
+    "week_past": "0 สัปดาห์ที่แล้ว|สัปดาห์ที่แล้ว|{n} สัปดาห์ที่แล้ว",
+    "year_future": "ใน 0 ปี|ปีหน้า|ใน {n} ปี",
+    "year_past": "0 ปีที่แล้ว|ปีก่อน|{n} ปีที่แล้ว"
+  },
+  "timeline": {
+    "show_new_items": "แสดงโพสต์ใหม่ {v}|แสดงโพสต์ใหม่ {v}|แสดงโพสต์ใหม่ {v}",
+    "view_older_posts": "โพสต์ที่เก่ากว่าจากอินสแตนซ์อื่นอาจไม่แสดง"
+  },
+  "title": {
+    "federated_timeline": "เส้นเวลาเครือข่าย",
+    "local_timeline": "เส้นเวลาท้องถิ่น"
+  },
+  "tooltip": {
+    "add_content_warning": "เพิ่มคำเตือนเนื้อหา",
+    "add_emojis": "เพิ่มอิโมจิ",
+    "add_media": "เพิ่มรูปภาพ วิดีโอ หรือไฟล์เสียง",
+    "add_publishable_content": "เพิ่มเนื้อหาที่จะเผยแพร่",
+    "change_content_visibility": "เปลี่ยนการเปิดเผยเนื้อหา",
+    "change_language": "เปลี่ยนภาษา",
+    "emoji": "อีโมจิ",
+    "explore_links_intro": "เรื่องราวข่าวเหล่านี้กำลังถูกพูดถึงโดยผู้คนในเซิร์ฟเวอร์นี้และเซิร์ฟเวอร์อื่น ๆ ของเครือข่ายแบบกระจายศูนย์ในขณะนี้",
+    "explore_posts_intro": "โพสต์เหล่านี้จากเซิร์ฟเวอร์นี้และเซิร์ฟเวอร์อื่น ๆ ในเครือข่ายแบบกระจายอำนาจกำลังได้รับความสนใจบนเซิร์ฟเวอร์นี้ในขณะนี้",
+    "explore_tags_intro": "แฮชแท็กเหล่านี้กำลังดึงดูดผู้คนในเซิร์ฟเวอร์นี้และเซิร์ฟเวอร์อื่น ๆ ของเครือข่ายแบบกระจายศูนย์ในขณะนี้",
+    "open_editor_tools": "เครื่องมือแก้ไข",
+    "pick_an_icon": "เลือกไอคอน",
+    "publish_failed": "ปิดข้อความที่ล้มเหลวที่ด้านบนของเอดิเตอร์เพื่อเผยแพร่โพสต์ใหม่",
+    "toggle_bold": "สลับตัวหนา",
+    "toggle_code_block": "สลับโค้ดบล็อก",
+    "toggle_italic": "สลับตัวเอียง"
+  },
+  "user": {
+    "add_existing": "เพิ่มบัญชีที่มีอยู่แล้ว",
+    "server_address_label": "ที่ของเซิร์ฟเวอร์มาสโตดอน",
+    "sign_in_desc": "ลงชื่อเข้าใช้เพื่อติดตามโปรไฟล์หรือแฮชแท็ก รายการโปรด แชร์และตอบกลับโพสต์ หรือโต้ตอบจากบัญชีของคุณบนเซิร์ฟเวอร์อื่น",
+    "sign_in_notice_title": "กำลังดูข้อมูลสาธารณะ {0}",
+    "sign_out_account": "ลงชื่อออก {0}",
+    "single_instance_sign_in_desc": "ลงชื่อเข้าใช้เพื่อติดตามโปรไฟล์หรือแฮชแท็ก รายการโปรด แชร์ และตอบกลับโพสต์",
+    "tip_no_account": "หากคุณยังไม่มีบัญชีมาสโตดอน {0}",
+    "tip_register_account": "เลือกเซิร์ฟเวอร์ของคุณและลงทะเบียน"
+  },
+  "visibility": {
+    "direct": "ส่งตรง",
+    "direct_desc": "มองเห็นเฉพาะผู้ใช้ที่ถูกกล่าวถึง",
+    "private": "ผู้ติดตามเท่านั้น",
+    "private_desc": "ผู้ติดตามเท่านั้นที่มองเห็น",
+    "public": "สาธารณะ",
+    "public_desc": "ทุกคนมองเห็น",
+    "unlisted": "ไม่อยู่ในรายการ",
+    "unlisted_desc": "ทุกคนมองเห็นแต่เลือกไม่ใช้คุณสมบัติการค้นพบ"
+  }
+}

@@ -16,7 +16,7 @@ export default defineNuxtPlugin(() => {
   if (!settings) { return }
 
   const html = document.documentElement
-  ${process.dev ? 'console.log({ settings })' : ''}
+  ${import.meta.dev ? 'console.log({ settings })' : ''}
 
   if (settings.fontSize) {
     const oldFontSizeMap = ${JSON.stringify(oldFontSizeMap)}
@@ -31,7 +31,7 @@ export default defineNuxtPlugin(() => {
   if (settings.themeColors) {
     Object.entries(settings.themeColors).map(i => html.style.setProperty(i[0], i[1]))
   }
-})()`.trim().replace(/\s*\n+\s*/g, ';'),
+})()`.trim().replace(/\s*\n\s*/g, ';'),
       },
     ],
   })

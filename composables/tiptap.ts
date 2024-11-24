@@ -1,22 +1,22 @@
 import type { Editor } from '@tiptap/vue-3'
-import { Extension, useEditor } from '@tiptap/vue-3'
-import Placeholder from '@tiptap/extension-placeholder'
-import Document from '@tiptap/extension-document'
-import Paragraph from '@tiptap/extension-paragraph'
-import Text from '@tiptap/extension-text'
-import Mention from '@tiptap/extension-mention'
-import HardBreak from '@tiptap/extension-hard-break'
-import Bold from '@tiptap/extension-bold'
-import Italic from '@tiptap/extension-italic'
-import Code from '@tiptap/extension-code'
-import History from '@tiptap/extension-history'
-import { Plugin } from 'prosemirror-state'
-
 import type { Ref } from 'vue'
-import { TiptapEmojiSuggestion, TiptapHashtagSuggestion, TiptapMentionSuggestion } from './tiptap/suggestion'
-import { TiptapPluginCodeBlockShiki } from './tiptap/shiki'
+import Bold from '@tiptap/extension-bold'
+import Code from '@tiptap/extension-code'
+import Document from '@tiptap/extension-document'
+import HardBreak from '@tiptap/extension-hard-break'
+import History from '@tiptap/extension-history'
+import Italic from '@tiptap/extension-italic'
+import Mention from '@tiptap/extension-mention'
+import Paragraph from '@tiptap/extension-paragraph'
+import Placeholder from '@tiptap/extension-placeholder'
+import Text from '@tiptap/extension-text'
+import { Extension, useEditor } from '@tiptap/vue-3'
+
+import { Plugin } from 'prosemirror-state'
 import { TiptapPluginCustomEmoji } from './tiptap/custom-emoji'
 import { TiptapPluginEmoji } from './tiptap/emoji'
+import { TiptapPluginCodeBlockShiki } from './tiptap/shiki'
+import { TiptapEmojiSuggestion, TiptapHashtagSuggestion, TiptapMentionSuggestion } from './tiptap/suggestion'
 
 export interface UseTiptapOptions {
   content: Ref<string>
@@ -28,7 +28,7 @@ export interface UseTiptapOptions {
 }
 
 export function useTiptap(options: UseTiptapOptions) {
-  if (process.server)
+  if (import.meta.server)
     return { editor: ref<Editor | undefined>() }
 
   const {
@@ -55,11 +55,17 @@ export function useTiptap(options: UseTiptapOptions) {
         },
       }),
       Mention.configure({
+        renderHTML({ options, node }) {
+          return ['span', { 'data-type': 'mention', 'data-id': node.attrs.id }, `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`]
+        },
         suggestion: TiptapMentionSuggestion,
       }),
       Mention
         .extend({ name: 'hashtag' })
         .configure({
+          renderHTML({ options, node }) {
+            return ['span', { 'data-type': 'hashtag', 'data-id': node.attrs.id }, `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`]
+          },
           suggestion: TiptapHashtagSuggestion,
         }),
       Mention
@@ -109,6 +115,9 @@ export function useTiptap(options: UseTiptapOptions) {
       attributes: {
         class: 'content-editor content-rich',
       },
+    },
+    parseOptions: {
+      preserveWhitespace: 'full',
     },
     autofocus,
     editable: true,

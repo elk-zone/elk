@@ -40,7 +40,7 @@
     "@nuxt/devtools": "^1.5.2",
     "@nuxt/test-utils": "^3.14.3",
     "@nuxtjs/color-mode": "^3.4.4",
-    "@nuxtjs/i18n": "^8.5.3",
+    "@nuxtjs/i18n": "^9.1.0",
     "@pinia/nuxt": "^0.5.4",
     "@tiptap/core": "2.2.4",
     "@tiptap/extension-bold": "2.2.4",
@@ -145,9 +145,8 @@
   "pnpm": {
     "patchedDependencies": {
       "pinceau": "patches/pinceau.patch",
-      "vue-i18n": "patches/vue-i18n.patch",
       "nuxt-security": "patches/nuxt-security.patch",
-      "nuxt": "patches/nuxt.patch"
+      "@nuxtjs/i18n@9.1.0": "patches/@nuxtjs__i18n@9.1.0.patch"
     }
   },
   "resolutions": {

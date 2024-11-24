@@ -115,6 +115,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^3.9.1",
     "@antfu/ni": "^0.23.0",
+    "@nuxt/schema": "^3.14.1592",
     "@types/chroma-js": "^2.4.4",
     "@types/file-saver": "^2.0.7",
     "@types/fnando__sparkline": "^0.3.7",

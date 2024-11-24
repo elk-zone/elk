@@ -311,12 +311,13 @@ export default defineNuxtConfig({
     lazy: true,
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
-    langDir: resolve('locales'),
+    // relative to i18n dir on rootDir: not yet v4 compat layout
+    langDir: '../locales',
     defaultLocale: 'en-US',
     experimental: {
       generatedLocaleFilePathFormat: 'relative',
     },
-    vueI18n: resolve('./config/i18n.config.ts'),
+    vueI18n: './config/i18n.config.ts',
   },
   pwa,
   staleDep: {

@@ -38,6 +38,17 @@ describe("timeline", () => {
     expect(statuses).toContainEqual(status);
   });
 
+  it("returns bubble", async () => {
+    await using alice = await sessions.acquire();
+    await using bob = await sessions.acquire();
+
+    const status = await bob.rest.v1.statuses.create({
+      status: "bubble post",
+    });
+    const statuses = await alice.rest.v1.timelines.bubble.list();
+    expect(statuses).toContainEqual(status);
+  });
+
   it("returns hashtag", async () => {
     await using client = await sessions.acquire();
     const status = await client.rest.v1.statuses.create({

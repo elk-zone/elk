@@ -44,6 +44,19 @@ export interface TimelineRepository {
     ): Paginator<Status[], ListTimelineParams>;
   };
 
+  bubble: {
+    /**
+     * Bubble timeline
+     * @param params Parameters
+     * @return Array of Status
+     * @see https://docs.akkoma.dev/stable/development/API/differences_in_mastoapi_responses/#timelines
+     */
+    list(
+      params?: ListTimelineParams,
+      meta?: HttpMetaParams,
+    ): Paginator<Status[], ListTimelineParams>;
+  };
+
   tag: {
     $select(hashtag: string): {
       /**

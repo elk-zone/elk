@@ -23,29 +23,6 @@ const isGrayscale = usePreferences('grayscaleMode')
             <div flex="~ col" overflow-y-auto justify-between h-full max-w-full overflow-x-hidden>
               <NavTitle />
               <NavSide command />
-              <div flex-auto />
-              <div v-if="isHydrated" flex flex-col sticky bottom-0 bg-base>
-                <div hidden xl:block>
-                  <UserSignInEntry v-if="!currentUser" />
-                </div>
-                <div v-if="currentUser" p6 pb8 w-full>
-                  <div hidden xl-block>
-                    <UserPicker v-if="showUserPicker" />
-                    <div v-else flex="~" items-center justify-between>
-                      <NuxtLink
-                        hidden xl:block
-                        rounded-3 text-primary text-start w-full
-                        hover:bg-active cursor-pointer transition-100
-                        :to="getAccountRoute(currentUser.account)"
-                      >
-                        <AccountInfo :account="currentUser.account" md:break-words square />
-                      </NuxtLink>
-                      <UserDropdown />
-                    </div>
-                  </div>
-                  <UserDropdown xl:hidden />
-                </div>
-              </div>
             </div>
           </slot>
         </div>
@@ -60,11 +37,32 @@ const isGrayscale = usePreferences('grayscaleMode')
         </div>
       </div>
       <aside v-if="isHydrated && !wideLayout" class="hidden lg:w-1/5 xl:w-1/4 sm:none xl:block native:w-full zen-hide">
-        <div sticky top-0 h-100dvh flex="~ col" gap-2 py3 ms-2>
+        <div sticky top-0 h-100dvh flex="~ col" gap-2 py1 ms-2>
           <slot name="right">
+            <div v-if="isHydrated" flex flex-col sticky bottom-0 bg-base>
+              <div hidden xl:block>
+                <UserSignInEntry v-if="!currentUser" />
+              </div>
+              <div v-if="currentUser" pt3 px3 w-full>
+                <div hidden xl-block>
+                  <UserPicker v-if="showUserPicker" />
+                  <div v-else flex="~" items-center justify-between>
+                    <NuxtLink
+                      hidden xl:block
+                      rounded-3 text-primary text-start w-full
+                      hover:bg-active cursor-pointer transition-100
+                      :to="getAccountRoute(currentUser.account)"
+                    >
+                      <AccountInfo :account="currentUser.account" md:break-words square />
+                    </NuxtLink>
+                    <UserDropdown />
+                  </div>
+                </div>
+                <UserDropdown xl:hidden />
+              </div>
+            </div>
             <SearchWidget mt-4 mx-1 hidden xl:block />
             <div flex-auto />
-
             <PwaPrompt />
             <PwaInstallPrompt />
             <LazyCommonPreviewPrompt v-if="info.env === 'preview'" />
@@ -73,6 +71,7 @@ const isGrayscale = usePreferences('grayscaleMode')
         </div>
       </aside>
     </main>
+    <NavButtonCompose />
     <ModalContainer />
   </div>
 </template>

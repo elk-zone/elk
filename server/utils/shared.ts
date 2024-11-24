@@ -13,8 +13,8 @@ import { env } from '#build-info'
 // @ts-expect-error virtual import
 import { driver } from '#storage-config'
 
-import { APP_NAME } from '~/constants'
 import { version } from '~/config/env'
+import { APP_NAME } from '~/constants'
 import type { AppInfo } from '~/types'
 
 const storage = useStorage<AppInfo>()

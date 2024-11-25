@@ -146,7 +146,6 @@
   "pnpm": {
     "patchedDependencies": {
       "pinceau": "patches/pinceau.patch",
-      "nuxt-security": "patches/nuxt-security.patch",
       "@nuxtjs/i18n@9.1.0": "patches/@nuxtjs__i18n@9.1.0.patch"
     }
   },

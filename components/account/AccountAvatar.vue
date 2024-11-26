@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-defineProps<{
+const { account, square } = defineProps<{
   account: mastodon.v1.Account
   square?: boolean
 }>()
@@ -10,7 +10,9 @@ const loaded = ref(false)
 const error = ref(false)
 
 const preferredMotion = usePreferredReducedMotion()
-const accountAvatarSrc = computed(() => preferredMotion.value === 'reduce' ? props.account.avatarStatic : props.account.avatar)
+const accountAvatarSrc = computed(() => {
+  return preferredMotion.value === 'reduce' ? account.avatarStatic : account.avatar
+})
 </script>
 
 <template>

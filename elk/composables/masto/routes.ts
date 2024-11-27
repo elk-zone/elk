@@ -1,7 +1,7 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { withoutProtocol } from 'ufo'
 
-export function getAccountRoute(account: mastodon.v1.Account) {
+export function getAccountRoute(account: akkoma.v1.Account) {
   return useRouter().resolve({
     name: 'account-index',
     params: {
@@ -10,7 +10,7 @@ export function getAccountRoute(account: mastodon.v1.Account) {
     },
   })
 }
-export function getAccountFollowingRoute(account: mastodon.v1.Account) {
+export function getAccountFollowingRoute(account: akkoma.v1.Account) {
   return useRouter().resolve({
     name: 'account-following',
     params: {
@@ -19,7 +19,7 @@ export function getAccountFollowingRoute(account: mastodon.v1.Account) {
     },
   })
 }
-export function getAccountFollowersRoute(account: mastodon.v1.Account) {
+export function getAccountFollowersRoute(account: akkoma.v1.Account) {
   return useRouter().resolve({
     name: 'account-followers',
     params: {
@@ -33,7 +33,7 @@ export function getReportRoute(id: string | number) {
   return `https://${currentUser.value?.server}/admin/reports/${encodeURIComponent(id)}`
 }
 
-export function getStatusRoute(status: mastodon.v1.Status) {
+export function getStatusRoute(status: akkoma.v1.Status) {
   return useRouter().resolve({
     name: 'status',
     params: {
@@ -54,11 +54,11 @@ export function getTagRoute(tag: string) {
   })
 }
 
-export function getStatusPermalinkRoute(status: mastodon.v1.Status) {
+export function getStatusPermalinkRoute(status: akkoma.v1.Status) {
   return status.url ? withoutProtocol(status.url) : null
 }
 
-export function getStatusInReplyToRoute(status: mastodon.v1.Status) {
+export function getStatusInReplyToRoute(status: akkoma.v1.Status) {
   return useRouter().resolve({
     name: 'status-by-id',
     params: {
@@ -69,7 +69,7 @@ export function getStatusInReplyToRoute(status: mastodon.v1.Status) {
 }
 
 export function navigateToStatus({ status, focusReply = false }: {
-  status: mastodon.v1.Status
+  status: akkoma.v1.Status
   focusReply?: boolean
 }) {
   return navigateTo({

@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { fetchAccountById } from '~/composables/cache'
 
-type WatcherType = [status?: mastodon.v1.Status, v?: boolean]
+type WatcherType = [status?: akkoma.v1.Status, v?: boolean]
 
 const props = defineProps<{
-  status: mastodon.v1.Status
+  status: akkoma.v1.Status
   isSelfReply: boolean
 }>()
 
 const link = ref()
 const targetIsVisible = ref(false)
 const isSelf = computed(() => props.status.inReplyToAccountId === props.status.account.id)
-const account = ref<mastodon.v1.Account | null | undefined>(isSelf.value ? props.status.account : undefined)
+const account = ref<akkoma.v1.Account | null | undefined>(isSelf.value ? props.status.account : undefined)
 
 useIntersectionObserver(
   link,

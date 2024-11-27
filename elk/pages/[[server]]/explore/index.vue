@@ -4,7 +4,7 @@ import { STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS, STORAGE_KEY_LAST_ACCESSED_EXPLORE_
 const { t } = useI18n()
 const route = useRoute()
 
-const paginator = useMastoClient().v1.trends.statuses.list()
+const paginator = useAkkoClient().v1.trends.statuses.list()
 
 const hideNewsTips = useLocalStorage(STORAGE_KEY_HIDE_EXPLORE_POSTS_TIPS, false)
 

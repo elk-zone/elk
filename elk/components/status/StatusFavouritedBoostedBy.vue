@@ -3,7 +3,7 @@ import { favouritedBoostedByStatusId } from '~/composables/dialog'
 
 const type = ref<'favourited-by' | 'boosted-by'>('favourited-by')
 
-const { client } = useMasto()
+const { client } = useAkko()
 
 function load() {
   return client.value.v1.statuses.$select(favouritedBoostedByStatusId.value!)[type.value === 'favourited-by' ? 'favouritedBy' : 'rebloggedBy'].list()

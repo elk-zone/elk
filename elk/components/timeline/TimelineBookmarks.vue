@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const paginator = useMastoClient().v1.bookmarks.list()
+const paginator = useAkkoClient().v1.bookmarks.list()
 </script>
 
 <template>

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { useForm } from 'slimeform'
 
 const emit = defineEmits<{
-  (e: 'listUpdated', list: mastodon.v1.List): void
+  (e: 'listUpdated', list: akkoma.v1.List): void
   (e: 'listRemoved', id: string): void
 }>()
-const list = defineModel<mastodon.v1.List>({ required: true })
+const list = defineModel<akkoma.v1.List>({ required: true })
 
 const { t } = useI18n()
-const client = useMastoClient()
+const client = useAkkoClient()
 
 const { form, isDirty, submitter, reset } = useForm({
   form: () => ({ ...list.value }),

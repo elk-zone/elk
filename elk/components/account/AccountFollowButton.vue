@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { toggleFollowAccount, useRelationship } from '~~/composables/masto/relationship'
 
 const { account, command, context, ...props } = defineProps<{
-  account: mastodon.v1.Account
-  relationship?: mastodon.v1.Relationship
+  account: akkoma.v1.Account
+  relationship?: akkoma.v1.Relationship
   context?: 'followedBy' | 'following'
   command?: boolean
 }>()
@@ -15,7 +15,7 @@ const enable = computed(() => !isSelf.value && currentUser.value)
 const relationship = computed(() => props.relationship || useRelationship(account).value)
 const isLoading = computed(() => relationship.value === undefined)
 
-const { client } = useMasto()
+const { client } = useAkko()
 
 async function unblock() {
   relationship.value!.blocking = false

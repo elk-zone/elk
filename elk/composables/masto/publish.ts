@@ -1,5 +1,5 @@
 import type { DraftItem } from '~~/types'
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { Ref } from 'vue'
 import { fileOpen } from 'browser-fs-access'
 
@@ -14,7 +14,7 @@ export function usePublish(options: {
 
   const isEmpty = computed(() => isEmptyDraft([draftItem.value]))
 
-  const { client } = useMasto()
+  const { client } = useAkko()
   const settings = useUserSettings()
 
   const preferredLanguage = computed(() => (currentUser.value?.account.source.language || settings.value?.language || 'en').split('-')[0])
@@ -95,7 +95,7 @@ export function usePublish(options: {
       language: draftItem.value.params.language || preferredLanguage.value,
       poll,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
-    } as mastodon.rest.v1.CreateStatusParams
+    } as akkoma.rest.v1.CreateStatusParams
 
     if (import.meta.dev) {
       // eslint-disable-next-line no-console
@@ -112,7 +112,7 @@ export function usePublish(options: {
     try {
       isSending.value = true
 
-      let status: mastodon.v1.Status
+      let status: akkoma.v1.Status
       if (!draftItem.value.editingStatus) {
         status = await client.value.v1.statuses.create(payload)
       }
@@ -157,7 +157,7 @@ export function usePublish(options: {
 export type MediaAttachmentUploadError = [filename: string, message: string]
 
 export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
-  const { client } = useMasto()
+  const { client } = useAkko()
   const { t } = useI18n()
   const { formatFileSize } = useFileSizeFormatter()
 
@@ -288,7 +288,7 @@ export function useUploadMediaAttachment(draft: Ref<DraftItem>) {
     await uploadAttachments(files)
   }
 
-  async function setDescription(att: mastodon.v1.MediaAttachment, description: string) {
+  async function setDescription(att: akkoma.v1.MediaAttachment, description: string) {
     att.description = description
     if (!draft.value.editingStatus)
       await client.value.v1.media.$select(att.id).update({ description: att.description })

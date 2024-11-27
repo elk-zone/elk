@@ -6,7 +6,7 @@ definePageMeta({
 const params = useRoute().params
 const tagName = computed(() => params.tag as string)
 
-const { client } = useMasto()
+const { client } = useAkko()
 const { data: tag, refresh } = await useAsyncData(() => client.value.v1.tags.$select(tagName.value).fetch(), { default: () => shallowRef() })
 
 const paginator = client.value.v1.timelines.tag.$select(tagName.value).list()

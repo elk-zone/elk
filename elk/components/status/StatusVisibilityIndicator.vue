@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { status } = defineProps<{
-  status: mastodon.v1.Status
+  status: akkoma.v1.Status
 }>()
 
 const visibility = computed(() => statusVisibilities.find(v => v.value === status.visibility)!)

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 defineOptions({
   inheritAttrs: false,
 })
 
 const { account, as = 'div' } = defineProps<{
-  account: mastodon.v1.Account
+  account: akkoma.v1.Account
   as?: string
   hoverCard?: boolean
   square?: boolean

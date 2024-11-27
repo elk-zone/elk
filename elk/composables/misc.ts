@@ -1,4 +1,4 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 export const UserLinkRE = /^(?:https:\/)?\/([^/]+)\/@([^/]+)$/
 export const TagLinkRE = /^https?:\/\/([^/]+)\/tags\/([^/]+)\/?$/
@@ -21,7 +21,7 @@ export function getDataUrlFromArr(arr: Uint8ClampedArray, w: number, h: number) 
   return canvas.toDataURL()
 }
 
-export function emojisArrayToObject(emojis: mastodon.v1.CustomEmoji[]) {
+export function emojisArrayToObject(emojis: akkoma.v1.CustomEmoji[]) {
   return Object.fromEntries(emojis.map(i => [i.shortcode, i]))
 }
 

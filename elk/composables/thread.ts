@@ -1,4 +1,4 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { DraftItem } from '~/types'
 
 const maxThreadLength = 99
@@ -45,7 +45,7 @@ export function useThreadComposer(draftKey: string, initial?: () => DraftItem) {
     const allFailedMessages: Array<string> = []
     const isAReplyThread = Boolean(draftItems.value[0].params.inReplyToId)
 
-    let lastPublishedStatus: mastodon.v1.Status | null = null
+    let lastPublishedStatus: akkoma.v1.Status | null = null
     let amountPublished = 0
     for (const draftItem of draftItems.value) {
       if (lastPublishedStatus)

@@ -1,23 +1,23 @@
 import type { Pausable } from '@vueuse/core'
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { Ref } from 'vue'
 import type { ElkInstance } from '../users'
-import { createRestAPIClient, createStreamingAPIClient } from 'masto'
+import { createRestAPIClient, createStreamingAPIClient } from 'akko'
 import type { UserLogin } from '~/types'
 
 export function createMasto() {
   return {
-    client: shallowRef<mastodon.rest.Client>(undefined as never),
-    streamingClient: shallowRef<mastodon.streaming.Client | undefined>(),
+    client: shallowRef<akkoma.rest.Client>(undefined as never),
+    streamingClient: shallowRef<akkoma.streaming.Client | undefined>(),
   }
 }
 export type ElkMasto = ReturnType<typeof createMasto>
 
-export function useMasto() {
+export function useAkko() {
   return useNuxtApp().$masto as ElkMasto
 }
-export function useMastoClient() {
-  return useMasto().client.value
+export function useAkkoClient() {
+  return useAkko().client.value
 }
 
 export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'token'>) {
@@ -62,21 +62,21 @@ interface UseStreamingOptions<Controls extends boolean> {
 }
 
 export function useStreaming(
-  cb: (client: mastodon.streaming.Client) => mastodon.streaming.Subscription,
+  cb: (client: akkoma.streaming.Client) => akkoma.streaming.Subscription,
   options: UseStreamingOptions<true>,
-): { stream: Ref<mastodon.streaming.Subscription | undefined> } & Pausable
+): { stream: Ref<akkoma.streaming.Subscription | undefined> } & Pausable
 export function useStreaming(
-  cb: (client: mastodon.streaming.Client) => mastodon.streaming.Subscription,
+  cb: (client: akkoma.streaming.Client) => akkoma.streaming.Subscription,
   options?: UseStreamingOptions<false>,
-): Ref<mastodon.streaming.Subscription | undefined>
+): Ref<akkoma.streaming.Subscription | undefined>
 export function useStreaming(
-  cb: (client: mastodon.streaming.Client) => mastodon.streaming.Subscription,
+  cb: (client: akkoma.streaming.Client) => akkoma.streaming.Subscription,
   { immediate = true, controls }: UseStreamingOptions<boolean> = {},
-): ({ stream: Ref<mastodon.streaming.Subscription | undefined> } & Pausable) | Ref<mastodon.streaming.Subscription | undefined> {
-  const { streamingClient } = useMasto()
+): ({ stream: Ref<akkoma.streaming.Subscription | undefined> } & Pausable) | Ref<akkoma.streaming.Subscription | undefined> {
+  const { streamingClient } = useAkko()
 
   const isActive = ref(immediate)
-  const stream = ref<mastodon.streaming.Subscription>()
+  const stream = ref<akkoma.streaming.Subscription>()
 
   function pause() {
     isActive.value = false

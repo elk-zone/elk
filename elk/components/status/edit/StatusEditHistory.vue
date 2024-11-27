@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { formatTimeAgo } from '@vueuse/core'
 
 const { status } = defineProps<{
-  status: mastodon.v1.Status
+  status: akkoma.v1.Status
 }>()
 
-const paginator = useMastoClient().v1.statuses.$select(status.id).history.list()
+const paginator = useAkkoClient().v1.statuses.$select(status.id).history.list()
 
-function showHistory(edit: mastodon.v1.StatusEdit) {
+function showHistory(edit: akkoma.v1.StatusEdit) {
   openEditHistoryDialog(edit)
 }
 const timeAgoOptions = useTimeAgoOptions()
 
 // TODO: rework, this is only reversing the first page of edits
-function reverseHistory(items: mastodon.v1.StatusEdit[]) {
+function reverseHistory(items: akkoma.v1.StatusEdit[]) {
   return [...items].reverse()
 }
 </script>

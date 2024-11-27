@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { notification } = defineProps<{
-  notification: mastodon.v1.Notification
+  notification: akkoma.v1.Notification
 }>()
 
 const { t } = useI18n()

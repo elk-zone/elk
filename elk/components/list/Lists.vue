@@ -3,7 +3,7 @@ const { userId } = defineProps<{
   userId: string
 }>()
 
-const { client } = useMasto()
+const { client } = useAkko()
 const paginator = client.value.v1.lists.list()
 const listsWithUser = ref((await client.value.v1.accounts.$select(userId).lists.list()).map(list => list.id))
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { hashtag } = defineProps<{
-  hashtag: mastodon.v1.Tag
+  hashtag: akkoma.v1.Tag
 }>()
 
 const totalTrend = computed(() =>

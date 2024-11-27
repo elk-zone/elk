@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const {
   history,
   maxDay = 2,
 } = defineProps<{
-  history: mastodon.v1.TagHistory[]
+  history: akkoma.v1.TagHistory[]
   maxDay?: number
 }>()
 

@@ -1,4 +1,4 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { CustomEmojisInfo } from './push-notifications/types'
 import { STORAGE_KEY_CUSTOM_EMOJIS } from '~/constants'
 
@@ -19,7 +19,7 @@ export async function updateCustomEmojis() {
   if (Date.now() - currentCustomEmojis.value.lastUpdate < TTL)
     return
 
-  const { client } = useMasto()
+  const { client } = useAkko()
   const emojis = await client.value.v1.customEmojis.list()
   Object.assign(currentCustomEmojis.value, {
     lastUpdate: Date.now(),
@@ -27,7 +27,7 @@ export async function updateCustomEmojis() {
   })
 }
 
-function transformEmojiData(emojis: mastodon.v1.CustomEmoji[]) {
+function transformEmojiData(emojis: akkoma.v1.CustomEmoji[]) {
   const result = []
 
   for (const emoji of emojis) {
@@ -52,9 +52,9 @@ export const customEmojisData = computed(() => currentCustomEmojis.value.emojis.
     }]
   : undefined)
 
-export function useEmojisFallback(emojisGetter: () => mastodon.v1.CustomEmoji[] | undefined) {
+export function useEmojisFallback(emojisGetter: () => akkoma.v1.CustomEmoji[] | undefined) {
   return computed(() => {
-    const result: mastodon.v1.CustomEmoji[] = []
+    const result: akkoma.v1.CustomEmoji[] = []
     const emojis = emojisGetter()
     if (emojis)
       result.push(...emojis)

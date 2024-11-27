@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 defineProps<{
-  account: mastodon.v1.Account
+  account: akkoma.v1.Account
   limit?: number
 }>()
 </script>

@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { toggleBlockAccount, toggleFollowAccount, toggleMuteAccount, useRelationship } from '~~/composables/masto/relationship'
 
 const { account, status } = defineProps<{
-  account: mastodon.v1.Account
-  status?: mastodon.v1.Status
+  account: akkoma.v1.Account
+  status?: akkoma.v1.Status
 }>()
 
 const emit = defineEmits<{
   (event: 'close'): void
 }>()
 
-const { client } = useMasto()
+const { client } = useAkko()
 
 const step = ref('selectCategory')
 const serverRules = ref((await client.value.v2.instance.fetch()).rules || [])

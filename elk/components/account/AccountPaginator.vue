@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { paginator, account, context } = defineProps<{
-  paginator: mastodon.Paginator<mastodon.v1.Account[], mastodon.DefaultPaginationParams | undefined>
+  paginator: akkoma.Paginator<akkoma.v1.Account[], akkoma.DefaultPaginationParams | undefined>
   context?: 'following' | 'followers'
-  account?: mastodon.v1.Account
+  account?: akkoma.v1.Account
   relationshipContext?: 'followedBy' | 'following'
 }>()
 

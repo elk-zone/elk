@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { useForm } from 'slimeform'
 
 definePageMeta({
@@ -12,7 +12,7 @@ useHydratedHead({
   title: () => `${t('settings.profile.appearance.title')} | ${t('nav.settings')}`,
 })
 
-const { client } = useMasto()
+const { client } = useAkko()
 
 const avatarInput = ref<any>()
 const headerInput = ref<any>()
@@ -60,7 +60,7 @@ const { submit, submitting } = submitter(async ({ dirtyFields }) => {
   if (!isCanSubmit.value)
     return
 
-  const res = await client.value.v1.accounts.updateCredentials(dirtyFields.value as mastodon.rest.v1.UpdateCredentialsParams)
+  const res = await client.value.v1.accounts.updateCredentials(dirtyFields.value as akkoma.rest.v1.UpdateCredentialsParams)
     .then(account => ({ account }))
     .catch((error: Error) => ({ error }))
 

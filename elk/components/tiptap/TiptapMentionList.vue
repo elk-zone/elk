@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { CommandHandler } from '~/composables/command'
 
 const { items, command } = defineProps<{
-  items: mastodon.v1.Account[]
+  items: akkoma.v1.Account[]
   command: CommandHandler<{ id: string }>
   isPending?: boolean
 }>()

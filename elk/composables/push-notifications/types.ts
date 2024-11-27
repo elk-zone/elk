@@ -1,4 +1,4 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 import type { UserLogin } from '~/types'
 
@@ -9,20 +9,20 @@ export interface PushManagerSubscriptionInfo {
 }
 
 export interface RequiredUserLogin extends Required<Omit<UserLogin, 'account' | 'pushSubscription'>> {
-  pushSubscription?: mastodon.v1.WebPushSubscription
+  pushSubscription?: akkoma.v1.WebPushSubscription
 }
 
 export interface CreatePushNotification {
-  alerts?: Partial<mastodon.v1.WebPushSubscriptionAlerts> | null
-  policy?: mastodon.v1.WebPushSubscriptionPolicy
+  alerts?: Partial<akkoma.v1.WebPushSubscriptionAlerts> | null
+  policy?: akkoma.v1.WebPushSubscriptionPolicy
 }
 
 export type PushNotificationRequest = Record<string, boolean>
-export type PushNotificationPolicy = Record<string, mastodon.v1.WebPushSubscriptionPolicy>
+export type PushNotificationPolicy = Record<string, akkoma.v1.WebPushSubscriptionPolicy>
 
 export interface CustomEmojisInfo {
   lastUpdate: number
-  emojis: mastodon.v1.CustomEmoji[]
+  emojis: akkoma.v1.CustomEmoji[]
 }
 
 export type PushSubscriptionErrorCode = 'too_many_registrations' | 'vapid_not_supported' | 'invalid_vapid_key'

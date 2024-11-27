@@ -1,4 +1,4 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type {
   CreatePushNotification,
   PushManagerSubscriptionInfo,
@@ -9,14 +9,14 @@ import { PushSubscriptionError } from '~/composables/push-notifications/types'
 export async function createPushSubscription(
   user: RequiredUserLogin,
   notificationData: CreatePushNotification,
-  policy: mastodon.v1.WebPushSubscriptionPolicy = 'all',
+  policy: akkoma.v1.WebPushSubscriptionPolicy = 'all',
   force = false,
-): Promise<mastodon.v1.WebPushSubscription | undefined> {
+): Promise<akkoma.v1.WebPushSubscription | undefined> {
   const { server: serverEndpoint, vapidKey } = user
 
   return await getRegistration()
     .then(getPushSubscription)
-    .then(({ registration, subscription }): Promise<mastodon.v1.WebPushSubscription | undefined> => {
+    .then(({ registration, subscription }): Promise<akkoma.v1.WebPushSubscription | undefined> => {
       if (subscription) {
         const currentServerKey = (new Uint8Array(subscription.options.applicationServerKey!)).toString()
         const subscriptionServerKey = urlBase64ToUint8Array(vapidKey).toString()
@@ -118,10 +118,10 @@ async function removePushNotificationDataOnError(e: Error) {
 async function sendSubscriptionToBackend(
   subscription: PushSubscription,
   data: CreatePushNotification,
-  policy: mastodon.v1.WebPushSubscriptionPolicy,
-): Promise<mastodon.v1.WebPushSubscription> {
+  policy: akkoma.v1.WebPushSubscriptionPolicy,
+): Promise<akkoma.v1.WebPushSubscription> {
   const { endpoint, keys } = subscription.toJSON()
-  return await useMastoClient().v1.push.subscription.create({
+  return await useAkkoClient().v1.push.subscription.create({
     policy,
     subscription: {
       endpoint: endpoint!,

@@ -1,7 +1,7 @@
 // masto types and notification types differs
 // Any type used from masto api retrieving notification from push notification id is no camel case, it is snake case
 // I just copy/paste any entry from masto api and convert it to snake case, reusing types not including camel case props
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 export type NotificationType = 'mention' | 'status' | 'reblog' | 'follow' | 'follow_request' | 'favourite' | 'poll' | 'update' | 'admin.sign_up' | 'admin.report'
 
@@ -18,7 +18,7 @@ export interface PushPayload {
 export interface UserLogin {
   server: string
   token?: string
-  account: mastodon.v1.AccountCredentials
+  account: akkoma.v1.AccountCredentials
 }
 
 export interface NotificationInfo {
@@ -66,7 +66,7 @@ export interface Attachment {
   /** The ID of the attachment in the database. */
   id: string
   /** The type of the attachment. */
-  type: mastodon.v1.MediaAttachmentType
+  type: akkoma.v1.MediaAttachmentType
   /** The location of the original full-size attachment. */
   url?: string | null
   /** The location of a scaled-down preview of the attachment. */
@@ -78,7 +78,7 @@ export interface Attachment {
   /** A shorter URL for the attachment. */
   text_url?: string | null
   /** Metadata returned by Paperclip. */
-  meta?: mastodon.v1.MediaAttachmentMeta | null
+  meta?: akkoma.v1.MediaAttachmentMeta | null
   /**
    * Alternate text that describes what is in the media attachment,
    * to be used for the visually impaired or when media attachments do not load.
@@ -118,7 +118,7 @@ export interface Status {
   /** HTML-encoded status content. */
   content: string
   /** Visibility of this status. */
-  visibility: mastodon.v1.StatusVisibility
+  visibility: akkoma.v1.StatusVisibility
   /** Is this status marked as sensitive content? */
   sensitive: boolean
   /** Subject or summary line, below which status content is collapsed until expanded. */
@@ -128,9 +128,9 @@ export interface Status {
   /** The application used to post this status. */
   // application: Application
   /** Mentions of users within the status content. */
-  mentions: mastodon.v1.StatusMention[]
+  mentions: akkoma.v1.StatusMention[]
   /** Hashtags used within the status content. */
-  tags: mastodon.v1.Tag[]
+  tags: akkoma.v1.Tag[]
   /** Custom emoji to be used when rendering status content. */
   emojis: Emoji[]
   /** How many boosts this status has received. */
@@ -150,7 +150,7 @@ export interface Status {
   /** The poll attached to the status. */
   poll?: Poll | null
   /** Preview card for links included within status content. */
-  card?: mastodon.v1.PreviewCard | null
+  card?: akkoma.v1.PreviewCard | null
   /** Primary language of this status. */
   language?: string | null
   /**

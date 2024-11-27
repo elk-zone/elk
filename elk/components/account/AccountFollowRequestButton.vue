@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { account, ...props } = defineProps<{
-  account: mastodon.v1.Account
-  relationship?: mastodon.v1.Relationship
+  account: akkoma.v1.Account
+  relationship?: akkoma.v1.Relationship
 }>()
 const relationship = computed(() => props.relationship || useRelationship(account).value)
-const { client } = useMasto()
+const { client } = useAkko()
 
 async function authorizeFollowRequest() {
   relationship.value!.requestedBy = false

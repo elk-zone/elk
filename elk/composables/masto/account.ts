@@ -1,6 +1,6 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
-export function getDisplayName(account: mastodon.v1.Account, options?: { rich?: boolean }) {
+export function getDisplayName(account: akkoma.v1.Account, options?: { rich?: boolean }) {
   const displayName = account.displayName || account.username || account.acct || ''
   if (options?.rich)
     return displayName
@@ -11,20 +11,20 @@ export function accountToShortHandle(acct: string) {
   return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
 }
 
-export function getShortHandle({ acct }: mastodon.v1.Account) {
+export function getShortHandle({ acct }: akkoma.v1.Account) {
   if (!acct)
     return ''
   return accountToShortHandle(acct)
 }
 
-export function getServerName(account: mastodon.v1.Account) {
+export function getServerName(account: akkoma.v1.Account) {
   if (account.acct?.includes('@'))
     return account.acct.split('@')[1]
   // We should only lack the server name if we're on the same server as the account
   return currentInstance.value ? getInstanceDomain(currentInstance.value) : ''
 }
 
-export function getFullHandle(account: mastodon.v1.Account) {
+export function getFullHandle(account: akkoma.v1.Account) {
   const handle = `@${account.acct}`
   if (!currentUser.value || account.acct.includes('@'))
     return handle
@@ -40,7 +40,7 @@ export function toShortHandle(fullHandle: string) {
   return fullHandle
 }
 
-export function extractAccountHandle(account: mastodon.v1.Account) {
+export function extractAccountHandle(account: akkoma.v1.Account) {
   let handle = getFullHandle(account).slice(1)
   const uri = currentInstance.value ? getInstanceDomain(currentInstance.value) : currentServer.value
   if (currentInstance.value && handle.endsWith(`@${uri}`))
@@ -49,7 +49,7 @@ export function extractAccountHandle(account: mastodon.v1.Account) {
   return handle
 }
 
-export function useAccountHandle(account: mastodon.v1.Account, fullServer = true) {
+export function useAccountHandle(account: akkoma.v1.Account, fullServer = true) {
   return computed(() => fullServer
     ? getFullHandle(account)
     : getShortHandle(account),

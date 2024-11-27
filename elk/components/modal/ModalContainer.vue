@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import {
   isCommandPanelOpen,
   isConfirmDialogOpen,
@@ -34,7 +34,7 @@ useEventListener('keydown', (e: KeyboardEvent) => {
   }
 })
 
-function handlePublished(status: mastodon.v1.Status) {
+function handlePublished(status: akkoma.v1.Status) {
   lastPublishDialogStatus.value = status
   isPublishDialogOpen.value = false
 }

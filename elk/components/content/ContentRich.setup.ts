@@ -1,4 +1,4 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 defineOptions({
   name: 'ContentRich',
@@ -11,7 +11,7 @@ const {
   markdown = true,
 } = defineProps<{
   content: string
-  emojis?: mastodon.v1.CustomEmoji[]
+  emojis?: akkoma.v1.CustomEmoji[]
   hideEmojis?: boolean
   markdown?: boolean
 }>()

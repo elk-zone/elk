@@ -7,7 +7,7 @@ const handle = computed(() => params.account as string)
 
 const account = await fetchAccountByHandle(handle.value)
 
-const paginator = useMastoClient().v1.accounts.$select(account.id).statuses.list({ excludeReplies: false })
+const paginator = useAkkoClient().v1.accounts.$select(account.id).statuses.list({ excludeReplies: false })
 
 if (account) {
   useHydratedHead({

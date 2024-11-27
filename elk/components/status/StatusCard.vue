@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const props = withDefaults(
   defineProps<{
-    status: mastodon.v1.Status
+    status: akkoma.v1.Status
     actions?: boolean
-    context?: mastodon.v2.FilterContext
+    context?: akkoma.v2.FilterContext
     hover?: boolean
     inNotification?: boolean
     isPreview?: boolean
 
     // If we know the prev and next status in the timeline, we can simplify the card
-    older?: mastodon.v1.Status
-    newer?: mastodon.v1.Status
+    older?: akkoma.v1.Status
+    newer?: akkoma.v1.Status
     // Manual overrides
     hasOlder?: boolean
     hasNewer?: boolean
 
     // When looking into a detailed view of a post, we can simplify the replying badges
     // to the main expanded post
-    main?: mastodon.v1.Status
+    main?: akkoma.v1.Status
   }>(),
   { actions: true },
 )

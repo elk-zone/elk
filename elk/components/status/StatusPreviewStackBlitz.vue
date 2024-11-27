@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const props = defineProps<{
-  card: mastodon.v1.PreviewCard
+  card: akkoma.v1.PreviewCard
   /** For the preview image, only the small image mode is displayed */
   smallPictureOnly?: boolean
   /** When it is root card in the list, not appear as a child card */

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const route = useRoute()
 const { t } = useI18n()
 
-const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
+const filter = computed<akkoma.v1.NotificationType | undefined>(() => {
   if (!isHydrated.value)
     return undefined
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import reservedNames from 'github-reserved-names'
 
 const props = defineProps<{
-  card: mastodon.v1.PreviewCard
+  card: akkoma.v1.PreviewCard
 }>()
 
 type UrlType = 'user' | 'repo' | 'issue' | 'pull'

@@ -1,10 +1,10 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { Ref } from 'vue'
 import type { PaginatorState } from '~/types'
 
 export function usePaginator<T, P, U = T>(
-  _paginator: mastodon.Paginator<T[], P>,
-  stream: Ref<mastodon.streaming.Subscription | undefined>,
+  _paginator: akkoma.Paginator<T[], P>,
+  stream: Ref<akkoma.streaming.Subscription | undefined>,
   eventType: 'update' | 'notification' = 'update',
   preprocess: (items: (T | U)[]) => U[] = items => items as unknown as U[],
   buffer = 10,
@@ -51,7 +51,7 @@ export function usePaginator<T, P, U = T>(
         const status = entry.payload
         cacheStatus(status, undefined, true)
 
-        const data = items.value as mastodon.v1.Status[]
+        const data = items.value as akkoma.v1.Status[]
         const index = data.findIndex(s => s.id === status.id)
         if (index >= 0)
           data[index] = status
@@ -61,7 +61,7 @@ export function usePaginator<T, P, U = T>(
         const id = entry.payload
         removeCachedStatus(id)
 
-        const data = items.value as mastodon.v1.Status[]
+        const data = items.value as akkoma.v1.Status[]
         const index = data.findIndex(s => s.id === id)
         if (index >= 0)
           data.splice(index, 1)

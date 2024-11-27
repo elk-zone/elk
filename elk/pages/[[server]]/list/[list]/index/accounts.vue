@@ -6,7 +6,7 @@ definePageMeta({
 const params = useRoute().params
 const listId = computed(() => params.list as string)
 
-const paginator = useMastoClient().v1.lists.$select(listId.value).accounts.list()
+const paginator = useAkkoClient().v1.lists.$select(listId.value).accounts.list()
 </script>
 
 <template>

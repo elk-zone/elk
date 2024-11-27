@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
-  paginator: mastodon.Paginator<mastodon.v1.Notification[], mastodon.rest.v1.ListNotificationsParams>
-  stream?: mastodon.streaming.Subscription
+  paginator: akkoma.Paginator<akkoma.v1.Notification[], akkoma.rest.v1.ListNotificationsParams>
+  stream?: akkoma.streaming.Subscription
 }>()
 
 const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 
 const groupCapacity = Number.MAX_VALUE // No limit
 
-const includeNotificationTypes: mastodon.v1.NotificationType[] = ['update', 'mention', 'poll', 'status']
+const includeNotificationTypes: akkoma.v1.NotificationType[] = ['update', 'mention', 'poll', 'status']
 
 let id = 0
 
-function includeNotificationsForStatusCard({ type, status }: mastodon.v1.Notification) {
+function includeNotificationsForStatusCard({ type, status }: akkoma.v1.Notification) {
   // Exclude update, mention, pool and status notifications without the status entry:
   // no makes sense to include them
   // Those notifications will be shown using StatusCard SFC:
@@ -26,7 +26,7 @@ function includeNotificationsForStatusCard({ type, status }: mastodon.v1.Notific
 }
 
 // Group by type (and status when applicable)
-function groupId(item: mastodon.v1.Notification): string {
+function groupId(item: akkoma.v1.Notification): string {
   // If the update is related to a status, group notifications from the same account (boost + favorite the same status)
   const id = item.status
     ? {
@@ -39,15 +39,15 @@ function groupId(item: mastodon.v1.Notification): string {
   return JSON.stringify(id)
 }
 
-function hasHeader(account: mastodon.v1.Account) {
+function hasHeader(account: akkoma.v1.Account) {
   return !account.header.endsWith('/original/missing.png')
 }
 
-function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
+function groupItems(items: akkoma.v1.Notification[]): NotificationSlot[] {
   const results: NotificationSlot[] = []
 
   let currentGroupId = ''
-  let currentGroup: mastodon.v1.Notification[] = []
+  let currentGroup: akkoma.v1.Notification[] = []
   const processGroup = () => {
     if (currentGroup.length === 0)
       return
@@ -134,14 +134,14 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   return results
 }
 
-function removeFiltered(items: mastodon.v1.Notification[]): mastodon.v1.Notification[] {
+function removeFiltered(items: akkoma.v1.Notification[]): akkoma.v1.Notification[] {
   return items.filter(item => !item.status?.filtered?.find(
     filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications'),
   ))
 }
 
 function preprocess(items: NotificationSlot[]): NotificationSlot[] {
-  const flattenedNotifications: mastodon.v1.Notification[] = []
+  const flattenedNotifications: akkoma.v1.Notification[] = []
   for (const item of items) {
     if (item.type === 'grouped-reblogs-and-favourites') {
       const group = item

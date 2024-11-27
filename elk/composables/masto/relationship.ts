@@ -1,14 +1,14 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { Ref } from 'vue'
 
 // Batch requests for relationships when used in the UI
 // We don't want to hold to old values, so every time a Relationship is needed it
 // is requested again from the server to show the latest state
 
-const requestedRelationships = new Map<string, Ref<mastodon.v1.Relationship | undefined>>()
+const requestedRelationships = new Map<string, Ref<akkoma.v1.Relationship | undefined>>()
 let timeoutHandle: NodeJS.Timeout | undefined
 
-export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.Relationship | undefined> {
+export function useRelationship(account: akkoma.v1.Account): Ref<akkoma.v1.Relationship | undefined> {
   if (!currentUser.value)
     return ref()
 
@@ -17,7 +17,7 @@ export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.R
     return relationship
 
   // allow batch relationship requests
-  relationship = ref<mastodon.v1.Relationship | undefined>()
+  relationship = ref<akkoma.v1.Relationship | undefined>()
   requestedRelationships.set(account.id, relationship)
   if (timeoutHandle)
     clearTimeout(timeoutHandle)
@@ -31,7 +31,7 @@ export function useRelationship(account: mastodon.v1.Account): Ref<mastodon.v1.R
 
 async function fetchRelationships() {
   const requested = Array.from(requestedRelationships.entries()).filter(([, r]) => !r.value)
-  const relationships = await useMastoClient().v1.accounts.relationships.fetch({ id: requested.map(([id]) => id) })
+  const relationships = await useAkkoClient().v1.accounts.relationships.fetch({ id: requested.map(([id]) => id) })
   for (const relationship of relationships) {
     const requestedToUpdate = requested.find(([id]) => id === relationship.id)
     if (!requestedToUpdate)
@@ -40,8 +40,8 @@ async function fetchRelationships() {
   }
 }
 
-export async function toggleFollowAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
-  const { client } = useMasto()
+export async function toggleFollowAccount(relationship: akkoma.v1.Relationship, account: akkoma.v1.Account) {
+  const { client } = useAkko()
   const i18n = useNuxtApp().$i18n
 
   const unfollow = relationship!.following || relationship!.requested
@@ -71,8 +71,8 @@ export async function toggleFollowAccount(relationship: mastodon.v1.Relationship
   relationship = await client.value.v1.accounts.$select(account.id)[unfollow ? 'unfollow' : 'follow']()
 }
 
-export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
-  const { client } = useMasto()
+export async function toggleMuteAccount(relationship: akkoma.v1.Relationship, account: akkoma.v1.Account) {
+  const { client } = useAkko()
   const i18n = useNuxtApp().$i18n
 
   let duration = 0 // default 0 == indefinite
@@ -101,8 +101,8 @@ export async function toggleMuteAccount(relationship: mastodon.v1.Relationship, 
     : await client.value.v1.accounts.$select(account.id).unmute()
 }
 
-export async function toggleBlockAccount(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
-  const { client } = useMasto()
+export async function toggleBlockAccount(relationship: akkoma.v1.Relationship, account: akkoma.v1.Account) {
+  const { client } = useAkko()
   const i18n = useNuxtApp().$i18n
 
   if (!relationship!.blocking) {
@@ -120,8 +120,8 @@ export async function toggleBlockAccount(relationship: mastodon.v1.Relationship,
   relationship = await client.value.v1.accounts.$select(account.id)[relationship!.blocking ? 'block' : 'unblock']()
 }
 
-export async function toggleBlockDomain(relationship: mastodon.v1.Relationship, account: mastodon.v1.Account) {
-  const { client } = useMasto()
+export async function toggleBlockDomain(relationship: akkoma.v1.Relationship, account: akkoma.v1.Account) {
+  const { client } = useAkko()
   const i18n = useNuxtApp().$i18n
 
   if (!relationship!.domainBlocking) {

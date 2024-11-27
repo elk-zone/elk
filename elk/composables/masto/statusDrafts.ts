@@ -1,4 +1,4 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { ComputedRef, Ref } from 'vue'
 import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { DraftItem, DraftMap } from '~/types'
@@ -15,7 +15,7 @@ export const builtinDraftKeys = [
 
 const ALL_VISIBILITY = ['public', 'unlisted', 'private', 'direct'] as const
 
-function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
+function getDefaultVisibility(currentVisibility: akkoma.v1.StatusVisibility) {
   // The default privacy only should be taken into account if it makes
   // the post more private than the replying to post
   const preferredVisibility = currentUser.value?.account.source.privacy || 'public'
@@ -25,7 +25,7 @@ function getDefaultVisibility(currentVisibility: mastodon.v1.StatusVisibility) {
     : preferredVisibility
 }
 
-export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.CreateStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
+export function getDefaultDraftItem(options: Partial<Mutable<akkoma.rest.v1.CreateStatusParams> & Omit<DraftItem, 'params'>> = {}): DraftItem {
   const {
     attachments = [],
     initialText = '',
@@ -56,7 +56,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<mastodon.rest.v1.Cr
   }
 }
 
-export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<DraftItem> {
+export async function getDraftFromStatus(status: akkoma.v1.Status): Promise<DraftItem> {
   const info = {
     status: await convertMastodonHTML(status.content),
     visibility: status.visibility,
@@ -82,7 +82,7 @@ export async function getDraftFromStatus(status: mastodon.v1.Status): Promise<Dr
       })
 }
 
-function getAccountsToMention(status: mastodon.v1.Status) {
+function getAccountsToMention(status: akkoma.v1.Status) {
   const userId = currentUser.value?.account.id
   const accountsToMention = new Set<string>()
   if (status.account.id !== userId)
@@ -94,7 +94,7 @@ function getAccountsToMention(status: mastodon.v1.Status) {
   return Array.from(accountsToMention)
 }
 
-export function getReplyDraft(status: mastodon.v1.Status) {
+export function getReplyDraft(status: akkoma.v1.Status) {
   const accountsToMention = getAccountsToMention(status)
   return {
     key: `reply-${status.id}`,
@@ -169,13 +169,13 @@ export function useDraft(
   return { draftItems, isEmpty }
 }
 
-export function mentionUser(account: mastodon.v1.Account) {
+export function mentionUser(account: akkoma.v1.Account) {
   openPublishDialog('dialog', getDefaultDraftItem({
     status: `@${account.acct} `,
   }))
 }
 
-export function directMessageUser(account: mastodon.v1.Account) {
+export function directMessageUser(account: akkoma.v1.Account) {
   openPublishDialog('dialog', getDefaultDraftItem({
     status: `@${account.acct} `,
     visibility: 'direct',

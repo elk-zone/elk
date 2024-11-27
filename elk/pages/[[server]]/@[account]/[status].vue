@@ -19,7 +19,7 @@ const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   () => fetchStatus(id.value, true),
   { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef() },
 )
-const { client } = useMasto()
+const { client } = useAkko()
 const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
   `context:${id.value}`,
   async () => client.value.v1.statuses.$select(id.value).context.fetch(),

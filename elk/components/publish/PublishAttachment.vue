@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const props = withDefaults(defineProps<{
-  attachment: mastodon.v1.MediaAttachment
+  attachment: akkoma.v1.MediaAttachment
   alt?: string
   removable?: boolean
   dialogLabelledBy?: string

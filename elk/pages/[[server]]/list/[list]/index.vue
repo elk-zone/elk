@@ -31,7 +31,7 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
 ],
 )
 
-const { client } = useMasto()
+const { client } = useAkko()
 const { data: listInfo, refresh } = await useAsyncData(() => client.value.v1.lists.$select(list.value).fetch(), { default: () => shallowRef() })
 
 if (listInfo) {

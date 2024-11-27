@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const params = useRoute().params
 const handle = computed(() => params.account as string)
@@ -10,11 +10,11 @@ const { t } = useI18n()
 
 const account = await fetchAccountByHandle(handle.value)
 
-function reorderAndFilter(items: mastodon.v1.Status[]) {
+function reorderAndFilter(items: akkoma.v1.Status[]) {
   return reorderedTimeline(items, 'account')
 }
 
-const paginator = useMastoClient().v1.accounts.$select(account.id).statuses.list({ limit: 30, excludeReplies: true })
+const paginator = useAkkoClient().v1.accounts.$select(account.id).statuses.list({ limit: 30, excludeReplies: true })
 
 if (account) {
   useHydratedHead({

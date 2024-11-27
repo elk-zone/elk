@@ -3,7 +3,7 @@ import { STORAGE_KEY_HIDE_EXPLORE_TAGS_TIPS, STORAGE_KEY_LAST_ACCESSED_EXPLORE_R
 
 const { t } = useI18n()
 const route = useRoute()
-const { client } = useMasto()
+const { client } = useAkko()
 
 const paginator = client.value.v1.trends.tags.list({
   limit: 20,

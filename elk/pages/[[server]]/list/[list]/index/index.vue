@@ -6,7 +6,7 @@ definePageMeta({
 const params = useRoute().params
 const listId = computed(() => params.list as string)
 
-const client = useMastoClient()
+const client = useAkkoClient()
 
 const paginator = client.v1.timelines.list.$select(listId.value).list()
 const stream = useStreaming(client => client.list.subscribe({ list: listId.value }))

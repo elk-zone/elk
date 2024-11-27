@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { client } = useMasto()
+const { client } = useAkko()
 const paginator = client.value.v1.domainBlocks.list()
 
 async function unblock(domain: string) {

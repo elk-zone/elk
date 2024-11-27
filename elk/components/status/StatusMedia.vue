@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { status, isPreview = false } = defineProps<{
-  status: mastodon.v1.Status | mastodon.v1.StatusEdit
+  status: akkoma.v1.Status | akkoma.v1.StatusEdit
   fullSize?: boolean
   isPreview?: boolean
 }>()

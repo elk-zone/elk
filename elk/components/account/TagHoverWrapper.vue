@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 defineOptions({
   inheritAttrs: false,
@@ -10,7 +10,7 @@ const { tagName, disabled } = defineProps<{
   disabled?: boolean
 }>()
 
-const tag = ref<mastodon.v1.Tag>()
+const tag = ref<akkoma.v1.Tag>()
 const tagHover = ref()
 const hovered = useElementHover(tagHover)
 

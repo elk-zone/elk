@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   const server = to.params.server as string || currentServer.value
   const user = currentUser.value
-  const masto = useMasto()
+  const masto = useAkko()
   if (!user) {
     const fromServer = from.params.server || currentServer.value
     if (fromServer !== server)

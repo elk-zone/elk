@@ -1,9 +1,9 @@
 import type { MaybeRefOrGetter } from '@vueuse/core'
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { RouteLocation } from 'vue-router'
 
 export type UseSearchOptions = MaybeRefOrGetter<
-  Partial<Omit<mastodon.rest.v2.SearchParams, keyof mastodon.DefaultPaginationParams | 'q'>>
+  Partial<Omit<akkoma.rest.v2.SearchParams, keyof akkoma.DefaultPaginationParams | 'q'>>
 >
 
 export interface BuildSearchResult<K extends keyof any, T> {
@@ -14,15 +14,15 @@ export interface BuildSearchResult<K extends keyof any, T> {
     href: string
   }
 }
-export type AccountSearchResult = BuildSearchResult<'account', mastodon.v1.Account>
-export type HashTagSearchResult = BuildSearchResult<'hashtag', mastodon.v1.Tag>
-export type StatusSearchResult = BuildSearchResult<'status', mastodon.v1.Status>
+export type AccountSearchResult = BuildSearchResult<'account', akkoma.v1.Account>
+export type HashTagSearchResult = BuildSearchResult<'hashtag', akkoma.v1.Tag>
+export type StatusSearchResult = BuildSearchResult<'status', akkoma.v1.Status>
 
 export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSearchResult
 
 export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOptions = {}) {
   const done = ref(false)
-  const { client } = useMasto()
+  const { client } = useAkko()
   const loading = ref(false)
   const accounts = ref<AccountSearchResult[]>([])
   const hashtags = ref<HashTagSearchResult[]>([])
@@ -30,9 +30,9 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
 
   const q = computed(() => resolveUnref(query).trim())
 
-  let paginator: mastodon.Paginator<mastodon.v2.Search, mastodon.rest.v2.SearchParams> | undefined
+  let paginator: akkoma.Paginator<akkoma.v2.Search, akkoma.rest.v2.SearchParams> | undefined
 
-  const appendResults = (results: mastodon.v2.Search, empty = false) => {
+  const appendResults = (results: akkoma.v2.Search, empty = false) => {
     if (empty) {
       accounts.value = []
       hashtags.value = []

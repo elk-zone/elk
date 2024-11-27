@@ -1,15 +1,15 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
 type CountField = 'reblogsCount' | 'favouritesCount'
 
 export interface StatusActionsProps {
-  status: mastodon.v1.Status
+  status: akkoma.v1.Status
 }
 
 export function useStatusActions(props: StatusActionsProps) {
-  const status = ref<mastodon.v1.Status>({ ...props.status })
-  const { client } = useMasto()
+  const status = ref<akkoma.v1.Status>({ ...props.status })
+  const { client } = useAkko()
 
   watch(
     () => props.status,
@@ -27,7 +27,7 @@ export function useStatusActions(props: StatusActionsProps) {
     muted: false,
   })
 
-  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<mastodon.v1.Status>, countField?: CountField) {
+  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<akkoma.v1.Status>, countField?: CountField) {
     // check login
     if (!checkLogin())
       return

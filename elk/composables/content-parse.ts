@@ -1,5 +1,5 @@
 // @unimport-disable
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { Node } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { decode } from 'tiny-decode'
@@ -7,16 +7,16 @@ import { DOCUMENT_NODE, ELEMENT_NODE, h, parse, render, TEXT_NODE } from 'ultrah
 import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 export interface ContentParseOptions {
-  emojis?: Record<string, mastodon.v1.CustomEmoji>
+  emojis?: Record<string, akkoma.v1.CustomEmoji>
   hideEmojis?: boolean
-  mentions?: mastodon.v1.StatusMention[]
+  mentions?: akkoma.v1.StatusMention[]
   markdown?: boolean
   replaceUnicodeEmoji?: boolean
   astTransforms?: Transform[]
   convertMentionLink?: boolean
   collapseMentionLink?: boolean
-  status?: mastodon.v1.Status
-  inReplyToStatus?: mastodon.v1.Status
+  status?: akkoma.v1.Status
+  inReplyToStatus?: akkoma.v1.Status
 }
 
 const sanitizerBasicClasses = filterClasses(/^h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible$/u)
@@ -151,7 +151,7 @@ export function parseMastodonHTML(
  * @param html The content to parse
  * @param customEmojis The custom emojis to use
  */
-export function convertMastodonHTML(html: string, customEmojis: Record<string, mastodon.v1.CustomEmoji> = {}) {
+export function convertMastodonHTML(html: string, customEmojis: Record<string, akkoma.v1.CustomEmoji> = {}) {
   const tree = parseMastodonHTML(html, {
     emojis: customEmojis,
     markdown: true,
@@ -418,7 +418,7 @@ function transformUnicodeEmoji(node: Node) {
   return matches.filter(Boolean)
 }
 
-function removeCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji>): Transform {
+function removeCustomEmoji(customEmojis: Record<string, akkoma.v1.CustomEmoji>): Transform {
   return (node) => {
     if (node.type !== TEXT_NODE)
       return node
@@ -431,7 +431,7 @@ function removeCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji>
       if (i % 2 === 0)
         return name
 
-      const emoji = customEmojis[name] as mastodon.v1.CustomEmoji
+      const emoji = customEmojis[name] as akkoma.v1.CustomEmoji
       if (!emoji)
         return `:${name}:`
 
@@ -440,7 +440,7 @@ function removeCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji>
   }
 }
 
-function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji>): Transform {
+function replaceCustomEmoji(customEmojis: Record<string, akkoma.v1.CustomEmoji>): Transform {
   return (node) => {
     if (node.type !== TEXT_NODE)
       return node
@@ -453,7 +453,7 @@ function replaceCustomEmoji(customEmojis: Record<string, mastodon.v1.CustomEmoji
       if (i % 2 === 0)
         return name
 
-      const emoji = customEmojis[name] as mastodon.v1.CustomEmoji
+      const emoji = customEmojis[name] as akkoma.v1.CustomEmoji
       if (!emoji)
         return `:${name}:`
 
@@ -565,7 +565,7 @@ function getMentionHandle(node: Node): string | undefined {
   return hrefToHandle(node.children?.[0].attributes.href) ?? node.children?.[0]?.children?.[0]?.attributes?.['data-id']
 }
 
-function transformCollapseMentions(status?: mastodon.v1.Status, inReplyToStatus?: mastodon.v1.Status): Transform {
+function transformCollapseMentions(status?: akkoma.v1.Status, inReplyToStatus?: akkoma.v1.Status): Transform {
   let processed = false
 
   return (node: Node, root: Node): Node | Node[] => {
@@ -667,7 +667,7 @@ function transformMentionLink(node: Node): string | Node | (string | Node)[] | n
   return node
 }
 
-function createTransformNamedMentions(mentions: mastodon.v1.StatusMention[]) {
+function createTransformNamedMentions(mentions: akkoma.v1.StatusMention[]) {
   return (node: Node): string | Node | (string | Node)[] | null => {
     if (node.name === 'a' && node.attributes.class?.includes('mention')) {
       const href = node.attributes.href

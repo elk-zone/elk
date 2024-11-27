@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { EditorContent } from '@tiptap/vue-3'
 import stringLength from 'string-length'
 import type { DraftItem } from '~/types'
@@ -19,13 +19,13 @@ const {
   threadComposer?: ReturnType<typeof useThreadComposer>
   placeholder?: string
   inReplyToId?: string
-  inReplyToVisibility?: mastodon.v1.StatusVisibility
+  inReplyToVisibility?: akkoma.v1.StatusVisibility
   expanded?: boolean
   dialogLabelledBy?: string
 }>()
 
 const emit = defineEmits<{
-  (evt: 'published', status: mastodon.v1.Status): void
+  (evt: 'published', status: akkoma.v1.Status): void
 }>()
 
 const { t } = useI18n()

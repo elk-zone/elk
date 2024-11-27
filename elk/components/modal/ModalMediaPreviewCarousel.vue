@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Vector2 } from '@vueuse/gesture'
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { useGesture } from '@vueuse/gesture'
 import { useReducedMotion } from '@vueuse/motion'
 
 const { media = [] } = defineProps<{
-  media?: mastodon.v1.MediaAttachment[]
+  media?: akkoma.v1.MediaAttachment[]
 }>()
 
 const emit = defineEmits<{

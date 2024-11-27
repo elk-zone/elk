@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { DraftItem } from '~/types'
 
 const {
@@ -15,7 +15,7 @@ const {
   initial?: () => DraftItem
   placeholder?: string
   inReplyToId?: string
-  inReplyToVisibility?: mastodon.v1.StatusVisibility
+  inReplyToVisibility?: akkoma.v1.StatusVisibility
   expanded?: boolean
   dialogLabelledBy?: string
 }>()

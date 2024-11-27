@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { status, context } = defineProps<{
-  status: mastodon.v1.Status
-  newer?: mastodon.v1.Status
-  context?: mastodon.v2.FilterContext | 'details'
+  status: akkoma.v1.Status
+  newer?: akkoma.v1.Status
+  context?: akkoma.v2.FilterContext | 'details'
   isPreview?: boolean
   inNotification?: boolean
 }>()

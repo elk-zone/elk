@@ -29,7 +29,7 @@ export const elkTeamMembers: Team[] = [
     display: 'Daniel Roe',
     twitter: 'danielcroe',
     mastodon: 'daniel@roe.dev',
-    link: '/mastodon.roe.dev/@daniel',
+    link: '/akkoma.roe.dev/@daniel',
   },
   {
     github: 'sxzz',

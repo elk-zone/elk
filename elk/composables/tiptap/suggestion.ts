@@ -1,6 +1,6 @@
 import type { Emoji, EmojiMartData } from '@emoji-mart/data'
 import type { SuggestionOptions } from '@tiptap/suggestion'
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { GetReferenceClientRect, Instance } from 'tippy.js'
 import type { Component } from 'vue'
 import { VueRenderer } from '@tiptap/vue-3'
@@ -13,7 +13,7 @@ import { currentCustomEmojis, updateCustomEmojis } from '~/composables/emojis'
 
 export type { Emoji }
 
-export type CustomEmoji = (mastodon.v1.CustomEmoji & { custom: true })
+export type CustomEmoji = (akkoma.v1.CustomEmoji & { custom: true })
 export function isCustomEmoji(emoji: CustomEmoji | Emoji): emoji is CustomEmoji {
   return !!(emoji as CustomEmoji).custom
 }
@@ -27,7 +27,7 @@ export const TiptapMentionSuggestion: Partial<SuggestionOptions> = import.meta.s
         if (query.length === 0)
           return []
 
-        const paginator = useMastoClient().v2.search.list({ q: query, type: 'accounts', limit: 25, resolve: true })
+        const paginator = useAkkoClient().v2.search.list({ q: query, type: 'accounts', limit: 25, resolve: true })
         return (await paginator.next()).value?.accounts ?? []
       },
       render: createSuggestionRenderer(TiptapMentionList),
@@ -40,7 +40,7 @@ export const TiptapHashtagSuggestion: Partial<SuggestionOptions> = {
     if (query.length === 0)
       return []
 
-    const paginator = useMastoClient().v2.search.list({
+    const paginator = useAkkoClient().v2.search.list({
       q: query,
       type: 'hashtags',
       limit: 25,

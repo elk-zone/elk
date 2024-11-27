@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 definePageMeta({
   middleware: 'auth',
@@ -7,7 +7,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-const client = useMastoClient()
+const client = useAkkoClient()
 
 const paginator = client.v1.lists.list()
 
@@ -57,7 +57,7 @@ function clearError(focusBtn: boolean) {
   }
 }
 
-function updateEntry(list: mastodon.v1.List) {
+function updateEntry(list: akkoma.v1.List) {
   paginatorRef.value?.updateEntry(list)
 }
 function removeEntry(id: string) {

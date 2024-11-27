@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { account } = defineProps<{
-  account: mastodon.v1.Account
+  account: akkoma.v1.Account
   hoverCard?: boolean
   relationshipContext?: 'followedBy' | 'following'
 }>()

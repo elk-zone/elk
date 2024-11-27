@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const props = withDefaults(defineProps<{
-  status: mastodon.v1.Status
-  newer?: mastodon.v1.Status
+  status: akkoma.v1.Status
+  newer?: akkoma.v1.Status
   command?: boolean
   actions?: boolean
 }>(), {

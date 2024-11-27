@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { tag } = defineProps<{
-  tag: mastodon.v1.Tag
+  tag: akkoma.v1.Tag
 }>()
 
 const to = computed(() => {

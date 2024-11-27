@@ -88,7 +88,7 @@ exports[`content-rich > collapse mentions 1`] = `
     ><a
       class="u-url mention"
       rel="nofollow noopener noreferrer"
-      to="/mastodon.roe.dev/@daniel"
+      to="/akkoma.roe.dev/@daniel"
       ><bdi>@<span>daniel</span></bdi></a
     ></span
   >

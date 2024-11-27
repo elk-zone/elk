@@ -1,4 +1,4 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, ErrorDialogData } from '~/types'
 
@@ -6,14 +6,14 @@ export const confirmDialogChoice = ref<ConfirmDialogChoice>()
 export const confirmDialogLabel = ref<ConfirmDialogOptions>()
 export const errorDialogData = ref<ErrorDialogData>()
 
-export const mediaPreviewList = ref<mastodon.v1.MediaAttachment[]>([])
+export const mediaPreviewList = ref<akkoma.v1.MediaAttachment[]>([])
 export const mediaPreviewIndex = ref(0)
 
-export const statusEdit = ref<mastodon.v1.StatusEdit>()
+export const statusEdit = ref<akkoma.v1.StatusEdit>()
 export const dialogDraftKey = ref<string>()
 
-export const reportAccount = ref<mastodon.v1.Account>()
-export const reportStatus = ref<mastodon.v1.Status>()
+export const reportAccount = ref<akkoma.v1.Account>()
+export const reportStatus = ref<akkoma.v1.Status>()
 
 export const commandPanelInput = ref('')
 
@@ -31,7 +31,7 @@ export const isErrorDialogOpen = ref(false)
 export const isFavouritedBoostedByDialogOpen = ref(false)
 export const isReportDialogOpen = ref(false)
 
-export const lastPublishDialogStatus = ref<mastodon.v1.Status | null>(null)
+export const lastPublishDialogStatus = ref<akkoma.v1.Status | null>(null)
 
 export const favouritedBoostedByStatusId = ref<string | null>(null)
 
@@ -95,7 +95,7 @@ if (import.meta.client) {
   restoreMediaPreviewFromState()
 }
 
-export function openMediaPreview(attachments: mastodon.v1.MediaAttachment[], index = 0) {
+export function openMediaPreview(attachments: akkoma.v1.MediaAttachment[], index = 0) {
   mediaPreviewList.value = attachments
   mediaPreviewIndex.value = index
   isMediaPreviewOpen.value = true
@@ -123,7 +123,7 @@ export function closeMediaPreview() {
   history.back()
 }
 
-export function openEditHistoryDialog(edit: mastodon.v1.StatusEdit) {
+export function openEditHistoryDialog(edit: akkoma.v1.StatusEdit) {
   statusEdit.value = edit
   isEditHistoryDialogOpen.value = true
 }
@@ -153,7 +153,7 @@ export function closeKeyboardShortcuts() {
   isKeyboardShortcutsDialogOpen.value = false
 }
 
-export function openReportDialog(account: mastodon.v1.Account, status?: mastodon.v1.Status) {
+export function openReportDialog(account: akkoma.v1.Account, status?: akkoma.v1.Status) {
   reportAccount.value = account
   reportStatus.value = status
   isReportDialogOpen.value = true

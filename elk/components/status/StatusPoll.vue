@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { status } = defineProps<{
-  status: mastodon.v1.Status
+  status: akkoma.v1.Status
 }>()
 const poll = reactive({ ...status.poll! })
 
@@ -15,7 +15,7 @@ const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)
 const expiredTimeFormatted = useFormattedDateTime(poll.expiresAt!)
 const { formatPercentage } = useHumanReadableNumber()
 
-const { client } = useMasto()
+const { client } = useAkko()
 
 async function vote(e: Event) {
   const formData = new FormData(e.target as HTMLFormElement)

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const props = defineProps<{
-  status: mastodon.v1.Status
+  status: akkoma.v1.Status
   details?: boolean
   command?: boolean
 }>()

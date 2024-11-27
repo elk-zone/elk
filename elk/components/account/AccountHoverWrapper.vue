@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { fetchAccountByHandle } from '~/composables/cache'
 
-type WatcherType = [acc?: mastodon.v1.Account | null, h?: string, v?: boolean]
+type WatcherType = [acc?: akkoma.v1.Account | null, h?: string, v?: boolean]
 
 defineOptions({
   inheritAttrs: false,
 })
 
 const props = defineProps<{
-  account?: mastodon.v1.Account | null
+  account?: akkoma.v1.Account | null
   handle?: string
   disabled?: boolean
 }>()
 
 const accountHover = ref()
 const hovered = useElementHover(accountHover)
-const account = ref<mastodon.v1.Account | null | undefined>(props.account)
+const account = ref<akkoma.v1.Account | null | undefined>(props.account)
 
 watch(
   () => [props.account, props.handle, hovered.value] satisfies WatcherType,

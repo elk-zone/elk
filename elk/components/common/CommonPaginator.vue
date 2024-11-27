@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T, O, U = T">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
@@ -13,10 +13,10 @@ const {
   preprocess,
   endMessage = true,
 } = defineProps<{
-  paginator: mastodon.Paginator<T[], O>
+  paginator: akkoma.Paginator<T[], O>
   keyProp?: keyof T
   virtualScroller?: boolean
-  stream?: mastodon.streaming.Subscription
+  stream?: akkoma.streaming.Subscription
   eventType?: 'update' | 'notification'
   preprocess?: (items: (U | T)[]) => U[]
   endMessage?: boolean | string

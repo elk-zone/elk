@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { toggleBlockAccount, toggleBlockDomain, toggleMuteAccount } from '~~/composables/masto/relationship'
 
 const { account } = defineProps<{
-  account: mastodon.v1.Account
+  account: akkoma.v1.Account
   command?: boolean
 }>()
 const emit = defineEmits<{
@@ -16,7 +16,7 @@ const relationship = useRelationship(account)
 const isSelf = useSelfAccount(() => account)
 
 const { t } = useI18n()
-const { client } = useMasto()
+const { client } = useAkko()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 const { share, isSupported: isShareSupported } = useShare()
 

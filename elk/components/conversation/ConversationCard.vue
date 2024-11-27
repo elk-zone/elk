@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { conversation } = defineProps<{
-  conversation: mastodon.v1.Conversation
+  conversation: akkoma.v1.Conversation
 }>()
 
 const withAccounts = computed(() =>

@@ -1,5 +1,5 @@
 import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import type { EffectScope, Ref } from 'vue'
 import type { ElkMasto } from './masto/masto'
 import { withoutProtocol } from 'ufo'
@@ -20,14 +20,14 @@ const mock = process.mock
 const users: Ref<UserLogin[]> | RemovableRef<UserLogin[]> = import.meta.server ? ref<UserLogin[]>([]) : ref<UserLogin[]>([]) as RemovableRef<UserLogin[]>
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
 export const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
-export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance | AkkomaInstance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
+export const instanceStorage = useLocalStorage<Record<string, akkoma.v1.Instance | AkkomaInstance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 
-export type ElkInstance = Partial<mastodon.v1.Instance> & {
+export type ElkInstance = Partial<akkoma.v1.Instance> & {
   uri: string
   /** support GoToSocial */
   accountDomain?: string | null
 }
-export function getInstanceCache(server: string): mastodon.v1.Instance | undefined {
+export function getInstanceCache(server: string): akkoma.v1.Instance | undefined {
   return instanceStorage.value[server]
 }
 
@@ -65,7 +65,7 @@ export const isGlitchEdition = computed(() => currentInstance.value?.version?.in
 export function useUsers() {
   return users
 }
-export function useSelfAccount(user: MaybeRefOrGetter<mastodon.v1.Account | undefined>) {
+export function useSelfAccount(user: MaybeRefOrGetter<akkoma.v1.Account | undefined>) {
   return computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
 }
 
@@ -73,7 +73,7 @@ export const characterLimit = computed(() => currentInstance.value?.configuratio
 
 export async function loginTo(
   masto: ElkMasto,
-  user: Overwrite<UserLogin, { account?: mastodon.v1.AccountCredentials }>,
+  user: Overwrite<UserLogin, { account?: akkoma.v1.AccountCredentials }>,
 ) {
   const { client } = masto
   const instance = mastoLogin(masto, user)
@@ -123,13 +123,13 @@ export async function loginTo(
   currentUserHandle.value = me.acct
 }
 
-const accountPreferencesMap = new Map<string, Partial<mastodon.v1.Preference>>()
+const accountPreferencesMap = new Map<string, Partial<akkoma.v1.Preference>>()
 
 /**
  * @param account
  * @returns `true` when user ticked the preference to always expand posts with content warnings
  */
-export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentials) {
+export function getExpandSpoilersByDefault(account: akkoma.v1.AccountCredentials) {
   return accountPreferencesMap.get(account.acct)?.['reading:expand:spoilers'] ?? false
 }
 
@@ -137,7 +137,7 @@ export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentia
  * @param account
  * @returns `true` when user selected "Always show media" as Media Display preference
  */
-export function getExpandMediaByDefault(account: mastodon.v1.AccountCredentials) {
+export function getExpandMediaByDefault(account: akkoma.v1.AccountCredentials) {
   return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'show_all'
 }
 
@@ -145,13 +145,13 @@ export function getExpandMediaByDefault(account: mastodon.v1.AccountCredentials)
  * @param account
  * @returns `true` when user selected "Always hide media" as Media Display preference
  */
-export function getHideMediaByDefault(account: mastodon.v1.AccountCredentials) {
+export function getHideMediaByDefault(account: akkoma.v1.AccountCredentials) {
   return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'hide_all'
 }
 
-export async function fetchAccountInfo(client: mastodon.rest.Client, server: string) {
+export async function fetchAccountInfo(client: akkoma.rest.Client, server: string) {
   // Try to fetch user preferences if the backend supports it.
-  const fetchPrefs = async (): Promise<Partial<mastodon.v1.Preference>> => {
+  const fetchPrefs = async (): Promise<Partial<akkoma.v1.Preference>> => {
     try {
       return await client.v1.preferences.fetch()
     }
@@ -185,7 +185,7 @@ export function getInstanceDomainFromServer(server: string) {
 }
 
 export async function refreshAccountInfo() {
-  const account = await fetchAccountInfo(useMastoClient(), currentServer.value)
+  const account = await fetchAccountInfo(useAkkoClient(), currentServer.value)
   currentUser.value!.account = account
   return account
 }
@@ -224,11 +224,11 @@ export async function removePushNotifications(user: UserLogin) {
     return
 
   // unsubscribe push notifications
-  await useMastoClient().v1.push.subscription.remove().catch(() => Promise.resolve())
+  await useAkkoClient().v1.push.subscription.remove().catch(() => Promise.resolve())
 }
 
 export async function switchUser(user: UserLogin) {
-  const masto = useMasto()
+  const masto = useAkko()
 
   await loginTo(masto, user)
 
@@ -248,7 +248,7 @@ export async function signOut() {
   if (!currentUser.value)
     return
 
-  const masto = useMasto()
+  const masto = useAkko()
 
   const _currentUserId = currentUser.value.account.id
 
@@ -343,7 +343,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
  * Clear all storages for the given account
  * @param account
  */
-export function clearUserLocalStorage(account?: mastodon.v1.Account) {
+export function clearUserLocalStorage(account?: akkoma.v1.Account) {
   if (!account)
     account = currentUser.value?.account
   if (!account)

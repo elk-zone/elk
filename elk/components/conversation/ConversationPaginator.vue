@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { paginator } = defineProps<{
-  paginator: mastodon.Paginator<mastodon.v1.Conversation[], mastodon.DefaultPaginationParams>
+  paginator: akkoma.Paginator<akkoma.v1.Conversation[], akkoma.DefaultPaginationParams>
 }>()
 
-function preprocess(items: mastodon.v1.Conversation[]): mastodon.v1.Conversation[] {
-  const isAuthored = (conversation: mastodon.v1.Conversation) => conversation.lastStatus ? conversation.lastStatus.account.id === currentUser.value?.account.id : false
+function preprocess(items: akkoma.v1.Conversation[]): akkoma.v1.Conversation[] {
+  const isAuthored = (conversation: akkoma.v1.Conversation) => conversation.lastStatus ? conversation.lastStatus.account.id === currentUser.value?.account.id : false
   return items.filter(item => isAuthored(item) || !item.lastStatus?.filtered?.find(
     filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('thread'),
   ))

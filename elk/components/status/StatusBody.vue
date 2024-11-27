@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const {
   status,
   newer,
   withAction = true,
 } = defineProps<{
-  status: mastodon.v1.Status | mastodon.v1.StatusEdit
-  newer?: mastodon.v1.Status
+  status: akkoma.v1.Status | akkoma.v1.StatusEdit
+  newer?: akkoma.v1.Status
   withAction?: boolean
 }>()
 

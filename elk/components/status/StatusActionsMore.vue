@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { toggleBlockAccount, toggleMuteAccount, useRelationship } from '~~/composables/masto/relationship'
 
 const props = defineProps<{
-  status: mastodon.v1.Status
+  status: akkoma.v1.Status
   details?: boolean
   command?: boolean
 }>()
@@ -33,29 +33,29 @@ const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const isAuthor = computed(() => status.value.account.id === currentUser.value?.account.id)
 
-const { client } = useMasto()
+const { client } = useAkko()
 
-function getPermalinkUrl(status: mastodon.v1.Status) {
+function getPermalinkUrl(status: akkoma.v1.Status) {
   const url = getStatusPermalinkRoute(status)
   if (url)
     return `${location.origin}/${url}`
   return null
 }
 
-async function copyLink(status: mastodon.v1.Status) {
+async function copyLink(status: akkoma.v1.Status) {
   const url = getPermalinkUrl(status)
   if (url)
     await clipboard.copy(url)
 }
 
-async function copyOriginalLink(status: mastodon.v1.Status) {
+async function copyOriginalLink(status: akkoma.v1.Status) {
   const url = status.url
   if (url)
     await clipboard.copy(url)
 }
 
 const { share, isSupported: isShareSupported } = useShare()
-async function shareLink(status: mastodon.v1.Status) {
+async function shareLink(status: akkoma.v1.Status) {
   const url = getPermalinkUrl(status)
   if (url)
     await share({ url })

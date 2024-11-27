@@ -5,7 +5,7 @@ definePageMeta({
 
 const { t } = useI18n()
 
-const { client } = useMasto()
+const { client } = useAkko()
 const paginator = client.value.v1.followedTags.list({
   limit: 20,
 })

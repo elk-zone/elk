@@ -246,7 +246,7 @@ export function provideGlobalCommands() {
   const { locale, t } = useI18n()
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
   const users = useUsers()
-  const masto = useMasto()
+  const masto = useAkko()
   const colorMode = useColorMode()
   const userSettings = useUserSettings()
   const { singleInstanceServer, oauth } = useSignIn()

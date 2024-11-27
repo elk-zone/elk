@@ -1,23 +1,23 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const maxDistance = 10
 const maxSteps = 1000
 
 // Checks if (b) is a reply to (a)
-function areStatusesConsecutive(a: mastodon.v1.Status, b: mastodon.v1.Status) {
+function areStatusesConsecutive(a: akkoma.v1.Status, b: akkoma.v1.Status) {
   const inReplyToId = b.inReplyToId ?? b.reblog?.inReplyToId
   return !!inReplyToId && (inReplyToId === a.reblog?.id || inReplyToId === a.id)
 }
 
-function removeFilteredItems(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext): mastodon.v1.Status[] {
-  const isStrict = (filter: mastodon.v1.FilterResult) => filter.filter.filterAction === 'hide' && filter.filter.context.includes(context)
-  const isFiltered = (item: mastodon.v1.Status) => (item.account.id === currentUser.value?.account.id) || !item.filtered?.find(isStrict)
-  const isReblogFiltered = (item: mastodon.v1.Status) => !item.reblog?.filtered?.find(isStrict)
+function removeFilteredItems(items: akkoma.v1.Status[], context: akkoma.v1.FilterContext): akkoma.v1.Status[] {
+  const isStrict = (filter: akkoma.v1.FilterResult) => filter.filter.filterAction === 'hide' && filter.filter.context.includes(context)
+  const isFiltered = (item: akkoma.v1.Status) => (item.account.id === currentUser.value?.account.id) || !item.filtered?.find(isStrict)
+  const isReblogFiltered = (item: akkoma.v1.Status) => !item.reblog?.filtered?.find(isStrict)
 
   return [...items].filter(isFiltered).filter(isReblogFiltered)
 }
 
-export function reorderedTimeline(items: mastodon.v1.Status[], context: mastodon.v1.FilterContext = 'public') {
+export function reorderedTimeline(items: akkoma.v1.Status[], context: akkoma.v1.FilterContext = 'public') {
   let steps = 0
 
   const newItems = removeFilteredItems(items, context)

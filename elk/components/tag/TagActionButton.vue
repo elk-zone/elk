@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { tag } = defineProps<{
-  tag: mastodon.v1.Tag
+  tag: akkoma.v1.Tag
 }>()
 
 const emit = defineEmits<{
   (event: 'change'): void
 }>()
 
-const { client } = useMasto()
+const { client } = useAkko()
 
 async function toggleFollowTag() {
   // We save the state so be can do an optimistic UI update, but fallback to the previous state if the API call fails

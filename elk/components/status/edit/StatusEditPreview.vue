@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { edit } = defineProps<{
-  edit: mastodon.v1.StatusEdit
+  edit: akkoma.v1.StatusEdit
 }>()
 </script>
 

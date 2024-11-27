@@ -246,7 +246,7 @@ export default defineNuxtConfig({
         })
 
         const noExternal = config.ssr!.noExternal as string[]
-        noExternal.push('masto', '@fnando/sparkline', 'vue-i18n', '@mastojs/ponyfills')
+        noExternal.push('akko', '@fnando/sparkline', 'vue-i18n', '@mastojs/ponyfills')
       }
     },
   },

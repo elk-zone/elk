@@ -1,11 +1,11 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
-const notifications = reactive<Record<string, undefined | [Promise<mastodon.streaming.Subscription>, string[]]>>({})
+const notifications = reactive<Record<string, undefined | [Promise<akkoma.streaming.Subscription>, string[]]>>({})
 
 export function useNotifications() {
   const id = currentUser.value?.account.id
 
-  const { client, streamingClient } = useMasto()
+  const { client, streamingClient } = useAkko()
 
   async function clearNotifications() {
     if (!id || !notifications[id])
@@ -21,7 +21,7 @@ export function useNotifications() {
     }
   }
 
-  async function processNotifications(stream: mastodon.streaming.Subscription, id: string) {
+  async function processNotifications(stream: akkoma.streaming.Subscription, id: string) {
     for await (const entry of stream) {
       if (entry.event === 'notification' && notifications[id])
         notifications[id]![1].unshift(entry.payload.id)
@@ -32,8 +32,8 @@ export function useNotifications() {
     if (!isHydrated.value || !id || notifications[id] !== undefined || !currentUser.value?.token)
       return
 
-    let resolveStream: ((value: mastodon.streaming.Subscription | PromiseLike<mastodon.streaming.Subscription>) => void) | undefined
-    const streamPromise = new Promise<mastodon.streaming.Subscription>(resolve => resolveStream = resolve)
+    let resolveStream: ((value: akkoma.streaming.Subscription | PromiseLike<akkoma.streaming.Subscription>) => void) | undefined
+    const streamPromise = new Promise<akkoma.streaming.Subscription>(resolve => resolveStream = resolve)
     notifications[id] = [streamPromise, []]
 
     await until(streamingClient).toBeTruthy()

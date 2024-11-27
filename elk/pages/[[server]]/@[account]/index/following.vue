@@ -6,7 +6,7 @@ const handle = computed(() => params.account as string)
 definePageMeta({ name: 'account-following' })
 
 const account = await fetchAccountByHandle(handle.value)
-const paginator = account ? useMastoClient().v1.accounts.$select(account.id).following.list() : null
+const paginator = account ? useAkkoClient().v1.accounts.$select(account.id).following.list() : null
 
 const isSelf = useSelfAccount(account)
 

@@ -1,4 +1,4 @@
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 import type {
   CreatePushNotification,
@@ -14,7 +14,7 @@ const supportsPushNotifications = typeof window !== 'undefined'
   && 'getKey' in PushSubscription.prototype
 
 export function usePushManager() {
-  const { client } = useMasto()
+  const { client } = useAkko()
   const isSubscribed = ref(false)
   const notificationPermission = ref<PermissionState | undefined>(
     Notification.permission === 'denied'
@@ -61,7 +61,7 @@ export function usePushManager() {
 
   const subscribe = async (
     notificationData?: CreatePushNotification,
-    policy?: mastodon.v1.WebPushSubscriptionPolicy,
+    policy?: akkoma.v1.WebPushSubscriptionPolicy,
     force?: boolean,
   ): Promise<SubscriptionResult> => {
     if (!isSupported.value)
@@ -119,7 +119,7 @@ export function usePushManager() {
     await removePushNotificationData(currentUser.value)
   }
 
-  const saveSettings = async (policy?: mastodon.v1.WebPushSubscriptionPolicy) => {
+  const saveSettings = async (policy?: akkoma.v1.WebPushSubscriptionPolicy) => {
     if (policy)
       pushNotificationData.value.policy = policy
 
@@ -201,8 +201,8 @@ export function usePushManager() {
 }
 
 function createRawSettings(
-  pushSubscription?: mastodon.v1.WebPushSubscription,
-  subscriptionPolicy?: mastodon.v1.WebPushSubscriptionPolicy,
+  pushSubscription?: akkoma.v1.WebPushSubscription,
+  subscriptionPolicy?: akkoma.v1.WebPushSubscriptionPolicy,
 ) {
   return {
     follow: pushSubscription?.alerts.follow ?? true,

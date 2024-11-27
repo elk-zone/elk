@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { account } = defineProps<{
-  account: mastodon.v1.Account
+  account: akkoma.v1.Account
   command?: boolean
 }>()
 
-const { client } = useMasto()
+const { client } = useAkko()
 
 const { t } = useI18n()
 
@@ -18,8 +18,8 @@ const createdAt = useFormattedDateTime(() => account.createdAt, {
 
 const relationship = useRelationship(account)
 
-const namedFields = ref<mastodon.v1.AccountField[]>([])
-const iconFields = ref<mastodon.v1.AccountField[]>([])
+const namedFields = ref<akkoma.v1.AccountField[]>([])
+const iconFields = ref<akkoma.v1.AccountField[]>([])
 const isEditingPersonalNote = ref<boolean>(false)
 const hasHeader = computed(() => !account.header.endsWith('/original/missing.png'))
 const isCopied = ref<boolean>(false)
@@ -63,8 +63,8 @@ async function toggleNotifications() {
 }
 
 watchEffect(() => {
-  const named: mastodon.v1.AccountField[] = []
-  const icons: mastodon.v1.AccountField[] = []
+  const named: akkoma.v1.AccountField[] = []
+  const icons: akkoma.v1.AccountField[] = []
 
   account.fields?.forEach((field) => {
     const icon = getAccountFieldIcon(field.name)

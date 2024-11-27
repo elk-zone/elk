@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { NOTIFICATION_FILTER_TYPES } from '~/constants'
 import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/types'
 
@@ -24,7 +24,7 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
   },
 ])
 
-const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
+const filter = computed<akkoma.v1.NotificationType | undefined>(() => {
   if (!isHydrated.value)
     return undefined
 
@@ -36,7 +36,7 @@ const filter = computed<mastodon.v1.NotificationType | undefined>(() => {
   return undefined
 })
 
-const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
+const filterIconMap: Record<akkoma.v1.NotificationType, string> = {
   'mention': 'i-ri:at-line',
   'status': 'i-ri:account-pin-circle-line',
   'reblog': 'i-ri:repeat-fill',

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import { clamp } from '@vueuse/core'
 import { decode } from 'blurhash'
 
@@ -8,8 +8,8 @@ const {
   fullSize = false,
   isPreview = false,
 } = defineProps<{
-  attachment: mastodon.v1.MediaAttachment
-  attachments?: mastodon.v1.MediaAttachment[]
+  attachment: akkoma.v1.MediaAttachment
+  attachments?: akkoma.v1.MediaAttachment[]
   fullSize?: boolean
   isPreview?: boolean
 }>()

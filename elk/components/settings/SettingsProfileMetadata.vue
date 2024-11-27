@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const form = defineModel<{
-  fieldsAttributes: NonNullable<mastodon.rest.v1.UpdateCredentialsParams['fieldsAttributes']>
+  fieldsAttributes: NonNullable<akkoma.rest.v1.UpdateCredentialsParams['fieldsAttributes']>
 }>({ required: true })
 const dropdown = ref<any>()
 

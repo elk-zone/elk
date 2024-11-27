@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 import sparkline from '@fnando/sparkline'
 
 const {
@@ -7,7 +7,7 @@ const {
   width = 60,
   height = 40,
 } = defineProps<{
-  history?: mastodon.v1.TagHistory[]
+  history?: akkoma.v1.TagHistory[]
   width?: number
   height?: number
 }>()

@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const { paginator, stream, account, buffer = 10, endMessage = true } = defineProps<{
-  paginator: mastodon.Paginator<mastodon.v1.Status[], mastodon.rest.v1.ListAccountStatusesParams>
-  stream?: mastodon.streaming.Subscription
-  context?: mastodon.v2.FilterContext
-  account?: mastodon.v1.Account
-  preprocess?: (items: mastodon.v1.Status[]) => mastodon.v1.Status[]
+  paginator: akkoma.Paginator<akkoma.v1.Status[], akkoma.rest.v1.ListAccountStatusesParams>
+  stream?: akkoma.streaming.Subscription
+  context?: akkoma.v2.FilterContext
+  account?: akkoma.v1.Account
+  preprocess?: (items: akkoma.v1.Status[]) => akkoma.v1.Status[]
   buffer?: number
   endMessage?: boolean | string
 }>()

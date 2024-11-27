@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { mastodon } from 'masto'
+import type { akkoma } from 'akko'
 
 const { paginator } = defineProps<{
-  paginator: mastodon.Paginator<mastodon.v1.Tag[], mastodon.DefaultPaginationParams>
+  paginator: akkoma.Paginator<akkoma.v1.Tag[], akkoma.DefaultPaginationParams>
 }>()
 </script>
 

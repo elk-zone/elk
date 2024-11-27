@@ -35,6 +35,13 @@ export async function createI18n(): Promise<LocalizedWebManifest> {
       { src: 'shortcuts/local.png', sizes: '192x192', type: 'image/png' },
     ],
   }, {
+    name: nav.bubble,
+    url: '/?local-pwa-shortcut=true',
+    icons: [
+      { src: 'shortcuts/local-96x96.png', sizes: '96x96', type: 'image/png' },
+      { src: 'shortcuts/local.png', sizes: '192x192', type: 'image/png' },
+    ],
+  }, {
     name: nav.notifications,
     url: '/?notifications-pwa-shortcut=true',
     icons: [

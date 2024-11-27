@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { akkoma } from 'akko'
-import { toggleFollowAccount, useRelationship } from '~~/composables/masto/relationship'
+import { toggleFollowAccount, useRelationship } from '~/composables/akko/relationship'
 
 const { account, command, context, ...props } = defineProps<{
   account: akkoma.v1.Account

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { CommandScope, QueryResult, QueryResultItem } from '~/composables/command'
-import type { SearchResult as SearchResultType } from '~/composables/masto/search'
+import type { SearchResult as SearchResultType } from '~/composables/akko/search'
 
 const emit = defineEmits<{
   (event: 'close'): void

@@ -2,7 +2,7 @@ import type { LocaleObject } from '@nuxtjs/i18n'
 import type { ComputedRef } from 'vue'
 import Fuse from 'fuse.js'
 import { defineStore } from 'pinia'
-import type { SearchResult } from '~/composables/masto/search'
+import type { SearchResult } from '~/composables/akko/search'
 
 // @unocss-include
 

@@ -307,6 +307,7 @@
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",
     "bookmarks": "Bookmarks",
+    "bubble": "Neighbours",
     "built_at": "Built {0}",
     "compose": "Compose",
     "conversations": "Conversations",
@@ -718,6 +719,7 @@
     "view_older_posts": "Older posts from other instances may not be displayed."
   },
   "title": {
+    "bubble_timeline": "Neighbours Timeline",
     "federated_timeline": "Federated Timeline",
     "local_timeline": "Local Timeline"
   },

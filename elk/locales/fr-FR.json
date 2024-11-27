@@ -273,6 +273,7 @@
     "blocked_domains": "Domaines bloqués",
     "blocked_users": "Comptes bloqués",
     "bookmarks": "Marque-pages",
+    "bubble": "Voisins",
     "built_at": "Dernière compilation {0}",
     "compose": "Composer",
     "conversations": "Conversations",
@@ -666,6 +667,7 @@
     "view_older_posts": "Les messages plus anciens d'autres instances peuvent ne pas être affichés."
   },
   "title": {
+    "bubble_timeline": "Voisins",
     "federated_timeline": "Fil d'actualité fédéré",
     "local_timeline": "Fil d'actualité local"
   },

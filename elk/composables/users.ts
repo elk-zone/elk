@@ -1,7 +1,7 @@
 import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
 import type { akkoma } from 'akko'
 import type { EffectScope, Ref } from 'vue'
-import type { ElkMasto } from './masto/masto'
+import type { ElkMasto } from './akko/akko'
 import { withoutProtocol } from 'ufo'
 import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
 import {

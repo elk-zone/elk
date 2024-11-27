@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { akkoma } from 'akko'
-import { toggleBlockAccount, toggleBlockDomain, toggleMuteAccount } from '~~/composables/masto/relationship'
+import { toggleBlockAccount, toggleBlockDomain, toggleMuteAccount } from '~/composables/akko/relationship'
 
 const { account } = defineProps<{
   account: akkoma.v1.Account

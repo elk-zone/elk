@@ -1,0 +1,84 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - "*"
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  test-unit:
+    name: unit
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.6.1"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build TypeScript
+        run: npm run build
+
+      - name: Run tests
+        run: |
+          npm run lint
+          npm run test:unit
+
+      - name: Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          flags: unit
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  test-e2e:
+    name: e2e
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20.6.1"
+          cache: npm
+
+      - name: Setup Mastodon
+        run: docker compose up -d --quiet-pull
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Wait for http://localhost:3000
+        run: |
+          for i in {1..10}; do
+            curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/api/v2/instance && break
+            sleep 5
+          done
+
+      - name: Run tests
+        run: npm run test:e2e --max-workers=2
+
+      - name: Teardown Mastodon
+        run: docker compose down
+
+      - name: Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          flags: e2e
+          token: ${{ secrets.CODECOV_TOKEN }}

@@ -1,0 +1,17 @@
+---
+version: "2"
+checks:
+  file-lines:
+    enabled: false
+  similar-code:
+    enabled: false
+  method-lines:
+    config:
+      threshold: 40
+  method-count:
+    enabled: false
+  method-complexity:
+    config:
+      threshold: 10
+exclude_patterns:
+  - "**/__tests__/"

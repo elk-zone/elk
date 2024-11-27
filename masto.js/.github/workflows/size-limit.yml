@@ -1,0 +1,15 @@
+# https://github.com/andresz1/size-limit-action
+name: size-limit
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: andresz1/size-limit-action@v1.7.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}

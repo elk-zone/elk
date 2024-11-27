@@ -1,0 +1,12 @@
+{
+  "extends": "..",
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "lib": ["DOM"],
+    "paths": {
+      "masto": ["../src/index.ts"]
+    }
+  },
+  "include": ["./**/*"]
+}

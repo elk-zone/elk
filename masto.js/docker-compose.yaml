@@ -1,0 +1,47 @@
+---
+services:
+  db:
+    restart: always
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=mastodon
+      - POSTGRES_PASSWORD=mastodon
+      - POSTGRES_DB=mastodon
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+
+  redis:
+    restart: always
+    image: redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+
+  mastodon:
+    restart: always
+    image: neetshin/mastodon-dev:4.3.0
+    ports:
+      - "3000:3000"
+      - "4000:4000"
+    depends_on:
+      - db
+      - redis
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "wget -q --spider --proxy=off localhost:3000/health || exit 1",
+        ]
+    env_file:
+      - .env.test
+    environment:
+      - RAILS_ENV=development
+    command: >
+      /bin/bash -c "
+        bundle exec rails db:setup &&
+        foreman start
+      "

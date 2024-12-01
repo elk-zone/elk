@@ -1,5 +1,7 @@
 import { stringifyQuery } from 'ufo'
 
+import { defaultUserAgent } from '~/server/utils/shared'
+
 export default defineEventHandler(async (event) => {
   let { server, origin } = getRouterParams(event)
   server = server.toLocaleLowerCase().trim()
@@ -24,6 +26,9 @@ export default defineEventHandler(async (event) => {
   try {
     const result: any = await $fetch(`https://${server}/oauth/token`, {
       method: 'POST',
+      headers: {
+        'user-agent': defaultUserAgent,
+      },
       body: {
         client_id: app.client_id,
         client_secret: app.client_secret,

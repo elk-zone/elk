@@ -29,7 +29,6 @@ const router = useRouter()
 const route = useRoute()
 const { t } = useI18n()
 const userSettings = useUserSettings()
-const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const isAuthor = computed(() => status.value.account.id === currentUser.value?.account.id)
 
@@ -166,11 +165,9 @@ function showFavoritedAndBoostedBy() {
           <CommonDropdownItem
             is="button"
             :text="status.favourited ? $t('action.favourited') : $t('action.favourite')"
-            :icon="useStarFavoriteIcon
-              ? status.favourited ? 'i-ri:star-fill' : 'i-ri:star-line'
-              : status.favourited ? 'i-ri:heart-3-fill' : 'i-ri:heart-3-line'"
+            :icon="status.favourited ? 'i-ri:thumb-up-fill' : 'i-ri:thumb-up-line'"
             :class="status.favourited
-              ? useStarFavoriteIcon ? 'text-yellow' : 'text-rose'
+              ? 'text-purple'
               : ''
             "
             :command="command"
@@ -183,7 +180,7 @@ function showFavoritedAndBoostedBy() {
             :text="status.bookmarked ? $t('action.bookmarked') : $t('action.bookmark')"
             :icon="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'"
             :class="status.bookmarked
-              ? useStarFavoriteIcon ? 'text-rose' : 'text-yellow'
+              ? 'text-purple'
               : ''
             "
             :command="command"

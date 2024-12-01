@@ -12,7 +12,6 @@ const focusEditor = inject<typeof noop>('focus-editor', noop)
 const { details, command } = props // TODO
 
 const userSettings = useUserSettings()
-const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const {
   status,
@@ -22,6 +21,8 @@ const {
   toggleFavourite,
   toggleReblog,
 } = useStatusActions(props)
+
+const reactionCount = computed(() => status.value.emojiReactions.reduce((acc, curr) => acc += curr.count, status.value.favouritesCount))
 
 function reply() {
   if (!checkLogin())
@@ -79,20 +80,20 @@ function reply() {
       <StatusActionButton
         :content="$t(status.favourited ? 'action.favourited' : 'action.favourite')"
         :text="!getPreferences(userSettings, 'hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
-        :color="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
-        :hover="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
-        :elk-group-hover="useStarFavoriteIcon ? 'bg-yellow/10' : 'bg-rose/10'"
-        :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'"
-        :active-icon="useStarFavoriteIcon ? 'i-ri:star-fill' : 'i-ri:heart-3-fill'"
+        color="text-purple"
+        hover="text-purple"
+        elk-group-hover="bg-purple/10"
+        icon="i-ri:thumb-up-line"
+        active-icon="i-ri:thumb-up-fill"
         :active="!!status.favourited"
         :disabled="isLoading.favourited"
         :command="command"
         @click="toggleFavourite()"
       >
-        <template v-if="status.favouritesCount && !getPreferences(userSettings, 'hideFavoriteCount')" #text>
+        <template v-if="reactionCount && !getPreferences(userSettings, 'hideFavoriteCount')" #text>
           <CommonLocalizedNumber
             keypath="action.favourite_count"
-            :count="status.favouritesCount"
+            :count="reactionCount"
           />
         </template>
       </StatusActionButton>
@@ -101,9 +102,9 @@ function reply() {
     <div flex-none>
       <StatusActionButton
         :content="$t(status.bookmarked ? 'action.bookmarked' : 'action.bookmark')"
-        :color="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
-        :hover="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
-        :elk-group-hover="useStarFavoriteIcon ? 'bg-rose/10' : 'bg-yellow/10' "
+        color="text-yellow"
+        hover="text-yellow"
+        elk-group-hover="bg-yellow/10"
         icon="i-ri:bookmark-line"
         active-icon="i-ri:bookmark-fill"
         :active="!!status.bookmarked"

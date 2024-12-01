@@ -559,7 +559,7 @@
       "label": "Mieltymykset",
       "optimize_for_low_performance_device": "Optimoi heikon suorituskyvyn laitteelle",
       "title": "Kokeelliset ominaisuudet",
-      "use_star_favorite_icon": "Käytä tähteä suosikkikuvakkeena",
+      
       "user_picker": "Käyttäjävalitsin",
       "user_picker_description": "Näyttää sisäänkirjautuneiden käyttäjien profiilikuvat alavasemmalla, jotta voit vaihtaa nopeasti niiden välillä.",
       "virtual_scroll": "Virtuaalivieritys",

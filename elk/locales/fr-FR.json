@@ -515,7 +515,6 @@
       "hide_username_emojis_description": "Masque les emojis des noms d'utilisateur dans la timeline. \nLes emojis seront toujours visibles sur leurs profils.",
       "label": "Préférences",
       "title": "Fonctionnalités expérimentales",
-      "use_star_favorite_icon": "Utiliser l'icône de l'étoile en favoris",
       "user_picker": "User Picker",
       "user_picker_description": "Affiche tous les avatars des comptes connectés en bas à gauche afin que vous puissiez basculer rapidement entre eux.",
       "virtual_scroll": "Défilement virtuel",

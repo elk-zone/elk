@@ -517,7 +517,7 @@
       "label": "環境設定",
       "optimize_for_low_performance_device": "処理能力が低いデバイス向けに最適化",
       "title": "実験的機能",
-      "use_star_favorite_icon": "星のお気に入りアイコンを使用する",
+      
       "user_picker": "ユーザーピッカー",
       "user_picker_description": "右下にログインしたすべてのアカウントを表示することで、アカウントを素早く切り替えられるようにします。",
       "virtual_scroll": "仮想スクロール",

@@ -4,8 +4,6 @@ import type { GroupedLikeNotifications } from '~/types'
 const { group } = defineProps<{
   group: GroupedLikeNotifications
 }>()
-const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
-
 const reblogs = computed(() => group.likes.filter(i => i.reblog))
 const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
 </script>
@@ -28,7 +26,7 @@ const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
           </div>
         </div>
         <div v-if="likes.length" flex="~ gap-1 wrap">
-          <div :class="useStarFavoriteIcon ? 'i-ri:star-line color-yellow' : 'i-ri:heart-line color-red'" text-xl me-2 />
+          <div class="i-ri:thumb-up-line color-purple" text-xl me-2 />
           <template v-for="i, idx of likes" :key="idx">
             <AccountHoverWrapper :account="i.account" relative me--4 border="2 bg-base" rounded-full hover:z-1 focus-within:z-1>
               <NuxtLink :to="getAccountRoute(i.account)">

@@ -559,7 +559,7 @@
       "label": "首选项",
       "optimize_for_low_performance_device": "针对低性能设备进行优化",
       "title": "实验功能",
-      "use_star_favorite_icon": "使用星形喜欢图标",
+      
       "user_picker": "用户选择器",
       "user_picker_description": "在左下角展示所有已登录的用户头像用于快速切换账号。",
       "virtual_scroll": "虚拟滚动",

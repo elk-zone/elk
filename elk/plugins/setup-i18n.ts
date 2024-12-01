@@ -1,5 +1,3 @@
-import type { Locale } from '#i18n'
-
 export default defineNuxtPlugin(async (nuxt) => {
   const t = nuxt.vueApp.config.globalProperties.$t
   const d = nuxt.vueApp.config.globalProperties.$d
@@ -13,14 +11,14 @@ export default defineNuxtPlugin(async (nuxt) => {
     const i18n = useNuxtApp().$i18n
     const { setLocale, locales } = i18n
     const userSettings = useUserSettings()
-    const lang = computed(() => userSettings.value.language as Locale)
+    const lang = computed(() => userSettings.value.language)
 
     const supportLanguages = unref(locales).map(locale => locale.code)
     if (!supportLanguages.includes(lang.value))
       userSettings.value.language = getDefaultLanguage(supportLanguages)
 
     if (lang.value !== i18n.locale)
-      await setLocale(userSettings.value.language as Locale)
+      await setLocale(userSettings.value.language)
 
     watch([lang, isHydrated], () => {
       if (isHydrated.value && lang.value !== i18n.locale)

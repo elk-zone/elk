@@ -75,11 +75,13 @@ export const countryLocaleVariants: Record<string, (LocaleObjectData & { country
 
 const locales: LocaleObjectData[] = [
   {
+    // @ts-expect-error en used as placeholder
     code: 'en',
     file: 'en.json',
     name: 'English',
   },
   ({
+    // @ts-expect-error ar used as placeholder
     code: 'ar',
     file: 'ar.json',
     name: 'العربية',
@@ -110,6 +112,7 @@ const locales: LocaleObjectData[] = [
     },
   } satisfies LocaleObjectData),
   {
+    // @ts-expect-error ca used as placeholder
     code: 'ca',
     file: 'ca.json',
     name: 'Català',
@@ -150,6 +153,7 @@ const locales: LocaleObjectData[] = [
     name: 'Nederlands',
   },
   {
+    // @ts-expect-error es used as placeholder
     code: 'es',
     file: 'es.json',
     name: 'Español',
@@ -203,6 +207,7 @@ const locales: LocaleObjectData[] = [
     },
   },
   {
+    // @ts-expect-error pt used as placeholder
     code: 'pt',
     file: 'pt.json',
     name: 'Português',

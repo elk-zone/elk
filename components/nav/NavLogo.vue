@@ -1,3 +1,6 @@
+<script setup lang="ts">
+</script>
+
 <template>
   <span shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip"><svg
     xmlns="http://www.w3.org/2000/svg" w-full

@@ -114,7 +114,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.8.0",
-    "@antfu/ni": "^0.23.0",
+    "@antfu/ni": "^0.23.1",
     "@types/chroma-js": "^2.4.4",
     "@types/file-saver": "^2.0.7",
     "@types/fnando__sparkline": "^0.3.7",

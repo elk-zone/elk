@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import type { ConfirmDialogChoice } from '~/types'
 import {
   isCommandPanelOpen,
   isConfirmDialogOpen,
@@ -13,7 +14,6 @@ import {
   isReportDialogOpen,
   isSigninDialogOpen,
 } from '~/composables/dialog'
-import type { ConfirmDialogChoice } from '~/types'
 
 const isMac = useIsMac()
 

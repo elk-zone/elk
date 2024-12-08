@@ -1,6 +1,6 @@
+import type { UserLogin } from '~/types'
 import { useAsyncIDBKeyval } from '~/composables/idb'
 import { STORAGE_KEY_USERS } from '~/constants'
-import type { UserLogin } from '~/types'
 
 const mock = process.mock
 

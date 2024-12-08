@@ -2,8 +2,10 @@ import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
 import type { mastodon } from 'masto'
 import type { EffectScope, Ref } from 'vue'
 import type { ElkMasto } from './masto/masto'
-import { withoutProtocol } from 'ufo'
 import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
+import type { UserLogin } from '~/types'
+import type { Overwrite } from '~/types/utils'
+import { withoutProtocol } from 'ufo'
 import {
   DEFAULT_POST_CHARS_LIMIT,
   STORAGE_KEY_CURRENT_USER_HANDLE,
@@ -12,8 +14,6 @@ import {
   STORAGE_KEY_NOTIFICATION_POLICY,
   STORAGE_KEY_SERVERS,
 } from '~/constants'
-import type { UserLogin } from '~/types'
-import type { Overwrite } from '~/types/utils'
 
 const mock = process.mock
 

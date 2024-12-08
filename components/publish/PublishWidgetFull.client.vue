@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { formatTimeAgo } from '@vueuse/core'
 import type { DraftItem } from '~/types'
+import { formatTimeAgo } from '@vueuse/core'
 
 const route = useRoute()
 const { formatNumber } = useHumanReadableNumber()

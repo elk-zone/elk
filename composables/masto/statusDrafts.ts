@@ -1,8 +1,8 @@
 import type { mastodon } from 'masto'
 import type { ComputedRef, Ref } from 'vue'
-import { STORAGE_KEY_DRAFTS } from '~/constants'
 import type { DraftItem, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'
+import { STORAGE_KEY_DRAFTS } from '~/constants'
 
 export const currentUserDrafts = (import.meta.server || process.test)
   ? computed<DraftMap>(() => ({}))

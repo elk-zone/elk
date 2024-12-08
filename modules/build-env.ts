@@ -1,6 +1,6 @@
+import type { BuildInfo } from '~/types'
 import { createResolver, defineNuxtModule } from '@nuxt/kit'
 import { isCI } from 'std-env'
-import type { BuildInfo } from '~/types'
 import { getEnv, version } from '../config/env'
 
 const { resolve } = createResolver(import.meta.url)

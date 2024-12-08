@@ -67,10 +67,14 @@ const moreOptions = computed<CommonRouteTabMoreOption>(() => ({
   tooltip: filterText.value,
   match: !!filter.value,
 }))
+const skipContent = computed(() => {
+  const name = route.params.filter
+  return name ? `tab.notifications_${name}` : 'tab.notifications_all'
+})
 </script>
 
 <template>
-  <MainContent>
+  <MainContent :skip-content="skipContent">
     <template #title>
       <NuxtLink to="/notifications" timeline-title-style flex items-center gap-2 @click="$scrollToTop">
         <div i-ri:notification-4-line />

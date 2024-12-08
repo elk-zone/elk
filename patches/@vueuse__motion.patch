@@ -1,0 +1,39 @@
+diff --git a/dist/shared/motion.6686175e.d.cts b/dist/shared/motion.6686175e.d.cts
+index d118e42ad332997dd203623a8a2bd5109ecdd04f..6ec3bad16555148ec11461e90e2a68116bf1d887 100644
+--- a/dist/shared/motion.6686175e.d.cts
++++ b/dist/shared/motion.6686175e.d.cts
+@@ -594,7 +594,7 @@ interface SpringControls {
+     values: MotionProperties;
+ }
+ type MotionInstanceBindings<T extends string, V extends MotionVariants<T>> = Record<string, MotionInstance<T, V>>;
+-declare module '@vue/runtime-core' {
++declare module 'vue' {
+     interface ComponentCustomProperties {
+         $motions?: MotionInstanceBindings<any, any>;
+     }
+diff --git a/dist/shared/motion.6686175e.d.mts b/dist/shared/motion.6686175e.d.mts
+index d118e42ad332997dd203623a8a2bd5109ecdd04f..6ec3bad16555148ec11461e90e2a68116bf1d887 100644
+--- a/dist/shared/motion.6686175e.d.mts
++++ b/dist/shared/motion.6686175e.d.mts
+@@ -594,7 +594,7 @@ interface SpringControls {
+     values: MotionProperties;
+ }
+ type MotionInstanceBindings<T extends string, V extends MotionVariants<T>> = Record<string, MotionInstance<T, V>>;
+-declare module '@vue/runtime-core' {
++declare module 'vue' {
+     interface ComponentCustomProperties {
+         $motions?: MotionInstanceBindings<any, any>;
+     }
+diff --git a/dist/shared/motion.6686175e.d.ts b/dist/shared/motion.6686175e.d.ts
+index d118e42ad332997dd203623a8a2bd5109ecdd04f..6ec3bad16555148ec11461e90e2a68116bf1d887 100644
+--- a/dist/shared/motion.6686175e.d.ts
++++ b/dist/shared/motion.6686175e.d.ts
+@@ -594,7 +594,7 @@ interface SpringControls {
+     values: MotionProperties;
+ }
+ type MotionInstanceBindings<T extends string, V extends MotionVariants<T>> = Record<string, MotionInstance<T, V>>;
+-declare module '@vue/runtime-core' {
++declare module 'vue' {
+     interface ComponentCustomProperties {
+         $motions?: MotionInstanceBindings<any, any>;
+     }

@@ -64,6 +64,8 @@ export interface Status {
 
   /** Custom emoji reaction people reacted with */
   emojiReactions: {
+    /** Is reaction yours */
+    me: boolean;
     /** Array of account ids that sent this reaction */
     accountIds: string[];
     /** Count of reaction usage */

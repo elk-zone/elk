@@ -1,5 +1,7 @@
 import { snakeCase } from "change-case";
 
+import { type akkoma } from "../../akkoma";
+import { type ReactionsStatusParam } from "../../akkoma/rest/v1";
 import {
   type ActionDispatcherHook,
   type AnyAction,
@@ -7,7 +9,6 @@ import {
   type Http,
   type HttpMetaParams,
 } from "../../interfaces";
-import { type akkoma } from "../../akkoma";
 import { isRecord, sleep } from "../../utils";
 import { MastoHttpError, MastoTimeoutError } from "../errors";
 import { type HttpAction, type HttpActionType } from "./dispatcher-http";
@@ -29,6 +30,12 @@ function toHttpActionType(action: string): HttpActionType {
     case "update_credentials": {
       return "update";
     }
+    case "react": {
+      return "update";
+    }
+    case "unreact": {
+      return "remove";
+    }
     default: {
       return "create";
     }
@@ -48,6 +55,30 @@ function inferEncoding(action: HttpActionType, path: string): Encoding {
   }
 
   return "json";
+}
+
+/**
+ * Some Akkoma API path are prefixed with /pleroma or /akkoma compared to a classic masotdon call
+ * @param action the action we are trying to do
+ * @returns the actual action to use
+ */
+function inferAkkomaAction(action: HttpAction): HttpAction {
+  const reactionPath = action.path.match(
+    /\/api\/v1\/statuses\/(.+)\/(un)?react/,
+  );
+  if (reactionPath) {
+    const data = action.data as ReactionsStatusParam;
+    return {
+      ...action,
+      path:
+        "/api/v1/pleroma/statuses/" +
+        reactionPath[1] +
+        "/reactions/" +
+        data.emoji,
+      data: undefined,
+    };
+  }
+  return action;
 }
 
 async function waitForMediaAttachment(
@@ -100,7 +131,7 @@ export class HttpActionDispatcherHookMastodon
     const encoding = inferEncoding(type, path);
     const meta: HttpMetaParams<Encoding> = { ...action.meta, encoding };
 
-    return { type, path, data: action.data, meta };
+    return inferAkkomaAction({ type, path, data: action.data, meta });
   }
 
   dispatch(action: AnyAction): false | Promise<unknown> {

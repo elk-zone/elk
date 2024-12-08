@@ -94,6 +94,11 @@ export interface TranslateStatusParams {
   readonly lang?: string;
 }
 
+export interface ReactionsStatusParam {
+  /** The emoji to react with */
+  readonly emoji: string;
+}
+
 export interface StatusRepository {
   /**
    * Obtain information about multiple statuses.
@@ -159,6 +164,23 @@ export interface StatusRepository {
        */
       fetch(meta?: HttpMetaParams): Promise<PreviewCard>;
     };
+
+    /**
+     * Add a status to your favourites list.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    react(params: ReactionsStatusParam, meta?: HttpMetaParams): Promise<Status>;
+
+    /**
+     * Remove a status from your favourites list.
+     * @return Status
+     * @see https://docs.joinmastodon.org/methods/statuses/
+     */
+    unreact(
+      params: ReactionsStatusParam,
+      meta?: HttpMetaParams,
+    ): Promise<Status>;
 
     /**
      * Add a status to your favourites list.

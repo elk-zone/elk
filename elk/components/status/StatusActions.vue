@@ -18,11 +18,17 @@ const {
   isLoading,
   canReblog,
   toggleBookmark,
-  toggleFavourite,
   toggleReblog,
 } = useStatusActions(props)
 
 const reactionCount = computed(() => status.value.emojiReactions.reduce((acc, curr) => acc += curr.count, status.value.favouritesCount))
+
+const reaction = computed(() => {
+  const reactions = status.value.favourited ? [{ shortcode: '👍', url: '', staticUrl: '', visibleInPicker: true }] : status.value.emojiReactions.filter(react => react.me).map(r => ({ shortcode: r.name, url: r.url as string, staticUrl: r.url as string, visibleInPicker: true }))
+  if (reactions.length > 0)
+    return reactions[0]
+  return undefined
+})
 
 function reply() {
   if (!checkLogin())
@@ -77,26 +83,27 @@ function reply() {
     </div>
 
     <div flex-1>
-      <StatusActionButton
-        :content="$t(status.favourited ? 'action.favourited' : 'action.favourite')"
-        :text="!getPreferences(userSettings, 'hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
+      <StatusEmojiReact
+        :status="status"
+        :content="$t(reaction ? 'action.favourited' : 'action.favourite')"
+        :text="!getPreferences(userSettings, 'hideFavoriteCount') && reactionCount ? reactionCount : ''"
         color="text-purple"
         hover="text-purple"
         elk-group-hover="bg-purple/10"
-        icon="i-ri:thumb-up-line"
-        active-icon="i-ri:thumb-up-fill"
-        :active="!!status.favourited"
         :disabled="isLoading.favourited"
         :command="command"
-        @click="toggleFavourite()"
       >
+        <template #icon>
+          <div v-if="!reaction" class="i-ri:thumb-up-line" />
+          <img v-else :src="reaction.staticUrl" :alt="reaction.shortcode" class="w-[18px] h-[18px] leading-[18px]">
+        </template>
         <template v-if="reactionCount && !getPreferences(userSettings, 'hideFavoriteCount')" #text>
           <CommonLocalizedNumber
             keypath="action.favourite_count"
             :count="reactionCount"
           />
         </template>
-      </StatusActionButton>
+      </StatusEmojiReact>
     </div>
 
     <div flex-none>

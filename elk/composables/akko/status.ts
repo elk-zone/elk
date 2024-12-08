@@ -70,9 +70,32 @@ export function useStatusActions(props: StatusActionsProps) {
     'reblogsCount',
   )
 
+  const cleanReacts = async () => {
+    const s = client.value.v1.statuses.$select(status.value.id)
+    const promises = status.value.emojiReactions.filter(e => e.me).map(e => s.unreact({ emoji: e.name }))
+    await Promise.all(promises)
+  }
+
+  const toggleReact = (emoji: string) => toggleStatusAction(
+    'favourited',
+    async () => {
+      cleanReacts()
+      if (status.value.favourited)
+        client.value.v1.statuses.$select(status.value.id).unfavourite()
+      if (status.value.emojiReactions.find(e => e.me && e.name === emoji) == null) {
+        return client.value.v1.statuses.$select(status.value.id).react({ emoji })
+      }
+      return status.value
+    },
+    'favouritesCount',
+  )
+
   const toggleFavourite = () => toggleStatusAction(
     'favourited',
-    () => client.value.v1.statuses.$select(status.value.id)[status.value.favourited ? 'unfavourite' : 'favourite'](),
+    async () => {
+      cleanReacts()
+      return client.value.v1.statuses.$select(status.value.id)[status.value.favourited ? 'unfavourite' : 'favourite']()
+    },
     'favouritesCount',
   )
 
@@ -95,6 +118,7 @@ export function useStatusActions(props: StatusActionsProps) {
     status,
     isLoading,
     canReblog,
+    toggleReact,
     toggleMute,
     toggleReblog,
     toggleFavourite,

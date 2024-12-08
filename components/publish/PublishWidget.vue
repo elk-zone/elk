@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import type { DraftItem } from '~/types'
 import { EditorContent } from '@tiptap/vue-3'
 import stringLength from 'string-length'
-import type { DraftItem } from '~/types'
 
 const {
   threadComposer,

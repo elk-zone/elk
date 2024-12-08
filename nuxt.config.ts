@@ -318,6 +318,9 @@ export default defineNuxtConfig({
       generatedLocaleFilePathFormat: 'relative',
     },
     vueI18n: './config/i18n.config.ts',
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
   pwa,
   staleDep: {

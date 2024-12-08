@@ -40,7 +40,7 @@
     "@nuxt/devtools": "^1.5.2",
     "@nuxt/test-utils": "^3.14.3",
     "@nuxtjs/color-mode": "^3.4.4",
-    "@nuxtjs/i18n": "^9.1.0",
+    "@nuxtjs/i18n": "^9.1.1",
     "@pinia/nuxt": "^0.7.0",
     "@tiptap/core": "2.2.4",
     "@tiptap/extension-bold": "2.2.4",
@@ -145,8 +145,7 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "pinceau": "patches/pinceau.patch",
-      "@nuxtjs/i18n@9.1.0": "patches/@nuxtjs__i18n@9.1.0.patch"
+      "pinceau": "patches/pinceau.patch"
     }
   },
   "resolutions": {

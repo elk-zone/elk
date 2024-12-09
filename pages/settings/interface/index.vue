@@ -15,6 +15,7 @@ useHydratedHead({
     </template>
     <div px-6 pt-3 pb-6 flex="~ col gap6">
       <SettingsFontSize />
+      <SettingsLineHeight />
       <SettingsColorMode />
       <SettingsThemeColors />
       <SettingsBottomNav />

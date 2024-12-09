@@ -7,10 +7,26 @@ const { notification } = defineProps<{
 
 const { t } = useI18n()
 
+// list of notification types Elk currently implemented
+// type 'favourite' and 'reblog' should always rendered by NotificationGroupedLikes
+const supportedNotificationTypes: mastodon.v1.NotificationType[] = [
+  'follow',
+  'admin.sign_up',
+  'admin.report',
+  'follow_request',
+  'update',
+  'mention',
+  'poll',
+  'update',
+  'status',
+]
+
 // well-known emoji reactions types Elk does not support yet
 const unsupportedEmojiReactionTypes = ['pleroma:emoji_reaction', 'reaction']
-if (unsupportedEmojiReactionTypes.includes(notification.type))
+
+if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotificationTypes.includes(notification.type)) {
   console.warn(`[DEV] ${t('notification.missing_type')} '${notification.type}' (notification.id: ${notification.id})`)
+}
 </script>
 
 <template>
@@ -95,11 +111,21 @@ if (unsupportedEmojiReactionTypes.includes(notification.type))
     <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
       <StatusCard :status="notification.status!" />
     </template>
-    <template v-else-if="!unsupportedEmojiReactionTypes.includes(notification.type)">
-      <!-- prevent showing errors for dev for known emoji reaction types -->
-      <!-- type 'favourite' and 'reblog' should always rendered by NotificationGroupedLikes -->
-      <div text-red font-bold>
-        [DEV] {{ $t('notification.missing_type') }} '{{ notification.type }}'
+    <template v-else-if="notification.type === 'annual_report'">
+      <div flex p4 items-center bg-shaded>
+        <div i-mdi:party-popper text-xl me-4 color-purple />
+        <div class="content-rich">
+          <p>
+            Your 2024 <NuxtLink to="/tags/Wrapstodon">
+              #Wrapstodon
+            </NuxtLink> awaits! Unveil your year's highlights and memorable moments on Mastodon!
+          </p>
+          <p>
+            <NuxtLink :to="`https://${currentServer}/notifications`" target="_blank">
+              View #Wrapstodon on Mastodon
+            </NuxtLink>
+          </p>
+        </div>
       </div>
     </template>
   </article>

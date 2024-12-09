@@ -16,6 +16,7 @@
     "start": "PORT=5314 node .output/server/index.mjs",
     "start:https": "PORT=5314 node ./https-dev-config/local-https-server.mjs",
     "lint": "eslint --cache .",
+    "lint:fix": "eslint --cache --fix .",
     "typecheck": "stale-dep && nuxi typecheck",
     "prepare": "ignore-dependency-scripts \"tsx scripts/prepare.ts\"",
     "generate": "nuxi generate",

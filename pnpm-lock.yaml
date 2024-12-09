@@ -209,8 +209,8 @@ importers:
         specifier: ^3.19.1
         version: 3.26.0
       slimeform:
-        specifier: ^0.9.1
-        version: 0.9.1(vue@3.5.4(typescript@5.6.2))
+        specifier: ^0.10.0
+        version: 0.10.0(vue@3.5.4(typescript@5.6.2))
       stale-dep:
         specifier: ^0.7.0
         version: 0.7.0(@nuxt/kit@3.14.1592(magicast@0.3.5)(rollup@2.79.1)(webpack-sources@3.2.3))(@nuxt/schema@3.14.1592(magicast@0.3.5)(rollup@2.79.1))
@@ -7881,8 +7881,8 @@ packages:
     resolution: {integrity: sha512-bSiSngZ/jWeX93BqeIAbImyTbEihizcwNjFoRUIY/T1wWQsfsm2Vw1agPKylXvQTU7iASGdHhyqRlqQzfz+Htg==}
     engines: {node: '>=18'}
 
-  slimeform@0.9.1:
-    resolution: {integrity: sha512-14P7vyo1UN70o5+TlSsteceQ3J4flIUMPm9QLFeR6dFhtu+RYAVXvTFQ2Si2xO3vzeVP14TicXsvX1Sl7MX9EQ==}
+  slimeform@0.10.0:
+    resolution: {integrity: sha512-nLyhdEIWHvPf0wzQZWzsSPkgEYWLXYTpL/53DA3VdxQBvbL9PjH7/lfdBqZZSBmWcY8t6/hb+aRQ+vvSvHpFZA==}
     peerDependencies:
       vue: ^3.5.4
 
@@ -19441,7 +19441,7 @@ snapshots:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 5.0.0
 
-  slimeform@0.9.1(vue@3.5.4(typescript@5.6.2)):
+  slimeform@0.10.0(vue@3.5.4(typescript@5.6.2)):
     dependencies:
       vue: 3.5.4(typescript@5.6.2)
 

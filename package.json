@@ -59,7 +59,7 @@
     "@tiptap/vue-3": "2.2.4",
     "@unocss/nuxt": "^0.64.0",
     "@upstash/redis": "^1.27.1",
-    "@vercel/kv": "^2.0.0",
+    "@vercel/kv": "^3.0.0",
     "@vue-macros/nuxt": "^1.11.12",
     "@vueuse/core": "^11.0.3",
     "@vueuse/gesture": "^2.0.0",

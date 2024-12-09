@@ -46,6 +46,13 @@ useCommand({
 })
 
 const commonReacts = useEmojisFallback(() => ['👍', '❤️', '😆', '😮', '😢', '😩'].map(shortcode => ({ shortcode, staticUrl: '', url: '', visibleInPicker: true })))
+
+const shown = ref(false)
+
+function toggle() {
+  console.log("toggle")
+  shown.value = !shown.value
+}
 </script>
 
 <template>
@@ -62,7 +69,7 @@ const commonReacts = useEmojisFallback(() => ['👍', '❤️', '😆', '😮', 
     :disabled="disabled"
     :aria-disabled="disabled"
   >
-    <VDropdown placement="top">
+    <VDropdown v-model:shown="shown" placement="top" :triggers="[]">
       <div
         class="h-[33px]"
         rounded-full p2
@@ -71,6 +78,7 @@ const commonReacts = useEmojisFallback(() => ['👍', '❤️', '😆', '😮', 
           'group-focus-visible': elkGroupHover,
           'group-focus-visible:ring': '2 current',
         }"
+        @click="toggle"
       >
         <slot name="icon" />
       </div>
@@ -79,9 +87,10 @@ const commonReacts = useEmojisFallback(() => ['👍', '❤️', '😆', '😮', 
         <div flex gap-3 p-2>
           <StatusEmojiReactItem
             v-for="emoji in commonReacts"
-            :status="status"
             :key="emoji.shortcode"
+            :status="status"
             :emoji="emoji"
+            @click="toggle"
           />
         </div>
       </template>

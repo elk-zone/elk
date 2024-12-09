@@ -1,0 +1,11 @@
+diff --git a/dist/runtime/nitro/plugins/40-preprocessHtml.mjs b/dist/runtime/nitro/plugins/40-preprocessHtml.mjs
+index ce2df85b5951ac48adb0f3ecbfa9daaff5e4d6cf..cb47bd2858e46f141e75e6ebccf44079687968b7 100644
+--- a/dist/runtime/nitro/plugins/40-preprocessHtml.mjs
++++ b/dist/runtime/nitro/plugins/40-preprocessHtml.mjs
+@@ -1,5 +1,5 @@
+ import { defineNitroPlugin } from "#imports";
+-import * as cheerio from "cheerio/lib/slim";
++import * as cheerio from "cheerio/slim";
+ import { resolveSecurityRules } from "../utils/index.mjs";
+ export default defineNitroPlugin((nitroApp) => {
+   nitroApp.hooks.hook("render:html", (html, { event }) => {

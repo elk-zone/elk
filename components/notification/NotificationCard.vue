@@ -7,10 +7,26 @@ const { notification } = defineProps<{
 
 const { t } = useI18n()
 
+// list of notification types Elk currently implemented
+// type 'favourite' and 'reblog' should always rendered by NotificationGroupedLikes
+const supportedNotificationTypes: mastodon.v1.NotificationType[] = [
+  'follow',
+  'admin.sign_up',
+  'admin.report',
+  'follow_request',
+  'update',
+  'mention',
+  'poll',
+  'update',
+  'status',
+]
+
 // well-known emoji reactions types Elk does not support yet
 const unsupportedEmojiReactionTypes = ['pleroma:emoji_reaction', 'reaction']
-if (unsupportedEmojiReactionTypes.includes(notification.type))
+
+if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotificationTypes.includes(notification.type)) {
   console.warn(`[DEV] ${t('notification.missing_type')} '${notification.type}' (notification.id: ${notification.id})`)
+}
 </script>
 
 <template>
@@ -94,13 +110,6 @@ if (unsupportedEmojiReactionTypes.includes(notification.type))
     </template>
     <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
       <StatusCard :status="notification.status!" />
-    </template>
-    <template v-else-if="!unsupportedEmojiReactionTypes.includes(notification.type)">
-      <!-- prevent showing errors for dev for known emoji reaction types -->
-      <!-- type 'favourite' and 'reblog' should always rendered by NotificationGroupedLikes -->
-      <div text-red font-bold>
-        [DEV] {{ $t('notification.missing_type') }} '{{ notification.type }}'
-      </div>
     </template>
   </article>
 </template>

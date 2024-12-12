@@ -19,6 +19,7 @@ const {
   canReblog,
   toggleBookmark,
   toggleReblog,
+  toggleReact,
 } = useStatusActions(props)
 
 const reactionCount = computed(() => status.value.emojiReactions.reduce((acc, curr) => acc += curr.count, status.value.favouritesCount))
@@ -84,6 +85,7 @@ function reply() {
 
     <div flex-1>
       <StatusEmojiReact
+        :key="reactionCount"
         :status="status"
         :content="$t(reaction ? 'action.favourited' : 'action.favourite')"
         :text="!getPreferences(userSettings, 'hideFavoriteCount') && reactionCount ? reactionCount : ''"
@@ -92,6 +94,7 @@ function reply() {
         elk-group-hover="bg-purple/10"
         :disabled="isLoading.favourited"
         :command="command"
+        :toggle-react="toggleReact"
       >
         <template #icon>
           <div v-if="!reaction" class="i-ri:thumb-up-line" />

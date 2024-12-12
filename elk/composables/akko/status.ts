@@ -42,7 +42,7 @@ export function useStatusActions(props: StatusActionsProps) {
       if (isCancel && countField && prevCount === newStatus[countField])
         newStatus[countField] -= 1
 
-      Object.assign(status, newStatus)
+      Object.assign(status.value, newStatus)
       cacheStatus(newStatus, undefined, true)
     }).finally(() => {
       isLoading.value[action] = false
@@ -70,31 +70,25 @@ export function useStatusActions(props: StatusActionsProps) {
     'reblogsCount',
   )
 
-  const cleanReacts = async () => {
-    const s = client.value.v1.statuses.$select(status.value.id)
-    const promises = status.value.emojiReactions.filter(e => e.me).map(e => s.unreact({ emoji: e.name }))
-    await Promise.all(promises)
+  const cleanMyReacts = () => {
+    let reqs = status.value.emojiReactions.filter(e => e.me).map(e => client.value.v1.statuses.$select(status.value.id).unreact({ emoji: e.name }))
+    if (status.value.favourited)
+      reqs = [...reqs, client.value.v1.statuses.$select(status.value.id).unfavourite()]
+    return Promise.allSettled(reqs)
   }
 
   const toggleReact = (emoji: string) => toggleStatusAction(
     'favourited',
     async () => {
-      cleanReacts()
-      if (status.value.favourited)
-        client.value.v1.statuses.$select(status.value.id).unfavourite()
-      if (status.value.emojiReactions.find(e => e.me && e.name === emoji) == null) {
+      await cleanMyReacts()
+      if (emoji === '👍' && !status.value.favourited)
+        return client.value.v1.statuses.$select(status.value.id).favourite()
+      if (status.value.emojiReactions.find(e => e.me && e.name === emoji) == null)
         return client.value.v1.statuses.$select(status.value.id).react({ emoji })
+      return {
+        ...status.value,
+        emojiReactions: status.value.emojiReactions.filter(e => !e.me),
       }
-      return status.value
-    },
-    'favouritesCount',
-  )
-
-  const toggleFavourite = () => toggleStatusAction(
-    'favourited',
-    async () => {
-      cleanReacts()
-      return client.value.v1.statuses.$select(status.value.id)[status.value.favourited ? 'unfavourite' : 'favourite']()
     },
     'favouritesCount',
   )
@@ -121,7 +115,6 @@ export function useStatusActions(props: StatusActionsProps) {
     toggleReact,
     toggleMute,
     toggleReblog,
-    toggleFavourite,
     toggleBookmark,
     togglePin,
   }

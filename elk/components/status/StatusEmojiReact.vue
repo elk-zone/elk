@@ -5,8 +5,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const { as = 'button', command, disabled, content, status } = defineProps<{
-  status: akkoma.v1.Status
+const { as = 'button', disabled, content } = defineProps<{
   text?: string | number
   content: string
   color: string
@@ -14,7 +13,7 @@ const { as = 'button', command, disabled, content, status } = defineProps<{
   elkGroupHover: string
   disabled?: boolean
   as?: string
-  command?: boolean
+  toggleReact: (emoji: string) => void
 }>()
 
 defineSlots<{
@@ -22,35 +21,11 @@ defineSlots<{
   icon: (props: object) => void
 }>()
 
-const el = ref<HTMLDivElement>()
-
-useCommand({
-  scope: 'Actions',
-
-  order: -2,
-  visible: () => command && !disabled,
-
-  name: () => content,
-  icon: () => '',
-
-  onActivate() {
-    if (!checkLogin())
-      return
-    const clickEvent = new MouseEvent('click', {
-      view: window,
-      bubbles: true,
-      cancelable: true,
-    })
-    el.value?.dispatchEvent(clickEvent)
-  },
-})
-
 const commonReacts = useEmojisFallback(() => ['👍', '❤️', '😆', '😮', '😢', '😩'].map(shortcode => ({ shortcode, staticUrl: '', url: '', visibleInPicker: true })))
 
 const shown = ref(false)
 
 function toggle() {
-  console.log("toggle")
   shown.value = !shown.value
 }
 </script>
@@ -58,7 +33,6 @@ function toggle() {
 <template>
   <component
     :is="as"
-    v-bind="$attrs" ref="el"
     w-fit flex gap-1 items-center transition-all select-none
     rounded group
     :hover=" !disabled ? hover : undefined"
@@ -88,8 +62,8 @@ function toggle() {
           <StatusEmojiReactItem
             v-for="emoji in commonReacts"
             :key="emoji.shortcode"
-            :status="status"
             :emoji="emoji"
+            :toggle-react="toggleReact"
             @click="toggle"
           />
         </div>

@@ -13,7 +13,7 @@ const {
 
 const { translation } = useTranslation(status, getLanguageCode())
 
-const idealHeight = window.screen.height * 0.6
+const idealHeight = window.screen.height * 0.5
 const root = ref<HTMLElement | null>(null)
 const { height } = useElementSize(root)
 const doCollapseLongStatus = ref(false)
@@ -38,6 +38,7 @@ const vnode = computed(() => {
 <template>
   <div
     ref="root" class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }" relative
+    max-h-50vh text-overflow-ellipsis overflow-hidden
   >
     <span
       v-if="status.content"

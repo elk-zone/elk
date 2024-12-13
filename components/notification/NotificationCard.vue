@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
+// Add undocumented 'annual_report' type introduced in v4.3
+// ref. https://github.com/mastodon/documentation/issues/1211#:~:text=api/v1/annual_reports
+type NotificationType = mastodon.v1.Notification['type'] | 'annual_report'
+type Notification = Omit<mastodon.v1.Notification, 'type'> & { type: NotificationType }
+
 const { notification } = defineProps<{
-  notification: mastodon.v1.Notification
+  notification: Notification
 }>()
 
 const { t } = useI18n()
 
 // list of notification types Elk currently implemented
 // type 'favourite' and 'reblog' should always rendered by NotificationGroupedLikes
-const supportedNotificationTypes: mastodon.v1.NotificationType[] = [
+const supportedNotificationTypes: NotificationType[] = [
   'follow',
   'admin.sign_up',
   'admin.report',
@@ -19,6 +24,7 @@ const supportedNotificationTypes: mastodon.v1.NotificationType[] = [
   'poll',
   'update',
   'status',
+  'annual_report',
 ]
 
 // well-known emoji reactions types Elk does not support yet

@@ -70,28 +70,82 @@ export function useStatusActions(props: StatusActionsProps) {
     'reblogsCount',
   )
 
-  const cleanMyReacts = () => {
-    let reqs = status.value.emojiReactions.filter(e => e.me).map(e => client.value.v1.statuses.$select(status.value.id).unreact({ emoji: e.name }))
-    if (status.value.favourited)
+  const cleanMyReacts = async (): Promise<[boolean, PromiseRejectedResult | undefined]> => {
+    // optimistic and start operate
+    const myReacts = status.value.emojiReactions.filter(e => e.me)
+    const theirReacts = status.value.emojiReactions.filter(e => !e.me)
+    status.value.emojiReactions = [...theirReacts, ...myReacts.map(e => (e.count - 1 > 0 ? { ...e, count: e.count - 1 } : null))]
+      .filter(e => !!e)
+
+    let reqs = myReacts.map(e => client.value.v1.statuses.$select(status.value.id).unreact({ emoji: e.name }))
+    if (status.value.favourited) {
       reqs = [...reqs, client.value.v1.statuses.$select(status.value.id).unfavourite()]
-    return Promise.allSettled(reqs)
+      status.value.favouritesCount -= 1
+      status.value.favourited = false
+    }
+    cacheStatus(status.value, undefined, true)
+    // actual edit
+    const results = await Promise.allSettled(reqs) // we want to be able to stop if one of the request failed
+    if (reqs.length > 0) {
+      const afterStatus = await client.value.v1.statuses.$select(status.value.id).fetch()
+      Object.assign(status.value, afterStatus)
+      cacheStatus(status.value, undefined, true)
+    }
+    return [results.every(e => e.status === 'fulfilled'), results.find(e => e.status === 'rejected')]
   }
 
-  const toggleReact = (emoji: string) => toggleStatusAction(
-    'favourited',
-    async () => {
-      await cleanMyReacts()
-      if (emoji === '👍' && !status.value.favourited)
-        return client.value.v1.statuses.$select(status.value.id).favourite()
-      if (status.value.emojiReactions.find(e => e.me && e.name === emoji) == null)
-        return client.value.v1.statuses.$select(status.value.id).react({ emoji })
-      return {
-        ...status.value,
-        emojiReactions: status.value.emojiReactions.filter(e => !e.me),
+  const toggleReact = async (emoji: string) => {
+    if (!checkLogin())
+      return
+    const removing = (emoji === '👍' && status.value.favourited) || status.value.emojiReactions.find(e => e.name === emoji && e.me)
+    // status.value now contain up to date data
+    const [cleanSuccess, cleanError] = await cleanMyReacts()
+    if (!cleanSuccess) {
+      throw cleanError?.reason
+    }
+    // if we were removing we stop there
+    if (removing)
+      return
+    // optimistic update and operate
+    let newStatusPromise
+    if (emoji === '👍') {
+      newStatusPromise = client.value.v1.statuses.$select(status.value.id).favourite()
+      status.value.favouritesCount += 1
+      status.value.favourited = true
+    }
+    else {
+      newStatusPromise = client.value.v1.statuses.$select(status.value.id).react({ emoji })
+      const previousReact = status.value.emojiReactions.find(e => e.name === emoji)
+      if (previousReact) {
+        status.value.emojiReactions = [...status.value.emojiReactions
+          .filter(e => e.name === previousReact.name), {
+          ...previousReact,
+          me: true,
+          count: previousReact.count + 1,
+        }]
       }
-    },
-    'favouritesCount',
-  )
+      else {
+        status.value.emojiReactions = [...status.value.emojiReactions, {
+          count: 1,
+          accountIds: [],
+          me: true,
+          name: emoji,
+        }]
+      }
+    }
+    cacheStatus(status.value, undefined, true)
+    // real update
+    try {
+      Object.assign(status.value, await newStatusPromise)
+      cacheStatus(status.value, undefined, true)
+    }
+    catch (e) {
+      // if action failed we want to retrieve actual server data
+      Object.assign(status.value, await client.value.v1.statuses.$select(status.value.id).fetch())
+      cacheStatus(status.value, undefined, true)
+      throw e
+    }
+  }
 
   const toggleBookmark = () => toggleStatusAction(
     'bookmarked',

@@ -522,7 +522,7 @@
       "hide_username_emojis_description": "Sembunyikan emoji dari nama pengguna dalam timeline. Emoji tetap akan terlihat di profil mereka.",
       "label": "Preferensi",
       "title": "Fitur Eksperimental",
-      "use_star_favorite_icon": "Gunakan ikon bintang favorit",
+      
       "user_picker": "Pemilih Pengguna",
       "user_picker_description": "Menampilkan semua avatar akun yang dicatat di kiri bawah sehingga Anda dapat beralih antar akun dengan cepat.",
       "virtual_scroll": "Pengguliran Virtual",

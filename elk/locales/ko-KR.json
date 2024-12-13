@@ -402,7 +402,7 @@
       "hide_username_emojis_description": "타임라인의 사용자 아이디에서 이모티콘을 숨깁니다. 이모티콘은 프로필에 계속 표시됩니다.",
       "label": "개인 설정",
       "title": "실험적 기능",
-      "use_star_favorite_icon": "별을 좋아요 아이콘으로 사용",
+      
       "wellbeing": "웰빙"
     },
     "profile": {

@@ -38,30 +38,24 @@ useHydratedHead({
       </AccountHoverWrapper>
     </NuxtLink>
     <StatusContent :status="status" :newer="newer" context="details" />
-    <div flex="~ gap-1" items-center text-secondary text-sm>
-      <div flex>
-        <div>{{ createdAt }}</div>
-        <StatusEditIndicator
-          :status="status"
-          :inline="false"
-        >
-          <span ms1 font-bold cursor-pointer>{{ $t('state.edited') }}</span>
-        </StatusEditIndicator>
+    <div flex="~ gap-1" items-center justify-between text-secondary text-sm>
+      <div flex="~ gap-1" items-center>
+        <div flex shrink-0>
+          <div>{{ createdAt }}</div>
+          <StatusEditIndicator
+            :status="status"
+            :inline="false"
+          >
+            <span ms1 font-bold cursor-pointer>{{ $t('state.edited') }}</span>
+          </StatusEditIndicator>
+        </div>
+        <div aria-hidden="true">
+          &middot;
+        </div>
+        <StatusVisibilityIndicator :status="status" />
       </div>
-      <div aria-hidden="true">
-        &middot;
-      </div>
-      <StatusVisibilityIndicator :status="status" />
-      <div v-if="status.application?.name" aria-hidden="true">
-        &middot;
-      </div>
-      <div v-if="status.application?.website && status.application.name">
-        <NuxtLink :to="status.application.website">
-          {{ status.application.name }}
-        </NuxtLink>
-      </div>
-      <div v-else-if="status.application?.name">
-        {{ status.application?.name }}
+      <div justify-self-end>
+        <StatusEmojiReactions :status="status" />
       </div>
     </div>
     <div border="t base" py-2>

@@ -12,16 +12,24 @@ const focusEditor = inject<typeof noop>('focus-editor', noop)
 const { details, command } = props // TODO
 
 const userSettings = useUserSettings()
-const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const {
   status,
   isLoading,
   canReblog,
   toggleBookmark,
-  toggleFavourite,
   toggleReblog,
+  toggleReact,
 } = useStatusActions(props)
+
+const reactionCount = computed(() => status.value.emojiReactions.reduce((acc, curr) => acc += curr.count, status.value.favouritesCount))
+
+const reaction = computed(() => {
+  const reactions = status.value.favourited ? [{ shortcode: '👍', url: '', staticUrl: '', visibleInPicker: true }] : status.value.emojiReactions.filter(react => react.me).map(r => ({ shortcode: r.name, url: r.url as string, staticUrl: r.url as string, visibleInPicker: true }))
+  if (reactions.length > 0)
+    return reactions[0]
+  return undefined
+})
 
 function reply() {
   if (!checkLogin())
@@ -76,34 +84,37 @@ function reply() {
     </div>
 
     <div flex-1>
-      <StatusActionButton
-        :content="$t(status.favourited ? 'action.favourited' : 'action.favourite')"
-        :text="!getPreferences(userSettings, 'hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
-        :color="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
-        :hover="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
-        :elk-group-hover="useStarFavoriteIcon ? 'bg-yellow/10' : 'bg-rose/10'"
-        :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'"
-        :active-icon="useStarFavoriteIcon ? 'i-ri:star-fill' : 'i-ri:heart-3-fill'"
-        :active="!!status.favourited"
+      <StatusEmojiReact
+        :key="reactionCount"
+        :status="status"
+        :content="$t(reaction ? 'action.favourited' : 'action.favourite')"
+        :text="!getPreferences(userSettings, 'hideFavoriteCount') && reactionCount ? reactionCount : ''"
+        color="text-purple"
+        hover="text-purple"
+        elk-group-hover="bg-purple/10"
         :disabled="isLoading.favourited"
         :command="command"
-        @click="toggleFavourite()"
+        :toggle-react="toggleReact"
       >
-        <template v-if="status.favouritesCount && !getPreferences(userSettings, 'hideFavoriteCount')" #text>
+        <template #icon>
+          <div v-if="!reaction" class="i-ri:thumb-up-line" />
+          <img v-else :src="reaction.staticUrl" :alt="reaction.shortcode" class="w-[18px] h-[18px] leading-[18px]">
+        </template>
+        <template v-if="reactionCount && !getPreferences(userSettings, 'hideFavoriteCount')" #text>
           <CommonLocalizedNumber
             keypath="action.favourite_count"
-            :count="status.favouritesCount"
+            :count="reactionCount"
           />
         </template>
-      </StatusActionButton>
+      </StatusEmojiReact>
     </div>
 
     <div flex-none>
       <StatusActionButton
         :content="$t(status.bookmarked ? 'action.bookmarked' : 'action.bookmark')"
-        :color="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
-        :hover="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
-        :elk-group-hover="useStarFavoriteIcon ? 'bg-rose/10' : 'bg-yellow/10' "
+        color="text-yellow"
+        hover="text-yellow"
+        elk-group-hover="bg-yellow/10"
         icon="i-ri:bookmark-line"
         active-icon="i-ri:bookmark-fill"
         :active="!!status.bookmarked"

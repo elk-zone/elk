@@ -62,6 +62,20 @@ export interface Status {
   /** Custom emoji to be used when rendering status content. */
   emojis: CustomEmoji[];
 
+  /** Custom emoji reaction people reacted with */
+  emojiReactions: {
+    /** Is reaction yours */
+    me: boolean;
+    /** Array of account ids that sent this reaction */
+    accountIds: string[];
+    /** Count of reaction usage */
+    count: number;
+    /** text or native emoji */
+    name: string;
+    /** custom emoji url */
+    url?: string;
+  }[];
+
   /** How many boosts this status has received. */
   reblogsCount: number;
   /** How many favourites this status has received. */

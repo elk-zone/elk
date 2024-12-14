@@ -86,7 +86,7 @@
     "lru-cache": "^11.0.0",
     "masto": "^6.10.1",
     "node-emoji": "^2.1.3",
-    "nuxt-security": "^1.4.3",
+    "nuxt-security": "^2.0.0",
     "page-lifecycle": "^0.1.2",
     "pinia": "^2.2.6",
     "postcss-nested": "^7.0.0",
@@ -146,8 +146,7 @@
   "pnpm": {
     "patchedDependencies": {
       "@vueuse/motion": "patches/@vueuse__motion.patch",
-      "pinceau": "patches/pinceau.patch",
-      "nuxt-security": "patches/nuxt-security.patch"
+      "pinceau": "patches/pinceau.patch"
     }
   },
   "resolutions": {

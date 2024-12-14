@@ -21,7 +21,7 @@ defineSlots<{
   icon: (props: object) => void
 }>()
 
-const commonReacts = useEmojisFallback(() => ['👍', '❤️', '😆', '😮', '😢', '😩'].map(shortcode => ({ shortcode, staticUrl: '', url: '', visibleInPicker: true })))
+const commonReacts = computed(() => ['👍', '❤️', '😆', '😮', '😢', '😩'].map(shortcode => ({ shortcode, staticUrl: '', url: '', visibleInPicker: true })))
 
 const shown = ref(false)
 

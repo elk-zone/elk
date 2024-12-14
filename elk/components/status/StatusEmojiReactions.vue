@@ -13,7 +13,7 @@ const emojis = computed(() => status.emojiReactions
 
 <template>
   <div flex items-end gap-3 flex-row-reverse class="emojis">
-    <div v-for="emoji in emojis" :key="emoji.shortcode" flex items-center gap-1 :style="{ transform: `translateX(${(Object.keys(emojis).indexOf(emoji.shortcode)) * 15}px)` }">
+    <div v-for="(emoji, index) in emojis" :key="emoji.shortcode" flex items-center gap-1 :style="{ transform: `translateX(${index * 15}px)` }">
       <img v-if="emoji.staticUrl" :src="emoji.staticUrl" :alt="emoji.shortcode" class="w-[20px] h-[20px]">
       <div v-else flex items-center class="w-[20px] h-[20px] text-[20px]">
         {{ emoji.shortcode }}

@@ -1,31 +1,25 @@
 <script setup lang="ts">
 import type { akkoma } from 'akko'
 
-const props = defineProps<{
+const { status, isLoading, canReblog, toggleBookmark, toggleReact, toggleReblog, details, command } = defineProps<{
   status: akkoma.v1.Status
+  isLoading: { [x: string]: boolean }
+  canReblog: boolean
+  toggleBookmark: () => void
+  toggleReblog: () => void
+  toggleReact: (e: string) => void
   details?: boolean
   command?: boolean
 }>()
 
 const focusEditor = inject<typeof noop>('focus-editor', noop)
 
-const { details, command } = props // TODO
-
 const userSettings = useUserSettings()
 
-const {
-  status,
-  isLoading,
-  canReblog,
-  toggleBookmark,
-  toggleReblog,
-  toggleReact,
-} = useStatusActions(props)
-
-const reactionCount = computed(() => status.value.emojiReactions.reduce((acc, curr) => acc += curr.count, status.value.favouritesCount))
+const reactionCount = computed(() => status.emojiReactions.reduce((acc, curr) => acc += curr.count, status.favouritesCount))
 
 const reaction = computed(() => {
-  const reactions = status.value.favourited ? [{ shortcode: '👍', url: '', staticUrl: '', visibleInPicker: true }] : status.value.emojiReactions.filter(react => react.me).map(r => ({ shortcode: r.name, url: r.url as string, staticUrl: r.url as string, visibleInPicker: true }))
+  const reactions = status.favourited ? [{ shortcode: '👍', url: '', staticUrl: '', visibleInPicker: true }] : status.emojiReactions.filter(react => react.me).map(r => ({ shortcode: r.name, url: r.url as string, staticUrl: r.url as string, visibleInPicker: true }))
   if (reactions.length > 0)
     return reactions[0]
   return undefined
@@ -37,7 +31,7 @@ function reply() {
   if (details)
     focusEditor()
   else
-    navigateToStatus({ status: status.value, focusReply: true })
+    navigateToStatus({ status, focusReply: true })
 }
 </script>
 

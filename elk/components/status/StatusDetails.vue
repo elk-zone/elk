@@ -14,11 +14,20 @@ defineEmits<{
   (event: 'refetchStatus'): void
 }>()
 
-const status = computed(() => {
+const actualStatus = computed(() => {
   if (props.status.reblog && props.status.reblog)
     return props.status.reblog
   return props.status
 })
+
+const {
+  status,
+  isLoading,
+  canReblog,
+  toggleBookmark,
+  toggleReblog,
+  toggleReact,
+} = useStatusActions({ status: actualStatus.value })
 
 const createdAt = useFormattedDateTime(status.value.createdAt)
 
@@ -59,7 +68,7 @@ useHydratedHead({
       </div>
     </div>
     <div border="t base" py-2>
-      <StatusActions v-if="actions" :status="status" details :command="command" />
+      <StatusActions v-if="actions" :status="status" details :command="command" :can-reblog="canReblog" :is-loading="isLoading" :toggle-bookmark="toggleBookmark" :toggle-react="toggleReact" :toggle-reblog="toggleReblog" />
     </div>
   </div>
 </template>

@@ -8,7 +8,7 @@ const { notification } = defineProps<{
 const { t } = useI18n()
 
 // well-known emoji reactions types Elk does not support yet
-const unsupportedEmojiReactionTypes = ['pleroma:emoji_reaction', 'reaction']
+const unsupportedEmojiReactionTypes = ['reaction']
 if (unsupportedEmojiReactionTypes.includes(notification.type))
   console.warn(`[DEV] ${t('notification.missing_type')} '${notification.type}' (notification.id: ${notification.id})`)
 </script>
@@ -95,9 +95,8 @@ if (unsupportedEmojiReactionTypes.includes(notification.type))
     <template v-else-if="notification.type === 'mention' || notification.type === 'poll' || notification.type === 'status'">
       <StatusCard :status="notification.status!" />
     </template>
-    <template v-else-if="!unsupportedEmojiReactionTypes.includes(notification.type)">
-      <!-- prevent showing errors for dev for known emoji reaction types -->
-      <!-- type 'favourite' and 'reblog' should always rendered by NotificationGroupedLikes -->
+    <template v-else>
+      <!-- type 'favourite', 'pleroma:emoji_reaction' and 'reblog' should always rendered by NotificationGroupedLikes -->
       <div text-red font-bold>
         [DEV] {{ $t('notification.missing_type') }} '{{ notification.type }}'
       </div>

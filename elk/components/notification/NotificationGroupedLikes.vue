@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import type { akkoma } from 'akko'
 import type { GroupedLikeNotifications } from '~/types'
 
 const { group } = defineProps<{
   group: GroupedLikeNotifications
 }>()
 const reblogs = computed(() => group.likes.filter(i => i.reblog))
-const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
+const reactions = computed(() => group.likes.filter(i => i.reaction && !i.reblog))
 </script>
 
 <template>
@@ -25,16 +26,26 @@ const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
             {{ $t('notification.reblogged_post') }}
           </div>
         </div>
-        <div v-if="likes.length" flex="~ gap-1 wrap">
-          <div class="i-ri:thumb-up-line color-purple" text-xl me-2 />
-          <template v-for="i, idx of likes" :key="idx">
-            <AccountHoverWrapper :account="i.account" relative me--4 border="2 bg-base" rounded-full hover:z-1 focus-within:z-1>
-              <NuxtLink :to="getAccountRoute(i.account)">
-                <AccountAvatar text-primary font-bold :account="i.account" class="h-1.5em w-1.5em" />
-              </NuxtLink>
-            </AccountHoverWrapper>
+        <div v-if="reactions.length" flex="~ gap-2 wrap">
+          <template v-for="i, idx of reactions" :key="idx">
+            <div flex gap-1 relative z-0>
+              <div text-xl flex items-center z-1>
+                <img v-if="(i.reaction as akkoma.v1.ReactionNotification).emojiUrl" :src="(i.reaction as akkoma.v1.ReactionNotification).emojiUrl" class="h-[20px]">
+                <div v-else-if="(i.reaction as akkoma.v1.ReactionNotification).emoji">
+                  {{ (i.reaction as akkoma.v1.ReactionNotification).emoji }}
+                </div>
+                <div v-else>
+                  👍
+                </div>
+              </div>
+              <AccountHoverWrapper :account="i.account" relative border="2 bg-base" ml--3 rounded-full hover:z-1 focus-within:z-1>
+                <NuxtLink :to="getAccountRoute(i.account)">
+                  <AccountAvatar text-primary font-bold :account="i.account" class="h-1.5em w-1.5em" />
+                </NuxtLink>
+              </AccountHoverWrapper>
+            </div>
           </template>
-          <div ms-4>
+          <div>
             {{ $t('notification.favourited_post') }}
           </div>
         </div>

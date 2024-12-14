@@ -335,7 +335,7 @@
     "zen_mode": "Zen Mode"
   },
   "notification": {
-    "favourited_post": "favorited your post",
+    "favourited_post": "reacted to your post",
     "followed_you": "followed you",
     "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
     "missing_type": "MISSING notification.type:",

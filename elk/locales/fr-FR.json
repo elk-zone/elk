@@ -298,7 +298,7 @@
     "zen_mode": "Mode Zen"
   },
   "notification": {
-    "favourited_post": "a aimé votre message",
+    "favourited_post": "a réagit à votre message",
     "followed_you": "vous suit",
     "followed_you_count": "{0} personnes vous suivent|{0} personne vous suit|{0} personnes vous suivent",
     "missing_type": "MISSING notification.type:",

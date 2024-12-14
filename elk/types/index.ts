@@ -30,7 +30,7 @@ export interface GroupedNotifications {
 
 export interface GroupedAccountLike {
   account: akkoma.v1.Account
-  favourite?: akkoma.v1.Notification
+  reaction?: akkoma.v1.Notification | akkoma.v1.ReactionNotification
   reblog?: akkoma.v1.Notification
 }
 

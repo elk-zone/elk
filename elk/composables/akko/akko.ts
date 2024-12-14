@@ -40,7 +40,7 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
     if (newInstance.urls.streamingApi !== streamingApiUrl)
       masto.streamingClient.value = createStreamingClient(newInstance.urls.streamingApi)
 
-    instanceStorage.value[server] = newInstance as AkkomaInstance
+    instanceStorage.value[server] = newInstance as ElkInstance
   })
 
   return instance

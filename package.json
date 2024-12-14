@@ -145,7 +145,6 @@
   },
   "pnpm": {
     "patchedDependencies": {
-      "@vueuse/motion": "patches/@vueuse__motion.patch",
       "pinceau": "patches/pinceau.patch"
     }
   },

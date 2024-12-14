@@ -26,11 +26,20 @@ const props = withDefaults(
 
 const userSettings = useUserSettings()
 
-const status = computed(() => {
+const actualStatus = computed(() => {
   if (props.status.reblog && (!props.status.content || props.status.content === props.status.reblog.content))
     return props.status.reblog
   return props.status
 })
+
+const {
+  status,
+  canReblog,
+  isLoading,
+  toggleBookmark,
+  toggleReact,
+  toggleReblog,
+} = useStatusActions({ status: actualStatus.value })
 
 // Use original status, avoid connecting a reblog
 const directReply = computed(() => props.hasNewer || (!!status.value.inReplyToId && (status.value.inReplyToId === props.newer?.id || status.value.inReplyToId === props.newer?.reblog?.id)))
@@ -183,7 +192,7 @@ const forceShow = ref(false)
             :in-notification="inNotification"
             mb2 :class="{ 'mt-2 mb1': isDM }"
           />
-          <StatusActions v-if="actions !== false" v-show="!getPreferences(userSettings, 'zenMode')" :status="status" />
+          <StatusActions v-if="actions !== false" v-show="!getPreferences(userSettings, 'zenMode')" :status="status" :can-reblog="canReblog" :is-loading="isLoading" :toggle-bookmark="toggleBookmark" :toggle-react="toggleReact" :toggle-reblog="toggleReblog" />
         </div>
       </template>
     </div>

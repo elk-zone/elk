@@ -314,6 +314,9 @@ export default defineNuxtConfig({
     langDir: 'locales',
     defaultLocale: 'en-US',
     vueI18n: './config/i18n.config.ts',
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
   pwa,
   staleDep: {

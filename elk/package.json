@@ -65,7 +65,6 @@
     "@vueuse/math": "^11.0.3",
     "@vueuse/motion": "2.2.6",
     "@vueuse/nuxt": "^11.0.3",
-    "akko": "^6.10.1",
     "blurhash": "^2.0.5",
     "browser-fs-access": "^0.35.0",
     "cheerio": "^1.0.0",
@@ -83,6 +82,7 @@
     "iso-639-1": "^3.0.0",
     "js-yaml": "^4.1.0",
     "lru-cache": "^11.0.0",
+    "masto": "^6.10.1",
     "node-emoji": "^2.1.3",
     "nuxt-security": "^1.4.3",
     "page-lifecycle": "^0.1.2",
@@ -142,6 +142,14 @@
     "vitest": "2.1.5",
     "vue-tsc": "^2.1.6"
   },
+  "pnpm": {
+    "patchedDependencies": {
+      "pinceau": "patches/pinceau.patch",
+      "vue-i18n": "patches/vue-i18n.patch",
+      "nuxt-security": "patches/nuxt-security.patch",
+      "nuxt": "patches/nuxt.patch"
+    }
+  },
   "resolutions": {
     "nuxt-component-meta": "0.9.0",
     "unstorage": "^1.13.1",
@@ -149,7 +157,7 @@
     "vue": "^3.5.4"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
+    "pre-commit": "pnpm lint-staged"
   },
   "lint-staged": {
     "*": "eslint --fix"

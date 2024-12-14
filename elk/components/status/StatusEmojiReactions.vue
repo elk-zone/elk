@@ -5,10 +5,10 @@ const { status } = defineProps<{
   status: akkoma.v1.Status
 }>()
 
-const emojis: ComputedRef<{ [k: string]: (akkoma.v1.CustomEmoji & { count: number }) }> = useEmojisFallback(() => status.emojiReactions
+const emojis = computed(() => status.emojiReactions
   .map(react => ({ count: react.count, url: react.url as string, shortcode: react.name, staticUrl: react.url as string, visibleInPicker: false }))
   .concat(status.favouritesCount > 0 ? [{ count: status.favouritesCount, url: '', staticUrl: '', shortcode: '👍', visibleInPicker: false }] : []),
-) as ComputedRef<{ [k: string]: (akkoma.v1.CustomEmoji & { count: number }) }>
+)
 </script>
 
 <template>

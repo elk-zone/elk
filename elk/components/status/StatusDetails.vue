@@ -40,7 +40,7 @@ useHydratedHead({
     <StatusContent :status="status" :newer="newer" context="details" />
     <div flex="~ gap-1" items-center justify-between text-secondary text-sm>
       <div flex="~ gap-1" items-center>
-        <div flex>
+        <div flex shrink-0>
           <div>{{ createdAt }}</div>
           <StatusEditIndicator
             :status="status"

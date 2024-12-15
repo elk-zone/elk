@@ -75,6 +75,10 @@ export const statusVisibilities = [
     icon: 'i-ri:lock-unlock-line',
   },
   {
+    value: 'local',
+    icon: 'i-ri:home-heart-line',
+  },
+  {
     value: 'private',
     icon: 'i-ri:lock-line',
   },

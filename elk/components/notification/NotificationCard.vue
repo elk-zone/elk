@@ -28,7 +28,7 @@ const supportedNotificationTypes: NotificationType[] = [
 ]
 
 // well-known emoji reactions types Elk does not support yet
-const unsupportedEmojiReactionTypes = ['pleroma:emoji_reaction', 'reaction']
+const unsupportedEmojiReactionTypes = ['reaction']
 
 if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotificationTypes.includes(notification.type)) {
   console.warn(`[DEV] ${t('notification.missing_type')} '${notification.type}' (notification.id: ${notification.id})`)

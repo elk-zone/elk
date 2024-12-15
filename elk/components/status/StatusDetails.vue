@@ -14,20 +14,20 @@ defineEmits<{
   (event: 'refetchStatus'): void
 }>()
 
-const actualStatus = computed(() => {
+const status = computed(() => {
   if (props.status.reblog && props.status.reblog)
     return props.status.reblog
   return props.status
 })
 
 const {
-  status,
+  status: actionStatus,
   isLoading,
   canReblog,
   toggleBookmark,
   toggleReblog,
   toggleReact,
-} = useStatusActions({ status: actualStatus.value })
+} = useStatusActions({ status: status.value })
 
 const createdAt = useFormattedDateTime(status.value.createdAt)
 
@@ -64,11 +64,11 @@ useHydratedHead({
         <StatusVisibilityIndicator :status="status" />
       </div>
       <div justify-self-end>
-        <StatusEmojiReactions :status="status" />
+        <StatusEmojiReactions :status="actionStatus" />
       </div>
     </div>
     <div border="t base" py-2>
-      <StatusActions v-if="actions" :status="status" details :command="command" :can-reblog="canReblog" :is-loading="isLoading" :toggle-bookmark="toggleBookmark" :toggle-react="toggleReact" :toggle-reblog="toggleReblog" />
+      <StatusActions v-if="actions" :status="actionStatus" details :command="command" :can-reblog="canReblog" :is-loading="isLoading" :toggle-bookmark="toggleBookmark" :toggle-react="toggleReact" :toggle-reblog="toggleReblog" />
     </div>
   </div>
 </template>

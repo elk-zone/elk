@@ -25,7 +25,7 @@
     "favourites": "Favourites"
   },
   "notification": {
-    "favourited_post": "favourited your post"
+    "favourited_post": "reacted to your post"
   },
   "report": {
     "forward_question": "Do you want to send an anonymised copy of this report to that server as well?"

@@ -69,6 +69,15 @@ export type FollowRequestNotification = BaseNotificationPlain<"follow_request">;
 export type FavouriteNotification = BaseNotificationWithStatus<"favourite">;
 
 /**
+ * Someone reacted to one of your statuses
+ */
+export type ReactionNotification =
+  BaseNotificationWithStatus<"pleroma:emoji_reaction"> & {
+    emojiUrl?: string;
+    emoji: string;
+  };
+
+/**
  * A poll you have voted in or created has ended
  */
 export type PollNotification = BaseNotificationWithStatus<"poll">;
@@ -113,6 +122,7 @@ export type Notification =
   | FollowNotification
   | FollowRequestNotification
   | FavouriteNotification
+  | ReactionNotification
   | PollNotification
   | UpdateNotification
   | AdminSignUpNotification

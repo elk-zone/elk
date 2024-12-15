@@ -31,7 +31,7 @@ function groupId(item: akkoma.v1.Notification): string {
   const id = item.status
     ? {
         status: item.status?.id,
-        type: (item.type === 'reblog' || item.type === 'favourite') ? 'like' : item.type,
+        type: (item.type === 'reblog' || item.type === 'favourite' || item.type === 'pleroma:emoji_reaction') ? 'like' : item.type,
       }
     : {
         type: item.type,
@@ -86,13 +86,13 @@ function groupItems(items: akkoma.v1.Notification[]): NotificationSlot[] {
       }
       return
     }
-    else if (group.length && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
+    else if (group.length && (group[0].type === 'reblog' || group[0].type === 'favourite' || group[0].type === 'pleroma:emoji_reaction')) {
       if (!group[0].status) {
         // Ignore favourite or reblog if status is null, sometimes the API is sending these
         // notifications
         return
       }
-      // All notifications in these group are reblogs or favourites of the same status
+      // All notifications in these group are reblogs, reactions or favourites of the same status
       const likes: GroupedAccountLike[] = []
       for (const notification of group) {
         let like = likes.find(like => like.account.id === notification.account.id)
@@ -100,10 +100,10 @@ function groupItems(items: akkoma.v1.Notification[]): NotificationSlot[] {
           like = { account: notification.account }
           likes.push(like)
         }
-        like[notification.type === 'reblog' ? 'reblog' : 'favourite'] = notification
+        like[notification.type === 'reblog' ? 'reblog' : 'reaction'] = notification
       }
       likes.sort((a, b) => a.reblog
-        ? (!b.reblog || (a.favourite && !b.favourite))
+        ? (!b.reblog || (a.reaction && !b.reaction))
             ? -1
             : 0
         : 0)
@@ -148,8 +148,8 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
       for (const like of group.likes) {
         if (like.reblog)
           flattenedNotifications.push(like.reblog)
-        if (like.favourite)
-          flattenedNotifications.push(like.favourite)
+        if (like.reaction)
+          flattenedNotifications.push(like.reaction)
       }
     }
     else if (item.type === 'grouped-follow') {

@@ -560,7 +560,7 @@
       "label": "Preferences",
       "optimize_for_low_performance_device": "Optimize for low performance device",
       "title": "Experimental Features",
-      
+
       "user_picker": "User Picker",
       "user_picker_description": "Displays all avatars of logged accounts in the bottom-left so you can switch quickly between them.",
       "virtual_scroll": "Virtual Scrolling",
@@ -757,6 +757,8 @@
   "visibility": {
     "direct": "Direct",
     "direct_desc": "Visible for mentioned users only",
+    "local": "Local",
+    "local_desc": "Visible for people on this instance only",
     "private": "Followers only",
     "private_desc": "Visible for followers only",
     "public": "Public",

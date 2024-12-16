@@ -702,6 +702,8 @@
   "visibility": {
     "direct": "Personnes mentionnées uniquement",
     "direct_desc": "Visibles uniquement par les comptes mentionnés",
+    "local": "Local",
+    "local_desc": "Visible uniquement par les comptes sur cette instance",
     "private": "Abonnés uniquement",
     "private_desc": "Visible uniquement par vos abonnés",
     "public": "Public",

@@ -69,7 +69,9 @@ export const TiptapPluginEmoji = Node.create({
   },
 
   renderHTML(args) {
-    return ['img', mergeAttributes(this.options.HTMLAttributes, args.HTMLAttributes)]
+    const node = document.createElement('span')
+    node.innerHTML = args.HTMLAttributes.alt
+    return node
   },
 
   addCommands() {

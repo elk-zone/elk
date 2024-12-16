@@ -4,14 +4,13 @@ import type { Node } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { decode } from 'tiny-decode'
 import { DOCUMENT_NODE, ELEMENT_NODE, h, parse, render, TEXT_NODE } from 'ultrahtml'
-import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
+import { emojiRegEx } from '../config/emojis'
 
 export interface ContentParseOptions {
   emojis?: Record<string, akkoma.v1.CustomEmoji>
   hideEmojis?: boolean
   mentions?: akkoma.v1.StatusMention[]
   markdown?: boolean
-  replaceUnicodeEmoji?: boolean
   astTransforms?: Transform[]
   convertMentionLink?: boolean
   collapseMentionLink?: boolean
@@ -81,7 +80,6 @@ export function parseMastodonHTML(
 ) {
   const {
     markdown = true,
-    replaceUnicodeEmoji = true,
     convertMentionLink = false,
     collapseMentionLink = false,
     hideEmojis = false,
@@ -123,9 +121,6 @@ export function parseMastodonHTML(
     transforms.push(removeCustomEmoji(options.emojis ?? {}))
   }
   else {
-    if (replaceUnicodeEmoji)
-      transforms.push(transformUnicodeEmoji)
-
     transforms.push(replaceCustomEmoji(options.emojis ?? {}))
   }
 
@@ -387,27 +382,6 @@ function removeUnicodeEmoji(node: Node) {
   const matches = [] as (string | Node)[]
   findAndReplaceEmojisInText(emojiRegEx, node.value, (match, result) => {
     matches.push(result.slice(start).trimEnd())
-    start = result.length + match.match.length
-    return undefined
-  })
-  if (matches.length === 0)
-    return node
-
-  matches.push(node.value.slice(start))
-  return matches.filter(Boolean)
-}
-
-function transformUnicodeEmoji(node: Node) {
-  if (node.type !== TEXT_NODE)
-    return node
-
-  let start = 0
-
-  const matches = [] as (string | Node)[]
-  findAndReplaceEmojisInText(emojiRegEx, node.value, (match, result) => {
-    const attrs = getEmojiAttributes(match)
-    matches.push(result.slice(start))
-    matches.push(h('img', { src: attrs.src, alt: attrs.alt, class: attrs.class }))
     start = result.length + match.match.length
     return undefined
   })

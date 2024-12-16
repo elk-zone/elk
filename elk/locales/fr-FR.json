@@ -134,7 +134,8 @@
     "delete_posts": {
       "cancel": "Annuler",
       "confirm": "Supprimer",
-      "description": "Voulez-vous vraiment supprimer ce message ?"
+      "description": "Voulez-vous vraiment supprimer ce message ?",
+      "title": "Supprimer"
     },
     "mute_account": {
       "cancel": "Annuler",

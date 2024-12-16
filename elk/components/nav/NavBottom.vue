@@ -4,9 +4,8 @@ import type { NavButtonName } from '../../composables/settings'
 
 import {
   NavButtonBookmark,
+  NavButtonBubble,
   NavButtonCompose,
-  NavButtonExplore,
-  NavButtonFavorite,
   NavButtonFederated,
   NavButtonHashtag,
   NavButtonHome,
@@ -30,11 +29,10 @@ const navButtons: NavButton[] = [
   { name: 'search', component: NavButtonSearch },
   { name: 'notification', component: NavButtonNotification },
   { name: 'mention', component: NavButtonMention },
-  { name: 'favorite', component: NavButtonFavorite },
   { name: 'bookmark', component: NavButtonBookmark },
   { name: 'compose', component: NavButtonCompose },
-  { name: 'explore', component: NavButtonExplore },
   { name: 'local', component: NavButtonLocal },
+  { name: 'bubble', component: NavButtonBubble },
   { name: 'federated', component: NavButtonFederated },
   { name: 'list', component: NavButtonList },
   { name: 'hashtag', component: NavButtonHashtag },
@@ -42,8 +40,8 @@ const navButtons: NavButton[] = [
 ]
 
 const defaultSelectedNavButtonNames: NavButtonName[] = currentUser.value
-  ? ['home', 'search', 'notification', 'mention', 'moreMenu']
-  : ['explore', 'local', 'federated', 'moreMenu']
+  ? ['home', 'notification', 'moreMenu']
+  : ['local', 'federated', 'moreMenu']
 const selectedNavButtonNames = useLocalStorage<NavButtonName[]>(STORAGE_KEY_BOTTOM_NAV_BUTTONS, defaultSelectedNavButtonNames)
 
 const selectedNavButtons = computed(() => selectedNavButtonNames.value.map(name => navButtons.find(navButton => navButton.name === name)))

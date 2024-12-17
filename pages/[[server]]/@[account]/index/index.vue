@@ -21,11 +21,12 @@ if (account) {
     title: () => `${t('account.posts')} | ${getDisplayName(account)} (@${account.acct})`,
   })
 }
+const stream = useStreaming(client => client.user.subscribe())
 </script>
 
 <template>
   <div>
     <AccountTabs />
-    <TimelinePaginator :paginator="paginator" :preprocess="reorderAndFilter" context="account" :account="account" />
+    <TimelinePaginator :paginator="paginator" :preprocess="reorderAndFilter" context="account" :account="account" :stream="stream" />
   </div>
 </template>

@@ -295,6 +295,7 @@ export default defineNuxtConfig({
         'media-src': ['\'self\'', 'https:', 'http:'],
         'object-src': ['\'none\''],
         'script-src': ['\'self\'', '\'unsafe-inline\'', '\'wasm-unsafe-eval\''],
+        'script-src-elem': ['\'self\'', '\'unsafe-inline\'', '\'wasm-unsafe-eval\''],
         'script-src-attr': ['\'none\''],
         'style-src': ['\'self\'', '\'unsafe-inline\''],
         'upgrade-insecure-requests': true,

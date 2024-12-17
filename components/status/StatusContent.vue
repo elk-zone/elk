@@ -44,7 +44,9 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
     <StatusBody v-if="(!isFiltered && isSensitiveNonSpoiler) || hideAllMedia" :status="status" :newer="newer" :with-action="!isDetails" :class="isDetails ? 'text-xl' : ''" />
     <StatusSpoiler :enabled="hasSpoilerOrSensitiveMedia || isFiltered" :filter="isFiltered" :sensitive-non-spoiler="isSensitiveNonSpoiler || hideAllMedia" :is-d-m="isDM">
       <template v-if="spoilerTextPresent" #spoiler>
-        <p>{{ status.spoilerText }}</p>
+        <p>
+          <ContentRich :content="status.spoilerText" :emojis="status.emojis" :markdown="false" />
+        </p>
       </template>
       <template v-else-if="filterPhrase" #spoiler>
         <p>{{ `${$t('status.filter_hidden_phrase')}: ${filterPhrase}` }}</p>

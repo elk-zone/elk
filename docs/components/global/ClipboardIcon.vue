@@ -1,8 +1,7 @@
-<script>
-export default {
-  name: 'ClipboardIcon',
-  props: { copy: Boolean },
-}
+<script setup lang="ts">
+const { copy } = defineProps<{
+  copy?: boolean
+}>()
 </script>
 
 <template>

@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import type { ResolvedCommand } from '~/composables/command'
 
 const {

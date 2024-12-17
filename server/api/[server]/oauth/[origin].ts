@@ -1,5 +1,7 @@
 import { stringifyQuery } from 'ufo'
 
+import { defaultUserAgent } from '~/server/utils/shared'
+
 export default defineEventHandler(async (event) => {
   let { server, origin } = getRouterParams(event)
   server = server.toLocaleLowerCase().trim()
@@ -24,6 +26,9 @@ export default defineEventHandler(async (event) => {
   try {
     const result: any = await $fetch(`https://${server}/oauth/token`, {
       method: 'POST',
+      headers: {
+        'user-agent': defaultUserAgent,
+      },
       body: {
         client_id: app.client_id,
         client_secret: app.client_secret,
@@ -38,7 +43,7 @@ export default defineEventHandler(async (event) => {
     const url = `/signin/callback?${stringifyQuery({ server, token: result.access_token, vapid_key: app.vapid_key })}`
     await sendRedirect(event, url, 302)
   }
-  catch (e) {
+  catch {
     throw createError({
       statusCode: 400,
       statusMessage: 'Could not complete log in.',

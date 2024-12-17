@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { EditorContent } from '@tiptap/vue-3'
-import stringLength from 'string-length'
 import type { mastodon } from 'masto'
 import type { DraftItem } from '~/types'
+import { EditorContent } from '@tiptap/vue-3'
+import stringLength from 'string-length'
 
 const {
+  threadComposer,
   draftKey,
   draftItemIndex,
   expanded = false,
@@ -15,6 +16,7 @@ const {
   draftKey: string
   draftItemIndex: number
   initial?: () => DraftItem
+  threadComposer?: ReturnType<typeof useThreadComposer>
   placeholder?: string
   inReplyToId?: string
   inReplyToVisibility?: mastodon.v1.StatusVisibility
@@ -28,7 +30,7 @@ const emit = defineEmits<{
 
 const { t } = useI18n()
 
-const { threadItems, threadIsActive, publishThread } = useThreadComposer(draftKey)
+const { threadItems, threadIsActive, publishThread } = threadComposer ?? useThreadComposer(draftKey)
 
 const draft = computed({
   get: () => threadItems.value[draftItemIndex],
@@ -85,10 +87,12 @@ function trimPollOptions() {
   const trimmedOptions = draft.value.params.poll!.options.slice(0, indexLastNonEmpty + 1)
 
   if (currentInstance.value?.configuration
-    && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions)
+    && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions) {
     draft.value.params.poll!.options = trimmedOptions
-  else
+  }
+  else {
     draft.value.params.poll!.options = [...trimmedOptions, '']
+  }
 }
 
 function editPollOptionDraft(event: Event, index: number) {
@@ -135,10 +139,10 @@ const characterCount = computed(() => {
   let length = stringLength(text)
 
   // taken from https://github.com/mastodon/mastodon/blob/07f8b4d1b19f734d04e69daeb4c3421ef9767aac/app/lib/text_formatter.rb
-  const linkRegex = /(https?:\/\/(www\.)?|xmpp:)\S+/g
+  const linkRegex = /(https?:\/\/|xmpp:)\S+/g
 
   // taken from https://github.com/mastodon/mastodon/blob/af578e/app/javascript/mastodon/features/compose/util/counter.js
-  const countableMentionRegex = /(^|[^/\w])@(([a-z0-9_]+)@[a-z0-9.-]+[a-z0-9]+)/ig
+  const countableMentionRegex = /(^|[^/\w])@((\w+)@[a-z0-9.-]+[a-z0-9])/gi
 
   // maximum of 23 chars per link
   // https://github.com/elk-zone/elk/issues/1651
@@ -518,6 +522,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 v-if="!threadIsActive || isFinalItemOfThread"
                 btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
                 :aria-disabled="isPublishDisabled || isExceedingCharacterLimit" aria-describedby="publish-tooltip"
+                :disabled="isPublishDisabled || isExceedingCharacterLimit"
                 @click="publish"
               >
                 <span v-if="isSending" block animate-spin preserve-3d>

@@ -1,15 +1,15 @@
-import type { GetReferenceClientRect, Instance } from 'tippy.js'
-import tippy from 'tippy.js'
-import { VueRenderer } from '@tiptap/vue-3'
-import type { SuggestionOptions } from '@tiptap/suggestion'
-import { PluginKey } from 'prosemirror-state'
-import type { Component } from 'vue'
 import type { Emoji, EmojiMartData } from '@emoji-mart/data'
+import type { SuggestionOptions } from '@tiptap/suggestion'
 import type { mastodon } from 'masto'
-import { currentCustomEmojis, updateCustomEmojis } from '~/composables/emojis'
-import TiptapMentionList from '~/components/tiptap/TiptapMentionList.vue'
-import TiptapHashtagList from '~/components/tiptap/TiptapHashtagList.vue'
+import type { GetReferenceClientRect, Instance } from 'tippy.js'
+import type { Component } from 'vue'
+import { VueRenderer } from '@tiptap/vue-3'
+import { PluginKey } from 'prosemirror-state'
+import tippy from 'tippy.js'
 import TiptapEmojiList from '~/components/tiptap/TiptapEmojiList.vue'
+import TiptapHashtagList from '~/components/tiptap/TiptapHashtagList.vue'
+import TiptapMentionList from '~/components/tiptap/TiptapMentionList.vue'
+import { currentCustomEmojis, updateCustomEmojis } from '~/composables/emojis'
 
 export type { Emoji }
 
@@ -119,7 +119,8 @@ function createSuggestionRenderer(component: Component): SuggestionOptions['rend
 
       // Use arrow function here because Nuxt will transform it incorrectly as Vue hook causing the build to fail
       onBeforeUpdate: (props) => {
-        props.editor.isFocused && renderer.updateProps({ ...props, isPending: true })
+        if (props.editor.isFocused)
+          renderer.updateProps({ ...props, isPending: true })
       },
 
       onUpdate(props) {

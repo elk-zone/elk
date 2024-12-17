@@ -8,7 +8,7 @@ const vAutoFocus = (el: HTMLElement) => el.focus()
 
 <template>
   <div my-8 px-3 sm:px-8 md:max-w-200 flex="~ col gap-4" relative>
-    <button v-auto-focus type="button" btn-action-icon absolute top--8 right-0 m1 aria-label="Close" @click="emit('close')">
+    <button v-auto-focus type="button" btn-action-icon absolute top--8 right-0 m1 :aria-label="$t('action.close')" @click="emit('close')">
       <span i-ri:close-line />
     </button>
 

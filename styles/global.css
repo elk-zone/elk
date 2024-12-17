@@ -40,7 +40,7 @@ body {
 .iconify-emoji {
   display: inline-block;
   height: 1.2em;
-  width: 1.2em;
+  max-width: 100%;
   margin-right: 0.075em;
   margin-left: 0.075em;
   object-fit: contain;
@@ -238,4 +238,8 @@ allows controlling them individually
 [data-mode="grayscale"] img:hover,
 [data-mode="grayscale"] video:hover {
   filter: grayscale(0);
+}
+
+.nuxt-loading-indicator {
+  opacity: unset !important;
 }

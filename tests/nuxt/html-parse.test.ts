@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'vitest'
+import type { ContentParseOptions } from '~/composables/content-parse'
 import { format } from 'prettier'
 import { render as renderTree } from 'ultrahtml'
-import type { ContentParseOptions } from '~/composables/content-parse'
+import { describe, expect, it } from 'vitest'
 
 describe('html-parse', () => {
   it('empty', async () => {
@@ -75,7 +75,7 @@ async function render(input: string, options?: ContentParseOptions) {
       parser: 'html',
     })
   }
-  catch (e) {
+  catch {
     formatted = html
   }
 

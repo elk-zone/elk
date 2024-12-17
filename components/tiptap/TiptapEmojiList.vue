@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import { getEmojiMatchesInText } from '@iconify/utils/lib/emoji/replace/find'
-import CommonScrollIntoView from '../common/CommonScrollIntoView.vue'
-import type { CustomEmoji, Emoji } from '~/composables/tiptap/suggestion'
-import { isCustomEmoji } from '~/composables/tiptap/suggestion'
-import { emojiFilename, emojiPrefix, emojiRegEx } from '~~/config/emojis'
 import type { CommandHandler } from '~/composables/command'
+import type { CustomEmoji, Emoji } from '~/composables/tiptap/suggestion'
+import { getEmojiMatchesInText } from '@iconify/utils/lib/emoji/replace/find'
+import { emojiFilename, emojiPrefix, emojiRegEx } from '~~/config/emojis'
+import { isCustomEmoji } from '~/composables/tiptap/suggestion'
 
 const { items, command } = defineProps<{
   items: (CustomEmoji | Emoji)[]

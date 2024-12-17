@@ -1,7 +1,7 @@
-import { fileOpen } from 'browser-fs-access'
-import type { Ref } from 'vue'
 import type { mastodon } from 'masto'
+import type { Ref } from 'vue'
 import type { DraftItem } from '~~/types'
+import { fileOpen } from 'browser-fs-access'
 
 export function usePublish(options: {
   draftItem: Ref<DraftItem>
@@ -45,16 +45,16 @@ export function usePublish(options: {
       || failedMessages.value.length > 0
       || (attachments.length > 0 && params.poll !== null && params.poll !== undefined)
       || ((params.poll !== null && params.poll !== undefined)
-      && (
-        (firstEmptyInputIndex !== -1
-        && firstEmptyInputIndex !== params.poll.options.length - 1
-        )
-        || params.poll.options.findLastIndex(option => option.trim().length > 0) + 1 < 2
-        || (new Set(params.poll.options).size !== params.poll.options.length)
-        || (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined
-        && params.poll.options.find(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption) !== undefined
-        )
-      ))
+        && (
+          (firstEmptyInputIndex !== -1
+            && firstEmptyInputIndex !== params.poll.options.length - 1
+          )
+          || params.poll.options.findLastIndex(option => option.trim().length > 0) + 1 < 2
+          || (new Set(params.poll.options).size !== params.poll.options.length)
+          || (currentInstance.value?.configuration?.polls.maxCharactersPerOption !== undefined
+            && params.poll.options.find(option => option.length > currentInstance.value!.configuration!.polls.maxCharactersPerOption) !== undefined
+          )
+        ))
   })
 
   watch(draftItem, () => {
@@ -80,8 +80,9 @@ export function usePublish(options: {
           options.length < currentInstance.value.configuration.polls.maxOptions
           || options[options.length - 1].trim().length === 0
         )
-      )
+      ) {
         options = options.slice(0, options.length - 1)
+      }
 
       poll = { ...draftItem.value.params.poll, options }
     }

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import { NOTIFICATION_FILTER_TYPES } from '~/constants'
 import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/types'
+import { NOTIFICATION_FILTER_TYPES } from '~/constants'
 
 definePageMeta({
   middleware: 'auth',
@@ -47,6 +47,8 @@ const filterIconMap: Record<mastodon.v1.NotificationType, string> = {
   'update': 'i-ri:edit-2-line',
   'admin.sign_up': 'i-ri:user-add-line',
   'admin.report': 'i-ri:flag-line',
+  'severed_relationships': 'i-ri:user-unfollow-line',
+  'moderation_warning': 'i-ri:error-warning-line',
 }
 
 const filterText = computed(() => `${t('tab.notifications_more_tooltip')}${filter.value ? `: ${t(`tab.notifications_${filter.value}`)}` : ''}`)

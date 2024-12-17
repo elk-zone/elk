@@ -13,9 +13,14 @@ const availableNavButtons: NavButton[] = [
   { name: 'search', label: 'nav.search', icon: 'i-ri:search-line' },
   { name: 'notification', label: 'nav.notifications', icon: 'i-ri:notification-4-line' },
   { name: 'mention', label: 'nav.conversations', icon: 'i-ri:at-line' },
+  { name: 'favorite', label: 'nav.favourites', icon: 'i-ri:heart-line' },
+  { name: 'bookmark', label: 'nav.bookmarks', icon: 'i-ri:bookmark-line' },
+  { name: 'compose', label: 'nav.compose', icon: 'i-ri:quill-pen-line' },
   { name: 'explore', label: 'nav.explore', icon: 'i-ri:compass-3-line' },
   { name: 'local', label: 'nav.local', icon: 'i-ri:group-2-line' },
   { name: 'federated', label: 'nav.federated', icon: 'i-ri:earth-line' },
+  { name: 'list', label: 'nav.lists', icon: 'i-ri:list-check' },
+  { name: 'hashtag', label: 'nav.hashtags', icon: 'i-ri:hashtag' },
   { name: 'moreMenu', label: 'nav.more_menu', icon: 'i-ri:more-fill' },
 ] as const
 
@@ -25,7 +30,7 @@ const defaultSelectedNavButtonNames = computed<NavButtonName[]>(() =>
     : ['explore', 'local', 'federated', 'moreMenu'],
 )
 const navButtonNamesSetting = useLocalStorage<NavButtonName[]>(STORAGE_KEY_BOTTOM_NAV_BUTTONS, defaultSelectedNavButtonNames.value)
-const selectedNavButtonNames = ref<NavButtonName[]>([])
+const selectedNavButtonNames = ref<NavButtonName[]>(navButtonNamesSetting.value)
 
 const selectedNavButtons = computed<NavButton[]>(() =>
   selectedNavButtonNames.value.map(name =>
@@ -76,13 +81,13 @@ function save() {
         {{ $t('settings.interface.bottom_nav_instructions') }}
       </p>
       <!-- preview -->
-      <div aria-hidden="true" flex="~ gap4 wrap" items-center select-settings h-14 p0>
+      <div aria-hidden="true" flex="~ gap4 wrap" items-center select-settings h-14>
         <nav
           v-for="availableNavButton in selectedNavButtons" :key="availableNavButton.name"
           flex="~ 1" items-center justify-center text-xl
           scrollbar-hide overscroll-none
         >
-          <button btn-base :class="availableNavButton.icon" mx-4 tabindex="-1" />
+          <span :class="availableNavButton.icon" />
         </nav>
       </div>
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import type { ComponentPublicInstance } from 'vue'
 // @ts-expect-error missing types
 import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller'
-import type { ComponentPublicInstance } from 'vue'
 
 definePageMeta({
   name: 'status',
@@ -88,7 +88,7 @@ onReactivated(() => {
           <PublishWidgetList
             v-if="currentUser"
             ref="publishWidget"
-            border="y base"
+            class="border-y border-base"
             :draft-key="replyDraft!.key"
             :initial="replyDraft!.draft"
             @published="refreshContext()"

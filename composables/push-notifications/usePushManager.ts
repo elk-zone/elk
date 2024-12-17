@@ -178,7 +178,8 @@ export function usePushManager() {
       else
         currentUser.value.pushSubscription = await client.value.v1.push.subscription.update({ data })
 
-      policyChanged && await nextTick()
+      if (policyChanged)
+        await nextTick()
 
       // force change policy when changed: watch is resetting it on push subscription update
       await saveSettings(policyChanged ? policy : undefined)

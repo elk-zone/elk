@@ -1,6 +1,6 @@
-<script lang="ts" setup>
-import { fileOpen } from 'browser-fs-access'
+<script setup lang="ts">
 import type { FileWithHandle } from 'browser-fs-access'
+import { fileOpen } from 'browser-fs-access'
 
 const props = withDefaults(defineProps<{
   /** The image src before change */

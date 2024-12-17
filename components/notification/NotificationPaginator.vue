@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// @ts-expect-error missing types
-import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import type { mastodon } from 'masto'
 import type { GroupedAccountLike, NotificationSlot } from '~/types'
+// @ts-expect-error missing types
+import { DynamicScrollerItem } from 'vue-virtual-scroller'
 
 const { paginator, stream } = defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.Notification[], mastodon.rest.v1.ListNotificationsParams>
@@ -14,6 +14,8 @@ const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 const groupCapacity = Number.MAX_VALUE // No limit
 
 const includeNotificationTypes: mastodon.v1.NotificationType[] = ['update', 'mention', 'poll', 'status']
+
+let id = 0
 
 function includeNotificationsForStatusCard({ type, status }: mastodon.v1.Notification) {
   // Exclude update, mention, pool and status notifications without the status entry:
@@ -44,7 +46,6 @@ function hasHeader(account: mastodon.v1.Account) {
 function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   const results: NotificationSlot[] = []
 
-  let id = 0
   let currentGroupId = ''
   let currentGroup: mastodon.v1.Notification[] = []
   const processGroup = () => {

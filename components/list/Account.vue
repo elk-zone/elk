@@ -15,9 +15,10 @@ const isRemoved = ref(false)
 
 async function edit() {
   try {
-    isRemoved.value
-      ? await client.v1.lists.$select(list).accounts.create({ accountIds: [account.id] })
-      : await client.v1.lists.$select(list).accounts.remove({ accountIds: [account.id] })
+    if (isRemoved.value)
+      await client.v1.lists.$select(list).accounts.create({ accountIds: [account.id] })
+    else
+      await client.v1.lists.$select(list).accounts.remove({ accountIds: [account.id] })
     isRemoved.value = !isRemoved.value
   }
   catch (err) {

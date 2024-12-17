@@ -1,10 +1,15 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { renderToString } from 'vue/server-renderer'
-import { format } from 'prettier'
+/* eslint perfectionist/sort-imports: "off" */
+// to prevent error when importing '@nuxt/test-utils/runtime' before 'vitest'
+// ref. #2984 chore(deps): update dependency @antfu/eslint-config to v3 by renovate[bot]
+// https://github.com/elk-zone/elk/pull/2984
+
 import type { mastodon } from 'masto'
+import { format } from 'prettier'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mockComponent } from '@nuxt/test-utils/runtime'
-import { contentToVNode } from '~/composables/content-render'
+import { renderToString } from 'vue/server-renderer'
 import type { ContentParseOptions } from '~/composables/content-parse'
+import { contentToVNode } from '~/composables/content-render'
 
 beforeEach(() => {
   publicServer.value = useRuntimeConfig().public.defaultServer
@@ -194,7 +199,7 @@ describe('editor', () => {
 async function render(content: string, options?: ContentParseOptions) {
   const vnode = contentToVNode(content, options)
   const html = (await renderToString(vnode))
-    .replace(/<!--[\[\]]-->/g, '')
+    .replace(/<!--[[\]]-->/g, '')
   let formatted = ''
 
   try {
@@ -202,7 +207,7 @@ async function render(content: string, options?: ContentParseOptions) {
       parser: 'html',
     })
   }
-  catch (e) {
+  catch {
     formatted = html
   }
 

@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 const props = defineProps<{
   text?: string
   content?: string
@@ -20,12 +20,12 @@ useCommand({
   scope: 'Settings',
 
   name: () => props.text
-  ?? (props.to
-    ? typeof props.to === 'string'
-      ? props.to
-      : props.to.name
-    : ''
-  ),
+    ?? (props.to
+      ? typeof props.to === 'string'
+        ? props.to
+        : props.to.name
+      : ''
+    ),
   description: () => props.description,
   icon: () => props.icon || '',
   visible: () => props.command && props.to,

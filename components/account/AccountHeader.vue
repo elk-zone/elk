@@ -189,7 +189,6 @@ async function copyAccountName() {
         <div flex="~ col gap1" pt2>
           <div flex gap2 items-center flex-wrap>
             <AccountDisplayName :account="account" font-bold sm:text-2xl text-xl />
-            <AccountRolesIndicator v-if="account.roles?.length" :account="account" />
             <AccountLockIndicator v-if="account.locked" show-label />
             <AccountBotIndicator v-if="account.bot" show-label />
           </div>
@@ -201,6 +200,9 @@ async function copyAccountName() {
                 <span sr-only>{{ $t('account.copy_account_name') }}</span>
               </button>
             </CommonTooltip>
+          </div>
+          <div self-start mt-1>
+            <AccountRolesIndicator v-if="account.roles?.length" :account="account" />
           </div>
         </div>
       </div>

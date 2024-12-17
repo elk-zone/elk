@@ -26,11 +26,12 @@ export const STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE = 'elk-last-accessed-n
 export const STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE = 'elk-last-accessed-explore-route'
 export const STORAGE_KEY_BOTTOM_NAV_BUTTONS = 'elk-bottom-nav-buttons'
 
-export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\d-]+\.)+\w+\/(@[@\w\d-\.]+)(\/objects)?(\/\d+)?$/
+export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\-]+\.)+\w+\/(@[@\w\-.]+)(\/objects)?(\/\d+)?$/
 
 export const NOTIFICATION_FILTER_TYPES: mastodon.v1.NotificationType[] = ['status', 'reblog', 'follow', 'follow_request', 'favourite', 'poll', 'update', 'admin.sign_up', 'admin.report']
 
 export const THEME_COLORS = {
+  defaultTheme: '#cc7d24',
   themeDark: '#111111',
   themeLight: '#fafafa',
   backgroundDark: '#fafafa',

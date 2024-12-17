@@ -32,14 +32,14 @@ const shortcutItemGroups = computed<ShortcutItemGroup[]>(() => [
         description: t('magic_keys.groups.navigation.shortcut_help'),
         shortcut: { keys: ['?'], isSequence: false },
       },
-      // {
-      //   description: t('magic_keys.groups.navigation.next_status'),
-      //   shortcut: { keys: ['j'], isSequence: false },
-      // },
-      // {
-      //   description: t('magic_keys.groups.navigation.previous_status'),
-      //   shortcut: { keys: ['k'], isSequence: false },
-      // },
+      {
+        description: t('magic_keys.groups.navigation.next_status'),
+        shortcut: { keys: ['j'], isSequence: false },
+      },
+      {
+        description: t('magic_keys.groups.navigation.previous_status'),
+        shortcut: { keys: ['k'], isSequence: false },
+      },
       {
         description: t('magic_keys.groups.navigation.go_to_search'),
         shortcut: { keys: ['/'], isSequence: false },

@@ -1,13 +1,13 @@
 /// <reference lib="WebWorker" />
 /// <reference types="vite/client" />
+import { CacheableResponsePlugin } from 'workbox-cacheable-response'
+import { ExpirationPlugin } from 'workbox-expiration'
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
-import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
-import { ExpirationPlugin } from 'workbox-expiration'
 
-import { onNotificationClick, onPush } from './web-push-notifications'
 import { onShareTarget } from './share-target'
+import { onNotificationClick, onPush } from './web-push-notifications'
 
 declare const self: ServiceWorkerGlobalScope
 
@@ -43,6 +43,7 @@ if (import.meta.env.PROD) {
     /^\/emojis\//,
     // exclude sw: if the user navigates to it, fallback to index.html
     /^\/sw.js$/,
+    /^\/elk-sw.js$/,
     // exclude webmanifest: has its own cache
     /^\/manifest-(.*).webmanifest$/,
   ]

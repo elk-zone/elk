@@ -40,7 +40,6 @@
       "groupName": "lint",
       "matchPackageNames": [
         "@antfu/eslint-config",
-        "@types/prettier",
         "eslint",
         "prettier"
       ]

@@ -24,7 +24,7 @@ function reorderAndFilter(items: mastodon.v1.Status[]) {
 }
 
 const pinnedPaginator = useMastoClient().v1.accounts.$select(account.id).statuses.list({ pinned: true })
-const accountPaginator = useMastoClient().v1.accounts.$select(account.id).statuses.list({ limit: 30, excludeReplies: true })
+const postPaginator = useMastoClient().v1.accounts.$select(account.id).statuses.list({ limit: 30, excludeReplies: true })
 
 if (account) {
   useHydratedHead({
@@ -39,6 +39,6 @@ if (account) {
     <TimelinePaginator :paginator="pinnedPaginator" :preprocess="applyPinned" context="account" :account="account" :end-message="false" />
     <!-- Upper border -->
     <div h="1px" w-auto bg-border mb-1 />
-    <TimelinePaginator :paginator="accountPaginator" :preprocess="reorderAndFilter" context="account" :account="account" />
+    <TimelinePaginator :paginator="postPaginator" :preprocess="reorderAndFilter" context="account" :account="account" />
   </div>
 </template>

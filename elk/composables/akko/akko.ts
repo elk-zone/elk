@@ -1,8 +1,8 @@
 import type { Pausable } from '@vueuse/core'
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { Ref } from 'vue'
 import type { ElkInstance } from '../users'
-import { createRestAPIClient, createStreamingAPIClient } from 'akko'
+import { createRestAPIClient, createStreamingAPIClient } from '@bdxtown/akko'
 import type { UserLogin } from '~/types'
 
 export function createMasto() {

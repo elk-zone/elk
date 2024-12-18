@@ -1,5 +1,5 @@
 // @unimport-disable
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { Node } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { decode } from 'tiny-decode'

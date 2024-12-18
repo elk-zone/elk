@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { Ref } from 'vue'
 import type { DraftItem } from '~~/types'
 import { fileOpen } from 'browser-fs-access'

@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { DraftItem } from '~/types'
 
 const maxThreadLength = 99

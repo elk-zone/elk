@@ -1,5 +1,5 @@
 import type { RouteLocationRaw } from '#vue-router'
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { MarkNonNullable, Mutable } from './utils'
 
 export interface AppInfo {

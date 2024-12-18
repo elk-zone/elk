@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 export const APP_NAME = 'Elk'
 

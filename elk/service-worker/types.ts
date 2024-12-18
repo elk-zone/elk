@@ -1,7 +1,7 @@
 // masto types and notification types differs
 // Any type used from masto api retrieving notification from push notification id is no camel case, it is snake case
 // I just copy/paste any entry from masto api and convert it to snake case, reusing types not including camel case props
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 export type NotificationType = 'mention' | 'status' | 'reblog' | 'follow' | 'follow_request' | 'favourite' | 'poll' | 'update' | 'admin.sign_up' | 'admin.report'
 

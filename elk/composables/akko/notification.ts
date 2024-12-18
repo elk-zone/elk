@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 const notifications = reactive<Record<string, undefined | [Promise<akkoma.streaming.Subscription>, string[]]>>({})
 

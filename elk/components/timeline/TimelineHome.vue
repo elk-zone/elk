@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 const { isSupported, effectiveType } = useNetwork()
 const isSlow = computed(() => isSupported.value && effectiveType.value && ['slow-2g', '2g', '3g'].includes(effectiveType.value))

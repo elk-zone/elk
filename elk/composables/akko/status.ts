@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
 type CountField = 'reblogsCount' | 'favouritesCount'

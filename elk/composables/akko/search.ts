@@ -1,5 +1,5 @@
 import type { MaybeRefOrGetter } from '@vueuse/core'
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { RouteLocation } from 'vue-router'
 
 export type UseSearchOptions = MaybeRefOrGetter<

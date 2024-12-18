@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, ErrorDialogData } from '~/types'
 

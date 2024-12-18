@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { ComputedRef, Ref } from 'vue'
 import type { DraftItem, DraftMap } from '~/types'
 import type { Mutable } from '~/types/utils'

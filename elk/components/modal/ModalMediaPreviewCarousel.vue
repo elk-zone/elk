@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Vector2 } from '@vueuse/gesture'
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import { useGesture } from '@vueuse/gesture'
 import { useReducedMotion } from '@vueuse/motion'
 

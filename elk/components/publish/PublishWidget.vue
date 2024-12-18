@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import { EditorContent } from '@tiptap/vue-3'
 import stringLength from 'string-length'
 import type { DraftItem } from '~/types'

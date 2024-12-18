@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import { fetchAccountByHandle } from '~/composables/cache'
 
 type WatcherType = [acc?: akkoma.v1.Account | null, h?: string, v?: boolean]

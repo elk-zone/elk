@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 const { conversation } = defineProps<{
   conversation: akkoma.v1.Conversation

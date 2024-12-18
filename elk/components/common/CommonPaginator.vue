@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T, O, U = T">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 // @ts-expect-error missing types
 import { DynamicScroller } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'

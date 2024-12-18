@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { CustomEmojisInfo } from './push-notifications/types'
 import { STORAGE_KEY_CUSTOM_EMOJIS } from '~/constants'
 

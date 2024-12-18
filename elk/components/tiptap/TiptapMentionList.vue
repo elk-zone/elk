@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { CommandHandler } from '~/composables/command'
 
 const { items, command } = defineProps<{

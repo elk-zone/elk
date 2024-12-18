@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 const maxDistance = 10
 const maxSteps = 1000

@@ -1,5 +1,5 @@
 import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { EffectScope, Ref } from 'vue'
 import type { ElkMasto } from './akko/akko'
 import { withoutProtocol } from 'ufo'

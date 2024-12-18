@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 // Add undocumented 'annual_report' type introduced in v4.3
 // ref. https://github.com/mastodon/documentation/issues/1211#:~:text=api/v1/annual_reports

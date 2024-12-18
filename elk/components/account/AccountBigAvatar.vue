@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 // Avatar with a background base achieving a 3px border to be used in status cards
 // The border is used for Avatar on Avatar for reblogs and connecting replies

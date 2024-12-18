@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 export function getDisplayName(account: akkoma.v1.Account, options?: { rich?: boolean }) {
   const displayName = account.displayName || account.username || account.acct || ''

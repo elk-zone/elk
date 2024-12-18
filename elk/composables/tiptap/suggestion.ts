@@ -1,6 +1,6 @@
 import type { Emoji, EmojiMartData } from '@emoji-mart/data'
 import type { SuggestionOptions } from '@tiptap/suggestion'
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import type { GetReferenceClientRect, Instance } from 'tippy.js'
 import type { Component } from 'vue'
 import { VueRenderer } from '@tiptap/vue-3'

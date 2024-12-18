@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 const { status, isPreview = false } = defineProps<{
   status: akkoma.v1.Status | akkoma.v1.StatusEdit

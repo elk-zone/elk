@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 const { paginator, account, context } = defineProps<{
   paginator: akkoma.Paginator<akkoma.v1.Account[], akkoma.DefaultPaginationParams | undefined>

@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import { withoutProtocol } from 'ufo'
 
 export function getAccountRoute(account: akkoma.v1.Account) {

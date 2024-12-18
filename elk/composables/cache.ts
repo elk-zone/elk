@@ -1,4 +1,4 @@
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import { LRUCache } from 'lru-cache'
 
 const cache = new LRUCache<string, any>({

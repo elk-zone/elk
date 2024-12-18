@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 
 const paginator = useAkkoClient().v1.timelines.public.list({ limit: 30 })
 

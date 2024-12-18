@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import type { GroupedAccountLike, NotificationSlot } from '~/types'

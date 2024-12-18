@@ -1,6 +1,6 @@
 /** @vitest-environment happy-dom */
 
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import { describe, expect, it } from 'vitest'
 
 function status(id: string, filtered?: akkoma.v1.FilterContext): akkoma.v1.Status {

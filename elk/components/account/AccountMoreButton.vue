@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import { toggleBlockAccount, toggleBlockDomain, toggleMuteAccount } from '~/composables/akko/relationship'
 
 const { account } = defineProps<{

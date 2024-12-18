@@ -1,8 +1,8 @@
 {
-  "name": "akko",
+  "name": "@bdxtown/akko",
   "description": "Akkoma API client for JavaScript, TypeScript, Node.js, browsers",
   "private": false,
-  "version": "6.10.1",
+  "version": "6.11.0",
   "author": "Ryo Igarashi <n33t5hin@gmail.com>",
   "license": "MIT",
   "type": "module",

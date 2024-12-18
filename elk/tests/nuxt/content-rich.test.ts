@@ -3,7 +3,7 @@
 // ref. #2984 chore(deps): update dependency @antfu/eslint-config to v3 by renovate[bot]
 // https://github.com/elk-zone/elk/pull/2984
 
-import type { akkoma } from 'akko'
+import type { akkoma } from '@bdxtown/akko'
 import { format } from 'prettier'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { mockComponent } from '@nuxt/test-utils/runtime'

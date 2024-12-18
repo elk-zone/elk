@@ -68,7 +68,7 @@
     "@vueuse/nuxt": "^11.0.3",
     "blurhash": "^2.0.5",
     "browser-fs-access": "^0.35.0",
-    "cheerio": "^1.0.0",
+    "cheerio": "1.0.0-rc.12",
     "chroma-js": "^3.0.0",
     "emoji-mart": "^5.5.2",
     "file-saver": "^2.0.5",
@@ -151,6 +151,8 @@
     }
   },
   "resolutions": {
+    "**/cheerio": "1.0.0-rc.12",
+    "cheerio": "1.0.0-rc.12",
     "nuxt-component-meta": "0.9.0",
     "unstorage": "^1.13.1",
     "vitest": "2.1.5",

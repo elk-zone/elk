@@ -4,7 +4,8 @@
     "loading_titled_page": "Cargando página {0}, espera por favor",
     "locale_changed": "Idioma cambiado a {0}",
     "locale_changing": "Cambiando idioma, espera por favor",
-    "route_loaded": "Página {0} cargada"
+    "route_loaded": "Página {0} cargada",
+    "skip_navigation": "Saltar navegación"
   },
   "account": {
     "authorize": "Autorizar seguimiento",

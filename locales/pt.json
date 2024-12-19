@@ -633,6 +633,7 @@
       "dismiss": "Dispensar",
       "read": "Ler descrição de {0}"
     },
+    "pinned": "Publicação afixada",
     "poll": {
       "count": "{0} votos|{0} voto|{0} votos",
       "ends": "termina {0}",

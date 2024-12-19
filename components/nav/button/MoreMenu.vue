@@ -1,10 +1,10 @@
 <script setup lang="ts">
-defineModel<boolean>()
+const model = defineModel<boolean>()
 </script>
 
 <template>
   <NavBottomMoreMenu
-    v-slot="{ toggleVisible, show }" v-model="modelValue!" flex flex-row items-center
+    v-slot="{ toggleVisible, show }" v-model="model!" flex flex-row items-center
     place-content-center h-full flex-1 cursor-pointer
   >
     <button

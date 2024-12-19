@@ -1,20 +1,21 @@
+import type { AppInfo } from '~/types'
+// @ts-expect-error virtual import
+import { env } from '#build-info'
+// @ts-expect-error virtual import
+import { driver } from '#storage-config'
 import { $fetch } from 'ofetch'
+
 import kv from 'unstorage/drivers/cloudflare-kv-http'
+
 import fs from 'unstorage/drivers/fs'
+
 import memory from 'unstorage/drivers/memory'
 
 import vercelKVDriver from 'unstorage/drivers/vercel-kv'
 
-import cached from '../cache-driver'
-
-// @ts-expect-error virtual import
-import { env } from '#build-info'
-
-// @ts-expect-error virtual import
-import { driver } from '#storage-config'
-
+import { version } from '~/config/env'
 import { APP_NAME } from '~/constants'
-import type { AppInfo } from '~/types'
+import cached from '../cache-driver'
 
 const storage = useStorage<AppInfo>()
 
@@ -48,9 +49,14 @@ export function getRedirectURI(origin: string, server: string) {
   return `${origin}/api/${server}/oauth/${encodeURIComponent(origin)}`
 }
 
+export const defaultUserAgent = `${APP_NAME}/${version}`
+
 async function fetchAppInfo(origin: string, server: string) {
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
+    headers: {
+      'user-agent': defaultUserAgent,
+    },
     body: {
       client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
       website: 'https://elk.zone',

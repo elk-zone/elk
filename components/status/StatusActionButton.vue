@@ -62,7 +62,7 @@ useCommand({
   >
     <CommonTooltip placement="bottom" :content="content">
       <div
-        rounded-full p2
+        rounded-full p4 md:p-2
         v-bind="disabled ? {} : {
           'elk-group-hover': elkGroupHover,
           'group-focus-visible': elkGroupHover,

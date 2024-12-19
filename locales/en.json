@@ -633,6 +633,7 @@
       "dismiss": "Dismiss",
       "read": "Read {0} description"
     },
+    "pinned": "Pinned post",
     "poll": {
       "count": "{0} votes|{0} vote|{0} votes",
       "ends": "ends {0}",

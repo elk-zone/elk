@@ -65,10 +65,10 @@ useHydratedHead({
       </div>
     </div>
     <div border="t base" py-2>
-      <StatusActions v-if="actions" :status="status" details :command="command" />
+      <StatusEmojiReaction v-if="actions" :status="status" details :command="command" />
     </div>
     <div border="t base" py-2>
-      <StatusEmojiReaction v-if="actions" :status="status" details :command="command" />
+      <StatusActions v-if="actions" :status="status" details :command="command" />
     </div>
   </div>
 </template>

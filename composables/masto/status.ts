@@ -3,12 +3,28 @@ import type { mastodon } from 'masto'
 type Action = 'reblogged' | 'favourited' | 'bookmarked' | 'pinned' | 'muted'
 type CountField = 'reblogsCount' | 'favouritesCount'
 
+// Add EmojiReaction type to support fedibird non-mastodon emoji reaction
+export interface EmojiReaction {
+  name: string
+  count: number
+  accountIds: string[]
+  me: boolean
+  // Only used by custom emoji
+  url?: string
+  staticUrl?: string
+  domain?: string | null
+  width?: number
+  height?: number
+}
+
+export type Status = mastodon.v1.Status & { emojiReactionsCount?: number, emojiReactions?: EmojiReaction[] }
+
 export interface StatusActionsProps {
-  status: mastodon.v1.Status
+  status: Status
 }
 
 export function useStatusActions(props: StatusActionsProps) {
-  const status = ref<mastodon.v1.Status>({ ...props.status })
+  const status = ref<Status>({ ...props.status })
   const { client } = useMasto()
 
   watch(
@@ -27,7 +43,7 @@ export function useStatusActions(props: StatusActionsProps) {
     muted: false,
   })
 
-  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<mastodon.v1.Status>, countField?: CountField) {
+  async function toggleStatusAction(action: Action, fetchNewStatus: () => Promise<Status>, countField?: CountField) {
     // check login
     if (!checkLogin())
       return
@@ -63,7 +79,7 @@ export function useStatusActions(props: StatusActionsProps) {
     'reblogged',
     () => client.value.v1.statuses.$select(status.value.id)[status.value.reblogged ? 'unreblog' : 'reblog']().then((res) => {
       if (status.value.reblogged)
-      // returns the original status
+        // returns the original status
         return res.reblog!
       return res
     }),

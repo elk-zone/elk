@@ -15,6 +15,14 @@ export default defineNuxtRouteMiddleware((to) => {
 
 function handleAuth(to: RouteLocationNormalized) {
   if (to.path === '/') {
+    // handle PWA protocol handler
+    if (to.query['protocol-handler'] && to.query.target) {
+      const target = (to.query.target as string).replace(/^web\+ap:\/\//, 'https://')
+      // eslint-disable-next-line no-console
+      console.log(target)
+      return navigateTo('/home')
+    }
+
     // Installed PWA shortcut to notifications
     if (to.query['notifications-pwa-shortcut'] !== undefined) {
       if (currentUser.value)

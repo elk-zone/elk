@@ -90,7 +90,7 @@ We've added some `UnoCSS` utilities styles to help you with that:
 
 ## Internationalization
 
-We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://v8.i18n.nuxtjs.org/) to handle internationalization.
+We are using [vue-i18n](https://vue-i18n.intlify.dev/) via [nuxt-i18n](https://i18n.nuxtjs.org/) to handle internationalization.
 
 You can check the current [translation status](https://docs.elk.zone/docs/guide/contributing#translation-status): more instructions on the table caption.
 

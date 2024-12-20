@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { SearchResult as SearchResultType } from '~/composables/masto/search'
 import type { CommandScope, QueryResult, QueryResultItem } from '~/composables/command'
+import type { SearchResult as SearchResultType } from '~/composables/masto/search'
 
 const emit = defineEmits<{
   (event: 'close'): void

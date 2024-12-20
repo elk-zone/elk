@@ -1,5 +1,5 @@
-import { closeDatabases, get } from '../utils/elk-idb'
 import type { MastoNotification, NotificationInfo, PushPayload, UserLogin } from './types'
+import { closeDatabases, get } from '../utils/elk-idb'
 
 export async function findNotification({ access_token, notification_id/* , notification_type */ }: PushPayload): Promise<NotificationInfo | undefined> {
   const users = await get<UserLogin[]>('elk-users')

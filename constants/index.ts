@@ -31,6 +31,7 @@ export const HANDLED_MASTO_URLS = /^(https?:\/\/)?([\w\-]+\.)+\w+\/(@[@\w\-.]+)(
 export const NOTIFICATION_FILTER_TYPES: mastodon.v1.NotificationType[] = ['status', 'reblog', 'follow', 'follow_request', 'favourite', 'poll', 'update', 'admin.sign_up', 'admin.report']
 
 export const THEME_COLORS = {
+  defaultTheme: '#cc7d24',
   themeDark: '#111111',
   themeLight: '#fafafa',
   backgroundDark: '#fafafa',

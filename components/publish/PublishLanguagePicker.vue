@@ -16,14 +16,13 @@ const fuse = new Fuse(languagesNameList, {
 const languages = computed(() =>
   languageKeyword.value.trim()
     ? fuse.search(languageKeyword.value).map(r => r.item)
-    : [...languagesNameList].filter(entry => !userSettings.value.disabledTranslationLanguages.includes(entry.code))
-        .sort(({ code: a }, { code: b }) => {
-          // Put English on the top
-          if (a === 'en')
-            return -1
+    : [...languagesNameList].filter(entry => !userSettings.value.disabledTranslationLanguages.includes(entry.code)).sort(({ code: a }, { code: b }) => {
+        // Put English on the top
+        if (a === 'en')
+          return -1
 
-          return a === modelValue.value ? -1 : b === modelValue.value ? 1 : a.localeCompare(b)
-        }),
+        return a === modelValue.value ? -1 : b === modelValue.value ? 1 : a.localeCompare(b)
+      }),
 )
 
 const preferredLanguages = computed(() => {

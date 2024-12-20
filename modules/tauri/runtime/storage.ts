@@ -1,5 +1,5 @@
-import { createStorage } from 'unstorage'
 import { Store } from 'tauri-plugin-store-api'
+import { createStorage } from 'unstorage'
 
 const store = new Store('.servers.dat')
 const storage = createStorage()

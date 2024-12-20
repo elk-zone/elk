@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { clamp } from '@vueuse/core'
 import type { mastodon } from 'masto'
+import { clamp } from '@vueuse/core'
 import { decode } from 'blurhash'
 
 const {

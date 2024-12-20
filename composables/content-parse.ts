@@ -1,9 +1,9 @@
 // @unimport-disable
 import type { mastodon } from 'masto'
 import type { Node } from 'ultrahtml'
-import { DOCUMENT_NODE, ELEMENT_NODE, TEXT_NODE, h, parse, render } from 'ultrahtml'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { decode } from 'tiny-decode'
+import { DOCUMENT_NODE, ELEMENT_NODE, h, parse, render, TEXT_NODE } from 'ultrahtml'
 import { emojiRegEx, getEmojiAttributes } from '../config/emojis'
 
 export interface ContentParseOptions {
@@ -89,6 +89,11 @@ export function parseMastodonHTML(
     status,
     inReplyToStatus,
   } = options
+
+  // remove newline before Tags
+  html = html.replace(/\n(<[^>]+>)/g, (_1, raw) => {
+    return raw
+  })
 
   if (markdown) {
     // Handle code blocks

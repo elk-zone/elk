@@ -26,5 +26,6 @@ jobs:
       run: |
         git config --global user.name 'BDX.town'
         git config --global user.email 'BDX-town@users.noreply.github.com'
+        cd elk
         npx commit-and-tag-version
         git push --follow-tag origin main

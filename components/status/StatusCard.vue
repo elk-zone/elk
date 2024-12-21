@@ -62,6 +62,7 @@ const timeago = useTimeAgo(() => status.value.createdAt, timeAgoOptions)
 const isSelfReply = computed(() => status.value.inReplyToAccountId === status.value.account.id)
 const collapseRebloggedBy = computed(() => rebloggedBy.value?.id === status.value.account.id)
 const isDM = computed(() => status.value.visibility === 'direct')
+const isPinned = computed(() => status.value.pinned)
 
 const showUpperBorder = computed(() => props.newer && !directReply.value)
 const showReplyTo = computed(() => !replyToMain.value && !directReply.value)
@@ -75,6 +76,19 @@ const forceShow = ref(false)
     <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 z--1 />
 
     <slot name="meta">
+      <!-- Pinned status -->
+      <div flex="~ col" justify-between>
+        <div
+          v-if="isPinned"
+          flex="~ gap2" items-center h-auto text-sm text-orange
+          m="is-5" p="t-1 is-5"
+          relative text-secondary ws-nowrap
+        >
+          <div i-ri:pushpin-line />
+          <span>{{ $t('status.pinned') }}</span>
+        </div>
+      </div>
+
       <!-- Line connecting to previous status -->
       <template v-if="status.inReplyToAccountId">
         <StatusReplyingTo

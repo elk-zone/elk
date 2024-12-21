@@ -2,7 +2,8 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    tags:        
+      - '*'
 
 jobs:
 
@@ -13,9 +14,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Get current version
-      id: version
-      run: echo ::set-output name=version::$(cat elk/package.json | jq -r .version)
+    - id: set_var
+      run: |
+          content=`cat ./package.json`
+          # the following lines are only required for multi line json
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=packageJson::$content"
     
     - name: Build the Docker image
       run: |
@@ -30,8 +37,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{steps.version.outputs.version}}
-        release_name: ${{steps.version.outputs.version}}
+        tag_name: ${{fromJson(steps.set_var.outputs.packageJson).version}}
+        release_name: ${{fromJson(steps.set_var.outputs.packageJson).version}}
         draft: true
         prerelease: false
         

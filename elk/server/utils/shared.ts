@@ -64,12 +64,15 @@ async function fetchAppInfo(origin: string, server: string) {
       scopes: 'read write follow push',
     },
   })
+  console.log(app)
   return app
 }
 
 export async function getApp(origin: string, server: string) {
   const host = origin.replace(/^https?:\/\//, '').replace(/\W/g, '-').replace(/\?.*$/, '')
   const key = `servers:v3:${server}:${host}.json`.toLowerCase()
+
+  console.log(origin, server)
 
   try {
     if (await storage.hasItem(key))
@@ -78,7 +81,8 @@ export async function getApp(origin: string, server: string) {
     await storage.setItem(key, appInfo)
     return appInfo
   }
-  catch {
+  catch (e) {
+    console.error(e)
     return null
   }
 }

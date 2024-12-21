@@ -19,6 +19,7 @@ jobs:
     
     - name: Build the Docker image
       run: |
+        cd elk
         docker build -t elk .
         docker save -o ./elk.tar elk
         zip elk.zip elk.tar

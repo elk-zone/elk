@@ -15,7 +15,7 @@ jobs:
     
     - name: Get current version
       id: version
-      run: echo "::set-output name=version::$(cat elk/package.json | jq .version)"
+      run: echo ::set-output name=version::$(cat elk/package.json | jq .version)
     
     - name: Build the Docker image
       run: |

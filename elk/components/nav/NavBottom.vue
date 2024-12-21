@@ -44,7 +44,7 @@ const defaultSelectedNavButtonNames: NavButtonName[] = currentUser.value
   : ['local', 'federated', 'moreMenu']
 const selectedNavButtonNames = useLocalStorage<NavButtonName[]>(STORAGE_KEY_BOTTOM_NAV_BUTTONS, defaultSelectedNavButtonNames)
 
-const selectedNavButtons = computed(() => selectedNavButtonNames.value.map(name => navButtons.find(navButton => navButton.name === name)))
+const selectedNavButtons = computed(() => selectedNavButtonNames.value.map(name => navButtons.find(navButton => navButton.name === name)).filter(n => !!n))
 
 // only one icon can be lit up at the same time
 const moreMenuVisible = ref(false)

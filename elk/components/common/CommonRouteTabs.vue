@@ -14,11 +14,11 @@ const router = useRouter()
 
 useCommands(() => command
   ? options.map(tab => ({
-    scope: 'Tabs',
-    name: tab.display,
-    icon: tab.icon ?? 'i-ri:file-list-2-line',
-    onActivate: () => router.replace(tab.to),
-  }))
+      scope: 'Tabs',
+      name: tab.display,
+      icon: tab.icon ?? 'i-ri:file-list-2-line',
+      onActivate: () => router.replace(tab.to),
+    }))
   : [])
 </script>
 

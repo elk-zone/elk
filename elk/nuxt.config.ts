@@ -320,7 +320,7 @@ export default defineNuxtConfig({
   },
   pwa,
   staleDep: {
-    packageManager: 'pnpm',
+    packageManager: 'yarn',
   },
   unlazy: {
     ssr: false,

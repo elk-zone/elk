@@ -2,6 +2,7 @@
   "name": "@elk-zone/elk",
   "type": "module",
   "version": "0.15.1",
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
   "license": "MIT",
   "homepage": "https://elk.zone/",
   "main": "./nuxt.config.ts",
@@ -27,7 +28,7 @@
     "cleanup-translations": "tsx scripts/cleanup-translations.ts",
     "prepare-translation-status": "tsx scripts/prepare-translation-status.ts",
     "generate-pwa-icons": "tsx scripts/generate-pwa-icons.ts",
-    "postinstall": "ignore-dependency-scripts \"stale-dep -u && simple-git-hooks && nuxi prepare && nr prepare-translation-status\"",
+    "postinstall": "(cp ../yarn.lock ./yarn.local.lock || true)",
     "release": "stale-dep && bumpp && tsx scripts/release.ts"
   },
   "dependencies": {
@@ -45,7 +46,10 @@
     "@tiptap/core": "2.2.4",
     "@tiptap/extension-bold": "2.2.4",
     "@tiptap/extension-character-count": "2.2.4",
+    "@tiptap/extension-code": "2.2.4",
     "@tiptap/extension-code-block": "2.2.4",
+    "@tiptap/extension-document": "2.2.4",
+    "@tiptap/extension-hard-break": "2.2.4",
     "@tiptap/extension-history": "2.2.4",
     "@tiptap/extension-italic": "2.2.4",
     "@tiptap/extension-mention": "2.2.4",

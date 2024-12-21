@@ -5,7 +5,7 @@ WORKDIR /elk
 
 FROM base AS builder
 
-# Prepare pnpm https://pnpm.io/installation#using-corepack
+# Prepare yarn
 RUN corepack enable
 
 # Prepare deps

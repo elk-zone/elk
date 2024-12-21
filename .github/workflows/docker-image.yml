@@ -16,7 +16,7 @@ jobs:
     
     - id: set_var
       run: |
-          content=`cat ./package.json`
+          content=`cat ./elk/package.json`
           # the following lines are only required for multi line json
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"

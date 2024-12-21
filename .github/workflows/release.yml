@@ -11,14 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     if: startsWith(github.event.head_commit.message, 'chore(release):') != true
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-    
     steps:
     - uses: actions/checkout@v3
       with:
         token: ${{ secrets.PA }}
+        ref: main
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
@@ -30,4 +27,4 @@ jobs:
         git config --global user.name 'BDX.town'
         git config --global user.email 'BDX-town@users.noreply.github.com'
         npx commit-and-tag-version
-        git push --follow-tag origin master
+        git push --follow-tag origin main

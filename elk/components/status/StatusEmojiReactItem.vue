@@ -37,7 +37,7 @@ useCommand({
 <template>
   <button ref="el" class="hover:bg-purple/10 rounded-full p-1" @click="onClick">
     <img v-if="emoji.staticUrl" :src="emoji.staticUrl" :alt="emoji.shortcode" class="w-[25px] h-[25px]">
-    <div v-else flex items-center class="w-[25px] h-[25px] text-[25px]">
+    <div v-else flex items-center justify-center class="w-[25px] h-[25px] text-[25px]">
       {{ emoji.shortcode }}
     </div>
   </button>

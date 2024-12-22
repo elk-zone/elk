@@ -20,7 +20,8 @@ function isCustomEmoji(emoji: EmojiReaction) {
     <button
       v-for="(emoji, i) in status?.emojiReactions ?? []"
       :key="i"
-      flex gap-1 p="block-1 inline-2" text-secondary btn-base hover:bg-gray-1 rounded-1
+      flex gap-1 p="block-1 inline-2" text-secondary btn-base rounded-1
+      :class="emoji.me ? 'b-1 b-primary bg-primary-fade' : 'b b-white bg-gray-1 hover:bg-gray-1 hover:b-gray'"
     >
       <picture v-if="isCustomEmoji(emoji)" class="custom-emoji" :alt="`:${emoji.name}:`" :data-emoji-id="emoji.name">
         <source :srcset="emoji.staticUrl" media="(prefers-reduced-motion: reduce)">

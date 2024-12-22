@@ -92,7 +92,10 @@ function reply() {
       >
         <template #icon>
           <div v-if="!reaction" class="i-ri:thumb-up-line" />
-          <img v-else :src="reaction.staticUrl" :alt="reaction.shortcode" class="w-[18px] h-[18px] leading-[18px]">
+          <img v-else-if="reaction.staticUrl" :src="reaction.staticUrl" :alt="reaction.shortcode" class="w-[18px] h-[18px] leading-[18px]">
+          <div v-else class="text-[16px] leading-[18px]">
+            {{ reaction.shortcode }}
+          </div>
         </template>
         <template v-if="reactionCount && !getPreferences(userSettings, 'hideFavoriteCount')" #text>
           <CommonLocalizedNumber

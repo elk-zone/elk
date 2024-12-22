@@ -25,7 +25,12 @@ export interface StatusMention {
   acct: string;
 }
 
-export type StatusVisibility = "public" | "unlisted" | "private" | "direct";
+export type StatusVisibility =
+  | "public"
+  | "unlisted"
+  | "local"
+  | "private"
+  | "direct";
 
 /**
  * Represents a status posted by an account.

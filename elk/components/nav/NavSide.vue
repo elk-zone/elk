@@ -53,7 +53,7 @@ function composeNavigate() {
     <button
       v-if="noUserVisual"
       p3
-      mb4
+      mb5
       rounded-xl
       bg-primary
       border-primary

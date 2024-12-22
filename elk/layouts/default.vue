@@ -31,9 +31,10 @@ const isGrayscale = usePreferences('grayscaleMode')
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
-        <div sticky left-0 right-0 bottom-0 z-10 bg-base pb="[env(safe-area-inset-bottom)]" transition="padding 20">
+        <div sticky left-0 right-0 bottom-0 z-10 pb="[env(safe-area-inset-bottom)]" transition="padding 20">
           <CommonOfflineChecker v-if="isHydrated" />
-          <NavBottom v-if="isHydrated" sm:hidden />
+          <NavButtonCompose sm:hidden />
+          <NavBottom v-if="isHydrated" sm:hidden bg-base />
         </div>
       </div>
       <aside v-if="isHydrated && !wideLayout" class="hidden lg:w-1/5 xl:w-1/4 sm:none xl:block native:w-full zen-hide">
@@ -71,7 +72,6 @@ const isGrayscale = usePreferences('grayscaleMode')
         </div>
       </aside>
     </main>
-    <NavButtonCompose />
     <ModalContainer />
   </div>
 </template>

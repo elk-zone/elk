@@ -1,15 +1,20 @@
 <script setup lang="ts">
+const props = defineProps<{
+  [x: string]: unknown
+}>()
+
 const noUserVisual = computed(() => isHydrated.value && currentUser.value)
 </script>
 
 <template>
   <NuxtLink
     v-if="noUserVisual"
+    v-bind="props"
     to="/compose"
     :aria-label="$t('action.compose')"
-    fixed
     p3
     mb4
+    mr4
     rounded-full
     bg-primary
     border-primary
@@ -17,10 +22,10 @@ const noUserVisual = computed(() => isHydrated.value && currentUser.value)
     gap-2
     justify-center
     items-center
-    z-50
-    class="w-[60px] h-[60px] top-[82vh] left-[83vw] md:top-[90vh] md:left-[90vw]"
+    relative
+    ml-auto
+    class="w-[60px] h-[60px]"
     text-xl
-    xl:hidden
   >
     <div i-ri:quill-pen-line />
   </NuxtLink>

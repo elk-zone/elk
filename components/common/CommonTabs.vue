@@ -25,13 +25,13 @@ function toValidName(option: string) {
 
 useCommands(() => command
   ? tabs.value.map(tab => ({
-    scope: 'Tabs',
+      scope: 'Tabs',
 
-    name: tab.display,
-    icon: tab.icon ?? 'i-ri:file-list-2-line',
+      name: tab.display,
+      icon: tab.icon ?? 'i-ri:file-list-2-line',
 
-    onActivate: () => modelValue.value = tab.name,
-  }))
+      onActivate: () => modelValue.value = tab.name,
+    }))
   : [])
 </script>
 

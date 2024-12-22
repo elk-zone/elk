@@ -90,6 +90,11 @@ export function parseMastodonHTML(
     inReplyToStatus,
   } = options
 
+  // remove newline before Tags
+  html = html.replace(/\n(<[^>]+>)/g, (_1, raw) => {
+    return raw
+  })
+
   if (markdown) {
     // Handle code blocks
     html = html

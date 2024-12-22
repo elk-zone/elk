@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
-import { NOTIFICATION_FILTER_TYPES } from '~/constants'
 import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/types'
+import { NOTIFICATION_FILTER_TYPES } from '~/constants'
 
 definePageMeta({
   middleware: 'auth',

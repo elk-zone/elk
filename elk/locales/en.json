@@ -536,6 +536,7 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "default_privacy": "Default privacy",
       "embedded_media": "Embedded Media Player",
       "embedded_media_description": "Display an embedded player instead of the normal preview card when expanding shared media streaming links.",
       "enable_autoplay": "Enable Autoplay",

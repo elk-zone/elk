@@ -13,7 +13,7 @@ export const builtinDraftKeys = [
   'home',
 ]
 
-const ALL_VISIBILITY = ['public', 'unlisted', 'private', 'direct'] as const
+const ALL_VISIBILITY: akkoma.v1.StatusVisibility[] = ['public', 'local', 'unlisted', 'private', 'direct'] as const
 
 function getDefaultVisibility(currentVisibility: akkoma.v1.StatusVisibility) {
   // The default privacy only should be taken into account if it makes

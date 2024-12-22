@@ -497,6 +497,7 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "default_privacy": "Confidentialité par défaut",
       "enable_autoplay": "Activer la lecture automatique",
       "enable_data_saving": "Activer l'économie de données",
       "enable_data_saving_description": "Economise les données en évitant le chargement automatique des médias.",

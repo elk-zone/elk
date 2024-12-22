@@ -1,5 +1,7 @@
 FROM docker.io/library/node:lts-alpine AS base
 
+ENV NUXT_PUBLIC_DEFAULT_SERVER=bdx.town
+
 # Prepare work directory
 WORKDIR /elk
 
@@ -40,6 +42,7 @@ RUN set -eux; \
 USER elk
 
 ENV NODE_ENV=production
+ENV NUXT_PUBLIC_SINGLE_INSTANCE=true
 
 COPY --from=builder /elk/.output ./.output
 

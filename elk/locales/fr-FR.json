@@ -251,7 +251,7 @@
     "report_account": "Signaler {0}",
     "share_account": "Partager {0}",
     "share_post": "Partager ce message",
-    "show_favourited_and_boosted_by": "Montrer qui a aimé et partagé",
+    "show_favourited_and_boosted_by": "Montrer qui a réagit et partagé",
     "show_reblogs": "Voir les partages de {0}",
     "show_untranslated": "Montrer le message non-traduit",
     "toggle_theme": {
@@ -589,6 +589,7 @@
       "ends": "se clôt {0}",
       "finished": "clos {0}"
     },
+    "reacted_by": "Réactions",
     "replying_to": "Répondre à {0}",
     "show_full_thread": "Voir le fil de discussion complet",
     "someone": "quelqu'un",

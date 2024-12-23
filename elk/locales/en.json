@@ -284,7 +284,7 @@
     "report_account": "Report {0}",
     "share_account": "Share {0}",
     "share_post": "Share this post",
-    "show_favourited_and_boosted_by": "Show who favorited and boosted",
+    "show_favourited_and_boosted_by": "Show who reacted and boosted",
     "show_reblogs": "Show boosts from {0}",
     "show_untranslated": "Show untranslated",
     "toggle_theme": {
@@ -641,6 +641,7 @@
       "ends": "ends {0}",
       "finished": "finished {0}"
     },
+    "reacted_by": "Reacts",
     "replying_to": "Replying to {0}",
     "show_full_thread": "Show Full thread",
     "someone": "someone",

@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { invoke } from '@vueuse/core'
 
 const modelValue = defineModel<boolean>({ required: true })
@@ -13,7 +13,10 @@ function toggleVisible() {
 }
 
 const buttonEl = ref<HTMLDivElement>()
-/** Close the drop-down menu if the mouse click is not on the drop-down menu button when the drop-down menu is opened */
+/**
+ * Close the drop-down menu if the mouse click is not on the drop-down menu button when the drop-down menu is opened
+ * @param mouse
+ */
 function clickEvent(mouse: MouseEvent) {
   if (mouse.target && !buttonEl.value?.children[0].contains(mouse.target as any)) {
     if (modelValue.value) {
@@ -141,11 +144,12 @@ const { dragging, dragDistance } = invoke(() => {
           :class="{
             'duration-0': dragging,
             'duration-250': !dragging,
+            'backdrop-blur-md': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
           }"
           transition="transform ease-in"
           flex-1 min-w-48 py-6 mb="-1px"
           of-y-auto scrollbar-hide overscroll-none max-h="[calc(100vh-200px)]"
-          rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter backdrop-blur-md
+          rounded-t-lg bg="white/85 dark:neutral-900/85" backdrop-filter
           border-t-1 border-base
         >
           <!-- Nav -->

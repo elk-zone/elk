@@ -1,7 +1,7 @@
+import type { PngOptions, ResizeOptions } from 'sharp'
 import { rm, writeFile } from 'node:fs/promises'
 import process from 'node:process'
 import { resolve } from 'pathe'
-import type { PngOptions, ResizeOptions } from 'sharp'
 import sharp from 'sharp'
 import ico from 'sharp-ico'
 
@@ -21,7 +21,7 @@ type IconType = 'transparent' | 'maskable' | 'apple'
  */
 interface Icons extends Record<IconType, Icon> {
   /**
-   * @default: { compressionLevel: 9, quality: 60 }`
+   * @default: `{ compressionLevel: 9, quality: 60 }`
    */
   png?: PngOptions
   /**
@@ -103,7 +103,8 @@ async function generateTransparentIcons(icons: ResolvedIcons, svgLogo: string, f
           Math.round(size * (1 - padding)),
           Math.round(size * (1 - padding)),
           resizeOptions,
-        ).toBuffer(),
+        )
+        .toBuffer(),
     }]).toFile(filePath)
     await optimizePng(filePath, icons.png)
   }))
@@ -126,7 +127,8 @@ async function generateMaskableIcons(type: IconType, icons: ResolvedIcons, svgLo
           Math.round(size * (1 - padding)),
           Math.round(size * (1 - padding)),
           resizeOptions,
-        ).toBuffer(),
+        )
+        .toBuffer(),
     }]).toFile(filePath)
     await optimizePng(filePath, icons.png)
   }))
@@ -148,7 +150,7 @@ async function generatePWAIconForEnv(folder: string, icons: ResolvedIcons) {
       const png = await sharp(
         resolve(folder, icons.iconName('transparent', size).replace(/-temp\.png$/, '.png')),
       ).toFormat('png').toBuffer()
-      await writeFile(resolve(folder, icoName(size)), ico.encode([png]))
+      await writeFile(resolve(folder, icoName(size)), new Uint8Array(ico.encode([png])))
     }))
   }
 }

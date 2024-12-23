@@ -2,10 +2,10 @@ import CodeBlock from '@tiptap/extension-code-block'
 import { VueNodeViewRenderer } from '@tiptap/vue-3'
 
 import { createHighlightPlugin } from 'prosemirror-highlight'
-import { shikijiParser } from './shikiji-parser'
 import TiptapCodeBlock from '~/components/tiptap/TiptapCodeBlock.vue'
+import { shikiParser } from './shiki-parser'
 
-export const TiptapPluginCodeBlockShikiji = CodeBlock.extend({
+export const TiptapPluginCodeBlockShiki = CodeBlock.extend({
   addOptions() {
     return {
       ...this.parent?.(),
@@ -15,7 +15,7 @@ export const TiptapPluginCodeBlockShikiji = CodeBlock.extend({
 
   addProseMirrorPlugins() {
     return [
-      createHighlightPlugin({ parser: shikijiParser, nodeTypes: ['codeBlock'] }),
+      createHighlightPlugin({ parser: shikiParser, nodeTypes: ['codeBlock'] }),
     ]
   },
 

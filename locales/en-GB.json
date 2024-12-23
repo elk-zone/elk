@@ -1,10 +1,22 @@
 {
   "account": {
+    "authorize": "Authorise to follow",
+    "authorized": "You have Authorised the request",
     "favourites": "Favourites"
   },
   "action": {
     "favourite": "Favourite",
     "favourited": "Favourited"
+  },
+  "magic_keys": {
+    "groups": {
+      "actions": {
+        "favourite": "Favourite"
+      },
+      "navigation": {
+        "go_to_favourites": "Favourites"
+      }
+    }
   },
   "menu": {
     "show_favourited_and_boosted_by": "Show who favourited and boosted"
@@ -15,7 +27,41 @@
   "notification": {
     "favourited_post": "favourited your post"
   },
+  "report": {
+    "forward_question": "Do you want to send an anonymised copy of this report to that server as well?"
+  },
+  "settings": {
+    "interface": {
+      "bottom_nav_instructions": "Choose your favourite navigation buttons up to five for the bottom navigation. Must include the \"More menu\" button.",
+      "color_mode": "Colour Mode",
+      "theme_color": "Theme Colour"
+    },
+    "notifications": {
+      "push_notifications": {
+        "alerts": {
+          "favourite": "Favourites"
+        }
+      }
+    },
+    "preferences": {
+      "hide_favorite_count": "Hide favourite count",
+      "optimize_for_low_performance_device": "Optimise for low performance device",
+      "use_star_favorite_icon": "Use star favourite icon"
+    }
+  },
+  "status": {
+    "favourited_by": "Favourited By"
+  },
+  "tab": {
+    "notifications_favourite": "Favourite"
+  },
+  "tooltip": {
+    "explore_links_intro": "These news stories are being talked about by people on this and other servers of the decentralised network right now.",
+    "explore_posts_intro": "These posts from this and other servers in the decentralised network are gaining traction on this server right now.",
+    "explore_tags_intro": "These hashtags are gaining traction among people on this and other servers of the decentralised network right now."
+  },
   "user": {
-    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server."
+    "sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server.",
+    "single_instance_sign_in_desc": "Sign in to follow profiles or hashtags, favourite, share and reply to posts."
   }
 }

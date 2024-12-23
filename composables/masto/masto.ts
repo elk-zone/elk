@@ -1,27 +1,14 @@
 import type { Pausable } from '@vueuse/core'
-import type { CreateClientParams, WsEvents, mastodon } from 'masto'
-import { createClient, fetchV1Instance } from 'masto'
+import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
 import type { ElkInstance } from '../users'
-import type { Mutable } from '~/types/utils'
 import type { UserLogin } from '~/types'
+import { createRestAPIClient, createStreamingAPIClient } from 'masto'
 
 export function createMasto() {
-  let client = $shallowRef<mastodon.Client>(undefined as never)
-  let params = $ref<Mutable<CreateClientParams>>()
-  const canStreaming = $computed(() => !!params?.streamingApiUrl)
-
-  const setParams = (newParams: Partial<CreateClientParams>) => {
-    const p = { ...params, ...newParams } as CreateClientParams
-    client = createClient(p)
-    params = p
-  }
-
   return {
-    client: $$(client),
-    params: readonly($$(params)),
-    canStreaming: $$(canStreaming),
-    setParams,
+    client: shallowRef<mastodon.rest.Client>(undefined as never),
+    streamingClient: shallowRef<mastodon.streaming.Client | undefined>(),
   }
 }
 export type ElkMasto = ReturnType<typeof createMasto>
@@ -34,23 +21,25 @@ export function useMastoClient() {
 }
 
 export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'token'>) {
-  const { setParams } = $(masto)
-
   const server = user.server
   const url = `https://${server}`
   const instance: ElkInstance = reactive(getInstanceCache(server) || { uri: server, accountDomain: server })
-  setParams({
-    url,
-    accessToken: user?.token,
-    disableVersionCheck: true,
-    streamingApiUrl: instance?.urls?.streamingApi,
-  })
+  const accessToken = user.token
 
-  fetchV1Instance({ url }).then((newInstance) => {
+  const createStreamingClient = (streamingApiUrl: string | undefined) => {
+    return streamingApiUrl ? createStreamingAPIClient({ streamingApiUrl, accessToken, implementation: globalThis.WebSocket }) : undefined
+  }
+
+  const streamingApiUrl = instance?.urls?.streamingApi
+  masto.client.value = createRestAPIClient({ url, accessToken })
+  masto.streamingClient.value = createStreamingClient(streamingApiUrl)
+
+  // Refetch instance info in the background on login
+  masto.client.value.v1.instance.fetch().then((newInstance) => {
     Object.assign(instance, newInstance)
-    setParams({
-      streamingApiUrl: newInstance.urls.streamingApi,
-    })
+    if (newInstance.urls.streamingApi !== streamingApiUrl)
+      masto.streamingClient.value = createStreamingClient(newInstance.urls.streamingApi)
+
     instanceStorage.value[server] = newInstance
   })
 
@@ -73,21 +62,21 @@ interface UseStreamingOptions<Controls extends boolean> {
 }
 
 export function useStreaming(
-  cb: (client: mastodon.Client) => Promise<WsEvents>,
+  cb: (client: mastodon.streaming.Client) => mastodon.streaming.Subscription,
   options: UseStreamingOptions<true>,
-): { stream: Ref<Promise<WsEvents> | undefined> } & Pausable
+): { stream: Ref<mastodon.streaming.Subscription | undefined> } & Pausable
 export function useStreaming(
-  cb: (client: mastodon.Client) => Promise<WsEvents>,
+  cb: (client: mastodon.streaming.Client) => mastodon.streaming.Subscription,
   options?: UseStreamingOptions<false>,
-): Ref<Promise<WsEvents> | undefined>
+): Ref<mastodon.streaming.Subscription | undefined>
 export function useStreaming(
-  cb: (client: mastodon.Client) => Promise<WsEvents>,
+  cb: (client: mastodon.streaming.Client) => mastodon.streaming.Subscription,
   { immediate = true, controls }: UseStreamingOptions<boolean> = {},
-): ({ stream: Ref<Promise<WsEvents> | undefined> } & Pausable) | Ref<Promise<WsEvents> | undefined> {
-  const { canStreaming, client } = useMasto()
+): ({ stream: Ref<mastodon.streaming.Subscription | undefined> } & Pausable) | Ref<mastodon.streaming.Subscription | undefined> {
+  const { streamingClient } = useMasto()
 
   const isActive = ref(immediate)
-  const stream = ref<Promise<WsEvents>>()
+  const stream = ref<mastodon.streaming.Subscription>()
 
   function pause() {
     isActive.value = false
@@ -99,18 +88,18 @@ export function useStreaming(
 
   function cleanup() {
     if (stream.value) {
-      stream.value.then(s => s.disconnect()).catch(() => Promise.resolve())
+      stream.value.unsubscribe()
       stream.value = undefined
     }
   }
 
   watchEffect(() => {
     cleanup()
-    if (canStreaming.value && isActive.value)
-      stream.value = cb(client.value)
+    if (streamingClient.value && isActive.value)
+      stream.value = cb(streamingClient.value)
   })
 
-  if (process.client && !process.test)
+  if (import.meta.client && !process.test)
     useNuxtApp().$pageLifecycle.addFrozenListener(cleanup)
 
   tryOnBeforeUnmount(() => isActive.value = false)

@@ -36,9 +36,11 @@ export function useMagicSequence(keys: string[]): ComputedRef<boolean> {
         down = false
         success.value = true
       }
-    }, {
+    },
+    {
       deep: true,
-    })
+    },
+  )
 
   return computed(() => success.value)
 }

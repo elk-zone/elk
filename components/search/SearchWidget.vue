@@ -77,11 +77,12 @@ function activate() {
         ps-3
         pe-1
         ml-1
-        :placeholder="isHydrated ? t('nav.search') : ''"
+        :placeholder="t('nav.search')"
         pb="1px"
         placeholder-text-secondary
         @keydown.down.prevent="shift(1)"
         @keydown.up.prevent="shift(-1)"
+        @keydown.esc.prevent="input?.blur()"
         @keypress.enter="activate"
       >
       <button v-if="query.length" btn-action-icon text-secondary @click="query = ''; input?.focus()">
@@ -89,7 +90,7 @@ function activate() {
       </button>
     </div>
     <!-- Results -->
-    <div left-0 top-11 absolute w-full z10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
+    <div left-0 top-11 absolute w-full z-10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
       <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
         <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
           {{ t('search.search_desc') }}

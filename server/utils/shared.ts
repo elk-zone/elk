@@ -1,19 +1,21 @@
-import fs from 'unstorage/drivers/fs'
-import memory from 'unstorage/drivers/memory'
-import kv from 'unstorage/drivers/cloudflare-kv-http'
-
-import { $fetch } from 'ofetch'
-
-import cached from '../cache-driver'
-
+import type { AppInfo } from '~/types'
 // @ts-expect-error virtual import
 import { env } from '#build-info'
-
 // @ts-expect-error virtual import
 import { driver } from '#storage-config'
+import { $fetch } from 'ofetch'
 
-import type { AppInfo } from '~/types'
+import kv from 'unstorage/drivers/cloudflare-kv-http'
+
+import fs from 'unstorage/drivers/fs'
+
+import memory from 'unstorage/drivers/memory'
+
+import vercelKVDriver from 'unstorage/drivers/vercel-kv'
+
+import { version } from '~/config/env'
 import { APP_NAME } from '~/constants'
+import cached from '../cache-driver'
 
 const storage = useStorage<AppInfo>()
 
@@ -29,6 +31,15 @@ else if (driver === 'cloudflare') {
     apiToken: config.cloudflare.apiToken,
   })))
 }
+else if (driver === 'vercel') {
+  const config = useRuntimeConfig()
+  storage.mount('servers', cached(vercelKVDriver({
+    url: config.vercel.url,
+    token: config.vercel.token,
+    env: config.vercel.env,
+    base: config.vercel.base,
+  })))
+}
 else if (driver === 'memory') {
   storage.mount('servers', memory())
 }
@@ -38,9 +49,14 @@ export function getRedirectURI(origin: string, server: string) {
   return `${origin}/api/${server}/oauth/${encodeURIComponent(origin)}`
 }
 
+export const defaultUserAgent = `${APP_NAME}/${version}`
+
 async function fetchAppInfo(origin: string, server: string) {
   const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
     method: 'POST',
+    headers: {
+      'user-agent': defaultUserAgent,
+    },
     body: {
       client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
       website: 'https://elk.zone',
@@ -52,7 +68,7 @@ async function fetchAppInfo(origin: string, server: string) {
 }
 
 export async function getApp(origin: string, server: string) {
-  const host = origin.replace(/^https?:\/\//, '').replace(/[^\w\d]/g, '-').replace(/\?.*$/, '')
+  const host = origin.replace(/^https?:\/\//, '').replace(/\W/g, '-').replace(/\?.*$/, '')
   const key = `servers:v3:${server}:${host}.json`.toLowerCase()
 
   try {

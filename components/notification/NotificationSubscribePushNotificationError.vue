@@ -17,7 +17,7 @@ const modelValue = defineModel<boolean>({ required: true })
     text-red-600 dark:text-red-400
     border="~ base rounded red-600 dark:red-400"
   >
-    <head id="notification-failed" flex justify-between>
+    <header id="notification-failed" flex justify-between>
       <div flex items-center gap-x-2 font-bold>
         <div aria-hidden="true" i-ri:error-warning-fill />
         <p>{{ title ?? $t('settings.notifications.push_notifications.subscription_error.title') }}</p>
@@ -32,7 +32,7 @@ const modelValue = defineModel<boolean>({ required: true })
           <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
         </button>
       </CommonTooltip>
-    </head>
+    </header>
     <p>{{ message }}</p>
     <p py-2>
       <i18n-t keypath="settings.notifications.push_notifications.subscription_error.error_hint">

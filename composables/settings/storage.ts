@@ -1,14 +1,12 @@
+import type { LocaleObject } from '@nuxtjs/i18n'
 import type { Ref } from 'vue'
-import type { VueI18n } from 'vue-i18n'
-import type { LocaleObject } from 'vue-i18n-routing'
 import type { FontSize, OldFontSize, PreferencesSettings, UserSettings } from './definition'
-import { STORAGE_KEY_SETTINGS } from '~/constants'
 import { oldFontSizeMap } from '~~/constants/options'
+import { STORAGE_KEY_SETTINGS } from '~/constants'
 
 export function useUserSettings() {
-  const i18n = useNuxtApp().vueApp.config.globalProperties.$i18n as VueI18n
-  const { locales } = i18n
-  const supportLanguages = (locales as LocaleObject[]).map(locale => locale.code)
+  const { locales } = useNuxtApp().$i18n
+  const supportLanguages = (unref(locales) as LocaleObject[]).map(locale => locale.code)
   const settingsStorage = useUserLocalStorage<UserSettings>(STORAGE_KEY_SETTINGS, () => getDefaultUserSettings(supportLanguages))
 
   // Backward compatibility, font size was xs, sm, md, lg, xl before

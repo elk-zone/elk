@@ -8,13 +8,14 @@
   },
   "account": {
     "authorize": "Autorizar seguimiento",
-    "authorized": "Has autorizado la petición",
+    "authorized": "Has autorizado la solicitud",
     "avatar_description": "avatar de {0}",
     "blocked_by": "Has sido bloqueado por este usuario.",
     "blocked_domains": "Dominios bloqueados",
     "blocked_users": "Usuarios bloqueados",
     "blocking": "Bloqueado",
     "bot": "BOT",
+    "copy_account_name": "Copiar nombre de cuenta",
     "favourites": "Favoritas",
     "follow": "Seguir",
     "follow_back": "Seguir de vuelta",
@@ -26,11 +27,12 @@
     "follows_you": "Te sigue",
     "go_to_profile": "Ir al perfil",
     "joined": "Se unió",
+    "lock": "Cuenta privada",
     "moved_title": "ha indicado que su nueva cuenta ahora es:",
     "muted_users": "Usuarios silenciados",
     "muting": "Silenciado",
     "mutuals": "Mutuo",
-    "notifications_on_post_disable": "Parar notificaciones cuando {username} publique",
+    "notifications_on_post_disable": "Detener notificaciones cuando {username} publique",
     "notifications_on_post_enable": "Notificarme cuando {username} publique",
     "pinned": "Publicaciones fijadas",
     "posts": "Publicaciones",
@@ -39,14 +41,15 @@
     "profile_personal_note": "Nota Personal",
     "profile_unavailable": "Perfil no disponible",
     "reject": "Descartar seguimiento",
-    "rejected": "Has descartado la petición",
+    "rejected": "Has descartado la solicitud",
     "request_follow": "Solicitar seguirle",
+    "requested": "{0} ha solicitado seguirte",
     "unblock": "Desbloquear",
     "unfollow": "Dejar de seguir",
     "unmute": "Dejar de silenciar",
     "view_other_followers": "Puede que no se muestren los seguidores de otras instancias.",
     "view_other_following": "Puede que no se muestren los seguidos de otras instancias.",
-    "withdraw_follow_request": "Retirar solitud de seguimiento"
+    "withdraw_follow_request": "Retirar solicitud de seguimiento"
   },
   "action": {
     "apply": "Aplicar",
@@ -55,6 +58,7 @@
     "boost": "Retootear",
     "boost_count": "{0}",
     "boosted": "Retooteado",
+    "clear": "Limpiar",
     "clear_publish_failed": "Limpiar errores de publicación",
     "clear_save_failed": "Limpiar errores al guardar",
     "clear_upload_failed": "Limpiar errores de subida de archivos",
@@ -69,8 +73,10 @@
     "favourited": "Marcado como favorita",
     "more": "Más",
     "next": "Siguiente",
+    "open_image_preview_dialog": "Abrir diálogo de vista previa de la imagen",
     "prev": "Anterior",
     "publish": "Publicar",
+    "publish_thread": "Publicar hilo",
     "reply": "Responder",
     "reply_count": "{0}",
     "reset": "Reestablecer",
@@ -118,12 +124,14 @@
     "block_account": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "¿Estás seguro que quieres bloquear a {0}?"
+      "description": "¿Estás seguro que quieres bloquear a {0}?",
+      "title": "Bloquear cuenta"
     },
     "block_domain": {
       "cancel": "Cancelar",
       "confirm": "Bloquear",
-      "title": "¿Estás seguro que quieres bloquear a {0}?"
+      "description": "¿Estás seguro que quieres bloquear a {0}?",
+      "title": "Bloquear dominio"
     },
     "common": {
       "cancel": "No",
@@ -132,27 +140,37 @@
     "delete_list": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "¿Está seguro de querer eliminar la lista \"{0}\"?"
+      "description": "¿Está seguro de querer eliminar la lista \"{0}\"?",
+      "title": "Eliminar lista"
     },
     "delete_posts": {
       "cancel": "Cancelar",
       "confirm": "Eliminar",
-      "title": "¿Estás seguro que quieres eliminar esta publicación?"
+      "description": "¿Estás seguro que quieres eliminar esta publicación?",
+      "title": "Eliminar publicación"
     },
     "mute_account": {
       "cancel": "Cancelar",
       "confirm": "Silenciar",
-      "title": "¿Estás seguro que quieres silenciar a {0}?"
+      "days": "días|día|días",
+      "description": "¿Estás seguro que quieres silenciar a {0}?",
+      "hours": "horas|hora|horas",
+      "minute": "minutos|minuto|minutos",
+      "notifications": "Silenciar notificaciones",
+      "specify_duration": "Especificar la duración del silenciado",
+      "title": "Silenciar cuenta"
     },
     "show_reblogs": {
       "cancel": "Cancelar",
       "confirm": "Mostrar",
-      "title": "¿Estás seguro que quieres mostrar los retoots de {0}?"
+      "description": "¿Estás seguro que quieres mostrar los retoots de {0}?",
+      "title": "Mostrar retoots"
     },
     "unfollow": {
       "cancel": "Cancelar",
       "confirm": "Dejar de seguir",
-      "title": "¿Estás seguro que quieres dejar de seguir?"
+      "description": "¿Estás seguro que quieres dejar de seguir?",
+      "title": "Dejar de seguir"
     }
   },
   "conversation": {
@@ -200,11 +218,12 @@
     "create": "Crear",
     "delete": "Eliminar esta lista",
     "delete_error": "Se produjo un error eliminando la lista",
-    "edit": "Ediar esta lista",
+    "edit": "Editar esta lista",
     "edit_error": "Se produjo un error modificando la lista",
     "error": "Se produjo un error creando la lista",
     "error_prefix": "Error: ",
     "list_title_placeholder": "Título de la lista",
+    "manage": "Administrar listas",
     "modify_account": "Modificar listas con cuenta",
     "remove_account": "Eliminar cuenta de la lista",
     "save": "Guardar"
@@ -218,14 +237,25 @@
         "compose": "Redactar",
         "favourite": "Favorito",
         "search": "Búsqueda",
+        "show_new_items": "Mostrar nuevas publicaciones",
         "title": "Acciones"
       },
       "media": {
         "title": "Multimedia"
       },
       "navigation": {
+        "go_to_bookmarks": "Marcadores",
+        "go_to_conversations": "Conversaciones",
+        "go_to_explore": "Explorar",
+        "go_to_favourites": "Favoritas",
+        "go_to_federated": "Federados",
         "go_to_home": "Inicio",
+        "go_to_lists": "Listas",
+        "go_to_local": "Local",
         "go_to_notifications": "Notificaciones",
+        "go_to_profile": "Perfil",
+        "go_to_search": "Buscar",
+        "go_to_settings": "Ajustes",
         "next_status": "Siguiente estado",
         "previous_status": "Anterior estado",
         "shortcut_help": "Atajo de ayuda",
@@ -280,13 +310,16 @@
     "built_at": "Compilado {0}",
     "compose": "Redactar",
     "conversations": "Conversaciones",
+    "docs": "Documentación",
     "explore": "Explorar",
     "favourites": "Favoritas",
     "federated": "Federados",
+    "hashtags": "Etiquetas",
     "home": "Inicio",
     "list": "Lista",
     "lists": "Listas",
     "local": "Local",
+    "more_menu": "Más opciones",
     "muted_users": "Usuarios silenciados",
     "notifications": "Notificaciones",
     "privacy": "Privacidad",
@@ -421,6 +454,8 @@
       "label": "Ajustes de cuenta"
     },
     "interface": {
+      "bottom_nav": "Navegación inferior",
+      "bottom_nav_instructions": "Elige tus botones de navegación favoritos, hasta cinco para la navegación inferior. Debes incluir el botón \"Más opciones\".",
       "color_mode": "Modos de color",
       "dark_mode": "Modo oscuro",
       "default": " (por defecto)",
@@ -432,6 +467,7 @@
     },
     "language": {
       "display_language": "Idioma de pantalla",
+      "how_to_contribute": "¿Cómo contribuir?",
       "label": "Idioma",
       "post_language": "Idioma de publicación",
       "status": "Estado traducción: {0}/{1} ({2}%)",
@@ -513,12 +549,15 @@
       "hide_boost_count": "Ocultar contador de retoots",
       "hide_favorite_count": "Ocultar número de publicaciones favoritas",
       "hide_follower_count": "Ocultar número de seguidores",
+      "hide_gif_indi_on_posts": "Ocultar indicador de gif en publicaciones",
       "hide_news": "Ocultar noticias",
       "hide_reply_count": "Ocultar número de respuestas",
+      "hide_tag_hover_card": "Ocultar tarjeta flotante de etiqueta",
       "hide_translation": "Ocultar traducción",
       "hide_username_emojis": "Ocultar emojis en el nombre de usuario",
       "hide_username_emojis_description": "Oculta los emojis de los nombres de usuarios en la línea de tiempo. Los emojis permanecerán visibles en sus perfiles.",
       "label": "Preferencias",
+      "optimize_for_low_performance_device": "Optimizar para dispositivos de bajo rendimiento",
       "title": "Funcionalidades experimentales",
       "use_star_favorite_icon": "Utilizar icono de estrella para favoritos",
       "user_picker": "Selector de usuarios",
@@ -562,7 +601,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Número máximo de archivos adjuntos por publicación excedido.",
+    "attachments_limit_audio_error": "Tamaño máximo de audio excedido: {0}",
     "attachments_limit_error": "Límite por publicación excedido",
+    "attachments_limit_image_error": "Tamaño máximo de imagen excedido: {0}",
+    "attachments_limit_unknown_error": "Tamaño máximo de archivo excedido: {0}",
+    "attachments_limit_video_error": "Tamaño máximo de vídeo excedido: {0}",
     "edited": "(Editado)",
     "editing": "Editando",
     "loading": "Cargando...",
@@ -583,6 +626,7 @@
     "favourited_by": "Marcado como favorita por",
     "filter_hidden_phrase": "Filtrado por",
     "filter_show_anyway": "Mostrar de todas formas",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Descripción",
@@ -679,8 +723,9 @@
   "tooltip": {
     "add_content_warning": "Añadir advertencia de contenido",
     "add_emojis": "Agregar emojis",
-    "add_media": "Añadir imágenes, video o audio",
+    "add_media": "Añadir imágenes, vídeo o audio",
     "add_publishable_content": "Publicar contenido",
+    "add_thread_item": "Agregar publicación al hilo",
     "change_content_visibility": "Cambiar visibilidad de contenido",
     "change_language": "Cambiar idioma",
     "emoji": "Emoji",
@@ -690,6 +735,8 @@
     "open_editor_tools": "Herramientas de edición",
     "pick_an_icon": "Selecciona un icono",
     "publish_failed": "Cierra los mensajes fallidos en la parte superior del editor para volver a publicar",
+    "remove_thread_item": "Eliminar publicación del hilo",
+    "start_thread": "Iniciar hilo",
     "toggle_bold": "Cambiar a negrita",
     "toggle_code_block": "Cambiar a bloque de código",
     "toggle_italic": "Cambiar a cursiva"

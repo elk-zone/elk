@@ -26,45 +26,46 @@ const props = withDefaults(
 
 const userSettings = useUserSettings()
 
-const status = $computed(() => {
+const status = computed(() => {
   if (props.status.reblog && (!props.status.content || props.status.content === props.status.reblog.content))
     return props.status.reblog
   return props.status
 })
 
 // Use original status, avoid connecting a reblog
-const directReply = $computed(() => props.hasNewer || (!!status.inReplyToId && (status.inReplyToId === props.newer?.id || status.inReplyToId === props.newer?.reblog?.id)))
+const directReply = computed(() => props.hasNewer || (!!status.value.inReplyToId && (status.value.inReplyToId === props.newer?.id || status.value.inReplyToId === props.newer?.reblog?.id)))
 // Use reblogged status, connect it to further replies
-const connectReply = $computed(() => props.hasOlder || status.id === props.older?.inReplyToId || status.id === props.older?.reblog?.inReplyToId)
+const connectReply = computed(() => props.hasOlder || status.value.id === props.older?.inReplyToId || status.value.id === props.older?.reblog?.inReplyToId)
 // Open a detailed status, the replies directly to it
-const replyToMain = $computed(() => props.main && props.main.id === status.inReplyToId)
+const replyToMain = computed(() => props.main && props.main.id === status.value.inReplyToId)
 
-const rebloggedBy = $computed(() => props.status.reblog ? props.status.account : null)
+const rebloggedBy = computed(() => props.status.reblog ? props.status.account : null)
 
-const statusRoute = $computed(() => getStatusRoute(status))
+const statusRoute = computed(() => getStatusRoute(status.value))
 
 const router = useRouter()
 
 function go(evt: MouseEvent | KeyboardEvent) {
   if (evt.metaKey || evt.ctrlKey) {
-    window.open(statusRoute.href)
+    window.open(statusRoute.value.href)
   }
   else {
-    cacheStatus(status)
-    router.push(statusRoute)
+    cacheStatus(status.value)
+    router.push(statusRoute.value)
   }
 }
 
-const createdAt = useFormattedDateTime(status.createdAt)
+const createdAt = useFormattedDateTime(status.value.createdAt)
 const timeAgoOptions = useTimeAgoOptions(true)
-const timeago = useTimeAgo(() => status.createdAt, timeAgoOptions)
+const timeago = useTimeAgo(() => status.value.createdAt, timeAgoOptions)
 
-const isSelfReply = $computed(() => status.inReplyToAccountId === status.account.id)
-const collapseRebloggedBy = $computed(() => rebloggedBy?.id === status.account.id)
-const isDM = $computed(() => status.visibility === 'direct')
+const isSelfReply = computed(() => status.value.inReplyToAccountId === status.value.account.id)
+const collapseRebloggedBy = computed(() => rebloggedBy.value?.id === status.value.account.id)
+const isDM = computed(() => status.value.visibility === 'direct')
+const isPinned = computed(() => status.value.pinned)
 
-const showUpperBorder = $computed(() => props.newer && !directReply)
-const showReplyTo = $computed(() => !replyToMain && !directReply)
+const showUpperBorder = computed(() => props.newer && !directReply.value)
+const showReplyTo = computed(() => !replyToMain.value && !directReply.value)
 
 const forceShow = ref(false)
 </script>
@@ -72,9 +73,22 @@ const forceShow = ref(false)
 <template>
   <StatusLink :status="status" :hover="hover">
     <!-- Upper border -->
-    <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 />
+    <div :h="showUpperBorder ? '1px' : '0'" w-auto bg-border mb-1 z--1 />
 
     <slot name="meta">
+      <!-- Pinned status -->
+      <div flex="~ col" justify-between>
+        <div
+          v-if="isPinned"
+          flex="~ gap2" items-center h-auto text-sm text-orange
+          m="is-5" p="t-1 is-5"
+          relative text-secondary ws-nowrap
+        >
+          <div i-ri:pushpin-line />
+          <span>{{ $t('status.pinned') }}</span>
+        </div>
+      </div>
+
       <!-- Line connecting to previous status -->
       <template v-if="status.inReplyToAccountId">
         <StatusReplyingTo
@@ -160,7 +174,7 @@ const forceShow = ref(false)
               <div flex="~ gap1" items-center>
                 <StatusVisibilityIndicator v-if="status.visibility !== 'public'" :status="status" />
                 <div flex>
-                  <CommonTooltip :content="createdAt" no-auto-focus>
+                  <CommonTooltip :content="createdAt">
                     <NuxtLink :title="status.createdAt" :href="statusRoute.href" @click.prevent="go($event)">
                       <time text-sm ws-nowrap hover:underline :datetime="status.createdAt">
                         {{ timeago }}

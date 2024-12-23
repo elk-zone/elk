@@ -13,6 +13,7 @@
     "blocked_users": "Engellenen kullanıcılar",
     "blocking": "Engelli",
     "bot": "BOT",
+    "copy_account_name": "Hesap adını kopyala",
     "favourites": "Favoriler",
     "follow": "Takip et",
     "follow_back": "Geri takip et",
@@ -111,12 +112,12 @@
     "block_account": {
       "cancel": "İptal et",
       "confirm": "Engelle",
-      "title": "{0}'i engellemek istediğinizden emin misiniz?"
+      "description": "{0}'i engellemek istediğinizden emin misiniz?"
     },
     "block_domain": {
       "cancel": "İptal et",
       "confirm": "Engelle",
-      "title": "{0}'i engellemek istediğinizden emin misiniz?"
+      "description": "{0}'i engellemek istediğinizden emin misiniz?"
     },
     "common": {
       "cancel": "Hayır",
@@ -125,27 +126,27 @@
     "delete_list": {
       "cancel": "İptal et",
       "confirm": "Sil",
-      "title": "\"{0}\" listesini silmek istediğinizden emin misiniz?"
+      "description": "\"{0}\" listesini silmek istediğinizden emin misiniz?"
     },
     "delete_posts": {
       "cancel": "İptal et",
       "confirm": "Sil",
-      "title": "Bu gönderiyi silmek istediğinizden emin misiniz?"
+      "description": "Bu gönderiyi silmek istediğinizden emin misiniz?"
     },
     "mute_account": {
       "cancel": "İptal et",
       "confirm": "Sessize al",
-      "title": "{0} sessize almak istediğinizden emin misiniz?"
+      "description": "{0} sessize almak istediğinizden emin misiniz?"
     },
     "show_reblogs": {
       "cancel": "İptal et",
       "confirm": "Göster",
-      "title": "{0} tarafından yapılan desteklemeleri göstermek istediğinizden emin misiniz?"
+      "description": "{0} tarafından yapılan desteklemeleri göstermek istediğinizden emin misiniz?"
     },
     "unfollow": {
       "cancel": "İptal et",
       "confirm": "Takibi bırak",
-      "title": "Takibi bırakmak istediğinizden emin misiniz?"
+      "description": "Takibi bırakmak istediğinizden emin misiniz?"
     }
   },
   "conversation": {
@@ -342,10 +343,10 @@
   },
   "settings": {
     "about": {
-      "built_at": "Kurulmuş",
+      "built_at": "Kurulum",
       "label": "Hakkında",
       "meet_the_team": "Takım ile buluş",
-      "sponsor_action": "Bize spponsor ol",
+      "sponsor_action": "Bize sponsor ol",
       "sponsor_action_desc": "Elk'i geliştiren takıma destek olmak için",
       "sponsors": "Sponsorlar",
       "sponsors_body_1": "Elk cömert sponsorluk ve şunların yardımı sayesinde mümkün oldu:",

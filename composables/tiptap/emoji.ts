@@ -1,36 +1,42 @@
+import type { ExtendedRegExpMatchArray, InputRuleFinder, nodeInputRule } from '@tiptap/core'
+import type { NodeType } from '@tiptap/pm/model'
 import {
-  Node,
+  callOrReturn,
+  InputRule,
   mergeAttributes,
-  nodeInputRule,
+  Node,
   nodePasteRule,
 } from '@tiptap/core'
 import { emojiRegEx, getEmojiAttributes } from '~/config/emojis'
 
-function createEmojiRule<NR extends typeof nodeInputRule | typeof nodePasteRule>(nodeRule: NR,
-  type: Parameters<NR>[0]['type']): ReturnType<NR>[] {
+function wrapHandler<T extends (...args: any[]) => any>(handler: T): T {
+  return <T>((...args: any[]) => {
+    try {
+      return handler(...args)
+    }
+    catch {
+      return null
+    }
+  })
+}
+
+function createEmojiRule<NR extends typeof nodeInputRule | typeof nodePasteRule>(
+  nodeRule: NR,
+  type: Parameters<NR>[0]['type'],
+): ReturnType<NR>[] {
   const rule = nodeRule({
     find: emojiRegEx as RegExp,
     type,
-    getAttributes: (match) => {
+    getAttributes: (match: ExtendedRegExpMatchArray) => {
       const [native] = match
       return getEmojiAttributes(native)
     },
   }) as ReturnType<NR>
 
   // Error catch for unsupported emoji
-  const handler = rule.handler.bind(rule)
-  rule.handler = (...args) => {
-    try {
-      return handler(...args)
-    }
-    catch (e) {
-      return null
-    }
-  }
+  rule.handler = wrapHandler(rule.handler.bind(rule))
 
-  return [
-    rule,
-  ]
+  return [rule]
 }
 
 export const TiptapPluginEmoji = Node.create({
@@ -78,7 +84,34 @@ export const TiptapPluginEmoji = Node.create({
   },
 
   addInputRules() {
-    return createEmojiRule(nodeInputRule, this.type)
+    function emojiInputRule(config: {
+      find: InputRuleFinder
+      type: NodeType
+      getAttributes?:
+        | Record<string, any>
+        | ((match: ExtendedRegExpMatchArray) => Record<string, any>)
+        | false
+        | null
+    }) {
+      return new InputRule({
+        find: config.find,
+        handler: ({ state, range, match }) => {
+          const attributes = callOrReturn(config.getAttributes, undefined, match) || {}
+          const { tr } = state
+          const start = range.from
+          const end = range.to
+
+          tr.insert(start, config.type.create(attributes)).delete(
+            tr.mapping.map(start),
+            tr.mapping.map(end),
+          )
+
+          tr.scrollIntoView()
+        },
+      })
+    }
+
+    return createEmojiRule(emojiInputRule, this.type)
   },
 
   addPasteRules() {

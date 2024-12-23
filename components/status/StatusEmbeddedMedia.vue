@@ -5,7 +5,7 @@ const { status } = defineProps<{
   status: mastodon.v1.Status
 }>()
 
-const vnode = $computed(() => {
+const vnode = computed(() => {
   if (!status.card?.html)
     return null
   const node = sanitizeEmbeddedIframe(status.card?.html)?.children[0]
@@ -28,7 +28,7 @@ const card = ref(status.card)
         absolute
         w-full
         h-full
-        z-100
+        z-10
         rounded-lg
         style="background: linear-gradient(black, rgba(0,0,0,0.5), transparent, transparent, rgba(0,0,0,0.20))"
       >

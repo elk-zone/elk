@@ -7,8 +7,11 @@ export type OldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
 export type ColorMode = 'light' | 'dark' | 'system'
 
+export type NavButtonName = 'home' | 'search' | 'notification' | 'mention' | 'favorite' | 'bookmark' | 'compose' | 'explore' | 'local' | 'federated' | 'list' | 'hashtag' | 'setting' | 'moreMenu'
+
 export interface PreferencesSettings {
   hideAltIndicatorOnPosts: boolean
+  hideGifIndicatorOnPosts: boolean
   hideBoostCount: boolean
   hideReplyCount: boolean
   hideFavoriteCount: boolean
@@ -16,9 +19,11 @@ export interface PreferencesSettings {
   hideTranslation: boolean
   hideUsernameEmojis: boolean
   hideAccountHoverCard: boolean
+  hideTagHoverCard: boolean
   hideNews: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
+  optimizeForLowPerformanceDevice: boolean
   enableDataSaving: boolean
   enablePinchToZoom: boolean
   useStarFavoriteIcon: boolean
@@ -55,13 +60,14 @@ export interface ThemeColors {
 }
 
 export function getDefaultLanguage(languages: string[]) {
-  if (process.server)
+  if (import.meta.server)
     return 'en-US'
   return matchLanguages(languages, navigator.languages) || 'en-US'
 }
 
 export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideAltIndicatorOnPosts: false,
+  hideGifIndicatorOnPosts: false,
   hideBoostCount: false,
   hideReplyCount: false,
   hideFavoriteCount: false,
@@ -69,9 +75,11 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideTranslation: false,
   hideUsernameEmojis: false,
   hideAccountHoverCard: false,
+  hideTagHoverCard: false,
   hideNews: false,
   grayscaleMode: false,
   enableAutoplay: true,
+  optimizeForLowPerformanceDevice: false,
   enableDataSaving: false,
   enablePinchToZoom: false,
   useStarFavoriteIcon: false,

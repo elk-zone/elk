@@ -14,8 +14,6 @@ const emit = defineEmits<{
 
 const focusEditor = inject<typeof noop>('focus-editor', noop)
 
-const { details, command } = $(props)
-
 const {
   status,
   isLoading,
@@ -24,7 +22,7 @@ const {
   togglePin,
   toggleReblog,
   toggleMute,
-} = $(useStatusActions(props))
+} = useStatusActions(props)
 
 const clipboard = useClipboard()
 const router = useRouter()
@@ -33,9 +31,9 @@ const { t } = useI18n()
 const userSettings = useUserSettings()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
-const isAuthor = $computed(() => status.account.id === currentUser.value?.account.id)
+const isAuthor = computed(() => status.value.account.id === currentUser.value?.account.id)
 
-const { client } = $(useMasto())
+const { client } = useMasto()
 
 function getPermalinkUrl(status: mastodon.v1.Status) {
   const url = getStatusPermalinkRoute(status)
@@ -64,15 +62,17 @@ async function shareLink(status: mastodon.v1.Status) {
 }
 
 async function deleteStatus() {
-  if (await openConfirmDialog({
+  const confirmDelete = await openConfirmDialog({
     title: t('confirm.delete_posts.title'),
+    description: t('confirm.delete_posts.description'),
     confirm: t('confirm.delete_posts.confirm'),
     cancel: t('confirm.delete_posts.cancel'),
-  }) !== 'confirm')
+  })
+  if (confirmDelete.choice !== 'confirm')
     return
 
-  removeCachedStatus(status.id)
-  await client.v1.statuses.remove(status.id)
+  removeCachedStatus(status.value.id)
+  await client.value.v1.statuses.$select(status.value.id).remove()
 
   if (route.name === 'status')
     router.back()
@@ -81,23 +81,25 @@ async function deleteStatus() {
 }
 
 async function deleteAndRedraft() {
-  if (await openConfirmDialog({
+  const confirmDelete = await openConfirmDialog({
     title: t('confirm.delete_posts.title'),
+    description: t('confirm.delete_posts.description'),
     confirm: t('confirm.delete_posts.confirm'),
     cancel: t('confirm.delete_posts.cancel'),
-  }) !== 'confirm')
+  })
+  if (confirmDelete.choice !== 'confirm')
     return
 
-  if (process.dev) {
+  if (import.meta.dev) {
     // eslint-disable-next-line no-alert
     const result = confirm('[DEV] Are you sure you want to delete and re-draft this post?')
     if (!result)
       return
   }
 
-  removeCachedStatus(status.id)
-  await client.v1.statuses.remove(status.id)
-  await openPublishDialog('dialog', await getDraftFromStatus(status), true)
+  removeCachedStatus(status.value.id)
+  await client.value.v1.statuses.$select(status.value.id).remove()
+  await openPublishDialog('dialog', await getDraftFromStatus(status.value), true)
 
   // Go to the new status, if the page is the old status
   if (lastPublishDialogStatus.value && route.name === 'status')
@@ -107,25 +109,25 @@ async function deleteAndRedraft() {
 function reply() {
   if (!checkLogin())
     return
-  if (details) {
+  if (props.details) {
     focusEditor()
   }
   else {
-    const { key, draft } = getReplyDraft(status)
+    const { key, draft } = getReplyDraft(status.value)
     openPublishDialog(key, draft())
   }
 }
 
 async function editStatus() {
-  await openPublishDialog(`edit-${status.id}`, {
-    ...await getDraftFromStatus(status),
-    editingStatus: status,
+  await openPublishDialog(`edit-${status.value.id}`, {
+    ...await getDraftFromStatus(status.value),
+    editingStatus: status.value,
   }, true)
   emit('afterEdit')
 }
 
 function showFavoritedAndBoostedBy() {
-  openFavoridedBoostedByDialog(status.id)
+  openFavoridedBoostedByDialog(status.value.id)
 }
 </script>
 
@@ -142,8 +144,9 @@ function showFavoritedAndBoostedBy() {
 
     <template #popper>
       <div flex="~ col">
-        <template v-if="getPreferences(userSettings, 'zenMode')">
+        <template v-if="getPreferences(userSettings, 'zenMode') && !details">
           <CommonDropdownItem
+            is="button"
             :text="$t('action.reply')"
             icon="i-ri:chat-1-line"
             :command="command"
@@ -151,6 +154,7 @@ function showFavoritedAndBoostedBy() {
           />
 
           <CommonDropdownItem
+            is="button"
             :text="status.reblogged ? $t('action.boosted') : $t('action.boost')"
             icon="i-ri:repeat-fill"
             :class="status.reblogged ? 'text-green' : ''"
@@ -160,6 +164,7 @@ function showFavoritedAndBoostedBy() {
           />
 
           <CommonDropdownItem
+            is="button"
             :text="status.favourited ? $t('action.favourited') : $t('action.favourite')"
             :icon="useStarFavoriteIcon
               ? status.favourited ? 'i-ri:star-fill' : 'i-ri:star-line'
@@ -174,6 +179,7 @@ function showFavoritedAndBoostedBy() {
           />
 
           <CommonDropdownItem
+            is="button"
             :text="status.bookmarked ? $t('action.bookmarked') : $t('action.bookmark')"
             :icon="status.bookmarked ? 'i-ri:bookmark-fill' : 'i-ri:bookmark-line'"
             :class="status.bookmarked
@@ -187,6 +193,7 @@ function showFavoritedAndBoostedBy() {
         </template>
 
         <CommonDropdownItem
+          is="button"
           :text="$t('menu.show_favourited_and_boosted_by')"
           icon="i-ri:hearts-line"
           :command="command"
@@ -194,6 +201,7 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
+          is="button"
           :text="$t('menu.copy_link_to_post')"
           icon="i-ri:link"
           :command="command"
@@ -201,6 +209,7 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
+          is="button"
           :text="$t('menu.copy_original_link_to_post')"
           icon="i-ri:links-fill"
           :command="command"
@@ -208,6 +217,7 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
+          is="button"
           v-if="isShareSupported"
           :text="$t('menu.share_post')"
           icon="i-ri:share-line"
@@ -216,6 +226,7 @@ function showFavoritedAndBoostedBy() {
         />
 
         <CommonDropdownItem
+          is="button"
           v-if="currentUser && (status.account.id === currentUser.account.id || status.mentions.some(m => m.id === currentUser!.account.id))"
           :text="status.muted ? $t('menu.unmute_conversation') : $t('menu.mute_conversation')"
           :icon="status.muted ? 'i-ri:eye-line' : 'i-ri:eye-off-line'"
@@ -235,6 +246,7 @@ function showFavoritedAndBoostedBy() {
         <template v-if="isHydrated && currentUser">
           <template v-if="isAuthor">
             <CommonDropdownItem
+              is="button"
               :text="status.pinned ? $t('menu.unpin_on_profile') : $t('menu.pin_on_profile')"
               icon="i-ri:pushpin-line"
               :command="command"
@@ -242,6 +254,7 @@ function showFavoritedAndBoostedBy() {
             />
 
             <CommonDropdownItem
+              is="button"
               :text="$t('menu.edit')"
               icon="i-ri:edit-line"
               :command="command"
@@ -249,6 +262,7 @@ function showFavoritedAndBoostedBy() {
             />
 
             <CommonDropdownItem
+              is="button"
               :text="$t('menu.delete')"
               icon="i-ri:delete-bin-line"
               text-red-600
@@ -257,6 +271,7 @@ function showFavoritedAndBoostedBy() {
             />
 
             <CommonDropdownItem
+              is="button"
               :text="$t('menu.delete_and_redraft')"
               icon="i-ri:eraser-line"
               text-red-600
@@ -266,6 +281,7 @@ function showFavoritedAndBoostedBy() {
           </template>
           <template v-else>
             <CommonDropdownItem
+              is="button"
               :text="$t('menu.mention_account', [`@${status.account.acct}`])"
               icon="i-ri:at-line"
               :command="command"
@@ -273,6 +289,7 @@ function showFavoritedAndBoostedBy() {
             />
 
             <CommonDropdownItem
+              is="button"
               v-if="!useRelationship(status.account).value?.muting"
               :text="$t('menu.mute_account', [`@${status.account.acct}`])"
               icon="i-ri:volume-mute-line"
@@ -280,6 +297,7 @@ function showFavoritedAndBoostedBy() {
               @click="toggleMuteAccount(useRelationship(status.account).value!, status.account)"
             />
             <CommonDropdownItem
+              is="button"
               v-else
               :text="$t('menu.unmute_account', [`@${status.account.acct}`])"
               icon="i-ri:volume-up-fill"
@@ -288,6 +306,7 @@ function showFavoritedAndBoostedBy() {
             />
 
             <CommonDropdownItem
+              is="button"
               v-if="!useRelationship(status.account).value?.blocking"
               :text="$t('menu.block_account', [`@${status.account.acct}`])"
               icon="i-ri:forbid-2-line"
@@ -295,6 +314,7 @@ function showFavoritedAndBoostedBy() {
               @click="toggleBlockAccount(useRelationship(status.account).value!, status.account)"
             />
             <CommonDropdownItem
+              is="button"
               v-else
               :text="$t('menu.unblock_account', [`@${status.account.acct}`])"
               icon="i-ri:checkbox-circle-line"
@@ -304,6 +324,7 @@ function showFavoritedAndBoostedBy() {
 
             <template v-if="getServerName(status.account) && getServerName(status.account) !== currentServer">
               <CommonDropdownItem
+                is="button"
                 v-if="!useRelationship(status.account).value?.domainBlocking"
                 :text="$t('menu.block_domain', [getServerName(status.account)])"
                 icon="i-ri:shut-down-line"
@@ -311,6 +332,7 @@ function showFavoritedAndBoostedBy() {
                 @click="toggleBlockDomain(useRelationship(status.account).value!, status.account)"
               />
               <CommonDropdownItem
+                is="button"
                 v-else
                 :text="$t('menu.unblock_domain', [getServerName(status.account)])"
                 icon="i-ri:restart-line"
@@ -320,6 +342,7 @@ function showFavoritedAndBoostedBy() {
             </template>
 
             <CommonDropdownItem
+              is="button"
               :text="$t('menu.report_account', [`@${status.account.acct}`])"
               icon="i-ri:flag-2-line"
               :command="command"

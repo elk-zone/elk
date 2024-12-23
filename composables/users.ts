@@ -1,10 +1,11 @@
-import { withoutProtocol } from 'ufo'
+import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
 import type { mastodon } from 'masto'
 import type { EffectScope, Ref } from 'vue'
-import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
 import type { ElkMasto } from './masto/masto'
+import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
 import type { UserLogin } from '~/types'
 import type { Overwrite } from '~/types/utils'
+import { withoutProtocol } from 'ufo'
 import {
   DEFAULT_POST_CHARS_LIMIT,
   STORAGE_KEY_CURRENT_USER_HANDLE,
@@ -12,39 +13,13 @@ import {
   STORAGE_KEY_NOTIFICATION,
   STORAGE_KEY_NOTIFICATION_POLICY,
   STORAGE_KEY_SERVERS,
-  STORAGE_KEY_USERS,
 } from '~/constants'
-import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
-import { useAsyncIDBKeyval } from '~/composables/idb'
 
 const mock = process.mock
 
-function initializeUsers(): Promise<Ref<UserLogin[]> | RemovableRef<UserLogin[]>> | Ref<UserLogin[]> | RemovableRef<UserLogin[]> {
-  let defaultUsers = mock ? [mock.user] : []
-
-  // Backward compatibility with localStorage
-  let removeUsersOnLocalStorage = false
-  if (globalThis?.localStorage) {
-    const usersOnLocalStorageString = globalThis.localStorage.getItem(STORAGE_KEY_USERS)
-    if (usersOnLocalStorageString) {
-      defaultUsers = JSON.parse(usersOnLocalStorageString)
-      removeUsersOnLocalStorage = true
-    }
-  }
-
-  const users = process.server
-    ? ref<UserLogin[]>(defaultUsers)
-    : useAsyncIDBKeyval<UserLogin[]>(STORAGE_KEY_USERS, defaultUsers, { deep: true })
-
-  if (removeUsersOnLocalStorage)
-    globalThis.localStorage.removeItem(STORAGE_KEY_USERS)
-
-  return users
-}
-
-const users = process.server ? initializeUsers() as Ref<UserLogin[]> | RemovableRef<UserLogin[]> : await initializeUsers()
+const users: Ref<UserLogin[]> | RemovableRef<UserLogin[]> = import.meta.server ? ref<UserLogin[]>([]) : ref<UserLogin[]>([]) as RemovableRef<UserLogin[]>
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
-const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
+export const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
 export const instanceStorage = useLocalStorage<Record<string, mastodon.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 
 export type ElkInstance = Partial<mastodon.v1.Instance> & {
@@ -57,17 +32,24 @@ export function getInstanceCache(server: string): mastodon.v1.Instance | undefin
 }
 
 export const currentUser = computed<UserLogin | undefined>(() => {
-  if (currentUserHandle.value) {
-    const user = users.value.find(user => user.account?.acct === currentUserHandle.value)
+  const handle = currentUserHandle.value
+  const currentUsers = users.value
+  if (handle) {
+    const user = currentUsers.find(user => user.account?.acct === handle)
     if (user)
       return user
   }
   // Fallback to the first account
-  return users.value[0]
+  return currentUsers.length ? currentUsers[0] : undefined
 })
 
 const publicInstance = ref<ElkInstance | null>(null)
-export const currentInstance = computed<null | ElkInstance>(() => currentUser.value ? instanceStorage.value[currentUser.value.server] ?? null : publicInstance.value)
+export const currentInstance = computed<null | ElkInstance>(() => {
+  const user = currentUser.value
+  const storage = instanceStorage.value
+  const instance = publicInstance.value
+  return user ? storage[user.server] ?? null : instance
+})
 
 export function getInstanceDomain(instance: ElkInstance) {
   return instance.accountDomain || withoutProtocol(instance.uri)
@@ -80,37 +62,6 @@ export const currentNodeInfo = computed<null | Record<string, any>>(() => nodes.
 export const isGotoSocial = computed(() => currentNodeInfo.value?.software?.name === 'gotosocial')
 export const isGlitchEdition = computed(() => currentInstance.value?.version?.includes('+glitch'))
 
-// when multiple tabs: we need to reload window when sign in, switch account or sign out
-if (process.client) {
-  const windowReload = () => {
-    document.visibilityState === 'visible' && window.location.reload()
-  }
-  watch(currentUserHandle, async (handle, oldHandle) => {
-    // when sign in or switch account
-    if (handle) {
-      if (handle === currentUser.value?.account?.acct) {
-        // when sign in, the other tab will not have the user, idb is not reactive
-        const newUser = users.value.find(user => user.account?.acct === handle)
-        // if the user is there, then we are switching account
-        if (newUser) {
-          // check if the change is on current tab: if so, don't reload
-          if (document.hasFocus() || document.visibilityState === 'visible')
-            return
-        }
-      }
-
-      window.addEventListener('visibilitychange', windowReload, { capture: true })
-    }
-    // when sign out
-    else if (oldHandle) {
-      const oldUser = users.value.find(user => user.account?.acct === oldHandle)
-      // when sign out, the other tab will not have the user, idb is not reactive
-      if (oldUser)
-        window.addEventListener('visibilitychange', windowReload, { capture: true })
-    }
-  }, { immediate: true, flush: 'post' })
-}
-
 export function useUsers() {
   return users
 }
@@ -120,8 +71,11 @@ export function useSelfAccount(user: MaybeRefOrGetter<mastodon.v1.Account | unde
 
 export const characterLimit = computed(() => currentInstance.value?.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
 
-export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { account?: mastodon.v1.AccountCredentials }>) {
-  const { client } = $(masto)
+export async function loginTo(
+  masto: ElkMasto,
+  user: Overwrite<UserLogin, { account?: mastodon.v1.AccountCredentials }>,
+) {
+  const { client } = masto
   const instance = mastoLogin(masto, user)
 
   // GoToSocial only API
@@ -145,11 +99,11 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
     currentUserHandle.value = account.acct
 
   const [me, pushSubscription] = await Promise.all([
-    fetchAccountInfo(client, user.server),
+    fetchAccountInfo(client.value, user.server),
     // if PWA is not enabled, don't get push subscription
     useAppConfig().pwaEnabled
     // we get 404 response instead empty data
-      ? client.v1.webPushSubscriptions.fetch().catch(() => Promise.resolve(undefined))
+      ? client.value.v1.push.subscription.fetch().catch(() => Promise.resolve(undefined))
       : Promise.resolve(undefined),
   ])
 
@@ -172,6 +126,7 @@ export async function loginTo(masto: ElkMasto, user: Overwrite<UserLogin, { acco
 const accountPreferencesMap = new Map<string, Partial<mastodon.v1.Preference>>()
 
 /**
+ * @param account
  * @returns `true` when user ticked the preference to always expand posts with content warnings
  */
 export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentials) {
@@ -179,20 +134,22 @@ export function getExpandSpoilersByDefault(account: mastodon.v1.AccountCredentia
 }
 
 /**
+ * @param account
  * @returns `true` when user selected "Always show media" as Media Display preference
  */
 export function getExpandMediaByDefault(account: mastodon.v1.AccountCredentials) {
-  return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'show_all' ?? false
+  return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'show_all'
 }
 
 /**
+ * @param account
  * @returns `true` when user selected "Always hide media" as Media Display preference
  */
 export function getHideMediaByDefault(account: mastodon.v1.AccountCredentials) {
-  return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'hide_all' ?? false
+  return accountPreferencesMap.get(account.acct)?.['reading:expand:media'] === 'hide_all'
 }
 
-export async function fetchAccountInfo(client: mastodon.Client, server: string) {
+export async function fetchAccountInfo(client: mastodon.rest.Client, server: string) {
   // Try to fetch user preferences if the backend supports it.
   const fetchPrefs = async (): Promise<Partial<mastodon.v1.Preference>> => {
     try {
@@ -267,7 +224,7 @@ export async function removePushNotifications(user: UserLogin) {
     return
 
   // unsubscribe push notifications
-  await useMastoClient().v1.webPushSubscriptions.remove().catch(() => Promise.resolve())
+  await useMastoClient().v1.push.subscription.remove().catch(() => Promise.resolve())
 }
 
 export async function switchUser(user: UserLogin) {
@@ -318,7 +275,7 @@ export async function signOut() {
   if (!currentUserHandle.value)
     await useRouter().push('/')
 
-  loginTo(masto, currentUser.value || { server: publicServer.value })
+  await loginTo(masto, currentUser.value || { server: publicServer.value })
 }
 
 export function checkLogin() {
@@ -336,9 +293,11 @@ interface UseUserLocalStorageCache {
 
 /**
  * Create reactive storage for the current user
+ * @param key
+ * @param initial
  */
 export function useUserLocalStorage<T extends object>(key: string, initial: () => T): Ref<T> {
-  if (process.server || process.test)
+  if (import.meta.server || process.test)
     return shallowRef(initial())
 
   // @ts-expect-error bind value to the function
@@ -357,20 +316,20 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
         // Backward compatibility, respect webDomain in acct
         // In previous versions, acct was username@server instead of username@webDomain
         // for example: elk@m.webtoo.ls instead of elk@webtoo.ls
-        // if (!all.value[id]) { // TODO: add back this condition in the future
-        const [username, webDomain] = id.split('@')
-        const server = currentServer.value
-        if (webDomain && server && server !== webDomain) {
-          const oldId = `${username}@${server}`
-          const outdatedSettings = all.value[oldId]
-          if (outdatedSettings) {
-            const newAllValue = { ...all.value, [id]: outdatedSettings }
-            delete newAllValue[oldId]
-            all.value = newAllValue
+        if (!all.value[id]) {
+          const [username, webDomain] = id.split('@')
+          const server = currentServer.value
+          if (webDomain && server && server !== webDomain) {
+            const oldId = `${username}@${server}`
+            const outdatedSettings = all.value[oldId]
+            if (outdatedSettings) {
+              const newAllValue = { ...all.value, [id]: outdatedSettings }
+              delete newAllValue[oldId]
+              all.value = newAllValue
+            }
           }
+          all.value[id] = Object.assign(initial(), all.value[id] || {})
         }
-        // }
-        all.value[id] = Object.assign(initial(), all.value[id] || {})
         return all.value[id]
       })
     })
@@ -382,6 +341,7 @@ export function useUserLocalStorage<T extends object>(key: string, initial: () =
 
 /**
  * Clear all storages for the given account
+ * @param account
  */
 export function clearUserLocalStorage(account?: mastodon.v1.Account) {
   if (!account)

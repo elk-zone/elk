@@ -6,7 +6,7 @@ const { status } = defineProps<{
   status: mastodon.v1.Status
 }>()
 
-const paginator = useMastoClient().v1.statuses.listHistory(status.id)
+const paginator = useMastoClient().v1.statuses.$select(status.id).history.list()
 
 function showHistory(edit: mastodon.v1.StatusEdit) {
   openEditHistoryDialog(edit)

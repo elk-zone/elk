@@ -1,7 +1,7 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 /* eslint-disable no-alert */
-import { fileOpen } from 'browser-fs-access'
 import type { UserLogin } from '~/types'
+import { fileOpen } from 'browser-fs-access'
 
 const { t } = useI18n()
 
@@ -12,7 +12,7 @@ useHydratedHead({
 const loggedInUsers = useUsers()
 
 async function exportTokens() {
-  if (process.server)
+  if (import.meta.server)
     return
 
   if (!confirm('Please aware that the tokens represent the **full access** to your accounts, and should be treated as sensitive information. Are you sure you want to export the tokens?'))
@@ -31,7 +31,7 @@ async function exportTokens() {
 }
 
 async function importTokens() {
-  if (process.server)
+  if (import.meta.server)
     return
   const file = await fileOpen({
     description: 'Token File',
@@ -81,12 +81,12 @@ async function importTokens() {
         </div>
         <div my4 border="t base" />
         <button btn-text flex="~ gap-2" items-center @click="exportTokens">
-          <div i-ri-download-2-line />
+          <span block i-ri-download-2-line />
           {{ $t('settings.users.export') }}
         </button>
       </template>
       <button btn-text flex="~ gap-2" items-center @click="importTokens">
-        <div i-ri-upload-2-line />
+        <span block i-ri-upload-2-line />
         {{ $t('settings.users.import') }}
       </button>
     </div>

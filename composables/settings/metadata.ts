@@ -1,6 +1,6 @@
 import type { Node } from 'ultrahtml'
 import { decode } from 'tiny-decode'
-import { TEXT_NODE, parse } from 'ultrahtml'
+import { parse, TEXT_NODE } from 'ultrahtml'
 
 export const maxAccountFieldCount = computed(() => isGlitchEdition.value ? 16 : 4)
 

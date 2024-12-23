@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 definePageMeta({
   wideLayout: true,
 })
@@ -11,7 +11,7 @@ useHydratedHead({
 
 const route = useRoute()
 
-const isRootPath = computedEager(() => route.name === 'settings')
+const isRootPath = computed(() => route.name === 'settings')
 </script>
 
 <template>
@@ -22,12 +22,12 @@ const isRootPath = computedEager(() => route.name === 'settings')
           <template #title>
             <div timeline-title-style flex items-center gap-2 @click="$scrollToTop">
               <div i-ri:settings-3-line />
-              <span>{{ isHydrated ? $t('nav.settings') : '' }}</span>
+              <span>{{ $t('nav.settings') }}</span>
             </div>
           </template>
           <div xl:w-97 lg:w-78 w-full>
             <SettingsItem
-              v-if="isHydrated && currentUser"
+              v-if="currentUser"
               command
               icon="i-ri:user-line"
               :text="$t('settings.profile.label')"
@@ -37,12 +37,12 @@ const isRootPath = computedEager(() => route.name === 'settings')
             <SettingsItem
               command
               icon="i-ri-compasses-2-line"
-              :text="isHydrated ? $t('settings.interface.label') : ''"
+              :text="$t('settings.interface.label')"
               to="/settings/interface"
               :match="$route.path.startsWith('/settings/interface/')"
             />
             <SettingsItem
-              v-if="isHydrated && currentUser"
+              v-if="currentUser"
               command
               icon="i-ri:notification-badge-line"
               :text="$t('settings.notifications_settings')"
@@ -52,28 +52,28 @@ const isRootPath = computedEager(() => route.name === 'settings')
             <SettingsItem
               command
               icon="i-ri-globe-line"
-              :text="isHydrated ? $t('settings.language.label') : ''"
+              :text="$t('settings.language.label')"
               to="/settings/language"
               :match="$route.path.startsWith('/settings/language/')"
             />
             <SettingsItem
               command
               icon="i-ri-equalizer-line"
-              :text="isHydrated ? $t('settings.preferences.label') : ''"
+              :text="$t('settings.preferences.label')"
               to="/settings/preferences"
               :match="$route.path.startsWith('/settings/preferences/')"
             />
             <SettingsItem
               command
               icon="i-ri-group-line"
-              :text="isHydrated ? $t('settings.users.label') : ''"
+              :text="$t('settings.users.label')"
               to="/settings/users"
               :match="$route.path.startsWith('/settings/users/')"
             />
             <SettingsItem
               command
               icon="i-ri:information-line"
-              :text="isHydrated ? $t('settings.about.label') : ''"
+              :text="$t('settings.about.label')"
               to="/settings/about"
               :match="$route.path.startsWith('/settings/about/')"
             />

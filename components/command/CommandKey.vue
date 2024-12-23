@@ -5,7 +5,7 @@ const props = defineProps<{
 
 const isMac = useIsMac()
 
-const keys = $computed(() => props.name.toLowerCase().split('+'))
+const keys = computed(() => props.name.toLowerCase().split('+'))
 </script>
 
 <template>

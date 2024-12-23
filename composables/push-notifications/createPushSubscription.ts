@@ -6,10 +6,12 @@ import type {
 } from '~/composables/push-notifications/types'
 import { PushSubscriptionError } from '~/composables/push-notifications/types'
 
-export async function createPushSubscription(user: RequiredUserLogin,
+export async function createPushSubscription(
+  user: RequiredUserLogin,
   notificationData: CreatePushNotification,
-  policy: mastodon.v1.SubscriptionPolicy = 'all',
-  force = false): Promise<mastodon.v1.WebPushSubscription | undefined> {
+  policy: mastodon.v1.WebPushSubscriptionPolicy = 'all',
+  force = false,
+): Promise<mastodon.v1.WebPushSubscription | undefined> {
   const { server: serverEndpoint, vapidKey } = user
 
   return await getRegistration()
@@ -100,7 +102,8 @@ async function unsubscribeFromBackend(fromSWPushManager: boolean, removePushNoti
   const cu = currentUser.value
   if (cu) {
     await removePushNotifications(cu)
-    removePushNotification && await removePushNotificationData(cu, fromSWPushManager)
+    if (removePushNotification)
+      await removePushNotificationData(cu, fromSWPushManager)
   }
 }
 
@@ -115,10 +118,10 @@ async function removePushNotificationDataOnError(e: Error) {
 async function sendSubscriptionToBackend(
   subscription: PushSubscription,
   data: CreatePushNotification,
-  policy: mastodon.v1.SubscriptionPolicy,
+  policy: mastodon.v1.WebPushSubscriptionPolicy,
 ): Promise<mastodon.v1.WebPushSubscription> {
   const { endpoint, keys } = subscription.toJSON()
-  const params: mastodon.v1.CreateWebPushSubscriptionParams = {
+  return await useMastoClient().v1.push.subscription.create({
     policy,
     subscription: {
       endpoint: endpoint!,
@@ -128,7 +131,5 @@ async function sendSubscriptionToBackend(
       },
     },
     data,
-  }
-
-  return await useMastoClient().v1.webPushSubscriptions.create(params)
+  })
 }

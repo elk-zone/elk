@@ -14,7 +14,7 @@ const {
 const { translation } = useTranslation(status, getLanguageCode())
 
 const emojisObject = useEmojisFallback(() => status.emojis)
-const vnode = $computed(() => {
+const vnode = computed(() => {
   if (!status.content)
     return null
   return contentToVNode(status.content, {

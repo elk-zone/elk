@@ -40,7 +40,7 @@ body {
 .iconify-emoji {
   display: inline-block;
   height: 1.2em;
-  width: 1.2em;
+  max-width: 100%;
   margin-right: 0.075em;
   margin-left: 0.075em;
   object-fit: contain;
@@ -85,6 +85,9 @@ em-emoji-picker {
   p:last-child {
     --at-apply: mb-1;
   }
+  pre {
+    --at-apply: whitespace-pre-wrap;
+  }
   code {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.875em leading-0.8em;
   }
@@ -108,6 +111,9 @@ em-emoji-picker {
   }
   ul > li {
     --at-apply: pl-2;
+  }
+  blockquote {
+    --at-apply: border-primary border-l-4 border-solid pl-3 my-3 text-secondary;
   }
   .code-block {
     --at-apply: bg-code text-0.875em p3 mt-2 rounded overflow-auto
@@ -232,4 +238,8 @@ allows controlling them individually
 [data-mode="grayscale"] img:hover,
 [data-mode="grayscale"] video:hover {
   filter: grayscale(0);
+}
+
+.nuxt-loading-indicator {
+  opacity: unset !important;
 }

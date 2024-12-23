@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import type { mastodon } from 'masto'
 import sparkline from '@fnando/sparkline'
 
@@ -6,22 +6,22 @@ const {
   history,
   width = 60,
   height = 40,
-} = $defineProps<{
+} = defineProps<{
   history?: mastodon.v1.TagHistory[]
   width?: number
   height?: number
 }>()
 
-const historyNum = $computed(() => {
+const historyNum = computed(() => {
   if (!history)
     return [1, 1, 1, 1, 1, 1, 1]
   return [...history].reverse().map(item => Number(item.accounts) || 0)
 })
 
-const sparklineEl = $ref<SVGSVGElement>()
+const sparklineEl = ref<SVGSVGElement>()
 const sparklineFn = typeof sparkline !== 'function' ? (sparkline as any).default : sparkline
 
-watch([$$(historyNum), $$(sparklineEl)], ([historyNum, sparklineEl]) => {
+watch([historyNum, sparklineEl], ([historyNum, sparklineEl]) => {
   if (!sparklineEl)
     return
   sparklineFn(sparklineEl, historyNum)

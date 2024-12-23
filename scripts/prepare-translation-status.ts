@@ -1,10 +1,10 @@
-import { Buffer } from 'node:buffer'
-import flatten from 'flat'
-import { createResolver } from '@nuxt/kit'
-import fs from 'fs-extra'
-import { countryLocaleVariants, currentLocales } from '../config/i18n'
 import type { LocaleEntry } from '../docs/types'
 import type { ElkTranslationStatus } from '~/types/translation-status'
+import { Buffer } from 'node:buffer'
+import { readFile, writeFile } from 'node:fs/promises'
+import { createResolver } from '@nuxt/kit'
+import { flatten } from 'flat'
+import { countryLocaleVariants, currentLocales } from '../config/i18n'
 
 export const localeData: [code: string, file: string[], title: string][]
     = currentLocales.map((l: any) => [l.code, l.files ? l.files : [l.file!], l.name ?? l.code])
@@ -28,7 +28,7 @@ async function readI18nFile(file: string | string[]) {
   if (Array.isArray(file)) {
     const files = await Promise.all(file.map(f => async () => {
       return JSON.parse(Buffer.from(
-        await fs.readFile(resolver.resolve(`../locales/${f}`), 'utf-8'),
+        await readFile(resolver.resolve(`../locales/${f}`), 'utf-8'),
       ).toString())
     })).then(f => f.map(f => f()))
     const data: Record<string, any> = files[0]
@@ -38,7 +38,7 @@ async function readI18nFile(file: string | string[]) {
   }
   else {
     return JSON.parse(Buffer.from(
-      await fs.readFile(resolver.resolve(`../locales/${file}`), 'utf-8'),
+      await readFile(resolver.resolve(`../locales/${file}`), 'utf-8'),
     ).toString())
   }
 }
@@ -107,7 +107,7 @@ async function prepareTranslationStatus() {
 
   const resolver = createResolver(import.meta.url)
 
-  await fs.writeFile(
+  await writeFile(
     resolver.resolve('../docs/translation-status.json'),
     JSON.stringify(sorted, null, 2),
     { encoding: 'utf-8' },
@@ -136,7 +136,7 @@ async function prepareTranslationStatus() {
     }
   })
 
-  await fs.writeFile(
+  await writeFile(
     resolver.resolve('../elk-translation-status.json'),
     JSON.stringify(translationStatus, null, 2),
     { encoding: 'utf-8' },

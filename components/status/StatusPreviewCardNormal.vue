@@ -12,14 +12,14 @@ const props = defineProps<{
 // mastodon's default max og image width
 const ogImageWidth = 400
 
-const alt = $computed(() => `${props.card.title} - ${props.card.title}`)
-const isSquare = $computed(() => (
+const alt = computed(() => `${props.card.title} - ${props.card.title}`)
+const isSquare = computed(() => (
   props.smallPictureOnly
   || props.card.width === props.card.height
   || Number(props.card.width || 0) < ogImageWidth
   || Number(props.card.height || 0) < ogImageWidth / 2
 ))
-const providerName = $computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
+const providerName = computed(() => props.card.providerName ? props.card.providerName : new URL(props.card.url).hostname)
 
 // TODO: handle card.type: 'photo' | 'video' | 'rich';
 const cardTypeIconMap: Record<mastodon.v1.PreviewCardType, string> = {
@@ -104,6 +104,11 @@ function loadAttachment() {
       <div :class="cardTypeIconMap[card.type]" w="30%" h="30%" text-secondary />
     </div>
     <StatusPreviewCardInfo :p="isSquare ? 'x-4' : '4'" :root="root" :card="card" :provider="providerName" />
+    <StatusPreviewCardMoreFromAuthor
+      v-if="card?.authors?.[0].account"
+      :account="card.authors[0].account"
+      p-4 py-2
+    />
   </NuxtLink>
 </template>
 

@@ -1,5 +1,10 @@
 <script setup lang="ts">
-const props = defineProps<{ enabled?: boolean; filter?: boolean; isDM?: boolean; sensitiveNonSpoiler?: boolean }>()
+const props = defineProps<{
+  enabled?: boolean
+  filter?: boolean
+  isDM?: boolean
+  sensitiveNonSpoiler?: boolean
+}>()
 
 const expandSpoilers = computed(() => {
   const expandCW = currentUser.value ? getExpandSpoilersByDefault(currentUser.value.account) : false
@@ -7,7 +12,7 @@ const expandSpoilers = computed(() => {
 
   return !props.filter // always prevent expansion if filtered
     && ((props.sensitiveNonSpoiler && expandMedia)
-    || (!props.sensitiveNonSpoiler && expandCW))
+      || (!props.sensitiveNonSpoiler && expandCW))
 })
 
 const hideContent = props.enabled || props.sensitiveNonSpoiler
@@ -30,7 +35,7 @@ function getToggleText() {
       <slot name="spoiler" />
     </div>
     <div flex="~ gap-1 center" w-full :mb="isDM && !showContent ? '4' : ''" mt="-4.5">
-      <button btn-text px-2 py-1 :bg="isDM ? 'transparent' : 'base'" flex="~ center gap-2" :class="showContent ? '' : 'filter-saturate-0 hover:filter-saturate-100'" :aria-expanded="showContent" @click="toggleContent()">
+      <button btn-text px-2 py-1 rounded-lg :bg="isDM ? 'transparent' : 'base'" flex="~ center gap-2" :class="showContent ? '' : 'filter-saturate-0 hover:filter-saturate-100'" :aria-expanded="showContent" @click="toggleContent()">
         <div v-if="showContent" i-ri:eye-line />
         <div v-else i-ri:eye-close-line />
         {{ showContent ? $t('status.spoiler_show_less') : $t(getToggleText()) }}

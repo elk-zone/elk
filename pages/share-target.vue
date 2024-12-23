@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 definePageMeta({
   middleware: () => {
     if (!useAppConfig().pwaEnabled)
@@ -8,7 +8,7 @@ definePageMeta({
 
 useWebShareTarget()
 
-const pwaIsInstalled = process.client && !!useNuxtApp().$pwa?.isInstalled
+const pwaIsInstalled = import.meta.client && !!useNuxtApp().$pwa?.isInstalled
 </script>
 
 <template>

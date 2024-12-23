@@ -11,7 +11,7 @@ const errorCodes: Record<number, string> = {
   404: 'Page not found',
 }
 
-if (process.dev)
+if (import.meta.dev)
   console.error(error)
 
 const defaultMessage = 'Something went wrong'

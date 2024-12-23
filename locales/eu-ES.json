@@ -27,6 +27,7 @@
     "follows_you": "Jarraitzen dizu",
     "go_to_profile": "Joan profilera",
     "joined": "Batze-data:",
+    "lock": "Pribatua",
     "moved_title": "adierazi du bere kontua aurrerantzean honakoa izango dela:",
     "muted_users": "Mutututako erabiltzaileak",
     "muting": "Mutututa",
@@ -57,6 +58,7 @@
     "boost": "Bultzatu",
     "boost_count": "{0}",
     "boosted": "Bultzatuta",
+    "clear": "Garbitu",
     "clear_publish_failed": "Garbitu argitalpen erroreak",
     "clear_save_failed": "Garbitu gordetzerakoan gertatutako erroreak",
     "clear_upload_failed": "Garbitu fitxategi-igoeren erroreak",
@@ -71,8 +73,10 @@
     "favourited": "Gogoko eginda",
     "more": "Gehiago",
     "next": "Hurrengoa",
+    "open_image_preview_dialog": "Ireki irudiaren aurrebista-koadroa",
     "prev": "Aurrekoa",
     "publish": "Argitaratu",
+    "publish_thread": "Argitaratu haria",
     "reply": "Erantzun",
     "reply_count": "{0}",
     "reset": "Berrezarri",
@@ -120,12 +124,14 @@
     "block_account": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "title": "Ziur {0} blokeatu nahi duzula?"
+      "description": "Ziur {0} blokeatu nahi duzula?",
+      "title": "Blokeatu kontua"
     },
     "block_domain": {
       "cancel": "Utzi",
       "confirm": "Blokeatu",
-      "title": "Ziur {0} domeinua blokeatu nahi duzula?"
+      "description": "Ziur {0} domeinua blokeatu nahi duzula?",
+      "title": "Blokeatu domeinua"
     },
     "common": {
       "cancel": "Ez",
@@ -134,27 +140,37 @@
     "delete_list": {
       "cancel": "Utzi",
       "confirm": "Ezabatu",
-      "title": "Ziur \"{0}\" zerrenda ezabatu nahi duzula?"
+      "description": "Ziur \"{0}\" zerrenda ezabatu nahi duzula?",
+      "title": "Ezabatu zerrenda"
     },
     "delete_posts": {
       "cancel": "Utzi",
       "confirm": "Ezabatu",
-      "title": "Ziur bidalketa hau ezabatu nahi duzula?"
+      "description": "Ziur bidalketa hau ezabatu nahi duzula?",
+      "title": "Ezabatu bidalketa"
     },
     "mute_account": {
       "cancel": "Utzi",
       "confirm": "Mututu",
-      "title": "Ziur {0} mututu nahi duzula?"
+      "days": "egun|egun|egun",
+      "description": "Ziur {0} mututu nahi duzula?",
+      "hours": "ordu|ordu|ordu",
+      "minute": "minutu|minutu|minutu",
+      "notifications": "Mututu jakinarazpenak",
+      "specify_duration": "Zehaztu mututzearen iraupena",
+      "title": "Mututu kontua"
     },
     "show_reblogs": {
       "cancel": "Utzi",
       "confirm": "Erakutsi",
-      "title": "Ziur {0}(r)en bultzadak ikusi nahi dituzula?"
+      "description": "Ziur {0}(r)en bultzadak ikusi nahi dituzula?",
+      "title": "Erakutsi bultzadak"
     },
     "unfollow": {
       "cancel": "Utzi",
       "confirm": "Utzi jarraitzeari",
-      "title": "Ziur jarraitzeari utzi nahi diozula?"
+      "description": "Ziur jarraitzeari utzi nahi diozula?",
+      "title": "Utzi jarraitzeari"
     }
   },
   "conversation": {
@@ -207,6 +223,7 @@
     "error": "Errorea gertatu da zerrenda sortzerakoan",
     "error_prefix": "Errorea: ",
     "list_title_placeholder": "Zerrendaren izena",
+    "manage": "Kudeatu zerrendak",
     "modify_account": "Aldatu honako kontua duten zerrendak:",
     "remove_account": "Kendu kontua zerrendatik",
     "save": "Gorde aldaketak"
@@ -220,16 +237,27 @@
         "compose": "Idatzi",
         "favourite": "Egin gogoko",
         "search": "Bilatu",
+        "show_new_items": "Erakutsi elementu berriak",
         "title": "Ekintzak"
       },
       "media": {
         "title": "Multimedia"
       },
       "navigation": {
+        "go_to_bookmarks": "Laster-markak",
+        "go_to_conversations": "Elkarrizketak",
+        "go_to_explore": "Arakatu",
+        "go_to_favourites": "Gogokoak",
+        "go_to_federated": "Federatua",
         "go_to_home": "Hasiera",
+        "go_to_lists": "Zerrendak",
+        "go_to_local": "Lokala",
         "go_to_notifications": "Jakinarazpenak",
-        "next_status": "Hurrengo egoera",
-        "previous_status": "Aurreko egoera",
+        "go_to_profile": "Profila",
+        "go_to_search": "Bilatu",
+        "go_to_settings": "Ezarpenak",
+        "next_status": "Hurrengo bidalketa",
+        "previous_status": "Aurreko bidalketa",
         "shortcut_help": "Laster-teklak",
         "title": "Nabigazioa"
       }
@@ -282,13 +310,16 @@
     "built_at": "Biltze-data: {0}",
     "compose": "Idatzi",
     "conversations": "Elkarrizketak",
+    "docs": "Dokumentazioa",
     "explore": "Arakatu",
     "favourites": "Gogokoak",
     "federated": "Federatua",
+    "hashtags": "Traolak",
     "home": "Hasiera",
     "list": "Zerrenda",
     "lists": "Zerrendak",
     "local": "Lokala",
+    "more_menu": "Hobespen gehiago",
     "muted_users": "Mutututako erabiltzaileak",
     "notifications": "Jakinarazpenak",
     "privacy": "Pribatutasuna",
@@ -296,22 +327,22 @@
     "search": "Bilaketa",
     "select_feature_flags": "Aldatu ezaugarrien adierazleak (Toggle Feature Flags)",
     "select_font_size": "Letra-tipoaren tamaina",
-    "select_language": "Hizkuntza",
+    "select_language": "Interfazearen hizkuntza",
     "settings": "Ezarpenak",
     "show_intro": "Erakutsi aurkezpena",
     "toggle_theme": "Gai argia/iluna",
     "zen_mode": "ZEN modua"
   },
   "notification": {
-    "favourited_post": "zure bidalketa gogoko egin du",
+    "favourited_post": "(e)k zure bidalketa gogoko egin du",
     "followed_you": "(e)k jarraitu dizu",
     "followed_you_count": "{0} pertsonak jarraitu dizute|pertsona {0}ek jarraitu dizu|{0} pertsonak jarraitu dizute",
     "missing_type": "MISSING notification.type:",
-    "reblogged_post": "zure bidalketari bultzada eman dio",
+    "reblogged_post": "(e)k zure bidalketari bultzada eman dio",
     "reported": "{0}(e)k {1} salatu du",
-    "request_to_follow": "jarraipen-eskaera bidali dizu",
-    "signed_up": "izena eman du",
-    "update_status": "bidalketa eguneratu du"
+    "request_to_follow": "(e)k jarraipen-eskaera bidali dizu",
+    "signed_up": "(e)k izena eman du",
+    "update_status": "(e)k bidalketa eguneratu du"
   },
   "placeholder": {
     "content_warning": "Idatzi oharra hemen",
@@ -366,7 +397,7 @@
     }
   },
   "report": {
-    "additional_comments": "Ohar gehigarriak",
+    "additional_comments": "Iruzkin gehigarriak",
     "another_server": "Salatzen ari zaren erabiltzailea beste zerbitzari batekoa da",
     "anything_else": "Ba al dago jakin beharko genukeen beste ezer?",
     "block_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko. Ezin izango ditu zure bidalketak ikusi edo zuri jarraitu. Blokeatu duzula jakingo du.",
@@ -387,10 +418,10 @@
     "limiting": "Mugatu {0}",
     "mute_desc": "Ez duzu erabiltzaile honen bidalketarik ikusiko. Zure bidalketak ikusi eta zuri jarraitu diezazuke. Ez du jakingo mututu duzunik.",
     "other": "Beste zerbait da",
-    "other_desc": "Arazoa ez da beste kategorietan sartzen",
+    "other_desc": "Arazoa ez dator bat beste kategoriekin",
     "reporting": "{0} salatzen",
-    "select_many": "Hautatu bat datozen guztiak:",
-    "select_one": "Aukeratu hobekien datorrena:",
+    "select_many": "Hautatu dagozkion guztiak:",
+    "select_one": "Aukeratu hobekien doakiona:",
     "select_posts": "Salaketa hau sostengatzen duen bidalketarik al dago?",
     "select_posts_other": "Ba al dago salaketa sostengatzen duen beste bidalketarik?",
     "spam": "Spama da",
@@ -423,6 +454,8 @@
       "label": "Kontuaren ezarpenak"
     },
     "interface": {
+      "bottom_nav": "Beheko nabigazioa",
+      "bottom_nav_instructions": "Aukeratu botoi gogokoenak, bost gehienez, beheko nabigaziorako. \"Hobespen gehiago\" botoia barne izan behar du.",
       "color_mode": "Kolorea",
       "dark_mode": "Iluna",
       "default": " (defektuzkoa)",
@@ -433,10 +466,11 @@
       "theme_color": "Gaiaren kolorea"
     },
     "language": {
-      "display_language": "Hizkuntza",
+      "display_language": "Interfazearen hizkuntza",
+      "how_to_contribute": "Nola lagun dezaket?",
       "label": "Hizkuntza",
-      "post_language": "Argitalpenaren hizkuntza",
-      "status": "Itzulpenaren egoera: {1} kateetatik {0} itzulita (%{2}a)",
+      "post_language": "Bidalketen hizkuntza",
+      "status": "Itzulpenaren egoera: {1} kateetatik {0} itzulita ({'%'}{2}a)",
       "translations": {
         "add": "Gehitu",
         "choose_language": "Hautatu hizkuntza",
@@ -501,40 +535,43 @@
     },
     "notifications_settings": "Jakinarazpenak",
     "preferences": {
-      "embedded_media": "Kapsulatutako multimedia erreproduzigailua",
-      "embedded_media_description": "Kapsulatutako erreproduzigailu bat erakusten du partekatutako multimedia jarioen estekak zabaltzean, ez aurrebista txartel arrunta.",
+      "embedded_media": "Txertatutako multimedia erreproduzigailua",
+      "embedded_media_description": "Txertatutako erreproduzigailu bat erakusten du partekatutako multimedia jarioen estekak zabaltzean, aurrebista txartel arruntaren ordez.",
       "enable_autoplay": "Gaitu erreproduzitze automatikoa",
-      "enable_data_saving": "Gaitu datu aurrezlea",
+      "enable_data_saving": "Gaitu datu-aurrezlea",
       "enable_data_saving_description": "Aurreztu datuak eranskinen kargatze-automatikoa galarazten.",
       "enable_pinch_to_zoom": "Gaitu atximur keinua zoom egiteko",
       "github_cards": "GitHub txartelak",
       "github_cards_description": "GitHub-eko esteka argitaratzean, HTML txartel irisgarri bat erakusten du gizarte-grafikoaren metadatuak erabiliz, irudi sozialaren ordez.",
       "grayscale_mode": "Gris modua",
-      "hide_account_hover_card": "Ezkutatu kontuaren geruza (Hide account hover card)",
+      "hide_account_hover_card": "Ezkutatu kontuen aurrebista-txartelak sagua gainetik pasatzean",
       "hide_alt_indi_on_posts": "Ezkutatu ALT adierazlea bidalketetan",
       "hide_boost_count": "Ezkutatu bultzaden kopurua",
       "hide_favorite_count": "Ezkutatu gogokoen kopurua",
-      "hide_follower_count": "Ezkutatu jarraitzaile kopurua",
+      "hide_follower_count": "Ezkutatu jarraitzaileen kopurua",
+      "hide_gif_indi_on_posts": "Ezkutatu GIF adierazlea bidalketetan",
       "hide_news": "Ezkutatu berriak",
       "hide_reply_count": "Ezkutatu erantzunen kopurua",
+      "hide_tag_hover_card": "Ezkutatu traolen aurrebista-txartelak sagua gainetik pasatzean",
       "hide_translation": "Ezkutatu itzulpenak",
-      "hide_username_emojis": "Ezkutatu emojiak erabiltzaile izenetan",
-      "hide_username_emojis_description": "Denbora-lerroetan erabiltzaile izenetako emojiak ezkutatzen ditu. Emojiak ikusgai egoten jarraituko dute euren profiletan.",
+      "hide_username_emojis": "Ezkutatu emojiak erabiltzaile-izenetan",
+      "hide_username_emojis_description": "Denbora-lerroetan erabiltzaile-izenetako emojiak ezkutatzen ditu. Emojiak ikusgai egoten jarraituko dute euren profiletan.",
       "label": "Hobespenak",
+      "optimize_for_low_performance_device": "Optimizatu errendimendu baxuko gailuetarako",
       "title": "Ezaugarri esperimentalak",
       "use_star_favorite_icon": "Erabili izarraren ikonoa gogokoetarako",
-      "user_picker": "Erabiltzaile hautatzailea",
+      "user_picker": "Erabiltzaile-hautatzailea",
       "user_picker_description": "Beheko ezkerreko aldean saioa hasia duten kontuen abatar guztiak erakusten ditu, haien artean azkar aldatu ahal dezazun.",
       "virtual_scroll": "Korritze birtuala",
       "virtual_scroll_description": "Zerrenda birtual bat erabiltzen du denbora-lerroetan, item kopuru handiagoa modu eraginkorrean erakutsi ahal izateko.",
       "wellbeing": "Ongizatea",
-      "zen_mode": "Zen modua",
-      "zen_mode_description": "Aldamenetako elementuak ezkutatzen ditu xagua gainean jarri arte. Denbora-lerroko elementu batzuk ere ezkutatzen ditu."
+      "zen_mode": "ZEN modua",
+      "zen_mode_description": "Aldamenetako elementuak ezkutatzen ditu sagua gainean jarri arte. Denbora-lerroko elementu batzuk ere ezkutatzen ditu."
     },
     "profile": {
       "appearance": {
         "bio": "Bio",
-        "description": "Editatu abatarra, erabiltzaile izena, profila, etab.",
+        "description": "Editatu abatarra, erabiltzaile-izena, profila, etab.",
         "display_name": "Pantaila izena",
         "label": "Itxura",
         "profile_metadata": "Profileko metadatuak",
@@ -564,7 +601,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "Erantsitakoen kopuruak bidalketaren muga gainditu du.",
+    "attachments_limit_audio_error": "Audioaren gehieneko neurria gainditu da: {0}",
     "attachments_limit_error": "Bidalketaren muga gainditu da",
+    "attachments_limit_image_error": "Irudiaren gehieneko neurria gainditu da: {0}",
+    "attachments_limit_unknown_error": "Fitxategiaren gehieneko neurria gainditu da: {0}",
+    "attachments_limit_video_error": "Bideoaren gehieneko neurria gainditu da: {0}",
     "edited": "(Editatua)",
     "editing": "Editatzen",
     "loading": "Kargatzen…",
@@ -576,7 +617,7 @@
   },
   "status": {
     "account": {
-      "suspended_message": "Argitalpen honen egileari zigorra jarri zaio.",
+      "suspended_message": "Bidalketa honen egileari zigorra jarri zaio.",
       "suspended_show": "Erakutsi edukia hala ere?"
     },
     "boosted_by": "Bultzatu dute:",
@@ -585,6 +626,7 @@
     "favourited_by": "Gogoko egin dute:",
     "filter_hidden_phrase": "Iragazia:",
     "filter_show_anyway": "Erakutsi edonola ere",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "Deskribapena",
@@ -667,10 +709,11 @@
     "short_year_past": "{n}u",
     "week_future": "0 astetan|datorren astean|datozen {n} asteetan",
     "week_past": "duela 0 aste|aurreko astean|duela {n} aste",
-    "year_future": "0 urtetan|datorren urtean|datozen {n} urteetan",
+    "year_future": "0 urtetan|geurtz|datozen {n} urteetan",
     "year_past": "duela 0 urte|aurreko urtean|duela {n} urte"
   },
   "timeline": {
+    "no_posts": "Ez dago bidalketarik!",
     "show_new_items": "Erakutsi {v} elementu berri|Erakutsi elementu berri {v}|Erakutsi {v} elementu berri",
     "view_older_posts": "Oso litekeena da beste instantziatako bidalketa zaharragoak ikusgai ez egotea."
   },
@@ -683,6 +726,7 @@
     "add_emojis": "Gehitu emojiak",
     "add_media": "Gehitu irudiak, bideoak edo audio fitxategi bat",
     "add_publishable_content": "Gehitu argitaratzeko edukia",
+    "add_thread_item": "Gehitu elementua harira",
     "change_content_visibility": "Aldatu edukiaren ikusgaitasuna",
     "change_language": "Aldatu hizkuntza",
     "emoji": "Emojia",
@@ -692,6 +736,8 @@
     "open_editor_tools": "Editatzeko tresnak",
     "pick_an_icon": "Hautatu ikonoa",
     "publish_failed": "Itxi editorearen goikaldeko huts-egiteen mezuak bidalketa berrargitaratzeko",
+    "remove_thread_item": "Kendu elementua haritik",
+    "start_thread": "Hasi haria",
     "toggle_bold": "Lodia",
     "toggle_code_block": "Kodea",
     "toggle_italic": "Etzana"

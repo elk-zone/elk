@@ -14,24 +14,24 @@ defineEmits<{
   (event: 'refetchStatus'): void
 }>()
 
-const status = $computed(() => {
+const status = computed(() => {
   if (props.status.reblog && props.status.reblog)
     return props.status.reblog
   return props.status
 })
 
-const createdAt = useFormattedDateTime(status.createdAt)
+const createdAt = useFormattedDateTime(status.value.createdAt)
 
 const { t } = useI18n()
 
 useHydratedHead({
-  title: () => `${getDisplayName(status.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.content) || ''}"`,
+  title: () => `${getDisplayName(status.value.account)} ${t('common.in')} ${t('app_name')}: "${removeHTMLTags(status.value.content) || ''}"`,
 })
 </script>
 
 <template>
   <div :id="`status-${status.id}`" flex flex-col gap-2 pt2 pb1 ps-3 pe-4 relative :lang="status.language ?? undefined" aria-roledescription="status-details">
-    <StatusActionsMore :status="status" absolute inset-ie-2 top-2 @after-edit="$emit('refetchStatus')" />
+    <StatusActionsMore :status="status" :details="true" absolute inset-ie-2 top-2 @after-edit="$emit('refetchStatus')" />
     <NuxtLink :to="getAccountRoute(status.account)" rounded-full hover:bg-active transition-100 pe5 me-a>
       <AccountHoverWrapper :account="status.account">
         <AccountInfo :account="status.account" />

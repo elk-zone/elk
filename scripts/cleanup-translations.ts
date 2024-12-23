@@ -1,7 +1,7 @@
 import { Buffer } from 'node:buffer'
-import flatten from 'flat'
+import { readFile, writeFile } from 'node:fs/promises'
 import { createResolver } from '@nuxt/kit'
-import fs from 'fs-extra'
+import { flatten, unflatten } from 'flat'
 import { currentLocales } from '../config/i18n'
 
 const resolver = createResolver(import.meta.url)
@@ -22,13 +22,12 @@ function merge(src: Record<string, any>, dst: Record<string, any>) {
   }
 }
 
-const sourceFiles: string[] = sourceLanguageLocale.files ? sourceLanguageLocale.files : [sourceLanguageLocale.file!]
-
+const sourceFiles = sourceLanguageLocale.files ? sourceLanguageLocale.files : [sourceLanguageLocale.file!]
 const sourceTranslations: Record<string, string> = {}
 
 for (const file of sourceFiles) {
   const data = JSON.parse(Buffer.from(
-    await fs.readFile(resolver.resolve(`../locales/${file}`), 'utf-8'),
+    await readFile(resolver.resolve(`../locales/${file as string}`), 'utf-8'),
   ).toString()) as Record<string, unknown>
 
   merge(flatten(data), sourceTranslations)
@@ -36,13 +35,13 @@ for (const file of sourceFiles) {
 
 async function removeOutdatedTranslations() {
   for (const locale of currentLocales.filter(l => l.code !== 'en-US')) {
-    const files: string[] = locale.files ? locale.files : [locale.file!]
+    const files = locale.files ? locale.files as string[] : [locale.file as string]
 
     for (const file of files) {
       const path = resolver.resolve(`../locales/${file}`)
 
       const data = JSON.parse(Buffer.from(
-        await fs.readFile(path, 'utf-8'),
+        await readFile(path, 'utf-8'),
       ).toString())
 
       const targetTranslations: Record<string, string> = flatten(data)
@@ -52,9 +51,9 @@ async function removeOutdatedTranslations() {
           delete targetTranslations[key]
       }
 
-      const unflattened = flatten.unflatten(targetTranslations)
+      const unflattened = unflatten(targetTranslations)
 
-      await fs.writeFile(
+      await writeFile(
         path,
         `${JSON.stringify(unflattened, null, 2)}\n`,
         { encoding: 'utf-8' },

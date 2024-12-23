@@ -1,15 +1,16 @@
-import { TEXT_NODE } from 'ultrahtml'
-import type { Node } from 'ultrahtml'
-import { Fragment, h, isVNode } from 'vue'
+import type { ElementNode, Node } from 'ultrahtml'
 import type { VNode } from 'vue'
-import { RouterLink } from 'vue-router'
-import { decode } from 'tiny-decode'
 import type { ContentParseOptions } from './content-parse'
-import { parseMastodonHTML } from './content-parse'
-import Emoji from '~/components/emoji/Emoji.vue'
+import { decode } from 'tiny-decode'
+import { ELEMENT_NODE, TEXT_NODE } from 'ultrahtml'
+import { Fragment, h, isVNode } from 'vue'
+import { RouterLink } from 'vue-router'
+import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
+import TagHoverWrapper from '~/components/account/TagHoverWrapper.vue'
 import ContentCode from '~/components/content/ContentCode.vue'
 import ContentMentionGroup from '~/components/content/ContentMentionGroup.vue'
-import AccountHoverWrapper from '~/components/account/AccountHoverWrapper.vue'
+import Emoji from '~/components/emoji/Emoji.vue'
+import { parseMastodonHTML } from './content-parse'
 
 function getTextualAstComponents(astChildren: Node[]): string {
   return astChildren
@@ -98,6 +99,23 @@ function treeToVNode(
   return null
 }
 
+function addBdiNode(node: Node) {
+  if (node.children.length === 1 && node.children[0].type === ELEMENT_NODE && node.children[0].name === 'bdi')
+    return
+
+  const children = node.children.splice(0, node.children.length)
+  const bdi = {
+    name: 'bdi',
+    parent: node,
+    loc: node.loc,
+    type: ELEMENT_NODE,
+    attributes: {},
+    children,
+  } satisfies ElementNode
+  children.forEach((n: Node) => n.parent = bdi)
+  node.children.push(bdi)
+}
+
 function handleMention(el: Node) {
   // Redirect mentions to the user page
   if (el.name === 'a' && el.attributes.class?.includes('mention')) {
@@ -108,12 +126,16 @@ function handleMention(el: Node) {
         const [, server, username] = matchUser
         const handle = `${username}@${server.replace(/(.+\.)(.+\..+)/, '$2')}`
         el.attributes.href = `/${server}/@${username}`
+        addBdiNode(el)
         return h(AccountHoverWrapper, { handle, class: 'inline-block' }, () => nodeToVNode(el))
       }
+
       const matchTag = href.match(TagLinkRE)
       if (matchTag) {
-        const [, , name] = matchTag
-        el.attributes.href = `/${currentServer.value}/tags/${name}`
+        const [, , tagName] = matchTag
+        addBdiNode(el)
+        el.attributes.href = `/${currentServer.value}/tags/${tagName}`
+        return h(TagHoverWrapper, { tagName, class: 'inline-block' }, () => nodeToVNode(el))
       }
     }
   }

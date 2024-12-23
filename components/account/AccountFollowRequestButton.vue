@@ -5,32 +5,32 @@ const { account, ...props } = defineProps<{
   account: mastodon.v1.Account
   relationship?: mastodon.v1.Relationship
 }>()
-const relationship = $computed(() => props.relationship || useRelationship(account).value)
-const { client } = $(useMasto())
+const relationship = computed(() => props.relationship || useRelationship(account).value)
+const { client } = useMasto()
 
 async function authorizeFollowRequest() {
-  relationship!.requestedBy = false
-  relationship!.followedBy = true
+  relationship.value!.requestedBy = false
+  relationship.value!.followedBy = true
   try {
-    const newRel = await client.v1.followRequests.authorize(account.id)
+    const newRel = await client.value.v1.followRequests.$select(account.id).authorize()
     Object.assign(relationship!, newRel)
   }
   catch (err) {
     console.error(err)
-    relationship!.requestedBy = true
-    relationship!.followedBy = false
+    relationship.value!.requestedBy = true
+    relationship.value!.followedBy = false
   }
 }
 
 async function rejectFollowRequest() {
-  relationship!.requestedBy = false
+  relationship.value!.requestedBy = false
   try {
-    const newRel = await client.v1.followRequests.reject(account.id)
+    const newRel = await client.value.v1.followRequests.$select(account.id).reject()
     Object.assign(relationship!, newRel)
   }
   catch (err) {
     console.error(err)
-    relationship!.requestedBy = true
+    relationship.value!.requestedBy = true
   }
 }
 </script>
@@ -38,7 +38,7 @@ async function rejectFollowRequest() {
 <template>
   <div flex gap-4>
     <template v-if="relationship?.requestedBy">
-      <CommonTooltip :content="$t('account.authorize')" no-auto-focus>
+      <CommonTooltip :content="$t('account.authorize')">
         <button
           type="button"
           rounded-full text-sm p2 border-1
@@ -48,7 +48,7 @@ async function rejectFollowRequest() {
           <span block text-current i-ri:check-fill />
         </button>
       </CommonTooltip>
-      <CommonTooltip :content="$t('account.reject')" no-auto-focus>
+      <CommonTooltip :content="$t('account.reject')">
         <button
           type="button"
           rounded-full text-sm p2 border-1

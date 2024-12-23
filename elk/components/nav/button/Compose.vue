@@ -13,8 +13,6 @@ const noUserVisual = computed(() => isHydrated.value && currentUser.value)
     to="/compose"
     :aria-label="$t('action.compose')"
     p3
-    mb4
-    mr4
     rounded-full
     bg-primary
     border-primary
@@ -22,10 +20,11 @@ const noUserVisual = computed(() => isHydrated.value && currentUser.value)
     gap-2
     justify-center
     items-center
-    relative
     ml-auto
-    class="w-[60px] h-[60px]"
+    class="w-[60px] h-[60px] translate-y-[-100%] -mt-4 mr-4"
     text-xl
+    absolute
+    right-0
   >
     <div i-ri:quill-pen-line />
   </NuxtLink>

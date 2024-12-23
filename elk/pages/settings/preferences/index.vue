@@ -20,6 +20,7 @@ const userSettings = useUserSettings()
         <span aria-hidden="true" block i-ri-equalizer-line />
         {{ $t('settings.preferences.label') }}
       </h2>
+      <SettingsVisibility />
       <SettingsToggleItem
         :checked="getPreferences(userSettings, 'hideAltIndicatorOnPosts')"
         @click="togglePreferences('hideAltIndicatorOnPosts')"

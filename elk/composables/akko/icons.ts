@@ -71,12 +71,12 @@ export const statusVisibilities = [
     icon: 'i-ri:global-line',
   },
   {
-    value: 'unlisted',
-    icon: 'i-ri:lock-unlock-line',
-  },
-  {
     value: 'local',
     icon: 'i-ri:home-heart-line',
+  },
+  {
+    value: 'unlisted',
+    icon: 'i-ri:lock-unlock-line',
   },
   {
     value: 'private',

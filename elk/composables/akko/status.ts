@@ -94,10 +94,10 @@ export function useStatusActions(props: StatusActionsProps) {
     return [results.every(e => e.status === 'fulfilled'), results.find(e => e.status === 'rejected')]
   }
 
-  const toggleReact = async (emoji: string) => {
+  const toggleReact = async (emoji: akkoma.v1.CustomEmoji) => {
     if (!checkLogin())
       return
-    const removing = (emoji === '👍' && status.value.favourited) || status.value.emojiReactions.find(e => e.name === emoji && e.me)
+    const removing = (emoji.shortcode === '👍' && status.value.favourited) || status.value.emojiReactions.find(e => e.name === emoji.shortcode && e.me)
     // status.value now contain up to date data
     const [cleanSuccess, cleanError] = await cleanMyReacts()
     if (!cleanSuccess) {
@@ -108,14 +108,14 @@ export function useStatusActions(props: StatusActionsProps) {
       return
     // optimistic update and operate
     let newStatusPromise
-    if (emoji === '👍') {
+    if (emoji.shortcode === '👍') {
       newStatusPromise = client.value.v1.statuses.$select(status.value.id).favourite()
       status.value.favouritesCount += 1
       status.value.favourited = true
     }
     else {
-      newStatusPromise = client.value.v1.statuses.$select(status.value.id).react({ emoji })
-      const previousReact = status.value.emojiReactions.find(e => e.name === emoji)
+      newStatusPromise = client.value.v1.statuses.$select(status.value.id).react({ emoji: emoji.shortcode })
+      const previousReact = status.value.emojiReactions.find(e => e.name === emoji.shortcode)
       if (previousReact) {
         status.value.emojiReactions = [...status.value.emojiReactions
           .filter(e => e.name === previousReact.name), {
@@ -129,7 +129,7 @@ export function useStatusActions(props: StatusActionsProps) {
           count: 1,
           accountIds: [],
           me: true,
-          name: emoji,
+          name: emoji.shortcode,
         }]
       }
     }

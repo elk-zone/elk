@@ -13,7 +13,7 @@ const { as = 'button', disabled, content } = defineProps<{
   elkGroupHover: string
   disabled?: boolean
   as?: string
-  toggleReact: (emoji: string) => void
+  toggleReact: (emoji: akkoma.v1.CustomEmoji) => void
 }>()
 
 defineSlots<{
@@ -63,6 +63,10 @@ function toggle() {
             v-for="emoji in commonReacts"
             :key="emoji.shortcode"
             :emoji="emoji"
+            :toggle-react="toggleReact"
+            @click="toggle"
+          />
+          <StatusEmojiCustomReactItem
             :toggle-react="toggleReact"
             @click="toggle"
           />

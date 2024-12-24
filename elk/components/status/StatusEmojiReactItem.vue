@@ -4,11 +4,11 @@ import type { akkoma } from '@bdxtown/akko'
 const { emoji, toggleReact } = defineProps<
   {
     emoji: akkoma.v1.CustomEmoji
-    toggleReact: (e: string) => void
+    toggleReact: (e: akkoma.v1.CustomEmoji) => void
   }
 >()
 
-const onClick = () => toggleReact(emoji.shortcode)
+const onClick = () => toggleReact(emoji)
 
 const el = ref<HTMLButtonElement>()
 

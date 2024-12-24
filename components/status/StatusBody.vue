@@ -26,13 +26,17 @@ const vnode = computed(() => {
     inReplyToStatus: newer,
   })
 })
+
+const userSettings = useUserSettings()
+const lineHeight = userSettings.value.lineHeight
 </script>
 
 <template>
   <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }" relative>
     <span
       v-if="status.content"
-      class="content-rich line-compact" dir="auto"
+      class="content-rich" :class="[`line-height-${lineHeight}`]"
+      dir="auto"
       :lang="('language' in status && status.language) || undefined"
     >
       <component :is="vnode" v-if="vnode" />
@@ -40,7 +44,7 @@ const vnode = computed(() => {
     <div v-else />
     <template v-if="translation.visible">
       <div my2 h-px border="b base" bg-base />
-      <ContentRich v-if="translation.success" class="line-compact" :content="translation.text" :emojis="status.emojis" />
+      <ContentRich v-if="translation.success" class="content-rich" :class="[`line-height-${lineHeight}`]" :content="translation.text" :emojis="status.emojis" />
       <div v-else text-red-4>
         Error: {{ translation.error }}
       </div>

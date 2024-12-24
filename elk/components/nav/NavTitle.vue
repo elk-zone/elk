@@ -5,6 +5,8 @@ const back = ref<any>('')
 
 const nuxtApp = useNuxtApp()
 
+const { singleInstanceServer } = useSignIn()
+
 function onClickLogo() {
   nuxtApp.hooks.callHook('elk-logo:click')
 }
@@ -28,9 +30,10 @@ router.afterEach(() => {
       to="/home"
       @click.prevent="onClickLogo"
     >
-      <NavLogo shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
+      <img v-if="singleInstanceServer && currentInstance?.thumbnail" :src="currentInstance?.thumbnail" aria-hidden shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip">
+      <NavLogo v-else shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
       <div v-show="isHydrated" hidden xl:block text-secondary>
-        {{ $t('app_name') }} <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
+        {{ (singleInstanceServer && currentInstance?.title) || $t('app_name') }} <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
       </div>
     </NuxtLink>
     <div

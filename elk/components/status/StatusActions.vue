@@ -7,7 +7,7 @@ const { status, isLoading, canReblog, toggleBookmark, toggleReact, toggleReblog,
   canReblog: boolean
   toggleBookmark: () => void
   toggleReblog: () => void
-  toggleReact: (e: string) => void
+  toggleReact: (e: akkoma.v1.CustomEmoji) => void
   details?: boolean
   command?: boolean
 }>()

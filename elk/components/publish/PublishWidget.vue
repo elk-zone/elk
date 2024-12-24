@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
+import type { DraftItem } from '~/types'
 import { EditorContent } from '@tiptap/vue-3'
 import stringLength from 'string-length'
-import type { DraftItem } from '~/types'
 
 const {
   threadComposer,
@@ -383,11 +383,11 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
             </div>
           </form>
           <div v-if="shouldExpanded" flex="~ gap-1 1 wrap" m="s--1" pt-2 justify="end" max-w-full border="t base">
-            <PublishEmojiPicker @select="insertEmoji" @select-custom="insertCustomEmoji">
+            <EmojiPicker @select="insertEmoji" @select-custom="insertCustomEmoji">
               <button btn-action-icon :title="$t('tooltip.emojis')" :aria-label="$t('tooltip.add_emojis')">
                 <div i-ri:emotion-line />
               </button>
-            </PublishEmojiPicker>
+            </EmojiPicker>
 
             <CommonTooltip
               v-if="draft.params.poll === undefined" placement="top" :content="$t('tooltip.add_media')"

@@ -17,6 +17,10 @@ onMounted(() => {
 router.afterEach(() => {
   back.value = router.options.history.state.back
 })
+
+console.log("singleInstanceServer", singleInstanceServer)
+console.log("runtime", useRuntimeConfig().public.singleInstance)
+console.log("currentInstance", currentInstance.value)
 </script>
 
 <template>

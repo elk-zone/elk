@@ -16,10 +16,10 @@ const focusEditor = inject<typeof noop>('focus-editor', noop)
 
 const userSettings = useUserSettings()
 
-const reactionCount = computed(() => status.emojiReactions.reduce((acc, curr) => acc += curr.count, status.favouritesCount))
+const reactionCount = computed(() => status.pleroma.emojiReactions.reduce((acc, curr) => acc += curr.count, status.favouritesCount))
 
 const reaction = computed(() => {
-  const reactions = status.favourited ? [{ shortcode: '👍', url: '', staticUrl: '', visibleInPicker: true }] : status.emojiReactions.filter(react => react.me).map(r => ({ shortcode: r.name, url: r.url as string, staticUrl: r.url as string, visibleInPicker: true }))
+  const reactions = status.favourited ? [{ shortcode: '👍', url: '', staticUrl: '', visibleInPicker: true }] : status.pleroma.emojiReactions.filter(react => react.me).map(r => ({ shortcode: r.name, url: r.url as string, staticUrl: r.url as string, visibleInPicker: true }))
   if (reactions.length > 0)
     return reactions[0]
   return undefined

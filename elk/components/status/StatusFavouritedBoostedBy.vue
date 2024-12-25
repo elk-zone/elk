@@ -28,6 +28,7 @@ async function loadReactions() {
     return
   try {
     const emojiReactionsPromises = (await fetchStatus(favouritedBoostedByStatusId.value!))
+      .pleroma
       .emojiReactions
       .map((react: { name: string, url?: string, accountIds: string[] }) => react.accountIds.map(accountId => ({ accountId, shortcode: react.name, staticUrl: react.url as string, url: react.url as string, visibleInPicker: false })))
       .flat()

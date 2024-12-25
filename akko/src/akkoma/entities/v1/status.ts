@@ -32,6 +32,19 @@ export type StatusVisibility =
   | "private"
   | "direct";
 
+export type StatusEmojiReaction = {
+  /** Is reaction yours */
+  me: boolean;
+  /** Array of account ids that sent this reaction */
+  accountIds: string[];
+  /** Count of reaction usage */
+  count: number;
+  /** text or native emoji */
+  name: string;
+  /** custom emoji url */
+  url?: string;
+};
+
 /**
  * Represents a status posted by an account.
  * @see https://docs.joinmastodon.org/entities/status/
@@ -67,19 +80,14 @@ export interface Status {
   /** Custom emoji to be used when rendering status content. */
   emojis: CustomEmoji[];
 
+  /** Pleroma/akkoma specific data */
+  pleroma: {
+    /** Custom emoji reaction people reacted with */
+    emojiReactions: StatusEmojiReaction[];
+  };
+
   /** Custom emoji reaction people reacted with */
-  emojiReactions: {
-    /** Is reaction yours */
-    me: boolean;
-    /** Array of account ids that sent this reaction */
-    accountIds: string[];
-    /** Count of reaction usage */
-    count: number;
-    /** text or native emoji */
-    name: string;
-    /** custom emoji url */
-    url?: string;
-  }[];
+  emojiReactions: StatusEmojiReaction[];
 
   /** How many boosts this status has received. */
   reblogsCount: number;

@@ -5,7 +5,7 @@ const { status } = defineProps<{
   status: akkoma.v1.Status
 }>()
 
-const emojis = computed(() => status.emojiReactions
+const emojis = computed(() => status.pleroma.emojiReactions
   .map(react => ({ count: react.count, url: react.url as string, shortcode: react.name, staticUrl: react.url as string, visibleInPicker: false }))
   .concat(status.favouritesCount > 0 ? [{ count: status.favouritesCount, url: '', staticUrl: '', shortcode: '👍', visibleInPicker: false }] : []),
 )

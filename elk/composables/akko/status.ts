@@ -72,9 +72,9 @@ export function useStatusActions(props: StatusActionsProps) {
 
   const cleanMyReacts = async (): Promise<[boolean, PromiseRejectedResult | undefined]> => {
     // optimistic and start operate
-    const myReacts = status.value.emojiReactions.filter(e => e.me)
-    const theirReacts = status.value.emojiReactions.filter(e => !e.me)
-    status.value.emojiReactions = [...theirReacts, ...myReacts.map(e => (e.count - 1 > 0 ? { ...e, count: e.count - 1 } : null))]
+    const myReacts = status.value.pleroma.emojiReactions.filter(e => e.me)
+    const theirReacts = status.value.pleroma.emojiReactions.filter(e => !e.me)
+    status.value.pleroma.emojiReactions = [...theirReacts, ...myReacts.map(e => (e.count - 1 > 0 ? { ...e, count: e.count - 1 } : null))]
       .filter(e => !!e)
 
     let reqs = myReacts.map(e => client.value.v1.statuses.$select(status.value.id).unreact({ emoji: e.name }))
@@ -97,7 +97,7 @@ export function useStatusActions(props: StatusActionsProps) {
   const toggleReact = async (emoji: akkoma.v1.CustomEmoji) => {
     if (!checkLogin())
       return
-    const removing = (emoji.shortcode === '👍' && status.value.favourited) || status.value.emojiReactions.find(e => e.name === emoji.shortcode && e.me)
+    const removing = (emoji.shortcode === '👍' && status.value.favourited) || status.value.pleroma.emojiReactions.find(e => e.name === emoji.shortcode && e.me)
     // status.value now contain up to date data
     const [cleanSuccess, cleanError] = await cleanMyReacts()
     if (!cleanSuccess) {
@@ -115,9 +115,9 @@ export function useStatusActions(props: StatusActionsProps) {
     }
     else {
       newStatusPromise = client.value.v1.statuses.$select(status.value.id).react({ emoji: emoji.shortcode })
-      const previousReact = status.value.emojiReactions.find(e => e.name === emoji.shortcode)
+      const previousReact = status.value.pleroma.emojiReactions.find(e => e.name === emoji.shortcode)
       if (previousReact) {
-        status.value.emojiReactions = [...status.value.emojiReactions
+        status.value.pleroma.emojiReactions = [...status.value.pleroma.emojiReactions
           .filter(e => e.name === previousReact.name), {
           ...previousReact,
           me: true,
@@ -125,7 +125,7 @@ export function useStatusActions(props: StatusActionsProps) {
         }]
       }
       else {
-        status.value.emojiReactions = [...status.value.emojiReactions, {
+        status.value.pleroma.emojiReactions = [...status.value.pleroma.emojiReactions, {
           count: 1,
           accountIds: [],
           me: true,

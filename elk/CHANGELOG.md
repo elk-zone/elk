@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.14 (2024-12-25)
+
+
+### Bug Fixes
+
+* remove single instance server check ([57589e6](https://github.com/BDX-town/elk/commit/57589e66d56e102ca6d309b41b52ba366dea7afd))
+
 ## 0.15.13 (2024-12-25)
 
 ## 0.15.12 (2024-12-25)

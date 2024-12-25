@@ -5,8 +5,6 @@ const back = ref<any>('')
 
 const nuxtApp = useNuxtApp()
 
-const { singleInstanceServer } = useSignIn()
-
 function onClickLogo() {
   nuxtApp.hooks.callHook('elk-logo:click')
 }
@@ -17,10 +15,6 @@ onMounted(() => {
 router.afterEach(() => {
   back.value = router.options.history.state.back
 })
-
-console.warn("singleInstanceServer", singleInstanceServer)
-console.warn("runtime", useRuntimeConfig().public.singleInstance)
-console.warn("currentInstance", currentInstance.value)
 </script>
 
 <template>
@@ -34,10 +28,10 @@ console.warn("currentInstance", currentInstance.value)
       to="/home"
       @click.prevent="onClickLogo"
     >
-      <img v-if="singleInstanceServer && currentInstance?.thumbnail" :src="currentInstance?.thumbnail" aria-hidden shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip">
+      <img v-if="currentInstance?.thumbnail" :src="currentInstance?.thumbnail" aria-hidden shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip">
       <NavLogo v-else shrink-0 aspect="1/1" sm:h-8 xl:h-10 class="rtl-flip" />
       <div v-show="isHydrated" hidden xl:block text-secondary>
-        {{ (singleInstanceServer && currentInstance?.title) || $t('app_name') }} <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
+        {{ (currentInstance?.title) || $t('app_name') }} <sup text-sm italic mt-1>{{ env === 'release' ? 'alpha' : env }}</sup>
       </div>
     </NuxtLink>
     <div

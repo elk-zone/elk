@@ -18,9 +18,9 @@ router.afterEach(() => {
   back.value = router.options.history.state.back
 })
 
-console.log("singleInstanceServer", singleInstanceServer)
-console.log("runtime", useRuntimeConfig().public.singleInstance)
-console.log("currentInstance", currentInstance.value)
+console.warn("singleInstanceServer", singleInstanceServer)
+console.warn("runtime", useRuntimeConfig().public.singleInstance)
+console.warn("currentInstance", currentInstance.value)
 </script>
 
 <template>

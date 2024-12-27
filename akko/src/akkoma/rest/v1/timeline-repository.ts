@@ -10,6 +10,8 @@ export interface ListTimelineParams extends DefaultPaginationParams {
   readonly onlyMedia?: boolean | null;
   /** Remote only */
   readonly remote?: boolean | null;
+  /** Show all replies | only replies directed to user or people they follow | only replies directed to user */
+  readonly replyVisibility?: null | "following" | "self";
 }
 
 export interface ListLinkTimelineParams extends ListTimelineParams {

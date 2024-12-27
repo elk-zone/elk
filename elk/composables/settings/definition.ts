@@ -1,3 +1,4 @@
+import type { akkoma } from '@bdxtown/akko'
 import { DEFAULT_FONT_SIZE } from '~/constants'
 
 export type FontSize = `${number}px`
@@ -10,6 +11,7 @@ export type ColorMode = 'light' | 'dark' | 'system'
 export type NavButtonName = 'home' | 'search' | 'notification' | 'mention' | 'favorite' | 'bookmark' | 'compose' | 'explore' | 'local' | 'bubble' | 'federated' | 'list' | 'hashtag' | 'setting' | 'moreMenu'
 
 export interface PreferencesSettings {
+  replyVisibility: akkoma.rest.v1.ListTimelineParams['replyVisibility']
   hideAltIndicatorOnPosts: boolean
   hideGifIndicatorOnPosts: boolean
   hideBoostCount: boolean
@@ -65,6 +67,7 @@ export function getDefaultLanguage(languages: string[]) {
 }
 
 export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
+  replyVisibility: null,
   hideAltIndicatorOnPosts: false,
   hideGifIndicatorOnPosts: false,
   hideBoostCount: false,

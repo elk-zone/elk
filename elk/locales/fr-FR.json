@@ -362,6 +362,11 @@
       }
     }
   },
+  "reply_visibility": {
+    "following": "Pour moi & suivis",
+    "null": "Toutes les réponses",
+    "self": "Pour moi uniquement"
+  },
   "report": {
     "additional_comments": "Commentaires additionnels",
     "another_server": "L'utilisateur que vous signalez appartient à une autre instance",
@@ -517,6 +522,9 @@
       "hide_username_emojis": "Masquer les emojis sur le nom d'utilisateur",
       "hide_username_emojis_description": "Masque les emojis des noms d'utilisateur dans la timeline. \nLes emojis seront toujours visibles sur leurs profils.",
       "label": "Préférences",
+      "optimize_for_low_performance_device": "Optimiser pour appareil peu puissant",
+      "reply_visibility": "Visibilité des réponses",
+      "reply_visibility_description": "Choisissez les réponses que vous souhaitez voir dans les fils : uniquement celles qui vous sont destinées, celles pour vous et les personnes que vous suivez, ou toutes les réponses.",
       "title": "Fonctionnalités expérimentales",
       "user_picker": "User Picker",
       "user_picker_description": "Affiche tous les avatars des comptes connectés en bas à gauche afin que vous puissiez basculer rapidement entre eux.",

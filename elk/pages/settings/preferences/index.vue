@@ -21,6 +21,7 @@ const userSettings = useUserSettings()
         {{ $t('settings.preferences.label') }}
       </h2>
       <SettingsVisibility />
+      <SettingsReplyVisibility />
       <SettingsToggleItem
         :checked="getPreferences(userSettings, 'hideAltIndicatorOnPosts')"
         @click="togglePreferences('hideAltIndicatorOnPosts')"

@@ -397,6 +397,11 @@
       }
     }
   },
+  "reply_visibility": {
+    "following": "For me & following",
+    "null": "Every reply",
+    "self": "Replies just for me"
+  },
   "report": {
     "additional_comments": "Additional comments",
     "another_server": "The user you're reporting is from another server",
@@ -560,6 +565,8 @@
       "hide_username_emojis_description": "Hides emojis from usernames in timelines. Emojis will still be visible in their profiles.",
       "label": "Preferences",
       "optimize_for_low_performance_device": "Optimize for low performance device",
+      "reply_visibility": "Replies visibility",
+      "reply_visibility_description": "Choose the replies you want to see in timelines: only those directed to you, those for you and people you follow, or all replies.",
       "title": "Experimental Features",
 
       "user_picker": "User Picker",

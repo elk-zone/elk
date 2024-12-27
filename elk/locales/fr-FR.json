@@ -203,6 +203,7 @@
     "error": "Il y a eu une erreur lors de la création de la liste",
     "error_prefix": "Erreur :",
     "list_title_placeholder": "Nom de la liste",
+    "manage": "Gérer les listes",
     "modify_account": "Modifier les listes de ce compte",
     "remove_account": "Supprimer ce compte de listes",
     "save": "Enregistrer les changements"

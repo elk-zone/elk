@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.15 (2024-12-28)
+
+
+### Features
+
+* add reply filter preference on timelines ([7803cf4](https://github.com/BDX-town/elk/commit/7803cf4bc6c17b23dfe48f4093f90d408f784a87))
+
 ## 0.15.14 (2024-12-25)
 
 

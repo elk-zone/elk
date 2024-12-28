@@ -92,10 +92,10 @@ const userSettings = useUserSettings()
         {{ $t('settings.preferences.hide_boost_count') }}
       </SettingsToggleItem>
       <SettingsToggleItem
-        :checked="getPreferences(userSettings, 'hideFavoriteCount')"
-        @click="togglePreferences('hideFavoriteCount')"
+        :checked="getPreferences(userSettings, 'hideReactCount')"
+        @click="togglePreferences('hideReactCount')"
       >
-        {{ $t('settings.preferences.hide_favorite_count') }}
+        {{ $t('settings.preferences.hide_react_count') }}
       </SettingsToggleItem>
       <SettingsToggleItem
         :checked="getPreferences(userSettings, 'hideReplyCount')"

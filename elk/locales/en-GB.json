@@ -44,7 +44,7 @@
       }
     },
     "preferences": {
-      "hide_favorite_count": "Hide favourite count",
+      "hide_react_count": "Hide favourite count",
       "optimize_for_low_performance_device": "Optimise for low performance device",
       "use_star_favorite_icon": "Use star favourite icon"
     }

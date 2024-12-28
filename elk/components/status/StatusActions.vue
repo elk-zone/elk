@@ -82,7 +82,7 @@ function reply() {
         :key="reactionCount"
         :status="status"
         :content="$t(reaction ? 'action.favourited' : 'action.favourite')"
-        :text="!getPreferences(userSettings, 'hideFavoriteCount') && reactionCount ? reactionCount : ''"
+        :text="!getPreferences(userSettings, 'hideReactCount') && reactionCount ? reactionCount : ''"
         color="text-purple"
         hover="text-purple"
         elk-group-hover="bg-purple/10"
@@ -97,7 +97,7 @@ function reply() {
             {{ reaction.shortcode }}
           </div>
         </template>
-        <template v-if="reactionCount && !getPreferences(userSettings, 'hideFavoriteCount')" #text>
+        <template v-if="reactionCount && !getPreferences(userSettings, 'hideReactCount')" #text>
           <CommonLocalizedNumber
             keypath="action.favourite_count"
             :count="reactionCount"

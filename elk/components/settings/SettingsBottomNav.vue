@@ -32,9 +32,11 @@ const navButtonNamesSetting = useLocalStorage<NavButtonName[]>(STORAGE_KEY_BOTTO
 const selectedNavButtonNames = ref<NavButtonName[]>(navButtonNamesSetting.value)
 
 const selectedNavButtons = computed<NavButton[]>(() =>
-  selectedNavButtonNames.value.map(name =>
-    availableNavButtons.find(navButton => navButton.name === name)!,
-  ),
+  selectedNavButtonNames.value
+    .map(name =>
+      availableNavButtons.find(navButton => navButton.name === name),
+    )
+    .filter(btn => !!btn),
 )
 
 const canSave = computed(() =>

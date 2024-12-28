@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
 
-const paginator = useAkkoClient().v1.timelines.bubble.list({ limit: 30 })
+const replyVisibility = usePreferences('replyVisibility')
+const paginator = useAkkoClient().v1.timelines.bubble.list({ limit: 30, replyVisibility: replyVisibility.value })
 
 function reorderAndFilter(items: akkoma.v1.Status[]) {
   return reorderedTimeline(items, 'public')

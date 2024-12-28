@@ -31,6 +31,8 @@ const {
 
 const createdAt = useFormattedDateTime(status.value.createdAt)
 
+const hideReactions = usePreferences('hideReactCount')
+
 const { t } = useI18n()
 
 useHydratedHead({
@@ -64,7 +66,7 @@ useHydratedHead({
         <StatusVisibilityIndicator :status="status" />
       </div>
       <div justify-self-end>
-        <StatusEmojiReactions :status="actionStatus" />
+        <StatusEmojiReactions v-if="!hideReactions" :status="actionStatus" />
       </div>
     </div>
     <div border="t base" py-2>

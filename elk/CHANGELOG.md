@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.17 (2024-12-29)
+
+
+### Features
+
+* update poll ([bc351b3](https://github.com/BDX-town/elk/commit/bc351b39d81bbc4d871d69f7229a71b1c44bd7dd))
+
 ## 0.15.16 (2024-12-28)
 
 ## 0.15.15 (2024-12-28)

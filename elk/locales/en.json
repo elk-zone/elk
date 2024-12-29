@@ -87,7 +87,7 @@
     "switch_account": "Switch account",
     "vote": "Vote"
   },
-  "app_desc_short": "A nimble Mastodon web client",
+  "app_desc_short": "A nimble Akkoma web client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
   "attachment": {
@@ -199,7 +199,7 @@
       "title": "Preview deploy"
     },
     "desc_highlight": "Expect some bugs and missing features here and there.",
-    "desc_para1": "Elk is a nimble Mastodon web client. You can login to your Mastodon account and use it to interact with the fediverse.",
+    "desc_para1": "Elk is a nimble Akkoma web client. You can login to your Mastodon account and use it to interact with the fediverse.",
     "desc_para2": "Elk is Open Source and we're actively improving it as a community project. Join us and let's build it together!",
     "desc_para3": "To boost development, you can sponsor the Team through GitHub Sponsors. We hope you enjoy Elk!",
     "desc_para4": "If you'd like to report a bug, help us testing, give feedback, or contribute,",
@@ -376,22 +376,22 @@
     "update_available_short": "Update Elk",
     "webmanifest": {
       "canary": {
-        "description": "A nimble Mastodon web client (canary)",
+        "description": "A nimble Akkoma web client (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "A nimble Mastodon web client (dev)",
+        "description": "A nimble Akkoma web client (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "A nimble Mastodon web client (preview)",
+        "description": "A nimble Akkoma web client (preview)",
         "name": "Elk (preview)",
         "short_name": "Elk (preview)"
       },
       "release": {
-        "description": "A nimble Mastodon web client",
+        "description": "A nimble Akkoma web client",
         "name": "Elk",
         "short_name": "Elk"
       }

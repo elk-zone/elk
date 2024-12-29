@@ -7,7 +7,7 @@
 <h1 align="center"/>Elk <sup><em>alpha</em></sup></h1>
 
 <p align="center">
-A nimble Mastodon web client
+A nimble Akkoma web client
 </p>
 
 <br/>

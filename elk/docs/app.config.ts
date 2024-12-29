@@ -1,11 +1,11 @@
 export default defineAppConfig({
   docus: {
     title: 'Elk',
-    description: 'A nimble Mastodon web client.',
+    description: 'A nimble Akkoma web client.',
     image: 'https://docs.elk.zone/elk-screenshot.png',
     socials: {
       // twitter: 'elk_zone',
-      github: 'elk-zone/elk',
+      github: 'bdx-town/elk',
       mastodon: {
         label: 'Mastodon',
         icon: 'IconMastodon',

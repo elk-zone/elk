@@ -646,7 +646,8 @@
     "poll": {
       "count": "{0} votes|{0} vote|{0} votes",
       "ends": "ends {0}",
-      "finished": "finished {0}"
+      "finished": "finished {0}",
+      "update": "Update poll"
     },
     "reacted_by": "Reacts",
     "replying_to": "Replying to {0}",

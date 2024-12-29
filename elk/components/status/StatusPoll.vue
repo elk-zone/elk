@@ -14,6 +14,7 @@ const timeAgoOptions = useTimeAgoOptions()
 const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)
 const expiredTimeFormatted = useFormattedDateTime(poll.expiresAt!)
 const { formatPercentage } = useHumanReadableNumber()
+const loading = ref(false)
 
 const { client } = useAkko()
 
@@ -37,6 +38,21 @@ async function vote(e: Event) {
   cacheStatus({ ...status, poll }, undefined, true)
 
   await client.value.v1.polls.$select(poll.id).votes.create({ choices })
+}
+
+async function refresh() {
+  loading.value = true
+  try {
+    const newPoll = await client.value.v1.polls.$select(poll.id).fetch()
+    Object.assign(poll, newPoll)
+    cacheStatus({ ...status, poll: newPoll }, undefined, true)
+  }
+  catch (e) {
+    console.error(e)
+  }
+  finally {
+    loading.value = false
+  }
 }
 
 const votersCount = computed(() => poll.votersCount ?? poll.votesCount ?? 0)
@@ -71,15 +87,23 @@ const votersCount = computed(() => poll.votersCount ?? poll.votesCount ?? 0)
         </div>
       </div>
     </template>
-    <div text-sm flex="~ inline" gap-x-1 text-secondary>
-      <CommonLocalizedNumber
-        keypath="status.poll.count"
-        :count="poll.votesCount"
-      />
-      &middot;
-      <CommonTooltip v-if="poll.expiresAt" :content="expiredTimeFormatted" class="inline-block" placement="right">
-        <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>
-      </CommonTooltip>
+    <div text-sm text-secondary flex justify-between items-center>
+      <div flex="~ inline" gap-x-1>
+        <CommonLocalizedNumber
+          keypath="status.poll.count"
+          :count="poll.votesCount"
+        />
+        &middot;
+        <CommonTooltip v-if="poll.expiresAt" :content="expiredTimeFormatted" class="inline-block" placement="right">
+          <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>
+        </CommonTooltip>
+      </div>
+      <div>
+        <button flex gap-1 items-center hover:text-primary @click="refresh">
+          <div text-xs :class="loading ? 'animate-spin' : ''" i-ri:loop-right-line />
+          {{ $t('status.poll.update') }}
+        </button>
+      </div>
     </div>
   </div>
 </template>

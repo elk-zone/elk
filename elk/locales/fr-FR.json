@@ -597,7 +597,8 @@
     "poll": {
       "count": "{0} votes",
       "ends": "se clôt {0}",
-      "finished": "clos {0}"
+      "finished": "clos {0}",
+      "update": "Mettre à jour les résultats"
     },
     "reacted_by": "Réactions",
     "replying_to": "Répondre à {0}",

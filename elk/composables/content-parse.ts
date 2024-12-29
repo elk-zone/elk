@@ -9,6 +9,7 @@ import { emojiRegEx } from '../config/emojis'
 export interface ContentParseOptions {
   emojis?: Record<string, akkoma.v1.CustomEmoji>
   hideEmojis?: boolean
+  hideQuoteInBody?: boolean
   mentions?: akkoma.v1.StatusMention[]
   markdown?: boolean
   astTransforms?: Transform[]
@@ -83,6 +84,7 @@ export function parseMastodonHTML(
     convertMentionLink = false,
     collapseMentionLink = false,
     hideEmojis = false,
+    hideQuoteInBody = true,
     mentions,
     status,
     inReplyToStatus,
@@ -137,6 +139,9 @@ export function parseMastodonHTML(
 
   if (collapseMentionLink)
     transforms.push(transformCollapseMentions(status, inReplyToStatus))
+
+  if (hideQuoteInBody)
+    transforms.push(removeQuoteInBody)
 
   return transformSync(parse(html), transforms)
 }
@@ -390,6 +395,13 @@ function removeUnicodeEmoji(node: Node) {
 
   matches.push(node.value.slice(start))
   return matches.filter(Boolean)
+}
+
+function removeQuoteInBody(node: Node) {
+  if (node.attributes?.class === 'quote-inline') {
+    return ''
+  }
+  return node
 }
 
 function removeCustomEmoji(customEmojis: Record<string, akkoma.v1.CustomEmoji>): Transform {

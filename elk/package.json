@@ -32,7 +32,7 @@
     "release": "stale-dep && bumpp && tsx scripts/release.ts"
   },
   "dependencies": {
-    "@bdxtown/akko": "^6.13.1",
+    "@bdxtown/akko": "^6.14.0",
     "@emoji-mart/data": "^1.1.2",
     "@fnando/sparkline": "^0.3.10",
     "@iconify-emoji/twemoji": "^1.0.2",

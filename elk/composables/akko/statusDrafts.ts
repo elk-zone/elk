@@ -37,6 +37,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<akkoma.rest.v1.Crea
     language,
     mentions,
     poll,
+    quoteId,
   } = options
 
   return {
@@ -46,6 +47,7 @@ export function getDefaultDraftItem(options: Partial<Mutable<akkoma.rest.v1.Crea
       status: status || '',
       poll,
       inReplyToId,
+      quoteId,
       visibility: getDefaultVisibility(visibility || 'public'),
       sensitive: sensitive ?? false,
       spoilerText: spoilerText || '',
@@ -65,6 +67,7 @@ export async function getDraftFromStatus(status: akkoma.v1.Status): Promise<Draf
     spoilerText: status.spoilerText,
     language: status.language,
     inReplyToId: status.inReplyToId,
+    quoteId: status.quoteId,
   }
 
   return getDefaultDraftItem((status.mediaAttachments !== undefined && status.mediaAttachments.length > 0)
@@ -128,6 +131,7 @@ export function isEmptyDraft(drafts: Array<DraftItem> | DraftItem | null | undef
 
     return (text.length > 0)
       || (attachments.length > 0)
+      || params.quoteId
   })
 
   return !anyDraftHasContent

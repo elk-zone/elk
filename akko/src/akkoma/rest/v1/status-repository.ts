@@ -30,6 +30,8 @@ export interface CreateStatusParamsBase {
   readonly language?: string | null;
   /** https://github.com/mastodon/mastodon/pull/18350 */
   readonly allowedMentions?: readonly string[] | null;
+  /** Optional quoted status */
+  readonly quoteId?: string | null;
 }
 
 export interface CreateStatusPollParam {

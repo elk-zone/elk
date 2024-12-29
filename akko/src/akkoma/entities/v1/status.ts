@@ -119,6 +119,11 @@ export interface Status {
    */
   text?: string | null;
 
+  /** If status contains a quote this is the quoted status Id */
+  quoteId?: string | null;
+  /** If status contains a quote this is the quoted status */
+  quote?: Status | null;
+
   /** Have you favourited this status? */
   favourited?: boolean | null;
   /** Have you boosted this status? */

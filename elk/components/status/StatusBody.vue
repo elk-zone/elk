@@ -20,6 +20,7 @@ const vnode = computed(() => {
   return contentToVNode(status.content, {
     emojis: emojisObject.value,
     mentions: 'mentions' in status ? status.mentions : undefined,
+    hideQuoteInBody: true,
     markdown: true,
     collapseMentionLink: !!('inReplyToId' in status && status.inReplyToId),
     status: 'id' in status ? status : undefined,

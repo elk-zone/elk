@@ -21,6 +21,7 @@ const {
 }>()
 
 const threadComposer = useThreadComposer(draftKey, initial)
+
 const threadItems = computed(() => threadComposer.threadItems.value)
 
 onDeactivated(() => {

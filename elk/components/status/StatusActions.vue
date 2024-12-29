@@ -3,7 +3,7 @@ import type { akkoma } from '@bdxtown/akko'
 
 const { status, isLoading, canReblog, toggleBookmark, toggleReact, toggleReblog, details, command } = defineProps<{
   status: akkoma.v1.Status
-  isLoading: { [x: string]: boolean }
+  isLoading: { favourited: boolean, bookmarked: boolean, reblogged: boolean }
   canReblog: boolean
   toggleBookmark: () => void
   toggleReblog: () => void
@@ -24,6 +24,13 @@ const reaction = computed(() => {
     return reactions[0]
   return undefined
 })
+
+const { draftItems } = useDraft('home')
+
+function quote() {
+  draftItems.value = [getDefaultDraftItem({ quoteId: status.id })]
+  navigateTo('/compose')
+}
 
 function reply() {
   if (!checkLogin())
@@ -56,29 +63,18 @@ function reply() {
     </div>
 
     <div flex-1>
-      <StatusActionButton
-        :content="$t(status.reblogged ? 'action.boosted' : 'action.boost')"
-        :text="!getPreferences(userSettings, 'hideBoostCount') && status.reblogsCount ? status.reblogsCount : ''"
-        color="text-green" hover="text-green" elk-group-hover="bg-green/10"
-        icon="i-ri:repeat-line"
-        active-icon="i-ri:repeat-fill"
-        inactive-icon="i-tabler:repeat-off"
-        :active="!!status.reblogged"
-        :disabled="isLoading.reblogged || !canReblog"
+      <StatusActionReblog
+        :can-reblog="canReblog"
         :command="command"
-        @click="toggleReblog()"
-      >
-        <template v-if="status.reblogsCount && !getPreferences(userSettings, 'hideBoostCount')" #text>
-          <CommonLocalizedNumber
-            keypath="action.boost_count"
-            :count="status.reblogsCount"
-          />
-        </template>
-      </StatusActionButton>
+        :is-loading="isLoading"
+        :status="status"
+        :toggle-reblog="toggleReblog"
+        :quote="quote"
+      />
     </div>
 
     <div flex-1>
-      <StatusEmojiReact
+      <StatusActionReact
         :key="reactionCount"
         :status="status"
         :content="$t(reaction ? 'action.favourited' : 'action.favourite')"
@@ -103,7 +99,7 @@ function reply() {
             :count="reactionCount"
           />
         </template>
-      </StatusEmojiReact>
+      </StatusActionReact>
     </div>
 
     <div flex-none>

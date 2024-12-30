@@ -47,11 +47,11 @@ function reblog() {
     </StatusActionButton>
     <template #popper>
       <div flex flex-col gap-1 items-start>
-        <button p-2 py-3 flex gap-2 items-center @click="reblog">
+        <button p-3 flex gap-2 items-center @click="reblog">
           <div :class="status.reblogged ? 'i-tabler:repeat-off' : 'i-ri:repeat-line'" />
           {{ $t(status.reblogged ? 'action.boosted' : 'action.boost') }}
         </button>
-        <button p-2 py-3 flex gap-2 items-center @click="quote">
+        <button p-3 flex gap-2 items-center @click="quote">
           <div i-ri:chat-quote-line />
           {{ $t('action.quote') }}
         </button>

@@ -87,19 +87,23 @@ const votersCount = computed(() => poll.votersCount ?? poll.votesCount ?? 0)
         </div>
       </div>
     </template>
-    <div text-sm text-secondary flex justify-between items-center>
-      <div flex="~ inline" gap-x-1>
-        <CommonLocalizedNumber
-          keypath="status.poll.count"
-          :count="poll.votesCount"
-        />
+    <div text-sm text-secondary flex justify-between items-center gap-3>
+      <div flex gap-x-1 flex-wrap>
+        <div inline-block>
+          <CommonLocalizedNumber
+            keypath="status.poll.count"
+            :count="poll.votesCount"
+          />
+        </div>
         &middot;
-        <CommonTooltip v-if="poll.expiresAt" :content="expiredTimeFormatted" class="inline-block" placement="right">
-          <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>
-        </CommonTooltip>
+        <div inline-block>
+          <CommonTooltip v-if="poll.expiresAt" :content="expiredTimeFormatted" class="inline-block" placement="right">
+            <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>
+          </CommonTooltip>
+        </div>
       </div>
       <div>
-        <button flex gap-1 items-center hover:text-primary @click="refresh">
+        <button whitespace-nowrap flex gap-1 items-center hover:text-primary @click="refresh">
           <div text-xs :class="loading ? 'animate-spin' : ''" i-ri:loop-right-line />
           {{ $t('status.poll.update') }}
         </button>

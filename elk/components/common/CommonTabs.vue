@@ -33,6 +33,10 @@ useCommands(() => command
       onActivate: () => modelValue.value = tab.name,
     }))
   : [])
+
+function onChange(value: string) {
+  modelValue.value = value
+}
 </script>
 
 <template>
@@ -44,14 +48,13 @@ useCommands(() => command
         :value="option"
         type="radio"
         name="tabs"
-        display="none"
-        @change="modelValue = option.name"
+        @click="onChange(option.name)"
       ><label
         flex flex-auto cursor-pointer px3 m1 rounded transition-all
         :for="`tab-${toValidName(option.name)}`"
         tabindex="0"
         hover:bg-active transition-100
-        @keypress.enter="modelValue = option.name"
+        @keypress.enter="onChange(option.name)"
       ><span
         mxa px4 py3 text-center border-b-3
         :class="modelValue === option.name ? 'font-bold border-primary' : 'op50 hover:op50 border-transparent'"

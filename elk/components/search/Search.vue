@@ -1,16 +1,17 @@
 <script lang="ts" setup>
+const input = ref<HTMLInputElement>()
 const tabs = computed(() => [
   {
     name: 'all',
     display: 'All',
   },
   {
-    name: 'people',
+    name: 'accounts',
     display: 'People',
   },
   {
-    name: 'status',
-    display: 'Status',
+    name: 'statuses',
+    display: 'Statuses',
   },
   {
     name: 'hashtags',
@@ -18,11 +19,70 @@ const tabs = computed(() => [
   },
 ])
 
-const currentTab = ref('all')
+const currentTab = ref(tabs.value[0].name)
 
-watch(currentTab, () => console.log(currentTab.value))
+const { q } = useUrlSearchParams<{ q: string }>()
+
+const query = ref(q || '')
+const options = computed(() => ({ type: currentTab.value === 'all' ? undefined : currentTab.value as ('accounts' | 'hashtags' | 'statuses') }))
+
+const { loading, ...results } = useSearch(query, options)
+
+const currentResults = computed(() => {
+  if (query.value.length === 0)
+    return []
+
+  return !options.value.type
+    ? [
+        ...results.hashtags.value,
+        ...results.accounts.value,
+        ...results.statuses.value,
+      ]
+    : results[options.value.type].value
+})
 </script>
 
 <template>
-  <CommonTabs :options="tabs" command :model-value="currentTab" />
+  <div bg-base border="~ base" h10 ps-4 pe-1 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline>
+    <div i-ri:search-2-line pointer-events-none text-secondary mt="1px" class="rtl-flip" />
+    <input
+      ref="input"
+      v-model="query"
+      h-full
+      rounded-3
+      w-full
+      bg-transparent
+      outline="focus:none"
+      ps-3
+      pe-1
+      ml-1
+      :placeholder="$t('nav.search')"
+      pb="1px"
+      placeholder-text-secondary
+    >
+    <button v-if="query.length" btn-action-icon text-secondary @click="query = ''; input?.focus()">
+      <span aria-hidden="true" class="i-ri:close-line" />
+    </button>
+  </div>
+  <CommonTabs v-model="currentTab" :options="tabs" command />
+  <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
+    {{ $t('search.search_desc') }}
+  </span>
+  <template v-else-if="!loading">
+    <template v-if="currentResults.length > 0">
+      <SearchResult
+        v-for="(result) in currentResults" :key="result.id"
+        :active="false"
+        :result="result"
+      />
+    </template>
+    <span v-else block text-center text-sm text-secondary>
+      {{ $t('search.search_empty') }}
+    </span>
+  </template>
+  <div v-else>
+    <SearchResultSkeleton />
+    <SearchResultSkeleton />
+    <SearchResultSkeleton />
+  </div>
 </template>

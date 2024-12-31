@@ -48,6 +48,7 @@ function onChange(value: string) {
         :value="option"
         type="radio"
         name="tabs"
+        hidden
         @click="onChange(option.name)"
       ><label
         flex flex-auto cursor-pointer px3 m1 rounded transition-all

@@ -1,5 +1,5 @@
-import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { akkoma } from '@bdxtown/akko'
+import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { RouteLocation } from 'vue-router'
 
 export type UseSearchOptions = MaybeRefOrGetter<
@@ -20,7 +20,7 @@ export type StatusSearchResult = BuildSearchResult<'status', akkoma.v1.Status>
 
 export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSearchResult
 
-export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOptions = {}) {
+export function useSearch(query: MaybeRefOrGetter<string>, mayOptionsRef: MaybeRefOrGetter<UseSearchOptions> = {}) {
   const done = ref(false)
   const { client } = useAkko()
   const loading = ref(false)
@@ -28,6 +28,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
   const hashtags = ref<HashTagSearchResult[]>([])
   const statuses = ref<StatusSearchResult[]>([])
 
+  const options = resolveUnref(mayOptionsRef)
   const q = computed(() => resolveUnref(query).trim())
 
   let paginator: akkoma.Paginator<akkoma.v2.Search, akkoma.rest.v2.SearchParams> | undefined

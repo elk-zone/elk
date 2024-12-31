@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.18 (2024-12-31)
+
+
+### Bug Fixes
+
+* reblog option spacing ([198e1b3](https://github.com/BDX-town/elk/commit/198e1b37aabdf684939d34268556aa9fac08ef79))
+
 ## 0.15.17 (2024-12-29)
 
 

@@ -89,14 +89,15 @@ const hideLabel = useHideBottomNavigationLabel()
         {{ $t('settings.interface.bottom_nav_instructions') }}
       </p>
       <!-- preview -->
-      <div aria-hidden="true" flex="~ gap4 wrap" items-center select-settings h-14>
+      <div aria-hidden="true" flex="~ gap4 wrap" items-center select-settings h-auto>
         <nav
           v-for="availableNavButton in selectedNavButtons" :key="availableNavButton.name"
           flex="~ col 1" items-center justify-center text-xl
           scrollbar-hide overscroll-none
+          :class="hideLabel ? null : 'gap-1'"
         >
           <span :class="availableNavButton.icon" />
-          <span v-if="!hideLabel" text-xs>{{ availableNavButton.name }}</span>
+          <span v-if="!hideLabel" text-xs text-center>{{ $t(availableNavButton.label) }}</span>
         </nav>
       </div>
 
@@ -112,7 +113,7 @@ const hideLabel = useHideBottomNavigationLabel()
           :aria-checked="isAdded(name)"
           @click="isAdded(name) ? remove(name) : append(name)"
         >
-          <span :class="icon" />
+          <span aria-hidden="true" :class="icon" />
           {{ label ? $t(label) : 'More menu' }}
         </button>
       </div>

@@ -2,6 +2,8 @@
 import type { NavButtonName } from '~/composables/settings'
 import { STORAGE_KEY_BOTTOM_NAV_BUTTONS } from '~/constants'
 
+const userSettings = useUserSettings()
+
 interface NavButton {
   name: NavButtonName
   label: string
@@ -136,5 +138,11 @@ function save() {
         </button>
       </div>
     </form>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideBottomNavLabel')"
+      @click="togglePreferences('hideBottomNavLabel')"
+    >
+      {{ $t('settings.interface.bottom_nav_hide_label') }}
+    </SettingsToggleItem>
   </section>
 </template>

@@ -2,10 +2,14 @@
 defineProps<{
   activeClass: string
 }>()
+
+const userSettings = useUserSettings()
+const hideLabel = getPreferences(userSettings.value, 'hideBottomNavLabel')
 </script>
 
 <template>
-  <NuxtLink to="/compose" :aria-label="$t('nav.favourites')" :active-class="activeClass" flex flex-row items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
+  <NuxtLink to="/compose" :aria-label="$t('nav.favourites')" :active-class="activeClass" flex flex-col items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
     <div i-ri:quill-pen-line />
+    <span v-if="!hideLabel" text-xs>{{ $t('nav.favourites') }}</span>
   </NuxtLink>
 </template>

@@ -8,7 +8,6 @@ defineProps<{
 const lastAccessedExploreRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE, '')
 
 const userSettings = useUserSettings()
-const hideLabel = getPreferences(userSettings.value, 'hideBottomNavLabel')
 </script>
 
 <template>
@@ -20,6 +19,6 @@ const hideLabel = getPreferences(userSettings.value, 'hideBottomNavLabel')
     @click="$scrollToTop"
   >
     <div i-ri:compass-3-line />
-    <span v-if="!hideLabel" text-xs>{{ $t('nav.explore') }}</span>
+    <span v-if="!getPreferences(userSettings, 'hideBottomNavLabel')" text-xs>{{ $t('nav.explore') }}</span>
   </NuxtLink>
 </template>

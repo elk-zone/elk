@@ -8,7 +8,6 @@ const { notifications } = useNotifications()
 const lastAccessedNotificationRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE, '')
 
 const userSettings = useUserSettings()
-const hideLabel = getPreferences(userSettings.value, 'hideBottomNavLabel')
 </script>
 
 <template>
@@ -19,6 +18,6 @@ const hideLabel = getPreferences(userSettings.value, 'hideBottomNavLabel')
         {{ notifications < 10 ? notifications : '•' }}
       </div>
     </div>
-    <span v-if="!hideLabel" text-xs>{{ $t('nav.notifications') }}</span>
+    <span v-if="!getPreferences(userSettings, 'hideBottomNavLabel')" text-xs>{{ $t('nav.notifications') }}</span>
   </NuxtLink>
 </template>

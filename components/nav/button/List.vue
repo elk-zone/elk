@@ -4,7 +4,6 @@ defineProps<{
 }>()
 
 const userSettings = useUserSettings()
-const hideLabel = getPreferences(userSettings.value, 'hideBottomNavLabel')
 </script>
 
 <template>
@@ -16,6 +15,6 @@ const hideLabel = getPreferences(userSettings.value, 'hideBottomNavLabel')
     class="coarse-pointer:select-none" @click="$scrollToTop"
   >
     <div i-ri:list-check />
-    <span v-if="!hideLabel" text-xs>{{ $t('nav.lists') }}</span>
+    <span v-if="!getPreferences(userSettings, 'hideBottomNavLabel')" text-xs>{{ $t('nav.lists') }}</span>
   </NuxtLink>
 </template>

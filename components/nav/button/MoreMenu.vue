@@ -2,7 +2,6 @@
 const model = defineModel<boolean>()
 
 const userSettings = useUserSettings()
-const hideLabel = getPreferences(userSettings.value, 'hideBottomNavLabel')
 </script>
 
 <template>
@@ -17,7 +16,7 @@ const hideLabel = getPreferences(userSettings.value, 'hideBottomNavLabel')
       @click="toggleVisible"
     >
       <span :class="show ? 'i-ri:close-fill' : 'i-ri:more-fill'" />
-      <span v-if="!hideLabel" text-xs>{{ $t('nav.more_menu') }}</span>
+      <span v-if="!getPreferences(userSettings, 'hideBottomNavLabel')" text-xs>{{ $t('nav.more_menu') }}</span>
     </button>
   </NavBottomMoreMenu>
 </template>

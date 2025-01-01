@@ -78,6 +78,12 @@ function save() {
     <h2 id="interface-bn" font-medium>
       {{ $t('settings.interface.bottom_nav') }}
     </h2>
+    <SettingsToggleItem
+      :checked="getPreferences(userSettings, 'hideBottomNavLabel')"
+      @click="togglePreferences('hideBottomNavLabel')"
+    >
+      {{ $t('settings.interface.bottom_nav_hide_label') }}
+    </SettingsToggleItem>
     <form aria-labelledby="interface-bn" aria-describedby="interface-bn-desc" @submit.prevent="save">
       <p id="interface-bn-desc" pb-2>
         {{ $t('settings.interface.bottom_nav_instructions') }}
@@ -138,11 +144,5 @@ function save() {
         </button>
       </div>
     </form>
-    <SettingsToggleItem
-      :checked="getPreferences(userSettings, 'hideBottomNavLabel')"
-      @click="togglePreferences('hideBottomNavLabel')"
-    >
-      {{ $t('settings.interface.bottom_nav_hide_label') }}
-    </SettingsToggleItem>
   </section>
 </template>

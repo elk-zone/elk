@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { useHideBottomNavigationLabel } from '~/composables/settings'
+
 defineProps<{
   activeClass: string
 }>()
 
-const userSettings = useUserSettings()
+const hideLabel = useHideBottomNavigationLabel()
 </script>
 
 <template>
@@ -15,6 +17,6 @@ const userSettings = useUserSettings()
     class="coarse-pointer:select-none" @click="$scrollToTop"
   >
     <div i-ri:list-check />
-    <span v-if="!getPreferences(userSettings, 'hideBottomNavLabel')" text-xs>{{ $t('nav.lists') }}</span>
+    <span v-if="!hideLabel" text-xs>{{ $t('nav.lists') }}</span>
   </NuxtLink>
 </template>

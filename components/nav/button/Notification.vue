@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useHideBottomNavigationLabel } from '~/composables/settings'
 import { STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE } from '~/constants'
 
 defineProps<{
@@ -7,7 +8,7 @@ defineProps<{
 const { notifications } = useNotifications()
 const lastAccessedNotificationRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE, '')
 
-const userSettings = useUserSettings()
+const hideLabel = useHideBottomNavigationLabel()
 </script>
 
 <template>
@@ -18,6 +19,6 @@ const userSettings = useUserSettings()
         {{ notifications < 10 ? notifications : '•' }}
       </div>
     </div>
-    <span v-if="!getPreferences(userSettings, 'hideBottomNavLabel')" text-xs>{{ $t('nav.notifications') }}</span>
+    <span v-if="!hideLabel" text-xs>{{ $t('nav.notifications') }}</span>
   </NuxtLink>
 </template>

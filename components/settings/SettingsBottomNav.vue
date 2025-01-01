@@ -71,6 +71,8 @@ function reset() {
 function save() {
   navButtonNamesSetting.value = selectedNavButtonNames.value
 }
+
+const hideLabel = useHideBottomNavigationLabel()
 </script>
 
 <template>
@@ -92,10 +94,11 @@ function save() {
       <div aria-hidden="true" flex="~ gap4 wrap" items-center select-settings h-14>
         <nav
           v-for="availableNavButton in selectedNavButtons" :key="availableNavButton.name"
-          flex="~ 1" items-center justify-center text-xl
+          flex="~ col 1" items-center justify-center text-xl
           scrollbar-hide overscroll-none
         >
           <span :class="availableNavButton.icon" />
+          <span v-if="!hideLabel" text-xs>{{ availableNavButton.name }}</span>
         </nav>
       </div>
 

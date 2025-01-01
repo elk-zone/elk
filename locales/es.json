@@ -455,6 +455,7 @@
     },
     "interface": {
       "bottom_nav": "Navegación inferior",
+      "bottom_nav_hide_label": "Ocultar etiquetas de navegación",
       "bottom_nav_instructions": "Elige tus botones de navegación favoritos, hasta cinco para la navegación inferior. Debes incluir el botón \"Más opciones\".",
       "color_mode": "Modos de color",
       "dark_mode": "Modo oscuro",

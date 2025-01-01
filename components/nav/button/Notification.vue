@@ -12,9 +12,17 @@ const hideLabel = useHideBottomNavigationLabel()
 </script>
 
 <template>
-  <NuxtLink :to="`/notifications/${lastAccessedNotificationRoute}`" :aria-label="$t('nav.notifications')" :active-class="activeClass" flex flex-col items-center place-content-center h-full flex-1 class="coarse-pointer:select-none" @click="$scrollToTop">
+  <NuxtLink
+    :to="`/notifications/${lastAccessedNotificationRoute}`"
+    :aria-label="$t('nav.notifications')"
+    :active-class="activeClass"
+    flex flex-col items-center place-content-center h-full flex-1
+    class="coarse-pointer:select-none"
+    :class="hideLabel ? null : 'gap-1'"
+    @click="$scrollToTop"
+  >
     <div flex relative>
-      <div class="i-ri:notification-4-line" text-xl />
+      <div aria-hidden="true" class="i-ri:notification-4-line" text-xl />
       <div v-if="notifications" class="top-[-0.3rem] right-[-0.3rem]" absolute font-bold rounded-full h-4 w-4 text-xs bg-primary text-inverted flex items-center justify-center>
         {{ notifications < 10 ? notifications : '•' }}
       </div>

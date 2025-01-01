@@ -14,9 +14,11 @@ const hideLabel = useHideBottomNavigationLabel()
     :aria-label="$t('nav.lists')"
     :active-class="activeClass"
     flex flex-col items-center place-content-center h-full flex-1
-    class="coarse-pointer:select-none" @click="$scrollToTop"
+    class="coarse-pointer:select-none"
+    :class="hideLabel ? null : 'gap-1'"
+    @click="$scrollToTop"
   >
-    <div i-ri:list-check />
+    <div aria-hidden="true" i-ri:list-check />
     <span v-if="!hideLabel" text-xs>{{ $t('nav.lists') }}</span>
   </NuxtLink>
 </template>

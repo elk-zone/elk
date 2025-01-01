@@ -17,9 +17,10 @@ const hideLabel = computed(() => getPreferences(userSettings.value, 'hideBottomN
     :aria-label="$t('nav.explore')"
     :active-class="activeClass"
     flex flex-col items-center place-content-center h-full flex-1 class="coarse-pointer:select-none"
+    :class="hideLabel ? null : 'gap-1'"
     @click="$scrollToTop"
   >
-    <div i-ri:compass-3-line />
+    <div aria-hidden="true" i-ri:compass-3-line />
     <span v-if="!hideLabel" text-xs>{{ $t('nav.explore') }}</span>
   </NuxtLink>
 </template>

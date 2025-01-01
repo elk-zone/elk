@@ -10,8 +10,9 @@ const hideLabel = useHideBottomNavigationLabel()
     place-content-center h-full flex-1 cursor-pointer
   >
     <button
-      flex flex-col items-center place-content-center h-full flex-1 class="select-none"
-      :class="show ? '!text-primary' : ''"
+      flex flex-col items-center place-content-center h-full flex-1
+      class="select-none"
+      :class="[show ? '!text-primary' : null, hideLabel ? null : 'gap-1'].filter(Boolean).join(' ')"
       :aria-label="$t('nav.more_menu')"
       @click="toggleVisible"
     >

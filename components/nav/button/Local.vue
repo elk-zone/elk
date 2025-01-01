@@ -11,10 +11,12 @@ const hideLabel = useHideBottomNavigationLabel()
     group
     :to="`/${currentServer}/public/local`"
     :aria-label="$t('nav.local')" :active-class="activeClass"
-    flex flex-col items-center place-content-center h-full flex-1 class="coarse-pointer:select-none"
+    flex flex-col items-center place-content-center h-full flex-1
+    class="coarse-pointer:select-none"
+    :class="hideLabel ? null : 'gap-1'"
     @click="$scrollToTop"
   >
-    <div i-ri:group-2-line />
+    <div aria-hidden="true" i-ri:group-2-line />
     <span v-if="!hideLabel" text-xs>{{ $t('nav.local') }}</span>
   </NuxtLink>
 </template>

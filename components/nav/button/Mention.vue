@@ -10,10 +10,13 @@ const hideLabel = useHideBottomNavigationLabel()
   <NuxtLink
     to="/conversations"
     :aria-label="$t('nav.conversations')"
-    :active-class="activeClass" flex flex-col items-center place-content-center h-full flex-1 class="coarse-pointer:select-none"
+    :active-class="activeClass"
+    flex flex-col items-center place-content-center h-full flex-1
+    class="coarse-pointer:select-none"
+    :class="hideLabel ? null : 'gap-1'"
     @click="$scrollToTop"
   >
-    <div i-ri:at-line />
+    <div aria-hidden="true" i-ri:at-line />
     <span v-if="!hideLabel" text-xs>{{ $t('nav.conversations') }}</span>
   </NuxtLink>
 </template>

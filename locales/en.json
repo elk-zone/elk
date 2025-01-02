@@ -462,8 +462,13 @@
       "font_size": "Font Size",
       "label": "Interface",
       "light_mode": "Light",
+      "line_height": "Line Height",
+      "narrow": "Narrow",
+      "normal": "Normal",
+      "reload_app": "Reload the app for the changes to take effect.",
       "system_mode": "System",
-      "theme_color": "Theme Color"
+      "theme_color": "Theme Color",
+      "wide": "Wide"
     },
     "language": {
       "display_language": "Display Language",

@@ -89,15 +89,14 @@ const hideLabel = useHideBottomNavigationLabel()
         {{ $t('settings.interface.bottom_nav_instructions') }}
       </p>
       <!-- preview -->
-      <div aria-hidden="true" flex="~ gap4 wrap" items-center select-settings h-auto>
+      <div aria-hidden="true" flex="~ wrap" items-center select-settings p-0 pt-1 h-auto>
         <nav
           v-for="availableNavButton in selectedNavButtons" :key="availableNavButton.name"
           flex="~ col 1" items-center justify-center text-xl
           scrollbar-hide overscroll-none
-          :class="hideLabel ? null : 'gap-1'"
         >
           <span :class="availableNavButton.icon" />
-          <span v-if="!hideLabel" text-xs text-center>{{ $t(availableNavButton.label) }}</span>
+          <span v-if="!hideLabel" text-2.5 text-center>{{ $t(availableNavButton.label) }}</span>
         </nav>
       </div>
 

@@ -11,12 +11,12 @@ const hideLabel = useHideBottomNavigationLabel()
     to="/compose"
     :aria-label="$t('nav.favourites')"
     :active-class="activeClass"
-    flex flex-col items-center place-content-center h-full flex-1
+    flex flex-col items-center place-content-center h-full flex-1 min-w-0
     class="coarse-pointer:select-none"
     :class="hideLabel ? null : 'gap-1'"
     @click="$scrollToTop"
   >
     <div aria-hidden="true" i-ri:quill-pen-line />
-    <span v-if="!hideLabel" text-xs>{{ $t('nav.favourites') }}</span>
+    <span v-if="!hideLabel" text-xs overflow-hidden text-ellipsis whitespace-nowrap>{{ $t('nav.favourites') }}</span>
   </NuxtLink>
 </template>

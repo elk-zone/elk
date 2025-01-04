@@ -11,12 +11,12 @@ const hideLabel = useHideBottomNavigationLabel()
     to="/home"
     :aria-label="$t('nav.home')"
     :active-class="activeClass"
-    flex flex-col items-center place-content-center h-full flex-1
+    flex flex-col items-center place-content-center h-full flex-1 min-w-0
     class="coarse-pointer:select-none"
     :class="hideLabel ? null : 'gap-1'"
     @click="$scrollToTop"
   >
     <div aria-hidden="true" i-ri:home-5-line />
-    <span v-if="!hideLabel" text-xs>{{ $t('nav.home') }}</span>
+    <span v-if="!hideLabel" text-xs overflow-hidden text-ellipsis whitespace-nowrap>{{ $t('nav.home') }}</span>
   </NuxtLink>
 </template>

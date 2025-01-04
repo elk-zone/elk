@@ -10,14 +10,14 @@ const hideLabel = useHideBottomNavigationLabel()
     place-content-center h-full flex-1 cursor-pointer
   >
     <button
-      flex flex-col items-center place-content-center h-full flex-1
+      flex flex-col items-center place-content-center h-full flex-1 min-w-0
       class="select-none"
       :class="[show ? '!text-primary' : null, hideLabel ? null : 'gap-1'].filter(Boolean).join(' ')"
       :aria-label="$t('nav.more_menu')"
       @click="toggleVisible"
     >
       <span :class="show ? 'i-ri:close-fill' : 'i-ri:more-fill'" />
-      <span v-if="!hideLabel" text-xs>{{ $t('nav.more_menu') }}</span>
+      <span v-if="!hideLabel" text-xs overflow-hidden text-ellipsis whitespace-nowrap>{{ $t('nav.more_menu') }}</span>
     </button>
   </NavBottomMoreMenu>
 </template>

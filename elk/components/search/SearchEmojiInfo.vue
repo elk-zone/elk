@@ -1,7 +1,8 @@
 <script setup lang="ts">
 export interface SearchEmoji {
   title: string
-  src: string
+  src?: string
+  alt: string
 }
 
 defineProps<{
@@ -14,6 +15,7 @@ defineProps<{
     <img
       width="20"
       height="20"
+      :alt="emoji.alt"
       :src="emoji.src"
       loading="lazy"
     >

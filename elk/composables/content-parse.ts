@@ -1,10 +1,10 @@
 // @unimport-disable
 import type { akkoma } from '@bdxtown/akko'
 import type { Node } from 'ultrahtml'
+import { emojiRegEx } from '@iconify-emoji/twemoji'
 import { findAndReplaceEmojisInText } from '@iconify/utils'
 import { decode } from 'tiny-decode'
 import { DOCUMENT_NODE, ELEMENT_NODE, h, parse, render, TEXT_NODE } from 'ultrahtml'
-import { emojiRegEx } from '../config/emojis'
 
 export interface ContentParseOptions {
   emojis?: Record<string, akkoma.v1.CustomEmoji>

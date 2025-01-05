@@ -3,12 +3,6 @@ import type { EmojiRegexMatch } from '@iconify/utils/lib/emoji/replace/find'
 import { emojiFilename, emojiPrefix, emojiRegEx } from '@iconify-emoji/twemoji'
 import { getEmojiMatchesInText } from '@iconify/utils/lib/emoji/replace/find'
 
-// Re-export everything from package
-export * from '@iconify-emoji/twemoji'
-
-// Package name
-export const iconifyEmojiPackage = '@iconify-emoji/twemoji'
-
 export function getEmojiAttributes(input: EmojiRegexMatch | string) {
   const match = typeof input === 'string'
     ? getEmojiMatchesInText(emojiRegEx, input)?.[0]

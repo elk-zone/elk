@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { CommandHandler } from '~/composables/command'
 import type { CustomEmoji, Emoji } from '~/composables/tiptap/suggestion'
+import { emojiRegEx } from '@iconify-emoji/twemoji'
 import { getEmojiMatchesInText } from '@iconify/utils/lib/emoji/replace/find'
-import { emojiFilename, emojiPrefix, emojiRegEx } from '~~/config/emojis'
 import { isCustomEmoji } from '~/composables/tiptap/suggestion'
 
 const { items, command } = defineProps<{
@@ -21,17 +21,17 @@ const emojis = computed(() => {
         title: item.shortcode,
         src: item.url,
         emoji: item,
+        alt: item.shortcode,
       }
     }
 
     const skin = item.skins.find(skin => skin.native !== undefined)
     const match = getEmojiMatchesInText(emojiRegEx, skin!.native)[0]
-    const file = emojiFilename(match)
 
     return {
       title: item.id,
-      src: `/emojis/${emojiPrefix}/${file.filename}`,
       emoji: item,
+      alt: match?.match,
     }
   })
 })

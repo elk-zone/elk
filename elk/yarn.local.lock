@@ -1978,11 +1978,6 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.4.1.tgz#9a96ce501bc62df46c4031fbd970e3cc6b10f07b"
   integrity sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA==
 
-"@iconify-emoji/twemoji@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@iconify-emoji/twemoji/-/twemoji-1.0.2.tgz#1d5e279f4600104c1480d8db6801debd11da39d3"
-  integrity sha512-C4W6ov4BkDXiVU3GzyqyVo8SBbU21KivXnZERgAnrYZEKjuiI3JwPDnu9oVJPsUkNI/Q4SM8iVnXjGW6kxt9DQ==
-
 "@iconify/json@^2.2.170":
   version "2.2.287"
   resolved "https://registry.yarnpkg.com/@iconify/json/-/json-2.2.287.tgz#42c11e444760071ab703250b374136602293ceaf"

@@ -1,13 +1,13 @@
 import type { ExtendedRegExpMatchArray, InputRuleFinder, nodeInputRule } from '@tiptap/core'
 import type { NodeType } from '@tiptap/pm/model'
+import { emojiRegEx } from '@iconify-emoji/twemoji'
 import {
   callOrReturn,
   InputRule,
-  mergeAttributes,
   Node,
   nodePasteRule,
 } from '@tiptap/core'
-import { emojiRegEx, getEmojiAttributes } from '~/config/emojis'
+import { getEmojiAttributes } from '~/config/emojis'
 
 function wrapHandler<T extends (...args: any[]) => any>(handler: T): T {
   return <T>((...args: any[]) => {
@@ -49,7 +49,7 @@ export const TiptapPluginEmoji = Node.create({
   parseHTML() {
     return [
       {
-        tag: 'img.iconify-emoji',
+        tag: 'div.emoji',
       },
     ]
   },

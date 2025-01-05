@@ -26,7 +26,7 @@ const { q } = useUrlSearchParams<{ q: string }>()
 const query = ref(q || '')
 const options = computed(() => ({ type: currentTab.value === 'all' ? undefined : currentTab.value as ('accounts' | 'hashtags' | 'statuses') }))
 
-const { loading, ...results } = useSearch(query, options)
+const { loading, next, ...results } = useSearch(query, options)
 
 const currentResults = computed(() => {
   if (query.value.length === 0)
@@ -34,8 +34,8 @@ const currentResults = computed(() => {
 
   return !options.value.type
     ? [
-        ...results.hashtags.value,
-        ...results.accounts.value,
+        ...results.hashtags.value.slice(0, 5),
+        ...results.accounts.value.slice(0, 5),
         ...results.statuses.value,
       ]
     : results[options.value.type].value
@@ -68,7 +68,7 @@ const currentResults = computed(() => {
   <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
     {{ $t('search.search_desc') }}
   </span>
-  <template v-else-if="!loading">
+  <template v-else>
     <template v-if="currentResults.length > 0">
       <SearchResult
         v-for="(result) in currentResults" :key="result.id"
@@ -76,13 +76,31 @@ const currentResults = computed(() => {
         :result="result"
       />
     </template>
-    <span v-else block text-center text-sm text-secondary>
+    <span v-else-if="!loading" block text-center text-sm text-secondary>
       {{ $t('search.search_empty') }}
     </span>
   </template>
-  <div v-else>
+  <div v-if="loading">
     <SearchResultSkeleton />
     <SearchResultSkeleton />
     <SearchResultSkeleton />
   </div>
+  <button
+    mt-3
+    mb-5
+    mx-auto
+    flex
+    gap-1
+    items-center
+    type="button"
+    rounded-full text-sm py-2 px-3 border-1
+    hover:text-primary transition-colors
+    :class="loading ? 'opacity-50' : ''"
+    :disabled="loading"
+    @click="next"
+  >
+    <div :class="loading ? 'i-ri:loop-right-line animate-spin' : 'i-ri:search-line'" />
+    Load
+    more
+  </button>
 </template>

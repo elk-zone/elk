@@ -9,11 +9,6 @@ const { t, locale } = useI18n()
 useHydratedHead({
   title: () => `${t('settings.language.label')} | ${t('nav.settings')}`,
 })
-const status = computed(() => {
-  // const entry = translationStatus.locales[locale.value]
-  // return t('settings.language.status', [entry.total, translationStatus.total, entry.percentage])
-  return t('settings.language.status')
-})
 </script>
 
 <template>
@@ -28,9 +23,6 @@ const status = computed(() => {
         <h2 py2 font-bold text-xl flex="~ gap-1" items-center>
           {{ $t('settings.language.display_language') }}
         </h2>
-        <div>
-          {{ status }}
-        </div>
         <SettingsLanguage select-settings />
         <NuxtLink
           href="https://docs.elk.zone/guide/contributing"

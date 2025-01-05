@@ -257,7 +257,7 @@ exports[`content-rich > link + mention 1`] = `
     rel="nofollow noopener noreferrer"
     target="_blank"
     ><span class="invisible">https://</span
-    ><span class="ellipsis">github.com/ayoayco/astro-react</span
+    ><bdi class="ellipsis">github.com/ayoayco/astro-react</bdi
     ><span class="invisible">ive-library/pull/203</span></a
   >
 </p>

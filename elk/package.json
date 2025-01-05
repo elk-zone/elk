@@ -35,6 +35,7 @@
     "@bdxtown/akko": "^6.14.0",
     "@emoji-mart/data": "^1.1.2",
     "@fnando/sparkline": "^0.3.10",
+    "@iconify-emoji/twemoji": "^1.0.2",
     "@iconify/json": "^2.2.170",
     "@iconify/utils": "^2.1.22",
     "@nuxt/devtools": "^1.5.2",

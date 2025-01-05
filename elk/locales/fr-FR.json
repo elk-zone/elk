@@ -439,7 +439,6 @@
       "display_language": "Langue d'affichage",
       "label": "Langue",
       "post_language": "Langue de publication",
-      "status": "État de la traduction : {0}/{1} ({2} %)",
       "translations": {
         "add": "Ajouter",
         "choose_language": "Choisir une langue",

@@ -22,7 +22,6 @@ export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSea
 
 export function useSearch(query: MaybeRefOrGetter<string>, mayBeOptions: UseSearchOptions = {}) {
   const done = ref(false)
-  const offset = ref(0)
   const { client } = useAkko()
   const loading = ref(false)
   const accounts = ref<AccountSearchResult[]>([])
@@ -76,7 +75,6 @@ export function useSearch(query: MaybeRefOrGetter<string>, mayBeOptions: UseSear
     paginator = client.value.v2.search.list({
       ...options.value,
       q: q.value,
-      offset: offset.value,
       resolve: !!currentUser.value,
     })
     const nextResults = await paginator.next()
@@ -89,20 +87,6 @@ export function useSearch(query: MaybeRefOrGetter<string>, mayBeOptions: UseSear
   }
 
   onMounted(search)
-
-  function setOffset() {
-    const lenghts = {
-      hashtags: hashtags.value.length,
-      accounts: accounts.value.length,
-      statuses: statuses.value.length,
-    }
-    offset.value = lenghts[options.value.type as 'hashtags' | 'accounts' | 'statuses'] || 0
-  }
-
-  watch(options, setOffset)
-  watch(hashtags, setOffset)
-  watch(accounts, setOffset)
-  watch(statuses, setOffset)
 
   debouncedWatch(() => resolveUnref(query), search, { debounce: 300 })
 
@@ -118,7 +102,6 @@ export function useSearch(query: MaybeRefOrGetter<string>, mayBeOptions: UseSear
     paginator = client.value.v2.search.list({
       ...options.value,
       q: q.value,
-      offset: offset.value,
       resolve: !!currentUser.value,
     })
     const nextResults = await paginator.next()

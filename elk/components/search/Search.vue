@@ -24,22 +24,28 @@ const currentTab = ref(tabs.value[0].name)
 const { q } = useUrlSearchParams<{ q: string }>()
 
 const query = ref(q || '')
-const options = computed(() => ({ type: currentTab.value === 'all' ? undefined : currentTab.value as ('accounts' | 'hashtags' | 'statuses') }))
+const queryType = computed(() => currentTab.value === 'all' ? undefined : currentTab.value as ('accounts' | 'hashtags' | 'statuses'))
+const offset = ref(0)
 
+const options = computed(() => ({ type: queryType.value, offset: offset.value }))
 const { loading, next, ...results } = useSearch(query, options)
 
 const currentResults = computed(() => {
   if (query.value.length === 0)
     return []
 
-  return !options.value.type
+  return !queryType.value
     ? [
         ...results.hashtags.value.slice(0, 5),
         ...results.accounts.value.slice(0, 5),
         ...results.statuses.value,
       ]
-    : results[options.value.type].value
+    : results[queryType.value].value
 })
+
+watch(query, () => offset.value = 0)
+watch(currentTab, () => offset.value = 0)
+watch(currentResults, () => offset.value = queryType.value ? currentResults.value.length : 0)
 </script>
 
 <template>
@@ -68,7 +74,7 @@ const currentResults = computed(() => {
   <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
     {{ $t('search.search_desc') }}
   </span>
-  <template v-else>
+  <template v-if="!(loading && offset === 0)">
     <template v-if="currentResults.length > 0">
       <SearchResult
         v-for="(result) in currentResults" :key="result.id"
@@ -86,6 +92,7 @@ const currentResults = computed(() => {
     <SearchResultSkeleton />
   </div>
   <button
+    v-if="queryType"
     mt-3
     mb-5
     mx-auto

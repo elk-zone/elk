@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.20 (2025-01-05)
+
+
+### Bug Fixes
+
+* missing emojis in selector ([66768a4](https://github.com/BDX-town/elk/commit/66768a4451cdd2c8228895d4c3fdb60a21e2dbe1))
+
 ## 0.15.19 (2025-01-05)
 
 

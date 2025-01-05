@@ -93,7 +93,7 @@ export async function deleteApp(server: string) {
 export async function listServers() {
   const keys = await storage.getKeys('servers:v3:')
   const servers = new Set<string>()
-  for await (const key of keys) {
+  for (const key of keys) {
     const id = key.split(':')[2]
     if (id)
       servers.add(id.toLocaleLowerCase())

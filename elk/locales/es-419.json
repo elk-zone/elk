@@ -188,6 +188,7 @@
     "attachments_limit_video_error": "Tamaño máximo de video excedido: {0}"
   },
   "status": {
+    "pinned": "Publicaciones ancladas",
     "spoiler_show_less": "Menos"
   },
   "tab": {

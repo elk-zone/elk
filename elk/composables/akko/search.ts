@@ -1,5 +1,5 @@
-import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { akkoma } from '@bdxtown/akko'
+import type { MaybeRefOrGetter } from '@vueuse/core'
 import type { RouteLocation } from 'vue-router'
 
 export type UseSearchOptions = MaybeRefOrGetter<
@@ -20,7 +20,7 @@ export type StatusSearchResult = BuildSearchResult<'status', akkoma.v1.Status>
 
 export type SearchResult = HashTagSearchResult | AccountSearchResult | StatusSearchResult
 
-export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOptions = {}) {
+export function useSearch(query: MaybeRefOrGetter<string>, mayBeOptions: UseSearchOptions = {}) {
   const done = ref(false)
   const { client } = useAkko()
   const loading = ref(false)
@@ -29,6 +29,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
   const statuses = ref<StatusSearchResult[]>([])
 
   const q = computed(() => resolveUnref(query).trim())
+  const options = computed(() => resolveUnref(mayBeOptions))
 
   let paginator: akkoma.Paginator<akkoma.v2.Search, akkoma.rest.v2.SearchParams> | undefined
 
@@ -62,19 +63,18 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
     loading.value = !!(q.value && isHydrated.value)
   })
 
-  debouncedWatch(() => resolveUnref(query), async () => {
+  async function search() {
     if (!q.value || !isHydrated.value)
       return
 
     loading.value = true
-
     /**
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
      */
     paginator = client.value.v2.search.list({
+      ...options.value,
       q: q.value,
-      ...resolveUnref(options),
       resolve: !!currentUser.value,
     })
     const nextResults = await paginator.next()
@@ -84,13 +84,26 @@ export function useSearch(query: MaybeRefOrGetter<string>, options: UseSearchOpt
       appendResults(nextResults.value, true)
 
     loading.value = false
-  }, { debounce: 300 })
+  }
+
+  onMounted(search)
+
+  debouncedWatch(() => resolveUnref(query), search, { debounce: 300 })
 
   const next = async () => {
     if (!q.value || !isHydrated.value || !paginator)
       return
 
     loading.value = true
+    /**
+     * Based on the source it seems like modifying the params when calling next would result in a new search,
+     * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
+     */
+    paginator = client.value.v2.search.list({
+      ...options.value,
+      q: q.value,
+      resolve: !!currentUser.value,
+    })
     const nextResults = await paginator.next()
     loading.value = false
 

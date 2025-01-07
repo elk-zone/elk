@@ -32,7 +32,7 @@ watch(keys['/'], (v) => {
     </template>
 
     <div px2 mt3>
-      <SearchWidget v-if="isHydrated" ref="search" m-1 />
+      <Search v-if="isHydrated" ref="search" />
     </div>
   </MainContent>
 </template>

@@ -43,22 +43,10 @@ function shift(delta: number) {
 }
 
 function activate() {
-  const currentIndex = index.value
-
   if (query.value.length === 0)
     return
 
-  // Disable redirection until search page is implemented
-  if (currentIndex === -1) {
-    index.value = 0
-    // router.push(`/search?q=${query.value}`)
-    return
-  }
-
-  (document.activeElement as HTMLElement).blur()
-  index.value = -1
-
-  router.push(results.value[currentIndex].to)
+  router.push(`/search?q=${query.value}`)
 }
 </script>
 

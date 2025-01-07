@@ -11,6 +11,12 @@ const showUserPicker = logicAnd(
   () => useUsers().value.length > 1,
 )
 
+const showComposeButton = ref(false)
+
+watch(route, () => {
+  showComposeButton.value = route.path.includes('/home') || route.path.includes('/public') || route.path.includes('/notifications')
+})
+
 const isGrayscale = usePreferences('grayscaleMode')
 </script>
 
@@ -33,7 +39,7 @@ const isGrayscale = usePreferences('grayscaleMode')
         </div>
         <div sticky left-0 right-0 bottom-0 z-10 pb="[env(safe-area-inset-bottom)]" transition="padding 20">
           <CommonOfflineChecker v-if="isHydrated" />
-          <NavButtonCompose sm:hidden />
+          <NavButtonCompose v-if="showComposeButton" sm:hidden />
           <NavBottom v-if="isHydrated" sm:hidden bg-base />
         </div>
       </div>

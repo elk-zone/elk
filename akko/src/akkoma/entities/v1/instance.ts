@@ -68,6 +68,8 @@ export interface Instance {
   invitesEnabled: boolean;
   /** List various values like file size limits and supported mime types */
   configuration: InstanceConfiguration;
+  /** max length for status */
+  maxTootChars: number;
 
   /** Banner image for the website. */
   thumbnail?: string | null;

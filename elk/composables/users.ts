@@ -1,9 +1,11 @@
-import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
 import type { akkoma } from '@bdxtown/akko'
+import type { MaybeRefOrGetter, RemovableRef } from '@vueuse/core'
 import type { EffectScope, Ref } from 'vue'
 import type { ElkMasto } from './akko/akko'
-import { withoutProtocol } from 'ufo'
 import type { PushNotificationPolicy, PushNotificationRequest } from '~/composables/push-notifications/types'
+import type { UserLogin } from '~/types'
+import type { Overwrite } from '~/types/utils'
+import { withoutProtocol } from 'ufo'
 import {
   DEFAULT_POST_CHARS_LIMIT,
   STORAGE_KEY_CURRENT_USER_HANDLE,
@@ -12,15 +14,13 @@ import {
   STORAGE_KEY_NOTIFICATION_POLICY,
   STORAGE_KEY_SERVERS,
 } from '~/constants'
-import type { UserLogin } from '~/types'
-import type { Overwrite } from '~/types/utils'
 
 const mock = process.mock
 
 const users: Ref<UserLogin[]> | RemovableRef<UserLogin[]> = import.meta.server ? ref<UserLogin[]>([]) : ref<UserLogin[]>([]) as RemovableRef<UserLogin[]>
 const nodes = useLocalStorage<Record<string, any>>(STORAGE_KEY_NODES, {}, { deep: true })
 export const currentUserHandle = useLocalStorage<string>(STORAGE_KEY_CURRENT_USER_HANDLE, mock ? mock.user.account.id : '')
-export const instanceStorage = useLocalStorage<Record<string, akkoma.v1.Instance | AkkomaInstance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
+export const instanceStorage = useLocalStorage<Record<string, akkoma.v1.Instance>>(STORAGE_KEY_SERVERS, mock ? mock.server : {}, { deep: true })
 
 export type ElkInstance = Partial<akkoma.v1.Instance> & {
   uri: string
@@ -69,7 +69,7 @@ export function useSelfAccount(user: MaybeRefOrGetter<akkoma.v1.Account | undefi
   return computed(() => currentUser.value && resolveUnref(user)?.id === currentUser.value.account.id)
 }
 
-export const characterLimit = computed(() => currentInstance.value?.configuration?.statuses.maxCharacters ?? DEFAULT_POST_CHARS_LIMIT)
+export const characterLimit = computed(() => currentInstance.value?.configuration?.statuses.maxCharacters || currentInstance.value?.maxTootChars || DEFAULT_POST_CHARS_LIMIT)
 
 export async function loginTo(
   masto: ElkMasto,

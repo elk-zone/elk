@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.21 (2025-01-05)
+
+
+### Bug Fixes
+
+* missing dep ([01d318e](https://github.com/BDX-town/elk/commit/01d318ee19a1b985f75d3ee8ca4008540a3b9781))
+
 ## 0.15.20 (2025-01-05)
 
 

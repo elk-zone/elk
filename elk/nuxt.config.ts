@@ -315,6 +315,7 @@ export default defineNuxtConfig({
     defaultLocale: 'en-US',
     vueI18n: './config/i18n.config.ts',
     bundle: {
+      // @ts-expect-error ???
       optimizeTranslationDirective: false,
     },
   },

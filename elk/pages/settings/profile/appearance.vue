@@ -34,6 +34,7 @@ const { form, reset, submitter, isDirty, isError } = useForm({
 
       return field
     })
+
     return {
       displayName: account.value?.displayName ?? '',
       note: account.value?.source.note.replaceAll('\r', '') ?? '',

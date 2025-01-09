@@ -71,6 +71,22 @@ export interface Instance {
   /** max length for status */
   maxTootChars: number;
 
+  pleroma: {
+    metadata: {
+      /**
+       * A list of values detailing the length and count limitation for various instance-configurable fields
+       */
+      fieldsLimits: {
+        /** Max number of fields */
+        maxFields: number;
+        /** Max length for field name */
+        nameLength: number;
+        /** Max length for field value */
+        valueLength: number;
+      };
+    };
+  };
+
   /** Banner image for the website. */
   thumbnail?: string | null;
   /** A user that can be contacted, as an alternative to `email`. */

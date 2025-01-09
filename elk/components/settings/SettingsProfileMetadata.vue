@@ -4,6 +4,7 @@ import type { akkoma } from '@bdxtown/akko'
 const form = defineModel<{
   fieldsAttributes: NonNullable<akkoma.rest.v1.UpdateCredentialsParams['fieldsAttributes']>
 }>({ required: true })
+
 const dropdown = ref<any>()
 
 const fieldIcons = computed(() =>
@@ -63,12 +64,14 @@ function chooseIcon(i: number, text: string) {
         </CommonDropdown>
         <input
           v-model="form.fieldsAttributes[i - 1].name"
+          :maxlength="maxAccountFieldNameLength"
           type="text" placeholder-text-secondary
           :placeholder="$t('settings.profile.appearance.profile_metadata_label')"
           input-base
         >
         <input
           v-model="form.fieldsAttributes[i - 1].value"
+          :maxlength="maxAccountFieldValueLength"
           type="text" placeholder-text-secondary
           :placeholder="$t('settings.profile.appearance.profile_metadata_value')"
           input-base

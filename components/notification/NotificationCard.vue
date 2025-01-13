@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
+import RelationshipSeveranceCard from '~/components/notification/RelationshipSeveranceCard.vue'
 
 // Add undocumented 'annual_report' type introduced in v4.3
 // ref. https://github.com/mastodon/documentation/issues/1211#:~:text=api/v1/annual_reports
@@ -25,6 +26,7 @@ const supportedNotificationTypes: NotificationType[] = [
   'update',
   'status',
   'annual_report',
+  'severed_relationships',
 ]
 
 // well-known emoji reactions types Elk does not support yet
@@ -32,6 +34,7 @@ const unsupportedEmojiReactionTypes = ['pleroma:emoji_reaction', 'reaction']
 
 if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotificationTypes.includes(notification.type)) {
   console.warn(`[DEV] ${t('notification.missing_type')} '${notification.type}' (notification.id: ${notification.id})`)
+  console.warn(notification)
 }
 </script>
 
@@ -131,6 +134,14 @@ if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotif
               View #Wrapstodon on Mastodon
             </NuxtLink>
           </p>
+        </div>
+      </div>
+    </template>
+    <template v-else-if="notification.type === 'severed_relationships'">
+      <div flex p4 items-center>
+        <div i-material-symbols:heart-broken-outline-rounded text-xl me-4 color-red />
+        <div class="content-rich">
+          <RelationshipSeveranceCard :event="notification.event!" />
         </div>
       </div>
     </template>

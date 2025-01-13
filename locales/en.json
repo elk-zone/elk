@@ -339,6 +339,11 @@
     "followed_you_count": "{0} people followed you|{0} person followed you|{0} people followed you",
     "missing_type": "MISSING notification.type:",
     "reblogged_post": "boosted your post",
+    "relationship_severance": {
+      "account_suspension": "An admin from {0} has suspended {1}, which means you can no longer receive updates from them or interact with them.",
+      "domain_block": "An admin from {from} has blocked {target}, including {followers} of your followers and {n} account you follow.|An admin from {from} has blocked {target}, including {followers} of your followers and {n} accounts you follow.",
+      "user_domain_block": "You have blocked {target}, removing {followers} of your followers and {n} account you follow.|You have blocked {target}, removing {followers} of your followers and {n} accounts you follow."
+    },
     "reported": "{0} reported {1}",
     "request_to_follow": "requested to follow you",
     "signed_up": "signed up",

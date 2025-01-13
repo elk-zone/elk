@@ -79,7 +79,7 @@ export async function createI18n(): Promise<RequiredWebManifestEntry> {
     id: '/',
     start_url: '/',
     orientation: 'natural',
-    display: 'standalone',
+    display: 'fullscreen',
     display_override: ['window-controls-overlay'],
     categories: ['social', 'social networking', 'news'],
     icons: [

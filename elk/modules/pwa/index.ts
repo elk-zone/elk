@@ -1,6 +1,6 @@
 import type { Buffer } from 'node:buffer'
 import type { Plugin } from 'vite'
-import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
+import type { ManifestOptions, VitePluginPWAAPI } from 'vite-plugin-pwa'
 import type { VitePWANuxtOptions } from './types'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname } from 'node:path'
@@ -12,6 +12,15 @@ import { configurePWAOptions } from './config'
 import { createI18n, type LocalizedWebManifest, pwaLocales } from './i18n'
 
 export * from './types'
+
+interface PwaDevIcon {
+  src: string
+  type: string
+}
+
+interface ResolvedPwaDevIcon extends PwaDevIcon {
+  data: Promise<Buffer>
+}
 
 export default defineNuxtModule<VitePWANuxtOptions>({
   meta: {
@@ -29,7 +38,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     const resolveVitePluginPWAAPI = (): VitePluginPWAAPI | undefined => {
       return vitePwaClientPlugin?.api
     }
-
+    let webmanifests: any | undefined
     nuxt.options.appConfig = nuxt.options.appConfig || {}
     nuxt.options.appConfig.pwaEnabled = !options.disable
 
@@ -70,11 +79,10 @@ export default defineNuxtModule<VitePWANuxtOptions>({
       if (plugin)
         throw new Error('Remove vite-plugin-pwa plugin from Vite Plugins entry in Nuxt config file!')
 
-      const webmanifest = await createI18n()
+      webmanifests = await createI18n()
       const generateManifest = () => {
-        return JSON.stringify(webmanifest)
+        return JSON.stringify(webmanifests)
       }
-
       if (isClient) {
         viteInlineConfig.plugins.push({
           name: 'elk:pwa:locales:build',
@@ -98,7 +106,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
               return next()
 
             const match = url.match(localeMatcher)
-            const entry = match && webmanifest!
+            const entry = match && webmanifests
             if (entry) {
               res.statusCode = 200
               res.setHeader('Content-Type', 'application/manifest+json')
@@ -107,7 +115,8 @@ export default defineNuxtModule<VitePWANuxtOptions>({
               res.end()
               return
             }
-            res.end()
+
+            return next()
           })
         },
       })
@@ -120,7 +129,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
     })
 
     if (nuxt.options.dev) {
-      const webManifesturl = `${nuxt.options.app.baseURL}${options.devOptions?.webManifestUrl ?? options.manifestFilename ?? 'manifest.webmanifest'}`
+      const webManifest = `${nuxt.options.app.baseURL}${options.devOptions?.webManifestUrl ?? options.manifestFilename ?? 'manifest.webmanifest'}`
       const devSw = `${nuxt.options.app.baseURL}dev-sw.js?dev-sw`
       const workbox = `${nuxt.options.app.baseURL}workbox-`
       // @ts-expect-error just ignore
@@ -131,7 +140,7 @@ export default defineNuxtModule<VitePWANuxtOptions>({
         if (isServer)
           return
 
-        viteServer.middlewares.stack.push({ route: webManifesturl, handle: emptyHandle })
+        viteServer.middlewares.stack.push({ route: webManifest, handle: emptyHandle })
         viteServer.middlewares.stack.push({ route: devSw, handle: emptyHandle })
       })
 

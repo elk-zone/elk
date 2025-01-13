@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
-import { NOTIFICATION_FILTER_TYPES } from '~/constants'
 import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/types'
+import { NOTIFICATION_FILTER_TYPES } from '~/constants'
 
 definePageMeta({
   middleware: 'auth',
@@ -36,9 +36,8 @@ const filter = computed<akkoma.v1.NotificationType | undefined>(() => {
   return undefined
 })
 
-const filterIconMap: Record<akkoma.v1.NotificationType, string> = {
+const filterIconMap = {
   'mention': 'i-ri:at-line',
-  'status': 'i-ri:account-pin-circle-line',
   'reblog': 'i-ri:repeat-fill',
   'follow': 'i-ri:user-follow-line',
   'follow_request': 'i-ri:user-shared-line',
@@ -46,7 +45,7 @@ const filterIconMap: Record<akkoma.v1.NotificationType, string> = {
   'poll': 'i-ri:chat-poll-line',
   'update': 'i-ri:edit-2-line',
   'admin.sign_up': 'i-ri:user-add-line',
-  'admin.report': 'i-ri:flag-line',
+  'pleroma:report': 'i-ri:flag-line',
   'severed_relationships': 'i-ri:user-unfollow-line',
   'moderation_warning': 'i-ri:error-warning-line',
 }

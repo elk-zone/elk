@@ -93,7 +93,7 @@ export type UpdateNotification = BaseNotificationWithStatus<"update">;
 export type AdminSignUpNotification = BaseNotificationPlain<"admin.sign_up">;
 
 export type AdminReportNotification =
-  BaseNotificationWithReport<"admin.report">;
+  BaseNotificationWithReport<"pleroma:report">;
 
 /**
  * Some of your follow relationships have been severed as a result of a moderation or block event

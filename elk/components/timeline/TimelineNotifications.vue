@@ -9,7 +9,13 @@ const { filter } = defineProps<{
 const route = useRoute()
 const lastAccessedNotificationRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE, '')
 
-const options = { limit: 30, types: filter ? [filter] : [] }
+const akkomaFilter = computed(() => {
+  if (!filter)
+    return []
+  return (filter === 'favourite' || filter === 'pleroma:emoji_reaction' ? ['favourite', 'pleroma:emoji_reaction'] : [filter]) as akkoma.v1.NotificationType[]
+})
+
+const options: akkoma.rest.v1.ListNotificationsParams = { limit: 30, includeTypes: akkomaFilter.value }
 
 // Default limit is 20 notifications, and servers are normally caped to 30
 const paginator = useAkkoClient().v1.notifications.list(options)

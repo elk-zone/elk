@@ -625,11 +625,12 @@
       "sign_up": "S'inscrire"
     },
     "notifications_all": "Tout",
-    "notifications_favourite": "f",
+    "notifications_favourite": "Réactions",
     "notifications_follow": "Suivre",
     "notifications_follow_request": "Demande de suivi",
     "notifications_mention": "Mentions",
     "notifications_more_tooltip": "Filtrer les notifications par type",
+    "notifications_pleroma:report": "Signalements",
     "notifications_poll": "Sondage",
     "notifications_reblog": "Partager",
     "notifications_status": "Statut",

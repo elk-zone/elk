@@ -674,11 +674,12 @@
       "sign_up": "Sign-Up"
     },
     "notifications_all": "All",
-    "notifications_favourite": "Favorite",
+    "notifications_favourite": "Reactions",
     "notifications_follow": "Follow",
     "notifications_follow_request": "Follow request",
     "notifications_mention": "Mentions",
     "notifications_more_tooltip": "Filter notifications by type",
+    "notifications_pleroma:report": "Report",
     "notifications_poll": "Poll",
     "notifications_reblog": "Boost",
     "notifications_status": "Status",

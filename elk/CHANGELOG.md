@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.26 (2025-01-13)
+
+
+### Bug Fixes
+
+* var env ([16ec264](https://github.com/BDX-town/elk/commit/16ec2648fb7243784cbf67e808a64b2a181868b3))
+
 ## 0.15.25 (2025-01-13)
 
 

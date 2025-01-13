@@ -2,7 +2,6 @@ FROM docker.io/library/node:lts-alpine AS base
 
 ENV NUXT_PUBLIC_DEFAULT_SERVER=bdx.town
 ENV NUXT_PUBLIC_SINGLE_INSTANCE=true
-ENV NODE_ENV=production
 
 # Prepare work directory
 WORKDIR /elk
@@ -32,6 +31,8 @@ RUN yarn install
 RUN yarn build
 
 FROM base AS runner
+
+ENV NODE_ENV=production
 
 ARG UID=911
 ARG GID=911

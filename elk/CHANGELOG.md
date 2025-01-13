@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.25 (2025-01-13)
+
+
+### Bug Fixes
+
+* notification filter ([1073ec1](https://github.com/BDX-town/elk/commit/1073ec105916259a6993c1b35ad1a6daec7f6d49))
+
 ## 0.15.23 (2025-01-13)
 
 ## 0.15.22 (2025-01-07)

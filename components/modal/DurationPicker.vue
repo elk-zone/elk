@@ -14,8 +14,8 @@ watchEffect(() => {
 
   const duration
       = days.value * 24 * 60 * 60
-      + hours.value * 60 * 60
-      + minutes.value * 60
+        + hours.value * 60 * 60
+        + minutes.value * 60
 
   if (duration <= 0) {
     isValid.value = false

@@ -1,12 +1,12 @@
 import type WebSocket from "isomorphic-ws";
 
+import { type akkoma } from "../../akkoma";
 import {
   type Logger,
   type Serializer,
   type WebSocketConnector,
   type WebSocketSubscriptionCounter,
 } from "../../interfaces";
-import { type akkoma } from "../../akkoma";
 import { MastoUnexpectedError } from "../errors";
 import { toAsyncIterable } from "./async-iterable";
 
@@ -92,7 +92,7 @@ export class WebSocketSubscription implements akkoma.streaming.Subscription {
     const params = this.params ?? {};
     const extra = Object.values(params) as string[];
     const stream = [this.stream, ...extra];
-    return stream.every((s) => event.stream.includes(s));
+    return stream.every((s) => event.stream?.includes(s));
   }
 
   private parseMessage(rawEvent: string): akkoma.streaming.Event {

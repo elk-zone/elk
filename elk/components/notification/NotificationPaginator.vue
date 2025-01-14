@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
+import type { GroupedAccountLike, NotificationSlot } from '~/types'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
-import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
   paginator: akkoma.Paginator<akkoma.v1.Notification[], akkoma.rest.v1.ListNotificationsParams>
@@ -163,7 +163,6 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
 }
 
 const { clearNotifications } = useNotifications()
-const { formatNumber } = useHumanReadableNumber()
 </script>
 
 <!-- eslint-disable vue/attribute-hyphenation -->
@@ -176,9 +175,7 @@ const { formatNumber } = useHumanReadableNumber()
     :virtualScroller="virtualScroller"
   >
     <template #updater="{ number, update }">
-      <button id="elk_show_new_items" py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
-        {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
-      </button>
+      <CommonShowNewItems :number="number" :update="update" @click="clearNotifications" />
     </template>
     <template #default="{ item, active }">
       <template v-if="virtualScroller">

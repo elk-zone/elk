@@ -47,6 +47,12 @@ const userSettings = useUserSettings()
         {{ $t('settings.preferences.hide_tag_hover_card') }}
       </SettingsToggleItem>
       <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'autoloadNewItems')"
+        @click="togglePreferences('autoloadNewItems')"
+      >
+        {{ $t('settings.preferences.autoload_new_items') }}
+      </SettingsToggleItem>
+      <SettingsToggleItem
         :checked="getPreferences(userSettings, 'enableAutoplay')"
         :disabled="getPreferences(userSettings, 'enableDataSaving')"
         @click="togglePreferences('enableAutoplay')"

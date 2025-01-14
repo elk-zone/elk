@@ -540,6 +540,7 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "autoload_new_items": "Auto load new status",
       "default_privacy": "Default privacy",
       "embedded_media": "Embedded Media Player",
       "embedded_media_description": "Display an embedded player instead of the normal preview card when expanding shared media streaming links.",

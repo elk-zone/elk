@@ -503,6 +503,7 @@
     },
     "notifications_settings": "Notifications",
     "preferences": {
+      "autoload_new_items": "Charger automatiquement les nouveaux statuts",
       "default_privacy": "Confidentialité par défaut",
       "enable_autoplay": "Activer la lecture automatique",
       "enable_data_saving": "Activer l'économie de données",

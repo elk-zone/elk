@@ -26,6 +26,7 @@ export interface PreferencesSettings {
   grayscaleMode: boolean
   enableAutoplay: boolean
   optimizeForLowPerformanceDevice: boolean
+  autoloadNewItems: boolean
   enableDataSaving: boolean
   enablePinchToZoom: boolean
   zenMode: boolean
@@ -72,6 +73,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideGifIndicatorOnPosts: false,
   hideBoostCount: false,
   hideReplyCount: false,
+  autoloadNewItems: false,
   hideReactCount: false,
   hideFollowerCount: false,
   hideTranslation: false,

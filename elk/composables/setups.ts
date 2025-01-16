@@ -10,6 +10,14 @@ export function setupPageHeader() {
     return acc
   }, {} as Record<string, Directions>)
 
+  const manifest = computed(() => (import.meta.client && useAppConfig().pwaEnabled)
+    ? [{
+        key: 'webmanifest',
+        rel: 'manifest',
+        href: `/manifest.webmanifest`,
+      }]
+    : [])
+
   useHydratedHead({
     htmlAttrs: {
       lang: () => locale.value,
@@ -50,13 +58,15 @@ export function setupPageHeader() {
 
       return titleTemplate
     },
-    link: (import.meta.client && useAppConfig().pwaEnabled)
-      ? () => [{
-          key: 'webmanifest',
-          rel: 'manifest',
-          href: `/manifest.webmanifest`,
-        }]
-      : [],
+    link: [
+      ...manifest.value,
+      ...(currentInstance.value?.thumbnail
+        ? [{
+            rel: 'icon',
+            href: currentInstance.value?.thumbnail,
+          }]
+        : []),
+    ],
   })
 }
 

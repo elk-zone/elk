@@ -20,11 +20,13 @@ const { data: status, pending, refresh: refreshStatus } = useAsyncData(
   { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef() },
 )
 const { client } = useAkko()
-const { data: context, pending: pendingContext, refresh: refreshContext } = useAsyncData(
+const { data, pending: pendingContext, refresh: refreshContext } = useAsyncData(
   `context:${id.value}`,
-  async () => client.value.v1.statuses.$select(id.value).context.fetch(),
+  () => client.value.v1.statuses.$select(id.value).context.fetch(),
   { watch: [isHydrated], immediate: isHydrated.value, lazy: true, default: () => shallowRef() },
 )
+
+const context = computed(() => status.value && data.value ? sortContext(status.value, data.value) : undefined)
 
 if (pendingContext)
   watchOnce(pendingContext, scrollTo)
@@ -93,7 +95,6 @@ onReactivated(() => {
             :initial="replyDraft!.draft"
             @published="refreshContext()"
           />
-
           <template v-if="!pendingContext">
             <DynamicScroller
               v-slot="{ item, index, active }"
@@ -121,7 +122,6 @@ onReactivated(() => {
 
       <StatusNotFound v-else :account="route.params.account as string" :status="id" />
     </template>
-
     <StatusCardSkeleton v-else border="b base" />
     <TimelineSkeleton v-if="pending || pendingContext" />
   </MainContent>

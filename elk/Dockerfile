@@ -1,7 +1,7 @@
 FROM docker.io/library/node:lts-alpine AS base
 
 ENV NUXT_PUBLIC_DEFAULT_SERVER=bdx.town
-ENV NUXT_PUBLIC_SINGLE_INSTANCE=true
+ENV NUXT_PUBLIC_SINGLE_INSTANCE=false
 
 # Prepare work directory
 WORKDIR /elk

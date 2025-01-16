@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.28 (2025-01-16)
+
+
+### Bug Fixes
+
+* thread status sort ([44f01fb](https://github.com/BDX-town/elk/commit/44f01fb3d1e9959b9b94ee5c9c2266b9b0948ee5))
+
 ## 0.15.27 (2025-01-14)
 
 ## 0.15.26 (2025-01-13)

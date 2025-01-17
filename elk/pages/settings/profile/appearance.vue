@@ -178,7 +178,7 @@ onReactivated(refreshInfo)
           <p font-medium>
             {{ $t('settings.profile.appearance.bio') }}
           </p>
-          <textarea v-model="form.note" maxlength="500" min-h-10ex input-base />
+          <textarea v-model="form.note" min-h-30ex input-base />
         </label>
 
         <!-- metadata -->

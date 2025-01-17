@@ -33,19 +33,11 @@ useHydratedHead({
           {{ $t('settings.language.how_to_contribute') }}
         </NuxtLink>
       </section>
-      <section mt4>
+      <section mt4 space-y-4>
         <h2 font-bold text-xl flex="~ gap-1" items-center>
           {{ $t('settings.language.post_language') }}
         </h2>
-        <SettingsItem
-          v-if="currentUser"
-          command large
-          icon="i-ri:quill-pen-line"
-          :text="$t('settings.language.post_language')"
-          :description="$t('settings.account_settings.description')"
-          :to="`https://${currentUser!.server}/settings/preferences/other`"
-          external target="_blank"
-        />
+        <SettingsPublishLanguage />
       </section>
       <section>
         <h2 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>

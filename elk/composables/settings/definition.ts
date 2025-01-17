@@ -37,6 +37,7 @@ export interface PreferencesSettings {
 }
 
 export interface UserSettings {
+  publishLanguage: string
   preferences: Partial<PreferencesSettings>
   colorMode?: ColorMode
   fontSize: FontSize
@@ -95,6 +96,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
 
 export function getDefaultUserSettings(locales: string[]): UserSettings {
   return {
+    publishLanguage: getDefaultLanguage(locales),
     language: getDefaultLanguage(locales),
     fontSize: DEFAULT_FONT_SIZE,
     disabledTranslationLanguages: [],

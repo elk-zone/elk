@@ -4,6 +4,7 @@ import { InjectionKeyDropdownContext } from '~/constants/symbols'
 defineProps<{
   placement?: string
   autoBoundaryMaxSize?: boolean
+  autoSize?: boolean | 'min' | 'max'
 }>()
 
 const dropdown = ref<any>()
@@ -22,7 +23,7 @@ defineExpose({
 </script>
 
 <template>
-  <VDropdown v-bind="$attrs" ref="dropdown" :class="colorMode.value" :placement="placement || 'auto'" :auto-boundary-max-size="autoBoundaryMaxSize">
+  <VDropdown v-bind="$attrs" ref="dropdown" :class="colorMode.value" :placement="placement || 'auto'" :auto-size="autoSize" :auto-boundary-max-size="autoBoundaryMaxSize">
     <slot />
     <template #popper="scope">
       <slot name="popper" v-bind="scope" />

@@ -437,6 +437,7 @@
     },
     "language": {
       "display_language": "Langue d'affichage",
+      "how_to_contribute": "Comment contribuer ?",
       "label": "Langue",
       "post_language": "Langue de publication",
       "translations": {

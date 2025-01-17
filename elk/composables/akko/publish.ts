@@ -17,7 +17,7 @@ export function usePublish(options: {
   const { client } = useAkko()
   const settings = useUserSettings()
 
-  const preferredLanguage = computed(() => (currentUser.value?.account.source.language || settings.value?.language || 'en').split('-')[0])
+  const preferredLanguage = computed(() => (settings.value.publishLanguage || settings.value?.language || 'en').split('-')[0])
 
   const isSending = ref(false)
   const isExpanded = ref(false)

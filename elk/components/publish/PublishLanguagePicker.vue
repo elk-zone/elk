@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
 
+const props = defineProps<{ [x: string]: any }>()
+
 const modelValue = defineModel<string>({ required: true })
 
 const { t } = useI18n()
@@ -43,7 +45,7 @@ function chooseLanguage(language: string) {
 </script>
 
 <template>
-  <div relative of-x-hidden>
+  <div relative of-x-hidden v-bind="props">
     <div p2>
       <input
         v-model="languageKeyword"

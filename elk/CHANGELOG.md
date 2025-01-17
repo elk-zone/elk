@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.29 (2025-01-17)
+
+
+### Bug Fixes
+
+* weird nav padding ([3b2c197](https://github.com/BDX-town/elk/commit/3b2c19737c1179e020d1c7025b2c5338862ae4c9))
+
 ## 0.15.28 (2025-01-16)
 
 

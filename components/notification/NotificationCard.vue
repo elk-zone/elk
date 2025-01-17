@@ -141,6 +141,13 @@ if (unsupportedEmojiReactionTypes.includes(notification.type) || !supportedNotif
       <div flex p4 items-center>
         <div i-material-symbols:heart-broken-outline-rounded text-xl me-4 color-red />
         <div class="content-rich">
+          <!--
+            @vue-ignore
+            The type inference failed here (`any`) but since notification type is `severed_relationships`,
+            we are sure `typeof notification === SeveredRelationshipsNotification` here.
+            So we can assume the existence of `event` prop.
+            ref. https://docs.joinmastodon.org/entities/Notification/#relationship_severance_event
+          -->
           <RelationshipSeveranceCard :event="notification.event!" />
         </div>
       </div>

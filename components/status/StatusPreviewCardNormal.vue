@@ -107,7 +107,6 @@ function loadAttachment() {
     <StatusPreviewCardMoreFromAuthor
       v-if="card?.authors?.[0].account"
       :account="card.authors[0].account"
-      p-4 py-2
     />
   </NuxtLink>
 </template>

@@ -58,6 +58,7 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
         class="item"
         flex items-center gap4
         xl="ml0 mr5 px5 w-auto"
+        py-3
         :class="isSmallScreen
           ? `
             w-full
@@ -83,28 +84,3 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
     </CommonTooltip>
   </NuxtLink>
 </template>
-
-<style scoped>
-  .item {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-  @media screen and ( max-height: 820px ) and ( min-width: 1280px ) {
-    .item {
-      padding-top: 0.25rem;
-      padding-bottom: 0.25rem;
-    }
-  }
-  @media screen and ( max-height: 780px ) and ( min-width: 640px ) {
-    .item {
-      padding-top: 0.35rem;
-      padding-bottom: 0.35rem;
-    }
-  }
-  @media screen and ( max-height: 780px ) and ( min-width: 1280px ) {
-    .item {
-      padding-top: 0.05rem;
-      padding-bottom: 0.05rem;
-    }
-  }
-</style>

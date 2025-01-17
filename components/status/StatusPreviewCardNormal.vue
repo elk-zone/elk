@@ -45,65 +45,69 @@ function loadAttachment() {
     bg-card
     hover:bg-active
     :class="{
-      'flex': isSquare,
+      'flex flex-col': isSquare,
       'p-4': root,
       'rounded-lg': !root,
     }"
     target="_blank"
     external
   >
-    <div
-      v-if="card.image"
-      flex flex-col
-      display-block of-hidden
-      :class="{
-        'sm:(min-w-32 w-32 h-32) min-w-24 w-24 h-24': isSquare,
-        'w-full aspect-[1.91]': !isSquare,
-        'rounded-lg': root,
-      }"
-      relative
-    >
-      <CommonBlurhash
-        :blurhash="card.blurhash"
-        :src="card.image"
-        :width="card.width"
-        :height="card.height"
-        :alt="alt"
-        :should-load-image="shouldLoadAttachment"
-        w-full h-full object-cover
-        :class="!shouldLoadAttachment ? 'brightness-60' : ''"
-      />
-      <button
-        v-if="!shouldLoadAttachment"
-        type="button"
-        absolute
-        class="status-preview-card-load bg-black/64"
-        p-2
-        transition
-        rounded
-        hover:bg-black
-        cursor-pointer
-        @click.stop.prevent="!shouldLoadAttachment ? loadAttachment() : null"
+    <div :class="isSquare ? 'flex' : ''">
+      <!-- image -->
+      <div
+        v-if="card.image"
+        flex flex-col
+        display-block of-hidden
+        :class="{
+          'sm:(min-w-32 w-32 h-32) min-w-24 w-24 h-24': isSquare,
+          'w-full aspect-[1.91]': !isSquare,
+          'rounded-lg': root,
+        }"
+        relative
       >
-        <span
-          text-sm
-          text-white
-          flex flex-col justify-center items-center
-          gap-3 w-6 h-6
-          i-ri:file-download-line
+        <CommonBlurhash
+          :blurhash="card.blurhash"
+          :src="card.image"
+          :width="card.width"
+          :height="card.height"
+          :alt="alt"
+          :should-load-image="shouldLoadAttachment"
+          w-full h-full object-cover
+          :class="!shouldLoadAttachment ? 'brightness-60' : ''"
         />
-      </button>
+        <button
+          v-if="!shouldLoadAttachment"
+          type="button"
+          absolute
+          class="status-preview-card-load bg-black/64"
+          p-2
+          transition
+          rounded
+          hover:bg-black
+          cursor-pointer
+          @click.stop.prevent="!shouldLoadAttachment ? loadAttachment() : null"
+        >
+          <span
+            text-sm
+            text-white
+            flex flex-col justify-center items-center
+            gap-3 w-6 h-6
+            i-ri:file-download-line
+          />
+        </button>
+      </div>
+      <div
+        v-else
+        min-w-24 w-24 h-24 sm="min-w-32 w-32 h-32" bg="slate-500/10" flex justify-center items-center
+        :class="[
+          root ? 'rounded-lg' : '',
+        ]"
+      >
+        <div :class="cardTypeIconMap[card.type]" w="30%" h="30%" text-secondary />
+      </div>
+      <!-- description -->
+      <StatusPreviewCardInfo :p="isSquare ? 'x-4' : '4'" :root="root" :card="card" :provider="providerName" />
     </div>
-    <div
-      v-else
-      min-w-24 w-24 h-24 sm="min-w-32 w-32 h-32" bg="slate-500/10" flex justify-center items-center
-      :class="[
-        root ? 'rounded-lg' : '',
-      ]"
-    >
-      <div :class="cardTypeIconMap[card.type]" w="30%" h="30%" text-secondary />
-    </div>
-    <StatusPreviewCardInfo :p="isSquare ? 'x-4' : '4'" :root="root" :card="card" :provider="providerName" />
     <StatusPreviewCardMoreFromAuthor
       v-if="card?.authors?.[0].account"
       :account="card.authors[0].account"

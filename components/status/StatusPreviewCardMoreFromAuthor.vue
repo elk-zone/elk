@@ -12,7 +12,7 @@ defineProps<{
     flex gap-2
     my-auto
     p-4 py-2
-    bg-gray-300
+    light:bg-gray-3 dark:bg-gray-8
   >
     <span z-0>More from</span>
     <AccountInlineInfo :account="account" hover:bg-gray-300 />

@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 
 export interface Props {
@@ -36,6 +36,10 @@ export interface Props {
   dialogLabelledBy?: string
 }
 
+defineOptions({
+  inheritAttrs: false,
+})
+
 const props = withDefaults(defineProps<Props>(), {
   zIndex: 100,
   closeByMask: true,
@@ -45,20 +49,14 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   /** v-model dialog visibility */
-  (event: 'close',): void
+  (event: 'close'): void
 }>()
 
-const { modelValue: visible } = defineModel<{
-  /** v-model dislog visibility */
-  modelValue: boolean
-}>()
-
-defineOptions({
-  inheritAttrs: false,
-})
+const visible = defineModel<boolean>({ required: true })
 
 const deactivated = useDeactivated()
 const route = useRoute()
+const userSettings = useUserSettings()
 
 /** scrollable HTML element */
 const elDialogMain = ref<HTMLDivElement>()
@@ -80,6 +78,8 @@ defineExpose({
 
 /** close the dialog */
 function close() {
+  if (!visible.value)
+    return
   visible.value = false
   emit('close')
 }
@@ -119,9 +119,11 @@ const isVShow = computed(() => {
     : true
 })
 
-const bindTypeToAny = ($attrs: any) => $attrs as any
+function bindTypeToAny($attrs: any) {
+  return $attrs as any
+}
 
-const trapFocusDialog = () => {
+function trapFocusDialog() {
   if (isVShow.value)
     nextTick().then(() => activate())
 }
@@ -155,7 +157,13 @@ useEventListener('keydown', (e: KeyboardEvent) => {
         <!-- corresponding to issue: #106, so please don't remove it. -->
 
         <!-- Mask layer: blur -->
-        <div class="dialog-mask" absolute inset-0 z-0 bg-transparent opacity-100 backdrop-filter backdrop-blur-sm touch-none />
+        <div
+          class="dialog-mask"
+          :class="{
+            'backdrop-blur-sm': !getPreferences(userSettings, 'optimizeForLowPerformanceDevice'),
+          }"
+          absolute inset-0 z-0 bg-transparent opacity-100 backdrop-filter touch-none
+        />
         <!-- Mask layer: dimming -->
         <div class="dialog-mask" absolute inset-0 z-0 bg-black opacity-48 touch-none h="[calc(100%+0.5px)]" @click="clickMask" />
         <!-- Dialog container -->

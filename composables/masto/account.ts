@@ -4,17 +4,17 @@ export function getDisplayName(account: mastodon.v1.Account, options?: { rich?: 
   const displayName = account.displayName || account.username || account.acct || ''
   if (options?.rich)
     return displayName
-  return displayName.replace(/:([\w-]+?):/g, '')
+  return displayName.replace(/:([\w-]+):/g, '')
 }
 
-export function acctToShortHandle(acct: string) {
+export function accountToShortHandle(acct: string) {
   return `@${acct.includes('@') ? acct.split('@')[0] : acct}`
 }
 
 export function getShortHandle({ acct }: mastodon.v1.Account) {
   if (!acct)
     return ''
-  return acctToShortHandle(acct)
+  return accountToShortHandle(acct)
 }
 
 export function getServerName(account: mastodon.v1.Account) {

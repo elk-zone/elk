@@ -12,7 +12,7 @@ defineProps<{
   >
     <slot name="prepend" />
     <CommonTooltip :content="$t('account.bot')" :disabled="showLabel">
-      <div i-ri:robot-line />
+      <div i-mdi:robot-outline />
     </CommonTooltip>
     <div v-if="showLabel">
       {{ $t('account.bot') }}

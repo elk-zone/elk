@@ -1,8 +1,7 @@
 <script setup lang="ts">
-
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => t('title.local_timeline'),
 })
 </script>

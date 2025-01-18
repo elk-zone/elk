@@ -1,4 +1,5 @@
 import type { mastodon } from 'masto'
+
 import type {
   CreatePushNotification,
   PushNotificationPolicy,
@@ -12,8 +13,8 @@ const supportsPushNotifications = typeof window !== 'undefined'
   && 'PushManager' in window
   && 'getKey' in PushSubscription.prototype
 
-export const usePushManager = () => {
-  const { client } = $(useMasto())
+export function usePushManager() {
+  const { client } = useMasto()
   const isSubscribed = ref(false)
   const notificationPermission = ref<PermissionState | undefined>(
     Notification.permission === 'denied'
@@ -24,22 +25,20 @@ export const usePushManager = () => {
           ? 'prompt'
           : undefined,
   )
-  const isSupported = $computed(() => supportsPushNotifications)
+  const isSupported = computed(() => supportsPushNotifications)
   const hiddenNotification = useLocalStorage<PushNotificationRequest>(STORAGE_KEY_NOTIFICATION, {})
   const configuredPolicy = useLocalStorage<PushNotificationPolicy>(STORAGE_KEY_NOTIFICATION_POLICY, {})
-  const pushNotificationData = ref({
-    follow: currentUser.value?.pushSubscription?.alerts.follow ?? true,
-    favourite: currentUser.value?.pushSubscription?.alerts.favourite ?? true,
-    reblog: currentUser.value?.pushSubscription?.alerts.reblog ?? true,
-    mention: currentUser.value?.pushSubscription?.alerts.mention ?? true,
-    poll: currentUser.value?.pushSubscription?.alerts.poll ?? true,
-    policy: configuredPolicy.value[currentUser.value?.account?.acct ?? ''] ?? 'all',
-  })
-  // don't clone, we're using indexeddb
-  const { history, commit, clear } = useManualRefHistory(pushNotificationData)
+  const pushNotificationData = ref(createRawSettings(
+    currentUser.value?.pushSubscription,
+    configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
+  ))
+  const oldPushNotificationData = ref(createRawSettings(
+    currentUser.value?.pushSubscription,
+    configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
+  ))
   const saveEnabled = computed(() => {
     const current = pushNotificationData.value
-    const previous = history.value?.[0]?.snapshot
+    const previous = oldPushNotificationData.value
     return current.favourite !== previous.favourite
       || current.reblog !== previous.reblog
       || current.mention !== previous.mention
@@ -50,22 +49,22 @@ export const usePushManager = () => {
 
   watch(() => currentUser.value?.pushSubscription, (subscription) => {
     isSubscribed.value = !!subscription
-    pushNotificationData.value = {
-      follow: subscription?.alerts.follow ?? false,
-      favourite: subscription?.alerts.favourite ?? false,
-      reblog: subscription?.alerts.reblog ?? false,
-      mention: subscription?.alerts.mention ?? false,
-      poll: subscription?.alerts.poll ?? false,
-      policy: configuredPolicy.value[currentUser.value?.account?.acct ?? ''] ?? 'all',
-    }
+    pushNotificationData.value = createRawSettings(
+      subscription,
+      configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
+    )
+    oldPushNotificationData.value = createRawSettings(
+      subscription,
+      configuredPolicy.value[currentUser.value?.account?.acct ?? ''],
+    )
   }, { immediate: true, flush: 'post' })
 
   const subscribe = async (
     notificationData?: CreatePushNotification,
-    policy?: mastodon.v1.SubscriptionPolicy,
+    policy?: mastodon.v1.WebPushSubscriptionPolicy,
     force?: boolean,
   ): Promise<SubscriptionResult> => {
-    if (!isSupported)
+    if (!isSupported.value)
       return 'not-supported'
 
     if (!currentUser.value)
@@ -88,7 +87,10 @@ export const usePushManager = () => {
 
     currentUser.value.pushSubscription = await createPushSubscription(
       {
-        pushSubscription, server, token, vapidKey,
+        pushSubscription,
+        server,
+        token,
+        vapidKey,
       },
       notificationData ?? {
         alerts: {
@@ -110,18 +112,26 @@ export const usePushManager = () => {
   }
 
   const unsubscribe = async () => {
-    if (!isSupported || !isSubscribed || !currentUser.value)
+    if (!isSupported.value || !isSubscribed.value || !currentUser.value)
       return false
 
     await removePushNotifications(currentUser.value)
     await removePushNotificationData(currentUser.value)
   }
 
-  const saveSettings = async (policy?: mastodon.v1.SubscriptionPolicy) => {
+  const saveSettings = async (policy?: mastodon.v1.WebPushSubscriptionPolicy) => {
     if (policy)
       pushNotificationData.value.policy = policy
 
-    commit()
+    const current = pushNotificationData.value
+    oldPushNotificationData.value = {
+      favourite: current.favourite,
+      reblog: current.reblog,
+      mention: current.mention,
+      follow: current.follow,
+      poll: current.poll,
+      policy: current.policy,
+    }
 
     if (policy)
       configuredPolicy.value[currentUser.value!.account.acct ?? ''] = policy
@@ -129,27 +139,25 @@ export const usePushManager = () => {
       configuredPolicy.value[currentUser.value!.account.acct ?? ''] = pushNotificationData.value.policy
 
     await nextTick()
-    clear()
-    await nextTick()
   }
 
   const undoChanges = () => {
-    const current = pushNotificationData.value
-    const previous = history.value[0].snapshot
-    current.favourite = previous.favourite
-    current.reblog = previous.reblog
-    current.mention = previous.mention
-    current.follow = previous.follow
-    current.poll = previous.poll
-    current.policy = previous.policy
+    const previous = oldPushNotificationData.value
+    pushNotificationData.value = {
+      favourite: previous.favourite,
+      reblog: previous.reblog,
+      mention: previous.mention,
+      follow: previous.follow,
+      poll: previous.poll,
+      policy: previous.policy,
+    }
     configuredPolicy.value[currentUser.value!.account.acct ?? ''] = previous.policy
-    commit()
-    clear()
   }
 
   const updateSubscription = async () => {
     if (currentUser.value) {
-      const previous = history.value[0].snapshot
+      const previous = oldPushNotificationData.value
+      // const previous = history.value[0].snapshot
       const data = {
         alerts: {
           follow: pushNotificationData.value.follow,
@@ -168,9 +176,10 @@ export const usePushManager = () => {
       if (policyChanged)
         await subscribe(data, policy, true)
       else
-        currentUser.value.pushSubscription = await client.v1.webPushSubscriptions.update({ data })
+        currentUser.value.pushSubscription = await client.value.v1.push.subscription.update({ data })
 
-      policyChanged && await nextTick()
+      if (policyChanged)
+        await nextTick()
 
       // force change policy when changed: watch is resetting it on push subscription update
       await saveSettings(policyChanged ? policy : undefined)
@@ -188,5 +197,19 @@ export const usePushManager = () => {
     updateSubscription,
     subscribe,
     unsubscribe,
+  }
+}
+
+function createRawSettings(
+  pushSubscription?: mastodon.v1.WebPushSubscription,
+  subscriptionPolicy?: mastodon.v1.WebPushSubscriptionPolicy,
+) {
+  return {
+    follow: pushSubscription?.alerts.follow ?? true,
+    favourite: pushSubscription?.alerts.favourite ?? true,
+    reblog: pushSubscription?.alerts.reblog ?? true,
+    mention: pushSubscription?.alerts.mention ?? true,
+    poll: pushSubscription?.alerts.poll ?? true,
+    policy: subscriptionPolicy ?? 'all',
   }
 }

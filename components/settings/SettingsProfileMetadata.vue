@@ -1,20 +1,17 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { form } = defineModel<{
-  form: {
-    fieldsAttributes: NonNullable<mastodon.v1.UpdateCredentialsParams['fieldsAttributes']>
-  }
-}>()
-const dropdown = $ref<any>()
+const form = defineModel<{
+  fieldsAttributes: NonNullable<mastodon.rest.v1.UpdateCredentialsParams['fieldsAttributes']>
+}>({ required: true })
+const dropdown = ref<any>()
 
 const fieldIcons = computed(() =>
   Array.from({ length: maxAccountFieldCount.value }, (_, i) =>
-    getAccountFieldIcon(form.value.fieldsAttributes[i].name),
-  ),
+    getAccountFieldIcon(form.value.fieldsAttributes[i].name)),
 )
 
-const fieldCount = $computed(() => {
+const fieldCount = computed(() => {
   // find last non-empty field
   const idx = [...form.value.fieldsAttributes].reverse().findIndex(f => f.name || f.value)
   if (idx === -1)
@@ -25,9 +22,9 @@ const fieldCount = $computed(() => {
   )
 })
 
-const chooseIcon = (i: number, text: string) => {
+function chooseIcon(i: number, text: string) {
   form.value.fieldsAttributes[i].name = text
-  dropdown[i]?.hide()
+  dropdown.value[i]?.hide()
 }
 </script>
 
@@ -43,13 +40,13 @@ const chooseIcon = (i: number, text: string) => {
     <div flex="~ col gap4">
       <div v-for="i in fieldCount" :key="i" flex="~ gap3" items-center>
         <CommonDropdown ref="dropdown" placement="left">
-          <CommonTooltip content="Pick a icon">
+          <CommonTooltip :content="$t('tooltip.pick_an_icon')">
             <button type="button" btn-action-icon>
               <div :class="fieldIcons[i - 1] || 'i-ri:question-mark'" />
             </button>
           </CommonTooltip>
           <template #popper>
-            <div flex="~ wrap gap-1" max-w-50 m2>
+            <div flex="~ wrap gap-1" max-w-60 m2 me1>
               <CommonTooltip
                 v-for="(icon, text) in accountFieldIcons"
                 :key="icon"
@@ -66,12 +63,14 @@ const chooseIcon = (i: number, text: string) => {
         </CommonDropdown>
         <input
           v-model="form.fieldsAttributes[i - 1].name"
-          type="text" placeholder="Label"
+          type="text" placeholder-text-secondary
+          :placeholder="$t('settings.profile.appearance.profile_metadata_label')"
           input-base
         >
         <input
           v-model="form.fieldsAttributes[i - 1].value"
-          type="text" placeholder="Content"
+          type="text" placeholder-text-secondary
+          :placeholder="$t('settings.profile.appearance.profile_metadata_value')"
           input-base
         >
       </div>

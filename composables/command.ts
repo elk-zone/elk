@@ -1,8 +1,8 @@
+import type { LocaleObject } from '@nuxtjs/i18n'
 import type { ComputedRef } from 'vue'
-import { defineStore } from 'pinia'
-import Fuse from 'fuse.js'
-import type { LocaleObject } from '#i18n'
 import type { SearchResult } from '~/composables/masto/search'
+import Fuse from 'fuse.js'
+import { defineStore } from 'pinia'
 
 // @unocss-include
 
@@ -52,6 +52,9 @@ export type ResolvedCommand = Exclude<CommandProvider, 'icon' | 'name' | 'descri
   bindings: string[] | undefined
 }
 
+// TODO: define a type for command arg
+export type CommandHandler<T = void> = (arg: T) => void
+
 export interface BaseQueryResultItem {
   index: number
   type: string
@@ -78,8 +81,9 @@ export interface QueryResult {
   grouped: Map<CommandScopeNames, QueryResultItem[]>
 }
 
-const r = <T extends Object | undefined>(i: T | (() => T)): T =>
-  typeof i === 'function' ? i() : i
+function resolveFunction<T>(i: T): T extends () => infer R ? R : T {
+  return typeof i === 'function' ? i() : i
+}
 
 export const useCommandRegistry = defineStore('command', () => {
   const providers = reactive(new Set<CommandProvider>())
@@ -89,10 +93,10 @@ export const useCommandRegistry = defineStore('command', () => {
       .filter(command => command.visible ? command.visible() : true)
       .map(provider => ({
         ...provider,
-        icon: r(provider.icon),
-        name: r(provider.name),
-        description: r(provider.description),
-        bindings: r(provider.bindings),
+        icon: resolveFunction(provider.icon),
+        name: resolveFunction(provider.name),
+        description: resolveFunction(provider.description),
+        bindings: resolveFunction(provider.bindings),
       })))
 
   let lastScope = ''
@@ -115,7 +119,7 @@ export const useCommandRegistry = defineStore('command', () => {
         .filter(cmd => (cmd.parent ?? '') === scope)
 
       if (query) {
-        const fuse = lastScope === scope && lastFuse
+        const fuse = (lastScope === scope && lastFuse)
           ? lastFuse
           : new Fuse(cmds, {
             keys: ['scope', 'name', 'description'],
@@ -166,7 +170,8 @@ export const useCommandRegistry = defineStore('command', () => {
         const indexed = cmds.map((cmd, index) => ({ ...cmd, index }))
 
         const grouped = new Map<CommandScopeNames, CommandQueryResultItem[]>(
-          scopes.map(scope => [scope, []]))
+          scopes.map(scope => [scope, []]),
+        )
         for (const cmd of indexed) {
           const scope = cmd.scope ?? ''
           grouped.get(scope)!.push({
@@ -237,25 +242,14 @@ export function useCommands(cmds: () => CommandProvider[]) {
   tryOnScopeDispose(cleanup)
 }
 
-export const provideGlobalCommands = () => {
+export function provideGlobalCommands() {
   const { locale, t } = useI18n()
   const { locales } = useI18n() as { locales: ComputedRef<LocaleObject[]> }
-  const router = useRouter()
   const users = useUsers()
   const masto = useMasto()
   const colorMode = useColorMode()
   const userSettings = useUserSettings()
-
-  useCommand({
-    scope: 'Navigation',
-
-    name: () => t('nav.settings'),
-    icon: 'i-ri:settings-3-line',
-
-    onActivate() {
-      router.push('/settings')
-    },
-  })
+  const { singleInstanceServer, oauth } = useSignIn()
 
   useCommand({
     scope: 'Preferences',
@@ -272,10 +266,10 @@ export const provideGlobalCommands = () => {
     scope: 'Preferences',
 
     name: () => t('command.toggle_zen_mode'),
-    icon: () => userSettings.value.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
+    icon: () => userSettings.value.preferences.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line',
 
     onActivate() {
-      userSettings.value.zenMode = !userSettings.value.zenMode
+      togglePreferences('zenMode')
     },
   })
 
@@ -310,7 +304,10 @@ export const provideGlobalCommands = () => {
     icon: 'i-ri:user-add-line',
 
     onActivate() {
-      openSigninDialog()
+      if (singleInstanceServer)
+        oauth()
+      else
+        openSigninDialog()
     },
   })
   useCommand({
@@ -349,7 +346,7 @@ export const provideGlobalCommands = () => {
     icon: 'i-ri:logout-box-line',
 
     onActivate() {
-      signout()
+      signOut()
     },
   })
 }

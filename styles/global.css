@@ -2,54 +2,15 @@ html {
   font-size: var(--font-size, 15px);
   width: 100%;
   width: 100vw;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-@font-face {
-  font-display: swap;
-  font-family: 'DM Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/DM-mono-v10.ttf) format('truetype');
-}
-@font-face {
-  font-display: swap;
-  font-family: 'DM Serif Display';
-  font-style: normal;
-  font-weight: 400;
-  src: url(/fonts/DM-serif-display-v10.ttf) format('truetype');
-}
 @font-face {
   font-display: swap;
   font-family: 'Homemade Apple';
   font-style: normal;
   font-weight: 400;
   src: url(/fonts/homemade-apple-v18.ttf) format('truetype');
-}
-
-* {
-  scrollbar-color: #8885 var(--c-border);
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar:horizontal {
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--c-border);
-  border-radius: 1px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #8885;
-  border-radius: 1px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #8886;
 }
 
 ::-moz-selection {
@@ -74,21 +35,17 @@ body {
   display: none;
 }
 
-.custom-emoji {
-  display: inline-block;
-  overflow: hidden;
-  max-height: 1.3em;
-  max-width: 1.3em;
-  vertical-align: text-bottom;
-}
-
+.content-editor img.custom-emoji,
+.custom-emoji img,
 .iconify-emoji {
   display: inline-block;
+  height: 1.2em;
+  max-width: 100%;
+  margin-right: 0.075em;
+  margin-left: 0.075em;
+  object-fit: contain;
   overflow: hidden;
-  max-height: 1.2em;
-  max-width: 1.2em;
-  vertical-align: text-bottom;
-  margin: 0 0.1em;
+  vertical-align: -20%;
 }
 
 .iconify-emoji-padded {
@@ -128,6 +85,9 @@ em-emoji-picker {
   p:last-child {
     --at-apply: mb-1;
   }
+  pre {
+    --at-apply: whitespace-pre-wrap;
+  }
   code {
     --at-apply: bg-code text-code px1 py0.5 rounded text-0.875em leading-0.8em;
   }
@@ -152,8 +112,11 @@ em-emoji-picker {
   ul > li {
     --at-apply: pl-2;
   }
+  blockquote {
+    --at-apply: border-primary border-l-4 border-solid pl-3 my-3 text-secondary;
+  }
   .code-block {
-    --at-apply: font-mono bg-code text-0.875em p3 mt-2 rounded overflow-auto
+    --at-apply: bg-code text-0.875em p3 mt-2 rounded overflow-auto
       leading-1.6em;
 
     .shiki {
@@ -209,7 +172,7 @@ em-emoji-picker {
 html,
 body,
 #__nuxt {
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   padding: 0;
 }
@@ -222,7 +185,7 @@ html {
   --at-apply: bg-base text-base;
 }
 
-body {
+html:not(.enable-pinch-to-zoom) body {
   /* Prevent arbitrary zooming on mobile devices */
   touch-action: pan-x pan-y;
 }
@@ -249,4 +212,34 @@ footer {
 
 .squircle {
   clip-path: url(#avatar-mask);
+}
+
+/*
+Grayscale mode
+Setting each element filter to a different var
+allows controlling them individually
+*/
+[data-mode="grayscale"] img,
+[data-mode="grayscale"] video {
+  filter: grayscale(var(--media-grayscale, 1));
+  transition: filter .23s ease-in-out .2s;
+}
+[data-mode="grayscale"] pre {
+  filter: grayscale(var(--code-grayscale, 1));
+}
+[data-mode="grayscale"] .poll-wrapper {
+  filter: grayscale(var(--poll-grayscale, 1));
+}
+[data-mode="grayscale"] .status-actions,
+[data-mode="grayscale"] .status-boosted {
+  filter: grayscale(var(--status-grayscale, 1));
+}
+
+[data-mode="grayscale"] img:hover,
+[data-mode="grayscale"] video:hover {
+  filter: grayscale(0);
+}
+
+.nuxt-loading-indicator {
+  opacity: unset !important;
 }

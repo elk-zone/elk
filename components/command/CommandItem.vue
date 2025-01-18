@@ -1,18 +1,18 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import type { ResolvedCommand } from '~/composables/command'
-
-const emit = defineEmits<{
-  (event: 'activate'): void
-}>()
 
 const {
   cmd,
   index,
   active = false,
-} = $defineProps<{
+} = defineProps<{
   cmd: ResolvedCommand
   index: number
   active?: boolean
+}>()
+
+const emit = defineEmits<{
+  (event: 'activate'): void
 }>()
 </script>
 

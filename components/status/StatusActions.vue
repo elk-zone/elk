@@ -9,9 +9,10 @@ const props = defineProps<{
 
 const focusEditor = inject<typeof noop>('focus-editor', noop)
 
-const { details, command } = $(props)
+const { details, command } = props // TODO
 
 const userSettings = useUserSettings()
+const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const {
   status,
@@ -20,30 +21,30 @@ const {
   toggleBookmark,
   toggleFavourite,
   toggleReblog,
-} = $(useStatusActions(props))
+} = useStatusActions(props)
 
-const reply = () => {
+function reply() {
   if (!checkLogin())
     return
   if (details)
     focusEditor()
   else
-    navigateToStatus({ status, focusReply: true })
+    navigateToStatus({ status: status.value, focusReply: true })
 }
 </script>
 
 <template>
-  <div flex justify-between>
+  <div flex justify-between items-center class="status-actions">
     <div flex-1>
       <StatusActionButton
         :content="$t('action.reply')"
-        :text="status.repliesCount || ''"
-        color="text-blue" hover="text-blue" group-hover="bg-blue/10"
+        :text="!getPreferences(userSettings, 'hideReplyCount') && status.repliesCount || ''"
+        color="text-blue" hover="text-blue" elk-group-hover="bg-blue/10"
         icon="i-ri:chat-1-line"
         :command="command"
         @click="reply"
       >
-        <template v-if="status.repliesCount" #text>
+        <template v-if="status.repliesCount && !getPreferences(userSettings, 'hideReplyCount')" #text>
           <CommonLocalizedNumber
             keypath="action.reply_count"
             :count="status.repliesCount"
@@ -54,11 +55,12 @@ const reply = () => {
 
     <div flex-1>
       <StatusActionButton
-        :content="$t('action.boost')"
+        :content="$t(status.reblogged ? 'action.boosted' : 'action.boost')"
         :text="!getPreferences(userSettings, 'hideBoostCount') && status.reblogsCount ? status.reblogsCount : ''"
-        color="text-green" hover="text-green" group-hover="bg-green/10"
+        color="text-green" hover="text-green" elk-group-hover="bg-green/10"
         icon="i-ri:repeat-line"
         active-icon="i-ri:repeat-fill"
+        inactive-icon="i-tabler:repeat-off"
         :active="!!status.reblogged"
         :disabled="isLoading.reblogged || !canReblog"
         :command="command"
@@ -75,11 +77,13 @@ const reply = () => {
 
     <div flex-1>
       <StatusActionButton
-        :content="$t('action.favourite')"
+        :content="$t(status.favourited ? 'action.favourited' : 'action.favourite')"
         :text="!getPreferences(userSettings, 'hideFavoriteCount') && status.favouritesCount ? status.favouritesCount : ''"
-        color="text-rose" hover="text-rose" group-hover="bg-rose/10"
-        icon="i-ri:heart-3-line"
-        active-icon="i-ri:heart-3-fill"
+        :color="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
+        :hover="useStarFavoriteIcon ? 'text-yellow' : 'text-rose'"
+        :elk-group-hover="useStarFavoriteIcon ? 'bg-yellow/10' : 'bg-rose/10'"
+        :icon="useStarFavoriteIcon ? 'i-ri:star-line' : 'i-ri:heart-3-line'"
+        :active-icon="useStarFavoriteIcon ? 'i-ri:star-fill' : 'i-ri:heart-3-fill'"
         :active="!!status.favourited"
         :disabled="isLoading.favourited"
         :command="command"
@@ -96,8 +100,10 @@ const reply = () => {
 
     <div flex-none>
       <StatusActionButton
-        :content="$t('action.bookmark')"
-        color="text-yellow" hover="text-yellow" group-hover="bg-yellow/10"
+        :content="$t(status.bookmarked ? 'action.bookmarked' : 'action.bookmark')"
+        :color="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
+        :hover="useStarFavoriteIcon ? 'text-rose' : 'text-yellow'"
+        :elk-group-hover="useStarFavoriteIcon ? 'bg-rose/10' : 'bg-yellow/10' "
         icon="i-ri:bookmark-line"
         active-icon="i-ri:bookmark-fill"
         :active="!!status.bookmarked"

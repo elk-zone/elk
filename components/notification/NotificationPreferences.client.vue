@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { PushSubscriptionError } from '~/composables/push-notifications/types'
-
 defineProps<{ show?: boolean }>()
 
 const {
@@ -17,88 +15,88 @@ const {
 } = usePushManager()
 const { t } = useI18n()
 
-const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+const pwaEnabled = useAppConfig().pwaEnabled
 
-let busy = $ref<boolean>(false)
-let animateSave = $ref<boolean>(false)
-let animateSubscription = $ref<boolean>(false)
-let animateRemoveSubscription = $ref<boolean>(false)
-let subscribeError = $ref<string>('')
-let showSubscribeError = $ref<boolean>(false)
+const busy = ref<boolean>(false)
+const animateSave = ref<boolean>(false)
+const animateSubscription = ref<boolean>(false)
+const animateRemoveSubscription = ref<boolean>(false)
+const subscribeError = ref<string>('')
+const showSubscribeError = ref<boolean>(false)
 
-const hideNotification = () => {
+function hideNotification() {
   const key = currentUser.value?.account?.acct
   if (key)
     hiddenNotification.value[key] = true
 }
 
-const showWarning = $computed(() => {
+const showWarning = computed(() => {
   if (!pwaEnabled)
     return false
 
   return isSupported
-      && (!isSubscribed.value || !notificationPermission.value || notificationPermission.value === 'prompt')
-      && !(hiddenNotification.value[currentUser.value?.account?.acct ?? ''] === true)
+    && (!isSubscribed.value || !notificationPermission.value || notificationPermission.value === 'prompt')
+    && !(hiddenNotification.value[currentUser.value?.account?.acct ?? ''])
 })
 
-const saveSettings = async () => {
-  if (busy)
+async function saveSettings() {
+  if (busy.value)
     return
 
-  busy = true
+  busy.value = true
   await nextTick()
-  animateSave = true
+  animateSave.value = true
 
   try {
-    const subscription = await updateSubscription()
+    await updateSubscription()
   }
   catch (err) {
     // todo: handle error
     console.error(err)
   }
   finally {
-    busy = false
-    animateSave = false
+    busy.value = false
+    animateSave.value = false
   }
 }
 
-const doSubscribe = async () => {
-  if (busy)
+async function doSubscribe() {
+  if (busy.value)
     return
 
-  busy = true
+  busy.value = true
   await nextTick()
-  animateSubscription = true
+  animateSubscription.value = true
 
   try {
     const result = await subscribe()
     if (result !== 'subscribed') {
-      subscribeError = t(`settings.notifications.push_notifications.subscription_error.${result === 'notification-denied' ? 'permission_denied' : 'request_error'}`)
-      showSubscribeError = true
+      subscribeError.value = t(`settings.notifications.push_notifications.subscription_error.${result === 'notification-denied' ? 'permission_denied' : 'request_error'}`)
+      showSubscribeError.value = true
     }
   }
   catch (err) {
     if (err instanceof PushSubscriptionError) {
-      subscribeError = t(`settings.notifications.push_notifications.subscription_error.${err.code}`)
+      subscribeError.value = t(`settings.notifications.push_notifications.subscription_error.${err.code}`)
     }
     else {
       console.error(err)
-      subscribeError = t('settings.notifications.push_notifications.subscription_error.request_error')
+      subscribeError.value = t('settings.notifications.push_notifications.subscription_error.request_error')
     }
-    showSubscribeError = true
+    showSubscribeError.value = true
   }
   finally {
-    busy = false
-    animateSubscription = false
+    busy.value = false
+    animateSubscription.value = false
   }
 }
-const removeSubscription = async () => {
-  if (busy)
+async function removeSubscription() {
+  if (busy.value)
     return
 
-  busy = true
+  busy.value = true
   await nextTick()
-  animateRemoveSubscription = true
+  animateRemoveSubscription.value = true
   try {
     await unsubscribe()
   }
@@ -106,11 +104,11 @@ const removeSubscription = async () => {
     console.error(err)
   }
   finally {
-    busy = false
-    animateRemoveSubscription = false
+    busy.value = false
+    animateRemoveSubscription.value = false
   }
 }
-onActivated(() => (busy = false))
+onActivated(() => (busy.value = false))
 </script>
 
 <template>

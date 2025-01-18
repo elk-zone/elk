@@ -1,18 +1,29 @@
 <script setup lang="ts">
-const props = defineProps<{
+const {
+  is = 'div',
+  text,
+  description,
+  icon,
+  checked,
+  command,
+} = defineProps<{
+  is?: string
   text?: string
   description?: string
   icon?: string
   checked?: boolean
   command?: boolean
 }>()
+
 const emit = defineEmits(['click'])
+
+const type = computed(() => is === 'button' ? 'button' : null)
 
 const { hide } = useDropdownContext() || {}
 
 const el = ref<HTMLDivElement>()
 
-const handleClick = (evt: MouseEvent) => {
+function handleClick(evt: MouseEvent) {
   hide?.()
   emit('click', evt)
 }
@@ -21,11 +32,11 @@ useCommand({
   scope: 'Actions',
 
   order: -1,
-  visible: () => props.command && props.text,
+  visible: () => command && text,
 
-  name: () => props.text!,
-  icon: () => props.icon ?? 'i-ri:question-line',
-  description: () => props.description,
+  name: () => text!,
+  icon: () => icon ?? 'i-ri:question-line',
+  description: () => description,
 
   onActivate() {
     const clickEvent = new MouseEvent('click', {
@@ -39,9 +50,14 @@ useCommand({
 </script>
 
 <template>
-  <div
-    v-bind="$attrs" ref="el"
+  <component
+    v-bind="$attrs"
+    :is="is"
+    ref="el"
+    :type="type"
+    w-full
     flex gap-3 items-center cursor-pointer px4 py3
+    select-none
     hover-bg-active
     :aria-label="text"
     @click="handleClick"
@@ -66,5 +82,5 @@ useCommand({
 
     <div v-if="checked" i-ri:check-line />
     <slot name="actions" />
-  </div>
+  </component>
 </template>

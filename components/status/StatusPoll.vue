@@ -15,15 +15,15 @@ const expiredTimeAgo = useTimeAgo(poll.expiresAt!, timeAgoOptions)
 const expiredTimeFormatted = useFormattedDateTime(poll.expiresAt!)
 const { formatPercentage } = useHumanReadableNumber()
 
-const { client } = $(useMasto())
+const { client } = useMasto()
 
 async function vote(e: Event) {
   const formData = new FormData(e.target as HTMLFormElement)
-  const choices = formData.getAll('choices') as string[]
+  const choices = formData.getAll('choices').map(i => +i) as number[]
 
   // Update the poll optimistically
   for (const [index, option] of poll.options.entries()) {
-    if (choices.includes(String(index)))
+    if (choices.includes(index))
       option.votesCount = (option.votesCount || 0) + 1
   }
   poll.voted = true
@@ -36,17 +36,17 @@ async function vote(e: Event) {
 
   cacheStatus({ ...status, poll }, undefined, true)
 
-  await client.v1.polls.vote(poll.id, { choices })
+  await client.value.v1.polls.$select(poll.id).votes.create({ choices })
 }
 
-const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
+const votersCount = computed(() => poll.votersCount ?? poll.votesCount ?? 0)
 </script>
 
 <template>
-  <div flex flex-col w-full items-stretch gap-2 py3 dir="auto">
+  <div flex flex-col w-full items-stretch gap-2 py3 dir="auto" class="poll-wrapper">
     <form v-if="!poll.voted && !poll.expired" flex="~ col gap3" accent-primary @click.stop="noop" @submit.prevent="vote">
       <label v-for="(option, index) of poll.options" :key="index" flex="~ gap2" items-center>
-        <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'">
+        <input name="choices" :value="index" :type="poll.multiple ? 'checkbox' : 'radio'" cursor-pointer>
         {{ option.title }}
       </label>
       <button btn-solid mt-1>
@@ -57,7 +57,7 @@ const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
       <div
         v-for="(option, index) of poll.options"
         :key="index" py-1 relative
-        :style="{ '--bar-width': toPercentage((option.votesCount || 0) / poll.votesCount) }"
+        :style="{ '--bar-width': toPercentage(votersCount === 0 ? 0 : (option.votesCount ?? 0) / votersCount) }"
       >
         <div flex justify-between pb-2 w-full>
           <span inline-flex align-items>
@@ -67,7 +67,7 @@ const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
           <span text-primary-active> {{ formatPercentage(votersCount > 0 ? (option.votesCount || 0) / votersCount : 0) }}</span>
         </div>
         <div class="bg-gray/40" rounded-l-sm rounded-r-lg h-5px w-full>
-          <div bg-primary-active h-full class="w-[var(--bar-width)]" />
+          <div bg-primary-active h-full min-w="1%" class="w-[var(--bar-width)]" />
         </div>
       </div>
     </template>
@@ -77,7 +77,7 @@ const votersCount = $computed(() => poll.votersCount ?? poll.votesCount ?? 0)
         :count="poll.votesCount"
       />
       &middot;
-      <CommonTooltip :content="expiredTimeFormatted" class="inline-block" placement="right">
+      <CommonTooltip v-if="poll.expiresAt" :content="expiredTimeFormatted" class="inline-block" placement="right">
         <time :datetime="poll.expiresAt!">{{ $t(poll.expired ? 'status.poll.finished' : 'status.poll.ends', [expiredTimeAgo]) }}</time>
       </CommonTooltip>
     </div>

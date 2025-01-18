@@ -9,24 +9,31 @@ const {
   toggle: _toggleTranslation,
   translation,
   enabled: isTranslationEnabled,
-} = useTranslation(status)
+} = useTranslation(status, getLanguageCode())
+const preferenceHideTranslation = usePreferences('hideTranslation')
 
-let translating = $ref(false)
-const toggleTranslation = async () => {
-  translating = true
+const showButton = computed(() =>
+  !preferenceHideTranslation.value
+  && isTranslationEnabled
+  && status.content.trim().length,
+)
+
+const translating = ref(false)
+async function toggleTranslation() {
+  translating.value = true
   try {
     await _toggleTranslation()
   }
   finally {
-    translating = false
+    translating.value = false
   }
 }
 </script>
 
 <template>
-  <div>
+  <div v-if="showButton">
     <button
-      v-if="isTranslationEnabled && status.language !== languageCode" pl-0 flex="~ center" gap-2
+      p-0 flex="~ center" gap-2 text-sm
       :disabled="translating" disabled-bg-transparent btn-text class="disabled-text-$c-text-btn-disabled-deeper" @click="toggleTranslation"
     >
       <span v-if="translating" block animate-spin preserve-3d>

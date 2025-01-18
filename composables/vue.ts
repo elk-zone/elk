@@ -1,12 +1,11 @@
+import type { SchemaAugmentations } from '@unhead/schema'
+import type { ActiveHeadEntry, UseHeadInput, UseHeadOptions } from '@unhead/vue'
 import type { ComponentInternalInstance } from 'vue'
 import { onActivated, onDeactivated, ref } from 'vue'
-import type { ActiveHeadEntry, HeadEntryOptions, UseHeadInput } from '@vueuse/head'
-import type { HeadAugmentations } from '@nuxt/schema'
-import { useHead } from '#head'
 
 export const isHydrated = ref(false)
 
-export const onHydrated = (cb: () => unknown) => {
+export function onHydrated(cb: () => unknown) {
   watchOnce(isHydrated, () => cb(), { immediate: isHydrated.value })
 }
 
@@ -27,8 +26,11 @@ export function useDeactivated() {
  * ### When the component is restored from the background
  *
  * for handling problems caused by the keepalive function
+ *
+ * @param hook
+ * @param target
  */
-export function onReactivated(hook: Function, target?: ComponentInternalInstance | null): void {
+export function onReactivated(hook: () => void, target?: ComponentInternalInstance | null): void {
   const initial = ref(true)
   onActivated(() => {
     if (initial.value)
@@ -38,12 +40,10 @@ export function onReactivated(hook: Function, target?: ComponentInternalInstance
   onDeactivated(() => initial.value = false)
 }
 
-// TODO: Workaround for Nuxt bug: https://github.com/elk-zone/elk/pull/199#issuecomment-1329771961
-export function useHeadFixed<T extends HeadAugmentations>(input: UseHeadInput<T>, options?: HeadEntryOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
-  const deactivated = useDeactivated()
+export function useHydratedHead<T extends SchemaAugmentations>(input: UseHeadInput<T>, options?: UseHeadOptions): ActiveHeadEntry<UseHeadInput<T>> | void {
   if (input && typeof input === 'object' && !('value' in input)) {
     const title = 'title' in input ? input.title : undefined
-    if (process.server && title) {
+    if (import.meta.server && title) {
       input.meta = input.meta || []
       if (Array.isArray(input.meta)) {
         input.meta.push(
@@ -55,9 +55,9 @@ export function useHeadFixed<T extends HeadAugmentations>(input: UseHeadInput<T>
       (input as any).title = () => isHydrated.value ? typeof title === 'function' ? title() : title : ''
     }
   }
-  return useHead(() => {
-    if (deactivated.value)
+  return useHead((() => {
+    if (!isHydrated.value)
       return {}
     return resolveUnref(input)
-  }, options)
+  }) as UseHeadInput<T>, options)
 }

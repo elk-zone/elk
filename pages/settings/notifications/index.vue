@@ -4,9 +4,9 @@ definePageMeta({
 })
 
 const { t } = useI18n()
-const pwaEnabled = useRuntimeConfig().public.pwaEnabled
+const pwaEnabled = useAppConfig().pwaEnabled
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.notifications.label')} | ${t('nav.settings')}`,
 })
 </script>

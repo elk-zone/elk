@@ -2,6 +2,7 @@ node_modules
 *.log
 dist
 .output
+.pnpm-store
 .nuxt
 .env
 .DS_Store
@@ -9,8 +10,8 @@ dist
 .vite-inspect
 .netlify/
 .eslintcache
+elk-translation-status.json
 
-public/shiki
 public/emojis
 
 *~

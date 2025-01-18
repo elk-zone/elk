@@ -1,14 +1,14 @@
 <script setup lang="ts">
 definePageMeta({
   middleware: ['auth', () => {
-    if (!useRuntimeConfig().public.pwaEnabled)
+    if (!useAppConfig().pwaEnabled)
       return navigateTo('/settings/notifications')
   }],
 })
 
 const { t } = useI18n()
 
-useHeadFixed({
+useHydratedHead({
   title: () => `${t('settings.notifications.push_notifications.label')} | ${t('settings.notifications.label')} | ${t('nav.settings')}`,
 })
 </script>

@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 const props = defineProps<{
   text?: string
   content?: string
@@ -9,9 +9,12 @@ const props = defineProps<{
   disabled?: boolean
   external?: true
   large?: true
+  match?: boolean
+  target?: string
 }>()
 
 const router = useRouter()
+const scrollOnClick = computed(() => props.to && !(props.target === '_blank' || props.external))
 
 useCommand({
   scope: 'Settings',
@@ -38,14 +41,15 @@ useCommand({
     :disabled="disabled"
     :to="to"
     :external="external"
+    :target="target"
     exact-active-class="text-primary"
-    :class="disabled ? 'op25 pointer-events-none ' : ''"
+    :class="disabled ? 'op25 pointer-events-none ' : match ? 'text-primary' : ''"
     block w-full group focus:outline-none
     :tabindex="disabled ? -1 : null"
-    @click="to ? $scrollToTop() : undefined"
+    @click="scrollOnClick ? $scrollToTop() : undefined"
   >
     <div
-      w-full flex w-fit px5 py3 md:gap2 gap4 items-center
+      w-full flex px5 py3 md:gap2 gap4 items-center
       transition-250 group-hover:bg-active
       group-focus-visible:ring="2 current"
     >

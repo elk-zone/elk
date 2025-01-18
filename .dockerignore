@@ -1,0 +1,18 @@
+# Modified from .gitignore
+node_modules
+*.log
+dist
+.output
+.nuxt
+#.env # Not ignoring this file because it can contain build-related settings.
+.DS_Store
+.idea/
+.vite-inspect
+.netlify/
+.eslintcache
+
+public/emojis
+
+*~
+*swp
+*swo

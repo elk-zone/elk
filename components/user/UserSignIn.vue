@@ -1,66 +1,21 @@
 <script setup lang="ts">
 import Fuse from 'fuse.js'
-import { $fetch } from 'ofetch'
 
-const input = $ref<HTMLInputElement>()
-let server = $ref<string>('')
-let busy = $ref<boolean>(false)
-let error = $ref<boolean>(false)
-let displayError = $ref<boolean>(false)
-let knownServers = $ref<string[]>([])
-let autocompleteIndex = $ref(0)
-let autocompleteShow = $ref(false)
+const input = ref<HTMLInputElement | undefined>()
+const knownServers = ref<string[]>([])
+const autocompleteIndex = ref(0)
+const autocompleteShow = ref(false)
 
-const users = useUsers()
-const userSettings = useUserSettings()
+const { busy, error, displayError, server, oauth } = useSignIn(input)
 
-async function oauth() {
-  if (busy)
-    return
+const fuse = shallowRef(new Fuse([] as string[]))
 
-  busy = true
-  error = false
-  displayError = false
-
-  await nextTick()
-
-  if (server)
-    server = server.split('/')[0]
-
-  try {
-    const url = await (globalThis.$fetch as any)(`/api/${server || publicServer.value}/login`, {
-      method: 'POST',
-      body: {
-        force_login: users.value.some(u => u.server === server),
-        origin: location.origin,
-        lang: userSettings.value.language,
-      },
-    })
-    location.href = url
-  }
-  catch (err) {
-    console.error(err)
-
-    displayError = true
-    error = true
-    await nextTick()
-    input?.focus()
-    await nextTick()
-    setTimeout(() => {
-      busy = false
-      error = false
-    }, 512)
-  }
-}
-
-let fuse = $shallowRef(new Fuse([] as string[]))
-
-const filteredServers = $computed(() => {
-  if (!server)
+const filteredServers = computed(() => {
+  if (!server.value)
     return []
 
-  const results = fuse.search(server, { limit: 6 }).map(result => result.item)
-  if (results[0] === server)
+  const results = fuse.value.search(server.value, { limit: 6 }).map(result => result.item)
+  if (results[0] === server.value)
     return []
 
   return results
@@ -72,76 +27,79 @@ function isValidUrl(str: string) {
     new URL(str)
     return true
   }
-  catch (err) {
+  catch {
     return false
   }
 }
 
 async function handleInput() {
-  const input = server.trim()
+  const input = server.value.trim()
   if (input.startsWith('https://'))
-    server = input.replace('https://', '')
+    server.value = input.replace('https://', '')
 
   if (input.length)
-    displayError = false
+    displayError.value = false
 
   if (
     isValidUrl(`https://${input}`)
-    && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:[0-9]+)?$/i)
+    && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?$/i)
     // Do not hide the autocomplete if a result has an exact substring match on the input
-    && !filteredServers.some(s => s.includes(input))
-  )
-    autocompleteShow = false
-  else
-    autocompleteShow = true
+    && !filteredServers.value.some(s => s.includes(input))
+  ) {
+    autocompleteShow.value = false
+  }
+
+  else {
+    autocompleteShow.value = true
+  }
 }
 
 function toSelector(server: string) {
   return server.replace(/[^\w-]/g, '-')
 }
 function move(delta: number) {
-  if (filteredServers.length === 0) {
-    autocompleteIndex = 0
+  if (filteredServers.value.length === 0) {
+    autocompleteIndex.value = 0
     return
   }
-  autocompleteIndex = ((autocompleteIndex + delta) + filteredServers.length) % filteredServers.length
-  document.querySelector(`#${toSelector(filteredServers[autocompleteIndex])}`)?.scrollIntoView(false)
+  autocompleteIndex.value = ((autocompleteIndex.value + delta) + filteredServers.value.length) % filteredServers.value.length
+  document.querySelector(`#${toSelector(filteredServers.value[autocompleteIndex.value])}`)?.scrollIntoView(false)
 }
 
 function onEnter(e: KeyboardEvent) {
-  if (autocompleteShow === true && filteredServers[autocompleteIndex]) {
-    server = filteredServers[autocompleteIndex]
+  if (autocompleteShow.value === true && filteredServers.value[autocompleteIndex.value]) {
+    server.value = filteredServers.value[autocompleteIndex.value]
     e.preventDefault()
-    autocompleteShow = false
+    autocompleteShow.value = false
   }
 }
 
 function escapeAutocomplete(evt: KeyboardEvent) {
-  if (!autocompleteShow)
+  if (!autocompleteShow.value)
     return
-  autocompleteShow = false
+  autocompleteShow.value = false
   evt.stopPropagation()
 }
 
 function select(index: number) {
-  server = filteredServers[index]
+  server.value = filteredServers.value[index]
 }
 
 onMounted(async () => {
-  input?.focus()
-  knownServers = await (globalThis.$fetch as any)('/api/list-servers')
-  fuse = new Fuse(knownServers, { shouldSort: true })
+  input?.value?.focus()
+  knownServers.value = await (globalThis.$fetch as any)('/api/list-servers')
+  fuse.value = new Fuse(knownServers.value, { shouldSort: true })
 })
 
-onClickOutside($$(input), () => {
-  autocompleteShow = false
+onClickOutside(input, () => {
+  autocompleteShow.value = false
 })
 </script>
 
 <template>
   <form text-center justify-center items-center max-w-150 py6 flex="~ col gap-3" @submit.prevent="oauth">
     <div flex="~ center" items-end mb2 gap-x-2>
-      <img src="/logo.svg" w-12 h-12 mxa height="48" width="48" :alt="$t('app_logo')" class="rtl-flip">
+      <img :src="`/${''}logo.svg`" w-12 h-12 mxa height="48" width="48" :alt="$t('app_logo')" class="rtl-flip">
       <div text-3xl>
         {{ $t('action.sign_in') }}
       </div>

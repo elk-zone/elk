@@ -9,15 +9,27 @@ const emit = defineEmits<{
   (event: 'change'): void
 }>()
 
-const { client } = $(useMasto())
+const { client } = useMasto()
 
-const toggleFollowTag = async () => {
-  if (tag.following)
-    await client.v1.tags.unfollow(tag.name)
-  else
-    await client.v1.tags.follow(tag.name)
+async function toggleFollowTag() {
+  // We save the state so be can do an optimistic UI update, but fallback to the previous state if the API call fails
+  const previousFollowingState = tag.following
 
-  emit('change')
+  // eslint-disable-next-line vue/no-mutating-props
+  tag.following = !tag.following
+
+  try {
+    if (previousFollowingState)
+      await client.value.v1.tags.$select(tag.name).unfollow()
+    else
+      await client.value.v1.tags.$select(tag.name).follow()
+
+    emit('change')
+  }
+  catch {
+    // eslint-disable-next-line vue/no-mutating-props
+    tag.following = previousFollowingState
+  }
 }
 </script>
 
@@ -29,7 +41,7 @@ const toggleFollowTag = async () => {
     @click="toggleFollowTag()"
   >
     <CommonTooltip placement="bottom" :content="tag.following ? $t('tag.unfollow') : $t('tag.follow')">
-      <div rounded-full p2 group-hover="bg-orange/10" group-focus-visible="bg-orange/10" group-focus-visible:ring="2 current">
+      <div rounded-full p2 elk-group-hover="bg-orange/10" group-focus-visible="bg-orange/10" group-focus-visible:ring="2 current">
         <div :class="[tag.following ? 'i-ri:star-fill' : 'i-ri:star-line']" />
       </div>
     </CommonTooltip>

@@ -5,7 +5,7 @@ const { hashtag } = defineProps<{
   hashtag: mastodon.v1.Tag
 }>()
 
-const totalTrend = $computed(() =>
+const totalTrend = computed(() =>
   hashtag.history?.reduce((total: number, item) => total + (Number(item.accounts) || 0), 0),
 )
 </script>
@@ -19,9 +19,9 @@ const totalTrend = $computed(() =>
       <span>
         {{ hashtag.name }}
       </span>
-      <CommonTrending :history="hashtag.history" text-xs text-secondary truncate />
+      <CommonTrending v-if="hashtag.history" :history="hashtag.history" text-xs text-secondary truncate />
     </div>
-    <div v-if="totalTrend" absolute left-15 right-0 top-0 bottom-4 op35 flex place-items-center place-content-center ml-auto>
+    <div v-if="totalTrend && hashtag.history" absolute left-15 right-0 top-0 bottom-4 op35 flex place-items-center place-content-center ml-auto>
       <CommonTrendingCharts
         :history="hashtag.history" :width="150" :height="20"
         text-xs text-secondary h-full w-full

@@ -1,7 +1,7 @@
 /// <reference lib="WebWorker" />
 declare const self: ServiceWorkerGlobalScope
 
-const clientResolves: { [key: string]: Function } = {}
+const clientResolves: { [key: string]: () => void } = {}
 
 self.addEventListener('message', (event) => {
   if (event.data.action !== 'ready-to-receive')
@@ -13,7 +13,7 @@ self.addEventListener('message', (event) => {
     clientResolves[id]()
 })
 
-export const onShareTarget = (event: FetchEvent) => {
+export function onShareTarget(event: FetchEvent) {
   if (!event.request.url.endsWith('/web-share-target') || event.request.method !== 'POST')
     return
 
@@ -21,7 +21,7 @@ export const onShareTarget = (event: FetchEvent) => {
 }
 
 async function handleSharedTarget(event: FetchEvent) {
-  event.respondWith(Response.redirect('/home?share-target=true'))
+  event.respondWith(Response.redirect('/home?share-target=true', 303))
   await waitForClientToGetReady(event.resultingClientId)
 
   const [client, formData] = await getClientAndFormData(event)
@@ -32,20 +32,32 @@ async function handleSharedTarget(event: FetchEvent) {
 }
 
 async function sendShareTargetMessage(client: Client, data: FormData) {
-  const sharedData: { text?: string; files?: File[] } = {}
+  const sharedData: {
+    textParts: string[]
+    files: File[]
+  } = {
+    textParts: [],
+    files: [],
+  }
+
+  // We collect the text data shared with us
+  const title = data.get('title')
+  if (title !== null)
+    sharedData.textParts.push(title.toString())
 
   const text = data.get('text')
   if (text !== null)
-    sharedData.text = text.toString()
+    sharedData.textParts.push(text.toString())
 
-  const files: File[] = []
+  const link = data.get('link')
+  if (link !== null)
+    sharedData.textParts.push(link.toString())
+
+  // We collect the files shared with us
   for (const [name, file] of data.entries()) {
     if (name === 'files' && file instanceof File)
-      files.push(file)
+      sharedData.files.push(file)
   }
-
-  if (files.length !== 0)
-    sharedData.files = files
 
   client.postMessage({ data: sharedData, action: 'compose-with-shared-data' })
 }

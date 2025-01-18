@@ -11,7 +11,7 @@ const errorCodes: Record<number, string> = {
   404: 'Page not found',
 }
 
-if (process.dev)
+if (import.meta.dev)
   console.error(error)
 
 const defaultMessage = 'Something went wrong'
@@ -19,7 +19,7 @@ const defaultMessage = 'Something went wrong'
 const message = error.message ?? errorCodes[error.statusCode!] ?? defaultMessage
 
 const state = ref<'error' | 'reloading'>('error')
-const reload = async () => {
+async function reload() {
   state.value = 'reloading'
   try {
     clearError({ redirect: currentUser.value ? '/home' : `/${currentServer.value}/public/local` })

@@ -6,6 +6,7 @@ const emit = defineEmits<{
 }>()
 
 const all = useUsers()
+const { singleInstanceServer, oauth } = useSignIn()
 
 const sorted = computed(() => {
   return [
@@ -15,11 +16,17 @@ const sorted = computed(() => {
 })
 
 const router = useRouter()
-const clickUser = (user: UserLogin) => {
+function clickUser(user: UserLogin) {
   if (user.account.id === currentUser.value?.account.id)
     router.push(getAccountRoute(user.account))
   else
     switchUser(user)
+}
+function processSignIn() {
+  if (singleInstanceServer)
+    oauth()
+  else
+    openSigninDialog()
 }
 </script>
 
@@ -29,7 +36,7 @@ const clickUser = (user: UserLogin) => {
       <button
         flex rounded px4 py3 text-left
         hover:bg-active cursor-pointer transition-100
-        aria-label="Switch user"
+        :aria-label="$t('action.switch_account')"
         @click="clickUser(user)"
       >
         <AccountInfo :account="user.account" :hover-card="false" square />
@@ -39,15 +46,19 @@ const clickUser = (user: UserLogin) => {
     </template>
     <div border="t base" pt2>
       <CommonDropdownItem
+        is="button"
         :text="$t('user.add_existing')"
         icon="i-ri:user-add-line"
-        @click="openSigninDialog"
+        w-full
+        @click="processSignIn"
       />
       <CommonDropdownItem
+        is="button"
         v-if="isHydrated && currentUser"
         :text="$t('user.sign_out_account', [getFullHandle(currentUser.account)])"
         icon="i-ri:logout-box-line rtl-flip"
-        @click="signout"
+        w-full
+        @click="signOut"
       />
     </div>
   </div>

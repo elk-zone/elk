@@ -1,24 +1,25 @@
 <script setup lang="ts">
+defineOptions({
+  inheritAttrs: false,
+})
+
 const { as = 'button', command, disabled, content, icon } = defineProps<{
   text?: string | number
   content: string
   color: string
   icon: string
   activeIcon?: string
+  inactiveIcon?: string
   hover: string
-  groupHover: string
+  elkGroupHover: string
   active?: boolean
   disabled?: boolean
   as?: string
   command?: boolean
 }>()
 
-defineOptions({
-  inheritAttrs: false,
-})
-
 defineSlots<{
-  text: {}
+  text: (props: object) => void
 }>()
 
 const el = ref<HTMLDivElement>()
@@ -49,25 +50,26 @@ useCommand({
   <component
     :is="as"
     v-bind="$attrs" ref="el"
-    w-fit flex gap-1 items-center transition-all
+    w-fit flex gap-1 items-center transition-all select-none
     rounded group
     :hover=" !disabled ? hover : undefined"
     focus:outline-none
     :focus-visible="hover"
-    :class="active ? color : 'text-secondary'"
+    :class="active ? color : (disabled ? 'op25 cursor-not-allowed' : 'text-secondary')"
     :aria-label="content"
     :disabled="disabled"
+    :aria-disabled="disabled"
   >
     <CommonTooltip placement="bottom" :content="content">
       <div
         rounded-full p2
         v-bind="disabled ? {} : {
-          'group-hover': groupHover,
-          'group-focus-visible': groupHover,
+          'elk-group-hover': elkGroupHover,
+          'group-focus-visible': elkGroupHover,
           'group-focus-visible:ring': '2 current',
         }"
       >
-        <div :class="active && activeIcon ? activeIcon : icon" />
+        <div :class="active && activeIcon ? activeIcon : (disabled && inactiveIcon ? inactiveIcon : icon)" />
       </div>
     </CommonTooltip>
 

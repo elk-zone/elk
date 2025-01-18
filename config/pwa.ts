@@ -1,5 +1,5 @@
-import { isCI, isDevelopment } from 'std-env'
 import type { VitePWANuxtOptions } from '../modules/pwa/types'
+import { isCI, isDevelopment } from 'std-env'
 
 export const pwa: VitePWANuxtOptions = {
   mode: isCI ? 'production' : 'development',
@@ -7,14 +7,14 @@ export const pwa: VitePWANuxtOptions = {
   disable: /* temporarily test in CI isPreview || */ (isDevelopment && process.env.VITE_DEV_PWA !== 'true'),
   scope: '/',
   srcDir: './service-worker',
-  filename: 'sw.ts',
+  filename: 'elk-sw.ts',
   strategies: 'injectManifest',
   injectRegister: false,
   includeManifestIcons: false,
   manifest: false,
   injectManifest: {
-    globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm,webmanifest}'],
-    globIgnores: ['emojis/**', 'shiki/**'],
+    globPatterns: ['**/*.{js,json,css,html,txt,svg,png,ico,webp,woff,woff2,ttf,eot,otf,wasm}'],
+    globIgnores: ['emojis/**', 'manifest**.webmanifest'],
   },
   devOptions: {
     enabled: process.env.VITE_DEV_PWA === 'true',

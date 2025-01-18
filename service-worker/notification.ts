@@ -1,9 +1,7 @@
-import { get } from 'idb-keyval'
 import type { MastoNotification, NotificationInfo, PushPayload, UserLogin } from './types'
+import { closeDatabases, get } from '../utils/elk-idb'
 
-export const findNotification = async (
-  { access_token, notification_id/* , notification_type */ }: PushPayload,
-): Promise<NotificationInfo | undefined> => {
+export async function findNotification({ access_token, notification_id/* , notification_type */ }: PushPayload): Promise<NotificationInfo | undefined> {
   const users = await get<UserLogin[]>('elk-users')
   if (!users)
     return undefined
@@ -62,6 +60,8 @@ export function createNotificationOptions(
     icon,
     lang: preferred_locale,
     tag: notification_id,
+
+    // @ts-expect-error error missing type, just ignore
     timestamp: new Date().getTime(),
   }
 
@@ -72,10 +72,12 @@ export function createNotificationOptions(
     if (notification.account.avatar_static)
       notificationOptions.icon = notification.account.avatar_static
 */
-    if (notification.created_at)
+    if (notification.created_at) {
+      // @ts-expect-error error missing type, just ignore
       notificationOptions.timestamp = new Date(notification.created_at).getTime()
+    }
 
-    /* TODO: add spolier when actions available, checking also notification type
+    /* TODO: add spoiler when actions available, checking also notification type
     if (notification.status && (notification.status.spoilerText || notification.status.sensitive)) {
       if (notification.status.spoilerText)
         notificationOptions.body = notification.status.spoilerText
@@ -85,8 +87,10 @@ export function createNotificationOptions(
     */
     if (notification.status) {
       // notificationOptions.body = htmlToPlainText(notification.status.content)
-      if (notification.status.media_attachments && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url)
+      if (notification.status.media_attachments && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url) {
+        // @ts-expect-error error missing type, just ignore
         notificationOptions.image = notification.status.media_attachments[0].preview_url
+      }
 
       if (notification.type === 'favourite' || notification.type === 'reblog' || notification.type === 'mention')
         notificationOptions.data.url = `${user.server}/@${user.account.username}/${notification.status.id}`
@@ -104,3 +108,7 @@ function htmlToPlainText(html: string) {
   return decodeURIComponent(html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n').replace(/<[^>]*>/g, ''))
 }
 */
+
+export function closeDatabaseConnections() {
+  closeDatabases()
+}

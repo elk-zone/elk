@@ -10,8 +10,8 @@ const props = withDefaults(defineProps<{
 })
 
 defineSlots<{
-  icon: {}
-  default: {}
+  icon: (props: object) => void
+  default: (props: object) => void
 }>()
 
 const router = useRouter()
@@ -28,13 +28,13 @@ useCommand({
   },
 })
 
-let activeClass = $ref('text-primary')
+const activeClass = ref('text-primary')
 onHydrated(async () => {
   // TODO: force NuxtLink to reevaluate, we now we are in this route though, so we should force it to active
   // we don't have currentServer defined until later
-  activeClass = ''
+  activeClass.value = ''
   await nextTick()
-  activeClass = 'text-primary'
+  activeClass.value = 'text-primary'
 })
 
 // Optimize rendering for the common case of being logged in, only show visual feedback for disabled user-only items
@@ -53,14 +53,25 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
     :tabindex="noUserDisable ? -1 : null"
     @click="$scrollToTop"
   >
-    <CommonTooltip :disabled="!isMediumScreen" :content="text" placement="right">
+    <CommonTooltip :disabled="!isMediumOrLargeScreen" :content="text" placement="right">
       <div
+        class="item"
         flex items-center gap4
-        w-fit rounded-3
-        px2 py2 mx3 sm:mxa
         xl="ml0 mr5 px5 w-auto"
-        transition-100
-        group-hover="bg-active" group-focus-visible:ring="2 current"
+        :class="isSmallScreen
+          ? `
+            w-full
+            px5 sm:mxa
+            transition-colors duration-200 transform
+            hover-bg-gray-100 hover-dark:(bg-gray-700 text-white)
+          ` : `
+            w-fit rounded-3
+            px2 mx3 sm:mxa
+            transition-100
+            elk-group-hover-bg-active
+            group-focus-visible:ring-2
+            group-focus-visible:ring-current
+          `"
       >
         <slot name="icon">
           <div :class="icon" text-xl />
@@ -72,3 +83,28 @@ const noUserVisual = computed(() => isHydrated.value && props.userOnly && !curre
     </CommonTooltip>
   </NuxtLink>
 </template>
+
+<style scoped>
+  .item {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  @media screen and ( max-height: 820px ) and ( min-width: 1280px ) {
+    .item {
+      padding-top: 0.25rem;
+      padding-bottom: 0.25rem;
+    }
+  }
+  @media screen and ( max-height: 780px ) and ( min-width: 640px ) {
+    .item {
+      padding-top: 0.35rem;
+      padding-bottom: 0.35rem;
+    }
+  }
+  @media screen and ( max-height: 780px ) and ( min-width: 1280px ) {
+    .item {
+      padding-top: 0.05rem;
+      padding-bottom: 0.05rem;
+    }
+  }
+</style>

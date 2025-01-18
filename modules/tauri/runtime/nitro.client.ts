@@ -1,3 +1,4 @@
+import type { FetchResponse } from 'ofetch'
 import {
   createApp,
   createRouter,
@@ -13,7 +14,7 @@ import {
 const handlers = [
   {
     route: '/api/:server/oauth',
-    handler: defineLazyEventHandler(() => import('~/server/api/[server]/oauth').then(r => r.default || r)),
+    handler: defineLazyEventHandler(() => import('~/server/api/[server]/oauth/[origin]').then(r => r.default || r)),
   },
   {
     route: '/api/:server/login',
@@ -36,7 +37,7 @@ export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
 
   const h3App = createApp({
-    debug: process.dev,
+    debug: import.meta.dev,
     // TODO: add global error handler
     // onError: (err, event) => {
     //  console.log({ err, event })
@@ -54,7 +55,7 @@ export default defineNuxtPlugin(async () => {
   const localCall = createCall(toNodeListener(h3App) as any)
   const localFetch = createLocalFetch(localCall, globalThis.fetch)
 
-  // @ts-expect-error slight differences in api
+  // @ts-expect-error error types are subtly different here in a future nitro version
   globalThis.$fetch = createFetch({
     // @ts-expect-error slight differences in api
     fetch: localFetch,
@@ -64,7 +65,7 @@ export default defineNuxtPlugin(async () => {
 
   const route = useRoute()
   if (route.path.startsWith('/api')) {
-    const result = await $fetch.raw(route.fullPath)
+    const result = (await ($fetch.raw as any)(route.fullPath)) as FetchResponse<unknown>
     if (result.headers.get('location'))
       location.href = result.headers.get('location')!
   }

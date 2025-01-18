@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const buildInfo = useRuntimeConfig().public.buildInfo
+const buildInfo = useBuildInfo()
 const timeAgoOptions = useTimeAgoOptions()
-
+const config = useRuntimeConfig()
 const userSettings = useUserSettings()
 
 const buildTimeDate = new Date(buildInfo.time)
@@ -23,10 +23,13 @@ function toggleDark() {
         <button
           flex
           text-lg
-          :class="userSettings.zenMode ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
+          :class="getPreferences(userSettings, 'zenMode') ? 'i-ri:layout-right-2-line' : 'i-ri:layout-right-line'"
           :aria-label="$t('nav.zen_mode')"
-          @click="userSettings.zenMode = !userSettings.zenMode"
+          @click="togglePreferences('zenMode')"
         />
+      </CommonTooltip>
+      <CommonTooltip :content="$t('magic_keys.dialog_header')">
+        <button flex i-ri:keyboard-box-line dark-i-ri:keyboard-box-line text-lg :aria-label="$t('magic_keys.dialog_header')" @click="toggleKeyboardShortcuts" />
       </CommonTooltip>
       <CommonTooltip :content="$t('settings.about.sponsor_action')">
         <NuxtLink
@@ -65,7 +68,7 @@ function toggleDark() {
           target="_blank"
           font-mono
         >
-          {{ buildInfo.commit.slice(0, 7) }}
+          {{ buildInfo.shortCommit }}
         </NuxtLink>
       </template>
     </div>
@@ -73,6 +76,12 @@ function toggleDark() {
       <NuxtLink cursor-pointer hover:underline to="/settings/about">
         {{ $t('settings.about.label') }}
       </NuxtLink>
+      <template v-if="config.public.privacyPolicyUrl">
+        &middot;
+        <NuxtLink cursor-pointer hover:underline :to="config.public.privacyPolicyUrl">
+          {{ $t('nav.privacy') }}
+        </NuxtLink>
+      </template>
       &middot;
       <NuxtLink href="/m.webtoo.ls/@elk" target="_blank">
         Mastodon

@@ -1,10 +1,8 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 const emit = defineEmits<{
   (event: 'close'): void
 }>()
-const { modelValue: visible } = defineModel<{
-  modelValue?: boolean
-}>()
+const visible = defineModel<boolean>()
 
 function close() {
   emit('close')

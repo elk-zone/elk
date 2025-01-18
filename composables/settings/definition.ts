@@ -1,15 +1,37 @@
 import { DEFAULT_FONT_SIZE } from '~/constants'
 
-export type FontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export type FontSize = `${number}px`
+
+// Temporary type for backward compatibility
+export type OldFontSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+
 export type ColorMode = 'light' | 'dark' | 'system'
 
+export type NavButtonName = 'home' | 'search' | 'notification' | 'mention' | 'favorite' | 'bookmark' | 'compose' | 'explore' | 'local' | 'federated' | 'list' | 'hashtag' | 'setting' | 'moreMenu'
+
 export interface PreferencesSettings {
+  hideAltIndicatorOnPosts: boolean
+  hideGifIndicatorOnPosts: boolean
   hideBoostCount: boolean
+  hideReplyCount: boolean
   hideFavoriteCount: boolean
   hideFollowerCount: boolean
+  hideTranslation: boolean
+  hideUsernameEmojis: boolean
+  hideAccountHoverCard: boolean
+  hideTagHoverCard: boolean
+  hideNews: boolean
+  grayscaleMode: boolean
+  enableAutoplay: boolean
+  optimizeForLowPerformanceDevice: boolean
+  enableDataSaving: boolean
+  enablePinchToZoom: boolean
+  useStarFavoriteIcon: boolean
+  zenMode: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
   experimentalUserPicker: boolean
+  experimentalEmbeddedMedia: boolean
 }
 
 export interface UserSettings {
@@ -17,7 +39,7 @@ export interface UserSettings {
   colorMode?: ColorMode
   fontSize: FontSize
   language: string
-  zenMode: boolean
+  disabledTranslationLanguages: string[]
   themeColors?: ThemeColors
 }
 
@@ -38,25 +60,41 @@ export interface ThemeColors {
 }
 
 export function getDefaultLanguage(languages: string[]) {
-  if (process.server)
+  if (import.meta.server)
     return 'en-US'
   return matchLanguages(languages, navigator.languages) || 'en-US'
+}
+
+export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
+  hideAltIndicatorOnPosts: false,
+  hideGifIndicatorOnPosts: false,
+  hideBoostCount: false,
+  hideReplyCount: false,
+  hideFavoriteCount: false,
+  hideFollowerCount: false,
+  hideTranslation: false,
+  hideUsernameEmojis: false,
+  hideAccountHoverCard: false,
+  hideTagHoverCard: false,
+  hideNews: false,
+  grayscaleMode: false,
+  enableAutoplay: true,
+  optimizeForLowPerformanceDevice: false,
+  enableDataSaving: false,
+  enablePinchToZoom: false,
+  useStarFavoriteIcon: false,
+  zenMode: false,
+  experimentalVirtualScroller: true,
+  experimentalGitHubCards: true,
+  experimentalUserPicker: true,
+  experimentalEmbeddedMedia: false,
 }
 
 export function getDefaultUserSettings(locales: string[]): UserSettings {
   return {
     language: getDefaultLanguage(locales),
     fontSize: DEFAULT_FONT_SIZE,
-    zenMode: false,
-    preferences: {},
+    disabledTranslationLanguages: [],
+    preferences: DEFAULT__PREFERENCES_SETTINGS,
   }
-}
-
-export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
-  hideBoostCount: false,
-  hideFavoriteCount: false,
-  hideFollowerCount: false,
-  experimentalVirtualScroller: true,
-  experimentalGitHubCards: true,
-  experimentalUserPicker: true,
 }

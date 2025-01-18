@@ -6,36 +6,44 @@ const colorMode = useColorMode()
 function setColorMode(mode: ColorMode) {
   colorMode.preference = mode
 }
+
+const modes = [
+  {
+    icon: 'i-ri-moon-line',
+    label: 'settings.interface.dark_mode',
+    mode: 'dark',
+  },
+  {
+    icon: 'i-ri-sun-line',
+    label: 'settings.interface.light_mode',
+    mode: 'light',
+  },
+  {
+    icon: 'i-ri-computer-line',
+    label: 'settings.interface.system_mode',
+    mode: 'system',
+  },
+] as const
 </script>
 
 <template>
-  <div flex="~ gap4 wrap" w-full>
-    <button
-      btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base ws-nowrap
-      :tabindex="colorMode.preference === 'dark' ? 0 : -1"
-      :class="colorMode.preference === 'dark' ? 'pointer-events-none' : 'filter-saturate-0'"
-      @click="setColorMode('dark')"
-    >
-      <div i-ri:moon-line />
-      {{ $t('settings.interface.dark_mode') }}
-    </button>
-    <button
-      btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base ws-nowrap
-      :tabindex="colorMode.preference === 'light' ? 0 : -1"
-      :class="colorMode.preference === 'light' ? 'pointer-events-none' : 'filter-saturate-0'"
-      @click="setColorMode('light')"
-    >
-      <div i-ri:sun-line />
-      {{ $t('settings.interface.light_mode') }}
-    </button>
-    <button
-      btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base ws-nowrap
-      :tabindex="colorMode.preference === 'system' ? 0 : -1"
-      :class="colorMode.preference === 'system' ? 'pointer-events-none' : 'filter-saturate-0'"
-      @click="setColorMode('system')"
-    >
-      <div i-ri:computer-line />
-      {{ $t('settings.interface.system_mode') }}
-    </button>
-  </div>
+  <section space-y-2>
+    <h2 id="interface-cm" font-medium>
+      {{ $t('settings.interface.color_mode') }}
+    </h2>
+    <div flex="~ gap4 wrap" w-full role="group" aria-labelledby="interface-cm">
+      <button
+        v-for="{ icon, label, mode } in modes"
+        :key="mode"
+        type="button"
+        btn-text flex-1 flex="~ gap-1 center" p4 border="~ base rounded" bg-base ws-nowrap
+        :aria-pressed="colorMode.preference === mode ? 'true' : 'false'"
+        :class="colorMode.preference === mode ? 'pointer-events-none' : 'filter-saturate-0'"
+        @click="setColorMode(mode)"
+      >
+        <span :class="`${icon}`" />
+        {{ $t(label) }}
+      </button>
+    </div>
+  </section>
 </template>

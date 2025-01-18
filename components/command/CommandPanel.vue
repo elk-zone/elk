@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { SearchResult as SearchResultType } from '~/composables/masto/search'
 import type { CommandScope, QueryResult, QueryResultItem } from '~/composables/command'
+import type { SearchResult as SearchResultType } from '~/composables/masto/search'
 
 const emit = defineEmits<{
   (event: 'close'): void
@@ -10,31 +10,33 @@ const registry = useCommandRegistry()
 
 const router = useRouter()
 
-const inputEl = $ref<HTMLInputElement>()
-const resultEl = $ref<HTMLDivElement>()
+const inputEl = ref<HTMLInputElement>()
+const resultEl = ref<HTMLDivElement>()
 
-const scopes = $ref<CommandScope[]>([])
-let input = $(commandPanelInput)
+const scopes = ref<CommandScope[]>([])
+const input = commandPanelInput
 
 onMounted(() => {
-  inputEl?.focus()
+  inputEl.value?.focus()
 })
 
-const commandMode = $computed(() => input.startsWith('>'))
+const commandMode = computed(() => input.value.startsWith('>'))
 
-const query = $computed(() => commandMode ? '' : input.trim())
+const query = computed(() => commandMode.value ? '' : input.value.trim())
 
-const { accounts, hashtags, loading } = useSearch($$(query))
+const { accounts, hashtags, loading } = useSearch(query)
 
-const toSearchQueryResultItem = (search: SearchResultType): QueryResultItem => ({
-  index: 0,
-  type: 'search',
-  search,
-  onActivate: () => router.push(search.to),
-})
+function toSearchQueryResultItem(search: SearchResultType): QueryResultItem {
+  return {
+    index: 0,
+    type: 'search',
+    search,
+    onActivate: () => router.push(search.to),
+  }
+}
 
-const searchResult = $computed<QueryResult>(() => {
-  if (query.length === 0 || loading.value)
+const searchResult = computed<QueryResult>(() => {
+  if (query.value.length === 0 || loading.value)
     return { length: 0, items: [], grouped: {} as any }
 
   // TODO extract this scope
@@ -59,52 +61,56 @@ const searchResult = $computed<QueryResult>(() => {
   }
 })
 
-const result = $computed<QueryResult>(() => commandMode
-  ? registry.query(scopes.map(s => s.id).join('.'), input.slice(1).trim())
-  : searchResult,
+const result = computed<QueryResult>(() => commandMode.value
+  ? registry.query(scopes.value.map(s => s.id).join('.'), input.value.slice(1).trim())
+  : searchResult.value,
 )
 
-let active = $ref(0)
-watch($$(result), (n, o) => {
+const isMac = useIsMac()
+const modifierKeyName = computed(() => isMac.value ? '⌘' : 'Ctrl')
+
+const active = ref(0)
+watch(result, (n, o) => {
   if (n.length !== o.length || !n.items.every((i, idx) => i === o.items[idx]))
-    active = 0
+    active.value = 0
 })
 
-const findItemEl = (index: number) =>
-  resultEl?.querySelector(`[data-index="${index}"]`) as HTMLDivElement | null
-const onCommandActivate = (item: QueryResultItem) => {
+function findItemEl(index: number) {
+  return resultEl.value?.querySelector(`[data-index="${index}"]`) as HTMLDivElement | null
+}
+function onCommandActivate(item: QueryResultItem) {
   if (item.onActivate) {
     item.onActivate()
     emit('close')
   }
   else if (item.onComplete) {
-    scopes.push(item.onComplete())
-    input = '> '
+    scopes.value.push(item.onComplete())
+    input.value = '> '
   }
 }
-const onCommandComplete = (item: QueryResultItem) => {
+function onCommandComplete(item: QueryResultItem) {
   if (item.onComplete) {
-    scopes.push(item.onComplete())
-    input = '> '
+    scopes.value.push(item.onComplete())
+    input.value = '> '
   }
   else if (item.onActivate) {
     item.onActivate()
     emit('close')
   }
 }
-const intoView = (index: number) => {
+function intoView(index: number) {
   const el = findItemEl(index)
   if (el)
     el.scrollIntoView({ block: 'nearest' })
 }
 
 function setActive(index: number) {
-  const len = result.length
-  active = (index + len) % len
-  intoView(active)
+  const len = result.value.length
+  active.value = (index + len) % len
+  intoView(active.value)
 }
 
-const onKeyDown = (e: KeyboardEvent) => {
+function onKeyDown(e: KeyboardEvent) {
   switch (e.key) {
     case 'p':
     case 'ArrowUp': {
@@ -112,7 +118,7 @@ const onKeyDown = (e: KeyboardEvent) => {
         break
       e.preventDefault()
 
-      setActive(active - 1)
+      setActive(active.value - 1)
 
       break
     }
@@ -122,7 +128,7 @@ const onKeyDown = (e: KeyboardEvent) => {
         break
       e.preventDefault()
 
-      setActive(active + 1)
+      setActive(active.value + 1)
 
       break
     }
@@ -130,9 +136,9 @@ const onKeyDown = (e: KeyboardEvent) => {
     case 'Home': {
       e.preventDefault()
 
-      active = 0
+      active.value = 0
 
-      intoView(active)
+      intoView(active.value)
 
       break
     }
@@ -140,7 +146,7 @@ const onKeyDown = (e: KeyboardEvent) => {
     case 'End': {
       e.preventDefault()
 
-      setActive(result.length - 1)
+      setActive(result.value.length - 1)
 
       break
     }
@@ -148,7 +154,7 @@ const onKeyDown = (e: KeyboardEvent) => {
     case 'Enter': {
       e.preventDefault()
 
-      const cmd = result.items[active]
+      const cmd = result.value.items[active.value]
       if (cmd)
         onCommandActivate(cmd)
 
@@ -158,7 +164,7 @@ const onKeyDown = (e: KeyboardEvent) => {
     case 'Tab': {
       e.preventDefault()
 
-      const cmd = result.items[active]
+      const cmd = result.value.items[active.value]
       if (cmd)
         onCommandComplete(cmd)
 
@@ -166,9 +172,9 @@ const onKeyDown = (e: KeyboardEvent) => {
     }
 
     case 'Backspace': {
-      if (input === '>' && scopes.length) {
+      if (input.value === '>' && scopes.value.length) {
         e.preventDefault()
-        scopes.pop()
+        scopes.value.pop()
       }
       break
     }
@@ -233,8 +239,8 @@ const onKeyDown = (e: KeyboardEvent) => {
     <!-- Footer -->
     <div class="flex items-center px-3 py-1 text-xs">
       <div i-ri:lightbulb-flash-line /> Tip: Use
-      <CommandKey name="Ctrl+K" /> to search,
-      <CommandKey name="Ctrl+/" /> to activate command mode.
+      <CommandKey :name="`${modifierKeyName}+K`" /> to search,
+      <CommandKey :name="`${modifierKeyName}+/`" /> to activate command mode.
     </div>
   </div>
 </template>

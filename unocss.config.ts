@@ -1,3 +1,7 @@
+import type { Variant } from 'unocss'
+import process from 'node:process'
+import { variantParentMatcher } from '@unocss/preset-mini/utils'
+
 import {
   defineConfig,
   presetAttributify,
@@ -22,6 +26,8 @@ export default defineConfig({
       'bg-base': 'bg-$c-bg-base',
       'bg-border': 'bg-$c-border',
       'bg-active': 'bg-$c-bg-active',
+      'bg-secondary': 'bg-$c-text-secondary',
+      'bg-secondary-light': 'bg-$c-text-secondary-light',
       'bg-primary-light': 'bg-$c-primary-light',
       'bg-primary-fade': 'bg-$c-primary-fade',
       'bg-card': 'bg-$c-bg-card',
@@ -37,10 +43,11 @@ export default defineConfig({
 
       // buttons
       'btn-base': 'cursor-pointer disabled:pointer-events-none disabled:bg-$c-bg-btn-disabled disabled:text-$c-text-btn-disabled',
-      'btn-solid': 'btn-base px-4 py-2 rounded text-$c-text-btn bg-$c-primary hover:bg-$c-primary-active',
+      'btn-solid': 'btn-base px-4 py-2 rounded text-inverted bg-$c-primary hover:bg-$c-primary-active',
       'btn-outline': 'btn-base px-4 py-2 rounded text-$c-primary border border-$c-primary hover:bg-$c-primary hover:text-inverted',
       'btn-text': 'btn-base px-4 py-2 text-$c-primary hover:text-$c-primary-active',
       'btn-action-icon': 'btn-base hover:bg-active rounded-full h9 w9 flex items-center justify-center disabled:bg-transparent disabled:text-$c-text-secondary',
+      'btn-danger': 'btn-base px-4 py-2 rounded text-white bg-$c-danger hover:bg-$c-danger-active',
 
       // input
       'input-base-focus': 'focus:outline-none focus:border-$c-primary',
@@ -61,6 +68,7 @@ export default defineConfig({
 
       'timeline-title-style': 'text-primary text-lg font-bold',
     },
+    [/^elk-group-hover[:-]([a-z0-9/-]+)$/, ([,r]) => `media-mouse-group-hover-${r} group-active-${r}`],
   ],
   presets: [
     presetUno({
@@ -79,8 +87,6 @@ export default defineConfig({
     presetWebFonts({
       provider: 'none',
       fonts: {
-        serif: 'DM Serif Display',
-        mono: 'DM Mono',
         script: 'Homemade Apple',
       },
     }),
@@ -95,13 +101,49 @@ export default defineConfig({
         DEFAULT: 'var(--c-primary)',
         active: 'var(--c-primary-active)',
       },
+      danger: {
+        DEFAULT: 'var(--c-danger)',
+        active: 'var(--c-danger-active)',
+      },
     },
   },
+  variants: [
+    ...(process.env.TAURI_PLATFORM
+      ? <Variant<any>[]>[(matcher) => {
+        if (!matcher.startsWith('native:'))
+          return
+        return {
+          matcher: matcher.slice(7),
+          layer: 'native',
+        }
+      }]
+      : []),
+    ...(process.env.TAURI_PLATFORM !== 'macos'
+      ? <Variant<any>[]>[
+        (matcher) => {
+          if (!matcher.startsWith('native-mac:'))
+            return
+          return {
+            matcher: matcher.slice(11),
+            layer: 'native-mac',
+          }
+        },
+      ]
+      : []
+    ),
+    variantParentMatcher('fullscreen', '@media (display-mode: fullscreen)'),
+    variantParentMatcher('coarse-pointer', '@media (pointer: coarse)'),
+  ],
   rules: [
     // scrollbar-hide
     [/^scrollbar-hide$/, (_, { constructCSS }) => {
       let res = constructCSS({ 'scrollbar-width': 'none' })
       res += `\n${res.replace('{scrollbar-width:none;}', '::-webkit-scrollbar{display: none;}')}`
+      return res
+    }],
+    [/^h-100dvh$/, (_, { constructCSS }) => {
+      let res = constructCSS({ height: '100vh' })
+      res += `\n${res.replace('{height:100vh;}', '{height:100vh;height:100dvh;}')}`
       return res
     }],
     ['box-shadow-outline', { 'box-shadow': '0 0 0 1px var(--c-primary)' }],

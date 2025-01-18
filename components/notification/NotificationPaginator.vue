@@ -1,21 +1,33 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
+import type { GroupedAccountLike, NotificationSlot } from '~/types'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
-import type { Paginator, WsEvents, mastodon } from 'masto'
-import type { GroupedAccountLike, NotificationSlot } from '~/types'
 
 const { paginator, stream } = defineProps<{
-  paginator: Paginator<mastodon.v1.Notification[], mastodon.v1.ListNotificationsParams>
-  stream?: Promise<WsEvents>
+  paginator: mastodon.Paginator<mastodon.v1.Notification[], mastodon.rest.v1.ListNotificationsParams>
+  stream?: mastodon.streaming.Subscription
 }>()
 
 const virtualScroller = false // TODO: fix flickering issue with virtual scroll
 
 const groupCapacity = Number.MAX_VALUE // No limit
 
+const includeNotificationTypes: mastodon.v1.NotificationType[] = ['update', 'mention', 'poll', 'status']
+
+let id = 0
+
+function includeNotificationsForStatusCard({ type, status }: mastodon.v1.Notification) {
+  // Exclude update, mention, pool and status notifications without the status entry:
+  // no makes sense to include them
+  // Those notifications will be shown using StatusCard SFC:
+  // check NotificationCard SFC L68 and L81 => :status="notification.status!"
+  return status || !includeNotificationTypes.includes(type)
+}
+
 // Group by type (and status when applicable)
-const groupId = (item: mastodon.v1.Notification): string => {
-  // If the update is related to an status, group notifications from the same account (boost + favorite the same status)
+function groupId(item: mastodon.v1.Notification): string {
+  // If the update is related to a status, group notifications from the same account (boost + favorite the same status)
   const id = item.status
     ? {
         status: item.status?.id,
@@ -27,10 +39,13 @@ const groupId = (item: mastodon.v1.Notification): string => {
   return JSON.stringify(id)
 }
 
+function hasHeader(account: mastodon.v1.Account) {
+  return !account.header.endsWith('/original/missing.png')
+}
+
 function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   const results: NotificationSlot[] = []
 
-  let id = 0
   let currentGroupId = ''
   let currentGroup: mastodon.v1.Notification[] = []
   const processGroup = () => {
@@ -44,36 +59,39 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
     // This normally happens when you transfer an account, if not, show
     // a big profile card for each follow
     if (group[0].type === 'follow') {
-      let groups: mastodon.v1.Notification[] = []
+      // Order group by followers count
+      const processedGroup = [...group]
+      processedGroup.sort((a, b) => {
+        const aHasHeader = hasHeader(a.account)
+        const bHasHeader = hasHeader(b.account)
+        if (bHasHeader && !aHasHeader)
+          return 1
+        if (aHasHeader && !bHasHeader)
+          return -1
+        return b.account.followersCount - a.account.followersCount
+      })
 
-      function newGroup() {
-        if (groups.length > 0) {
-          results.push({
-            id: `grouped-${id++}`,
-            type: 'grouped-follow',
-            items: groups,
-          })
-          groups = []
-        }
+      if (processedGroup.length > 0 && hasHeader(processedGroup[0].account))
+        results.push(processedGroup.shift()!)
+
+      if (processedGroup.length === 1 && hasHeader(processedGroup[0].account))
+        results.push(processedGroup.shift()!)
+
+      if (processedGroup.length > 0) {
+        results.push({
+          id: `grouped-${id++}`,
+          type: 'grouped-follow',
+          items: processedGroup,
+        })
       }
-
-      for (const item of group) {
-        const hasHeader = !item.account.header.endsWith('/original/missing.png')
-        if (hasHeader && (item.account.followersCount > 250 || (group.length === 1 && item.account.followersCount > 25))) {
-          newGroup()
-          results.push(item)
-        }
-        else {
-          groups.push(item)
-        }
-      }
-
-      newGroup()
       return
     }
-
-    const { status } = group[0]
-    if (status && group.length > 1 && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
+    else if (group.length && (group[0].type === 'reblog' || group[0].type === 'favourite')) {
+      if (!group[0].status) {
+        // Ignore favourite or reblog if status is null, sometimes the API is sending these
+        // notifications
+        return
+      }
       // All notifications in these group are reblogs or favourites of the same status
       const likes: GroupedAccountLike[] = []
       for (const notification of group) {
@@ -84,11 +102,15 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
         }
         like[notification.type === 'reblog' ? 'reblog' : 'favourite'] = notification
       }
-      likes.sort((a, b) => a.reblog ? !b.reblog || (a.favourite && !b.favourite) ? -1 : 0 : 0)
+      likes.sort((a, b) => a.reblog
+        ? (!b.reblog || (a.favourite && !b.favourite))
+            ? -1
+            : 0
+        : 0)
       results.push({
         id: `grouped-${id++}`,
         type: 'grouped-reblogs-and-favourites',
-        status,
+        status: group[0].status,
         likes,
       })
       return
@@ -97,9 +119,9 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
     results.push(...group)
   }
 
-  for (const item of items) {
+  for (const item of items.filter(includeNotificationsForStatusCard)) {
     const itemId = groupId(item)
-    // Finalize group if it already has too many notifications
+    // Finalize the group if it already has too many notifications
     if (currentGroupId !== itemId || currentGroup.length >= groupCapacity)
       processGroup()
 
@@ -110,6 +132,12 @@ function groupItems(items: mastodon.v1.Notification[]): NotificationSlot[] {
   processGroup()
 
   return results
+}
+
+function removeFiltered(items: mastodon.v1.Notification[]): mastodon.v1.Notification[] {
+  return items.filter(item => !item.status?.filtered?.find(
+    filter => filter.filter.filterAction === 'hide' && filter.filter.context.includes('notifications'),
+  ))
 }
 
 function preprocess(items: NotificationSlot[]): NotificationSlot[] {
@@ -131,24 +159,24 @@ function preprocess(items: NotificationSlot[]): NotificationSlot[] {
       flattenedNotifications.push(item)
     }
   }
-  return groupItems(flattenedNotifications)
+  return groupItems(removeFiltered(flattenedNotifications))
 }
 
 const { clearNotifications } = useNotifications()
 const { formatNumber } = useHumanReadableNumber()
 </script>
 
+<!-- eslint-disable vue/attribute-hyphenation -->
 <template>
   <CommonPaginator
     :paginator="paginator"
     :preprocess="preprocess"
     :stream="stream"
-    :eager="3"
-    :virtual-scroller="virtualScroller"
-    event-type="notification"
+    eventType="notification"
+    :virtualScroller="virtualScroller"
   >
     <template #updater="{ number, update }">
-      <button py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
+      <button id="elk_show_new_items" py-4 border="b base" flex="~ col" p-3 w-full text-primary font-bold @click="() => { update(); clearNotifications() }">
         {{ $t('timeline.show_new_items', number, { named: { v: formatNumber(number) } }) }}
       </button>
     </template>

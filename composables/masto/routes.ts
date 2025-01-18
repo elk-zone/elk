@@ -1,5 +1,5 @@
-import { withoutProtocol } from 'ufo'
 import type { mastodon } from 'masto'
+import { withoutProtocol } from 'ufo'
 
 export function getAccountRoute(account: mastodon.v1.Account) {
   return useRouter().resolve({
@@ -27,6 +27,10 @@ export function getAccountFollowersRoute(account: mastodon.v1.Account) {
       account: extractAccountHandle(account),
     },
   })
+}
+
+export function getReportRoute(id: string | number) {
+  return `https://${currentUser.value?.server}/admin/reports/${encodeURIComponent(id)}`
 }
 
 export function getStatusRoute(status: mastodon.v1.Status) {
@@ -64,11 +68,12 @@ export function getStatusInReplyToRoute(status: mastodon.v1.Status) {
   })
 }
 
-export const navigateToStatus = ({ status, focusReply = false }: {
+export function navigateToStatus({ status, focusReply = false }: {
   status: mastodon.v1.Status
   focusReply?: boolean
-}) =>
-  navigateTo({
+}) {
+  return navigateTo({
     path: getStatusRoute(status).href,
     state: { focusReply },
   })
+}

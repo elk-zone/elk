@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-// TODO: masto.js needs to update those two props modified in Mastodon v4.3+
-// ref. RelationshipSeveranceEvent - Mastodon documentation
-// - https://docs.joinmastodon.org/entities/RelationshipSeveranceEvent/
 const { event } = defineProps<{
-  event: mastodon.v1.RelationshipSeveranceEvent & {
-    followersCount?: number | null
-    followingCount?: number | null
-  }
+  event: mastodon.v1.RelationshipSeveranceEvent
 }>()
 
 const { t } = useI18n()

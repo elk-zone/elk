@@ -5,10 +5,11 @@ const { items } = defineProps<{
   items: GroupedNotifications
 }>()
 
+const maxVisibleFollows = 5
 const follows = computed(() => items.items)
-const visibleFollows = computed(() => follows.value.slice(0, 5))
+const visibleFollows = computed(() => follows.value.slice(0, maxVisibleFollows))
 const count = computed(() => follows.value.length)
-const countPlus = computed(() => Math.max(count.value - 5, 0))
+const countPlus = computed(() => Math.max(count.value - maxVisibleFollows, 0))
 const isExpanded = ref(false)
 const lang = computed(() => {
   return (count.value > 1 || count.value === 0) ? undefined : items.items[0].status?.language

@@ -5,16 +5,16 @@ const { items } = defineProps<{
   items: GroupedNotifications
 }>()
 
-// DEBUG from
+// DEBUG start
 const n = 7
-const follow = items.items[0]
-// eslint-disable-next-line vue/no-mutating-props
-items.items = Array.from({ length: n }).fill(0).map(_ => follow)
+const debugFollows = Array.from({ length: n }).fill(0).map(_ => items.items[0])
+const follows = computed(() => debugFollows)
 // DEBUG end
 
-const visibleFollows = computed(() => items.items.slice(0, 5))
-const count = computed(() => items.items.length)
-const countPlus = computed(() => Math.max(items.items.length - 5 - 1, 0))
+// const follows = computed(() => items.items)
+const visibleFollows = computed(() => follows.value.slice(0, 5))
+const count = computed(() => follows.value.length)
+const countPlus = computed(() => Math.max(count.value - 5 - 1, 0))
 const isExpanded = ref(false)
 const lang = computed(() => {
   return (count.value > 1 || count.value === 0) ? undefined : items.items[0].status?.language
@@ -27,10 +27,10 @@ const lang = computed(() => {
       <div :class="count > 1 ? 'i-ri-group-line' : 'i-ri-user-3-line'" me-3 color-blue text-xl aria-hidden="true" />
       <template v-if="count > 1">
         <AccountHoverWrapper
-          :account="visibleFollows[0].account"
+          :account="follows[0].account"
         >
-          <NuxtLink :to="getAccountRoute(visibleFollows[0].account)">
-            <AccountDisplayName :account="items.items[0].account" font-bold hover:underline />
+          <NuxtLink :to="getAccountRoute(follows[0].account)">
+            <AccountDisplayName :account="follows[0].account" font-bold hover:underline />
           </NuxtLink>
         </AccountHoverWrapper>
         &nbsp;{{ $t('notification.and') }}&nbsp;
@@ -42,9 +42,9 @@ const lang = computed(() => {
         &nbsp;{{ $t('notification.followed_you') }}
       </template>
       <template v-else-if="count === 1">
-        <NuxtLink :to="getAccountRoute(items.items[0].account)">
+        <NuxtLink :to="getAccountRoute(follows[0].account)">
           <AccountDisplayName
-            :account="visibleFollows[0].account"
+            :account="follows[0].account"
             text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
           />
         </NuxtLink>
@@ -60,12 +60,12 @@ const lang = computed(() => {
         @click="isExpanded = !isExpanded"
       >
         <AccountHoverWrapper
-          v-for="item in visibleFollows"
-          :key="item.id"
-          :account="item.account"
+          v-for="follow in visibleFollows"
+          :key="follow.id"
+          :account="follow.account"
         >
-          <NuxtLink :to="getAccountRoute(item.account)">
-            <AccountAvatar :account="item.account" w-12 h-12 />
+          <NuxtLink :to="getAccountRoute(follow.account)">
+            <AccountAvatar :account="follow.account" w-12 h-12 />
           </NuxtLink>
         </AccountHoverWrapper>
         <div flex="~ 1" items-center>
@@ -78,12 +78,16 @@ const lang = computed(() => {
           <div i-ri:arrow-up-s-line ms-2 text-secondary text-xl aria-hidden="true" />
           <span ps-2 text-base>Hide</span>
         </div>
-        <AccountInfo
-          v-for="item in items.items"
-          :key="item.id"
-          :account="item.account"
-          p3
-        />
+        <AccountHoverWrapper
+          v-for="follow in follows"
+          :key="follow.id"
+          :account="follow.account"
+        >
+          <NuxtLink :to="getAccountRoute(follow.account)" flex gap-4 px-4 py-2>
+            <AccountAvatar :account="follow.account" w-12 h-12 />
+            <StatusAccountDetails :account="follow.account" />
+          </NuxtLink>
+        </AccountHoverWrapper>
       </div>
     </div>
   </article>

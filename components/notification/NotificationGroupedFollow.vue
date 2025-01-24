@@ -14,7 +14,7 @@ const follows = computed(() => debugFollows)
 // const follows = computed(() => items.items)
 const visibleFollows = computed(() => follows.value.slice(0, 5))
 const count = computed(() => follows.value.length)
-const countPlus = computed(() => Math.max(count.value - 5 - 1, 0))
+const countPlus = computed(() => Math.max(count.value - 5, 0))
 const isExpanded = ref(false)
 const lang = computed(() => {
   return (count.value > 1 || count.value === 0) ? undefined : items.items[0].status?.language

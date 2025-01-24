@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
-import { toggleFollowAccount, useRelationship } from '~/composables/akko/relationship'
+import { fetchRelationships, toggleBlockAccount, toggleFollowAccount, toggleMuteAccount, useRelationship } from '~/composables/akko/relationship'
 
 const { account, command, context, ...props } = defineProps<{
   account: akkoma.v1.Account
@@ -12,45 +12,26 @@ const { account, command, context, ...props } = defineProps<{
 const { t } = useI18n()
 const isSelf = useSelfAccount(() => account)
 const enable = computed(() => !isSelf.value && currentUser.value)
-const relationship = computed(() => props.relationship || useRelationship(account).value)
-const isLoading = computed(() => relationship.value === undefined)
+const relationship = props.relationship ? ref(props.relationship) : useRelationship(account)
+const isLoading = ref(false)
+let intervalHandle: NodeJS.Timeout | undefined
 
-const { client } = useAkko()
-
-async function unblock() {
-  relationship.value!.blocking = false
-  try {
-    const newRel = await client.value.v1.accounts.$select(account.id).unblock()
-    Object.assign(relationship!, newRel)
+// when asking to follow a remote account or when account is locked, relationship.requested will be true
+// we sometimes poll the relationship to get if remote server or user accepted the follow request
+function updateRequestedFollow() {
+  if (intervalHandle) {
+    clearTimeout(intervalHandle)
+    intervalHandle = undefined
   }
-  catch (err) {
-    console.error(err)
-    // TODO error handling
-    relationship.value!.blocking = true
-  }
+  if (!relationship.value?.requested)
+    return
+  intervalHandle = setTimeout(() => {
+    intervalHandle = undefined
+    fetchRelationships(account, relationship, true)
+  }, 5000)
 }
 
-async function unmute() {
-  relationship.value!.muting = false
-  try {
-    const newRel = await client.value.v1.accounts.$select(account.id).unmute()
-    Object.assign(relationship!, newRel)
-  }
-  catch (err) {
-    console.error(err)
-    // TODO error handling
-    relationship.value!.muting = true
-  }
-}
-
-useCommand({
-  scope: 'Actions',
-  order: -2,
-  visible: () => command && enable,
-  name: () => `${relationship.value?.following ? t('account.unfollow') : t('account.follow')} ${getShortHandle(account)}`,
-  icon: 'i-ri:star-line',
-  onActivate: () => toggleFollowAccount(relationship.value!, account),
-})
+watch(relationship, updateRequestedFollow)
 
 const buttonStyle = computed(() => {
   if (relationship.value?.blocking)
@@ -70,19 +51,45 @@ const buttonStyle = computed(() => {
   // If not following, use a button style
   return 'text-inverted bg-primary border-primary'
 })
+
+async function onClick() {
+  let method = toggleFollowAccount
+  if (relationship.value?.blocking)
+    method = toggleBlockAccount
+  else if (relationship.value?.muting)
+    method = toggleMuteAccount
+  isLoading.value = true
+  const restoreRelationship = JSON.parse(JSON.stringify(relationship.value))
+  try {
+    const updatedRelationship = await method(relationship.value!, account)
+    relationship.value = updatedRelationship
+  }
+  catch (e) {
+    console.error(e)
+    relationship.value = restoreRelationship
+    // TODO error handling
+  }
+  isLoading.value = false
+}
+
+useCommand({
+  scope: 'Actions',
+  order: -2,
+  visible: () => command && enable,
+  name: () => `${relationship.value?.following ? t('account.unfollow') : t('account.follow')} ${getShortHandle(account)}`,
+  icon: 'i-ri:star-line',
+  onActivate: onClick,
+})
 </script>
 
 <template>
   <button
-    v-if="enable"
-    gap-1 items-center group
-    border-1
-    rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3 py1
-    :class="buttonStyle"
+    v-if="enable" gap-1 items-center group border-1 rounded-full flex="~ gap2 center" font-500 min-w-30 h-fit px3
+    py1 :class="buttonStyle"
     :hover="!relationship?.blocking && !relationship?.muting && relationship?.following ? 'border-red text-red' : 'bg-base border-primary text-primary'"
-    @click="relationship?.blocking ? unblock() : relationship?.muting ? unmute() : toggleFollowAccount(relationship!, account)"
+    @click="onClick"
   >
-    <template v-if="isLoading">
+    <template v-if="!relationship || isLoading">
       <span i-svg-spinners-180-ring-with-bg />
     </template>
     <template v-else>
@@ -90,24 +97,28 @@ const buttonStyle = computed(() => {
         <span elk-group-hover="hidden">{{ $t('account.blocking') }}</span>
         <span hidden elk-group-hover="inline">{{ $t('account.unblock') }}</span>
       </template>
-      <template v-if="relationship?.muting">
-        <span elk-group-hover="hidden">{{ $t('account.muting') }}</span>
-        <span hidden elk-group-hover="inline">{{ $t('account.unmute') }}</span>
-      </template>
-      <template v-else-if="relationship ? relationship.following : context === 'following'">
-        <span elk-group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following') }}</span>
-        <span hidden elk-group-hover="inline">{{ $t('account.unfollow') }}</span>
-      </template>
-      <template v-else-if="relationship?.requested">
-        <span elk-group-hover="hidden">{{ $t('account.follow_requested') }}</span>
-        <span hidden elk-group-hover="inline">{{ $t('account.withdraw_follow_request') }}</span>
-      </template>
-      <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
-        <span elk-group-hover="hidden">{{ $t('account.follows_you') }}</span>
-        <span hidden elk-group-hover="inline">{{ account.locked ? $t('account.request_follow') : $t('account.follow_back') }}</span>
-      </template>
       <template v-else>
-        <span>{{ account.locked ? $t('account.request_follow') : $t('account.follow') }}</span>
+        <template v-if="relationship?.muting">
+          <span elk-group-hover="hidden">{{ $t('account.muting') }}</span>
+          <span hidden elk-group-hover="inline">{{ $t('account.unmute') }}</span>
+        </template>
+        <template v-else-if="relationship ? relationship.following : context === 'following'">
+          <span elk-group-hover="hidden">{{ relationship?.followedBy ? $t('account.mutuals') : $t('account.following')
+          }}</span>
+          <span hidden elk-group-hover="inline">{{ $t('account.unfollow') }}</span>
+        </template>
+        <template v-else-if="relationship?.requested">
+          <span elk-group-hover="hidden">{{ $t('account.follow_requested') }}</span>
+          <span hidden elk-group-hover="inline">{{ $t('account.withdraw_follow_request') }}</span>
+        </template>
+        <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">
+          <span elk-group-hover="hidden">{{ $t('account.follows_you') }}</span>
+          <span hidden elk-group-hover="inline">{{ account.locked ? $t('account.request_follow')
+            : $t('account.follow_back') }}</span>
+        </template>
+        <template v-else>
+          <span>{{ account.locked ? $t('account.request_follow') : $t('account.follow') }}</span>
+        </template>
       </template>
     </template>
   </button>

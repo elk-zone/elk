@@ -8,6 +8,24 @@ import type { Ref } from 'vue'
 const requestedRelationships = new Map<string, Ref<akkoma.v1.Relationship | undefined>>()
 let timeoutHandle: NodeJS.Timeout | undefined
 
+// allow debounced batch relationship requests
+export function fetchRelationships(account: akkoma.v1.Account, relationship: Ref<akkoma.v1.Relationship | undefined>, ignoreCache = false) {
+  requestedRelationships.set(account.id, relationship)
+  if (timeoutHandle)
+    clearTimeout(timeoutHandle)
+  timeoutHandle = setTimeout(async () => {
+    timeoutHandle = undefined
+    const requested = Array.from(requestedRelationships.entries()).filter(([, r]) => ignoreCache || !r.value)
+    const relationships = await useAkkoClient().v1.accounts.relationships.fetch({ id: requested.map(([id]) => id) })
+    for (const rs of relationships) {
+      const requestedToUpdate = requested.find(([id]) => id === rs.id)
+      if (!requestedToUpdate)
+        continue
+      requestedToUpdate[1].value = rs
+    }
+  }, 100)
+}
+
 export function useRelationship(account: akkoma.v1.Account): Ref<akkoma.v1.Relationship | undefined> {
   if (!currentUser.value)
     return ref()
@@ -16,28 +34,10 @@ export function useRelationship(account: akkoma.v1.Account): Ref<akkoma.v1.Relat
   if (relationship)
     return relationship
 
-  // allow batch relationship requests
   relationship = ref<akkoma.v1.Relationship | undefined>()
-  requestedRelationships.set(account.id, relationship)
-  if (timeoutHandle)
-    clearTimeout(timeoutHandle)
-  timeoutHandle = setTimeout(() => {
-    timeoutHandle = undefined
-    fetchRelationships()
-  }, 100)
+  fetchRelationships(account, relationship)
 
   return relationship
-}
-
-async function fetchRelationships() {
-  const requested = Array.from(requestedRelationships.entries()).filter(([, r]) => !r.value)
-  const relationships = await useAkkoClient().v1.accounts.relationships.fetch({ id: requested.map(([id]) => id) })
-  for (const relationship of relationships) {
-    const requestedToUpdate = requested.find(([id]) => id === relationship.id)
-    if (!requestedToUpdate)
-      continue
-    requestedToUpdate[1].value = relationship
-  }
 }
 
 export async function toggleFollowAccount(relationship: akkoma.v1.Relationship, account: akkoma.v1.Account) {
@@ -68,7 +68,9 @@ export async function toggleFollowAccount(relationship: akkoma.v1.Relationship, 
     relationship!.following = true
   }
 
-  relationship = await client.value.v1.accounts.$select(account.id)[unfollow ? 'unfollow' : 'follow']()
+  const updatedRelationship = await client.value.v1.accounts.$select(account.id)[unfollow ? 'unfollow' : 'follow']()
+  Object.assign(relationship, updatedRelationship)
+  return updatedRelationship
 }
 
 export async function toggleMuteAccount(relationship: akkoma.v1.Relationship, account: akkoma.v1.Account) {
@@ -93,12 +95,14 @@ export async function toggleMuteAccount(relationship: akkoma.v1.Relationship, ac
   }
 
   relationship!.muting = !relationship!.muting
-  relationship = relationship!.muting
+  const updatedRelationship = relationship!.muting
     ? await client.value.v1.accounts.$select(account.id).mute({
       duration,
       notifications,
     })
     : await client.value.v1.accounts.$select(account.id).unmute()
+  Object.assign(relationship, updatedRelationship)
+  return updatedRelationship
 }
 
 export async function toggleBlockAccount(relationship: akkoma.v1.Relationship, account: akkoma.v1.Account) {
@@ -117,7 +121,12 @@ export async function toggleBlockAccount(relationship: akkoma.v1.Relationship, a
   }
 
   relationship!.blocking = !relationship!.blocking
-  relationship = await client.value.v1.accounts.$select(account.id)[relationship!.blocking ? 'block' : 'unblock']()
+  // user stops following when blocking
+  if (relationship!.blocking)
+    relationship!.following = false
+  const updatedRelationship = await client.value.v1.accounts.$select(account.id)[relationship!.blocking ? 'block' : 'unblock']()
+  Object.assign(relationship, updatedRelationship)
+  return updatedRelationship
 }
 
 export async function toggleBlockDomain(relationship: akkoma.v1.Relationship, account: akkoma.v1.Account) {
@@ -136,5 +145,7 @@ export async function toggleBlockDomain(relationship: akkoma.v1.Relationship, ac
   }
 
   relationship!.domainBlocking = !relationship!.domainBlocking
-  await client.value.v1.domainBlocks[relationship!.domainBlocking ? 'create' : 'remove']({ domain: getServerName(account) })
+  const updatedRelationship = await client.value.v1.domainBlocks[relationship!.domainBlocking ? 'create' : 'remove']({ domain: getServerName(account) })
+  Object.assign(relationship, updatedRelationship)
+  return updatedRelationship
 }

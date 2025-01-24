@@ -21,9 +21,12 @@ const tabs = computed(() => [
 
 const currentTab = ref(tabs.value[0].name)
 
-const { q } = useUrlSearchParams<{ q: string }>()
+const route = useRoute()
 
-const query = ref(q || '')
+const query = ref(route.query.q as string || '')
+
+watch(route, () => query.value = route.query.q as string)
+
 const queryType = computed(() => currentTab.value === 'all' ? undefined : currentTab.value as ('accounts' | 'hashtags' | 'statuses'))
 const offset = ref(0)
 

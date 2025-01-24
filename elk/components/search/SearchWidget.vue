@@ -42,10 +42,11 @@ function shift(delta: number) {
   return index.value = (index.value + delta % results.value.length + results.value.length) % results.value.length
 }
 
-function activate() {
+function activate(e: KeyboardEvent) {
   if (query.value.length === 0)
     return
 
+  (e.currentTarget as HTMLInputElement).blur()
   router.push(`/search?q=${query.value}`)
 }
 </script>

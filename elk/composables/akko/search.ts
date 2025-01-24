@@ -27,6 +27,7 @@ export function useSearch(query: MaybeRefOrGetter<string>, mayBeOptions: UseSear
   const accounts = ref<AccountSearchResult[]>([])
   const hashtags = ref<HashTagSearchResult[]>([])
   const statuses = ref<StatusSearchResult[]>([])
+  let requestIndex = 0
 
   const q = computed(() => resolveUnref(query).trim())
   const options = computed(() => resolveUnref(mayBeOptions))
@@ -67,6 +68,8 @@ export function useSearch(query: MaybeRefOrGetter<string>, mayBeOptions: UseSear
     if (!q.value || !isHydrated.value)
       return
 
+    requestIndex += 1
+    const currentRequestIndex = requestIndex
     loading.value = true
     /**
      * Based on the source it seems like modifying the params when calling next would result in a new search,
@@ -78,6 +81,8 @@ export function useSearch(query: MaybeRefOrGetter<string>, mayBeOptions: UseSear
       resolve: !!currentUser.value,
     })
     const nextResults = await paginator.next()
+    if (requestIndex !== currentRequestIndex)
+      return
 
     done.value = !!nextResults.done
     if (!nextResults.done)
@@ -88,13 +93,15 @@ export function useSearch(query: MaybeRefOrGetter<string>, mayBeOptions: UseSear
 
   onMounted(search)
 
-  debouncedWatch(() => resolveUnref(query), search, { debounce: 300 })
+  debouncedWatch(() => resolveUnref(query), search, { debounce: 800 })
 
   const next = async () => {
     if (!q.value || !isHydrated.value || !paginator)
       return
 
     loading.value = true
+    requestIndex += 1
+    const currentRequestIndex = requestIndex
     /**
      * Based on the source it seems like modifying the params when calling next would result in a new search,
      * but that doesn't seem to be the case. So instead we just create a new paginator with the new params.
@@ -105,6 +112,8 @@ export function useSearch(query: MaybeRefOrGetter<string>, mayBeOptions: UseSear
       resolve: !!currentUser.value,
     })
     const nextResults = await paginator.next()
+    if (requestIndex !== currentRequestIndex)
+      return
     loading.value = false
 
     done.value = !!nextResults.done

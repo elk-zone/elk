@@ -30,7 +30,10 @@ const lang = computed(() => {
           :account="follows[0].account"
         >
           <NuxtLink :to="getAccountRoute(follows[0].account)">
-            <AccountDisplayName :account="follows[0].account" font-bold hover:underline />
+            <AccountDisplayName
+              :account="follows[0].account"
+              text-primary font-bold line-clamp-1 ws-pre-wrap break-all hover:underline
+            />
           </NuxtLink>
         </AccountHoverWrapper>
         &nbsp;{{ $t('notification.and') }}&nbsp;
@@ -55,7 +58,7 @@ const lang = computed(() => {
     </div>
     <div pb-2 ps8>
       <div
-        v-if="!isExpanded"
+        v-if="!isExpanded && count > 1"
         flex="~ wrap gap-1.75" p4 items-center cursor-pointer
         @click="isExpanded = !isExpanded"
       >
@@ -74,7 +77,7 @@ const lang = computed(() => {
         </div>
       </div>
       <div v-else>
-        <div flex p-4 pb-2 cursor-pointer @click="isExpanded = !isExpanded">
+        <div v-if="count > 1" flex p-4 pb-2 cursor-pointer @click="isExpanded = !isExpanded">
           <div i-ri:arrow-up-s-line ms-2 text-secondary text-xl aria-hidden="true" />
           <span ps-2 text-base>Hide</span>
         </div>

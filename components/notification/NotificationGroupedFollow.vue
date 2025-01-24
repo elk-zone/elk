@@ -68,7 +68,7 @@ const lang = computed(() => {
             <AccountAvatar :account="item.account" w-12 h-12 />
           </NuxtLink>
         </AccountHoverWrapper>
-        <div flex="~ 1">
+        <div flex="~ 1" items-center>
           <span v-if="countPlus > 0" ps-2 text="base lg">+{{ countPlus }}</span>
           <div i-ri:arrow-down-s-line mx-1 text-secondary text-xl aria-hidden="true" />
         </div>

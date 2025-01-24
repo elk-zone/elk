@@ -74,16 +74,16 @@ const lang = computed(() => {
         </div>
       </div>
       <div v-else>
+        <div flex p-4 pb-2 cursor-pointer @click="isExpanded = !isExpanded">
+          <div i-ri:arrow-up-s-line ms-2 text-secondary text-xl aria-hidden="true" />
+          <span ps-2 text-base>Hide</span>
+        </div>
         <AccountInfo
           v-for="item in items.items"
           :key="item.id"
           :account="item.account"
           p3
         />
-        <div flex p-1 cursor-pointer @click="isExpanded = !isExpanded">
-          <div i-ri:arrow-up-s-line mx-1 text-secondary text-xl aria-hidden="true" />
-          <span ps-2 text-base>Hide</span>
-        </div>
       </div>
     </div>
   </article>

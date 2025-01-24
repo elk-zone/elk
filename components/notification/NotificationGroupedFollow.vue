@@ -40,7 +40,7 @@ const lang = computed(() => {
         <CommonLocalizedNumber
           keypath="notification.others"
           :count="count - 1"
-          font-bold
+          text-primary font-bold line-clamp-1 ws-pre-wrap break-all
         />
         &nbsp;{{ $t('notification.followed_you') }}
       </template>
@@ -48,7 +48,7 @@ const lang = computed(() => {
         <NuxtLink :to="getAccountRoute(follows[0].account)">
           <AccountDisplayName
             :account="follows[0].account"
-            text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
+            text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all hover:underline
           />
         </NuxtLink>
         <span me-1 ws-nowrap>

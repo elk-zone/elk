@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.31 (2025-01-24)
+
+
+### Bug Fixes
+
+* debounce search request and make search page query reactive ([b1a8929](https://github.com/BDX-town/elk/commit/b1a892947f97439f4a222fded575226f1b192212))
+
 ## 0.15.30 (2025-01-24)
 
 ## 0.15.29 (2025-01-17)

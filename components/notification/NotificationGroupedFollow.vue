@@ -5,13 +5,7 @@ const { items } = defineProps<{
   items: GroupedNotifications
 }>()
 
-// DEBUG start
-const n = 7
-const debugFollows = Array.from({ length: n }).fill(0).map(_ => items.items[0])
-const follows = computed(() => debugFollows)
-// DEBUG end
-
-// const follows = computed(() => items.items)
+const follows = computed(() => items.items)
 const visibleFollows = computed(() => follows.value.slice(0, 5))
 const count = computed(() => follows.value.length)
 const countPlus = computed(() => Math.max(count.value - 5, 0))

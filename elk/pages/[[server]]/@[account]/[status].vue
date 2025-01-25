@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { akkoma } from '@bdxtown/akko'
 import type { ComponentPublicInstance } from 'vue'
 // @ts-expect-error missing types
 import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller'
@@ -14,7 +15,7 @@ const route = useRoute()
 const id = computed(() => route.params.status as string)
 const main = ref<ComponentPublicInstance | null>(null)
 
-const { data: status, pending, refresh: refreshStatus } = useAsyncData(
+const { data: status, pending, refresh: refreshStatus }: { data: Ref<akkoma.v1.Status | undefined>, pending: Ref<boolean>, refresh: () => void } = useAsyncData(
   `status:${id.value}`,
   () => fetchStatus(id.value, true),
   { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef() },
@@ -28,11 +29,11 @@ const { data, pending: pendingContext, refresh: refreshContext } = useAsyncData(
 
 const context = computed(() => status.value && data.value ? sortContext(status.value, data.value) : undefined)
 
-if (pendingContext)
-  watchOnce(pendingContext, scrollTo)
+watch(pendingContext, scrollTo)
 
-if (pending)
-  watchOnce(pending, scrollTo)
+watch(pending, scrollTo)
+
+onMounted(scrollTo)
 
 async function scrollTo() {
   await nextTick()
@@ -41,7 +42,7 @@ async function scrollTo() {
   if (!statusElement)
     return
 
-  statusElement.scrollIntoView(true)
+  statusElement.scrollIntoView({ block: status?.value?.inReplyToId ? 'center' : 'start' })
 }
 
 const publishWidget = ref()
@@ -70,7 +71,7 @@ onReactivated(() => {
   <MainContent back>
     <template v-if="!pending">
       <template v-if="status">
-        <div xl:mt-4 mb="50vh" border="b base">
+        <div xl:mt-4 border="b base">
           <template v-if="!pendingContext">
             <StatusCard
               v-for="(comment, i) of context?.ancestors" :key="comment.id"
@@ -78,7 +79,7 @@ onReactivated(() => {
               :has-older="true" :newer="context?.ancestors[i - 1]"
             />
           </template>
-
+          <TimelineSkeleton v-else-if="status.inReplyToId && pendingContext" />
           <StatusDetails
             ref="main"
             :status="status"
@@ -123,6 +124,6 @@ onReactivated(() => {
       <StatusNotFound v-else :account="route.params.account as string" :status="id" />
     </template>
     <StatusCardSkeleton v-else border="b base" />
-    <TimelineSkeleton v-if="pending || pendingContext" />
+    <TimelineSkeleton v-if="pending || (status?.repliesCount && status.repliesCount > 0 && pendingContext)" />
   </MainContent>
 </template>

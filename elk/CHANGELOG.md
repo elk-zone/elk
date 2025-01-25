@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.32 (2025-01-25)
+
+
+### Bug Fixes
+
+* add follow pending message to differenciate locked account and server response ([2b1c544](https://github.com/BDX-town/elk/commit/2b1c544fd233c7bf2a6a749db52cceea0892c5f4))
+
 ## 0.15.31 (2025-01-24)
 
 

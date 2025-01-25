@@ -108,7 +108,7 @@ useCommand({
           <span hidden elk-group-hover="inline">{{ $t('account.unfollow') }}</span>
         </template>
         <template v-else-if="relationship?.requested">
-          <span elk-group-hover="hidden">{{ $t('account.follow_requested') }}</span>
+          <span elk-group-hover="hidden">{{ account.locked ? $t('account.follow_requested') : $t('account.follow_pending') }}</span>
           <span hidden elk-group-hover="inline">{{ $t('account.withdraw_follow_request') }}</span>
         </template>
         <template v-else-if="relationship ? relationship.followedBy : context === 'followedBy'">

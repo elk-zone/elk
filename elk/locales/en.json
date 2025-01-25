@@ -19,6 +19,7 @@
     "favourites": "Favorites",
     "follow": "Follow",
     "follow_back": "Follow back",
+    "follow_pending": "Pending",
     "follow_requested": "Requested",
     "followers": "Followers",
     "followers_count": "{0} Followers|{0} Follower|{0} Followers",

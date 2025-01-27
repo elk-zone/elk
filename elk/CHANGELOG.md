@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.34 (2025-01-27)
+
+
+### Bug Fixes
+
+* can only refresh when poll is not expired ([75999c1](https://github.com/BDX-town/elk/commit/75999c1501b2a368398c98928a230517a930cbac))
+
 ## 0.15.33 (2025-01-27)
 
 

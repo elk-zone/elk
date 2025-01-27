@@ -28,7 +28,7 @@ const postPaginator = useMastoClient().v1.accounts.$select(account.id).statuses.
 
 if (account) {
   useHydratedHead({
-    title: () => `${t('account.posts')} | ${getDisplayName(account)} (@${account.acct})`,
+    title: () => `${t('nav.profile')} | ${getDisplayName(account)} (@${account.acct})`,
   })
 }
 </script>

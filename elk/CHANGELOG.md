@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.33 (2025-01-27)
+
+
+### Bug Fixes
+
+* account profile page title ([0be75b3](https://github.com/BDX-town/elk/commit/0be75b38aa30ff4d9dc89429b1f3dc3d4f09af3f))
+
 ## 0.15.32 (2025-01-25)
 
 

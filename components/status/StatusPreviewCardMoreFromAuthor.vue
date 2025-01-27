@@ -15,6 +15,6 @@ defineProps<{
     light:bg-gray-3 dark:bg-gray-8
   >
     <span z-0>More from</span>
-    <AccountInlineInfo :account="account" hover:bg-gray-300 />
+    <AccountInlineInfo :account="account" hover:bg-inherit ps-0 ms-0 />
   </div>
 </template>

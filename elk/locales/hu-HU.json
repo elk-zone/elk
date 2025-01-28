@@ -124,7 +124,7 @@
     "block_account": {
       "cancel": "Mégsem",
       "confirm": "Blokkol",
-      "description": "Biztosan blokkolod {0}?",
+      "description": "Biztosan blokkolod, {0}?",
       "title": "Hozzáférés blokkolása"
     },
     "block_domain": {
@@ -265,7 +265,7 @@
     "sequence_then": "miután"
   },
   "menu": {
-    "add_personal_note": "Személyes megjegyzés hozzáfőzése: {0}",
+    "add_personal_note": "Személyes megjegyzés hozzáfűzése: {0}",
     "block_account": "Blokkol {0}",
     "block_domain": "Domaint blokkol {0}",
     "copy_link_to_post": "A bejegyzés hivatkozásának másolása",
@@ -334,10 +334,12 @@
     "zen_mode": "Zen mód"
   },
   "notification": {
+    "and": "és",
     "favourited_post": "hozzáaadta a bejegyésed a kedvenceihez",
     "followed_you": "mostantól követ téged",
     "followed_you_count": "{0} ember követ téged|{0} ember követ téged|{0} ember követ téged",
     "missing_type": "HIÁNYZÓ éresítés típus:",
+    "others": "{0} mások|{0} más|{0} mások",
     "reblogged_post": "kiemelte a bejegyzésedet",
     "reported": "{0} jelentette {1}",
     "request_to_follow": "kérte hogy kövessen",
@@ -633,6 +635,7 @@
       "dismiss": "Elvetés",
       "read": "Olvassa el a {0} leírását"
     },
+    "pinned": "Kitűzött bejegyzés",
     "poll": {
       "count": "{0} szavazat|{0} szavazat|{0} szavazat",
       "ends": "véget ér {0}",

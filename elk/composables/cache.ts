@@ -1,5 +1,6 @@
 import type { akkoma } from '@bdxtown/akko'
 import { LRUCache } from 'lru-cache'
+import { name } from './../package.json'
 
 const cache = new LRUCache<string, any>({
   max: 1000,
@@ -15,6 +16,27 @@ export function setCached(key: string, value: any, override = false) {
 }
 function removeCached(key: string) {
   cache.delete(key)
+}
+
+export function fetchFrontendConfiguration(): Promise<FrontendConfiguration | undefined> {
+  const server = currentServer.value
+  const key = `${server}:pleroma-config`
+  const cached = cache.has(key)
+  if (cached)
+    return Promise.resolve(cache.get(key))
+
+  const promise = useAkkoClient().pleroma.frontendConfigurations.fetch().then((config) => {
+    let frontendConfiguration = config[`${name}Fe`] || config[`${'soapbox'}Fe`] // TODO: remove when settings will be ok
+    // TODO: remove when settings will be ok
+    frontendConfiguration = {
+      ...frontendConfiguration,
+      links: (frontendConfiguration.promoPanel as { items: FrontendConfiguration['links'] }).items,
+    }
+    cacheFrontendConfiguration(frontendConfiguration)
+    return frontendConfiguration as unknown as FrontendConfiguration | undefined
+  })
+  cache.set(key, promise)
+  return promise
 }
 
 export function fetchStatus(id: string, force = false): Promise<akkoma.v1.Status> {
@@ -109,6 +131,11 @@ export function fetchTag(tagName: string, force = false): Promise<akkoma.v1.Tag>
 
 export function useAccountById(id?: string | null) {
   return useAsyncState(() => fetchAccountById(id), null).state
+}
+
+export function cacheFrontendConfiguration(config: unknown | undefined, override?: boolean) {
+  const server = currentServer.value
+  setCached(`${server}:pleroma-config`, config, override)
 }
 
 export function cacheStatus(status: akkoma.v1.Status, server = currentServer.value, override?: boolean) {

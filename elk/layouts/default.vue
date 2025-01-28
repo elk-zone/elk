@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NavPromoPanel from '~/components/nav/NavPromoPanel.vue'
 import { usePreferences } from '~/composables/settings'
 
 const route = useRoute()
@@ -69,7 +70,9 @@ const isGrayscale = usePreferences('grayscaleMode')
               </div>
             </div>
             <SearchWidget mt-4 mx-1 hidden xl:block />
-            <div flex-auto />
+            <div flex-auto>
+              <NavPromoPanel class="mt-12" />
+            </div>
             <PwaPrompt />
             <PwaInstallPrompt />
             <LazyCommonPreviewPrompt v-if="info.env === 'preview'" />

@@ -41,3 +41,4 @@ export * from "./tag";
 export * from "./token";
 export * from "./translation";
 export * from "./web-push-subscription";
+export * from "./pleroma-config";

@@ -26,6 +26,7 @@ export interface Client {
     readonly notifications: v1.NotificationRepository;
     readonly polls: v1.PollRepository;
     readonly preferences: v1.PreferenceRepository;
+    readonly pleroma: v1.PleromaRepository;
     readonly reports: v1.ReportRepository;
     readonly scheduledStatuses: v1.ScheduledStatusRepository;
     readonly search: v1.SearchRepository;
@@ -47,4 +48,5 @@ export interface Client {
     readonly suggestions: v2.SuggestionRepository;
     readonly search: v2.SearchRepository;
   };
+  readonly pleroma: v1.PleromaRepository;
 }

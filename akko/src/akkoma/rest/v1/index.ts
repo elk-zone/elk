@@ -33,3 +33,4 @@ export * from "./tag-repository";
 export * from "./timeline-repository";
 export * from "./trend-repository";
 export * from "./profile-repository";
+export * from "./pleroma-repository";

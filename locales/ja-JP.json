@@ -7,6 +7,8 @@
     "route_loaded": "ページ{0}を読み込みました"
   },
   "account": {
+    "authorize": "フォローを承認",
+    "authorized": "リクエストを承認しました",
     "avatar_description": "{0}さんのアバター",
     "blocked_by": "あなたはこのユーザーからブロックされています。",
     "blocked_domains": "ブロックしたドメイン",
@@ -38,7 +40,10 @@
     "profile_description": "{0}さんのプロフィールヘッダー",
     "profile_personal_note": "個人メモ",
     "profile_unavailable": "プロフィールが利用できません",
+    "reject": "フォローを拒否",
+    "rejected": "リクエストを拒否しました",
     "request_follow": "フォローをリクエスト",
+    "requested": "{0}さんがフォローをリクエストしました",
     "unblock": "ブロック解除",
     "unfollow": "フォロー解除",
     "unmute": "ミュート解除",
@@ -53,6 +58,7 @@
     "boost": "ブースト",
     "boost_count": "{0}",
     "boosted": "ブースト済み",
+    "clear": "クリア",
     "clear_publish_failed": "投稿エラーをクリア",
     "clear_save_failed": "保存エラーをクリア",
     "clear_upload_failed": "ファイルアップロードエラーをクリア",
@@ -67,8 +73,10 @@
     "favourited": "お気に入り済み",
     "more": "さらに表示",
     "next": "次へ",
+    "open_image_preview_dialog": "画像をプレビューダイアログで開く",
     "prev": "前へ",
     "publish": "投稿",
+    "publish_thread": "スレッドを投稿",
     "reply": "返信",
     "reply_count": "{0}",
     "reset": "リセット",
@@ -116,12 +124,14 @@
     "block_account": {
       "cancel": "キャンセル",
       "confirm": "ブロック",
-      "description": "{0}さんを本当にミュートしますか？"
+      "description": "{0}さんを本当にミュートしますか？",
+      "title": "アカウントのブロック"
     },
     "block_domain": {
       "cancel": "キャンセル",
       "confirm": "ブロック",
-      "description": "{0}さんを本当にブロックしますか？"
+      "description": "{0}さんを本当にブロックしますか？",
+      "title": "ドメインのブロック"
     },
     "common": {
       "cancel": "いいえ",
@@ -130,27 +140,37 @@
     "delete_list": {
       "cancel": "キャンセル",
       "confirm": "削除",
-      "description": "リスト \"{0}\" を本当に削除しますか？"
+      "description": "リスト \"{0}\" を本当に削除しますか？",
+      "title": "リストの削除"
     },
     "delete_posts": {
       "cancel": "キャンセル",
       "confirm": "削除",
-      "description": "この投稿を本当に削除しますか？"
+      "description": "この投稿を本当に削除しますか？",
+      "title": "投稿の削除"
     },
     "mute_account": {
       "cancel": "キャンセル",
       "confirm": "ミュート",
-      "description": "{0}さんを本当にミュートしますか？"
+      "days": "日",
+      "description": "{0}さんを本当にミュートしますか？",
+      "hours": "時間",
+      "minute": "分",
+      "notifications": "通知をミュートする",
+      "specify_duration": "ミュート期間を指定する",
+      "title": "アカウントのミュート"
     },
     "show_reblogs": {
       "cancel": "キャンセル",
       "confirm": "表示",
-      "description": "{0}さんのブーストを本当に表示しますか？"
+      "description": "{0}さんのブーストを本当に表示しますか？",
+      "title": "ブーストの表示"
     },
     "unfollow": {
       "cancel": "キャンセル",
       "confirm": "フォロー解除",
-      "description": "本当にフォローを解除しますか？"
+      "description": "本当にフォローを解除しますか？",
+      "title": "フォロー解除"
     }
   },
   "conversation": {
@@ -203,6 +223,7 @@
     "error": "リストの作成中にエラーが発生しました",
     "error_prefix": "エラー: ",
     "list_title_placeholder": "リストのタイトル",
+    "manage": "リストを管理",
     "modify_account": "このアカウントでリストを編集",
     "remove_account": "アカウントをリストから削除",
     "save": "変更を保存"
@@ -216,14 +237,25 @@
         "compose": "投稿",
         "favourite": "お気に入り",
         "search": "検索",
+        "show_new_items": "新しいアイテムを表示",
         "title": "アクション"
       },
       "media": {
         "title": "メディア"
       },
       "navigation": {
+        "go_to_bookmarks": "ブックマーク",
+        "go_to_conversations": "会話",
+        "go_to_explore": "話題の投稿",
+        "go_to_favourites": "お気に入り",
+        "go_to_federated": "連合",
         "go_to_home": "ホーム",
+        "go_to_lists": "リスト",
+        "go_to_local": "ローカル",
         "go_to_notifications": "通知",
+        "go_to_profile": "プロフィール",
+        "go_to_search": "検索",
+        "go_to_settings": "設定",
         "next_status": "次の投稿",
         "previous_status": "前の投稿",
         "shortcut_help": "ショートカットのヘルプ",
@@ -278,13 +310,16 @@
     "built_at": "ビルド {0}",
     "compose": "投稿",
     "conversations": "会話",
+    "docs": "ドキュメント",
     "explore": "話題の投稿",
     "favourites": "お気に入り",
     "federated": "連合",
+    "hashtags": "ハッシュタグ",
     "home": "ホーム",
     "list": "リスト",
     "lists": "リスト",
     "local": "ローカル",
+    "more_menu": "その他のメニュー",
     "muted_users": "ミュートしたユーザー",
     "notifications": "通知",
     "privacy": "プライバシー",
@@ -419,6 +454,8 @@
       "label": "アカウント設定"
     },
     "interface": {
+      "bottom_nav": "下部ナビゲーション",
+      "bottom_nav_instructions": "下部ナビゲーションに表示するお気に入りのナビゲーションボタンを5つまで選択してください。「その他のメニュー」ボタンは必ず含める必要があります。",
       "color_mode": "カラーモード",
       "dark_mode": "ダークモード",
       "default": " (デフォルト)",
@@ -430,6 +467,7 @@
     },
     "language": {
       "display_language": "表示言語",
+      "how_to_contribute": "貢献するには？",
       "label": "言語",
       "post_language": "投稿言語",
       "status": "翻訳状況: {0}/{1} ({2}%)",
@@ -474,7 +512,7 @@
           "repo_link": "ElkのGitHubリポジトリ",
           "request_error": "登録のリクエスト中にエラーが発生しました。再試行してもエラーが解消しない場合、Elkリポジトリにissueを報告してください。",
           "title": "プッシュ通知を登録できませんでした",
-          "too_many_registrations": "ブラウザーの制限により、Elkは異なるサーバー上の複数アカウントに対してプッシュ通知サービスを使用できません。他のアカウントのプッシュ通知の登録を解除して、再登録する必要があります。",
+          "too_many_registrations": "ブラウザの制限により、Elkは異なるサーバー上の複数アカウントに対してプッシュ通知サービスを使用できません。他のアカウントのプッシュ通知の登録を解除して、再登録する必要があります。",
           "vapid_not_supported": "このブラウザはWeb Push通知をサポートしていませんが、VAPIDプロトコルをサポートしているようです。"
         },
         "title": "プッシュ通知の設定",
@@ -497,6 +535,8 @@
     },
     "notifications_settings": "通知",
     "preferences": {
+      "embedded_media": "埋め込みメディアプレイヤー",
+      "embedded_media_description": "メディアストリーミングの共有リンクを展開する際に、通常のプレビューカードではなく埋め込みメディアプレイヤーを表示します。",
       "enable_autoplay": "自動再生を有効化",
       "enable_data_saving": "データセーバーを有効にする",
       "enable_data_saving_description": "添付の自動読み込みを防止してデータを節約します。",
@@ -505,12 +545,14 @@
       "github_cards_description": "GitHubリンクが投稿されたとき、ソーシャル画像の代わりにソーシャルグラフのメタデータを使用してアクセシブルなHTMLカードを表示します。",
       "grayscale_mode": "グレースケールモード",
       "hide_account_hover_card": "アカウントのホバーカードを隠す",
-      "hide_alt_indi_on_posts": "投稿上のalt表示を隠す",
+      "hide_alt_indi_on_posts": "投稿上のALTを隠す",
       "hide_boost_count": "ブーストの数を隠す",
       "hide_favorite_count": "お気に入りの数を隠す",
       "hide_follower_count": "フォロワーの数を隠す",
+      "hide_gif_indi_on_posts": "投稿上のGIF表示を隠す",
       "hide_news": "ニュースを隠す",
       "hide_reply_count": "リプライの数を隠す",
+      "hide_tag_hover_card": "タグのホバーカードを隠す",
       "hide_translation": "翻訳を隠す",
       "hide_username_emojis": "ユーザー名の絵文字を隠す",
       "hide_username_emojis_description": "タイムライン上でユーザー名に含まれる絵文字を隠します。プロフィールでは絵文字は引き続き表示されます。",
@@ -559,7 +601,11 @@
   },
   "state": {
     "attachments_exceed_server_limit": "添付の数が投稿ごとの上限を超えています。",
+    "attachments_limit_audio_error": "音声の最大サイズを超えています: {0}",
     "attachments_limit_error": "投稿ごとの上限を超えています",
+    "attachments_limit_image_error": "画像の最大サイズを超えています: {0}",
+    "attachments_limit_unknown_error": "ファイルの最大サイズを超えています: {0}",
+    "attachments_limit_video_error": "動画の最大サイズを超えています: {0}",
     "edited": "(編集済み)",
     "editing": "編集中",
     "loading": "読込中...",
@@ -576,15 +622,18 @@
     },
     "boosted_by": "ブーストしたユーザー",
     "edited": "編集済み {0}",
+    "embedded_warning": "再生するとあなたのIPアドレスがサードパーティに知られる可能性があります。",
     "favourited_by": "お気に入りしたユーザー",
     "filter_hidden_phrase": "フィルター",
     "filter_show_anyway": "とにかく表示",
+    "gif": "GIF",
     "img_alt": {
       "ALT": "ALT",
       "desc": "説明文",
       "dismiss": "閉じる",
       "read": "{0} の説明文を読む"
     },
+    "pinned": "固定された投稿",
     "poll": {
       "count": "{0} 票",
       "ends": "{0}に終了",
@@ -665,6 +714,7 @@
     "year_past": "0年前|去年|{n}年前"
   },
   "timeline": {
+    "no_posts": "ここには投稿がありません！",
     "show_new_items": "{v}件の新しい投稿",
     "view_older_posts": "他のインスタンスの古い投稿は表示されないことがあります。"
   },
@@ -677,6 +727,7 @@
     "add_emojis": "絵文字を追加",
     "add_media": "画像、動画、音声ファイルを追加",
     "add_publishable_content": "公開するコンテンツを追加",
+    "add_thread_item": "投稿をスレッドに追加",
     "change_content_visibility": "公開範囲を変更",
     "change_language": "言語を変更",
     "emoji": "絵文字",
@@ -686,6 +737,8 @@
     "open_editor_tools": "エディタツール",
     "pick_an_icon": "アイコンの選択",
     "publish_failed": "投稿の再公開時にエディタ上部のエラーメッセージを閉じる",
+    "remove_thread_item": "投稿をスレッドから削除",
+    "start_thread": "スレッドを開始",
     "toggle_bold": "太字",
     "toggle_code_block": "コードブロック",
     "toggle_italic": "斜体"

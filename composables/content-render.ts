@@ -60,16 +60,40 @@ export function nodeToVNode(node: Node): VNode | string | null {
   }
 
   if ('children' in node) {
-    if (node.name === 'a' && (node.attributes.href?.startsWith('/') || node.attributes.href?.startsWith('.'))) {
-      node.attributes.to = node.attributes.href
+    if (node.name === 'a') {
+      if (node.attributes.href?.startsWith('/') || node.attributes.href?.startsWith('.')) {
+        node.attributes.to = node.attributes.href
 
-      const { href: _href, target: _target, ...attrs } = node.attributes
+        const { href: _href, target: _target, ...attrs } = node.attributes
+        return h(
+          RouterLink as any,
+          attrs,
+          () => node.children.map(treeToVNode),
+        )
+      }
+
+      // fix #3122
       return h(
-        RouterLink as any,
-        attrs,
-        () => node.children.map(treeToVNode),
+        node.name,
+        node.attributes,
+        node.children.map((n: Node) => {
+          // replace span.ellipsis with bdi.ellipsis inside links
+          if (n && n.type === ELEMENT_NODE && n.name !== 'bdi' && n.attributes?.class?.includes('ellipsis')) {
+            const children = n.children.splice(0, n.children.length)
+            const bdi = {
+              ...n,
+              name: 'bdi',
+              children,
+            } satisfies ElementNode
+            children.forEach((n: Node) => n.parent = bdi)
+            return treeToVNode(bdi)
+          }
+
+          return treeToVNode(n)
+        }),
       )
     }
+
     return h(
       node.name,
       node.attributes,

@@ -334,10 +334,12 @@
     "zen_mode": "ZEN modua"
   },
   "notification": {
+    "and": "eta",
     "favourited_post": "(e)k zure bidalketa gogoko egin du",
     "followed_you": "(e)k jarraitu dizu",
     "followed_you_count": "{0} pertsonak jarraitu dizute|pertsona {0}ek jarraitu dizu|{0} pertsonak jarraitu dizute",
     "missing_type": "MISSING notification.type:",
+    "others": "beste {0}(e)k|beste {0}ek|beste {0}(e)k",
     "reblogged_post": "(e)k zure bidalketari bultzada eman dio",
     "reported": "{0}(e)k {1} salatu du",
     "request_to_follow": "(e)k jarraipen-eskaera bidali dizu",
@@ -633,6 +635,7 @@
       "dismiss": "Baztertu",
       "read": "Irakurri {0} deskribapena"
     },
+    "pinned": "Finkatutako bidalketa",
     "poll": {
       "count": "{0} boto|boto {0}|{0} boto",
       "ends": "epemuga: {0}",

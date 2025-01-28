@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.35 (2025-01-28)
+
+
+### Features
+
+* add instance links on right bar ([8a456c3](https://github.com/BDX-town/elk/commit/8a456c31681920630b471e1b20e1f8a52bbade03))
+
 ## 0.15.34 (2025-01-27)
 
 

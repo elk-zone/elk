@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.36 (2025-01-30)
+
+
+### Features
+
+* **i18n:** Update it-IT locale ([#3162](https://github.com/BDX-town/elk/issues/3162)) ([79db0be](https://github.com/BDX-town/elk/commit/79db0bed9ce889b766b9de69f20ce1ad4328aecb))
+
 ## 0.15.35 (2025-01-28)
 
 

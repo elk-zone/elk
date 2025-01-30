@@ -55,9 +55,9 @@
     "apply": "Applica",
     "bookmark": "Aggiungi ai segnalibri",
     "bookmarked": "Aggiunto ai segnalibri",
-    "boost": "Potenzia",
+    "boost": "Reblogga",
     "boost_count": "{0}",
-    "boosted": "Potenziato",
+    "boosted": "Rebloggato",
     "clear": "Cancella",
     "clear_publish_failed": "Cancella errori di pubblicazione",
     "clear_save_failed": "Cancella errori di salvataggio",
@@ -163,8 +163,8 @@
     "show_reblogs": {
       "cancel": "Annulla",
       "confirm": "Mostra",
-      "description": "Mostrare i post potenziati da {0}?",
-      "title": "Mostra potenziamenti"
+      "description": "Mostrare i post rebloggati da {0}?",
+      "title": "Mostra reblog"
     },
     "unfollow": {
       "cancel": "Annulla",
@@ -232,7 +232,7 @@
     "dialog_header": "Scorciatoie da tastiera",
     "groups": {
       "actions": {
-        "boost": "Potenzia",
+        "boost": "Reblogga",
         "command_mode": "Modalità comando",
         "compose": "Componi",
         "favourite": "Apprezza",
@@ -274,7 +274,7 @@
     "delete_and_redraft": "Elimina e riscrivi",
     "direct_message_account": "Scrivi in privato a {0}",
     "edit": "Modifica",
-    "hide_reblogs": "Nascondi potenziamenti da {0}",
+    "hide_reblogs": "Nascondi reblog da {0}",
     "mention_account": "Menziona {0}",
     "mute_account": "Silenzia {0}",
     "mute_conversation": "Silenzia questo post",
@@ -284,8 +284,8 @@
     "report_account": "Segnala {0}",
     "share_account": "Condividi {0}",
     "share_post": "Condividi questo post",
-    "show_favourited_and_boosted_by": "Mostra chi ha apprezzato e potenziato",
-    "show_reblogs": "Mostra potenziamenti da {0}",
+    "show_favourited_and_boosted_by": "Mostra chi ha apprezzato e rebloggato",
+    "show_reblogs": "Mostra reblog da {0}",
     "show_untranslated": "Mostra versione originale",
     "toggle_theme": {
       "dark": "Usa aspetto scuro",
@@ -334,11 +334,13 @@
     "zen_mode": "Modalità zen"
   },
   "notification": {
+    "and": "e",
     "favourited_post": "ha apprezzato il tuo post",
     "followed_you": "ti ha iniziato a seguire",
     "followed_you_count": "{0} persone ti hanno cominciato a seguire|{0} persona ti ha cominciato a seguire|{0} persone ti hanno cominciato a seguire",
     "missing_type": "notification.type MANCANTE:",
-    "reblogged_post": "ha potenziato il tuo post",
+    "others": "{0} altri|{0} altro|{0} altri",
+    "reblogged_post": "ha rebloggato il tuo post",
     "reported": "{0} ha segnalato {1}",
     "request_to_follow": "ti ha chiesto di seguirti",
     "signed_up": "ha effettuato l'iscrizione",
@@ -490,7 +492,7 @@
           "follow": "Nuovi seguaci",
           "mention": "Menzioni",
           "poll": "Risultati dei sondaggi",
-          "reblog": "Potenziamenti",
+          "reblog": "Reblog",
           "title": "Quali notifiche vuoi ricevere?"
         },
         "description": "Ricevi notifiche anche quando non stai utilizzando Elk.",
@@ -542,11 +544,11 @@
       "enable_data_saving_description": "Risparmia dati disattivando il download automatico degli allegati.",
       "enable_pinch_to_zoom": "Pizzica per ingrandire",
       "github_cards": "GitHub Cards",
-      "github_cards_description": "Quando viene pubblicato un link GitHub, viene mostrato un riquadro HTML accessibile usando i metadati del grafico sociale invece dell'immmagine.",
+      "github_cards_description": "Quando viene pubblicato un link GitHub, viene mostrato un riquadro HTML accessibile usando i metadati del grafico sociale invece dell'immagine.",
       "grayscale_mode": "Modalità scala di grigi",
       "hide_account_hover_card": "Nascondi anteprima profilo al passaggio del mouse",
       "hide_alt_indi_on_posts": "Nascondi indicatore testo alternativo sui post",
-      "hide_boost_count": "Nascondi contatore potenziamenti",
+      "hide_boost_count": "Nascondi contatore reblog",
       "hide_favorite_count": "Nascondi contatore apprezzamenti",
       "hide_follower_count": "Nascondi contatore seguaci/seguiti",
       "hide_gif_indi_on_posts": "Nascondi indicatore gif sui post",
@@ -620,7 +622,7 @@
       "suspended_message": "L'account di questo post è stato sospeso.",
       "suspended_show": "Mostra comunque contenuto?"
     },
-    "boosted_by": "Potenziato da",
+    "boosted_by": "Rebloggato da",
     "edited": "Modificato {0}",
     "embedded_warning": "La riproduzione di questo contenuto potrebbe rivelare il tuo indirizzo IP ad altri.",
     "favourited_by": "Apprezzato da",
@@ -670,7 +672,7 @@
     "notifications_mention": "Menzioni",
     "notifications_more_tooltip": "Filtra notifiche per tipo",
     "notifications_poll": "Sondaggio",
-    "notifications_reblog": "Potenziamento",
+    "notifications_reblog": "Reblog",
     "notifications_status": "Stato",
     "notifications_update": "Aggiornamento",
     "posts": "Post",

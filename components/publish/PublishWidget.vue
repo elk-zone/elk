@@ -196,6 +196,9 @@ async function toggleSensitive() {
 }
 
 async function publish() {
+  if (isPublishDisabled.value || isExceedingCharacterLimit.value)
+    return
+
   const publishResult = await (threadIsActive.value ? publishThread() : publishDraft())
   if (publishResult) {
     if (Array.isArray(publishResult))

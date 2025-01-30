@@ -41,6 +41,10 @@ async function vote(e: Event) {
 }
 
 async function refresh() {
+  if (loading.value) {
+    return
+  }
+
   loading.value = true
   try {
     const newPoll = await client.value.v1.polls.$select(poll.id).fetch()

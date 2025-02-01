@@ -90,6 +90,7 @@ function trimPollOptions() {
     && trimmedOptions.length >= currentInstance.value?.configuration?.polls.maxOptions) {
     draft.value.params.poll!.options = trimmedOptions
   }
+
   else {
     draft.value.params.poll!.options = [...trimmedOptions, '']
   }
@@ -334,37 +335,37 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
                 </li>
               </ol>
             </CommonErrorMessage>
-        <CommonErrorMessage v-if="failedMessages.length > 0" described-by="publish-failed">
-          <header id="publish-failed" flex justify-between>
-            <div flex items-center gap-x-2 font-bold>
-              <div aria-hidden="true" i-ri:error-warning-fill />
-              <p>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</p>
-            </div>
-            <CommonTooltip placement="bottom" :content="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')">
-              <button
-                flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
-                @click="failedMessages = []"
-              >
-                <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
-              </button>
-            </CommonTooltip>
-          </header>
-          <ol ps-2 sm:ps-1>
-            <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
-              <strong>{{ i + 1 }}.</strong>
-              <span>{{ error }}</span>
-            </li>
-          </ol>
-        </CommonErrorMessage>
+            <CommonErrorMessage v-if="failedMessages.length > 0" described-by="publish-failed">
+              <header id="publish-failed" flex justify-between>
+                <div flex items-center gap-x-2 font-bold>
+                  <div aria-hidden="true" i-ri:error-warning-fill />
+                  <p>{{ scheduledTime ? $t('state.schedule_failed') : $t('state.publish_failed') }}</p>
+                </div>
+                <CommonTooltip placement="bottom" :content="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')">
+                  <button
+                    flex rounded-4 p1 hover:bg-active cursor-pointer transition-100 :aria-label="scheduledTime ? $t('action.clear_schedule_failed') : $t('action.clear_publish_failed')"
+                    @click="failedMessages = []"
+                  >
+                    <span aria-hidden="true" w="1.75em" h="1.75em" i-ri:close-line />
+                  </button>
+                </CommonTooltip>
+              </header>
+              <ol ps-2 sm:ps-1>
+                <li v-for="(error, i) in failedMessages" :key="i" flex="~ col sm:row" gap-y-1 sm:gap-x-2>
+                  <strong>{{ i + 1 }}.</strong>
+                  <span>{{ error }}</span>
+                </li>
+              </ol>
+            </CommonErrorMessage>
 
-        <CommonErrorMessage v-if="!isValidScheduledTime" described-by="scheduled-time-invalid" pt-2>
-          <header id="scheduled-time-invalid" flex justify-between>
-            <div flex items-center gap-x-2 font-bold>
-              <div aria-hidden="true" i-ri:error-warning-fill />
-              <p>{{ $t('state.schedule_time_invalid', [minimumScheduledTime.toLocaleString()]) }}</p>
-            </div>
-          </header>
-        </CommonErrorMessage>
+            <CommonErrorMessage v-if="!isValidScheduledTime" described-by="scheduled-time-invalid" pt-2>
+              <header id="scheduled-time-invalid" flex justify-between>
+                <div flex items-center gap-x-2 font-bold>
+                  <div aria-hidden="true" i-ri:error-warning-fill />
+                  <p>{{ $t('state.schedule_time_invalid', [minimumScheduledTime.toLocaleString()]) }}</p>
+                </div>
+              </header>
+            </CommonErrorMessage>
 
             <div relative flex-1 flex flex-col :class="shouldExpanded ? 'min-h-30' : ''">
               <EditorContent
@@ -527,24 +528,24 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
 
             <PublishEditorTools v-if="editor" :editor="editor" />
 
-          <CommonDropdown placement="bottom">
-            <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
-              <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
-                <div i-ri:calendar-schedule-line :class="scheduledTime !== '' ? 'text-primary' : ''" />
-              </button>
-            </CommonTooltip>
-            <template #popper>
-              <input
-                v-model="scheduledTime"
-                p2
-                type="datetime-local"
-                name="schedule-datetime"
-                :min="getDatetimeInputFormat(minimumScheduledTime)"
-              >
-            </template>
-          </CommonDropdown>
+            <CommonDropdown placement="bottom">
+              <CommonTooltip placement="top" :content="$t('tooltip.schedule_post')" no-auto-focus>
+                <button btn-action-icon :aria-label="$t('tooltip.schedule_post')">
+                  <div i-ri:calendar-schedule-line :class="scheduledTime !== '' ? 'text-primary' : ''" />
+                </button>
+              </CommonTooltip>
+              <template #popper>
+                <input
+                  v-model="scheduledTime"
+                  p2
+                  type="datetime-local"
+                  name="schedule-datetime"
+                  :min="getDatetimeInputFormat(minimumScheduledTime)"
+                >
+              </template>
+            </CommonDropdown>
 
-          <div flex-auto />
+            <div flex-auto />
 
             <PublishCharacterCounter :max="characterLimit" :length="characterCount" />
 

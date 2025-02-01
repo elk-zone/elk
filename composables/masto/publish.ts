@@ -87,8 +87,8 @@ export function usePublish(options: {
     }
 
     let scheduledAt
-    if (draft.value.params.scheduledAt)
-      scheduledAt = new Date(draft.value.params.scheduledAt).toISOString()
+    if (draftItem.value.params.scheduledAt)
+      scheduledAt = new Date(draftItem.value.params.scheduledAt).toISOString()
 
     const payload = {
       ...draftItem.value.params,

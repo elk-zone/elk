@@ -26,6 +26,6 @@ const following = event.followingCount
   </p>
 
   <NuxtLink :to="`https://${currentServer}/severed_relationships`" target="_blank">
-    Learn more
+    {{ t("notification.relationship_severance.learn_more") }}
   </NuxtLink>
 </template>

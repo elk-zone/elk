@@ -15,6 +15,8 @@ const client = useMastoClient()
 
 async function cancelSchedule(id: string) {
   const status = await client.v1.scheduledStatuses.$select(id)
+  // DEBUG: temporarily disable
+  // eslint-disable-next-line no-alert
   if (confirm('Are you sure to cancel this scheduled post?'))
     status.remove()
 }

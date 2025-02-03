@@ -115,8 +115,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.1.1",
-    "@antfu/ni": "^0.23.2",
-    "@types/chroma-js": "^2.4.5",
+    "@antfu/ni": "^23.3.1",
+    "@types/chroma-js": "^3.1.1",
     "@types/file-saver": "^2.0.7",
     "@types/fnando__sparkline": "^0.3.7",
     "@types/fs-extra": "^11.0.4",
@@ -126,7 +126,7 @@
     "@unlazy/nuxt": "^0.12.1",
     "@unocss/eslint-config": "^65.4.3",
     "@vue/test-utils": "2.4.6",
-    "bumpp": "^9.10.2",
+    "bumpp": "^10.0.1",
     "consola": "^3.4.0",
     "eslint": "^9.18.0",
     "eslint-plugin-format": "^1.0.1",
@@ -140,7 +140,7 @@
     "simple-git-hooks": "^2.11.1",
     "tsx": "^4.19.2",
     "typescript": "^5.4.4",
-    "vitest": "2.1.8",
+    "vitest": "3.0.4",
     "vue-tsc": "^2.1.6"
   },
   "pnpm": {
@@ -151,7 +151,7 @@
   "resolutions": {
     "nuxt-component-meta": "0.10.0",
     "unstorage": "^1.14.4",
-    "vitest": "2.1.8",
+    "vitest": "3.0.4",
     "vue": "^3.5.4"
   },
   "simple-git-hooks": {

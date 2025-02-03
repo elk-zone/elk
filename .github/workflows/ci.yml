@@ -18,11 +18,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
+      # workaround for npm registry key change
+      # ref. `pnpm@10.1.0` / `pnpm@9.15.4` cannot be installed due to key id mismatch · Issue #612 · nodejs/corepack
+      # - https://github.com/nodejs/corepack/issues/612#issuecomment-2629496091
+      - run: npm i -g corepack@latest && corepack enable
+      - uses: actions/setup-node@v4.1.0
 
       - name: 📦 Install dependencies
         run: pnpm install --frozen-lockfile

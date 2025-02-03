@@ -69,7 +69,7 @@ const meta = computed(() => {
     user,
     titleUrl: `https://github.com/${user}${repo ? `/${repo}` : ''}`,
     details,
-    repo: repo.split('?')[0],
+    repo: repo?.split('?')[0],
     number,
     avatar,
     author: author

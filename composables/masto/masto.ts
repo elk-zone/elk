@@ -30,15 +30,15 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
     return streamingApiUrl ? createStreamingAPIClient({ streamingApiUrl, accessToken, implementation: globalThis.WebSocket }) : undefined
   }
 
-  const streamingApiUrl = instance?.urls?.streamingApi
+  const streamingApiUrl = instance?.configuration?.urls?.streaming
   masto.client.value = createRestAPIClient({ url, accessToken })
   masto.streamingClient.value = createStreamingClient(streamingApiUrl)
 
   // Refetch instance info in the background on login
-  masto.client.value.v1.instance.fetch().then((newInstance) => {
+  masto.client.value.v2.instance.fetch().then((newInstance) => {
     Object.assign(instance, newInstance)
-    if (newInstance.urls.streamingApi !== streamingApiUrl)
-      masto.streamingClient.value = createStreamingClient(newInstance.urls.streamingApi)
+    if (newInstance.configuration.urls.streaming !== streamingApiUrl)
+      masto.streamingClient.value = createStreamingClient(newInstance.configuration.urls.streaming)
 
     instanceStorage.value[server] = newInstance
   })

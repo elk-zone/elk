@@ -114,7 +114,7 @@
     "ws": "^8.15.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.14.0",
+    "@antfu/eslint-config": "^4.1.1",
     "@antfu/ni": "^0.23.2",
     "@types/chroma-js": "^2.4.5",
     "@types/file-saver": "^2.0.7",

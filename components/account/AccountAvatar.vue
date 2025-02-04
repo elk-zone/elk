@@ -24,7 +24,7 @@ const accountAvatarSrc = computed(() => {
     :src="(error || !loaded) ? 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' : accountAvatarSrc"
     :alt="$t('account.avatar_description', [props.account.username])"
     loading="lazy"
-    class="account-avatar"
+    class="account-avatar object-cover"
     :class="(loaded ? 'bg-base' : 'bg-gray:10') + (props.square ? ' ' : ' rounded-full')"
     :style="{ 'clip-path': props.square ? `url(#avatar-mask)` : 'none' }"
     v-bind="$attrs"

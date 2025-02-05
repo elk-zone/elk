@@ -3,7 +3,7 @@ import type { mastodon } from 'masto'
 import type { Ref } from 'vue'
 import type { ElkInstance } from '../users'
 import type { UserLogin } from '~/types'
-import { createRestAPIClient, createStreamingAPIClient } from 'masto'
+import { createRestAPIClient, createStreamingAPIClient, MastoHttpError } from 'masto'
 
 export function createMasto() {
   return {
@@ -35,7 +35,39 @@ export function mastoLogin(masto: ElkMasto, user: Pick<UserLogin, 'server' | 'to
   masto.streamingClient.value = createStreamingClient(streamingApiUrl)
 
   // Refetch instance info in the background on login
-  masto.client.value.v2.instance.fetch().then((newInstance) => {
+  masto.client.value.v2.instance.fetch().catch(error => new Promise<mastodon.v2.Instance>((resolve, reject) => {
+    if (error instanceof MastoHttpError && error.statusCode === 404) {
+      return masto.client.value.v1.instance.fetch().then((newInstance) => {
+        console.warn(`Instance ${server} on version ${newInstance.version} does not support "GET /api/v2/instance" API, try converting to v2 instance... expect some errors`)
+        const v2Instance = {
+          ...newInstance,
+          domain: newInstance.uri,
+          sourceUrl: '',
+          usage: {
+            users: {
+              activeMonth: 0,
+            },
+          },
+          icon: [],
+          apiVersions: {
+            mastodon: newInstance.version,
+          },
+          contact: {
+            email: newInstance.email,
+          },
+          configuration: {
+            ...(newInstance.configuration ?? {}),
+            urls: {
+              streaming: newInstance.urls.streamingApi,
+            },
+          },
+        } as unknown as mastodon.v2.Instance
+        return resolve(v2Instance)
+      }).catch(reject)
+    }
+
+    return reject(error)
+  })).then((newInstance) => {
     Object.assign(instance, newInstance)
     if (newInstance.configuration.urls.streaming !== streamingApiUrl)
       masto.streamingClient.value = createStreamingClient(newInstance.configuration.urls.streaming)

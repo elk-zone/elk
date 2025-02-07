@@ -52,24 +52,42 @@ export function getRedirectURI(origin: string, server: string) {
 export const defaultUserAgent = `${APP_NAME}/${version}`
 
 async function fetchAppInfo(origin: string, server: string) {
-  const app: AppInfo = await $fetch(`https://${server}/api/v1/apps`, {
-    method: 'POST',
-    headers: {
-      'user-agent': defaultUserAgent,
-    },
-    body: {
-      client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
-      website: 'https://elk.zone',
-      redirect_uris: getRedirectURI(origin, server),
-      scopes: 'read write follow push',
-    },
-  })
+  const [apps, v2Instance] = await Promise.all([
+    $fetch(`https://${server}/api/v1/apps`, {
+      method: 'POST',
+      headers: {
+        'user-agent': defaultUserAgent,
+      },
+      body: {
+        client_name: APP_NAME + (env !== 'release' ? ` (${env})` : ''),
+        website: 'https://elk.zone',
+        redirect_uris: getRedirectURI(origin, server),
+        scopes: 'read write follow push',
+      },
+    }),
+    $fetch(`https://${server}/api/v2/instance`, {
+      headers: {
+        'user-agent': defaultUserAgent,
+      },
+    })
+      .catch(() => null),
+  ])
+
+  const app: AppInfo = {
+    ...apps,
+    // prefer vapid key from `/api/v2/instance` if available
+    // since `vapid_key` from `/api/v1/apps` was deprecated on Mastodon v4.3.0+
+    // ref. apps API methods - Mastodon documentation
+    // - https://docs.joinmastodon.org/methods/apps/#create
+    ...v2Instance ? { vapid_key: v2Instance.configuration.vapid.public_key } : {},
+  }
+
   return app
 }
 
 export async function getApp(origin: string, server: string) {
   const host = origin.replace(/^https?:\/\//, '').replace(/\W/g, '-').replace(/\?.*$/, '')
-  const key = `servers:v3:${server}:${host}.json`.toLowerCase()
+  const key = `servers:v4:${server}:${host}.json`.toLowerCase()
 
   try {
     if (await storage.hasItem(key))
@@ -84,13 +102,13 @@ export async function getApp(origin: string, server: string) {
 }
 
 export async function deleteApp(server: string) {
-  const keys = (await storage.getKeys(`servers:v3:${server}:`))
+  const keys = (await storage.getKeys(`servers:v4:${server}:`))
   for (const key of keys)
     await storage.removeItem(key)
 }
 
 export async function listServers() {
-  const keys = await storage.getKeys('servers:v3:')
+  const keys = await storage.getKeys('servers:v4:')
   const servers = new Set<string>()
   for (const key of keys) {
     const id = key.split(':')[2]

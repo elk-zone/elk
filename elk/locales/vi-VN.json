@@ -334,14 +334,16 @@
     "zen_mode": "Tập Trung"
   },
   "notification": {
-    "favourited_post": "thích tút của bạn",
-    "followed_you": "theo dõi bạn",
+    "and": "và",
+    "favourited_post": "đã thích tút của bạn",
+    "followed_you": "đã theo dõi bạn",
     "followed_you_count": "{0} người theo dõi bạn|{0} người theo dõi bạn|{0} người theo dõi bạn",
     "missing_type": "THIẾU notification.type:",
-    "reblogged_post": "đăng lại tút của bạn",
-    "reported": "{0} báo cáo {1}",
+    "others": "{0} người khác|{0} người khác|{0} người khác",
+    "reblogged_post": "đã đăng lại tút của bạn",
+    "reported": "{0} đã báo cáo {1}",
     "request_to_follow": "yêu cầu theo dõi bạn",
-    "signed_up": "tham gia máy chủ",
+    "signed_up": "đã tham gia máy chủ",
     "update_status": "cập nhật tút"
   },
   "placeholder": {

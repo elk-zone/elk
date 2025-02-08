@@ -1,5 +1,4 @@
 import type { akkoma } from '@bdxtown/akko'
-import { STORAGE_KEY_FIRST_VISIT } from '~/constants'
 import type { ConfirmDialogChoice, ConfirmDialogOptions, DraftItem, ErrorDialogData } from '~/types'
 
 export const confirmDialogChoice = ref<ConfirmDialogChoice>()
@@ -17,14 +16,12 @@ export const reportStatus = ref<akkoma.v1.Status>()
 
 export const commandPanelInput = ref('')
 
-export const isFirstVisit = useLocalStorage(STORAGE_KEY_FIRST_VISIT, !process.mock)
-
 export const isSigninDialogOpen = ref(false)
 export const isPublishDialogOpen = ref(false)
 export const isKeyboardShortcutsDialogOpen = ref(false)
 export const isMediaPreviewOpen = ref(false)
 export const isEditHistoryDialogOpen = ref(false)
-export const isPreviewHelpOpen = ref(isFirstVisit.value)
+export const isPreviewHelpOpen = ref(false)
 export const isCommandPanelOpen = ref(false)
 export const isConfirmDialogOpen = ref(false)
 export const isErrorDialogOpen = ref(false)
@@ -75,12 +72,6 @@ export async function openPublishDialog(draftKey = 'dialog', draft?: DraftItem, 
 export async function openFavoridedBoostedByDialog(statusId: string) {
   isFavouritedBoostedByDialogOpen.value = true
   favouritedBoostedByStatusId.value = statusId
-}
-
-if (isPreviewHelpOpen.value) {
-  watch(isPreviewHelpOpen, () => {
-    isFirstVisit.value = false
-  })
 }
 
 function restoreMediaPreviewFromState() {

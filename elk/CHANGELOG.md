@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.38 (2025-02-08)
+
+
+### Features
+
+* add admin panel and links settings ([d5ec3f0](https://github.com/BDX-town/elk/commit/d5ec3f0c1b4701414f6550782f411d10ee69d277))
+
 ## 0.15.37 (2025-01-30)
 
 ## 0.15.36 (2025-01-30)

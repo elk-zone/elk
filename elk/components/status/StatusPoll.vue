@@ -106,7 +106,7 @@ const votersCount = computed(() => poll.votersCount ?? poll.votesCount ?? 0)
           </CommonTooltip>
         </div>
       </div>
-      <div v-if="!poll.expired">
+      <div>
         <button whitespace-nowrap flex gap-1 items-center hover:text-primary @click="refresh">
           <div text-xs :class="loading ? 'animate-spin' : ''" i-ri:loop-right-line />
           {{ $t('status.poll.update') }}

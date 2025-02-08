@@ -1,4 +1,8 @@
-export type FrontendConfiguration = { [x: string]: { [x: string]: unknown } };
+export type FrontendConfiguration =
+  | { [x: string]: unknown }
+  | unknown[]
+  | { tuple: unknown[] }
+  | string;
 
 export interface PleromaConfig {
   /**
@@ -11,7 +15,6 @@ export interface PleromaConfig {
   configs: {
     group: string;
     key: string;
-    db: string[];
     value: FrontendConfiguration[];
   }[];
 }

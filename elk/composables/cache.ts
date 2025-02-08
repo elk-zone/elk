@@ -26,12 +26,7 @@ export function fetchFrontendConfiguration(): Promise<FrontendConfiguration | un
     return Promise.resolve(cache.get(key))
 
   const promise = useAkkoClient().pleroma.frontendConfigurations.fetch().then((config) => {
-    let frontendConfiguration = config[`${name}Fe`] || config[`${'soapbox'}Fe`] // TODO: remove when settings will be ok
-    // TODO: remove when settings will be ok
-    frontendConfiguration = {
-      ...frontendConfiguration,
-      links: (frontendConfiguration.promoPanel as { items: FrontendConfiguration['links'] }).items,
-    }
+    const frontendConfiguration = config[`${name.replace(/[-@/]/g, '')}Fe`]
     cacheFrontendConfiguration(frontendConfiguration)
     return frontendConfiguration as unknown as FrontendConfiguration | undefined
   })

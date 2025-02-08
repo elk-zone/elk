@@ -37,6 +37,20 @@ export interface AccountField {
 }
 
 /**
+ * Represents akkoma/pleroma related meta-data about the user
+ */
+export interface AccountPleroma {
+  /**
+   * user's instance favicon
+   */
+  favicon: string;
+  /**
+   * Is user admin of its instance
+   */
+  isAdmin: boolean;
+}
+
+/**
  * Represents a user of Mastodon and their associated profile.
  * @see https://docs.joinmastodon.org/entities/account/
  */
@@ -95,6 +109,7 @@ export interface Account {
   roles: Pick<Role, "id" | "name" | "color">[]; // TODO: Create an entity when documentation is updated
   /** https://github.com/mastodon/mastodon/pull/23591 */
   memorial?: boolean | null;
+  pleroma: AccountPleroma;
 }
 
 /**

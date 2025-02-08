@@ -80,6 +80,15 @@
     "switch_account": "Changer de compte",
     "vote": "Voter"
   },
+  "admin": {
+    "links": {
+      "add": "Ajouter",
+      "description": "Vous pouvez ajouter des liens à afficher aux utilisateurs de cette interface",
+      "label": "Label",
+      "title": "Raccourcis",
+      "url": "URL"
+    }
+  },
   "app_desc_short": "Un client Mastodon fait avec 🧡",
   "app_logo": "Logo Elk",
   "app_name": "Elk",
@@ -273,6 +282,7 @@
     "aria_label_close": "Fermer"
   },
   "nav": {
+    "admin": "Administration",
     "back": "Retourner à la page précédente",
     "blocked_domains": "Domaines bloqués",
     "blocked_users": "Comptes bloqués",

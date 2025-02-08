@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
         redirect_uri: getRedirectURI(origin, server),
         grant_type: 'authorization_code',
         code,
-        scope: 'read write follow push',
+        scope: 'read write follow push admin',
       },
       retry: 3,
     })

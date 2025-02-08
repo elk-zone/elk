@@ -2,6 +2,8 @@
 import type { Picker } from 'emoji-mart'
 import importEmojiLang from 'virtual:emoji-mart-lang-importer'
 
+const { hideCustomEmojis } = defineProps<{ hideCustomEmojis?: boolean }>()
+
 const emit = defineEmits<{
   (e: 'select', code: string): void
   (e: 'selectCustom', image: any): void
@@ -19,7 +21,7 @@ async function openEmojiPicker() {
   if (picker.value) {
     picker.value.update({
       theme: colorMode,
-      custom: customEmojisData.value,
+      custom: !hideCustomEmojis ? customEmojisData.value : null,
     })
   }
   else {
@@ -36,7 +38,7 @@ async function openEmojiPicker() {
           emit('selectCustom', { src, alt, 'data-emoji-id': name })
       },
       theme: colorMode,
-      custom: customEmojisData.value,
+      custom: !hideCustomEmojis ? customEmojisData.value : null,
       i18n,
     })
   }

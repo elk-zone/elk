@@ -88,6 +88,15 @@
     "switch_account": "Switch account",
     "vote": "Vote"
   },
+  "admin": {
+    "links": {
+      "add": "Add link",
+      "description": "You can enter links to display to the users of this interface.",
+      "label": "Label",
+      "title": "Links",
+      "url": "URL"
+    }
+  },
   "app_desc_short": "A nimble Akkoma web client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
@@ -304,6 +313,7 @@
     "aria_label_close": "Close"
   },
   "nav": {
+    "admin": "Administration",
     "back": "Go back",
     "blocked_domains": "Blocked domains",
     "blocked_users": "Blocked users",

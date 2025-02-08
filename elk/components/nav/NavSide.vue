@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE } from '~/constants'
+import NavSideItem from './NavSideItem.vue'
 
 const { command } = defineProps<{
   command?: boolean
@@ -49,6 +50,7 @@ function composeNavigate() {
     <NavSideItem :text="$t('nav.hashtags')" to="/hashtags" icon="i-ri:hashtag" user-only :command="command" />
     <hr border-gray-700 my-4>
     <NavSideItem :text="$t('nav.settings')" to="/settings" icon="i-ri:settings-3-line" :command="command" />
+    <NavSideItem v-if="currentUser?.account.pleroma.isAdmin" :text="$t('nav.admin')" to="/administration" icon="i-ri:admin-line" :command="command" />
     <div flex-auto />
     <button
       v-if="noUserVisual"

@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
   const query = stringifyQuery({
     client_id: app.client_id,
     force_login: force_login === true ? 'true' : 'false',
-    scope: 'read write follow push',
+    scope: 'read write follow push admin',
     response_type: 'code',
     lang,
     redirect_uri: getRedirectURI(origin, server),

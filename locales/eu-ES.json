@@ -446,7 +446,7 @@
       "sponsor_action": "Eman babesa",
       "sponsor_action_desc": "Elk garatzen duen taldeari babesa emateko",
       "sponsors": "Babesleak",
-      "sponsors_body_1": "Elk ondorengoen babes eskuzabalari eta laguntzari esker izan da posible egitea:",
+      "sponsors_body_1": "Elk honakoen babes eskuzabalari eta laguntzari esker izan da posible egitea:",
       "sponsors_body_2": "Baita Elk taldea eta bere kideak babesten dituzten enpresa eta norbanakoei esker.",
       "sponsors_body_3": "Aplikazioa gogoko baduzu, agian babesa eman diezagukezu:",
       "version": "Bertsioa"
@@ -477,7 +477,7 @@
         "add": "Gehitu",
         "choose_language": "Hautatu hizkuntza",
         "heading": "Itzulpenak",
-        "hide_specific": "Ezkutatu itzulpena ondorengo hizkuntzetarako:",
+        "hide_specific": "Ezkutatu itzulpena honako hizkuntzetarako:",
         "remove": "Kendu"
       }
     },

@@ -38,7 +38,6 @@ jobs:
         cd elk
         yarn install --ignore-scripts
         npx yarn generate 
-        mv .output/public dist
         zip -r static.zip dist
 
     - name: Create Draft Release

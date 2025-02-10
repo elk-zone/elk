@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Build CI
 
 on:
   push:
@@ -31,6 +31,16 @@ jobs:
         docker save -o ./elk.tar elk
         zip elk.zip elk.tar
         
+    - name: Build the static files
+      run: |
+        export NUXT_PUBLIC_DEFAULT_SERVER=bdx.town
+        export NUXT_PUBLIC_SINGLE_INSTANCE=false
+        cd elk
+        yarn install --ignore-scripts
+        npx yarn generate 
+        mv .output/public dist
+        zip -r static.zip dist
+
     - name: Create Draft Release
       id: create_release
       uses: actions/create-release@v1
@@ -49,6 +59,15 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./elk/elk.zip
         asset_name: elk.zip
+        asset_content_type: application/zip
+
+    - uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./elk/static.zip
+        asset_name: static.zip
         asset_content_type: application/zip
 
     - uses: eregon/publish-release@v1

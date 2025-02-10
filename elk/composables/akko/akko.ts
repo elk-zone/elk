@@ -1,9 +1,11 @@
-import type { Pausable } from '@vueuse/core'
 import type { akkoma } from '@bdxtown/akko'
+import type { Pausable } from '@vueuse/core'
 import type { Ref } from 'vue'
 import type { ElkInstance } from '../users'
-import { createRestAPIClient, createStreamingAPIClient } from '@bdxtown/akko'
 import type { UserLogin } from '~/types'
+import { createRestAPIClient, createStreamingAPIClient } from '@bdxtown/akko'
+import { STORAGE_KEY_CLIENT_APP } from '~/constants'
+import { name } from './../../package.json'
 
 export function createMasto() {
   return {
@@ -108,4 +110,86 @@ export function useStreaming(
     return { stream, isActive, pause, resume }
   else
     return stream
+}
+
+const SCOPES = 'read write follow push admin'
+
+function getClientApp(domain: string) {
+  const raw = useLocalStorage<string | undefined>(STORAGE_KEY_CLIENT_APP, undefined)
+  if (!raw.value)
+    return undefined
+  const clientApp = JSON.parse(raw.value)
+  return clientApp[domain] || undefined
+}
+
+function setClientApp(domain: string, clientApp: akkoma.v1.Client) {
+  const raw = useLocalStorage<string | undefined>(STORAGE_KEY_CLIENT_APP, undefined)
+  if (!raw.value) {
+    raw.value = JSON.stringify({
+      [domain]: clientApp,
+    })
+    return
+  }
+  const data = JSON.parse(raw.value)
+  data[domain] = clientApp
+  raw.value = JSON.stringify(data)
+}
+
+export async function createApp(domain: string) {
+  const clientApp = getClientApp(domain)
+  if (clientApp)
+    return clientApp
+
+  const client = createRestAPIClient({ url: `https://${domain}` })
+  const app = await client.v1.apps.create({
+    clientName: name,
+    redirectUris: `${window.location.protocol}//${window.location.host}/${domain}/login`,
+    scopes: SCOPES,
+    website: `${window.location.protocol}//${window.location.host}`,
+  })
+  setClientApp(domain, app)
+  return app
+}
+
+export async function redirectToInstanceLogin(client: akkoma.v1.Client, domain: string) {
+  const query = new URLSearchParams({
+    client_id: client.clientId as string,
+    redirect_uri: `${window.location.protocol}//${window.location.host}/${domain}/login`,
+    response_type: 'code',
+    scopes: SCOPES,
+  })
+
+  window.location.href = `https://${domain}/oauth/authorize?${query.toString()}`
+}
+
+export async function retrieveAccessToken(domain: string, code: string) {
+  const client = getClientApp(domain)
+  if (!client)
+    throw new Error('Missing client')
+
+  const response = await fetch(`https://${domain}/oauth/token`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      client_id: client.clientId,
+      client_secret: client.clientSecret,
+      redirect_uri: `${window.location.protocol}//${window.location.host}/${domain}/login`,
+      grant_type: 'authorization_code',
+      code,
+      scope: SCOPES,
+    }),
+  })
+
+  const token: { access_token: string } = await response.json()
+  const akko = useAkko()
+
+  await loginTo(akko, {
+    server: domain,
+    token: token.access_token,
+  })
+
+  const router = useRouter()
+  router.push({ path: '/', force: true })
 }

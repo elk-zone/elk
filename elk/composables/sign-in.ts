@@ -2,7 +2,6 @@ import type { Ref } from 'vue'
 
 export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
   const singleInstanceServer = useRuntimeConfig().public.singleInstance
-  const userSettings = useUserSettings()
   const { t } = useI18n()
 
   const busy = ref(false)
@@ -23,30 +22,11 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
     if (!singleInstanceServer && server.value)
       server.value = server.value.split('/')[0]
 
+    const domain = `${!singleInstanceServer ? (server.value || publicServer.value) : publicServer.value}`
+
     try {
-      let href: string
-      if (singleInstanceServer) {
-        href = await (globalThis.$fetch as any)(`/api/${publicServer.value}/login`, {
-          method: 'POST',
-          body: {
-            force_login: true,
-            origin: location.origin,
-            lang: userSettings.value.language,
-          },
-        })
-        busy.value = false
-      }
-      else {
-        href = await (globalThis.$fetch as any)(`/api/${server.value || publicServer.value}/login`, {
-          method: 'POST',
-          body: {
-            force_login: true,
-            origin: location.origin,
-            lang: userSettings.value.language,
-          },
-        })
-      }
-      location.href = href
+      const client = await createApp(domain)
+      await redirectToInstanceLogin(client, domain)
     }
     catch (err) {
       if (singleInstanceServer) {

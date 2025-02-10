@@ -121,6 +121,7 @@
     "error": "ERROR",
     "fetching": "Fetching...",
     "in": "in",
+    "login": "Loggin in...",
     "no_bookmarks": "No bookmarked posts yet",
     "no_favourites": "No liked posts yet",
     "not_found": "404 Not Found",

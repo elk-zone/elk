@@ -35,6 +35,7 @@ jobs:
       run: |
         export NUXT_PUBLIC_DEFAULT_SERVER=bdx.town
         export NUXT_PUBLIC_SINGLE_INSTANCE=false
+        export NODE_ENV=development
         cd elk
         yarn install --ignore-scripts
         npx yarn generate 

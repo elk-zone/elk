@@ -3,6 +3,7 @@ import {
   createApp,
   createRouter,
   defineLazyEventHandler,
+  type EventHandler,
   toNodeListener,
 } from 'h3'
 import { createFetch } from 'ofetch'
@@ -11,19 +12,7 @@ import {
   createFetch as createLocalFetch,
 } from 'unenv/runtime/fetch/index'
 
-const handlers = [
-  {
-    route: '/api/:server/oauth',
-    handler: defineLazyEventHandler(() => import('~/server/api/[server]/oauth/[origin]').then(r => r.default || r)),
-  },
-  {
-    route: '/api/:server/login',
-    handler: defineLazyEventHandler(() => import('~/server/api/[server]/login').then(r => r.default || r)),
-  },
-  {
-    route: '/api/list-servers',
-    handler: defineLazyEventHandler(() => import('~/server/api/list-servers').then(r => r.default || r)),
-  },
+const handlers: { route: string, handler: EventHandler }[] = [
 ]
 
 // @ts-expect-error undeclared global window property

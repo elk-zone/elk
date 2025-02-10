@@ -174,8 +174,6 @@ export default defineNuxtConfig({
     // Static generation
     '/': { prerender: true },
     '/settings/**': { prerender: false },
-    // incremental regeneration
-    '/api/list-servers': { swr: true },
     // CDN cache rules
     '/manifest.webmanifest': {
       headers: {

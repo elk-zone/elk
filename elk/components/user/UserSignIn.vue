@@ -1,36 +1,7 @@
 <script setup lang="ts">
-import Fuse from 'fuse.js'
-
 const input = ref<HTMLInputElement | undefined>()
-const knownServers = ref<string[]>([])
-const autocompleteIndex = ref(0)
-const autocompleteShow = ref(false)
 
 const { busy, error, displayError, server, oauth } = useSignIn(input)
-
-const fuse = shallowRef(new Fuse([] as string[]))
-
-const filteredServers = computed(() => {
-  if (!server.value)
-    return []
-
-  const results = fuse.value.search(server.value, { limit: 6 }).map(result => result.item)
-  if (results[0] === server.value)
-    return []
-
-  return results
-})
-
-function isValidUrl(str: string) {
-  try {
-    // eslint-disable-next-line no-new
-    new URL(str)
-    return true
-  }
-  catch {
-    return false
-  }
-}
 
 async function handleInput() {
   const input = server.value.trim()
@@ -39,60 +10,10 @@ async function handleInput() {
 
   if (input.length)
     displayError.value = false
-
-  if (
-    isValidUrl(`https://${input}`)
-    && input.match(/^[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?$/i)
-    // Do not hide the autocomplete if a result has an exact substring match on the input
-    && !filteredServers.value.some(s => s.includes(input))
-  ) {
-    autocompleteShow.value = false
-  }
-
-  else {
-    autocompleteShow.value = true
-  }
-}
-
-function toSelector(server: string) {
-  return server.replace(/[^\w-]/g, '-')
-}
-function move(delta: number) {
-  if (filteredServers.value.length === 0) {
-    autocompleteIndex.value = 0
-    return
-  }
-  autocompleteIndex.value = ((autocompleteIndex.value + delta) + filteredServers.value.length) % filteredServers.value.length
-  document.querySelector(`#${toSelector(filteredServers.value[autocompleteIndex.value])}`)?.scrollIntoView(false)
-}
-
-function onEnter(e: KeyboardEvent) {
-  if (autocompleteShow.value === true && filteredServers.value[autocompleteIndex.value]) {
-    server.value = filteredServers.value[autocompleteIndex.value]
-    e.preventDefault()
-    autocompleteShow.value = false
-  }
-}
-
-function escapeAutocomplete(evt: KeyboardEvent) {
-  if (!autocompleteShow.value)
-    return
-  autocompleteShow.value = false
-  evt.stopPropagation()
-}
-
-function select(index: number) {
-  server.value = filteredServers.value[index]
 }
 
 onMounted(async () => {
   input?.value?.focus()
-  knownServers.value = await (globalThis.$fetch as any)('/api/list-servers')
-  fuse.value = new Fuse(knownServers.value, { shouldSort: true })
-})
-
-onClickOutside(input, () => {
-  autocompleteShow.value = false
 })
 </script>
 
@@ -128,32 +49,7 @@ onClickOutside(input, () => {
           autocorrect="off"
           autocomplete="off"
           @input="handleInput"
-          @keydown.down="move(1)"
-          @keydown.up="move(-1)"
-          @keydown.enter="onEnter"
-          @keydown.esc.prevent="escapeAutocomplete"
-          @focus="autocompleteShow = true"
         >
-        <div
-          v-if="autocompleteShow && filteredServers.length"
-          absolute left-6em right-0 top="100%"
-          bg-base rounded border="~ base"
-          z-10 shadow of-auto
-          overflow-y-auto
-          class="max-h-[8rem]"
-        >
-          <button
-            v-for="(name, idx) in filteredServers"
-            :id="toSelector(name)"
-            :key="name"
-            :value="name"
-            px-2 py1 font-mono w-full text-left
-            :class="autocompleteIndex === idx ? 'text-primary font-bold' : null"
-            @click="select(idx)"
-          >
-            {{ name }}
-          </button>
-        </div>
       </div>
       <div min-h-4>
         <Transition css enter-active-class="animate animate-fade-in">

@@ -1,10 +1,11 @@
+import type { UseStore } from 'idb-keyval'
 import {
   del as delIdb,
   get as getIdb,
   promisifyRequest,
   set as setIdb,
   update as updateIdb,
-  type UseStore,
+
 } from 'idb-keyval'
 
 const databases: IDBOpenDBRequest[] = []

@@ -109,7 +109,7 @@ function loadAttachment() {
       <StatusPreviewCardInfo :p="isSquare ? 'x-4' : '4'" :root="root" :card="card" :provider="providerName" />
     </div>
     <StatusPreviewCardMoreFromAuthor
-      v-if="card?.authors?.[0].account"
+      v-if="card?.authors?.[0]?.account"
       :account="card.authors[0].account"
     />
   </NuxtLink>

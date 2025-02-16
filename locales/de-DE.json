@@ -86,6 +86,9 @@
     "switch_account": "Account wechseln",
     "vote": "Abstimmen"
   },
+  "actions": {
+    "more": "Mehr"
+  },
   "app_desc_short": "Ein flinker Mastodon Web-Client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
@@ -654,6 +657,10 @@
     "list": "Liste",
     "media": "Medien",
     "news": "Nachrichten",
+    "notifications_admin": {
+      "report": "Meldung",
+      "sign_up": "Registrierung"
+    },
     "notifications_all": "Alle",
     "notifications_favourite": "Favorisiert",
     "notifications_follow": "Folgen",
@@ -722,6 +729,7 @@
     "change_content_visibility": "Sichtbarkeit von Inhalten ändern",
     "change_language": "Sprache ändern",
     "emoji": "Emoji",
+    "emojis": "Emojis",
     "explore_links_intro": "Diese Nachrichten werden gerade von Leuten auf diesem und anderen Servern des dezentralen Netzwerks besprochen.",
     "explore_posts_intro": "Diese Beiträge von diesem Server gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzwerks an Reichweite.",
     "explore_tags_intro": "Diese Hashtags gewinnen gerade unter den Leuten von diesem und anderen Servern des dezentralen Netzweks an Reichweite.",

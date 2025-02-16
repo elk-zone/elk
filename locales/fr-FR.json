@@ -585,7 +585,8 @@
     "poll": {
       "count": "{0} votes",
       "ends": "se clôt {0}",
-      "finished": "clos {0}"
+      "finished": "clos {0}",
+      "update": "Mettre à jour les résultats"
     },
     "replying_to": "Répondre à {0}",
     "show_full_thread": "Voir le fil de discussion complet",

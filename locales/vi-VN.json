@@ -341,7 +341,7 @@
     "missing_type": "THIẾU notification.type:",
     "others": "{0} người khác|{0} người khác|{0} người khác",
     "reblogged_post": "đã đăng lại tút của bạn",
-    "reported": "{0} đã báo cáo {1}",
+    "reported": "{0} báo cáo {1}",
     "request_to_follow": "yêu cầu theo dõi bạn",
     "signed_up": "đã tham gia máy chủ",
     "update_status": "cập nhật tút"
@@ -639,7 +639,7 @@
     "poll": {
       "count": "{0} bình chọn|{0} bình chọn|{0} bình chọn",
       "ends": "đóng {0}",
-      "finished": "kết thúc {0}"
+      "finished": "kết thúc {0}",
       "update": "Làm mới"
     },
     "replying_to": "Trả lời {0}",

@@ -2,7 +2,7 @@
   "name": "@elk-zone/elk",
   "type": "module",
   "version": "0.16.0",
-  "packageManager": "pnpm@9.15.5+sha512.845196026aab1cc3f098a0474b64dfbab2afe7a1b4e91dd86895d8e4aa32a7a6d03049e2d0ad770bbe4de023a7122fb68c1a1d6e0d033c7076085f9d5d4800d4",
+  "packageManager": "pnpm@9.15.6+sha512.139cab068fdf0b751268179ac5f909b5be72afb4a75c513d1905d151befc8977b593d3cf8671ed83d4d6637c5c94b98ffbce108125de4a5a27a31233601a99de",
   "license": "MIT",
   "homepage": "https://elk.zone/",
   "main": "./nuxt.config.ts",
@@ -150,7 +150,7 @@
   },
   "resolutions": {
     "nuxt-component-meta": "0.10.0",
-    "unstorage": "^1.14.4",
+    "unstorage": "^1.15.0",
     "vitest": "3.0.7",
     "vue": "^3.5.4"
   },

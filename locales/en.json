@@ -341,6 +341,12 @@
     "missing_type": "MISSING notification.type:",
     "others": "{0} others|{0} other|{0} others",
     "reblogged_post": "boosted your post",
+    "relationship_severance": {
+      "account_suspension": "An admin from {0} has suspended {1}, which means you can no longer receive updates from them or interact with them.",
+      "domain_block": "An admin from {from} has blocked {target}, including {followers} of your followers and {n} account you follow.|An admin from {from} has blocked {target}, including {followers} of your followers and {n} accounts you follow.",
+      "learn_more": "Learn more",
+      "user_domain_block": "You have blocked {target}, removing {followers} of your followers and {n} account you follow.|You have blocked {target}, removing {followers} of your followers and {n} accounts you follow."
+    },
     "reported": "{0} reported {1}",
     "request_to_follow": "requested to follow you",
     "signed_up": "signed up",

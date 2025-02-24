@@ -78,6 +78,12 @@ const userSettings = useUserSettings()
       >
         {{ $t('settings.preferences.use_star_favorite_icon') }}
       </SettingsToggleItem>
+      <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'useExplorePageForSearch')"
+        @click="togglePreferences('useExplorePageForSearch')"
+      >
+        {{ $t('settings.preferences.use_explore_page_for_search') }}
+      </SettingsToggleItem>
     </section>
     <section>
       <h2 px6 py4 mt2 font-bold text-xl flex="~ gap-1" items-center>

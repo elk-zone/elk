@@ -27,6 +27,7 @@ export interface PreferencesSettings {
   enableDataSaving: boolean
   enablePinchToZoom: boolean
   useStarFavoriteIcon: boolean
+  useExplorePageForSearch: boolean
   zenMode: boolean
   experimentalVirtualScroller: boolean
   experimentalGitHubCards: boolean
@@ -83,6 +84,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   enableDataSaving: false,
   enablePinchToZoom: false,
   useStarFavoriteIcon: false,
+  useExplorePageForSearch: false,
   zenMode: false,
   experimentalVirtualScroller: true,
   experimentalGitHubCards: true,

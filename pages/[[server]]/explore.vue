@@ -3,19 +3,7 @@ import type { CommonRouteTabOption } from '~/types'
 
 const { t } = useI18n()
 
-const search = ref<{ input?: HTMLInputElement }>()
-const route = useRoute()
-watchEffect(() => {
-  if (isMediumOrLargeScreen && route.name === 'explore' && search.value?.input)
-    search.value?.input?.focus()
-})
-onActivated(() =>
-  search.value?.input?.focus(),
-)
-onDeactivated(() => search.value?.input?.blur())
-
 const userSettings = useUserSettings()
-
 const tabs = computed<CommonRouteTabOption[]>(() => [
   {
     to: isHydrated.value ? `/${currentServer.value}/explore` : '/explore',
@@ -37,6 +25,8 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
     disabled: !isHydrated.value || !currentUser.value,
   },
 ])
+
+const useExplorePageForSearch = usePreferences('useExplorePageForSearch')
 </script>
 
 <template>
@@ -49,6 +39,9 @@ const tabs = computed<CommonRouteTabOption[]>(() => [
     </template>
 
     <template #header>
+      <div v-if="useExplorePageForSearch" px2 mt3>
+        <SearchWidget v-if="isHydrated" m-1 />
+      </div>
       <CommonRouteTabs replace :options="tabs" />
     </template>
     <NuxtPage v-if="isHydrated" />

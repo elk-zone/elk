@@ -639,7 +639,8 @@
     "poll": {
       "count": "{0} voti|{0} voto|{0} voti",
       "ends": "termina {0}",
-      "finished": "terminato {0}"
+      "finished": "terminato {0}",
+      "update": "Aggiorna sondaggio"
     },
     "replying_to": "In risposta a {0}",
     "show_full_thread": "Mostra discussione",
@@ -749,7 +750,7 @@
     "add_existing": "Aggiungi account esistente",
     "server_address_label": "Indirizzo istanza Mastodon",
     "sign_in_desc": "Accedi per seguire profili o hashtag, apprezzare, condividere e rispondere a post o interagire dal tuo account su un'altra istanza.",
-    "sign_in_notice_title": "Visualizzando {0} dati pubblici",
+    "sign_in_notice_title": "Visualizzando i dati pubblici di {0}",
     "sign_out_account": "Esci {0}",
     "single_instance_sign_in_desc": "Accedi per seguire profili o hastag, apprezzare condividere o rispondere a post.",
     "tip_no_account": "Se ancora non hai un account Mastodon, {0}.",

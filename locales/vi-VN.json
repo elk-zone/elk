@@ -341,7 +341,7 @@
     "missing_type": "THIẾU notification.type:",
     "others": "{0} người khác|{0} người khác|{0} người khác",
     "reblogged_post": "đã đăng lại tút của bạn",
-    "reported": "{0} đã báo cáo {1}",
+    "reported": "{0} báo cáo {1}",
     "request_to_follow": "yêu cầu theo dõi bạn",
     "signed_up": "đã tham gia máy chủ",
     "update_status": "cập nhật tút"
@@ -403,8 +403,8 @@
     "another_server": "Người bạn báo cáo thuộc ở máy chủ khác",
     "anything_else": "Có điều gì mà chúng tôi cần biết không?",
     "block_desc": "Bạn sẽ không còn thấy tút của người này. Họ sẽ không thể thấy tút của bạn hoặc theo dõi bạn. Họ biết là bạn đã chặn họ.",
-    "dontlike": "Tôi không thích nó",
-    "dontlike_desc": "Đó không phải là thứ gì mà bạn muốn thấy",
+    "dontlike": "Tôi không thích",
+    "dontlike_desc": "Đây không phải thứ mà bạn muốn thấy",
     "forward": "Gửi luôn báo cáo đến {0}",
     "forward_question": "Bạn có chắc muốn gửi luôn báo cáo đến máy chủ của người này?",
     "further_actions": {
@@ -419,8 +419,8 @@
     },
     "limiting": "Hạn chế {0}",
     "mute_desc": "Bạn sẽ không còn thấy tút của người này. Họ vẫn có thể thấy tút của bạn hoặc theo dõi bạn. Họ không biết là bạn đã chặn họ.",
-    "other": "Một lý do khác",
-    "other_desc": "Vấn đề không nằm trong những mục trên",
+    "other": "Lý do khác",
+    "other_desc": "Vấn đề không thuộc những mục trên",
     "reporting": "Báo cáo {0}",
     "select_many": "Chọn tất cả lý do phù hợp:",
     "select_one": "Chọn lý do phù hợp nhất:",
@@ -639,7 +639,8 @@
     "poll": {
       "count": "{0} bình chọn|{0} bình chọn|{0} bình chọn",
       "ends": "đóng {0}",
-      "finished": "kết thúc {0}"
+      "finished": "kết thúc {0}",
+      "update": "Làm mới"
     },
     "replying_to": "Trả lời {0}",
     "show_full_thread": "Chuỗi tút liên quan",

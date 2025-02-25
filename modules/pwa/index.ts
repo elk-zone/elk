@@ -1,6 +1,7 @@
 import type { Buffer } from 'node:buffer'
 import type { Plugin } from 'vite'
 import type { VitePluginPWAAPI } from 'vite-plugin-pwa'
+import type { LocalizedWebManifest } from './i18n'
 import type { VitePWANuxtOptions } from './types'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname } from 'node:path'
@@ -9,7 +10,7 @@ import { addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import { join, resolve } from 'pathe'
 import { VitePWA } from 'vite-plugin-pwa'
 import { configurePWAOptions } from './config'
-import { createI18n, type LocalizedWebManifest, pwaLocales } from './i18n'
+import { createI18n, pwaLocales } from './i18n'
 
 export * from './types'
 

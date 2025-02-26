@@ -6,10 +6,10 @@ import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const {
   paginator,
-  stream,
-  eventType,
   keyProp = 'id',
   virtualScroller = false,
+  stream,
+  eventType,
   preprocess,
   endMessage = true,
 } = defineProps<{

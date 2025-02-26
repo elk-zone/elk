@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const props = defineProps<{
+const { card } = defineProps<{
   card: mastodon.v1.PreviewCard
   /** For the preview image, only the small image mode is displayed */
   smallPictureOnly?: boolean
@@ -9,7 +9,7 @@ const props = defineProps<{
   root?: boolean
 }>()
 
-const providerName = props.card.providerName
+const providerName = card.providerName
 
 const gitHubCards = usePreferences('experimentalGitHubCards')
 </script>

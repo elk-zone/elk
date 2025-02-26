@@ -3,7 +3,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const { blurhash = '', src, srcset, shouldLoadImage = true } = defineProps<{
+const { blurhash = '', shouldLoadImage = true } = defineProps<{
   blurhash?: string
   src: string
   srcset?: string

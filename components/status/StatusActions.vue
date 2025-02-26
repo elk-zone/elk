@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const props = defineProps<{
+const { details, command, ...props } = defineProps<{
   status: mastodon.v1.Status
   details?: boolean
   command?: boolean
 }>()
 
 const focusEditor = inject<typeof noop>('focus-editor', noop)
-
-const { details, command } = props // TODO
 
 const userSettings = useUserSettings()
 const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
@@ -21,7 +19,7 @@ const {
   toggleBookmark,
   toggleFavourite,
   toggleReblog,
-} = useStatusActions(props)
+} = useStatusActions({ status: props.status })
 
 function reply() {
   if (!checkLogin())

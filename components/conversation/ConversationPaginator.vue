@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { paginator } = defineProps<{
+defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.Conversation[], mastodon.DefaultPaginationParams>
 }>()
 

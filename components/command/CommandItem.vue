@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import type { ResolvedCommand } from '~/composables/command'
 
-const {
-  cmd,
-  index,
-  active = false,
-} = defineProps<{
+const { active = false } = defineProps<{
   cmd: ResolvedCommand
   index: number
   active?: boolean

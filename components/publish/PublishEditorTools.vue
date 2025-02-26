@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Editor } from '@tiptap/core'
 
-const { editor } = defineProps<{
+defineProps<{
   editor: Editor
 }>()
 </script>

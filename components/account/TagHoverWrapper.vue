@@ -5,7 +5,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const { tagName, disabled } = defineProps<{
+const { tagName } = defineProps<{
   tagName?: string
   disabled?: boolean
 }>()

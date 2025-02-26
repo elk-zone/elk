@@ -4,15 +4,15 @@ import { fetchAccountById } from '~/composables/cache'
 
 type WatcherType = [status?: mastodon.v1.Status, v?: boolean]
 
-const props = defineProps<{
+const { status } = defineProps<{
   status: mastodon.v1.Status
   isSelfReply: boolean
 }>()
 
 const link = ref()
 const targetIsVisible = ref(false)
-const isSelf = computed(() => props.status.inReplyToAccountId === props.status.account.id)
-const account = ref<mastodon.v1.Account | null | undefined>(isSelf.value ? props.status.account : undefined)
+const isSelf = computed(() => status.inReplyToAccountId === status.account.id)
+const account = ref<mastodon.v1.Account | null | undefined>(isSelf.value ? status.account : undefined)
 
 useIntersectionObserver(
   link,
@@ -22,7 +22,7 @@ useIntersectionObserver(
 )
 
 watch(
-  () => [props.status, targetIsVisible.value] satisfies WatcherType,
+  () => [status, targetIsVisible.value] satisfies WatcherType,
   ([newStatus, newVisible]) => {
     if (newStatus.account && newStatus.inReplyToAccountId === newStatus.account.id) {
       account.value = newStatus.account
@@ -36,7 +36,7 @@ watch(
 
     if (newId) {
       fetchAccountById(newStatus.inReplyToAccountId).then((acc) => {
-        if (newId === props.status.inReplyToAccountId)
+        if (newId === status.inReplyToAccountId)
           account.value = acc
       })
       return

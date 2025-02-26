@@ -8,7 +8,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = defineProps<{
+const { handle, ...props } = defineProps<{
   account?: mastodon.v1.Account | null
   handle?: string
   disabled?: boolean
@@ -19,7 +19,7 @@ const hovered = useElementHover(accountHover)
 const account = ref<mastodon.v1.Account | null | undefined>(props.account)
 
 watch(
-  () => [props.account, props.handle, hovered.value] satisfies WatcherType,
+  () => [props.account, handle, hovered.value] satisfies WatcherType,
   ([newAccount, newHandle, newVisible], oldProps) => {
     if (!newVisible || process.test)
       return
@@ -34,7 +34,7 @@ watch(
       if (!oldHandle || newHandle !== oldHandle || !account.value) {
         // new handle can be wrong: using server instead of webDomain
         fetchAccountByHandle(newHandle).then((acc) => {
-          if (newHandle === props.handle)
+          if (newHandle === handle)
             account.value = acc
         })
       }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { as, alt, dataEmojiId } = defineProps<{
+const { alt, dataEmojiId } = defineProps<{
   as: string
   alt?: string
   dataEmojiId?: string

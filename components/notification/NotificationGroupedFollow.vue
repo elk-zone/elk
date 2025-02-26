@@ -14,6 +14,9 @@ const isExpanded = ref(false)
 const lang = computed(() => {
   return (count.value > 1 || count.value === 0) ? undefined : items.items[0].status?.language
 })
+
+const timeAgoOptions = useTimeAgoOptions(true)
+const timeAgo = useTimeAgo(() => follows.value[0].createdAt, timeAgoOptions)
 </script>
 
 <template>
@@ -37,7 +40,7 @@ const lang = computed(() => {
           :count="count - 1"
           text-primary font-bold line-clamp-1 ws-pre-wrap break-all
         />
-        &nbsp;{{ $t('notification.followed_you') }}
+        &nbsp;{{ $t('notification.followed_you') }}・{{ timeAgo }}
       </template>
       <template v-else-if="count === 1">
         <NuxtLink :to="getAccountRoute(follows[0].account)">
@@ -47,7 +50,7 @@ const lang = computed(() => {
           />
         </NuxtLink>
         <span me-1 ws-nowrap>
-          {{ $t('notification.followed_you') }}
+          {{ $t('notification.followed_you') }}・{{ timeAgo }}
         </span>
       </template>
     </div>

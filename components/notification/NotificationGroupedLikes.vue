@@ -8,6 +8,10 @@ const useStarFavoriteIcon = usePreferences('useStarFavoriteIcon')
 
 const reblogs = computed(() => group.likes.filter(i => i.reblog))
 const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
+
+const timeAgoOptions = useTimeAgoOptions(true)
+const reblogsTimeAgo = useTimeAgo(() => reblogs.value[0].reblog?.createdAt ?? '', timeAgoOptions)
+const likesTimeAgo = useTimeAgo(() => likes.value[0].favourite?.createdAt ?? '', timeAgoOptions)
 </script>
 
 <template>
@@ -24,7 +28,7 @@ const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
             </AccountHoverWrapper>
           </template>
           <div ml1>
-            {{ $t('notification.reblogged_post') }}
+            {{ $t('notification.reblogged_post') }}・{{ reblogsTimeAgo }}
           </div>
         </div>
         <div v-if="likes.length" flex="~ gap-1 wrap">
@@ -37,7 +41,7 @@ const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
             </AccountHoverWrapper>
           </template>
           <div ms-4>
-            {{ $t('notification.favourited_post') }}
+            {{ $t('notification.favourited_post') }} ・{{ likesTimeAgo }}
           </div>
         </div>
       </div>

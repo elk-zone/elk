@@ -1,28 +1,25 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const props = withDefaults(
-  defineProps<{
-    status: mastodon.v1.Status
-    actions?: boolean
-    context?: mastodon.v2.FilterContext
-    hover?: boolean
-    inNotification?: boolean
-    isPreview?: boolean
+const { actions = true, older, newer, hasOlder, hasNewer, main, ...props } = defineProps<{
+  status: mastodon.v1.Status
+  actions?: boolean
+  context?: mastodon.v2.FilterContext
+  hover?: boolean
+  inNotification?: boolean
+  isPreview?: boolean
 
-    // If we know the prev and next status in the timeline, we can simplify the card
-    older?: mastodon.v1.Status
-    newer?: mastodon.v1.Status
-    // Manual overrides
-    hasOlder?: boolean
-    hasNewer?: boolean
+  // If we know the prev and next status in the timeline, we can simplify the card
+  older?: mastodon.v1.Status
+  newer?: mastodon.v1.Status
+  // Manual overrides
+  hasOlder?: boolean
+  hasNewer?: boolean
 
-    // When looking into a detailed view of a post, we can simplify the replying badges
-    // to the main expanded post
-    main?: mastodon.v1.Status
-  }>(),
-  { actions: true },
-)
+  // When looking into a detailed view of a post, we can simplify the replying badges
+  // to the main expanded post
+  main?: mastodon.v1.Status
+}>()
 
 const userSettings = useUserSettings()
 
@@ -33,11 +30,11 @@ const status = computed(() => {
 })
 
 // Use original status, avoid connecting a reblog
-const directReply = computed(() => props.hasNewer || (!!status.value.inReplyToId && (status.value.inReplyToId === props.newer?.id || status.value.inReplyToId === props.newer?.reblog?.id)))
+const directReply = computed(() => hasNewer || (!!status.value.inReplyToId && (status.value.inReplyToId === newer?.id || status.value.inReplyToId === newer?.reblog?.id)))
 // Use reblogged status, connect it to further replies
-const connectReply = computed(() => props.hasOlder || status.value.id === props.older?.inReplyToId || status.value.id === props.older?.reblog?.inReplyToId)
+const connectReply = computed(() => hasOlder || status.value.id === older?.inReplyToId || status.value.id === older?.reblog?.inReplyToId)
 // Open a detailed status, the replies directly to it
-const replyToMain = computed(() => props.main && props.main.id === status.value.inReplyToId)
+const replyToMain = computed(() => main && main.id === status.value.inReplyToId)
 
 const rebloggedBy = computed(() => props.status.reblog ? props.status.account : null)
 
@@ -64,7 +61,7 @@ const collapseRebloggedBy = computed(() => rebloggedBy.value?.id === status.valu
 const isDM = computed(() => status.value.visibility === 'direct')
 const isPinned = computed(() => status.value.pinned)
 
-const showUpperBorder = computed(() => props.newer && !directReply.value)
+const showUpperBorder = computed(() => newer && !directReply.value)
 const showReplyTo = computed(() => !replyToMain.value && !directReply.value)
 
 const forceShow = ref(false)

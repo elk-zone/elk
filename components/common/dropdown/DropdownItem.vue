@@ -4,7 +4,6 @@ const {
   text,
   description,
   icon,
-  checked,
   command,
 } = defineProps<{
   is?: string

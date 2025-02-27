@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { NodeViewContent, nodeViewProps, NodeViewWrapper } from '@tiptap/vue-3'
 
-const props = defineProps(nodeViewProps)
+const { node, updateAttributes } = defineProps(nodeViewProps)
 
 const languages = [
   'c',
@@ -26,10 +26,10 @@ const languages = [
 
 const selectedLanguage = computed({
   get() {
-    return props.node.attrs.language
+    return node.attrs.language
   },
   set(language) {
-    props.updateAttributes({ language })
+    updateAttributes({ language })
   },
 })
 </script>

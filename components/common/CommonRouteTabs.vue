@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { CommonRouteTabMoreOption, CommonRouteTabOption } from '~/types'
 
-const { options, command, replace, preventScrollTop = false, moreOptions } = defineProps<{
+const { options, command, preventScrollTop = false } = defineProps<{
   options: CommonRouteTabOption[]
   moreOptions?: CommonRouteTabMoreOption
   command?: boolean

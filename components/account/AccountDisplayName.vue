@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { account, hideEmojis = false } = defineProps<{
+const { hideEmojis = false } = defineProps<{
   account: mastodon.v1.Account
   hideEmojis?: boolean
 }>()

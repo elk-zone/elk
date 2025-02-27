@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { STORAGE_KEY_LAST_ACCESSED_EXPLORE_ROUTE, STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE } from '~/constants'
 
-const { command } = defineProps<{
+defineProps<{
   command?: boolean
 }>()
 const { notifications } = useNotifications()

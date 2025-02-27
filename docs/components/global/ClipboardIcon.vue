@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { copy } = defineProps<{
+defineProps<{
   copy?: boolean
 }>()
 </script>

@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const props = withDefaults(defineProps<{
+const { actions = true, ...props } = defineProps<{
   status: mastodon.v1.Status
   newer?: mastodon.v1.Status
   command?: boolean
   actions?: boolean
-}>(), {
-  actions: true,
-})
+}>()
 
 defineEmits<{
   (event: 'refetchStatus'): void

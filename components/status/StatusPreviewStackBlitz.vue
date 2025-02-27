@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const props = defineProps<{
+const { card } = defineProps<{
   card: mastodon.v1.PreviewCard
   /** For the preview image, only the small image mode is displayed */
   smallPictureOnly?: boolean
@@ -20,12 +20,12 @@ interface Meta {
 const maxLines = 20
 
 const meta = computed(() => {
-  const { description } = props.card
+  const { description } = card
   const meta = description.match(/.*Code Snippet from (.+), lines (\S+)\n\n(.+)/s)
   const file = meta?.[1]
   const lines = meta?.[2]
   const code = meta?.[3].split('\n').slice(0, maxLines).join('\n')
-  const project = props.card.title?.replace(' - StackBlitz', '')
+  const project = card.title?.replace(' - StackBlitz', '')
   return {
     file,
     lines,

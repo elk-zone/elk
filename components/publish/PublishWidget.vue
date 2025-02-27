@@ -10,7 +10,6 @@ const {
   draftItemIndex,
   expanded = false,
   placeholder,
-  dialogLabelledBy,
   initial = getDefaultDraftItem,
 } = defineProps<{
   draftKey: string

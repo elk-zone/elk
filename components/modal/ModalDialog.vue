@@ -1,51 +1,27 @@
 <script setup lang="ts">
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 
-export interface Props {
-  /**
-   * level of depth
-   *
-   * @default 100
-   */
-  zIndex?: number
-
-  /**
-   * whether to allow close dialog by clicking mask layer
-   *
-   * @default true
-   */
-  closeByMask?: boolean
-
-  /**
-   * use v-if, destroy all the internal elements after closed
-   *
-   * @default true
-   */
-  useVIf?: boolean
-
-  /**
-   * keep the dialog opened even when in other views
-   *
-   * @default false
-   */
-  keepAlive?: boolean
-
-  /**
-   * The aria-labelledby id for the dialog.
-   */
-  dialogLabelledBy?: string
-}
-
 defineOptions({
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<Props>(), {
-  zIndex: 100,
-  closeByMask: true,
-  useVIf: true,
-  keepAlive: false,
-})
+const {
+  zIndex = 100,
+  closeByMask = true,
+  useVIf = true,
+  keepAlive = false,
+} = defineProps<{
+  // level of depth
+  zIndex?: number
+  // whether to allow close dialog by clicking mask layer
+  closeByMask?: boolean
+  // use v-if, destroy all the internal elements after closed
+  useVIf?: boolean
+  // keep the dialog opened even when in other views
+  keepAlive?: boolean
+  // The aria-labelledby id for the dialog.
+  dialogLabelledBy?: string
+}>()
 
 const emit = defineEmits<{
   /** v-model dialog visibility */
@@ -85,7 +61,7 @@ function close() {
 }
 
 function clickMask() {
-  if (props.closeByMask)
+  if (closeByMask)
     close()
 }
 
@@ -97,7 +73,7 @@ watch(visible, (value) => {
 
 const notInCurrentPage = computed(() => deactivated.value || routePath.value !== route.path)
 watch(notInCurrentPage, (value) => {
-  if (props.keepAlive)
+  if (keepAlive)
     return
   if (value)
     close()
@@ -106,7 +82,7 @@ watch(notInCurrentPage, (value) => {
 // controls the state of v-if.
 // when useVIf is toggled, v-if has the same state as modelValue, otherwise v-if is true
 const isVIf = computed(() => {
-  return props.useVIf
+  return useVIf
     ? visible.value
     : true
 })
@@ -114,7 +90,7 @@ const isVIf = computed(() => {
 // controls the state of v-show.
 // when useVIf is toggled, v-show is true, otherwise it has the same state as modelValue
 const isVShow = computed(() => {
-  return !props.useVIf
+  return !useVIf
     ? visible.value
     : true
 })

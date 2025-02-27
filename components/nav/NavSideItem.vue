@@ -1,13 +1,11 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
+const { text, icon, to, userOnly = false, command } = defineProps<{
   text?: string
   icon: string
   to: string | Record<string, string>
   userOnly?: boolean
   command?: boolean
-}>(), {
-  userOnly: false,
-})
+}>()
 
 defineSlots<{
   icon: (props: object) => void
@@ -19,12 +17,12 @@ const router = useRouter()
 useCommand({
   scope: 'Navigation',
 
-  name: () => props.text ?? (typeof props.to === 'string' ? props.to as string : props.to.name),
-  icon: () => props.icon,
-  visible: () => props.command,
+  name: () => text ?? (typeof to === 'string' ? to as string : to.name),
+  icon: () => icon,
+  visible: () => command,
 
   onActivate() {
-    router.push(props.to)
+    router.push(to)
   },
 })
 
@@ -39,8 +37,8 @@ onHydrated(async () => {
 
 // Optimize rendering for the common case of being logged in, only show visual feedback for disabled user-only items
 // when we know there is no user.
-const noUserDisable = computed(() => !isHydrated.value || (props.userOnly && !currentUser.value))
-const noUserVisual = computed(() => isHydrated.value && props.userOnly && !currentUser.value)
+const noUserDisable = computed(() => !isHydrated.value || (userOnly && !currentUser.value))
+const noUserVisual = computed(() => isHydrated.value && userOnly && !currentUser.value)
 </script>
 
 <template>

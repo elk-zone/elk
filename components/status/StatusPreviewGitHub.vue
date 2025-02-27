@@ -2,7 +2,7 @@
 import type { mastodon } from 'masto'
 import reservedNames from 'github-reserved-names'
 
-const props = defineProps<{
+const { card } = defineProps<{
   card: mastodon.v1.PreviewCard
 }>()
 
@@ -30,7 +30,7 @@ interface Meta {
 const supportedReservedRoutes = ['sponsors']
 
 const meta = computed(() => {
-  const { url } = props.card
+  const { url } = card
   const path = url.split('https://github.com/')[1]
   const [firstName, secondName] = path?.split('/') || []
   if (!firstName || (reservedNames.check(firstName) && !supportedReservedRoutes.includes(firstName)))
@@ -42,7 +42,7 @@ const meta = computed(() => {
 
   let type: UrlType = repo ? 'repo' : 'user'
   let number: string | undefined
-  let details = (props.card.title ?? '').replace('GitHub - ', '').split(' · ')[0]
+  let details = (card.title ?? '').replace('GitHub - ', '').split(' · ')[0]
 
   if (repo) {
     const repoPath = `${user}/${repo}`
@@ -63,7 +63,7 @@ const meta = computed(() => {
 
   const avatar = `https://github.com/${user}.png?size=256`
 
-  const author = props.card.authorName
+  const author = card.authorName
   return {
     type,
     user,

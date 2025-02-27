@@ -3,16 +3,16 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = defineProps<{
+const { count } = defineProps<{
   count: number
   keypath: string
 }>()
 
 const { formatHumanReadableNumber, formatNumber, forSR } = useHumanReadableNumber()
 
-const useSR = computed(() => forSR(props.count))
-const rawNumber = computed(() => formatNumber(props.count))
-const humanReadableNumber = computed(() => formatHumanReadableNumber(props.count))
+const useSR = computed(() => forSR(count))
+const rawNumber = computed(() => formatNumber(count))
+const humanReadableNumber = computed(() => formatHumanReadableNumber(count))
 </script>
 
 <template>

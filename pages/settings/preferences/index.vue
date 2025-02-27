@@ -52,6 +52,12 @@ const userSettings = useUserSettings()
         {{ $t('settings.preferences.enable_autoplay') }}
       </SettingsToggleItem>
       <SettingsToggleItem
+        :checked="getPreferences(userSettings, 'unmuteVideos')"
+        @click="togglePreferences('unmuteVideos')"
+      >
+        {{ $t('settings.preferences.unmute_videos') }}
+      </SettingsToggleItem>
+      <SettingsToggleItem
         :checked="getPreferences(userSettings, 'optimizeForLowPerformanceDevice')"
         @click="togglePreferences('optimizeForLowPerformanceDevice')"
       >

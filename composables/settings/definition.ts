@@ -23,6 +23,7 @@ export interface PreferencesSettings {
   hideNews: boolean
   grayscaleMode: boolean
   enableAutoplay: boolean
+  unmuteVideos: boolean
   optimizeForLowPerformanceDevice: boolean
   enableDataSaving: boolean
   enablePinchToZoom: boolean
@@ -79,6 +80,7 @@ export const DEFAULT__PREFERENCES_SETTINGS: PreferencesSettings = {
   hideNews: false,
   grayscaleMode: false,
   enableAutoplay: true,
+  unmuteVideos: false,
   optimizeForLowPerformanceDevice: false,
   enableDataSaving: false,
   enablePinchToZoom: false,

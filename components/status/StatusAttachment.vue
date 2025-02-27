@@ -71,6 +71,7 @@ const isVideo = computed(() => attachment.type === 'video')
 const isGif = computed(() => attachment.type === 'gifv')
 
 const enableAutoplay = usePreferences('enableAutoplay')
+const unmuteVideos = usePreferences('unmuteVideos')
 
 useIntersectionObserver(video, (entries) => {
   const ready = video.value?.dataset.ready === 'true'
@@ -132,7 +133,7 @@ watch(shouldLoadAttachment, () => {
           ref="video"
           preload="none"
           :poster="videoThumbnail"
-          muted
+          :muted="!unmuteVideos"
           loop
           playsinline
           :controls="shouldLoadAttachment"
@@ -172,7 +173,7 @@ watch(shouldLoadAttachment, () => {
           ref="video"
           preload="none"
           :poster="videoThumbnail"
-          muted
+          :muted="!unmuteVideos"
           loop
           playsinline
           rounded-lg

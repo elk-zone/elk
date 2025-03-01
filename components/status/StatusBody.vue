@@ -13,7 +13,7 @@ const {
 
 const { translation } = useTranslation(status, getLanguageCode())
 
-const idealHeight = window.screen.height * 0.5
+const idealHeight = window.screen.height * 0.51
 const root = ref<HTMLElement | null>(null)
 const { height } = useElementSize(root)
 const doCollapseLongStatus = ref(false)

@@ -4,7 +4,7 @@ import type { mastodon } from 'masto'
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
-const { paginator, stream, account, buffer = 10, endMessage = true } = defineProps<{
+const { account, buffer = 10, endMessage = true } = defineProps<{
   paginator: mastodon.Paginator<mastodon.v1.Status[], mastodon.rest.v1.ListAccountStatusesParams>
   stream?: mastodon.streaming.Subscription
   context?: mastodon.v2.FilterContext

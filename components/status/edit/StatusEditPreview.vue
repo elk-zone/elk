@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { edit } = defineProps<{
+defineProps<{
   edit: mastodon.v1.StatusEdit
 }>()
 </script>

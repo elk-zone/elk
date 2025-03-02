@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { up } = defineProps<{
+defineProps<{
   up?: boolean
 }>()
 </script>

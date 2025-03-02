@@ -2,21 +2,21 @@
 import type { FileWithHandle } from 'browser-fs-access'
 import { fileOpen } from 'browser-fs-access'
 
-const props = withDefaults(defineProps<{
+const {
+  original,
+  allowedFileTypes = ['image/jpeg', 'image/png'],
+  allowedFileSize = 1024 * 1024 * 5, // 5 MB
+} = defineProps<{
   /** The image src before change */
   original?: string
   /** Allowed file types */
   allowedFileTypes?: string[]
   /** Allowed file size */
   allowedFileSize?: number
-
   imgClass?: string
-
   loading?: boolean
-}>(), {
-  allowedFileTypes: () => ['image/jpeg', 'image/png'],
-  allowedFileSize: 1024 * 1024 * 5, // 5 MB
-})
+}>()
+
 const emit = defineEmits<{
   (event: 'pick', value: FileWithHandle): void
   (event: 'error', code: number, message: string): void
@@ -26,7 +26,7 @@ const file = defineModel<FileWithHandle | null>()
 
 const { t } = useI18n()
 
-const defaultImage = computed(() => props.original || '')
+const defaultImage = computed(() => original || '')
 /** Preview of selected images */
 const previewImage = ref('')
 /** The current images on display */
@@ -37,14 +37,14 @@ async function pickImage() {
     return
   const image = await fileOpen({
     description: 'Image',
-    mimeTypes: props.allowedFileTypes,
+    mimeTypes: allowedFileTypes,
   })
 
-  if (!props.allowedFileTypes.includes(image.type)) {
+  if (!allowedFileTypes.includes(image.type)) {
     emit('error', 1, t('error.unsupported_file_format'))
     return
   }
-  else if (image.size > props.allowedFileSize) {
+  else if (image.size > allowedFileSize) {
     emit('error', 2, t('error.file_size_cannot_exceed_n_mb', [5]))
     return
   }

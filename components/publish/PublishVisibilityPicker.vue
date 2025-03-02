@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { editing } = defineProps<{
+defineProps<{
   editing?: boolean
 }>()
 

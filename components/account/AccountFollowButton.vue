@@ -2,7 +2,7 @@
 import type { mastodon } from 'masto'
 import { toggleFollowAccount, useRelationship } from '~~/composables/masto/relationship'
 
-const { account, command, context, ...props } = defineProps<{
+const { account, context, command, ...props } = defineProps<{
   account: mastodon.v1.Account
   relationship?: mastodon.v1.Relationship
   context?: 'followedBy' | 'following'

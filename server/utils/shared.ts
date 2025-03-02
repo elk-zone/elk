@@ -93,7 +93,9 @@ export async function getApp(origin: string, server: string) {
     if (await storage.hasItem(key))
       return (storage.getItem(key, {}) as Promise<AppInfo>)
     const appInfo = await fetchAppInfo(origin, server)
-    await storage.setItem(key, appInfo)
+    // cache `appInfo` for 1 week to prevent permanent lockout
+    // note that `unstorage` supports `ttl` only for some storage drivers like cloudflare
+    await storage.setItem(key, appInfo, { ttl: 60 * 60 * 24 * 7 /* 1 week */ })
     return appInfo
   }
   catch {

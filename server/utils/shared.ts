@@ -73,13 +73,15 @@ async function fetchAppInfo(origin: string, server: string) {
       .catch(() => null),
   ])
 
+  // vapid.public_key prop is only available on Mastodon v4.3+
+  const v2InstanceVapidKey: string | undefined = v2Instance?.configuration?.vapid?.public_key
   const app: AppInfo = {
     ...apps,
     // prefer vapid key from `/api/v2/instance` if available
     // since `vapid_key` from `/api/v1/apps` was deprecated on Mastodon v4.3.0+
     // ref. apps API methods - Mastodon documentation
     // - https://docs.joinmastodon.org/methods/apps/#create
-    ...v2Instance ? { vapid_key: v2Instance.configuration.vapid.public_key } : {},
+    ...v2InstanceVapidKey ? { vapid_key: v2InstanceVapidKey } : {},
   }
 
   return app

@@ -1,16 +1,16 @@
 <script setup lang="ts">
-const props = defineProps<{
+const { draftKey, draftItemIndex } = defineProps<{
   draftKey: string
   draftItemIndex: number
 }>()
 
-const { threadIsActive, addThreadItem, threadItems, removeThreadItem } = useThreadComposer(props.draftKey)
+const { threadIsActive, addThreadItem, threadItems, removeThreadItem } = useThreadComposer(draftKey)
 
-const isRemovableItem = computed(() => threadIsActive.value && props.draftItemIndex < threadItems.value.length - 1)
+const isRemovableItem = computed(() => threadIsActive.value && draftItemIndex < threadItems.value.length - 1)
 
 function addOrRemoveItem() {
   if (isRemovableItem.value)
-    removeThreadItem(props.draftItemIndex)
+    removeThreadItem(draftItemIndex)
 
   else
     addThreadItem()
@@ -19,7 +19,7 @@ function addOrRemoveItem() {
 const { t } = useI18n()
 
 const label = computed(() => {
-  if (!isRemovableItem.value && props.draftItemIndex === 0)
+  if (!isRemovableItem.value && draftItemIndex === 0)
     return t('tooltip.start_thread')
 
   return isRemovableItem.value ? t('tooltip.remove_thread_item') : t('tooltip.add_thread_item')

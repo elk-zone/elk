@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const { account, link = true } = defineProps<{
+const { link = true } = defineProps<{
   account: mastodon.v1.Account
   link?: boolean
 }>()

@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type { mastodon } from 'masto'
 
-const props = withDefaults(defineProps<{
+const { attachment, removable = true } = defineProps<{
   attachment: mastodon.v1.MediaAttachment
   alt?: string
   removable?: boolean
   dialogLabelledBy?: string
-}>(), {
-  removable: true,
-})
+}>()
 
 const emit = defineEmits<{
   (evt: 'remove'): void
@@ -19,7 +17,7 @@ const emit = defineEmits<{
 const maxDescriptionLength = 1500
 
 const isEditDialogOpen = ref(false)
-const description = ref(props.attachment.description ?? '')
+const description = ref(attachment.description ?? '')
 
 function toggleApply() {
   isEditDialogOpen.value = false

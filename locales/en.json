@@ -561,6 +561,7 @@
       "label": "Preferences",
       "optimize_for_low_performance_device": "Optimize for low performance device",
       "title": "Experimental Features",
+      "unmute_videos": "Video sound on by default",
       "use_star_favorite_icon": "Use star favorite icon",
       "user_picker": "User Picker",
       "user_picker_description": "Displays all avatars of logged accounts in the bottom-left so you can switch quickly between them.",

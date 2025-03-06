@@ -3,25 +3,18 @@ import type { Boundaries } from 'vue-advanced-cropper'
 import { Cropper } from 'vue-advanced-cropper'
 import 'vue-advanced-cropper/dist/style.css'
 
-export interface Props {
+const { stencilAspectRatio = 1 / 1, stencilSizePercentage = 0.9 } = defineProps<{
   /** Crop frame aspect ratio (width/height), default 1/1 */
   stencilAspectRatio?: number
   /** The ratio of the longest edge of the cut box to the length of the cut screen, default 0.9, not more than 1 */
   stencilSizePercentage?: number
-}
-const props = withDefaults(defineProps<Props>(), {
-  stencilAspectRatio: 1 / 1,
-  stencilSizePercentage: 0.9,
-})
+}>()
 
 const file = defineModel<File | null>()
 
 const cropperDialog = ref(false)
-
 const cropper = ref<InstanceType<typeof Cropper>>()
-
 const cropperFlag = ref(false)
-
 const cropperImage = reactive({
   src: '',
   type: 'image/jpg',
@@ -29,8 +22,8 @@ const cropperImage = reactive({
 
 function stencilSize({ boundaries }: { boundaries: Boundaries }) {
   return {
-    width: boundaries.width * props.stencilSizePercentage,
-    height: boundaries.height * props.stencilSizePercentage,
+    width: boundaries.width * stencilSizePercentage,
+    height: boundaries.height * stencilSizePercentage,
   }
 }
 
@@ -82,7 +75,7 @@ function cropImage() {
           }"
           :stencil-size="stencilSize"
           :stencil-props="{
-            aspectRatio: props.stencilAspectRatio,
+            aspectRatio: stencilAspectRatio,
             movable: false,
             resizable: false,
             handlers: {},

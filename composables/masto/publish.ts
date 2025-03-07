@@ -62,7 +62,7 @@ export function usePublish(options: {
       failedMessages.value.length = 0
   }, { deep: true })
 
-  async function publishDraft() {
+  async function publishDraft(): Promise<mastodon.v1.Status | undefined> {
     if (isPublishDisabled.value)
       return
 
@@ -71,7 +71,6 @@ export function usePublish(options: {
       content = `${draftItem.value.mentions.map(i => `@${i}`).join(' ')} ${content}`
 
     let poll
-
     if (draftItem.value.params.poll) {
       let options = draftItem.value.params.poll.options
 
@@ -87,6 +86,10 @@ export function usePublish(options: {
       poll = { ...draftItem.value.params.poll, options }
     }
 
+    let scheduledAt
+    if (draftItem.value.params.scheduledAt)
+      scheduledAt = new Date(draftItem.value.params.scheduledAt).toISOString()
+
     const payload = {
       ...draftItem.value.params,
       spoilerText: publishSpoilerText.value,
@@ -94,8 +97,9 @@ export function usePublish(options: {
       mediaIds: draftItem.value.attachments.map(a => a.id),
       language: draftItem.value.params.language || preferredLanguage.value,
       poll,
+      scheduledAt,
       ...(isGlitchEdition.value ? { 'content-type': 'text/markdown' } : {}),
-    } as mastodon.rest.v1.CreateStatusParams
+    } as mastodon.rest.v1.CreateScheduledStatusParams
 
     if (import.meta.dev) {
       // eslint-disable-next-line no-console
@@ -116,7 +120,6 @@ export function usePublish(options: {
       if (!draftItem.value.editingStatus) {
         status = await client.value.v1.statuses.create(payload)
       }
-
       else {
         status = await client.value.v1.statuses.$select(draftItem.value.editingStatus.id).update({
           ...payload,
@@ -130,6 +133,12 @@ export function usePublish(options: {
         navigateToStatus({ status })
 
       draftItem.value = options.initialDraft()
+
+      if ('scheduled_at' in status)
+        // When created a scheduled post, it returns `mastodon.v1.ScheduledStatus` instead
+        // We want to return only Status, which will be used to route to the posted status page
+        // ref. Mastodon documentation - https://docs.joinmastodon.org/methods/statuses/#create
+        return
 
       return status
     }

@@ -561,6 +561,7 @@
       "label": "Preferências",
       "optimize_for_low_performance_device": "Otimizar para dispositivos de menor desempenho",
       "title": "Funcionalidades Experimentais",
+      "unmute_videos": "Som de vídeo ativado por predefinição",
       "use_star_favorite_icon": "Utilizar estrela como ícone de favoritos",
       "user_picker": "Selecionador de Utilizador",
       "user_picker_description": "Exibe as imagens de perfil de todas as contas registadas no canto inferior esquerdo para que possa alternar rapidamente entre elas.",

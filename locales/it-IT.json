@@ -561,6 +561,7 @@
       "label": "Preferenze",
       "optimize_for_low_performance_device": "Ottimizza per dispositivi a basse prestazioni",
       "title": "Funzionalità sperimentali",
+      "unmute_videos": "Volume video attivo di default",
       "use_star_favorite_icon": "Usa icona stella per apprezzamenti",
       "user_picker": "Selettore utente",
       "user_picker_description": "Mostra gli avatar di tutti gli account connessi in basso a sinistra così da poter cambiare account in un attimo.",

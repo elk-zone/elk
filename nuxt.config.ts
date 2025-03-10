@@ -1,11 +1,14 @@
 import type { BuildInfo } from './types'
 import { createResolver, useNuxt } from '@nuxt/kit'
+import { resolveModulePath } from 'exsolve'
 import { isCI, isDevelopment, isWindows } from 'std-env'
 import { isPreview } from './config/env'
 import { currentLocales } from './config/i18n'
 import { pwa } from './config/pwa'
 
 const { resolve } = createResolver(import.meta.url)
+
+const mockProxy = resolveModulePath('mocked-exports/proxy', { from: import.meta.url })
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-09-11',
@@ -186,7 +189,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     alias: {
-      'isomorphic-ws': 'unenv/runtime/mock/proxy',
+      'isomorphic-ws': mockProxy,
     },
     esbuild: {
       options: {
@@ -230,7 +233,7 @@ export default defineNuxtConfig({
         for (const dep of ['eventemitter3', 'isomorphic-ws'])
           alias[dep] = resolve('./mocks/class')
         for (const dep of ['fuse.js'])
-          alias[dep] = 'unenv/runtime/mock/proxy'
+          alias[dep] = mockProxy
         const resolver = createResolver(import.meta.url)
 
         config.plugins!.unshift({

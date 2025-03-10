@@ -16,7 +16,8 @@ const lang = computed(() => {
 })
 
 const timeAgoOptions = useTimeAgoOptions(true)
-const timeAgo = useTimeAgo(() => follows.value[0].createdAt, timeAgoOptions)
+const timeAgoCreatedAt = computed(() => follows.value[0].createdAt)
+const timeAgo = useTimeAgo(() => timeAgoCreatedAt.value, timeAgoOptions)
 </script>
 
 <template>
@@ -40,7 +41,10 @@ const timeAgo = useTimeAgo(() => follows.value[0].createdAt, timeAgoOptions)
           :count="count - 1"
           text-primary font-bold line-clamp-1 ws-pre-wrap break-all
         />
-        &nbsp;{{ $t('notification.followed_you') }}・{{ timeAgo }}
+        &nbsp;{{ $t('notification.followed_you') }}
+        <time text-secondary :datetime="timeAgoCreatedAt">
+          ・{{ timeAgo }}
+        </time>
       </template>
       <template v-else-if="count === 1">
         <NuxtLink :to="getAccountRoute(follows[0].account)">
@@ -50,7 +54,10 @@ const timeAgo = useTimeAgo(() => follows.value[0].createdAt, timeAgoOptions)
           />
         </NuxtLink>
         <span me-1 ws-nowrap>
-          {{ $t('notification.followed_you') }}・{{ timeAgo }}
+          {{ $t('notification.followed_you') }}
+          <time text-secondary :datetime="timeAgoCreatedAt">
+            ・{{ timeAgo }}
+          </time>
         </span>
       </template>
     </div>

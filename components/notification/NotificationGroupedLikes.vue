@@ -10,8 +10,10 @@ const reblogs = computed(() => group.likes.filter(i => i.reblog))
 const likes = computed(() => group.likes.filter(i => i.favourite && !i.reblog))
 
 const timeAgoOptions = useTimeAgoOptions(true)
-const reblogsTimeAgo = useTimeAgo(() => reblogs.value[0].reblog?.createdAt ?? '', timeAgoOptions)
-const likesTimeAgo = useTimeAgo(() => likes.value[0].favourite?.createdAt ?? '', timeAgoOptions)
+const reblogsTimeAgoCreatedAt = computed(() => reblogs.value[0].reblog?.createdAt)
+const reblogsTimeAgo = useTimeAgo(() => reblogsTimeAgoCreatedAt.value ?? '', timeAgoOptions)
+const likesTimeAgoCreatedAt = computed(() => likes.value[0].favourite?.createdAt)
+const likesTimeAgo = useTimeAgo(() => likesTimeAgoCreatedAt.value ?? '', timeAgoOptions)
 </script>
 
 <template>
@@ -28,7 +30,10 @@ const likesTimeAgo = useTimeAgo(() => likes.value[0].favourite?.createdAt ?? '',
             </AccountHoverWrapper>
           </template>
           <div ml1>
-            {{ $t('notification.reblogged_post') }}・{{ reblogsTimeAgo }}
+            {{ $t('notification.reblogged_post') }}
+            <time text-secondary :datetime="reblogsTimeAgoCreatedAt">
+              ・{{ reblogsTimeAgo }}
+            </time>
           </div>
         </div>
         <div v-if="likes.length" flex="~ gap-1 wrap">
@@ -41,7 +46,10 @@ const likesTimeAgo = useTimeAgo(() => likes.value[0].favourite?.createdAt ?? '',
             </AccountHoverWrapper>
           </template>
           <div ms-4>
-            {{ $t('notification.favourited_post') }} ・{{ likesTimeAgo }}
+            {{ $t('notification.favourited_post') }}
+            <time text-secondary :datetime="likesTimeAgoCreatedAt">
+              ・{{ likesTimeAgo }}
+            </time>
           </div>
         </div>
       </div>

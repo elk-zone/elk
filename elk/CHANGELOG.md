@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.44 (2025-03-11)
+
+
+### Bug Fixes
+
+* crash when going back on search results ([a828e99](https://github.com/BDX-town/elk/commit/a828e992e38f34ee925e0602f04b9cc06ebc3586))
+
 ## 0.15.43 (2025-03-11)
 
 ## 0.15.42 (2025-02-10)

@@ -17,6 +17,7 @@ export interface ContentParseOptions {
   collapseMentionLink?: boolean
   status?: akkoma.v1.Status
   inReplyToStatus?: akkoma.v1.Status
+  convertHashtagLink?: boolean
 }
 
 const sanitizerBasicClasses = filterClasses(/^h-\S*|p-\S*|u-\S*|dt-\S*|e-\S*|mention|hashtag|ellipsis|invisible$/u)
@@ -85,6 +86,7 @@ export function parseMastodonHTML(
     collapseMentionLink = false,
     hideEmojis = false,
     hideQuoteInBody = true,
+    convertHashtagLink = true,
     mentions,
     status,
     inReplyToStatus,
@@ -142,6 +144,9 @@ export function parseMastodonHTML(
 
   if (hideQuoteInBody)
     transforms.push(removeQuoteInBody)
+
+  if (convertHashtagLink)
+    transforms.push(transformHashtagLink)
 
   return transformSync(parse(html), transforms)
 }
@@ -400,6 +405,16 @@ function removeUnicodeEmoji(node: Node) {
 function removeQuoteInBody(node: Node) {
   if (node.attributes?.class === 'quote-inline') {
     return ''
+  }
+  return node
+}
+
+function transformHashtagLink(node: Node) {
+  const tagMatch = node.attributes?.href?.match(/.*\/tags?\/(.+)/)
+  if (tagMatch) {
+    const tag = tagMatch[1]
+    node.attributes.href = `/${currentServer.value}/tags/${tag}`
+    node.children = [h('span', { 'data-type': 'hashtag', 'data-id': tag }, `#${tag}`)]
   }
   return node
 }

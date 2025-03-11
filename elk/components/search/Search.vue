@@ -21,6 +21,7 @@ const tabs = computed(() => [
 
 const currentTab = ref(tabs.value[0].name)
 
+const router = useRouter()
 const route = useRoute()
 
 const query = ref(route.query.q as string || '')
@@ -46,7 +47,10 @@ const currentResults = computed(() => {
     : results[queryType.value].value
 })
 
-watch(query, () => offset.value = 0)
+watch(query, () => {
+  router.replace({ query: { q: query.value } })
+  offset.value = 0
+})
 watch(currentTab, () => offset.value = 0)
 watch(currentResults, () => offset.value = queryType.value ? currentResults.value.length : 0)
 </script>

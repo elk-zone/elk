@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
 
-const { edit } = defineProps<{
+defineProps<{
   edit: akkoma.v1.StatusEdit
 }>()
 </script>

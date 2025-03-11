@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
 
-const props = withDefaults(defineProps<{
+const { actions = true, ...props } = defineProps<{
   status: akkoma.v1.Status
   newer?: akkoma.v1.Status
   command?: boolean
   actions?: boolean
-}>(), {
-  actions: true,
-})
+}>()
 
 defineEmits<{
   (event: 'refetchStatus'): void

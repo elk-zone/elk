@@ -2,7 +2,7 @@
 import { STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE } from '~/constants'
 import NavSideItem from './NavSideItem.vue'
 
-const { command } = defineProps<{
+defineProps<{
   command?: boolean
 }>()
 const { notifications } = useNotifications()

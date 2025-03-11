@@ -4,8 +4,8 @@ import type { GroupedAccountLike, NotificationSlot } from '~/types'
 // @ts-expect-error missing types
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 
-const { paginator, stream } = defineProps<{
-  paginator: akkoma.Paginator<akkoma.v1.Notification[], akkoma.rest.v1.ListNotificationsParams>
+defineProps<{
+  paginator: akkoma.Paginator<mastodon.v1.Notification[], akkoma.rest.v1.ListNotificationsParams>
   stream?: akkoma.streaming.Subscription
 }>()
 

@@ -2,7 +2,7 @@
 import type { akkoma } from '@bdxtown/akko'
 
 const { paginator, account, context } = defineProps<{
-  paginator: akkoma.Paginator<akkoma.v1.Account[], akkoma.DefaultPaginationParams | undefined>
+  paginator: akkoma.Paginator<mastodon.v1.Account[], akkoma.DefaultPaginationParams | undefined>
   context?: 'following' | 'followers'
   account?: akkoma.v1.Account
   relationshipContext?: 'followedBy' | 'following'

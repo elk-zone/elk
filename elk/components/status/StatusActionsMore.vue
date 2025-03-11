@@ -2,7 +2,7 @@
 import type { akkoma } from '@bdxtown/akko'
 import { toggleBlockAccount, toggleMuteAccount, useRelationship } from '~/composables/akko/relationship'
 
-const props = defineProps<{
+const { details, ...props } = defineProps<{
   status: akkoma.v1.Status
   details?: boolean
   command?: boolean
@@ -22,7 +22,7 @@ const {
   togglePin,
   toggleReblog,
   toggleMute,
-} = useStatusActions(props)
+} = useStatusActions({ status: props.status })
 
 const clipboard = useClipboard()
 const router = useRouter()
@@ -108,7 +108,7 @@ async function deleteAndRedraft() {
 function reply() {
   if (!checkLogin())
     return
-  if (props.details) {
+  if (details) {
     focusEditor()
   }
   else {

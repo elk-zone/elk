@@ -4,7 +4,7 @@ import type { akkoma } from '@bdxtown/akko'
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
-const { paginator, stream, account, buffer = 10, endMessage = true } = defineProps<{
+const { account, buffer = 10, endMessage = true } = defineProps<{
   paginator: akkoma.Paginator<akkoma.v1.Status[], akkoma.rest.v1.ListAccountStatusesParams>
   stream?: akkoma.streaming.Subscription
   context?: akkoma.v2.FilterContext

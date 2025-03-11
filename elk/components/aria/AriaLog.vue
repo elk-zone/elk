@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import type { AriaLive } from '~/composables/aria'
 
-// tsc complaining when using $defineProps
-withDefaults(defineProps<{
-  title: string
+const {
+  ariaLive = 'polite',
+  heading = 'h2',
+  messageKey = (message: any) => message,
+} = defineProps<{
   ariaLive?: AriaLive
-  messageKey?: (message: any) => any
   heading?: 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-}>(), {
-  heading: 'h2',
-  messageKey: (message: any) => message,
-  ariaLive: 'polite',
-})
+  title: string
+  messageKey?: (message: any) => any
+}>()
 
 const { announceLogs, appendLogs, clearLogs, logs } = useAriaLog()
 

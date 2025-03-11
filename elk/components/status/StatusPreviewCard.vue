@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
 
-const props = defineProps<{
+const { card } = defineProps<{
   card: akkoma.v1.PreviewCard
   /** For the preview image, only the small image mode is displayed */
   smallPictureOnly?: boolean
@@ -9,7 +9,7 @@ const props = defineProps<{
   root?: boolean
 }>()
 
-const providerName = props.card.providerName
+const providerName = card.providerName
 
 const gitHubCards = usePreferences('experimentalGitHubCards')
 </script>

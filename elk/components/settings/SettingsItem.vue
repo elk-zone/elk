@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+const { text, description, icon, to, command, external, target } = defineProps<{
   text?: string
   content?: string
   description?: string
@@ -14,24 +14,24 @@ const props = defineProps<{
 }>()
 
 const router = useRouter()
-const scrollOnClick = computed(() => props.to && !(props.target === '_blank' || props.external))
+const scrollOnClick = computed(() => to && !(target === '_blank' || external))
 
 useCommand({
   scope: 'Settings',
 
-  name: () => props.text
-    ?? (props.to
-      ? typeof props.to === 'string'
-        ? props.to
-        : props.to.name
+  name: () => text
+    ?? (to
+      ? typeof to === 'string'
+        ? to
+        : to.name
       : ''
     ),
-  description: () => props.description,
-  icon: () => props.icon || '',
-  visible: () => props.command && props.to,
+  description: () => description,
+  icon: () => icon || '',
+  visible: () => command && to,
 
   onActivate() {
-    router.push(props.to!)
+    router.push(to!)
   },
 })
 </script>

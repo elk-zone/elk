@@ -7,6 +7,10 @@ const { group } = defineProps<{
 }>()
 const reblogs = computed(() => group.likes.filter(i => i.reblog))
 const reactions = computed(() => group.likes.filter(i => i.reaction && !i.reblog))
+
+const timeAgoOptions = useTimeAgoOptions(true)
+const reblogsTimeAgo = useTimeAgo(() => reblogs.value[0].reblog?.createdAt ?? '', timeAgoOptions)
+const likesTimeAgo = useTimeAgo(() => likes.value[0].favourite?.createdAt ?? '', timeAgoOptions)
 </script>
 
 <template>
@@ -23,7 +27,7 @@ const reactions = computed(() => group.likes.filter(i => i.reaction && !i.reblog
             </AccountHoverWrapper>
           </template>
           <div ml1>
-            {{ $t('notification.reblogged_post') }}
+            {{ $t('notification.reblogged_post') }}・{{ reblogsTimeAgo }}
           </div>
         </div>
         <div v-if="reactions.length" flex="~ gap-2 wrap">
@@ -45,8 +49,8 @@ const reactions = computed(() => group.likes.filter(i => i.reaction && !i.reblog
               </AccountHoverWrapper>
             </div>
           </template>
-          <div>
-            {{ $t('notification.favourited_post') }}
+          <div ms-4>
+            {{ $t('notification.favourited_post') }} ・{{ likesTimeAgo }}
           </div>
         </div>
       </div>

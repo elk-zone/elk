@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
 
-const props = defineProps<{
+const { status } = defineProps<{
   status: akkoma.v1.Status
   hover?: boolean
 }>()
 
 const el = ref<HTMLElement>()
 const router = useRouter()
-const statusRoute = computed(() => getStatusRoute(props.status))
+const statusRoute = computed(() => getStatusRoute(status))
 
 function onclick(evt: MouseEvent | KeyboardEvent) {
   const path = evt.composedPath() as HTMLElement[]
@@ -24,7 +24,7 @@ function go(evt: MouseEvent | KeyboardEvent) {
     window.open(statusRoute.value.href)
   }
   else {
-    cacheStatus(props.status)
+    cacheStatus(status)
     router.push(statusRoute.value)
   }
 }

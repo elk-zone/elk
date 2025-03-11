@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { akkoma } from '@bdxtown/akko'
 
-const { paginator } = defineProps<{
-  paginator: akkoma.Paginator<akkoma.v1.Tag[], akkoma.DefaultPaginationParams>
+defineProps<{
+  paginator: akkoma.Paginator<mastodon.v1.Tag[], akkoma.DefaultPaginationParams>
 }>()
 </script>
 

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.46 (2025-03-12)
+
+
+### Bug Fixes
+
+* crash on like notification ([80351e4](https://github.com/BDX-town/elk/commit/80351e406896bd930c7baedd05df241b22664fe9))
+
 ## 0.15.45 (2025-03-12)
 
 ## 0.15.44 (2025-03-11)

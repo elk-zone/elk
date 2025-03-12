@@ -10,7 +10,7 @@ const reactions = computed(() => group.likes.filter(i => i.reaction && !i.reblog
 
 const timeAgoOptions = useTimeAgoOptions(true)
 const reblogsTimeAgo = useTimeAgo(() => reblogs.value[0].reblog?.createdAt ?? '', timeAgoOptions)
-const likesTimeAgo = useTimeAgo(() => likes.value[0].favourite?.createdAt ?? '', timeAgoOptions)
+const likesTimeAgo = useTimeAgo(() => reactions.value[0].reaction?.createdAt ?? '', timeAgoOptions)
 </script>
 
 <template>

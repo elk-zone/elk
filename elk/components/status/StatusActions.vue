@@ -79,7 +79,7 @@ function reply() {
         :status="status"
         :content="$t(reaction ? 'action.favourited' : 'action.favourite')"
         :text="!getPreferences(userSettings, 'hideReactCount') && reactionCount ? reactionCount : ''"
-        color="text-purple"
+        color="text-secondary"
         hover="text-purple"
         elk-group-hover="bg-purple/10"
         :disabled="isLoading.favourited"

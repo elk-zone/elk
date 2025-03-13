@@ -16,8 +16,8 @@ function getAnimation(newValue: boolean, oldValue: boolean) {
 const animation = ref(getAnimation(increased, increased))
 
 watch(() => increased, (newValue, oldValue) => {
-  animation.value = getAnimation(newValue, oldValue)
-})
+  animation.value = getAnimation(newValue, oldValue || false)
+}, { immediate: true })
 </script>
 
 <template>

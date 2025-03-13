@@ -47,7 +47,7 @@ useHydratedHead({
       </AccountHoverWrapper>
     </NuxtLink>
     <StatusContent :status="status" :newer="newer" context="details" />
-    <div flex="~ gap-1" items-center justify-between text-secondary text-sm>
+    <div flex="~ gap-1" items-center justify-between text-secondary text-sm py-2>
       <div flex="~ gap-1" items-center>
         <div flex shrink-0>
           <div>{{ createdAt }}</div>

@@ -5,7 +5,8 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const { as = 'button', disabled, content } = defineProps<{
+const { text, status, as = 'button', disabled, content } = defineProps<{
+  status: akkoma.v1.Status
   text?: string | number
   content: string
   color: string
@@ -16,11 +17,6 @@ const { as = 'button', disabled, content } = defineProps<{
   toggleReact: (emoji: akkoma.v1.CustomEmoji) => void
 }>()
 
-defineSlots<{
-  text: (props: object) => void
-  icon: (props: object) => void
-}>()
-
 const commonReacts = computed(() => ['👍', '❤️', '😆', '😮', '😢', '😩'].map(shortcode => ({ shortcode, staticUrl: '', url: '', visibleInPicker: true })))
 
 const shown = ref(false)
@@ -28,6 +24,8 @@ const shown = ref(false)
 function toggle() {
   shown.value = !shown.value
 }
+
+const active = computed(() => !!(status.favourited || status.emojiReactions?.find(r => r.me)))
 </script>
 
 <template>
@@ -74,7 +72,7 @@ function toggle() {
       </template>
     </VDropdown>
 
-    <CommonAnimateNumber v-if="text !== undefined || $slots.text" text-sm>
+    <CommonAnimateNumber v-if="text !== undefined" text-sm :increased="active">
       <span text-secondary-light>
         <slot name="text">{{ text }}</slot>
       </span>

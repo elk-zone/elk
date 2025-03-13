@@ -87,7 +87,7 @@
     "switch_account": "Cambiar cuenta",
     "vote": "Votar"
   },
-  "app_desc_short": "Un cliente web ágil para Mastodon",
+  "app_desc_short": "Un cliente web ágil para Akkoma",
   "app_logo": "Logotipo de Elk",
   "app_name": "Elk",
   "attachment": {
@@ -199,7 +199,7 @@
       "title": "Implementación de vista previa"
     },
     "desc_highlight": "Es normal encontrar algunos errores y características faltantes aquí y allá.",
-    "desc_para1": "¡Gracias por el interés en probar Elk, nuestro cliente genérico en desarrollo para Mastodon!",
+    "desc_para1": "¡Gracias por el interés en probar Elk, nuestro cliente genérico en desarrollo para Akkoma!",
     "desc_para2": "Estamos trabajando duro en el desarrollo y mejorándolo constantemente.",
     "desc_para3": "Para ayudar a impulsar el desarrollo, puedes patrocinar a los miembros de nuestro equipo con los enlaces a continuación. ¡Esperamos que estés disfrutando Elk!",
     "desc_para4": "Elk es de código abierto, si te gustaría ayudar probando, dando opinión o contribuyendo,",
@@ -375,22 +375,22 @@
     "update_available_short": "Actualiza Elk",
     "webmanifest": {
       "canary": {
-        "description": "Un cliente web ágil para Mastodon (canary)",
+        "description": "Un cliente web ágil para Akkoma (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Un cliente web ágil para Mastodon (desarrollo)",
+        "description": "Un cliente web ágil para Akkoma (desarrollo)",
         "name": "Elk (desarrollo)",
         "short_name": "Elk (desarrollo)"
       },
       "preview": {
-        "description": "Un cliente web ágil para Mastodon (vista previa)",
+        "description": "Un cliente web ágil para Akkoma (vista previa)",
         "name": "Elk (vista previa)",
         "short_name": "Elk (vista previa)"
       },
       "release": {
-        "description": "Un cliente web ágil para Mastodon",
+        "description": "Un cliente web ágil para Akkoma",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -450,7 +450,7 @@
       "version": "Versión"
     },
     "account_settings": {
-      "description": "Edita los ajustes de tu cuenta en la interfaz de Mastodon.",
+      "description": "Edita los ajustes de tu cuenta en la interfaz de Akkoma.",
       "label": "Ajustes de cuenta"
     },
     "interface": {
@@ -745,12 +745,12 @@
   },
   "user": {
     "add_existing": "Agregar una cuenta existente",
-    "server_address_label": "Dirección de servidor de Mastodon",
+    "server_address_label": "Dirección de servidor de Akkoma",
     "sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones, o interactuar con un servidor diferente con tu usuario.",
     "sign_in_notice_title": "Viendo información pública de {0}",
     "sign_out_account": "Cerrar sesión {0}",
     "single_instance_sign_in_desc": "Inicia sesión para seguir perfiles o etiquetas, marcar cómo favorita, compartir y responder a publicaciones.",
-    "tip_no_account": "Si aún no tienes una cuenta Mastodon, {0}.",
+    "tip_no_account": "Si aún no tienes una cuenta Akkoma, {0}.",
     "tip_register_account": "selecciona tu servidor y registrate"
   },
   "visibility": {

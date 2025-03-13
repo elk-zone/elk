@@ -89,7 +89,7 @@
       "url": "URL"
     }
   },
-  "app_desc_short": "Un client Mastodon fait avec 🧡",
+  "app_desc_short": "Un client Akkoma fait avec 🧡",
   "app_logo": "Logo Elk",
   "app_name": "Elk",
   "attachment": {
@@ -191,7 +191,7 @@
       "title": "Aperçu du déploiement"
     },
     "desc_highlight": "Il est possible de rencontrer, par-ci par-là, quelques bugs et fonctionnalités manquantes.",
-    "desc_para1": "Merci de l'intérêt pour Elk, notre client Mastodon en cours de développement !",
+    "desc_para1": "Merci de l'intérêt pour Elk, notre client Akkoma en cours de développement !",
     "desc_para2": "Nous travaillons dur sur le développement et l'améliorons au fur et à mesure. Nous allons open-sourcer l'application une fois qu'elle sera prête pour un usage public.",
     "desc_para3": "Pour supporter son développement, vous pouvez parrainer les membres de l'équipe avec les liens ci-dessous. Nous espérons que vous apprécierez Elk!",
     "desc_para4": "Avant cela, si vous voulez aider à tester, donner des retours ou contribuer",
@@ -354,22 +354,22 @@
     "update_available_short": "Mettre à jour Elk",
     "webmanifest": {
       "canary": {
-        "description": "Un client Web Mastodon (canary)",
+        "description": "Un client Web Akkoma (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Un client Web Mastodon (dev)",
+        "description": "Un client Web Akkoma (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Un client Web Mastodon (aperçu)",
+        "description": "Un client Web Akkoma (aperçu)",
         "name": "Elk (aperçu)",
         "short_name": "Elk (aperçu)"
       },
       "release": {
-        "description": "Un client Web Mastodon",
+        "description": "Un client Web Akkoma",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -434,7 +434,7 @@
       "version": "Version"
     },
     "account_settings": {
-      "description": "Modifiez les paramètres de votre compte dans l'interface de Mastodon",
+      "description": "Modifiez les paramètres de votre compte dans l'interface de Akkoma",
       "label": "Paramètres de compte"
     },
     "interface": {
@@ -718,12 +718,12 @@
   },
   "user": {
     "add_existing": "Ajouter un compte existant",
-    "server_address_label": "Adresse du serveur mastodon",
+    "server_address_label": "Adresse du serveur",
     "sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, aimer, partagez et répondre à des messages, ou interagir à partir de votre compte d'autre serveur.",
     "sign_in_notice_title": "Affichage de {0} données publiques",
     "sign_out_account": "Se déconnecter de {0}",
     "single_instance_sign_in_desc": "Connectez-vous pour suivre des profils ou des hashtags, aimer, partager et répondre aux messages.",
-    "tip_no_account": "Si vous n'avez pas encore de compte Mastodon, {0}.",
+    "tip_no_account": "Si vous n'avez pas encore de compte Akkoma, {0}.",
     "tip_register_account": "choisissez votre serveur et enregistrez-en un"
   },
   "visibility": {

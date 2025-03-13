@@ -87,7 +87,7 @@
     "switch_account": "Fiók váltás",
     "vote": "Szavazás"
   },
-  "app_desc_short": "Egy fürge Mastodon kliens",
+  "app_desc_short": "Egy fürge Akkoma kliens",
   "app_logo": "Elk Logó",
   "app_name": "Elk",
   "attachment": {
@@ -199,7 +199,7 @@
       "title": "Előzetes változatát telepítése"
     },
     "desc_highlight": "Számíthatsz néhány hibára és hiányzó funkcióra itt és ott.",
-    "desc_para1": "Köszönjük az érdeklődésedet és hogy kipróbálod az Elk folyamazban lévő és fejlesztés alatt álló Mastodon klienst!",
+    "desc_para1": "Köszönjük az érdeklődésedet és hogy kipróbálod az Elk folyamazban lévő és fejlesztés alatt álló Akkoma klienst!",
     "desc_para2": "keményen dolgozunk a fejlesztésen és a javításokon időről időre.",
     "desc_para3": "A fejlesztés lendületéhez tudod támogatni csapatunkat a GitHub szponoráción keresztül. Reméljük elnyeri tetszésedét az Elk!",
     "desc_para4": "Az Elk nyílt forráskódú. Ha segíteni akar a tesztelésben, adhat visszajelzést vagy hozzájárulást,",
@@ -377,22 +377,22 @@
     "update_available_short": "Elk frissítése",
     "webmanifest": {
       "canary": {
-        "description": "Egy fürge Mastodon web kliens (canary)",
+        "description": "Egy fürge Akkoma web kliens (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Egy fürge Mastodon web kliens (dev)",
+        "description": "Egy fürge Akkoma web kliens (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Egy fürge Mastodon web kliens (preview)",
+        "description": "Egy fürge Akkoma web kliens (preview)",
         "name": "Elk (preview)",
         "short_name": "Elk (preview)"
       },
       "release": {
-        "description": "Egy fürge Mastodon web kliens",
+        "description": "Egy fürge Akkoma web kliens",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -747,12 +747,12 @@
   },
   "user": {
     "add_existing": "Egy látező fiók hozzáadása",
-    "server_address_label": "Mastodon szerver címe",
+    "server_address_label": "Akkoma szerver címe",
     "sign_in_desc": "Jelentkezzen be profilok vagy címkék követéséhez, kedvencekhez, bejegyzések megosztásához és megválaszolásához, vagy egy másik szerveren lévő fiókjából való interakcióhoz.",
     "sign_in_notice_title": "{0} nyilvános adat megtekintése",
     "sign_out_account": "Kijelentkezés {0}",
     "single_instance_sign_in_desc": "Jelentkezzen be profilok vagy címkék követéséhez, kedvencei közé, bejegyzések megosztásához és megválaszolásához.",
-    "tip_no_account": "Ha még nincs Mastodon fiókod: {0}.",
+    "tip_no_account": "Ha még nincs Akkoma fiókod: {0}.",
     "tip_register_account": "válassz egy szervert és regisztrált egyet"
   },
   "visibility": {

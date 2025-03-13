@@ -11,7 +11,7 @@
     "authorized": "Du hast die Folgeanfrage erlaubt",
     "avatar_description": "Avatar von {0}",
     "blocked_by": "Du wurdest von diesem Account geblockt",
-    "blocked_domains": "Geblockte Mastodon-Instanzen",
+    "blocked_domains": "Geblockte Akkoma-Instanzen",
     "blocked_users": "Gesperrte Accounts",
     "blocking": "Blockiert",
     "bot": "BOT",
@@ -89,7 +89,7 @@
   "actions": {
     "more": "Mehr"
   },
-  "app_desc_short": "Ein flinker Mastodon Web-Client",
+  "app_desc_short": "Ein flinker Akkoma Web-Client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
   "attachment": {
@@ -201,7 +201,7 @@
       "title": "Vorschau bereitstellen"
     },
     "desc_highlight": "Erwarte hier und da einige Bugs und fehlende Funktionen.",
-    "desc_para1": "Danke für dein Interesse an Elk, unser noch in der Bearbeitung befindlicher, generischer Mastodon-Client!",
+    "desc_para1": "Danke für dein Interesse an Elk, unser noch in der Bearbeitung befindlicher, generischer Akkoma-Client!",
     "desc_para2": "Wir arbeiten stetig an der Entwicklung und verbessern ihn mit der Zeit. Und wir laden dich schon sehr bald ein uns zu helfen, sobald wir ihn Quelloffen machen!",
     "desc_para3": "Doch in der Zwischenzeit kannst du der Entwicklung aushelfen, indem du unsere Teammitglieder durch die unten stehenden Links unterstützt.",
     "desc_para4": "Elk ist Open Source. \nWenn du beim Testen helfen, Feedback geben oder einen Beitrag leisten möchtest,",
@@ -376,22 +376,22 @@
     "update_available_short": "Elk aktualisieren",
     "webmanifest": {
       "canary": {
-        "description": "Ein flinker Mastodon-Webclient (Canary)",
+        "description": "Ein flinker Akkoma-Webclient (Canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Ein flinker Mastodon-Webclient (dev)",
+        "description": "Ein flinker Akkoma-Webclient (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Ein flinker Mastodon-Webclient (Vorschau)",
+        "description": "Ein flinker Akkoma-Webclient (Vorschau)",
         "name": "Elk (Vorschau)",
         "short_name": "Elk (Vorschau)"
       },
       "release": {
-        "description": "Ein flinker Mastodon-Webclient",
+        "description": "Ein flinker Akkoma-Webclient",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -451,7 +451,7 @@
       "version": "Version"
     },
     "account_settings": {
-      "description": "Bearbeite Kontoeinstellungen in der Mastodon-Benutzeroberfläche",
+      "description": "Bearbeite Kontoeinstellungen in der Akkoma-Benutzeroberfläche",
       "label": "Account Einstellungen"
     },
     "interface": {
@@ -744,12 +744,12 @@
   },
   "user": {
     "add_existing": "Bestehendes Konto hinzufügen",
-    "server_address_label": "Mastodon Server Adresse",
+    "server_address_label": "Akkoma Server Adresse",
     "sign_in_desc": "Melde dich an, um Profilen oder Hashtags zu folgen, Beiträge zu favorisieren, zu teilen und zu beantworten oder von deinem Konto auf einem anderen Server aus zu interagieren.",
     "sign_in_notice_title": "Anzeigen von {0} öffentlichen Daten",
     "sign_out_account": "{0} abmelden",
     "single_instance_sign_in_desc": "Melde dich an, um Profile oder Hashtags zu verfolgen, Beiträge zu favorisieren, zu teilen und darauf zu antworten.",
-    "tip_no_account": "Wenn du noch kein Mastodon-Konto hast, {0}.",
+    "tip_no_account": "Wenn du noch kein Akkoma-Konto hast, {0}.",
     "tip_register_account": "wähle einen Server aus und registriere einen"
   },
   "visibility": {

@@ -199,7 +199,7 @@
       "title": "Esijulkaisu"
     },
     "desc_highlight": "Saatat löytää bugeja ja puuttuvia ominaisuuksia sieltä täältä.",
-    "desc_para1": "Elk on ketterä verkkosovellus Mastodonille. Voit kirjautua sisään Mastodon-tilillesi ja olla sen avulla vuorovaikutuksessa fediversumin kanssa.",
+    "desc_para1": "Elk on ketterä verkkosovellus Mastodonille. Voit kirjautua sisään Akkoma-tilillesi ja olla sen avulla vuorovaikutuksessa fediversumin kanssa.",
     "desc_para2": "Elk on avointa lähdekoodia, ja me parantelemme sitä vilkkaasti yhteisöprojektina. Liity joukkoomme, niin rakennamme sitä yhdessä!",
     "desc_para3": "Voit auttaa kehityksessä tukemalla tiimiä GitHub-sponsorina. Toivomme, että nautit Elkin käytöstä!",
     "desc_para4": "Jos haluat ilmoittaa ohjelmontivirheestä, auttaa testauksessa, antaa palautetta tai osallistua,",
@@ -743,12 +743,12 @@
   },
   "user": {
     "add_existing": "Lisää olemassa oleva tili",
-    "server_address_label": "Mastodon-palvelimen osoite",
+    "server_address_label": "Akkoma-palvelimen osoite",
     "sign_in_desc": "Kirjaudu sisään, niin voit seurata profiileja ja aihetunnisteita, lisätä julkaisuja suosikkeihin, jakaa niitä ja vastata niihin sekä olla vuorovaikutuksessa toiselta palvelimelta.",
     "sign_in_notice_title": "Näytetään palvelimen {0} julkiset tiedot",
     "sign_out_account": "Kirjaa ulos {0}",
     "single_instance_sign_in_desc": "Kirjaudu sisään, niin voit seurata profiileja ja aihetunnisteita, lisätä julkaisuja suosikkeihin, jakaa niitä ja vastata niihin.",
-    "tip_no_account": "Jos sinulla ei ole vielä Mastodon-tiliä, {0}.",
+    "tip_no_account": "Jos sinulla ei ole vielä Akkoma-tiliä, {0}.",
     "tip_register_account": "valitse palvelimesi ja luo tili"
   },
   "visibility": {

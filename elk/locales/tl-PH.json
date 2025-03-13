@@ -87,7 +87,7 @@
     "switch_account": "Magpalit ng account",
     "vote": "Bumoto"
   },
-  "app_desc_short": "Isang mabilis na web client ng Mastodon",
+  "app_desc_short": "Isang mabilis na web client ng Akkoma",
   "app_logo": "Logo ng Elk",
   "app_name": "Elk",
   "attachment": {
@@ -199,7 +199,7 @@
       "title": "Preview deploy"
     },
     "desc_highlight": "Maaaring mayroon kang makikitang mga bug at kulang na features.",
-    "desc_para1": "Salamat sa iyong interes sa pagsubok ng Elk, ang aming work-in-progress na Mastodon web client!",
+    "desc_para1": "Salamat sa iyong interes sa pagsubok ng Elk, ang aming work-in-progress na Akkoma web client!",
     "desc_para2": "Dedikado kami sa pag-develop at pagpapabuti dito sa mga susunod na panahon.",
     "desc_para3": "Para mapalago pa ang proyekto, maaari mong i-sponsor ang Team sa pamamagitan ng GitHub Sponsors. Sana magustuhan mo ang Elk!",
     "desc_para4": "Ang Elk ay Open Source. Kung nais mong tumulong sa pagsubok, magbigay ng feedback, o mag-contribute,",
@@ -377,22 +377,22 @@
     "update_available_short": "I-update ang Elk",
     "webmanifest": {
       "canary": {
-        "description": "Isang mabilis na Mastodon web client (canary)",
+        "description": "Isang mabilis na Akkoma web client (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Isang mabilis na Mastodon web client (dev)",
+        "description": "Isang mabilis na Akkoma web client (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Isang mabilis na Mastodon web client (preview)",
+        "description": "Isang mabilis na Akkoma web client (preview)",
         "name": "Elk (preview)",
         "short_name": "Elk (preview)"
       },
       "release": {
-        "description": "Isang mabilis na Mastodon web client",
+        "description": "Isang mabilis na Akkoma web client",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -452,7 +452,7 @@
       "version": "Bersyon"
     },
     "account_settings": {
-      "description": "I-edit ang iyong mga account setting sa Mastodon UI",
+      "description": "I-edit ang iyong mga account setting sa Akkoma UI",
       "label": "Mga account setting"
     },
     "interface": {
@@ -748,12 +748,12 @@
   },
   "user": {
     "add_existing": "Magdagdag ng kasalukuyang account",
-    "server_address_label": "Address ng Server ng Mastodon",
+    "server_address_label": "Address ng Server ng Akkoma",
     "sign_in_desc": "Mag-sign in upang sundan ang mga profile o hashtag, paborito, ibahagi at tumugon sa mga post, o makipag-ugnayan mula sa iyong account sa ibang server.",
     "sign_in_notice_title": "Pagtingin sa {0} pampublikong data",
     "sign_out_account": "Mag-sign out {0}",
     "single_instance_sign_in_desc": "Mag-sign in upang sundan ang mga profile o hashtag, paborito, ibahagi at tumugon sa mga post.",
-    "tip_no_account": "Kung wala ka pang Mastodon account, {0}.",
+    "tip_no_account": "Kung wala ka pang Akkoma account, {0}.",
     "tip_register_account": "piliin ang iyong server at magrehistro ng isa"
   },
   "visibility": {

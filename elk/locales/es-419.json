@@ -75,7 +75,7 @@
   },
   "help": {
     "desc_highlight": "Es normal que aparezcan algunos errores y funcionalidades que aún estén en desarrollo.",
-    "desc_para1": "¡Gracias por tu interés en probar Elk, nuestro cliente genérico en desarrollo para Mastodon!",
+    "desc_para1": "¡Gracias por tu interés en probar Elk, nuestro cliente genérico en desarrollo para Akkoma!",
     "desc_para2": "Estamos haciendo lo posible para ir mejorando constantemente.",
     "desc_para4": "Elk es de código abierto. Si quieres probar para ayudar, opinar o contribuir,",
     "desc_para5": "contáctanos a través de GitHub"
@@ -134,7 +134,7 @@
       "sponsor_action": "Patrocina"
     },
     "account_settings": {
-      "description": "Actualiza los ajustes de tu cuenta en la interfaz de Mastodon.",
+      "description": "Actualiza los ajustes de tu cuenta en la interfaz de Akkoma.",
       "label": "Configuración de cuenta"
     },
     "interface": {

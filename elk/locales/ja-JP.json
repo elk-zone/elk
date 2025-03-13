@@ -450,7 +450,7 @@
       "version": "バージョン"
     },
     "account_settings": {
-      "description": "Mastodon UIでアカウントの設定を編集します",
+      "description": "Akkoma UIでアカウントの設定を編集します",
       "label": "アカウント設定"
     },
     "interface": {

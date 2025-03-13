@@ -83,7 +83,7 @@
     "switch_account": "Cambiar de conta",
     "vote": "Votar"
   },
-  "app_desc_short": "Un cliente web áxil para Mastodon",
+  "app_desc_short": "Un cliente web áxil para Akkoma",
   "app_logo": "Logo de Elk",
   "app_name": "Elk",
   "attachment": {
@@ -183,7 +183,7 @@
       "title": "Instalar versión"
     },
     "desc_highlight": "É de agardar que haxa fallos e falten cousas por aquí e por alá.",
-    "desc_para1": "Grazas polo teu interese en probar Elk, o cliente web para Mastodon que estamos creando!",
+    "desc_para1": "Grazas polo teu interese en probar Elk, o cliente web para Akkoma que estamos creando!",
     "desc_para2": "traballamos arreo para desenvolvelo e melloralo.",
     "desc_para3": "Podes acelerar o desenvolvemento patrocinando ao Equipo en GitHub Sponsors. Agardamos que desfrutes de Elk!",
     "desc_para4": "Elk é Código Aberto. Se queres axudar probándoo, aportando a túa opinión, ou colaborando,",
@@ -344,22 +344,22 @@
     "update_available_short": "Actualizar Elk",
     "webmanifest": {
       "canary": {
-        "description": "Un cliente áxil para Mastodon (canary)",
+        "description": "Un cliente áxil para Akkoma (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Un cliente áxil para Mastodon (dev)",
+        "description": "Un cliente áxil para Akkoma (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Un cliente áxil para Mastodon (preview)",
+        "description": "Un cliente áxil para Akkoma (preview)",
         "name": "Elk (preview)",
         "short_name": "Elk (preview)"
       },
       "release": {
-        "description": "Un cliente áxil para Mastodon",
+        "description": "Un cliente áxil para Akkoma",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -419,7 +419,7 @@
       "version": "Versión"
     },
     "account_settings": {
-      "description": "Edita a configuración da túa conta na interface de Mastodon",
+      "description": "Edita a configuración da túa conta na interface de Akkoma",
       "label": "Axustes da conta"
     },
     "interface": {
@@ -698,12 +698,12 @@
   },
   "user": {
     "add_existing": "Engadir unha conta existente.",
-    "server_address_label": "Enderezo do Servidor Mastodon",
+    "server_address_label": "Enderezo do Servidor Akkoma",
     "sign_in_desc": "Inicia sesión para seguir perfís e cancelos, favorecer, compartir ou responder a mensaxes, ou interactuar coa túa conta noutro servidor.",
     "sign_in_notice_title": "Vendo {0} datos públicos",
     "sign_out_account": "Pechar sesión {0}",
     "single_instance_sign_in_desc": "Inicia sesión para seguir perfís e cancelos, favorecer, compartir ou responder a mensaxes.",
-    "tip_no_account": "Se aínda non tes unha conta Mastodon, {0}.",
+    "tip_no_account": "Se aínda non tes unha conta Akkoma, {0}.",
     "tip_register_account": "elixe un servidor para crear unha"
   },
   "visibility": {

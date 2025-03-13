@@ -47,7 +47,7 @@
     "switch_account": "Přepnout účet",
     "vote": "Hlasovat"
   },
-  "app_desc_short": "Elk - hbitý webklient pro Mastodon.",
+  "app_desc_short": "Elk - hbitý webklient pro Akkoma.",
   "app_logo": "logo Elk",
   "app_name": "Elk",
   "command": {
@@ -230,7 +230,7 @@
   },
   "user": {
     "add_existing": "Přidat existující účet",
-    "server_address_label": "Adresa Mastodon serveru:",
+    "server_address_label": "Adresa Akkoma serveru:",
     "sign_in_desc": "Přihlaste se, abyste mohli sledovat profily nebo hashtagy, psát a sdílet příspěvky a odpovídat na ně na tomto nebo jiných serverech.",
     "sign_out_account": "Odhlásit {0}",
     "tip_no_account": "Pokud nemáte účet na Mastodonu, {0}.",

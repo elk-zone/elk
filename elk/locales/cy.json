@@ -68,7 +68,7 @@
     "switch_account": "Newid cyfrif",
     "vote": "Pleidleisio"
   },
-  "app_desc_short": "Cleient gwe ystwyth ar gyfer Mastodon",
+  "app_desc_short": "Cleient gwe ystwyth ar gyfer Akkoma",
   "app_logo": "Logo Elk",
   "app_name": "Elk",
   "attachment": {
@@ -116,7 +116,7 @@
   },
   "help": {
     "desc_highlight": "Expect some bugs and missing features here and there.",
-    "desc_para1": "Diolch am eich diddordeb mewn rhoi cynnig ar Elk, ein cleient gwe Mastodon yr ydym yn gweithio ar!",
+    "desc_para1": "Diolch am eich diddordeb mewn rhoi cynnig ar Elk, ein cleient gwe Akkoma yr ydym yn gweithio ar!",
     "desc_para2": "Rydym yn gweithio'n galed arno ac yn ei wellau dros amser.",
     "desc_para3": "I hybu datblygiad, gallwch noddi'r tîm trwy Noddwyr GitHub. Gobeithio y gwnewch chi fwynhau Elk!",
     "desc_para4": "Mae Elk yn gôd agored. Os hoffech helpu gyda phrofi, rhoi adborth, neu gyfrannu,",
@@ -209,22 +209,22 @@
     "update_available_short": "Diweddaru Elk",
     "webmanifest": {
       "canary": {
-        "description": "Cleient gwe ystwyth ar gyfer Mastodon (caneri)",
+        "description": "Cleient gwe ystwyth ar gyfer Akkoma (caneri)",
         "name": "Elk (caneri)",
         "short_name": "Elk (caneri)"
       },
       "dev": {
-        "description": "Cleient gwe ystwyth ar gyfer Mastodon (datblygu)",
+        "description": "Cleient gwe ystwyth ar gyfer Akkoma (datblygu)",
         "name": "Elk (datblygu)",
         "short_name": "Elk (datblygu)"
       },
       "preview": {
-        "description": "Cleient gwe ystwyth ar gyfer Mastodon (rhagolwg)",
+        "description": "Cleient gwe ystwyth ar gyfer Akkoma (rhagolwg)",
         "name": "Elk (rhagolwg)",
         "short_name": "Elk (rhadolwg)"
       },
       "release": {
-        "description": "Cleient gwe ystwyth ar gyfer Mastodon",
+        "description": "Cleient gwe ystwyth ar gyfer Akkoma",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -246,7 +246,7 @@
       "sponsors_body_3": "Os ydych yn mwynhau'r ap, efallai hoffwch ein noddi:"
     },
     "account_settings": {
-      "description": "Newid gosodiadau eich cyfrif yn rhyngwyneb Mastodon",
+      "description": "Newid gosodiadau eich cyfrif yn rhyngwyneb Akkoma",
       "label": "Gosodiadau cyfrif"
     },
     "interface": {
@@ -461,11 +461,11 @@
   },
   "user": {
     "add_existing": "Ychwanegu defnyddiwr",
-    "server_address_label": "Cyfeiriad gweinydd Mastodon",
+    "server_address_label": "Cyfeiriad gweinydd Akkoma",
     "sign_in_desc": "Mewngofnodwch i ddilyn defnyddwyr neu hashnodion; hoffi, rhannu, ac ymateb i dŵtiau, neu rhyngweithio o'ch cyfrif ar weinydd gwahanol.",
     "sign_in_notice_title": "Yn gweld data cyhoeddus {0}",
     "sign_out_account": "Allgofnodi o {0}",
-    "tip_no_account": "Os nas oes genych gyfrif Mastodon eto, {0}.",
+    "tip_no_account": "Os nas oes genych gyfrif Akkoma eto, {0}.",
     "tip_register_account": "dewiswch eich gweinydd a chofrestrwch"
   },
   "visibility": {

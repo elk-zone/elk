@@ -87,7 +87,7 @@
     "switch_account": "Chuyển sang tài khoản khác",
     "vote": "Bình chọn"
   },
-  "app_desc_short": "Một ứng dụng web Mastodon nhanh nhẹn",
+  "app_desc_short": "Một ứng dụng web Akkoma nhanh nhẹn",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
   "attachment": {
@@ -199,7 +199,7 @@
       "title": "Bản dựng"
     },
     "desc_highlight": "Sẽ có lỗi và một số tính năng bị thiếu.",
-    "desc_para1": "Elk là một ứng dụng web Mastodon nhanh nhẹn. Sử dụng để đăng nhập Mastodon và tương tác với Fediverse.",
+    "desc_para1": "Elk là một ứng dụng web Akkoma nhanh nhẹn. Sử dụng để đăng nhập Akkoma và tương tác với Fediverse.",
     "desc_para2": "Elk là Mã Nguồn Mở và chúng tôi cải tiến nó như một dự án cộng đồng. Hãy tham gia và cùng xây dựng!",
     "desc_para3": "Để thúc đẩy sự phát triển, bạn có thể tài trợ cho Nhóm thông qua GitHub Sponsors. Chúng tôi hy vọng bạn thích Elk!",
     "desc_para4": "Nếu bạn muốn thử nghiệm, đưa ra phản hồi hoặc đóng góp,",
@@ -377,22 +377,22 @@
     "update_available_short": "Cập nhật Elk",
     "webmanifest": {
       "canary": {
-        "description": "Một ứng dụng web Mastodon nhanh nhẹn (canary)",
+        "description": "Một ứng dụng web Akkoma nhanh nhẹn (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Một ứng dụng web Mastodon nhanh nhẹn (dev)",
+        "description": "Một ứng dụng web Akkoma nhanh nhẹn (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Một ứng dụng web Mastodon nhanh nhẹn (preview)",
+        "description": "Một ứng dụng web Akkoma nhanh nhẹn (preview)",
         "name": "Elk (preview)",
         "short_name": "Elk (preview)"
       },
       "release": {
-        "description": "Một ứng dụng web Mastodon nhanh nhẹn",
+        "description": "Một ứng dụng web Akkoma nhanh nhẹn",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -452,7 +452,7 @@
       "version": "Phiên bản"
     },
     "account_settings": {
-      "description": "Cài đặt tài khoản trong Mastodon UI",
+      "description": "Cài đặt tài khoản trong Akkoma UI",
       "label": "Cài đặt tài khoản"
     },
     "interface": {
@@ -748,12 +748,12 @@
   },
   "user": {
     "add_existing": "Thêm một tài khoản khác",
-    "server_address_label": "Địa chỉ máy chủ Mastodon",
+    "server_address_label": "Địa chỉ máy chủ Akkoma",
     "sign_in_desc": "Đăng nhập để theo dõi người dùng hoặc hashtag, thích, chia sẻ và trả lời tút hoặc tương tác từ tài khoản của bạn trên một máy chủ khác.",
     "sign_in_notice_title": "Đang xem {0} công khai",
     "sign_out_account": "Đăng xuất {0}",
     "single_instance_sign_in_desc": "Đăng nhập để theo dõi người dùng hoặc hashtag, thích, chia sẻ và trả lời tút",
-    "tip_no_account": "Nếu bạn chưa có tài khoản Mastodon, {0}.",
+    "tip_no_account": "Nếu bạn chưa có tài khoản Akkoma, {0}.",
     "tip_register_account": "chọn máy chủ và đăng ký"
   },
   "visibility": {

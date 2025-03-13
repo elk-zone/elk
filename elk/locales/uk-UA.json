@@ -85,7 +85,7 @@
     "switch_account": "Змінити обліковий запис",
     "vote": "Голосувати"
   },
-  "app_desc_short": "Спритний вебклієнт для Mastodon",
+  "app_desc_short": "Спритний вебклієнт для Akkoma",
   "app_logo": "Лоґо Elk",
   "app_name": "Elk",
   "attachment": {
@@ -195,7 +195,7 @@
       "title": "Попередній вигляд"
     },
     "desc_highlight": "Можете очікувати деякі помилки і відсутні функції тут і там.",
-    "desc_para1": "Elk є спритним вебклієнтом для Mastodon. Можете ввійти в обліковий Mastodon запис, через котрого взаємодіяти з Fediverse.",
+    "desc_para1": "Elk є спритним вебклієнтом для Akkoma. Можете ввійти в обліковий Akkoma запис, через котрого взаємодіяти з Fediverse.",
     "desc_para2": "Elk є відкритим ПЗ, котрого жваво покращуємо, як проєкт спільноти. Можете долучитися до нас і розвивати його разом!",
     "desc_para3": "Аби прискорити розробку, можете спонсорувати Команду через GitHub Sponsors. Сподіваємося, ви задоволені застосунком Elk!",
     "desc_para4": "Якщо хочете повідомити про помилку, допомогти з тестуванням, надіслати відгук чи зробити внесок,",
@@ -371,22 +371,22 @@
     "update_available_short": "Оновити Elk",
     "webmanifest": {
       "canary": {
-        "description": "Спритний вебклієнт для Mastodon (canary)",
+        "description": "Спритний вебклієнт для Akkoma (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Спритний вебклієнт для Mastodon (dev)",
+        "description": "Спритний вебклієнт для Akkoma (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Спритний вебклієнт для Mastodon (preview)",
+        "description": "Спритний вебклієнт для Akkoma (preview)",
         "name": "Elk (preview)",
         "short_name": "Elk (preview)"
       },
       "release": {
-        "description": "Спритний вебклієнт для Mastodon",
+        "description": "Спритний вебклієнт для Akkoma",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -446,7 +446,7 @@
       "version": "Версія"
     },
     "account_settings": {
-      "description": "Правити налаштування облікового запису через інтерфейс Mastodon",
+      "description": "Правити налаштування облікового запису через інтерфейс Akkoma",
       "label": "Налаштування облікового запису"
     },
     "interface": {
@@ -737,12 +737,12 @@
   },
   "user": {
     "add_existing": "Додати наявний обліковий запис",
-    "server_address_label": "Адреса серверу Mastodon",
+    "server_address_label": "Адреса серверу Akkoma",
     "sign_in_desc": "Ввійти, аби підписатися на профілі або гаштаґи; уподобувати, відповідати на і ділитися з кимось дописи, або взаємодіяти з вашого облікового запису на іншому сервері.",
     "sign_in_notice_title": "Перегляд прилюдних даних {0}",
     "sign_out_account": "Вийти з {0}",
     "single_instance_sign_in_desc": "Ввійти, аби підписатися на профілі або гаштаґи; уподобувати, відповідати на і ділитися з кимось дописи.",
-    "tip_no_account": "Якщо не маєте облікового Mastodon запису, {0}.",
+    "tip_no_account": "Якщо не маєте облікового Akkoma запису, {0}.",
     "tip_register_account": "то можете підібрати сервер і долучитися"
   },
   "visibility": {

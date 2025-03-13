@@ -87,7 +87,7 @@
     "switch_account": "Mudar de conta",
     "vote": "Votar"
   },
-  "app_desc_short": "Uma ágil aplicação web para o Mastodon",
+  "app_desc_short": "Uma ágil aplicação web para o Akkoma",
   "app_logo": "Logo do Elk",
   "app_name": "Elk",
   "attachment": {
@@ -199,7 +199,7 @@
       "title": "Produção de pré-visualização"
     },
     "desc_highlight": "Espere alguns problemas e funcionalidades em falta.",
-    "desc_para1": "O Elk é uma ágil aplicação web para o Mastodon. Pode iniciar sessão com a sua conta Mastodon e utilizá-la para interagir com o fediverso.",
+    "desc_para1": "O Elk é uma ágil aplicação web para o Akkoma. Pode iniciar sessão com a sua conta Akkoma e utilizá-la para interagir com o fediverso.",
     "desc_para2": "O Elk é software de código aberto e estamos a aperfeiçoá-lo ativamente como um projeto comunitário. Junte-se a nós e vamos construí-lo juntos!",
     "desc_para3": "Para ajudar a impulsionar o desenvolvimento, pode patrocinar a Equipa através do GitHub Sponsors. Esperamos que aprecie o Elk!",
     "desc_para4": "Se quiser comunicar um erro, ajudar-nos a testar, dar feedback ou contribuir,",
@@ -377,22 +377,22 @@
     "update_available_short": "Atualizar Elk",
     "webmanifest": {
       "canary": {
-        "description": "Uma ágil aplicação web para o Mastodon (canary)",
+        "description": "Uma ágil aplicação web para o Akkoma (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Uma ágil aplicação web para o Mastodon (dev)",
+        "description": "Uma ágil aplicação web para o Akkoma (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Uma ágil aplicação web para o Mastodon (preview)",
+        "description": "Uma ágil aplicação web para o Akkoma (preview)",
         "name": "Elk (preview)",
         "short_name": "Elk (preview)"
       },
       "release": {
-        "description": "Uma ágil aplicação web para o Mastodon",
+        "description": "Uma ágil aplicação web para o Akkoma",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -452,7 +452,7 @@
       "version": "Versão"
     },
     "account_settings": {
-      "description": "Editar as configurações da sua conta na aplicação web do Mastodon",
+      "description": "Editar as configurações da sua conta na aplicação web do Akkoma",
       "label": "Configurações da conta"
     },
     "interface": {
@@ -748,12 +748,12 @@
   },
   "user": {
     "add_existing": "Adicionar uma conta existente",
-    "server_address_label": "Endereço do Servidor Mastodon",
+    "server_address_label": "Endereço do Servidor Akkoma",
     "sign_in_desc": "Inicie sessão, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações, ou interagir a partir da sua conta de outro servidor.",
     "sign_in_notice_title": "A visualizar os dados públicos de {0}",
     "sign_out_account": "Desconectar {0}",
     "single_instance_sign_in_desc": "Inicie sessão, para seguir pessoas ou hashtags, adicionar aos favoritos, partilhar e responder a publicações.",
-    "tip_no_account": "Se ainda não tem uma conta Mastodon, {0}.",
+    "tip_no_account": "Se ainda não tem uma conta Akkoma, {0}.",
     "tip_register_account": "escolha um servidor e inscreva-se"
   },
   "visibility": {

@@ -75,7 +75,7 @@
     "switch_account": "Przełącz konto",
     "vote": "Zagłosuj"
   },
-  "app_desc_short": "Aplikacja webowa dla Mastodon",
+  "app_desc_short": "Aplikacja webowa dla Akkoma",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
   "attachment": {
@@ -175,7 +175,7 @@
       "title": "Wdrożenie wersji Preview"
     },
     "desc_highlight": "Możliwe jest napotkanie, tu i ówdzie, pewnych błędów i brakujących funkcjonalności.",
-    "desc_para1": "Dziękujemy za zainteresowanie Elk, naszym wciąż rozwijanym klientem Mastodon!",
+    "desc_para1": "Dziękujemy za zainteresowanie Elk, naszym wciąż rozwijanym klientem Akkoma!",
     "desc_para2": "ciężko pracujemy nad rozwojem i ulepszaniem go w miarę upływu czasu.",
     "desc_para3": "Aby przyspieszyć rozwój, możesz wspomóc Zespół za pośrednictwem GitHub Sponsors. Mamy nadzieję, że spodoba Ci się Elk!",
     "desc_para4": "Elk jest Open Source. Jeśli chcesz pomóc w testowaniu, przekazać opinię lub wnieść swój wkład,",
@@ -315,22 +315,22 @@
     "update_available_short": "Zaktualizuj Elk",
     "webmanifest": {
       "canary": {
-        "description": "Aplikacja webowa dla Mastodon (canary)",
+        "description": "Aplikacja webowa dla Akkoma (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Aplikacja webowa dla Mastodon (dev)",
+        "description": "Aplikacja webowa dla Akkoma (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Aplikacja webowa dla Mastodon (preview)",
+        "description": "Aplikacja webowa dla Akkoma (preview)",
         "name": "Elk (preview)",
         "short_name": "Elk (preview)"
       },
       "release": {
-        "description": "Aplikacja webowa dla Mastodon",
+        "description": "Aplikacja webowa dla Akkoma",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -354,7 +354,7 @@
       "version": "Wersja"
     },
     "account_settings": {
-      "description": "Edytuj ustawienia swojego konta w Mastodon UI",
+      "description": "Edytuj ustawienia swojego konta w Akkoma UI",
       "label": "Ustawienia konta"
     },
     "interface": {
@@ -611,12 +611,12 @@
   },
   "user": {
     "add_existing": "Dodaj istniejące konto",
-    "server_address_label": "Adres serwera Mastodon",
+    "server_address_label": "Adres serwera Akkoma",
     "sign_in_desc": "Zaloguj się, aby obserwować profile lub hasztagi, dodawać do ulubionych, udostępniać i odpowiadać na wpisy lub wchodzić w interakcje ze swojego konta na innym serwerze.",
     "sign_in_notice_title": "Dane publiczne  {0}",
     "sign_out_account": "Wyloguj {0}",
     "single_instance_sign_in_desc": "Zaloguj się, aby obserwować profile lub hashtagi, dodawać do ulubionych, udostępniać i odpowiadać na posty.",
-    "tip_no_account": "Jeśli nie masz jeszcze konta Mastodon, {0}.",
+    "tip_no_account": "Jeśli nie masz jeszcze konta Akkoma, {0}.",
     "tip_register_account": "wybierz swój serwer i zarejestruj się"
   },
   "visibility": {

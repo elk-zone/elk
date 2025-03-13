@@ -87,7 +87,7 @@
     "switch_account": "Aldatu kontua",
     "vote": "Eman botoa"
   },
-  "app_desc_short": "Mastodon web-bezero arin bat",
+  "app_desc_short": "Akkoma web-bezero arin bat",
   "app_logo": "Elk-en logoa",
   "app_name": "Elk",
   "attachment": {
@@ -377,22 +377,22 @@
     "update_available_short": "Eguneratu Elk",
     "webmanifest": {
       "canary": {
-        "description": "Mastodon web-bezero arin bat (canary)",
+        "description": "Akkoma web-bezero arin bat (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Mastodon web-bezero arin bat (garapena)",
+        "description": "Akkoma web-bezero arin bat (garapena)",
         "name": "Elk (garapena)",
         "short_name": "Elk (garapena)"
       },
       "preview": {
-        "description": "Mastodon web-bezero arin bat (aurrebista)",
+        "description": "Akkoma web-bezero arin bat (aurrebista)",
         "name": "Elk (aurrebista)",
         "short_name": "Elk (aurrebista)"
       },
       "release": {
-        "description": "Mastodon web-bezero arin bat",
+        "description": "Akkoma web-bezero arin bat",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -748,12 +748,12 @@
   },
   "user": {
     "add_existing": "Gehitu dagoeneko existitzen den kontu bat",
-    "server_address_label": "Mastodon zerbitzariaren helbidea",
+    "server_address_label": "Akkoma zerbitzariaren helbidea",
     "sign_in_desc": "Hasi saioa profil edo traolak jarraitzeko, eta bidalketak gogoko egiteko, partekatzeko, eta erantzuteko edo beste zerbitzari bateko kontuarekin elkarreragiteko.",
     "sign_in_notice_title": "{0}(e)ko datu publikoak ikusten",
     "sign_out_account": "Amaitu {0}(r)en saioa",
     "single_instance_sign_in_desc": "Hasi saioa profil edo traolak jarraitzeko, eta bidalketak gogoko egiteko, partekatzeko, eta erantzuteko.",
-    "tip_no_account": "Oraindik Mastodon kontua ez badaukazu, {0}.",
+    "tip_no_account": "Oraindik Akkoma kontua ez badaukazu, {0}.",
     "tip_register_account": "hautatu zerbitzaria eta eman izena"
   },
   "visibility": {

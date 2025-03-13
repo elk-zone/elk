@@ -35,7 +35,7 @@
     "favourited": "Preferit",
     "publish": "Publica"
   },
-  "app_desc_short": "Un client web Mastodon àgil",
+  "app_desc_short": "Un client web Akkoma àgil",
   "app_logo": "Logo d'Elk",
   "attachment": {
     "remove_label": "Elimina l'adjunt"
@@ -108,7 +108,7 @@
       "desc3": "No inicies sessió amb el teu compte real."
     },
     "desc_highlight": "Espereu trobar alguns errors i que falten funcions ací i allà.",
-    "desc_para1": "Gràcies pel teu interès en provar Elk, el nostre client web Mastodon en proves!",
+    "desc_para1": "Gràcies pel teu interès en provar Elk, el nostre client web Akkoma en proves!",
     "desc_para2": "Estem treballant de valent en el desenvolupament i en millorar-lo.",
     "desc_para3": "Per a impulsar el desenvolupament, pots patrocinar l'equip a través dels patrocis de GitHub. Esperem que gaudisques d'Elk!",
     "desc_para4": "Elk és de codi obert. Si vols ajudar amb proves, comentaris o contribucions,",
@@ -176,19 +176,19 @@
     "update": "Actualitza",
     "webmanifest": {
       "canary": {
-        "description": "Un client web àgil de Mastodon (canary)",
+        "description": "Un client web àgil de Akkoma (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Un client web àgil de Mastodon (desenvolupament)",
+        "description": "Un client web àgil de Akkoma (desenvolupament)",
         "name": "Elk (desenvolupament)"
       },
       "preview": {
-        "description": "Un client web àgil de Mastodon (vista prèvia)"
+        "description": "Un client web àgil de Akkoma (vista prèvia)"
       },
       "release": {
-        "description": "Un client web àgil de Mastodon"
+        "description": "Un client web àgil de Akkoma"
       }
     }
   },
@@ -206,7 +206,7 @@
       "sponsors_body_3": "Si t'agrada l'aplicació, considera patrocinar-nos:"
     },
     "account_settings": {
-      "description": "Edita la configuració del teu compte a la interfície de Mastodon"
+      "description": "Edita la configuració del teu compte a la interfície de Akkoma"
     },
     "interface": {
       "default": " (per defecte)",
@@ -391,11 +391,11 @@
   },
   "user": {
     "add_existing": "Afig un compte existent",
-    "server_address_label": "Adreça del servidor de Mastodon",
+    "server_address_label": "Adreça del servidor de Akkoma",
     "sign_in_desc": "Inicia la sessió per a seguir perfils o etiquetes, marcar com a preferides, compartir i respondre a les publicacions, o interactuar des d'un compte en un servidor diferent.",
     "sign_in_notice_title": "Veient les dades públiques de: {0}",
     "sign_out_account": "Tanca {0}",
-    "tip_no_account": "Si encara no tens un compte de Mastodon, {0}.",
+    "tip_no_account": "Si encara no tens un compte de Akkoma, {0}.",
     "tip_register_account": "tria un servidor i registra't"
   },
   "visibility": {

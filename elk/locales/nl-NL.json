@@ -73,7 +73,7 @@
     "switch_account": "Wissel van account",
     "vote": "Stem"
   },
-  "app_desc_short": "Een vlotte Mastodon web client",
+  "app_desc_short": "Een vlotte Akkoma web client",
   "app_logo": "Elk Logo",
   "app_name": "Elk",
   "attachment": {
@@ -112,7 +112,7 @@
   },
   "help": {
     "desc_highlight": "Je kunt hier en daar wat bugs of ontbrekende features verwachten.",
-    "desc_para1": "Bedankt voor je interesse in het uitproberen van Elk, onze Mastodon web client in-wording!",
+    "desc_para1": "Bedankt voor je interesse in het uitproberen van Elk, onze Akkoma web client in-wording!",
     "desc_para2": "we werken hard aan nieuwe ontwikkelingen en verbeteringen in de loop van de tijd.",
     "desc_para3": "Om de ontwikkelingen te versnellen, kun je het Team sponsoren via GitHub Sponsors. We hopen dat Elk je bevalt!",
     "desc_para4": "Elk is Open Source. Wil je meehelpen met testen, feedback of bijdragen,",
@@ -389,11 +389,11 @@
   },
   "user": {
     "add_existing": "Voeg een bestaand account toe",
-    "server_address_label": "Mastodon Server Address",
+    "server_address_label": "Akkoma Server Address",
     "sign_in_desc": "Log in om profielen te volgen of hashtags, markeer posts als favoriet, deel en reageer op posts, of reageer vanaf je account op een andere server.",
     "sign_in_notice_title": "Je bekijkt {0} publieke data",
     "sign_out_account": "Uitloggen {0}",
-    "tip_no_account": "Als je nog geen Mastodon account hebt, {0}.",
+    "tip_no_account": "Als je nog geen Akkoma account hebt, {0}.",
     "tip_register_account": "kies jouw server en registreer een account"
   },
   "visibility": {

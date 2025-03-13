@@ -73,7 +73,7 @@
     "switch_account": "切換帳號",
     "vote": "投票"
   },
-  "app_desc_short": "一個靈巧的 Mastodon 用戶端",
+  "app_desc_short": "一個靈巧的 Akkoma 用戶端",
   "app_logo": "鹿鳴 Logo",
   "app_name": "鹿鳴",
   "attachment": {
@@ -166,7 +166,7 @@
       "title": "預覽部署"
     },
     "desc_highlight": "可能會在某些地方出現一些 bug 或缺少的功能。",
-    "desc_para1": "感謝你有興趣嘗試鹿鳴，一個我們正在積極開發的通用 Mastodon 用戶端。",
+    "desc_para1": "感謝你有興趣嘗試鹿鳴，一個我們正在積極開發的通用 Akkoma 用戶端。",
     "desc_para2": "我們正在努力開發中，並隨著時間的推移不斷完善。",
     "desc_para3": "為了幫助促進開發，你可以通過以下連結贊助我們的團隊成員。希望你喜歡鹿鳴！",
     "desc_para4": "鹿鳴是開源的，如果你願意幫助測試、提供回饋或作出貢獻，",
@@ -277,22 +277,22 @@
     "update_available_short": "更新鹿鳴",
     "webmanifest": {
       "canary": {
-        "description": "一個靈巧的 Mastodon 用戶端（Canary）",
+        "description": "一個靈巧的 Akkoma 用戶端（Canary）",
         "name": "鹿鳴 Canary",
         "short_name": "鹿鳴 Canary"
       },
       "dev": {
-        "description": "一個靈巧的 Mastodon 用戶端（開發版）",
+        "description": "一個靈巧的 Akkoma 用戶端（開發版）",
         "name": "鹿鳴 開發版",
         "short_name": "鹿鳴 開發版"
       },
       "preview": {
-        "description": "一個靈巧的 Mastodon 用戶端（預覽版）",
+        "description": "一個靈巧的 Akkoma 用戶端（預覽版）",
         "name": "鹿鳴 預覽版",
         "short_name": "鹿鳴 預覽版"
       },
       "release": {
-        "description": "一個靈巧的 Mastodon 用戶端",
+        "description": "一個靈巧的 Akkoma 用戶端",
         "name": "鹿鳴",
         "short_name": "鹿鳴"
       }
@@ -316,7 +316,7 @@
       "version": "版本"
     },
     "account_settings": {
-      "description": "在 Mastodon UI 中編輯你的帳號設定",
+      "description": "在 Akkoma UI 中編輯你的帳號設定",
       "label": "帳號設定"
     },
     "interface": {
@@ -555,11 +555,11 @@
   },
   "user": {
     "add_existing": "加入現有帳號",
-    "server_address_label": "Mastodon 伺服器位置",
+    "server_address_label": "Akkoma 伺服器位置",
     "sign_in_desc": "登入後可追蹤其他人或標籤、點讚、分享和回覆貼文，或與不同伺服器上的帳號互動。",
     "sign_in_notice_title": "正在查看 {0} 的公共數據",
     "sign_out_account": "登出 {0}",
-    "tip_no_account": "如果您還沒有 Mastodon 帳號，{0}。",
+    "tip_no_account": "如果您還沒有 Akkoma 帳號，{0}。",
     "tip_register_account": "選擇您的伺服器並註冊一個"
   },
   "visibility": {

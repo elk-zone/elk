@@ -87,7 +87,7 @@
     "switch_account": "切换帐号",
     "vote": "投票"
   },
-  "app_desc_short": "一个灵巧的 Mastodon 客户端",
+  "app_desc_short": "一个灵巧的 Akkoma 客户端",
   "app_logo": "应用图标",
   "app_name": "鹿鸣",
   "attachment": {
@@ -199,7 +199,7 @@
       "title": "预览部署"
     },
     "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
-    "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Mastodon 客户端。",
+    "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Akkoma 客户端。",
     "desc_para2": "我们正在努力开发中，并随着时间的推移不断完善。",
     "desc_para3": "为了帮助促进开发，你可以通过以下链接赞助我们的团队成员。希望你喜欢鹿鸣！",
     "desc_para4": "鹿鸣是开源的，如果你愿意帮助测试、提供反馈或作出贡献，",
@@ -375,22 +375,22 @@
     "update_available_short": "更新鹿鸣",
     "webmanifest": {
       "canary": {
-        "description": "一个灵巧的 Mastodon 客户端（Canary）",
+        "description": "一个灵巧的 Akkoma 客户端（Canary）",
         "name": "鹿鸣 Canary",
         "short_name": "鹿鸣 Canary"
       },
       "dev": {
-        "description": "一个灵巧的 Mastodon 客户端（开发版）",
+        "description": "一个灵巧的 Akkoma 客户端（开发版）",
         "name": "鹿鸣 开发版",
         "short_name": "鹿鸣 开发版"
       },
       "preview": {
-        "description": "一个灵巧的 Mastodon 客户端（预览版）",
+        "description": "一个灵巧的 Akkoma 客户端（预览版）",
         "name": "鹿鸣 预览版",
         "short_name": "鹿鸣 预览版"
       },
       "release": {
-        "description": "一个灵巧的 Mastodon 客户端",
+        "description": "一个灵巧的 Akkoma 客户端",
         "name": "鹿鸣",
         "short_name": "鹿鸣"
       }
@@ -450,7 +450,7 @@
       "version": "版本"
     },
     "account_settings": {
-      "description": "在 Mastodon UI 中编辑你的账号设置",
+      "description": "在 Akkoma UI 中编辑你的账号设置",
       "label": "账号设置"
     },
     "interface": {
@@ -743,12 +743,12 @@
   },
   "user": {
     "add_existing": "添加现有帐户",
-    "server_address_label": "Mastodon 服务器地址",
+    "server_address_label": "Akkoma 服务器地址",
     "sign_in_desc": "登录后可关注其他人或标签、点赞、分享和回复帖文，或与不同服务器上的账号交互。",
     "sign_in_notice_title": "正在查看 {0} 的公共数据",
     "sign_out_account": "登出 {0}",
     "single_instance_sign_in_desc": "登录后可关注其他人或标签、收藏、分享和回复帖文。",
-    "tip_no_account": "如果您还没有 Mastodon 账户，{0}。",
+    "tip_no_account": "如果您还没有 Akkoma 账户，{0}。",
     "tip_register_account": "选择您的服务器并注册一个"
   },
   "visibility": {

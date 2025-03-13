@@ -76,7 +76,7 @@
     "switch_account": "Сменить учетную запись",
     "vote": "Ответить"
   },
-  "app_desc_short": "Открытый веб-клиент для Mastodon",
+  "app_desc_short": "Открытый веб-клиент для Akkoma",
   "app_logo": "Логотип Elk",
   "app_name": "Elk",
   "attachment": {
@@ -176,7 +176,7 @@
       "title": "Предварительная сборка"
     },
     "desc_highlight": "В приложении может недоставать некоторых функций, зато могут попадаться баги.",
-    "desc_para1": "Спасибо за участие в тестировании Elk, открытого веб-клиента для Mastodon!",
+    "desc_para1": "Спасибо за участие в тестировании Elk, открытого веб-клиента для Akkoma!",
     "desc_para2": "Мы усердно работаем над развитием приложения и постоянно его улучшаем.",
     "desc_para3": "А еще вы можете поддержать разработку, став спонсором нашей команды на GitHub Sponsors. Мы надеемся, что вам понравится Elk!",
     "desc_para4": "Elk является проектом с открытым исходным кодом. Если вы хотите помочь с тестированием, обратной связью или разработкой,",
@@ -335,22 +335,22 @@
     "update_available_short": "Обновить Elk",
     "webmanifest": {
       "canary": {
-        "description": "Открытый веб-клиент для Mastodon (canary)",
+        "description": "Открытый веб-клиент для Akkoma (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Открытый веб-клиент для Mastodon (dev)",
+        "description": "Открытый веб-клиент для Akkoma (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Открытый веб-клиент для Mastodon (preview)",
+        "description": "Открытый веб-клиент для Akkoma (preview)",
         "name": "Elk (preview)",
         "short_name": "Elk (preview)"
       },
       "release": {
-        "description": "Открытый веб-клиент для Mastodon",
+        "description": "Открытый веб-клиент для Akkoma",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -410,7 +410,7 @@
       "version": "Версия"
     },
     "account_settings": {
-      "description": "Вы можете изменить параметры своей учетной записи в пользовательском интерфейсе Mastodon",
+      "description": "Вы можете изменить параметры своей учетной записи в пользовательском интерфейсе Akkoma",
       "label": "Настройки учетной записи"
     },
     "interface": {
@@ -669,12 +669,12 @@
   },
   "user": {
     "add_existing": "Добавить существующую учетную запись",
-    "server_address_label": "Адрес сервера Mastodon",
+    "server_address_label": "Адрес сервера Akkoma",
     "sign_in_desc": "Войдите, чтобы подписываться на профили и хэштеги, добавлять в избранное, делиться постами и отвечать на них, или использовать свою учетную запись с другого сервера",
     "sign_in_notice_title": "Просмотр публичных данных {0}",
     "sign_out_account": "Выйти из учетной записи {0}",
     "single_instance_sign_in_desc": "Войдите, чтобы подписаться на пользователей и хештеги, ставить лайки, делиться и отвечать на посты.",
-    "tip_no_account": "Если у вас еще нет учетной записи Mastodon, {0}.",
+    "tip_no_account": "Если у вас еще нет учетной записи Akkoma, {0}.",
     "tip_register_account": "выберите сервер и зарегистрируйтесь на нем"
   },
   "visibility": {

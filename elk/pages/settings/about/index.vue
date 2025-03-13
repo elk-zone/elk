@@ -6,6 +6,7 @@ useHydratedHead({
   title: () => `${t('settings.about.label')} | ${t('nav.settings')}`,
 })
 
+const colorMode = useColorMode()
 const showCommit = ref(buildInfo.env !== 'release' && buildInfo.env !== 'dev')
 const builtTime = useFormattedDateTime(buildInfo.time)
 
@@ -25,7 +26,7 @@ function handleShowCommit() {
     </template>
 
     <div flex="~ col gap4" w-full items-center justify-center my5>
-      <img :alt="$t('app_logo')" :src="`${''}/logo.svg`" w-24 h-24 class="rtl-flip">
+      <img :alt="$t('app_logo')" :src="`${''}/logo.svg`" w-24 h-24 rtl-flip :class="colorMode.value === 'dark' ? 'filter-invert' : ''">
       <p text-lg>
         {{ $t('app_desc_short') }}
       </p>
@@ -66,21 +67,15 @@ function handleShowCommit() {
     />
 
     <SettingsItem
-      text="Mastodon"
-      icon="i-ri:mastodon-line"
-      to="/m.webtoo.ls/@elk"
+      text="Fediverse"
+      icon="i-ri:fediverse-line"
+      to="/bdx.town/@clovis"
       large target="_blank"
-    />
-    <SettingsItem
-      text="Discord"
-      icon="i-ri:discord-fill"
-      to="https://chat.elk.zone"
-      external large target="_blank"
     />
     <SettingsItem
       text="GitHub"
       icon="i-ri:github-fill"
-      to="https://github.com/elk-zone/elk"
+      to="https://github.com/BDX-town/elk"
       external large target="_blank"
     />
 

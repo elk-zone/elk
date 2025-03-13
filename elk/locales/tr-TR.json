@@ -75,7 +75,7 @@
     "switch_account": "Hesap değiştir",
     "vote": "Oy ver"
   },
-  "app_desc_short": "Hızlı bir Mastodon web istemcisi",
+  "app_desc_short": "Hızlı bir Akkoma web istemcisi",
   "app_logo": "Elk Logosu",
   "app_name": "Elk",
   "attachment": {
@@ -175,7 +175,7 @@
       "title": "Dağıtımı önizleyin"
     },
     "desc_highlight": "Orada burada bir kaç hata ve eksik özellik bekleyin.",
-    "desc_para1": "Elk'i, bizim çalışması devam eden Mastodon web istemcimizi, denemedeki ilginiz için teşekkürler!",
+    "desc_para1": "Elk'i, bizim çalışması devam eden Akkoma web istemcimizi, denemedeki ilginiz için teşekkürler!",
     "desc_para2": "Zaman içinde geliştirmek ve iyileştirmek için çok çalışıyoruz.",
     "desc_para3": "Geliştirmemizi hızlandırmak için takıma GitHub Sponsors üzerinden sponsor olabilirsinizi. Umarız Elk'i beğenirsiniz!",
     "desc_para4": "Elk açık kaynaklıdır. Test etmek, geri dönüş vermek veya katkıda bulunmak isterseniz,",
@@ -316,22 +316,22 @@
     "update_available_short": "Elk'i güncelle",
     "webmanifest": {
       "canary": {
-        "description": "Hızlı bir Mastodon web istemcisi (canary)",
+        "description": "Hızlı bir Akkoma web istemcisi (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Hızlı bir Mastodon web istemcisi (dev)",
+        "description": "Hızlı bir Akkoma web istemcisi (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Hızlı bir Mastodon web istemcisi (preview)",
+        "description": "Hızlı bir Akkoma web istemcisi (preview)",
         "name": "Elk (preview)",
         "short_name": "Elk (preview)"
       },
       "release": {
-        "description": "Hızlı bir Mastodon web istemcisi",
+        "description": "Hızlı bir Akkoma web istemcisi",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -355,7 +355,7 @@
       "version": "Versiyon"
     },
     "account_settings": {
-      "description": "Mastodon UI'da hesap ayarlarını değiştir",
+      "description": "Akkoma UI'da hesap ayarlarını değiştir",
       "label": "Hesap ayarları"
     },
     "interface": {
@@ -614,12 +614,12 @@
   },
   "user": {
     "add_existing": "Var olan bir hesap ekle",
-    "server_address_label": "Mastodon Sunucu Adresi",
+    "server_address_label": "Akkoma Sunucu Adresi",
     "sign_in_desc": "Profilleri veya hashtag'leri takip etmek, favorilere eklemek, gönderileri paylaşmak ve yanıtlamak veya farklı bir sunucudaki hesabınızdan etkileşim kurmak için oturum açın.",
     "sign_in_notice_title": "{0} herkese açık veri görüntüleniyor",
     "sign_out_account": "{0} çıkış yap",
     "single_instance_sign_in_desc": "Profilleri veya hashtag'leri takip etmek, favorilere eklemek, gönderileri paylaşmak ve yanıtlamak için oturum açın.",
-    "tip_no_account": "Eğer bir Mastodon hesabınız yoksa, {0}.",
+    "tip_no_account": "Eğer bir Akkoma hesabınız yoksa, {0}.",
     "tip_register_account": "sunucunuzu seçin ve kaydolun"
   },
   "visibility": {

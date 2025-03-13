@@ -28,7 +28,7 @@
     "save": "Salvar",
     "save_changes": "Salvar alterações"
   },
-  "app_desc_short": "Uma aplicação web ágil para o Mastodon",
+  "app_desc_short": "Uma aplicação web ágil para o Akkoma",
   "command": {
     "compose_desc": "Escrever novo post"
   },
@@ -161,16 +161,16 @@
     "dismiss": "Ignorar",
     "webmanifest": {
       "canary": {
-        "description": "Uma aplicação web ágil para o Mastodon (canary)"
+        "description": "Uma aplicação web ágil para o Akkoma (canary)"
       },
       "dev": {
-        "description": "Uma aplicação web ágil para o Mastodon (dev)"
+        "description": "Uma aplicação web ágil para o Akkoma (dev)"
       },
       "preview": {
-        "description": "Uma aplicação web ágil para o Mastodon (preview)"
+        "description": "Uma aplicação web ágil para o Akkoma (preview)"
       },
       "release": {
-        "description": "Uma aplicação web ágil para o Mastodon"
+        "description": "Uma aplicação web ágil para o Akkoma"
       }
     }
   },
@@ -189,7 +189,7 @@
       "sponsors_body_3": "Se estiver curtindo o app, considere nos patrocinar:"
     },
     "account_settings": {
-      "description": "Edite as configurações da sua conta na interface do Mastodon"
+      "description": "Edite as configurações da sua conta na interface do Akkoma"
     },
     "interface": {
       "color_mode": "Plano de fundo",
@@ -350,11 +350,11 @@
   },
   "user": {
     "add_existing": "Adicionar conta existente",
-    "server_address_label": "Endereço do servidor do Mastodon",
+    "server_address_label": "Endereço do servidor do Akkoma",
     "sign_in_desc": "Entre para seguir perfis e hashtags, favoritar, compartilhar e responder posts ou interagir com sua conta em outro servidor.",
     "sign_in_notice_title": "Visualizando dados públicos de {0}",
     "single_instance_sign_in_desc": "Entre para seguir perfis e hashtags, favoritar, compartilhar e responder posts.",
-    "tip_no_account": "Se ainda não tiver uma conta do Mastodon, {0}.",
+    "tip_no_account": "Se ainda não tiver uma conta do Akkoma, {0}.",
     "tip_register_account": "escolha um servidor e cadastre-se"
   },
   "visibility": {

@@ -87,7 +87,7 @@
     "switch_account": "Cambia account",
     "vote": "Vota"
   },
-  "app_desc_short": "Un client web agile per Mastodon",
+  "app_desc_short": "Un client web agile per Akkoma",
   "app_logo": "Logo Elk",
   "app_name": "Elk",
   "attachment": {
@@ -199,7 +199,7 @@
       "title": "Anteprima implementazione"
     },
     "desc_highlight": "Aspettati qualche bug e funzione mancante qua e là.",
-    "desc_para1": "Grazie per il tuo interesse a provare Elk, il nostro web client per Mastodon in corso d'opera!",
+    "desc_para1": "Grazie per il tuo interesse a provare Elk, il nostro web client per Akkoma in corso d'opera!",
     "desc_para2": "Stiamo lavorando sodo allo sviluppo e al suo miglioramento nel tempo.",
     "desc_para3": "Per sostenere lo sviluppo, puoi sponsorizzare il team tramite GitHub Sponsors. Speriamo ti piaccia Elk!",
     "desc_para4": "Elk è open source. Se hai voglia di testare, fornire feedback o contribuire,",
@@ -377,22 +377,22 @@
     "update_available_short": "Aggiorna Elk",
     "webmanifest": {
       "canary": {
-        "description": "Un client web agile per Mastodon (canary)",
+        "description": "Un client web agile per Akkoma (canary)",
         "name": "Elk (canary)",
         "short_name": "Elk (canary)"
       },
       "dev": {
-        "description": "Un client web agile per Mastodon (dev)",
+        "description": "Un client web agile per Akkoma (dev)",
         "name": "Elk (dev)",
         "short_name": "Elk (dev)"
       },
       "preview": {
-        "description": "Un client web agile per Mastodon (anteprima)",
+        "description": "Un client web agile per Akkoma (anteprima)",
         "name": "Elk (anteprima)",
         "short_name": "Elk (anteprima)"
       },
       "release": {
-        "description": "Un client web agile per Mastodon",
+        "description": "Un client web agile per Akkoma",
         "name": "Elk",
         "short_name": "Elk"
       }
@@ -452,7 +452,7 @@
       "version": "Versione"
     },
     "account_settings": {
-      "description": "Modifica le impostazioni del tuo account su Mastodon",
+      "description": "Modifica le impostazioni del tuo account su Akkoma",
       "label": "Impostazioni account"
     },
     "interface": {
@@ -749,12 +749,12 @@
   },
   "user": {
     "add_existing": "Aggiungi account esistente",
-    "server_address_label": "Indirizzo istanza Mastodon",
+    "server_address_label": "Indirizzo istanza Akkoma",
     "sign_in_desc": "Accedi per seguire profili o hashtag, apprezzare, condividere e rispondere a post o interagire dal tuo account su un'altra istanza.",
     "sign_in_notice_title": "Visualizzando i dati pubblici di {0}",
     "sign_out_account": "Esci {0}",
     "single_instance_sign_in_desc": "Accedi per seguire profili o hastag, apprezzare condividere o rispondere a post.",
-    "tip_no_account": "Se ancora non hai un account Mastodon, {0}.",
+    "tip_no_account": "Se ancora non hai un account Akkoma, {0}.",
     "tip_register_account": "scegli la tua istanza preferita e registrati"
   },
   "visibility": {

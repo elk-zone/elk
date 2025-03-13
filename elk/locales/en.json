@@ -210,7 +210,7 @@
       "title": "Preview deploy"
     },
     "desc_highlight": "Expect some bugs and missing features here and there.",
-    "desc_para1": "Elk is a nimble Akkoma web client. You can login to your Mastodon account and use it to interact with the fediverse.",
+    "desc_para1": "Elk is a nimble Akkoma web client. You can login to your Akkoma account and use it to interact with the fediverse.",
     "desc_para2": "Elk is Open Source and we're actively improving it as a community project. Join us and let's build it together!",
     "desc_para3": "To boost development, you can sponsor the Team through GitHub Sponsors. We hope you enjoy Elk!",
     "desc_para4": "If you'd like to report a bug, help us testing, give feedback, or contribute,",
@@ -470,7 +470,7 @@
       "version": "Version"
     },
     "account_settings": {
-      "description": "Edit your account settings in Mastodon UI",
+      "description": "Edit your account settings in Akkoma UI",
       "label": "Account settings"
     },
     "interface": {
@@ -772,12 +772,12 @@
   },
   "user": {
     "add_existing": "Add an existing account",
-    "server_address_label": "Mastodon Server Address",
+    "server_address_label": "Server Address",
     "sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts, or interact from your account on a different server.",
     "sign_in_notice_title": "Viewing {0} public data",
     "sign_out_account": "Sign out {0}",
     "single_instance_sign_in_desc": "Sign in to follow profiles or hashtags, favorite, share and reply to posts.",
-    "tip_no_account": "If you don't have a Mastodon account yet, {0}.",
+    "tip_no_account": "If you don't have a Akkoma account yet, {0}.",
     "tip_register_account": "pick your server and register one"
   },
   "visibility": {

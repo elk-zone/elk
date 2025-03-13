@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.47 (2025-03-13)
+
+
+### Bug Fixes
+
+* add missing french translation ([9545952](https://github.com/BDX-town/elk/commit/9545952a658378d1feee0c1bc34457bed77b7790))
+
 ## 0.15.46 (2025-03-12)
 
 

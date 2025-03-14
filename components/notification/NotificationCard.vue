@@ -51,7 +51,10 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
           <div i-ri-user-3-line text-xl me-3 color-blue />
           <AccountDisplayName :account="notification.account" text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all />
           <span ws-nowrap>
-            {{ $t('notification.followed_you') }}・{{ timeAgo }}
+            {{ $t('notification.followed_you') }}
+            <time text-secondary :datetime="notification.createdAt">
+              ・{{ timeAgo }}
+            </time>
           </span>
         </div>
         <AccountBigCard
@@ -68,7 +71,11 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
             :account="notification.account"
             text-purple me-1 font-bold line-clamp-1 ws-pre-wrap break-all
           />
-          <span>{{ $t("notification.signed_up") }}・{{ timeAgo }}</span>
+          <span>{{ $t("notification.signed_up") }}
+            <time text-secondary :datetime="notification.createdAt">
+              ・{{ timeAgo }}
+            </time>
+          </span>
         </div>
       </NuxtLink>
     </template>
@@ -97,7 +104,10 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
           text-primary me-1 font-bold line-clamp-1 ws-pre-wrap break-all
         />
         <span me-1 ws-nowrap>
-          {{ $t('notification.request_to_follow') }}・{{ timeAgo }}
+          {{ $t('notification.request_to_follow') }}
+          <time text-secondary :datetime="notification.createdAt">
+            ・{{ timeAgo }}
+          </time>
         </span>
       </div>
       <AccountCard p="s-2 e-4 b-2" hover-card :account="notification.account">
@@ -111,7 +121,10 @@ const timeAgo = useTimeAgo(() => notification.createdAt, timeAgoOptions)
             <div i-ri:edit-2-fill text-xl me-1 text-secondary />
             <AccountInlineInfo :account="notification.account" me1 />
             <span ws-nowrap>
-              {{ $t('notification.update_status') }}・{{ timeAgo }}
+              {{ $t('notification.update_status') }}
+              <time text-secondary :datetime="notification.createdAt">
+                ・{{ timeAgo }}
+              </time>
             </span>
           </div>
         </template>

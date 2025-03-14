@@ -69,6 +69,8 @@ function reset() {
 function save() {
   navButtonNamesSetting.value = selectedNavButtonNames.value
 }
+
+const hideLabel = useHideBottomNavigationLabel()
 </script>
 
 <template>
@@ -76,18 +78,25 @@ function save() {
     <h2 id="interface-bn" font-medium>
       {{ $t('settings.interface.bottom_nav') }}
     </h2>
+    <SettingsToggleItem
+      :checked="hideLabel"
+      @click="togglePreferences('hideBottomNavLabel')"
+    >
+      {{ $t('settings.interface.bottom_nav_hide_label') }}
+    </SettingsToggleItem>
     <form aria-labelledby="interface-bn" aria-describedby="interface-bn-desc" @submit.prevent="save">
       <p id="interface-bn-desc" pb-2>
         {{ $t('settings.interface.bottom_nav_instructions') }}
       </p>
       <!-- preview -->
-      <div aria-hidden="true" flex="~ gap4 wrap" items-center select-settings h-14>
+      <div aria-hidden="true" flex="~ wrap" items-center select-settings p-0 pt-1 h-auto>
         <nav
           v-for="availableNavButton in selectedNavButtons" :key="availableNavButton.name"
-          flex="~ 1" items-center justify-center text-xl
+          flex="~ col 1" items-center justify-center text-xl
           scrollbar-hide overscroll-none
         >
           <span :class="availableNavButton.icon" />
+          <span v-if="!hideLabel" text-2.5 text-center>{{ $t(availableNavButton.label) }}</span>
         </nav>
       </div>
 
@@ -103,7 +112,7 @@ function save() {
           :aria-checked="isAdded(name)"
           @click="isAdded(name) ? remove(name) : append(name)"
         >
-          <span :class="icon" />
+          <span aria-hidden="true" :class="icon" />
           {{ label ? $t(label) : 'More menu' }}
         </button>
       </div>

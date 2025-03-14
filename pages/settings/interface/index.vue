@@ -7,7 +7,7 @@ useHydratedHead({
 </script>
 
 <template>
-  <MainContent back-on-small-screen>
+  <MainContent back-on-small-screen skip-content="settings.interface.label">
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <span>{{ $t('settings.interface.label') }}</span>

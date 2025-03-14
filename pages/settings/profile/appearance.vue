@@ -103,7 +103,7 @@ onReactivated(refreshInfo)
 </script>
 
 <template>
-  <MainContent back>
+  <MainContent back skip-content="settings.profile.appearance.title">
     <template #title>
       <div text-lg font-bold flex items-center gap-2 @click="$scrollToTop">
         <span>{{ $t('settings.profile.appearance.title') }}</span>

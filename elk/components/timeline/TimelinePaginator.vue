@@ -4,7 +4,7 @@ import type { akkoma } from '@bdxtown/akko'
 import { DynamicScrollerItem } from 'vue-virtual-scroller'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
-const { account, buffer = 10, endMessage = true } = defineProps<{
+const { account, buffer = 10, endMessage = true, paginator } = defineProps<{
   paginator: akkoma.Paginator<akkoma.v1.Status[], akkoma.rest.v1.ListAccountStatusesParams>
   stream?: akkoma.streaming.Subscription
   context?: akkoma.v2.FilterContext
@@ -22,10 +22,13 @@ const virtualScroller = usePreferences('experimentalVirtualScroller')
 const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
 )
+
+const dedupPaginator = ref(new DedupPaginator(paginator))
+watch(() => paginator, () => dedupPaginator.value = new DedupPaginator(paginator))
 </script>
 
 <template>
-  <CommonPaginator v-bind="{ paginator, stream, preprocess, buffer, endMessage }" :virtual-scroller="virtualScroller">
+  <CommonPaginator v-bind="{ paginator: dedupPaginator, stream, preprocess, buffer, endMessage }" :virtual-scroller="virtualScroller">
     <template #updater="{ number, update }">
       <CommonShowNewItems :number="number" :update="update" />
     </template>

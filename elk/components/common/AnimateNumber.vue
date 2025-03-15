@@ -14,9 +14,11 @@ function getAnimation(newValue: boolean, oldValue: boolean) {
 }
 
 const animation = ref(getAnimation(increased, increased))
+const lastIncreased = ref(increased)
 
-watch(() => increased, (newValue, oldValue) => {
-  animation.value = getAnimation(newValue, oldValue || false)
+watch(() => increased, (newValue) => {
+  animation.value = getAnimation(increased, lastIncreased.value)
+  lastIncreased.value = newValue
 }, { immediate: true })
 </script>
 

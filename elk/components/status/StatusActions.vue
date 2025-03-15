@@ -75,7 +75,6 @@ function reply() {
 
     <div flex-1>
       <StatusActionReact
-        :key="reactionCount"
         :status="status"
         :content="$t(reaction ? 'action.favourited' : 'action.favourite')"
         :text="!getPreferences(userSettings, 'hideReactCount') && reactionCount ? reactionCount : ''"
@@ -92,12 +91,6 @@ function reply() {
           <div v-else class="text-[16px] leading-[18px]">
             {{ reaction.shortcode }}
           </div>
-        </template>
-        <template v-if="reactionCount && !getPreferences(userSettings, 'hideReactCount')" #text>
-          <CommonLocalizedNumber
-            keypath="action.favourite_count"
-            :count="reactionCount"
-          />
         </template>
       </StatusActionReact>
     </div>

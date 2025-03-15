@@ -15,34 +15,45 @@ const route = useRoute()
 const id = computed(() => route.params.status as string)
 const main = ref<ComponentPublicInstance | null>(null)
 
-const { data: status, pending, refresh: refreshStatus }: { data: Ref<akkoma.v1.Status | undefined>, pending: Ref<boolean>, refresh: () => void } = useAsyncData(
+const { data: refreshedStatus, pending: pendingRefresh, refresh: refreshStatus }: { data: Ref<akkoma.v1.Status | undefined>, pending: Ref<boolean>, refresh: () => void } = useAsyncData(
   `status:${id.value}`,
   () => fetchStatus(id.value, true),
   { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef() },
 )
-const { client } = useAkko()
+
+const status = ref<akkoma.v1.Status | undefined>(getCachedStatus(id.value))
+const pending = ref(!status.value)
+
+watch(refreshedStatus, () => {
+  status.value = refreshedStatus.value
+})
+
+watch(pendingRefresh, () => {
+  pending.value = pendingRefresh.value
+})
+
 const { data, pending: pendingContext, refresh: refreshContext } = useAsyncData(
   `context:${id.value}`,
-  () => client.value.v1.statuses.$select(id.value).context.fetch(),
+  () => fetchContext(id.value),
   { watch: [isHydrated], immediate: isHydrated.value, lazy: true, default: () => shallowRef() },
 )
 
 const context = computed(() => status.value && data.value ? sortContext(status.value, data.value) : undefined)
 
-watch(pendingContext, scrollTo)
+watch(pendingContext, scrollTo.bind(this, 'smooth'))
 
-watch(pending, scrollTo)
+watch(pending, scrollTo.bind(this, 'smooth'))
 
 onMounted(scrollTo)
 
-async function scrollTo() {
+async function scrollTo(behavior: 'smooth' | 'auto' | 'instant' = 'instant') {
   await nextTick()
 
   const statusElement = unrefElement(main)
   if (!statusElement)
     return
 
-  statusElement.scrollIntoView({ block: status?.value?.inReplyToId ? 'center' : 'start' })
+  statusElement.scrollIntoView({ block: status?.value?.inReplyToId ? 'center' : 'start', behavior })
 }
 
 const publishWidget = ref()

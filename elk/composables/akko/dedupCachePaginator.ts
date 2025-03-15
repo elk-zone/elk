@@ -1,6 +1,6 @@
 import type { akkoma } from '@bdxtown/akko'
 
-export class DedupPaginator<Params> implements akkoma.Paginator<akkoma.v1.Status[], Params> {
+export class DedupCachePaginator<Params> implements akkoma.Paginator<akkoma.v1.Status[], Params> {
   private paginator: akkoma.Paginator<akkoma.v1.Status[], Params>
   private previousIds: string
 
@@ -9,9 +9,10 @@ export class DedupPaginator<Params> implements akkoma.Paginator<akkoma.v1.Status
     this.previousIds = ''
   }
 
-  filter(data: akkoma.v1.Status[]): akkoma.v1.Status[] {
+  filterAndCache(data: akkoma.v1.Status[]): akkoma.v1.Status[] {
     const value = [] as akkoma.v1.Status[]
     (data).forEach((status) => {
+      cacheStatus(status)
       if (!this.previousIds.includes(status.reblog?.id || status.id))
         value.push(status)
       if (status.reblog)
@@ -24,19 +25,19 @@ export class DedupPaginator<Params> implements akkoma.Paginator<akkoma.v1.Status
     return this.paginator.getDirection()
   }
 
-  setDirection(direction: 'next' | 'prev'): DedupPaginator<Params> {
-    return new DedupPaginator(this.paginator.setDirection(direction))
+  setDirection(direction: 'next' | 'prev'): DedupCachePaginator<Params> {
+    return new DedupCachePaginator(this.paginator.setDirection(direction))
   }
 
-  clone(): DedupPaginator<Params> {
-    return new DedupPaginator(this.paginator.clone())
+  clone(): DedupCachePaginator<Params> {
+    return new DedupCachePaginator(this.paginator.clone())
   }
 
   async next(params?: string | Params | undefined): Promise<IteratorResult<akkoma.v1.Status[], undefined>> {
     const result = await this.paginator.next(params)
     return {
       done: !result.done ? false : undefined,
-      value: this.filter(result.value || []),
+      value: this.filterAndCache(result.value || []),
     }
   }
 

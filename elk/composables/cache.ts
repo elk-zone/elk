@@ -34,7 +34,14 @@ export function fetchFrontendConfiguration(): Promise<FrontendConfiguration | un
   return promise
 }
 
-export function fetchStatus(id: string, force = false): Promise<akkoma.v1.Status> {
+export function getCachedStatus(id: string): akkoma.v1.Status {
+  const server = currentServer.value
+  const userId = currentUser.value?.account.id
+  const key = `${server}:${userId}:status:${id}`
+  return cache.get(key)
+}
+
+export async function fetchStatus(id: string, force = false): Promise<akkoma.v1.Status> {
   const server = currentServer.value
   const userId = currentUser.value?.account.id
   const key = `${server}:${userId}:status:${id}`
@@ -46,7 +53,15 @@ export function fetchStatus(id: string, force = false): Promise<akkoma.v1.Status
     cacheStatus(status)
     return status
   })
-  cache.set(key, promise)
+  return promise
+}
+
+export function fetchContext(id: string): Promise<akkoma.v1.Context> {
+  const promise = useAkkoClient().v1.statuses.$select(id).context.fetch().then((context) => {
+    context.ancestors.forEach(status => cacheStatus(status))
+    context.descendants.forEach(status => cacheStatus(status))
+    return context
+  })
   return promise
 }
 

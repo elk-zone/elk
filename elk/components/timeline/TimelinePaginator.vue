@@ -23,8 +23,8 @@ const showOriginSite = computed(() =>
   account && account.id !== currentUser.value?.account.id && getServerName(account) !== currentServer.value,
 )
 
-const dedupPaginator = ref(new DedupPaginator(paginator))
-watch(() => paginator, () => dedupPaginator.value = new DedupPaginator(paginator))
+const dedupPaginator = ref(new DedupCachePaginator(paginator))
+watch(() => paginator, () => dedupPaginator.value = new DedupCachePaginator(paginator))
 </script>
 
 <template>

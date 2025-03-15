@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.49 (2025-03-15)
+
+
+### Features
+
+* keep and show status from cache ([970c715](https://github.com/BDX-town/elk/commit/970c71527b39d97061d66942334f92a6f235833d))
+
 ## 0.15.48 (2025-03-15)
 
 

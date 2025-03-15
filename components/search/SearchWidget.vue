@@ -4,10 +4,10 @@ const { accounts, hashtags, loading, statuses } = useSearch(query)
 const index = ref(0)
 
 const { t } = useI18n()
-const el = ref<HTMLElement>()
+const searchWidgetElem = ref<HTMLElement>()
 const input = ref<HTMLInputElement>()
 const router = useRouter()
-const { focused } = useFocusWithin(el)
+const { focused } = useFocusWithin(searchWidgetElem)
 
 defineExpose({
   input,
@@ -21,15 +21,6 @@ const results = computed(() => {
     ...hashtags.value.slice(0, 3),
     ...accounts.value,
     ...statuses.value,
-
-    // Disable until search page is implemented
-    // {
-    //   type: 'action',
-    //   to: `/search?q=${query.value}`,
-    //   action: {
-    //     label: `Search for ${query.value}`,
-    //   },
-    // },
   ]
 
   return results
@@ -48,10 +39,8 @@ function activate() {
   if (query.value.length === 0)
     return
 
-  // Disable redirection until search page is implemented
   if (currentIndex === -1) {
-    index.value = 0
-    // router.push(`/search?q=${query.value}`)
+    router.push(`/search?q=${query.value}`)
     return
   }
 
@@ -63,9 +52,10 @@ function activate() {
 </script>
 
 <template>
-  <div ref="el" relative group>
+  <div ref="searchWidgetElem" relative group>
     <div bg-base border="~ base" h10 ps-4 pe-1 rounded-3 flex="~ row" items-center relative focus-within:box-shadow-outline>
-      <div i-ri:search-2-line pointer-events-none text-secondary mt="1px" class="rtl-flip" />
+      <div v-if="loading" animate-spin preserve-3d i-ri:loader-2-line pointer-events-none text-secondary mt-1 />
+      <div v-else i-ri:search-2-line pointer-events-none text-secondary mt="1px" />
       <input
         ref="input"
         v-model="query"

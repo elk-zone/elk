@@ -5,17 +5,14 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const { text, status, as = 'button', disabled, content } = defineProps<{
-  status: akkoma.v1.Status
-  text?: string | number
-  content: string
-  color: string
-  hover: string
-  elkGroupHover: string
-  disabled?: boolean
+const { isLoading, status } = defineProps<{
   as?: string
+  status: akkoma.v1.Status
+  isLoading: { favourited: boolean }
   toggleReact: (emoji: akkoma.v1.CustomEmoji) => void
 }>()
+
+const disabled = computed(() => isLoading.favourited)
 
 const commonReacts = computed(() => ['👍', '❤️', '😆', '😮', '😢', '😩'].map(shortcode => ({ shortcode, staticUrl: '', url: '', visibleInPicker: true })))
 
@@ -25,34 +22,43 @@ function toggle() {
   shown.value = !shown.value
 }
 
-const active = computed(() => !!(status.favourited || status.emojiReactions?.find(r => r.me)))
+const reactionCount = computed(() => status.pleroma.emojiReactions.reduce((acc, curr) => acc += curr.count, status.favouritesCount))
+
+const reaction = computed(() => {
+  const reactions = status.favourited ? [{ shortcode: '👍', url: '', staticUrl: '', visibleInPicker: true }] : status.pleroma.emojiReactions.filter(react => react.me).map(r => ({ shortcode: r.name, url: r.url as string, staticUrl: r.url as string, visibleInPicker: true }))
+  if (reactions.length > 0)
+    return reactions[0]
+  return undefined
+})
+
+const active = computed(() => !!(status.favourited || status.pleroma.emojiReactions?.find(r => r.me)))
 </script>
 
 <template>
-  <component
-    :is="as"
+  <button
     w-fit flex gap-1 items-center transition-all select-none
     rounded group
-    :hover=" !disabled ? hover : undefined"
+    :hover=" !disabled ? 'text-purple' : undefined"
     focus:outline-none
-    :focus-visible="hover"
+    focus-visible="text-purple"
     :class="`${disabled ? 'op25 cursor-not-allowed' : 'text-secondary'}`"
-    :aria-label="content"
-    :disabled="disabled"
+    :aria-label="$t(reaction ? 'action.favourited' : 'action.favourite')"
     :aria-disabled="disabled"
   >
     <VDropdown v-model:shown="shown" placement="top" :triggers="[]">
       <div
         class="h-[33px]"
         rounded-full p2
-        v-bind="disabled ? {} : {
-          'elk-group-hover': elkGroupHover,
-          'group-focus-visible': elkGroupHover,
-          'group-focus-visible:ring': '2 current',
-        }"
+        :elk-group-hover="disabled ? undefined : 'bg-purple/10'"
+        :group-focus-visible="disabled ? undefined : 'bg-purple/10'"
+        :group-focus-visible:ring="disabled ? undefined : '2 current'"
         @click="toggle"
       >
-        <slot name="icon" />
+        <div v-if="!reaction" class="i-ri:thumb-up-line" />
+        <img v-else-if="reaction.staticUrl" :src="reaction.staticUrl" :alt="reaction.shortcode" class="w-[18px] h-[18px] leading-[18px]">
+        <div v-else class="text-[16px] leading-[18px]">
+          {{ reaction.shortcode }}
+        </div>
       </div>
 
       <template #popper>
@@ -72,15 +78,15 @@ const active = computed(() => !!(status.favourited || status.emojiReactions?.fin
       </template>
     </VDropdown>
 
-    <CommonAnimateNumber v-if="text !== undefined" text-sm :increased="active">
+    <CommonAnimateNumber text-sm :increased="active">
       <span text-secondary-light>
-        <slot name="text">{{ text }}</slot>
+        <slot name="text">{{ reactionCount || '' }}</slot>
       </span>
       <template #next>
-        <span :class="[color]">
-          <slot name="text">{{ text }}</slot>
+        <span class="text-secondary">
+          <slot name="text">{{ reactionCount || '' }}</slot>
         </span>
       </template>
     </CommonAnimateNumber>
-  </component>
+  </button>
 </template>

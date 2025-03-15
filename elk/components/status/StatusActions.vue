@@ -16,15 +16,6 @@ const focusEditor = inject<typeof noop>('focus-editor', noop)
 
 const userSettings = useUserSettings()
 
-const reactionCount = computed(() => status.pleroma.emojiReactions.reduce((acc, curr) => acc += curr.count, status.favouritesCount))
-
-const reaction = computed(() => {
-  const reactions = status.favourited ? [{ shortcode: '👍', url: '', staticUrl: '', visibleInPicker: true }] : status.pleroma.emojiReactions.filter(react => react.me).map(r => ({ shortcode: r.name, url: r.url as string, staticUrl: r.url as string, visibleInPicker: true }))
-  if (reactions.length > 0)
-    return reactions[0]
-  return undefined
-})
-
 const { draftItems } = useDraft('home')
 
 function quote() {
@@ -76,23 +67,10 @@ function reply() {
     <div flex-1>
       <StatusActionReact
         :status="status"
-        :content="$t(reaction ? 'action.favourited' : 'action.favourite')"
-        :text="!getPreferences(userSettings, 'hideReactCount') && reactionCount ? reactionCount : ''"
-        color="text-secondary"
-        hover="text-purple"
-        elk-group-hover="bg-purple/10"
-        :disabled="isLoading.favourited"
+        :is-loading="isLoading"
         :command="command"
         :toggle-react="toggleReact"
-      >
-        <template #icon>
-          <div v-if="!reaction" class="i-ri:thumb-up-line" />
-          <img v-else-if="reaction.staticUrl" :src="reaction.staticUrl" :alt="reaction.shortcode" class="w-[18px] h-[18px] leading-[18px]">
-          <div v-else class="text-[16px] leading-[18px]">
-            {{ reaction.shortcode }}
-          </div>
-        </template>
-      </StatusActionReact>
+      />
     </div>
 
     <div flex-none>

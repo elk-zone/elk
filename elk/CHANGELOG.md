@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.48 (2025-03-15)
+
+
+### Bug Fixes
+
+* animation on emojiReact not being triggedred all the time ([12164d8](https://github.com/BDX-town/elk/commit/12164d88ec6e5f102bac3b049b3cb34529cfcf35))
+
 ## 0.15.47 (2025-03-13)
 
 

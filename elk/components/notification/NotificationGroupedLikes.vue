@@ -49,7 +49,7 @@ const likesTimeAgo = useTimeAgo(() => reactions.value[0].reaction?.createdAt ?? 
               </AccountHoverWrapper>
             </div>
           </template>
-          <div ms-4>
+          <div>
             {{ $t('notification.favourited_post') }} ・{{ likesTimeAgo }}
           </div>
         </div>

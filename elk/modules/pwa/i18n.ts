@@ -79,7 +79,7 @@ export async function createI18n(): Promise<RequiredWebManifestEntry> {
     id: '/',
     start_url: '/',
     orientation: 'natural',
-    display: 'fullscreen',
+    display: 'standalone',
     display_override: ['window-controls-overlay'],
     categories: ['social', 'social networking', 'news'],
     icons: [
@@ -107,7 +107,7 @@ export async function createI18n(): Promise<RequiredWebManifestEntry> {
       },
     ],
     share_target: {
-      action: '/web-share-target',
+      action: '/share-target',
       method: 'POST',
       enctype: 'multipart/form-data',
       params: {

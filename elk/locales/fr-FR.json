@@ -250,7 +250,6 @@
     "block_account": "Bloquer {0}",
     "block_domain": "Bloquer le domaine {0}",
     "copy_link_to_post": "Copier le lien du message",
-    "copy_original_link_to_post": "Copiez le lien d'origine vers ce message",
     "delete": "Supprimer",
     "delete_and_redraft": "Supprimer et réécrire",
     "direct_message_account": "Message direct à {0}",

@@ -128,8 +128,7 @@
   },
   "menu": {
     "copy_link_to_post": "Copia l'enllaç a la publicació",
-    "copy_original_link_to_post": "Copia l'enllaç original a la publicació",
-    "delete": "Elimina",
+        "delete": "Elimina",
     "delete_and_redraft": "Elimina i fes un esborrany",
     "direct_message_account": "Envia un missatge directe a {0}",
     "hide_reblogs": "Amaga els impulsos de: {0}",

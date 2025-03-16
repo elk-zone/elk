@@ -112,8 +112,7 @@
   },
   "menu": {
     "copy_link_to_post": "Copiar link para esse post",
-    "copy_original_link_to_post": "Copiar link original para esse post",
-    "delete": "Apagar",
+        "delete": "Apagar",
     "delete_and_redraft": "Apagar e reescrever",
     "direct_message_account": "Mensagem direta para {0}",
     "hide_reblogs": "Esconder boosts de {0}",

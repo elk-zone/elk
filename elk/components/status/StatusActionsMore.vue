@@ -18,7 +18,7 @@ const {
   status,
   isLoading,
   toggleBookmark,
-  toggleFavourite,
+  toggleReact,
   togglePin,
   toggleReblog,
   toggleMute,
@@ -39,12 +39,6 @@ function getPermalinkUrl(status: akkoma.v1.Status) {
   if (url)
     return `${location.origin}/${url}`
   return null
-}
-
-async function copyLink(status: akkoma.v1.Status) {
-  const url = getPermalinkUrl(status)
-  if (url)
-    await clipboard.copy(url)
 }
 
 async function copyOriginalLink(status: akkoma.v1.Status) {
@@ -172,7 +166,7 @@ function showFavoritedAndBoostedBy() {
             "
             :command="command"
             :disabled="isLoading.favourited"
-            @click="toggleFavourite()"
+            @click="toggleReact({ shortcode: '👍', visibleInPicker: true, staticUrl: '', url: '' })"
           />
 
           <CommonDropdownItem
@@ -201,14 +195,6 @@ function showFavoritedAndBoostedBy() {
           is="button"
           :text="$t('menu.copy_link_to_post')"
           icon="i-ri:link"
-          :command="command"
-          @click="copyLink(status)"
-        />
-
-        <CommonDropdownItem
-          is="button"
-          :text="$t('menu.copy_original_link_to_post')"
-          icon="i-ri:links-fill"
           :command="command"
           @click="copyOriginalLink(status)"
         />

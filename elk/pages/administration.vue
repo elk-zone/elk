@@ -18,6 +18,7 @@ useHydratedHead({
         <span>{{ $t('nav.admin') }}</span>
       </div>
       <div>
+        <AdministrationTheme />
         <AdministrationLinks />
       </div>
     </div>

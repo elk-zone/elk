@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { config, update } = useFrontendConfig()
+const { config, update } = useFrontendConfig('pleroma-config-links')
 const links = ref(config.value?.links || [])
 const isLoading = ref(false)
 

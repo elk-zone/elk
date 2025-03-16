@@ -30,7 +30,6 @@ export function fetchFrontendConfiguration(): Promise<FrontendConfiguration | un
     cacheFrontendConfiguration(frontendConfiguration)
     return frontendConfiguration as unknown as FrontendConfiguration | undefined
   })
-  cache.set(key, promise)
   return promise
 }
 

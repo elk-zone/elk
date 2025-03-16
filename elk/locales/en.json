@@ -95,6 +95,14 @@
       "label": "Label",
       "title": "Links",
       "url": "URL"
+    },
+    "theme": {
+      "active": "Active",
+      "dark-mode": "Dark Mode",
+      "fade": "Fade",
+      "light": "Light",
+      "light-mode": "Light Mode",
+      "primary": "Primary"
     }
   },
   "app_desc_short": "A nimble Akkoma web client",
@@ -280,7 +288,7 @@
     "block_account": "Block {0}",
     "block_domain": "Block domain {0}",
     "copy_link_to_post": "Copy link to this post",
-        "delete": "Delete",
+    "delete": "Delete",
     "delete_and_redraft": "Delete & re-draft",
     "direct_message_account": "Direct message {0}",
     "edit": "Edit",
@@ -479,6 +487,7 @@
       "dark_mode": "Dark",
       "default": " (default)",
       "font_size": "Font Size",
+      "instance_mode": "Server",
       "label": "Interface",
       "light_mode": "Light",
       "system_mode": "System",

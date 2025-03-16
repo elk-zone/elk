@@ -88,6 +88,14 @@
       "label": "Label",
       "title": "Raccourcis",
       "url": "URL"
+    },
+    "theme": {
+      "active": "Actif",
+      "dark-mode": "Mode sombre",
+      "fade": "Fade",
+      "light": "Light",
+      "light-mode": "Mode lumineux",
+      "primary": "Primaire"
     }
   },
   "app_desc_short": "Un client Akkoma fait avec 🔥",
@@ -442,6 +450,7 @@
       "dark_mode": "Mode sombre",
       "default": " (par défaut)",
       "font_size": "Taille de police",
+      "instance_mode": "Instance",
       "label": "Interface",
       "light_mode": "Mode lumineux",
       "system_mode": "Système",

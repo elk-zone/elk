@@ -2,9 +2,21 @@
 import type { ThemeColors } from '~/composables/settings'
 import { THEME_COLORS } from '~/constants'
 
-const themes = await import('~/constants/themes.json').then((r) => {
+const { config } = useFrontendConfig()
+
+const { data: constantThemes }: { data: Ref<[string, ThemeColors][]> } = useAsyncData(
+  'theme-retrieve',
+  () => import('~/constants/themes.json').then(p => p.default as [string, ThemeColors][]),
+)
+
+const themes = computed(() => {
+  if (!config.value || !constantThemes.value)
+    return undefined
   const map = new Map<'dark' | 'light', [string, ThemeColors][]>([['dark', []], ['light', []]])
-  const themes = r.default as [string, ThemeColors][]
+  const themes = [
+    config.value?.theme,
+    ...constantThemes.value,
+  ].filter(k => !!k)
   for (const [key, theme] of themes) {
     map.get('dark')!.push([key, theme])
     map.get('light')!.push([key, {
@@ -23,9 +35,11 @@ const colorMode = useColorMode()
 
 const useThemes = shallowRef<[string, ThemeColors][]>([])
 
-watch(() => colorMode.preference, (cm) => {
-  const dark = cm === 'dark' || (cm === 'system' && media.value)
-  const newThemes = dark ? themes.get('dark')! : themes.get('light')!
+function refreshThemes() {
+  if (!themes.value)
+    return
+  const dark = colorMode.preference === 'dark' || (colorMode.preference === 'system' && media.value)
+  const newThemes = dark ? themes.value.get('dark')! : themes.value.get('light')!
   const key = settings.value.themeColors?.['--theme-color-name'] || THEME_COLORS.defaultTheme
   for (const [k, theme] of newThemes) {
     if (k === key) {
@@ -34,7 +48,10 @@ watch(() => colorMode.preference, (cm) => {
     }
   }
   useThemes.value = newThemes
-}, { immediate: true, flush: 'post' })
+}
+
+watch(() => colorMode.preference, refreshThemes, { immediate: true, flush: 'post' })
+watch(themes, refreshThemes, { immediate: true, flush: 'post' })
 
 const currentTheme = computed(() => settings.value.themeColors?.['--theme-color-name'] || THEME_COLORS.defaultTheme)
 

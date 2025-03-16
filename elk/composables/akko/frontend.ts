@@ -1,4 +1,3 @@
-import type { akkoma } from '@bdxtown/akko'
 import { name } from './../../package.json'
 
 export interface FrontendConfiguration {
@@ -7,12 +6,35 @@ export interface FrontendConfiguration {
     text: string
     url: string
   }[]
+  theme?: [string, ThemeColors]
 }
 
-export function useFrontendConfig() {
+function sanitizeTheme(theme: any): FrontendConfiguration['theme'] {
+  const colors = Object.keys(theme[1]).reduce((acc, curr) => {
+    return {
+      ...acc,
+      [curr.replace(/_/g, '-')]: theme[1][curr],
+    }
+  }, {}) as ThemeColors
+  return [theme[0], colors]
+}
+
+function sanitize(config: FrontendConfiguration | undefined): FrontendConfiguration | undefined {
+  if (!config)
+    return config
+  return {
+    ...config,
+    theme: !config.theme ? undefined : sanitizeTheme(config.theme),
+  }
+}
+
+export function useFrontendConfig(key: string = 'pleroma-config') {
   const { data: config } = useAsyncData<FrontendConfiguration | undefined>(
-    'pleroma-config',
-    () => fetchFrontendConfiguration(),
+    key,
+    async () => {
+      const raw = await fetchFrontendConfiguration()
+      return sanitize(raw)
+    },
     { watch: [isHydrated], immediate: isHydrated.value, default: () => shallowRef(undefined) },
   )
 

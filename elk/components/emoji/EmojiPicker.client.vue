@@ -3,11 +3,12 @@ import type { Picker } from 'emoji-mart'
 import importEmojiLang from 'virtual:emoji-mart-lang-importer'
 
 const { hideCustomEmojis } = defineProps<{ hideCustomEmojis?: boolean }>()
-
 const emit = defineEmits<{
   (e: 'select', code: string): void
   (e: 'selectCustom', image: any): void
 }>()
+
+const model = defineModel<undefined | boolean>({ default: undefined })
 
 const { locale } = useI18n()
 
@@ -56,6 +57,8 @@ function hideEmojiPicker() {
 <template>
   <CommonTooltip :content="$t('tooltip.add_emojis')">
     <VDropdown
+      :shown="model"
+      :triggers="model !== undefined ? [] : undefined"
       auto-boundary-max-size
       @apply-show="openEmojiPicker()"
       @apply-hide="hideEmojiPicker()"

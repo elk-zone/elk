@@ -7,6 +7,8 @@ const { toggleReact } = defineProps<
   }
 >()
 
+const shown = ref(false)
+
 function reactEmoji(v: string) {
   toggleReact({
     shortcode: v,
@@ -14,6 +16,7 @@ function reactEmoji(v: string) {
     url: '',
     visibleInPicker: true,
   })
+  shown.value = false
 }
 
 function reactCustomEmoji(v: { 'src': string, 'data-emoji-id': string }) {
@@ -23,12 +26,17 @@ function reactCustomEmoji(v: { 'src': string, 'data-emoji-id': string }) {
     staticUrl: v.src,
     visibleInPicker: true,
   })
+  shown.value = false
+}
+
+function toggle() {
+  shown.value = !shown.value
 }
 </script>
 
 <template>
-  <EmojiPicker @select="reactEmoji" @select-custom="reactCustomEmoji">
-    <button class="hover:bg-purple/10 rounded-full p-1">
+  <EmojiPicker v-model="shown" @select="reactEmoji" @select-custom="reactCustomEmoji">
+    <button class="hover:bg-purple/10 rounded-full p-1" @click="toggle()">
       <div flex items-center justify-center class="w-[25px] h-[25px] text-[25px]">
         ➕
       </div>

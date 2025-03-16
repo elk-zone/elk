@@ -1,5 +1,8 @@
 import { rm } from 'node:fs/promises'
 import { addImports, addImportsSources, addPlugin, createResolver, defineNuxtModule, useNuxt } from '@nuxt/kit'
+import { resolveModulePath } from 'exsolve'
+
+const mockProxy = resolveModulePath('mocked-exports/proxy', { from: import.meta.url })
 
 export default defineNuxtModule({
   meta: {
@@ -20,8 +23,8 @@ export default defineNuxtModule({
 
     nuxt.options.alias = {
       ...nuxt.options.alias,
-      'unstorage/drivers/fs': 'unenv/runtime/mock/proxy',
-      'unstorage/drivers/cloudflare-kv-http': 'unenv/runtime/mock/proxy',
+      'unstorage/drivers/fs': mockProxy,
+      'unstorage/drivers/cloudflare-kv-http': mockProxy,
       '#storage-config': resolve('./runtime/storage-config'),
       'node:events': 'unenv/runtime/node/events/index',
       '#build-info': resolve('./runtime/build-info'),

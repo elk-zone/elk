@@ -185,11 +185,6 @@ html {
   --at-apply: bg-base text-base;
 }
 
-html:not(.enable-pinch-to-zoom) body {
-  /* Prevent arbitrary zooming on mobile devices */
-  touch-action: pan-x pan-y;
-}
-
 .sparkline--fill {
   fill: var(--c-primary-active);
   opacity: 0.2;

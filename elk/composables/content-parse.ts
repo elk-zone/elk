@@ -414,7 +414,7 @@ function transformHashtagLink(node: Node) {
   if (tagMatch) {
     const tag = tagMatch[1]
     node.attributes.href = `/${currentServer.value}/tags/${tag}`
-    node.children = [h('span', { 'data-type': 'hashtag', 'data-id': tag }, `#${tag}`)]
+    node.children = [h('span', { 'data-type': 'hashtag', 'data-id': tag }, ...node.children)]
   }
   return node
 }

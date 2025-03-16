@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.52 (2025-03-16)
+
+
+### Bug Fixes
+
+* remove slow scroll ([77f8e04](https://github.com/BDX-town/elk/commit/77f8e043d70ab5638d50b44b628b1661ce4f70ff))
+
 ## 0.15.51 (2025-03-16)
 
 ## 0.15.50 (2025-03-16)

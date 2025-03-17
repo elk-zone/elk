@@ -40,7 +40,7 @@ function refreshThemes() {
     return
   const dark = colorMode.preference === 'dark' || (colorMode.preference === 'system' && media.value)
   const newThemes = dark ? themes.value.get('dark')! : themes.value.get('light')!
-  const key = settings.value.themeColors?.['--theme-color-name'] || THEME_COLORS.defaultTheme
+  const key = settings.value.themeColors?.['--theme-color-name'] || themes.value?.get('light')?.[0][0] || THEME_COLORS.defaultTheme
   for (const [k, theme] of newThemes) {
     if (k === key) {
       settings.value.themeColors = theme
@@ -53,7 +53,7 @@ function refreshThemes() {
 watch(() => colorMode.preference, refreshThemes, { immediate: true, flush: 'post' })
 watch(themes, refreshThemes, { immediate: true, flush: 'post' })
 
-const currentTheme = computed(() => settings.value.themeColors?.['--theme-color-name'] || THEME_COLORS.defaultTheme)
+const currentTheme = computed(() => settings.value.themeColors?.['--theme-color-name'] || themes.value?.get('light')?.[0][0] || THEME_COLORS.defaultTheme)
 
 function updateTheme(theme: ThemeColors) {
   settings.value.themeColors = theme

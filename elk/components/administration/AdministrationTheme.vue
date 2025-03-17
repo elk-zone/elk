@@ -1,4 +1,6 @@
 <script setup lang="tsx">
+import { getThemeColors } from '~/scripts/generate-themes'
+
 const isLoading = ref(false)
 
 const { config, update } = useFrontendConfig('pleroma-config-theme')
@@ -10,16 +12,16 @@ function rgbToHex(rgb: string) {
   return `#${(1 << 24 | Number.parseInt(result[1], 10) << 16 | Number.parseInt(result[2], 10) << 8 | Number.parseInt(result[3], 10)).toString(16).slice(1)}`
 }
 
-function hexToRgb(hex: string) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-  return result
-    ? {
-        r: Number.parseInt(result[1], 16),
-        g: Number.parseInt(result[2], 16),
-        b: Number.parseInt(result[3], 16),
-      }
-    : null
-}
+// function hexToRgb(hex: string) {
+//   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+//   return result
+//     ? {
+//         r: Number.parseInt(result[1], 16),
+//         g: Number.parseInt(result[2], 16),
+//         b: Number.parseInt(result[3], 16),
+//       }
+//     : null
+// }
 
 function convert(theme: ThemeColors | undefined) {
   if (!theme)
@@ -42,32 +44,25 @@ async function save(e: Event) {
   if (!config.value)
     return
   const data = new FormData(e.target as HTMLFormElement)
-  let theme = data.keys().reduce((acc, curr) => {
-    return {
-      ...acc,
-      [curr]: data.get(curr),
-    }
-  }, {}) as ThemeColors
-  const themeName = theme['--rgb-primary']
-  theme['--theme-color-name'] = themeName
-  const rgb = hexToRgb(theme['--rgb-primary']) as { r: number, g: number, b: number }
-  theme['--rgb-primary'] = `${rgb.r}, ${rgb?.g}, ${rgb?.b}`
-  theme['--c-primary'] = 'rgb(var(--rgb-primary))'
-  const rgbDark = hexToRgb(theme['--rgb-dark-primary']) as { r: number, g: number, b: number }
-  theme['--rgb-dark-primary'] = `${rgbDark.r}, ${rgbDark?.g}, ${rgbDark?.b}`
-  theme['--c-dark-primary'] = 'rgb(var(--rgb-dark-primary))'
-
   // others colors do not seem to be usefull for now but let's keep everything there
   // and copy values for now
-  theme = {
-    ...theme,
-    '--c-primary-active': theme['--c-primary'],
-    '--c-primary-light': theme['--c-primary'],
-    '--c-primary-fade': theme['--c-primary'],
-    '--c-dark-primary-active': theme['--c-dark-primary'],
-    '--c-dark-primary-light': theme['--c-dark-primary'],
-    '--c-dark-primary-fade': theme['--c-dark-primary'],
-  }
+  // let theme = data.keys().reduce((acc, curr) => {
+  //   return {
+  //     ...acc,
+  //     [curr]: data.get(curr),
+  //   }
+  // }, {}) as ThemeColors
+  // const themeName = theme['--rgb-primary']
+  // theme['--theme-color-name'] = themeName
+  // const rgb = hexToRgb(theme['--rgb-primary']) as { r: number, g: number, b: number }
+  // theme['--rgb-primary'] = `${rgb.r}, ${rgb?.g}, ${rgb?.b}`
+  // theme['--c-primary'] = 'rgb(var(--rgb-primary))'
+  // const rgbDark = hexToRgb(theme['--rgb-dark-primary']) as { r: number, g: number, b: number }
+  // theme['--rgb-dark-primary'] = `${rgbDark.r}, ${rgbDark?.g}, ${rgbDark?.b}`
+  // theme['--c-dark-primary'] = 'rgb(var(--rgb-dark-primary))'
+  const theme = getThemeColors(data.get('--rgb-primary') as string)
+  const themeName = data.get('--rgb-primary') as string
+
   update({ ...config.value, theme: [themeName, theme] }, isLoading)
 }
 
@@ -108,15 +103,15 @@ function remove() {
           <CommonColorPicker v-model="theme['--c-primary-fade']" mt-1 required name="--c-primary-fade" />
         </label> -->
       </div>
-      <div flex flex-col gap-2 grow>
+      <!-- <div flex flex-col gap-2 grow>
         <h3 flex gap-1 items-center>
           <div i-ri:moon-line /> {{ $t('admin.theme.dark-mode') }}
         </h3>
         <label>
-          <!-- {{ $t('admin.theme.primary') }} -->
+          {{ $t('admin.theme.primary') }}
           <CommonColorPicker v-model="theme['--rgb-dark-primary']" mt-1 required name="--rgb-dark-primary" />
         </label>
-        <!-- <label>
+        <label>
           {{ $t('admin.theme.active') }}
           <CommonColorPicker v-model="theme['--c-dark-primary-active']" mt-1 required name="--c-dark-primary-active" />
         </label>
@@ -127,8 +122,8 @@ function remove() {
         <label>
           {{ $t('admin.theme.fade') }}
           <CommonColorPicker v-model="theme['--c-dark-primary-fade']" mt-1 required name="--c-dark-primary-fade" />
-        </label> -->
-      </div>
+        </label>
+      </div> -->
     </div>
     <div flex gap-3 justify-end>
       <button

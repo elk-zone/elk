@@ -14,7 +14,6 @@ const emit = defineEmits<{
 const { client } = useAkko()
 
 const step = ref('selectCategory')
-const serverRules = ref((await client.value.v2.instance.fetch()).rules || [])
 const reportReason = ref('')
 const selectedRuleIds = ref([])
 const availableStatuses = ref(status ? [status] : [])
@@ -123,26 +122,6 @@ function resetModal() {
         <p pl-6>
           {{ $t('report.spam_desc') }}
         </p>
-      </div>
-
-      <div v-if="serverRules.length > 0">
-        <input id="violation" v-model="reportReason" type="radio" value="violation">
-        <label pl-2 for="violation" font-bold>{{ $t('report.violation') }}</label>
-        <p v-if="reportReason === 'violation'" pl-6 pt-2 text-primary font-bold>
-          {{ $t('report.select_many') }}
-        </p>
-        <ul pl-6>
-          <li v-for="rule in serverRules" :key="rule.id" pt-2>
-            <input
-              :id="rule.id"
-              v-model="selectedRuleIds"
-              type="checkbox"
-              :value="rule.id"
-              :disabled="reportReason !== 'violation'"
-            >
-            <label pl-2 :for="rule.id">{{ rule.text }}</label>
-          </li>
-        </ul>
       </div>
 
       <div>

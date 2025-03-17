@@ -99,6 +99,7 @@
     "theme": {
       "active": "Active",
       "dark-mode": "Dark Mode",
+      "description": "You can choose a theme color for the instance. This color will be visible by default to users and will appear as an additional option in the interface settings.",
       "fade": "Fade",
       "light": "Light",
       "light-mode": "Light Mode",

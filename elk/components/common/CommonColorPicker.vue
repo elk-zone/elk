@@ -19,6 +19,7 @@ const model = defineModel<string>()
       placeholder-text-secondary
       input-base
       w-auto
+      grow
     >
   </div>
 </template>

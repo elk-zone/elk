@@ -17,8 +17,9 @@ useHydratedHead({
         <div i-ri:admin-line />
         <span>{{ $t('nav.admin') }}</span>
       </div>
-      <div>
+      <div flex flex-col gap-4>
         <AdministrationTheme />
+        <hr>
         <AdministrationLinks />
       </div>
     </div>

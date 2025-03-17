@@ -92,6 +92,7 @@
     "theme": {
       "active": "Actif",
       "dark-mode": "Mode sombre",
+      "description": "Vous pouvez choisir une couleur de thème pour l'instance. Cette couleur sera visible par défaut pour les utilisateurs et apparaitra comme option supplémentaire dans les paramètres d'interface",
       "fade": "Fade",
       "light": "Light",
       "light-mode": "Mode lumineux",

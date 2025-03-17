@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.53 (2025-03-17)
+
+
+### Bug Fixes
+
+* better color settings and generation ([1ea26bc](https://github.com/BDX-town/elk/commit/1ea26bc5170deb0f1a35e441218f4a75470a2b33))
+
 ## 0.15.52 (2025-03-16)
 
 

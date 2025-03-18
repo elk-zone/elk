@@ -1,4 +1,4 @@
-import proxy from 'unenv/runtime/mock/proxy'
+import proxy from 'mocked-exports/proxy'
 
 export const lt = proxy
 export const gt = proxy

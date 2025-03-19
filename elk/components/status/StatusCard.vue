@@ -7,6 +7,7 @@ const { actions = true, older, newer, hasOlder, hasNewer, main, ...props } = def
   context?: akkoma.v2.FilterContext
   hover?: boolean
   inNotification?: boolean
+  inQuote?: boolean
   isPreview?: boolean
 
   // If we know the prev and next status in the timeline, we can simplify the card
@@ -151,7 +152,7 @@ const forceShow = ref(false)
       </template>
       <template v-else>
         <!-- Avatar -->
-        <div relative>
+        <div v-if="!inQuote" relative>
           <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
             <div i-ri:repeat-fill text-green w-16px h-16px />
           </div>

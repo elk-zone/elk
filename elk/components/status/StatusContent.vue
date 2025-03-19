@@ -70,12 +70,19 @@ const allowEmbeddedMedia = computed(() => status.card?.html && embeddedMediaPref
         :status="status.reblog" border="~ rounded"
         :actions="false"
       />
-      <StatusCard
+      <div
         v-if="status.quote"
-        :status="status.quote"
-        :actions="false"
-        class="bg-card rounded"
-      />
+        bg-card rounded-md
+      >
+        <div pt-2 pl-2>
+          <div text-secondary i-ri:double-quotes-l />
+        </div>
+        <StatusCard
+          :status="status.quote"
+          :actions="false"
+          :in-quote="true"
+        />
+      </div>
     </StatusSpoiler>
   </div>
 </template>

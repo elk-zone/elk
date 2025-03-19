@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.54 (2025-03-19)
+
+
+### Bug Fixes
+
+* prevent quoted post to waste space because of quoted user's avatar ([c7decbf](https://github.com/BDX-town/elk/commit/c7decbf51feecd0cb184d15eafa4a54df39df01e))
+
 ## 0.15.53 (2025-03-17)
 
 

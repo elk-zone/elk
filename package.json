@@ -93,7 +93,7 @@
     "page-lifecycle": "^0.1.2",
     "pinia": "^2.3.1",
     "postcss-nested": "^7.0.0",
-    "prosemirror-highlight": "^0.12.0",
+    "prosemirror-highlight": "^0.13.0",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "shiki": "^1.22.2",
     "simple-git": "^3.19.1",

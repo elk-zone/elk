@@ -76,18 +76,7 @@ async function copyToClipboard() {
       <caption>
         <div>You can see the detail (missing and outdated keys) by clicking on the corresponding row.</div>
         <div>
-          If you want to send a PR, click on <strong>Edit</strong> link on the corresponding translation file, it will open <strong>Codeflow</strong>:
-          <NuxtLink
-            class="inline"
-            target="_blank"
-            href="https://developer.stackblitz.com/codeflow/working-in-codeflow-ide#making-a-pr-with-codeflow-ide"
-            title="How to make a PR with Codeflow IDE (opens in new window)"
-          >
-            read the following guide
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M5 21q-.825 0-1.413-.587Q3 19.825 3 19V5q0-.825.587-1.413Q4.175 3 5 3h7v2H5v14h14v-7h2v7q0 .825-.587 1.413Q19.825 21 19 21Zm4.7-5.3l-1.4-1.4L17.6 5H14V3h7v7h-2V6.4Z" />
-            </svg>
-          </NuxtLink>
+          If you want to send a PR, click on <strong>Edit</strong> link on the corresponding translation file, it will open the translation file in GitHub
         </div>
       </caption>
       <thead>
@@ -128,10 +117,10 @@ async function copyToClipboard() {
               </td>
               <td>
                 <NuxtLink
-                  :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${useFile}`"
+                  :href="`https://github.com/elk-zone/elk/tree/main/locales/${useFile}`"
                   target="_blank"
-                  class="codeflow"
-                  title="Raise a PR with Codeflow (opens in new window)"
+                  class="edit-in-github"
+                  title="Edit Translation File (opens in new window)"
                   @click.stop
                 >
                   Edit
@@ -154,10 +143,10 @@ async function copyToClipboard() {
               <td><strong>{{ `${total}` }}</strong></td>
               <td>
                 <NuxtLink
-                  :href="`https://pr.new/github.com/elk-zone/elk/tree/main/locales/${useFile}`"
+                  :href="`https://github.com/elk-zone/elk/tree/main/locales/${useFile}`"
                   target="_blank"
-                  class="codeflow"
-                  title="Raise a PR with Codeflow (opens in new window)"
+                  class="edit-in-github"
+                  title="Edit Translation File (opens in new window)"
                   @click.stop
                 >
                   Edit
@@ -255,7 +244,7 @@ tr.expandable, tr.expandable td {
   cursor: pointer;
 }
 
-a.codeflow,
+a.edit-in-github,
 a.inline,
 td.expandable div {
   display: flex;

@@ -7,6 +7,8 @@
     "route_loaded": "Pagina {0} geladen"
   },
   "account": {
+    "authorize": "Autoriseer",
+    "authorized": "Geautoriseerd",
     "avatar_description": "{0}'s avatar",
     "blocked_by": "Je bent geblokkeerd door deze gebruiker.",
     "blocked_domains": "Geblokkeerde domeinen",
@@ -95,9 +97,24 @@
   "common": {
     "end_of_list": "Einde van de lijst",
     "error": "FOUT",
+    "fetching": "Ophalen...",
     "in": "in",
+    "no_bookmarks": "Geen bladwijzers",
+    "no_favourites": "Geen favorieten",
     "not_found": "404 Niet Gevonden",
     "offline_desc": "Zo te zien ben je offline. Controleer je internet verbinding."
+  },
+  "compose": {
+    "drafs": "Concepten",
+    "draft_title": "Concept"
+  },
+  "confirm": {
+    "delete_list": {
+      "cancel": "Annuleren",
+      "confirm": "Verwijderen",
+      "description": "Weet je zeker dat je de lijst '{0}' wilt verwijderen?",
+      "title": "Verwijder lijst"
+    }
   },
   "conversation": {
     "with": "met"
@@ -123,20 +140,41 @@
   "language": {
     "search": "Opzoeken"
   },
+  "list": {
+    "add_account": "Voeg account toe",
+    "cancel_edit": "Annuleren",
+    "clear_error": "Wis error",
+    "create": "Toevoegen",
+    "delete": "Verwijderen",
+    "delete_error": "Verwijder fout",
+    "edit": "Aanpassen",
+    "edit_error": "Aanpassen fout",
+    "error": "Fout",
+    "list_title_placeholder": "Titel",
+    "manage": "Beheer",
+    "modify_account": "Pas account aan",
+    "remove_account": "Verwijder account",
+    "save": "Opslaan"
+  },
   "menu": {
+    "add_personal_note": "Voeg persoonlijke notitie toe",
     "block_account": "Blokkeer {0}",
     "block_domain": "Blokkeer domein {0}",
     "copy_link_to_post": "Kopieer link naar deze post",
+    "copy_original_link_to_post": "Kopieer originele link naar deze post",
     "delete": "Verwijder",
     "delete_and_redraft": "Verwijder & Opnieuw opstellen",
     "direct_message_account": "Direct bericht naar {0}",
     "edit": "Aanpassen",
+    "hide_reblogs": "Verberg herblogs",
     "mention_account": "Noem {0}",
     "mute_account": "Demp {0}",
     "mute_conversation": "Demp deze post",
     "open_in_original_site": "Open in originele site",
     "pin_on_profile": "Pin op profiel",
+    "report_account": "Rapporteer {0}",
     "share_post": "Deel deze post",
+    "show_favourited_and_boosted_by": "Toon wie deze post leuk vindt en geboost heeft",
     "show_untranslated": "Laat onvertaalde versie zien",
     "toggle_theme": {
       "dark": "Donkere modus wisselen",
@@ -157,6 +195,7 @@
     "favourites": "Favorieten",
     "federated": "Gefedereerd",
     "home": "Home",
+    "lists": "Lijsten",
     "local": "Lokaal",
     "notifications": "Meldingen",
     "profile": "Profiel",
@@ -174,7 +213,7 @@
     "followed_you": "volgt jou",
     "followed_you_count": "{0} mensen hebben je gevolgd|{0} persoon heeft je gevold|{0} mensen hebben je gevolgd",
     "missing_type": "MISSEND notificatie.type:",
-    "reblogged_post": "herblogt je post",
+    "reblogged_post": "boost je post",
     "request_to_follow": "vraagt om jou te volgen",
     "signed_up": "ingeschreven",
     "update_status": "heeft hun post aangepast"
@@ -185,11 +224,47 @@
     "reply_to_account": "Reageer op {0}",
     "replying": "Reageren"
   },
+  "polls": {
+    "allow_multiple": "Multiple choice",
+    "cancel": "Annuleren",
+    "create": "Peiling maken",
+    "disallow_multiple": "Eén optie kiezen",
+    "expiration": "Vervaldatum",
+    "hide_votes": "Stemmen verbergen",
+    "option_placeholder": "Optie {current}/{max}",
+    "remove_option": "Verwijder optie",
+    "settings": "Instellingen",
+    "show_votes": "Stemmen tonen"
+  },
   "pwa": {
     "dismiss": "Afwijzen",
+    "install": "Installeren",
+    "install_title": "Elk installeren",
     "title": "Er is een nieuwe Elk update!",
-    "update": "Update",
-    "update_available_short": "Update Elk"
+    "update": "Bijwerken",
+    "update_available_short": "Elk bijwerken",
+    "webmanifest": {
+      "canary": {
+        "description:": "Een vlotte Mastodon web client (canary versie)",
+        "name": "Elk (canary)",
+        "short_name": "Elk (canary)"
+      },
+      "dev": {
+        "description:": "Een vlotte Mastodon web client (dev versie)",
+        "name": "Elk (dev)",
+        "short_name": "Elk (dev)"
+      },
+      "preview": {
+        "description:": "Een vlotte Mastodon web client (preview versie)",
+        "name": "Elk (preview)",
+        "short_name": "Elk (preview)"
+      },
+      "release": {
+        "description:": "Een vlotte Mastodon web client",
+        "name": "Elk",
+        "short_name": "Elk"
+      }
+    }
   },
   "search": {
     "search_desc": "Zoek naar mensen & hashtags",
@@ -197,19 +272,33 @@
   },
   "settings": {
     "about": {
-      "label": "Over"
+      "built_at": "Gebouwd",
+      "label": "Over",
+      "meet_the_team": "Ontmoet het team",
+      "sponsor_action": "Sponsor ons",
+      "sponsor_action_desc": "Steun de ontwikkeling van Elk",
+      "sponsors": "Sponsors",
+      "version": "Versie"
+    },
+    "account_settings": {
+      "description": "Bewerk je account instellingen bij je mastodon server",
+      "label": "Account Instellingen"
     },
     "interface": {
       "color_mode": "Kleur Modus",
       "dark_mode": "Donkere Modus",
       "default": " (standaard)",
-      "font_size": "Letter Grootte",
+      "font_size": "Lettergrootte",
       "label": "Interface",
-      "light_mode": "Lichte Modus"
+      "light_mode": "Lichte Modus",
+      "system_mode": "Systeem Modus",
+      "theme_color": "Thema Kleur"
     },
     "language": {
       "display_language": "Weergave taal",
+      "how_to_contribute": "Hoe kan ik bijdragen aan vertalingen?",
       "label": "Taal",
+      "post_language": "Taal van posts",
       "status": "Vertalingsstatus: {0}/{1} ({2}%)",
       "translations": {
         "add": "Toevoegen",
@@ -230,7 +319,7 @@
           "follow": "Nieuwe volgers",
           "mention": " Vermeldingen",
           "poll": "Peilingen",
-          "reblog": "Herblogt jou post",
+          "reblog": "Boost jouw post",
           "title": "Welke notificaties wil je krijgen?"
         },
         "description": "Ontvang meldingen zelfs wanneer je Elk niet gebruikt.",
@@ -243,19 +332,24 @@
           "none": "Van niemand",
           "title": "Van wie kan ik meldingen krijgen?"
         },
-        "save_settings": "Instellingen aanpassingen opslaan",
+        "save_settings": "Instellingen opslaan",
         "subscription_error": {
           "clear_error": "Wis error",
           "permission_denied": "Geen toestemming: zet notificaties aan in je browser.",
-          "request_error": "Er is een error tijdens het ophalen van het abonnement, probeer opnieuw en als de error blijft, raporteer het probleem naar de Elk repository.",
-          "title": "Kon niet abonneren op de pushnotificaties"
+          "repo_link": "Elk repository op GitHub",
+          "request_error": "Er is een fout opgetreden tijdens het ophalen van het abonnement, probeer opnieuw en als de error blijft, raporteer het probleem naar de Elk repository.",
+          "title": "Kon niet abonneren op de pushnotificaties",
+          "too_many_registrations": "Te veel registraties: je hebt te veel apparaten geregistreerd voor pushnotificaties. Verwijder een paar apparaten en probeer het opnieuw.",
+          "vapid_not_supported": "VAPID wordt niet ondersteund: je browser ondersteunt geen pushnotificaties. Probeer een andere browser."
         },
+        "title": "Pushnotificaties",
         "undo_settings": "Veranderde instellingen ongedaan maken",
         "unsubscribe": "Zet pushnotificaties uit",
         "unsupported": "Je browser ondersteunt geen pushnotificaties.",
         "warning": {
           "enable_close": "Sluit",
           "enable_description": "Om meldingen te krijgen terwijl Elk niet actief is, zet pushnotificaties aan. Je kan precies instellen wat voor type interacties pushnotificaties genereren via de \"@:notification.settings.show_btn{'\"'} knop hierboven wanneer ze aan staan.",
+          "enable_description_desktop": "Om meldingen te ontvangen wanneer Elk niet actief is, schakel pushnotificaties in. Je kunt precies instellen welke soorten interacties pushnotificaties genereren in dit venster zodra je ze hebt inschakelt.",
           "enable_description_settings": "Om meldingen te ontvangen wanneer Elk niet actief is, schakel pushnotificaties in. Je kunt precies instellen welke soorten interacties pushnotificaties genereren in dit venster zodra je ze hebt inschakelt.",
           "enable_desktop": "Zet pushnotificaties aan",
           "enable_title": "Mis niets",
@@ -266,6 +360,7 @@
     },
     "notifications_settings": "Meldingen",
     "preferences": {
+      "hide_translation": "Vertaling verbergen",
       "label": "Voorkeuren"
     },
     "profile": {
@@ -313,6 +408,7 @@
       "ends": "eindigt {0}",
       "finished": "geëindigd {0}"
     },
+    "replying_to": "Antwoord aan {0}",
     "someone": "Iemand",
     "spoiler_show_less": "Minder zien",
     "spoiler_show_more": "Meer zien",
@@ -378,14 +474,21 @@
   },
   "tooltip": {
     "add_content_warning": "Voeg inhoud waarschuwing toe",
+    "add_emojis": "Voeg emojis toe",
     "add_media": "Voeg fotos, een video of een audio bestand toe",
+    "add_publishable_content": "Voeg publiceerbare inhoud toe",
+    "add_thread_item": "Voeg een item toe aan het draadje",
     "change_content_visibility": "Verander inhoud zichtbaarheid",
     "change_language": "Verander taal",
     "emoji": "Emoji",
     "explore_links_intro": "Over deze nieuws artikelen wordt veel gepraat op deze en anderen servers op het decentralized network op dit moment.",
     "explore_posts_intro": "Deze posts van deze en andere servers op het decentralized network krijgen veel aandacht op deze server op dit moment.",
     "explore_tags_intro": "Deze hashtags krijgen veel aandacht op dit moment op deze en andere servers op het decentralized network.",
-    "toggle_code_block": "Zet code blok aan/uit"
+    "open_editor_tools": "Opmaak",
+    "remove_thread_item": "Verwijder item uit draadje",
+    "toggle_bold": "Zet vet aan/uit",
+    "toggle_code_block": "Zet code blok aan/uit",
+    "toggle_italic": "Zet cursief aan/uit"
   },
   "user": {
     "add_existing": "Voeg een bestaand account toe",

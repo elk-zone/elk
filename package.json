@@ -143,7 +143,7 @@
     "simple-git-hooks": "^2.11.1",
     "tsx": "^4.19.2",
     "typescript": "^5.4.4",
-    "vitest": "3.0.8",
+    "vitest": "3.0.9",
     "vue-tsc": "^2.1.6"
   },
   "pnpm": {
@@ -154,7 +154,7 @@
   "resolutions": {
     "nuxt-component-meta": "0.10.0",
     "unstorage": "^1.15.0",
-    "vitest": "3.0.8",
+    "vitest": "3.0.9",
     "vue": "^3.5.4"
   },
   "simple-git-hooks": {

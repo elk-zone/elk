@@ -617,7 +617,7 @@
     "filter_show_anyway": "Laat toch zien",
     "gif": "GIF",
     "img_alt": {
-      "alt": "ALT",
+      "ALT": "ALT",
       "desc": "Omschrijving",
       "dismiss": "Afwijzen",
       "read": "Lees de ALT tekst {0}"

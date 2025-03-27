@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { SearchResult } from '~/composables/masto/search'
 
-defineProps<{
+const { showActions = false } = defineProps<{
   result: SearchResult
   active: boolean
+  showActions?: boolean
 }>()
 
 function onActivate() {
@@ -23,7 +24,7 @@ function onActivate() {
   >
     <SearchHashtagInfo v-if="result.type === 'hashtag'" :hashtag="result.data" />
     <SearchAccountInfo v-else-if="result.type === 'account'" :account="result.data" />
-    <StatusCard v-else-if="result.type === 'status'" :status="result.data" :actions="false" :show-reply-to="false" />
+    <StatusCard v-else-if="result.type === 'status'" :status="result.data" :actions="showActions" :show-reply-to="showActions" />
     <!-- <div v-else-if="result.type === 'action'" text-center>
       {{ result.action!.label }}
     </div> -->

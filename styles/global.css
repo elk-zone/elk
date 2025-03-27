@@ -127,6 +127,7 @@ em-emoji-picker {
 
 .line-compact {
   line-height: calc(4 / 3 * 1em);
+  white-space: normal;
 }
 
 .content-editor {

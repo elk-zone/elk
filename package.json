@@ -126,7 +126,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/wicg-file-system-access": "^2023.10.5",
     "@types/ws": "^8.18.0",
-    "@unlazy/nuxt": "^0.12.3",
+    "@unlazy/nuxt": "^0.12.4",
     "@unocss/eslint-config": "^66.0.0",
     "@vue/test-utils": "2.4.6",
     "bumpp": "^10.1.0",

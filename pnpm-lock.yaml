@@ -294,8 +294,8 @@ importers:
         specifier: ^8.18.0
         version: 8.18.0
       '@unlazy/nuxt':
-        specifier: ^0.12.3
-        version: 0.12.3(magicast@0.3.5)
+        specifier: ^0.12.4
+        version: 0.12.4(magicast@0.3.5)
       '@unocss/eslint-config':
         specifier: ^66.0.0
         version: 66.0.0(eslint@9.22.0(jiti@2.4.2))(typescript@5.7.3)
@@ -2983,11 +2983,11 @@ packages:
     peerDependencies:
       vue: ^3.5.4
 
-  '@unlazy/core@0.12.3':
-    resolution: {integrity: sha512-YApNfNBxpNjIDfXclHWmdiwZbRpZL0lQbSdUyClGau9evWrjMvsl4fPgQInlJ23GYbnjDCfl4TLWst9YbQOSSg==}
+  '@unlazy/core@0.12.4':
+    resolution: {integrity: sha512-0hmw+g06Xmr33bSGnPPlc8Mt4Q1dOHe0IE+bF7KcPbiyTEX4GlsFmAm29uXr/Nv3L3HaB1Wq7Js0ik9mEAJhJA==}
 
-  '@unlazy/nuxt@0.12.3':
-    resolution: {integrity: sha512-0O5EMdUwzju5ds11guQKj3tz8PEZgYh55zKMEnyIDYdEwPG5jUzUCCd/lJg+7FSf0ELienrnjVNXt1hsiGsziA==}
+  '@unlazy/nuxt@0.12.4':
+    resolution: {integrity: sha512-Y0ScLYYOeZ94pnohvGa1I9u4/6c+QfzsG8ZPJY9PjnBaItTaDGQdxQ6D21luP2wsCFKcXihHHBOjOmlhCuWiXQ==}
 
   '@unocss/astro@0.65.4':
     resolution: {integrity: sha512-ex1CJOQ6yeftBEPcbA9/W47/YoV+mhQnrAoc8MA1VVrvvFKDitICFU62+nSt3NWRe53XL/fXnQbcbCb8AAgKlA==}
@@ -7702,8 +7702,8 @@ packages:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
 
-  unlazy@0.12.3:
-    resolution: {integrity: sha512-v+Q9A5enT3csqxwCkjYPNlpMc9CKi26mdMqeQEotPW4/Z6RbzbeGaqi78FYkD5XoP6nGagmA6GtU7JFmUotp7w==}
+  unlazy@0.12.4:
+    resolution: {integrity: sha512-fdx0Fmz2DYuxWkcUWFAUZBMRzN3gsRL9m/t2eE2UI2BoefFUwxLgC0ApYswwgYwZjwBaA1asnvwwYfnx2cEEcw==}
 
   unocss@0.65.4:
     resolution: {integrity: sha512-KUCW5OzI20Ik6j1zXkkrpWhxZ59TwSKl6+DvmYHEzMfaEcrHlBZaFSApAoSt2CYSvo6SluGiKyr+Im1UTkd4KA==}
@@ -11381,13 +11381,13 @@ snapshots:
       unhead: 2.0.0-rc.13
       vue: 3.5.13(typescript@5.7.3)
 
-  '@unlazy/core@0.12.3': {}
+  '@unlazy/core@0.12.4': {}
 
-  '@unlazy/nuxt@0.12.3(magicast@0.3.5)':
+  '@unlazy/nuxt@0.12.4(magicast@0.3.5)':
     dependencies:
       '@nuxt/kit': 3.16.1(magicast@0.3.5)
       defu: 6.1.4
-      unlazy: 0.12.3
+      unlazy: 0.12.4
     transitivePeerDependencies:
       - magicast
 
@@ -17640,9 +17640,9 @@ snapshots:
 
   universalify@2.0.0: {}
 
-  unlazy@0.12.3:
+  unlazy@0.12.4:
     dependencies:
-      '@unlazy/core': 0.12.3
+      '@unlazy/core': 0.12.4
 
   unocss@0.65.4(@unocss/webpack@0.65.4(rollup@2.79.1)(webpack@5.89.0(esbuild@0.23.1)))(postcss@8.5.3)(rollup@2.79.1)(vite@6.2.2(@types/node@22.13.10)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.0))(vue@3.5.13(typescript@5.7.3)):
     dependencies:

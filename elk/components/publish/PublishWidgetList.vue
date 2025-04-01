@@ -30,7 +30,7 @@ function isFirstItem(index: number) {
 </script>
 
 <template>
-  <template v-if="isHydrated && currentUser">
+  <div v-if="isHydrated && currentUser" flex flex-col gap-4>
     <PublishWidget
       v-for="(_, index) in threadItems" :key="`${draftKey}-${index}`"
       v-bind="$attrs"
@@ -43,5 +43,5 @@ function isFirstItem(index: number) {
       :in-reply-to-id="isFirstItem(index) ? inReplyToId : undefined"
       :in-reply-to-visibility="inReplyToVisibility"
     />
-  </template>
+  </div>
 </template>

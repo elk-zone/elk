@@ -521,50 +521,52 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
             </PublishVisibilityPicker>
 
             <PublishThreadTools :draft-item-index="draftItemIndex" :draft-key="draftKey" />
-
-            <CommonTooltip
-              v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"
-              :content="$t('tooltip.publish_failed')"
-            >
-              <button
-                btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit
-                aria-describedby="publish-failed-tooltip"
-              >
-                <span block>
-                  <div block i-carbon:face-dizzy-filled />
-                </span>
-                <span>{{ $t('state.publish_failed') }}</span>
-              </button>
-            </CommonTooltip>
-
-            <CommonTooltip
-              v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')"
-              :disabled="!(isPublishDisabled || isExceedingCharacterLimit)"
-            >
-              <button
-                v-if="!threadIsActive || isFinalItemOfThread"
-                btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
-                :aria-disabled="isPublishDisabled || isExceedingCharacterLimit" aria-describedby="publish-tooltip"
-                :disabled="isPublishDisabled || isExceedingCharacterLimit"
-                @click="publish"
-              >
-                <span v-if="isSending" block animate-spin preserve-3d>
-                  <div block i-ri:loader-2-fill />
-                </span>
-                <span v-if="failedMessages.length" block>
-                  <div block i-carbon:face-dizzy-filled />
-                </span>
-                <template v-if="threadIsActive">
-                  <span>{{ $t('action.publish_thread') }} </span>
-                </template>
-                <template v-else>
-                  <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
-                  <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
-                  <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
-                </template>
-              </button>
-            </CommonTooltip>
           </div>
+        </div>
+        <div flex justify-end>
+          <CommonTooltip
+            v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"
+            :content="$t('tooltip.publish_failed')"
+          >
+            <button
+              btn-danger rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit
+              aria-describedby="publish-failed-tooltip"
+            >
+              <span block>
+                <div block i-carbon:face-dizzy-filled />
+              </span>
+              <span>{{ $t('state.publish_failed') }}</span>
+            </button>
+          </CommonTooltip>
+          <CommonTooltip
+            v-else id="publish-tooltip" placement="top" :content="$t('tooltip.add_publishable_content')"
+            :disabled="!(isPublishDisabled || isExceedingCharacterLimit)"
+          >
+            <button
+              v-if="!threadIsActive || isFinalItemOfThread"
+              mt-4
+              btn-solid rounded-3 text-sm w-full flex="~ gap1" items-center md:w-fit class="publish-button"
+              :aria-disabled="isPublishDisabled || isExceedingCharacterLimit" aria-describedby="publish-tooltip"
+              :disabled="isPublishDisabled || isExceedingCharacterLimit"
+              @click="publish"
+            >
+              <span v-if="isSending" block animate-spin preserve-3d>
+                <div block i-ri:loader-2-fill />
+              </span>
+              <span v-if="failedMessages.length" block>
+                <div block i-carbon:face-dizzy-filled />
+              </span>
+              <template v-if="threadIsActive">
+                <span>{{ $t('action.publish_thread') }} </span>
+              </template>
+              <template v-else>
+                <span v-if="draft.editingStatus">{{ $t('action.save_changes') }}</span>
+                <span v-else-if="draft.params.inReplyToId">{{ $t('action.reply') }}</span>
+                <span v-else>{{ !isSending ? $t('action.publish') : $t('state.publishing') }}</span>
+              </template>
+              <span i-ri:send-plane-2-line ml-1 />
+            </button>
+          </CommonTooltip>
         </div>
       </div>
     </div>

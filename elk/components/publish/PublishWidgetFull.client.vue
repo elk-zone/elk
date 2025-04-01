@@ -62,7 +62,7 @@ function firstDraftItemOf(drafts: DraftItem | Array<DraftItem>): DraftItem {
       </VDropdown>
     </div>
     <div>
-      <PublishWidgetList expanded class="min-h-100!" :draft-key="draftKey" />
+      <PublishWidgetList expanded :draft-key="draftKey" />
     </div>
   </div>
 </template>

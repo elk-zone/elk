@@ -327,6 +327,7 @@ export default defineNuxtConfig({
   unlazy: {
     ssr: false,
   },
+  ssr: false,
 })
 
 declare global {

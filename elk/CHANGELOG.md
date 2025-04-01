@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 0.15.57 (2025-04-01)
+
+
+### Bug Fixes
+
+* add space-y between cards to avoid missclick on status when clicking on actions ([098820e](https://github.com/BDX-town/elk/commit/098820ec5f860a633da7aae61c2944c556d8d739))
+
 ## 0.15.56 (2025-04-01)
 
 ## 0.15.55 (2025-04-01)

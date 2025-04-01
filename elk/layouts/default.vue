@@ -38,7 +38,7 @@ const isGrayscale = usePreferences('grayscaleMode')
         <div min-h="[calc(100vh-3.5rem)]" sm:min-h-screen>
           <slot />
         </div>
-        <div sticky left-0 right-0 bottom-0 z-10 pb="[env(safe-area-inset-bottom)]" transition="padding 20">
+        <div sticky left-0 right-0 bottom-0 z-20 pb="[env(safe-area-inset-bottom)]" transition="padding 20">
           <CommonOfflineChecker v-if="isHydrated" />
           <NavButtonCompose v-if="showComposeButton" sm:hidden />
           <NavBottom v-if="isHydrated" sm:hidden bg-base />

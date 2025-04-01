@@ -28,12 +28,12 @@ function composeNavigate() {
 <template>
   <nav sm:px3 flex="~ col gap2" shrink text-size-base leading-normal md:text-lg h-full mt-1 overflow-y-auto>
     <NavSideItem :text="$t('nav.search')" to="/search" icon="i-ri:search-line" xl:hidden :command="command" />
-    <div my-4 />
+    <hr border-neutral-300 dark:border-neutral-700 my-4 xl:hidden>
     <NavSideItem :text="$t('nav.home')" to="/home" icon="i-ri:home-5-line" user-only :command="command" />
     <NavSideItem :text="$t('nav.local')" :to="isHydrated ? `/${currentServer}/public/local` : '/public/local'" icon="i-ri:group-2-line" :command="command" />
     <NavSideItem :text="$t('nav.bubble')" :to="isHydrated ? `/${currentServer}/public/bubble` : '/public/bubble'" icon="i-ri:hexagon-line" :command="command" />
     <NavSideItem :text="$t('nav.federated')" :to="isHydrated ? `/${currentServer}/public` : '/public'" icon="i-ri:fediverse-line" :command="command" />
-    <hr border-gray-700 my-4>
+    <hr border-neutral-300 dark:border-neutral-700 my-4>
     <NavSideItem :text="$t('nav.notifications')" :to="notificationsLink" icon="i-ri:notification-4-line" user-only :command="command">
       <template #icon>
         <div flex relative>
@@ -48,10 +48,10 @@ function composeNavigate() {
     <NavSideItem :text="$t('nav.bookmarks')" to="/bookmarks" icon="i-ri:bookmark-line" user-only :command="command" />
     <NavSideItem :text="$t('nav.lists')" :to="isHydrated ? `/${currentServer}/lists` : '/lists'" icon="i-ri:list-check" user-only :command="command" />
     <NavSideItem :text="$t('nav.hashtags')" to="/hashtags" icon="i-ri:hashtag" user-only :command="command" />
-    <hr border-gray-700 my-4>
+    <hr border-neutral-300 dark:border-neutral-700 my-4>
     <NavSideItem :text="$t('nav.settings')" to="/settings" icon="i-ri:settings-3-line" :command="command" />
     <NavSideItem v-if="currentUser?.account.pleroma.isAdmin" :text="$t('nav.admin')" to="/administration" icon="i-ri:admin-line" :command="command" />
-    <div flex-auto />
+    <div flex-auto shrink-1 />
     <button
       v-if="noUserVisual"
       p3
@@ -59,11 +59,9 @@ function composeNavigate() {
       rounded-xl
       bg-primary
       border-primary
-      flex
       gap-2
       justify-center
-      invisible
-      xl:visible
+      class="hidden xl:flex"
       @click="composeNavigate"
     >
       <div text-xl i-ri:quill-pen-line />

@@ -34,13 +34,6 @@ const isAuthor = computed(() => status.value.account.id === currentUser.value?.a
 
 const { client } = useAkko()
 
-function getPermalinkUrl(status: akkoma.v1.Status) {
-  const url = getStatusPermalinkRoute(status)
-  if (url)
-    return `${location.origin}/${url}`
-  return null
-}
-
 async function copyOriginalLink(status: akkoma.v1.Status) {
   const url = status.url
   if (url)
@@ -48,8 +41,8 @@ async function copyOriginalLink(status: akkoma.v1.Status) {
 }
 
 const { share, isSupported: isShareSupported } = useShare()
-async function shareLink(status: akkoma.v1.Status) {
-  const url = getPermalinkUrl(status)
+async function shareOriginalLink(status: akkoma.v1.Status) {
+  const url = status.url
   if (url)
     await share({ url })
 }
@@ -205,7 +198,7 @@ function showFavoritedAndBoostedBy() {
           :text="$t('menu.share_post')"
           icon="i-ri:share-line"
           :command="command"
-          @click="shareLink(status)"
+          @click="shareOriginalLink(status)"
         />
 
         <CommonDropdownItem

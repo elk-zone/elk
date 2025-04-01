@@ -30,7 +30,7 @@ const vnode = computed(() => {
 </script>
 
 <template>
-  <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }" relative>
+  <div class="status-body" my-2 whitespace-pre-wrap break-words :class="{ 'with-action': withAction }" relative>
     <span
       v-if="status.content"
       class="content-rich line-compact" dir="auto"

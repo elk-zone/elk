@@ -13,6 +13,13 @@ const {
 
 const { translation } = useTranslation(status, getLanguageCode())
 
+const idealHeight = window.screen.height * 0.51
+const root = ref<HTMLElement | null>(null)
+const { height } = useElementSize(root)
+const doCollapseLongStatus = ref(false)
+
+onMounted(() => doCollapseLongStatus.value = height.value > idealHeight)
+
 const emojisObject = useEmojisFallback(() => status.emojis)
 const vnode = computed(() => {
   if (!status.content)
@@ -29,7 +36,10 @@ const vnode = computed(() => {
 </script>
 
 <template>
-  <div class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }" relative>
+  <div
+    ref="root" class="status-body" whitespace-pre-wrap break-words :class="{ 'with-action': withAction }" relative
+    max-h-50vh text-overflow-ellipsis overflow-hidden
+  >
     <span
       v-if="status.content"
       class="content-rich line-compact" dir="auto"
@@ -45,6 +55,10 @@ const vnode = computed(() => {
         Error: {{ translation.error }}
       </div>
     </template>
+
+    <button v-if="doCollapseLongStatus" btn-solid rounded-3 hover:bg-active cursor-pointer href="#">
+      Read more
+    </button>
   </div>
 </template>
 

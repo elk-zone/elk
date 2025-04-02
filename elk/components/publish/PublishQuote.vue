@@ -13,22 +13,25 @@ defineEmits<{
 <template>
   <div relative>
     <template v-if="quote">
-      <div text-right p-2 class="bg-opacity-10 bg-white rounded-t">
+      <div px-2 pt-2 bg-opacity-10 bg-card rounded-t flex justify-between>
+        <div text-secondary i-ri:double-quotes-l />
         <button
+          text-4
           :aria-label="$t('attachment.remove_label')"
-          class="bg-black/75 hover:bg-red/75"
-          text-white px2 py2 rounded-full cursor-pointer
+          class="bg-black/30 hover:bg-black/40"
+          text-white p1 rounded-full cursor-pointer
           @click="$emit('remove')"
         >
-          <div i-ri:close-line text-3 text-6 md:text-3 />
+          <div i-ri:close-line />
         </button>
       </div>
       <StatusCard
-        class="bg-border rounded-b"
+        class="rounded-b bg-card"
         :status="quote"
         :actions="false"
         :hover="false"
         :is-preview="true"
+        :in-quote="true"
       />
     </template>
     <div v-else mx-auto i-ri:loader-2-fill animate-spin />

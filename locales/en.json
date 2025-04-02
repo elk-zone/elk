@@ -4,7 +4,8 @@
     "loading_titled_page": "Loading {0} page, please wait",
     "locale_changed": "Language changed to {0}",
     "locale_changing": "Changing language, please wait",
-    "route_loaded": "Page {0} loaded"
+    "route_loaded": "Page {0} loaded",
+    "skip_navigation": "Skip navigation"
   },
   "account": {
     "authorize": "Authorize to follow",

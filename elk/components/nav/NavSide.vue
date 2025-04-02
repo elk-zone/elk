@@ -7,7 +7,6 @@ defineProps<{
 }>()
 const { notifications } = useNotifications()
 const lastAccessedNotificationRoute = useLocalStorage(STORAGE_KEY_LAST_ACCESSED_NOTIFICATION_ROUTE, '')
-const noUserVisual = computed(() => isHydrated.value && currentUser.value)
 
 const notificationsLink = computed(() => {
   const hydrated = isHydrated.value
@@ -19,10 +18,6 @@ const notificationsLink = computed(() => {
 
   return `/notifications/${lastRoute}`
 })
-
-function composeNavigate() {
-  navigateTo('/compose')
-}
 </script>
 
 <template>
@@ -51,22 +46,6 @@ function composeNavigate() {
     <hr border-neutral-300 dark:border-neutral-700 my-4>
     <NavSideItem :text="$t('nav.settings')" to="/settings" icon="i-ri:settings-3-line" :command="command" />
     <NavSideItem v-if="currentUser?.account.pleroma.isAdmin" :text="$t('nav.admin')" to="/administration" icon="i-ri:admin-line" :command="command" />
-    <div flex-auto shrink-1 />
-    <button
-      v-if="noUserVisual"
-      p3
-      mb5
-      rounded-xl
-      bg-primary
-      border-primary
-      gap-2
-      justify-center
-      class="hidden xl:flex"
-      @click="composeNavigate"
-    >
-      <div text-xl i-ri:quill-pen-line />
-      {{ $t('action.compose') }}
-    </button>
   </nav>
 </template>
 

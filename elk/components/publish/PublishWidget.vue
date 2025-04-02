@@ -523,7 +523,7 @@ function stopQuestionMarkPropagation(e: KeyboardEvent) {
             <PublishThreadTools :draft-item-index="draftItemIndex" :draft-key="draftKey" />
           </div>
         </div>
-        <div flex justify-end>
+        <div v-if="shouldExpanded" flex justify-end>
           <CommonTooltip
             v-if="failedMessages.length > 0" id="publish-failed-tooltip" placement="top"
             :content="$t('tooltip.publish_failed')"

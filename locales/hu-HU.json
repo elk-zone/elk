@@ -639,7 +639,8 @@
     "poll": {
       "count": "{0} szavazat|{0} szavazat|{0} szavazat",
       "ends": "véget ér {0}",
-      "finished": "véget ért {0}"
+      "finished": "véget ért {0}",
+      "update": "Szavazás frissítése"
     },
     "replying_to": "Válasz {0}-nak",
     "show_full_thread": "Teljes szál megjelenítése",
@@ -742,8 +743,8 @@
     "remove_thread_item": "Elem eltávolítása a szálból",
     "start_thread": "Szál megkezdése",
     "toggle_bold": "Váltás félkövérre",
-    "toggle_code_block": "Kódblokk váltása",
-    "toggle_italic": "Váltás dőltbetűssé"
+    "toggle_code_block": "Kódblokkra váltás",
+    "toggle_italic": "Váltás dőltbetűsre"
   },
   "user": {
     "add_existing": "Egy látező fiók hozzáadása",

@@ -6,12 +6,14 @@ useHydratedHead({
   title: () => `${t('settings.about.label')} | ${t('nav.settings')}`,
 })
 
+const commitRef = ref()
 const showCommit = ref(buildInfo.env !== 'release' && buildInfo.env !== 'dev')
 const builtTime = useFormattedDateTime(buildInfo.time)
 
 function handleShowCommit() {
   setTimeout(() => {
     showCommit.value = true
+    nextTick(() => commitRef.value?.focus())
   }, 50)
 }
 </script>
@@ -33,9 +35,12 @@ function handleShowCommit() {
 
     <template v-if="isHydrated">
       <SettingsItem
+        ref="commitRef"
         :text="$t('settings.about.version')"
         :to="showCommit ? `https://github.com/elk-zone/elk/commit/${buildInfo.commit}` : undefined"
-        external target="_blank"
+        external
+        target="_blank"
+        :button="!showCommit"
         @click="handleShowCommit"
       >
         <template #content>
@@ -54,7 +59,9 @@ function handleShowCommit() {
     <SettingsItem
       :text="$t('nav.show_intro')"
       icon="i-ri:article-line"
-      cursor-pointer large
+      cursor-pointer
+      large
+      button
       @click="openPreviewHelp"
     />
 

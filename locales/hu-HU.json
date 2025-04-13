@@ -561,6 +561,7 @@
       "label": "Preferenciák",
       "optimize_for_low_performance_device": "Alacsony teljesítményre optimalizálás",
       "title": "Kísérleti képességek",
+      "unmute_videos": "Videó hangok bekapcsolva alapértelemezésként",
       "use_star_favorite_icon": "Használja a csillag favikont",
       "user_picker": "Felhasználók váltása",
       "user_picker_description": "Megjeleníti a naplózott fiókok összes avatarját a bal alsó sarokban, így gyorsan válthat közöttük.",
@@ -642,7 +643,7 @@
       "finished": "véget ért {0}",
       "update": "Szavazás frissítése"
     },
-    "replying_to": "Válasz {0} nak/nek",
+    "replying_to": "Válasz: {0}",
     "show_full_thread": "Teljes szál megjelenítése",
     "someone": "valaki",
     "spoiler_media_hidden": "Média elrejtve",

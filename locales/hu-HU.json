@@ -642,7 +642,7 @@
       "finished": "véget ért {0}",
       "update": "Szavazás frissítése"
     },
-    "replying_to": "Válasz {0}-nak",
+    "replying_to": "Válasz {0} nak/nek",
     "show_full_thread": "Teljes szál megjelenítése",
     "someone": "valaki",
     "spoiler_media_hidden": "Média elrejtve",
@@ -666,7 +666,7 @@
       "report": "Jelentés",
       "sign_up": "Feliratkozás"
     },
-    "notifications_all": "Összes értesítés",
+    "notifications_all": "Összes",
     "notifications_favourite": "Kedvencek",
     "notifications_follow": "Követés",
     "notifications_follow_request": "Követés kérése",
@@ -686,7 +686,7 @@
     "unfollow_label": "Követés vége {0} címke"
   },
   "time_ago_options": {
-    "day_future": "in 0 nap múlva|holnap|{n} napon belül",
+    "day_future": "0 nap múlva|holnap|{n} napon belül",
     "day_past": "0 napja|tegnap|{n} nappal korábban",
     "hour_future": "0 órá múlva|1 óra múlva|{n} óra múlva",
     "hour_past": "0 órája|1 órája|{n} órája",
@@ -718,7 +718,7 @@
   },
   "timeline": {
     "no_posts": "Itt nincsenek bejegyzések.",
-    "show_new_items": "{v} új elem megjelenítése|{v} új elem megjelenítése|{v} új elem megjelenítése",
+    "show_new_items": "{v} új elemek megjelenítése|{v} új elemek megjelenítése|{v} új elemek megjelenítése",
     "view_older_posts": "Előfordulhat, hogy más instancekről származó régebbi bejegyzések nem jelennek meg."
   },
   "title": {
@@ -743,18 +743,18 @@
     "remove_thread_item": "Elem eltávolítása a szálból",
     "start_thread": "Szál megkezdése",
     "toggle_bold": "Váltás félkövérre",
-    "toggle_code_block": "Kódblokkra váltás",
-    "toggle_italic": "Váltás dőltbetűsre"
+    "toggle_code_block": "Kód blokkra váltás",
+    "toggle_italic": "Váltás dőlt betűsre"
   },
   "user": {
-    "add_existing": "Egy látező fiók hozzáadása",
+    "add_existing": "Egy létező fiók hozzáadása",
     "server_address_label": "Mastodon szerver címe",
     "sign_in_desc": "Jelentkezzen be profilok vagy címkék követéséhez, kedvencekhez, bejegyzések megosztásához és megválaszolásához, vagy egy másik szerveren lévő fiókjából való interakcióhoz.",
-    "sign_in_notice_title": "{0} nyilvános adat megtekintése",
+    "sign_in_notice_title": "{0} nyilvános adatok megtekintése",
     "sign_out_account": "Kijelentkezés {0}",
     "single_instance_sign_in_desc": "Jelentkezzen be profilok vagy címkék követéséhez, kedvencei közé, bejegyzések megosztásához és megválaszolásához.",
     "tip_no_account": "Ha még nincs Mastodon fiókod: {0}.",
-    "tip_register_account": "válassz egy szervert és regisztrált egyet"
+    "tip_register_account": "válassz egy szervert és regisztrálj egyet"
   },
   "visibility": {
     "direct": "Direkt",

@@ -30,7 +30,7 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
         href = await (globalThis.$fetch as any)(`/api/${publicServer.value}/login`, {
           method: 'POST',
           body: {
-            force_login: users.value.length > 0,
+            force_login: (isAkkoma || isPleroma) || users.value.length > 0,
             origin: location.origin,
             lang: userSettings.value.language,
           },
@@ -41,7 +41,7 @@ export function useSignIn(input?: Ref<HTMLInputElement | undefined>) {
         href = await (globalThis.$fetch as any)(`/api/${server.value || publicServer.value}/login`, {
           method: 'POST',
           body: {
-            force_login: users.value.some(u => u.server === server.value),
+            force_login: (isAkkoma || isPleroma) || users.value.some(u => u.server === server.value),
             origin: location.origin,
             lang: userSettings.value.language,
           },

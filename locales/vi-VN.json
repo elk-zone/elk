@@ -336,7 +336,7 @@
   "notification": {
     "and": "và",
     "favourited_post": "đã thích tút của bạn",
-    "followed_you": "đã theo dõi bạn",
+    "followed_you": "đang theo dõi bạn",
     "followed_you_count": "{0} người theo dõi bạn|{0} người theo dõi bạn|{0} người theo dõi bạn",
     "missing_type": "THIẾU notification.type:",
     "others": "{0} người khác|{0} người khác|{0} người khác",
@@ -539,7 +539,7 @@
     "preferences": {
       "embedded_media": "Trình Phát Media Dạng Nhúng",
       "embedded_media_description": "Khi chia sẻ một liên kết media, hiển thị trình phát dạng nhúng thay vì ảnh mặc định.",
-      "enable_autoplay": "Tự động phát",
+      "enable_autoplay": "Tự động phát video/GIF",
       "enable_data_saving": "Tiết kiệm dữ liệu mạng",
       "enable_data_saving_description": "Không cho tự động tải file đính kèm.",
       "enable_pinch_to_zoom": "Chụm 2 ngón tay để thu phóng",
@@ -561,6 +561,7 @@
       "label": "Thiết lập",
       "optimize_for_low_performance_device": "Tối ưu cho thiết bị yếu",
       "title": "Tính năng thử nghiệm",
+      "unmute_videos": "Mặc định bật âm thanh video",
       "use_star_favorite_icon": "Dùng biểu tượng thích ngôi sao",
       "user_picker": "Chuyển Đổi Tài Khoản",
       "user_picker_description": "Hiển thị danh sách tài khoản đã đăng nhập ở góc dưới bên trái để nhanh chóng chuyển đổi qua lại.",

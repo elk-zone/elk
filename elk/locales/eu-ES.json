@@ -717,7 +717,7 @@
   },
   "timeline": {
     "no_posts": "Ez dago bidalketarik!",
-    "show_new_items": "Erakutsi {v} elementu berri|Erakutsi elementu berri {v}|Erakutsi {v} elementu berri",
+    "show_new_items": "Erakutsi {v} bidalketa berria|Erakutsi bidalketa berri {v}|Erakutsi {v} bidalketa berri",
     "view_older_posts": "Oso litekeena da beste instantziatako bidalketa zaharragoak ikusgai ez egotea."
   },
   "title": {

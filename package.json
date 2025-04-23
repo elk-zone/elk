@@ -146,11 +146,6 @@
     "vitest": "3.0.9",
     "vue-tsc": "^2.1.6"
   },
-  "pnpm": {
-    "patchedDependencies": {
-      "pinceau": "patches/pinceau.patch"
-    }
-  },
   "resolutions": {
     "nuxt-component-meta": "0.10.1",
     "unstorage": "^1.15.0",

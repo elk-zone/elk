@@ -376,8 +376,8 @@
     "webmanifest": {
       "canary": {
         "description:": "Een vlotte Mastodon web client (canary versie)",
-        "name": "Elk (canary)",
-        "short_name": "Elk (canary)"
+        "name": "Glowrea",
+        "short_name": "Glowrea"
       },
       "dev": {
         "description:": "Een vlotte Mastodon web client (dev versie)",

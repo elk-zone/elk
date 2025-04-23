@@ -82,14 +82,14 @@
     "reset": "重置",
     "save": "保存",
     "save_changes": "保存更改",
-    "sign_in": "登鹿",
-    "sign_in_to": "登鹿 {0}",
+    "sign_in": "登入",
+    "sign_in_to": "登入 {0}",
     "switch_account": "切换帐号",
     "vote": "投票"
   },
   "app_desc_short": "一个灵巧的 Mastodon 客户端",
   "app_logo": "应用图标",
-  "app_name": "鹿鸣",
+  "app_name": "光景",
   "attachment": {
     "edit_title": "描述",
     "remove_label": "移除附件"
@@ -193,20 +193,20 @@
   },
   "help": {
     "build_preview": {
-      "desc1": "您当前正在查看来自社区的鹿鸣预览版 - {0}。",
+      "desc1": "您当前正在查看来自社区的光景预览版 - {0}。",
       "desc2": "可能包含未经审查甚至恶意的更改。",
       "desc3": "请不要使用真实账号登录",
       "title": "预览部署"
     },
     "desc_highlight": "可能会在某些地方出现一些 bug 或缺失的功能。",
-    "desc_para1": "感谢你有兴趣尝试鹿鸣，一个我们正在积极开发的通用 Mastodon 客户端。",
+    "desc_para1": "感谢你有兴趣尝试光景，一个我们正在积极开发的通用 Mastodon 客户端。",
     "desc_para2": "我们正在努力开发中，并随着时间的推移不断完善。",
-    "desc_para3": "为了帮助促进开发，你可以通过以下链接赞助我们的团队成员。希望你喜欢鹿鸣！",
-    "desc_para4": "鹿鸣是开源的，如果你愿意帮助测试、提供反馈或作出贡献，",
+    "desc_para3": "为了帮助促进开发，你可以通过以下链接赞助我们的团队成员。希望你喜欢光景！",
+    "desc_para4": "光景是开源的，如果你愿意帮助测试、提供反馈或作出贡献，",
     "desc_para5": "在 GitHub 上联系我们",
     "desc_para6": "来参与其中。",
-    "footer_team": "鹿鸣开发团队",
-    "title": "预览鹿鸣！"
+    "footer_team": "光景开发团队",
+    "title": "预览光景！"
   },
   "language": {
     "search": "搜索"
@@ -365,34 +365,34 @@
   "pwa": {
     "dismiss": "忽略",
     "install": "安装",
-    "install_title": "安装鹿鸣",
+    "install_title": "安装光景",
     "screenshots": {
-      "dark": "鹿鸣在深色模式下的快照",
-      "light": "鹿鸣在浅色模式下的快照"
+      "dark": "光景在深色模式下的快照",
+      "light": "光景在浅色模式下的快照"
     },
-    "title": "鹿鸣存在新的更新",
+    "title": "光景存在新的更新",
     "update": "更新",
-    "update_available_short": "更新鹿鸣",
+    "update_available_short": "更新光景",
     "webmanifest": {
       "canary": {
         "description": "一个灵巧的 Mastodon 客户端（Canary）",
-        "name": "鹿鸣 Canary",
-        "short_name": "鹿鸣 Canary"
+        "name": "光景 Canary",
+        "short_name": "光景 Canary"
       },
       "dev": {
         "description": "一个灵巧的 Mastodon 客户端（开发版）",
-        "name": "鹿鸣 开发版",
-        "short_name": "鹿鸣 开发版"
+        "name": "光景 开发版",
+        "short_name": "光景 开发版"
       },
       "preview": {
         "description": "一个灵巧的 Mastodon 客户端（预览版）",
-        "name": "鹿鸣 预览版",
-        "short_name": "鹿鸣 预览版"
+        "name": "光景 预览版",
+        "short_name": "光景 预览版"
       },
       "release": {
         "description": "一个灵巧的 Mastodon 客户端",
-        "name": "鹿鸣",
-        "short_name": "鹿鸣"
+        "name": "光景",
+        "short_name": "光景"
       }
     }
   },
@@ -442,10 +442,10 @@
       "label": "关于",
       "meet_the_team": "认识开发团队",
       "sponsor_action": "赞助我们",
-      "sponsor_action_desc": "支持团队开发鹿鸣",
+      "sponsor_action_desc": "支持团队开发光景",
       "sponsors": "赞助者",
-      "sponsors_body_1": "鹿鸣能够出现要感谢以下赞助者的慷慨赞助和帮助：",
-      "sponsors_body_2": "以及赞助鹿鸣开发团队和成员的所有公司和个人。",
+      "sponsors_body_1": "光景能够出现要感谢以下赞助者的慷慨赞助和帮助：",
+      "sponsors_body_2": "以及赞助光景开发团队和成员的所有公司和个人。",
       "sponsors_body_3": "如果你喜欢这个应用程序，请考虑赞助我们：",
       "version": "版本"
     },
@@ -493,7 +493,7 @@
           "reblog": "转发了你的帖文",
           "title": "接收了什么通知？"
         },
-        "description": "当你没有在使用鹿鸣时也能接收通知。",
+        "description": "当你没有在使用光景时也能接收通知。",
         "instructions": "不要忘记点击 @:settings.notifications.push_notifications.save_settings 按钮保存改动！",
         "label": "推送通知设置",
         "policy": {
@@ -509,10 +509,10 @@
           "error_hint": "你可以参考常见问题列表来尝试解决问题：{0}。",
           "invalid_vapid_key": "VAPID 密钥无效。",
           "permission_denied": "权限不足：请在你的浏览器中打开通知权限。",
-          "repo_link": "鹿鸣在 GitHub 上的仓库",
-          "request_error": "请求订阅时发生了一个错误，请再次尝试。如错误仍然存在，请到鹿鸣代码仓库中报告这一问题。",
+          "repo_link": "光景在 GitHub 上的仓库",
+          "request_error": "请求订阅时发生了一个错误，请再次尝试。如错误仍然存在，请到光景代码仓库中报告这一问题。",
           "title": "无法订阅推送通知。",
-          "too_many_registrations": "由于浏览器限制，鹿鸣无法为不同服务器上的多个帐户使用推送通知服务。请取消订阅另一个帐户的推送通知，然后重试。",
+          "too_many_registrations": "由于浏览器限制，光景无法为不同服务器上的多个帐户使用推送通知服务。请取消订阅另一个帐户的推送通知，然后重试。",
           "vapid_not_supported": "你的浏览器支持推送通知功能，但似乎没有实现 VAPID 协议。"
         },
         "title": "推送通知设置",
@@ -521,10 +521,10 @@
         "unsupported": "你的浏览器不支持桌面通知",
         "warning": {
           "enable_close": "关闭",
-          "enable_description": "若想在鹿鸣没有打开时接收通知，请启用推送通知功能。一旦启动，你可以通过上面的“前往通知设置”按钮来精确控制哪种类型的互动可以产生推送通知。",
-          "enable_description_desktop": "若想在鹿鸣没有打开时接收通知，请启用推送通知功能。一旦启动，你可以通过 “设置” > “通知” > “推送通知设置” 来精确控制哪种类型的互动可以产生桌面通知。",
+          "enable_description": "若想在光景没有打开时接收通知，请启用推送通知功能。一旦启动，你可以通过上面的“前往通知设置”按钮来精确控制哪种类型的互动可以产生推送通知。",
+          "enable_description_desktop": "若想在光景没有打开时接收通知，请启用推送通知功能。一旦启动，你可以通过 “设置” > “通知” > “推送通知设置” 来精确控制哪种类型的互动可以产生桌面通知。",
           "enable_description_mobile": "你也可以使用导航菜单 “设置” > “通知” > “推送通知设置” 访问设置页面。",
-          "enable_description_settings": "若想在鹿鸣没有打开时接收通知，请启用推送通知功能。一旦启动，你可以精确控制哪种类型的互动会在这个屏幕上产生推送通知。",
+          "enable_description_settings": "若想在光景没有打开时接收通知，请启用推送通知功能。一旦启动，你可以精确控制哪种类型的互动会在这个屏幕上产生推送通知。",
           "enable_desktop": "启用推送通知",
           "enable_title": "不错过任何事",
           "re_auth": "您的服务器似乎不支持推送通知。尝试退出用户并重新登录。如果此消息仍然出现，请联系您服务器的管理员。"
@@ -595,9 +595,9 @@
     }
   },
   "share_target": {
-    "description": "只需要在你的设备或电脑上安装并登录鹿鸣，通过简单的配置，你就可以从其他应用中分享内容至鹿鸣。",
-    "hint": "为了分享内容至鹿鸣，你必须安装并登录鹿鸣。",
-    "title": "分享至鹿鸣"
+    "description": "只需要在你的设备或电脑上安装并登录光景，通过简单的配置，你就可以从其他应用中分享内容至光景。",
+    "hint": "为了分享内容至光景，你必须安装并登录光景。",
+    "title": "分享至光景"
   },
   "state": {
     "attachments_exceed_server_limit": "附件的数量超出了最大限制",

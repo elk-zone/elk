@@ -69,13 +69,13 @@
     "reset": "重設",
     "save": "儲存",
     "save_changes": "儲存更改",
-    "sign_in": "登鹿",
+    "sign_in": "登入",
     "switch_account": "切換帳號",
     "vote": "投票"
   },
   "app_desc_short": "一個靈巧的 Mastodon 用戶端",
-  "app_logo": "鹿鳴 Logo",
-  "app_name": "鹿鳴",
+  "app_logo": "光景 Logo",
+  "app_name": "光景",
   "attachment": {
     "edit_title": "描述",
     "remove_label": "刪除附件"
@@ -160,20 +160,20 @@
   },
   "help": {
     "build_preview": {
-      "desc1": "您當前正在查看來自開源社區、預覽版的鹿鳴 - {0}。",
+      "desc1": "您當前正在查看來自開源社區、預覽版的光景 - {0}。",
       "desc2": "可能包含末經審查或是惡意修改的內容。",
       "desc3": "請不要使用真實的帳號登入。",
       "title": "預覽部署"
     },
     "desc_highlight": "可能會在某些地方出現一些 bug 或缺少的功能。",
-    "desc_para1": "感謝你有興趣嘗試鹿鳴，一個我們正在積極開發的通用 Mastodon 用戶端。",
+    "desc_para1": "感謝你有興趣嘗試光景，一個我們正在積極開發的通用 Mastodon 用戶端。",
     "desc_para2": "我們正在努力開發中，並隨著時間的推移不斷完善。",
-    "desc_para3": "為了幫助促進開發，你可以通過以下連結贊助我們的團隊成員。希望你喜歡鹿鳴！",
-    "desc_para4": "鹿鳴是開源的，如果你願意幫助測試、提供回饋或作出貢獻，",
+    "desc_para3": "為了幫助促進開發，你可以通過以下連結贊助我們的團隊成員。希望你喜歡光景！",
+    "desc_para4": "光景是開源的，如果你願意幫助測試、提供回饋或作出貢獻，",
     "desc_para5": "在 GitHub 上聯繫我們",
     "desc_para6": "來參與其中。",
-    "footer_team": "鹿鳴開發團隊",
-    "title": "預覽鹿鳴！"
+    "footer_team": "光景開發團隊",
+    "title": "預覽光景！"
   },
   "language": {
     "search": "搜尋"
@@ -209,6 +209,7 @@
     "mute_conversation": "靜音貼文",
     "open_in_original_site": "在原網站上開啟",
     "pin_on_profile": "置頂在個人資料上",
+    "report_account": "檢舉 {0}",
     "share_post": "分享這則貼文",
     "show_favourited_and_boosted_by": "顯示誰喜歡和轉發了",
     "show_reblogs": "顯示來自 {0} 的轉發",
@@ -248,7 +249,7 @@
     "select_font_size": "字體大小",
     "select_language": "選擇語言",
     "settings": "設定",
-    "show_intro": "鹿鳴介紹",
+    "show_intro": "光景介紹",
     "toggle_theme": "切換主題",
     "zen_mode": "禪模式"
   },
@@ -271,32 +272,68 @@
   "pwa": {
     "dismiss": "忽略",
     "install": "安裝",
-    "install_title": "安裝鹿鳴",
-    "title": "鹿鳴存在新的更新",
+    "install_title": "安裝光景",
+    "title": "光景存在新的更新",
     "update": "更新",
-    "update_available_short": "更新鹿鳴",
+    "update_available_short": "更新光景",
     "webmanifest": {
       "canary": {
         "description": "一個靈巧的 Mastodon 用戶端（Canary）",
-        "name": "鹿鳴 Canary",
-        "short_name": "鹿鳴 Canary"
+        "name": "光景 Canary",
+        "short_name": "光景 Canary"
       },
       "dev": {
         "description": "一個靈巧的 Mastodon 用戶端（開發版）",
-        "name": "鹿鳴 開發版",
-        "short_name": "鹿鳴 開發版"
+        "name": "光景 開發版",
+        "short_name": "光景 開發版"
       },
       "preview": {
         "description": "一個靈巧的 Mastodon 用戶端（預覽版）",
-        "name": "鹿鳴 預覽版",
-        "short_name": "鹿鳴 預覽版"
+        "name": "光景 預覽版",
+        "short_name": "光景 預覽版"
       },
       "release": {
         "description": "一個靈巧的 Mastodon 用戶端",
-        "name": "鹿鳴",
-        "short_name": "鹿鳴"
+        "name": "光景",
+        "short_name": "光景"
       }
     }
+  },
+  "report": {
+    "additional_comments": "補充說明",
+    "another_server": "您所檢舉的使用者來自其他伺服器",
+    "anything_else": "還有沒有其他資訊是您覺得我們需要知道的？",
+    "block_desc": "您將不會再看到此使用者的任何貼文。他們也無法看到您的貼文或關注您，並且會知道自己已被封鎖。",
+    "dontlike": "我不喜歡這則內容",
+    "dontlike_desc": "這不是您想看到的貼文",
+    "forward": "是的，同時轉交此檢舉至 {0}",
+    "forward_question": "您是否希望將這次檢舉的匿名副本一併轉給該使用者所屬的伺服器？",
+    "further_actions": {
+      "limit": {
+        "description": "您可以透過以下方式調整看到的內容：",
+        "title": "不想再看到這些？"
+      },
+      "report": {
+        "description": "在我們進行審核期間，您也可以考慮以下操作：",
+        "title": "感謝您提供檢舉，我們會儘速處理"
+      }
+    },
+    "limiting": "正在限制 {0}",
+    "mute_desc": "您將不會再看到此使用者的貼文。他們仍然可以關注您，也可以看到您的貼文，但不會知道自己被靜音了。",
+    "other": "其他問題",
+    "other_desc": "這個問題不屬於上述任何分類",
+    "reporting": "正在檢舉 {0}",
+    "select_many": "請勾選所有適用的選項：",
+    "select_one": "請選擇最符合的項目：",
+    "select_posts": "是否有貼文可以佐證您的檢舉？",
+    "select_posts_other": "是否還有其他貼文可以輔助此次檢舉？",
+    "spam": "這是垃圾訊息",
+    "spam_desc": "包含惡意連結、假訊息或洗版內容",
+    "submit": "送出檢舉",
+    "unfollow_desc": "您將不再於動態頁面看到此使用者的貼文，但在其他地方仍可能看到他們的內容。",
+    "violation": "違反了本站一條或多條規範",
+    "whats_wrong_account": "請告訴我們這個帳號有什麼問題",
+    "whats_wrong_post": "請告訴我們這則貼文有什麼問題"
   },
   "search": {
     "search_desc": "搜尋使用者或話題標籤",
@@ -308,11 +345,11 @@
       "label": "關於",
       "meet_the_team": "認識我們",
       "sponsor_action": "贊助我們",
-      "sponsor_action_desc": "贊助鹿鳴的開發團隊",
+      "sponsor_action_desc": "贊助光景的開發團隊",
       "sponsors": "贊助",
-      "sponsors_body_1": "鹿鳴的誕生得感謝以下的慷慨贊助與幫助：",
-      "sponsors_body_2": "以及所有贊助鹿鳴成員的公司和個人，以及隊員們。",
-      "sponsors_body_3": "如果你喜歡鹿鳴，可以考慮贊助我們：",
+      "sponsors_body_1": "光景的誕生得感謝以下的慷慨贊助與幫助：",
+      "sponsors_body_2": "以及所有贊助光景成員的公司和個人，以及隊員們。",
+      "sponsors_body_3": "如果你喜歡光景，可以考慮贊助我們：",
       "version": "版本"
     },
     "account_settings": {
@@ -354,7 +391,7 @@
           "reblog": "轉發了你的貼文",
           "title": "接收了什麼通知？"
         },
-        "description": "當你沒有在使用鹿鳴時也能接收通知。",
+        "description": "當你沒有在使用光景時也能接收通知。",
         "instructions": "不要忘記點擊 @:settings.notifications.push_notifications.save_settings 按鈕儲存變更！",
         "label": "推播通知設定",
         "policy": {
@@ -369,10 +406,10 @@
           "clear_error": "清除錯誤",
           "invalid_vapid_key": "VAPID 公鑰似乎無效。",
           "permission_denied": "權限不足：請在你的瀏覽器中打開通知權限。",
-          "repo_link": "鹿鳴的 GitHub 儲存庫",
-          "request_error": "請求訂閱時發生了一個錯誤，請再次嘗試。如錯誤仍然存在，請到鹿鳴儲存庫中報告這一問題。",
+          "repo_link": "光景的 GitHub 儲存庫",
+          "request_error": "請求訂閱時發生了一個錯誤，請再次嘗試。如錯誤仍然存在，請到光景儲存庫中報告這一問題。",
           "title": "無法訂閱推播通知。",
-          "too_many_registrations": "由於瀏覽器限制，鹿鳴無法為不同伺服器上的多個帳號使用推播通知服務。 你應該取消訂閱其他帳號的推送通知，然後重試。",
+          "too_many_registrations": "由於瀏覽器限制，光景無法為不同伺服器上的多個帳號使用推播通知服務。 你應該取消訂閱其他帳號的推送通知，然後重試。",
           "vapid_not_supported": "您的瀏覽器支持 Web Push Notifications，但似乎沒有實現 VAPIO 的協議。"
         },
         "title": "推播通知設定",
@@ -381,10 +418,10 @@
         "unsupported": "你的瀏覽器不支援推播功能",
         "warning": {
           "enable_close": "關閉",
-          "enable_description": "若想在鹿鳴未開啟時接收通知，請啟用推播通知功能。啟用後，你可以通過上面的 「前往通知設定」 按鈕來 精確控制哪種類型的互動可以產生桌面通知。",
-          "enable_description_desktop": "若想在鹿鳴未開啟時接收通知，請啟用推播通知功能。啟用後，你可以在 「設定」 > 「通知」 > 「推播通知設定」 裡面選擇哪些互動你會接收到通知。",
+          "enable_description": "若想在光景未開啟時接收通知，請啟用推播通知功能。啟用後，你可以通過上面的 「前往通知設定」 按鈕來 精確控制哪種類型的互動可以產生桌面通知。",
+          "enable_description_desktop": "若想在光景未開啟時接收通知，請啟用推播通知功能。啟用後，你可以在 「設定」 > 「通知」 > 「推播通知設定」 裡面選擇哪些互動你會接收到通知。",
           "enable_description_mobile": "你也可以使用導覽列 「設定」 > 「通知」 > 「推播通知設定」 進入設定頁面。",
-          "enable_description_settings": "若想在鹿鳴未開啟時接收通知，請啟用推播通知功能。 啟用後，你將能夠選擇哪些互動你會接收到通知。",
+          "enable_description_settings": "若想在光景未開啟時接收通知，請啟用推播通知功能。 啟用後，你將能夠選擇哪些互動你會接收到通知。",
           "enable_desktop": "啟用推播功能",
           "enable_title": "不錯過任何事",
           "re_auth": "您的伺服器似乎不支援推播通知。嘗試退出使用者並重新登入。如果此消息仍然出現，請聯繫您伺服器的管理員。"
@@ -438,9 +475,9 @@
     }
   },
   "share_target": {
-    "description": "如果你想分享其他應用程式上的內容到鹿鳴。請在你的行動裝置裝置或電腦上安裝鹿鳴並登入。",
-    "hint": "為了將內容分享到鹿鳴，你需要安裝鹿鳴並且登入。",
-    "title": "分享到鹿鳴"
+    "description": "如果你想分享其他應用程式上的內容到光景。請在你的行動裝置裝置或電腦上安裝光景並登入。",
+    "hint": "為了將內容分享到光景，你需要安裝光景並且登入。",
+    "title": "分享到光景"
   },
   "state": {
     "attachments_exceed_server_limit": "附件的數量超出了最大限制",

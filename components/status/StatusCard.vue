@@ -76,10 +76,8 @@ const forceShow = ref(false)
       <!-- Pinned status -->
       <div flex="~ col" justify-between>
         <div
-          v-if="isPinned"
-          flex="~ gap2" items-center h-auto text-sm text-orange
-          m="is-5" p="t-1 is-5"
-          relative text-secondary ws-nowrap
+          v-if="isPinned" flex="~ gap2" items-center h-auto text-sm text-orange m="is-5" p="t-1 is-5" relative
+          text-secondary ws-nowrap
         >
           <div i-ri:pushpin-line />
           <span>{{ $t('status.pinned') }}</span>
@@ -89,10 +87,7 @@ const forceShow = ref(false)
       <!-- Line connecting to previous status -->
       <template v-if="status.inReplyToAccountId">
         <StatusReplyingTo
-          v-if="showReplyTo"
-          m="is-5" p="t-1 is-5"
-          :status="status"
-          :is-self-reply="isSelfReply"
+          v-if="showReplyTo" m="is-5" p="t-1 is-5" :status="status" :is-self-reply="isSelfReply"
           :class="inNotification ? 'text-secondary-light' : ''"
         />
         <div flex="~ col gap-1" items-center pos="absolute top-0 inset-is-0" w="77px" z--1>
@@ -108,13 +103,11 @@ const forceShow = ref(false)
       <!-- Reblog status -->
       <div flex="~ col" justify-between>
         <div
-          v-if="rebloggedBy && !collapseRebloggedBy"
-          flex="~" items-center
-          p="t-1 b-0.5 x-1px"
-          relative text-secondary ws-nowrap
+          v-if="rebloggedBy && !collapseRebloggedBy" flex="~" items-center p="t-1 b-0.5 x-1px" relative
+          text-secondary ws-nowrap
         >
-          <div i-ri:repeat-fill me-46px text-green w-16px h-16px class="status-boosted" />
-          <div absolute top-1 ms-24px w-32px h-32px rounded-full>
+          <div i-ri:repeat-fill me-46px text-green w-12px h-12px class="status-boosted" />
+          <div absolute top-1 ms-24px w-20px h-20px rounded-full>
             <AccountHoverWrapper :account="rebloggedBy">
               <NuxtLink :to="getAccountRoute(rebloggedBy)">
                 <AccountAvatar :account="rebloggedBy" />
@@ -143,7 +136,10 @@ const forceShow = ref(false)
       <template v-else>
         <!-- Avatar -->
         <div relative>
-          <div v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full bg-base>
+          <div
+            v-if="collapseRebloggedBy" absolute flex items-center justify-center top--6px px-2px py-3px rounded-full
+            bg-base
+          >
             <div i-ri:repeat-fill text-green w-16px h-16px />
           </div>
           <AccountHoverWrapper :account="status.account">
@@ -165,7 +161,10 @@ const forceShow = ref(false)
               <StatusAccountDetails :account="status.account" />
             </AccountHoverWrapper>
             <div flex-auto />
-            <div v-show="!getPreferences(userSettings, 'zenMode')" text-sm text-secondary flex="~ row nowrap" hover:underline whitespace-nowrap>
+            <div
+              v-show="!getPreferences(userSettings, 'zenMode')" text-sm text-secondary flex="~ row nowrap"
+              hover:underline whitespace-nowrap
+            >
               <AccountLockIndicator v-if="status.account.locked" me-2 />
               <AccountBotIndicator v-if="status.account.bot" me-2 />
               <div flex="~ gap1" items-center>
@@ -187,12 +186,8 @@ const forceShow = ref(false)
 
           <!-- Content -->
           <StatusContent
-            :status="status"
-            :newer="newer"
-            :context="context"
-            :is-preview="isPreview"
-            :in-notification="inNotification"
-            mb2 :class="{ 'mt-2 mb1': isDM }"
+            :status="status" :newer="newer" :context="context" :is-preview="isPreview"
+            :in-notification="inNotification" mb2 :class="{ 'mt-2 mb1': isDM }"
           />
           <StatusActions v-if="actions !== false" v-show="!getPreferences(userSettings, 'zenMode')" :status="status" />
         </div>

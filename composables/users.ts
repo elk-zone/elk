@@ -101,7 +101,7 @@ export async function loginTo(
     fetchAccountInfo(client.value, user.server),
     // if PWA is not enabled, don't get push subscription
     useAppConfig().pwaEnabled
-    // we get 404 response instead empty data
+      // we get 404 response instead empty data
       ? client.value.v1.push.subscription.fetch().catch(() => Promise.resolve(undefined))
       : Promise.resolve(undefined),
   ])
@@ -247,9 +247,13 @@ export async function signOut() {
   if (!currentUser.value)
     return
 
+  // const instanceUrl = `https://${currentUser.value.server}`
+  // window.open(instanceUrl, '_blank')
+
   const masto = useMasto()
 
   const _currentUserId = currentUser.value.account.id
+  const _currentServer = currentUser.value.server
 
   const index = users.value.findIndex(u => u.account?.id === _currentUserId)
 
@@ -271,8 +275,10 @@ export async function signOut() {
   // Set currentUserId to next user if available
   currentUserHandle.value = users.value[0]?.account?.acct
 
-  if (!currentUserHandle.value)
+  if (!currentUserHandle.value) {
+    publicServer.value = _currentServer
     await useRouter().push('/')
+  }
 
   await loginTo(masto, currentUser.value || { server: publicServer.value })
 }

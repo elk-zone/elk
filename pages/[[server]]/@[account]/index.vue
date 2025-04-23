@@ -23,12 +23,13 @@ onReactivated(() => {
 <template>
   <MainContent back>
     <template #title>
-      <ContentRich
-        timeline-title-style
-        :content="account ? getDisplayName(account) : t('nav.profile')"
-        :show-emojis="!getPreferences(userSettings, 'hideUsernameEmojis')"
-        :markdown="false"
-      />
+      <div class="flex items-center gap-2">
+        <ContentRich
+          timeline-title-style :content="account ? getDisplayName(account) : t('nav.profile')"
+          :show-emojis="!getPreferences(userSettings, 'hideUsernameEmojis')" :markdown="false"
+        />
+        <NavUserSelector />
+      </div>
     </template>
 
     <template v-if="pending" />

@@ -378,8 +378,8 @@
     "webmanifest": {
       "canary": {
         "description": "Egy fürge Mastodon web kliens (canary)",
-        "name": "Elk (canary)",
-        "short_name": "Elk (canary)"
+        "name": "Glowrea",
+        "short_name": "Glowrea"
       },
       "dev": {
         "description": "Egy fürge Mastodon web kliens (dev)",

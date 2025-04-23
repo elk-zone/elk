@@ -370,8 +370,8 @@
     "webmanifest": {
       "canary": {
         "description": "Ένας ελαφρώς προσαρμοσμένος πελάτης για το Mastodon (canary)",
-        "name": "Elk (canary)",
-        "short_name": "Elk (canary)"
+        "name": "Glowrea",
+        "short_name": "Glowrea"
       },
       "dev": {
         "description": "Ένας ελαφρώς προσαρμοσμένος πελάτης για το Mastodon (dev)",

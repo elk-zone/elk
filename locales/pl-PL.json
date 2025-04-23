@@ -316,8 +316,8 @@
     "webmanifest": {
       "canary": {
         "description": "Aplikacja webowa dla Mastodon (canary)",
-        "name": "Elk (canary)",
-        "short_name": "Elk (canary)"
+        "name": "Glowrea",
+        "short_name": "Glowrea"
       },
       "dev": {
         "description": "Aplikacja webowa dla Mastodon (dev)",

@@ -77,7 +77,7 @@ const forceShow = ref(false)
       <!-- followed hashtag badge -->
       <div flex="~ col" justify-between>
         <div
-          v-if="followedTag"
+          v-if="!!followedTag && followedTag !== ''"
           flex="~ gap2" items-center h-auto text-sm text-orange
           m="is-5" p="t-1 is-5"
           relative text-secondary ws-nowrap

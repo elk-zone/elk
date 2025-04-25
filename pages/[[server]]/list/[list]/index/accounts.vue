@@ -95,7 +95,6 @@ function removeAccount(id: string) {
           @keydown.down.prevent="shift(1)"
           @keydown.up.prevent="shift(-1)"
           @keydown.esc.prevent="inputRef?.blur()"
-          @keypress.enter="addAccount"
         >
         <button v-if="query.length" btn-action-icon text-secondary @click="query = ''; inputRef?.focus()">
           <span aria-hidden="true" class="i-ri:close-line" />

@@ -127,16 +127,18 @@ function removeAccount(account: mastodon.v1.Account) {
                 :result="result"
                 :tabindex="focused ? 0 : -1"
               />
-              <button
-                text-sm p2 border-1 transition-colors
-                border-dark
-                btn-action-icon
-                bg-base
-                :hover="isInCurrentList(result.id) ? 'text-red' : 'text-green'"
-                @click=" () => isInCurrentList(result.id) ? removeAccount(result.data) : addAccount(result.data) "
-              >
-                <span :class="isInCurrentList(result.id) ? 'i-ri:user-unfollow-line' : 'i-ri:user-add-line'" />
-              </button>
+              <CommonTooltip :content="isInCurrentList(result.id) ? $t('list.remove_account') : $t('list.add_account')">
+                <button
+                  text-sm p2 border-1 transition-colors
+                  border-dark
+                  btn-action-icon
+                  bg-base
+                  :hover="isInCurrentList(result.id) ? 'text-red' : 'text-green'"
+                  @click=" () => isInCurrentList(result.id) ? removeAccount(result.data) : addAccount(result.data) "
+                >
+                  <span :class="isInCurrentList(result.id) ? 'i-ri:user-unfollow-line' : 'i-ri:user-add-line'" />
+                </button>
+              </CommonTooltip>
             </div>
           </template>
           <span v-else block text-center text-sm text-secondary>

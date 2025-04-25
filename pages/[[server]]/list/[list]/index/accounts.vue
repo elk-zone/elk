@@ -137,6 +137,7 @@ function removeAccount(account: mastodon.v1.Account) {
                 text-sm p2 border-1 transition-colors
                 border-dark
                 btn-action-icon
+                :hover="isInCurrentList(result.id) ? 'text-red' : 'text-green'"
                 @click=" () => isInCurrentList(result.id) ? removeAccount(result.data) : addAccount(result.data) "
               >
                 <span :class="isInCurrentList(result.id) ? 'i-ri:user-unfollow-line' : 'i-ri:user-add-line'" />

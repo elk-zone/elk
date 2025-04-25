@@ -44,10 +44,6 @@ const results = computed(() => {
 // Reset index when results change
 watch([results, focused], () => index.value = -1)
 
-function shift(delta: number) {
-  return index.value = (index.value + delta % results.value.length + results.value.length) % results.value.length
-}
-
 function addAccount(account: mastodon.v1.Account) {
   try {
     mastoListAccounts.create({ accountIds: [account.id] })
@@ -101,8 +97,6 @@ function removeAccount(account: mastodon.v1.Account) {
           w-full
           placeholder-text-secondary
           :placeholder="$t('list.search_following_placeholder')"
-          @keydown.down.prevent="shift(1)"
-          @keydown.up.prevent="shift(-1)"
           @keydown.esc.prevent="inputRef?.blur()"
           @keydown.enter.prevent
         >
@@ -114,7 +108,7 @@ function removeAccount(account: mastodon.v1.Account) {
 
     <!-- Results -->
     <div left-0 top-18 absolute w-full z-10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
-      <div w-full bg-base border="~ base" rounded-3 max-h-100 overflow-auto py2>
+      <div w-full bg-base border="~ dark" rounded-3 max-h-100 overflow-auto :class="results.length === 0 ? 'py2' : null">
         <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
           {{ $t('search.search_desc') }}
         </span>
@@ -137,6 +131,7 @@ function removeAccount(account: mastodon.v1.Account) {
                 text-sm p2 border-1 transition-colors
                 border-dark
                 btn-action-icon
+                bg-base
                 :hover="isInCurrentList(result.id) ? 'text-red' : 'text-green'"
                 @click=" () => isInCurrentList(result.id) ? removeAccount(result.data) : addAccount(result.data) "
               >

@@ -19,40 +19,46 @@ const tabs = computed(() => [
   },
 ])
 
-const currentTab = ref(tabs.value[0].name)
-
 const router = useRouter()
 const route = useRoute()
+const query = ref(route.query.q ? String(route.query.q) : '')
+const currentResults = ref([] as any[])
 
-const query = ref(route.query.q as string || '')
+const offset = computed(() => currentResults.value.length)
 
-watch(route, () => query.value = route.query.q as string)
+const currentTab = ref(tabs.value[0].name)
 
 const queryType = computed(() => currentTab.value === 'all' ? undefined : currentTab.value as ('accounts' | 'hashtags' | 'statuses'))
-const offset = ref(0)
-
 const options = computed(() => ({ type: queryType.value, offset: offset.value }))
 const { loading, next, ...results } = useSearch(query, options)
 
-const currentResults = computed(() => {
-  if (query.value.length === 0)
-    return []
-
-  return !queryType.value
-    ? [
-        ...results.hashtags.value.slice(0, 5),
-        ...results.accounts.value.slice(0, 5),
-        ...results.statuses.value,
-      ]
-    : results[queryType.value].value
+// when the route change, we update the query value
+watch(route, () => {
+  query.value = route.query.q ? String(route.query.q) : ''
 })
 
+// when the query change, we clean the results
 watch(query, () => {
-  router.replace({ query: { q: query.value } })
-  offset.value = 0
+  currentResults.value = []
 })
-watch(currentTab, () => offset.value = 0)
-watch(currentResults, () => offset.value = queryType.value ? currentResults.value.length : 0)
+
+// when loading is done or the tab changes, we parse the results
+watch([loading, queryType], () => {
+  if (loading.value)
+    return
+  let val: any[] = []
+  if (query.value.length > 0) {
+    router.replace({ query: { q: query.value } })
+    val = !queryType.value
+      ? [
+          ...results.hashtags.value.slice(0, 5),
+          ...results.accounts.value.slice(0, 5),
+          ...results.statuses.value,
+        ]
+      : results[queryType.value].value
+  }
+  currentResults.value = val
+})
 </script>
 
 <template>
@@ -114,7 +120,6 @@ watch(currentResults, () => offset.value = queryType.value ? currentResults.valu
     @click="next"
   >
     <div :class="loading ? 'i-ri:loop-right-line animate-spin' : 'i-ri:search-line'" />
-    Load
-    more
+    {{ $t('action.load_more') }}
   </button>
 </template>

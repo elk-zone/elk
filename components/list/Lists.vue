@@ -44,7 +44,7 @@ async function edit(listId: string) {
             btn-action-icon
             @click="() => edit(item.id)"
           >
-            <span :class="indexOfUserInList(item.id) === -1 ? 'i-ri:user-add-line' : 'i-ri:user-unfollow-line'" />
+            <span :class="indexOfUserInList(item.id) === -1 ? 'i-ri:user-follow-line' : 'i-ri:user-unfollow-line'" />
           </button>
         </CommonTooltip>
       </div>

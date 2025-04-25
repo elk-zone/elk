@@ -110,7 +110,7 @@ function removeAccount(account: mastodon.v1.Account) {
     <div left-0 top-18 absolute w-full z-10 group-focus-within="pointer-events-auto visible" invisible pointer-events-none>
       <div w-full bg-base border="~ dark" rounded-3 max-h-100 overflow-auto :class="results.length === 0 ? 'py2' : null">
         <span v-if="query.trim().length === 0" block text-center text-sm text-secondary>
-          {{ $t('search.search_desc') }}
+          {{ $t('list.search_following_desc') }}
         </span>
         <template v-else-if="!loading">
           <template v-if="results.length > 0">

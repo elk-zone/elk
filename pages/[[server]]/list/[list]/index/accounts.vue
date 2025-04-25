@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { mastodon } from 'masto'
 import AccountSearchResult from '~/components/list/AccountSearchResult.vue'
 
 definePageMeta({
@@ -13,10 +14,9 @@ defineExpose({
 const params = useRoute().params
 const listId = computed(() => params.list as string)
 
-const $mastoList = useMastoClient().v1.lists.$select(listId.value).accounts
-const paginator = $mastoList.list()
-const accountsInList = ref((await useMastoClient().v1.lists.$select(listId.value).accounts.list({ limit: 0 })).map(account => account.id))
-// console.log('>>> acccounts', accountsInList.value)
+const mastoListAccounts = useMastoClient().v1.lists.$select(listId.value).accounts
+const paginator = mastoListAccounts.list()
+const accountsInList = ref((await useMastoClient().v1.lists.$select(listId.value).accounts.list({ limit: 1000 })))
 
 const paginatorRef = ref()
 
@@ -30,7 +30,7 @@ const { focused } = useFocusWithin(el)
 const index = ref(0)
 
 function isInCurrentList(userId: string) {
-  return accountsInList.value.includes(userId)
+  return accountsInList.value.map(account => account.id).includes(userId)
 }
 
 const results = computed(() => {
@@ -46,19 +46,29 @@ function shift(delta: number) {
   return index.value = (index.value + delta % results.value.length + results.value.length) % results.value.length
 }
 
-const actionError = false
-function addAccount(id: string) {
-  const newEntry = $mastoList.create({ accountIds: [id] })
-  accountsInList.value.push(id)
-  paginatorRef.value?.createEntry(newEntry)
+function addAccount(account: mastodon.v1.Account) {
+  try {
+    mastoListAccounts.create({ accountIds: [account.id] })
+    accountsInList.value.push(account)
+    paginatorRef.value?.createEntry(account)
+  }
+  catch (err) {
+    console.error(err)
+  }
 }
-function removeAccount(id: string) {
-  $mastoList.remove({ accountIds: [id] })
-  const index = accountsInList.value.indexOf(id)
-  if (index > -1) {
-    accountsInList.value.splice(index, 1)
-    paginatorRef.value?.removeEntry(id)
-    // console.log('remove', paginatorRef.value, id)
+
+function removeAccount(account: mastodon.v1.Account) {
+  try {
+    mastoListAccounts.remove({ accountIds: [account.id] })
+    const accountIdsInList = accountsInList.value.map(account => account.id)
+    const index = accountIdsInList.indexOf(account.id)
+    if (index > -1) {
+      accountsInList.value.splice(index, 1)
+      paginatorRef.value?.removeEntry(account.id)
+    }
+  }
+  catch (err) {
+    console.error(err)
   }
 }
 </script>
@@ -70,8 +80,6 @@ function removeAccount(id: string) {
       border="t base"
       p-4 w-full
       flex="~ wrap" relative gap-3
-      :aria-describedby="actionError ? 'create-list-error' : undefined"
-      :class="actionError ? 'border border-base border-rounded rounded-be-is-0 rounded-be-ie-0 border-b-unset border-$c-danger-active' : null"
     >
       <div
         bg-base border="~ base" flex-1 h10 ps-1 pe-4 rounded-2 w-full flex="~ row"
@@ -94,6 +102,7 @@ function removeAccount(id: string) {
           @keydown.down.prevent="shift(1)"
           @keydown.up.prevent="shift(-1)"
           @keydown.esc.prevent="inputRef?.blur()"
+          @keydown.enter.prevent
         >
         <button v-if="query.length" btn-action-icon text-secondary @click="query = ''; inputRef?.focus()">
           <span aria-hidden="true" class="i-ri:close-line" />
@@ -126,7 +135,7 @@ function removeAccount(id: string) {
                 text-sm p2 border-1 transition-colors
                 border-dark
                 btn-action-icon
-                @click=" () => isInCurrentList(result.id) ? removeAccount(result.id) : addAccount(result.id) "
+                @click=" () => isInCurrentList(result.id) ? removeAccount(result.data) : addAccount(result.data) "
               >
                 <span :class="isInCurrentList(result.id) ? 'i-ri:user-unfollow-line' : 'i-ri:user-add-line'" />
               </button>
